@@ -57,10 +57,10 @@ function editedV2(family: string, edit: (file: Record<string, any>) => void): Le
   return file as LensDataV2Input;
 }
 
-/** The refusals ingest gives a V2 lens file, or `[]` when it ingests. */
-function refusalsOf(file: LensDataV2Input): readonly string[] {
+/** The refusals an ingest gives a V2 file, a lens file unless `ingest` says otherwise, or `[]` when it ingests. */
+function refusalsOf(file: object, ingest: (file: never) => unknown = ingestLensV2): readonly string[] {
   try {
-    ingestLensV2(file);
+    ingest(file as never);
     return [];
   } catch (thrown) {
     if (thrown instanceof PrescriptionIngestError) return thrown.issues;
@@ -270,6 +270,35 @@ describe("V2 refusals name the authored path", () => {
       "surfaces[1].synthetic is set only by expandRearPlates(), never authored",
     ],
     [
+      "a record that is not an object",
+      "prime",
+      (file) => (file.source = "JP 2000-000001 A"),
+      "source must be an object",
+    ],
+    ["a list that is not a list", "prime", (file) => (file.media = {}), "media must be a list"],
+    ["a required field left out", "prime", (file) => delete file.aperture.fStops, "aperture.fStops is required"],
+    [
+      "an element id that is not a positive integer",
+      "prime",
+      (file) => {
+        file.elements[0].id = 0;
+        file.surfaces[1].medium = 0;
+      },
+      "elements[0].id must be a positive integer",
+    ],
+    [
+      "a surface label that is no string",
+      "prime",
+      (file) => (file.surfaces[2].label = 2),
+      "surfaces[2].label must be a string",
+    ],
+    [
+      "a surface label written twice",
+      "prime",
+      (file) => (file.surfaces[2].label = "1"),
+      'surfaces[2].label "1" repeats surfaces[1].label',
+    ],
+    [
       "a medium naming no element",
       "prime",
       (file) => (file.surfaces[1].medium = 13),
@@ -280,6 +309,12 @@ describe("V2 refusals name the authored path", () => {
       "prime",
       (file) => (file.surfaces[1].medium = "glue"),
       'surfaces[1].medium: unknown medium "glue"',
+    ],
+    [
+      "a medium that is neither an element id nor a media id",
+      "prime",
+      (file) => (file.surfaces[1].medium = true),
+      "surfaces[1].medium must be an element id or a media id",
     ],
     [
       "a medium no surface uses",
@@ -319,10 +354,59 @@ describe("V2 refusals name the authored path", () => {
       "media[0].name must be a non-empty string, or left out",
     ],
     [
+      "a medium without an id",
+      "media",
+      (file) => file.media.push({ id: "", nd: 1.4 }),
+      "media[2].id must be a non-empty string",
+    ],
+    [
+      "a medium index that is no number",
+      "media",
+      (file) => file.media.push({ id: "oil", nd: "1.515" }),
+      "media[2].nd must be a number",
+    ],
+    [
+      "gaps that are not keyed by surface label",
+      "prime",
+      (file) => (file.gaps = [[80]]),
+      "gaps must be an object keyed by surface label",
+    ],
+    ["a gap that is not an object", "prime", (file) => (file.gaps = { "1": 5 }), 'gaps["1"] must be an object'],
+    [
       "a gap keyed by no surface",
       "focus keyframes",
       (file) => (file.gaps["9"] = { values: [[1, 1, 1]] }),
       'gaps["9"]: no surface is labelled "9"',
+    ],
+    [
+      "a gap without its values",
+      "focus keyframes",
+      (file) => delete file.gaps["2"].values,
+      'gaps["2"].values is required',
+    ],
+    [
+      "gap values that are not rows of thicknesses",
+      "focus keyframes",
+      (file) => (file.gaps["2"].values = [80, 81, 82.5]),
+      'gaps["2"].values must be one row of thicknesses per zoom station',
+    ],
+    [
+      "a gap label that is no string",
+      "focus keyframes",
+      (file) => (file.gaps["2"].label = 5),
+      'gaps["2"].label must be a string',
+    ],
+    [
+      "an aberration-control gap label that is no string",
+      "aberration control",
+      (file) => (file.aberrationControl.gaps.STO.label = 7),
+      'aberrationControl.gaps["STO"].label must be a string',
+    ],
+    [
+      "aberration control without its gaps",
+      "aberration control",
+      (file) => delete file.aberrationControl.gaps,
+      "aberrationControl.gaps is required",
     ],
     [
       "a gap surface that also writes d",
@@ -355,6 +439,27 @@ describe("V2 refusals name the authored path", () => {
       'gaps["2"].values[0] has 2 thicknesses for 3 focus keyframes',
     ],
     [
+      "focus keyframes that are null",
+      "focus keyframes",
+      (file) => (file.focus.keyframes = null),
+      "focus.keyframes must be a list of at least two numbers",
+    ],
+    [
+      "focus keyframes given as a count",
+      "focus keyframes",
+      (file) => (file.focus.keyframes = 3),
+      "focus.keyframes must be a list of at least two numbers",
+    ],
+    [
+      "no focus keyframes",
+      "focus keyframes",
+      (file) => {
+        file.focus.keyframes = [];
+        file.gaps["2"].values = [[]];
+      },
+      "focus.keyframes must be a list of at least two numbers",
+    ],
+    [
       "a station field on some stations but not all",
       "zoom",
       (file) => delete file.zoom.stations[1].closeFocusM,
@@ -380,6 +485,24 @@ describe("V2 refusals name the authored path", () => {
       "zoom.stations must list at least two stations",
     ],
     [
+      "a zoom station that is not an object",
+      "zoom",
+      (file) => (file.zoom.stations[1] = null),
+      "zoom.stations[1] must be an object",
+    ],
+    [
+      "a zoom station without its focal length",
+      "zoom",
+      (file) => delete file.zoom.stations[1].focalLengthMm,
+      "zoom.stations[1].focalLengthMm is required",
+    ],
+    [
+      "a station's published flag that is no boolean",
+      "published stations",
+      (file) => (file.zoom.stations[1].published = "yes"),
+      "zoom.stations[1].published must be true or false",
+    ],
+    [
       "no published station",
       "published stations",
       (file) => {
@@ -392,6 +515,12 @@ describe("V2 refusals name the authored path", () => {
       "published stations",
       (file) => (file.zoom.stations[0].publishedFocus = [2]),
       "zoom.stations[0].publishedFocus must be strictly increasing focus keyframe indices (1..1)",
+    ],
+    [
+      "a prime's published keyframe that names none",
+      "published stations (prime)",
+      (file) => (file.focus.published = [2]),
+      "focus.published must be strictly increasing focus keyframe indices (1..1)",
     ],
     [
       "a prime's published keyframes on a zoom",
@@ -422,6 +551,12 @@ describe("V2 refusals name the authored path", () => {
       "mirrors with spans",
       (file) => (file.elements[0].span = ["MG2", "MG1"]),
       'elements[0].span runs backwards: "MG2" comes after "MG1"',
+    ],
+    [
+      "a span that is not two surface labels",
+      "mirrors with spans",
+      (file) => (file.elements[0].span = ["MG1"]),
+      "elements[0].span must be [from, to] surface labels",
     ],
     [
       "a derived stop's sd",
@@ -459,10 +594,30 @@ describe("V2 refusals name the authored path", () => {
       (file) => delete file.aperture.nominalFNumber,
       "aperture.nominalFNumber is required",
     ],
+    [
+      "a zoom without a design f-number",
+      "zoom",
+      (file) => {
+        for (const station of file.zoom.stations) delete station.nominalFNumber;
+      },
+      "aperture.nominalFNumber is required, or zoom.stations[].nominalFNumber on every station",
+    ],
   ];
 
   it.each(refusals)("refuses %s", (_description, family, edit, issue) => {
     expect(refusalsOf(editedV2(family, edit))).toEqual([issue]);
+  });
+
+  it("refuses a teleconverter's source errata, which V1 holds for a lens alone", () => {
+    const converter = FIXTURE_PAIRS.find(
+      (pair): pair is Extract<FixturePair, { kind: "teleconverter" }> => pair.kind === "teleconverter",
+    )!;
+    const file = {
+      ...structuredClone(converter.v2),
+      source: { patentNumber: "JP 2000-000002 A", errata: [{ status: "unresolved", note: "Fixture." }] },
+    };
+    expect(refusalsOf(file, ingestTeleconverterV2)).toEqual(["source.errata is not a V2 field"]);
+    expect(refusalsOf({ ...file, source: { patentNumber: "JP 2000-000002 A" } }, ingestTeleconverterV2)).toEqual([]);
   });
 
   it("reports every reason at once", () => {
@@ -473,6 +628,15 @@ describe("V2 refusals name the authored path", () => {
       }),
     );
     expect(issues).toHaveLength(2);
+    /* With the keyframes refused, a published list is held to its shape alone. */
+    const unknownCount = editedV2("published stations (prime)", (file) => {
+      file.focus.keyframes = null;
+      file.focus.published = "1";
+    });
+    expect(refusalsOf(unknownCount)).toEqual([
+      "focus.keyframes must be a list of at least two numbers",
+      "focus.published must be a list of focus keyframe indices",
+    ]);
     expect(() => ingestLensV2(editedV2("prime", (file) => (file.surfaces[1].medium = 13)))).toThrow(
       /Prescription "fixture-prime" cannot be ingested/,
     );
@@ -486,7 +650,7 @@ describe("derived stops carry no sd", () => {
    * be bit-identical. The records that echo authored data drop that `sd` anyway (`normalizeAuthoredData`), so nothing
    * is excluded.
    */
-  it("rebuilds every derived-stop catalog lens without its stop sd, bit-identical in its build and layout records", () => {
+  it("rebuilds every catalog lens whose stop radius is not authored without its stop sd, bit-identically", () => {
     const catalog = exportCatalog();
     const requests = tierRequests("p", requestCatalog(catalog)).filter(
       (request) => request.family === "build" || request.family === "layout",

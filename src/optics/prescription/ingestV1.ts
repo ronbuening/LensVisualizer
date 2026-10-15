@@ -18,7 +18,7 @@
  * - a field V1 does not define, or one only the engine writes.
  * Every reason found is reported at once, in a `PrescriptionIngestError` that names each field and its authored path.
  * Ingest does not otherwise check types, and may fail on wrong-typed input with a plain `TypeError`; `buildLens` asks
- * the validator about every file first. The validator reads `asph: null` and `var: null` as absent, which is why
+ * the validator about every V1 file first. The validator reads `asph: null` and `var: null` as absent, which is why
  * ingest refuses those two by name. The input is never modified, and the result shares no object with it.
  *
  * Asked for source paths, ingest records where it read each value as it reads it (`SourcePaths`): the converter

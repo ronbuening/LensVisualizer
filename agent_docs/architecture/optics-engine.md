@@ -301,7 +301,7 @@ so an ingest that was not asked builds no path. `sourcePaths.ts` spells every pa
   `[wide, tele]` nor one per station, `varLabels` (or the ring's) that name no gap, are not `[label, text]` pairs or
   are out of surface order, an `asph` or `var` that is not an object keyed by surface label, and fields V1 does not
   define or only the engine writes. Ingest does not otherwise check types, so other wrong-typed input can fail with a
-  plain `TypeError`, and `buildLens` asks the validator about every file first. The validator reads `asph: null` and
+  plain `TypeError`, and `buildLens` asks the validator about every V1 file first. The validator reads `asph: null` and
   `var: null` as absent, which is why ingest names those itself. Some refusals are stricter than the validator; the
   plan's S2.P1.T1 lists them. A field added to `LensDataInput` fails the typecheck at `LENS_FIELDS` in `ingestV1.ts`
   until ingest and the view carry it.
@@ -310,12 +310,10 @@ so an ingest that was not asked builds no path. `sourcePaths.ts` spells every pa
   is the one rule that tells the versions apart, for them and for `buildLens` and the lens catalog. V2 ingest applies
   the same defaults at their canonical paths, numbers undrawn media by first use as V1 ingest does (their authored
   ids and names go to provenance, so they never reach the fingerprint), and takes a variable gap's first value as its
-  surface's `d`. It also refuses V2's own rules at their authored paths: a medium naming no element or medium, an
-  unused or duplicate medium, a medium field other than `id`, `name` and `nd` or a `name` that is no non-empty
-  string, a gap keyed by no surface or out of step with the station and keyframe counts, a gap surface that also
-  writes `d`, a station field on some stations only, an element span naming no surface, and a stop `sd` the engine
-  would not read or a missing one it would. The rules both versions share (unknown fields, defaults, aspheres, rear
-  plates) are in `ingestCommon.ts`.
+  surface's `d`. A V2 file has no validator-first pass, so V2 ingest refuses every shape it cannot read itself, at
+  the authored path, along with V2's own rules, such as a medium no surface uses, a gap out of step with the station
+  and keyframe counts, or a stop `sd` the engine would not read; the plan's S2.P2.T1 As built lists them all. The
+  rules both versions share (unknown fields, defaults, aspheres, rear plates) are in `ingestCommon.ts`.
 - A stop carries `sd` in V2 only where its radius is authored. A stop whose radius is not authored (traced from the
   design f-number, or taken from the station schedule) leaves it out, and V2 ingest refuses one written there.
   `validateLensData` accepts it absent, generated rear-plate rims skip it (below), and `lensDataStopRadiusAuthority`
@@ -330,8 +328,9 @@ so an ingest that was not asked builds no path. `sourcePaths.ts` spells every pa
   set-aside values the V2 file drops. `prescriptionDifference` (`canonical.ts`) compares two prescriptions under the
   semantic fingerprint's rules. The converter reaches all of these through `src/optics/lensDataConversion.ts`.
 - Lens data gets its defaults from ingest and the V1 view alone (S2.P1.T2); nothing outside tests spreads the
-  defaults table but the validator-first spread below. `buildLens.ts` re-exports the two ingest functions and the two
-  V1 views (`toLensData`, `toTeleconverterData`), the way code outside the engine reaches them until S8.P1.T2.
+  defaults table but the validator-first spread below. `buildLens.ts` re-exports `ingestLens`, `ingestTeleconverter`,
+  their V1 forms (`ingestLensV1`, `ingestTeleconverterV1`), `isV1File` and the two V1 views (`toLensData`,
+  `toTeleconverterData`), the way code outside the engine reaches them until S8.P1.T2.
   - `buildLens` reads an authored file through ingest and builds its view (`withLensDefaults` in
     `normalizeLensData.ts`). The validator is asked about every V1 file first; the comment at the spread in
     `normalizeLensData.ts` says how, and where that exception ends.

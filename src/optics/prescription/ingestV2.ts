@@ -7,20 +7,14 @@
  * ids V1 ingest gives them (`m1`, `m2`, … by first use, so a medium's own id and name stay out of the semantic
  * fingerprint), takes a variable gap's first thickness as its surface's `d`, and decides the stop's radius authority.
  *
- * Like V1 ingest it does not validate the prescription, which `validateLensData` still does on the V1 view. It refuses
- * what the canonical form or the V1 view cannot hold, and the rules V2 adds, each at its authored path:
- * - a field V2 does not define, or one only the engine writes;
- * - a surface medium naming no element or medium; a medium no surface uses, one with the index of air, or one with
- *   another medium's index;
- * - a gap keyed by no surface; a gap surface that also writes `d`, or a surface with neither; gap rows that do not
- *   match the station and keyframe counts;
- * - a station field set on some stations but not all; station labels other than all, or the first and last; no
- *   published station; a published keyframe, or a conjugate's station or keyframe, that names none;
- * - an element span naming no surface, or running backwards;
- * - a stop `sd` the engine would not read, or a missing one it would.
- * Every reason found is reported at once, in a `PrescriptionIngestError`. The input is never modified, and the result
- * shares no object with it. Asked for source paths, ingest records where it read each value (`SourcePaths`); in V2 a
- * value sits at its canonical path, except a medium's, which ingest renumbers, and a gap's, which it keys by surface.
+ * Like V1 ingest it does not validate the prescription, which `validateLensData` still does on the V1 view. A V2 file
+ * has no validator-first pass, though, so V2 ingest refuses every shape it cannot read itself, along with what the
+ * canonical form or the V1 view cannot hold and the rules V2 adds, each at its authored path. The one list of them is
+ * the S2.P2.T1 As built of OPTICS_ENGINE_REWRITE_SPEC.md. Every reason found is reported at once, in a
+ * `PrescriptionIngestError`, but for `elements` or `surfaces` that is not a list of objects, which stops ingest at
+ * once. The input is never modified, and the result shares no object with it. Asked for source paths, ingest records
+ * where it read each value (`SourcePaths`); in V2 a value sits at its canonical path, except a medium's, which ingest
+ * renumbers, and a gap's, which it keys by surface.
  */
 
 import type {
@@ -40,6 +34,7 @@ import type {
   SourceV2Input,
   SurfaceV2Input,
   TeleconverterDataV2Input,
+  TeleconverterSourceV2Input,
   ZoomStationV2Input,
   ZoomV2Input,
 } from "../../types/lensDataV2.js";
@@ -177,6 +172,14 @@ const SOURCE_FIELDS: Fields<SourceV2Input> = {
   authors: true,
   assignees: true,
   errata: true,
+};
+
+/** A converter's source: V1 holds no errata for one. */
+const TELECONVERTER_SOURCE_FIELDS: Fields<TeleconverterSourceV2Input> = {
+  patentNumber: true,
+  patentYear: true,
+  authors: true,
+  assignees: true,
 };
 
 const ELEMENT_FIELDS: Fields<ElementV2Input> = {
@@ -400,6 +403,10 @@ function ingestElements(
   return authored.map((element, index) => {
     const at = `elements[${index}]`;
     refuseUnknownFields(element, ELEMENT_FIELDS, at, context);
+    /* V1 reads an element id of 0 as air, so the V1 view could not hold one. */
+    if (!Number.isInteger(element.id) || (element.id as number) < 1) {
+      context.issues.push(`${at}.id must be a positive integer`);
+    }
     const out: Untyped = { id: element.id, name: element.name, label: element.label, type: element.type };
     out.nd = element.nd;
     put(out, "vd", element.vd);
@@ -645,7 +652,10 @@ function keyedGaps(
     }
     if (!has(entry, "values")) context.issues.push(`${at}.values is required`);
     const gap: { surface: string; label?: string; values: unknown } = { surface, values: copy(entry.values) };
-    if (has(entry, "label")) gap.label = entry.label as string;
+    if (has(entry, "label")) {
+      if (typeof entry.label === "string") gap.label = entry.label;
+      else context.issues.push(`${at}.label must be a string`);
+    }
     gaps.push(gap);
   }
   gaps.sort((a, b) => labelIndex.get(a.surface)! - labelIndex.get(b.surface)!);
@@ -664,13 +674,14 @@ function keyedGaps(
 function ingestGaps(
   value: unknown,
   stationCount: number,
-  keyframeCount: number,
+  keyframeCount: number | undefined,
   labelIndex: ReadonlyMap<string, number>,
   context: IngestContext,
 ): CanonicalGap[] {
   return keyedGaps(value, "gaps", GAP_FIELDS, labelIndex, context).map((gap) => {
     const at = `${labelPath("gaps", gap.surface)}.values`;
     const rows = gap.values;
+    if (rows === undefined) return { ...gap, values: [] } as CanonicalGap;
     if (!Array.isArray(rows) || !rows.every(isNumberList)) {
       context.issues.push(`${at} must be one row of thicknesses per zoom station`);
       return { ...gap, values: [] } as CanonicalGap;
@@ -683,7 +694,7 @@ function ingestGaps(
       );
     }
     rows.forEach((row, station) => {
-      if (row.length !== keyframeCount) {
+      if (keyframeCount !== undefined && row.length !== keyframeCount) {
         context.issues.push(`${at}[${station}] has ${row.length} thicknesses for ${keyframeCount} focus keyframes`);
       }
     });
@@ -712,12 +723,20 @@ function ingestAberrationControl(
 /** Station fields V1 holds on every station or on none. */
 const EVERY_STATION_OR_NONE = ["nominalFNumber", "stopSemiDiameter", "closeFocusM"] as const;
 
-function ingestZoom(zoom: Untyped, context: IngestContext): CanonicalZoom {
+/**
+ * The zoom record, with the stations as `records` checked them: a station that is not an object is refused there,
+ * stands as `{}` for every later reader, and is asked for no field again.
+ */
+function ingestZoom(zoom: Untyped, context: IngestContext): { zoom: CanonicalZoom; stations: Untyped[] } {
   const stations = records(zoom.stations, "zoom.stations", STATION_FIELDS, context);
+  const refused = new Set(
+    stations.flatMap((_, index) => (isRecord((zoom.stations as unknown[])[index]) ? [] : [index])),
+  );
+  const checked = stations.filter((_, index) => !refused.has(index));
   if (stations.length < 2) context.issues.push(`zoom.stations must list at least two stations`);
   const out = stations.map((station, index): CanonicalZoomStation => {
     const at = `zoom.stations[${index}]`;
-    if (!has(station, "focalLengthMm")) context.issues.push(`${at}.focalLengthMm is required`);
+    if (!refused.has(index) && !has(station, "focalLengthMm")) context.issues.push(`${at}.focalLengthMm is required`);
     const record: Untyped = { focalLengthMm: station.focalLengthMm };
     for (const field of EVERY_STATION_OR_NONE) put(record, field, station[field]);
     put(record, "label", station.label);
@@ -731,25 +750,30 @@ function ingestZoom(zoom: Untyped, context: IngestContext): CanonicalZoom {
   });
 
   for (const field of EVERY_STATION_OR_NONE) {
-    const set = stations.filter((station) => has(station, field)).length;
-    if (set === 0 || set === stations.length) continue;
+    const set = checked.filter((station) => has(station, field)).length;
+    if (set === 0 || set === checked.length) continue;
     stations.forEach((station, index) => {
-      if (!has(station, field)) {
+      if (!refused.has(index) && !has(station, field)) {
         context.issues.push(`zoom.stations[${index}].${field} is missing: set it on every station or on none`);
       }
     });
   }
-  const labelled = stations.map((station) => has(station, "label"));
+  /* A refused station counts as fitting whichever labelling the others show. */
+  const labelled = stations.map((station, index) => (refused.has(index) ? null : has(station, "label")));
   const last = stations.length - 1;
-  const endsOnly = labelled.every((flag, index) => flag === (index === 0 || index === last));
-  if (!labelled.every(Boolean) && !labelled.every((flag) => !flag) && !endsOnly) {
+  const fits = (wanted: (index: number) => boolean) =>
+    labelled.every((flag, index) => flag === null || flag === wanted(index));
+  if (!fits(() => true) && !fits(() => false) && !fits((index) => index === 0 || index === last)) {
     context.issues.push(`zoom.stations[].label: label every station, or the first and last alone`);
   }
 
   return {
-    stations: out,
-    apertureModel: withDefault(zoom, "zoom.apertureModel", context) as CanonicalZoom["apertureModel"],
-    step: withDefault(zoom, "zoom.step", context) as number,
+    zoom: {
+      stations: out,
+      apertureModel: withDefault(zoom, "zoom.apertureModel", context) as CanonicalZoom["apertureModel"],
+      step: withDefault(zoom, "zoom.step", context) as number,
+    },
+    stations,
   };
 }
 
@@ -770,13 +794,19 @@ function ingestPublishedStations(
   zoom: CanonicalZoom | undefined,
   focusRecord: Untyped,
   focus: CanonicalFocus,
+  keyframeCount: number | undefined,
   context: IngestContext,
 ): void {
-  const keyframeCount = focus.keyframes.length;
-  const rule = `strictly increasing focus keyframe indices (1..${keyframeCount - 1})`;
+  /* With the keyframes refused there is no count to hold a published list to, so only its shape is checked. */
+  const rule =
+    keyframeCount === undefined
+      ? "a list of focus keyframe indices"
+      : `strictly increasing focus keyframe indices (1..${keyframeCount - 1})`;
+  const isPublishedList = (value: unknown) =>
+    keyframeCount === undefined ? isNumberList(value) : isPublishedFocusList(value, keyframeCount);
   if (!zoom || !stations) {
     if (!has(focusRecord, "published")) context.defaulted.push(lensDefault("publishedStations").path);
-    else if (!isPublishedFocusList(focusRecord.published, keyframeCount)) {
+    else if (!isPublishedList(focusRecord.published)) {
       context.issues.push(`focus.published must be ${rule}`);
     }
     focus.published = isNumberList(focusRecord.published) ? [...focusRecord.published] : [];
@@ -794,7 +824,7 @@ function ingestPublishedStations(
     if (flag !== undefined && typeof flag !== "boolean") context.issues.push(`${at}.published must be true or false`);
     station.published = flag !== false;
     const list = authored.publishedFocus;
-    if (list !== undefined && !isPublishedFocusList(list, keyframeCount)) {
+    if (list !== undefined && !isPublishedList(list)) {
       context.issues.push(`${at}.publishedFocus must be ${rule}`);
     }
     station.publishedFocus = isNumberList(list) ? [...list] : [];
@@ -808,7 +838,7 @@ function ingestPublishedStations(
 function ingestConjugates(
   value: unknown,
   stationCount: number,
-  keyframeCount: number,
+  keyframeCount: number | undefined,
   context: IngestContext,
 ): CanonicalConjugate[] {
   return records(value, "focus.conjugates", CONJUGATE_FIELDS, context).map((conjugate, index) => {
@@ -817,7 +847,7 @@ function ingestConjugates(
     if (!isIndexIn(zoomStation, 0, stationCount - 1)) {
       context.issues.push(`${at}.zoomStation ${String(zoomStation)} names no zoom station (0..${stationCount - 1})`);
     }
-    if (!isIndexIn(keyframe, 1, keyframeCount - 1)) {
+    if (keyframeCount !== undefined && !isIndexIn(keyframe, 1, keyframeCount - 1)) {
       context.issues.push(
         `${at}.keyframe ${String(keyframe)} names no focus keyframe beyond infinity (1..${keyframeCount - 1})`,
       );
@@ -870,10 +900,10 @@ function ingestLensCatalog(data: Untyped, context: IngestContext): Untyped {
   return out;
 }
 
-function ingestSource(data: Untyped, context: IngestContext): Untyped {
-  const source = nested(data, "source", "", SOURCE_FIELDS, context) ?? {};
+function ingestSource(data: Untyped, known: Readonly<Record<string, true>>, context: IngestContext): Untyped {
+  const source = nested(data, "source", "", known, context) ?? {};
   const out: Untyped = {};
-  for (const field of ["patentNumber", "patentYear", "authors", "assignees", "errata"]) put(out, field, source[field]);
+  for (const field of Object.keys(known)) put(out, field, source[field]);
   if (context.sources) recordReads(context.sources, "source", "source", out, Object.keys(out));
   return out;
 }
@@ -916,14 +946,19 @@ export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): I
   const labelIndex = labelIndexOf(authoredSurfaces, context);
 
   const zoomRecord = nested(data, "zoom", "", ZOOM_FIELDS, context);
-  const zoom = zoomRecord ? ingestZoom(zoomRecord, context) : undefined;
+  const zoomRead = zoomRecord ? ingestZoom(zoomRecord, context) : undefined;
+  const zoom = zoomRead?.zoom;
   const stationCount = zoom?.stations.length ?? 1;
 
   const focusRecord = nested(data, "focus", "", FOCUS_FIELDS, context) ?? {};
   requireFields(focusRecord, ["closeFocusM"], "focus", context);
+  const keyframes = withDefault(focusRecord, "focus.keyframes", context);
+  /* Counted once, from the checked list. A refused list leaves the count unknown, and nothing is counted against it. */
+  const keyframeCount = isNumberList(keyframes) && keyframes.length >= 2 ? keyframes.length : undefined;
+  if (keyframeCount === undefined) context.issues.push(`focus.keyframes must be a list of at least two numbers`);
   const focus: CanonicalFocus = {
     closeFocusM: focusRecord.closeFocusM as number,
-    keyframes: withDefault(focusRecord, "focus.keyframes", context) as number[],
+    keyframes: keyframeCount === undefined ? [] : (keyframes as number[]),
     step: withDefault(focusRecord, "focus.step", context) as number,
   };
   put(focus as unknown as Untyped, "description", focusRecord.description);
@@ -932,17 +967,10 @@ export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): I
     /* The list is copied as written, so each keyframe index, and a comment on it, keeps its place. */
     if (has(focusRecord, "published")) context.sources.read["focus.published"] = "focus.published";
   }
-  const keyframeCount = Array.isArray(focus.keyframes) ? focus.keyframes.length : 0;
   if (has(focusRecord, "conjugates")) {
     focus.conjugates = ingestConjugates(focusRecord.conjugates, stationCount, keyframeCount, context);
   }
-  ingestPublishedStations(
-    zoomRecord && Array.isArray(zoomRecord.stations) ? (zoomRecord.stations as Untyped[]) : undefined,
-    zoom,
-    focusRecord,
-    focus,
-    context,
-  );
+  ingestPublishedStations(zoomRead?.stations, zoom, focusRecord, focus, keyframeCount, context);
 
   const surfaceInteractions = authoredSurfaces.map((surface) => surface.interaction as { type?: unknown } | undefined);
   const stopAuthority = stopRadiusAuthority({
@@ -1012,7 +1040,7 @@ export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): I
   lens.visible = withDefault(data, "visible", context);
   put(lens, "publishedAt", data.publishedAt);
   lens.catalog = ingestLensCatalog(data, context);
-  lens.source = ingestSource(data, context);
+  lens.source = ingestSource(data, SOURCE_FIELDS, context);
   lens.elements = elements;
   lens.media = media;
   lens.surfaces = surfaces;
@@ -1088,7 +1116,7 @@ export function ingestTeleconverterV2(
   put(converter, "visible", data.visible);
   put(converter, "publishedAt", data.publishedAt);
   converter.catalog = catalog;
-  converter.source = ingestSource(data, context);
+  converter.source = ingestSource(data, TELECONVERTER_SOURCE_FIELDS, context);
   converter.magnification = data.magnification;
   converter.masterImageDistanceMm = data.masterImageDistanceMm;
   put(converter, "universal", data.universal);
