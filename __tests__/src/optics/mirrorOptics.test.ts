@@ -23,6 +23,8 @@ import {
   solveChiefRay,
   stopInnerBlockedSemiDiameter,
   SVG_PATH_SUBDIVISIONS,
+  traceChiefRelativeSkewRay,
+  traceSkewRay,
   traceRay,
   traceRayChromatic,
 } from "../../../src/optics/optics.js";
@@ -951,3 +953,14 @@ describe("mirror optics support", () => {
     expect(Number.isFinite(bestFocusZ)).toBe(true);
   });
 });
+
+it.each(["reference-newtonian-side-focus", "reference-mangin-second-surface-mirror"])(
+  "keeps chief-relative rays on the generalized path for %s",
+  (key) => {
+    const L = buildLens(LENS_CATALOG[key]);
+    const ray = traceChiefRelativeSkewRay(0, 0.5, 8, 0, 8, 0, 0, L.stopPhysSD, true, L);
+    expect(ray).toEqual(traceSkewRay(0, 12, 0, 0, 0, 0, L.stopPhysSD, true, L));
+    expect(ray.clipped).toBe(false);
+    expect(ray.transmission).toBe(1);
+  },
+);

@@ -82,7 +82,7 @@ flowchart LR
 - Direct source files: 18
 - Direct subfolders: 0
 - Main outbound areas: same folder (35), src/types (28), src/optics/geometry (4), src/optics/types.ts (4), src/optics/math (3), src/utils/catalog (3), src/optics/internal (2), src/optics/dispersion.ts, +3 more
-- External consumers: src/optics/buildLens.ts, src/optics/chromatic, src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/internal, src/optics/lensDataConversion.ts, +6 more
+- External consumers: src/optics/analysis, src/optics/buildLens.ts, src/optics/chromatic, src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/internal, +7 more
 
 ## Files
 
@@ -98,7 +98,7 @@ flowchart LR
 | `ingestV2.ts` | Ingest V2 helper module | same folder (5), src/types (3), src/optics/geometry | same folder, src/optics/buildLens.ts, src/optics/lensDataConversion.ts | LENS_DATA_V2_SCHEMA, ingestLensV2, ingestTeleconverterV2, isV1File, ingestLens, ingestTeleconverter |
 | `interactions.ts` | Interactions helper module | src/optics/math, src/optics/types.ts, src/types | same folder | yzNormalToVec3, compileSurfaceInteraction, resolvedImagePlaneToPlane3, imagePlaneDataToPlane3 |
 | `labels.ts` | Labels helper module | src/types | same folder (4) | Optics2LensNormalizationError, buildSurfaceLabelMap, resolveLabel |
-| `normalizeLensData.ts` | Normalize Lens Data helper module | same folder (9), src/types (2), src/optics/geometry, src/optics/math, src/optics/runtimeLens.ts, +2 more | src/optics/chromatic (2), src/optics/first-order (2), src/optics/buildLens.ts, src/optics/compat.ts, src/optics/diagram, +2 more | validateAuthoredLensData, withLensDefaults, normalizeLensData, normalizeRuntimeLens |
+| `normalizeLensData.ts` | Normalize Lens Data helper module | same folder (9), src/types (2), src/optics/geometry, src/optics/math, src/optics/runtimeLens.ts, +2 more | src/optics/chromatic (2), src/optics/first-order (2), src/optics/analysis, src/optics/buildLens.ts, src/optics/compat.ts, +3 more | validateAuthoredLensData, withLensDefaults, normalizeLensData, normalizeRuntimeLens |
 | `rearPlates.ts` | Rear Plates helper module | same folder (2), src/types, src/utils/catalog | same folder, src/optics/runtimeLens.ts, src/optics/validateLensData.ts | REAR_PLATE_LABEL_PATTERN, rearPlateSurfaceLabels, rearPlateAirEquivalentMm, expandRearPlates, lastLensSurfaceIndex |
 | `sourcePaths.ts` | Source Paths helper module | none | same folder (5), src/optics/lensDataConversion.ts | memberPath, itemPath, labelPath, childPath, parentPath, pathBelow, extendPath |
 | `teleconverter.ts` | Teleconverter helper module | same folder (2), src/optics/internal (2), src/types (2), src/optics/field, src/utils/catalog | src/optics/teleconverter.ts, src/optics/validateTeleconverterData.ts | TeleconverterAttachError, teleconverterSurfaceLabel, teleconverterGroupLabel, mergeTeleconverterPrescription, attachTeleconverter |
