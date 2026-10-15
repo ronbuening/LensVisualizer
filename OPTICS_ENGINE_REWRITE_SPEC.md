@@ -1877,19 +1877,69 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
       converted file does not hold, one it holds twice, and one that formatting gives another node.
   - **Gate:** C0.
 - **S2.P3.T2 CLI and safety.**
-  - **Change:** add `scripts/convert-lens-data.mjs` and its `npm run convert:lens-data` script.
+  - **Change:** add `scripts/convert-lens-data.mjs` and its `npm run convert:lens-data` script
+    (`scripts/lens-data-convert/cli.mjs`), and the library's V1 direction.
   - **Flags:**
-    - `--input <file|dir>`
-    - `--to-version 1|2`
-    - `--dry-run` (the default)
-    - `--check`
-    - `--write`
-    - `--output <dir>` (optional; default in place)
-  - **Writes:** go to a temp file and are renamed into place only after the output re-ingests to the same canonical
-    prescription and type-checks.
-  - **Behavior:** V2 input is idempotent, the tool refuses on collisions, and a failure leaves inputs unchanged.
-  - **Tests:** the tooling suite covers each of those behaviors, plus an interrupted write and V2 → V1 → V2
-    identity.
+    - `--input <file|dir>`: a file, or every `*.data.ts` and `*.teleconverter.ts` under a directory, in path order
+    - `--to-version 1|2` (default 2)
+    - `--dry-run` (the default), `--check` or `--write`, one at most: all three convert, check and print the same
+      report, and only `--write` writes
+    - `--output <dir>` (with `--write` only; default in place): each converted file at its path below `--input` (a
+      file input: its name). The directory holds only the converted files.
+  - **Exit codes,** each listed in the usage text with what gives it: 0; 1 for `--check` when an input would convert
+    and none is refused; 2 for a refused input, a type diagnostic outside the converted files or a failure of the
+    type-check itself, a collision, a failed write or rename, SIGINT or SIGTERM while writing, and a usage error.
+  - **Version:** the engine's rule, `lensDataVersion` beside `isV1File` in `ingestV2.ts`, through
+    `lensDataConversion.ts`: no `schema` is V1, `schema: 2` is V2, and any other `schema` is no version, refused as
+    ingest refuses it. An input already at `--to-version` is left as it is in every mode: not reprinted, rewritten
+    or ingested, and given no line; the closing count says how many were left. `--to-version 1` restores a file's
+    prescription, not its bytes; git restores bytes.
+  - **Output:** stdout is the conversion report and nothing else, the same bytes in every mode; stderr has a line for
+    each file converted or refused, and one closing count.
+  - **Line endings:** the command line reads a CR LF source as LF, whole, header included, says so on that file's
+    line, and writes LF. A lone CR is a refusal. No catalog file has either.
+  - **Collisions,** each exit 2 before anything converts, naming both paths: two destinations that are one path
+    without regard to case; under `--output`, a destination that exists; an `--output` directory inside `--input`,
+    or `--input` inside it, compared after resolving symbolic links (`realpath`) and as directories, not as string
+    prefixes (`/tmp/out` is not inside `/tmp/out-2`); and a backup a run left beside an input. The organizer's maker
+    folders are S2.P5.T9's.
+  - **Checks,** in every mode, before anything is written: the library's (the output re-ingests to the source's
+    prescription and holds each comment once), then one TypeScript program over every converted text, each served
+    in memory at the path it will be written to (in place, its input's), under the repository's `tsconfig.json`.
+    With `--output` the type import is written for the destination's depth. Every diagnostic is reported; one in a
+    converted file refuses it.
+  - **Writes,** under `--write` and only when no input is refused: each converted text to a temp file beside its
+    destination (`.<name>.<pid>.convert-tmp`); in place, each input's bytes beside it (`.<name>.<pid>.convert-bak`),
+    each temp file renamed over its input, and the backups removed; under `--output`, each temp file linked to its
+    destination, failing if the destination exists, then removed. Temp files and backups are created exclusively
+    (`wx`), and a run removes only files it created. When a write, rename or link fails, or SIGINT or SIGTERM arrives
+    while writing, the run puts back every input already replaced (under `--output`, removes every file and
+    directory it wrote), removes its temp files and backups, and exits 2. A SIGKILL can leave them: `*.convert-tmp`
+    and `*.convert-bak` are in `.gitignore`, and the next run refuses while a backup sits beside an input.
+  - **V2 to V1:** the V1 view without catalog defaults, its top-level members printed in `V1_PRINT_ORDER` (the
+    declaration order of `LensData` and `TeleconverterData`; the view writes a lens's tail in another order, and
+    keeps it) with a blank line before the first member of each section `V1_GROUP_STARTS` opens, both in
+    `toLensData.ts`. A record below the top prints as the view writes it, a record keyed by surface label in
+    surface order. The comment mapping is engine-owned, `v1SourceMap` in `src/optics/prescription/`, as
+    [V2 to V1](#ingest-conversion-and-comments) states it, and the report lists each moved comment and each medium
+    name V1 cannot hold.
+  - **A stop without `sd`, going to V1:** V1's `SurfaceData.sd` is required, so the converter writes the engine's
+    radius, to 0.001 mm, from `buildLens` on the source: a prime's radius, a zoom's at the wide station (a fixed-iris
+    zoom's one radius), a scheduled zoom's first schedule value. `v1StopRadius` names the surface and how the engine
+    sets it, and the V1 view writes the value it is given (`V1FileOptions.stopRadius`); V1 ingest sets it aside
+    again. The report says the value was written for V1's type and is set aside by V1 ingest. A file whose radius
+    cannot be derived is refused. `LensDataInput` is unchanged.
+  - **Files:**
+    - `scripts/convert-lens-data.mjs`; `scripts/lens-data-convert/{cli, typecheck, convert, print, report}.mjs` and
+      their `.d.mts`; `scripts/lens-summaries.d.mts`
+    - `src/optics/prescription/{ingestV2, toLensData, toLensDataV2, sourcePaths}.ts`, and `v1SourceMap.ts` beside
+      them; `src/optics/lensDataConversion.ts`
+    - `package.json`, `.gitignore`, `agent_docs/workflow.md`, `agent_docs/architecture/testing.md`
+  - **Tests:** its tests cover each of those behaviors, plus an interrupted write and V2 → V1 → V2 identity:
+    `__tests__/scripts/convertLensDataCli.test.ts`, and the V1 direction in `convertLensData.test.ts`, in `npm test`
+    beside the library's. The round trip asserts semantic identity and that every comment appears once, as written
+    or with its move prefix, not byte identity. Faults are injected at the seams: the library, the type-check, a
+    write, a rename, a link and a signal.
   - **Gate:** C0.
 - **S2.P3.T3 Corpus conversion sweep.**
   - **Change:** add `__tests__/scripts/convertLensDataCorpus.test.ts`. For every lens and converter it:
@@ -2738,6 +2788,20 @@ The maintainer also settled this on 2026-10-13, answering the Stage 2 questions:
 | # | Decision | Where |
 | --- | --- | --- |
 | 59 | Ingest records source paths only when asked; the reader records them, not the V1 view, and the converter carries comments and literal text by their composition with the V2 view | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T1 |
+
+The maintainer also settled these on 2026-10-15, answering the S2.P3.T2 questions:
+
+| # | Decision | Where |
+| --- | --- | --- |
+| 60 | Going to V1, a stop without `sd` takes the engine's radius to 0.001 mm (a zoom's at the wide station, a scheduled zoom's first schedule value), which V1 ingest sets aside; a file whose radius cannot be derived is refused, and `LensDataInput` stays as it is | S2.P3.T2 |
+| 61 | Nothing is written for an input already at `--to-version`, under `--output` too, which holds only the converted files | S2.P3.T2 |
+| 62 | The V1 print order and `V1_GROUP_STARTS` are stated beside the V1 view, whose own key order stays | S2.P3.T2 |
+| 63 | Collisions compare paths after `realpath`, as directories and without regard to case; `--output` publishes by link, so a destination made after the check is not overwritten | S2.P3.T2 |
+| 64 | A failed rename or a signal while writing puts back every input already replaced, from a backup beside it, and a run refuses while a backup is left | S2.P3.T2 |
+| 65 | The command line reads CR LF as LF and writes LF; a lone CR is refused | S2.P3.T2 |
+| 66 | The type-check reads each converted text at the path it will be written to | S2.P3.T2 |
+| 67 | The V2-to-V1 comment mapping is engine-owned, and the round trip is tested for semantic identity and each comment once, not for bytes | S2.P3.T2 |
+| 68 | The command line's tests are in `npm test` beside the library's | S2.P3.T2 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.

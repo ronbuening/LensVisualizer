@@ -16,6 +16,10 @@ export interface ConversionReport {
   stops: StopRadiusEntry[];
   zeroTerms: { entry: string; terms: string[] }[];
   dropped: { from: string; value: unknown; kind: string }[];
+  /** Going to V1: each medium name V1 cannot hold. */
+  mediumNames?: { from: string; name: string }[];
+  /** Going to V1: the stop radius written for V1's type. */
+  stopWritten?: { at: string; value: number; stop: "prime" | "held" | "perStation" | "schedule" };
 }
 
 export function stopRadiusEntry(

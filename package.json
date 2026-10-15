@@ -13,6 +13,7 @@
     "generate:readmes": "node scripts/generate-src-readmes.mjs",
     "generate:feeds": "node scripts/generate-rss-feeds.mjs",
     "organize:lens-data": "node scripts/organize-lens-data.mjs",
+    "convert:lens-data": "node scripts/convert-lens-data.mjs",
     "preview": "vite preview",
     "pretest": "node scripts/generate-build-metadata.mjs",
     "test": "vitest run",

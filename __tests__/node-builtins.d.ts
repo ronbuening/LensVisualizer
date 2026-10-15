@@ -12,15 +12,22 @@ declare module "node:child_process" {
 
 declare module "node:fs" {
   export function existsSync(path: string): boolean;
+  export function linkSync(existingPath: string, newPath: string): void;
   export function mkdirSync(path: string, options?: { recursive?: boolean }): string | undefined;
   export function mkdtempSync(prefix: string): string;
   export function readFileSync(path: string | URL): Uint8Array;
   export function readFileSync(path: string, encoding: string): string;
   export function readdirSync(path: string): string[];
   export function realpathSync(path: string): string;
+  export function renameSync(oldPath: string, newPath: string): void;
   export function rmSync(path: string, options?: { recursive?: boolean; force?: boolean }): void;
   export function statSync(path: string): { isDirectory(): boolean };
-  export function writeFileSync(path: string, data: string, encoding?: string): void;
+  export function symlinkSync(target: string, path: string): void;
+  export function writeFileSync(
+    path: string,
+    data: string | Uint8Array,
+    options?: string | { encoding?: string; flag?: string },
+  ): void;
 }
 
 declare module "node:os" {
@@ -29,6 +36,7 @@ declare module "node:os" {
 
 declare module "node:path" {
   export function basename(path: string): string;
+  export function dirname(path: string): string;
   export function join(...paths: string[]): string;
   export function relative(from: string, to: string): string;
 }

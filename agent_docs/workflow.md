@@ -27,6 +27,7 @@ npm run generate:metadata  # Organize lens data, refresh src/generated/build-met
 npm run generate:readmes   # Rewrite the src/**/readme.md folder docs alone (also runs inside generate:metadata)
 npm run generate:feeds     # Rebuild dist/feeds/ RSS from metadata, lens summaries, changelog
 npm run organize:lens-data # Move stray root-level lens files into maker folders
+npm run convert:lens-data -- --input <file|dir> # Convert lens files between V1 and V2; dry run unless --write
 npm run preview
 npm run test
 npm run test:coverage

@@ -239,6 +239,67 @@ const LENS_DATA = {
 export default LENS_DATA;
 `;
 
+/**
+ * A V2 zoom whose comments sit on nodes V1 has no counterpart for, a station record and a medium, and on a surface V1
+ * keeps. Its stop radius is derived, and its medium is named.
+ */
+export const COMMENTED_V2_ZOOM = `import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+const LENS_DATA = {
+  schema: 2,
+  key: "fixture-v2-commented-zoom",
+  name: "Fixture 24-100mm f/2",
+
+  elements: [{ id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive", nd: 1.5168, vd: 64.17 }],
+
+  media: [
+    // a cement layer between the elements
+    { id: "cement", name: "Cement layer", nd: 1.56732 },
+  ],
+
+  surfaces: [
+    { label: "STO", R: "flat" },
+    { label: "1", R: 50, d: 5, sd: 15, medium: 1 }, // L1 front
+    { label: "2", R: -50, d: 0.01, sd: 15, medium: "cement" },
+    { label: "3", R: -60, sd: 15 },
+  ],
+
+  zoom: {
+    stations: [
+      { focalLengthMm: 24 },
+      // the middle station, tabulated as Example 2
+      { focalLengthMm: 50 },
+      { focalLengthMm: 100 },
+    ],
+  },
+
+  focus: { closeFocusM: 0.5 },
+
+  gaps: {
+    STO: {
+      values: [
+        [1, 1],
+        [3, 3],
+        [5, 5],
+      ],
+    },
+    "3": {
+      values: [
+        [80, 81],
+        [80, 82],
+        [80, 83],
+      ],
+    },
+  },
+
+  aperture: { nominalFNumber: 2, fStops: [2, 2.8, 4] },
+
+  layout: { yScFill: 0.55 },
+} satisfies LensDataV2Input;
+
+export default LENS_DATA;
+`;
+
 /** A V2 zoom whose comments sit on `schema` and on an item of a station's published keyframes. */
 export const V2_ZOOM_SOURCE_FILE = `import type { LensDataV2Input } from "../../types/lensDataV2.js";
 

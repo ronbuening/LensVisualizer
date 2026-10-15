@@ -1,9 +1,9 @@
 /**
- * The lens-data converter library (`scripts/lens-data-convert/`): V1 text to V2 text, with its report, on synthetic
- * fixtures only. The S2.P2.T1 fixture pairs check the converted prescription; the source-text fixtures check the
- * printed file: literal forms, number tokens, comments and their moves, blank lines, the file's frame, a V2 source,
- * the stop-radius report, and one refusal of each kind. One test runs the library under plain Node, as the organizer
- * will.
+ * The lens-data converter library (`scripts/lens-data-convert/`): V1 text to V2 text, and V2 text to V1, with its
+ * report, on synthetic fixtures only. The S2.P2.T1 fixture pairs check the converted prescription in each direction;
+ * the source-text fixtures check the printed file: literal forms, number tokens, comments and their moves, blank
+ * lines, the file's frame, a V2 source, the stop-radius report, the V1 print order and the stop radius V1's type
+ * requires, and one refusal of each kind. One test runs the library under plain Node, as the organizer will.
  */
 
 import { execFileSync } from "node:child_process";
@@ -20,8 +20,11 @@ import { movedCommentText } from "../../scripts/lens-data-convert/comments.mjs";
 import { formatConversionReport } from "../../scripts/lens-data-convert/report.mjs";
 import { evaluateLensDataSource } from "../../scripts/lens-data-ast.mjs";
 import { ingestLens, ingestTeleconverter } from "../../src/optics/prescription/ingestV2.js";
-import { FIXTURE_PAIRS, type FixturePair } from "../src/optics/prescription/ingestV2Fixtures.js";
+import { V1_GROUP_STARTS, V1_PRINT_ORDER } from "../../src/optics/prescription/toLensData.js";
+import type { LensDataInput } from "../../src/types/optics.js";
+import { FIXTURE_PAIRS, MAXIMAL_ZOOM, type FixturePair } from "../src/optics/prescription/ingestV2Fixtures.js";
 import {
+  COMMENTED_V2_ZOOM,
   FORMS_FILE,
   FORMS_REPORT,
   FORMS_V2,
@@ -59,6 +62,25 @@ async function converted(text: string, options: Partial<ConversionOptions> = {})
   const result = await convert(text, options);
   expect(result.refusal).toBeUndefined();
   return result as { text: string; refusal: undefined; report: (typeof result)["report"] };
+}
+
+/** A pair's V2 side as a file, or any V2 object, its numbers written as JSON writes them. */
+function v2Text(data: object, kind: "lens" | "teleconverter" = "lens"): string {
+  const type = kind === "lens" ? "LensDataV2Input" : "TeleconverterDataV2Input";
+  return [
+    `import type { ${type} } from "../../types/lensDataV2.js";`,
+    "",
+    `const DATA = ${JSON.stringify(data, null, 2)} satisfies ${type};`,
+    "",
+    "export default DATA;",
+    "",
+  ].join("\n");
+}
+
+/** The prescription a file's text ingests to. */
+function prescriptionOf(text: string, kind: "lens" | "teleconverter" = "lens") {
+  const data = evaluateLensDataSource(text) as never;
+  return kind === "lens" ? ingestLens(data).prescription : ingestTeleconverter(data).prescription;
 }
 
 /** A pair's V1 side as a file, its numbers written as JSON writes them. */
@@ -364,5 +386,188 @@ describe("under plain Node", () => {
     );
     const output = execFileSync("node", [script], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
     expect(JSON.parse(output)).toEqual({ engine: "prime" });
+  });
+});
+
+describe("the V1 direction (S2.P3.T2)", () => {
+  /** The hand-written V2 prime without its published keyframe, which has no focus travel to build. */
+  const BUILDABLE_V2 = V2_SOURCE_FILE.replace(
+    "  focus: {\n    closeFocusM: 0.5,\n    published: [\n      // the close keyframe\n      1,\n    ],\n  },",
+    "  focus: { closeFocusM: 0.5 },",
+  );
+
+  it.each(FIXTURE_PAIRS.map((pair) => [pair.family, pair] as const))(
+    "%s: the V2 side converts to V1 text that ingests to the pair's prescription, and back to V2",
+    async (_family, pair) => {
+      const prescription = prescriptionOf(v2Text(pair.v2, pair.kind), pair.kind);
+      const v1 = await converted(v2Text(pair.v2, pair.kind), { kind: pair.kind, toVersion: 1 });
+      expect(v1.text).toContain(
+        pair.kind === "lens" ? "satisfies LensDataInput;" : "satisfies TeleconverterDataInput;",
+      );
+      expect(prescriptionOf(v1.text, pair.kind)).toEqual(prescription);
+      const v2 = await converted(v1.text, { kind: pair.kind });
+      expect(prescriptionOf(v2.text, pair.kind)).toEqual(prescription);
+    },
+  );
+
+  it("prints the file's members in V1_PRINT_ORDER, a blank line before each section, and records as the view writes", async () => {
+    /* The maximal zoom ingests but does not build; its stop takes its schedule's first value from a stub. */
+    const schedule = async () => ({ default: () => ({ zoomStopSDs: [5, 5.5, 6] }) });
+    const { text } = await converted(v2Text(MAXIMAL_ZOOM), { toVersion: 1, loadBuildLens: schedule });
+    const v1 = evaluateLensDataSource(text) as Record<string, Record<string, unknown>[] & Record<string, unknown>>;
+    const members = Object.keys(v1);
+    expect(members).toEqual(V1_PRINT_ORDER.lens.filter((member) => members.includes(member)));
+    expect(members.length).toBeGreaterThan(55);
+    const lines = text.split("\n");
+    const blankBefore = members.filter(
+      (member) => lines[lines.findIndex((line) => line.startsWith(`  ${member}:`)) - 1] === "",
+    );
+    const sections = V1_GROUP_STARTS.lens.map((start) => {
+      const from = V1_PRINT_ORDER.lens.indexOf(start);
+      const next = V1_GROUP_STARTS.lens.map((other) => V1_PRINT_ORDER.lens.indexOf(other)).find((at) => at > from);
+      return V1_PRINT_ORDER.lens.slice(from, next).find((member) => members.includes(member));
+    });
+    expect(blankBefore).toEqual(sections.filter((member) => member !== undefined));
+    expect(Object.keys(v1.elements[0])).toEqual([
+      "id",
+      "name",
+      "diagramLabel",
+      "maxSdRatio",
+      "label",
+      "type",
+      "nd",
+      "vd",
+      "indexReference",
+      "indexReferenceNote",
+      "fl",
+      "glass",
+      "role",
+      "absorptionCoefficientPerMm",
+      "apd",
+      "apdNote",
+      "cemented",
+      "dPgF",
+      "nC",
+      "nF",
+      "ng",
+      "fromSurface",
+      "toSurface",
+    ]);
+    expect(Object.keys(v1.surfaces[1])).toEqual([
+      "label",
+      "R",
+      "d",
+      "nd",
+      "elemId",
+      "sd",
+      "innerSd",
+      "interaction",
+      "diffractive",
+    ]);
+    expect(Object.keys(v1.rearPlates[0])).toEqual([
+      "label",
+      "thicknessMm",
+      "nd",
+      "vd",
+      "glass",
+      "indexReference",
+      "dPgF",
+      "nC",
+      "nF",
+      "ng",
+      "gapAfterMm",
+      "sd",
+      "source",
+    ]);
+    expect(Object.keys(v1.aberrationControl)).toEqual([
+      "label",
+      "description",
+      "minLabel",
+      "centerLabel",
+      "maxLabel",
+      "step",
+      "var",
+      "varLabels",
+    ]);
+    expect(Object.keys(v1.finiteConjugates[0])).toEqual([
+      "focusT",
+      "zoomT",
+      "objectDistanceMm",
+      "distanceReference",
+      "source",
+    ]);
+    expect(text.indexOf("    STO: [")).toBeLessThan(text.indexOf('    "4": ['));
+  });
+
+  it("writes the engine's radius as a derived stop's sd, which V1 ingest sets aside", async () => {
+    expect(BUILDABLE_V2).not.toBe(V2_SOURCE_FILE);
+    const { text, report } = await converted(BUILDABLE_V2, { toVersion: 1 });
+    const v1 = evaluateLensDataSource(text) as LensDataInput;
+    const sd = v1.surfaces[1].sd;
+    expect(sd).toBeGreaterThan(0);
+    expect(Number(sd.toFixed(3))).toBe(sd);
+    expect(report.stopWritten).toEqual({ at: "surfaces[1].sd", value: sd, stop: "prime" });
+    expect(formatConversionReport([report])).toContain(
+      `  stop radius written for V1's type: surfaces[1].sd = ${sd} (the engine's radius; V1 ingest sets it aside)`,
+    );
+    expect(prescriptionOf(text)).toEqual(prescriptionOf(BUILDABLE_V2));
+  });
+
+  it("writes a scheduled zoom's first schedule value, not the radius its V1 source carried", async () => {
+    const pair = FIXTURE_PAIRS.find((candidate) => candidate.family === "stop schedule")!;
+    const source = structuredClone(pair.v1) as LensDataInput;
+    source.surfaces[0].sd = 11.815;
+    source.zoomStopSemiDiameters = [8.115, 9, 10];
+    const v1Source = v1LensFile(JSON.stringify(source, null, 2).slice(2, -2));
+    const v2 = await converted(v1Source);
+    const v1 = await converted(v2.text, { toVersion: 1 });
+    expect((evaluateLensDataSource(v1.text) as LensDataInput).surfaces[0].sd).toBe(8.115);
+    expect(v1.report.stopWritten).toEqual({ at: "surfaces[0].sd", value: 8.115, stop: "schedule" });
+    expect(prescriptionOf(v1.text)).toEqual(prescriptionOf(v1Source));
+  });
+
+  it("refuses a file whose stop needs a radius for V1's type that the engine cannot derive", async () => {
+    const failing = async () => ({
+      default: () => {
+        throw new Error("Lens data cannot be built:\n  • a reason");
+      },
+    });
+    const result = await convert(BUILDABLE_V2, { toVersion: 1, loadBuildLens: failing });
+    expect(result.refusal).toBe(
+      "surfaces[1].sd: V1's type requires a stop radius, and the engine derives none (Lens data cannot be built: a reason)",
+    );
+  });
+
+  it("moves a station record's comment to the first station list, a medium's to the file's object, each once", async () => {
+    const { text, report } = await converted(COMMENTED_V2_ZOOM, { toVersion: 1 });
+    expect(text).toContain(
+      "  // (moved from zoom.stations[1]) the middle station, tabulated as Example 2\n  zoomPositions:",
+    );
+    expect(text).toContain(
+      "  // (moved from media[0]) a cement layer between the elements\n} satisfies LensDataInput;",
+    );
+    expect(text).toContain('{ label: "1", R: 50, d: 5, nd: 1.5168, elemId: 1, sd: 15 }, // L1 front');
+    expect(report.moved.map((move) => [move.from, move.to])).toEqual([
+      ["media[0]", ""],
+      ["zoom.stations[1]", "zoomPositions"],
+    ]);
+    expect(report.mediumNames).toEqual([{ from: "media[0].name", name: "Cement layer" }]);
+    expect(formatConversionReport([report])).toContain(
+      '  medium names V1 cannot hold:\n    media[0].name = "Cement layer"',
+    );
+    expect(prescriptionOf(text)).toEqual(prescriptionOf(COMMENTED_V2_ZOOM));
+    const back = await converted(text);
+    expect(prescriptionOf(back.text)).toEqual(prescriptionOf(COMMENTED_V2_ZOOM));
+  });
+
+  it("prints a restored flat radius as 1e15, keeps a V2 literal's text, and prints a value V1 holds twice from its value", async () => {
+    const source = BUILDABLE_V2.replace('{ label: "1", R: 50, d: 5,', '{ label: "1", R: 50.000, d: 5,').replace(
+      'type: "Biconvex Positive", nd: 1.5168,',
+      'type: "Biconvex Positive", nd: 1.51680,',
+    );
+    const { text } = await converted(source, { toVersion: 1 });
+    expect(text).toContain('{ label: "WTR", R: 1e15, d: 0.001, nd: 1.33306, elemId: 0, sd: 20 }');
+    expect(text).toContain('{ label: "1", R: 50.000, d: 5, nd: 1.5168, elemId: 1, sd: 15 }');
+    expect(text).toContain('type: "Biconvex Positive", nd: 1.51680, vd: 64.17 }');
   });
 });
