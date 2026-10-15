@@ -21,6 +21,7 @@ import { buildAsphereIndex, buildLabelIndex, firstInfinityThickness } from "./in
 import { conicPolySag, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "./geometry/surfaceProfile.js";
 import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
 import type { ExactTraceLens } from "./internal/exactSurfaceTrace.js";
+import { lensDataStopRadiusAuthority } from "./prescription/canonical.js";
 import { REAR_PLATE_LABEL_PATTERN } from "./prescription/rearPlates.js";
 import { TELECONVERTER_LABEL_PREFIX } from "./prescription/teleconverterCompatibility.js";
 
@@ -1070,6 +1071,10 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   /* ── Surface labels: unique, exactly one STO ── */
   const surfaceLabels = new Set<string>();
   let stoCount = 0;
+  /* A stop whose radius the engine derives from the f-number or takes from a station schedule never reads its own
+   * `sd`, so the file may leave it out. */
+  const stopSdIsRead =
+    lensDataStopRadiusAuthority(data as Parameters<typeof lensDataStopRadiusAuthority>[0]) === "authored";
   for (let i = 0; i < data.surfaces.length; i++) {
     const s = data.surfaces[i];
     if (typeof s.label !== "string" || !s.label) {
@@ -1097,8 +1102,11 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     if (typeof s.R !== "number") errors.push(`surfaces[${i}] ("${s.label}"): missing or invalid R`);
     if (typeof s.d !== "number") errors.push(`surfaces[${i}] ("${s.label}"): missing or invalid d`);
     if (typeof s.nd !== "number") errors.push(`surfaces[${i}] ("${s.label}"): missing or invalid nd`);
-    if (typeof s.sd !== "number") errors.push(`surfaces[${i}] ("${s.label}"): missing or invalid sd`);
-    else if (!isFinite(s.sd) || s.sd <= 0)
+    if (typeof s.sd !== "number") {
+      if (s.sd !== undefined || s.label !== "STO" || stopSdIsRead) {
+        errors.push(`surfaces[${i}] ("${s.label}"): missing or invalid sd`);
+      }
+    } else if (!isFinite(s.sd) || s.sd <= 0)
       errors.push(`surfaces[${i}] ("${s.label}"): sd must be a positive finite number`);
     if (s.innerSd !== undefined) {
       if (typeof s.innerSd !== "number" || !isFinite(s.innerSd) || s.innerSd < 0) {

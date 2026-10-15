@@ -1,7 +1,7 @@
 /**
  * Canonical prescription — the version-independent semantic content of a lens or teleconverter file.
  *
- * Every authored format is ingested into these types: V1 through `ingestV1.ts` today, V2 once it exists. The shape
+ * Every authored format is ingested into these types: V1 through `ingestV1.ts`, V2 through `ingestV2.ts`. The shape
  * follows the V2 lens-data model of `OPTICS_ENGINE_REWRITE_SPEC.md` (Lens data V2): records grouped by consumer,
  * one value per fact, indices carried by a surface's medium, sparse aspheres, a flat radius as a marker, and the
  * stop's radius authority stated once. Schema defaults are applied, so a default written out and a default left
@@ -229,6 +229,31 @@ export function stopRadiusAuthority(facts: {
   return facts.stopInsideElement ? "authored" : "derived";
 }
 
+/**
+ * The stop's radius authority of V1 lens data, read as `buildLens` reads it: folded when the file declares an optical
+ * path or a surface reflects or blocks, a schedule when it lists `zoomStopSemiDiameters`, and a stop inside glass by
+ * the `STO` surface's placement.
+ *
+ * @param data - V1 lens data, authored or merged
+ * @returns where the wide-open stop radius comes from
+ */
+export function lensDataStopRadiusAuthority(data: {
+  opticalPath?: unknown;
+  zoomStopSemiDiameters?: unknown;
+  surfaces: readonly { label: string; interaction?: { type?: unknown }; stopPlacement?: unknown }[];
+}): StopRadiusAuthority {
+  return stopRadiusAuthority({
+    folded: Boolean(
+      data.opticalPath ||
+      data.surfaces.some((surface) => surface.interaction && surface.interaction.type !== "refract"),
+    ),
+    hasSchedule: Boolean(data.zoomStopSemiDiameters),
+    stopInsideElement: data.surfaces.some(
+      (surface) => surface.label === "STO" && surface.stopPlacement === "inside-element",
+    ),
+  });
+}
+
 export interface CanonicalAperture {
   /** Design f-number of a prime or a constant-aperture zoom; a variable-aperture zoom holds one per station. */
   nominalFNumber?: number;
@@ -369,9 +394,18 @@ export interface V1PublishedStationsSpelling {
   focus: "omitted" | "one" | "perStation";
 }
 
+/** How a V2 file wrote what the prescription renumbers, so a V2 printer can give the file back. */
+export interface V2Spelling {
+  /**
+   * The file's undrawn media as written, in its order, each with the id the prescription gives it. The prescription
+   * numbers media by first use, as V1 ingest does, so a medium's name never reaches the semantic fingerprint.
+   */
+  media: { canonicalId: string; id: string; name?: string }[];
+}
+
 export interface CanonicalProvenance {
   /** Authored format the prescription was ingested from. */
-  format: 1;
+  format: 1 | 2;
   /**
    * Canonical paths whose value the schema supplied because the file did not, e.g. `elements[2].apd`. One entry names
    * a declaration rather than a member: `publishedStations`, the published flags of every station.
@@ -379,11 +413,17 @@ export interface CanonicalProvenance {
   defaulted: string[];
   /**
    * Authored values the engine does not read, by the canonical path where the value would sit: a derived stop's
-   * `sd`, a zero aspheric term, a flat radius other than `1e15`, an authored `zoomStep` that falls back to the
-   * default, a conjugate coordinate that only matches its station within tolerance.
+   * `sd`, a zero aspheric term, a flat radius written as a number (in V1, one other than `1e15`), an authored zoom
+   * step that falls back to the default, a conjugate coordinate that only matches its station within tolerance.
    */
   ignored: Record<string, unknown>;
-  v1: V1Spelling;
+  /**
+   * Present on a V1 file: the V1 spellings the canonical form holds once. Without it the V1 view writes the plain V1
+   * spelling of those; the values in `ignored` come back for a file of either version.
+   */
+  v1?: V1Spelling;
+  /** Present on a V2 file. */
+  v2?: V2Spelling;
 }
 
 /** A prescription with its provenance, as ingest returns it. */

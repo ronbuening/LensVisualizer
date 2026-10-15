@@ -13,6 +13,7 @@
 
 import type { ElementData, LensData, SurfaceData } from "../../types/optics.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTaxonomy.js";
+import { lensDataStopRadiusAuthority } from "./canonical.js";
 
 /** Flat-surface radius used by authored prescriptions. */
 const FLAT_R = 1e15;
@@ -23,6 +24,20 @@ const FLAT_R = 1e15;
  * the value only extends the envelopes that ray launch and intersection bounds read from surface rims.
  */
 const GENERATED_SD_FACTOR = 1.5;
+
+/**
+ * The largest semi-diameter a generated rim scales from: every surface's but a stop whose radius the engine derives
+ * or takes from a station schedule. That stop's authored `sd` is never read, and V2 leaves it out.
+ *
+ * @param data - lens data after defaults merging
+ * @returns the largest semi-diameter the engine reads as authored
+ */
+function largestAuthoredSemiDiameter(data: LensData): number {
+  const stopSdIsRead = lensDataStopRadiusAuthority(data) === "authored";
+  return Math.max(
+    ...data.surfaces.filter((surface) => stopSdIsRead || surface.label !== "STO").map((surface) => surface.sd),
+  );
+}
 
 /**
  * Half the larger of the declared image circle and format diagonal, or 0 when neither is declared.
@@ -70,8 +85,7 @@ export function expandRearPlates(data: LensData): LensData {
   const plates = data.rearPlates;
   if (!plates || plates.length === 0) return data;
 
-  const generatedSd =
-    GENERATED_SD_FACTOR * Math.max(...data.surfaces.map((surface) => surface.sd), imageSemiDiagonalMm(data));
+  const generatedSd = GENERATED_SD_FACTOR * Math.max(largestAuthoredSemiDiameter(data), imageSemiDiagonalMm(data));
   let nextElementId = Math.max(0, ...data.elements.map((element) => element.id)) + 1;
   const teleconverter = data.attachedTeleconverter;
   const platesAhead = teleconverter?.platesAhead ?? 0;

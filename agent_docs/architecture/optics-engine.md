@@ -296,15 +296,30 @@ defaulted paths, the authored values the engine ignores, and the V1 spellings it
   `[wide, tele]` nor one per station, `varLabels` (or the ring's) that name no gap, are not `[label, text]` pairs or
   are out of surface order, an `asph` or `var` that is not an object keyed by surface label, and fields V1 does not
   define or only the engine writes. Ingest does not otherwise check types, so other wrong-typed input can fail with a
-  plain `TypeError`, and `buildLens` asks the validator about every file first. The validator reads `asph: null` and
+  plain `TypeError`, and `buildLens` asks the validator about every V1 file first. The validator reads `asph: null` and
   `var: null` as absent, which is why ingest names those itself. Some refusals are stricter than the validator; the
   plan's S2.P1.T1 lists them. A field added to `LensDataInput` fails the typecheck at `LENS_FIELDS` in `ingestV1.ts`
   until ingest and the view carry it.
+- `ingestLensV2` and `ingestTeleconverterV2` (`ingestV2.ts`) map a `schema: 2` file (`src/types/lensDataV2.ts`) onto
+  it, and `ingestLens` / `ingestTeleconverter` send a file of either version to its ingest by `schema`; `isV1File`
+  is the one rule that tells the versions apart, for them and for `buildLens` and the lens catalog. V2 ingest applies
+  the same defaults at their canonical paths, numbers undrawn media by first use as V1 ingest does (their authored
+  ids and names go to provenance, so they never reach the fingerprint), and takes a variable gap's first value as its
+  surface's `d`. A V2 file has no validator-first pass, so V2 ingest refuses every shape it cannot read itself, at
+  the authored path, along with V2's own rules, such as a medium no surface uses, a gap out of step with the station
+  and keyframe counts, or a stop `sd` the engine would not read; the plan's S2.P2.T1 As built lists them all. The
+  rules both versions share (unknown fields, defaults, aspheres, rear plates) are in `ingestCommon.ts`.
+- A stop carries `sd` in V2 only where its radius is authored. A stop whose radius is not authored (traced from the
+  design f-number, or taken from the station schedule) leaves it out, and V2 ingest refuses one written there.
+  `validateLensData` accepts it absent, generated rear-plate rims skip it (below), and `lensDataStopRadiusAuthority`
+  in `canonical.ts` reads that authority from V1 data for both.
 - `toLensData` (`toLensData.ts`) is the V1 view: it gives a V1 file back exactly, with the catalog defaults merged,
-  and `toLensDataInput` gives it back as authored.
+  and `toLensDataInput` gives it back as authored. A V2 file records no V1 spelling, so its view writes each field in
+  the plain V1 form.
 - Lens data gets its defaults from ingest and the V1 view alone (S2.P1.T2); nothing outside tests spreads the
-  defaults table but the validator-first spread below. `buildLens.ts` re-exports the two ingest functions and the two
-  V1 views (`toLensData`, `toTeleconverterData`), the way code outside the engine reaches them until S8.P1.T2.
+  defaults table but the validator-first spread below. `buildLens.ts` re-exports `ingestLens`, `ingestTeleconverter`,
+  their V1 forms (`ingestLensV1`, `ingestTeleconverterV1`), `isV1File` and the two V1 views (`toLensData`,
+  `toTeleconverterData`), the way code outside the engine reaches them until S8.P1.T2.
   - `buildLens` reads an authored file through ingest and builds its view (`withLensDefaults` in
     `normalizeLensData.ts`). The validator is asked about every V1 file first; the comment at the spread in
     `normalizeLensData.ts` says how, and where that exception ends.
@@ -329,7 +344,8 @@ A plate without a published `sd` gets a generated rim marked `clips: false`. The
 in `trace/aperture.ts` and its legacy twin in `internal/exactSurfaceTrace.ts`) and the paraxial half-field estimates
 (`buildLens`, `computeFieldGeometryAtState2`) skip it, so the plate never clips a ray or limits the field at any rim
 size. The rim, 1.5 × the larger of the largest authored `sd` and the image semi-diagonal, still extends the envelopes
-that ray launch and intersection bounds read from surface rims. A published plate `sd` is a real aperture.
+that ray launch and intersection bounds read from surface rims. The `sd` of a stop whose radius is not authored does
+not count: the engine never reads it, and V2 leaves it out. A published plate `sd` is a real aperture.
 
 What is hidden, and where:
 

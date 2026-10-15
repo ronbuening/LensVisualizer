@@ -10,8 +10,9 @@
  * resolves, so a hand-typed URL mounts it.
  */
 
-import { ingestTeleconverterV1, toTeleconverterData } from "../../optics/buildLens.js";
+import { ingestTeleconverter, toTeleconverterData } from "../../optics/buildLens.js";
 import { attachTeleconverter, teleconverterCompatibility } from "../../optics/teleconverter.js";
+import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
 import type { LensData } from "../../types/optics.js";
 import type { TeleconverterData } from "../../types/teleconverter.js";
 import { catalogCollator } from "./collation.js";
@@ -27,12 +28,13 @@ export interface TeleconverterOption {
 
 /* Eagerly import every teleconverter file — the glob pattern is relative to this file, like lensCatalog.ts. An entry
  * is its file read through canonical ingest, on first read and kept, as a lens catalog entry is; the key lists read
- * the files as authored. A converter pair is composed from a host and a converter that each came through ingest
- * here and in the lens catalog. */
-const _modules = import.meta.glob<{ default: TeleconverterData }>("../../lens-data/**/*.teleconverter.ts", {
-  eager: true,
-});
-const AUTHORED: Record<string, TeleconverterData> = {};
+ * the files as authored, in either version, which keep the fields they read in the same place. A converter pair is
+ * composed from a host and a converter that each came through ingest here and in the lens catalog. */
+const _modules = import.meta.glob<{ default: TeleconverterData | TeleconverterDataV2Input }>(
+  "../../lens-data/**/*.teleconverter.ts",
+  { eager: true },
+);
+const AUTHORED: Record<string, TeleconverterData | TeleconverterDataV2Input> = {};
 const TELECONVERTER_CATALOG: Record<string, TeleconverterData> = {};
 const PATH_BY_KEY: Record<string, string> = {};
 for (const [path, mod] of Object.entries(_modules)) {
@@ -46,7 +48,7 @@ for (const [path, mod] of Object.entries(_modules)) {
     let entry: TeleconverterData | undefined;
     Object.defineProperty(TELECONVERTER_CATALOG, data.key, {
       enumerable: true,
-      get: () => (entry ??= toTeleconverterData(ingestTeleconverterV1(data))),
+      get: () => (entry ??= toTeleconverterData(ingestTeleconverter(data))),
     });
   } else {
     console.warn(`[LensVisualizer] Skipped ${path}: no "key" field in default export`);

@@ -937,7 +937,7 @@ export type SemanticProjection = (prescription: object) => object;
 /**
  * Semantic fingerprint of a prescription: a digest of its canonical semantic projection.
  *
- * The projection is the engine's (`ingestLensV1` and `ingestTeleconverterV1` in `src/optics/prescription/`), so the
+ * The projection is the engine's (`ingestLens` and `ingestTeleconverter` in `src/optics/prescription/`), so the
  * rules are the canonical prescription's: schema defaults applied, a default written out equal to one left out, a
  * flat radius at any magnitude, zero asphere terms absent, a derived or scheduled stop radius left out, a conjugate
  * addressed by its station, and the V1 spellings the canonical form holds once (see `normalizeAuthoredData`, which

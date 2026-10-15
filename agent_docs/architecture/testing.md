@@ -100,6 +100,12 @@ Existing tests cover:
   input, every schema default applies exactly where a file leaves the field out, the stop-radius authority matches
   what `buildLens` does on every catalog lens, and each spelling the canonical form holds as one and each refusal
   ingest makes has a synthetic case.
+- V2 ingest (`__tests__/src/optics/prescription/ingestV2.test.ts`): one V1/V2 fixture pair per feature family
+  (`ingestV2Fixtures.ts`), each sharing one prescription and semantic fingerprint, each of the 18 lens pairs building
+  to the same harness build record and the converter pair giving the same V1 view; dispatch on `schema`; V2
+  defaults; a case for each V2 refusal the plan's S2.P2.T1 lists. An offender-collecting sweep removes the
+  authored `sd` of every catalog stop whose radius is derived or scheduled and requires every catalog lens's Tier P
+  build and layout records to stay bit-identical.
 - Teleconverters, which never enter `LENS_CATALOG` (`teleconverterCompatibility.test.ts`): every converter validates;
   every converter–host pair the fit predicate allows composes, builds, passes the axial beam, keeps the host's stop
   and, at every zoom station, reaches as much of the format corner as the bare lens; and a synthetic universal

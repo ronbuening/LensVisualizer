@@ -10,6 +10,7 @@ import {
   resolveOpticalConfigurationKey,
 } from "../../../../src/utils/catalog/lensCatalog.js";
 import buildLens, {
+  ingestLens,
   ingestLensV1,
   ingestTeleconverterV1,
   toLensData,
@@ -29,7 +30,7 @@ import type { TeleconverterData } from "../../../../src/types/teleconverter.js";
 /* Ingest, watched: it still runs, and a test can count the lenses it reads. */
 vi.mock("../../../../src/optics/buildLens.js", async (importOriginal) => {
   const actual = await importOriginal<typeof import("../../../../src/optics/buildLens.js")>();
-  return { ...actual, ingestLensV1: vi.fn(actual.ingestLensV1) };
+  return { ...actual, ingestLens: vi.fn(actual.ingestLens) };
 });
 
 /* Every file as authored, by key: what the catalogs read through canonical ingest. */
@@ -57,9 +58,9 @@ describe("lensCatalog", () => {
 
   it("names every listed lens from its file as authored, ingesting none", () => {
     /* The viewer builds its name map for every listed key on first render; an entry ingests only when it is read. */
-    const ingested = vi.mocked(ingestLensV1).mock.calls.length;
+    const ingested = vi.mocked(ingestLens).mock.calls.length;
     const names = Object.fromEntries(ALL_CATALOG_KEYS.map((key) => [key, lensNameForKey(key)]));
-    expect(vi.mocked(ingestLensV1).mock.calls.length).toBe(ingested);
+    expect(vi.mocked(ingestLens).mock.calls.length).toBe(ingested);
     for (const key of ALL_CATALOG_KEYS) expect(names[key], key).toBe(AUTHORED_LENSES.get(key)!.name);
   });
 

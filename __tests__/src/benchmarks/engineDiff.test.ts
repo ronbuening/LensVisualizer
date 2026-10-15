@@ -76,7 +76,13 @@ import {
 } from "../../../src/benchmarks/engineDiff/seamAdapter.js";
 import { MTF_BENCHMARK_CASES, MTF_FINITE_BENCHMARK_CASE } from "../../../src/benchmarks/mtfCases.js";
 import { BENCHMARK_SCENARIOS, DEFAULT_BENCHMARK_LENS_KEYS } from "../../../src/benchmarks/opticsRenderingBenchmark.js";
-import buildLens, { ingestLensV1, ingestTeleconverterV1, toLensData } from "../../../src/optics/buildLens.js";
+import buildLens, {
+  ingestLens,
+  ingestLensV1,
+  ingestTeleconverter,
+  ingestTeleconverterV1,
+  toLensData,
+} from "../../../src/optics/buildLens.js";
 import {
   ELEMENT_SCHEMA_DEFAULTS,
   LENS_SCHEMA_DEFAULTS,
@@ -597,12 +603,10 @@ describe("engineDiff seam adapter", () => {
     expect(Object.keys(sources).sort()).toEqual([...Object.keys(seam), ...Object.keys(optional), ...absent].sort());
     expect(sources.traceRay).toBe("compat.traceEngineRay2");
     expect(seam.buildLens).toBe(buildLens);
-    expect(optional).toEqual({
-      ingestLens: ingestLensV1,
-      ingestTeleconverter: ingestTeleconverterV1,
-      lensView: toLensData,
-    });
-    expect(sources.ingestLens).toBe("buildLens.ingestLensV1");
+    /* From S2.P2.T1 canonical ingest reads a file of either version by its schema. */
+    expect(optional).toEqual({ ingestLens, ingestTeleconverter, lensView: toLensData });
+    expect(sources.ingestLens).toBe("buildLens.ingestLens");
+    expect(sources.ingestTeleconverter).toBe("buildLens.ingestTeleconverter");
     /* S2.P1.T2 deleted the V1 defaults object; the catalog merge at this checkout is ingest and the V1 view. */
     expect(absent).toEqual(["lensDefaults"]);
   });

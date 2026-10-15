@@ -478,7 +478,7 @@ describe("canonical prescription: spellings held as one", () => {
     delete fixed.var;
     delete fixed.varLabels;
     const [, empty] = sameMeaning(fixed, { ...fixed, var: {}, varLabels: [] });
-    expect(empty.provenance.v1.emptyContainers).toEqual(["var", "varLabels"]);
+    expect(empty.provenance.v1!.emptyContainers).toEqual(["var", "varLabels"]);
   });
 
   it("orders gaps by surface, whatever order the var object enumerates in", () => {
@@ -554,7 +554,7 @@ describe("canonical prescription: spellings held as one", () => {
       [true, []],
     ]);
     expect(absent.provenance.defaulted).toContain("publishedStations");
-    expect(absent.provenance.v1.publishedStations).toBeUndefined();
+    expect(absent.provenance.v1!.publishedStations).toBeUndefined();
     for (const result of spelled) expect(result.provenance.defaulted).not.toContain("publishedStations");
 
     /* A narrowed zoom list says something else, with focus rows or without. */

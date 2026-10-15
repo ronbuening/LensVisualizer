@@ -28,8 +28,9 @@ import { compileAnnotations, compileElements } from "./groups.js";
 import { compileSurfaceInteraction, resolvedImagePlaneToPlane3 } from "./interactions.js";
 import { buildSurfaceLabelMap } from "./labels.js";
 import { compileVariableGaps, compileVariableLabels } from "./variables.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 import { v1CatalogDefaults } from "./defaults.js";
-import { ingestLensV1 } from "./ingestV1.js";
+import { ingestLens, isV1File } from "./ingestV2.js";
 import { toLensData } from "./toLensData.js";
 
 /**
@@ -59,21 +60,25 @@ export function validateAuthoredLensData(data: unknown): string[] {
  *
  * A pair `attachTeleconverter()` composed is known only by the object that function writes as its marker,
  * `attachedTeleconverter`, and is built as it is, because its host and converter each came through ingest in their
- * catalogs. That is a temporary seam until S5.P1.T4 composes on the canonical form. Anything else is a V1 file, which
- * the validator is asked about first (`asTheValidatorReadsIt`). A file it accepts goes through canonical ingest, which
- * throws a refusal naming each field and its authored path, and comes back as its V1 view, which applies the schema
- * defaults: the one place the engine applies them. A catalog entry was ingested by its getter before it got here, so
- * a catalog file both refuse reports ingest's refusal. Rear plates expand after this, in `buildLens()`.
+ * catalogs. That is a temporary seam until S5.P1.T4 composes on the canonical form. Anything else is a file of either
+ * version, read by its `schema`. The validator reads V1, so it is asked about a V1 file first
+ * (`asTheValidatorReadsIt`); a V2 file's refusal comes from V2 ingest, at the file's own paths, and the validator then
+ * reads its view in `buildLens()`. A file the validator accepts goes through canonical ingest, which throws a refusal
+ * naming each field and its authored path, and comes back as its V1 view, which applies the schema defaults: the one
+ * place the engine applies them. A catalog entry was ingested by its getter before it got here, so a catalog file both
+ * refuse reports ingest's refusal. Rear plates expand after this, in `buildLens()`.
  *
- * @param data - an authored lens file, with or without the catalog defaults, or a composed pair
+ * @param data - an authored lens file of either version, a V1 one with or without the catalog defaults, or a
+ *   composed pair
  * @returns a fresh copy for the engine to hold
  * @throws Error with the validator's messages, or ingest's refusal
  */
-export function withLensDefaults(data: LensData): LensData {
+export function withLensDefaults(data: LensData | LensDataV2Input): LensData {
   const marker = (data as { attachedTeleconverter?: unknown } | undefined)?.attachedTeleconverter;
-  if (marker !== null && typeof marker === "object") return structuredClone(data);
-  assertValidLensData(asTheValidatorReadsIt(data));
-  return toLensData(ingestLensV1(data as unknown as LensDataInput));
+  if (marker !== null && typeof marker === "object") return structuredClone(data as LensData);
+  /* Anything but an object is no V2 file, and the validator says what is wrong with it. */
+  if (data === null || typeof data !== "object" || isV1File(data)) assertValidLensData(asTheValidatorReadsIt(data));
+  return toLensData(ingestLens(data as LensDataInput | LensDataV2Input));
 }
 
 /**

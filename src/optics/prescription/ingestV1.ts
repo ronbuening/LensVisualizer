@@ -18,36 +18,31 @@
  * - a field V1 does not define, or one only the engine writes.
  * Every reason found is reported at once, in a `PrescriptionIngestError` that names each field and its authored path.
  * Ingest does not otherwise check types, and may fail on wrong-typed input with a plain `TypeError`; `buildLens` asks
- * the validator about every file first. The validator reads `asph: null` and `var: null` as absent, which is why
+ * the validator about every V1 file first. The validator reads `asph: null` and `var: null` as absent, which is why
  * ingest refuses those two by name. The input is never modified, and the result shares no object with it.
  */
 
-import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../types/asphericSchema.js";
 import type {
   AberrationControlConfig,
   ElementData,
   FiniteConjugate,
   LensDataInput,
   PublishedStations,
-  RearPlateData,
   SurfaceData,
 } from "../../types/optics.js";
 import type { TeleconverterData } from "../../types/teleconverter.js";
 import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
 import {
   FLAT_RADIUS,
-  PrescriptionIngestError,
-  stopRadiusAuthority,
+  lensDataStopRadiusAuthority,
   type CanonicalAberrationControl,
   type CanonicalAberrationGap,
-  type CanonicalAsphere,
   type CanonicalConjugate,
   type CanonicalElement,
   type CanonicalFocus,
   type CanonicalGap,
   type CanonicalLens,
   type CanonicalMedium,
-  type CanonicalRearPlate,
   type CanonicalSurface,
   type CanonicalTeleconverter,
   type CanonicalZoom,
@@ -57,14 +52,23 @@ import {
   type V1PublishedStationsSpelling,
   type V1Spelling,
 } from "./canonical.js";
+import { ELEMENT_SCHEMA_DEFAULTS, LENS_SCHEMA_DEFAULTS, defaultValue, type SchemaDefault } from "./defaults.js";
 import {
-  ELEMENT_SCHEMA_DEFAULTS,
-  LENS_SCHEMA_DEFAULTS,
-  REAR_PLATE_SCHEMA_DEFAULTS,
-  defaultValue,
-  takesDefault,
-  type SchemaDefault,
-} from "./defaults.js";
+  copy,
+  finish,
+  has,
+  ingestAsphere,
+  ingestRearPlates,
+  isNumberList,
+  isRecord,
+  put,
+  refuseUnknownFields,
+  requireFields,
+  requireRecords,
+  takeDefault,
+  type IngestContext as SharedIngestContext,
+  type Untyped,
+} from "./ingestCommon.js";
 
 /** Radius the V1 format writes for a flat surface; any other flat radius is kept in provenance. */
 export const V1_FLAT_RADIUS = 1e15;
@@ -213,22 +217,6 @@ const SURFACE_FIELDS: Readonly<Record<Exclude<keyof SurfaceData, "synthetic" | "
   diffractive: true,
 };
 
-const REAR_PLATE_FIELDS: Readonly<Record<keyof RearPlateData, true>> = {
-  label: true,
-  thicknessMm: true,
-  nd: true,
-  vd: true,
-  glass: true,
-  indexReference: true,
-  dPgF: true,
-  nC: true,
-  nF: true,
-  ng: true,
-  gapAfterMm: true,
-  sd: true,
-  source: true,
-};
-
 const CONJUGATE_FIELDS: Readonly<Record<keyof FiniteConjugate, true>> = {
   focusT: true,
   zoomT: true,
@@ -248,72 +236,19 @@ const ABERRATION_CONTROL_FIELDS: Readonly<Record<keyof AberrationControlConfig, 
   varLabels: true,
 };
 
-/** Fields only the engine writes, with why a file may not carry them. */
-const ENGINE_WRITTEN: Readonly<Record<string, string>> = {
-  attachedTeleconverter: "is written only by attachTeleconverter(), never authored",
-  synthetic: "is set only by expandRearPlates(), never authored",
-  clips: "is set only by expandRearPlates(), never authored",
-};
-
-const ASPHERIC_KEYS: readonly string[] = ASPHERIC_COEFFICIENT_SCHEMA.map((descriptor) => descriptor.key);
-
 /* ── Context ── */
 
-type Untyped = Record<string, unknown>;
-
-/** What one ingest collects besides the prescription. */
-interface IngestContext {
-  readonly issues: string[];
-  readonly defaulted: string[];
-  readonly ignored: Record<string, unknown>;
+/** What one V1 ingest collects besides the prescription, the V1 spellings included. */
+interface IngestContext extends SharedIngestContext {
   readonly v1: V1Spelling;
 }
 
 function createContext(): IngestContext {
-  return { issues: [], defaulted: [], ignored: {}, v1: { emptyContainers: [] } };
+  return { format: "V1", issues: [], defaulted: [], ignored: {}, v1: { emptyContainers: [] } };
 }
 
 /**
- * A value copied so the prescription shares nothing with the authored file. A string, number, boolean, bigint or
- * `undefined` is its own copy; anything else goes through `structuredClone`, which refuses a function or a symbol.
- */
-function copy<T>(value: T): T {
-  const kind = typeof value;
-  return kind === "object" || kind === "function" || kind === "symbol" ? structuredClone(value) : value;
-}
-
-/** Members that are present and not `undefined`; V1 treats an `undefined` member as an omitted one. */
-function has(record: Untyped, field: string): boolean {
-  return Object.hasOwn(record, field) && record[field] !== undefined;
-}
-
-/** Whether a value is a plain record: an object that is neither `null` nor an array. */
-function isRecord(value: unknown): value is Untyped {
-  return value !== null && typeof value === "object" && !Array.isArray(value);
-}
-
-/** Set `target[field]` to a copy of `value` unless the value is `undefined`. */
-function put(target: Untyped, field: string, value: unknown): void {
-  if (value !== undefined) target[field] = copy(value);
-}
-
-function refuseUnknownFields(
-  record: Untyped,
-  known: Readonly<Record<string, true>>,
-  at: string,
-  context: IngestContext,
-) {
-  for (const field of Object.keys(record)) {
-    if (record[field] === undefined || Object.hasOwn(known, field)) continue;
-    const path = at ? `${at}.${field}` : field;
-    context.issues.push(
-      `${path} ${Object.hasOwn(ENGINE_WRITTEN, field) ? ENGINE_WRITTEN[field] : "is not a V1 field"}`,
-    );
-  }
-}
-
-/**
- * Read one defaulted field, recording the default or the authored value it stands in for.
+ * Read one defaulted V1 field, recording the default or the authored value it stands in for.
  *
  * @param record - the V1 record the field sits on
  * @param row - the schema default
@@ -322,12 +257,7 @@ function refuseUnknownFields(
  * @returns the value the prescription holds
  */
 function withDefault(record: Untyped, row: SchemaDefault, base: string, context: IngestContext): unknown {
-  const authored = record[row.v1Field];
-  const path = base ? `${base}.${row.path}` : row.path;
-  if (!takesDefault(row, authored)) return copy(authored);
-  context.defaulted.push(path);
-  if (authored !== undefined) context.ignored[path] = authored;
-  return defaultValue(row);
+  return takeDefault(record[row.v1Field], row, base ? `${base}.${row.path}` : row.path, context);
 }
 
 function lensDefault(path: string): SchemaDefault {
@@ -336,7 +266,7 @@ function lensDefault(path: string): SchemaDefault {
   return row;
 }
 
-/* ── Elements and rear plates ── */
+/* ── Elements ── */
 
 function ingestElement(element: Untyped, index: number, context: IngestContext): CanonicalElement {
   const at = `elements[${index}]`;
@@ -372,59 +302,7 @@ function ingestElement(element: Untyped, index: number, context: IngestContext):
   return out as unknown as CanonicalElement;
 }
 
-function ingestRearPlate(plate: Untyped, at: string, context: IngestContext): CanonicalRearPlate {
-  refuseUnknownFields(plate, REAR_PLATE_FIELDS, at, context);
-  const [indexReference] = REAR_PLATE_SCHEMA_DEFAULTS.map((row) => withDefault(plate, row, at, context));
-  const out: Untyped = {};
-  put(out, "label", plate.label);
-  out.thicknessMm = plate.thicknessMm;
-  out.nd = plate.nd;
-  out.vd = plate.vd;
-  put(out, "glass", plate.glass);
-  out.indexReference = indexReference;
-  for (const field of ["dPgF", "nC", "nF", "ng"]) put(out, field, plate[field]);
-  out.gapAfterMm = plate.gapAfterMm;
-  put(out, "sd", plate.sd);
-  put(out, "source", plate.source);
-  return out as unknown as CanonicalRearPlate;
-}
-
 /* ── Surfaces, media and aspheres ── */
-
-/** Whether a V1 prescription takes the folded (generalized) path: `hasFoldedOptics` in `runtimeLens.ts`. */
-function isFolded(data: Untyped, surfaces: readonly Untyped[]): boolean {
-  return Boolean(
-    data.opticalPath ||
-    surfaces.some((surface) => {
-      const interaction = surface.interaction as { type?: unknown } | undefined;
-      return interaction && interaction.type !== "refract";
-    }),
-  );
-}
-
-function ingestAsphere(entry: unknown, label: string, index: number, context: IngestContext): CanonicalAsphere {
-  const at = `surfaces[${index}].asphere`;
-  if (entry === null || typeof entry !== "object" || Array.isArray(entry)) {
-    context.issues.push(`asph["${label}"] must be an object of aspheric coefficients`);
-    return {};
-  }
-  const terms = entry as Untyped;
-  for (const key of Object.keys(terms)) {
-    if (terms[key] !== undefined && !ASPHERIC_KEYS.includes(key)) {
-      context.issues.push(`asph["${label}"].${key} is not an aspheric coefficient`);
-    }
-  }
-  /* Schema order, which is also the accumulation order of sag evaluation. A zero term adds nothing to any sum, so
-   * it is absent from the prescription and kept, with its sign, for the V1 view. */
-  const asphere: Untyped = {};
-  for (const key of ASPHERIC_KEYS) {
-    const term = terms[key];
-    if (term === undefined) continue;
-    if (term === 0) context.ignored[`${at}.${key}`] = term;
-    else asphere[key] = term;
-  }
-  return asphere as CanonicalAsphere;
-}
 
 interface IngestedSurfaces {
   surfaces: CanonicalSurface[];
@@ -530,7 +408,7 @@ function ingestSurfaces(
         context.issues.push(`asph["${label}"]: no surface is labelled "${label}"`);
         continue;
       }
-      surfaces[index].asphere = ingestAsphere(asph[label], label, index, context);
+      surfaces[index].asphere = ingestAsphere(asph[label], `surfaces[${index}].asphere`, `asph["${label}"]`, context);
     }
   }
 
@@ -598,10 +476,6 @@ function pairGaps<Values>(
       if (text.has(label)) gap.label = text.get(label);
       return gap;
     });
-}
-
-function isNumberList(value: unknown): value is number[] {
-  return Array.isArray(value) && value.every((entry) => typeof entry === "number");
 }
 
 function ingestGaps(
@@ -853,30 +727,6 @@ function ingestPublishedStations(
 
 /* ── Prescriptions ── */
 
-function requireArray(data: Untyped, field: string, key: string): Untyped[] {
-  const value = data[field];
-  if (!Array.isArray(value) || !value.every((entry) => entry !== null && typeof entry === "object")) {
-    throw new PrescriptionIngestError(key, [`${field} must be a list of objects`]);
-  }
-  return value as Untyped[];
-}
-
-function requireFields(data: Untyped, fields: readonly string[], context: IngestContext): void {
-  for (const field of fields) if (!has(data, field)) context.issues.push(`${field} is required`);
-}
-
-function finish<Prescription extends CanonicalLens | CanonicalTeleconverter>(
-  key: string,
-  prescription: Prescription,
-  context: IngestContext,
-): IngestedPrescription<Prescription> {
-  if (context.issues.length > 0) throw new PrescriptionIngestError(key, context.issues);
-  return {
-    prescription,
-    provenance: { format: 1, defaulted: context.defaulted, ignored: context.ignored, v1: context.v1 },
-  };
-}
-
 /**
  * Ingest a V1 lens file.
  *
@@ -889,17 +739,15 @@ export function ingestLensV1(input: LensDataInput): IngestedPrescription<Canonic
   const key = typeof data.key === "string" ? data.key : "?";
   const context = createContext();
   refuseUnknownFields(data, LENS_FIELDS, "", context);
-  requireFields(data, ["key", "name", "closeFocusM", "fstopSeries", "yScFill", "nominalFno"], context);
-  const authoredElements = requireArray(data, "elements", key);
-  const authoredSurfaces = requireArray(data, "surfaces", key);
+  requireFields(data, ["key", "name", "closeFocusM", "fstopSeries", "yScFill", "nominalFno"], "", context);
+  const authoredElements = requireRecords(data, "elements", key);
+  const authoredSurfaces = requireRecords(data, "surfaces", key);
 
   const zoom = ingestZoom(data, context);
-  const stopAuthority = stopRadiusAuthority({
-    folded: isFolded(data, authoredSurfaces),
-    hasSchedule: zoom?.stations.some((station) => station.stopSemiDiameter !== undefined) ?? false,
-    stopInsideElement: authoredSurfaces.some(
-      (surface) => surface.label === "STO" && surface.stopPlacement === "inside-element",
-    ),
+  const stopAuthority = lensDataStopRadiusAuthority({
+    opticalPath: data.opticalPath,
+    zoomStopSemiDiameters: data.zoomStopSemiDiameters,
+    surfaces: authoredSurfaces as unknown as SurfaceData[],
   });
   const elements = authoredElements.map((element, index) => ingestElement(element, index, context));
   const { surfaces, media, labelIndex } = ingestSurfaces(data, authoredElements, stopAuthority, context);
@@ -989,7 +837,7 @@ export function ingestLensV1(input: LensDataInput): IngestedPrescription<Canonic
   lens.layout = layout;
   lens.rays = rays;
   lens.checks = checks;
-  return finish(key, lens as unknown as CanonicalLens, context);
+  return finish(key, lens as unknown as CanonicalLens, context, { format: 1, v1: context.v1 });
 }
 
 function ingestSource(data: Untyped): Untyped {
@@ -1000,14 +848,6 @@ function ingestSource(data: Untyped): Untyped {
   put(source, "assignees", data.patentAssignees);
   put(source, "errata", data.sourceErrata);
   return source;
-}
-
-function ingestRearPlates(plates: unknown, context: IngestContext): CanonicalRearPlate[] {
-  if (!Array.isArray(plates)) {
-    context.issues.push(`rearPlates must be a list`);
-    return [];
-  }
-  return plates.map((plate, index) => ingestRearPlate(plate as Untyped, `rearPlates[${index}]`, context));
 }
 
 /**
@@ -1022,9 +862,9 @@ export function ingestTeleconverterV1(input: TeleconverterData): IngestedPrescri
   const key = typeof data.key === "string" ? data.key : "?";
   const context = createContext();
   refuseUnknownFields(data, TELECONVERTER_FIELDS, "", context);
-  requireFields(data, ["key", "name", "magnification", "lensMounts", "masterImageDistanceMm"], context);
-  const authoredElements = requireArray(data, "elements", key);
-  requireArray(data, "surfaces", key);
+  requireFields(data, ["key", "name", "magnification", "lensMounts", "masterImageDistanceMm"], "", context);
+  const authoredElements = requireRecords(data, "elements", key);
+  requireRecords(data, "surfaces", key);
 
   const elements = authoredElements.map((element, index) => ingestElement(element, index, context));
   /* A converter has no stop, so every authored radius is read. */
@@ -1052,5 +892,5 @@ export function ingestTeleconverterV1(input: TeleconverterData): IngestedPrescri
   if (has(data, "rearPlates")) converter.rearPlates = ingestRearPlates(data.rearPlates, context);
   put(converter, "groups", data.groups);
   put(converter, "doublets", data.doublets);
-  return finish(key, converter as unknown as CanonicalTeleconverter, context);
+  return finish(key, converter as unknown as CanonicalTeleconverter, context, { format: 1, v1: context.v1 });
 }

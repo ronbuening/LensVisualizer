@@ -2,10 +2,13 @@
  * V1 view — rebuilds V1 lens and teleconverter data from a canonical prescription and its provenance.
  *
  * The engine still consumes V1 `LensData`, so until the compiler reads the canonical prescription directly every
- * lens reaches it through this view. Given V1 provenance, the view gives the file back as written: the defaulted
- * fields stay omitted, and the authored values the engine ignores and the V1 spellings return from provenance. Given
- * none (a prescription from another format), it writes one V1 spelling of each fact: `1e15` for a flat radius, every
- * aspheric coefficient V1 requires, `[wide, tele]` zoom labels where only the end stations are labelled.
+ * lens reaches it through this view. For a file of either version the defaulted fields stay omitted, and the authored
+ * values the engine ignores come back from `provenance.ignored`: a V2 `zoom.step: 0` gives `zoomStep: 0`, a zero
+ * aspheric term returns, a numeric flat radius keeps its number. Only the V1 spellings the canonical form holds once
+ * need V1 provenance (`provenance.v1`: the containers written empty, and how `publishedStations` was written). Given a
+ * V1 file, the view gives it back as written. Given none (a V2 file), it writes the plain V1 spelling of each field:
+ * `1e15` for a radius written `"flat"`, every aspheric coefficient V1 requires, `[wide, tele]` zoom labels where only
+ * the end stations are labelled.
  *
  * Two forms:
  * - `toLensData` is what the engine consumes, the catalog defaults merged in, as the V1 catalog spread them;
@@ -35,6 +38,7 @@ import {
   type CanonicalTeleconverter,
   type IngestedPrescription,
   type V1PublishedStationsSpelling,
+  type V1Spelling,
 } from "./canonical.js";
 import {
   ELEMENT_SCHEMA_DEFAULTS,
@@ -59,8 +63,14 @@ function put(target: Untyped, field: string, value: unknown): void {
 /** What the view writes for one defaulted field. */
 interface ViewContext {
   readonly provenance: CanonicalProvenance;
+  /** How the file spelled it in V1; empty for a file of another format, which takes the plain V1 spelling. */
+  readonly v1: V1Spelling;
   /** Write the catalog defaults, as the V1 catalog merges them; otherwise write only what the file authored. */
   readonly mergeCatalogDefaults: boolean;
+}
+
+function viewContext(provenance: CanonicalProvenance, mergeCatalogDefaults: boolean): ViewContext {
+  return { provenance, v1: provenance.v1 ?? { emptyContainers: [] }, mergeCatalogDefaults };
 }
 
 /**
@@ -195,7 +205,7 @@ function asphView(
     }
     entries.push([surface.label, terms]);
   });
-  if (entries.length === 0 && !view.provenance.v1.emptyContainers.includes("asph")) return undefined;
+  if (entries.length === 0 && !view.v1.emptyContainers.includes("asph")) return undefined;
   return Object.fromEntries(entries);
 }
 
@@ -237,7 +247,7 @@ function publishedStationsView(lens: CanonicalLens, view: ViewContext): Publishe
   const stations = lens.zoom?.stations;
   const published = stations ? stations.map((station) => station.published) : [true];
   const lists = stations ? stations.map((station) => station.publishedFocus) : [lens.focus.published ?? []];
-  const spelling = view.provenance.v1.publishedStations ?? plainPublishedSpelling(published, lists);
+  const spelling = view.v1.publishedStations ?? plainPublishedSpelling(published, lists);
   if (!spelling) return undefined;
 
   const out: PublishedStations = {};
@@ -285,7 +295,7 @@ function aberrationControlView(lens: CanonicalLens, view: ViewContext): Aberrati
   }
   out.var = Object.fromEntries(control.gaps.map((gap) => [gap.surface, structuredClone(gap.values)]));
   const labels = gapLabels(control.gaps);
-  if (labels.length > 0 || view.provenance.v1.emptyContainers.includes("aberrationControl.varLabels")) {
+  if (labels.length > 0 || view.v1.emptyContainers.includes("aberrationControl.varLabels")) {
     out.varLabels = labels;
   }
   return out as unknown as AberrationControlConfig;
@@ -293,7 +303,7 @@ function aberrationControlView(lens: CanonicalLens, view: ViewContext): Aberrati
 
 function buildLensView(ingested: IngestedPrescription<CanonicalLens>, mergeCatalogDefaults: boolean): Untyped {
   const { prescription: lens, provenance } = ingested;
-  const view: ViewContext = { provenance, mergeCatalogDefaults };
+  const view = viewContext(provenance, mergeCatalogDefaults);
   const { catalog, source, zoom, focus, aperture } = lens;
   const out: Untyped = {};
 
@@ -346,7 +356,7 @@ function buildLensView(ingested: IngestedPrescription<CanonicalLens>, mergeCatal
   if (lens.rearPlates) out.rearPlates = lens.rearPlates.map((plate, index) => rearPlateView(plate, index, view));
   put(out, "asph", asphView(lens.surfaces, view));
 
-  const emptyContainers = provenance.v1.emptyContainers;
+  const emptyContainers = view.v1.emptyContainers;
   if (lens.gaps.length > 0 || emptyContainers.includes("var")) {
     out.var = Object.fromEntries(
       lens.gaps.map((gap) => [gap.surface, structuredClone(zoom ? gap.values : gap.values[0])]),
@@ -410,7 +420,7 @@ export function toLensDataInput(ingested: IngestedPrescription<CanonicalLens>): 
  */
 export function toTeleconverterData(ingested: IngestedPrescription<CanonicalTeleconverter>): TeleconverterData {
   const { prescription: converter, provenance } = ingested;
-  const view: ViewContext = { provenance, mergeCatalogDefaults: false };
+  const view = viewContext(provenance, false);
   const out: Untyped = {};
   put(out, "publishedAt", converter.publishedAt);
   out.key = converter.key;
