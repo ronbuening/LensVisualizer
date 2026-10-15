@@ -17,9 +17,10 @@ import {
 } from "./fixtures/generateIntersectionFixtures.js";
 
 /**
- * Both intersection solvers against roots computed outside the engine to 60 decimals
+ * Both entries to the intersection kernel against roots computed outside the engine to 60 decimals
  * (fixtures/generateIntersectionFixtures.ts), held to the documented contract (architecture/optics-engine.md, Exact
- * Surface Trace). The legacy arm goes when internal/surfaceIntersection.ts is deleted.
+ * Surface Trace). The legacy arm is the stack tracer's entry, internal/surfaceIntersection.ts, which translates its
+ * call to the kernel's; it goes when that file is deleted.
  */
 
 const committedText = readFileSync(INTERSECTION_FIXTURE_PATH, "utf-8");
@@ -47,34 +48,18 @@ interface ExpectedFinding {
  * Fixtures today's solvers do not meet the contract on. Each entry is asserted to fail exactly as listed, so it has
  * to be deleted in the change that fixes it. An entry is a finding to fix in the engine, never a reason to drop or
  * loosen the fixture.
+ *
+ * None today. `sphere-grazing-chord` and `sphere-short-domain-window` (issue #779: both roots between two samples of
+ * the 24-sample bracket scan) were findings of the stack tracer's own solver until it delegated to the kernel, which
+ * takes a sphere's roots from its quadratic.
  */
-const EXPECTED_FINDINGS: readonly ExpectedFinding[] = [
-  // Both roots of the 0.58 mm chord fall between two samples of the legacy solver's 24-sample bracket scan (0.83 mm
-  // apart on these bounds), and the bounds' endpoints share a sign, so it sees no sign change. The production solver
-  // takes the roots from the sphere's quadratic and meets the contract here; the legacy one follows when it
-  // delegates. Tracked as https://github.com/ronbuening/LensVisualizer/issues/779.
-  {
-    fixture: "sphere-grazing-chord",
-    solver: "legacy",
-    violations: ["no hit: noBracket"],
-    measured: { ok: false, failureReason: "noBracket", residual: -0.00038026840608391954, iterations: 24 },
-  },
-  // The same finding in another form: the ray is inside the sphere's 1.2 mm domain for 2 mm of a 177 mm search, and
-  // both roots lie between two samples 7.4 mm apart. The legacy solver follows its clamped continuation outside the
-  // domain, where the residual keeps one sign.
-  {
-    fixture: "sphere-short-domain-window",
-    solver: "legacy",
-    violations: ["no hit: noBracket"],
-    measured: { ok: false, failureReason: "noBracket", residual: -6.797655164416556, iterations: 24 },
-  },
-];
+const EXPECTED_FINDINGS: readonly ExpectedFinding[] = [];
 
 function solve(solver: Solver, { surface, ray, bounds }: IntersectionFixture, profile: SurfaceProfile) {
   const sd = surface.sd ?? undefined;
   const asphere = surface.asphere ?? undefined;
   // The stored direction is the float64-normalized one. Production skips normalizing, as the trace does; the legacy
-  // solver always normalizes, and divides this direction by exactly 1.
+  // entry leaves it to the kernel, which divides this direction by exactly 1.
   return solver === "production"
     ? intersectSurfaceProfile(ray, profile, surface.vertexZ, { ...bounds, directionNormalized: true, clearRadius: sd })
     : intersectSagSurface(
@@ -178,17 +163,9 @@ function contractViolations(solver: Solver, fixture: IntersectionFixture): strin
   const hit = solve(solver, fixture, profile);
 
   if (expected.winner === null) {
-    // No real root in bounds. The production solver rejects the region beyond the conic domain; the legacy one
-    // follows its clamped continuation there (optics-engine.md), so a hit it reports must lie beyond the domain.
-    if (solver === "production") {
-      return !hit.ok && hit.failureReason === "noBracket" ? [] : ["expected noBracket where no root exists"];
-    }
-    if (!hit.ok) return [];
-    const domainRadius = profile.finiteRadiusLimit();
-    const violations: string[] = [];
-    if (!(domainRadius !== null && hit.radius > domainRadius)) violations.push("hit inside the domain without a root");
-    if (!(Math.abs(hit.residual) <= hit.effectiveTolerance)) violations.push("residual above effectiveTolerance");
-    return violations;
+    // No real root in bounds: the region beyond the conic domain is no surface (optics-engine.md), through either
+    // entry.
+    return !hit.ok && hit.failureReason === "noBracket" ? [] : ["expected noBracket where no root exists"];
   }
 
   if (!hit.ok) return [`no hit: ${hit.failureReason}`];

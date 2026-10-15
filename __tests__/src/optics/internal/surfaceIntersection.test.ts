@@ -22,11 +22,12 @@ function axialRay(y: number, z = -5): SurfaceIntersectionRay {
   return { origin: [0, y, z], direction: [0, 0, 1] };
 }
 
-describe("legacy clipped diagnostics at tightened accuracy", () => {
-  it("allows enough bisections to preserve an exterior aperture clip without a loose residual", () => {
-    // Captured Nokton 50/1 first-surface ray. This legacy clamped extension is
-    // outside the conic domain and the aperture; it is a diagnostic clip, not
-    // a physical conic hit. The production domain rejection remains unchanged.
+describe("a ray that only meets the clamped sag beyond the conic domain", () => {
+  it("is the kernel's domain rejection, and the trace records an intersection failure", () => {
+    // Captured Nokton 50/1 first-surface ray. In bounds it crosses only the clamped extension of the sag, at a
+    // radius of 42.06 mm: outside the conic domain (41.23 mm) and the aperture (27 mm). Until the stack tracer's
+    // solver delegated it returned that crossing as a hit, in 43 iterations, and the tracer clipped it at the rim.
+    // No surface is there, and the answer is the kernel's.
     const asphere: AsphericCoefficients = {
       K: -0.02238,
       A4: -1.0281e-6,
@@ -43,18 +44,8 @@ describe("legacy clipped diagnostics at tightened accuracy", () => {
       direction: [0, 0.36739419447650656, 0.9300653234396813],
     };
     const options = { maxT: 22.175454049907273 };
-    expect(intersectSagSurface(ray, 0, 0, lens, { ...options, maxIterations: 32 })).toMatchObject({
-      ok: false,
-      failureReason: "noConvergedIntersection",
-    });
-    const hit = intersectSagSurface(ray, 0, 0, lens, options);
-    expect(hit.ok).toBe(true);
-    if (!hit.ok) return;
-    expect(Math.abs(hit.residual)).toBeLessThanOrEqual(1e-12);
-    expect(hit.effectiveTolerance).toBe(1e-12);
-    expect(hit.radius).toBeGreaterThan(surface.sd);
     const profile = createSurfaceProfile(surface, asphere);
-    expect(hit.radius).toBeGreaterThan(profile.finiteRadiusLimit()!);
+    expect(Math.hypot(ray.origin[0], ray.origin[1])).toBeGreaterThan(profile.finiteRadiusLimit()!);
     const capped = { ...options, clearRadius: surface.sd };
     const production = intersectSurfaceProfile(ray, profile, 0, capped);
     expect(production).toMatchObject({ ok: false, failureReason: "noBracket", iterations: 24 });
@@ -63,11 +54,94 @@ describe("legacy clipped diagnostics at tightened accuracy", () => {
     expect(production).toEqual(
       intersectSurfaceProfile(ray, profile, 0, { ...capped, maxIterations: INTERSECTION_MAX_ITERATIONS }),
     );
-    const trace = traceExactSurfaceStackVector(lens, ray, { zPos: [0], checkSemiDiameter: true, stopOnClip: true });
-    expect(trace.failureReason).toBeNull();
+    // The stack tracer's entry returns that result under its own shape, with any budget: no iteration count turns
+    // the continuation into a surface.
+    const rejected = { ...production, surfaceIdx: 0 };
+    expect(intersectSagSurface(ray, 0, 0, lens, options)).toEqual(rejected);
+    expect(intersectSagSurface(ray, 0, 0, lens, { ...options, maxIterations: 32 })).toEqual(rejected);
+    expect(intersectSagSurface(ray, 0, 0, lens, { ...options, maxIterations: 4096 })).toEqual(rejected);
+    // The trace ends on the miss. It used to hold one hit there, clipped by the semi-diameter.
+    const traceOptions = { zPos: [0], checkSemiDiameter: true, stopOnClip: true };
+    const trace = traceExactSurfaceStackVector(lens, ray, traceOptions);
+    expect(trace.failureReason).toBe("noBracket");
     expect(trace.clipped).toBe(true);
-    expect(trace.hits).toHaveLength(1);
-    expect(trace.hits[0]).toMatchObject({ clipped: true, fallback: false, clipReason: "semi-diameter" });
+    expect(trace.hits).toHaveLength(0);
+    expect(trace.diagnostics.clipEvents).toEqual([
+      { surfaceIdx: 0, surfaceLabel: "1A", reason: "intersection-failure", failureReason: "noBracket" },
+    ]);
+    // A ghost trace goes on from the stack tracer's fallback point, which is flagged as one and is no hit.
+    const ghost = traceExactSurfaceStackVector(lens, ray, { ...traceOptions, ghost: true });
+    expect(ghost.failureReason).toBe("noBracket");
+    expect(ghost.hits).toHaveLength(1);
+    expect(ghost.hits[0]).toMatchObject({
+      clipped: true,
+      fallback: true,
+      failureReason: "noBracket",
+      residual: null,
+      effectiveTolerance: null,
+    });
+  });
+});
+
+describe("the stack tracer's entry to the kernel", () => {
+  const conic: AsphericCoefficients = { K: -0.5, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
+  const quartic: AsphericCoefficients = { K: 0, A4: 1e-5, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
+  const ray: SurfaceIntersectionRay = { origin: [0.3, 4, -5], direction: [0.02, 0.05, 2] };
+
+  it.each([
+    { kind: "flat", R: 1e15, asphere: undefined },
+    { kind: "spherical", R: 50, asphere: undefined },
+    { kind: "conic", R: 40, asphere: conic },
+    { kind: "polynomial asphere", R: 40, asphere: quartic },
+  ])("returns the kernel's $kind hit as its own tuples, with the surface index", ({ R, asphere }) => {
+    const L = lensWithSurface(R, asphere);
+    const options = { maxT: 20, refractiveIndex: 1.5 };
+    const kernel = intersectSurfaceProfile(ray, createSurfaceProfile({ R }, asphere), 0, {
+      ...options,
+      clearRadius: 20,
+    });
+    const legacy = intersectSagSurface(ray, 0, 0, L, options);
+    expect(kernel.ok).toBe(true);
+    expect(legacy.ok).toBe(true);
+    if (!kernel.ok || !legacy.ok) return;
+    const { closedFormFallback: _closedForm, ...hit } = kernel;
+    expect(legacy).toEqual({ ...hit, surfaceIdx: 0 });
+    expect(legacy).not.toHaveProperty("closedFormFallback");
+    expect(legacy.point).not.toBe(kernel.point);
+    expect(legacy.normal).not.toBe(kernel.normal);
+    // An explicit budget is the kernel's iterative path here too.
+    expect(intersectSagSurface(ray, 0, 0, L, { ...options, maxIterations: INTERSECTION_MAX_ITERATIONS })).toEqual({
+      ...intersectSurfaceProfile(ray, createSurfaceProfile({ R }, asphere), 0, {
+        ...options,
+        clearRadius: 20,
+        maxIterations: INTERSECTION_MAX_ITERATIONS,
+      }),
+      surfaceIdx: 0,
+    });
+  });
+
+  it("keeps its own failure names", () => {
+    const L = lensWithSurface(50);
+    expect(intersectSagSurface({ origin: [0, 1, -5], direction: [0, 0, 0] }, 0, 0, L, { maxT: 20 })).toEqual({
+      ok: false,
+      surfaceIdx: 0,
+      failureReason: "invalidRayDirection",
+      residual: null,
+      iterations: 0,
+    });
+    expect(intersectSagSurface(axialRay(1), 0, 0, L, { minT: -1, maxT: 20 })).toMatchObject({
+      ok: false,
+      failureReason: "invalidBounds",
+    });
+    expect(intersectSagSurface(axialRay(1), 0, 0, L)).toMatchObject({ ok: false, failureReason: "invalidBounds" });
+  });
+
+  it("solves the sag surface of a surface that carries a tilted interaction normal", () => {
+    // The stack tracer solves a tilted plane itself and never sends one here.
+    const tilted = { S: [{ R: 50, sd: 20, interaction: { type: "reflect", normal: { y: 1, z: 1 } } }], asphByIdx: {} };
+    expect(intersectSagSurface(axialRay(10), 0, 0, tilted, { maxT: 20 })).toEqual(
+      intersectSagSurface(axialRay(10), 0, 0, lensWithSurface(50), { maxT: 20 }),
+    );
   });
 });
 

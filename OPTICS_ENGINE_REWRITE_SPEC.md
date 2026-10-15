@@ -140,7 +140,10 @@ catalog on 2026-10-13, lens and teleconverter files together; the plan was first
 - **R0** is its parent, `d49857ae`. **A0** is the Stage 1 PR's merge commit on `engine-next`, tagged
   `optics-rewrite/s1`; it contains #774. **A1** is `6d186968`, the merge commit of #788 (the first merge of `main`
   that changed what the engine computes), tagged `optics-rewrite/a1`. Its Tier S check of the head before the merge
-  against A0 passed under C1 in all 8 shards.
+  against A0 passed under C1 in all 8 shards. **A2** is `6da1d95c`, the merge commit of #804 (the second merge of
+  `main`: four catalog glasses and HOYA FCD1's vendor curve), tagged `optics-rewrite/a2`. Its Tier S check against A1,
+  the first Tier S run to include S3.P2.T1, failed until #806 settled S3.P2.T1's Tier S; it then failed only on
+  S3.P2.T1's three approved divergences, as ruled.
 - Every differential comparison and speed measurement uses A0 or a later anchor (see
   [Anchors and comparison coverage](#anchors-and-comparison-coverage)), or the promotion merge commit for the
   Stage 2 gate alone. R0 is measured once, in S1.P1.T1, only to size the contract's own cost.
@@ -198,8 +201,10 @@ A review of #774 before it merged found these, which Stage 3 closes:
   measured ray among them (25 → 4 profile evaluations). The other 26 have a residual rounding over 31/32 of the
   target, where no certificate can say which float the iterative path reports, and keep the scan. The shared gate
   is unchanged.
-- **Legacy hits beyond |R|** are floor-assisted without being roundoff-limited, up to about 1e-8 mm. They are
-  exterior and always clipped, and they go when the legacy solver delegates (S3.P2.T3).
+- **Legacy hits beyond |R|** went when the legacy solver delegated (S3.P2.T3): no solve evaluates a surface beyond its
+  conic domain. They had been floor-assisted without being roundoff-limited, with residuals up to 6.8e-6 mm on far
+  ghost rays. With the rim checks on they were exterior and always clipped; no build trace of the catalog, where the
+  rim checks are off, met one.
 - **`intersectRayPlane`,** which lands rays on the image and sensor planes, does not validate its residual (S3.P2.T1).
 
 The Stage 1 fixtures added one more, which Stage 3 also closes:
@@ -207,7 +212,8 @@ The Stage 1 fixtures added one more, which Stage 3 also closes:
 - **Grazing chord** ([#779](https://github.com/ronbuening/LensVisualizer/issues/779)). A ray whose chord through a
   sphere is shorter than one step of the 24-sample bracket scan, or whose span inside a conic's domain is, is
   reported as a miss by both solvers. Closed-form roots close it for spheres and conics above the slope floors
-  (S3.P2.T1), and for the legacy solver when it delegates (S3.P2.T3). A short chord on a polynomial asphere, or
+  (S3.P2.T1), and for the stack tracer since its solver delegated (S3.P2.T3), where the full-field sample of the
+  Kinoptik Super Tegea 19mm f/1.9 became usable. A short chord on a polynomial asphere, or
   where the closed form falls back, still depends on the scan. S3.P2.T2 certifies one scan step past a seeded root
   so that it never returns a root the scan does not resolve, and pins the miss by test.
 
@@ -598,8 +604,11 @@ How `budgets.ts` applies the table:
   app reads these points (the app's fans end a ray at a miss: decision 2026-06-22), and the legacy tracer goes in
   Stage 4. Behind a ray's first missed surface, its ghost points and the clipped y projected from them are compared
   for presence, count and finiteness only. Everything before the miss keeps its budget: earlier ghost points, the
-  points of the ray, its slope, and its diagnostics, failure and clip reasons. The capture marks each ray's first
-  ghost point after its miss, alike on both sides. Under C0 every number is bit-exact, as before.
+  points of the ray, its slope, and its diagnostics, failure and clip reasons. The comparator finds the miss in each
+  ray's own diagnostics, and a ghost point is behind it when its place among the drawn points is at or after the
+  miss's place among the hits, on both sides. The legacy tracer drops a non-finite point from what it draws, which
+  can only put a later point's true place further on, so the rule never reaches before the miss. Under C0 every
+  number is bit-exact, as before.
 - **Fields the table does not name.** Layout lengths, refractive indices and prescription values the engine hands back
   take the first-order budget. Slopes are compared as direction cosines. Count ratios are exact.
 - **Bins of a bokeh profile.** A bokeh footprint weighs each ray by its transmission and sums the weights into the
@@ -2166,6 +2175,12 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     the same run: the traced exit pupil of one field sample lies 26.9 km from the mirror, beyond the reach of the far
     analysis length's share, and moved by 1.7e-10 of itself. An exact solve puts the new value nearer: 5.0e-11 of
     its distance off, against 1.21e-10 for the anchor's. It is read like the Mirotar until the anchor next moves.
+  - **Approved divergence, Samyang XP 35mm f/1.2** (`samyang-xp-35mm-f1p2`), settled at A2's Tier S check
+    (2026-10-14). At focus 1 the raw half-field's test ray grazes surface "19" over a 0.50 mm chord, shorter than one
+    1.74 mm step of the 24-sample scan, so A1 missed it (#779); the closed form finds it, and one bisection step later
+    falls back near tangency and leaves a similar ray to the same scan. Both raw half-fields are artifacts, 30 steps
+    apart, and the exact one differs from both; with the scan misses solved exactly the two engines agree to 2.8e-14°.
+    Nothing discrete changes. It is read like the Mirotar until the anchor next moves, and A2 now holds it.
   - **Approved divergence, Zeiss Mirotar 500mm f/4.5** (`carl-zeiss-mirotar-500f45`). The last class occurs once in
     the catalog and cannot be declared as transitions.
     - Surfaces "4" and "6" share a vertex and lie 3.8e-15 mm apart at the tested ray. The base returned one float
@@ -2232,14 +2247,30 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     That matters only where the generalized tracer's candidate search chooses between them, and no catalog polynomial
     asphere is in that position.
 - **S3.P2.T3 Legacy intersection delegates.**
-  - **Change:** `internal/surfaceIntersection.ts` calls the kernel, and its duplicate Newton, bracket and constants are
-    deleted.
-  - **Tests:** both arms of `__tests__/src/optics/intersectionContract.test.ts` pass unchanged, and so does
-    `__tests__/src/optics/internal/surfaceIntersection.test.ts` except its captured exterior-clip case. That case
-    asserts a legacy hit on the clamped continuation beyond the conic domain, which the kernel rejects. The legacy
-    arm of `__tests__/src/optics/intersectionFixtures.test.ts` follows the kernel: its expected-findings entries and
-    its beyond-the-domain fixture change with it.
-  - **Gate:** C1. The legacy hits beyond |R| that become domain rejections are listed as declared transitions.
+  - **Change:** `intersectSagSurface` in `internal/surfaceIntersection.ts` is one call of `intersectSurfaceProfile` on
+    the profile `createSurfaceProfile({ R }, asphere)` builds, with the caller's options and the surface's `sd` as
+    `clearRadius`. It adds the surface index, names `invalidDirection` `invalidRayDirection`, copies point and normal
+    into the caller's tuples and leaves `closedFormFallback` behind. Its Newton, bracket scan, plane solve, envelope
+    closure, cap re-selection and `MIN_DZ` are deleted, and `selectAsphericCapHit` is no longer exported. A hit
+    carries the kernel's normal; `surfaceNormalAtHit` is left to the stack tracer's ghost fallback point. The stack
+    tracer's tilted plane, candidate search, fallback point and clip test are unchanged.
+  - **Tests:** both arms of `intersectionContract.test.ts` pass unchanged. In `internal/surfaceIntersection.test.ts`
+    the captured exterior-clip case asserts the domain rejection, at any budget, and its trace as an intersection
+    failure, with a fallback row in ghost mode; six cases pin the entry's translation. The legacy arm of
+    `intersectionFixtures.test.ts` has no expected finding, and a fixture with no root is `noBracket` on both arms.
+  - **Gate:** C1. The declared class is a solve on the clamped sag beyond the conic domain, converged or not, that
+    becomes the kernel's domain rejection: a legacy hit there, or a legacy solve that ran out of its 72 iterations
+    there. S3.P2.T1's classes reach the stack tracer with it: #779 (the Kinoptik Super Tegea 19mm f/1.9 at Tier F) and
+    two surfaces on one vertex (the Mirotar). Build constants move by rounding on 903 of 922 lenses, the pupil
+    constants by 7.25e-13 relative at most; seven build half-fields move one step of their bisection, inside 1e-10°.
+  - **Approved divergence, Zeiss Mirotar 500mm f/4.5,** extended from S3.P2.T1 (2026-10-14). The closed form now
+    orders the lens's two surfaces on one vertex for the stack tracer too, so the chief ray of its 0.75 field sample is
+    blocked as the prepared tracer already blocks it: 87 differences at Tier P, none discrete. The step merges with its
+    check failing on this lens alone.
+  - **Intended divergence, Kinoptik Super Tegea 19mm f/1.9** (`kinoptik-super-tegea-19mm-f19-fisheye`), recorded
+    2026-10-14. #779 closing on the stack tracer makes its full-field bundle meet the first surface, and the last field
+    sample of four analysis jobs becomes usable (usable fields 4 to 5). Tier F shows it at promotion, where the
+    visible change on the lens's field-curvature and colour tabs gets a changelog line.
 - **S3.P2.T4 Roundoff-limited roots without bracket collapse.**
   - **Change:** with one kernel left, a Newton correction of a few ulps whose residual is inside the envelope counts
     as a stall, and a fixed point the envelope rejects fails at once. `INTERSECTION_MAX_ITERATIONS` then drops to the
@@ -2253,7 +2284,8 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
 **Stage 3 gate:**
 
 - the analytic suite;
-- Tier S, C1/C2 against the anchor, read with S3.P2.T1's approved divergence on the Mirotar;
+- Tier S, C1/C2 against the anchor, A2, which already holds S3.P2.T1's approved divergences, read with S3.P2.T3's
+  approved divergence on the Mirotar;
 - the Stage 3 targets are reported: mean evaluations per intersection and the fallback rate;
 - PC-Nikkor 19mm default analysis is at or below its stored R0 median, within the tolerance of efficiency gate 3;
 - the comparator report.
@@ -2635,14 +2667,22 @@ Settled on 2026-10-13, reviewing S2.P1.T1:
 | 49 | The order of label pairs is no spelling: ingest refuses pairs out of surface order, and the records keep the file's order | S2.P1.T1 |
 | 50 | Before changing a test whose expectation moves with the two reader fallbacks, S2.P1.T2 lists each one with its old and new values and stops for the maintainer | S2.P1.T2 |
 
-The maintainer settled these on 2026-10-13, answering the Stage 2 questions (a row marked — is numbered at its step's last merge of `engine-next`):
+Settled on 2026-10-14, at anchor A2 and building S3.P2.T3:
 
 | # | Decision | Where |
 | --- | --- | --- |
-| 51 | An undrawn medium carries `id`, an optional `name` and `nd`; other material fields are refused until an engine step reads them | [Field mapping](#field-mapping); S2.P2.T1 |
-| 52 | The engine's own ingest call sites read V2 from S2.P2.T1, telling the versions apart by one predicate | S2.P2.T1 |
-| 53 | A V2 stop carries `sd` only where its radius is authored, and V2 ingest reads a numeric radius past the flat threshold as flat | [Field mapping](#field-mapping); S2.P2.T1 |
-| — | Ingest records source paths only when asked; the reader records them, not the V1 view, and the converter carries comments and literal text by their composition with the V2 view | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T1 |
+| 51 | The Samyang XP 35mm f/1.2's raw half-field, decided by a scan miss on A1 and by the closed form's fallback after S3.P2.T1, is S3.P2.T1's third approved divergence | S3.P2.T1 |
+| 52 | S3.P2.T3 merges with its check failing on the Mirotar alone, the approved divergence extended to it | S3.P2.T3 |
+| 53 | Closing #779 on the stack tracer makes the Kinoptik Super Tegea 19mm's last field sample usable: an intended divergence at promotion, with a changelog line | S3.P2.T3 |
+
+The maintainer settled these on 2026-10-13, answering the Stage 2 questions:
+
+| # | Decision | Where |
+| --- | --- | --- |
+| 54 | An undrawn medium carries `id`, an optional `name` and `nd`; other material fields are refused until an engine step reads them | [Field mapping](#field-mapping); S2.P2.T1 |
+| 55 | The engine's own ingest call sites read V2 from S2.P2.T1, telling the versions apart by one predicate | S2.P2.T1 |
+| 56 | A V2 stop carries `sd` only where its radius is authored, and V2 ingest reads a numeric radius past the flat threshold as flat | [Field mapping](#field-mapping); S2.P2.T1 |
+| 57 | Ingest records source paths only when asked; the reader records them, not the V1 view, and the converter carries comments and literal text by their composition with the V2 view | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T1 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.
@@ -2663,6 +2703,9 @@ Open for the maintainer, none of them needed before promotion:
   where surfaces 16 and 17 cross beyond their rims, so its edge distortion is an artifact on both engines (+106.8%
   at focus 0; at focus 1, +110.4% on A1 and -3.9% since S3.P2.T1). A C3 that keeps the inversion off a trace
   discontinuity is needed. Tier F at promotion shows the focus-1 change.
+- A sphere or conic root that the closed form leaves near tangency (`nearTangency`) goes to the 24-sample scan, which
+  can miss a short chord (#779): the Samyang XP 35mm's field shows it. A C3 that solves such a root without the scan
+  is needed. The harness report's solver table also samples only its first 40 failures, which hid that lens.
 
 ## Rollback
 
