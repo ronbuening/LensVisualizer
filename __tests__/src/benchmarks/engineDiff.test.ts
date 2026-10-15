@@ -1514,7 +1514,6 @@ describe("engineDiff capture", () => {
     const traces = valueOf(records.find((record) => record.lens === SERENAR && record.request === "traces")!) as {
       onAxis: { rays: { status: string; terminalPoint: number[]; imagePoint: number[]; hits: Hits }[] };
       chromatic: { rays: Record<string, unknown[]> };
-      legacy: { rays: { pts: number[][]; paraxialImageHeight: number }[] };
     };
     interface Hits {
       count: number;
@@ -1529,8 +1528,11 @@ describe("engineDiff capture", () => {
     expect(ray.hits.columns.point.at(-1)).toEqual(ray.terminalPoint);
     expect(ray.imagePoint).toHaveLength(2);
     expect(Object.keys(traces.chromatic.rays)).toEqual([...CHROMATIC_CHANNELS].sort());
-    expect(traces.legacy.rays[1].pts.length).toBeGreaterThan(2);
-    expect(Number.isFinite(traces.legacy.rays[1].paraxialImageHeight)).toBe(true);
+    expect(traces).not.toHaveProperty("legacy");
+    expect(traces).not.toHaveProperty("nearAxisProbes.legacy");
+    const seam = resolveSeam();
+    expect(seam).not.toHaveProperty("legacyTraceRay");
+    expect(seam).not.toHaveProperty("legacyTraceToImage");
   });
 
   it("launches its full-hit rays exactly as the public slope tracer does", () => {
@@ -1552,7 +1554,7 @@ describe("engineDiff capture", () => {
     expect(mismatches).toEqual([]);
   });
 
-  it("probes two near-axis rays on each tracer, the engine's own on the prepared one, and finds each returned", () => {
+  it("probes the production tracer's two near-axis basis rays and finds each returned", () => {
     interface Probes {
       applicable: boolean;
       prepared?: { ok: boolean; value: Record<"marginal" | "chief", { y: number }> };
@@ -1571,11 +1573,9 @@ describe("engineDiff capture", () => {
       }
       expect(record.lens, where).not.toBe(folded);
       const returnedPrepared = { status: "ok", failureReason: null, y: expect.any(Number) };
-      const returnedLegacy = { clipped: false, failureReason: null, returned: true };
       expect(nearAxisProbes, where).toEqual({
         applicable: true,
         prepared: { ok: true, value: { marginal: returnedPrepared, chief: returnedPrepared } },
-        legacy: { ok: true, value: { marginal: returnedLegacy, chief: returnedLegacy } },
       });
       /* On the prepared tracer the probes are the very rays the state's field geometry divides: each height at the
        * stop, over the probe height, is that geometry's ratio bit for bit. */
@@ -1619,32 +1619,6 @@ describe("engineDiff capture", () => {
       prepared: { ok: false, error: { name: "TypeError", message: "first.profile.sag is not a function" } },
     });
     expect({ ...value, nearAxisProbes: null }).toEqual({ ...whole, nearAxisProbes: null });
-  });
-
-  it("counts a stack-tracer probe as returned by its height and its slope, as the engine tests a basis ray", () => {
-    /* The build's exit-pupil rays must come back with a finite slope as well as a finite height. */
-    const request = requests.find(({ lens, family }) => lensId(lens) === SERENAR && family === "traces")!;
-    const seam = resolveSeam();
-    const legacyTraceRay = seam.legacyTraceRay;
-    const spy = vi.spyOn(seam, "legacyTraceRay").mockImplementation((y0, u0, ...rest) => {
-      const result = legacyTraceRay(y0, u0, ...rest);
-      /* The marginal probe alone: the fans are launched at pupil heights, the chief probe at a slope. */
-      return y0 === NEAR_AXIS_PROBE_DELTA && u0 === 0 ? { ...result, u: Number.NaN } : result;
-    });
-    let record: PayloadRecord;
-    try {
-      [record] = captureRecords(CATALOG, [request]);
-    } finally {
-      spy.mockRestore();
-    }
-    const { legacy } = (valueOf(record) as { nearAxisProbes: { legacy: unknown } }).nearAxisProbes;
-    expect(legacy).toEqual({
-      ok: true,
-      value: {
-        marginal: { clipped: false, failureReason: null, returned: false },
-        chief: { clipped: false, failureReason: null, returned: true },
-      },
-    });
   });
 
   it("composes a pair itself and records the composed prescription as the fingerprint reads a file", () => {

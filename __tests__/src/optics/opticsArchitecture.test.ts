@@ -122,7 +122,6 @@ const SEAM_LEGACY: readonly string[] = [
   "src/optics/publishedStations.ts",
   "src/optics/pupilAberration.ts",
   "src/optics/raySampling.ts",
-  "src/optics/rayTrace.ts",
   "src/optics/spectralLines.ts",
   "src/optics/state/prepareState.ts",
   "src/optics/trace/rayAdapters.ts",

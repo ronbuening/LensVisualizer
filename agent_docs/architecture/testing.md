@@ -269,37 +269,18 @@ fingerprint's marker. The analysis record holds every job of the analysis contex
 viewer computes outside it, each asked as its component asks: the working f-number, the chromatic tab's field-focus
 summary, the diagram's LoCA readout with the bars of its inset, and the aspheric overlay's departure at a click.
 
-The traces record holds, beside its fans, two near-axis probe rays on each tracer: a marginal ray 1e-4 mm off the
-axis and a chief ray through the first vertex at a slope of 1e-4. The engine builds its pupil constants from two such
-rays. When one of them fails, it takes another value and no payload says so: the paraxial ratio, the other tracer's
-quotient or the constant of the infinity-focus build, and some of those are within rounding of the real one, where no
-budget shows the switch. A probe that stops returning is a status instead.
+The traces record holds, beside its production fans, two near-axis probe rays: a marginal ray 1e-4 mm off the
+axis and a chief ray through the first vertex at a slope of 1e-4. A failed basis ray can switch the engine to a
+fallback pupil constant within rounding of the real one, so the probe records its status as well as its height.
 
-- On the prepared tracer the probes are the engine's own rays. The launch is copied from
-  `computeFieldGeometryAtState2` (`src/optics/field/chiefRay.ts`): the same origin, direction and `stopAt`. Each
-  probe records its status, its failure reason and its height at the stop as the engine reads it, which is not a
-  number once the trace has failed. That height over 1e-4 is the state geometry's `yRatio` or `b` bit for bit.
-- On the RuntimeLens stack tracer the probes are not the engine's launches. Those are internal:
-  `traceExactSurfaceStack` with `stopAt` or `skipLastTransfer`, in `src/optics/runtimeLens.ts` and
-  `src/optics/pupilAberration.ts`, started at that tracer's inferred lead with the rim checks off. The seam reaches
-  that tracer through `rayTrace.traceRay` alone, which fixes where a ray starts and which options it takes, and the
-  architecture guard's seam lists take no new implementation module of the engine (`opticsArchitecture.test.ts`).
-  - The probes there are the same two lines, started one ray lead ahead of the first vertex and run through every
-    surface with the rim checks on. One trace crosses the surfaces the entrance-pupil rays cross and those the
-    exit-pupil rays add.
-  - Each records its clip flag, its failure reason and whether it returned: no failure, and a finite height and
-    slope.
-  - They show the stack tracer failing a near-axis ray. They do not show a basis ray that fails only from the
-    engine's own start point, or only with the rim checks off. Off infinity focus the engine then takes the prepared
-    tracer's quotients, which are within rounding of its own, and a run does not see the switch.
-- Each tracer's two probes are an outcome of their own, `{ ok, value }` or `{ ok, error }`. The prepared launch reads
-  a prepared state's members directly, so an engine change can make it throw on one engine. That fails as the
-  outcome of those probes, and the record's rays and the other tracer's probes are still compared. A launch that
-  throws alike on both engines compares equal, as a job that throws on both does: the tests hold the fixture lenses'
-  probes to `ok`.
-- A folded lens has no probe, and its record says `applicable: false`. The engine finds a folded lens's stop by
-  scanning a generalized trace for a hit on it, with the rim checks off, and the seam lists that search for neither
-  tracer.
+- The probes are the prepared tracer's own rays. The launch is copied from `computeFieldGeometryAtState2`
+  (`src/optics/field/chiefRay.ts`): the same origin, direction and `stopAt`. Each records its status, failure reason
+  and height at the stop as the engine reads it, which is not a number once the trace has failed. That height over
+  1e-4 is the state geometry's `yRatio` or `b` bit for bit.
+- The two probes have their own outcome, `{ ok, value }` or `{ ok, error }`. Reading a changed prepared state may
+  throw on one engine; the fans are still compared. Equal throws compare equal, as equal job throws do; fixture
+  tests hold the probes to `ok`.
+- A folded lens has no probe (`applicable: false`): its generalized stop search is not exposed by the seam.
 - The probes are traced at the record's state. The build traces its own basis rays at the authored spacings and, for
   a zoom, at each station focused at infinity. Those stations are states of the first row of every tier: the first
   and last in Tier P, every one in Tiers S and F. A basis ray that fails at a middle station alone therefore first
@@ -354,9 +335,12 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
 1. **Engine drift.** Every head prescription is evaluated on the base engine and on the head engine, and the two
    sets of records are compared under the change class. Two outcomes that no number of a record would show are in
    it as discrete fields: what happened inside each trace nested in an analysis result, as the outcome hash of its
-   digest, and whether two near-axis rays returned on each tracer, as the probes of the traces record. On the
-   prepared tracer those are the engine's own basis rays; on the stack tracer they are the same two lines launched
-   as that tracer's public entry launches a ray.
+   digest, and the statuses of the production near-axis basis probes. The harness no longer asks for a legacy
+   fan or legacy probes. When comparing an older capture bundle, only base-side `traces.legacy` and
+   `traces.nearAxisProbes.legacy` are omitted where their head object exists and lacks that key, before counts and
+   comparison. Inputs stay intact. Shared members and head-only additions still compare normally, as do all other
+   missing members and parents. No record is retired: record identity and order must match exactly. This projection
+   applies to engine drift alone; data comparisons keep every member.
 2. **Format-only data change.** A lens whose serialized prescription differs from the base's while its semantic
    fingerprint does not: the base and head prescriptions are evaluated on the head engine and must be bit-identical
    in every class. Prescriptions are compared as evaluated data, so an edit to comments or layout is no change.
@@ -375,7 +359,7 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
        intersection failure is a continuation diagnostic. This applies to every full-hit fan of a traces record:
        `onAxis`, `offAxis`, `skew`, and each channel of `chromatic.rays` (B, V, R).
      - A failure that is the first clip event, or lacks clip events to prove the order, still blocks. Nested
-       trace digests and near-axis probes carry no clip events; the legacy fan has no status. Chief-ray solves,
+       trace digests and near-axis probes carry no clip events. Chief-ray solves,
        root solves and sensor locks (`bracket-failed`, `evaluation-failed`) are unchanged. The base status need
        only be no failure, so `clipped` to `failed` without ordered evidence and `unbracketed` to
        `evaluation-failed` still block. The report marks failures after the ray's first clip as non-blocking.
@@ -489,24 +473,13 @@ The classes in `budgets.ts`:
 
 - The rows of that quantity table keep its values: unclipped hits and image-plane landings 1e-9 mm, clipped,
   exterior or diagnostic hits 1e-7 mm (or 1e-12 of the point's own size where that is more, which it is beyond 100 m
-  from the lens, where a ghost path that has left the lens puts its points), direction cosines 1e-10, first-order
+  from the lens), direction cosines 1e-10, first-order
   scalars 1e-12 relative, chief-ray launch heights 1e-9 mm, field angles from an image height 1e-10°, analysis
   lengths 1e-8 mm (or 1e-10 of the length's own size where that is more, which it is beyond 100 mm, where nearly
   parallel rays cross), percentages 1e-8 points, MTF modulation 1e-7, the weighted bin statistics of a bokeh
   profile 1e-10 relative, and a ratio of two analysis lengths 1e-8 relative.
 - A hit's coordinates, and a ray's terminal values, are budgeted as unclipped only when the clip flag or status
   beside them says so on both sides. A flag that differs is a transition of its own.
-- After a legacy fan ray's first missed surface, its substitute ghost points and the clipped `y` projected from
-  them have the `legacyMissTail` class: presence, count and finiteness only above C0. The comparator reads the first
-  `intersection-failure` in each ray's `diagnostics.clipEvents`, without another trace or an added record member.
-  On both sides, a ghost qualifies when its hit-position lower bound `pts.length - 1 + ghostIndex` is at or after
-  the first miss's position in `diagnostics.hitSurfaceIndexes`. `rayTrace.ts` adds the launch point, appends hits in
-  order, and drops non-finite drawn points while the stack diagnostics retain every hit index; dropped points can
-  only move a ghost later in the hit list, so the lower bound remains safe without complete alignment.
-  The `y` exemption requires both rays to be clipped and both to have an intersection failure. A rim clip alone
-  does not qualify. Earlier ghosts, `pts`, `u`, diagnostics, failure and clip reasons keep their existing rules.
-  C0 stays bit-exact. These off-ray substitutes are unused by the app's prepared tracer fans, which stop at a miss,
-  and the legacy tracer is removed in Stage 4. This is S3.P2.T1's deferred Tier S settlement.
 - A relative budget is `|a − b| ≤ budget · max(|a|, |b|)`, and no less than the class's floor where it has one. A
   floor is an absolute bound in the class's unit.
   - A class whose values may be zero has one: a first-order length, a layout length and a best-fit radius are
@@ -751,11 +724,12 @@ from the one file it is given as `--exceptions`.
   - With `numbers` it also excuses, in that unit alone, a number beyond budget in a field of a traced ray that has
     no counterpart once the ray ends on another surface or stops: `terminalPoint`, `terminalDirection`,
     `imagePoint`, `x`, `y`, `ux` and `uy`; the medium the ray ended in (`finalMedium`, on the ray and in its
-    `diagnostics`); and the stack tracer's `pts`, `ghostPts`, `y`, `u` and `transmission`.
+    `diagnostics`). Only production fan ray units (`onAxis`, `offAxis`, `skew` and the four chromatic channels)
+    qualify; the retired legacy ray fields have no `numbers` permission.
   - `numbers` is honoured only where the unit's own discrete and shape differences show that the ray did end
     elsewhere (`ENDED_ELSEWHERE` in `compare.ts`): its `status`, `clipped`, `failureReason`, `reachedImagePlane`,
     `terminalSurfaceIndex` or `returnVertexIndex`; its hit count, or a hit's surface index or clip, fallback or
-    failure flag; the stack tracer's `pts` or `ghostPts` changing length; the same members of its `diagnostics`,
+    failure flag; the same members of its `diagnostics`,
     its `hitSurfaceIndexes` and anything of its `clipEvents`. A unit in which only a label, a tolerance, an input
     or the presence of a hit column differs keeps every number on its budget, with `numbers` or without, and the
     line a run writes for it does not say `numbers`.
@@ -808,15 +782,13 @@ from the one file it is given as `--exceptions`.
   counted, and the first 200 are kept.
 - **Capacity.** A pull request description holds 65,536 characters, and the inputs of one stage dispatch 65,535
   together. A line is 160 to 190 characters before its reason, so one description declares about 250 units. One
-  event is often several units: an on-axis ray is traced by the surface tracer and again by the stack tracer
-  (`onAxis` and `legacy`), and a chromatic ray once for each of four channels. The harness has no other place to
-  declare from: a step with more undeclared units than one description holds cannot pass C1 or C2 as one pull
+  event can be several units: a chromatic ray is traced once for each of four channels. The harness has no other
+  place to declare from: a step with more undeclared units than one description holds cannot pass C1 or C2 as one pull
   request.
 - **Not covered.**
   - What lies behind a changed array length, or in a member one side lacks, is compared with nothing beyond the
-    common hits and the head-side check, and is in the digest only as its type and length. That holds for the stack
-    tracer's `pts` and `ghostPts`, which have no surface index to pair by, and for a ray whose hit table is under no
-    array index. `summary.md` says of each matched line how many of its differences are such shapes.
+    common hits and the head-side check, and is in the digest only as its type and length. That holds for a ray
+    whose hit table is under no array index. `summary.md` says of each matched line how many differences are shapes.
   - A trace nested in an analysis result shows only what its digest keeps readable.
   - What a transition does to a number computed from many rays (a relative illumination, an RMS, a best focus) is
     outside every line, and fails on its own budget.
@@ -963,8 +935,10 @@ Three files in the tooling suite hold the harness to its contract.
   from either side, a tolerance relaxed to four times the target fails with the residual inside it, and a coordinate
   that moved by any distance is reported and passes, as does a tolerance relaxed under a larger one in the same trace:
   the accepted limit of the rule. The outcome masks exactly the numbers the table budgets, on captured traces, a
-  near-axis probe that stops returning fails on either tracer, and a probe launch that threw on one engine fails as
-  that outcome alone. It also covers cross-evaluation: a data-only change shows no engine difference
+  production near-axis probe that stops returning fails, and a probe launch that threw on one engine fails as
+  that outcome alone. Retirement tests hold the engine-drift projection above to its two named base-only members,
+  keep record order and every retained field strict, preserve both inputs and leave data comparisons intact.
+  A legacy ray still present on both sides has no `numbers` permission. It also covers cross-evaluation: a data-only change shows no engine difference
   and an impact report, and a format-only change that alters a value fails. A semantic change is judged path by path:
   a status that turned to a failure, a number that turned non-finite and a job that now throws each block at a path
   both sides have, behind a change of shape and beside an improvement as well. So does a root solve that turned to a

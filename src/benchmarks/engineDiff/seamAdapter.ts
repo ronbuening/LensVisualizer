@@ -29,7 +29,6 @@ const ENGINE_MODULES = {
   optics: import.meta.glob<EngineModule>("../../optics/optics.ts", { eager: true }),
   perspective: import.meta.glob<EngineModule>("../../optics/perspective/index.ts", { eager: true }),
   raySampling: import.meta.glob<EngineModule>("../../optics/raySampling.ts", { eager: true }),
-  rayTrace: import.meta.glob<EngineModule>("../../optics/rayTrace.ts", { eager: true }),
   teleconverter: import.meta.glob<EngineModule>("../../optics/teleconverter.ts", { eager: true }),
 };
 
@@ -53,7 +52,6 @@ interface EngineModuleTypes {
   optics: typeof import("../../optics/optics.js");
   perspective: typeof import("../../optics/perspective/index.js");
   raySampling: typeof import("../../optics/raySampling.js");
-  rayTrace: typeof import("../../optics/rayTrace.js");
   teleconverter: typeof import("../../optics/teleconverter.js");
 }
 
@@ -66,7 +64,7 @@ type SeamCandidate = readonly [module: EngineModuleId, exportName: string];
  *
  * Full hits exist only behind `compat.ts` today, and the perspective trace context only behind the deep
  * `perspective/index.ts`; no top-level barrel exports either yet. The `legacy*` entries reach the second
- * implementations that still sit beside the prepared-state engine (the RuntimeLens stack tracer and layout, the
+ * implementations that still sit beside the prepared-state engine (the RuntimeLens layout, the
  * overlay's departure and best-fit helpers and the LoCA inset's bar scaling), so a payload notices when either copy drifts.
  */
 const SEAM_CANDIDATES = {
@@ -82,8 +80,6 @@ const SEAM_CANDIDATES = {
   traceRay: [["compat", "traceEngineRay2"]],
   channelIndexResolver: [["compat", "channelIndexResolverForState2"]],
   skewImagePlaneIntercept: [["optics", "skewImagePlaneIntercept"]],
-  legacyTraceRay: [["rayTrace", "traceRay"]],
-  legacyTraceToImage: [["rayTrace", "traceToImage"]],
   doLayout: [["optics", "doLayout"]],
   legacyDoLayout: [["layout", "doLayout"]],
   anchorLayoutToCamera: [["optics", "anchorLayoutToCamera"]],
