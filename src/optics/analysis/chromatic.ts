@@ -17,7 +17,7 @@ import {
 } from "../aberration/offAxis.js";
 import { offsetVectorFieldRay2 as offsetVectorFieldRay } from "../field/fieldGeometry.js";
 import type { FieldGeometryState } from "../optics.js";
-import { traceChiefRelativeSkewRayChromatic } from "../rayTrace.js";
+import { traceChiefRelativeSkewRayChromatic } from "../trace/chiefRelative.js";
 import { traceSkewRayVectorChromatic2 } from "../trace/rayAdapters.js";
 import { thick } from "../layout.js";
 import type {

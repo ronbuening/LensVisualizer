@@ -14,7 +14,11 @@ import {
   computeLateralColorCurve,
   computeLongitudinalChromaticFocus,
 } from "../../../../src/optics/chromatic/analysis.js";
-import { doLayout } from "../../../../src/optics/optics.js";
+import { doLayout, traceChiefRelativeSkewRayChromatic } from "../../../../src/optics/optics.js";
+import {
+  computeProjectionAwareOffAxisFieldGeometry,
+  isOffAxisVectorFieldGeometry,
+} from "../../../../src/optics/aberration/offAxis.js";
 import type { FieldCurvatureFieldResult, FieldCurvatureResult } from "../../../../src/optics/aberrationAnalysis.js";
 
 /* The single-field variants of these fixtures leave the max-field reduction
@@ -39,6 +43,54 @@ describe("chromatic analysis helpers", () => {
     expect(result.spreads.offAxis?.imagePlaneHeightSpreadMm).toBeGreaterThanOrEqual(0);
     expect(result.onAxisAttemptedRayCount).toBeGreaterThanOrEqual(3);
     expect(result.offAxisAttemptedRayCount).toBeGreaterThanOrEqual(3);
+  });
+
+  it("rejects the first scalar off-axis fraction and reduces all surviving channels at the next", () => {
+    const { L, z } = chromaticFixture();
+    const ep = 2;
+    const stop = 1;
+    const result = computeChromaticRayFanAnalysis2(L, z, 0, 0, ep, stop, 0, {
+      offAxisFieldFraction: 0.01,
+      offAxisFractions: [1, 0.1],
+    });
+    expect(result.offAxisFieldAngleDeg).toBeGreaterThan(0);
+    expect(result.offAxisAttemptedRayCount).toBe(8);
+    expect(result.spreads.offAxis?.fraction).toBe(0.1);
+    expect(result.spreads.offAxis?.channels).toEqual(["R", "G", "B", "V"]);
+    const geometry = computeProjectionAwareOffAxisFieldGeometry(L, z, 0, 0, 0.01)!;
+    expect(isOffAxisVectorFieldGeometry(geometry)).toBe(false);
+    if (isOffAxisVectorFieldGeometry(geometry)) return;
+    for (const channel of ["R", "G", "B", "V"] as const) {
+      const clipped = traceChiefRelativeSkewRayChromatic(
+        0,
+        1,
+        geometry.yChief,
+        geometry.uField,
+        ep,
+        0,
+        0,
+        stop,
+        true,
+        L,
+        channel,
+      );
+      const ray = traceChiefRelativeSkewRayChromatic(
+        0,
+        0.1,
+        geometry.yChief,
+        geometry.uField,
+        ep,
+        0,
+        0,
+        stop,
+        true,
+        L,
+        channel,
+      );
+      expect(clipped.clipped).toBe(true);
+      expect(ray.clipped).toBe(false);
+      expect(result.spreads.offAxis?.imagePlaneHeights[channel]).toBeCloseTo(ray.y + ray.uy * L.S[L.N - 1].d, 12);
+    }
   });
 
   it("matches the runtime chromatic helpers through the v2 wrappers", () => {
