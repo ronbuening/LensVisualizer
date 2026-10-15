@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { buildChromaticPositiveElementLens } from "../testLensFixtures.js";
+import { build, buildChromaticPositiveElementLens } from "../testLensFixtures.js";
+import foldedFixture from "../../../../src/lens-data/reference/ReferenceCassegrainBackFocus.data.js";
 import {
   computeChromaticAnalysis2,
   computeChromaticAnalysisForState2,
@@ -8,6 +9,7 @@ import {
   computeLongitudinalChromaticFocus2,
   prepareRuntimeState,
   summarizeChromaticFieldFocus2,
+  traceRayChromatic2,
 } from "../../../../src/optics/compat.js";
 import {
   computeChromaticAnalysis,
@@ -31,6 +33,51 @@ function chromaticFixture() {
 }
 
 describe("chromatic analysis helpers", () => {
+  it("reduces folded chromatic rays at the current focus image plane", () => {
+    // Guard the shared reducer against tagging current-state heights with a build-time plane.
+    const L = build({
+      ...foldedFixture,
+      opticalPath: { mode: "auto", maxInteractions: 10 },
+      surfaces: foldedFixture.surfaces.map((surface) => (surface.label === "M1B" ? { ...surface, d: 33 } : surface)),
+      var: { M1B: [33, 41.05] },
+    });
+    const state = prepareRuntimeState(L, 1, 0);
+    const z = [...state.z];
+    expect(L.isFoldedOptics).toBe(true);
+    expect(state.imgZ - L.imagePlane.z).toBeCloseTo(8.05, 12);
+    const result = computeChromaticRayFanAnalysis2(L, z, 1, 0, L.EP.epSD, L.stopPhysSD);
+    const offAxis = result.spreads.offAxis!;
+    const onAxis = result.spreads.onAxis!;
+    expect(offAxis).not.toBeNull();
+    expect(onAxis).not.toBeNull();
+    const geometry = computeProjectionAwareOffAxisFieldGeometry(L, z, 1, 0, L.offAxisFieldFrac ?? 0.7)!;
+    expect(isOffAxisVectorFieldGeometry(geometry)).toBe(false);
+    if (isOffAxisVectorFieldGeometry(geometry)) return;
+    for (const channel of result.channels) {
+      const ray = traceChiefRelativeSkewRayChromatic(
+        0,
+        offAxis.fraction!,
+        geometry.yChief,
+        geometry.uField,
+        L.EP.epSD,
+        1,
+        0,
+        L.stopPhysSD,
+        true,
+        L,
+        channel,
+      );
+      expect(ray.clipped).toBe(false);
+      expect(offAxis.imagePlaneHeights[channel]).toBeCloseTo(ray.y, 12);
+      expect(offAxis.axialIntercepts[channel]).toBeCloseTo(state.imgZ - ray.y / ray.uy, 12);
+      const axialRay = traceRayChromatic2(onAxis.fraction! * L.EP.epSD, 0, z, 1, 0, L.stopPhysSD, true, L, channel);
+      expect(axialRay.reachedImagePlane).toBe(true);
+      expect(axialRay.pts.at(-1)![0]).toBeCloseTo(state.imgZ, 12);
+      expect(onAxis.imagePlaneHeights[channel]).toBeCloseTo(axialRay.y, 12);
+      expect(onAxis.axialIntercepts[channel]).toBeCloseTo(state.imgZ - axialRay.y / axialRay.u, 12);
+    }
+  });
+
   it("computes axis-split ray-trace spreads for analysis callers", () => {
     const { L, z, currentEPSD, currentPhysStopSD } = chromaticFixture();
 
