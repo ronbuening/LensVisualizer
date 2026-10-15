@@ -202,6 +202,9 @@ export interface SourceV2Input {
   errata?: SourceErratum[];
 }
 
+/** A teleconverter's source: as a lens's, without errata, which V1 holds for a lens alone. */
+export type TeleconverterSourceV2Input = Omit<SourceV2Input, "errata">;
+
 /** Diagram layout. Every member but `yScFill` has a schema default. */
 export interface LayoutV2Input {
   svgW?: number;
@@ -271,7 +274,7 @@ export interface TeleconverterDataV2Input {
   visible?: boolean;
   publishedAt?: string;
   catalog: { lensMounts: LensMountId[]; specs?: string[]; elementCount?: number; groupCount?: number };
-  source?: SourceV2Input;
+  source?: TeleconverterSourceV2Input;
   /** Nominal focal-length multiplier, e.g. 1.4 or 2. */
   magnification: number;
   /** Air-equivalent distance in mm from the converter's first vertex to the host's native image plane. */

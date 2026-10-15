@@ -4,8 +4,9 @@
  * The engine still consumes V1 `LensData`, so until the compiler reads the canonical prescription directly every
  * lens reaches it through this view. Given V1 provenance, the view gives the file back as written: the defaulted
  * fields stay omitted, and the authored values the engine ignores and the V1 spellings return from provenance. Given
- * none (a prescription from another format), it writes the plain V1 spelling of each field: `1e15` for a flat
- * radius, every aspheric coefficient V1 requires, `[wide, tele]` zoom labels where only the end stations are labelled.
+ * none (a prescription from another format), it writes the plain V1 spelling of each field: `1e15` for a radius
+ * written `"flat"`, every aspheric coefficient V1 requires, `[wide, tele]` zoom labels where only the end stations are
+ * labelled. A V2 file's numeric flat radius comes back as its own number, from `provenance.ignored`.
  *
  * Two forms:
  * - `toLensData` is what the engine consumes, the catalog defaults merged in, as the V1 catalog spread them;

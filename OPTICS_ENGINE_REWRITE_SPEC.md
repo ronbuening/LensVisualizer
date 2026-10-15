@@ -1073,7 +1073,7 @@ and position.
 | `lensMounts`, `imageFormat`, `imageCircleMm`, `specs`, `elementCount`, `groupCount`, `acceptsTeleconverters`, `opticalConfiguration` | `catalog.*` | Same names |
 | `focalLengthMarketing`, `focalLengthDesign` | `catalog.focalLengthMm.{marketing, design}` | Value kept as authored, scalar or `[wide, tele]`. The design value stays authored: it is the source's stated range, and it feeds the EFL sanity check and the MTF scale check. S2.P6.T3 adds its consistency check. |
 | `apertureMarketing`, `apertureDesign` | `catalog.fNumber.{marketing, design}` | Value kept |
-| `patentNumber`, `patentYear`, `patentAuthors`, `patentAssignees`, `sourceErrata` | `source.{patentNumber, patentYear, authors, assignees, errata}` | `errata[].surface` keeps the surface label |
+| `patentNumber`, `patentYear`, `patentAuthors`, `patentAssignees`, `sourceErrata` | `source.{patentNumber, patentYear, authors, assignees, errata}` | `errata[].surface` keeps the surface label; a teleconverter's source has no `errata`, which V1 holds for a lens alone |
 | `surfaces[].nd`, `surfaces[].elemId` | `surfaces[].medium` | An element id, an id in `media`, or omitted for air. Indices come from the medium only. |
 | *(air surface with `nd ≠ 1`)* | `media: [{ id, name?, nd }]` | Undrawn media; 4 surfaces today. A medium carries no other field, because the engine traces no dispersion or absorption in an undrawn medium: `vd` and an element's other material fields stay reserved names, refused until an engine step reads them, and a source's value stays in a comment. One is added by an engine C3 on `engine-next`, then its values in a separate data PR. |
 | `elements[].fromSurface`/`toSurface` | `elements[].span: [from, to]` | Required where the drawn span is not the medium run. Today that means 21 explicit spans and the 14 mirror and blocker surfaces. |
@@ -1414,9 +1414,9 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
       - a field V1 does not define, or one only the engine writes.
 
       Each refusal names the field and its authored path. Ingest does not otherwise check types, and may fail on
-      wrong-typed input with a plain `TypeError`; from S2.P1.T2 `buildLens` asks the validator about every file first.
-      The validator reads `asph: null` and `var: null` as absent, which is why ingest refuses a non-object `asph` or
-      `var` by name.
+      wrong-typed input with a plain `TypeError`; from S2.P1.T2 `buildLens` asks the validator about every V1 file
+      first. The validator reads `asph: null` and `var: null` as absent, which is why ingest refuses a non-object `asph`
+      or `var` by name.
 
       Some refusals are stricter than `validateLensData` (for a converter, `validateTeleconverterData`), so a lens
       that trips one first fails at a merge of `main` into `engine-next`. No catalog file does today. The validator
@@ -1551,14 +1551,35 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
       name stay in provenance, so they never reach the semantic fingerprint. A medium carries `id`, an optional `name`
       and `nd` ([Field mapping](#field-mapping)). A medium no surface uses, one with the index of air, and one
       repeating another medium's index are refused, because V1 cannot hold them apart.
-    - **V2's own refusals,** each at its authored path: a medium naming no element or medium; a medium field other
-      than `id`, `name` and `nd`, or a `name` that is no non-empty string; a gap keyed by no surface; a gap surface
-      that also writes `d`, even when it equals the gap's first value, or a surface with neither; gap rows out of step
-      with the station or keyframe counts; a station field (`nominalFNumber`, `stopSemiDiameter`, `closeFocusM`) on
-      some stations only; station labels other than all, or the first and last; no published station; a published
-      keyframe, or a conjugate's station or keyframe, that names none; an element span naming no surface or running
-      backwards; a design f-number stated both on the aperture and on the stations, or neither; and a stop `sd` the
-      engine would not read, or a missing one it would.
+    - **V2's refusals,** each at its authored path. A V2 file has no validator-first pass, so V2 ingest refuses every
+      shape it cannot read itself. This is the one list; the `ingestV2.ts` header and `optics-engine.md` point here,
+      and `ingestV2.test.ts` has a case for each.
+      - **Shape:** `schema` other than 2; a field V2 does not define, or one only the engine writes; a required field
+        left out; a record that is not an object, a list that is not a list, or a list entry that is not an object
+        (a zoom station among them, which the station rules then pass over); `elements` or `surfaces` that is not a
+        list of objects, which stops ingest at once. The shared rules of `ingestCommon.ts` add the aspheres' and
+        rear plates' own.
+      - **Elements and media:** an element `id` that is not a positive integer, since V1 reads 0 as air; a surface
+        medium naming no element or medium, or neither an element id nor a media id; a medium without a non-empty
+        `id`, with an `nd` that is not a number, with a field other than `id`, `name` and `nd`, or with a `name` that
+        is no non-empty string; a medium id written twice; a medium no surface uses, one with the index of air, and
+        one repeating another medium's index; an element span that is not two surface labels, names no surface, or
+        runs backwards.
+      - **Surfaces and gaps:** a surface label that is not a string, or repeats another; `gaps` or
+        `aberrationControl.gaps` that is not an object keyed by surface label, an entry that is not an object, or one
+        keyed by no surface; a gap without `values`, or with a `label` that is not a string; `aberrationControl`
+        without `gaps`; gap values that are not rows of numbers, or rows out of step with the station or keyframe
+        counts; a gap surface that also writes `d`, even when it equals the gap's first value, or a surface with
+        neither.
+      - **Zoom and focus:** fewer than two zoom stations; a station without `focalLengthMm`; a station field
+        (`nominalFNumber`, `stopSemiDiameter`, `closeFocusM`) on some stations only; station labels other than all,
+        or the first and last; a station `published` that is not true or false; no published station;
+        `focus.keyframes` that is not a list of at least two numbers, the key frames being counted once, from the
+        checked list; `focus.published` on a zoom, where it is a prime field; a published keyframe, or a conjugate's
+        station or keyframe, that names none.
+      - **Aperture and stop:** a design f-number stated both on the aperture and on the stations, or neither; a stop
+        `sd` the engine would not read, or a missing one it would.
+      - **Teleconverter:** `source.errata`, which V1 holds for a lens alone.
   - **A stop carries `sd` only where its radius is authored:** folded systems and stops inside an element (16
     lenses). A stop whose radius is not authored (traced from the design f-number, or taken from the station
     schedule) must leave it out, because the engine reads neither: V2 ingest refuses an `sd` on such a stop and
@@ -1577,18 +1598,21 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - `src/optics/prescription/rearPlates.ts`
     - `src/optics/prescription/{canonical, ingestV1, toLensData}.ts`
     - the dispatch: `src/optics/buildLens.ts`, `src/optics/prescription/normalizeLensData.ts`,
-      `src/utils/catalog/{lensCatalog, teleconverterCatalog}.ts`, `src/benchmarks/engineDiff/seamAdapter.ts`
+      `src/utils/catalog/{lensCatalog, teleconverterCatalog}.ts`,
+      `src/benchmarks/engineDiff/{payload, seamAdapter}.ts`
   - **Tests:**
     - `__tests__/src/optics/prescription/ingestV2.test.ts`: one V1/V2 fixture pair per feature family, with equal
       semantic fingerprints. The families: prime, zoom, focus keyframes, published stations, conjugates, aberration
       control, folded (auto and explicit), mirrors with spans, diffractive, absorption, rear plates, media, perspective
-      control, projection and teleconverter. Each pair also builds to the same harness build record.
-    - An offender-collecting sweep that rebuilds every derived-stop catalog lens with its authored stop `sd` removed,
-      and requires every payload except the authored-data echo to be bit-identical. In `npm run test` it compares the
-      Tier P build and layout records, which hold every constant `buildLens` derives; the echo drops a derived stop's
-      `sd` anyway (`normalizeAuthoredData`), so it is compared too. The full Tier P capture of the same sweep takes
-      about four minutes a side, and was run once for the PR.
-    - The negative cases.
+      control, projection and teleconverter; three more cover a prime's published stations, a stop schedule and a
+      stop inside an element. Each of the 18 lens pairs also builds to the same harness build record; the converter
+      pair, which builds only on a host, compares its V1 views.
+    - An offender-collecting sweep that rebuilds every catalog lens whose stop radius is not authored with its
+      authored stop `sd` removed, and requires every payload except the authored-data echo to be bit-identical. In
+      `npm run test` it compares the Tier P build and layout records, which hold every constant `buildLens` derives;
+      the echo drops such a stop's `sd` anyway (`normalizeAuthoredData`), so it is compared too. The full Tier P
+      capture of the same sweep takes about four minutes a side, and was run once for the PR.
+    - A case for each V2 refusal listed above.
   - **Gate:** C0.
 - **S2.P2.T2 Tooling reads both versions.**
   - **Change:** identity extraction moves from regexes to a shared AST reader, and every lens-data reader accepts V2:
