@@ -1099,6 +1099,15 @@ describe("validateLensData", () => {
     expect(errors.some((error) => error.includes("must fit inside annular central opening"))).toBe(true);
   });
 
+  it("reports malformed phase data before compiling the folded validation probe", () => {
+    const data = makeValid({
+      opticalPath: { surfaceOrder: ["1", "STO", "2"], imagePlane: { z: 60 } },
+    });
+    (data.surfaces as Record<string, unknown>[])[0].diffractive = null;
+
+    expect(validateLensData(data)).toContain('surfaces[0] ("1"): diffractive must be an object when provided');
+  });
+
   it("reports an error instead of silently skipping folded image-plane validation when asphere indexing fails", () => {
     const data = makeValid({
       opticalPath: {

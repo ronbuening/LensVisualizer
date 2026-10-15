@@ -505,14 +505,17 @@ see `agent_docs/decisions.md`):
   and folded pupils. It shares `prescription/surfaces.ts` with runtime normalization, so constructing these constants
   requires no partial runtime lens or prepared state. Baseline and station geometry are rebuilt after stop sizing
   to retain the derived aperture in subsequent traces; paraxial estimates and fallbacks use `math/paraxial.ts`.
+  State pupil baselines in `pupilAberration.ts` reuse prepared geometry away from infinity focus or with
+  `aberrationT ≠ 0`, retaining first-vertex slope launches and the inferred lead (including tilted first surfaces).
+  Folded stop probes use `traceGeometryToStop`; full basis rays retain generalized image-plane endpoint semantics.
+  `validateFoldedImagePlaneReachability()` compiles authored surfaces directly into geometry before a runtime lens
+  exists, preserving the five conservative zero-lead axial probes, aperture checks and explicit-plane requirement.
+  It still skips auto paths and repeated surface orders; malformed probe-surface compilation returns validation
+  errors alongside the schema errors rather than throwing.
 - **RuntimeLens-shaped stack tracer** — `traceExactSurfaceStack()` / `traceExactSurfaceStackVector()` in
   `internal/exactSurfaceTrace.ts`, intersecting through `internal/surfaceIntersection.ts`, an adapter over the kernel.
-  Its callers are:
-  - `rayTrace.ts` retains legacy tracers for compatibility tests and the differential harness; production
-    analyses use its pupil samplers and image-plane intercept helper, not its tracers.
-  - `traceStateSurfacesReal()` in `pupilAberration.ts`: state pupil baselines away from infinity focus or with
-    `aberrationT ≠ 0`.
-  - `validateFoldedImagePlaneReachability()` in `validateLensData.ts`.
+  `rayTrace.ts` retains its legacy tracers for compatibility tests and the differential harness; production
+  analyses use that module's pupil samplers and image-plane intercept helper, not its tracers.
 
 Each `PreparedOpticalState` owns a frozen `TraceGeometry` view (`trace/types.ts`), built by `trace/geometry.ts`.
 It shares the state's surface, z and image-plane references and the lens's path metadata, with the stop index and
@@ -521,9 +524,10 @@ and generalized traversal, path planning, aperture checks and trace diagnostics 
 reference. The factory classifies geometry once and stores full and partial traversal entries: full rays use the
 selected sequential or generalized tracer, while a defined `stopAt` selects sequential partial traversal per request.
 The active perspective guard reads the cached traversal kind; the geometry-level stop helper requests generalized
-traversal explicitly and serves both prepared states and folded build-time pupils. Prepared-state cache hits reuse the
-view, and coordinate overrides rebuild it from the exact new records without changing cache keys or ownership. The RuntimeLens-shaped stack retains its existing dispatch until
-its remaining callers migrate.
+traversal explicitly and serves prepared-state, state-pupil and folded build-time stop probes. Prepared-state cache
+hits reuse the view, and coordinate overrides rebuild it from the exact new records without changing cache keys or
+ownership. The RuntimeLens-shaped stack retains its existing dispatch for compatibility tests and the differential
+harness until its deletion.
 
 Chief-relative scalar launches retain their first-vertex pupil offsets and delegate preparation and tracing to
 `trace/rayAdapters.ts`. For finite nonnegative ray leads their origins equal the old stack's; production's first

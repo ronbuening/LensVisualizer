@@ -2,9 +2,9 @@
  * Exact surface stack tracer — RuntimeLens-shaped real-ray tracing for sequential and folded systems.
  *
  * Traces vector or slope launches through refractive, reflective, blocking, annular, and arbitrary
- * image-plane interactions. Serves `buildLens()` constants, the `rayTrace.ts` facade, state pupil
- * baselines, and folded image-plane validation; the public `optics.ts` trace exports run on the
- * prepared-state engine in `trace/` instead, which shares `trace/interactions.ts` with this module.
+ * image-plane interactions for the legacy `rayTrace.ts` compatibility tests and differential harness.
+ * Production callers use geometry-based traversal in `trace/`, which shares
+ * `trace/interactions.ts` with this module.
  */
 
 import type {

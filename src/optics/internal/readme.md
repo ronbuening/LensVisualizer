@@ -39,14 +39,14 @@ flowchart LR
 - Direct source files: 5
 - Direct subfolders: 0
 - Main outbound areas: src/optics/geometry (4), src/optics/math (3), src/types (3), same folder (2), src/optics/prescription (2), src/optics/constants.ts, src/optics/trace
-- External consumers: src/optics/diagram, src/optics/layout.ts, src/optics/prescription, src/optics/publishedStations.ts, src/optics/pupilAberration.ts, src/optics/rayTrace.ts, src/optics/runtimeLens.ts, src/optics/validateLensData.ts, +1 more
+- External consumers: src/optics/diagram, src/optics/layout.ts, src/optics/prescription, src/optics/publishedStations.ts, src/optics/rayTrace.ts, src/optics/runtimeLens.ts, src/optics/validateLensData.ts, src/optics/validateTeleconverterData.ts
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `apertureBands.ts` | Aperture Bands helper module | none | src/optics/diagram, src/optics/validateLensData.ts | ApertureBandSurface, ApertureBand, materialBandForSurface, sharedMaterialBand, centralOpeningSemiDiameter, surfaceFitsInsideCentralOpening |
-| `exactSurfaceTrace.ts` | Exact Surface Trace helper module | same folder (2), src/optics/geometry (2), src/optics/constants.ts, src/optics/math, src/optics/trace, +1 more | src/optics/pupilAberration.ts, src/optics/rayTrace.ts, src/optics/validateLensData.ts | Vector3, ExactTraceSurface, ExactTraceLens, ExactSurfaceTraceInput, VectorRayInput, ExactSurfaceTraceOptions, ExactSurfaceTraceHit, ExactSurfaceTraceResult, +10 more |
+| `exactSurfaceTrace.ts` | Exact Surface Trace helper module | same folder (2), src/optics/geometry (2), src/optics/constants.ts, src/optics/math, src/optics/trace, +1 more | src/optics/rayTrace.ts | Vector3, ExactTraceSurface, ExactTraceLens, ExactSurfaceTraceInput, VectorRayInput, ExactSurfaceTraceOptions, ExactSurfaceTraceHit, ExactSurfaceTraceResult, +10 more |
 | `lensState.ts` | Lens State helper module | src/optics/prescription (2), src/types | src/optics/layout.ts, src/optics/prescription, src/optics/publishedStations.ts, src/optics/runtimeLens.ts, src/optics/validateLensData.ts | resolveControlledThickness, resolveVariableThickness, buildLabelIndex, buildAsphereIndex, buildVarIndex, resolveAnnotations, buildElementSpans, buildVdIndex, +5 more |
 | `surfaceIntersection.ts` | Surface Intersection helper module | src/optics/geometry (2), src/types | same folder | SurfaceIntersectionFailureReason, Vector3, SurfaceIntersectionRay, SurfaceIntersectionOptions, SurfaceIntersectionLens, SurfaceIntersectionSuccess, SurfaceIntersectionFailure, SurfaceIntersectionResult, +3 more |
-| `traceSurfaces.ts` | Trace Surfaces helper module | src/optics/math (2) | src/optics/layout.ts, src/optics/prescription, src/optics/pupilAberration.ts, src/optics/rayTrace.ts, src/optics/validateTeleconverterData.ts | transferParaxialRay, interactParaxialSurface, traceSurfacesParaxial, ParaxialRayState, ParaxialSurfaceTraceOptions, RealSurfaceTraceOptions, RealSurfaceTraceResult |
+| `traceSurfaces.ts` | Trace Surfaces helper module | src/optics/math (2) | src/optics/layout.ts, src/optics/prescription, src/optics/rayTrace.ts, src/optics/validateTeleconverterData.ts | transferParaxialRay, interactParaxialSurface, traceSurfacesParaxial, ParaxialRayState, ParaxialSurfaceTraceOptions, RealSurfaceTraceOptions, RealSurfaceTraceResult |

@@ -19,8 +19,9 @@ import {
 } from "./internal/apertureBands.js";
 import { buildAsphereIndex, buildLabelIndex, firstInfinityThickness } from "./internal/lensState.js";
 import { conicPolySag, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "./geometry/surfaceProfile.js";
-import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
-import type { ExactTraceLens } from "./internal/exactSurfaceTrace.js";
+import { createTraceGeometry } from "./trace/geometry.js";
+import { compileSurfaces } from "./prescription/surfaces.js";
+import { resolvedImagePlaneToPlane3 } from "./prescription/interactions.js";
 import { lensDataStopRadiusAuthority } from "./prescription/canonical.js";
 import { REAR_PLATE_LABEL_PATTERN } from "./prescription/rearPlates.js";
 import { TELECONVERTER_LABEL_PREFIX } from "./prescription/teleconverterCompatibility.js";
@@ -874,7 +875,11 @@ function validateFoldedImagePlaneReachability(
       ? pathData.maxInteractions
       : Math.max(S.length + 1, 1);
 
-  let asphByIdx: ExactTraceLens["asphByIdx"];
+  /* Validation precedes runtime construction; compile only the authored probe geometry. */
+  const z = [0];
+  for (let i = 0; i < S.length - 1; i++) z.push(z[i] + S[i].d);
+  let surfaces: ReturnType<typeof compileSurfaces>;
+  let asphByIdx: Record<number, AsphericCoefficients>;
   try {
     asphByIdx = buildAsphereIndex(data.asph, labelToIdx);
   } catch (cause) {
@@ -885,31 +890,45 @@ function validateFoldedImagePlaneReachability(
     );
     return;
   }
-
-  const lens: ExactTraceLens = {
-    S: S as unknown as ExactTraceLens["S"],
-    asphByIdx,
-    stopIdx: labelToIdx.STO,
-    opticalPath: {
+  try {
+    surfaces = compileSurfaces(S as SurfaceData[], S as SurfaceData[], asphByIdx);
+  } catch (cause) {
+    /* Malformed phase records already have schema errors; compilation must not turn them into a throw. */
+    errors.push(
+      `"opticalPath.imagePlane" reachability could not be validated: malformed surface data (${
+        cause instanceof Error ? cause.message : String(cause)
+      })`,
+    );
+    return;
+  }
+  const geometry = createTraceGeometry({
+    surfaces: Object.freeze(surfaces.map((surface, i) => Object.freeze({ ...surface, base: surface, z: z[i] }))),
+    z: Object.freeze(z),
+    stopSurfaceIndex: labelToIdx.STO,
+    pathPlan: {
       mode: pathData.mode === "auto" ? "auto" : "sequential",
       surfaceOrder,
       surfaceLabels: surfaceLabels as string[] | null,
       maxInteractions,
     },
-    imagePlane: {
+    imagePlane: resolvedImagePlaneToPlane3({
       z: imagePlaneData.z,
       y: typeof imagePlaneData.y === "number" && isFinite(imagePlaneData.y) ? imagePlaneData.y : 0,
       normal,
       label: typeof imagePlaneData.label === "string" ? imagePlaneData.label : "IMG",
-    },
+    }),
     isFoldedOptics: true,
-  };
+  });
 
   const stopSd = typeof S[labelToIdx.STO]?.sd === "number" && isFinite(S[labelToIdx.STO].sd) ? S[labelToIdx.STO].sd : 1;
   const probeHeights = [...new Set([0, 0.2 * stopSd, -0.2 * stopSd, 0.4 * stopSd, -0.4 * stopSd])];
   const reachesImagePlane = probeHeights.some((y0) => {
-    const result = traceExactSurfaceStack(lens, { y0, uy0: 0 }, { leadDistance: 0, checkSemiDiameter: true });
-    return result.reachedImagePlane === true && result.failureReason === null && !result.clipped;
+    const result = geometry.traversal.full(
+      geometry,
+      { origin: [0, y0, z[0]], direction: [0, 0, 1] },
+      { checkSemiDiameter: true },
+    );
+    return result.reachedImagePlane && result.failureReason === null && result.status === "ok";
   });
 
   if (!reachesImagePlane) {
