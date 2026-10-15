@@ -2138,6 +2138,10 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     `analysis/chromatic.ts` (scalar branch), and through them coma, spherical aberration, bokeh and chromatic field
     analysis.
   - **Gate:** C1. The legacy path recomputed z per ray and differs in its lead distance; list any discrete transition.
+  - **As built:** the wrappers live in `trace/chiefRelative.ts` and delegate unchanged launches to the existing
+    production skew adapters. Nonnegative leads have identical origins; the first-surface search window differs.
+    Negative leads stay unclamped and controls follow production preparation, including finite-control errors.
+    No state-bound API or adapter change was needed; the Change's caller scope is unchanged.
 - **S4.P2.T2 Build-time traces on the production stack.**
   - **Change:** these traces in `runtimeLens.ts` run on a `TraceGeometry` built from the authored surfaces: stop SD,
     EP/XP basis rays, the half-field bisection, zoom stations, and the folded branch.
