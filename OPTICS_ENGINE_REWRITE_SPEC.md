@@ -1407,9 +1407,9 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
       - a field V1 does not define, or one only the engine writes.
 
       Each refusal names the field and its authored path. Ingest does not otherwise check types, and may fail on
-      wrong-typed input with a plain `TypeError`; from S2.P1.T2 `buildLens` asks the validator about every file first.
-      The validator reads `asph: null` and `var: null` as absent, which is why ingest refuses a non-object `asph` or
-      `var` by name.
+      wrong-typed input with a plain `TypeError`; from S2.P1.T2 `buildLens` asks the validator about every V1 file
+      first. The validator reads `asph: null` and `var: null` as absent, which is why ingest refuses a non-object `asph`
+      or `var` by name.
 
       Some refusals are stricter than `validateLensData` (for a converter, `validateTeleconverterData`), so a lens
       that trips one first fails at a merge of `main` into `engine-next`. No catalog file does today. The validator
@@ -1603,9 +1603,9 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - An offender-collecting sweep that rebuilds every catalog lens whose stop radius is not authored with its
       authored stop `sd` removed, and requires every payload except the authored-data echo to be bit-identical. In
       `npm run test` it compares the Tier P build and layout records, which hold every constant `buildLens` derives;
-      the echo drops such a stop's `sd` anyway (`normalizeAuthoredData`), so it is compared too. The full Tier P capture of the same sweep takes
-      about four minutes a side, and was run once for the PR.
-    - The negative cases.
+      the echo drops such a stop's `sd` anyway (`normalizeAuthoredData`), so it is compared too. The full Tier P
+      capture of the same sweep takes about four minutes a side, and was run once for the PR.
+    - A case for each V2 refusal listed above.
   - **Gate:** C0.
 - **S2.P2.T2 Tooling reads both versions.**
   - **Change:** identity extraction moves from regexes to a shared AST reader, and every lens-data reader accepts V2:

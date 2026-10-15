@@ -649,7 +649,7 @@ describe("derived stops carry no sd", () => {
    * be bit-identical. The records that echo authored data drop that `sd` anyway (`normalizeAuthoredData`), so nothing
    * is excluded.
    */
-  it("rebuilds every derived-stop catalog lens without its stop sd, bit-identical in its build and layout records", () => {
+  it("rebuilds every catalog lens whose stop radius is not authored without its stop sd, bit-identically", () => {
     const catalog = exportCatalog();
     const requests = tierRequests("p", requestCatalog(catalog)).filter(
       (request) => request.family === "build" || request.family === "layout",

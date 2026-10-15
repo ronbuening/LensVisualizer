@@ -369,7 +369,7 @@ describe("buildLens — error handling", () => {
     );
   });
 
-  it("asks the validator about every file first, so the view repairs nothing it would refuse", () => {
+  it("asks the validator about every V1 file first, so the view repairs nothing it would refuse", () => {
     /* Ingest and the view accept each of these, and the view would hand the validator a repaired file. */
     const asLens = (data: unknown) => data as LensData;
     const cases: [unknown, RegExp][] = [
