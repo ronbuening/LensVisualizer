@@ -7,7 +7,7 @@
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { evaluateAperture } from "./aperture.js";
 import { traceGeneralized } from "./generalizedTrace.js";
-import type { EngineTraceResult, TraceOptions } from "./types.js";
+import type { EngineTraceResult, TraceGeometry, TraceOptions } from "./types.js";
 import { directionSlopes } from "./utils.js";
 
 /** Options for locating a stop occurrence through generalized tracing. */
@@ -44,6 +44,24 @@ export function traceToStopViaGeneralized2(
   state: PreparedOpticalState,
   input: Ray3,
   stopIndex: number,
+  options: StopTraceOptions = {},
+): TraceToStopResult {
+  return traceGeometryToStop(state.traceGeometry, input, stopIndex, options);
+}
+
+/**
+ * Locate a stop occurrence on geometry that need not belong to a prepared state.
+ *
+ * @param geometry - indexed surfaces and path, including the physical stop
+ * @param input - vector launch in optical coordinates
+ * @param stopIndex - target physical surface index
+ * @param options - aperture and occurrence controls
+ * @returns stop coordinates and the generalized trace that found them
+ */
+export function traceGeometryToStop(
+  geometry: TraceGeometry,
+  input: Ray3,
+  stopIndex: number,
   {
     stopOccurrence = 0,
     recordHeights = false,
@@ -55,7 +73,7 @@ export function traceToStopViaGeneralized2(
     indexAtSurface,
   }: StopTraceOptions = {},
 ): TraceToStopResult {
-  const trace = traceGeneralized(state.traceGeometry, input, {
+  const trace = traceGeneralized(geometry, input, {
     recordHeights,
     checkSemiDiameter,
     stopSemiDiameter,
@@ -76,7 +94,7 @@ export function traceToStopViaGeneralized2(
     occurrence++;
   }
 
-  const launchPlaneStop = stopTraceLaunchPlaneCandidate(state, input.origin, input.direction, stopIndex, trace, {
+  const launchPlaneStop = stopTraceLaunchPlaneCandidate(geometry, input.origin, input.direction, stopIndex, trace, {
     checkSemiDiameter,
     stopSemiDiameter,
   });
@@ -120,7 +138,7 @@ function stopTraceResult(
 }
 
 function stopTraceLaunchPlaneCandidate(
-  state: PreparedOpticalState,
+  geometry: TraceGeometry,
   origin: Vec3,
   direction: Vec3,
   stopIndex: number,
@@ -133,7 +151,7 @@ function stopTraceLaunchPlaneCandidate(
     stopSemiDiameter?: number;
   },
 ): Vec3 | null {
-  const surface = state.surfaces[stopIndex];
+  const surface = geometry.surfaces[stopIndex];
   if (!surface) return null;
 
   const normal = surface.interaction.normal ?? ([0, 0, 1] as Vec3);
@@ -156,7 +174,7 @@ function stopTraceLaunchPlaneCandidate(
 
   if (checkSemiDiameter) {
     const radius = Math.hypot(point[0], point[1]);
-    const aperture = evaluateAperture(state.traceGeometry, surface, radius, stopSemiDiameter);
+    const aperture = evaluateAperture(geometry, surface, radius, stopSemiDiameter);
     if (aperture.state !== "inside") return null;
   }
 
