@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-15",
+    type: "fix",
+    summary: "Removed invalid distortion samples while retaining valid corners and later samples",
+  },
+  {
     date: "2026-10-14",
     type: "fix",
     summary:

@@ -21,11 +21,18 @@ import { AnalysisEmptyState } from "./analysisUi.js";
 interface DistortionChartProps {
   samples: DistortionSample[];
   t: Theme;
+  partial?: boolean;
   width?: number;
   height?: number;
 }
 
-export default function DistortionChart({ samples, t, width = 320, height = 220 }: DistortionChartProps) {
+export default function DistortionChart({
+  samples,
+  t,
+  partial = false,
+  width = 320,
+  height = 220,
+}: DistortionChartProps) {
   if (samples.length < 2) {
     return <AnalysisEmptyState t={t}>Not enough data to plot distortion curve.</AnalysisEmptyState>;
   }
@@ -54,7 +61,7 @@ export default function DistortionChart({ samples, t, width = 320, height = 220 
 
   /* ── Edge distortion annotation ── */
   const edgeSample = samples[samples.length - 1];
-  const edgeLabel = `${edgeSample.distortionPercent >= 0 ? "+" : ""}${edgeSample.distortionPercent.toFixed(2)}%`;
+  const edgeLabel = `${partial ? "Last traced: " : ""}${edgeSample.distortionPercent >= 0 ? "+" : ""}${edgeSample.distortionPercent.toFixed(2)}%`;
   const isProjectionResidual =
     edgeSample.referenceKind === "fisheye-equidistant" || edgeSample.referenceKind === "fisheye-equisolid";
 
