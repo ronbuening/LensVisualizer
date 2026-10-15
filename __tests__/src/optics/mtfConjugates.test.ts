@@ -1,3 +1,4 @@
+import { createTraceGeometry } from "../../../src/optics/trace/geometry.js";
 import { describe, expect, it } from "vitest";
 import { build, buildSimplePositiveElementLens, buildVariableStopGapLens } from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
@@ -92,9 +93,17 @@ describe("documented finite MTF", () => {
       );
     }
     expect(assessMtfSupport({ ...state, aberrationT: 0.5 }, options).reason).toBe("finite-conjugate-unavailable");
-    expect(
-      assessMtfSupport({ ...state, imagePlane: { ...state.imagePlane, normal: [0, 0.1, 1] } }, options).reason,
-    ).toBe("unsupported-path");
+    const imagePlane = { ...state.imagePlane, normal: [0, 0.1, 1] as const };
+    const tilted = {
+      ...state,
+      imagePlane,
+      traceGeometry: createTraceGeometry({
+        ...state.traceGeometry,
+        imagePlane,
+        isFoldedOptics: state.lens.flags.isFoldedOptics,
+      }),
+    };
+    expect(assessMtfSupport(tilted, options).reason).toBe("unsupported-path");
   });
   it("approaches the infinity bundle at large object distance", () => {
     const far = build({ ...base.data, finiteConjugates: [{ ...conjugate, objectDistanceMm: 1e9 }] });

@@ -55,7 +55,7 @@ export function traceToStopViaGeneralized2(
     indexAtSurface,
   }: StopTraceOptions = {},
 ): TraceToStopResult {
-  const trace = traceGeneralized(state, input, {
+  const trace = traceGeneralized(state.traceGeometry, input, {
     recordHeights,
     checkSemiDiameter,
     stopSemiDiameter,
@@ -156,7 +156,7 @@ function stopTraceLaunchPlaneCandidate(
 
   if (checkSemiDiameter) {
     const radius = Math.hypot(point[0], point[1]);
-    const aperture = evaluateAperture(state, surface, radius, stopSemiDiameter);
+    const aperture = evaluateAperture(state.traceGeometry, surface, radius, stopSemiDiameter);
     if (aperture.state !== "inside") return null;
   }
 

@@ -1406,8 +1406,8 @@ describe("conic-seeded asphere solve", () => {
     for (const sd of [15, 5000]) {
       const surface = { ...clipping, sd };
       const edge = sd + capCoordinateTolerance(sd);
-      expect(evaluateAperture(state, surface, edge).state).toBe("inside");
-      expect(evaluateAperture(state, surface, edge * (1 + 4 * Number.EPSILON)).state).toBe("outside");
+      expect(evaluateAperture(state.traceGeometry, surface, edge).state).toBe("inside");
+      expect(evaluateAperture(state.traceGeometry, surface, edge * (1 + 4 * Number.EPSILON)).state).toBe("outside");
     }
   });
 });

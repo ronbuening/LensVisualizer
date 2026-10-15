@@ -5,9 +5,9 @@
  * and RuntimeLens-compatible outputs.
  */
 
-import type { PreparedOpticalState, Vec3 } from "../types.js";
+import type { Vec3 } from "../types.js";
 import { normalize } from "../math/vector.js";
-import type { EngineTraceResult, TraceFailureReason, TraceHit } from "./types.js";
+import type { TraceGeometry, EngineTraceResult, TraceFailureReason, TraceHit } from "./types.js";
 import { buildTraceDiagnostics } from "./foldedDiagnostics.js";
 import type {
   FoldedPathAutoStepDiagnostics,
@@ -67,7 +67,7 @@ export function normalizeTraceDirection(direction: Vec3): Vec3 | null {
  * @returns finalized engine trace result
  */
 export function finalizeTraceResult({
-  state,
+  geometry,
   input,
   hits,
   heights,
@@ -84,7 +84,7 @@ export function finalizeTraceResult({
   autoSteps,
   loopKey,
 }: {
-  state: PreparedOpticalState;
+  geometry: TraceGeometry;
   input: { origin: Vec3; direction: Vec3 };
   hits: readonly TraceHit[];
   heights: readonly number[] | null;
@@ -103,7 +103,7 @@ export function finalizeTraceResult({
 }): EngineTraceResult {
   const returnZ = reachedImagePlane
     ? terminalPoint[2]
-    : (state.z[returnVertexIndex] ?? state.z[state.z.length - 1] ?? 0);
+    : (geometry.z[returnVertexIndex] ?? geometry.z[geometry.z.length - 1] ?? 0);
   const x = reachedImagePlane
     ? terminalPoint[0]
     : projectCoordinateToZ(terminalPoint[0], terminalPoint[2], terminalDirection[0], terminalDirection[2], returnZ);
@@ -123,7 +123,7 @@ export function finalizeTraceResult({
     status,
     failureReason,
     reachedImagePlane,
-    diagnostics: buildTraceDiagnostics(state, {
+    diagnostics: buildTraceDiagnostics(geometry, {
       hits,
       finalMedium,
       reachedImagePlane,

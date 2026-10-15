@@ -28,6 +28,7 @@ import {
 } from "../../../src/optics/optics.js";
 import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/raySampling.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { traceToStopViaGeneralized2 } from "../../../src/optics/trace/stopTrace.js";
 import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
 import validateLensData from "../../../src/optics/validateLensData.js";
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
@@ -865,6 +866,33 @@ describe("mirror optics support", () => {
     expect(firstStop.hitIndex).toBe(0);
     expect(secondStop.hitIndex).toBeGreaterThan(firstStop.hitIndex);
     expect(secondStop.point![2]).toBeCloseTo(layout.z[L.stopIdx], 10);
+
+    const state = prepareRuntimeState(L, 0, 0);
+    const input = { origin: [0, 5, -1], direction: [0, 0, 1] } as const;
+    const preparedFirst = traceToStopViaGeneralized2(state, input, L.stopIdx);
+    const preparedSecond = traceToStopViaGeneralized2(state, input, L.stopIdx, { stopOccurrence: 1 });
+    expect(preparedFirst.found).toBe(true);
+    expect(preparedSecond.found).toBe(true);
+    expect(preparedFirst.hitIndex).toBe(0);
+    expect(preparedSecond.hitIndex).toBeGreaterThan(preparedFirst.hitIndex);
+    expect(preparedSecond.point![2]).toBeCloseTo(layout.z[L.stopIdx], 10);
+  });
+
+  it("keeps generalized launch-plane stop fallback even for default sequential geometry", () => {
+    const state = prepareRuntimeState(buildLens(planarData), 0, 0);
+    const stopIndex = state.lens.stop.surfaceIndex;
+    const input = { origin: [0, 0, state.z[stopIndex]], direction: [0, 0, -1] } as const;
+    const result = traceToStopViaGeneralized2(state, input, stopIndex, { checkSemiDiameter: true });
+    expect(result.trace.hits).toHaveLength(0);
+    expect(result.found).toBe(true);
+    expect(result.hitIndex).toBe(-1);
+    expect(result.point).toEqual(input.origin);
+    expect(traceToStopViaGeneralized2(state, input, stopIndex, { stopOccurrence: 1 }).found).toBe(false);
+    const blocked = traceToStopViaGeneralized2(state, { ...input, origin: [0, 1, input.origin[2]] }, stopIndex, {
+      checkSemiDiameter: true,
+      stopSemiDiameter: 0.5,
+    });
+    expect(blocked.found).toBe(false);
   });
 
   it("infers enough launch lead for a tilted flat first surface", () => {

@@ -4,7 +4,8 @@
  * Shared by sequential and generalized tracers so clipping, holes, and inactive surfaces use the same radial rules.
  */
 
-import type { CompiledStateSurface, PreparedOpticalState } from "../types.js";
+import type { CompiledStateSurface } from "../types.js";
+import type { TraceGeometry } from "./types.js";
 
 /** Radial relationship between a ray hit and a surface's active aperture band. */
 export type ApertureState = "inside" | "inside-hole" | "outside";
@@ -26,19 +27,19 @@ const TRACE_CLIP_ABS_TOLERANCE = 1e-9;
  * zone for secondary obstructions or mirror holes, so a hit can be geometrically
  * on the surface but optically pass through the center.
  *
- * @param state - prepared optical state; supplies the stop surface index
+ * @param geometry - indexed trace geometry; supplies the stop surface index
  * @param surface - prepared surface being hit
  * @param radius - radial hit distance from the local optical axis in mm
  * @param stopSemiDiameter - optional current physical stop radius override
  * @returns aperture classification and effective radial limits
  */
 export function evaluateAperture(
-  state: PreparedOpticalState,
+  geometry: TraceGeometry,
   surface: CompiledStateSurface,
   radius: number,
   stopSemiDiameter?: number,
 ): ApertureEvaluation {
-  const semiDiameter = activeSemiDiameter(state, surface, stopSemiDiameter);
+  const semiDiameter = activeSemiDiameter(geometry, surface, stopSemiDiameter);
   const innerSemiDiameter = surface.innerSd ?? 0;
   let apertureState: ApertureState = "inside";
 
@@ -68,11 +69,11 @@ export function isInsideActiveAperture(evaluation: ApertureEvaluation): boolean 
 }
 
 function activeSemiDiameter(
-  state: PreparedOpticalState,
+  geometry: TraceGeometry,
   surface: CompiledStateSurface,
   stopSemiDiameter: number | undefined,
 ): number | null {
-  if (surface.physicalIndex === state.lens.stop.surfaceIndex && stopSemiDiameter !== undefined) return stopSemiDiameter;
+  if (surface.physicalIndex === geometry.stopSurfaceIndex && stopSemiDiameter !== undefined) return stopSemiDiameter;
   if (typeof surface.sd !== "number" || !surface.clips) return null;
   return surface.sd;
 }

@@ -1,3 +1,4 @@
+import { createTraceGeometry } from "../../../src/optics/trace/geometry.js";
 import { describe, expect, it } from "vitest";
 import {
   build,
@@ -167,6 +168,11 @@ describe("geometric MTF", () => {
           : s,
       ),
     };
+    aspheric.traceGeometry = createTraceGeometry({
+      ...state.traceGeometry,
+      surfaces: aspheric.surfaces,
+      isFoldedOptics: state.lens.flags.isFoldedOptics,
+    });
     // Aspheric caps use the Lipschitz interval proof: outside the aperture cylinder is a miss, a real rim hit is not.
     expect(mtfTraceClassification(miss, aspheric)).toBe("blocked");
     expect(mtfTraceClassification({ ...miss, terminalPoint: [2.5, 0, -10] }, aspheric)).toBe("failed");
