@@ -2195,6 +2195,9 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
       gap transfer. `internal/opticsInternals.test.ts` stays: it covers lens-state helpers;
     - supersede decision 2026-08-04 (the two tracer stacks) in `agent_docs/decisions.md`, and rewrite "Exact Surface
       Trace" in `agent_docs/architecture/optics-engine.md` to describe the one remaining tracer.
+  - **As built:** the four legacy modules are deleted; paraxial callers use `math/paraxial.ts`, unchanged samplers
+    live in `analysis/sampling.ts`, and the intercept helper lives in `trace/rayAdapters.ts`. Traversal, intersection,
+    folded, vector, chromatic and paraxial-reference tests exercise production; the two-stack exclusion is superseded.
   - **Gate:** C0.
 - **S4.P3.T1 Capture policy.**
   - **Change:** `trace/capture.ts` chooses terminal-only, hits, or diagnostics before the loop. A terminal-only trace
