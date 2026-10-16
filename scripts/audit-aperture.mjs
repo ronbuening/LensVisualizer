@@ -44,7 +44,7 @@ const ROOT = join(import.meta.dirname, "..");
 const LENS_DIR = join(ROOT, "src", "lens-data");
 const load = async (path) => import(pathToFileURL(join(ROOT, path)).href);
 
-const buildLens = (await load("src/optics/buildLens.ts")).default;
+const { default: buildLens, ingestLens, toLensData } = await load("src/optics/buildLens.ts");
 const { prepareRuntimeState } = await load("src/optics/compat.ts");
 const { traceEngineRay2 } = await load("src/optics/trace/rayAdapters.ts");
 
@@ -146,7 +146,9 @@ const raises = [];
 let lenses = 0;
 let folded = 0;
 for (const path of files) {
-  const data = (await import(pathToFileURL(path).href)).default;
+  /* Canonical ingest's V1 view reads a file of either version in V1 field names; an authored V1 file reads as
+   * written, with the schema defaults. */
+  const data = toLensData(ingestLens((await import(pathToFileURL(path).href)).default));
   if (data.visible === false && !ALL && requested.length === 0) continue;
   const L = buildLens(data);
   if (L.isFoldedOptics) {

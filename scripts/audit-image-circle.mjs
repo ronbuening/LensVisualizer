@@ -20,10 +20,15 @@
  * This needs no patent and has no measurement error, which makes it the entry
  * point for the semi-diameter audit — see agent_docs/patent-figure-sd-audit-procedure.md.
  *
- * Usage:
- *   node scripts/audit-image-circle.mjs                  # whole catalog
- *   node scripts/audit-image-circle.mjs <data.ts> [...]  # named files
- *   node scripts/audit-image-circle.mjs --markdown       # queue-table output
+ * A file of either version is read through canonical ingest's V1 view.
+ *
+ * Usage (`npm run audit:image-circle -- ...` passes the hook):
+ *   node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-image-circle.mjs [data.ts ...] [--markdown]
+ *     no file       the whole catalog
+ *     --markdown    queue-table output
+ *
+ * The `--import` hook is required: canonical ingest reaches value imports written
+ * with a ".js" specifier, which plain Node cannot resolve to the ".ts" source.
  */
 
 import { readdirSync } from "node:fs";
@@ -34,6 +39,7 @@ const ROOT = join(import.meta.dirname, "..");
 const LENS_DIR = join(ROOT, "src", "lens-data");
 
 const { IMAGE_FORMAT_BY_ID } = await import(pathToFileURL(join(ROOT, "src/utils/catalog/lensTaxonomy.ts")).href);
+const { ingestLens, toLensData } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
 
 /** Collect every `*.data.ts` under src/lens-data. */
 function allLensFiles() {
@@ -75,7 +81,9 @@ function prescriptionScale(lens) {
  * @returns per-lens verdict, or a skip reason when the check does not apply
  */
 async function auditLens(file) {
-  const lens = (await import(pathToFileURL(file).href)).default;
+  /* Canonical ingest's V1 view reads a file of either version in V1 field names; an authored V1 file reads as
+   * written, with the schema defaults. */
+  const lens = toLensData(ingestLens((await import(pathToFileURL(file).href)).default));
   const rel = relative(ROOT, file);
   const format = IMAGE_FORMAT_BY_ID[lens.imageFormat];
   const diameterMm = lens.imageCircleMm ?? format?.diagonalMm;

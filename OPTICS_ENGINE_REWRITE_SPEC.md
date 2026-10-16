@@ -1655,9 +1655,14 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
       does not copy (an unknown top-level field, `schema: 3`) composes and builds as before, and the run says nothing.
     - **Open, owned by the Stage 3 session:** a converter of the head catalog that the head engine's ingest refuses
       fails the run in every class. It is built in a harness PR before S2.P5.T1; `compare.ts` is unchanged here.
-    - The dPgF audit and extract scripts and the MTF dispersion audit read only fields both versions keep in place
-      (`key`, `visible`, `elements`) and build through `buildLens`, which reads either version, so they are
-      unchanged. The glass scan and the field-coverage and surface-probe audits ingest through the dispatcher.
+    - The dPgF audit and extract scripts read only fields both versions keep in place: `audit-dpgf.mjs` reads `key`
+      and each element's glass, index, Abbe number, `dPgF` and line indices, and `extract-dpgf.mjs` edits each
+      element's `apdNote` text. The MTF dispersion audit reads `key`, `visible` and `elements` and builds through
+      `buildLens`, which reads either version. The three are unchanged.
+    - The glass scan and the field-coverage, surface-probe, aperture, image-circle and patent-figure audits read
+      canonical ingest's V1 view (`toLensData(ingestLens(file))`), in which an authored V1 file reads as written, with
+      the schema defaults; the MTF chart report reads its corrected-errata flag from the built lens's `data`, the
+      same view. The surface probe ingests first and prints a refusal's issues as `ERR` lines, exit 1.
     - The committed list of commit ids is `scripts/format-only-commits.mjs`, empty today.
   - **Files:**
     - `scripts/lens-data-lib.mjs`, and `scripts/lens-data-ast.mjs` beside it
@@ -1666,8 +1671,9 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - `src/optics/lensDataConversion.ts`, the conversion seam
     - `scripts/organize-lens-data.mjs` (through `rewriteLensDataTypesImport` in `lens-data-lib.mjs`)
     - `scripts/audit-dpgf.mjs`, `scripts/extract-dpgf.mjs`, `scripts/audit-mtf-dispersion.mjs` (checked; unchanged)
-    - `scripts/audit-field-coverage.mjs`, `scripts/audit-surface-probe.mjs`
-    - `reports/glassScanLib.ts`
+    - `scripts/audit-field-coverage.mjs`, `scripts/audit-surface-probe.mjs`, `scripts/audit-aperture.mjs`,
+      `scripts/audit-image-circle.mjs`, `scripts/audit-patent-figure.mjs`
+    - `reports/glassScanLib.ts`, `reports/mtfChartRegression.report.ts` and `reports/mtfChartLib.ts`
     - `src/benchmarks/engineDiff/{captureEntry, seamAdapter}.ts`
     - `src/optics/prescription/teleconverterCompatibility.ts` (checked; unchanged)
   - **Tests:** `__tests__/scripts/`.
@@ -1678,7 +1684,10 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - The harness derives the same request list and the same permitted pairs from a V2 fixture set and from its V1
       twin. The set has a three-station zoom, three focus keyframes and a host with a converter. This case is in the
       tooling suite (`__tests__/src/benchmarks/engineDiff.test.ts`), beside the harness, and also captures the set's
-      records on both twins, bit-identical.
+      records on both twins, bit-identical: a record per request, each successful.
+    - Each audit that reads a lens file reads a V2 fixture as its V1 twin, through its npm entry (tooling suite,
+      `__tests__/scripts/auditImageCircle.test.ts`); the MTF chart report's corrected-errata flag reads a V2 file's
+      errata as its twin's (`__tests__/reports/mtfChartLib.test.ts`).
   - **Gate:** C0.
 
 **Phase 2.3 — Converter**

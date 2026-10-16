@@ -1101,7 +1101,30 @@ describe("engineDiff on V2 prescriptions", () => {
     const [v1, v2] = [fixtureCatalog("v1"), fixtureCatalog("v2")];
     const requests = fixtureRequests(v1);
     const records = captureRecords(v1, requests);
+    /* A record per request, in order, each successful: a capture that returned nothing, or failed alike on both
+     * twins, would compare equal too. */
+    const row = (lens: string, state: CaptureState | null, family: string, variant?: string) =>
+      `${lens} | ${stateId(state)} | ${family} | ${variant ?? ""}`;
+    expect(records.map((record) => row(record.lens, record.state, record.request, record.variant))).toEqual(
+      requests.map((request) => row(lensId(request.lens), request.state, request.family, request.variant)),
+    );
     expect(records.filter((record) => !record.payload.ok)).toEqual([]);
+    /* The kinds the comparison stands for: the pair's composition and analysis, a build of each lens and of the pair,
+     * and every lens's state rows, the zoom's at each of its three stations and three focus keyframes. */
+    const families = (lens: string) =>
+      new Set(records.filter((record) => record.lens === lens).map((record) => record.request));
+    const perLens = ["build", "layout", "traces", "fieldGeometry", "chiefSolves"];
+    expect(families("fixture-converter-host+test-teleconverter")).toEqual(
+      new Set(["composition", ...perLens, "analysis"]),
+    );
+    expect(families("fixture-converter-host")).toEqual(new Set(perLens));
+    expect(families("fixture-zoom-focus-keyframes")).toEqual(new Set(perLens));
+    const zoomStates = records
+      .filter((record) => record.lens === "fixture-zoom-focus-keyframes" && record.state)
+      .map((record) => `${record.state!.zoomT}/${record.state!.focusT}`);
+    expect(new Set(zoomStates)).toEqual(
+      new Set([0, 0.5, 1].flatMap((zoomT) => [0, 0.5, 1].map((focusT) => `${zoomT}/${focusT}`))),
+    );
     expect(recordDigests(captureRecords(v2, requests))).toEqual(recordDigests(records));
   });
 });
