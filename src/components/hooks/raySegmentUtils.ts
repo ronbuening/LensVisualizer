@@ -5,6 +5,7 @@
  * Pure functions — no React dependencies.
  */
 
+import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic/channels.js";
 import type { RaySegment } from "./useOnAxisRays.js";
 import type { ChromaticChannel } from "../../types/optics.js";
 
@@ -70,10 +71,6 @@ export function compileRaySegment(
  * Build an array of active chromatic channels from individual toggle flags.
  */
 export function filterChannels(chromR: boolean, chromG: boolean, chromB: boolean, chromV: boolean): ChromaticChannel[] {
-  const channels: ChromaticChannel[] = [];
-  if (chromR) channels.push("R");
-  if (chromG) channels.push("G");
-  if (chromB) channels.push("B");
-  if (chromV) channels.push("V");
-  return channels;
+  const active = { R: chromR, G: chromG, B: chromB, V: chromV };
+  return CHROMATIC_CHANNEL_ORDER.filter((channel) => active[channel]);
 }

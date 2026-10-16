@@ -7,7 +7,7 @@
 import type { RuntimeLens } from "../../types/optics.js";
 import { FOCUS_INFINITY_THRESHOLD } from "../layout.js";
 import { compiledLensFromRuntime } from "../prescription/compile.js";
-import { prepareState } from "../state/prepareState.js";
+import { prepareState } from "../state/preparedGeometry.js";
 import { traceParaxialSurfaces2 } from "../math/paraxial.js";
 
 /**

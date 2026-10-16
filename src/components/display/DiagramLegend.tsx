@@ -6,6 +6,7 @@
  * Extracted from LensDiagramPanel for separation of concerns.
  */
 
+import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic/channels.js";
 import { halfFieldAtZoom } from "../../optics/optics.js";
 import { ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { collapseBtn } from "../../utils/style/styles.js";
@@ -220,7 +221,8 @@ export default function DiagramLegend({
           )}
           {showChromatic &&
             (() => {
-              const activeCh = [chromR && "R", chromG && "G", chromB && "B", chromV && "V"].filter(Boolean);
+              const active = { R: chromR, G: chromG, B: chromB, V: chromV };
+              const activeCh = CHROMATIC_CHANNEL_ORDER.filter((channel) => active[channel]);
               const chromLabel = activeCh.length > 0 ? `Chromatic (${activeCh.join("/")})` : "Chromatic (none)";
               const summaryParts: string[] = [];
               if (showOnAxis && axisSpreads.onAxis) {

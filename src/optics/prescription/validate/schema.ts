@@ -333,6 +333,7 @@ export function validateTopLevel(data: UntrustedLensData, errors: string[], cata
     "rayLeadFrac",
     "offAxisFieldFrac",
     "maxAspectRatio",
+    "lensShiftFrac",
   ];
   const requiredArrays = ["elements", "surfaces", "fstopSeries", "rayFractions", "offAxisFractions"];
 
