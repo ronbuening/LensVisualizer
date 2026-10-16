@@ -205,7 +205,8 @@ export function prepareMtfFieldLaunch(
   const launch: MtfFieldLaunch = { fieldAngleDeg, direction, objectPoint, leadZ, centerY: seedY };
   if (!objectPoint) return launch;
   const referenceNm = support.spectralLines[0]?.wavelengthNm ?? support.referenceWavelengthNm;
-  const aimOptions: TraceOptions = {
+  const aimOptions: TraceOptions<"terminal"> = {
+    capture: "terminal",
     stopAt: state.lens.stop.surfaceIndex + 1,
     checkSemiDiameter: false,
     directionNormalized: true,
@@ -245,7 +246,10 @@ export function findMtfFieldFootprint(
   launch: MtfFieldLaunch,
   growths?: number,
 ): MtfFootprint | null {
-  const traceOptions = mtfTraceOptions(state, options, support, support.spectralLines[0]);
+  const traceOptions = {
+    ...mtfTraceOptions(state, options, support, support.spectralLines[0]),
+    capture: "terminal",
+  } as const;
   return findMtfFootprint(
     (x, y) =>
       mtfTraceClassification(

@@ -643,7 +643,12 @@ export function solveChiefRayBoundingSphere2(
       if (!result.found) return null;
       return result.y;
     }
-    const result = traceEngineRay2(state, ray, { stopAt: stopIndex, launchBoundT, checkSemiDiameter: true });
+    const result = traceEngineRay2(state, ray, {
+      capture: "terminal",
+      stopAt: stopIndex,
+      launchBoundT,
+      checkSemiDiameter: true,
+    });
     if (result.failureReason !== null || result.status !== "ok") return null;
     return result.y;
   };
@@ -1285,7 +1290,7 @@ function traceStateSurfacesReal2(
     };
   }
 
-  const result = traceEngineRay2(state, ray, traceOptions);
+  const result = traceEngineRay2(state, ray, { ...traceOptions, capture: "terminal" });
   const failed = result.failureReason !== null;
   return {
     y: failed ? NaN : result.y,

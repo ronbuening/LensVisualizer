@@ -7,7 +7,7 @@
  * for conic/polynomial aspheres. Anything unproven stays "failed" so the caller can bound its
  * effect on the OTF.
  */
-import type { EngineTraceResult } from "../trace/types.js";
+import type { EngineTraceResult, TraceCapture } from "../trace/types.js";
 import type { CompiledStateSurface, PreparedOpticalState, Vec3 } from "../types.js";
 import { evaluateAperture } from "../trace/aperture.js";
 
@@ -40,7 +40,7 @@ const boundsBySurface = new WeakMap<CompiledStateSurface, Map<number, ProfileBou
  * @returns valid, blocked, or failed
  */
 export function mtfTraceClassification(
-  trace: EngineTraceResult,
+  trace: EngineTraceResult<TraceCapture>,
   state?: PreparedOpticalState,
   stopRadius?: number,
 ): MtfRayClass {
@@ -65,7 +65,7 @@ export function mtfTraceClassification(
  * @returns true only when no intersection with the active cap can exist
  */
 export function provesApertureMiss(
-  trace: EngineTraceResult,
+  trace: EngineTraceResult<TraceCapture>,
   state: PreparedOpticalState,
   stopRadius?: number,
 ): boolean {

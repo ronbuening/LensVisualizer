@@ -6,6 +6,7 @@
  */
 
 import type { RuntimeLens } from "../../types/optics.js";
+import type { TraceCapture } from "./types.js";
 import type { Vec3 } from "../types.js";
 
 interface AbsorptionTraceHit {
@@ -31,6 +32,11 @@ function absorptionByElementId(L: RuntimeLens): ReadonlyMap<number, number> {
   return coefficients;
 }
 
+/** Select hit storage only when bulk transmission needs intermediate distances. */
+export function transmissionTraceCapture(L: RuntimeLens): Exclude<TraceCapture, "diagnostics"> {
+  return !L.isFoldedOptics && absorptionByElementId(L).size > 0 ? "hits" : "terminal";
+}
+
 /**
  * Compute bulk-material intensity transmission along an exact trace.
  *
@@ -43,9 +49,11 @@ function absorptionByElementId(L: RuntimeLens): ReadonlyMap<number, number> {
  * @param hits - exact surface hits in optical encounter order
  * @returns intensity transmission in `[0, 1]`
  */
-export function bulkTransmissionForTrace(L: RuntimeLens, hits: readonly AbsorptionTraceHit[]): number {
+export function bulkTransmissionForTrace(L: RuntimeLens, hits: readonly AbsorptionTraceHit[] | undefined): number {
   const coefficients = absorptionByElementId(L);
-  if (coefficients.size === 0 || hits.length < 2 || L.isFoldedOptics) return 1;
+  if (coefficients.size === 0 || L.isFoldedOptics) return 1;
+  if (!hits) throw new Error("Bulk transmission requires hit capture for absorbing media");
+  if (hits.length < 2) return 1;
 
   let transmission = 1;
   for (let i = 0; i < hits.length - 1; i++) {

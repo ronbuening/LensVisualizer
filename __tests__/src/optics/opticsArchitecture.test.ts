@@ -282,7 +282,8 @@ const CACHE_LEGACY: Readonly<Record<string, CacheLegacyRecord>> = {
     storeType: "PreparedStateCache",
   },
   "src/optics/trace/rayAdapters.ts#TRACE_OPTIONS_BY_STATE": {
-    grows: "per prepared state, one options object per distinct stop radius, ghost flag and channel",
+    grows:
+      "per prepared state, one options object per distinct stop radius, ghost flag, channel, normalization and capture policy",
     retire: "build trace options once per request instead of caching them per ray, or cap the per-state map",
     storeType: "TraceOptionsCache",
   },

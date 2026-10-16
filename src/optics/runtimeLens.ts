@@ -26,7 +26,7 @@ import {
 } from "./math/paraxial.js";
 import { createTraceGeometry } from "./trace/geometry.js";
 import { traceGeometryToStop } from "./trace/stopTrace.js";
-import type { EngineTraceResult, TraceGeometry, TraceOptions } from "./trace/types.js";
+import type { EngineTraceResult, TraceCapture, TraceGeometry, TraceOptions } from "./trace/types.js";
 import type { Ray3 } from "./types.js";
 import { directionFromMeridionalSlope } from "./math/vector.js";
 import { compileSurfaces } from "./prescription/surfaces.js";
@@ -259,7 +259,7 @@ function traceSurfaceStackReal(
   u0: number,
   options: TraceOptions,
 ): RealTraceFullResult {
-  const result = traceBuildRay(geometry, y0, u0, options);
+  const result = traceBuildRay(geometry, y0, u0, { ...options, capture: "terminal" });
   const failed = result.failureReason !== null;
   return {
     y: failed ? NaN : result.y,
@@ -299,7 +299,12 @@ function buildRayInput(geometry: TraceGeometry, y0: number, u0: number, lead: nu
   };
 }
 
-function traceBuildRay(geometry: TraceGeometry, y0: number, u0: number, options: TraceOptions = {}): EngineTraceResult {
+function traceBuildRay<C extends TraceCapture = "diagnostics">(
+  geometry: TraceGeometry,
+  y0: number,
+  u0: number,
+  options: TraceOptions<C> = {},
+): EngineTraceResult<C> {
   /* Preserve the first-vertex slope launch used to derive the existing constants. Folded basis rays start there. */
   const first = geometry.surfaces[0];
   const lead = geometry.traversal.kind === "generalized" ? 0 : Math.max(1, Math.abs(first.profile.sag(first.sd)) + 1);

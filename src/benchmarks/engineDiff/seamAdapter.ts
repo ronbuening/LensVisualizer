@@ -132,8 +132,11 @@ export type LensData = Parameters<EngineSeam["buildLens"]>[0];
 export type TeleconverterData = Parameters<EngineSeam["attachTeleconverter"]>[1];
 export type PreparedState = ReturnType<EngineSeam["prepareState"]>;
 export type EngineRay = Parameters<EngineSeam["traceRay"]>[1];
-export type EngineTraceOptions = NonNullable<Parameters<EngineSeam["traceRay"]>[2]>;
-export type EngineTrace = ReturnType<EngineSeam["traceRay"]>;
+export type EngineTraceOptions = NonNullable<Parameters<EngineSeam["traceRay"]>[2]> & { capture?: "diagnostics" };
+export type EngineTrace = ReturnType<EngineSeam["traceRay"]> & {
+  hits: NonNullable<ReturnType<EngineSeam["traceRay"]>["hits"]>;
+  diagnostics: NonNullable<ReturnType<EngineSeam["traceRay"]>["diagnostics"]>;
+};
 
 /**
  * Resolve each capability to the first candidate export that exists.

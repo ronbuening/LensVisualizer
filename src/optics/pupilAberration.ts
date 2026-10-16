@@ -495,7 +495,7 @@ function traceStateSurfacesReal(
   }
 
   const traverse = traceOptions.stopAt === undefined ? geometry.traversal.full : geometry.traversal.partial;
-  const result = traverse(geometry, input, traceOptions);
+  const result = traverse(geometry, input, { ...traceOptions, capture: "terminal" });
   const failed = result.failureReason !== null;
   return { y: failed ? NaN : result.y, u: failed ? NaN : result.uy };
 }
