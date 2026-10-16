@@ -1083,10 +1083,15 @@ Any surface may declare `innerSd` for an annular active aperture:
   both should draw as annular, and the element path uses even-odd fill.
 - **Blocker:** `interaction: { type: "block" }` with no `medium`. Give it a medium only if the blocker is drawn as a
   physical element with a front and back surface.
-- **Nested correctors:** an element `span` normally contains no surface but an embedded `STO`. Mirror lenses get one
-  narrow exception: when `opticalPath` is present, a span whose endpoints have matching `innerSd` and at least one
-  reflective endpoint may contain non-stop surfaces that fit wholly inside that central opening. Use it only where a
-  corrector group physically occupies the empty center of an annular mirror.
+- **Nested correctors:** an element `span` normally contains no surface but an embedded `STO`. Mirror lenses get two
+  narrow exceptions, both only when `opticalPath` is present (`isAllowedFoldedSpanInternalSurface` in
+  `validate/aperture.ts`):
+  - a span whose endpoints have matching `innerSd` and at least one reflective endpoint may contain non-stop surfaces
+    that fit wholly inside that central opening. Use it only where a corrector group physically occupies the empty
+    center of an annular mirror;
+  - in a lens with a reflective surface, a span may contain an annular surface whose `innerSd`–`sd` band shares no
+    radius with either endpoint's material band (from its `innerSd`, or 0, to its `sd`): the radially split blank of
+    the next bullet.
 - **Shared blanks:** some reflex patents use one physical blank in two radial roles, a silvered annular shell and a
   clear central plug. Model them as complementary drawn elements, not by stretching a small corrector across the full
   primary diameter:
