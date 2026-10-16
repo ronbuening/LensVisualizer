@@ -56,7 +56,22 @@ export function assertFullGitHistory(options?: {
   allowFetch?: boolean;
 }): void;
 
-export function parseGitLogDates(raw: string): FreshnessEntry | null;
+export interface GitLogEntry {
+  on: string;
+  at: string;
+  commit: string | null;
+  subject: string | null;
+}
+
+export function isFormatOnlyCommit(
+  entry: { commit: string | null; subject?: string | null },
+  listed?: ReadonlySet<string>,
+): boolean;
+
+export function parseGitLogDates(
+  raw: string,
+  options?: { isFormatOnly?: (entry: GitLogEntry) => boolean },
+): FreshnessEntry | null;
 
 export function getGitFileFreshness(
   filePath: string,

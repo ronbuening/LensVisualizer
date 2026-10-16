@@ -7,6 +7,7 @@ import {
   getFirstGitFileFreshnessAsync,
   mapLimit,
 } from "./build-metadata-lib.mjs";
+import { evaluateLensDataSource, readLensIdentity } from "./lens-data-ast.mjs";
 import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
 
 /** Derive a URL-safe maker slug from a maker field or lens display name. */
@@ -20,26 +21,16 @@ function deriveMakerSlug(nameOrMaker, makerField) {
   return nameOrMaker.split(/\s+/)[0].toLowerCase();
 }
 
-/** Extract the `key`/`name`/`maker` tuple from a lens data file using regexes. */
-function extractLensIdentityContent(content) {
-  const keyMatch = content.match(/(?:\bkey|"key"|'key')\s*:\s*"([^"]+)"/);
-  const publishedAtMatch = content.match(/(?:\bpublishedAt|"publishedAt"|'publishedAt')\s*:\s*"([^"]+)"/);
-  const nameMatch = content.match(/(?:\bname|"name"|'name')\s*:\s*"([^"]+)"/);
-  const makerMatch = content.match(/(?:\bmaker|"maker"|'maker')\s*:\s*"([^"]+)"/);
-  const visibleFalseMatch = content.match(/(?:\bvisible|"visible"|'visible')\s*:\s*false\b/);
-  const lensMountsMatch = content.match(/(?:\blensMounts|"lensMounts"|'lensMounts')\s*:\s*\[([^\]]*)\]/m);
-  const imageFormatMatch = content.match(/(?:\bimageFormat|"imageFormat"|'imageFormat')\s*:\s*"([^"]+)"/);
-  const lensMountIds = lensMountsMatch ? [...lensMountsMatch[1].matchAll(/"([^"]+)"/g)].map((match) => match[1]) : [];
-
-  return {
-    key: keyMatch ? keyMatch[1] : null,
-    publishedAt: publishedAtMatch ? publishedAtMatch[1] : null,
-    name: nameMatch ? nameMatch[1] : null,
-    maker: makerMatch ? makerMatch[1] : /(?:\bmaker|"maker"|'maker')\s*:\s*null\b/.test(content) ? null : undefined,
-    lensMountIds,
-    imageFormatId: imageFormatMatch ? imageFormatMatch[1] : null,
-    visible: visibleFalseMatch ? false : true,
-  };
+/**
+ * Read the identity fields of a lens data file of either version from its source, without running it.
+ *
+ * @param {string} content - the file's text
+ * @param {string} [fileName] - its path, for messages
+ * @returns the identity fields; every one empty when the file exports nothing by default
+ * @throws when the file's default export uses a form outside the lens-data literal subset
+ */
+function extractLensIdentityContent(content, fileName) {
+  return readLensIdentity(evaluateLensDataSource(content, fileName));
 }
 
 /** Explicit publication timestamps distinguish replacement models from inherited file history. */
@@ -64,9 +55,9 @@ function applyPublicationDate(freshness, publishedAt) {
   return result;
 }
 
-/** Extract the key/name/maker tuple from a lens data file on disk. */
+/** Read the identity fields of a lens data file on disk. */
 function extractLensIdentity(filePath, { readFile = readFileSync } = {}) {
-  return extractLensIdentityContent(readFile(filePath, "utf-8"));
+  return extractLensIdentityContent(readFile(filePath, "utf-8"), filePath);
 }
 
 /** Convert a relative `*.data.ts` path to the matching `*.analysis.md` path. */
@@ -74,12 +65,18 @@ function analysisRelativePathForDataPath(relativeDataPath) {
   return relativeDataPath.replace(/\.data\.ts$/, ".analysis.md");
 }
 
-/** Rewrite the LensDataInput import to match a file's location under src/lens-data. */
+/**
+ * Rewrite a lens file's type imports to match its location under src/lens-data: `types/optics.js` for a V1 file,
+ * `types/lensDataV2.js` for a V2 one.
+ */
 function rewriteLensDataTypesImport(filePath, { readFile = readFileSync, writeFile = writeFileSync } = {}) {
   const content = readFile(filePath, "utf-8");
   const relativeDepth = filePath.split("/src/lens-data/")[1]?.split("/").length ?? 1;
-  const expectedImport = relativeDepth > 1 ? "../../types/optics.js" : "../types/optics.js";
-  const updatedContent = content.replace(/from "\.\.\/(?:\.\.\/)?types\/optics\.js";/, `from "${expectedImport}";`);
+  const typesDir = relativeDepth > 1 ? "../../types" : "../types";
+  const updatedContent = content.replace(
+    /from "\.\.\/(?:\.\.\/)?types\/(optics|lensDataV2)\.js";/g,
+    (_match, module) => `from "${typesDir}/${module}.js";`,
+  );
 
   if (updatedContent !== content) {
     writeFile(filePath, updatedContent, "utf-8");
@@ -112,7 +109,13 @@ function collectTrackedLensRecordsByKey({
         cwd: rootDir,
         encoding: "utf-8",
       });
-      const { key } = extractLensIdentityContent(content);
+      let key;
+      try {
+        ({ key } = extractLensIdentityContent(content, repoPath));
+      } catch {
+        /* A committed file the reader cannot evaluate has no key to carry dates for. */
+        continue;
+      }
       if (!key || byKey[key]) continue;
 
       const relativeDataPath = repoPath.replace(/^src\/lens-data\//, "");

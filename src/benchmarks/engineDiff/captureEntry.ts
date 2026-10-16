@@ -123,13 +123,16 @@ export function permittedPairs(
 ): SerializedCatalog["pairs"] {
   const seam = resolveSeam();
   const pairs: SerializedCatalog["pairs"] = [];
+  const converters = catalog.teleconverters.map((converter) => ({
+    key: converter.key,
+    data: catalogTeleconverterData(decodeValue(converter.prescription) as TeleconverterData),
+  }));
   for (const host of catalog.lenses) {
     /* The catalog merge is engine code too: canonical ingest may refuse a host this engine cannot read. */
     const hostData = outcomeOf(() => catalogLensData(decodeValue(host.prescription) as LensData));
     if (!hostData.ok) continue;
-    for (const converter of catalog.teleconverters) {
-      const converterData = decodeValue(converter.prescription) as TeleconverterData;
-      const fit = outcomeOf(() => seam.teleconverterCompatibility(hostData.value, converterData));
+    for (const converter of converters) {
+      const fit = outcomeOf(() => seam.teleconverterCompatibility(hostData.value, converter.data));
       if (fit.ok && fit.value.ok) pairs.push({ host: host.key, teleconverter: converter.key });
     }
   }
@@ -208,10 +211,29 @@ export function fingerprintCatalog(catalog: SerializedCatalog): {
 }
 
 /**
+ * A file's zoom station count and focus keyframes, as authored in either version: V1 lists `zoomPositions` and
+ * `focusPositions`, V2 its `zoom.stations` and `focus.keyframes`.
+ */
+function authoredStations(data: Partial<LensData>): { stations: number; keyframes: unknown } {
+  const v2 = data as { schema?: unknown; zoom?: { stations?: unknown }; focus?: { keyframes?: unknown } };
+  if (v2.schema === 2) {
+    return {
+      stations: Array.isArray(v2.zoom?.stations) ? v2.zoom.stations.length : 1,
+      keyframes: v2.focus?.keyframes,
+    };
+  }
+  return {
+    stations: Array.isArray(data.zoomPositions) ? data.zoomPositions.length : 1,
+    keyframes: data.focusPositions,
+  };
+}
+
+/**
  * Reduce a serialized catalog to what `tierRequests` needs.
  *
- * Each fact is read off the authored prescription the way the engine reads it, and none of them through the
- * engine: a request list is built once, from the head's prescriptions, and handed to both engines.
+ * Each fact is read off the authored prescription the way the engine reads it, from a file of either version, and
+ * none of them through the engine: a request list is built once, from the head's prescriptions, and handed to both
+ * engines. Every feature but the stations sits at the same place in both versions.
  *
  * @param catalog - prescriptions from any ref
  * @returns each lens's authored stations and the features a tier chooses lenses by, and the pairs
@@ -220,12 +242,14 @@ export function requestCatalog(catalog: SerializedCatalog): RequestCatalog {
   return {
     lenses: catalog.lenses.map(({ key, prescription }): CatalogLens => {
       const data = decodeValue(prescription) as Partial<LensData>;
-      const { zoomPositions, focusPositions, aberrationControl } = data;
+      const { aberrationControl } = data;
+      const { stations, keyframes: focusPositions } = authoredStations(data);
       return {
         key,
-        zoomStations: Array.isArray(zoomPositions) ? zoomPositions.length : 1,
+        zoomStations: stations,
         /* Fewer than two keyframes is no focus table: the engine interpolates between the slider's ends. */
-        focusPositions: Array.isArray(focusPositions) && focusPositions.length >= 2 ? focusPositions : [0, 1],
+        focusPositions:
+          Array.isArray(focusPositions) && focusPositions.length >= 2 ? (focusPositions as number[]) : [0, 1],
         /* The engine reads a ring as centered by its center label. */
         aberrationControl: !aberrationControl
           ? null
@@ -277,6 +301,29 @@ export function catalogLensData(authored: LensData): LensData {
 }
 
 /**
+ * A converter file as this engine's catalog hands it to the composer and the fit predicate: through canonical ingest
+ * and its V1 view where the engine has them, so a V2 file reads, and as authored on an older ref.
+ *
+ * A file ingest refuses is handed on as authored, as it was before converters were ingested here. That fails its
+ * pairs' builds, which blocks, only where the fault is in a V1-form file and the composed build catches it. A V2
+ * file handed on as authored makes the fit predicate throw, so it permits no pair and the run reports only that it
+ * lost every pair. A V1 file refused over a field the composer does not copy (an unknown top-level field,
+ * `schema: 3`) composes and builds as before, and the run says nothing. The rule this lacks, that a converter of the
+ * head catalog the head engine's ingest refuses fails the run in every class, is open (S2.P2.T2 in the plan).
+ *
+ * @param authored - a converter file as authored
+ * @returns the catalog's converter data, on this engine
+ */
+export function catalogTeleconverterData(authored: TeleconverterData): TeleconverterData {
+  const { ingestTeleconverter, teleconverterView } = resolveOptionalSeam();
+  if (!ingestTeleconverter || !teleconverterView) return authored;
+  const read = outcomeOf(() =>
+    teleconverterView(ingestTeleconverter(authored as Parameters<typeof ingestTeleconverter>[0])),
+  );
+  return read.ok ? read.value : authored;
+}
+
+/**
  * Capture payload records for a request list.
  *
  * Each record is computed on a lens built for that record alone, from a prescription decoded for it. The engine
@@ -307,7 +354,8 @@ export function captureRecords(catalog: SerializedCatalog, requests: readonly Ca
   }
 
   const hostOf = (lens: LensRef) => decodeValue(lenses.get(lens.key) ?? null) as LensData;
-  const converterOf = (key: string) => decodeValue(teleconverters.get(key) ?? null) as TeleconverterData;
+  const converterOf = (key: string) =>
+    catalogTeleconverterData(decodeValue(teleconverters.get(key) ?? null) as TeleconverterData);
   /* A bare lens goes to `buildLens` as authored, so a change to how the engine applies defaults shows as drift. */
   const buildFresh = (lens: LensRef): RuntimeLens =>
     seam.buildLens(

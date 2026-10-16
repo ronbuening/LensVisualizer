@@ -2,8 +2,31 @@ import { execFile, execFileSync } from "node:child_process";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { promisify } from "node:util";
+import { FORMAT_ONLY_COMMITS } from "./format-only-commits.mjs";
 
 const execFileAsync = promisify(execFile);
+
+/* `git log` fields of one commit: committer date, id and subject. */
+const GIT_LOG_FORMAT = "--format=%cI%x09%H%x09%s";
+
+/**
+ * The subject of a format-only lens-data conversion commit begins with a conversion step's ID and a space
+ * (OPTICS_ENGINE_REWRITE_SPEC.md, S2.P2.T2). A squash merge keeps the PR title, which begins with the step ID, and
+ * appends ` (#NNN)`; every commit on such a PR's branch begins with the ID too.
+ */
+const FORMAT_ONLY_SUBJECT = /^(?:S2\.P5\.T[1-9]|S2\.P6\.T1) /;
+
+/**
+ * Whether a commit changes only how lens data is written, so a page's modified date skips it: its subject begins
+ * with a conversion step's ID, or its id is listed in format-only-commits.mjs.
+ *
+ * @param {{ commit: string | null, subject?: string | null }} entry - the commit
+ * @param {ReadonlySet<string>} [listed] - commit ids to skip besides those the subject names
+ * @returns {boolean}
+ */
+export function isFormatOnlyCommit({ commit, subject }, listed = FORMAT_ONLY_COMMITS) {
+  return FORMAT_ONLY_SUBJECT.test(subject ?? "") || (commit !== null && listed.has(commit));
+}
 
 /**
  * Metadata dates depend on complete file history. A shallow checkout makes
@@ -46,12 +69,16 @@ export function assertFullGitHistory({ cwd, execFileImpl = execFileSync, allowFe
 }
 
 /**
- * Parse `git log --format=%cI%x09%H` output into publication metadata.
+ * Parse `git log --format=%cI%x09%H%x09%s` output into publication metadata.
  *
  * `git log` returns newest-first, so the first line is the most recent
  * commit and the last line is the oldest reachable commit for the file.
+ * The published date is the oldest commit's. The modified date is the newest
+ * commit's that is not format-only: converting a file changes nothing a
+ * reader sees. A file whose every commit is format-only keeps its oldest
+ * commit's date.
  */
-export function parseGitLogDates(raw) {
+export function parseGitLogDates(raw, { isFormatOnly = isFormatOnlyCommit } = {}) {
   const lines = raw
     .split("\n")
     .map((line) => line.trim())
@@ -60,7 +87,7 @@ export function parseGitLogDates(raw) {
   if (lines.length === 0) return null;
 
   const parseLine = (line) => {
-    const [committedAt, commit = null] = line.split("\t");
+    const [committedAt, commit = null, ...subject] = line.split("\t");
     const timestamp = new Date(committedAt);
     if (Number.isNaN(timestamp.valueOf())) return null;
     return {
@@ -69,13 +96,14 @@ export function parseGitLogDates(raw) {
       on: timestamp.toISOString().slice(0, 10),
       at: timestamp.toISOString(),
       commit: commit || null,
+      subject: subject.length > 0 ? subject.join("\t") : null,
     };
   };
   const entries = lines.map(parseLine).filter(Boolean);
   if (entries.length === 0) return null;
 
-  const latest = entries[0];
   const earliest = entries[entries.length - 1];
+  const latest = entries.find((entry) => !isFormatOnly(entry)) ?? earliest;
 
   return {
     publishedOn: earliest.on,
@@ -108,7 +136,7 @@ function fallbackFreshness(fallbackDate) {
  */
 export function getGitFileFreshness(filePath, { cwd, fallbackDate, execFileImpl = execFileSync } = {}) {
   try {
-    const raw = execFileImpl("git", ["log", "--follow", "--format=%cI%x09%H", "--", filePath], {
+    const raw = execFileImpl("git", ["log", "--follow", GIT_LOG_FORMAT, "--", filePath], {
       cwd,
       encoding: "utf-8",
     }).trim();
@@ -120,7 +148,7 @@ export function getGitFileFreshness(filePath, { cwd, fallbackDate, execFileImpl 
 
 export async function getGitFileFreshnessAsync(filePath, { cwd, fallbackDate } = {}) {
   try {
-    const { stdout } = await execFileAsync("git", ["log", "--follow", "--format=%cI%x09%H", "--", filePath], {
+    const { stdout } = await execFileAsync("git", ["log", "--follow", GIT_LOG_FORMAT, "--", filePath], {
       cwd,
       encoding: "utf-8",
     });

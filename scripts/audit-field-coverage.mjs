@@ -46,12 +46,11 @@ const ROOT = join(import.meta.dirname, "..");
 const LENS_DIR = join(ROOT, "src", "lens-data");
 const load = async (path) => import(pathToFileURL(join(ROOT, path)).href);
 
-const { default: buildLens, ingestLensV1, toLensData } = await load("src/optics/buildLens.ts");
+const { default: buildLens, ingestLens, toLensData } = await load("src/optics/buildLens.ts");
 const { computeAnalysisFieldGeometryAtState2, computeFieldGeometryAtState2, solveChiefRay2 } =
   await load("src/optics/field/chiefRay.ts");
 const { isFisheyeProjection2, rectilinearProjectionMaxTraceField2 } = await load("src/optics/field/projection.ts");
-const { compiledLensFromRuntime } = await load("src/optics/buildLens.ts");
-const { prepareState } = await load("src/optics/state/prepareState.ts");
+const { prepareRuntimeState } = await load("src/optics/compat.ts");
 const { traceEngineRay2 } = await load("src/optics/trace/rayAdapters.ts");
 const { IMAGE_FORMAT_BY_ID } = await load("src/utils/catalog/lensTaxonomy.ts");
 
@@ -214,7 +213,7 @@ function fieldStop(L, tracer, modeledDeg, edgeHeight) {
 
 function auditStation(lens, L, zoomT, stationLabel) {
   const corner = (lens.imageCircleMm ?? IMAGE_FORMAT_BY_ID[lens.imageFormat].diagonalMm) / 2;
-  const state = prepareState(compiledLensFromRuntime(L), 0, zoomT, 0);
+  const state = prepareRuntimeState(L, 0, zoomT);
   const raw = computeFieldGeometryAtState2(0, zoomT, L, 0);
   const modeledDeg = computeAnalysisFieldGeometryAtState2(0, zoomT, L, 0).halfFieldDeg;
   const tracer = chiefRayTracer(L, state, zoomT, raw);
@@ -265,14 +264,19 @@ async function auditLens(file, includeHidden) {
   const rel = relative(LENS_DIR, file);
   const base = { rel, key: authored.key, name: authored.name };
   if (authored.visible === false && !includeHidden) return { ...base, skipped: "hidden" };
-  if (authored.opticalPath) return { ...base, skipped: "folded optical path" };
-  if (!(IMAGE_FORMAT_BY_ID[authored.imageFormat] || authored.imageCircleMm))
-    return { ...base, skipped: `no usable imageFormat (${String(authored.imageFormat)})` };
   let lens;
+  try {
+    /* Canonical ingest's V1 view applies the schema defaults, as the catalog does, and reads a file of either
+     * version in V1 field names. */
+    lens = toLensData(ingestLens(authored));
+  } catch (error) {
+    return { ...base, skipped: `buildLens failed: ${error.message}` };
+  }
+  if (lens.opticalPath) return { ...base, skipped: "folded optical path" };
+  if (!(IMAGE_FORMAT_BY_ID[lens.imageFormat] || lens.imageCircleMm))
+    return { ...base, skipped: `no usable imageFormat (${String(lens.imageFormat)})` };
   let L;
   try {
-    /* Canonical ingest's V1 view applies the schema defaults, as the catalog does. */
-    lens = toLensData(ingestLensV1(authored));
     L = buildLens(lens);
   } catch (error) {
     return { ...base, skipped: `buildLens failed: ${error.message}` };

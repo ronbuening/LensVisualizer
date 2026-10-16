@@ -22,7 +22,7 @@ import {
   type GlassEntry,
 } from "../src/optics/glassCatalog.js";
 import { buildSurfaceDispersionIndex, normalLinePgF, type SurfaceDispersion } from "../src/optics/dispersion.js";
-import { ingestLensV1, toLensData } from "../src/optics/buildLens.js";
+import { ingestLens, toLensData } from "../src/optics/buildLens.js";
 import type { ElementData, LensData, RefractiveIndexReferenceLine, SurfaceData } from "../src/types/optics.js";
 
 /** ΔPgF spread that's plausible across melt variants. */
@@ -80,7 +80,7 @@ export function walkLensSurfaces(
     totalLenses++;
     let data: LensData;
     try {
-      data = toLensData(ingestLensV1(raw));
+      data = toLensData(ingestLens(raw));
     } catch {
       continue;
     }

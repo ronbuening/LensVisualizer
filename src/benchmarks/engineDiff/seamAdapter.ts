@@ -206,7 +206,8 @@ export function resolveSeam(): EngineSeam {
  * - Canonical ingest is asked of the head's bundle alone: a driver fingerprints both catalogs with the head. From
  *   S2.P2.T1 it reads a file of either version by its `schema`; a ref before that reads V1 alone.
  * - The catalog merge is asked of every bundle, each for its own: a ref before S2.P1.T2 spreads its V1 defaults
- *   object, and a later one has no such object and reads lens data through canonical ingest and its V1 view.
+ *   object, and a later one has no such object and reads lens data through canonical ingest and its V1 view. A
+ *   converter file is read the same way where the ref has the converter's view, and as authored where it has not.
  */
 const OPTIONAL_SEAM_CANDIDATES = {
   ingestLens: [
@@ -218,6 +219,7 @@ const OPTIONAL_SEAM_CANDIDATES = {
     ["buildLens", "ingestTeleconverterV1"],
   ],
   lensView: [["buildLens", "toLensData"]],
+  teleconverterView: [["buildLens", "toTeleconverterData"]],
   lensDefaults: [["lensDefaults", "default"]],
 } as const satisfies Readonly<Record<string, readonly SeamCandidate[]>>;
 

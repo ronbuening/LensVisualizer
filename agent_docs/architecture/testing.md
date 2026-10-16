@@ -160,7 +160,8 @@ Existing tests cover:
 - Reducer, preferences, URL sync, feature flags, and page-theme hooks.
 - Component smoke tests for pages, controls, display panels, analysis drawer, and comparison layout.
 - Script regressions for metadata, route sync, lens-data helpers, sitemap/prerender support.
-- The glass-report helper library (`__tests__/reports/glassScanLib.test.ts`) and the glass-resolution parity sweep
+- The glass-report helper library (`__tests__/reports/glassScanLib.test.ts`), the MTF chart report's helpers
+  (`__tests__/reports/mtfChartLib.test.ts`) and the glass-resolution parity sweep
   (`__tests__/src/lens-data/glassResolutionParity.test.ts`); the reports themselves are generated outside the suite (see
   "Reports and Tooling Tests").
 - The structure of `src/optics/` itself: import cycles, the outside-import seam, and module-level caches (see
@@ -238,7 +239,12 @@ and bundled there.
   capabilities are optional, so a revision that lacks one still resolves its seam and reports the capability as
   `absent`. Canonical ingest, which the fingerprint needs, is one of them and is asked of the head's bundle alone. The
   catalog merge is another: each bundle merges a host as its own catalog does, by spreading its V1 defaults object at
-  a ref before S2.P1.T2, and by ingest and the V1 view at a later one (`catalogLensData` in `captureEntry.ts`).
+  a ref before S2.P1.T2, and by ingest and the V1 view at a later one (`catalogLensData` in `captureEntry.ts`). A
+  converter is read the same way where the ref has its view (`catalogTeleconverterData`), and as authored before.
+  One that ingest refuses is handed on as authored, which blocks only where the composed build catches its fault;
+  the rule that a refused head converter fails the run is open (`OPTICS_ENGINE_REWRITE_SPEC.md`, S2.P2.T2).
+  From S2.P2.T1 ingest reads either lens-data version, and the request list reads a V2 file's stations and keyframes
+  (`requestCatalog`), so a V2 set and its V1 twin give the same requests, pairs and records.
 - `requests.ts` defines a tier as a deterministic list of lens × state × request family, and cuts a list into
   shards. The three tiers are described under "Tiers" below.
 - `payload.ts` holds the encoding (JSON that round-trips under `Object.is`, with tags for -0, NaN, and the
@@ -989,6 +995,10 @@ When refactoring:
 - Add equality tests when adding optional precomputed inputs to optics helpers.
 - Add reducer guard tests when tightening string state into literal unions.
 - Add script helper tests when changing metadata generation, route expansion, or git freshness lookup.
+  `__tests__/scripts/lensDataV2Readers.test.ts` holds the lens-data readers to both versions: the AST reader against
+  every catalog module, identity, summaries and converter fit from V2 twins, the organizer's V2 import, and page dates
+  that skip conversion commits. `__tests__/scripts/auditImageCircle.test.ts`, in the tooling suite, runs each audit
+  that reads a lens file on a V2 fixture and on its V1 twin through its npm entry.
 - Add fixture-backed optics tests whenever changing `SurfaceData.interaction`, `innerSd`, `opticalPath`, generalized
   stop tracing, generalized image-plane intersection, obstruction-aware sampling, or folded analysis gating. Prefer
   hidden reference fixtures under `src/lens-data/reference/` for canonical mirror/telescope behavior.

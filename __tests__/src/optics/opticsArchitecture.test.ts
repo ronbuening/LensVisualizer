@@ -67,6 +67,7 @@ const SEAM_REGISTRY: readonly SeamRegistryEntry[] = [
   { module: "src/optics/dispersion.ts" },
   { module: "src/optics/fieldGeometry.ts" },
   { module: "src/optics/geometry.ts" },
+  { module: "src/optics/lensDataConversion.ts" },
   { module: "src/optics/mtf.ts" },
   { module: "src/optics/optics.ts" },
   {
@@ -122,7 +123,6 @@ const SEAM_LEGACY: readonly string[] = [
   "src/optics/pupilAberration.ts",
   "src/optics/raySampling.ts",
   "src/optics/spectralLines.ts",
-  "src/optics/state/prepareState.ts",
   "src/optics/trace/rayAdapters.ts",
   "src/optics/types.ts",
   "src/optics/vignetteAnalysis.ts",

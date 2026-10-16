@@ -180,7 +180,13 @@ See [`../adding_an_article.md`](../adding_an_article.md) for frontmatter and aut
 
 Metadata generation is split across:
 
-- `scripts/lens-data-lib.mjs` - lens data scanning, root-file organization helpers, maker slug derivation.
+- `scripts/lens-data-lib.mjs` - lens data scanning, root-file organization helpers, maker slug derivation. Identity
+  fields come from `scripts/lens-data-ast.mjs`, which evaluates a file's default export from its source with the
+  TypeScript compiler API, never running it, and reads a file of either lens-data version (a V2 file keeps its mounts
+  and format in `catalog`). The organizer rewrites a filed file's `types/optics.js` or `types/lensDataV2.js` import.
+- `scripts/lens-summaries.mjs` - lens and teleconverter summary fields, in V1 names. A V2 file is read through the
+  engine's canonical ingest and its V1 view, so it and its V1 twin summarize alike. They come from the conversion
+  seam, `src/optics/lensDataConversion.ts`, which the script loads by path on the first V2 file.
 - `scripts/build-metadata-lib.mjs` - git freshness helpers, bounded concurrency, route freshness aggregation.
 - `scripts/generate-build-metadata.mjs` - top-level metadata orchestration, concrete route enumeration, generated route
   freshness, generated author index, generated maker-prefix JSON, and README lens-count refresh. It also writes
@@ -196,6 +202,10 @@ Freshness collection uses `execFile`/`execFileSync` argument arrays rather than 
 concurrency for the git calls. It records the committer timestamp and hash for the first and latest commits, then assigns
 a generated `publicationOrder` shared by page lists and RSS feeds. Keep generated route and freshness artifacts stable
 unless a content change intentionally updates them.
+
+The modified date skips format-only lens-data conversion commits (`isFormatOnlyCommit` in `build-metadata-lib.mjs`),
+so converting a file to V2 moves no page date. The rules are in `OPTICS_ENGINE_REWRITE_SPEC.md`, S2.P2.T2 ("Page dates
+do not move with the conversion").
 
 ## Route Change Checklist
 
