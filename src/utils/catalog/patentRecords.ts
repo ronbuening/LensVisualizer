@@ -55,7 +55,8 @@ const patentNumberCollator = new Intl.Collator("en", { numeric: true, sensitivit
 
 /** Return whether a display value is an external patent publication number rather than a local fallback label. */
 export function isPatentPublicationNumber(value: string): boolean {
-  return /^[A-Z]{2}\s+.*\d/i.test(value.trim());
+  // Country and kind-code spaces are display formatting, not part of a publication's identity.
+  return /^[A-Z]{2}\s*(?:[A-Z]{1,2}\s*)?\d[\d\s,./-]*(?:[A-Z]\d?)?$/i.test(value.trim());
 }
 
 /**
@@ -72,12 +73,14 @@ export function isPatentPublicationNumber(value: string): boolean {
  * format only needs its display punctuation removed.
  */
 export function docdbPublicationNumber(patentNumber: string): string {
-  const display = patentNumber.trim().toUpperCase();
+  const display = patentNumber.toUpperCase().replace(/\s+/g, "");
 
-  const usApplication = display.match(/^US\s+(\d{4})\/0(\d{6})\s*([A-Z]\d?)?$/);
+  const usApplication = display.match(/^US(\d{4})\/?0(\d{6})([A-Z]\d?)?$/);
   if (usApplication) return `US${usApplication[1]}${usApplication[2]}${usApplication[3] ?? ""}`;
 
-  const japanese = display.match(/^JP\s+(?:([SH])(\d{1,2})|(\d{4}))-(\d+)\s*([A-Z]\d?)?$/);
+  const japanese =
+    display.match(/^JP(?:([SH])(\d{1,2})|(\d{4}))-(\d+)([A-Z]\d?)?$/) ??
+    display.match(/^JP(?:([SH])(\d{2})|(\d{4}))(\d{6})([A-Z]\d?)?$/);
   if (japanese) {
     const [, era, eraYear, westernYear, serial, kind = ""] = japanese;
     const resolved = era
@@ -111,7 +114,7 @@ export function espacenetPatentUrl(patentNumber: string): string {
 
 /** Resolve the publication authority encoded at the start of a patent number. */
 export function patentJurisdiction(patentNumber: string): PatentJurisdiction {
-  const code = patentNumber.trim().match(/^([A-Z]{2})\b/)?.[1] ?? "OTHER";
+  const code = isPatentPublicationNumber(patentNumber) ? patentNumber.trim().slice(0, 2).toUpperCase() : "OTHER";
   return {
     code,
     label: JURISDICTION_LABELS[code] ?? (code === "OTHER" ? "Other jurisdictions" : code),

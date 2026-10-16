@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** CN103823292B  
+**Patent:** CN 103823292 B\
 **Application Number:** 201310608351.6  
 **Filed:** 2013-11-19  
 **Granted:** 2016-06-29  

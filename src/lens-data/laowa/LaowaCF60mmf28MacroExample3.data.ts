@@ -48,7 +48,7 @@ const LENS_DATA = {
     "fullFieldDeg": 26.14,
     "maxTraceFieldDeg": 13.07
   },
-  "patentNumber": "CN103823292B",
+  "patentNumber": "CN 103823292 B",
   "patentAuthors": [
     "Xiaohua Zhang"
   ],

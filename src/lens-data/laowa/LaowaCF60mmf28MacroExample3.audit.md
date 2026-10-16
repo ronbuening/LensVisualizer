@@ -85,6 +85,7 @@ Patent: local `patents/CN103823292B.pdf`, Example 3, Figure 5, PDF p.15; prescri
 
 | Field | Before | After | Evidence |
 |---|---|---|---|
+| Patent display | CN103823292B | CN 103823292 B | Same grant and kind code; canonical country/number/kind spacing enables the shared patent link and China grouping. |
 | Display name | LAOWA CF 60mm f/2.8 2x MACRO | LAOWA 60mm f/2.8 2X Ultra-Macro | [Maker product name](https://www.venuslens.net/product/laowa-60mm-f2/); CF was not part of that name. |
 | L2 glass | Unmatched fluor-crown | K-PFK80 qualified spectral proxy | Source 1.49787/81.39 retained; catalog n(d)=1.49699862, νd=81.3504. Supplier/melt and exact material remain unknown. |
 
