@@ -127,26 +127,60 @@ describe("teleconverter catalog", () => {
     expect(offenders).toEqual([]);
   });
 
-  it("composes every compatible converter–host pair into a lens that builds, traces, keeps the host's stop and loses no field", () => {
-    const offenders: string[] = [];
-    let pairs = 0;
+  /* Every compatible converter–host pair, found once: the fit predicate is cheap, and the guard below needs the total. */
+  const compatibleHostKeys = new Map(
+    ALL_TELECONVERTER_KEYS.map((tcKey) => [
+      tcKey,
+      ALL_CATALOG_KEYS.filter(
+        (lensKey) => teleconverterCompatibility(LENS_CATALOG[lensKey], TELECONVERTER_CATALOG[tcKey]).ok,
+      ),
+    ]),
+  );
 
-    for (const tcKey of ALL_TELECONVERTER_KEYS) {
+  /* A host fits several converters, so its build and bare corner coverage are computed once and reused. */
+  const bareHosts = new Map<string, { host: RuntimeLens; coverage: Map<number, number> }>();
+  function bareHost(lensKey: string) {
+    let entry = bareHosts.get(lensKey);
+    if (!entry) {
+      entry = { host: buildLens(LENS_CATALOG[lensKey]), coverage: new Map() };
+      bareHosts.set(lensKey, entry);
+    }
+    return entry;
+  }
+  function bareCornerCoverage(lensKey: string, zoomT: number): number {
+    const { host, coverage } = bareHost(lensKey);
+    let share = coverage.get(zoomT);
+    if (share === undefined) {
+      share = cornerCoverage(host, zoomT);
+      coverage.set(zoomT, share);
+    }
+    return share;
+  }
+
+  it("finds compatible hosts in the catalog", () => {
+    /* Zero pairs would mean the sweep stopped seeing the catalog rather than that everything passed. */
+    const pairs = [...compatibleHostKeys.values()].reduce((total, hostKeys) => total + hostKeys.length, 0);
+    expect(pairs).toBeGreaterThan(0);
+  });
+
+  /* One test per converter, so each gets its own time budget as the catalog grows and a failure names its converter. */
+  it.each(ALL_TELECONVERTER_KEYS)(
+    "composes %s onto every compatible host into a lens that builds, traces, keeps the host's stop and loses no field",
+    (tcKey) => {
       const tc = TELECONVERTER_CATALOG[tcKey];
-      for (const lensKey of ALL_CATALOG_KEYS) {
-        const hostData = LENS_CATALOG[lensKey];
-        if (!teleconverterCompatibility(hostData, tc).ok) continue;
-        pairs++;
+      const offenders: string[] = [];
+
+      for (const lensKey of compatibleHostKeys.get(tcKey)!) {
         const pair = `${lensKey} + ${tcKey}`;
 
         let L: RuntimeLens;
         try {
-          L = buildLens(attachTeleconverter(hostData, tc));
+          L = buildLens(attachTeleconverter(LENS_CATALOG[lensKey], tc));
         } catch (error) {
           offenders.push(`${pair}: ${String(error).split("\n")[0]}`);
           continue;
         }
-        const host = buildLens(hostData);
+        const { host } = bareHost(lensKey);
 
         if (Math.abs(L.stopPhysSD - host.stopPhysSD) > 1e-9) offenders.push(`${pair}: stop radius changed`);
         /* Read through the station accessor, so a fixed-iris host that came back with a schedule is caught too. */
@@ -175,7 +209,7 @@ describe("teleconverter catalog", () => {
 
           /* A rear converter images the format corner from a narrower field of the host, so the host cannot stop a
              corner chief ray it passed on its own: a lower share with the converter mounted is the converter's rims. */
-          const bare = cornerCoverage(host, zoomT);
+          const bare = bareCornerCoverage(lensKey, zoomT);
           const mounted = cornerCoverage(L, zoomT);
           if (mounted < bare - CORNER_COVERAGE_TOLERANCE) {
             offenders.push(
@@ -197,13 +231,10 @@ describe("teleconverter catalog", () => {
           }
         }
       }
-    }
 
-    /* Zero pairs would mean the sweep stopped seeing the catalog rather than that everything passed. */
-    expect(pairs).toBeGreaterThan(0);
-    expect(offenders).toEqual([]);
-    /* The sweep grows with every converter–host pair: 24 s on CI for main, 32 s on a slow runner, past the 30 s default. */
-  }, 120_000);
+      expect(offenders).toEqual([]);
+    },
+  );
 
   it("keeps every host's stop when a synthetic universal converter is composed onto it", () => {
     /* The real catalog pairs above are few. The composer's central promise — the host's iris does not change —
