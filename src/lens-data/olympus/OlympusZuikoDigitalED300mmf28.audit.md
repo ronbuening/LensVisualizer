@@ -110,3 +110,10 @@ Patent: local `patents/US6927926B2.pdf`, Numerical data 3, Figure 7, PDF p.8 (ro
 No SD or glass annotation changed. The 600 dpi figure shows the existing taper from the approximately 54 mm front rims to 33.5/32 mm G2, 30.5 mm G3 and 24/22 mm G4. Automatic readings on the densely annotated rear groups include leader lines and are rejected; the actual paired optical rims agree with the stored shape. All 12 elements retain compatible OHARA spectral proxies, with original nd/vd and the official correction intact.
 
 [Maker compatibility table](https://support.jp.omsystem.com/en/support/imsg/digicamera/compati/e_system_zdl.html) confirms the Four Thirds mount. Display name, Four Thirds image format, complete source-party metadata and native 12/10 optical counts remain appropriate. The commercial 13/11 count includes a required filter by the existing qualified inference; the source does not justify inventing its prescription. No missing native mount was found.
+
+
+## 2026-10-16 — Live diagram, glass-color and travel review
+
+Rechecked Figure 7 (US6927926B2.pdf p.8), including a 600 dpi optical-rim crop, against both local focus endpoints. Retained SDs: the taper and paired rims agree within figure uncertainty, with no hidden render trim. Relative to the image plane, G2 moves +17.1354 mm imageward and G3 −16.5010 mm objectward; G1/G4 stay fixed within source rounding. Added inferred APD color and catalog notes to L2/L3/L9 (S-FPL51, ΔPgF ≈ +0.03081), consistent with the maker's three ED elements. This is not a patent anomalous-glass designation. All twelve curves and native prescription values are unchanged. Olympus Corporation matches the source cover; the later Imaging entity remains distinct.
+
+All six release lenses retain 81/81 catalog-backed elements; no additional curve is needed to fill a coverage gap. Surface, image-circle and aperture audits pass at all ten infinity/zoom stations. The sole field-coverage limitation is Miranda's explicitly declared 22.5° half-field (94% of the full-frame corner); no rim clips its corner chief ray. No new changelog entry was added.

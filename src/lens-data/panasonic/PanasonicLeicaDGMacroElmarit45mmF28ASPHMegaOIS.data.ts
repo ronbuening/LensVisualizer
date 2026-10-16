@@ -61,7 +61,7 @@ const LENS_DATA = {
   yScFill: 0.5,
   apertureBlades: 7,
   focusDescription:
-    "PUBLISHED infinity, 0.5× and 1× spacing rows, including BF. G2/G4/G5 floating focus; centered OIS model. UI distance coordinates derive from paraxial object-to-image conjugates, not production MFD; no finite-distance certification. Piecewise interpolation is visualization only, not the actual cam law. Fixed iris is calibrated at infinity; finite table f-numbers are not reproduced.",
+    "The patent gives infinity, 0.5× and 1× prescriptions. For closer focus, G2 moves toward the image and G4/G5 toward the object. Distances are calculated for this prescription, rather than taken from the production lens's 0.15 m minimum. Intermediate spacings are interpolated. The iris stays at its infinity setting, so finite-focus apertures differ from the patent's tabulated values. Optical stabilization remains centered.",
   elements: [
     {
       id: 1,
@@ -73,7 +73,7 @@ const LENS_DATA = {
       vd: 64.2,
       indexReference: "d",
       fl: 126.06835769366111,
-      glass: "517642 — crown (catalog proxy; supplier unconfirmed)",
+      glass: "H-K9L (CDGM spectral proxy for 517642; supplier unconfirmed)",
     },
     {
       id: 2,
@@ -85,7 +85,7 @@ const LENS_DATA = {
       vd: 20.9,
       indexReference: "d",
       fl: -44.81023380957653,
-      glass: "923209 — dense flint (catalog proxy; supplier unconfirmed)",
+      glass: "N-SF66 (Schott spectral proxy for 923209; supplier unconfirmed)",
       cemented: "D1",
     },
     {
@@ -111,7 +111,7 @@ const LENS_DATA = {
       vd: 35.2,
       indexReference: "d",
       fl: -23.020465075426543,
-      glass: "911352 — high-index lanthanum flint (catalog proxy; supplier unconfirmed)",
+      glass: "K-LaSFn23 (Sumita spectral proxy for 911352; supplier unconfirmed)",
     },
     {
       id: 5,
@@ -123,7 +123,7 @@ const LENS_DATA = {
       vd: 35.2,
       indexReference: "d",
       fl: -14.17888330395097,
-      glass: "911352 — high-index lanthanum flint (catalog proxy; supplier unconfirmed)",
+      glass: "K-LaSFn23 (Sumita spectral proxy for 911352; supplier unconfirmed)",
       cemented: "D2",
     },
     {
@@ -136,7 +136,7 @@ const LENS_DATA = {
       vd: 18.0,
       indexReference: "d",
       fl: 18.50914826666562,
-      glass: "946180 — dense flint (catalog proxy; supplier unconfirmed)",
+      glass: "FDS18 (Hoya spectral proxy for 946180; supplier unconfirmed)",
       cemented: "D2",
     },
     {
@@ -149,7 +149,7 @@ const LENS_DATA = {
       vd: 54.7,
       indexReference: "d",
       fl: 68.8345126609913,
-      glass: "729547 — lanthanum crown (catalog proxy; supplier unconfirmed)",
+      glass: "TAC8 (Hoya spectral proxy for 729547; supplier unconfirmed)",
     },
     {
       id: 8,
@@ -161,7 +161,7 @@ const LENS_DATA = {
       vd: 49.6,
       indexReference: "d",
       fl: 42.11639867329221,
-      glass: "772496 — lanthanum flint (catalog proxy; supplier unconfirmed)",
+      glass: "E-LASF016 (Hikari spectral proxy for 772496; supplier unconfirmed)",
     },
     {
       id: 9,
@@ -173,7 +173,7 @@ const LENS_DATA = {
       vd: 23.8,
       indexReference: "d",
       fl: -26.637061120251925,
-      glass: "847238 — dense flint (catalog proxy; supplier unconfirmed)",
+      glass: "J-SF03 (Hikari spectral proxy for 847238; supplier unconfirmed)",
       cemented: "D3",
     },
     {
@@ -186,7 +186,7 @@ const LENS_DATA = {
       vd: 54.7,
       indexReference: "d",
       fl: 20.972761505169633,
-      glass: "729547 — lanthanum crown (catalog proxy; supplier unconfirmed)",
+      glass: "TAC8 (Hoya spectral proxy for 729547; supplier unconfirmed)",
       cemented: "D3",
     },
     {
@@ -199,7 +199,9 @@ const LENS_DATA = {
       vd: 81.6,
       indexReference: "d",
       fl: 70.15748240945136,
-      glass: "497816 — low-dispersion crown (catalog proxy; supplier unconfirmed)",
+      glass: "H-FK61 (CDGM spectral proxy for 497816; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "Inferred from the H-FK61 spectral proxy: catalog PgF ≈ 0.53801, ΔPgF ≈ +0.03147. This low-dispersion element corresponds to the production ED position; the original glass is unconfirmed.",
     },
     {
       id: 12,
@@ -211,7 +213,7 @@ const LENS_DATA = {
       vd: 70.4,
       indexReference: "d",
       fl: -27.128740182071528,
-      glass: "487704 — fluor crown (catalog proxy; supplier unconfirmed)",
+      glass: "N-FK5 (Schott spectral proxy for 487704; supplier unconfirmed)",
     },
     {
       id: 13,
@@ -223,7 +225,7 @@ const LENS_DATA = {
       vd: 70.4,
       indexReference: "d",
       fl: -23.683313789817678,
-      glass: "487704 — fluor crown (catalog proxy; supplier unconfirmed)",
+      glass: "N-FK5 (Schott spectral proxy for 487704; supplier unconfirmed)",
       cemented: "D4",
     },
     {
@@ -236,7 +238,7 @@ const LENS_DATA = {
       vd: 42.7,
       indexReference: "d",
       fl: 23.00580180121412,
-      glass: "835427 — lanthanum flint (catalog proxy; supplier unconfirmed)",
+      glass: "J-LASF05 (Hikari spectral proxy for 835427; supplier unconfirmed)",
       cemented: "D4",
     },
   ],

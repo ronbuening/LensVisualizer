@@ -136,3 +136,10 @@ Patent: local `patents/JP2011048232A.pdf`, Numerical Example 3, Figure 7(a), PDF
 The clean optical-rim measurements at 600 dpi agree with existing radii within approximately 12%, with median figure/data about 1.04. Retained all SDs, the source-calibrated iris and published focus gaps. All 14 elements now resolve to compatible catalog curves. Analysis updated for L3 without claiming measured spectral data.
 
 [Official product page](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses/g/h-es045.html) confirms the LEICA DG MACRO-ELMARIT / ASPH. / MEGA O.I.S. name and Micro Four Thirds mount. Existing Panasonic maker attribution, Four Thirds format, source authors/assignee and 14/10 counts are retained. Modeled near-conjugate coordinates remain separate from the marketed 0.15 m MFD.
+
+
+## 2026-10-16 — Live diagram, glass-color and travel review
+
+Rechecked Figure 7(a–c) (JP2011048232A.pdf p.15) against local infinity and 1× sections, including the clean lower optical rims at 600 dpi. Retained SDs and all three focus rows; G2 moves imageward while G4/G5 move objectward, with the existing fixed-anchor discrepancy retained. Replaced thirteen code-only labels with their already-selected named spectral proxies, preserving all fourteen curve selections. Added inferred APD color to L11 (H-FK61, ΔPgF ≈ +0.03147). Corrected stale analysis that still put L3 on Abbe fallback. Focus text now explains the physical motion and model scope without implementation labels. Panasonic Corporation matches the source applicant; the intellectual-property company is a distinct assignee.
+
+All six release lenses retain 81/81 catalog-backed elements; no additional curve is needed to fill a coverage gap. Surface, image-circle and aperture audits pass at all ten infinity/zoom stations. The sole field-coverage limitation is Miranda's explicitly declared 22.5° half-field (94% of the full-frame corner); no rim clips its corner chief ray. No new changelog entry was added.

@@ -81,7 +81,8 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 191.7726854911082,
       glass: "S-FPL51 (OHARA coordinate-compatible dispersion proxy; supplier unconfirmed)",
-      apd: false,
+      apd: "inferred",
+      apdNote: "Inferred from the S-FPL51 spectral proxy: catalog PgF ≈ 0.53746, ΔPgF ≈ +0.03081. The production lens has three ED elements; the patent does not establish their supplier or melt.",
       role: "Positive constituent of patent group G1; standalone power is not its in-situ aberration contribution.",
     },
     {
@@ -95,7 +96,8 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 304.4047901603578,
       glass: "S-FPL51 (OHARA coordinate-compatible dispersion proxy; supplier unconfirmed)",
-      apd: false,
+      apd: "inferred",
+      apdNote: "Inferred from the S-FPL51 spectral proxy: catalog PgF ≈ 0.53746, ΔPgF ≈ +0.03081. The production lens has three ED elements; the patent does not establish their supplier or melt.",
       role: "Positive constituent of patent group G1; standalone power is not its in-situ aberration contribution.",
     },
     {
@@ -181,7 +183,8 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 90.98864416569099,
       glass: "S-FPL51 (OHARA coordinate-compatible dispersion proxy; supplier unconfirmed)",
-      apd: false,
+      apd: "inferred",
+      apdNote: "Inferred from the S-FPL51 spectral proxy: catalog PgF ≈ 0.53746, ΔPgF ≈ +0.03081. The production lens has three ED elements; the patent does not establish their supplier or melt.",
       role: "Positive constituent of patent group G3; standalone power is not its in-situ aberration contribution.",
     },
     {
@@ -475,7 +478,7 @@ const LENS_DATA = {
   ],
   closeFocusM: 2.0000485359783333,
   focusDescription:
-    "Published Example 3 floating-focus endpoints: G2 moves imageward and G3 objectward. G1/G4 are fixed within printed-spacing rounding. Intermediate linear interpolation is illustrative, not a published factory cam law. The approximately 2m patent endpoint is separate from the marketed 2.4m limit. Apertures are inferred; near full-iris vignetting is retained.",
+    "G2 moves toward the image and G3 toward the object for closer focus; G1 and G4 stay nominally fixed. The patent's near-focus state is approximately 2 m, compared with the production lens's 2.4 m minimum. Intermediate spacings are interpolated. Clear apertures are inferred, and some rays vignette near full aperture.",
   nominalFno: 2.8,
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,

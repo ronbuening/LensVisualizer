@@ -92,7 +92,9 @@ Equation 1 needs the missing last-face C19. Equations 3 and 4 refer to composite
 
 The native aberration/spot/MTF figures retain their f=135 F2 labels. Their plotted curves are not substituted for fresh calculations or used to tune this model. No claim of reproducing those MTF curves is made.
 
-The eleven elements use the shared runtime catalog path. Previously embedded, catalog-computed nC/nF/ng anchors were removed because the patent does not publish them. TAF1 now has its own HOYA curve; N-SF1 continues to resolve to the compatible SF1 representative, retaining the printed νd 29.50 against catalog 29.62. Native nd/vd remain unchanged, and every catalog label denotes a spectral proxy rather than a verified factory melt.
+Published catalog curves approximate dispersion for all eleven elements. The patent's NSF1_SCHOTT entries use Schott SF1 as a spectral proxy: its catalog νd is 29.51, close to the printed 29.50. This differs from modern N-SF1, whose νd is 29.62. Native nd/νd remain unchanged; these proxies do not establish the production supplier or melt.
+
+L2 corresponds to the production lens's ED element. Its FCD1 proxy gives PgF ≈ 0.53885 and ΔPgF ≈ +0.03232 relative to the Schott normal line, supporting an inferred APD highlight. The patent does not designate that material as anomalous.
 
 ## Model Scope
 
@@ -107,3 +109,4 @@ The model keeps the native 130 mm table unscaled, uses the paraxial image distan
 - [Official 2015 announcement](https://www.lksamyang.com/en/about/notice-view.php?seq=320), release context; not evidence of production-exact prescription identity.
 - [HOYA optical-glass AGF catalog, 2026-07-07 including obsolete glasses](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf), named TAF1, FCD1, FDS90, TAC6 and FF5 rows and dispersion coefficients.
 - [SCHOTT optical-glass catalog archive](https://media.schott.com/api/public/content/a79c07aa61da4c05a2c0bbab93d09a7f?download=true&v=3b65e351), June 2025 AGF, named N-SF66 and N-SF1 entries. Catalog versions, exact coefficient rows, hashes and comparison residuals are preserved in the dossier.
+- [Schott Optical Glass 2025](https://media.schott.com/api/public/content/b37dbd8fa7e64662b2d0ae523ae56238?download=true&v=97f67105), PDF pp.132–133, legacy SF1 coordinates used to distinguish the selected proxy from N-SF1.

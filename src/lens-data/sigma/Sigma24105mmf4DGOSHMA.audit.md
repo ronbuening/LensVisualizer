@@ -177,3 +177,10 @@ Patent: local `patents/JP2015055858A.pdf`, Numerical Example 2. Its damaged Figu
 The 600 dpi grant inspection confirms the inferred rim sequence, stepped 6A/7 element and cemented pairs. Group brackets contaminate automatic rear readings; manual optical rims, rather than those readings, agree with current radii. No SD changed. All 19 glasses use catalog spectra; source blank A10 values remain the existing conditional zero assumption, not a newly established source value.
 
 The four native mounts, full-frame format, 19/14 counts and source-party metadata match the maker/source records. Sony A omits OS as already documented. Analysis synchronized with named HOYA curves and removal of synthetic line anchors.
+
+
+## 2026-10-16 — Live diagram, glass-color and travel review
+
+Rechecked the same-application Figure 11 (JP6125383B2.pdf p.21) at 600 dpi against local wide/tele sections. Retained the front square rims, 6A/7 step and cemented-pair rims; no SD change is justified. Wide-to-tele group coordinates all move objectward relative to the image, as the source states. Finite focus stays disabled; only the patent-described G2 objectward direction is explained. Added inferred APD colors to L8/L17 (FCD100) and L10/L11 (FCD515); the maker's construction graphic marks these FLD/SLD positions. The corresponding catalog ΔPgF values are about +0.04978/+0.01573. All nineteen curves and source nd/νd are unchanged. Sigma Corporation remains the single canonical Sigma assignee.
+
+All six release lenses retain 81/81 catalog-backed elements; no additional curve is needed to fill a coverage gap. Surface, image-circle and aperture audits pass at all ten infinity/zoom stations. The sole field-coverage limitation is Miranda's explicitly declared 22.5° half-field (94% of the full-frame corner); no rim clips its corner chief ray. No new changelog entry was added.

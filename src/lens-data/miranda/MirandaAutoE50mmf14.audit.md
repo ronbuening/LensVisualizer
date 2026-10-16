@@ -186,3 +186,10 @@ All constructor/parser/source-mapping, numerical, geometry, exact-trace, focus, 
 ### Stage 4 final disposition
 
 READY_FOR_BATCH is earned for the final nine-file dossier and its stated default-bundle/infinity-only scope. The raw BF and wider-grid noBracket comparisons remain visible with independent, executed resolutions. Peripheral internal full-rim clipping remains disclosed, not green-labeled as universal containment. No essential source value or candidate optical value was changed. The manifest binds approval to the exact final bytes and records clean extraction/replay. INTEGRATION_PENDING remains separate; no Git writes, full build, corpus sweep, integration, upload or publication was performed.
+
+
+## 2026-10-16 — Live diagram, glass-color and travel review
+
+Rechecked Figure 1 (US_3634001_A.pdf p.2) against the local page. The square front rim and stepped central doublets remain appropriate; no additional SD change is supported. All seven named spectral proxies still resolve. Infinity-only focus stays disabled. Miranda is one canonical assignee; its spelled-out Company Limited source variant is now guarded against reintroduction.
+
+All six release lenses retain 81/81 catalog-backed elements; no additional curve is needed to fill a coverage gap. Surface, image-circle and aperture audits pass at all ten infinity/zoom stations. The sole field-coverage limitation is Miranda's explicitly declared 22.5° half-field (94% of the full-frame corner); no rim clips its corner chief ray. No new changelog entry was added.

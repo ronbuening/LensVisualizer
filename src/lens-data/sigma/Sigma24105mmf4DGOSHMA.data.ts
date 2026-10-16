@@ -167,6 +167,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 86.251719,
       "glass": "FCD100 (HOYA coordinate equivalent; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "Inferred from the FCD100 spectral proxy: catalog PgF ≈ 0.53362, ΔPgF ≈ +0.04978. Sigma marks the corresponding position FLD; the patent gives no anomalous-dispersion designation or factory-glass identity.",
       "role": "Component of G3; isolated element focal length is not in-situ power."
     },
     {
@@ -194,6 +196,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 30.984787,
       "glass": "FCD515 (HOYA coordinate equivalent; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "Inferred from the FCD515 spectral proxy: catalog PgF ≈ 0.54412, ΔPgF ≈ +0.01573. Sigma marks the corresponding position SLD; the patent gives no anomalous-dispersion designation or factory-glass identity.",
       "role": "Component of G3; isolated element focal length is not in-situ power.",
       "cemented": "D2"
     },
@@ -208,6 +212,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 69.223363,
       "glass": "FCD515 (HOYA coordinate equivalent; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "Inferred from the FCD515 spectral proxy: catalog PgF ≈ 0.54412, ΔPgF ≈ +0.01573. Sigma marks the corresponding position SLD; the patent gives no anomalous-dispersion designation or factory-glass identity.",
       "role": "Component of G3; isolated element focal length is not in-situ power."
     },
     {
@@ -290,6 +296,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 200.213705,
       "glass": "FCD100 (HOYA coordinate equivalent; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "Inferred from the FCD100 spectral proxy: catalog PgF ≈ 0.53362, ΔPgF ≈ +0.04978. Sigma marks the corresponding position FLD; the patent gives no anomalous-dispersion designation or factory-glass identity.",
       "role": "Component of G5; isolated element focal length is not in-situ power.",
       "cemented": "D5"
     },
@@ -791,7 +799,7 @@ const LENS_DATA = {
     }
   ],
   "closeFocusM": 0.45,
-  "focusDescription": "NO_INTERNAL_RECONSTRUCTION: only three published infinity zoom states. G2 objectward focusing is patent-described but no finite-focus spacings are supplied; repeated focus endpoints do not model the marketed 0.45 m close-focus state. Conditional degree-8 28A/29A uses modeled A10=0; source cells remain unknown with no source-derived error bound.",
+  "focusDescription": "The patent describes G2 moving toward the object for closer focus, but provides only infinity-focus zoom prescriptions. The production lens focuses to 0.45 m. Intermediate zoom positions are interpolated. The model assumes zero for the unpublished A10 coefficients on surfaces 28A/29A; their effect on the result is unknown.",
   "nominalFno": [
     4.06,
     4.11,

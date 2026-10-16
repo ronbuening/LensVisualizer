@@ -22,7 +22,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * travel is modelled. The filter block 20 in Figure 1 has no prescription and is omitted.
  * Glass: source nd/vd are kept; runtime catalog curves supply qualified spectral proxies.
  * Catalog-computed line indices resolve centrally; the patent publishes nd/vd only.
- * N-SF1/SF1 catalog vd is 29.62 versus printed 29.50; TAF1 is 49.63 versus 49.62.
+ * SF1 proxy catalog vd is 29.51 versus printed 29.50; TAF1 is 49.63 versus 49.62.
  */
 
 const LENS_DATA = {
@@ -90,6 +90,8 @@ const LENS_DATA = {
       vd: 81.61,
       fl: 92.20472,
       glass: "FCD1 (Hoya)",
+      apd: "inferred",
+      apdNote: "Inferred from the FCD1 spectral proxy: catalog PgF ≈ 0.53885, ΔPgF ≈ +0.03232. Samyang marks the corresponding second element ED; the patent does not identify anomalous dispersion or a production melt.",
       role: "ED positive member of the net-negative L2-L3 doublet.",
       cemented: "D1",
     },
@@ -128,7 +130,7 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.5,
       fl: -40.414512,
-      glass: "N-SF1 (Schott; source Vd 29.50 retained, current catalog 29.62)",
+      glass: "SF1 (Schott spectral proxy for patent NSF1_SCHOTT; source νd 29.50 retained)",
       role: "Negative partner in the L4-L5 doublet ahead of the stop.",
       cemented: "D2",
     },
@@ -153,7 +155,7 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.5,
       fl: -52.798442,
-      glass: "N-SF1 (Schott; source Vd 29.50 retained, current catalog 29.62)",
+      glass: "SF1 (Schott spectral proxy for patent NSF1_SCHOTT; source νd 29.50 retained)",
       role: "Air-separated negative element in the rear physical group.",
     },
     {
@@ -191,7 +193,7 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.5,
       fl: -63.857962,
-      glass: "N-SF1 (Schott; source Vd 29.50 retained, current catalog 29.62)",
+      glass: "SF1 (Schott spectral proxy for patent NSF1_SCHOTT; source νd 29.50 retained)",
       role: "Negative meniscus member of the final net-positive doublet.",
       cemented: "D4",
     },

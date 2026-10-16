@@ -77,6 +77,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 184.808837,
       "glass": "FCD100 (HOYA; nd, νd and printed PgF match; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "Inferred from the printed partial dispersion and the FCD100 spectral proxy (PgF 0.5336). The corresponding production position is FLD; this does not establish the original supplier or melt.",
       "dPgF": 0.04975819999999992,
       "role": "Source element at surfaces 2–3; standalone positive power.",
       "cemented": "D1"
@@ -184,6 +186,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 62.245901,
       "glass": "FCD1 (HOYA; nd, νd and printed PgF match; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "Inferred from the printed partial dispersion and the FCD1 spectral proxy (PgF 0.5389). The corresponding production position is SLD; this does not establish the original supplier or melt.",
       "dPgF": 0.03236801999999994,
       "role": "Source element at surfaces 18–19; standalone positive power."
     },
@@ -211,6 +215,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 71.988498,
       "glass": "FCD100 (HOYA; nd, νd and printed PgF match; supplier unconfirmed)",
+      "apd": "inferred",
+      "apdNote": "Inferred from the printed partial dispersion and the FCD100 spectral proxy (PgF 0.5336). The corresponding production position is FLD; this does not establish the original supplier or melt.",
       "dPgF": 0.04975819999999992,
       "role": "Source element at surfaces 21–22; standalone positive power.",
       "cemented": "D3"
@@ -783,7 +789,7 @@ const LENS_DATA = {
   ],
   "maxFstop": 22,
   "closeFocusM": 0.4,
-  "focusDescription": "NO_INTERNAL_RECONSTRUCTION: source gives three infinity zoom states and G5 imageward focus direction but no finite spacings. Repeated focus endpoints keep internal groups fixed; 0.4 m is marketed MFD, not a verified source model endpoint. Linear zoom spacing interpolation is not a verified continuous cam.",
+  "focusDescription": "The patent describes G5 moving toward the image for closer focus, but provides only infinity-focus zoom prescriptions. The production lens focuses to 0.40 m. Intermediate zoom positions are interpolated; they do not establish the production zoom or focus mechanism.",
   "apertureBlades": 12,
   "groups": [
     {

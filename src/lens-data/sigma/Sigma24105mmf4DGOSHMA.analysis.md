@@ -370,14 +370,17 @@ identity claim. CDGM was not exhaustively checked. OHARA S- and L-prefix familie
 interchanged. [HOYA
 catalogue](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf).
 
+The inferred APD highlights identify L3a/L5b (FCD100, catalog ΔPgF ≈ +0.04978) and
+L3c/L3d (FCD515, catalog ΔPgF ≈ +0.01573), relative to the Schott normal line.
+These correspond to the FLD and SLD positions in [Sigma's construction diagram](https://www.sigma-global.com/lenses/a013_24_105_4_specification_01.jpg).
+The patent does not identify these materials as anomalous, and the color tags do not establish a production supplier or melt.
+
 ## Focus Mechanism
 
 Paragraph 0069 states that G2 moves toward the object when focusing from infinity to nearer
 objects. No finite-focus travel, finite spacing table or source magnification state is provided.
-The implemented focus status is NO_INTERNAL_RECONSTRUCTION: all published infinity states are
-retained, and required focus-endpoint pairs repeat the same numbers. The marketed 0.45 m minimum
-distance is metadata, not a reconstructed optical configuration. No finiteConjugates are
-certified.
+Only the published infinity-focus zoom prescriptions are represented. The production lens's
+0.45 m minimum focus is not reproduced by these prescriptions.
 
 The five source variable intervals are reproduced below. Gap changes define the three published
 zoom geometries; they do not specify the continuous cam law or establish an intermediate

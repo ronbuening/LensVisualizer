@@ -44,13 +44,13 @@ The focal lengths below are isolated thick-element values in air, calculated fro
 
 ### L1 — Biconvex Positive
 
-nd = 1.51680, νd = 64.2. Glass: 517642 — crown (catalog proxy; supplier unconfirmed). f = +126.0684 mm.
+nd = 1.51680, νd = 64.2. Glass: H-K9L (CDGM spectral proxy for 517642; supplier unconfirmed). f = +126.0684 mm.
 
 This is the front positive singlet in G1. Its relatively low index and moderate dispersion distinguish it from the denser cemented pair that follows. The patent assigns the complete G1, rather than this element alone, a fixed positive front-group role.
 
 ### L2 — Negative Meniscus
 
-nd = 1.92286, νd = 20.9. Glass: 923209 — dense flint (catalog proxy; supplier unconfirmed). f = -44.8102 mm.
+nd = 1.92286, νd = 20.9. Glass: N-SF66 (Schott spectral proxy for 923209; supplier unconfirmed). f = -44.8102 mm.
 
 L2 is the negative member of D1 with L3. It shares S4 directly with L3; the surface enters the downstream glass. Its high dispersion participates in the front cemented pair, but the patent does not isolate an individual aberration budget for L2.
 
@@ -62,67 +62,67 @@ L3 is the positive member of D1 and terminates G1. Its image-side S5 is the sole
 
 ### L4 — Plano-Concave
 
-nd = 1.91082, νd = 35.2. Glass: 911352 — high-index lanthanum flint (catalog proxy; supplier unconfirmed). f = -23.0205 mm.
+nd = 1.91082, νd = 35.2. Glass: K-LaSFn23 (Sumita spectral proxy for 911352; supplier unconfirmed). f = -23.0205 mm.
 
 The plane front surface and concave rear surface form a negative singlet at the front of G2. G2 translates imageward during close focusing. The small following air gap between S7 and S8 imposes the most restrictive shared-rim geometry constraint in the model.
 
 ### L5 — Biconcave Negative
 
-nd = 1.91082, νd = 35.2. Glass: 911352 — high-index lanthanum flint (catalog proxy; supplier unconfirmed). f = -14.1789 mm.
+nd = 1.91082, νd = 35.2. Glass: K-LaSFn23 (Sumita spectral proxy for 911352; supplier unconfirmed). f = -14.1789 mm.
 
 L5 is the negative member of D2, sharing S9 with L6. Together with L4 and L6 it belongs to the negative G2. The large isolated negative power is not the net power of D2 or G2.
 
 ### L6 — Positive Meniscus
 
-nd = 1.94595, νd = 18.0. Glass: 946180 — dense flint (catalog proxy; supplier unconfirmed). f = +18.5091 mm.
+nd = 1.94595, νd = 18.0. Glass: FDS18 (Hoya spectral proxy for 946180; supplier unconfirmed). f = +18.5091 mm.
 
 L6 is the positive member of D2. Its νd = 18.0 is the Vp used by conditions (1) and (2), not an ED coordinate. Paragraphs 0036–0038 discuss balancing this strongly dispersive positive element against the negative element in the second focus group.
 
 ### L7 — Biconvex Positive
 
-nd = 1.72916, νd = 54.7. Glass: 729547 — lanthanum crown (catalog proxy; supplier unconfirmed). f = +68.8345 mm.
+nd = 1.72916, νd = 54.7. Glass: TAC8 (Hoya spectral proxy for 729547; supplier unconfirmed). f = +68.8345 mm.
 
 L7 alone forms positive G3. Paragraphs 0028–0032 identify G3 as the laterally moving stabilization group. Its axial position is nominally fixed during focus, and the aperture is placed behind it at a fixed local separation.
 
 ### L8 — Biconvex Positive
 
-nd = 1.77250, νd = 49.6. Glass: 772496 — lanthanum flint (catalog proxy; supplier unconfirmed). f = +42.1164 mm.
+nd = 1.77250, νd = 49.6. Glass: E-LASF016 (Hikari spectral proxy for 772496; supplier unconfirmed). f = +42.1164 mm.
 
 L8 is the first positive singlet of G4. The complete positive G4 travels objectward during focusing. Its isolated shape and power do not establish a unique contribution to spherical aberration or coma.
 
 ### L9 — Negative Meniscus
 
-nd = 1.84666, νd = 23.8. Glass: 847238 — dense flint (catalog proxy; supplier unconfirmed). f = -26.6371 mm.
+nd = 1.84666, νd = 23.8. Glass: J-SF03 (Hikari spectral proxy for 847238; supplier unconfirmed). f = -26.6371 mm.
 
 L9 is the negative member of D3. Its νd = 23.8 supplies Vn in condition (2), paired conceptually with the dispersive positive L6 in G2. The comparison concerns the two moving functional groups, not a cemented pair spanning the stop.
 
 ### L10 — Biconvex Positive
 
-nd = 1.72916, νd = 54.7. Glass: 729547 — lanthanum crown (catalog proxy; supplier unconfirmed). f = +20.9728 mm.
+nd = 1.72916, νd = 54.7. Glass: TAC8 (Hoya spectral proxy for 729547; supplier unconfirmed). f = +20.9728 mm.
 
 L10 is the positive member of D3. Its source coordinate is shared with L7, although its radii and thickness differ. Equal material coordinates do not imply equal optical power or mechanical function.
 
 ### L11 — Biconvex Positive
 
-nd = 1.49700, νd = 81.6. Glass: 497816 — low-dispersion crown (catalog proxy; supplier unconfirmed). f = +70.1575 mm.
+nd = 1.49700, νd = 81.6. Glass: H-FK61 (CDGM spectral proxy for 497816; supplier unconfirmed). f = +70.1575 mm.
 
 L11 is the low-dispersion positive singlet at the rear of G4. Its placement matches the ED marking in Panasonic’s official construction diagram. The catalog-compatible proxy does not prove whether the production material is FCD1, a CDGM counterpart, or another coordinate-compatible melt.
 
 ### L12 — Biconcave Negative
 
-nd = 1.48749, νd = 70.4. Glass: 487704 — fluor crown (catalog proxy; supplier unconfirmed). f = -27.1287 mm.
+nd = 1.48749, νd = 70.4. Glass: N-FK5 (Schott spectral proxy for 487704; supplier unconfirmed). f = -27.1287 mm.
 
 L12 alone forms negative G5. It moves independently of G4 and is the lightweight single-element focus group highlighted by paragraph 0027. The source does not provide a continuous mechanical motion law between the three tabulated states.
 
 ### L13 — Biconcave Negative
 
-nd = 1.48749, νd = 70.4. Glass: 487704 — fluor crown (catalog proxy; supplier unconfirmed). f = -23.6833 mm.
+nd = 1.48749, νd = 70.4. Glass: N-FK5 (Schott spectral proxy for 487704; supplier unconfirmed). f = -23.6833 mm.
 
 L13 is the negative front member of the rear cemented pair D4. Its object-side surface is concave toward the object as specified for G6 in paragraph 0023. The paired rear group is weakly positive despite this negative member.
 
 ### L14 — Biconvex Positive
 
-nd = 1.83481, νd = 42.7. Glass: 835427 — lanthanum flint (catalog proxy; supplier unconfirmed). f = +23.0058 mm.
+nd = 1.83481, νd = 42.7. Glass: J-LASF05 (Hikari spectral proxy for 835427; supplier unconfirmed). f = +23.0058 mm.
 
 L14 is the positive rear member of D4. Its rear surface faces convexly toward image space. The final source BF follows S27 directly; no additional glass surfaces are dimensioned in the numerical table.
 
@@ -137,9 +137,9 @@ The four cemented net powers must be distinguished from the isolated element val
 
 ## Glass Identification and Selection
 
-The source publishes nd and νd, not commercial glass designations or melt certificates. A six-vendor search checked OHARA, HOYA, Schott, HIKARI, CDGM and Sumita catalog coordinates, including available obsolete rows. The implemented six-digit strings select compatible runtime curves where possible. The following are actual current-runtime selections, not claims of physical sourcing.
+The source publishes nd and νd, not commercial glass designations or melt certificates. The following named catalog curves approximate dispersion while preserving the patent's original indices and Abbe numbers; they do not identify the production supplier or melt.
 
-| Element | Source nd / νd | Runtime proxy selection | Limit |
+| Element | Source nd / νd | Dispersion proxy | Limit |
 |---|---|---|---|
 | L1 | 1.51680 / 64.2 | H-K9L (CDGM) | Coordinate-compatible proxy only |
 | L2 | 1.92286 / 20.9 | N-SF66 (Schott) | Coordinate-compatible proxy only |
@@ -156,9 +156,9 @@ The source publishes nd and νd, not commercial glass designations or melt certi
 | L13 | 1.48749 / 70.4 | N-FK5 (Schott) | Coordinate-compatible proxy only |
 | L14 | 1.83481 / 42.7 | J-LASF05 (Hikari) | Coordinate-compatible proxy only |
 
-The L11 six-digit coordinate is 497816. Its runtime selection and the separate FCD1 candidate must not be confused with the nearby S-FPL51 family, whose native coordinates differ. OHARA S- and L-prefix material families remain distinct throughout the catalog evidence.
+L11 has the 497816 coordinate and uses H-FK61 as a spectral proxy. Its catalog curve gives PgF ≈ 0.53801 and ΔPgF ≈ +0.03147 relative to the Schott normal line, supporting an inferred APD highlight at the production lens's ED position. This is a catalog-based inference, not a patent designation of anomalous glass.
 
-No patent-supplied nC, nF, ng or partial-dispersion values are present. None is invented on the elements. Catalog proxies provide modeled dispersion for thirteen elements; L3 remains on its native nd/νd fallback. This mixed spectral basis does not substantiate an apochromatic-performance claim or measured production chromatic behavior.
+The patent supplies no nC, nF, ng or partial-dispersion measurements. Catalog proxies provide modeled dispersion for all fourteen elements, including MC-TAF101-100 for L3. These approximations do not establish apochromatic performance or measured production chromatic behavior.
 
 ## Focus Mechanism
 

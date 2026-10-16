@@ -205,11 +205,15 @@ The patent defines its conditional anomalous-dispersion quantity as PgF−0.6483
 
 No source nC, nF or ng anchors are supplied. The runtime may resolve a compatible coordinate code to its catalogue dispersion model or use a source-PgF-corrected Abbe approximation. Such chromatic behavior remains a model; a coordinate match does not recover the unknown production melt. Full polychromatic MTF and production secondary-spectrum performance are not established.
 
+The inferred APD highlights identify L2/L12 (FCD100 proxies) and L10 (FCD1 proxy).
+Their printed partial dispersion agrees with the corresponding catalog curves, and [Sigma's construction diagram](https://www.sigma-global.com/lenses/28_105_28_dgdn_a024_lc.png) marks those positions FLD and SLD respectively.
+The highlights are inferred rather than patent-listed anomalous-glass identities; the original supplier and melt remain unconfirmed.
+
 ## Focus Mechanism
 
 The source describes rear internal focusing by G5: the cemented L14/L15 pair moves imageward from infinity toward the closest object. Figure 1’s dashed focus arrow supports that direction. Only three infinity-focus numerical states are published. There is no source travel, finite object distance, finite reproduction ratio or close-focus gap table for this example. [1, §0077, Fig. 1]
 
-The implemented disposition is NO_INTERNAL_RECONSTRUCTION. The source infinity gaps are repeated at both focus endpoints, so changing the focus control does not create a new internal configuration. Sigma’s 0.4 m production MFD and telephoto 1:3.1 magnification are retained as distinct marketing information; the optical model is not represented as reproducing them. The HLA drive system is a manufacturer fact and is not modeled mechanically. [2–3]
+Only the published infinity-focus zoom prescriptions are represented. Sigma’s 0.4 m production minimum focus and telephoto 1:3.1 magnification are separate manufacturer specifications; they are not reproduced by these prescriptions. The production lens uses an HLA focus drive. [2–3]
 
 Zoom motion is separate from focus. G2 and G6 stay fixed relative to the image plane. The other groups move objectward between the published wide and tele stations. The following movements are computed from source vertex positions relative to the fixed image plane, with objectward motion positive.
 

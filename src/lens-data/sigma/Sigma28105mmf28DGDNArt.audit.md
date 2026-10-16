@@ -1,6 +1,6 @@
-# Audit — Sigma 28–105mm F2.8 DG DN | Art, conditional standard-conic model
+# Audit — Sigma 28–105mm F2.8 DG DN | Art
 
-## Job, history and authority
+## Historical audits prior to the 16 October 2026 live-site review
 
 JP2025182227A, Numerical Example 1; exact stem Sigma28105mmf28DGDNArt. Original card/PDF remain unchanged. The initial blocked seven-file checkpoint remains preserved, archive SHA-256 8fdce97a811fce68be8b2a217e0d8d9a3d6021bd0e5b12cf70749052851261f2. It is not retrospectively marked passed.
 
@@ -20,149 +20,11 @@ Direct G6 focal length −2028.2004044553 mm differs from printed −2027.04 mm.
 
 Blank source exit media are interpreted as air; native scale is one. No source camera-stack rows occur, so no plate is invented. Patent native d-line PgF is preserved. Runtime dPgF=PgF−(0.6438−0.001682νd), while the source condition deviation is PgF−0.64833+0.00180νd. Both are computed separately. No catalogue nC/nF/ng is invented.
 
-## Source extraction and numerical evidence
+## Historical numerical review
 
-Complete selected Example 1: 18 elements, 13 air-separated groups, six functional groups, nine aspherical surfaces on five elements. All three numerical states are infinity. First-order EFLs are 28.5451129509 / 49.9992942410 / 102.3744545714 mm; Gaussian BFs 27.8968048844 / 27.8968215116 / 27.8972995142 mm; physical tracks to source image 174.4717 / 191.9826 / 216.1641 mm. The source BF is 27.8972 mm at all stations. Separate scalar and ABCD implementations agree. Known-element analytic and intentional-mutation checks pass.
+The source-first independent re-entry agreed on all 32 source rows, 18 glass/PgF records, 90 asphere coefficients and three infinity zoom states. The weak G6 source value −2027.04 mm is rounding-compatible with a bounded input perturbation, but no hidden precision was substituted. Condition (10) remains contradictory. These source issues are separate from the later accepted standard-square-root interpretation.
 
-Standalone element powers, cemented powers, functional powers, principal planes, inferred pupils, surface Petzval and conditions are retained in results. The native d-line Petzval sum is 0.00116660347307 mm⁻¹. Catalogue coordinate candidates were screened in original HOYA, OHARA, SCHOTT, SUMITA, HIKARI and CDGM sources, preserving exact vendor/prefix distinctions and residuals; compatibility does not establish a supplier.
-
-## Focus and interpolation scope
-
-NO_INTERNAL_RECONSTRUCTION: ¶0077/Figure 1 specify imageward G5 focus motion but publish no finite travel/gaps/distances. Manufacturer 0.4 m MFD and 1:3.1 tele reproduction are production facts only. No finite iris or internal focus states are invented.
-
-The three source zoom states are kept as the continuous native interpolation control points. Interior linear interpolation has a material Gaussian image-plane residual up to 0.9832857054 mm on the final 51-station grid. The residual remains numeric evidence, not a focus PASS. The model is not claimed parfocal between keyframes, and no source cam or compensation law is inferred. The geometry/fan acceptance scope is distinct from conjugate fidelity.
-
-## Independence and pending integration
-
-The independent source baseline and reconciliation are unchanged. They support the conditional equation decision but do not certify this final candidate. Final Pass B was pending at the Stage 3 checkpoint; its completed review is recorded below. No Git, desktop, IDE, repository build, full-corpus test, metadata generation, Library or Drive write occurred. Actual targeted source-module runtime execution, when performed, is distinguished from Python preflight and repository-wide quality gates. Integration remains INTEGRATION_PENDING.
-
-## Stage 2 accepted revision
-
-Data SHA-256: d4d92da6e404c52b964b972b8d5c4825e6fa70140f8698abc6ff1a3fb83a2764
-
-The final literal-only candidate is loaded directly by the portable verifier's explicitly limited JSON-payload/TypeScript-wrapper grammar. Duplicate keys, spreads, and trailing statements are rejected by intentional fixtures. Every source R/d/nd/K/A4–A20 value and zoom gap is checked against raw evidence. Parsed-data ABCD, standalone element powers, surface-by-surface Petzval and geometry are recomputed, rather than reading stored answers.
-
-Actual current-main modules execute under Node 24.19.0: validator, constructor, prepared states, field/pupil selectors, exact ray engine, shape generation and render diagnostics. The 136 loaded main files were rehashed against the 709dda72 reference manifest. The actual off-axis UI helper was additionally fetched at that pin and its exact 3566-byte content verified against Git blob d1b0023bca886250173c91f3141dc743db56444e. Native TS stripping is not type checking, and React hooks/DOM were not run.
-
-The final helper differs from a provisional local copy by removal of one extra trailing newline. All native calculations were rerun with exact primary-source bytes and stable numeric equality was established. A provisional seal containing the outdated audit was superseded before any checkpoint handoff; its archive is retained in working history. Only this corrected seal is the Stage 2 handoff.
-
-## Geometry, source coverage and default rays
-
-Native coverage includes 51 zoom values, focus controls 0/0.5/1, aperture controls 0/0.5/1, 5049 normal default UI rays and 3533 additional rays. Supplementary sampling includes meridional fans at centre/60%-field/corner and four circular-pupil radii with 16 azimuths at zoomT 0/0.24/0.5/0.76/1. This is finite sampling, not proof across all controls.
-
-All default rays also execute through public traceRay with camera-anchored layout. They agree with detailed native engine traces in clipping and y/u within 1e-8. The launch uses L.rayLead, current physical stop/current yRatio entrance radius and focusK, together with the actual offAxisRayUtils code. Cached nominal EP is not substituted.
-
-Validator, constructor, shape generation, exact published corner chiefs, absence of internal-cemented first clips, and absence of unexplained failures before physical rejection pass. Maximum hidden native render trim is 0 mm. Portable geometry samples 257 radii per face/shared band; maximum actual rim angle is 47.944789° (7A), minimum sampled glass edge thickness is 0.156466979 mm (L2), and conic domains/shared-band air-gap intrusion satisfy unchanged current limits.
-
-SDs are modeled clear radii, not source dimensions. Figure 1 supplied initial proportions, then exact rays and shape constraints refined the radii. Initial 7A/gap rim estimates failed geometry and were corrected to 15.2 mm at 7A/8/9/10. An initial 16 mm internal interface 21 caused eleven artificial first clips inside a cemented group; increasing only this unpublished interface radius to 16.5 mm removed them, preserving adjacent external rims and every published prescription coordinate. The final profiles show no sampled inward-slope reversal within their modeled domains.
-
-Final native classification: 7249 transmitted, 137 first-stop and 1196 first-exterior rejections, 0 internal first clips, and 0 unexplained pre-rejection failures. The 525 post-clip ghost failures are separately recorded. Native noBracket first-sphere misses are not called transmissions: analytic full-sphere intersection establishes a radius outside the modeled 35 mm front aperture (tele full-rim meridional example 44.348486 mm). Raw engine status remains preserved in native.exteriorFirstMisses.
-
-Published half-fields 38.555°/22.72°/11.375° have converged exact chief rays and absolute image heights 21.628175794/21.628370397/21.634184513 mm against source 21.63 mm. This establishes sampled chief-ray coverage, not an unvignetted full corner pupil or measured production illumination.
-
-## Aperture and interpolation disclosures
-
-Inferred native exact-calibration physical iris radii: 11.020345346/13.332049973/15.507442322 mm. They use the source F2.91 nominal entrance-ray radius at the source stations. The earlier paraxial iris targets remain separate calculations. No published/measured iris schedule exists. Between stations the application interpolates the inferred physical radii.
-
-Current UI pupil radius is physical iris divided by current small-ray front-group ratio. Corresponding geometric paraxial F-numbers are 2.885076/2.860258/2.816859; these are distinct from the source nominal F2.91 marking. Exact pupil calibration is not independent physical-aperture evidence.
-
-The three source stations retain near-zero Gaussian residuals. Native continuous interpolation is tested for geometry and default rays, but gives maximum sampled |image gap−Gaussian BF| 0.9832857054 mm at zoomT 0.26. That is retained numeric focus error, not a PASS on parfocality or a source cam. No compensating cam, fixed-preset replacement, dimension change or finite-focus reconstruction was added.
-
-## Quantitative claim map
-
-- Source conventions/metadata/values: evidence.rawPrescription, sources and transformations.
-- Conditional equation and unresolved condition (10): evidence.approvedInterpretation; results.comparisons.
-- Parsed model EFL/BF/track, standalone powers and Petzval: results.implementedModel.
-- SD sag, departure, slope, domain, edge and gap checks: results.implementedModel.geometry.
-- Actual runtime inputs/coverage/classification, clear corner chiefs, public UI equivalence and render trim: native.json and recorded LENSVISUALIZER checks, bound to the exact data hash.
-- Spectral baseline conversion: results.sourceModel.glassAndSpectra and data dPgF, compared to native source PgF.
-- Catalogue compatibility and runtime resolution: evidence.glassEvidence and native.constructor.glassResolution.
-- Scope limits: evidence.scopeDecision and results.implementedModel.interpolationDiagnostic.
-
-READY_FOR_ANALYSIS binds to the final data/evidence/verifier/native/results checkpoint, conditional on the approved equation interpretation. Stage 3 begins only after this checkpoint's clean extraction and both portable/native replay. Final independent Pass B and repository-wide quality gates remain pending.
-
-## Analysis-driven correction and replacement Stage 2 checkpoint
-
-The analysis cross-check exposed two derived six-digit class-code rounding errors: L5 772496→773496 and L17 911352→911353. Exact decimal half-up rounding gives the corrected labels; nd, vd, source PgF, dimensions and all aspheres are unchanged. These are derived annotation corrections, not a source correction. The old accepted Stage 2 revision is preserved as superseded.
-
-The Stage 2 gate was reopened before analysis continued. The verifier now checks conventional half-up code generation explicitly. The actual native validator/constructor, complete state/ray/geometry checks and portable computations were rerun on the corrected data. Stable d-line numerical outputs were unchanged; runtime glass-resolution metadata was regenerated, not carried forward. The replacement checkpoint supersedes the earlier data fingerprint.
-
-## Stage 3 analysis and cross-file reconciliation
-
-The companion analysis was authored from the replacement Stage 2 checkpoint after entry hash checks and fresh portable/native replay. An initial analysis pass exposed the derived-code errors recorded above; Stage 2 was reopened and replaced before the final analysis resumed. From that replacement checkpoint onward the data, evidence, verifier and native-run record are unchanged.
-
-The analysis has the required identification/architecture/element/glass/focus/asphere section order, followed by applicable conditions, model scope and primary references. It covers all 18 element labels with final nd/vd/code/fl values, all nine K/A4–A20 sets, the native-to-runtime PgF normal-line conversion, retained source conflicts, the explicit conditional equation, inferred SD/iris status, absent finite reconstruction and limited continuous interpolation. No readiness badge, integration claim, marketing performance language or invented design attribution appears in the analysis.
-
-Executed cross-file checks cover metadata, disclosures, per-element nd/vd/rounded focal length, all coefficient cells within their surface subsections, headline EFL rounding and source-reference presence. A manual-assisted numerical review additionally checked 57 group/cemented/condition and per-asphere radius/sag/slope/departure cells against their executed result records. Narrative powers are described as standalone, cemented or functional-group values rather than being conflated; no individual aberration correction is inferred solely from power sign or glass class. Citations and scope language were manually reviewed against the original source and manufacturer records.
-
-### Analysis claim-to-result map
-
-| Analysis section / claim | Governing fact or result | Governing revision/source |
-|---|---|---|
-| Identification, source/marketing distinction, counts and chronology | SOURCE-CONSTRUCTION; evidence.sources/productCorrelation | Original JP and manufacturer sources; final data metadata |
-| Conditional equation and unrepaired formula | evidence.approvedInterpretation; literal-source comparison FAIL | Original ¶0067 plus limited user approval |
-| Architecture / group focal lengths / cemented powers | sourceModel.functionalGroups/cementedGroups; parsed model source-map checks | Unchanged source coordinates; final data |
-| Every element coordinate, class code and fl | IMPLEMENTED-ELEMENTS; parsed-element-powers; glass-coordinate-code-rounding | Replacement Stage 2 data |
-| Glass candidates / PgF-to-dPgF conversion | sourceModel.glassAndSpectra; evidence.glassEvidence; final element dPgF | Primary catalogue excerpts and original PgF |
-| Focus direction, absent finite reconstruction, group motion | SOURCE-FOCUS-LIMITATION; sourceModel.zoomMotion | Original ¶0077/Figure 1/source spacings |
-| Continuous interpolation residual | IMPLEMENTED-ZOOM-LIMITATION; implementedModel.states | Final native linear interpolation; diagnostic only |
-| Every asphere K/A4–A20 table and modeled-radius sag/slope/departure | IMPLEMENTED-GEOMETRY; analysis-asphere-coefficient-tables | Final parsed data under conditional equation |
-| Conditions 1–9 / literal condition 10 failure | sourceModel.conditions/condition10Alternatives | Original definitions and Table 1; no repaired condition |
-| Iris/pupil table, exact corner chiefs, clipping/trim/sample coverage | NATIVE-RUNTIME and native.json | Actual 709dda72 source modules, bound final-data SHA |
-| Petzval | implementedModel.Petzval and sourceModel.Petzval | Final parsed source-identical prescription |
-
-READY_FOR_AUDIT applies to the exact final pair and package, subject to the disclosed conditional model scope. Independent final Pass B is still required; no READY_FOR_BATCH or integration claim is made.
-
-## Portable replay
-
-Standard-library numerical and final-file replay:
-
-`python Sigma28105mmf28DGDNArt.verify.py --package-dir <extracted-directory> --output <results-outside-package.json>`
-
-To re-execute the actual native checks as well, append `--reference-root <verified-current-source-root>`. That root must contain the recorded `src/` tree at pin 709dda72; each executed shared dependency is hash-checked before Node runs. Node 24.19.0 was used. The package includes the native probe, TS resolver and exact extra off-axis helper; shared project code is an explicitly declared external dependency, not hidden in the archive.
-
-Without that optional root, Python recomputes the source/parsed-data/geometry/analysis checks and validates recorded native input fingerprints. It does not claim a new native execution. The sealed clean-extraction replay was run with the reference-root option and re-executed the native checks successfully. Output must stay outside the extracted package.
-
-
-## Stage 4 final independent Pass B — 2026-10-04
-
-### Frozen-source provenance and exact pair
-
-Before extracting the candidate, this reviewer located the original candidate-blind source baseline, verified its archive SHA-256 2c1ecc991c2e0e2ab2748209897c5cd99c2f1b6af6147c3ce282acb774946a9a, every non-manifest member and the frozen fingerprint fb7598791626daa519709025a20d092e18b127394beb024e62eb79571254391c. Fresh baseline execution exactly reproduced its original exit-2 result. The complete source-only scientific evidence, original verifier, original results and audit are retained in independent.json, with the identical PDF/card supplied at root. One private source-storage URL in the delivered baseline evidence copy is replaced by its public publication URL. The original archive/member fingerprints were verified before this privacy-only redaction; original and delivered evidence hashes are separately recorded. All scientific inputs and the original results/code/audit remain unchanged. Replay excludes only the changed evidence-file input hash when comparing the original result record. No new candidate-blind extraction is claimed for this continuation: the candidate summary and approved scope were visible before Pass B. The recorded earlier source-first exposure remains unchanged.
-
-The supplied Stage 3 archive SHA-256 22034c38a60bd6f61fd23eb322e93d240a99bbb28dbdd5fced4a7b35df92e95d and all thirteen member hashes matched. Its exact data and analysis are unchanged in this final dossier: data d4d92da6e404c52b964b972b8d5c4825e6fa70140f8698abc6ff1a3fb83a2764; analysis e68ab75bcba3a3cae452f60e915853670a109156715a4b9382105ac23418eb11. Source pages 14–17 were visually reinspected. Sigma's product page and launch notice were rechecked directly for counts, mounts, format, diaphragm, MFD, magnification, HLA and announcement/launch dates.
-
-### Independent numerical and geometry reconciliation
-
-All 32 source rows at three stations, all 90 conic/coefficient entries, 18 native glass/PgF records and every implemented zoom spacing agree with the frozen independent re-entry. The independent scalar and matrix implementations now also consume the final parsed TypeScript values, reproducing EFL/BF/principal-plane calculations over 51 states, all standalone/cemented/functional powers and the surface-by-surface Petzval sum. Cemented downstream identity, exactly one stop, unchanged scale, no inserted plates and no finite reconstruction were checked. The independent primary-catalog coordinate evidence remains distinct from the author's broader six-catalog screen; no supplier identity or full-spectrum equivalence is inferred.
-
-A separately implemented complete conic/polynomial profile and derivative check sampled 2,049 radii per face/shared band. Minimum glass edge remains 0.15646697854006053 mm; maximum actual rim angle remains 47.944789097553965 degrees. Shared-band gap intrusion, mathematical conic domains and absence of sampled inward-slope reversals pass. The minimum of each piecewise-linear axial gap occurs at a keyframe, so intermediate gap minima are covered without inventing a cam. Sampling is not a proof over continuous radial domains.
-
-The printed G6 focal length still fails direct rounding comparison. A constructive independent diagnostic reproduces −2027.0400000000125 mm by moving source inputs only 0.4105722859293337 of their half-last-printed units along a bounded sensitivity direction. This establishes a rounding-compatible prescription exists; it is not the source's recovered hidden precision, and no diagnostic value is applied to the final data. The original raw FAIL stays visible.
-
-Condition (9) has an explicit reference-plane distinction: the earlier baseline used computed Gaussian BF, while the source-expression branch uses published image gap BF. Both round to the same printed condition. Condition (10) remains contradictory: printed fW gives 18.5741161021 degrees and the computed-EFL diagnostic gives 18.5764767444 degrees, neither reproducing 37.15 degrees. These are separate diagnostic inputs, not silent repairs. The official source is not corrected.
-
-### Current native selectors, physical rejection and ghost separation
-
-The actual released 709dda72 modules were cleanly replayed with all 136 executed dependency hashes checked. Current physical iris and current state-aware entrance pupil selectors match useLensComputation; normal density returns the current six axial and five off-axis fractions. The exact pinned off-axis geometry helper includes the current field clamp. useOffAxisRays and appConfig generic source bytes additionally match the pinned Git tree. No cached nominal EP was substituted, and no unmerged engine code was used. React hooks/DOM, full TypeScript compilation and full application rendering are not claimed.
-
-The fresh independent extension executes each of the 8,582 ghost-enabled sampled rays again with ghost=false and stopOnClip=true. All 7,249 transmitted physical paths agree, all first rejections terminate at the same actual interface and radius, and no transmitted hit exceeds its aperture. There are 1,331 physical aperture stops plus two first-surface intersection misses independently classified as exterior misses by exact full-sphere intersection. They reconcile to 137 first-stop and 1,196 first-exterior rejections. There are zero first cemented-interface rejections, zero unexplained failures before physical rejection and zero hidden render trim. The 525 post-first-clip ghost failures are preserved; they are not counted as failed physical transmissions. The original ray/numerical records are unchanged, and this extra paired-trace check is now reproducible in native.mjs.
-
-Default coverage remains 51 zoom × 3 focus × 3 aperture states × 11 rays = 5,049. Additional meridional fans and circular-pupil corner samples total 3,533. Published corner chiefs separately match the original 21.63 mm image height to within 0.004185 mm. These are finite d-line geometric tests, not unvignetted corner-pupil or production illumination claims.
-
-### Corrections and validation independence
-
-No optical data or analysis number was corrected in this pass. Earlier two derived glass-code rounding fixes remain in their historical correction register. This pass removes private processing/account/source-storage/approval identifiers, replaces the verifier's private-ID string equality with the exact semantic approved conditional scope, and corrects stale Stage 1 statements that said no application candidate existed. The permitted equation assumption remains explicit and bounded. The raw equation, condition conflict, source comparisons, inferred apertures and interpolation/focus qualifications are untouched.
-
-The verifier now retains and re-executes the original independent source calculation path, adds actual-final-model comparisons, denser geometry and expanded analysis numerical coverage, and writes failure diagnostics on exceptions. Intentional wrong-radius, wrong-asphere-exponent, wrong-glass-index, stale-analysis-EFL, removed-approval, erased-condition-conflict and altered-baseline fixtures were all rejected. These corrections and verifier extensions were authored by this auditor; their independent basis is the immutable pre-candidate source baseline plus separately constructed tests, not a second fresh reviewer of the added code.
-
-### Final disposition
-
-READY_FOR_BATCH is earned for this explicitly conditional standard-square-root model and the final hashed dossier only. It does not assert literal-source equation conformity or official correction. Maximum sampled interpolation defocus remains 0.9832857054 mm at zoomT 0.26, with no parfocality claim or invented compensating cam. Finite internal focus remains NO_INTERNAL_RECONSTRUCTION. The complete original raw baseline failures remain visible as historical/source observations; supported discrepancy treatments are separate acceptance checks.
-
-Integration remains INTEGRATION_PENDING. Repository-wide typecheck/format/lint/corpus tests, metadata generation, production build and application integration remain NOT_RUN at integration scope. No upload, publication, repository mutation or integration occurred in this pass.
-
-Final privacy note: the original frozen baseline is retained unchanged in the audit workspace. The portable copy changes only sources[0].url to remove private storage identity, with separate original/delivered SHA-256 and byte counts. This is a post-freeze privacy annotation and does not rewrite any original scientific conclusion. The final scan recurses through serialized JSON records.
+The maximum sampled intermediate-zoom defocus was 0.9832857054 mm near zoomT 0.26. This was accepted without claiming parfocality or inventing a compensating cam. The patent supplies a G5 imageward focus direction, not finite-focus spacings. Earlier stage receipts and raw failures refer to their historical file revisions; the current source limits remain in the analysis and data header.
 
 ## 2026-10-16 — Semi-diameter pass against the patent figure
 
@@ -282,3 +144,10 @@ Patent: local `patents/JP2025182227A.pdf`, Numerical Example 1, Figure 1, PDF p.
 The earlier minimum-axial-floor-only pass explicitly left these last two components smaller than the figure. This broader silhouette pass includes them. Other rims agree within the existing source/geometry limits; STO and the inferred iris schedule remain unchanged. No gap-sag or slope exception is introduced. All 18 elements retain catalog spectra and their patent-published partial dispersion.
 
 [Maker product page](https://www.sigma-global.com/en/lenses/a024_28_105_28/) confirms L-mount/Sony E, full frame, 18/13 counts and Art branding. Existing equation convention, interior-zoom defocus and absent finite-focus-law limitations remain. Analysis updated for the larger final rims and recomputed asphere departure.
+
+
+## 2026-10-16 — Live diagram, glass-color and travel review
+
+Rechecked Figure 1 (JP2025182227A.pdf p.43) at 600 dpi against local wide/tele sections. The already-corrected rear 18.3/17.4 mm rims and front steps agree; no further SD change is supported. G2/G6 stay fixed relative to the image and G1/G3/G4/G5 move objectward as zoom increases. G5 imageward focus is source-described but remains disabled without finite spacings. Added inferred APD color to L2/L12 (FCD100) and L10 (FCD1); the maker's color diagram confirms the corresponding FLD/SLD positions. The printed PgF values and all eighteen curves remain unchanged. Sigma Corporation is already consolidated; no legal entity is merged across a rename.
+
+All six release lenses retain 81/81 catalog-backed elements; no additional curve is needed to fill a coverage gap. Surface, image-circle and aperture audits pass at all ten infinity/zoom stations. The sole field-coverage limitation is Miranda's explicitly declared 22.5° half-field (94% of the full-frame corner); no rim clips its corner chief ray. No new changelog entry was added.

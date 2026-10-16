@@ -125,6 +125,8 @@ Displayed catalog νd and νd recomputed from published dispersion coefficients 
 
 The patent's stated strategy uses multiple high-Abbe positive elements in G1 to reduce axial chromatic generation before subsequent groups magnify it. The moving second-unit cemented pair and rear-unit doublet offer additional chromatic and off-axis control. Quantitative production secondary-spectrum performance cannot be inferred from those structural features alone. [P, col. 3–5]
 
+The three S-FPL51 proxies at L12, L13 and L32 give catalog PgF ≈ 0.53746 and ΔPgF ≈ +0.03081 relative to the Schott normal line. Their APD highlights are inferred from these curves and are consistent with the production lens's three ED elements [O]; they are not patent-listed anomalous-glass identities.
+
 ## Focus Mechanism
 
 Example 3 uses differential internal focus: G2 moves toward the image and G3 toward the object. G1 and G4 are nominally fixed. The two published gap states are retained exactly; linear interpolation between them is illustrative and is not a recovered production cam law or a set of validated finite conjugates. The source does not supply a motor prescription. [P, col. 9–10]
