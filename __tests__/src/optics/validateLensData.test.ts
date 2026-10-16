@@ -364,6 +364,14 @@ describe("validateLensData", () => {
     expect(errors.some((error) => error.includes('"clips" is engine-generated'))).toBe(true);
   });
 
+  it("reserves IMG, the image plane's label, as a surface label", () => {
+    const valid = makeValid();
+    const surfaces = valid.surfaces as Record<string, unknown>[];
+    expect(
+      validateLensData({ ...valid, surfaces: [surfaces[0], surfaces[1], { ...surfaces[2], label: "IMG" }] }),
+    ).toContain('surfaces[2] ("IMG"): the label IMG is reserved for the image plane');
+  });
+
   it("reserves the teleconverter label prefix for composed systems and checks their descriptor", () => {
     const valid = makeValid();
     const surfaces = valid.surfaces as Record<string, unknown>[];
