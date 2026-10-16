@@ -5,8 +5,9 @@
  */
 
 import { closeFocusAtZoom } from "../focusDistance.js";
+import { interpolateStationTable, clampStationControl } from "../state/stationTables.js";
 import type { RuntimeLens } from "../../types/optics.js";
-import { FOCUS_INFINITY_THRESHOLD } from "../layout.js";
+import { FOCUS_REPORTING_INFINITY_THRESHOLD } from "../focusDistance.js";
 import { eflAtFocus2 } from "./focusBreathing.js";
 
 /**
@@ -30,24 +31,24 @@ export function effectiveFNumber2(
   L: RuntimeLens,
   aberrationT = 0,
 ): number {
-  if (focusT < FOCUS_INFINITY_THRESHOLD) return nominalFNumber;
+  if (focusT < FOCUS_REPORTING_INFINITY_THRESHOLD) return nominalFNumber;
   const efl = eflAtFocus2(focusT, zoomT, L, aberrationT);
   const focusDistMm = (closeFocusAtZoom(zoomT, L) / focusT) * 1000;
-  const denom = focusDistMm - efl;
-  if (Math.abs(denom) < 1e-10) return nominalFNumber;
-  /* Thin-lens magnification estimate using object distance measured from the image-side focal reference. */
-  const m = -efl / denom;
-  const epSD = L.isZoom && L.zoomEPs ? interpolateZoomArray(zoomT, L.zoomEPs) : L.EP.epSD;
-  const xpSD = L.isZoom && L.zoomXpSDs ? interpolateZoomArray(zoomT, L.zoomXpSDs) : L.xpSD;
-  const p = Math.abs(epSD) > 1e-10 ? Math.abs(xpSD) / Math.abs(epSD) : 1;
-  return nominalFNumber * (1 + Math.abs(m) / (p > 1e-10 ? p : 1));
+  const m = focusMagnification(efl, focusDistMm);
+  if (m === null) return nominalFNumber;
+  const epSD = L.isZoom && L.zoomEPs ? interpolateStationTable(clampStationControl(zoomT), L.zoomEPs) : L.EP.epSD;
+  const xpSD = L.isZoom && L.zoomXpSDs ? interpolateStationTable(clampStationControl(zoomT), L.zoomXpSDs) : L.xpSD;
+  return correctedFNumber(nominalFNumber, m, epSD, xpSD);
 }
 
-function interpolateZoomArray(zoomT: number, values: readonly number[]): number {
-  if (values.length === 1) return values[0];
-  const t = Math.max(0, Math.min(1, Number.isFinite(zoomT) ? zoomT : 0));
-  const pos = t * (values.length - 1);
-  const idx = Math.min(Math.floor(pos), values.length - 2);
-  const frac = pos - idx;
-  return values[idx] + (values[idx + 1] - values[idx]) * frac;
+function focusMagnification(efl: number, focusDistMm: number): number | null {
+  const denom = focusDistMm - efl;
+  // Thin-lens magnification with object distance measured from the focal reference.
+  return Math.abs(denom) < 1e-10 ? null : -efl / denom;
+}
+
+function correctedFNumber(nominalFNumber: number, m: number, epSD: number, xpSD: number): number {
+  const p = Math.abs(epSD) > 1e-10 ? Math.abs(xpSD) / Math.abs(epSD) : 1;
+  // Effective exposure f-number: N_eff = N * (1 + |m| / pupil magnification).
+  return nominalFNumber * (1 + Math.abs(m) / (p > 1e-10 ? p : 1));
 }

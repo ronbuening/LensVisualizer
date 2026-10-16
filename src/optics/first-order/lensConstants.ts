@@ -1,7 +1,8 @@
 /** Build-time optical and display constants from compiled prescription records, without a runtime view. */
 
 import type { CompiledPrescription, CompiledSurface, LensConstants, Ray3 } from "../types.js";
-import { buildStateSurfaces, sumSurfaceThicknesses, zoomIndexToT } from "../prescription/compileControls.js";
+import { buildStateSurfaces, sumSurfaceThicknesses, buildZPositions } from "../state/layout.js";
+import { zoomIndexToT } from "../state/stationTables.js";
 import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
 import {
   traceParaxialSurfaces2 as traceSurfacesParaxial,
@@ -258,8 +259,7 @@ function buildTraceGeometry(
   imagePlane?: ResolvedImagePlane,
   compiled?: readonly CompiledSurface[],
 ): TraceGeometry {
-  const z = [0];
-  for (let i = 0; i < S.length - 1; i++) z.push(z[i] + S[i].d);
+  const z = buildZPositions(S.map((surface) => surface.d));
   const surfaces = compiled
     ? compiled.map((surface, i) => Object.freeze({ ...surface, d: S[i].d, sd: S[i].sd }))
     : compileSurfaces(S, S, asphByIdx);
@@ -366,8 +366,7 @@ export function computeLensConstants(lens: CompiledPrescription): LensConstants 
   const preserveAuthoredStopSD = S[stopIdx]?.stopPlacement === "inside-element";
 
   if (lens.flags.isFoldedOptics) {
-    const z = [0];
-    for (let i = 0; i < N - 1; i++) z.push(z[i] + S[i].d);
+    const z = buildZPositions(S.map((surface) => surface.d));
     const fallbackImageZ = z[N - 1] + S[N - 1].d;
     const imagePlane = resolveImagePlane(data, fallbackImageZ);
     const zMin = Math.min(imagePlane.z, ...z);
@@ -740,17 +739,16 @@ export function computeLensConstants(lens: CompiledPrescription): LensConstants 
     const nz = data.zoomPositions!.length;
     let maxTrack = 0;
     for (let zi = 0; zi < nz; zi++) {
-      let track = 0;
-      for (let i = 0; i < N; i++) {
-        const v = varByIdx[i];
-        track += v ? (v as [number, number][])[zi][0] : S[i].d;
-      }
+      // Read authored rows directly: a station-index round trip through zoomT can change the last bits.
+      const gaps = S.map((surface, i) => ({
+        d: varByIdx[i] ? (varByIdx[i] as [number, number][])[zi][0] : surface.d,
+      }));
+      const track = sumSurfaceThicknesses(gaps, N);
       maxTrack = Math.max(maxTrack, track);
     }
     totalTrack = maxTrack;
   } else {
-    const z = [0];
-    for (let i = 0; i < N - 1; i++) z.push(z[i] + S[i].d);
+    const z = buildZPositions(S.map((surface) => surface.d));
     totalTrack = z[N - 1] + S[N - 1].d;
   }
   const imagePlane = resolveImagePlane(data, totalTrack);

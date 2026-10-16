@@ -11,7 +11,7 @@ import type { AberrationVarRange, VarRange } from "../../types/optics.js";
 import { clamp, normalizeControlT } from "../math/numerics.js";
 import type { CompiledStateSurface, CompiledLens, Plane3, PreparedOpticalState } from "../types.js";
 import { Optics2PreparationError } from "../types.js";
-import { resolveControlledThickness } from "../prescription/compileControls.js";
+import { resolveControlledThickness, buildZPositions } from "../state/layout.js";
 
 const PREPARED_STATE_CACHE_LIMIT = 96;
 const PREPARED_STATE_BY_LENS = new WeakMap<CompiledLens, PreparedOpticalState[]>();
@@ -196,12 +196,6 @@ function resolvePreparedThickness(
     );
   }
   return thickness;
-}
-
-function buildZPositions(thicknesses: readonly number[]): number[] {
-  const z = [0];
-  for (let i = 0; i < thicknesses.length - 1; i++) z.push(z[i] + thicknesses[i]);
-  return z;
 }
 
 function resolveStateImagePlane(lens: CompiledLens, defaultImgZ: number): Plane3 {

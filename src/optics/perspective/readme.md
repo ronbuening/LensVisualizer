@@ -61,6 +61,7 @@ flowchart LR
   n_src_optics_perspective_src_optics_perspective_pupilBundle_ts --> n_external_src_optics_math
   n_src_optics_perspective_src_optics_perspective_sensorBasis_ts --> n_external_src_optics_math
   n_src_optics_perspective_src_optics_perspective_fieldGeometry_ts --> n_external_src_optics_prescription
+  n_src_optics_perspective_src_optics_perspective_fieldGeometry_ts --> n_external_src_optics_state
   n_src_optics_perspective_src_optics_perspective_trace_ts --> n_external_src_optics_state
   n_src_optics_perspective_src_optics_perspective_chiefRay_ts --> n_external_src_optics_types_ts
   n_src_optics_perspective_src_optics_perspective_diagramFan_ts --> n_external_src_optics_types_ts
@@ -71,7 +72,6 @@ flowchart LR
   n_src_optics_perspective_src_optics_perspective_fieldTypes_ts --> n_external_src_optics_types_ts
   n_src_optics_perspective_src_optics_perspective_pose_ts --> n_external_src_optics_types_ts
   n_src_optics_perspective_src_optics_perspective_pupilBundle_ts --> n_external_src_optics_types_ts
-  n_src_optics_perspective_src_optics_perspective_sensorBasis_ts --> n_external_src_optics_types_ts
   n_src_optics_perspective_truncated["additional relationships omitted"]
 ```
 
@@ -95,7 +95,7 @@ flowchart LR
 | `chiefRay.ts` | Chief Ray helper module | src/optics/math (2), same folder, src/optics/field, src/optics/types.ts, src/types | same folder (7) | PerspectiveFieldStatus, PerspectiveChiefRayOptions, PerspectiveChiefRayResult, solvePerspectiveChiefRay, perspectiveTraceStatus, isPerspectiveDirectionInsideProjectionDomain |
 | `diagramFan.ts` | Diagram Fan helper module | same folder (3), src/optics/types.ts, src/types | src/components/hooks (3), same folder | PerspectiveDiagramFanSample, PerspectiveDiagramFan, TracePerspectiveDiagramFanParams, tracePerspectiveDiagramFan, cameraDirectionForDiagramField |
 | `diagramTrace.ts` | Diagram Trace helper module | same folder, src/optics/types.ts, src/types | same folder (2) | PerspectiveDiagramTrace, PerspectiveDiagramTraceOptions, perspectiveTraceToDiagram, cameraPointToDiagram, perspectiveVectorLeadPoint |
-| `fieldGeometry.ts` | Field Geometry helper module | same folder (3), src/optics/field, src/optics/first-order, src/optics/geometry, src/optics/layout.ts, +4 more | same folder (7) | SensorUv, FieldPlaneFrame, PerspectiveProjectionReference, PerspectiveFieldSamplingError, requirePerspectiveImageFormatMetadata, resolvePerspectiveFocalLength, perspectiveProjectionReference, createFieldPlaneFrame, +11 more |
+| `fieldGeometry.ts` | Field Geometry helper module | same folder (3), src/optics/field, src/optics/first-order, src/optics/geometry, src/optics/layout.ts, +5 more | same folder (7) | SensorUv, FieldPlaneFrame, PerspectiveProjectionReference, PerspectiveFieldSamplingError, requirePerspectiveImageFormatMetadata, resolvePerspectiveFocalLength, perspectiveProjectionReference, createFieldPlaneFrame, +11 more |
 | `fieldResults.ts` | Field Results helper module | same folder (3), src/optics/types.ts | same folder | boundedFieldStatus, unavailableFieldSample |
 | `fieldSampling.ts` | Field Sampling helper module | same folder (13), src/optics/math, src/optics/types.ts | same folder (10), src/optics/analysis | PerspectiveFieldSamplingError, SensorUv, sampleCircularPupilBundle, sampleMeridionalPupilBundle, PerspectivePupilBundle, PerspectivePupilBundleRequest, PerspectivePupilPoint, PerspectivePupilRaySample, +10 more |
 | `fieldTypes.ts` | Field Types helper module | same folder (5), src/optics/types.ts | same folder (2) | FieldSampleDomain, PerspectiveFieldRequest, FieldSample, PerspectiveFieldSamplingOptions |

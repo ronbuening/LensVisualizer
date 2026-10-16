@@ -4,8 +4,9 @@
  * Exposes the first-order EFL calculation through a RuntimeLens-friendly signature.
  */
 
+import { interpolateStationTable, clampStationControl } from "../state/stationTables.js";
 import type { RuntimeLens } from "../../types/optics.js";
-import { FOCUS_INFINITY_THRESHOLD } from "../layout.js";
+import { FOCUS_REPORTING_INFINITY_THRESHOLD } from "../focusDistance.js";
 import { compiledLensFromRuntime } from "../prescription/compile.js";
 import { prepareState } from "../state/preparedGeometry.js";
 import { traceParaxialSurfaces2 } from "../math/paraxial.js";
@@ -24,20 +25,18 @@ import { traceParaxialSurfaces2 } from "../math/paraxial.js";
  * @returns current effective focal length in mm
  */
 export function eflAtFocus2(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
-  if (focusT < FOCUS_INFINITY_THRESHOLD && aberrationT === 0) {
-    return L.isZoom && L.zoomEFLs ? interpolateZoomArray(zoomT, L.zoomEFLs) : L.EFL;
+  if (focusT < FOCUS_REPORTING_INFINITY_THRESHOLD && aberrationT === 0) {
+    return L.isZoom && L.zoomEFLs ? interpolateStationTable(clampStationControl(zoomT), L.zoomEFLs) : L.EFL;
   }
   const state = prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT);
-  const trace = traceParaxialSurfaces2(state.surfaces, 1, 0, { skipLastTransfer: true });
-  if (Math.abs(trace.u) < 1e-15) return L.isZoom && L.zoomEFLs ? interpolateZoomArray(zoomT, L.zoomEFLs) : L.EFL;
-  return -1 / trace.u;
+  const efl = eflFromSurfaces(state.surfaces);
+  if (efl === null)
+    return L.isZoom && L.zoomEFLs ? interpolateStationTable(clampStationControl(zoomT), L.zoomEFLs) : L.EFL;
+  return efl;
 }
 
-function interpolateZoomArray(zoomT: number, values: readonly number[]): number {
-  if (values.length === 1) return values[0];
-  const t = Math.max(0, Math.min(1, Number.isFinite(zoomT) ? zoomT : 0));
-  const pos = t * (values.length - 1);
-  const idx = Math.min(Math.floor(pos), values.length - 2);
-  const frac = pos - idx;
-  return values[idx] + (values[idx + 1] - values[idx]) * frac;
+function eflFromSurfaces(surfaces: Parameters<typeof traceParaxialSurfaces2>[0]): number | null {
+  const trace = traceParaxialSurfaces2(surfaces, 1, 0, { skipLastTransfer: true });
+  // Paraxial power: EFL = -1 / u' for a unit-height collimated basis ray.
+  return Math.abs(trace.u) < 1e-15 ? null : -1 / trace.u;
 }

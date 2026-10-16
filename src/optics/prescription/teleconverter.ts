@@ -19,7 +19,9 @@ import type {
 import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTaxonomy.js";
 import { projectionFieldAngleForImageHeight2, projectionImageHeightForAngle2 } from "../field/projection.js";
 import { buildLabelIndex } from "../prescription/compileLabels.js";
-import { buildStateSurfaces, buildVarIndex, zoomIndexToT } from "../prescription/compileControls.js";
+import { buildStateSurfaces } from "../state/layout.js";
+import { buildVarIndex } from "../prescription/compileControls.js";
+import { zoomIndexToT } from "../state/stationTables.js";
 import { traceParaxialSurfaces2 as traceSurfacesParaxial } from "../math/paraxial.js";
 import { expandRearPlates } from "./rearPlates.js";
 import { isV1File, ingestTeleconverter } from "./ingestV2.js";

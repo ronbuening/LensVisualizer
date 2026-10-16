@@ -5,6 +5,7 @@
  * image plane for comparison overlays and analysis displays.
  */
 
+import { interpolateStationTable, zoomIndexToT } from "./state/stationTables.js";
 import { GROUP_MOVEMENT_MODES, type GroupMovementMode } from "../types/groupMovement.js";
 import type { RuntimeLens, ResolvedAnnotation, VarRange, ZoomVarRange } from "../types/optics.js";
 import { anchorLayoutToCamera } from "./cameraLayout.js";
@@ -228,10 +229,7 @@ function groupMidpoint(group: LensMovementGroup, zPos: readonly number[]): numbe
 function focalLengthAtZoomT(L: RuntimeLens, zoomT: number): number | null {
   if (!L.zoomPositions || L.zoomPositions.length === 0) return null;
   if (L.zoomPositions.length === 1) return L.zoomPositions[0];
-  const position = Math.max(0, Math.min(1, zoomT)) * (L.zoomPositions.length - 1);
-  const index = Math.min(Math.floor(position), L.zoomPositions.length - 2);
-  const fraction = position - index;
-  return L.zoomPositions[index] + (L.zoomPositions[index + 1] - L.zoomPositions[index]) * fraction;
+  return interpolateStationTable(Math.max(0, Math.min(1, zoomT)), L.zoomPositions);
 }
 
 function uniqueSorted(values: number[]): number[] {
@@ -244,9 +242,7 @@ function normalizedSamples(count: number, extra: number[]): number[] {
 }
 
 function zoomSamples(L: RuntimeLens, currentZoomT: number): number[] {
-  const stops = L.zoomPositions
-    ? L.zoomPositions.map((_, index) => index / Math.max(L.zoomPositions!.length - 1, 1))
-    : [];
+  const stops = L.zoomPositions ? L.zoomPositions.map((_, index) => zoomIndexToT(index, L.zoomPositions!.length)) : [];
   return normalizedSamples(ZOOM_SAMPLE_COUNT, [...stops, currentZoomT]);
 }
 

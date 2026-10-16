@@ -5,6 +5,8 @@
  * implementation lives in focused prescription, state, trace, field, and analysis modules.
  */
 
+import { layoutFromPrepared } from "./state/layout.js";
+import { eflAtZoom, epAtZoom, fopenAtZoom, clampStationControl } from "./state/stationTables.js";
 import { runtimeView } from "./prescription/runtimeView.js";
 import type { LayoutResult, LensData, RuntimeLens } from "../types/optics.js";
 import type { CanonicalLens, IngestedPrescription } from "./prescription/canonical.js";
@@ -73,11 +75,7 @@ export function prepareRuntimeState(
  */
 export function doLayout2(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): LayoutResult {
   const state = prepareRuntimeState(L, focusT, zoomT, aberrationT);
-  return {
-    z: [...state.z],
-    th: state.surfaces.map((surface) => surface.d),
-    imgZ: state.imgZ,
-  };
+  return layoutFromPrepared(state);
 }
 
 /**
@@ -102,8 +100,7 @@ export function thick2(i: number, focusT: number, zoomT: number, L: RuntimeLens,
  * @returns effective focal length in mm
  */
 export function eflAtZoom2(zoomT: number, L: RuntimeLens): number {
-  if (!L.isZoom) return L.EFL;
-  return interpolateZoomArray2(zoomT, L.zoomEFLs!);
+  return eflAtZoom(clampStationControl(zoomT), L);
 }
 
 /**
@@ -114,8 +111,7 @@ export function eflAtZoom2(zoomT: number, L: RuntimeLens): number {
  * @returns entrance-pupil semi-diameter in mm
  */
 export function epAtZoom2(zoomT: number, L: RuntimeLens): number {
-  if (!L.isZoom) return L.EP.epSD;
-  return interpolateZoomArray2(zoomT, L.zoomEPs!);
+  return epAtZoom(clampStationControl(zoomT), L);
 }
 
 /**
@@ -126,17 +122,7 @@ export function epAtZoom2(zoomT: number, L: RuntimeLens): number {
  * @returns wide-open f-number for the selected zoom state
  */
 export function fopenAtZoom2(zoomT: number, L: RuntimeLens): number {
-  if (!L.isZoom || !L.zoomFOPENs) return L.FOPEN;
-  return interpolateZoomArray2(zoomT, L.zoomFOPENs);
-}
-
-function interpolateZoomArray2(zoomT: number, values: readonly number[]): number {
-  if (values.length === 1) return values[0];
-  const t = Math.max(0, Math.min(1, Number.isFinite(zoomT) ? zoomT : 0));
-  const pos = t * (values.length - 1);
-  const idx = Math.min(Math.floor(pos), values.length - 2);
-  const frac = pos - idx;
-  return values[idx] + (values[idx + 1] - values[idx]) * frac;
+  return fopenAtZoom(clampStationControl(zoomT), L);
 }
 
 export {

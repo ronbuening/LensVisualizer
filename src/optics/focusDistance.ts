@@ -1,19 +1,16 @@
 /** Focus-distance endpoints follow the same normalized station coordinates as zoom gaps. */
-import type { RuntimeLens } from "../types/optics.js";
 
-/** Focus slider values below this threshold are treated as infinity. */
-export const FOCUS_INFINITY_THRESHOLD = 0.003;
+/**
+ * Infinity cutoff for distance labels/remapping, EFL (including perspective field scale), pupil-aberration
+ * paraxial baselines and exposure/magnification summaries. Its split from the conjugate cutoff is an open C3
+ * decision: controls between them can report infinity while tracing a nonzero conjugate correction.
+ */
+export const FOCUS_REPORTING_INFINITY_THRESHOLD = 0.003;
 
 /** Preserve object distance when the modeled close-focus endpoint changes. */
 export function remapFocusDistance(focusT: number, previousCloseM: number, nextCloseM: number): number {
-  if (focusT < FOCUS_INFINITY_THRESHOLD || previousCloseM <= 0 || nextCloseM <= 0) return 0;
+  if (focusT < FOCUS_REPORTING_INFINITY_THRESHOLD || previousCloseM <= 0 || nextCloseM <= 0) return 0;
   return Math.min(1, (focusT * nextCloseM) / previousCloseM);
 }
 
-export function closeFocusAtZoom(zoomT: number, L: RuntimeLens): number {
-  const values = L.zoomCloseFocusM;
-  if (!L.isZoom || !values || values.length < 2) return L.closeFocusM;
-  const position = Math.max(0, Math.min(1, Number.isFinite(zoomT) ? zoomT : 0)) * (values.length - 1);
-  const index = Math.min(Math.floor(position), values.length - 2);
-  return values[index] + (values[index + 1] - values[index]) * (position - index);
-}
+export { closeFocusAtZoom } from "./state/stationTables.js";
