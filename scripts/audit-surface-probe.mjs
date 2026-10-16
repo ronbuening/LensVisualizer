@@ -30,9 +30,8 @@ import { pathToFileURL } from "node:url";
 
 const ROOT = join(import.meta.dirname, "..");
 const { conicPolySag, sag, sagSlopeRaw } = await import(pathToFileURL(join(ROOT, "src/optics/geometry.ts")).href);
-const { ingestLensV1, toLensData, validateAuthoredLensData } = await import(
-  pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href
-);
+const { ingestLensV1, toLensData } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
+const { validateLensInput } = await import(pathToFileURL(join(ROOT, "src/optics/validateLensData.ts")).href);
 
 const argv = process.argv.slice(2);
 const dataFile = argv[0];
@@ -99,7 +98,7 @@ for (const label of overrides.keys()) {
   if (!candidate.surfaces.some((surface) => surface.label === label)) console.log(`!! no surface labelled "${label}"`);
 }
 
-let errors = validateAuthoredLensData(candidate);
+let errors = validateLensInput(candidate);
 if (errors.length === 0) {
   try {
     toLensData(ingestLensV1(candidate));

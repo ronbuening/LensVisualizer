@@ -327,11 +327,12 @@ defaulted paths, the authored values the engine ignores, and the V1 spellings it
   and `toLensDataInput` gives it back as authored. A V2 file records no V1 spelling, so its view writes each field in
   the plain V1 form.
 - Lens data gets its defaults from ingest and the V1 view alone (S2.P1.T2); nothing outside tests spreads the
-  defaults table but the validator-first spread below. `buildLens.ts` re-exports `ingestLens`, `ingestTeleconverter`,
+  defaults table. `buildLens.ts` re-exports `ingestLens`, `ingestTeleconverter`,
   their V1 forms (`ingestLensV1`, `ingestTeleconverterV1`), `isV1File` and the two V1 views (`toLensData`,
   `toTeleconverterData`), the way code outside the engine reaches them until S8.P1.T2.
   - `buildLens` reads authored files through `prescription/compile.ts`. The validator is asked about every V1 file
-    first, using its sole defaults spread as validation input only. This exception ends in S5.P1.T3.
+    first through `validateLensInput`, which reads individual omitted catalog defaults from the schema table without
+    merging it. Canonical validation then runs once per successful compiled identity, before compiler publication.
   - A pair `attachTeleconverter()` composed is known only by the `attachedTeleconverter` marker it writes and is
     validated before the trusted `compileComposed.ts` adapter uses the shared V1 field mapping. Its descriptor stays
     separate for plate placement; generated records never enter authored ingest. Delete that adapter and its trusted
@@ -482,7 +483,7 @@ and is their only outside door.
   the base radius it was last built with. A mutable one is re-read on every call. A spread copy of a profile keeps the
   data fields it was copied with, so over mutable coefficients they can disagree with its evaluators.
 - **Not in the module yet.** Sag and slope have no other implementation, but four derived formulas do:
-  - the conic limit `|R| / sqrt(1 + K)` in `validateLensData.ts` and `diagram/renderDiagnostics.ts`, beside
+  - the conic limit `|R| / sqrt(1 + K)` in `prescription/validate/geometry.ts` and `diagram/renderDiagnostics.ts`, beside
     `finiteRadiusLimit()`;
   - the "beyond the sphere extent" test `r² > R²` in `trace/sequentialTrace.ts`, which can be reached by
     an asphere whose conic domain is wider than `|R|`, but not by a sphere hit;
@@ -889,7 +890,7 @@ authoring rules and a filled example live in `src/lens-data/LENS_DATA_SPEC.md`.
   frozen `CompiledDiffractivePhase` (`quadraticCoefficient`, per-term `derivativeCoefficient`, original `source`) on
   `CompiledSurface.diffractive`, or `null` for ordinary surfaces. Tracers test that `null` first, so only phase surfaces
   evaluate the polynomial, and the hot path allocates no per-hit arrays or closures.
-- `validateLensData.ts` enforces the canonical shape before any polynomial is evaluated: `referenceWavelengthNm` finite
+- `prescription/validate/diffractive.ts` enforces the canonical shape before any polynomial is evaluated: `referenceWavelengthNm` finite
   in `[100, 2000]`; `diffractionOrder` a non-zero integer in `[-16, 16]`; 1–16 `terms` with unique, strictly
   increasing integer `radialPower` in `[2, 32]`; every `coefficient` finite and non-zero. `diffractive` is rejected on
   `"reflect"` and `"block"` interactions, is per-surface data that is never merged as a lens-wide default, and, when
@@ -1264,12 +1265,20 @@ not be called from `buildLens()`.
 
 ## Validation And Rendering Geometry
 
-`validateLensData.ts` checks required fields, references, STO presence, the d/e `indexReference` enum, diffractive
+`prescription/validate/` owns validation; `validateLensData.ts` and `validateTeleconverterData.ts` are public
+facades. The authored pass retains declarations ingest would erase, such as empty published-station declarations,
+and explicitly authored invalid defaults. The canonical entry uses a diagnostic projection with provenance;
+`paths.ts` keeps V1 messages unchanged and maps V2 nested fields and gap indices back to their authored paths.
+Malformed inputs retain guarded raw checks so ingest cannot hide their aggregate diagnostics. Folded reachability
+compiles only lower-level probe surfaces, never a full lens or material table. The concern modules check required
+fields, references, STO presence, the d/e `indexReference` enum, diffractive
 phase-polynomial bounds/canonical ordering, element edge thickness, SD consistency, rim slope, boundary-surface
 cross-gap overlap, conic limits, and zoom field consistency. Elements that span more than one surface
 (via `fromSurface`/`toSurface`) and stops marked `stopPlacement: "inside-element"` are validated against tighter rules:
 explicit spans must be ordered and confined to one `elemId`, internal stops must be flat with `nd` matching the
 containing glass, and every interior surface inside a multi-surface element must itself be a flagged internal stop.
+
+`geometry/apertureBands.ts` is the shared pure radial-band leaf for validation and rendering.
 
 `diagramGeometry.ts` provides:
 

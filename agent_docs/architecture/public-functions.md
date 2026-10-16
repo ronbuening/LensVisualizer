@@ -10,8 +10,7 @@ this document only records where to import from and the contracts that are not v
 - Prefer the barrel or focused module listed below before importing from a deeper file.
 - `src/optics/` is the authoritative optics implementation. App code should prefer the stable `src/optics/*` public
   paths; deeper engine modules are for optics internals and focused tests.
-- Do not import from `src/optics/internal/` unless the work is inside the optics implementation or a targeted optics
-  test.
+- Import focused implementation modules only inside the optics engine or a targeted optics test.
 - The seam guard in `__tests__/src/optics/opticsArchitecture.test.ts` enforces this boundary for `src/`, `scripts/`
   and `reports/`; see "Architecture Guards" in `agent_docs/architecture/testing.md`.
 - Treat `src/generated/` as read-only build output. Regenerate metadata instead of editing it.
@@ -24,7 +23,8 @@ this document only records where to import from and the contracts that are not v
 
 | Module | Import it for | Rule |
 | --- | --- | --- |
-| `src/optics/buildLens.ts` | `buildLens(data)` (default export), `ingestLens`, `ingestTeleconverter`, `isV1File`, `ingestLensV1`, `ingestTeleconverterV1`, `toLensData`, `toTeleconverterData`, `validateAuthoredLensData` | The only runtime-lens constructor for app code. It reads lens data of either version through canonical ingest (a composed converter pair as it is), validates it, resolves glass and state indices, and returns a frozen `RuntimeLens`. `paraxialTrace` / `realTraceToStop` are re-exported from `src/optics/first-order/lensConstants.ts` for focused optics tests only. `ingestLens` and `ingestTeleconverter` read a lens or teleconverter file of either version into the canonical prescription (`src/optics/prescription/canonical.ts`), choosing by `schema` as `isV1File` does; the V1 functions read V1 alone. The V1 views give the engine's lens data back from it with the schema defaults applied; the catalogs, reports, audit scripts and the differential harness apply defaults through these. `validateAuthoredLensData` gives the validator's messages for a V1 file as `buildLens` asks them, before ingest; the surface probe reads it. |
+| `src/optics/buildLens.ts` | `buildLens(data)` (default export), `ingestLens`, `ingestTeleconverter`, `isV1File`, `ingestLensV1`, `ingestTeleconverterV1`, `toLensData`, `toTeleconverterData` | The only runtime-lens constructor for app code. It reads lens data of either version through canonical ingest (a composed converter pair as it is), validates it, resolves glass and state indices, and returns a frozen `RuntimeLens`. `paraxialTrace` / `realTraceToStop` are re-exported from `src/optics/first-order/lensConstants.ts` for focused optics tests only. `ingestLens` and `ingestTeleconverter` read a lens or teleconverter file of either version into the canonical prescription (`src/optics/prescription/canonical.ts`), choosing by `schema` as `isV1File` does; the V1 functions read V1 alone. The V1 views give the engine's lens data back from it with the schema defaults applied; the catalogs, reports, audit scripts and the differential harness apply defaults through these. |
+| `src/optics/validateLensData.ts`, `src/optics/validateTeleconverterData.ts` | `validateLensData` (default), `validateLensInput`, `validateCanonicalLens`; `validateTeleconverterData` (default) | Validation facades for already-defaulted V1 records, authored V1 files, canonical prescriptions and converters. Authored validation reads individual omitted defaults without merging a table; the surface probe uses `validateLensInput`. Concern implementations and authored diagnostic-path mapping live in `prescription/validate/`. |
 | `src/optics/teleconverter.ts` | `attachTeleconverter(host, tc)`, `teleconverterCompatibility`, `teleconverterGeometry`, `validateTeleconverterData`, label helpers | Composes a detachable teleconverter onto a host `LensData`; the result goes through `buildLens()`. Never build a teleconverter alone. |
 | `src/optics/optics.ts` | Pure helpers: layout (`doLayout`, `stateSurfaces`, `thick`), display sag (`renderSag`, `sagSlope`), derived values (`eflAtZoom`, `effectiveFNumber`, ...), meridional/vector/skew tracing, pupil sampling, chromatic spread | Default barrel for UI hooks, display components, and analysis tabs. It preserves app-facing names over the engine implementation in `compat.ts`. |
 | `src/optics/geometry.ts` | Surface sag and slope from a radius and coefficients (`sag`, `conicPolySag`, `sagSlopeRaw`), `FLAT_R_THRESHOLD`, and the rim-slope constants | The surface-geometry barrel for components, scripts, and benchmarks, and the only outside door to these names: `optics.ts` does not re-export them. Engine modules import `src/optics/geometry/surfaceProfile.ts` directly. Never reimplement sag or slope outside that module. |
@@ -77,7 +77,7 @@ sequential partial tracing.
 ## Adding Or Changing Public Functions
 
 - Add or update focused tests for the behavior, especially for optics math, URL parsing, and build scripts.
-- Export from the stable module or barrel expected by callers; avoid asking callers to reach into `internal/`.
+- Export from the stable module or barrel expected by callers; keep callers on the public seam.
 - Update this document only when an import boundary or a non-obvious contract changes, not for every new symbol.
 - For lens data shape changes, update `src/types/optics.ts`, `src/lens-data/LENS_DATA_SPEC.md`, templates, validation,
   and any generated-report scripts that inspect lens files.

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { computeElementRenderDiagnostics } from "../../../src/optics/diagramGeometry.js";
 import buildLens from "../../../src/optics/buildLens.js";
-import { sharedMaterialBand } from "../../../src/optics/internal/apertureBands.js";
+import { sharedMaterialBand } from "../../../src/optics/geometry/apertureBands.js";
 import { doLayout, renderSag } from "../../../src/optics/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
