@@ -2,11 +2,12 @@
  * State layout — one controlled-gap composition and one axial vertex builder.
  *
  * Used before publication by construction and validation, and after publication by prepared geometry
- * and the RuntimeLens compatibility adapters. No compiled-owner lookup belongs in this leaf.
+ * and the RuntimeLens compatibility adapters. Only the runtime layout adapter looks up a compiled owner.
  */
 
 import type { SurfaceData, VarRange, AberrationVarRange, RuntimeLens, LayoutResult } from "../../types/optics.js";
 import { DEFAULT_FOCUS_POSITIONS, resolveVariableThickness, resolveAberrationThickness } from "./stationTables.js";
+import { compiledLensFromRuntime } from "../prescription/identity.js";
 
 /**
  * Combine focus and aberration variable ranges for one surface gap.
@@ -153,8 +154,8 @@ export function doLayout(focusT: number, zoomT: number, L: RuntimeLens, aberrati
   const th = L.S.map((_: unknown, i: number) => thick(i, focusT, zoomT, L, aberrationT));
   const z = buildZPositions(th);
   const defaultImgZ = z[z.length - 1] + th[th.length - 1];
-  const hasExplicitFoldedImagePlane =
-    L.isFoldedOptics && (L.data?.opticalPath === undefined || L.data.opticalPath.imagePlane !== undefined);
+  const lens = compiledLensFromRuntime(L);
+  const hasExplicitFoldedImagePlane = lens.flags.isFoldedOptics && lens.hasExplicitImagePlane;
   return { z, th, imgZ: hasExplicitFoldedImagePlane ? L.imagePlane.z : defaultImgZ };
 }
 

@@ -7,8 +7,6 @@
 import { interpolateStationTable, clampStationControl } from "../state/stationTables.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import { FOCUS_REPORTING_INFINITY_THRESHOLD } from "../focusDistance.js";
-import { stateSurfaces } from "../state/layout.js";
-import { eflAtZoom } from "../state/stationTables.js";
 import { compiledLensFromRuntime } from "../prescription/compile.js";
 import { prepareState } from "../state/preparedGeometry.js";
 import { traceParaxialSurfaces2 } from "../math/paraxial.js";
@@ -34,25 +32,6 @@ export function eflAtFocus2(focusT: number, zoomT: number, L: RuntimeLens, aberr
   const efl = eflFromSurfaces(state.surfaces);
   if (efl === null)
     return L.isZoom && L.zoomEFLs ? interpolateStationTable(clampStationControl(zoomT), L.zoomEFLs) : L.EFL;
-  return efl;
-}
-
-/**
- * Compute current EFL from focus/zoom state using a paraxial basis ray.
- *
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param L - runtime lens object
- * @param aberrationT - normalized aberration spacing slider
- * @returns effective focal length in mm
- */
-export function eflAtFocus(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
-  if (focusT < FOCUS_REPORTING_INFINITY_THRESHOLD && aberrationT === 0) {
-    return L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
-  }
-  const S = stateSurfaces(focusT, zoomT, L, aberrationT);
-  const efl = eflFromSurfaces(S);
-  if (efl === null) return L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
   return efl;
 }
 

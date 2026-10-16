@@ -7,7 +7,10 @@ import {
   resolveVariableThickness,
   interpolateStationTable,
   clampStationControl,
+  closeFocusAtZoom,
+  wideOpenStopAtZoom,
 } from "../../../../src/optics/state/stationTables.js";
+import { buildVariableStopGapLens } from "../testLensFixtures.js";
 import type { AsphericCoefficients, SurfaceData } from "../../../../src/types/optics.js";
 
 describe("compiler helpers", () => {
@@ -78,6 +81,29 @@ describe("compiler helpers", () => {
     expect(interpolateStationTable(clampStationControl(2), [2, 4])).toBe(4);
     expect(interpolateStationTable(clampStationControl(NaN), [2, 4])).toBe(2);
     expect(interpolateStationTable(0.5, [7])).toBe(7);
+  });
+
+  it("selects the interior interval of a multi-station table", () => {
+    expect(interpolateStationTable(0.625, [4, 20, 100, 12, 60])).toBe(56);
+  });
+
+  it.each([
+    [-1, 0.5, 6],
+    [2, 2, 12],
+    [NaN, 0.5, 6],
+  ])("clamps distance and iris schedules at zoom %s", (zoomT, distanceM, stopSD) => {
+    const L = buildVariableStopGapLens(
+      [
+        [1, 2],
+        [3, 4],
+        [5, 6],
+      ],
+      "test-station-schedules",
+      undefined,
+      { zoomCloseFocusM: [0.5, 1, 2], zoomStopSemiDiameters: [6, 8, 12] },
+    );
+    expect(closeFocusAtZoom(zoomT, L)).toBe(distanceM);
+    expect(wideOpenStopAtZoom(zoomT, L)).toBe(stopSD);
   });
 
   it("accumulates signed folded gaps in physical surface order", () => {

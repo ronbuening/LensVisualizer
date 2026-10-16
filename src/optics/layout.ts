@@ -11,7 +11,7 @@ import { conicPolySag, sag, sagSlopeRaw } from "./geometry/surfaceProfile.js";
 /** Number of straight SVG segments used when rendering one surface profile. */
 export const SVG_PATH_SUBDIVISIONS: number = 96;
 const BISECT_ITERATIONS: number = 30;
-export { FOCUS_REPORTING_INFINITY_THRESHOLD, FOCUS_INFINITY_THRESHOLD } from "./focusDistance.js";
+export { FOCUS_REPORTING_INFINITY_THRESHOLD } from "./focusDistance.js";
 
 /**
  * Compute rendered sag for a RuntimeLens surface.
@@ -100,5 +100,5 @@ export {
   xpZRelLastSurfAtZoom,
 } from "./state/stationTables.js";
 
-export { eflAtFocus } from "./first-order/focusBreathing.js";
-export { effectiveFNumber } from "./first-order/fNumber.js";
+export { eflAtFocus2 as eflAtFocus } from "./first-order/focusBreathing.js";
+export { effectiveFNumber2 as effectiveFNumber } from "./first-order/fNumber.js";

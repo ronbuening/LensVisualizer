@@ -29,6 +29,7 @@ flowchart LR
   n_external_src_utils_catalog["src/utils/catalog"]
   n_external_pkg_react["pkg:react"]
   n_external_src_optics_lensMovement_ts["src/optics/lensMovement.ts"]
+  n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_optics_validateLensData_ts["src/optics/validateLensData.ts"]
   n_external_src_utils_appConfig_ts["src/utils/appConfig.ts"]
   n_external_src_utils_featureFlags_ts["src/utils/featureFlags.ts"]
@@ -48,6 +49,7 @@ flowchart LR
   n_src_utils_state_src_utils_state_useURLSync_ts --> n_external_pkg_react
   n_src_utils_state_src_utils_state_parseComparisonParams_ts --> n_external_src_comparison
   n_src_utils_state_src_utils_state_lensViewUrlState_ts --> n_external_src_optics_lensMovement_ts
+  n_src_utils_state_src_utils_state_zoomConversion_ts --> n_external_src_optics_optics_ts
   n_src_utils_state_src_utils_state_lensViewUrlState_ts --> n_external_src_optics_validateLensData_ts
   n_src_utils_state_src_utils_state_mtfDataWarnings_ts --> n_external_src_types
   n_src_utils_state_src_utils_state_mtfPreferences_ts --> n_external_src_types
@@ -70,7 +72,6 @@ flowchart LR
   n_src_utils_state_src_utils_state_useLensState_ts --> n_src_utils_state_src_utils_state_lensViewUrlState_ts
   n_src_utils_state_src_utils_state_useURLSync_ts --> n_src_utils_state_src_utils_state_lensViewUrlState_ts
   n_src_utils_state_src_utils_state_useURLSync_ts --> n_src_utils_state_src_utils_state_lensViewUrlSync_ts
-  n_src_utils_state_src_utils_state_lensViewUrlSync_ts --> n_src_utils_state_src_utils_state_parseComparisonParams_ts
   n_src_utils_state_truncated["additional relationships omitted"]
 ```
 
@@ -78,7 +79,7 @@ flowchart LR
 
 - Direct source files: 14
 - Direct subfolders: 0
-- Main outbound areas: same folder (15), src/types (14), src/utils/catalog (5), package:react (4), src/comparison (3), src/optics/lensMovement.ts, src/optics/validateLensData.ts, src/utils/appConfig.ts, +4 more
+- Main outbound areas: same folder (15), src/types (14), src/utils/catalog (5), package:react (4), src/comparison (3), src/optics/lensMovement.ts, src/optics/optics.ts, src/optics/validateLensData.ts, +5 more
 - External consumers: src/comparison, src/components/display, src/components/HolidayFavicon.tsx, src/components/hooks, src/components/layout, src/pages/AuthorsIndexPage.tsx, src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx, +1 more
 
 ## Files
@@ -98,4 +99,4 @@ flowchart LR
 | `useLensState.ts` | React hook module | same folder (4), src/utils/catalog (2), package:react, src/types, src/utils/useMediaQuery.ts | src/components/layout | default, useLensState |
 | `usePreferences.ts` | React hook module | package:react, same folder, src/types | src/components/layout | default, usePreferences |
 | `useURLSync.ts` | React hook module | same folder (3), src/utils/catalog (2), package:react, src/types | src/components/layout | default, useURLSync |
-| `zoomConversion.ts` | Zoom Conversion helper module | none | same folder (2) | ZoomConvertibleLens, focalLengthToZoomT, zoomTToFocalLength |
+| `zoomConversion.ts` | Zoom Conversion helper module | src/optics/optics.ts | same folder (2) | ZoomConvertibleLens, focalLengthToZoomT, zoomTToFocalLength |

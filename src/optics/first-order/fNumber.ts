@@ -8,8 +8,7 @@ import { closeFocusAtZoom } from "../focusDistance.js";
 import { interpolateStationTable, clampStationControl } from "../state/stationTables.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import { FOCUS_REPORTING_INFINITY_THRESHOLD } from "../focusDistance.js";
-import { epAtZoom, xpAtZoom } from "../state/stationTables.js";
-import { eflAtFocus, eflAtFocus2 } from "./focusBreathing.js";
+import { eflAtFocus2 } from "./focusBreathing.js";
 
 /**
  * Estimate effective f-number at the current focus and zoom state.
@@ -39,38 +38,6 @@ export function effectiveFNumber2(
   if (m === null) return nominalFNumber;
   const epSD = L.isZoom && L.zoomEPs ? interpolateStationTable(clampStationControl(zoomT), L.zoomEPs) : L.EP.epSD;
   const xpSD = L.isZoom && L.zoomXpSDs ? interpolateStationTable(clampStationControl(zoomT), L.zoomXpSDs) : L.xpSD;
-  return correctedFNumber(nominalFNumber, m, epSD, xpSD);
-}
-
-/**
- * Estimate effective f-number at the current focus state.
- *
- * Uses the same close-focus correction as the first-order helper:
- * `N_eff = N * (1 + |m| / p)`, where `p` is pupil magnification XP/EP.
- *
- * @param nominalFNumber - marked f-number for the current aperture
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param L - runtime lens object
- * @param aberrationT - normalized aberration spacing slider
- * @returns effective f-number
- */
-export function effectiveFNumber(
-  nominalFNumber: number,
-  focusT: number,
-  zoomT: number,
-  L: RuntimeLens,
-  aberrationT = 0,
-): number {
-  if (focusT < FOCUS_REPORTING_INFINITY_THRESHOLD) return nominalFNumber;
-
-  const efl = eflAtFocus(focusT, zoomT, L, aberrationT);
-  const focusDistMm = (closeFocusAtZoom(zoomT, L) / focusT) * 1000;
-  const m = focusMagnification(efl, focusDistMm);
-  if (m === null) return nominalFNumber;
-
-  const epSD = L.isZoom ? epAtZoom(zoomT, L) : L.EP.epSD;
-  const xpSD = L.isZoom ? xpAtZoom(zoomT, L) : L.xpSD;
   return correctedFNumber(nominalFNumber, m, epSD, xpSD);
 }
 

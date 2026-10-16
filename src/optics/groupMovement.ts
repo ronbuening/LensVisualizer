@@ -5,7 +5,7 @@
  * image plane for comparison overlays and analysis displays.
  */
 
-import { interpolateStationTable } from "./state/stationTables.js";
+import { interpolateStationTable, zoomIndexToT } from "./state/stationTables.js";
 import { GROUP_MOVEMENT_MODES, type GroupMovementMode } from "../types/groupMovement.js";
 import type { RuntimeLens, ResolvedAnnotation, VarRange, ZoomVarRange } from "../types/optics.js";
 import { anchorLayoutToCamera } from "./cameraLayout.js";
@@ -242,9 +242,7 @@ function normalizedSamples(count: number, extra: number[]): number[] {
 }
 
 function zoomSamples(L: RuntimeLens, currentZoomT: number): number[] {
-  const stops = L.zoomPositions
-    ? L.zoomPositions.map((_, index) => index / Math.max(L.zoomPositions!.length - 1, 1))
-    : [];
+  const stops = L.zoomPositions ? L.zoomPositions.map((_, index) => zoomIndexToT(index, L.zoomPositions!.length)) : [];
   return normalizedSamples(ZOOM_SAMPLE_COUNT, [...stops, currentZoomT]);
 }
 

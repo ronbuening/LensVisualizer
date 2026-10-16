@@ -52,7 +52,10 @@ const CHIEF_RAY_RESIDUAL_TOLERANCE = 1e-7;
 const OBJECT_PLANE_BRACKET_SCAN_SAMPLES = 96;
 const BOUNDING_SPHERE_BRACKET_SCAN_SAMPLES = 96;
 const CONJUGATE_REFERENCE_PUPIL_FRACTION = 0.1;
-// Below this control, skip the real-ray sensitivity difference from infinity.
+/**
+ * Skip the real-ray sensitivity difference from infinity below this control. The split from the 0.003
+ * reporting cutoff is an open C3 decision: controls between them can report infinity with nonzero correction.
+ */
 const CONJUGATE_CORRECTION_MIN_FOCUS_T = 0.0001;
 /** Step bounds, in degrees, for walking the real chief ray out toward the format corner. */
 const ANALYSIS_FIELD_MIN_STEP_DEG = 0.25;

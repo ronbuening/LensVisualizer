@@ -5,7 +5,7 @@
  * so callers do not inline Math.tan conventions.
  */
 
-import { interpolateStationTable } from "../state/stationTables.js";
+import { interpolateStationTable, clampStationControl } from "../state/stationTables.js";
 import type { LensProjectionConfig, RuntimeLens } from "../../types/optics.js";
 
 /** Projection families with distinct ideal image-height formulas. */
@@ -98,7 +98,7 @@ export function projectionValueAtZoom2(value: ProjectionZoomValue | undefined, z
   if (value.length === 0) return undefined;
   if (value.length === 1) return value[0];
 
-  const t = Math.max(0, Math.min(1, Number.isFinite(zoomT) ? zoomT : 0));
+  const t = clampStationControl(zoomT);
   return interpolateStationTable(t, value, "last");
 }
 

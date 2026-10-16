@@ -2351,11 +2351,17 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
   - **The two focus-infinity thresholds** (0.003 in `focusDistance.ts`, 0.0001 in `field/chiefRay.ts`):
     - if they serve one purpose, unify them as a C3;
     - otherwise, give each a name that says why.
-  - **As built:** `state/layout.ts` owns controlled gaps and axial accumulation; `state/stationTables.ts` owns
-    focus/zoom/aberration interpolation, shared by construction, preparation and runtime adapters. First-order
-    formulas have one home; adapters retain their clamping, table fallbacks and final-node arithmetic. The 0.003
-    reporting/exposure cutoff and 0.0001 real-ray conjugate-correction cutoff have distinct names and keep their
-    values; neither changes the interpolated gaps.
+  - **As built:** `state/layout.ts` owns controlled gaps and axial accumulation; both layout paths read the compiled
+    explicit-image-plane decision. `state/stationTables.ts` owns focus/zoom/aberration interpolation, station
+    coordinates and defaults, shared by construction, preparation and runtime adapters; URL zoom conversion reaches
+    its table reader through the public optics barrel. Zoom-track sums use the shared layout accumulator with exact
+    authored rows. First-order EFL and effective f-number each have one prepared-state adapter, retaining clamping,
+    table fallbacks and final-node arithmetic. The unused infinity alias is removed, and comparison readouts use the
+    named 0.003 cutoff. The two infinity thresholds remain an open question pending a maintainer-approved C3 decision:
+    0.003 gates distance labels/remapping, EFL (including perspective field scale), pupil-aberration paraxial baselines
+    and exposure/magnification summaries; 0.0001 gates real-ray conjugate correction. Before the optics-2 port,
+    `conjugateK` used 0.003. Both values stay unchanged under C0; a control between them reports infinity while tracing
+    a nonzero conjugate correction. Neither snaps the interpolated gaps.
   - **Gate:** C0.
 - **S5.P2.T3 One chromatic table.**
   - **Change:** one dispersion table builder, one quality summary and one channel table in `chromatic/`.

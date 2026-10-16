@@ -50,6 +50,7 @@ import {
 import { V1_FLAT_RADIUS } from "./ingestV1.js";
 
 import { associateCanonical } from "./identity.js";
+import { zoomIndexToT } from "../state/stationTables.js";
 
 type Untyped = Record<string, unknown>;
 
@@ -278,7 +279,7 @@ function conjugatesView(lens: CanonicalLens, view: ViewContext): FiniteConjugate
   const stationCount = lens.zoom?.stations.length ?? 1;
   return conjugates.map((conjugate, index) => {
     const at = `focus.conjugates[${index}]`;
-    const zoomT = stationCount <= 1 ? 0 : conjugate.zoomStation / (stationCount - 1);
+    const zoomT = zoomIndexToT(conjugate.zoomStation, stationCount);
     return {
       focusT: (ignoredAt(view, `${at}.focusT`) as number | undefined) ?? lens.focus.keyframes[conjugate.keyframe],
       zoomT: (ignoredAt(view, `${at}.zoomT`) as number | undefined) ?? zoomT,

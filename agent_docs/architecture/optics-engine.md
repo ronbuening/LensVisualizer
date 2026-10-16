@@ -511,7 +511,8 @@ and is their only outside door.
 `state/layout.ts` owns controlled-gap composition, state-surface copies and sequential z accumulation. Construction
 (including baseline and folded geometry), folded validation and preparation use the same vertex builder; runtime
 layout adapters retain their existing raw-control or prepared-control entry contracts. Prepared thickness validation
-and the explicit folded image-plane policy remain in `preparedGeometry.ts`.
+remains in `preparedGeometry.ts`; both layout paths read the compiled `hasExplicitImagePlane` decision for folded
+systems.
 
 `state/stationTables.ts` owns focus keyframe, zoom-row and aberration interpolation, plus the runtime derived-table,
 close-focus and physical-iris readers. `compileControls.ts` only compiles labels/ranges and reads authored defaults.
@@ -522,14 +523,16 @@ wide. Derived tables interpolate the preceding interval at zoom 1; projection ta
 expressions can differ in their last bits, so the endpoint policy is explicit. Exit-pupil layout readers retain their
 whole-table non-finite guard; first-order exposure readers retain their local interpolation instead.
 
-`first-order/focusBreathing.ts` and `first-order/fNumber.ts` own the shared paraxial EFL and exposure-correction math.
-Their raw-layout and prepared-state adapters preserve existing control and fallback contracts. The named
-`FOCUS_REPORTING_INFINITY_THRESHOLD` (0.003, in `focusDistance.ts`) suppresses finite-distance labels, remapping,
-EFL/pupil baselines and exposure/magnification summaries near the infinity slider endpoint. The historical
-`FOCUS_INFINITY_THRESHOLD` export remains an alias. `CONJUGATE_CORRECTION_MIN_FOCUS_T` (0.0001, in `field/chiefRay.ts`)
-skips the real-ray sensitivity difference `kt - k0` used for finite-conjugate launch correction. It neither labels
-object distance nor selects the reporting baselines. Neither cutoff snaps the actual surface gaps: both retain their
-values, and a control between them can report infinity while tracing a nonzero conjugate correction.
+`first-order/focusBreathing.ts` and `first-order/fNumber.ts` each expose one prepared-state adapter for paraxial
+EFL and exposure-correction math, retaining existing control and fallback contracts. The two infinity cutoffs remain
+an open question pending a maintainer-approved C3 decision. `FOCUS_REPORTING_INFINITY_THRESHOLD` (0.003, in
+`focusDistance.ts`) gates finite-distance labels, `remapFocusDistance` after zoom changes, EFL baselines (including
+the perspective field-sampling focal scale via `eflAtFocus2`), pupil-aberration paraxial baselines, and
+exposure/magnification summaries. `CONJUGATE_CORRECTION_MIN_FOCUS_T` (0.0001, in `field/chiefRay.ts`) gates the real-ray
+sensitivity difference `kt - k0` used for finite-conjugate launch correction. Before the optics-2 port, `conjugateK`
+used the shared 0.003 cutoff; the port introduced 0.0001. Both ask whether the object is at infinity, and their current
+split is preserved under C0 pending that decision. Neither cutoff snaps surface gaps: a control between them reports
+infinity while tracing a nonzero conjugate correction.
 
 `state/preparedGeometry.ts` owns `prepareState()` and the only prepared-control LRU: at most 96 immutable states
 per `CompiledLens`, released with that compiled identity. Runtime adapters, fields, first-order calculations, pupil

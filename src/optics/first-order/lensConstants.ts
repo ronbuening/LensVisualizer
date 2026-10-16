@@ -739,11 +739,11 @@ export function computeLensConstants(lens: CompiledPrescription): LensConstants 
     const nz = data.zoomPositions!.length;
     let maxTrack = 0;
     for (let zi = 0; zi < nz; zi++) {
-      let track = 0;
-      for (let i = 0; i < N; i++) {
-        const v = varByIdx[i];
-        track += v ? (v as [number, number][])[zi][0] : S[i].d;
-      }
+      // Read authored rows directly: a station-index round trip through zoomT can change the last bits.
+      const gaps = S.map((surface, i) => ({
+        d: varByIdx[i] ? (varByIdx[i] as [number, number][])[zi][0] : surface.d,
+      }));
+      const track = sumSurfaceThicknesses(gaps, N);
       maxTrack = Math.max(maxTrack, track);
     }
     totalTrack = maxTrack;
