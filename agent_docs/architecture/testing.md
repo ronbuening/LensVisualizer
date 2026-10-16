@@ -223,7 +223,7 @@ not see, such as an `import.meta.glob` pattern for the seam or a container neste
   (`npx vitest run --config vitest.tooling.config.js`), so the metadata `npm run test` just generated is not generated
   again. Add a file there only when it guards a tool that neither the build nor the app uses. The one exception is the
   converter's corpus sweep (`__tests__/scripts/convertLensDataCorpus.test.ts`), which converts every catalog file both
-  ways and is listed there so `npm run test` stays fast (the plan's Settled decisions row 80).
+  ways and is listed there so `npm run test` stays fast (the plan's S2.P3.T3).
 
 ## Engine Differential Harness
 

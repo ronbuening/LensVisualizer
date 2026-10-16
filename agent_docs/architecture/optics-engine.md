@@ -552,12 +552,15 @@ EFL (including perspective field scale), f-number and magnification summaries, p
 and the real-ray sensitivity difference `kt - k0` used for conjugate correction. Below the cutoff `conjugateK` is
 zero, matching the pre-optics-2 behavior. The cutoff does not snap interpolated surface gaps.
 
-`state/preparedGeometry.ts` owns `prepareState()` and the only prepared-control LRU: at most 96 immutable states
-per `CompiledLens`, released with that compiled identity. Runtime adapters, fields, first-order calculations, pupil
-and chromatic analyses, and diagrams share it. Focus and zoom retain their [0, 1] clamps; aberration retains [0, 1]
-or [-1, 1] for a centered control. All three normalize signed zero and compare numbers exactly, without formatted
-keys. A same-key prescription with a different compiled identity has an independent cache. Hits move to most recent;
-misses evict the least recent state. `prepareStateUncached()` uses the same builder without touching the cache.
+`state/preparedGeometry.ts` owns `prepareState()` and the only prepared-control LRU. It retains prepared states for
+the two most recently used compiled lenses (`PREPARED_LENS_CACHE_LIMIT = 2`), so a comparison keeps a full slider
+history for both lenses, and at most 96 immutable states per `CompiledLens` (`PREPARED_STATE_CACHE_LIMIT`).
+Preparing a third lens drops the least recently used lens and all its states. Runtime adapters, fields, first-order
+calculations, pupil and chromatic analyses, and diagrams share it. Focus and zoom retain their [0, 1] clamps;
+aberration retains [0, 1] or [-1, 1] for a centered control. All three normalize signed zero and compare numbers
+exactly, without formatted keys. A same-key prescription with a different compiled identity has an independent cache.
+Within a lens, hits move to most recent and misses evict the least recent state. `prepareStateUncached()` uses the
+same builder without touching the cache.
 The state's string `cacheKey` remains a compatibility label for analysis contexts, using unrounded control values;
 it does not select prepared geometry. The field-coverage script uses `buildLens.ts`'s `prepareRuntimeState` export.
 
