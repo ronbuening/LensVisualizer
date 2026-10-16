@@ -1297,6 +1297,8 @@ The stop radius has exactly one authority per lens:
     the line (a line comment, or a block comment spanning lines). When two such comments come to one node, as a V1
     surface's `nd` and `elemId` both come to its `medium`, the first trails the node and each later one leads it,
     after its own leading comments, in source order.
+  - In a list of numbers, which Prettier fills, the one-line block comments that end an item's leading comments share
+    its line before it, where Prettier keeps them; on a line of their own, Prettier would join them to the item before.
   - The reader attaches by position, as Prettier does: a block comment with nothing but spaces between it and the next
     entry, on the same line, leads that entry. A comment inside a spread, whose items are never read, is refused, as a
     comment outside the object is.

@@ -289,6 +289,20 @@ describe("printing a converted file", () => {
     expect(text).toContain('type: "Biconvex Positive", nd: 1.5168, vd: 64.17 }');
   });
 
+  it("keeps a one-line block comment before its item in a list of numbers, which Prettier fills", async () => {
+    const members = PRIME_MEMBERS.replace(
+      "fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],",
+      "fstopSeries: [2, 2.8, /* b */ 4, 5.6, 8, 11, 16],",
+    ).replace("  ],", '  ],\n  var: { "2": [80, /* w */ 81] },');
+    const v2 = await converted(v1LensFile(members));
+    expect(v2.text).toContain("fStops: [2, 2.8, /* b */ 4, 5.6, 8, 11, 16]");
+    expect(v2.text).toContain('gaps: { "2": { values: [[80, /* w */ 81]] } },');
+    expect((await converted(v2.text)).text).toBe(v2.text);
+    const v1 = await converted(v2.text, { toVersion: 1 });
+    expect(v1.text).toContain("fstopSeries: [2, 2.8, /* b */ 4, 5.6, 8, 11, 16],");
+    expect(v1.text).toContain('var: { "2": [80, /* w */ 81] },');
+  });
+
   it("refuses a printed file that reads a comment elsewhere than the placer put it", () => {
     const placed = new Map([
       ["name", { leading: [], trailing: [{ text: "/* a */" }, { text: "// b" }], dangling: [] }],
@@ -394,9 +408,9 @@ describe("refusals", () => {
       "a comment that formatting gives another node",
       prime.replace(
         "fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],",
-        "fstopSeries: [\n    2,\n    /* c */\n    2.8,\n    4,\n  ],",
+        "fstopSeries: [\n    2,\n    /* c\n       d */\n    2.8,\n    4,\n  ],",
       ),
-      /^formatting made the leading comment of aperture\.fStops\[1\] the trailing comment of aperture\.fStops\[0\]: \/\* c \*\/$/,
+      /^formatting made the leading comment of aperture\.fStops\[1\] the trailing comment of aperture\.fStops\[0\]: \/\* c$/,
     ],
     [
       "a converted file ingest refuses",
