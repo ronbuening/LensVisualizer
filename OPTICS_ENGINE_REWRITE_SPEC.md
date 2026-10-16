@@ -2204,6 +2204,10 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     allocates no hit array and no diagnostics, but keeps enough to classify a failure as physical or numerical.
   - **Tests:** identical trajectories and statuses across capture modes; a terminal-only trace returns no hit array
     and no diagnostics.
+  - **As built:** `trace/capture.ts` selects a stateless terminal recorder or hit/diagnostic storage before traversal.
+    Scalar build/chief/pupil solves, MTF aiming/classification and nonabsorbing skew fans request terminal capture;
+    absorption keeps hits, while public diagram/perspective traces and the differential harness retain diagnostics.
+    Terminal status, failure reason and cap-miss proof inputs survive without histories; heights and OPL stay opt-in.
   - **Gate:** C0.
 - **S4.P3.T2 Per-ray adapter overhead.**
   - **Change:** `trace/rayAdapters.ts` stops resolving state per call and stops spreading options per ray.
