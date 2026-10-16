@@ -13,7 +13,7 @@
  */
 
 import { sampleCircularPupil, type CircularPupilSample } from "../analysis/sampling.js";
-import { skewImagePlaneIntercept, type SkewImagePlaneIntercept } from "../trace/rayAdapters.js";
+import { prepareRayTrace, skewImagePlaneIntercept, type SkewImagePlaneIntercept } from "../trace/rayAdapters.js";
 import {
   computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
   type FieldGeometryState2 as FieldGeometryState,
@@ -99,6 +99,14 @@ function computeBestFocusZFromLayout(
   const lastSurfZ = layout.z[L.N - 1];
   const imagePlaneZ = layout.imgZ;
 
+  const prepared = prepareRayTrace(L, {
+    zPos: layout.z,
+    focusT,
+    zoomT,
+    stopSD: currentPhysStopSD,
+    ghost: true,
+    aberrationT,
+  });
   const hits = PROFILE_FRACS.flatMap((fraction) => {
     const plusHit = computeRealRayHit(
       L,
@@ -111,6 +119,7 @@ function computeBestFocusZFromLayout(
       imagePlaneZ,
       fraction,
       aberrationT,
+      prepared,
     );
     const minusHit = computeRealRayHit(
       L,
@@ -123,6 +132,7 @@ function computeBestFocusZFromLayout(
       imagePlaneZ,
       -fraction,
       aberrationT,
+      prepared,
     );
     return [plusHit, minusHit].filter((h): h is NonNullable<typeof h> => h !== null);
   });

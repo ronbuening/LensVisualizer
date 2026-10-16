@@ -215,7 +215,7 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
   },
   "src/optics/trace/bulkAbsorption.ts#ABSORPTION_BY_ELEMENT_ID": {
     kind: "weak-owner",
-    owner: "RuntimeLens",
+    owner: "EngineLens",
     key: "owner identity",
     perOwner: "one read-only map with a row per absorbing element, built once",
   },

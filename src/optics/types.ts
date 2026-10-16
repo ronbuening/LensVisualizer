@@ -142,6 +142,7 @@ export interface CompiledElement {
   nd: number;
   vd: number | null;
   glass: string | null;
+  absorptionCoefficientPerMm: number | null;
   surfaceSpan: readonly [number, number];
   source: ElementData;
 }

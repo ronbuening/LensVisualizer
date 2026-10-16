@@ -5,9 +5,8 @@
  * with alpha in inverse millimeters and the traced 3D path length in millimeters.
  */
 
-import type { RuntimeLens } from "../../types/optics.js";
+import type { EngineLens, Vec3 } from "../types.js";
 import type { TraceCapture } from "./types.js";
-import type { Vec3 } from "../types.js";
 
 interface AbsorptionTraceHit {
   /** Engine tracer spelling. */
@@ -17,24 +16,24 @@ interface AbsorptionTraceHit {
   point: Vec3;
 }
 
-const ABSORPTION_BY_ELEMENT_ID = new WeakMap<RuntimeLens, ReadonlyMap<number, number>>();
+const ABSORPTION_BY_ELEMENT_ID = new WeakMap<EngineLens, ReadonlyMap<number, number>>();
 
-function absorptionByElementId(L: RuntimeLens): ReadonlyMap<number, number> {
+function absorptionByElementId(L: EngineLens): ReadonlyMap<number, number> {
   const cached = ABSORPTION_BY_ELEMENT_ID.get(L);
   if (cached) return cached;
 
   const coefficients = new Map<number, number>();
   for (const element of L.elements) {
     const coefficient = element.absorptionCoefficientPerMm;
-    if (coefficient !== undefined && coefficient > 0) coefficients.set(element.id, coefficient);
+    if (coefficient !== null && coefficient !== undefined && coefficient > 0) coefficients.set(element.id, coefficient);
   }
   ABSORPTION_BY_ELEMENT_ID.set(L, coefficients);
   return coefficients;
 }
 
 /** Select hit storage only when bulk transmission needs intermediate distances. */
-export function transmissionTraceCapture(L: RuntimeLens): Exclude<TraceCapture, "diagnostics"> {
-  return !L.isFoldedOptics && absorptionByElementId(L).size > 0 ? "hits" : "terminal";
+export function transmissionTraceCapture(L: EngineLens): Exclude<TraceCapture, "diagnostics"> {
+  return !L.flags.isFoldedOptics && absorptionByElementId(L).size > 0 ? "hits" : "terminal";
 }
 
 /**
@@ -45,20 +44,20 @@ export function transmissionTraceCapture(L: RuntimeLens): Exclude<TraceCapture, 
  * absorption on folded/generalized prescriptions until encounter-side medium accounting exists;
  * the folded guard below is a defensive fallback for manually constructed runtime fixtures.
  *
- * @param L - runtime lens containing element absorption coefficients
+ * @param L - compiled lens containing element absorption coefficients
  * @param hits - exact surface hits in optical encounter order
  * @returns intensity transmission in `[0, 1]`
  */
-export function bulkTransmissionForTrace(L: RuntimeLens, hits: readonly AbsorptionTraceHit[] | undefined): number {
+export function bulkTransmissionForTrace(L: EngineLens, hits: readonly AbsorptionTraceHit[] | undefined): number {
   const coefficients = absorptionByElementId(L);
-  if (coefficients.size === 0 || L.isFoldedOptics) return 1;
+  if (coefficients.size === 0 || L.flags.isFoldedOptics) return 1;
   if (!hits) throw new Error("Bulk transmission requires hit capture for absorbing media");
   if (hits.length < 2) return 1;
 
   let transmission = 1;
   for (let i = 0; i < hits.length - 1; i++) {
     const surfaceIndex = hits[i].surfaceIndex ?? hits[i].surfaceIdx ?? -1;
-    const elementId = L.S[surfaceIndex]?.elemId ?? 0;
+    const elementId = L.surfaces[surfaceIndex]?.elemId ?? 0;
     const coefficient = coefficients.get(elementId);
     if (coefficient === undefined) continue;
 

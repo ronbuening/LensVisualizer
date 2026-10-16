@@ -6,7 +6,6 @@
  */
 
 import type { RuntimeSkewRayTraceResult as SkewRayTraceResult } from "../trace/runtimeRayResult.js";
-import { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "../trace/chiefRelative.js";
 import {
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
@@ -22,10 +21,7 @@ import {
   type FieldGeometryState2 as FieldGeometryState,
   type VectorFieldRayLaunch2 as VectorFieldRayLaunch,
 } from "../field/fieldGeometry.js";
-import {
-  traceSkewRayVector2 as traceSkewRayVector,
-  traceSkewRayVectorChromatic2 as traceSkewRayVectorChromatic,
-} from "../trace/rayAdapters.js";
+import { prepareRayTrace, type PreparedRayTrace } from "../trace/rayAdapters.js";
 import {
   isFisheyeProjection2 as isFisheyeProjection,
   projectionLaunchSlopeForField2 as projectionLaunchSlopeForField,
@@ -313,6 +309,28 @@ export function computeProjectionAwareOffAxisFieldGeometry(
   };
 }
 
+function prepareOffAxisTrace(
+  geometry: ProjectionAwareOffAxisFieldGeometry,
+  L: RuntimeLens,
+  focusT: number,
+  zoomT: number,
+  stopSD: number,
+  channel: ChromaticChannel | undefined,
+  aberrationT: number,
+): PreparedRayTrace {
+  const vector = isOffAxisVectorFieldGeometry(geometry) ? geometry : undefined;
+  return prepareRayTrace(L, {
+    focusT,
+    zoomT,
+    stopSD,
+    channel,
+    aberrationT,
+    ghost: true,
+    zPos: vector?.zPos,
+    launchBoundT: vector?.vectorLaunch.launchBoundT,
+  });
+}
+
 /**
  * Trace the chief ray for a scalar or vector off-axis geometry.
  *
@@ -335,21 +353,11 @@ export function traceOffAxisChiefRay(
   stopSemiDiameter: number,
   channel?: ChromaticChannel,
   aberrationT = 0,
+  prepared?: PreparedRayTrace,
 ): OffAxisChiefRaySample | null {
+  const adapter = prepared ?? prepareOffAxisTrace(geometry, L, focusT, zoomT, stopSemiDiameter, channel, aberrationT);
   if (isOffAxisVectorFieldGeometry(geometry)) {
-    const trace = channel
-      ? traceSkewRayVectorChromatic(
-          geometry.vectorLaunch,
-          geometry.zPos,
-          stopSemiDiameter,
-          true,
-          L,
-          channel,
-          focusT,
-          zoomT,
-          aberrationT,
-        )
-      : traceSkewRayVector(geometry.vectorLaunch, geometry.zPos, stopSemiDiameter, true, L, focusT, zoomT, aberrationT);
+    const trace = adapter.skewVector(geometry.vectorLaunch);
     if (trace.clipped) return null;
 
     const imagePoint = skewImagePlaneIntercept(
@@ -368,34 +376,12 @@ export function traceOffAxisChiefRay(
     };
   }
 
-  const trace = channel
-    ? traceChiefRelativeSkewRayChromatic(
-        0,
-        0,
-        geometry.yChief,
-        geometry.uField,
-        entrancePupilSemiDiameter,
-        focusT,
-        zoomT,
-        stopSemiDiameter,
-        true,
-        L,
-        channel,
-        aberrationT,
-      )
-    : traceChiefRelativeSkewRay(
-        0,
-        0,
-        geometry.yChief,
-        geometry.uField,
-        entrancePupilSemiDiameter,
-        focusT,
-        zoomT,
-        stopSemiDiameter,
-        true,
-        L,
-        aberrationT,
-      );
+  const trace = adapter.skew(
+    0 * entrancePupilSemiDiameter,
+    geometry.yChief + 0 * entrancePupilSemiDiameter,
+    0,
+    geometry.uField,
+  );
   if (trace.clipped) return null;
 
   const imagePoint = skewImagePlaneIntercept(
@@ -445,6 +431,7 @@ export function traceOffAxisBundleFromSamples(
 ): OffAxisBundle | null {
   if (entrancePupilSemiDiameter <= 0 || L.N < 1) return null;
 
+  const adapter = prepareOffAxisTrace(geometry, L, focusT, zoomT, stopSemiDiameter, channel, aberrationT);
   const chiefRay = traceOffAxisChiefRay(
     geometry,
     L,
@@ -454,6 +441,7 @@ export function traceOffAxisBundleFromSamples(
     stopSemiDiameter,
     channel,
     aberrationT,
+    adapter,
   );
   if (chiefRay === null) return null;
 
@@ -464,19 +452,7 @@ export function traceOffAxisBundleFromSamples(
         sample.xFraction * entrancePupilSemiDiameter,
         sample.yFraction * entrancePupilSemiDiameter,
       );
-      const trace = channel
-        ? traceSkewRayVectorChromatic(
-            vectorRay,
-            geometry.zPos,
-            stopSemiDiameter,
-            true,
-            L,
-            channel,
-            focusT,
-            zoomT,
-            aberrationT,
-          )
-        : traceSkewRayVector(vectorRay, geometry.zPos, stopSemiDiameter, true, L, focusT, zoomT, aberrationT);
+      const trace = adapter.skewVector(vectorRay);
       if (trace.clipped) return [];
 
       const imagePoint = skewImagePlaneIntercept(
@@ -502,34 +478,12 @@ export function traceOffAxisBundleFromSamples(
       ];
     }
 
-    const trace = channel
-      ? traceChiefRelativeSkewRayChromatic(
-          sample.xFraction,
-          sample.yFraction,
-          geometry.yChief,
-          geometry.uField,
-          entrancePupilSemiDiameter,
-          focusT,
-          zoomT,
-          stopSemiDiameter,
-          true,
-          L,
-          channel,
-          aberrationT,
-        )
-      : traceChiefRelativeSkewRay(
-          sample.xFraction,
-          sample.yFraction,
-          geometry.yChief,
-          geometry.uField,
-          entrancePupilSemiDiameter,
-          focusT,
-          zoomT,
-          stopSemiDiameter,
-          true,
-          L,
-          aberrationT,
-        );
+    const trace = adapter.skew(
+      sample.xFraction * entrancePupilSemiDiameter,
+      geometry.yChief + sample.yFraction * entrancePupilSemiDiameter,
+      0,
+      geometry.uField,
+    );
     if (trace.clipped) return [];
 
     const imagePoint = skewImagePlaneIntercept(

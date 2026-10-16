@@ -7,7 +7,7 @@
 import { computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState } from "../field/fieldGeometry.js";
 import { thick } from "../layout.js";
 import { sampleCircularPupil } from "../analysis/sampling.js";
-import { skewImagePlaneIntercept } from "../trace/rayAdapters.js";
+import { prepareRayTrace, skewImagePlaneIntercept } from "../trace/rayAdapters.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type {
   BokehPoint,
@@ -67,6 +67,7 @@ export function computeSphericalAberration(
   const imagePlaneZ = L.isFoldedOptics ? L.imagePlane.z : lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   if (!isFinite(imagePlaneZ)) return null;
 
+  const prepared = prepareRayTrace(L, { zPos, focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT });
   const nearAxisSample = computeSymmetricRealSample(
     L,
     zPos,
@@ -78,6 +79,7 @@ export function computeSphericalAberration(
     imagePlaneZ,
     NEAR_AXIS_REAL_FRAC,
     aberrationT,
+    prepared,
   );
   if (nearAxisSample === null) return null;
 
@@ -94,6 +96,7 @@ export function computeSphericalAberration(
       imagePlaneZ,
       fraction,
       aberrationT,
+      prepared,
     );
     if (marginalSample !== null) break;
   }
@@ -111,6 +114,7 @@ export function computeSphericalAberration(
       imagePlaneZ,
       fraction,
       aberrationT,
+      prepared,
     );
     const minusHit = computeRealRayHit(
       L,
@@ -123,6 +127,7 @@ export function computeSphericalAberration(
       imagePlaneZ,
       -fraction,
       aberrationT,
+      prepared,
     );
     if (plusHit === null || minusHit === null) return [];
     return [plusHit, minusHit];
@@ -190,6 +195,7 @@ export function computeSAProfile(
   const imagePlaneZ = L.isFoldedOptics ? L.imagePlane.z : lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   if (!isFinite(imagePlaneZ)) return [];
 
+  const prepared = prepareRayTrace(L, { zPos, focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT });
   const hits = PROFILE_FRACS.flatMap((fraction) => {
     const plusHit = computeRealRayHit(
       L,
@@ -202,6 +208,7 @@ export function computeSAProfile(
       imagePlaneZ,
       fraction,
       aberrationT,
+      prepared,
     );
     const minusHit = computeRealRayHit(
       L,
@@ -214,6 +221,7 @@ export function computeSAProfile(
       imagePlaneZ,
       -fraction,
       aberrationT,
+      prepared,
     );
     if (plusHit === null || minusHit === null) return [];
     return [plusHit, minusHit];

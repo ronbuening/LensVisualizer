@@ -146,7 +146,7 @@ export function tracePerspectiveRay(
     cameraReturnPoint,
     sensorIntersection,
     reachedSensor: sensorIntersection !== null,
-    transmission: bulkTransmissionForTrace(context.state.lens.runtime, localTrace.hits),
+    transmission: bulkTransmissionForTrace(context.state.lens, localTrace.hits),
   };
 }
 

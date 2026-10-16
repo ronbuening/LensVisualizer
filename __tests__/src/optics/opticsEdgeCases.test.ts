@@ -245,6 +245,18 @@ describe("per-target image-height inversion", () => {
     const { z } = doLayout(0, 0, L);
     const geometry = { ...computeFieldGeometryAtState(0, 0, L), halfFieldDeg: 20 };
     const traceRay = rayAdapters.traceRay2;
+    const prepare = rayAdapters.prepareRayTrace;
+    const prepared = vi.spyOn(rayAdapters, "prepareRayTrace").mockImplementation((...args) => {
+      const adapter = prepare(...args);
+      return {
+        ...adapter,
+        ray(y, u) {
+          const result = adapter.ray(y, u);
+          const angle = (Math.atan(-u) * 180) / Math.PI;
+          return { ...result, y: -angle - (angle >= 12 ? 10 : 0), u: 0 };
+        },
+      };
+    });
     // Isolate target residual validation from intersection failures and aperture policy.
     const trace = vi.spyOn(rayAdapters, "traceRay2").mockImplementation((...args) => {
       const result = traceRay(...args);
@@ -263,6 +275,7 @@ describe("per-target image-height inversion", () => {
       if (gap.status !== "unreachable") throw new Error("Expected unreachable height");
     } finally {
       trace.mockRestore();
+      prepared.mockRestore();
     }
   });
 

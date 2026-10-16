@@ -7,16 +7,18 @@ import {
   traceSkewRay,
 } from "../../../src/optics/optics.js";
 import { bulkTransmissionForTrace } from "../../../src/optics/trace/bulkAbsorption.js";
-import type { RuntimeLens } from "../../../src/types/optics.js";
+import type { EngineLens } from "../../../src/optics/types.js";
+import { normalizeRuntimeLens } from "../../../src/optics/prescription/normalizeLensData.js";
+import { transmissionTraceCapture } from "../../../src/optics/trace/bulkAbsorption.js";
 import { build, buildSimplePositiveElementLens } from "./testLensFixtures.js";
 
 describe("bulkTransmissionForTrace", () => {
   it("applies Beer-Lambert attenuation to the exact path inside an absorbing element", () => {
     const L = {
-      isFoldedOptics: false,
+      flags: { isFoldedOptics: false },
       elements: [{ id: 5, absorptionCoefficientPerMm: 0.5 }],
-      S: [{ elemId: 5 }, { elemId: 0 }],
-    } as unknown as RuntimeLens;
+      surfaces: [{ elemId: 5 }, { elemId: 0 }],
+    } as unknown as EngineLens;
     const hits = [
       { surfaceIdx: 0, point: [0, 0, 1] as const },
       { surfaceIdx: 1, point: [0, 0, 3] as const },
@@ -27,15 +29,15 @@ describe("bulkTransmissionForTrace", () => {
 
   it("keeps transparent traces at unit transmission and defensively ignores unsupported folded absorption", () => {
     const transparent = {
-      isFoldedOptics: false,
+      flags: { isFoldedOptics: false },
       elements: [{ id: 1 }],
-      S: [{ elemId: 1 }, { elemId: 0 }],
-    } as unknown as RuntimeLens;
+      surfaces: [{ elemId: 1 }, { elemId: 0 }],
+    } as unknown as EngineLens;
     const folded = {
       ...transparent,
-      isFoldedOptics: true,
+      flags: { isFoldedOptics: true },
       elements: [{ id: 1, absorptionCoefficientPerMm: 0.5 }],
-    } as unknown as RuntimeLens;
+    } as unknown as EngineLens;
     const hits = [
       { surfaceIndex: 0, point: [0, 0, 0] as const },
       { surfaceIndex: 1, point: [0, 0, 10] as const },
@@ -43,6 +45,40 @@ describe("bulkTransmissionForTrace", () => {
 
     expect(bulkTransmissionForTrace(transparent, hits)).toBe(1);
     expect(bulkTransmissionForTrace(folded, hits)).toBe(1);
+  });
+
+  it("uses compiled media without consulting the RuntimeLens bridge or source records", () => {
+    const base = buildSimplePositiveElementLens();
+    const runtime = build({
+      ...base.data,
+      elements: base.data.elements.map((element) => ({ ...element, absorptionCoefficientPerMm: 0.5 })),
+    });
+    const compiled = normalizeRuntimeLens(runtime);
+    const lens = {
+      ...compiled,
+      get runtime(): never {
+        throw new Error("RuntimeLens read");
+      },
+      get source(): never {
+        throw new Error("source read");
+      },
+      elements: compiled.elements.map((element) => ({
+        ...element,
+        get source(): never {
+          throw new Error("element source read");
+        },
+      })),
+    };
+    const front = runtime.labelIdx["1"];
+    const rear = runtime.labelIdx["2"];
+    const hits = [
+      { surfaceIndex: front, point: [0, 0, 1] as const },
+      { surfaceIndex: rear, point: [0, 0, 3] as const },
+    ];
+    expect(transmissionTraceCapture(lens)).toBe("hits");
+    expect(bulkTransmissionForTrace(lens, hits)).toBe(Math.exp(-1));
+    expect(bulkTransmissionForTrace(lens, hits)).toBe(Math.exp(-1));
+    expect(() => bulkTransmissionForTrace(lens, undefined)).toThrow("requires hit capture");
   });
 
   it("propagates absorption along the exact in-glass path through both public trace adapters", () => {

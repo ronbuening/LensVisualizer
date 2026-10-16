@@ -10,7 +10,7 @@ import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
 import { createTraceGeometry } from "../trace/geometry.js";
 import { prepareState } from "../state/prepareState.js";
 import type { PreparedOpticalState } from "../types.js";
-import { traceEngineRay2 } from "../trace/rayAdapters.js";
+import { prepareEngineTrace } from "../trace/rayAdapters.js";
 import { computeSystemMatrix2 } from "./systemMatrix.js";
 
 const CARDINAL_EPSILON = 1e-12;
@@ -252,16 +252,13 @@ function resolveFoldedParaxialSurfaceOrder2(state: PreparedOpticalState): number
     .sort((a, b) => a - b)
     .map((fraction) => fraction * runtime.EP.epSD);
 
+  const trace = prepareEngineTrace(state, {
+    checkSemiDiameter: true,
+    stopSemiDiameter: runtime.stopPhysSD,
+    stopOnClip: true,
+  });
   for (const y0 of candidateHeights) {
-    const result = traceEngineRay2(
-      state,
-      { origin: [0, y0, state.z[0] ?? 0], direction: [0, 0, 1] },
-      {
-        checkSemiDiameter: true,
-        stopSemiDiameter: runtime.stopPhysSD,
-        stopOnClip: true,
-      },
-    );
+    const result = trace({ origin: [0, y0, state.z[0] ?? 0], direction: [0, 0, 1] });
     if (!result.reachedImagePlane || result.status !== "ok") continue;
     const opticalHits = result.hits
       .map((hit) => hit.surfaceIndex)
