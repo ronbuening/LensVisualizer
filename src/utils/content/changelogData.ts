@@ -32,7 +32,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-16",
     type: "fix",
-    summary: "Restored the outermost field sample on the Kinoptik Super Tegea 19mm's field-curvature and colour charts",
+    summary: "Restored the outermost field sample on the Kinoptik Super-Tegea 1.9mm's field-curvature and colour charts",
   },
   {
     date: "2026-10-16",
