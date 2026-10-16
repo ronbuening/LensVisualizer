@@ -2240,6 +2240,10 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     - One compilation and one material resolution per identity, shown by spying on the compiler and the resolver.
     - The `vi.mock` of `internal/lensState.js` in `__tests__/src/optics/validateLensData.test.ts` moves to the
       compiler.
+  - **As built:** Canonical identity owns one successful compilation and one resolution per medium; weak view
+    associations preserve catalog identity. Compiler construction records feed the unchanged runtime constants until
+    T2; validator-first input remains until T3, and the trusted composed-pair adapter is deleted in T4. Repeated
+    builds share geometry; a freshly ingested same-key prescription remains independent (identity-contract change).
   - **Gate:** C0.
 - **S5.P1.T2 Lens constants and the `RuntimeLens` view.**
   - **Change:** `first-order/lensConstants.ts` computes the constants from `CompiledLens`, using the trace stack and
