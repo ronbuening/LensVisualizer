@@ -353,7 +353,7 @@ function bindRayTrace(
   request: RayTraceRequest,
 ): PreparedRayTrace {
   const { stopSD, ghost, channel, launchBoundT } = request;
-  const lead = state.lens.runtime.rayLead ?? 0;
+  const lead = state.lens.constants.rayLead ?? 0;
   const firstZ = request.zPos?.[0] ?? state.z[0] ?? 0;
   const skewFirstZ = scalarSkewState.z[0] ?? 0;
   const geometry = state.traceGeometry;

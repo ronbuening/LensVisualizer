@@ -1,19 +1,20 @@
 /** The uncached canonical compiler; the entry caches only its successful, complete result. */
-import type { LensData, RuntimeLens } from "../../types/optics.js";
+import type { LensData } from "../../types/optics.js";
 import type { CanonicalLens, CanonicalProvenance } from "./canonical.js";
 import type {
   AuthoredRayFans,
   CompiledLens,
+  CompiledPrescription,
+  LensConstants,
   CompiledLensFlags,
   DisplaySpec,
   PathSpec,
   ProjectionSpec,
   StopSpec,
 } from "../types.js";
-import buildRuntimeLens from "../runtimeLens.js";
+import { computeLensConstants } from "../first-order/lensConstants.js";
 import { expandedConstruction } from "./rearPlates.js";
 import { compileConstruction, type LensConstruction } from "./compileConstruction.js";
-import { associateRuntime } from "./identity.js";
 import { resolvedImagePlaneToPlane3 } from "./interactions.js";
 
 export function compileCanonicalUncached(
@@ -23,20 +24,20 @@ export function compileCanonicalUncached(
 ): CompiledLens {
   const { data, source } = expandedConstruction({ prescription, provenance }, descriptor);
   const input = compileConstruction(data, source);
-  return completeCompilation(input, buildRuntimeLens(input));
+  const prescriptionCore = compilePrescription(input);
+  return completeCompilation(prescriptionCore, computeLensConstants(prescriptionCore));
 }
 
-/** Finish compiler-owned records with the constants recipe's result; also supports explicit synthetic test views. */
-export function completeCompilation(input: LensConstruction, runtime: RuntimeLens): CompiledLens {
+/** Index and resolve the prescription before any constants or RuntimeLens exists. */
+export function compilePrescription(input: LensConstruction): CompiledPrescription {
   const { data, source } = input;
-  // Stop sizing changes only the aperture record, never its compiled profile.
-  const surfaces = Object.freeze(input.surfaces.map((surface, i) => Object.freeze({ ...surface, sd: input.S[i].sd })));
+  const surfaces = input.surfaces;
   const variables = Object.freeze({
     isZoom: input.isZoom,
     focusPositions: input.focusPositions,
     zoomPositions: data.zoomPositions ? Object.freeze([...data.zoomPositions]) : null,
     zoomLabels: data.zoomLabels ? Object.freeze([...data.zoomLabels]) : null,
-    zoomStep: runtime.zoomStep,
+    zoomStep: data.zoomStep || 0.004,
     bySurfaceIndex: input.varByIdx,
     labels: Object.freeze(input.varLabels),
   });
@@ -56,25 +57,57 @@ export function completeCompilation(input: LensConstruction, runtime: RuntimeLen
   const compiled = Object.freeze({
     key: data.key,
     source,
-    runtime,
+    data,
+    indices: Object.freeze({
+      asphByIdx: input.asphByIdx,
+      vdByIdx: input.vdByIdx,
+      spectralByIdx: input.spectralByIdx,
+      indexByIdx: input.indexByIdx,
+    }),
+    lastLensSurfaceIndex: input.lastLensSurfaceIdx,
+    displayElementSpans: input.ES,
+    hasExplicitImagePlane: data.opticalPath?.imagePlane !== undefined,
     surfaces,
     elements: input.elements,
     labelToSurfaceIndex: input.labelIdx,
     stop: compileStop(input),
     projection: compileProjection(input),
     opticalPath: compileOpticalPath(input),
-    imagePlane: resolvedImagePlaneToPlane3(runtime.imagePlane),
     variables,
     aberrationControl,
     annotations: Object.freeze({ groups: input.groups, doublets: input.doublets }),
     dispersion: input.dispersion,
-    display: compileDisplay(input, runtime.svgH, runtime.maxRimTan, runtime.lensShiftFrac),
+    display: compileDisplay(input),
     authoredRayFans: compileRayFans(input),
     perspectiveControl: data.perspectiveControl ?? null,
     flags: compileFlags(input),
   });
-  associateRuntime(runtime, compiled);
   return compiled;
+}
+
+/** Publish sized surfaces and constants together, without constructing or retaining a runtime view. */
+export function completeCompilation(prescription: CompiledPrescription, constants: LensConstants): CompiledLens {
+  const surfaces = Object.freeze(
+    prescription.surfaces.map((surface, i) =>
+      Object.freeze({
+        ...surface,
+        sd: i === prescription.stop.surfaceIndex ? constants.stopPhysSD : surface.sd,
+      }),
+    ),
+  );
+  return Object.freeze({
+    ...prescription,
+    surfaces,
+    constants,
+    stop: Object.freeze({ ...prescription.stop, physicalSemiDiameter: constants.stopPhysSD }),
+    imagePlane: resolvedImagePlaneToPlane3(constants.imagePlane),
+    display: Object.freeze({
+      ...prescription.display,
+      svgH: constants.svgH,
+      maxRimTan: constants.maxRimTan,
+      lensShiftFrac: constants.lensShiftFrac,
+    }),
+  });
 }
 
 function compileStop(input: LensConstruction): StopSpec {
@@ -103,17 +136,16 @@ function compileOpticalPath(input: LensConstruction): PathSpec {
   });
 }
 
-function compileDisplay(input: LensConstruction, svgH: number, maxRimTan: number, lensShiftFrac: number): DisplaySpec {
+function compileDisplay(input: LensConstruction): Omit<DisplaySpec, "maxRimTan"> {
   return Object.freeze({
     svgW: input.data.svgW,
-    svgH,
+    svgH: input.data.svgH,
     scFill: input.data.scFill,
     yScFill: input.data.yScFill,
     maxRimAngleDeg: input.data.maxRimAngleDeg,
-    maxRimTan,
     gapSagFrac: input.data.gapSagFrac,
     maxAspectRatio: input.data.maxAspectRatio,
-    lensShiftFrac,
+    lensShiftFrac: input.data.lensShiftFrac || 0,
     rayLeadFrac: input.data.rayLeadFrac,
   });
 }

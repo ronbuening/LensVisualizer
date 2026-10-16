@@ -670,6 +670,38 @@ describe("bladeStubFrac — aberration-aware blade position", () => {
 });
 
 // Authored iris schedules are an engine contract, independent of a patent's values.
+describe("compiled first-order constants", () => {
+  it("matches a thick singlet's analytic EFL, back focus and pupil conjugates", () => {
+    // Reduced-angle matrix R2 T(t/n) R1 T(g): A=.96, B=4.96, C=-.0196, D=.9404.
+    const power = 0.01 + 0.01 - (6 / 1.5) * 0.01 * 0.01;
+    const efl = 1 / power;
+    const bfd = (1 - (6 / 1.5) * 0.01) / power;
+    const L = buildLens(
+      teleconverterHostData({
+        overrides: {
+          nominalFno: 4,
+          elements: [{ id: 1, name: "Singlet", label: "L1", type: "positive", nd: 1.5, vd: 60 }],
+          surfaces: [
+            { label: "STO", R: 1e15, d: 1, nd: 1, elemId: 0, sd: 15 },
+            { label: "1", R: 50, d: 6, nd: 1.5, elemId: 1, sd: 15 },
+            { label: "2", R: -50, d: bfd, nd: 1, elemId: 0, sd: 15 },
+          ],
+        },
+      }),
+    );
+    expect(L.EFL).toBeCloseTo(efl, 12);
+    const layout = doLayout(0, 0, L);
+    expect(computeCardinalElementsAtState(L, 0, 0, layout.z, layout.imgZ)!.distances.bfd.valueMm).toBeCloseTo(bfd, 12);
+    expect(L.stopPhysSD).toBe(efl / 8);
+    expect(L.EP.epSD).toBe(efl / 8);
+    expect(L.EP.yRatio).toBe(1);
+    expect(L.epZRelStop).toBe(0);
+    // Real basis rays use delta=1e-4; their paraxial limit is the stop's Gaussian conjugate.
+    expect(L.xpZRelLastSurf).toBeCloseTo(-4.96 / 0.9404, 7);
+    expect(L.xpSD).toBeCloseTo(efl / 8 / 0.9404, 7);
+  });
+});
+
 describe("published zoom iris schedule", () => {
   it("preserves supplied radii and interpolates between stations", () => {
     const zoomPositions = NikkorZ70200Raw.zoomPositions;

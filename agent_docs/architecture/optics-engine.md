@@ -212,9 +212,14 @@ prescription identity. `prescription/identity.ts` associates each catalog V1 vie
 runtime with its compiled owner, using weak keys with one value per owner. Repeated builds of one catalog object
 share runtime and compiled geometry; a freshly ingested same-key object stays independent. The runtime association
 is lookup-only. Provenance supplies source echoes and diagnostics; optical construction uses canonical values.
-`runtimeLens.ts` consumes compiler construction records and the resolved material table; its unchanged constants
-recipe and `CompiledLens.runtime` compatibility pointer remain until S5.P1.T2. `engineLensFromRuntime()` and
-`prepareRuntimeState()` expose the compiled owner and prepared state for tracing and analysis.
+`first-order/lensConstants.ts` derives constants once from indexed compiled prescription records, using shared
+profiles and the resolved material table. Local surface copies carry stop sizing through the baseline and station
+traces; finalization publishes the sized surfaces, constants, display dimensions and image plane together.
+`prescription/runtimeView.ts` assembles one frozen `RuntimeLens` per compiled identity in a weak-owner cache.
+Compiled lenses contain no runtime back-pointer. Preparation reads compiled aperture schedules and explicit-plane
+authority; tracing and diagram consumers read compiled facts directly. Legacy analysis adapters obtain the derived
+view until their Stage 7 request migration. View assembly never compiles, resolves materials or prepares geometry.
+`engineLensFromRuntime()` and `prepareRuntimeState()` expose the compiled owner and prepared state for tracing and analysis.
 
 The constructor validates lens data and constructs a frozen `RuntimeLens` with:
 
@@ -503,7 +508,7 @@ sharing the refract-or-fail step in `trace/interactions.ts`:
   off-axis and chromatic analyses, and everything else that calls those exports run here. The chief-relative
   scalar wrappers in `trace/chiefRelative.ts` use the same adapters: scalar off-axis bundles, field-curvature
   parabasal rays, and scalar chromatic fans now run here too, including the coma, spherical blur-character,
-  bokeh, and chromatic field analyses that consume them. `runtimeLens.ts` also builds `TraceGeometry` directly
+  bokeh, and chromatic field analyses that consume them. `first-order/lensConstants.ts` also builds `TraceGeometry` directly
   from compiler-owned profiles for stop sizing, EP/XP basis rays, half-field bisections, zoom stations
   and folded pupils. Construction requires no partial runtime lens or prepared state. Baseline and station geometry
   views replace thicknesses and apertures while sharing the profiles, and are rebuilt after stop sizing

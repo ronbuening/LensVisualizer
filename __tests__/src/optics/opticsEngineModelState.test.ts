@@ -1,3 +1,6 @@
+import * as constantsModule from "../../../src/optics/first-order/lensConstants.js";
+import * as views from "../../../src/optics/prescription/runtimeView.js";
+import { runtimeView } from "../../../src/optics/prescription/runtimeView.js";
 import { describe, expect, it, vi } from "vitest";
 import * as compiler from "../../../src/optics/prescription/compileCanonical.js";
 import * as glassCatalog from "../../../src/optics/glassCatalog.js";
@@ -6,7 +9,7 @@ import { ingestLensV1, toLensData } from "../../../src/optics/buildLens.js";
 import { dispersionTableFromRuntime2 } from "../../../src/optics/chromatic/dispersionAdapter.js";
 import { summarizeDispersionQuality2 } from "../../../src/optics/chromatic/dispersionQuality.js";
 import { traceRay } from "../../../src/optics/optics.js";
-import { teleconverterHostData } from "./testLensFixtures.js";
+import { teleconverterHostData, teleconverterZoomHostData } from "./testLensFixtures.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import { doLayout, thick } from "../../../src/optics/optics.js";
 import { buildLens2, engineLensFromRuntime, prepareRuntimeState } from "../../../src/optics/compat.js";
@@ -74,7 +77,8 @@ describe("Optics engine LensData normalization and compatibility", () => {
       expect(engine.surfaces).toHaveLength(runtime.N);
       /* Engine elements are every traced medium; runtime.elements drops synthetic rear plates for display. */
       expect(engine.elements).toHaveLength(runtime.data.elements.length);
-      expect(engine.runtime).toBe(runtime);
+      expect(engine).not.toHaveProperty("runtime");
+      expect(runtimeView(engine)).toBe(runtime);
       // Perspective control is opt-in: lenses without the data block build with movement disabled.
       if (runtime.data.perspectiveControl == null) expect(runtime.perspectiveControl, key).toBeNull();
     }
@@ -226,6 +230,85 @@ describe("Optics engine prepared state", () => {
 });
 
 describe("canonical compiler ownership", () => {
+  it("finishes constants before publication and prepares without requesting a runtime view", () => {
+    const data = teleconverterHostData();
+    const compute = vi.spyOn(constantsModule, "computeLensConstants");
+    const view = vi.spyOn(views, "runtimeView");
+    const resolve = vi.spyOn(materials, "makeSurfaceDispersion");
+    try {
+      const compiled = compileLensData(data);
+      expect(compute).toHaveBeenCalledTimes(1);
+      expect(view).not.toHaveBeenCalled();
+      expect(compiled).not.toHaveProperty("runtime");
+      expect(compiled.constants).not.toHaveProperty("data");
+      expect(compiled.constants).not.toHaveProperty("S");
+      expect(Object.isFrozen(compiled)).toBe(true);
+      expect(Object.isFrozen(compiled.constants)).toBe(true);
+      const calls = resolve.mock.calls.length;
+      // Preparation uses compiled facts, including explicit-plane authority, rather than source metadata.
+      const source = new Proxy(compiled.source, {
+        get() {
+          throw new Error("source read during preparation");
+        },
+      });
+      const state = prepareState({ ...compiled, source }, 0.5, 0);
+      expect(state.surfaces[state.lens.stop.surfaceIndex].sd).toBe(compiled.stop.physicalSemiDiameter);
+      expect(view).not.toHaveBeenCalled();
+      const runtime = runtimeView(compiled);
+      expect(Object.isFrozen(runtime)).toBe(true);
+      expect(runtimeView(compiled)).toBe(runtime);
+      expect(engineLensFromRuntime(runtime)).toBe(compiled);
+      expect(compileLensData(data)).toBe(compiled);
+      expect(compute).toHaveBeenCalledTimes(1);
+      expect(resolve).toHaveBeenCalledTimes(calls);
+    } finally {
+      compute.mockRestore();
+      view.mockRestore();
+      resolve.mockRestore();
+    }
+  });
+
+  it("prepares a published iris schedule directly from compiled station constants", () => {
+    const data = teleconverterZoomHostData({ zoomStopSemiDiameters: [8, 10, 12] });
+    const source = structuredClone(data);
+    const compiled = compileLensData(data);
+    const view = vi.spyOn(views, "runtimeView");
+    try {
+      expect(compiled.constants.zoomStopSDs).toEqual([8, 10, 12]);
+      for (const [zoomT, radius] of [
+        [0, 8],
+        [0.125, 8.5],
+        [0.5, 10],
+        [1, 12],
+      ]) {
+        const state = prepareState(compiled, 0.5, zoomT);
+        expect(state.surfaces[compiled.stop.surfaceIndex].sd).toBe(radius);
+      }
+      expect(compiled.stop.physicalSemiDiameter).toBe(8);
+      expect(view).not.toHaveBeenCalled();
+      expect(data).toEqual(source);
+    } finally {
+      view.mockRestore();
+    }
+  });
+
+  it("prepares folded image planes from compiled authority without consulting source echoes", () => {
+    for (const key of ["reference-newtonian-side-focus", "reference-spherical-primary-mirror"]) {
+      const compiled = compileLensData(LENS_CATALOG[key]);
+      expect(compiled.hasExplicitImagePlane).toBe(true);
+      const source = new Proxy(compiled.source, {
+        get() {
+          throw new Error("source read during preparation");
+        },
+      });
+      const expected = prepareState(compiled, 0.25, 0);
+      const actual = prepareState({ ...compiled, source }, 0.25, 0);
+      expect(actual.imagePlane).toBe(compiled.imagePlane);
+      expect(actual.z).toEqual(expected.z);
+      expect(actual.imgZ).toBe(expected.imgZ);
+    }
+  });
+
   it("never compiles an unregistered RuntimeLens view", () => {
     const runtime = buildLens(teleconverterHostData());
     expect(() => engineLensFromRuntime({ ...runtime })).toThrow(

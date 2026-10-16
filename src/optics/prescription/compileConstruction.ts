@@ -1,4 +1,4 @@
-/** Short-lived canonical compiler input to the unchanged constants recipe. Removed as a seam in S5.P1.T2. */
+/** Compile canonical prescription indices, profiles, controls and shared materials before constants. */
 import type { SurfaceData, LensData } from "../../types/optics.js";
 import { buildSurfaceLabelMap } from "./compileLabels.js";
 import { compileAspheres } from "./compileAspheres.js";

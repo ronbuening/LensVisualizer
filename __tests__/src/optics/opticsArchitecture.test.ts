@@ -222,6 +222,12 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     key: "owner identity",
     perOwner: "one lookup-only CompiledLens association",
   },
+  "src/optics/prescription/runtimeView.ts#VIEWS": {
+    kind: "weak-owner",
+    owner: "CompiledLens",
+    key: "owner identity",
+    perOwner: "one frozen derived RuntimeLens for compatibility analyses and UI",
+  },
   "src/optics/trace/bulkAbsorption.ts#ABSORPTION_BY_ELEMENT_ID": {
     kind: "weak-owner",
     owner: "CompiledLens",

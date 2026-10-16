@@ -1,3 +1,4 @@
+import { runtimeView } from "../../../src/optics/prescription/runtimeView.js";
 import { describe, expect, it } from "vitest";
 import {
   build,
@@ -80,8 +81,8 @@ describe("qualified spectral MTF", () => {
   it("interpolates line-index glass exactly through its measured C/d/F/g channels", () => {
     const state = prepareRuntimeState(buildChromaticPositiveElementLens(), 0, 0);
     const lineLens = build({
-      ...state.lens.runtime.data,
-      elements: state.lens.runtime.elements.map((e) => ({
+      ...runtimeView(state.lens).data,
+      elements: runtimeView(state.lens).elements.map((e) => ({
         ...e,
         glass: undefined,
         nC: 1.5143,

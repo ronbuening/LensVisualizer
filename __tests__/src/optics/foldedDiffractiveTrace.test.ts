@@ -88,7 +88,7 @@ describe("folded diffractive fixture — data contract", () => {
 
   it("carries the analytic 200 mm equivalent power in the phase term alone", () => {
     // Measured from the coefficients, NOT from RuntimeLens.EFL: that field is
-    // `focalLengthDesign ?? focalLengthMarketing ?? axialExtent` (runtimeLens.ts
+    // `focalLengthDesign ?? focalLengthMarketing ?? axialExtent` (first-order/lensConstants.ts
     // ~410), so it echoes authored metadata and would report 200 even with the
     // phase term deleted.
     expect(diffractiveParaxialPower(PHASE, PHASE.referenceWavelengthNm)).toBeCloseTo(1 / 200, 12);

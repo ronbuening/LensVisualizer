@@ -45,7 +45,7 @@ export interface SchemaDefault {
   readonly spread?: true;
 }
 
-const BUILD_LENS = "src/optics/runtimeLens.ts buildLens";
+const BUILD_LENS = "src/optics/first-order/lensConstants.ts computeLensConstants";
 
 /** Defaults of a lens prescription, in canonical field order. */
 export const LENS_SCHEMA_DEFAULTS: readonly SchemaDefault[] = [

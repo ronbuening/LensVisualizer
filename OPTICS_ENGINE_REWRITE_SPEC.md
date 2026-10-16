@@ -2300,6 +2300,10 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     `prescription/runtimeView.ts` assembles the frozen `RuntimeLens`. The `runtime` back-pointer and the
     `prepareState.ts` reads of `lens.runtime` are deleted.
   - **Tests:** analytic first-order anchors; `exactTraceGoldenValues.test.ts` unchanged.
+  - **As built:** Constants are computed once from compiled prescription records before publication; finalized
+    surfaces carry the sized stop. `runtimeView.ts` memoizes the frozen derived view by compiled identity for UI and
+    legacy analyses until S7. The runtime back-pointer is deleted; preparation uses compiled aperture schedules and
+    explicit-plane authority, while tracing and diagram consumers read compiled facts directly.
   - **Gate:** C0.
 - **S5.P1.T3 Validation on canonical and compiled data.**
   - **Change:** `prescription/validate/{schema, references, geometry, aperture, folded, diffractive, controls}.ts`
@@ -2419,8 +2423,8 @@ under the rule in [Integration model](#integration-model). Stages 6 to 8, and Ph
 
   **Gate:** C0.
 - **S7.P4.T1 MTF on the request.**
-  - **Change:** `analysis/mtf/` consumes `AnalysisRequest` and `PreparedGeometry` and no longer reads
-    `state.lens.runtime`. Orchestration, OTF kernels, spectra, focus and field logic are unchanged, as decision
+  - **Change:** `analysis/mtf/` consumes `AnalysisRequest` and `PreparedGeometry` (S5.P1.T2 already removed the
+    `state.lens.runtime` reads, with the back-pointer, as the maintainer accepted on 2026-10-16). Orchestration, OTF kernels, spectra, focus and field logic are unchanged, as decision
     2026-10-07 requires.
   - **Tests:** `mtf`, `mtfConjugates`, `mtfDiffraction`, `mtfSpectral` and `mtfWavefront` unchanged.
   - **Gate:** C0.

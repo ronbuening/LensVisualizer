@@ -6,6 +6,8 @@
  * shifted planes needs no retrace, so the offset is cheap to report as a diagnostic and to apply
  * as an optional single refocus for all fields, like a camera focused at the image center.
  */
+
+import { runtimeView } from "../prescription/runtimeView.js";
 import type { MtfSupport } from "../../types/mtf.js";
 import { computeCardinalElements2 } from "../first-order/cardinals.js";
 import { fopenAtZoom } from "../layout.js";
@@ -52,7 +54,7 @@ export interface MtfImagePlaneOffset {
 export function mtfImagePlaneOffset(state: PreparedOpticalState, support: MtfSupport): MtfImagePlaneOffset | null {
   if (support.conjugate) return null;
   const rearFocalZ = computeCardinalElements2(state)?.points.rearFocal.z;
-  const fNumber = fopenAtZoom(state.zoomT, state.lens.runtime);
+  const fNumber = fopenAtZoom(state.zoomT, runtimeView(state.lens));
   if (rearFocalZ === undefined || !Number.isFinite(rearFocalZ) || !(fNumber > 0)) return null;
   const offsetMm = rearFocalZ - state.imgZ;
   const limitMm = MTF_IMAGE_PLANE_DEPTHS * 2 * LINE_NM.d * 1e-6 * fNumber ** 2;

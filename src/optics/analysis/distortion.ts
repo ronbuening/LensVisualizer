@@ -4,6 +4,7 @@
  * Lets engine-native callers reuse prepared state while preserving the RuntimeLens call arguments.
  */
 
+import { runtimeView } from "../prescription/runtimeView.js";
 import { computeDistortionCurve, computeDistortionFieldGrid } from "../distortionAnalysis.js";
 import type { FieldGeometryState } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
@@ -32,7 +33,7 @@ export function computeDistortionCurveForState2(
   sampling?: AnalysisSamplingOptions,
 ) {
   return computeDistortionCurve(
-    state.lens.runtime,
+    runtimeView(state.lens),
     zPosForPreparedAnalysis2(state),
     state.focusT,
     state.zoomT,
@@ -59,7 +60,7 @@ export function computeDistortionFieldGridForState2(
   sampling?: AnalysisSamplingOptions,
 ) {
   return computeDistortionFieldGrid(
-    state.lens.runtime,
+    runtimeView(state.lens),
     zPosForPreparedAnalysis2(state),
     state.focusT,
     state.zoomT,

@@ -76,7 +76,7 @@ flowchart LR
 - Direct source files: 15
 - Direct subfolders: 0
 - Main outbound areas: same folder (38), src/optics/types.ts (12), src/types (10), src/optics/math (6), src/optics/geometry (5), src/optics/constants.ts, src/optics/prescription, src/optics/state
-- External consumers: src/optics/aberration, src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/diagram, src/optics/distortionAnalysis.ts, src/optics/field, src/optics/first-order, +9 more
+- External consumers: src/optics/aberration, src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/diagram, src/optics/distortionAnalysis.ts, src/optics/field, src/optics/first-order, +8 more
 
 ## Files
 
@@ -88,12 +88,12 @@ flowchart LR
 | `chiefRelative.ts` | Chief Relative helper module | same folder (2), src/types | src/optics/aberration, src/optics/optics.ts | traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic |
 | `foldedDiagnostics.ts` | Folded Diagnostics helper module | same folder, src/types | same folder (2) | surfaceLabel, pushClipEvent, buildTraceDiagnostics |
 | `generalizedTrace.ts` | Generalized Trace helper module | same folder (6), src/optics/math, src/optics/types.ts, src/types | same folder (2) | traceGeneralized |
-| `geometry.ts` | Geometry helper module | same folder (3) | same folder, src/optics/diagram, src/optics/first-order, src/optics/runtimeLens.ts, src/optics/state, +1 more | createTraceGeometry |
+| `geometry.ts` | Geometry helper module | same folder (3) | src/optics/first-order (2), same folder, src/optics/diagram, src/optics/state, src/optics/validateLensData.ts | createTraceGeometry |
 | `interactions.ts` | Interactions helper module | src/optics/math (2), src/optics/types.ts, src/types | same folder (3) | IncidentSide, incidentSideFor, isSurfaceSideActive, reflectedDirection, refractedDirection, phaseRefractedDirection, RefractiveInteractionFailure, RefractiveInteractionResult, +5 more |
 | `pathPlanner.ts` | Path Planner helper module | same folder (4), src/optics/geometry (2), src/optics/types.ts, src/types | same folder (2) | SurfaceHitCandidate, ImagePlaneIntersection, sequentialSurfaceMaxT, sequentialSurfaceMinT, targetedSurfaceMaxT, intersectStateSurface, intersectImagePlane, findNearestGeneralizedSurfaceHit, +2 more |
 | `rayAdapters.ts` | Ray Adapters helper module | same folder (4), src/optics/constants.ts, src/optics/math, src/optics/prescription, src/optics/state, +2 more | src/optics/aberration (4), src/optics/analysis (4), src/optics/chromatic (2), same folder, src/optics/compat.ts, +8 more | VectorRayTraceInput2, traceEngineRay2, prepareEngineTrace, traceRay2, traceRayChromatic2, traceSkewRay2, traceSkewRayChromatic2, traceRayVector2, +10 more |
 | `runtimeRayResult.ts` | Runtime Ray Result helper module | same folder (2), src/optics/types.ts, src/types | same folder (2), src/optics/aberration, src/optics/optics.ts | RuntimeSkewRayTraceResult, engineTraceToRuntimeRayResult, engineTraceToRuntimeSkewResult, vectorLeadPoint |
 | `sequentialTrace.ts` | Sequential Trace helper module | same folder (6), src/optics/geometry, src/optics/math, src/optics/types.ts | same folder | traceSequential |
-| `stopTrace.ts` | Stop Trace helper module | same folder (4), src/optics/types.ts | src/optics/compat.ts, src/optics/field, src/optics/pupilAberration.ts, src/optics/runtimeLens.ts | StopTraceOptions, TraceToStopResult, traceToStopViaGeneralized2, traceGeometryToStop |
-| `types.ts` | Shared TypeScript types | src/optics/geometry, src/optics/types.ts, src/types | same folder (12), src/optics/analysis (2), src/optics/field, src/optics/perspective, src/optics/pupilAberration.ts, +2 more | TraceFailureReason, TraceHit, TraceCapture, EngineTraceResult, TraceOptions, TraceDiagnosticsInput, TraceTraversal, TraceGeometry |
+| `stopTrace.ts` | Stop Trace helper module | same folder (4), src/optics/types.ts | src/optics/compat.ts, src/optics/field, src/optics/first-order, src/optics/pupilAberration.ts | StopTraceOptions, TraceToStopResult, traceToStopViaGeneralized2, traceGeometryToStop |
+| `types.ts` | Shared TypeScript types | src/optics/geometry, src/optics/types.ts, src/types | same folder (12), src/optics/analysis (2), src/optics/field, src/optics/first-order, src/optics/perspective, +2 more | TraceFailureReason, TraceHit, TraceCapture, EngineTraceResult, TraceOptions, TraceDiagnosticsInput, TraceTraversal, TraceGeometry |
 | `utils.ts` | Utils helper module | same folder (2), src/optics/math, src/optics/types.ts, src/types | same folder (3), src/optics/perspective | directionSlopes, projectCoordinateToZ, normalizeTraceDirection, finalizeTraceResult, clampTraceCount, resolveReturnVertexIndex |

@@ -4,6 +4,7 @@
  * Keeps vignetting calculations current-state aware while preserving the public compatibility exports.
  */
 
+import { runtimeView } from "../prescription/runtimeView.js";
 import type { FieldGeometryState } from "../optics.js";
 import { computeVignettingCurve } from "../vignetteAnalysis.js";
 import type { RuntimeLens } from "../../types/optics.js";
@@ -31,7 +32,7 @@ export function computeVignettingCurveForState2(
   sampling?: AnalysisSamplingOptions,
 ) {
   return computeVignettingCurve(
-    state.lens.runtime,
+    runtimeView(state.lens),
     zPosForPreparedAnalysis2(state),
     state.focusT,
     state.zoomT,
