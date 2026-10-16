@@ -1,3 +1,4 @@
+import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, it, expect } from "vitest";
 import {
   COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES,
@@ -51,13 +52,13 @@ import {
 /* ── Helpers ── */
 
 function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): RuntimeLens {
-  return {
+  return registerRuntimeFixture({
     ...L,
     data: {
       ...L.data,
       imageFormat,
     },
-  } as RuntimeLens;
+  } as RuntimeLens);
 }
 
 function axialIntercept(y: number, u: number, lastSurfZ: number): number {
@@ -1107,7 +1108,7 @@ describe("computeSagittalComa", () => {
 
     // ApoLanthar has offAxisFieldFrac that should give a non-zero field angle,
     // but a lens with zero field angle should return null
-    const emptyLens = { ...L, offAxisFieldFrac: 0 } as RuntimeLens;
+    const emptyLens = registerRuntimeFixture({ ...L, offAxisFieldFrac: 0 } as RuntimeLens);
     const result = computeSagittalComa(emptyLens, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     // At field fraction 0, fieldAngleDeg is 0, so it should return null
     expect(result).toBeNull();

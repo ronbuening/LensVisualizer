@@ -1,5 +1,6 @@
 /** Projection, image-format, and fixed-sensor geometry for perspective fields. */
 
+import { runtimeView } from "../prescription/runtimeView.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId, type ImageFormatMetadata } from "../../utils/catalog/lensTaxonomy.js";
 import {
   projectionFieldAngleForImageHeight2,
@@ -52,7 +53,7 @@ export function requirePerspectiveImageFormatMetadata(context: PerspectiveTraceC
 export function resolvePerspectiveFocalLength(context: PerspectiveTraceContext, override: number | undefined): number {
   const focalLengthMm =
     override ??
-    eflAtFocus2(context.state.focusT, context.state.zoomT, context.state.lens.runtime, context.state.aberrationT);
+    eflAtFocus2(context.state.focusT, context.state.zoomT, runtimeView(context.state.lens), context.state.aberrationT);
   if (!Number.isFinite(focalLengthMm) || Math.abs(focalLengthMm) <= 1e-9) {
     throw new PerspectiveFieldSamplingError("Perspective field sampling requires a finite non-zero focal length");
   }
@@ -207,7 +208,7 @@ export function idealCoordinatesForDirection(
 
 export function paraxialExitPupilCenterLens(context: PerspectiveTraceContext): Vec3 {
   const lastSurfaceZ = context.state.z[context.state.z.length - 1] ?? 0;
-  const relative = xpZRelLastSurfAtZoom(context.state.zoomT, context.state.lens.runtime);
+  const relative = xpZRelLastSurfAtZoom(context.state.zoomT, runtimeView(context.state.lens));
   return [0, 0, lastSurfaceZ + (Number.isFinite(relative) ? relative : 0)];
 }
 

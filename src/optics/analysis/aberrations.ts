@@ -4,6 +4,7 @@
  * Bridges engine-native PreparedOpticalState calls to the existing RuntimeLens analysis implementations.
  */
 
+import { runtimeView } from "../prescription/runtimeView.js";
 import {
   computeComaAnalysis,
   computeComaPointCloudPreview,
@@ -44,7 +45,7 @@ export function computeSphericalAberrationForState2(
   currentPhysStopSD: number,
 ) {
   return computeSphericalAberration(
-    state.lens.runtime,
+    runtimeView(state.lens),
     zPosFromState(state),
     state.focusT,
     state.zoomT,
@@ -64,7 +65,7 @@ export function computeSphericalAberrationForState2(
  */
 export function computeSAProfileForState2(state: PreparedOpticalState, currentEPSD: number, currentPhysStopSD: number) {
   return computeSAProfile(
-    state.lens.runtime,
+    runtimeView(state.lens),
     zPosFromState(state),
     state.focusT,
     state.zoomT,
@@ -94,7 +95,7 @@ export function computeSphericalAberrationBlurCharacterForState2(
   sampling?: AnalysisSamplingOptions,
 ) {
   return computeSphericalAberrationBlurCharacter(
-    state.lens.runtime,
+    runtimeView(state.lens),
     zPosFromState(state),
     state.focusT,
     state.zoomT,
@@ -128,7 +129,7 @@ export function computeFieldCurvatureForState2(
   sampling?: AnalysisSamplingOptions,
 ) {
   return computeFieldCurvature(
-    state.lens.runtime,
+    runtimeView(state.lens),
     zPosFromState(state),
     state.focusT,
     state.zoomT,
@@ -161,7 +162,7 @@ export function computeFieldCurvatureBundleForState2(
   sampling?: AnalysisSamplingOptions,
 ) {
   return computeFieldCurvatureBundle(
-    state.lens.runtime,
+    runtimeView(state.lens),
     zPosFromState(state),
     state.focusT,
     state.zoomT,
@@ -193,7 +194,7 @@ export function computeComaAnalysisForState2(
   sampling?: AnalysisSamplingOptions,
 ) {
   return computeComaAnalysis(
-    state.lens.runtime,
+    runtimeView(state.lens),
     zPosFromState(state),
     state.focusT,
     state.zoomT,

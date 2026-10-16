@@ -7,7 +7,7 @@
  */
 import type { MtfAperture, MtfOptions, MtfSupport } from "../../types/mtf.js";
 import type { PreparedOpticalState } from "../types.js";
-import { traceEngineRay2 } from "../trace/rayAdapters.js";
+import { prepareEngineTrace } from "../trace/rayAdapters.js";
 import type { MtfFootprint } from "./mtfFootprint.js";
 import { mtfLaunchRay, mtfTraceClassification, mtfTraceOptions, type MtfFieldLaunch } from "./mtfTracing.js";
 
@@ -43,7 +43,8 @@ export function resolveMtfAperture(
   footprint: MtfFootprint,
 ): MtfAperture | null {
   const traceOptions = mtfTraceOptions(state, options, support, support.spectralLines[0]);
-  const trace = (y: number) => traceEngineRay2(state, mtfLaunchRay(launch, 0, y), traceOptions);
+  const traceRay = prepareEngineTrace(state, traceOptions);
+  const trace = (y: number) => traceRay(mtfLaunchRay(launch, 0, y));
   const transmits = (y: number) => mtfTraceClassification(trace(y), state, options.stopSemiDiameterMm) === "valid";
   if (!transmits(0)) return null;
   let inside = 0;

@@ -142,6 +142,7 @@ export interface CompiledElement {
   nd: number;
   vd: number | null;
   glass: string | null;
+  absorptionCoefficientPerMm: number | null;
   surfaceSpan: readonly [number, number];
   source: ElementData;
 }
@@ -221,38 +222,72 @@ export interface AuthoredRayFans {
 }
 
 /** Feature flags derived from RuntimeLens capabilities for engine branching. */
-export interface EngineLensFlags {
+export interface CompiledLensFlags {
   isZoom: boolean;
   isFoldedOptics: boolean;
   hasPerspectiveControl: boolean;
   hasAberrationControl: boolean;
 }
 
-/**
- * Normalized engine lens shared by trace, field, state, and analysis modules.
- *
- * This is immutable by convention and retains the originating RuntimeLens only as
- * a compatibility bridge for older public helper signatures.
- */
-export interface EngineLens {
+/** Constants own derived numbers and station tables, never the RuntimeLens read model. */
+export type LensConstants = Omit<
+  RuntimeLens,
+  | "data"
+  | "S"
+  | "N"
+  | "ES"
+  | "elements"
+  | "lastLensSurfaceIdx"
+  | "asphByIdx"
+  | "varByIdx"
+  | "vdByIdx"
+  | "spectralByIdx"
+  | "indexByIdx"
+  | "varLabels"
+  | "groups"
+  | "doublets"
+  | "perspectiveControl"
+  | "aberrationControl"
+  | "projection"
+  | "opticalPath"
+  | "stopIdx"
+  | "labelIdx"
+>;
+
+/** Shared compiled indices; material callbacks are resolved once per medium identity. */
+export type CompiledIndices = Pick<RuntimeLens, "asphByIdx" | "vdByIdx" | "spectralByIdx" | "indexByIdx">;
+
+/** Immutable prescription primitives available before constants are calculated. */
+export interface CompiledPrescription {
   key: string;
   source: LensData;
-  runtime: RuntimeLens;
+  /** Canonical optical projection, separate from the provenance-preserving source echo. */
+  data: LensData;
+  indices: CompiledIndices;
+  lastLensSurfaceIndex: number;
+  displayElementSpans: RuntimeLens["ES"];
+  hasExplicitImagePlane: boolean;
   surfaces: readonly CompiledSurface[];
   elements: readonly CompiledElement[];
   labelToSurfaceIndex: Readonly<Record<string, number>>;
   stop: StopSpec;
   projection: ProjectionSpec;
   opticalPath: PathSpec;
-  imagePlane: Plane3;
   variables: VariableSpec;
   aberrationControl: AberrationControlSpec | null;
   annotations: AnnotationSpec;
   dispersion: readonly CompiledSurfaceDispersion[];
-  display: DisplaySpec;
+  display: Omit<DisplaySpec, "maxRimTan">;
   authoredRayFans: AuthoredRayFans;
   perspectiveControl: PerspectiveControlConfig | null;
-  flags: EngineLensFlags;
+  flags: CompiledLensFlags;
+}
+
+/** Final published compiled identity: constants are complete before preparation or view assembly. */
+export interface CompiledLens extends CompiledPrescription {
+  imagePlane: Plane3;
+  display: DisplaySpec;
+  constants: LensConstants;
 }
 
 /** Surface state after current focus/zoom/aberration thicknesses and z positions are applied. */
@@ -270,7 +305,7 @@ export interface CompiledStateSurface extends Omit<CompiledSurface, "d"> {
  */
 export interface PreparedOpticalState {
   readonly traceGeometry: TraceGeometry;
-  lens: EngineLens;
+  lens: CompiledLens;
   focusT: number;
   zoomT: number;
   aberrationT: number;

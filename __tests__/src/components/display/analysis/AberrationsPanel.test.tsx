@@ -1,10 +1,12 @@
 // @vitest-environment jsdom
 
+import { associateRuntimeView, runtimeView } from "../../../../../src/optics/prescription/runtimeView.js";
+
 import { afterEach, describe, it, expect, beforeEach, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import AberrationsPanel from "../../../../../src/components/display/analysis/AberrationsPanel.js";
 import ComaTab from "../../../../../src/components/display/analysis/ComaTab.js";
-import type { PreparedOpticalState } from "../../../../../src/optics/types.js";
+import type { CompiledLens, PreparedOpticalState } from "../../../../../src/optics/types.js";
 import type { RuntimeLens } from "../../../../../src/types/optics.js";
 import type { Theme } from "../../../../../src/types/theme.js";
 
@@ -78,8 +80,10 @@ const baseProps = {
 };
 
 function makePreparedState(overrides: Partial<PreparedOpticalState> = {}): PreparedOpticalState {
+  const lens = { key: "prepared-runtime" } as CompiledLens;
+  associateRuntimeView(lens, { N: 2, key: "prepared-runtime" } as unknown as RuntimeLens);
   return {
-    lens: { runtime: { N: 2, key: "prepared-runtime" } as unknown as RuntimeLens },
+    lens,
     z: [0, 7],
     focusT: 0.23,
     zoomT: 0.11,
@@ -577,7 +581,7 @@ describe("AberrationsPanel", () => {
   it("uses the prepared analysis state when supplied to aberration sections", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
     const preparedState = makePreparedState();
-    const preparedRuntime = preparedState.lens.runtime;
+    const preparedRuntime = runtimeView(preparedState.lens);
     const preparedZ = [...preparedState.z];
 
     render(<AberrationsPanel {...baseProps} aberrationT={0.42} preparedState={preparedState} />);
@@ -641,7 +645,7 @@ describe("AberrationsPanel", () => {
 
   it("uses the prepared analysis state when supplied to coma sections", () => {
     const preparedState = makePreparedState();
-    const preparedRuntime = preparedState.lens.runtime;
+    const preparedRuntime = runtimeView(preparedState.lens);
 
     render(
       <ComaTab

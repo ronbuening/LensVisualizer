@@ -164,7 +164,8 @@ Existing tests cover:
 - Reducer, preferences, URL sync, feature flags, and page-theme hooks.
 - Component smoke tests for pages, controls, display panels, analysis drawer, and comparison layout.
 - Script regressions for metadata, route sync, lens-data helpers, sitemap/prerender support.
-- The glass-report helper library (`__tests__/reports/glassScanLib.test.ts`) and the glass-resolution parity sweep
+- The glass-report helper library (`__tests__/reports/glassScanLib.test.ts`), the MTF chart report's helpers
+  (`__tests__/reports/mtfChartLib.test.ts`) and the glass-resolution parity sweep
   (`__tests__/src/lens-data/glassResolutionParity.test.ts`); the reports themselves are generated outside the suite (see
   "Reports and Tooling Tests").
 - The structure of `src/optics/` itself: import cycles, the outside-import seam, and module-level caches (see
@@ -1000,10 +1001,12 @@ When refactoring:
 - Add script helper tests when changing metadata generation, route expansion, or git freshness lookup.
   `__tests__/scripts/lensDataV2Readers.test.ts` holds the lens-data readers to both versions: the AST reader against
   every catalog module, identity, summaries and converter fit from V2 twins, the organizer's V2 import, and page dates
-  that skip conversion commits. `__tests__/scripts/convertLensData.test.ts` holds the converter library to synthetic
-  source-text fixtures (`convertLensDataFixtures.ts`, strings so `format:check` never reaches them): each fixture pair
-  converted and ingested back, pinned outputs and reports, a V2 source given back as written, one refusal of each
-  kind, and a run under plain Node.
+  that skip conversion commits. `__tests__/scripts/auditImageCircle.test.ts`, in the tooling suite, runs each audit
+  that reads a lens file on a V2 fixture and on its V1 twin through its npm entry.
+  `__tests__/scripts/convertLensData.test.ts` holds the converter library to synthetic source-text fixtures
+  (`convertLensDataFixtures.ts`, strings so `format:check` never reaches them): each fixture pair converted and
+  ingested back, pinned outputs and reports, a V2 source given back as written, one refusal of each kind, and a run
+  under plain Node.
 - Add fixture-backed optics tests whenever changing `SurfaceData.interaction`, `innerSd`, `opticalPath`, generalized
   stop tracing, generalized image-plane intersection, obstruction-aware sampling, or folded analysis gating. Prefer
   hidden reference fixtures under `src/lens-data/reference/` for canonical mirror/telescope behavior.

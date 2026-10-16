@@ -29,8 +29,12 @@
  *
  * Requires poppler (`pdftoppm`).
  *
- * Usage:
- *   node scripts/audit-patent-figure.mjs <data.ts> <patent.pdf> <page> <x0,y0,x1,y1> [flags]
+ * Usage (`npm run audit:patent-figure -- ...` passes the hook):
+ *   node --import ./scripts/ts-js-specifier-hook-register.mjs \
+ *     scripts/audit-patent-figure.mjs <data.ts> <patent.pdf> <page> <x0,y0,x1,y1> [flags]
+ *
+ * The `--import` hook is required: canonical ingest, which reads the data file of
+ * either version, reaches value imports written with a ".js" specifier.
  *
  * The crop is given as fractions of the page (after rotation), and must bracket
  * the glass and nothing else — no image plane, no cover-glass plate, no
@@ -51,10 +55,13 @@ import { pathToFileURL } from "node:url";
 
 const ROOT = join(import.meta.dirname, "..");
 const { conicPolySag } = await import(pathToFileURL(join(ROOT, "src/optics/geometry.ts")).href);
+const { ingestLens, toLensData } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
 
 const [dataFile, pdf, pageArg, cropArg, ...flags] = process.argv.slice(2);
 if (!dataFile || !pdf || !pageArg || !cropArg) {
-  console.error("usage: node scripts/audit-patent-figure.mjs <data.ts> <patent.pdf> <page> <x0,y0,x1,y1> [flags]");
+  console.error(
+    "usage: node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-patent-figure.mjs <data.ts> <patent.pdf> <page> <x0,y0,x1,y1> [flags]",
+  );
   process.exit(2);
 }
 const page = Number(pageArg);
@@ -212,7 +219,9 @@ const rightX = inked[inked.length - 1].x;
 const truncated = leftX <= cropX0 + 1 || rightX >= cropX1 - 2;
 
 /* ── the data file's own silhouette ── */
-const lens = (await import(pathToFileURL(resolve(dataFile)).href)).default;
+/* Canonical ingest's V1 view reads a file of either version in V1 field names; an authored V1 file reads as written,
+ * with the schema defaults. */
+const lens = toLensData(ingestLens((await import(pathToFileURL(resolve(dataFile)).href)).default));
 const aspheres = lens.asph ?? {};
 let vertexZ = 0;
 const surfaces = lens.surfaces.map((surface) => {

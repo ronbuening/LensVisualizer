@@ -11,8 +11,8 @@ import { teleconverterFixture, teleconverterHostData } from "./testLensFixtures.
  * folded image-plane guard's catch branch is only reachable this way. */
 const asphereIndexControl = vi.hoisted(() => ({ failNextBuild: false }));
 
-vi.mock("../../../src/optics/internal/lensState.js", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("../../../src/optics/internal/lensState.js")>();
+vi.mock("../../../src/optics/prescription/compileAspheres.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../src/optics/prescription/compileAspheres.js")>();
   return {
     ...actual,
     buildAsphereIndex: (...args: Parameters<typeof actual.buildAsphereIndex>) => {

@@ -1,6 +1,10 @@
 /**
  * Lens-data tooling reads both versions (S2.P2.T2): the shared AST reader, identity and summaries from a V2 file and
  * its V1 twin, the organizer's import rewrite, and page dates that skip the format-only conversion commits.
+ *
+ * It stays in `npm test`, beside `lensDataScripts.test.ts` and `buildMetadataHelpers.test.ts`: `TOOLING_TESTS` takes
+ * only tests of tools neither the build nor the app uses (agent_docs/architecture/testing.md), and these readers run
+ * in metadata generation before every `dev`, `test` and `build`.
  */
 
 import { execFileSync } from "node:child_process";

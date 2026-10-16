@@ -195,7 +195,7 @@ function chiefLaunchGeometry(context: PerspectiveTraceContext, sceneDirectionLen
   const maxSurfaceSd = context.state.surfaces.reduce((max, surface) => Math.max(max, surface.sd), 0);
   const objectwardMargin = Math.max(2 * maxSurfaceSd, 10);
   const launchDistance = Math.max(
-    context.state.lens.runtime.rayLead,
+    context.state.lens.constants.rayLead,
     (stopZ - firstZ + objectwardMargin) / sceneDirectionLens[2],
   );
   if (!Number.isFinite(launchDistance) || launchDistance <= 0) return null;

@@ -205,11 +205,9 @@ concurrency for the git calls. It records the committer timestamp and hash for t
 a generated `publicationOrder` shared by page lists and RSS feeds. Keep generated route and freshness artifacts stable
 unless a content change intentionally updates them.
 
-The modified date skips format-only lens-data conversion commits, so converting a file to V2 moves no page date
-(`isFormatOnlyCommit` in `build-metadata-lib.mjs`): a commit whose subject begins with a conversion step's ID and a
-space (`S2.P5.T1`–`S2.P5.T9`, `S2.P6.T1`; a squash merge keeps the ID first), or one listed by id in
-`scripts/format-only-commits.mjs`. The published date stays the oldest commit, and a file whose every commit is
-format-only keeps its oldest commit's date.
+The modified date skips format-only lens-data conversion commits (`isFormatOnlyCommit` in `build-metadata-lib.mjs`),
+so converting a file to V2 moves no page date. The rules are in `OPTICS_ENGINE_REWRITE_SPEC.md`, S2.P2.T2 ("Page dates
+do not move with the conversion").
 
 ## Route Change Checklist
 

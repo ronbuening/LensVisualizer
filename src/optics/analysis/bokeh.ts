@@ -4,6 +4,7 @@
  * Allows state-aware callers to reuse the current bokeh implementation while preserving legacy exports.
  */
 
+import { runtimeView } from "../prescription/runtimeView.js";
 import {
   buildBokehDensityGrid,
   buildBokehRadialProfile,
@@ -30,7 +31,7 @@ export function computeBestFocusZForState2(
   currentPhysStopSD: number,
 ) {
   return computeBestFocusZ(
-    state.lens.runtime,
+    runtimeView(state.lens),
     state.focusT,
     state.zoomT,
     currentEPSD,
@@ -54,7 +55,7 @@ export function computeBokehPreviewPairForState2(
   sampling?: AnalysisSamplingOptions,
 ) {
   return computeBokehPreviewPair(
-    state.lens.runtime,
+    runtimeView(state.lens),
     state.focusT,
     state.zoomT,
     currentEPSD,

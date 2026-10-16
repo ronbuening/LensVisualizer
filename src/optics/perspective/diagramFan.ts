@@ -35,7 +35,7 @@ export function tracePerspectiveDiagramFan({
   stopSemiDiameterMm,
   fractions,
   channel,
-  leadDistanceMm = context.state.lens.runtime.rayLead,
+  leadDistanceMm = context.state.lens.constants.rayLead,
 }: TracePerspectiveDiagramFanParams): PerspectiveDiagramFan | null {
   const field = sampleSceneLockedFields(context, [sceneDirectionCamera], {
     pupilBundle: {

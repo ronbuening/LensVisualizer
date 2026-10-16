@@ -5,8 +5,8 @@
  */
 
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
-import type { CompiledSurfaceDispersion, EngineLens, PreparedOpticalState } from "../types.js";
-import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
+import type { CompiledSurfaceDispersion, CompiledLens, PreparedOpticalState } from "../types.js";
+import { compiledLensFromRuntime } from "../prescription/compile.js";
 import { abbeLineIndices } from "../dispersion.js";
 import { evaluateSellmeier } from "../glassCatalog.js";
 import { LINE_NM } from "../spectralLines.js";
@@ -73,8 +73,8 @@ export function indexAtPreparedSurface2(
 /**
  * Resolve a RuntimeLens surface index for a chromatic channel.
  *
- * Runtime lenses are normalized and cached in a WeakMap so repeated chromatic
- * traces reuse the same dispersion descriptors without mutating `L`.
+ * The lookup reads the compiled lens the compiler associated with `L` (`compiledLensFromRuntime`), so repeated
+ * chromatic traces reuse its dispersion descriptors; a runtime lens the compiler did not build throws.
  *
  * @param L - runtime lens object
  * @param surfaceIndex - physical surface index
@@ -89,7 +89,7 @@ export function indexAtRuntimeSurface2(
   const surface = L.S[surfaceIndex];
   if (!surface) return 1;
   if (!channel) return surface.nd === 1 ? 1 : surface.nd;
-  const engineLens = normalizeRuntimeLens(L);
+  const engineLens = compiledLensFromRuntime(L);
   return (
     engineLens.dispersion[surfaceIndex]?.indexAt(channel) ?? wavelengthNd2(surface.nd, L.vdByIdx[surfaceIndex], channel)
   );
@@ -116,7 +116,7 @@ export function channelIndexResolverForState2(
 const CAUCHY_CHANNELS = ["R", "G", "B", "V"] as const;
 const CAUCHY_NODES_UM = [LINE_NM.C, LINE_NM.d, LINE_NM.F, LINE_NM.g].map((nm) => nm / 1000);
 const cauchyCoefficientsByDispersion = new WeakMap<CompiledSurfaceDispersion, readonly number[]>();
-const referenceLineByLens = new WeakMap<EngineLens, ReadonlyMap<number, number>>();
+const referenceLineByLens = new WeakMap<CompiledLens, ReadonlyMap<number, number>>();
 
 /**
  * Refractive index of one prepared surface at an arbitrary wavelength, anchored to its authored index.
@@ -167,7 +167,7 @@ export function anchoredIndexTable(state: PreparedOpticalState, wavelengthNm: nu
   return Float64Array.from(state.surfaces, (_, index) => anchoredIndexAtWavelength(state, index, wavelengthNm));
 }
 
-function elementReferenceLineNm(lens: EngineLens, elementId: number | undefined): number {
+function elementReferenceLineNm(lens: CompiledLens, elementId: number | undefined): number {
   let byElement = referenceLineByLens.get(lens);
   if (!byElement) {
     byElement = new Map(

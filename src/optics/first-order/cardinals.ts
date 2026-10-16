@@ -6,11 +6,11 @@
 
 import type { RuntimeLens } from "../../types/optics.js";
 import { traceParaxialSurfaces2, transferParaxialRay2, type ParaxialState } from "../math/paraxial.js";
-import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
+import { compiledLensFromRuntime } from "../prescription/compile.js";
 import { createTraceGeometry } from "../trace/geometry.js";
 import { prepareState } from "../state/prepareState.js";
 import type { PreparedOpticalState } from "../types.js";
-import { traceEngineRay2 } from "../trace/rayAdapters.js";
+import { prepareEngineTrace } from "../trace/rayAdapters.js";
 import { computeSystemMatrix2 } from "./systemMatrix.js";
 
 const CARDINAL_EPSILON = 1e-12;
@@ -83,8 +83,8 @@ export function computeCardinalElements2(state: PreparedOpticalState): CardinalE
     ...matrix,
     frontVertexZ: state.z[0],
     rearVertexZ: state.z[state.surfaces.length - 1],
-    /* Hand-built RuntimeLens fixtures may omit lastLensSurfaceIdx; they never carry rear plates. */
-    rearLensVertexZ: state.z[state.lens.runtime.lastLensSurfaceIdx ?? state.surfaces.length - 1],
+    /* BFD starts at the last drawn lens vertex, before any hidden rear plates. */
+    rearLensVertexZ: state.z[state.lens.lastLensSurfaceIndex ?? state.surfaces.length - 1],
     imagePlaneZ: state.imgZ,
   });
 }
@@ -187,7 +187,7 @@ export function computeCardinalElementsAtState2(
   imagePlaneZ: number,
   aberrationT = 0,
 ): CardinalElements2 | null {
-  const state = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT);
+  const state = prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT);
   const z = Object.freeze([...zPos]);
   const surfaces = Object.freeze(
     state.surfaces.map((surface, index) => Object.freeze({ ...surface, z: zPos[index] ?? surface.z })),
@@ -240,7 +240,7 @@ function resolveFoldedParaxialSurfaceOrder2(state: PreparedOpticalState): number
   if (state.lens.opticalPath.surfaceOrder?.length) return [...state.lens.opticalPath.surfaceOrder];
 
   /* Auto folded fixtures need a real trace to discover the actual reflective hit order. */
-  const runtime = state.lens.runtime;
+  const constants = state.lens.constants;
   const candidateFractions = new Set<number>([
     0,
     ...state.lens.authoredRayFans.rayFractions.map((fraction) => Math.abs(fraction)),
@@ -250,18 +250,15 @@ function resolveFoldedParaxialSurfaceOrder2(state: PreparedOpticalState): number
   const candidateHeights = [...candidateFractions]
     .filter((fraction) => Number.isFinite(fraction) && fraction >= 0)
     .sort((a, b) => a - b)
-    .map((fraction) => fraction * runtime.EP.epSD);
+    .map((fraction) => fraction * constants.EP.epSD);
 
+  const trace = prepareEngineTrace(state, {
+    checkSemiDiameter: true,
+    stopSemiDiameter: constants.stopPhysSD,
+    stopOnClip: true,
+  });
   for (const y0 of candidateHeights) {
-    const result = traceEngineRay2(
-      state,
-      { origin: [0, y0, state.z[0] ?? 0], direction: [0, 0, 1] },
-      {
-        checkSemiDiameter: true,
-        stopSemiDiameter: runtime.stopPhysSD,
-        stopOnClip: true,
-      },
-    );
+    const result = trace({ origin: [0, y0, state.z[0] ?? 0], direction: [0, 0, 1] });
     if (!result.reachedImagePlane || result.status !== "ok") continue;
     const opticalHits = result.hits
       .map((hit) => hit.surfaceIndex)
