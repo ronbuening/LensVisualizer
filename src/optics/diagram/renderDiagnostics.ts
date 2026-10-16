@@ -12,7 +12,7 @@ import type {
   SurfaceRenderDiagnostics,
 } from "../../types/optics.js";
 import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
-import { sharedMaterialBand } from "../internal/apertureBands.js";
+import { sharedMaterialBand } from "../geometry/apertureBands.js";
 import type { CompiledStateSurface, PreparedOpticalState } from "../types.js";
 import { surfaceSag2 } from "./surfaceOutline.js";
 

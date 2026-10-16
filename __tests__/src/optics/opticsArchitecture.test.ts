@@ -76,6 +76,8 @@ const SEAM_REGISTRY: readonly SeamRegistryEntry[] = [
   },
   { module: "src/optics/projection.ts" },
   { module: "src/optics/teleconverter.ts" },
+  { module: "src/optics/validateLensData.ts" },
+  { module: "src/optics/validateTeleconverterData.ts" },
 ];
 
 /**
@@ -123,7 +125,6 @@ const SEAM_LEGACY: readonly string[] = [
   "src/optics/spectralLines.ts",
   "src/optics/trace/rayAdapters.ts",
   "src/optics/types.ts",
-  "src/optics/validateLensData.ts",
   "src/optics/vignetteAnalysis.ts",
 ];
 
@@ -229,6 +230,9 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     perOwner: "one frozen derived RuntimeLens for compatibility analyses and UI",
   },
   "src/optics/prescription/sourcePaths.ts#LABEL_KEYED": { kind: "constant" },
+  "src/optics/prescription/validate/references.ts#KNOWN_ASPHERIC_COEFFICIENTS": { kind: "constant" },
+  "src/optics/prescription/validate/references.ts#SOURCE_ERRATUM_EVIDENCE": { kind: "constant" },
+  "src/optics/prescription/validate/references.ts#SOURCE_ERRATUM_SURFACE_FIELDS": { kind: "constant" },
   "src/optics/trace/bulkAbsorption.ts#ABSORPTION_BY_ELEMENT_ID": {
     kind: "weak-owner",
     owner: "CompiledLens",
@@ -255,9 +259,6 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     capacity: 4096,
     limit: "DIRECTION_CACHE_LIMIT",
   },
-  "src/optics/validateLensData.ts#KNOWN_ASPHERIC_COEFFICIENTS": { kind: "constant" },
-  "src/optics/validateLensData.ts#SOURCE_ERRATUM_EVIDENCE": { kind: "constant" },
-  "src/optics/validateLensData.ts#SOURCE_ERRATUM_SURFACE_FIELDS": { kind: "constant" },
 };
 
 /**

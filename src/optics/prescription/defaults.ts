@@ -11,8 +11,8 @@
  *   form writes them in, and it is how the catalogs, `buildLens` and the tools apply them.
  * - `engine`: the engine falls back to them where the field is absent, so the merged data keeps the omission.
  *
- * Nothing outside tests spreads this table: lens data gets its defaults through ingest and the V1 view. The one
- * exception is the validator-first spread in `asTheValidatorReadsIt` (`compile.ts`), whose comment says why.
+ * Nothing outside tests spreads this table: lens data gets its defaults through ingest and the V1 view. Authored
+ * validation reads individual omitted catalog fields from their rows before ingest, without building a merged object.
  *
  * Known reader disagreements, left as they are (OPTICS_ENGINE_REWRITE_SPEC.md, S2.P4.T1 spec–code contradictions):
  * `buildLens` reads `lensShiftFrac || 0`, and the chromatic ray-fan summary reads `L.offAxisFieldFrac ?? 0.7`.
@@ -77,7 +77,7 @@ export const LENS_SCHEMA_DEFAULTS: readonly SchemaDefault[] = [
     v1Field: "focusPositions",
     value: [0, 1],
     v1Applied: "engine",
-    reader: `${BUILD_LENS} and src/optics/validateLensData.ts: data.focusPositions ?? [0, 1]`,
+    reader: `${BUILD_LENS} and src/optics/prescription/validate/controls.ts: data.focusPositions ?? [0, 1]`,
   },
   {
     path: "focus.step",
@@ -161,14 +161,14 @@ export const LENS_SCHEMA_DEFAULTS: readonly SchemaDefault[] = [
     v1Field: "gapSagFrac",
     value: 0.9,
     v1Applied: "catalog",
-    reader: `${BUILD_LENS} and src/optics/validateLensData.ts: data.gapSagFrac`,
+    reader: `${BUILD_LENS} and src/optics/prescription/validate/geometry.ts: gapSagFrac`,
   },
   {
     path: "checks.maxRimAngleDeg",
     v1Field: "maxRimAngleDeg",
     value: DEFAULT_MAX_RIM_ANGLE_DEG,
     v1Applied: "catalog",
-    reader: `${BUILD_LENS}: data.maxRimAngleDeg; src/optics/validateLensData.ts: falls back to MAX_RIM_SLOPE_TAN, the same angle`,
+    reader: `${BUILD_LENS}: data.maxRimAngleDeg; src/optics/prescription/validate/geometry.ts: falls back to MAX_RIM_SLOPE_TAN, the same angle`,
   },
 ];
 
