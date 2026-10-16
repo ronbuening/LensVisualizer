@@ -33,13 +33,14 @@ import { pathToFileURL } from "node:url";
 
 const ROOT = join(import.meta.dirname, "..");
 const { conicPolySag, sag, sagSlopeRaw } = await import(pathToFileURL(join(ROOT, "src/optics/geometry.ts")).href);
-const validateLensData = (await import(pathToFileURL(join(ROOT, "src/optics/validateLensData.ts")).href)).default;
+const { default: validateLensData, validateLensInput } = await import(
+  pathToFileURL(join(ROOT, "src/optics/validateLensData.ts")).href
+);
 const {
   default: buildLens,
   ingestLens,
   isV1File,
   toLensData,
-  validateAuthoredLensData,
 } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
 
 const argv = process.argv.slice(2);
@@ -142,7 +143,7 @@ for (const label of overrides.keys()) {
   if (!candidate.surfaces.some((surface) => surface.label === label)) console.log(`!! no surface labelled "${label}"`);
 }
 
-let errors = isV1File(candidate) ? validateAuthoredLensData(candidate) : [];
+let errors = isV1File(candidate) ? validateLensInput(candidate) : [];
 if (errors.length === 0) {
   const { view, errors: refused } = ingestView(candidate);
   errors = view && !isV1File(candidate) ? validateLensData(view) : refused;
