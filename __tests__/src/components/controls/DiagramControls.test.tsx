@@ -372,6 +372,29 @@ describe("DiagramControls", () => {
       expect(callbacks.onFocusChange).not.toHaveBeenCalled();
     });
 
+    it("distinguishes nominal macro states at the same rounded distance and selects their exact keyframes", () => {
+      const focusPositions = [0, 0.9999, 1];
+      const L = buildVariableStopGapLens([1, 2, 3], "test-controls-macro-stations", focusPositions, {
+        focusControl: "stations",
+        finiteConjugates: [1, 2].map((nominalMagnification) => ({
+          focusT: focusPositions[nominalMagnification],
+          zoomT: 0,
+          objectDistanceMm: 200.04 - nominalMagnification * 0.01,
+          distanceReference: "image-plane",
+          nominalMagnification,
+          source: "Synthetic macro source table",
+        })),
+      });
+      const { callbacks } = renderControls(L, { patentPositions: true });
+
+      const focus = within(screen.getByRole("radiogroup", { name: "Focus position" })).getAllByRole("radio");
+      expect(focus.map((radio) => radio.textContent)).toEqual(["∞", "1× · 20 cm", "2× · 20 cm"]);
+      fireEvent.click(screen.getByRole("radio", { name: "Focus 1× · 20 cm" }));
+      expect(callbacks.onPatentStationChange).toHaveBeenLastCalledWith(0, focusPositions[1]);
+      fireEvent.click(screen.getByRole("radio", { name: "Focus 2× · 20 cm" }));
+      expect(callbacks.onPatentStationChange).toHaveBeenLastCalledWith(0, focusPositions[2]);
+    });
+
     it("says why a zoom station offers infinity only", () => {
       renderControls(steppedZoom(), { patentPositions: true, zoomT: 0.5 });
 

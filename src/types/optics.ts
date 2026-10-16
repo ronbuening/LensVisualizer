@@ -346,6 +346,8 @@ export interface FiniteConjugate {
   zoomT: number;
   objectDistanceMm: number;
   distanceReference: "first-surface" | "image-plane";
+  /** Positive source-stated reproduction ratio for station labels; never used to alter the prescription. */
+  nominalMagnification?: number;
   /** Publication/embodiment/table or other evidence establishing both distance and focus spacings. */
   source: string;
 }

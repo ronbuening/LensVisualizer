@@ -73,6 +73,7 @@ describe("validateLensData", () => {
       source: "Synthetic source table",
     };
     expect(validateLensData(makeValid({ finiteConjugates: [station] }))).toEqual([]);
+    expect(validateLensData(makeValid({ finiteConjugates: [{ ...station, nominalMagnification: 2 }] }))).toEqual([]);
     for (const finiteConjugates of [
       [],
       [null],
@@ -82,6 +83,7 @@ describe("validateLensData", () => {
       [{ ...station, zoomT: 0.5 }],
       [{ ...station, objectDistanceMm: -1 }],
       [{ ...station, distanceReference: "unknown" }],
+      ...[0, -1, NaN, Infinity, "2"].map((nominalMagnification) => [{ ...station, nominalMagnification }]),
     ]) {
       expect(validateLensData(makeValid({ finiteConjugates })).join(" ")).toContain("finiteConjugates");
     }

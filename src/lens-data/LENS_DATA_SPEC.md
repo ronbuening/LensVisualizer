@@ -1149,7 +1149,10 @@ canonical focus state and numeric readout.
 `zoomPositions.length - 1` for a zoom), positive `objectDistanceMm`, `distanceReference` (`"first-surface"` or
 `"image-plane"`), and a nonempty `source` identifying the evidence for both the distance and focus spacings.
 Distance is axial, from the object plane to the current first vertex or fixed image plane. Duplicate stations
-are invalid. MTF never infers these entries from `closeFocusM`, production MFD, or interpolated slider labels;
+are invalid. Optional positive `nominalMagnification` records a source-stated reproduction ratio (1 for 1×,
+2 for 2×). Patent-position buttons show it alongside the distance, with whole centimeters below one meter,
+to distinguish macro states with similar object-to-image distances. This label never changes the optics or MTF.
+MTF never infers these entries from `closeFocusM`, production MFD, or interpolated slider labels;
 undocumented intermediate states remain unavailable. Do not certify calculated focus travel as a published
 configuration. Every entry also counts as a published station (see
 [Published Stations](#published-stations-publishedstations)). Source-rounded prescriptions may retain residual defocus: MTF evaluates the authored image plane

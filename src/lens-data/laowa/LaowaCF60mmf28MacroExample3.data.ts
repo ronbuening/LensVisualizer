@@ -346,6 +346,7 @@ const LENS_DATA = {
       "zoomT": 0,
       "objectDistanceMm": 200.04436417227996,
       "distanceReference": "image-plane",
+      "nominalMagnification": 1,
       "source": "CN103823292B Example3 PDF pp9-10 nominal1x published gaps; object–image conjugate computed from unchanged d-line prescription at source image plane."
     },
     {
@@ -353,6 +354,7 @@ const LENS_DATA = {
       "zoomT": 0,
       "objectDistanceMm": 200.02020983305334,
       "distanceReference": "image-plane",
+      "nominalMagnification": 2,
       "source": "CN103823292B Example3 PDF pp9-10 nominal2x published gaps; object–image conjugate computed from unchanged d-line prescription at source image plane."
     }
   ],
