@@ -63,6 +63,7 @@ export const LENS_MOUNTS = [
   { id: "miranda-bayonet", label: "Miranda Bayonet", sortOrder: 420 },
   { id: "nikon-1", label: "Nikon 1", sortOrder: 490 },
   { id: "nikon-f", label: "Nikon F", sortOrder: 500 },
+  { id: "nikon-ix", label: "Nikon IX", sortOrder: 502 },
   { id: "nikonos", label: "Nikonos", sortOrder: 503 },
   { id: "nikonos-rs", label: "Nikonos RS", sortOrder: 504 },
   { id: "nikon-s", label: "Nikon S", sortOrder: 505 },

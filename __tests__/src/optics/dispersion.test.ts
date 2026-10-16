@@ -225,6 +225,24 @@ describe("glass catalog", () => {
     });
   });
 
+  it("keeps the revised Hikari J-LASFH9A curve distinct from the discontinued J-LASFH9", () => {
+    const revised = resolveCompatibleGlass("J-LASFH9A", 1.90265, 35.73)!;
+    const legacy = resolveCompatibleGlass("J-LASFH9", 1.90265, 35.73)!;
+    expect(revised.name).toBe("J-LASFH9A");
+    expect(legacy.name).toBe("J-LASFH9");
+    expect(resolveGlass("903358")?.name).toBe("J-LASFH9A");
+    expect(resolveGlass("903357")?.name).toBe("J-LASFH9");
+    // Hikari's current page publishes these line indices independently of the power-series coefficients.
+    for (const [line, index] of [
+      ["C", 1.895235],
+      ["F", 1.920469],
+      ["g", 1.935143],
+    ] as const) {
+      expect(Math.abs(evaluateSellmeier(revised, LINE_NM[line]) - index)).toBeLessThan(2e-6);
+    }
+    expect(resolveCompatibleGlass("J-LASFH9A", 1.85, 40.8)).toBeNull();
+  });
+
   it("uses the tightened catalog compatibility window", () => {
     expect(GLASS_ND_TOLERANCE).toBe(0.003);
     expect(GLASS_VD_TOLERANCE).toBe(2);
@@ -319,6 +337,20 @@ describe("glass catalog", () => {
     expect(resolveCompatibleGlass("BSC3", 1.499, 66.8, "e")?.name).toBe("BSC3");
     expect(resolveCompatibleGlass("BSC3", 1.51823, 59)).toBeNull();
     expect(resolveCompatibleGlass("E-C3", 1.51823, 59)?.name).toBe("E-C3");
+  });
+
+  it("distinguishes Hikari LAK09 from LAK9 without redirecting shared glass codes", () => {
+    expect(resolveCompatibleGlass("J-LAK09 (Hikari spectral proxy)", 1.734, 51.3)?.name).toBe("J-LAK09");
+    expect(resolveCompatibleGlass("J-LAK9", 1.691, 54.93)?.name).toBe("J-LAK9");
+    expect(resolveCompatibleGlass("J-LAK09", 1.691, 54.93)).toBeNull();
+    expect(resolveCompatibleGlass("J-LAK9", 1.734, 51.3)).toBeNull();
+    expect(resolveCompatibleGlass("J-BASF8 (Hikari spectral proxy)", 1.72342, 37.9)?.name).toBe("J-BASF8");
+    expect(resolveCompatibleGlass("J-BASF8", 1.66672, 48.3)).toBeNull();
+    expect(resolveCompatibleGlass("J-BAF11 (Hikari spectral proxy)", 1.66672, 48.3)?.name).toBe("J-BAF11");
+    expect(resolveCompatibleGlass("J-BAF11", 1.72342, 37.9)).toBeNull();
+    expect(resolveGlass("723380")?.name).toBe("S-BAH28");
+    expect(resolveGlass("734515")?.name).toBe("S-LAL59");
+    expect(resolveGlass("667483")?.name).toBe("S-BAH11");
   });
 
   it("evaluates vendor polynomial catalog entries", () => {
@@ -509,12 +541,18 @@ describe("resolveGlass", () => {
     expect(resolveGlass("BK7")?.name).toBe("N-BK7");
   });
 
-  it("resolves Hoya patent-class aliases to coefficient-backed rows", () => {
-    expect(resolveGlass("TAF1 (HOYA)")?.name).toBe("S-LAH66");
+  it("resolves Hoya names and preform aliases to coefficient-backed rows", () => {
+    expect(resolveGlass("TAF1 (HOYA)")?.name).toBe("TAF1");
     expect(resolveGlass("MP-NBFD130 molded high-index flint")?.name).toBe("M-NBFD130");
   });
 
   it("resolves Hoya names that once aliased to a neighbouring row to their own curves", () => {
+    expect(resolveCompatibleGlass("TAF1 (HOYA)", 1.7725, 49.63)?.name).toBe("TAF1");
+    expect(resolveCompatibleGlass("TAF1 (HOYA)", 1.744, 44.9)).toBeNull();
+    expect(resolveCompatibleGlass("LAF2 (HOYA)", 1.744, 44.9)?.name).toBe("LAF2");
+    expect(resolveCompatibleGlass("LAF2 (HOYA)", 1.7725, 49.63)).toBeNull();
+    expect(resolveGlass("773496")?.name).toBe("S-LAH66");
+    expect(resolveGlass("744449")?.name).toBe("H-LaF3B");
     expect(resolveGlass("PCD51 (HOYA)")?.name).toBe("PCD51");
     expect(resolveGlass("MP-PCD51-70 precision-mold preform")?.name).toBe("MP-PCD51-70");
     expect(resolveCompatibleGlass("M-PCD51 (HOYA)", 1.59201, 67.02)?.name).toBe("M-PCD51");
@@ -587,6 +625,8 @@ describe("resolveGlass", () => {
     expect(resolveGlassCandidates("626357").map((entry) => entry.name)).toEqual(["E-F1", "F13", "S-TIM1"]);
     expect(resolveGlassCandidates("589485").map((entry) => entry.name)).toEqual(["BAF6", "BAFN6"]);
     expect(resolveGlassCandidates("501564").map((entry) => entry.name)).toEqual(["K10", "S-FTL10"]);
+    expect(resolveGlassCandidates("773496").map((entry) => entry.name)).toContain("TAF1");
+    expect(resolveGlassCandidates("744449").map((entry) => entry.name)).toContain("LAF2");
   });
 
   it("uses vendor context and coordinates to disambiguate duplicate codes", () => {

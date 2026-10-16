@@ -37,6 +37,10 @@ const ASSIGNEE_START_YEAR_OVERRIDES = new Map([
 // https://patents.google.com/patent/US2646721A/en (front page: Aktiengesellschaft)
 // DE 1 157 000 names Jenoptik Jena G.m.b.H.; normalize punctuation only, not legal identity.
 const ASSIGNEE_ALIASES = [
+  // US 3,634,001 spells out the same Miranda entity used by the other source publications.
+  { alias: "Miranda Camera Company Limited", canonical: "Miranda Camera Co., Ltd." },
+  // CN103823292B names 安徽长庚光学科技有限公司, the same entity as the other Laowa publications.
+  { alias: "Anhui ChangGeng Optical Technology Co., Ltd.", canonical: "Anhui Changgeng Optics Technology Co., Ltd." },
   // JP 2021-15312 A / US 2014/0368925 A1 and US 4,214,816 / US 4,444,473:
   // capitalization and translated corporate style, not separate legal entities.
   { alias: "FUJIFILM Corporation", canonical: "Fujifilm Corporation" },

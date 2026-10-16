@@ -19,6 +19,31 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-16",
+    type: "lens",
+    summary: "Added Miranda 50mm, Olympus 300mm, Panasonic Leica 45mm and Samyang 135mm lenses",
+  },
+  {
+    date: "2026-10-16",
+    type: "lens",
+    summary: "Added Sigma 24-105mm f/4 DG OS HSM Art and 28-105mm f/2.8 DG DN Art zooms",
+  },
+  {
+    date: "2026-10-15",
+    type: "lens",
+    summary: "Added five Canon, Nikon and Tamron zooms, including the IX-Nikkor 30-60mm",
+  },
+  {
+    date: "2026-10-15",
+    type: "lens",
+    summary: "Added Nikon TC-20E III, TC800-1.25E ED and Z TC-1.4x teleconverters",
+  },
+  {
+    date: "2026-10-15",
+    type: "feature",
+    summary: "Added Nikon IX mount metadata for Pronea and IX-Nikkor lenses",
+  },
+  {
     date: "2026-10-15",
     type: "fix",
     summary: "Removed invalid distortion samples while retaining valid corners and later samples",

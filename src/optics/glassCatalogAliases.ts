@@ -92,12 +92,6 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
     kind: "legacy-name",
     note: "Historical bare BAF3 annotations route to Hikari's current J-BAF3 catalog row.",
   },
-  {
-    alias: "LAF2",
-    target: "J-LAF2",
-    kind: "legacy-name",
-    note: "Historical bare LAF2 annotations route to Hikari's equivalent J-LAF2 catalog row.",
-  },
   { alias: "SF8", target: "N-SF8", kind: "legacy-name", note: "Legacy Schott name superseded by N-SF8." },
   { alias: "LAF21", target: "N-LAF21", kind: "legacy-name", note: "Legacy Schott name superseded by N-LAF21." },
   { alias: "LA-F21", target: "N-LAF21", kind: "legacy-name", note: "Alternate legacy token for N-LAF21." },
@@ -107,12 +101,6 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
     target: "M-TAFD305",
     kind: "catalog-variant",
     note: "Hoya precision-molding preform variant sharing the M-TAFD305 coefficient set.",
-  },
-  {
-    alias: "TAF1",
-    target: "S-LAH66",
-    kind: "vendor-equivalent",
-    note: "Hoya TAF1 annotations share the 773/496 optical-constant class with S-LAH66 when the stored d-line index agrees.",
   },
   {
     alias: "MP-NBFD130",

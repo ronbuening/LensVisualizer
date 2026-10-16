@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **935** lenses scanned (**922** visible)
-- **9890 / 10633** non-air surfaces use strict catalog Sellmeier data (93.0%)
-- **9903 / 10633** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
+- **946** lenses scanned (**933** visible)
+- **10023 / 10784** non-air surfaces use strict catalog Sellmeier data (92.9%)
+- **10036 / 10784** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **288** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **158** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -32,7 +32,6 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | Lens | Patent | Local source | Trusted chromatic coverage | Strict Sellmeier coverage | Missing trusted surfaces | Missing surface details | Missing quality mix |
 |---|---|---|---:|---:|---:|---|---|
 | [CANON NEW FD 150-600mm f/5.6 L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) | US 4,110,006 | [PDF](../../patents/US4110006.pdf) | 94.7% (18/19) | 94.7% (18/19) | 1 | 30 [glass] (Element 17: `Unmatched (534555 vintage crown; no first-party coefficient row found)`) | abbe: 1 |
-| [SONY FE 70-200mm f/4 Macro G OSS II](../../src/lens-data/sony/SonyFE70200mmF4MacroGOSSII.data.ts) | WO 2024/247472 A1 | [PDF](../../patents/WO_2024247472_A1.pdf) | 94.7% (18/19) | 94.7% (18/19) | 1 | 33A [glass] (Element L72: `Unmatched (printed coordinates; nearest e-line rows are HOYA MC-TAF101-100 at 1.77273 and M-TAF105 at 1.77622; no vendor row at either line)`) | abbe: 1 |
 | [OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1435mmf2ED.data.ts) | US 8,081,392 B2 | [PDF](../../patents/US8081392.pdf) | 94.4% (17/18) | 94.4% (17/18) | 1 | 35 [glass] (Element 18: `Unmatched proprietary short flint (635/232, condition-b APD glass)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) | US 2016/0154221 A1 | [PDF](../../patents/US20160154221A1.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 13A [glass] (Element 8 (L31): `Unmatched (685309 dense flint; nearest public catalog row exceeds d-line tolerance)`) | abbe: 1 |
 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) | JP 2025-052870 A | [PDF](../../patents/JP2025052870A.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 32A [glass] (Element 17: `Barium crown / LaK family (624584, no exact catalog match)`) | abbe: 1 |
@@ -150,6 +149,7 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFS2470mmf28G.data.ts) | US 7,508,592 B2 | [PDF](../../patents/US7508592.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 7A [resin] (Element 4 resin layer: `553381 — unmatched UV-cure replicated resin (patent nd=1.55389, νd=38.09; not catalog glass)`) | abbe: 1 |
 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5 G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) | US 2005/0068636 A1 | [PDF](../../patents/US20050068636A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 6A [resin] (L21 Hybrid Resin Layer: `Unmatched (hybrid aspheric resin; patent nd=1.55389, vd=38.1)`) | abbe: 1 |
 | [NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor24120mmf3556GIFED.data.ts) | US 2004/0218274 A1 | [PDF](../../patents/US20040218274A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 6A [resin] (L21 bonded aspheric layer: `Unmatched (thin bonded aspheric resin/composite layer; nd=1.553890, vd=38.09)`) | abbe: 1 |
+| [NIKON AI AF ZOOM-NIKKOR 24-85mm f/2.8-4 D IF](../../src/lens-data/nikon/NikonAIAFZoomNikkor2485mmf284DIF.data.ts) | JP 2000-321497 A | [PDF](../../patents/JP2000321497A.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 6A [resin] (Element 4 — L21 aspherical resin layer: `Unmatched (source nd=1.495210, νd=56.34; commercial identity unverified)`) | abbe: 1 |
 | [PENTAX DA* 16-50mm f/2.8 ED AL [IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) | US 7,301,711 B2 | [PDF](../../patents/US7301711.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 6A [resin] (Element 4 (resin): `UV-cure aspherical resin (not catalog glass)`) | abbe: 1 |
 | [PENTAX HD D FA 28-105mm f/3.5-5.6 ED DC WR](../../src/lens-data/pentax/PentaxDFA28105mmF3556EDDCWR.data.ts) | US 2017/0068075 A1 | [PDF](../../patents/US20170068075A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 6A [resin] (L21 synthetic-resin aspherical layer: `Unmatched (synthetic resin aspherical layer; nd=1.52972, νd=42.7)`) | abbe: 1 |
 | [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) | US 2025/0251576 A1 | [PDF](../../patents/US-20250251576-A1.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 3A [resin] (Element 2 resin cap: `UV-cured optical resin (patent-listed nd/vd)`) | abbe: 1 |

@@ -448,6 +448,14 @@ export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
     description:
       "Nikon F is one of the longest-running interchangeable-lens mounts in photography. Introduced with the Nikon F in 1959, its original mechanical bayonet survived through metering prong changes, AI indexing, AF screw-drive, in-lens AF-S motors, electronic apertures, vibration reduction, and DSLR-era CPU contacts.\n\nThat continuity makes F-mount pages unusually broad. A single mount family contains early rangefinder-influenced SLR optics, classic manual Nikkors, professional AF-D and AF-S lenses, DX lenses for APS-C DSLRs, perspective-control lenses, and late high-performance full-frame DSLR designs.\n\nThe tradeoff is historical complexity: compatibility depends heavily on body and lens generation. For optical comparison, though, the continuity is valuable because it lets decades of Nikon design practice sit under one mount family while the surrounding camera technology changes dramatically.",
   },
+  "nikon-ix": {
+    era: "Nikon Pronea APS film SLR mount for IX-Nikkor lenses, introduced in 1996",
+    formatNotes: "APS film (IX240)",
+    summary:
+      "The F-bayonet variant of Nikon's Pronea APS SLRs, with compact IX-Nikkor zooms that ordinary F bodies cannot take.",
+    description:
+      "Nikon IX names the lens side of the Pronea system, Nikon's APS-format autofocus SLRs: the Pronea 600i of 1996 and the smaller Pronea S of 1998. The bodies kept the F bayonet, so many autofocus F-mount Nikkors could be used on them, but the dedicated IX-Nikkor lenses were designed around the smaller IX240 frame and the Pronea mirror box.\n\nIX-Nikkors sit deeper in the body than ordinary F-mount lenses, so Nikon warned against mounting them on 35 mm F-mount cameras. The range stayed small, made up of compact, light zooms sized for the APS image circle.\n\nFor catalog use, Nikon IX is kept apart from Nikon F because the lenses are one-way compatible: an IX-Nikkor is an APS design that only the Pronea bodies accept, even though it shares the bayonet.",
+  },
   nikonos: {
     era: "Nikonos amphibious camera mount, 1960s-2000s",
     formatNotes: "35 mm underwater and amphibious cameras",

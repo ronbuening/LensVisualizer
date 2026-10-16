@@ -5,6 +5,67 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
+  // Shared d-line codes retain their existing OHARA bindings; these rows resolve by grade name.
+  {
+    name: "J-BASF8",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.88696022, 0],
+      [-1.05560202e-2, 2],
+      [-1.02521932e-4, 4],
+      [2.80905311e-2, -2],
+      [3.99098561e-4, -4],
+      [1.15091109e-4, -6],
+      [-1.16375905e-5, -8],
+      [8.75066077e-7, -10],
+      [0, -12],
+    ],
+    nd: 1.72342,
+    vd: 38.03,
+    PgF: 0.5829,
+    source:
+      "Hikari J-BASF8 datasheet, vendor nine-term n² power series (λ in µm); PgF evaluated from coefficients. Shared d-code 723380 omitted to preserve S-BAH28 lookup. https://www.hikari-g.co.jp/optical_glass/general_optical_glass/document/BASF/J_BASF8.pdf (accessed 2026-10-16).",
+  },
+  {
+    name: "J-LAK09",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.94471329, 0],
+      [-1.39489672e-2, 2],
+      [-2.08989528e-4, 4],
+      [2.21246396e-2, -2],
+      [2.96288376e-4, -4],
+      [1.28986233e-5, -6],
+      [-4.34524857e-8, -8],
+      [0, -10],
+      [0, -12],
+    ],
+    nd: 1.734,
+    vd: 51.51,
+    PgF: 0.548,
+    source:
+      "Hikari J-LAK09 datasheet, vendor nine-term n² power series (λ in µm); PgF evaluated from coefficients. Distinct from J-LAK9. Shared d-code 734515 omitted to preserve S-LAL59 lookup. https://www.hikari-g.co.jp/optical_glass/general_optical_glass/document/LAK/J_LAK09.pdf (accessed 2026-10-16).",
+  },
+  {
+    name: "J-BAF11",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.71886836, 0],
+      [-9.21086428e-3, 2],
+      [-5.97080099e-5, 4],
+      [2.02512558e-2, -2],
+      [4.23467645e-4, -4],
+      [-1.03717059e-6, -6],
+      [1.22016786e-6, -8],
+      [0, -10],
+      [0, -12],
+    ],
+    nd: 1.66672,
+    vd: 48.33,
+    PgF: 0.5604,
+    source:
+      "Hikari J-BAF11 datasheet, vendor nine-term n² power series (λ in µm); PgF evaluated from coefficients. Shared d-code 667483 omitted to preserve S-BAH11 lookup. https://www.hikari-g.co.jp/optical_glass/general_optical_glass/document/BAF/J_BAF11.pdf (accessed 2026-10-16).",
+  },
   {
     name: "J-PSK02",
     vendor: "Hikari",
@@ -729,6 +790,27 @@ export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "903357",
     source:
       "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; Hikari Optical Glass Catalog 2012, J-LASFH9 page (formula 3 power series, d-code 903357).",
+  },
+  {
+    name: "J-LASFH9A",
+    vendor: "Hikari",
+    powerSeries: [
+      [3.49725259, 0],
+      [-0.0137767486, 2],
+      [-0.000124635517, 4],
+      [0.0410568814, -2],
+      [0.000721039098, -4],
+      [0.00013613414, -6],
+      [-0.0000124733129, -8],
+      [0.00000092497468, -10],
+      [0, -12],
+    ],
+    nd: 1.90265,
+    vd: 35.77,
+    PgF: 0.5815,
+    code6: "903358",
+    source:
+      "Hikari Optical Glass Catalog 2025-06-01, PDF page 151, J-LASFH9A nine-term power series; https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_Catalog.pdf (accessed 2026-10-14). Distinct from discontinued J-LASFH9 (903357).",
   },
   /* Hikari six-digit code-family additions */
   {

@@ -55,6 +55,7 @@ const LENS_DATA = {
   patentYear: 2020,
   elementCount: 25,
   groupCount: 19,
+  acceptsTeleconverters: true, // Nikon lists TC-20E III; autofocus limitations depend on host and camera.
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
 

@@ -348,6 +348,7 @@ export default function DiagramControls({
           labelMinWidth={85}
           /* A lens with no modeled focus travel stays at infinity whatever focusT a shared URL carries. */
           displayValue={groupMovementAvailability.focus ? formatDist(focusT, L, zoomT) : "\u221e"}
+          displayValueStyle={{ whiteSpace: "nowrap" }}
           value={focusT}
           step={L.focusStep}
           onPointerDown={beginInteraction}

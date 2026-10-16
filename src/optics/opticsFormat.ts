@@ -4,7 +4,7 @@
  * Kept in the pure optics layer so analysis displays share unit conventions without importing React components.
  */
 
-import { closeFocusAtZoom } from "./focusDistance.js";
+import { focusDistanceAt } from "./focusDistance.js";
 import type { RuntimeLens } from "../types/optics.js";
 import { FOCUS_INFINITY_CUTOFF } from "./layout.js";
 
@@ -54,7 +54,8 @@ export function marketedApertureNote(
  */
 export function formatDist(t: number, L: RuntimeLens, zoomT = 0): string {
   if (t < FOCUS_INFINITY_CUTOFF) return "\u221e";
-  const d = closeFocusAtZoom(zoomT, L) / t;
+  const d = focusDistanceAt(t, L, zoomT);
+  if (d === null) return "\u2014";
   if (d >= 100) return `${Math.round(d)} m`;
   if (d >= 10) return `${d.toFixed(1)} m`;
   if (d >= 1) return `${d.toFixed(2)} m`;

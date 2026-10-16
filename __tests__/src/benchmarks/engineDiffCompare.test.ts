@@ -4603,7 +4603,8 @@ describe("engineDiff converter pairs", () => {
     expect(Object.values(BASES).filter((catalog) => listsOf(catalog).differences.uncompared.length > 0)).toHaveLength(
       4,
     );
-  });
+    /* It builds every converter pair of five catalogs on both engines: about 10 s here, over 30 s on a CI runner. */
+  }, 120_000);
 });
 
 describe("engineDiff changed converters", () => {

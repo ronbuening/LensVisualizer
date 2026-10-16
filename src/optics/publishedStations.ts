@@ -10,7 +10,7 @@
  * keyframe `j` at `focusPositions[j]`, so a station reproduces its authored gap row.
  */
 import type { FiniteConjugate, PublishedStations, RuntimeLens } from "../types/optics.js";
-import { closeFocusAtZoom } from "./focusDistance.js";
+import { focusDistanceAt } from "./focusDistance.js";
 import { getGroupMovementAvailability } from "./groupMovement.js";
 import { DEFAULT_FOCUS_POSITIONS, zoomIndexToT } from "./state/stationTables.js";
 
@@ -66,7 +66,7 @@ export interface PublishedFocusStation {
   index: number;
   focusT: number;
   isInfinity: boolean;
-  /** Slider-convention focus distance in metres; a label, not a source claim. Null at infinity. */
+  /** Slider-convention focus distance in metres; a label, not a source claim. Null at infinity or if invalid. */
   distanceM: number | null;
   /** Source-certified conjugate at this station, when the lens declares one. */
   conjugate: FiniteConjugate | null;
@@ -223,12 +223,11 @@ export function publishedZoomStations(L: RuntimeLens): PublishedZoomStation[] {
 export function publishedFocusStations(L: RuntimeLens, zoomStationIndex = 0): PublishedFocusStation[] {
   const grid = publishedStationGrid(L.data);
   const zoomT = zoomIndexToT(zoomStationIndex, grid.zoomCount);
-  const closeFocusM = closeFocusAtZoom(zoomT, L);
   return (grid.focusByZoomIndex[zoomStationIndex] ?? []).map(({ index, focusT }) => ({
     index,
     focusT,
     isInfinity: index === 0,
-    distanceM: index === 0 ? null : closeFocusM / focusT,
+    distanceM: index === 0 ? null : focusDistanceAt(focusT, L, zoomT),
     conjugate:
       L.data.finiteConjugates?.find(
         (conjugate) =>

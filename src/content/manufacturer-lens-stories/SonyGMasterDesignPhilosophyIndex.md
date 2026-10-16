@@ -30,10 +30,10 @@ Installments are numbered 001 through 012 and are listed here newest first. Sony
 | 005 | FE 100mm F2.8 STF GM OSS | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/005/) | — |
 | 004 | FE 100–400mm F4.5–5.6 GM OSS | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/004/) | — |
 | 003 | FE 70–200mm F2.8 GM OSS | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/003/) | [FE 70–200mm F2.8 GM OSS](/lens/sony-fe-70-200-f28-gm-oss) |
-| 002 | FE 85mm F1.4 GM | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/002/) | — |
+| 002 | FE 85mm F1.4 GM | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/002/) | [FE 85mm F1.4 GM](/lens/sony-fe-85mm-f14-gm) |
 | 001 | FE 24–70mm F2.8 GM | [Read at Sony](https://www.sony.jp/ichigan/a-universe/g-master/001/) | — |
 
-Installments 001, 002 and 006 cover the first-generation FE 24–70mm F2.8 GM, FE 85mm F1.4 GM and FE 16–35mm F2.8 GM. The catalog holds the Mark II versions of all three, which are separate optical designs, so those rows are deliberately left unlinked.
+Installments 001 and 006 cover the first-generation FE 24–70mm F2.8 GM and FE 16–35mm F2.8 GM. The catalog holds the Mark II versions of those two lenses, which are separate optical designs, so those rows are deliberately left unlinked. Installment 002 links to the original FE 85mm F1.4 GM now held in the catalog.
 
 Sony's own [interview sub-index](https://www.sony.jp/ichigan/a-universe/g-master/interview/) is out of date: it lists ten installments and still marks the FE 12–24mm F2.8 GM as forthcoming. The [G Master landing page](https://www.sony.jp/ichigan/a-universe/g-master/) is the reliable entry point.
 

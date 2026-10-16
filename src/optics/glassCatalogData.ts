@@ -188,8 +188,10 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "TAFD45",
   "TAFD45L",
   "TAFD55",
+  "TAF1",
   "E-CF6",
   "MC-TAF101-100",
+  "MC-TAF115",
   "NBFD15",
   "NBFD9",
   "NBFD14",
@@ -257,6 +259,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "J-LAK10",
   "J-LASFH15",
   "J-LASFH9",
+  "J-LASFH9A",
   "FDS18",
   "NBFD3",
   "NBFD11",
@@ -315,6 +318,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "H-ZLaF68C",
   "H-LaK6A",
   "H-LaF3B",
+  "LAF2",
   "S-PHM52Q",
   "S-FPM4",
   "S-NBH58",
@@ -690,6 +694,9 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "K-CSK120",
   "K-LaSFn16",
   "PBM22",
+  "J-BASF8",
+  "J-LAK09",
+  "J-BAF11",
 ] as const;
 
 const GLASS_CATALOG_ENTRIES_BY_NAME: ReadonlyMap<string, GlassEntry> = new Map(

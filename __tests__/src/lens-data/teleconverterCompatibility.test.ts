@@ -3,14 +3,13 @@ import { wideOpenStopAtZoom } from "../../../src/optics/apertureStop.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { computeElementRenderDiagnostics } from "../../../src/optics/diagramGeometry.js";
-import {
-  mtfChiefHeight,
-  mtfModeledHalfField,
-  resolveMtfFieldGeometry,
-} from "../../../src/optics/analysis/mtfFields.js";
+import { mtfModeledHalfField, resolveMtfFieldGeometry } from "../../../src/optics/analysis/mtfFields.js";
+import { mtfImagePoint } from "../../../src/optics/analysis/mtfTracing.js";
+import { solveChiefRay } from "../../../src/optics/fieldGeometry.js";
 import { assessMtfSupport } from "../../../src/optics/mtf.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
 import { doLayout, epAtZoom, traceRay, traceSkewRay } from "../../../src/optics/optics.js";
+import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
 import {
   attachTeleconverter,
   teleconverterCompatibility,
@@ -24,7 +23,7 @@ import {
   teleconverterOptionsForLens,
 } from "../../../src/utils/catalog/teleconverterCatalog.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
-import { teleconverterFixture } from "../optics/testLensFixtures.js";
+import { teleconverterFixture, teleconverterHostData } from "../optics/testLensFixtures.js";
 
 /** Largest hidden render trim tolerated on a converter element, matching the production-lens diagnostics sweep. */
 const MATERIAL_TRIM_TOLERANCE_MM = 0.25;
@@ -44,20 +43,29 @@ function zoomStations(L: RuntimeLens): number[] {
 /**
  * Share of the format corner the real chief ray reaches through every clear aperture, wide open at infinity. This is
  * the chief's own edge, not the edge the MTF tab charts to: part of a beam still passes a rim that stops its chief ray,
- * and a converter rim that does that is undersized all the same.
+ * and a converter rim that does that is undersized all the same. Trace the authored indices, as the diagram does:
+ * incomplete glass dispersion can prevent a common-wavelength MTF without preventing this geometric fit check.
  */
 function cornerCoverage(L: RuntimeLens, zoomT: number): number {
   const state = prepareRuntimeState(L, 0, zoomT);
-  const options: MtfOptions = {
-    method: "geometric",
-    spectrum: "reference",
-    focus: "design",
-    pupilSemiDiameterMm: epAtZoom(zoomT, L),
-    stopSemiDiameterMm: wideOpenStopAtZoom(zoomT, L),
+  const first = state.surfaces[0];
+  const lead = Math.max(1, Math.abs(first.profile.sag(first.sd)) + 1);
+  const chiefHeight = (fieldAngleDeg: number) => {
+    const chief = solveChiefRay(fieldAngleDeg, 0, zoomT, L);
+    if (chief.status !== "converged" || chief.vectorLaunch) return NaN;
+    const ray = {
+      origin: [0, chief.yLaunch - chief.uField * lead, state.z[0] - lead] as [number, number, number],
+      direction: [0, chief.uField, 1] as [number, number, number],
+    };
+    const trace = traceEngineRay2(state, ray, {
+      checkSemiDiameter: true,
+      stopSemiDiameter: wideOpenStopAtZoom(zoomT, L),
+      stopOnClip: true,
+    });
+    const point = mtfImagePoint(state, trace);
+    return point ? Math.hypot(point.x, point.y) : NaN;
   };
-  const support = assessMtfSupport(state, options);
-  if (!support.available) return 0;
-  const geometry = resolveMtfFieldGeometry(state, mtfModeledHalfField(state), mtfChiefHeight(state, options, support));
+  const geometry = resolveMtfFieldGeometry(state, mtfModeledHalfField(state), chiefHeight);
   return geometry ? geometry.modeledEdgeHeightMm / geometry.referenceHeightMm : 0;
 }
 
@@ -70,6 +78,36 @@ function cornerCoverage(L: RuntimeLens, zoomT: number): number {
  * format corner, which are re-sized from the patent figure instead.
  */
 describe("teleconverter catalog", () => {
+  it("checks native corner clearance when mixed glass references prevent MTF, and still detects a clipped rim", () => {
+    const host = teleconverterHostData({ overrides: { imageFormat: "135-full-frame" } });
+    const converter = teleconverterFixture();
+    const mixedConverter = {
+      ...converter,
+      elements: converter.elements.map((element) => ({ ...element, indexReference: "e" as const })),
+    };
+    const native = buildLens(attachTeleconverter(host, converter));
+    const mixed = buildLens(attachTeleconverter(host, mixedConverter));
+    const state = prepareRuntimeState(mixed, 0, 0);
+    const options: MtfOptions = {
+      method: "geometric",
+      spectrum: "reference",
+      focus: "design",
+      pupilSemiDiameterMm: epAtZoom(0, mixed),
+      stopSemiDiameterMm: wideOpenStopAtZoom(0, mixed),
+    };
+    expect(assessMtfSupport(state, options).reason).toBe("mixed-reference");
+    const clear = cornerCoverage(mixed, 0);
+    expect(clear).toBeGreaterThan(0.9);
+    expect(clear).toBeCloseTo(cornerCoverage(native, 0), 8);
+    const clipped = buildLens(
+      attachTeleconverter(host, {
+        ...mixedConverter,
+        surfaces: mixedConverter.surfaces.map((surface) => ({ ...surface, sd: 1 })),
+      }),
+    );
+    expect(cornerCoverage(clipped, 0)).toBeLessThan(clear / 2);
+  });
+
   it("validates every teleconverter and applies the lens patent-metadata policy", () => {
     expect(ALL_TELECONVERTER_KEYS.length).toBeGreaterThan(0);
     const offenders: string[] = [];
@@ -89,26 +127,60 @@ describe("teleconverter catalog", () => {
     expect(offenders).toEqual([]);
   });
 
-  it("composes every compatible converter–host pair into a lens that builds, traces, keeps the host's stop and loses no field", () => {
-    const offenders: string[] = [];
-    let pairs = 0;
+  /* Every compatible converter–host pair, found once: the fit predicate is cheap, and the guard below needs the total. */
+  const compatibleHostKeys = new Map(
+    ALL_TELECONVERTER_KEYS.map((tcKey) => [
+      tcKey,
+      ALL_CATALOG_KEYS.filter(
+        (lensKey) => teleconverterCompatibility(LENS_CATALOG[lensKey], TELECONVERTER_CATALOG[tcKey]).ok,
+      ),
+    ]),
+  );
 
-    for (const tcKey of ALL_TELECONVERTER_KEYS) {
+  /* A host fits several converters, so its build and bare corner coverage are computed once and reused. */
+  const bareHosts = new Map<string, { host: RuntimeLens; coverage: Map<number, number> }>();
+  function bareHost(lensKey: string) {
+    let entry = bareHosts.get(lensKey);
+    if (!entry) {
+      entry = { host: buildLens(LENS_CATALOG[lensKey]), coverage: new Map() };
+      bareHosts.set(lensKey, entry);
+    }
+    return entry;
+  }
+  function bareCornerCoverage(lensKey: string, zoomT: number): number {
+    const { host, coverage } = bareHost(lensKey);
+    let share = coverage.get(zoomT);
+    if (share === undefined) {
+      share = cornerCoverage(host, zoomT);
+      coverage.set(zoomT, share);
+    }
+    return share;
+  }
+
+  it("finds compatible hosts in the catalog", () => {
+    /* Zero pairs would mean the sweep stopped seeing the catalog rather than that everything passed. */
+    const pairs = [...compatibleHostKeys.values()].reduce((total, hostKeys) => total + hostKeys.length, 0);
+    expect(pairs).toBeGreaterThan(0);
+  });
+
+  /* One test per converter, so each gets its own time budget as the catalog grows and a failure names its converter. */
+  it.each(ALL_TELECONVERTER_KEYS)(
+    "composes %s onto every compatible host into a lens that builds, traces, keeps the host's stop and loses no field",
+    (tcKey) => {
       const tc = TELECONVERTER_CATALOG[tcKey];
-      for (const lensKey of ALL_CATALOG_KEYS) {
-        const hostData = LENS_CATALOG[lensKey];
-        if (!teleconverterCompatibility(hostData, tc).ok) continue;
-        pairs++;
+      const offenders: string[] = [];
+
+      for (const lensKey of compatibleHostKeys.get(tcKey)!) {
         const pair = `${lensKey} + ${tcKey}`;
 
         let L: RuntimeLens;
         try {
-          L = buildLens(attachTeleconverter(hostData, tc));
+          L = buildLens(attachTeleconverter(LENS_CATALOG[lensKey], tc));
         } catch (error) {
           offenders.push(`${pair}: ${String(error).split("\n")[0]}`);
           continue;
         }
-        const host = buildLens(hostData);
+        const { host } = bareHost(lensKey);
 
         if (Math.abs(L.stopPhysSD - host.stopPhysSD) > 1e-9) offenders.push(`${pair}: stop radius changed`);
         /* Read through the station accessor, so a fixed-iris host that came back with a schedule is caught too. */
@@ -137,7 +209,7 @@ describe("teleconverter catalog", () => {
 
           /* A rear converter images the format corner from a narrower field of the host, so the host cannot stop a
              corner chief ray it passed on its own: a lower share with the converter mounted is the converter's rims. */
-          const bare = cornerCoverage(host, zoomT);
+          const bare = bareCornerCoverage(lensKey, zoomT);
           const mounted = cornerCoverage(L, zoomT);
           if (mounted < bare - CORNER_COVERAGE_TOLERANCE) {
             offenders.push(
@@ -159,12 +231,10 @@ describe("teleconverter catalog", () => {
           }
         }
       }
-    }
 
-    /* Zero pairs would mean the sweep stopped seeing the catalog rather than that everything passed. */
-    expect(pairs).toBeGreaterThan(0);
-    expect(offenders).toEqual([]);
-  });
+      expect(offenders).toEqual([]);
+    },
+  );
 
   it("keeps every host's stop when a synthetic universal converter is composed onto it", () => {
     /* The real catalog pairs above are few. The composer's central promise — the host's iris does not change —

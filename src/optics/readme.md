@@ -27,11 +27,11 @@ flowchart LR
   end
   n_external_src_types["src/types"]
   n_external_src_utils_catalog["src/utils/catalog"]
+  n_src_optics_TypeScript_modules --> |23| n_external_src_types
   n_src_optics_TypeScript_modules --> |23| n_src_optics_src_optics_prescription
-  n_src_optics_TypeScript_modules --> |22| n_external_src_types
   n_src_optics_TypeScript_modules --> |19| n_src_optics_src_optics_analysis
+  n_src_optics_TypeScript_modules --> |12| n_src_optics_src_optics_state
   n_src_optics_TypeScript_modules --> |12| n_src_optics_src_optics_trace
-  n_src_optics_TypeScript_modules --> |11| n_src_optics_src_optics_state
   n_src_optics_TypeScript_modules --> |10| n_src_optics_src_optics_chromatic
   n_src_optics_TypeScript_modules --> |8| n_src_optics_src_optics_glassCatalogEntries
   n_src_optics_TypeScript_modules --> |6| n_src_optics_src_optics_aberration
@@ -48,7 +48,7 @@ flowchart LR
 
 - Direct source files: 40
 - Direct subfolders: 14
-- Main outbound areas: src/optics/prescription (23), src/types (22), src/optics/analysis (19), src/optics/trace (12), src/optics/compat.ts (11), src/optics/state (11), src/optics/chromatic (10), src/optics/glassCatalogEntries (8), +24 more
+- Main outbound areas: src/optics/prescription (23), src/types (23), src/optics/analysis (19), src/optics/state (12), src/optics/trace (12), src/optics/compat.ts (11), src/optics/chromatic (10), src/optics/glassCatalogEntries (8), +24 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/optics/aberration, +15 more
 
 ## Subfolders
@@ -89,7 +89,7 @@ flowchart LR
 | `dispersion.ts` | Dispersion helper module | src/optics/chromatic (3), src/types | src/components/diagram (7), src/optics/chromatic (2), src/components/display, src/components/layout | normalLinePgF, normalLinePdC, normalLinePeC, normalLinePgFPrime, abbeLineIndices, makeSurfaceDispersion, buildSurfaceDispersionIndex, DispersionQuality, +3 more |
 | `distortionAnalysis.ts` | Distortion Analysis helper module | src/optics/optics.ts (2), src/optics/analysis, src/optics/projection.ts, src/optics/raySampling.ts, src/optics/trace, +2 more | src/components/display (2), src/optics/analysis | DistortionSample, DistortionCurveResult, DistortionGridPoint, DistortionGridLine, DistortionFieldGridResult, computeDistortionCurve, computeDistortionFieldGrid |
 | `fieldGeometry.ts` | Field Geometry helper module | src/optics/compat.ts | none | chiefRayImageHeight, chiefRayImageHeightAccurate, invertChiefRayImageHeights, ImageHeightInversionResult, computeAnalysisFieldGeometryAtState, computeBoundingSphereLaunchRadiusMm, computeBoundingSphereVectorFieldLaunch, computeFieldGeometryAtState, +15 more |
-| `focusDistance.ts` | Focus Distance helper module | src/optics/state | src/optics/first-order (2), src/comparison, src/components/controls, src/optics/analysis, src/optics/field, +3 more | FOCUS_INFINITY_CUTOFF, remapFocusDistance, closeFocusAtZoom |
+| `focusDistance.ts` | Focus Distance helper module | src/optics/state (2), src/types | src/optics/first-order (2), src/comparison, src/components/controls, src/optics/analysis, src/optics/field, +3 more | FOCUS_INFINITY_CUTOFF, focusDistanceAt, remapFocusDistance, closeFocusAtZoom |
 | `foldedPathDisplay.ts` | Folded Path Display helper module | src/optics/raySampling.ts, src/optics/trace, src/types | src/components/layout | foldedHitOrderLabelsForDisplay |
 | `geometry.ts` | Geometry helper module | src/optics/geometry | src/components/display | DEFAULT_MAX_RIM_ANGLE_DEG, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, conicPolySag, sag, sagSlopeRaw |
 | `glassCatalog.ts` | Glass Catalog helper module | src/optics/glassCatalogTypes.ts (2), src/optics/spectralLines.ts (2), src/optics/glassCatalogAliases.ts, src/optics/glassCatalogData.ts, src/types | src/optics/chromatic (2), src/optics/types.ts, src/types | GlassEntry, LINE_NM, GLASS_ND_TOLERANCE, GLASS_CATALOG_ND_TOLERANCE, GLASS_CATALOG_VD_TOLERANCE, GLASS_VD_TOLERANCE, CatalogGlassCompatibility, GlassResolutionMatchSource, +16 more |

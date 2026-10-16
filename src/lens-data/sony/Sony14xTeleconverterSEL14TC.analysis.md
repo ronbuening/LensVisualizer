@@ -440,13 +440,15 @@ rays additionally pass 315,270 sampled in-glass segment tests. These tests addre
 solid containment, not toleranced mechanical compatibility with an arbitrary production lens.
 
 The f/2.8 lower host-f-number bound is supported within the disclosed source-reference scope. It is not a
-production-host benchmark, and it does not authorize universal attachment. Beyond the source fixtures, four
+production-host benchmark, and it does not authorize universal attachment. Beyond the source fixtures, five
 catalog hosts on Sony’s accessory compatibility list declare this converter: FE 70-200mm F2.8 GM OSS, FE 70-200mm
-F2.8 GM OSS II, FE 400mm F2.8 GM OSS and FE 400-800mm F6.3-8 G OSS. Composed with their catalog prescriptions they
-give 101.0 / 165.1 / 271.5 mm at f/4.03, 100.8 / 169.0 / 271.3 mm at f/4.03, 543.7 mm at f/4.08 and 559.3 / 776.3 /
+F2.8 GM OSS II, FE 400mm F2.8 GM OSS, FE 400-800mm F6.3-8 G OSS and FE 70-200mm F4 Macro G OSS II. The first
+four, composed with their catalog prescriptions, give 101.0 / 165.1 / 271.5 mm at f/4.03, 100.8 / 169.0 / 271.3 mm at f/4.03, 543.7 mm at f/4.08 and 559.3 / 776.3 /
 1081.0 mm at f/8.95 / 10.23 / 11.48; on each the stop radius is unchanged and the axial beam and the corner chief
 ray clear at every zoom station. Any other production host still requires its own compatible geometry and
 supported declaration. The converter’s lack of an internal stop makes that distinction particularly important.
+
+Sony also [lists SEL14TC for the FE 70–200mm F4 Macro G OSS II](https://www.sony.co.uk/electronics/support/lenses-e-mount-lenses/sel70200g2/specifications). Its native prescription composition retains the stop and corner-chief coverage at every zoom station, with no converter render trim. This host uses e-line indices while the converter uses d-line indices. All nineteen host glasses now have catalog curves after the MC-TAF115 backfill, permitting common-wavelength conversion. Composed simulated MTF uses L72’s qualified spectral proxy; its supplier and annealing remain unconfirmed.
 
 Finally, aperture admission is not image-quality validation. The native monochromatic calculations retain
 longitudinal and first-order residuals at the prescribed plane, while the uncertain spectral surrogates prevent

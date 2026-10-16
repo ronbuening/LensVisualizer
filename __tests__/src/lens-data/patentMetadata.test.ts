@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { ingestLens, toLensData } from "../../../src/optics/buildLens.js";
+import { ingestLens, ingestTeleconverter, toLensData, toTeleconverterData } from "../../../src/optics/buildLens.js";
 import type { LensDataInput } from "../../../src/types/optics.js";
+import {
+  docdbPublicationNumber,
+  isPatentPublicationNumber,
+  patentJurisdiction,
+} from "../../../src/utils/catalog/patentRecords.js";
 
 /* Each lens file of either version, read as its V1 view gives its fields. */
 const modules = Object.fromEntries(
@@ -8,6 +13,18 @@ const modules = Object.fromEntries(
     import.meta.glob<{ default: LensDataInput }>("../../../src/lens-data/**/*.data.ts", { eager: true }),
   ).map(([path, module]) => [path, { default: toLensData(ingestLens(module.default)) }]),
 );
+/* Lens and converter files of either version, read through their V1 views for the patent number. */
+const patentModules: Record<string, { default: { key: string; patentNumber?: string } }> = {
+  ...modules,
+  ...Object.fromEntries(
+    Object.entries(
+      import.meta.glob<{ default: Parameters<typeof ingestTeleconverter>[0] }>(
+        "../../../src/lens-data/**/*.teleconverter.ts",
+        { eager: true },
+      ),
+    ).map(([path, module]) => [path, { default: toTeleconverterData(ingestTeleconverter(module.default)) }]),
+  ),
+};
 
 function expectCleanNames(path: string, field: "patentAuthors" | "patentAssignees", values: string[]): void {
   expect(new Set(values).size, `${path}: ${field} entries must be unique`).toBe(values.length);
@@ -80,6 +97,22 @@ const NOMINAL_FASTER_THAN_DESIGN: readonly string[] = [
 ];
 
 describe("lens patent metadata", () => {
+  it("links every authored lens and converter patent with consistent country and kind-code spacing", () => {
+    const offenders = Object.entries(patentModules).flatMap(([path, { default: data }]) => {
+      const number = data.patentNumber;
+      if (!number) return [];
+      return isPatentPublicationNumber(number) &&
+        /^[A-Z]{2} /.test(number) &&
+        !/\d[A-Z]\d?$/.test(number) &&
+        patentJurisdiction(number).code !== "OTHER" &&
+        /^[A-Z]{2}[A-Z0-9]*\d[A-Z0-9]*$/.test(docdbPublicationNumber(number))
+        ? []
+        : [`${path}: ${number}`];
+    });
+    expect(offenders, "patent identifiers must render as external links and resolve to a publication query").toEqual(
+      [],
+    );
+  });
   it("opens each lens to its source design f-number, not a faster marketed one", () => {
     // `nominalFno` sizes the iris. Where the source gives a design f-number, a faster nominal value opens the stop
     // past what the prescription was corrected for; the marketed number belongs in `apertureMarketing`.

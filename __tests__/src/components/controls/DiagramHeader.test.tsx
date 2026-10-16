@@ -72,6 +72,13 @@ function renderHeader(overrides: Partial<ComponentProps<typeof DiagramHeader>> =
 }
 
 describe("DiagramHeader", () => {
+  it("renders a compact patent identifier as a link rather than plain text", () => {
+    const L = lens();
+    renderHeader({ L: { ...L, data: { ...L.data, patentNumber: "CN123456789B", patentAuthors: [] } } });
+    const link = screen.getByRole("link", { name: "CN123456789B in Espacenet (opens in a new tab)" });
+    expect(link.getAttribute("href")).toBe("https://worldwide.espacenet.com/patent/search?q=pn%3DCN123456789B");
+    expect(link.getAttribute("target")).toBe("_blank");
+  });
   it("preserves the same aperture precision as the sliders", () => {
     renderHeader({ compact: true, fNumber: 9.18 });
     expect(screen.getByText("f/9.18")).toBeTruthy();

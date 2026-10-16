@@ -555,3 +555,9 @@ rear singlets". Neither names a special-glass or aspherical element. 第3図 gov
 
 - 第3図 is a hand-drawn schematic with a 0.3 mm outline; the rims remain figure estimates, not production apertures.
 - Closest-focus corner rays were not traced in this review either.
+
+## Additional catalog hosts — 2026-10-14
+
+Canon's [EOS R5 AF lens-group reference](https://cam.start.canon/en/C002/manual/html/UG-11_Reference_0090.html) explicitly lists the original Extender EF2x I with the EF 500mm f/4L IS USM and EF 600mm f/4L IS USM. These two hosts now declare converter acceptance. Their junction gaps are 21.151 and 54.651 mm; the converter introduces no axial clip or render trim, and their corner chiefs reach the full format corner. No prescription or semi-diameter changed.
+
+The same manufacturer reference supports additional production combinations, but their current models are withheld: EF 400mm f/2.8L IS III reaches 99.12% of the corner, EF 600mm f/4L IS III reaches 98.86%, and EF 200–400mm with its internal converter out reaches 99.05% at the wide end and 99.05% at the long end. TC10/TC12 clip the first and third combinations; the 600mm also clips TC9. The 200–400mm internal-converter-in state clears, but the physical lens is left undeclared pending a rim review of the out state. The original converter's inferred rims are not enlarged merely to admit another host.

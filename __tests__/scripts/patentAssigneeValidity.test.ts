@@ -39,6 +39,8 @@ describe("patent assignee validity", () => {
   });
 
   it.each([
+    ["Miranda Camera Company Limited", "Miranda Camera Co., Ltd."],
+    ["Anhui ChangGeng Optical Technology Co., Ltd.", "Anhui Changgeng Optics Technology Co., Ltd."],
     ["Jos. Schneider & Co.", "Jos. Schneider & Co., Optische Werke"],
     ["Jos. Schneider & Co. Optische Werke", "Jos. Schneider & Co., Optische Werke"],
     ["Jenoptik Jena G.m.b.H.", "Jenoptik Jena GmbH"],

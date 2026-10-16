@@ -279,6 +279,8 @@ source: {
 - Record the exact publication or grant used to transcribe the prescription, rather than silently substituting a
   related US, EP, WO or national-family publication. Keep its jurisdiction prefix and kind code when the source prints
   one.
+- Separate the jurisdiction and kind code from the number with spaces (`"CN 103823292 B"`). Keep native serial
+  punctuation and Japanese era notation. The shared link parser also accepts compact identifiers pasted from sources.
 - `authors` holds inventors only. Keep the source order and put each person in a separate entry; never collapse
   further inventors into `"et al."`. Normalize Latin-script display names to `Given Middle Family` order with
   conventional capitalization, reliable diacritics, and no honorifics, credentials, locations or source-database

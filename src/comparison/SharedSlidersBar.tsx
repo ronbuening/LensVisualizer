@@ -341,7 +341,7 @@ export default function SharedSlidersBar({
           label="FOCUS"
           valueLabel={focusEnabled ? focusDistStr : "Not modeled"}
           minLabel={"\u221e"}
-          maxLabel={focusEnabled ? `${minCloseFocus} m` : "Not modeled"}
+          maxLabel={focusEnabled ? formatSharedFocusDist(1, minCloseFocus) : "Not modeled"}
           sliderValue={focusEnabled ? sharedFocusT : 0}
           disabled={!focusEnabled}
           disabledReason="No modeled focus travel data"

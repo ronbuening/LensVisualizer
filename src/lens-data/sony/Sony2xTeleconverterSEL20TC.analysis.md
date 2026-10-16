@@ -20,7 +20,9 @@ The prescription is a rear-mounted teleconverter, used with a taking lens rather
 
 Sony identifies an E-mount, full-frame converter with nominal 2× magnification and a two-stop light loss. Its specified diameter is 62.4 mm, overall length 42.7 mm, mount-reference length 27.2 mm and approximate mass 207 g. These are product specifications, not reconstructed optical quantities. In particular, neither mechanical length is used to fit the modeled 40.888 mm first-to-last optical vertex distance. [2, 4, 6]
 
-The announcement's intended host was SEL70200GM; that historical statement is not an exhaustive current compatibility list. Sony warns that incompatible rear optics or adapter parts can collide, including the named SEL70200G and LA-EA4 exclusions. The modeled mount identifier `sony-fe` and minimum host f-number 2.8 do not establish universal compatibility. Four catalog hosts declare the converter: FE 70-200mm F2.8 GM OSS, FE 70-200mm F2.8 GM OSS II, FE 400mm F2.8 GM OSS and FE 400-800mm F6.3-8 G OSS. [2, 4]
+The announcement's intended host was SEL70200GM; that historical statement is not an exhaustive current compatibility list. Sony warns that incompatible rear optics or adapter parts can collide, including the named SEL70200G and LA-EA4 exclusions. The modeled mount identifier `sony-fe` and minimum host f-number 2.8 do not establish universal compatibility. Five catalog hosts declare the converter: FE 70-200mm F2.8 GM OSS, FE 70-200mm F2.8 GM OSS II, FE 400mm F2.8 GM OSS, FE 400-800mm F6.3-8 G OSS and FE 70-200mm F4 Macro G OSS II. [2, 4]
+
+Sony's [SEL70200G2 specifications](https://www.sony.co.uk/electronics/support/lenses-e-mount-lenses/sel70200g2/specifications) explicitly support SEL20TC. The Macro G OSS II native prescription composition preserves the host stop and corner-chief coverage at every zoom station, without converter render trim. Its e-line host indices and this converter's d-line indices can now be converted to a common wavelength after the MC-TAF115 backfill. Composed simulated MTF depends on L72’s qualified spectral proxy, with supplier and annealing unconfirmed.
 
 ## Optical Architecture
 
@@ -289,7 +291,7 @@ The unresolved samples do limit any claim of complete off-axis pupil throughput.
 
 The executed source-only runtime is pinned at commit d8b406ce112931ab0b2988b87acbd13b0b663c7e. Its actual converter schema, construction, composition, dispersion, production-render and targeted trace mechanisms were exercised on this exact data. Negative controls detect changed radii, shifted reference planes, wrong spectra, oversized rims, illegal converter stops and unsupported lens-only fields. [7]
 
-A Node TypeScript import is not a TypeScript compiler check. Compiler, formatter, repository lint, full build, browser viewer and production chromatic-performance checks have not been claimed. Four catalog hosts are registered (see the first section). The reference master is a source-derived diagnostic fixture, not evidence that any unregistered production host has passed its own mechanism and mechanical-fit validation.
+A Node TypeScript import is not a TypeScript compiler check. Compiler, formatter, repository lint, full build, browser viewer and production chromatic-performance checks have not been claimed. Five catalog hosts are registered (see the first section); the earlier four-host numerical study above predates the Macro G OSS II addition. The reference master is a source-derived diagnostic fixture, not evidence that any unregistered production host has passed its own mechanism and mechanical-fit validation.
 
 ## Sources and References
 

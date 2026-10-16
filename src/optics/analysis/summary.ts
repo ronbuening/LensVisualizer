@@ -3,10 +3,10 @@
  */
 
 import { runtimeView } from "../prescription/runtimeView.js";
-import { closeFocusAtZoom } from "../focusDistance.js";
+import { focusDistanceAt } from "../focusDistance.js";
 
 import type { FieldGeometryState } from "../optics.js";
-import { FOCUS_INFINITY_CUTOFF, eflAtZoom } from "../layout.js";
+import { eflAtZoom } from "../layout.js";
 import { computeCardinalElements2 } from "../first-order/cardinals.js";
 import type { PreparedOpticalState } from "../types.js";
 
@@ -89,7 +89,7 @@ export function computeOpticalSummaryForState2(
     physicalStopDiameterMm,
     halfFieldDeg,
     fullFieldDeg: halfFieldDeg === null ? null : halfFieldDeg * 2,
-    focusDistanceM: focusDistanceForState(state),
+    focusDistanceM: focusDistanceAt(state.focusT, L, state.zoomT),
     zoomT: state.zoomT,
     focusT: state.focusT,
     aberrationT: state.aberrationT,
@@ -104,13 +104,6 @@ export function computeOpticalSummaryForState2(
     ffdMm: finiteOrNull(cardinals?.distances.ffd.valueMm),
     principalHiatusMm: finiteOrNull(cardinals?.distances.hiatus.valueMm),
   };
-}
-
-function focusDistanceForState(state: PreparedOpticalState): number | null {
-  const closeFocusM = closeFocusAtZoom(state.zoomT, runtimeView(state.lens));
-  if (state.focusT < FOCUS_INFINITY_CUTOFF) return null;
-  if (!Number.isFinite(closeFocusM) || closeFocusM <= 0 || state.focusT <= 0) return null;
-  return closeFocusM / state.focusT;
 }
 
 function finiteOrNull(value: number | null | undefined): number | null {

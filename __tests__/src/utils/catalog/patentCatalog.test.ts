@@ -72,6 +72,28 @@ describe("patent catalog", () => {
     expect(isPatentPublicationNumber("US 2,819,651")).toBe(true);
     expect(isPatentPublicationNumber("WO 2021/246545 A1")).toBe(true);
     expect(isPatentPublicationNumber("Patent source for an attributed lens")).toBe(false);
+    expect(isPatentPublicationNumber("US patent source 123")).toBe(false);
+    expect(isPatentPublicationNumber("CN 123456789 B, Example 3")).toBe(false);
+    expect(isPatentPublicationNumber("US 123456 A and JP 123456 A")).toBe(false);
+  });
+
+  it.each([
+    ["CN123456789B", "CN123456789B", "CN"],
+    [" cn 123456789 b ", "CN123456789B", "CN"],
+    ["US2020/0123456A1", "US2020123456A1", "US"],
+    ["US20200123456A1", "US2020123456A1", "US"],
+    ["JP2025-50505A", "JP2025050505A", "JP"],
+    ["JP2025050505A", "JP2025050505A", "JP"],
+    ["JPS62-078520A", "JPS6278520A", "JP"],
+    ["JPS62078520A", "JPS6278520A", "JP"],
+    ["JPH09105860A", "JPH09105860A", "JP"],
+    ["JP1991141313A", "JPH03141313A", "JP"],
+    ["USRE30708E", "USRE30708E", "US"],
+    ["JPWO2020/157904A1", "JPWO2020157904A1", "JP"],
+  ])("links compact and spaced publication identifiers: %s", (display, docdb, country) => {
+    expect(isPatentPublicationNumber(display)).toBe(true);
+    expect(espacenetPatentUrl(display)).toBe(`https://worldwide.espacenet.com/patent/search?q=pn%3D${docdb}`);
+    expect(patentJurisdiction(display).code).toBe(country);
   });
 
   it("resolves represented patent authorities to country labels", () => {

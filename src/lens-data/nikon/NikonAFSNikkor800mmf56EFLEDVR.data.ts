@@ -63,6 +63,7 @@ const LENS_DATA = {
   apertureMarketing: 5.6,
   apertureDesign: 5.658,
   lensMounts: ["nikon-f"],
+  acceptsTeleconverters: true, // Nikon supplies the dedicated AF-S TC800-1.25E ED with this lens
   imageFormat: "135-full-frame",
   patentNumber: "JP 2013-250293 A",
   patentAuthors: ["Masashi Yamashita", "Mitsuaki Wada"],

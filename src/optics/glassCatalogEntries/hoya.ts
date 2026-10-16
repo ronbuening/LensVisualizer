@@ -6,6 +6,26 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "TAF1",
+    vendor: "Hoya",
+    polynomial: [3.0736378, -0.015501284, 0.023627699, 0.00066300852, -2.8353438e-5, 2.2090799e-6],
+    nd: 1.7725,
+    vd: 49.63,
+    code6: "773496",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, TAF1 NM/CD row; vendor formula-1 polynomial. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf (accessed 2026-10-15).",
+  },
+  {
+    name: "LAF2",
+    vendor: "Hoya",
+    polynomial: [2.9657374, -0.0096571624, 0.026024525, 0.00036684641, 2.8205551e-5, -1.3739929e-7],
+    nd: 1.744,
+    vd: 44.9,
+    code6: "744449",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, discontinued LAF2 NM/CD row; vendor formula-1 polynomial. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf (accessed 2026-10-15).",
+  },
+  {
     name: "BSC3",
     vendor: "Hoya",
     polynomial: [2.2184621, -0.010480003, 0.0098211065, 0.00023795415, -0.000017796854, 0.0000010475444],
@@ -758,6 +778,16 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     PgF: 0.5589,
     code6: "517522",
     source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; E-CF6 page (formula 3 polynomial).",
+  },
+  {
+    name: "MC-TAF115",
+    vendor: "Hoya",
+    polynomial: [3.0645313, -0.01369384, 0.024574301, 0.00039557144, 0.000010739241, 0.00000012049528],
+    nd: 1.77047,
+    vd: 49.46,
+    PgF: 0.552,
+    source:
+      "HOYA MC20251106.xlsx, sheet1 row 149, standard MC-TAF115 molding-glass row; https://www.hoya-opticalworld.com/common/mc/MC20251106.xlsx (accessed 2026-10-14). Published nd 1.77047 and the six formula-3 coefficients agree; the AGF 2026-07-07 NM index 1.777047 is inconsistent with this curve and is not used. No cooling-rate-specific row or conflicting AGF six-digit code is substituted.",
   },
   {
     name: "MC-TAF101-100",

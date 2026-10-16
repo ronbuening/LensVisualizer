@@ -287,6 +287,8 @@ methods agree numerically.
 | Stored modeled f-number | 5.75019 | 5.75019 | 0 |
 | Exact-ray f-number from inferred stop | 5.74627 | 5.75019 | −0.00392 |
 
+The stop-derived f-number above does not include clipping by downstream rims. In the current model, rear surface 10 limits the full axial beam to about f/6.48; with the supported TC-20E III attached, the corresponding limit is about f/12.84 rather than the composed stop's f/11.39. The converter adds no axial rim clip. This inferred host rim is queued for an exact-source review; it has not been enlarged to enable converter attachment.
+
 The surface-by-surface Petzval calculation uses $\phi/(n n')$ at every interface, including the diffractive power on
 surface 8. The total is −1.72676×10⁻⁴ mm⁻¹, corresponding to a first-order Petzval radius of approximately −5791 mm.
 The refractive contribution is −2.08432×10⁻⁴ mm⁻¹ and the phase contribution is +3.57558×10⁻⁵ mm⁻¹.

@@ -302,6 +302,9 @@ fourteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fi
 | MINOLTA AF ZOOM 35-70mm f/4 | `minolta/MinoltaAF3570mmf4.data.ts` | 68.2 mm: f/4.1 traces f/4.33 (+5.6 %), rim 8 | todo |
 | NIKON AF ZOOM-MICRO NIKKOR 70-180mm f/4.5-5.6 D ED | `nikon/NikonAFZoomMicro70180mmf4556D.data.ts` | 194 mm: f/5.6 traces f/5.95 (+6.2 %), rim 20 | todo |
 | NIKON AF-S NIKKOR 24-70mm f/2.8 G ED | `nikon/NikonAFS2470mmf28G.data.ts` | 67.7 mm: f/2.91 traces f/3.00 (+3.2 %), rim 17 | todo |
+| NIKON AF-S NIKKOR 300mm f/2.8 D IF-ED | `nikon/NikonAFSNikkor300mmf28DIFED.data.ts` | f/2.88 traces f/3.45 (+19.7%), rear L11 rim 21; with TC-20E III, f/5.70 traces f/6.83. Present on the host alone; converter rims clear. Review the host's exact source figure before raising its inferred rear rim. | todo |
+| NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II | `nikon/NikonAFSNikkor400mmf28DIFEDII.data.ts` | f/2.88 traces f/3.76 (+30.6%), host rim 22; with TC-20E III, f/5.70 traces f/7.45. Host alone clips the 80%-radius probe, so converter acceptance is withheld pending exact-source rim review. | todo |
+| NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR | `nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts` | f/5.75 traces f/6.48 (+12.7%), host rim 10; with TC-20E III, f/11.39 traces f/12.84. The converter introduces no axial rim clip; review the host's exact source before altering its inferred rim. | todo |
 | NIKON AI-S ZOOM-NIKKOR 35-70mm f/3.5 | `nikon/NikonAIZoomNikkor3570mmf35.data.ts` | 68.79 mm: f/3.5 traces f/3.62 (+3.4 %), trace failure at STO (noBracket) | todo |
 | NIKON AI ZOOM-NIKKOR 25-50mm f/4 | `nikon/NikonAIZoomNikkor2550mmf4.data.ts` | 48.8 mm: f/4 traces f/4.91 (+22.8 %), trace failure at STO (noBracket) | todo |
 | NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8 | `nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts` | 34 mm: f/2.88 traces f/3.21 (+11.3 %), rim 10 | todo |
