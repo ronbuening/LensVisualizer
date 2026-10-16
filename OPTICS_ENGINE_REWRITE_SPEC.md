@@ -2268,6 +2268,9 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     authored paths. Validation of canonical data ends S2.P1.T2's validator-first spread of the defaults table.
   - **Tests:** the same verdict on every catalog file and every negative fixture in
     `__tests__/src/optics/validateLensData.test.ts`.
+  - **As built:** Concern modules retain authored refusals and ordered V1 messages; the canonical entry validates once
+    before compiled publication, with V2 diagnostic paths translated from the projection. The defaults spread and
+    its build export are removed; radial bands now share a geometry leaf with rendering, and `internal/` is gone.
   - **Gate:** C0.
 - **S5.P1.T4 Composition on canonical data, and MTF worker init.**
   - **Change:**
