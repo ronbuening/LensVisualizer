@@ -58,7 +58,7 @@ export function apertureAt(
 /* ── Shared pre-built production lenses ──────────────────────────────────
  *
  * buildLens returns a frozen RuntimeLens, and the prepared-state/chief-ray
- * helpers cache by lens object identity (src/optics/compat.ts), so sharing
+ * helpers cache by compiled/state identity (src/optics/state/preparedGeometry.ts), so sharing
  * one instance per file makes repeated analysis calls cheap — rebuilding the
  * same production lens per test was a dominant suite cost. Lazily memoized so
  * files only pay for the lenses they use. Never mutate a shared lens

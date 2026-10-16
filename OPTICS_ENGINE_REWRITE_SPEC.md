@@ -2340,6 +2340,10 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
       compared exactly. No string formatting.
     - **One z-override helper** replaces `stateWithRuntimeZ` and `stateWithDiagramZ2`.
   - **Tests:** cached results equal uncached; eviction; distinct nearby controls stay distinct.
+  - **As built:** One compiled-identity LRU retains 96 states by exact clamped controls with signed zero normalized;
+    runtime, field, first-order, analysis and diagram callers share it. The uncached builder is an explicit reference
+    path. One z helper preserves the existing camera-plane translation and diagram metadata modes; the field audit
+    reaches preparation through the public build barrel (it already used the compat facade at this step's base).
   - **Gate:** C0. Supersede decision 2026-07-06 (the `prepareState` cache).
 - **S5.P2.T2 One layout and one interpolation.**
   - **Change:** `state/layout.ts` and `state/stationTables.ts` replace the duplicate thickness, layout and zoom-table

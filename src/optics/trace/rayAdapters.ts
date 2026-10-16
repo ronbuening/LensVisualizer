@@ -7,10 +7,9 @@
 import type { ChromaticChannel, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import { directionFromMeridionalSlope, directionFromSkewSlope } from "../math/vector.js";
 import { compiledLensFromRuntime } from "../prescription/compile.js";
-import { prepareState } from "../state/prepareState.js";
-import type { CompiledStateSurface, PreparedOpticalState, Ray3, Vec3 } from "../types.js";
+import { prepareState, stateWithZ } from "../state/preparedGeometry.js";
+import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { transmissionTraceCapture } from "./bulkAbsorption.js";
-import { createTraceGeometry } from "./geometry.js";
 import {
   engineTraceToRuntimeRayResult,
   engineTraceToRuntimeSkewResult,
@@ -27,14 +26,6 @@ export interface VectorRayTraceInput2 {
   launchBoundT?: number;
 }
 
-interface PreparedStateCache {
-  byKey: Map<string, PreparedOpticalState>;
-  lastFocusT?: number;
-  lastZoomT?: number;
-  lastAberrationT?: number;
-  lastState?: PreparedOpticalState;
-}
-
 interface TraceOptionsCache {
   byKey: Map<string, TraceOptions<TraceCapture>>;
   lastStopSD?: number;
@@ -46,8 +37,6 @@ interface TraceOptionsCache {
 }
 
 const DIRECTION_CACHE_LIMIT = 4096;
-const PREPARED_STATE_BY_RUNTIME = new WeakMap<RuntimeLens, PreparedStateCache>();
-const RUNTIME_Z_STATE_BY_BASE = new WeakMap<PreparedOpticalState, WeakMap<readonly number[], PreparedOpticalState>>();
 const TRACE_OPTIONS_BY_STATE = new WeakMap<PreparedOpticalState, TraceOptionsCache>();
 const MERIDIONAL_DIRECTION_BY_SLOPE = new Map<number, Vec3>([[0, [0, 0, 1]]]);
 const SKEW_DIRECTION_BY_UX = new Map<number, Map<number, Vec3>>();
@@ -335,7 +324,7 @@ export interface PreparedRayTrace {
 /** Resolve runtime controls and supplied vertices once before tracing a fan. */
 export function prepareRayTrace(L: RuntimeLens, request: RayTraceRequest): PreparedRayTrace {
   const base = stateForRuntimeLens(L, request.focusT ?? 0, request.zoomT ?? 0, request.aberrationT ?? 0);
-  const state = request.zPos ? stateWithRuntimeZ(base, request.zPos) : base;
+  const state = request.zPos ? stateWithZ(base, request.zPos) : base;
   return bindRayTrace(state, base, request);
 }
 
@@ -418,7 +407,7 @@ function traceRayExactCore2(
   channel: ChromaticChannel | undefined,
   aberrationT: number,
 ): RayTraceResult {
-  const state = stateWithRuntimeZ(stateForRuntimeLens(L, focusT, zoomT, aberrationT), zPos);
+  const state = stateWithZ(stateForRuntimeLens(L, focusT, zoomT, aberrationT), zPos);
   const direction = meridionalDirectionForSlope(u0);
   const rayLead = L.rayLead ?? 0;
   const origin: Vec3 = [0, y0 - u0 * rayLead, (zPos[0] ?? state.z[0] ?? 0) - rayLead];
@@ -462,7 +451,7 @@ function traceRayVectorExactCore2(
   zoomT: number,
   aberrationT: number,
 ): RayTraceResult {
-  const state = stateWithRuntimeZ(stateForRuntimeLens(L, focusT, zoomT, aberrationT), _zPos);
+  const state = stateWithZ(stateForRuntimeLens(L, focusT, zoomT, aberrationT), _zPos);
   const options = traceOptions(stopSD, ghost, channel, state, false);
   const result = traceEngineRay2(
     state,
@@ -483,7 +472,7 @@ function traceSkewRayVectorExactCore2(
   zoomT: number,
   aberrationT: number,
 ): RuntimeSkewRayTraceResult {
-  const state = stateWithRuntimeZ(stateForRuntimeLens(L, focusT, zoomT, aberrationT), _zPos);
+  const state = stateWithZ(stateForRuntimeLens(L, focusT, zoomT, aberrationT), _zPos);
   const options = traceOptions(stopSD, ghost, channel, state, false, transmissionTraceCapture(state.lens));
   const result = traceEngineRay2(
     state,
@@ -583,105 +572,7 @@ function skewDirectionForSlopes(ux: number, uy: number): Vec3 {
 }
 
 function stateForRuntimeLens(L: RuntimeLens, focusT: number, zoomT: number, aberrationT: number): PreparedOpticalState {
-  const engineLens = compiledLensFromRuntime(L);
-  let stateCache = PREPARED_STATE_BY_RUNTIME.get(L);
-  if (!stateCache) {
-    stateCache = { byKey: new Map() };
-    PREPARED_STATE_BY_RUNTIME.set(L, stateCache);
-  }
-  if (
-    stateCache.lastState &&
-    Object.is(stateCache.lastFocusT, focusT) &&
-    Object.is(stateCache.lastZoomT, zoomT) &&
-    Object.is(stateCache.lastAberrationT, aberrationT)
-  ) {
-    return stateCache.lastState;
-  }
-
-  const key = `${focusT}|${zoomT}|${aberrationT}`;
-  const cached = stateCache.byKey.get(key);
-  if (cached) {
-    stateCache.lastFocusT = focusT;
-    stateCache.lastZoomT = zoomT;
-    stateCache.lastAberrationT = aberrationT;
-    stateCache.lastState = cached;
-    return cached;
-  }
-
-  const state = prepareState(engineLens, focusT, zoomT, aberrationT);
-  stateCache.byKey.set(key, state);
-  stateCache.lastFocusT = focusT;
-  stateCache.lastZoomT = zoomT;
-  stateCache.lastAberrationT = aberrationT;
-  stateCache.lastState = state;
-  return state;
-}
-
-/**
- * Rebuild a prepared state around caller-supplied surface z positions.
- *
- * Diagram code can translate non-folded surface vertices so focus/zoom states
- * stay registered to a fixed rendered sensor. Keep image-plane metadata and
- * the final air gap in that same coordinate frame; folded systems retain their
- * authored arbitrary image plane.
- */
-export function stateWithRuntimeZ(state: PreparedOpticalState, zPos: readonly number[]): PreparedOpticalState {
-  let byZ = RUNTIME_Z_STATE_BY_BASE.get(state);
-  if (!byZ) {
-    byZ = new WeakMap();
-    RUNTIME_Z_STATE_BY_BASE.set(state, byZ);
-  }
-  const cached = byZ.get(zPos);
-  if (cached) return cached;
-  if (zPos.length === 0 || zPos.every((z, index) => z === state.z[index])) {
-    byZ.set(zPos, state);
-    return state;
-  }
-
-  const baseFirstZ = state.z[0] ?? 0;
-  const shiftedFirstZ = zPos[0] ?? baseFirstZ;
-  const zShift = shiftedFirstZ - baseFirstZ;
-  // Non-folded layouts are translated as a rigid stack, so the axial image plane moves by the same delta.
-  const imgZ = state.lens.flags.isFoldedOptics ? state.imgZ : state.imgZ + zShift;
-  const surfaces = state.surfaces.map((surface, index) => {
-    const z = zPos[index] ?? surface.z;
-    let d: number;
-    if (index < state.surfaces.length - 1 && zPos[index + 1] !== undefined) {
-      d = zPos[index + 1] - z;
-    } else if (state.lens.flags.isFoldedOptics) {
-      d = surface.d;
-    } else {
-      // The last gap is the transfer distance to the shifted rendered image plane.
-      d = imgZ - z;
-    }
-    return Object.freeze({ ...surface, z, d }) as CompiledStateSurface;
-  });
-  const imagePlane = state.lens.flags.isFoldedOptics
-    ? state.imagePlane
-    : Object.freeze({
-        ...state.imagePlane,
-        point: Object.freeze([state.imagePlane.point[0], state.imagePlane.point[1], imgZ] as const),
-      });
-  const frozenSurfaces = Object.freeze(surfaces);
-  const frozenZ = Object.freeze([...zPos]);
-  const shiftedState = Object.freeze({
-    ...state,
-    surfaces: frozenSurfaces,
-    z: frozenZ,
-    traceGeometry: createTraceGeometry({
-      surfaces: frozenSurfaces,
-      z: frozenZ,
-      imagePlane,
-      stopSurfaceIndex: state.lens.stop.surfaceIndex,
-      pathPlan: state.lens.opticalPath,
-      isFoldedOptics: state.lens.flags.isFoldedOptics,
-    }),
-    imagePlane,
-    imgZ,
-    totalTrack: state.lens.flags.isFoldedOptics ? state.totalTrack : imgZ - shiftedFirstZ,
-  });
-  byZ.set(zPos, shiftedState);
-  return shiftedState;
+  return prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT);
 }
 
 /** Image-plane intercept for a skew ray in sagittal/meridional millimeters. */

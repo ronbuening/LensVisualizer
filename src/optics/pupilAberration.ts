@@ -38,7 +38,7 @@ import {
 } from "./optics.js";
 import type { FieldGeometryState } from "./optics.js";
 import { compiledLensFromRuntime } from "./prescription/compile.js";
-import { prepareState } from "./state/prepareState.js";
+import { prepareState } from "./state/preparedGeometry.js";
 import { directionFromMeridionalSlope } from "./math/vector.js";
 import { traceGeometryToStop } from "./trace/stopTrace.js";
 import type { TraceGeometry, TraceOptions } from "./trace/types.js";

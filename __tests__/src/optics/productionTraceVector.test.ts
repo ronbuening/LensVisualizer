@@ -12,7 +12,7 @@ import {
   traceSkewRayVectorChromatic2,
 } from "../../../src/optics/trace/rayAdapters.js";
 import * as normalization from "../../../src/optics/prescription/compile.js";
-import { prepareState } from "../../../src/optics/state/prepareState.js";
+import { prepareState } from "../../../src/optics/state/preparedGeometry.js";
 import { createPerspectiveTraceContext } from "../../../src/optics/perspective/trace.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import { traceFixtureSlope, traceFixtureVector } from "./traceGeometryFixtures.js";

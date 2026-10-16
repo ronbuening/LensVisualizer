@@ -16,4 +16,4 @@ export { compiledLensFromRuntime } from "./prescription/identity.js";
 export type { CanonicalLens, IngestedPrescription } from "./prescription/canonical.js";
 
 export { canonicalLensFromRuntime } from "./prescription/identity.js";
-export { buildCanonicalLens } from "./compat.js";
+export { buildCanonicalLens, prepareRuntimeState } from "./compat.js";
