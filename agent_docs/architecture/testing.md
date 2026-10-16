@@ -221,7 +221,9 @@ not see, such as an `import.meta.glob` pattern for the seam or a container neste
   and the audit-script npm entries) are listed in `TOOLING_TESTS` in `vite.config.js` and run with
   `npm run test:tooling`. CI runs both suites in one job and calls Vitest directly for this one
   (`npx vitest run --config vitest.tooling.config.js`), so the metadata `npm run test` just generated is not generated
-  again. Add a file there only when it guards a tool that neither the build nor the app uses.
+  again. Add a file there only when it guards a tool that neither the build nor the app uses. The one exception is the
+  converter's corpus sweep (`__tests__/scripts/convertLensDataCorpus.test.ts`), which converts every catalog file both
+  ways and is listed there so `npm run test` stays fast (the plan's Settled decisions row 80).
 
 ## Engine Differential Harness
 
@@ -1033,7 +1035,8 @@ npm run lint
 npm run test
 ```
 
-Also run `npm run test:tooling` when changing `scripts/`, `src/benchmarks/`, or the audit tooling.
+Also run `npm run test:tooling` when changing `scripts/`, `src/benchmarks/`, the audit tooling, or anything the
+converter's corpus sweep reads: `src/optics/prescription/`, `src/optics/lensDataConversion.ts` or `src/lens-data/`.
 
 ## Benchmark Verification
 
