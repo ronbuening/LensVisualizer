@@ -13,10 +13,17 @@
 
 export { ingestLens, ingestTeleconverter, lensDataVersion } from "./prescription/ingestV2.js";
 export { V1_FLAT_RADIUS } from "./prescription/ingestV1.js";
-export { V1_GROUP_STARTS, V1_PRINT_ORDER, toLensDataInput, toTeleconverterData } from "./prescription/toLensData.js";
+export {
+  V1_GROUP_STARTS,
+  V1_PRINT_ORDER,
+  V1_ROW_LISTS,
+  toLensDataInput,
+  toTeleconverterData,
+} from "./prescription/toLensData.js";
 export { v1SourceMap, v1StopRadius } from "./prescription/v1SourceMap.js";
 export {
   V2_GROUP_STARTS,
+  V2_ROW_LISTS,
   toLensDataV2Input,
   toTeleconverterDataV2Input,
   v2SourceMap,

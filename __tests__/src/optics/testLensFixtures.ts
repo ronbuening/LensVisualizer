@@ -30,7 +30,7 @@ export function catalogLensData(raw: object): LensData {
 
 /**
  * Build a lens file or a composed pair — the canonical test-side `buildLens` wrapper. `buildLens` applies the schema
- * defaults through canonical ingest, and builds a pair `attachTeleconverter()` composed as it is.
+ * defaults through canonical ingest, and builds a composed pair through its canonical association.
  */
 export function build(raw: object): RuntimeLens {
   return buildLens(raw as LensData);
@@ -58,7 +58,7 @@ export function apertureAt(
 /* ── Shared pre-built production lenses ──────────────────────────────────
  *
  * buildLens returns a frozen RuntimeLens, and the prepared-state/chief-ray
- * helpers cache by lens object identity (src/optics/compat.ts), so sharing
+ * helpers cache by compiled/state identity (src/optics/state/preparedGeometry.ts), so sharing
  * one instance per file makes repeated analysis calls cheap — rebuilding the
  * same production lens per test was a dominant suite cost. Lazily memoized so
  * files only pay for the lenses they use. Never mutate a shared lens
@@ -458,7 +458,10 @@ export function teleconverterZoomHostData(overrides: Partial<LensData> = {}): Le
 
 /** Explicit compiler records for synthetic probes that intentionally bypass full-lens validation/constants. */
 export function registerRuntimeFixture(runtime: RuntimeLens): RuntimeLens {
-  const input = compileConstruction({ ...runtime.data, surfaces: runtime.S }, runtime.data);
+  const input = compileConstruction(
+    { ...runtime.data, lensShiftFrac: runtime.lensShiftFrac, surfaces: runtime.S },
+    runtime.data,
+  );
   input.stopIdx = runtime.stopIdx;
   input.projection = runtime.projection;
   input.opticalPath = runtime.opticalPath;

@@ -27,8 +27,7 @@ const IDLE: MtfComputation = { result: null, stale: false, running: false, error
  */
 export function useMtfComputation(L: RuntimeLens, job: MtfJob | null): MtfComputation {
   const client = useMemo(
-    () =>
-      new MtfWorkerClient(L.data, () => new Worker(new URL("./mtf.worker.ts", import.meta.url), { type: "module" })),
+    () => new MtfWorkerClient(L, () => new Worker(new URL("./mtf.worker.ts", import.meta.url), { type: "module" })),
     [L],
   );
   const [state, setState] = useState<{ client: MtfWorkerClient; value: MtfComputation }>({ client, value: IDLE });

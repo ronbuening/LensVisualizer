@@ -14,8 +14,8 @@
  * 4. puts the printer's number tokens back where Prettier respelled them, so `1.05587e-7` stays as written;
  * 5. checks the bytes it would write: every number token where the printer put it; every comment of the source once,
  *    header included, as written or with its moved-from note; every comment on the node and in the placement the
- *    printer gave it, so a second conversion carries it nowhere else; and an ingest of the result equal to the
- *    source's prescription under the fingerprint's rules.
+ *    placer gave it, as the printed text reads and as formatting leaves it, so a second conversion carries it nowhere
+ *    else; and an ingest of the result equal to the source's prescription under the fingerprint's rules.
  *
  * The file around the object keeps its shape: everything before the statement that declares the exported const is
  * kept byte for byte, except the type import, which names the target version's type (`types/lensDataV2.js`; going
@@ -36,7 +36,9 @@
  * radius from `buildLens` on the source, to 0.001 mm, at the wide station of a zoom (a scheduled zoom's first schedule
  * value), which V1 ingest sets aside again and the report states. A file whose radius cannot be derived is refused. A
  * restored flat radius prints `1e15`, and a value V1 holds twice, or zero padding V1 requires, prints from its value.
- * The report lists each moved comment, each medium name V1 cannot hold, and anything else the V1 file drops.
+ * A container a converter note names, "(moved from asph)", that the view would not write is written empty when the
+ * note's run returns to it. The report lists each moved comment, each medium name V1 cannot hold, and anything else
+ * the V1 file drops.
  */
 
 import { fileURLToPath } from "node:url";
@@ -44,7 +46,7 @@ import * as prettier from "prettier";
 import ts from "typescript";
 import { parseLensDataSource } from "../lens-data-ast.mjs";
 import { loadLensDataConversion } from "../lens-summaries.mjs";
-import { commentNotCarried, commentReplaced, placeComments } from "./comments.mjs";
+import { commentMisplaced, commentNotCarried, commentReplaced, movedNote, placeComments } from "./comments.mjs";
 import { printLensDataObject } from "./print.mjs";
 import { readLensDataFile } from "./read.mjs";
 import { stopRadiusEntry } from "./report.mjs";
@@ -232,6 +234,7 @@ function writeV2(conversion, ingested, kind) {
     map: conversion.v2SourceMap(ingested, writes),
     order: writes.order,
     opensGroup: (member) => conversion.V2_GROUP_STARTS.includes(member),
+    rowLists: conversion.V2_ROW_LISTS,
   };
 }
 
@@ -246,14 +249,23 @@ function sectionsOf(order, starts) {
   return sections;
 }
 
+/** The value at a dotted member path, `aberrationControl.varLabels`, or `undefined` when the path is no such path. */
+function memberValue(value, path) {
+  if (!/^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)*$/.test(path)) return undefined;
+  return path.split(".").reduce((at, key) => (at !== null && typeof at === "object" ? at[key] : undefined), value);
+}
+
 /**
  * The V1 file of an ingested source: the V1 view, with the `sd` V1's types require on a stop the prescription holds
- * none for; where each part of it came from; and how it prints.
+ * none for, and empty each container a converter note names that the view would not write, when the note's run
+ * returns to it; where each part of it came from; and how it prints.
  *
+ * @param {{ path: string, from: string }[]} notes - the source's leading comments that open with the converter's own
+ *   note: the node each leads and the path its note names
  * @returns {Promise<object>} the file, or `{ refusal }` when the stop's radius cannot be derived or V1 ingest refuses
  *   the view
  */
-async function writeV1(conversion, ingested, kind, source, loadBuildLensModule) {
+async function writeV1(conversion, ingested, kind, source, loadBuildLensModule, notes) {
   const needed = kind === "lens" ? conversion.v1StopRadius(ingested.prescription) : undefined;
   let stopWritten;
   if (needed) {
@@ -266,13 +278,33 @@ async function writeV1(conversion, ingested, kind, source, loadBuildLensModule) 
     }
     stopWritten = { at, value: Number(radius.toFixed(3)), stop: needed.stop };
   }
-  const data =
+  const view = (emptyContainers) =>
     kind === "lens"
-      ? conversion.toLensDataInput(ingested, { stopRadius: stopWritten?.value })
-      : conversion.toTeleconverterData(ingested);
+      ? conversion.toLensDataInput(ingested, { stopRadius: stopWritten?.value, emptyContainers })
+      : conversion.toTeleconverterData(ingested, { emptyContainers });
+  const mapOf = (written) => conversion.v1SourceMap(ingested, kind, written);
+  let data = view([]);
   let map;
   try {
-    map = conversion.v1SourceMap(ingested, kind, data);
+    map = mapOf(data);
+    /* A container a note names and the view leaves out is written empty, and kept so when the note's run returns. */
+    const missing = [...new Set(notes.map((note) => note.from))].filter(
+      (from) => memberValue(data, from) === undefined,
+    );
+    if (missing.length > 0) {
+      const trial = view(missing);
+      const trialMap = mapOf(trial);
+      const returned = missing.filter(
+        (from) =>
+          memberValue(trial, from) !== undefined &&
+          notes.some((note) => note.from === from && trialMap.commentTarget(note.path, true, from).noted),
+      );
+      if (returned.length === missing.length) [data, map] = [trial, trialMap];
+      else if (returned.length > 0) {
+        data = view(returned);
+        map = mapOf(data);
+      }
+    }
   } catch (error) {
     return { refusal: ingestRefusal("V1 ingest refuses the V1 view of it", error) };
   }
@@ -282,8 +314,17 @@ async function writeV1(conversion, ingested, kind, source, loadBuildLensModule) 
     map,
     order: map.order,
     opensGroup: (member, previous) => sections.get(member) !== sections.get(previous),
+    rowLists: conversion.V1_ROW_LISTS,
     stopWritten,
   };
+}
+
+/** The source's leading comments that open with the converter's own note: the node each leads and the path it names. */
+function notesOf(comments) {
+  return comments.flatMap((comment) => {
+    const note = comment.placement === "leading" && comment.path !== undefined ? movedNote(comment.text) : undefined;
+    return note ? [{ path: comment.path, from: note.from }] : [];
+  });
 }
 
 /** A number's exponent spelling, `1e15` for 1e15, which `String` would write as sixteen digits. */
@@ -337,9 +378,9 @@ export async function convertLensDataSource(content, options) {
   const written =
     toVersion === 2
       ? writeV2(conversion, ingested, kind)
-      : await writeV1(conversion, ingested, kind, read.value, loadBuildLensModule);
+      : await writeV1(conversion, ingested, kind, read.value, loadBuildLensModule, notesOf(read.comments));
   if (written.refusal) return refuse(written.refusal);
-  const { data, map, order, opensGroup } = written;
+  const { data, map, order, opensGroup, rowLists } = written;
 
   /* Text: the literal at the place the engine read each value from, where it is still exactly that value. */
   const texts = new Map();
@@ -370,7 +411,8 @@ export async function convertLensDataSource(content, options) {
     isContainer: (path) => containers.has(path),
   });
   if (placed.unattached.length > 0) {
-    return refuse(`the comment at line ${placed.unattached[0].line} sits outside the exported object`);
+    const [comment] = placed.unattached;
+    return refuse(`the comment at line ${comment.line} sits ${comment.reason ?? "outside the exported object"}`);
   }
   report.moved = placed.moved;
 
@@ -381,6 +423,7 @@ export async function convertLensDataSource(content, options) {
     comments: (path) => placed.byPath.get(path),
     blankBefore: (path) => read.nodes.get(map.recordSource(path))?.blankBefore ?? false,
     opensGroup,
+    rowLists,
     childPath: conversion.childPath,
   });
   const printed = `const ${frame.name} = ${objectText} satisfies ${frame.type};\n\nexport default ${frame.name};\n`;
@@ -406,6 +449,8 @@ export async function convertLensDataSource(content, options) {
   }
   const uncarried = commentNotCarried(read.comments, outputRead.comments);
   if (uncarried) return refuse(uncarried);
+  const misplaced = commentMisplaced(placed.byPath, printedRead.comments);
+  if (misplaced) return refuse(misplaced);
   const replaced = commentReplaced(printedRead.comments, outputRead.comments);
   if (replaced) return refuse(replaced);
   let reingested;

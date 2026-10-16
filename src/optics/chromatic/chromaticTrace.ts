@@ -4,6 +4,7 @@
  * Converts prepared-state dispersion resolvers into RGB/V ray traces and channel spread summaries for UI displays.
  */
 
+import { CHROMATIC_CHANNEL_ORDER } from "./channels.js";
 import type { ChromaticChannel, ChromaticRayFanSpread, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import {
   traceRayChromatic2,
@@ -44,7 +45,7 @@ export function computeChromaticRayFanSpread2(
 ): ChromaticRayFanSpread {
   const axialIntercepts: Partial<Record<ChromaticChannel, number>> = {};
   const imagePlaneHeights: Partial<Record<ChromaticChannel, number>> = {};
-  for (const ch of ["R", "G", "B", "V"] as ChromaticChannel[]) {
+  for (const ch of CHROMATIC_CHANNEL_ORDER) {
     const ray = marginalRays[ch];
     if (!ray || ray.clipped) continue;
     const rayZ = Number.isFinite(ray.z) ? ray.z! : lastSurfZ;

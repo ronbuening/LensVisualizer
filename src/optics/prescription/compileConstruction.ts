@@ -1,15 +1,21 @@
 /** Compile canonical prescription indices, profiles, controls and shared materials before constants. */
+import type { LensConstructionData } from "../types.js";
 import type { SurfaceData, LensData } from "../../types/optics.js";
 import { buildSurfaceLabelMap } from "./compileLabels.js";
 import { compileAspheres } from "./compileAspheres.js";
 import { compileElements, compileAnnotations } from "./compileGroups.js";
 import { compileVariableGaps } from "./compileControls.js";
-import { buildVdIndex, buildSpectralIndex, resolveMaterialTable, compiledDispersionTable } from "./compileMaterials.js";
+import {
+  buildVdIndex,
+  buildSpectralIndex,
+  resolveMaterialTable,
+  compiledDispersionTable,
+} from "../chromatic/dispersionTable.js";
 import { lastLensSurfaceIndex } from "./rearPlates.js";
 import { compileSurfaces } from "./surfaces.js";
 import type { LensProjectionConfig, ResolvedOpticalPath } from "../../types/optics.js";
 
-export function compileConstruction(data: LensData, source: LensData) {
+export function compileConstruction(data: LensConstructionData, source: LensData) {
   const S: SurfaceData[] = data.surfaces.map((s) => ({ ...s }));
   const N = S.length;
   const projection = resolveProjection(data);

@@ -145,7 +145,7 @@ function compileDisplay(input: LensConstruction): Omit<DisplaySpec, "maxRimTan">
     maxRimAngleDeg: input.data.maxRimAngleDeg,
     gapSagFrac: input.data.gapSagFrac,
     maxAspectRatio: input.data.maxAspectRatio,
-    lensShiftFrac: input.data.lensShiftFrac || 0,
+    lensShiftFrac: input.data.lensShiftFrac,
     rayLeadFrac: input.data.rayLeadFrac,
   });
 }

@@ -15,6 +15,7 @@
  * - `toLensDataInput` is the file as authored, which the converter writes back for `--to-version 1`.
  */
 
+import type { LensConstructionData } from "../types.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../types/asphericSchema.js";
 import type {
   AberrationControlConfig,
@@ -190,6 +191,12 @@ export const V1_GROUP_STARTS = {
 } as const;
 
 /**
+ * Lists of a V1 file whose rows keep a blank line their source had, before the row or before one of its leading
+ * comments; the converter breaks such a list across lines when one does. A lens and a converter have the same two.
+ */
+export const V1_ROW_LISTS: readonly string[] = ["surfaces", "elements"];
+
+/**
  * Set `target[field]` to a copy of `value` unless the value is `undefined`. A string, number, boolean or bigint is its
  * own copy; anything else goes through `structuredClone`, which refuses a function or a symbol.
  */
@@ -206,6 +213,11 @@ export interface V1FileOptions {
    * requires and the prescription does not hold; V1 ingest sets it aside again.
    */
   stopRadius?: number;
+  /**
+   * Containers to write empty where the view writes none (`asph`, `var`, `varLabels`, `aberrationControl.varLabels`):
+   * those a converter note names, "(moved from asph)", so that the comments the note carries return to them.
+   */
+  emptyContainers?: V1Spelling["emptyContainers"];
 }
 
 /** What the view writes for one defaulted field. */
@@ -219,8 +231,15 @@ interface ViewContext {
   readonly stopRadius?: number;
 }
 
-function viewContext(provenance: CanonicalProvenance, mergeCatalogDefaults: boolean, stopRadius?: number): ViewContext {
-  return { provenance, v1: provenance.v1 ?? { emptyContainers: [] }, mergeCatalogDefaults, stopRadius };
+function viewContext(
+  provenance: CanonicalProvenance,
+  mergeCatalogDefaults: boolean,
+  options?: V1FileOptions,
+): ViewContext {
+  const spelling = provenance.v1 ?? { emptyContainers: [] };
+  const extra = options?.emptyContainers ?? [];
+  const v1 = extra.length === 0 ? spelling : { ...spelling, emptyContainers: [...spelling.emptyContainers, ...extra] };
+  return { provenance, v1, mergeCatalogDefaults, stopRadius: options?.stopRadius };
 }
 
 /**
@@ -454,10 +473,10 @@ function aberrationControlView(lens: CanonicalLens, view: ViewContext): Aberrati
 function buildLensView(
   ingested: IngestedPrescription<CanonicalLens>,
   mergeCatalogDefaults: boolean,
-  stopRadius?: number,
+  options?: V1FileOptions,
 ): Untyped {
   const { prescription: lens, provenance } = ingested;
-  const view = viewContext(provenance, mergeCatalogDefaults, stopRadius);
+  const view = viewContext(provenance, mergeCatalogDefaults, options);
   const { catalog, source, zoom, focus, aperture } = lens;
   const out: Untyped = {};
 
@@ -551,16 +570,17 @@ function buildLensView(
  */
 export function toLensData(ingested: IngestedPrescription<CanonicalLens>): LensData {
   const view = buildLensView(ingested, true) as unknown as LensData;
+  if (ingested.attachedTeleconverter) view.attachedTeleconverter = structuredClone(ingested.attachedTeleconverter);
   associateCanonical(view, ingested);
   return view;
 }
 
 /** Compiler construction projection: canonical values only, with no provenance restoration. */
-export function canonicalConstructionData(prescription: CanonicalLens): LensData {
+export function canonicalConstructionData(prescription: CanonicalLens): LensConstructionData {
   return buildLensView(
     { prescription, provenance: { format: 2, defaulted: [], ignored: {} } },
     true,
-  ) as unknown as LensData;
+  ) as unknown as LensConstructionData;
 }
 
 /**
@@ -571,7 +591,7 @@ export function canonicalConstructionData(prescription: CanonicalLens): LensData
  * @returns fresh V1 lens input data
  */
 export function toLensDataInput(ingested: IngestedPrescription<CanonicalLens>, options?: V1FileOptions): LensDataInput {
-  return buildLensView(ingested, false, options?.stopRadius) as unknown as LensDataInput;
+  return buildLensView(ingested, false, options) as unknown as LensDataInput;
 }
 
 /* ── Teleconverter ── */
@@ -581,11 +601,15 @@ export function toLensDataInput(ingested: IngestedPrescription<CanonicalLens>, o
  * composer reads.
  *
  * @param ingested - a canonical teleconverter with its provenance
+ * @param options - what the converter asks of the file beyond the view: the containers to write empty
  * @returns fresh V1 `TeleconverterData`
  */
-export function toTeleconverterData(ingested: IngestedPrescription<CanonicalTeleconverter>): TeleconverterData {
+export function toTeleconverterData(
+  ingested: IngestedPrescription<CanonicalTeleconverter>,
+  options?: Pick<V1FileOptions, "emptyContainers">,
+): TeleconverterData {
   const { prescription: converter, provenance } = ingested;
-  const view = viewContext(provenance, false);
+  const view = viewContext(provenance, false, options);
   const out: Untyped = {};
   put(out, "publishedAt", converter.publishedAt);
   out.key = converter.key;

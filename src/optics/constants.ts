@@ -1,12 +1,9 @@
 /**
  * Shared optics constants — numerical tolerances and wavelength references for the engine.
  *
- * Centralizes trace, intersection, vector, and chromatic constants so low-level modules use
- * one set of physical and numerical thresholds.
+ * Centralizes trace, intersection and vector thresholds; channel wavelengths are re-exported
+ * from the chromatic metadata.
  */
-
-import { LINE_NM } from "./spectralLines.js";
-import type { ChromaticChannel } from "../types/optics.js";
 
 /** Minimum useful vector magnitude before normalization is treated as degenerate. */
 export const VECTOR_EPSILON = 1e-12;
@@ -20,10 +17,4 @@ export const INTERSECTION_MAX_ITERATIONS = 72;
 /** Number of coarse samples used to bracket a surface intersection. */
 export const INTERSECTION_BRACKET_SAMPLES = 24;
 
-/** Channel wavelengths in nanometers for public RuntimeLens chromatic helpers. */
-export const CHROMATIC_CHANNEL_WAVELENGTH_NM: Readonly<Record<ChromaticChannel, number>> = Object.freeze({
-  R: LINE_NM.C,
-  G: LINE_NM.d,
-  B: LINE_NM.F,
-  V: LINE_NM.g,
-});
+export { CHROMATIC_CHANNEL_WAVELENGTH_NM } from "./chromatic/channels.js";

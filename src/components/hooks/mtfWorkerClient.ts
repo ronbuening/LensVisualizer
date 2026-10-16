@@ -2,7 +2,8 @@
  * Worker boundary for MTF. Superseded requests are cancelled cooperatively, so the worker keeps
  * its built lens; only completed result curves are retained, under a 64 MiB budget.
  */
-import type { LensData } from "../../types/optics.js";
+import { canonicalLensFromRuntime, type CanonicalLens, type IngestedPrescription } from "../../optics/buildLens.js";
+import type { RuntimeLens } from "../../types/optics.js";
 import type { MtfOptions, MtfResult } from "../../types/mtf.js";
 
 export interface MtfJob {
@@ -13,7 +14,7 @@ export interface MtfJob {
 }
 
 export type MtfWorkerRequest =
-  | { type: "init"; data: LensData }
+  | { type: "init"; input: IngestedPrescription<CanonicalLens> }
   | { type: "compute"; id: number; job: MtfJob }
   | { type: "cancel"; id: number };
 
@@ -37,7 +38,7 @@ export class MtfWorkerClient {
   private cache = new Map<string, { serialized: string; bytes: number }>();
   private retainedBytes = 0;
   constructor(
-    private data: LensData,
+    private lens: RuntimeLens,
     private createWorker: () => MtfWorkerPort,
     private byteLimit = 64 * 1024 * 1024,
   ) {}
@@ -81,7 +82,7 @@ export class MtfWorkerClient {
       try {
         if (!this.worker) {
           this.worker = this.createWorker();
-          this.worker.postMessage({ type: "init", data: this.data });
+          this.worker.postMessage({ type: "init", input: canonicalLensFromRuntime(this.lens) });
         }
         this.worker.onmessage = ({ data }) => {
           if (data.id !== id || this.pending?.id !== id) return;

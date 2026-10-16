@@ -6,6 +6,8 @@
  * Props control presentation differences; logic is identical in both modes.
  */
 
+import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic/channels.js";
+import type { ChromaticChannel } from "../../types/optics.js";
 import CardinalControls from "../controls/CardinalControls.js";
 import { ENABLE_CARDINAL_ELEMENTS, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../utils/state/lensReducer.js";
@@ -153,12 +155,13 @@ export default function ControlsBar({
       ];
 
   /* ── Chromatic channel descriptors ── */
-  const chromChannels: ReadonlyArray<{ ch: string; active: boolean; field: BooleanRayField; color: string }> = [
-    { ch: "R", active: chromR, field: "chromR", color: t.rayChromR },
-    { ch: "G", active: chromG, field: "chromG", color: t.rayChromG },
-    { ch: "B", active: chromB, field: "chromB", color: t.rayChromB },
-    { ch: "V", active: chromV, field: "chromV", color: t.rayChromV },
-  ];
+  const channelControls = {
+    R: { active: chromR, field: "chromR", color: t.rayChromR },
+    G: { active: chromG, field: "chromG", color: t.rayChromG },
+    B: { active: chromB, field: "chromB", color: t.rayChromB },
+    V: { active: chromV, field: "chromV", color: t.rayChromV },
+  } satisfies Record<ChromaticChannel, { active: boolean; field: BooleanRayField; color: string }>;
+  const chromChannels = CHROMATIC_CHANNEL_ORDER.map((ch) => ({ ch, ...channelControls[ch] }));
 
   return (
     <div
