@@ -18,6 +18,13 @@ import {
 import type { RuntimeLens, LensData, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
 import { resolveAberrationThickness, resolveVariableThickness } from "../../../src/optics/prescription/variables.js";
 import {
+  focusControlPositions,
+  focusDistanceAt,
+  focusDistanceNote,
+  focusFromControl,
+  focusToControl,
+} from "../../../src/optics/focusDistance.js";
+import {
   buildChromaticPositiveElementLens,
   buildGhostClippingLens,
   buildLayoutLens,
@@ -75,6 +82,67 @@ describe("formatDist", () => {
   it("formats cm for close distances", () => {
     // t=1.0 → d = 0.4/1 = 0.4 m = 40 cm
     expect(formatDist(1.0, mockL)).toBe("40 cm");
+  });
+});
+
+// Presentation must not compress near-coincident source states or invent distances between them.
+describe("station-based focus controls", () => {
+  const positions = [0, 0.9999, 1];
+  const L = buildVariableStopGapLens([1, 11, 21], "test-station-focus-control", positions, {
+    focusControl: "stations",
+    finiteConjugates: [
+      {
+        focusT: positions[1],
+        zoomT: 0,
+        objectDistanceMm: 200.05,
+        distanceReference: "image-plane",
+        source: "Synthetic intermediate state",
+      },
+      {
+        focusT: 1,
+        zoomT: 0,
+        objectDistanceMm: 200.01,
+        distanceReference: "first-surface",
+        source: "Synthetic close state",
+      },
+    ],
+  });
+
+  it("spreads states evenly while retaining exact canonical coordinates and authored gaps", () => {
+    expect(focusControlPositions(L)).toEqual(positions);
+    for (const [index, control] of [0, 0.5, 1].entries()) {
+      const focus = focusFromControl(control, positions);
+      expect(focus).toBe(positions[index]);
+      expect(thick(0, focus, 0, L)).toBe([1, 11, 21][index]);
+      expect(focusToControl(focus, positions)).toBe(control);
+    }
+    expect(thick(0, focusFromControl(0.75, positions), 0, L)).toBeCloseTo(16, 9);
+    expect(
+      thick(0, focusFromControl(0.996, positions), 0, L) - thick(0, focusFromControl(0.992, positions), 0, L),
+    ).toBeCloseTo(0.08, 8);
+  });
+
+  it("round-trips existing saved focus values without quantizing them to UI steps", () => {
+    for (const focus of [0, 0.4, positions[1], 0.99993, 1]) {
+      const restored = Number(String(focus));
+      expect(focusFromControl(focusToControl(restored, positions), positions)).toBeCloseTo(focus, 14);
+    }
+    expect(focusControlPositions(buildVariableStopGapLens([1, 2]))).toEqual([0, 1]);
+  });
+
+  it("uses exact station distances with their references and withholds interpolated distances", () => {
+    expect(formatDist(0, L)).toBe("∞");
+    expect(formatDist(positions[1], L)).toBe("200.05 mm");
+    expect(formatDist(1, L)).toBe("200.01 mm");
+    expect(focusDistanceAt(positions[1], L)).toBe(0.20005);
+    expect(focusDistanceNote(positions[1], L)).toContain("From image plane");
+    expect(focusDistanceNote(1, L)).toContain("From first surface");
+    for (const focus of [0.001, 0.5, 0.99995]) {
+      expect(formatDist(focus, L)).toBe("Interpolated");
+      expect(focusDistanceAt(focus, L)).toBeNull();
+      expect(focusDistanceNote(focus, L)).toBe("Distance unverified");
+    }
+    expect(formatDist(positions[1], L, 0.5)).toBe("Interpolated");
   });
 });
 

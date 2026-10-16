@@ -1268,6 +1268,9 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   }
 
   /* ── Focus interpolation positions ── */
+  if (data.focusControl !== undefined && data.focusControl !== "stations") {
+    errors.push('"focusControl" must be "stations" when supplied');
+  }
   const focusPositionCount =
     Array.isArray(data.focusPositions) && data.focusPositions.length >= 2 ? data.focusPositions.length : 2;
   if (data.focusPositions !== undefined) {

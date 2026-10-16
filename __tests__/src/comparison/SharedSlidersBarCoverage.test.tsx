@@ -7,7 +7,7 @@ import SharedSlidersBar from "../../../src/comparison/SharedSlidersBar.js";
 import { buildSimplePositiveElementLens, buildVariableStopGapLens } from "../optics/testLensFixtures.js";
 import themes from "../../../src/utils/theme/themes.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
-import { computeAperturePair } from "../../../src/comparison/comparisonSliders.js";
+import { computeAperturePair, computeFocusPair } from "../../../src/comparison/comparisonSliders.js";
 import type {
   AperturePairResult,
   FocusPairResult,
@@ -57,6 +57,7 @@ function renderSharedSliders({
   sharedZoomT = 0.5,
   sharedStopdownT = 0.3,
   currentAperturePair = aperturePair,
+  currentFocusPair = focusPair,
   isWide = true,
   sharedShiftMm = 0,
   sharedTiltDeg = 0,
@@ -85,6 +86,7 @@ function renderSharedSliders({
   sharedZoomT?: number;
   sharedStopdownT?: number;
   currentAperturePair?: AperturePairResult;
+  currentFocusPair?: FocusPairResult;
   isWide?: boolean;
   sharedShiftMm?: number;
   sharedTiltDeg?: number;
@@ -124,7 +126,7 @@ function renderSharedSliders({
         onFocusPointerDown={onFocusPointerDown}
         onAperturePointerDown={onAperturePointerDown}
         onSliderPointerUp={onSliderPointerUp}
-        focusPair={focusPair}
+        focusPair={currentFocusPair}
         aperturePair={currentAperturePair}
         zoomPair={zoomPair}
         movementPair={movementPair}
@@ -158,6 +160,25 @@ function renderSharedSliders({
 }
 
 describe("SharedSlidersBar", () => {
+  it("maps station travel before dispatch and qualifies unsynchronized distance readouts", () => {
+    const LA = buildVariableStopGapLens([1, 11, 21], "test-shared-station-control", [0, 0.9999, 1], {
+      focusControl: "stations",
+    });
+    const { callbacks } = renderSharedSliders({ LA, LB: LA, currentFocusPair: computeFocusPair(0.25, LA, LA) });
+    expect(screen.getByText("Focus travel only; distances are not synchronized.")).toBeTruthy();
+    fireEvent.change(screen.getByRole("slider", { name: "FOCUS" }), { target: { value: "0.5" } });
+    expect(callbacks.onSharedFocusChange).toHaveBeenCalledWith(0.9999, true);
+  });
+  it("keeps shared station marks on the keyboard step grid with an extra interval", () => {
+    const LA = buildVariableStopGapLens([1, 11, 21], "test-shared-station-grid", [0, 0.9999, 1], {
+      focusControl: "stations",
+      closeFocusM: 1,
+    });
+    const LB = buildVariableStopGapLens([1, 2], "test-shared-closer-lens", undefined, { closeFocusM: 0.5 });
+    renderSharedSliders({ LA, LB, currentFocusPair: computeFocusPair(0.25, LA, LB) });
+    const slider = screen.getByRole("slider", { name: "FOCUS" }) as HTMLInputElement;
+    expect(Number(slider.step) * 125).toBeCloseTo(1 / 3, 15);
+  });
   afterEach(() => cleanup());
 
   it("lets presets and keyboard changes pass a sticky limit while drags still stop", () => {

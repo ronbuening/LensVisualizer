@@ -91,3 +91,26 @@ Patent: local `patents/CN103823292B.pdf`, Example 3, Figure 5, PDF p.15; prescri
 The 600 dpi optical-outline inspection confirms the existing inferred proportions, including the smaller moving L8 and larger fixed L9. The automatic screen's L8 over-read mapped onto L9 and the crop-edge warnings invalidate its scale; those numbers were discarded. Manual first-to-last vertex scale and the clean top/bottom rims agree with the existing radii within about 15%; no SD changed. L4's modeled 9.0/8.2 mm step remains constrained by the S7/S8 air gap.
 
 All five authored mounts and the APS-C infinity format remain consistent with the maker material; adapters are not native mounts. The product can cover full frame at macro distances, which does not establish a full-frame infinity prescription. Eight glasses remain explicitly Unmatched: L1/L3/L4/L5/L6/L7/L8/L9. Their optimized source pairs lack a sufficiently specific, source-backed catalog assignment; no new measurements or guessed coefficients were authored. L8's loose fluor-crown neighbors remain unresolved. Analysis updated to distinguish the one qualified curve from eight Abbe fallbacks.
+
+
+## 2026-10-16 — Focus-control presentation and assignee normalization
+
+The old canonical focus interval from 0.9998792550876074 to 1 compressed 30.1143 mm of G1 travel into
+0.0120745% of the track. This caused the visible end-of-slider jump. `focusControl: "stations"` now puts
+infinity / nominal 1× / nominal 2× at 0% / 50% / 100% of presentation travel. Canonical focus coordinates,
+all source gaps, surface data, image plane and both `finiteConjugates` entries are unchanged. Saved URLs
+continue to identify the same optical states. The 0.004 control step reaches all three source positions.
+Comparison controls and the breathing chart use the same presentation mapping.
+
+The exact finite readouts use the stored calculated object–image distances: 200.04436417227996 mm and
+200.02020983305334 mm, displayed as 200.04 mm and 200.02 mm with the image-plane reference. Intermediate
+readouts explicitly withhold distance rather than continuing the known unreliable inverse-distance labels.
+Display precision does not establish source accuracy. Interpolated spacings remain a visualization, and finite
+MTF eligibility remains restricted to the two documented source states. The production 185 mm discrepancy
+and the non-monotonic intermediate conjugate described above remain unresolved.
+
+The local patent front page, item (73), names 安徽长庚光学科技有限公司. The structured assignee now uses
+the existing corpus spelling “Anhui Changgeng Optics Technology Co., Ltd.”; “Anhui ChangGeng Optical
+Technology Co., Ltd.” is an English spelling/translation variant of that same company, not a separate entity.
+The original Chinese identity and former English rendering remain in the analysis provenance. The shared
+assignee guard rejects the duplicate spelling in future additions.

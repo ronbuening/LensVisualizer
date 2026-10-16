@@ -84,6 +84,19 @@ function renderControls(
 }
 
 describe("DiagramControls", () => {
+  it("maps station control travel to exact focus coordinates and identifies unverified distances", () => {
+    const L = buildVariableStopGapLens([1, 11, 21], "test-station-control", [0, 0.9999, 1], {
+      focusControl: "stations",
+    });
+    const { callbacks } = renderControls(L, { focusT: 0.99995 });
+    const slider = screen.getByRole("slider", { name: "FOCUS" }) as HTMLInputElement;
+    expect(Number(slider.value)).toBeCloseTo(0.75, 12);
+    expect(screen.getByText("Distance unverified")).toBeTruthy();
+    fireEvent.change(slider, { target: { value: "0.5" } });
+    expect(callbacks.onFocusChange).toHaveBeenLastCalledWith(0.9999);
+    fireEvent.change(slider, { target: { value: "1" } });
+    expect(callbacks.onFocusChange).toHaveBeenLastCalledWith(1);
+  });
   it.each([
     [0.5, 2 / 3],
     [1, 1],

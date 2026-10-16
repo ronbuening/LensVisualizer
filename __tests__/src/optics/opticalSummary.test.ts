@@ -2,9 +2,37 @@ import { describe, expect, it } from "vitest";
 import ReferenceNewtonianSideFocusRaw from "../../../src/lens-data/reference/ReferenceNewtonianSideFocus.data.js";
 import { computeOpticalSummaryForState2, prepareRuntimeState } from "../../../src/optics/compat.js";
 import { computeAnalysisFieldGeometryAtState, eflAtFocus } from "../../../src/optics/optics.js";
-import { apertureAt, build, buildRearPlateLens, REAR_PLATE_FIXTURE, sharedSonnar50f15 } from "./testLensFixtures.js";
+import {
+  apertureAt,
+  build,
+  buildRearPlateLens,
+  buildVariableStopGapLens,
+  REAR_PLATE_FIXTURE,
+  sharedSonnar50f15,
+} from "./testLensFixtures.js";
 
 describe("computeOpticalSummaryForState2", () => {
+  it("does not report inverse-distance estimates between station-only focus states", () => {
+    const L = buildVariableStopGapLens([1, 2], "test-summary-station-focus", undefined, {
+      focusControl: "stations",
+      finiteConjugates: [
+        {
+          focusT: 1,
+          zoomT: 0,
+          objectDistanceMm: 250,
+          distanceReference: "image-plane",
+          source: "Synthetic finite state",
+        },
+      ],
+    });
+    for (const [focus, distance] of [
+      [0.5, null],
+      [1, 0.25],
+    ] as const) {
+      const summary = computeOpticalSummaryForState2(prepareRuntimeState(L, focus, 0), L.EFL, L.EP.epSD, L.stopPhysSD);
+      expect(summary.focusDistanceM).toBe(distance);
+    }
+  });
   it("summarizes current refractive lens state from prepared optics data", () => {
     const L = sharedSonnar50f15();
     const focusT = 0.5;

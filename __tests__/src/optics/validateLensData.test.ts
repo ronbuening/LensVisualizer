@@ -833,8 +833,13 @@ describe("validateLensData", () => {
     const data = makeValid({
       focusPositions: [0, 0.4, 1],
       var: { STO: [2, 3, 4] },
+      focusControl: "stations",
     });
     expect(validateLensData(data)).toEqual([]);
+  });
+
+  it("rejects an unknown focus control convention", () => {
+    expect(validateLensData(makeValid({ focusControl: "distance" })).join(" ")).toContain('"focusControl"');
   });
 
   it("catches invalid focus position coordinates", () => {

@@ -4,7 +4,7 @@
  * Kept in the pure optics layer so analysis displays share unit conventions without importing React components.
  */
 
-import { closeFocusAtZoom } from "./focusDistance.js";
+import { closeFocusAtZoom, focusConjugate } from "./focusDistance.js";
 import type { RuntimeLens } from "../types/optics.js";
 import { FOCUS_INFINITY_THRESHOLD } from "./layout.js";
 
@@ -53,6 +53,11 @@ export function marketedApertureNote(
  * @returns compact distance string in meters, centimeters, or infinity
  */
 export function formatDist(t: number, L: RuntimeLens, zoomT = 0): string {
+  if (L.data?.focusControl === "stations") {
+    if (t === 0) return "\u221e";
+    const conjugate = focusConjugate(t, L, zoomT);
+    return conjugate ? `${conjugate.objectDistanceMm.toFixed(2)} mm` : "Interpolated";
+  }
   if (t < FOCUS_INFINITY_THRESHOLD) return "\u221e";
   const d = closeFocusAtZoom(zoomT, L) / t;
   if (d >= 100) return `${Math.round(d)} m`;

@@ -20,6 +20,8 @@ export interface FocusPairResult {
   commonPoint: number;
   minCloseFocus: number;
   maxCloseFocus: number;
+  /** Optional presentation knots in canonical shared coordinates; no distance synchronization is claimed. */
+  controlPositions?: readonly number[];
 }
 
 export interface AperturePairResult {
@@ -88,7 +90,20 @@ export function computeFocusPair(
   const focusA: number = modeledA ? Math.min((sharedT * closA) / minClose, 1.0) : 0;
   const focusB: number = modeledB ? Math.min((sharedT * closB) / minClose, 1.0) : 0;
 
-  return { focusA, focusB, commonPoint, minCloseFocus: minClose, maxCloseFocus: maxClose };
+  const stationPositions = [
+    ...(modeledA && LA.data?.focusControl === "stations" ? LA.focusPositions.map((t) => (t * minClose) / closA) : []),
+    ...(modeledB && LB.data?.focusControl === "stations" ? LB.focusPositions.map((t) => (t * minClose) / closB) : []),
+  ];
+  return {
+    focusA,
+    focusB,
+    commonPoint,
+    minCloseFocus: minClose,
+    maxCloseFocus: maxClose,
+    ...(stationPositions.length
+      ? { controlPositions: [...new Set([0, ...stationPositions, 1])].sort((a, b) => a - b) }
+      : {}),
+  };
 }
 
 /**
