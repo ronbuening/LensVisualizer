@@ -1376,8 +1376,8 @@ the default does not serve the lens.
 
 ## Validation Rules
 
-A lens file goes through three gates, and `buildLens()` adds one guard of its own. A message that names a field names it
-at its V2 path (`surfaces[5].medium: unknown element 13`).
+A lens file goes through three gates, and `buildLens()` adds one guard of its own. A gate's message that names a field
+names it at its V2 path (`surfaces[5].medium: unknown element 13`).
 
 1. **Ingest** (`ingestLensV2` in `src/optics/prescription/ingestV2.ts`, shared rules in `ingestCommon.ts`) refuses a
    file whose shape it cannot read, or whose content the canonical prescription cannot hold, and reports every reason
@@ -1390,7 +1390,8 @@ at its V2 path (`surfaces[5].medium: unknown element 13`).
 whose traced Gaussian EFL, at the first zoom station and infinity focus, lies outside 0.8 to 1.25 times
 `catalog.focalLengthMm.design` (its first value on a zoom; no check without one): `assertRectilinearFocalReference`
 in `src/optics/first-order/lensConstants.ts`. A fisheye whose projection constant departs from the EFL declares
-`projection` instead.
+`projection` instead. The guard is the exception to V2 paths: it reads the lens's V1 view, so its message names
+`focalLengthDesign`, which is `catalog.focalLengthMm.design` ([Reading V1 audits](#reading-v1-audits)).
 
 ### Ingest
 
