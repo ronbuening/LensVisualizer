@@ -3,6 +3,7 @@ import validateLensData, { validateCanonicalLens, validateLensInput } from "../.
 import { ingestLens } from "../../../src/optics/prescription/ingestV2.js";
 import { FIXTURE_PAIRS } from "./prescription/ingestV2Fixtures.js";
 import type { LensDataInput } from "../../../src/types/optics.js";
+import type { LensDataV2Input } from "../../../src/types/lensDataV2.js";
 import { v1CatalogDefaults } from "../../../src/optics/prescription/defaults.js";
 import { MAX_RIM_SLOPE_TAN } from "../../../src/optics/geometry/surfaceProfile.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../src/types/asphericSchema.js";
@@ -124,6 +125,25 @@ describe("validateLensData", () => {
     expect(errors[0]).toEqual(errors[1]);
     expect(errors[0].some((error) => error.includes("negative edge thickness"))).toBe(true);
     expect(errors[0].filter((error) => error.includes("rim slope"))).toHaveLength(2);
+  });
+
+  it("names a V2 zoom's own station fields in unpublished-station diagnostics", () => {
+    const pair = FIXTURE_PAIRS.find((pair) => pair.family === "published stations");
+    if (!pair || pair.kind !== "lens") throw new Error("missing published stations fixture");
+    const file = structuredClone(pair.v2) as LensDataV2Input;
+    file.zoom!.stations[1].publishedFocus = [1];
+    file.focus = {
+      ...file.focus!,
+      conjugates: [
+        { zoomStation: 1, keyframe: 1, objectDistanceMm: 500, distanceReference: "first-surface", source: "Fixture" },
+      ],
+    };
+    expect(validateCanonicalLens(ingestLens(file))).toEqual(
+      expect.arrayContaining([
+        '"zoom.stations[1].publishedFocus" must be empty: "zoom.stations[1].published" omits that zoom station',
+        '"focus.conjugates" names zoom station 1, which "zoom.stations[1].published" omits',
+      ]),
+    );
   });
 
   it("maps canonical control and nested scalar paths to their authored format", () => {

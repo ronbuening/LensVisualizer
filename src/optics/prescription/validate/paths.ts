@@ -39,6 +39,16 @@ export function authoredMessages(
       },
     );
     message = message.replace(/^zoomStopSemiDiameters\b/, names.zoomStopSemiDiameters);
+    /* Station-indexed forms: '"publishedStations.focus"[n] …' and '… zoom station n, which "publishedStations.zoom"
+     * omits'. A V2 zoom holds both facts on its station record. */
+    const indexed = message.match(/^"publishedStations\.focus"\[(\d+)\]/);
+    if (indexed && prescription.zoom) {
+      message = message.replace(indexed[0], `"zoom.stations[${indexed[1]}].publishedFocus"`);
+    }
+    if (message.includes('"publishedStations.zoom"')) {
+      const station = indexed?.[1] ?? message.match(/zoom station (\d+)/)?.[1] ?? "";
+      message = message.replace('"publishedStations.zoom"', `"zoom.stations[${station}].published"`);
+    }
     if (message.startsWith('"publishedStations.focus"')) {
       const station = message.match(/at zoom station (\d+)/)?.[1];
       const path = prescription.zoom ? `zoom.stations[${station ?? ""}].publishedFocus` : "focus.published";
