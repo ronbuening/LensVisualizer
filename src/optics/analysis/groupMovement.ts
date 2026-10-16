@@ -4,6 +4,7 @@
  * Reuses RuntimeLens group movement logic from the prepared state's lens reference to avoid duplicate movement rules.
  */
 
+import { runtimeView } from "../prescription/runtimeView.js";
 import {
   computeGroupMovementProfile,
   firstAvailableGroupMovementMode,
@@ -26,7 +27,7 @@ import type { PreparedOpticalState } from "../types.js";
  * @returns sampled group-position series in image-plane-anchored millimeters
  */
 export function computeGroupMovementProfileForState2(state: PreparedOpticalState, mode: GroupMovementMode) {
-  return computeGroupMovementProfile(state.lens.runtime, mode, {
+  return computeGroupMovementProfile(runtimeView(state.lens), mode, {
     focusT: state.focusT,
     zoomT: state.zoomT,
     aberrationT: state.aberrationT,

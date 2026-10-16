@@ -29,6 +29,7 @@ import type { PreparedOpticalState } from "../src/optics/types.js";
 import type { MtfMethod, MtfOptions, MtfResult } from "../src/types/mtf.js";
 import type { LensData } from "../src/types/optics.js";
 import { mtfChartConvention, type MtfChartConvention, type MtfChartMethod } from "./data/mtfChartConventions.js";
+import { correctedSinceAudit } from "./mtfChartLib.js";
 
 const modules = import.meta.glob<{ default: LensData }>("../src/lens-data/**/*.data.ts", { eager: true });
 const ANCHORS_PATH = "reports/data/mtfChartAnchors.csv";
@@ -306,7 +307,7 @@ function runConfiguration(lens: LensData, zoomT: number, anchors: Anchor[]): Con
     zoomT,
     maker,
     convention,
-    corrected: (lens.sourceErrata ?? []).some((erratum) => erratum.status === "corrected"),
+    corrected: correctedSinceAudit(L),
     result,
     samples: anchors.map((anchor) => {
       const fieldIndex = fieldFractions.indexOf(anchor.fieldFraction);

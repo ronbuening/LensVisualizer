@@ -6,9 +6,10 @@
 
 import type { ChromaticChannel, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import { directionFromMeridionalSlope, directionFromSkewSlope } from "../math/vector.js";
-import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
+import { compiledLensFromRuntime } from "../prescription/compile.js";
 import { prepareState } from "../state/prepareState.js";
 import type { CompiledStateSurface, PreparedOpticalState, Ray3, Vec3 } from "../types.js";
+import { transmissionTraceCapture } from "./bulkAbsorption.js";
 import { createTraceGeometry } from "./geometry.js";
 import {
   engineTraceToRuntimeRayResult,
@@ -16,7 +17,7 @@ import {
   vectorLeadPoint,
   type RuntimeSkewRayTraceResult,
 } from "./runtimeRayResult.js";
-import type { EngineTraceResult, TraceOptions } from "./types.js";
+import type { EngineTraceResult, TraceCapture, TraceOptions } from "./types.js";
 import { CHROMATIC_CHANNEL_WAVELENGTH_NM } from "../constants.js";
 
 /** Vector ray input for RuntimeLens adapters, with optional finite launch search bound. */
@@ -35,12 +36,13 @@ interface PreparedStateCache {
 }
 
 interface TraceOptionsCache {
-  byKey: Map<string, TraceOptions>;
+  byKey: Map<string, TraceOptions<TraceCapture>>;
   lastStopSD?: number;
   lastGhost?: boolean;
   lastChannel?: ChromaticChannel;
   lastDirectionNormalized?: boolean;
-  lastOptions?: TraceOptions;
+  lastCapture?: TraceCapture;
+  lastOptions?: TraceOptions<TraceCapture>;
 }
 
 const DIRECTION_CACHE_LIMIT = 4096;
@@ -59,14 +61,24 @@ let skewDirectionCacheSize = 0;
  * @param options - trace termination, aperture, and chromatic controls
  * @returns engine trace result with hits and diagnostics
  */
-export function traceEngineRay2(
+export function traceEngineRay2<C extends TraceCapture = "diagnostics">(
   state: PreparedOpticalState,
   input: Ray3,
-  options: TraceOptions = {},
-): EngineTraceResult {
+  options: TraceOptions<C> = {},
+): EngineTraceResult<C> {
   const geometry = state.traceGeometry;
   const traverse = options.stopAt === undefined ? geometry.traversal.full : geometry.traversal.partial;
   return traverse(geometry, input, options);
+}
+
+/** Select full/partial traversal once for an engine-native fan with shared options. */
+export function prepareEngineTrace<C extends TraceCapture = "diagnostics">(
+  state: PreparedOpticalState,
+  options: TraceOptions<C> = {},
+): (input: Ray3) => EngineTraceResult<C> {
+  const geometry = state.traceGeometry;
+  const traverse = options.stopAt === undefined ? geometry.traversal.full : geometry.traversal.partial;
+  return (input) => traverse(geometry, input, options);
 }
 
 /**
@@ -300,6 +312,100 @@ export function traceSkewRayVectorChromatic2(
   return traceSkewRayVectorExactCore2(input, zPos, stopSD, ghost, L, channel, focusT, zoomT, aberrationT);
 }
 
+/** Controls shared by a ray fan. Vector launch bounds belong to the request, not individual rays. */
+export interface RayTraceRequest {
+  focusT?: number;
+  zoomT?: number;
+  aberrationT?: number;
+  zPos?: readonly number[];
+  stopSD?: number;
+  ghost: boolean;
+  channel?: ChromaticChannel;
+  launchBoundT?: number;
+}
+
+/** Request-bound adapters; these methods do no state or options cache lookup. */
+export interface PreparedRayTrace {
+  ray(y0: number, u0: number): RayTraceResult;
+  skew(x0: number, y0: number, ux0: number, uy0: number): RuntimeSkewRayTraceResult;
+  vector(input: Ray3): RayTraceResult;
+  skewVector(input: Ray3): RuntimeSkewRayTraceResult;
+}
+
+/** Resolve runtime controls and supplied vertices once before tracing a fan. */
+export function prepareRayTrace(L: RuntimeLens, request: RayTraceRequest): PreparedRayTrace {
+  const base = stateForRuntimeLens(L, request.focusT ?? 0, request.zoomT ?? 0, request.aberrationT ?? 0);
+  const state = request.zPos ? stateWithRuntimeZ(base, request.zPos) : base;
+  return bindRayTrace(state, base, request);
+}
+
+/** Bind an already prepared state without resolving runtime controls. */
+export function prepareRayTraceForState(
+  state: PreparedOpticalState,
+  request: Omit<RayTraceRequest, "focusT" | "zoomT" | "aberrationT" | "zPos">,
+): PreparedRayTrace {
+  return bindRayTrace(state, state, request);
+}
+
+function bindRayTrace(
+  state: PreparedOpticalState,
+  scalarSkewState: PreparedOpticalState,
+  request: RayTraceRequest,
+): PreparedRayTrace {
+  const { stopSD, ghost, channel, launchBoundT } = request;
+  const lead = state.lens.constants.rayLead ?? 0;
+  const firstZ = request.zPos?.[0] ?? state.z[0] ?? 0;
+  const skewFirstZ = scalarSkewState.z[0] ?? 0;
+  const geometry = state.traceGeometry;
+  const skewGeometry = scalarSkewState.traceGeometry;
+  // All adapter rays are full traces; the public engine facade still supports stopAt.
+  const traverse = geometry.traversal.full;
+  const skewTraverse = skewGeometry.traversal.full;
+  const rayOptions = traceOptions(stopSD, ghost, channel, state, true);
+  const skewOptions = traceOptions(
+    stopSD,
+    ghost,
+    channel,
+    scalarSkewState,
+    true,
+    transmissionTraceCapture(scalarSkewState.lens),
+  );
+  const vectorOptions = boundedVectorOptions(traceOptions(stopSD, ghost, channel, state, false), launchBoundT);
+  const skewVectorOptions = boundedVectorOptions(
+    traceOptions(stopSD, ghost, channel, state, false, transmissionTraceCapture(state.lens)),
+    launchBoundT,
+  );
+  return {
+    ray(y0, u0) {
+      const direction = meridionalDirectionForSlope(u0);
+      const origin: Vec3 = [0, y0 - u0 * lead, firstZ - lead];
+      const result = traverse(geometry, { origin, direction }, rayOptions);
+      return engineTraceToRuntimeRayResult(result, [origin[2], origin[1]], ghost, state.lens);
+    },
+    skew(x0, y0, ux0, uy0) {
+      const direction = skewDirectionForSlopes(ux0, uy0);
+      const origin: Vec3 = [x0 - ux0 * lead, y0 - uy0 * lead, skewFirstZ - lead];
+      const result = skewTraverse(skewGeometry, { origin, direction }, skewOptions);
+      return engineTraceToRuntimeSkewResult(result, scalarSkewState.lens);
+    },
+    vector(input) {
+      const result = traverse(geometry, { origin: input.origin, direction: input.direction }, vectorOptions);
+      return engineTraceToRuntimeRayResult(result, vectorLeadPoint(input, result, lead), ghost, state.lens);
+    },
+    skewVector(input) {
+      const result = traverse(geometry, { origin: input.origin, direction: input.direction }, skewVectorOptions);
+      return engineTraceToRuntimeSkewResult(result, state.lens);
+    },
+  };
+}
+
+function boundedVectorOptions<C extends TraceCapture>(
+  options: TraceOptions<C>,
+  launchBoundT: number | undefined,
+): TraceOptions<C> {
+  return launchBoundT === undefined ? options : { ...options, launchBoundT };
+}
+
 function traceRayExactCore2(
   y0: number,
   u0: number,
@@ -317,7 +423,7 @@ function traceRayExactCore2(
   const rayLead = L.rayLead ?? 0;
   const origin: Vec3 = [0, y0 - u0 * rayLead, (zPos[0] ?? state.z[0] ?? 0) - rayLead];
   const result = traceEngineRay2(state, { origin, direction }, traceOptions(stopSD, ghost, channel, state, true));
-  return engineTraceToRuntimeRayResult(result, [origin[2], origin[1]], ghost, L);
+  return engineTraceToRuntimeRayResult(result, [origin[2], origin[1]], ghost, state.lens);
 }
 
 function traceSkewRayExactCore2(
@@ -337,8 +443,12 @@ function traceSkewRayExactCore2(
   const direction = skewDirectionForSlopes(ux0, uy0);
   const lead = L.rayLead ?? 0;
   const origin: Vec3 = [x0 - ux0 * lead, y0 - uy0 * lead, (state.z[0] ?? 0) - lead];
-  const result = traceEngineRay2(state, { origin, direction }, traceOptions(stopSD, ghost, channel, state, true));
-  return engineTraceToRuntimeSkewResult(result, L);
+  const result = traceEngineRay2(
+    state,
+    { origin, direction },
+    traceOptions(stopSD, ghost, channel, state, true, transmissionTraceCapture(state.lens)),
+  );
+  return engineTraceToRuntimeSkewResult(result, state.lens);
 }
 
 function traceRayVectorExactCore2(
@@ -357,9 +467,9 @@ function traceRayVectorExactCore2(
   const result = traceEngineRay2(
     state,
     { origin: input.origin, direction: input.direction },
-    input.launchBoundT === undefined ? options : { ...options, launchBoundT: input.launchBoundT },
+    boundedVectorOptions(options, input.launchBoundT),
   );
-  return engineTraceToRuntimeRayResult(result, vectorLeadPoint(input, result, L.rayLead ?? 0), ghost, L);
+  return engineTraceToRuntimeRayResult(result, vectorLeadPoint(input, result, L.rayLead ?? 0), ghost, state.lens);
 }
 
 function traceSkewRayVectorExactCore2(
@@ -374,22 +484,23 @@ function traceSkewRayVectorExactCore2(
   aberrationT: number,
 ): RuntimeSkewRayTraceResult {
   const state = stateWithRuntimeZ(stateForRuntimeLens(L, focusT, zoomT, aberrationT), _zPos);
-  const options = traceOptions(stopSD, ghost, channel, state, false);
+  const options = traceOptions(stopSD, ghost, channel, state, false, transmissionTraceCapture(state.lens));
   const result = traceEngineRay2(
     state,
     { origin: input.origin, direction: input.direction },
-    input.launchBoundT === undefined ? options : { ...options, launchBoundT: input.launchBoundT },
+    boundedVectorOptions(options, input.launchBoundT),
   );
-  return engineTraceToRuntimeSkewResult(result, L);
+  return engineTraceToRuntimeSkewResult(result, state.lens);
 }
 
-function traceOptions(
+function traceOptions<C extends TraceCapture = "diagnostics">(
   stopSD: number | undefined,
   ghost: boolean,
   channel: ChromaticChannel | undefined,
   state: PreparedOpticalState,
   directionNormalized: boolean,
-): TraceOptions {
+  capture: C = "diagnostics" as C,
+): TraceOptions<C> {
   let optionsCache = TRACE_OPTIONS_BY_STATE.get(state);
   if (!optionsCache) {
     optionsCache = { byKey: new Map() };
@@ -400,12 +511,13 @@ function traceOptions(
     Object.is(optionsCache.lastStopSD, stopSD) &&
     optionsCache.lastGhost === ghost &&
     optionsCache.lastChannel === channel &&
-    optionsCache.lastDirectionNormalized === directionNormalized
+    optionsCache.lastDirectionNormalized === directionNormalized &&
+    optionsCache.lastCapture === capture
   ) {
-    return optionsCache.lastOptions;
+    return optionsCache.lastOptions as TraceOptions<C>;
   }
 
-  const key = `${stopSD ?? ""}|${ghost ? 1 : 0}|${channel ?? ""}|${directionNormalized ? 1 : 0}`;
+  const key = `${stopSD ?? ""}|${ghost ? 1 : 0}|${channel ?? ""}|${directionNormalized ? 1 : 0}|${capture}`;
   const cached = optionsCache.byKey.get(key);
   if (cached) {
     optionsCache.lastStopSD = stopSD;
@@ -413,10 +525,12 @@ function traceOptions(
     optionsCache.lastChannel = channel;
     optionsCache.lastDirectionNormalized = directionNormalized;
     optionsCache.lastOptions = cached;
-    return cached;
+    optionsCache.lastCapture = capture;
+    return cached as TraceOptions<C>;
   }
 
-  const options: TraceOptions = {
+  const options: TraceOptions<C> = {
+    capture,
     checkSemiDiameter: true,
     stopSemiDiameter: stopSD,
     ghost,
@@ -430,6 +544,7 @@ function traceOptions(
   optionsCache.lastGhost = ghost;
   optionsCache.lastChannel = channel;
   optionsCache.lastDirectionNormalized = directionNormalized;
+  optionsCache.lastCapture = capture;
   optionsCache.lastOptions = options;
   return options;
 }
@@ -468,7 +583,7 @@ function skewDirectionForSlopes(ux: number, uy: number): Vec3 {
 }
 
 function stateForRuntimeLens(L: RuntimeLens, focusT: number, zoomT: number, aberrationT: number): PreparedOpticalState {
-  const engineLens = normalizeRuntimeLens(L);
+  const engineLens = compiledLensFromRuntime(L);
   let stateCache = PREPARED_STATE_BY_RUNTIME.get(L);
   if (!stateCache) {
     stateCache = { byKey: new Map() };

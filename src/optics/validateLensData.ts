@@ -17,7 +17,9 @@ import {
   sharedMaterialBand,
   surfaceFitsInsideCentralOpening,
 } from "./internal/apertureBands.js";
-import { buildAsphereIndex, buildLabelIndex, firstInfinityThickness } from "./internal/lensState.js";
+import { buildAsphereIndex } from "./prescription/compileAspheres.js";
+import { buildLabelIndex } from "./prescription/compileLabels.js";
+import { firstInfinityThickness } from "./prescription/compileControls.js";
 import { conicPolySag, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "./geometry/surfaceProfile.js";
 import { createTraceGeometry } from "./trace/geometry.js";
 import { compileSurfaces } from "./prescription/surfaces.js";

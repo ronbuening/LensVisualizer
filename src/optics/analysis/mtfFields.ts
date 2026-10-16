@@ -9,6 +9,8 @@
  * Heights beyond the modeled edge, which the authored clear apertures leave unlit or without a
  * chief ray to place them by, are reported as outside the model rather than traced.
  */
+
+import { runtimeView } from "../prescription/runtimeView.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTaxonomy.js";
 import type { MtfFieldGeometry, MtfOptions, MtfSupport } from "../../types/mtf.js";
 import { computeFieldGeometryAtState2, solveFieldAnglesForImageHeightsAccurate2 } from "../field/chiefRay.js";
@@ -72,8 +74,8 @@ const FINITE_TABLE_STEPS = 16;
  */
 export function mtfModeledHalfField(state: PreparedOpticalState): number {
   return state.focusT === 0
-    ? computeFieldGeometryAtState2(0, state.zoomT, state.lens.runtime, state.aberrationT).halfFieldDeg
-    : halfFieldAtZoom(state.zoomT, state.lens.runtime);
+    ? computeFieldGeometryAtState2(0, state.zoomT, runtimeView(state.lens), state.aberrationT).halfFieldDeg
+    : halfFieldAtZoom(state.zoomT, runtimeView(state.lens));
 }
 
 /**
@@ -326,7 +328,7 @@ export function resolveMtfFieldTargets(
   const inside = solvable.filter((target) => target.targetImageHeightMm <= geometry.chiefEdgeHeightMm + edgeTolerance);
   if (inside.length) {
     // The inversion scans its geometry's half field; widen it to the traced edge.
-    const L = state.lens.runtime;
+    const L = runtimeView(state.lens);
     const shared = computeFieldGeometryAtState2(state.focusT, state.zoomT, L, state.aberrationT);
     const angles = solveFieldAnglesForImageHeightsAccurate2(
       inside.map((target) => target.targetImageHeightMm),

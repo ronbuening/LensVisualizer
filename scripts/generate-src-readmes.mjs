@@ -101,7 +101,7 @@ const folderRoleOverrides = new Map([
   ["src/optics/mount", "pure mount-diagram geometry, SVG document emission, validation, styling, and JSON helpers"],
   [
     "src/optics/prescription",
-    "lens prescription normalization, variable gaps, labels, groups, dispersion, interactions, and aspheric helpers",
+    "canonical prescription ingest, compilation, composition, identity ownership, and control helpers",
   ],
   ["src/optics/state", "engine-native prepared optical state and cache helpers"],
   [

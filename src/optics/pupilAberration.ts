@@ -27,6 +27,7 @@
  *   Δz_XP(θ) = xpZ_real(θ) − xpZRelLastSurf_paraxial
  */
 
+import { prepareRayTrace } from "./trace/rayAdapters.js";
 import {
   computeAnalysisFieldGeometryAtState,
   FOCUS_INFINITY_THRESHOLD,
@@ -34,11 +35,9 @@ import {
   xpZRelLastSurfAtZoom,
   doLayout,
   solveChiefRay,
-  traceRay,
-  traceRayVector,
 } from "./optics.js";
 import type { FieldGeometryState } from "./optics.js";
-import { normalizeRuntimeLens } from "./prescription/normalizeLensData.js";
+import { compiledLensFromRuntime } from "./prescription/compile.js";
 import { prepareState } from "./state/prepareState.js";
 import { directionFromMeridionalSlope } from "./math/vector.js";
 import { traceGeometryToStop } from "./trace/stopTrace.js";
@@ -159,7 +158,7 @@ function computeStatePupilBaselines(
     };
   }
 
-  const traceGeometry = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT).traceGeometry;
+  const traceGeometry = prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT).traceGeometry;
   const layout = doLayout(focusT, zoomT, L, aberrationT);
   const delta = 1e-4;
   const marginalStop = traceStateSurfacesReal(traceGeometry, delta, 0, { stopAt: L.stopIdx });
@@ -283,6 +282,7 @@ export function computeExitPupilAberrationProfile(
 
   // zPos is required by traceRay for building visualization paths; compute once.
   const { z: zPos } = doLayout(focusT, zoomT, L, aberrationT);
+  const prepared = prepareRayTrace(L, { zPos, focusT, zoomT, ghost: true, aberrationT });
 
   const samples: ExitPupilAberrationSample[] = [];
 
@@ -305,8 +305,15 @@ export function computeExitPupilAberrationProfile(
     if (Math.abs(fieldDeg) > 1e-9) {
       const yChief = solve.yLaunch;
       const result = solve.vectorLaunch
-        ? traceRayVector(solve.vectorLaunch, zPos, undefined, true, L, focusT, zoomT, aberrationT)
-        : traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT);
+        ? prepareRayTrace(L, {
+            zPos,
+            focusT,
+            zoomT,
+            ghost: true,
+            aberrationT,
+            launchBoundT: solve.vectorLaunch.launchBoundT,
+          }).vector(solve.vectorLaunch)
+        : prepared.ray(yChief, uField);
 
       // Back-project: XP z = −y_last / u_last (relative to last surface).
       // Guard against near-zero exit slope (XP at infinity).
@@ -408,6 +415,7 @@ export function computeBothPupilAberrationProfiles(
   }
 
   const { z: zPos } = doLayout(focusT, zoomT, L, aberrationT);
+  const prepared = prepareRayTrace(L, { zPos, focusT, zoomT, ghost: true, aberrationT });
 
   const epSamples: PupilAberrationSample[] = [];
   const xpSamples: ExitPupilAberrationSample[] = [];
@@ -442,8 +450,15 @@ export function computeBothPupilAberrationProfiles(
 
       // XP fields — trace the same solved chief ray through the full system
       const result = solve.vectorLaunch
-        ? traceRayVector(solve.vectorLaunch, zPos, undefined, true, L, focusT, zoomT, aberrationT)
-        : traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT);
+        ? prepareRayTrace(L, {
+            zPos,
+            focusT,
+            zoomT,
+            ghost: true,
+            aberrationT,
+            launchBoundT: solve.vectorLaunch.launchBoundT,
+          }).vector(solve.vectorLaunch)
+        : prepared.ray(yChief, uField);
       if (isFinite(result.y) && isFinite(result.u) && Math.abs(result.u) > 1e-9) {
         xpZRelLastSurf = -result.y / result.u;
         xpShiftMm = xpZRelLastSurf - paraxialXpZRelLastSurf;
@@ -495,7 +510,7 @@ function traceStateSurfacesReal(
   }
 
   const traverse = traceOptions.stopAt === undefined ? geometry.traversal.full : geometry.traversal.partial;
-  const result = traverse(geometry, input, traceOptions);
+  const result = traverse(geometry, input, { ...traceOptions, capture: "terminal" });
   const failed = result.failureReason !== null;
   return { y: failed ? NaN : result.y, u: failed ? NaN : result.uy };
 }

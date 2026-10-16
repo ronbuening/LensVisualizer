@@ -5,7 +5,7 @@
  */
 
 import type { AsphericCoefficients } from "../../types/optics.js";
-import { resolveLabel } from "./labels.js";
+import { resolveLabel } from "./compileLabels.js";
 
 /**
  * Compile authored asphere coefficients into an index-keyed lookup.
@@ -21,9 +21,18 @@ export function compileAspheres(
   aspheres: Record<string, AsphericCoefficients> | undefined,
   labelToSurfaceIndex: Readonly<Record<string, number>>,
 ): Readonly<Record<number, AsphericCoefficients>> {
-  const out: Record<number, AsphericCoefficients> = {};
-  for (const [label, coefficients] of Object.entries(aspheres ?? {})) {
-    out[resolveLabel(label, labelToSurfaceIndex, "asph")] = Object.freeze({ ...coefficients });
+  for (const label of Object.keys(aspheres ?? {})) resolveLabel(label, labelToSurfaceIndex, "asph");
+  return Object.freeze(buildAsphereIndex(aspheres, labelToSurfaceIndex));
+}
+
+export function buildAsphereIndex(
+  asph: Record<string, AsphericCoefficients> | undefined,
+  labelIdx: Record<string, number>,
+): Record<number, AsphericCoefficients> {
+  const asphByIdx: Record<number, AsphericCoefficients> = {};
+  for (const [label, coeffs] of Object.entries(asph || {})) {
+    const idx = labelIdx[label];
+    if (idx !== undefined) asphByIdx[idx] = Object.freeze({ ...coeffs });
   }
-  return Object.freeze(out);
+  return asphByIdx;
 }

@@ -5,12 +5,14 @@ declare module "node:child_process" {
     options: {
       cwd?: string;
       encoding: "utf8";
+      env?: Record<string, string | undefined>;
       stdio?: readonly ["ignore", "pipe", "pipe"];
     },
   ): string;
 }
 
 declare module "node:fs" {
+  export function chmodSync(path: string, mode: number): void;
   export function existsSync(path: string): boolean;
   export function linkSync(existingPath: string, newPath: string): void;
   export function mkdirSync(path: string, options?: { recursive?: boolean }): string | undefined;

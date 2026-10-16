@@ -1,4 +1,5 @@
 // @vitest-environment jsdom
+import { registerRuntimeFixture } from "../../optics/testLensFixtures.js";
 
 /**
  * DiagramSVG behavior tests.
@@ -612,7 +613,7 @@ describe("DiagramSVG", () => {
   });
 
   it("renders standalone mirrors and packs repeated folded hit-order labels", () => {
-    const L = { ...buildLens(LENS_CATALOG["reference-newtonian-side-focus"]), ES: [] };
+    const L = registerRuntimeFixture({ ...buildLens(LENS_CATALOG["reference-newtonian-side-focus"]), ES: [] });
     const layout = doLayout(0, 0, L);
 
     const { container } = render(

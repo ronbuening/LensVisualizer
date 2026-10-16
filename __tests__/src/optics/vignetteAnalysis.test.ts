@@ -1,3 +1,4 @@
+import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, it, expect } from "vitest";
 import { computeVignettingCurve as computeVignettingCurveBase } from "../../../src/optics/vignetteAnalysis.js";
 import { computeAnalysisFieldGeometryAtState, doLayout, type FieldGeometryState } from "../../../src/optics/optics.js";
@@ -8,13 +9,13 @@ import type { RuntimeLens, LensData } from "../../../src/types/optics.js";
 /* ── Helpers ── */
 
 function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): RuntimeLens {
-  return {
+  return registerRuntimeFixture({
     ...L,
     data: {
       ...L.data,
       imageFormat,
     },
-  } as RuntimeLens;
+  } as RuntimeLens);
 }
 
 function computeVignettingCurve(

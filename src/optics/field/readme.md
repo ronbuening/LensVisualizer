@@ -52,7 +52,7 @@ flowchart LR
 - Direct source files: 5
 - Direct subfolders: 0
 - Main outbound areas: same folder (8), src/types (4), src/optics/trace (3), src/optics/types.ts (2), src/optics/apertureStop.ts, src/optics/math, src/optics/prescription, src/optics/raySampling.ts, +2 more
-- External consumers: src/optics/aberration, src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/perspective, src/optics/prescription, src/optics/runtimeLens.ts
+- External consumers: src/optics/aberration, src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/first-order, src/optics/perspective, src/optics/prescription
 
 ## Files
 

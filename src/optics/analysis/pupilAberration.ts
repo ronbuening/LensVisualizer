@@ -4,6 +4,7 @@
  * Keeps pupil calculations state-aware without duplicating the public pupilAberration implementation.
  */
 
+import { runtimeView } from "../prescription/runtimeView.js";
 import type { FieldGeometryState } from "../optics.js";
 import {
   computeBothPupilAberrationProfiles,
@@ -37,7 +38,7 @@ export function computeBothPupilAberrationProfilesForState2(
   return computeBothPupilAberrationProfiles(
     state.focusT,
     state.zoomT,
-    state.lens.runtime,
+    runtimeView(state.lens),
     sampleCount,
     geometry,
     state.aberrationT,

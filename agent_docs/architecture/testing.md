@@ -164,7 +164,8 @@ Existing tests cover:
 - Reducer, preferences, URL sync, feature flags, and page-theme hooks.
 - Component smoke tests for pages, controls, display panels, analysis drawer, and comparison layout.
 - Script regressions for metadata, route sync, lens-data helpers, sitemap/prerender support.
-- The glass-report helper library (`__tests__/reports/glassScanLib.test.ts`) and the glass-resolution parity sweep
+- The glass-report helper library (`__tests__/reports/glassScanLib.test.ts`), the MTF chart report's helpers
+  (`__tests__/reports/mtfChartLib.test.ts`) and the glass-resolution parity sweep
   (`__tests__/src/lens-data/glassResolutionParity.test.ts`); the reports themselves are generated outside the suite (see
   "Reports and Tooling Tests").
 - The structure of `src/optics/` itself: import cycles, the outside-import seam, and module-level caches (see
@@ -1001,16 +1002,17 @@ When refactoring:
   `__tests__/scripts/lensDataV2Readers.test.ts` holds the lens-data readers to both versions: the AST reader against
   every catalog module, identity, summaries and converter fit from V2 twins, the organizer's V2 import, and page dates
   that skip conversion commits, and the scripts' copies of the V1 rule to `isV1File`.
-  `__tests__/scripts/convertLensData.test.ts` holds the converter library to synthetic
-  source-text fixtures (`convertLensDataFixtures.ts`, strings so `format:check` never reaches them): each fixture pair
-  converted and ingested back, pinned outputs and reports, a V2 source given back as written, one refusal of each
-  kind, a run under plain Node, and the V1 direction (each pair's V2 side to V1 and back, the V1 print order on a
-  maximal lens, the stop radius V1's type requires, comments V1 has no node for, banners and the converter's own
-  notes, and a V1 prime and zoom in the template's sections going V1 → V2 → V1 with every banner back on the member
-  it led). `convertLensDataCli.test.ts` runs
-  the command line on synthetic files in a temp directory: arguments and exit codes, the three modes, each kind of
-  refusal, collisions, `--output`, interrupted writes and signals through an injected file system and signal source,
-  line endings, the type-check where a file will be written, and V2 → V1 → V2 over the fixture pairs.
+  `__tests__/scripts/auditImageCircle.test.ts`, in the tooling suite, runs each audit that reads a lens file on a V2
+  fixture and on its V1 twin through its npm entry. `__tests__/scripts/convertLensData.test.ts` holds the converter
+  library to synthetic source-text fixtures (`convertLensDataFixtures.ts`, strings so `format:check` never reaches
+  them): each fixture pair converted and ingested back, pinned outputs and reports, a V2 source given back as written,
+  one refusal of each kind, a run under plain Node, and the V1 direction (each pair's V2 side to V1 and back, the V1
+  print order on a maximal lens, the stop radius V1's type requires, comments V1 has no node for, banners and the
+  converter's own notes, and a V1 prime and zoom in the template's sections going V1 → V2 → V1 with every banner back
+  on the member it led). `convertLensDataCli.test.ts` runs the command line on synthetic files in a temp directory:
+  arguments and exit codes, the three modes, each kind of refusal, collisions, `--output`, interrupted writes and
+  signals through an injected file system and signal source, line endings, the type-check where a file will be
+  written, and V2 → V1 → V2 over the fixture pairs.
 - Add fixture-backed optics tests whenever changing `SurfaceData.interaction`, `innerSd`, `opticalPath`, generalized
   stop tracing, generalized image-plane intersection, obstruction-aware sampling, or folded analysis gating. Prefer
   hidden reference fixtures under `src/lens-data/reference/` for canonical mirror/telescope behavior.

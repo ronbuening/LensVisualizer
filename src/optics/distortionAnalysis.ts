@@ -10,6 +10,7 @@
  * current state in a hook rather than embedding in a component.
  */
 
+import { prepareRayTrace, type PreparedRayTrace } from "./trace/rayAdapters.js";
 import {
   chiefRayImageHeight,
   chiefRayImageHeightAccurate,
@@ -21,8 +22,6 @@ import {
   invertChiefRayImageHeights,
   type ImageHeightInversionResult,
   thick,
-  traceSkewRay,
-  traceSkewRayVector,
 } from "./optics.js";
 import {
   distortionProjectionReferenceForLens,
@@ -447,11 +446,9 @@ type DistortionGridLaunchSlope = Extract<DistortionGridLaunch, { kind: "slope" }
 function traceDistortionGridPointVector(
   launch: DistortionGridLaunchVector,
   reference: DistortionReference,
-  focusT: number,
-  zoomT: number,
-  currentPhysStopSD: number,
   L: RuntimeLens,
   aberrationT: number,
+  vectorAdapter: (bound: number) => PreparedRayTrace,
 ): SkewRayTraceResult | null {
   const vectorLaunch = computeBoundingSphereVectorFieldLaunch(
     L,
@@ -461,7 +458,7 @@ function traceDistortionGridPointVector(
     aberrationT,
   );
   if (vectorLaunch === null) return null;
-  return traceSkewRayVector(vectorLaunch, reference.zPos, currentPhysStopSD, true, L, focusT, zoomT, aberrationT);
+  return vectorAdapter(vectorLaunch.launchBoundT).skewVector(vectorLaunch);
 }
 
 // The slope launch starts from the paraxial EP; pupil aberration is applied
@@ -471,41 +468,25 @@ function traceDistortionGridPointVector(
 function traceDistortionGridPointSlope(
   launch: DistortionGridLaunchSlope,
   reference: DistortionReference,
-  focusT: number,
-  zoomT: number,
-  currentPhysStopSD: number,
-  L: RuntimeLens,
   pupilCorrection: PupilCorrectionEntry[],
-  aberrationT: number,
+  adapter: PreparedRayTrace,
 ): SkewRayTraceResult {
   const correction = interpolatePupilCorrection(pupilCorrection, launch.equivalentAngleDeg);
   const correctedEpRatio = reference.geometry.epRatio * correction;
   const chiefLaunchX = -correctedEpRatio * launch.fieldSlopeX;
   const chiefLaunchY = -correctedEpRatio * launch.fieldSlopeY;
-  return traceSkewRay(
-    chiefLaunchX,
-    chiefLaunchY,
-    launch.fieldSlopeX,
-    launch.fieldSlopeY,
-    focusT,
-    zoomT,
-    currentPhysStopSD,
-    true,
-    L,
-    aberrationT,
-  );
+  return adapter.skew(chiefLaunchX, chiefLaunchY, launch.fieldSlopeX, launch.fieldSlopeY);
 }
 
 function traceDistortionGridPoint(
   xNormalized: number,
   yNormalized: number,
   reference: DistortionReference,
-  focusT: number,
-  zoomT: number,
-  currentPhysStopSD: number,
   L: RuntimeLens,
   pupilCorrection: PupilCorrectionEntry[],
-  aberrationT = 0,
+  aberrationT: number,
+  adapter: PreparedRayTrace,
+  vectorAdapter: (bound: number) => PreparedRayTrace,
 ): DistortionGridPoint {
   const radiusNormalized = Math.hypot(xNormalized, yNormalized);
   const insideImageCircle = radiusNormalized <= 1 + 1e-9;
@@ -541,17 +522,8 @@ function traceDistortionGridPoint(
 
   const trace =
     launch.kind === "vector"
-      ? traceDistortionGridPointVector(launch, reference, focusT, zoomT, currentPhysStopSD, L, aberrationT)
-      : traceDistortionGridPointSlope(
-          launch,
-          reference,
-          focusT,
-          zoomT,
-          currentPhysStopSD,
-          L,
-          pupilCorrection,
-          aberrationT,
-        );
+      ? traceDistortionGridPointVector(launch, reference, L, aberrationT, vectorAdapter)
+      : traceDistortionGridPointSlope(launch, reference, pupilCorrection, adapter);
 
   if (trace === null) {
     return {
@@ -644,6 +616,12 @@ export function computeDistortionFieldGrid(
     aberrationT,
     sampling.distortionPupilCorrectionSampleCount,
   );
+  const request = { focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT };
+  const adapter = prepareRayTrace(L, request);
+  // Bounding-sphere launch bounds are constant across this field grid.
+  let vectorTrace: PreparedRayTrace | undefined;
+  const vectorAdapter = (launchBoundT: number): PreparedRayTrace =>
+    (vectorTrace ??= prepareRayTrace(L, { ...request, zPos, launchBoundT }));
   const gridLineCoordinates = sampling.distortionGridLineCoordinates ?? DISTORTION_GRID_LINE_COORDINATES;
 
   return {
@@ -655,34 +633,14 @@ export function computeDistortionFieldGrid(
         orientation: "vertical",
         idealCoordinate: coordinate,
         points: axisSamples.map((y) =>
-          traceDistortionGridPoint(
-            coordinate,
-            y,
-            reference,
-            focusT,
-            zoomT,
-            currentPhysStopSD,
-            L,
-            pupilCorrection,
-            aberrationT,
-          ),
+          traceDistortionGridPoint(coordinate, y, reference, L, pupilCorrection, aberrationT, adapter, vectorAdapter),
         ),
       };
       const horizontal: DistortionGridLine = {
         orientation: "horizontal",
         idealCoordinate: coordinate,
         points: axisSamples.map((x) =>
-          traceDistortionGridPoint(
-            x,
-            coordinate,
-            reference,
-            focusT,
-            zoomT,
-            currentPhysStopSD,
-            L,
-            pupilCorrection,
-            aberrationT,
-          ),
+          traceDistortionGridPoint(x, coordinate, reference, L, pupilCorrection, aberrationT, adapter, vectorAdapter),
         ),
       };
       return [vertical, horizontal];
