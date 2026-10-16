@@ -1820,9 +1820,9 @@ export default LENS_DATA;
 **Folded:** a Mangin mirror. Light passes the stop, enters the glass, reflects at the silvered rear face and leaves
 through the entrance face again, to an image plane in front of the mirror. A folded system's stop keeps its authored
 `sd`, and its EFL is `catalog.focalLengthMm.design`, which must be the one the prescription gives: a concave silvered
-face of radius 220 mm in glass of index 1.5 has focal length 220 / (2 × 1.5) ≈ 73.33 mm. The example is the reference
-fixture `reference/ReferenceManginSecondSurfaceMirror.data.ts` in V2: its paraxial focus is at z ≈ 33.33, and its
-image plane at z = 35.
+face of radius 220 mm in glass of index 1.5 has focal length 220 / (2 × 1.5) ≈ 73.33 mm. The example writes the
+surfaces, stop, f-number and folded path of the reference fixture `reference/ReferenceManginSecondSurfaceMirror.data.ts`
+in V2, with that focal length: its paraxial focus is at z ≈ 33.33, and its image plane at z = 35.
 
 ```ts
 import type { LensDataV2Input } from "../types/lensDataV2.js";
