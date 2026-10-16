@@ -202,7 +202,8 @@ describe("teleconverter catalog", () => {
     /* Zero pairs would mean the sweep stopped seeing the catalog rather than that everything passed. */
     expect(pairs).toBeGreaterThan(0);
     expect(offenders).toEqual([]);
-  });
+    /* The sweep grows with every converter–host pair: 24 s on CI for main, 32 s on a slow runner, past the 30 s default. */
+  }, 120_000);
 
   it("keeps every host's stop when a synthetic universal converter is composed onto it", () => {
     /* The real catalog pairs above are few. The composer's central promise — the host's iris does not change —
