@@ -14,7 +14,11 @@ import { Optics2PreparationError } from "../types.js";
 import { resolveControlledThickness, buildZPositions } from "../state/layout.js";
 
 const PREPARED_STATE_CACHE_LIMIT = 96;
-const PREPARED_STATE_BY_LENS = new WeakMap<CompiledLens, PreparedOpticalState[]>();
+// Canonical catalog identities outlive viewers. Bound retained geometry across lens switches too,
+// while keeping a full slider history for both lenses in a comparison.
+const PREPARED_LENS_CACHE_LIMIT = 2;
+const PREPARED_STATE_BY_LENS = new Map<CompiledLens, PreparedOpticalState[]>();
+let mostRecentLens: CompiledLens | undefined;
 
 interface ZOverrides {
   translated?: PreparedOpticalState;
@@ -50,7 +54,14 @@ export function prepareState(
   if (!states) {
     states = [];
     PREPARED_STATE_BY_LENS.set(lens, states);
+    if (PREPARED_STATE_BY_LENS.size > PREPARED_LENS_CACHE_LIMIT) {
+      PREPARED_STATE_BY_LENS.delete(PREPARED_STATE_BY_LENS.keys().next().value!);
+    }
+  } else if (lens !== mostRecentLens) {
+    PREPARED_STATE_BY_LENS.delete(lens);
+    PREPARED_STATE_BY_LENS.set(lens, states);
   }
+  mostRecentLens = lens;
   for (let i = states.length - 1; i >= 0; i--) {
     const state = states[i];
     if (state.focusT === focusT && state.zoomT === zoomT && state.aberrationT === aberrationT) {

@@ -1,6 +1,6 @@
 // Author teleconverter files directly in a maker folder: lens-data/<maker>/YourConverter.teleconverter.ts.
 // The import must stay type-only. See TELECONVERTER_DATA_SPEC.md § Quick Start.
-import type { TeleconverterDataInput } from "../../types/teleconverter.js";
+import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -25,58 +25,67 @@ import type { TeleconverterDataInput } from "../../types/teleconverter.js";
  */
 
 const TELECONVERTER_DATA = {
-
   /* ── Identity ── See TELECONVERTER_DATA_SPEC.md § Fields */
-  key:      "unique-teleconverter-key",                 // REQUIRED: lowercase a-z/0-9 words joined by single hyphens; becomes the /teleconverters/ URL
-  maker:    "Manufacturer",                             // optional: canonical maker-page name
-  name:     "MANUFACTURER BRAND TELECONVERTER 1.4x",    // REQUIRED: display name
+  schema: 2,
+  key: "unique-teleconverter-key", // REQUIRED: lowercase a-z/0-9 words joined by single hyphens; becomes the /teleconverters/ URL
+  maker: "Manufacturer", // optional: canonical maker-page name
+  name: "MANUFACTURER BRAND TELECONVERTER 1.4x", // REQUIRED: display name
   subtitle: "PATENT-NUMBER EXAMPLE N — COMPANY / INVENTOR",
-  specs: [
-    "N ELEMENTS / N GROUPS",
-    "1.4×",
-  ],
 
-  /* ── Fit ── See TELECONVERTER_DATA_SPEC.md § Compatibility */
-  magnification: 1.4,                   // REQUIRED: nominal focal-length multiplier, > 1
-  lensMounts:    ["nikon-z"],           // REQUIRED: canonical ids from src/utils/catalog/lensTaxonomy.ts
-  // universal: true,                   // optional: fits any host sharing a mount; otherwise hosts declare acceptsTeleconverters
-  // minHostFno: 2.8,                   // optional: fastest host f-number the clear apertures pass
+  /* ── Catalog ── */
+  catalog: {
+    lensMounts: ["nikon-z"], // REQUIRED: canonical ids from src/utils/catalog/lensTaxonomy.ts
+    specs: ["N ELEMENTS / N GROUPS", "1.4×"],
+    elementCount: 0, // the converter's own element count
+    groupCount: 0, // the converter's own air-separated group count
+  },
+
+  /* ── Source ── same rules as LENS_DATA_SPEC.md § Source and Errata; a converter has no errata */
+  source: {
+    patentNumber: "US 0,000,000 B2",
+    patentYear: 2020,
+    authors: ["Inventor Name"],
+    assignees: ["Assignee Name"],
+  },
+
+  /* ── Fit and geometry ── See TELECONVERTER_DATA_SPEC.md § Geometry and § Compatibility */
+  magnification: 1.4, // REQUIRED: nominal focal-length multiplier, > 1
+  masterImageDistanceMm: 0.0, // REQUIRED: air-equivalent distance from the first vertex to the host's native image
+  //                              plane: master back focus in air − master-to-converter gap
+  // universal: true,              // optional: fits any host sharing a mount; otherwise hosts declare acceptsTeleconverters
+  // minHostFNumber: 2.8,          // optional: fastest host f-number the clear apertures pass
   // incompatibleLensKeys: ["lens-key"], // optional: hosts excluded for rim contact or mechanical interference
 
-  /* ── Patent metadata ── same rules as LENS_DATA_SPEC.md § Patent Metadata */
-  patentNumber:    "US 0,000,000 B2",
-  patentAuthors:   ["Inventor Name"],
-  patentAssignees: ["Assignee Name"],
-  patentYear:      2020,
-  elementCount:    0,                   // the converter's own element count
-  groupCount:      0,                   // the converter's own air-separated group count
-
-  /* ── Elements ── same shape as lens elements; no fromSurface/toSurface spans */
+  /* ── Elements ── same shape as lens elements; no span */
   elements: [
-    { id: 1, name: "L1", label: "Element 1", type: "Negative Meniscus", nd: 1.00000, vd: 00.0, fl: -00.0, glass: "GLASS", role: "…" },
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Negative Meniscus",
+      nd: 1.0,
+      vd: 0.0,
+      focalLengthMm: -0.0,
+      glass: "GLASS",
+      role: "…",
+    },
   ],
 
-  /* ── Surfaces ── refracting only, front to rear. No "STO": the host's stop is the system stop.
-   *  Last surface's d = back focus to the image plane, or the physical gap to the first rear plate. */
+  /* ── Surfaces ── refracting only, front to rear. No "STO": the host's stop is the system stop. Same medium and
+   *  asphere rules as a lens (LENS_DATA_SPEC.md § Surfaces). The last surface's d is the back focus to the image
+   *  plane, or the physical gap to the first rear plate. */
   surfaces: [
-    { label: "1", R: 000.0000, d: 0.0000, nd: 1.00000, elemId: 1, sd: 00.0 },
-    { label: "2", R: 000.0000, d: 00.0000, nd: 1.0, elemId: 0, sd: 00.0 },
+    { label: "1", R: 0.0, d: 0.0, sd: 0.0, medium: 1 },
+    { label: "2", R: 0.0, d: 0.0, sd: 0.0 },
   ],
 
   /* ── Rear plates ── optional; only plates the source lists behind the converter */
   // rearPlates: [
-  //   { label: "PP", thicknessMm: 0.00, nd: 1.51680, vd: 64.20, gapAfterMm: 0.00, source: "…" },
+  //   { label: "PP", thicknessMm: 0.0, nd: 1.5168, vd: 64.2, gapAfterMm: 0.0, source: "…" },
   // ],
 
-  asph: {},
   groups: [],
   doublets: [],
-
-  /* ── Geometry ── See TELECONVERTER_DATA_SPEC.md § Geometry
-   *  Air-equivalent distance from the first vertex to the host's native image plane:
-   *  master back focus in air − master-to-converter gap. */
-  masterImageDistanceMm: 00.0000,
-
-} satisfies TeleconverterDataInput;
+} satisfies TeleconverterDataV2Input;
 
 export default TELECONVERTER_DATA;

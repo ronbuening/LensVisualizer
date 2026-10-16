@@ -48,10 +48,11 @@ Begin this section with a robust bold-label metadata block before the identifica
 
 Use the block adaptively. A robust block has, at minimum, `**Patent:**`, one ownership/authorship line (`**Inventor:**`, `**Inventors:**`, `**Applicant:**`, or `**Assignee:**`), one date line (`**Filed:**`, `**Published:**`, `**Granted:**`, or `**Registered:**`), and the selected embodiment when the source provides one. Include optional rows such as application number, priority date, title, classification, total claims, or worked-example count only when known or readily verified; omit optional unknowns rather than inventing values. For registered utility models, use `**Registered:**` when that is the event identified by the source. For older granted patents, `**Granted:**` can replace `**Published:**` when the grant is the meaningful public event. For multi-patent analyses, use the block for the primary transcribed patent and describe secondary or context patents in the prose unless multiple patents directly supply prescriptions; in that case, use one block per primary prescription source.
 
-Keep this block synchronized with the data file's structured `patentNumber`, `patentAuthors`, `patentAssignees`, and
-`patentYear`. `patentNumber` identifies the exact publication or grant used for the transcription; the embodiment belongs
-in `subtitle` and `**Embodiment analyzed:**`, not in that structured identifier. Preserve every inventor in source order
-and use the same normalized personal and legal-entity names used elsewhere in the corpus.
+Keep this block synchronized with the data file's structured `source.patentNumber`, `source.authors`,
+`source.assignees`, and `source.patentYear`. `source.patentNumber` identifies the exact publication or grant used for
+the transcription; the embodiment belongs in `subtitle` and `**Embodiment analyzed:**`, not in that structured
+identifier. Preserve every inventor in source order and use the same normalized personal and legal-entity names used
+elsewhere in the corpus.
 
 A reader who knows the lens but not the patent should be able to verify the identification from this section alone.
 

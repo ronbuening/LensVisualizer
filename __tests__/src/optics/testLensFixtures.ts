@@ -1,7 +1,7 @@
 import { associateRuntimeView } from "../../../src/optics/prescription/runtimeView.js";
 import { compilePrescription, completeCompilation } from "../../../src/optics/prescription/compileCanonical.js";
 import { compileConstruction } from "../../../src/optics/prescription/compileConstruction.js";
-import buildLens, { ingestLensV1, paraxialTrace, toLensData } from "../../../src/optics/buildLens.js";
+import buildLens, { ingestLens, paraxialTrace, toLensData } from "../../../src/optics/buildLens.js";
 import { epAtZoom, fopenAtZoom } from "../../../src/optics/optics.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import Nikkor105Raw from "../../../src/lens-data/nikon/NikonNikkor105f14E.data.js";
@@ -21,11 +21,11 @@ import type {
 import type { TeleconverterData } from "../../../src/types/teleconverter.js";
 
 /**
- * A lens file as the catalog hands it on: read through canonical ingest, whose V1 view applies the schema defaults.
- * Test helpers take merged lens data from here, never by spreading a defaults table.
+ * A lens file of either version as the catalog hands it on: read through canonical ingest, whose V1 view applies the
+ * schema defaults. Test helpers take merged lens data from here, never by spreading a defaults table.
  */
 export function catalogLensData(raw: object): LensData {
-  return toLensData(ingestLensV1(raw as LensDataInput));
+  return toLensData(ingestLens(raw as LensDataInput));
 }
 
 /**

@@ -12,7 +12,7 @@ import {
 import buildLens, {
   ingestLens,
   ingestLensV1,
-  ingestTeleconverterV1,
+  ingestTeleconverter,
   toLensData,
   toTeleconverterData,
 } from "../../../../src/optics/buildLens.js";
@@ -160,7 +160,7 @@ describe("lensCatalog and teleconverterCatalog — canonical ingest", () => {
       const entry = LENS_CATALOG[key];
       expect(LENS_CATALOG[key], key).toBe(entry);
       expect(entry, key).not.toBe(AUTHORED_LENSES.get(key));
-      expect(entry, key).toEqual(toLensData(ingestLensV1(AUTHORED_LENSES.get(key)!)));
+      expect(entry, key).toEqual(toLensData(ingestLens(AUTHORED_LENSES.get(key)!)));
       /* The entry is what buildLens ingests again: its own view gives it back. */
       expect(toLensData(ingestLensV1(entry)), key).toEqual(entry);
     }
@@ -168,7 +168,7 @@ describe("lensCatalog and teleconverterCatalog — canonical ingest", () => {
       const entry = TELECONVERTER_CATALOG[key];
       expect(TELECONVERTER_CATALOG[key], key).toBe(entry);
       expect(entry, key).not.toBe(AUTHORED_CONVERTERS.get(key));
-      expect(entry, key).toEqual(toTeleconverterData(ingestTeleconverterV1(AUTHORED_CONVERTERS.get(key)!)));
+      expect(entry, key).toEqual(toTeleconverterData(ingestTeleconverter(AUTHORED_CONVERTERS.get(key)!)));
     }
   });
 

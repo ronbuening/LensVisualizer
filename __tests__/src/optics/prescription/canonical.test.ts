@@ -27,6 +27,7 @@ import {
   type SchemaDefault,
 } from "../../../../src/optics/prescription/defaults.js";
 import { ingestLensV1, ingestTeleconverterV1 } from "../../../../src/optics/prescription/ingestV1.js";
+import { ingestLens, ingestTeleconverter, isV1File } from "../../../../src/optics/prescription/ingestV2.js";
 import { toLensData, toLensDataInput, toTeleconverterData } from "../../../../src/optics/prescription/toLensData.js";
 import type { FiniteConjugate, LensData, LensDataInput } from "../../../../src/types/optics.js";
 import type { TeleconverterData } from "../../../../src/types/teleconverter.js";
@@ -41,6 +42,10 @@ const TELECONVERTER_FILES = import.meta.glob<{ default: TeleconverterData }>(
 const REPO_ROOT = fileURLToPath(new URL("../../../..", import.meta.url));
 const LENSES = Object.entries(LENS_FILES).map(([file, module]) => ({ file, data: module.default }));
 const TELECONVERTERS = Object.entries(TELECONVERTER_FILES).map(([file, module]) => ({ file, data: module.default }));
+/* The catalog files written in V1, which the V1 round trips below give back; a V2 file round-trips in the converter's
+ * corpus sweep. */
+const V1_LENSES = LENSES.filter(({ data }) => isV1File(data));
+const V1_TELECONVERTERS = TELECONVERTERS.filter(({ data }) => isV1File(data));
 
 /** The first lines of what made `check` throw, or null when it did not. */
 function failureOf(check: () => void): string | null {
@@ -52,8 +57,8 @@ function failureOf(check: () => void): string | null {
   }
 }
 
-/** Catalog lenses that ingest, with what they ingest to. */
-const INGESTED = LENSES.flatMap(({ file, data }) => {
+/** V1 catalog lenses that ingest, with what they ingest to: the checks that use them read V1 fields. */
+const INGESTED = V1_LENSES.flatMap(({ file, data }) => {
   try {
     return [{ file, data, ingested: ingestLensV1(data) }];
   } catch {
@@ -166,8 +171,8 @@ describe("canonical prescription: catalog round trip", () => {
     expect(TELECONVERTERS.length).toBeGreaterThan(0);
   });
 
-  it("gives every catalog lens back from V1 → canonical → V1 view, as authored and as the catalog merges it", () => {
-    const offenders = LENSES.flatMap(({ file, data }) => {
+  it("gives every V1 catalog lens back from V1 → canonical → V1 view, as authored and as the catalog merges it", () => {
+    const offenders = V1_LENSES.flatMap(({ file, data }) => {
       const failure = failureOf(() => {
         const result = ingestLensV1(data);
         expect(toLensDataInput(result)).toEqual(data);
@@ -178,8 +183,8 @@ describe("canonical prescription: catalog round trip", () => {
     expect(offenders).toEqual([]);
   });
 
-  it("gives every catalog teleconverter back from V1 → canonical → V1 view", () => {
-    const offenders = TELECONVERTERS.flatMap(({ file, data }) => {
+  it("gives every V1 catalog teleconverter back from V1 → canonical → V1 view", () => {
+    const offenders = V1_TELECONVERTERS.flatMap(({ file, data }) => {
       const failure = failureOf(() => expect(toTeleconverterData(ingestTeleconverterV1(data))).toEqual(data));
       return failure === null ? [] : [`${file}: ${failure}`];
     });
@@ -220,8 +225,8 @@ describe("canonical prescription: catalog round trip", () => {
       });
       if (failure !== null) offenders.push(`${file}: ${failure}`);
     };
-    for (const { file, data } of INGESTED) ingestFrozen(file, data, ingestLensV1, toLensData);
-    for (const { file, data } of TELECONVERTERS) ingestFrozen(file, data, ingestTeleconverterV1, toTeleconverterData);
+    for (const { file, data } of LENSES) ingestFrozen(file, data, ingestLens, toLensData);
+    for (const { file, data } of TELECONVERTERS) ingestFrozen(file, data, ingestTeleconverter, toTeleconverterData);
     expect(offenders).toEqual([]);
   });
 

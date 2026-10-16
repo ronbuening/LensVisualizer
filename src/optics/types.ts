@@ -287,7 +287,9 @@ export interface CompiledPrescription {
 }
 
 /** Final published compiled identity: constants are complete before preparation or view assembly. */
-export interface CompiledLens extends CompiledPrescription {
+export interface CompiledLens extends Omit<CompiledPrescription, "data"> {
+  /** Canonical surface rows needed by the compatibility view; the remaining construction data is released. */
+  constructionSurfaces: readonly SurfaceData[];
   imagePlane: Plane3;
   display: DisplaySpec;
   constants: LensConstants;

@@ -1,7 +1,13 @@
 import { describe, expect, it } from "vitest";
+import { ingestLens, toLensData } from "../../../src/optics/buildLens.js";
 import type { LensDataInput } from "../../../src/types/optics.js";
 
-const modules = import.meta.glob<{ default: LensDataInput }>("../../../src/lens-data/**/*.data.ts", { eager: true });
+/* Each lens file of either version, read as its V1 view gives its fields. */
+const modules = Object.fromEntries(
+  Object.entries(
+    import.meta.glob<{ default: LensDataInput }>("../../../src/lens-data/**/*.data.ts", { eager: true }),
+  ).map(([path, module]) => [path, { default: toLensData(ingestLens(module.default)) }]),
+);
 
 function expectCleanNames(path: string, field: "patentAuthors" | "patentAssignees", values: string[]): void {
   expect(new Set(values).size, `${path}: ${field} entries must be unique`).toBe(values.length);

@@ -1,6 +1,6 @@
-// Root-level draft import. When authoring directly in a maker folder use "../../types/optics.js";
+// Root-level draft import. When authoring directly in a maker folder use "../../types/lensDataV2.js";
 // generate:metadata rewrites it when it organizes a root-level draft. See LENS_DATA_SPEC.md § Quick Start.
-import type { LensDataInput } from "../types/optics.js";
+import type { LensDataV2Input } from "../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -18,7 +18,7 @@ import type { LensDataInput } from "../types/optics.js";
  * ║    Reversing groups: D34 (non-monotonic).           [if applicable]  ║
  * ║                                                                      ║
  * ║  NOTE ON SCALING (if applicable): [scale factor s applied to R, d,   ║
- * ║    sd and other lengths; A_p → A_p / s^(p−1); K unchanged. See       ║
+ * ║    sd and other lengths; A_n → A_n / s^(n−1); K unchanged. See       ║
  * ║    LENS_DATA_SPEC.md § Data Sourcing Checklist, item 9.]             ║
  * ║  NOTE ON SEMI-DIAMETERS: [patent-listed, estimated from EP geometry, ║
  * ║    refined against a published cross-section, ...]                   ║
@@ -37,38 +37,183 @@ import type { LensDataInput } from "../types/optics.js";
  */
 
 const LENS_DATA = {
+  /* ── Identity ── See LENS_DATA_SPEC.md § Identity and Catalog and § Display Name Convention */
+  schema: 2,
+  key: "unique-lens-key", // REQUIRED: lowercase a-z/0-9 words joined by single hyphens; becomes the /lens/ URL
+  maker: "Manufacturer", // optional: canonical maker-page name (e.g. "Nikon", "Voigtländer"); inferred from name if left out
+  name: "MANUFACTURER BRAND MOUNT 50mm f/1.8 CHARACTERISTIC", // REQUIRED: all-caps maker + branding, separated mount/system tokens, `FLmm f/N`
+  subtitle: "PATENT-NUMBER EXAMPLE N — COMPANY / INVENTOR", // optional: compact example/correlation context; UI/report fallback
+  // visible: false,                 // optional: hides the lens from the catalog (default true)
 
-  /* ── Identity ── See LENS_DATA_SPEC.md § Top-Level Fields and § Display Name Convention */
-  key:      "unique-lens-key",                          // REQUIRED: lowercase a-z/0-9 words joined by single hyphens; becomes the /lens/ URL
-  maker:    "Manufacturer",                             // optional: canonical maker-page name (e.g. "Nikon", "Voigtländer"); derived from name if omitted
-  // visible: true,                                     // optional: false hides the lens from the UI dropdown (default: true)
-  name:     "MANUFACTURER BRAND MOUNT 50mm f/1.8 CHARACTERISTIC", // REQUIRED: all-caps maker + branding, separated mount/system tokens, `FLmm f/N`
-  subtitle: "PATENT-NUMBER EXAMPLE N — COMPANY / INVENTOR",  // optional: compact example/correlation context; UI/report fallback
-  specs: [                                               // optional: spec strings for header display
-    "N ELEMENTS / N GROUPS",
-    "f ≈ NN.N mm",
-    "F/N.N",
-    "2ω ≈ NN.N°",
-    "N ASPHERICAL SURFACES",
+  /* ── Catalog ── See LENS_DATA_SPEC.md § Catalog (catalog) */
+  catalog: {
+    lensMounts: ["nikon-z"], // optional; canonical ids from src/utils/catalog/lensTaxonomy.ts only, e.g. ["nikon-z", "sony-fe"]
+    imageFormat: "135-full-frame", // optional; ONE canonical id, e.g. "aps-c", "110", "4x5"; required with perspectiveControl
+    specs: ["N ELEMENTS / N GROUPS", "f ≈ NN.N mm", "F/N.N", "2ω ≈ NN.N°", "N ASPHERICAL SURFACES"],
+    elementCount: 12, // physical glass elements (the published count, even if `elements` adds a shared-blank plug entry)
+    groupCount: 9, // air-separated groups
+    focalLengthMm: { marketing: 50, design: 51.2 }, // a number for a prime, [wide, tele] for a zoom
+    fNumber: { marketing: 1.8, design: 1.85 }, // the design value must not be slower than the f-number the stop opens to
+  },
+
+  /* ── Source ── See LENS_DATA_SPEC.md § Source and Errata. Patent-backed files declare patentNumber, authors and
+   *    assignees together; synthetic or measured prescriptions leave source out. */
+  source: {
+    patentNumber: "US 10,571,651 B2", // jurisdiction + number + kind code; no example/table label
+    patentYear: 2019, // year of the publication/grant named by patentNumber
+    authors: ["Hideki Sakai"], // inventors in source order, Given Middle Family; [] only when the source names none
+    assignees: ["Canon Inc."], // canonical legal-entity names, no locations; [] only when the source names none
+    // errata: [ ... ],             // values that differ from the print, or unresolved contradictions; see § Source errata
+  },
+
+  /* ── Elements ── one entry per physical glass/mirror element, front to rear; each id a unique positive integer and
+   *    the medium of at least one surface. See LENS_DATA_SPEC.md § Elements and Media and § Glass Identification.
+   *    REQUIRED: id, name, label, type, nd.   Recommended: vd, focalLengthMm, glass (inspector display).
+   *    Optional: indexReference ("d"|"e"), apd/apdNote/dPgF, nC/nF/ng, diagramLabel, role, cemented,
+   *              span (embedded-stop and folded-mirror elements only). */
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Biconvex Positive",
+      nd: 1.0,
+      vd: 0.0,
+      focalLengthMm: 0.0,
+      glass: "Glass Name (CATALOG)",
+      apd: false,
+      role: "Description of optical role",
+    },
+    // Element around an embedded stop: span: ["3", "4"] over its real outer surfaces.
+    // ... one entry per glass element, front to rear
   ],
 
-  /* ── Explicit metadata fields ── See LENS_DATA_SPEC.md § Optional, § Mount And Image-Format Metadata,
-   *    and § Patent Metadata. Patent-backed files declare patentNumber/patentAuthors/patentAssignees together. */
-  focalLengthMarketing: 50,             // mm; single number for primes, [wide, tele] for zooms
-  focalLengthDesign:    51.2,           // patent/computed EFL in mm; omit if same as focalLengthMarketing
-  apertureMarketing:    1.8,            // marketed max f-number
-  apertureDesign:       1.85,           // patent/computed max f-number; omit if same as apertureMarketing
-  lensMounts:           ["nikon-z"],     // optional; canonical ids from src/utils/catalog/lensTaxonomy.ts only, e.g. ["nikon-z", "sony-fe"]
-  imageFormat:          "135-full-frame", // optional; ONE canonical id, e.g. "aps-c", "110", "4x5"; required for perspective-control sampling
-  patentNumber:         "US 10,571,651 B2", // jurisdiction + number + kind code; no example/table label
-  patentAuthors:        ["Hideki Sakai"],   // inventors in source order, Given Middle Family; [] only when the source names none
-  patentAssignees:      ["Canon Inc."],     // canonical legal-entity names, no locations; [] only when the source names none
-  patentYear:           2019,               // year of the publication/grant named by patentNumber
-  elementCount:         12,                 // physical glass elements (patent count, even if `elements` adds a shared-blank plug entry)
-  groupCount:           9,                  // air-separated groups
+  // Optional: undrawn media (a listed cement layer, water ahead of the lens), named by a surface's medium.
+  // media: [{ id: "cement", name: "Cement layer", nd: 1.56732 }],
+
+  /* ── Surface prescription ── one entry per optical surface (glass, mirror, blocker, AND air gaps).
+   *    Ordinary lenses: physical front-to-rear order; folded systems document their order in the header.
+   *    See LENS_DATA_SPEC.md § Surfaces.
+   *
+   *  Fields: label (unique; append "A" for aspheric), R (mm, or "flat"; R > 0 → center of curvature to the RIGHT),
+   *    d (mm to the next surface; left out on a surface whose gap is in `gaps`), sd (clear semi-diameter, mm; left
+   *    out on a stop whose radius is not authored), medium (the element id or media id light travels in AFTER this
+   *    surface; left out for air), asphere (sparse terms; § Aspheres), innerSd (annular hole radius, < sd),
+   *    diffractive (§ Diffractive phase surfaces), interaction (§ Folded Paths), stopPlacement (§ Stop and Aperture).
+   *
+   *  medium rules: an element's entry surface opens into it, its exit surface into air (no medium), and a cemented
+   *    junction into the NEXT element. buildLens() draws each element from the first surface whose medium is that
+   *    element to the surface after it; write `span` on the element only for the documented exceptions.
+   *    { label: "5", R: ..., d: ..., sd: ..., medium: 3 },  // L3 front
+   *    { label: "6", R: ..., d: ..., sd: ..., medium: 4 },  // L3 → L4 cemented junction
+   *    { label: "7", R: ..., d: ..., sd: ... },             // L4 rear → air
+   *  Triplet, hybrid glass+resin, embedded-stop, mirror, blocker and diffractive patterns: § Media and element runs,
+   *    § Authoring patterns, § Mirror elements, nesting and shared blanks, § Reference fixtures.
+   *
+   *  Semi-diameter guidelines:
+   *    Validated automatically (§ Validation Rules, § Data Sourcing Checklist item 2): edge thickness (the rim sags of
+   *    an element must not cross its center thickness), front/rear clear-aperture ratio ≤ 3×, rim slope ≤ ~64.2°
+   *    including aspheric terms, cross-gap intrusion ≤ checks.gapSagFrac × gap on the shared radial band, conic height
+   *    for K > 0, and > 0.25 mm of hidden render trim fails the production sweep.
+   *    Guidance the validator does not enforce:
+   *    - Cemented junctions share one clear aperture: keep the semi-diameters on both sides nearly identical.
+   *    - Semi-diameters should shrink smoothly toward the STO and grow smoothly after it; abrupt jumps are data errors.
+   *    - After sizing from on-axis marginal rays, confirm off-axis bundles (rays.offAxisFieldFrac × half-field) clip
+   *      at element edges or air gaps, never inside cemented groups; thick elements amplify off-axis divergence and
+   *      may need tighter upstream semi-diameters.
+   *    - Annular mirrors use innerSd for the hole; solid central obstructions use a separate
+   *      interaction: { type: "block" } surface (§ Annular apertures and obstructions).
+   */
+  surfaces: [
+    { label: "1", R: 0.0, d: 0.0, sd: 0.0, medium: 1 },
+    { label: "2", R: 0.0, d: 0.0, sd: 0.0 },
+    // ...
+    { label: "STO", R: "flat", d: 0.0 }, // aperture stop — EXACTLY ONE required; no sd: its radius is derived
+    //  from the design f-number. In order, a folded system writes its sd, a zoom's station schedule decides the
+    //  radius, and a stop inside glass writes its sd.
+    //  Stop position: use the patent's value; otherwise split the air gap at the figure's iris location and comment
+    //  the estimate (e.g. "STO position inferred from Fig. 1"). Stop inside glass: keep STO flat and write
+    //    { label: "STO", R: "flat", d: ..., sd: ..., medium: glass_elem_id, stopPlacement: "inside-element" }
+    //  See LENS_DATA_SPEC.md § Stop and Aperture.
+    // ...
+    { label: "17A", R: 0.0, sd: 0.0, asphere: { K: 0, A4: 0 } }, // a variable gap's surface writes no d
+    // The last surface's d (or its gap) is the BFD to the image plane (sequential lenses), or the physical gap to the
+    // first rear plate; folded systems declare opticalPath.imagePlane instead.
+    //  Aspheres: sparse — write each term the source prints non-zero (K, A3–A20); a term left out is zero.
+    //  Patents writing √(1 − KA·(h/R)²) need K = KA − 1. See LENS_DATA_SPEC.md § Aspheres (asphere).
+  ],
+
+  /* ── Zoom (zoom lenses only — omit entirely for a prime) ── two or more stations, focal length increasing;
+   *    bracket any reversing group with an extra station. A variable-aperture zoom states nominalFNumber on every
+   *    station (and none on aperture). See LENS_DATA_SPEC.md § Zoom (zoom) and § Published Stations. */
+  // zoom: {
+  //   stations: [
+  //     { focalLengthMm: 24, nominalFNumber: 4.5, label: "Wide" },
+  //     { focalLengthMm: 50, nominalFNumber: 5.0 },
+  //     { focalLengthMm: 70, nominalFNumber: 5.6, label: "Tele" },
+  //   ],
+  //   // apertureModel: "fixed-iris",  // only when one iris radius gives every station's f-number; § Zoom apertures
+  // },
+
+  /* ── Focus ── See LENS_DATA_SPEC.md § Focus (focus) */
+  focus: {
+    closeFocusM: 0.45, // REQUIRED: close focus distance in metres, object to image
+    description: "Description of the focus mechanism.", // optional: shown in the UI
+    // keyframes: [0, 0.72, 1],     // optional normalized focus coordinates for 3+ published states (default [0, 1])
+    // published: [1],              // prime only: keyframes the source tabulates beyond infinity; § Published Stations
+  },
+
+  /* ── Variable air gaps ── keyed by the label of the surface each gap follows; only gaps that change with focus or
+   *    zoom. values[zoomStation][focusKeyframe]: a prime has one row; a zoom one row per station (zoom-only gaps
+   *    repeat the value). The surface itself writes no d. See LENS_DATA_SPEC.md § Gaps (gaps). */
+  gaps: {
+    "17A": { label: "BF", values: [[0.0, 0.0]] }, // prime: [infinity, close focus]
+    // Zoom: "17A": { label: "BF", values: [[18.74, 22.59], [16.0, 20.0], [19.5, 23.8]] }, // one row per station
+  },
+
+  /* ── Aperture ── See LENS_DATA_SPEC.md § Stop and Aperture */
+  aperture: {
+    nominalFNumber: 1.85, // the source's design f-number, not the marketed one; sizes the stop. A variable-aperture
+    //                       zoom states it on each station instead.
+    fStops: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16], // REQUIRED: f-stop quick-select values
+    // maxFNumber: 22,                // optional (default 16)
+    // blades: 9,                     // optional; reserved for polygonal bokeh
+    // bladeRoundedness: 0.5,         // optional 0–1; 0 = straight, 1 = circular
+  },
+
+  /* ── Independent aberration control (optional) ── a real soft-focus / SA-control ring, not focus travel.
+   *    The gap's thickness without the control must match the first (normal/sharp) value.
+   *    See LENS_DATA_SPEC.md § Aberration control (aberrationControl). */
+  // aberrationControl: {
+  //   label: "SOFT",
+  //   minLabel: "0",
+  //   maxLabel: "3",
+  //   step: 0.004,
+  //   gaps: { "9": { label: "D(B0)", values: [2.074, 6.962] }, "11": { label: "BF", values: [64.427, 53.951] } },
+  // },
+
+  // Optional: non-rectilinear projection metadata; omit for ordinary rectilinear lenses.
+  // See LENS_DATA_SPEC.md § Projection.
+  // projection: {
+  //   kind: "fisheye-equidistant",     // "fisheye-equidistant" | "fisheye-equisolid" | "rectilinear" (rare ultrawide override)
+  //   focalLengthMm: 6.3,
+  //   fullFieldDeg: 220,
+  //   imageCircleMm: 23,
+  //   maxTraceFieldDeg: 80,
+  // },
+
+  // Optional: folded/mirror optical path; omit this entire block for ordinary sequential refractive lenses.
+  // Provide surfaceOrder or mode: "auto" — never imagePlane alone. A folded system's STO writes its sd.
+  // See LENS_DATA_SPEC.md § Folded Paths.
+  // opticalPath: {
+  //   mode: "auto",                                      // "sequential" (default) or "auto"
+  //   surfaceOrder: ["STO", "MG1", "MG2", "MG1"],       // optional explicit hit order; labels may repeat
+  //   imagePlane: { z: 35, y: 25, normal: { z: 0, y: 1 }, label: "IMG" },
+  //   maxInteractions: 8,
+  // },
 
   // Optional: signed SHIFT/TILT limits for a real perspective-control lens; omit for ordinary and folded lenses.
-  // See LENS_DATA_SPEC.md § Perspective Control Movement (perspectiveControl).
+  // Requires catalog.imageFormat. See LENS_DATA_SPEC.md § Perspective Control.
   // perspectiveControl: {
   //   shiftRangeMm: [-11.5, 11.5],     // [min, max] must include 0; [0, 0] disables the axis
   //   tiltRangeDeg: [-8.5, 8.5],
@@ -81,171 +226,32 @@ const LENS_DATA = {
   //   },
   // },
 
-  // Optional: non-rectilinear projection metadata; omit for ordinary rectilinear lenses.
-  // See LENS_DATA_SPEC.md § Projection Metadata.
-  // projection: {
-  //   kind: "fisheye-equidistant",     // "fisheye-equidistant" | "fisheye-equisolid" | "rectilinear" (rare ultrawide override)
-  //   focalLengthMm: 6.3,
-  //   fullFieldDeg: 220,
-  //   imageCircleMm: 23,
-  //   maxTraceFieldDeg: 80,
-  // },
-
-  // Optional: folded/mirror optical path; omit this entire block for ordinary sequential refractive lenses.
-  // Provide surfaceOrder or mode: "auto" — never imagePlane alone.
-  // See LENS_DATA_SPEC.md § Folded And Mirror Optical Paths (opticalPath).
-  // opticalPath: {
-  //   mode: "auto",                                      // "sequential" (default) or "auto"
-  //   surfaceOrder: ["STO", "MG1", "MG2", "MG1"],       // optional explicit hit order; labels may repeat
-  //   imagePlane: { z: 35, y: 25, normal: { z: 0, y: 1 }, label: "IMG" },
-  //   maxInteractions: 8,
-  // },
-
-  /* ── Elements ── one entry per physical glass/mirror element, front to rear; each id unique and
-   *    referenced by at least one surface. See LENS_DATA_SPEC.md § Element Object and § Glass Identification.
-   *    REQUIRED: id, name, label, type, nd.   Recommended: vd, fl, glass (inspector display).
-   *    Optional: indexReference ("d"|"e"), apd/apdNote/dPgF, nC/nF/ng, diagramLabel, role, cemented,
-   *              fromSurface/toSurface (embedded-stop and folded-mirror spans only). */
-  elements: [
-    { id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive",  nd: 1.00000, vd: 00.00, fl:  00.0, glass: "Glass Name (CATALOG)", apd: false, role: "Description of optical role" },
-    // Embedded-stop element example:
-    // { id: 2, name: "L2", label: "Element 2", type: "Biconvex Positive", nd: 1.70000, fromSurface: "3", toSurface: "4", ... },
-    // ... one entry per glass element, front to rear
-  ],
-
-  /* ── Surface prescription ── one entry per optical surface (glass, mirror, blocker, AND air gaps).
-   *    Ordinary lenses: physical front-to-rear order; folded systems document their order in the header.
-   *    See LENS_DATA_SPEC.md § Surface Object, § Sign Conventions, § Surface Label Convention, § Pairing Rules.
-   *
-   *  Fields: label (unique; append "A" for aspheric), R (mm; 1e15 = flat; R > 0 → center of curvature to the RIGHT),
-   *    d (mm to the next surface; ≥ 0 for sequential lenses), nd (index of the medium AFTER this surface; 1.0 = air),
-   *    elemId (0 for air interfaces), sd (outer semi-diameter, mm), innerSd (optional annular hole radius, < sd),
-   *    diffractive (optional; § Diffractive Phase Surfaces (diffractive)), interaction (optional; § Surface Interactions),
-   *    stopPlacement (STO inside glass only; § Aperture Stop).
-   *
-   *  elemId rules: each glass element owns EXACTLY ONE surface — its front (entry) surface. Exit-to-air surfaces
-   *    and an air STO use elemId: 0; a cemented junction carries the NEXT element's elemId and nd. buildLens() renders
-   *    each element from the FIRST surface with its elemId to the following surface, so tagging a rear or air surface
-   *    with a non-zero elemId draws the wrong span; use fromSurface/toSurface only for the documented exceptions.
-   *    { label: "5", R: ..., d: ..., nd: 1.49700, elemId: 3, sd: ... },  // L3 front — elemId: 3
-   *    { label: "6", R: ..., d: ..., nd: 1.72047, elemId: 4, sd: ... },  // L3→L4 cemented junction — elemId: 4
-   *    { label: "7", R: ..., d: ..., nd: 1.0,     elemId: 0, sd: ... },  // L4 rear → air — elemId: 0
-   *  Triplet, hybrid glass+resin, embedded-stop, mirror, blocker, and diffractive patterns: § Pairing Rules,
-   *    § Authoring Patterns, § Annular Mirror Nesting And Shared Blanks, § Reference Fixtures.
-   *
-   *  Semi-Diameter Guidelines:
-   *    Validated automatically (see § Data Sourcing Checklist item 2, § Validation, and § Aspherical Coefficients
-   *    (asph)): edge thickness (the rim sags of an element must not cross its center thickness), front/rear SD
-   *    ratio ≤ 3×, rim slope ≤ ~64.2° including aspheric terms, cross-gap intrusion ≤ gapSagFrac × gap on the shared
-   *    radial band, conic height for K > 0, and > 0.25 mm of hidden render trim fails the production sweep.
-   *    Guidance the validator does not enforce:
-   *    - Cemented junctions share one clear aperture: keep the SDs on both sides nearly identical.
-   *    - SDs should shrink smoothly toward the STO and grow smoothly after it; abrupt jumps are data errors.
-   *    - After sizing SDs from on-axis marginal rays, confirm off-axis bundles (offAxisFieldFrac × half-field) clip
-   *      at element edges or air gaps, never inside cemented groups; thick elements amplify off-axis divergence
-   *      and may need tighter upstream SDs.
-   *    - Annular mirrors use innerSd for the hole; solid central obstructions use a separate
-   *      interaction: { type: "block" } surface (§ Annular Apertures And Obstructions).
-   */
-  surfaces: [
-    { label: "1",   R:   00.000, d: 0.00, nd: 1.00000, elemId: 1, sd: 00.0 },
-    { label: "2",   R:   00.000, d: 0.00, nd: 1.0,     elemId: 0, sd: 00.0 },
-    // ...
-    { label: "STO", R:     1e15, d: 0.00, nd: 1.0,     elemId: 0, sd: 00.0 },  // aperture stop — EXACTLY ONE required
-    //  Stop position: use the patent's value; otherwise split the air gap at the figure's iris location and comment
-    //  the estimate (e.g. "STO position inferred from Fig. 1"). Stop inside glass: keep STO flat and use
-    //    { label: "STO", R: 1e15, d: ..., nd: glass_nd, elemId: glass_elem_id, sd: ..., stopPlacement: "inside-element" }
-    //  See LENS_DATA_SPEC.md § Aperture Stop.
-    // ...
-    // Last surface's d = BFD to the image plane (sequential lenses), or the physical gap to the first rear plate;
-    // folded systems declare opticalPath.imagePlane instead.
-  ],
-
   /* ── Rear plates ── only when the source lists camera-side cover glass / filter stacks behind the last lens. Copy
    *    the source values; never fold t/n into the last gap by hand. A drop-in filter in the lens's own holder is a
-   *    drawn Plane-Parallel Plate element instead. See LENS_DATA_SPEC.md § Rear Plates (rearPlates). */
+   *    drawn Plane-Parallel Plate element instead. See LENS_DATA_SPEC.md § Rear Plates. */
   // rearPlates: [
   //   { label: "CG", thicknessMm: 0.0, nd: 1.5168, vd: 64.2, glass: "N-BK7", gapAfterMm: 0.0, source: "..." },
   // ],
 
-  /* ── Aspherical coefficients ── keyed by surface label; aspheric surfaces only; all-spherical designs use asph: {}.
-   *    A4–A14 required (0 when unused); A16–A20 and odd A3–A19 optional — include only published non-zero values.
-   *    Patents writing √(1 − KA·(h/R)²) need K = KA − 1. See LENS_DATA_SPEC.md § Aspherical Coefficients (asph). */
-  asph: {
-    // "3A": {
-    //   K: 0,
-    //   A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0,
-    //   // A16: 0, A18: 0, A20: 0,   // optional — include only if patent specifies
-    //   // A3: 0, A5: 0, ..., A19: 0, // optional odd orders — include only if patent specifies
-    // },
-  },
-
-  /* ── Variable air spacings (focus mechanism) ── keyed by surface label; only gaps that change during focus/zoom.
-   *    Prime: [d_infinity, d_close]; zoom: one [d_inf, d_close] vector per zoomPositions entry (zoom-only gaps repeat
-   *    the same value). The surface's d must equal the first (infinity, first zoom position) value.
-   *    See LENS_DATA_SPEC.md § Variable Air Spacings (var) and § Focus types by number of variable gaps. */
-  var: {
-    // Prime:  "17": [18.74, 22.59],                            // [d_infinity, d_close]
-    // Zoom:   "17": [[18.74, 22.59], [16.00, 20.00], [19.50, 23.80]],  // one pair per zoom position
-  },
-
-  // focusPositions: [0, 0.72, 1], // optional normalized focusT coordinates for 3+ published states
-
-  /* ── Published stations (optional) ── which authored stations the source tabulates. Omit when every zoom station
-   *    is a source row and only infinity focus is tabulated. See LENS_DATA_SPEC.md § Published Stations. */
-  // publishedStations: { focus: [1] },                 // close-focus row is tabulated too
-  // publishedStations: { zoom: [0, 16, 32] },          // other zoom stations are solved or sampled
-
-  varLabels: [
-    // ["17", "BF"],             // [surface_label, display_text]
-  ],
-
-  /* ── Independent aberration control (optional) ── a real soft-focus / SA-control ring, not focus travel.
-   *    Base surface d must match the first (normal/sharp) value. See LENS_DATA_SPEC.md § Aberration Control (aberrationControl). */
-  // aberrationControl: {
-  //   label: "SOFT",
-  //   minLabel: "0",
-  //   maxLabel: "3",
-  //   step: 0.004,
-  //   var: { "9": [2.074, 6.962], "11": [64.427, 53.951] },
-  //   varLabels: [["9", "D(B0)"], ["11", "BF"]],
-  // },
-
-  /* ── Zoom lens fields (optional — omit entirely for prime lenses) ── presence of zoomPositions makes the lens a zoom.
-   *    ≥ 2 focal lengths in mm, monotonically increasing; bracket any reversing group with an extra position.
-   *    Variable-aperture zooms also set nominalFno (below) to an array. See LENS_DATA_SPEC.md § Zoom Lens Fields. */
-  // zoomPositions: [24, 50, 70],
-  // zoomStep: 0.004,
-  // zoomLabels: ["Wide", "Tele"],
-
-  /* ── Group and doublet annotations ── purely visual SVG brackets; fromSurface/toSurface must be valid labels.
-   *    See LENS_DATA_SPEC.md § Group & Doublet Annotations. */
+  /* ── Group and doublet annotations ── brackets on the diagram; fromSurface/toSurface are surface labels. Authored
+   *    groups are also the moving groups of the group-movement analysis: author the source's mechanical groups.
+   *    See LENS_DATA_SPEC.md § Annotations. */
   groups: [
     // { text: "FRONT", fromSurface: "1", toSurface: "8" },
-    // { text: "REAR",  fromSurface: "10", toSurface: "17" },
+    // { text: "REAR",  fromSurface: "10", toSurface: "17A" },
   ],
-
   doublets: [
     // { text: "D1", fromSurface: "5", toSurface: "7" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM:       0.45,       // REQUIRED: close focus distance in meters
-  focusDescription:  "Description of the focus mechanism.",  // optional: shown in UI
-
-  /* ── Aperture configuration ── */
-  nominalFno:   2.0,             // REQUIRED: f-number the stop opens to — the source's design value (apertureDesign),
-                                   //   not the marketed one; sizes the stop SD. Variable-aperture zooms use
-                                   //   one value per zoom position, e.g. [4.5, 5.76] for f/4.5-5.6
-  fstopSeries:  [1.4, 1.8, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],  // REQUIRED: f-stop quick-select values
-  // apertureBlades: 9,                  // optional; reserved for future polygonal bokeh rendering
-  // apertureBladeRoundedness: 0.5,      // optional 0–1; 0 = straight, 1 = circular
-
-  /* ── Layout tuning ── override the schema defaults only when they do not frame this lens well.
-   *    See LENS_DATA_SPEC.md § Required but have defaults (from src/optics/prescription/defaults.ts) for svgW/svgH,
-   *    gapSagFrac, rayFractions, offAxisFieldFrac, and the other overridable values. */
-  scFill:           0.50,   // horizontal fill fraction 0–1 (default 0.55)
-  yScFill:          0.30,   // REQUIRED: vertical fill fraction 0–1 (no default)
-} satisfies LensDataInput;
+  /* ── Layout ── yScFill is REQUIRED; override the other schema defaults only when they do not frame this lens well.
+   *    See LENS_DATA_SPEC.md § Layout, Rays and Checks for svgW/svgH, lensShiftFrac, rays.* and checks.*. */
+  layout: {
+    scFill: 0.5, // horizontal fill fraction 0–1 (default 0.55)
+    yScFill: 0.3, // REQUIRED: vertical fill fraction 0–1 (no default)
+  },
+  // rays: { offAxisFieldFrac: 0.6 },   // optional ray-fan overrides
+  // checks: { gapSagFrac: 0.9 },       // optional validation relaxations
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;
