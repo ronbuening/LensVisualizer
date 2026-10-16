@@ -2538,21 +2538,19 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
 - **S5.P2.T2 One layout and one interpolation.**
   - **Change:** `state/layout.ts` and `state/stationTables.ts` replace the duplicate thickness, layout and zoom-table
     implementations listed in [Module fates](#module-fates).
-  - **The two focus-infinity thresholds** (0.003 in `focusDistance.ts`, 0.0001 in `field/chiefRay.ts`):
-    - if they serve one purpose, unify them as a C3;
-    - otherwise, give each a name that says why.
+  - **Infinity cutoff (maintainer ruling, 2026-10-16):** both thresholds mean focus is treated as infinity;
+    unify them at 0.003 as a C3, restoring the pre-optics-2 conjugate-correction behavior.
   - **As built:** `state/layout.ts` owns controlled gaps and axial accumulation; both layout paths read the compiled
     explicit-image-plane decision. `state/stationTables.ts` owns focus/zoom/aberration interpolation, station
     coordinates and defaults, shared by construction, preparation and runtime adapters; URL zoom conversion reaches
     its table reader through the public optics barrel. Zoom-track sums use the shared layout accumulator with exact
     authored rows. First-order EFL and effective f-number each have one prepared-state adapter, retaining clamping,
     table fallbacks and final-node arithmetic. The unused infinity alias is removed, and comparison readouts use the
-    named 0.003 cutoff. The two infinity thresholds remain an open question pending a maintainer-approved C3 decision:
-    0.003 gates distance labels/remapping, EFL (including perspective field scale), pupil-aberration paraxial baselines
-    and exposure/magnification summaries; 0.0001 gates real-ray conjugate correction. Before the optics-2 port,
-    `conjugateK` used 0.003. Both values stay unchanged under C0; a control between them reports infinity while tracing
-    a nonzero conjugate correction. Neither snaps the interpolated gaps.
-  - **Gate:** C0.
+    shared `FOCUS_INFINITY_CUTOFF` (0.003, in `focusDistance.ts`). It gates distance labels/remapping, EFL
+    (including perspective field scale), f-number and magnification summaries, pupil-aberration paraxial baselines
+    and traced conjugate correction. The maintainer-approved C3 restores the pre-optics-2 behavior: `conjugateK`
+    is zero below 0.003, including the former 0.0001–0.003 interval. Interpolated gaps are not snapped.
+  - **Gate:** C0 for consolidation; C3 for the unified infinity cutoff.
 - **S5.P2.T3 One chromatic table.**
   - **Change:** one dispersion table builder, one quality summary and one channel table in `chromatic/`.
     `src/types/optics.ts` stops importing a type from `src/optics/dispersion.ts`; the shared type moves into
@@ -2862,6 +2860,12 @@ Settled on 2026-10-15, at the A3 cumulative check:
 | # | Decision | Where |
 | --- | --- | --- |
 | 61 | A build pupil position or size traced from the basis rays keeps 1e-12 relative, or 1e-10 of its own size where the pupil lies more than 100 mm from the lens, whichever is more, with the first-order 1e-12 mm floor; near pupils keep the first-order budget and C0 stays bit-exact, refining decision 30 (the floor corrected on 2026-10-15) | [Quantity budgets](#quantity-budgets) |
+
+Settled on 2026-10-16, by maintainer ruling on S5.P2.T2:
+
+| # | Decision | Where |
+| --- | --- | --- |
+| 62 | Use one 0.003 cutoff for treating focus as infinity, including traced conjugate correction; restore the pre-optics-2 behavior (maintainer ruling) | S5.P2.T2; `src/optics/focusDistance.ts` |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1) and the items S1.P2.T2 leaves open.
 

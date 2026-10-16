@@ -17,6 +17,7 @@ flowchart LR
   end
   n_external_src_optics_trace["src/optics/trace"]
   n_external_src_optics_apertureStop_ts["src/optics/apertureStop.ts"]
+  n_external_src_optics_focusDistance_ts["src/optics/focusDistance.ts"]
   n_external_src_optics_math["src/optics/math"]
   n_external_src_optics_prescription["src/optics/prescription"]
   n_external_src_optics_raySampling_ts["src/optics/raySampling.ts"]
@@ -26,6 +27,7 @@ flowchart LR
   n_external_src_utils_catalog["src/utils/catalog"]
   n_src_optics_field_src_optics_field_chiefRay_ts --> |3| n_external_src_optics_trace
   n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_optics_apertureStop_ts
+  n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_optics_focusDistance_ts
   n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_optics_math
   n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_optics_prescription
   n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_optics_raySampling_ts
@@ -52,14 +54,14 @@ flowchart LR
 
 - Direct source files: 5
 - Direct subfolders: 0
-- Main outbound areas: same folder (8), src/types (4), src/optics/trace (3), src/optics/state (2), src/optics/types.ts (2), src/optics/apertureStop.ts, src/optics/math, src/optics/prescription, +2 more
+- Main outbound areas: same folder (8), src/types (4), src/optics/trace (3), src/optics/state (2), src/optics/types.ts (2), src/optics/apertureStop.ts, src/optics/focusDistance.ts, src/optics/math, +3 more
 - External consumers: src/optics/aberration, src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/first-order, src/optics/perspective, src/optics/prescription
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `chiefRay.ts` | Chief Ray helper module | same folder (3), src/optics/trace (3), src/optics/apertureStop.ts, src/optics/math, src/optics/prescription, +5 more | same folder (2), src/optics/analysis (2) | EntrancePupilState2, ChiefRaySolveResult2, FieldGeometryState2, OffsetVectorFieldRay2, VectorFieldRayLaunch2, computeFieldGeometryAtState2, computeAnalysisFieldGeometryAtState2, traceChiefRayAtAngle2, +12 more |
+| `chiefRay.ts` | Chief Ray helper module | same folder (3), src/optics/trace (3), src/optics/apertureStop.ts, src/optics/focusDistance.ts, src/optics/math, +6 more | same folder (2), src/optics/analysis (2) | EntrancePupilState2, ChiefRaySolveResult2, FieldGeometryState2, OffsetVectorFieldRay2, VectorFieldRayLaunch2, computeFieldGeometryAtState2, computeAnalysisFieldGeometryAtState2, traceChiefRayAtAngle2, +12 more |
 | `chiefRayCache.ts` | Chief Ray Cache helper module | same folder (2), src/types | same folder, src/optics/compat.ts | ChiefRayStatus2, ChiefRayDiagnostics2, chiefRayCacheKey2, getCachedChiefRaySolve2, setCachedChiefRaySolve2, recordChiefRayStatus2, getChiefRayDiagnostics2, resetChiefRayDiagnostics2 |
 | `fieldGeometry.ts` | Field Geometry helper module | same folder (2) | src/optics/aberration (5), src/optics/analysis, src/optics/chromatic, src/optics/compat.ts | chiefRayImageHeight2, chiefRayImageHeightAccurate2, invertChiefRayImageHeights, ImageHeightInversionResult, computeAnalysisFieldGeometryAtState2, computeFieldGeometryAtState2, conjugateK2, entrancePupilAtState2, +15 more |
 | `launch.ts` | Launch helper module | same folder, src/optics/types.ts, src/types | same folder (2) | FieldGeometryState2, VectorFieldRayLaunch2, OffsetVectorFieldRay2, computeBoundingSphereLaunchRadiusMm2, computeBoundingSphereVectorFieldLaunch2, offsetVectorFieldRay2 |
