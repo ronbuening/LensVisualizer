@@ -71,8 +71,9 @@ export function validateSourceErrata(
       errors.push(`${at}.surface must match a surface label`);
       return;
     }
+    /* An asphere term left out is zero, as ingest reads it, so an erratum may apply 0 to a term the file omits. */
     const carried = isCoefficient
-      ? data.asph?.[entry.surface]?.[entry.field]
+      ? (data.asph?.[entry.surface]?.[entry.field] ?? 0)
       : data.surfaces.find((surface: UntrustedLensData) => surface?.label === entry.surface)?.[entry.field];
     // A mounted converter replaces the host's last gap with the junction gap; the bare host still checks that value.
     const converterFirst = data.attachedTeleconverter?.firstSurfaceLabel;

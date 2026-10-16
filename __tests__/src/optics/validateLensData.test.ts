@@ -2086,6 +2086,18 @@ describe("source errata", () => {
       validateLensData(makeValid({ asph, sourceErrata: [coefficient] })).filter((e) => e.includes("sourceErrata")),
     ).toEqual([]);
   });
+  it("reads an asphere term the file leaves out as zero, so a correction may apply 0 to it", () => {
+    const zeroed = { ...corrected, field: "A6", printed: 2e-9, applied: 0 };
+    const asph = { "1": { K: 0, A4: -1e-6 } };
+    expect(
+      validateLensData(makeValid({ asph, sourceErrata: [zeroed] })).filter((e) => e.includes("sourceErrata")),
+    ).toEqual([]);
+    expect(
+      validateLensData(makeValid({ asph, sourceErrata: [{ ...zeroed, applied: 1e-9 }] }))
+        .filter((e) => e.includes("sourceErrata"))
+        .join(" "),
+    ).toContain("must carry the applied value 1e-9");
+  });
   it("requires the applied value to be the one in the file", () => {
     expect(errataErrors([{ ...corrected, applied: 90 }]).join(" ")).toContain("must carry the applied value 90");
     expect(errataErrors([{ ...corrected, field: "A4" }]).join(" ")).toContain("must carry the applied value");
