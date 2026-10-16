@@ -33,6 +33,11 @@ const LENS_DATA = {
     },
   ],
   subtitle: "JP 2011-48232 A, Example 3; selected production correlation, not manufacturer-confirmed prescription",
+  specs: [
+    "14 ELEMENTS / 10 GROUPS",
+    "1 ASPHERICAL ELEMENT / 1 ED ELEMENT",
+    "PUBLISHED INFINITY / 0.5× / 1× SPACINGS",
+  ],
   focalLengthMarketing: 45,
   focalLengthDesign: 45.9,
   apertureMarketing: 2.8,

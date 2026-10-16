@@ -131,6 +131,7 @@ Patent: local `patents/JP2011048232A.pdf`, Numerical Example 3, Figure 7(a), PDF
 | Element / field | Before | After | Evidence |
 |---|---|---|---|
 | L3 glass | Unmatched; Abbe fallback | MC-TAF101-100 qualified spectral proxy | Source 1.76930/49.3 unchanged; catalog n(d)=1.76901534, νd=49.29, residuals −0.00028466/−0.01. This curve is already in the catalog and is not a factory-glass identification. |
+| Homepage / RSS description | Missing `specs` array | 14/10 construction, one aspheric / one ED element, published infinity / 0.5× / 1× spacings | Patent Example 3 and maker construction specifications. Both display paths consume `specs`; the existing patent `subtitle` is a separate field. |
 
 The clean optical-rim measurements at 600 dpi agree with existing radii within approximately 12%, with median figure/data about 1.04. Retained all SDs, the source-calibrated iris and published focus gaps. All 14 elements now resolve to compatible catalog curves. Analysis updated for L3 without claiming measured spectral data.
 
