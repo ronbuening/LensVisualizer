@@ -4,7 +4,8 @@
  *
  * A run:
  * 1. collects the inputs (a file, or every `*.data.ts` and `*.teleconverter.ts` under a directory, in path order) and
- *    refuses, before converting any, a directory it cannot list or a collision: two destinations that are one path
+ *    refuses, before converting any, a directory it cannot list, a file input that is a symbolic link, or a
+ *    collision: two destinations that are one path
  *    without regard to case, an `--output` destination that exists, an `--output` directory inside the input or the
  *    input inside it (compared after resolving symbolic links, as directories), or a backup a run left beside an
  *    input;
@@ -67,7 +68,8 @@ Exit codes:
      diagnostic outside the converted files, or a failure of the type-check itself
   2  a collision, refused before anything converts: two destinations one path without regard to case, an --output
      destination that exists, --output inside --input or --input inside --output, or a backup
-     (.<name>.<pid>.convert-bak) a run left beside an input; or a directory under --input that cannot be listed
+     (.<name>.<pid>.convert-bak) a run left beside an input; or a directory under --input that cannot be listed,
+     or an --input file that is a symbolic link
   2  with --write, a failed write or rename, after every input already replaced is put back (under --output, every
      file already written is removed)
   2  SIGINT or SIGTERM while writing, after the same restore
@@ -82,7 +84,7 @@ class UsageError extends Error {}
 /** A collision found before anything converts. */
 class CollisionError extends Error {}
 
-/** An input directory that cannot be listed, found before anything converts. */
+/** An input that cannot be converted where it is: a directory that cannot be listed, or a link to a file. */
 class InputError extends Error {}
 
 /** A signal that arrived while the run was writing. */
@@ -208,6 +210,10 @@ function collectInputs(fs, args, cwd) {
   const isDirectory = stat.isDirectory();
   if (!isDirectory && !kindOf(input)) {
     throw new UsageError(`--input ${args.input} is no *.data.ts or *.teleconverter.ts file`);
+  }
+  /* A write renames over the path, which would replace a link with a file and leave the file it points to as it was. */
+  if (!isDirectory && fs.lstatSync(input).isSymbolicLink()) {
+    throw new InputError(`--input ${args.input} is a symbolic link; give the file it points to`);
   }
   const output = args.output === undefined ? undefined : resolve(cwd, args.output);
   if (output !== undefined) {

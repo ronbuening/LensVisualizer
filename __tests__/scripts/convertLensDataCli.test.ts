@@ -329,6 +329,21 @@ describe("collisions, refused before anything converts", () => {
     await collides(["--input", input], /\.A\.data\.ts\.4242\.convert-bak, a backup a run left, sits beside/);
   });
 
+  it("an --input file that is a symbolic link, which a write would replace with a file", async () => {
+    const directory = temp();
+    const target = put(join(directory, "target", "a.data.ts"), V1_PRIME);
+    const link = join(directory, "link.data.ts");
+    symlinkSync(target, link);
+    const before = readFileSync(target, "utf8");
+    const run = await cli(["--input", link, "--write"], { typeCheck: NO_TYPE_CHECK });
+    expect(run.code).toBe(2);
+    expect(run.stderr).toBe(
+      `convert-lens-data: refused before converting anything: --input ${link} is a symbolic link; ` +
+        "give the file it points to\n",
+    );
+    expect(readFileSync(target, "utf8")).toBe(before);
+  });
+
   it("but not a sibling whose name begins with the input's", async () => {
     const base = temp();
     const directory = join(base, "in");

@@ -1924,7 +1924,9 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
   - **Change:** add `scripts/convert-lens-data.mjs` and its `npm run convert:lens-data` script
     (`scripts/lens-data-convert/cli.mjs`), and the library's V1 direction.
   - **Flags:**
-    - `--input <file|dir>`: a file, or every `*.data.ts` and `*.teleconverter.ts` under a directory, in path order
+    - `--input <file|dir>`: a file, or every `*.data.ts` and `*.teleconverter.ts` under a directory, in path order;
+      symbolic links under a directory are not followed, and a file input that is one is refused before anything
+      converts, since a write would replace the link with a file
     - `--to-version 1|2` (default 2)
     - `--dry-run` (the default), `--check` or `--write`, one at most: all three convert, check and print the same
       report, and only `--write` writes
