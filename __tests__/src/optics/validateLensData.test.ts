@@ -1,5 +1,9 @@
 import { describe, it, expect, vi } from "vitest";
-import validateLensData from "../../../src/optics/validateLensData.js";
+import validateLensData, { validateCanonicalLens, validateLensInput } from "../../../src/optics/validateLensData.js";
+import { ingestLens } from "../../../src/optics/prescription/ingestV2.js";
+import { FIXTURE_PAIRS } from "./prescription/ingestV2Fixtures.js";
+import type { LensDataInput } from "../../../src/types/optics.js";
+import type { LensDataV2Input } from "../../../src/types/lensDataV2.js";
 import { v1CatalogDefaults } from "../../../src/optics/prescription/defaults.js";
 import { MAX_RIM_SLOPE_TAN } from "../../../src/optics/geometry/surfaceProfile.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../src/types/asphericSchema.js";
@@ -65,6 +69,129 @@ function makeValid(overrides: Record<string, unknown> = {}): Record<string, unkn
 }
 
 describe("validateLensData", () => {
+  it("validates canonical prescriptions in both formats without changing them", () => {
+    for (const pair of FIXTURE_PAIRS) {
+      if (pair.kind !== "lens") continue;
+      for (const file of [pair.v1, pair.v2]) {
+        const ingested = ingestLens(file);
+        const before = structuredClone(ingested);
+        expect(validateCanonicalLens(ingested), `${pair.family} V${ingested.provenance.format}`).toEqual([]);
+        expect(ingested).toEqual(before);
+      }
+    }
+  });
+
+  it("reads omitted catalog defaults individually, preserving explicit undefined and refused spellings", () => {
+    const authored = makeValid();
+    for (const field of Object.keys(v1CatalogDefaults())) delete authored[field];
+    const before = structuredClone(authored);
+    expect(validateLensInput(authored)).toEqual([]);
+    expect(authored).toEqual(before);
+    expect(validateLensData(authored)).toContain('Missing or non-finite required number field: "focusStep"');
+    expect(validateLensInput({ ...authored, focusStep: undefined })).toEqual([
+      'Missing or non-finite required number field: "focusStep"',
+    ]);
+    expect(validateLensInput({ ...authored, publishedStations: {} })).toEqual([
+      '"publishedStations" must declare "zoom" and/or "focus"',
+    ]);
+    // Ingest intentionally canonicalizes this empty declaration; authored validation must still refuse it.
+    expect(() => ingestLens({ ...authored, publishedStations: {} } as LensDataInput)).not.toThrow();
+  });
+
+  it("preserves reference and aperture diagnostics for canonical V1/V2 counterparts", () => {
+    const pair = FIXTURE_PAIRS.find((pair) => pair.family === "prime");
+    if (!pair || pair.kind !== "lens") throw new Error("missing prime fixture");
+    for (const file of [pair.v1, pair.v2]) {
+      const ingested = ingestLens(file);
+      ingested.prescription.groups = [{ text: "test", fromSurface: "missing", toSurface: "2" }];
+      ingested.prescription.surfaces[1].innerSd = ingested.prescription.surfaces[1].sd;
+      expect(validateCanonicalLens(ingested)).toEqual([
+        'surfaces[1] ("1"): innerSd must be smaller than sd',
+        'groups[0] ("test"): fromSurface "missing" not found',
+      ]);
+    }
+  });
+
+  it("keeps geometry refusals and numeric messages identical for canonical V1/V2 counterparts", () => {
+    const pair = FIXTURE_PAIRS.find((pair) => pair.family === "prime");
+    if (!pair || pair.kind !== "lens") throw new Error("missing prime fixture");
+    const errors = [pair.v1, pair.v2].map((file) => {
+      const ingested = ingestLens(file);
+      delete ingested.prescription.surfaces[1].asphere;
+      ingested.prescription.surfaces[1].sd = 49;
+      ingested.prescription.surfaces[2].sd = 49;
+      return validateCanonicalLens(ingested);
+    });
+    expect(errors[0]).toEqual(errors[1]);
+    expect(errors[0].some((error) => error.includes("negative edge thickness"))).toBe(true);
+    expect(errors[0].filter((error) => error.includes("rim slope"))).toHaveLength(2);
+  });
+
+  it("names a V2 zoom's own station fields in unpublished-station diagnostics", () => {
+    const pair = FIXTURE_PAIRS.find((pair) => pair.family === "published stations");
+    if (!pair || pair.kind !== "lens") throw new Error("missing published stations fixture");
+    const file = structuredClone(pair.v2) as LensDataV2Input;
+    file.zoom!.stations[1].publishedFocus = [1];
+    file.focus = {
+      ...file.focus!,
+      conjugates: [
+        { zoomStation: 1, keyframe: 1, objectDistanceMm: 500, distanceReference: "first-surface", source: "Fixture" },
+      ],
+    };
+    expect(validateCanonicalLens(ingestLens(file))).toEqual(
+      expect.arrayContaining([
+        '"zoom.stations[1].publishedFocus" must be empty: "zoom.stations[1].published" omits that zoom station',
+        '"focus.conjugates" names zoom station 1, which "zoom.stations[1].published" omits',
+      ]),
+    );
+  });
+
+  it("maps canonical control and nested scalar paths to their authored format", () => {
+    const pair = FIXTURE_PAIRS.find((pair) => pair.family === "published stations (prime)");
+    if (!pair || pair.kind !== "lens") throw new Error("missing gap fixture");
+    for (const file of [pair.v1, pair.v2]) {
+      const ingested = ingestLens(file);
+      ingested.prescription.gaps[0].values[0][1] = -1;
+      ingested.prescription.focus.step = NaN;
+      const errors = validateCanonicalLens(ingested);
+      expect(errors).toContain(
+        ingested.provenance.format === 1
+          ? 'var["2"][1]: thickness=-1 is negative'
+          : 'gaps["2"].values[0][1]: thickness=-1 is negative',
+      );
+      expect(errors).toContain(
+        ingested.provenance.format === 1
+          ? 'Missing or non-finite required number field: "focusStep"'
+          : 'Missing or non-finite required number field: "focus.step"',
+      );
+    }
+  });
+
+  it("names authored V2 span endpoints for a zero-length element span", () => {
+    const pair = FIXTURE_PAIRS.find((pair) => pair.family === "prime");
+    if (!pair || pair.kind !== "lens") throw new Error("missing prime fixture");
+    const ingested = ingestLens(pair.v2);
+    ingested.prescription.elements[0].span = ["1", "1"];
+    expect(validateCanonicalLens(ingested)).toEqual([
+      'Element 1 ("L1"): elements[0].span[0] "1" must come before elements[0].span[1] "1"',
+    ]);
+  });
+
+  it("maps source and published-station paths without rewriting authored surface labels", () => {
+    const pair = FIXTURE_PAIRS.find((pair) => pair.family === "published stations (prime)");
+    if (!pair || pair.kind !== "lens") throw new Error("missing gap fixture");
+    const ingested = ingestLens(pair.v2);
+    ingested.prescription.source.errata = [{ status: "unresolved", note: "" }];
+    ingested.prescription.gaps[0].values[0][1] = ingested.prescription.gaps[0].values[0][0];
+    ingested.prescription.surfaces[1].label = "focusStep";
+    ingested.prescription.surfaces[1].sd = -1;
+    expect(validateCanonicalLens(ingested)).toEqual([
+      'surfaces[1] ("focusStep"): sd must be a positive finite number',
+      '"source.errata[0]" needs a non-empty note',
+      '"focus.published": focus keyframe 1 has no focus travel in "gaps"',
+    ]);
+  });
+
   it("requires finite-conjugate source evidence, distance conventions and authored stations", () => {
     const station = {
       focusT: 1,
