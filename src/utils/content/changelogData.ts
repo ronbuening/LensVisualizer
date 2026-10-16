@@ -21,7 +21,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-16",
     type: "improvement",
-    summary: "Rebuilt the optics engine: lens analyses run in about 60% of the time they took",
+    summary: "Rebuilt the optics engine: a lens opens in about a third of the time, and its analyses in about 60%",
   },
   {
     date: "2026-10-16",
