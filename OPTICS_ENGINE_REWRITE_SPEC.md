@@ -1958,7 +1958,7 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     each temp file renamed over its input, and the backups removed (one that cannot be removed then is a warning and
     stays, the run being done); under `--output`, each temp file linked to its
     destination, failing if the destination exists, then removed. Temp files and backups are created exclusively
-    (`wx`), and a run removes only files it created. When a write, rename or link fails, or SIGINT or SIGTERM arrives
+    (`wx`) with their input's permissions, so a converted file keeps them, and a run removes only files it created. When a write, rename or link fails, or SIGINT or SIGTERM arrives
     while writing, the run puts back every input already replaced (under `--output`, removes every file and
     directory it wrote), removes its temp files and backups, and exits 2. A SIGKILL can leave them: `*.convert-tmp`
     and `*.convert-bak` are in `.gitignore`, and the next run refuses while a backup sits beside an input.

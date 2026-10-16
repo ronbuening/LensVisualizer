@@ -18,7 +18,8 @@ import { ingestLens, ingestTeleconverter } from "../../src/optics/prescription/i
 import { FIXTURE_PAIRS } from "../src/optics/prescription/ingestV2Fixtures.js";
 import { PRIME_MEMBERS, V2_SOURCE_FILE, v1LensFile } from "./convertLensDataFixtures.js";
 
-const { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync, statSync } = nodeFs;
+const { chmodSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync } = nodeFs;
+const { statSync } = nodeFs;
 const { symlinkSync, writeFileSync } = nodeFs;
 const TYPES = fileURLToPath(new URL("../../src/types", import.meta.url));
 const V1_PRIME = v1LensFile(PRIME_MEMBERS);
@@ -482,6 +483,22 @@ describe("interrupted writes", () => {
       "3 inputs: 2 would convert to V2, 1 already V2 and left as it is, 0 refused; " +
         "no converted file is written, and every input is as it was\n",
     );
+  });
+
+  it("a converted file, and an input put back from its backup, keep the input's permissions", async () => {
+    const directory = catalog();
+    const [a, c] = [join(directory, "a.data.ts"), join(directory, "c.data.ts")];
+    chmodSync(a, 0o600);
+    chmodSync(c, 0o444);
+    const failed = await cli(["--input", directory, "--write"], {
+      fs: failing("renameSync", 2),
+      typeCheck: NO_TYPE_CHECK,
+    });
+    expect(failed.stderr).toContain("put back 1 of the 1 inputs already replaced");
+    expect(statSync(a).mode & 0o777).toBe(0o600);
+    expect((await cli(["--input", directory, "--write"], { typeCheck: NO_TYPE_CHECK })).code).toBe(0);
+    expect([statSync(a).mode & 0o777, statSync(c).mode & 0o777]).toEqual([0o600, 0o444]);
+    expect(readFileSync(c, "utf8")).toContain("schema: 2");
   });
 
   it("a signal during the renames puts back every input already replaced, and exits 2", async () => {

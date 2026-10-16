@@ -273,14 +273,15 @@ function lineFeedText(text) {
 }
 
 /**
- * Create a file that must not exist yet and write its bytes. The path is recorded as soon as the file exists, before
- * any byte is written, so a write that fails part way (a full disk, a file-size limit) leaves a file the run knows it
- * created and removes.
+ * Create a file that must not exist yet, with the given permissions whatever the umask, and write its bytes. The path
+ * is recorded as soon as the file exists, before any byte is written, so a write that fails part way (a full disk, a
+ * file-size limit) leaves a file the run knows it created and removes.
  */
-function writeNewFile(fs, path, data, record) {
-  const descriptor = fs.openSync(path, "wx");
+function writeNewFile(fs, path, data, mode, record) {
+  const descriptor = fs.openSync(path, "wx", mode);
   record(path);
   try {
+    fs.fchmodSync(descriptor, mode);
     fs.writeFileSync(descriptor, data);
   } finally {
     fs.closeSync(descriptor);
@@ -298,7 +299,8 @@ function yieldToSignals() {
  * what the run created, and throw.
  *
  * @param {object} fs - the file system
- * @param {{ entry: object, text: string, bytes: Uint8Array }[]} converted - each converted file and its input's bytes
+ * @param {{ entry: object, text: string, bytes: Uint8Array, mode: number }[]} converted - each converted file, and its
+ *   input's bytes and permissions
  * @param {boolean} inPlace - whether the destinations are the inputs
  * @param {object} context - the process id, the signal source and the stderr writer
  * @returns {Promise<void>}
@@ -319,17 +321,19 @@ async function writeConverted(fs, converted, inPlace, { pid, signals, warn }) {
   };
   for (const name of ["SIGINT", "SIGTERM"]) signals.on(name, onSignal);
   try {
-    for (const { entry, text } of converted) {
+    for (const { entry, text, mode } of converted) {
       if (!inPlace) {
         for (let at = dirname(entry.destination); !fs.existsSync(at); at = dirname(at)) createdDirectories.push(at);
         fs.mkdirSync(dirname(entry.destination), { recursive: true });
       }
-      writeNewFile(fs, besidePath(entry.destination, pid, "convert-tmp"), text, (temp) => temps.set(entry, temp));
+      writeNewFile(fs, besidePath(entry.destination, pid, "convert-tmp"), text, mode, (temp) => temps.set(entry, temp));
       await checkSignal();
     }
     if (inPlace) {
-      for (const { entry, bytes } of converted) {
-        writeNewFile(fs, besidePath(entry.path, pid, "convert-bak"), bytes, (backup) => backups.set(entry, backup));
+      for (const { entry, bytes, mode } of converted) {
+        writeNewFile(fs, besidePath(entry.path, pid, "convert-bak"), bytes, mode, (backup) =>
+          backups.set(entry, backup),
+        );
         await checkSignal();
       }
       for (const { entry } of converted) {
@@ -461,10 +465,13 @@ export async function runConversion(run) {
 
   for (const entry of inputs) {
     let bytes;
+    let mode;
     let version;
     let source;
     try {
       bytes = fs.readFileSync(entry.path);
+      /* A converted file, and the backup of its input, keep the input's permissions. */
+      mode = fs.statSync(entry.path).mode & 0o777;
       source = new TextDecoder("utf-8", { fatal: true, ignoreBOM: true }).decode(bytes);
       version = conversion.lensDataVersion(evaluateLensDataSource(source, entry.file));
     } catch (error) {
@@ -498,7 +505,7 @@ export async function runConversion(run) {
       refused.push({ entry, reason: result.refusal });
       continue;
     }
-    converted.push({ entry, text: result.text, bytes, crlf: lines.crlf, report: result.report });
+    converted.push({ entry, text: result.text, bytes, mode, crlf: lines.crlf, report: result.report });
   }
 
   let typeFailure;
