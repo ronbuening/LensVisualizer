@@ -1997,8 +1997,9 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
 
     A V1 file goes V1 → V2 → V1 and a V2 file V2 → V1 → V2, so the sweep holds before, during and after S2.P5.
     It is offender-collecting, and its offender list must be empty: a refused file is a case, and the other files go
-    on. A case found when the sweep lands stops it, and is resolved by a C3 data correction in its own PR on `main`;
-    the sweep stays C0.
+    on. Every catalog file must go through every leg of its version's group: a file that no first leg writes or
+    refuses, or that a later leg neither writes nor refuses, is a case. A case found when the sweep lands stops it,
+    and is resolved by a C3 data correction in its own PR on `main`; the sweep stays C0.
   - **Where:** the tooling suite (`npm run test:tooling`), which CI runs on every PR; `npm run test` stays fast.
   - **Gate:** C0.
 
@@ -2975,10 +2976,10 @@ The maintainer also settled these on 2026-10-16, answering the S2.P3.T3 question
 
 | # | Decision | Where |
 | --- | --- | --- |
-| 77 | The corpus sweep's idempotence is a second round trip, byte-identical in both versions; one round trip is held only to the prescription and to each comment once | S2.P3.T3 |
-| 78 | The corpus sweep runs in the tooling suite | S2.P3.T3 |
-| 79 | The corpus sweep converts each file to the other version and back to its own | S2.P3.T3 |
-| 80 | A case the corpus sweep finds stops it; its C3 data correction is a separate PR on `main` | S2.P3.T3 |
+| 79 | The corpus sweep's idempotence is a second round trip, byte-identical in both versions; one round trip is held only to the prescription and to each comment once | S2.P3.T3 |
+| 80 | The corpus sweep runs in the tooling suite | S2.P3.T3 |
+| 81 | The corpus sweep converts each file to the other version and back to its own | S2.P3.T3 |
+| 82 | A case the corpus sweep finds stops it; its C3 data correction is a separate PR on `main` | S2.P3.T3 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1) and the items S1.P2.T2 leaves open.
 
