@@ -182,7 +182,8 @@ const LENS_DATA = {
   },
 
   /* ── Independent aberration control (optional) ── a real soft-focus / SA-control ring, not focus travel.
-   *    The gap's thickness without the control must match the first (normal/sharp) value.
+   *    The gap's thickness without the control matches the first value of each [normal, maximum] pair, or, with
+   *    centerLabel set, the center value of each [minimum, center, maximum] triple.
    *    See LENS_DATA_SPEC.md § Aberration control (aberrationControl). */
   // aberrationControl: {
   //   label: "SOFT",
