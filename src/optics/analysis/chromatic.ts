@@ -19,7 +19,7 @@ import { offsetVectorFieldRay2 as offsetVectorFieldRay } from "../field/fieldGeo
 import type { FieldGeometryState } from "../optics.js";
 import { prepareRayTrace, type PreparedRayTrace } from "../trace/rayAdapters.js";
 import { thick } from "../layout.js";
-import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
+import { compiledLensFromRuntime } from "../prescription/compile.js";
 import { prepareState } from "../state/prepareState.js";
 import type {
   ChromaticChannel,
@@ -118,7 +118,7 @@ function currentImagePlaneZ(
   if (L.N < 1) return null;
   if (L.isFoldedOptics) {
     // Match the trace's plane: an inferred folded image plane follows the current focus spacing.
-    const imagePlaneZ = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT).imgZ;
+    const imagePlaneZ = prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT).imgZ;
     return isFinite(imagePlaneZ) ? imagePlaneZ : null;
   }
   const imagePlaneZ = zPos[L.N - 1] + thick(L.N - 1, focusT, zoomT, L, aberrationT);

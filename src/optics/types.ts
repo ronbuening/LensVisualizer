@@ -222,7 +222,7 @@ export interface AuthoredRayFans {
 }
 
 /** Feature flags derived from RuntimeLens capabilities for engine branching. */
-export interface EngineLensFlags {
+export interface CompiledLensFlags {
   isZoom: boolean;
   isFoldedOptics: boolean;
   hasPerspectiveControl: boolean;
@@ -235,7 +235,7 @@ export interface EngineLensFlags {
  * This is immutable by convention and retains the originating RuntimeLens only as
  * a compatibility bridge for older public helper signatures.
  */
-export interface EngineLens {
+export interface CompiledLens {
   key: string;
   source: LensData;
   runtime: RuntimeLens;
@@ -253,7 +253,7 @@ export interface EngineLens {
   display: DisplaySpec;
   authoredRayFans: AuthoredRayFans;
   perspectiveControl: PerspectiveControlConfig | null;
-  flags: EngineLensFlags;
+  flags: CompiledLensFlags;
 }
 
 /** Surface state after current focus/zoom/aberration thicknesses and z positions are applied. */
@@ -271,7 +271,7 @@ export interface CompiledStateSurface extends Omit<CompiledSurface, "d"> {
  */
 export interface PreparedOpticalState {
   readonly traceGeometry: TraceGeometry;
-  lens: EngineLens;
+  lens: CompiledLens;
   focusT: number;
   zoomT: number;
   aberrationT: number;

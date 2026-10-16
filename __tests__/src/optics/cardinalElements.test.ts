@@ -1,3 +1,4 @@
+import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
 import { computeCardinalElementsAtState } from "../../../src/optics/cardinalElements.js";
@@ -12,7 +13,7 @@ function cardinalsFor(L: RuntimeLens, focusT = 0, zoomT = 0) {
 
 function minimalCardinalLens(surfaces: SurfaceData[]): RuntimeLens {
   const imageZ = surfaces.reduce((sum, surface) => sum + surface.d, 0);
-  return {
+  return registerRuntimeFixture({
     data: {
       key: "cardinal-fixture",
       name: "Cardinal fixture",
@@ -63,7 +64,7 @@ function minimalCardinalLens(surfaces: SurfaceData[]): RuntimeLens {
     rayFractions: [-0.5, 0, 0.5],
     offAxisFractions: [-0.5, 0, 0.5],
     offAxisFieldFrac: 0.6,
-  } as unknown as RuntimeLens;
+  } as unknown as RuntimeLens);
 }
 
 describe("computeCardinalElementsAtState", () => {

@@ -5,7 +5,7 @@
  */
 
 import type { RayTraceResult } from "../../types/optics.js";
-import type { EngineLens, Vec3 } from "../types.js";
+import type { CompiledLens, Vec3 } from "../types.js";
 import { bulkTransmissionForTrace } from "./bulkAbsorption.js";
 import type { EngineTraceResult, TraceCapture } from "./types.js";
 
@@ -32,7 +32,7 @@ export function engineTraceToRuntimeRayResult(
   result: EngineTraceResult,
   leadPoint: [number, number],
   ghost: boolean,
-  L: EngineLens,
+  L: CompiledLens,
 ): RayTraceResult {
   const pts: number[][] = [leadPoint];
   const ghostPts: number[][] = [];
@@ -58,7 +58,7 @@ export function engineTraceToRuntimeRayResult(
  */
 export function engineTraceToRuntimeSkewResult(
   result: EngineTraceResult<TraceCapture>,
-  L: EngineLens,
+  L: CompiledLens,
 ): RuntimeSkewRayTraceResult {
   return {
     x: result.x,

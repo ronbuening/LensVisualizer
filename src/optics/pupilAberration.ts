@@ -37,7 +37,7 @@ import {
   solveChiefRay,
 } from "./optics.js";
 import type { FieldGeometryState } from "./optics.js";
-import { normalizeRuntimeLens } from "./prescription/normalizeLensData.js";
+import { compiledLensFromRuntime } from "./prescription/compile.js";
 import { prepareState } from "./state/prepareState.js";
 import { directionFromMeridionalSlope } from "./math/vector.js";
 import { traceGeometryToStop } from "./trace/stopTrace.js";
@@ -158,7 +158,7 @@ function computeStatePupilBaselines(
     };
   }
 
-  const traceGeometry = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT).traceGeometry;
+  const traceGeometry = prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT).traceGeometry;
   const layout = doLayout(focusT, zoomT, L, aberrationT);
   const delta = 1e-4;
   const marginalStop = traceStateSurfacesReal(traceGeometry, delta, 0, { stopAt: L.stopIdx });

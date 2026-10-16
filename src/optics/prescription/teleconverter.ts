@@ -18,7 +18,8 @@ import type {
 } from "../../types/teleconverter.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTaxonomy.js";
 import { projectionFieldAngleForImageHeight2, projectionImageHeightForAngle2 } from "../field/projection.js";
-import { buildLabelIndex, buildStateSurfaces, buildVarIndex, zoomIndexToT } from "../internal/lensState.js";
+import { buildLabelIndex } from "../prescription/compileLabels.js";
+import { buildStateSurfaces, buildVarIndex, zoomIndexToT } from "../prescription/compileControls.js";
 import { traceParaxialSurfaces2 as traceSurfacesParaxial } from "../math/paraxial.js";
 import { expandRearPlates } from "./rearPlates.js";
 import { TELECONVERTER_LABEL_PREFIX, teleconverterCompatibility } from "./teleconverterCompatibility.js";

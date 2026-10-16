@@ -11,8 +11,8 @@
  */
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import validateLensData from "../src/optics/validateLensData.js";
-import { buildSpectralIndex } from "../src/optics/internal/lensState.js";
-import { expandRearPlates } from "../src/optics/prescription/rearPlates.js";
+import { buildSpectralIndex } from "../src/optics/buildLens.js";
+import { expandRearPlates } from "../src/optics/buildLens.js";
 import {
   assessCatalogGlassCompatibility,
   evaluateCatalogAbbeNumber,

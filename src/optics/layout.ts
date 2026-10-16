@@ -7,7 +7,7 @@
 
 import { closeFocusAtZoom, FOCUS_INFINITY_THRESHOLD } from "./focusDistance.js";
 import type { LayoutResult, RuntimeLens } from "../types/optics.js";
-import { buildStateSurfaces, resolveControlledThickness } from "./internal/lensState.js";
+import { buildStateSurfaces, resolveControlledThickness } from "./prescription/compileControls.js";
 import { conicPolySag, sag, sagSlopeRaw } from "./geometry/surfaceProfile.js";
 import { traceParaxialSurfaces2 as traceSurfacesParaxial } from "./math/paraxial.js";
 

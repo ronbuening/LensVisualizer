@@ -1,3 +1,5 @@
+import { completeCompilation } from "../../../src/optics/prescription/compileCanonical.js";
+import { compileConstruction } from "../../../src/optics/prescription/compileConstruction.js";
 import buildLens, { ingestLensV1, paraxialTrace, toLensData } from "../../../src/optics/buildLens.js";
 import { epAtZoom, fopenAtZoom } from "../../../src/optics/optics.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
@@ -451,4 +453,15 @@ export function teleconverterZoomHostData(overrides: Partial<LensData> = {}): Le
     ],
     ...overrides,
   });
+}
+
+/** Explicit compiler records for synthetic probes that intentionally bypass full-lens validation/constants. */
+export function registerRuntimeFixture(runtime: RuntimeLens): RuntimeLens {
+  const input = compileConstruction({ ...runtime.data, surfaces: runtime.S }, runtime.data);
+  input.stopIdx = runtime.stopIdx;
+  input.projection = runtime.projection;
+  input.opticalPath = runtime.opticalPath;
+  input.isFoldedOptics = runtime.isFoldedOptics;
+  completeCompilation(input, runtime);
+  return runtime;
 }

@@ -6,7 +6,7 @@
 
 import type { RuntimeLens } from "../../types/optics.js";
 import { traceParaxialSurfaces2, transferParaxialRay2, type ParaxialState } from "../math/paraxial.js";
-import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
+import { compiledLensFromRuntime } from "../prescription/compile.js";
 import { createTraceGeometry } from "../trace/geometry.js";
 import { prepareState } from "../state/prepareState.js";
 import type { PreparedOpticalState } from "../types.js";
@@ -187,7 +187,7 @@ export function computeCardinalElementsAtState2(
   imagePlaneZ: number,
   aberrationT = 0,
 ): CardinalElements2 | null {
-  const state = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT);
+  const state = prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT);
   const z = Object.freeze([...zPos]);
   const surfaces = Object.freeze(
     state.surfaces.map((surface, index) => Object.freeze({ ...surface, z: zPos[index] ?? surface.z })),

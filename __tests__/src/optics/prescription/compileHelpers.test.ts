@@ -1,14 +1,14 @@
 import { describe, expect, it } from "vitest";
+import { buildAsphereIndex } from "../../../../src/optics/prescription/compileAspheres.js";
+import { buildLabelIndex } from "../../../../src/optics/prescription/compileLabels.js";
 import {
-  buildAsphereIndex,
-  buildLabelIndex,
   buildStateSurfaces,
   firstInfinityThickness,
   resolveVariableThickness,
-} from "../../../../src/optics/internal/lensState.js";
+} from "../../../../src/optics/prescription/compileControls.js";
 import type { AsphericCoefficients, SurfaceData } from "../../../../src/types/optics.js";
 
-describe("lensState helpers", () => {
+describe("compiler helpers", () => {
   it("builds label and asphere lookups from surface labels", () => {
     const surfaces = [{ label: "1" }, { label: "STO" }, { label: "2" }] as SurfaceData[];
     const asphere: AsphericCoefficients = {

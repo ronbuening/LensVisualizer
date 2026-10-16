@@ -4,13 +4,13 @@ import {
   summarizeDispersionQualityForLens2,
   summarizeDispersionQualityForState2,
 } from "../../../../src/optics/chromatic/dispersionQuality.js";
-import type { EngineLens, PreparedOpticalState } from "../../../../src/optics/types.js";
+import type { CompiledLens, PreparedOpticalState } from "../../../../src/optics/types.js";
 import { buildChromaticPositiveElementLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 
-function lensWithQualities(qualities: Array<"air" | "sellmeier" | "lineIndices" | "abbe" | "constant">): EngineLens {
+function lensWithQualities(qualities: Array<"air" | "sellmeier" | "lineIndices" | "abbe" | "constant">): CompiledLens {
   return {
     dispersion: qualities.map((quality) => ({ quality })),
-  } as unknown as EngineLens;
+  } as unknown as CompiledLens;
 }
 
 describe("dispersion quality summaries", () => {

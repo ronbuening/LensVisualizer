@@ -7,7 +7,7 @@
 
 import type { AnnotationData, ElementData, ResolvedAnnotation, SurfaceData } from "../../types/optics.js";
 import type { CompiledElement } from "../types.js";
-import { resolveLabel } from "./labels.js";
+import { resolveLabel } from "./compileLabels.js";
 
 /**
  * Compile authored element metadata into normalized engine element spans.
@@ -21,9 +21,10 @@ export function compileElements(
   surfaces: readonly SurfaceData[],
   elements: readonly ElementData[],
   labelToSurfaceIndex: Readonly<Record<string, number>>,
+  sourceElements: readonly ElementData[] = elements,
 ): readonly CompiledElement[] {
   return Object.freeze(
-    elements.map((element) => {
+    elements.map((element, index) => {
       const span = resolveElementSpan(surfaces, element, labelToSurfaceIndex);
       return Object.freeze({
         id: element.id,
@@ -35,7 +36,7 @@ export function compileElements(
         glass: element.glass ?? null,
         absorptionCoefficientPerMm: element.absorptionCoefficientPerMm ?? null,
         surfaceSpan: Object.freeze(span),
-        source: Object.freeze({ ...element }),
+        source: Object.freeze({ ...sourceElements[index] }),
       });
     }),
   );

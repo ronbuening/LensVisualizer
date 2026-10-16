@@ -1,9 +1,17 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+import * as compiler from "../../../src/optics/prescription/compileCanonical.js";
+import * as glassCatalog from "../../../src/optics/glassCatalog.js";
+import * as materials from "../../../src/optics/chromatic/materialResolver.js";
+import { ingestLensV1, toLensData } from "../../../src/optics/buildLens.js";
+import { dispersionTableFromRuntime2 } from "../../../src/optics/chromatic/dispersionAdapter.js";
+import { summarizeDispersionQuality2 } from "../../../src/optics/chromatic/dispersionQuality.js";
+import { traceRay } from "../../../src/optics/optics.js";
+import { teleconverterHostData } from "./testLensFixtures.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import { doLayout, thick } from "../../../src/optics/optics.js";
 import { buildLens2, engineLensFromRuntime, prepareRuntimeState } from "../../../src/optics/compat.js";
-import { compileSurfaceDispersions } from "../../../src/optics/prescription/dispersion.js";
-import { normalizeLensData } from "../../../src/optics/prescription/normalizeLensData.js";
+import { compileSurfaceDispersions } from "../../../src/optics/prescription/compileMaterials.js";
+import { compileLensData } from "../../../src/optics/prescription/compile.js";
 import { createPreparedStateCache } from "../../../src/optics/state/cache.js";
 import { prepareState } from "../../../src/optics/state/prepareState.js";
 import { evaluateSellmeier, LINE_NM, resolveGlass } from "../../../src/optics/glassCatalog.js";
@@ -102,7 +110,7 @@ describe("Optics engine LensData normalization and compatibility", () => {
 
   it("can normalize directly from LensData without mutating lens data surfaces", () => {
     const original = structuredClone(LENS_CATALOG["nikkor-z-50f18s"]);
-    const engine = normalizeLensData(original);
+    const engine = compileLensData(original);
     expect(engine.key).toBe(original.key);
     expect(original.surfaces).toEqual(LENS_CATALOG["nikkor-z-50f18s"].surfaces);
   });
@@ -201,13 +209,84 @@ describe("Optics engine prepared state", () => {
     }
     expect(prepareState(engine, 0, 0).traceGeometry).not.toBe(geometry);
     const other = buildLens2(LENS_CATALOG["nikon-z-24-70f4s"]);
-    expect(prepareRuntimeState(other, 0, 0).traceGeometry).not.toBe(prepareRuntimeState(runtime, 0, 0).traceGeometry);
+    expect(prepareRuntimeState(other, 0, 0).traceGeometry).toBe(prepareRuntimeState(runtime, 0, 0).traceGeometry);
+    const independent = buildLens2(toLensData(ingestLensV1(LENS_CATALOG["nikon-z-24-70f4s"])));
+    expect(independent.data.key).toBe(runtime.data.key);
+    expect(prepareRuntimeState(independent, 0, 0).traceGeometry).not.toBe(
+      prepareRuntimeState(runtime, 0, 0).traceGeometry,
+    );
   });
 
-  it("keeps EngineLens parity-recoverable from ordinary buildLens runtimes", () => {
+  it("keeps CompiledLens parity-recoverable from ordinary buildLens runtimes", () => {
     const runtime = buildLens(LENS_CATALOG["varisoft-rokkor-85f28"]);
     const engine = engineLensFromRuntime(runtime);
     expect(engine.aberrationControl?.label).toBe(runtime.aberrationControl?.label);
     expect(engine.surfaces.map((surface) => surface.label)).toEqual(runtime.S.map((surface) => surface.label));
+  });
+});
+
+describe("canonical compiler ownership", () => {
+  it("never compiles an unregistered RuntimeLens view", () => {
+    const runtime = buildLens(teleconverterHostData());
+    expect(() => engineLensFromRuntime({ ...runtime })).toThrow(
+      "RuntimeLens was not constructed by the canonical compiler",
+    );
+  });
+
+  it("compiles once per canonical identity and resolves each medium once across every hot entry", () => {
+    const data = teleconverterHostData();
+    // A flat interface inside the first medium proves surface count is not resolver count.
+    const first = data.surfaces.find((s) => s.elemId === 1)!;
+    data.surfaces.splice(data.surfaces.indexOf(first) + 1, 0, { ...first, label: "shared-medium", R: 1e15, d: 0 });
+    data.rearPlates = [{ thicknessMm: 1, gapAfterMm: 2, nd: 1.52, vd: 60, glass: "N-BK7" }];
+    // Same glass label on distinct media must not conflate their optical coordinates.
+    for (const e of data.elements) e.glass = "N-BK7";
+    const ingested = ingestLensV1(data);
+    const before = structuredClone(ingested);
+    const view = toLensData(ingested);
+    const viewBefore = structuredClone(view);
+    const compile = vi.spyOn(compiler, "compileCanonicalUncached");
+    const resolve = vi.spyOn(materials, "makeSurfaceDispersion");
+    const lookup = vi.spyOn(glassCatalog, "resolveCompatibleGlass");
+    try {
+      const runtime = buildLens(view);
+      const compiled = engineLensFromRuntime(runtime);
+      const mediumCount = new Set(runtime.S.filter((s) => s.nd !== 1).map((s) => s.elemId || `index:${s.nd}`)).size;
+      const nonAirCalls = () => resolve.mock.calls.filter(([surface]) => surface.nd !== 1).length;
+      expect(compile).toHaveBeenCalledTimes(1);
+      expect(nonAirCalls()).toBe(mediumCount);
+      expect(lookup).toHaveBeenCalledTimes(mediumCount);
+      const shared = runtime.S.map((s, i) => (s.elemId === 1 ? i : -1)).filter((i) => i >= 0);
+      expect(shared.length).toBeGreaterThanOrEqual(2);
+      expect(compiled.dispersion[shared[0]].indexAt).toBe(compiled.dispersion[shared[1]].indexAt);
+      const glassCalls = resolve.mock.calls.filter(([surface]) => surface.nd !== 1);
+      expect(new Set(glassCalls.map(([, element]) => element?.id)).size).toBe(mediumCount);
+      const calls = resolve.mock.calls.length;
+      for (let i = 0; i < 3; i++) {
+        expect(buildLens(view)).toBe(runtime);
+        expect(buildLens(toLensData(ingested))).toBe(runtime);
+        const state = prepareRuntimeState(runtime, 0, 0);
+        traceRay(0.1, 0, [...state.z], 0, 0, runtime.stopPhysSD, false, runtime);
+        summarizeDispersionQuality2(runtime);
+        expect(dispersionTableFromRuntime2(runtime)).toBe(compiled.dispersion);
+      }
+      expect(compile).toHaveBeenCalledTimes(1);
+      expect(resolve).toHaveBeenCalledTimes(calls);
+      expect(lookup).toHaveBeenCalledTimes(mediumCount);
+      expect(ingested).toEqual(before);
+      expect(view).toEqual(viewBefore);
+      expect(compiled.surfaces[compiled.stop.surfaceIndex].sd).toBe(runtime.stopPhysSD);
+      expect(compiled.surfaces.filter((s) => s.source.synthetic === "rearPlate")).toHaveLength(2);
+      expect(compiled.surfaces.filter((s) => s.source.synthetic === "rearPlate").every((s) => !s.clips)).toBe(true);
+      const copy = toLensData(ingestLensV1(view));
+      expect(buildLens(copy)).not.toBe(runtime);
+      expect(compile).toHaveBeenCalledTimes(2);
+      expect(nonAirCalls()).toBe(2 * mediumCount);
+      expect(lookup).toHaveBeenCalledTimes(2 * mediumCount);
+    } finally {
+      compile.mockRestore();
+      resolve.mockRestore();
+      lookup.mockRestore();
+    }
   });
 });

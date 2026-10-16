@@ -126,7 +126,7 @@ describe("chiefRayDiagnostics", () => {
 
   it("counts converged solves under the lens key", () => {
     resetChiefRayDiagnostics();
-    const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
+    const L = buildLens(structuredClone(LENS_CATALOG[RECTILINEAR_FIXTURE]));
     solveChiefRay(10, 0, 0, L);
     solveChiefRay(20, 0, 0, L);
     const counts = getChiefRayDiagnostics().get(L.data?.key ?? "<unknown-lens>");

@@ -25,13 +25,14 @@ export class Optics2LensNormalizationError extends Error {
 export function buildSurfaceLabelMap(
   surfaces: readonly Pick<SurfaceData, "label">[],
 ): Readonly<Record<string, number>> {
-  const labelToSurfaceIndex: Record<string, number> = {};
+  const labelToSurfaceIndex = buildLabelIndex(surfaces);
+  const seen = new Set<string>();
   for (let i = 0; i < surfaces.length; i++) {
     const label = surfaces[i].label;
-    if (labelToSurfaceIndex[label] !== undefined) {
+    if (seen.has(label)) {
       throw new Optics2LensNormalizationError(`Duplicate surface label: "${label}"`);
     }
-    labelToSurfaceIndex[label] = i;
+    seen.add(label);
   }
   return Object.freeze(labelToSurfaceIndex);
 }
@@ -55,4 +56,12 @@ export function resolveLabel(
     throw new Optics2LensNormalizationError(`${context}: surface label "${label}" was not found`);
   }
   return index;
+}
+
+export function buildLabelIndex(surfaces: readonly Pick<SurfaceData, "label">[]): Record<string, number> {
+  const labelIdx: Record<string, number> = {};
+  for (let i = 0; i < surfaces.length; i++) {
+    labelIdx[surfaces[i].label] = i;
+  }
+  return labelIdx;
 }

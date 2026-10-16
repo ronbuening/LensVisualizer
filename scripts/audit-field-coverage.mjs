@@ -50,7 +50,7 @@ const { default: buildLens, ingestLensV1, toLensData } = await load("src/optics/
 const { computeAnalysisFieldGeometryAtState2, computeFieldGeometryAtState2, solveChiefRay2 } =
   await load("src/optics/field/chiefRay.ts");
 const { isFisheyeProjection2, rectilinearProjectionMaxTraceField2 } = await load("src/optics/field/projection.ts");
-const { normalizeRuntimeLens } = await load("src/optics/prescription/normalizeLensData.ts");
+const { compiledLensFromRuntime } = await load("src/optics/buildLens.ts");
 const { prepareState } = await load("src/optics/state/prepareState.ts");
 const { traceEngineRay2 } = await load("src/optics/trace/rayAdapters.ts");
 const { IMAGE_FORMAT_BY_ID } = await load("src/utils/catalog/lensTaxonomy.ts");
@@ -214,7 +214,7 @@ function fieldStop(L, tracer, modeledDeg, edgeHeight) {
 
 function auditStation(lens, L, zoomT, stationLabel) {
   const corner = (lens.imageCircleMm ?? IMAGE_FORMAT_BY_ID[lens.imageFormat].diagonalMm) / 2;
-  const state = prepareState(normalizeRuntimeLens(L), 0, zoomT, 0);
+  const state = prepareState(compiledLensFromRuntime(L), 0, zoomT, 0);
   const raw = computeFieldGeometryAtState2(0, zoomT, L, 0);
   const modeledDeg = computeAnalysisFieldGeometryAtState2(0, zoomT, L, 0).halfFieldDeg;
   const tracer = chiefRayTracer(L, state, zoomT, raw);

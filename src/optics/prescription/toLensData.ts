@@ -1,8 +1,8 @@
 /**
  * V1 view — rebuilds V1 lens and teleconverter data from a canonical prescription and its provenance.
  *
- * The engine still consumes V1 `LensData`, so until the compiler reads the canonical prescription directly every
- * lens reaches it through this view. For a file of either version the defaulted fields stay omitted, and the authored
+ * The catalog and UI consume this source-preserving V1 `LensData` view. The compiler uses the shared field
+ * projection with canonical values alone; it never restores ignored provenance into optical construction. For a file of either version the defaulted fields stay omitted, and the authored
  * values the engine ignores come back from `provenance.ignored`: a V2 `zoom.step: 0` gives `zoomStep: 0`, a zero
  * aspheric term returns, a numeric flat radius keeps its number. Only the V1 spellings the canonical form holds once
  * need V1 provenance (`provenance.v1`: the containers written empty, and how `publishedStations` was written). Given a
@@ -47,6 +47,8 @@ import {
   type SchemaDefault,
 } from "./defaults.js";
 import { V1_FLAT_RADIUS } from "./ingestV1.js";
+
+import { associateCanonical } from "./identity.js";
 
 type Untyped = Record<string, unknown>;
 
@@ -396,7 +398,17 @@ function buildLensView(ingested: IngestedPrescription<CanonicalLens>, mergeCatal
  * @returns fresh V1 `LensData`, sharing nothing with the prescription
  */
 export function toLensData(ingested: IngestedPrescription<CanonicalLens>): LensData {
-  return buildLensView(ingested, true) as unknown as LensData;
+  const view = buildLensView(ingested, true) as unknown as LensData;
+  associateCanonical(view, ingested);
+  return view;
+}
+
+/** Compiler construction projection: canonical values only, with no provenance restoration. */
+export function canonicalConstructionData(prescription: CanonicalLens): LensData {
+  return buildLensView(
+    { prescription, provenance: { format: 2, defaulted: [], ignored: {} } },
+    true,
+  ) as unknown as LensData;
 }
 
 /**
