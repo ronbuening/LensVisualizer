@@ -11,6 +11,7 @@ import {
   traceRayChromatic,
   computeChromaticRayFanSpread,
   conjugateK,
+  FOCUS_INFINITY_CUTOFF,
   eflAtZoom,
   eflAtFocus,
   effectiveFNumber,
@@ -572,6 +573,17 @@ describe("conjugateK", () => {
     ["Nikkor105f14E", buildLens(catalogLensData(Nikkor105Raw))],
     ["Sonnar50f15", buildLens(catalogLensData(Sonnar50f15Raw))],
   ];
+
+  it("treats focus below the infinity cutoff as zero conjugate correction", () => {
+    const L = buildVariableStopGapLens([1, 10]);
+    expect(FOCUS_INFINITY_CUTOFF).toBe(0.003);
+    for (const focusT of [0.001, 0.002, FOCUS_INFINITY_CUTOFF - 1e-6]) {
+      expect(conjugateK(focusT, 0, L)).toBe(0);
+    }
+    for (const focusT of [FOCUS_INFINITY_CUTOFF, FOCUS_INFINITY_CUTOFF + 1e-6]) {
+      expect(Math.abs(conjugateK(focusT, 0, L))).toBeGreaterThan(1e-8);
+    }
+  });
 
   /* Includes the Sonnar50f15 regression case: |K(0)| was 0.00442 with the
    * paraxial trace before the exact-trace rollout. */

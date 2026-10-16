@@ -535,15 +535,11 @@ expressions can differ in their last bits, so the endpoint policy is explicit. E
 whole-table non-finite guard; first-order exposure readers retain their local interpolation instead.
 
 `first-order/focusBreathing.ts` and `first-order/fNumber.ts` each expose one prepared-state adapter for paraxial
-EFL and exposure-correction math, retaining existing control and fallback contracts. The two infinity cutoffs remain
-an open question pending a maintainer-approved C3 decision. `FOCUS_REPORTING_INFINITY_THRESHOLD` (0.003, in
-`focusDistance.ts`) gates finite-distance labels, `remapFocusDistance` after zoom changes, EFL baselines (including
-the perspective field-sampling focal scale via `eflAtFocus2`), pupil-aberration paraxial baselines, and
-exposure/magnification summaries. `CONJUGATE_CORRECTION_MIN_FOCUS_T` (0.0001, in `field/chiefRay.ts`) gates the real-ray
-sensitivity difference `kt - k0` used for finite-conjugate launch correction. Before the optics-2 port, `conjugateK`
-used the shared 0.003 cutoff; the port introduced 0.0001. Both ask whether the object is at infinity, and their current
-split is preserved under C0 pending that decision. Neither cutoff snaps surface gaps: a control between them reports
-infinity while tracing a nonzero conjugate correction.
+EFL and exposure-correction math, retaining existing control and fallback contracts. `FOCUS_INFINITY_CUTOFF`
+(0.003, in `focusDistance.ts`) defines when focus is treated as infinity: it gates distance labels and remapping,
+EFL (including perspective field scale), f-number and magnification summaries, pupil-aberration paraxial baselines,
+and the real-ray sensitivity difference `kt - k0` used for conjugate correction. Below the cutoff `conjugateK` is
+zero, matching the pre-optics-2 behavior. The cutoff does not snap interpolated surface gaps.
 
 `state/preparedGeometry.ts` owns `prepareState()` and the only prepared-control LRU: at most 96 immutable states
 per `CompiledLens`, released with that compiled identity. Runtime adapters, fields, first-order calculations, pupil

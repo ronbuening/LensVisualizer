@@ -7,7 +7,7 @@
 import { closeFocusAtZoom } from "../focusDistance.js";
 import { interpolateStationTable, clampStationControl } from "../state/stationTables.js";
 import type { RuntimeLens } from "../../types/optics.js";
-import { FOCUS_REPORTING_INFINITY_THRESHOLD } from "../focusDistance.js";
+import { FOCUS_INFINITY_CUTOFF } from "../focusDistance.js";
 import { eflAtFocus2 } from "./focusBreathing.js";
 
 /**
@@ -31,7 +31,7 @@ export function effectiveFNumber2(
   L: RuntimeLens,
   aberrationT = 0,
 ): number {
-  if (focusT < FOCUS_REPORTING_INFINITY_THRESHOLD) return nominalFNumber;
+  if (focusT < FOCUS_INFINITY_CUTOFF) return nominalFNumber;
   const efl = eflAtFocus2(focusT, zoomT, L, aberrationT);
   const focusDistMm = (closeFocusAtZoom(zoomT, L) / focusT) * 1000;
   const m = focusMagnification(efl, focusDistMm);
