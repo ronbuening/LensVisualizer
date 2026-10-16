@@ -116,6 +116,9 @@ describe("source paths on request", () => {
       "varLabels[0]": "gaps[0]",
     });
     expect(zoom.firstField).toBe("key");
+    /* The first field as written, whatever it holds. */
+    const undefinedFirst = Object.assign({ maker: undefined }, pairOf("prime").v1, { maker: undefined });
+    expect(ingestLens(undefinedFirst, { sources: true }).provenance.sources!.firstField).toBe("maker");
 
     /* A prime's gap list is the gap's one row; an asph entry is its surface's asphere, its zeros set aside. */
     const keyframes = ingestLens(pairOf("focus keyframes").v1, { sources: true }).provenance.sources!;
@@ -150,7 +153,8 @@ describe("source paths on request", () => {
     expect(media.heldBy["surfaces[0].medium"]).toBe("surfaces[0].medium");
     expect(media.heldBy["surfaces[1].medium"]).toBeUndefined();
     expect(media.heldBy.schema).toBe("schema");
-    expect(media.firstField).toBe("schema");
+    /* A V2 source keeps its comments at their paths, so ingest records no first field for ruling 10. */
+    expect(media.firstField).toBeUndefined();
     expect(media.read["surfaces[0].R"]).toBe("surfaces[0].R");
     expect(media.ignored["surfaces[0].R"]).toBeUndefined();
 

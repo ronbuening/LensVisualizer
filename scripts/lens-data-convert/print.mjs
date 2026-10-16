@@ -6,16 +6,13 @@
  * keys, one space after each colon and comma, no trailing comma. Prettier then breaks what does not fit, and leaves a
  * record under `// prettier-ignore` exactly as written here. It writes a record or list on several lines only where a
  * line must end: a comment among its entries, the file's own object, whose groups it separates with a blank line
- * before each member the engine names as opening one, and a `surfaces` or `elements` list whose rows keep the blank
- * lines their source had.
+ * before each member the engine names as opening one, and a list the engine names as one of rows whose rows keep the
+ * blank lines their source had. A member's trailing comments share its line, in the order the placer gives them.
  *
  * Members print in the order the V2 view wrote them, which keeps gaps in surface order. A key prints bare where the
  * engine's path spelling writes it as a member, and through `JSON.stringify` where it writes it as a key (`"6":`).
  * A value prints with the literal text the caller gives it, else as `String(value)` or `JSON.stringify(value)`.
  */
-
-/** Lists whose rows keep a blank line their source had, before the row or before one of its leading comments. */
-const ROW_LISTS = new Set(["surfaces", "elements"]);
 
 const NO_COMMENTS = { leading: [], trailing: [], dangling: [] };
 
@@ -35,13 +32,14 @@ function literal(value) {
  * @param {(path: string) => string | undefined} file.text - the literal text of a value, where it keeps its source's
  * @param {(path: string) => { leading: { text: string, blankBefore: boolean }[], trailing: { text: string }[],
  *   dangling: { text: string }[] } | undefined} file.comments - the comments a node carries
- * @param {(path: string) => boolean} file.blankBefore - whether a row of `surfaces` or `elements` had a blank line
- *   just before it in its source
+ * @param {(path: string) => boolean} file.blankBefore - whether a row of a list of rows had a blank line just before it
+ *   in its source
  * @param {(member: string) => boolean} file.opensGroup - whether a member of the file's object opens a group of it
+ * @param {readonly string[]} file.rowLists - the lists whose rows keep their source's blank lines, by path
  * @param {(base: string, key: string | number) => string} file.childPath - the engine's path spelling
  * @returns {string} the object's source text
  */
-export function printLensDataObject({ value, order, text, comments, blankBefore, opensGroup, childPath }) {
+export function printLensDataObject({ value, order, text, comments, blankBefore, opensGroup, rowLists, childPath }) {
   const commentsOf = (path) => comments(path) ?? NO_COMMENTS;
   const keyText = (base, key) => {
     const spelled = childPath(base, key);
@@ -58,7 +56,7 @@ export function printLensDataObject({ value, order, text, comments, blankBefore,
     });
     const [open, close] = isList ? ["[", "]"] : ["{", "}"];
     const dangling = commentsOf(path).dangling;
-    const rows = isList && ROW_LISTS.has(path);
+    const rows = isList && rowLists.includes(path);
     const expanded =
       path === "" ||
       dangling.length > 0 ||
@@ -82,9 +80,8 @@ export function printLensDataObject({ value, order, text, comments, blankBefore,
         lines.push(`${indent}${comment.text}`);
       });
       if ((opensFileGroup && entry.comments.leading.length === 0) || (rows && blankBefore(entry.path))) lines.push("");
-      const [first, ...more] = entry.comments.trailing;
-      lines.push(`${indent}${member(entry)},${first ? ` ${first.text}` : ""}`);
-      for (const comment of more) lines.push(`${indent}${comment.text}`);
+      const trailing = entry.comments.trailing.map((comment) => ` ${comment.text}`).join("");
+      lines.push(`${indent}${member(entry)},${trailing}`);
     });
     for (const comment of dangling) lines.push(`${indent}${comment.text}`);
     lines.push(`${"  ".repeat(depth)}${close}`);

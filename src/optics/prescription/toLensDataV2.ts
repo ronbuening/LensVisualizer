@@ -297,6 +297,12 @@ export const V2_GROUP_STARTS: readonly string[] = [
   "checks",
 ];
 
+/**
+ * Lists of a V2 file whose rows keep a blank line their source had, before the row or before one of its leading
+ * comments; the converter breaks such a list across lines when one does.
+ */
+export const V2_ROW_LISTS: readonly string[] = ["surfaces", "elements"];
+
 function writeIdentity(write: Writer, out: Untyped, prescription: CanonicalPrescription, visiblePath?: string): void {
   /* Written from the format, under its own path, where a V2 source's `schema` is held. */
   write.put(out, "", "schema", 2, "schema");
@@ -615,9 +621,10 @@ export function v2SourceMap(ingested: IngestedPrescription, writes: V2Writes): V
       return readExact.get(canonical) ?? ignoredFrom.get(canonical) ?? follow(canonical, readExact, readExact);
     },
     commentTarget(authoredPath, leading = false) {
+      /* Ruling 10: a V1 file's first field, as written, whatever it holds; ingest records it for a V1 source alone. */
+      if (leading && authoredPath === sources.firstField) return { path: "schema", moved: false };
       const target = carried(authoredPath);
       if (!leading || target.moved || parentPath(authoredPath) !== "") return target;
-      if (authoredPath === sources.firstField) return { path: "schema", moved: false };
       return { path: opened(target.path), moved: false };
     },
     recordSource(v2Path) {

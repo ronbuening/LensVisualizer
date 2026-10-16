@@ -12,8 +12,8 @@
  * 4. puts the printer's number tokens back where Prettier respelled them, so `1.05587e-7` stays as written;
  * 5. checks the bytes it would write: every number token where the printer put it; every comment of the source once,
  *    header included, as written or with its moved-from note; every comment on the node and in the placement the
- *    printer gave it, so a second conversion carries it nowhere else; and an ingest of the result equal to the
- *    source's prescription under the fingerprint's rules.
+ *    placer gave it, as the printed text reads and as formatting leaves it, so a second conversion carries it nowhere
+ *    else; and an ingest of the result equal to the source's prescription under the fingerprint's rules.
  *
  * The file around the object keeps its shape: everything before the statement that declares the exported const is
  * kept byte for byte, except the type import, which names the V2 type from `types/lensDataV2.js` at the import's own
@@ -34,7 +34,7 @@ import * as prettier from "prettier";
 import ts from "typescript";
 import { parseLensDataSource } from "../lens-data-ast.mjs";
 import { loadLensDataConversion } from "../lens-summaries.mjs";
-import { commentNotCarried, commentReplaced, placeComments } from "./comments.mjs";
+import { commentMisplaced, commentNotCarried, commentReplaced, placeComments } from "./comments.mjs";
 import { printLensDataObject } from "./print.mjs";
 import { readLensDataFile } from "./read.mjs";
 import { stopRadiusEntry } from "./report.mjs";
@@ -274,7 +274,8 @@ export async function convertLensDataSource(content, options) {
     isContainer: (path) => containers.has(path),
   });
   if (placed.unattached.length > 0) {
-    return refuse(`the comment at line ${placed.unattached[0].line} sits outside the exported object`);
+    const [comment] = placed.unattached;
+    return refuse(`the comment at line ${comment.line} sits ${comment.reason ?? "outside the exported object"}`);
   }
   report.moved = placed.moved;
 
@@ -285,6 +286,7 @@ export async function convertLensDataSource(content, options) {
     comments: (path) => placed.byPath.get(path),
     blankBefore: (path) => read.nodes.get(map.recordSource(path))?.blankBefore ?? false,
     opensGroup: (member) => conversion.V2_GROUP_STARTS.includes(member),
+    rowLists: conversion.V2_ROW_LISTS,
     childPath: conversion.childPath,
   });
   const printed = `const ${frame.name} = ${objectText} satisfies ${frame.type};\n\nexport default ${frame.name};\n`;
@@ -310,6 +312,8 @@ export async function convertLensDataSource(content, options) {
   }
   const uncarried = commentNotCarried(read.comments, outputRead.comments);
   if (uncarried) return refuse(uncarried);
+  const misplaced = commentMisplaced(placed.byPath, printedRead.comments);
+  if (misplaced) return refuse(misplaced);
   const replaced = commentReplaced(printedRead.comments, outputRead.comments);
   if (replaced) return refuse(replaced);
   let reingested;

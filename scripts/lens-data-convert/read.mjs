@@ -6,13 +6,16 @@
  * through the engine's `childPath`, so a path read here names the node ingest and the V2 view name.
  *
  * Comments inside the exported object are attached by position:
- * - one on the line where an entry ends is that entry's trailing comment;
+ * - a block comment with nothing but spaces between it and the next entry, on the same line, is that entry's leading
+ *   comment, as Prettier reads it;
+ * - otherwise one on the line where an entry ends is that entry's trailing comment;
  * - one on a later line, before the next entry, is the next entry's leading comment, blank line or not;
  * - one after the last entry, or in an empty record or list, is the container's dangling comment;
  * - one inside an entry but outside any record or list in it, such as between a member's name and its value, is the
  *   entry's inner comment.
  * Comments before the statement that declares the exported const belong to the file's header, which the converter
- * keeps as it is; a comment anywhere else is left unattached, and the converter refuses the file.
+ * keeps as it is. A comment inside a spread, whose items are never visited, and a comment anywhere else are left
+ * unattached, and the converter refuses the file.
  */
 
 import ts from "typescript";
@@ -41,6 +44,7 @@ import { walkLensDataSource } from "../lens-data-ast.mjs";
  * @property {"leading" | "trailing" | "dangling" | "inner" | "header" | "unattached"} placement - how it annotates it
  * @property {boolean} blankBefore - whether a blank line precedes it
  * @property {boolean} [withinText] - for an inner comment, whether it sits inside the value's own literal text
+ * @property {string} [reason] - for an unattached comment inside the exported object, where it sits
  */
 
 /** Whether a blank line sits in the whitespace just before `position`. */
@@ -184,6 +188,10 @@ export function readLensDataFile(content, fileName, paths) {
       ? container.expression.properties
       : container.expression.elements;
     const inside = children.find((child) => comment.pos >= child.getStart(sourceFile) && comment.end <= child.end);
+    if (inside && (ts.isSpreadElement(inside) || ts.isSpreadAssignment(inside))) {
+      comment.reason = "inside a spread";
+      continue;
+    }
     if (inside) {
       comment.path = syntaxPaths.get(inside) ?? container.path;
       comment.placement = syntaxPaths.has(inside) ? "inner" : "dangling";
@@ -194,7 +202,12 @@ export function readLensDataFile(content, fileName, paths) {
     }
     const previous = children.filter((child) => child.end <= comment.pos).at(-1);
     const next = children.find((child) => child.getStart(sourceFile) >= comment.end);
-    if (previous && !lineBreakBetween(text, previous.end, comment.pos) && syntaxPaths.has(previous)) {
+    const leadsNext =
+      comment.text.startsWith("/*") && next && /^[ \t]*$/.test(text.slice(comment.end, next.getStart(sourceFile)));
+    if (leadsNext && syntaxPaths.has(next)) {
+      comment.path = syntaxPaths.get(next);
+      comment.placement = "leading";
+    } else if (previous && !lineBreakBetween(text, previous.end, comment.pos) && syntaxPaths.has(previous)) {
       comment.path = syntaxPaths.get(previous);
       comment.placement = "trailing";
     } else if (next && syntaxPaths.has(next)) {

@@ -294,8 +294,8 @@ const CHECKS_FIELDS: Fields<ChecksV2Input> = { gapSagFrac: true, maxRimAngleDeg:
 
 /* ── Context and records ── */
 
-function createContext(request: IngestRequest | undefined, data: Untyped): IngestContext {
-  return { format: "V2", issues: [], defaulted: [], ignored: {}, sources: sourcePathsFor(request, data) };
+function createContext(request: IngestRequest | undefined): IngestContext {
+  return { format: "V2", issues: [], defaulted: [], ignored: {}, sources: sourcePathsFor(request) };
 }
 
 /** Record that each listed member of a V2 record was read where it sits, at its canonical path. */
@@ -950,7 +950,7 @@ function refuseOtherSchema(data: Untyped, context: IngestContext): void {
 export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): IngestedPrescription<CanonicalLens> {
   const data = input as unknown as Untyped;
   const key = keyOf(data);
-  const context = createContext(request, data);
+  const context = createContext(request);
   refuseUnknownFields(data, LENS_FIELDS, "", context);
   refuseOtherSchema(data, context);
   requireFields(data, ["key", "name", "focus", "aperture", "layout"], "", context);
@@ -1096,7 +1096,7 @@ export function ingestTeleconverterV2(
 ): IngestedPrescription<CanonicalTeleconverter> {
   const data = input as unknown as Untyped;
   const key = keyOf(data);
-  const context = createContext(request, data);
+  const context = createContext(request);
   refuseUnknownFields(data, TELECONVERTER_FIELDS, "", context);
   refuseOtherSchema(data, context);
   requireFields(data, ["key", "name", "catalog", "magnification", "masterImageDistanceMm"], "", context);

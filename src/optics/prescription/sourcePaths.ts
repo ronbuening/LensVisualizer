@@ -10,7 +10,8 @@
  *
  * Ingest records its source paths in this spelling (`SourcePaths` in `canonical.ts`), the V2 writer records what it
  * writes in it, and the converter's reader spells each node it reads through `childPath`, so a path read from a file
- * names the same node in all three.
+ * names the same node in all three. V1 ingest's refusals spell their paths here too, so a label holding `"` or `\`
+ * prints JSON-escaped in a refusal (`asph["a\"b"]`), where it once printed as written.
  */
 
 /** Records keyed by surface label, in either version. */

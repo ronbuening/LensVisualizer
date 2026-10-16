@@ -21,6 +21,7 @@ export interface LensDataConversion extends PrescriptionViews {
   };
   v2SourceMap: (ingested: never, writes: never) => object;
   V2_GROUP_STARTS: readonly string[];
+  V2_ROW_LISTS: readonly string[];
   prescriptionDifference: (a: unknown, b: unknown) => string | undefined;
   childPath: (base: string, key: string | number) => string;
   parentPath: (path: string) => string | undefined;

@@ -16,7 +16,7 @@ import {
   formatWithPrettier,
   type ConversionOptions,
 } from "../../scripts/lens-data-convert/convert.mjs";
-import { movedCommentText } from "../../scripts/lens-data-convert/comments.mjs";
+import { commentMisplaced, movedCommentText } from "../../scripts/lens-data-convert/comments.mjs";
 import { formatConversionReport } from "../../scripts/lens-data-convert/report.mjs";
 import { evaluateLensDataSource } from "../../scripts/lens-data-ast.mjs";
 import { ingestLens, ingestTeleconverter } from "../../src/optics/prescription/ingestV2.js";
@@ -146,6 +146,65 @@ describe("printing a converted file", () => {
       expect(text).toBe(source);
       expect(report).toEqual({ file: FILE, moved: [], stops: [], zeroTerms: [], dropped: [] });
     }
+    /* Ruling 10 is for a V1 source: a V2 file's first field keeps its leading comment, wherever the field prints. */
+    const schemaLine = "  schema: 2, // the lens-data version\n";
+    const keyLine = '  key: "fixture-v2-source",\n';
+    const keyFirst = V2_SOURCE_FILE.replace(schemaLine + keyLine, `  // the key\n${keyLine}${schemaLine}`);
+    const { text, report } = await converted(keyFirst);
+    expect(text).toBe(V2_SOURCE_FILE.replace(keyLine, `  // the key\n${keyLine}`));
+    expect(report.moved).toEqual([]);
+  });
+
+  it("leads schema with the banner over a V1 file's first field, though V2 dissolves that field", async () => {
+    const asph = '  // ── Aspheres ──\n  asph: { "1": { K: 0, A4: 1e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },\n';
+    const { text, report } = await converted(v1LensFile(asph + PRIME_MEMBERS));
+    expect(text).toContain("const LENS_DATA = {\n  // ── Aspheres ──\n  schema: 2,\n");
+    expect(report.moved).toEqual([]);
+    expect((await converted(text)).text).toBe(text);
+  });
+
+  it("keeps a node's trailing comments on its line, and leads it with a second line comment", async () => {
+    const named = await converted(
+      v1LensFile(PRIME_MEMBERS.replace('name: "Fixture 50mm f/2",', 'name: "Fixture 50mm f/2", /* a */ // b')),
+    );
+    expect(named.text).toContain('  name: "Fixture 50mm f/2" /* a */, // b\n');
+    expect((await converted(named.text)).text).toBe(named.text);
+
+    /* nd and elemId both become the surface's medium: the first line comment trails it, the second leads it. */
+    const surface = [
+      "{",
+      '      label: "1",',
+      "      R: 50,",
+      "      d: 5,",
+      "      nd: 1.5168, // N-BK7",
+      "      elemId: 1, // L1",
+      "      sd: 15,",
+      "    },",
+    ].join("\n");
+    const merged = await converted(
+      v1LensFile(
+        PRIME_MEMBERS.replace('{ label: "1", R: 50, d: 5, nd: 1.5168, elemId: 1, sd: 15 }, // L1 front', surface),
+      ),
+    );
+    expect(merged.text).toContain("      sd: 15,\n      // L1\n      medium: 1, // N-BK7\n    },");
+    expect((await converted(merged.text)).text).toBe(merged.text);
+  });
+
+  it("gives a directive in a moved run its own note, so no moved comment is a bare directive", async () => {
+    const gaps = '  // ── Variable gaps ──\n  // prettier-ignore\n  var: { "2": [80, 85] },\n';
+    const { text } = await converted(v1LensFile(PRIME_MEMBERS.replace("  surfaces: [", `${gaps}  surfaces: [`)));
+    expect(text).toContain(
+      "  // (moved from var) ── Variable gaps ──\n  // (moved from var) prettier-ignore\n  gaps: {",
+    );
+    expect((await converted(text)).text).toBe(text);
+  });
+
+  it("leads the next entry with a block comment that sits just before it", async () => {
+    const { text } = await converted(
+      ZOOM_FILE.replace("nominalFno: [2, 2.4, 2.8],", "nominalFno: [2, /* mid */ 2.4, 2.8],"),
+    );
+    expect(text).toMatch(/focalLengthMm: 50,\n\s+\/\* mid \*\/\n\s+nominalFNumber: 2\.4,/);
+    expect((await converted(text)).text).toBe(text);
   });
 
   it("keeps a sign, Infinity and a respelled exponent, and leaves an undefined member out", async () => {
@@ -160,14 +219,14 @@ describe("printing a converted file", () => {
   });
 
   it("keeps a wrapped literal's text without its wrapper, and gives a spread's items their values", async () => {
-    const members = PRIME_MEMBERS.replace(
-      "closeFocusM: 0.5,",
-      'closeFocusM: (0.50),\n  imageFormat: "aps-c" as const,',
-    ).replace("fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],", "fstopSeries: [2.0, ...[2.80, 4.0], 5.6],");
+    const members = PRIME_MEMBERS.replace("closeFocusM: 0.5,", 'closeFocusM: (0.50),\n  imageFormat: "aps-c" as const,')
+      .replace("fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],", "fstopSeries: [2.0, ...[2.80, 4.0], 5.6],")
+      .replace("yScFill: 0.55,", "...{ yScFill: 0.550 },");
     const { text } = await converted(v1LensFile(members));
     expect(text).toContain('catalog: { imageFormat: "aps-c" },');
     expect(text).toContain("focus: { closeFocusM: 0.50 },");
     expect(text).toContain("fStops: [2.0, 2.8, 4, 5.6]");
+    expect(text).toContain("layout: { yScFill: 0.55 },");
   });
 
   it("names no undrawn medium of a V1 source, and takes a shared one's text from its first surface", async () => {
@@ -190,6 +249,26 @@ describe("printing a converted file", () => {
     const { text } = await converted(v1LensFile(members, header));
     expect(text).toContain("const GLASS_ND = 1.51680;");
     expect(text).toContain('type: "Biconvex Positive", nd: 1.5168, vd: 64.17 }');
+  });
+
+  it("refuses a printed file that reads a comment elsewhere than the placer put it", () => {
+    const placed = new Map([
+      ["name", { leading: [], trailing: [{ text: "/* a */" }, { text: "// b" }], dangling: [] }],
+    ]);
+    const read = (path: string, placement: string, text: string) => ({ text, path, placement }) as never;
+    expect(commentMisplaced(placed, [read("name", "trailing", "/* a */"), read("name", "trailing", "// b")])).toBe(
+      undefined,
+    );
+    expect(commentMisplaced(placed, [read("name", "trailing", "/* a */"), read("subtitle", "leading", "// b")])).toBe(
+      "the printed file reads the trailing comment of name as the leading comment of subtitle: // b",
+    );
+    expect(
+      commentMisplaced(placed, [
+        read("name", "trailing", "/* a */"),
+        read("name", "trailing", "// b"),
+        read("", "dangling", "// c"),
+      ]),
+    ).toBe("the printed file holds 3 comments, not the 2 placed");
   });
 
   it("prefixes a moved comment once, the prefix inside the comment so a directive stays inert", () => {
@@ -240,6 +319,16 @@ describe("refusals", () => {
       "a comment outside the object",
       prime.replace("} satisfies LensDataInput;", "} /* outside */ satisfies LensDataInput;"),
       /the comment at line \d+ sits outside the exported object/,
+    ],
+    [
+      "a comment inside a list spread",
+      prime.replace("fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],", "fstopSeries: [2, ...[2.8 /* c */, 4], 5.6],"),
+      /^the comment at line \d+ sits inside a spread$/,
+    ],
+    [
+      "a comment inside an object spread",
+      prime.replace("closeFocusM: 0.5,", "...{ closeFocusM: 0.40 /* c */ },"),
+      /^the comment at line \d+ sits inside a spread$/,
     ],
     [
       "a comment inside the type import, which the frame rewrites",

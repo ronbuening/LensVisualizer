@@ -13,6 +13,7 @@ export { ingestLens, ingestTeleconverter } from "./prescription/ingestV2.js";
 export { toLensDataInput, toTeleconverterData } from "./prescription/toLensData.js";
 export {
   V2_GROUP_STARTS,
+  V2_ROW_LISTS,
   toLensDataV2Input,
   toTeleconverterDataV2Input,
   v2SourceMap,

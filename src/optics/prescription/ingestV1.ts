@@ -252,14 +252,10 @@ interface IngestContext extends SharedIngestContext {
 }
 
 function createContext(request: IngestRequest | undefined, data: Untyped): IngestContext {
-  return {
-    format: "V1",
-    issues: [],
-    defaulted: [],
-    ignored: {},
-    v1: { emptyContainers: [] },
-    sources: sourcePathsFor(request, data),
-  };
+  const sources = sourcePathsFor(request);
+  /* The first field as written, whatever it holds (ruling 10): its leading comments lead the V2 file's `schema`. */
+  if (sources) sources.firstField = Object.keys(data)[0];
+  return { format: "V1", issues: [], defaulted: [], ignored: {}, v1: { emptyContainers: [] }, sources };
 }
 
 /**
