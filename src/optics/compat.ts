@@ -5,10 +5,9 @@
  * implementation lives in focused prescription, state, trace, field, and analysis modules.
  */
 
-import buildRuntimeLens from "./runtimeLens.js";
 import type { LayoutResult, LensData, RuntimeLens } from "../types/optics.js";
-import type { EngineLens, PreparedOpticalState } from "./types.js";
-import { normalizeRuntimeLens, withLensDefaults } from "./prescription/normalizeLensData.js";
+import type { CompiledLens, PreparedOpticalState } from "./types.js";
+import { compiledLensFromRuntime, compileLensData } from "./prescription/compile.js";
 import { prepareState } from "./state/prepareState.js";
 import type { PreparedStateCache } from "./state/cache.js";
 
@@ -50,25 +49,23 @@ function preparedStateCacheForRuntime(L: RuntimeLens): PreparedStateCache {
  * Build and register a RuntimeLens from defaulted lens data.
  *
  * @param data - lens prescription after catalog defaults are acceptable
- * @returns frozen RuntimeLens plus a cached normalized EngineLens for state work
+ * @returns the shared frozen RuntimeLens for the canonical identity
  */
 export function buildLens2(data: LensData): RuntimeLens {
-  const runtime = buildRuntimeLens(withLensDefaults(data));
-  normalizeRuntimeLens(runtime);
-  return runtime;
+  return compileLensData(data).runtime;
 }
 
 /**
- * Retrieve or create the normalized engine lens for a RuntimeLens.
+ * Retrieve the compiled owner of a RuntimeLens.
  *
- * The cache is keyed by object identity; callers must not mutate a RuntimeLens in
+ * The association is lookup-only; callers must not mutate a RuntimeLens in
  * place because prepared-state caches assume a fresh object for changed optics.
  *
  * @param L - runtime lens object returned by buildLens
  * @returns normalized engine lens used by prepared-state modules
  */
-export function engineLensFromRuntime(L: RuntimeLens): EngineLens {
-  return normalizeRuntimeLens(L);
+export function engineLensFromRuntime(L: RuntimeLens): CompiledLens {
+  return compiledLensFromRuntime(L);
 }
 
 /**

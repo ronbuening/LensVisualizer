@@ -1,3 +1,4 @@
+import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, it, expect } from "vitest";
 import {
   createCoordinateTransforms,
@@ -193,7 +194,7 @@ describe("computeElementShapes", () => {
       toSurface: surfaces[s2].label,
     }));
     const imageZ = surfaces.reduce((sum, surface) => sum + surface.d, 0);
-    return {
+    return registerRuntimeFixture({
       ...partial,
       data: {
         key: "diagram-geometry-fixture",
@@ -260,7 +261,7 @@ describe("computeElementShapes", () => {
       maxAspectRatio: 1.6,
       lensShiftFrac: 0,
       rayLeadFrac: 0.35,
-    } as RuntimeLens;
+    } as RuntimeLens);
   }
 
   /**
@@ -304,7 +305,7 @@ describe("computeElementShapes", () => {
   }
 
   it("returns empty array for empty ES", () => {
-    const L = { ...makeSingleElementLens(), ES: [] };
+    const L = registerRuntimeFixture({ ...makeSingleElementLens(), ES: [] });
     expect(computeElementShapes(L, [0, 5], sx, sy)).toEqual([]);
   });
 
@@ -616,10 +617,10 @@ describe("computeElementShapes", () => {
   });
 
   it("samples slope-trimmed surfaces only to the diagnostic render SD", () => {
-    const L = {
+    const L = registerRuntimeFixture({
       ...makeSingleElementLens({ R1: 32.975, sd1: 24, R2: 84.15, sd2: 20 }),
       maxRimTan: 0.95,
-    } as RuntimeLens;
+    } as RuntimeLens);
     const zPos = [0, 8.01];
     const diagnostics = computeElementRenderDiagnostics(L, zPos);
     const shape = computeElementShapes(L, zPos, sx, sy)[0];
@@ -877,6 +878,7 @@ describe("standalone reflecting surfaces", () => {
     const L = { ...base, ES: [], S: base.S.map((surface) => ({ ...surface })) };
     const primary = L.S.findIndex((surface) => surface.label === "M1");
     L.S[primary].innerSd = 5;
+    registerRuntimeFixture(L);
     const layout = doLayout(0, 0, L);
     const paths = computeStandaloneMirrorPaths(
       L,

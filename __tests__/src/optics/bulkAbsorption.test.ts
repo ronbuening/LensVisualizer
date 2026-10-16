@@ -1,3 +1,4 @@
+import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import {
   doLayout,
@@ -7,8 +8,8 @@ import {
   traceSkewRay,
 } from "../../../src/optics/optics.js";
 import { bulkTransmissionForTrace } from "../../../src/optics/trace/bulkAbsorption.js";
-import type { EngineLens } from "../../../src/optics/types.js";
-import { normalizeRuntimeLens } from "../../../src/optics/prescription/normalizeLensData.js";
+import type { CompiledLens } from "../../../src/optics/types.js";
+import { compiledLensFromRuntime } from "../../../src/optics/prescription/compile.js";
 import { transmissionTraceCapture } from "../../../src/optics/trace/bulkAbsorption.js";
 import { build, buildSimplePositiveElementLens } from "./testLensFixtures.js";
 
@@ -18,7 +19,7 @@ describe("bulkTransmissionForTrace", () => {
       flags: { isFoldedOptics: false },
       elements: [{ id: 5, absorptionCoefficientPerMm: 0.5 }],
       surfaces: [{ elemId: 5 }, { elemId: 0 }],
-    } as unknown as EngineLens;
+    } as unknown as CompiledLens;
     const hits = [
       { surfaceIdx: 0, point: [0, 0, 1] as const },
       { surfaceIdx: 1, point: [0, 0, 3] as const },
@@ -32,12 +33,12 @@ describe("bulkTransmissionForTrace", () => {
       flags: { isFoldedOptics: false },
       elements: [{ id: 1 }],
       surfaces: [{ elemId: 1 }, { elemId: 0 }],
-    } as unknown as EngineLens;
+    } as unknown as CompiledLens;
     const folded = {
       ...transparent,
       flags: { isFoldedOptics: true },
       elements: [{ id: 1, absorptionCoefficientPerMm: 0.5 }],
-    } as unknown as EngineLens;
+    } as unknown as CompiledLens;
     const hits = [
       { surfaceIndex: 0, point: [0, 0, 0] as const },
       { surfaceIndex: 1, point: [0, 0, 10] as const },
@@ -53,7 +54,7 @@ describe("bulkTransmissionForTrace", () => {
       ...base.data,
       elements: base.data.elements.map((element) => ({ ...element, absorptionCoefficientPerMm: 0.5 })),
     });
-    const compiled = normalizeRuntimeLens(runtime);
+    const compiled = compiledLensFromRuntime(runtime);
     const lens = {
       ...compiled,
       get runtime(): never {
@@ -122,7 +123,7 @@ describe("chief-relative plate transmission", () => {
       { label: "1", R: 1e15, nd: n, sd: 15, d: 5, elemId: 1 },
       { label: "2", R: 1e15, nd: 1, sd: 15, d: 20, elemId: 0 },
     ];
-    const L = { ...base, S: surfaces, elements, data: { ...base.data, surfaces, elements } };
+    const L = registerRuntimeFixture({ ...base, S: surfaces, elements, data: { ...base.data, surfaces, elements } });
     const slope = -0.1;
     const sinGlass = slope / Math.hypot(slope, 1) / n;
     const glassSlope = sinGlass / Math.sqrt(1 - sinGlass * sinGlass);

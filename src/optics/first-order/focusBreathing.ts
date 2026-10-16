@@ -6,7 +6,7 @@
 
 import type { RuntimeLens } from "../../types/optics.js";
 import { FOCUS_INFINITY_THRESHOLD } from "../layout.js";
-import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
+import { compiledLensFromRuntime } from "../prescription/compile.js";
 import { prepareState } from "../state/prepareState.js";
 import { traceParaxialSurfaces2 } from "../math/paraxial.js";
 
@@ -27,7 +27,7 @@ export function eflAtFocus2(focusT: number, zoomT: number, L: RuntimeLens, aberr
   if (focusT < FOCUS_INFINITY_THRESHOLD && aberrationT === 0) {
     return L.isZoom && L.zoomEFLs ? interpolateZoomArray(zoomT, L.zoomEFLs) : L.EFL;
   }
-  const state = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT);
+  const state = prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT);
   const trace = traceParaxialSurfaces2(state.surfaces, 1, 0, { skipLastTransfer: true });
   if (Math.abs(trace.u) < 1e-15) return L.isZoom && L.zoomEFLs ? interpolateZoomArray(zoomT, L.zoomEFLs) : L.EFL;
   return -1 / trace.u;

@@ -1,3 +1,4 @@
+import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { describe, expect, it } from "vitest";
 import {
@@ -181,7 +182,7 @@ describe("traceChiefRelativeSkewRay", () => {
       ],
       "test-chief-relative-controls",
     );
-    const lens = { ...L, rayLead };
+    const lens = registerRuntimeFixture({ ...L, rayLead });
     for (const ghost of [false, true]) {
       for (const stopSD of [undefined, 0.1, 8]) {
         for (const channel of [undefined, "R", "G", "B", "V"] as const) {

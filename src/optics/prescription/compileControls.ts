@@ -7,7 +7,7 @@
 
 import type { AberrationPositionRange, AberrationVarRange, VarRange } from "../../types/optics.js";
 import { lerp } from "../math/numerics.js";
-import { resolveLabel } from "./labels.js";
+import { resolveLabel } from "./compileLabels.js";
 
 /** Implicit focus control positions for all legacy infinity/close ranges. */
 export const DEFAULT_FOCUS_POSITIONS: readonly number[] = Object.freeze([0, 1]);
@@ -215,4 +215,64 @@ function freezeRange<T extends VarRange | AberrationVarRange>(range: T): T {
     ) as unknown as T;
   }
   return Object.freeze([...range]) as unknown as T;
+}
+
+import type { SurfaceData } from "../../types/optics.js";
+
+export function buildVarIndex<T extends VarRange | AberrationVarRange>(
+  variableGaps: Record<string, T> | undefined,
+  labelIdx: Record<string, number>,
+): Record<number, T> {
+  const varByIdx: Record<number, T> = {};
+  for (const [label, range] of Object.entries(variableGaps || {})) {
+    const idx = labelIdx[label];
+    if (idx !== undefined) varByIdx[idx] = range;
+  }
+  return varByIdx;
+}
+
+export function firstInfinityThickness(range: unknown, isZoom: boolean): number | null {
+  if (!Array.isArray(range)) return null;
+  if (!isZoom) {
+    return typeof range[0] === "number" ? range[0] : null;
+  }
+  const firstZoomEntry = range[0];
+  if (!Array.isArray(firstZoomEntry)) return null;
+  return typeof firstZoomEntry[0] === "number" ? firstZoomEntry[0] : null;
+}
+
+export function buildStateSurfaces(
+  surfaces: SurfaceData[],
+  varByIdx: Record<number, VarRange>,
+  isZoom: boolean,
+  focusT: number,
+  zoomT: number,
+  aberrationVarByIdx: Record<number, AberrationVarRange> = {},
+  aberrationT = 0,
+  focusPositions?: readonly number[],
+): SurfaceData[] {
+  return surfaces.map((surface, index) => ({
+    ...surface,
+    d: resolveControlledThickness(
+      surface.d,
+      varByIdx[index],
+      aberrationVarByIdx[index],
+      isZoom,
+      focusT,
+      zoomT,
+      aberrationT,
+      focusPositions,
+    ),
+  }));
+}
+
+export function zoomIndexToT(zoomIndex: number, zoomCount: number): number {
+  if (zoomCount <= 1) return 0;
+  return zoomIndex / (zoomCount - 1);
+}
+
+export function sumSurfaceThicknesses(surfaces: Pick<SurfaceData, "d">[], endExclusive: number): number {
+  let total = 0;
+  for (let i = 0; i < endExclusive; i++) total += surfaces[i].d;
+  return total;
 }

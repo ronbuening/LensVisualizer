@@ -5,7 +5,7 @@
  * with alpha in inverse millimeters and the traced 3D path length in millimeters.
  */
 
-import type { EngineLens, Vec3 } from "../types.js";
+import type { CompiledLens, Vec3 } from "../types.js";
 import type { TraceCapture } from "./types.js";
 
 interface AbsorptionTraceHit {
@@ -16,9 +16,9 @@ interface AbsorptionTraceHit {
   point: Vec3;
 }
 
-const ABSORPTION_BY_ELEMENT_ID = new WeakMap<EngineLens, ReadonlyMap<number, number>>();
+const ABSORPTION_BY_ELEMENT_ID = new WeakMap<CompiledLens, ReadonlyMap<number, number>>();
 
-function absorptionByElementId(L: EngineLens): ReadonlyMap<number, number> {
+function absorptionByElementId(L: CompiledLens): ReadonlyMap<number, number> {
   const cached = ABSORPTION_BY_ELEMENT_ID.get(L);
   if (cached) return cached;
 
@@ -32,7 +32,7 @@ function absorptionByElementId(L: EngineLens): ReadonlyMap<number, number> {
 }
 
 /** Select hit storage only when bulk transmission needs intermediate distances. */
-export function transmissionTraceCapture(L: EngineLens): Exclude<TraceCapture, "diagnostics"> {
+export function transmissionTraceCapture(L: CompiledLens): Exclude<TraceCapture, "diagnostics"> {
   return !L.flags.isFoldedOptics && absorptionByElementId(L).size > 0 ? "hits" : "terminal";
 }
 
@@ -48,7 +48,7 @@ export function transmissionTraceCapture(L: EngineLens): Exclude<TraceCapture, "
  * @param hits - exact surface hits in optical encounter order
  * @returns intensity transmission in `[0, 1]`
  */
-export function bulkTransmissionForTrace(L: EngineLens, hits: readonly AbsorptionTraceHit[] | undefined): number {
+export function bulkTransmissionForTrace(L: CompiledLens, hits: readonly AbsorptionTraceHit[] | undefined): number {
   const coefficients = absorptionByElementId(L);
   if (coefficients.size === 0 || L.flags.isFoldedOptics) return 1;
   if (!hits) throw new Error("Bulk transmission requires hit capture for absorbing media");

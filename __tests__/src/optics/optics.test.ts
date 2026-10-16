@@ -17,7 +17,10 @@ import {
 } from "../../../src/optics/optics.js";
 import { sag } from "../../../src/optics/geometry/surfaceProfile.js";
 import type { RuntimeLens, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
-import { resolveAberrationThickness, resolveVariableThickness } from "../../../src/optics/prescription/variables.js";
+import {
+  resolveAberrationThickness,
+  resolveVariableThickness,
+} from "../../../src/optics/prescription/compileControls.js";
 import {
   buildChromaticPositiveElementLens,
   buildGhostClippingLens,

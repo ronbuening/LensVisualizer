@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import buildLens, { ingestLensV1, paraxialTrace, realTraceToStop, toLensData } from "../../../src/optics/buildLens.js";
 import { PrescriptionIngestError } from "../../../src/optics/prescription/canonical.js";
 import { v1CatalogDefaults } from "../../../src/optics/prescription/defaults.js";
-import { withLensDefaults } from "../../../src/optics/prescription/normalizeLensData.js";
+import { withLensDefaults } from "../../../src/optics/prescription/compile.js";
 import { attachTeleconverter } from "../../../src/optics/teleconverter.js";
 import validateLensData from "../../../src/optics/validateLensData.js";
 import { wideOpenStopAtZoom } from "../../../src/optics/apertureStop.js";

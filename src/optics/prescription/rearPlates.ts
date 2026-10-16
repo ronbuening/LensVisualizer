@@ -1,119 +1,63 @@
-/**
- * Rear-plate expansion — turns source-documented cover glass / filter plates into traced surfaces.
- *
- * Authored lens data may list `rearPlates` behind the last lens surface with their physical patent gaps.
- * `expandRearPlates()` appends two flat refracting surfaces and one synthetic element per plate so the exact
- * tracer, dispersion lookup and every analysis see the plate. The synthetic marker keeps the plate out of
- * drawn element spans, element lists and diagram scale (see `buildElementSpans` and `buildLens`).
- *
- * A composed host + teleconverter system is the one case where plates are not all trailing: a lens-side drop-in
- * filter stays ahead of the converter, so its surfaces are emitted between the host's last surface and the
- * converter's first.
- */
-
-import type { ElementData, LensData, SurfaceData } from "../../types/optics.js";
+/** Canonical rear-plate expansion. Generated records are internal and never enter authored ingest. */
+import type { LensData, SurfaceData, RearPlateData } from "../../types/optics.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTaxonomy.js";
-import { lensDataStopRadiusAuthority } from "./canonical.js";
+import {
+  FLAT_RADIUS,
+  type CanonicalLens,
+  type CanonicalSurface,
+  type CanonicalElement,
+  type IngestedPrescription,
+} from "./canonical.js";
+import { canonicalConstructionData, toLensData } from "./toLensData.js";
+import { canonicalForView } from "./identity.js";
+import { canonicalFromComposedPair } from "./compileComposed.js";
+import { ingestLens } from "./ingestV2.js";
 
-/** Flat-surface radius used by authored prescriptions. */
-const FLAT_R = 1e15;
-
-/**
- * Generated plate semi-diameter as a multiple of the larger of the largest authored semi-diameter and the image
- * semi-diagonal. A generated rim is marked `clips: false`, so it never clips a ray or limits the field at any size;
- * the value only extends the envelopes that ray launch and intersection bounds read from surface rims.
- */
-const GENERATED_SD_FACTOR = 1.5;
-
-/**
- * The largest semi-diameter a generated rim scales from: every surface's but a stop whose radius the engine derives
- * or takes from a station schedule. That stop's authored `sd` is never read, and V2 leaves it out.
- *
- * @param data - lens data after defaults merging
- * @returns the largest semi-diameter the engine reads as authored
- */
-function largestAuthoredSemiDiameter(data: LensData): number {
-  const stopSdIsRead = lensDataStopRadiusAuthority(data) === "authored";
-  return Math.max(
-    ...data.surfaces.filter((surface) => stopSdIsRead || surface.label !== "STO").map((surface) => surface.sd),
-  );
-}
-
-/**
- * Half the larger of the declared image circle and format diagonal, or 0 when neither is declared.
- *
- * @param data - lens data after defaults merging
- * @returns image semi-diagonal in mm
- */
-function imageSemiDiagonalMm(data: LensData): number {
-  const formatDiagonal = isImageFormatId(data.imageFormat) ? IMAGE_FORMAT_BY_ID[data.imageFormat].diagonalMm : 0;
-  return Math.max(formatDiagonal, data.imageCircleMm ?? 0) / 2;
-}
-
-/** Reserved synthetic surface labels: `RP<n>a` (plate front) and `RP<n>b` (plate rear). */
 export const REAR_PLATE_LABEL_PATTERN = /^RP\d+[ab]$/;
-
-/**
- * Surface labels generated for the plate at `plateIndex`.
- *
- * @param plateIndex - zero-based position in `rearPlates`
- * @returns front and rear surface labels
- */
-export function rearPlateSurfaceLabels(plateIndex: number): [string, string] {
-  return [`RP${plateIndex + 1}a`, `RP${plateIndex + 1}b`];
+export function rearPlateSurfaceLabels(index: number): [string, string] {
+  return [`RP${index + 1}a`, `RP${index + 1}b`];
 }
-
-/* The air-equivalent fold lives in the import-free teleconverter fit module so the build script can load it under
- * plain Node; re-exported here so plate callers keep one import path. */
 export { rearPlateAirEquivalentMm } from "./teleconverterCompatibility.js";
 
-/**
- * Append synthetic plate surfaces and elements for lenses that declare `rearPlates`.
- *
- * The last authored surface keeps its `d` and `var` entry, which now describe the physical gap to the first plate;
- * plate thicknesses and trailing gaps are fixed camera-side distances. Lenses without plates are returned unchanged
- * (same object), so the zero-plate path is identity.
- *
- * With an attached teleconverter, the descriptor's `platesAhead` leading plates go in front of the converter's first
- * surface; the composer has already set the last of them to trail into the converter. Expansion stays the only
- * place plates become surfaces, so a rebuild from stripped runtime data (the MTF worker) reproduces the same stack.
- *
- * @param data - validated lens data after defaults merging
- * @returns lens data whose `surfaces` and `elements` include the synthetic plates
- */
-export function expandRearPlates(data: LensData): LensData {
-  const plates = data.rearPlates;
-  if (!plates || plates.length === 0) return data;
+export interface ExpandedCanonicalLens extends CanonicalLens {
+  surfaces: (CanonicalSurface & { clips?: false; synthetic?: "rearPlate" })[];
+  elements: (CanonicalElement & { synthetic?: "rearPlate" })[];
+}
 
-  const generatedSd = GENERATED_SD_FACTOR * Math.max(largestAuthoredSemiDiameter(data), imageSemiDiagonalMm(data));
-  let nextElementId = Math.max(0, ...data.elements.map((element) => element.id)) + 1;
-  const teleconverter = data.attachedTeleconverter;
-  const platesAhead = teleconverter?.platesAhead ?? 0;
+/** Expand once, retaining physical gaps, insertion order and the authoritative-stop rim exclusion. */
+export function expandCanonicalRearPlates(
+  lens: CanonicalLens,
+  descriptor?: LensData["attachedTeleconverter"],
+): ExpandedCanonicalLens {
+  const plates = lens.rearPlates;
+  if (!plates?.length) return lens;
+  const largest = Math.max(
+    ...lens.surfaces.filter((s) => lens.aperture.stopRadius === "authored" || s.label !== "STO").map((s) => s.sd!),
+  );
+  const format = lens.catalog.imageFormat;
+  const diagonal = isImageFormatId(format) ? IMAGE_FORMAT_BY_ID[format].diagonalMm : 0;
+  const generatedSd = 1.5 * Math.max(largest, Math.max(diagonal, lens.catalog.imageCircleMm ?? 0) / 2);
+  let nextId = Math.max(0, ...lens.elements.map((e) => e.id)) + 1;
+  const ahead: ExpandedCanonicalLens["surfaces"] = [];
+  const trailing: ExpandedCanonicalLens["surfaces"] = [];
+  const elements: ExpandedCanonicalLens["elements"] = [...lens.elements];
+  const platesAhead = descriptor?.platesAhead ?? 0;
   const converterStart =
-    platesAhead > 0
-      ? data.surfaces.findIndex((surface) => surface.label === teleconverter!.firstSurfaceLabel)
-      : data.surfaces.length;
-  /* Plates ahead of a converter are collected here and spliced in before it; the rest append as usual. */
-  const aheadSurfaces: SurfaceData[] = [];
-  const trailingSurfaces: SurfaceData[] = [];
-  const elements: ElementData[] = [...data.elements];
-
-  plates.forEach((plate, plateIndex) => {
-    const surfaces = plateIndex < platesAhead ? aheadSurfaces : trailingSurfaces;
-    const elemId = nextElementId++;
-    const [frontLabel, rearLabel] = rearPlateSurfaceLabels(plateIndex);
-    /* A published rim is a real aperture; a generated one only stands in for an unknown plate size. */
-    const rim: Pick<SurfaceData, "sd" | "clips"> =
-      plate.sd === undefined ? { sd: generatedSd, clips: false } : { sd: plate.sd };
-    const name = plate.label ?? `Rear plate ${plateIndex + 1}`;
+    platesAhead > 0 ? lens.surfaces.findIndex((s) => s.label === descriptor!.firstSurfaceLabel) : lens.surfaces.length;
+  plates.forEach((plate, index) => {
+    const id = nextId++;
+    const [front, rear] = rearPlateSurfaceLabels(index);
+    const name = plate.label ?? `Rear plate ${index + 1}`;
+    const rim = plate.sd === undefined ? { sd: generatedSd, clips: false as const } : { sd: plate.sd };
     elements.push({
-      id: elemId,
+      id,
       name,
       label: name,
       type: "Plane Parallel Plate",
       nd: plate.nd,
       vd: plate.vd,
-      ...(plate.indexReference !== undefined ? { indexReference: plate.indexReference } : {}),
+      indexReference: plate.indexReference,
+      apd: false,
       ...(plate.glass !== undefined ? { glass: plate.glass } : {}),
       ...(plate.dPgF !== undefined ? { dPgF: plate.dPgF } : {}),
       ...(plate.nC !== undefined ? { nC: plate.nC } : {}),
@@ -122,22 +66,72 @@ export function expandRearPlates(data: LensData): LensData {
       role: "Source-documented rear plate (traced, not drawn).",
       synthetic: "rearPlate",
     });
-    surfaces.push(
-      { label: frontLabel, R: FLAT_R, d: plate.thicknessMm, nd: plate.nd, elemId, ...rim, synthetic: "rearPlate" },
-      { label: rearLabel, R: FLAT_R, d: plate.gapAfterMm, nd: 1, elemId: 0, ...rim, synthetic: "rearPlate" },
+    (index < platesAhead ? ahead : trailing).push(
+      { label: front, R: FLAT_RADIUS, d: plate.thicknessMm, medium: id, ...rim, synthetic: "rearPlate" },
+      { label: rear, R: FLAT_RADIUS, d: plate.gapAfterMm, medium: null, ...rim, synthetic: "rearPlate" },
     );
   });
-
   return {
-    ...data,
+    ...lens,
     surfaces: [
-      ...data.surfaces.slice(0, converterStart),
-      ...aheadSurfaces,
-      ...data.surfaces.slice(converterStart),
-      ...trailingSurfaces,
+      ...lens.surfaces.slice(0, converterStart),
+      ...ahead,
+      ...lens.surfaces.slice(converterStart),
+      ...trailing,
     ],
     elements,
   };
+}
+
+/** Project internal markers and source echoes separately from the canonical optical values. */
+export function expandedConstruction(
+  ingested: IngestedPrescription<CanonicalLens>,
+  descriptor?: LensData["attachedTeleconverter"],
+  sourceOverride?: LensData,
+) {
+  const expanded = expandCanonicalRearPlates(ingested.prescription, descriptor);
+  const data = canonicalConstructionData(expanded);
+  data.surfaces.forEach((surface, i) => {
+    surface.sd ??= 0;
+    const canonical = expanded.surfaces[i];
+    if (canonical.synthetic) surface.synthetic = canonical.synthetic;
+    if (canonical.clips === false) surface.clips = false;
+  });
+  data.elements.forEach((element, i) => {
+    if (expanded.elements[i].synthetic) element.synthetic = expanded.elements[i].synthetic;
+  });
+  const authored = sourceOverride ?? toLensData(ingested);
+  const byLabel = new Map(authored.surfaces.map((s) => [s.label, s]));
+  const byId = new Map(authored.elements.map((e) => [e.id, e]));
+  const source = {
+    ...authored,
+    ...(descriptor ? { attachedTeleconverter: descriptor } : {}),
+    surfaces: data.surfaces.map((s) => byLabel.get(s.label) ?? s),
+    elements: data.elements.map(
+      (e) =>
+        byId.get(e.id) ??
+        generatedElementEcho(
+          e,
+          authored.rearPlates?.[e.id - Math.max(0, ...ingested.prescription.elements.map((element) => element.id)) - 1],
+        ),
+    ),
+  };
+  return { expanded, data, source };
+}
+
+/* Generated elements historically omit defaulted fields, including the default reference line. */
+function generatedElementEcho(element: LensData["elements"][number], plate?: RearPlateData) {
+  const { apd: _apd, ...echo } = element;
+  if (plate?.indexReference === undefined) delete echo.indexReference;
+  return echo;
+}
+
+/** Compatibility projection for composition's paraxial pass and report scans. No second plate algorithm. */
+export function expandRearPlates(data: LensData): LensData {
+  if (!data.rearPlates?.length) return data;
+  const ingested =
+    canonicalForView(data) ?? (data.attachedTeleconverter ? canonicalFromComposedPair(data) : ingestLens(data));
+  return expandedConstruction(ingested, data.attachedTeleconverter, data).source;
 }
 
 /**

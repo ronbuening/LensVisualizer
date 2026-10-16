@@ -1,3 +1,4 @@
+import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { createTraceGeometry } from "../../../src/optics/trace/geometry.js";
 import { describe, expect, it, vi } from "vitest";
 import { build, buildMissAfterFirstHitLens, buildSimplePositiveElementLens } from "./testLensFixtures.js";
@@ -10,7 +11,7 @@ import {
   traceSkewRayChromatic2,
   traceSkewRayVectorChromatic2,
 } from "../../../src/optics/trace/rayAdapters.js";
-import * as normalization from "../../../src/optics/prescription/normalizeLensData.js";
+import * as normalization from "../../../src/optics/prescription/compile.js";
 import { prepareState } from "../../../src/optics/state/prepareState.js";
 import { createPerspectiveTraceContext } from "../../../src/optics/perspective/trace.js";
 import buildLens from "../../../src/optics/buildLens.js";
@@ -354,7 +355,7 @@ describe("chief-relative physical traces", () => {
       labelIdx: { CAP: 0, STO: 1, MISS: 2 },
       data: { ...base.data, surfaces, asph: { CAP: { K: 0, A4: 0.04, A6: -0.004, A8: 0, A10: 0, A12: 0, A14: 0 } } },
     };
-    const lens = { ...L, rayLead: 5 };
+    const lens = registerRuntimeFixture({ ...L, rayLead: 5 });
     const state = prepareRuntimeState(lens, 0, 0);
     const trace = traceEngineRay2(
       state,
@@ -498,7 +499,7 @@ describe("request-bound runtime ray adapters", () => {
 
   it("resolves runtime state once per request and never inside its fan", () => {
     const L = buildSimplePositiveElementLens();
-    const normalize = vi.spyOn(normalization, "normalizeRuntimeLens");
+    const normalize = vi.spyOn(normalization, "compiledLensFromRuntime");
     try {
       const bound = prepareRayTrace(L, { ghost: true });
       expect(normalize).toHaveBeenCalledTimes(1);

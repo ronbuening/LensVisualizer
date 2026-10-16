@@ -1,3 +1,4 @@
+import { registerRuntimeFixture } from "../testLensFixtures.js";
 import { describe, it, expect } from "vitest";
 import {
   BOKEH_CIRCULAR_PUPIL_RING_SAMPLES,
@@ -44,13 +45,13 @@ import type { BokehPoint } from "../../../../src/optics/aberration/types.js";
 /* ── Helpers ── */
 
 function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): RuntimeLens {
-  return {
+  return registerRuntimeFixture({
     ...L,
     data: {
       ...L.data,
       imageFormat,
     },
-  } as RuntimeLens;
+  } as RuntimeLens);
 }
 
 function pointAt(radius: number, angleRad: number, weight = 1): BokehPoint {
@@ -189,12 +190,12 @@ describe("analysis field geometry", () => {
   });
 
   it("caps the analysis field to an explicit circular image without requiring a projection law", () => {
-    const circle = { ...L, data: { ...L.data, imageFormat: undefined, imageCircleMm: 8.7 } };
+    const circle = registerRuntimeFixture({ ...L, data: { ...L.data, imageFormat: undefined, imageCircleMm: 8.7 } });
     const geometry = computeAnalysisFieldGeometryAtState(0, 0, circle);
     const fullFrame = computeAnalysisFieldGeometryAtState(0, 0, L);
     expect(geometry.halfFieldDeg).toBeGreaterThan(0);
     expect(geometry.halfFieldDeg).toBeLessThan(fullFrame.halfFieldDeg);
-    const sameDiameter = { ...circle, data: { ...circle.data, imageCircleMm: 43.3 } };
+    const sameDiameter = registerRuntimeFixture({ ...circle, data: { ...circle.data, imageCircleMm: 43.3 } });
     expect(computeAnalysisFieldGeometryAtState(0, 0, sameDiameter).halfFieldDeg).toBeCloseTo(fullFrame.halfFieldDeg, 8);
   });
 

@@ -207,9 +207,14 @@ confused with a completed curve.
 ## buildLens.ts
 
 `buildLens(data)` is the stable public constructor and delegates to `buildLens2` in `src/optics/compat.ts`.
-The promoted runtime builder lives in `src/optics/runtimeLens.ts`. The returned `RuntimeLens` keeps the existing UI and
-lens-data contract, while `engineLensFromRuntime()` and `prepareRuntimeState()` recover the engine-native `EngineLens`
-and `PreparedOpticalState` for tracing and analysis.
+`prescription/compile.ts` validates and ingests authored data, then caches one successful `CompiledLens` per canonical
+prescription identity. `prescription/identity.ts` associates each catalog V1 view with its original ingest and each
+runtime with its compiled owner, using weak keys with one value per owner. Repeated builds of one catalog object
+share runtime and compiled geometry; a freshly ingested same-key object stays independent. The runtime association
+is lookup-only. Provenance supplies source echoes and diagnostics; optical construction uses canonical values.
+`runtimeLens.ts` consumes compiler construction records and the resolved material table; its unchanged constants
+recipe and `CompiledLens.runtime` compatibility pointer remain until S5.P1.T2. `engineLensFromRuntime()` and
+`prepareRuntimeState()` expose the compiled owner and prepared state for tracing and analysis.
 
 The constructor validates lens data and constructs a frozen `RuntimeLens` with:
 
@@ -320,12 +325,12 @@ defaulted paths, the authored values the engine ignores, and the V1 spellings it
   defaults table but the validator-first spread below. `buildLens.ts` re-exports `ingestLens`, `ingestTeleconverter`,
   their V1 forms (`ingestLensV1`, `ingestTeleconverterV1`), `isV1File` and the two V1 views (`toLensData`,
   `toTeleconverterData`), the way code outside the engine reaches them until S8.P1.T2.
-  - `buildLens` reads an authored file through ingest and builds its view (`withLensDefaults` in
-    `normalizeLensData.ts`). The validator is asked about every V1 file first; the comment at the spread in
-    `normalizeLensData.ts` says how, and where that exception ends.
+  - `buildLens` reads authored files through `prescription/compile.ts`. The validator is asked about every V1 file
+    first, using its sole defaults spread as validation input only. This exception ends in S5.P1.T3.
   - A pair `attachTeleconverter()` composed is known only by the `attachedTeleconverter` marker it writes and is
-    built as it is: its host and converter each came through ingest in their catalogs. This is a temporary seam until
-    S5.P1.T4 composes on the canonical form. Rear plates expand after ingest, inside `buildLens`.
+    validated before the trusted `compileComposed.ts` adapter uses the shared V1 field mapping. Its descriptor stays
+    separate for plate placement; generated records never enter authored ingest. Delete that adapter and its trusted
+    mapping entry in S5.P1.T4, when composition moves onto canonical data.
   - The lens and converter catalogs ingest an entry on its first read and keep it, so every read of a key returns
     the same object. Their key lists read only identity fields, from the files as authored.
   - The glass scan, the field-coverage and surface-probe audits, and the converter validator's reference host read
@@ -333,12 +338,14 @@ defaulted paths, the authored values the engine ignores, and the V1 spellings it
 
 ### Rear Plates
 
-Source-listed cover glass and filter plates (`LensData.rearPlates`) are expanded once, in `buildLens` right after
-validation, by `expandRearPlates()` in `src/optics/prescription/rearPlates.ts`. It appends two flat refracting surfaces
+Source-listed cover glass and filter plates (`LensData.rearPlates`) are expanded once on an internal canonical
+representation by `expandCanonicalRearPlates()` in `prescription/rearPlates.ts`, before compiler indexing. It appends two flat refracting surfaces
 per plate (reserved labels `RP<n>a` / `RP<n>b`) and one element per plate, all marked `synthetic: "rearPlate"`.
 Because the expansion runs before `S`, `N`, `labelIdx` and every derived constant, EFL, pupils, field limits, prepared
 states, the exact tracer, chromatic dispersion and all analyses see the plate, with no per-analysis correction.
-`RuntimeLens.data` holds the expanded data, so normalization stays index-aligned.
+`RuntimeLens.data` retains expanded source echoes, aligned with the compiled surfaces. The original canonical
+prescription and its fingerprint stay unchanged. Each medium resolves once, including each generated plate; runtime
+and compiled dispersion tables share those resolvers. Quality summaries and table access perform no resolution.
 
 A plate without a published `sd` gets a generated rim marked `clips: false`. The aperture checks (`activeSemiDiameter`
 in `trace/aperture.ts`) and the paraxial half-field estimates
@@ -351,7 +358,7 @@ What is hidden, and where:
 
 - `RuntimeLens.ES` and `RuntimeLens.elements` exclude synthetic elements. That covers diagram shapes, render
   diagnostics, element numbering, the inspector, the Abbe diagram and fallback construction groups.
-  `RuntimeLens.data.elements` and `EngineLens.elements` keep every traced medium for dispersion lookup.
+  `RuntimeLens.data.elements` and `CompiledLens.elements` keep every traced medium for dispersion lookup.
 - `maxSD` ignores synthetic surfaces, whose generated rims are deliberately non-clipping.
 - `RuntimeLens.lastLensSurfaceIdx` is the last authored surface. Cardinal BFD is measured from it, while the matrix
   vertex (`rearVertexZ`) stays at the plate's rear face. The Summary tab counts authored surfaces and lists plates
@@ -497,9 +504,9 @@ sharing the refract-or-fail step in `trace/interactions.ts`:
   scalar wrappers in `trace/chiefRelative.ts` use the same adapters: scalar off-axis bundles, field-curvature
   parabasal rays, and scalar chromatic fans now run here too, including the coma, spherical blur-character,
   bokeh, and chromatic field analyses that consume them. `runtimeLens.ts` also builds `TraceGeometry` directly
-  from the plate-expanded authored surfaces for stop sizing, EP/XP basis rays, half-field bisections, zoom stations
-  and folded pupils. It shares `prescription/surfaces.ts` with runtime normalization, so constructing these constants
-  requires no partial runtime lens or prepared state. Baseline and station geometry are rebuilt after stop sizing
+  from compiler-owned profiles for stop sizing, EP/XP basis rays, half-field bisections, zoom stations
+  and folded pupils. Construction requires no partial runtime lens or prepared state. Baseline and station geometry
+  views replace thicknesses and apertures while sharing the profiles, and are rebuilt after stop sizing
   to retain the derived aperture in subsequent traces; paraxial estimates and fallbacks use `math/paraxial.ts`.
   State pupil baselines in `pupilAberration.ts` reuse prepared geometry away from infinity focus or with
   `aberrationT ≠ 0`, retaining first-vertex slope launches and the inferred lead (including tilted first surfaces).
@@ -873,7 +880,7 @@ authoring rules and a filled example live in `src/lens-data/LENS_DATA_SPEC.md`.
 - Authored form (`src/types/optics.ts`): `DiffractivePhaseSurface` is `{ kind: "radial-polynomial",
   referenceWavelengthNm, diffractionOrder, terms }`, each `RadialPhaseTerm` being `{ radialPower, coefficient }`. `kind`
   is a discriminator so other phase forms can be added without touching existing data.
-- Runtime form (`src/optics/types.ts`): normalization calls `compileDiffractivePhase()` once per surface and stores a
+- Runtime form (`src/optics/types.ts`): the canonical compiler calls `compileDiffractivePhase()` once per surface and stores a
   frozen `CompiledDiffractivePhase` (`quadraticCoefficient`, per-term `derivativeCoefficient`, original `source`) on
   `CompiledSurface.diffractive`, or `null` for ordinary surfaces. Tracers test that `null` first, so only phase surfaces
   evaluate the polynomial, and the hot path allocates no per-hit arrays or closures.

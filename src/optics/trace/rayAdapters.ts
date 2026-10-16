@@ -6,7 +6,7 @@
 
 import type { ChromaticChannel, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import { directionFromMeridionalSlope, directionFromSkewSlope } from "../math/vector.js";
-import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
+import { compiledLensFromRuntime } from "../prescription/compile.js";
 import { prepareState } from "../state/prepareState.js";
 import type { CompiledStateSurface, PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { transmissionTraceCapture } from "./bulkAbsorption.js";
@@ -583,7 +583,7 @@ function skewDirectionForSlopes(ux: number, uy: number): Vec3 {
 }
 
 function stateForRuntimeLens(L: RuntimeLens, focusT: number, zoomT: number, aberrationT: number): PreparedOpticalState {
-  const engineLens = normalizeRuntimeLens(L);
+  const engineLens = compiledLensFromRuntime(L);
   let stateCache = PREPARED_STATE_BY_RUNTIME.get(L);
   if (!stateCache) {
     stateCache = { byKey: new Map() };
