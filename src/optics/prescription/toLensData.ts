@@ -15,6 +15,7 @@
  * - `toLensDataInput` is the file as authored, which the converter writes back for `--to-version 1`.
  */
 
+import type { LensConstructionData } from "../types.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../types/asphericSchema.js";
 import type {
   AberrationControlConfig,
@@ -405,11 +406,11 @@ export function toLensData(ingested: IngestedPrescription<CanonicalLens>): LensD
 }
 
 /** Compiler construction projection: canonical values only, with no provenance restoration. */
-export function canonicalConstructionData(prescription: CanonicalLens): LensData {
+export function canonicalConstructionData(prescription: CanonicalLens): LensConstructionData {
   return buildLensView(
     { prescription, provenance: { format: 2, defaulted: [], ignored: {} } },
     true,
-  ) as unknown as LensData;
+  ) as unknown as LensConstructionData;
 }
 
 /**

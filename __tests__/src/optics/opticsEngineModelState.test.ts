@@ -13,7 +13,7 @@ import { teleconverterHostData, teleconverterZoomHostData } from "./testLensFixt
 import buildLens from "../../../src/optics/buildLens.js";
 import { doLayout, thick } from "../../../src/optics/optics.js";
 import { buildLens2, engineLensFromRuntime, prepareRuntimeState } from "../../../src/optics/compat.js";
-import { compileSurfaceDispersions } from "../../../src/optics/prescription/compileMaterials.js";
+import { compileSurfaceDispersions } from "../../../src/optics/chromatic/dispersionTable.js";
 import { compileLensData } from "../../../src/optics/prescription/compile.js";
 import { createPreparedStateCache } from "../../../src/optics/state/cache.js";
 import { prepareState } from "../../../src/optics/state/prepareState.js";

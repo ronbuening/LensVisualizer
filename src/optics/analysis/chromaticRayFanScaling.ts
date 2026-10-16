@@ -4,6 +4,7 @@
  * Keeps prepared-state analysis callers on the same display scale as RuntimeLens callers.
  */
 
+import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
 import type { ChromaticChannel } from "../../types/optics.js";
 
 /**
@@ -42,7 +43,7 @@ export function computeLocaBarOffsets2(
   const barOffsets: Partial<Record<ChromaticChannel, number>> = {};
   let maxAbsPx = 0;
 
-  for (const ch of ["R", "G", "B", "V"] as ChromaticChannel[]) {
+  for (const ch of CHROMATIC_CHANNEL_ORDER) {
     if (axialIntercepts[ch] === undefined) continue;
     const px = (axialIntercepts[ch] - referenceIntercept) * baseMag * effectiveSC;
     barOffsets[ch] = px;

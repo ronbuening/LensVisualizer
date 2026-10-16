@@ -6,9 +6,7 @@ export {
   normalLinePgFPrime,
   abbeLineIndices,
   makeSurfaceDispersion,
-  summarizeDispersionQuality,
-  type DispersionQuality,
-  type SurfaceIndexFn,
-  type SurfaceDispersion,
 } from "./chromatic/materialResolver.js";
-export { resolveMaterialTable as buildSurfaceDispersionIndex } from "./prescription/compileMaterials.js";
+export { resolveMaterialTable as buildSurfaceDispersionIndex } from "./chromatic/dispersionTable.js";
+export type { DispersionQuality, SurfaceIndexFn, SurfaceDispersion } from "../types/dispersion.js";
+export { summarizeDispersionQuality2 as summarizeDispersionQuality } from "./chromatic/dispersionQuality.js";

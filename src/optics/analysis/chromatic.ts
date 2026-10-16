@@ -227,7 +227,7 @@ export function computeChromaticRayFanAnalysis2(
     },
   );
 
-  const offAxisFieldFraction = Math.max(0, Math.min(1, options.offAxisFieldFraction ?? L.offAxisFieldFrac ?? 0.7));
+  const offAxisFieldFraction = Math.max(0, Math.min(1, options.offAxisFieldFraction ?? L.offAxisFieldFrac));
   const geometry = computeProjectionAwareOffAxisFieldGeometry(
     L,
     zPos,
