@@ -1395,7 +1395,7 @@ As built of `OPTICS_ENGINE_REWRITE_SPEC.md`.
 
 | Rule | Function |
 | --- | --- |
-| `schema` is 2; no field outside the V2 types, and none only the engine writes; required fields present; records are objects and lists are lists, with no holes | `ingestLensV2`, `refuseUnknownFields` and `requireFields` (`ingestCommon.ts`) |
+| `schema` is 2; no field outside the V2 types, and none only the engine writes, except inside a record ingest copies whole (below); required fields present; records are objects and lists are lists, with no holes | `ingestLensV2`, `refuseUnknownFields` and `requireFields` (`ingestCommon.ts`) |
 | An `asphere` is an object of known terms; `rearPlates` is a list of objects | `ingestCommon.ts` |
 | Element ids are positive integers; a span is two surface labels, in order | `ingestElements` |
 | A surface `medium` names an element or a media id; media have a non-empty unique `id`, a numeric `nd`, at most a `name` besides, are used, differ from air and from each other | `declareMedia`, `ingestSurfaces`, `finishMedia` |
@@ -1406,6 +1406,11 @@ As built of `OPTICS_ENGINE_REWRITE_SPEC.md`.
 | `focus.keyframes` is a list of at least two numbers; `focus.published` only on a prime; published keyframes and conjugate stations/keyframes name real ones; at least one station published | `ingestLensV2`, `ingestPublishedStations`, `ingestConjugates` |
 | The design f-number is on `aperture` or on the stations, not both and not neither | `ingestLensV2` |
 | The stop carries `sd` exactly when its radius is authored | `ingestSurfaces`, with the authority from `stopRadiusAuthority` (`canonical.ts`) |
+
+Ingest copies some records whole and refuses no member inside them: `catalog.opticalConfiguration`, the `source.errata`
+entries, a surface's `diffractive` (and its `terms`) and `interaction`, `projection`, `perspectiveControl` (and its
+`tiltPivot`), `opticalPath` (and its `imagePlane`), and the `groups` and `doublets` entries. An unknown member in one of
+them is refused by the file's `satisfies LensDataV2Input` when it is type-checked, not by ingest.
 
 ### Validator
 
