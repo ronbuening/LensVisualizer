@@ -30,7 +30,7 @@ export function catalogLensData(raw: object): LensData {
 
 /**
  * Build a lens file or a composed pair — the canonical test-side `buildLens` wrapper. `buildLens` applies the schema
- * defaults through canonical ingest, and builds a pair `attachTeleconverter()` composed as it is.
+ * defaults through canonical ingest, and builds a composed pair through its canonical association.
  */
 export function build(raw: object): RuntimeLens {
   return buildLens(raw as LensData);

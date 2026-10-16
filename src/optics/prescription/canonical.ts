@@ -22,6 +22,7 @@ import type {
   DiffractivePhaseSurface,
   FiniteConjugate,
   LensProjectionConfig,
+  LensData,
   OpticalConfigurationData,
   OpticalPathData,
   PerspectiveControlConfig,
@@ -446,7 +447,10 @@ export interface SourcePaths {
    * and `varLabels` → `aberrationControl.gaps`, and each label pair in either → the gap it names.
    */
   homes: Record<string, string>;
-  /** The file's first top-level field, whose leading comments lead `schema` in a V2 file. */
+  /**
+   * A V1 file's first top-level field as written, whatever it holds, whose leading comments lead `schema` in the V2
+   * file (ruling 10). Recorded for a V1 source alone: a V2 source keeps its comments at their paths.
+   */
   firstField?: string;
 }
 
@@ -485,6 +489,8 @@ export interface CanonicalProvenance {
 export interface IngestedPrescription<Prescription extends CanonicalPrescription = CanonicalPrescription> {
   prescription: Prescription;
   provenance: CanonicalProvenance;
+  /** Composition identity and plate placement, outside authored prescription semantics. */
+  attachedTeleconverter?: LensData["attachedTeleconverter"];
 }
 
 /**

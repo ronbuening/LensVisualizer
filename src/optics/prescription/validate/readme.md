@@ -27,7 +27,7 @@ flowchart LR
   n_external_src_optics_math["src/optics/math"]
   n_external_src_optics_trace["src/optics/trace"]
   n_external_src_utils_catalog["src/utils/catalog"]
-  n_src_optics_prescription_validate_src_optics_prescription_validate_index_ts --> |4| n_external_src_optics_prescription
+  n_src_optics_prescription_validate_src_optics_prescription_validate_index_ts --> |5| n_external_src_optics_prescription
   n_src_optics_prescription_validate_src_optics_prescription_validate_schema_ts --> |4| n_external_src_optics_prescription
   n_src_optics_prescription_validate_src_optics_prescription_validate_teleconverter_ts --> |4| n_external_src_optics_prescription
   n_src_optics_prescription_validate_src_optics_prescription_validate_folded_ts --> |3| n_external_src_optics_prescription
@@ -70,7 +70,7 @@ flowchart LR
 
 - Direct source files: 11
 - Direct subfolders: 0
-- Main outbound areas: src/optics/prescription (40), src/types (8), src/optics/geometry (6), src/optics/math, src/optics/trace, src/utils/catalog
+- Main outbound areas: src/optics/prescription (41), src/types (8), src/optics/geometry (6), src/optics/math, src/optics/trace, src/utils/catalog
 - External consumers: src/optics/prescription, src/optics/validateLensData.ts, src/optics/validateTeleconverterData.ts
 
 ## Files
@@ -83,7 +83,7 @@ flowchart LR
 | `diffractive.ts` | Diffractive helper module | none | src/optics/prescription | validateDiffractivePhase |
 | `folded.ts` | Folded helper module | src/optics/prescription (4), src/optics/geometry, src/optics/trace, src/types | src/optics/prescription (2) | validateImagePlane, validateOpticalPath, validateYzNormal, normalizedNormal, samePlaneNormal, validateTiltedMirrorBackingNormals, validateFoldedImagePlaneReachability |
 | `geometry.ts` | Geometry helper module | src/optics/geometry (2), src/optics/prescription (2), src/types | src/optics/prescription | validateGeometry |
-| `index.ts` | Barrel/registry module | src/optics/prescription (12), src/types | src/optics/prescription (2), src/optics/validateLensData.ts | default, validateLensData, validateLensInput, validateCanonicalLens |
+| `index.ts` | Barrel/registry module | src/optics/prescription (13), src/types | src/optics/prescription (3), src/optics/validateLensData.ts | default, validateLensData, validateLensInput, validateCanonicalLens |
 | `paths.ts` | Paths helper module | src/optics/prescription (2) | src/optics/prescription | authoredMessages |
 | `references.ts` | References helper module | src/optics/prescription (3), src/types (2), src/optics/geometry | src/optics/prescription (2) | validateSourceErrata, validateAttachedTeleconverter, validateReferences, validateSpans, validateAnnotations |
 | `schema.ts` | Schema helper module | src/optics/prescription (8), src/types, src/utils/catalog | src/optics/prescription (2), src/optics/validateLensData.ts | validateNumberRange, isEnabledMovementRange, validatePerspectiveControlTiltPivot, validatePerspectiveControl, validateOpticalConfiguration, validateProjection, validateRearPlates, validateLensMounts, +6 more |

@@ -23,3 +23,10 @@ export function commentReplaced(
   printedComments: readonly object[],
   outputComments: readonly object[],
 ): string | undefined;
+export function commentMisplaced(
+  byPath: ReadonlyMap<
+    string,
+    { leading: { text: string }[]; trailing: { text: string }[]; dangling: { text: string }[] }
+  >,
+  printedComments: readonly object[],
+): string | undefined;

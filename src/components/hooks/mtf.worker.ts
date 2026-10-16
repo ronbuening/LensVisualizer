@@ -2,7 +2,7 @@
  * Browser-only MTF worker. The pure engine receives a complete immutable state per request; the
  * worker time-slices its generator so progress and cancellation are serviced between slices.
  */
-import buildLens from "../../optics/buildLens.js";
+import { buildCanonicalLens } from "../../optics/buildLens.js";
 import { prepareRuntimeState } from "../../optics/compat.js";
 import { computeMtfSteps, type MtfJobCache } from "../../optics/mtf.js";
 import type { MtfResult } from "../../types/mtf.js";
@@ -70,13 +70,7 @@ self.onmessage = (event: MessageEvent<MtfWorkerRequest>) => {
     active = null;
     jobCaches.clear();
     try {
-      // RuntimeLens.data already contains generated plates. Rebuild from the authored
-      // surfaces/elements plus rearPlates so validation and expansion run exactly once.
-      lens = buildLens({
-        ...message.data,
-        surfaces: message.data.surfaces.filter((surface) => !surface.synthetic),
-        elements: message.data.elements.filter((element) => !element.synthetic),
-      });
+      lens = buildCanonicalLens(message.input);
       initializationError = null;
     } catch (error) {
       lens = null;

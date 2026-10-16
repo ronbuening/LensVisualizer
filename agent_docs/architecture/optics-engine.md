@@ -193,9 +193,10 @@ accurate. It is a report, never a test threshold: maker focus and spectrum are u
 example is not proven to be the production lens. The kernels are checked against exact Hopkins integrals; no real
 lens has been compared with another tool.
 
-The MTF tab lazily creates a worker from serializable lens data. Worker initialization removes engine-generated
-synthetic surfaces/elements from `RuntimeLens.data` and rebuilds them once from `rearPlates`, preserving physical
-gaps and plate dispersion. The typed protocol (`init | compute | cancel` → `progress | result | error`) runs
+The MTF tab lazily creates a worker from the runtime's unexpanded canonical prescription, provenance and optional
+composition descriptor. `buildCanonicalLens()` compiles that input once; rear plates expand in the compiler with the
+same physical gaps and dispersion as on the main thread. The typed protocol
+(`init | compute | cancel` → `progress | result | error`) runs
 `computeMtfSteps` in ~30 ms slices and posts partial results at most every 100 ms. Cancellation is cooperative, so the
 built lens stays warm, and request ids reject stale replies. The worker caches finished fields and the focus search
 per request minus its field list (`MtfJobCache`), so a finer field step reuses coarser fields. Completed results use
@@ -339,7 +340,8 @@ so an ingest that was not asked builds no path. `sourcePaths.ts` spells every pa
   set-aside values the V2 file drops. `prescriptionDifference` (`canonical.ts`) compares two prescriptions under the
   semantic fingerprint's rules. The converter reaches all of these through `src/optics/lensDataConversion.ts`.
 - Going to V1 (`--to-version 1`), the converter prints `toLensDataInput` or `toTeleconverterData` in
-  `V1_PRINT_ORDER` with blank lines before `V1_GROUP_STARTS` (`toLensData.ts`). `v1SourceMap` (`v1SourceMap.ts`)
+  `V1_PRINT_ORDER` with blank lines before `V1_GROUP_STARTS`, and keeps the source's blank rows in the lists
+  `V1_ROW_LISTS` names (`toLensData.ts`). `v1SourceMap` (`v1SourceMap.ts`)
   ingests that V1 object with source paths and composes them with the source's, as `v2SourceMap` does for V2. A
   comment that opens with the converter's own `(moved from X)` returns to X when the V1 file writes X from inside its
   node; a banner on a member V1 has no counterpart for leads the first V1 member written from inside it; any other
@@ -354,10 +356,11 @@ so an ingest that was not asked builds no path. `sourcePaths.ts` spells every pa
   - `buildLens` reads authored files through `prescription/compile.ts`. The validator is asked about every V1 file
     first through `validateLensInput`, which reads individual omitted catalog defaults from the schema table without
     merging it. Canonical validation then runs once per successful compiled identity, before compiler publication.
-  - A pair `attachTeleconverter()` composed is known only by the `attachedTeleconverter` marker it writes and is
-    validated before the trusted `compileComposed.ts` adapter uses the shared V1 field mapping. Its descriptor stays
-    separate for plate placement; generated records never enter authored ingest. Delete that adapter and its trusted
-    mapping entry in S5.P1.T4, when composition moves onto canonical data.
+  - `attachTeleconverter()` reads unassociated hosts through the compiler's input boundary (V1 validation before
+    ingest) and ingests the converter before composing canonical records. Its returned V1 view
+    retains that canonical identity, so `buildLens` compiles the pair through the same entry as any other prescription.
+    The descriptor stays beside the prescription for labels and plate placement; composed and generated records never
+    enter authored ingest. The worker receives this same canonical input through `canonicalLensFromRuntime()`.
   - The lens and converter catalogs ingest an entry on its first read and keep it, so every read of a key returns
     the same object. Their key lists read only identity fields, from the files as authored.
   - The glass scan, the field-coverage and surface-probe audits, and the converter validator's reference host read
@@ -398,8 +401,9 @@ lens. Lenses whose notes still fold a plate as t/n remain valid; see `src/lens-d
 ### Teleconverter Composition
 
 A detachable rear teleconverter is a `TeleconverterData` entity (`src/types/teleconverter.ts`), not a lens.
-`attachTeleconverter(host, tc)` in `src/optics/prescription/teleconverter.ts` returns an ordinary `LensData` — host
-surfaces, the junction gap, then the converter's surfaces — and that goes through the unchanged `buildLens()`. Nothing
+`attachTeleconverter(host, tc)` in `src/optics/prescription/teleconverter.ts` ingests both inputs and composes canonical
+surfaces, media, elements, gaps and metadata in `composeTeleconverter.ts`. It returns a `LensData` view associated with
+that canonical pair, which goes through the unchanged `buildLens()`. Nothing
 downstream is converter-aware: the exact tracer, prepared states and every analysis see one sequential lens whose stop
 is the host's. Built-in converters stay on `opticalConfiguration`.
 
@@ -415,7 +419,7 @@ is the host's. Built-in converters stay on `opticalConfiguration`.
   elements, so the split only matters for a file that lists some other plate far ahead of the sensor. With plates ahead
   the host's last gap is untouched and the last plate ahead trails into the converter. `expandRearPlates()` reads the
   descriptor's `platesAhead` and emits those plates before the converter's first surface, so expansion stays the only
-  place plates become surfaces and the MTF worker's strip-and-rebuild reproduces the same stack.
+  place plates become surfaces, including when the worker compiles the transported canonical pair.
 - **The stop is preserved through `nominalFno`.** `buildLens()` derives the physical stop from `nominalFno` and
   whole-system EFL, so the composer rescales `nominalFno` at each zoom station by the exact paraxial ratio
   EFL(composed) / EFL(host). The entrance pupil is then unchanged and the real trace to the stop, which only touches

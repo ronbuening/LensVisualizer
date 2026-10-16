@@ -2098,7 +2098,7 @@ describe("source errata", () => {
     const first = host.surfaces[0];
     const wrong = [{ ...corrected, surface: first.label, field: "R", printed: first.R + 1, applied: first.R + 2 }];
     expect(
-      validateLensData(attachTeleconverter({ ...host, sourceErrata: wrong } as typeof host, teleconverterFixture()))
+      validateLensData({ ...composed, sourceErrata: wrong })
         .filter((e) => e.includes("sourceErrata"))
         .join(" "),
     ).toContain("must carry the applied value");

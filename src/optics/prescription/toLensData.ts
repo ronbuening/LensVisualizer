@@ -190,6 +190,12 @@ export const V1_GROUP_STARTS = {
 } as const;
 
 /**
+ * Lists of a V1 file whose rows keep a blank line their source had, before the row or before one of its leading
+ * comments; the converter breaks such a list across lines when one does. A lens and a converter have the same two.
+ */
+export const V1_ROW_LISTS: readonly string[] = ["surfaces", "elements"];
+
+/**
  * Set `target[field]` to a copy of `value` unless the value is `undefined`. A string, number, boolean or bigint is its
  * own copy; anything else goes through `structuredClone`, which refuses a function or a symbol.
  */
@@ -551,6 +557,7 @@ function buildLensView(
  */
 export function toLensData(ingested: IngestedPrescription<CanonicalLens>): LensData {
   const view = buildLensView(ingested, true) as unknown as LensData;
+  if (ingested.attachedTeleconverter) view.attachedTeleconverter = structuredClone(ingested.attachedTeleconverter);
   associateCanonical(view, ingested);
   return view;
 }
