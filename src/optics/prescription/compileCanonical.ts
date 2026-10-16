@@ -95,8 +95,11 @@ export function completeCompilation(prescription: CompiledPrescription, constant
       }),
     ),
   );
+  // Constants consume the full construction projection; runtime views only need its surface rows.
+  const { data, ...records } = prescription;
   return Object.freeze({
-    ...prescription,
+    ...records,
+    constructionSurfaces: data.surfaces,
     surfaces,
     constants,
     stop: Object.freeze({ ...prescription.stop, physicalSemiDiameter: constants.stopPhysSD }),

@@ -2494,9 +2494,13 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     `prepareState.ts` reads of `lens.runtime` are deleted.
   - **Tests:** analytic first-order anchors; `exactTraceGoldenValues.test.ts` unchanged.
   - **As built:** Constants are computed once from compiled prescription records before publication; finalized
-    surfaces carry the sized stop. `runtimeView.ts` memoizes the frozen derived view by compiled identity for UI and
-    legacy analyses until S7. The runtime back-pointer is deleted; preparation uses compiled aperture schedules and
-    explicit-plane authority, while tracing and diagram consumers read compiled facts directly.
+    surfaces carry the sized stop. Publication retains only the construction projection's surface rows for the
+    runtime view, releasing its other records after the constants are computed. `runtimeView.ts` memoizes a weak
+    reference to the frozen derived view by compiled identity for UI and legacy analyses until S7. Live callers share
+    one view; once no caller retains it, the view and its chief-ray result cache can be collected without discarding
+    the compiled lens. The runtime back-pointer
+    is deleted; preparation uses compiled aperture schedules and explicit-plane authority, while tracing and diagram
+    consumers read compiled facts directly.
   - **Gate:** C0.
 - **S5.P1.T3 Validation on canonical and compiled data.**
   - **Change:** `prescription/validate/{schema, references, geometry, aperture, folded, diffractive, controls}.ts`
@@ -2523,19 +2527,23 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     with compiled-record and MTF equality checked.
   - **Gate:** C0.
 - **S5.P2.T1 One owner for prepared geometry.**
-  - **Change:** `state/preparedGeometry.ts` replaces every other prepared-state path with one bounded LRU (96 per
-    compiled lens).
+  - **Change:** `state/preparedGeometry.ts` replaces every other prepared-state path with one bounded LRU (96 states per
+    compiled lens, retained for only the two most recently used compiled lenses). A cache hit refreshes lens recency;
+    evicting a lens releases its prepared-state cache without invalidating states held by callers.
     - **Replaces:** the `compat.ts` LRU; the `trace/rayAdapters.ts` store; the uncached calls in `field/chiefRay.ts`,
       `first-order/{cardinals, focusBreathing}.ts` and `diagram/runtimeDiagramAdapter.ts`; and
       `scripts/audit-field-coverage.mjs`'s direct call.
     - **Key:** compiled identity plus the control numbers, after today's clamping and with `-0` normalized to `0`,
       compared exactly. No string formatting.
     - **One z-override helper** replaces `stateWithRuntimeZ` and `stateWithDiagramZ2`.
-  - **Tests:** cached results equal uncached; eviction; distinct nearby controls stay distinct.
-  - **As built:** One compiled-identity LRU retains 96 states by exact clamped controls with signed zero normalized;
-    runtime, field, first-order, analysis and diagram callers share it. The uncached builder is an explicit reference
-    path. One z helper preserves the existing camera-plane translation and diagram metadata modes; the field audit
-    reaches preparation through the public build barrel (it already used the compat facade at this step's base).
+  - **Tests:** cached results equal uncached; state and lens eviction; both active lenses keep their 96 states;
+    distinct nearby controls stay distinct.
+  - **As built:** One compiled-identity LRU retains up to 96 states for each of the two most recently used lenses,
+    by exact clamped controls with signed zero normalized; runtime, field, first-order, analysis and diagram callers
+    share it. Compilation and material resolution remain once per canonical identity. The uncached builder is an
+    explicit reference path. One z helper preserves the existing camera-plane translation and diagram metadata modes;
+    the field audit reaches preparation through the public build barrel (it already used the compat facade at this
+    step's base).
   - **Gate:** C0. Supersede decision 2026-07-06 (the `prepareState` cache).
 - **S5.P2.T2 One layout and one interpolation.**
   - **Change:** `state/layout.ts` and `state/stationTables.ts` replace the duplicate thickness, layout and zoom-table

@@ -238,6 +238,26 @@ describe("Optics engine prepared state", () => {
     expect(evicted).toEqual(states[2]);
   });
 
+  it("releases the least recently used lens cache while keeping 96 states for each active lens", () => {
+    const first = engineLensFromRuntime(buildVariableStopGapLens([1, 5]));
+    const second = engineLensFromRuntime(buildVariableStopGapLens([1, 5]));
+    const third = engineLensFromRuntime(buildVariableStopGapLens([1, 5]));
+    const firstStates = Array.from({ length: 96 }, (_, i) => prepareState(first, i / 100, 0));
+    const secondState = prepareState(second, 0, 0);
+    // A hit refreshes lens recency, so the third lens evicts the second, not the first.
+    expect(prepareState(first, 0, 0)).toBe(firstStates[0]);
+    const thirdStates = Array.from({ length: 96 }, (_, i) => prepareState(third, i / 100, 0));
+    for (let i = 0; i < 96; i++) {
+      expect(prepareState(first, i / 100, 0)).toBe(firstStates[i]);
+      expect(prepareState(third, i / 100, 0)).toBe(thirdStates[i]);
+    }
+    const rebuilt = prepareState(second, 0, 0);
+    expect(rebuilt).not.toBe(secondState);
+    expect(rebuilt).toEqual(secondState);
+    // Eviction drops cache ownership, not the validity of states still held by callers.
+    expect(firstStates[0]).toEqual(prepareStateUncached(first, 0, 0));
+  });
+
   it("keeps diagram metadata and translated camera planes distinct in the shared z helper", () => {
     const engine = engineLensFromRuntime(buildVariableStopGapLens([1, 5]));
     const base = prepareState(engine, 0, 0);
@@ -314,6 +334,7 @@ describe("canonical compiler ownership", () => {
       expect(compiled.constants).not.toHaveProperty("S");
       expect(Object.isFrozen(compiled)).toBe(true);
       expect(Object.isFrozen(compiled.constants)).toBe(true);
+      expect(compiled).not.toHaveProperty("data");
       const calls = resolve.mock.calls.length;
       // Preparation uses compiled facts, including explicit-plane authority, rather than source metadata.
       const source = new Proxy(compiled.source, {
