@@ -1,8 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
   doLayout,
-  effectiveFNumber,
-  eflAtFocus,
   eflAtZoom,
   renderSag,
   sagSlope,
@@ -11,7 +9,8 @@ import {
   xpZRelLastSurfAtZoom,
 } from "../../../src/optics/layout.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
-import { buildSimplePositiveElementLens } from "./testLensFixtures.js";
+import { effectiveFNumber, eflAtFocus, doLayout as preparedLayout } from "../../../src/optics/optics.js";
+import { buildSimplePositiveElementLens, buildFoldedTirLens, registerRuntimeFixture } from "./testLensFixtures.js";
 
 describe("layout facade edge cases", () => {
   it("trims display height until the rim slope is within the configured tangent", () => {
@@ -28,16 +27,22 @@ describe("layout facade edge cases", () => {
   });
 
   it("uses the explicit folded image plane instead of the sequential back focal gap", () => {
-    const base = buildSimplePositiveElementLens("test-layout-folded-image-plane");
-    const folded = {
-      ...base,
-      isFoldedOptics: true,
-      imagePlane: { z: 123.5, y: 0, normal: { z: 1, y: 0 }, label: "folded image" },
-    } as RuntimeLens;
-
+    const folded = buildFoldedTirLens("test-layout-folded-image-plane");
     const layout = doLayout(0, 0, folded);
-    expect(layout.imgZ).toBe(123.5);
-    expect(layout.z).toHaveLength(base.N);
+    expect(layout.imgZ).toBe(95);
+    expect(layout).toEqual(preparedLayout(0, 0, folded));
+    expect(layout.z).toHaveLength(folded.N);
+  });
+
+  it("uses the compiled folded-plane decision when no plane was authored", () => {
+    const base = buildFoldedTirLens("test-layout-default-image-plane");
+    const folded = registerRuntimeFixture({
+      ...base,
+      data: { ...base.data, opticalPath: undefined },
+    });
+    const layout = doLayout(0, 0, folded);
+    expect(layout.imgZ).toBe(layout.z.at(-1)! + layout.th.at(-1)!);
+    expect(layout).toEqual(preparedLayout(0, 0, folded));
   });
 
   it("handles single-entry zoom arrays and non-finite exit pupil data defensively", () => {
@@ -56,43 +61,35 @@ describe("layout facade edge cases", () => {
   });
 
   it("falls back to the catalog EFL when paraxial power is effectively zero", () => {
-    const L = {
-      isZoom: false,
+    const base = buildSimplePositiveElementLens("test-layout-zero-power");
+    const L = registerRuntimeFixture({
+      ...base,
       EFL: 75,
-      S: [
-        { label: "1", R: 1e15, d: 5, nd: 1, sd: 10, elemId: 0 },
-        { label: "2", R: 1e15, d: 50, nd: 1, sd: 10, elemId: 0 },
-      ],
-      varByIdx: {},
-      aberrationControl: null,
-    } as unknown as RuntimeLens;
+      S: base.S.map((surface) => ({ ...surface, R: 1e15, nd: 1 })),
+    });
 
     expect(eflAtFocus(0.5, 0, L)).toBe(75);
   });
 
   it("returns the marked f-number when the close-focus denominator collapses", () => {
-    const L = {
-      isZoom: false,
+    const base = buildSimplePositiveElementLens("test-layout-collapsed-denominator");
+    const L = registerRuntimeFixture({
+      ...base,
       EFL: 500,
       closeFocusM: 0.5,
-      S: [
-        { label: "1", R: 1e15, d: 5, nd: 1, sd: 10, elemId: 0 },
-        { label: "2", R: 1e15, d: 50, nd: 1, sd: 10, elemId: 0 },
-      ],
-      varByIdx: {},
-      aberrationControl: null,
-    } as unknown as RuntimeLens;
+      S: base.S.map((surface) => ({ ...surface, R: 1e15, nd: 1 })),
+    });
 
     expect(effectiveFNumber(2.8, 1, 0, L)).toBe(2.8);
   });
 
   it("keeps effective f-number finite when pupil magnification inputs are degenerate", () => {
     const base = buildSimplePositiveElementLens("test-layout-degenerate-pupils");
-    const L = {
+    const L = registerRuntimeFixture({
       ...base,
       EP: { ...base.EP, epSD: 0 },
       xpSD: 0,
-    } as RuntimeLens;
+    });
 
     const value = effectiveFNumber(2, 1, 0, L);
     expect(Number.isFinite(value)).toBe(true);

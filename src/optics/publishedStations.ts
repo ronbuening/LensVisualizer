@@ -12,12 +12,10 @@
 import type { FiniteConjugate, PublishedStations, RuntimeLens } from "../types/optics.js";
 import { closeFocusAtZoom } from "./focusDistance.js";
 import { getGroupMovementAvailability } from "./groupMovement.js";
-import { zoomIndexToT } from "./prescription/compileControls.js";
+import { DEFAULT_FOCUS_POSITIONS, zoomIndexToT } from "./state/stationTables.js";
 
 /** Slider-coordinate tolerance for "on a station"; matches the finite-conjugate station match in MTF. */
 export const STATION_COORDINATE_TOLERANCE = 1e-8;
-
-const DEFAULT_FOCUS_POSITIONS: readonly number[] = [0, 1];
 
 /* ── Types ── */
 

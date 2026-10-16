@@ -52,7 +52,11 @@ const CHIEF_RAY_RESIDUAL_TOLERANCE = 1e-7;
 const OBJECT_PLANE_BRACKET_SCAN_SAMPLES = 96;
 const BOUNDING_SPHERE_BRACKET_SCAN_SAMPLES = 96;
 const CONJUGATE_REFERENCE_PUPIL_FRACTION = 0.1;
-const FOCUS_INFINITY_THRESHOLD = 0.0001;
+/**
+ * Skip the real-ray sensitivity difference from infinity below this control. The split from the 0.003
+ * reporting cutoff is an open C3 decision: controls between them can report infinity with nonzero correction.
+ */
+const CONJUGATE_CORRECTION_MIN_FOCUS_T = 0.0001;
 /** Step bounds, in degrees, for walking the real chief ray out toward the format corner. */
 const ANALYSIS_FIELD_MIN_STEP_DEG = 0.25;
 const ANALYSIS_FIELD_MAX_STEP_DEG = 5;
@@ -1129,7 +1133,7 @@ export function entrancePupilAtState2(
  * @returns relative conjugate correction, zero at infinity focus
  */
 export function conjugateK2(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
-  if (focusT < FOCUS_INFINITY_THRESHOLD) return 0;
+  if (focusT < CONJUGATE_CORRECTION_MIN_FOCUS_T) return 0;
   const du = 1e-5;
   const currentEP = entrancePupilAtState2(wideOpenStopAtZoom(zoomT, L), focusT, zoomT, L, undefined, aberrationT).epSD;
   const infinityEP = entrancePupilAtState2(wideOpenStopAtZoom(zoomT, L), 0, zoomT, L, undefined, 0).epSD;
