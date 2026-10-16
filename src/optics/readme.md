@@ -37,7 +37,7 @@ flowchart LR
   n_src_optics_TypeScript_modules --> |6| n_src_optics_src_optics_aberration
   n_src_optics_TypeScript_modules --> |6| n_src_optics_src_optics_first_order
   n_src_optics_TypeScript_modules --> |4| n_src_optics_src_optics_diagram
-  n_src_optics_TypeScript_modules --> |3| n_src_optics_src_optics_field
+  n_src_optics_TypeScript_modules --> |4| n_src_optics_src_optics_field
   n_src_optics_TypeScript_modules --> |3| n_src_optics_src_optics_geometry
   n_src_optics_TypeScript_modules --> n_external_src_utils_catalog
   n_src_optics_TypeScript_modules --> n_src_optics_src_optics_math
@@ -48,7 +48,7 @@ flowchart LR
 
 - Direct source files: 40
 - Direct subfolders: 14
-- Main outbound areas: src/types (22), src/optics/prescription (21), src/optics/analysis (19), src/optics/compat.ts (12), src/optics/trace (12), src/optics/state (11), src/optics/chromatic (10), src/optics/glassCatalogEntries (8), +24 more
+- Main outbound areas: src/types (22), src/optics/prescription (21), src/optics/analysis (19), src/optics/trace (12), src/optics/compat.ts (11), src/optics/state (11), src/optics/chromatic (10), src/optics/glassCatalogEntries (8), +24 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/optics/aberration, +15 more
 
 ## Subfolders
@@ -83,7 +83,7 @@ flowchart LR
 | `cardinalElements.ts` | Cardinal Elements helper module | src/optics/compat.ts | src/components/diagram (3), src/benchmarks, src/components/hooks, src/components/layout | computeCardinalElements, computeCardinalElementsAtState, CardinalDistance, CardinalElements, CardinalPoint |
 | `chiefRayDiagnostics.ts` | Chief Ray Diagnostics helper module | src/optics/compat.ts | none | getChiefRayDiagnostics, resetChiefRayDiagnostics, ChiefRayStatusCounts, ChiefRayStatus |
 | `chromaticRayFanScaling.ts` | Chromatic Ray Fan Scaling helper module | src/optics/chromatic, src/types | src/components/diagram (2) | REFERENCE_LOCA_MM, REFERENCE_FAN_IMAGE_HEIGHT_SPREAD_MM, ChromaticBarResult, computeChromaticBarOffsets, computeLocaBarOffsets |
-| `compat.ts` | Compat helper module | src/optics/analysis (13), src/optics/chromatic (4), src/optics/diagram (4), src/optics/field (3), src/optics/first-order (3), +5 more | src/components/display (15), src/components/hooks (2), src/components/layout (2), src/benchmarks, src/optics/aperture.ts, +7 more | buildLens2, buildCanonicalLens, engineLensFromRuntime, prepareRuntimeState, doLayout2, thick2, eflAtZoom2, epAtZoom2, +177 more |
+| `compat.ts` | Compat helper module | src/optics/analysis (13), src/optics/chromatic (4), src/optics/diagram (4), src/optics/field (3), src/optics/first-order (3), +5 more | src/components/display (15), src/components/hooks (2), src/components/layout (2), src/benchmarks, src/optics/aperture.ts, +6 more | buildLens2, buildCanonicalLens, engineLensFromRuntime, prepareRuntimeState, doLayout2, thick2, eflAtZoom2, epAtZoom2, +177 more |
 | `constants.ts` | Constants helper module | src/optics/chromatic | src/optics/geometry (4), src/optics/math, src/optics/trace | VECTOR_EPSILON, INTERSECTION_TOLERANCE, INTERSECTION_MAX_ITERATIONS, INTERSECTION_BRACKET_SAMPLES, CHROMATIC_CHANNEL_WAVELENGTH_NM |
 | `diagramGeometry.ts` | Diagram Geometry helper module | src/optics/compat.ts | src/benchmarks, src/components/diagram, src/components/hooks | computeElementRenderDiagnostics, computeElementShapes, computeStandaloneMirrorPaths, createCoordinateTransforms, DiagramPointTransform |
 | `dispersion.ts` | Dispersion helper module | src/optics/chromatic (3), src/types | src/components/diagram (7), src/optics/chromatic (2), src/components/display, src/components/layout | normalLinePgF, normalLinePdC, normalLinePeC, normalLinePgFPrime, abbeLineIndices, makeSurfaceDispersion, buildSurfaceDispersionIndex, DispersionQuality, +3 more |
@@ -103,7 +103,7 @@ flowchart LR
 | `mtf.ts` | Mtf helper module | src/optics/analysis (3) | src/components/display, src/components/hooks | assessMtfSupport, MTF_FIELDS, MTF_FREQUENCIES, MTF_PHOTOPIC_LINES, resolveMtfSpectrum, computeMtf, computeMtfSteps, resolveMtfGeometry, +3 more |
 | `optics.ts` | Optics helper module | src/optics/compat.ts (4), src/optics/trace (3), src/optics/analysis, src/optics/cameraLayout.ts, src/optics/layout.ts, +3 more | src/components/display (12), src/optics/analysis (8), src/components/hooks (6), src/comparison (3), src/components/controls (3), +8 more | traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic, anchorLayoutToCamera, CameraAnchoredLayout, FOCUS_REPORTING_INFINITY_THRESHOLD, SVG_PATH_SUBDIVISIONS, bAtZoom, epZRelStopAtZoom, +72 more |
 | `opticsFormat.ts` | Optics Format helper module | src/optics/focusDistance.ts, src/optics/layout.ts, src/types | src/optics/optics.ts | formatFNumber, marketedApertureNote, formatDist, formatPetzvalRadius |
-| `projection.ts` | Projection helper module | src/optics/compat.ts | src/components/controls (2), src/components/hooks, src/components/layout, src/optics/distortionAnalysis.ts, src/optics/pupilAberration.ts, +1 more | ABSOLUTE_HALF_FIELD_CEILING, MAX_FIELD_LAUNCH_DEG, TRACING_SAFETY_FACTOR, boundingSphereLaunchVector, distortionProjectionReferenceForLens, fisheyeProjectionFocalLengthAtZoom, fisheyeProjectionMaxTraceFieldAtZoom, isFisheyeProjection, +16 more |
+| `projection.ts` | Projection helper module | src/optics/field | src/components/controls (2), src/components/hooks, src/components/layout, src/optics/distortionAnalysis.ts, src/optics/pupilAberration.ts, +1 more | ABSOLUTE_HALF_FIELD_CEILING, MAX_FIELD_LAUNCH_DEG, TRACING_SAFETY_FACTOR, boundingSphereLaunchVector, distortionProjectionReferenceForLens, fisheyeProjectionFocalLengthAtZoom, fisheyeProjectionMaxTraceFieldAtZoom, isFisheyeProjection, +16 more |
 | `publishedStations.ts` | Published Stations helper module | src/optics/focusDistance.ts, src/optics/groupMovement.ts, src/optics/state, src/types | src/components/controls (2), src/components/hooks | STATION_COORDINATE_TOLERANCE, PublishedStationSource, PublishedStationCoordinate, PublishedStationGrid, PublishedZoomStation, PublishedFocusStation, PublishedStationLimitKind, PublishedStationLimit, +8 more |
 | `pupilAberration.ts` | Pupil Aberration helper module | src/optics/trace (3), src/optics/optics.ts (2), src/optics/math, src/optics/prescription, src/optics/projection.ts, +3 more | src/components/display, src/optics/analysis | PupilAberrationSample, PupilAberrationProfile, ExitPupilAberrationSample, ExitPupilAberrationProfile, PUPIL_ABERRATION_SAMPLE_COUNT, computePupilAberrationProfile, computeExitPupilAberrationProfile, BothPupilAberrationProfiles, +1 more |
 | `raySampling.ts` | Ray Sampling helper module | src/types (2), src/optics/stopObstruction.ts | src/components/hooks (3), src/benchmarks, src/components/layout, src/optics/distortionAnalysis.ts, src/optics/field, +2 more | isHeavyLensForRayWork, rayFractionsForDensity, obstructionAwareRayFractionsForDensity, raySampleCountForDensity |
