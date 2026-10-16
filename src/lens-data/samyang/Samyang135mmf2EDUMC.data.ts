@@ -20,9 +20,9 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * Only the infinity state is published. closeFocusM = 0.8 is the maker's figure; no focus
  * travel is modelled. The filter block 20 in Figure 1 has no prescription and is omitted.
- * Glass: source nd/vd are kept. nC/nF/ng are evaluated from the named HOYA/SCHOTT catalog
- * formulas (catalog anchors, not patent data); N-SF1's catalog vd is 29.62 against the
- * printed 29.50, and TAF1's 49.63 against 49.62.
+ * Glass: source nd/vd are kept; runtime catalog curves supply qualified spectral proxies.
+ * Catalog-computed line indices resolve centrally; the patent publishes nd/vd only.
+ * N-SF1/SF1 catalog vd is 29.62 versus printed 29.50; TAF1 is 49.63 versus 49.62.
  */
 
 const LENS_DATA = {
@@ -79,9 +79,6 @@ const LENS_DATA = {
       fl: 136.512531,
       glass: "TAF1 (Hoya; source Vd 49.62 retained, current catalog 49.63)",
       role: "Front positive meniscus; first air-separated component.",
-      nC: 1.76779655999,
-      nF: 1.78336353589,
-      ng: 1.79193094747,
     },
     {
       id: 2,
@@ -95,9 +92,6 @@ const LENS_DATA = {
       glass: "FCD1 (Hoya)",
       role: "ED positive member of the net-negative L2-L3 doublet.",
       cemented: "D1",
-      nC: 1.49513747764,
-      nF: 1.50122750457,
-      ng: 1.50450912671,
     },
     {
       id: 3,
@@ -111,9 +105,6 @@ const LENS_DATA = {
       glass: "FDS90 (Hoya)",
       role: "Negative dense-flint member of the L2-L3 doublet.",
       cemented: "D1",
-      nC: 1.83649191249,
-      nF: 1.87208870412,
-      ng: 1.89413034128,
     },
     {
       id: 4,
@@ -127,9 +118,6 @@ const LENS_DATA = {
       glass: "N-SF66 (Schott; source label NSF66_SCHOTT)",
       role: "Positive high-index member of the weakly positive L4-L5 doublet.",
       cemented: "D2",
-      nC: 1.91038710578,
-      nF: 1.95458592097,
-      ng: 1.98284744598,
     },
     {
       id: 5,
@@ -143,9 +131,6 @@ const LENS_DATA = {
       glass: "N-SF1 (Schott; source Vd 29.50 retained, current catalog 29.62)",
       role: "Negative partner in the L4-L5 doublet ahead of the stop.",
       cemented: "D2",
-      nC: 1.71034895966,
-      nF: 1.73456761763,
-      ng: 1.74918780948,
     },
     {
       id: 6,
@@ -158,9 +143,6 @@ const LENS_DATA = {
       fl: 107.556546,
       glass: "TAC6 (Hoya)",
       role: "Positive meniscus immediately behind the stop.",
-      nC: 1.75062796747,
-      nF: 1.76505761017,
-      ng: 1.77295565199,
     },
     {
       id: 7,
@@ -173,9 +155,6 @@ const LENS_DATA = {
       fl: -52.798442,
       glass: "N-SF1 (Schott; source Vd 29.50 retained, current catalog 29.62)",
       role: "Air-separated negative element in the rear physical group.",
-      nC: 1.71034895966,
-      nF: 1.73456761763,
-      ng: 1.74918780948,
     },
     {
       id: 8,
@@ -189,9 +168,6 @@ const LENS_DATA = {
       glass: "FDS90 (Hoya)",
       role: "Positive member of the net-positive L8-L9 doublet.",
       cemented: "D3",
-      nC: 1.83649191249,
-      nF: 1.87208870412,
-      ng: 1.89413034128,
     },
     {
       id: 9,
@@ -205,9 +181,6 @@ const LENS_DATA = {
       glass: "FF5 (Hoya)",
       role: "Negative FF5 partner in the L8-L9 doublet.",
       cemented: "D3",
-      nC: 1.58781881913,
-      nF: 1.60454029172,
-      ng: 1.61445090235,
     },
     {
       id: 10,
@@ -221,9 +194,6 @@ const LENS_DATA = {
       glass: "N-SF1 (Schott; source Vd 29.50 retained, current catalog 29.62)",
       role: "Negative meniscus member of the final net-positive doublet.",
       cemented: "D4",
-      nC: 1.71034895966,
-      nF: 1.73456761763,
-      ng: 1.74918780948,
     },
     {
       id: 11,
@@ -237,9 +207,6 @@ const LENS_DATA = {
       glass: "TAC6 (Hoya)",
       role: "Positive final element; its rear clear radius is inferred, not published.",
       cemented: "D4",
-      nC: 1.75062796747,
-      nF: 1.76505761017,
-      ng: 1.77295565199,
     },
   ],
   surfaces: [

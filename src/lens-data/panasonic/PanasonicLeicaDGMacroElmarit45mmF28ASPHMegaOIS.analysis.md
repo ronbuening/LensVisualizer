@@ -56,9 +56,9 @@ L2 is the negative member of D1 with L3. It shares S4 directly with L3; the surf
 
 ### L3 — Biconvex Positive (1× Asph)
 
-nd = 1.76930, νd = 49.3. Glass: Unmatched (lanthanum crown; source 1.76930/49.3; catalog candidates not exact). f = +18.2431 mm.
+nd = 1.76930, νd = 49.3. Glass: MC-TAF101-100 (HOYA spectral proxy; source 1.76930/49.3 retained; supplier and melt unconfirmed). f = +18.2431 mm.
 
-L3 is the positive member of D1 and terminates G1. Its image-side S5 is the sole asphere in this numerical example. The source coordinate has family-level catalog neighbors without a close exact identification; retaining an Unmatched label avoids substituting a preferred molded-glass identity.
+L3 is the positive member of D1 and terminates G1. Its image-side S5 is the sole asphere in this numerical example. MC-TAF101-100 supplies a qualified catalog spectrum, with n(d) 1.76901534 and νd 49.29 versus the retained source 1.76930/49.3 (residuals −0.00028466 and −0.01). It is the closest current compatible candidate in both coordinates; the curve does not identify the historical molded glass, supplier or melt.
 
 ### L4 — Plano-Concave
 
@@ -143,7 +143,7 @@ The source publishes nd and νd, not commercial glass designations or melt certi
 |---|---|---|---|
 | L1 | 1.51680 / 64.2 | H-K9L (CDGM) | Coordinate-compatible proxy only |
 | L2 | 1.92286 / 20.9 | N-SF66 (Schott) | Coordinate-compatible proxy only |
-| L3 | 1.76930 / 49.3 | Unmatched; Abbe-only fallback | No close exact catalog assignment |
+| L3 | 1.76930 / 49.3 | MC-TAF101-100 (Hoya) | Qualified spectral proxy; not an exact material identification |
 | L4 | 1.91082 / 35.2 | K-LaSFn23 (Sumita) | Coordinate-compatible proxy only |
 | L5 | 1.91082 / 35.2 | K-LaSFn23 (Sumita) | Coordinate-compatible proxy only |
 | L6 | 1.94595 / 18.0 | FDS18 (Hoya) | Coordinate-compatible proxy only |

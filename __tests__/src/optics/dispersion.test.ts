@@ -527,12 +527,18 @@ describe("resolveGlass", () => {
     expect(resolveGlass("BK7")?.name).toBe("N-BK7");
   });
 
-  it("resolves Hoya patent-class aliases to coefficient-backed rows", () => {
-    expect(resolveGlass("TAF1 (HOYA)")?.name).toBe("S-LAH66");
+  it("resolves Hoya names and preform aliases to coefficient-backed rows", () => {
+    expect(resolveGlass("TAF1 (HOYA)")?.name).toBe("TAF1");
     expect(resolveGlass("MP-NBFD130 molded high-index flint")?.name).toBe("M-NBFD130");
   });
 
   it("resolves Hoya names that once aliased to a neighbouring row to their own curves", () => {
+    expect(resolveCompatibleGlass("TAF1 (HOYA)", 1.7725, 49.63)?.name).toBe("TAF1");
+    expect(resolveCompatibleGlass("TAF1 (HOYA)", 1.744, 44.9)).toBeNull();
+    expect(resolveCompatibleGlass("LAF2 (HOYA)", 1.744, 44.9)?.name).toBe("LAF2");
+    expect(resolveCompatibleGlass("LAF2 (HOYA)", 1.7725, 49.63)).toBeNull();
+    expect(resolveGlass("773496")?.name).toBe("S-LAH66");
+    expect(resolveGlass("744449")?.name).toBe("H-LaF3B");
     expect(resolveGlass("PCD51 (HOYA)")?.name).toBe("PCD51");
     expect(resolveGlass("MP-PCD51-70 precision-mold preform")?.name).toBe("MP-PCD51-70");
     expect(resolveCompatibleGlass("M-PCD51 (HOYA)", 1.59201, 67.02)?.name).toBe("M-PCD51");
@@ -605,6 +611,8 @@ describe("resolveGlass", () => {
     expect(resolveGlassCandidates("626357").map((entry) => entry.name)).toEqual(["E-F1", "F13", "S-TIM1"]);
     expect(resolveGlassCandidates("589485").map((entry) => entry.name)).toEqual(["BAF6", "BAFN6"]);
     expect(resolveGlassCandidates("501564").map((entry) => entry.name)).toEqual(["K10", "S-FTL10"]);
+    expect(resolveGlassCandidates("773496").map((entry) => entry.name)).toContain("TAF1");
+    expect(resolveGlassCandidates("744449").map((entry) => entry.name)).toContain("LAF2");
   });
 
   it("uses vendor context and coordinates to disambiguate duplicate codes", () => {

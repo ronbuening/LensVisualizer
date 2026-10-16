@@ -77,3 +77,17 @@ The reviewed TypeScript SHA256 is1b392534f7648412a53e9b6b8ba4a32c91a55b2c49b4a91
 Main advanced one commit during final freshness checking, from e1bd097c2d95de9468a184d061d7a0b433656653 to712f09476bf13a7db269c2aaaebdd5392a5764ef. The complete comparison establishes unchanged required standards and optical algorithms. The three changed runtime glass-catalog files were fetched at the exact new commit, full bytes and Git blobs checked, and materialized in the read-only-source working snapshot. All193 pinned runtime/reference files remain hash-verified. Fresh current-main execution again passes all9 targeted checks, zero sampled render trim and all28450 ray clipping comparisons, with maximum image difference9.823578553624195e-13mm. All9 materials remain native Abbe fallbacks. Earlier-stage and pair-review runtime provenance is retained unchanged; the final RuntimeChecks.json records the refreshed commit.
 
 The final canonical gate is READY_FOR_BATCH only after this complete verifier runs successfully against the exact final members and reproduces after clean extraction. This is a qualified user-selected Example3 patent model: the unresolved15.020210mm close-focus excess, native61.0269mm source focal length, uncertain production attribution, source-summary discrepancies, inferred apertures, unresolved field-aiming bounds, missing exact glass identities and uncertified interpolation remain explicit. It is not an exact factory reconstruction or a validated continuous focus law. Integration remains INTEGRATION_PENDING: no TypeScript compiler/full corpus/build/live UI acceptance, repository edit or deployment is claimed. Separate final-archive acceptance, negative-fixture and remote-byte delivery receipts accompany this dossier in SupportingEvidence. The old Example2 package/card are unchanged historical attribution-hold artifacts.
+
+
+## 2026-10-15 — Patent-rim, glass and release-metadata review
+
+Patent: local `patents/CN103823292B.pdf`, Example 3, Figure 5, PDF p.15; prescription pp.8–10.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Display name | LAOWA CF 60mm f/2.8 2x MACRO | LAOWA 60mm f/2.8 2X Ultra-Macro | [Maker product name](https://www.venuslens.net/product/laowa-60mm-f2/); CF was not part of that name. |
+| L2 glass | Unmatched fluor-crown | K-PFK80 qualified spectral proxy | Source 1.49787/81.39 retained; catalog n(d)=1.49699862, νd=81.3504. Supplier/melt and exact material remain unknown. |
+
+The 600 dpi optical-outline inspection confirms the existing inferred proportions, including the smaller moving L8 and larger fixed L9. The automatic screen's L8 over-read mapped onto L9 and the crop-edge warnings invalidate its scale; those numbers were discarded. Manual first-to-last vertex scale and the clean top/bottom rims agree with the existing radii within about 15%; no SD changed. L4's modeled 9.0/8.2 mm step remains constrained by the S7/S8 air gap.
+
+All five authored mounts and the APS-C infinity format remain consistent with the maker material; adapters are not native mounts. The product can cover full frame at macro distances, which does not establish a full-frame infinity prescription. Eight glasses remain explicitly Unmatched: L1/L3/L4/L5/L6/L7/L8/L9. Their optimized source pairs lack a sufficiently specific, source-backed catalog assignment; no new measurements or guessed coefficients were authored. L8's loose fluor-crown neighbors remain unresolved. Analysis updated to distinguish the one qualified curve from eight Abbe fallbacks.

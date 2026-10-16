@@ -162,3 +162,18 @@ The original source-first pin and candidate checks at 53470da remain preserved a
 The selected example contains no filter or camera plate, no converter and no TC-prefixed authored surface. No acceptsTeleconverters compatibility or attachedTeleconverter descriptor is authored. Consequently the new plate distinction and converter schema require no prescription or metadata change. Actual current-main validation, plate-expansion identity, reserved-TC-prefix and boolean-flag rejection probes, public buildLens, field/pupil/alias helpers, exact rays and render diagnostics are rerun at the new pin. The new pin becomes the final contract only after replay passes; neither the frozen baseline nor earlier source evidence is relabeled as having used it.
 
 The refreshed public-runtime replay passed on the independent 251-file closure (the shared 250-file snapshot plus one separately verified UI helper). All 136 loaded modules matched current709dda72 provenance. System quantities and every recorded ray/render state are identical to the preceding pin. The new validator rejected the two deliberate TC-schema mutations, plate expansion returned the unplated model unchanged, and no data bytes changed. The current-reference impact check is PASS.
+
+
+## 2026-10-15 — Patent-rim, glass and release-metadata review
+
+Patent: local `patents/JP2015055858A.pdf`, Numerical Example 2. Its damaged Figure 11 is supplemented only for geometry by local same-application grant `patents/JP6125383B2.pdf`, Figure 11, PDF p.21, as already established by the prior source comparison.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Display suffix | ART | Art | [Maker product page](https://www.sigma-global.com/en/lenses/a013_24_105_4/); consistent with the other Sigma Art entries. |
+| Nineteen elements' nC/nF/ng | 57 catalog-computed anchors | Removed; shared catalog resolution | No patent spectral measurements support these fields; native nd/vd retained. |
+| TAF1 / LAF2 resolution | OHARA S-LAH66 / Hikari J-LAF2 aliases | Actual HOYA TAF1 / LAF2 polynomials | Public HOYA 2026-07-07 including-obsolete NM/CD records, retaining published coefficients. |
+
+The 600 dpi grant inspection confirms the inferred rim sequence, stepped 6A/7 element and cemented pairs. Group brackets contaminate automatic rear readings; manual optical rims, rather than those readings, agree with current radii. No SD changed. All 19 glasses use catalog spectra; source blank A10 values remain the existing conditional zero assumption, not a newly established source value.
+
+The four native mounts, full-frame format, 19/14 counts and source-party metadata match the maker/source records. Sony A omits OS as already documented. Analysis synchronized with named HOYA curves and removal of synthetic line anchors.

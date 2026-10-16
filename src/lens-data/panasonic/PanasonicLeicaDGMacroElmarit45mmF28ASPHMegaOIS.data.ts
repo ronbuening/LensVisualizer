@@ -14,7 +14,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * conjugates, not the marketed 0.15 m or certified finiteConjugates. Intermediate linear interpolation
  * is a visualization approximation, explicitly not the actual cam law (patent paragraph 0018).
  * Catalog curves are coordinate-compatible spectral proxies, not identified factory suppliers or melts.
- * L3 remains Unmatched. OIS is centered; lateral compensation and wave-optical performance are unmodeled.
+ * L3 uses a qualified MC-TAF101-100 proxy. OIS is centered; lateral compensation and wave-optical performance are unmodeled.
  * Default geometry limits; no gap-sag or rim-angle override and no hidden-trim allowance.
  */
 
@@ -93,7 +93,7 @@ const LENS_DATA = {
       vd: 49.3,
       indexReference: "d",
       fl: 18.243061900302095,
-      glass: "Unmatched (lanthanum crown; source 1.76930/49.3; catalog candidates not exact)",
+      glass: "MC-TAF101-100 (HOYA spectral proxy; source 1.76930/49.3 retained; supplier and melt unconfirmed)",
       cemented: "D1",
     },
     {

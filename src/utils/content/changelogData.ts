@@ -19,6 +19,21 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-16",
+    type: "lens",
+    summary: "Added Laowa 60mm, Olympus 300mm, Panasonic Leica 45mm and Samyang 135mm lenses",
+  },
+  {
+    date: "2026-10-16",
+    type: "lens",
+    summary: "Added Sigma 24-105mm f/4 DG OS HSM Art and 28-105mm f/2.8 DG DN Art zooms",
+  },
+  {
+    date: "2026-10-16",
+    type: "improvement",
+    summary: "Expanded catalog glass coverage and refined the Sigma 28-105mm rear element outlines",
+  },
+  {
     date: "2026-10-15",
     type: "lens",
     summary: "Added five Canon, Nikon and Tamron zooms, including the IX-Nikkor 30-60mm",

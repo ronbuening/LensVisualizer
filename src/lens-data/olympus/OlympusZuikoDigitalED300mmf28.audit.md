@@ -101,3 +101,12 @@ Final runtime outcomes:2070 pass,424 explicit aperture clips and251 raw failed/n
 The final package remains INTEGRATION_PENDING. Full repository corpus/build/browser validation, repository writes and deployment are NOT_RUN. The native patent model omits the commercially required filter because no prescription exists. Physical apertures, supplier/melt identity, table/plot aperture discrepancy and commercial matching remain qualified.
 
 The standalone independent numerical copy is hash-checked before import/execution, mirroring the frozen-archive code check. Nineteen active negative fixtures were rejected with their outer manifests refreshed, covering source, model, metadata, glass label, errata, analysis, runtime proof, rays, baseline/code, original patent, inventory and withdrawn review. The complete final delivery replay repeats these fixtures on clean extracted bytes.
+
+
+## 2026-10-15 — Patent-rim, glass and release-metadata review
+
+Patent: local `patents/US6927926B2.pdf`, Numerical data 3, Figure 7, PDF p.8 (rotated for inspection).
+
+No SD or glass annotation changed. The 600 dpi figure shows the existing taper from the approximately 54 mm front rims to 33.5/32 mm G2, 30.5 mm G3 and 24/22 mm G4. Automatic readings on the densely annotated rear groups include leader lines and are rejected; the actual paired optical rims agree with the stored shape. All 12 elements retain compatible OHARA spectral proxies, with original nd/vd and the official correction intact.
+
+[Maker compatibility table](https://support.jp.omsystem.com/en/support/imsg/digicamera/compati/e_system_zdl.html) confirms the Four Thirds mount. Display name, Four Thirds image format, complete source-party metadata and native 12/10 optical counts remain appropriate. The commercial 13/11 count includes a required filter by the existing qualified inference; the source does not justify inventing its prescription. No missing native mount was found.

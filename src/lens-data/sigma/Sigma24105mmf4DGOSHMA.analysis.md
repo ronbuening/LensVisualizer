@@ -10,7 +10,7 @@
 **Embodiment analyzed:** Numerical Example 2  
 
 This reconstruction concerns Numerical Example 2 of JP2015055858A. The selected construction is
-correlated with the SIGMA 24-105mm f/4 DG OS HSM ART; it is not a manufacturer-confirmed factory
+correlated with the SIGMA 24-105mm f/4 DG OS HSM Art; it is not a manufacturer-confirmed factory
 prescription. The original application supplies the numerical model. The later same-application
 grant JP6125383B2 is used only to clarify the damaged construction figure and inspect the two
 consistently blank coefficient cells.
@@ -328,9 +328,9 @@ adds none and makes no air-equivalent plate-spacing conversion.
 
 The complete official HOYA catalogue, including obsolete entries, was searched by native d-line
 index and Abbe coordinate. The selected names are coordinate-equivalent representatives;
-alternative compatible entries remain possible. Calculated catalogue line indices nC, nF and ng
-are stored directly on each element, while the native patent nd and νd are unchanged. This
-provides a stated spectral proxy rather than an implicit generic dispersion curve. It does not
+alternative compatible entries remain possible. Runtime catalogue curves now supply the spectral proxies; calculated catalogue nC/nF/ng
+anchors have been removed from the elements. Native patent nd and νd are unchanged. The
+catalogue path preserves those reference indices and reports the spectrum as a model proxy. It does not
 prove the actual material, melt or secondary-spectrum correction.
 
 | Catalogue proxy | Native nd | Native νd | Elements |
@@ -358,11 +358,11 @@ patent line indices are absent, and the catalogue-equivalent spectra remain an a
 The six-term catalogue formulas reproduce their own published index coordinates; catalogue
 agreement is separate from physical supplier attribution.
 
-Actual runtime evaluation uses the explicit line-index tier for all 19 glass elements and
-reproduces the stored C/d/F/g inputs. A separate compatible-name diagnostic maps PCD51 to
-M-PCD51, TAF1 to S-LAH66, and LAF2 to J-LAF2. Those fallback mappings do not supply this
-model’s spectrum and are not evidence of physical glass identity. Removing the explicit line
-indices would therefore require a new dispersion review.
+All 19 elements now use compatible runtime catalogue curves. PCD51, TAF1 and LAF2 resolve
+to their own HOYA rows; the latter two curves were added from the vendor’s 2026-07-07
+NM/CD records rather than routing their names to OHARA or Hikari. The published polynomial
+coefficients are retained without fitting, and the native patent coordinates remain authoritative.
+Other named proxies retain their existing compatible curves. No supplier identity is inferred.
 
 Coverage is strongest for the full official HOYA catalogue. Limited Hikari, OHARA, Schott and
 Sumita primary-source checks provide contextual alternatives, without an exhaustive cross-vendor

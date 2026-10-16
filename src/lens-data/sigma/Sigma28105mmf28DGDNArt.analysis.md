@@ -395,7 +395,9 @@ At the modeled semi-diameter 16.9 mm, total sag is -1.809339 mm and the rim tang
 | A18 | -1.79202E-22 |
 | A20 | 2.86343E-25 |
 
-At the modeled, inferred semi-diameter 15.0 mm, total sag is 1.954626 mm and the actual rim tangent angle is 14.575402°. Departure from the vertex-matched sphere is 11.242 µm. This is a computed value at a modeled radius, not a source-published clear aperture or an as-manufactured departure.
+At the modeled, inferred semi-diameter 17.4 mm, total sag is 2.637859 mm and the actual rim tangent angle is 18.612249°. Departure from the vertex-matched sphere is 7.226 µm. This is a computed value at a modeled radius, not a source-published clear aperture or an as-manufactured departure.
+
+The final G6 singlet (surfaces 28/29) uses an 18.3 mm inferred optical radius; the final cemented pair (30/31/32A) uses a common 17.4 mm radius. These match Figure 1’s optical outline more closely than the previous 16.0/15.0 mm radii. They remain inferred clear apertures, with group brackets and mechanical flanges excluded.
 
 The shape checks include the complete polynomial, not a universal semi-diameter/radius ratio rule. Mathematical conic domains, actual slopes, shared-band air-gap intrusion and element edge thickness are checked using the adopted convention. Model clear radii are inferred from the undimensioned source section and exact-ray/shape constraints; mechanical flanges in a drawing are not automatically clear optical apertures.
 

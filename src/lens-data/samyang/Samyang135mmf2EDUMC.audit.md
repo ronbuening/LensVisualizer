@@ -282,3 +282,17 @@ Owner rulings (Ron, 2026-10-16):
 - Inventors romanized as Jong Young Park (matching the existing Samyang files) and Hyun Sik Yoon.
 
 The package's gate and readiness labels above (Stage 1 hold, pending integration) are superseded by this validation.
+
+
+## 2026-10-15 — Patent-rim, glass and release-metadata review
+
+Patent: local `patents/KR101802036B1.pdf`, Table 1 and Figure 1, PDF p.11.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Eleven elements' nC/nF/ng | 33 catalog-computed anchors | Removed; shared catalog resolution | Table 1 does not publish these measurements; they were computed from catalog formulas. Original nd/vd retained. |
+| TAF1 resolution | OHARA S-LAH66 alias | Actual HOYA TAF1 polynomial | Vendor 2026-07-07 TAF1 NM/CD row; n(d)/νd consistency checked at catalog precision. |
+
+All 11 elements retain catalog spectral coverage. The 600 dpi figure agrees with printed C/2 and the existing five documented axial-floor exceptions; measurements differ by at most about 10% at element rims. No SD, stop or source-erratum interpretation changed. Native 130 mm design versus marketed 135 mm remains explicit.
+
+[Maker product page](https://www.lksamyang.com/en/product/product-view.php?seq=323) confirms the existing nine native mounts, full-frame product and ED UMC display name. Source party metadata and 11/7 counts remain complete; the marketing MFD does not supply a finite-focus law. Analysis now describes runtime proxies rather than embedded synthetic line indices.

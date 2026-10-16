@@ -6,6 +6,26 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "TAF1",
+    vendor: "Hoya",
+    polynomial: [3.0736378, -0.015501284, 0.023627699, 0.00066300852, -2.8353438e-5, 2.2090799e-6],
+    nd: 1.7725,
+    vd: 49.63,
+    code6: "773496",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, TAF1 NM/CD row; vendor formula-1 polynomial. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf (accessed 2026-10-15).",
+  },
+  {
+    name: "LAF2",
+    vendor: "Hoya",
+    polynomial: [2.9657374, -0.0096571624, 0.026024525, 0.00036684641, 2.8205551e-5, -1.3739929e-7],
+    nd: 1.744,
+    vd: 44.9,
+    code6: "744449",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, discontinued LAF2 NM/CD row; vendor formula-1 polynomial. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf (accessed 2026-10-15).",
+  },
+  {
     name: "BSC3",
     vendor: "Hoya",
     polynomial: [2.2184621, -0.010480003, 0.0098211065, 0.00023795415, -0.000017796854, 0.0000010475444],

@@ -15,11 +15,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * below default gapSagFrac0.90 while passing the full stated axial beam. No override used.
  * Unresolved printed condition summaries1.123 and2.152 differ from native movement
  * calculations1.128345164 and2.165837448; no optical value is changed to repair them.
- * Exact native nd/vd retained; conservative Unmatched labels; no added spectral measurements.
+ * Exact native nd/vd retained. L2 uses a qualified K-PFK80 spectral proxy; the other
+ * eight glasses remain Unmatched. No production supplier or spectral measurement is inferred.
  */
 const LENS_DATA = {
   "key": "laowa-cf-60f28-macro-example-3",
-  "name": "LAOWA CF 60mm f/2.8 2x MACRO",
+  "name": "LAOWA 60mm f/2.8 2X Ultra-Macro",
   "maker": "Laowa",
   "subtitle": "CN103823292B — native Example 3; qualified patent model, production identity unconfirmed",
   "specs": [
@@ -83,7 +84,7 @@ const LENS_DATA = {
       "vd": 81.39,
       "indexReference": "d",
       "fl": 58.07637692064494,
-      "glass": "Unmatched (low-index low-dispersion fluor-crown class; supplier and melt unproven)",
+      "glass": "K-PFK80 (Sumita spectral proxy; source 1.49787/81.39 retained; supplier and melt unproven)",
       "role": "Positive main focus assembly"
     },
     {

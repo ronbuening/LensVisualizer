@@ -18,7 +18,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * Original application Figure 11 is damaged. No diameter is patent-published.
  * Ordinary-stop radius is calibrated by the real runtime from nominalFno;
  * authored STO.sd is an initial value, not a measured diaphragm dimension.
- * GLASS: names and nC/nF/ng are HOYA coordinate-equivalent catalogue proxies;
+ * GLASS: runtime catalog curves are coordinate-equivalent spectral proxies;
  * native nd/vd are unchanged. Supplier/melt identity and APO performance are
  * not established. Sony A production variant omits OS; lateral IS unmodeled.
  */
@@ -26,7 +26,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   "key": "sigma-24-105-f4-dg-os-hsm-art",
   "maker": "Sigma",
-  "name": "SIGMA 24-105mm f/4 DG OS HSM ART",
+  "name": "SIGMA 24-105mm f/4 DG OS HSM Art",
   "subtitle": "JP 2015-055858 A, Example 2; conditional degree-8 model on surfaces 28A/29A",
   "specs": [
     "19 ELEMENTS / 14 GROUPS",
@@ -74,9 +74,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -172.919009,
       "glass": "FDS90 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.8364919124907264,
-      "nF": 1.8720887041223224,
-      "ng": 1.894130341279733,
       "role": "Component of G1; isolated element focal length is not in-situ power.",
       "cemented": "D1"
     },
@@ -91,9 +88,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 136.242296,
       "glass": "PCD51 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.5907777777657663,
-      "nF": 1.5996356395481874,
-      "ng": 1.6043891692225578,
       "role": "Component of G1; isolated element focal length is not in-situ power.",
       "cemented": "D1"
     },
@@ -108,9 +102,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 123.769144,
       "glass": "TAF1 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.7677965599868546,
-      "nF": 1.7833635358903,
-      "ng": 1.7919309474684497,
       "role": "Component of G1; isolated element focal length is not in-situ power."
     },
     {
@@ -124,9 +115,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -20.192674,
       "glass": "TAFD30 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.8765692413387016,
-      "nF": 1.8982085278230374,
-      "ng": 1.9104465184739963,
       "role": "Component of G2; isolated element focal length is not in-situ power."
     },
     {
@@ -140,9 +128,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -37.765918,
       "glass": "TAC8 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.7251025131003241,
-      "nF": 1.7384391367467673,
-      "ng": 1.7457118419738085,
       "role": "Component of G2; isolated element focal length is not in-situ power."
     },
     {
@@ -156,9 +141,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 27.729884,
       "glass": "FDS90 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.8364919124907264,
-      "nF": 1.8720887041223224,
-      "ng": 1.894130341279733,
       "role": "Component of G2; isolated element focal length is not in-situ power."
     },
     {
@@ -172,9 +154,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -55.046494,
       "glass": "M-LAC130 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.6895449391969248,
-      "nF": 1.7025804603799561,
-      "ng": 1.7097055563292147,
       "role": "Component of G2; isolated element focal length is not in-situ power."
     },
     {
@@ -188,9 +167,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 86.251719,
       "glass": "FCD100 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.4355899618746153,
-      "nF": 1.4401851120638876,
-      "ng": 1.442637171773263,
       "role": "Component of G3; isolated element focal length is not in-situ power."
     },
     {
@@ -204,9 +180,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -45.223801,
       "glass": "TAFD55 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.9910461402030342,
-      "nF": 2.025403881691904,
-      "ng": 2.0460011117376657,
       "role": "Component of G3; isolated element focal length is not in-situ power.",
       "cemented": "D2"
     },
@@ -221,9 +194,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 30.984787,
       "glass": "FCD515 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.590206058843811,
-      "nF": 1.598844742390663,
-      "ng": 1.6035451826469111,
       "role": "Component of G3; isolated element focal length is not in-situ power.",
       "cemented": "D2"
     },
@@ -238,9 +208,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 69.223363,
       "glass": "FCD515 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.590206058843811,
-      "nF": 1.598844742390663,
-      "ng": 1.6035451826469111,
       "role": "Component of G3; isolated element focal length is not in-situ power."
     },
     {
@@ -254,9 +221,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 57.182357,
       "glass": "FDS90 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.8364919124907264,
-      "nF": 1.8720887041223224,
-      "ng": 1.894130341279733,
       "role": "Component of G4; isolated element focal length is not in-situ power.",
       "cemented": "D3"
     },
@@ -271,9 +235,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -29.89214,
       "glass": "E-FEL1 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.544578324809924,
-      "nF": 1.5565410304292067,
-      "ng": 1.56335990591248,
       "role": "Component of G4; isolated element focal length is not in-situ power.",
       "cemented": "D3"
     },
@@ -288,9 +249,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 33.209713,
       "glass": "E-F5 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.5987431027485142,
-      "nF": 1.6146181355785878,
-      "ng": 1.623870129851125,
       "role": "Component of G4; isolated element focal length is not in-situ power.",
       "cemented": "D4"
     },
@@ -305,9 +263,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -33.168352,
       "glass": "LAF2 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.7390599471655406,
-      "nF": 1.7556304754707883,
-      "ng": 1.7649606450732136,
       "role": "Component of G4; isolated element focal length is not in-situ power.",
       "cemented": "D4"
     },
@@ -322,9 +277,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 31.126365,
       "glass": "M-PCD51 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.5893088632316232,
-      "nF": 1.598141896195274,
-      "ng": 1.6028752457198916,
       "role": "Component of G5; isolated element focal length is not in-situ power."
     },
     {
@@ -338,9 +290,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 200.213705,
       "glass": "FCD100 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.4355899618746153,
-      "nF": 1.4401851120638876,
-      "ng": 1.442637171773263,
       "role": "Component of G5; isolated element focal length is not in-situ power.",
       "cemented": "D5"
     },
@@ -355,9 +304,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": -22.570823,
       "glass": "TAFD25 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.8952618127669951,
-      "nF": 1.9241188322568112,
-      "ng": 1.9412825647636835,
       "role": "Component of G5; isolated element focal length is not in-situ power.",
       "cemented": "D5"
     },
@@ -372,9 +318,6 @@ const LENS_DATA = {
       "indexReference": "d",
       "fl": 47.202061,
       "glass": "TAF1 (HOYA coordinate equivalent; supplier unconfirmed)",
-      "nC": 1.7677965599868546,
-      "nF": 1.7833635358903,
-      "ng": 1.7919309474684497,
       "role": "Component of G5; isolated element focal length is not in-situ power."
     }
   ],

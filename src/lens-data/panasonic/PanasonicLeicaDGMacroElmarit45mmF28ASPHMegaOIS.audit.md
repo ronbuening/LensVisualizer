@@ -122,3 +122,16 @@ Run Python 3 with the dossier verify.py, --package-dir pointing to the extracted
 Checks include CHAT_PREFLIGHT and targeted LENSVISUALIZER validation; repository integration remains INTEGRATION_PENDING. No metadata generation, repository-wide corpus sweep, full build, commit, merge or deployment was performed. Clear apertures are constructed estimates; outer-field pupil clipping is disclosed; intermediate focus interpolation is illustrative; no finiteConjugates certification or production optical performance is claimed.
 
 Final record cleanup closes the completed SD-construction task and records the finite-aperture investigation as unresolved source convention, rather than an unperformed investigation. The final manifest advances its immediate parent to the accepted revised Stage 3 and copies current limitations from fresh final results. These are record-only changes after Stage 3 acceptance; all affected hashes and runtime/replay checks were refreshed.
+
+
+## 2026-10-15 — Patent-rim, glass and release-metadata review
+
+Patent: local `patents/JP2011048232A.pdf`, Numerical Example 3, Figure 7(a), PDF p.15.
+
+| Element / field | Before | After | Evidence |
+|---|---|---|---|
+| L3 glass | Unmatched; Abbe fallback | MC-TAF101-100 qualified spectral proxy | Source 1.76930/49.3 unchanged; catalog n(d)=1.76901534, νd=49.29, residuals −0.00028466/−0.01. This curve is already in the catalog and is not a factory-glass identification. |
+
+The clean optical-rim measurements at 600 dpi agree with existing radii within approximately 12%, with median figure/data about 1.04. Retained all SDs, the source-calibrated iris and published focus gaps. All 14 elements now resolve to compatible catalog curves. Analysis updated for L3 without claiming measured spectral data.
+
+[Official product page](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses/g/h-es045.html) confirms the LEICA DG MACRO-ELMARIT / ASPH. / MEGA O.I.S. name and Micro Four Thirds mount. Existing Panasonic maker attribution, Four Thirds format, source authors/assignee and 14/10 counts are retained. Modeled near-conjugate coordinates remain separate from the marketed 0.15 m MFD.

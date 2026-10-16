@@ -92,6 +92,8 @@ Equation 1 needs the missing last-face C19. Equations 3 and 4 refer to composite
 
 The native aberration/spot/MTF figures retain their f=135 F2 labels. Their plotted curves are not substituted for fresh calculations or used to tune this model. No claim of reproducing those MTF curves is made.
 
+The eleven elements use the shared runtime catalog path. Previously embedded, catalog-computed nC/nF/ng anchors were removed because the patent does not publish them. TAF1 now has its own HOYA curve; N-SF1 continues to resolve to the compatible SF1 representative, retaining the printed νd 29.50 against catalog 29.62. Native nd/vd remain unchanged, and every catalog label denotes a spectral proxy rather than a verified factory melt.
+
 ## Model Scope
 
 The model keeps the native 130 mm table unscaled, uses the paraxial image distance, raises five printed clear diameters to pass the axial beam, infers the final aperture, approximates glass dispersion from catalog formulas and covers the infinity state only.

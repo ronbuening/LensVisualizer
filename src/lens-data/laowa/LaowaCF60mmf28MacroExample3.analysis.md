@@ -9,7 +9,7 @@
 **Title:** 一种超微距镜头 (A super macro lens)  
 **Embodiment analyzed:** Native Example 3, original millimetres, published infinity / nominal 1x / nominal 2x spacing states
 
-This prescription is a qualified patent-example model associated with the LAOWA CF 60mm f/2.8 2x Macro. The selected numerical example is not manufacturer-confirmed as the exact production prescription. The grant specifies a 61.0269 mm, FNO 2.90 design with a 13.07° half-field (¶0067–0069), distinct from the manufacturer's nominal 60 mm, f/2.8 lens. The original radii, thicknesses, d-line indices and focus gaps are retained without scaling or fitting.
+This prescription is a qualified patent-example model associated with the LAOWA 60mm f/2.8 2X Ultra-Macro. The selected numerical example is not manufacturer-confirmed as the exact production prescription. The grant specifies a 61.0269 mm, FNO 2.90 design with a 13.07° half-field (¶0067–0069), distinct from the manufacturer's nominal 60 mm, f/2.8 lens. The original radii, thicknesses, d-line indices and focus gaps are retained without scaling or fitting.
 
 The association has several useful limits:
 
@@ -40,7 +40,7 @@ This front biconvex singlet contributes positive standalone power at the entranc
 
 ### L2 — Positive Meniscus
 
-nd = 1.49787, νd = 81.39. Glass: Unmatched (low-index low-dispersion fluor-crown class; supplier and melt unproven). f = +58.08 mm.
+nd = 1.49787, νd = 81.39. Glass: K-PFK80 (Sumita spectral proxy; source 1.49787/81.39 retained; supplier and melt unproven). f = +58.08 mm.
 
 The second element is a positive meniscus convex toward the object. Its lower-index, high-Abbe coordinates differ strongly from the neighboring high-index glass. That contrast is relevant to chromatic balancing, but the published d-line pair alone does not determine partial dispersion or establish an ED trade name. Source: Example 3, prescription rows 3–4 (¶0070–0071).
 
@@ -93,7 +93,7 @@ The table supplies nine distinct d-line index/Abbe pairs, without commercial gla
 | Element | Native nd | Native νd | Conservative class |
 |---|---:|---:|---|
 | L1 | 1.77965 | 46.35 | Unmatched (high-index moderate-dispersion crown/flint boundary; supplier and melt unproven) |
-| L2 | 1.49787 | 81.39 | Unmatched (low-index low-dispersion fluor-crown class; supplier and melt unproven) |
+| L2 | 1.49787 | 81.39 | K-PFK80 (Sumita coordinate-compatible spectral proxy; supplier unconfirmed) |
 | L3 | 1.83868 | 26.75 | Unmatched (dense flint class; supplier and melt unproven) |
 | L4 | 1.91782 | 20.98 | Unmatched (very-high-index dense flint class; supplier and melt unproven) |
 | L5 | 1.63170 | 34.87 | Unmatched (flint class; supplier and melt unproven) |
@@ -104,7 +104,7 @@ The table supplies nine distinct d-line index/Abbe pairs, without commercial gla
 
 The material comparison covers preserved official CDGM, HIKARI, HOYA, OHARA, SCHOTT and SUMITA catalogs, including the obsolete entries present in those files. The 3,179 source observations yield no exact source-rounding-bin identification for any of the nine pairs. Several broadly similar catalog coordinates exist, but compatibility does not prove supplier, formulation or melt. OHARA S- and L-family prefixes are not conflated.
 
-The two low-index/high-Abbe elements, L2 and L8, may be described at the fluor-crown class level. Dense-flint class descriptions for L3 and L4 remain coordinate inferences. No candidate nC, nF, ng or anomalous partial-dispersion value is imported as a patent measurement. The runtime retains native d-line Abbe approximations for all nine glasses. Chromatic plots therefore carry a spectral-model limitation; no APO or verified secondary-spectrum performance is asserted.
+The two low-index/high-Abbe elements, L2 and L8, may be described at the fluor-crown class level. Dense-flint class descriptions for L3 and L4 remain coordinate inferences. No candidate nC, nF, ng or anomalous partial-dispersion value is imported as a patent measurement. L2 now uses the catalog K-PFK80 curve (catalog n(d) 1.49699862, νd 81.3504; residuals −0.00087138 and −0.0396). This is a qualified fluor-crown spectral proxy, not an exact identification; other compatible fluor-crowns exist. The runtime retains native d-line Abbe approximations for the other eight glasses. Chromatic plots therefore carry a spectral-model limitation; no APO or verified secondary-spectrum performance is asserted.
 
 ## Focus Mechanism
 

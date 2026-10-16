@@ -266,3 +266,19 @@ Owner rulings (Ron, 2026-10-16):
 - Zoom interpolation defocus (up to 0.98 mm near zoomT 0.26): accepted.
 
 The package's readiness labels above (READY_FOR_BATCH, INTEGRATION_PENDING) are superseded by this validation.
+
+
+## 2026-10-15 — Patent-rim, glass and release-metadata review
+
+Patent: local `patents/JP2025182227A.pdf`, Numerical Example 1, Figure 1, PDF p.43. The optical axis and independent vertex-span scales reproduce the prior manual calibration of about 0.05466 mm/px at 600 dpi.
+
+| Surface / field | Before | After | Evidence |
+|---|---|---|---|
+| 28 / 29 sd | 16.0 / 16.0 mm | 18.3 / 18.3 mm | Clean optical top/bottom rims of final G6 singlet; excludes the group bracket. |
+| 30 / 31 / 32A sd | 15.0 / 15.0 / 15.0 mm | 17.4 / 17.4 / 17.4 mm | Figure's level final cemented-pair rim; shared interface stays level. |
+| 32A quoted departure | 11.242 µm at 15.0 mm | 7.226 µm at 17.4 mm | Complete adopted conic/polynomial; sag 2.637859 mm, tangent angle 18.612249°. |
+| L5 TAF1 curve | OHARA S-LAH66 alias | Actual HOYA TAF1 polynomial | Vendor NM/CD record, not a production supplier claim. Printed nd/νd/PgF retained. |
+
+The earlier minimum-axial-floor-only pass explicitly left these last two components smaller than the figure. This broader silhouette pass includes them. Other rims agree within the existing source/geometry limits; STO and the inferred iris schedule remain unchanged. No gap-sag or slope exception is introduced. All 18 elements retain catalog spectra and their patent-published partial dispersion.
+
+[Maker product page](https://www.sigma-global.com/en/lenses/a024_28_105_28/) confirms L-mount/Sony E, full frame, 18/13 counts and Art branding. Existing equation convention, interior-zoom defocus and absent finite-focus-law limitations remain. Analysis updated for the larger final rims and recomputed asphere departure.

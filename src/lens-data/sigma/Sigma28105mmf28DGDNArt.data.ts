@@ -9,7 +9,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * dPgF = printed PgF − the engine's normal line.
  * Semi-diameters: the source prints no surface or iris diameters. Front-group rims are
  * estimated from Figure 1; rear-group rims (14A–27) are the least values that pass the F2.91
- * axial beam at every zoom station, consistent with Figure 1's proportions. The iris
+ * axial beam at every zoom station. Surfaces 28–32A follow Figure 1's optical rims.
+ * The last singlet and cemented pair use 18.3/17.4 mm, excluding brackets and flanges. The iris
  * schedule is calibrated to the source F2.91 through zoomApertureModel.
  * Zoom: only the three source infinity stations are published. Linear interpolation
  * between them leaves up to 0.98 mm of defocus at intermediate focal lengths; accepted
@@ -520,7 +521,7 @@ const LENS_DATA = {
       "d": 7.07,
       "nd": 1.61997,
       "elemId": 16,
-      "sd": 16
+      "sd": 18.3
     },
     {
       "label": "29",
@@ -528,7 +529,7 @@ const LENS_DATA = {
       "d": 1.9747,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 16
+      "sd": 18.3
     },
     {
       "label": "30",
@@ -536,7 +537,7 @@ const LENS_DATA = {
       "d": 2.0525,
       "nd": 1.91082,
       "elemId": 17,
-      "sd": 15
+      "sd": 17.4
     },
     {
       "label": "31",
@@ -544,7 +545,7 @@ const LENS_DATA = {
       "d": 8.4087,
       "nd": 1.68948,
       "elemId": 18,
-      "sd": 15
+      "sd": 17.4
     },
     {
       "label": "32A",
@@ -552,7 +553,7 @@ const LENS_DATA = {
       "d": 27.8972,
       "nd": 1.0,
       "elemId": 0,
-      "sd": 15
+      "sd": 17.4
     }
   ],
   // Evaluated with the standard square-root conic equation; ¶0067 omits the root (see header).
