@@ -73,8 +73,8 @@ export function indexAtPreparedSurface2(
 /**
  * Resolve a RuntimeLens surface index for a chromatic channel.
  *
- * Runtime lenses are normalized and cached in a WeakMap so repeated chromatic
- * traces reuse the same dispersion descriptors without mutating `L`.
+ * The lookup reads the compiled lens the compiler associated with `L` (`compiledLensFromRuntime`), so repeated
+ * chromatic traces reuse its dispersion descriptors; a runtime lens the compiler did not build throws.
  *
  * @param L - runtime lens object
  * @param surfaceIndex - physical surface index
