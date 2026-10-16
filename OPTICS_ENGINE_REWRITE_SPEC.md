@@ -1345,7 +1345,8 @@ The stop radius has exactly one authority per lens:
     `aperture`, would come back on `nominalFno`.
   - Any other comment on a V2 node V1 has no counterpart for (a station record, a medium) moves, prefixed, to the V1
     node of its nearest mapped ancestor, or to the first V1 container whose home holds it (`zoomPositions` first,
-    then file order); the report lists each move, with the node it went to, and each medium name V1 cannot hold. A
+    then file order); the report lists each move, with the node it went to, and each medium V1 cannot hold, whose id,
+    name and place in the list drop. A
     restored flat radius prints `1e15`, not `String(1e15)`.
 - **The converter is permanent.** Lens files waiting in an archive for a later release, and files on external
   branches, may still be V1 long after migration. The converter, its V1 reader and its tests stay after the program,
@@ -1970,7 +1971,7 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     lists `V1_ROW_LISTS` names keeping their source's blank lines, all in `toLensData.ts`. A record below the top prints as the view writes it (a surface's `elemId` before its `sd`, as
     all 17,933 catalog surface rows write it), a record keyed by surface label in surface order. The comment mapping is engine-owned, `v1SourceMap` in `src/optics/prescription/`, as
     [V2 to V1](#ingest-conversion-and-comments) states it, and the report lists each moved comment and each medium
-    name V1 cannot hold.
+    V1 cannot hold, with its id and any name.
   - **A stop without `sd`, going to V1:** V1's `SurfaceData.sd` is required, so the converter writes the engine's
     radius, to 0.001 mm, from `buildLens` on the source: a prime's radius, a zoom's at the wide station (a fixed-iris
     zoom's one radius), a scheduled zoom's first schedule value. `v1StopRadius` names the surface and how the engine

@@ -676,6 +676,18 @@ describe("the V1 direction (S2.P3.T2)", () => {
     );
   });
 
+  it("reports every medium V1 cannot hold, with its id and any name, in the list's order", async () => {
+    const pair = FIXTURE_PAIRS.find((candidate) => candidate.family === "media")!;
+    const v2 = structuredClone(pair.v2) as { media: { name?: string }[] };
+    delete v2.media[1].name;
+    const { report } = await converted(v2Text(v2), { toVersion: 1 });
+    expect(report.media).toEqual([
+      { from: "media[0]", id: "cement", name: "Cement layer" },
+      { from: "media[1]", id: "water" },
+    ]);
+    expect(formatConversionReport([report])).toContain('    media[1]: id "water"\n');
+  });
+
   it("moves a station record's comment to the first station list, a medium's to the file's object, each once", async () => {
     const { text, report } = await converted(COMMENTED_V2_ZOOM, { toVersion: 1 });
     expect(text).toContain(
@@ -689,9 +701,10 @@ describe("the V1 direction (S2.P3.T2)", () => {
       ["media[0]", ""],
       ["zoom.stations[1]", "zoomPositions"],
     ]);
-    expect(report.mediumNames).toEqual([{ from: "media[0].name", name: "Cement layer" }]);
+    expect(report.media).toEqual([{ from: "media[0]", id: "cement", name: "Cement layer" }]);
     expect(formatConversionReport([report])).toContain(
-      '  medium names V1 cannot hold:\n    media[0].name = "Cement layer"',
+      "  media V1 cannot hold, written as their surfaces' nd (ids, names and order drop):\n" +
+        '    media[0]: id "cement", name "Cement layer"',
     );
     expect(prescriptionOf(text)).toEqual(prescriptionOf(COMMENTED_V2_ZOOM));
     const back = await converted(text);

@@ -91,8 +91,11 @@ export interface V1SourceMap {
   readonly order: Readonly<Record<string, readonly string[]>>;
   /** Each value the source's ingest set aside that the V1 file does not write back, in the order ingest met them. */
   readonly dropped: readonly V1DroppedValue[];
-  /** Each name the source gave an undrawn medium, which V1, writing a medium as its surfaces' `nd`, cannot hold. */
-  readonly mediumNames: readonly { from: string; name: string }[];
+  /**
+   * Each undrawn medium the source lists, which V1, writing a medium as its surfaces' `nd`, cannot hold: its id, any
+   * name and its place in the list drop.
+   */
+  readonly media: readonly { from: string; id: string; name?: string }[];
 }
 
 /**
@@ -322,9 +325,11 @@ export function v1SourceMap(
     }
     dropped.push({ kind: entry.kind, from: entry.from, canonical, value });
   }
-  const mediumNames = (source.provenance.v2?.media ?? []).flatMap((medium, index) =>
-    medium.name === undefined ? [] : [{ from: `media[${index}].name`, name: medium.name }],
-  );
+  const media = (source.provenance.v2?.media ?? []).map((medium, index) => ({
+    from: `media[${index}]`,
+    id: medium.id,
+    ...(medium.name === undefined ? {} : { name: medium.name }),
+  }));
 
   return {
     textSource(v1Path) {
@@ -353,6 +358,6 @@ export function v1SourceMap(
     },
     order,
     dropped,
-    mediumNames,
+    media,
   };
 }
