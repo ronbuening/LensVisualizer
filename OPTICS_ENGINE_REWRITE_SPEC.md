@@ -2908,7 +2908,7 @@ The maintainer settled these on 2026-10-11 and 2026-10-12, during Stage 1 and on
 | --- | --- | --- |
 | 15 | Stages 1 to 5 land on an integration branch, `engine-next`, promoted to `main` after the Stage 5 gate | [Integration model](#integration-model) |
 | 16 | `main` merges into `engine-next` weekly, and Tier P of the branch against `main` is recorded each time | [Integration model](#integration-model); [Gates by level](#gates-by-level) |
-| 17 | The catalog conversion and its follow-ups wait until after promotion, and the V2 authoring documents land on `main` with them | [Stage dependencies](#stage-dependencies); S2.P4; S2.P5 |
+| 17 | The catalog conversion and its follow-ups wait until after promotion. Row 89 (Q57) supersedes the rest, that the V2 authoring documents land on `main` with them: they reach `main` with promotion | [Stage dependencies](#stage-dependencies); S2.P4; S2.P5 |
 | 18 | The differential harness and the paired benchmark mode are deleted at the close | S8.P2.T3 |
 | 21 | The work counters are withdrawn from Stage 1 and from the program; count-based targets are measured with a throwaway instrumented build | [Efficiency](#efficiency-secondary) |
 | 22 | Every engine change goes to `engine-next` while the branch lives | [Integration model](#integration-model) |
