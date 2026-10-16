@@ -4,9 +4,11 @@
  *
  * A run:
  * 1. collects the inputs (a file, or every `*.data.ts` and `*.teleconverter.ts` under a directory, in path order) and
- *    refuses, before converting any, a collision: two destinations that are one path without regard to case, an
- *    `--output` destination that exists, an `--output` directory inside the input or the input inside it (compared
- *    after resolving symbolic links, as directories), or a backup a run left beside an input;
+ *    refuses, before converting any, a directory it cannot list, a file input that is a symbolic link, or a
+ *    collision: two destinations that are one path
+ *    without regard to case, an `--output` destination that exists, an `--output` directory inside the input or the
+ *    input inside it (compared after resolving symbolic links, as directories), or a backup a run left beside an
+ *    input;
  * 2. reads each input and asks its version by the engine's rule (`lensDataVersion`); an input already at the target
  *    version is left as it is and gets no line, and a file of no version is refused;
  * 3. converts the others through the library (`convert.mjs`), reading a CR LF source as LF and refusing a lone CR;
@@ -15,7 +17,8 @@
  * 5. under `--write`, and only when no input was refused, writes each converted text to a temp file beside its
  *    destination, keeps each input's bytes beside it, renames the temp files over the inputs (or links each to its
  *    `--output` destination), and removes the backups. A failure or a signal in that phase puts back every input
- *    already replaced (or removes every destination already written), removes what the run created, and exits 2.
+ *    already replaced (or removes every destination already written), removes what the run created, and exits 2. A
+ *    backup that cannot be removed once every input is replaced is a warning, and stays.
  *
  * Stdout is the conversion report and nothing else, the same bytes in every mode; status lines and the closing count
  * go to stderr.
@@ -65,13 +68,19 @@ Exit codes:
      diagnostic outside the converted files, or a failure of the type-check itself
   2  a collision, refused before anything converts: two destinations one path without regard to case, an --output
      destination that exists, --output inside --input or --input inside --output, or a backup
-     (.<name>.<pid>.convert-bak) a run left beside an input
+     (.<name>.<pid>.convert-bak) a run left beside an input; or a directory under --input that cannot be listed,
+     or an --input file that is a symbolic link
   2  with --write, a failed write or rename, after every input already replaced is put back (under --output, every
      file already written is removed)
   2  SIGINT or SIGTERM while writing, after the same restore
   2  an error writing stdout or stderr, other than a reader closing its pipe, once the run is over
-  2  a usage error: an unknown, repeated or valueless flag, no --input, two of --dry-run, --check and --write,
-     --output without --write, or a --to-version other than 1 or 2
+  2  a usage error: an unknown, repeated or valueless flag, a value given to --dry-run, --check or --write, an
+     argument that is no flag, no --input, an --input that does not exist or is a file but no *.data.ts or
+     *.teleconverter.ts, two of --dry-run, --check and --write, --output without --write, or a --to-version other
+     than 1 or 2
+
+SIGINT or SIGTERM before the write phase stops the run as it stops any process (a shell reports 130 or 143), with
+nothing written.
 `;
 
 /** A usage error: the message, then the usage text, on stderr, and exit 2. */
@@ -79,6 +88,9 @@ class UsageError extends Error {}
 
 /** A collision found before anything converts. */
 class CollisionError extends Error {}
+
+/** An input that cannot be converted where it is: a directory that cannot be listed, or a link to a file. */
+class InputError extends Error {}
 
 /** A signal that arrived while the run was writing. */
 class SignalError extends Error {}
@@ -156,7 +168,12 @@ function within(path, directory) {
 function lensDataFiles(fs, directory) {
   const files = [];
   const walk = (at) => {
-    const entries = fs.readdirSync(at, { withFileTypes: true }).sort((a, b) => (a.name < b.name ? -1 : 1));
+    let entries;
+    try {
+      entries = fs.readdirSync(at, { withFileTypes: true }).sort((a, b) => (a.name < b.name ? -1 : 1));
+    } catch (error) {
+      throw new InputError(`${at} cannot be listed: ${error.message}`);
+    }
     for (const entry of entries) {
       if (entry.name.startsWith(".")) continue;
       const path = join(at, entry.name);
@@ -198,6 +215,10 @@ function collectInputs(fs, args, cwd) {
   const isDirectory = stat.isDirectory();
   if (!isDirectory && !kindOf(input)) {
     throw new UsageError(`--input ${args.input} is no *.data.ts or *.teleconverter.ts file`);
+  }
+  /* A write renames over the path, which would replace a link with a file and leave the file it points to as it was. */
+  if (!isDirectory && fs.lstatSync(input).isSymbolicLink()) {
+    throw new InputError(`--input ${args.input} is a symbolic link; give the file it points to`);
   }
   const output = args.output === undefined ? undefined : resolve(cwd, args.output);
   if (output !== undefined) {
@@ -263,14 +284,15 @@ function lineFeedText(text) {
 }
 
 /**
- * Create a file that must not exist yet and write its bytes. The path is recorded as soon as the file exists, before
- * any byte is written, so a write that fails part way (a full disk, a file-size limit) leaves a file the run knows it
- * created and removes.
+ * Create a file that must not exist yet, with the given permissions whatever the umask, and write its bytes. The path
+ * is recorded as soon as the file exists, before any byte is written, so a write that fails part way (a full disk, a
+ * file-size limit) leaves a file the run knows it created and removes.
  */
-function writeNewFile(fs, path, data, record) {
-  const descriptor = fs.openSync(path, "wx");
+function writeNewFile(fs, path, data, mode, record) {
+  const descriptor = fs.openSync(path, "wx", mode);
   record(path);
   try {
+    fs.fchmodSync(descriptor, mode);
     fs.writeFileSync(descriptor, data);
   } finally {
     fs.closeSync(descriptor);
@@ -288,7 +310,8 @@ function yieldToSignals() {
  * what the run created, and throw.
  *
  * @param {object} fs - the file system
- * @param {{ entry: object, text: string, bytes: Uint8Array }[]} converted - each converted file and its input's bytes
+ * @param {{ entry: object, text: string, bytes: Uint8Array, mode: number }[]} converted - each converted file, and its
+ *   input's bytes and permissions
  * @param {boolean} inPlace - whether the destinations are the inputs
  * @param {object} context - the process id, the signal source and the stderr writer
  * @returns {Promise<void>}
@@ -309,17 +332,19 @@ async function writeConverted(fs, converted, inPlace, { pid, signals, warn }) {
   };
   for (const name of ["SIGINT", "SIGTERM"]) signals.on(name, onSignal);
   try {
-    for (const { entry, text } of converted) {
+    for (const { entry, text, mode } of converted) {
       if (!inPlace) {
         for (let at = dirname(entry.destination); !fs.existsSync(at); at = dirname(at)) createdDirectories.push(at);
         fs.mkdirSync(dirname(entry.destination), { recursive: true });
       }
-      writeNewFile(fs, besidePath(entry.destination, pid, "convert-tmp"), text, (temp) => temps.set(entry, temp));
+      writeNewFile(fs, besidePath(entry.destination, pid, "convert-tmp"), text, mode, (temp) => temps.set(entry, temp));
       await checkSignal();
     }
     if (inPlace) {
-      for (const { entry, bytes } of converted) {
-        writeNewFile(fs, besidePath(entry.path, pid, "convert-bak"), bytes, (backup) => backups.set(entry, backup));
+      for (const { entry, bytes, mode } of converted) {
+        writeNewFile(fs, besidePath(entry.path, pid, "convert-bak"), bytes, mode, (backup) =>
+          backups.set(entry, backup),
+        );
         await checkSignal();
       }
       for (const { entry } of converted) {
@@ -337,8 +362,6 @@ async function writeConverted(fs, converted, inPlace, { pid, signals, warn }) {
         await checkSignal();
       }
     }
-    for (const backup of backups.values()) fs.unlinkSync(backup);
-    backups.clear();
   } catch (error) {
     const unrestored = [];
     for (const entry of replaced) {
@@ -379,6 +402,18 @@ async function writeConverted(fs, converted, inPlace, { pid, signals, warn }) {
     throw error;
   } finally {
     for (const name of ["SIGINT", "SIGTERM"]) signals.off(name, onSignal);
+  }
+  /*
+   * Every input is replaced, so the run is done: a backup that cannot be removed is a warning, and stays beside its
+   * input, which the next run refuses to touch until it is removed. Putting the inputs back for it would undo the
+   * run only part way, the other backups being gone.
+   */
+  for (const [entry, backup] of backups) {
+    try {
+      fs.unlinkSync(backup);
+    } catch (removeError) {
+      warn(`could not remove ${backup}, the backup of ${entry.path}, which is converted: ${removeError.message}`);
+    }
   }
 }
 
@@ -424,7 +459,7 @@ export async function runConversion(run) {
       stderr.write(`convert-lens-data: ${error.message}\n\n${USAGE}`);
       return 2;
     }
-    if (error instanceof CollisionError) {
+    if (error instanceof CollisionError || error instanceof InputError) {
       warn(`refused before converting anything: ${error.message}`);
       return 2;
     }
@@ -440,10 +475,14 @@ export async function runConversion(run) {
   let left = 0;
 
   for (const entry of inputs) {
-    const bytes = fs.readFileSync(entry.path);
+    let bytes;
+    let mode;
     let version;
     let source;
     try {
+      bytes = fs.readFileSync(entry.path);
+      /* A converted file, and the backup of its input, keep the input's permissions. */
+      mode = fs.statSync(entry.path).mode & 0o777;
       source = new TextDecoder("utf-8", { fatal: true, ignoreBOM: true }).decode(bytes);
       version = conversion.lensDataVersion(evaluateLensDataSource(source, entry.file));
     } catch (error) {
@@ -477,7 +516,7 @@ export async function runConversion(run) {
       refused.push({ entry, reason: result.refusal });
       continue;
     }
-    converted.push({ entry, text: result.text, bytes, crlf: lines.crlf, report: result.report });
+    converted.push({ entry, text: result.text, bytes, mode, crlf: lines.crlf, report: result.report });
   }
 
   let typeFailure;
@@ -506,6 +545,7 @@ export async function runConversion(run) {
   stdout.write(formatConversionReport(converted.map((item) => item.report)));
   const failed = refused.length > 0 || typeFailure !== undefined;
   let written = false;
+  let writeFailure;
   if (args.mode === "write" && !failed && converted.length > 0) {
     try {
       await writeConverted(fs, converted, inPlace, {
@@ -516,12 +556,10 @@ export async function runConversion(run) {
       written = true;
     } catch (error) {
       warn(`${error instanceof SignalError ? "stopped" : "writing failed"}: ${error.message}`);
-      warn(
+      writeFailure =
         error.restored === false
           ? "some inputs or outputs could not be restored; see above"
-          : "no converted file is written, and every input is as it was",
-      );
-      return 2;
+          : "no converted file is written, and every input is as it was";
     }
   }
 
@@ -539,6 +577,10 @@ export async function runConversion(run) {
   const count = `${inputCount}: ${converted.length} ${verb} to ${target}, ${leftAsIs}, ${refused.length} refused`;
   if (failed) {
     warn(`${count}; nothing written`);
+    return 2;
+  }
+  if (writeFailure) {
+    warn(`${count}; ${writeFailure}`);
     return 2;
   }
   warn(count);

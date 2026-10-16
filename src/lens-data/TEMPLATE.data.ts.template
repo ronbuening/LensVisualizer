@@ -97,8 +97,8 @@ const LENS_DATA = {
    *
    *  Fields: label (unique; append "A" for aspheric), R (mm, or "flat"; R > 0 → center of curvature to the RIGHT),
    *    d (mm to the next surface; left out on a surface whose gap is in `gaps`), sd (clear semi-diameter, mm; left
-   *    out on a stop whose radius is not authored), medium (the element id or media id light travels in AFTER this
-   *    surface; left out for air), asphere (sparse terms; § Aspheres), innerSd (annular hole radius, < sd),
+   *    out on a stop whose radius is not authored), innerSd (annular hole radius, < sd), medium (the element id or
+   *    media id light travels in AFTER this surface; left out for air), asphere (sparse terms; § Aspheres),
    *    diffractive (§ Diffractive phase surfaces), interaction (§ Folded Paths), stopPlacement (§ Stop and Aperture).
    *
    *  medium rules: an element's entry surface opens into it, its exit surface into air (no medium), and a cemented
@@ -182,7 +182,8 @@ const LENS_DATA = {
   },
 
   /* ── Independent aberration control (optional) ── a real soft-focus / SA-control ring, not focus travel.
-   *    The gap's thickness without the control must match the first (normal/sharp) value.
+   *    The gap's thickness without the control matches the first value of each [normal, maximum] pair, or, with
+   *    centerLabel set, the center value of each [minimum, center, maximum] triple.
    *    See LENS_DATA_SPEC.md § Aberration control (aberrationControl). */
   // aberrationControl: {
   //   label: "SOFT",

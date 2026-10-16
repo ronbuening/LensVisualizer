@@ -367,13 +367,13 @@ document their stable model order.
   glass: "S-LAH58 (OHARA)", // recommended: catalog glass; see Glass Identification
   apd: false, // optional: false (default) | "patent" | "inferred"
   apdNote: "dPgF = +0.0376", // optional: prose
+  role: "Front positive meniscus…", // optional: optical role
+  diagramLabel: "L11", // optional: source identifier drawn below the element
+  cemented: "D1", // optional: cemented group name
   dPgF: 0.0376, // optional: partial-dispersion deviation from the normal line; drives APO behavior
   nC: 1.89822, // optional: measured index at C (656.3 nm), when published
   nF: 1.92131, // optional: measured index at F (486.1 nm), when published
   ng: 1.93525, // optional: measured index at g (435.8 nm), when published
-  role: "Front positive meniscus…", // optional: optical role
-  diagramLabel: "L11", // optional: source identifier drawn below the element
-  cemented: "D1", // optional: cemented group name
   span: ["3", "4"], // optional: drawn span; see below
 }
 ```
@@ -468,9 +468,9 @@ header and the companion analysis.
   R: 50.421, // REQUIRED: radius of curvature in mm, or "flat"
   d: 3.46, // axial step to the next surface in mm; left out on a variable gap
   sd: 14.5, // clear semi-diameter in mm; left out on a stop whose radius is not authored
+  innerSd: 4.0, // optional: inner semi-diameter of an annular active aperture
   medium: 2, // the medium AFTER this surface: an element id, a media id, or left out for air
   asphere: { K: -0.62, A4: 1.2e-5 }, // optional: sparse aspheric terms
-  innerSd: 4.0, // optional: inner semi-diameter of an annular active aperture
   interaction: { type: "reflect" }, // optional: folded-path behavior
   stopPlacement: "inside-element", // optional: only on a stop inside glass
 }
@@ -866,9 +866,8 @@ station whose rounded source row was re-solved for paraxial consistency is still
   infinity-focus spacings are tabulated.
 - A zoom with more than three stations writes `published` on its stations, `false` on each solved or sampled one,
   even when every station is a source row: dense station lists usually mix source rows with solved or sampled cam
-  points, so the corpus test (`__tests__/src/lens-data/publishedStations.test.ts`) asks for an explicit answer. It
-  reads the canonical prescription: a zoom whose stations write no flag takes the default, which ingest records as
-  defaulted, and has not answered.
+  points, so the corpus test (`__tests__/src/lens-data/publishedStations.test.ts`) asks for an explicit answer. A
+  zoom whose stations write no `published` flag has not answered, even when they write `publishedFocus`.
 - Each listed focus keyframe moves at least one gap away from its infinity value at that station. A station that
   publishes focus keyframes is itself published, and a conjugate may not sit on an unpublished station.
 - Do not publish a reconstructed close-focus endpoint, a production minimum-focus distance or a code-solved keyframe.
@@ -1085,10 +1084,15 @@ Any surface may declare `innerSd` for an annular active aperture:
   both should draw as annular, and the element path uses even-odd fill.
 - **Blocker:** `interaction: { type: "block" }` with no `medium`. Give it a medium only if the blocker is drawn as a
   physical element with a front and back surface.
-- **Nested correctors:** an element `span` normally contains no surface but an embedded `STO`. Mirror lenses get one
-  narrow exception: when `opticalPath` is present, a span whose endpoints have matching `innerSd` and at least one
-  reflective endpoint may contain non-stop surfaces that fit wholly inside that central opening. Use it only where a
-  corrector group physically occupies the empty center of an annular mirror.
+- **Nested correctors:** an element `span` normally contains no surface but an embedded `STO`. Mirror lenses get two
+  narrow exceptions, both only when `opticalPath` is present (`isAllowedFoldedSpanInternalSurface` in
+  `validate/aperture.ts`):
+  - a span whose endpoints have matching `innerSd` and at least one reflective endpoint may contain non-stop surfaces
+    that fit wholly inside that central opening. Use it only where a corrector group physically occupies the empty
+    center of an annular mirror;
+  - in a lens with a reflective surface, a span may contain an annular surface whose `innerSd`–`sd` band shares no
+    radius with either endpoint's material band (from its `innerSd`, or 0, to its `sd`): the radially split blank of
+    the next bullet.
 - **Shared blanks:** some reflex patents use one physical blank in two radial roles, a silvered annular shell and a
   clear central plug. Model them as complementary drawn elements, not by stretching a small corrector across the full
   primary diameter:
@@ -1374,8 +1378,8 @@ the default does not serve the lens.
 
 ## Validation Rules
 
-A lens file goes through three gates, and `buildLens()` adds one guard of its own. A message that names a field names it
-at its V2 path (`surfaces[5].medium: unknown element 13`).
+A lens file goes through three gates, and `buildLens()` adds one guard of its own. A gate's message that names a field
+names it at its V2 path (`surfaces[5].medium: unknown element 13`).
 
 1. **Ingest** (`ingestLensV2` in `src/optics/prescription/ingestV2.ts`, shared rules in `ingestCommon.ts`) refuses a
    file whose shape it cannot read, or whose content the canonical prescription cannot hold, and reports every reason
@@ -1388,7 +1392,8 @@ at its V2 path (`surfaces[5].medium: unknown element 13`).
 whose traced Gaussian EFL, at the first zoom station and infinity focus, lies outside 0.8 to 1.25 times
 `catalog.focalLengthMm.design` (its first value on a zoom; no check without one): `assertRectilinearFocalReference`
 in `src/optics/first-order/lensConstants.ts`. A fisheye whose projection constant departs from the EFL declares
-`projection` instead.
+`projection` instead. The guard is the exception to V2 paths: it reads the lens's V1 view, so its message names
+`focalLengthDesign`, which is `catalog.focalLengthMm.design` ([Reading V1 audits](#reading-v1-audits)).
 
 ### Ingest
 
@@ -1397,7 +1402,7 @@ As built of `OPTICS_ENGINE_REWRITE_SPEC.md`.
 
 | Rule | Function |
 | --- | --- |
-| `schema` is 2; no field outside the V2 types, and none only the engine writes; required fields present; records are objects and lists are lists, with no holes | `ingestLensV2`, `refuseUnknownFields` and `requireFields` (`ingestCommon.ts`) |
+| `schema` is 2; no field outside the V2 types, and none only the engine writes, except inside a record ingest copies whole (below); required fields present; records are objects and lists are lists, with no holes | `ingestLensV2`, `refuseUnknownFields` and `requireFields` (`ingestCommon.ts`) |
 | An `asphere` is an object of known terms; `rearPlates` is a list of objects | `ingestCommon.ts` |
 | Element ids are positive integers; a span is two surface labels, in order | `ingestElements` |
 | A surface `medium` names an element or a media id; media have a non-empty unique `id`, a numeric `nd`, at most a `name` besides, are used, differ from air and from each other | `declareMedia`, `ingestSurfaces`, `finishMedia` |
@@ -1408,6 +1413,11 @@ As built of `OPTICS_ENGINE_REWRITE_SPEC.md`.
 | `focus.keyframes` is a list of at least two numbers; `focus.published` only on a prime; published keyframes and conjugate stations/keyframes name real ones; at least one station published | `ingestLensV2`, `ingestPublishedStations`, `ingestConjugates` |
 | The design f-number is on `aperture` or on the stations, not both and not neither | `ingestLensV2` |
 | The stop carries `sd` exactly when its radius is authored | `ingestSurfaces`, with the authority from `stopRadiusAuthority` (`canonical.ts`) |
+
+Ingest copies some records whole and refuses no member inside them: `catalog.opticalConfiguration`, the `source.errata`
+entries, a surface's `diffractive` (and its `terms`) and `interaction`, `projection`, `perspectiveControl` (and its
+`tiltPivot`), `opticalPath` (and its `imagePlane`), and the `groups` and `doublets` entries. An unknown member in one of
+them is refused by the file's `satisfies LensDataV2Input` when it is type-checked, not by ingest.
 
 ### Validator
 
@@ -1812,9 +1822,9 @@ export default LENS_DATA;
 **Folded:** a Mangin mirror. Light passes the stop, enters the glass, reflects at the silvered rear face and leaves
 through the entrance face again, to an image plane in front of the mirror. A folded system's stop keeps its authored
 `sd`, and its EFL is `catalog.focalLengthMm.design`, which must be the one the prescription gives: a concave silvered
-face of radius 220 mm in glass of index 1.5 has focal length 220 / (2 × 1.5) ≈ 73.33 mm. The example is the reference
-fixture `reference/ReferenceManginSecondSurfaceMirror.data.ts` in V2: its paraxial focus is at z ≈ 33.33, and its
-image plane at z = 35.
+face of radius 220 mm in glass of index 1.5 has focal length 220 / (2 × 1.5) ≈ 73.33 mm. The example writes the
+surfaces, stop, f-number and folded path of the reference fixture `reference/ReferenceManginSecondSurfaceMirror.data.ts`
+in V2, with that focal length: its paraxial focus is at z ≈ 33.33, and its image plane at z = 35.
 
 ```ts
 import type { LensDataV2Input } from "../types/lensDataV2.js";

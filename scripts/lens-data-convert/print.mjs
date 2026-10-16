@@ -8,7 +8,8 @@
  * line must end: a comment among its entries, the file's own object, whose groups it separates with a blank line
  * before each member that opens one, as the engine names them for the version printed, and a list the engine names as
  * one of rows for that version, whose rows keep the blank lines their source had. A member's trailing comments share
- * its line, in the order the placer gives them.
+ * its line, in the order the placer gives them. In a list of numbers, which Prettier fills, a one-line block comment
+ * that leads an item, after any other leading comment, shares the item's line before it, where Prettier keeps it.
  *
  * Members print in the order the caller gives, which keeps gaps in surface order: the V2 view's write order going to
  * V2, and the V1 print order the engine states going to V1. A key prints bare where the
@@ -76,15 +77,25 @@ export function printLensDataObject({ value, order, text, comments, blankBefore,
 
     const indent = "  ".repeat(depth + 1);
     const lines = [open];
+    /* Prettier fills a list of numbers, joining a comment on a line of its own to the item before it. */
+    const filled = isList && entries.every((entry) => typeof entry.value === "number");
     entries.forEach((entry, index) => {
       const opensFileGroup = path === "" && index > 0 && opensGroup(entry.key, entries[index - 1].key);
-      entry.comments.leading.forEach((comment, at) => {
+      const leading = entry.comments.leading;
+      /* In a filled list, the one-line block comments that end an item's leading run print before it on its line. */
+      let own = leading.length;
+      while (filled && own > 0 && /^\/\*[^\n]*\*\/$/.test(leading[own - 1].text)) own--;
+      leading.slice(0, own).forEach((comment, at) => {
         if ((opensFileGroup && at === 0) || (rows && comment.blankBefore)) lines.push("");
         lines.push(`${indent}${comment.text}`);
       });
-      if ((opensFileGroup && entry.comments.leading.length === 0) || (rows && blankBefore(entry.path))) lines.push("");
+      if ((opensFileGroup && leading.length === 0) || (rows && blankBefore(entry.path))) lines.push("");
+      const before = leading
+        .slice(own)
+        .map((comment) => `${comment.text} `)
+        .join("");
       const trailing = entry.comments.trailing.map((comment) => ` ${comment.text}`).join("");
-      lines.push(`${indent}${member(entry)},${trailing}`);
+      lines.push(`${indent}${before}${member(entry)},${trailing}`);
     });
     for (const comment of dangling) lines.push(`${indent}${comment.text}`);
     lines.push(`${"  ".repeat(depth)}${close}`);

@@ -72,7 +72,7 @@ apertures, central obstructions, signed return-path displacements, and the expli
 the ordinary rear image plane. If a patent figure shows a rear corrector inside the clear center of an annular primary,
 say so here so future data edits do not "fix" the apparent nesting by stretching or moving the corrector.
 
-When one physical mirror blank is modeled as complementary rendered regions, describe both identities. Example: "M1 is the silvered annular primary shell; L4 is the clear central plug of the same blank." State the shared radii, axial stations, and glass identity, and note that the data file may have one more `elements` entry than the patent's physical `elementCount` because the SVG and tracer need separate radial regions.
+When one physical mirror blank is modeled as complementary rendered regions, describe both identities. Example: "M1 is the silvered annular primary shell; L4 is the clear central plug of the same blank." State the shared radii, axial stations, and glass identity, and note that the data file may have one more `elements` entry than the patent's physical `catalog.elementCount` because the SVG and tracer need separate radial regions.
 
 ### 3. Element-by-Element Analysis
 

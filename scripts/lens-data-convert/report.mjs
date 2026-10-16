@@ -11,8 +11,8 @@
  *   the two or more decimals it is quoted with;
  * - the zero aspheric terms dropped, by aspheric entry;
  * - any other value ingest set aside that the converted file does not hold;
- * - going to V1, the stop radius written for V1's type, which V1 ingest sets aside, and each medium name V1 cannot
- *   hold.
+ * - going to V1, the stop radius written for V1's type, which V1 ingest sets aside, and each medium V1 cannot hold,
+ *   with its id and any name: V1 writes a medium as its surfaces' `nd`, so its id, name and place in the list drop.
  * The text is deterministic: no dates, timings or absolute paths.
  */
 
@@ -155,9 +155,12 @@ export function formatConversionReport(reports) {
         `  stop radius written for V1's type: ${at} = ${value} (${WRITTEN_RADIUS[stop]}; V1 ingest sets it aside)`,
       );
     }
-    if (report.mediumNames?.length > 0) {
-      body.push("  medium names V1 cannot hold:");
-      for (const medium of report.mediumNames) body.push(`    ${medium.from} = ${JSON.stringify(medium.name)}`);
+    if (report.media?.length > 0) {
+      body.push("  media V1 cannot hold, written as their surfaces' nd (ids, names and order drop):");
+      for (const medium of report.media) {
+        const name = medium.name === undefined ? "" : `, name ${JSON.stringify(medium.name)}`;
+        body.push(`    ${medium.from}: id ${JSON.stringify(medium.id)}${name}`);
+      }
     }
     if (report.dropped.length > 0) {
       body.push("  other values dropped:");

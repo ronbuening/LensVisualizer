@@ -467,6 +467,8 @@ export function validateSurfaces(data: UntrustedLensData, errors: string[]): Set
     if (REAR_PLATE_LABEL_PATTERN.test(s.label)) {
       errors.push(`surfaces[${i}] ("${s.label}"): labels RP<n>a/RP<n>b are reserved for generated rear plates`);
     }
+    /* The image plane's label when it names none, as a folded path's `surfaceOrder` and the sensor plane use it. */
+    if (s.label === "IMG") errors.push(`surfaces[${i}] ("IMG"): the label IMG is reserved for the image plane`);
     if (s.synthetic !== undefined) {
       errors.push(`surfaces[${i}] ("${s.label}"): "synthetic" is engine-generated; declare plates in "rearPlates"`);
     }

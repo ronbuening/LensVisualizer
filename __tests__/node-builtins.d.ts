@@ -29,8 +29,9 @@ declare module "node:fs" {
   export function realpathSync(path: string): string;
   export function renameSync(oldPath: string, newPath: string): void;
   export function rmSync(path: string, options?: { recursive?: boolean; force?: boolean }): void;
-  export function statSync(path: string): { isDirectory(): boolean };
+  export function statSync(path: string): { isDirectory(): boolean; mode: number };
   export function symlinkSync(target: string, path: string): void;
+  export function unlinkSync(path: string): void;
   export function writeFileSync(
     path: string | number,
     data: string | Uint8Array,

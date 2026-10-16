@@ -37,7 +37,7 @@
  * value), which V1 ingest sets aside again and the report states. A file whose radius cannot be derived is refused. A
  * restored flat radius prints `1e15`, and a value V1 holds twice, or zero padding V1 requires, prints from its value.
  * A container a converter note names, "(moved from asph)", that the view would not write is written empty when the
- * note's run returns to it. The report lists each moved comment, each medium name V1 cannot hold, and anything else
+ * note's run returns to it. The report lists each moved comment, each medium V1 cannot hold, and anything else
  * the V1 file drops.
  */
 
@@ -354,7 +354,7 @@ export async function convertLensDataSource(content, options) {
   const { file, kind } = options;
   const toVersion = options.toVersion ?? 2;
   const report = { file, moved: [], stops: [], zeroTerms: [], dropped: [] };
-  if (toVersion === 1) report.mediumNames = [];
+  if (toVersion === 1) report.media = [];
   const refuse = (reason) => ({ text: undefined, refusal: reason, report });
   const conversion = await (options.loadConversion ?? loadLensDataConversion)();
   const ingest = kind === "lens" ? conversion.ingestLens : conversion.ingestTeleconverter;
@@ -465,7 +465,7 @@ export async function convertLensDataSource(content, options) {
   /* The report: what the converted file no longer holds, and going to V1 what it holds for V1's types. */
   if (toVersion === 1) {
     report.dropped = map.dropped.map((value) => ({ from: value.from, value: value.value, kind: value.kind }));
-    report.mediumNames = map.mediumNames.map((medium) => ({ ...medium }));
+    report.media = map.media.map((medium) => ({ ...medium }));
     if (written.stopWritten) report.stopWritten = written.stopWritten;
     return { text, refusal: undefined, report };
   }

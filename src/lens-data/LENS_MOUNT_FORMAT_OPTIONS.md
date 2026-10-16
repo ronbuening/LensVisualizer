@@ -98,7 +98,7 @@ while the catalog is being backfilled, but when present it must be a non-empty a
 | `samsung-nx-mini` | Samsung NX Mini | Samsung NX Mini mirrorless mount; usually pairs with `1-inch-type`. |
 | `sigma-sa` | Sigma SA | Sigma SA SLR/mirrorless mount; usually pairs with `aps-c` or `135-full-frame`. |
 | `sony-a` | Sony A | Minolta/Sony A SLR/SLT mount. |
-| `sony-fe` | Sony E | Sony E mount. Use this id for both full-frame FE and APS-C E lenses; the format lives in `imageFormat`. |
+| `sony-fe` | Sony E | Sony E mount. Use this id for both full-frame FE and APS-C E lenses; the format lives in `catalog.imageFormat`. |
 | `bronica-etr` | Zenza Bronica ETR | Bronica ETR 6x4.5 medium-format SLR mount; usually pairs with `645`. |
 | `bronica-gs` | Zenza Bronica GS | Bronica GS-1 6x7 medium-format SLR mount; usually pairs with `6x7`. |
 | `bronica-sq` | Zenza Bronica SQ | Bronica SQ 6x6 medium-format SLR mount; usually pairs with `6x6`. |

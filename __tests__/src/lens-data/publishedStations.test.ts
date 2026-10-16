@@ -26,20 +26,24 @@ const AUTHORED = Object.values(
 
 /** Authored zoom stations above which a lens must declare its published ones. */
 const MAX_UNDECLARED_ZOOM_STATIONS = 3;
+/** The source path of a station's authored `published` flag, as V2 ingest records it. */
+const PUBLISHED_FLAG = /^zoom\.stations\[\d+\]\.published$/;
 
 describe("published stations", () => {
   it("requires a zoom with a dense station list to declare its source rows", () => {
     /*
-     * Read from the canonical prescription. A V2 zoom answers by writing its stations' `published` flags, which ingest
-     * then does not record as defaulted; a V1 zoom answers with `publishedStations.zoom`, as its V1 view gives it.
+     * Read from the canonical prescription. A V1 zoom answers with `publishedStations.zoom`, as its V1 view gives it; a
+     * V2 zoom answers by writing `published` on its stations, which ingest records in the source paths. Focus lists
+     * alone answer in neither version: `publishedStations.focus` in V1, the stations' `publishedFocus` in V2.
      */
     const undeclared = AUTHORED.flatMap((data) => {
-      const ingested = ingestLens(data);
+      const isV1 = isV1File(data);
+      const ingested = ingestLens(data, isV1 ? undefined : { sources: true });
       const stations = ingested.prescription.zoom?.stations.length ?? 0;
       if (stations <= MAX_UNDECLARED_ZOOM_STATIONS) return [];
-      const answered = isV1File(data)
+      const answered = isV1
         ? toLensData(ingested).publishedStations?.zoom !== undefined
-        : !ingested.provenance.defaulted.includes("publishedStations");
+        : Object.keys(ingested.provenance.sources?.heldBy ?? {}).some((path) => PUBLISHED_FLAG.test(path));
       return answered ? [] : [`${data.key}: ${stations} zoom stations, none of them marked published or not`];
     });
 

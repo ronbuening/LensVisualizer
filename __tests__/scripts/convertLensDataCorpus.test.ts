@@ -99,10 +99,15 @@ async function leg(name: string, input: string, target: 1 | 2, output: string, o
   for (let attempt = 0; attempt < 2; attempt++) {
     const run = await cli(["--input", from, "--to-version", String(target), "--write", "--output", output]);
     if (run.code === 0) return;
+    /* A run refused before converting anything, a collision, names no file: it is a case for the leg. */
+    if (/^convert-lens-data: refused before converting anything: /m.test(run.stderr)) {
+      offenders.push({ file: "", leg: name, check: "run", detail: run.stderr.trim() });
+      return;
+    }
     /* Each status line starts "convert-lens-data: "; a refusal's reasons follow on its own indented lines. */
     const refused = run.stderr
       .split(/^(?=convert-lens-data: )/m)
-      .map((block) => /^convert-lens-data: refused (.+?): ([\s\S]*)$/.exec(block.trimEnd()))
+      .map((block) => /^convert-lens-data: refused (.+?\.(?:data|teleconverter)\.ts): ([\s\S]*)$/.exec(block.trimEnd()))
       .filter((match) => match !== null)
       .map(([, file, reason]) => ({ file: relative(from, resolve(ROOT, file)), reason }));
     if (refused.length === 0 || attempt === 1) {
@@ -228,5 +233,26 @@ describe("the corpus conversion sweep (S2.P3.T3)", () => {
       join("fixture", "Prime.data.ts"),
     ]);
     expect(lensDataFiles(join(work, "v2-leg5"))).toEqual([join("fixture", "Hand.data.ts")]);
+  }, 120_000);
+
+  it("takes a run the command line refuses before converting anything as a case for its leg, not a file", async () => {
+    const catalog = temp();
+    put(join(catalog, "fixture", "Prime.data.ts"), v1LensFile(PRIME_MEMBERS));
+    writeFileSync(join(catalog, "fixture", ".Prime.data.ts.1.convert-bak"), "a backup a run left");
+    const run = {
+      file: "",
+      check: "run",
+      detail: expect.stringMatching(/refused before converting anything: .+ a backup/),
+    };
+    expect(await sweep(catalog, temp())).toEqual([
+      { ...run, leg: "V1 files, leg 1 to V2" },
+      { ...run, leg: "V2 files, leg 1 to V1" },
+      {
+        file: join("fixture", "Prime.data.ts"),
+        leg: "leg 1",
+        check: "coverage",
+        detail: "neither group's first leg wrote or refused it",
+      },
+    ]);
   }, 120_000);
 });

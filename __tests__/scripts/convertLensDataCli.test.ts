@@ -18,7 +18,8 @@ import { ingestLens, ingestTeleconverter } from "../../src/optics/prescription/i
 import { FIXTURE_PAIRS } from "../src/optics/prescription/ingestV2Fixtures.js";
 import { PRIME_MEMBERS, V2_SOURCE_FILE, v1LensFile } from "./convertLensDataFixtures.js";
 
-const { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync, statSync } = nodeFs;
+const { chmodSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync } = nodeFs;
+const { statSync } = nodeFs;
 const { symlinkSync, writeFileSync } = nodeFs;
 const TYPES = fileURLToPath(new URL("../../src/types", import.meta.url));
 const V1_PRIME = v1LensFile(PRIME_MEMBERS);
@@ -103,6 +104,10 @@ describe("arguments", () => {
     ["a value on a mode", ["--input", "a", "--write=yes"]],
     ["a stray argument", ["a"]],
     ["an input that does not exist", ["--input", "/nonexistent/fixture.data.ts"]],
+    [
+      "an input file that is no lens-data file",
+      ["--input", fileURLToPath(new URL("../../package.json", import.meta.url))],
+    ],
   ])("%s: exit 2, the usage text on stderr", async (_case, argv) => {
     const run = await cli(argv);
     expect(run.code).toBe(2);
@@ -121,6 +126,10 @@ describe("arguments", () => {
       "SIGINT or SIGTERM",
       "a failed write or rename",
       "refused",
+      "a value given to --dry-run, --check or --write",
+      "an\n     argument that is no flag",
+      "an --input that does not exist or is a file but no *.data.ts",
+      "SIGINT or SIGTERM before the write phase",
     ]) {
       expect(USAGE).toContain(outcome);
     }
@@ -202,6 +211,43 @@ describe("refusals", () => {
     const run = await refusedWith("z.data.ts", text);
     expect(run.stderr).toMatch(/refused [^\n]*z\.data\.ts: /);
     expect(run.stderr).toMatch(reason);
+  });
+
+  it("a file that cannot be read is that file's refusal, and the other inputs are still reported", async () => {
+    const directory = catalog();
+    const unreadable = join(directory, "a.data.ts");
+    const read = nodeFs.readFileSync as (...args: unknown[]) => unknown;
+    const fs = {
+      ...nodeFs,
+      readFileSync: (path: string, ...rest: unknown[]) => {
+        if (path === unreadable) throw new Error("injected EACCES");
+        return read(path, ...rest);
+      },
+    };
+    const run = await cli(["--input", directory, "--write"], { fs, typeCheck: NO_TYPE_CHECK });
+    expect(run.code).toBe(2);
+    expect(run.stderr).toMatch(/refused [^\n]*a\.data\.ts: the file cannot be read: injected EACCES\n/);
+    expect(run.stderr).toMatch(/would convert [^\n]*c\.data\.ts\n/);
+    expect(run.stderr).toContain("3 inputs: 1 would convert to V2, 1 already V2 and left as it is, 1 refused");
+  });
+
+  it("a directory under --input that cannot be listed refuses the run before anything converts", async () => {
+    const directory = catalog();
+    const sub = join(directory, "sub");
+    put(join(sub, "d.data.ts"), V1_PRIME);
+    const list = nodeFs.readdirSync as (...args: unknown[]) => unknown;
+    const fs = {
+      ...nodeFs,
+      readdirSync: (path: string, ...rest: unknown[]) => {
+        if (path === sub) throw new Error("injected EACCES");
+        return list(path, ...rest);
+      },
+    };
+    const run = await cli(["--input", directory, "--write"], { fs, typeCheck: NO_TYPE_CHECK });
+    expect(run.code).toBe(2);
+    expect(run.stderr).toBe(
+      `convert-lens-data: refused before converting anything: ${sub} cannot be listed: injected EACCES\n`,
+    );
   });
 
   it("a converted text that does not type-check where the file on disk does: the check reads the converted text", async () => {
@@ -289,6 +335,21 @@ describe("collisions, refused before anything converts", () => {
     await collides(["--input", input, "--write", "--output", join(base, "casein", "out")], /lie one inside the other/);
     writeFileSync(join(input, ".A.data.ts.4242.convert-bak"), "kept bytes");
     await collides(["--input", input], /\.A\.data\.ts\.4242\.convert-bak, a backup a run left, sits beside/);
+  });
+
+  it("an --input file that is a symbolic link, which a write would replace with a file", async () => {
+    const directory = temp();
+    const target = put(join(directory, "target", "a.data.ts"), V1_PRIME);
+    const link = join(directory, "link.data.ts");
+    symlinkSync(target, link);
+    const before = readFileSync(target, "utf8");
+    const run = await cli(["--input", link, "--write"], { typeCheck: NO_TYPE_CHECK });
+    expect(run.code).toBe(2);
+    expect(run.stderr).toBe(
+      `convert-lens-data: refused before converting anything: --input ${link} is a symbolic link; ` +
+        "give the file it points to\n",
+    );
+    expect(readFileSync(target, "utf8")).toBe(before);
   });
 
   it("but not a sibling whose name begins with the input's", async () => {
@@ -439,7 +500,28 @@ describe("interrupted writes", () => {
     expect(run.code).toBe(2);
     expect(snapshot(directory)).toEqual(before);
     expect(run.stderr).toContain("put back 1 of the 1 inputs already replaced");
-    expect(run.stderr).toContain("no converted file is written, and every input is as it was");
+    /* Each file still gets its line, and the run its closing count. */
+    expect(run.stderr).toMatch(/would convert [^\n]*a\.data\.ts\n/);
+    expect(run.stderr).toContain(
+      "3 inputs: 2 would convert to V2, 1 already V2 and left as it is, 0 refused; " +
+        "no converted file is written, and every input is as it was\n",
+    );
+  });
+
+  it("a converted file, and an input put back from its backup, keep the input's permissions", async () => {
+    const directory = catalog();
+    const [a, c] = [join(directory, "a.data.ts"), join(directory, "c.data.ts")];
+    chmodSync(a, 0o600);
+    chmodSync(c, 0o444);
+    const failed = await cli(["--input", directory, "--write"], {
+      fs: failing("renameSync", 2),
+      typeCheck: NO_TYPE_CHECK,
+    });
+    expect(failed.stderr).toContain("put back 1 of the 1 inputs already replaced");
+    expect(statSync(a).mode & 0o777).toBe(0o600);
+    expect((await cli(["--input", directory, "--write"], { typeCheck: NO_TYPE_CHECK })).code).toBe(0);
+    expect([statSync(a).mode & 0o777, statSync(c).mode & 0o777]).toEqual([0o600, 0o444]);
+    expect(readFileSync(c, "utf8")).toContain("schema: 2");
   });
 
   it("a signal during the renames puts back every input already replaced, and exits 2", async () => {
@@ -456,6 +538,29 @@ describe("interrupted writes", () => {
     expect(snapshot(directory)).toEqual(before);
     expect(run.stderr).toContain("stopped: SIGTERM arrived while writing");
     expect(handlers.size).toBe(0);
+  });
+
+  it("a backup that cannot be removed once every input is replaced is a warning, and stays beside its input", async () => {
+    const directory = catalog();
+    const before = snapshot(directory);
+    const backup = join(directory, ".a.data.ts.7.convert-bak");
+    const fs = {
+      ...nodeFs,
+      unlinkSync: (path: string) => {
+        if (path === backup) throw new Error("injected unlink failure");
+        nodeFs.unlinkSync(path);
+      },
+    };
+    const run = await cli(["--input", directory, "--write"], { fs, pid: 7, typeCheck: NO_TYPE_CHECK });
+    expect(run.code).toBe(0);
+    expect(run.stderr).toContain(
+      `could not remove ${backup}, the backup of ${join(directory, "a.data.ts")}, which is converted: injected unlink failure`,
+    );
+    const after = snapshot(directory);
+    expect(Object.keys(after)).toEqual([".a.data.ts.7.convert-bak", "a.data.ts", "b.data.ts", "c.data.ts"]);
+    expect(after[".a.data.ts.7.convert-bak"]).toBe(before["a.data.ts"]);
+    for (const file of ["a.data.ts", "c.data.ts"]) expect(after[file]).toContain("schema: 2");
+    expect((await cli(["--input", directory])).stderr).toContain("a backup a run left, sits beside");
   });
 
   it("under --output, a failed link removes every file and directory the run wrote", async () => {

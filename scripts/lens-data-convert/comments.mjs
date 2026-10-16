@@ -52,9 +52,18 @@ export function movedCommentText(text, from) {
   return line ? `// ${note}${rest}` : `/* ${note}${rest}*/`;
 }
 
+/** A path as the engine spells it (`sourcePaths.ts`): members, list items and quoted keys, any character in a key. */
+const PATH = String.raw`(?:[A-Za-z_$][\w$]*|\[(?:\d+|"(?:[^"\\\n]|\\.)*")\])(?:\.[A-Za-z_$][\w$]*|\[(?:\d+|"(?:[^"\\\n]|\\.)*")\])*`;
+
+/** The converter's own note, exactly as `movedCommentText` writes it, at the opening of a comment's body. */
+const NOTE = new RegExp(String.raw`^ \(moved from (${PATH})\)(?=\s|$)`);
+
 /**
  * The converter's own note at the opening of a comment, exactly as `movedCommentText` writes it, and the comment
- * without it. Any other text, a looser spelling of the note included, is no note.
+ * without it. Any other text, a looser spelling of the note included, is no note. The comment without its note is the
+ * one `movedCommentText` was given when its text after the opening delimiter was empty or began with whitespace, as
+ * every moved catalog comment's does; one that began otherwise, such as `//x` or a block opening `/*x` or `/**`,
+ * comes back with the space the note put there.
  *
  * @param {string} text - a comment's text, delimiters included
  * @returns {{ from: string, text: string } | undefined} the path the note names and the comment's text without it
@@ -63,7 +72,7 @@ export function movedNote(text) {
   const line = text.startsWith("//");
   if (!line && !(text.startsWith("/*") && text.endsWith("*/"))) return undefined;
   const body = line ? text.slice(2) : text.slice(2, -2);
-  const note = /^ \(moved from ([^\s()]+)\)(?=\s|$)/.exec(body);
+  const note = NOTE.exec(body);
   if (!note) return undefined;
   const rest = body.slice(note[0].length);
   return { from: note[1], text: line ? `//${rest}` : `/*${rest}*/` };
@@ -199,6 +208,14 @@ export function commentNotCarried(sourceComments, outputComments) {
   return `the converted file holds a comment its source does not, or holds one twice: ${firstLine(extra)}`;
 }
 
+/** Whether two lists of comment texts hold the same texts as many times each, in any order. */
+function sameComments(left, right) {
+  if (left.length !== right.length) return false;
+  const sorted = (texts) => [...texts].sort();
+  const [a, b] = [sorted(left), sorted(right)];
+  return a.every((text, index) => text === b[index]);
+}
+
 /**
  * The first comment the printed text gives another node or placement than the placer did, or the first it holds that
  * the placer placed nowhere. The reader attaches a comment by position, so the printer's layout is what a second
@@ -223,9 +240,17 @@ export function commentMisplaced(byPath, printedComments) {
   for (const [path, slots] of byPath) {
     for (const placement of ["leading", "trailing", "dangling"]) {
       const at = read.get(`${path}\u0000${placement}`) ?? [];
+      /* The slot holds the comments placed in it, only in another order. */
+      const reordered = sameComments(
+        at,
+        slots[placement].map((comment) => comment.text),
+      );
       for (const [index, { text }] of slots[placement].entries()) {
         count++;
         if (at[index] === text) continue;
+        if (reordered) {
+          return `the printed file holds the ${placement} comments of ${path || "(root)"} in another order: ${firstLine(text)}`;
+        }
         const found = printed.find((comment) => comment.text === text);
         const there = found ? place(found.path, found.placement) : "nothing";
         return `the printed file reads ${place(path, placement)} as ${there}: ${firstLine(text)}`;

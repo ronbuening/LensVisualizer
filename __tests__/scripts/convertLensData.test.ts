@@ -289,6 +289,20 @@ describe("printing a converted file", () => {
     expect(text).toContain('type: "Biconvex Positive", nd: 1.5168, vd: 64.17 }');
   });
 
+  it("keeps a one-line block comment before its item in a list of numbers, which Prettier fills", async () => {
+    const members = PRIME_MEMBERS.replace(
+      "fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],",
+      "fstopSeries: [2, 2.8, /* b */ 4, 5.6, 8, 11, 16],",
+    ).replace("  ],", '  ],\n  var: { "2": [80, /* w */ 81] },');
+    const v2 = await converted(v1LensFile(members));
+    expect(v2.text).toContain("fStops: [2, 2.8, /* b */ 4, 5.6, 8, 11, 16]");
+    expect(v2.text).toContain('gaps: { "2": { values: [[80, /* w */ 81]] } },');
+    expect((await converted(v2.text)).text).toBe(v2.text);
+    const v1 = await converted(v2.text, { toVersion: 1 });
+    expect(v1.text).toContain("fstopSeries: [2, 2.8, /* b */ 4, 5.6, 8, 11, 16],");
+    expect(v1.text).toContain('var: { "2": [80, /* w */ 81] },');
+  });
+
   it("refuses a printed file that reads a comment elsewhere than the placer put it", () => {
     const placed = new Map([
       ["name", { leading: [], trailing: [{ text: "/* a */" }, { text: "// b" }], dangling: [] }],
@@ -299,6 +313,9 @@ describe("printing a converted file", () => {
     );
     expect(commentMisplaced(placed, [read("name", "trailing", "/* a */"), read("subtitle", "leading", "// b")])).toBe(
       "the printed file reads the trailing comment of name as the leading comment of subtitle: // b",
+    );
+    expect(commentMisplaced(placed, [read("name", "trailing", "// b"), read("name", "trailing", "/* a */")])).toBe(
+      "the printed file holds the trailing comments of name in another order: /* a */",
     );
     expect(
       commentMisplaced(placed, [
@@ -320,6 +337,13 @@ describe("printing a converted file", () => {
     for (const text of ["// rest", "//", "/* ── Zoom ── */", "/* two\n * lines */"]) {
       expect(movedNote(movedCommentText(text, "zoomPositions"))).toEqual({ from: "zoomPositions", text });
     }
+    /* Any path the engine spells: a quoted key may hold spaces, parentheses and escaped quotes. */
+    for (const from of ['var["STO (iris)"]', 'asph["a\\"b"].K', '["odd key"]', "zoom.stations[1].published"]) {
+      expect(movedNote(movedCommentText("// rest", from))).toEqual({ from, text: "// rest" });
+    }
+    /* Text with no whitespace after its delimiter comes back with the space the note put there. */
+    expect(movedNote(movedCommentText("//x", "var"))).toEqual({ from: "var", text: "// x" });
+    expect(movedNote(movedCommentText("/**doc */", "var"))).toEqual({ from: "var", text: "/* *doc */" });
     for (const text of [
       "//(moved from var) x",
       "// (Moved from var) x",
@@ -391,9 +415,9 @@ describe("refusals", () => {
       "a comment that formatting gives another node",
       prime.replace(
         "fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],",
-        "fstopSeries: [\n    2,\n    /* c */\n    2.8,\n    4,\n  ],",
+        "fstopSeries: [\n    2,\n    /* c\n       d */\n    2.8,\n    4,\n  ],",
       ),
-      /^formatting made the leading comment of aperture\.fStops\[1\] the trailing comment of aperture\.fStops\[0\]: \/\* c \*\/$/,
+      /^formatting made the leading comment of aperture\.fStops\[1\] the trailing comment of aperture\.fStops\[0\]: \/\* c$/,
     ],
     [
       "a converted file ingest refuses",
@@ -652,6 +676,18 @@ describe("the V1 direction (S2.P3.T2)", () => {
     );
   });
 
+  it("reports every medium V1 cannot hold, with its id and any name, in the list's order", async () => {
+    const pair = FIXTURE_PAIRS.find((candidate) => candidate.family === "media")!;
+    const v2 = structuredClone(pair.v2) as { media: { name?: string }[] };
+    delete v2.media[1].name;
+    const { report } = await converted(v2Text(v2), { toVersion: 1 });
+    expect(report.media).toEqual([
+      { from: "media[0]", id: "cement", name: "Cement layer" },
+      { from: "media[1]", id: "water" },
+    ]);
+    expect(formatConversionReport([report])).toContain('    media[1]: id "water"\n');
+  });
+
   it("moves a station record's comment to the first station list, a medium's to the file's object, each once", async () => {
     const { text, report } = await converted(COMMENTED_V2_ZOOM, { toVersion: 1 });
     expect(text).toContain(
@@ -665,9 +701,10 @@ describe("the V1 direction (S2.P3.T2)", () => {
       ["media[0]", ""],
       ["zoom.stations[1]", "zoomPositions"],
     ]);
-    expect(report.mediumNames).toEqual([{ from: "media[0].name", name: "Cement layer" }]);
+    expect(report.media).toEqual([{ from: "media[0]", id: "cement", name: "Cement layer" }]);
     expect(formatConversionReport([report])).toContain(
-      '  medium names V1 cannot hold:\n    media[0].name = "Cement layer"',
+      "  media V1 cannot hold, written as their surfaces' nd (ids, names and order drop):\n" +
+        '    media[0]: id "cement", name "Cement layer"',
     );
     expect(prescriptionOf(text)).toEqual(prescriptionOf(COMMENTED_V2_ZOOM));
     const back = await converted(text);
