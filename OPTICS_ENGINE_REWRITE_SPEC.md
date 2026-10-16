@@ -146,7 +146,9 @@ catalog on 2026-10-13, lens and teleconverter files together; the plan was first
   S3.P2.T1's three approved divergences, as ruled. **A3** is `fd9c6f48`, the merge commit of #815 (the first engine
   C3: the distortion curve keeps invalid chief rays off it), tagged `optics-rewrite/a3`. Its cumulative Tier S
   against A2, under C2 with the 90 lines declared since A2, failed only on the approved divergences of S3.P2.T1,
-  S3.P2.T3 and S4.P2.T1, after #816 and #817 settled the build pupils' budget.
+  S3.P2.T3 and S4.P2.T1, after #816 and #817 settled the build pupils' budget. **A4** is `a4183c54`, the merge commit
+  of #835 (S5.P2.T2's C3: one focus-infinity cutoff), tagged `optics-rewrite/a4`. Its cumulative Tier S against A3,
+  under C3 with no transition declared since A3, passed in all 8 shards: 221 records differ, all inside their budgets.
 - Every differential comparison and speed measurement uses A0 or a later anchor (see
   [Anchors and comparison coverage](#anchors-and-comparison-coverage)), or the promotion merge commit for the
   Stage 2 gate alone. R0 is measured once, in S1.P1.T1, only to size the contract's own cost.
@@ -2619,21 +2621,19 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
 - **S5.P2.T2 One layout and one interpolation.**
   - **Change:** `state/layout.ts` and `state/stationTables.ts` replace the duplicate thickness, layout and zoom-table
     implementations listed in [Module fates](#module-fates).
-  - **The two focus-infinity thresholds** (0.003 in `focusDistance.ts`, 0.0001 in `field/chiefRay.ts`):
-    - if they serve one purpose, unify them as a C3;
-    - otherwise, give each a name that says why.
+  - **Infinity cutoff (maintainer ruling, 2026-10-16):** both thresholds mean focus is treated as infinity;
+    unify them at 0.003 as a C3, restoring the pre-optics-2 conjugate-correction behavior.
   - **As built:** `state/layout.ts` owns controlled gaps and axial accumulation; both layout paths read the compiled
     explicit-image-plane decision. `state/stationTables.ts` owns focus/zoom/aberration interpolation, station
     coordinates and defaults, shared by construction, preparation and runtime adapters; URL zoom conversion reaches
     its table reader through the public optics barrel. Zoom-track sums use the shared layout accumulator with exact
     authored rows. First-order EFL and effective f-number each have one prepared-state adapter, retaining clamping,
     table fallbacks and final-node arithmetic. The unused infinity alias is removed, and comparison readouts use the
-    named 0.003 cutoff. The two infinity thresholds remain an open question pending a maintainer-approved C3 decision:
-    0.003 gates distance labels/remapping, EFL (including perspective field scale), pupil-aberration paraxial baselines
-    and exposure/magnification summaries; 0.0001 gates real-ray conjugate correction. Before the optics-2 port,
-    `conjugateK` used 0.003. Both values stay unchanged under C0; a control between them reports infinity while tracing
-    a nonzero conjugate correction. Neither snaps the interpolated gaps.
-  - **Gate:** C0.
+    shared `FOCUS_INFINITY_CUTOFF` (0.003, in `focusDistance.ts`). It gates distance labels/remapping, EFL
+    (including perspective field scale), f-number and magnification summaries, pupil-aberration paraxial baselines
+    and traced conjugate correction. The maintainer-approved C3 restores the pre-optics-2 behavior: `conjugateK`
+    is zero below 0.003, including the former 0.0001–0.003 interval. Interpolated gaps are not snapped.
+  - **Gate:** C0 for consolidation; C3 for the unified infinity cutoff.
 - **S5.P2.T3 One chromatic table.**
   - **Change:** one dispersion table builder, one quality summary and one channel table in `chromatic/`.
     `src/types/optics.ts` stops importing a type from `src/optics/dispersion.ts`; the shared type moves into
@@ -2944,26 +2944,32 @@ Settled on 2026-10-15, at the A3 cumulative check:
 | --- | --- | --- |
 | 61 | A build pupil position or size traced from the basis rays keeps 1e-12 relative, or 1e-10 of its own size where the pupil lies more than 100 mm from the lens, whichever is more, with the first-order 1e-12 mm floor; near pupils keep the first-order budget and C0 stays bit-exact, refining decision 30 (the floor corrected on 2026-10-15) | [Quantity budgets](#quantity-budgets) |
 
+Settled on 2026-10-16, by maintainer ruling on S5.P2.T2:
+
+| # | Decision | Where |
+| --- | --- | --- |
+| 62 | Use one 0.003 cutoff for treating focus as infinity, including traced conjugate correction; restore the pre-optics-2 behavior (maintainer ruling) | S5.P2.T2; `src/optics/focusDistance.ts` |
+
 The maintainer also settled these on 2026-10-15, answering the S2.P3.T2 questions:
 
 | # | Decision | Where |
 | --- | --- | --- |
-| 62 | Going to V1, a stop without `sd` takes the engine's radius to 0.001 mm (a zoom's at the wide station, a scheduled zoom's first schedule value), which V1 ingest sets aside; a file whose radius cannot be derived is refused, and `LensDataInput` stays as it is | S2.P3.T2 |
-| 63 | Nothing is written for an input already at `--to-version`, under `--output` too, which holds only the converted files | S2.P3.T2 |
-| 64 | The V1 print order and `V1_GROUP_STARTS` are stated beside the V1 view, whose own key order stays | S2.P3.T2 |
-| 65 | Collisions compare paths after `realpath`, as directories and without regard to case; `--output` publishes by link, so a destination made after the check is not overwritten | S2.P3.T2 |
-| 66 | A failed rename or a signal while writing puts back every input already replaced, from a backup beside it, and a run refuses while a backup is left | S2.P3.T2 |
-| 67 | The command line reads CR LF as LF and writes LF; a lone CR is refused | S2.P3.T2 |
-| 68 | The type-check reads each converted text at the path it will be written to | S2.P3.T2 |
-| 69 | The V2-to-V1 comment mapping is engine-owned, and the round trip is tested for semantic identity and each comment once, not for bytes | S2.P3.T2 |
-| 70 | The command line's tests are in `npm test` beside the library's | S2.P3.T2 |
-| 71 | Going to V1, a comment that leads a member with no V1 counterpart, below no record with one, leads unmoved the first V1 member written from inside it (`zoomPositions` first), before V1 ingest's homes; one on `schema` leads the file's first member | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T2 |
-| 72 | A leading comment, on any node, that opens with the converter's own exact `(moved from X)` leads X, the note dropped and its run's unnoted comments following, when the V1 file writes X from inside that node, a container counting from its home when it holds something; placement reads no other text | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T2 |
-| 73 | Where V1 lists compete for a station's comment, `zoomPositions` comes first, then file order, and the report line names the list | S2.P3.T2 |
-| 74 | The banner round trip is tested on synthetic V1 files in the template's sections; the catalog's goes in the PR, with the banners that return on another member through `V1_PRINT_ORDER` | S2.P3.T2 |
-| 75 | The scripts keep their copies of the V1 rule, the engine's expression verbatim and tested to agree with `isV1File`, until S2.P5.T9 | S2.P3.T2; S2.P5.T9 |
-| 76 | A V1 surface prints `elemId` before `sd`, as the V1 view writes it | S2.P3.T2 |
-| 77 | Going to V1, a container a converter note names that the V1 view would leave out (`asph: {}`) is written empty, and the note's run returns to it (Q48) | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T2 |
+| 63 | Going to V1, a stop without `sd` takes the engine's radius to 0.001 mm (a zoom's at the wide station, a scheduled zoom's first schedule value), which V1 ingest sets aside; a file whose radius cannot be derived is refused, and `LensDataInput` stays as it is | S2.P3.T2 |
+| 64 | Nothing is written for an input already at `--to-version`, under `--output` too, which holds only the converted files | S2.P3.T2 |
+| 65 | The V1 print order and `V1_GROUP_STARTS` are stated beside the V1 view, whose own key order stays | S2.P3.T2 |
+| 66 | Collisions compare paths after `realpath`, as directories and without regard to case; `--output` publishes by link, so a destination made after the check is not overwritten | S2.P3.T2 |
+| 67 | A failed rename or a signal while writing puts back every input already replaced, from a backup beside it, and a run refuses while a backup is left | S2.P3.T2 |
+| 68 | The command line reads CR LF as LF and writes LF; a lone CR is refused | S2.P3.T2 |
+| 69 | The type-check reads each converted text at the path it will be written to | S2.P3.T2 |
+| 70 | The V2-to-V1 comment mapping is engine-owned, and the round trip is tested for semantic identity and each comment once, not for bytes | S2.P3.T2 |
+| 71 | The command line's tests are in `npm test` beside the library's | S2.P3.T2 |
+| 72 | Going to V1, a comment that leads a member with no V1 counterpart, below no record with one, leads unmoved the first V1 member written from inside it (`zoomPositions` first), before V1 ingest's homes; one on `schema` leads the file's first member | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T2 |
+| 73 | A leading comment, on any node, that opens with the converter's own exact `(moved from X)` leads X, the note dropped and its run's unnoted comments following, when the V1 file writes X from inside that node, a container counting from its home when it holds something; placement reads no other text | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T2 |
+| 74 | Where V1 lists compete for a station's comment, `zoomPositions` comes first, then file order, and the report line names the list | S2.P3.T2 |
+| 75 | The banner round trip is tested on synthetic V1 files in the template's sections; the catalog's goes in the PR, with the banners that return on another member through `V1_PRINT_ORDER` | S2.P3.T2 |
+| 76 | The scripts keep their copies of the V1 rule, the engine's expression verbatim and tested to agree with `isV1File`, until S2.P5.T9 | S2.P3.T2; S2.P5.T9 |
+| 77 | A V1 surface prints `elemId` before `sd`, as the V1 view writes it | S2.P3.T2 |
+| 78 | Going to V1, a container a converter note names that the V1 view would leave out (`asph: {}`) is written empty, and the note's run returns to it (Q48) | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T2 |
 
 The maintainer also settled these on 2026-10-16, answering the S2.P3.T3 questions:
 
