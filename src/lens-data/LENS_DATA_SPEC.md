@@ -365,13 +365,13 @@ document their stable model order.
   glass: "S-LAH58 (OHARA)", // recommended: catalog glass; see Glass Identification
   apd: false, // optional: false (default) | "patent" | "inferred"
   apdNote: "dPgF = +0.0376", // optional: prose
+  role: "Front positive meniscus…", // optional: optical role
+  diagramLabel: "L11", // optional: source identifier drawn below the element
+  cemented: "D1", // optional: cemented group name
   dPgF: 0.0376, // optional: partial-dispersion deviation from the normal line; drives APO behavior
   nC: 1.89822, // optional: measured index at C (656.3 nm), when published
   nF: 1.92131, // optional: measured index at F (486.1 nm), when published
   ng: 1.93525, // optional: measured index at g (435.8 nm), when published
-  role: "Front positive meniscus…", // optional: optical role
-  diagramLabel: "L11", // optional: source identifier drawn below the element
-  cemented: "D1", // optional: cemented group name
   span: ["3", "4"], // optional: drawn span; see below
 }
 ```
@@ -466,9 +466,9 @@ header and the companion analysis.
   R: 50.421, // REQUIRED: radius of curvature in mm, or "flat"
   d: 3.46, // axial step to the next surface in mm; left out on a variable gap
   sd: 14.5, // clear semi-diameter in mm; left out on a stop whose radius is not authored
+  innerSd: 4.0, // optional: inner semi-diameter of an annular active aperture
   medium: 2, // the medium AFTER this surface: an element id, a media id, or left out for air
   asphere: { K: -0.62, A4: 1.2e-5 }, // optional: sparse aspheric terms
-  innerSd: 4.0, // optional: inner semi-diameter of an annular active aperture
   interaction: { type: "reflect" }, // optional: folded-path behavior
   stopPlacement: "inside-element", // optional: only on a stop inside glass
 }
