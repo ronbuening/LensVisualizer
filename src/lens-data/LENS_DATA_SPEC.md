@@ -864,9 +864,8 @@ station whose rounded source row was re-solved for paraxial consistency is still
   infinity-focus spacings are tabulated.
 - A zoom with more than three stations writes `published` on its stations, `false` on each solved or sampled one,
   even when every station is a source row: dense station lists usually mix source rows with solved or sampled cam
-  points, so the corpus test (`__tests__/src/lens-data/publishedStations.test.ts`) asks for an explicit answer. It
-  reads the canonical prescription: a zoom whose stations write no flag takes the default, which ingest records as
-  defaulted, and has not answered.
+  points, so the corpus test (`__tests__/src/lens-data/publishedStations.test.ts`) asks for an explicit answer. A
+  zoom whose stations write no `published` flag has not answered, even when they write `publishedFocus`.
 - Each listed focus keyframe moves at least one gap away from its infinity value at that station. A station that
   publishes focus keyframes is itself published, and a conjugate may not sit on an unpublished station.
 - Do not publish a reconstructed close-focus endpoint, a production minimum-focus distance or a code-solved keyframe.
