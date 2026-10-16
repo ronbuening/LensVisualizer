@@ -4682,16 +4682,17 @@ describe("engineDiff changed converters", () => {
     /* A first surface that names an element the converter does not have: every pair fails validation. */
     const summary = evaluate(withConverter((data) => (data.surfaces[0].elemId = 99)));
     expect(summary.passed).toBe(false);
-    expect(summary.failures).toEqual([`Data impact: ${formed.length} blocking differences.`]);
+    expect(summary.failures).toEqual([`Data impact: ${2 * formed.length} blocking differences.`]);
     expect(summary.dataImpact.map(({ lens, blocking }) => [lens, blocking])).toEqual(
-      formed.map((lens) => [lensId(lens), 1]),
+      formed.map((lens) => [lensId(lens), 2]),
     );
-    /* The composer still merges the two prescriptions; it is the merged lens that no longer builds. */
+    /* Ingest precedes composition: the converter is refused when the pair is composed, so the build fails too. */
     expect(summary.dataImpact[0].blockers).toMatchObject([
+      { request: "composition", path: "ok", base: "true", head: expect.stringContaining("false") },
       { request: "build", path: "ok", base: "true", head: expect.stringContaining("false") },
     ]);
-    /* The build throws on both engines because of the data, which is the data rule's to judge. */
-    expect(summary.counts.headEngine.failedRecords).toBe(formed.length);
+    /* Both throw on both engines because of the data, which is the data rule's to judge. */
+    expect(summary.counts.headEngine.failedRecords).toBe(2 * formed.length);
     expect(summary.thrownOnBothEngines.records).toBe(0);
   });
 });

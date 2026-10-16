@@ -372,7 +372,6 @@ function ingestSurfaces(
   elements: readonly Untyped[],
   stopAuthority: StopRadiusAuthority,
   context: IngestContext,
-  trustedComposition = false,
 ): IngestedSurfaces {
   const authoredSurfaces = data.surfaces as Untyped[];
   const elementIndex = new Map(elements.map((element, index) => [element.id, index]));
@@ -431,11 +430,6 @@ function ingestSurfaces(
         }
         out.medium = medium.id;
       }
-    } else if (trustedComposition && (!elementIndex.has(elemId) || elements[elementIndex.get(elemId)!].nd !== nd)) {
-      // Composition probes precede build validation. Preserve the raw index until that validator reports the error.
-      const medium = { id: `m${media.length + 1}`, nd: nd as number };
-      media.push(medium);
-      out.medium = medium.id;
     } else if (elementIndex.has(elemId)) {
       out.medium = elemId;
       const element = elementIndex.get(elemId)!;
@@ -890,23 +884,10 @@ function ingestPublishedStations(
  * @throws PrescriptionIngestError naming every reason the canonical form cannot hold the file
  */
 export function ingestLensV1(input: LensDataInput, request?: IngestRequest): IngestedPrescription<CanonicalLens> {
-  return mapLensV1(input, false, request);
-}
-
-/** Trusted composed-pair field mapping; deleted with compileComposed.ts in S5.P1.T4. */
-export function mapTrustedComposedLens(input: LensDataInput): IngestedPrescription<CanonicalLens> {
-  return mapLensV1(input, true);
-}
-
-function mapLensV1(
-  input: LensDataInput,
-  composed: boolean,
-  request?: IngestRequest,
-): IngestedPrescription<CanonicalLens> {
   const data = input as unknown as Untyped;
   const key = typeof data.key === "string" ? data.key : "?";
   const context = createContext(request, data);
-  refuseUnknownFields(data, composed ? { ...LENS_FIELDS, attachedTeleconverter: true } : LENS_FIELDS, "", context);
+  refuseUnknownFields(data, LENS_FIELDS, "", context);
   requireFields(data, ["key", "name", "closeFocusM", "fstopSeries", "yScFill", "nominalFno"], "", context);
   const authoredElements = requireRecords(data, "elements", key);
   const authoredSurfaces = requireRecords(data, "surfaces", key);
@@ -918,7 +899,7 @@ function mapLensV1(
     surfaces: authoredSurfaces as unknown as SurfaceData[],
   });
   const elements = authoredElements.map((element, index) => ingestElement(element, index, context));
-  const { surfaces, media, labelIndex } = ingestSurfaces(data, authoredElements, stopAuthority, context, composed);
+  const { surfaces, media, labelIndex } = ingestSurfaces(data, authoredElements, stopAuthority, context);
 
   const focus: CanonicalFocus = {
     closeFocusM: data.closeFocusM as number,

@@ -10,14 +10,24 @@ import { attachTeleconverter } from "../../../../src/optics/prescription/telecon
 import { computeMtf } from "../../../../src/optics/mtf.js";
 import { prepareRuntimeState } from "../../../../src/optics/compat.js";
 import type { MtfOptions } from "../../../../src/types/mtf.js";
-import type { MtfWorkerReply } from "../../../../src/components/hooks/mtfWorkerClient.js";
+import { canonicalLensFromRuntime, compiledLensFromRuntime } from "../../../../src/optics/buildLens.js";
+import {
+  MtfWorkerClient,
+  type MtfWorkerPort,
+  type MtfWorkerReply,
+} from "../../../../src/components/hooks/mtfWorkerClient.js";
 
-afterEach(() => vi.unstubAllGlobals());
+afterEach(() => {
+  vi.unstubAllGlobals();
+  vi.restoreAllMocks();
+});
 
 async function loadWorker() {
   const port = { onmessage: null as ((event: MessageEvent) => void) | null, postMessage: vi.fn() };
   vi.stubGlobal("self", port);
   vi.resetModules();
+  const workerCompiler = await import("../../../../src/optics/prescription/compile.js");
+  const compiled = vi.spyOn(workerCompiler, "compileLens");
   await import("../../../../src/components/hooks/mtf.worker.js");
   const send = (data: unknown) => port.onmessage!({ data } as MessageEvent);
   const replies = () => port.postMessage.mock.calls.map(([reply]) => reply as MtfWorkerReply);
@@ -30,22 +40,20 @@ async function loadWorker() {
       },
       { timeout: 20000, interval: 5 },
     );
-  return { send, replies, finished };
+  return { send, replies, finished, compiled };
 }
 
-it("rebuilds serializable prescriptions in the worker and matches the pure engine for every method", async () => {
-  const { send, finished } = await loadWorker();
+it("compiles canonical prescriptions in the worker and matches the pure engine for every method", async () => {
+  const { send, finished, compiled } = await loadWorker();
   send({ type: "compute", id: 1, job: {} });
   expect(await finished(1)).toEqual({ type: "error", id: 1, error: "Error: MTF prescription is unavailable." });
   const L = buildChromaticPositiveElementLens();
-  // Runtime data includes generated hidden plates; worker rebuilds must expand them exactly once.
+  // Transport the unexpanded prescription even when the runtime already contains hidden plates.
   const plated = build({
     ...L.data,
     rearPlates: [REAR_PLATE_FIXTURE, { ...REAR_PLATE_FIXTURE, gapAfterMm: 20 }],
   });
-  // A composed host + converter prescription must rebuild too: its reserved labels are only valid
-  // alongside the descriptor, and its host plates have to re-expand on the right side of the converter —
-  // the drop-in filter ahead of it, the cover glass behind.
+  // A composed pair retains its descriptor so plates expand on the correct side of the converter.
   const hostData = teleconverterHostData({
     plates: [{ ...REAR_PLATE_FIXTURE, label: "F", gapAfterMm: 38 }, REAR_PLATE_FIXTURE],
   });
@@ -58,7 +66,7 @@ it("rebuilds serializable prescriptions in the worker and matches the pure engin
   );
   const methods = ["geometric", "diffraction"] as const;
   const spectra = ["reference", "cdf", "photopic"] as const;
-  // The full method × spectrum grid proves dispatch once; the plated rebuild needs only one combination.
+  // The full method × spectrum grid proves dispatch once; plate cases need one combination.
   const cases = [
     { lens: L, methods, spectra },
     { lens: plated, methods: ["diffraction"] as const, spectra: ["photopic"] as const },
@@ -66,7 +74,47 @@ it("rebuilds serializable prescriptions in the worker and matches the pure engin
   ];
   let id = 10;
   for (const { lens, methods, spectra } of cases) {
-    send({ type: "init", data: structuredClone(lens.data) });
+    const messages: unknown[] = [];
+    const client = new MtfWorkerClient(
+      lens,
+      () =>
+        ({
+          postMessage: (message) => messages.push(structuredClone(message)),
+          terminate: () => {},
+          onmessage: null,
+          onerror: null,
+        }) as MtfWorkerPort,
+    );
+    const pending = client.compute({
+      focusT: 0,
+      zoomT: 0,
+      aberrationT: 0,
+      options: {
+        method: "geometric",
+        spectrum: "reference",
+        focus: "design",
+        pupilSemiDiameterMm: 0.1,
+        stopSemiDiameterMm: 0.1,
+      },
+    });
+    const cancelled = pending.catch(() => {});
+    client.dispose();
+    await cancelled;
+    compiled.mockClear();
+    send(messages[0]);
+    expect(compiled).toHaveBeenCalledTimes(1);
+    const workerLens = compiled.mock.results[0].value;
+    const mainLens = compiledLensFromRuntime(lens);
+    const records = (value: unknown): unknown => {
+      if (typeof value === "function") return expect.any(Function);
+      if (Array.isArray(value)) return value.map(records);
+      if (value && typeof value === "object")
+        return Object.fromEntries(Object.entries(value).map(([key, entry]) => [key, records(entry)]));
+      return value;
+    };
+    expect(workerLens).not.toBe(mainLens);
+    expect(workerLens).toEqual(records(mainLens));
+    const compilationCount = compiled.mock.calls.length;
     for (const method of methods)
       for (const spectrum of spectra) {
         const options: MtfOptions = {
@@ -84,9 +132,10 @@ it("rebuilds serializable prescriptions in the worker and matches the pure engin
         expect(expected.support.available).toBe(true);
         expect(expected.fields[0].reason).toBeNull();
         expect(await finished(id)).toEqual({ type: "result", id, result: expected });
+        expect(compiled).toHaveBeenCalledTimes(compilationCount);
       }
   }
-  send({ type: "init", data: {} });
+  send({ type: "init", input: {} });
   send({ type: "compute", id: 99, job: {} });
   expect(await finished(99)).toMatchObject({ type: "error", id: 99, error: expect.any(String) });
 });
@@ -94,7 +143,7 @@ it("rebuilds serializable prescriptions in the worker and matches the pure engin
 it("drops cancelled requests and reuses finished fields when only the field list changes", async () => {
   const { send, replies, finished } = await loadWorker();
   const L = buildChromaticPositiveElementLens();
-  send({ type: "init", data: structuredClone(L.data) });
+  send({ type: "init", input: structuredClone(canonicalLensFromRuntime(L)) });
   const options: MtfOptions = {
     method: "geometric",
     spectrum: "reference",
