@@ -10,7 +10,9 @@
  *   comment line elsewhere in the file that names the stop and quotes the authored radius, as written or rounded to
  *   the two or more decimals it is quoted with;
  * - the zero aspheric terms dropped, by aspheric entry;
- * - any other value ingest set aside that the converted file does not hold.
+ * - any other value ingest set aside that the converted file does not hold;
+ * - going to V1, the stop radius written for V1's type, which V1 ingest sets aside, and each medium name V1 cannot
+ *   hold.
  * The text is deterministic: no dates, timings or absolute paths.
  */
 
@@ -88,6 +90,14 @@ export function stopRadiusEntry(stop, comments, parentPath) {
 
 const millimetres = (radii) => radii.map((radius) => radius.toFixed(3)).join(", ");
 
+/** Where the radius a V1 file writes for its stop comes from, by how the engine sets it. */
+const WRITTEN_RADIUS = {
+  prime: "the engine's radius",
+  held: "the engine's radius, held at every station",
+  perStation: "the engine's radius at the wide station",
+  schedule: "the schedule's first value",
+};
+
 /** The engine's radius, as a line of the report. */
 function engineLine(engine) {
   if ("error" in engine) return `engine radius: not computed (${engine.error})`;
@@ -138,6 +148,16 @@ export function formatConversionReport(reports) {
     if (report.zeroTerms.length > 0) {
       body.push("  zero aspheric terms dropped:");
       for (const entry of report.zeroTerms) body.push(`    ${entry.entry}: ${entry.terms.join(", ")}`);
+    }
+    if (report.stopWritten) {
+      const { at, value, stop } = report.stopWritten;
+      body.push(
+        `  stop radius written for V1's type: ${at} = ${value} (${WRITTEN_RADIUS[stop]}; V1 ingest sets it aside)`,
+      );
+    }
+    if (report.mediumNames?.length > 0) {
+      body.push("  medium names V1 cannot hold:");
+      for (const medium of report.mediumNames) body.push(`    ${medium.from} = ${JSON.stringify(medium.name)}`);
     }
     if (report.dropped.length > 0) {
       body.push("  other values dropped:");

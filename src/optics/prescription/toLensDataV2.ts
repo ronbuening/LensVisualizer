@@ -32,7 +32,7 @@ import {
   type SourcePaths,
 } from "./canonical.js";
 import { V1_FLAT_RADIUS } from "./ingestV1.js";
-import { childPath, extendPath, itemPath, labelPath, memberPath, parentPath, pathBelow } from "./sourcePaths.js";
+import { childPath, follow, inverse, itemPath, labelPath, memberPath, parentPath } from "./sourcePaths.js";
 
 type Untyped = Record<string, unknown>;
 
@@ -486,8 +486,11 @@ export interface DroppedValue {
   stop?: DroppedStopRadius;
 }
 
-/** How the engine sets the radius of a stop whose authored `sd` it does not read. */
-function droppedStopRadius(prescription: CanonicalPrescription): DroppedStopRadius {
+/**
+ * How the engine sets the radius of a stop whose authored `sd` it does not read, or that writes none: the V2 file
+ * drops such an `sd`, and the V1 file the converter writes supplies one (`v1StopRadius`).
+ */
+export function droppedStopRadius(prescription: CanonicalPrescription): DroppedStopRadius {
   const lens = prescription as CanonicalLens;
   if (!lens.zoom) return "prime";
   if (lens.aperture.stopRadius === "schedule") return "schedule";
@@ -518,31 +521,6 @@ export interface V2SourceMap {
   recordSource(v2Path: string): string | undefined;
   /** Each value ingest set aside that the V2 file does not hold, in the order ingest met them. */
   readonly dropped: readonly DroppedValue[];
-}
-
-/** First key for each value of a record, as a map from value to key. */
-function inverse(record: Readonly<Record<string, string>>): Map<string, string> {
-  const map = new Map<string, string>();
-  for (const [key, value] of Object.entries(record)) if (!map.has(value)) map.set(value, key);
-  return map;
-}
-
-/**
- * Follow a path through a map of exact entries and subtrees: an exact entry, or the entry of the nearest ancestor that
- * is a subtree, extended by the rest of the path.
- */
-function follow(
-  path: string,
-  exact: ReadonlyMap<string, string>,
-  subtrees: ReadonlyMap<string, string>,
-): string | undefined {
-  const found = exact.get(path);
-  if (found !== undefined) return found;
-  for (let ancestor = parentPath(path); ancestor !== undefined; ancestor = parentPath(ancestor)) {
-    const target = subtrees.get(ancestor);
-    if (target !== undefined) return extendPath(target, pathBelow(path, ancestor)!);
-  }
-  return undefined;
 }
 
 /**

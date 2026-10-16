@@ -110,3 +110,38 @@ export function extendPath(base: string, rest: string): string {
   if (base === "" && rest.startsWith(".")) return rest.slice(1);
   return base + rest;
 }
+
+/**
+ * First key for each value of a record, as a map from value to key: a relation read the other way.
+ *
+ * @param record - a relation from one set of paths to another
+ * @returns each target path with the first source path that names it
+ */
+export function inverse(record: Readonly<Record<string, string>>): Map<string, string> {
+  const map = new Map<string, string>();
+  for (const [key, value] of Object.entries(record)) if (!map.has(value)) map.set(value, key);
+  return map;
+}
+
+/**
+ * Follow a path through a map of exact entries and subtrees: an exact entry, or the entry of the nearest ancestor that
+ * is a subtree, extended by the rest of the path.
+ *
+ * @param path - the path to follow
+ * @param exact - entries that apply to their own path only
+ * @param subtrees - entries that apply to the paths below theirs too
+ * @returns the path it leads to, or `undefined` when neither map covers it
+ */
+export function follow(
+  path: string,
+  exact: ReadonlyMap<string, string>,
+  subtrees: ReadonlyMap<string, string>,
+): string | undefined {
+  const found = exact.get(path);
+  if (found !== undefined) return found;
+  for (let ancestor = parentPath(path); ancestor !== undefined; ancestor = parentPath(ancestor)) {
+    const target = subtrees.get(ancestor);
+    if (target !== undefined) return extendPath(target, pathBelow(path, ancestor)!);
+  }
+  return undefined;
+}

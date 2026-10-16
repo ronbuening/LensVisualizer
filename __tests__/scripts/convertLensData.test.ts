@@ -1,9 +1,9 @@
 /**
- * The lens-data converter library (`scripts/lens-data-convert/`): V1 text to V2 text, with its report, on synthetic
- * fixtures only. The S2.P2.T1 fixture pairs check the converted prescription; the source-text fixtures check the
- * printed file: literal forms, number tokens, comments and their moves, blank lines, the file's frame, a V2 source,
- * the stop-radius report, and one refusal of each kind. One test runs the library under plain Node, as the organizer
- * will.
+ * The lens-data converter library (`scripts/lens-data-convert/`): V1 text to V2 text, and V2 text to V1, with its
+ * report, on synthetic fixtures only. The S2.P2.T1 fixture pairs check the converted prescription in each direction;
+ * the source-text fixtures check the printed file: literal forms, number tokens, comments and their moves, blank
+ * lines, the file's frame, a V2 source, the stop-radius report, the V1 print order and the stop radius V1's type
+ * requires, and one refusal of each kind. One test runs the library under plain Node, as the organizer will.
  */
 
 import { execFileSync } from "node:child_process";
@@ -16,12 +16,19 @@ import {
   formatWithPrettier,
   type ConversionOptions,
 } from "../../scripts/lens-data-convert/convert.mjs";
-import { commentMisplaced, movedCommentText } from "../../scripts/lens-data-convert/comments.mjs";
+import { commentMisplaced, movedCommentText, movedNote } from "../../scripts/lens-data-convert/comments.mjs";
 import { formatConversionReport } from "../../scripts/lens-data-convert/report.mjs";
 import { evaluateLensDataSource } from "../../scripts/lens-data-ast.mjs";
 import { ingestLens, ingestTeleconverter } from "../../src/optics/prescription/ingestV2.js";
-import { FIXTURE_PAIRS, type FixturePair } from "../src/optics/prescription/ingestV2Fixtures.js";
+import { V1_GROUP_STARTS, V1_PRINT_ORDER } from "../../src/optics/prescription/toLensData.js";
+import type { LensDataInput } from "../../src/types/optics.js";
+import { FIXTURE_PAIRS, MAXIMAL_ZOOM, type FixturePair } from "../src/optics/prescription/ingestV2Fixtures.js";
 import {
+  ALL_SPHERICAL_V1_PRIME,
+  BANNERED_V1_PRIME,
+  BUILDABLE_V2,
+  BANNERED_V1_ZOOM,
+  COMMENTED_V2_ZOOM,
   FORMS_FILE,
   FORMS_REPORT,
   FORMS_V2,
@@ -54,11 +61,42 @@ function convert(text: string, options: Partial<ConversionOptions> = {}) {
   });
 }
 
+/** The member a comment leads in a printed file: the first line below it, past other comments and blank lines. */
+function ledMember(text: string, comment: string): string | undefined {
+  const lines = text.split("\n");
+  const at = lines.findIndex((line) => line.trim() === comment);
+  if (at < 0) return undefined;
+  return lines
+    .slice(at + 1)
+    .find((line) => !/^\s*(\/\/|\/\*|$)/.test(line))
+    ?.trim()
+    .split(":")[0];
+}
+
 /** Convert, failing the test on a refusal. */
 async function converted(text: string, options: Partial<ConversionOptions> = {}) {
   const result = await convert(text, options);
   expect(result.refusal).toBeUndefined();
   return result as { text: string; refusal: undefined; report: (typeof result)["report"] };
+}
+
+/** A pair's V2 side as a file, or any V2 object, its numbers written as JSON writes them. */
+function v2Text(data: object, kind: "lens" | "teleconverter" = "lens"): string {
+  const type = kind === "lens" ? "LensDataV2Input" : "TeleconverterDataV2Input";
+  return [
+    `import type { ${type} } from "../../types/lensDataV2.js";`,
+    "",
+    `const DATA = ${JSON.stringify(data, null, 2)} satisfies ${type};`,
+    "",
+    "export default DATA;",
+    "",
+  ].join("\n");
+}
+
+/** The prescription a file's text ingests to. */
+function prescriptionOf(text: string, kind: "lens" | "teleconverter" = "lens") {
+  const data = evaluateLensDataSource(text) as never;
+  return kind === "lens" ? ingestLens(data).prescription : ingestTeleconverter(data).prescription;
 }
 
 /** A pair's V1 side as a file, its numbers written as JSON writes them. */
@@ -277,6 +315,20 @@ describe("printing a converted file", () => {
     expect(movedCommentText("//", "var")).toBe("// (moved from var)");
     expect(movedCommentText("// (moved from x) kept", "asph")).toBe("// (moved from x) kept");
   });
+
+  it("reads back only its own note, exactly as it writes one", () => {
+    for (const text of ["// rest", "//", "/* ── Zoom ── */", "/* two\n * lines */"]) {
+      expect(movedNote(movedCommentText(text, "zoomPositions"))).toEqual({ from: "zoomPositions", text });
+    }
+    for (const text of [
+      "//(moved from var) x",
+      "// (Moved from var) x",
+      "// (moved from var)x",
+      "// see (moved from var)",
+    ]) {
+      expect(movedNote(text), text).toBeUndefined();
+    }
+  });
 });
 
 describe("the stop-radius report", () => {
@@ -453,5 +505,321 @@ describe("under plain Node", () => {
     );
     const output = execFileSync("node", [script], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
     expect(JSON.parse(output)).toEqual({ engine: "prime" });
+  });
+});
+
+describe("the V1 direction (S2.P3.T2)", () => {
+  /** The hand-written V2 prime without its published keyframe, which has no focus travel to build. */
+  it.each(FIXTURE_PAIRS.map((pair) => [pair.family, pair] as const))(
+    "%s: the V2 side converts to V1 text that ingests to the pair's prescription, and back to V2",
+    async (_family, pair) => {
+      const prescription = prescriptionOf(v2Text(pair.v2, pair.kind), pair.kind);
+      const v1 = await converted(v2Text(pair.v2, pair.kind), { kind: pair.kind, toVersion: 1 });
+      expect(v1.text).toContain(
+        pair.kind === "lens" ? "satisfies LensDataInput;" : "satisfies TeleconverterDataInput;",
+      );
+      expect(prescriptionOf(v1.text, pair.kind)).toEqual(prescription);
+      const v2 = await converted(v1.text, { kind: pair.kind });
+      expect(prescriptionOf(v2.text, pair.kind)).toEqual(prescription);
+    },
+  );
+
+  it("prints the file's members in V1_PRINT_ORDER, a blank line before each section, and records as the view writes", async () => {
+    /* The maximal zoom ingests but does not build; its stop takes its schedule's first value from a stub. */
+    const schedule = async () => ({ default: () => ({ zoomStopSDs: [5, 5.5, 6] }) });
+    const { text } = await converted(v2Text(MAXIMAL_ZOOM), { toVersion: 1, loadBuildLens: schedule });
+    const v1 = evaluateLensDataSource(text) as Record<string, Record<string, unknown>[] & Record<string, unknown>>;
+    const members = Object.keys(v1);
+    expect(members).toEqual(V1_PRINT_ORDER.lens.filter((member) => members.includes(member)));
+    expect(members.length).toBeGreaterThan(55);
+    const lines = text.split("\n");
+    const blankBefore = members.filter(
+      (member) => lines[lines.findIndex((line) => line.startsWith(`  ${member}:`)) - 1] === "",
+    );
+    const sections = V1_GROUP_STARTS.lens.map((start) => {
+      const from = V1_PRINT_ORDER.lens.indexOf(start);
+      const next = V1_GROUP_STARTS.lens.map((other) => V1_PRINT_ORDER.lens.indexOf(other)).find((at) => at > from);
+      return V1_PRINT_ORDER.lens.slice(from, next).find((member) => members.includes(member));
+    });
+    expect(blankBefore).toEqual(sections.filter((member) => member !== undefined));
+    expect(Object.keys(v1.elements[0])).toEqual([
+      "id",
+      "name",
+      "diagramLabel",
+      "maxSdRatio",
+      "label",
+      "type",
+      "nd",
+      "vd",
+      "indexReference",
+      "indexReferenceNote",
+      "fl",
+      "glass",
+      "role",
+      "absorptionCoefficientPerMm",
+      "apd",
+      "apdNote",
+      "cemented",
+      "dPgF",
+      "nC",
+      "nF",
+      "ng",
+      "fromSurface",
+      "toSurface",
+    ]);
+    expect(Object.keys(v1.surfaces[1])).toEqual([
+      "label",
+      "R",
+      "d",
+      "nd",
+      "elemId",
+      "sd",
+      "innerSd",
+      "interaction",
+      "diffractive",
+    ]);
+    expect(Object.keys(v1.rearPlates[0])).toEqual([
+      "label",
+      "thicknessMm",
+      "nd",
+      "vd",
+      "glass",
+      "indexReference",
+      "dPgF",
+      "nC",
+      "nF",
+      "ng",
+      "gapAfterMm",
+      "sd",
+      "source",
+    ]);
+    expect(Object.keys(v1.aberrationControl)).toEqual([
+      "label",
+      "description",
+      "minLabel",
+      "centerLabel",
+      "maxLabel",
+      "step",
+      "var",
+      "varLabels",
+    ]);
+    expect(Object.keys(v1.finiteConjugates[0])).toEqual([
+      "focusT",
+      "zoomT",
+      "objectDistanceMm",
+      "distanceReference",
+      "source",
+    ]);
+    expect(text.indexOf("    STO: [")).toBeLessThan(text.indexOf('    "4": ['));
+  });
+
+  it("writes the engine's radius as a derived stop's sd, which V1 ingest sets aside", async () => {
+    expect(BUILDABLE_V2).not.toBe(V2_SOURCE_FILE);
+    const { text, report } = await converted(BUILDABLE_V2, { toVersion: 1 });
+    const v1 = evaluateLensDataSource(text) as LensDataInput;
+    const sd = v1.surfaces[1].sd;
+    expect(sd).toBeGreaterThan(0);
+    expect(Number(sd.toFixed(3))).toBe(sd);
+    expect(report.stopWritten).toEqual({ at: "surfaces[1].sd", value: sd, stop: "prime" });
+    expect(formatConversionReport([report])).toContain(
+      `  stop radius written for V1's type: surfaces[1].sd = ${sd} (the engine's radius; V1 ingest sets it aside)`,
+    );
+    expect(prescriptionOf(text)).toEqual(prescriptionOf(BUILDABLE_V2));
+  });
+
+  it("writes a scheduled zoom's first schedule value, not the radius its V1 source carried", async () => {
+    const pair = FIXTURE_PAIRS.find((candidate) => candidate.family === "stop schedule")!;
+    const source = structuredClone(pair.v1) as LensDataInput;
+    source.surfaces[0].sd = 11.815;
+    source.zoomStopSemiDiameters = [8.115, 9, 10];
+    const v1Source = v1LensFile(JSON.stringify(source, null, 2).slice(2, -2));
+    const v2 = await converted(v1Source);
+    const v1 = await converted(v2.text, { toVersion: 1 });
+    expect((evaluateLensDataSource(v1.text) as LensDataInput).surfaces[0].sd).toBe(8.115);
+    expect(v1.report.stopWritten).toEqual({ at: "surfaces[0].sd", value: 8.115, stop: "schedule" });
+    expect(prescriptionOf(v1.text)).toEqual(prescriptionOf(v1Source));
+  });
+
+  it("refuses a file whose stop needs a radius for V1's type that the engine cannot derive", async () => {
+    const failing = async () => ({
+      default: () => {
+        throw new Error("Lens data cannot be built:\n  • a reason");
+      },
+    });
+    const result = await convert(BUILDABLE_V2, { toVersion: 1, loadBuildLens: failing });
+    expect(result.refusal).toBe(
+      "surfaces[1].sd: V1's type requires a stop radius, and the engine derives none (Lens data cannot be built: a reason)",
+    );
+  });
+
+  it("moves a station record's comment to the first station list, a medium's to the file's object, each once", async () => {
+    const { text, report } = await converted(COMMENTED_V2_ZOOM, { toVersion: 1 });
+    expect(text).toContain(
+      "  // (moved from zoom.stations[1]) the middle station, tabulated as Example 2\n  zoomPositions:",
+    );
+    expect(text).toContain(
+      "  // (moved from media[0]) a cement layer between the elements\n} satisfies LensDataInput;",
+    );
+    expect(text).toContain('{ label: "1", R: 50, d: 5, nd: 1.5168, elemId: 1, sd: 15 }, // L1 front');
+    expect(report.moved.map((move) => [move.from, move.to])).toEqual([
+      ["media[0]", ""],
+      ["zoom.stations[1]", "zoomPositions"],
+    ]);
+    expect(report.mediumNames).toEqual([{ from: "media[0].name", name: "Cement layer" }]);
+    expect(formatConversionReport([report])).toContain(
+      '  medium names V1 cannot hold:\n    media[0].name = "Cement layer"',
+    );
+    expect(prescriptionOf(text)).toEqual(prescriptionOf(COMMENTED_V2_ZOOM));
+    const back = await converted(text);
+    expect(prescriptionOf(back.text)).toEqual(prescriptionOf(COMMENTED_V2_ZOOM));
+  });
+
+  it("takes zoomPositions first among the lists that hold a station, and its report line names the list", async () => {
+    const source = COMMENTED_V2_ZOOM.replace("{ focalLengthMm: 24 }", "{ focalLengthMm: 24, nominalFNumber: 2 }")
+      .replace("{ focalLengthMm: 50 }", "{ focalLengthMm: 50, nominalFNumber: 2.8 }")
+      .replace("{ focalLengthMm: 100 }", "{ focalLengthMm: 100, nominalFNumber: 4 }")
+      .replace("aperture: { nominalFNumber: 2, fStops", "aperture: { fStops");
+    const { text, report } = await converted(source, { toVersion: 1 });
+    expect(text.indexOf("  nominalFno: [")).toBeLessThan(text.indexOf("  zoomPositions:"));
+    expect(ledMember(text, "// (moved from zoom.stations[1]) the middle station, tabulated as Example 2")).toBe(
+      "zoomPositions",
+    );
+    expect(formatConversionReport([report])).toMatch(/line \d+: zoom\.stations\[1\] → zoomPositions: /);
+  });
+
+  it("leads, unmoved, the first V1 member written from inside a member V1 has no counterpart for", async () => {
+    const source = COMMENTED_V2_ZOOM.replace("  schema: 2,", "  /* ── Identity ── */\n  schema: 2,")
+      .replace(
+        '  name: "Fixture 24-100mm f/2",\n',
+        '  name: "Fixture 24-100mm f/2",\n\n  catalog: {\n    specs: ["4 ELEMENTS"],\n' +
+          "    /* ── Metadata ── */\n    focalLengthMm: { marketing: [24, 100] },\n  },\n",
+      )
+      .replace("  zoom: {\n    stations:", "  /* ── Zoom ── */\n  zoom: {\n    // wide to tele\n    stations:")
+      .replace("  focus: {", "  /* ── Focus ── */\n  focus: {")
+      .replace("  gaps: {", "  /* ── Variable gaps ── */\n  gaps: {")
+      .replace("  aperture: {", "  /* ── Aperture ── */\n  aperture: {")
+      .replace("  layout: {", "  /* ── Layout ── */\n  layout: {");
+    const { text, report } = await converted(source, { toVersion: 1 });
+    expect(
+      Object.fromEntries(
+        [
+          "/* ── Identity ── */",
+          "/* ── Metadata ── */",
+          "/* ── Zoom ── */",
+          "// wide to tele",
+          "/* ── Focus ── */",
+          "/* ── Variable gaps ── */",
+          "/* ── Aperture ── */",
+          "/* ── Layout ── */",
+        ].map((banner) => [banner, ledMember(text, banner)]),
+      ),
+    ).toEqual({
+      "/* ── Identity ── */": "key",
+      "/* ── Metadata ── */": "focalLengthMarketing",
+      "/* ── Zoom ── */": "zoomPositions",
+      "// wide to tele": "zoomPositions",
+      "/* ── Focus ── */": "closeFocusM",
+      "/* ── Variable gaps ── */": "var",
+      "/* ── Aperture ── */": "nominalFno",
+      "/* ── Layout ── */": "yScFill",
+    });
+    expect(report.moved.map((move) => move.from)).toEqual(["media[0]", "zoom.stations[1]"]);
+  });
+
+  it("reads a banner's note only when it names a member the banner may lead, and drops it then", async () => {
+    const source = COMMENTED_V2_ZOOM.replace(
+      "  focus: {",
+      "  // (moved from asph) Not one of focus's members.\n  focus: {",
+    ).replace("  aperture: {", "  // (moved from fstopSeries) The stops.\n  // Said once.\n  aperture: {");
+    const { text, report } = await converted(source, { toVersion: 1 });
+    expect(ledMember(text, "// (moved from asph) Not one of focus's members.")).toBe("closeFocusM");
+    expect(ledMember(text, "// The stops.")).toBe("fstopSeries");
+    expect(ledMember(text, "// Said once.")).toBe("fstopSeries");
+    expect(text).not.toContain("(moved from fstopSeries)");
+    expect(report.moved.map((move) => move.from)).toEqual(["media[0]", "zoom.stations[1]"]);
+  });
+
+  it("reads a note on a node V1 has a counterpart for, nested or not, when it names a node written from inside it", async () => {
+    const source = COMMENTED_V2_ZOOM.replace(
+      '    "3": {\n      values:',
+      '    // (moved from varLabels[0]) The back focus.\n    "3": {\n      label: "BF",\n      values:',
+    ).replace(
+      '    { label: "1", R: 50, d: 5, sd: 15, medium: 1 }, // L1 front',
+      '    // (moved from surfaces[1].sd) The rim.\n    { label: "1", R: 50, d: 5, sd: 15, medium: 1 }, // L1 front',
+    );
+    const { text, report } = await converted(source, { toVersion: 1 });
+    expect(text).toMatch(/\/\/ The back focus\.\n\s+\["3", "BF"\]/);
+    expect(text).toMatch(/\/\/ The rim\.\n\s+sd: 15/);
+    expect(text).not.toMatch(/moved from (varLabels|surfaces)/);
+    expect(report.moved.map((move) => move.from)).toEqual(["media[0]", "zoom.stations[1]"]);
+  });
+
+  it.each([
+    ["prime", BANNERED_V1_PRIME],
+    ["all-spherical prime (asph: {})", ALL_SPHERICAL_V1_PRIME],
+    ["zoom", BANNERED_V1_ZOOM],
+  ])(
+    "brings every template banner of a V1 %s back, V1 → V2 → V1, on the member it led and moved by none",
+    async (_kind, source) => {
+      const there = await converted(source);
+      const back = await converted(there.text, { toVersion: 1 });
+      const commentLines = (text: string) =>
+        text
+          .split("\n")
+          .map((line) => line.trim())
+          .filter((line) => line.startsWith("//") || line.startsWith("/*"))
+          .sort();
+      const banners = commentLines(source).filter((line) => line.startsWith("/* ──"));
+      expect(banners.length).toBeGreaterThanOrEqual(9);
+      const led = (text: string) => Object.fromEntries(banners.map((banner) => [banner, ledMember(text, banner)]));
+      expect(led(back.text)).toEqual(led(source));
+      expect(back.report.moved).toEqual([]);
+      expect(commentLines(back.text)).toEqual(commentLines(source));
+      expect(prescriptionOf(back.text)).toEqual(prescriptionOf(source));
+    },
+  );
+
+  it("prints a node's own banner before a run moved to it, so going back to V1 the note takes its run alone", async () => {
+    const asph =
+      "  /* ── Aspherical coefficients ── keyed by surface label. */\n" +
+      '  asph: { "1": { K: 0, A4: 1.25e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },\n\n';
+    const surfaces = "  /* ── Surface prescription ── */\n";
+    const source = BANNERED_V1_PRIME.replace(asph, "").replace(surfaces, asph + surfaces);
+    expect(source.indexOf("asph:")).toBeLessThan(source.indexOf("surfaces:"));
+    const there = await converted(source);
+    expect(there.text).toContain(
+      `${surfaces}  /* (moved from asph) ── Aspherical coefficients ── keyed by surface label. */\n  surfaces: [`,
+    );
+    expect((await converted(there.text)).text).toBe(there.text);
+    const back = await converted(there.text, { toVersion: 1 });
+    expect(ledMember(back.text, "/* ── Surface prescription ── */")).toBe("surfaces");
+    expect(ledMember(back.text, "/* ── Aspherical coefficients ── keyed by surface label. */")).toBe("asph");
+    expect(back.report.moved).toEqual([]);
+  });
+
+  it("writes back an empty asph a note names, and only when the note's run returns to it", async () => {
+    const there = await converted(ALL_SPHERICAL_V1_PRIME);
+    expect(there.text).not.toContain("asph:");
+    const back = await converted(there.text, { toVersion: 1 });
+    expect(back.text).toContain("  /* ── Aspherical coefficients ── keyed by surface label. */\n  asph: {},\n");
+    /* A note on a node that does not hold asph's home leaves the comment where it is, and writes no asph. */
+    const elsewhere = await converted(
+      COMMENTED_V2_ZOOM.replace("  focus: {", "  // (moved from asph) Stray.\n  focus: {"),
+      {
+        toVersion: 1,
+      },
+    );
+    expect(elsewhere.text).not.toContain("asph:");
+  });
+
+  it("prints a restored flat radius as 1e15, keeps a V2 literal's text, and prints a value V1 holds twice from its value", async () => {
+    const source = BUILDABLE_V2.replace('{ label: "1", R: 50, d: 5,', '{ label: "1", R: 50.000, d: 5,').replace(
+      'type: "Biconvex Positive", nd: 1.5168,',
+      'type: "Biconvex Positive", nd: 1.51680,',
+    );
+    const { text } = await converted(source, { toVersion: 1 });
+    expect(text).toContain('{ label: "WTR", R: 1e15, d: 0.001, nd: 1.33306, elemId: 0, sd: 20 }');
+    expect(text).toContain('{ label: "1", R: 50.000, d: 5, nd: 1.5168, elemId: 1, sd: 15 }');
+    expect(text).toContain('type: "Biconvex Positive", nd: 1.51680, vd: 64.17 }');
   });
 });

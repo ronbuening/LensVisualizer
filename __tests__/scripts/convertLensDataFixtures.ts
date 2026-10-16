@@ -194,6 +194,150 @@ export const RULINGS_FILE = v1LensFile(`  /* ── Identity ── */
   asph: { "1": { K: 0, A4: 1.25e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },`);
 
 /**
+ * A V1 prime laid out in the lens template's sections, each under the template's banner, as a catalog file is: the
+ * rear-plate and zoom sections a prime leaves out keep their banners and commented-out fields.
+ */
+export const BANNERED_V1_PRIME = v1LensFile(`  /* ── Identity ── */
+  key: "fixture-bannered-prime",
+  name: "FIXTURE 50mm f/2",
+  subtitle: "US 1,234,567 B2 EXAMPLE 1 — FIXTURE",
+  specs: ["1 ELEMENT / 1 GROUP", "f = 51.2 mm"],
+
+  /* ── Explicit metadata fields ── */
+  focalLengthMarketing: 50,
+  focalLengthDesign: 51.2,
+  apertureMarketing: 2,
+  lensMounts: ["nikon-z"],
+  imageFormat: "135-full-frame",
+  patentNumber: "US 1,234,567 B2",
+  patentYear: 2019,
+  elementCount: 1,
+  groupCount: 1,
+
+  /* ── Elements ── */
+  elements: [{ id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive", nd: 1.5168, vd: 64.17 }],
+
+  /* ── Surface prescription ── */
+  surfaces: [
+    { label: "STO", R: 1e15, d: 1, nd: 1, elemId: 0, sd: 12.5 },
+    { label: "1", R: 50, d: 5, nd: 1.5168, elemId: 1, sd: 15 }, // L1 front
+    { label: "2", R: -50, d: 80, nd: 1, elemId: 0, sd: 15 },
+  ],
+
+  /* ── Rear plates ── only when the source lists cover glass behind the last lens. */
+  // rearPlates: [
+  //   { label: "CG", thicknessMm: 0.0, nd: 1.5168, vd: 64.2, gapAfterMm: 0.0, source: "..." },
+  // ],
+
+  /* ── Aspherical coefficients ── keyed by surface label. */
+  asph: { "1": { K: 0, A4: 1.25e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },
+
+  /* ── Variable air spacings (focus mechanism) ── */
+  var: { "2": [80, 81] },
+
+  /* ── Published stations (optional) ── */
+  publishedStations: { focus: [1] },
+
+  varLabels: [["2", "BF"]],
+
+  /* ── Independent aberration control (optional) ── */
+  // aberrationControl: { label: "SOFT", minLabel: "0", maxLabel: "3", step: 0.004, var: {} },
+
+  /* ── Zoom lens fields (optional — omit entirely for prime lenses) ── */
+  // zoomPositions: [24, 50, 70],
+
+  /* ── Group and doublet annotations ── */
+  groups: [{ text: "G1", fromSurface: "1", toSurface: "2" }],
+
+  /* ── Focus configuration ── */
+  closeFocusM: 0.5,
+  focusDescription: "Unit focus.",
+
+  /* ── Aperture configuration ── */
+  nominalFno: 2,
+  fstopSeries: [2, 2.8, 4],
+
+  /* ── Layout tuning ── */
+  scFill: 0.5,
+  yScFill: 0.55,`);
+
+/** The bannered prime, all-spherical as the template writes one: `asph: {}` under its banner. */
+export const ALL_SPHERICAL_V1_PRIME = BANNERED_V1_PRIME.replace(
+  '  asph: { "1": { K: 0, A4: 1.25e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },',
+  "  asph: {},",
+);
+
+/**
+ * A V1 zoom laid out in the template's sections, each under the template's banner: its zoom fields, per-station
+ * f-numbers and published stations, all three lists the conversion to V2 folds into the stations, and the rear-plate
+ * and aberration-control sections it leaves out, with their commented-out fields.
+ */
+export const BANNERED_V1_ZOOM = v1LensFile(`  /* ── Identity ── */
+  key: "fixture-bannered-zoom",
+  name: "FIXTURE 24-100mm f/2-2.8",
+
+  /* ── Explicit metadata fields ── */
+  focalLengthMarketing: [24, 100],
+  apertureMarketing: 2,
+  lensMounts: ["nikon-z"],
+
+  /* ── Elements ── */
+  elements: [{ id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive", nd: 1.5168, vd: 64.17 }],
+
+  /* ── Surface prescription ── */
+  surfaces: [
+    { label: "STO", R: 1e15, d: 1, nd: 1, elemId: 0, sd: 9.5 },
+    { label: "1", R: 50, d: 5, nd: 1.5168, elemId: 1, sd: 15 },
+    { label: "2", R: -50, d: 80, nd: 1, elemId: 0, sd: 15 },
+  ],
+
+  /* ── Rear plates ── only when the source lists cover glass behind the last lens. */
+  // rearPlates: [
+  //   { label: "CG", thicknessMm: 0.0, nd: 1.5168, vd: 64.2, gapAfterMm: 0.0, source: "..." },
+  // ],
+
+  /* ── Aspherical coefficients ── keyed by surface label. */
+  asph: { "1": { K: 0, A4: 1.25e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },
+
+  /* ── Variable air spacings (focus mechanism) ── */
+  var: {
+    STO: [
+      [1, 1],
+      [3, 3],
+      [5, 5],
+    ],
+    "2": [
+      [80, 81],
+      [80, 82],
+      [80, 83],
+    ],
+  },
+
+  /* ── Published stations (optional) ── */
+  // Other zoom stations are solved.
+  publishedStations: { zoom: [0, 2] },
+
+  /* ── Independent aberration control (optional) ── */
+  // aberrationControl: { label: "SOFT", minLabel: "0", maxLabel: "3", step: 0.004, var: {} },
+
+  /* ── Zoom lens fields ── presence of zoomPositions makes the lens a zoom. */
+  zoomPositions: [24, 50, 100],
+  zoomLabels: ["Wide", "Tele"],
+
+  /* ── Group and doublet annotations ── */
+  groups: [{ text: "G1", fromSurface: "1", toSurface: "2" }],
+
+  /* ── Focus configuration ── */
+  closeFocusM: 0.5,
+
+  /* ── Aperture configuration ── */
+  nominalFno: [2, 2.4, 2.8],
+  fstopSeries: [2, 2.8, 4],
+
+  /* ── Layout tuning ── */
+  yScFill: 0.55,`);
+
+/**
  * A V2 file as a person writes one: named media out of first-use order, an explicit zero term, and comments, one on
  * `schema` and one on an item of a published list.
  */
@@ -238,6 +382,73 @@ const LENS_DATA = {
 
 export default LENS_DATA;
 `;
+
+/**
+ * A V2 zoom whose comments sit on nodes V1 has no counterpart for, a station record and a medium, and on a surface V1
+ * keeps. Its stop radius is derived, and its medium is named.
+ */
+export const COMMENTED_V2_ZOOM = `import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+const LENS_DATA = {
+  schema: 2,
+  key: "fixture-v2-commented-zoom",
+  name: "Fixture 24-100mm f/2",
+
+  elements: [{ id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive", nd: 1.5168, vd: 64.17 }],
+
+  media: [
+    // a cement layer between the elements
+    { id: "cement", name: "Cement layer", nd: 1.56732 },
+  ],
+
+  surfaces: [
+    { label: "STO", R: "flat" },
+    { label: "1", R: 50, d: 5, sd: 15, medium: 1 }, // L1 front
+    { label: "2", R: -50, d: 0.01, sd: 15, medium: "cement" },
+    { label: "3", R: -60, sd: 15 },
+  ],
+
+  zoom: {
+    stations: [
+      { focalLengthMm: 24 },
+      // the middle station, tabulated as Example 2
+      { focalLengthMm: 50 },
+      { focalLengthMm: 100 },
+    ],
+  },
+
+  focus: { closeFocusM: 0.5 },
+
+  gaps: {
+    STO: {
+      values: [
+        [1, 1],
+        [3, 3],
+        [5, 5],
+      ],
+    },
+    "3": {
+      values: [
+        [80, 81],
+        [80, 82],
+        [80, 83],
+      ],
+    },
+  },
+
+  aperture: { nominalFNumber: 2, fStops: [2, 2.8, 4] },
+
+  layout: { yScFill: 0.55 },
+} satisfies LensDataV2Input;
+
+export default LENS_DATA;
+`;
+
+/** `V2_SOURCE_FILE` without its published close keyframe, so that it builds: what the V1 direction converts. */
+export const BUILDABLE_V2 = V2_SOURCE_FILE.replace(
+  "  focus: {\n    closeFocusM: 0.5,\n    published: [\n      // the close keyframe\n      1,\n    ],\n  },",
+  "  focus: { closeFocusM: 0.5 },",
+);
 
 /** A V2 zoom whose comments sit on `schema` and on an item of a station's published keyframes. */
 export const V2_ZOOM_SOURCE_FILE = `import type { LensDataV2Input } from "../../types/lensDataV2.js";

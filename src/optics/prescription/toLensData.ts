@@ -55,6 +55,149 @@ import { zoomIndexToT } from "../state/stationTables.js";
 type Untyped = Record<string, unknown>;
 
 /**
+ * Top-level members of a V1 file in the order the converter prints them (`--to-version 1`): the declaration order of
+ * `LensData`, less `attachedTeleconverter`, which only the composer writes, and of `TeleconverterData`. The views
+ * below write a lens's tail in another order, which nothing reads: the layout, rays and checks fields follow
+ * `LENS_SCHEMA_DEFAULTS`, and `yScFill` comes after them. A record below the top level prints in the order its view
+ * writes it, which is its type's declaration order but for a surface's `elemId`, written before `sd` as the catalog
+ * writes it, and records keyed by surface label print in surface order.
+ */
+export const V1_PRINT_ORDER = {
+  lens: [
+    "publishedAt",
+    "key",
+    "maker",
+    "name",
+    "subtitle",
+    "specs",
+    "focalLengthMarketing",
+    "focalLengthDesign",
+    "apertureMarketing",
+    "apertureDesign",
+    "lensMounts",
+    "imageFormat",
+    "imageCircleMm",
+    "patentNumber",
+    "patentAuthors",
+    "patentAssignees",
+    "patentYear",
+    "sourceErrata",
+    "elementCount",
+    "groupCount",
+    "visible",
+    "opticalConfiguration",
+    "acceptsTeleconverters",
+    "perspectiveControl",
+    "projection",
+    "opticalPath",
+    "aberrationControl",
+    "nominalFno",
+    "closeFocusM",
+    "zoomCloseFocusM",
+    "zoomStopSemiDiameters",
+    "zoomApertureModel",
+    "focusStep",
+    "maxFstop",
+    "apertureStep",
+    "fstopSeries",
+    "elements",
+    "surfaces",
+    "rearPlates",
+    "asph",
+    "var",
+    "varLabels",
+    "focusPositions",
+    "finiteConjugates",
+    "publishedStations",
+    "groups",
+    "doublets",
+    "zoomPositions",
+    "zoomStep",
+    "zoomLabels",
+    "focusDescription",
+    "svgW",
+    "svgH",
+    "scFill",
+    "yScFill",
+    "maxRimAngleDeg",
+    "gapSagFrac",
+    "maxAspectRatio",
+    "lensShiftFrac",
+    "rayFractions",
+    "rayLeadFrac",
+    "offAxisFieldFrac",
+    "offAxisFractions",
+    "apertureBlades",
+    "apertureBladeRoundedness",
+  ] satisfies readonly (keyof LensDataInput)[],
+  teleconverter: [
+    "publishedAt",
+    "key",
+    "maker",
+    "visible",
+    "name",
+    "subtitle",
+    "specs",
+    "magnification",
+    "lensMounts",
+    "universal",
+    "minHostFno",
+    "incompatibleLensKeys",
+    "patentNumber",
+    "patentAuthors",
+    "patentAssignees",
+    "patentYear",
+    "elementCount",
+    "groupCount",
+    "elements",
+    "surfaces",
+    "rearPlates",
+    "asph",
+    "groups",
+    "doublets",
+    "masterImageDistanceMm",
+  ] satisfies readonly (keyof TeleconverterData)[],
+} as const;
+
+/**
+ * Top-level members that open a section of a V1 file, as the lens template's sections run, in `V1_PRINT_ORDER`: the
+ * metadata, the switches with the focus and aperture fields, `elements`, `surfaces`, `rearPlates`, `asph`, the
+ * variable gaps with the focus key frames, the conjugates and published stations, the annotations, the zoom fields,
+ * and the layout. A converter's sections are its own fields, then the same lists. Going to V1, the converter prints a
+ * blank line before the first member of each section a file has, the identity fields that open the file aside.
+ */
+export const V1_GROUP_STARTS = {
+  lens: [
+    "focalLengthMarketing",
+    "visible",
+    "elements",
+    "surfaces",
+    "rearPlates",
+    "asph",
+    "var",
+    "finiteConjugates",
+    "groups",
+    "zoomPositions",
+    "svgW",
+  ] satisfies readonly (typeof V1_PRINT_ORDER.lens)[number][],
+  teleconverter: [
+    "magnification",
+    "elements",
+    "surfaces",
+    "rearPlates",
+    "asph",
+    "groups",
+    "masterImageDistanceMm",
+  ] satisfies readonly (typeof V1_PRINT_ORDER.teleconverter)[number][],
+} as const;
+
+/**
+ * Lists of a V1 file whose rows keep a blank line their source had, before the row or before one of its leading
+ * comments; the converter breaks such a list across lines when one does. A lens and a converter have the same two.
+ */
+export const V1_ROW_LISTS: readonly string[] = ["surfaces", "elements"];
+
+/**
  * Set `target[field]` to a copy of `value` unless the value is `undefined`. A string, number, boolean or bigint is its
  * own copy; anything else goes through `structuredClone`, which refuses a function or a symbol.
  */
@@ -64,6 +207,20 @@ function put(target: Untyped, field: string, value: unknown): void {
   target[field] = kind === "object" || kind === "function" || kind === "symbol" ? structuredClone(value) : value;
 }
 
+/** What the converter asks of the V1 file it writes beyond the view. */
+export interface V1FileOptions {
+  /**
+   * The `sd` to write on a stop whose radius the engine derives or takes from a schedule, which V1's `SurfaceData`
+   * requires and the prescription does not hold; V1 ingest sets it aside again.
+   */
+  stopRadius?: number;
+  /**
+   * Containers to write empty where the view writes none (`asph`, `var`, `varLabels`, `aberrationControl.varLabels`):
+   * those a converter note names, "(moved from asph)", so that the comments the note carries return to them.
+   */
+  emptyContainers?: V1Spelling["emptyContainers"];
+}
+
 /** What the view writes for one defaulted field. */
 interface ViewContext {
   readonly provenance: CanonicalProvenance;
@@ -71,10 +228,19 @@ interface ViewContext {
   readonly v1: V1Spelling;
   /** Write the catalog defaults, as the V1 catalog merges them; otherwise write only what the file authored. */
   readonly mergeCatalogDefaults: boolean;
+  /** The `sd` of a stop the prescription holds none for, when the converter supplies one. */
+  readonly stopRadius?: number;
 }
 
-function viewContext(provenance: CanonicalProvenance, mergeCatalogDefaults: boolean): ViewContext {
-  return { provenance, v1: provenance.v1 ?? { emptyContainers: [] }, mergeCatalogDefaults };
+function viewContext(
+  provenance: CanonicalProvenance,
+  mergeCatalogDefaults: boolean,
+  options?: V1FileOptions,
+): ViewContext {
+  const spelling = provenance.v1 ?? { emptyContainers: [] };
+  const extra = options?.emptyContainers ?? [];
+  const v1 = extra.length === 0 ? spelling : { ...spelling, emptyContainers: [...spelling.emptyContainers, ...extra] };
+  return { provenance, v1, mergeCatalogDefaults, stopRadius: options?.stopRadius };
 }
 
 /**
@@ -183,7 +349,7 @@ function surfaceView(
   const { nd, elemId } = mediumView(surface, elements, media);
   out.nd = nd;
   out.elemId = elemId;
-  put(out, "sd", surface.sd ?? ignoredAt(view, `${at}.sd`));
+  put(out, "sd", surface.sd ?? ignoredAt(view, `${at}.sd`) ?? view.stopRadius);
   put(out, "innerSd", surface.innerSd);
   put(out, "stopPlacement", surface.stopPlacement);
   put(out, "interaction", surface.interaction);
@@ -305,9 +471,13 @@ function aberrationControlView(lens: CanonicalLens, view: ViewContext): Aberrati
   return out as unknown as AberrationControlConfig;
 }
 
-function buildLensView(ingested: IngestedPrescription<CanonicalLens>, mergeCatalogDefaults: boolean): Untyped {
+function buildLensView(
+  ingested: IngestedPrescription<CanonicalLens>,
+  mergeCatalogDefaults: boolean,
+  options?: V1FileOptions,
+): Untyped {
   const { prescription: lens, provenance } = ingested;
-  const view = viewContext(provenance, mergeCatalogDefaults);
+  const view = viewContext(provenance, mergeCatalogDefaults, options);
   const { catalog, source, zoom, focus, aperture } = lens;
   const out: Untyped = {};
 
@@ -418,10 +588,11 @@ export function canonicalConstructionData(prescription: CanonicalLens): LensCons
  * The V1 lens file as authored: like `toLensData`, without the catalog defaults the file left out.
  *
  * @param ingested - a canonical lens with its provenance
+ * @param options - what the converter supplies for V1's types
  * @returns fresh V1 lens input data
  */
-export function toLensDataInput(ingested: IngestedPrescription<CanonicalLens>): LensDataInput {
-  return buildLensView(ingested, false) as unknown as LensDataInput;
+export function toLensDataInput(ingested: IngestedPrescription<CanonicalLens>, options?: V1FileOptions): LensDataInput {
+  return buildLensView(ingested, false, options) as unknown as LensDataInput;
 }
 
 /* ── Teleconverter ── */
@@ -431,11 +602,15 @@ export function toLensDataInput(ingested: IngestedPrescription<CanonicalLens>): 
  * composer reads.
  *
  * @param ingested - a canonical teleconverter with its provenance
+ * @param options - what the converter asks of the file beyond the view: the containers to write empty
  * @returns fresh V1 `TeleconverterData`
  */
-export function toTeleconverterData(ingested: IngestedPrescription<CanonicalTeleconverter>): TeleconverterData {
+export function toTeleconverterData(
+  ingested: IngestedPrescription<CanonicalTeleconverter>,
+  options?: Pick<V1FileOptions, "emptyContainers">,
+): TeleconverterData {
   const { prescription: converter, provenance } = ingested;
-  const view = viewContext(provenance, false);
+  const view = viewContext(provenance, false, options);
   const out: Untyped = {};
   put(out, "publishedAt", converter.publishedAt);
   out.key = converter.key;

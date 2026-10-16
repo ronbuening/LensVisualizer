@@ -13,20 +13,30 @@ declare module "node:child_process" {
 
 declare module "node:fs" {
   export function chmodSync(path: string, mode: number): void;
+  export function copyFileSync(source: string, destination: string): void;
   export function existsSync(path: string): boolean;
+  export function linkSync(existingPath: string, newPath: string): void;
   export function mkdirSync(path: string, options?: { recursive?: boolean }): string | undefined;
   export function mkdtempSync(prefix: string): string;
+  export function openSync(path: string, flags: string): number;
   export function readFileSync(path: string | URL): Uint8Array;
   export function readFileSync(path: string, encoding: string): string;
   export function readdirSync(path: string): string[];
+  export function readdirSync(
+    path: string,
+    options: { withFileTypes: true },
+  ): { name: string; isFile(): boolean; isDirectory(): boolean }[];
   export function realpathSync(path: string): string;
+  export function renameSync(oldPath: string, newPath: string): void;
   export function rmSync(path: string, options?: { recursive?: boolean; force?: boolean }): void;
   export function statSync(path: string): { isDirectory(): boolean };
+  export function symlinkSync(target: string, path: string): void;
   export function writeFileSync(
-    path: string,
+    path: string | number,
     data: string | Uint8Array,
     options?: string | { encoding?: string; flag?: string },
   ): void;
+  export function writeSync(descriptor: number, data: string | Uint8Array): number;
 }
 
 declare module "node:os" {
@@ -38,6 +48,15 @@ declare module "node:path" {
   export function dirname(path: string): string;
   export function join(...paths: string[]): string;
   export function relative(from: string, to: string): string;
+  export function resolve(...paths: string[]): string;
+}
+
+declare module "node:stream" {
+  export class Writable {
+    constructor(options: { write(chunk: unknown, encoding: string, callback: (error?: Error | null) => void): void });
+    write(chunk: string): boolean;
+    on(event: string, listener: (...args: unknown[]) => void): this;
+  }
 }
 
 declare module "node:process" {

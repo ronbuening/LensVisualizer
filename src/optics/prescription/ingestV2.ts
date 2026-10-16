@@ -1169,6 +1169,19 @@ export function isV1File<File extends object>(input: File): input is Exclude<Fil
   return schemaOf(input) === undefined;
 }
 
+/**
+ * The lens-data version of a file, by the same rule: 1 for a file that leaves `schema` out, 2 for `schema: 2`, and
+ * none for any other `schema`, which the dispatchers below refuse. The converter asks it to leave a file already at
+ * the version it converts to as it is, and to refuse a file of no version.
+ *
+ * @param input - a file's default export, as authored
+ * @returns the file's version, or `undefined` when its `schema` names none
+ */
+export function lensDataVersion(input: object): 1 | 2 | undefined {
+  if (isV1File(input)) return 1;
+  return schemaOf(input) === LENS_DATA_V2_SCHEMA ? 2 : undefined;
+}
+
 function refuseSchema(input: object, schema: unknown): never {
   throw new PrescriptionIngestError(keyOf(input as Untyped), [
     `schema ${JSON.stringify(schema)} is no lens-data version: write ${LENS_DATA_V2_SCHEMA}, or leave it out in a V1 file`,
@@ -1188,9 +1201,8 @@ export function ingestLens(
   request?: IngestRequest,
 ): IngestedPrescription<CanonicalLens> {
   if (isV1File(input)) return ingestLensV1(input, request);
-  const schema = schemaOf(input);
-  if (schema === LENS_DATA_V2_SCHEMA) return ingestLensV2(input, request);
-  return refuseSchema(input, schema);
+  if (lensDataVersion(input) === 2) return ingestLensV2(input, request);
+  return refuseSchema(input, schemaOf(input));
 }
 
 /**
@@ -1206,7 +1218,6 @@ export function ingestTeleconverter(
   request?: IngestRequest,
 ): IngestedPrescription<CanonicalTeleconverter> {
   if (isV1File(input)) return ingestTeleconverterV1(input, request);
-  const schema = schemaOf(input);
-  if (schema === LENS_DATA_V2_SCHEMA) return ingestTeleconverterV2(input, request);
-  return refuseSchema(input, schema);
+  if (lensDataVersion(input) === 2) return ingestTeleconverterV2(input, request);
+  return refuseSchema(input, schemaOf(input));
 }

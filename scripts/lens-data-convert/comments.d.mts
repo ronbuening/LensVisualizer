@@ -1,8 +1,13 @@
 export function movedCommentText(text: string, from: string): string;
+export function movedNote(text: string): { from: string; text: string } | undefined;
 export function commentKey(text: string): string;
 export function placeComments(source: {
   comments: readonly object[];
-  commentTarget: (authoredPath: string, leading: boolean) => { path: string; moved: boolean };
+  commentTarget: (
+    authoredPath: string,
+    leading: boolean,
+    movedFrom?: string,
+  ) => { path: string; moved: boolean; noted?: boolean };
   textKept: (authoredPath: string) => boolean;
   isContainer: (v2Path: string) => boolean;
 }): {

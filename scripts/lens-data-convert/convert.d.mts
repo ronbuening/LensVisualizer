@@ -3,6 +3,8 @@ import type { ConversionReport } from "./report.mjs";
 export interface ConversionOptions {
   file: string;
   kind: "lens" | "teleconverter";
+  toVersion?: 1 | 2;
+  typesDirectory?: string;
   loadConversion?: () => Promise<object>;
   loadBuildLens?: () => Promise<{ default: (data: never) => object }>;
   format?: (text: string) => Promise<string>;
