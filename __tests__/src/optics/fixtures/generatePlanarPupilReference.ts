@@ -5,7 +5,7 @@
  *
  * This is NOT the evidence PR #774 cited when it updated those expectations. That 50/80-digit
  * generator was never committed and could not be recovered; this file was written afterwards, from
- * the definitions in `src/optics/runtimeLens.ts`, so that a check of the same kind is in the repository.
+ * the definitions in `src/optics/first-order/lensConstants.ts`, so that a check of the same kind is in the repository.
  *
  * It traces the catalog prescription by closed-form sphere intersection and vector Snell refraction
  * on BigInt fixed-point arithmetic, once at 50 and once at 80 decimals. Every float64 it reads (the

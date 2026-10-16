@@ -117,7 +117,7 @@ export function assessMtfSpectralData(state: PreparedOpticalState): MtfSpectralD
     if (dispersion.quality === "constant") return blocked("a glass has no Abbe number");
     if (element?.indexReference === "e") return blocked("an e-line glass has no catalog dispersion data");
     if (dispersion.quality !== "abbe") continue;
-    const vd = element?.vd ?? lens.runtime.vdByIdx[i] ?? 0;
+    const vd = element?.vd ?? lens.indices.vdByIdx[i] ?? 0;
     if (vd > MTF_ESTIMATED_DISPERSION_MAX_VD && element?.dPgF === undefined)
       return blocked(`a low-dispersion glass (νd ${vd.toFixed(1)}) has no partial-dispersion data`);
     estimated.add(surface.elemId ?? -1 - i);

@@ -2,6 +2,7 @@
  * Chromatic analysis adapter — prepared-state wrappers and ray-trace summaries.
  */
 
+import { runtimeView } from "../prescription/runtimeView.js";
 import {
   computeChromaticAnalysis,
   computeLateralColorCurve,
@@ -291,7 +292,7 @@ export function computeChromaticRayFanAnalysisForState2(
   options?: ChromaticRayFanAnalysisOptions2,
 ): ChromaticRayFanAnalysis2 {
   return computeChromaticRayFanAnalysis2(
-    state.lens.runtime,
+    runtimeView(state.lens),
     zPosFromState(state),
     state.focusT,
     state.zoomT,
@@ -406,7 +407,7 @@ export function computeChromaticAnalysisForState2(
   options?: ChromaticAnalysisOptions,
 ) {
   return computeChromaticAnalysis(
-    state.lens.runtime,
+    runtimeView(state.lens),
     zPosFromState(state),
     state.focusT,
     state.zoomT,

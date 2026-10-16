@@ -1,27 +1,25 @@
-/** Runtime constants and view assembly from compiler-owned construction records, until S5.P1.T2. */
+/** Build-time optical and display constants from compiled prescription records, without a runtime view. */
 
-import type { LensConstruction } from "./prescription/compileConstruction.js";
-import type { CompiledSurface } from "./types.js";
-import { buildStateSurfaces, sumSurfaceThicknesses, zoomIndexToT } from "./prescription/compileControls.js";
-import { FLAT_R_THRESHOLD } from "./geometry/surfaceProfile.js";
+import type { CompiledPrescription, CompiledSurface, LensConstants, Ray3 } from "../types.js";
+import { buildStateSurfaces, sumSurfaceThicknesses, zoomIndexToT } from "../prescription/compileControls.js";
+import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
 import {
   traceParaxialSurfaces2 as traceSurfacesParaxial,
   type ParaxialTraceOptions as ParaxialSurfaceTraceOptions,
-} from "./math/paraxial.js";
-import { createTraceGeometry } from "./trace/geometry.js";
-import { traceGeometryToStop } from "./trace/stopTrace.js";
-import type { EngineTraceResult, TraceCapture, TraceGeometry, TraceOptions } from "./trace/types.js";
-import type { Ray3 } from "./types.js";
-import { directionFromMeridionalSlope } from "./math/vector.js";
-import { compileSurfaces } from "./prescription/surfaces.js";
-import { resolvedImagePlaneToPlane3 } from "./prescription/interactions.js";
+} from "../math/paraxial.js";
+import { createTraceGeometry } from "../trace/geometry.js";
+import { traceGeometryToStop } from "../trace/stopTrace.js";
+import type { EngineTraceResult, TraceCapture, TraceGeometry, TraceOptions } from "../trace/types.js";
+import { directionFromMeridionalSlope } from "../math/vector.js";
+import { compileSurfaces } from "../prescription/surfaces.js";
+import { resolvedImagePlaneToPlane3 } from "../prescription/interactions.js";
 import {
   fisheyeProjectionFocalLengthAtZoom2 as fisheyeProjectionFocalLengthAtZoom,
   fisheyeProjectionMaxTraceFieldAtZoom2 as fisheyeProjectionMaxTraceFieldAtZoom,
   isFisheyeProjection2 as isFisheyeProjection,
   rectilinearProjectionMaxTraceField2 as rectilinearProjectionMaxTraceField,
   TRACING_SAFETY_FACTOR,
-} from "./field/projection.js";
+} from "../field/projection.js";
 import type {
   LensData,
   SurfaceData,
@@ -30,11 +28,10 @@ import type {
   LensProjectionConfig,
   ResolvedImagePlane,
   ResolvedOpticalPath,
-  RuntimeLens,
   ParaxialTraceResult,
-} from "../types/optics.js";
-import { ENABLE_UNIFORM_SCALING } from "../utils/featureFlags.js";
-import { diffractivePetzvalContribution } from "./math/diffractivePhase.js";
+} from "../../types/optics.js";
+import { ENABLE_UNIFORM_SCALING } from "../../utils/featureFlags.js";
+import { diffractivePetzvalContribution } from "../math/diffractivePhase.js";
 
 /**
  * Paraxial ray trace through a surface array.
@@ -336,49 +333,39 @@ function resolveImagePlane(data: LensData, fallbackZ: number): ResolvedImagePlan
   };
 }
 
-function hasFoldedOptics(data: LensData): boolean {
-  return Boolean(
-    data.opticalPath || data.surfaces.some((surface) => surface.interaction && surface.interaction.type !== "refract"),
-  );
-}
-
-/** Derive constants from compiler-owned records; S5.P1.T2 extracts the arithmetic. */
-export default function buildRuntimeLens(input: LensConstruction): RuntimeLens {
-  const {
-    data,
-    source,
-    S,
-    N,
-    projection,
-    isZoom,
-    labelIdx,
-    asphByIdx,
-    varByIdx,
-    focusPositions,
-    aberrationControl,
-    varLabels,
-    displayElements,
-    ES,
-    lastLensSurfaceIdx,
-    vdByIdx,
-    spectralByIdx,
-    indexByIdx,
-    groups,
-    doublets,
-    stopIdx,
-    opticalPath,
-  } = input;
+/** Calculate once on unpublished compiled records; only local surface copies are sized. */
+export function computeLensConstants(lens: CompiledPrescription): LensConstants {
+  const data = lens.data;
+  const S = lens.surfaces.map((surface, i) => ({
+    ...data.surfaces[i],
+    R: surface.R,
+    d: surface.d,
+    nd: surface.nd,
+    sd: surface.sd,
+  }));
+  const N = S.length;
+  const projection = lens.projection.config;
+  const isZoom = lens.variables.isZoom;
+  const asphByIdx = lens.indices.asphByIdx;
+  const varByIdx = lens.variables.bySurfaceIndex;
+  const focusPositions = lens.variables.focusPositions;
+  const stopIdx = lens.stop.surfaceIndex;
+  const opticalPath = {
+    ...lens.opticalPath,
+    surfaceOrder: lens.opticalPath.surfaceOrder ? [...lens.opticalPath.surfaceOrder] : null,
+    surfaceLabels: lens.opticalPath.surfaceLabels ? [...lens.opticalPath.surfaceLabels] : null,
+  };
   const buildGeometry = (
     S: SurfaceData[],
     _aspheres: Record<number, AsphericCoefficients>,
     stopIdx: number,
     opticalPath: ResolvedOpticalPath,
     imagePlane?: ResolvedImagePlane,
-  ) => buildTraceGeometry(S, input.asphByIdx, stopIdx, opticalPath, imagePlane, input.surfaces);
+  ) => buildTraceGeometry(S, asphByIdx, stopIdx, opticalPath, imagePlane, lens.surfaces);
 
   const preserveAuthoredStopSD = S[stopIdx]?.stopPlacement === "inside-element";
 
-  if (hasFoldedOptics(data)) {
+  if (lens.flags.isFoldedOptics) {
     const z = [0];
     for (let i = 0; i < N - 1; i++) z.push(z[i] + S[i].d);
     const fallbackImageZ = z[N - 1] + S[N - 1].d;
@@ -489,27 +476,8 @@ export default function buildRuntimeLens(input: LensConstruction): RuntimeLens {
     const offAxisHeights = data.offAxisFractions.map((f: number) => f * EP.epSD);
 
     return Object.freeze({
-      data: source,
-      S,
-      N,
-      ES,
-      elements: displayElements,
-      lastLensSurfaceIdx,
-      asphByIdx,
-      varByIdx,
-      vdByIdx,
-      spectralByIdx,
-      indexByIdx,
-      varLabels,
-      groups,
-      doublets,
-      perspectiveControl: data.perspectiveControl ?? null,
-      aberrationControl,
-      projection,
-      opticalPath,
       imagePlane,
       isFoldedOptics: true,
-      stopIdx,
       stopPhysSD,
       EFL: referenceFocalLength,
       apertureReferenceFocalLength: referenceFocalLength,
@@ -572,8 +540,7 @@ export default function buildRuntimeLens(input: LensConstruction): RuntimeLens {
       zoomFOPENs: null,
       zoomStep: data.zoomStep || 0.004,
       zoomLabels: null,
-      labelIdx,
-    }) as RuntimeLens;
+    }) as LensConstants;
   }
 
   /* ── Derive stop SD and entrance pupil from nominal f-number ──
@@ -989,27 +956,8 @@ export default function buildRuntimeLens(input: LensConstruction): RuntimeLens {
   }
 
   return Object.freeze({
-    data: source,
-    S,
-    N,
-    ES,
-    elements: displayElements,
-    lastLensSurfaceIdx,
-    asphByIdx,
-    varByIdx,
-    vdByIdx,
-    spectralByIdx,
-    indexByIdx,
-    varLabels,
-    groups,
-    doublets,
-    perspectiveControl: data.perspectiveControl ?? null,
-    aberrationControl,
-    projection,
-    opticalPath,
     imagePlane,
     isFoldedOptics: false,
-    stopIdx,
     stopPhysSD,
     EFL,
     apertureReferenceFocalLength,
@@ -1073,8 +1021,7 @@ export default function buildRuntimeLens(input: LensConstruction): RuntimeLens {
     zoomStopSDs,
     zoomStep: data.zoomStep || 0.004,
     zoomLabels: data.zoomLabels || null,
-    labelIdx,
-  }) as RuntimeLens;
+  }) as LensConstants;
 }
 
 export { paraxialTrace, realTraceToStop };

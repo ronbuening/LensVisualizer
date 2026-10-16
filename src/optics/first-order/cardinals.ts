@@ -83,8 +83,8 @@ export function computeCardinalElements2(state: PreparedOpticalState): CardinalE
     ...matrix,
     frontVertexZ: state.z[0],
     rearVertexZ: state.z[state.surfaces.length - 1],
-    /* Hand-built RuntimeLens fixtures may omit lastLensSurfaceIdx; they never carry rear plates. */
-    rearLensVertexZ: state.z[state.lens.runtime.lastLensSurfaceIdx ?? state.surfaces.length - 1],
+    /* BFD starts at the last drawn lens vertex, before any hidden rear plates. */
+    rearLensVertexZ: state.z[state.lens.lastLensSurfaceIndex ?? state.surfaces.length - 1],
     imagePlaneZ: state.imgZ,
   });
 }
@@ -240,7 +240,7 @@ function resolveFoldedParaxialSurfaceOrder2(state: PreparedOpticalState): number
   if (state.lens.opticalPath.surfaceOrder?.length) return [...state.lens.opticalPath.surfaceOrder];
 
   /* Auto folded fixtures need a real trace to discover the actual reflective hit order. */
-  const runtime = state.lens.runtime;
+  const constants = state.lens.constants;
   const candidateFractions = new Set<number>([
     0,
     ...state.lens.authoredRayFans.rayFractions.map((fraction) => Math.abs(fraction)),
@@ -250,11 +250,11 @@ function resolveFoldedParaxialSurfaceOrder2(state: PreparedOpticalState): number
   const candidateHeights = [...candidateFractions]
     .filter((fraction) => Number.isFinite(fraction) && fraction >= 0)
     .sort((a, b) => a - b)
-    .map((fraction) => fraction * runtime.EP.epSD);
+    .map((fraction) => fraction * constants.EP.epSD);
 
   const trace = prepareEngineTrace(state, {
     checkSemiDiameter: true,
-    stopSemiDiameter: runtime.stopPhysSD,
+    stopSemiDiameter: constants.stopPhysSD,
     stopOnClip: true,
   });
   for (const y0 of candidateHeights) {

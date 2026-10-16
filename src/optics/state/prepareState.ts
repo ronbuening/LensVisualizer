@@ -84,8 +84,8 @@ export function prepareState(
         ...surface,
         base: surface,
         sd:
-          index === lens.stop.surfaceIndex && lens.runtime.zoomStopSDs
-            ? wideOpenStopAtZoom(zoomT, lens.runtime)
+          index === lens.stop.surfaceIndex && lens.constants.zoomStopSDs
+            ? wideOpenStopAtZoom(zoomT, lens.constants)
             : surface.sd,
         d: thicknesses[index],
         z: z[index],
@@ -170,7 +170,7 @@ function buildZPositions(thicknesses: readonly number[]): number[] {
 }
 
 function resolveStateImagePlane(lens: CompiledLens, defaultImgZ: number): Plane3 {
-  if (lens.flags.isFoldedOptics && lens.source.opticalPath?.imagePlane !== undefined) return lens.imagePlane;
+  if (lens.flags.isFoldedOptics && lens.hasExplicitImagePlane) return lens.imagePlane;
   return Object.freeze({
     ...lens.imagePlane,
     point: Object.freeze([lens.imagePlane.point[0], lens.imagePlane.point[1], defaultImgZ] as const),

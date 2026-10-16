@@ -1,4 +1,6 @@
 /** Shared pupil sampling for MTF. Exact hits stay in physical millimeters. */
+
+import { runtimeView } from "../prescription/runtimeView.js";
 import type { MtfOptions, MtfSpectralLine, MtfSupport } from "../../types/mtf.js";
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import type { EngineTraceResult, TraceOptions } from "../trace/types.js";
@@ -190,15 +192,22 @@ export function prepareMtfFieldLaunch(
   support: MtfSupport,
   fieldAngleDeg: number,
 ): MtfFieldLaunch | null {
-  const L = state.lens.runtime;
-  const chief = solveChiefRay2(fieldAngleDeg, state.focusT, state.zoomT, L, undefined, state.aberrationT);
+  const constants = state.lens.constants;
+  const chief = solveChiefRay2(
+    fieldAngleDeg,
+    state.focusT,
+    state.zoomT,
+    runtimeView(state.lens),
+    undefined,
+    state.aberrationT,
+  );
   const objectPoint = support.conjugate ? mtfFiniteObjectPoint(state, support.conjugate, fieldAngleDeg) : undefined;
   if (objectPoint === null || (!objectPoint && chief.status !== "converged")) return null;
   const norm = Math.hypot(1, chief.uField);
   const direction: Vec3 = [0, chief.uField / norm, 1 / norm];
   const firstZ = Math.min(0, state.surfaces[0].profile.sag(state.surfaces[0].sd));
   const leadZ = Math.max(
-    firstZ - Math.max(10, L.rayLead ?? 0),
+    firstZ - Math.max(10, constants.rayLead ?? 0),
     objectPoint ? (objectPoint[2] + firstZ) / 2 : -Infinity,
   );
   const seedY = chief.status === "converged" ? chief.yLaunch + leadZ * chief.uField : 0;

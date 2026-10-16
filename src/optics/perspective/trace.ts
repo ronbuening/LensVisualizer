@@ -159,7 +159,7 @@ export function tracePerspectiveMeridional(
   u0: number,
   options: PerspectiveTraceOptions = {},
 ): PerspectiveTraceResult {
-  const lead = context.state.lens.runtime.rayLead ?? 0;
+  const lead = context.state.lens.constants.rayLead ?? 0;
   const firstZ = context.state.z[0] ?? 0;
   const direction = directionFromMeridionalSlope(u0) ?? invalidDirection();
   return tracePerspectiveRay(
@@ -183,7 +183,7 @@ export function tracePerspectiveSkew(
   uy0: number,
   options: PerspectiveTraceOptions = {},
 ): PerspectiveTraceResult {
-  const lead = context.state.lens.runtime.rayLead ?? 0;
+  const lead = context.state.lens.constants.rayLead ?? 0;
   const firstZ = context.state.z[0] ?? 0;
   const direction = directionFromSkewSlope(ux0, uy0) ?? invalidDirection();
   return tracePerspectiveRay(

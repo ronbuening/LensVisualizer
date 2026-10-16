@@ -1,4 +1,5 @@
-import { completeCompilation } from "../../../src/optics/prescription/compileCanonical.js";
+import { associateRuntimeView } from "../../../src/optics/prescription/runtimeView.js";
+import { compilePrescription, completeCompilation } from "../../../src/optics/prescription/compileCanonical.js";
 import { compileConstruction } from "../../../src/optics/prescription/compileConstruction.js";
 import buildLens, { ingestLensV1, paraxialTrace, toLensData } from "../../../src/optics/buildLens.js";
 import { epAtZoom, fopenAtZoom } from "../../../src/optics/optics.js";
@@ -462,6 +463,38 @@ export function registerRuntimeFixture(runtime: RuntimeLens): RuntimeLens {
   input.projection = runtime.projection;
   input.opticalPath = runtime.opticalPath;
   input.isFoldedOptics = runtime.isFoldedOptics;
-  completeCompilation(input, runtime);
+  const {
+    data: _data,
+    S: _S,
+    N: _N,
+    ES: _ES,
+    elements: _elements,
+    lastLensSurfaceIdx: _lastLensSurfaceIdx,
+    asphByIdx: _asphByIdx,
+    varByIdx: _varByIdx,
+    vdByIdx: _vdByIdx,
+    spectralByIdx: _spectralByIdx,
+    indexByIdx: _indexByIdx,
+    varLabels: _varLabels,
+    groups: _groups,
+    doublets: _doublets,
+    perspectiveControl: _perspectiveControl,
+    aberrationControl: _aberrationControl,
+    projection: _projection,
+    opticalPath: _opticalPath,
+    stopIdx: _stopIdx,
+    labelIdx: _labelIdx,
+    ...constants
+  } = runtime;
+  const prescription = compilePrescription(input);
+  const compiled = completeCompilation(
+    {
+      ...prescription,
+      lastLensSurfaceIndex: runtime.lastLensSurfaceIdx ?? runtime.N - 1,
+      displayElementSpans: runtime.ES,
+    },
+    Object.freeze(constants),
+  );
+  associateRuntimeView(compiled, runtime);
   return runtime;
 }

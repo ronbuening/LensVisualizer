@@ -5,6 +5,7 @@
  * implementation lives in focused prescription, state, trace, field, and analysis modules.
  */
 
+import { runtimeView } from "./prescription/runtimeView.js";
 import type { LayoutResult, LensData, RuntimeLens } from "../types/optics.js";
 import type { CompiledLens, PreparedOpticalState } from "./types.js";
 import { compiledLensFromRuntime, compileLensData } from "./prescription/compile.js";
@@ -52,7 +53,7 @@ function preparedStateCacheForRuntime(L: RuntimeLens): PreparedStateCache {
  * @returns the shared frozen RuntimeLens for the canonical identity
  */
 export function buildLens2(data: LensData): RuntimeLens {
-  return compileLensData(data).runtime;
+  return runtimeView(compileLensData(data));
 }
 
 /**

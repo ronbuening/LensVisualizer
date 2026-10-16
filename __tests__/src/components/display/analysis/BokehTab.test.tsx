@@ -6,7 +6,7 @@ import themes from "../../../../../src/utils/theme/themes.js";
 import { buildSimplePositiveElementLens } from "../../../optics/testLensFixtures.js";
 
 const mocks = vi.hoisted(() => ({
-  preparedState: { lens: { runtime: {} }, focusT: 0, zoomT: 0, aberrationT: 0 },
+  preparedState: { lens: { key: "prepared-bokeh" }, focusT: 0, zoomT: 0, aberrationT: 0 },
   pair: { infinity: null, nearFocus: null },
 }));
 

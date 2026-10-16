@@ -2,7 +2,7 @@
 
 import { buildLens2 } from "./compat.js";
 
-export { paraxialTrace, realTraceToStop } from "./runtimeLens.js";
+export { paraxialTrace, realTraceToStop } from "./first-order/lensConstants.js";
 export { ingestLensV1, ingestTeleconverterV1 } from "./prescription/ingestV1.js";
 export { ingestLens, ingestTeleconverter, isV1File } from "./prescription/ingestV2.js";
 export { toLensData, toTeleconverterData } from "./prescription/toLensData.js";

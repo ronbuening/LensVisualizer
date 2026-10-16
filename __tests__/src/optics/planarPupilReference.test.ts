@@ -40,7 +40,7 @@ function pinned(name: (typeof PUPIL_PINS)[number] | (typeof FIELD_PINS)[number])
 }
 
 /**
- * The half-field bisection as buildLens runs it (runtimeLens.ts). buildLens keeps only its result, so its start
+ * The half-field bisection as buildLens runs it (first-order/lensConstants.ts). buildLens keeps only its result, so its start
  * angle and its pass-or-clip test are rebuilt here from the same engine calls, in the same float64 operations. The
  * start goes through Math.atan and each launch through Math.tan, whose last bit can differ between machines; they
  * are computed here, on the machine the engine runs on, and never read from the committed file.
