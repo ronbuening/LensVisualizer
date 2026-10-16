@@ -2257,6 +2257,10 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     `prescription/runtimeView.ts` assembles the frozen `RuntimeLens`. The `runtime` back-pointer and the
     `prepareState.ts` reads of `lens.runtime` are deleted.
   - **Tests:** analytic first-order anchors; `exactTraceGoldenValues.test.ts` unchanged.
+  - **As built:** Constants are computed once from compiled prescription records before publication; finalized
+    surfaces carry the sized stop. `runtimeView.ts` memoizes the frozen derived view by compiled identity for UI and
+    legacy analyses until S7. The runtime back-pointer is deleted; preparation uses compiled aperture schedules and
+    explicit-plane authority, while tracing and diagram consumers read compiled facts directly.
   - **Gate:** C0.
 - **S5.P1.T3 Validation on canonical and compiled data.**
   - **Change:** `prescription/validate/{schema, references, geometry, aperture, folded, diffractive, controls}.ts`
