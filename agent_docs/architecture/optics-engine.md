@@ -430,7 +430,7 @@ other `*AtZoom()` interpolators), and current-state pupil/field geometry (`entra
 `solveChiefRayBoundingSphere`** regardless of angle, so every fisheye solve in the catalog exercises the bounding-sphere
 code. Rectilinear projections keep cap-based dispatch: object-plane below `MAX_FIELD_LAUNCH_DEG` (89°), bounding-sphere
 at/above. The bounding-sphere bisection varies the EP-crossing height `yEP` and traces directly via
-`traceExactSurfaceStackVector`; both paths return `yLaunch` projected to z=0 for semantic consistency. Callers that only
+the prepared geometry traversal; both paths return `yLaunch` projected to z=0 for semantic consistency. Callers that only
 need a scalar launch height should read `solve.yLaunch`; new analysis code should still inspect `solve.status` and
 `solve.vectorLaunch` instead of assuming every field has a finite slope.
 
@@ -522,6 +522,20 @@ The active perspective guard reads the cached traversal kind; the geometry-level
 traversal explicitly and serves prepared-state, state-pupil and folded build-time stop probes. Prepared-state cache
 hits reuse the view, and coordinate overrides rebuild it from the exact new records without changing cache keys or
 ownership.
+
+`TraceOptions.capture` selects `terminal`, `hits`, or `diagnostics` (the default) before traversal through
+`trace/capture.ts`. The terminal recorder is shared and stateless: it allocates no hit history, direction snapshots,
+clip events, auto-candidate diagnostics or final diagnostics. Hit capture records the same encounters without diagnostic
+storage; full capture retains existing UI and harness outputs. Requested heights and sequential OPL are independent of
+capture. Status, failure reason, terminal surface/point/direction, medium and image-plane state remain available in all
+three modes. MTF's clear-cap miss proof uses that terminal state and prepared geometry: an unproved intersection failure
+stays numerical/unresolved rather than becoming physical vignetting.
+
+Scalar construction, chief-ray and pupil-basis projections and MTF aiming/footprint classification request terminal
+capture. Skew adapters choose terminal capture for nonabsorbing lenses and hit capture when Beer-Lambert weighting
+needs intermediate distances; their public intercept/transmission result is unchanged. Meridional diagram and perspective
+adapters, folded stop occurrence searches, folded pupil hit consumers and the differential harness keep full capture.
+The options cache keys include capture, so alternating diagram and analysis requests cannot reuse a reduced policy.
 
 Chief-relative scalar launches retain their first-vertex pupil offsets and delegate preparation and tracing to
 `trace/rayAdapters.ts`. The first search starts at the later of the origin and `z0 - |sag(sd)| - 1`.

@@ -7,7 +7,7 @@
 import type { RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import type { Vec3 } from "../types.js";
 import { bulkTransmissionForTrace } from "./bulkAbsorption.js";
-import type { EngineTraceResult } from "./types.js";
+import type { EngineTraceResult, TraceCapture } from "./types.js";
 
 /** Runtime-compatible skew ray result using image-plane coordinates and slopes. */
 export interface RuntimeSkewRayTraceResult {
@@ -56,7 +56,10 @@ export function engineTraceToRuntimeRayResult(
  * @param result - engine exact trace result
  * @returns final x/y coordinates, slopes, and clipping state
  */
-export function engineTraceToRuntimeSkewResult(result: EngineTraceResult, L: RuntimeLens): RuntimeSkewRayTraceResult {
+export function engineTraceToRuntimeSkewResult(
+  result: EngineTraceResult<TraceCapture>,
+  L: RuntimeLens,
+): RuntimeSkewRayTraceResult {
   return {
     x: result.x,
     y: result.y,

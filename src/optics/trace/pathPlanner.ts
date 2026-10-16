@@ -15,10 +15,10 @@ import { surfaceLabel } from "./foldedDiagnostics.js";
 import type { TraceGeometry } from "./types.js";
 
 /** Candidate hit selected or skipped during generalized surface search. */
-export interface SurfaceHitCandidate {
+export interface SurfaceHitCandidate<C extends boolean = true> {
   surfaceIndex: number | null;
   hit: SurfaceIntersectionResult | null;
-  skippedCandidates: FoldedPathAutoCandidateSkip[];
+  skippedCandidates: C extends true ? FoldedPathAutoCandidateSkip[] : undefined;
 }
 
 /** Intersection of a ray with the current image plane. */
@@ -174,9 +174,10 @@ export function intersectImagePlane(
  * @param indexAtSurface - optional chromatic index resolver
  * @param previousSurfaceIndex - last hit surface, used to suppress self-hits
  * @param allowedSurfaceIndexes - optional explicit candidate set
+ * @param recordCandidates - capture policy chosen before searching; false allocates no skip diagnostics
  * @returns nearest valid candidate and diagnostics for skipped candidates
  */
-export function findNearestGeneralizedSurfaceHit(
+export function findNearestGeneralizedSurfaceHit<C extends boolean = true>(
   origin: Vec3,
   direction: Vec3,
   geometry: TraceGeometry,
@@ -185,9 +186,10 @@ export function findNearestGeneralizedSurfaceHit(
   indexAtSurface: ((surfaceIndex: number, nd: number) => number) | undefined,
   previousSurfaceIndex: number,
   allowedSurfaceIndexes?: ReadonlySet<number>,
-): SurfaceHitCandidate {
+  recordCandidates: C = true as C,
+): SurfaceHitCandidate<C> {
   let best: { surfaceIndex: number; hit: SurfaceIntersectionResult } | null = null;
-  const skippedCandidates: FoldedPathAutoCandidateSkip[] = [];
+  const skippedCandidates: FoldedPathAutoCandidateSkip[] | undefined = recordCandidates ? [] : undefined;
 
   for (let i = 0; i < geometry.surfaces.length; i++) {
     if (allowedSurfaceIndexes && !allowedSurfaceIndexes.has(i)) continue;
@@ -199,7 +201,7 @@ export function findNearestGeneralizedSurfaceHit(
     });
 
     if (!hit.ok) {
-      skippedCandidates.push({
+      skippedCandidates?.push({
         surfaceIdx: i,
         surfaceLabel: surfaceLabel(geometry, i),
         reason: "intersection-failed",
@@ -208,7 +210,7 @@ export function findNearestGeneralizedSurfaceHit(
       continue;
     }
     if (hit.t <= 0) {
-      skippedCandidates.push({
+      skippedCandidates?.push({
         surfaceIdx: i,
         surfaceLabel: surfaceLabel(geometry, i),
         reason: "non-forward-hit",
@@ -217,11 +219,11 @@ export function findNearestGeneralizedSurfaceHit(
       continue;
     }
     if (i === previousSurfaceIndex && hit.t <= selfHitTolerance(hit.t)) {
-      skippedCandidates.push({ surfaceIdx: i, surfaceLabel: surfaceLabel(geometry, i), reason: "self-hit", t: hit.t });
+      skippedCandidates?.push({ surfaceIdx: i, surfaceLabel: surfaceLabel(geometry, i), reason: "self-hit", t: hit.t });
       continue;
     }
     if (isPassiveAutoSurface(i, hit, direction, geometry, refractiveIndex, indexAtSurface)) {
-      skippedCandidates.push({
+      skippedCandidates?.push({
         surfaceIdx: i,
         surfaceLabel: surfaceLabel(geometry, i),
         reason: "passive-same-index",
@@ -232,7 +234,11 @@ export function findNearestGeneralizedSurfaceHit(
     if (!best || hit.t < (best.hit.ok ? best.hit.t : Infinity)) best = { surfaceIndex: i, hit };
   }
 
-  return { surfaceIndex: best?.surfaceIndex ?? null, hit: best?.hit ?? null, skippedCandidates };
+  return {
+    surfaceIndex: best?.surfaceIndex ?? null,
+    hit: best?.hit ?? null,
+    skippedCandidates,
+  } as SurfaceHitCandidate<C>;
 }
 
 /**

@@ -5,14 +5,10 @@
  * that cannot be represented by simple left-to-right sequential order.
  */
 
-import type {
-  FoldedPathAutoStepDiagnostics,
-  FoldedPathClipEvent,
-  FoldedPathTraceTermination,
-} from "../../types/optics.js";
+import type { FoldedPathTraceTermination } from "../../types/optics.js";
 import type { CompiledStateSurface, Ray3, Vec3 } from "../types.js";
 import { evaluateAperture, isInsideActiveAperture } from "./aperture.js";
-import { pushClipEvent, surfaceLabel } from "./foldedDiagnostics.js";
+import { createTraceRecorder } from "./capture.js";
 import {
   advanceOrigin,
   incidentSideFor,
@@ -31,7 +27,7 @@ import {
   loopStateKey,
   targetedSurfaceMaxT,
 } from "./pathPlanner.js";
-import type { TraceGeometry, EngineTraceResult, TraceFailureReason, TraceHit, TraceOptions } from "./types.js";
+import type { TraceGeometry, EngineTraceResult, TraceFailureReason, TraceCapture, TraceOptions } from "./types.js";
 import { finalizeTraceResult, normalizeTraceDirection, projectCoordinateToZ } from "./utils.js";
 
 /**
@@ -66,41 +62,12 @@ function passiveClipReason(
   return checkSemiDiameter && apertureOutside ? "semi-diameter" : null;
 }
 
-/* Record one passively clipped hit: one clip event plus one clipped hit row.
- * Callers keep their own break/continue control flow. */
-function recordClippedHit(
-  hits: TraceHit[],
-  clipEvents: FoldedPathClipEvent[],
+export function traceGeneralized<C extends TraceCapture = "diagnostics">(
   geometry: TraceGeometry,
-  surfaceIndex: number,
-  hitGeometry: {
-    point: Vec3;
-    normal: Vec3;
-    incidentDirection: Vec3;
-    radius: number;
-    residual: number;
-    effectiveTolerance: number;
-  },
-  clipReason: "inactive-side-block" | "block-surface" | "semi-diameter",
-): void {
-  pushClipEvent(clipEvents, geometry, surfaceIndex, clipReason);
-  hits.push({
-    surfaceIndex,
-    surfaceLabel: surfaceLabel(geometry, surfaceIndex),
-    point: hitGeometry.point,
-    normal: hitGeometry.normal,
-    incidentDirection: hitGeometry.incidentDirection,
-    radius: hitGeometry.radius,
-    residual: hitGeometry.residual,
-    effectiveTolerance: hitGeometry.effectiveTolerance,
-    clipped: true,
-    fallback: false,
-    failureReason: null,
-    clipReason,
-  });
-}
-
-export function traceGeneralized(geometry: TraceGeometry, input: Ray3, options: TraceOptions = {}): EngineTraceResult {
+  input: Ray3,
+  options: TraceOptions<C> = {},
+): EngineTraceResult<C> {
+  const capture = createTraceRecorder(geometry, options.capture);
   const direction0 = options.directionNormalized ? input.direction : normalizeTraceDirection(input.direction);
   if (
     !direction0 ||
@@ -108,10 +75,10 @@ export function traceGeneralized(geometry: TraceGeometry, input: Ray3, options: 
     !Number.isFinite(direction0[1]) ||
     !Number.isFinite(direction0[2])
   ) {
-    return finalizeTraceResult({
+    return finalizeTraceResult<C>({
       geometry,
       input,
-      hits: [],
+      capture,
       heights: null,
       terminalPoint: input.origin,
       terminalDirection: input.direction,
@@ -122,8 +89,6 @@ export function traceGeneralized(geometry: TraceGeometry, input: Ray3, options: 
       failureReason: "invalidDirection",
       reachedImagePlane: false,
       terminationReason: "trace-failure",
-      clipEvents: [],
-      autoSteps: [],
       loopKey: null,
     });
   }
@@ -142,9 +107,6 @@ export function traceGeneralized(geometry: TraceGeometry, input: Ray3, options: 
   const explicitOrder = geometry.pathPlan.surfaceOrder ?? null;
   const maxInteractions = geometry.pathPlan.maxInteractions ?? Math.max(geometry.surfaces.length + 1, 1);
   const heights: number[] | null = recordHeights ? [] : null;
-  const hits: TraceHit[] = [];
-  const clipEvents: FoldedPathClipEvent[] = [];
-  const autoSteps: FoldedPathAutoStepDiagnostics[] = [];
   const seenAutoStates = new Set<string>();
   const reflectiveSurfaceIndexes = new Set(
     geometry.surfaces.flatMap((surface, index) => (surface.interaction.type === "reflect" ? [index] : [])),
@@ -192,8 +154,9 @@ export function traceGeneralized(geometry: TraceGeometry, input: Ray3, options: 
         indexAtSurface,
         terminalSurfaceIndex,
         geometry.pathPlan.mode === "auto" ? undefined : reflectiveSurfaceIndexes,
+        capture.recordCandidates,
       );
-      autoSteps.push({ step: interactionCount, skippedCandidates: next.skippedCandidates });
+      capture.autoStep(interactionCount, next.skippedCandidates);
       nextSurfaceIndex = next.surfaceIndex;
       nextSurfaceHit = next.hit;
     }
@@ -228,7 +191,7 @@ export function traceGeneralized(geometry: TraceGeometry, input: Ray3, options: 
       clipped = true;
       failureReason = nextSurfaceHit.failureReason;
       terminationReason = "trace-failure";
-      pushClipEvent(clipEvents, geometry, nextSurfaceIndex, "intersection-failure", nextSurfaceHit.failureReason);
+      capture.clip(nextSurfaceIndex, "intersection-failure", nextSurfaceHit.failureReason);
       break;
     }
 
@@ -236,8 +199,6 @@ export function traceGeneralized(geometry: TraceGeometry, input: Ray3, options: 
     const point = nextSurfaceHit.point;
     const normal = nextSurfaceHit.normal;
     const radius = nextSurfaceHit.radius;
-    const { residual, effectiveTolerance } = nextSurfaceHit;
-    const incidentDirection: Vec3 = [direction[0], direction[1], direction[2]];
     terminalPoint = point;
     terminalSurfaceIndex = nextSurfaceIndex;
     if (recordHeights) {
@@ -259,14 +220,8 @@ export function traceGeneralized(geometry: TraceGeometry, input: Ray3, options: 
       );
       if (clipReason !== null) {
         clipped = true;
-        recordClippedHit(
-          hits,
-          clipEvents,
-          geometry,
-          nextSurfaceIndex,
-          { point, normal, incidentDirection, radius, residual, effectiveTolerance },
-          clipReason,
-        );
+        capture.clip(nextSurfaceIndex, clipReason);
+        capture.hit(nextSurfaceIndex, nextSurfaceHit, direction, true, clipReason);
         terminationReason = "clipped";
         if (stopOnClip && !ghost) break;
       }
@@ -274,19 +229,7 @@ export function traceGeneralized(geometry: TraceGeometry, input: Ray3, options: 
       continue;
     }
 
-    hits.push({
-      surfaceIndex: nextSurfaceIndex,
-      surfaceLabel: surfaceLabel(geometry, nextSurfaceIndex),
-      point,
-      normal,
-      incidentDirection,
-      radius,
-      residual,
-      effectiveTolerance,
-      clipped,
-      fallback: false,
-      failureReason: null,
-    });
+    capture.hit(nextSurfaceIndex, nextSurfaceHit, direction, clipped);
     if (clipped && stopOnClip && !ghost) break;
 
     if (surface.interaction.type === "reflect") {
@@ -295,8 +238,8 @@ export function traceGeneralized(geometry: TraceGeometry, input: Ray3, options: 
         clipped = true;
         failureReason = "invalidDirection";
         terminationReason = "trace-failure";
-        pushClipEvent(clipEvents, geometry, nextSurfaceIndex, "intersection-failure", failureReason);
-        hits[hits.length - 1] = { ...hits[hits.length - 1], clipped: true, failureReason };
+        capture.clip(nextSurfaceIndex, "intersection-failure", failureReason);
+        capture.failure(failureReason);
         if (!ghost) break;
       } else {
         direction = reflected;
@@ -310,13 +253,8 @@ export function traceGeneralized(geometry: TraceGeometry, input: Ray3, options: 
           clipped = true;
           failureReason = interaction.failure.failureReason;
           terminationReason = "trace-failure";
-          pushClipEvent(clipEvents, geometry, nextSurfaceIndex, interaction.failure.clipReason, failureReason);
-          hits[hits.length - 1] = {
-            ...hits[hits.length - 1],
-            clipped: true,
-            failureReason,
-            clipReason: interaction.failure.clipReason,
-          };
+          capture.clip(nextSurfaceIndex, interaction.failure.clipReason, failureReason);
+          capture.failure(failureReason, interaction.failure.clipReason);
           if (!ghost) break;
         } else {
           direction = interaction.direction;
@@ -325,10 +263,7 @@ export function traceGeneralized(geometry: TraceGeometry, input: Ray3, options: 
       n = nn;
     }
 
-    hits[hits.length - 1] = {
-      ...hits[hits.length - 1],
-      outgoingDirection: [direction[0], direction[1], direction[2]],
-    };
+    capture.outgoing(direction);
 
     if (geometry.pathPlan.mode === "auto") {
       const stateKey = loopStateKey(nextSurfaceIndex, point, direction, n);
@@ -337,8 +272,8 @@ export function traceGeneralized(geometry: TraceGeometry, input: Ray3, options: 
         failureReason = "loopDetected";
         terminationReason = "loop-detected";
         loopKey = stateKey;
-        pushClipEvent(clipEvents, geometry, nextSurfaceIndex, "loop-detected");
-        hits[hits.length - 1] = { ...hits[hits.length - 1], clipped: true, clipReason: "loop-detected" };
+        capture.clip(nextSurfaceIndex, "loop-detected");
+        capture.loop();
         break;
       }
       seenAutoStates.add(stateKey);
@@ -350,13 +285,13 @@ export function traceGeneralized(geometry: TraceGeometry, input: Ray3, options: 
   if (terminationReason === "max-interactions") {
     clipped = true;
     failureReason = failureReason ?? "maxInteractions";
-    pushClipEvent(clipEvents, geometry, terminalSurfaceIndex >= 0 ? terminalSurfaceIndex : null, "max-interactions");
+    capture.clip(terminalSurfaceIndex >= 0 ? terminalSurfaceIndex : null, "max-interactions");
   }
 
-  return finalizeTraceResult({
+  return finalizeTraceResult<C>({
     geometry,
     input: { origin: input.origin, direction: direction0 },
-    hits,
+    capture,
     heights,
     terminalPoint,
     terminalDirection: direction,
@@ -367,8 +302,6 @@ export function traceGeneralized(geometry: TraceGeometry, input: Ray3, options: 
     failureReason,
     reachedImagePlane,
     terminationReason,
-    clipEvents,
-    autoSteps,
     loopKey,
   });
 }
