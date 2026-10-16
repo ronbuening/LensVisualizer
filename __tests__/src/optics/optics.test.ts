@@ -17,6 +17,7 @@ import {
 } from "../../../src/optics/optics.js";
 import type { RuntimeLens, LensData, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
 import { resolveAberrationThickness, resolveVariableThickness } from "../../../src/optics/prescription/variables.js";
+import { effectiveFNumber as layoutEffectiveFNumber } from "../../../src/optics/layout.js";
 import {
   focusControlPositions,
   focusDistanceAt,
@@ -24,6 +25,7 @@ import {
   focusToControl,
 } from "../../../src/optics/focusDistance.js";
 import {
+  build,
   buildChromaticPositiveElementLens,
   buildStationFocusLens,
   buildGhostClippingLens,
@@ -804,6 +806,22 @@ describe("eflAtFocus", () => {
 });
 
 describe("effectiveFNumber", () => {
+  it("uses the authored axial cone independently of station coordinates and distance labels", () => {
+    const original = buildStationFocusLens();
+    const remapped = build({
+      ...original.data,
+      focusPositions: [0, 0.5, 1],
+      finiteConjugates: original.data.finiteConjugates!.map((c, index) => ({ ...c, focusT: (index + 1) / 2 })),
+    });
+    for (const estimate of [effectiveFNumber, layoutEffectiveFNumber]) {
+      // R=±100, n=1.5, t=5: C=-119/12000. At the 200 mm image gap,
+      // the conjugate is 200 mm before S1 and the image slope is -1/200.
+      expect(estimate(10, 1, 0, original)).toBeCloseTo(10 * (119 / 60), 10);
+      expect(estimate(10, 0.9999, 0, original)).toBeCloseTo(estimate(10, 0.5, 0, remapped), 10);
+      expect(estimate(20, 1, 0, original)).toBeCloseTo(2 * estimate(10, 1, 0, original), 10);
+    }
+  });
+
   it("returns nominal f-number at infinity focus", () => {
     const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
     expect(effectiveFNumber(2.0, 0, 0, L)).toBe(2.0);

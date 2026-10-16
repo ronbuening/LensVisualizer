@@ -19,9 +19,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **625** visible lenses fully covered by strict Sellmeier data
 - **7** lenses fully covered only after measured line-index data
 - **7** visible lenses fully covered only after measured line-index data
-- **10017 / 10786** non-air surfaces use strict catalog Sellmeier data
+- **10019 / 10786** non-air surfaces use strict catalog Sellmeier data
 - **92.9%** strict Sellmeier surface coverage overall
-- **10030 / 10786** non-air surfaces use trusted chromatic data
+- **10032 / 10786** non-air surfaces use trusted chromatic data
 - **93.0%** trusted chromatic coverage overall
 - **252 / 303** native e-line surfaces use name-verified catalog Sellmeier data
 
@@ -1228,19 +1228,19 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 275 | [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
 | 276 | [MEYER OPTIK GÖRLITZ DOUBLE-PLASMAT 135mm f/4.5 (patent model)](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz135mmf45DoublePlasmat.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
 | 277 | [PENTAX DA 70mm f/2.4 Limited](../../src/lens-data/pentax/PentaxDA70mmf24Limited.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 278 | [LAOWA 60mm f/2.8 2X Ultra-Macro](../../src/lens-data/laowa/LaowaCF60mmf28MacroExample2.data.ts) | 33.3% | 33.3% | 3/9 | 3/9 | 6 | abbe: 6 |
 |  | **25-29.9% coverage** |  |  |  |  |  |  |
-| 278 | [CARL ZEISS JENA SONNAR 50mm f/1.5](../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.ts) | 28.6% | 28.6% | 2/7 | 2/7 | 5 | abbe: 5 |
-| 279 | [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) | 28.6% | 28.6% | 2/7 | 2/7 | 5 | abbe: 5 |
+| 279 | [CARL ZEISS JENA SONNAR 50mm f/1.5](../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.ts) | 28.6% | 28.6% | 2/7 | 2/7 | 5 | abbe: 5 |
+| 280 | [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) | 28.6% | 28.6% | 2/7 | 2/7 | 5 | abbe: 5 |
 |  | **20-24.9% coverage** |  |  |  |  |  |  |
-| 280 | [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) | 22.2% | 22.2% | 2/9 | 2/9 | 7 | abbe: 7 |
-| 281 | [LEICA ELMARIT-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) | 20.0% | 20.0% | 1/5 | 1/5 | 4 | abbe: 4 |
-| 282 | [LEICA SUMMICRON-SL 50mm f/2 ASPH.](../../src/lens-data/leica/LeicaSummicronSl50mmF2Asph.data.ts) | 20.0% | 20.0% | 2/10 | 2/10 | 8 | abbe: 8 |
+| 281 | [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) | 22.2% | 22.2% | 2/9 | 2/9 | 7 | abbe: 7 |
+| 282 | [LEICA ELMARIT-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) | 20.0% | 20.0% | 1/5 | 1/5 | 4 | abbe: 4 |
+| 283 | [LEICA SUMMICRON-SL 50mm f/2 ASPH.](../../src/lens-data/leica/LeicaSummicronSl50mmF2Asph.data.ts) | 20.0% | 20.0% | 2/10 | 2/10 | 8 | abbe: 8 |
 |  | **15-19.9% coverage** |  |  |  |  |  |  |
-| 283 | [KODAK AERO EKTAR 6 in f/3.5](../../src/lens-data/kodak/KodakAeroEktar6inf35.data.ts) | 16.7% | 16.7% | 1/6 | 1/6 | 5 | abbe: 5 |
-| 284 | [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) | 16.7% | 16.7% | 1/6 | 1/6 | 5 | abbe: 5 |
+| 284 | [KODAK AERO EKTAR 6 in f/3.5](../../src/lens-data/kodak/KodakAeroEktar6inf35.data.ts) | 16.7% | 16.7% | 1/6 | 1/6 | 5 | abbe: 5 |
+| 285 | [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) | 16.7% | 16.7% | 1/6 | 1/6 | 5 | abbe: 5 |
 |  | **10-14.9% coverage** |  |  |  |  |  |  |
-| 285 | [APPLE WIDE 4.36mm f/1.6 (Apple iPhone 12)](../../src/lens-data/apple/AppleiPhone12MainWideCameraLens.data.ts) | 14.3% | 14.3% | 1/7 | 1/7 | 6 | abbe: 6 |
-| 286 | [LAOWA 60mm f/2.8 2X Ultra-Macro](../../src/lens-data/laowa/LaowaCF60mmf28MacroExample3.data.ts) | 11.1% | 11.1% | 1/9 | 1/9 | 8 | abbe: 8 |
+| 286 | [APPLE WIDE 4.36mm f/1.6 (Apple iPhone 12)](../../src/lens-data/apple/AppleiPhone12MainWideCameraLens.data.ts) | 14.3% | 14.3% | 1/7 | 1/7 | 6 | abbe: 6 |
 |  | **0-4.9% coverage** |  |  |  |  |  |  |
 | 287 | [REFERENCE Mangin Second-Surface Mirror](../../src/lens-data/reference/ReferenceManginSecondSurfaceMirror.data.ts) *(hidden)* | 0.0% | 0.0% | 0/1 | 0/1 | 1 | abbe: 1 |
 | 288 | [NIKON UV-NIKKOR AUTO 55mm f/4](../../src/lens-data/nikon/NikonUvNikkor55mmf4.data.ts) | 0.0% | 0.0% | 0/3 | 0/3 | 3 | abbe: 3 |
@@ -3207,6 +3207,17 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 7 | Element 4 | abbe | `Unmatched barium flint (676440; BaF/BaSF class)` | Explicit unmatched/proprietary annotation |
 | 8 | Element 5 | abbe | `Unmatched (544601 light barium crown; not SUMITA BAK2)` | Explicit unmatched/proprietary annotation |
 
+### [LAOWA 60mm f/2.8 2X Ultra-Macro](../../src/lens-data/laowa/LaowaCF60mmf28MacroExample2.data.ts) - 33.3% trusted (3/9); 33.3% Sellmeier (3/9) - CN 103823292 B
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (high-index crown; catalog identity ambiguous; supplier and melt unproven)` | Explicit unmatched/proprietary annotation |
+| 5 | Element 3 | abbe | `Unmatched (dense flint; no close catalog match; supplier and melt unproven)` | Explicit unmatched/proprietary annotation |
+| 8 | Element 5 | abbe | `Unmatched (flint; catalog Abbe numbers differ; supplier and melt unproven)` | Explicit unmatched/proprietary annotation |
+| 9 | Element 6 | abbe | `Unmatched (high-index crown; catalog identity ambiguous; supplier and melt unproven)` | Explicit unmatched/proprietary annotation |
+| 11 | Element 7 | abbe | `Unmatched (very-high-index crown; catalog identity ambiguous; supplier and melt unproven)` | Explicit unmatched/proprietary annotation |
+| 14 | Element 8 | abbe | `Unmatched (crown; source does not identify a radiation-resistant formulation; supplier and melt unproven)` | Explicit unmatched/proprietary annotation |
+
 ### [CARL ZEISS JENA SONNAR 50mm f/1.5](../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.ts) - 28.6% trusted (2/7); 28.6% Sellmeier (2/7) - US 1,975,678
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -3291,19 +3302,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 10A | Element 5 | abbe | `Unmatched (671195 patent material coordinate)` | Explicit unmatched/proprietary annotation |
 | 12A | Element 6 | abbe | `Unmatched (545560 patent material coordinate)` | Explicit unmatched/proprietary annotation |
 | 14A | Element 7 | abbe | `Unmatched (545560 patent material coordinate)` | Explicit unmatched/proprietary annotation |
-
-### [LAOWA 60mm f/2.8 2X Ultra-Macro](../../src/lens-data/laowa/LaowaCF60mmf28MacroExample3.data.ts) - 11.1% trusted (1/9); 11.1% Sellmeier (1/9) - CN103823292B
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (high-index moderate-dispersion crown/flint boundary; supplier and melt unproven)` | Explicit unmatched/proprietary annotation |
-| 5 | Element 3 | abbe | `Unmatched (dense flint class; supplier and melt unproven)` | Explicit unmatched/proprietary annotation |
-| 6 | Element 4 | abbe | `Unmatched (very-high-index dense flint class; supplier and melt unproven)` | Explicit unmatched/proprietary annotation |
-| 8 | Element 5 | abbe | `Unmatched (flint class; supplier and melt unproven)` | Explicit unmatched/proprietary annotation |
-| 9 | Element 6 | abbe | `Unmatched (high-index crown class; supplier and melt unproven)` | Explicit unmatched/proprietary annotation |
-| 11 | Element 7 | abbe | `Unmatched (very-high-index moderate-dispersion glass; supplier and melt unproven)` | Explicit unmatched/proprietary annotation |
-| 14 | Element 8 | abbe | `Unmatched (low-index low-dispersion fluor-crown class; supplier and melt unproven)` | Explicit unmatched/proprietary annotation |
-| 16 | Element 9 | abbe | `Unmatched (very-high-index flint class; supplier and melt unproven)` | Explicit unmatched/proprietary annotation |
 
 ### [NIKON UV-NIKKOR AUTO 55mm f/4](../../src/lens-data/nikon/NikonUvNikkor55mmf4.data.ts) - 0.0% trusted (0/3); 0.0% Sellmeier (0/3) - JP S42-9417 B
 

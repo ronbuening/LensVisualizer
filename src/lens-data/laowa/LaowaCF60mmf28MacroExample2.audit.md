@@ -1,4 +1,7 @@
-# Audit — Laowa CF 60 mm f/2.8 2x Macro, qualified native Example 3
+# Audit — Laowa 60mm f/2.8 2X Ultra-Macro, qualified native Example 2
+
+The current catalog prescription is Example 2. The earlier Example 3 dossier and integration entries below are
+historical and are superseded by the 2026-10-16 embodiment-comparison entry at the end of this log.
 
 ## Job and reference versions
 
@@ -134,3 +137,67 @@ and verification labels were removed. Halfway through the first spacing interval
 The 200.020210 mm native 2× distance runs from the object to the image plane, while the object is
 64.979910 mm before the first optical surface. At nominal 1× those distances are 200.044364 mm and
 95.118364 mm. Neither is a measured clearance from the front of the barrel.
+
+## 2026-10-16 — All-embodiment comparison and replacement with Example 2
+
+User instruction: compare all three embodiments with production, select the closest match, preserve patent
+values, update focusing and analysis, validate and commit. This supersedes the earlier Example 3 selection.
+
+The original local grant was read at PDF pp.5–10, with Figures 1/3/5 at pp.11/13/15. The official manual and
+2021 manufacturer catalogue were downloaded and visually checked. The manufacturer's 2019-05-14 announcement
+links the product to this patent application, without selecting an embodiment. Firsthand Savazzi, Northlight
+Images and PentaxForums observations provide the rear-motion and scale evidence cited in the analysis.
+
+Example 2 is selected for its native 60.0408 mm focal length and two moving assemblies, including a rigid
+L8–L9 rear pair. Example 1 is 85.0375 mm; Example 3 holds L9 fixed. The full comparison table is in the
+analysis. This is a closest architectural match, not factory identification: Example 2's rear travel is
+10.2888 mm rather than the reported approximately 7–8 mm, and its calculated 2× object–image distance is
+227.315598 mm rather than production 185 mm. Its native 159.5307 mm first-vertex/image track also precludes
+claiming an exact production-barrel reconstruction. No optical scaling or fitting is applied.
+
+All 17 R/d/nd rows and all nine native nd/vd pairs were checked against the original tables. D13 is
+[1, 37.2260, 75.5119] mm; D17 is [42.9988, 50.1709, 53.2876] mm; D15 stays 1.4858 mm. G1 travel is
+43.3981/84.8007 mm and G2 travel is 7.1721/10.2888 mm at nominal 1×/2×. An independently coded
+reduced-angle ABCD calculation agrees with the shared paraxial tracer. Native infinity EFL/BFD are
+60.040449/42.998605 mm; finite magnifications are −1.001068/−2.002452. Calculated condition values
+0.734158, 0.418369 and 1.434559 agree with Example 2's printed rounded summaries. The former Example 3
+sourceErrata entry is removed because it does not describe this prescription.
+
+The source sequence uses focusPositions [0, 0.5, 1]. Object–image distance is non-monotonic, so it cannot
+order these macro states through an inverse-distance coordinate. The readout continues to calculate the
+current interpolated conjugate, with centimeters and whole-centimeter endpoint/button labels. Source
+buttons retain the explicit nominal 1×/2× magnifications. Only the two actual finite source rows remain
+MTF-certified. The old Example 3 route redirects to the renamed Example 2 route.
+
+The effective-aperture display also used inverse focusT distance, which is incompatible with ordered
+source coordinates. Both shared effective-f-number entry points now use the current paraxial axial cone,
+normalized by the infinity cone, for station-based controls. This includes current pupil geometry and
+retains the marked aperture calibration. A synthetic thick-lens regression checks the analytic cone ratio,
+coordinate-remapping invariance and aperture scaling. No per-lens regression file is added.
+
+Figure 3 optical rims were inspected at 600 dpi. Automatic ENV/RIM scale recovery was rejected because
+the horizontal axis contributes false rim columns; no leader-line or bracket measurement was used as a
+clear aperture. The new inferred radii respect literal edge/gap geometry, including L4's 10.0/8.2 mm
+step and L8's 9.5 mm clear radius. L6's shared/rear radii are 8.6 mm, consistent with the figure and the
+stated axial beam. The exact-ray stop calibration to source f/2.90 gives radius 8.157121 mm. No validator
+tolerance or gap override is added. Display scFill 0.32 keeps the complete 2× section in frame at the same
+camera-anchored image position throughout focus travel; it changes no optical value.
+
+Source-coordinate catalog comparisons support FCD1, N-SF66 and TAFD30 as qualified spectral proxies.
+All three curves already exist. The other six materials stay Unmatched: nearby or radiation-resistant
+catalog formulations do not establish the source material. Coverage rises from 1/9 to 3/9 glass-bearing
+rows; regenerated reports have zero catalog mismatches and two additional catalog-backed surfaces overall.
+
+Verification: surface, image-circle, axial-aperture and APS-C field-coverage checks pass. Across 251 slider
+samples, both group travels are monotonic, the rear pair stays rigid, the maximum movement per 0.004 step
+is 0.347185 mm, and render-trim diagnostics are zero. All three source spacing rows are reproduced exactly;
+near-axis exact Snell rays reach the authored image plane within 3.3e-9 mm of the axis. Finite MTF
+certificates occur only at the two source finite states. The sampled minimum object–image distance is
+214.507177 mm; closeFocusM records the final state's 227.315598 mm endpoint, not a production MFD claim.
+
+Final gates pass: typecheck, format:check, lint, all 291 test files / 3,152 tests (`--maxWorkers=4`), and
+the production build with 1,675 prerendered pages. Desktop and 390 px mobile diagrams and source controls
+were inspected; the 0.496 → 0.5 → 0.504 slider steps show continuous travel and numeric readouts. Keyboard
+stepping reaches the exact source coordinates. The analysis Markdown was reviewed against the required
+skeleton; its existing disabled analysis-view feature flag is unchanged. No local patent or research PDF
+is included in the commit.

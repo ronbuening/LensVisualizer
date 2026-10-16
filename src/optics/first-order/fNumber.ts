@@ -4,7 +4,7 @@
  * Keeps f-number reporting consistent with focus breathing and zoom interpolation.
  */
 
-import { closeFocusAtZoom } from "../focusDistance.js";
+import { closeFocusAtZoom, stationEffectiveFNumber } from "../focusDistance.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import { FOCUS_INFINITY_THRESHOLD } from "../layout.js";
 import { eflAtFocus2 } from "./focusBreathing.js";
@@ -12,7 +12,8 @@ import { eflAtFocus2 } from "./focusBreathing.js";
 /**
  * Estimate effective f-number at the current focus and zoom state.
  *
- * Uses the close-focus magnification correction `N_eff = N * (1 + |m| / p)`,
+ * Station-based controls use the current axial cone. Other controls retain
+ * the close-focus magnification correction `N_eff = N * (1 + |m| / p)`,
  * where `p` is pupil magnification XP/EP. At infinity, or when the denominator
  * is degenerate, the authored nominal f-number is returned unchanged.
  *
@@ -31,6 +32,8 @@ export function effectiveFNumber2(
   aberrationT = 0,
 ): number {
   if (focusT < FOCUS_INFINITY_THRESHOLD) return nominalFNumber;
+  if (L.data?.focusControl === "stations")
+    return stationEffectiveFNumber(nominalFNumber, focusT, zoomT, L, aberrationT) ?? nominalFNumber;
   const efl = eflAtFocus2(focusT, zoomT, L, aberrationT);
   const focusDistMm = (closeFocusAtZoom(zoomT, L) / focusT) * 1000;
   const denom = focusDistMm - efl;

@@ -5,7 +5,7 @@
  * diagram rendering and analysis panels.
  */
 
-import { closeFocusAtZoom, FOCUS_INFINITY_THRESHOLD } from "./focusDistance.js";
+import { closeFocusAtZoom, FOCUS_INFINITY_THRESHOLD, stationEffectiveFNumber } from "./focusDistance.js";
 import type { LayoutResult, RuntimeLens } from "../types/optics.js";
 import { buildStateSurfaces, resolveControlledThickness } from "./internal/lensState.js";
 import { conicPolySag, sag, sagSlopeRaw } from "./internal/surfaceMath.js";
@@ -314,7 +314,8 @@ export function eflAtFocus(focusT: number, zoomT: number, L: RuntimeLens, aberra
 /**
  * Estimate effective f-number at the current focus state.
  *
- * Uses the same close-focus correction as the first-order helper:
+ * Station-based controls use the current axial cone. Other controls use the
+ * same close-focus correction as the first-order helper:
  * `N_eff = N * (1 + |m| / p)`, where `p` is pupil magnification XP/EP.
  *
  * @param nominalFNumber - marked f-number for the current aperture
@@ -332,6 +333,9 @@ export function effectiveFNumber(
   aberrationT = 0,
 ): number {
   if (focusT < FOCUS_INFINITY_THRESHOLD) return nominalFNumber;
+
+  if (L.data?.focusControl === "stations")
+    return stationEffectiveFNumber(nominalFNumber, focusT, zoomT, L, aberrationT) ?? nominalFNumber;
 
   const efl = eflAtFocus(focusT, zoomT, L, aberrationT);
   const focusDistMm = (closeFocusAtZoom(zoomT, L) / focusT) * 1000;

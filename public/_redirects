@@ -20,6 +20,9 @@
 /formats/1/2.3-inch-type/ /formats/1-2.3-inch-type/ 301
 /formats/1/1.7-inch-type /formats/1-1.7-inch-type/ 301
 /formats/1/1.7-inch-type/ /formats/1-1.7-inch-type/ 301
+# 2026-10-16: the Laowa 60mm uses the closer Example 2 focusing architecture.
+/lens/laowa-cf-60f28-macro-example-3 /lens/laowa-cf-60f28-macro-example-2/ 301
+/lens/laowa-cf-60f28-macro-example-3/ /lens/laowa-cf-60f28-macro-example-2/ 301
 # Client-only comparison pages: serve the app shell with a 200 so arbitrary lens
 # pairs load without a 404. The target must be `/`, not `/index.html`: Cloudflare's
 # parser rejects any `/*` rule whose target ends in `/index` or `/index.html`

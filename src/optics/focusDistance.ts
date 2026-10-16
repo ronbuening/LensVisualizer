@@ -1,4 +1,4 @@
-/** Focus-distance endpoints follow the same normalized station coordinates as zoom gaps. */
+/** Focus-control coordinates and prescription-derived distance/aperture readouts. */
 import type { RuntimeLens } from "../types/optics.js";
 import { buildStateSurfaces } from "./internal/lensState.js";
 import { traceParaxialSurfaces2, transferParaxialRay2 } from "./math/paraxial.js";
@@ -57,6 +57,47 @@ export function focusDistanceAt(focusT: number, L: RuntimeLens, zoomT = 0): numb
   }
   const distance = closeFocusAtZoom(zoomT, L) / focusT;
   return Number.isFinite(distance) && distance > 0 ? distance : null;
+}
+
+/**
+ * Estimate a station-based lens's effective f-number from its current axial cone.
+ * Normalize by the infinity cone to retain the marked aperture calibration. This also
+ * accounts for changing pupil geometry without interpreting focusT as inverse distance.
+ */
+export function stationEffectiveFNumber(
+  nominalFNumber: number,
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  aberrationT = 0,
+): number | null {
+  if (L.data?.focusControl !== "stations" || L.isFoldedOptics) return null;
+  if (focusT < FOCUS_INFINITY_THRESHOLD) return nominalFNumber;
+  const coneSlope = (focus: number, aberration: number) => {
+    const surfaces = buildStateSurfaces(
+      L.S,
+      L.varByIdx,
+      L.isZoom,
+      focus,
+      zoomT,
+      L.aberrationControl?.varByIdx,
+      aberration,
+      L.focusPositions,
+    );
+    const marginal = traceParaxialSurfaces2(surfaces, 1, 0);
+    const chief = traceParaxialSurfaces2(surfaces, 0, 1);
+    const gap = surfaces[surfaces.length - 1].d;
+    const a = transferParaxialRay2(marginal, gap).y;
+    const b = transferParaxialRay2(chief, gap).y;
+    const inputSlope = focus === 0 ? 0 : -a / b;
+    if (!Number.isFinite(inputSlope) || inputSlope < 0) return null;
+    const stop = traceParaxialSurfaces2(surfaces, 1, inputSlope, { stopAt: L.stopIdx });
+    const slope = Math.abs((marginal.u + chief.u * inputSlope) / stop.y);
+    return Number.isFinite(slope) && slope > 1e-12 ? slope : null;
+  };
+  const infinityCone = coneSlope(0, 0);
+  const currentCone = coneSlope(focusT, aberrationT);
+  return infinityCone !== null && currentCone !== null ? (nominalFNumber * infinityCone) / currentCone : null;
 }
 
 /** Preserve object distance when the modeled close-focus endpoint changes. */

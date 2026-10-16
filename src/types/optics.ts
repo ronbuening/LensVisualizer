@@ -461,7 +461,7 @@ export interface LensData {
   varLabels?: [string, string][];
   /** Normalized focusT coordinates for each authored focus thickness; defaults to [0, 1]. */
   focusPositions?: number[];
-  /** Presentation only: evenly space authored focus states; intermediate distances use their paraxial conjugates. */
+  /** Evenly space authored focus states; derive distance and effective aperture from the current prescription. */
   focusControl?: "stations";
   finiteConjugates?: FiniteConjugate[];
   /** Source provenance for the authored stations; absent means every zoom station at infinity focus. */
