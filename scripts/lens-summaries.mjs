@@ -18,8 +18,8 @@ let lensDataConversion;
  * Load the engine's lens-data conversion seam under plain Node. Its modules import one another by their `.js`
  * specifiers, so the specifier hook is registered first; a V1-only catalog never loads them.
  *
- * @returns {Promise<{ ingestLens: Function, ingestTeleconverter: Function, toLensDataInput: Function,
- *   toTeleconverterData: Function }>} canonical ingest and the V1 views
+ * @returns {Promise<import("./lens-summaries.d.mts").LensDataConversion>} canonical ingest, the V1 and V2 views,
+ *   the V2 source map, the prescription comparison and the path spelling: every export of the seam
  */
 export async function loadLensDataConversion() {
   if (!lensDataConversion) {

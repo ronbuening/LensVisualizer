@@ -221,6 +221,7 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     key: "owner identity",
     perOwner: "one frozen derived RuntimeLens for compatibility analyses and UI",
   },
+  "src/optics/prescription/sourcePaths.ts#LABEL_KEYED": { kind: "constant" },
   "src/optics/prescription/validate/references.ts#KNOWN_ASPHERIC_COEFFICIENTS": { kind: "constant" },
   "src/optics/prescription/validate/references.ts#SOURCE_ERRATUM_EVIDENCE": { kind: "constant" },
   "src/optics/prescription/validate/references.ts#SOURCE_ERRATUM_SURFACE_FIELDS": { kind: "constant" },

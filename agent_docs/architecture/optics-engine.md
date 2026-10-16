@@ -305,7 +305,12 @@ hard clip with no margin, so a rim smaller than the stated beam makes the lens t
 from its `medium` (an element, an undrawn medium in `media`, or air), sparse `asphere` terms, `R: "flat"`, zoom station
 records, focus keyframes, conjugates by station index, gaps by label as `[zoom][focus]`, and the stop's radius
 authority (`authored`, `schedule` or `derived`, by the rule `buildLens` applies). Provenance sits beside it: the
-defaulted paths, the authored values the engine ignores, and the V1 spellings it holds once.
+defaulted paths, the authored values the engine ignores, and the V1 spellings it holds once. Asked for them
+(`{ sources: true }`), either ingest also records its source paths (`SourcePaths`): where it read each value,
+record and copied subtree, what it holds in another form (a V1 surface's `nd` and `elemId`, held by its `medium`), why
+it set each ignored value aside, and the home of each V1 container V2 dissolves. Each recording site is one branch,
+so an ingest that was not asked builds no path. `sourcePaths.ts` spells every path, `surfaces[3].R` and
+`asph["3A"]`, for ingest, the V2 view and the converter alike.
 
 - `ingestLensV1` and `ingestTeleconverterV1` (`ingestV1.ts`) map a V1 file onto it, applying the schema defaults of
   `defaults.ts`. Each default row names its reader. A default written out and one left out ingest alike. A missing
@@ -337,6 +342,12 @@ defaulted paths, the authored values the engine ignores, and the V1 spellings it
 - `toLensData` (`toLensData.ts`) is the V1 view: it gives a V1 file back exactly, with the catalog defaults merged,
   and `toLensDataInput` gives it back as authored. A V2 file records no V1 spelling, so its view writes each field in
   the plain V1 form.
+- `toLensDataV2Input` and `toTeleconverterDataV2Input` (`toLensDataV2.ts`) are the V2 view the converter prints, in
+  the V2 field order; nothing in the app imports them. Given a `v2Writes()` collector they record the canonical path
+  behind each node they write, and `v2SourceMap` composes that with ingest's source paths: the literal each written
+  value was read from, where each comment of the source goes (moved when its node has no counterpart), and the
+  set-aside values the V2 file drops. `prescriptionDifference` (`canonical.ts`) compares two prescriptions under the
+  semantic fingerprint's rules. The converter reaches all of these through `src/optics/lensDataConversion.ts`.
 - Lens data gets its defaults from ingest and the V1 view alone (S2.P1.T2); nothing outside tests spreads the
   defaults table. `buildLens.ts` re-exports `ingestLens`, `ingestTeleconverter`,
   their V1 forms (`ingestLensV1`, `ingestTeleconverterV1`), `isV1File` and the two V1 views (`toLensData`,

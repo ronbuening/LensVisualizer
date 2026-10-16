@@ -12,7 +12,9 @@
  * canonical form or the V1 view cannot hold and the rules V2 adds, each at its authored path. The one list of them is
  * the S2.P2.T1 As built of OPTICS_ENGINE_REWRITE_SPEC.md. Every reason found is reported at once, in a
  * `PrescriptionIngestError`, but for `elements` or `surfaces` that is not a list of objects, which stops ingest at
- * once. The input is never modified, and the result shares no object with it.
+ * once. The input is never modified, and the result shares no object with it. Asked for source paths, ingest records
+ * where it read each value (`SourcePaths`); in V2 a value sits at its canonical path, except a medium's, which ingest
+ * renumbers, and a gap's, which it keys by surface.
  */
 
 import type {
@@ -55,6 +57,8 @@ import {
   type CanonicalZoom,
   type CanonicalZoomStation,
   type IngestedPrescription,
+  type IngestRequest,
+  type SourcePaths,
   type StopRadiusAuthority,
   type V2Spelling,
 } from "./canonical.js";
@@ -68,14 +72,17 @@ import {
   isNumberList,
   isRecord,
   put,
+  recordReads,
   refuseUnknownFields,
   requireFields,
   requireRecords,
+  sourcePathsFor,
   takeDefault,
   type IngestContext,
   type Untyped,
 } from "./ingestCommon.js";
 import { ingestLensV1, ingestTeleconverterV1 } from "./ingestV1.js";
+import { labelPath } from "./sourcePaths.js";
 
 /** The `schema` value of a V2 file. */
 export const LENS_DATA_V2_SCHEMA = 2;
@@ -287,8 +294,14 @@ const CHECKS_FIELDS: Fields<ChecksV2Input> = { gapSagFrac: true, maxRimAngleDeg:
 
 /* ── Context and records ── */
 
-function createContext(): IngestContext {
-  return { format: "V2", issues: [], defaulted: [], ignored: {} };
+function createContext(request: IngestRequest | undefined): IngestContext {
+  return { format: "V2", issues: [], defaulted: [], ignored: {}, sources: sourcePathsFor(request) };
+}
+
+/** Record that each listed member of a V2 record was read where it sits, at its canonical path. */
+function recordInPlace(sources: SourcePaths, at: string, record: Untyped, fields: readonly string[]): void {
+  sources.records[at] = at;
+  recordReads(sources, at, at, record, fields);
 }
 
 function keyOf(data: Untyped): string {
@@ -320,6 +333,7 @@ function nested(
     return {};
   }
   refuseUnknownFields(value, known, path, context);
+  if (context.sources) context.sources.records[path] = path;
   return value;
 }
 
@@ -348,6 +362,7 @@ function records(
     context.issues.push(`${path} must be a list`);
     return [];
   }
+  if (context.sources) context.sources.records[path] = path;
   return Array.from(value as unknown[], (entry, index) => {
     if (!isRecord(entry)) {
       context.issues.push(`${path}[${index}] must be an object`);
@@ -383,6 +398,14 @@ function isIndexIn(value: unknown, first: number, last: number): value is number
 }
 
 /* ── Elements, media and surfaces ── */
+
+/** Element members read as written; the defaulted ones are read through `takeDefault`. */
+const ELEMENT_READ_FIELDS = Object.keys(ELEMENT_FIELDS).filter(
+  (field) => field !== "indexReference" && field !== "apd",
+);
+
+/** Surface members read as written; `d` only where no gap supplies it, and the medium is a reference. */
+const SURFACE_READ_FIELDS = ["label", "R", "sd", "innerSd", "diffractive", "interaction", "stopPlacement"];
 
 function ingestElements(
   authored: readonly Untyped[],
@@ -426,6 +449,7 @@ function ingestElements(
         out.span = [from, to];
       }
     }
+    if (context.sources) recordInPlace(context.sources, at, out, ELEMENT_READ_FIELDS);
     return out as unknown as CanonicalElement;
   });
 }
@@ -496,6 +520,7 @@ function ingestSurfaces(authored: readonly Untyped[], facts: SurfaceFacts, conte
       /* V2 writes a flat surface as "flat"; a number past the threshold is kept for the views. */
       out.R = FLAT_RADIUS;
       context.ignored[`${at}.R`] = radius;
+      if (context.sources) context.sources.ignored[`${at}.R`] = { from: `${at}.R`, kind: "flatRadius" };
     } else {
       out.R = radius;
     }
@@ -543,6 +568,12 @@ function ingestSurfaces(authored: readonly Untyped[], facts: SurfaceFacts, conte
     put(out, "diffractive", surface.diffractive);
     put(out, "interaction", surface.interaction);
     put(out, "stopPlacement", surface.stopPlacement);
+    if (context.sources) {
+      recordInPlace(context.sources, at, out, SURFACE_READ_FIELDS);
+      if (has(surface, "d")) context.sources.read[`${at}.d`] = `${at}.d`;
+      if (out.asphere) context.sources.records[`${at}.asphere`] = `${at}.asphere`;
+      if (has(surface, "medium")) context.sources.heldBy[`${at}.medium`] = `${at}.medium`;
+    }
     return out as unknown as CanonicalSurface;
   });
 }
@@ -561,6 +592,14 @@ function finishMedia(media: DeclaredMedia, context: IngestContext): { media: Can
     const entry: V2Spelling["media"][number] = { canonicalId, id };
     put(entry as unknown as Untyped, "name", medium.name);
     spelling.media.push(entry);
+    if (context.sources) {
+      /* Ingest numbers media by first use; a medium's name is spelling, kept beside its canonical record. */
+      const at = `media[${[...media.canonicalIds.values()].indexOf(canonicalId)}]`;
+      context.sources.records[at] = `media[${index}]`;
+      context.sources.read[`${at}.nd`] = `media[${index}].nd`;
+      if (has(medium, "name")) context.sources.read[`${at}.name`] = `media[${index}].name`;
+      context.sources.heldBy[`media[${index}].id`] = `${at}.id`;
+    }
   });
   const canonical = [...media.canonicalIds].flatMap(([id, canonicalId]): CanonicalMedium[] => {
     const declared = media.byId.get(id);
@@ -609,11 +648,12 @@ function keyedGaps(
     context.issues.push(`${path} must be an object keyed by surface label`);
     return [];
   }
+  if (context.sources) context.sources.records[path] = path;
   const gaps: { surface: string; label?: string; values: unknown }[] = [];
   for (const surface of Object.keys(value)) {
     const entry = value[surface];
     if (entry === undefined) continue;
-    const at = `${path}["${surface}"]`;
+    const at = labelPath(path, surface);
     if (!isRecord(entry)) {
       context.issues.push(`${at} must be an object`);
       continue;
@@ -631,7 +671,17 @@ function keyedGaps(
     }
     gaps.push(gap);
   }
-  return gaps.sort((a, b) => labelIndex.get(a.surface)! - labelIndex.get(b.surface)!);
+  gaps.sort((a, b) => labelIndex.get(a.surface)! - labelIndex.get(b.surface)!);
+  if (context.sources) {
+    /* The canonical gaps are a list in surface order; the file keys each by its surface. */
+    const sources = context.sources;
+    gaps.forEach((gap, index) => {
+      const from = labelPath(path, gap.surface);
+      sources.records[`${path}[${index}]`] = from;
+      recordReads(sources, `${path}[${index}]`, from, gap, ["label", "values"]);
+    });
+  }
+  return gaps;
 }
 
 function ingestGaps(
@@ -642,7 +692,7 @@ function ingestGaps(
   context: IngestContext,
 ): CanonicalGap[] {
   return keyedGaps(value, "gaps", GAP_FIELDS, labelIndex, context).map((gap) => {
-    const at = `gaps["${gap.surface}"].values`;
+    const at = `${labelPath("gaps", gap.surface)}.values`;
     const rows = everyIndex(gap.values);
     if (rows === undefined) return { ...gap, values: [] } as CanonicalGap;
     if (!Array.isArray(rows) || !rows.every(isNumberListAtEveryIndex)) {
@@ -674,6 +724,10 @@ function ingestAberrationControl(
   for (const field of ["description", "minLabel", "centerLabel", "maxLabel", "step"]) put(out, field, control[field]);
   if (!has(control, "gaps")) context.issues.push(`aberrationControl.gaps is required`);
   out.gaps = keyedGaps(control.gaps, "aberrationControl.gaps", ABERRATION_GAP_FIELDS, labelIndex, context);
+  if (context.sources) {
+    const fields = ["label", "description", "minLabel", "centerLabel", "maxLabel", "step"];
+    recordReads(context.sources, "aberrationControl", "aberrationControl", out, fields);
+  }
   return out as unknown as CanonicalAberrationControl;
 }
 
@@ -699,6 +753,12 @@ function ingestZoom(zoom: Untyped, context: IngestContext): { zoom: CanonicalZoo
     const record: Untyped = { focalLengthMm: station.focalLengthMm };
     for (const field of EVERY_STATION_OR_NONE) put(record, field, station[field]);
     put(record, "label", station.label);
+    if (context.sources) {
+      recordInPlace(context.sources, at, record, ["focalLengthMm", ...EVERY_STATION_OR_NONE, "label"]);
+      if (has(station, "published")) context.sources.heldBy[`${at}.published`] = `${at}.published`;
+      /* The list is copied as written, so each keyframe index, and a comment on it, keeps its place. */
+      if (has(station, "publishedFocus")) context.sources.read[`${at}.publishedFocus`] = `${at}.publishedFocus`;
+    }
     return record as unknown as CanonicalZoomStation;
   });
 
@@ -805,13 +865,19 @@ function ingestConjugates(
         `${at}.keyframe ${String(keyframe)} names no focus keyframe beyond infinity (1..${keyframeCount - 1})`,
       );
     }
-    return {
+    const out = {
       zoomStation: zoomStation as number,
       keyframe: keyframe as number,
       objectDistanceMm: conjugate.objectDistanceMm as number,
       distanceReference: conjugate.distanceReference as CanonicalConjugate["distanceReference"],
       source: conjugate.source as string,
     };
+    if (context.sources) {
+      recordInPlace(context.sources, at, out, ["objectDistanceMm", "distanceReference", "source"]);
+      context.sources.heldBy[`${at}.zoomStation`] = `${at}.zoomStation`;
+      context.sources.heldBy[`${at}.keyframe`] = `${at}.keyframe`;
+    }
+    return out;
   });
 }
 
@@ -832,6 +898,7 @@ function ingestLensCatalog(data: Untyped, context: IngestContext): Untyped {
   ]) {
     put(out, field, catalog[field]);
   }
+  if (context.sources) recordReads(context.sources, "catalog", "catalog", out, Object.keys(out));
   for (const field of ["focalLengthMm", "fNumber"]) {
     const range = nested(catalog, field, "catalog", MARKETING_DESIGN_FIELDS, context);
     if (!range || (!has(range, "marketing") && !has(range, "design"))) continue;
@@ -839,6 +906,9 @@ function ingestLensCatalog(data: Untyped, context: IngestContext): Untyped {
     put(copied, "marketing", range.marketing);
     put(copied, "design", range.design);
     out[field] = copied;
+    if (context.sources) {
+      recordReads(context.sources, `catalog.${field}`, `catalog.${field}`, copied, ["marketing", "design"]);
+    }
   }
   return out;
 }
@@ -847,6 +917,7 @@ function ingestSource(data: Untyped, known: Readonly<Record<string, true>>, cont
   const source = nested(data, "source", "", known, context) ?? {};
   const out: Untyped = {};
   for (const field of Object.keys(known)) put(out, field, source[field]);
+  if (context.sources) recordReads(context.sources, "source", "source", out, Object.keys(out));
   return out;
 }
 
@@ -862,6 +933,8 @@ function refuseOtherSchema(data: Untyped, context: IngestContext): void {
   if (data.schema !== LENS_DATA_V2_SCHEMA) {
     context.issues.push(`schema must be ${LENS_DATA_V2_SCHEMA} in a V2 file, not ${JSON.stringify(data.schema)}`);
   }
+  /* The prescription holds the version as its format, and the V2 view writes it back as `schema`. */
+  if (context.sources && has(data, "schema")) context.sources.heldBy.schema = "schema";
 }
 
 /* ── Prescriptions ── */
@@ -870,13 +943,14 @@ function refuseOtherSchema(data: Untyped, context: IngestContext): void {
  * Ingest a V2 lens file.
  *
  * @param input - the file's default export, as authored
+ * @param request - what to record beyond the prescription: source paths, for the converter
  * @returns the canonical prescription and its provenance
  * @throws PrescriptionIngestError naming every reason the canonical form cannot hold the file, at its authored path
  */
-export function ingestLensV2(input: LensDataV2Input): IngestedPrescription<CanonicalLens> {
+export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): IngestedPrescription<CanonicalLens> {
   const data = input as unknown as Untyped;
   const key = keyOf(data);
-  const context = createContext();
+  const context = createContext(request);
   refuseUnknownFields(data, LENS_FIELDS, "", context);
   refuseOtherSchema(data, context);
   requireFields(data, ["key", "name", "focus", "aperture", "layout"], "", context);
@@ -901,6 +975,11 @@ export function ingestLensV2(input: LensDataV2Input): IngestedPrescription<Canon
     step: withDefault(focusRecord, "focus.step", context) as number,
   };
   put(focus as unknown as Untyped, "description", focusRecord.description);
+  if (context.sources) {
+    recordReads(context.sources, "focus", "focus", focus as unknown as Untyped, ["closeFocusM", "description"]);
+    /* The list is copied as written, so each keyframe index, and a comment on it, keeps its place. */
+    if (has(focusRecord, "published")) context.sources.read["focus.published"] = "focus.published";
+  }
   if (has(focusRecord, "conjugates")) {
     focus.conjugates = ingestConjugates(focusRecord.conjugates, stationCount, keyframeCount, context);
   }
@@ -950,6 +1029,10 @@ export function ingestLensV2(input: LensDataV2Input): IngestedPrescription<Canon
   put(aperture, "blades", apertureRecord.blades);
   put(aperture, "bladeRoundedness", apertureRecord.bladeRoundedness);
   aperture.stopRadius = stopAuthority;
+  if (context.sources) {
+    const fields = ["nominalFNumber", "fStops", "blades", "bladeRoundedness"];
+    recordReads(context.sources, "aperture", "aperture", aperture, fields);
+  }
 
   const layoutRecord = nested(data, "layout", "", LAYOUT_FIELDS, context) ?? {};
   requireFields(layoutRecord, ["yScFill"], "layout", context);
@@ -987,6 +1070,14 @@ export function ingestLensV2(input: LensDataV2Input): IngestedPrescription<Canon
   lens.layout = display.layout;
   lens.rays = display.rays;
   lens.checks = display.checks;
+  if (context.sources) {
+    const sources = context.sources;
+    recordInPlace(sources, "", lens, ["key", "maker", "name", "subtitle", "publishedAt"]);
+    recordReads(sources, "", "", lens, ["projection", "opticalPath", "perspectiveControl", "groups", "doublets"]);
+    sources.records.elements = "elements";
+    sources.records.surfaces = "surfaces";
+    sources.read["layout.yScFill"] = "layout.yScFill";
+  }
   return finish(key, lens as unknown as CanonicalLens, context, { format: 2, v2: spelling });
 }
 
@@ -995,13 +1086,17 @@ export function ingestLensV2(input: LensDataV2Input): IngestedPrescription<Canon
  * elements and plates take theirs.
  *
  * @param input - the file's default export, as authored
+ * @param request - what to record beyond the prescription: source paths, for the converter
  * @returns the canonical prescription and its provenance
  * @throws PrescriptionIngestError naming every reason the canonical form cannot hold the file, at its authored path
  */
-export function ingestTeleconverterV2(input: TeleconverterDataV2Input): IngestedPrescription<CanonicalTeleconverter> {
+export function ingestTeleconverterV2(
+  input: TeleconverterDataV2Input,
+  request?: IngestRequest,
+): IngestedPrescription<CanonicalTeleconverter> {
   const data = input as unknown as Untyped;
   const key = keyOf(data);
-  const context = createContext();
+  const context = createContext(request);
   refuseUnknownFields(data, TELECONVERTER_FIELDS, "", context);
   refuseOtherSchema(data, context);
   requireFields(data, ["key", "name", "catalog", "magnification", "masterImageDistanceMm"], "", context);
@@ -1027,6 +1122,7 @@ export function ingestTeleconverterV2(input: TeleconverterDataV2Input): Ingested
   requireFields(catalogRecord, ["lensMounts"], "catalog", context);
   const catalog: Untyped = { lensMounts: copy(catalogRecord.lensMounts) };
   for (const field of ["specs", "elementCount", "groupCount"]) put(catalog, field, catalogRecord[field]);
+  if (context.sources) recordReads(context.sources, "catalog", "catalog", catalog, Object.keys(catalog));
 
   const converter: Untyped = { kind: "teleconverter" };
   identity(data, converter);
@@ -1045,6 +1141,14 @@ export function ingestTeleconverterV2(input: TeleconverterDataV2Input): Ingested
   if (has(data, "rearPlates")) converter.rearPlates = ingestRearPlates(everyIndex(data.rearPlates), context);
   put(converter, "groups", data.groups);
   put(converter, "doublets", data.doublets);
+  if (context.sources) {
+    const sources = context.sources;
+    recordInPlace(sources, "", converter, ["key", "maker", "name", "subtitle", "visible", "publishedAt"]);
+    const fields = ["magnification", "masterImageDistanceMm", "universal", "minHostFNumber", "incompatibleLensKeys"];
+    recordReads(sources, "", "", converter, [...fields, "groups", "doublets"]);
+    sources.records.elements = "elements";
+    sources.records.surfaces = "surfaces";
+  }
   return finish(key, converter as unknown as CanonicalTeleconverter, context, { format: 2, v2: spelling });
 }
 
@@ -1075,13 +1179,17 @@ function refuseSchema(input: object, schema: unknown): never {
  * Ingest a lens file of either version: `schema: 2` is V2, and a file without `schema` is V1.
  *
  * @param input - the file's default export, as authored
+ * @param request - what to record beyond the prescription: source paths, for the converter
  * @returns the canonical prescription and its provenance
  * @throws PrescriptionIngestError naming every reason the canonical form cannot hold the file
  */
-export function ingestLens(input: LensDataInput | LensDataV2Input): IngestedPrescription<CanonicalLens> {
-  if (isV1File(input)) return ingestLensV1(input);
+export function ingestLens(
+  input: LensDataInput | LensDataV2Input,
+  request?: IngestRequest,
+): IngestedPrescription<CanonicalLens> {
+  if (isV1File(input)) return ingestLensV1(input, request);
   const schema = schemaOf(input);
-  if (schema === LENS_DATA_V2_SCHEMA) return ingestLensV2(input);
+  if (schema === LENS_DATA_V2_SCHEMA) return ingestLensV2(input, request);
   return refuseSchema(input, schema);
 }
 
@@ -1089,14 +1197,16 @@ export function ingestLens(input: LensDataInput | LensDataV2Input): IngestedPres
  * Ingest a teleconverter file of either version: `schema: 2` is V2, and a file without `schema` is V1.
  *
  * @param input - the file's default export, as authored
+ * @param request - what to record beyond the prescription: source paths, for the converter
  * @returns the canonical prescription and its provenance
  * @throws PrescriptionIngestError naming every reason the canonical form cannot hold the file
  */
 export function ingestTeleconverter(
   input: TeleconverterData | TeleconverterDataV2Input,
+  request?: IngestRequest,
 ): IngestedPrescription<CanonicalTeleconverter> {
-  if (isV1File(input)) return ingestTeleconverterV1(input);
+  if (isV1File(input)) return ingestTeleconverterV1(input, request);
   const schema = schemaOf(input);
-  if (schema === LENS_DATA_V2_SCHEMA) return ingestTeleconverterV2(input);
+  if (schema === LENS_DATA_V2_SCHEMA) return ingestTeleconverterV2(input, request);
   return refuseSchema(input, schema);
 }

@@ -11,7 +11,8 @@
  * - identifiers bound by a top-level `const` in the same file.
  *
  * Any other form is an error naming the file, line and form, so a file outside the subset is reported rather than
- * misread. The metadata scripts read identity fields through `readLensIdentity`, from a file of either version.
+ * misread. The metadata scripts read identity fields through `readLensIdentity`, from a file of either version, and
+ * the converter reads the syntax behind each value through `walkLensDataSource`.
  */
 
 import ts from "typescript";
@@ -50,6 +51,21 @@ function defaultExportExpression(sourceFile) {
   return undefined;
 }
 
+/** The expression inside `satisfies`, `as`, type assertions, `!` and parentheses. */
+function unwrap(node) {
+  let inner = node;
+  while (
+    ts.isParenthesizedExpression(inner) ||
+    ts.isSatisfiesExpression(inner) ||
+    ts.isAsExpression(inner) ||
+    ts.isTypeAssertionExpression(inner) ||
+    ts.isNonNullExpression(inner)
+  ) {
+    inner = inner.expression;
+  }
+  return inner;
+}
+
 /**
  * Evaluate a literal expression of a lens-data file.
  *
@@ -57,14 +73,24 @@ function defaultExportExpression(sourceFile) {
  * @param {ts.SourceFile} sourceFile - the file holding it
  * @param {Map<string, ts.Expression>} constants - the file's top-level `const` initializers
  * @param {Set<string>} resolving - constants being evaluated, to refuse a cycle
+ * @param {{ visit: Function, keys: (string | number)[], bound: boolean } | null} [walk] - the visitor of
+ *   `walkLensDataSource`, the keys of this value, and whether it was reached through a top-level const; `null` for
+ *   a value the visitor is not shown, a spread's, whose own keys would collide with the list's or the record's
  * @returns {unknown} the value
  */
-function evaluate(node, sourceFile, constants, resolving) {
+function evaluate(node, sourceFile, constants, resolving, walk) {
   const fail = (what) => {
     const { line } = sourceFile.getLineAndCharacterOfPosition(node.getStart(sourceFile));
     throw new Error(`${sourceFile.fileName}:${line + 1}: ${what}`);
   };
-  const recurse = (child) => evaluate(child, sourceFile, constants, resolving);
+  const recurse = (child, childWalk = walk) => evaluate(child, sourceFile, constants, resolving, childWalk);
+  /* Show the visitor a member or item, then evaluate its value under its own keys. */
+  const member = (key, syntax, expression, bound = walk?.bound) => {
+    if (!walk) return recurse(expression);
+    const keys = [...walk.keys, key];
+    walk.visit(keys, syntax, expression, bound);
+    return recurse(expression, { visit: walk.visit, keys, bound });
+  };
 
   switch (node.kind) {
     case ts.SyntaxKind.NumericLiteral:
@@ -116,7 +142,7 @@ function evaluate(node, sourceFile, constants, resolving) {
       if (resolving.has(name)) return fail(`"${name}" refers to itself`);
       resolving.add(name);
       try {
-        return recurse(initializer);
+        return recurse(initializer, walk && { ...walk, bound: true });
       } finally {
         resolving.delete(name);
       }
@@ -125,13 +151,14 @@ function evaluate(node, sourceFile, constants, resolving) {
       const out = [];
       for (const element of node.elements) {
         if (ts.isSpreadElement(element)) {
-          const spread = recurse(element.expression);
+          /* A spread's items are not shown: their syntax sits elsewhere, under keys of its own. */
+          const spread = recurse(element.expression, null);
           if (!Array.isArray(spread)) fail("a spread of something other than an array");
           out.push(...spread);
         } else if (ts.isOmittedExpression(element)) {
           fail("an array hole");
         } else {
-          out.push(recurse(element));
+          out.push(member(out.length, element, element));
         }
       }
       return out;
@@ -145,15 +172,15 @@ function evaluate(node, sourceFile, constants, resolving) {
             fail("a computed property name");
           }
           Object.defineProperty(out, name.text, {
-            value: recurse(property.initializer),
+            value: member(name.text, property, property.initializer),
             enumerable: true,
             writable: true,
             configurable: true,
           });
         } else if (ts.isShorthandPropertyAssignment(property)) {
-          out[property.name.text] = recurse(property.name);
+          out[property.name.text] = member(property.name.text, property, property.name);
         } else if (ts.isSpreadAssignment(property)) {
-          const spread = recurse(property.expression);
+          const spread = recurse(property.expression, null);
           if (spread === null || typeof spread !== "object" || Array.isArray(spread)) {
             fail("a spread of something other than an object");
           }
@@ -182,6 +209,45 @@ export function evaluateLensDataSource(content, fileName = "lens-data.ts") {
   const expression = defaultExportExpression(sourceFile);
   if (!expression) return undefined;
   return evaluate(expression, sourceFile, topLevelConstants(sourceFile), new Set());
+}
+
+/**
+ * Evaluate the default export of a lens-data source file as `evaluateLensDataSource` does, and show a visitor the
+ * syntax behind each value in it.
+ *
+ * The const the file exports, `export default LENS_DATA`, is the file's own object rather than a binding its values
+ * pass through, so values reached through it count as unbound. A spread's members are not shown.
+ *
+ * @param {string} content - the file's text
+ * @param {string} fileName - its name, for messages
+ * @param {(keys: (string | number)[], syntax: ts.Node, expression: ts.Expression, bound: boolean) => void} visit -
+ *   called for the exported value (no keys, its expression for `syntax`), then for each object member and list item,
+ *   parents first. `syntax` is the member's property assignment or the item itself, `expression` the value's own
+ *   syntax, and `bound` whether the value was reached through a top-level const other than the exported one.
+ * @returns {{ sourceFile: ts.SourceFile, value: unknown, exported: ts.ExportAssignment | undefined,
+ *   declaration: ts.VariableStatement | undefined }} the syntax tree, the exported value, the export statement, and
+ *   the statement declaring the const it exports, when it exports one
+ * @throws when the export uses a form outside the lens-data literal subset
+ */
+export function walkLensDataSource(content, fileName, visit) {
+  const sourceFile = parseLensDataSource(content, fileName);
+  const exported = sourceFile.statements.find(
+    (statement) => ts.isExportAssignment(statement) && !statement.isExportEquals,
+  );
+  if (!exported) return { sourceFile, value: undefined, exported: undefined, declaration: undefined };
+  const constants = topLevelConstants(sourceFile);
+  const exportedName = unwrap(exported.expression);
+  const name = ts.isIdentifier(exportedName) && constants.has(exportedName.text) ? exportedName.text : undefined;
+  const expression = name ? constants.get(name) : exported.expression;
+  const declaration = sourceFile.statements.find(
+    (statement) =>
+      ts.isVariableStatement(statement) &&
+      statement.declarationList.declarations.some((entry) => ts.isIdentifier(entry.name) && entry.name.text === name),
+  );
+  visit([], expression, expression, false);
+  const resolving = new Set(name ? [name] : []);
+  const value = evaluate(expression, sourceFile, constants, resolving, { visit, keys: [], bound: false });
+  return { sourceFile, value, exported, declaration };
 }
 
 /**

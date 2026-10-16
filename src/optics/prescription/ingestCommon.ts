@@ -4,6 +4,9 @@
  * Both formats read a file without validating it, collect every reason the canonical form cannot hold it, apply the
  * schema defaults with provenance, keep the authored values the engine ignores, and share no object with the input.
  * The records they share field for field (aspheric terms and rear plates) are ingested here once.
+ *
+ * Asked for source paths, both record where they read each value as they read it (`SourcePaths`). Each recording site
+ * is one branch on `IngestContext.sources`, so an ingest that was not asked builds no path for it.
  */
 
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../types/asphericSchema.js";
@@ -16,8 +19,11 @@ import {
   type CanonicalRearPlate,
   type CanonicalTeleconverter,
   type IngestedPrescription,
+  type IngestRequest,
+  type SourcePaths,
 } from "./canonical.js";
 import { REAR_PLATE_SCHEMA_DEFAULTS, defaultValue, takesDefault, type SchemaDefault } from "./defaults.js";
+import { memberPath } from "./sourcePaths.js";
 
 /** An authored record, read field by field. */
 export type Untyped = Record<string, unknown>;
@@ -29,6 +35,39 @@ export interface IngestContext {
   readonly issues: string[];
   readonly defaulted: string[];
   readonly ignored: Record<string, unknown>;
+  /** Where each value was read from; present only when the caller asked for source paths. */
+  readonly sources?: SourcePaths;
+}
+
+/** Empty source paths when the request asks for them, for a new ingest. */
+export function sourcePathsFor(request: IngestRequest | undefined): SourcePaths | undefined {
+  if (!request?.sources) return undefined;
+  return { read: {}, records: {}, heldBy: {}, ignored: {}, homes: {} };
+}
+
+/**
+ * Record that each listed member a record holds was read from the authored record's member of the same name, or of
+ * the name `authoredNames` gives it.
+ *
+ * @param sources - the source paths being recorded
+ * @param canonical - canonical path of the record
+ * @param authored - authored path of the record it was read from
+ * @param record - the canonical record, as built
+ * @param fields - the members to record, each read from the file as it stands
+ * @param authoredNames - the authored name of each member V1 names otherwise
+ */
+export function recordReads(
+  sources: SourcePaths,
+  canonical: string,
+  authored: string,
+  record: Untyped,
+  fields: readonly string[],
+  authoredNames: Readonly<Record<string, string>> = {},
+): void {
+  for (const field of fields) {
+    if (record[field] === undefined) continue;
+    sources.read[memberPath(canonical, field)] = memberPath(authored, authoredNames[field] ?? field);
+  }
 }
 
 /** Fields only the engine writes, with why a file may not carry them. */
@@ -97,12 +136,25 @@ export function refuseUnknownFields(
  * @param row - the schema default
  * @param path - canonical path of the field
  * @param context - collects the defaulted path and any authored value the default replaces
+ * @param authoredPath - the field's authored path, where it is not `path`: a V1 field of the lens itself
  * @returns the value the prescription holds
  */
-export function takeDefault(authored: unknown, row: SchemaDefault, path: string, context: IngestContext): unknown {
-  if (!takesDefault(row, authored)) return copy(authored);
+export function takeDefault(
+  authored: unknown,
+  row: SchemaDefault,
+  path: string,
+  context: IngestContext,
+  authoredPath = path,
+): unknown {
+  if (!takesDefault(row, authored)) {
+    if (context.sources) context.sources.read[path] = authoredPath;
+    return copy(authored);
+  }
   context.defaulted.push(path);
-  if (authored !== undefined) context.ignored[path] = authored;
+  if (authored !== undefined) {
+    context.ignored[path] = authored;
+    if (context.sources) context.sources.ignored[path] = { from: authoredPath, kind: "defaultStandIn" };
+  }
   return defaultValue(row);
 }
 
@@ -132,6 +184,9 @@ export function ingestAsphere(entry: unknown, at: string, where: string, context
     if (term === undefined) continue;
     if (term === 0) context.ignored[`${at}.${key}`] = term;
     else asphere[key] = term;
+    if (!context.sources) continue;
+    if (term === 0) context.sources.ignored[`${at}.${key}`] = { from: `${where}.${key}`, kind: "zeroTerm" };
+    else context.sources.read[`${at}.${key}`] = `${where}.${key}`;
   }
   return asphere as CanonicalAsphere;
 }
@@ -152,6 +207,9 @@ const REAR_PLATE_FIELDS: Readonly<Record<keyof RearPlateData, true>> = {
   source: true,
 };
 
+/** Plate members read as written; the index reference is read through its default. */
+const REAR_PLATE_READ_FIELDS = Object.keys(REAR_PLATE_FIELDS).filter((field) => field !== "indexReference");
+
 /**
  * The rear plates of a lens or teleconverter. Both formats write a plate the same way.
  *
@@ -164,6 +222,7 @@ export function ingestRearPlates(plates: unknown, context: IngestContext): Canon
     context.issues.push(`rearPlates must be a list`);
     return [];
   }
+  if (context.sources) context.sources.records.rearPlates = "rearPlates";
   return plates.map((entry, index) => {
     const at = `rearPlates[${index}]`;
     const plate: Untyped = isRecord(entry) ? entry : {};
@@ -186,6 +245,10 @@ export function ingestRearPlates(plates: unknown, context: IngestContext): Canon
     out.gapAfterMm = plate.gapAfterMm;
     put(out, "sd", plate.sd);
     put(out, "source", plate.source);
+    if (context.sources) {
+      context.sources.records[at] = at;
+      recordReads(context.sources, at, at, out, REAR_PLATE_READ_FIELDS);
+    }
     return out as unknown as CanonicalRearPlate;
   });
 }
@@ -197,7 +260,7 @@ export function ingestRearPlates(plates: unknown, context: IngestContext): Canon
  * @param prescription - the canonical prescription
  * @param context - the refusals and provenance collected
  * @param spelling - the format's own provenance: its format number and how it spelled what the prescription holds once
- * @returns the prescription and its provenance
+ * @returns the prescription and its provenance, with the source paths when they were asked for
  * @throws PrescriptionIngestError naming every reason the canonical form cannot hold the file
  */
 export function finish<Prescription extends CanonicalLens | CanonicalTeleconverter>(
@@ -207,7 +270,9 @@ export function finish<Prescription extends CanonicalLens | CanonicalTeleconvert
   spelling: Pick<CanonicalProvenance, "format" | "v1" | "v2">,
 ): IngestedPrescription<Prescription> {
   if (context.issues.length > 0) throw new PrescriptionIngestError(key, context.issues);
-  return { prescription, provenance: { ...spelling, defaulted: context.defaulted, ignored: context.ignored } };
+  const provenance: CanonicalProvenance = { ...spelling, defaulted: context.defaulted, ignored: context.ignored };
+  if (context.sources) provenance.sources = context.sources;
+  return { prescription, provenance };
 }
 
 /**

@@ -97,6 +97,7 @@ describe("V1/V2 fixture pairs", () => {
     for (const family of [
       "prime",
       "zoom",
+      "fixed-iris zoom",
       "focus keyframes",
       "published stations",
       "conjugates",

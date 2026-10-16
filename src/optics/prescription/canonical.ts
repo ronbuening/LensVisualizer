@@ -31,6 +31,7 @@ import type {
   SurfaceInteraction,
 } from "../../types/optics.js";
 import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
+import { itemPath, memberPath } from "./sourcePaths.js";
 
 /* ── Surfaces and media ── */
 
@@ -404,6 +405,61 @@ export interface V2Spelling {
   media: { canonicalId: string; id: string; name?: string }[];
 }
 
+/** Why ingest set an authored value aside in `CanonicalProvenance.ignored`. */
+export type IgnoredKind =
+  /** A stop's `sd` the engine does not read: its radius is derived from the f-number or taken from a schedule. */
+  | "stopRadius"
+  /** A zero aspheric term, which adds nothing to the sag. */
+  | "zeroTerm"
+  /** A flat radius written as a number, other than V1's own `1e15`. */
+  | "flatRadius"
+  /** An authored value the schema reads as its default, such as a zoom step of 0. */
+  | "defaultStandIn"
+  /** A conjugate's focus or zoom coordinate that names its keyframe or station within the validator's tolerance. */
+  | "stationCoordinate";
+
+/**
+ * Where ingest read what the prescription holds, recorded when the caller asks (`IngestRequest`): for the converter,
+ * which carries comments and literal text across, and for diagnostics that name an authored path. Paths are spelled as
+ * `sourcePaths.ts` spells them.
+ */
+export interface SourcePaths {
+  /**
+   * Canonical path of each value or copied subtree → the authored path ingest read it from. A path below a copied
+   * subtree was read from the same place below the subtree's source. An index, flag or reference ingest computes is
+   * not read, so it has no entry here.
+   */
+  read: Record<string, string>;
+  /** Canonical path of each record or container ingest builds from an authored one → that record or container. */
+  records: Record<string, string>;
+  /**
+   * Authored path of each value the prescription holds in another form → the canonical path that holds it: a second
+   * copy ingest checks and does not keep (a V1 surface's `nd`, held by its `medium`), or the source of an index, flag
+   * or reference ingest computes (a V1 conjugate's `focusT`, held by its `keyframe`).
+   */
+  heldBy: Record<string, string>;
+  /** Canonical path of each value in `CanonicalProvenance.ignored` → its authored path and why ingest set it aside. */
+  ignored: Record<string, { from: string; kind: IgnoredKind }>;
+  /**
+   * Authored path of each container the canonical form dissolves → the canonical path its comments move to: V1's
+   * `var` and `varLabels` → `gaps`, or `focus` when they hold no gap, `asph` → `surfaces`, the per-station lists →
+   * `zoom.stations`, `publishedStations` → `focus.published` on a prime and `zoom.stations` on a zoom, the ring's `var`
+   * and `varLabels` → `aberrationControl.gaps`, and each label pair in either → the gap it names.
+   */
+  homes: Record<string, string>;
+  /**
+   * A V1 file's first top-level field as written, whatever it holds, whose leading comments lead `schema` in the V2
+   * file (ruling 10). Recorded for a V1 source alone: a V2 source keeps its comments at their paths.
+   */
+  firstField?: string;
+}
+
+/** What a caller asks of ingest beyond the prescription and its provenance. */
+export interface IngestRequest {
+  /** Record where each value was read from, in `CanonicalProvenance.sources`. */
+  sources?: boolean;
+}
+
 export interface CanonicalProvenance {
   /** Authored format the prescription was ingested from. */
   format: 1 | 2;
@@ -425,6 +481,8 @@ export interface CanonicalProvenance {
   v1?: V1Spelling;
   /** Present on a V2 file. */
   v2?: V2Spelling;
+  /** Present when the caller asked for source paths. */
+  sources?: SourcePaths;
 }
 
 /** A prescription with its provenance, as ingest returns it. */
@@ -433,6 +491,43 @@ export interface IngestedPrescription<Prescription extends CanonicalPrescription
   provenance: CanonicalProvenance;
   /** Composition identity and plate placement, outside authored prescription semantics. */
   attachedTeleconverter?: LensData["attachedTeleconverter"];
+}
+
+/**
+ * The first place two prescriptions differ, under the semantic fingerprint's rules: numbers bit for bit, except that
+ * -0 is 0; member order is ignored, and a member whose value is `undefined` counts as absent; list order counts.
+ *
+ * @param a - a canonical prescription, or any part of one
+ * @param b - another
+ * @param at - path of the two values, for the answer
+ * @returns the path of the first difference and the two values there, or `undefined` when they are the same
+ */
+export function prescriptionDifference(a: unknown, b: unknown, at = ""): string | undefined {
+  const describe = (value: unknown) => (Object.is(value, -0) ? "-0" : (JSON.stringify(value) ?? String(value)));
+  const differ = () => `${at || "(root)"}: ${describe(a)} ≠ ${describe(b)}`;
+  if (typeof a === "number" && typeof b === "number") {
+    return Object.is(a === 0 ? 0 : a, b === 0 ? 0 : b) ? undefined : differ();
+  }
+  if (a === null || b === null || typeof a !== "object" || typeof b !== "object") {
+    return Object.is(a, b) ? undefined : differ();
+  }
+  if (Array.isArray(a) !== Array.isArray(b)) return differ();
+  if (Array.isArray(a) && Array.isArray(b)) {
+    if (a.length !== b.length) return `${at || "(root)"}: ${a.length} items ≠ ${b.length} items`;
+    for (let index = 0; index < a.length; index++) {
+      const found = prescriptionDifference(a[index], b[index], itemPath(at, index));
+      if (found) return found;
+    }
+    return undefined;
+  }
+  const left = a as Record<string, unknown>;
+  const right = b as Record<string, unknown>;
+  const keys = [...new Set([...Object.keys(left), ...Object.keys(right)])].sort();
+  for (const key of keys) {
+    const found = prescriptionDifference(left[key], right[key], memberPath(at, key));
+    if (found) return found;
+  }
+  return undefined;
 }
 
 /** An authored file that cannot be represented canonically, with every reason found. */

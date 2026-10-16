@@ -20,6 +20,9 @@
  * Ingest does not otherwise check types, and may fail on wrong-typed input with a plain `TypeError`; `buildLens` asks
  * the validator about every V1 file first. The validator reads `asph: null` and `var: null` as absent, which is why
  * ingest refuses those two by name. The input is never modified, and the result shares no object with it.
+ *
+ * Asked for source paths, ingest records where it read each value as it reads it (`SourcePaths`): the converter
+ * carries a V1 file's comments and literal text to V2 by them. The V1 containers V2 dissolves name their homes here.
  */
 
 import type {
@@ -48,6 +51,8 @@ import {
   type CanonicalZoom,
   type CanonicalZoomStation,
   type IngestedPrescription,
+  type IngestRequest,
+  type SourcePaths,
   type StopRadiusAuthority,
   type V1PublishedStationsSpelling,
   type V1Spelling,
@@ -62,13 +67,16 @@ import {
   isNumberList,
   isRecord,
   put,
+  recordReads,
   refuseUnknownFields,
   requireFields,
   requireRecords,
+  sourcePathsFor,
   takeDefault,
   type IngestContext as SharedIngestContext,
   type Untyped,
 } from "./ingestCommon.js";
+import { itemPath, labelPath } from "./sourcePaths.js";
 
 /** Radius the V1 format writes for a flat surface; any other flat radius is kept in provenance. */
 export const V1_FLAT_RADIUS = 1e15;
@@ -243,8 +251,11 @@ interface IngestContext extends SharedIngestContext {
   readonly v1: V1Spelling;
 }
 
-function createContext(): IngestContext {
-  return { format: "V1", issues: [], defaulted: [], ignored: {}, v1: { emptyContainers: [] } };
+function createContext(request: IngestRequest | undefined, data: Untyped): IngestContext {
+  const sources = sourcePathsFor(request);
+  /* The first field as written, whatever it holds (ruling 10): its leading comments lead the V2 file's `schema`. */
+  if (sources) sources.firstField = Object.keys(data)[0];
+  return { format: "V1", issues: [], defaulted: [], ignored: {}, v1: { emptyContainers: [] }, sources };
 }
 
 /**
@@ -257,7 +268,9 @@ function createContext(): IngestContext {
  * @returns the value the prescription holds
  */
 function withDefault(record: Untyped, row: SchemaDefault, base: string, context: IngestContext): unknown {
-  return takeDefault(record[row.v1Field], row, base ? `${base}.${row.path}` : row.path, context);
+  /* An element's and a plate's defaulted fields keep their V1 names; the lens's own move into groups. */
+  if (base) return takeDefault(record[row.v1Field], row, `${base}.${row.path}`, context);
+  return takeDefault(record[row.v1Field], row, row.path, context, row.v1Field);
 }
 
 function lensDefault(path: string): SchemaDefault {
@@ -267,6 +280,29 @@ function lensDefault(path: string): SchemaDefault {
 }
 
 /* ── Elements ── */
+
+/** Element members read as written, under their canonical names; the defaulted ones are read through `withDefault`. */
+const ELEMENT_READ_FIELDS = [
+  "id",
+  "name",
+  "label",
+  "type",
+  "nd",
+  "vd",
+  "indexReferenceNote",
+  "focalLengthMm",
+  "glass",
+  "apdNote",
+  "role",
+  "diagramLabel",
+  "maxSdRatio",
+  "absorptionCoefficientPerMm",
+  "cemented",
+  "dPgF",
+  "nC",
+  "nF",
+  "ng",
+];
 
 function ingestElement(element: Untyped, index: number, context: IngestContext): CanonicalElement {
   const at = `elements[${index}]`;
@@ -299,10 +335,21 @@ function ingestElement(element: Untyped, index: number, context: IngestContext):
     const [set, missing] = from ? ["fromSurface", "toSurface"] : ["toSurface", "fromSurface"];
     context.issues.push(`${at}.${set} is set without ${at}.${missing}, and one alone has no span`);
   }
+  if (context.sources) {
+    context.sources.records[at] = at;
+    recordReads(context.sources, at, at, out, ELEMENT_READ_FIELDS, { focalLengthMm: "fl" });
+    if (out.span) {
+      context.sources.read[`${at}.span[0]`] = `${at}.fromSurface`;
+      context.sources.read[`${at}.span[1]`] = `${at}.toSurface`;
+    }
+  }
   return out as unknown as CanonicalElement;
 }
 
 /* ── Surfaces, media and aspheres ── */
+
+/** Surface members read as written; the radius is read whether or not it is flat, and the medium is computed. */
+const SURFACE_READ_FIELDS = ["label", "R", "d", "sd", "innerSd", "stopPlacement", "interaction", "diffractive"];
 
 interface IngestedSurfaces {
   surfaces: CanonicalSurface[];
@@ -347,7 +394,10 @@ function ingestSurfaces(
     const radius = surface.R;
     if (typeof radius === "number" && Math.abs(radius) > FLAT_R_THRESHOLD) {
       out.R = FLAT_RADIUS;
-      if (!Object.is(radius, V1_FLAT_RADIUS)) context.ignored[`${at}.R`] = radius;
+      if (!Object.is(radius, V1_FLAT_RADIUS)) {
+        context.ignored[`${at}.R`] = radius;
+        if (context.sources) context.sources.ignored[`${at}.R`] = { from: `${at}.R`, kind: "flatRadius" };
+      }
     } else {
       out.R = radius;
     }
@@ -355,7 +405,10 @@ function ingestSurfaces(
 
     const isDerivedStop = surface.label === "STO" && stopAuthority !== "authored";
     if (isDerivedStop) {
-      if (surface.sd !== undefined) context.ignored[`${at}.sd`] = surface.sd;
+      if (surface.sd !== undefined) {
+        context.ignored[`${at}.sd`] = surface.sd;
+        if (context.sources) context.sources.ignored[`${at}.sd`] = { from: `${at}.sd`, kind: "stopRadius" };
+      }
     } else {
       put(out, "sd", surface.sd);
     }
@@ -372,6 +425,8 @@ function ingestSurfaces(
         if (!medium) {
           medium = { id: `m${media.length + 1}`, nd: nd as number };
           media.push(medium);
+          /* The first surface to name a medium gives it its index. */
+          if (context.sources) context.sources.read[`media[${media.length - 1}].nd`] = `${at}.nd`;
         }
         out.medium = medium.id;
       }
@@ -393,6 +448,13 @@ function ingestSurfaces(
     put(out, "stopPlacement", surface.stopPlacement);
     put(out, "interaction", surface.interaction);
     put(out, "diffractive", surface.diffractive);
+    if (context.sources) {
+      context.sources.records[at] = at;
+      recordReads(context.sources, at, at, out, SURFACE_READ_FIELDS);
+      /* The medium says once what `elemId` and `nd` say twice. */
+      context.sources.heldBy[`${at}.elemId`] = `${at}.medium`;
+      context.sources.heldBy[`${at}.nd`] = `${at}.medium`;
+    }
     return out as unknown as CanonicalSurface;
   });
 
@@ -402,13 +464,16 @@ function ingestSurfaces(
     const asph = data.asph as Untyped;
     const labels = Object.keys(asph).filter((label) => asph[label] !== undefined);
     if (labels.length === 0) context.v1.emptyContainers.push("asph");
+    if (context.sources) context.sources.homes.asph = "surfaces";
     for (const label of labels) {
       const index = labelIndex.get(label);
+      const where = labelPath("asph", label);
       if (index === undefined) {
-        context.issues.push(`asph["${label}"]: no surface is labelled "${label}"`);
+        context.issues.push(`${where}: no surface is labelled "${label}"`);
         continue;
       }
-      surfaces[index].asphere = ingestAsphere(asph[label], `surfaces[${index}].asphere`, `asph["${label}"]`, context);
+      surfaces[index].asphere = ingestAsphere(asph[label], `surfaces[${index}].asphere`, where, context);
+      if (context.sources) context.sources.records[`surfaces[${index}].asphere`] = where;
     }
   }
 
@@ -425,19 +490,21 @@ function ingestSurfaces(
  *
  * @param ranges - label-keyed ranges as authored
  * @param labels - authored `[label, text]` pairs, if any
- * @param where - V1 field names for messages: the ranges' and the labels'
+ * @param where - V1 paths of the ranges and the labels, and the canonical path of the gaps they become
  * @param labelIndex - surface index of each label
- * @param context - collects issues
+ * @param context - collects issues, and the source of each gap record and display label when asked
  * @returns one entry per range, with its display label, in surface order
  */
 function pairGaps<Values>(
   ranges: Untyped,
   labels: unknown,
-  where: { ranges: string; labels: string },
+  where: { ranges: string; labels: string; gaps: string },
   labelIndex: ReadonlyMap<string, number>,
   context: IngestContext,
 ): { surface: string; label?: string; values: Values }[] {
   const text = new Map<string, string>();
+  /* Where each display label was written, kept only for the source paths a caller asked for. */
+  const textAt = context.sources ? new Map<string, number>() : undefined;
   let previous: { label: string; at: number } | undefined;
   if (labels !== undefined && !Array.isArray(labels)) context.issues.push(`${where.labels} must be a list`);
   for (const [at, pair] of (Array.isArray(labels) ? labels : []).entries()) {
@@ -450,6 +517,7 @@ function pairGaps<Values>(
       context.issues.push(`${where.labels}[${at}] labels "${label}", which has no ${where.ranges} entry`);
     } else {
       text.set(label, value);
+      textAt?.set(label, at);
       const index = labelIndex.get(label);
       const previousIndex = previous && labelIndex.get(previous.label);
       if (index !== undefined && previousIndex !== undefined && index < previousIndex) {
@@ -463,17 +531,29 @@ function pairGaps<Values>(
   }
   const surfaceLabels = Object.keys(ranges).filter((label) => ranges[label] !== undefined);
   for (const label of surfaceLabels) {
-    if (!labelIndex.has(label)) context.issues.push(`${where.ranges}["${label}"]: no surface is labelled "${label}"`);
+    if (!labelIndex.has(label)) {
+      context.issues.push(`${labelPath(where.ranges, label)}: no surface is labelled "${label}"`);
+    }
   }
   return surfaceLabels
     .filter((label) => labelIndex.has(label))
     .sort((a, b) => labelIndex.get(a)! - labelIndex.get(b)!)
-    .map((label) => {
+    .map((label, index) => {
       const gap: { surface: string; label?: string; values: Values } = {
         surface: label,
         values: copy(ranges[label]) as Values,
       };
       if (text.has(label)) gap.label = text.get(label);
+      if (context.sources && textAt) {
+        const at = itemPath(where.gaps, index);
+        context.sources.records[at] = labelPath(where.ranges, label);
+        if (text.has(label)) {
+          /* A pair dissolves into the gap it names: its text is the gap's label, and its comments lead the gap. */
+          const pair = `${where.labels}[${textAt.get(label)}]`;
+          context.sources.read[`${at}.label`] = `${pair}[1]`;
+          context.sources.homes[pair] = at;
+        }
+      }
       return gap;
     });
 }
@@ -492,10 +572,22 @@ function ingestGaps(
     context.v1.emptyContainers.push("var");
   }
   if (Array.isArray(data.varLabels) && data.varLabels.length === 0) context.v1.emptyContainers.push("varLabels");
-  const gaps = pairGaps<unknown>(ranges, data.varLabels, { ranges: "var", labels: "varLabels" }, labelIndex, context);
+  const gaps = pairGaps<unknown>(
+    ranges,
+    data.varLabels,
+    { ranges: "var", labels: "varLabels", gaps: "gaps" },
+    labelIndex,
+    context,
+  );
+  if (context.sources) {
+    /* A `var` that holds no gap dissolves into nothing V2 writes; its comments lead `focus`, which they describe. */
+    const home = gaps.length > 0 ? "gaps" : "focus";
+    if (has(data, "var")) context.sources.homes.var = home;
+    if (data.varLabels !== undefined) context.sources.homes.varLabels = home;
+  }
 
-  return gaps.map((gap) => {
-    const where = `var["${gap.surface}"]`;
+  return gaps.map((gap, index) => {
+    const where = labelPath("var", gap.surface);
     /* A prime authors one thickness per focus keyframe, a zoom one such row per station; both become rows. */
     const rows = isZoom ? gap.values : [gap.values];
     if (!Array.isArray(rows) || !rows.every(isNumberList)) {
@@ -504,6 +596,8 @@ function ingestGaps(
       );
       return { ...gap, values: [] };
     }
+    /* A prime's list is the one row of its gap. */
+    if (context.sources) context.sources.read[isZoom ? `gaps[${index}].values` : `gaps[${index}].values[0]`] = where;
     const surface = surfaces[labelIndex.get(gap.surface)!];
     if (rows.length > 0 && rows[0].length > 0 && rows[0][0] !== surface.d) {
       context.issues.push(
@@ -514,6 +608,8 @@ function ingestGaps(
     return { ...gap, values: rows } as CanonicalGap;
   });
 }
+
+const ABERRATION_CONTROL_READ_FIELDS = ["label", "description", "minLabel", "centerLabel", "maxLabel", "step"];
 
 function ingestAberrationControl(
   control: Untyped,
@@ -526,17 +622,37 @@ function ingestAberrationControl(
   if (Array.isArray(control.varLabels) && control.varLabels.length === 0) {
     context.v1.emptyContainers.push("aberrationControl.varLabels");
   }
-  out.gaps = pairGaps<CanonicalAberrationGap["values"]>(
+  const gaps = pairGaps<CanonicalAberrationGap["values"]>(
     (control.var ?? {}) as Untyped,
     control.varLabels,
-    { ranges: "aberrationControl.var", labels: "aberrationControl.varLabels" },
+    { ranges: "aberrationControl.var", labels: "aberrationControl.varLabels", gaps: "aberrationControl.gaps" },
     labelIndex,
     context,
   );
+  out.gaps = gaps;
+  if (context.sources) {
+    const sources = context.sources;
+    sources.records.aberrationControl = "aberrationControl";
+    recordReads(sources, "aberrationControl", "aberrationControl", out, ABERRATION_CONTROL_READ_FIELDS);
+    if (control.var !== undefined) sources.homes["aberrationControl.var"] = "aberrationControl.gaps";
+    if (control.varLabels !== undefined) sources.homes["aberrationControl.varLabels"] = "aberrationControl.gaps";
+    gaps.forEach((gap, index) => {
+      sources.read[`aberrationControl.gaps[${index}].values`] = labelPath("aberrationControl.var", gap.surface);
+    });
+  }
   return out as unknown as CanonicalAberrationControl;
 }
 
 /* ── Zoom stations, focus and published stations ── */
+
+/**
+ * Record that a station's member was read from an item of a per-station list. The list dissolves into the station
+ * records, which is where its comments go.
+ */
+function readFromList(sources: SourcePaths, field: string, member: string, station: number, at: number): void {
+  sources.homes[field] = "zoom.stations";
+  sources.read[`zoom.stations[${station}].${member}`] = itemPath(field, at);
+}
 
 /** Fields that need zoom stations to live on. */
 const ZOOM_ONLY_FIELDS = ["zoomStopSemiDiameters", "zoomCloseFocusM", "zoomLabels", "zoomApertureModel", "zoomStep"];
@@ -560,6 +676,9 @@ function ingestZoom(data: Untyped, context: IngestContext): CanonicalZoom | unde
   const count = positions.length;
   /* `ingestPublishedStations` gives every station its published flags. */
   const stations = positions.map((focalLengthMm) => ({ focalLengthMm }) as CanonicalZoomStation);
+  const sources = context.sources;
+  if (sources)
+    positions.forEach((_, station) => readFromList(sources, "zoomPositions", "focalLengthMm", station, station));
   const perStation = (field: string, member: keyof CanonicalZoomStation) => {
     const values = data[field];
     if (values === undefined) return;
@@ -567,7 +686,10 @@ function ingestZoom(data: Untyped, context: IngestContext): CanonicalZoom | unde
       context.issues.push(`${field} must hold one value per zoom station (${count})`);
       return;
     }
-    values.forEach((value, station) => put(stations[station] as unknown as Untyped, member, value));
+    values.forEach((value, station) => {
+      put(stations[station] as unknown as Untyped, member, value);
+      if (sources && value !== undefined) readFromList(sources, field, member, station, station);
+    });
   };
   if (Array.isArray(data.nominalFno)) perStation("nominalFno", "nominalFNumber");
   perStation("zoomStopSemiDiameters", "stopSemiDiameter");
@@ -578,10 +700,17 @@ function ingestZoom(data: Untyped, context: IngestContext): CanonicalZoom | unde
     if (!Array.isArray(labels) || !(labels.length === count || labels.length === 2)) {
       context.issues.push(`zoomLabels must be [wide, tele] or one label per zoom station (${count})`);
     } else if (labels.length === count) {
-      labels.forEach((label, station) => (stations[station].label = label));
+      labels.forEach((label, station) => {
+        stations[station].label = label;
+        if (sources) readFromList(sources, "zoomLabels", "label", station, station);
+      });
     } else {
       stations[0].label = labels[0];
       stations[count - 1].label = labels[1];
+      if (sources) {
+        readFromList(sources, "zoomLabels", "label", 0, 0);
+        readFromList(sources, "zoomLabels", "label", count - 1, 1);
+      }
     }
   }
 
@@ -630,14 +759,32 @@ function ingestConjugates(
     /* The engine matches a conjugate to its station within the tolerance and never reads the coordinate itself. */
     if (keyframe >= 0 && !Object.is(keyframes[keyframe], focusT)) context.ignored[`${at}.focusT`] = focusT;
     if (zoomStation >= 0 && !Object.is(stationCoordinates[zoomStation], zoomT)) context.ignored[`${at}.zoomT`] = zoomT;
-    return {
+    const out = {
       zoomStation,
       keyframe,
       objectDistanceMm: conjugate.objectDistanceMm as number,
       distanceReference: conjugate.distanceReference as CanonicalConjugate["distanceReference"],
       source: conjugate.source as string,
     };
+    if (context.sources) recordConjugate(context.sources, index, at, context.ignored);
+    return out;
   });
+}
+
+/** Where a conjugate was read from: its coordinates become the indices that hold them, and set-aside ones say why. */
+function recordConjugate(sources: SourcePaths, index: number, at: string, ignored: Readonly<Record<string, unknown>>) {
+  const from = `finiteConjugates[${index}]`;
+  sources.records[at] = from;
+  for (const field of ["objectDistanceMm", "distanceReference", "source"]) {
+    sources.read[`${at}.${field}`] = `${from}.${field}`;
+  }
+  sources.heldBy[`${from}.focusT`] = `${at}.keyframe`;
+  sources.heldBy[`${from}.zoomT`] = `${at}.zoomStation`;
+  for (const coordinate of ["focusT", "zoomT"]) {
+    if (Object.hasOwn(ignored, `${at}.${coordinate}`)) {
+      sources.ignored[`${at}.${coordinate}`] = { from: `${from}.${coordinate}`, kind: "stationCoordinate" };
+    }
+  }
 }
 
 /** How a file wrote `publishedStations.zoom`: left out, written empty, or as a list of stations. */
@@ -683,6 +830,7 @@ function ingestPublishedStations(
   const { zoom: zoomList, focus: focusList } = declared;
   if (authored) {
     context.v1.publishedStations = { zoom: zoomListSpelling(zoomList), focus: focusListSpelling(focusList) };
+    if (context.sources) context.sources.homes.publishedStations = zoom ? "zoom.stations" : "focus.published";
   }
 
   if (!zoom) {
@@ -731,13 +879,14 @@ function ingestPublishedStations(
  * Ingest a V1 lens file.
  *
  * @param input - the file's default export, as authored: without catalog defaults, or with them already merged
+ * @param request - what to record beyond the prescription: source paths, for the converter
  * @returns the canonical prescription and its provenance
  * @throws PrescriptionIngestError naming every reason the canonical form cannot hold the file
  */
-export function ingestLensV1(input: LensDataInput): IngestedPrescription<CanonicalLens> {
+export function ingestLensV1(input: LensDataInput, request?: IngestRequest): IngestedPrescription<CanonicalLens> {
   const data = input as unknown as Untyped;
   const key = typeof data.key === "string" ? data.key : "?";
-  const context = createContext();
+  const context = createContext(request, data);
   refuseUnknownFields(data, LENS_FIELDS, "", context);
   requireFields(data, ["key", "name", "closeFocusM", "fstopSeries", "yScFill", "nominalFno"], "", context);
   const authoredElements = requireRecords(data, "elements", key);
@@ -837,7 +986,59 @@ export function ingestLensV1(input: LensDataInput): IngestedPrescription<Canonic
   lens.layout = layout;
   lens.rays = rays;
   lens.checks = checks;
+  if (context.sources) recordLensReads(context.sources, lens);
   return finish(key, lens as unknown as CanonicalLens, context, { format: 1, v1: context.v1 });
+}
+
+/** V1 names of the canonical members V1 keeps under another name or at the top level. */
+const V1_NAMES = {
+  focalLengthMm: { marketing: "focalLengthMarketing", design: "focalLengthDesign" },
+  fNumber: { marketing: "apertureMarketing", design: "apertureDesign" },
+  source: { authors: "patentAuthors", assignees: "patentAssignees", errata: "sourceErrata" },
+  focus: { closeFocusM: "closeFocusM", description: "focusDescription" },
+  aperture: {
+    nominalFNumber: "nominalFno",
+    fStops: "fstopSeries",
+    blades: "apertureBlades",
+    bladeRoundedness: "apertureBladeRoundedness",
+  },
+} as const;
+
+/** Record the members a V1 lens file keeps at its top level, where the prescription groups them. */
+function recordLensReads(sources: SourcePaths, lens: Untyped): void {
+  const { catalog, focus, aperture } = lens as { catalog: Untyped; focus: Untyped; aperture: Untyped };
+  sources.records[""] = "";
+  sources.records.elements = "elements";
+  sources.records.surfaces = "surfaces";
+  recordReads(sources, "", "", lens, ["key", "maker", "name", "subtitle", "publishedAt"]);
+  recordReads(sources, "", "", lens, ["projection", "opticalPath", "perspectiveControl", "groups", "doublets"]);
+  recordReads(sources, "catalog", "", catalog, [
+    "lensMounts",
+    "imageFormat",
+    "imageCircleMm",
+    "specs",
+    "elementCount",
+    "groupCount",
+    "acceptsTeleconverters",
+    "opticalConfiguration",
+  ]);
+  for (const range of ["focalLengthMm", "fNumber"] as const) {
+    if (!catalog[range]) continue;
+    recordReads(sources, `catalog.${range}`, "", catalog[range] as Untyped, ["marketing", "design"], V1_NAMES[range]);
+  }
+  recordSourceReads(sources, lens.source as Untyped);
+  recordReads(sources, "focus", "", focus, ["closeFocusM", "description"], V1_NAMES.focus);
+  if (focus.conjugates) sources.records["focus.conjugates"] = "finiteConjugates";
+  /* A single design f-number is the aperture's; a per-station list went to the stations. */
+  const apertureFields = ["nominalFNumber", "fStops", "blades", "bladeRoundedness"];
+  recordReads(sources, "aperture", "", aperture, apertureFields, V1_NAMES.aperture);
+  sources.read["layout.yScFill"] = "yScFill";
+}
+
+/** Record the members a V1 file keeps at its top level, where the prescription's `source` holds them. */
+function recordSourceReads(sources: SourcePaths, source: Untyped): void {
+  const fields = ["patentNumber", "patentYear", "authors", "assignees", "errata"];
+  recordReads(sources, "source", "", source, fields, V1_NAMES.source);
 }
 
 function ingestSource(data: Untyped): Untyped {
@@ -854,13 +1055,17 @@ function ingestSource(data: Untyped): Untyped {
  * Ingest a V1 teleconverter file. A converter takes no lens defaults; its elements and plates take theirs.
  *
  * @param input - the file's default export, as authored
+ * @param request - what to record beyond the prescription: source paths, for the converter
  * @returns the canonical prescription and its provenance
  * @throws PrescriptionIngestError naming every reason the canonical form cannot hold the file
  */
-export function ingestTeleconverterV1(input: TeleconverterData): IngestedPrescription<CanonicalTeleconverter> {
+export function ingestTeleconverterV1(
+  input: TeleconverterData,
+  request?: IngestRequest,
+): IngestedPrescription<CanonicalTeleconverter> {
   const data = input as unknown as Untyped;
   const key = typeof data.key === "string" ? data.key : "?";
-  const context = createContext();
+  const context = createContext(request, data);
   refuseUnknownFields(data, TELECONVERTER_FIELDS, "", context);
   requireFields(data, ["key", "name", "magnification", "lensMounts", "masterImageDistanceMm"], "", context);
   const authoredElements = requireRecords(data, "elements", key);
@@ -892,5 +1097,18 @@ export function ingestTeleconverterV1(input: TeleconverterData): IngestedPrescri
   if (has(data, "rearPlates")) converter.rearPlates = ingestRearPlates(data.rearPlates, context);
   put(converter, "groups", data.groups);
   put(converter, "doublets", data.doublets);
+  if (context.sources) {
+    const sources = context.sources;
+    sources.records[""] = "";
+    sources.records.elements = "elements";
+    sources.records.surfaces = "surfaces";
+    recordReads(sources, "", "", converter, ["key", "maker", "name", "subtitle", "visible", "publishedAt"]);
+    recordReads(sources, "", "", converter, ["magnification", "masterImageDistanceMm", "universal"]);
+    recordReads(sources, "", "", converter, ["minHostFNumber", "incompatibleLensKeys", "groups", "doublets"], {
+      minHostFNumber: "minHostFno",
+    });
+    recordReads(sources, "catalog", "", catalog, ["lensMounts", "specs", "elementCount", "groupCount"]);
+    recordSourceReads(sources, converter.source as Untyped);
+  }
   return finish(key, converter as unknown as CanonicalTeleconverter, context, { format: 1, v1: context.v1 });
 }
