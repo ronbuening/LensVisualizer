@@ -6,6 +6,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * A simple plano-concave Mangin-style mirror: rays enter a glass body through
  * the flat front surface, reflect from the silvered rear surface, and exit
  * through the same front surface from the rear side.
+ *
+ * Folded systems take their reference focal length from `focalLengthDesign`
+ * rather than a traced EFL, so it must match the optics: a flat-fronted Mangin
+ * mirror has f = |R| / (2n) = 220 / 3 ≈ 73.33 mm, with paraxial focus at z ≈ 33.33.
  */
 
 const LENS_DATA = {
@@ -14,10 +18,10 @@ const LENS_DATA = {
   visible: false,
   name: "REFERENCE Mangin Second-Surface Mirror",
   subtitle: "Hidden repeated-surface regression fixture",
-  specs: ["SECOND-SURFACE MIRROR", "REPEATED FRONT SURFACE", "n = 1.5"],
+  specs: ["SECOND-SURFACE MIRROR", "REPEATED FRONT SURFACE", "n = 1.5", "f = 73.3 mm"],
 
-  focalLengthMarketing: 90,
-  focalLengthDesign: 90,
+  focalLengthMarketing: 73,
+  focalLengthDesign: 73.33,
   apertureMarketing: 4,
   apertureDesign: 4,
   patentYear: 2026,
@@ -49,7 +53,7 @@ const LENS_DATA = {
       type: "Plano-Concave Second-Surface Mirror",
       nd: 1.5,
       vd: 60,
-      fl: 90,
+      fl: 73.33,
       glass: "Reference crown glass",
       apd: false,
       role: "Glass body whose rear surface reflects rays back through the entrance surface.",
