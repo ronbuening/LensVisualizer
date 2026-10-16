@@ -15,7 +15,8 @@
  * 5. under `--write`, and only when no input was refused, writes each converted text to a temp file beside its
  *    destination, keeps each input's bytes beside it, renames the temp files over the inputs (or links each to its
  *    `--output` destination), and removes the backups. A failure or a signal in that phase puts back every input
- *    already replaced (or removes every destination already written), removes what the run created, and exits 2.
+ *    already replaced (or removes every destination already written), removes what the run created, and exits 2. A
+ *    backup that cannot be removed once every input is replaced is a warning, and stays.
  *
  * Stdout is the conversion report and nothing else, the same bytes in every mode; status lines and the closing count
  * go to stderr.
@@ -337,8 +338,6 @@ async function writeConverted(fs, converted, inPlace, { pid, signals, warn }) {
         await checkSignal();
       }
     }
-    for (const backup of backups.values()) fs.unlinkSync(backup);
-    backups.clear();
   } catch (error) {
     const unrestored = [];
     for (const entry of replaced) {
@@ -379,6 +378,18 @@ async function writeConverted(fs, converted, inPlace, { pid, signals, warn }) {
     throw error;
   } finally {
     for (const name of ["SIGINT", "SIGTERM"]) signals.off(name, onSignal);
+  }
+  /*
+   * Every input is replaced, so the run is done: a backup that cannot be removed is a warning, and stays beside its
+   * input, which the next run refuses to touch until it is removed. Putting the inputs back for it would undo the
+   * run only part way, the other backups being gone.
+   */
+  for (const [entry, backup] of backups) {
+    try {
+      fs.unlinkSync(backup);
+    } catch (removeError) {
+      warn(`could not remove ${backup}, the backup of ${entry.path}, which is converted: ${removeError.message}`);
+    }
   }
 }
 

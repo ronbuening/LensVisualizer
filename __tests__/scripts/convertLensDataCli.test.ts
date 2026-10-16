@@ -458,6 +458,29 @@ describe("interrupted writes", () => {
     expect(handlers.size).toBe(0);
   });
 
+  it("a backup that cannot be removed once every input is replaced is a warning, and stays beside its input", async () => {
+    const directory = catalog();
+    const before = snapshot(directory);
+    const backup = join(directory, ".a.data.ts.7.convert-bak");
+    const fs = {
+      ...nodeFs,
+      unlinkSync: (path: string) => {
+        if (path === backup) throw new Error("injected unlink failure");
+        nodeFs.unlinkSync(path);
+      },
+    };
+    const run = await cli(["--input", directory, "--write"], { fs, pid: 7, typeCheck: NO_TYPE_CHECK });
+    expect(run.code).toBe(0);
+    expect(run.stderr).toContain(
+      `could not remove ${backup}, the backup of ${join(directory, "a.data.ts")}, which is converted: injected unlink failure`,
+    );
+    const after = snapshot(directory);
+    expect(Object.keys(after)).toEqual([".a.data.ts.7.convert-bak", "a.data.ts", "b.data.ts", "c.data.ts"]);
+    expect(after[".a.data.ts.7.convert-bak"]).toBe(before["a.data.ts"]);
+    for (const file of ["a.data.ts", "c.data.ts"]) expect(after[file]).toContain("schema: 2");
+    expect((await cli(["--input", directory])).stderr).toContain("a backup a run left, sits beside");
+  });
+
   it("under --output, a failed link removes every file and directory the run wrote", async () => {
     const directory = catalog();
     const output = join(temp(), "out", "deeper");

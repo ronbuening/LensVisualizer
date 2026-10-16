@@ -31,6 +31,7 @@ declare module "node:fs" {
   export function rmSync(path: string, options?: { recursive?: boolean; force?: boolean }): void;
   export function statSync(path: string): { isDirectory(): boolean };
   export function symlinkSync(target: string, path: string): void;
+  export function unlinkSync(path: string): void;
   export function writeFileSync(
     path: string | number,
     data: string | Uint8Array,
