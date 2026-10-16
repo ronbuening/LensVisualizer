@@ -83,7 +83,7 @@ flowchart LR
 
 - Direct source files: 24
 - Direct subfolders: 0
-- Main outbound areas: package:react (22), src/types (22), same folder (15), src/optics/perspective (8), src/optics/optics.ts (7), src/utils/state (5), src/optics/buildLens.ts (3), src/optics/raySampling.ts (3), +13 more
+- Main outbound areas: package:react (22), src/types (22), same folder (15), src/optics/perspective (8), src/optics/optics.ts (7), src/utils/state (5), src/optics/buildLens.ts (3), src/optics/raySampling.ts (3), +14 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/display, src/components/layout, src/components/relationshipMap, src/components/search
 
 ## Files
@@ -93,7 +93,7 @@ flowchart LR
 | `mtf.worker.ts` | Mtf helper module | src/types (2), same folder, src/optics/buildLens.ts, src/optics/compat.ts, src/optics/mtf.ts | none | none |
 | `mtfWorkerClient.ts` | Mtf Worker Client helper module | src/types (2), src/optics/buildLens.ts | same folder (2) | MtfJob, MtfWorkerRequest, MtfWorkerReply, MtfWorkerPort, MtfWorkerClient |
 | `offAxisRayUtils.ts` | Off Axis Ray Utils helper module | src/types (2), src/optics/aberration, src/optics/optics.ts, src/optics/projection.ts, src/utils/featureFlags.ts | same folder (2), src/benchmarks | OffAxisTraceGeometry, computeOffAxisTraceGeometry |
-| `raySegmentUtils.ts` | Ray Segment Utils helper module | same folder, src/types | same folder (3), src/benchmarks | compileRaySegment, filterChannels |
+| `raySegmentUtils.ts` | Ray Segment Utils helper module | same folder, src/optics/chromatic, src/types | same folder (3), src/benchmarks | compileRaySegment, filterChannels |
 | `useChromaticRays.ts` | React hook module | same folder (3), src/optics/perspective (2), src/types (2), package:react, src/optics/optics.ts, +1 more | same folder, src/benchmarks, src/components/layout | ChromaticRaySegment, default, useChromaticRays |
 | `useDismissableDropdown.ts` | React hook module | package:react | src/components/layout, src/components/relationshipMap, src/components/search | default, useDismissableDropdown |
 | `useDispatchAdapters.ts` | React hook module | src/types (2), src/utils/state (2), package:react | src/comparison, src/components/layout | DispatchAdapters, default, useDispatchAdapters |

@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
   CHROMATIC_CHANNEL_METADATA,
+  CHROMATIC_CHANNEL_WAVELENGTH_NM,
+  E_LINE_CHANNEL_WAVELENGTH_NM,
   CHROMATIC_CHANNEL_ORDER,
   chromaticChannelDescription,
   chromaticChannelIndexLabel,
@@ -9,6 +11,10 @@ import {
   lensChromaticReference,
 } from "../../../../src/optics/chromatic/channels.js";
 
+import { CHROMATIC_CHANNEL_WAVELENGTH_NM as publicWavelengths } from "../../../../src/optics/constants.js";
+import { CHANNEL_WAVELENGTH_NM_2 as resolverWavelengths } from "../../../../src/optics/chromatic/indexResolver.js";
+import { LINE_NM } from "../../../../src/optics/spectralLines.js";
+
 describe("chromatic channel metadata", () => {
   it("keeps the public channel order and spectral-line labels stable", () => {
     expect(CHROMATIC_CHANNEL_ORDER).toEqual(["R", "G", "B", "V"]);
@@ -16,6 +22,13 @@ describe("chromatic channel metadata", () => {
     expect(chromaticChannelWavelengthLabel("G")).toBe("d-line 587.6 nm");
     expect(chromaticChannelWavelengthLabel("B")).toBe("F-line 486.1 nm");
     expect(chromaticChannelWavelengthLabel("V")).toBe("g-line 435.8 nm");
+  });
+
+  it("shares the trace wavelengths while retaining the native e-line material wavelengths", () => {
+    expect(publicWavelengths).toBe(CHROMATIC_CHANNEL_WAVELENGTH_NM);
+    expect(resolverWavelengths).toBe(CHROMATIC_CHANNEL_WAVELENGTH_NM);
+    expect(Object.values(publicWavelengths)).toEqual([LINE_NM.C, LINE_NM.d, LINE_NM.F, LINE_NM.g]);
+    expect(Object.values(E_LINE_CHANNEL_WAVELENGTH_NM)).toEqual([LINE_NM.CPrime, LINE_NM.e, LINE_NM.FPrime, LINE_NM.g]);
   });
 
   it("maps display channels to index labels used by inspector readouts", () => {

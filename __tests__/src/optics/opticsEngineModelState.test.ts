@@ -13,7 +13,7 @@ import { buildVariableStopGapLens, teleconverterHostData, teleconverterZoomHostD
 import buildLens from "../../../src/optics/buildLens.js";
 import { doLayout, thick } from "../../../src/optics/optics.js";
 import { buildLens2, engineLensFromRuntime, prepareRuntimeState } from "../../../src/optics/compat.js";
-import { compileSurfaceDispersions } from "../../../src/optics/prescription/compileMaterials.js";
+import { compileSurfaceDispersions } from "../../../src/optics/chromatic/dispersionTable.js";
 import { compileLensData } from "../../../src/optics/prescription/compile.js";
 import { prepareState, prepareStateUncached, stateWithZ } from "../../../src/optics/state/preparedGeometry.js";
 import { evaluateSellmeier, LINE_NM, resolveGlass } from "../../../src/optics/glassCatalog.js";

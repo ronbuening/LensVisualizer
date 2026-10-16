@@ -14,9 +14,8 @@
  * Nothing outside tests spreads this table: lens data gets its defaults through ingest and the V1 view. Authored
  * validation reads individual omitted catalog fields from their rows before ingest, without building a merged object.
  *
- * Known reader disagreements, left as they are (OPTICS_ENGINE_REWRITE_SPEC.md, S2.P4.T1 spec–code contradictions):
- * `buildLens` reads `lensShiftFrac || 0`, and the chromatic ray-fan summary reads `L.offAxisFieldFrac ?? 0.7`.
- * Neither fallback is reached on catalog data, which always carries the merged value.
+ * The compiler and chromatic ray-fan summary read `lensShiftFrac` and `offAxisFieldFrac` directly: ingest
+ * supplies their catalog defaults before either reader runs.
  */
 
 import { DEFAULT_MAX_RIM_ANGLE_DEG } from "../geometry/surfaceProfile.js";
@@ -126,7 +125,7 @@ export const LENS_SCHEMA_DEFAULTS: readonly SchemaDefault[] = [
     v1Field: "lensShiftFrac",
     value: 0.08,
     v1Applied: "catalog",
-    reader: `${BUILD_LENS}: data.lensShiftFrac || 0`,
+    reader: `${BUILD_LENS} and src/optics/prescription/compileCanonical.ts: data.lensShiftFrac`,
   },
   {
     path: "rays.rayFractions",
@@ -147,7 +146,7 @@ export const LENS_SCHEMA_DEFAULTS: readonly SchemaDefault[] = [
     v1Field: "offAxisFieldFrac",
     value: 0.6,
     v1Applied: "catalog",
-    reader: `${BUILD_LENS}: data.offAxisFieldFrac; src/optics/analysis/chromatic.ts: L.offAxisFieldFrac ?? 0.7`,
+    reader: `${BUILD_LENS}: data.offAxisFieldFrac; src/optics/analysis/chromatic.ts: L.offAxisFieldFrac`,
   },
   {
     path: "rays.offAxisFractions",
@@ -180,7 +179,7 @@ export const ELEMENT_SCHEMA_DEFAULTS: readonly SchemaDefault[] = [
     value: "d",
     v1Applied: "engine",
     reader:
-      'src/optics/dispersion.ts makeSurfaceDispersion and src/optics/chromatic/*: indexReference === "e"; ' +
+      'src/optics/chromatic/materialResolver.ts makeSurfaceDispersion and src/optics/chromatic/*: indexReference === "e"; ' +
       'src/components/display/ElementInspector.tsx and src/optics/analysis/mtfSupport.ts: indexReference ?? "d"',
   },
   {
