@@ -199,6 +199,14 @@ export function commentNotCarried(sourceComments, outputComments) {
   return `the converted file holds a comment its source does not, or holds one twice: ${firstLine(extra)}`;
 }
 
+/** Whether two lists of comment texts hold the same texts as many times each, in any order. */
+function sameComments(left, right) {
+  if (left.length !== right.length) return false;
+  const sorted = (texts) => [...texts].sort();
+  const [a, b] = [sorted(left), sorted(right)];
+  return a.every((text, index) => text === b[index]);
+}
+
 /**
  * The first comment the printed text gives another node or placement than the placer did, or the first it holds that
  * the placer placed nowhere. The reader attaches a comment by position, so the printer's layout is what a second
@@ -223,9 +231,17 @@ export function commentMisplaced(byPath, printedComments) {
   for (const [path, slots] of byPath) {
     for (const placement of ["leading", "trailing", "dangling"]) {
       const at = read.get(`${path}\u0000${placement}`) ?? [];
+      /* The slot holds the comments placed in it, only in another order. */
+      const reordered = sameComments(
+        at,
+        slots[placement].map((comment) => comment.text),
+      );
       for (const [index, { text }] of slots[placement].entries()) {
         count++;
         if (at[index] === text) continue;
+        if (reordered) {
+          return `the printed file holds the ${placement} comments of ${path || "(root)"} in another order: ${firstLine(text)}`;
+        }
         const found = printed.find((comment) => comment.text === text);
         const there = found ? place(found.path, found.placement) : "nothing";
         return `the printed file reads ${place(path, placement)} as ${there}: ${firstLine(text)}`;

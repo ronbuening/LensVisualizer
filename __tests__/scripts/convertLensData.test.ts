@@ -300,6 +300,9 @@ describe("printing a converted file", () => {
     expect(commentMisplaced(placed, [read("name", "trailing", "/* a */"), read("subtitle", "leading", "// b")])).toBe(
       "the printed file reads the trailing comment of name as the leading comment of subtitle: // b",
     );
+    expect(commentMisplaced(placed, [read("name", "trailing", "// b"), read("name", "trailing", "/* a */")])).toBe(
+      "the printed file holds the trailing comments of name in another order: /* a */",
+    );
     expect(
       commentMisplaced(placed, [
         read("name", "trailing", "/* a */"),
