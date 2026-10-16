@@ -337,6 +337,13 @@ describe("printing a converted file", () => {
     for (const text of ["// rest", "//", "/* ── Zoom ── */", "/* two\n * lines */"]) {
       expect(movedNote(movedCommentText(text, "zoomPositions"))).toEqual({ from: "zoomPositions", text });
     }
+    /* Any path the engine spells: a quoted key may hold spaces, parentheses and escaped quotes. */
+    for (const from of ['var["STO (iris)"]', 'asph["a\\"b"].K', '["odd key"]', "zoom.stations[1].published"]) {
+      expect(movedNote(movedCommentText("// rest", from))).toEqual({ from, text: "// rest" });
+    }
+    /* Text with no whitespace after its delimiter comes back with the space the note put there. */
+    expect(movedNote(movedCommentText("//x", "var"))).toEqual({ from: "var", text: "// x" });
+    expect(movedNote(movedCommentText("/**doc */", "var"))).toEqual({ from: "var", text: "/* *doc */" });
     for (const text of [
       "//(moved from var) x",
       "// (Moved from var) x",
