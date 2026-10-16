@@ -19,7 +19,8 @@
  *
  * A node's trailing comments share its line: its one-line block comments first, then at most one comment that ends
  * the line, a line comment or a block comment spanning lines. A further one, when two such comments come to one node,
- * leads that node, after its own leading comments, in source order.
+ * leads that node, after its own leading comments, in source order. A node's own comments lead it before any run
+ * moved to it, so that a moved-from note is followed by its run alone.
  */
 
 /** Whether a comment opens with a moved-from note, in any spelling: a comment that does takes no second one. */
@@ -138,7 +139,7 @@ export function placeComments({ comments, commentTarget, textKept, isContainer }
       const text = inRun && !isDirective(comment.text) ? comment.text : movedCommentText(comment.text, comment.path);
       moved.push({ from: comment.path, to: target.path, line: comment.line, text: comment.text });
       const placement = target.path === "" ? "dangling" : "leading";
-      slot(target.path)[placement].push({ text, pos: comment.pos, blankBefore: false });
+      slot(target.path)[placement].push({ text, pos: comment.pos, blankBefore: false, moved: true });
       run = { from: comment.path, to: target.path };
       continue;
     }
@@ -150,7 +151,8 @@ export function placeComments({ comments, commentTarget, textKept, isContainer }
     for (const list of Object.values(entry)) list.sort((a, b) => a.pos - b.pos);
     const enders = entry.trailing.filter(endsLine);
     entry.trailing = [...entry.trailing.filter((comment) => !endsLine(comment)), ...enders.slice(0, 1)];
-    entry.leading.push(...enders.slice(1));
+    const moved = entry.leading.filter((comment) => comment.moved);
+    entry.leading = [...entry.leading.filter((comment) => !comment.moved), ...enders.slice(1), ...moved];
   }
   return { byPath, moved, unattached };
 }

@@ -1289,7 +1289,8 @@ The stop radius has exactly one authority per lens:
     `(moved from <V1 path>)` inside the comment, unless it already begins so, and listed in the conversion report. A
     run of consecutive comments moved together from one V1 path takes the prefix once, on its first comment, except a
     directive (`// prettier-ignore`), which takes its own, so no moved comment is a bare directive; the report lists
-    every comment of the run.
+    every comment of the run. A node's own comments lead it before every run moved to it, so that a note is followed
+    by its run alone.
   - A node's trailing comments share its line: its one-line block comments first, then at most one comment that ends
     the line (a line comment, or a block comment spanning lines). When two such comments come to one node, as a V1
     surface's `nd` and `elemId` both come to its `medium`, the first trails the node and each later one leads it,
@@ -1326,7 +1327,9 @@ The stop radius has exactly one authority per lens:
     no other text: any other note, or one that names a node not written from inside, is comment text.
   - "Written from inside" a node: a V1 node whose value, record or held copy was read from at or below it, or a V1
     container V1 ingest homes there (`publishedStations` in the stations), when the V1 file writes the container with
-    something in it; an empty `var` is not written from inside `focus`.
+    something in it. A container a note names that the V1 view would leave out (`asph` on an all-spherical lens, an
+    empty `var`) is written empty when the node the note's comment leads holds the container's home, and the run
+    returns to it; otherwise it is not written.
   - Otherwise a comment keeps its node's V1 counterpart. A comment that leads a member V1 has no counterpart for,
     below no record that has one (`focus`, `gaps`, `catalog.focalLengthMm`, `zoom.stations`), is a banner, the
     inverse of the rule going to V2: it leads the first V1 member written from inside that member, in V1 order with
@@ -2943,6 +2946,9 @@ The maintainer also settled these on 2026-10-15, answering the S2.P3.T2 question
 | 74 | The banner round trip is tested on synthetic V1 files in the template's sections; the catalog's goes in the PR, with the banners that return on another member through `V1_PRINT_ORDER` | S2.P3.T2 |
 | 75 | The scripts keep their copies of the V1 rule, the engine's expression verbatim and tested to agree with `isV1File`, until S2.P5.T9 | S2.P3.T2; S2.P5.T9 |
 | 76 | A V1 surface prints `elemId` before `sd`, as the V1 view writes it | S2.P3.T2 |
+| — | Going to V1, a container a converter note names that the V1 view would leave out (`asph: {}`) is written empty, and the note's run returns to it (Q48) | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T2 |
+
+Row — is numbered at S2.P3.T2's last merge of `engine-next`.
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.

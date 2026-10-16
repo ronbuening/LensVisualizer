@@ -24,6 +24,7 @@ import { V1_GROUP_STARTS, V1_PRINT_ORDER } from "../../src/optics/prescription/t
 import type { LensDataInput } from "../../src/types/optics.js";
 import { FIXTURE_PAIRS, MAXIMAL_ZOOM, type FixturePair } from "../src/optics/prescription/ingestV2Fixtures.js";
 import {
+  ALL_SPHERICAL_V1_PRIME,
   BANNERED_V1_PRIME,
   BANNERED_V1_ZOOM,
   COMMENTED_V2_ZOOM,
@@ -759,6 +760,7 @@ describe("the V1 direction (S2.P3.T2)", () => {
 
   it.each([
     ["prime", BANNERED_V1_PRIME],
+    ["all-spherical prime (asph: {})", ALL_SPHERICAL_V1_PRIME],
     ["zoom", BANNERED_V1_ZOOM],
   ])(
     "brings every template banner of a V1 %s back, V1 → V2 → V1, on the member it led and moved by none",
@@ -780,6 +782,39 @@ describe("the V1 direction (S2.P3.T2)", () => {
       expect(prescriptionOf(back.text)).toEqual(prescriptionOf(source));
     },
   );
+
+  it("prints a node's own banner before a run moved to it, so going back to V1 the note takes its run alone", async () => {
+    const asph =
+      "  /* ── Aspherical coefficients ── keyed by surface label. */\n" +
+      '  asph: { "1": { K: 0, A4: 1.25e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },\n\n';
+    const surfaces = "  /* ── Surface prescription ── */\n";
+    const source = BANNERED_V1_PRIME.replace(asph, "").replace(surfaces, asph + surfaces);
+    expect(source.indexOf("asph:")).toBeLessThan(source.indexOf("surfaces:"));
+    const there = await converted(source);
+    expect(there.text).toContain(
+      `${surfaces}  /* (moved from asph) ── Aspherical coefficients ── keyed by surface label. */\n  surfaces: [`,
+    );
+    expect((await converted(there.text)).text).toBe(there.text);
+    const back = await converted(there.text, { toVersion: 1 });
+    expect(ledMember(back.text, "/* ── Surface prescription ── */")).toBe("surfaces");
+    expect(ledMember(back.text, "/* ── Aspherical coefficients ── keyed by surface label. */")).toBe("asph");
+    expect(back.report.moved).toEqual([]);
+  });
+
+  it("writes back an empty asph a note names, and only when the note's run returns to it", async () => {
+    const there = await converted(ALL_SPHERICAL_V1_PRIME);
+    expect(there.text).not.toContain("asph:");
+    const back = await converted(there.text, { toVersion: 1 });
+    expect(back.text).toContain("  /* ── Aspherical coefficients ── keyed by surface label. */\n  asph: {},\n");
+    /* A note on a node that does not hold asph's home leaves the comment where it is, and writes no asph. */
+    const elsewhere = await converted(
+      COMMENTED_V2_ZOOM.replace("  focus: {", "  // (moved from asph) Stray.\n  focus: {"),
+      {
+        toVersion: 1,
+      },
+    );
+    expect(elsewhere.text).not.toContain("asph:");
+  });
 
   it("prints a restored flat radius as 1e15, keeps a V2 literal's text, and prints a value V1 holds twice from its value", async () => {
     const source = BUILDABLE_V2.replace('{ label: "1", R: 50, d: 5,', '{ label: "1", R: 50.000, d: 5,').replace(

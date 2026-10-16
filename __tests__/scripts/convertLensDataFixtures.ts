@@ -261,9 +261,16 @@ export const BANNERED_V1_PRIME = v1LensFile(`  /* ── Identity ── */
   scFill: 0.5,
   yScFill: 0.55,`);
 
+/** The bannered prime, all-spherical as the template writes one: `asph: {}` under its banner. */
+export const ALL_SPHERICAL_V1_PRIME = BANNERED_V1_PRIME.replace(
+  '  asph: { "1": { K: 0, A4: 1.25e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },',
+  "  asph: {},",
+);
+
 /**
- * A V1 zoom laid out in the template's sections: its zoom fields, per-station f-numbers and published stations each
- * under their banner, all three lists the conversion to V2 folds into the stations.
+ * A V1 zoom laid out in the template's sections, each under the template's banner: its zoom fields, per-station
+ * f-numbers and published stations, all three lists the conversion to V2 folds into the stations, and the rear-plate
+ * and aberration-control sections it leaves out, with their commented-out fields.
  */
 export const BANNERED_V1_ZOOM = v1LensFile(`  /* ── Identity ── */
   key: "fixture-bannered-zoom",
@@ -284,6 +291,14 @@ export const BANNERED_V1_ZOOM = v1LensFile(`  /* ── Identity ── */
     { label: "2", R: -50, d: 80, nd: 1, elemId: 0, sd: 15 },
   ],
 
+  /* ── Rear plates ── only when the source lists cover glass behind the last lens. */
+  // rearPlates: [
+  //   { label: "CG", thicknessMm: 0.0, nd: 1.5168, vd: 64.2, gapAfterMm: 0.0, source: "..." },
+  // ],
+
+  /* ── Aspherical coefficients ── keyed by surface label. */
+  asph: { "1": { K: 0, A4: 1.25e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },
+
   /* ── Variable air spacings (focus mechanism) ── */
   var: {
     STO: [
@@ -302,9 +317,15 @@ export const BANNERED_V1_ZOOM = v1LensFile(`  /* ── Identity ── */
   // Other zoom stations are solved.
   publishedStations: { zoom: [0, 2] },
 
+  /* ── Independent aberration control (optional) ── */
+  // aberrationControl: { label: "SOFT", minLabel: "0", maxLabel: "3", step: 0.004, var: {} },
+
   /* ── Zoom lens fields ── presence of zoomPositions makes the lens a zoom. */
   zoomPositions: [24, 50, 100],
   zoomLabels: ["Wide", "Tele"],
+
+  /* ── Group and doublet annotations ── */
+  groups: [{ text: "G1", fromSurface: "1", toSurface: "2" }],
 
   /* ── Focus configuration ── */
   closeFocusM: 0.5,

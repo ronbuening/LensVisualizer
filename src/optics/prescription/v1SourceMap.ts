@@ -10,7 +10,8 @@
  * - A comment that leads its node and opens with the converter's own note, "(moved from X)", leads X, where the
  *   conversion to V2 found it, when the V1 file writes X from inside that node; the note is dropped, and it is the
  *   only text placement reads. A V1 container counts as written from inside the source of the node V1 ingest names
- *   its home, when the V1 file writes the container with something in it.
+ *   its home, when the V1 file writes the container with something in it; one the file writes empty, because a note
+ *   names it (`asph: {}` on an all-spherical lens), takes back the note's run from the node that holds its home.
  * - Any other comment keeps its placement on the V1 node its own node became.
  * - A comment that leads a member V1 has no counterpart for, below no record V1 has one for (`focus`, `gaps`,
  *   `catalog.focalLengthMm`), is a banner over what follows: it leads, unmoved, the first V1 member written from
@@ -67,8 +68,9 @@ export interface V1SourceMap {
    * a comment that leads `schema` leads the V1 file's first member. Neither is moved.
    *
    * Ahead of all these, a comment that leads its node and opens with the converter's own note, "(moved from X)",
-   * leads X when the V1 file writes X from inside that node, and `noted` tells the converter to drop the note; the
-   * unnoted comments after it in its run follow it. Any other note is comment text.
+   * leads X when the V1 file writes X from inside that node, or writes X empty and that node holds X's home, and
+   * `noted` tells the converter to drop the note; the unnoted comments after it in its run follow it. Any other note
+   * is comment text.
    *
    * @param sourcePath - the node the comment annotates in the source
    * @param leading - whether the comment leads that node
@@ -270,6 +272,19 @@ export function v1SourceMap(
         (pathBelow(entry.v1Path, v1Path) !== undefined ||
           (!entry.home && pathBelow(v1Path, entry.v1Path) !== undefined)),
     );
+  /*
+   * Whether the V1 file writes a container empty and a source node holds the canonical node V1 ingest names its home:
+   * an empty container a converter note names takes back the note's run from there.
+   */
+  const emptyHomeIn = (container: string, sourcePath: string) => {
+    const home = written.homes[container];
+    if (home === undefined || !v1NodeSet.has(container)) return false;
+    if (v1Nodes.some((path) => path !== container && pathBelow(path, container) !== undefined)) return false;
+    for (const [canonical, authored] of readExact) {
+      if (pathBelow(canonical, home) !== undefined && pathBelow(authored, sourcePath) !== undefined) return true;
+    }
+    return false;
+  };
   /* The first top-level V1 member written from at or below a source node, by `rank`. */
   const firstWrittenFrom = (sourcePath: string): string | undefined => {
     let first: string | undefined;
@@ -318,7 +333,12 @@ export function v1SourceMap(
       return readExact.get(canonical) ?? ignoredFrom.get(canonical) ?? follow(canonical, readExact, readExact);
     },
     commentTarget(sourcePath, leading = false, movedFrom) {
-      if (leading && movedFrom !== undefined && sourcePath !== "" && writtenInside(movedFrom, sourcePath)) {
+      const noted =
+        leading &&
+        movedFrom !== undefined &&
+        sourcePath !== "" &&
+        (writtenInside(movedFrom, sourcePath) || emptyHomeIn(movedFrom, sourcePath));
+      if (noted) {
         return { path: movedFrom, moved: false, noted: true };
       }
       const { path, moved, byAncestor } = carried(sourcePath);
