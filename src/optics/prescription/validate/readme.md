@@ -25,6 +25,7 @@ flowchart LR
   n_external_src_optics_geometry["src/optics/geometry"]
   n_external_src_types["src/types"]
   n_external_src_optics_math["src/optics/math"]
+  n_external_src_optics_state["src/optics/state"]
   n_external_src_optics_trace["src/optics/trace"]
   n_external_src_utils_catalog["src/utils/catalog"]
   n_src_optics_prescription_validate_src_optics_prescription_validate_index_ts --> |5| n_external_src_optics_prescription
@@ -42,6 +43,7 @@ flowchart LR
   n_src_optics_prescription_validate_src_optics_prescription_validate_controls_ts --> n_external_src_optics_prescription
   n_src_optics_prescription_validate_src_optics_prescription_validate_geometry_ts --> n_external_src_optics_prescription
   n_src_optics_prescription_validate_src_optics_prescription_validate_references_ts --> n_external_src_optics_prescription
+  n_src_optics_prescription_validate_src_optics_prescription_validate_folded_ts --> n_external_src_optics_state
   n_src_optics_prescription_validate_src_optics_prescription_validate_folded_ts --> n_external_src_optics_trace
   n_src_optics_prescription_validate_src_optics_prescription_validate_folded_ts --> n_external_src_types
   n_src_optics_prescription_validate_src_optics_prescription_validate_geometry_ts --> n_external_src_types
@@ -62,7 +64,6 @@ flowchart LR
   n_src_optics_prescription_validate_src_optics_prescription_validate_index_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_folded_ts
   n_src_optics_prescription_validate_src_optics_prescription_validate_schema_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_folded_ts
   n_src_optics_prescription_validate_src_optics_prescription_validate_index_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_geometry_ts
-  n_src_optics_prescription_validate_src_optics_prescription_validate_teleconverter_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_index_ts
   n_src_optics_prescription_validate_truncated["additional relationships omitted"]
 ```
 
@@ -70,7 +71,7 @@ flowchart LR
 
 - Direct source files: 11
 - Direct subfolders: 0
-- Main outbound areas: src/optics/prescription (41), src/types (8), src/optics/geometry (6), src/optics/math, src/optics/trace, src/utils/catalog
+- Main outbound areas: src/optics/prescription (41), src/types (8), src/optics/geometry (6), src/optics/math, src/optics/state, src/optics/trace, src/utils/catalog
 - External consumers: src/optics/prescription, src/optics/validateLensData.ts, src/optics/validateTeleconverterData.ts
 
 ## Files
@@ -81,7 +82,7 @@ flowchart LR
 | `context.ts` | Context helper module | none | src/optics/prescription (7) | UntrustedLensData, ExplicitElementSpan |
 | `controls.ts` | Controls helper module | src/optics/prescription (2) | src/optics/prescription | isStationIndexList, validatePublishedStations, validateStations, validateControls |
 | `diffractive.ts` | Diffractive helper module | none | src/optics/prescription | validateDiffractivePhase |
-| `folded.ts` | Folded helper module | src/optics/prescription (4), src/optics/geometry, src/optics/trace, src/types | src/optics/prescription (2) | validateImagePlane, validateOpticalPath, validateYzNormal, normalizedNormal, samePlaneNormal, validateTiltedMirrorBackingNormals, validateFoldedImagePlaneReachability |
+| `folded.ts` | Folded helper module | src/optics/prescription (4), src/optics/geometry, src/optics/state, src/optics/trace, src/types | src/optics/prescription (2) | validateImagePlane, validateOpticalPath, validateYzNormal, normalizedNormal, samePlaneNormal, validateTiltedMirrorBackingNormals, validateFoldedImagePlaneReachability |
 | `geometry.ts` | Geometry helper module | src/optics/geometry (2), src/optics/prescription (2), src/types | src/optics/prescription | validateGeometry |
 | `index.ts` | Barrel/registry module | src/optics/prescription (13), src/types | src/optics/prescription (3), src/optics/validateLensData.ts | default, validateLensData, validateLensInput, validateCanonicalLens |
 | `paths.ts` | Paths helper module | src/optics/prescription (2) | src/optics/prescription | authoredMessages |

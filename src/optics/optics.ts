@@ -8,7 +8,7 @@
 export { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "./trace/chiefRelative.js";
 export { anchorLayoutToCamera, type CameraAnchoredLayout } from "./cameraLayout.js";
 export {
-  FOCUS_INFINITY_THRESHOLD,
+  FOCUS_REPORTING_INFINITY_THRESHOLD,
   SVG_PATH_SUBDIVISIONS,
   bAtZoom,
   epZRelStopAtZoom,
@@ -22,6 +22,7 @@ export {
   xpZRelLastSurfAtZoom,
   yRatioAtZoom,
 } from "./layout.js";
+export { interpolateStationTable } from "./state/stationTables.js";
 export {
   doLayout2 as doLayout,
   effectiveFNumber2 as effectiveFNumber,

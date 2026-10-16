@@ -2616,6 +2616,17 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
   - **The two focus-infinity thresholds** (0.003 in `focusDistance.ts`, 0.0001 in `field/chiefRay.ts`):
     - if they serve one purpose, unify them as a C3;
     - otherwise, give each a name that says why.
+  - **As built:** `state/layout.ts` owns controlled gaps and axial accumulation; both layout paths read the compiled
+    explicit-image-plane decision. `state/stationTables.ts` owns focus/zoom/aberration interpolation, station
+    coordinates and defaults, shared by construction, preparation and runtime adapters; URL zoom conversion reaches
+    its table reader through the public optics barrel. Zoom-track sums use the shared layout accumulator with exact
+    authored rows. First-order EFL and effective f-number each have one prepared-state adapter, retaining clamping,
+    table fallbacks and final-node arithmetic. The unused infinity alias is removed, and comparison readouts use the
+    named 0.003 cutoff. The two infinity thresholds remain an open question pending a maintainer-approved C3 decision:
+    0.003 gates distance labels/remapping, EFL (including perspective field scale), pupil-aberration paraxial baselines
+    and exposure/magnification summaries; 0.0001 gates real-ray conjugate correction. Before the optics-2 port,
+    `conjugateK` used 0.003. Both values stay unchanged under C0; a control between them reports infinity while tracing
+    a nonzero conjugate correction. Neither snaps the interpolated gaps.
   - **Gate:** C0.
 - **S5.P2.T3 One chromatic table.**
   - **Change:** one dispersion table builder, one quality summary and one channel table in `chromatic/`.
@@ -2948,8 +2959,7 @@ The maintainer also settled these on 2026-10-15, answering the S2.P3.T2 question
 | 76 | A V1 surface prints `elemId` before `sd`, as the V1 view writes it | S2.P3.T2 |
 | 77 | Going to V1, a container a converter note names that the V1 view would leave out (`asph: {}`) is written empty, and the note's run returns to it (Q48) | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T2 |
 
-Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
-(S5.P2.T2) and the items S1.P2.T2 leaves open.
+Left to evidence gathered during the program: the final barrel list (S8.P1.T1) and the items S1.P2.T2 leaves open.
 
 Open for the maintainer, none of them needed before promotion:
 

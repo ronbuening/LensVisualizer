@@ -30,7 +30,7 @@
 import { prepareRayTrace } from "./trace/rayAdapters.js";
 import {
   computeAnalysisFieldGeometryAtState,
-  FOCUS_INFINITY_THRESHOLD,
+  FOCUS_REPORTING_INFINITY_THRESHOLD,
   epZRelStopAtZoom,
   xpZRelLastSurfAtZoom,
   doLayout,
@@ -151,7 +151,7 @@ function computeStatePupilBaselines(
   geometry: FieldGeometryState,
   aberrationT = 0,
 ): { paraxialEpZRelStop: number; paraxialXpZRelLastSurf: number } {
-  if (focusT < FOCUS_INFINITY_THRESHOLD && aberrationT === 0) {
+  if (focusT < FOCUS_REPORTING_INFINITY_THRESHOLD && aberrationT === 0) {
     return {
       paraxialEpZRelStop: epZRelStopAtZoom(zoomT, L),
       paraxialXpZRelLastSurf: xpZRelLastSurfAtZoom(zoomT, L),

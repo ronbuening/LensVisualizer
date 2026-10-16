@@ -30,7 +30,7 @@
 
 import { formatSharedFocusDist, sharedFNumber } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
-import { formatDist, formatFNumber, eflAtZoom } from "../optics/optics.js";
+import { formatDist, formatFNumber, eflAtZoom, FOCUS_REPORTING_INFINITY_THRESHOLD } from "../optics/optics.js";
 import { getGroupMovementAvailability } from "../optics/groupMovement.js";
 import { isMovementAxisEnabled } from "../optics/lensMovement.js";
 import { snapToZeroStop } from "../utils/style/sliderStops.js";
@@ -357,15 +357,15 @@ export default function SharedSlidersBar({
             <>
               <span>
                 A: {movementAvailabilityA.focus ? formatDist(focusPair.focusA, LA, zoomPair?.zoomA) : "Not modeled"}
-                {movementAvailabilityA.focus && focusPair.focusA > 0.003 && focusedEflDiffersA && (
-                  <span style={{ opacity: 0.7 }}> ({dynamicEflA.toFixed(1)} mm)</span>
-                )}
+                {movementAvailabilityA.focus &&
+                  focusPair.focusA > FOCUS_REPORTING_INFINITY_THRESHOLD &&
+                  focusedEflDiffersA && <span style={{ opacity: 0.7 }}> ({dynamicEflA.toFixed(1)} mm)</span>}
               </span>
               <span>
                 B: {movementAvailabilityB.focus ? formatDist(focusPair.focusB, LB, zoomPair?.zoomB) : "Not modeled"}
-                {movementAvailabilityB.focus && focusPair.focusB > 0.003 && focusedEflDiffersB && (
-                  <span style={{ opacity: 0.7 }}> ({dynamicEflB.toFixed(1)} mm)</span>
-                )}
+                {movementAvailabilityB.focus &&
+                  focusPair.focusB > FOCUS_REPORTING_INFINITY_THRESHOLD &&
+                  focusedEflDiffersB && <span style={{ opacity: 0.7 }}> ({dynamicEflB.toFixed(1)} mm)</span>}
               </span>
             </>
           }
