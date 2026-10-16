@@ -2,26 +2,52 @@
  * Converter comment mapping — carries each comment of a source file to the node it annotates in the converted file
  * (OPTICS_ENGINE_REWRITE_SPEC.md, Ingest, conversion and comments).
  *
- * Where a comment goes is the engine's answer (`V2SourceMap.commentTarget`), composed from where ingest read each
- * value and where the V2 view wrote it; this module never infers a node's place from its path or its leaves. A
- * comment keeps its placement when its node has a counterpart: leading above it, trailing after it, dangling after
- * the last entry of its record or list, and an inner one (between a member's name and its value) above it, unless it
- * sits inside a literal whose text the converted file keeps, which carries it. A leading comment on a top-level field
- * leads the record that field opens, as the engine says. A comment whose node has no counterpart moves to the nearest
- * node written from one of its ancestors, or to the home of a container the converted file dissolves; there it leads
- * that node (or ends the file's object, when that is all it finds), and its text opens with
- * "(moved from <source path>)" unless it already does. A run of comments moved together from one source path takes
- * that note once, on its first comment. Header comments stay in the kept header.
+ * Where a comment goes is the engine's answer (`commentTarget` of `V2SourceMap`, or of `V1SourceMap` going to V1),
+ * composed from where ingest read each value and where the view wrote it; this module never infers a node's place
+ * from its path or its leaves. A comment keeps its placement when its node has a counterpart: leading above it,
+ * trailing after it, dangling after the last entry of its record or list, and an inner one (between a member's name
+ * and its value) above it, unless it sits inside a literal whose text the converted file keeps, which carries it. A
+ * banner, as the engine names one, leads the node the engine gives, unmoved: going to V2, the record a top-level
+ * field opens; going to V1, the first member written from inside a member V1 has no counterpart for, or the member
+ * named by the converter's own note the banner opens with, when the engine finds it among those, the note then
+ * dropped and the unnoted comments after it in its run following it. A comment whose node has no counterpart
+ * otherwise moves to the nearest node written from one of its ancestors, or to the home of a container the converted
+ * file dissolves; there it leads that node (or ends the file's object, when that is all it finds), and its text
+ * opens with "(moved from <source path>)" unless it already does. A run of comments moved together from one source
+ * path takes that note once, on its first comment. Header comments stay in the kept header.
  */
+
+/** Whether a comment opens with a moved-from note, in any spelling: a comment that does takes no second one. */
+function hasNote(text) {
+  const body = text.startsWith("//") ? text.slice(2) : text.slice(2, -2);
+  return body.trimStart().startsWith("(moved from");
+}
 
 /** The text of a comment moved from `from`, its moved-from note inside it so a directive stays inert. */
 export function movedCommentText(text, from) {
   const line = text.startsWith("//");
   const body = line ? text.slice(2) : text.slice(2, -2);
-  if (body.trimStart().startsWith("(moved from")) return text;
+  if (hasNote(text)) return text;
   const note = `(moved from ${from})`;
   const rest = body === "" || /^\s/.test(body) ? body : ` ${body}`;
   return line ? `// ${note}${rest}` : `/* ${note}${rest}*/`;
+}
+
+/**
+ * The converter's own note at the opening of a comment, exactly as `movedCommentText` writes it, and the comment
+ * without it. Any other text, a looser spelling of the note included, is no note.
+ *
+ * @param {string} text - a comment's text, delimiters included
+ * @returns {{ from: string, text: string } | undefined} the path the note names and the comment's text without it
+ */
+export function movedNote(text) {
+  const line = text.startsWith("//");
+  if (!line && !(text.startsWith("/*") && text.endsWith("*/"))) return undefined;
+  const body = line ? text.slice(2) : text.slice(2, -2);
+  const note = /^ \(moved from ([^\s()]+)\)(?=\s|$)/.exec(body);
+  if (!note) return undefined;
+  const rest = body.slice(note[0].length);
+  return { from: note[1], text: line ? `//${rest}` : `/*${rest}*/` };
 }
 
 /**
@@ -41,8 +67,9 @@ export function commentKey(text) {
  *
  * @param {object} source - what the comments come from
  * @param {import("./read.mjs").ReadComment[]} source.comments - the source's comments, as the reader attached them
- * @param {(authoredPath: string, leading: boolean) => { path: string, moved: boolean }} source.commentTarget - the
- *   engine's answer, for a comment that leads its node or not
+ * @param {(authoredPath: string, leading: boolean, movedFrom?: string) => { path: string, moved: boolean,
+ *   noted?: boolean }} source.commentTarget - the engine's answer, for a comment that leads its node or not and the
+ *   path its converter note names; `noted` when that note placed it, which drops the note
  * @param {(authoredPath: string) => boolean} source.textKept - whether the converted file keeps the literal text of
  *   the value at an authored path, so a comment inside that literal rides along
  * @param {(v2Path: string) => boolean} source.isContainer - whether the converted file writes a record or list there
@@ -58,18 +85,36 @@ export function placeComments({ comments, commentTarget, textKept, isContainer }
     if (!byPath.has(path)) byPath.set(path, { leading: [], trailing: [], dangling: [] });
     return byPath.get(path);
   };
-  /* The comment just placed, when it moved: the next one continues its run if it moved from the same path. */
+  /*
+   * The comment just placed, when it moved, or when its note placed it: the next one continues its run if it moved
+   * from the same path, or if it leads the same node with no note of its own.
+   */
   let run;
+  let notedRun;
   for (const comment of comments) {
     const continued = run;
+    const noted = notedRun;
     run = undefined;
+    notedRun = undefined;
     if (comment.placement === "header") continue;
     if (comment.path === undefined) {
       unattached.push(comment);
       continue;
     }
     if (comment.placement === "inner" && comment.withinText && textKept(comment.path)) continue;
-    const target = commentTarget(comment.path, comment.placement === "leading");
+    const leading = comment.placement === "leading";
+    const note = leading ? movedNote(comment.text) : undefined;
+    if (noted && leading && noted.from === comment.path && !hasNote(comment.text)) {
+      slot(noted.to).leading.push({ text: comment.text, pos: comment.pos, blankBefore: comment.blankBefore });
+      notedRun = noted;
+      continue;
+    }
+    const target = commentTarget(comment.path, leading, note?.from);
+    if (target.noted) {
+      slot(target.path).leading.push({ text: note.text, pos: comment.pos, blankBefore: comment.blankBefore });
+      notedRun = { from: comment.path, to: target.path };
+      continue;
+    }
     if (target.moved) {
       const inRun = continued?.from === comment.path && continued.to === target.path;
       const text = inRun ? comment.text : movedCommentText(comment.text, comment.path);
@@ -97,7 +142,8 @@ function firstLine(text) {
 /**
  * The first comment of the source the converted file does not hold once, or the first it holds beyond them. Each
  * source comment, header included, is matched by `commentKey` as `movedCommentText` writes it from its path, then as
- * written, so a comment that moved and one that kept its text are each found once.
+ * written, then without the converter's note it opens with, so a comment that moved, one that kept its text and one
+ * whose note placed it are each found once.
  *
  * @param {import("./read.mjs").ReadComment[]} sourceComments - every comment of the source file
  * @param {import("./read.mjs").ReadComment[]} outputComments - every comment of the converted file
@@ -119,7 +165,11 @@ export function commentNotCarried(sourceComments, outputComments) {
   const unmoved = sourceComments.filter(
     (comment) => comment.path === undefined || !take(commentKey(movedCommentText(comment.text, comment.path))),
   );
-  const missing = unmoved.find((comment) => !take(commentKey(comment.text)));
+  const unwritten = unmoved.filter((comment) => !take(commentKey(comment.text)));
+  const missing = unwritten.find((comment) => {
+    const note = movedNote(comment.text);
+    return note === undefined || !take(commentKey(note.text));
+  });
   if (missing) return `the comment at line ${missing.line} is not in the converted file: ${firstLine(missing.text)}`;
   const [extra] = remaining.keys();
   if (extra === undefined) return undefined;

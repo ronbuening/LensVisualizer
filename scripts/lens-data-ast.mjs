@@ -251,6 +251,16 @@ export function walkLensDataSource(content, fileName, visit) {
 }
 
 /**
+ * Mirrors the engine's `isV1File` (src/optics/prescription/ingestV2.ts): a file that leaves `schema` out is V1.
+ *
+ * @param {object} file - a lens or teleconverter file's evaluated default export
+ * @returns {boolean} whether the file is V1
+ */
+export function isV1LensData(file) {
+  return file.schema === undefined;
+}
+
+/**
  * The identity fields of a lens or teleconverter file of either version. A V2 file keeps its mounts and format in
  * `catalog`; the other fields sit where V1 has them.
  *
@@ -261,7 +271,7 @@ export function walkLensDataSource(content, fileName, visit) {
  */
 export function readLensIdentity(data) {
   const file = data !== null && typeof data === "object" ? data : {};
-  const catalog = file.schema === 2 ? (file.catalog ?? {}) : file;
+  const catalog = isV1LensData(file) ? file : (file.catalog ?? {});
   const text = (value) => (typeof value === "string" ? value : null);
   return {
     key: text(file.key),

@@ -330,11 +330,13 @@ so an ingest that was not asked builds no path. `sourcePaths.ts` spells every pa
   semantic fingerprint's rules. The converter reaches all of these through `src/optics/lensDataConversion.ts`.
 - Going to V1 (`--to-version 1`), the converter prints `toLensDataInput` or `toTeleconverterData` in
   `V1_PRINT_ORDER` with blank lines before `V1_GROUP_STARTS` (`toLensData.ts`). `v1SourceMap` (`v1SourceMap.ts`)
-  ingests that V1 object with source paths and composes them with the source's, as `v2SourceMap` does for V2: a
+  ingests that V1 object with source paths and composes them with the source's, as `v2SourceMap` does for V2. A
+  comment that opens with the converter's own `(moved from X)` returns to X when the V1 file writes X from inside its
+  node; a banner on a member V1 has no counterpart for leads the first V1 member written from inside it; any other
   comment on a node V1 has no counterpart for (a station record, a medium) moves to the first V1 container whose home
-  holds it, or to its nearest ancestor's V1 node. `v1StopRadius` names the stop whose `sd` V1's type requires and the
-  prescription does not hold; the converter supplies the engine's radius through `toLensDataInput`'s `stopRadius`
-  option, and V1 ingest sets it aside again.
+  holds it (`zoomPositions` first), or to its nearest ancestor's V1 node. `v1StopRadius` names the stop whose `sd`
+  V1's type requires and the prescription does not hold; the converter supplies the engine's radius through
+  `toLensDataInput`'s `stopRadius` option, and V1 ingest sets it aside again.
 - Lens data gets its defaults from ingest and the V1 view alone (S2.P1.T2); nothing outside tests spreads the
   defaults table but the validator-first spread below. `buildLens.ts` re-exports `ingestLens`, `ingestTeleconverter`,
   their V1 forms (`ingestLensV1`, `ingestTeleconverterV1`), `isV1File` and the two V1 views (`toLensData`,

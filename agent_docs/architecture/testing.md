@@ -1000,11 +1000,14 @@ When refactoring:
 - Add script helper tests when changing metadata generation, route expansion, or git freshness lookup.
   `__tests__/scripts/lensDataV2Readers.test.ts` holds the lens-data readers to both versions: the AST reader against
   every catalog module, identity, summaries and converter fit from V2 twins, the organizer's V2 import, and page dates
-  that skip conversion commits. `__tests__/scripts/convertLensData.test.ts` holds the converter library to synthetic
+  that skip conversion commits, and the scripts' copies of the V1 rule to `isV1File`.
+  `__tests__/scripts/convertLensData.test.ts` holds the converter library to synthetic
   source-text fixtures (`convertLensDataFixtures.ts`, strings so `format:check` never reaches them): each fixture pair
   converted and ingested back, pinned outputs and reports, a V2 source given back as written, one refusal of each
   kind, a run under plain Node, and the V1 direction (each pair's V2 side to V1 and back, the V1 print order on a
-  maximal lens, the stop radius V1's type requires, comments V1 has no node for). `convertLensDataCli.test.ts` runs
+  maximal lens, the stop radius V1's type requires, comments V1 has no node for, banners and the converter's own
+  notes, and a V1 prime and zoom in the template's sections going V1 → V2 → V1 with every banner back on the member
+  it led). `convertLensDataCli.test.ts` runs
   the command line on synthetic files in a temp directory: arguments and exit codes, the three modes, each kind of
   refusal, collisions, `--output`, interrupted writes and signals through an injected file system and signal source,
   line endings, the type-check where a file will be written, and V2 → V1 → V2 over the fixture pairs.

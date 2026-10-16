@@ -6,11 +6,23 @@
  * with source paths, as V1 ingest records them, and composes those with the source paths the source's own ingest
  * recorded, through the canonical path, as `v2SourceMap` composes the V2 view's writes. Nothing in the app imports it.
  *
- * A comment keeps its placement on the V1 node its own node became. A comment on a node V1 has no counterpart for (a
- * station record, `zoom`, `focus`, a medium) moves. Walking up from its node, it goes to the first V1 container in
- * the file whose home holds the node it has reached, as V1 ingest names each container's home (`zoomPositions` and
- * the other per-station lists hold a station), or to that node's V1 counterpart, whichever comes first; and to the
- * file's object when it finds neither. A comment on the source's own object stays on the V1 file's.
+ * Where a comment goes, in this order:
+ * - A comment that leads its node and opens with the converter's own note, "(moved from X)", leads X, where the
+ *   conversion to V2 found it, when the V1 file writes X from inside that node; the note is dropped, and it is the
+ *   only text placement reads. A V1 container counts as written from inside the source of the node V1 ingest names
+ *   its home, when the V1 file writes the container with something in it.
+ * - Any other comment keeps its placement on the V1 node its own node became.
+ * - A comment that leads a member V1 has no counterpart for, below no record V1 has one for (`focus`, `gaps`,
+ *   `catalog.focalLengthMm`), is a banner over what follows: it leads, unmoved, the first V1 member written from
+ *   inside that member, the inverse of the rule `v2SourceMap` states for a banner going to V2. One that leads
+ *   `schema` leads the V1 file's first member.
+ * - Any other comment on a node V1 has no counterpart for (a station record, a medium) moves. Walking up from its
+ *   node, it goes to the first V1 container whose home holds the node it has reached, as V1 ingest names each
+ *   container's home, or to that node's V1 counterpart, whichever comes first; and to the file's object when it
+ *   finds neither.
+ *
+ * A comment on the source's own object stays on the V1 file's. Where several V1 members hold a station,
+ * `zoomPositions`, the list that makes a lens a zoom, comes first, then the others in file order.
  */
 
 import type { LensDataInput } from "../../types/optics.js";
@@ -23,7 +35,7 @@ import type {
   SourcePaths,
 } from "./canonical.js";
 import { ingestLensV1, ingestTeleconverterV1 } from "./ingestV1.js";
-import { follow, inverse, memberPath, parentPath, pathBelow } from "./sourcePaths.js";
+import { childPath, follow, inverse, memberPath, parentPath, pathBelow } from "./sourcePaths.js";
 import { V1_PRINT_ORDER } from "./toLensData.js";
 import { droppedStopRadius, type DroppedStopRadius } from "./toLensDataV2.js";
 
@@ -46,13 +58,27 @@ export interface V1SourceMap {
    */
   textSource(v1Path: string): string | undefined;
   /**
-   * Where a comment on a source node goes: the V1 node its node became, or else, moved, the first V1 container in the
-   * file whose home holds it or the V1 node of its nearest ancestor that has one, whichever it meets first walking up
-   * from the node; the file's object when it meets neither.
+   * Where a comment on a source node goes: the V1 node its node became, or else, moved, the first V1 container whose
+   * home holds it or the V1 node of its nearest ancestor that has one, whichever it meets first walking up from the
+   * node; the file's object when it meets neither.
+   *
+   * A comment that leads a member of the source with no V1 counterpart, below no record that has one, is a banner over
+   * what follows, so it leads the first V1 member written from inside that member, in V1 order (`zoomPositions` first);
+   * a comment that leads `schema` leads the V1 file's first member. Neither is moved.
+   *
+   * Ahead of all these, a comment that leads its node and opens with the converter's own note, "(moved from X)",
+   * leads X when the V1 file writes X from inside that node, and `noted` tells the converter to drop the note; the
+   * unnoted comments after it in its run follow it. Any other note is comment text.
    *
    * @param sourcePath - the node the comment annotates in the source
+   * @param leading - whether the comment leads that node
+   * @param movedFrom - the X of the converter's note the comment opens with, if it opens with one
    */
-  commentTarget(sourcePath: string): { path: string; moved: boolean };
+  commentTarget(
+    sourcePath: string,
+    leading?: boolean,
+    movedFrom?: string,
+  ): { path: string; moved: boolean; noted?: boolean };
   /** The source record a written V1 record was read from: `surfaces[3]` for V1 `surfaces[3]`. */
   recordSource(v1Path: string): string | undefined;
   /**
@@ -85,6 +111,9 @@ export function v1StopRadius(
   return { index: indices[0], stop: droppedStopRadius(prescription) };
 }
 
+/** A path that ends in a list item, `zoom.stations[2]`, rather than in a member or a label. */
+const LIST_ITEM = /\[\d+\]$/;
+
 /** The top-level member a path is in: the path itself for a member of the file's object. */
 function topMember(path: string): string {
   let member = path;
@@ -92,6 +121,15 @@ function topMember(path: string): string {
     member = parent;
   }
   return member;
+}
+
+/** Every node of a written object, by path, the object's own included. */
+function nodePaths(value: unknown, base = "", into: string[] = []): string[] {
+  into.push(base);
+  if (value === null || typeof value !== "object") return into;
+  const entries: [string | number, unknown][] = Array.isArray(value) ? [...value.entries()] : Object.entries(value);
+  for (const [key, child] of entries) nodePaths(child, childPath(base, key), into);
+  return into;
 }
 
 /** The members a record keyed by surface label writes, in surface order. */
@@ -187,13 +225,79 @@ export function v1SourceMap(
 
   const order = printOrder(data, target.prescription, kind);
   const fileOrder = order[""];
-  const position = (v1Path: string) => fileOrder.indexOf(topMember(v1Path));
-  /* Each container V1 ingest names a home for, in the order the file prints them. */
+  /* A top-level member's place among those a comment may go to: `zoomPositions` first, then the file's order. */
+  const rank = (member: string) => (member === "zoomPositions" ? -1 : fileOrder.indexOf(member));
+  /* Each container V1 ingest names a home for, `zoomPositions` first and then in the order the file prints them. */
   const homes = Object.entries(written.homes)
     .map(([container, home], index) => ({ container, home, index }))
-    .sort((a, b) => position(a.container) - position(b.container) || a.index - b.index);
+    .sort((a, b) => rank(topMember(a.container)) - rank(topMember(b.container)) || a.index - b.index);
   const homeHolding = (canonical: string) =>
     homes.find((entry) => pathBelow(canonical, entry.home) !== undefined)?.container;
+
+  /*
+   * Each V1 node and the source node it was written from, at either side's grain: values, records, the values V1
+   * holds in another form, and each container V1 writes with something in it, from the source of the canonical node
+   * V1 ingest names its home (`publishedStations`, from the stations whose `published` flags it lists).
+   */
+  const pairs: { v1Path: string; sourcePath: string; home: boolean }[] = [];
+  const pair = (v1Path: string | undefined, sourcePath: string | undefined, home = false) => {
+    if (v1Path !== undefined && sourcePath !== undefined) pairs.push({ v1Path, sourcePath, home });
+  };
+  for (const [canonical, v1Path] of v1Read) pair(v1Path, follow(canonical, readExact, readExact));
+  for (const [canonical, sourcePath] of readExact) pair(follow(canonical, v1Read, v1Read), sourcePath);
+  for (const [canonical, v1Path] of v1Records) pair(v1Path, sources.records[canonical]);
+  for (const [v1Path, canonical] of Object.entries(written.heldBy)) {
+    pair(v1Path, follow(canonical, readExact, readExact) ?? sources.records[canonical]);
+  }
+  const v1Nodes = nodePaths(data);
+  const v1NodeSet = new Set(v1Nodes);
+  for (const [container, home] of Object.entries(written.homes)) {
+    if (!v1Nodes.some((path) => path !== container && pathBelow(path, container) !== undefined)) continue;
+    for (const [canonical, sourcePath] of readExact) {
+      if (pathBelow(canonical, home) !== undefined) pair(container, sourcePath, true);
+    }
+  }
+  /*
+   * Whether the V1 file writes a node from at or below a source node: something at or below it was, or a record or
+   * value that holds it was, read from there. A container counts through its home for what it holds as a whole only,
+   * so a node inside it is not ascribed to every source its home spans.
+   */
+  const writtenInside = (v1Path: string, sourcePath: string) =>
+    v1NodeSet.has(v1Path) &&
+    pairs.some(
+      (entry) =>
+        pathBelow(entry.sourcePath, sourcePath) !== undefined &&
+        (pathBelow(entry.v1Path, v1Path) !== undefined ||
+          (!entry.home && pathBelow(v1Path, entry.v1Path) !== undefined)),
+    );
+  /* The first top-level V1 member written from at or below a source node, by `rank`. */
+  const firstWrittenFrom = (sourcePath: string): string | undefined => {
+    let first: string | undefined;
+    for (const entry of pairs) {
+      if (pathBelow(entry.sourcePath, sourcePath) === undefined) continue;
+      const member = topMember(entry.v1Path);
+      if (member !== "" && (first === undefined || rank(member) < rank(first))) first = member;
+    }
+    return first;
+  };
+  /*
+   * Walking up from a source node: the V1 node of the first node met that has one, or the first V1 container whose
+   * home holds it; the file's object when it meets neither. `byAncestor` says it found the V1 node of an ancestor
+   * below the file's object, which every node is in.
+   */
+  const carried = (sourcePath: string): { path: string; moved: boolean; byAncestor: boolean } => {
+    for (let path: string | undefined = sourcePath; path !== undefined; path = parentPath(path)) {
+      const canonical = canonicalOf(path);
+      if (canonical === undefined) continue;
+      const v1Path = v1Of(canonical);
+      if (v1Path !== undefined) {
+        return { path: v1Path, moved: path !== sourcePath, byAncestor: path !== sourcePath && path !== "" };
+      }
+      const container = homeHolding(canonical);
+      if (container !== undefined) return { path: container, moved: true, byAncestor: false };
+    }
+    return { path: "", moved: true, byAncestor: false };
+  };
 
   const dropped: V1DroppedValue[] = [];
   for (const [canonical, entry] of Object.entries(sources.ignored)) {
@@ -213,16 +317,15 @@ export function v1SourceMap(
       if (canonical === undefined) return undefined;
       return readExact.get(canonical) ?? ignoredFrom.get(canonical) ?? follow(canonical, readExact, readExact);
     },
-    commentTarget(sourcePath) {
-      for (let path: string | undefined = sourcePath; path !== undefined; path = parentPath(path)) {
-        const canonical = canonicalOf(path);
-        if (canonical === undefined) continue;
-        const v1Path = v1Of(canonical);
-        if (v1Path !== undefined) return { path: v1Path, moved: path !== sourcePath };
-        const container = homeHolding(canonical);
-        if (container !== undefined) return { path: container, moved: true };
+    commentTarget(sourcePath, leading = false, movedFrom) {
+      if (leading && movedFrom !== undefined && sourcePath !== "" && writtenInside(movedFrom, sourcePath)) {
+        return { path: movedFrom, moved: false, noted: true };
       }
-      return { path: "", moved: true };
+      const { path, moved, byAncestor } = carried(sourcePath);
+      const banner = leading && moved && !byAncestor && sourcePath !== "" && !LIST_ITEM.test(sourcePath);
+      if (!banner) return { path, moved };
+      const first = sourcePath === "schema" ? (fileOrder[0] ?? "") : firstWrittenFrom(sourcePath);
+      return first === undefined ? { path, moved } : { path: first, moved: false };
     },
     recordSource(v1Path) {
       const canonical = v1RecordOf.get(v1Path);

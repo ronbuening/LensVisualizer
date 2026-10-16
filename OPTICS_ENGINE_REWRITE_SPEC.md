@@ -1306,10 +1306,27 @@ The stop radius has exactly one authority per lens:
     the iris or the aperture, and quotes the authored radius as written or rounded to the two or more decimals it is
     quoted with. They are listed only, not rewritten or moved.
 - **V2 to V1** (S2.P3.T2) reads the same relation the other way: the V1 object the V1 view writes is ingested with
-  source paths and composed with the V2 source's. A comment on a V2 node V1 has no counterpart for (a station record,
-  `zoom`, `focus`, a medium) moves, prefixed, to the V1 node of its nearest mapped ancestor, or to the first V1
-  container in the file whose home holds it (`zoomPositions` for a station); the report lists each move and each
-  medium name V1 cannot hold. A restored flat radius prints `1e15`, not `String(1e15)`.
+  source paths and composed with the V2 source's. `v1SourceMap` in `v1SourceMap.ts` states the rules.
+  - First, a comment that leads its node, with a V1 counterpart or not, and opens with the converter's own
+    `(moved from X)`, exactly as the conversion to V2 writes it, leads X when the V1 file writes X from inside that
+    node; the note is dropped, and the unnoted comments after it in its run follow it. Placement reads that note and
+    no other text: any other note, or one that names a node not written from inside, is comment text.
+  - "Written from inside" a node: a V1 node whose value, record or held copy was read from at or below it, or a V1
+    container V1 ingest homes there (`publishedStations` in the stations), when the V1 file writes the container with
+    something in it; an empty `var` is not written from inside `focus`.
+  - Otherwise a comment keeps its node's V1 counterpart. A comment that leads a member V1 has no counterpart for,
+    below no record that has one (`focus`, `gaps`, `catalog.focalLengthMm`, `zoom.stations`), is a banner, the
+    inverse of the rule going to V2: it leads the first V1 member written from inside that member, in V1 order with
+    `zoomPositions` first, and a comment that leads `schema` leads the V1 file's first member. Neither is moved nor
+    prefixed, and this comes before the homes below.
+  - The banner rule's inverse is exact where a banner led the first member, in `V1_PRINT_ORDER`, of those its V2
+    record gathers. Where the V1 order puts another of them first, the banner comes back on that one: a banner on
+    `lensMounts`, which the conversion to V2 put on `catalog`, comes back on `specs`, and one on `maxFstop`, put on
+    `aperture`, would come back on `nominalFno`.
+  - Any other comment on a V2 node V1 has no counterpart for (a station record, a medium) moves, prefixed, to the V1
+    node of its nearest mapped ancestor, or to the first V1 container whose home holds it (`zoomPositions` first,
+    then file order); the report lists each move, with the node it went to, and each medium name V1 cannot hold. A
+    restored flat radius prints `1e15`, not `String(1e15)`.
 - **The converter is permanent.** Lens files waiting in an archive for a later release, and files on external
   branches, may still be V1 long after migration. The converter, its V1 reader and its tests stay after the program,
   and V1 files enter the catalog only through it:
@@ -1911,8 +1928,8 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
   - **V2 to V1:** the V1 view without catalog defaults, its top-level members printed in `V1_PRINT_ORDER` (the
     declaration order of `LensData` and `TeleconverterData`; the view writes a lens's tail in another order, and
     keeps it) with a blank line before the first member of each section `V1_GROUP_STARTS` opens, both in
-    `toLensData.ts`. A record below the top prints as the view writes it, a record keyed by surface label in
-    surface order. The comment mapping is engine-owned, `v1SourceMap` in `src/optics/prescription/`, as
+    `toLensData.ts`. A record below the top prints as the view writes it (a surface's `elemId` before its `sd`, as
+    all 17,933 catalog surface rows write it), a record keyed by surface label in surface order. The comment mapping is engine-owned, `v1SourceMap` in `src/optics/prescription/`, as
     [V2 to V1](#ingest-conversion-and-comments) states it, and the report lists each moved comment and each medium
     name V1 cannot hold.
   - **A stop without `sd`, going to V1:** V1's `SurfaceData.sd` is required, so the converter writes the engine's
@@ -1922,16 +1939,18 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     again. The report says the value was written for V1's type and is set aside by V1 ingest. A file whose radius
     cannot be derived is refused. `LensDataInput` is unchanged.
   - **Files:**
-    - `scripts/convert-lens-data.mjs`; `scripts/lens-data-convert/{cli, typecheck, convert, print, report}.mjs` and
-      their `.d.mts`; `scripts/lens-summaries.d.mts`
+    - `scripts/convert-lens-data.mjs`; `scripts/lens-data-convert/{cli, typecheck, convert, comments, print,
+      report}.mjs` and their `.d.mts`; `scripts/{lens-data-ast, lens-summaries}.mjs` and their `.d.mts`
     - `src/optics/prescription/{ingestV2, toLensData, toLensDataV2, sourcePaths}.ts`, and `v1SourceMap.ts` beside
       them; `src/optics/lensDataConversion.ts`
     - `package.json`, `.gitignore`, `agent_docs/workflow.md`, `agent_docs/architecture/testing.md`
   - **Tests:** its tests cover each of those behaviors, plus an interrupted write and V2 → V1 → V2 identity:
     `__tests__/scripts/convertLensDataCli.test.ts`, and the V1 direction in `convertLensData.test.ts`, in `npm test`
     beside the library's. The round trip asserts semantic identity and that every comment appears once, as written
-    or with its move prefix, not byte identity. Faults are injected at the seams: the library, the type-check, a
-    write, a rename, a link and a signal.
+    or with its move prefix, not byte identity. A V1 prime and zoom in the template's sections go V1 → V2 → V1 with
+    every banner back on the member it led and none moved. `lensDataV2Readers.test.ts` holds the scripts' copies of
+    the V1 rule to `isV1File`. Faults are injected at the seams: the library, the type-check, a write, a rename, a
+    link and a signal.
   - **Gate:** C0.
 - **S2.P3.T3 Corpus conversion sweep.**
   - **Change:** add `__tests__/scripts/convertLensDataCorpus.test.ts`. For every lens and converter it:
@@ -2035,9 +2054,12 @@ This phase runs on `main`, after `engine-next` has been promoted.
       [Ingest, conversion and comments](#ingest-conversion-and-comments), and `generate-build-metadata.mjs` stops on
       one with the command to run;
     - `agent_docs/adding_a_lens.md` and `agent_docs/workflow.md` describe adding an archived V1 file: drop it into
-      `src/lens-data/`, run `npm run organize:lens-data`, review the conversion report, commit the V2 file.
+      `src/lens-data/`, run `npm run organize:lens-data`, review the conversion report, commit the V2 file;
+    - the copies of the V1 rule in `scripts/lens-data-ast.mjs` and `scripts/lens-summaries.mjs` (`isV1LensData`,
+      which mirror `isV1File`) give way to the engine's rule, read through the conversion seam that every metadata
+      run then loads, and their agreement test in `__tests__/scripts/lensDataV2Readers.test.ts` goes with them.
   - **Files:** `scripts/organize-lens-data.mjs`, `scripts/lens-data-lib.mjs`, `scripts/generate-build-metadata.mjs`,
-    the two docs.
+    `scripts/lens-data-ast.mjs`, `scripts/lens-summaries.mjs`, the two docs.
   - **Tests:** `__tests__/scripts/lensDataScripts.test.ts`:
     - a V1 file at the `src/lens-data/` root is converted and filed under its maker;
     - a V1 file already under a maker folder is converted in place;
@@ -2854,6 +2876,12 @@ The maintainer also settled these on 2026-10-15, answering the S2.P3.T2 question
 | 68 | The type-check reads each converted text at the path it will be written to | S2.P3.T2 |
 | 69 | The V2-to-V1 comment mapping is engine-owned, and the round trip is tested for semantic identity and each comment once, not for bytes | S2.P3.T2 |
 | 70 | The command line's tests are in `npm test` beside the library's | S2.P3.T2 |
+| 71 | Going to V1, a comment that leads a member with no V1 counterpart, below no record with one, leads unmoved the first V1 member written from inside it (`zoomPositions` first), before V1 ingest's homes; one on `schema` leads the file's first member | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T2 |
+| 72 | A leading comment, on any node, that opens with the converter's own exact `(moved from X)` leads X, the note dropped and its run's unnoted comments following, when the V1 file writes X from inside that node, a container counting from its home when it holds something; placement reads no other text | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T2 |
+| 73 | Where V1 lists compete for a station's comment, `zoomPositions` comes first, then file order, and the report line names the list | S2.P3.T2 |
+| 74 | The banner round trip is tested on synthetic V1 files in the template's sections; the catalog's goes in the PR, with the banners that return on another member through `V1_PRINT_ORDER` | S2.P3.T2 |
+| 75 | The scripts keep their copies of the V1 rule, the engine's expression verbatim and tested to agree with `isV1File`, until S2.P5.T9 | S2.P3.T2; S2.P5.T9 |
+| 76 | A V1 surface prints `elemId` before `sd`, as the V1 view writes it | S2.P3.T2 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.

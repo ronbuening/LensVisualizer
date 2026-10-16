@@ -194,6 +194,129 @@ export const RULINGS_FILE = v1LensFile(`  /* ── Identity ── */
   asph: { "1": { K: 0, A4: 1.25e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },`);
 
 /**
+ * A V1 prime laid out in the lens template's sections, each under the template's banner, as a catalog file is: the
+ * rear-plate and zoom sections a prime leaves out keep their banners and commented-out fields.
+ */
+export const BANNERED_V1_PRIME = v1LensFile(`  /* ── Identity ── */
+  key: "fixture-bannered-prime",
+  name: "FIXTURE 50mm f/2",
+  subtitle: "US 1,234,567 B2 EXAMPLE 1 — FIXTURE",
+  specs: ["1 ELEMENT / 1 GROUP", "f = 51.2 mm"],
+
+  /* ── Explicit metadata fields ── */
+  focalLengthMarketing: 50,
+  focalLengthDesign: 51.2,
+  apertureMarketing: 2,
+  lensMounts: ["nikon-z"],
+  imageFormat: "135-full-frame",
+  patentNumber: "US 1,234,567 B2",
+  patentYear: 2019,
+  elementCount: 1,
+  groupCount: 1,
+
+  /* ── Elements ── */
+  elements: [{ id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive", nd: 1.5168, vd: 64.17 }],
+
+  /* ── Surface prescription ── */
+  surfaces: [
+    { label: "STO", R: 1e15, d: 1, nd: 1, elemId: 0, sd: 12.5 },
+    { label: "1", R: 50, d: 5, nd: 1.5168, elemId: 1, sd: 15 }, // L1 front
+    { label: "2", R: -50, d: 80, nd: 1, elemId: 0, sd: 15 },
+  ],
+
+  /* ── Rear plates ── only when the source lists cover glass behind the last lens. */
+  // rearPlates: [
+  //   { label: "CG", thicknessMm: 0.0, nd: 1.5168, vd: 64.2, gapAfterMm: 0.0, source: "..." },
+  // ],
+
+  /* ── Aspherical coefficients ── keyed by surface label. */
+  asph: { "1": { K: 0, A4: 1.25e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },
+
+  /* ── Variable air spacings (focus mechanism) ── */
+  var: { "2": [80, 81] },
+
+  /* ── Published stations (optional) ── */
+  publishedStations: { focus: [1] },
+
+  varLabels: [["2", "BF"]],
+
+  /* ── Independent aberration control (optional) ── */
+  // aberrationControl: { label: "SOFT", minLabel: "0", maxLabel: "3", step: 0.004, var: {} },
+
+  /* ── Zoom lens fields (optional — omit entirely for prime lenses) ── */
+  // zoomPositions: [24, 50, 70],
+
+  /* ── Group and doublet annotations ── */
+  groups: [{ text: "G1", fromSurface: "1", toSurface: "2" }],
+
+  /* ── Focus configuration ── */
+  closeFocusM: 0.5,
+  focusDescription: "Unit focus.",
+
+  /* ── Aperture configuration ── */
+  nominalFno: 2,
+  fstopSeries: [2, 2.8, 4],
+
+  /* ── Layout tuning ── */
+  scFill: 0.5,
+  yScFill: 0.55,`);
+
+/**
+ * A V1 zoom laid out in the template's sections: its zoom fields, per-station f-numbers and published stations each
+ * under their banner, all three lists the conversion to V2 folds into the stations.
+ */
+export const BANNERED_V1_ZOOM = v1LensFile(`  /* ── Identity ── */
+  key: "fixture-bannered-zoom",
+  name: "FIXTURE 24-100mm f/2-2.8",
+
+  /* ── Explicit metadata fields ── */
+  focalLengthMarketing: [24, 100],
+  apertureMarketing: 2,
+  lensMounts: ["nikon-z"],
+
+  /* ── Elements ── */
+  elements: [{ id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive", nd: 1.5168, vd: 64.17 }],
+
+  /* ── Surface prescription ── */
+  surfaces: [
+    { label: "STO", R: 1e15, d: 1, nd: 1, elemId: 0, sd: 9.5 },
+    { label: "1", R: 50, d: 5, nd: 1.5168, elemId: 1, sd: 15 },
+    { label: "2", R: -50, d: 80, nd: 1, elemId: 0, sd: 15 },
+  ],
+
+  /* ── Variable air spacings (focus mechanism) ── */
+  var: {
+    STO: [
+      [1, 1],
+      [3, 3],
+      [5, 5],
+    ],
+    "2": [
+      [80, 81],
+      [80, 82],
+      [80, 83],
+    ],
+  },
+
+  /* ── Published stations (optional) ── */
+  // Other zoom stations are solved.
+  publishedStations: { zoom: [0, 2] },
+
+  /* ── Zoom lens fields ── presence of zoomPositions makes the lens a zoom. */
+  zoomPositions: [24, 50, 100],
+  zoomLabels: ["Wide", "Tele"],
+
+  /* ── Focus configuration ── */
+  closeFocusM: 0.5,
+
+  /* ── Aperture configuration ── */
+  nominalFno: [2, 2.4, 2.8],
+  fstopSeries: [2, 2.8, 4],
+
+  /* ── Layout tuning ── */
+  yScFill: 0.55,`);
+
+/**
  * A V2 file as a person writes one: named media out of first-use order, an explicit zero term, and comments, one on
  * `schema` and one on an item of a published list.
  */

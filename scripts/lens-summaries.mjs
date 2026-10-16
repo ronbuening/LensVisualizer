@@ -71,6 +71,16 @@ export const TELECONVERTER_SUMMARY_FIELDS = [
 ];
 
 /**
+ * Mirrors the engine's `isV1File` (src/optics/prescription/ingestV2.ts): a file that leaves `schema` out is V1.
+ *
+ * @param {object} file - a lens or teleconverter file's evaluated default export
+ * @returns {boolean} whether the file is V1
+ */
+export function isV1LensData(file) {
+  return file.schema === undefined;
+}
+
+/**
  * A lens or teleconverter file in V1 field names: a V1 file as it is, a V2 file as its V1 view.
  *
  * @param {Record<string, unknown>} file - a file's evaluated default export
@@ -81,7 +91,7 @@ export const TELECONVERTER_SUMMARY_FIELDS = [
  * @returns {Promise<Record<string, unknown>>} the file in V1 field names
  */
 export async function v1Prescription(file, kind, loadViews = loadLensDataConversion) {
-  if (file?.schema === undefined) return file;
+  if (isV1LensData(file)) return file;
   const views = await loadViews();
   return kind === "lens"
     ? views.toLensDataInput(views.ingestLens(file))

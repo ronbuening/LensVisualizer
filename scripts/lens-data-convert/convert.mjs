@@ -365,7 +365,7 @@ export async function convertLensDataSource(content, options) {
 
   const placed = placeComments({
     comments: read.comments,
-    commentTarget: (path, leading) => map.commentTarget(path, leading),
+    commentTarget: (path, leading, movedFrom) => map.commentTarget(path, leading, movedFrom),
     textKept: (path) => kept.has(path),
     isContainer: (path) => containers.has(path),
   });

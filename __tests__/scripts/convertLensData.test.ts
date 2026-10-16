@@ -16,7 +16,7 @@ import {
   formatWithPrettier,
   type ConversionOptions,
 } from "../../scripts/lens-data-convert/convert.mjs";
-import { movedCommentText } from "../../scripts/lens-data-convert/comments.mjs";
+import { movedCommentText, movedNote } from "../../scripts/lens-data-convert/comments.mjs";
 import { formatConversionReport } from "../../scripts/lens-data-convert/report.mjs";
 import { evaluateLensDataSource } from "../../scripts/lens-data-ast.mjs";
 import { ingestLens, ingestTeleconverter } from "../../src/optics/prescription/ingestV2.js";
@@ -24,6 +24,8 @@ import { V1_GROUP_STARTS, V1_PRINT_ORDER } from "../../src/optics/prescription/t
 import type { LensDataInput } from "../../src/types/optics.js";
 import { FIXTURE_PAIRS, MAXIMAL_ZOOM, type FixturePair } from "../src/optics/prescription/ingestV2Fixtures.js";
 import {
+  BANNERED_V1_PRIME,
+  BANNERED_V1_ZOOM,
   COMMENTED_V2_ZOOM,
   FORMS_FILE,
   FORMS_REPORT,
@@ -55,6 +57,18 @@ function convert(text: string, options: Partial<ConversionOptions> = {}) {
     loadBuildLens: () => import("../../src/optics/buildLens.js"),
     ...options,
   });
+}
+
+/** The member a comment leads in a printed file: the first line below it, past other comments and blank lines. */
+function ledMember(text: string, comment: string): string | undefined {
+  const lines = text.split("\n");
+  const at = lines.findIndex((line) => line.trim() === comment);
+  if (at < 0) return undefined;
+  return lines
+    .slice(at + 1)
+    .find((line) => !/^\s*(\/\/|\/\*|$)/.test(line))
+    ?.trim()
+    .split(":")[0];
 }
 
 /** Convert, failing the test on a refusal. */
@@ -219,6 +233,20 @@ describe("printing a converted file", () => {
     expect(movedCommentText("/* ── Zoom ── */", "zoomPositions")).toBe("/* (moved from zoomPositions) ── Zoom ── */");
     expect(movedCommentText("//", "var")).toBe("// (moved from var)");
     expect(movedCommentText("// (moved from x) kept", "asph")).toBe("// (moved from x) kept");
+  });
+
+  it("reads back only its own note, exactly as it writes one", () => {
+    for (const text of ["// rest", "//", "/* ── Zoom ── */", "/* two\n * lines */"]) {
+      expect(movedNote(movedCommentText(text, "zoomPositions"))).toEqual({ from: "zoomPositions", text });
+    }
+    for (const text of [
+      "//(moved from var) x",
+      "// (Moved from var) x",
+      "// (moved from var)x",
+      "// see (moved from var)",
+    ]) {
+      expect(movedNote(text), text).toBeUndefined();
+    }
   });
 });
 
@@ -559,6 +587,110 @@ describe("the V1 direction (S2.P3.T2)", () => {
     const back = await converted(text);
     expect(prescriptionOf(back.text)).toEqual(prescriptionOf(COMMENTED_V2_ZOOM));
   });
+
+  it("takes zoomPositions first among the lists that hold a station, and its report line names the list", async () => {
+    const source = COMMENTED_V2_ZOOM.replace("{ focalLengthMm: 24 }", "{ focalLengthMm: 24, nominalFNumber: 2 }")
+      .replace("{ focalLengthMm: 50 }", "{ focalLengthMm: 50, nominalFNumber: 2.8 }")
+      .replace("{ focalLengthMm: 100 }", "{ focalLengthMm: 100, nominalFNumber: 4 }")
+      .replace("aperture: { nominalFNumber: 2, fStops", "aperture: { fStops");
+    const { text, report } = await converted(source, { toVersion: 1 });
+    expect(text.indexOf("  nominalFno: [")).toBeLessThan(text.indexOf("  zoomPositions:"));
+    expect(ledMember(text, "// (moved from zoom.stations[1]) the middle station, tabulated as Example 2")).toBe(
+      "zoomPositions",
+    );
+    expect(formatConversionReport([report])).toMatch(/line \d+: zoom\.stations\[1\] → zoomPositions: /);
+  });
+
+  it("leads, unmoved, the first V1 member written from inside a member V1 has no counterpart for", async () => {
+    const source = COMMENTED_V2_ZOOM.replace("  schema: 2,", "  /* ── Identity ── */\n  schema: 2,")
+      .replace(
+        '  name: "Fixture 24-100mm f/2",\n',
+        '  name: "Fixture 24-100mm f/2",\n\n  catalog: {\n    specs: ["4 ELEMENTS"],\n' +
+          "    /* ── Metadata ── */\n    focalLengthMm: { marketing: [24, 100] },\n  },\n",
+      )
+      .replace("  zoom: {\n    stations:", "  /* ── Zoom ── */\n  zoom: {\n    // wide to tele\n    stations:")
+      .replace("  focus: {", "  /* ── Focus ── */\n  focus: {")
+      .replace("  gaps: {", "  /* ── Variable gaps ── */\n  gaps: {")
+      .replace("  aperture: {", "  /* ── Aperture ── */\n  aperture: {")
+      .replace("  layout: {", "  /* ── Layout ── */\n  layout: {");
+    const { text, report } = await converted(source, { toVersion: 1 });
+    expect(
+      Object.fromEntries(
+        [
+          "/* ── Identity ── */",
+          "/* ── Metadata ── */",
+          "/* ── Zoom ── */",
+          "// wide to tele",
+          "/* ── Focus ── */",
+          "/* ── Variable gaps ── */",
+          "/* ── Aperture ── */",
+          "/* ── Layout ── */",
+        ].map((banner) => [banner, ledMember(text, banner)]),
+      ),
+    ).toEqual({
+      "/* ── Identity ── */": "key",
+      "/* ── Metadata ── */": "focalLengthMarketing",
+      "/* ── Zoom ── */": "zoomPositions",
+      "// wide to tele": "zoomPositions",
+      "/* ── Focus ── */": "closeFocusM",
+      "/* ── Variable gaps ── */": "var",
+      "/* ── Aperture ── */": "nominalFno",
+      "/* ── Layout ── */": "yScFill",
+    });
+    expect(report.moved.map((move) => move.from)).toEqual(["media[0]", "zoom.stations[1]"]);
+  });
+
+  it("reads a banner's note only when it names a member the banner may lead, and drops it then", async () => {
+    const source = COMMENTED_V2_ZOOM.replace(
+      "  focus: {",
+      "  // (moved from asph) Not one of focus's members.\n  focus: {",
+    ).replace("  aperture: {", "  // (moved from fstopSeries) The stops.\n  // Said once.\n  aperture: {");
+    const { text, report } = await converted(source, { toVersion: 1 });
+    expect(ledMember(text, "// (moved from asph) Not one of focus's members.")).toBe("closeFocusM");
+    expect(ledMember(text, "// The stops.")).toBe("fstopSeries");
+    expect(ledMember(text, "// Said once.")).toBe("fstopSeries");
+    expect(text).not.toContain("(moved from fstopSeries)");
+    expect(report.moved.map((move) => move.from)).toEqual(["media[0]", "zoom.stations[1]"]);
+  });
+
+  it("reads a note on a node V1 has a counterpart for, nested or not, when it names a node written from inside it", async () => {
+    const source = COMMENTED_V2_ZOOM.replace(
+      '    "3": {\n      values:',
+      '    // (moved from varLabels[0]) The back focus.\n    "3": {\n      label: "BF",\n      values:',
+    ).replace(
+      '    { label: "1", R: 50, d: 5, sd: 15, medium: 1 }, // L1 front',
+      '    // (moved from surfaces[1].sd) The rim.\n    { label: "1", R: 50, d: 5, sd: 15, medium: 1 }, // L1 front',
+    );
+    const { text, report } = await converted(source, { toVersion: 1 });
+    expect(text).toMatch(/\/\/ The back focus\.\n\s+\["3", "BF"\]/);
+    expect(text).toMatch(/\/\/ The rim\.\n\s+sd: 15/);
+    expect(text).not.toMatch(/moved from (varLabels|surfaces)/);
+    expect(report.moved.map((move) => move.from)).toEqual(["media[0]", "zoom.stations[1]"]);
+  });
+
+  it.each([
+    ["prime", BANNERED_V1_PRIME],
+    ["zoom", BANNERED_V1_ZOOM],
+  ])(
+    "brings every template banner of a V1 %s back, V1 → V2 → V1, on the member it led and moved by none",
+    async (_kind, source) => {
+      const there = await converted(source);
+      const back = await converted(there.text, { toVersion: 1 });
+      const commentLines = (text: string) =>
+        text
+          .split("\n")
+          .map((line) => line.trim())
+          .filter((line) => line.startsWith("//") || line.startsWith("/*"))
+          .sort();
+      const banners = commentLines(source).filter((line) => line.startsWith("/* ──"));
+      expect(banners.length).toBeGreaterThanOrEqual(9);
+      const led = (text: string) => Object.fromEntries(banners.map((banner) => [banner, ledMember(text, banner)]));
+      expect(led(back.text)).toEqual(led(source));
+      expect(back.report.moved).toEqual([]);
+      expect(commentLines(back.text)).toEqual(commentLines(source));
+      expect(prescriptionOf(back.text)).toEqual(prescriptionOf(source));
+    },
+  );
 
   it("prints a restored flat radius as 1e15, keeps a V2 literal's text, and prints a value V1 holds twice from its value", async () => {
     const source = BUILDABLE_V2.replace('{ label: "1", R: 50, d: 5,', '{ label: "1", R: 50.000, d: 5,').replace(
