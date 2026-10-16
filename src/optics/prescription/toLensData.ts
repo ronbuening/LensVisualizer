@@ -399,6 +399,7 @@ function buildLensView(ingested: IngestedPrescription<CanonicalLens>, mergeCatal
  */
 export function toLensData(ingested: IngestedPrescription<CanonicalLens>): LensData {
   const view = buildLensView(ingested, true) as unknown as LensData;
+  if (ingested.attachedTeleconverter) view.attachedTeleconverter = structuredClone(ingested.attachedTeleconverter);
   associateCanonical(view, ingested);
   return view;
 }

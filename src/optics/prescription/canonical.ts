@@ -22,6 +22,7 @@ import type {
   DiffractivePhaseSurface,
   FiniteConjugate,
   LensProjectionConfig,
+  LensData,
   OpticalConfigurationData,
   OpticalPathData,
   PerspectiveControlConfig,
@@ -430,6 +431,8 @@ export interface CanonicalProvenance {
 export interface IngestedPrescription<Prescription extends CanonicalPrescription = CanonicalPrescription> {
   prescription: Prescription;
   provenance: CanonicalProvenance;
+  /** Composition identity and plate placement, outside authored prescription semantics. */
+  attachedTeleconverter?: LensData["attachedTeleconverter"];
 }
 
 /** An authored file that cannot be represented canonically, with every reason found. */

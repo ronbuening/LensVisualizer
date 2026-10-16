@@ -12,3 +12,8 @@ export default buildLens2;
 export { buildSpectralIndex, compileSurfaceDispersions } from "./prescription/compileMaterials.js";
 export { expandRearPlates } from "./prescription/rearPlates.js";
 export { compiledLensFromRuntime } from "./prescription/identity.js";
+
+export type { CanonicalLens, IngestedPrescription } from "./prescription/canonical.js";
+
+export { canonicalLensFromRuntime } from "./prescription/identity.js";
+export { buildCanonicalLens } from "./compat.js";

@@ -2323,6 +2323,9 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     - the MTF worker receives the canonical prescription and compiles it once, which deletes the strip-and-rebuild of
       synthetic plates in `src/components/hooks/mtf.worker.ts`.
   - **Tests:** the teleconverter suites and the converter-pair sweep; worker/main-thread equality.
+  - **As built:** The composer ingests both inputs, merges canonical records and returns an associated V1 view;
+    the trusted composed-pair adapter and ingest allowance are removed. Worker init transports the unexpanded
+    canonical input, provenance and descriptor and compiles once, with compiled-record and MTF equality checked.
   - **Gate:** C0.
 - **S5.P2.T1 One owner for prepared geometry.**
   - **Change:** `state/preparedGeometry.ts` replaces every other prepared-state path with one bounded LRU (96 per

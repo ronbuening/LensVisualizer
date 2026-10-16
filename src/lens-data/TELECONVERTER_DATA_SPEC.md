@@ -137,6 +137,11 @@ meant for publication gets its own file, key and name; it never reuses a test mo
 
 ## Composed System
 
+`attachTeleconverter(host, converter)` ingests both inputs and composes their canonical prescriptions before
+compilation. It returns a `LensData` view associated with that canonical pair for the existing `buildLens()` call.
+The compiler and analyses consume one lens; the descriptor supplies labels and plate placement. Worker initialization
+transports the unexpanded canonical pair, provenance and descriptor and compiles it directly.
+
 Authors do not write composed data, but the conventions matter when reading the viewer:
 
 - Converter surface labels gain the reserved `TC` prefix and element ids continue after the host's. Authored lens

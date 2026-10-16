@@ -7,8 +7,9 @@
 
 import { runtimeView } from "./prescription/runtimeView.js";
 import type { LayoutResult, LensData, RuntimeLens } from "../types/optics.js";
+import type { CanonicalLens, IngestedPrescription } from "./prescription/canonical.js";
 import type { CompiledLens, PreparedOpticalState } from "./types.js";
-import { compiledLensFromRuntime, compileLensData } from "./prescription/compile.js";
+import { compiledLensFromRuntime, compileLensData, compileLens } from "./prescription/compile.js";
 import { prepareState } from "./state/prepareState.js";
 import type { PreparedStateCache } from "./state/cache.js";
 
@@ -54,6 +55,16 @@ function preparedStateCacheForRuntime(L: RuntimeLens): PreparedStateCache {
  */
 export function buildLens2(data: LensData): RuntimeLens {
   return runtimeView(compileLensData(data));
+}
+
+/**
+ * Compile a transported canonical input and publish its compatibility view.
+ *
+ * @param input - canonical lens and source provenance, before rear-plate expansion
+ * @returns frozen runtime sharing one successful compilation per prescription identity
+ */
+export function buildCanonicalLens(input: IngestedPrescription<CanonicalLens>): RuntimeLens {
+  return runtimeView(compileLens(input));
 }
 
 /**

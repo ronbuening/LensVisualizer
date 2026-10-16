@@ -15,8 +15,6 @@ import { validateGeometry } from "./geometry.js";
 
 /** A diagnostic projection only: never compile, expand plates or resolve materials during validation. */
 function canonicalRecords(data: UntrustedLensData): LensData | UntrustedLensData {
-  // Composition remains a trusted V1 adapter until T4; malformed records still need all their original diagnostics.
-  if (data.attachedTeleconverter) return data;
   try {
     return toLensData(ingestLensV1(data as LensDataInput));
   } catch {
@@ -74,7 +72,7 @@ export function validateLensInput(data: unknown): string[] {
 /** Canonical entry: provenance keeps ignored values and source spellings in diagnostics, outside the fingerprint. */
 export function validateCanonicalLens(
   ingested: IngestedPrescription<CanonicalLens>,
-  descriptor?: LensData["attachedTeleconverter"],
+  descriptor = ingested.attachedTeleconverter,
 ): string[] {
   const data = toLensData(ingested);
   if (descriptor) data.attachedTeleconverter = descriptor;
