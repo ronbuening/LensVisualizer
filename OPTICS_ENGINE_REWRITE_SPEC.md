@@ -1985,42 +1985,57 @@ spec–code contradictions below, may go to `main` at any time as ordinary docum
 
 - **S2.P4.T1 V2 lens-data spec and templates.** Rewrite `src/lens-data/LENS_DATA_SPEC.md` in authoring order:
   1. quick start;
-  2. file shape;
-  3. identity and catalog;
-  4. source and errata;
-  5. elements and media;
-  6. surfaces (geometry, aspheres, diffractive, interactions and annuli);
-  7. stop and aperture, including the three stop-radius authorities and the prime rule from
+  2. scope: what to include;
+  3. file shape;
+  4. identity and catalog;
+  5. source and errata;
+  6. elements and media;
+  7. surfaces (geometry, aspheres, diffractive, interactions and annuli);
+  8. stop and aperture, including the three stop-radius authorities and the prime rule from
      [Stop radius](#stop-radius);
-  8. states (zoom stations, focus keyframes, gaps, conjugates, published stations, aberration control);
-  9. projection;
-  10. folded paths;
-  11. perspective control;
-  12. rear plates;
-  13. annotations;
-  14. layout, rays and checks;
-  15. validation rules, each with its code pointer;
-  16. glass identification;
-  17. data-sourcing checklist;
-  18. examples (prime, zoom, folded);
-  19. "Reading V1 audits".
+  9. states (zoom stations, focus keyframes, gaps, conjugates, published stations, aberration control);
+  10. projection;
+  11. folded paths;
+  12. perspective control;
+  13. rear plates;
+  14. annotations;
+  15. layout, rays and checks;
+  16. validation rules, each with its code pointer;
+  17. glass identification;
+  18. data-sourcing checklist;
+  19. examples (prime, zoom, folded);
+  20. "Reading V1 audits".
 
-  Fix the ten spec–code contradictions while rewriting. They include:
-  - the stop `sd`;
-  - `zoomCloseFocusM` listed as required;
-  - the `lensShiftFrac` default: 0.08 in the defaults table, `lensShiftFrac || 0` in `buildLens`;
+  Fix these spec–code contradictions while rewriting, each by making the spec say what the code does:
+  - the stop `sd`: derived from the design f-number or a schedule, and authored only for a folded system or a stop
+    inside an element; the entrance pupil comes from the f-number for every lens;
+  - `zoomCloseFocusM` listed as required: a station's close focus is optional, and refused on a prime;
+  - the `lensShiftFrac` default: 0.08 in the defaults table, `lensShiftFrac || 0` in the code;
   - the `offAxisFieldFrac` default, found in S2.P1.T1: 0.6 in the table, `L.offAxisFieldFrac ?? 0.7` in the
     chromatic ray-fan summary;
-  - the `zoomStep` default;
-  - stale `var` pair wording;
-  - "groups are purely visual".
+  - stale `var` pair wording: a prime's gap holds one thickness per focus keyframe;
+  - "groups are purely visual": authored groups are also the group-movement analysis's moving groups;
+  - a gap surface's `d`: exact equality with the gap's first value, as ingest requires, not a 1e-6 tolerance;
+  - `zoomLabels`: compiled to `L.zoomLabels`, which nothing displays, not a slider label;
+  - glass mismatches: the dispersion engine does not log them; the glass reports list them;
+  - smaller errors: `K > 0` is an oblate ellipsoid, not a hyperboloid; the minimal example's focal length; the
+    corpus sweeps' shrink-only lists; `catalog.imageFormat` required with `perspectiveControl`; the
+    `maxInteractions` image-plane allowance only with `imagePlane`.
 
-  The canonical defaults table carries the catalog's values, 0.08 and 0.6, which every catalog lens gets today.
+  The canonical defaults table carries the catalog's values, 0.08 and 0.6, which every catalog lens gets today. The
+  spec gives those values; the two code fallbacks are an open Stage 5 item.
   - **Also update:**
     - `src/lens-data/TEMPLATE.data.ts.template`
     - `src/lens-data/TEMPLATE.teleconverter.ts.template`
     - `src/lens-data/TELECONVERTER_DATA_SPEC.md`
     - `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md`
+    - `src/lens-data/LENS_ANALYSIS_SPEC.md` (the patent fields, as `source.*`)
+  - **Tests:** `__tests__/docDrift.test.ts` reads the spec's three example blocks, ingests each and builds it.
+  - **As built:** the spec has 20 sections. "Scope: What to Include" keeps its own section, under the same heading,
+    after Quick Start, so the sections lens files cite still resolve. The spec is V2 only; "Reading V1 audits" maps
+    each V1 field to its V2 path and states the V1 conventions an audit may assume. Each validation rule names its
+    function and file. The `zoomStep` default was dropped from the contradictions: spec and code agree on 0.004.
+  - **Gate:** C0.
 - **S2.P4.T2 Recipes and procedures.** Update these to V2 vocabulary:
   - `agent_docs/adding_a_lens.md`
   - `agent_docs/adding_a_teleconverter.md`
@@ -2598,6 +2613,11 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     `src/types/`.
   - **Gate:** C0.
 
+**Open for Stage 5** (from S2.P4.T1): two fallbacks disagree with the schema defaults, and neither can be reached,
+because ingest gives every lens the defaults table's values: `lensShiftFrac || 0` in `first-order/lensConstants.ts`
+and `prescription/compileCanonical.ts` (default 0.08), and `L.offAxisFieldFrac ?? 0.7` in `analysis/chromatic.ts`
+(default 0.6). Remove both, with the reader strings in `prescription/defaults.ts` that quote them.
+
 **Stage 5 gate:** Tier S against the anchor; S5.P1.T1's tests show one compile and one material resolution per identity;
 `src/optics/internal/` is gone (its last files leave in S5.P1.T1 and S5.P1.T3); the cycle guard's legacy list has
 shrunk.
@@ -2925,6 +2945,17 @@ The maintainer also settled these on 2026-10-16, answering the S2.P3.T3 question
 | 78 | The corpus sweep runs in the tooling suite | S2.P3.T3 |
 | 79 | The corpus sweep converts each file to the other version and back to its own | S2.P3.T3 |
 | 80 | A case the corpus sweep finds stops it; its C3 data correction is a separate PR on `main` | S2.P3.T3 |
+
+The maintainer also settled these on 2026-10-16, answering the S2.P4.T1 questions:
+
+| # | Decision | Where |
+| --- | --- | --- |
+| 81 | `LENS_DATA_SPEC.md` keeps "Scope: What to Include" as its own section, under the same heading, after Quick Start, so the sections lens files cite still resolve | S2.P4.T1 |
+| 82 | `LENS_ANALYSIS_SPEC.md` names the patent fields by their V2 `source.*` paths, updated with the spec | S2.P4.T1 |
+| 83 | The spec gives the defaults table's `lensShiftFrac` and `offAxisFieldFrac`; the two unreachable code fallbacks, and the `defaults.ts` reader strings that quote them, are removed in Stage 5 | S2.P4.T1; Stage 5 |
+| 84 | The spec's three examples are ingested and built in `docDrift.test.ts`, with no assertion beyond that | S2.P4.T1 |
+| 85 | The spec is V2 only, with the V1 → V2 field map in "Reading V1 audits"; it reaches `main` with promotion | S2.P4.T1 |
+| 86 | The spec says what the code does at each contradiction S2.P4.T1 names; the plan names them and gives no count | S2.P4.T1 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.

@@ -1,19 +1,22 @@
 # Lens Mount And Image-Format Options
 
-Reference for the canonical `lensMounts` and `imageFormat` ids used in `*.data.ts` files.
+Reference for the canonical `catalog.lensMounts` and `catalog.imageFormat` ids used in `*.data.ts` files (and
+`catalog.lensMounts` in `*.teleconverter.ts` files).
 
 The code source of truth is `src/utils/catalog/lensTaxonomy.ts`. Keep this document in sync when adding or renaming taxonomy
 entries. Lens files should store ids, not display labels.
 
 ```ts
-lensMounts: ["nikon-z", "sony-fe"],
-imageFormat: "135-full-frame",
+catalog: {
+  lensMounts: ["nikon-z", "sony-fe"],
+  imageFormat: "135-full-frame",
+},
 ```
 
 ## Lens Mount IDs
 
-Use `lensMounts` for production mount variants represented by the optical formula. The field is optional while the
-catalog is being backfilled, but when present it must be a non-empty array of unique known ids. Supported variants may be a documented subset; describe unrepresented sockets and body-specific compatibility limits in the lens analysis. Adapter compatibility alone is not a native production mount.
+Use `catalog.lensMounts` for production mount variants represented by the optical formula. The field is optional
+while the catalog is being backfilled, but when present it must be a non-empty array of unique known ids. Supported variants may be a documented subset; describe unrepresented sockets and body-specific compatibility limits in the lens analysis. Adapter compatibility alone is not a native production mount.
 
 | ID | Display Label | Notes |
 |----|---------------|-------|
@@ -102,8 +105,10 @@ catalog is being backfilled, but when present it must be a non-empty array of un
 
 ## Image Format IDs
 
-Use `imageFormat` for the single image circle or capture format the prescription is intended to cover. The field is
-optional while the catalog is being backfilled, but when present it must be exactly one known id.
+Use `catalog.imageFormat` for the single image circle or capture format the prescription is intended to cover. The
+field is optional while the catalog is being backfilled, but when present it must be exactly one known id. A published
+circular image diameter goes in `catalog.imageCircleMm` beside it, and overrides the format diagonal for analysis-field
+bounds ([LENS_DATA_SPEC.md](LENS_DATA_SPEC.md) § Identity and Catalog).
 
 Dimensions are nominal usable frame dimensions in millimeters and are used for catalog grouping plus image-field limits
 in distortion, vignetting, bokeh, and aberration analysis.
@@ -147,7 +152,8 @@ in distortion, vignetting, bokeh, and aberration analysis.
 
 - Prefer official product specs, patent examples, or documented production variants over filename inference.
 - Multi-mount lenses should list every known production mount represented by the same optical formula.
-- Fixed-lens cameras should use `lensMounts: ["fixed-lens-camera"]` plus the appropriate `imageFormat`.
+- Fixed-lens cameras should use `catalog.lensMounts: ["fixed-lens-camera"]` plus the appropriate
+  `catalog.imageFormat`.
 - Use `1-2.3-inch-type` or `1-1.7-inch-type` for Pentax Q lenses when the source format is known.
 - Use `1-inch-type` for Nikon 1 / CX-format lenses.
 - Use `four-thirds` for both Four Thirds DSLR and Micro Four Thirds lenses.
@@ -203,8 +209,8 @@ not measurements of the individual production camera or of a patent's variable i
   it does not reconstruct either crop or imply the patent covers the entire envelope at every zoom station.
 - `super-35-cinema`: ANSI silent aperture 24.9 × 18.7 mm from [ARRI's Ultra Prime technical table](https://www.arri.com/en/cine-lenses/arri-zeiss-fujinon-lenses/legacy/ultra-prime-lenses/arri-ultra-prime-lenses-technical-data).
 - `super-35-1.9`: 26.2 × 13.8 mm is the EOS C500 1.9:1 reference in [Canon's CN7×17 manual](https://downloads.canon.com/nw/camera/products/cine-lenses/cine-servo/pdfs/b-im-20237-4-web.pdf).
-  The CN7 also covers a 24.6 × 13.8 mm C300 frame. Keep its explicit 29.6 mm image circle; the larger silent-aperture
-  Super 35 format would exceed this lens's disclosed coverage.
+  The CN7 also covers a 24.6 × 13.8 mm C300 frame. Keep its explicit 29.6 mm `catalog.imageCircleMm`; the larger
+  silent-aperture Super 35 format would exceed this lens's disclosed coverage.
 
 Production-format assignments retain each lens's existing patent/product correlation caveat. A format is not proof of
 production prescription identity or unvignetted full-field performance. The S-100 remains unresolved: Nikon's
