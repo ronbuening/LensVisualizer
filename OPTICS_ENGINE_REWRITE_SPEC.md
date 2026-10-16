@@ -2952,9 +2952,7 @@ The maintainer also settled these on 2026-10-15, answering the S2.P3.T2 question
 | 74 | The banner round trip is tested on synthetic V1 files in the template's sections; the catalog's goes in the PR, with the banners that return on another member through `V1_PRINT_ORDER` | S2.P3.T2 |
 | 75 | The scripts keep their copies of the V1 rule, the engine's expression verbatim and tested to agree with `isV1File`, until S2.P5.T9 | S2.P3.T2; S2.P5.T9 |
 | 76 | A V1 surface prints `elemId` before `sd`, as the V1 view writes it | S2.P3.T2 |
-| — | Going to V1, a container a converter note names that the V1 view would leave out (`asph: {}`) is written empty, and the note's run returns to it (Q48) | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T2 |
-
-Row — is numbered at S2.P3.T2's last merge of `engine-next`.
+| 77 | Going to V1, a container a converter note names that the V1 view would leave out (`asph: {}`) is written empty, and the note's run returns to it (Q48) | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T2 |
 
 The maintainer also settled these on 2026-10-16, answering the S2.P3.T3 questions:
 
