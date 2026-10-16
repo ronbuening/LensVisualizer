@@ -1953,14 +1953,20 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     link and a signal.
   - **Gate:** C0.
 - **S2.P3.T3 Corpus conversion sweep.**
-  - **Change:** add `__tests__/scripts/convertLensDataCorpus.test.ts`. For every lens and converter it:
-    - converts the file to a temp directory;
-    - checks that it re-ingests to the same canonical prescription;
-    - converts it back to V1 and checks that it re-ingests to the same canonical prescription again;
-    - checks idempotence.
+  - **Change:** add `__tests__/scripts/convertLensDataCorpus.test.ts`. For every lens and converter, through the
+    command line into a temp directory, each leg type-checking what it writes, it:
+    - converts the file to the other version, and checks that it re-ingests to the same canonical prescription;
+    - converts it back to its own version, and checks that it re-ingests to the same canonical prescription again and
+      holds every comment of the source once, as written or with the converter's note;
+    - checks idempotence as a second round trip: from the first round trip's output, to the other version and back
+      writes byte-identical files in both versions. One round trip is not held to bytes: comment order and place, by
+      the V1 order's limits, and V1's default spelling (`published: true`) may change on the first.
 
-    It is offender-collecting, and its offender list must be empty. A new case is resolved by a C3 data correction
-    before the sweep lands.
+    A V1 file goes V1 → V2 → V1 and a V2 file V2 → V1 → V2, so the sweep holds before, during and after S2.P5.
+    It is offender-collecting, and its offender list must be empty: a refused file is a case, and the other files go
+    on. A case found when the sweep lands stops it, and is resolved by a C3 data correction in its own PR on `main`;
+    the sweep stays C0.
+  - **Where:** the tooling suite (`npm run test:tooling`), which CI runs on every PR; `npm run test` stays fast.
   - **Gate:** C0.
 
 **Phase 2.4 — Authoring documents**
@@ -2882,6 +2888,15 @@ The maintainer also settled these on 2026-10-15, answering the S2.P3.T2 question
 | 74 | The banner round trip is tested on synthetic V1 files in the template's sections; the catalog's goes in the PR, with the banners that return on another member through `V1_PRINT_ORDER` | S2.P3.T2 |
 | 75 | The scripts keep their copies of the V1 rule, the engine's expression verbatim and tested to agree with `isV1File`, until S2.P5.T9 | S2.P3.T2; S2.P5.T9 |
 | 76 | A V1 surface prints `elemId` before `sd`, as the V1 view writes it | S2.P3.T2 |
+
+The maintainer also settled these on 2026-10-16, answering the S2.P3.T3 questions:
+
+| # | Decision | Where |
+| --- | --- | --- |
+| 77 | The corpus sweep's idempotence is a second round trip, byte-identical in both versions; one round trip is held only to the prescription and to each comment once | S2.P3.T3 |
+| 78 | The corpus sweep runs in the tooling suite | S2.P3.T3 |
+| 79 | The corpus sweep converts each file to the other version and back to its own | S2.P3.T3 |
+| 80 | A case the corpus sweep finds stops it; its C3 data correction is a separate PR on `main` | S2.P3.T3 |
 
 Left to evidence gathered during the program: the final barrel list (S8.P1.T1), the two focus-infinity thresholds
 (S5.P2.T2) and the items S1.P2.T2 leaves open.

@@ -423,6 +423,12 @@ const LENS_DATA = {
 export default LENS_DATA;
 `;
 
+/** `V2_SOURCE_FILE` without its published close keyframe, so that it builds: what the V1 direction converts. */
+export const BUILDABLE_V2 = V2_SOURCE_FILE.replace(
+  "  focus: {\n    closeFocusM: 0.5,\n    published: [\n      // the close keyframe\n      1,\n    ],\n  },",
+  "  focus: { closeFocusM: 0.5 },",
+);
+
 /** A V2 zoom whose comments sit on `schema` and on an item of a station's published keyframes. */
 export const V2_ZOOM_SOURCE_FILE = `import type { LensDataV2Input } from "../../types/lensDataV2.js";
 

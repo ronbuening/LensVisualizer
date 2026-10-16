@@ -25,6 +25,7 @@ import type { LensDataInput } from "../../src/types/optics.js";
 import { FIXTURE_PAIRS, MAXIMAL_ZOOM, type FixturePair } from "../src/optics/prescription/ingestV2Fixtures.js";
 import {
   BANNERED_V1_PRIME,
+  BUILDABLE_V2,
   BANNERED_V1_ZOOM,
   COMMENTED_V2_ZOOM,
   FORMS_FILE,
@@ -419,11 +420,6 @@ describe("under plain Node", () => {
 
 describe("the V1 direction (S2.P3.T2)", () => {
   /** The hand-written V2 prime without its published keyframe, which has no focus travel to build. */
-  const BUILDABLE_V2 = V2_SOURCE_FILE.replace(
-    "  focus: {\n    closeFocusM: 0.5,\n    published: [\n      // the close keyframe\n      1,\n    ],\n  },",
-    "  focus: { closeFocusM: 0.5 },",
-  );
-
   it.each(FIXTURE_PAIRS.map((pair) => [pair.family, pair] as const))(
     "%s: the V2 side converts to V1 text that ingests to the pair's prescription, and back to V2",
     async (_family, pair) => {

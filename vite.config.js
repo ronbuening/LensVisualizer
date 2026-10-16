@@ -9,6 +9,7 @@ export const TOOLING_TESTS = [
   "__tests__/scripts/baseWorktree.test.ts",
   "__tests__/scripts/benchmarkMtfScript.test.ts",
   "__tests__/scripts/benchmarkOpticsRenderingScript.test.ts",
+  "__tests__/scripts/convertLensDataCorpus.test.ts",
   "__tests__/scripts/engineDiffScript.test.ts",
 ];
 

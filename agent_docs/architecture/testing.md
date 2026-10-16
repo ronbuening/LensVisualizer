@@ -1011,6 +1011,10 @@ When refactoring:
   the command line on synthetic files in a temp directory: arguments and exit codes, the three modes, each kind of
   refusal, collisions, `--output`, interrupted writes and signals through an injected file system and signal source,
   line endings, the type-check where a file will be written, and V2 → V1 → V2 over the fixture pairs.
+  `convertLensDataCorpus.test.ts`, in the tooling suite, sweeps the catalog through the command line: every file to
+  the other version and back, each leg's prescription equal to the source's, every comment carried once, and a second
+  round trip byte-identical in both versions; it fails with every case it found. Run it alone with
+  `npx vitest run --config vitest.tooling.config.js __tests__/scripts/convertLensDataCorpus.test.ts`.
 - Add fixture-backed optics tests whenever changing `SurfaceData.interaction`, `innerSd`, `opticalPath`, generalized
   stop tracing, generalized image-plane intersection, obstruction-aware sampling, or folded analysis gating. Prefer
   hidden reference fixtures under `src/lens-data/reference/` for canonical mirror/telescope behavior.
