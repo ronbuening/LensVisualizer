@@ -1,5 +1,7 @@
 /** Focus-distance endpoints follow the same normalized station coordinates as zoom gaps. */
 import type { RuntimeLens } from "../types/optics.js";
+import { buildStateSurfaces } from "./internal/lensState.js";
+import { traceParaxialSurfaces2, transferParaxialRay2 } from "./math/paraxial.js";
 
 /** Focus slider values below this threshold are treated as infinity. */
 export const FOCUS_INFINITY_THRESHOLD = 0.003;
@@ -29,29 +31,32 @@ export function focusToControl(focusT: number, positions: readonly number[]): nu
   return 1;
 }
 
-/** A distance belongs to its exact documented state, never to an interpolated spacing. */
+/** Look up a documented conjugate without treating interpolation as a source station. */
 export function focusConjugate(focusT: number, L: RuntimeLens, zoomT = 0) {
   return L.data.finiteConjugates?.find((c) => Math.abs(c.focusT - focusT) < 1e-8 && Math.abs(c.zoomT - zoomT) < 1e-8);
 }
 
-/** Metres in the declared reference convention; null means infinity or no verified distance. */
+/** Metres in the declared reference convention, deriving intermediate conjugates from the current gaps. */
 export function focusDistanceAt(focusT: number, L: RuntimeLens, zoomT = 0): number | null {
+  if (focusT < FOCUS_INFINITY_THRESHOLD) return null;
   if (L.data?.focusControl === "stations") {
     const conjugate = focusConjugate(focusT, L, zoomT);
-    return conjugate ? conjugate.objectDistanceMm / 1000 : null;
+    if (conjugate) return conjugate.objectDistanceMm / 1000;
+    if (L.isFoldedOptics) return null;
+    const surfaces = buildStateSurfaces(L.S, L.varByIdx, L.isZoom, focusT, zoomT, {}, 0, L.focusPositions);
+    // The shared surface trace ends at the last vertex; propagate its two basis rays to the image plane.
+    const imageGapMm = surfaces[surfaces.length - 1].d;
+    const marginal = transferParaxialRay2(traceParaxialSurfaces2(surfaces, 1, 0), imageGapMm);
+    const chief = transferParaxialRay2(traceParaxialSurfaces2(surfaces, 0, 1), imageGapMm);
+    // At the image plane, A*y + B*u = 0; a real axial object has u = y / objectDistance.
+    const objectDistanceMm = -chief.y / marginal.y;
+    const trackMm = surfaces.reduce((sum, surface) => sum + surface.d, 0);
+    const reference = L.data.finiteConjugates?.[0]?.distanceReference ?? "image-plane";
+    const distanceM = (objectDistanceMm + (reference === "image-plane" ? trackMm : 0)) / 1000;
+    return objectDistanceMm > 0 && Number.isFinite(distanceM) ? distanceM : null;
   }
-  if (focusT < FOCUS_INFINITY_THRESHOLD) return null;
   const distance = closeFocusAtZoom(zoomT, L) / focusT;
   return Number.isFinite(distance) && distance > 0 ? distance : null;
-}
-
-/** Always-visible qualification for station-based focus controls and analysis readouts. */
-export function focusDistanceNote(focusT: number, L: RuntimeLens, zoomT = 0): string | undefined {
-  if (L.data?.focusControl !== "stations") return undefined;
-  if (focusT === 0) return "Patent states spaced evenly";
-  const conjugate = focusConjugate(focusT, L, zoomT);
-  if (!conjugate) return "Distance unverified";
-  return `${conjugate.distanceReference === "image-plane" ? "From image plane" : "From first surface"} · source spacing`;
 }
 
 /** Preserve object distance when the modeled close-focus endpoint changes. */

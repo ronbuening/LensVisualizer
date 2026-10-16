@@ -50,9 +50,9 @@ flowchart LR
   n_src_components_display_analysis_TypeScript_modules --> |2| n_external_pkg_react
   n_src_components_display_analysis_React_components --> |2| n_external_src_optics_chromatic
   n_src_components_display_analysis_React_components --> |2| n_external_src_optics_distortionAnalysis_ts
-  n_src_components_display_analysis_React_components --> |2| n_external_src_optics_focusDistance_ts
   n_src_components_display_analysis_TypeScript_modules --> |2| n_external_src_optics_types_ts
   n_src_components_display_analysis_TypeScript_modules --> n_external_src_optics_chromatic
+  n_src_components_display_analysis_React_components --> n_external_src_optics_focusDistance_ts
   n_src_components_display_analysis_React_components --> n_external_src_optics_mtf_ts
   n_src_components_display_analysis_React_components --> n_external_src_optics_opticsFormat_ts
   n_src_components_display_analysis_React_components --> n_external_src_optics_pupilAberration_ts
@@ -103,7 +103,7 @@ flowchart LR
 | `MeridionalComaPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, MeridionalComaPlot |
 | `MtfChart.tsx` | React component module | src/components/display (2), src/types (2), package:react, src/utils/state | src/components/display | default, MtfChart |
 | `MtfTab.tsx` | React component module | src/components/display (5), src/components/hooks (3), src/types (3), package:react, src/optics/mtf.ts, +2 more | src/components/layout | mtfFieldFractions, default, MtfTab |
-| `OpticalSummaryTab.tsx` | React component module | src/components/display (2), src/optics/compat.ts (2), src/types (2), package:react, src/optics/focusDistance.ts, +3 more | src/components/layout | default, OpticalSummaryTab |
+| `OpticalSummaryTab.tsx` | React component module | src/components/display (2), src/optics/compat.ts (2), src/types (2), package:react, src/optics/optics.ts, +2 more | src/components/layout | default, OpticalSummaryTab |
 | `PupilAberrationChart.tsx` | React component module | src/components/display (3), src/optics/pupilAberration.ts, src/types | src/components/display | default, PupilAberrationChart |
 | `PupilAberrationTab.tsx` | React component module | src/components/display (4), src/optics/compat.ts (2), src/types (2), package:react, src/optics/optics.ts, +1 more | src/components/layout | default, PupilAberrationTab |
 | `SagittalComaPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, SagittalComaPlot |

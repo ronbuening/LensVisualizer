@@ -13,7 +13,6 @@ import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../o
 import {
   closeFocusAtZoom,
   focusControlPositions,
-  focusDistanceNote,
   focusFromControl,
   focusToControl,
   remapFocusDistance,
@@ -132,7 +131,6 @@ export default function DiagramControls({
   const shiftEnabled = L.perspectiveControl ? isMovementAxisEnabled(L.perspectiveControl.shiftRangeMm) : false;
   const tiltEnabled = L.perspectiveControl ? isMovementAxisEnabled(L.perspectiveControl.tiltRangeDeg) : false;
   const groupMovementAvailability = getGroupMovementAvailability(L);
-  const focusNote = groupMovementAvailability.focus ? focusDistanceNote(focusT, L, zoomT) : undefined;
 
   useEffect(() => {
     onInteractionChange?.(interacting);
@@ -363,7 +361,7 @@ export default function DiagramControls({
           onChange={handleFocusChange}
           onPointerUp={handlePointerUp}
           minLabel={"\u221e"}
-          maxLabel={groupMovementAvailability.focus ? formatDist(1, L, zoomT) : "Not modeled"}
+          maxLabel={groupMovementAvailability.focus ? formatDist(1, L, zoomT, true) : "Not modeled"}
           disabled={!groupMovementAvailability.focus}
           disabledReason="No modeled focus travel data"
           flexBasis="260px"
@@ -385,7 +383,6 @@ export default function DiagramControls({
             ) : undefined
           }
         >
-          {focusNote && <div style={{ marginTop: 8, fontSize: 9.5, color: t.desc }}>{focusNote}</div>}
           {focusExpanded && (
             <>
               <div

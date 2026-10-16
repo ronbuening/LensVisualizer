@@ -4,7 +4,7 @@
  * Kept in the pure optics layer so analysis displays share unit conventions without importing React components.
  */
 
-import { closeFocusAtZoom, focusConjugate } from "./focusDistance.js";
+import { focusDistanceAt } from "./focusDistance.js";
 import type { RuntimeLens } from "../types/optics.js";
 import { FOCUS_INFINITY_THRESHOLD } from "./layout.js";
 
@@ -50,20 +50,17 @@ export function marketedApertureNote(
  *
  * @param t - normalized focus slider, 0=infinity and 1=close focus
  * @param L - runtime lens object with close-focus distance
+ * @param endpoint - omit fractional centimeters in slider endpoint labels
  * @returns compact distance string in meters, centimeters, or infinity
  */
-export function formatDist(t: number, L: RuntimeLens, zoomT = 0): string {
-  if (L.data?.focusControl === "stations") {
-    if (t === 0) return "\u221e";
-    const conjugate = focusConjugate(t, L, zoomT);
-    return conjugate ? `${conjugate.objectDistanceMm.toFixed(2)} mm` : "Interpolated";
-  }
+export function formatDist(t: number, L: RuntimeLens, zoomT = 0, endpoint = false): string {
   if (t < FOCUS_INFINITY_THRESHOLD) return "\u221e";
-  const d = closeFocusAtZoom(zoomT, L) / t;
+  const d = focusDistanceAt(t, L, zoomT);
+  if (d === null) return "\u2014";
   if (d >= 100) return `${Math.round(d)} m`;
   if (d >= 10) return `${d.toFixed(1)} m`;
   if (d >= 1) return `${d.toFixed(2)} m`;
-  return `${(d * 100).toFixed(0)} cm`;
+  return `${(d * 100).toFixed(L.data?.focusControl === "stations" && !endpoint ? 1 : 0)} cm`;
 }
 
 /**

@@ -4,7 +4,11 @@ import { cleanup, fireEvent, render, renderHook, screen, within } from "@testing
 import { afterEach, describe, expect, it, vi } from "vitest";
 import useStickySliders from "../../../src/comparison/useStickySliders.js";
 import SharedSlidersBar from "../../../src/comparison/SharedSlidersBar.js";
-import { buildSimplePositiveElementLens, buildVariableStopGapLens } from "../optics/testLensFixtures.js";
+import {
+  buildSimplePositiveElementLens,
+  buildStationFocusLens,
+  buildVariableStopGapLens,
+} from "../optics/testLensFixtures.js";
 import themes from "../../../src/utils/theme/themes.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 import { computeAperturePair, computeFocusPair } from "../../../src/comparison/comparisonSliders.js";
@@ -55,6 +59,7 @@ function renderSharedSliders({
   zoomPair = null,
   movementPair = null,
   sharedZoomT = 0.5,
+  sharedFocusT = 0.25,
   sharedStopdownT = 0.3,
   currentAperturePair = aperturePair,
   currentFocusPair = focusPair,
@@ -84,6 +89,7 @@ function renderSharedSliders({
   zoomPair?: ZoomPairResult | null;
   movementPair?: MovementPairResult | null;
   sharedZoomT?: number;
+  sharedFocusT?: number;
   sharedStopdownT?: number;
   currentAperturePair?: AperturePairResult;
   currentFocusPair?: FocusPairResult;
@@ -113,7 +119,7 @@ function renderSharedSliders({
       <SharedSlidersBar
         LA={LA}
         LB={LB}
-        sharedFocusT={0.25}
+        sharedFocusT={sharedFocusT}
         sharedStopdownT={sharedStopdownT}
         sharedZoomT={sharedZoomT}
         sharedShiftMm={sharedShiftMm}
@@ -160,12 +166,17 @@ function renderSharedSliders({
 }
 
 describe("SharedSlidersBar", () => {
-  it("maps station travel before dispatch and qualifies unsynchronized distance readouts", () => {
-    const LA = buildVariableStopGapLens([1, 11, 21], "test-shared-station-control", [0, 0.9999, 1], {
-      focusControl: "stations",
+  it("maps station travel before dispatch and shows numeric centimeter readouts", () => {
+    const LA = buildStationFocusLens();
+    const { callbacks } = renderSharedSliders({
+      LA,
+      LB: LA,
+      sharedFocusT: 0.99995,
+      currentFocusPair: computeFocusPair(0.99995, LA, LA),
     });
-    const { callbacks } = renderSharedSliders({ LA, LB: LA, currentFocusPair: computeFocusPair(0.25, LA, LA) });
-    expect(screen.getByText("Focus travel only; distances are not synchronized.")).toBeTruthy();
+    expect(screen.getByText("41.3 cm")).toBeTruthy();
+    expect(screen.getByText("41 cm")).toBeTruthy();
+    expect(screen.queryByText(/Distance unverified|distances are not synchronized/)).toBeNull();
     fireEvent.change(screen.getByRole("slider", { name: "FOCUS" }), { target: { value: "0.5" } });
     expect(callbacks.onSharedFocusChange).toHaveBeenCalledWith(0.9999, true);
   });

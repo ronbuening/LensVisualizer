@@ -1130,16 +1130,17 @@ object-to-image distance is available, its coordinate is `closeFocusM / focusDis
 positions are piecewise-linearly interpolated and should not be presented as source-published mechanical positions.
 Which authored keyframes the source itself tabulates is recorded in `publishedStations`.
 
-
 `focusControl: "stations"` opts into a presentation scale that spaces the authored `focusPositions` evenly on the
 control. Use it when near-coincident distance coordinates compress substantial published motion into an unusable
 part of the track. It changes neither canonical `focusT` (including saved URLs) nor variable gaps, tracing or MTF
 eligibility. `focusStep` then measures presentation travel; choose a step that can reach the desired station marks.
-The readout shows `finiteConjugates` distances only at matching source states, in mm to two decimal places with the
-declared distance reference. This is display precision, not measurement accuracy. Intermediate positions read
-“Interpolated” / “Distance unverified”; no continuous distance or cam law is inferred. The breathing chart uses the
-same presentation scale. Comparison controls spread the station knots in shared coordinates and identify travel
-as unsynchronized distances; each panel retains its canonical focus state and qualified readout.
+The readout uses explicit `finiteConjugates` distances at matching source states. Between them, it calculates the
+paraxial object conjugate from the current interpolated gaps, using the first certificate's distance reference
+(image plane by default). Keep certificate references consistent within a prescription. This is a display estimate;
+it does not create source-certified MTF states or establish a production cam law. Below one meter, the readout
+uses centimeters with one decimal, and slider endpoints use whole centimeters. The breathing chart uses the same
+presentation scale. Comparison controls spread the station knots in shared coordinates; each panel retains its
+canonical focus state and numeric readout.
 
 `finiteConjugates` optionally certifies individual authored states for finite-distance MTF. Each entry has
 `focusT` (an authored nonzero focus station), `zoomT` (0 for a prime; source zoom station index divided by

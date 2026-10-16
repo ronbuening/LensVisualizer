@@ -114,3 +114,22 @@ the existing corpus spelling “Anhui Changgeng Optics Technology Co., Ltd.”; 
 Technology Co., Ltd.” is an English spelling/translation variant of that same company, not a separate entity.
 The original Chinese identity and former English rendering remain in the analysis provenance. The shared
 assignee guard rejects the duplicate spelling in future additions.
+
+
+## 2026-10-16 — Continuous centimeter readouts
+
+The display policy above is superseded: interpolated positions retain numeric focus distances. Exact patent
+states use the unchanged finite-conjugate entries; intermediate distances use the shared paraxial engine on
+the current interpolated gaps. Two basis rays give the image-plane transfer coefficients A and B; the axial
+object distance before the first surface is −B/A. Adding the current first-surface-to-image-plane track gives
+the displayed object-to-image distance. The source prescription, source coordinates and finite MTF eligibility
+are unchanged.
+
+The focus readout uses centimeters with one decimal below one meter, and whole centimeters in the slider
+endpoints. Both native finite states read 20.0 cm and the near endpoint reads 20 cm. The extra interpolation
+and verification labels were removed. Halfway through the first spacing interval, the calculated readout is
+25.0 cm; halfway through the second it is 19.6 cm. Those calculations describe the interpolated model.
+
+The 200.020210 mm native 2× distance runs from the object to the image plane, while the object is
+64.979910 mm before the first optical surface. At nominal 1× those distances are 200.044364 mm and
+95.118364 mm. Neither is a measured clearance from the front of the barrel.

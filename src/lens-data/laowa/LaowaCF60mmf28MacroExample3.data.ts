@@ -9,7 +9,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * All three published spacing states preserved. Intermediate spacing interpolation is not a
  * source cam law or a verified conjugate schedule. Source-derived inverse-distance coordinates
  * place 1x very close to 2x in canonical focusT; station-based UI travel spreads the three
- * states evenly without changing those coordinates. Only finiteConjugates carry distance labels.
+ * states evenly without changing those coordinates. Intermediate distance readouts use the
+ * current paraxial conjugate; finiteConjugates still certifies only source states for MTF.
  * Physical stop radius calibrated by exact axial Snell tracing to source FNO2.90.
  * All glass semi-diameters are inferred, guided by Figure5 and source-aperture/field checks.
  * The modeled L4 rear rim is8.2mm versus9.0mm at its cemented front, keeping S7/S8
@@ -396,7 +397,7 @@ const LENS_DATA = {
   ],
   "closeFocusM": 0.20002020983305335,
   "focusControl": "stations",
-  "focusDescription": "PUBLISHED: G1 (L1–L7 plus stop) and G2 (L8) move objectward; L9 is stationary. Infinity / nominal 1× / nominal 2× occupy 0% / 50% / 100% of the control, preserving every native spacing. Intermediate motion is a visualization, not a verified cam law; no distance is assigned between source states. The two finite distances are calculated from the unchanged prescription to the image plane. Native 2× distance 200.0202 mm differs from production 185 mm.",
+  "focusDescription": "PUBLISHED: G1 (L1–L7 plus stop) and G2 (L8) move objectward; L9 is stationary. Native infinity / nominal 1× / nominal 2× spacings occupy 0% / 50% / 100% of the control. Between these states, group spacings are interpolated and focus distance follows the current prescription. Distances are measured from the object to the image plane.",
   "focusStep": 0.004,
   "nominalFno": 2.9,
   "fstopSeries": [

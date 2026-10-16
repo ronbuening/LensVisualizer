@@ -6,31 +6,20 @@ import {
   apertureAt,
   build,
   buildRearPlateLens,
-  buildVariableStopGapLens,
+  buildStationFocusLens,
   REAR_PLATE_FIXTURE,
   sharedSonnar50f15,
 } from "./testLensFixtures.js";
 
 describe("computeOpticalSummaryForState2", () => {
-  it("does not report inverse-distance estimates between station-only focus states", () => {
-    const L = buildVariableStopGapLens([1, 2], "test-summary-station-focus", undefined, {
-      focusControl: "stations",
-      finiteConjugates: [
-        {
-          focusT: 1,
-          zoomT: 0,
-          objectDistanceMm: 250,
-          distanceReference: "image-plane",
-          source: "Synthetic finite state",
-        },
-      ],
-    });
+  it("reports the current interpolated object-to-image conjugate", () => {
+    const L = buildStationFocusLens();
     for (const [focus, distance] of [
-      [0.5, null],
-      [1, 0.25],
+      [0.99995, 0.413240997229917],
+      [1, 0.405],
     ] as const) {
       const summary = computeOpticalSummaryForState2(prepareRuntimeState(L, focus, 0), L.EFL, L.EP.epSD, L.stopPhysSD);
-      expect(summary.focusDistanceM).toBe(distance);
+      expect(summary.focusDistanceM).toBeCloseTo(distance, 12);
     }
   });
   it("summarizes current refractive lens state from prepared optics data", () => {

@@ -30,7 +30,7 @@ flowchart LR
   n_external_src_utils_catalog["src/utils/catalog"]
   n_external_src_utils_featureFlags_ts["src/utils/featureFlags.ts"]
   n_src_optics_TypeScript_modules --> |30| n_external_src_types
-  n_src_optics_TypeScript_modules --> |23| n_src_optics_src_optics_internal
+  n_src_optics_TypeScript_modules --> |24| n_src_optics_src_optics_internal
   n_src_optics_TypeScript_modules --> |19| n_src_optics_src_optics_analysis
   n_src_optics_TypeScript_modules --> |8| n_src_optics_src_optics_glassCatalogEntries
   n_src_optics_TypeScript_modules --> |8| n_src_optics_src_optics_prescription
@@ -40,11 +40,11 @@ flowchart LR
   n_src_optics_TypeScript_modules --> |4| n_src_optics_src_optics_field
   n_src_optics_TypeScript_modules --> |3| n_src_optics_src_optics_first_order
   n_src_optics_TypeScript_modules --> |3| n_src_optics_src_optics_trace
+  n_src_optics_TypeScript_modules --> |2| n_src_optics_src_optics_math
   n_src_optics_TypeScript_modules --> |2| n_src_optics_src_optics_state
   n_src_optics_TypeScript_modules --> n_external_src_lens_data_defaults_ts
   n_src_optics_TypeScript_modules --> n_external_src_utils_catalog
   n_src_optics_TypeScript_modules --> n_external_src_utils_featureFlags_ts
-  n_src_optics_TypeScript_modules --> n_src_optics_src_optics_math
   n_src_optics_TypeScript_modules --> n_src_optics_src_optics_perspective
 ```
 
@@ -52,7 +52,7 @@ flowchart LR
 
 - Direct source files: 42
 - Direct subfolders: 14
-- Main outbound areas: src/types (30), src/optics/internal (23), src/optics/analysis (19), src/optics/compat.ts (12), src/optics/glassCatalogEntries (8), src/optics/optics.ts (8), src/optics/prescription (8), src/optics/chromatic (7), +31 more
+- Main outbound areas: src/types (30), src/optics/internal (24), src/optics/analysis (19), src/optics/compat.ts (12), src/optics/glassCatalogEntries (8), src/optics/optics.ts (8), src/optics/prescription (8), src/optics/chromatic (7), +31 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/optics/aberration, +14 more
 
 ## Subfolders
@@ -94,7 +94,7 @@ flowchart LR
 | `dispersion.ts` | Dispersion helper module | src/optics/glassCatalog.ts, src/types | src/components/diagram (7), src/optics/chromatic (3), src/components/display, src/components/layout, src/optics/prescription, +2 more | normalLinePgF, normalLinePdC, normalLinePeC, normalLinePgFPrime, abbeLineIndices, DispersionQuality, SurfaceIndexFn, SurfaceDispersion, +3 more |
 | `distortionAnalysis.ts` | Distortion Analysis helper module | src/optics/optics.ts (2), src/optics/analysis, src/optics/projection.ts, src/optics/raySampling.ts, src/types | src/components/display (2), src/optics/analysis | DistortionSample, DistortionGridPoint, DistortionGridLine, DistortionFieldGridResult, computeDistortionCurve, computeDistortionFieldGrid |
 | `fieldGeometry.ts` | Field Geometry helper module | src/optics/compat.ts | none | chiefRayImageHeight, chiefRayImageHeightAccurate, computeAnalysisFieldGeometryAtState, computeBoundingSphereLaunchRadiusMm, computeBoundingSphereVectorFieldLaunch, computeFieldGeometryAtState, conjugateK, entrancePupilAtState, +13 more |
-| `focusDistance.ts` | Focus Distance helper module | src/types | src/comparison (2), src/components/display (2), src/components/controls, src/optics/analysis, src/optics/first-order, +3 more | FOCUS_INFINITY_THRESHOLD, focusControlPositions, focusFromControl, focusToControl, focusConjugate, focusDistanceAt, focusDistanceNote, remapFocusDistance, +1 more |
+| `focusDistance.ts` | Focus Distance helper module | src/optics/internal, src/optics/math, src/types | src/comparison (2), src/components/controls, src/components/display, src/optics/analysis, src/optics/first-order, +3 more | FOCUS_INFINITY_THRESHOLD, focusControlPositions, focusFromControl, focusToControl, focusConjugate, focusDistanceAt, remapFocusDistance, closeFocusAtZoom |
 | `foldedPathDisplay.ts` | Folded Path Display helper module | src/optics/optics.ts, src/optics/raySampling.ts, src/types | src/components/layout | foldedHitOrderLabelsForDisplay |
 | `glassCatalog.ts` | Glass Catalog helper module | src/optics/glassCatalogTypes.ts (2), src/optics/spectralLines.ts (2), src/optics/glassCatalogAliases.ts, src/optics/glassCatalogData.ts, src/types | src/optics/chromatic, src/optics/dispersion.ts, src/optics/types.ts | GlassEntry, LINE_NM, GLASS_ND_TOLERANCE, GLASS_CATALOG_ND_TOLERANCE, GLASS_CATALOG_VD_TOLERANCE, GLASS_VD_TOLERANCE, CatalogGlassCompatibility, GlassResolutionMatchSource, +16 more |
 | `glassCatalogAliases.ts` | Glass Catalog Aliases helper module | none | src/optics/glassCatalog.ts | GlassAliasKind, GlassAliasRecord, ALIAS_RECORDS, ALIASES |

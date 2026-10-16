@@ -48,7 +48,7 @@ export function zoomStationOptions(L: RuntimeLens): StationOption[] {
  */
 export function focusStationOptions(L: RuntimeLens, zoomIndex: number, zoomT: number): StationOption[] {
   return publishedFocusStations(L, zoomIndex).map((station) => {
-    const label = formatDist(station.focusT, L, zoomT);
+    const label = formatDist(station.focusT, L, zoomT, station.focusT === 1);
     return {
       id: station.index,
       label,

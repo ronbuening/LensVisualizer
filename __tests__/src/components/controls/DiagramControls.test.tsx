@@ -2,7 +2,12 @@
 
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
-import { build, buildSimplePositiveElementLens, buildVariableStopGapLens } from "../../optics/testLensFixtures.js";
+import {
+  build,
+  buildSimplePositiveElementLens,
+  buildStationFocusLens,
+  buildVariableStopGapLens,
+} from "../../optics/testLensFixtures.js";
 import DiagramControls from "../../../../src/components/controls/DiagramControls.js";
 import buildLens from "../../../../src/optics/buildLens.js";
 import themes from "../../../../src/utils/theme/themes.js";
@@ -84,14 +89,14 @@ function renderControls(
 }
 
 describe("DiagramControls", () => {
-  it("maps station control travel to exact focus coordinates and identifies unverified distances", () => {
-    const L = buildVariableStopGapLens([1, 11, 21], "test-station-control", [0, 0.9999, 1], {
-      focusControl: "stations",
-    });
+  it("maps station travel to exact coordinates with numeric centimeter labels", () => {
+    const L = buildStationFocusLens();
     const { callbacks } = renderControls(L, { focusT: 0.99995 });
     const slider = screen.getByRole("slider", { name: "FOCUS" }) as HTMLInputElement;
     expect(Number(slider.value)).toBeCloseTo(0.75, 12);
-    expect(screen.getByText("Distance unverified")).toBeTruthy();
+    expect(screen.getByText("41.3 cm")).toBeTruthy();
+    expect(screen.getByText("41 cm")).toBeTruthy();
+    expect(screen.queryByText(/Interpolated|Distance unverified/)).toBeNull();
     fireEvent.change(slider, { target: { value: "0.5" } });
     expect(callbacks.onFocusChange).toHaveBeenLastCalledWith(0.9999);
     fireEvent.change(slider, { target: { value: "1" } });

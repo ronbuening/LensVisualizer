@@ -20,12 +20,12 @@ import { resolveAberrationThickness, resolveVariableThickness } from "../../../s
 import {
   focusControlPositions,
   focusDistanceAt,
-  focusDistanceNote,
   focusFromControl,
   focusToControl,
 } from "../../../src/optics/focusDistance.js";
 import {
   buildChromaticPositiveElementLens,
+  buildStationFocusLens,
   buildGhostClippingLens,
   buildLayoutLens,
   buildMissAfterFirstHitLens,
@@ -85,7 +85,7 @@ describe("formatDist", () => {
   });
 });
 
-// Presentation must not compress near-coincident source states or invent distances between them.
+// Presentation must preserve near-coincident source states and calculate distances across interpolated gaps.
 describe("station-based focus controls", () => {
   const positions = [0, 0.9999, 1];
   const L = buildVariableStopGapLens([1, 11, 21], "test-station-focus-control", positions, {
@@ -130,19 +130,20 @@ describe("station-based focus controls", () => {
     expect(focusControlPositions(buildVariableStopGapLens([1, 2]))).toEqual([0, 1]);
   });
 
-  it("uses exact station distances with their references and withholds interpolated distances", () => {
-    expect(formatDist(0, L)).toBe("∞");
-    expect(formatDist(positions[1], L)).toBe("200.05 mm");
-    expect(formatDist(1, L)).toBe("200.01 mm");
-    expect(focusDistanceAt(positions[1], L)).toBe(0.20005);
-    expect(focusDistanceNote(positions[1], L)).toContain("From image plane");
-    expect(focusDistanceNote(1, L)).toContain("From first surface");
-    for (const focus of [0.001, 0.5, 0.99995]) {
-      expect(formatDist(focus, L)).toBe("Interpolated");
-      expect(focusDistanceAt(focus, L)).toBeNull();
-      expect(focusDistanceNote(focus, L)).toBe("Distance unverified");
-    }
-    expect(formatDist(positions[1], L, 0.5)).toBe("Interpolated");
+  it("shows centimeters across the interpolated prescription with whole-centimeter endpoints", () => {
+    const model = buildStationFocusLens();
+    expect(formatDist(0, model)).toBe("∞");
+    expect(formatDist(0.9999, model)).toBe("45.4 cm");
+    expect(formatDist(1, model)).toBe("40.5 cm");
+    expect(formatDist(1, model, 0, true)).toBe("41 cm");
+    // Analytic thick lens: at the interpolated 175 mm rear gap, the object is 233.240997 mm
+    // before the first surface; adding 5 mm glass and 175 mm air gives object-to-image distance.
+    expect(focusDistanceAt(0.99995, model)).toBeCloseTo(0.413240997229917, 12);
+    expect(formatDist(0.99995, model)).toBe("41.3 cm");
+    expect(focusDistanceAt(0.5, model)).toBeGreaterThan(0);
+    expect(formatDist(0.9999, model, 0.5)).toBe("45.4 cm");
+    // An explicit first-surface source distance retains its declared reference.
+    expect(focusDistanceAt(1, L)).toBe(0.20001);
   });
 });
 

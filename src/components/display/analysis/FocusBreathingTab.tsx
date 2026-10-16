@@ -7,12 +7,7 @@
 
 import { useMemo } from "react";
 import { eflAtFocus, eflAtZoom, formatDist } from "../../../optics/optics.js";
-import {
-  focusControlPositions,
-  focusDistanceNote,
-  focusFromControl,
-  focusToControl,
-} from "../../../optics/focusDistance.js";
+import { focusControlPositions, focusFromControl, focusToControl } from "../../../optics/focusDistance.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 
@@ -320,9 +315,6 @@ export default function FocusBreathingTab({ L, t, focusT, zoomT, dynamicEFL }: F
           >
             {formatDist(focusT, L, zoomT)}
           </span>
-          {L.data?.focusControl === "stations" && (
-            <span style={{ color: t.muted }}>{focusDistanceNote(focusT, L, zoomT)}</span>
-          )}
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>CLOSE</span>
