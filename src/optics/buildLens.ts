@@ -9,11 +9,11 @@ export { toLensData, toTeleconverterData } from "./prescription/toLensData.js";
 
 export default buildLens2;
 
-export { buildSpectralIndex, compileSurfaceDispersions } from "./prescription/compileMaterials.js";
+export { buildSpectralIndex, compileSurfaceDispersions } from "./chromatic/dispersionTable.js";
 export { expandRearPlates } from "./prescription/rearPlates.js";
 export { compiledLensFromRuntime } from "./prescription/identity.js";
 
 export type { CanonicalLens, IngestedPrescription } from "./prescription/canonical.js";
 
 export { canonicalLensFromRuntime } from "./prescription/identity.js";
-export { buildCanonicalLens } from "./compat.js";
+export { buildCanonicalLens, prepareRuntimeState } from "./compat.js";

@@ -9,6 +9,7 @@
  * Extracted as a pure function so the same logic can drive both the small
  * LoCA inset widget and the detailed chromatic overlay.
  */
+import { CHROMATIC_CHANNEL_ORDER } from "./chromatic/channels.js";
 import type { ChromaticChannel } from "../types/optics.js";
 
 /** Typical moderate LoCA in mm — sets the "full width" reference point. */
@@ -53,7 +54,7 @@ export function computeChromaticBarOffsets(
   const barOffsets: Partial<Record<ChromaticChannel, number>> = {};
   let maxAbsPx = 0;
 
-  for (const ch of ["R", "G", "B", "V"] as ChromaticChannel[]) {
+  for (const ch of CHROMATIC_CHANNEL_ORDER) {
     if (values[ch] === undefined) continue;
     const px = (values[ch] - referenceValue) * baseMag * effectiveSC;
     barOffsets[ch] = px;

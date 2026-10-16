@@ -91,6 +91,10 @@ describe("validateLensData", () => {
     expect(validateLensInput({ ...authored, focusStep: undefined })).toEqual([
       'Missing or non-finite required number field: "focusStep"',
     ]);
+    // The compiler reads lensShiftFrac without a fallback, so a non-finite value is refused here.
+    expect(validateLensInput({ ...authored, lensShiftFrac: NaN })).toEqual([
+      'Missing or non-finite required number field: "lensShiftFrac"',
+    ]);
     expect(validateLensInput({ ...authored, publishedStations: {} })).toEqual([
       '"publishedStations" must declare "zoom" and/or "focus"',
     ]);

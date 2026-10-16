@@ -6,7 +6,7 @@
  */
 
 import type { TraceGeometry } from "./trace/types.js";
-import type { DispersionQuality } from "./dispersion.js";
+import type { DispersionQuality } from "../types/dispersion.js";
 import type { GlassEntry } from "./glassCatalog.js";
 import type {
   AberrationControlConfig,
@@ -257,12 +257,15 @@ export type LensConstants = Omit<
 /** Shared compiled indices; material callbacks are resolved once per medium identity. */
 export type CompiledIndices = Pick<RuntimeLens, "asphByIdx" | "vdByIdx" | "spectralByIdx" | "indexByIdx">;
 
+/** Canonical projection after ingest has supplied the catalog defaults. */
+export type LensConstructionData = LensData & { lensShiftFrac: number };
+
 /** Immutable prescription primitives available before constants are calculated. */
 export interface CompiledPrescription {
   key: string;
   source: LensData;
   /** Canonical optical projection, separate from the provenance-preserving source echo. */
-  data: LensData;
+  data: LensConstructionData;
   indices: CompiledIndices;
   lastLensSurfaceIndex: number;
   displayElementSpans: RuntimeLens["ES"];

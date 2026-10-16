@@ -217,6 +217,9 @@ is lookup-only. Provenance supplies source echoes and diagnostics; optical const
 profiles and the resolved material table. Local surface copies carry stop sizing through the baseline and station
 traces; finalization publishes the sized surfaces, constants, display dimensions and image plane together.
 `prescription/runtimeView.ts` assembles one frozen `RuntimeLens` per compiled identity in a weak-owner cache.
+The canonical construction projection requires the defaulted `lensShiftFrac`; compiler constants and display read it
+without another fallback. The chromatic ray-fan summary likewise reads the defaulted `offAxisFieldFrac` directly
+(0.08 and 0.6 respectively when omitted).
 Compiled lenses contain no runtime back-pointer. Preparation reads compiled aperture schedules and explicit-plane
 authority; tracing and diagram consumers read compiled facts directly. Legacy analysis adapters obtain the derived
 view until their Stage 7 request migration. View assembly never compiles, resolves materials or prepares geometry.
@@ -228,6 +231,10 @@ The constructor validates lens data and constructs a frozen `RuntimeLens` with:
 - Zoom metadata: positions, EFLs, EPs, half-fields, tracing half-fields, y-ratios, and back focal distances.
 - Stop data: physical stop SD, blade stub fraction, stop housing SD, and f-stop series.
 - Element/group/doublet/aspheric/variable maps for runtime lookup.
+- `chromatic/dispersionTable.ts` builds one material table per compilation, resolving each medium identity once;
+  its runtime and compiled descriptor views share those callbacks. `chromatic/dispersionQuality.ts` owns the weakest
+  non-air quality loop; runtime, compiled and prepared-state entry points pass their descriptor views to it. Shared descriptor types live
+  in `src/types/dispersion.ts`, so `src/types/optics.ts` no longer imports the dispersion engine seam.
 - Per-surface dispersion resolvers. Catalog Sellmeier substitution compares d-line-authored elements at C/d/F and
   native e-line elements at C′/e/F′. E-line matching requires an explicit catalog name or alias; six-digit codes stay
   d-line-only because their encoded coordinates are nd/νd. For d-line elements with authored `dPgF`, the catalog
@@ -237,6 +244,9 @@ The constructor validates lens data and constructs a frozen `RuntimeLens` with:
   C′–F′), extending to g with the Schott P_g,F line plus `dPgF`. A midpoint split (P_d,C = 0.5) misstates focus
   against wavelength wherever estimated glasses sit beside real ones. Anomalous-dispersion glasses without `dPgF`
   remain uncertain at g.
+- `chromatic/channels.ts` owns channel metadata and order for engine and UI, including native e-line text and
+  wavelengths. The wavelength exports in `constants.ts` and `chromatic/indexResolver.ts` alias its d-line lookup;
+  Cauchy interpolation nodes and full-channel traversals derive from the same metadata and order.
 - Channel lines are set per element by `indexReference`, and every tier must return them. A d-line element traces
   R/G/B/V at C/d/F/g. A native e-line element traces C′/e/F′/g with G equal to its authored `ne`: its Sellmeier tier
   is the authored `ne` plus the catalog's index difference from the e line, and its Abbe tier reaches g from F′ with
@@ -517,6 +527,23 @@ and is their only outside door.
     and `conic` and checked against `evaluate` ([Exact Surface Trace](#exact-surface-trace));
   - a second set of closed-form sphere roots, and the sampled slope bound, in `analysis/mtfRayClassification.ts`,
     which proves misses for the MTF sampler and does not call the kernel's.
+
+## Prepared Geometry
+
+`state/preparedGeometry.ts` owns `prepareState()` and the only prepared-control LRU: at most 96 immutable states
+per `CompiledLens`, released with that compiled identity. Runtime adapters, fields, first-order calculations, pupil
+and chromatic analyses, and diagrams share it. Focus and zoom retain their [0, 1] clamps; aberration retains [0, 1]
+or [-1, 1] for a centered control. All three normalize signed zero and compare numbers exactly, without formatted
+keys. A same-key prescription with a different compiled identity has an independent cache. Hits move to most recent;
+misses evict the least recent state. `prepareStateUncached()` uses the same builder without touching the cache.
+The state's string `cacheKey` remains a compatibility label for analysis contexts, using unrounded control values;
+it does not select prepared geometry. The field-coverage script uses `buildLens.ts`'s `prepareRuntimeState` export.
+
+`stateWithZ()` is the shared coordinate override. Camera traces translate a refractive image plane and recompute
+its final gap and track; diagram callers select `"preserve"` to keep image-plane metadata and the final gap unchanged.
+Folded systems always keep their authored plane and track. Both modes rebuild trace geometry with the supplied
+vertices and adjacent gaps, and reuse overrides by base-state identity, immutable caller-array identity and mode.
+The per-state weak array store retains at most those two modes per live array.
 
 ## Exact Surface Trace
 

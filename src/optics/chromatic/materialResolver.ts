@@ -28,34 +28,13 @@
  * per-surface closure so the hot ray-trace loop pays no repeated overhead.
  */
 
-import type {
-  ChromaticChannel,
-  ElementData,
-  RefractiveIndexReferenceLine,
-  RuntimeLens,
-  SurfaceData,
-  SurfaceSpectral,
-} from "../../types/optics.js";
-import { evaluateSellmeier, LINE_NM, resolveCompatibleGlass, type GlassEntry } from "../glassCatalog.js";
-
-/** Wavelength (nm) used when tracing each chromatic channel. */
-const CHANNEL_NM: Record<ChromaticChannel, number> = {
-  R: LINE_NM.C,
-  G: LINE_NM.d,
-  B: LINE_NM.F,
-  V: LINE_NM.g,
-};
-
-/**
- * Channel wavelengths (nm) of a native e-line element: the lines its `ne` / `νe` pair is defined on, plus g.
- * The Abbe tier (`abbeLineIndices` with reference "e") returns indices at these same lines.
- */
-const E_LINE_CHANNEL_NM: Record<ChromaticChannel, number> = {
-  R: LINE_NM.CPrime,
-  G: LINE_NM.e,
-  B: LINE_NM.FPrime,
-  V: LINE_NM.g,
-};
+import type { ElementData, RefractiveIndexReferenceLine, SurfaceData, SurfaceSpectral } from "../../types/optics.js";
+import { evaluateSellmeier, resolveCompatibleGlass } from "../glassCatalog.js";
+import type { SurfaceDispersion, SurfaceIndexFn } from "../../types/dispersion.js";
+import {
+  CHROMATIC_CHANNEL_WAVELENGTH_NM as CHANNEL_NM,
+  E_LINE_CHANNEL_WAVELENGTH_NM as E_LINE_CHANNEL_NM,
+} from "./channels.js";
 
 /**
  * Schott "normal line" partial dispersion P_g,F as a function of Abbe number.
@@ -138,20 +117,6 @@ export function abbeLineIndices(
   const nC = nd - normalLinePdC(vd) * span;
   const nF = nC + span;
   return { nC, nF, ng: nF + normalLinePgF(vd, dPgF) * span };
-}
-
-/** The quality of the dispersion data backing a per-surface index function. */
-export type DispersionQuality = "air" | "sellmeier" | "lineIndices" | "abbe" | "constant";
-
-/** A pre-resolved per-surface index lookup. */
-export type SurfaceIndexFn = (channel: ChromaticChannel) => number;
-
-/** Per-surface chromatic index resolver and provenance quality. */
-export interface SurfaceDispersion {
-  readonly fn: SurfaceIndexFn;
-  readonly quality: DispersionQuality;
-  /** Catalog entry the surface resolved to, when quality === 'sellmeier'. */
-  readonly glassEntry?: GlassEntry;
 }
 
 function makeLineIndicesDispersion(
@@ -269,20 +234,4 @@ export function makeSurfaceDispersion(
   //    `wavelengthNd(nd, undefined, ch)` returned.
   const nd = surface.nd;
   return { fn: () => nd, quality: "constant" };
-}
-
-/**
- * Aggregate dispersion-quality summary for a whole lens — the "weakest link"
- * across all glass surfaces. Used to flag the LoCA readout as approximate when
- * any traced glass lacks richer-than-Abbe data.
- */
-export function summarizeDispersionQuality(L: RuntimeLens): DispersionQuality {
-  const order: DispersionQuality[] = ["sellmeier", "lineIndices", "abbe", "constant"];
-  let worst: DispersionQuality = "sellmeier";
-  for (let i = 0; i < L.N; i++) {
-    const entry = L.indexByIdx?.[i];
-    if (!entry || entry.quality === "air") continue;
-    if (order.indexOf(entry.quality) > order.indexOf(worst)) worst = entry.quality;
-  }
-  return worst;
 }

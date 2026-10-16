@@ -6,6 +6,7 @@
  * lenses with worse CA show wider bars and well-corrected lenses show narrower
  * bars.  Accepts optional width/height for reuse in a future larger overlay.
  */
+import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic/channels.js";
 import { memo } from "react";
 import type { ChromaticRayFanSpread, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
@@ -70,9 +71,7 @@ const LocaInsetWidget = memo(function LocaInsetWidget({
     viewWidthPx,
     effectiveSC,
   );
-  const activeChans = (["R", "G", "B", "V"] as ChromaticChannel[]).filter(
-    (ch) => chromaticRayFanSpread.axialIntercepts[ch] !== undefined,
-  );
+  const activeChans = CHROMATIC_CHANNEL_ORDER.filter((ch) => chromaticRayFanSpread.axialIntercepts[ch] !== undefined);
 
   let insetX: number;
   let insetY: number;

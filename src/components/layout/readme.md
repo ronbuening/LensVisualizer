@@ -46,6 +46,7 @@ flowchart LR
   n_src_components_layout_src_components_layout_DiagramControlPanel_tsx --> |4| n_external_src_types
   n_src_components_layout_src_components_layout_BreadcrumbBar_tsx --> |4| n_external_src_utils_catalog
   n_src_components_layout_src_components_layout_BreadcrumbBar_tsx --> |3| n_external_src_pages_lensIndex
+  n_src_components_layout_src_components_layout_ControlsBar_tsx --> |3| n_external_src_types
   n_src_components_layout_src_components_layout_ThemeToggleGroup_tsx --> |3| n_external_src_utils_theme
   n_src_components_layout_src_components_layout_LensDiagramPanel_tsx --> |3| n_src_components_layout_src_components_layout_lensDiagram
   n_src_components_layout_src_components_layout_LensViewer_tsx --> |3| n_src_components_layout_src_components_layout_lensViewer
@@ -54,7 +55,6 @@ flowchart LR
   n_src_components_layout_src_components_layout_DiagramControlPanel_tsx --> |2| n_external_src_components_display
   n_src_components_layout_src_components_layout_LensViewer_tsx --> |2| n_external_src_components_hooks
   n_src_components_layout_src_components_layout_AnalysisDrawer_tsx --> |2| n_external_src_types
-  n_src_components_layout_src_components_layout_ControlsBar_tsx --> |2| n_external_src_types
   n_src_components_layout_src_components_layout_LensDiagramPanel_tsx --> |2| n_external_src_types
   n_src_components_layout_src_components_layout_SingleLensContent_tsx --> |2| n_external_src_types
   n_src_components_layout_src_components_layout_LensViewer_tsx --> |2| n_external_src_utils_catalog
@@ -84,7 +84,7 @@ flowchart LR
 
 - Direct source files: 17
 - Direct subfolders: 2
-- Main outbound areas: src/types (23), src/components/hooks (13), package:react (11), same folder (11), src/utils/state (10), src/utils/style (10), src/utils/catalog (9), src/utils/theme (9), +21 more
+- Main outbound areas: src/types (24), src/components/hooks (13), package:react (11), same folder (11), src/utils/state (10), src/utils/style (10), src/utils/catalog (9), src/utils/theme (9), +22 more
 - External consumers: src/comparison, src/components/controls, src/components/layout, src/components/relationshipMap, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, +18 more
 
 ## Subfolders
@@ -100,7 +100,7 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `AnalysisDrawer.tsx` | React component module | src/types (2), package:react, src/utils/style, src/utils/usePrefersReducedMotion.ts | same folder (3) | AnalysisTab, default, AnalysisDrawer |
 | `BreadcrumbBar.tsx` | React component module | src/utils/catalog (4), src/pages/lensIndex (3), src/utils/state (2), package:react-router, same folder, +5 more | same folder | default, BreadcrumbBar |
-| `ControlsBar.tsx` | React component module | src/types (2), package:react, src/components/controls, src/utils/featureFlags.ts, src/utils/state, +1 more | same folder | default, ControlsBar |
+| `ControlsBar.tsx` | React component module | src/types (3), package:react, src/components/controls, src/optics/chromatic, src/utils/featureFlags.ts, +2 more | same folder | default, ControlsBar |
 | `DescriptionPanel.tsx` | React component module | package:react, src/components/markdown, src/types | same folder (2) | default, DescriptionPanel |
 | `DiagramControlPanel.tsx` | React component module | src/types (4), src/components/display (2), src/components/controls | same folder | default, DiagramControlPanel |
 | `DropdownPanel.tsx` | React component module | package:react (2), package:react-dom, src/components/hooks, src/types | src/components/controls, src/components/relationshipMap | DropdownPanelPos, default |

@@ -5,6 +5,7 @@
  * reference. The chart matches the LoCA inset visual language, but it plots
  * the displayed marginal fan's endpoint spread instead of chief-ray TCA.
  */
+import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic/channels.js";
 import { memo } from "react";
 import type { ChromaticRayFanSpread, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
@@ -57,9 +58,7 @@ const ChromaticFanSpreadWidget = memo(function ChromaticFanSpreadWidget({
     effectiveSC,
     REFERENCE_FAN_IMAGE_HEIGHT_SPREAD_MM,
   );
-  const activeChans = (["R", "G", "B", "V"] as ChromaticChannel[]).filter(
-    (ch) => chromaticRayFanSpread.imagePlaneHeights[ch] !== undefined,
-  );
+  const activeChans = CHROMATIC_CHANNEL_ORDER.filter((ch) => chromaticRayFanSpread.imagePlaneHeights[ch] !== undefined);
   const qualityLabel = chromaticQualityBadgeLabel(dispersionQuality);
   const midX = originX + insetW / 2;
   const fs = (base: number) => base * fontScale;

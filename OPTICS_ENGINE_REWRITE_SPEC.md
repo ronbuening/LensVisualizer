@@ -2021,9 +2021,9 @@ spec–code contradictions below, may go to `main` at any time as ordinary docum
   Fix the ten spec–code contradictions while rewriting. They include:
   - the stop `sd`;
   - `zoomCloseFocusM` listed as required;
-  - the `lensShiftFrac` default: 0.08 in the defaults table, `lensShiftFrac || 0` in `buildLens`;
-  - the `offAxisFieldFrac` default, found in S2.P1.T1: 0.6 in the table, `L.offAxisFieldFrac ?? 0.7` in the
-    chromatic ray-fan summary;
+  - the `lensShiftFrac` default: 0.08 in the defaults table (the dead `|| 0` reader fallback was removed in S5.P2.T3);
+  - the `offAxisFieldFrac` default, found in S2.P1.T1: 0.6 in the table (the dead `?? 0.7` chromatic ray-fan
+    fallback was removed in S5.P2.T3);
   - the `zoomStep` default;
   - stale `var` pair wording;
   - "groups are purely visual".
@@ -2602,6 +2602,10 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
       compared exactly. No string formatting.
     - **One z-override helper** replaces `stateWithRuntimeZ` and `stateWithDiagramZ2`.
   - **Tests:** cached results equal uncached; eviction; distinct nearby controls stay distinct.
+  - **As built:** One compiled-identity LRU retains 96 states by exact clamped controls with signed zero normalized;
+    runtime, field, first-order, analysis and diagram callers share it. The uncached builder is an explicit reference
+    path. One z helper preserves the existing camera-plane translation and diagram metadata modes; the field audit
+    reaches preparation through the public build barrel (it already used the compat facade at this step's base).
   - **Gate:** C0. Supersede decision 2026-07-06 (the `prepareState` cache).
 - **S5.P2.T2 One layout and one interpolation.**
   - **Change:** `state/layout.ts` and `state/stationTables.ts` replace the duplicate thickness, layout and zoom-table
@@ -2614,6 +2618,11 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
   - **Change:** one dispersion table builder, one quality summary and one channel table in `chromatic/`.
     `src/types/optics.ts` stops importing a type from `src/optics/dispersion.ts`; the shared type moves into
     `src/types/`.
+  - **As built:** `chromatic/dispersionTable.ts` owns material-table construction and both descriptor views;
+    quality adapters share one table-summary loop, and channel wavelengths, reference-aware text and traversal
+    order derive from `chromatic/channels.ts`. Shared dispersion types live in `types/dispersion.ts`. The defaulted
+    construction projection requires `lensShiftFrac`; its dead fallback and the chromatic field-fraction fallback
+    are removed, preserving the defaults table's 0.08 and 0.6.
   - **Gate:** C0.
 
 **Stage 5 gate:** Tier S against the anchor; S5.P1.T1's tests show one compile and one material resolution per identity;

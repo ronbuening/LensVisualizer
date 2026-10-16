@@ -4,6 +4,8 @@ import {
   summarizeDispersionQualityForLens2,
   summarizeDispersionQualityForState2,
 } from "../../../../src/optics/chromatic/dispersionQuality.js";
+import { summarizeDispersionQuality } from "../../../../src/optics/dispersion.js";
+import type { RuntimeLens } from "../../../../src/types/optics.js";
 import type { CompiledLens, PreparedOpticalState } from "../../../../src/optics/types.js";
 import { buildChromaticPositiveElementLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 
@@ -22,6 +24,14 @@ describe("dispersion quality summaries", () => {
     expect(summarizeDispersionQualityForLens2(lensWithQualities(["sellmeier", "constant", "abbe"]))).toBe("constant");
   });
 
+  it("preserves sparse runtime tables and ignores entries beyond the surface count", () => {
+    const runtime = {
+      N: 3,
+      indexByIdx: { 0: { quality: "air" }, 2: { quality: "lineIndices" }, 3: { quality: "constant" } },
+    } as unknown as RuntimeLens;
+    expect(summarizeDispersionQuality(runtime)).toBe("lineIndices");
+  });
+
   it("treats all-air or empty lenses as sellmeier-quality by default", () => {
     expect(summarizeDispersionQualityForLens2(lensWithQualities([]))).toBe("sellmeier");
     expect(summarizeDispersionQualityForLens2(lensWithQualities(["air", "air"]))).toBe("sellmeier");
@@ -32,7 +42,8 @@ describe("dispersion quality summaries", () => {
     expect(summarizeDispersionQualityForState2(state)).toBe("abbe");
   });
 
-  it("summarizes runtime lenses and caches their normalized engine lens", () => {
+  it("shares the public runtime summary and reads table quality without resolving materials", () => {
+    expect(summarizeDispersionQuality).toBe(summarizeDispersionQuality2);
     const catalogLens = buildChromaticPositiveElementLens("test-dispersion-quality-catalog");
     const fallbackLens = buildSimplePositiveElementLens("test-dispersion-quality-fallback");
 

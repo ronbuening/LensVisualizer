@@ -21,7 +21,7 @@ import type { FieldGeometryState } from "../optics.js";
 import { prepareRayTrace, type PreparedRayTrace } from "../trace/rayAdapters.js";
 import { thick } from "../layout.js";
 import { compiledLensFromRuntime } from "../prescription/compile.js";
-import { prepareState } from "../state/prepareState.js";
+import { prepareState } from "../state/preparedGeometry.js";
 import type {
   ChromaticChannel,
   ChromaticRayFanSpread,
@@ -227,7 +227,7 @@ export function computeChromaticRayFanAnalysis2(
     },
   );
 
-  const offAxisFieldFraction = Math.max(0, Math.min(1, options.offAxisFieldFraction ?? L.offAxisFieldFrac ?? 0.7));
+  const offAxisFieldFraction = Math.max(0, Math.min(1, options.offAxisFieldFraction ?? L.offAxisFieldFrac));
   const geometry = computeProjectionAwareOffAxisFieldGeometry(
     L,
     zPos,
