@@ -3,7 +3,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * Miranda Auto E 50mm f/1.4 correlation: US 3,634,001 A, Example 1.
  * Seven elements / five groups; all spherical. Correlation remains unconfirmed.
  * Uniform scale s=0.5 applied to every length; nd/vd unchanged.
- * NO_INTERNAL_RECONSTRUCTION: infinity only, no invented internal focus law.
+ * Infinity prescription only; the source does not specify focus travel.
  * Stop position inferred at midpoint of D5; stop radius calibrated from exact
  * on-axis ray at EFL/(2*1.4), not measured or independently verified diaphragm.
  * Semi-diameters are modeled clear apertures, not patent dimensions.
