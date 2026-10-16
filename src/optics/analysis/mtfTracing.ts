@@ -4,7 +4,7 @@ import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import type { EngineTraceResult, TraceOptions } from "../trace/types.js";
 import { solveChiefRay2 } from "../field/chiefRay.js";
 import { solveScalarRoot } from "../math/rootSolve.js";
-import { traceEngineRay2 } from "../trace/rayAdapters.js";
+import { prepareEngineTrace, traceEngineRay2 } from "../trace/rayAdapters.js";
 import { bulkTransmissionForTrace } from "../trace/bulkAbsorption.js";
 import { anchoredIndexTable } from "../chromatic/indexResolver.js";
 import type { MtfSpot } from "./mtfMath.js";
@@ -86,7 +86,7 @@ export function mtfImagePoint(
   return {
     x: trace.terminalPoint[0] + transfer * trace.terminalDirection[0],
     y: trace.terminalPoint[1] + transfer * trace.terminalDirection[1],
-    weight: bulkTransmissionForTrace(state.lens.runtime, trace.hits),
+    weight: bulkTransmissionForTrace(state.lens, trace.hits),
   };
 }
 
@@ -213,9 +213,10 @@ export function prepareMtfFieldLaunch(
     wavelengthNm: referenceNm,
     indexAtSurface: mtfIndexResolver(state, support, referenceNm),
   };
+  const traceAim = prepareEngineTrace(state, aimOptions);
   const aim = solveScalarRoot(
     (y) => {
-      const trace = traceEngineRay2(state, mtfLaunchRay(launch, 0, y - seedY), aimOptions);
+      const trace = traceAim(mtfLaunchRay(launch, 0, y - seedY));
       return trace.status === "ok" ? trace.terminalPoint[1] : null;
     },
     {
@@ -250,13 +251,9 @@ export function findMtfFieldFootprint(
     ...mtfTraceOptions(state, options, support, support.spectralLines[0]),
     capture: "terminal",
   } as const;
+  const traceRay = prepareEngineTrace(state, traceOptions);
   return findMtfFootprint(
-    (x, y) =>
-      mtfTraceClassification(
-        traceEngineRay2(state, mtfLaunchRay(launch, x, y), traceOptions),
-        state,
-        options.stopSemiDiameterMm,
-      ),
+    (x, y) => mtfTraceClassification(traceRay(mtfLaunchRay(launch, x, y)), state, options.stopSemiDiameterMm),
     options.pupilSemiDiameterMm,
     mtfMirrorSymmetric(state),
     growths,
@@ -334,6 +331,7 @@ export function traceMtfBundle(
   extras: { reference?: MtfSpot; opticalPath?: boolean } = {},
 ): MtfBundle | null {
   const traceOptions = mtfTraceOptions(state, options, support, line, extras.opticalPath);
+  const traceRay = prepareEngineTrace(state, traceOptions);
   // The chief is a geometric reference, not a pupil sample: trace it through every surface even
   // when an aperture clips it, and record the clipping separately.
   const chiefRay = mtfLaunchRay(launch, 0, 0);
@@ -341,9 +339,7 @@ export function traceMtfBundle(
   // A clipped chief runs over surface zones beyond their rims, where another wavelength can lose it.
   const chiefPoint = mtfImagePoint(state, chiefTrace, imagePlaneZ) ?? extras.reference;
   if (!chiefPoint) return null;
-  const chiefClipped =
-    mtfTraceClassification(traceEngineRay2(state, chiefRay, traceOptions), state, options.stopSemiDiameterMm) !==
-    "valid";
+  const chiefClipped = mtfTraceClassification(traceRay(chiefRay), state, options.stopSemiDiameterMm) !== "valid";
   const grid = mtfLaunchGrid(footprint, gridSize);
   // A meridional field of an x-symmetric lens images each half pupil as the mirror of the other.
   const mirror = mtfMirrorSymmetric(state);
@@ -368,7 +364,7 @@ export function traceMtfBundle(
     for (let column = firstColumn; column < grid.columns; column++) {
       const x = grid.x0 + (column + 0.5) * grid.step;
       const y = grid.y0 + (row + 0.5) * grid.step;
-      const trace = traceEngineRay2(state, mtfLaunchRay(launch, x, y), traceOptions);
+      const trace = traceRay(mtfLaunchRay(launch, x, y));
       const samples = mirror ? 2 : 1;
       // Solid angle subtended by equal cells of the launch plane: cos(theta) / distance².
       const launchWeight = source

@@ -4,8 +4,8 @@
  * Preserves y/u and x/y/ux/uy result contracts while exact tracing records richer hit diagnostics internally.
  */
 
-import type { RayTraceResult, RuntimeLens } from "../../types/optics.js";
-import type { Vec3 } from "../types.js";
+import type { RayTraceResult } from "../../types/optics.js";
+import type { EngineLens, Vec3 } from "../types.js";
 import { bulkTransmissionForTrace } from "./bulkAbsorption.js";
 import type { EngineTraceResult, TraceCapture } from "./types.js";
 
@@ -32,7 +32,7 @@ export function engineTraceToRuntimeRayResult(
   result: EngineTraceResult,
   leadPoint: [number, number],
   ghost: boolean,
-  L: RuntimeLens,
+  L: EngineLens,
 ): RayTraceResult {
   const pts: number[][] = [leadPoint];
   const ghostPts: number[][] = [];
@@ -58,7 +58,7 @@ export function engineTraceToRuntimeRayResult(
  */
 export function engineTraceToRuntimeSkewResult(
   result: EngineTraceResult<TraceCapture>,
-  L: RuntimeLens,
+  L: EngineLens,
 ): RuntimeSkewRayTraceResult {
   return {
     x: result.x,

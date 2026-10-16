@@ -5,7 +5,7 @@
  */
 
 import type { RuntimeLens } from "../types/optics.js";
-import { traceRay } from "./optics.js";
+import { prepareRayTrace, type PreparedRayTrace } from "./trace/rayAdapters.js";
 import { obstructionAwareRayFractionsForDensity } from "./raySampling.js";
 
 interface FoldedHitOrderParams {
@@ -65,10 +65,12 @@ export function foldedHitOrderLabelsForDisplay({
     0,
   ]);
 
+  let prepared: PreparedRayTrace | undefined;
   let fallbackLabels: string[] = [];
   for (const height of rayHeights) {
     try {
-      const trace = traceRay(height, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
+      prepared ??= prepareRayTrace(L, { zPos, focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT });
+      const trace = prepared.ray(height, 0);
       const labels = trace.diagnostics?.hitSurfaceLabels ?? [];
       if (labels.length > 0 && fallbackLabels.length === 0) fallbackLabels = labels;
       if (!trace.clipped && trace.reachedImagePlane && labels.length > 0) return labels;

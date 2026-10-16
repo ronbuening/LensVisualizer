@@ -33,6 +33,7 @@ export function compileElements(
         nd: element.nd,
         vd: element.vd ?? null,
         glass: element.glass ?? null,
+        absorptionCoefficientPerMm: element.absorptionCoefficientPerMm ?? null,
         surfaceSpan: Object.freeze(span),
         source: Object.freeze({ ...element }),
       });

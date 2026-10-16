@@ -537,6 +537,15 @@ needs intermediate distances; their public intercept/transmission result is unch
 adapters, folded stop occurrence searches, folded pupil hit consumers and the differential harness keep full capture.
 The options cache keys include capture, so alternating diagram and analysis requests cannot reuse a reduced policy.
 
+`prepareRayTrace` binds runtime controls, optional supplied vertices, channel, aperture and vector launch bound once
+per request. Its scalar/vector ray and skew methods reuse options and the geometry's full traversal directly;
+`prepareRayTraceForState` accepts an existing prepared state. Analysis bundles, SA/profile and best-focus fans,
+chromatic marginal searches, pupil/vignetting sweeps, distortion grids and folded display searches use these bound
+forms. Public per-call adapters keep their signatures. Scalar skew retains the base state's vertices, while vector
+skew and meridional rays honor supplied vertices. A request is an immutable-control snapshot for its fan; create a
+new one when controls or launch bounds change. The engine-native `prepareEngineTrace` binds full/partial traversal
+and shared options for MTF and chief-ray search loops; `traceEngineRay2` keeps that selection for standalone calls with optional `stopAt`.
+
 Chief-relative scalar launches retain their first-vertex pupil offsets and delegate preparation and tracing to
 `trace/rayAdapters.ts`. The first search starts at the later of the origin and `z0 - |sag(sd)| - 1`.
 Negative leads are used verbatim and can start beyond the first surface and miss it. Controls follow production
@@ -831,8 +840,9 @@ further evaluation on a creep. Clear-aperture clipping retains its independent
 
 `ElementData.absorptionCoefficientPerMm` opts a sequential element into broadband Beer–Lambert intensity loss.
 `trace/bulkAbsorption.ts` walks exact hits in encounter order, assigns each hit-to-next-hit segment from the departing
-surface's `elemId`, measures its three-dimensional chord length, and accumulates `exp(-αd)`. Coefficients are cached per
-frozen runtime lens in a `WeakMap`; ordinary lenses take the constant-time transparent fast path. All meridional, skew,
+surface's `elemId`, measures its three-dimensional chord length, and accumulates `exp(-αd)`. `CompiledElement` carries
+coefficients, cached per compiled lens in a `WeakMap`. Absorption reads compiled flags, elements and surface medium ids
+without consulting RuntimeLens; ordinary lenses retain the constant-time transparent fast path. All meridional, skew,
 scalar, and vector runtime adapters expose the result as optional `ray.transmission`, with `1` as the compatibility
 default.
 
