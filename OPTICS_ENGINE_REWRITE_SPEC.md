@@ -1937,7 +1937,9 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
       file input: its name). The directory holds only the converted files.
   - **Exit codes,** each listed in the usage text with what gives it: 0; 1 for `--check` when an input would convert
     and none is refused; 2 for a refused input, a type diagnostic outside the converted files or a failure of the
-    type-check itself, a collision, a failed write or rename, SIGINT or SIGTERM while writing, and a usage error.
+    type-check itself, a collision, a failed write or rename, SIGINT or SIGTERM while writing, a usage error, and an
+    error writing stdout or stderr, once the run is over. A reader closing its pipe (`EPIPE`) is no error: the run
+    goes on and its exit code is unchanged.
   - **Version:** the engine's rule, `lensDataVersion` beside `isV1File` in `ingestV2.ts`, through
     `lensDataConversion.ts`: no `schema` is V1, `schema: 2` is V2, and any other `schema` is no version, refused as
     ingest refuses it. An input already at `--to-version` is left as it is in every mode: not reprinted, rewritten
