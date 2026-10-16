@@ -31,7 +31,7 @@ Change an `sd` only when you have one of these:
     square-cut rim, keeps one value: both faces take the higher of the two ray heights (the tool's second column).
     An element the figure draws stepped or chamfered is raised face by face.
   - **Facing surfaces that nearly meet.** Where the raise is refused by the validator's cross-gap limit although the
-    surfaces do not cross and the figure draws the elements meeting at the rim, set `gapSagFrac` for that lens to
+    surfaces do not cross and the figure draws the elements meeting at the rim, set `checks.gapSagFrac` for that lens to
     the smallest value that admits the raise, and name the pair in the header.
 
   The figure is a check, not the source of the value: where it draws the element smaller than the ray needs, or the
@@ -60,6 +60,9 @@ Two rules to hold throughout:
 - The patent PDF in `patents/`. If it is not there, **stop** and record that as a blocker — do not substitute a
   different publication or a web copy.
 - `pdftoppm` (poppler) on PATH: `which pdftoppm`.
+- For an existing V1 file, use the [Reading V1 Audits](../src/lens-data/LENS_DATA_SPEC.md#reading-v1-audits)
+  field map. `npm run convert:lens-data` is described in the spec's [Quick Start](../src/lens-data/LENS_DATA_SPEC.md#quick-start);
+  leave catalog conversion to S2.P5's batches while applying audit edits in the file's current format.
 - Know which embodiment the lens is: the `subtitle` field says e.g. `US 2014/0247506 A1 EXAMPLE 1`. Example 3 means
   you need Example 3's cross-section sheet, not Example 1's.
 - Know the scale factor. If the prescription was uniformly scaled (patent f = 100, production f = 50, …), every `sd`
@@ -119,8 +122,8 @@ Notes that save time:
   `FIG. 2k − 1`. Confirm by looking; do not assume.
 - JP-family sheets usually print the optical axis **vertically**. You will need `--rot90` (object at the bottom of
   the page) or `--rot270` (object at the top) in Step 3.
-- Zoom lenses draw several panels (wide / middle / tele). Use the **wide** panel — surface `d` values in the data
-  file are the first zoom position.
+- Zoom lenses draw several panels (wide / middle / tele). Use the **wide** panel — the first `zoom.stations[]`
+  entry, at infinity (`gaps[label].values[0][0]` for each variable gap).
 - If the PDF has no text layer (`pdftotext` returns nothing), you can still render pages; you just have to find the
   sheet by eye.
 
@@ -176,7 +179,10 @@ curve ends — not the outer rectangle.
 - Work by element neighbourhood, not isolated rows: front and rear surfaces of one element change smoothly unless it
   is a strong meniscus, a cemented junction, or the figure shows a real step or bevel.
 - Round to 0.1 mm.
-- Do not change `STO` — the stop semi-diameter derives the entrance pupil and therefore the f-number.
+- Treat `STO` separately: follow the ordered stop-radius authorities and prime rule in
+  [Stop and Aperture](../src/lens-data/LENS_DATA_SPEC.md#stop-and-aperture) before considering a stop edit.
+  Derived or scheduled radii are not figure-inferred rims; the entrance pupil comes from the design f-number for
+  every lens, not from the authored stop `sd`.
 - Where the figure and the floor disagree, take the larger, and say why in the log.
 - If the figure is unusable, set the value from the floor plus ~0.5 mm clearance and record that you did not use the
   drawing.

@@ -6,23 +6,28 @@ Use this copy when another AI is constructing a LensVisualizer prescription and 
 
 Build the lens as one source-traceable pair: `LensName.data.ts` plus the optional same-stem
 `LensName.analysis.md`. Start from `src/lens-data/TEMPLATE.data.ts.template` and follow
-`LENS_DATA_SPEC.md` and `LENS_ANALYSIS_SPEC.md`; do not infer a new schema from older files. The simplest integration
+`LENS_DATA_SPEC.md` and `LENS_ANALYSIS_SPEC.md`; keep `schema: 2` and `satisfies LensDataV2Input`. The simplest integration
 path is to place both drafts at the `src/lens-data/` root and run `npm run generate:metadata`, which moves the pair into
-the derived maker folder and rewrites the `LensDataInput` import. If working directly in a maker folder, import from
-`../../types/optics.js`. Audit logs are not moved automatically.
+the derived maker folder and rewrites the `LensDataV2Input` import. If working directly in a maker folder, import from
+`../../types/lensDataV2.js`. Audit logs are not moved automatically.
+For a new V1 draft, use `npm run convert:lens-data` per the spec's
+[Quick Start](../src/lens-data/LENS_DATA_SPEC.md#quick-start). When editing an existing V1 catalog file, read it through
+[Reading V1 Audits](../src/lens-data/LENS_DATA_SPEC.md#reading-v1-audits); leave its conversion to S2.P5's batches.
 
 Transcribe one identified patent embodiment, preserve its signs and precision, and record every deviation from it.
-Model source-listed rear cover/filter plates with `rearPlates` (physical gaps as printed, never a hand-folded t/n).
-Exclude front filters, inactive dummy/flare-cutter planes, and mechanical parts. Keep only active mirror/blocking surfaces that the
-modeled path can hit. Use exactly one `STO`; keep cemented-interface `elemId` assignments, variable-gap base values, and
-zoom-position counts consistent. Never invent missing close-focus spacings: either keep the published state or label a
-constrained reconstruction in the header, `focusDescription`, and analysis. Flag the rows the source tabulates in
-`publishedStations`. If scaling by `s`, scale every length
-(`R`, `d`, `sd`, image-plane coordinates) and transform `A_p` to `A_p / s^(p-1)` while leaving `K` unchanged.
+Follow [Scope: What to Include](../src/lens-data/LENS_DATA_SPEC.md#scope-what-to-include) for filters, `rearPlates`,
+dummy planes and active mirror/blocking surfaces. Use exactly one `STO`, with radius authority from
+[Stop and Aperture](../src/lens-data/LENS_DATA_SPEC.md#stop-and-aperture). Check cemented-interface `medium`
+assignments, `gaps` rows, `zoom.stations[]` and `focus.keyframes` against
+[Surfaces](../src/lens-data/LENS_DATA_SPEC.md#surfaces) and [States](../src/lens-data/LENS_DATA_SPEC.md#states).
+Never invent missing close-focus spacings: either keep the published state or label a constrained reconstruction in
+the header, `focus.description`, and analysis. Mark source rows using
+[Published Stations](../src/lens-data/LENS_DATA_SPEC.md#published-stations). Apply the spec's
+[scaling rules](../src/lens-data/LENS_DATA_SPEC.md#data-sourcing-checklist) to all lengths and surface coefficients.
 
-Add complete structured patent attribution (`patentNumber`, all `patentAuthors`, all `patentAssignees`, and
-`patentYear`) and retain a concise `subtitle` for the embodiment/correlation. Use only canonical `lensMounts` and
-`imageFormat` ids. Put `dPgF`, `nC`, `nF`, and `ng` directly on `ElementData`; there is no authored `spectral` block.
+Add complete structured patent attribution (`source.patentNumber`, all `source.authors`, all `source.assignees`, and
+`source.patentYear`) and retain a concise `subtitle` for the embodiment/correlation. Use only canonical `catalog.lensMounts` and
+`catalog.imageFormat` ids. Put `dPgF`, `nC`, `nF`, and `ng` directly on `ElementV2Input`; there is no authored `spectral` block.
 Resolve glass labels against the catalog and use `Unmatched (...)` when the stored `nd`/`νd` cannot defend a public
 identity. Treat product-to-patent matching, glass equivalence, stop position, semi-diameters, and corrected source typos
 as inferences unless the source explicitly establishes them.

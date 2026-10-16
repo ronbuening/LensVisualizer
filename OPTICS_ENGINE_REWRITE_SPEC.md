@@ -2070,6 +2070,9 @@ correction to the V1 spec goes to `main` separately: the spec–code contradicti
   - `agent_docs/patent-figure-sd-audit-procedure.md` (also correct its stale stop-`sd` claim)
   - `agent_docs/lens-data-integration-handoff.md`
   - the `LensData` field names in `CLAUDE.md` and `AGENTS.md` (byte copies)
+  - **As built:** recipes, audit procedures, the integration handoff and byte-identical agent instructions use V2
+    authoring paths and link to the spec for field rules and V1 reading; stop-radius guidance and the optics-engine
+    architecture's authoring vocabulary are corrected. Catalog conversion remains with S2.P5.
 
 **Phase 2.5 — Catalog migration**
 

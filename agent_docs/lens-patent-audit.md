@@ -17,13 +17,18 @@ Use it when:
 Skip it for:
 
 - New lens authoring — follow [adding_a_lens.md](adding_a_lens.md) instead. The audit procedure assumes a data file already exists.
-- Pure rendering or layout tweaks (`scFill`, `yScFill`) — those don't touch optical data.
+- Pure rendering or layout tweaks (`layout.scFill`, `layout.yScFill`) — those don't touch optical data.
 
 ## Pre-flight: gather sources
 
+Read existing V1 files and historical logs through the spec's
+[Reading V1 Audits](../src/lens-data/LENS_DATA_SPEC.md#reading-v1-audits) field map. `npm run convert:lens-data`
+is the conversion command in [Quick Start](../src/lens-data/LENS_DATA_SPEC.md#quick-start); an audit leaves existing
+catalog files in V1 until S2.P5 converts their batches. The field names below are V2.
+
 Before opening either lens file, collect:
 
-1. **The patent.** Use Espacenet ([https://worldwide.espacenet.com](https://worldwide.espacenet.com)) for EP/WO, J-PlatPat for JP, USPTO/Google Patents for US. The patent number is in the data file's header comments — search by number, not by title. If multiple embodiments, identify the embodiment number (`Example N`, `第N実施例`) that matches the lens spec.
+1. **The patent.** Use Espacenet ([https://worldwide.espacenet.com](https://worldwide.espacenet.com)) for EP/WO, J-PlatPat for JP, USPTO/Google Patents for US. The patent number is in `source.patentNumber` and the data file's header comments — search by number, not by title. If multiple embodiments, identify the embodiment number (`Example N`, `第N実施例`) that matches the lens spec.
 2. **The vendor catalog Sellmeier source** (only when relabeling toward a glass not already in our catalog). See [glass-catalog-buildout.md](glass-catalog-buildout.md) for sourcing. Before accepting a code-only fallback, search refractiveindex.info and the original manufacturer catalogs/datasheets for the patent's glass code, exact `nd`/`νd` pair, and likely vendor-family names.
 3. **The current mismatch reports** — regenerate before starting so the surface lists are current:
    ```bash
@@ -41,7 +46,7 @@ Each row is a prompt for review, not an automatic edit:
 | Column | How to use it |
 |---|---|
 | `Surface` | Match this to the patent row and the data file surface. For a cemented junction, confirm which adjacent element owns the glass annotation before editing. |
-| `Current label` | The annotation currently resolving to a catalog entry whose Sellmeier `nd` disagrees with the stored surface `nd`. |
+| `Current label` | The annotation currently resolving to a catalog entry whose Sellmeier `nd` disagrees with the stored medium's `nd`. |
 | `Stored nd/vd` | The value already in the lens data. Treat this as suspect until checked against the patent. |
 | `Rejected as` | The catalog entry currently being rejected by the scan, with the `nd` delta that caused the mismatch. |
 | `Best candidate(s)` | Catalog entries whose `nd`/`vd` are near the stored values. They are ranked suggestions, not proof. |
@@ -84,7 +89,7 @@ For every element with a `glass:` annotation:
        "Unmatched (description, reason)"
        ```
        The resolver short-circuits on the `Unmatched` keyword and returns null immediately, preventing any spurious catalog match. Reserve this form for cases where no upgrade path is anticipated.
-   - **Stored (nd, vd) disagrees with the patent** → the prescription was transcribed wrong. Update the surface's `nd` (and the element's `nd`/`vd`) to the patent value. Then redo step 2.
+   - **Stored (nd, vd) disagrees with the patent** → the prescription was transcribed wrong. Update the referenced element's `nd`/`vd` (or the undrawn medium's `nd`) to the patent value. Then redo step 2.
    - **Patent provides no glass identifier, only (nd, vd)** → keep the existing annotation if it round-trips within tolerance; otherwise search refractiveindex.info/manufacturer catalogs for that exact `nd`/`νd` pair and use the per-lens candidate list to find a catalog-equivalent label only when the row is unique enough to defend in the audit log. If no sourceable match exists and the candidate list is ambiguous, mark as `Unmatched (designer attribution to X inconsistent with stored nd/vd)` or use a 6-digit code annotation when one is known.
 4. **Never** relax the catalog round-trip tolerance (1e-4 in `assertCatalogConsistent`). If a catalog entry doesn't round-trip, fix the catalog source per [glass-catalog-buildout.md](glass-catalog-buildout.md) — do not mask the failure by mislabeling the lens.
 
@@ -99,31 +104,31 @@ With the patent open to the prescription table, walk each surface in order and v
 | Field | Verify against | Notes |
 |---|---|---|
 | `R` | Patent table radius | Watch sign convention — some patents flip sign. Rear cover/filter plates and their gaps belong in `rearPlates`, not `surfaces`. |
-| `d` | Patent table thickness | For variable gaps, this should match `var[label][0][0]` (infinity, first zoom position). |
-| `nd` | Patent table or computed from glass | Already audited in Phase 1; spot-check that the surface and element values agree. |
-| `elemId` | Element identity | Cemented junctions carry the rear element's `elemId`; air gaps use `0`. See [LENS_DATA_SPEC.md](../src/lens-data/LENS_DATA_SPEC.md) Pairing Rules. |
-| `sd` | Patent semi-diameter or geometric estimate | If validation flags a slope or cross-gap issue, see the Semi-Diameter Guidelines section in `TEMPLATE.data.ts.template`. |
+| `d` or `gaps[label].values` | Patent table thickness | Check variable gaps against [Gaps](../src/lens-data/LENS_DATA_SPEC.md#gaps-gaps); their surfaces omit `d`. |
+| Referenced element or medium `nd` | Patent table or computed from glass | Already audited in Phase 1; spot-check the medium selected by each surface. |
+| `medium` | Element or undrawn-medium identity | Check cemented junctions and air exits against [Media and element runs](../src/lens-data/LENS_DATA_SPEC.md#media-and-element-runs). |
+| `sd` | Patent semi-diameter or geometric estimate | For `STO`, first check [Stop and Aperture](../src/lens-data/LENS_DATA_SPEC.md#stop-and-aperture). For slope or cross-gap issues, see the template's Semi-Diameter Guidelines. |
 
 For each element, also verify:
 
 | Field | Verify against | Notes |
 |---|---|---|
 | `vd` | Patent table or vendor catalog | Round to the precision the patent publishes (typically 1–2 decimal places). |
-| `fl` | Patent or computed | Optional but useful for inspector display. Skip if not previously populated. |
-| `type` | Patent prose / R signs | Bi-/plano-/meniscus + positive/negative. `(Asph)` suffix when an `asph` block is keyed to a surface on this element. |
+| `focalLengthMm` | Patent or computed | Optional but useful for inspector display. Skip if not previously populated. |
+| `type` | Patent prose / R signs | Bi-/plano-/meniscus + positive/negative. `(Asph)` suffix when an `asphere` block is on a surface of this element. |
 | `cemented` | Junction surfaces | Group name like `"L11–L12"` on every element of a cemented stack. |
 
-For aspherics, verify the `asph` block:
+For aspherics, verify each surface's `asphere` block:
 
-- Conic constant convention. Some patents use `κ = 1 + K` (treat κ = 1 as K = 0). The patent text near the asph table usually states the convention explicitly.
+- Conic constant convention. Some patents use `κ = 1 + K` (treat κ = 1 as K = 0). The patent text near the asphere table usually states the convention explicitly.
 - Coefficient sign and magnitude — copy verbatim, including scientific notation. Watch for missing exponents (e.g. `1.5e-7` mis-typed as `1.5`).
-- Set unused required slots (A4–A14) to `0`, not omitted. A16/A18/A20 are optional; omit when absent in the patent.
-- Odd orders A3–A19 are supported and optional — transcribe them verbatim when the patent lists non-zero values; omit zero-valued odd terms. If the file still carries an even-order least-squares refit of an odd-term patent surface, replace it with the exact coefficients per [LENS_DATA_SPEC.md](../src/lens-data/LENS_DATA_SPEC.md) § Aspherical Coefficients.
+- Check sparse terms, explicit zeros and all-zero aspheres against [Aspheres](../src/lens-data/LENS_DATA_SPEC.md#aspheres-asphere); do not pad absent coefficients.
+- Verify odd as well as even orders. If the file still carries an even-order least-squares refit of an odd-term patent surface, replace it with the exact coefficients using that section's replacement procedure.
 
 For zoom lenses, additionally verify:
 
-- `zoomPositions` matches the patent's variable-spacing-table column headers exactly.
-- Each `var` entry has `zoomPositions.length` pairs; surface `d` matches first pair's infinity value.
+- `zoom.stations[].focalLengthMm` matches the patent's variable-spacing-table column headers exactly.
+- Each `gaps` entry matches the station and `focus.keyframes` counts per [Gaps](../src/lens-data/LENS_DATA_SPEC.md#gaps-gaps).
 - Non-monotonic groups (forward-then-back across zoom) are noted in the file header.
 
 If any field drifts, fix it in the data file. Then re-run validation:
@@ -149,20 +154,20 @@ The full dispersion cascade (complete line indices → catalog Sellmeier → par
 Abbe) honors whatever you populate. See [proprietary-glass-backfill.md](proprietary-glass-backfill.md) for the cascade
 rules and the LCA quality-badge upgrade path.
 
-**Metadata enrichment** (top-level lens fields). Add when missing:
+**Metadata enrichment** (`source`, `catalog`, `focus` and identity fields). Add when missing:
 
 | Field | When to add |
 |---|---|
-| `patentNumber` | Exact publication or grant transcribed, including jurisdiction/kind code. Required for patent-backed production lenses. |
-| `patentAuthors` / `patentAssignees` | Complete source-order inventor list and source assignee/applicant list. Required with `patentNumber`; empty arrays mean the source truly names none, not “unknown.” |
+| `source.patentNumber` | Exact publication or grant transcribed, including jurisdiction/kind code. Required for patent-backed production lenses. |
+| `source.authors` / `source.assignees` | Complete source-order inventor list and source assignee/applicant list. Required with `source.patentNumber`; empty arrays mean the source truly names none, not “unknown.” |
 | `subtitle` | Compact example and design-correlation context — e.g. `"WO 2019/220618 A1 — Example 9"`. Keep it because reports still use it for source/example matching. |
-| `patentYear` | Year published or granted. |
-| `focalLengthDesign` / `apertureDesign` | When the patent's computed values differ from marketing. |
-| `elementCount` / `groupCount` | Always — easy to miss. |
-| `focusDescription` | One short sentence on the focus mechanism. Important for inner-focus and floating-element designs. |
+| `source.patentYear` | Year published or granted. |
+| `catalog.focalLengthMm.design` / `catalog.fNumber.design` | When the patent's computed values differ from marketing. |
+| `catalog.elementCount` / `catalog.groupCount` | Always — easy to miss. |
+| `focus.description` | One short sentence on the focus mechanism. Important for inner-focus and floating-element designs. |
 | `maker` | Always, if missing. Maker pages depend on it. |
 
-**Patent-comment enrichment** (file header). When the patent provides confirmation criteria you can describe in 2–4 lines (element/group count, MFD, ED count, asph count, focal length match), add them to the header comment. See `NikonNikkorZ50f18S.data.ts` for the pattern.
+**Patent-comment enrichment** (file header). When the patent provides confirmation criteria you can describe in 2–4 lines (element/group count, MFD, ED count, asphere count, focal length match), add them to the header comment. See `NikonNikkorZ50f18S.data.ts` for the pattern.
 
 ### Phase 4 — Sync the analysis file
 
@@ -173,8 +178,8 @@ Targeted edits to make in the analysis:
 - **Element-by-element narrative** — relabel any glass name that changed in Phase 1. Update inline (nd, vd) values to match the corrected data file.
 - **Glass class statements** — phrases like "S-FPL53 / FCD100 class (super-ED…)" become "S-FPL51 / FCD1 class (ED, νd = 82.6)" when the audit downgrades the class.
 - **APO claims** — only retain "anomalous partial dispersion" or "APO" language when the data file's dPgF or line indices justify it. Bare Abbe-only data is not enough to claim APO behavior.
-- **Patent reference accuracy** — the bold metadata block must match `patentNumber`, `patentAuthors`,
-  `patentAssignees`, and `patentYear`; its embodiment line must agree with `subtitle`.
+- **Patent reference accuracy** — the bold metadata block must match `source.patentNumber`, `source.authors`,
+  `source.assignees`, and `source.patentYear`; its embodiment line must agree with `subtitle`.
 - **Aspherical coefficient values** — analysis files sometimes quote coefficients inline; update them when Phase 2 corrected the data.
 
 If `*.analysis.md` does not exist, do not create one as part of an audit — analysis authoring is its own pass. The `*.audit.md` log captures the data-file-only outcome.
@@ -208,7 +213,7 @@ printed block and accepts the corrected one. The second kind need not isolate ea
 which kind isolates it. (Maintainer ruling, 2026-10-08, on the Tamron A03 aspheres.)
 
 Record a correction in four places: the value itself with an inline comment, a header note in the data file, a
-`corrected` entry in `sourceErrata` (`src/lens-data/LENS_DATA_SPEC.md`, which the validator checks against the file),
+`corrected` entry in `source.errata` ([Source errata](../src/lens-data/LENS_DATA_SPEC.md#source-errata-sourceerrata), checked against the file),
 and a dated audit-log entry with the before/after numbers. When the contradiction is real but its cause is not
 isolated, keep the printed values, add an `unresolved` entry, and queue the lens in Section G of
 [sd-audit-queue.md](sd-audit-queue.md). The MTF tab shows both kinds to the reader as notes beside the chart.
@@ -249,12 +254,12 @@ Catalog version: <commit short SHA, optional>
 
 - Surface 9 R: confirmed against patent table 1 row 9.
 - All `d` values within 1e-3 mm of patent.
-- `asph["6A"]` coefficients re-verified; conic convention κ = 1 → K = 0 confirmed in patent ¶0061.
+- Surface `"6A"` `asphere` coefficients re-verified; conic convention κ = 1 → K = 0 confirmed in patent ¶0061.
 
 ### Phase 3 — Spectral / metadata enrichment
 
 - Added `dPgF: 0.0036` on L23 (patent table, "Pg,F" column).
-- Added `patentYear: 2019` and `groupCount: 9`.
+- Added `source.patentYear: 2019` and `catalog.groupCount: 9`.
 
 ### Phase 4 — Analysis sync
 

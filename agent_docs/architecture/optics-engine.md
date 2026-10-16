@@ -1183,7 +1183,7 @@ The shared `FieldSample` contract keeps every requested point in input order and
 `outside-projection-domain`, `chief-unreachable`, `clipped`, or `missed-sensor`. It carries the requested normalized
 sensor coordinate/point, camera- and lens-frame scene directions, zero-pose ideal, posed ideal, actual chief intercept,
 solve diagnostics, and optional pupil bundle. Normalized sensor `(u, v)` uses `[-1, +1]` at the declared image-format
-edges; validated `imageFormat` metadata is therefore required for perspective field sampling.
+edges; authored `catalog.imageFormat` metadata is therefore required for perspective field sampling.
 
 Two field domains prevent analyses from accidentally changing the question while the lens moves:
 
@@ -1222,10 +1222,10 @@ status, and an unsupported section is suppressed by the per-section availability
 generalized/folded paths fail closed with `PerspectiveTraceUnsupportedError` rather than falling back to sequential
 math.
 
-### V1 Limits
+### Movement Limits
 
-V1 models one vertical lens translation (`shift-Y`) and one meridional tilt about camera `X` (`tilt-X`). It does not
-model horizontal/independent XY shift, swing/tilt about `Y`, mechanism rotation, separately rotated shift and tilt axes,
+The perspective-control model supports one vertical lens translation (`shift-Y`) and one meridional tilt about camera
+`X` (`tilt-X`). It does not model horizontal/independent XY shift, swing/tilt about `Y`, mechanism rotation, separately rotated shift and tilt axes,
 or a complete mechanical linkage. The sensor remains fixed and untilted. Full perspective-control tracing is limited
 to sequential optical paths; folded/generalized perspective-control systems are unsupported and remain guarded.
 
@@ -1239,9 +1239,11 @@ React components or `buildLens()`.
 
 ## Published Stations
 
-`publishedStations.ts` answers which authored stations the source tabulates. It reads `L.data.publishedStations` and
-`L.data.finiteConjugates` (field semantics: `src/lens-data/LENS_DATA_SPEC.md` § Published Stations) and returns them
-in slider coordinates: zoom station `i` of `n` at `zoomT = i / (n - 1)`, focus keyframe `j` at `focusPositions[j]`.
+`publishedStations.ts` answers which authored stations the source tabulates. V2 authors `zoom.stations[].published`,
+`.publishedFocus`, `focus.published` and `focus.conjugates`; see
+[Published Stations](../../src/lens-data/LENS_DATA_SPEC.md#published-stations). The helpers read the compatibility
+view's `L.data.publishedStations` and `L.data.finiteConjugates` and return slider coordinates: zoom station `i` of `n`
+at `zoomT = i / (n - 1)`, focus keyframe `j` at the authored `focus.keyframes[j]` coordinate.
 `publishedStationGrid()` works on lens data alone; the `L`-taking helpers add focal lengths, wide-open f-numbers,
 distance labels, snapping (`nearestPublishedStation`) and the reasons a lens offers few stations. Nothing here feeds
 tracing. `buildLens()` does not normalize the field onto `RuntimeLens`, and aberration-control keyframes are not
@@ -1347,10 +1349,11 @@ Malformed inputs retain guarded raw checks so ingest cannot hide their aggregate
 compiles only lower-level probe surfaces, never a full lens or material table. The concern modules check required
 fields, references, STO presence, the d/e `indexReference` enum, diffractive
 phase-polynomial bounds/canonical ordering, element edge thickness, SD consistency, rim slope, boundary-surface
-cross-gap overlap, conic limits, and zoom field consistency. Elements that span more than one surface
-(via `fromSurface`/`toSurface`) and stops marked `stopPlacement: "inside-element"` are validated against tighter rules:
-explicit spans must be ordered and confined to one `elemId`, internal stops must be flat with `nd` matching the
-containing glass, and every interior surface inside a multi-surface element must itself be a flagged internal stop.
+cross-gap overlap, conic limits, and zoom field consistency. Authored element `span` pairs and stops marked
+`stopPlacement: "inside-element"` follow [Stop and Aperture](../../src/lens-data/LENS_DATA_SPEC.md#stop-and-aperture)
+and the exceptions in [Folded Paths](../../src/lens-data/LENS_DATA_SPEC.md#folded-paths). The full checks and their code
+pointers are in [Validation Rules](../../src/lens-data/LENS_DATA_SPEC.md#validation-rules); older catalog files and audit
+terminology use the [Reading V1 Audits](../../src/lens-data/LENS_DATA_SPEC.md#reading-v1-audits) field map.
 
 `geometry/apertureBands.ts` is the shared pure radial-band leaf for validation and rendering.
 
