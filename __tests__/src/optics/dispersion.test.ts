@@ -339,6 +339,20 @@ describe("glass catalog", () => {
     expect(resolveCompatibleGlass("E-C3", 1.51823, 59)?.name).toBe("E-C3");
   });
 
+  it("distinguishes Hikari LAK09 from LAK9 without redirecting shared glass codes", () => {
+    expect(resolveCompatibleGlass("J-LAK09 (Hikari spectral proxy)", 1.734, 51.3)?.name).toBe("J-LAK09");
+    expect(resolveCompatibleGlass("J-LAK9", 1.691, 54.93)?.name).toBe("J-LAK9");
+    expect(resolveCompatibleGlass("J-LAK09", 1.691, 54.93)).toBeNull();
+    expect(resolveCompatibleGlass("J-LAK9", 1.734, 51.3)).toBeNull();
+    expect(resolveCompatibleGlass("J-BASF8 (Hikari spectral proxy)", 1.72342, 37.9)?.name).toBe("J-BASF8");
+    expect(resolveCompatibleGlass("J-BASF8", 1.66672, 48.3)).toBeNull();
+    expect(resolveCompatibleGlass("J-BAF11 (Hikari spectral proxy)", 1.66672, 48.3)?.name).toBe("J-BAF11");
+    expect(resolveCompatibleGlass("J-BAF11", 1.72342, 37.9)).toBeNull();
+    expect(resolveGlass("723380")?.name).toBe("S-BAH28");
+    expect(resolveGlass("734515")?.name).toBe("S-LAL59");
+    expect(resolveGlass("667483")?.name).toBe("S-BAH11");
+  });
+
   it("evaluates vendor polynomial catalog entries", () => {
     const tafd45 = resolveGlass("TAFD45 (HOYA)");
     expect(tafd45).not.toBeNull();

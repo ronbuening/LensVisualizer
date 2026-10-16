@@ -12,18 +12,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **945** lenses scanned
-- **10772** glass elements examined
-- **3224** elements have multiple coordinate-compatible candidates
-- **580** lens files are affected
+- **946** lenses scanned
+- **10779** glass elements examined
+- **3228** elements have multiple coordinate-compatible candidates
+- **581** lens files are affected
 - **317** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
-- **208** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
+- **210** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1880 |
+| Smallest reference-index residual | 1882 |
 | Evidence-source priority | 997 |
-| Vendor context | 332 |
+| Vendor context | 334 |
 | Stable canonical-name order | 13 |
 | Smallest Abbe residual | 2 |
 
@@ -1013,6 +1013,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `589611 crown class (L-BAL35 / N-SK5 / K-SKLD5 coordinate family)` | 1.58913 / 61.10 (d) | N-SK5 — direct name evidence outranks alias evidence. | S-BAL35 (Ohara, alias) | 1 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L7 |
 | `658509 dense crown / N-SSK5 class` | 1.65844 / 50.90 (d) | N-SSK5 — direct name evidence outranks six-digit code evidence. | S-BSM25 (Ohara, code, alternate code row)<br>BACED5 (Hoya, code, alternate code row) | 1 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L9 |
 | `673322 dense flint / SF5 class` | 1.67270 / 32.20 (d) | SF5 — direct name evidence outranks six-digit code evidence. | H-ZF2 (CDGM, code, alternate code row)<br>E-FD5 (Hoya, code, preferred code row) | 1 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L11 |
+| `J-BAF11 (Hikari spectral proxy for patent BaF11; historical supplier/melt unconfirmed)` | 1.66672 / 48.30 (d) | J-BAF11 — Annotation vendor context matches Hikari. | BAF11 (Sumita, name, vendor ✗) | 2 | [MIRANDA AUTO E 50mm f/1.4](../../src/lens-data/miranda/MirandaAutoE50mmf14.data.ts) L6 |
 | `BK7 / S-BSL7 class (protective glass)` | 1.51680 / 63.88 (d) | S-BSL7 — direct name evidence outranks alias evidence. | N-BK7 (Schott, alias) | 1 | [NIKON 1 NIKKOR 11-27.5mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1127mmf3556.data.ts) P |
 | `S-TIH53 equivalent (N-SF57HT / FDS90-SG class dense flint)` | 1.84666 / 23.80 (d) | S-TIH53 — smallest d-line \|Δn\| (3.2e-7 vs 3.2e-6) | FDS90 (Hoya, name) | 1 | [NIKON 1 NIKKOR 11-27.5mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1127mmf3556.data.ts) L3 |
 | `J-LASF017 (Hikari, 795453)` | 1.79500 / 45.31 (d) | J-LASF017 — direct name evidence outranks six-digit code evidence. | Q-LASFPH3S (Hikari, code, vendor ✓, alternate code row) | 1 | [NIKON 1 NIKKOR 32mm f/1.2](../../src/lens-data/nikon/Nikon1Nikkor32mmf12.data.ts) L13 |
@@ -1440,7 +1441,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `LAF2 (Schott) / S-LAM2 (OHARA)` | 1.74400 / 44.90 (d) | S-LAM2 — Annotation vendor context matches Ohara. | LAF2 (Hoya, name, vendor ✗) | 1 | [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) L2 |
 | `E-LASF016 (Hikari) / J-LASF016 / LACL60 class` | 1.77250 / 49.50 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 9.8e-7) | E-LASF016 (Hikari, name, vendor ✓) | 1 | [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) L4 |
 | `620603 — SK16 / BSM16 / BACD16 class` | 1.62010 / 60.10 (d) | BACD16 — direct name evidence outranks alias evidence. | N-SK16 (Schott, alias)<br>J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [NIKON NIKKOR-O 2.1cm f/4](../../src/lens-data/nikon/NikonNikkorO21mmf4.data.ts) L1 |
-| `723380 — BAFD8 / S-BAH28 / J-BASF8 class` | 1.72640 / 37.80 (d) | S-BAH28 — smallest d-line \|Δn\| (3.0e-3 vs 3.0e-3) | BAFD8 (Hoya, name) | 2 | [NIKON NIKKOR-O 2.1cm f/4](../../src/lens-data/nikon/NikonNikkorO21mmf4.data.ts) L2 |
+| `723380 — BAFD8 / S-BAH28 / J-BASF8 class` | 1.72640 / 37.80 (d) | J-BASF8 — smallest d-line \|Δn\| (3.0e-3 vs 3.0e-3) | S-BAH28 (Ohara, name)<br>BAFD8 (Hoya, name) | 2 | [NIKON NIKKOR-O 2.1cm f/4](../../src/lens-data/nikon/NikonNikkorO21mmf4.data.ts) L2 |
 | `648338 — SF2 / E-FD2 / J-SF2 class` | 1.64840 / 33.80 (d) | J-SF2 — smallest d-line \|Δn\| (7.1e-4 vs 7.1e-4) | E-FD2 (Hoya, name)<br>SF2 (Schott, name)<br>H-ZF1 (CDGM, code, alternate code row)<br>S-TIM22 (Ohara, code, preferred code row) | 2 | [NIKON NIKKOR-O 2.1cm f/4](../../src/lens-data/nikon/NikonNikkorO21mmf4.data.ts) L3 |
 | `518588–518590 — K3 / C3 / NSL3 class` | 1.51700 / 58.80 (d) | S-NSL3 — smallest d-line \|Δn\| (1.2e-3 vs 1.2e-3) | E-C3 (Hoya, code, alternate code row)<br>J-K3 (Hikari, code, preferred code row) | 1 | [NIKON NIKKOR-O 2.1cm f/4](../../src/lens-data/nikon/NikonNikkorO21mmf4.data.ts) L5 |
 | `788475 — lanthanum dense flint, LaSF014 class (nearest J-LASF014 HIKARI / TAF4 HOYA, Δnd +0.0004; supplier unconfirmed)` | 1.78764 / 47.50 (d) | TAF4 — smallest d-line \|Δn\| (3.6e-4 vs 3.6e-4) | J-LASF014 (Hikari, name, vendor ✓)<br>N-LAF21 (Schott, code, vendor ✗, preferred code row) | 1 | [NIKON NIKKOR-QD·C AUTO 15mm f/5.6](../../src/lens-data/nikon/NikonNikkor15mmf56.data.ts) L1 |
@@ -2308,6 +2309,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `SF1 (SUMITA legacy catalog; HIKARI J-SF1 equivalent)` | 1.71736 / 29.50 (d) | J-SF1 — Annotation vendor context matches Hikari. | SF1 (Schott, name, vendor ✗) | 1 | [VIVITAR SERIES 1 70-210mm f/3.5 VMC MACRO FOCUSING AUTO ZOOM](../../src/lens-data/vivitar/VivitarSeries170210mmf35.data.ts) L1 |
 | `SK5 (SUMITA legacy catalog; HIKARI J-SK5 equivalent)` | 1.58913 / 61.20 (d) | J-SK5 — smallest d-line \|Δn\| (9.5e-9 vs 1.7e-6) | SK5 (Sumita, name, vendor ✓) | 1 | [VIVITAR SERIES 1 70-210mm f/3.5 VMC MACRO FOCUSING AUTO ZOOM](../../src/lens-data/vivitar/VivitarSeries170210mmf35.data.ts) L2 |
 | `SF11 (SUMITA legacy catalog; HIKARI J-SF11 equivalent)` | 1.78472 / 25.70 (d) | J-SF11 — Annotation vendor context matches Hikari. | SF11 (Schott, name, vendor ✗) | 1 | [VIVITAR SERIES 1 70-210mm f/3.5 VMC MACRO FOCUSING AUTO ZOOM](../../src/lens-data/vivitar/VivitarSeries170210mmf35.data.ts) L4 |
+| `BAF11 (SUMITA legacy catalog; HIKARI J-BAF11 equivalent)` | 1.66672 / 48.40 (d) | J-BAF11 — smallest d-line \|Δn\| (3.8e-9 vs 7.7e-7) | BAF11 (Sumita, name, vendor ✓) | 2 | [VIVITAR SERIES 1 70-210mm f/3.5 VMC MACRO FOCUSING AUTO ZOOM](../../src/lens-data/vivitar/VivitarSeries170210mmf35.data.ts) L5 |
 | `FK5 class (SUMITA legacy / HIKARI J-FK5)` | 1.48749 / 70.00 (d) | J-FK5 — smallest d-line \|Δn\| (8.2e-9 vs 3.0e-7) | FK5 (Sumita, name, vendor ✓) | 3 | [VIVITAR SERIES 1 70-210mm f/3.5 VMC MACRO FOCUSING AUTO ZOOM](../../src/lens-data/vivitar/VivitarSeries170210mmf35.data.ts) L9 |
 | `SF6 (SUMITA legacy catalog; HIKARI J-SF6 equivalent)` | 1.80518 / 25.50 (d) | J-SF6 — Annotation vendor context matches Hikari. | SF6 (Schott, name, vendor ✗) | 1 | [VIVITAR SERIES 1 70-210mm f/3.5 VMC MACRO FOCUSING AUTO ZOOM](../../src/lens-data/vivitar/VivitarSeries170210mmf35.data.ts) L10 |
 | `LAFN2 (SUMITA legacy; OHARA S-LAM59 equivalent)` | 1.69700 / 48.50 (d) | LAFN2 — smallest d-line \|Δn\| (4.4e-8 vs 2.2e-6) | S-LAM59 (Ohara, name, vendor ✓) | 1 | [VIVITAR SERIES 1 70-210mm f/3.5 VMC MACRO FOCUSING AUTO ZOOM](../../src/lens-data/vivitar/VivitarSeries170210mmf35.data.ts) L14 |

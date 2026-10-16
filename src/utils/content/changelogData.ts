@@ -21,7 +21,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-16",
     type: "lens",
-    summary: "Added Olympus 300mm, Panasonic Leica 45mm and Samyang 135mm lenses",
+    summary: "Added Miranda 50mm, Olympus 300mm, Panasonic Leica 45mm and Samyang 135mm lenses",
   },
   {
     date: "2026-10-16",

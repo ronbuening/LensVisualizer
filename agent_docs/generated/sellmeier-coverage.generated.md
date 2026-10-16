@@ -11,17 +11,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **945** lenses scanned
-- **932** visible lenses scanned
-- **634** lenses fully covered by trusted chromatic data
-- **632** visible lenses fully covered by trusted chromatic data
-- **627** lenses fully covered by strict Sellmeier data
-- **625** visible lenses fully covered by strict Sellmeier data
+- **946** lenses scanned
+- **933** visible lenses scanned
+- **635** lenses fully covered by trusted chromatic data
+- **633** visible lenses fully covered by trusted chromatic data
+- **628** lenses fully covered by strict Sellmeier data
+- **626** visible lenses fully covered by strict Sellmeier data
 - **7** lenses fully covered only after measured line-index data
 - **7** visible lenses fully covered only after measured line-index data
-- **10016 / 10777** non-air surfaces use strict catalog Sellmeier data
+- **10023 / 10784** non-air surfaces use strict catalog Sellmeier data
 - **92.9%** strict Sellmeier surface coverage overall
-- **10029 / 10777** non-air surfaces use trusted chromatic data
+- **10036 / 10784** non-air surfaces use trusted chromatic data
 - **93.1%** trusted chromatic coverage overall
 - **252 / 303** native e-line surfaces use name-verified catalog Sellmeier data
 
@@ -771,6 +771,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [MINOLTA AF 35mm f/2](../../src/lens-data/minolta/MinoltaAF35mmf2.data.ts) | 7/7 | 7 | 7/7 |
 | [MINOLTA MC W.ROKKOR-SG 28mm f/3.5](../../src/lens-data/minolta/Minolta28mmf35MCWRokkorv2.data.ts) | 7/7 | 7 | 7/7 |
 | [MINOLTA MD 28mm f/2.8 (7 elements / 7 groups)](../../src/lens-data/minolta/Minolta28mmf28MD.data.ts) | 7/7 | 7 | 7/7 |
+| [MIRANDA AUTO E 50mm f/1.4](../../src/lens-data/miranda/MirandaAutoE50mmf14.data.ts) | 7/7 | 7 | 7/7 |
 | [NIKON AF DC-NIKKOR 135mm f/2 D](../../src/lens-data/nikon/NikonAFDCNikkor135mmf2.data.ts) | 7/7 | 7 | 7/7 |
 | [NIKON AI NIKKOR 600mm f/5.6 IF-ED](../../src/lens-data/nikon/NikonAINikkor600mmf56IFED.data.ts) | 7/7 | 7 | 7/7 |
 | [NIKON AI NIKKOR 85mm f/1.4 S](../../src/lens-data/nikon/Nikon85f14AIS.data.ts) | 7/7 | 7 | 7/7 |
