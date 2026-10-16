@@ -1347,7 +1347,9 @@ The stop radius has exactly one authority per lens:
     node of its nearest mapped ancestor, or to the first V1 container whose home holds it (`zoomPositions` first,
     then file order); the report lists each move, with the node it went to, and each medium V1 cannot hold, whose id,
     name and place in the list drop. A
-    restored flat radius prints `1e15`, not `String(1e15)`.
+    restored flat radius prints `1e15`, not `String(1e15)`, and a value V1 holds twice (a surface's `nd` beside its
+    medium, a gap surface's `d` beside its gap) or zero padding V1 requires prints from its value, not from a source
+    text (Q23.4).
 - **The converter is permanent.** Lens files waiting in an archive for a later release, and files on external
   branches, may still be V1 long after migration. The converter, its V1 reader and its tests stay after the program,
   and V1 files enter the catalog only through it:
@@ -1980,10 +1982,16 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     cannot be derived is refused. `LensDataInput` is unchanged.
   - **Files:**
     - `scripts/convert-lens-data.mjs`; `scripts/lens-data-convert/{cli, typecheck, convert, comments, print,
-      report}.mjs` and their `.d.mts`; `scripts/{lens-data-ast, lens-summaries}.mjs` and their `.d.mts`
+      report}.mjs`, and the `.d.mts` of each but `print`; `scripts/{lens-data-ast, lens-summaries}.mjs` and their
+      `.d.mts`
     - `src/optics/prescription/{ingestV2, toLensData, toLensDataV2, sourcePaths}.ts`, and `v1SourceMap.ts` beside
-      them; `src/optics/lensDataConversion.ts`
-    - `package.json`, `.gitignore`, `agent_docs/workflow.md`, `agent_docs/architecture/testing.md`
+      them; `src/optics/lensDataConversion.ts`; `src/optics/prescription/improvementsuggestions.md`
+    - `package.json`, `.gitignore`, `agent_docs/workflow.md`,
+      `agent_docs/architecture/{testing, optics-engine, public-functions}.md`, and the generated readmes of
+      `src/optics/`, `src/optics/prescription/` and `src/types/`
+    - tests: `__tests__/scripts/{convertLensDataCli, convertLensData, lensDataV2Readers}.test.ts`,
+      `__tests__/scripts/convertLensDataFixtures.ts`, `__tests__/src/optics/prescription/ingestV2Fixtures.ts`,
+      `__tests__/src/optics/prescription/toLensDataV2.test.ts` and `__tests__/node-builtins.d.ts`
   - **Tests:** its tests cover each of those behaviors, plus an interrupted write and V2 → V1 → V2 identity:
     `__tests__/scripts/convertLensDataCli.test.ts`, and the V1 direction in `convertLensData.test.ts`, in `npm test`
     beside the library's. The round trip asserts semantic identity and that every comment appears once, as written
@@ -2958,7 +2966,8 @@ Settled on 2026-10-16, by maintainer ruling on S5.P2.T2:
 | --- | --- | --- |
 | 62 | Use one 0.003 cutoff for treating focus as infinity, including traced conjugate correction; restore the pre-optics-2 behavior (maintainer ruling) | S5.P2.T2; `src/optics/focusDistance.ts` |
 
-The maintainer also settled these on 2026-10-15, answering the S2.P3.T2 questions:
+The maintainer also settled these on 2026-10-15, answering the S2.P3.T2 questions, and rows 73, 75 and 78 on
+2026-10-16:
 
 | # | Decision | Where |
 | --- | --- | --- |
