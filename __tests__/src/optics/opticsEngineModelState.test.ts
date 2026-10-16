@@ -9,14 +9,13 @@ import { ingestLensV1, toLensData } from "../../../src/optics/buildLens.js";
 import { dispersionTableFromRuntime2 } from "../../../src/optics/chromatic/dispersionAdapter.js";
 import { summarizeDispersionQuality2 } from "../../../src/optics/chromatic/dispersionQuality.js";
 import { traceRay } from "../../../src/optics/optics.js";
-import { teleconverterHostData, teleconverterZoomHostData } from "./testLensFixtures.js";
+import { buildVariableStopGapLens, teleconverterHostData, teleconverterZoomHostData } from "./testLensFixtures.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import { doLayout, thick } from "../../../src/optics/optics.js";
 import { buildLens2, engineLensFromRuntime, prepareRuntimeState } from "../../../src/optics/compat.js";
 import { compileSurfaceDispersions } from "../../../src/optics/prescription/compileMaterials.js";
 import { compileLensData } from "../../../src/optics/prescription/compile.js";
-import { createPreparedStateCache } from "../../../src/optics/state/cache.js";
-import { prepareState } from "../../../src/optics/state/prepareState.js";
+import { prepareState, prepareStateUncached, stateWithZ } from "../../../src/optics/state/preparedGeometry.js";
 import { evaluateSellmeier, LINE_NM, resolveGlass } from "../../../src/optics/glassCatalog.js";
 import type { ElementData, SurfaceData, SurfaceSpectral } from "../../../src/types/optics.js";
 import { ALL_CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
@@ -174,26 +173,97 @@ describe("Optics engine prepared state", () => {
     }
   });
 
-  it("caches immutable prepared states by lens identity and normalized slider values", () => {
-    const runtime = buildLens2(LENS_CATALOG["nikon-z-24-70f4s"]);
+  it("shares immutable cached geometry and matches uncached preparation", () => {
+    const runtime = buildVariableStopGapLens([1, 5]);
     const engine = engineLensFromRuntime(runtime);
-    const cache = createPreparedStateCache();
-    const first = prepareState(engine, 0.25, 0.5, 0, { cache });
-    const second = prepareState(engine, 0.25, 0.5, 0, { cache });
-    const bypassed = prepareState(engine, 0.25, 0.5, 0);
+    const first = prepareState(engine, 0.25, 0.5, 0);
+    const bypassed = prepareStateUncached(engine, 0.25, 0.5, 0);
 
-    expect(second).toBe(first);
+    expect(prepareRuntimeState(runtime, 0.25, 0.5, 0)).toBe(first);
     expect(bypassed).not.toBe(first);
+    expect(bypassed).toEqual(first);
     expect(Object.isFrozen(first)).toBe(true);
     expect(Object.isFrozen(first.surfaces)).toBe(true);
+    expect(Object.isFrozen(first.z)).toBe(true);
     expect(first.cacheKey).toContain(engine.key);
+    const independent = engineLensFromRuntime(buildVariableStopGapLens([1, 8]));
+    expect(independent.key).toBe(engine.key);
+    const other = prepareState(independent, 0.25, 0.5, 0);
+    expect(other).not.toBe(first);
+    expect(other.surfaces[0].d).not.toBe(first.surfaces[0].d);
+  });
+
+  it("compares controls exactly after clamping and normalizes signed zero", () => {
+    const engine = engineLensFromRuntime(buildVariableStopGapLens([1, 5]));
+    const zero = prepareState(engine, -0, -0, -0);
+    expect([zero.focusT, zero.zoomT, zero.aberrationT]).toEqual([0, 0, 0]);
+    expect(prepareState(engine, -1, -1, -1)).toBe(zero);
+    expect(prepareState(engine, 2, 2, 2)).toBe(prepareState(engine, 1, 1, 1));
+    const controls = [0.5, 0.5, 0.5];
+    const base = prepareState(engine, controls[0], controls[1], controls[2]);
+    for (let i = 0; i < controls.length; i++) {
+      const nearby = [...controls];
+      nearby[i] += Number.EPSILON;
+      const distinct = prepareState(engine, nearby[0], nearby[1], nearby[2]);
+      expect(distinct).not.toBe(base);
+      expect(prepareState(engine, nearby[0], nearby[1], nearby[2])).toBe(distinct);
+    }
+    const centered = {
+      ...engine,
+      aberrationControl: { label: "Spacing", centerLabel: "Neutral", varBySurfaceIndex: {}, varLabels: [] },
+    };
+    expect(prepareState(centered, 0, 0, -2)).toBe(prepareState(centered, 0, 0, -1));
+    expect(prepareState(centered, 0, 0, -0).aberrationT).toBe(0);
+    expect(prepareState(centered, 0, 0, -0.5)).toEqual(prepareStateUncached(centered, 0, 0, -0.5));
+    for (const invalid of [NaN, Infinity, -Infinity]) {
+      expect(() => prepareState(engine, invalid, 0, 0)).toThrow("focusT must be finite");
+      expect(() => prepareState(engine, 0, invalid, 0)).toThrow("zoomT must be finite");
+      expect(() => prepareState(engine, 0, 0, invalid)).toThrow("aberrationT must be finite");
+    }
+  });
+
+  it("evicts the least recently used geometry above 96 states per compiled lens", () => {
+    const engine = engineLensFromRuntime(buildVariableStopGapLens([1, 5]));
+    const states = Array.from({ length: 96 }, (_, i) => prepareState(engine, i / 100, 0));
+    expect(prepareState(engine, 0, 0)).toBe(states[0]);
+    const other = engineLensFromRuntime(buildVariableStopGapLens([1, 5]));
+    for (let i = 0; i < 100; i++) prepareState(other, i / 100, 0);
+    prepareStateUncached(engine, 0.96, 0);
+    expect(prepareState(engine, 0.01, 0)).toBe(states[1]);
+    prepareState(engine, 0.96, 0);
+    expect(prepareState(engine, 0, 0)).toBe(states[0]);
+    expect(prepareState(engine, 0.01, 0)).toBe(states[1]);
+    const evicted = prepareState(engine, 0.02, 0);
+    expect(evicted).not.toBe(states[2]);
+    expect(evicted).toEqual(states[2]);
+  });
+
+  it("keeps diagram metadata and translated camera planes distinct in the shared z helper", () => {
+    const engine = engineLensFromRuntime(buildVariableStopGapLens([1, 5]));
+    const base = prepareState(engine, 0, 0);
+    for (const z of [base.z.map((v) => v + 12), base.z.map((v, i) => v + 12 + i), [12]]) {
+      const diagram = stateWithZ(base, z, "preserve");
+      const camera = stateWithZ(base, z);
+      expect(diagram).not.toBe(camera);
+      expect(diagram.imagePlane).toBe(base.imagePlane);
+      expect(diagram.imgZ).toBe(base.imgZ);
+      expect(diagram.totalTrack).toBe(base.totalTrack);
+      expect(diagram.surfaces.at(-1)!.d).toBe(base.surfaces.at(-1)!.d);
+      expect(camera.imgZ).toBe(base.imgZ + 12);
+      expect(camera.surfaces.at(-1)!.d).toBe(camera.imgZ - camera.surfaces.at(-1)!.z);
+      for (const mode of ["preserve", "translate"] as const) {
+        const state = stateWithZ(base, z, mode);
+        expect(stateWithZ(base, z, mode)).toBe(state);
+        expect(state.traceGeometry.surfaces).toBe(state.surfaces);
+        expect(state.traceGeometry.imagePlane).toBe(state.imagePlane);
+      }
+    }
   });
 
   it("owns one frozen trace geometry per prepared state without copying optical records", () => {
     const runtime = buildLens2(LENS_CATALOG["nikon-z-24-70f4s"]);
     const engine = engineLensFromRuntime(runtime);
-    const cache = createPreparedStateCache();
-    const first = prepareState(engine, 0, 0, 0, { cache });
+    const first = prepareState(engine, 0, 0, 0);
     const geometry = first.traceGeometry;
     expect(geometry).toBeDefined();
     expect(geometry.surfaces).toBe(first.surfaces);
@@ -203,15 +273,15 @@ describe("Optics engine prepared state", () => {
     expect(geometry.stopSurfaceIndex).toBe(engine.stop.surfaceIndex);
     expect(Object.isFrozen(geometry)).toBe(true);
     expect(Object.isFrozen(geometry.traversal)).toBe(true);
-    expect(prepareState(engine, 0, 0, 0, { cache }).traceGeometry).toBe(geometry);
+    expect(prepareState(engine, 0, 0, 0).traceGeometry).toBe(geometry);
     for (const controls of [
       [1, 0, 0],
       [0, 1, 0],
       [0, 0, 0.5],
     ]) {
-      expect(prepareState(engine, controls[0], controls[1], controls[2], { cache }).traceGeometry).not.toBe(geometry);
+      expect(prepareState(engine, controls[0], controls[1], controls[2]).traceGeometry).not.toBe(geometry);
     }
-    expect(prepareState(engine, 0, 0).traceGeometry).not.toBe(geometry);
+    expect(prepareStateUncached(engine, 0, 0).traceGeometry).not.toBe(geometry);
     const other = buildLens2(LENS_CATALOG["nikon-z-24-70f4s"]);
     expect(prepareRuntimeState(other, 0, 0).traceGeometry).toBe(prepareRuntimeState(runtime, 0, 0).traceGeometry);
     const independent = buildLens2(toLensData(ingestLensV1(LENS_CATALOG["nikon-z-24-70f4s"])));

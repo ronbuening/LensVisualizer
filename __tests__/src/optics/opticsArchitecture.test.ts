@@ -170,14 +170,6 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     key: "owner identity",
     perOwner: "one read-only map with a row per element, built once",
   },
-  "src/optics/compat.ts#PREPARED_STATE_CACHE_BY_RUNTIME": {
-    kind: "weak-owner",
-    owner: "RuntimeLens",
-    key: "owner identity, then lens key with focusT, zoomT and aberrationT",
-    perOwner: "an LRU of prepared states",
-    capacity: 96,
-    limit: "PREPARED_STATE_CACHE_LIMIT",
-  },
   "src/optics/geometry/surfaceProfile.ts#COMPILED_ASPHERES": {
     kind: "weak-owner",
     owner: "frozen AsphericCoefficients",
@@ -232,6 +224,20 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
   "src/optics/prescription/validate/references.ts#KNOWN_ASPHERIC_COEFFICIENTS": { kind: "constant" },
   "src/optics/prescription/validate/references.ts#SOURCE_ERRATUM_EVIDENCE": { kind: "constant" },
   "src/optics/prescription/validate/references.ts#SOURCE_ERRATUM_SURFACE_FIELDS": { kind: "constant" },
+  "src/optics/state/preparedGeometry.ts#PREPARED_STATE_BY_LENS": {
+    kind: "weak-owner",
+    owner: "CompiledLens",
+    key: "owner identity, then exact clamped focusT, zoomT and aberrationT with signed zero normalized",
+    perOwner: "an LRU array of prepared states",
+    capacity: 96,
+    limit: "PREPARED_STATE_CACHE_LIMIT",
+  },
+  "src/optics/state/preparedGeometry.ts#Z_STATE_BY_BASE": {
+    kind: "weak-owner",
+    owner: "PreparedOpticalState",
+    key: "owner identity, then the identity of the caller's z-position array and image-plane mode",
+    perOwner: "one WeakMap keyed by z-position array, at most two modes per array; entries die with the array",
+  },
   "src/optics/trace/bulkAbsorption.ts#ABSORPTION_BY_ELEMENT_ID": {
     kind: "weak-owner",
     owner: "CompiledLens",
@@ -244,12 +250,6 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     key: "meridional slope",
     capacity: 4096,
     limit: "DIRECTION_CACHE_LIMIT",
-  },
-  "src/optics/trace/rayAdapters.ts#RUNTIME_Z_STATE_BY_BASE": {
-    kind: "weak-owner",
-    owner: "PreparedOpticalState",
-    key: "owner identity, then the identity of the caller's z-position array",
-    perOwner: "one WeakMap keyed by z-position array, so entries die with the array",
   },
   "src/optics/trace/rayAdapters.ts#SKEW_DIRECTION_BY_UX": {
     kind: "bounded",
@@ -291,11 +291,6 @@ const CACHE_LEGACY: Readonly<Record<string, CacheLegacyRecord>> = {
   "src/optics/perspective/analysis/vignetting.ts#ZERO_CENTER_REFERENCE_BY_STATE": {
     grows: "per prepared state, one center reference per distinct sampling, pupil and channel key",
     retire: "cap the per-state map of center references",
-  },
-  "src/optics/trace/rayAdapters.ts#PREPARED_STATE_BY_RUNTIME": {
-    grows: "per lens, one prepared state per distinct focus, zoom and aberration triple",
-    retire: "resolve states through the bounded prepared-state cache instead of this second store",
-    storeType: "PreparedStateCache",
   },
   "src/optics/trace/rayAdapters.ts#TRACE_OPTIONS_BY_STATE": {
     grows:

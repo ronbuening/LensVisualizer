@@ -10,7 +10,7 @@ import { wideOpenStopAtZoom } from "../apertureStop.js";
 import type { ParaxialTraceResult, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import { resolveImageFormatMetadata } from "../../utils/catalog/lensTaxonomy.js";
 import { compiledLensFromRuntime } from "../prescription/compile.js";
-import { prepareState } from "../state/prepareState.js";
+import { prepareState } from "../state/preparedGeometry.js";
 import type { Plane3, PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { traceParaxialSurfaces2 } from "../math/paraxial.js";
 import {

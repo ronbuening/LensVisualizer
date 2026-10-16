@@ -6,7 +6,8 @@ import {
   type PerspectiveTraceContext,
 } from "../../../../src/optics/perspective/trace.js";
 import { createSensorBasis } from "../../../../src/optics/perspective/sensorBasis.js";
-import { stateWithRuntimeZ, traceEngineRay2 } from "../../../../src/optics/trace/rayAdapters.js";
+import { traceEngineRay2 } from "../../../../src/optics/trace/rayAdapters.js";
+import { stateWithZ } from "../../../../src/optics/state/preparedGeometry.js";
 import type { Plane3, Ray3, Vec3 } from "../../../../src/optics/types.js";
 import type { TiltPivot } from "../../../../src/types/optics.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
@@ -80,17 +81,17 @@ describe("perspective trace foundation", () => {
       const base = prepareRuntimeState(L, 0, 0);
       const original = base.traceGeometry;
       expect(original).toBeDefined();
-      expect(stateWithRuntimeZ(base, [])).toBe(base);
-      expect(stateWithRuntimeZ(base, [...base.z])).toBe(base);
+      expect(stateWithZ(base, [])).toBe(base);
+      expect(stateWithZ(base, [...base.z])).toBe(base);
       for (const z of [base.z.map((v) => v + 12), base.z.map((v, i) => v + 12 + i), [12]]) {
-        const shifted = stateWithRuntimeZ(base, z);
+        const shifted = stateWithZ(base, z);
         expect(shifted.traceGeometry).not.toBe(original);
         expect(shifted.traceGeometry.surfaces).toBe(shifted.surfaces);
         expect(shifted.traceGeometry.z).toBe(shifted.z);
         expect(shifted.traceGeometry.imagePlane).toBe(shifted.imagePlane);
         expect(shifted.traceGeometry.pathPlan).toBe(original.pathPlan);
         expect(shifted.imagePlane.point[2]).toBe(L.isFoldedOptics ? base.imgZ : base.imgZ + 12);
-        expect(stateWithRuntimeZ(base, z)).toBe(shifted);
+        expect(stateWithZ(base, z)).toBe(shifted);
       }
       expect(base.traceGeometry).toBe(original);
       expect(original.surfaces).toBe(base.surfaces);

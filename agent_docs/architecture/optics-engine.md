@@ -496,6 +496,23 @@ and is their only outside door.
   - a second set of closed-form sphere roots, and the sampled slope bound, in `analysis/mtfRayClassification.ts`,
     which proves misses for the MTF sampler and does not call the kernel's.
 
+## Prepared Geometry
+
+`state/preparedGeometry.ts` owns `prepareState()` and the only prepared-control LRU: at most 96 immutable states
+per `CompiledLens`, released with that compiled identity. Runtime adapters, fields, first-order calculations, pupil
+and chromatic analyses, and diagrams share it. Focus and zoom retain their [0, 1] clamps; aberration retains [0, 1]
+or [-1, 1] for a centered control. All three normalize signed zero and compare numbers exactly, without formatted
+keys. A same-key prescription with a different compiled identity has an independent cache. Hits move to most recent;
+misses evict the least recent state. `prepareStateUncached()` uses the same builder without touching the cache.
+The state's string `cacheKey` remains a compatibility label for analysis contexts, using unrounded control values;
+it does not select prepared geometry. The field-coverage script uses `buildLens.ts`'s `prepareRuntimeState` export.
+
+`stateWithZ()` is the shared coordinate override. Camera traces translate a refractive image plane and recompute
+its final gap and track; diagram callers select `"preserve"` to keep image-plane metadata and the final gap unchanged.
+Folded systems always keep their authored plane and track. Both modes rebuild trace geometry with the supplied
+vertices and adjacent gaps, and reuse overrides by base-state identity, immutable caller-array identity and mode.
+The per-state weak array store retains at most those two modes per live array.
+
 ## Exact Surface Trace
 
 Exact tracing is the only trace path. `traceRay()`, `traceRayChromatic()`, `traceSkewRay()`,

@@ -10,7 +10,8 @@ import { intersectRayPlane, type RayPlaneIntersection } from "../geometry/inters
 import { directionFromMeridionalSlope, directionFromSkewSlope, dot, subtract } from "../math/vector.js";
 import type { Plane3, PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { bulkTransmissionForTrace } from "../trace/bulkAbsorption.js";
-import { stateWithRuntimeZ, traceEngineRay2 } from "../trace/rayAdapters.js";
+import { traceEngineRay2 } from "../trace/rayAdapters.js";
+import { stateWithZ } from "../state/preparedGeometry.js";
 import type { EngineTraceResult, TraceHit, TraceOptions } from "../trace/types.js";
 import { directionSlopes } from "../trace/utils.js";
 import { createPerspectivePose, type PerspectivePose } from "./pose.js";
@@ -90,7 +91,7 @@ export function createPerspectiveTraceContext({
   movement,
   tiltPivot,
 }: CreatePerspectiveTraceContextParams): PerspectiveTraceContext {
-  const state = cameraZPos ? stateWithRuntimeZ(preparedState, cameraZPos) : preparedState;
+  const state = cameraZPos ? stateWithZ(preparedState, cameraZPos) : preparedState;
   const pose = createPerspectivePose({ movement, sensorPlane: requestedSensorPlane ?? state.imagePlane, tiltPivot });
   const sensorPlane = pose.sensorPlane;
   const sensorBasis = createSensorBasis(sensorPlane);

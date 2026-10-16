@@ -8,7 +8,7 @@ import type { RuntimeLens } from "../../types/optics.js";
 import { traceParaxialSurfaces2, transferParaxialRay2, type ParaxialState } from "../math/paraxial.js";
 import { compiledLensFromRuntime } from "../prescription/compile.js";
 import { createTraceGeometry } from "../trace/geometry.js";
-import { prepareState } from "../state/prepareState.js";
+import { prepareState } from "../state/preparedGeometry.js";
 import type { PreparedOpticalState } from "../types.js";
 import { prepareEngineTrace } from "../trace/rayAdapters.js";
 import { computeSystemMatrix2 } from "./systemMatrix.js";
