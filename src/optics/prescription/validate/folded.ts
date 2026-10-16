@@ -1,4 +1,5 @@
 /** Path declarations, mirror normals and conservative compiled-geometry probes. */
+import { buildZPositions } from "../../state/layout.js";
 import type { UntrustedLensData, ExplicitElementSpan } from "./context.js";
 import type { AsphericCoefficients, ImagePlaneData, SurfaceData } from "../../../types/optics.js";
 import { FLAT_R_THRESHOLD } from "../../geometry/surfaceProfile.js";
@@ -175,8 +176,7 @@ export function validateFoldedImagePlaneReachability(
       : Math.max(S.length + 1, 1);
 
   /* Validation precedes runtime construction; compile only the authored probe geometry. */
-  const z = [0];
-  for (let i = 0; i < S.length - 1; i++) z.push(z[i] + S[i].d);
+  const z = buildZPositions(S.map((surface) => surface.d));
   let surfaces: ReturnType<typeof compileSurfaces>;
   let asphByIdx: Record<number, AsphericCoefficients>;
   try {

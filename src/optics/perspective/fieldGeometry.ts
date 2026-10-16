@@ -1,5 +1,6 @@
 /** Projection, image-format, and fixed-sensor geometry for perspective fields. */
 
+import { interpolateStationTable } from "../state/stationTables.js";
 import { runtimeView } from "../prescription/runtimeView.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId, type ImageFormatMetadata } from "../../utils/catalog/lensTaxonomy.js";
 import {
@@ -216,8 +217,5 @@ function projectionValue(context: PerspectiveTraceContext, value: number | reado
   if (typeof value === "number") return value;
   if (value.length === 0) return NaN;
   if (value.length === 1) return value[0];
-  const scaled = Math.max(0, Math.min(1, context.state.zoomT)) * (value.length - 1);
-  const lo = Math.floor(scaled);
-  const hi = Math.min(value.length - 1, lo + 1);
-  return value[lo] + (value[hi] - value[lo]) * (scaled - lo);
+  return interpolateStationTable(Math.max(0, Math.min(1, context.state.zoomT)), value, "last");
 }

@@ -11,9 +11,18 @@ import {
   xpZRelLastSurfAtZoom,
 } from "../../../src/optics/layout.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
-import { buildSimplePositiveElementLens } from "./testLensFixtures.js";
+import { conjugateK } from "../../../src/optics/optics.js";
+import { buildSimplePositiveElementLens, buildVariableStopGapLens } from "./testLensFixtures.js";
 
 describe("layout facade edge cases", () => {
+  it("keeps reporting infinity distinct from the real-ray conjugate cutoff", () => {
+    const L = buildVariableStopGapLens([1, 1], "test-focus-cutoffs", undefined, { var: { "2": [80, 90] } });
+    expect(eflAtFocus(0.001, 0, L)).toBe(L.EFL);
+    expect(effectiveFNumber(2, 0.001, 0, L)).toBe(2);
+    expect(conjugateK(0.00005, 0, L)).toBe(0);
+    expect(Math.abs(conjugateK(0.001, 0, L))).toBeGreaterThan(1e-10);
+  });
+
   it("trims display height until the rim slope is within the configured tangent", () => {
     const L = {
       S: [{ label: "1", R: 10, d: 1, nd: 1.5, sd: 9, elemId: 1 }],

@@ -60,6 +60,7 @@ interface SeamRegistryEntry {
  */
 const SEAM_REGISTRY: readonly SeamRegistryEntry[] = [
   { module: "src/optics/aberrationAnalysis.ts" },
+  { module: "src/optics/apertureStop.ts" },
   { module: "src/optics/buildLens.ts" },
   { module: "src/optics/cardinalElements.ts" },
   { module: "src/optics/chiefRayDiagnostics.ts" },
@@ -101,7 +102,6 @@ const SEAM_LEGACY: readonly string[] = [
   "src/optics/analysis/mtfTracing.ts",
   "src/optics/analysis/mtfWavefront.ts",
   "src/optics/aperture.ts",
-  "src/optics/apertureStop.ts",
   "src/optics/asphericComparison.ts",
   "src/optics/chromatic/channels.ts",
   "src/optics/chromaticRayFanScaling.ts",

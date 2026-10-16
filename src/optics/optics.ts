@@ -8,6 +8,7 @@
 export { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "./trace/chiefRelative.js";
 export { anchorLayoutToCamera, type CameraAnchoredLayout } from "./cameraLayout.js";
 export {
+  FOCUS_REPORTING_INFINITY_THRESHOLD,
   FOCUS_INFINITY_THRESHOLD,
   SVG_PATH_SUBDIVISIONS,
   bAtZoom,

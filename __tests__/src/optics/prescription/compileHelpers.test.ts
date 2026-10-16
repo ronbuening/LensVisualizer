@@ -1,11 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { buildAsphereIndex } from "../../../../src/optics/prescription/compileAspheres.js";
 import { buildLabelIndex } from "../../../../src/optics/prescription/compileLabels.js";
+import { buildStateSurfaces, buildZPositions } from "../../../../src/optics/state/layout.js";
+import { firstInfinityThickness } from "../../../../src/optics/prescription/compileControls.js";
 import {
-  buildStateSurfaces,
-  firstInfinityThickness,
   resolveVariableThickness,
-} from "../../../../src/optics/prescription/compileControls.js";
+  interpolateStationTable,
+  clampStationControl,
+} from "../../../../src/optics/state/stationTables.js";
 import type { AsphericCoefficients, SurfaceData } from "../../../../src/types/optics.js";
 
 describe("compiler helpers", () => {
@@ -66,6 +68,20 @@ describe("compiler helpers", () => {
     expect(stateSurfaces[0].d).toBeCloseTo(5.5, 10);
     expect(surfaces[0].d).toBe(2);
     expect(stateSurfaces[0]).not.toBe(surfaces[0]);
+  });
+
+  it("preserves derived-table and projection-table endpoint arithmetic", () => {
+    const values = [1e16, 1];
+    expect(interpolateStationTable(1, values)).toBe(0);
+    expect(interpolateStationTable(1, values, "last")).toBe(1);
+    expect(interpolateStationTable(2, [2, 4])).toBe(6);
+    expect(interpolateStationTable(clampStationControl(2), [2, 4])).toBe(4);
+    expect(interpolateStationTable(clampStationControl(NaN), [2, 4])).toBe(2);
+    expect(interpolateStationTable(0.5, [7])).toBe(7);
+  });
+
+  it("accumulates signed folded gaps in physical surface order", () => {
+    expect(buildZPositions([10, -4, 8])).toEqual([0, 10, 6]);
   });
 
   it("reads the infinity thickness from prime and zoom var ranges", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
-import { zoomIndexToT } from "../../../src/optics/prescription/compileControls.js";
+import { zoomIndexToT } from "../../../src/optics/state/stationTables.js";
 import { thick } from "../../../src/optics/layout.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
