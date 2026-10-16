@@ -1967,7 +1967,8 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     destination, failing if the destination exists, then removed. Temp files and backups are created exclusively
     (`wx`) with their input's permissions, so a converted file keeps them, and a run removes only files it created. When a write, rename or link fails, or SIGINT or SIGTERM arrives
     while writing, the run puts back every input already replaced (under `--output`, removes every file and
-    directory it wrote), removes its temp files and backups, and exits 2. A SIGKILL can leave them: `*.convert-tmp`
+    directory it wrote), removes its temp files and backups, and exits 2. Before the write phase a signal stops the
+    run as it stops any process, with nothing written. A SIGKILL can leave them: `*.convert-tmp`
     and `*.convert-bak` are in `.gitignore`, and the next run refuses while a backup sits beside an input.
   - **V2 to V1:** the V1 view without catalog defaults, its top-level members printed in `V1_PRINT_ORDER` (the
     declaration order of `LensData` and `TeleconverterData`; the view writes a lens's tail in another order, and

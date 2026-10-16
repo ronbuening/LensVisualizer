@@ -104,6 +104,10 @@ describe("arguments", () => {
     ["a value on a mode", ["--input", "a", "--write=yes"]],
     ["a stray argument", ["a"]],
     ["an input that does not exist", ["--input", "/nonexistent/fixture.data.ts"]],
+    [
+      "an input file that is no lens-data file",
+      ["--input", fileURLToPath(new URL("../../package.json", import.meta.url))],
+    ],
   ])("%s: exit 2, the usage text on stderr", async (_case, argv) => {
     const run = await cli(argv);
     expect(run.code).toBe(2);
@@ -122,6 +126,10 @@ describe("arguments", () => {
       "SIGINT or SIGTERM",
       "a failed write or rename",
       "refused",
+      "a value given to --dry-run, --check or --write",
+      "an\n     argument that is no flag",
+      "an --input that does not exist or is a file but no *.data.ts",
+      "SIGINT or SIGTERM before the write phase",
     ]) {
       expect(USAGE).toContain(outcome);
     }

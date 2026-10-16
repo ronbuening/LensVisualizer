@@ -74,8 +74,13 @@ Exit codes:
      file already written is removed)
   2  SIGINT or SIGTERM while writing, after the same restore
   2  an error writing stdout or stderr, other than a reader closing its pipe, once the run is over
-  2  a usage error: an unknown, repeated or valueless flag, no --input, two of --dry-run, --check and --write,
-     --output without --write, or a --to-version other than 1 or 2
+  2  a usage error: an unknown, repeated or valueless flag, a value given to --dry-run, --check or --write, an
+     argument that is no flag, no --input, an --input that does not exist or is a file but no *.data.ts or
+     *.teleconverter.ts, two of --dry-run, --check and --write, --output without --write, or a --to-version other
+     than 1 or 2
+
+SIGINT or SIGTERM before the write phase stops the run as it stops any process (a shell reports 130 or 143), with
+nothing written.
 `;
 
 /** A usage error: the message, then the usage text, on stderr, and exit 2. */
