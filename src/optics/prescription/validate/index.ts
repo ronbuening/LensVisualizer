@@ -1,6 +1,7 @@
 /** Validation in diagnostic order: authored declarations, canonical facts, then compiled probe geometry. */
 import type { LensData, LensDataInput, SurfaceData } from "../../../types/optics.js";
 import type { CanonicalLens, IngestedPrescription } from "../canonical.js";
+import { canonicalForView } from "../identity.js";
 import { ingestLensV1 } from "../ingestV1.js";
 import { toLensData } from "../toLensData.js";
 import { buildLabelIndex } from "../compileLabels.js";
@@ -15,6 +16,9 @@ import { validateGeometry } from "./geometry.js";
 
 /** A diagnostic projection only: never compile, expand plates or resolve materials during validation. */
 function canonicalRecords(data: UntrustedLensData): LensData | UntrustedLensData {
+  if (canonicalForView(data)) return data;
+  // The converter validator's reference merge is generated data, not an authored file.
+  if (data.attachedTeleconverter !== undefined) return data;
   try {
     return toLensData(ingestLensV1(data as LensDataInput));
   } catch {

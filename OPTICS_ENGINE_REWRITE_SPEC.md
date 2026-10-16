@@ -1475,8 +1475,9 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - `buildLens` knows a composed pair only by the `attachedTeleconverter` marker `attachTeleconverter()` writes, an
       object, never by a flag a caller passes, and builds it without ingest: its host and converter each came through
       ingest in their catalogs. This is a temporary seam; S5.P1.T4 moves composition onto the canonical form. A pair
-      composed from a host file without the catalog defaults therefore no longer builds; 31 of the 38 permitted pairs
-      built that way on `engine-next` before this step.
+      composed from a host file without the catalog defaults did not build during that seam; 31 of the 38 permitted
+      pairs built that way on `engine-next` before this step. S5.P1.T4 restores composition from those hosts through
+      validator-first ingest and builds composed pairs only through their canonical association.
     - Nothing outside tests spreads the defaults table but the validator-first spread below. Lens data gets its
       defaults through ingest and the V1 view. `buildLens.ts` re-exports `toLensData` and `toTeleconverterData` for
       code outside the engine, as the seam guard requires; the re-export is temporary and leaves with the V1 view at
@@ -2324,8 +2325,10 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
       synthetic plates in `src/components/hooks/mtf.worker.ts`.
   - **Tests:** the teleconverter suites and the converter-pair sweep; worker/main-thread equality.
   - **As built:** The composer ingests both inputs, merges canonical records and returns an associated V1 view;
-    the trusted composed-pair adapter and ingest allowance are removed. Worker init transports the unexpanded
-    canonical input, provenance and descriptor and compiles once, with compiled-record and MTF equality checked.
+    a composed pair builds only through its canonical association (copies are refused), and hosts without catalog
+    defaults compose and build through validator-first ingest. The trusted composed-pair adapter and ingest allowance
+    are removed. Worker init transports the unexpanded canonical input, provenance and descriptor and compiles once,
+    with compiled-record and MTF equality checked.
   - **Gate:** C0.
 - **S5.P2.T1 One owner for prepared geometry.**
   - **Change:** `state/preparedGeometry.ts` replaces every other prepared-state path with one bounded LRU (96 per

@@ -334,7 +334,8 @@ defaulted paths, the authored values the engine ignores, and the V1 spellings it
   - `buildLens` reads authored files through `prescription/compile.ts`. The validator is asked about every V1 file
     first through `validateLensInput`, which reads individual omitted catalog defaults from the schema table without
     merging it. Canonical validation then runs once per successful compiled identity, before compiler publication.
-  - `attachTeleconverter()` ingests the host and converter before composing canonical records. Its returned V1 view
+  - `attachTeleconverter()` reads unassociated hosts through the compiler's input boundary (V1 validation before
+    ingest) and ingests the converter before composing canonical records. Its returned V1 view
     retains that canonical identity, so `buildLens` compiles the pair through the same entry as any other prescription.
     The descriptor stays beside the prescription for labels and plate placement; composed and generated records never
     enter authored ingest. The worker receives this same canonical input through `canonicalLensFromRuntime()`.

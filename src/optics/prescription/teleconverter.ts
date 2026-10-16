@@ -22,8 +22,9 @@ import { buildLabelIndex } from "../prescription/compileLabels.js";
 import { buildStateSurfaces, buildVarIndex, zoomIndexToT } from "../prescription/compileControls.js";
 import { traceParaxialSurfaces2 as traceSurfacesParaxial } from "../math/paraxial.js";
 import { expandRearPlates } from "./rearPlates.js";
-import { ingestLens, ingestTeleconverter } from "./ingestV2.js";
+import { isV1File, ingestTeleconverter } from "./ingestV2.js";
 import { canonicalForView } from "./identity.js";
+import { canonicalInput } from "./canonicalInput.js";
 import { toLensData, toTeleconverterData } from "./toLensData.js";
 import { composeTeleconverter } from "./composeTeleconverter.js";
 import { TELECONVERTER_LABEL_PREFIX, teleconverterCompatibility } from "./teleconverterCompatibility.js";
@@ -322,7 +323,9 @@ export function attachTeleconverter(host: LensData, tc: TeleconverterData): Lens
   if (!fit.ok) throw new TeleconverterAttachError(host.key, tc.key, fit.reason);
 
   /* Composition replaces host focal labels, including unused labels on a prime. */
-  const hostInput = canonicalForView(host) ?? ingestLens({ ...host, zoomLabels: undefined });
+  const hostFile = { ...host };
+  if (isV1File(host)) delete hostFile.zoomLabels;
+  const hostInput = canonicalForView(host) ?? canonicalInput(hostFile);
   const converterInput = ingestTeleconverter(tc);
   host = toLensData(hostInput);
   tc = toTeleconverterData(converterInput);
