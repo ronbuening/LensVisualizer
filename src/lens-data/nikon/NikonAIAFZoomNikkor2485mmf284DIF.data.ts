@@ -50,7 +50,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * proxies, not production-glass identities; the hybrid resin remains unresolved.
  */
 
-export default {
+const LENS_DATA = {
   key: "nikon-ai-af-zoom-nikkor-24-85mm-f28-4d-if",
   maker: "Nikon",
   name: "NIKON AI AF ZOOM-NIKKOR 24-85mm f/2.8-4 D IF",
@@ -679,3 +679,5 @@ export default {
     "G2 INTERNAL FOCUS / 1:2 MACRO",
   ],
 } satisfies LensDataInput;
+
+export default LENS_DATA;
