@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../src/optics/buildLens.js";
+import buildLens, { ingestLens, isV1File, toLensData } from "../../../src/optics/buildLens.js";
 import { thick } from "../../../src/optics/layout.js";
 import {
   isOnPublishedStation,
@@ -8,6 +8,12 @@ import {
   publishedZoomStations,
 } from "../../../src/optics/publishedStations.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import type { LensDataInput } from "../../../src/types/optics.js";
+
+/* Every lens file as authored, either version. */
+const AUTHORED = Object.values(
+  import.meta.glob<{ default: LensDataInput }>("../../../src/lens-data/**/*.data.ts", { eager: true }),
+).map(({ default: data }) => data);
 
 /**
  * Data contract for source-published stations.
@@ -23,10 +29,19 @@ const MAX_UNDECLARED_ZOOM_STATIONS = 3;
 
 describe("published stations", () => {
   it("requires a zoom with a dense station list to declare its source rows", () => {
-    const undeclared = Object.values(LENS_CATALOG)
-      .filter((data) => (data.zoomPositions?.length ?? 0) > MAX_UNDECLARED_ZOOM_STATIONS)
-      .filter((data) => data.publishedStations?.zoom === undefined)
-      .map((data) => `${data.key}: ${data.zoomPositions!.length} zoom stations without publishedStations.zoom`);
+    /*
+     * Read from the canonical prescription. A V2 zoom answers by writing its stations' `published` flags, which ingest
+     * then does not record as defaulted; a V1 zoom answers with `publishedStations.zoom`, as its V1 view gives it.
+     */
+    const undeclared = AUTHORED.flatMap((data) => {
+      const ingested = ingestLens(data);
+      const stations = ingested.prescription.zoom?.stations.length ?? 0;
+      if (stations <= MAX_UNDECLARED_ZOOM_STATIONS) return [];
+      const answered = isV1File(data)
+        ? toLensData(ingested).publishedStations?.zoom !== undefined
+        : !ingested.provenance.defaulted.includes("publishedStations");
+      return answered ? [] : [`${data.key}: ${stations} zoom stations, none of them marked published or not`];
+    });
 
     expect(undeclared).toEqual([]);
   });

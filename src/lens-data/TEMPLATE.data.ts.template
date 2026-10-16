@@ -129,7 +129,8 @@ const LENS_DATA = {
     { label: "2", R: 0.0, d: 0.0, sd: 0.0 },
     // ...
     { label: "STO", R: "flat", d: 0.0 }, // aperture stop — EXACTLY ONE required; no sd: its radius is derived
-    //  from the design f-number (or a zoom's station schedule). A folded system or a stop inside glass writes its sd.
+    //  from the design f-number. In order, a folded system writes its sd, a zoom's station schedule decides the
+    //  radius, and a stop inside glass writes its sd.
     //  Stop position: use the patent's value; otherwise split the air gap at the figure's iris location and comment
     //  the estimate (e.g. "STO position inferred from Fig. 1"). Stop inside glass: keep STO flat and write
     //    { label: "STO", R: "flat", d: ..., sd: ..., medium: glass_elem_id, stopPlacement: "inside-element" }

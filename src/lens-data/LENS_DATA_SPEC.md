@@ -196,7 +196,7 @@ Everything the catalog, header and index read about the product, as opposed to t
 | `groupCount` | `number` | Air-separated groups. |
 | `acceptsTeleconverters` | `boolean` | `true` when the lens takes dedicated rear teleconverters made for one of its `lensMounts`. Universal converters ignore it. See [TELECONVERTER_DATA_SPEC.md](TELECONVERTER_DATA_SPEC.md). |
 | `opticalConfiguration` | `object` | Links complete prescriptions that are switchable optical states of one catalog lens. See below. |
-| `focalLengthMm` | `{ marketing?, design? }` | Each a number for a prime or `[wide, tele]` for a zoom. `marketing` is the marketed focal length; `design` the source's stated design focal length, which may differ. |
+| `focalLengthMm` | `{ marketing?, design? }` | Each a number for a prime or `[wide, tele]` for a zoom. `marketing` is the marketed focal length; `design` the source's stated design focal length at the file's scale, which may differ. A sequential rectilinear lens's traced EFL must lie within 0.8 to 1.25 times `design` (its first value on a zoom), or `buildLens()` refuses it ([Validation Rules](#validation-rules)). A folded system takes its EFL from `design` ([Folded Paths](#folded-paths)). |
 | `fNumber` | `{ marketing?, design? }` | `marketing` is the marketed maximum f-number (`1.8` for an "f/1.8" lens), shown beside the wide-open readout when it differs from the design value. `design` is the source's stated design maximum f-number (`1.85`). |
 
 `catalog.fNumber.design` and the f-number the stop opens to must agree: the design f-number on the aperture (or the
@@ -631,17 +631,20 @@ them off ordinary refractive lenses.
 
 Exactly one surface is labelled `"STO"`. It is normally flat (`R: "flat"`) in an air gap (no `medium`).
 
-**Stop radius.** Each lens has one authority for its stop radius:
+**Stop radius.** Each lens has one authority for its stop radius: the first row of this table that applies
+(`stopRadiusAuthority` in `canonical.ts`).
 
-| Authority | When | Where it is written |
-| --- | --- | --- |
-| Derived | Every lens not covered by the rows below. The radius is the height at the stop of a real marginal ray launched at the entrance-pupil radius the design f-number implies, traced per zoom station. | `aperture.nominalFNumber`, or `zoom.stations[i].nominalFNumber` |
-| Published schedule | A zoom whose source prints the stop diameter at each station. | `zoom.stations[i].stopSemiDiameter` on every station |
-| Authored | A folded system (one with `opticalPath`, or with a surface that reflects or blocks), and a stop inside an element. | `sd` on the `STO` surface |
+| Order | Authority | When | Where it is written |
+| --- | --- | --- | --- |
+| 1 | Authored | A folded system: one with `opticalPath`, or with a surface that reflects or blocks. | `sd` on the `STO` surface |
+| 2 | Published schedule | A zoom whose source prints the stop diameter at each station. | `zoom.stations[i].stopSemiDiameter` on every station |
+| 3 | Authored | A stop inside an element (`stopPlacement: "inside-element"`). | `sd` on the `STO` surface |
+| 4 | Derived | Every other lens. The radius is the height at the stop of a real marginal ray launched at the entrance-pupil radius the design f-number implies, traced per zoom station. | `aperture.nominalFNumber`, or `zoom.stations[i].nominalFNumber` |
 
 - A stop whose radius is not authored leaves `sd` out; ingest refuses an `sd` there, because the engine would never
-  read it. An authored stop requires one.
-- **A prime's stop radius is always derived from its design f-number.** A published stop diameter that agrees with the
+  read it. An authored stop requires one. A scheduled zoom's stop inside glass is therefore written without `sd`.
+- **A prime never takes its radius from a published diameter:** an ordinary prime derives it from its design f-number,
+  and a folded or inside-glass prime authors it. For an ordinary prime, a published stop diameter that agrees with the
   f-number is recorded in a comment. One that disagrees beyond rounding is a source-consistency question under the
   source-errata standard (`agent_docs/lens-patent-audit.md`), not settled by letting the diameter override the
   f-number.
@@ -656,8 +659,9 @@ Exactly one surface is labelled `"STO"`. It is normally flat (`R: "flat"`) in an
   gap. Document the estimate in a comment ("STO position inferred from Fig. 1 iris placement").
 - **The source puts the stop inside a glass element:** set `stopPlacement: "inside-element"` on `STO`, keep the stop
   flat, give it the containing element as its `medium` (the glass continues past the stop), give it its authored
-  `sd`, and give the containing element `span: [front, rear]` over its real outer surfaces so the outline is drawn
-  around the stop. Do not use the flag for an ordinary air stop.
+  `sd` unless a published schedule decides the radius (row 2 above), and give the containing element
+  `span: [front, rear]` over its real outer surfaces so the outline is drawn around the stop. Do not use the flag for
+  an ordinary air stop.
 - **Annular or obstructed stop:** use `innerSd` only when the stop itself has a real central hole. For a separate
   secondary obstruction, prefer a distinct `block` surface, so ray clipping and sampling can identify the obstruction
   on its own.
@@ -697,7 +701,8 @@ the source.
 - **A variable-aperture zoom** (e.g. f/4.5–5.6) states `nominalFNumber` on every station and none on `aperture`. The
   aperture slider clamps to the zoom-dependent wide-open f-number, so f/8 stays at f/8 while zooming, and quick-select
   buttons faster than the current wide-open value are hidden. A constant-aperture zoom keeps one value on `aperture`.
-- A stop inside drawn glass (`stopPlacement: "inside-element"`) keeps its authored radius at every station.
+- A stop inside drawn glass (`stopPlacement: "inside-element"`) keeps its authored radius at every station, unless the
+  zoom publishes a schedule, which comes first ([Stop and Aperture](#stop-and-aperture)).
 
 ## States
 
@@ -857,9 +862,11 @@ station whose rounded source row was re-solved for paraxial consistency is still
   implied at every published station and is never listed.
 - Leave the flags out when the defaults are right: every authored zoom station is a source row, and only the
   infinity-focus spacings are tabulated.
-- A zoom with more than three stations writes `published` on every station, even when every station is a source row:
-  dense station lists usually mix source rows with solved or sampled cam points, so the corpus test
-  (`__tests__/src/lens-data/publishedStations.test.ts`) asks for an explicit answer.
+- A zoom with more than three stations writes `published` on its stations, `false` on each solved or sampled one,
+  even when every station is a source row: dense station lists usually mix source rows with solved or sampled cam
+  points, so the corpus test (`__tests__/src/lens-data/publishedStations.test.ts`) asks for an explicit answer. It
+  reads the canonical prescription: a zoom whose stations write no flag takes the default, which ingest records as
+  defaulted, and has not answered.
 - Each listed focus keyframe moves at least one gap away from its infinity value at that station. A station that
   publishes focus keyframes is itself published, and a conjugate may not sit on an unpublished station.
 - Do not publish a reconstructed close-focus endpoint, a production minimum-focus distance or a code-solved keyframe.
@@ -959,7 +966,9 @@ opticalPath: {
 ```
 
 A folded system's stop keeps its authored radius ([Stop and Aperture](#stop-and-aperture)), so its `STO` carries
-`sd`.
+`sd`. Its EFL, entrance pupil and default half-field are not traced: they come from `catalog.focalLengthMm.design`,
+else `catalog.focalLengthMm.marketing`, else the system's axial extent (`lensConstants.ts`). Write a `design` focal
+length the prescription gives, so that the f-number the entrance pupil implies is the one `aperture` states.
 
 ### Path modes
 
@@ -984,7 +993,9 @@ A folded system's stop keeps its authored radius ([Stop and Aperture](#stop-and-
 - Side-focus Newtonian: a horizontal plane such as `normal: { z: 0, y: 1 }` with `y` above or below the axis.
 - `buildLens()` normalizes the normal. `{ z: 1, y: 0 }` is a vertical plane of constant z; `{ z: 0, y: 1 }` a
   horizontal side plane of constant y.
-- The validator requires the plane to be reached by a conservative folded-path probe ray.
+- The validator probes reachability with a conservative folded-path ray only for a declared plane on a path that is
+  not `mode: "auto"` and whose `surfaceOrder` names no surface twice. Every Mangin path repeats a label, so no probe
+  runs there: check by tracing that the plane you declare is where the rays end.
 
 Diagram layout, ray termination, off-axis folded pupil/chief-ray geometry and mirror-safe spherical aberration use this
 plane. Analysis tabs that still assume a sequential right-hand image plane stay guarded in the UI rather than show
@@ -1361,8 +1372,8 @@ the default does not serve the lens.
 
 ## Validation Rules
 
-A lens file goes through three gates. A message that names a field names it at its V2 path
-(`surfaces[5].medium: unknown element 13`).
+A lens file goes through three gates, and `buildLens()` adds one guard of its own. A message that names a field names it
+at its V2 path (`surfaces[5].medium: unknown element 13`).
 
 1. **Ingest** (`ingestLensV2` in `src/optics/prescription/ingestV2.ts`, shared rules in `ingestCommon.ts`) refuses a
    file whose shape it cannot read, or whose content the canonical prescription cannot hold, and reports every reason
@@ -1371,7 +1382,11 @@ A lens file goes through three gates. A message that names a field names it at i
    prescription and translates its messages to the authored paths (`authoredMessages`, `validate/paths.ts`).
 3. **Corpus sweeps** in `__tests__/` hold catalog-wide policies that are not per-file validation.
 
-`buildLens()` throws on any refusal from the first two, listing them all.
+`buildLens()` throws on any refusal from the first two, listing them all. It also refuses a sequential rectilinear lens
+whose traced Gaussian EFL, at the first zoom station and infinity focus, lies outside 0.8 to 1.25 times
+`catalog.focalLengthMm.design` (its first value on a zoom; no check without one): `assertRectilinearFocalReference`
+in `src/optics/first-order/lensConstants.ts`. A fisheye whose projection constant departs from the EFL declares
+`projection` instead.
 
 ### Ingest
 
@@ -1416,7 +1431,7 @@ Code: `src/optics/prescription/validate/`.
 | An embedded stop is flat, opens into its containing element and needs `stopPlacement`; a glass-side stop needs the flag | `validateStop` (`aperture.ts`) |
 | Paired annular faces share `innerSd` | `validatePairedInnerSdConsistency` (`aperture.ts`) |
 | `opticalPath` mode, `surfaceOrder` labels, `imagePlane` fields and `maxInteractions` | `validateOpticalPath`, `validateImagePlane` (`folded.ts`) |
-| A tilted flat mirror's backing plane repeats its normal; the image plane is reached by a probe ray | `validateTiltedMirrorBackingNormals`, `validateFoldedImagePlaneReachability` (`folded.ts`) |
+| A tilted flat mirror's backing plane repeats its normal; a declared image plane is reached by a probe ray, on a path that is not `"auto"` and names no surface twice | `validateTiltedMirrorBackingNormals`, `validateFoldedImagePlaneReachability` (`folded.ts`) |
 | Diffractive kind, wavelength, order and terms | `validateDiffractivePhase` (`diffractive.ts`) |
 | Edge thickness positive at the smaller clear aperture; front/rear clear-aperture ratio ≤ 3 (or `maxSdRatio`); rim slope ≤ `checks.maxRimAngleDeg`; `sd ≤ 0.98 × \|R\| / √(1+K)` for `K > 0`; cross-gap sag ≤ `checks.gapSagFrac` × gap over the shared radial band, at every zoom station | `validateGeometry` (`geometry.ts`) |
 
@@ -1567,8 +1582,8 @@ When transcribing from an optical patent:
    against vendor catalogs (Ohara, Schott, Hoya, Sumita, CDGM); six-digit codes are d-line only. Prefer the vendor the
    patent names; when it names none, the one consistent with the rest of the lens. When the patent publishes anomalous
    partial dispersion (`PgF`/`ΔPgF`) or per-element line indices (`nC`, `nF`, `ng`), transcribe them on the element.
-7. **Focal length.** Record the patent's stated EFL in `catalog.focalLengthMm.design`, and check it against the
-   computed one (item 10).
+7. **Focal length.** Record the patent's stated EFL, at the file's scale (item 9), in `catalog.focalLengthMm.design`,
+   and check it against the computed one (item 10).
 8. **F-number.** Use the patent's stated design f-number for `aperture.nominalFNumber` (or the stations'). If the
    patent gives only the stop diameter, compute `f/# = EFL / (2 × EP_SD)` and record the diameter in a comment.
 9. **Scaling.** If the patent prescription is at a different focal length than production (f = 100 in the patent,
@@ -1586,7 +1601,8 @@ When transcribing from an optical patent:
 
 12. **Variable spacing tables at several focal lengths.** Look for gap values at 3–5 focal lengths (wide, middle,
     tele). The column headers become the stations' `focalLengthMm`, and each gap row supplies that station's row in
-    `gaps`. If you add solved or sampled stations between the source columns, mark the source columns `published`.
+    `gaps`. Every station is published unless it writes `published: false`, so if you add solved or sampled stations
+    between the source columns, set `published: false` on each added station.
 13. **Zoom-only versus zoom-and-focus gaps.** Identify which gaps change only with zoom (the infinity spacing varies
     across focal lengths, but the close-focus table shows the same change) and which change with zoom and focus
     (different infinity and close values at each station). Document which is which in the file header.
@@ -1793,24 +1809,27 @@ export default LENS_DATA;
 
 **Folded:** a Mangin mirror. Light passes the stop, enters the glass, reflects at the silvered rear face and leaves
 through the entrance face again, to an image plane in front of the mirror. A folded system's stop keeps its authored
-`sd`.
+`sd`, and its EFL is `catalog.focalLengthMm.design`, which must be the one the prescription gives: a concave silvered
+face of radius 220 mm in glass of index 1.5 has focal length 220 / (2 × 1.5) ≈ 73.33 mm. The example is the reference
+fixture `reference/ReferenceManginSecondSurfaceMirror.data.ts` in V2: its paraxial focus is at z ≈ 33.33, and its
+image plane at z = 35.
 
 ```ts
 import type { LensDataV2Input } from "../types/lensDataV2.js";
 
 const LENS_DATA = {
   schema: 2,
-  key: "example-mangin-mirror-90mm-f4",
+  key: "example-mangin-mirror-73mm-f4",
   maker: "Reference",
-  name: "REFERENCE MANGIN MIRROR 90mm f/4",
+  name: "REFERENCE MANGIN MIRROR 73mm f/4",
   subtitle: "Synthetic second-surface mirror",
 
   catalog: {
-    specs: ["SECOND-SURFACE MIRROR", "REPEATED FRONT SURFACE", "n = 1.5"],
+    specs: ["SECOND-SURFACE MIRROR", "REPEATED FRONT SURFACE", "n = 1.5", "f = 73.3 mm"],
     elementCount: 1,
     groupCount: 1,
-    focalLengthMm: { design: 90 },
-    fNumber: { design: 4 },
+    focalLengthMm: { marketing: 73, design: 73.33 },
+    fNumber: { marketing: 4, design: 4 },
   },
 
   elements: [
@@ -1821,7 +1840,7 @@ const LENS_DATA = {
       type: "Plano-Concave Second-Surface Mirror",
       nd: 1.5,
       vd: 60,
-      focalLengthMm: 90,
+      focalLengthMm: 73.33,
       glass: "Unmatched (synthetic crown, nd = 1.5)",
       role: "Glass body whose silvered rear surface reflects rays back out through the entrance surface",
     },
