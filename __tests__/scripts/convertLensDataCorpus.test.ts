@@ -7,8 +7,9 @@
  * - the second round trip writes byte for byte what the first wrote, in both versions.
  *
  * Each leg type-checks every converted text where it is written, and a file the command line refuses is a case with
- * its reason; the leg then runs again without it, so the other files go on. The sweep runs to the end and fails with
- * every case it found. A case is resolved by a data correction on `main`, never here.
+ * its reason; the leg then runs again without it, so the other files go on. Every catalog file must go through every
+ * leg of its version's group: one that a leg neither writes nor refuses is a case. The sweep runs to the end and
+ * fails with every case it found. A case is resolved by a data correction on `main`, never here.
  */
 import * as nodeFs from "node:fs";
 import { tmpdir } from "node:os";
@@ -20,7 +21,7 @@ import { commentNotCarried } from "../../scripts/lens-data-convert/comments.mjs"
 import { readLensDataFile } from "../../scripts/lens-data-convert/read.mjs";
 import { evaluateLensDataSource } from "../../scripts/lens-data-ast.mjs";
 import * as conversion from "../../src/optics/lensDataConversion.js";
-import { BUILDABLE_V2, PRIME_MEMBERS, v1LensFile } from "./convertLensDataFixtures.js";
+import { BUILDABLE_V2, PRIME_MEMBERS, TELECONVERTER_FILE, v1LensFile } from "./convertLensDataFixtures.js";
 
 const { copyFileSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync } = nodeFs;
 const { statSync, writeFileSync } = nodeFs;
@@ -128,17 +129,38 @@ async function leg(name: string, input: string, target: 1 | 2, output: string, o
  */
 async function sweep(catalog: string, work: string): Promise<Offender[]> {
   const offenders: Offender[] = [];
+  const refusedAt = (legName: string) =>
+    new Set(offenders.filter((entry) => entry.leg === legName && entry.check === "refused").map((entry) => entry.file));
+  /* Each catalog file a group's first leg wrote or refused: every file must enter one group. */
+  const entered = new Set<string>();
   for (const own of [1, 2] as const) {
     const other = own === 1 ? 2 : 1;
     const targets = [other, own, other, own, other] as const;
     const outputs: string[] = [];
+    const names = targets.map((target, index) => `V${own} files, leg ${index + 1} to V${target}`);
     let input = catalog;
     for (const [index, target] of targets.entries()) {
       const output = join(work, `v${own}-leg${index + 1}`);
-      await leg(`V${own} files, leg ${index + 1} to V${target}`, input, target, output, offenders);
+      await leg(names[index], input, target, output, offenders);
       outputs.push(output);
       if (lensDataFiles(output).length === 0) break;
       input = output;
+    }
+    for (const file of [...lensDataFiles(outputs[0]), ...refusedAt(names[0])]) entered.add(file);
+    for (const file of lensDataFiles(outputs[0])) {
+      /* A file the group's first leg wrote goes through every later leg, written or refused there. */
+      const skipped = names.findIndex(
+        (name, index) =>
+          (outputs[index] === undefined || !existsSync(join(outputs[index], file))) && !refusedAt(name).has(file),
+      );
+      if (skipped >= 0) {
+        offenders.push({
+          file,
+          leg: names[skipped],
+          check: "coverage",
+          detail: "the leg neither wrote nor refused it",
+        });
+      }
     }
     for (const file of lensDataFiles(outputs[0])) {
       const report = (check: string, detail: string) => offenders.push({ file, leg: `V${own} files`, check, detail });
@@ -162,6 +184,9 @@ async function sweep(catalog: string, work: string): Promise<Offender[]> {
         }
       }
     }
+  }
+  for (const file of lensDataFiles(catalog).filter((path) => !entered.has(path))) {
+    offenders.push({ file, leg: "leg 1", check: "coverage", detail: "neither group's first leg wrote or refused it" });
   }
   return offenders;
 }
@@ -187,6 +212,7 @@ describe("the corpus conversion sweep (S2.P3.T3)", () => {
     put(join(catalog, "fixture", "Prime.data.ts"), v1LensFile(PRIME_MEMBERS));
     put(join(catalog, "fixture", "Hand.data.ts"), BUILDABLE_V2);
     put(join(catalog, "fixture", "Odd.data.ts"), v1LensFile(`${PRIME_MEMBERS}\n  mystery: 1,`));
+    put(join(catalog, "fixture", "Converter.teleconverter.ts"), TELECONVERTER_FILE);
     const work = temp();
     const offenders = await sweep(catalog, work);
     expect(offenders).toEqual([
@@ -197,7 +223,10 @@ describe("the corpus conversion sweep (S2.P3.T3)", () => {
         detail: expect.stringMatching(/mystery/),
       },
     ]);
-    expect(lensDataFiles(join(work, "v1-leg5"))).toEqual([join("fixture", "Prime.data.ts")]);
+    expect(lensDataFiles(join(work, "v1-leg5"))).toEqual([
+      join("fixture", "Converter.teleconverter.ts"),
+      join("fixture", "Prime.data.ts"),
+    ]);
     expect(lensDataFiles(join(work, "v2-leg5"))).toEqual([join("fixture", "Hand.data.ts")]);
   }, 120_000);
 });

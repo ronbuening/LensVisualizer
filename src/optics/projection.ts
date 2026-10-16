@@ -1,7 +1,8 @@
 /**
  * Projection public barrel — stable exports for field-angle and fisheye launch helpers.
  *
- * Keeps callers on the historic optics/projection path while implementation lives in optics/field/projection.
+ * Keeps callers on the historic optics/projection path while implementation lives in optics/field/projection,
+ * which it re-exports directly (not through compat.ts), so it stays out of the compat import cycle.
  */
 
 export {
@@ -28,7 +29,7 @@ export {
   type ProjectionFieldSlopes2 as ProjectionFieldSlopes,
   type ProjectionLaunchSlope2 as ProjectionLaunchSlope,
   type ProjectionReference2 as ProjectionReference,
-} from "./compat.js";
+} from "./field/projection.js";
 
 /** Supported projection-reference families for distortion and image-height mapping. */
 export type ProjectionReferenceKind = "rectilinear" | "fisheye-equidistant" | "fisheye-equisolid";
