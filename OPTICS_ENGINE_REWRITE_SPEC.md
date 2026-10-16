@@ -2212,6 +2212,10 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
 - **S4.P3.T2 Per-ray adapter overhead.**
   - **Change:** `trace/rayAdapters.ts` stops resolving state per call and stops spreading options per ray.
     `trace/bulkAbsorption.ts` reads compiled media instead of `RuntimeLens`.
+  - **As built:** request-bound scalar/vector and chromatic adapters resolve state, capture options and full traversal
+    before analysis fans; engine-native MTF and chief searches bind options/traversal once too. Public per-call
+    signatures remain compatible. Bulk transmission uses compiled element coefficients and surface medium ids,
+    without reading the RuntimeLens bridge.
   - **Gate:** C0.
 
 **Stage 4 gate:**
