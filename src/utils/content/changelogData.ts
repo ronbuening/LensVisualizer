@@ -20,6 +20,27 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-16",
+    type: "improvement",
+    summary: "Rebuilt the optics engine: lens analyses run in about 60% of the time they took",
+  },
+  {
+    date: "2026-10-16",
+    type: "fix",
+    summary:
+      "Corrected the off-axis colour fan and field focus of six mirror lenses, including the Reflex-Nikkor 500mm",
+  },
+  {
+    date: "2026-10-16",
+    type: "fix",
+    summary: "Restored the outermost field sample on the Kinoptik Super Tegea 19mm's field-curvature and colour charts",
+  },
+  {
+    date: "2026-10-16",
+    type: "fix",
+    summary: "Ray diagrams trace an object at infinity wherever the focus readout shows ∞",
+  },
+  {
+    date: "2026-10-16",
     type: "lens",
     summary: "Added Miranda 50mm, Olympus 300mm, Panasonic Leica 45mm and Samyang 135mm lenses",
   },
