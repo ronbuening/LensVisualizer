@@ -6,7 +6,7 @@
 
 import { interpolateStationTable, clampStationControl } from "../state/stationTables.js";
 import type { RuntimeLens } from "../../types/optics.js";
-import { FOCUS_REPORTING_INFINITY_THRESHOLD } from "../focusDistance.js";
+import { FOCUS_INFINITY_CUTOFF } from "../focusDistance.js";
 import { compiledLensFromRuntime } from "../prescription/compile.js";
 import { prepareState } from "../state/preparedGeometry.js";
 import { traceParaxialSurfaces2 } from "../math/paraxial.js";
@@ -25,7 +25,7 @@ import { traceParaxialSurfaces2 } from "../math/paraxial.js";
  * @returns current effective focal length in mm
  */
 export function eflAtFocus2(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
-  if (focusT < FOCUS_REPORTING_INFINITY_THRESHOLD && aberrationT === 0) {
+  if (focusT < FOCUS_INFINITY_CUTOFF && aberrationT === 0) {
     return L.isZoom && L.zoomEFLs ? interpolateStationTable(clampStationControl(zoomT), L.zoomEFLs) : L.EFL;
   }
   const state = prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT);

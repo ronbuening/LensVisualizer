@@ -36,7 +36,6 @@ const CYCLE_LEGACY: readonly string[] = [
   "src/optics/distortionAnalysis.ts",
   "src/optics/groupMovement.ts",
   "src/optics/optics.ts",
-  "src/optics/projection.ts",
   "src/optics/pupilAberration.ts",
   "src/optics/vignetteAnalysis.ts",
 ];
