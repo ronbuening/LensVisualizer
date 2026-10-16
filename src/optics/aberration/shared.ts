@@ -4,7 +4,7 @@
  * Centralizes the coordinate and best-focus conventions reused by spherical, coma, field-curvature, and bokeh modules.
  */
 
-import { traceRay2 as traceRay } from "../trace/rayAdapters.js";
+import { prepareRayTrace, type PreparedRayTrace } from "../trace/rayAdapters.js";
 import type { RuntimeLens } from "../../types/optics.js";
 
 /** Candidate fractions of the entrance pupil for the marginal ray sample. */
@@ -174,9 +174,12 @@ export function computeRealRayHit(
   imagePlaneZ: number,
   signedFraction: number,
   aberrationT = 0,
+  prepared?: PreparedRayTrace,
 ): RealRayHit | null {
   const h = signedFraction * currentEPSD;
-  const ray = traceRay(h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
+  const adapter =
+    prepared ?? prepareRayTrace(L, { zPos, focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT });
+  const ray = adapter.ray(h, 0);
   if (ray.clipped) return null;
 
   const terminalPoint = ray.reachedImagePlane ? ray.pts[ray.pts.length - 1] : undefined;
@@ -229,6 +232,7 @@ export function computeSymmetricRealSample(
   imagePlaneZ: number,
   fraction: number,
   aberrationT = 0,
+  prepared = prepareRayTrace(L, { zPos, focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT }),
 ): SymmetricRealSample | null {
   const plusHit = computeRealRayHit(
     L,
@@ -241,6 +245,7 @@ export function computeSymmetricRealSample(
     imagePlaneZ,
     fraction,
     aberrationT,
+    prepared,
   );
   const minusHit = computeRealRayHit(
     L,
@@ -253,6 +258,7 @@ export function computeSymmetricRealSample(
     imagePlaneZ,
     -fraction,
     aberrationT,
+    prepared,
   );
   if (plusHit === null || minusHit === null) return null;
 

@@ -5,7 +5,7 @@
  */
 
 import type { ElementRenderDiagnostics, ElementShape, RuntimeLens, SurfaceAccentPathData } from "../../types/optics.js";
-import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
+import { compiledLensFromRuntime } from "../prescription/compile.js";
 import { createTraceGeometry } from "../trace/geometry.js";
 import { prepareState } from "../state/prepareState.js";
 import type { CompiledStateSurface, PreparedOpticalState } from "../types.js";
@@ -59,7 +59,7 @@ export function computeElementShapes2(
  * @returns prepared optical state suitable for diagram geometry helpers
  */
 export function stateForRuntimeDiagram2(L: RuntimeLens, zPos: readonly number[]): PreparedOpticalState {
-  return stateWithDiagramZ2(prepareState(normalizeRuntimeLens(L), 0, 0, 0), zPos);
+  return stateWithDiagramZ2(prepareState(compiledLensFromRuntime(L), 0, 0, 0), zPos);
 }
 
 function stateWithDiagramZ2(state: PreparedOpticalState, zPos: readonly number[]): PreparedOpticalState {

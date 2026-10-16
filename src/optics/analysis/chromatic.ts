@@ -2,13 +2,14 @@
  * Chromatic analysis adapter — prepared-state wrappers and ray-trace summaries.
  */
 
+import { runtimeView } from "../prescription/runtimeView.js";
 import {
   computeChromaticAnalysis,
   computeLateralColorCurve,
   computeLongitudinalChromaticFocus,
   type ChromaticAnalysisOptions,
 } from "../chromatic/analysis.js";
-import { computeChromaticRayFanSpread2, traceRayChromatic2 } from "../chromatic/chromaticTrace.js";
+import { computeChromaticRayFanSpread2 } from "../chromatic/chromaticTrace.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
 import {
   computeProjectionAwareOffAxisFieldGeometry,
@@ -17,10 +18,9 @@ import {
 } from "../aberration/offAxis.js";
 import { offsetVectorFieldRay2 as offsetVectorFieldRay } from "../field/fieldGeometry.js";
 import type { FieldGeometryState } from "../optics.js";
-import { traceChiefRelativeSkewRayChromatic } from "../trace/chiefRelative.js";
-import { traceSkewRayVectorChromatic2 } from "../trace/rayAdapters.js";
+import { prepareRayTrace, type PreparedRayTrace } from "../trace/rayAdapters.js";
 import { thick } from "../layout.js";
-import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
+import { compiledLensFromRuntime } from "../prescription/compile.js";
 import { prepareState } from "../state/prepareState.js";
 import type {
   ChromaticChannel,
@@ -119,7 +119,7 @@ function currentImagePlaneZ(
   if (L.N < 1) return null;
   if (L.isFoldedOptics) {
     // Match the trace's plane: an inferred folded image plane follows the current focus spacing.
-    const imagePlaneZ = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT).imgZ;
+    const imagePlaneZ = prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT).imgZ;
     return isFinite(imagePlaneZ) ? imagePlaneZ : null;
   }
   const imagePlaneZ = zPos[L.N - 1] + thick(L.N - 1, focusT, zoomT, L, aberrationT);
@@ -129,44 +129,14 @@ function currentImagePlaneZ(
 function traceOffAxisChromaticMarginal(
   geometry: ProjectionAwareOffAxisFieldGeometry,
   fraction: number,
-  channel: ChromaticChannel,
+  adapter: PreparedRayTrace,
   L: RuntimeLens,
-  focusT: number,
-  zoomT: number,
   currentEPSD: number,
-  currentPhysStopSD: number,
   imagePlaneZ: number,
-  aberrationT: number,
 ): { y: number; u: number; z?: number; clipped: boolean } {
-  if (isOffAxisVectorFieldGeometry(geometry)) {
-    const ray = traceSkewRayVectorChromatic2(
-      offsetVectorFieldRay(geometry.vectorLaunch, 0, fraction * currentEPSD),
-      geometry.zPos,
-      currentPhysStopSD,
-      true,
-      L,
-      channel,
-      focusT,
-      zoomT,
-      aberrationT,
-    );
-    return { y: ray.y, u: ray.uy, z: L.isFoldedOptics ? imagePlaneZ : undefined, clipped: ray.clipped };
-  }
-
-  const ray = traceChiefRelativeSkewRayChromatic(
-    0,
-    fraction,
-    geometry.yChief,
-    geometry.uField,
-    currentEPSD,
-    focusT,
-    zoomT,
-    currentPhysStopSD,
-    true,
-    L,
-    channel,
-    aberrationT,
-  );
+  const ray = isOffAxisVectorFieldGeometry(geometry)
+    ? adapter.skewVector(offsetVectorFieldRay(geometry.vectorLaunch, 0, fraction * currentEPSD))
+    : adapter.skew(0 * currentEPSD, geometry.yChief + fraction * currentEPSD, 0, geometry.uField);
   return { y: ray.y, u: ray.uy, z: L.isFoldedOptics ? imagePlaneZ : undefined, clipped: ray.clipped };
 }
 
@@ -231,6 +201,20 @@ export function computeChromaticRayFanAnalysis2(
   const imagePlaneZ = currentImagePlaneZ(L, zPos, focusT, zoomT, aberrationT);
   if (imagePlaneZ === null) return empty;
   const lastSurfaceZ = zPos[L.N - 1];
+  const adapters = new Map(
+    channels.map((channel) => [
+      channel,
+      prepareRayTrace(L, {
+        zPos,
+        focusT,
+        zoomT,
+        stopSD: currentPhysStopSD,
+        ghost: true,
+        channel,
+        aberrationT,
+      }),
+    ]),
+  );
   const onAxis = computeSpreadFromFractions(
     normalizeSignedFractions(options.onAxisFractions, DEFAULT_ON_AXIS_FRACTIONS),
     channels,
@@ -238,18 +222,7 @@ export function computeChromaticRayFanAnalysis2(
     lastSurfaceZ,
     "onAxis",
     (fraction, channel) => {
-      const ray = traceRayChromatic2(
-        fraction * currentEPSD,
-        0,
-        zPos,
-        focusT,
-        zoomT,
-        currentPhysStopSD,
-        true,
-        L,
-        channel,
-        aberrationT,
-      );
+      const ray = adapters.get(channel)!.ray(fraction * currentEPSD, 0);
       return { y: ray.y, u: ray.u, z: ray.reachedImagePlane ? imagePlaneZ : lastSurfaceZ, clipped: ray.clipped };
     },
   );
@@ -264,6 +237,25 @@ export function computeChromaticRayFanAnalysis2(
     undefined,
     aberrationT,
   );
+  const vectorGeometry = geometry && isOffAxisVectorFieldGeometry(geometry) ? geometry : undefined;
+  const offAxisAdapters =
+    geometry === null
+      ? adapters
+      : new Map(
+          channels.map((channel) => [
+            channel,
+            prepareRayTrace(L, {
+              zPos: vectorGeometry?.zPos,
+              focusT,
+              zoomT,
+              stopSD: currentPhysStopSD,
+              ghost: true,
+              channel,
+              aberrationT,
+              launchBoundT: vectorGeometry?.vectorLaunch.launchBoundT,
+            }),
+          ]),
+        );
   const offAxis =
     geometry === null
       ? { spread: null, attemptedRayCount: 0 }
@@ -277,14 +269,10 @@ export function computeChromaticRayFanAnalysis2(
             traceOffAxisChromaticMarginal(
               geometry,
               fraction,
-              channel,
+              offAxisAdapters.get(channel)!,
               L,
-              focusT,
-              zoomT,
               currentEPSD,
-              currentPhysStopSD,
               imagePlaneZ,
-              aberrationT,
             ),
         );
 
@@ -304,7 +292,7 @@ export function computeChromaticRayFanAnalysisForState2(
   options?: ChromaticRayFanAnalysisOptions2,
 ): ChromaticRayFanAnalysis2 {
   return computeChromaticRayFanAnalysis2(
-    state.lens.runtime,
+    runtimeView(state.lens),
     zPosFromState(state),
     state.focusT,
     state.zoomT,
@@ -419,7 +407,7 @@ export function computeChromaticAnalysisForState2(
   options?: ChromaticAnalysisOptions,
 ) {
   return computeChromaticAnalysis(
-    state.lens.runtime,
+    runtimeView(state.lens),
     zPosFromState(state),
     state.focusT,
     state.zoomT,

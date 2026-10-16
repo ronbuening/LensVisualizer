@@ -10,9 +10,9 @@ import { createTraceGeometry } from "../trace/geometry.js";
 import type { AberrationVarRange, VarRange } from "../../types/optics.js";
 import { clamp, formatCacheNumber, normalizeControlT } from "../math/numerics.js";
 import type { PreparedStateCache } from "./cache.js";
-import type { CompiledStateSurface, EngineLens, Plane3, PreparedOpticalState } from "../types.js";
+import type { CompiledStateSurface, CompiledLens, Plane3, PreparedOpticalState } from "../types.js";
 import { Optics2PreparationError } from "../types.js";
-import { resolveControlledThickness } from "../prescription/variables.js";
+import { resolveControlledThickness } from "../prescription/compileControls.js";
 
 /** Optional prepared-state cache owned by the caller. */
 export interface PrepareStateOptions {
@@ -28,7 +28,7 @@ export interface PrepareStateOptions {
  * @param aberrationT - normalized aberration-spacing control
  * @returns stable cache key containing lens identity and controls
  */
-export function preparedStateCacheKey(lens: EngineLens, focusT: number, zoomT: number, aberrationT: number): string {
+export function preparedStateCacheKey(lens: CompiledLens, focusT: number, zoomT: number, aberrationT: number): string {
   return [lens.key, formatCacheNumber(focusT), formatCacheNumber(zoomT), formatCacheNumber(aberrationT)].join(":");
 }
 
@@ -48,7 +48,7 @@ export function preparedStateCacheKey(lens: EngineLens, focusT: number, zoomT: n
  * @returns immutable prepared optical state for the requested controls
  */
 export function prepareState(
-  lens: EngineLens,
+  lens: CompiledLens,
   focusTInput: number,
   zoomTInput: number,
   aberrationTInput = 0,
@@ -84,8 +84,8 @@ export function prepareState(
         ...surface,
         base: surface,
         sd:
-          index === lens.stop.surfaceIndex && lens.runtime.zoomStopSDs
-            ? wideOpenStopAtZoom(zoomT, lens.runtime)
+          index === lens.stop.surfaceIndex && lens.constants.zoomStopSDs
+            ? wideOpenStopAtZoom(zoomT, lens.constants)
             : surface.sd,
         d: thicknesses[index],
         z: z[index],
@@ -169,15 +169,15 @@ function buildZPositions(thicknesses: readonly number[]): number[] {
   return z;
 }
 
-function resolveStateImagePlane(lens: EngineLens, defaultImgZ: number): Plane3 {
-  if (lens.flags.isFoldedOptics && lens.source.opticalPath?.imagePlane !== undefined) return lens.imagePlane;
+function resolveStateImagePlane(lens: CompiledLens, defaultImgZ: number): Plane3 {
+  if (lens.flags.isFoldedOptics && lens.hasExplicitImagePlane) return lens.imagePlane;
   return Object.freeze({
     ...lens.imagePlane,
     point: Object.freeze([lens.imagePlane.point[0], lens.imagePlane.point[1], defaultImgZ] as const),
   });
 }
 
-function resolveTotalTrack(lens: EngineLens, z: readonly number[], imgZ: number): number {
+function resolveTotalTrack(lens: CompiledLens, z: readonly number[], imgZ: number): number {
   if (!lens.flags.isFoldedOptics) return imgZ - z[0];
   const zMin = Math.min(imgZ, ...z);
   const zMax = Math.max(imgZ, ...z);

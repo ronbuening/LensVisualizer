@@ -50,6 +50,18 @@ describe("computeDistortionCurve", () => {
     const { z } = doLayout(0, 0, L);
     const geometry = { ...computeAnalysisFieldGeometryAtState(0, 0, L), halfFieldDeg: 20 };
     const traceRay = rayAdapters.traceRay2;
+    const prepare = rayAdapters.prepareRayTrace;
+    const prepared = vi.spyOn(rayAdapters, "prepareRayTrace").mockImplementation((...args) => {
+      const adapter = prepare(...args);
+      return {
+        ...adapter,
+        ray(y, u) {
+          const result = adapter.ray(y, u);
+          const angle = (Math.atan(-u) * 180) / Math.PI;
+          return { ...result, y: -angle - (angle >= 12 ? 10 : 0), u: 0 };
+        },
+      };
+    });
     const trace = vi.spyOn(rayAdapters, "traceRay2").mockImplementation((...args) => {
       const result = traceRay(...args);
       const angle = (Math.atan(-args[1]) * 180) / Math.PI;
@@ -59,6 +71,7 @@ describe("computeDistortionCurve", () => {
       return computeDistortionCurve(L, z, 0, 0, L.EFL, L.stopPhysSD, geometry, 0, { distortionCurveSampleCount: 4 });
     } finally {
       trace.mockRestore();
+      prepared.mockRestore();
     }
   }
 
@@ -75,8 +88,8 @@ describe("computeDistortionCurve", () => {
     expect(result.samples.map((sample) => sample.normalizedImageHeight)).toEqual([0, 1 / 3, 1]);
   });
 
-  // Captured from engine-next 98355c00: every sample float, and the number of scalar height-trace calls. The calls'
-  // own arguments are not pinned: a launch height from V8's math functions can differ by an ulp between platforms.
+  // Captured from engine-next 98355c00: every sample float and the scalar height-trace count across both adapter forms.
+  // Call arguments are not pinned: a launch height from V8's math functions can differ by an ulp between platforms.
   // The field-limited Canon keeps its -2.58% Edge at 21.08 mm, short of the 21.65 mm corner.
   it.each([
     {
@@ -102,15 +115,34 @@ describe("computeDistortionCurve", () => {
     };
     const L = build(data);
     const { z } = doLayout(0, 0, L);
+    let boundScalarCount = 0;
+    let boundVectorCount = 0;
+    const prepare = rayAdapters.prepareRayTrace;
+    const prepared = vi.spyOn(rayAdapters, "prepareRayTrace").mockImplementation((...args) => {
+      const adapter = prepare(...args);
+      return {
+        ...adapter,
+        ray(y, u) {
+          boundScalarCount++;
+          return adapter.ray(y, u);
+        },
+        vector(input) {
+          boundVectorCount++;
+          return adapter.vector(input);
+        },
+      };
+    });
     const scalar = vi.spyOn(rayAdapters, "traceRay2");
     const vector = vi.spyOn(rayAdapters, "traceRayVector2");
     try {
       const result = computeDistortionCurve(L, z, 0, 0, L.EFL, L.stopPhysSD);
       expect(result.corner.status).toBe("reached");
       expect(await digest(result.samples)).toBe(samples);
-      expect(scalar).toHaveBeenCalledTimes(count);
+      expect(scalar.mock.calls.length + boundScalarCount).toBe(count);
+      expect(boundVectorCount).toBe(0);
       expect(vector).not.toHaveBeenCalled();
     } finally {
+      prepared.mockRestore();
       scalar.mockRestore();
       vector.mockRestore();
     }

@@ -142,8 +142,8 @@ function hasInterveningAnnularSeparation2(
  * @returns one diagnostic record per rendered element span
  */
 export function computeElementRenderDiagnosticsForState2(state: PreparedOpticalState): ElementRenderDiagnostics[] {
-  const L = state.lens.runtime;
-  return L.ES.map(([eid, s1, s2]: ElementSpan) => {
+  const spans = state.lens.displayElementSpans;
+  return spans.map(([eid, s1, s2]: ElementSpan) => {
     const front = state.surfaces[s1];
     const rear = state.surfaces[s2];
     const sd1 = front.sd;
@@ -153,7 +153,7 @@ export function computeElementRenderDiagnosticsForState2(state: PreparedOpticalS
 
     if (s1 > 0 && state.lens.display.gapSagFrac > 0 && surfaceSag2(front, renderSD1) < 0) {
       /* Negative front sag intrudes toward the previous air gap; trim before SVG surfaces overlap. */
-      const prevES = L.ES.findLast(([, , ps2]: ElementSpan) => ps2 < s1 && state.surfaces[ps2].nd === 1.0);
+      const prevES = spans.findLast(([, , ps2]: ElementSpan) => ps2 < s1 && state.surfaces[ps2].nd === 1.0);
       const gapBefore = prevES ? front.z - state.surfaces[prevES[2]].z : state.surfaces[s1 - 1].d;
       const maxIntrusion =
         Math.max(gapBefore, 0) * Math.min(state.lens.display.gapSagFrac, MAX_VISIBLE_GAP_INTRUSION_FRAC);
@@ -180,7 +180,7 @@ export function computeElementRenderDiagnosticsForState2(state: PreparedOpticalS
 
     if (rear.nd === 1.0 && state.lens.display.gapSagFrac > 0 && surfaceSag2(rear, renderSD2) > 0) {
       /* Positive rear sag intrudes toward the next element; mirror the front-gap trim test. */
-      const nextES = L.ES.find(([, ns1]: ElementSpan) => ns1 > s2);
+      const nextES = spans.find(([, ns1]: ElementSpan) => ns1 > s2);
       const gapAfter = nextES ? state.surfaces[nextES[1]].z - rear.z : rear.d;
       const maxIntrusion =
         Math.max(gapAfter, 0) * Math.min(state.lens.display.gapSagFrac, MAX_VISIBLE_GAP_INTRUSION_FRAC);

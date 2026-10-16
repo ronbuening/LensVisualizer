@@ -1325,7 +1325,10 @@ function computeAnalysisWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   output.perspectiveAnalysisJobs = 0;
 
   if (!L.isFoldedOptics) {
-    output.distortionSamples = completed("distortionCurve", analysisContext.computeDistortionCurve().samples).length;
+    output.distortionSamples = completed(
+      "distortionCurve",
+      distortionSamplesOf(analysisContext.computeDistortionCurve()),
+    ).length;
     output.distortionGridLines = completed("distortionGrid", analysisContext.computeDistortionFieldGrid()).lines.length;
     output.vignettingSamples = completed("vignetting", analysisContext.computeVignettingCurve()).length;
   } else {
@@ -1490,8 +1493,22 @@ function computeAnalysisDistortionCurveWork(snapshot: ScenarioSnapshot): Benchma
     snapshot.fieldGeometry ?? undefined,
     snapshot.analysisSampling,
   );
-  completed("distortionCurve", samples.samples);
-  return { distortionSamples: samples.samples.length };
+  const curve = distortionSamplesOf(samples);
+  completed("distortionCurve", curve);
+  return { distortionSamples: curve.length };
+}
+
+/**
+ * The distortion curve's samples, from an engine that returns them alone or inside `{ samples, corner }` (from
+ * #815). A paired run builds the base from an older commit, whose engine still returns the array.
+ *
+ * @param curve - the value the engine's distortion job returned
+ * @returns its samples
+ */
+function distortionSamplesOf<Sample>(
+  curve: readonly Sample[] | { readonly samples: readonly Sample[] },
+): readonly Sample[] {
+  return Array.isArray(curve) ? curve : (curve as { readonly samples: readonly Sample[] }).samples;
 }
 
 /** Measures the distortion field-grid helper used by the analysis drawer. */

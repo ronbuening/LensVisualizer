@@ -6,6 +6,7 @@
  * memoizes each analysis result on first read so sibling panels do not repeat ray sweeps.
  */
 
+import { runtimeView } from "../prescription/runtimeView.js";
 import { analysisJobsForState2 } from "./analysisJobs.js";
 import { computeLongitudinalChromaticFocus } from "../chromatic/analysis.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
@@ -272,7 +273,7 @@ export function createAnalysisComputationContext({
     computeIntrinsicLongitudinalChromaticFocus: () => {
       intrinsicLongitudinalChromaticFocus ??= {
         value: computeLongitudinalChromaticFocus(
-          preparedState.lens.runtime,
+          runtimeView(preparedState.lens),
           zPosForPreparedAnalysis2(preparedState),
           preparedState.focusT,
           preparedState.zoomT,

@@ -36,7 +36,7 @@ export function computeElementShapesForState2(
   pointTransform?: DiagramPointTransform2,
 ): ElementShape[] {
   const diagnostics = computeElementRenderDiagnosticsForState2(state);
-  const L = state.lens.runtime;
+  const spans = state.lens.displayElementSpans;
   const screenPoint = (z: number, y: number): [number, number] => {
     const [zz, yy] = pointTransform ? pointTransform(z, y) : [z, y];
     return [sx(zz), sy(yy)];
@@ -46,7 +46,7 @@ export function computeElementShapesForState2(
     return `${x},${yy}`;
   };
 
-  return L.ES.map(([eid, s1, s2]: ElementSpan, elementIndex: number) => {
+  return spans.map(([eid, s1, s2]: ElementSpan, elementIndex: number) => {
     const trim1 = diagnostics[elementIndex].front.renderSD;
     const trim2 = diagnostics[elementIndex].rear.renderSD;
     const front = state.surfaces[s1];

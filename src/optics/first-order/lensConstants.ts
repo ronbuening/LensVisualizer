@@ -1,43 +1,25 @@
-/**
- * buildLens() — Validate, resolve labels, derive optical constants.
- *
- * Takes a LENS_DATA-shaped object (after defaults merging) and returns
- * a frozen runtime lens object L.  Pure function — no side effects.
- */
+/** Build-time optical and display constants from compiled prescription records, without a runtime view. */
 
-import validateLensData from "./validateLensData.js";
-import {
-  buildAsphereIndex,
-  buildElementSpans,
-  buildLabelIndex,
-  buildStateSurfaces,
-  buildVarIndex,
-  buildSpectralIndex,
-  buildVdIndex,
-  resolveAnnotations,
-  sumSurfaceThicknesses,
-  zoomIndexToT,
-} from "./internal/lensState.js";
-import { buildSurfaceDispersionIndex } from "./dispersion.js";
-import { FLAT_R_THRESHOLD } from "./geometry/surfaceProfile.js";
+import type { CompiledPrescription, CompiledSurface, LensConstants, Ray3 } from "../types.js";
+import { buildStateSurfaces, sumSurfaceThicknesses, zoomIndexToT } from "../prescription/compileControls.js";
+import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
 import {
   traceParaxialSurfaces2 as traceSurfacesParaxial,
   type ParaxialTraceOptions as ParaxialSurfaceTraceOptions,
-} from "./math/paraxial.js";
-import { createTraceGeometry } from "./trace/geometry.js";
-import { traceGeometryToStop } from "./trace/stopTrace.js";
-import type { EngineTraceResult, TraceGeometry, TraceOptions } from "./trace/types.js";
-import type { Ray3 } from "./types.js";
-import { directionFromMeridionalSlope } from "./math/vector.js";
-import { compileSurfaces } from "./prescription/surfaces.js";
-import { resolvedImagePlaneToPlane3 } from "./prescription/interactions.js";
+} from "../math/paraxial.js";
+import { createTraceGeometry } from "../trace/geometry.js";
+import { traceGeometryToStop } from "../trace/stopTrace.js";
+import type { EngineTraceResult, TraceCapture, TraceGeometry, TraceOptions } from "../trace/types.js";
+import { directionFromMeridionalSlope } from "../math/vector.js";
+import { compileSurfaces } from "../prescription/surfaces.js";
+import { resolvedImagePlaneToPlane3 } from "../prescription/interactions.js";
 import {
   fisheyeProjectionFocalLengthAtZoom2 as fisheyeProjectionFocalLengthAtZoom,
   fisheyeProjectionMaxTraceFieldAtZoom2 as fisheyeProjectionMaxTraceFieldAtZoom,
   isFisheyeProjection2 as isFisheyeProjection,
   rectilinearProjectionMaxTraceField2 as rectilinearProjectionMaxTraceField,
   TRACING_SAFETY_FACTOR,
-} from "./field/projection.js";
+} from "../field/projection.js";
 import type {
   LensData,
   SurfaceData,
@@ -46,12 +28,10 @@ import type {
   LensProjectionConfig,
   ResolvedImagePlane,
   ResolvedOpticalPath,
-  RuntimeLens,
   ParaxialTraceResult,
-} from "../types/optics.js";
-import { ENABLE_UNIFORM_SCALING } from "../utils/featureFlags.js";
-import { diffractivePetzvalContribution } from "./math/diffractivePhase.js";
-import { expandRearPlates, lastLensSurfaceIndex } from "./prescription/rearPlates.js";
+} from "../../types/optics.js";
+import { ENABLE_UNIFORM_SCALING } from "../../utils/featureFlags.js";
+import { diffractivePetzvalContribution } from "../math/diffractivePhase.js";
 
 /**
  * Paraxial ray trace through a surface array.
@@ -259,7 +239,7 @@ function traceSurfaceStackReal(
   u0: number,
   options: TraceOptions,
 ): RealTraceFullResult {
-  const result = traceBuildRay(geometry, y0, u0, options);
+  const result = traceBuildRay(geometry, y0, u0, { ...options, capture: "terminal" });
   const failed = result.failureReason !== null;
   return {
     y: failed ? NaN : result.y,
@@ -276,10 +256,13 @@ function buildTraceGeometry(
   stopIdx: number,
   opticalPath: ResolvedOpticalPath,
   imagePlane?: ResolvedImagePlane,
+  compiled?: readonly CompiledSurface[],
 ): TraceGeometry {
   const z = [0];
   for (let i = 0; i < S.length - 1; i++) z.push(z[i] + S[i].d);
-  const surfaces = compileSurfaces(S, S, asphByIdx);
+  const surfaces = compiled
+    ? compiled.map((surface, i) => Object.freeze({ ...surface, d: S[i].d, sd: S[i].sd }))
+    : compileSurfaces(S, S, asphByIdx);
   return createTraceGeometry({
     surfaces: Object.freeze(surfaces.map((surface, i) => Object.freeze({ ...surface, base: surface, z: z[i] }))),
     z: Object.freeze(z),
@@ -299,17 +282,18 @@ function buildRayInput(geometry: TraceGeometry, y0: number, u0: number, lead: nu
   };
 }
 
-function traceBuildRay(geometry: TraceGeometry, y0: number, u0: number, options: TraceOptions = {}): EngineTraceResult {
+function traceBuildRay<C extends TraceCapture = "diagnostics">(
+  geometry: TraceGeometry,
+  y0: number,
+  u0: number,
+  options: TraceOptions<C> = {},
+): EngineTraceResult<C> {
   /* Preserve the first-vertex slope launch used to derive the existing constants. Folded basis rays start there. */
   const first = geometry.surfaces[0];
   const lead = geometry.traversal.kind === "generalized" ? 0 : Math.max(1, Math.abs(first.profile.sag(first.sd)) + 1);
   const input = buildRayInput(geometry, y0, u0, lead);
   const traverse = options.stopAt === undefined ? geometry.traversal.full : geometry.traversal.partial;
   return traverse(geometry, input, options);
-}
-
-function resolveProjection(data: LensData): LensProjectionConfig {
-  return data.projection ?? { kind: "rectilinear" };
 }
 
 function firstFiniteScalar(value: number | [number, number] | number[] | undefined): number | null {
@@ -349,102 +333,39 @@ function resolveImagePlane(data: LensData, fallbackZ: number): ResolvedImagePlan
   };
 }
 
-function resolveOpticalPath(data: LensData, labelIdx: Record<string, number>): ResolvedOpticalPath {
-  const surfaceLabels = data.opticalPath?.surfaceOrder ?? null;
-  return {
-    mode: data.opticalPath?.mode ?? "sequential",
-    surfaceOrder: surfaceLabels
-      ? surfaceLabels.map((label) => labelIdx[label]).filter((idx) => idx !== undefined)
-      : null,
-    surfaceLabels,
-    maxInteractions: data.opticalPath?.maxInteractions ?? Math.max(data.surfaces.length + 1, 1),
-  };
-}
-
-function hasFoldedOptics(data: LensData): boolean {
-  return Boolean(
-    data.opticalPath || data.surfaces.some((surface) => surface.interaction && surface.interaction.type !== "refract"),
-  );
-}
-
-/**
- * Throw the validator's messages for lens data it rejects, as `buildLens()` throws them.
- *
- * @param data - LENS_DATA object (after defaults merging)
- * @throws if validation finds any issues
- */
-export function assertValidLensData(data: LensData): void {
-  const validationErrors = validateLensData(data as Record<string, any>);
-  if (validationErrors.length > 0)
-    throw new Error(
-      `Lens data "${data.key || "?"}" has ${validationErrors.length} error(s):\n  • ${validationErrors.join("\n  • ")}`,
-    );
-}
-
-/**
- * Build a frozen runtime lens object from validated LENS_DATA.
- *
- * Pipeline: validate → resolve label indices → derive optical constants
- * (EFL, entrance pupil, f-number, half-field) → compute layout geometry
- * → freeze and return.
- *
- * The returned object L is immutable and contains everything the renderer
- * and ray tracer need — no further data lookups are required at render time.
- *
- * @param data  — LENS_DATA object (after defaults merging)
- * @returns       frozen runtime lens object (L)
- * @throws        if validation finds any issues
- */
-export default function buildLens(authoredData: LensData): RuntimeLens {
-  assertValidLensData(authoredData);
-
-  /* Rear plates become real traced surfaces here, before any derived constant, so EFL, pupils, field limits,
-   * prepared states and every analysis agree; synthetic plates are dropped only from drawn spans and lists. */
-  const data = expandRearPlates(authoredData);
-  const S: SurfaceData[] = data.surfaces.map((s) => ({ ...s }));
+/** Calculate once on unpublished compiled records; only local surface copies are sized. */
+export function computeLensConstants(lens: CompiledPrescription): LensConstants {
+  const data = lens.data;
+  const S = lens.surfaces.map((surface, i) => ({
+    ...data.surfaces[i],
+    R: surface.R,
+    d: surface.d,
+    nd: surface.nd,
+    sd: surface.sd,
+  }));
   const N = S.length;
-  const projection = resolveProjection(data);
-
-  const isZoom = Array.isArray(data.zoomPositions) && data.zoomPositions.length >= 2;
-  const labelIdx = buildLabelIndex(S);
-  const asphByIdx = buildAsphereIndex(data.asph, labelIdx);
-  const varByIdx = buildVarIndex(data.var, labelIdx);
-  const focusPositions = Object.freeze([...(data.focusPositions ?? [0, 1])]);
-  const aberrationControl = data.aberrationControl
-    ? {
-        label: data.aberrationControl.label,
-        description: data.aberrationControl.description,
-        minLabel: data.aberrationControl.minLabel,
-        centerLabel: data.aberrationControl.centerLabel,
-        maxLabel: data.aberrationControl.maxLabel,
-        step: data.aberrationControl.step,
-        varByIdx: buildVarIndex(data.aberrationControl.var, labelIdx),
-        varLabels: (data.aberrationControl.varLabels || []).map(
-          ([label, text]: [string, string]) => [labelIdx[label], text] as [number, string],
-        ),
-      }
-    : null;
-
-  const varLabels: [number, string][] = (data.varLabels || []).map(
-    ([label, text]: [string, string]) => [labelIdx[label], text] as [number, string],
-  );
-  const displayElements = data.elements.filter((element) => !element.synthetic);
-  const ES = buildElementSpans(S, displayElements);
-  const lastLensSurfaceIdx = lastLensSurfaceIndex(S);
-
-  /* ── Per-surface dispersion data (for chromatic tracing) ── */
-  const vdByIdx = buildVdIndex(S, data.elements);
-  const spectralByIdx = buildSpectralIndex(S, data.elements);
-  const indexByIdx = buildSurfaceDispersionIndex(S, data.elements, spectralByIdx);
-  const groups = resolveAnnotations(data.groups, labelIdx);
-  const doublets = resolveAnnotations(data.doublets, labelIdx);
-
-  const stopIdx = S.findIndex((row) => row.label === "STO");
-  const opticalPath = resolveOpticalPath(data, labelIdx);
+  const projection = lens.projection.config;
+  const isZoom = lens.variables.isZoom;
+  const asphByIdx = lens.indices.asphByIdx;
+  const varByIdx = lens.variables.bySurfaceIndex;
+  const focusPositions = lens.variables.focusPositions;
+  const stopIdx = lens.stop.surfaceIndex;
+  const opticalPath = {
+    ...lens.opticalPath,
+    surfaceOrder: lens.opticalPath.surfaceOrder ? [...lens.opticalPath.surfaceOrder] : null,
+    surfaceLabels: lens.opticalPath.surfaceLabels ? [...lens.opticalPath.surfaceLabels] : null,
+  };
+  const buildGeometry = (
+    S: SurfaceData[],
+    _aspheres: Record<number, AsphericCoefficients>,
+    stopIdx: number,
+    opticalPath: ResolvedOpticalPath,
+    imagePlane?: ResolvedImagePlane,
+  ) => buildTraceGeometry(S, asphByIdx, stopIdx, opticalPath, imagePlane, lens.surfaces);
 
   const preserveAuthoredStopSD = S[stopIdx]?.stopPlacement === "inside-element";
 
-  if (hasFoldedOptics(data)) {
+  if (lens.flags.isFoldedOptics) {
     const z = [0];
     for (let i = 0; i < N - 1; i++) z.push(z[i] + S[i].d);
     const fallbackImageZ = z[N - 1] + S[N - 1].d;
@@ -459,7 +380,7 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
     const stopPhysSD = S[stopIdx].sd;
     const nominalEPSD = referenceFocalLength / (2 * baseNomFno);
     const fallbackYRatio = stopPhysSD > 0 ? stopPhysSD / Math.max(nominalEPSD, 1e-12) : 1;
-    const foldedGeometry = buildTraceGeometry(S, asphByIdx, stopIdx, opticalPath, imagePlane);
+    const foldedGeometry = buildGeometry(S, asphByIdx, stopIdx, opticalPath, imagePlane);
     let EP: EntrancePupil = { epSD: nominalEPSD, yRatio: fallbackYRatio };
     let B = 0;
     let epZRelStop = 0;
@@ -555,27 +476,8 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
     const offAxisHeights = data.offAxisFractions.map((f: number) => f * EP.epSD);
 
     return Object.freeze({
-      data,
-      S,
-      N,
-      ES,
-      elements: displayElements,
-      lastLensSurfaceIdx,
-      asphByIdx,
-      varByIdx,
-      vdByIdx,
-      spectralByIdx,
-      indexByIdx,
-      varLabels,
-      groups,
-      doublets,
-      perspectiveControl: data.perspectiveControl ?? null,
-      aberrationControl,
-      projection,
-      opticalPath,
       imagePlane,
       isFoldedOptics: true,
-      stopIdx,
       stopPhysSD,
       EFL: referenceFocalLength,
       apertureReferenceFocalLength: referenceFocalLength,
@@ -638,8 +540,7 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
       zoomFOPENs: null,
       zoomStep: data.zoomStep || 0.004,
       zoomLabels: null,
-      labelIdx,
-    }) as RuntimeLens;
+    }) as LensConstants;
   }
 
   /* ── Derive stop SD and entrance pupil from nominal f-number ──
@@ -661,7 +562,7 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
   const apertureReferenceFocalLength = fisheyeProjectionFocalLengthAtZoom(projection, 0) ?? nomEFL;
   const baseNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[0] : data.nominalFno!;
   const nominalEPSD = apertureReferenceFocalLength / (2 * baseNomFno);
-  let geometry = buildTraceGeometry(S, asphByIdx, stopIdx, opticalPath);
+  let geometry = buildGeometry(S, asphByIdx, stopIdx, opticalPath);
   const nomRealY = realTraceStopHeight(geometry, nominalEPSD, 0, stopIdx);
   if (data.zoomStopSemiDiameters) {
     S[stopIdx].sd = data.zoomStopSemiDiameters[0];
@@ -669,7 +570,7 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
     S[stopIdx].sd = isFinite(nomRealY) && Math.abs(nomRealY) > 1e-15 ? nomRealY : nominalEPSD * nomYRatio;
   }
 
-  geometry = buildTraceGeometry(S, asphByIdx, stopIdx, opticalPath);
+  geometry = buildGeometry(S, asphByIdx, stopIdx, opticalPath);
 
   /* ── Optical constants ──
    *  EFL: trace a unit-height marginal ray (y=1, u=0) and read off the
@@ -945,14 +846,14 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
       const zZoomT = zoomIndexToT(zi, nz);
       const zApertureReferenceFocalLength = fisheyeProjectionFocalLengthAtZoom(projection, zZoomT) ?? zEfl;
       const zNomEP = zApertureReferenceFocalLength / (2 * zNomFno);
-      let stationGeometry = buildTraceGeometry(tmpS, asphByIdx, stopIdx, opticalPath);
+      let stationGeometry = buildGeometry(tmpS, asphByIdx, stopIdx, opticalPath);
       const zRealY = realTraceStopHeight(stationGeometry, zNomEP, 0, stopIdx);
       const stationStopSD =
         data.zoomStopSemiDiameters?.[zi] ??
         Math.abs(isFinite(zRealY) && Math.abs(zRealY) > 1e-15 ? zRealY : zNomEP * epT.y);
       if (data.zoomStopSemiDiameters) tmpS[stopIdx].sd = stationStopSD;
       else if (isFinite(zRealY) && Math.abs(zRealY) > 1e-15) tmpS[stopIdx].sd = zRealY;
-      stationGeometry = buildTraceGeometry(tmpS, asphByIdx, stopIdx, opticalPath);
+      stationGeometry = buildGeometry(tmpS, asphByIdx, stopIdx, opticalPath);
       zoomStopSDs?.push(stationStopSD);
       zoomEPs.push(zNomEP);
       zoomYRatios.push(epT.y);
@@ -1055,27 +956,8 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
   }
 
   return Object.freeze({
-    data,
-    S,
-    N,
-    ES,
-    elements: displayElements,
-    lastLensSurfaceIdx,
-    asphByIdx,
-    varByIdx,
-    vdByIdx,
-    spectralByIdx,
-    indexByIdx,
-    varLabels,
-    groups,
-    doublets,
-    perspectiveControl: data.perspectiveControl ?? null,
-    aberrationControl,
-    projection,
-    opticalPath,
     imagePlane,
     isFoldedOptics: false,
-    stopIdx,
     stopPhysSD,
     EFL,
     apertureReferenceFocalLength,
@@ -1139,8 +1021,7 @@ export default function buildLens(authoredData: LensData): RuntimeLens {
     zoomStopSDs,
     zoomStep: data.zoomStep || 0.004,
     zoomLabels: data.zoomLabels || null,
-    labelIdx,
-  }) as RuntimeLens;
+  }) as LensConstants;
 }
 
 export { paraxialTrace, realTraceToStop };

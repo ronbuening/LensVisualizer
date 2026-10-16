@@ -6,8 +6,8 @@
 
 import type { DispersionQuality } from "../dispersion.js";
 import type { RuntimeLens } from "../../types/optics.js";
-import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
-import type { EngineLens, PreparedOpticalState } from "../types.js";
+import { compiledLensFromRuntime } from "../prescription/compile.js";
+import type { CompiledLens, PreparedOpticalState } from "../types.js";
 
 const QUALITY_ORDER: DispersionQuality[] = ["sellmeier", "lineIndices", "abbe", "constant"];
 
@@ -21,7 +21,7 @@ const QUALITY_ORDER: DispersionQuality[] = ["sellmeier", "lineIndices", "abbe", 
  * @param lens - normalized engine lens with compiled surface dispersions
  * @returns worst non-air dispersion quality in the lens
  */
-export function summarizeDispersionQualityForLens2(lens: EngineLens): DispersionQuality {
+export function summarizeDispersionQualityForLens2(lens: CompiledLens): DispersionQuality {
   let worst: DispersionQuality = "sellmeier";
   for (const entry of lens.dispersion) {
     if (!entry || entry.quality === "air") continue;
@@ -47,5 +47,5 @@ export function summarizeDispersionQualityForState2(state: PreparedOpticalState)
  * @returns worst non-air dispersion quality in the lens
  */
 export function summarizeDispersionQuality2(L: RuntimeLens): DispersionQuality {
-  return summarizeDispersionQualityForLens2(normalizeRuntimeLens(L));
+  return summarizeDispersionQualityForLens2(compiledLensFromRuntime(L));
 }

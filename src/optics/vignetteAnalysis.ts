@@ -22,13 +22,8 @@
  * state in a React hook rather than embedding in a component.
  */
 
-import {
-  computeAnalysisFieldGeometryAtState,
-  offsetVectorFieldRay,
-  solveChiefRay,
-  traceRay,
-  traceRayVector,
-} from "./optics.js";
+import { prepareRayTrace } from "./trace/rayAdapters.js";
+import { computeAnalysisFieldGeometryAtState, offsetVectorFieldRay, solveChiefRay } from "./optics.js";
 import { projectionLaunchSlopeForField } from "./projection.js";
 import type { FieldGeometryState } from "./optics.js";
 import { isHeavyLensForRayWork } from "./raySampling.js";
@@ -118,6 +113,8 @@ export function computeVignettingCurve(
     3,
   );
 
+  const prepared = prepareRayTrace(L, { zPos, focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT });
+
   /* ── Raw geometric transmission per field sample ── */
   const rawGT: number[] = [];
   const rawIntensity: number[] = [];
@@ -135,6 +132,18 @@ export function computeVignettingCurve(
     const uField = launch.uField;
     const yChief = solve.vectorLaunch ? NaN : solve.yLaunch;
 
+    const vectorTrace = solve.vectorLaunch
+      ? prepareRayTrace(L, {
+          zPos,
+          focusT,
+          zoomT,
+          stopSD: currentPhysStopSD,
+          ghost: true,
+          aberrationT,
+          launchBoundT: solve.vectorLaunch.launchBoundT,
+        })
+      : undefined;
+
     /* Dense meridional pupil sweep: nPupil evenly-spaced fractions in [−1, +1] */
     let surviving = 0;
     let transmittedIntensity = 0;
@@ -142,17 +151,8 @@ export function computeVignettingCurve(
       const pupilFrac = -1 + (2 * j) / (nPupil - 1);
       const pupilOffset = pupilFrac * currentEPSD;
       const trace = solve.vectorLaunch
-        ? traceRayVector(
-            offsetVectorFieldRay(solve.vectorLaunch, 0, pupilOffset),
-            zPos,
-            currentPhysStopSD,
-            true,
-            L,
-            focusT,
-            zoomT,
-            aberrationT,
-          )
-        : traceRay(yChief + pupilOffset, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
+        ? vectorTrace!.vector(offsetVectorFieldRay(solve.vectorLaunch, 0, pupilOffset))
+        : prepared.ray(yChief + pupilOffset, uField);
       if (!trace.clipped) {
         surviving++;
         transmittedIntensity += trace.transmission ?? 1;

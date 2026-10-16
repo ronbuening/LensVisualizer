@@ -6,6 +6,7 @@
  * diagram rays, but return compact data contracts for analysis tabs.
  */
 
+import { prepareRayTrace } from "../trace/rayAdapters.js";
 import type { ChromaticChannel, ChromaticRayFanSpread, RuntimeLens } from "../../types/optics.js";
 import { computeProjectionAwareOffAxisFieldGeometry, traceOffAxisChiefRay } from "../aberration/offAxis.js";
 import {
@@ -13,7 +14,7 @@ import {
   type FieldGeometryState2 as FieldGeometryState,
 } from "../field/fieldGeometry.js";
 import { thick } from "../layout.js";
-import { computeChromaticRayFanSpread2, traceRayChromatic2 } from "./chromaticTrace.js";
+import { computeChromaticRayFanSpread2 } from "./chromaticTrace.js";
 import { CHROMATIC_CHANNEL_ORDER } from "./channels.js";
 
 export const DEFAULT_CHROMATIC_ANALYSIS_CHANNELS = CHROMATIC_CHANNEL_ORDER;
@@ -161,23 +162,26 @@ export function computeLongitudinalChromaticFocus(
     allowZero: false,
   });
 
+  const adapters = new Map(
+    channels.map((channel) => [
+      channel,
+      prepareRayTrace(L, {
+        zPos,
+        focusT,
+        zoomT,
+        stopSD: currentPhysStopSD,
+        ghost: true,
+        channel,
+        aberrationT,
+      }),
+    ]),
+  );
   for (const marginalFraction of fractions) {
     const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; z?: number; clipped: boolean }>> = {};
     const clippedByChannel: Partial<Record<ChromaticChannel, boolean>> = {};
 
     for (const channel of channels) {
-      const ray = traceRayChromatic2(
-        marginalFraction * currentEPSD,
-        0,
-        zPos,
-        focusT,
-        zoomT,
-        currentPhysStopSD,
-        true,
-        L,
-        channel,
-        aberrationT,
-      );
+      const ray = adapters.get(channel)!.ray(marginalFraction * currentEPSD, 0);
       clippedByChannel[channel] = ray.clipped;
       if (!ray.clipped && Math.abs(ray.u) > 1e-15) {
         marginalRays[channel] = {
