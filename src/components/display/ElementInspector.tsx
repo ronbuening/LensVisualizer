@@ -14,6 +14,7 @@ import {
   CHROMATIC_CHANNEL_METADATA,
   CHROMATIC_CHANNEL_ORDER,
   chromaticChannelIndexLabel,
+  chromaticChannelWavelengthLabel,
 } from "../../optics/chromatic/channels.js";
 import { getAsphericEntriesForElement } from "./asphericElementUtils.js";
 import { withAlpha } from "../../utils/style/styles.js";
@@ -312,23 +313,15 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
                   const color =
                     ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : ch === "B" ? t.rayChromB : t.rayChromV;
                   const usesNativeELineChannels = indexReference === "e";
-                  const indexLabel = usesNativeELineChannels
-                    ? ch === "R"
-                      ? "nC′"
-                      : ch === "G"
-                        ? "n\u2091"
-                        : ch === "B"
-                          ? "nF′"
-                          : chromaticChannelIndexLabel(ch)
-                    : chromaticChannelIndexLabel(ch);
+                  const indexLabel =
+                    usesNativeELineChannels && ch === "G" ? "n\u2091" : chromaticChannelIndexLabel(ch, indexReference);
+                  const channelWavelengthLabel = chromaticChannelWavelengthLabel(ch, indexReference);
                   const wavelengthLabel =
-                    usesNativeELineChannels && ch === "R"
-                      ? "Cadmium C′-line 643.8 nm"
-                      : usesNativeELineChannels && ch === "G"
-                        ? "Authored mercury e-line reference (546.1 nm)"
-                        : usesNativeELineChannels && ch === "B"
-                          ? "Cadmium F′-line 480.0 nm"
-                          : CHROMATIC_CHANNEL_METADATA[ch].wavelengthLabel;
+                    usesNativeELineChannels && ch === "G"
+                      ? `Authored mercury e-line reference (${CHROMATIC_CHANNEL_METADATA.G.eLine.wavelengthNm.toFixed(1)} nm)`
+                      : usesNativeELineChannels && (ch === "R" || ch === "B")
+                        ? `Cadmium ${channelWavelengthLabel}`
+                        : channelWavelengthLabel;
                   return (
                     <span key={ch} style={{ marginLeft: idx === 0 ? 0 : 10, whiteSpace: "nowrap" }}>
                       <span style={{ color: t.propLabel }}>{indexLabel} </span>

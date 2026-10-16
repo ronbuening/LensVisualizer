@@ -21,3 +21,15 @@ export function compiledLensFromRuntime(runtime: RuntimeLens): CompiledLens {
   if (!compiled) throw new Error("RuntimeLens was not constructed by the canonical compiler");
   return compiled;
 }
+
+/**
+ * Read the unexpanded canonical input for worker transport.
+ *
+ * @param lens - runtime returned by the canonical compiler
+ * @returns canonical prescription, provenance and optional composition descriptor
+ */
+export function canonicalLensFromRuntime(lens: RuntimeLens): IngestedPrescription<CanonicalLens> {
+  const canonical = canonicalForView(compiledLensFromRuntime(lens).source);
+  if (!canonical) throw new Error("RuntimeLens has no canonical prescription");
+  return canonical;
+}

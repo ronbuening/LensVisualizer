@@ -7,45 +7,10 @@
 
 import { runtimeView } from "./prescription/runtimeView.js";
 import type { LayoutResult, LensData, RuntimeLens } from "../types/optics.js";
+import type { CanonicalLens, IngestedPrescription } from "./prescription/canonical.js";
 import type { CompiledLens, PreparedOpticalState } from "./types.js";
-import { compiledLensFromRuntime, compileLensData } from "./prescription/compile.js";
-import { prepareState } from "./state/prepareState.js";
-import type { PreparedStateCache } from "./state/cache.js";
-
-const PREPARED_STATE_CACHE_BY_RUNTIME = new WeakMap<RuntimeLens, PreparedStateCache>();
-const PREPARED_STATE_CACHE_LIMIT = 96;
-
-function preparedStateCacheForRuntime(L: RuntimeLens): PreparedStateCache {
-  const cached = PREPARED_STATE_CACHE_BY_RUNTIME.get(L);
-  if (cached) return cached;
-
-  const byKey = new Map<string, PreparedOpticalState>();
-  const cache: PreparedStateCache = {
-    get(cacheKey) {
-      const state = byKey.get(cacheKey);
-      if (state) {
-        byKey.delete(cacheKey);
-        byKey.set(cacheKey, state);
-      }
-      return state;
-    },
-    set(cacheKey, state) {
-      if (byKey.has(cacheKey)) byKey.delete(cacheKey);
-      byKey.set(cacheKey, state);
-      while (byKey.size > PREPARED_STATE_CACHE_LIMIT) {
-        const oldestKey = byKey.keys().next().value;
-        if (oldestKey === undefined) break;
-        byKey.delete(oldestKey);
-      }
-    },
-    clear() {
-      byKey.clear();
-    },
-  };
-  PREPARED_STATE_CACHE_BY_RUNTIME.set(L, cache);
-  return cache;
-}
-
+import { compiledLensFromRuntime, compileLensData, compileLens } from "./prescription/compile.js";
+import { prepareState } from "./state/preparedGeometry.js";
 /**
  * Build and register a RuntimeLens from defaulted lens data.
  *
@@ -54,6 +19,16 @@ function preparedStateCacheForRuntime(L: RuntimeLens): PreparedStateCache {
  */
 export function buildLens2(data: LensData): RuntimeLens {
   return runtimeView(compileLensData(data));
+}
+
+/**
+ * Compile a transported canonical input and publish its compatibility view.
+ *
+ * @param input - canonical lens and source provenance, before rear-plate expansion
+ * @returns frozen runtime sharing one successful compilation per prescription identity
+ */
+export function buildCanonicalLens(input: IngestedPrescription<CanonicalLens>): RuntimeLens {
+  return runtimeView(compileLens(input));
 }
 
 /**
@@ -84,9 +59,7 @@ export function prepareRuntimeState(
   zoomT: number,
   aberrationT = 0,
 ): PreparedOpticalState {
-  return prepareState(engineLensFromRuntime(L), focusT, zoomT, aberrationT, {
-    cache: preparedStateCacheForRuntime(L),
-  });
+  return prepareState(engineLensFromRuntime(L), focusT, zoomT, aberrationT);
 }
 
 /**

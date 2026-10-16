@@ -14,13 +14,32 @@
  * otherwise moves to the nearest node written from one of its ancestors, or to the home of a container the converted
  * file dissolves; there it leads that node (or ends the file's object, when that is all it finds), and its text
  * opens with "(moved from <source path>)" unless it already does. A run of comments moved together from one source
- * path takes that note once, on its first comment. Header comments stay in the kept header.
+ * path takes that note once, on its first comment, except a directive such as `// prettier-ignore`, which always
+ * takes its own so that no moved comment is a bare directive. Header comments stay in the kept header.
+ *
+ * A node's trailing comments share its line: its one-line block comments first, then at most one comment that ends
+ * the line, a line comment or a block comment spanning lines. A further one, when two such comments come to one node,
+ * leads that node, after its own leading comments, in source order. A node's own comments lead it before any run
+ * moved to it, so that a moved-from note is followed by its run alone.
  */
 
 /** Whether a comment opens with a moved-from note, in any spelling: a comment that does takes no second one. */
 function hasNote(text) {
   const body = text.startsWith("//") ? text.slice(2) : text.slice(2, -2);
   return body.trimStart().startsWith("(moved from");
+}
+
+/** A comment that tells a tool what to do with the code after it, which a moved comment must never be bare. */
+const DIRECTIVE = /^\s*(?:prettier-ignore|eslint-|@ts-)/;
+
+/** Whether a comment is a directive. */
+function isDirective(text) {
+  return DIRECTIVE.test(text.startsWith("//") ? text.slice(2) : text.slice(2, -2));
+}
+
+/** Whether a trailing comment must end its line: a line comment, or a block comment that spans lines. */
+function endsLine(comment) {
+  return comment.text.startsWith("//") || comment.text.includes("\n");
 }
 
 /** The text of a comment moved from `from`, its moved-from note inside it so a directive stays inert. */
@@ -117,10 +136,10 @@ export function placeComments({ comments, commentTarget, textKept, isContainer }
     }
     if (target.moved) {
       const inRun = continued?.from === comment.path && continued.to === target.path;
-      const text = inRun ? comment.text : movedCommentText(comment.text, comment.path);
+      const text = inRun && !isDirective(comment.text) ? comment.text : movedCommentText(comment.text, comment.path);
       moved.push({ from: comment.path, to: target.path, line: comment.line, text: comment.text });
       const placement = target.path === "" ? "dangling" : "leading";
-      slot(target.path)[placement].push({ text, pos: comment.pos, blankBefore: false });
+      slot(target.path)[placement].push({ text, pos: comment.pos, blankBefore: false, moved: true });
       run = { from: comment.path, to: target.path };
       continue;
     }
@@ -130,6 +149,10 @@ export function placeComments({ comments, commentTarget, textKept, isContainer }
   }
   for (const entry of byPath.values()) {
     for (const list of Object.values(entry)) list.sort((a, b) => a.pos - b.pos);
+    const enders = entry.trailing.filter(endsLine);
+    entry.trailing = [...entry.trailing.filter((comment) => !endsLine(comment)), ...enders.slice(0, 1)];
+    const moved = entry.leading.filter((comment) => comment.moved);
+    entry.leading = [...entry.leading.filter((comment) => !comment.moved), ...enders.slice(1), ...moved];
   }
   return { byPath, moved, unattached };
 }
@@ -174,6 +197,43 @@ export function commentNotCarried(sourceComments, outputComments) {
   const [extra] = remaining.keys();
   if (extra === undefined) return undefined;
   return `the converted file holds a comment its source does not, or holds one twice: ${firstLine(extra)}`;
+}
+
+/**
+ * The first comment the printed text gives another node or placement than the placer did, or the first it holds that
+ * the placer placed nowhere. The reader attaches a comment by position, so the printer's layout is what a second
+ * conversion reads.
+ *
+ * @param {Map<string, { leading: { text: string }[], trailing: { text: string }[], dangling: { text: string }[] }>}
+ *   byPath - the comments each converted node carries, as `placeComments` placed them
+ * @param {import("./read.mjs").ReadComment[]} printedComments - the comments of the printer's text
+ * @returns {string | undefined} why the converted file is refused, or nothing when each comment is where it was placed
+ */
+export function commentMisplaced(byPath, printedComments) {
+  /* A comment inside a literal whose text the file keeps rides with the literal; the placer does not place it. */
+  const printed = printedComments.filter((comment) => comment.placement !== "header" && !comment.withinText);
+  const read = new Map();
+  for (const comment of printed) {
+    const key = `${comment.path}\u0000${comment.placement}`;
+    if (!read.has(key)) read.set(key, []);
+    read.get(key).push(comment.text);
+  }
+  const place = (path, placement) => `the ${placement} comment of ${path || "(root)"}`;
+  let count = 0;
+  for (const [path, slots] of byPath) {
+    for (const placement of ["leading", "trailing", "dangling"]) {
+      const at = read.get(`${path}\u0000${placement}`) ?? [];
+      for (const [index, { text }] of slots[placement].entries()) {
+        count++;
+        if (at[index] === text) continue;
+        const found = printed.find((comment) => comment.text === text);
+        const there = found ? place(found.path, found.placement) : "nothing";
+        return `the printed file reads ${place(path, placement)} as ${there}: ${firstLine(text)}`;
+      }
+    }
+  }
+  if (printed.length !== count) return `the printed file holds ${printed.length} comments, not the ${count} placed`;
+  return undefined;
 }
 
 /**

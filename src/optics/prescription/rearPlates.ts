@@ -10,7 +10,6 @@ import {
 } from "./canonical.js";
 import { canonicalConstructionData, toLensData } from "./toLensData.js";
 import { canonicalForView } from "./identity.js";
-import { canonicalFromComposedPair } from "./compileComposed.js";
 import { ingestLens } from "./ingestV2.js";
 
 export const REAR_PLATE_LABEL_PATTERN = /^RP\d+[ab]$/;
@@ -129,8 +128,7 @@ function generatedElementEcho(element: LensData["elements"][number], plate?: Rea
 /** Compatibility projection for composition's paraxial pass and report scans. No second plate algorithm. */
 export function expandRearPlates(data: LensData): LensData {
   if (!data.rearPlates?.length) return data;
-  const ingested =
-    canonicalForView(data) ?? (data.attachedTeleconverter ? canonicalFromComposedPair(data) : ingestLens(data));
+  const ingested = canonicalForView(data) ?? ingestLens(data);
   return expandedConstruction(ingested, data.attachedTeleconverter, data).source;
 }
 

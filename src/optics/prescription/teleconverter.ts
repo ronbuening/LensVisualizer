@@ -4,7 +4,7 @@
  * `attachTeleconverter()` returns an ordinary `LensData`: host surfaces, the junction gap, then the converter's
  * surfaces. Nothing downstream is converter-aware; the exact tracer, prepared states and every analysis see one
  * sequential lens whose stop is the host's. The composed data carries an `attachedTeleconverter` descriptor so the
- * UI can label the converter and so validation can tell composed data from authored data.
+ * UI can label the converter. Ingest precedes composition; the returned view retains canonical identity.
  *
  * Fit rules and spacing live in `teleconverterCompatibility.ts`; this module does the merge and the first-order
  * rescale of the host metadata that `buildLens()` trusts (`nominalFno`, design focal length, f-stop series).
@@ -22,6 +22,11 @@ import { buildLabelIndex } from "../prescription/compileLabels.js";
 import { buildStateSurfaces, buildVarIndex, zoomIndexToT } from "../prescription/compileControls.js";
 import { traceParaxialSurfaces2 as traceSurfacesParaxial } from "../math/paraxial.js";
 import { expandRearPlates } from "./rearPlates.js";
+import { isV1File, ingestTeleconverter } from "./ingestV2.js";
+import { canonicalForView } from "./identity.js";
+import { canonicalInput } from "./canonicalInput.js";
+import { toLensData, toTeleconverterData } from "./toLensData.js";
+import { composeTeleconverter } from "./composeTeleconverter.js";
 import { TELECONVERTER_LABEL_PREFIX, teleconverterCompatibility } from "./teleconverterCompatibility.js";
 
 /** Readout label for the host's last gap once it ends at the converter instead of the image plane. */
@@ -73,8 +78,8 @@ function round(value: number, decimals: number): number {
 /**
  * Merge a converter's prescription behind a host's, without touching first-order metadata.
  *
- * Shared by `attachTeleconverter()` and teleconverter validation, which merges behind a powerless reference host
- * whose focal ratio is undefined.
+ * Untrusted teleconverter validation merges behind a powerless reference host before ingest can succeed.
+ * Production composition uses canonical records in `composeTeleconverter.ts`.
  *
  * - The host's last gap (scalar, focus/zoom table and aberration-control entry) becomes the junction gap. When a
  *   lens-side plate sits ahead of the converter the last gap is left alone — it still ends at that plate — and
@@ -308,7 +313,7 @@ function composedSpecs(host: LensData, tc: TeleconverterData, focalLengths: numb
  * the exact paraxial ratio r = EFL(composed) / EFL(host): the entrance pupil EFL / (2·Fno) is then unchanged, and the
  * real trace to the stop — which only touches surfaces ahead of it — lands on the same radius.
  *
- * @param host - host lens data (after defaults merging)
+ * @param host - host lens data, with or without catalog defaults
  * @param tc - teleconverter data
  * @returns composed lens data ready for `buildLens()`
  * @throws TeleconverterAttachError when the pair fails a fit rule or has no finite focal ratio
@@ -317,7 +322,15 @@ export function attachTeleconverter(host: LensData, tc: TeleconverterData): Lens
   const fit = teleconverterCompatibility(host, tc);
   if (!fit.ok) throw new TeleconverterAttachError(host.key, tc.key, fit.reason);
 
-  const merged = mergeTeleconverterPrescription(host, tc, fit.geometry);
+  /* Composition replaces host focal labels, including unused labels on a prime. */
+  const hostFile = { ...host };
+  if (isV1File(host)) delete hostFile.zoomLabels;
+  const hostInput = canonicalForView(host) ?? canonicalInput(hostFile);
+  const converterInput = ingestTeleconverter(tc);
+  host = toLensData(hostInput);
+  tc = toTeleconverterData(converterInput);
+  const pair = composeTeleconverter(hostInput, converterInput, fit.geometry);
+  const merged = toLensData(pair);
   const hostFocalLengths = infinityFocalLengths(host);
   const focalLengths = infinityFocalLengths(merged);
   const ratios = focalLengths.map((focalLength, station) => focalLength / hostFocalLengths[station]);
@@ -325,7 +338,6 @@ export function attachTeleconverter(host: LensData, tc: TeleconverterData): Lens
     throw new TeleconverterAttachError(host.key, tc.key, "first-order");
   }
 
-  const isZoom = ratios.length > 1;
   const firstRatio = ratios[0];
   const lastRatio = ratios[ratios.length - 1];
   const magnification = tc.magnification;
@@ -353,55 +365,46 @@ export function attachTeleconverter(host: LensData, tc: TeleconverterData): Lens
     ? IMAGE_FORMAT_BY_ID[host.imageFormat].diagonalMm
     : undefined;
 
-  const composed: LensData = {
-    ...merged,
-    key: `${host.key}-x-${tc.key}`,
-    name: `${host.name} + ${tc.name}`,
-    specs: composedSpecs(host, tc, focalLengths, fNumbers),
-    ...(fNumbers.length > 0 ? { nominalFno: isZoom ? fNumbers : fNumbers[0] } : {}),
-    ...(host.focalLengthDesign !== undefined
-      ? { focalLengthDesign: scaleFocal(host.focalLengthDesign, firstRatio, lastRatio) }
-      : {}),
-    ...(host.focalLengthMarketing !== undefined
-      ? { focalLengthMarketing: scaleFocal(host.focalLengthMarketing, magnification, magnification, 1) }
-      : {}),
-    ...(host.zoomPositions
-      ? { zoomPositions: host.zoomPositions.map((focal, station) => round(focal * ratios[station], 2)) }
-      : {}),
-    ...(host.apertureMarketing !== undefined
-      ? { apertureMarketing: round(host.apertureMarketing * magnification, 1) }
-      : {}),
-    ...(host.apertureDesign !== undefined ? { apertureDesign: host.apertureDesign * firstRatio } : {}),
-    /* Three decimals keep the first entry within the quick-stop filter's 0.001 window of the wide-open value. */
-    fstopSeries: host.fstopSeries.map((fStop) => round(fStop * firstRatio, 3)),
-    /* Rounded up so the last series entry is never filtered out by `value <= maxFstop`. */
-    maxFstop: Math.ceil(host.maxFstop * firstRatio * 10 - 1e-9) / 10,
-    closeFocusM: host.closeFocusM + extensionM,
-    ...(host.zoomCloseFocusM ? { zoomCloseFocusM: host.zoomCloseFocusM.map((distance) => distance + extensionM) } : {}),
-    /* A finite conjugate keeps its physical object; one measured from the first surface is already unchanged. */
-    ...(host.finiteConjugates
-      ? {
-          finiteConjugates: host.finiteConjugates.map((conjugate) =>
-            conjugate.distanceReference === "image-plane"
-              ? { ...conjugate, objectDistanceMm: conjugate.objectDistanceMm + extensionMm }
-              : conjugate,
-          ),
-        }
-      : {}),
-    /* imageCircleMm is the analysis field radius. A converter enlarges the circle, but the format still crops it. */
-    ...(host.imageCircleMm !== undefined && formatDiagonal !== undefined
-      ? { imageCircleMm: Math.max(host.imageCircleMm, Math.min(host.imageCircleMm * magnification, formatDiagonal)) }
-      : {}),
-    ...(host.projection ? { projection: narrowProjection(host.projection, firstRatio) } : {}),
-    ...(host.elementCount !== undefined && tc.elementCount !== undefined
-      ? { elementCount: host.elementCount + tc.elementCount }
-      : {}),
-    ...(host.groupCount !== undefined && tc.groupCount !== undefined
-      ? { groupCount: host.groupCount + tc.groupCount }
-      : {}),
-  };
-
-  /* Zoom labels would name the bare lens's focal lengths. */
-  delete composed.zoomLabels;
-  return composed;
+  const lens = pair.prescription;
+  lens.key = `${host.key}-x-${tc.key}`;
+  lens.name = `${host.name} + ${tc.name}`;
+  lens.catalog.specs = composedSpecs(host, tc, focalLengths, fNumbers);
+  if (fNumbers.length > 0) {
+    if (lens.zoom) {
+      delete lens.aperture.nominalFNumber;
+      lens.zoom.stations.forEach((station, index) => {
+        station.nominalFNumber = fNumbers[index];
+      });
+    } else lens.aperture.nominalFNumber = fNumbers[0];
+  }
+  if (host.focalLengthDesign !== undefined)
+    lens.catalog.focalLengthMm!.design = scaleFocal(host.focalLengthDesign, firstRatio, lastRatio);
+  if (host.focalLengthMarketing !== undefined)
+    lens.catalog.focalLengthMm!.marketing = scaleFocal(host.focalLengthMarketing, magnification, magnification, 1);
+  lens.zoom?.stations.forEach((station, index) => {
+    station.focalLengthMm = round(host.zoomPositions![index] * ratios[index], 2);
+    if (station.closeFocusM !== undefined) station.closeFocusM += extensionM;
+    delete station.label;
+  });
+  if (host.apertureMarketing !== undefined)
+    lens.catalog.fNumber!.marketing = round(host.apertureMarketing * magnification, 1);
+  if (host.apertureDesign !== undefined) lens.catalog.fNumber!.design = host.apertureDesign * firstRatio;
+  /* Keep the quick-stop filter's rounding and ceiling exactly as on the bare host. */
+  lens.aperture.fStops = host.fstopSeries.map((fStop) => round(fStop * firstRatio, 3));
+  lens.aperture.maxFNumber = Math.ceil(host.maxFstop * firstRatio * 10 - 1e-9) / 10;
+  lens.focus.closeFocusM = host.closeFocusM + extensionM;
+  for (const conjugate of lens.focus.conjugates ?? []) {
+    if (conjugate.distanceReference === "image-plane") conjugate.objectDistanceMm += extensionMm;
+  }
+  if (host.imageCircleMm !== undefined && formatDiagonal !== undefined)
+    lens.catalog.imageCircleMm = Math.max(
+      host.imageCircleMm,
+      Math.min(host.imageCircleMm * magnification, formatDiagonal),
+    );
+  if (host.projection) lens.projection = narrowProjection(host.projection, firstRatio);
+  if (host.elementCount !== undefined && tc.elementCount !== undefined)
+    lens.catalog.elementCount = host.elementCount + tc.elementCount;
+  if (host.groupCount !== undefined && tc.groupCount !== undefined)
+    lens.catalog.groupCount = host.groupCount + tc.groupCount;
+  return toLensData(pair);
 }

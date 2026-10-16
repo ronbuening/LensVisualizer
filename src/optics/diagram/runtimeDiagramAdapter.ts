@@ -6,9 +6,8 @@
 
 import type { ElementRenderDiagnostics, ElementShape, RuntimeLens, SurfaceAccentPathData } from "../../types/optics.js";
 import { compiledLensFromRuntime } from "../prescription/compile.js";
-import { createTraceGeometry } from "../trace/geometry.js";
-import { prepareState } from "../state/prepareState.js";
-import type { CompiledStateSurface, PreparedOpticalState } from "../types.js";
+import { prepareState, stateWithZ } from "../state/preparedGeometry.js";
+import type { PreparedOpticalState } from "../types.js";
 import { createCoordinateTransforms2 } from "./coordinateTransforms.js";
 import { computeElementShapesForState2 } from "./elementShapes.js";
 import { computeElementRenderDiagnosticsForState2 } from "./renderDiagnostics.js";
@@ -59,31 +58,7 @@ export function computeElementShapes2(
  * @returns prepared optical state suitable for diagram geometry helpers
  */
 export function stateForRuntimeDiagram2(L: RuntimeLens, zPos: readonly number[]): PreparedOpticalState {
-  return stateWithDiagramZ2(prepareState(compiledLensFromRuntime(L), 0, 0, 0), zPos);
-}
-
-function stateWithDiagramZ2(state: PreparedOpticalState, zPos: readonly number[]): PreparedOpticalState {
-  if (zPos.length === 0 || zPos.every((z, index) => z === state.z[index])) return state;
-  const surfaces = state.surfaces.map((surface, index) => {
-    const z = zPos[index] ?? surface.z;
-    const d = index < state.surfaces.length - 1 && zPos[index + 1] !== undefined ? zPos[index + 1] - z : surface.d;
-    return Object.freeze({ ...surface, z, d }) as CompiledStateSurface;
-  });
-  const frozenSurfaces = Object.freeze(surfaces);
-  const frozenZ = Object.freeze([...zPos]);
-  return Object.freeze({
-    ...state,
-    surfaces: frozenSurfaces,
-    z: frozenZ,
-    traceGeometry: createTraceGeometry({
-      surfaces: frozenSurfaces,
-      z: frozenZ,
-      imagePlane: state.imagePlane,
-      stopSurfaceIndex: state.lens.stop.surfaceIndex,
-      pathPlan: state.lens.opticalPath,
-      isFoldedOptics: state.lens.flags.isFoldedOptics,
-    }),
-  });
+  return stateWithZ(prepareState(compiledLensFromRuntime(L), 0, 0, 0), zPos, "preserve");
 }
 
 /** Render reflecting interfaces that are not boundaries of a transmissive glass body. */

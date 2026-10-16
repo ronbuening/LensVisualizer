@@ -294,15 +294,31 @@ describe("buildLens — canonical ingest", () => {
     expect(withLensDefaults(ApoLantharRaw as unknown as LensData)).toEqual(toLensData(ingestLensV1(ApoLantharRaw)));
   });
 
-  it("builds a composed pair as it is, known only by the marker attachTeleconverter writes", () => {
+  it("builds a composed pair through its canonical association", () => {
     const composed = attachTeleconverter(teleconverterHostData(), teleconverterFixture());
     expect(composed.attachedTeleconverter).toBeDefined();
-    /* Ingest refuses the marker, so a pair that builds did not pass through it. */
+    /* A copy loses the canonical association and cannot author the composer-only marker. */
     expect(() => ingestLensV1(composed as unknown as LensDataInput)).toThrow(/attachedTeleconverter is written only/);
+    expect(() => buildLens({ ...composed })).toThrow(/attachedTeleconverter is written only/);
     const forBuild = withLensDefaults(composed);
     expect(forBuild).toEqual(composed);
     expect(forBuild).not.toBe(composed);
     expect(buildLens(composed).EFL).toBeGreaterThan(buildLens(teleconverterHostData()).EFL);
+  });
+
+  it("composes and builds a raw host that omits catalog defaults", () => {
+    const host: Partial<LensData> = { ...teleconverterHostData() };
+    for (const field of Object.keys(v1CatalogDefaults())) delete host[field as keyof LensData];
+    expect(host).not.toHaveProperty("focusStep");
+    const composed = attachTeleconverter(host as LensData, teleconverterFixture());
+    expect(buildLens(composed).EFL).toBeGreaterThan(buildLens(host as LensData).EFL);
+  });
+
+  it("refuses an explicitly undefined host default before ingest can repair it", () => {
+    const host = { ...teleconverterHostData(), focusStep: undefined } as unknown as LensData;
+    expect(() => attachTeleconverter(host, teleconverterFixture())).toThrow(
+      'Missing or non-finite required number field: "focusStep"',
+    );
   });
 });
 

@@ -69,6 +69,7 @@ Exit codes:
   2  with --write, a failed write or rename, after every input already replaced is put back (under --output, every
      file already written is removed)
   2  SIGINT or SIGTERM while writing, after the same restore
+  2  an error writing stdout or stderr, other than a reader closing its pipe, once the run is over
   2  a usage error: an unknown, repeated or valueless flag, no --input, two of --dry-run, --check and --write,
      --output without --write, or a --to-version other than 1 or 2
 `;
@@ -142,9 +143,12 @@ function realPath(fs, path) {
   }
 }
 
-/** Whether one directory path is the other or lies inside it, as directories, not as strings. */
+/**
+ * Whether one directory path is the other or lies inside it, as directories, not as strings, and without regard to
+ * case, as collisions are compared: on a file system that ignores case, `casein/out` lies inside `CaseIn`.
+ */
 function within(path, directory) {
-  const rest = relative(directory, path);
+  const rest = relative(directory.toLowerCase(), path.toLowerCase());
   return rest === "" || (rest !== ".." && !rest.startsWith(`..${sep}`) && !isAbsolute(rest));
 }
 
@@ -169,10 +173,10 @@ function besidePath(path, pid, suffix) {
   return join(dirname(path), `.${basename(path)}.${pid}.${suffix}`);
 }
 
-/** Whether a name is a backup some run kept of the file `name`. */
+/** Whether a name is a backup some run kept of the file `name`, without regard to case. */
 function isBackupOf(entry, name) {
-  const prefix = `.${name}.`;
-  return entry.startsWith(prefix) && /^\d+\.convert-bak$/.test(entry.slice(prefix.length));
+  const prefix = `.${name}.`.toLowerCase();
+  return entry.toLowerCase().startsWith(prefix) && /^\d+\.convert-bak$/.test(entry.slice(prefix.length));
 }
 
 /**
@@ -258,6 +262,21 @@ function lineFeedText(text) {
   return { text: lf, crlf: true };
 }
 
+/**
+ * Create a file that must not exist yet and write its bytes. The path is recorded as soon as the file exists, before
+ * any byte is written, so a write that fails part way (a full disk, a file-size limit) leaves a file the run knows it
+ * created and removes.
+ */
+function writeNewFile(fs, path, data, record) {
+  const descriptor = fs.openSync(path, "wx");
+  record(path);
+  try {
+    fs.writeFileSync(descriptor, data);
+  } finally {
+    fs.closeSync(descriptor);
+  }
+}
+
 /** Yield to the event loop, so a signal that arrived is handled before the next write. */
 function yieldToSignals() {
   return new Promise((resolveYield) => setImmediate(resolveYield));
@@ -295,16 +314,12 @@ async function writeConverted(fs, converted, inPlace, { pid, signals, warn }) {
         for (let at = dirname(entry.destination); !fs.existsSync(at); at = dirname(at)) createdDirectories.push(at);
         fs.mkdirSync(dirname(entry.destination), { recursive: true });
       }
-      const temp = besidePath(entry.destination, pid, "convert-tmp");
-      fs.writeFileSync(temp, text, { flag: "wx" });
-      temps.set(entry, temp);
+      writeNewFile(fs, besidePath(entry.destination, pid, "convert-tmp"), text, (temp) => temps.set(entry, temp));
       await checkSignal();
     }
     if (inPlace) {
       for (const { entry, bytes } of converted) {
-        const backup = besidePath(entry.path, pid, "convert-bak");
-        fs.writeFileSync(backup, bytes, { flag: "wx" });
-        backups.set(entry, backup);
+        writeNewFile(fs, besidePath(entry.path, pid, "convert-bak"), bytes, (backup) => backups.set(entry, backup));
         await checkSignal();
       }
       for (const { entry } of converted) {
@@ -388,6 +403,17 @@ export async function runConversion(run) {
   const { stdout, stderr } = run;
   const fs = run.fs ?? nodeFs;
   const warn = (line) => stderr.write(`convert-lens-data: ${line}\n`);
+  /*
+   * A reader that closes its end of a pipe (`| head`) fails the next write to it, which a stream reports as an `error`
+   * event that, unheard, would end the process part way through the write phase. The run hears every such event: a
+   * closed pipe is ignored, the report's reader having gone, and any other stream error turns the exit code to 2 once
+   * the run is over, never part way through it.
+   */
+  const streamErrors = [];
+  const onStreamError = (error) => {
+    if (error?.code !== "EPIPE" && error?.code !== "ERR_STREAM_DESTROYED") streamErrors.push(error);
+  };
+  for (const stream of [stdout, stderr]) stream.on?.("error", onStreamError);
   let args;
   let inputs;
   try {
@@ -516,5 +542,6 @@ export async function runConversion(run) {
     return 2;
   }
   warn(count);
+  if (streamErrors.length > 0) return 2;
   return args.mode === "check" && converted.length > 0 ? 1 : 0;
 }

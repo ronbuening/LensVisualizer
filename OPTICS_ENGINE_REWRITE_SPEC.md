@@ -1026,6 +1026,8 @@ const LENS_DATA = {
     // …
   ],
 
+  /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients (with patent errata corrected) ── */
   surfaces: [
     // ── G1: Negative front group (f₁ = −32.86 mm) ──
     { label: "1", R: 71.885, d: 1.2, sd: 15.5, medium: 1 }, // L1a front
@@ -1063,7 +1065,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.35,
     description:
-      "Internal focus via G3 (2 elements, stepping motor). G3 translates toward image for close focus; …",
+      "Internal focus via G3 (2 elements, stepping motor). G3 translates toward image for close focus; close-focus gaps are calculated (patent gives infinity gaps only).",
   },
 
   /* (moved from var) ── Variable air spacings ── */
@@ -1097,7 +1099,7 @@ const LENS_DATA = {
 **Field order.** The converter prints each record's fields in the declaration order of the V2 types
 (`src/types/lensDataV2.ts`), which the field-mapping table below follows, and opens each top-level group with a blank
 line, so diffs between files stay comparable. `toLensDataV2.ts` writes that order and names the group starts
-(`V2_GROUP_STARTS`) beside it.
+(`V2_GROUP_STARTS`) and the lists of rows (`V2_ROW_LISTS`) beside it; the printer holds no list of V2 fields.
 
 ### Field mapping
 
@@ -1238,8 +1240,8 @@ The stop radius has exactly one authority per lens:
   - **Gap order.** Fields print in the field order above. Gaps print in surface order from the canonical list, because
     a JavaScript object lists integer-like keys first and would move `STO` and `14A` after every numbered gap (200
     files); `var` prints the same way going to V1.
-  - **Blank lines.** One blank line separates the top-level groups, as in the Shape excerpt, and a row of `surfaces`
-    or `elements` keeps a blank line its source had before it or before one of its leading comments.
+  - **Blank lines.** One blank line separates the top-level groups, as in the Shape excerpt, and a row of a list of
+    rows (`surfaces`, `elements`) keeps a blank line its source had before it or before one of its leading comments.
   - **A V2 source** keeps its comments and number tokens at the same paths, its media's ids, names and order, its
     explicit zero aspheric terms, and a numeric flat radius other than `1e15`. Zero padding is dropped only from a V1
     source. Printing the converter's own V2 output again gives the same bytes.
@@ -1279,15 +1281,27 @@ The stop radius has exactly one authority per lens:
   Comments never become data fields.
   - A comment that led a top-level V1 field leads the V2 record that field opens, when the field is the first member
     written into that record, and a comment that led the file's first field leads `schema`. Neither is moved nor
-    prefixed. `v2SourceMap` in `toLensDataV2.ts` states the rule.
+    prefixed. The first field is the first member as written, whatever it holds, and its rule comes first, even for a
+    field V2 dissolves (`asph`, `var`). It is a V1 rule: a V2 source's first field keeps its comments. `v2SourceMap`
+    in `toLensDataV2.ts` states the rule.
   - A comment whose node has no V2 counterpart is emitted at the nearest mapped ancestor, or at the home of the
     container it sat in, leading that node (or ending the file's object, when that is all it finds). It is prefixed
     `(moved from <V1 path>)` inside the comment, unless it already begins so, and listed in the conversion report. A
-    run of consecutive comments moved together from one V1 path takes the prefix once, on its first comment; the
-    report lists every comment of the run.
+    run of consecutive comments moved together from one V1 path takes the prefix once, on its first comment, except a
+    directive (`// prettier-ignore`), which takes its own, so no moved comment is a bare directive; the report lists
+    every comment of the run. A node's own comments lead it before every run moved to it, so that a note is followed
+    by its run alone.
+  - A node's trailing comments share its line: its one-line block comments first, then at most one comment that ends
+    the line (a line comment, or a block comment spanning lines). When two such comments come to one node, as a V1
+    surface's `nd` and `elemId` both come to its `medium`, the first trails the node and each later one leads it,
+    after its own leading comments, in source order.
+  - The reader attaches by position, as Prettier does: a block comment with nothing but spaces between it and the next
+    entry, on the same line, leads that entry. A comment inside a spread, whose items are never read, is refused, as a
+    comment outside the object is.
   - The converter refuses a file unless every source comment, header included, is in the converted file once, as
-    written or with its prefix, and unless formatting left every comment on the node and in the placement the printer
-    gave it, so that converting the output again carries none elsewhere.
+    written or with its prefix; unless the printed text reads every comment on the node and in the placement the
+    placer gave it; and unless formatting left each there, so that converting the output again carries none
+    elsewhere.
 - **Dropped stop radii.** For every dropped stop radius, the conversion report lists:
   - the authored radius as written, then the radius the engine uses in its place, labelled "engine radius" with no
     method, to 0.001 mm:
@@ -1313,7 +1327,9 @@ The stop radius has exactly one authority per lens:
     no other text: any other note, or one that names a node not written from inside, is comment text.
   - "Written from inside" a node: a V1 node whose value, record or held copy was read from at or below it, or a V1
     container V1 ingest homes there (`publishedStations` in the stations), when the V1 file writes the container with
-    something in it; an empty `var` is not written from inside `focus`.
+    something in it. A container a note names that the V1 view would leave out (`asph` on an all-spherical lens, an
+    empty `var`) is written empty when the node the note's comment leads holds the container's home, and the run
+    returns to it; otherwise it is not written.
   - Otherwise a comment keeps its node's V1 counterpart. A comment that leads a member V1 has no counterpart for,
     below no record that has one (`focus`, `gaps`, `catalog.focalLengthMm`, `zoom.stations`), is a banner, the
     inverse of the rule going to V2: it leads the first V1 member written from inside that member, in V1 order with
@@ -1634,8 +1650,9 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - `buildLens` knows a composed pair only by the `attachedTeleconverter` marker `attachTeleconverter()` writes, an
       object, never by a flag a caller passes, and builds it without ingest: its host and converter each came through
       ingest in their catalogs. This is a temporary seam; S5.P1.T4 moves composition onto the canonical form. A pair
-      composed from a host file without the catalog defaults therefore no longer builds; 31 of the 38 permitted pairs
-      built that way on `engine-next` before this step.
+      composed from a host file without the catalog defaults did not build during that seam; 31 of the 38 permitted
+      pairs built that way on `engine-next` before this step. S5.P1.T4 restores composition from those hosts through
+      validator-first ingest and builds composed pairs only through their canonical association.
     - Nothing outside tests spreads the defaults table but the validator-first spread below. Lens data gets its
       defaults through ingest and the V1 view. `buildLens.ts` re-exports `toLensData` and `toTeleconverterData` for
       code outside the engine, as the seam guard requires; the re-export is temporary and leaves with the V1 view at
@@ -1889,10 +1906,15 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     - every record's member order, on a maximal synthetic lens whose source lists each record's members backwards;
     - the layout rulings: section banners, the first field's banner on `schema`, an empty `var`'s comments on
       `focus`, a label pair's on the gap it names, and one prefix for a moved run;
-    - a V2 source given back as written, its comments on `schema` and on published-list items included;
-      `// prettier-ignore`, the whole file; a spread in a list; a literal inside `as const` or parentheses;
+    - a V2 source given back as written, its comments on `schema` and on published-list items included, and the
+      comment over a first field other than `schema` kept on it; `// prettier-ignore`, the whole file; a spread in a
+      list and in a record, whose items print from their values; a literal inside `as const` or parentheses;
+    - the banner over a first `asph` on `schema`; two trailing comments on one node, block and line, and two line
+      comments that come to one `medium`; a directive in a moved run; a block comment just before a station's
+      f-number; each converted again to the same bytes;
     - the file's frame and each of its refusals, and one refusal of each other kind, among them a comment the
-      converted file does not hold, one it holds twice, and one that formatting gives another node.
+      converted file does not hold, one it holds twice, one the printed text reads elsewhere than it was placed, one
+      that formatting gives another node, and a comment inside a list spread and inside a record spread.
   - **Gate:** C0.
 - **S2.P3.T2 CLI and safety.**
   - **Change:** add `scripts/convert-lens-data.mjs` and its `npm run convert:lens-data` script
@@ -1936,8 +1958,8 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     and `*.convert-bak` are in `.gitignore`, and the next run refuses while a backup sits beside an input.
   - **V2 to V1:** the V1 view without catalog defaults, its top-level members printed in `V1_PRINT_ORDER` (the
     declaration order of `LensData` and `TeleconverterData`; the view writes a lens's tail in another order, and
-    keeps it) with a blank line before the first member of each section `V1_GROUP_STARTS` opens, both in
-    `toLensData.ts`. A record below the top prints as the view writes it (a surface's `elemId` before its `sd`, as
+    keeps it) with a blank line before the first member of each section `V1_GROUP_STARTS` opens, and the rows of the
+    lists `V1_ROW_LISTS` names keeping their source's blank lines, all in `toLensData.ts`. A record below the top prints as the view writes it (a surface's `elemId` before its `sd`, as
     all 17,933 catalog surface rows write it), a record keyed by surface label in surface order. The comment mapping is engine-owned, `v1SourceMap` in `src/optics/prescription/`, as
     [V2 to V1](#ingest-conversion-and-comments) states it, and the report lists each moved comment and each medium
     name V1 cannot hold.
@@ -2008,9 +2030,9 @@ spec–code contradictions below, may go to `main` at any time as ordinary docum
   Fix the ten spec–code contradictions while rewriting. They include:
   - the stop `sd`;
   - `zoomCloseFocusM` listed as required;
-  - the `lensShiftFrac` default: 0.08 in the defaults table, `lensShiftFrac || 0` in `buildLens`;
-  - the `offAxisFieldFrac` default, found in S2.P1.T1: 0.6 in the table, `L.offAxisFieldFrac ?? 0.7` in the
-    chromatic ray-fan summary;
+  - the `lensShiftFrac` default: 0.08 in the defaults table (the dead `|| 0` reader fallback was removed in S5.P2.T3);
+  - the `offAxisFieldFrac` default, found in S2.P1.T1: 0.6 in the table (the dead `?? 0.7` chromatic ray-fan
+    fallback was removed in S5.P2.T3);
   - the `zoomStep` default;
   - stale `var` pair wording;
   - "groups are purely visual".
@@ -2573,6 +2595,11 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
     - the MTF worker receives the canonical prescription and compiles it once, which deletes the strip-and-rebuild of
       synthetic plates in `src/components/hooks/mtf.worker.ts`.
   - **Tests:** the teleconverter suites and the converter-pair sweep; worker/main-thread equality.
+  - **As built:** The composer ingests both inputs, merges canonical records and returns an associated V1 view;
+    a composed pair builds only through its canonical association (copies are refused), and hosts without catalog
+    defaults compose and build through validator-first ingest. The trusted composed-pair adapter and ingest allowance
+    are removed. Worker init transports the unexpanded canonical input, provenance and descriptor and compiles once,
+    with compiled-record and MTF equality checked.
   - **Gate:** C0.
 - **S5.P2.T1 One owner for prepared geometry.**
   - **Change:** `state/preparedGeometry.ts` replaces every other prepared-state path with one bounded LRU (96 per
@@ -2584,6 +2611,10 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
       compared exactly. No string formatting.
     - **One z-override helper** replaces `stateWithRuntimeZ` and `stateWithDiagramZ2`.
   - **Tests:** cached results equal uncached; eviction; distinct nearby controls stay distinct.
+  - **As built:** One compiled-identity LRU retains 96 states by exact clamped controls with signed zero normalized;
+    runtime, field, first-order, analysis and diagram callers share it. The uncached builder is an explicit reference
+    path. One z helper preserves the existing camera-plane translation and diagram metadata modes; the field audit
+    reaches preparation through the public build barrel (it already used the compat facade at this step's base).
   - **Gate:** C0. Supersede decision 2026-07-06 (the `prepareState` cache).
 - **S5.P2.T2 One layout and one interpolation.**
   - **Change:** `state/layout.ts` and `state/stationTables.ts` replace the duplicate thickness, layout and zoom-table
@@ -2596,6 +2627,11 @@ The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the
   - **Change:** one dispersion table builder, one quality summary and one channel table in `chromatic/`.
     `src/types/optics.ts` stops importing a type from `src/optics/dispersion.ts`; the shared type moves into
     `src/types/`.
+  - **As built:** `chromatic/dispersionTable.ts` owns material-table construction and both descriptor views;
+    quality adapters share one table-summary loop, and channel wavelengths, reference-aware text and traversal
+    order derive from `chromatic/channels.ts`. Shared dispersion types live in `types/dispersion.ts`. The defaulted
+    construction projection requires `lensShiftFrac`; its dead fallback and the chromatic field-fraction fallback
+    are removed, preserving the defaults table's 0.08 and 0.6.
   - **Gate:** C0.
 
 **Stage 5 gate:** Tier S against the anchor; S5.P1.T1's tests show one compile and one material resolution per identity;
@@ -2916,6 +2952,9 @@ The maintainer also settled these on 2026-10-15, answering the S2.P3.T2 question
 | 74 | The banner round trip is tested on synthetic V1 files in the template's sections; the catalog's goes in the PR, with the banners that return on another member through `V1_PRINT_ORDER` | S2.P3.T2 |
 | 75 | The scripts keep their copies of the V1 rule, the engine's expression verbatim and tested to agree with `isV1File`, until S2.P5.T9 | S2.P3.T2; S2.P5.T9 |
 | 76 | A V1 surface prints `elemId` before `sd`, as the V1 view writes it | S2.P3.T2 |
+| — | Going to V1, a container a converter note names that the V1 view would leave out (`asph: {}`) is written empty, and the note's run returns to it (Q48) | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P3.T2 |
+
+Row — is numbered at S2.P3.T2's last merge of `engine-next`.
 
 The maintainer also settled these on 2026-10-16, answering the S2.P3.T3 questions:
 

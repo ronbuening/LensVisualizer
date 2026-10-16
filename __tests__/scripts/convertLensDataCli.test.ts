@@ -7,6 +7,7 @@
 
 import * as nodeFs from "node:fs";
 import { tmpdir } from "node:os";
+import { Writable } from "node:stream";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { afterEach, describe, expect, it } from "vitest";
@@ -235,8 +236,8 @@ describe("refusals", () => {
 });
 
 describe("collisions, refused before anything converts", () => {
-  async function collides(argv: string[], pattern: RegExp) {
-    const run = await cli(argv, { typeCheck: NO_TYPE_CHECK });
+  async function collides(argv: string[], pattern: RegExp, extra: Partial<ConversionRun> = {}) {
+    const run = await cli(argv, { typeCheck: NO_TYPE_CHECK, ...extra });
     expect(run.code).toBe(2);
     expect(run.stdout).toBe("");
     expect(run.stderr).toMatch(/^convert-lens-data: refused before converting anything: /);
@@ -246,8 +247,17 @@ describe("collisions, refused before anything converts", () => {
   it("two destinations that are one path without regard to case", async () => {
     const directory = temp();
     put(join(directory, "Fixture.data.ts"), V1_PRIME);
-    put(join(directory, "fixture.data.ts"), V1_PRIME);
-    await collides(["--input", directory], /Fixture\.data\.ts and .*fixture\.data\.ts would be written to one path/);
+    /* A file system that ignores case cannot hold both names, so the listing gives the second one. */
+    const list = nodeFs.readdirSync as unknown as (...args: unknown[]) => { name: string }[];
+    const twin = { name: "fixture.data.ts", isFile: () => true, isDirectory: () => false };
+    const fs = {
+      ...nodeFs,
+      readdirSync: (path: string, options?: { withFileTypes?: boolean }) =>
+        path === directory && options?.withFileTypes ? [...list(path, options), twin] : list(path, options),
+    };
+    await collides(["--input", directory], /Fixture\.data\.ts and .*fixture\.data\.ts would be written to one path/, {
+      fs,
+    });
   });
 
   it("an --output destination that exists", async () => {
@@ -270,6 +280,15 @@ describe("collisions, refused before anything converts", () => {
     const link = join(temp(), "link");
     symlinkSync(directory, link);
     await collides(["--input", directory, "--write", "--output", join(link, "out")], /lie one inside the other/);
+  });
+
+  it("--output inside --input, and a backup beside an input, without regard to case", async () => {
+    const base = temp();
+    const input = join(base, "CaseIn");
+    put(join(input, "a.data.ts"), V1_PRIME);
+    await collides(["--input", input, "--write", "--output", join(base, "casein", "out")], /lie one inside the other/);
+    writeFileSync(join(input, ".A.data.ts.4242.convert-bak"), "kept bytes");
+    await collides(["--input", input], /\.A\.data\.ts\.4242\.convert-bak, a backup a run left, sits beside/);
   });
 
   it("but not a sibling whose name begins with the input's", async () => {
@@ -327,8 +346,34 @@ describe("--output", () => {
 });
 
 describe("interrupted writes", () => {
+  /**
+   * A file system whose `count`th write to a file named `*<suffix>` writes part of its bytes and throws, as a full disk
+   * or a file-size limit does after the file is open.
+   */
+  function partialWrite(suffix: string, count: number) {
+    let calls = 0;
+    const names = new Map<number, string>();
+    const open = nodeFs.openSync as unknown as (...args: unknown[]) => number;
+    const write = nodeFs.writeFileSync as unknown as (...args: unknown[]) => void;
+    return {
+      ...nodeFs,
+      openSync: (path: string, ...rest: unknown[]) => {
+        const descriptor = open(path, ...rest);
+        names.set(descriptor, String(path));
+        return descriptor;
+      },
+      writeFileSync: (target: unknown, data: string | Uint8Array, ...rest: unknown[]) => {
+        if (typeof target === "number" && names.get(target)?.endsWith(suffix) && ++calls === count) {
+          nodeFs.writeSync(target, typeof data === "string" ? data.slice(0, 64) : data.subarray(0, 64));
+          throw Object.assign(new Error("injected EFBIG part way through a write"), { code: "EFBIG" });
+        }
+        write(target, data, ...rest);
+      },
+    };
+  }
+
   /** A file system that fails the `count`th call of one function on a temp file, or runs `after` on each. */
-  function failing(name: "writeFileSync" | "renameSync" | "linkSync", count: number, after?: () => void) {
+  function failing(name: "renameSync" | "linkSync", count: number, after?: () => void) {
     let calls = 0;
     const original = nodeFs[name] as (...args: unknown[]) => void;
     return {
@@ -341,16 +386,47 @@ describe("interrupted writes", () => {
     };
   }
 
-  it("a failure writing the second temp file leaves every input as it was, and no temp file", async () => {
+  it.each([
+    ["the second temp file", ".convert-tmp"],
+    ["the second backup", ".convert-bak"],
+  ])(
+    "a write that fails part way through %s leaves every input as it was, and no part of a file",
+    async (_, suffix) => {
+      const directory = catalog();
+      const before = snapshot(directory);
+      const run = await cli(["--input", directory, "--write"], {
+        fs: partialWrite(suffix, 2),
+        typeCheck: NO_TYPE_CHECK,
+      });
+      expect(run.code).toBe(2);
+      expect(snapshot(directory)).toEqual(before);
+      expect(run.stderr).toContain("writing failed: injected EFBIG part way through a write");
+      expect(run.stderr).toContain("no converted file is written, and every input is as it was");
+    },
+  );
+
+  it("under --output, a write that fails part way through a temp file removes every file and directory the run wrote", async () => {
     const directory = catalog();
-    const before = snapshot(directory);
-    const run = await cli(["--input", directory, "--write"], {
-      fs: failing("writeFileSync", 2),
+    const output = join(temp(), "out", "deeper");
+    const run = await cli(["--input", directory, "--write", "--output", output], {
+      fs: partialWrite(".convert-tmp", 2),
       typeCheck: NO_TYPE_CHECK,
     });
     expect(run.code).toBe(2);
-    expect(snapshot(directory)).toEqual(before);
-    expect(run.stderr).toContain("writing failed: injected writeFileSync failure");
+    expect(existsSync(dirname(output))).toBe(false);
+  });
+
+  it("a reader that closes the pipe the report goes to stops nothing: every input is written, and nothing is left beside it", async () => {
+    const directory = catalog();
+    const closed = new Writable({
+      write: (_chunk: unknown, _encoding: string, done: (error?: Error | null) => void) =>
+        done(Object.assign(new Error("write EPIPE"), { code: "EPIPE" })),
+    });
+    const run = await cli(["--input", directory, "--write"], { stdout: closed, typeCheck: NO_TYPE_CHECK });
+    expect(run.code).toBe(0);
+    const written = snapshot(directory);
+    expect(Object.keys(written)).toEqual(["a.data.ts", "b.data.ts", "c.data.ts"]);
+    for (const text of Object.values(written)) expect(text).toContain("schema: 2");
   });
 
   it("a failed rename after the first puts the first input back, and leaves no temp file or backup", async () => {
