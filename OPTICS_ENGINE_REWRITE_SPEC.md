@@ -2380,8 +2380,8 @@ under the rule in [Integration model](#integration-model). Stages 6 to 8, and Ph
 
   **Gate:** C0.
 - **S7.P4.T1 MTF on the request.**
-  - **Change:** `analysis/mtf/` consumes `AnalysisRequest` and `PreparedGeometry` and no longer reads
-    `state.lens.runtime`. Orchestration, OTF kernels, spectra, focus and field logic are unchanged, as decision
+  - **Change:** `analysis/mtf/` consumes `AnalysisRequest` and `PreparedGeometry` (S5.P1.T2 already removed the
+    `state.lens.runtime` reads, with the back-pointer, as the maintainer accepted on 2026-10-16). Orchestration, OTF kernels, spectra, focus and field logic are unchanged, as decision
     2026-10-07 requires.
   - **Tests:** `mtf`, `mtfConjugates`, `mtfDiffraction`, `mtfSpectral` and `mtfWavefront` unchanged.
   - **Gate:** C0.
