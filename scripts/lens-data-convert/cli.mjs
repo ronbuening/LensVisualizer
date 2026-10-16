@@ -4,9 +4,10 @@
  *
  * A run:
  * 1. collects the inputs (a file, or every `*.data.ts` and `*.teleconverter.ts` under a directory, in path order) and
- *    refuses, before converting any, a collision: two destinations that are one path without regard to case, an
- *    `--output` destination that exists, an `--output` directory inside the input or the input inside it (compared
- *    after resolving symbolic links, as directories), or a backup a run left beside an input;
+ *    refuses, before converting any, a directory it cannot list or a collision: two destinations that are one path
+ *    without regard to case, an `--output` destination that exists, an `--output` directory inside the input or the
+ *    input inside it (compared after resolving symbolic links, as directories), or a backup a run left beside an
+ *    input;
  * 2. reads each input and asks its version by the engine's rule (`lensDataVersion`); an input already at the target
  *    version is left as it is and gets no line, and a file of no version is refused;
  * 3. converts the others through the library (`convert.mjs`), reading a CR LF source as LF and refusing a lone CR;
@@ -66,7 +67,7 @@ Exit codes:
      diagnostic outside the converted files, or a failure of the type-check itself
   2  a collision, refused before anything converts: two destinations one path without regard to case, an --output
      destination that exists, --output inside --input or --input inside --output, or a backup
-     (.<name>.<pid>.convert-bak) a run left beside an input
+     (.<name>.<pid>.convert-bak) a run left beside an input; or a directory under --input that cannot be listed
   2  with --write, a failed write or rename, after every input already replaced is put back (under --output, every
      file already written is removed)
   2  SIGINT or SIGTERM while writing, after the same restore
@@ -80,6 +81,9 @@ class UsageError extends Error {}
 
 /** A collision found before anything converts. */
 class CollisionError extends Error {}
+
+/** An input directory that cannot be listed, found before anything converts. */
+class InputError extends Error {}
 
 /** A signal that arrived while the run was writing. */
 class SignalError extends Error {}
@@ -157,7 +161,12 @@ function within(path, directory) {
 function lensDataFiles(fs, directory) {
   const files = [];
   const walk = (at) => {
-    const entries = fs.readdirSync(at, { withFileTypes: true }).sort((a, b) => (a.name < b.name ? -1 : 1));
+    let entries;
+    try {
+      entries = fs.readdirSync(at, { withFileTypes: true }).sort((a, b) => (a.name < b.name ? -1 : 1));
+    } catch (error) {
+      throw new InputError(`${at} cannot be listed: ${error.message}`);
+    }
     for (const entry of entries) {
       if (entry.name.startsWith(".")) continue;
       const path = join(at, entry.name);
@@ -435,7 +444,7 @@ export async function runConversion(run) {
       stderr.write(`convert-lens-data: ${error.message}\n\n${USAGE}`);
       return 2;
     }
-    if (error instanceof CollisionError) {
+    if (error instanceof CollisionError || error instanceof InputError) {
       warn(`refused before converting anything: ${error.message}`);
       return 2;
     }
@@ -451,10 +460,11 @@ export async function runConversion(run) {
   let left = 0;
 
   for (const entry of inputs) {
-    const bytes = fs.readFileSync(entry.path);
+    let bytes;
     let version;
     let source;
     try {
+      bytes = fs.readFileSync(entry.path);
       source = new TextDecoder("utf-8", { fatal: true, ignoreBOM: true }).decode(bytes);
       version = conversion.lensDataVersion(evaluateLensDataSource(source, entry.file));
     } catch (error) {
@@ -517,6 +527,7 @@ export async function runConversion(run) {
   stdout.write(formatConversionReport(converted.map((item) => item.report)));
   const failed = refused.length > 0 || typeFailure !== undefined;
   let written = false;
+  let writeFailure;
   if (args.mode === "write" && !failed && converted.length > 0) {
     try {
       await writeConverted(fs, converted, inPlace, {
@@ -527,12 +538,10 @@ export async function runConversion(run) {
       written = true;
     } catch (error) {
       warn(`${error instanceof SignalError ? "stopped" : "writing failed"}: ${error.message}`);
-      warn(
+      writeFailure =
         error.restored === false
           ? "some inputs or outputs could not be restored; see above"
-          : "no converted file is written, and every input is as it was",
-      );
-      return 2;
+          : "no converted file is written, and every input is as it was";
     }
   }
 
@@ -550,6 +559,10 @@ export async function runConversion(run) {
   const count = `${inputCount}: ${converted.length} ${verb} to ${target}, ${leftAsIs}, ${refused.length} refused`;
   if (failed) {
     warn(`${count}; nothing written`);
+    return 2;
+  }
+  if (writeFailure) {
+    warn(`${count}; ${writeFailure}`);
     return 2;
   }
   warn(count);

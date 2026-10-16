@@ -1939,7 +1939,8 @@ the maintainer tags the merge commit `optics-rewrite/s1`.
     or ingested, and given no line; the closing count says how many were left. `--to-version 1` restores a file's
     prescription, not its bytes; git restores bytes.
   - **Output:** stdout is the conversion report and nothing else, the same bytes in every mode; stderr has a line for
-    each file converted or refused, and one closing count.
+    each file converted or refused, and one closing count, after a failed write too. An input that cannot be read is
+    that file's refusal; a directory under `--input` that cannot be listed refuses the run before anything converts.
   - **Line endings:** the command line reads a CR LF source as LF, whole, header included, says so on that file's
     line, and writes LF. A lone CR is a refusal. No catalog file has either.
   - **Collisions,** each exit 2 before anything converts, naming both paths: two destinations that are one path

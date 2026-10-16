@@ -204,6 +204,43 @@ describe("refusals", () => {
     expect(run.stderr).toMatch(reason);
   });
 
+  it("a file that cannot be read is that file's refusal, and the other inputs are still reported", async () => {
+    const directory = catalog();
+    const unreadable = join(directory, "a.data.ts");
+    const read = nodeFs.readFileSync as (...args: unknown[]) => unknown;
+    const fs = {
+      ...nodeFs,
+      readFileSync: (path: string, ...rest: unknown[]) => {
+        if (path === unreadable) throw new Error("injected EACCES");
+        return read(path, ...rest);
+      },
+    };
+    const run = await cli(["--input", directory, "--write"], { fs, typeCheck: NO_TYPE_CHECK });
+    expect(run.code).toBe(2);
+    expect(run.stderr).toMatch(/refused [^\n]*a\.data\.ts: the file cannot be read: injected EACCES\n/);
+    expect(run.stderr).toMatch(/would convert [^\n]*c\.data\.ts\n/);
+    expect(run.stderr).toContain("3 inputs: 1 would convert to V2, 1 already V2 and left as it is, 1 refused");
+  });
+
+  it("a directory under --input that cannot be listed refuses the run before anything converts", async () => {
+    const directory = catalog();
+    const sub = join(directory, "sub");
+    put(join(sub, "d.data.ts"), V1_PRIME);
+    const list = nodeFs.readdirSync as (...args: unknown[]) => unknown;
+    const fs = {
+      ...nodeFs,
+      readdirSync: (path: string, ...rest: unknown[]) => {
+        if (path === sub) throw new Error("injected EACCES");
+        return list(path, ...rest);
+      },
+    };
+    const run = await cli(["--input", directory, "--write"], { fs, typeCheck: NO_TYPE_CHECK });
+    expect(run.code).toBe(2);
+    expect(run.stderr).toBe(
+      `convert-lens-data: refused before converting anything: ${sub} cannot be listed: injected EACCES\n`,
+    );
+  });
+
   it("a converted text that does not type-check where the file on disk does: the check reads the converted text", async () => {
     const convert = async (content: string, options: ConversionOptions) => {
       const result = await convertLensDataSource(content, options);
@@ -439,7 +476,12 @@ describe("interrupted writes", () => {
     expect(run.code).toBe(2);
     expect(snapshot(directory)).toEqual(before);
     expect(run.stderr).toContain("put back 1 of the 1 inputs already replaced");
-    expect(run.stderr).toContain("no converted file is written, and every input is as it was");
+    /* Each file still gets its line, and the run its closing count. */
+    expect(run.stderr).toMatch(/would convert [^\n]*a\.data\.ts\n/);
+    expect(run.stderr).toContain(
+      "3 inputs: 2 would convert to V2, 1 already V2 and left as it is, 0 refused; " +
+        "no converted file is written, and every input is as it was\n",
+    );
   });
 
   it("a signal during the renames puts back every input already replaced, and exits 2", async () => {
