@@ -17,17 +17,8 @@ import {
 } from "../../../src/optics/optics.js";
 import type { RuntimeLens, LensData, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
 import { resolveAberrationThickness, resolveVariableThickness } from "../../../src/optics/prescription/variables.js";
-import { effectiveFNumber as layoutEffectiveFNumber } from "../../../src/optics/layout.js";
 import {
-  focusControlPositions,
-  focusDistanceAt,
-  focusFromControl,
-  focusToControl,
-} from "../../../src/optics/focusDistance.js";
-import {
-  build,
   buildChromaticPositiveElementLens,
-  buildStationFocusLens,
   buildGhostClippingLens,
   buildLayoutLens,
   buildMissAfterFirstHitLens,
@@ -84,68 +75,6 @@ describe("formatDist", () => {
   it("formats cm for close distances", () => {
     // t=1.0 → d = 0.4/1 = 0.4 m = 40 cm
     expect(formatDist(1.0, mockL)).toBe("40 cm");
-  });
-});
-
-// Presentation must preserve near-coincident source states and calculate distances across interpolated gaps.
-describe("station-based focus controls", () => {
-  const positions = [0, 0.9999, 1];
-  const L = buildVariableStopGapLens([1, 11, 21], "test-station-focus-control", positions, {
-    focusControl: "stations",
-    finiteConjugates: [
-      {
-        focusT: positions[1],
-        zoomT: 0,
-        objectDistanceMm: 200.05,
-        distanceReference: "image-plane",
-        source: "Synthetic intermediate state",
-      },
-      {
-        focusT: 1,
-        zoomT: 0,
-        objectDistanceMm: 200.01,
-        distanceReference: "first-surface",
-        source: "Synthetic close state",
-      },
-    ],
-  });
-
-  it("spreads states evenly while retaining exact canonical coordinates and authored gaps", () => {
-    expect(focusControlPositions(L)).toEqual(positions);
-    for (const [index, control] of [0, 0.5, 1].entries()) {
-      const focus = focusFromControl(control, positions);
-      expect(focus).toBe(positions[index]);
-      expect(thick(0, focus, 0, L)).toBe([1, 11, 21][index]);
-      expect(focusToControl(focus, positions)).toBe(control);
-    }
-    expect(thick(0, focusFromControl(0.75, positions), 0, L)).toBeCloseTo(16, 9);
-    expect(
-      thick(0, focusFromControl(0.996, positions), 0, L) - thick(0, focusFromControl(0.992, positions), 0, L),
-    ).toBeCloseTo(0.08, 8);
-  });
-
-  it("round-trips existing saved focus values without quantizing them to UI steps", () => {
-    for (const focus of [0, 0.4, positions[1], 0.99993, 1]) {
-      const restored = Number(String(focus));
-      expect(focusFromControl(focusToControl(restored, positions), positions)).toBeCloseTo(focus, 14);
-    }
-    expect(focusControlPositions(buildVariableStopGapLens([1, 2]))).toEqual([0, 1]);
-  });
-
-  it("shows centimeters across the interpolated prescription with whole-centimeter endpoints", () => {
-    const model = buildStationFocusLens();
-    expect(formatDist(0, model)).toBe("∞");
-    expect(formatDist(0.9999, model)).toBe("45.4 cm");
-    expect(formatDist(1, model)).toBe("40.5 cm");
-    expect(formatDist(1, model, 0, true)).toBe("41 cm");
-    // Analytic thick lens: at the interpolated 175 mm rear gap, the object is 233.240997 mm
-    // before the first surface; adding 5 mm glass and 175 mm air gives object-to-image distance.
-    expect(focusDistanceAt(0.99995, model)).toBeCloseTo(0.413240997229917, 12);
-    expect(formatDist(0.99995, model)).toBe("41.3 cm");
-    expect(focusDistanceAt(0.5, model)).toBeGreaterThan(0);
-    expect(formatDist(0.9999, model, 0.5)).toBe("45.4 cm");
-    // An explicit first-surface source distance retains its declared reference.
-    expect(focusDistanceAt(1, L)).toBe(0.20001);
   });
 });
 
@@ -806,22 +735,6 @@ describe("eflAtFocus", () => {
 });
 
 describe("effectiveFNumber", () => {
-  it("uses the authored axial cone independently of station coordinates and distance labels", () => {
-    const original = buildStationFocusLens();
-    const remapped = build({
-      ...original.data,
-      focusPositions: [0, 0.5, 1],
-      finiteConjugates: original.data.finiteConjugates!.map((c, index) => ({ ...c, focusT: (index + 1) / 2 })),
-    });
-    for (const estimate of [effectiveFNumber, layoutEffectiveFNumber]) {
-      // R=±100, n=1.5, t=5: C=-119/12000. At the 200 mm image gap,
-      // the conjugate is 200 mm before S1 and the image slope is -1/200.
-      expect(estimate(10, 1, 0, original)).toBeCloseTo(10 * (119 / 60), 10);
-      expect(estimate(10, 0.9999, 0, original)).toBeCloseTo(estimate(10, 0.5, 0, remapped), 10);
-      expect(estimate(20, 1, 0, original)).toBeCloseTo(2 * estimate(10, 1, 0, original), 10);
-    }
-  });
-
   it("returns nominal f-number at infinity focus", () => {
     const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
     expect(effectiveFNumber(2.0, 0, 0, L)).toBe(2.0);

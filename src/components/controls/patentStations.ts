@@ -38,8 +38,7 @@ export function zoomStationOptions(L: RuntimeLens): StationOption[] {
 /**
  * Build one button per published focus station at a zoom station.
  *
- * The distance shown is the focus slider's own label for that keyframe. A source-stated reproduction ratio
- * distinguishes macro states whose distances round to the same label. Only a certified conjugate is a source
+ * The distance shown is the focus slider's own label for that keyframe. Only a certified conjugate is a source
  * distance, so the button title says which kind it is.
  *
  * @param L - runtime lens object
@@ -49,9 +48,7 @@ export function zoomStationOptions(L: RuntimeLens): StationOption[] {
  */
 export function focusStationOptions(L: RuntimeLens, zoomIndex: number, zoomT: number): StationOption[] {
   return publishedFocusStations(L, zoomIndex).map((station) => {
-    const magnification = station.conjugate?.nominalMagnification;
-    const distance = formatDist(station.focusT, L, zoomT, magnification !== undefined || station.focusT === 1);
-    const label = magnification === undefined ? distance : `${magnification}× · ${distance}`;
+    const label = formatDist(station.focusT, L, zoomT);
     return {
       id: station.index,
       label,

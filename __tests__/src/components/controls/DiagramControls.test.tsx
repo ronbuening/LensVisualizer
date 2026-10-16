@@ -2,12 +2,7 @@
 
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
-import {
-  build,
-  buildSimplePositiveElementLens,
-  buildStationFocusLens,
-  buildVariableStopGapLens,
-} from "../../optics/testLensFixtures.js";
+import { build, buildSimplePositiveElementLens, buildVariableStopGapLens } from "../../optics/testLensFixtures.js";
 import DiagramControls from "../../../../src/components/controls/DiagramControls.js";
 import buildLens from "../../../../src/optics/buildLens.js";
 import themes from "../../../../src/utils/theme/themes.js";
@@ -89,19 +84,6 @@ function renderControls(
 }
 
 describe("DiagramControls", () => {
-  it("maps station travel to exact coordinates with numeric centimeter labels", () => {
-    const L = buildStationFocusLens();
-    const { callbacks } = renderControls(L, { focusT: 0.99995 });
-    const slider = screen.getByRole("slider", { name: "FOCUS" }) as HTMLInputElement;
-    expect(Number(slider.value)).toBeCloseTo(0.75, 12);
-    expect(screen.getByText("41.3 cm")).toBeTruthy();
-    expect(screen.getByText("41 cm")).toBeTruthy();
-    expect(screen.queryByText(/Interpolated|Distance unverified/)).toBeNull();
-    fireEvent.change(slider, { target: { value: "0.5" } });
-    expect(callbacks.onFocusChange).toHaveBeenLastCalledWith(0.9999);
-    fireEvent.change(slider, { target: { value: "1" } });
-    expect(callbacks.onFocusChange).toHaveBeenLastCalledWith(1);
-  });
   it.each([
     [0.5, 2 / 3],
     [1, 1],
@@ -370,29 +352,6 @@ describe("DiagramControls", () => {
       expect(callbacks.onPatentStationChange).toHaveBeenCalledWith(1, 0);
       expect(callbacks.onSliderPointerUp).toHaveBeenCalledTimes(1);
       expect(callbacks.onFocusChange).not.toHaveBeenCalled();
-    });
-
-    it("distinguishes nominal macro states at the same rounded distance and selects their exact keyframes", () => {
-      const focusPositions = [0, 0.9999, 1];
-      const L = buildVariableStopGapLens([1, 2, 3], "test-controls-macro-stations", focusPositions, {
-        focusControl: "stations",
-        finiteConjugates: [1, 2].map((nominalMagnification) => ({
-          focusT: focusPositions[nominalMagnification],
-          zoomT: 0,
-          objectDistanceMm: 200.04 - nominalMagnification * 0.01,
-          distanceReference: "image-plane",
-          nominalMagnification,
-          source: "Synthetic macro source table",
-        })),
-      });
-      const { callbacks } = renderControls(L, { patentPositions: true });
-
-      const focus = within(screen.getByRole("radiogroup", { name: "Focus position" })).getAllByRole("radio");
-      expect(focus.map((radio) => radio.textContent)).toEqual(["∞", "1× · 20 cm", "2× · 20 cm"]);
-      fireEvent.click(screen.getByRole("radio", { name: "Focus 1× · 20 cm" }));
-      expect(callbacks.onPatentStationChange).toHaveBeenLastCalledWith(0, focusPositions[1]);
-      fireEvent.click(screen.getByRole("radio", { name: "Focus 2× · 20 cm" }));
-      expect(callbacks.onPatentStationChange).toHaveBeenLastCalledWith(0, focusPositions[2]);
     });
 
     it("says why a zoom station offers infinity only", () => {

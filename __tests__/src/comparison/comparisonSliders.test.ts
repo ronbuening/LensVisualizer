@@ -10,7 +10,6 @@ import {
   snapToCommon,
 } from "../../../src/comparison/comparisonSliders.js";
 import { formatDist } from "../../../src/optics/optics.js";
-import { focusFromControl, focusToControl } from "../../../src/optics/focusDistance.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
 import { build, buildVariableStopGapLens, buildSimplePositiveElementLens } from "../optics/testLensFixtures.js";
@@ -21,24 +20,6 @@ const lensA = build({ ...focusData, closeFocusM: 0.45, nominalFno: 1, maxFstop: 
 const lensB = build({ ...focusData, closeFocusM: 0.9, nominalFno: 1.93, maxFstop: 16 });
 
 describe("computeFocusPair", () => {
-  it("spreads a station lens's canonical shared positions in either comparison slot", () => {
-    const station = buildVariableStopGapLens([1, 11, 21], "test-shared-station-focus", [0, 0.9999, 1], {
-      focusControl: "stations",
-      closeFocusM: 0.9,
-    });
-    for (const [LA, LB] of [
-      [station, lensA],
-      [lensA, station],
-    ]) {
-      const pair = computeFocusPair(0, LA, LB);
-      expect(pair.controlPositions).toEqual([0, 0.49995, 0.5, 1]);
-      const canonical = focusFromControl(1 / 3, pair.controlPositions!);
-      const restored = computeFocusPair(canonical, LA, LB);
-      expect(LA === station ? restored.focusA : restored.focusB).toBe(0.9999);
-      expect(focusToControl(canonical, pair.controlPositions!)).toBe(1 / 3);
-    }
-    expect(computeFocusPair(0, lensA, lensB).controlPositions).toBeUndefined();
-  });
   it("excludes unmodeled travel from both the request scale and per-panel focus", () => {
     const fixed = buildSimplePositiveElementLens();
     for (const shared of [0, 0.5, 1]) {

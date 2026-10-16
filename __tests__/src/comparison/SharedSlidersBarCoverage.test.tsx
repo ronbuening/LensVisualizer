@@ -4,14 +4,10 @@ import { cleanup, fireEvent, render, renderHook, screen, within } from "@testing
 import { afterEach, describe, expect, it, vi } from "vitest";
 import useStickySliders from "../../../src/comparison/useStickySliders.js";
 import SharedSlidersBar from "../../../src/comparison/SharedSlidersBar.js";
-import {
-  buildSimplePositiveElementLens,
-  buildStationFocusLens,
-  buildVariableStopGapLens,
-} from "../optics/testLensFixtures.js";
+import { buildSimplePositiveElementLens, buildVariableStopGapLens } from "../optics/testLensFixtures.js";
 import themes from "../../../src/utils/theme/themes.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
-import { computeAperturePair, computeFocusPair } from "../../../src/comparison/comparisonSliders.js";
+import { computeAperturePair } from "../../../src/comparison/comparisonSliders.js";
 import type {
   AperturePairResult,
   FocusPairResult,
@@ -59,10 +55,8 @@ function renderSharedSliders({
   zoomPair = null,
   movementPair = null,
   sharedZoomT = 0.5,
-  sharedFocusT = 0.25,
   sharedStopdownT = 0.3,
   currentAperturePair = aperturePair,
-  currentFocusPair = focusPair,
   isWide = true,
   sharedShiftMm = 0,
   sharedTiltDeg = 0,
@@ -89,10 +83,8 @@ function renderSharedSliders({
   zoomPair?: ZoomPairResult | null;
   movementPair?: MovementPairResult | null;
   sharedZoomT?: number;
-  sharedFocusT?: number;
   sharedStopdownT?: number;
   currentAperturePair?: AperturePairResult;
-  currentFocusPair?: FocusPairResult;
   isWide?: boolean;
   sharedShiftMm?: number;
   sharedTiltDeg?: number;
@@ -119,7 +111,7 @@ function renderSharedSliders({
       <SharedSlidersBar
         LA={LA}
         LB={LB}
-        sharedFocusT={sharedFocusT}
+        sharedFocusT={0.25}
         sharedStopdownT={sharedStopdownT}
         sharedZoomT={sharedZoomT}
         sharedShiftMm={sharedShiftMm}
@@ -132,7 +124,7 @@ function renderSharedSliders({
         onFocusPointerDown={onFocusPointerDown}
         onAperturePointerDown={onAperturePointerDown}
         onSliderPointerUp={onSliderPointerUp}
-        focusPair={currentFocusPair}
+        focusPair={focusPair}
         aperturePair={currentAperturePair}
         zoomPair={zoomPair}
         movementPair={movementPair}
@@ -166,30 +158,6 @@ function renderSharedSliders({
 }
 
 describe("SharedSlidersBar", () => {
-  it("maps station travel before dispatch and shows numeric centimeter readouts", () => {
-    const LA = buildStationFocusLens();
-    const { callbacks } = renderSharedSliders({
-      LA,
-      LB: LA,
-      sharedFocusT: 0.99995,
-      currentFocusPair: computeFocusPair(0.99995, LA, LA),
-    });
-    expect(screen.getByText("41.3 cm")).toBeTruthy();
-    expect(screen.getByText("41 cm")).toBeTruthy();
-    expect(screen.queryByText(/Distance unverified|distances are not synchronized/)).toBeNull();
-    fireEvent.change(screen.getByRole("slider", { name: "FOCUS" }), { target: { value: "0.5" } });
-    expect(callbacks.onSharedFocusChange).toHaveBeenCalledWith(0.9999, true);
-  });
-  it("keeps shared station marks on the keyboard step grid with an extra interval", () => {
-    const LA = buildVariableStopGapLens([1, 11, 21], "test-shared-station-grid", [0, 0.9999, 1], {
-      focusControl: "stations",
-      closeFocusM: 1,
-    });
-    const LB = buildVariableStopGapLens([1, 2], "test-shared-closer-lens", undefined, { closeFocusM: 0.5 });
-    renderSharedSliders({ LA, LB, currentFocusPair: computeFocusPair(0.25, LA, LB) });
-    const slider = screen.getByRole("slider", { name: "FOCUS" }) as HTMLInputElement;
-    expect(Number(slider.step) * 125).toBeCloseTo(1 / 3, 15);
-  });
   afterEach(() => cleanup());
 
   it("lets presets and keyboard changes pass a sticky limit while drags still stop", () => {

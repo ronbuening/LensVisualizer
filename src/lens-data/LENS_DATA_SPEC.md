@@ -1131,34 +1131,13 @@ Semi-diameters are physical clear radii: a ray beyond one is clipped, with no ma
 object-to-image distance is available, its coordinate is `closeFocusM / focusDistanceM`. Values between authored
 positions are piecewise-linearly interpolated and should not be presented as source-published mechanical positions.
 Which authored keyframes the source itself tabulates is recorded in `publishedStations`.
-For `focusControl: "stations"`, distances may be non-monotonic as magnification increases. In that case use
-ordered normalized station coordinates, such as `[0, 0.5, 1]`, and explicit `finiteConjugates` distances;
-`closeFocusM` records the final station's distance rather than claiming it is the minimum over the entire travel.
-
-`focusControl: "stations"` opts into a presentation scale that spaces the authored `focusPositions` evenly on the
-control. Use it when near-coincident distance coordinates compress substantial published motion into an unusable
-part of the track. It changes neither canonical `focusT` (including saved URLs) nor variable gaps, tracing or MTF
-eligibility. `focusStep` then measures presentation travel; choose a step that can reach the desired station marks.
-The readout uses explicit `finiteConjugates` distances at matching source states. Between them, it calculates the
-paraxial object conjugate from the current interpolated gaps, using the first certificate's distance reference
-(image plane by default). Keep certificate references consistent within a prescription. This is a display estimate;
-it does not create source-certified MTF states or establish a production cam law. Below one meter, the readout
-uses centimeters with one decimal, and slider endpoints use whole centimeters. The breathing chart uses the same
-presentation scale. Comparison controls spread the station knots in shared coordinates; each panel retains its
-canonical focus state and numeric readout.
-The effective-aperture estimate for this control uses the current paraxial axial cone relative to the infinity
-cone, preserving the marked aperture calibration and accounting for focus-dependent pupil geometry. It does not
-infer magnification from inverse slider distance or certify a production exposure measurement.
 
 `finiteConjugates` optionally certifies individual authored states for finite-distance MTF. Each entry has
 `focusT` (an authored nonzero focus station), `zoomT` (0 for a prime; source zoom station index divided by
 `zoomPositions.length - 1` for a zoom), positive `objectDistanceMm`, `distanceReference` (`"first-surface"` or
 `"image-plane"`), and a nonempty `source` identifying the evidence for both the distance and focus spacings.
 Distance is axial, from the object plane to the current first vertex or fixed image plane. Duplicate stations
-are invalid. Optional positive `nominalMagnification` records a source-stated reproduction ratio (1 for 1×,
-2 for 2×). Patent-position buttons show it alongside the distance, with whole centimeters below one meter,
-to distinguish macro states with similar object-to-image distances. This label never changes the optics or MTF.
-MTF never infers these entries from `closeFocusM`, production MFD, or interpolated slider labels;
+are invalid. MTF never infers these entries from `closeFocusM`, production MFD, or interpolated slider labels;
 undocumented intermediate states remain unavailable. Do not certify calculated focus travel as a published
 configuration. Every entry also counts as a published station (see
 [Published Stations](#published-stations-publishedstations)). Source-rounded prescriptions may retain residual defocus: MTF evaluates the authored image plane

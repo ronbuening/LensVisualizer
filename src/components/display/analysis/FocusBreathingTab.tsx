@@ -7,7 +7,6 @@
 
 import { useMemo } from "react";
 import { eflAtFocus, eflAtZoom, formatDist } from "../../../optics/optics.js";
-import { focusControlPositions, focusFromControl, focusToControl } from "../../../optics/focusDistance.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 
@@ -31,10 +30,8 @@ const MARGIN = { top: 24, right: 20, bottom: 42, left: 48 };
 
 function buildBreathingSamples(L: RuntimeLens, zoomT: number, currentFocusT: number): BreathingSample[] {
   const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
-  const positions = focusControlPositions(L);
   const points = new Set<number>([0, 1, currentFocusT]);
-  for (let i = 0; i < SAMPLE_COUNT; i++) points.add(focusFromControl(i / (SAMPLE_COUNT - 1), positions));
-  for (const position of positions) points.add(position);
+  for (let i = 0; i < SAMPLE_COUNT; i++) points.add(i / (SAMPLE_COUNT - 1));
 
   return [...points]
     .sort((a, b) => a - b)
@@ -42,7 +39,7 @@ function buildBreathingSamples(L: RuntimeLens, zoomT: number, currentFocusT: num
       const efl = eflAtFocus(focusT, zoomT, L);
       const breathingPercent = Math.abs(infinityEFL) > 1e-9 ? (100 * (efl - infinityEFL)) / infinityEFL : 0;
       return {
-        focusT: focusToControl(focusT, positions),
+        focusT,
         efl,
         breathingPercent,
         distanceLabel: formatDist(focusT, L, zoomT),
@@ -260,7 +257,7 @@ export default function FocusBreathingTab({ L, t, focusT, zoomT, dynamicEFL }: F
           not change this intrinsic curve.
         </span>
       </div>
-      <FocusBreathingChart samples={samples} currentFocusT={focusToControl(focusT, focusControlPositions(L))} t={t} />
+      <FocusBreathingChart samples={samples} currentFocusT={focusT} t={t} />
       <div
         style={{
           display: "flex",

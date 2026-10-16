@@ -68,7 +68,7 @@ export interface PublishedFocusStation {
   index: number;
   focusT: number;
   isInfinity: boolean;
-  /** Focus distance in metres; null at infinity or when no real object conjugate is available. */
+  /** Slider-convention focus distance in metres; a label, not a source claim. Null at infinity or if invalid. */
   distanceM: number | null;
   /** Source-certified conjugate at this station, when the lens declares one. */
   conjugate: FiniteConjugate | null;

@@ -1,6 +1,5 @@
 import { useMemo, type ReactNode } from "react";
 import { analysisJobsForState2 } from "../../../optics/compat.js";
-import { formatDist } from "../../../optics/opticsFormat.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
@@ -105,15 +104,7 @@ export default function OpticalSummaryTab({
             t={t}
           />
         ) : null}
-        <AnalysisMetricRow
-          label="Focus"
-          value={
-            L.data?.focusControl === "stations"
-              ? formatDist(focusT, L, zoomT)
-              : formatFocusDistance(summary.focusDistanceM)
-          }
-          t={t}
-        />
+        <AnalysisMetricRow label="Focus" value={formatFocusDistance(summary.focusDistanceM)} t={t} />
         <AnalysisMetricRow label="Zoom" value={formatControl(summary.zoomT)} t={t} />
         <AnalysisMetricRow label="Aberration" value={formatControl(summary.aberrationT)} t={t} />
       </SummarySection>

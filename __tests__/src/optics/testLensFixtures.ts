@@ -119,40 +119,6 @@ export function buildVariableStopGapLens(
   });
 }
 
-/** Thick biconvex lens in air, with analytic image-plane conjugates and a variable rear gap. */
-export function buildStationFocusLens(): RuntimeLens {
-  return buildFixture({
-    key: "test-station-focus-distance",
-    nominalFno: 10,
-    elements: [{ ...BASE_ELEMENT, nd: 1.5, vd: 60 }],
-    surfaces: [
-      { label: "STO", R: 1e15, nd: 1, sd: 10, d: 0, elemId: 0 },
-      { label: "1", R: 100, nd: 1.5, sd: 10, d: 5, elemId: 1 },
-      { label: "2", R: -100, nd: 1, sd: 10, d: 99.15966386554622, elemId: 1 },
-    ],
-    var: { "2": [99.15966386554622, 150, 200] },
-    focusPositions: [0, 0.9999, 1],
-    focusControl: "stations",
-    closeFocusM: 0.405,
-    finiteConjugates: [
-      {
-        focusT: 0.9999,
-        zoomT: 0,
-        objectDistanceMm: 454.1735537190083,
-        distanceReference: "image-plane",
-        source: "Analytic thick-lens conjugate at 150 mm rear gap",
-      },
-      {
-        focusT: 1,
-        zoomT: 0,
-        objectDistanceMm: 405,
-        distanceReference: "image-plane",
-        source: "Analytic thick-lens conjugate at 200 mm rear gap",
-      },
-    ],
-  });
-}
-
 export function buildLayoutLens(thicknesses: readonly [number, number, number]): RuntimeLens {
   return buildFixture({
     key: "test-layout-lens",

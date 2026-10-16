@@ -2,26 +2,9 @@ import { describe, expect, it } from "vitest";
 import ReferenceNewtonianSideFocusRaw from "../../../src/lens-data/reference/ReferenceNewtonianSideFocus.data.js";
 import { computeOpticalSummaryForState2, prepareRuntimeState } from "../../../src/optics/compat.js";
 import { computeAnalysisFieldGeometryAtState, eflAtFocus } from "../../../src/optics/optics.js";
-import {
-  apertureAt,
-  build,
-  buildRearPlateLens,
-  buildStationFocusLens,
-  REAR_PLATE_FIXTURE,
-  sharedSonnar50f15,
-} from "./testLensFixtures.js";
+import { apertureAt, build, buildRearPlateLens, REAR_PLATE_FIXTURE, sharedSonnar50f15 } from "./testLensFixtures.js";
 
 describe("computeOpticalSummaryForState2", () => {
-  it("reports the current interpolated object-to-image conjugate", () => {
-    const L = buildStationFocusLens();
-    for (const [focus, distance] of [
-      [0.99995, 0.413240997229917],
-      [1, 0.405],
-    ] as const) {
-      const summary = computeOpticalSummaryForState2(prepareRuntimeState(L, focus, 0), L.EFL, L.EP.epSD, L.stopPhysSD);
-      expect(summary.focusDistanceM).toBeCloseTo(distance, 12);
-    }
-  });
   it("summarizes current refractive lens state from prepared optics data", () => {
     const L = sharedSonnar50f15();
     const focusT = 0.5;
