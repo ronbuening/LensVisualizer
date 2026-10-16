@@ -1240,7 +1240,7 @@ The stop radius has exactly one authority per lens:
     const where it declares it (`export const X`, as `SigmaDGDNA35mmf14` does) loses that `export`. Any other top-level
     const sits in that header and stays as written.
   - **Gap order.** Fields print in the field order above. Gaps print in surface order from the canonical list, because
-    a JavaScript object lists integer-like keys first and would move `STO` and `14A` after every numbered gap (200
+    a JavaScript object lists integer-like keys first and would move `STO` and `14A` after every numbered gap (206
     files); `var` prints the same way going to V1.
   - **Blank lines.** One blank line separates the top-level groups, as in the Shape excerpt, and a row of a list of
     rows (`surfaces`, `elements`) keeps a blank line its source had before it or before one of its leading comments.
