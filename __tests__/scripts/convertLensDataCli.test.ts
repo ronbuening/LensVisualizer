@@ -510,12 +510,20 @@ describe("interrupted writes", () => {
     for (const text of Object.values(written)) expect(text).toContain("schema: 2");
   });
 
-  it("a failed rename after the first puts the first input back, and leaves no temp file or backup", async () => {
+  it("a failed rename restores original bytes even when conversion normalizes the source in memory", async () => {
     const directory = catalog();
     const before = snapshot(directory);
     const run = await cli(["--input", directory, "--write"], {
       fs: failing("renameSync", 2),
-      typeCheck: NO_TYPE_CHECK,
+      normalizeSource: (source, path) => {
+        expect(readFileSync(path, "utf8")).toBe(source);
+        return source.replace("A synthetic lens.", "Normalized in memory.");
+      },
+      typeCheck: (files) => {
+        expect(snapshot(directory)).toEqual(before);
+        for (const file of files) expect(file.text).toContain("Normalized in memory.");
+        return NO_TYPE_CHECK(files);
+      },
     });
     expect(run.code).toBe(2);
     expect(snapshot(directory)).toEqual(before);

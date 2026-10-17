@@ -71,14 +71,19 @@ function analysisRelativePathForDataPath(relativeDataPath) {
  * Rewrite a lens file's type imports to match its location under src/lens-data: `types/optics.js` for a V1 file,
  * `types/lensDataV2.js` for a V2 one.
  */
-function rewriteLensDataTypesImport(filePath, { readFile = readFileSync, writeFile = writeFileSync } = {}) {
-  const content = readFile(filePath, "utf-8");
+function normalizeLensDataTypesImport(content, filePath) {
   const relativeDepth = filePath.split("/src/lens-data/")[1]?.split("/").length ?? 1;
   const typesDir = relativeDepth > 1 ? "../../types" : "../types";
-  const updatedContent = content.replace(
+  return content.replace(
     /from "\.\.\/(?:\.\.\/)?types\/(optics|lensDataV2)\.js";/g,
     (_match, module) => `from "${typesDir}/${module}.js";`,
   );
+}
+
+/** Apply the same import normalization after filing an accepted conversion in its destination folder. */
+function rewriteLensDataTypesImport(filePath, { readFile = readFileSync, writeFile = writeFileSync } = {}) {
+  const content = readFile(filePath, "utf-8");
+  const updatedContent = normalizeLensDataTypesImport(content, filePath);
 
   if (updatedContent !== content) {
     writeFile(filePath, updatedContent, "utf-8");
@@ -312,7 +317,13 @@ async function organizeRootLensFiles(
     }
   }
 
-  const code = await runConversion({ argv: ["--input", lensDataDir, "--write"], stdout, stderr });
+  const code = await runConversion({
+    argv: ["--input", lensDataDir, "--write"],
+    stdout,
+    stderr,
+    // Archived maker-folder imports must resolve at the arrival location before conversion can be accepted.
+    normalizeSource: normalizeLensDataTypesImport,
+  });
   if (code !== 0) throw new Error("Lens-data organizer: conversion refused; see the converter diagnostics above.");
 
   if (movePlan.length === 0) {

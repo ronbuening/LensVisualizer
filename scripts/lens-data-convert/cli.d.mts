@@ -27,6 +27,7 @@ export interface ConversionRun {
   pid?: number;
   convert?: (content: string, options: ConversionOptions) => Promise<ConversionResult>;
   typeCheck?: (files: { path: string; text: string }[]) => TypeCheckResult;
+  normalizeSource?: (source: string, path: string) => string;
   loadConversion?: () => Promise<object>;
   loadBuildLens?: () => Promise<{ default: (data: never) => object }>;
 }

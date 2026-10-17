@@ -436,6 +436,7 @@ async function writeConverted(fs, converted, inPlace, { pid, signals, warn }) {
  * @param {number} [run.pid] - the id temp files and backups carry, `process.pid` by default
  * @param {typeof convertLensDataSource} [run.convert] - the library, unless a test injects a fault
  * @param {typeof typeCheckConvertedFiles} [run.typeCheck] - the type-check, unless a test injects a fault
+ * @param {(source: string, path: string) => string} [run.normalizeSource] - in-memory import normalization for ingest
  * @param {() => Promise<object>} [run.loadConversion] - loads the engine's conversion seam
  * @param {() => Promise<{ default: Function }>} [run.loadBuildLens] - loads `buildLens`
  * @returns {Promise<0 | 1 | 2>} the exit code
@@ -506,7 +507,9 @@ export async function runConversion(run) {
     }
     let result;
     try {
-      result = await convert(lines.text, {
+      // Keep the original bytes for refusal and rollback; normalize only the conversion's in-memory source.
+      const text = run.normalizeSource ? run.normalizeSource(lines.text, entry.path) : lines.text;
+      result = await convert(text, {
         file: entry.file,
         kind: entry.kind,
         toVersion: args.toVersion,

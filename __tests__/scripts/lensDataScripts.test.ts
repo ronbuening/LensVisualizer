@@ -231,17 +231,45 @@ describe("lens-data scripts", () => {
     expect(existsSync(path)).toBe(false);
   });
 
-  it("leaves a refused V1 file byte-identical and exits non-zero naming the refusal", () => {
+  it.each(["lens", "teleconverter"] as const)(
+    "converts an archived root-level V1 %s with unchanged maker-folder imports",
+    (kind) => {
+      const { rootDir, lensDataDir } = createTempLensDataDir();
+      tempRoots.push(rootDir);
+      const pair = FIXTURE_PAIRS.find((candidate) => candidate.kind === kind)!;
+      const suffix = kind === "lens" ? "data" : "teleconverter";
+      const type = kind === "lens" ? "LensDataInput" : "TeleconverterData";
+      const path = join(lensDataDir, `Archived.${suffix}.ts`);
+      writeFileSync(
+        path,
+        `import type { ${type} } from "../../types/optics.js";\nconst DATA = ${JSON.stringify(pair.v1)} satisfies ${type};\nexport default DATA;\n`,
+      );
+      const result = runScript(rootDir, "organize-lens-data.mjs");
+      expect(result.status, result.stderr).toBe(0);
+      const filed = join(lensDataDir, deriveMakerSlug(pair.v1.name, pair.v1.maker), `Archived.${suffix}.ts`);
+      const converted = readFileSync(filed, "utf8");
+      expect(evaluateLensDataSource(converted)).toEqual(pair.v2);
+      expect(converted).toContain('from "../../types/lensDataV2.js";');
+      expect(existsSync(path)).toBe(false);
+    },
+  );
+
+  it("leaves archived root files byte-identical when one conversion is refused", () => {
     const { rootDir, lensDataDir } = createTempLensDataDir();
     tempRoots.push(rootDir);
     const path = join(lensDataDir, "Refused.data.ts");
-    const source = v1LensFile(PRIME_MEMBERS + '\n  unknownField: "refuse me",').replace("../../types/", "../types/");
+    const source = v1LensFile(PRIME_MEMBERS + '\n  unknownField: "refuse me",');
     writeFileSync(path, source);
+    const acceptedPath = join(lensDataDir, "Accepted.data.ts");
+    const acceptedSource = v1LensFile(PRIME_MEMBERS);
+    writeFileSync(acceptedPath, acceptedSource);
     const result = runScript(rootDir, "organize-lens-data.mjs");
     expect(result.status).not.toBe(0);
     expect(result.stderr).toMatch(/Refused.data.ts/);
     expect(result.stderr).toMatch(/unknownField/);
     expect(readFileSync(path, "utf8")).toBe(source);
+    expect(readFileSync(acceptedPath, "utf8")).toBe(acceptedSource);
+    expect(result.stderr).toContain("1 would convert to V2");
     expect(existsSync(join(lensDataDir, "fixture"))).toBe(false);
   });
 
