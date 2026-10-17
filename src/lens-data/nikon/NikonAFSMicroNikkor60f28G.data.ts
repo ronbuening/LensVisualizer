@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * US 7,898,744 B2, Example 2 / Table 2 / Figure 3.
@@ -11,31 +11,35 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "nikon-micro-60f28g",
   maker: "Nikon",
   name: "NIKON AF-S MICRO-NIKKOR 60mm f/2.8 G ED",
   subtitle: "US 7,898,744 B2 Example 2 — Wada / Nikon Corporation",
-  specs: [
-    "12 ELEMENTS / 9 GROUPS",
-    "f ≈ 58.0 mm (patent) / 60 mm (marketed)",
-    "F/2.88",
-    "EXAMPLE 2 — UNSCALED",
-    "2 ASPHERICAL SURFACES",
-    "LOW-DISPERSION L7 (vd = 82.56)",
-  ],
 
-  focalLengthMarketing: 60,
-  focalLengthDesign: 58.0,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.88,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 7,898,744 B2",
-  patentAuthors: ["Mitsuaki Wada"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 2011,
-  elementCount: 12,
-  groupCount: 9,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "12 ELEMENTS / 9 GROUPS",
+      "f ≈ 58.0 mm (patent) / 60 mm (marketed)",
+      "F/2.88",
+      "EXAMPLE 2 — UNSCALED",
+      "2 ASPHERICAL SURFACES",
+      "LOW-DISPERSION L7 (vd = 82.56)",
+    ],
+    elementCount: 12,
+    groupCount: 9,
+    focalLengthMm: { marketing: 60, design: 58.0 },
+    fNumber: { marketing: 2.8, design: 2.88 },
+  },
+
+  source: {
+    patentNumber: "US 7,898,744 B2",
+    patentYear: 2011,
+    authors: ["Mitsuaki Wada"],
+    assignees: ["Nikon Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -46,7 +50,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.8044,
       vd: 39.57,
-      fl: -50.0,
+      focalLengthMm: -50.0,
       glass: "S-LAH63Q (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "Front negative meniscus; aspherical rear surface S2A (standard K = −6.3148) corrects spherical aberration and coma at full aperture. Manufacturing process is not established by the prescription.",
@@ -58,7 +62,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.63854,
       vd: 55.48,
-      fl: +85.0,
+      focalLengthMm: +85.0,
       glass: "K-SK18 (Sumita, inferred coordinate counterpart)",
       apd: false,
       role: "Weak positive meniscus; contributes to Petzval sum correction with minimal added spherical aberration.",
@@ -70,7 +74,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.834807,
       vd: 42.71,
-      fl: +57.6,
+      focalLengthMm: +57.6,
       glass: "TAFD5 (HOYA, inferred coordinate counterpart)",
       apd: false,
       role: "Strongest positive element in G1; high-index LaF glass keeps curvatures moderate despite strong power.",
@@ -82,7 +86,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.51612,
       vd: 64.03,
-      fl: -51.5,
+      focalLengthMm: -51.5,
       glass: "S-BSL7 (OHARA, approximate coordinate counterpart)",
       apd: false,
       role: "Second asphere in moving G2; aspherical S8A (standard K = +1.1218) provides focus-dependent SA correction. Catalog counterpart is approximate; manufacturing process is unestablished.",
@@ -94,7 +98,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.62004,
       vd: 36.3,
-      fl: -26.3,
+      focalLengthMm: -26.3,
       glass: "S-TIM2 (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "Negative component of G2 cemented doublet; balances monochromatic aberration that varies during G2 travel.",
@@ -107,7 +111,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.77,
-      fl: +21.9,
+      focalLengthMm: +21.9,
       glass: "S-LAH58 (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "Positive component of G2 cemented doublet; extremely high index (nd = 1.883) enables strong junction curvature for higher-order aberration control.",
@@ -120,7 +124,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.56,
-      fl: +79.4,
+      focalLengthMm: +79.4,
       glass: "J-FKH1 (Hikari, inferred coordinate counterpart)",
       apd: false,
       role: "Low-dispersion element in moving G3; very low dispersion (vd = 82.56) provides secondary spectrum correction. Positioned in focusing group to compensate chromatic shift during focus travel.",
@@ -132,7 +136,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.603,
       vd: 65.47,
-      fl: +40.6,
+      focalLengthMm: +40.6,
       glass: "S-PHM53 (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "Positive crown of G3 achromatic doublet (Δvd = 41.69); provides primary LoCA correction.",
@@ -145,7 +149,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.78,
-      fl: -66.7,
+      focalLengthMm: -66.7,
       glass: "S-TIH53 (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "Negative flint of G3 achromatic doublet; dense flint provides large Abbe number contrast for chromatic correction.",
@@ -158,7 +162,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.43,
-      fl: -45.3,
+      focalLengthMm: -45.3,
       glass: "S-TIH6 (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "Strong negative meniscus in fixed G4; high-dispersion flint provides chromatic balance and contributes to Petzval field flattening.",
@@ -170,7 +174,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.801,
       vd: 34.96,
-      fl: -30.2,
+      focalLengthMm: -30.2,
       glass: "J-LAF016 (Hikari, inferred coordinate counterpart)",
       apd: false,
       role: "Negative component of G4 cemented doublet; high-index medium contributing to the group power.",
@@ -183,7 +187,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.78,
-      fl: +24.0,
+      focalLengthMm: +24.0,
       glass: "S-TIH53 (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "Positive component of G4 cemented doublet; same glass as L9, strong convergence balances L11 for net field-flattening contribution.",
@@ -192,84 +196,92 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     // ── Group 1 (G1): Fixed front group, positive power ──
-    { label: "1", R: 68.8358, d: 1.3514, nd: 1.8044, elemId: 1, sd: 14.2 }, // L1 front
-    { label: "2A", R: 25.1596, d: 3.1598, nd: 1.0, elemId: 0, sd: 14.2 }, // L1 rear (asph) → air
-    { label: "3", R: 50.568, d: 3.089, nd: 1.63854, elemId: 2, sd: 13.4 }, // L2 front
-    { label: "4", R: 726.7885, d: 0.0997, nd: 1.0, elemId: 0, sd: 13.4 }, // L2 rear → air
-    { label: "5", R: 61.6542, d: 2.8959, nd: 1.834807, elemId: 3, sd: 13.0 }, // L3 front
-    { label: "6", R: -213.335, d: 2.62569, nd: 1.0, elemId: 0, sd: 13.0 }, // L3 rear → air (var: G1→G2)
+    { label: "1", R: 68.8358, d: 1.3514, sd: 14.2, medium: 1 }, // L1 front
+    {
+      label: "2A",
+      R: 25.1596,
+      d: 3.1598,
+      sd: 14.2,
+      asphere: {
+        K: -6.3148, // source kappa = -5.3148
+        A4: 5.5804e-5,
+        A6: -1.4307e-7,
+        A8: 5.0263e-10,
+        A10: -7.7598e-13,
+      },
+    }, // L1 rear (asph) → air
+    { label: "3", R: 50.568, d: 3.089, sd: 13.4, medium: 2 }, // L2 front
+    { label: "4", R: 726.7885, d: 0.0997, sd: 13.4 }, // L2 rear → air
+    { label: "5", R: 61.6542, d: 2.8959, sd: 13.0, medium: 3 }, // L3 front
+    { label: "6", R: -213.335, sd: 13.0 }, // L3 rear → air (var: G1→G2)
 
     // ── Group 2 (G2): Focusing group, moves toward image ──
-    { label: "7", R: 114.0007, d: 1.2549, nd: 1.51612, elemId: 4, sd: 10.5 }, // L4 front
-    { label: "8A", R: 21.4584, d: 5.2, nd: 1.0, elemId: 0, sd: 10.0 }, // L4 rear (asph) → air
-    { label: "9", R: -25.9781, d: 1.8341, nd: 1.62004, elemId: 5, sd: 13.3 }, // L5 front (cemented D2a)
-    { label: "10", R: 45.0791, d: 6.2262, nd: 1.883, elemId: 6, sd: 13.3 }, // L5→L6 junction — elemId: 6
-    { label: "11", R: -31.6859, d: 12.29619, nd: 1.0, elemId: 0, sd: 12.8 }, // L6 rear → air (var: G2→Stop)
+    { label: "7", R: 114.0007, d: 1.2549, sd: 10.5, medium: 4 }, // L4 front
+    {
+      label: "8A",
+      R: 21.4584,
+      d: 5.2,
+      sd: 10.0,
+      asphere: {
+        K: 1.1218, // source kappa = 2.1218
+        A4: -2.6928e-5,
+        A6: -9.4708e-8,
+        A8: 9.7003e-11,
+        A10: -2.5636e-12,
+      },
+    }, // L4 rear (asph) → air
+    { label: "9", R: -25.9781, d: 1.8341, sd: 13.3, medium: 5 }, // L5 front (cemented D2a)
+    { label: "10", R: 45.0791, d: 6.2262, sd: 13.3, medium: 6 }, // L5→L6 junction — elemId: 6
+    { label: "11", R: -31.6859, sd: 12.8 }, // L6 rear → air (var: G2→Stop)
 
     // ── Aperture Stop (fixed) ──
-    { label: "STO", R: 1e15, d: 23.27238, nd: 1.0, elemId: 0, sd: 11.3 }, // fixed aperture stop
+    { label: "STO", R: "flat" }, // fixed aperture stop
 
     // ── Group 3 (G3): Focusing group, moves toward object ──
-    { label: "13", R: 279.333, d: 3.089, nd: 1.49782, elemId: 7, sd: 12.5 }, // L7 front (low dispersion)
-    { label: "14", R: -45.865, d: 0.0483, nd: 1.0, elemId: 0, sd: 12.5 }, // L7 rear → air
-    { label: "15", R: 55.7141, d: 4.5852, nd: 1.603, elemId: 8, sd: 12.4 }, // L8 front (cemented D3a)
-    { label: "16", R: -42.3441, d: 1.1584, nd: 1.84666, elemId: 9, sd: 12.4 }, // L8→L9 junction — elemId: 9
-    { label: "17", R: -171.5862, d: 4.49094, nd: 1.0, elemId: 0, sd: 12.4 }, // L9 rear → air (var: G3→G4)
+    { label: "13", R: 279.333, d: 3.089, sd: 12.5, medium: 7 }, // L7 front (low dispersion)
+    { label: "14", R: -45.865, d: 0.0483, sd: 12.5 }, // L7 rear → air
+    { label: "15", R: 55.7141, d: 4.5852, sd: 12.4, medium: 8 }, // L8 front (cemented D3a)
+    { label: "16", R: -42.3441, d: 1.1584, sd: 12.4, medium: 9 }, // L8→L9 junction — elemId: 9
+    { label: "17", R: -171.5862, sd: 12.4 }, // L9 rear → air (var: G3→G4)
 
     // ── Group 4 (G4): Fixed rear group, negative power ──
-    { label: "18", R: 202.8956, d: 1.1584, nd: 1.80518, elemId: 10, sd: 11.5 }, // L10 front
-    { label: "19", R: 30.8234, d: 1.641, nd: 1.0, elemId: 0, sd: 11.4 }, // L10 rear → air
-    { label: "20", R: 90.5377, d: 1.2549, nd: 1.801, elemId: 11, sd: 11.5 }, // L11 front (cemented D4a)
-    { label: "21", R: 18.9814, d: 5.9849, nd: 1.84666, elemId: 12, sd: 11.5 }, // L11→L12 junction — elemId: 12
-    { label: "22", R: 242.9593, d: 37.45, nd: 1.0, elemId: 0, sd: 11.5 }, // L12 rear → BFD
+    { label: "18", R: 202.8956, d: 1.1584, sd: 11.5, medium: 10 }, // L10 front
+    { label: "19", R: 30.8234, d: 1.641, sd: 11.4 }, // L10 rear → air
+    { label: "20", R: 90.5377, d: 1.2549, sd: 11.5, medium: 11 }, // L11 front (cemented D4a)
+    { label: "21", R: 18.9814, d: 5.9849, sd: 11.5, medium: 12 }, // L11→L12 junction — elemId: 12
+    { label: "22", R: 242.9593, d: 37.45, sd: 11.5 }, // L12 rear → BFD
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {
-    "2A": {
-      K: -6.3148, // source kappa = -5.3148
-      A4: 5.5804e-5,
-      A6: -1.4307e-7,
-      A8: 5.0263e-10,
-      A10: -7.7598e-13,
-      A12: 0,
-      A14: 0,
-    },
-    "8A": {
-      K: 1.1218, // source kappa = 2.1218
-      A4: -2.6928e-5,
-      A6: -9.4708e-8,
-      A8: 9.7003e-11,
-      A10: -2.5636e-12,
-      A12: 0,
-      A14: 0,
-    },
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.1772020326630215,
+    /* ── Variable air spacings (floating focus — 4 gaps) ──
+     *  G2 moves toward image (+d6, −d11) upon close focus.
+     *  G3 moves toward object (−dSTO, +d17) upon close focus.
+     *  G1, G4, and stop are fixed.
+     *  D6 + D11 = 14.922 mm (invariant — G2 rigid body).
+     *  DSTO + D17 = 27.76332 mm at endpoints; the source middle station
+     *  differs by +0.00137 mm. Preserve the published table without repair.
+     */
+    keyframes: [0, 0.7722923478757724, 1],
+    description:
+      "Internal floating focus: G2 moves toward image, G3 moves toward object. G1, G4, and aperture stop fixed. Source stations: infinity, half-size (inferred 0.229 m), life-size (inferred 0.177 m). Track about 124.2 mm; source middle station differs by 0.00137 mm. G2 travel: 11.2 mm, G3 travel: 21.4 mm.",
+    // (moved from publishedStations) Every focus keyframe is a source row.
+    published: [1, 2],
   },
 
-  /* ── Variable air spacings (floating focus — 4 gaps) ──
-   *  G2 moves toward image (+d6, −d11) upon close focus.
-   *  G3 moves toward object (−dSTO, +d17) upon close focus.
-   *  G1, G4, and stop are fixed.
-   *  D6 + D11 = 14.922 mm (invariant — G2 rigid body).
-   *  DSTO + D17 = 27.76332 mm at endpoints; the source middle station
-   *  differs by +0.00137 mm. Preserve the published table without repair.
-   */
-  focusPositions: [0, 0.7722923478757724, 1],
-  var: {
-    6: [2.62569, 6.63506, 13.83349], // G1→G2
-    11: [12.29619, 8.28682, 1.08839], // G2→Stop
-    STO: [23.27238, 12.33659, 1.87196], // Stop→G3
-    17: [4.49094, 15.4281, 25.89136], // G3→G4
+  gaps: {
+    "6": { label: "D6", values: [[2.62569, 6.63506, 13.83349]] }, // G1→G2
+    "11": { label: "D11", values: [[12.29619, 8.28682, 1.08839]] }, // G2→Stop
+    STO: { label: "D12", values: [[23.27238, 12.33659, 1.87196]] }, // Stop→G3
+    "17": { label: "D17", values: [[4.49094, 15.4281, 25.89136]] }, // G3→G4
   },
 
-  varLabels: [
-    ["6", "D6"],
-    ["11", "D11"],
-    ["STO", "D12"],
-    ["17", "D17"],
-  ],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.88, fStops: [2.88, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16] },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -278,27 +290,14 @@ const LENS_DATA = {
     { text: "G3 (← focus)", fromSurface: "13", toSurface: "17" },
     { text: "G4 (fixed)", fromSurface: "18", toSurface: "22" },
   ],
-
   doublets: [
     { text: "D2a", fromSurface: "9", toSurface: "11" },
     { text: "D3a", fromSurface: "15", toSurface: "17" },
     { text: "D4a", fromSurface: "20", toSurface: "22" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.1772020326630215,
-  // Every focus keyframe is a source row.
-  publishedStations: { focus: [1, 2] },
-  focusDescription:
-    "Internal floating focus: G2 moves toward image, G3 moves toward object. G1, G4, and aperture stop fixed. Source stations: infinity, half-size (inferred 0.229 m), life-size (inferred 0.177 m). Track about 124.2 mm; source middle station differs by 0.00137 mm. G2 travel: 11.2 mm, G3 travel: 21.4 mm.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.88,
-  fstopSeries: [2.88, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  scFill: 0.45,
-  yScFill: 0.35,
-} satisfies LensDataInput;
+  layout: { scFill: 0.45, yScFill: 0.35 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

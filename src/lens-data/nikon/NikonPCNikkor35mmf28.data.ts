@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════════════╗
@@ -18,8 +18,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ independently yielding EFL=99.6305066 and BFD=130.5037756 before scaling.          ║
  * ║                                                                                    ║
  * ║ STOP: the patent specifies only that the diaphragm lies between L5 and L6. Its     ║
- * ║ axial station is inferred from Abb. 3 at 72% of d9 from r9 toward r10. Stop SD is  ║
- * ║ solved paraxially so the scaled corrected prescription is f/2.8 at infinity.       ║
+ * ║ axial station is inferred from Abb. 3 at 72% of d9 from r9 toward r10. The stop    ║
+ * ║ radius is derived from the design f-number, f/2.8.                                 ║
  * ║                                                                                    ║
  * ║ SEMI-DIAMETERS: not tabulated by the patent. Values are constrained from Abb. 3,  ║
  * ║ the paraxial marginal/chief-ray envelope, and current edge-thickness, rim-slope,   ║
@@ -40,169 +40,169 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-pc-nikkor-35mm-f28",
   maker: "Nikon",
   name: "NIKON PC-NIKKOR 35mm f/2.8",
   subtitle: "DE 1 497 540 A1 — Example III — 1968 7-group / 8-element production correlation",
-  specs: [
-    "8 ELEMENTS / 7 GROUPS",
-    "f = 34.8707 mm DESIGN / 35 mm MARKETED",
-    "F/2.8",
-    "2ω = 75° PATENT FIELD",
-    "±11 mm SHIFT / NO TILT",
-  ],
 
-  focalLengthMarketing: 35,
-  focalLengthDesign: 34.87067732544124,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.8,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "DE 1 497 540 A1",
-  patentAuthors: ["Ikuo Mori"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1969,
-  elementCount: 8,
-  groupCount: 7,
-
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 75,
-    maxTraceFieldDeg: 37.5,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "8 ELEMENTS / 7 GROUPS",
+      "f = 34.8707 mm DESIGN / 35 mm MARKETED",
+      "F/2.8",
+      "2ω = 75° PATENT FIELD",
+      "±11 mm SHIFT / NO TILT",
+    ],
+    elementCount: 8,
+    groupCount: 7,
+    focalLengthMm: { marketing: 35, design: 34.87067732544124 },
+    fNumber: { marketing: 2.8, design: 2.8 },
   },
 
-  // Nikon's PC-NIKKOR history identifies this 1968 8-element generation and explains that
-  // production omitted the trial-model tilt mechanism. The linked Nikon manual records 11 mm
-  // shift travel for the PC 35 mm mechanism: https://imaging.nikon.com/imaging/information/story/0017/
-  perspectiveControl: {
-    shiftRangeMm: [-11, 11],
-    tiltRangeDeg: [0, 0],
-    shiftStepMm: 0.1,
+  source: {
+    patentNumber: "DE 1 497 540 A1",
+    patentYear: 1969,
+    authors: ["Ikuo Mori"],
+    assignees: ["Nippon Kogaku K.K."],
   },
 
   elements: [
     {
       id: 1,
       name: "L1",
-      diagramLabel: "L1",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.6516,
       vd: 58.5,
-      fl: -65.58872045520543,
+      focalLengthMm: -65.58872045520543,
       glass: "N-LAK7 catalog equivalent (patent 652585; production supplier unspecified)",
       role: "First negative meniscus of the retrofocus front group, convex toward the object.",
+      diagramLabel: "L1",
     },
     {
       id: 2,
       name: "L2",
-      diagramLabel: "L2",
       label: "Element 2",
       type: "Negative Meniscus",
       nd: 1.6223,
       vd: 53.1,
-      fl: -89.7461055924426,
+      focalLengthMm: -89.7461055924426,
       glass: "SSK2 catalog equivalent (patent 622531; production supplier unspecified)",
       role: "Second negative meniscus of the front retrofocus group, convex toward the object.",
+      diagramLabel: "L2",
     },
     {
       id: 3,
       name: "L3",
-      diagramLabel: "L3",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.6727,
       vd: 32.2,
-      fl: 213.25480411778904,
+      focalLengthMm: 213.25480411778904,
       glass: "SF5 catalog equivalent (patent 673322; production supplier unspecified)",
       role: "Weak positive element beginning the rear converging section.",
+      diagramLabel: "L3",
     },
     {
       id: 4,
       name: "L4",
-      diagramLabel: "L4",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.72,
       vd: 50.3,
-      fl: 23.083370073933388,
+      focalLengthMm: 23.083370073933388,
       glass: "LAC10 catalog equivalent (patent 720503; production supplier unspecified)",
-      cemented: "D1",
       role: "Strong positive member of the cemented L4/L5 doublet.",
+      diagramLabel: "L4",
+      cemented: "D1",
     },
     {
       id: 5,
       name: "L5",
-      diagramLabel: "L5",
       label: "Element 5",
       type: "Negative Meniscus",
       nd: 1.50137,
       vd: 56.5,
-      fl: -76.97515056283237,
+      focalLengthMm: -76.97515056283237,
       glass: "K10 catalog equivalent (patent 501565; production supplier unspecified)",
-      cemented: "D1",
       role: "Negative member cemented to L4; the pair remains net positive.",
+      diagramLabel: "L5",
+      cemented: "D1",
     },
     {
       id: 6,
       name: "L6",
-      diagramLabel: "L6",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.72825,
       vd: 28.3,
-      fl: -21.854976190360833,
+      focalLengthMm: -21.854976190360833,
       glass: "SF10 catalog equivalent (patent 728283; production supplier unspecified)",
       role: "Air-spaced negative rear element immediately behind the diaphragm.",
+      diagramLabel: "L6",
     },
     {
       id: 7,
       name: "L7",
-      diagramLabel: "L7",
       label: "Element 7",
       type: "Positive Meniscus",
       nd: 1.713,
       vd: 53.9,
-      fl: 41.5404768243343,
+      focalLengthMm: 41.5404768243343,
       glass: "LAC8 catalog equivalent (patent 713539; production supplier unspecified)",
       role: "Positive rear meniscus, concave toward the object.",
+      diagramLabel: "L7",
     },
     {
       id: 8,
       name: "L8",
-      diagramLabel: "L8",
       label: "Element 8",
       type: "Positive Meniscus",
       nd: 1.6516,
       vd: 58.5,
-      fl: 55.00426542849768,
+      focalLengthMm: 55.00426542849768,
       glass: "N-LAK7 catalog equivalent (patent 652585; production supplier unspecified)",
       role: "Final positive meniscus, concave toward the object.",
+      diagramLabel: "L8",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 36.1025, d: 1.9565, nd: 1.6516, elemId: 1, sd: 17.0 },
-    { label: "2", R: 19.152, d: 4.6515, nd: 1.0, elemId: 0, sd: 14.2 },
-    { label: "3", R: 45.2795, d: 1.3475, nd: 1.6223, elemId: 2, sd: 14.5 },
-    { label: "4", R: 24.7205, d: 11.0145, nd: 1.0, elemId: 0, sd: 14.5 },
-    { label: "5", R: 342.65, d: 6.118, nd: 1.6727, elemId: 3, sd: 13.5 },
-    { label: "6", R: -245.0, d: 0.1225, nd: 1.0, elemId: 0, sd: 13.3 },
-    { label: "7", R: 34.02, d: 10.892, nd: 1.72, elemId: 4, sd: 12.8 },
-    { label: "8", R: -28.14, d: 1.5925, nd: 1.50137, elemId: 5, sd: 10.5 },
-    { label: "9", R: -105.8575, d: 4.40496, nd: 1.0, elemId: 0, sd: 10.3 },
-    { label: "STO", R: 1e15, d: 1.71304, nd: 1.0, elemId: 0, sd: 7.71767195972492 },
-    { label: "10", R: -22.1515, d: 4.9, nd: 1.72825, elemId: 6, sd: 9.0 },
-    { label: "11", R: 61.81, d: 1.225, nd: 1.0, elemId: 0, sd: 8.7 },
-    { label: "12", R: -81.991, d: 2.45, nd: 1.713, elemId: 7, sd: 9.3 },
-    { label: "13", R: -22.029, d: 0.1225, nd: 1.0, elemId: 0, sd: 9.8 },
-    { label: "14", R: -375.69, d: 2.2015, nd: 1.6516, elemId: 8, sd: 9.8 },
-    { label: "15", R: -32.795, d: 45.67632147392648, nd: 1.0, elemId: 0, sd: 10.2 },
+    { label: "1", R: 36.1025, d: 1.9565, sd: 17.0, medium: 1 },
+    { label: "2", R: 19.152, d: 4.6515, sd: 14.2 },
+    { label: "3", R: 45.2795, d: 1.3475, sd: 14.5, medium: 2 },
+    { label: "4", R: 24.7205, d: 11.0145, sd: 14.5 },
+    { label: "5", R: 342.65, d: 6.118, sd: 13.5, medium: 3 },
+    { label: "6", R: -245.0, d: 0.1225, sd: 13.3 },
+    { label: "7", R: 34.02, d: 10.892, sd: 12.8, medium: 4 },
+    { label: "8", R: -28.14, d: 1.5925, sd: 10.5, medium: 5 },
+    { label: "9", R: -105.8575, d: 4.40496, sd: 10.3 },
+    { label: "STO", R: "flat", d: 1.71304 },
+    { label: "10", R: -22.1515, d: 4.9, sd: 9.0, medium: 6 },
+    { label: "11", R: 61.81, d: 1.225, sd: 8.7 },
+    { label: "12", R: -81.991, d: 2.45, sd: 9.3, medium: 7 },
+    { label: "13", R: -22.029, d: 0.1225, sd: 9.8 },
+    { label: "14", R: -375.69, d: 2.2015, sd: 9.8, medium: 8 },
+    { label: "15", R: -32.795, d: 45.67632147392648, sd: 10.2 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 0.3,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION: DE 1 497 540 A1 Example III publishes only the infinity prescription; no internal focus spacing is modeled. The 0.3 m catalog MFD is metadata from a later same-name Nikon manual and does not define a patent focus state.",
+  },
+
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22, 32] },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 75, maxTraceFieldDeg: 37.5 },
+
+  // Nikon's PC-NIKKOR history identifies this 1968 8-element generation and explains that
+  // production omitted the trial-model tilt mechanism. The linked Nikon manual records 11 mm
+  // shift travel for the PC 35 mm mechanism: https://imaging.nikon.com/imaging/information/story/0017/
+  perspectiveControl: { shiftRangeMm: [-11, 11], tiltRangeDeg: [0, 0], shiftStepMm: 0.1 },
 
   groups: [
     { text: "FRONT", fromSurface: "1", toSurface: "4" },
@@ -210,13 +210,7 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
 
-  closeFocusM: 0.3,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: DE 1 497 540 A1 Example III publishes only the infinity prescription; no internal focus spacing is modeled. The 0.3 m catalog MFD is metadata from a later same-name Nikon manual and does not define a patent focus state.",
-
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
-  yScFill: 0.44,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.44 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

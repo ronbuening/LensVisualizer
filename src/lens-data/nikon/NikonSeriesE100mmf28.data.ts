@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -36,24 +36,28 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-series-e-100mm-f28",
   maker: "Nikon",
   name: "NIKON SERIES E 100mm f/2.8",
   subtitle: "US 4,303,314 Embodiment 1 — Nippon Kogaku / Sei Matsui",
-  specs: ["4 elements / 4 groups", "f = 100.02 mm", "F/2.8", "2ω = 24° patent", "0 aspherical surfaces"],
 
-  focalLengthMarketing: 100,
-  focalLengthDesign: 100.0167,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.8,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,303,314",
-  patentAuthors: ["Sei Matsui"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1981,
-  elementCount: 4,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: ["4 elements / 4 groups", "f = 100.02 mm", "F/2.8", "2ω = 24° patent", "0 aspherical surfaces"],
+    elementCount: 4,
+    groupCount: 4,
+    focalLengthMm: { marketing: 100, design: 100.0167 },
+    fNumber: { marketing: 2.8, design: 2.8 },
+  },
+
+  source: {
+    patentNumber: "US 4,303,314",
+    patentYear: 1981,
+    authors: ["Sei Matsui"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   elements: [
     {
@@ -63,12 +67,12 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.61272,
       vd: 58.6,
-      fl: 76.98,
+      focalLengthMm: 76.98,
       glass: "613586 — dense crown (line-index backfill; patent nd=1.61272, νd=58.6)",
+      role: "Front positive collector; sharper object-side curvature carries most of the element power.",
       nC: 1.60954,
       nF: 1.61999,
       ng: 1.62568,
-      role: "Front positive collector; sharper object-side curvature carries most of the element power.",
     },
     {
       id: 2,
@@ -77,12 +81,12 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62041,
       vd: 60.3,
-      fl: 75.93,
+      focalLengthMm: 75.93,
       glass: "S-BSM16 (OHARA) / N-SK16 class",
+      role: "Second positive collector; together with L1 forms the high-power f12 front subsystem.",
       nC: 1.61728,
       nF: 1.62757,
       ng: 1.63315,
-      role: "Second positive collector; together with L1 forms the high-power f12 front subsystem.",
     },
     {
       id: 3,
@@ -91,12 +95,12 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.71736,
       vd: 29.5,
-      fl: -32.36,
+      focalLengthMm: -32.36,
       glass: "S-TIH1 (OHARA) / SF1 class",
+      role: "Principal negative telephoto element; rear surface r6 is the patent's critical short-wavelength spherical-aberration control surface.",
       nC: 1.71033,
       nF: 1.73463,
       ng: 1.74933,
-      role: "Principal negative telephoto element; rear surface r6 is the patent's critical short-wavelength spherical-aberration control surface.",
     },
     {
       id: 4,
@@ -105,34 +109,36 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.74077,
       vd: 27.7,
-      fl: 138.69,
+      focalLengthMm: 138.69,
       glass: "S-TIH13 (OHARA)",
+      role: "Weak rear positive collector behind the stop; completes the telephoto layout and helps restrain Petzval curvature.",
       nC: 1.73309,
       nF: 1.75975,
       ng: 1.77599,
-      role: "Weak rear positive collector behind the stop; completes the telephoto layout and helps restrain Petzval curvature.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 41.0, d: 5.3, nd: 1.61272, elemId: 1, sd: 21.2 },
-    { label: "2", R: 298.19, d: 0.75, nd: 1.0, elemId: 0, sd: 20.8 },
-    { label: "3", R: 29.92, d: 9.8, nd: 1.62041, elemId: 2, sd: 20.6 },
-    { label: "4", R: 71.72, d: 1.8, nd: 1.0, elemId: 0, sd: 19.2 },
-    { label: "5", R: 149.221, d: 4.5, nd: 1.71736, elemId: 3, sd: 18.5 },
-    { label: "6", R: 19.836, d: 14.7, nd: 1.0, elemId: 0, sd: 16.8 },
-    { label: "STO", R: 1e15, d: 14.7, nd: 1.0, elemId: 0, sd: 9.2514 },
-    { label: "7", R: 71.0, d: 2.0, nd: 1.74077, elemId: 4, sd: 15.5 },
-    { label: "8", R: 227.07, d: 40.250371, nd: 1.0, elemId: 0, sd: 15.5 },
+    { label: "1", R: 41.0, d: 5.3, sd: 21.2, medium: 1 },
+    { label: "2", R: 298.19, d: 0.75, sd: 20.8 },
+    { label: "3", R: 29.92, d: 9.8, sd: 20.6, medium: 2 },
+    { label: "4", R: 71.72, d: 1.8, sd: 19.2 },
+    { label: "5", R: 149.221, d: 4.5, sd: 18.5, medium: 3 },
+    { label: "6", R: 19.836, d: 14.7, sd: 16.8 },
+    { label: "STO", R: "flat", d: 14.7 },
+    { label: "7", R: 71.0, d: 2.0, sd: 15.5, medium: 4 },
+    { label: "8", R: 227.07, sd: 15.5 },
   ],
 
-  asph: {},
-
-  var: {
-    "8": [40.250371, 52.939466],
+  focus: {
+    closeFocusM: 1.0,
+    description:
+      "Unit focusing by whole-lens extension; patent gives only infinity spacing, so close focus varies only the final BFD.",
   },
 
-  varLabels: [["8", "BF"]],
+  gaps: { "8": { label: "BF", values: [[40.250371, 52.939466]] } },
+
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "L1", fromSurface: "1", toSurface: "2" },
@@ -140,19 +146,9 @@ const LENS_DATA = {
     { text: "L3", fromSurface: "5", toSurface: "6" },
     { text: "L4", fromSurface: "7", toSurface: "8" },
   ],
-
   doublets: [],
 
-  closeFocusM: 1.0,
-  focusDescription:
-    "Unit focusing by whole-lens extension; patent gives only infinity spacing, so close focus varies only the final BFD.",
-
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  scFill: 0.62,
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { scFill: 0.62, yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

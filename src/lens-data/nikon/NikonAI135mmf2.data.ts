@@ -37,38 +37,36 @@
  * Glass IDs are inferential from nd/νd catalog matching; see analysis.
  */
 
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-ai-nikkor-135f2",
-  name: "NIKON AI NIKKOR 135mm f/2",
   maker: "Nikon",
+  name: "NIKON AI NIKKOR 135mm f/2",
   subtitle: "US 4,062,630 · Example V",
-  specs: [
-    "6 elements / 4 groups",
-    "Ai / Ai-S Nikkor 135mm f/2 (1977–2005)",
-    "f = 135 mm (patent f = 100 mm × 1.35)",
-    "Tele-Sonnar / Ernostar variant",
-  ],
 
-  focalLengthMarketing: 135,
-  focalLengthDesign: 135,
-  apertureMarketing: 2,
-  apertureDesign: 2,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  // Patent general data: 2W = 18°. The exact chief ray reaching Y = 21.6 mm leaves at 8.97°.
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 18,
-    maxTraceFieldDeg: 9,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "6 elements / 4 groups",
+      "Ai / Ai-S Nikkor 135mm f/2 (1977–2005)",
+      "f = 135 mm (patent f = 100 mm × 1.35)",
+      "Tele-Sonnar / Ernostar variant",
+    ],
+    elementCount: 6,
+    groupCount: 4,
+    focalLengthMm: { marketing: 135, design: 135 },
+    fNumber: { marketing: 2, design: 2 },
   },
-  patentNumber: "US 4,062,630",
-  patentAuthors: ["Sei Matsui"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1977,
-  elementCount: 6,
-  groupCount: 4,
+
+  source: {
+    patentNumber: "US 4,062,630",
+    patentYear: 1977,
+    authors: ["Sei Matsui"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   elements: [
     {
@@ -78,7 +76,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.717,
       vd: 48.1,
-      fl: 132.5,
+      focalLengthMm: 132.5,
       glass: "S-LAM3 (OHARA)",
       role: "Front positive meniscus — primary converging element, bears full EP diameter",
     },
@@ -89,10 +87,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.62606,
       vd: 39.1,
-      fl: -128.2,
+      focalLengthMm: -128.2,
       glass: "626391 — barium flint (patent coordinate; vendor unresolved)",
-      cemented: "D1",
       role: "Flint component of achromatic doublet (Group II); Δν = 22.1 vs L3",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -101,10 +99,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.58913,
       vd: 61.2,
-      fl: 56.8,
+      focalLengthMm: 56.8,
       glass: "OHARA S-BAL35 / HOYA BACD5 (589/612)",
-      cemented: "D1",
       role: "Crown component of achromatic doublet (Group II); strongest positive element in system",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -113,10 +111,10 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.74,
       vd: 28.2,
-      fl: 63.5,
+      focalLengthMm: 63.5,
       glass: "FD3 (HOYA catalog-equivalent; production supplier unspecified)",
-      cemented: "D2",
       role: "Dense flint positive in monochromatic correction doublet (Group III); near-isochromatic with L5",
+      cemented: "D2",
     },
     {
       id: 5,
@@ -125,10 +123,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.71736,
       vd: 29.5,
-      fl: -25.7,
+      focalLengthMm: -25.7,
       glass: "HOYA E-FD1 / Schott SF1 (717/295)",
-      cemented: "D2",
       role: "Dense flint negative in monochromatic correction doublet; g-line spherical aberration corrector",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -137,7 +135,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.71736,
       vd: 29.5,
-      fl: 132.5,
+      focalLengthMm: 132.5,
       glass: "HOYA E-FD1 / Schott SF1 (717/295)",
       role: "Rear positive element — field curvature and astigmatism control; same glass as L5",
     },
@@ -145,35 +143,39 @@ const LENS_DATA = {
 
   surfaces: [
     // ── Group I: L1 ──
-    { label: "1", R: 78.32, d: 11.097, nd: 1.717, elemId: 1, sd: 35.0 },
-    { label: "2", R: 420.0, d: 0.4995, nd: 1.0, elemId: 0, sd: 33.8 },
+    { label: "1", R: 78.32, d: 11.097, sd: 35.0, medium: 1 },
+    { label: "2", R: 420.0, d: 0.4995, sd: 33.8 },
 
     // ── Group II: L2 + L3 cemented doublet (D1) ──
-    { label: "3", R: 51.5, d: 3.699, nd: 1.62606, elemId: 2, sd: 33.8 },
-    { label: "4", R: 30.501, d: 17.901, nd: 1.58913, elemId: 3, sd: 27.4 },
-    { label: "5", R: 270.0, d: 3.4965, nd: 1.0, elemId: 0, sd: 25.2 },
+    { label: "3", R: 51.5, d: 3.699, sd: 33.8, medium: 2 },
+    { label: "4", R: 30.501, d: 17.901, sd: 27.4, medium: 3 },
+    { label: "5", R: 270.0, d: 3.4965, sd: 25.2 },
 
     // ── Group III: L4 + L5 cemented doublet (D2) ──
-    { label: "6", R: 1e15, d: 12.0015, nd: 1.74, elemId: 4, sd: 25.8 },
-    { label: "7", R: -47.0, d: 1.6065, nd: 1.71736, elemId: 5, sd: 25.8 },
-    { label: "8", R: 30.776, d: 11.2, nd: 1.0, elemId: 0, sd: 18.5 },
+    { label: "6", R: "flat", d: 12.0015, sd: 25.8, medium: 4 },
+    { label: "7", R: -47.0, d: 1.6065, sd: 25.8, medium: 5 },
+    { label: "8", R: 30.776, d: 11.2, sd: 18.5 },
 
     // ── Aperture stop (drawn in Fig. 1 inside d8; not tabulated — split of d8 measured from the figure) ──
-    { label: "STO", R: 1e15, d: 22.6985, nd: 1.0, elemId: 0, sd: 15.7 },
+    { label: "STO", R: "flat", d: 22.6985 },
 
     // ── Group IV: L6 ──
-    { label: "9", R: 85.942, d: 12.0015, nd: 1.71736, elemId: 6, sd: 17.5 },
-    { label: "10", R: 843.337, d: 39.447, nd: 1.0, elemId: 0, sd: 17.5 },
+    { label: "9", R: 85.942, d: 12.0015, sd: 17.5, medium: 6 },
+    { label: "10", R: 843.337, sd: 17.5 },
   ],
 
-  asph: {},
-
-  var: {
-    "10": [39.447, 57.54],
+  focus: {
+    closeFocusM: 1.3,
+    description:
+      "Unit focusing — entire optical assembly translates forward; only BFD changes (1.3 m close state calculated, not published)",
   },
-  varLabels: [["10", "BF"]],
-  focusDescription:
-    "Unit focusing — entire optical assembly translates forward; only BFD changes (1.3 m close state calculated, not published)",
+
+  gaps: { "10": { label: "BF", values: [[39.447, 57.54]] } },
+
+  aperture: { nominalFNumber: 2, fStops: [2, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
+
+  // Patent general data: 2W = 18°. The exact chief ray reaching Y = 21.6 mm leaves at 8.97°.
+  projection: { kind: "rectilinear", fullFieldDeg: 18, maxTraceFieldDeg: 9 },
 
   groups: [
     { text: "I", fromSurface: "1", toSurface: "2" },
@@ -186,13 +188,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
 
-  closeFocusM: 1.3,
-  nominalFno: 2,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  scFill: 0.55,
-  yScFill: 0.38,
-} satisfies LensDataInput;
+  layout: { scFill: 0.55, yScFill: 0.38 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

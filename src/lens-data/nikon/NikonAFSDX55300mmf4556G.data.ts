@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Nikon AF-S DX NIKKOR 55-300mm f/4.5-5.6G ED VR
@@ -12,27 +12,33 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-af-s-dx-55-300mm-f45-56g-ed-vr",
   maker: "Nikon",
   name: "NIKON AF-S DX NIKKOR 55-300mm f/4.5-5.6 G ED VR",
   subtitle: "US 2011/0102905 A1 Example 1 — Hiroki Harada / Nikon",
-  specs: [
-    "17 elements / 11 groups",
-    "56.09-293.90 mm design EFL",
-    "f/4.5-5.6 marketed maximum aperture",
-    "2 ED elements / 1 HRI element",
-    "Front-group focus; G4 VR group",
-  ],
-  focalLengthMarketing: [55, 300],
-  focalLengthDesign: [56.09, 293.9],
-  lensMounts: ["nikon-f"],
-  imageFormat: "aps-c",
-  patentNumber: "US 2011/0102905 A1",
-  patentAuthors: ["Hiroki Harada"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 2011,
-  elementCount: 17,
-  groupCount: 11,
+
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "aps-c",
+    specs: [
+      "17 elements / 11 groups",
+      "56.09-293.90 mm design EFL",
+      "f/4.5-5.6 marketed maximum aperture",
+      "2 ED elements / 1 HRI element",
+      "Front-group focus; G4 VR group",
+    ],
+    elementCount: 17,
+    groupCount: 11,
+    focalLengthMm: { marketing: [55, 300], design: [56.09, 293.9] },
+  },
+
+  source: {
+    patentNumber: "US 2011/0102905 A1",
+    patentYear: 2011,
+    authors: ["Hiroki Harada"],
+    assignees: ["Nikon Corporation"],
+  },
 
   elements: [
     {
@@ -42,7 +48,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5168,
       vd: 64.1,
-      fl: 259.3,
+      focalLengthMm: 259.3,
       glass: "517/641 crown class (N-BK7 / S-BSL7 equivalent; vendor uncertain)",
       role: "Weak front collector; starts the convergence of the telephoto zoom while keeping surface curvatures mild.",
     },
@@ -53,10 +59,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.78472,
       vd: 25.68,
-      fl: -223.6,
+      focalLengthMm: -223.6,
       glass: "S-TIH11 (OHARA)",
-      cemented: "D1",
       role: "Dense titanium flint half of the front achromat; chromatic counterweight to the ED positive element L13.",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -65,10 +71,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.54,
-      fl: 110.6,
+      focalLengthMm: 110.6,
       glass: "S-FPL51 / FCD1 class (ED fluorophosphate)",
-      cemented: "D1",
       role: "First ED element; provides most of the positive power of the front cemented doublet.",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -77,10 +83,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.741,
       vd: 52.67,
-      fl: -24.5,
+      focalLengthMm: -24.5,
       glass: "S-LAL61 class (OHARA; patent vd rounded high)",
-      cemented: "D2",
       role: "Dominant negative variator element in G2.",
+      cemented: "D2",
     },
     {
       id: 5,
@@ -89,10 +95,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.78,
-      fl: 38.7,
+      focalLengthMm: 38.7,
       glass: "S-TIH53 (OHARA)",
-      cemented: "D2",
       role: "High-index flint partner in the G2 cemented variator doublet.",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -101,7 +107,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.804,
       vd: 46.57,
-      fl: -58.0,
+      focalLengthMm: -58.0,
       glass: "S-LAH65V / S-LAH65VS class (OHARA)",
       role: "Air-spaced negative meniscus completing the variator group and controlling off-axis aberrations.",
     },
@@ -112,7 +118,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6968,
       vd: 55.52,
-      fl: 75.8,
+      focalLengthMm: 75.8,
       glass: "S-LAL14 / J-LAK14 class",
       role: "First positive relay element after the stop.",
     },
@@ -123,7 +129,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6968,
       vd: 55.52,
-      fl: 77.1,
+      focalLengthMm: 77.1,
       glass: "S-LAL14 / J-LAK14 class",
       role: "Second distributed positive relay element in G3.",
     },
@@ -134,10 +140,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.54,
-      fl: 53.8,
+      focalLengthMm: 53.8,
       glass: "S-FPL51 / FCD1 class (ED fluorophosphate)",
-      cemented: "D3",
       role: "Second ED element; positive half of the G3 chromatic-correction doublet.",
+      cemented: "D3",
     },
     {
       id: 10,
@@ -146,10 +152,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.90366,
       vd: 31.27,
-      fl: -26.1,
+      focalLengthMm: -26.1,
       glass: "S-LAH95 / 904-313 dense lanthanum flint class",
-      cemented: "D3",
       role: "High-index negative element governed by the patent's G3 conditional expressions.",
+      cemented: "D3",
     },
     {
       id: 11,
@@ -158,7 +164,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.56384,
       vd: 60.67,
-      fl: 49.1,
+      focalLengthMm: 49.1,
       glass: "S-BAL41 (OHARA)",
       role: "Fourth positive element in G3; completes the distributed relay power.",
     },
@@ -169,10 +175,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.61,
-      fl: -24.1,
+      focalLengthMm: -24.1,
       glass: "S-LAH66 (OHARA)",
-      cemented: "D4",
       role: "Dominant negative element in the decentered VR group.",
+      cemented: "D4",
     },
     {
       id: 13,
@@ -181,10 +187,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 2.00069,
       vd: 25.46,
-      fl: 45.6,
+      focalLengthMm: 45.6,
       glass: "H-ZLaF80 / TAFD40 class (Hikari/Hoya; HRI)",
-      cemented: "D4",
       role: "High-refractive-index positive VR element; n_d exceeds 2.0.",
+      cemented: "D4",
     },
     {
       id: 14,
@@ -193,10 +199,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.64769,
       vd: 33.8,
-      fl: 28.7,
+      focalLengthMm: 28.7,
       glass: "S-TIM22 (OHARA)",
-      cemented: "D5",
       role: "Strong positive flint element beginning the rear relay group.",
+      cemented: "D5",
     },
     {
       id: 15,
@@ -205,10 +211,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.72,
       vd: 50.23,
-      fl: -94.6,
+      focalLengthMm: -94.6,
       glass: "S-LAL10 (OHARA)",
-      cemented: "D5",
       role: "Negative lanthanum crown partner in the first G5 cemented doublet.",
+      cemented: "D5",
     },
     {
       id: 16,
@@ -217,10 +223,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.41,
-      fl: 66.4,
+      focalLengthMm: 66.4,
       glass: "N-FK5 / J-FK5 / S-FSL5 class",
-      cemented: "D6",
       role: "Low-index, low-dispersion positive element in the final cemented pair.",
+      cemented: "D6",
     },
     {
       id: 17,
@@ -229,74 +235,88 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.801,
       vd: 34.96,
-      fl: -34.0,
+      focalLengthMm: -34.0,
       glass: "S-LAM66 (OHARA)",
-      cemented: "D6",
       role: "Rear dense flint element; final field and chromatic corrector before the image plane.",
+      cemented: "D6",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 267.2708, d: 4.4, nd: 1.5168, elemId: 1, sd: 29.0 },
-    { label: "2", R: -267.2701, d: 0.2, nd: 1.0, elemId: 0, sd: 29.0 },
-    { label: "3", R: 76.5471, d: 2, nd: 1.78472, elemId: 2, sd: 28.2 },
-    { label: "4", R: 52.6873, d: 8.2, nd: 1.497, elemId: 3, sd: 28.2 },
-    { label: "5", R: 1207.6009, d: 4.35, nd: 1.0, elemId: 0, sd: 28.2 },
-    { label: "6", R: -246.6847, d: 1.2, nd: 1.741, elemId: 4, sd: 13.5 },
-    { label: "7", R: 19.6258, d: 3.8, nd: 1.84666, elemId: 5, sd: 13.5 },
-    { label: "8", R: 44.5733, d: 3.4, nd: 1.0, elemId: 0, sd: 11.3 },
-    { label: "9", R: -41.212, d: 1.2, nd: 1.804, elemId: 6, sd: 11.3 },
-    { label: "10", R: -357.8603, d: 39.77, nd: 1.0, elemId: 0, sd: 12.8 },
-    { label: "STO", R: 1e15, d: 1.8, nd: 1.0, elemId: 0, sd: 11.5 },
-    { label: "12", R: 70.0435, d: 3.1, nd: 1.6968, elemId: 7, sd: 13.2 },
-    { label: "13", R: -211.0, d: 0.2, nd: 1.0, elemId: 0, sd: 13.2 },
-    { label: "14", R: 69.6788, d: 3.1, nd: 1.6968, elemId: 8, sd: 13.2 },
-    { label: "15", R: -230.0, d: 0.2, nd: 1.0, elemId: 0, sd: 13.2 },
-    { label: "16", R: 52.691, d: 4.8, nd: 1.497, elemId: 9, sd: 13.2 },
-    { label: "17", R: -52.6889, d: 1.2, nd: 1.90366, elemId: 10, sd: 12.8 },
-    { label: "18", R: 43.1764, d: 0.2, nd: 1.0, elemId: 0, sd: 12.8 },
-    { label: "19", R: 29.0997, d: 4.6, nd: 1.56384, elemId: 11, sd: 12.8 },
-    { label: "20", R: -547.7122, d: 17.2, nd: 1.0, elemId: 0, sd: 12.8 },
-    { label: "21", R: 522.7391, d: 1.1, nd: 1.7725, elemId: 12, sd: 10.8 },
-    { label: "22", R: 17.943, d: 1.9, nd: 2.00069, elemId: 13, sd: 10.8 },
-    { label: "23", R: 28.0061, d: 3.2, nd: 1.0, elemId: 0, sd: 10.8 },
-    { label: "24", R: 49.1627, d: 4.5, nd: 1.64769, elemId: 14, sd: 12.0 },
-    { label: "25", R: -28.8622, d: 3, nd: 1.72, elemId: 15, sd: 12.0 },
-    { label: "26", R: -52.2713, d: 2.8, nd: 1.0, elemId: 0, sd: 12.0 },
-    { label: "27", R: -26.8616, d: 4, nd: 1.48749, elemId: 16, sd: 12.0 },
-    { label: "28", R: -15.4005, d: 1, nd: 1.801, elemId: 17, sd: 12.0 },
-    { label: "29", R: -36.4531, d: 40.2, nd: 1.0, elemId: 0, sd: 12.0 },
+    { label: "1", R: 267.2708, d: 4.4, sd: 29.0, medium: 1 },
+    { label: "2", R: -267.2701, d: 0.2, sd: 29.0 },
+    { label: "3", R: 76.5471, d: 2, sd: 28.2, medium: 2 },
+    { label: "4", R: 52.6873, d: 8.2, sd: 28.2, medium: 3 },
+    { label: "5", R: 1207.6009, sd: 28.2 },
+    { label: "6", R: -246.6847, d: 1.2, sd: 13.5, medium: 4 },
+    { label: "7", R: 19.6258, d: 3.8, sd: 13.5, medium: 5 },
+    { label: "8", R: 44.5733, d: 3.4, sd: 11.3 },
+    { label: "9", R: -41.212, d: 1.2, sd: 11.3, medium: 6 },
+    { label: "10", R: -357.8603, sd: 12.8 },
+    { label: "STO", R: "flat", d: 1.8 },
+    { label: "12", R: 70.0435, d: 3.1, sd: 13.2, medium: 7 },
+    { label: "13", R: -211.0, d: 0.2, sd: 13.2 },
+    { label: "14", R: 69.6788, d: 3.1, sd: 13.2, medium: 8 },
+    { label: "15", R: -230.0, d: 0.2, sd: 13.2 },
+    { label: "16", R: 52.691, d: 4.8, sd: 13.2, medium: 9 },
+    { label: "17", R: -52.6889, d: 1.2, sd: 12.8, medium: 10 },
+    { label: "18", R: 43.1764, d: 0.2, sd: 12.8 },
+    { label: "19", R: 29.0997, d: 4.6, sd: 12.8, medium: 11 },
+    { label: "20", R: -547.7122, d: 17.2, sd: 12.8 },
+    { label: "21", R: 522.7391, d: 1.1, sd: 10.8, medium: 12 },
+    { label: "22", R: 17.943, d: 1.9, sd: 10.8, medium: 13 },
+    { label: "23", R: 28.0061, d: 3.2, sd: 10.8 },
+    { label: "24", R: 49.1627, d: 4.5, sd: 12.0, medium: 14 },
+    { label: "25", R: -28.8622, d: 3, sd: 12.0, medium: 15 },
+    { label: "26", R: -52.2713, d: 2.8, sd: 12.0 },
+    { label: "27", R: -26.8616, d: 4, sd: 12.0, medium: 16 },
+    { label: "28", R: -15.4005, d: 1, sd: 12.0, medium: 17 },
+    { label: "29", R: -36.4531, sd: 12.0 },
   ],
 
-  asph: {},
-
-  zoomPositions: [56.09, 129.95, 293.9],
-  zoomStep: 0.005,
-  zoomLabels: ["Wide", "Mid", "Tele"],
-
-  var: {
-    "5": [
-      [4.35, 17.475832],
-      [43.24, 56.705094],
-      [55.74, 69.382525],
+  zoom: {
+    stations: [
+      { focalLengthMm: 56.09, nominalFNumber: 4.5, label: "Wide" },
+      { focalLengthMm: 129.95, nominalFNumber: 5.0, label: "Mid" },
+      { focalLengthMm: 293.9, nominalFNumber: 5.6, label: "Tele" },
     ],
-    "10": [
-      [39.77, 39.77],
-      [24.45, 24.45],
-      [2.35, 2.35],
-    ],
-    "29": [
-      [40.2, 40.2],
-      [44.88, 44.88],
-      [68.2, 68.2],
-    ],
+    step: 0.005,
   },
 
-  varLabels: [
-    ["5", "d5 / G1 focus"],
-    ["10", "d10"],
-    ["29", "BF"],
-  ],
+  focus: {
+    closeFocusM: 1.4,
+    description:
+      "Front-group focus: G1 moves objectward; close-focus spacings solved to reproduce Nikon's 1.4 m minimum focus distance and approximately 0.28x telephoto magnification.",
+  },
+
+  gaps: {
+    "5": {
+      label: "d5 / G1 focus",
+      values: [
+        [4.35, 17.475832],
+        [43.24, 56.705094],
+        [55.74, 69.382525],
+      ],
+    },
+    "10": {
+      label: "d10",
+      values: [
+        [39.77, 39.77],
+        [24.45, 24.45],
+        [2.35, 2.35],
+      ],
+    },
+    "29": {
+      label: "BF",
+      values: [
+        [40.2, 40.2],
+        [44.88, 44.88],
+        [68.2, 68.2],
+      ],
+    },
+  },
+
+  aperture: { fStops: [4.5, 5.6, 8, 11, 16, 22, 29], maxFNumber: 29 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "5" },
@@ -305,7 +325,6 @@ const LENS_DATA = {
     { text: "G4 / VR", fromSurface: "21", toSurface: "23" },
     { text: "G5", fromSurface: "24", toSurface: "29" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "3", toSurface: "5" },
     { text: "D2", fromSurface: "6", toSurface: "8" },
@@ -315,16 +334,7 @@ const LENS_DATA = {
     { text: "D6", fromSurface: "27", toSurface: "29" },
   ],
 
-  closeFocusM: 1.4,
-  focusDescription:
-    "Front-group focus: G1 moves objectward; close-focus spacings solved to reproduce Nikon's 1.4 m minimum focus distance and approximately 0.28x telephoto magnification.",
-
-  nominalFno: [4.5, 5.0, 5.6],
-  fstopSeries: [4.5, 5.6, 8, 11, 16, 22, 29],
-  maxFstop: 29,
-
-  scFill: 0.82,
-  yScFill: 0.72,
-} satisfies LensDataInput;
+  layout: { scFill: 0.82, yScFill: 0.72 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

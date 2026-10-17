@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -21,8 +21,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON APERTURE STOP:                                                    ║
  * ║    The patent does not tabulate a stop surface. The stop is inferred from  ║
  * ║    Fig. 1 as lying in the fixed G2/G3 air gap between surfaces 9 and 10;   ║
- * ║    the 8.84 mm air space is split equally. The stop semi-diameter is set   ║
- * ║    from the paraxial entrance pupil required for f/2.8.                    ║
+ * ║    the 8.84 mm air space is split equally. The stop radius is derived from ║
+ * ║    the design f-number, f/2.8.                                             ║
  * ║                                                                            ║
  * ║  NOTE ON SEMI-DIAMETERS:                                                   ║
  * ║    Semi-diameters are estimated from combined marginal/chief ray traces    ║
@@ -36,36 +36,34 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-ruw-af-micro-nikkor-50f28",
   maker: "Nikon",
   name: "NIKON R-UW AF MICRO-NIKKOR 50mm f/2.8",
   subtitle: "US 5,257,137 Example 1 — Nikon / Suzuki & Hamanishi",
-  specs: [
-    "10 elements / 9 groups",
-    "f = 51.6 mm in water",
-    "f/2.8",
-    "35° underwater field",
-    "1:1 macro",
-    "all-spherical",
-  ],
 
-  focalLengthMarketing: 50,
-  focalLengthDesign: 51.603,
-  apertureMarketing: 2.8,
-  lensMounts: ["nikonos-rs"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 5,257,137",
-  patentAuthors: ["Fumio Suzuki", "Yoshinari Hamanishi"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 1993,
-  elementCount: 10,
-  groupCount: 9,
-  /* The app traces with air in front of the flat port, so the production 35° underwater field is declared at its
-   * in-air equivalent: asin(1.3306 · sin 17.5°) = 23.59° half-field. */
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 47.18,
-    maxTraceFieldDeg: 23.59,
+  catalog: {
+    lensMounts: ["nikonos-rs"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "10 elements / 9 groups",
+      "f = 51.6 mm in water",
+      "f/2.8",
+      "35° underwater field",
+      "1:1 macro",
+      "all-spherical",
+    ],
+    elementCount: 10,
+    groupCount: 9,
+    focalLengthMm: { marketing: 50, design: 51.603 },
+    fNumber: { marketing: 2.8 },
+  },
+
+  source: {
+    patentNumber: "US 5,257,137",
+    patentYear: 1993,
+    authors: ["Fumio Suzuki", "Yoshinari Hamanishi"],
+    assignees: ["Nikon Corporation"],
   },
 
   elements: [
@@ -76,7 +74,7 @@ const LENS_DATA = {
       type: "Parallel Flat Plate",
       nd: 1.5168,
       vd: 64.1,
-      fl: Infinity,
+      focalLengthMm: Infinity,
       glass: "N-BK7 (Schott) / J-BK7A class",
       apd: false,
       role: "Pressure-resistant waterproof window with zero paraxial power.",
@@ -88,7 +86,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.76684,
       vd: 46.8,
-      fl: -46.66,
+      focalLengthMm: -46.66,
       glass: "J-LASFH2 (Hikari; patent nd=1.76684, vd=46.8)",
       apd: false,
       role: "Negative forward G2 unit correcting water-port distortion and lateral color.",
@@ -100,7 +98,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.80518,
       vd: 25.4,
-      fl: 68.31,
+      focalLengthMm: 68.31,
       glass: "N-SF6 / S-TIH6 / J-SF6 dense flint class (805254)",
       apd: false,
       role: "Positive rear G2 element balancing the strong negative forward corrector.",
@@ -112,11 +110,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.79668,
       vd: 45.4,
-      fl: 31.09,
+      focalLengthMm: 31.09,
       glass: "J-LASF017 (Hikari, 795453) close class; patent nd higher by about 0.0017",
       apd: false,
-      cemented: "D1",
       role: "Positive component of the nearly afocal G2R cemented doublet.",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -125,11 +123,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.71736,
       vd: 29.5,
-      fl: -31.04,
+      focalLengthMm: -31.04,
       glass: "SF1 / S-TIH1 / J-SF1 dense flint class (717295)",
       apd: false,
-      cemented: "D1",
       role: "Negative high-dispersion component cemented to L2R2 for chromatic correction.",
+      cemented: "D1",
     },
     {
       id: 6,
@@ -138,7 +136,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.86074,
       vd: 23.0,
-      fl: -35.76,
+      focalLengthMm: -35.76,
       glass: "J-SFH2 (Hikari; patent coordinate 861230)",
       apd: false,
       role: "High-index dense flint at the entrance to the positive power core.",
@@ -150,7 +148,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.79668,
       vd: 45.4,
-      fl: 28.21,
+      focalLengthMm: 28.21,
       glass: "J-LASF017 (Hikari, 795453) close class; patent nd higher by about 0.0017",
       apd: false,
       role: "Principal positive-power element of G3.",
@@ -162,7 +160,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.79631,
       vd: 40.9,
-      fl: 115.63,
+      focalLengthMm: 115.63,
       glass: "NBFD2 (HOYA catalog equivalent; production supplier unspecified; patent 796409)",
       apd: false,
       role: "Weak positive meniscus completing G3 and moderating off-axis aberrations.",
@@ -174,7 +172,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.60717,
       vd: 40.3,
-      fl: 48.9,
+      focalLengthMm: 48.9,
       glass: "BAFD3 (HOYA catalog equivalent; production supplier unspecified; patent 607403)",
       apd: false,
       role: "Positive element in the otherwise negative fixed rear group.",
@@ -186,7 +184,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.79668,
       vd: 45.4,
-      fl: -38.04,
+      focalLengthMm: -38.04,
       glass: "J-LASF017 (Hikari, 795453) close class; patent nd higher by about 0.0017",
       apd: false,
       role: "Dominant negative element of the fixed rear field group.",
@@ -194,39 +192,46 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 1e15, d: 10.0, nd: 1.5168, elemId: 1, sd: 40.0 },
-    { label: "2", R: 1e15, d: 43.0605, nd: 1.0, elemId: 0, sd: 40.0 },
-    { label: "3", R: 35.336, d: 3.5, nd: 1.76684, elemId: 2, sd: 18.3 },
-    { label: "4", R: 17.014, d: 9.0, nd: 1.0, elemId: 0, sd: 15.25 },
-    { label: "5", R: 31.805, d: 3.5, nd: 1.80518, elemId: 3, sd: 16.0 },
-    { label: "6", R: 71.705, d: 0.1, nd: 1.0, elemId: 0, sd: 15.0 },
-    { label: "7", R: 36.369, d: 5.0, nd: 1.79668, elemId: 4, sd: 15.0 },
-    { label: "8", R: -72.941, d: 2.0, nd: 1.71736, elemId: 5, sd: 14.2 },
-    { label: "9", R: 32.415, d: 4.42, nd: 1.0, elemId: 0, sd: 12.8 },
-    { label: "STO", R: 1e15, d: 4.42, nd: 1.0, elemId: 0, sd: 9.8277 },
-    { label: "10", R: -55.01, d: 2.5, nd: 1.86074, elemId: 6, sd: 12.4 },
-    { label: "11", R: 71.364, d: 0.7, nd: 1.0, elemId: 0, sd: 11.4 },
-    { label: "12", R: 222.194, d: 7.3, nd: 1.79668, elemId: 7, sd: 11.4 },
-    { label: "13", R: -24.641, d: 0.1, nd: 1.0, elemId: 0, sd: 14.25 },
-    { label: "14", R: 35.473, d: 3.5, nd: 1.79631, elemId: 8, sd: 15.0 },
-    { label: "15", R: 55.18, d: 4.4407, nd: 1.0, elemId: 0, sd: 15.0 },
-    { label: "16", R: 259.906, d: 6.0, nd: 1.60717, elemId: 9, sd: 17.3 },
-    { label: "17", R: -33.23, d: 1.7, nd: 1.0, elemId: 0, sd: 17.3 },
-    { label: "18", R: -31.796, d: 2.0, nd: 1.79668, elemId: 10, sd: 17.3 },
-    { label: "19", R: 664.6, d: 45.047, nd: 1.0, elemId: 0, sd: 17.3 },
+    { label: "1", R: "flat", d: 10.0, sd: 40.0, medium: 1 },
+    { label: "2", R: "flat", sd: 40.0 },
+    { label: "3", R: 35.336, d: 3.5, sd: 18.3, medium: 2 },
+    { label: "4", R: 17.014, d: 9.0, sd: 15.25 },
+    { label: "5", R: 31.805, d: 3.5, sd: 16.0, medium: 3 },
+    { label: "6", R: 71.705, d: 0.1, sd: 15.0 },
+    { label: "7", R: 36.369, d: 5.0, sd: 15.0, medium: 4 },
+    { label: "8", R: -72.941, d: 2.0, sd: 14.2, medium: 5 },
+    { label: "9", R: 32.415, d: 4.42, sd: 12.8 },
+    { label: "STO", R: "flat", d: 4.42 },
+    { label: "10", R: -55.01, d: 2.5, sd: 12.4, medium: 6 },
+    { label: "11", R: 71.364, d: 0.7, sd: 11.4 },
+    { label: "12", R: 222.194, d: 7.3, sd: 11.4, medium: 7 },
+    { label: "13", R: -24.641, d: 0.1, sd: 14.25 },
+    { label: "14", R: 35.473, d: 3.5, sd: 15.0, medium: 8 },
+    { label: "15", R: 55.18, sd: 15.0 },
+    { label: "16", R: 259.906, d: 6.0, sd: 17.3, medium: 9 },
+    { label: "17", R: -33.23, d: 1.7, sd: 17.3 },
+    { label: "18", R: -31.796, d: 2.0, sd: 17.3, medium: 10 },
+    { label: "19", R: 664.6, d: 45.047, sd: 17.3 },
   ],
 
-  asph: {},
-
-  focusPositions: [0, 0.6967361668974719, 1],
-  var: {
-    "2": [43.0605, 24.2389, 5.4172],
-    "15": [4.4407, 23.2623, 42.084],
+  focus: {
+    closeFocusM: 0.167,
+    keyframes: [0, 0.6967361668974719, 1],
+    description: "Inner focus: G2 + G3 translate toward the object; D2 decreases while D15 increases.",
+    // (moved from publishedStations) Every focus keyframe is a source row.
+    published: [1, 2],
   },
-  varLabels: [
-    ["2", "D2"],
-    ["15", "D15"],
-  ],
+
+  gaps: {
+    "2": { label: "D2", values: [[43.0605, 24.2389, 5.4172]] },
+    "15": { label: "D15", values: [[4.4407, 23.2623, 42.084]] },
+  },
+
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
+
+  /* The app traces with air in front of the flat port, so the production 35° underwater field is declared at its
+   * in-air equivalent: asin(1.3306 · sin 17.5°) = 23.59° half-field. */
+  projection: { kind: "rectilinear", fullFieldDeg: 47.18, maxTraceFieldDeg: 23.59 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -237,15 +242,7 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
 
-  focusDescription: "Inner focus: G2 + G3 translate toward the object; D2 decreases while D15 increases.",
-  closeFocusM: 0.167,
-  // Every focus keyframe is a source row.
-  publishedStations: { focus: [1, 2] },
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-  scFill: 0.62,
-  yScFill: 0.78,
-} satisfies LensDataInput;
+  layout: { scFill: 0.62, yScFill: 0.78 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

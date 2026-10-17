@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 // Nikon 1 NIKKOR 11-27.5mm f/3.5-5.6
 // Source prescription: US 2015/0153549 A1, Example 4 / Table 4.
@@ -7,39 +7,34 @@ import type { LensDataInput } from "../../types/optics.js";
 // the final air-equivalent back focal distance, so surface 17 uses ABF rather than the physical d17-to-LPF spacing.
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-1-nikkor-11-27p5-f35-56",
-  name: "NIKON 1 NIKKOR 11-27.5mm f/3.5-5.6",
   maker: "Nikon",
+  name: "NIKON 1 NIKKOR 11-27.5mm f/3.5-5.6",
   subtitle: "US 2015/0153549 A1 Example 4 - Nikon / Muratani",
-  specs: [
-    "11-27.5mm CX-format zoom",
-    "Patent f = 11.35-26.71 mm",
-    "f/3.5-5.6 marketed maximum aperture",
-    "8 optical elements / 6 groups + protective plate",
-    "1 ED element; 1 aspherical surface",
-  ],
-  focalLengthMarketing: [11, 27.5],
-  focalLengthDesign: [11.3437, 26.6644],
-  apertureMarketing: 3.5,
-  apertureDesign: 3.63,
-  lensMounts: ["nikon-1"],
-  imageFormat: "1-inch-type",
-  patentNumber: "US 2015/0153549 A1",
-  patentAuthors: ["Mami Muratani"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 2015,
-  elementCount: 9,
-  groupCount: 7,
-  closeFocusM: 0.3,
-  nominalFno: [3.63, 4.56, 5.77],
-  zoomPositions: [11.35, 17.4, 26.71],
-  zoomLabels: ["Wide", "Tele"],
-  zoomStep: 0.004,
-  fstopSeries: [3.5, 4, 4.5, 5.6, 8, 11, 16],
-  focusDescription:
-    "G1 front-group focus modeled as an objectward shift for close focus. The protective plate remains at its tabulated fixed spacing ahead of G1 in this data model; D8 increases by about 1.14-1.15 mm at 0.30 m.",
-  yScFill: 0.46,
-  scFill: 0.58,
+
+  catalog: {
+    lensMounts: ["nikon-1"],
+    imageFormat: "1-inch-type",
+    specs: [
+      "11-27.5mm CX-format zoom",
+      "Patent f = 11.35-26.71 mm",
+      "f/3.5-5.6 marketed maximum aperture",
+      "8 optical elements / 6 groups + protective plate",
+      "1 ED element; 1 aspherical surface",
+    ],
+    elementCount: 9,
+    groupCount: 7,
+    focalLengthMm: { marketing: [11, 27.5], design: [11.3437, 26.6644] },
+    fNumber: { marketing: 3.5, design: 3.63 },
+  },
+
+  source: {
+    patentNumber: "US 2015/0153549 A1",
+    patentYear: 2015,
+    authors: ["Mami Muratani"],
+    assignees: ["Nikon Corporation"],
+  },
 
   elements: [
     {
@@ -59,7 +54,7 @@ const LENS_DATA = {
       type: "Negative Meniscus (1x Asph)",
       nd: 1.85135,
       vd: 40.14,
-      fl: -14.26,
+      focalLengthMm: -14.26,
       glass: "M-TAFD305 class (high-index lanthanum flint)",
       role: "Primary negative meniscus of G1; rear surface is the only asphere in the design.",
     },
@@ -70,7 +65,7 @@ const LENS_DATA = {
       type: "Biconcave Negative ED",
       nd: 1.49782,
       vd: 82.57,
-      fl: -45.97,
+      focalLengthMm: -45.97,
       glass: "J-FKH1 class (Hikari ED fluorophosphate)",
       apd: "inferred",
       apdNote:
@@ -84,7 +79,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.8,
-      fl: 32.03,
+      focalLengthMm: 32.03,
       glass: "S-TIH53 equivalent (N-SF57HT / FDS90-SG class dense flint)",
       role: "High-dispersion positive meniscus completing the chromatic balance of G1.",
     },
@@ -95,7 +90,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.63854,
       vd: 55.34,
-      fl: 26.01,
+      focalLengthMm: 26.01,
       glass: "S-BSM18 class (dense barium crown)",
       role: "First positive element of G2; main collector immediately after the stop.",
     },
@@ -106,10 +101,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59319,
       vd: 67.9,
-      fl: 10.33,
+      focalLengthMm: 10.33,
       glass: "J-PSKH1 (Hikari phosphate crown)",
-      cemented: "L56",
       role: "Positive component of the weak-negative L56 cemented doublet.",
+      cemented: "L56",
     },
     {
       id: 7,
@@ -118,10 +113,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.744,
       vd: 44.8,
-      fl: -7.55,
+      focalLengthMm: -7.55,
       glass: "S-LAM2 class (OHARA lanthanum flint)",
-      cemented: "L56",
       role: "Negative component of L56; supplies chromatic and Petzval balancing power.",
+      cemented: "L56",
     },
     {
       id: 8,
@@ -130,10 +125,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.90366,
       vd: 31.27,
-      fl: -13.83,
+      focalLengthMm: -13.83,
       glass: "J-LASFH13HS / S-LAH95 class (ultra-high-index dense flint)",
-      cemented: "L78",
       role: "Ultra-high-index negative element satisfying the patent's high-index negative-lens condition.",
+      cemented: "L78",
     },
     {
       id: 9,
@@ -142,61 +137,74 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.61772,
       vd: 49.78,
-      fl: 9.67,
+      focalLengthMm: 9.67,
       glass: "S-BSM28 class (dense barium crown)",
-      cemented: "L78",
       role: "Positive rear element of G2; closes the second cemented doublet and contributes final convergence.",
+      cemented: "L78",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 1e15, d: 1.0, nd: 1.5168, elemId: 1, sd: 9.0 },
-    { label: "2", R: 1e15, d: 2.0, nd: 1.0, elemId: 0, sd: 9.0 },
-    { label: "3", R: 22.141, d: 1.1, nd: 1.85135, elemId: 2, sd: 8.35 },
-    { label: "4A", R: 7.6618, d: 4.23, nd: 1.0, elemId: 0, sd: 6.7 },
-    { label: "5", R: -97.7669, d: 0.8, nd: 1.49782, elemId: 3, sd: 6.7 },
-    { label: "6", R: 29.9606, d: 0.84, nd: 1.0, elemId: 0, sd: 7.65 },
-    { label: "7", R: 14.8029, d: 1.77, nd: 1.84666, elemId: 4, sd: 7.55 },
-    { label: "8", R: 30.8037, d: 17.4708, nd: 1.0, elemId: 0, sd: 7.55 },
-    { label: "STO", R: 1e15, d: 0.65, nd: 1.0, elemId: 0, sd: 3.8 },
-    { label: "10", R: 35.551, d: 1.46, nd: 1.63854, elemId: 5, sd: 4.55 },
-    { label: "11", R: -30.6717, d: 0.1, nd: 1.0, elemId: 0, sd: 4.55 },
-    { label: "12", R: 9.6339, d: 2.77, nd: 1.59319, elemId: 6, sd: 4.65 },
-    { label: "13", R: -15.0148, d: 3.28, nd: 1.744, elemId: 7, sd: 4.65 },
-    { label: "14", R: 9.804, d: 1.78, nd: 1.0, elemId: 0, sd: 4.65 },
-    { label: "15", R: 28.6661, d: 1.0, nd: 1.90366, elemId: 8, sd: 4.85 },
-    { label: "16", R: 8.5586, d: 2.77, nd: 1.61772, elemId: 9, sd: 4.85 },
-    { label: "17", R: -17.3121, d: 18.9494, nd: 1.0, elemId: 0, sd: 4.95 },
+    { label: "1", R: "flat", d: 1.0, sd: 9.0, medium: 1 },
+    { label: "2", R: "flat", d: 2.0, sd: 9.0 },
+    { label: "3", R: 22.141, d: 1.1, sd: 8.35, medium: 2 },
+    {
+      label: "4A",
+      R: 7.6618,
+      d: 4.23,
+      sd: 6.7,
+      asphere: { K: -0.2279, A4: -7.96219e-6, A6: 8.08394e-8, A8: -3.39865e-9, A10: -1.43235e-10 },
+    },
+    { label: "5", R: -97.7669, d: 0.8, sd: 6.7, medium: 3 },
+    { label: "6", R: 29.9606, d: 0.84, sd: 7.65 },
+    { label: "7", R: 14.8029, d: 1.77, sd: 7.55, medium: 4 },
+    { label: "8", R: 30.8037, sd: 7.55 },
+    { label: "STO", R: "flat", d: 0.65 },
+    { label: "10", R: 35.551, d: 1.46, sd: 4.55, medium: 5 },
+    { label: "11", R: -30.6717, d: 0.1, sd: 4.55 },
+    { label: "12", R: 9.6339, d: 2.77, sd: 4.65, medium: 6 },
+    { label: "13", R: -15.0148, d: 3.28, sd: 4.65, medium: 7 },
+    { label: "14", R: 9.804, d: 1.78, sd: 4.65 },
+    { label: "15", R: 28.6661, d: 1.0, sd: 4.85, medium: 8 },
+    { label: "16", R: 8.5586, d: 2.77, sd: 4.85, medium: 9 },
+    { label: "17", R: -17.3121, sd: 4.95 },
   ],
 
-  asph: {
-    "4A": {
-      K: -0.2279,
-      A4: -7.96219e-6,
-      A6: 8.08394e-8,
-      A8: -3.39865e-9,
-      A10: -1.43235e-10,
-      A12: 0,
-      A14: 0,
+  zoom: {
+    stations: [
+      { focalLengthMm: 11.35, nominalFNumber: 3.63, label: "Wide" },
+      { focalLengthMm: 17.4, nominalFNumber: 4.56 },
+      { focalLengthMm: 26.71, nominalFNumber: 5.77, label: "Tele" },
+    ],
+    step: 0.004,
+  },
+
+  focus: {
+    closeFocusM: 0.3,
+    description:
+      "G1 front-group focus modeled as an objectward shift for close focus. The protective plate remains at its tabulated fixed spacing ahead of G1 in this data model; D8 increases by about 1.14-1.15 mm at 0.30 m.",
+  },
+
+  gaps: {
+    "8": {
+      label: "D8 / focus",
+      values: [
+        [17.4708, 18.612993692],
+        [8.37574, 9.5123678904],
+        [2.42841, 3.5831196386],
+      ],
+    },
+    "17": {
+      label: "ABF",
+      values: [
+        [18.9494, 18.9494],
+        [24.8765, 24.8765],
+        [33.9974, 33.9974],
+      ],
     },
   },
 
-  var: {
-    "8": [
-      [17.4708, 18.612993692],
-      [8.37574, 9.5123678904],
-      [2.42841, 3.5831196386],
-    ],
-    "17": [
-      [18.9494, 18.9494],
-      [24.8765, 24.8765],
-      [33.9974, 33.9974],
-    ],
-  },
-  varLabels: [
-    ["8", "D8 / focus"],
-    ["17", "ABF"],
-  ],
+  aperture: { fStops: [3.5, 4, 4.5, 5.6, 8, 11, 16] },
 
   groups: [
     { text: "P", fromSurface: "1", toSurface: "2" },
@@ -207,6 +215,8 @@ const LENS_DATA = {
     { text: "L56", fromSurface: "12", toSurface: "14" },
     { text: "L78", fromSurface: "15", toSurface: "17" },
   ],
-} satisfies LensDataInput;
+
+  layout: { scFill: 0.58, yScFill: 0.46 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

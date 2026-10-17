@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * LENS DATA — NIKON NIKKOR 300mm f/4.5 ED
@@ -12,9 +12,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * - The patent omits the image-plane spacing. Surface 10 therefore uses the independently computed Gaussian BFD
  *   of 70.05348978527317 mm; this is a modeled image-plane completion, not a published d10.
  * - The patent omits the aperture-stop plane and physical diameter. A single air STO is modeled 1.0 mm after source
- *   surface 7, splitting published d7 = 119.3 mm into 1.0 + 118.3 mm without changing source axial stations.
- *   The authored STO sd = 30.25936025030129 mm is calibrated by exact Snell tracing to the published/model F/4.5.
- *   Agreement with F/4.5 is calibration, not independent evidence of a production diaphragm diameter.
+ *   surface 7, splitting published d7 = 119.3 mm into 1.0 + 118.3 mm without changing source axial stations. The
+ *   stop radius is derived from the design f-number, published/model F/4.5, by exact Snell tracing
+ *   (30.25936025030129 mm). Agreement with F/4.5 is calibration, not independent evidence of a production diaphragm
+ *   diameter.
  * - Surface semi-diameters are modeled from exact spherical ray envelopes through the calibrated stop, including
  *   the published 4.2° edge half-field, then checked for edge thickness, rim slope, shared-gap intrusion, and
  *   off-axis containment. They are not patent clear-aperture values.
@@ -31,29 +32,28 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-nikkor-300mm-f45-ed",
   maker: "Nikon",
   name: "NIKON NIKKOR 300mm f/4.5 ED",
   subtitle: "US 3,774,991 Example I — strong production correlation; attribution not manufacturer-confirmed",
-  specs: ["6 ELEMENTS / 4 GROUPS", "f = 300.0 mm", "F/4.5", "2ω = 8.4°", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 300,
-  focalLengthDesign: 299.99959642476347,
-  apertureMarketing: 4.5,
-  apertureDesign: 4.5,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 8.4,
-    maxTraceFieldDeg: 4.2,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: ["6 ELEMENTS / 4 GROUPS", "f = 300.0 mm", "F/4.5", "2ω = 8.4°", "ALL-SPHERICAL"],
+    elementCount: 6,
+    groupCount: 4,
+    focalLengthMm: { marketing: 300, design: 299.99959642476347 },
+    fNumber: { marketing: 4.5, design: 4.5 },
   },
-  patentNumber: "US 3,774,991",
-  patentAuthors: ["Yoshiyuki Shimizu"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1973,
-  elementCount: 6,
-  groupCount: 4,
+
+  source: {
+    patentNumber: "US 3,774,991",
+    patentYear: 1973,
+    authors: ["Yoshiyuki Shimizu"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   elements: [
     {
@@ -64,7 +64,7 @@ const LENS_DATA = {
       nd: 1.48606,
       vd: 81.5,
       indexReference: "d",
-      fl: 129.95191377916726,
+      focalLengthMm: 129.95191377916726,
       glass: "486815 - fluophosphate crown class (vendor unresolved)",
       role: "Low-dispersion positive front element in the forward achromatic assembly.",
     },
@@ -76,7 +76,7 @@ const LENS_DATA = {
       nd: 1.744,
       vd: 44.9,
       indexReference: "d",
-      fl: -91.40259769579879,
+      focalLengthMm: -91.40259769579879,
       glass: "744449 - lanthanum glass class (vendor unresolved)",
       role: "Negative lanthanum-class element of the first cemented pair.",
       cemented: "D1",
@@ -89,7 +89,7 @@ const LENS_DATA = {
       nd: 1.6393,
       vd: 45,
       indexReference: "d",
-      fl: 251.9171058367256,
+      focalLengthMm: 251.9171058367256,
       glass: "639450 - barium flint class (vendor unresolved)",
       role: "Positive barium-flint-class partner cemented to L2.",
       cemented: "D1",
@@ -102,7 +102,7 @@ const LENS_DATA = {
       nd: 1.48606,
       vd: 81.5,
       indexReference: "d",
-      fl: 218.43653056270327,
+      focalLengthMm: 218.43653056270327,
       glass: "486815 - fluophosphate crown class (vendor unresolved)",
       role: "Second low-dispersion positive element completing the forward assembly.",
     },
@@ -114,7 +114,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       indexReference: "d",
-      fl: -53.76045292981103,
+      focalLengthMm: -53.76045292981103,
       glass: "620603 - SK16-class crown (vendor unresolved)",
       role: "Negative element of the widely separated rear cemented group.",
       cemented: "D2",
@@ -127,7 +127,7 @@ const LENS_DATA = {
       nd: 1.62004,
       vd: 36.3,
       indexReference: "d",
-      fl: 100.0394403937781,
+      focalLengthMm: 100.0394403937781,
       glass: "620363 - F2-class flint (vendor unresolved)",
       role: "Positive partner in the rear cemented pair; the pair is net negative.",
       cemented: "D2",
@@ -135,22 +135,28 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 106, d: 11, nd: 1.48606, elemId: 1, sd: 35.6 },
-    { label: "2", R: -151, d: 4, nd: 1, elemId: 0, sd: 35.4 },
-    { label: "3", R: -144, d: 3, nd: 1.744, elemId: 2, sd: 34 },
-    { label: "4", R: 130, d: 12, nd: 1.6393, elemId: 3, sd: 33 },
-    { label: "5", R: 650, d: 1, nd: 1, elemId: 0, sd: 32.2 },
-    { label: "6", R: 95, d: 7.7, nd: 1.48606, elemId: 4, sd: 31.6 },
-    { label: "7", R: 878.8, d: 1, nd: 1, elemId: 0, sd: 30.7 },
-    { label: "STO", R: 1e15, d: 118.3, nd: 1, elemId: 0, sd: 30.25936025030129 },
-    { label: "8", R: -43, d: 1, nd: 1.62041, elemId: 5, sd: 18.1 },
-    { label: "9", R: 150, d: 3.5, nd: 1.62004, elemId: 6, sd: 18.5 },
-    { label: "10", R: -104.82, d: 70.05348978527317, nd: 1, elemId: 0, sd: 18.6 },
+    { label: "1", R: 106, d: 11, sd: 35.6, medium: 1 },
+    { label: "2", R: -151, d: 4, sd: 35.4 },
+    { label: "3", R: -144, d: 3, sd: 34, medium: 2 },
+    { label: "4", R: 130, d: 12, sd: 33, medium: 3 },
+    { label: "5", R: 650, d: 1, sd: 32.2 },
+    { label: "6", R: 95, d: 7.7, sd: 31.6, medium: 4 },
+    { label: "7", R: 878.8, d: 1, sd: 30.7 },
+    { label: "STO", R: "flat", d: 118.3 },
+    { label: "8", R: -43, d: 1, sd: 18.1, medium: 5 },
+    { label: "9", R: 150, d: 3.5, sd: 18.5, medium: 6 },
+    { label: "10", R: -104.82, d: 70.05348978527317, sd: 18.6 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 4,
+    description:
+      "Infinity prescription only. The production lens focuses to 4 m by whole-lens movement; the patent supplies no finite-focus spacings.",
+  },
+
+  aperture: { nominalFNumber: 4.5, fStops: [4.5, 5.6, 8, 11, 16, 22] },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 8.4, maxTraceFieldDeg: 4.2 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -158,20 +164,12 @@ const LENS_DATA = {
     { text: "G3", fromSurface: "6", toSurface: "7" },
     { text: "G4", fromSurface: "8", toSurface: "10" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "3", toSurface: "5" },
     { text: "D2", fromSurface: "8", toSurface: "10" },
   ],
 
-  closeFocusM: 4,
-  focusDescription:
-    "Infinity prescription only. The production lens focuses to 4 m by whole-lens movement; the patent supplies no finite-focus spacings.",
-
-  nominalFno: 4.5,
-  fstopSeries: [4.5, 5.6, 8, 11, 16, 22],
-
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

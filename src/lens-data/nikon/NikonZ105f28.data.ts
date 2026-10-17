@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * WO 2022/097401 A1, Example 1; Table 1 and Figure 1.
@@ -18,35 +18,39 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "nikon-z-mc-105f28",
   maker: "Nikon",
   name: "NIKON NIKKOR Z MC 105mm f/2.8 VR S",
   subtitle: "WO 2022/097401 A1 EXAMPLE 1 — NIKON / KURIBAYASHI",
-  specs: ["16 ELEMENTS / 11 GROUPS", "f = 102.86 mm", "F/2.89", "2ω = 24.06°", "1 ASPHERICAL SURFACE"],
 
-  focalLengthMarketing: 105,
-  focalLengthDesign: 102.86,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.89,
-  lensMounts: ["nikon-z"],
-  imageFormat: "135-full-frame",
-  patentNumber: "WO 2022/097401 A1",
-  patentAuthors: ["Tomonori Kuribayashi"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 2022,
-  sourceErrata: [
-    {
-      status: "corrected",
-      surface: "27A",
-      field: "A10",
-      printed: -1.29299e-13,
-      applied: 1.29299e-13,
-      evidence: ["source-summary", "aberration-figure", "sibling-example"],
-      note: "Printed sign gives 2ω 23.08° at Ymax 21.70 against the stated 24.06° and +3.33 % distortion against about −0.96 % in Fig. 2(A); Example 2 prints the positive sign.",
-    },
-  ],
-  elementCount: 16,
-  groupCount: 11,
+  catalog: {
+    lensMounts: ["nikon-z"],
+    imageFormat: "135-full-frame",
+    specs: ["16 ELEMENTS / 11 GROUPS", "f = 102.86 mm", "F/2.89", "2ω = 24.06°", "1 ASPHERICAL SURFACE"],
+    elementCount: 16,
+    groupCount: 11,
+    focalLengthMm: { marketing: 105, design: 102.86 },
+    fNumber: { marketing: 2.8, design: 2.89 },
+  },
+
+  source: {
+    patentNumber: "WO 2022/097401 A1",
+    patentYear: 2022,
+    authors: ["Tomonori Kuribayashi"],
+    assignees: ["Nikon Corporation"],
+    errata: [
+      {
+        status: "corrected",
+        surface: "27A",
+        field: "A10",
+        printed: -1.29299e-13,
+        applied: 1.29299e-13,
+        evidence: ["source-summary", "aberration-figure", "sibling-example"],
+        note: "Printed sign gives 2ω 23.08° at Ymax 21.70 against the stated 24.06° and +3.33 % distortion against about −0.96 % in Fig. 2(A); Example 2 prints the positive sign.",
+      },
+    ],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -58,7 +62,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.83481,
       vd: 42.73,
-      fl: 193.4,
+      focalLengthMm: 193.4,
       glass: "S-LAH55V (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Front positive singlet — gentle initial convergence with nearly flat front surface",
@@ -70,12 +74,13 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.85451,
       vd: 25.15,
-      fl: -89.1,
+      focalLengthMm: -89.1,
       glass: "NBFD25 (catalog-compatible inference; patent supplier unspecified)",
       apd: "patent",
-      dPgF: 0.0088023, apdNote: "θgF = 0.6103, patent ΔθgF = +0.0095; engine ΔPgF = +0.0088023 (patent conditions 4–6)",
+      apdNote: "θgF = 0.6103, patent ΔθgF = +0.0095; engine ΔPgF = +0.0088023 (patent conditions 4–6)",
       role: "Anomalous-dispersion corrector — secondary spectrum reduction",
       cemented: "D1",
+      dPgF: 0.0088023,
     },
     {
       id: 3,
@@ -84,7 +89,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.59319,
       vd: 67.9,
-      fl: 68.6,
+      focalLengthMm: 68.6,
       glass: "J-PSKH1 (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Fluorophosphate crown — primary power carrier in L12–L13 doublet",
@@ -97,7 +102,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.59319,
       vd: 67.9,
-      fl: 101.2,
+      focalLengthMm: 101.2,
       glass: "J-PSKH1 (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Additional positive power to bring G1 to f = +56.05 mm",
@@ -111,7 +116,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.5186,
       vd: 69.89,
-      fl: -77.6,
+      focalLengthMm: -77.6,
       glass: "J-PKH1 (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Low-index divergent singlet — negative power with minimal chromatic contribution",
@@ -123,7 +128,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.72047,
       vd: 34.71,
-      fl: -52.1,
+      focalLengthMm: -52.1,
       glass: "N-KZFS8 (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Dominant negative power in G2 cemented doublet",
@@ -136,7 +141,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.94595,
       vd: 17.98,
-      fl: 77.3,
+      focalLengthMm: 77.3,
       glass: "FDS18 (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Chromatic correction partner for L22 in moving group",
@@ -151,7 +156,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.83481,
       vd: 42.72,
-      fl: 90.8,
+      focalLengthMm: 90.8,
       glass: "S-LAH55V (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Leading positive element of G3 — mirrors G1's L11",
@@ -163,12 +168,13 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.85451,
       vd: 25.15,
-      fl: -66.6,
+      focalLengthMm: -66.6,
       glass: "NBFD25 (catalog-compatible inference; patent supplier unspecified)",
       apd: "patent",
-      dPgF: 0.0088023, apdNote: "θgF = 0.6103, patent ΔθgF = +0.0095; engine ΔPgF = +0.0088023 (patent conditions 17–19)",
+      apdNote: "θgF = 0.6103, patent ΔθgF = +0.0095; engine ΔPgF = +0.0088023 (patent conditions 17–19)",
       role: "Second anomalous-dispersion corrector — mirrors L12 symmetrically about stop",
       cemented: "D3",
+      dPgF: 0.0088023,
     },
     {
       id: 10,
@@ -177,7 +183,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59319,
       vd: 67.9,
-      fl: 43.3,
+      focalLengthMm: 43.3,
       glass: "J-PSKH1 (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Primary power carrier in L32–L33 doublet — mirrors L12–L13 pairing",
@@ -192,7 +198,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.95375,
       vd: 32.33,
-      fl: -66.8,
+      focalLengthMm: -66.8,
       glass: "S-LAH98 (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Initial divergent element of G4 — extreme-index lanthanum crown",
@@ -204,7 +210,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.5186,
       vd: 69.89,
-      fl: -64.5,
+      focalLengthMm: -64.5,
       glass: "J-PKH1 (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Low-index negative element in L42–L43 doublet",
@@ -217,7 +223,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.94595,
       vd: 17.98,
-      fl: 107.2,
+      focalLengthMm: 107.2,
       glass: "FDS18 (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Chromatic partner for L42",
@@ -230,7 +236,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 2.00069,
       vd: 25.46,
-      fl: -60.4,
+      focalLengthMm: -60.4,
       glass: "TAFD40L-W (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Strong negative power — highest-index element in system (nd ≈ 2.001)",
@@ -243,7 +249,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.8044,
       vd: 39.61,
-      fl: 29.0,
+      focalLengthMm: 29.0,
       glass: "S-LAH63 (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Strongest individual element (f ≈ +29.0 mm) — Petzval sum balancing",
@@ -256,7 +262,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.5168,
       vd: 64.14,
-      fl: -119.1,
+      focalLengthMm: -119.1,
       glass: "N-BK7 (catalog-compatible inference; patent supplier unspecified)",
       apd: false,
       role: "Aspherical field-flattening corrector — sole asphere corrects field curvature and astigmatism",
@@ -264,90 +270,97 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
-  surfaces: [
-    // ── G1: L11 (singlet) ──
-    { label: "1", R: 1598.6404, d: 3.33, nd: 1.83481, elemId: 1, sd: 23.2 }, // L11 front
-    { label: "2", R: -179.4707, d: 0.2, nd: 1.0, elemId: 0, sd: 23.2 }, // L11 rear → air
-    // ── G1: L12 + L13 (cemented doublet D1) ──
-    { label: "3", R: 80.9451, d: 1.2, nd: 1.85451, elemId: 2, sd: 21.5 }, // L12 front
-    { label: "4", R: 38.973, d: 7.07, nd: 1.59319, elemId: 3, sd: 21.5 }, // L12→L13 junction
-    { label: "5", R: 865.5813, d: 0.2, nd: 1.0, elemId: 0, sd: 20.5 }, // L13 rear → air
-    // ── G1: L14 (singlet) ──
-    { label: "6", R: 47.0836, d: 4.57, nd: 1.59319, elemId: 4, sd: 18.5 }, // L14 front
-    { label: "7", R: 210.081, d: 3.662, nd: 1.0, elemId: 0, sd: 18.5 }, // L14 rear → air (D7, variable)
-
-    // ── G2: L21 (singlet) ──
-    { label: "8", R: -242.9579, d: 1.1, nd: 1.5186, elemId: 5, sd: 16.5 }, // L21 front
-    { label: "9", R: 48.3271, d: 1.613, nd: 1.0, elemId: 0, sd: 16.5 }, // L21 rear → air
-    // ── G2: L22 + L23 (cemented doublet D2) ──
-    { label: "10", R: 122.3852, d: 1.1, nd: 1.72047, elemId: 6, sd: 14.9 }, // L22 front
-    { label: "11", R: 28.609, d: 2.66, nd: 1.94595, elemId: 7, sd: 16 }, // L22→L23 junction
-    { label: "12", R: 44.8866, d: 25.484, nd: 1.0, elemId: 0, sd: 14.5 }, // L23 rear → air (D12, variable)
-
-    // ── Aperture Stop ──
-    { label: "STO", R: 1e15, d: 24.986, nd: 1.0, elemId: 0, sd: 12.6 }, // D13 (variable)
-
-    // ── G3: L31 (singlet) ──
-    { label: "14", R: 85.768, d: 2.4, nd: 1.83481, elemId: 8, sd: 13.3 }, // L31 front
-    { label: "15", R: -644.4854, d: 0.2, nd: 1.0, elemId: 0, sd: 13.3 }, // L31 rear → air
-    // ── G3: L32 + L33 (cemented doublet D3) ──
-    { label: "16", R: 79.2129, d: 1.1, nd: 1.85451, elemId: 9, sd: 13.3 }, // L32 front
-    { label: "17", R: 32.895, d: 5.48, nd: 1.59319, elemId: 10, sd: 13.3 }, // L32→L33 junction
-    { label: "18", R: -109.8711, d: 2.206, nd: 1.0, elemId: 0, sd: 13.3 }, // L33 rear → air (D18, variable)
-
-    // ── G4: L41 (singlet) ──
-    { label: "19", R: 163.4895, d: 1.1, nd: 1.95375, elemId: 11, sd: 13.3 }, // L41 front
-    { label: "20", R: 45.674, d: 1.84, nd: 1.0, elemId: 0, sd: 13.3 }, // L41 rear → air
-    // ── G4: L42 + L43 (cemented doublet D4) ──
-    { label: "21", R: 85.0464, d: 1.1, nd: 1.5186, elemId: 12, sd: 14 }, // L42 front
-    { label: "22", R: 23.897, d: 3.21, nd: 1.94595, elemId: 13, sd: 14 }, // L42→L43 junction
-    { label: "23", R: 29.2234, d: 2.983, nd: 1.0, elemId: 0, sd: 14 }, // L43 rear → air
-    // ── G4: L44 + L45 (cemented doublet D5) ──
-    { label: "24", R: 34.9435, d: 1.5, nd: 2.00069, elemId: 14, sd: 16.3 }, // L44 front
-    { label: "25", R: 21.6656, d: 8.8, nd: 1.8044, elemId: 15, sd: 16.3 }, // L44→L45 junction
-    { label: "26", R: 250.8917, d: 21.97, nd: 1.0, elemId: 0, sd: 16.3 }, // L45 rear → air
-    // ── G4: L46 (singlet, aspherical front) ──
-    { label: "27A", R: -26.4605, d: 1.53, nd: 1.5168, elemId: 16, sd: 18.3 }, // L46 front (ASPHERICAL)
-    { label: "28", R: -47.3182, d: 16.78, nd: 1.0, elemId: 0, sd: 18.3 }, // L46 rear → air (BFD)
-  ],
-
-  /* ── Aspherical coefficients ──
+  /* (moved from asph) ── Aspherical coefficients ──
    *  Patent equation form B uses κ in place of (1+K).
    *  κ = 1.000 → K = 0 (base is a sphere; all departure from polynomial terms).
    *  A10 is sign-corrected from the printed -1.29299E-13 (see header and sourceErrata).
    */
-  asph: {
-    "27A": {
-      K: 0,
-      A4: 9.61768e-6,
-      A6: 1.56877e-8,
-      A8: -4.92862e-11,
-      A10: 1.29299e-13, // patent prints -1.29299E-13
-      A12: -7.4654e-17,
-      A14: 0,
-    },
-  },
+  surfaces: [
+    // ── G1: L11 (singlet) ──
+    { label: "1", R: 1598.6404, d: 3.33, sd: 23.2, medium: 1 }, // L11 front
+    { label: "2", R: -179.4707, d: 0.2, sd: 23.2 }, // L11 rear → air
+    // ── G1: L12 + L13 (cemented doublet D1) ──
+    { label: "3", R: 80.9451, d: 1.2, sd: 21.5, medium: 2 }, // L12 front
+    { label: "4", R: 38.973, d: 7.07, sd: 21.5, medium: 3 }, // L12→L13 junction
+    { label: "5", R: 865.5813, d: 0.2, sd: 20.5 }, // L13 rear → air
+    // ── G1: L14 (singlet) ──
+    { label: "6", R: 47.0836, d: 4.57, sd: 18.5, medium: 4 }, // L14 front
+    { label: "7", R: 210.081, sd: 18.5 }, // L14 rear → air (D7, variable)
 
-  /* ── Variable air spacings (floating focus — 4 variable gaps) ──
-   *  G2 moves image-ward (D7 opens, D12 closes).
-   *  G3 moves object-ward (D13 closes, D18 opens).
-   *  G1, STO, G4 are fixed relative to the image plane.
-   *  Values: [infinity, β = −0.5, β = −1.0]; all published states retained.
-   */
-  focusPositions: [0, 0.764549174334855, 1],
-  var: {
-    7: [3.662, 12.98, 22.619],
-    12: [25.484, 16.167, 6.528],
-    STO: [24.986, 14.031, 4.245],
-    18: [2.206, 13.161, 22.947],
-  },
+    // ── G2: L21 (singlet) ──
+    { label: "8", R: -242.9579, d: 1.1, sd: 16.5, medium: 5 }, // L21 front
+    { label: "9", R: 48.3271, d: 1.613, sd: 16.5 }, // L21 rear → air
+    // ── G2: L22 + L23 (cemented doublet D2) ──
+    { label: "10", R: 122.3852, d: 1.1, sd: 14.9, medium: 6 }, // L22 front
+    { label: "11", R: 28.609, d: 2.66, sd: 16, medium: 7 }, // L22→L23 junction
+    { label: "12", R: 44.8866, sd: 14.5 }, // L23 rear → air (D12, variable)
 
-  varLabels: [
-    ["7", "G1–G2"],
-    ["12", "G2–STO"],
-    ["STO", "STO–G3"],
-    ["18", "G3–G4"],
+    // ── Aperture Stop ──
+    { label: "STO", R: "flat" }, // D13 (variable)
+
+    // ── G3: L31 (singlet) ──
+    { label: "14", R: 85.768, d: 2.4, sd: 13.3, medium: 8 }, // L31 front
+    { label: "15", R: -644.4854, d: 0.2, sd: 13.3 }, // L31 rear → air
+    // ── G3: L32 + L33 (cemented doublet D3) ──
+    { label: "16", R: 79.2129, d: 1.1, sd: 13.3, medium: 9 }, // L32 front
+    { label: "17", R: 32.895, d: 5.48, sd: 13.3, medium: 10 }, // L32→L33 junction
+    { label: "18", R: -109.8711, sd: 13.3 }, // L33 rear → air (D18, variable)
+
+    // ── G4: L41 (singlet) ──
+    { label: "19", R: 163.4895, d: 1.1, sd: 13.3, medium: 11 }, // L41 front
+    { label: "20", R: 45.674, d: 1.84, sd: 13.3 }, // L41 rear → air
+    // ── G4: L42 + L43 (cemented doublet D4) ──
+    { label: "21", R: 85.0464, d: 1.1, sd: 14, medium: 12 }, // L42 front
+    { label: "22", R: 23.897, d: 3.21, sd: 14, medium: 13 }, // L42→L43 junction
+    { label: "23", R: 29.2234, d: 2.983, sd: 14 }, // L43 rear → air
+    // ── G4: L44 + L45 (cemented doublet D5) ──
+    { label: "24", R: 34.9435, d: 1.5, sd: 16.3, medium: 14 }, // L44 front
+    { label: "25", R: 21.6656, d: 8.8, sd: 16.3, medium: 15 }, // L44→L45 junction
+    { label: "26", R: 250.8917, d: 21.97, sd: 16.3 }, // L45 rear → air
+    // ── G4: L46 (singlet, aspherical front) ──
+    {
+      label: "27A",
+      R: -26.4605,
+      d: 1.53,
+      sd: 18.3,
+      medium: 16,
+      asphere: {
+        K: 0,
+        A4: 9.61768e-6,
+        A6: 1.56877e-8,
+        A8: -4.92862e-11,
+        A10: 1.29299e-13, // patent prints -1.29299E-13
+        A12: -7.4654e-17,
+      },
+    }, // L46 front (ASPHERICAL)
+    { label: "28", R: -47.3182, d: 16.78, sd: 18.3 }, // L46 rear → air (BFD)
   ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.287563,
+    /* ── Variable air spacings (floating focus — 4 variable gaps) ──
+     *  G2 moves image-ward (D7 opens, D12 closes).
+     *  G3 moves object-ward (D13 closes, D18 opens).
+     *  G1, STO, G4 are fixed relative to the image plane.
+     *  Values: [infinity, β = −0.5, β = −1.0]; all published states retained.
+     */
+    keyframes: [0, 0.764549174334855, 1],
+    description:
+      "Dual inner focus — G2 moves image-ward (+19.0 mm), G3 moves object-ward (+20.7 mm). G1, aperture stop, and G4 are fixed. Constant overall length. Source 1:2 and 1:1 states are retained; closest object-to-image distance is 0.287563 m.",
+    // (moved from publishedStations) Every focus keyframe is a source row.
+    published: [1, 2],
+  },
+
+  gaps: {
+    "7": { label: "G1–G2", values: [[3.662, 12.98, 22.619]] },
+    "12": { label: "G2–STO", values: [[25.484, 16.167, 6.528]] },
+    STO: { label: "STO–G3", values: [[24.986, 14.031, 4.245]] },
+    "18": { label: "G3–G4", values: [[2.206, 13.161, 22.947]] },
+  },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.89, fStops: [2.89, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16] },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -356,7 +369,6 @@ const LENS_DATA = {
     { text: "G3 (+52.9)", fromSurface: "14", toSurface: "18" },
     { text: "G4 (−64.9)", fromSurface: "19", toSurface: "28" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "3", toSurface: "5" },
     { text: "D2", fromSurface: "10", toSurface: "12" },
@@ -365,20 +377,8 @@ const LENS_DATA = {
     { text: "D5", fromSurface: "24", toSurface: "26" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.287563,
-  // Every focus keyframe is a source row.
-  publishedStations: { focus: [1, 2] },
-  focusDescription:
-    "Dual inner focus — G2 moves image-ward (+19.0 mm), G3 moves object-ward (+20.7 mm). G1, aperture stop, and G4 are fixed. Constant overall length. Source 1:2 and 1:1 states are retained; closest object-to-image distance is 0.287563 m.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.89,
-  fstopSeries: [2.89, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  scFill: 0.52,
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { scFill: 0.52, yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

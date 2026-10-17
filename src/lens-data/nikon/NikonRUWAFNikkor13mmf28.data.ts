@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -15,9 +15,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  Stop handling: the patent table does not assign an axial stop     ║
  * ║  coordinate, but FIG. 1 places SP between G4 and G5, close to G5.  ║
- * ║  The 10.30 mm R9-R10 air gap is therefore split as 8.80 mm +       ║
- * ║  1.50 mm. The stop semi-diameter (6.63 mm) reproduces F/2.87 from  ║
- * ║  the computed underwater EFL and paraxial entrance pupil.           ║
+ * ║  The 10.30 mm R9-R10 air gap is therefore split as                 ║
+ * ║  8.80 mm + 1.50 mm. The stop radius is derived from the design     ║
+ * ║  f-number, F/2.87.                                                 ║
  * ║                                                                    ║
  * ║  Focus: the patent allows either unit focus or a G1/G7-fixed       ║
  * ║  internal-unit focus moving G2-G6 together. No close-focus spacing ║
@@ -39,35 +39,28 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-r-uw-af-fisheye-nikkor-13mm-f28",
   maker: "Nikon",
   name: "NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8",
   subtitle: "US 5,579,169 Example 1 — Nikon / Mouri",
-  specs: ["10 ELEMENTS / 7 GROUPS", "f = 12.32 mm in water", "F/2.87", "2ω = 170.6°", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 13,
-  focalLengthDesign: 12.399525799174961,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.87,
-  lensMounts: ["nikonos-rs"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 5,579,169",
-  patentAuthors: ["Motohisa Mouri"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 1996,
-  elementCount: 10,
-  groupCount: 7,
-
-  projection: {
-    kind: "fisheye-equidistant",
-    focalLengthMm: 13,
-    fullFieldDeg: 170.6,
-    imageCircleMm: 43.3,
-    maxTraceFieldDeg: 85.3,
+  catalog: {
+    lensMounts: ["nikonos-rs"],
+    imageFormat: "135-full-frame",
+    specs: ["10 ELEMENTS / 7 GROUPS", "f = 12.32 mm in water", "F/2.87", "2ω = 170.6°", "ALL-SPHERICAL"],
+    elementCount: 10,
+    groupCount: 7,
+    focalLengthMm: { marketing: 13, design: 12.399525799174961 },
+    fNumber: { marketing: 2.8, design: 2.87 },
   },
 
-  focusDescription:
-    "US 5,579,169 permits either unit focus or G1/G7-fixed internal-unit focus by translating G2-G6 together; no close-focus spacing table is published.",
+  source: {
+    patentNumber: "US 5,579,169",
+    patentYear: 1996,
+    authors: ["Motohisa Mouri"],
+    assignees: ["Nikon Corporation"],
+  },
 
   elements: [
     {
@@ -77,7 +70,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.5168,
       vd: 64.1,
-      fl: -106.9,
+      focalLengthMm: -106.9,
       glass: "N-BK7 (SCHOTT) / 517642 crown class",
       role: "Low-index near-concentric front meniscus in direct contact with water.",
     },
@@ -88,7 +81,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.67025,
       vd: 57.5,
-      fl: -32.3,
+      focalLengthMm: -32.3,
       glass: "J-LAK02 (HIKARI) / 670574 class, close",
       role: "First strong negative meniscus after the water-contact element.",
     },
@@ -99,7 +92,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6968,
       vd: 55.6,
-      fl: -35.0,
+      focalLengthMm: -35.0,
       glass: "S-LAL14 (OHARA) / 697555 lanthanum crown class",
       role: "Second strong negative meniscus, reinforcing the front-group divergence.",
     },
@@ -110,10 +103,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59507,
       vd: 35.5,
-      fl: 19.4,
+      focalLengthMm: 19.4,
       glass: "Unmatched dense flint (595355)",
-      cemented: "G4",
       role: "Positive front component of the fourth-group cemented doublet.",
+      cemented: "G4",
     },
     {
       id: 5,
@@ -122,10 +115,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.79668,
       vd: 45.4,
-      fl: -49.6,
+      focalLengthMm: -49.6,
       glass: "J-LASF017 (Hikari catalog-equivalent to patent 797454; supplier not identified)",
-      cemented: "G4",
       role: "High-index negative rear component of G4; contributes Petzval correction.",
+      cemented: "G4",
     },
     {
       id: 6,
@@ -134,10 +127,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.79631,
       vd: 40.9,
-      fl: -35.4,
+      focalLengthMm: -35.4,
       glass: "NBFD2 (HOYA catalog equivalent; production supplier unspecified; patent 796409)",
-      cemented: "G5",
       role: "High-index negative front component of the fifth-group cemented doublet.",
+      cemented: "G5",
     },
     {
       id: 7,
@@ -146,10 +139,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5186,
       vd: 69.9,
-      fl: 28.8,
+      focalLengthMm: 28.8,
       glass: "J-PKH1 (HIKARI) / 519699 phosphate crown",
-      cemented: "G5",
       role: "High-Abbe positive rear component of G5 for lateral-color correction.",
+      cemented: "G5",
     },
     {
       id: 8,
@@ -158,10 +151,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5168,
       vd: 69.9,
-      fl: 26.4,
+      focalLengthMm: 26.4,
       glass: "517699 phosphate-crown class; J-PKH1 catalog spectral proxy (production supplier unspecified)",
-      cemented: "G6",
       role: "High-Abbe positive front component of the stronger rear cemented doublet.",
+      cemented: "G6",
     },
     {
       id: 9,
@@ -170,10 +163,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.3,
-      fl: -73.4,
+      focalLengthMm: -73.4,
       glass: "N-SF6HT (SCHOTT) / 805254 dense flint class",
-      cemented: "G6",
       role: "Low-Abbe negative rear component of G6; strongest chromatic partner in the system.",
+      cemented: "G6",
     },
     {
       id: 10,
@@ -182,36 +175,48 @@ const LENS_DATA = {
       type: "Plane Parallel Plate",
       nd: 1.5168,
       vd: 64.1,
-      fl: 1e15,
+      focalLengthMm: 1e15,
       glass: "N-BK7 (SCHOTT) / 517642 crown class",
       role: "Zero-power patent-listed rear plate; usable as waterproof window or filter plate.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 54.988, d: 8.0, nd: 1.5168, elemId: 1, sd: 44.5 },
-    { label: "2", R: 39.999, d: 20.0, nd: 1.0, elemId: 0, sd: 35.8 },
-    { label: "3", R: 107.519, d: 3.0, nd: 1.67025, elemId: 2, sd: 19.8 },
-    { label: "4", R: 17.841, d: 12.0, nd: 1.0, elemId: 0, sd: 15.9 },
-    { label: "5", R: 62.107, d: 2.3, nd: 1.6968, elemId: 3, sd: 10.6 },
-    { label: "6", R: 17.236, d: 2.4, nd: 1.0, elemId: 0, sd: 8.5 },
-    { label: "7", R: 30.492, d: 10.9, nd: 1.59507, elemId: 4, sd: 10.6 },
-    { label: "8", R: -16.104, d: 13.5, nd: 1.79668, elemId: 5, sd: 10.6 },
-    { label: "9", R: -37.279, d: 8.8, nd: 1.0, elemId: 0, sd: 13.0 },
-    { label: "STO", R: 1e15, d: 1.5, nd: 1.0, elemId: 0, sd: 6.63 },
-    { label: "10", R: 77.9174, d: 1.5, nd: 1.79631, elemId: 6, sd: 9.5 },
-    { label: "11", R: 20.537, d: 4.7, nd: 1.5186, elemId: 7, sd: 9.5 },
-    { label: "12", R: -50.576, d: 1.0, nd: 1.0, elemId: 0, sd: 10.5 },
-    { label: "13", R: 76.226, d: 5.2, nd: 1.5168, elemId: 8, sd: 10.5 },
-    { label: "14", R: -16.237, d: 1.5, nd: 1.80518, elemId: 9, sd: 10.5 },
-    { label: "15", R: -23.312, d: 1.5, nd: 1.0, elemId: 0, sd: 11.5 },
-    { label: "16", R: 1e15, d: 1.2, nd: 1.5168, elemId: 10, sd: 12.0 },
-    { label: "17", R: 1e15, d: 39.33944735429087, nd: 1.0, elemId: 0, sd: 12.0 },
+    { label: "1", R: 54.988, d: 8.0, sd: 44.5, medium: 1 },
+    { label: "2", R: 39.999, d: 20.0, sd: 35.8 },
+    { label: "3", R: 107.519, d: 3.0, sd: 19.8, medium: 2 },
+    { label: "4", R: 17.841, d: 12.0, sd: 15.9 },
+    { label: "5", R: 62.107, d: 2.3, sd: 10.6, medium: 3 },
+    { label: "6", R: 17.236, d: 2.4, sd: 8.5 },
+    { label: "7", R: 30.492, d: 10.9, sd: 10.6, medium: 4 },
+    { label: "8", R: -16.104, d: 13.5, sd: 10.6, medium: 5 },
+    { label: "9", R: -37.279, d: 8.8, sd: 13.0 },
+    { label: "STO", R: "flat", d: 1.5 },
+    { label: "10", R: 77.9174, d: 1.5, sd: 9.5, medium: 6 },
+    { label: "11", R: 20.537, d: 4.7, sd: 9.5, medium: 7 },
+    { label: "12", R: -50.576, d: 1.0, sd: 10.5 },
+    { label: "13", R: 76.226, d: 5.2, sd: 10.5, medium: 8 },
+    { label: "14", R: -16.237, d: 1.5, sd: 10.5, medium: 9 },
+    { label: "15", R: -23.312, d: 1.5, sd: 11.5 },
+    { label: "16", R: "flat", d: 1.2, sd: 12.0, medium: 10 },
+    { label: "17", R: "flat", d: 39.33944735429087, sd: 12.0 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 0.15,
+    description:
+      "US 5,579,169 permits either unit focus or G1/G7-fixed internal-unit focus by translating G2-G6 together; no close-focus spacing table is published.",
+  },
+
+  aperture: { nominalFNumber: 2.87, fStops: [2.87, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
+
+  projection: {
+    kind: "fisheye-equidistant",
+    focalLengthMm: 13,
+    fullFieldDeg: 170.6,
+    imageCircleMm: 43.3,
+    maxTraceFieldDeg: 85.3,
+  },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -228,12 +233,7 @@ const LENS_DATA = {
     { text: "G6", fromSurface: "13", toSurface: "15" },
   ],
 
-  closeFocusM: 0.15,
-  nominalFno: 2.87,
-  fstopSeries: [2.87, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-  scFill: 0.72,
-  yScFill: 0.92,
-} satisfies LensDataInput;
+  layout: { scFill: 0.72, yScFill: 0.92 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

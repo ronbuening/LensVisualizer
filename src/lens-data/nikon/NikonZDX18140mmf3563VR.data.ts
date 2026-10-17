@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -39,32 +39,36 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "nikon-z-dx-18-140-f35-63-vr",
   maker: "Nikon",
   name: "NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR",
   subtitle: "WO 2022/264542 A1 Example 1 — Nikon Corporation",
-  specs: [
-    "17 ELEMENTS / 13 GROUPS",
-    "f = 18.5–135.8 mm (design)",
-    "F/3.5–6.3",
-    "2ω ≈ 78.4°–11.5°",
-    "2 ASPHERICAL SURFACES (hybrid composite)",
-    "2 ED ELEMENTS",
-  ],
 
-  /* ── Metadata ── */
-  focalLengthMarketing: [18, 140],
-  focalLengthDesign: [18.54, 135.845],
-  apertureMarketing: 3.5,
-  apertureDesign: 3.604,
-  lensMounts: ["nikon-z"],
-  imageFormat: "aps-c",
-  patentNumber: "WO 2022/264542 A1",
-  patentAuthors: ["Tomoyuki Sashima", "Norikazu Yokoi", "Takahiro Ishikawa"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 2022,
-  elementCount: 17,
-  groupCount: 13,
+  catalog: {
+    lensMounts: ["nikon-z"],
+    imageFormat: "aps-c",
+    specs: [
+      "17 ELEMENTS / 13 GROUPS",
+      "f = 18.5–135.8 mm (design)",
+      "F/3.5–6.3",
+      "2ω ≈ 78.4°–11.5°",
+      "2 ASPHERICAL SURFACES (hybrid composite)",
+      "2 ED ELEMENTS",
+    ],
+    elementCount: 17,
+    groupCount: 13,
+    /* ── Metadata ── */
+    focalLengthMm: { marketing: [18, 140], design: [18.54, 135.845] },
+    fNumber: { marketing: 3.5, design: 3.604 },
+  },
+
+  source: {
+    patentNumber: "WO 2022/264542 A1",
+    patentYear: 2022,
+    authors: ["Tomoyuki Sashima", "Norikazu Yokoi", "Takahiro Ishikawa"],
+    assignees: ["Nikon Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -76,10 +80,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.45,
-      fl: -187.7,
+      focalLengthMm: -187.7,
       glass: "S-TIH6 (OHARA)",
-      cemented: "D1",
       role: "Front negative meniscus of G1 cemented doublet; convex toward object",
+      cemented: "D1",
     },
     {
       id: 2,
@@ -88,12 +92,12 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.57,
-      fl: 99.2,
+      focalLengthMm: 99.2,
       glass: "S-FPL51 (OHARA)",
-      cemented: "D1",
       apd: "patent",
       apdNote: "ED-class fluorophosphate crown, anomalous low dispersion",
       role: "Positive element of G1 cemented doublet; primary chromatic correction partner",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -102,7 +106,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.31,
-      fl: 119.1,
+      focalLengthMm: 119.1,
       glass: "S-FSL5 (OHARA)",
       role: "Positive meniscus singlet; convex toward object",
     },
@@ -115,7 +119,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.83481,
       vd: 42.73,
-      fl: -18.7,
+      focalLengthMm: -18.7,
       glass: "S-LAH55V (OHARA)",
       role: "Strong negative meniscus; convex toward object, variator front",
     },
@@ -126,7 +130,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.744,
       vd: 44.81,
-      fl: -27.0,
+      focalLengthMm: -27.0,
       glass: "S-LAM2 (OHARA)",
       role: "Biconcave negative; variator Petzval contribution",
     },
@@ -137,7 +141,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.80809,
       vd: 22.74,
-      fl: 20.6,
+      focalLengthMm: 20.6,
       glass: "J-SFH1 (Hikari)",
       role: "Biconvex positive; dense flint chromatic corrector in variator",
     },
@@ -148,7 +152,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.62,
-      fl: -33.9,
+      focalLengthMm: -33.9,
       glass: "S-LAH66 (OHARA)",
       role: "Negative meniscus; concave toward object, variator rear",
     },
@@ -161,10 +165,10 @@ const LENS_DATA = {
       type: "Pos. Meniscus (1× Asph)",
       nd: 1.56093,
       vd: 36.64,
-      fl: 630.6,
+      focalLengthMm: 630.6,
       glass: "UV-curing resin (composite aspheric layer)",
-      cemented: "H1",
       role: "Aspherical resin layer on L31g; composite aspheric corrector",
+      cemented: "H1",
     },
     {
       id: 9,
@@ -173,10 +177,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.51742,
       vd: 52.2,
-      fl: 32.5,
+      focalLengthMm: 32.5,
       glass: "S-NSL36 (OHARA; patent coordinate match)",
-      cemented: "H1",
       role: "Glass body of hybrid composite L31; positive power contributor",
+      cemented: "H1",
     },
     {
       id: 10,
@@ -185,7 +189,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.60342,
       vd: 38.03,
-      fl: 86.3,
+      focalLengthMm: 86.3,
       glass: "S-TIM5 (OHARA)",
       role: "Biconvex positive singlet in G3",
     },
@@ -196,10 +200,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 2.001,
       vd: 29.12,
-      fl: -15.8,
+      focalLengthMm: -15.8,
       glass: "S-LAH79 (OHARA)",
-      cemented: "D2",
       role: "Strong negative meniscus; convex toward object, front of ED doublet",
+      cemented: "D2",
     },
     {
       id: 12,
@@ -208,12 +212,12 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.57,
-      fl: 21.3,
+      focalLengthMm: 21.3,
       glass: "S-FPL51 (OHARA)",
-      cemented: "D2",
       apd: "patent",
       apdNote: "ED fluorophosphate crown, secondary-spectrum corrector",
       role: "ED positive element; rear of cemented doublet, primary chromatic correction",
+      cemented: "D2",
     },
     {
       id: 13,
@@ -222,10 +226,10 @@ const LENS_DATA = {
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.56093,
       vd: 36.64,
-      fl: -1580.6,
+      focalLengthMm: -1580.6,
       glass: "UV-curing resin (composite aspheric layer)",
-      cemented: "T1",
       role: "Aspherical resin layer on L35g; VR sub-group front",
+      cemented: "T1",
     },
     {
       id: 14,
@@ -234,10 +238,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5168,
       vd: 64.14,
-      fl: 23.4,
+      focalLengthMm: 23.4,
       glass: "J-BK7A (Hikari)",
-      cemented: "T1",
       role: "Glass body of hybrid composite L35; positive power in VR sub-group",
+      cemented: "T1",
     },
     {
       id: 15,
@@ -246,10 +250,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.66755,
       vd: 41.87,
-      fl: -131.9,
+      focalLengthMm: -131.9,
       glass: "J-BASF6 (Hikari)",
-      cemented: "T1",
       role: "Negative meniscus; concave toward object, VR sub-group rear, cemented to L35g",
+      cemented: "T1",
     },
 
     /* ── G4 (−) — 2 elements, cemented doublet, focusing group ── */
@@ -260,10 +264,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 2.001,
       vd: 29.12,
-      fl: 30.7,
+      focalLengthMm: 30.7,
       glass: "S-LAH79 (OHARA)",
-      cemented: "D3",
       role: "Biconvex positive; front of focus doublet",
+      cemented: "D3",
     },
     {
       id: 17,
@@ -272,10 +276,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.804,
       vd: 46.6,
-      fl: -17.8,
+      focalLengthMm: -17.8,
       glass: "S-LAH65V (OHARA)",
-      cemented: "D3",
       role: "Biconcave negative; rear of focus doublet, dense lanthanum flint (νd < 50)",
+      cemented: "D3",
     },
 
     /* ── G5 (−) — 2 elements, air-spaced ── */
@@ -286,7 +290,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.90265,
       vd: 35.77,
-      fl: -37.7,
+      focalLengthMm: -37.7,
       glass: "J-LASFH9 (Hikari)",
       role: "Negative meniscus; concave toward object, field flattener",
     },
@@ -297,106 +301,113 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.8,
-      fl: 69.7,
+      focalLengthMm: 69.7,
       glass: "SF57 (Schott)",
       role: "Positive meniscus; concave toward object, dense flint chromatic/Petzval corrector",
     },
   ],
 
   /* ── Surface Prescription ── */
-  surfaces: [
-    /* ── G1 ── */
-    { label: "1", R: 78.364, d: 1.65, nd: 1.80518, elemId: 1, sd: 25.5 },
-    { label: "2", R: 51.125, d: 6.08, nd: 1.49782, elemId: 2, sd: 24.5 },
-    { label: "3", R: -1387.433, d: 0.1, nd: 1.0, elemId: 0, sd: 23.5 },
-    { label: "4", R: 51.002, d: 3.95, nd: 1.48749, elemId: 3, sd: 23.0 },
-    { label: "5", R: 408.278, d: 1.137, nd: 1.0, elemId: 0, sd: 20.1 },
-
-    /* ── G2 ── */
-    { label: "6", R: 105.667, d: 1.0, nd: 1.83481, elemId: 4, sd: 14.0 },
-    { label: "7", R: 13.538, d: 5.877, nd: 1.0, elemId: 0, sd: 12.0 },
-    { label: "8", R: -40.384, d: 1.0, nd: 1.744, elemId: 5, sd: 9.5 },
-    { label: "9", R: 40.384, d: 0.71, nd: 1.0, elemId: 0, sd: 9.5 },
-    { label: "10", R: 26.016, d: 3.25, nd: 1.80809, elemId: 6, sd: 10.5 },
-    { label: "11", R: -43.626, d: 0.84, nd: 1.0, elemId: 0, sd: 10.0 },
-    { label: "12", R: -21.186, d: 0.9, nd: 1.7725, elemId: 7, sd: 7.5 },
-    { label: "13", R: -113.505, d: 20.855, nd: 1.0, elemId: 0, sd: 7.5 },
-
-    /* ── Aperture Stop (between G2 and G3, travels with G3) ── */
-    { label: "STO", R: 1e15, d: 1.5, nd: 1.0, elemId: 0, sd: 5.5 },
-
-    /* ── G3 ── */
-    /* L31 hybrid composite (resin + glass) */
-    { label: "15A", R: 16.582, d: 0.15, nd: 1.56093, elemId: 8, sd: 6.5 },
-    { label: "16", R: 17.341, d: 3.35, nd: 1.51742, elemId: 9, sd: 6.5 },
-    { label: "17", R: -499.849, d: 1.0, nd: 1.0, elemId: 0, sd: 7.0 },
-
-    /* L32 singlet */
-    { label: "18", R: 54.519, d: 1.56, nd: 1.60342, elemId: 10, sd: 7.5 },
-    { label: "19", R: -1162.912, d: 4.249, nd: 1.0, elemId: 0, sd: 7.5 },
-
-    /* L33+L34 cemented ED doublet */
-    { label: "20", R: 287.817, d: 0.95, nd: 2.001, elemId: 11, sd: 8.0 },
-    { label: "21", R: 15.0, d: 3.9, nd: 1.49782, elemId: 12, sd: 8.5 },
-    { label: "22", R: -33.047, d: 1.0, nd: 1.0, elemId: 0, sd: 9.5 },
-
-    /* L35 hybrid composite (resin + glass) + L36 cemented — VR sub-group */
-    { label: "23A", R: 20.944, d: 0.15, nd: 1.56093, elemId: 13, sd: 9.5 },
-    { label: "24", R: 20.408, d: 4.56, nd: 1.5168, elemId: 14, sd: 9.5 },
-    { label: "25", R: -27.508, d: 0.9, nd: 1.66755, elemId: 15, sd: 9.5 },
-    { label: "26", R: -40.524, d: 1.935, nd: 1.0, elemId: 0, sd: 9.5 },
-
-    /* ── G4 — focusing group (cemented doublet L41+L42) ── */
-    { label: "27", R: 164.872, d: 1.8, nd: 2.001, elemId: 16, sd: 9.5 },
-    { label: "28", R: -37.498, d: 0.9, nd: 1.804, elemId: 17, sd: 9.0 },
-    { label: "29", R: 23.384, d: 13.983, nd: 1.0, elemId: 0, sd: 9.0 },
-
-    /* ── G5 ── */
-    { label: "30", R: -16.37, d: 1.1, nd: 1.90265, elemId: 18, sd: 11.0 },
-    { label: "31", R: -32.544, d: 0.1, nd: 1.0, elemId: 0, sd: 11.5 },
-    { label: "32", R: -502.457, d: 2.08, nd: 1.84666, elemId: 19, sd: 11.5 },
-    { label: "33", R: -52.88, d: 8.272, nd: 1.0, elemId: 0, sd: 12.0 }, // D33 var — gap to the PP plate
-  ],
-
-  /* ── Cover glass PP (patent surfaces 34–35): traced, not drawn ── */
-  rearPlates: [
-    {
-      label: "PP",
-      thicknessMm: 1.6,
-      nd: 1.5168,
-      vd: 64.14,
-      glass: "J-BK7A",
-      gapAfterMm: 1.0,
-      source: "WO 2022/264542 A1, Example 1 Table 1 surfaces 34–35",
-    },
-  ],
-
-  /* ── Aspherical Coefficients ──
+  /* (moved from asph) ── Aspherical Coefficients ──
    *  Patent convention: κ = 1.0000 → K = κ − 1 = 0 (sphere base).
    *  Both aspherical surfaces are hybrid composite resin layers.
    */
-  asph: {
-    "15A": {
-      K: 0,
-      A4: -2.96855e-5,
-      A6: -5.04688e-8,
-      A8: -4.78359e-12,
-      A10: 0,
-      A12: 0,
-      A14: 0,
+  surfaces: [
+    /* ── G1 ── */
+    { label: "1", R: 78.364, d: 1.65, sd: 25.5, medium: 1 },
+    { label: "2", R: 51.125, d: 6.08, sd: 24.5, medium: 2 },
+    { label: "3", R: -1387.433, d: 0.1, sd: 23.5 },
+    { label: "4", R: 51.002, d: 3.95, sd: 23.0, medium: 3 },
+    { label: "5", R: 408.278, sd: 20.1 },
+
+    /* ── G2 ── */
+    { label: "6", R: 105.667, d: 1.0, sd: 14.0, medium: 4 },
+    { label: "7", R: 13.538, d: 5.877, sd: 12.0 },
+    { label: "8", R: -40.384, d: 1.0, sd: 9.5, medium: 5 },
+    { label: "9", R: 40.384, d: 0.71, sd: 9.5 },
+    { label: "10", R: 26.016, d: 3.25, sd: 10.5, medium: 6 },
+    { label: "11", R: -43.626, d: 0.84, sd: 10.0 },
+    { label: "12", R: -21.186, d: 0.9, sd: 7.5, medium: 7 },
+    { label: "13", R: -113.505, sd: 7.5 },
+
+    /* ── Aperture Stop (between G2 and G3, travels with G3) ── */
+    { label: "STO", R: "flat", d: 1.5 },
+
+    /* ── G3 ── */
+    /* L31 hybrid composite (resin + glass) */
+    {
+      label: "15A",
+      R: 16.582,
+      d: 0.15,
+      sd: 6.5,
+      medium: 8,
+      asphere: {
+        K: 0,
+        A4: -2.96855e-5,
+        A6: -5.04688e-8,
+        A8: -4.78359e-12,
+        A10: 0,
+      },
     },
-    "23A": {
-      K: 0,
-      A4: -1.94678e-5,
-      A6: -1.10034e-8,
-      A8: -1.10745e-10,
-      A10: 0,
-      A12: 0,
-      A14: 0,
+    { label: "16", R: 17.341, d: 3.35, sd: 6.5, medium: 9 },
+    { label: "17", R: -499.849, d: 1.0, sd: 7.0 },
+
+    /* L32 singlet */
+    { label: "18", R: 54.519, d: 1.56, sd: 7.5, medium: 10 },
+    { label: "19", R: -1162.912, d: 4.249, sd: 7.5 },
+
+    /* L33+L34 cemented ED doublet */
+    { label: "20", R: 287.817, d: 0.95, sd: 8.0, medium: 11 },
+    { label: "21", R: 15.0, d: 3.9, sd: 8.5, medium: 12 },
+    { label: "22", R: -33.047, d: 1.0, sd: 9.5 },
+
+    /* L35 hybrid composite (resin + glass) + L36 cemented — VR sub-group */
+    {
+      label: "23A",
+      R: 20.944,
+      d: 0.15,
+      sd: 9.5,
+      medium: 13,
+      asphere: {
+        K: 0,
+        A4: -1.94678e-5,
+        A6: -1.10034e-8,
+        A8: -1.10745e-10,
+        A10: 0,
+      },
     },
+    { label: "24", R: 20.408, d: 4.56, sd: 9.5, medium: 14 },
+    { label: "25", R: -27.508, d: 0.9, sd: 9.5, medium: 15 },
+    { label: "26", R: -40.524, sd: 9.5 },
+
+    /* ── G4 — focusing group (cemented doublet L41+L42) ── */
+    { label: "27", R: 164.872, d: 1.8, sd: 9.5, medium: 16 },
+    { label: "28", R: -37.498, d: 0.9, sd: 9.0, medium: 17 },
+    { label: "29", R: 23.384, sd: 9.0 },
+
+    /* ── G5 ── */
+    { label: "30", R: -16.37, d: 1.1, sd: 11.0, medium: 18 },
+    { label: "31", R: -32.544, d: 0.1, sd: 11.5 },
+    { label: "32", R: -502.457, d: 2.08, sd: 11.5, medium: 19 },
+    { label: "33", R: -52.88, sd: 12.0 }, // D33 var — gap to the PP plate
+  ],
+
+  zoom: {
+    /* (moved from zoomPositions) ── Zoom Configuration ── */
+    // (moved from publishedStations) Patent read 2026-10-06: Close-focus gaps at W/M/T are WO 2022/264542 A1 Example 1 Table 1 close-distance rows (β
+    // = -0.151/-0.147/-0.333; object distance 96.613/280.487/248.897 mm).
+    stations: [
+      { focalLengthMm: 18.54, nominalFNumber: 3.5, label: "Wide", published: true, publishedFocus: [1] },
+      { focalLengthMm: 50.034, nominalFNumber: 5.0, published: true, publishedFocus: [1] },
+      { focalLengthMm: 135.845, nominalFNumber: 6.3, label: "Tele", published: true, publishedFocus: [1] },
+    ],
+    step: 0.004,
   },
 
-  /* ── Variable Air Spacings ──
+  /* ── Focus & Aperture ── */
+  focus: { closeFocusM: 0.2, description: "G4 inner focus (cemented doublet L41+L42 moves image-ward). STM AF motor." },
+
+  /* (moved from var) ── Variable Air Spacings ──
    *  3 zoom positions: Wide (18.540), Mid (50.034), Tele (135.845).
    *  Format: [[d_inf, d_close], [d_inf, d_close], [d_inf, d_close]]
    *
@@ -414,46 +425,63 @@ const LENS_DATA = {
    *    Mid:   6.290 + 12.681 = 18.971,  8.922 + 10.049 = 18.971 ✓
    *    Tele:  1.909 + 18.046 = 19.955, 10.681 +  9.274 = 19.955 ✓
    */
-  var: {
-    "5": [
-      [1.137, 1.137],
-      [18.064, 18.064],
-      [38.687, 38.687],
-    ],
-    "13": [
-      [20.855, 20.855],
-      [6.402, 6.402],
-      [2.04, 2.04],
-    ],
-    "26": [
-      [1.935, 3.492],
-      [6.29, 8.922],
-      [1.909, 10.681],
-    ],
-    "29": [
-      [13.983, 12.425],
-      [12.681, 10.049],
-      [18.046, 9.274],
-    ],
-    "33": [
-      [8.272, 8.272],
-      [18.869, 18.869],
-      [33.216, 33.216],
-    ],
+  gaps: {
+    "5": {
+      label: "D5",
+      values: [
+        [1.137, 1.137],
+        [18.064, 18.064],
+        [38.687, 38.687],
+      ],
+    },
+    "13": {
+      label: "D13",
+      values: [
+        [20.855, 20.855],
+        [6.402, 6.402],
+        [2.04, 2.04],
+      ],
+    },
+    "26": {
+      label: "D26",
+      values: [
+        [1.935, 3.492],
+        [6.29, 8.922],
+        [1.909, 10.681],
+      ],
+    },
+    "29": {
+      label: "D29",
+      values: [
+        [13.983, 12.425],
+        [12.681, 10.049],
+        [18.046, 9.274],
+      ],
+    },
+    "33": {
+      label: "BF",
+      values: [
+        [8.272, 8.272],
+        [18.869, 18.869],
+        [33.216, 33.216],
+      ],
+    },
   },
 
-  varLabels: [
-    ["5", "D5"],
-    ["13", "D13"],
-    ["26", "D26"],
-    ["29", "D29"],
-    ["33", "BF"],
-  ],
+  aperture: { fStops: [3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22], blades: 7 },
 
-  /* ── Zoom Configuration ── */
-  zoomPositions: [18.54, 50.034, 135.845],
-  zoomStep: 0.004,
-  zoomLabels: ["Wide", "Tele"],
+  /* ── Cover glass PP (patent surfaces 34–35): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 1.6,
+      nd: 1.5168,
+      vd: 64.14,
+      glass: "J-BK7A",
+      gapAfterMm: 1.0,
+      source: "WO 2022/264542 A1, Example 1 Table 1 surfaces 34–35",
+    },
+  ],
 
   /* ── Group & Doublet Annotations ── */
   groups: [
@@ -463,7 +491,6 @@ const LENS_DATA = {
     { text: "G4 (−)", fromSurface: "27", toSurface: "29" },
     { text: "G5 (−)", fromSurface: "30", toSurface: "33" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "1", toSurface: "3" },
     { text: "H1", fromSurface: "15A", toSurface: "17" },
@@ -472,19 +499,8 @@ const LENS_DATA = {
     { text: "D3", fromSurface: "27", toSurface: "29" },
   ],
 
-  /* ── Focus & Aperture ── */
-  closeFocusM: 0.2,
-  // Patent read 2026-10-06: Close-focus gaps at W/M/T are WO 2022/264542 A1 Example 1 Table 1 close-distance rows (β
-  // = -0.151/-0.147/-0.333; object distance 96.613/280.487/248.897 mm).
-  publishedStations: { focus: [1] },
-  focusDescription: "G4 inner focus (cemented doublet L41+L42 moves image-ward). STM AF motor.",
-  nominalFno: [3.5, 5.0, 6.3],
-  apertureBlades: 7,
-  fstopSeries: [3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22],
-
   /* ── Layout Tuning ── */
-  scFill: 0.45,
-  yScFill: 0.28,
-} satisfies LensDataInput;
+  layout: { scFill: 0.45, yScFill: 0.28 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

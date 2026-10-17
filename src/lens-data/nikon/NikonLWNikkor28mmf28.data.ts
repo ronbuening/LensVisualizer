@@ -1,6 +1,6 @@
 // Root-level draft import. When authoring directly in a maker folder use "../../types/optics.js";
 // generate:metadata rewrites it when it organizes a root-level draft. See LENS_DATA_SPEC.md § Quick Start.
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -30,8 +30,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    (printed B.f. 1.295 × 28 = 36.26 mm; within source rounding).     ║
  * ║  NOTE ON STOP POSITION: not tabulated. STO splits d4 at 0.50 × d4,   ║
  * ║    inferred from the Fig. 1 iris ticks and the 37° principal-ray     ║
- * ║    axis crossing (measured 0.49–0.52 of d4). STO sd is calibrated to ║
- * ║    f/2.8 at infinity, not a published diaphragm diameter.            ║
+ * ║    axis crossing (measured 0.49–0.52 of d4). The stop radius is      ║
+ * ║    derived from the design f-number, f/2.8; it is not a published    ║
+ * ║    diaphragm diameter.                                               ║
  * ║  NOTE ON SEMI-DIAMETERS: none published. Rims follow the Fig. 1      ║
  * ║    optical rims (300 dpi, 0.0492 mm/px from the r1–r10 vertex span,  ║
  * ║    cross-checked by the drawn f/2.8 ray height), flanges excluded:   ║
@@ -53,25 +54,24 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "nikon-lw-nikkor-28-f28",
   maker: "Nikon",
   name: "NIKON LW-NIKKOR 28mm f/2.8",
   subtitle: "US 4,203,653 EXAMPLE 1 — NIPPON KOGAKU K.K. / IKUO MORI",
-  specs: ["5 ELEMENTS / 5 GROUPS", "f ≈ 28.0 mm", "F/2.8", "2ω ≈ 74°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata fields ── */
-  focalLengthMarketing: 28,
-  focalLengthDesign: 28.03,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.8,
-  lensMounts: ["nikonos"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,203,653",
-  patentAuthors: ["Ikuo Mori"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1980,
-  elementCount: 5,
-  groupCount: 5,
+  catalog: {
+    lensMounts: ["nikonos"],
+    imageFormat: "135-full-frame",
+    specs: ["5 ELEMENTS / 5 GROUPS", "f ≈ 28.0 mm", "F/2.8", "2ω ≈ 74°", "ALL SPHERICAL"],
+    elementCount: 5,
+    groupCount: 5,
+    /* ── Explicit metadata fields ── */
+    focalLengthMm: { marketing: 28, design: 28.03 },
+    fNumber: { marketing: 2.8, design: 2.8 },
+  },
+
+  source: { patentNumber: "US 4,203,653", patentYear: 1980, authors: ["Ikuo Mori"], assignees: ["Nippon Kogaku K.K."] },
 
   /* ── Elements ── fl = standalone thick-lens focal length in air (mm) */
   elements: [
@@ -82,7 +82,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.67025,
       vd: 57.5,
-      fl: -38.95,
+      focalLengthMm: -38.95,
       glass:
         "670575 — lanthanum crown (J-LAK02 HIKARI / S-LAL52 OHARA coordinate-compatible, Δnd −0.0003; supplier unconfirmed)",
       apd: false,
@@ -95,7 +95,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.60323,
       vd: 42.5,
-      fl: 26.13,
+      focalLengthMm: 26.13,
       glass: "603425 — barium flint (K-BaSF5 SUMITA class; supplier unconfirmed)",
       apd: false,
       role: "Thin positive lens ahead of the iris; the patent's distortion-correcting member",
@@ -107,7 +107,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7847,
       vd: 26.1,
-      fl: -15.83,
+      focalLengthMm: -15.83,
       glass: "785261 — dense flint (SF56A SCHOTT / ZF51 CDGM class; supplier unconfirmed)",
       apd: false,
       role: "Strong negative flint behind the iris; Petzval and chromatic balance of the rear group",
@@ -119,7 +119,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.80411,
       vd: 46.6,
-      fl: 31.86,
+      focalLengthMm: 31.86,
       glass: "804466 — lanthanum dense flint (J-LASF015 HIKARI / S-LAH65V OHARA class; supplier unconfirmed)",
       apd: false,
       role: "First of two rear positive menisci, convex to the image",
@@ -131,7 +131,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.732,
       vd: 51,
-      fl: 33.64,
+      focalLengthMm: 33.64,
       glass:
         "732510 — lanthanum crown (nearest LAKN12 SUMITA, Δnd +0.0015; TAC4 HOYA alternate, Δnd +0.0020; supplier unconfirmed)",
       apd: false,
@@ -141,48 +141,44 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── (patent values × 28; r5 sign per claim 4) */
   surfaces: [
-    { label: "1", R: 35.448, d: 1.96, nd: 1.67025, elemId: 1, sd: 14.4 },
-    { label: "2", R: 14.7, d: 16.128, nd: 1.0, elemId: 0, sd: 11.8 },
-    { label: "3", R: 23.1, d: 2.632, nd: 1.60323, elemId: 2, sd: 7.9 },
-    { label: "4", R: -47.488, d: 4.214, nd: 1.0, elemId: 0, sd: 7.9 },
-    { label: "STO", R: 1e15, d: 4.214, nd: 1.0, elemId: 0, sd: 6.286 }, // STO position inferred from Fig. 1 (0.50 × d4); sd calibrated to f/2.8
-    { label: "5", R: -15.764, d: 3.136, nd: 1.7847, elemId: 3, sd: 7.3 }, // r5 = −0.563 (claim 4); description table prints +0.563
-    { label: "6", R: 63.644, d: 0.728, nd: 1.0, elemId: 0, sd: 6.6 },
-    { label: "7", R: -58.744, d: 2.044, nd: 1.80411, elemId: 4, sd: 6.6 },
-    { label: "8", R: -18.116, d: 0.112, nd: 1.0, elemId: 0, sd: 7.3 },
-    { label: "9", R: -489.496, d: 2.436, nd: 1.732, elemId: 5, sd: 8.5 },
-    { label: "10", R: -23.492, d: 36.253, nd: 1.0, elemId: 0, sd: 8.5 },
+    { label: "1", R: 35.448, d: 1.96, sd: 14.4, medium: 1 },
+    { label: "2", R: 14.7, d: 16.128, sd: 11.8 },
+    { label: "3", R: 23.1, d: 2.632, sd: 7.9, medium: 2 },
+    { label: "4", R: -47.488, d: 4.214, sd: 7.9 },
+    { label: "STO", R: "flat", d: 4.214 }, // STO position inferred from Fig. 1 (0.50 × d4); radius derived from the design f-number, f/2.8.
+    { label: "5", R: -15.764, d: 3.136, sd: 7.3, medium: 3 }, // r5 = −0.563 (claim 4); description table prints +0.563
+    { label: "6", R: 63.644, d: 0.728, sd: 6.6 },
+    { label: "7", R: -58.744, d: 2.044, sd: 6.6, medium: 4 },
+    { label: "8", R: -18.116, d: 0.112, sd: 7.3 },
+    { label: "9", R: -489.496, d: 2.436, sd: 8.5, medium: 5 },
+    { label: "10", R: -23.492, sd: 8.5 },
   ],
 
-  asph: {},
-
-  /* ── Variable air spacing (unit focus; reconstructed close state) ── */
-  var: {
-    "10": [36.253, 38.1],
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.5,
+    description:
+      "Unit focus (assumed): the whole five-element unit moves forward and only the back focus changes, from 36.25 mm at infinity to 38.10 mm at 0.5 m. The patent publishes the infinity state only; the close state is a paraxial reconstruction for the manufacturer's 0.5 m minimum distance, measured from the film plane as on all Nikonos lenses.",
   },
 
-  varLabels: [["10", "BF"]],
+  /* (moved from var) ── Variable air spacing (unit focus; reconstructed close state) ── */
+  gaps: { "10": { label: "BF", values: [[36.253, 38.1]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "DIVERGENT (L1)", fromSurface: "1", toSurface: "2" },
     { text: "CONVERGENT (L2–L5)", fromSurface: "3", toSurface: "10" },
   ],
-
   doublets: [],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.5,
-  focusDescription:
-    "Unit focus (assumed): the whole five-element unit moves forward and only the back focus changes, from 36.25 mm at infinity to 38.10 mm at 0.5 m. The patent publishes the infinity state only; the close state is a paraxial reconstruction for the manufacturer's 0.5 m minimum distance, measured from the film plane as on all Nikonos lenses.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
   /* ── Layout tuning ── */
-  yScFill: 0.45,
-  gapSagFrac: 0.99, // L3 rear / L4 front rims nearly meet (0.013 mm of air at 6.6 mm); Fig. 1 draws rim contact
-} satisfies LensDataInput;
+  layout: { yScFill: 0.45 },
+
+  checks: {
+    gapSagFrac: 0.99, // L3 rear / L4 front rims nearly meet (0.013 mm of air at 6.6 mm); Fig. 1 draws rim contact
+  },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -53,25 +53,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "nikon-35ti-35f28",
   maker: "Nikon",
   name: "NIKON NIKKOR 35mm f/2.8 (Nikon 35Ti)",
   subtitle: "US 5,243,468 · Fifth Embodiment (Claim 9) — Nikon / Ohtake 1993",
-  specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 35.0 mm", "F/2.8 (design F/2.88)", "2ω ≈ 62.9°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: 35,
-  focalLengthDesign: 35.0,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.88,
-  lensMounts: ["fixed-lens-camera"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 5,243,468",
-  patentAuthors: ["Motoyuki Ohtake"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 1993,
-  elementCount: 6,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["fixed-lens-camera"],
+    imageFormat: "135-full-frame",
+    specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 35.0 mm", "F/2.8 (design F/2.88)", "2ω ≈ 62.9°", "ALL SPHERICAL"],
+    elementCount: 6,
+    groupCount: 4,
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: 35, design: 35.0 },
+    fNumber: { marketing: 2.8, design: 2.88 },
+  },
+
+  source: {
+    patentNumber: "US 5,243,468",
+    patentYear: 1993,
+    authors: ["Motoyuki Ohtake"],
+    assignees: ["Nikon Corporation"],
+  },
 
   /* ── Elements ──
    *  L21 (id 2) and L22 (id 3) form the L2 cemented doublet (D1).
@@ -88,7 +92,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6968,
       vd: 55.6,
-      fl: 45.04,
+      focalLengthMm: 45.04,
       glass: "S-LAL14 (OHARA)",
       apd: false,
       role: "Primary convergence; positive meniscus facing the object to gather the wide-angle bundle",
@@ -100,11 +104,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.59507,
       vd: 35.5,
-      fl: -18.31,
+      focalLengthMm: -18.31,
       glass: "Unidentified light flint (no standard catalog match within Δnd=0.01, Δνd=1.0)",
       apd: false,
-      cemented: "D1",
       role: "Negative sub-element of L2 doublet; enables positive-power cement surface at S4 for spherical aberration correction",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -113,11 +117,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.74443,
       vd: 49.5,
-      fl: 15.4,
+      focalLengthMm: 15.4,
       glass: "Unidentified proprietary glass (possibly Nikon/Hoya c.1990; above-normal Abbe for nd class)",
       apd: false,
-      cemented: "D1",
       role: "Positive sub-element of L2; high index vs L21 gives positive cement-surface power correcting spherical aberration",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -126,11 +130,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.64831,
       vd: 33.8,
-      fl: -15.82,
+      focalLengthMm: -15.82,
       glass: "Ohara S-TIM22 / Schott N-SF2 equiv. (nd=1.64769 / νd=33.82; Δnd=+0.001, Δνd=−0.02)",
       apd: false,
-      cemented: "D2",
       role: "Negative sub-element of L3; concave front surface faces the stop for spherical aberration correction with minimal off-axis aberration generation",
+      cemented: "D2",
     },
     {
       id: 5,
@@ -139,11 +143,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.84042,
       vd: 43.3,
-      fl: 11.59,
+      focalLengthMm: 11.59,
       glass: "Unidentified proprietary glass (possibly Nikon/Hoya c.1990; very high nd with above-average νd)",
       apd: false,
-      cemented: "D2",
       role: "Positive sub-element of L3; exceptionally thick in the Fifth Embodiment, compressing the L3–L4 gap to enable compact body geometry",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -152,7 +156,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.56883,
       vd: 56.0,
-      fl: -30.7,
+      focalLengthMm: -30.7,
       glass: "Schott N-BAK4 (nd=1.56883 / νd=56.04; Δnd≈0, Δνd=−0.04)",
       apd: false,
       role: "Negative telephoto rear element; corrects field curvature and astigmatism while extending EFL from ~20 mm (anterior group alone) to 35 mm",
@@ -165,59 +169,52 @@ const LENS_DATA = {
    *  Surface 5 carries the rear air gap before the stop (1.6010 mm);
    *  the STO surface carries the remaining gap to S6 (2.4014 mm).
    */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 13.014, d: 3.0018, nd: 1.6968, elemId: 1, sd: 10.5 }, // L1 front — convex
-    { label: "2", R: 20.1284, d: 1.4029, nd: 1.0, elemId: 0, sd: 5.8 }, // L1 rear → air; limited by cross-gap
-    { label: "3", R: -52.9508, d: 1.0006, nd: 1.59507, elemId: 2, sd: 6.5 }, // L21 front — concave
-    { label: "4", R: 13.8128, d: 3.4531, nd: 1.74443, elemId: 3, sd: 6.3 }, // L21→L22 cement (S4)
-    { label: "5", R: -60.1771, d: 1.601, nd: 1.0, elemId: 0, sd: 5.5 }, // L22 rear → air (pre-stop gap)
-    { label: "STO", R: 1e15, d: 2.4014, nd: 1.0, elemId: 0, sd: 4.7 }, // Aperture stop; position inferred from Fig. 2
-    { label: "6", R: -15.406, d: 1.0006, nd: 1.64831, elemId: 4, sd: 5.5 }, // L31 front — concave, faces stop
-    { label: "7", R: 31.4432, d: 4.4047, nd: 1.84042, elemId: 5, sd: 6.3 }, // L31→L32 cement (S7)
-    { label: "8", R: -13.2156, d: 1.3015, nd: 1.0, elemId: 0, sd: 8.0 }, // L32 rear → air
-    { label: "9", R: -9.1485, d: 1.6513, nd: 1.56883, elemId: 6, sd: 6.5 }, // L4 front — concave; limited by cross-gap
-    { label: "10", R: -20.4741, d: 20.992, nd: 1.0, elemId: 0, sd: 8.5 }, // L4 rear → image (BFD, variable)
+    { label: "1", R: 13.014, d: 3.0018, sd: 10.5, medium: 1 }, // L1 front — convex
+    { label: "2", R: 20.1284, d: 1.4029, sd: 5.8 }, // L1 rear → air; limited by cross-gap
+    { label: "3", R: -52.9508, d: 1.0006, sd: 6.5, medium: 2 }, // L21 front — concave
+    { label: "4", R: 13.8128, d: 3.4531, sd: 6.3, medium: 3 }, // L21→L22 cement (S4)
+    { label: "5", R: -60.1771, d: 1.601, sd: 5.5 }, // L22 rear → air (pre-stop gap)
+    { label: "STO", R: "flat", d: 2.4014 }, // Aperture stop; position inferred from Fig. 2
+    { label: "6", R: -15.406, d: 1.0006, sd: 5.5, medium: 4 }, // L31 front — concave, faces stop
+    { label: "7", R: 31.4432, d: 4.4047, sd: 6.3, medium: 5 }, // L31→L32 cement (S7)
+    { label: "8", R: -13.2156, d: 1.3015, sd: 8.0 }, // L32 rear → air
+    { label: "9", R: -9.1485, d: 1.6513, sd: 6.5, medium: 6 }, // L4 front — concave; limited by cross-gap
+    { label: "10", R: -20.4741, sd: 8.5 }, // L4 rear → image (BFD, variable)
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.4,
+    description:
+      "Unit focus — entire lens assembly moves axially; all inter-element spacings remain fixed during focusing.",
+  },
 
-  /* ── Variable air spacings ──
+  /* (moved from var) ── Variable air spacings ──
    *  Unit focus: entire lens translates forward; only the BFD (d₁₀) changes.
    *  d_inf  = 20.992 mm (infinity focus, corrected from patent's close-focus value)
    *  d_close= 24.318 mm (at 0.40 m close-focus; thick-lens paraxial: extension = 3.326 mm)
    *  Note: the patent's stated d₁₀ = 69.40 (normalized) ≈ 69.51 mm (computed close-focus
    *  BFD at 0.40 m), matching to within 0.11 mm — see file header note above.
    */
-  var: {
-    "10": [20.992, 24.318],
-  },
+  gaps: { "10": { label: "BF", values: [[20.992, 24.318]] } },
 
-  varLabels: [["10", "BF"]],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.88, fStops: [2.88, 4, 5.6, 8, 11, 16] },
 
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "L2", fromSurface: "3", toSurface: "5" },
     { text: "L3", fromSurface: "6", toSurface: "8" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "3", toSurface: "5" },
     { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.4,
-  focusDescription:
-    "Unit focus — entire lens assembly moves axially; all inter-element spacings remain fixed during focusing.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.88,
-  fstopSeries: [2.88, 4, 5.6, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  scFill: 0.58,
-  yScFill: 0.38,
-} satisfies LensDataInput;
+  layout: { scFill: 0.58, yScFill: 0.38 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

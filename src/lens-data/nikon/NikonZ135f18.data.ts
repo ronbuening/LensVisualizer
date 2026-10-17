@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * WO 2024/147268 A1, Example 1: Table 1 (PDF pp. 20–22), Figure 1 (p. 66).
@@ -11,24 +11,28 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "nikon-z-135f18-plena",
   maker: "Nikon",
   name: "NIKON NIKKOR Z 135mm f/1.8 S Plena",
   subtitle: "WO 2024/147268 A1 Example 1 — NIKON / MURATANI",
-  specs: ["16 ELEMENTS / 14 GROUPS", "f ≈ 132.3 mm", "F/1.85", "2ω ≈ 18.6°", "1 ASPHERICAL SURFACE"],
 
-  focalLengthMarketing: 135,
-  focalLengthDesign: 132.3,
-  apertureMarketing: 1.8,
-  apertureDesign: 1.85,
-  lensMounts: ["nikon-z"],
-  imageFormat: "135-full-frame",
-  patentNumber: "WO 2024/147268 A1",
-  patentAuthors: ["Mami Muratani", "Hiroshi Yamamoto", "Tomonori Kuribayashi", "Takuro Ono"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 2024,
-  elementCount: 16,
-  groupCount: 14,
+  catalog: {
+    lensMounts: ["nikon-z"],
+    imageFormat: "135-full-frame",
+    specs: ["16 ELEMENTS / 14 GROUPS", "f ≈ 132.3 mm", "F/1.85", "2ω ≈ 18.6°", "1 ASPHERICAL SURFACE"],
+    elementCount: 16,
+    groupCount: 14,
+    focalLengthMm: { marketing: 135, design: 132.3 },
+    fNumber: { marketing: 1.8, design: 1.85 },
+  },
+
+  source: {
+    patentNumber: "WO 2024/147268 A1",
+    patentYear: 2024,
+    authors: ["Mami Muratani", "Hiroshi Yamamoto", "Tomonori Kuribayashi", "Takuro Ono"],
+    assignees: ["Nikon Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -39,12 +43,13 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.66382,
       vd: 27.35,
-      fl: 183.8,
+      focalLengthMm: 183.8,
       glass: "J-SFH4 (inferred catalog counterpart; production material unspecified)",
       apd: "patent",
-      dPgF: 0.0343957,
-      apdNote: "Patent condition 14 gives departure +0.035 from its 0.6415−0.00162ν normal line; converted to the engine normal line. Source precision is three decimals.",
+      apdNote:
+        "Patent condition 14 gives departure +0.035 from its 0.6415−0.00162ν normal line; converted to the engine normal line. Source precision is three decimals.",
       role: "Front positive meniscus with source anomalous partial dispersion.",
+      dPgF: 0.0343957,
     },
     {
       id: 2,
@@ -53,10 +58,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.49782,
       vd: 82.57,
-      fl: 221.3,
+      focalLengthMm: 221.3,
       glass: "J-FKH1 (inferred catalog counterpart; production material unspecified)",
       apd: "inferred",
-      apdNote: "Catalog counterpart dispersion is inferred from nd/νd; no production material or ED designation is established.",
+      apdNote:
+        "Catalog counterpart dispersion is inferred from nd/νd; no production material or ED designation is established.",
       role: "Positive low-dispersion meniscus in G1.",
     },
     {
@@ -66,10 +72,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.49782,
       vd: 82.57,
-      fl: 294.8,
+      focalLengthMm: 294.8,
       glass: "J-FKH1 (inferred catalog counterpart; production material unspecified)",
       apd: "inferred",
-      apdNote: "Catalog counterpart dispersion is inferred from nd/νd; no production material or ED designation is established.",
+      apdNote:
+        "Catalog counterpart dispersion is inferred from nd/νd; no production material or ED designation is established.",
       role: "Positive low-dispersion meniscus in G1.",
     },
     {
@@ -79,10 +86,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.57,
-      fl: 103.5,
+      focalLengthMm: 103.5,
       glass: "J-FKH1 (inferred catalog counterpart; production material unspecified)",
       apd: "inferred",
-      apdNote: "Catalog counterpart dispersion is inferred from nd/νd; no production material or ED designation is established.",
+      apdNote:
+        "Catalog counterpart dispersion is inferred from nd/νd; no production material or ED designation is established.",
       role: "Positive member of cemented doublet D1.",
       cemented: "D1",
     },
@@ -93,13 +101,14 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.85451,
       vd: 25.15,
-      fl: -54.9,
+      focalLengthMm: -54.9,
       glass: "NBFD25 (inferred catalog counterpart; production material unspecified)",
       apd: "patent",
-      dPgF: 0.0092593,
-      apdNote: "Patent condition 17 gives departure +0.010 from its 0.6415−0.00162ν normal line; converted to the engine normal line. Source precision is three decimals.",
+      apdNote:
+        "Patent condition 17 gives departure +0.010 from its 0.6415−0.00162ν normal line; converted to the engine normal line. Source precision is three decimals.",
       role: "Negative member of cemented doublet D1.",
       cemented: "D1",
+      dPgF: 0.0092593,
     },
     {
       id: 6,
@@ -108,7 +117,7 @@ const LENS_DATA = {
       type: "Pos. Meniscus (1× Asph)",
       nd: 1.5168,
       vd: 64.14,
-      fl: 233.6,
+      focalLengthMm: 233.6,
       glass: "N-BK7 (inferred catalog counterpart; production material unspecified)",
       apd: false,
       role: "Positive meniscus with the source single aspherical surface.",
@@ -120,7 +129,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6968,
       vd: 55.52,
-      fl: -69.1,
+      focalLengthMm: -69.1,
       glass: "697555 — lanthanum crown (patent coordinate; vendor unresolved)",
       apd: false,
       role: "Negative G2 focus element; moves toward the image.",
@@ -132,10 +141,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.80809,
       vd: 22.74,
-      fl: 168.9,
+      focalLengthMm: 168.9,
       glass: "S-NPH1 (inferred catalog counterpart; production material unspecified)",
       apd: "inferred",
-      apdNote: "Catalog counterpart dispersion is inferred from nd/νd; no production material or ED designation is established.",
+      apdNote:
+        "Catalog counterpart dispersion is inferred from nd/νd; no production material or ED designation is established.",
       role: "Positive high-dispersion meniscus in fixed G3.",
     },
     {
@@ -145,13 +155,14 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.85451,
       vd: 25.15,
-      fl: -62.5,
+      focalLengthMm: -62.5,
       glass: "NBFD25 (inferred catalog counterpart; production material unspecified)",
       apd: "patent",
-      dPgF: 0.0092593,
-      apdNote: "Patent condition 17 gives departure +0.010 from its 0.6415−0.00162ν normal line; converted to the engine normal line. Source precision is three decimals.",
+      apdNote:
+        "Patent condition 17 gives departure +0.010 from its 0.6415−0.00162ν normal line; converted to the engine normal line. Source precision is three decimals.",
       role: "Negative member of cemented doublet D2.",
       cemented: "D2",
+      dPgF: 0.0092593,
     },
     {
       id: 10,
@@ -160,10 +171,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.59319,
       vd: 67.9,
-      fl: 272.0,
+      focalLengthMm: 272.0,
       glass: "J-PSKH1 (inferred catalog counterpart; production material unspecified)",
       apd: "inferred",
-      apdNote: "Catalog counterpart dispersion is inferred from nd/νd; no production material or ED designation is established.",
+      apdNote:
+        "Catalog counterpart dispersion is inferred from nd/νd; no production material or ED designation is established.",
       role: "Positive member of cemented doublet D2.",
       cemented: "D2",
     },
@@ -174,7 +186,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.8044,
       vd: 39.61,
-      fl: 50.1,
+      focalLengthMm: 50.1,
       glass: "S-LAH63Q (inferred catalog counterpart; production material unspecified)",
       apd: false,
       role: "Strong positive singlet in fixed G3.",
@@ -186,7 +198,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.83481,
       vd: 42.73,
-      fl: -174.7,
+      focalLengthMm: -174.7,
       glass: "S-LAH55VS (inferred catalog counterpart; production material unspecified)",
       apd: false,
       role: "Negative singlet in fixed G3.",
@@ -198,7 +210,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.85883,
       vd: 30.0,
-      fl: 126.8,
+      focalLengthMm: 126.8,
       glass: "NBFD30 (inferred catalog counterpart; production material unspecified)",
       apd: false,
       role: "Positive G4 focus element; moves toward the object.",
@@ -210,7 +222,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7859,
       vd: 44.17,
-      fl: -71.0,
+      focalLengthMm: -71.0,
       glass: "S-LAH51 (inferred catalog counterpart; production material unspecified)",
       apd: false,
       role: "Negative singlet in fixed G5.",
@@ -222,7 +234,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.78,
-      fl: 86.9,
+      focalLengthMm: 86.9,
       glass: "S-TIH53 (inferred catalog counterpart; production material unspecified)",
       apd: false,
       role: "Positive singlet in fixed G5.",
@@ -234,7 +246,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.816,
       vd: 46.59,
-      fl: -89.0,
+      focalLengthMm: -89.0,
       glass: "J-LASF09A (inferred catalog counterpart; production material unspecified)",
       apd: false,
       role: "Negative rear singlet in fixed G5.",
@@ -242,52 +254,86 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     /* ── G1: Front group — L1 through L6 ── */
-    { label: "1", R: 73.0739, d: 8.258, nd: 1.66382, elemId: 1, sd: 37.9 }, // L1 front (SR)
-    { label: "2", R: 173.9425, d: 1.0, nd: 1.0, elemId: 0, sd: 37.9 }, // L1 rear → air
-    { label: "3", R: 75.0, d: 8.0959, nd: 1.49782, elemId: 2, sd: 35.9 }, // L2 front (ED)
-    { label: "4", R: 226.5221, d: 1.0, nd: 1.0, elemId: 0, sd: 35.9 }, // L2 rear → air
-    { label: "5", R: 94.0, d: 6.1837, nd: 1.49782, elemId: 3, sd: 33.4 }, // L3 front (ED)
-    { label: "6", R: 255.73, d: 1.0, nd: 1.0, elemId: 0, sd: 33.4 }, // L3 rear → air
-    { label: "7", R: 55.0, d: 10.248, nd: 1.49782, elemId: 4, sd: 28.9 }, // L4 front (ED, cemented D1)
-    { label: "8", R: -766.4853, d: 2.1, nd: 1.85451, elemId: 5, sd: 28.9 }, // L4→L5 junction — elemId: 5
-    { label: "9", R: 50.025, d: 8.2444, nd: 1.0, elemId: 0, sd: 27.4 }, // L5 rear → air
+    { label: "1", R: 73.0739, d: 8.258, sd: 37.9, medium: 1 }, // L1 front (SR)
+    { label: "2", R: 173.9425, d: 1.0, sd: 37.9 }, // L1 rear → air
+    { label: "3", R: 75.0, d: 8.0959, sd: 35.9, medium: 2 }, // L2 front (ED)
+    { label: "4", R: 226.5221, d: 1.0, sd: 35.9 }, // L2 rear → air
+    { label: "5", R: 94.0, d: 6.1837, sd: 33.4, medium: 3 }, // L3 front (ED)
+    { label: "6", R: 255.73, d: 1.0, sd: 33.4 }, // L3 rear → air
+    { label: "7", R: 55.0, d: 10.248, sd: 28.9, medium: 4 }, // L4 front (ED, cemented D1)
+    { label: "8", R: -766.4853, d: 2.1, sd: 28.9, medium: 5 }, // L4→L5 junction — elemId: 5
+    { label: "9", R: 50.025, d: 8.2444, sd: 27.4 }, // L5 rear → air
 
     /* ── Aperture stop ── */
-    { label: "STO", R: 1e15, d: 2.1, nd: 1.0, elemId: 0, sd: 25 }, // Patent surface 10
+    { label: "STO", R: "flat", d: 2.1 }, // Patent surface 10
 
     /* ── L6 (aspherical) ── */
-    { label: "11A", R: 105.9598, d: 4.7, nd: 1.5168, elemId: 6, sd: 21.8 }, // L6 front — aspherical
-    { label: "12", R: 853.548, d: 1.749, nd: 1.0, elemId: 0, sd: 21.8 }, // L6 rear → air (D12, variable)
+    {
+      label: "11A",
+      R: 105.9598,
+      d: 4.7,
+      sd: 21.8,
+      medium: 6,
+      asphere: {
+        K: 0,
+        A4: -1.741e-6,
+        A6: -1.13e-10,
+        A8: -2.868e-14,
+        A10: 9.211e-17,
+      },
+    }, // L6 front — aspherical
+    { label: "12", R: 853.548, sd: 21.8 }, // L6 rear → air (D12, variable)
 
     /* ── G2: Focus group 1 — L7 ── */
-    { label: "13", R: 221.6993, d: 2.1, nd: 1.6968, elemId: 7, sd: 20.2 }, // L7 front
-    { label: "14", R: 39.4223, d: 22.105, nd: 1.0, elemId: 0, sd: 20.2 }, // L7 rear → air (D14, variable)
+    { label: "13", R: 221.6993, d: 2.1, sd: 20.2, medium: 7 }, // L7 front
+    { label: "14", R: 39.4223, sd: 20.2 }, // L7 rear → air (D14, variable)
 
     /* ── G3: Fixed rear corrector — L8 through L12 ── */
-    { label: "15", R: -164.438, d: 4.0545, nd: 1.80809, elemId: 8, sd: 21.1 }, // L8 front
-    { label: "16", R: -75.4132, d: 0.1, nd: 1.0, elemId: 0, sd: 21.1 }, // L8 rear → air
-    { label: "17", R: -160.7346, d: 2.1, nd: 1.85451, elemId: 9, sd: 21.8 }, // L9 front (cemented D2)
-    { label: "18", R: 80.412, d: 3.2958, nd: 1.59319, elemId: 10, sd: 21.8 }, // L9→L10 junction — elemId: 10
-    { label: "19", R: 157.8647, d: 0.7213, nd: 1.0, elemId: 0, sd: 21.8 }, // L10 rear → air
-    { label: "20", R: 64.0655, d: 9.2661, nd: 1.8044, elemId: 11, sd: 22.9 }, // L11 front (Pr)
-    { label: "21", R: -101.7863, d: 0.1, nd: 1.0, elemId: 0, sd: 22.9 }, // L11 rear → air
-    { label: "22", R: 195.9905, d: 2.2, nd: 1.83481, elemId: 12, sd: 22.4 }, // L12 front
-    { label: "23", R: 83.1844, d: 9.528, nd: 1.0, elemId: 0, sd: 22.4 }, // L12 rear → air (D23, variable)
+    { label: "15", R: -164.438, d: 4.0545, sd: 21.1, medium: 8 }, // L8 front
+    { label: "16", R: -75.4132, d: 0.1, sd: 21.1 }, // L8 rear → air
+    { label: "17", R: -160.7346, d: 2.1, sd: 21.8, medium: 9 }, // L9 front (cemented D2)
+    { label: "18", R: 80.412, d: 3.2958, sd: 21.8, medium: 10 }, // L9→L10 junction — elemId: 10
+    { label: "19", R: 157.8647, d: 0.7213, sd: 21.8 }, // L10 rear → air
+    { label: "20", R: 64.0655, d: 9.2661, sd: 22.9, medium: 11 }, // L11 front (Pr)
+    { label: "21", R: -101.7863, d: 0.1, sd: 22.9 }, // L11 rear → air
+    { label: "22", R: 195.9905, d: 2.2, sd: 22.4, medium: 12 }, // L12 front
+    { label: "23", R: 83.1844, sd: 22.4 }, // L12 rear → air (D23, variable)
 
     /* ── G4: Focus group 2 — L13 ── */
-    { label: "24", R: 85.105, d: 4.4549, nd: 1.85883, elemId: 13, sd: 21.8 }, // L13 front
-    { label: "25", R: 380.6074, d: 3.5, nd: 1.0, elemId: 0, sd: 21.8 }, // L13 rear → air (D25, variable)
+    { label: "24", R: 85.105, d: 4.4549, sd: 21.8, medium: 13 }, // L13 front
+    { label: "25", R: 380.6074, sd: 21.8 }, // L13 rear → air (D25, variable)
 
     /* ── G5: Rear diverging group — L14 through L16 ── */
-    { label: "26", R: -542.5119, d: 2.1, nd: 1.7859, elemId: 14, sd: 21.1 }, // L14 front
-    { label: "27", R: 62.2755, d: 1.0, nd: 1.0, elemId: 0, sd: 21.1 }, // L14 rear → air
-    { label: "28", R: 51.4253, d: 5.3074, nd: 1.84666, elemId: 15, sd: 21.1 }, // L15 front
-    { label: "29", R: 162.7875, d: 4.3017, nd: 1.0, elemId: 0, sd: 19.3 }, // L15 rear → air
-    { label: "30", R: -70.4474, d: 2.1, nd: 1.816, elemId: 16, sd: 21.1 }, // L16 front
-    { label: "31", R: -2372.9554, d: 11.4681, nd: 1.0, elemId: 0, sd: 21.1 }, // L16 rear → filter FL (physical gap)
+    { label: "26", R: -542.5119, d: 2.1, sd: 21.1, medium: 14 }, // L14 front
+    { label: "27", R: 62.2755, d: 1.0, sd: 21.1 }, // L14 rear → air
+    { label: "28", R: 51.4253, d: 5.3074, sd: 21.1, medium: 15 }, // L15 front
+    { label: "29", R: 162.7875, d: 4.3017, sd: 19.3 }, // L15 rear → air
+    { label: "30", R: -70.4474, d: 2.1, sd: 21.1, medium: 16 }, // L16 front
+    { label: "31", R: -2372.9554, d: 11.4681, sd: 21.1 }, // L16 rear → filter FL (physical gap)
   ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.8245543747338308,
+    description:
+      "Source focus: G2 (negative L7) moves imageward 13.597 mm and G4 (positive L13) objectward 6.184 mm. Other groups remain fixed within 0.001 mm table rounding. Near distance is inferred from the finite conjugate, including the physical filter thickness.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
+  },
+
+  /* (moved from var) ── Variable air spacings (floating inner focus) ── */
+  gaps: {
+    "12": { label: "G1–G2 (D12)", values: [[1.749, 15.346]] }, // D12: G1–G2 gap (L6 rear → L7 front)
+    "14": { label: "G2–G3 (D14)", values: [[22.105, 8.507]] }, // D14: G2–G3 gap (L7 rear → L8 front)
+    "23": { label: "G3–G4 (D23)", values: [[9.528, 3.345]] }, // D23: G3–G4 gap (L12 rear → L13 front)
+    "25": { label: "G4–G5 (D25)", values: [[3.5, 9.684]] }, // D25: G4–G5 gap (L13 rear → L14 front)
+  },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 1.85, fStops: [1.85, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16] },
 
   /* ── Filter FL (patent surfaces 32–33): traced, not drawn ── */
   rearPlates: [
@@ -302,34 +348,6 @@ const LENS_DATA = {
     },
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {
-    "11A": {
-      K: 0,
-      A4: -1.741e-6,
-      A6: -1.13e-10,
-      A8: -2.868e-14,
-      A10: 9.211e-17,
-      A12: 0,
-      A14: 0,
-    },
-  },
-
-  /* ── Variable air spacings (floating inner focus) ── */
-  var: {
-    12: [1.749, 15.346], // D12: G1–G2 gap (L6 rear → L7 front)
-    14: [22.105, 8.507], // D14: G2–G3 gap (L7 rear → L8 front)
-    23: [9.528, 3.345], // D23: G3–G4 gap (L12 rear → L13 front)
-    25: [3.5, 9.684], // D25: G4–G5 gap (L13 rear → L14 front)
-  },
-
-  varLabels: [
-    ["12", "G1–G2 (D12)"],
-    ["14", "G2–G3 (D14)"],
-    ["23", "G3–G4 (D23)"],
-    ["25", "G4–G5 (D25)"],
-  ],
-
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "G1 (GF+S+L6)", fromSurface: "1", toSurface: "12" },
@@ -338,26 +356,13 @@ const LENS_DATA = {
     { text: "G4", fromSurface: "24", toSurface: "25" },
     { text: "G5 (Gi)", fromSurface: "26", toSurface: "31" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "7", toSurface: "9" },
     { text: "D2", fromSurface: "17", toSurface: "19" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.8245543747338308,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  focusDescription:
-    "Source focus: G2 (negative L7) moves imageward 13.597 mm and G4 (positive L13) objectward 6.184 mm. Other groups remain fixed within 0.001 mm table rounding. Near distance is inferred from the finite conjugate, including the physical filter thickness.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 1.85,
-  fstopSeries: [1.85, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  scFill: 0.5,
-  yScFill: 0.35,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.35 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

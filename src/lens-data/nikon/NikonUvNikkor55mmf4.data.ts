@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -23,36 +23,41 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    therefore marked Unmatched/class rather than catalog-resolved.     ║
  * ║                                                                      ║
  * ║  NOTE ON STOP AND SEMI-DIAMETERS:                                    ║
- * ║    The patent does not tabulate a stop surface or clear apertures.    ║
- * ║    The stop is inferred from Fig. 1 in the L2-L3 air gap, here placed ║
- * ║    25% through d4 after r4. Its SD is solved for f/4 at 365 nm.        ║
- * ║    Semi-diameters are paraxial estimates constrained by edge          ║
- * ║    thickness, cross-gap sag clearance, and the published schematic.   ║
- * ║    The full 21.5° half-field is allowed to vignette at full aperture; ║
- * ║    inflating the front/rear positives to pass the full-field f/4      ║
- * ║    bundle would make the thin elements physically impossible.         ║
+ * ║    The patent does not tabulate a stop surface or clear apertures.   ║
+ * ║    The stop is inferred from Fig. 1 in the L2-L3 air gap, here       ║
+ * ║    placed 25% through d4 after r4. The stop radius is derived from   ║
+ * ║    the design f-number, f/4 (365 nm prescription). Semi-diameters    ║
+ * ║    are paraxial estimates constrained by edge thickness, cross-gap   ║
+ * ║    sag clearance, and the published schematic. The full 21.5°        ║
+ * ║    half-field is allowed to vignette at full aperture; inflating the ║
+ * ║    front/rear positives to pass the full-field f/4 bundle would make ║
+ * ║    the thin elements physically impossible.                          ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-uv-nikkor-55mm-f4",
   maker: "Nikon",
   name: "NIKON UV-NIKKOR AUTO 55mm f/4",
   subtitle: "JP S42-9417 — Wakimoto / Nippon Kogaku",
-  specs: ["3 elements / 3 groups", "f ≈ 55.03 mm", "F/4", "2ω ≈ 43°", "UV 300-400 nm design"],
 
-  focalLengthMarketing: 55,
-  focalLengthDesign: 55.028,
-  apertureMarketing: 4,
-  apertureDesign: 4,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP S42-9417 B",
-  patentAuthors: ["Zenji Wakimoto"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1967,
-  elementCount: 3,
-  groupCount: 3,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: ["3 elements / 3 groups", "f ≈ 55.03 mm", "F/4", "2ω ≈ 43°", "UV 300-400 nm design"],
+    elementCount: 3,
+    groupCount: 3,
+    focalLengthMm: { marketing: 55, design: 55.028 },
+    fNumber: { marketing: 4, design: 4 },
+  },
+
+  source: {
+    patentNumber: "JP S42-9417 B",
+    patentYear: 1967,
+    authors: ["Zenji Wakimoto"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   elements: [
     {
@@ -62,7 +67,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.537,
       vd: 64,
-      fl: 33.011,
+      focalLengthMm: 33.011,
       glass: "Unmatched UV crown (BK7/S-BSL7 class; stored index is n365=1.537, not catalog nd)",
       apd: false,
       role: "Front positive crown of the Cooke-triplet UV achromat; most positive power is on the first surface.",
@@ -74,7 +79,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.56818,
       vd: 47,
-      fl: -18.904,
+      focalLengthMm: -18.904,
       glass: "Unmatched UV light flint (J-LLF2/S-TIL2 class; stored index is n365=1.56818, not catalog nd)",
       apd: false,
       role: "Thin central negative element providing the dispersion differential and negative Petzval contribution.",
@@ -86,7 +91,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.537,
       vd: 64,
-      fl: 29.125,
+      focalLengthMm: 29.125,
       glass: "Unmatched UV crown (BK7/S-BSL7 class; stored index is n365=1.537, not catalog nd)",
       apd: false,
       role: "Rear positive crown; outward-facing rear curvature supplies most of the element power and sets the long BFD.",
@@ -94,22 +99,24 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 19.558, d: 2.7995, nd: 1.537, elemId: 1, sd: 8.85 },
-    { label: "2", R: -179.872, d: 5.093, nd: 1.0, elemId: 0, sd: 8.65 },
-    { label: "3", R: -22.66, d: 0.814, nd: 1.56818, elemId: 2, sd: 6.65 },
-    { label: "4", R: 20.6855, d: 1.1715, nd: 1.0, elemId: 0, sd: 6.55 },
-    { label: "STO", R: 1e15, d: 3.5145, nd: 1.0, elemId: 0, sd: 5.527958 },
-    { label: "5", R: 92.2845, d: 2.7005, nd: 1.537, elemId: 3, sd: 8.25 },
-    { label: "6", R: -18.6395, d: 47.046521, nd: 1.0, elemId: 0, sd: 8.45 },
+    { label: "1", R: 19.558, d: 2.7995, sd: 8.85, medium: 1 },
+    { label: "2", R: -179.872, d: 5.093, sd: 8.65 },
+    { label: "3", R: -22.66, d: 0.814, sd: 6.65, medium: 2 },
+    { label: "4", R: 20.6855, d: 1.1715, sd: 6.55 },
+    { label: "STO", R: "flat", d: 3.5145 },
+    { label: "5", R: 92.2845, d: 2.7005, sd: 8.25, medium: 3 },
+    { label: "6", R: -18.6395, sd: 8.45 },
   ],
 
-  asph: {},
-  var: {
-    "6": [47.046521, 53.287412],
+  focus: {
+    closeFocusM: 0.6,
+    description:
+      "Unit focusing inferred from the fixed three-singlet optical block; BF increases from 47.047 mm at infinity to 53.287 mm at 0.6 m.",
   },
-  varLabels: [["6", "BF"]],
-  focusDescription:
-    "Unit focusing inferred from the fixed three-singlet optical block; BF increases from 47.047 mm at infinity to 53.287 mm at 0.6 m.",
+
+  gaps: { "6": { label: "BF", values: [[47.046521, 53.287412]] } },
+
+  aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -118,13 +125,9 @@ const LENS_DATA = {
   ],
   doublets: [],
 
-  closeFocusM: 0.6,
-  nominalFno: 4,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
-  offAxisFieldFrac: 0.45,
-  scFill: 0.54,
-  yScFill: 0.46,
-  maxFstop: 32,
-} satisfies LensDataInput;
+  layout: { scFill: 0.54, yScFill: 0.46 },
+
+  rays: { offAxisFieldFrac: 0.45 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

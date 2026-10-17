@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
@@ -29,13 +29,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║ Aperture: the patent gives one aperture ratio, F/4.5, for the whole        ║
  * ║ 28.85-44.19 mm range (col. 8) and plots F/4.5 as full aperture at the      ║
- * ║ minimum, medium and maximum focal points (Fig. 12(a)-(c)). nominalFno is   ║
- * ║ 4.5 at every keyframe, and the wide-open iris at each keyframe is the      ║
- * ║ radius the real f/4.5 marginal ray reaches at the stop: 4.718 / 4.919 /    ║
- * ║ 5.096 / 5.246 / 5.369 mm from wide to tele. The iris limits the axial      ║
- * ║ beam at all five keyframes. The patent prints no stop diameter, so these   ║
- * ║ radii are a calibration to its F/4.5, not a recovered iris law. The        ║
- * ║ authored STO.sd, 4.6274 mm, is the paraxial f/4.5 radius at the wide end.  ║
+ * ║ minimum, medium and maximum focal points (Fig. 12(a)-(c)). nominalFNumber  ║
+ * ║ is 4.5 at every keyframe, and the wide-open iris at each keyframe is the   ║
+ * ║ radius the real f/4.5 marginal ray reaches at the stop:                    ║
+ * ║ 4.718 / 4.919 / 5.096 / 5.246 / 5.369 mm from wide to tele. The iris       ║
+ * ║ limits the axial beam at all five keyframes. The patent prints no stop     ║
+ * ║ diameter, so these radii are derived from the design f-number, F/4.5, at   ║
+ * ║ each station, not a recovered iris law.                                    ║
  * ║                                                                            ║
  * ║ September 14 SD review: rear surfaces 14–16 use 6.2 mm; 17–18 use 8.0 mm,
  * ║ estimated from Fig. 5 optical rims, excluding leaders and brackets.
@@ -54,31 +54,35 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-zoom-nikkor-28-45f45",
-  // Embodiment III replaces the hidden earlier model; publication is the revision addition commit in UTC.
-  publishedAt: "2026-09-14T12:06:25Z",
   maker: "Nikon",
   name: "NIKON ZOOM-NIKKOR 28-45mm f/4.5",
   subtitle: "US 3,771,853 A — Embodiment III; strong Nikon product correlation, exact embodiment unconfirmed",
-  specs: [
-    "11 ELEMENTS / 7 GROUPS",
-    "28.85-44.19 mm PATENT DESIGN",
-    "F/4.5 PATENT APERTURE ASSERTION",
-    "ALL-SPHERICAL",
-  ],
+  // Embodiment III replaces the hidden earlier model; publication is the revision addition commit in UTC.
+  publishedAt: "2026-09-14T12:06:25Z",
 
-  focalLengthMarketing: [28, 45],
-  focalLengthDesign: [28.8476729420341, 44.1877941383985],
-  apertureMarketing: 4.5,
-  apertureDesign: 4.5,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,771,853 A",
-  patentAuthors: ["Soichi Nakamura"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1973,
-  elementCount: 11,
-  groupCount: 7,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "11 ELEMENTS / 7 GROUPS",
+      "28.85-44.19 mm PATENT DESIGN",
+      "F/4.5 PATENT APERTURE ASSERTION",
+      "ALL-SPHERICAL",
+    ],
+    elementCount: 11,
+    groupCount: 7,
+    focalLengthMm: { marketing: [28, 45], design: [28.8476729420341, 44.1877941383985] },
+    fNumber: { marketing: 4.5, design: 4.5 },
+  },
+
+  source: {
+    patentNumber: "US 3,771,853 A",
+    patentYear: 1973,
+    authors: ["Soichi Nakamura"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   elements: [
     {
@@ -89,7 +93,7 @@ const LENS_DATA = {
       nd: 1.52,
       vd: 70.1,
       indexReference: "d",
-      fl: -126.698733135044,
+      focalLengthMm: -126.698733135044,
       glass: "520701 — J-PKH1 coordinate-compatible proxy (supplier unresolved)",
       role: "Front negative element of functional group 1.",
     },
@@ -101,10 +105,10 @@ const LENS_DATA = {
       nd: 1.80411,
       vd: 46.4,
       indexReference: "d",
-      fl: 96.7139074324292,
+      focalLengthMm: 96.7139074324292,
       glass: "804464 — N-LASF44 coordinate-compatible proxy (supplier unresolved)",
-      cemented: "C1",
       role: "Front component of the cemented pair in functional group 1.",
+      cemented: "C1",
     },
     {
       id: 3,
@@ -114,10 +118,10 @@ const LENS_DATA = {
       nd: 1.44628,
       vd: 67.2,
       indexReference: "d",
-      fl: -46.8445614815578,
+      focalLengthMm: -46.8445614815578,
       glass: "Unmatched 446672 — low-index crown (supplier unresolved)",
-      cemented: "C1",
       role: "Rear component of the cemented pair in functional group 1.",
+      cemented: "C1",
     },
     {
       id: 4,
@@ -127,10 +131,10 @@ const LENS_DATA = {
       nd: 1.61117,
       vd: 55.8,
       indexReference: "d",
-      fl: 29.7056844246786,
+      focalLengthMm: 29.7056844246786,
       glass: "611558 — H-ZK5/BACD8/SK8/BSM8 coordinate class; supplier unresolved",
-      cemented: "C2",
       role: "Positive component in functional group 2.",
+      cemented: "C2",
     },
     {
       id: 5,
@@ -140,10 +144,10 @@ const LENS_DATA = {
       nd: 1.8411,
       vd: 43.3,
       indexReference: "d",
-      fl: -76.3700741677564,
+      focalLengthMm: -76.3700741677564,
       glass: "Unmatched 841433 — high-index crown (supplier unresolved)",
-      cemented: "C2",
       role: "Negative partner in the functional-group-2 cemented pair.",
+      cemented: "C2",
     },
     {
       id: 6,
@@ -153,7 +157,7 @@ const LENS_DATA = {
       nd: 1.54072,
       vd: 47.2,
       indexReference: "d",
-      fl: 49.291788971896,
+      focalLengthMm: 49.291788971896,
       glass: "541472 — LLF2/QF8 coordinate class; supplier unresolved",
       role: "Rear positive element of functional group 2.",
     },
@@ -165,10 +169,10 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.6,
       indexReference: "d",
-      fl: 32.4398967986834,
+      focalLengthMm: 32.4398967986834,
       glass: "697556 — K-LaK14/J-LAK14 coordinate class; supplier unresolved",
-      cemented: "C3",
       role: "Front element of the negative functional-group-3 cemented pair.",
+      cemented: "C3",
     },
     {
       id: 8,
@@ -178,10 +182,10 @@ const LENS_DATA = {
       nd: 1.80454,
       vd: 39.5,
       indexReference: "d",
-      fl: -11.8079611982386,
+      focalLengthMm: -11.8079611982386,
       glass: "805395 — NBFD3 coordinate-compatible proxy (supplier unresolved)",
-      cemented: "C3",
       role: "Strong negative component of functional group 3.",
+      cemented: "C3",
     },
     {
       id: 9,
@@ -191,10 +195,10 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.3,
       indexReference: "d",
-      fl: -31.4892328106066,
+      focalLengthMm: -31.4892328106066,
       glass: "728283 — SF10/E-FD10/ZF4/H-ZF4A coordinate class; supplier unresolved",
-      cemented: "C4",
       role: "Front negative component in functional group 4.",
+      cemented: "C4",
     },
     {
       id: 10,
@@ -204,10 +208,10 @@ const LENS_DATA = {
       nd: 1.8411,
       vd: 43.3,
       indexReference: "d",
-      fl: 19.0393035616514,
+      focalLengthMm: 19.0393035616514,
       glass: "Unmatched 841433 — high-index crown (supplier unresolved)",
-      cemented: "C4",
       role: "Positive cemented partner in functional group 4.",
+      cemented: "C4",
     },
     {
       id: 11,
@@ -217,70 +221,89 @@ const LENS_DATA = {
       nd: 1.76684,
       vd: 46.6,
       indexReference: "d",
-      fl: 52.8668437917533,
+      focalLengthMm: 52.8668437917533,
       glass: "767466 — J-LASFH2 coordinate-compatible proxy (supplier unresolved)",
       role: "Final positive element of functional group 4.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 52.201, d: 2, nd: 1.52, elemId: 1, sd: 25.8 },
-    { label: "2", R: 28.743, d: 11.5, nd: 1, elemId: 0, sd: 22.1 },
-    { label: "3", R: -744.562, d: 4.2, nd: 1.80411, elemId: 2, sd: 21.5 },
-    { label: "4", R: -70.591, d: 1.3, nd: 1.44628, elemId: 3, sd: 21.2 },
-    { label: "5", R: 29.871, d: 30.3905, nd: 1, elemId: 0, sd: 17.3 },
-    { label: "6", R: 39.507, d: 4.5, nd: 1.61117, elemId: 4, sd: 9.6 },
-    { label: "7", R: -32.141, d: 1.1, nd: 1.8411, elemId: 5, sd: 9 },
-    { label: "8", R: -65.335, d: 0.1, nd: 1, elemId: 0, sd: 8.7 },
-    { label: "9", R: 18.809, d: 3, nd: 1.54072, elemId: 6, sd: 7.6 },
-    { label: "10", R: 60.333, d: 2.4, nd: 1, elemId: 0, sd: 6.7 },
+    { label: "1", R: 52.201, d: 2, sd: 25.8, medium: 1 },
+    { label: "2", R: 28.743, d: 11.5, sd: 22.1 },
+    { label: "3", R: -744.562, d: 4.2, sd: 21.5, medium: 2 },
+    { label: "4", R: -70.591, d: 1.3, sd: 21.2, medium: 3 },
+    { label: "5", R: 29.871, sd: 17.3 },
+    { label: "6", R: 39.507, d: 4.5, sd: 9.6, medium: 4 },
+    { label: "7", R: -32.141, d: 1.1, sd: 9, medium: 5 },
+    { label: "8", R: -65.335, d: 0.1, sd: 8.7 },
+    { label: "9", R: 18.809, d: 3, sd: 7.6, medium: 6 },
+    { label: "10", R: 60.333, d: 2.4, sd: 6.7 },
     // STO station inferred from patent Fig. 2: midpoint of the published 4.8 mm d10 air gap.
-    { label: "STO", R: 1e15, d: 2.4, nd: 1, elemId: 0, sd: 4.62743548999962 },
-    { label: "11", R: -117.506, d: 1.7, nd: 1.6968, elemId: 7, sd: 5.7 },
-    { label: "12", R: -19.07, d: 1, nd: 1.80454, elemId: 8, sd: 5.9 },
-    { label: "13", R: 19.373, d: 1.0864, nd: 1, elemId: 0, sd: 6.1 },
+    { label: "STO", R: "flat", d: 2.4 },
+    { label: "11", R: -117.506, d: 1.7, sd: 5.7, medium: 7 },
+    { label: "12", R: -19.07, d: 1, sd: 5.9, medium: 8 },
+    { label: "13", R: 19.373, sd: 6.1 },
     // USPTO Certificate of Correction: printed +889.704 -> corrected +889.074 mm.
-    { label: "14", R: 889.074, d: 0.7, nd: 1.72825, elemId: 9, sd: 6.2 },
-    { label: "15", R: 22.348, d: 2.4, nd: 1.8411, elemId: 10, sd: 6.2 },
-    { label: "16", R: -53.729, d: 0.5, nd: 1, elemId: 0, sd: 6.2 },
-    { label: "17", R: -55, d: 4.8, nd: 1.76684, elemId: 11, sd: 8.0 },
+    { label: "14", R: 889.074, d: 0.7, sd: 6.2, medium: 9 },
+    { label: "15", R: 22.348, d: 2.4, sd: 6.2, medium: 10 },
+    { label: "16", R: -53.729, d: 0.5, sd: 6.2 },
+    { label: "17", R: -55, d: 4.8, sd: 8.0, medium: 11 },
     // Self-consistent paraxial BFL from the corrected rounded wide-end prescription.
-    { label: "18", R: -24.222, d: 37.7231870886993, nd: 1, elemId: 0, sd: 8.0 },
+    { label: "18", R: -24.222, sd: 8.0 },
   ],
 
-  asph: {},
-
-  var: {
-    "5": [
-      [30.3905, 30.3905],
-      [22.4254684099115, 22.4254684099115],
-      [15.9563682768386, 15.9563682768386],
-      [10.523260992153, 10.523260992153],
-      [5.8365, 5.8365],
-    ],
-    "13": [
-      [1.0864, 1.0864],
-      [1.85501172177428, 1.85501172177428],
-      [2.62362344354856, 2.62362344354856],
-      [3.39223516532284, 3.39223516532284],
-      [4.1597, 4.1597],
-    ],
-    "18": [
-      [37.7231870886993, 37.7231870886993],
-      [40.5063855414827, 40.5063855414827],
-      [43.2895839942661, 43.2895839942661],
-      [46.0727824470495, 46.0727824470495],
-      [48.8556954433968, 48.8556954433968],
+  zoom: {
+    // (moved from publishedStations) Source rows only; the other zoom stations are solved or sampled control points.
+    stations: [
+      { focalLengthMm: 28.85, label: "Wide", published: true },
+      { focalLengthMm: 32.7792359464091, published: false },
+      { focalLengthMm: 36.6464438139281, published: false },
+      { focalLengthMm: 40.4492965445913, published: false },
+      { focalLengthMm: 44.19, label: "Tele", published: true },
     ],
   },
-  varLabels: [
-    ["5", "D5 (G1-G2)"],
-    ["13", "D13 (G3-G4)"],
-    ["18", "BFD"],
-  ],
 
-  zoomPositions: [28.85, 32.7792359464091, 36.6464438139281, 40.4492965445913, 44.19],
-  zoomLabels: ["Wide", "Tele"],
+  focus: {
+    closeFocusM: 0.6,
+    description:
+      "Not modeled — the patent publishes no finite-object focus spacings; 0.6 m is production MFD metadata only and all authored focus pairs are identical.",
+  },
+
+  gaps: {
+    "5": {
+      label: "D5 (G1-G2)",
+      values: [
+        [30.3905, 30.3905],
+        [22.4254684099115, 22.4254684099115],
+        [15.9563682768386, 15.9563682768386],
+        [10.523260992153, 10.523260992153],
+        [5.8365, 5.8365],
+      ],
+    },
+    "13": {
+      label: "D13 (G3-G4)",
+      values: [
+        [1.0864, 1.0864],
+        [1.85501172177428, 1.85501172177428],
+        [2.62362344354856, 2.62362344354856],
+        [3.39223516532284, 3.39223516532284],
+        [4.1597, 4.1597],
+      ],
+    },
+    "18": {
+      label: "BFD",
+      values: [
+        [37.7231870886993, 37.7231870886993],
+        [40.5063855414827, 40.5063855414827],
+        [43.2895839942661, 43.2895839942661],
+        [46.0727824470495, 46.0727824470495],
+        [48.8556954433968, 48.8556954433968],
+      ],
+    },
+  },
+
+  // Patent aperture ratio F/4.5 for the whole focal range (col. 8; Fig. 12(a)-(c)); the iris is traced per keyframe.
+  aperture: { nominalFNumber: 4.5, fStops: [4.5, 5.6, 8, 11, 16, 22] },
 
   groups: [
     { text: "G1 (-)", fromSurface: "1", toSurface: "5" },
@@ -295,17 +318,7 @@ const LENS_DATA = {
     { text: "C4", fromSurface: "14", toSurface: "16" },
   ],
 
-  closeFocusM: 0.6,
-  // Source rows only; the other zoom stations are solved or sampled control points.
-  publishedStations: { zoom: [0, 4] },
-  focusDescription:
-    "Not modeled — the patent publishes no finite-object focus spacings; 0.6 m is production MFD metadata only and all authored focus pairs are identical.",
-
-  // Patent aperture ratio F/4.5 for the whole focal range (col. 8; Fig. 12(a)-(c)); the iris is traced per keyframe.
-  nominalFno: 4.5,
-  fstopSeries: [4.5, 5.6, 8, 11, 16, 22],
-
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

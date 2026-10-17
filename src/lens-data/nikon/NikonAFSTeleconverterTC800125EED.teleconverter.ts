@@ -1,4 +1,4 @@
-import type { TeleconverterDataInput } from "../../types/teleconverter.js";
+import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Nikon AF-S Teleconverter TC800-1.25E ED: JP 2013-250290 A, Example 1 (Table 1, Figure 1).
@@ -35,190 +35,117 @@ import type { TeleconverterDataInput } from "../../types/teleconverter.js";
  */
 
 const TELECONVERTER_DATA = {
-  "key": "nikon-af-s-tc800-1-25e-ed",
-  "name": "NIKON AF-S TELECONVERTER TC800-1.25E ED",
-  "maker": "Nikon",
-  "subtitle": "JP 2013-250290 A, Example 1 \u2014 production correlation",
-  "specs": [
-    "5 ELEMENTS / 3 GROUPS",
-    "1.25\u00d7 REAR CONVERTER",
-    "ALL SPHERICAL"
-  ],
-  "lensMounts": [
-    "nikon-f"
-  ],
-  "magnification": 1.25,
-  "minHostFno": 5.65772,
+  schema: 2,
+  key: "nikon-af-s-tc800-1-25e-ed",
+  maker: "Nikon",
+  name: "NIKON AF-S TELECONVERTER TC800-1.25E ED",
+  subtitle: "JP 2013-250290 A, Example 1 \u2014 production correlation",
+
+  catalog: {
+    lensMounts: ["nikon-f"],
+    specs: ["5 ELEMENTS / 3 GROUPS", "1.25\u00d7 REAR CONVERTER", "ALL SPHERICAL"],
+    elementCount: 5,
+    groupCount: 3,
+  },
+
+  source: {
+    patentNumber: "JP 2013-250290 A",
+    patentYear: 2013,
+    authors: ["Akiko Furuta"],
+    assignees: ["Nikon Corporation"],
+  },
+
+  magnification: 1.25,
+  masterImageDistanceMm: 48.78327522813489,
+  minHostFNumber: 5.65772,
   // Dedicated to the AF-S 800mm f/5.6E. These TC-20E III hosts also pass the speed guard,
   // but Nikon does not list them for the dedicated TC800 converter.
-  "incompatibleLensKeys": [
+  incompatibleLensKeys: [
     "nikon-af-s-nikkor-500mm-f56e-pf-ed-vr",
-    "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr-tc-in"
+    "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr-tc-in",
   ],
-  "masterImageDistanceMm": 48.78327522813489,
-  "patentNumber": "JP 2013-250290 A",
-  "patentAuthors": [
-    "Akiko Furuta"
+
+  elements: [
+    {
+      id: 1,
+      name: "L11",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      nd: 1.581439,
+      vd: 40.96,
+      focalLengthMm: 98.54991955487839,
+      glass: "J-LF5 class (supplier unconfirmed)",
+      role: "Positive meniscus, concave to the master lens, forming the first converter group G1 on its own.",
+    },
+    {
+      id: 2,
+      name: "L21",
+      label: "Element 2",
+      type: "Biconcave Negative",
+      nd: 1.59319,
+      vd: 67.96,
+      focalLengthMm: -40.20197993415136,
+      glass: "J-PSKH1 class (supplier unconfirmed)",
+      apd: "inferred",
+      apdNote:
+        "Nikon's construction diagram marks this second element as the converter's ED element, and its 1.59319/67.96 coordinate is a low-dispersion phosphate-crown class with positive anomalous partial dispersion.",
+      role: "Negative front element of the cemented L21–L23 triplet in converter group G2; the low-dispersion negative that the patent's condition (1) on νn is written for.",
+      cemented: "T1",
+    },
+    {
+      id: 3,
+      name: "L22",
+      label: "Element 3",
+      type: "Biconvex Positive",
+      nd: 1.581439,
+      vd: 40.96,
+      focalLengthMm: 34.16800711606085,
+      glass: "J-LF5 class (supplier unconfirmed)",
+      role: "Positive middle element of the cemented L21–L23 triplet in converter group G2.",
+      cemented: "T1",
+    },
+    {
+      id: 4,
+      name: "L23",
+      label: "Element 4",
+      type: "Biconcave Negative",
+      nd: 1.90265,
+      vd: 35.73,
+      focalLengthMm: -31.154124677232634,
+      glass: "J-LASFH9A class (supplier unconfirmed)",
+      role: "Negative rear element of the cemented L21–L23 triplet in converter group G2; the highest index in the converter.",
+      cemented: "T1",
+    },
+    {
+      id: 5,
+      name: "L31",
+      label: "Element 5",
+      type: "Biconvex Positive",
+      nd: 1.51742,
+      vd: 52.25,
+      focalLengthMm: 100.54421678068137,
+      glass: "J-KF6 class (supplier unconfirmed)",
+      role: "Positive rear element, forming the third converter group G3 on its own.",
+    },
   ],
-  "patentAssignees": [
-    "Nikon Corporation"
+
+  surfaces: [
+    { label: "1", R: -960.3839, d: 3.5, sd: 11, medium: 1 },
+    { label: "2", R: -54.1469, d: 2.2, sd: 11 },
+    { label: "3", R: -64.417, d: 2.0, sd: 12.4, medium: 2 },
+    { label: "4", R: 38.303, d: 7.5, sd: 12.4, medium: 3 },
+    { label: "5", R: -38.303, d: 2.0, sd: 12.4, medium: 4 },
+    { label: "6", R: 108.411, d: 1.0, sd: 12.4 },
+    { label: "7", R: 64.8598, d: 4.1, sd: 13.3, medium: 5 },
+    { label: "8", R: -257.2027, d: 42.27895, sd: 13.3 },
   ],
-  "patentYear": 2013,
-  "elementCount": 5,
-  "groupCount": 3,
-  "elements": [
-    {
-      "id": 1,
-      "name": "L11",
-      "label": "Element 1",
-      "type": "Positive Meniscus",
-      "nd": 1.581439,
-      "vd": 40.96,
-      "glass": "J-LF5 class (supplier unconfirmed)",
-      "fl": 98.54991955487839,
-      "role": "Positive meniscus, concave to the master lens, forming the first converter group G1 on its own."
-    },
-    {
-      "id": 2,
-      "name": "L21",
-      "label": "Element 2",
-      "type": "Biconcave Negative",
-      "nd": 1.59319,
-      "vd": 67.96,
-      "glass": "J-PSKH1 class (supplier unconfirmed)",
-      "apd": "inferred",
-      "apdNote": "Nikon's construction diagram marks this second element as the converter's ED element, and its 1.59319/67.96 coordinate is a low-dispersion phosphate-crown class with positive anomalous partial dispersion.",
-      "fl": -40.20197993415136,
-      "role": "Negative front element of the cemented L21–L23 triplet in converter group G2; the low-dispersion negative that the patent's condition (1) on νn is written for.",
-      "cemented": "T1"
-    },
-    {
-      "id": 3,
-      "name": "L22",
-      "label": "Element 3",
-      "type": "Biconvex Positive",
-      "nd": 1.581439,
-      "vd": 40.96,
-      "glass": "J-LF5 class (supplier unconfirmed)",
-      "fl": 34.16800711606085,
-      "role": "Positive middle element of the cemented L21–L23 triplet in converter group G2.",
-      "cemented": "T1"
-    },
-    {
-      "id": 4,
-      "name": "L23",
-      "label": "Element 4",
-      "type": "Biconcave Negative",
-      "nd": 1.90265,
-      "vd": 35.73,
-      "glass": "J-LASFH9A class (supplier unconfirmed)",
-      "fl": -31.154124677232634,
-      "role": "Negative rear element of the cemented L21–L23 triplet in converter group G2; the highest index in the converter.",
-      "cemented": "T1"
-    },
-    {
-      "id": 5,
-      "name": "L31",
-      "label": "Element 5",
-      "type": "Biconvex Positive",
-      "nd": 1.51742,
-      "vd": 52.25,
-      "glass": "J-KF6 class (supplier unconfirmed)",
-      "fl": 100.54421678068137,
-      "role": "Positive rear element, forming the third converter group G3 on its own."
-    }
+
+  groups: [
+    { text: "G1", fromSurface: "1", toSurface: "2" },
+    { text: "G2", fromSurface: "3", toSurface: "6" },
+    { text: "G3", fromSurface: "7", toSurface: "8" },
   ],
-  "surfaces": [
-    {
-      "label": "1",
-      "R": -960.3839,
-      "d": 3.5,
-      "nd": 1.581439,
-      "elemId": 1,
-      "sd": 11
-    },
-    {
-      "label": "2",
-      "R": -54.1469,
-      "d": 2.2,
-      "nd": 1.0,
-      "elemId": 0,
-      "sd": 11
-    },
-    {
-      "label": "3",
-      "R": -64.417,
-      "d": 2.0,
-      "nd": 1.59319,
-      "elemId": 2,
-      "sd": 12.4
-    },
-    {
-      "label": "4",
-      "R": 38.303,
-      "d": 7.5,
-      "nd": 1.581439,
-      "elemId": 3,
-      "sd": 12.4
-    },
-    {
-      "label": "5",
-      "R": -38.303,
-      "d": 2.0,
-      "nd": 1.90265,
-      "elemId": 4,
-      "sd": 12.4
-    },
-    {
-      "label": "6",
-      "R": 108.411,
-      "d": 1.0,
-      "nd": 1.0,
-      "elemId": 0,
-      "sd": 12.4
-    },
-    {
-      "label": "7",
-      "R": 64.8598,
-      "d": 4.1,
-      "nd": 1.51742,
-      "elemId": 5,
-      "sd": 13.3
-    },
-    {
-      "label": "8",
-      "R": -257.2027,
-      "d": 42.27895,
-      "nd": 1.0,
-      "elemId": 0,
-      "sd": 13.3
-    }
-  ],
-  "asph": {},
-  "groups": [
-    {
-      "text": "G1",
-      "fromSurface": "1",
-      "toSurface": "2"
-    },
-    {
-      "text": "G2",
-      "fromSurface": "3",
-      "toSurface": "6"
-    },
-    {
-      "text": "G3",
-      "fromSurface": "7",
-      "toSurface": "8"
-    }
-  ],
-  "doublets": [
-    {
-      "text": "T1",
-      "fromSurface": "3",
-      "toSurface": "6"
-    }
-  ]
-} satisfies TeleconverterDataInput;
+  doublets: [{ text: "T1", fromSurface: "3", toSurface: "6" }],
+} satisfies TeleconverterDataV2Input;
 
 export default TELECONVERTER_DATA;

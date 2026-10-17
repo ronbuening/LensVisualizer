@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -22,30 +22,33 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-z-dx-50-250mm-f45-63-vr",
   maker: "Nikon",
   name: "NIKON NIKKOR Z DX 50-250mm f/4.5-6.3 VR",
   subtitle: "JP WO2020/105107 A1 Example 1 — Nikon Corporation",
-  specs: [
-    "Production: 50-250 mm, f/4.5-6.3",
-    "Patent Example 1: f = 51.50-242.80 mm",
-    "16 elements / 12 groups",
-    "1 ED element; all-spherical prescription",
-    "GN1 optical VR; GN2 internal focus",
-  ],
 
-  focalLengthMarketing: [50, 250],
-  focalLengthDesign: [51.499, 242.804],
-  lensMounts: ["nikon-z"],
-  imageFormat: "aps-c",
-  patentNumber: "JP WO2020/105107 A1",
-  patentAuthors: ["Takahiro Ishikawa", "Norikazu Yokoi"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 2020,
-  elementCount: 16,
-  groupCount: 12,
-  apertureBlades: 7,
-  apertureBladeRoundedness: 1,
+  catalog: {
+    lensMounts: ["nikon-z"],
+    imageFormat: "aps-c",
+    specs: [
+      "Production: 50-250 mm, f/4.5-6.3",
+      "Patent Example 1: f = 51.50-242.80 mm",
+      "16 elements / 12 groups",
+      "1 ED element; all-spherical prescription",
+      "GN1 optical VR; GN2 internal focus",
+    ],
+    elementCount: 16,
+    groupCount: 12,
+    focalLengthMm: { marketing: [50, 250], design: [51.499, 242.804] },
+  },
+
+  source: {
+    patentNumber: "JP WO2020/105107 A1",
+    patentYear: 2020,
+    authors: ["Takahiro Ishikawa", "Norikazu Yokoi"],
+    assignees: ["Nikon Corporation"],
+  },
 
   elements: [
     {
@@ -55,7 +58,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.5168,
       vd: 64.1,
-      fl: 170.2,
+      focalLengthMm: 170.2,
       glass: "N-BK7 / S-BSL7 / J-BK7A class",
       role: "Weak positive front collector of GP1.",
     },
@@ -66,7 +69,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.60342,
       vd: 38.0,
-      fl: -108.0,
+      focalLengthMm: -108.0,
       glass: "F5 (Schott) / S-TIM5 / J-F5 class",
       role: "Flint member of the front cemented positive doublet.",
       cemented: "D1",
@@ -78,7 +81,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.3,
-      fl: 95.0,
+      focalLengthMm: 95.0,
       glass: "J-FK5 (Hikari)",
       role: "Low-index, high-Abbe positive member completing the GP1 doublet.",
       cemented: "D1",
@@ -90,7 +93,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.6,
-      fl: -62.9,
+      focalLengthMm: -62.9,
       glass: "E-LASF016 (Hikari) / J-LASF016 class",
       role: "First element of GN1, the negative VR group.",
     },
@@ -101,7 +104,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.8061,
       vd: 41.0,
-      fl: -28.4,
+      focalLengthMm: -28.4,
       glass: "H-ZLAF52A (CDGM) / J-LASF03 class",
       role: "Dominant negative element in the GN1 cemented component.",
       cemented: "D2",
@@ -113,7 +116,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.94595,
       vd: 18.0,
-      fl: 48.2,
+      focalLengthMm: 48.2,
       glass: "Dense flint class 946180 (HOYA FDS18/FDS18-W equivalent, vendor unspecified)",
       role: "High-index, high-dispersion positive member trimming GN1 residuals.",
       cemented: "D2",
@@ -125,7 +128,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.6,
-      fl: 38.7,
+      focalLengthMm: 38.7,
       glass: "J-FK01A (Hikari, ED fluorophosphate)",
       apd: "inferred",
       apdNote: "Sole ED-class element; patent gives nd/νd only and no partial-dispersion table.",
@@ -139,7 +142,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.85026,
       vd: 32.4,
-      fl: -42.1,
+      focalLengthMm: -42.1,
       glass: "J-LASF021 (Hikari)",
       role: "Dense-flint negative member paired with the ED element in GP2.",
       cemented: "D3",
@@ -151,7 +154,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.51823,
       vd: 58.8,
-      fl: 68.7,
+      focalLengthMm: 68.7,
       glass: "E-C3 (HOYA) / S-NSL3 / J-K3 class",
       role: "Pre-stop positive meniscus conditioning the beam into the aperture.",
     },
@@ -162,7 +165,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.902,
       vd: 25.3,
-      fl: -60.4,
+      focalLengthMm: -60.4,
       glass: "J-LASFH24 (Hikari catalog equivalent; production supplier unspecified)",
       role: "High-index post-stop negative corrector in GP2.",
     },
@@ -173,7 +176,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.744,
       vd: 44.8,
-      fl: 55.7,
+      focalLengthMm: 55.7,
       glass: "S-LAM2 (OHARA) / J-LAF2 class",
       role: "Positive relay element following the post-stop negative meniscus.",
     },
@@ -184,7 +187,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.795,
       vd: 45.3,
-      fl: 56.9,
+      focalLengthMm: 56.9,
       glass: "J-LASF017 (Hikari)",
       role: "Final positive element of GP2 before the focus doublet.",
     },
@@ -195,7 +198,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.80518,
       vd: 25.4,
-      fl: 31.9,
+      focalLengthMm: 31.9,
       glass: "H-ZF7LA (CDGM) / S-TIH6 / J-SF6 class",
       role: "Positive member of the moving GN2 focus doublet.",
       cemented: "D4",
@@ -207,7 +210,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.8061,
       vd: 41.0,
-      fl: -20.6,
+      focalLengthMm: -20.6,
       glass: "H-ZLAF52A (CDGM) / J-LASF03 class",
       role: "Dominant negative member of the GN2 focus doublet.",
       cemented: "D4",
@@ -219,7 +222,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.58913,
       vd: 61.2,
-      fl: 57.8,
+      focalLengthMm: 57.8,
       glass: "N-SK5 / S-BAL35 / J-SK5 class",
       role: "Positive meniscus starting the rear negative correction group.",
     },
@@ -230,84 +233,102 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.91082,
       vd: 35.2,
-      fl: -39.3,
+      focalLengthMm: -39.3,
       glass: "High-index lanthanum-flint class 911353 (CDGM H-ZLaF4LA / HOYA TAFD35L equivalent, vendor unspecified)",
       role: "Final negative meniscus for rear field and back-focus correction.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 87.9319, d: 4.1, nd: 1.5168, elemId: 1, sd: 24.5 },
-    { label: "2", R: 303555.26, d: 0.1, nd: 1.0, elemId: 0, sd: 24.0 },
-    { label: "3", R: 121.996, d: 2.3, nd: 1.60342, elemId: 2, sd: 23.5 },
-    { label: "4", R: 42.1657, d: 6.3, nd: 1.48749, elemId: 3, sd: 22.0 },
-    { label: "5", R: 450.0045, d: 11.8, nd: 1.0, elemId: 0, sd: 21.5 },
-    { label: "6", R: 539.7528, d: 1.2, nd: 1.7725, elemId: 4, sd: 12.0 },
-    { label: "7", R: 44.5639, d: 2.596, nd: 1.0, elemId: 0, sd: 9.8 },
-    { label: "8", R: -40.0811, d: 1.2, nd: 1.8061, elemId: 5, sd: 9.8 },
-    { label: "9", R: 53.945, d: 2.2, nd: 1.94595, elemId: 6, sd: 10.0 },
-    { label: "10", R: -287.1993, d: 37.855, nd: 1.0, elemId: 0, sd: 10.0 },
-    { label: "11", R: 81.306, d: 4.75, nd: 1.497, elemId: 7, sd: 12.0 },
-    { label: "12", R: -24.717, d: 1.3, nd: 1.85026, elemId: 8, sd: 11.8 },
-    { label: "13", R: -81.9845, d: 0.1, nd: 1.0, elemId: 0, sd: 11.8 },
-    { label: "14", R: 35.5809, d: 2.65, nd: 1.51823, elemId: 9, sd: 11.6 },
-    { label: "15", R: 66022.919, d: 2.0, nd: 1.0, elemId: 0, sd: 11.2 },
-    { label: "STO", R: 1e15, d: 11.87, nd: 1.0, elemId: 0, sd: 9.0 },
-    { label: "17", R: 71.9716, d: 1.7, nd: 1.902, elemId: 10, sd: 10.5 },
-    { label: "18", R: 30.6656, d: 0.965, nd: 1.0, elemId: 0, sd: 9.0 },
-    { label: "19", R: 82.459, d: 2.23, nd: 1.744, elemId: 11, sd: 9.0 },
-    { label: "20", R: -82.459, d: 0.1, nd: 1.0, elemId: 0, sd: 10.5 },
-    { label: "21", R: 32.7781, d: 2.25, nd: 1.795, elemId: 12, sd: 10.5 },
-    { label: "22", R: 115.5977, d: 6.151, nd: 1.0, elemId: 0, sd: 10.8 },
-    { label: "23", R: 38.4958, d: 2.56, nd: 1.80518, elemId: 13, sd: 9.8 },
-    { label: "24", R: -75.0934, d: 1.3, nd: 1.8061, elemId: 14, sd: 9.6 },
-    { label: "25", R: 21.4236, d: 29.739, nd: 1.0, elemId: 0, sd: 9.6 },
-    { label: "26", R: -51.0001, d: 3.42, nd: 1.58913, elemId: 15, sd: 12.0 },
-    { label: "27", R: -20.9315, d: 0.31, nd: 1.0, elemId: 0, sd: 12.2 },
-    { label: "28", R: -24.8038, d: 1.25, nd: 1.91082, elemId: 16, sd: 12.0 },
-    { label: "29", R: -82.9036, d: 16.906, nd: 1.0, elemId: 0, sd: 12.0 },
+    { label: "1", R: 87.9319, d: 4.1, sd: 24.5, medium: 1 },
+    { label: "2", R: 303555.26, d: 0.1, sd: 24.0 },
+    { label: "3", R: 121.996, d: 2.3, sd: 23.5, medium: 2 },
+    { label: "4", R: 42.1657, d: 6.3, sd: 22.0, medium: 3 },
+    { label: "5", R: 450.0045, sd: 21.5 },
+    { label: "6", R: 539.7528, d: 1.2, sd: 12.0, medium: 4 },
+    { label: "7", R: 44.5639, d: 2.596, sd: 9.8 },
+    { label: "8", R: -40.0811, d: 1.2, sd: 9.8, medium: 5 },
+    { label: "9", R: 53.945, d: 2.2, sd: 10.0, medium: 6 },
+    { label: "10", R: -287.1993, sd: 10.0 },
+    { label: "11", R: 81.306, d: 4.75, sd: 12.0, medium: 7 },
+    { label: "12", R: -24.717, d: 1.3, sd: 11.8, medium: 8 },
+    { label: "13", R: -81.9845, d: 0.1, sd: 11.8 },
+    { label: "14", R: 35.5809, d: 2.65, sd: 11.6, medium: 9 },
+    { label: "15", R: 66022.919, d: 2.0, sd: 11.2 },
+    { label: "STO", R: "flat", d: 11.87 },
+    { label: "17", R: 71.9716, d: 1.7, sd: 10.5, medium: 10 },
+    { label: "18", R: 30.6656, d: 0.965, sd: 9.0 },
+    { label: "19", R: 82.459, d: 2.23, sd: 9.0, medium: 11 },
+    { label: "20", R: -82.459, d: 0.1, sd: 10.5 },
+    { label: "21", R: 32.7781, d: 2.25, sd: 10.5, medium: 12 },
+    { label: "22", R: 115.5977, sd: 10.8 },
+    { label: "23", R: 38.4958, d: 2.56, sd: 9.8, medium: 13 },
+    { label: "24", R: -75.0934, d: 1.3, sd: 9.6, medium: 14 },
+    { label: "25", R: 21.4236, sd: 9.6 },
+    { label: "26", R: -51.0001, d: 3.42, sd: 12.0, medium: 15 },
+    { label: "27", R: -20.9315, d: 0.31, sd: 12.2 },
+    { label: "28", R: -24.8038, d: 1.25, sd: 12.0, medium: 16 },
+    { label: "29", R: -82.9036, sd: 12.0 },
   ],
 
-  asph: {},
-
-  var: {
-    "5": [
-      [11.8, 11.8],
-      [36.593, 36.593],
-      [73.195, 73.195],
-    ],
-    "10": [
-      [37.855, 37.855],
-      [24.078, 24.078],
-      [3.134, 3.134],
-    ],
-    "22": [
-      [6.151, 9.008],
-      [8.639, 14.923],
-      [3.0, 18.313],
-    ],
-    "25": [
-      [29.739, 26.882],
-      [25.019, 18.735],
-      [28.466, 13.153],
-    ],
-    "29": [
-      [16.906, 16.906],
-      [23.174, 23.174],
-      [38.12, 38.12],
+  zoom: {
+    stations: [
+      { focalLengthMm: 51.5, nominalFNumber: 4.5, label: "Wide" },
+      { focalLengthMm: 86.28, nominalFNumber: 5.1 },
+      { focalLengthMm: 242.8, nominalFNumber: 6.3, label: "Tele" },
     ],
   },
 
-  varLabels: [
-    ["5", "D5"],
-    ["10", "D10"],
-    ["22", "D22 / GN2 front"],
-    ["25", "D25 / GN2 rear"],
-    ["29", "BF"],
-  ],
+  focus: {
+    closeFocusM: 0.5,
+    description:
+      "Internal focus by image-side movement of GN2 (L41/L42). Close-focus spacings are paraxial estimates from Nikon's published MFDs; the patent table gives infinity spacings only.",
+  },
 
-  zoomPositions: [51.5, 86.28, 242.8],
-  zoomLabels: ["Wide", "Tele"],
+  gaps: {
+    "5": {
+      label: "D5",
+      values: [
+        [11.8, 11.8],
+        [36.593, 36.593],
+        [73.195, 73.195],
+      ],
+    },
+    "10": {
+      label: "D10",
+      values: [
+        [37.855, 37.855],
+        [24.078, 24.078],
+        [3.134, 3.134],
+      ],
+    },
+    "22": {
+      label: "D22 / GN2 front",
+      values: [
+        [6.151, 9.008],
+        [8.639, 14.923],
+        [3.0, 18.313],
+      ],
+    },
+    "25": {
+      label: "D25 / GN2 rear",
+      values: [
+        [29.739, 26.882],
+        [25.019, 18.735],
+        [28.466, 13.153],
+      ],
+    },
+    "29": {
+      label: "BF",
+      values: [
+        [16.906, 16.906],
+        [23.174, 23.174],
+        [38.12, 38.12],
+      ],
+    },
+  },
+
+  aperture: { fStops: [4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 7, bladeRoundedness: 1 },
 
   groups: [
     { text: "GP1", fromSurface: "1", toSurface: "5" },
@@ -316,7 +337,6 @@ const LENS_DATA = {
     { text: "GN2 / FOCUS", fromSurface: "23", toSurface: "25" },
     { text: "GN3", fromSurface: "26", toSurface: "29" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "3", toSurface: "5" },
     { text: "D2", fromSurface: "8", toSurface: "10" },
@@ -324,16 +344,7 @@ const LENS_DATA = {
     { text: "D4", fromSurface: "23", toSurface: "25" },
   ],
 
-  closeFocusM: 0.5,
-  focusDescription:
-    "Internal focus by image-side movement of GN2 (L41/L42). Close-focus spacings are paraxial estimates from Nikon's published MFDs; the patent table gives infinity spacings only.",
-
-  nominalFno: [4.5, 5.1, 6.3],
-  fstopSeries: [4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32],
-  maxFstop: 32,
-
-  scFill: 0.68,
-  yScFill: 0.58,
-} satisfies LensDataInput;
+  layout: { scFill: 0.68, yScFill: 0.58 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

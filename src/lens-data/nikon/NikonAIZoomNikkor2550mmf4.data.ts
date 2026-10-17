@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 // NIKON AI ZOOM-NIKKOR 25-50mm f/4
 // Source: US 4,189,212, Example 8 (Nippon Kogaku K.K., Mizutani/Nakamura).
@@ -7,49 +7,46 @@ import type { LensDataInput } from "../../types/optics.js";
 // -219.5 gives 25.499 mm, matching the patent's 25.50 mm value.
 //
 // Patent d8 is the variable separation from r8 to r9. The data model inserts STO in this gap, just ahead of
-// the converging group, so surface 8 stores d8 - 0.1 mm and STO.d stores the remaining 0.1 mm.
-// Nikon's design note describes a zoom-cammed aperture that moves with the second group and changes diameter
-// to preserve f/4. STO.sd is set to the wide-end f/4 model aperture for layout; the wide-open iris radius is
-// traced from nominalFno, the production constant f/4, at each zoom station (8.356 / 9.616 / 11.479 mm).
-// At the tele station the beam is limited at the stop surface and traces about f/4.91.
+// the converging group, so surface 8 stores d8 - 0.1 mm and STO.d stores the remaining 0.1 mm. Nikon's
+// design note describes a zoom-cammed aperture that moves with the second group and changes diameter to
+// preserve f/4. The stop radius is derived from the design f-number, the production constant f/4, at each
+// zoom station (8.356 / 9.616 / 11.479 mm). At the tele station the beam is limited at the stop surface and
+// traces about f/4.91.
 //
 // Semi-diameters: the patent does not publish per-surface clear apertures. Values are visualization estimates
 // from marginal/chief ray envelopes, reduced where needed for positive edge thickness, sane adjacent-surface
 // proportions, and renderer-safe cross-gap sag clearance.
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-ai-zoom-nikkor-25-50mm-f4",
-  name: "NIKON AI ZOOM-NIKKOR 25-50mm f/4",
   maker: "Nikon",
+  name: "NIKON AI ZOOM-NIKKOR 25-50mm f/4",
   subtitle: "US 4,189,212 Example 8 — Nippon Kogaku wide-angle zoom",
-  specs: [
-    "25-50 mm f/4",
-    "11 elements / 10 groups",
-    "Two-group negative-positive wide-angle zoom",
-    "All-spherical prescription",
-    "Nikon F mount / 135 full-frame",
-  ],
-  focalLengthMarketing: [25, 50],
-  focalLengthDesign: [25.4988, 48.8007],
-  apertureMarketing: 4,
-  apertureDesign: 4,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,189,212",
-  patentAuthors: ["Norio Mizutani", "Soichi Nakamura"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1980,
-  elementCount: 11,
-  groupCount: 10,
-  closeFocusM: 0.6,
-  nominalFno: 4,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
-  zoomPositions: [25.5, 35.15, 48.805],
-  zoomStep: 0.004,
-  focusDescription:
-    "Unit-focus manual helicoid. Close-focus back-focus values are approximated from the published 0.6 m minimum focus distance because the patent publishes only infinity-focus spacings.",
-  yScFill: 0.42,
-  scFill: 0.68,
+
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "25-50 mm f/4",
+      "11 elements / 10 groups",
+      "Two-group negative-positive wide-angle zoom",
+      "All-spherical prescription",
+      "Nikon F mount / 135 full-frame",
+    ],
+    elementCount: 11,
+    groupCount: 10,
+    focalLengthMm: { marketing: [25, 50], design: [25.4988, 48.8007] },
+    fNumber: { marketing: 4, design: 4 },
+  },
+
+  source: {
+    patentNumber: "US 4,189,212",
+    patentYear: 1980,
+    authors: ["Norio Mizutani", "Soichi Nakamura"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
+
   elements: [
     {
       id: 1,
@@ -58,7 +55,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.77279,
       vd: 49.4,
-      fl: -73.069,
+      focalLengthMm: -73.069,
       glass: "M-TAF1 (HOYA catalog-equivalent; patent supplier unspecified)",
       role: "High-index negative front meniscus; reduces oblique-ray deviation and front-group diameter.",
     },
@@ -69,7 +66,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.60342,
       vd: 38.0,
-      fl: 130.696,
+      focalLengthMm: 130.696,
       glass: "F5 (Schott) / S-TIM5 (Ohara)",
       role: "Low-Abbe positive member paired with L3 through a converging air chamber.",
     },
@@ -80,7 +77,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80279,
       vd: 46.8,
-      fl: -40.874,
+      focalLengthMm: -40.874,
       glass: "S-LAH65V class (Ohara, near 804/466)",
       role: "Strongest negative element in the diverging group; controls wide-end distortion with the L2-L3 air lens.",
     },
@@ -91,7 +88,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.80518,
       vd: 25.5,
-      fl: 152.352,
+      focalLengthMm: 152.352,
       glass: "SF6 (Schott) / S-TIH6 (Ohara)",
       role: "Dense-flint positive meniscus completing the diverging group and assisting field-curvature correction.",
     },
@@ -102,7 +99,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.53172,
       vd: 48.9,
-      fl: 64.997,
+      focalLengthMm: 64.997,
       glass: "S-TIL6 (Ohara) / LLF6 class",
       role: "Positive front element of the cemented L5 doublet.",
       cemented: "D1",
@@ -114,7 +111,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.5,
-      fl: -178.697,
+      focalLengthMm: -178.697,
       glass: "SF6 (Schott) / S-TIH6 (Ohara)",
       role: "Dense-flint rear element of the cemented L5 doublet; axial color and long-end spherical-color correction.",
       cemented: "D1",
@@ -126,7 +123,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.50137,
       vd: 56.5,
-      fl: 74.333,
+      focalLengthMm: 74.333,
       glass: "K10 class (501/565)",
       role: "Low-index positive member in the Sonnar-type converging group.",
     },
@@ -137,7 +134,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.50137,
       vd: 56.5,
-      fl: 58.822,
+      focalLengthMm: 58.822,
       glass: "K10 class (501/565)",
       role: "Main positive relay member ahead of the high-index negative L8.",
     },
@@ -148,7 +145,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.79504,
       vd: 28.4,
-      fl: -20.877,
+      focalLengthMm: -20.877,
       glass: "J-LAFH3 class (Hikari, close 795/284)",
       role: "High-index negative element for Petzval and spherical-aberration balance in the rear group.",
     },
@@ -159,7 +156,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.4645,
       vd: 65.8,
-      fl: 94.823,
+      focalLengthMm: 94.823,
       glass: "FC3 (HOYA catalog-equivalent; production supplier unspecified)",
       role: "Forward half of the split rear positive member used by the Type II converging group.",
     },
@@ -170,57 +167,73 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.50137,
       vd: 56.5,
-      fl: 88.042,
+      focalLengthMm: 88.042,
       glass: "K10 class (501/565)",
       role: "Rear positive field and distortion-control member.",
     },
   ],
+
   surfaces: [
-    { label: "1", R: 80.0, d: 3.5, nd: 1.77279, elemId: 1, sd: 27.5 },
-    { label: "2", R: 32.471, d: 10.0, nd: 1.0, elemId: 0, sd: 22.0 },
-    { label: "3", R: -630.0, d: 5.0, nd: 1.60342, elemId: 2, sd: 22.0 },
-    { label: "4", R: -70.3, d: 0.1, nd: 1.0, elemId: 0, sd: 21.0 },
-    { label: "5", R: -217.401, d: 3.3, nd: 1.80279, elemId: 3, sd: 21.5 },
-    { label: "6", R: 38.907, d: 18.9, nd: 1.0, elemId: 0, sd: 21.0 },
-    { label: "7", R: 57.924, d: 3.6, nd: 1.80518, elemId: 4, sd: 19.0 },
-    { label: "8", R: 106.702, d: 35.312, nd: 1.0, elemId: 0, sd: 18.2 },
-    { label: "STO", R: 1e15, d: 0.1, nd: 1.0, elemId: 0, sd: 8.3 },
-    { label: "9", R: 56.8, d: 2.9, nd: 1.53172, elemId: 5, sd: 11.8 },
-    { label: "10", R: -86.7, d: 1.2, nd: 1.80518, elemId: 6, sd: 12.4 },
-    { label: "11", R: -219.5, d: 0.1, nd: 1.0, elemId: 0, sd: 12.4 },
-    { label: "12", R: 31.648, d: 4.0, nd: 1.50137, elemId: 7, sd: 12.4 },
-    { label: "13", R: 201.0, d: 0.1, nd: 1.0, elemId: 0, sd: 12.6 },
-    { label: "14", R: 21.636, d: 6.8, nd: 1.50137, elemId: 8, sd: 12.6 },
-    { label: "15", R: 72.7, d: 3.8, nd: 1.0, elemId: 0, sd: 11.8 },
-    { label: "16", R: -2100.0, d: 2.4, nd: 1.79504, elemId: 9, sd: 9.5 },
-    { label: "17", R: 16.739, d: 1.9, nd: 1.0, elemId: 0, sd: 7.6 },
-    { label: "18", R: 185.0, d: 3.8, nd: 1.4645, elemId: 10, sd: 11.8 },
-    { label: "19", R: -57.432, d: 0.1, nd: 1.0, elemId: 0, sd: 13.0 },
-    { label: "20", R: 174.5, d: 2.3, nd: 1.50137, elemId: 11, sd: 13.0 },
-    { label: "21", R: -58.829, d: 39.612, nd: 1.0, elemId: 0, sd: 13.0 },
+    { label: "1", R: 80.0, d: 3.5, sd: 27.5, medium: 1 },
+    { label: "2", R: 32.471, d: 10.0, sd: 22.0 },
+    { label: "3", R: -630.0, d: 5.0, sd: 22.0, medium: 2 },
+    { label: "4", R: -70.3, d: 0.1, sd: 21.0 },
+    { label: "5", R: -217.401, d: 3.3, sd: 21.5, medium: 3 },
+    { label: "6", R: 38.907, d: 18.9, sd: 21.0 },
+    { label: "7", R: 57.924, d: 3.6, sd: 19.0, medium: 4 },
+    { label: "8", R: 106.702, sd: 18.2 },
+    { label: "STO", R: "flat", d: 0.1 },
+    { label: "9", R: 56.8, d: 2.9, sd: 11.8, medium: 5 },
+    { label: "10", R: -86.7, d: 1.2, sd: 12.4, medium: 6 },
+    { label: "11", R: -219.5, d: 0.1, sd: 12.4 },
+    { label: "12", R: 31.648, d: 4.0, sd: 12.4, medium: 7 },
+    { label: "13", R: 201.0, d: 0.1, sd: 12.6 },
+    { label: "14", R: 21.636, d: 6.8, sd: 12.6, medium: 8 },
+    { label: "15", R: 72.7, d: 3.8, sd: 11.8 },
+    { label: "16", R: -2100.0, d: 2.4, sd: 9.5, medium: 9 },
+    { label: "17", R: 16.739, d: 1.9, sd: 7.6 },
+    { label: "18", R: 185.0, d: 3.8, sd: 11.8, medium: 10 },
+    { label: "19", R: -57.432, d: 0.1, sd: 13.0 },
+    { label: "20", R: 174.5, d: 2.3, sd: 13.0, medium: 11 },
+    { label: "21", R: -58.829, sd: 13.0 },
   ],
-  asph: {},
-  var: {
-    "8": [
-      [35.312, 35.312],
-      [15.242, 15.242],
-      [0.403, 0.403],
-    ],
-    "21": [
-      [39.612, 40.989414],
-      [48.348, 50.970114],
-      [60.709, 65.93652],
-    ],
+
+  zoom: { stations: [{ focalLengthMm: 25.5 }, { focalLengthMm: 35.15 }, { focalLengthMm: 48.805 }], step: 0.004 },
+
+  focus: {
+    closeFocusM: 0.6,
+    description:
+      "Unit-focus manual helicoid. Close-focus back-focus values are approximated from the published 0.6 m minimum focus distance because the patent publishes only infinity-focus spacings.",
   },
-  varLabels: [
-    ["8", "ZG"],
-    ["21", "BF"],
-  ],
+
+  gaps: {
+    "8": {
+      label: "ZG",
+      values: [
+        [35.312, 35.312],
+        [15.242, 15.242],
+        [0.403, 0.403],
+      ],
+    },
+    "21": {
+      label: "BF",
+      values: [
+        [39.612, 40.989414],
+        [48.348, 50.970114],
+        [60.709, 65.93652],
+      ],
+    },
+  },
+
+  aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16, 22] },
+
   groups: [
     { text: "G1 diverging", fromSurface: "1", toSurface: "8" },
     { text: "G2 converging", fromSurface: "9", toSurface: "21" },
   ],
   doublets: [{ text: "D1", fromSurface: "9", toSurface: "11" }],
-} satisfies LensDataInput;
+
+  layout: { scFill: 0.68, yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

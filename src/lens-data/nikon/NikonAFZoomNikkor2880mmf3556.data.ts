@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -39,31 +39,35 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-af-zoom-nikkor-28-80mm-f35-56d",
   maker: "Nikon",
   name: "NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D",
   subtitle: "JP 1999-030748 A Example 1 - Nikon / Keiji Moriyama",
-  specs: [
-    "8 elements / 8 air-spaced groups",
-    "2 zoom groups: G1 (-) / G2 (+)",
-    "f = 28.8-78.0 mm (patent)",
-    "F/3.57-5.81 (patent)",
-    "2ω = 76.5°-31.0°",
-    "all-spherical prescription",
-  ],
 
-  focalLengthMarketing: [28, 80],
-  focalLengthDesign: [28.798973, 77.998495],
-  apertureMarketing: 3.5,
-  apertureDesign: 3.57,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP H11-030748 A",
-  patentAuthors: ["Keiji Moriyama"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 1999,
-  elementCount: 8,
-  groupCount: 8,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "8 elements / 8 air-spaced groups",
+      "2 zoom groups: G1 (-) / G2 (+)",
+      "f = 28.8-78.0 mm (patent)",
+      "F/3.57-5.81 (patent)",
+      "2ω = 76.5°-31.0°",
+      "all-spherical prescription",
+    ],
+    elementCount: 8,
+    groupCount: 8,
+    focalLengthMm: { marketing: [28, 80], design: [28.798973, 77.998495] },
+    fNumber: { marketing: 3.5, design: 3.57 },
+  },
+
+  source: {
+    patentNumber: "JP H11-030748 A",
+    patentYear: 1999,
+    authors: ["Keiji Moriyama"],
+    assignees: ["Nikon Corporation"],
+  },
 
   elements: [
     {
@@ -73,7 +77,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.51454,
       vd: 54.55,
-      fl: 231.956,
+      focalLengthMm: 231.956,
       glass: "KF3 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
       role: "Weak front positive corrector in the negative zoom group; reduces wide-angle distortion before the strong negative menisci.",
@@ -85,7 +89,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.79668,
       vd: 45.37,
-      fl: -35.468,
+      focalLengthMm: -35.468,
       glass: "J-LASF017 (Hikari catalog-equivalent to patent 797454; supplier not identified)",
       apd: false,
       role: "Principal negative-power element in G1.",
@@ -97,7 +101,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.79668,
       vd: 45.37,
-      fl: -63.191,
+      focalLengthMm: -63.191,
       glass: "J-LASF017 (Hikari catalog-equivalent to patent 797454; supplier not identified)",
       apd: false,
       role: "Secondary negative-power element in G1; shares divergence with L2 and controls tele-end spherical balance.",
@@ -109,7 +113,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.86074,
       vd: 23.01,
-      fl: 69.647,
+      focalLengthMm: 69.647,
       glass: "J-SFH2 (Hikari; patent code 861230)",
       apd: false,
       role: "Positive closing element of G1; offsets part of the negative Petzval contribution of L2-L3.",
@@ -121,7 +125,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6172,
       vd: 54.01,
-      fl: 39.929,
+      focalLengthMm: 39.929,
       glass: "617540 - SSK-class crown",
       apd: false,
       role: "First positive lens in G2 and the front half of the rear converging core.",
@@ -133,7 +137,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6172,
       vd: 54.01,
-      fl: 63.623,
+      focalLengthMm: 63.623,
       glass: "617540 - SSK-class crown",
       apd: false,
       role: "Positive meniscus immediately behind the iris; continues the converging power of G2.",
@@ -145,7 +149,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80518,
       vd: 25.41,
-      fl: -18.14,
+      focalLengthMm: -18.14,
       glass: "Dense flint / SF6-family class (805/254)",
       apd: false,
       role: "Strong negative flint in G2; primary chromatic and Petzval balancing element of the rear group.",
@@ -157,7 +161,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.61293,
       vd: 36.98,
-      fl: 29.126,
+      focalLengthMm: 29.126,
       glass: "Moderate-dispersion flint class (613/370)",
       apd: false,
       role: "Final positive relay element completing the rear-group image formation.",
@@ -165,48 +169,60 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 136.538, d: 4.5, nd: 1.51454, elemId: 1, sd: 28.5 },
-    { label: "2", R: -937.516, d: 0.1, nd: 1.0, elemId: 0, sd: 26.5 },
-    { label: "3", R: 86.189, d: 2.0, nd: 1.79668, elemId: 2, sd: 20.0 },
-    { label: "4", R: 21.061, d: 8.5, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "5", R: 168.022, d: 1.6, nd: 1.79668, elemId: 3, sd: 16.0 },
-    { label: "6", R: 38.573, d: 3.5, nd: 1.0, elemId: 0, sd: 15.2 },
-    { label: "7", R: 31.861, d: 4.0, nd: 1.86074, elemId: 4, sd: 14.6 },
-    { label: "8", R: 64.054, d: 34.842, nd: 1.0, elemId: 0, sd: 14.6 },
-    { label: "9", R: 28.074, d: 3.7, nd: 1.6172, elemId: 5, sd: 10.8 },
-    { label: "10", R: -191.563, d: 1.25, nd: 1.0, elemId: 0, sd: 10.0 },
-    { label: "STO", R: 1e15, d: 1.25, nd: 1.0, elemId: 0, sd: 8.7 },
-    { label: "11", R: 24.663, d: 4.2, nd: 1.6172, elemId: 6, sd: 10.0 },
-    { label: "12", R: 62.0, d: 1.2, nd: 1.0, elemId: 0, sd: 8.2 },
-    { label: "13", R: -76.033, d: 8.0, nd: 1.80518, elemId: 7, sd: 8.2 },
-    { label: "14", R: 18.928, d: 1.6, nd: 1.0, elemId: 0, sd: 7.0 },
-    { label: "15", R: 34.353, d: 4.7, nd: 1.61293, elemId: 8, sd: 8.6 },
-    { label: "16", R: -35.233, d: 45.756923, nd: 1.0, elemId: 0, sd: 10.5 },
+    { label: "1", R: 136.538, d: 4.5, sd: 28.5, medium: 1 },
+    { label: "2", R: -937.516, d: 0.1, sd: 26.5 },
+    { label: "3", R: 86.189, d: 2.0, sd: 20.0, medium: 2 },
+    { label: "4", R: 21.061, d: 8.5, sd: 16.0 },
+    { label: "5", R: 168.022, d: 1.6, sd: 16.0, medium: 3 },
+    { label: "6", R: 38.573, d: 3.5, sd: 15.2 },
+    { label: "7", R: 31.861, d: 4.0, sd: 14.6, medium: 4 },
+    { label: "8", R: 64.054, sd: 14.6 },
+    { label: "9", R: 28.074, d: 3.7, sd: 10.8, medium: 5 },
+    { label: "10", R: -191.563, d: 1.25, sd: 10.0 },
+    { label: "STO", R: "flat", d: 1.25 },
+    { label: "11", R: 24.663, d: 4.2, sd: 10.0, medium: 6 },
+    { label: "12", R: 62.0, d: 1.2, sd: 8.2 },
+    { label: "13", R: -76.033, d: 8.0, sd: 8.2, medium: 7 },
+    { label: "14", R: 18.928, d: 1.6, sd: 7.0 },
+    { label: "15", R: 34.353, d: 4.7, sd: 8.6, medium: 8 },
+    { label: "16", R: -35.233, sd: 10.5 },
   ],
 
-  asph: {},
-
-  zoomPositions: [28.8, 50.0, 78.0],
-  zoomLabels: ["28.8 mm", "78.0 mm"],
-  zoomStep: 0.004,
-  nominalFno: [3.57, 4.57, 5.81],
-
-  var: {
-    "8": [
-      [34.842, 34.842],
-      [12.086, 12.086],
-      [0.988, 0.988],
+  zoom: {
+    stations: [
+      { focalLengthMm: 28.8, nominalFNumber: 3.57, label: "28.8 mm" },
+      { focalLengthMm: 50.0, nominalFNumber: 4.57 },
+      { focalLengthMm: 78.0, nominalFNumber: 5.81, label: "78.0 mm" },
     ],
-    "16": [
-      [45.756923, 48.706768],
-      [65.249564, 75.071976],
-      [90.996686, 123.596601],
-    ],
+    step: 0.004,
   },
-  varLabels: [
-    ["8", "D8"],
-    ["16", "BF"],
-  ],
+
+  focus: {
+    closeFocusM: 0.4,
+    description:
+      "Unit-focus approximation. The patent gives infinity zoom spacings only; close-focus BFD values are paraxially solved for a 0.4 m setting measured from the image plane.",
+  },
+
+  gaps: {
+    "8": {
+      label: "D8",
+      values: [
+        [34.842, 34.842],
+        [12.086, 12.086],
+        [0.988, 0.988],
+      ],
+    },
+    "16": {
+      label: "BF",
+      values: [
+        [45.756923, 48.706768],
+        [65.249564, 75.071976],
+        [90.996686, 123.596601],
+      ],
+    },
+  },
+
+  aperture: { fStops: [3.5, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 36, step: 0.004 },
 
   groups: [
     { text: "G1 (-)", fromSurface: "1", toSurface: "8" },
@@ -214,14 +230,7 @@ const LENS_DATA = {
   ],
   doublets: [],
 
-  closeFocusM: 0.4,
-  focusDescription:
-    "Unit-focus approximation. The patent gives infinity zoom spacings only; close-focus BFD values are paraxially solved for a 0.4 m setting measured from the image plane.",
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22, 32],
-  maxFstop: 36,
-  apertureStep: 0.004,
-  scFill: 0.56,
-  yScFill: 0.62,
-} satisfies LensDataInput;
+  layout: { scFill: 0.56, yScFill: 0.62 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
@@ -17,8 +17,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                          ║
  * ║ STOP: The patent draws the iris within d7 but does not tabulate its      ║
  * ║ exact station or diameter. The model places STO at the midpoint of the   ║
- * ║ scaled 9.0 mm gap. Its semi-diameter is code-solved so the modeled EFL   ║
- * ║ and entrance pupil give exactly f/2.                                     ║
+ * ║ scaled 9.0 mm gap. The stop radius is derived from the design f-number,  ║
+ * ║ f/2.                                                                     ║
  * ║                                                                          ║
  * ║ SEMI-DIAMETERS: The patent publishes none. Values were measured from     ║
  * ║ Figure 1, rounded to 0.1 mm, and checked against exact ray tracing.       ║
@@ -36,24 +36,28 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "nikon-nikkor-s-auto-50f2",
   maker: "Nikon",
   name: "NIKON NIKKOR-S AUTO 5cm f/2",
   subtitle: "JP 1964-025754, Embodiment 1 — correlated to the June 1959 production lens",
-  specs: ["7 ELEMENTS / 5 GROUPS", "EFL 50.006 mm", "f/2", "2ω = 46° (PATENT)", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 50,
-  focalLengthDesign: 50.0055831592,
-  apertureMarketing: 2,
-  apertureDesign: 2,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 1964-025754 B",
-  patentAuthors: ["Saburo Murakami"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1964,
-  elementCount: 7,
-  groupCount: 5,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: ["7 ELEMENTS / 5 GROUPS", "EFL 50.006 mm", "f/2", "2ω = 46° (PATENT)", "ALL-SPHERICAL"],
+    elementCount: 7,
+    groupCount: 5,
+    focalLengthMm: { marketing: 50, design: 50.0055831592 },
+    fNumber: { marketing: 2, design: 2 },
+  },
+
+  source: {
+    patentNumber: "JP 1964-025754 B",
+    patentYear: 1964,
+    authors: ["Saburo Murakami"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -64,7 +68,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6127,
       vd: 58.6,
-      fl: -5607.536,
+      focalLengthMm: -5607.536,
       glass: "613586 — SK4 class (catalog equivalent; vendor unconfirmed)",
       apd: false,
       role: "Extremely weak negative front meniscus that extends back focus with little net system power.",
@@ -76,7 +80,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6141,
       vd: 55.1,
-      fl: 66.909,
+      focalLengthMm: 66.909,
       glass: "614551 — SK9 / S-BSM9 / H-ZK8 class (catalog equivalent; vendor unconfirmed)",
       apd: false,
       role: "Positive collector preceding the front cemented pair.",
@@ -88,7 +92,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6141,
       vd: 55.1,
-      fl: 65.57,
+      focalLengthMm: 65.57,
       glass: "614551 — SK9 / S-BSM9 / H-ZK8 class (catalog equivalent; vendor unconfirmed)",
       apd: false,
       role: "Positive crown member of the front cemented pair.",
@@ -101,7 +105,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6483,
       vd: 33.8,
-      fl: -37.651,
+      focalLengthMm: -37.651,
       glass: "648338 — SF2 class (catalog equivalent; vendor unconfirmed)",
       apd: false,
       role: "Negative flint member facing the stop; the D1 cemented group is weakly negative in situ.",
@@ -114,7 +118,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7408,
       vd: 27.7,
-      fl: -25.51,
+      focalLengthMm: -25.51,
       glass: "741278 — SF13 / S-TIH13 class (catalog equivalent; vendor unconfirmed)",
       apd: false,
       role: "High-index flint member immediately behind the stop.",
@@ -127,7 +131,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.744,
       vd: 44.9,
-      fl: 32.41,
+      focalLengthMm: 32.41,
       glass: "744449 — LAF2 / S-LAM2 class (catalog equivalent; vendor unconfirmed)",
       apd: false,
       role: "Positive lanthanum-crown-class member of the rear cemented pair.",
@@ -140,7 +144,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.744,
       vd: 44.9,
-      fl: 57.691,
+      focalLengthMm: 57.691,
       glass: "744449 — LAF2 / S-LAM2 class (catalog equivalent; vendor unconfirmed)",
       apd: false,
       role: "Rear positive element that completes the Gaussian core and supplies final convergence.",
@@ -149,25 +153,36 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 328.5, d: 2.4, nd: 1.6127, elemId: 1, sd: 12.4 },
-    { label: "2", R: 299, d: 0.3, nd: 1, elemId: 0, sd: 12.2 },
-    { label: "3", R: 31.3, d: 3.4, nd: 1.6141, elemId: 2, sd: 12.4 },
-    { label: "4", R: 125.95, d: 0.4, nd: 1, elemId: 0, sd: 11.2 },
-    { label: "5", R: 18.36, d: 3.5, nd: 1.6141, elemId: 3, sd: 11.5 },
-    { label: "6", R: 31.3, d: 3.1, nd: 1.6483, elemId: 4, sd: 11.5 },
-    { label: "7", R: 13.18, d: 4.5, nd: 1, elemId: 0, sd: 11.5 },
-    // STO position inferred at the midpoint of patent gap d7; stop SD solved for the modeled f/2 entrance pupil.
-    { label: "STO", R: 1e15, d: 4.5, nd: 1, elemId: 0, sd: 8.9416853989 },
-    { label: "8", R: -13.35, d: 2.8, nd: 1.7408, elemId: 5, sd: 9.5 },
-    { label: "9", R: -49.535, d: 3.2, nd: 1.744, elemId: 6, sd: 10.1 },
-    { label: "10", R: -16.665, d: 0.05, nd: 1, elemId: 0, sd: 10.1 },
-    { label: "11", R: 274.25, d: 2.35, nd: 1.744, elemId: 7, sd: 10.5 },
-    { label: "12", R: -50.7, d: 37.5624686038, nd: 1, elemId: 0, sd: 10.5 },
+    { label: "1", R: 328.5, d: 2.4, sd: 12.4, medium: 1 },
+    { label: "2", R: 299, d: 0.3, sd: 12.2 },
+    { label: "3", R: 31.3, d: 3.4, sd: 12.4, medium: 2 },
+    { label: "4", R: 125.95, d: 0.4, sd: 11.2 },
+    { label: "5", R: 18.36, d: 3.5, sd: 11.5, medium: 3 },
+    { label: "6", R: 31.3, d: 3.1, sd: 11.5, medium: 4 },
+    { label: "7", R: 13.18, d: 4.5, sd: 11.5 },
+    // STO position inferred at the midpoint of patent gap d7; radius derived from the design f-number, modeled f/2.
+    { label: "STO", R: "flat", d: 4.5 },
+    { label: "8", R: -13.35, d: 2.8, sd: 9.5, medium: 5 },
+    { label: "9", R: -49.535, d: 3.2, sd: 10.1, medium: 6 },
+    { label: "10", R: -16.665, d: 0.05, sd: 10.1 },
+    { label: "11", R: 274.25, d: 2.35, sd: 10.5, medium: 7 },
+    { label: "12", R: -50.7, sd: 10.5 },
   ],
 
-  asph: {},
-  var: { "12": [37.5624686038, 42.59170554323104] },
-  varLabels: [["12", "BF"]],
+  /*
+   * Official Nikon history states that the closest focusing distance was 0.6 m before the 1974 redesign changed it
+   * to 0.45 m: https://imaging.nikon.com/imaging/information/story/0002/
+   */
+  focus: {
+    closeFocusM: 0.6,
+    description:
+      "Inferred unit focus to 0.6 m, modeled by increasing the final BF gap from 37.562469 to 42.591706 mm; " +
+      "the production lens used a linear helicoid, while the patent publishes only the infinity prescription.",
+  },
+
+  gaps: { "12": { label: "BF", values: [[37.5624686038, 42.59170554323104]] } },
+
+  aperture: { nominalFNumber: 2, fStops: [2, 2.8, 4, 5.6, 8, 11, 16] },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -181,19 +196,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "8", toSurface: "10" },
   ],
 
-  /*
-   * Official Nikon history states that the closest focusing distance was 0.6 m before the 1974 redesign changed it
-   * to 0.45 m: https://imaging.nikon.com/imaging/information/story/0002/
-   */
-  closeFocusM: 0.6,
-  focusDescription:
-    "Inferred unit focus to 0.6 m, modeled by increasing the final BF gap from 37.562469 to 42.591706 mm; " +
-    "the production lens used a linear helicoid, while the patent publishes only the infinity prescription.",
-
-  nominalFno: 2,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
-
-  yScFill: 0.38,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.38 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

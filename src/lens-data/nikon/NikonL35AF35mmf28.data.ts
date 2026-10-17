@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -35,24 +35,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "nikon-l35af-35f28",
   maker: "Nikon",
   name: "NIKON 35mm f/2.8 (Nikon L35AF)",
   subtitle: "US 4,457,596 EMBODIMENT 1 — NIPPON KOGAKU / WAKAMIYA",
-  specs: ["5 ELEMENTS / 4 GROUPS", "f ≈ 35.0 mm", "F/2.8", "2ω ≈ 62.3°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: 35,
-  focalLengthDesign: 35.0,
-  apertureMarketing: 2.8,
-  lensMounts: ["fixed-lens-camera"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,457,596",
-  patentAuthors: ["Koichi Wakamiya"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1984,
-  elementCount: 5,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["fixed-lens-camera"],
+    imageFormat: "135-full-frame",
+    specs: ["5 ELEMENTS / 4 GROUPS", "f ≈ 35.0 mm", "F/2.8", "2ω ≈ 62.3°", "ALL SPHERICAL"],
+    elementCount: 5,
+    groupCount: 4,
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: 35, design: 35.0 },
+    fNumber: { marketing: 2.8 },
+  },
+
+  source: {
+    patentNumber: "US 4,457,596",
+    patentYear: 1984,
+    authors: ["Koichi Wakamiya"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   /* ── Elements ──
    *  Patent gives nd/νd only; labels are catalog equivalents, supplier unspecified.
@@ -70,7 +75,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.713,
       vd: 54.0,
-      fl: 42.8,
+      focalLengthMm: 42.8,
       glass: "J-LAK8 (HIKARI catalog equivalent to patent 1.713/54.0; production supplier unspecified)",
       apd: false,
       role: "Front positive meniscus. Provides initial converging action; bending governed by condition (5) to balance spherical aberration against Petzval sum.",
@@ -82,7 +87,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.77279,
       vd: 49.4,
-      fl: 35.2,
+      focalLengthMm: 35.2,
       glass: "S-LAH66 (OHARA catalog equivalent, nearest 773/496 row; patent 1.77279/49.4 has no exact catalog match)",
       apd: false,
       role: "Second positive meniscus. Same glass as L4; forms front positive group with L1 (f₁,₂ ≈ 19.9 mm). Bending controlled by condition (6) for field curvature.",
@@ -94,7 +99,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.68893,
       vd: 31.1,
-      fl: -12.9,
+      focalLengthMm: -12.9,
       glass: "S-TIM28 (OHARA catalog equivalent; exact 689311 coordinate match, production supplier unspecified)",
       apd: false,
       role: "Strongly negative biconcave. High-dispersion flint for chromatic correction; dispersion bounded by condition (2) to avoid chromatic coma.",
@@ -106,7 +111,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.77279,
       vd: 49.4,
-      fl: 10.7,
+      focalLengthMm: 10.7,
       glass: "S-LAH66 (OHARA catalog equivalent, nearest 773/496 row; patent 1.77279/49.4 has no exact catalog match)",
       apd: false,
       role: "Front element of cemented positive doublet (f₄,₅ ≈ 20.8 mm). Bending governed by condition (8) for upper coma flare control.",
@@ -119,7 +124,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.62041,
       vd: 60.4,
-      fl: -21.4,
+      focalLengthMm: -21.4,
       glass: "N-SK16 (Schott catalog equivalent to patent 1.62041/60.4; production supplier unspecified)",
       apd: false,
       role: "Rear element of cemented doublet. Lower dispersion than L4 (condition 4: ν₄ < ν₅) corrects chromatic coma. Index ratio n₄/n₅ = 1.094 controls Petzval sum.",
@@ -134,32 +139,41 @@ const LENS_DATA = {
    *  Diaphragm is behind all elements ("behind diaphragm lens").
    *  STO placed 0.9 mm behind r9, measured from the Fig. 1 diaphragm mark.
    */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 11.191, d: 2.004, nd: 1.713, elemId: 1, sd: 7.3 },
-    { label: "2", R: 16.357, d: 0.2, nd: 1.0, elemId: 0, sd: 7.3 },
-    { label: "3", R: 13.53, d: 1.803, nd: 1.77279, elemId: 2, sd: 6.5 },
-    { label: "4", R: 25.334, d: 0.852, nd: 1.0, elemId: 0, sd: 6.5 },
-    { label: "5", R: -92.528, d: 0.902, nd: 1.68893, elemId: 3, sd: 5.49 },
-    { label: "6", R: 9.86, d: 1.503, nd: 1.0, elemId: 0, sd: 5.8 },
-    { label: "7", R: 29.283, d: 3.006, nd: 1.77279, elemId: 4, sd: 6.0 },
-    { label: "8", R: -11.056, d: 0.802, nd: 1.62041, elemId: 5, sd: 6.0 },
-    { label: "9", R: -67.351, d: 0.9, nd: 1.0, elemId: 0, sd: 6.0 },
-    // STO measured from the Fig. 1 diaphragm mark (0.9 mm behind r9); sd = f/2.8 iris radius
-    { label: "STO", R: 1e15, d: 25.807, nd: 1.0, elemId: 0, sd: 4.7 },
+    { label: "1", R: 11.191, d: 2.004, sd: 7.3, medium: 1 },
+    { label: "2", R: 16.357, d: 0.2, sd: 7.3 },
+    { label: "3", R: 13.53, d: 1.803, sd: 6.5, medium: 2 },
+    { label: "4", R: 25.334, d: 0.852, sd: 6.5 },
+    { label: "5", R: -92.528, d: 0.902, sd: 5.49, medium: 3 },
+    { label: "6", R: 9.86, d: 1.503, sd: 5.8 },
+    { label: "7", R: 29.283, d: 3.006, sd: 6.0, medium: 4 },
+    { label: "8", R: -11.056, d: 0.802, sd: 6.0, medium: 5 },
+    { label: "9", R: -67.351, d: 0.9, sd: 6.0 },
+    // STO measured from the Fig. 1 diaphragm mark (0.9 mm behind r9); radius derived from the design f-number, f/2.8.
+    { label: "STO", R: "flat" },
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.8,
+    description:
+      "Unit focus — entire lens translates forward; calculated extension 1.69 mm at 0.8 m (patent gives infinity data only).",
+  },
 
-  /* ── Variable air spacings (unit focus) ──
+  /* (moved from var) ── Variable air spacings (unit focus) ──
    *  Entire lens translates; only the back focal distance changes.
    *  Patent publishes infinity data only.  Close state calculated (paraxial)
    *  for a 0.8 m object-to-image distance: extension 1.688 mm.
    */
-  var: {
-    STO: [25.807, 27.495],
+  gaps: { STO: { label: "BF", values: [[25.807, 27.495]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: {
+    nominalFNumber: 2.8,
+    fStops: [2.8, 4, 5.6, 8, 11, 16],
+    maxFNumber: 17, // production programmed-shutter aperture range f/2.8–f/17
   },
-  varLabels: [["STO", "BF"]],
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -168,18 +182,8 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.8,
-  focusDescription: "Unit focus — entire lens translates forward; calculated extension 1.69 mm at 0.8 m (patent gives infinity data only).",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
-  maxFstop: 17, // production programmed-shutter aperture range f/2.8–f/17
-
   /* ── Layout tuning ── */
-  scFill: 0.5,
-  yScFill: 0.45,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.45 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

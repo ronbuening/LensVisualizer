@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 // Nikon 1 NIKKOR 32mm f/1.2
 // Source: WO 2014/061226 A1, Example 1 (Table 1 / paragraph 0079).
@@ -11,30 +11,35 @@ import type { LensDataInput } from "../../types/optics.js";
 // satisfying conservative render checks for edge thickness, front/rear element ratio, and cross-gap sag.
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-1-nikkor-32mm-f12",
   maker: "Nikon",
   name: "NIKON 1 NIKKOR 32mm f/1.2",
   subtitle: "WO 2014/061226 A1 Example 1 - Nikon / Ishida & Tanaka",
-  specs: [
-    "9 elements / 7 groups",
-    "f = 32.402 mm design",
-    "F/1.24 design; f/1.2 marketed",
-    "CX / 1-inch type format",
-    "All-spherical modified double-Gauss",
-    "Floating focus / CRC",
-  ],
-  focalLengthMarketing: 32,
-  focalLengthDesign: 32.4016,
-  apertureMarketing: 1.2,
-  apertureDesign: 1.24,
-  lensMounts: ["nikon-1"],
-  imageFormat: "1-inch-type",
-  patentNumber: "WO 2014/061226 A1",
-  patentAuthors: ["Kumiko Ishida", "Issei Tanaka"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 2014,
-  elementCount: 9,
-  groupCount: 7,
+
+  catalog: {
+    lensMounts: ["nikon-1"],
+    imageFormat: "1-inch-type",
+    specs: [
+      "9 elements / 7 groups",
+      "f = 32.402 mm design",
+      "F/1.24 design; f/1.2 marketed",
+      "CX / 1-inch type format",
+      "All-spherical modified double-Gauss",
+      "Floating focus / CRC",
+    ],
+    elementCount: 9,
+    groupCount: 7,
+    focalLengthMm: { marketing: 32, design: 32.4016 },
+    fNumber: { marketing: 1.2, design: 1.24 },
+  },
+
+  source: {
+    patentNumber: "WO 2014/061226 A1",
+    patentYear: 2014,
+    authors: ["Kumiko Ishida", "Issei Tanaka"],
+    assignees: ["Nikon Corporation"],
+  },
 
   elements: [
     {
@@ -44,7 +49,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6968,
       vd: 55.52,
-      fl: 49.83,
+      focalLengthMm: 49.83,
       glass: "S-LAL14 (OHARA)",
       role: "Front collector element in G1; begins low-dispersion convergence ahead of the stop.",
     },
@@ -55,7 +60,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.603,
       vd: 65.44,
-      fl: 87.12,
+      focalLengthMm: 87.12,
       glass: "S-PHM53 (OHARA)",
       role: "Weak low-dispersion positive element; paired with L11 for patent condition (2).",
     },
@@ -66,7 +71,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.795,
       vd: 45.31,
-      fl: 75.31,
+      focalLengthMm: 75.31,
       glass: "J-LASF017 (Hikari, 795453)",
       role: "High-index positive pre-stop element; adds power with moderate curvature.",
     },
@@ -77,7 +82,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7174,
       vd: 29.57,
-      fl: -19.0,
+      focalLengthMm: -19.0,
       glass: "S-TIH1 class (OHARA)",
       role: "Strong negative pre-stop element; primary spherical and chromatic balancing lens in the front half.",
     },
@@ -88,10 +93,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6727,
       vd: 32.19,
-      fl: -15.89,
+      focalLengthMm: -15.89,
       glass: "S-TIM25 class (OHARA)",
-      cemented: "CL1",
       role: "Negative half of the nearly afocal post-stop cemented corrector.",
+      cemented: "CL1",
     },
     {
       id: 6,
@@ -100,10 +105,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.66,
-      fl: 18.39,
+      focalLengthMm: 18.39,
       glass: "S-LAH58 class (OHARA)",
-      cemented: "CL1",
       role: "High-index positive half of CL1; balances L15 with little net group power.",
+      cemented: "CL1",
     },
     {
       id: 7,
@@ -112,7 +117,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7725,
       vd: 49.62,
-      fl: 55.98,
+      focalLengthMm: 55.98,
       glass: "S-LAH66 class (OHARA)",
       role: "Rear element of G1; positive meniscus with concave object-side surface before the floating gap.",
     },
@@ -123,10 +128,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.8348,
       vd: 42.73,
-      fl: 21.13,
+      focalLengthMm: 21.13,
       glass: "S-LAH55V class (OHARA)",
-      cemented: "CL2",
       role: "Positive relay element of G2; forms a powered cemented pair with L22.",
+      cemented: "CL2",
     },
     {
       id: 9,
@@ -135,32 +140,54 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7552,
       vd: 27.57,
-      fl: -35.09,
+      focalLengthMm: -35.09,
       glass: "S-TIH4 class (OHARA)",
-      cemented: "CL2",
       role: "Rear biconcave negative element; Petzval and chromatic balancing member at the image-side end of the system.",
+      cemented: "CL2",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 33.0214, d: 4.4, nd: 1.6968, elemId: 1, sd: 15.5 },
-    { label: "2", R: 637.5014, d: 0.1, nd: 1.0, elemId: 0, sd: 15.2 },
-    { label: "3", R: 18.2318, d: 4.0, nd: 1.603, elemId: 2, sd: 14.4 },
-    { label: "4", R: 25.6174, d: 0.1, nd: 1.0, elemId: 0, sd: 14.0 },
-    { label: "5", R: 20.9, d: 3.1, nd: 1.795, elemId: 3, sd: 12.6 },
-    { label: "6", R: 30.0, d: 0.9, nd: 1.0, elemId: 0, sd: 10.1 },
-    { label: "7", R: 55.2655, d: 1.2, nd: 1.7174, elemId: 4, sd: 9.5 },
-    { label: "8", R: 10.8367, d: 5.2, nd: 1.0, elemId: 0, sd: 9.0 },
-    { label: "STO", R: 1e15, d: 4.7, nd: 1.0, elemId: 0, sd: 7.41 },
-    { label: "10", R: -12.293, d: 1.2, nd: 1.6727, elemId: 5, sd: 8.6 },
-    { label: "11", R: 85.0, d: 4.0, nd: 1.883, elemId: 6, sd: 9.0 },
-    { label: "12", R: -19.6365, d: 0.3, nd: 1.0, elemId: 0, sd: 10.0 },
-    { label: "13", R: -49.0, d: 2.1, nd: 1.7725, elemId: 7, sd: 10.4 },
-    { label: "14", R: -23.4, d: 0.9, nd: 1.0, elemId: 0, sd: 10.8 },
-    { label: "15", R: 30.8466, d: 4.1, nd: 1.8348, elemId: 8, sd: 10.8 },
-    { label: "16", R: -38.7, d: 1.2, nd: 1.7552, elemId: 9, sd: 10.6 },
-    { label: "17", R: 85.2086, d: 10.20169, nd: 1.0, elemId: 0, sd: 10.6 }, // d17 var — gap to the filter group FL
+    { label: "1", R: 33.0214, d: 4.4, sd: 15.5, medium: 1 },
+    { label: "2", R: 637.5014, d: 0.1, sd: 15.2 },
+    { label: "3", R: 18.2318, d: 4.0, sd: 14.4, medium: 2 },
+    { label: "4", R: 25.6174, d: 0.1, sd: 14.0 },
+    { label: "5", R: 20.9, d: 3.1, sd: 12.6, medium: 3 },
+    { label: "6", R: 30.0, d: 0.9, sd: 10.1 },
+    { label: "7", R: 55.2655, d: 1.2, sd: 9.5, medium: 4 },
+    { label: "8", R: 10.8367, d: 5.2, sd: 9.0 },
+    { label: "STO", R: "flat", d: 4.7 },
+    { label: "10", R: -12.293, d: 1.2, sd: 8.6, medium: 5 },
+    { label: "11", R: 85.0, d: 4.0, sd: 9.0, medium: 6 },
+    { label: "12", R: -19.6365, d: 0.3, sd: 10.0 },
+    { label: "13", R: -49.0, d: 2.1, sd: 10.4, medium: 7 },
+    { label: "14", R: -23.4, sd: 10.8 },
+    { label: "15", R: 30.8466, d: 4.1, sd: 10.8, medium: 8 },
+    { label: "16", R: -38.7, d: 1.2, sd: 10.6, medium: 9 },
+    { label: "17", R: 85.2086, sd: 10.6 }, // d17 var — gap to the filter group FL
   ],
+
+  focus: {
+    closeFocusM: 0.45,
+    keyframes: [0, 0.13423022016389788, 1],
+    description:
+      "Dual-group floating focus (CRC): all three patent states are exact keyframes; G1 and G2 translate objectward with approximately 2:1 travel. The three-plate filter/sensor stack behind G2 is traced but not drawn.",
+    // (moved from publishedStations) Every focus keyframe is a source row.
+    published: [1, 2],
+  },
+
+  gaps: {
+    "14": { label: "D14", values: [[0.9, 1.13, 2.67]] },
+    "17": { label: "D17", values: [[10.20169, 10.43169, 11.97169]] },
+  },
+
+  aperture: {
+    nominalFNumber: 1.24,
+    fStops: [1.24, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+    maxFNumber: 16,
+    blades: 7,
+    bladeRoundedness: 0.7,
+  },
 
   /* ── Filter group FL (patent surfaces 18–23): traced, not drawn ── */
   rearPlates: [
@@ -190,16 +217,6 @@ const LENS_DATA = {
     },
   ],
 
-  asph: {},
-  focusPositions: [0, 0.13423022016389788, 1],
-  var: {
-    "14": [0.9, 1.13, 2.67],
-    "17": [10.20169, 10.43169, 11.97169],
-  },
-  varLabels: [
-    ["14", "D14"],
-    ["17", "D17"],
-  ],
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "14" },
     { text: "G2", fromSurface: "15", toSurface: "17" },
@@ -209,18 +226,7 @@ const LENS_DATA = {
     { text: "CL2", fromSurface: "15", toSurface: "17" },
   ],
 
-  focusDescription:
-    "Dual-group floating focus (CRC): all three patent states are exact keyframes; G1 and G2 translate objectward with approximately 2:1 travel. The three-plate filter/sensor stack behind G2 is traced but not drawn.",
-  closeFocusM: 0.45,
-  // Every focus keyframe is a source row.
-  publishedStations: { focus: [1, 2] },
-  nominalFno: 1.24,
-  fstopSeries: [1.24, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
-  apertureBlades: 7,
-  apertureBladeRoundedness: 0.7,
-  maxFstop: 16,
-  scFill: 0.53,
-  yScFill: 0.48,
-} satisfies LensDataInput;
+  layout: { scFill: 0.53, yScFill: 0.48 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

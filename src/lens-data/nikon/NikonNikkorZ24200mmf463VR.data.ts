@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -27,9 +27,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    from W to T; stop S, G3 and G6 move as one unit. Derived travel  ║
  * ║    (W→T, toward object): G1 62.0, G2 9.0, S/G3/G6 26.7, G4 37.5,    ║
  * ║    G5 41.0 mm — matches conditions (1), (2), (10), (11).            ║
- * ║    No iris diameters are published: the working iris per station   ║
- * ║    is derived from nominalFno (zoomApertureModel), W ≈ 6.36 mm →    ║
- * ║    T ≈ 7.41 mm radius; Fig. 1 draws the W iris at ≈ 6.3 mm.         ║
+ * ║    No iris diameters are published: the working iris per station    ║
+ * ║    is derived from nominalFNumber (zoom.apertureModel), W ≈ 6.36 mm ║
+ * ║    → T ≈ 7.41 mm radius; Fig. 1 draws the W iris at ≈ 6.3 mm.       ║
  * ║                                                                      ║
  * ║  NOTE ON SEMI-DIAMETERS:                                             ║
  * ║    Not tabulated in the patent. G2–G6 rims were re-measured from    ║
@@ -45,32 +45,36 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "nikkor-z-24-200-f4-63-vr",
   maker: "Nikon",
   name: "NIKON NIKKOR Z 24-200mm f/4-6.3 VR",
   subtitle: "JP WO2020/157904 A1 Example 1 — Nikon / Makida, Ito, Miwa",
-  specs: [
-    "19 ELEMENTS / 15 GROUPS",
-    "f = 24.7–194.0 mm (design)",
-    "F/4.12–6.50 (design)",
-    "2ω ≈ 85.2°–12.3°",
-    "3 ASPHERICAL SURFACES",
-    "3 ED ELEMENTS",
-  ],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: [24, 200],
-  focalLengthDesign: [24.72, 194.0],
-  apertureMarketing: 4,
-  apertureDesign: 4.12,
-  lensMounts: ["nikon-z"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP WO2020/157904 A1",
-  patentAuthors: ["Ayumu Makida", "Tomoki Ito", "Satoshi Miwa"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 2020,
-  elementCount: 19,
-  groupCount: 15,
+  catalog: {
+    lensMounts: ["nikon-z"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "19 ELEMENTS / 15 GROUPS",
+      "f = 24.7–194.0 mm (design)",
+      "F/4.12–6.50 (design)",
+      "2ω ≈ 85.2°–12.3°",
+      "3 ASPHERICAL SURFACES",
+      "3 ED ELEMENTS",
+    ],
+    elementCount: 19,
+    groupCount: 15,
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: [24, 200], design: [24.72, 194.0] },
+    fNumber: { marketing: 4, design: 4.12 },
+  },
+
+  source: {
+    patentNumber: "JP WO2020/157904 A1",
+    patentYear: 2020,
+    authors: ["Ayumu Makida", "Tomoki Ito", "Satoshi Miwa"],
+    assignees: ["Nikon Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -81,7 +85,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.90366,
       vd: 31.27,
-      fl: -143.5,
+      focalLengthMm: -143.5,
       glass: "S-LAH95 (OHARA)",
       apd: false,
       role: "Front negative meniscus — reduces Petzval sum, chromatic partner to L12/L13.",
@@ -93,7 +97,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59319,
       vd: 67.9,
-      fl: 118.6,
+      focalLengthMm: 118.6,
       glass: "J-PSKH1 (Hikari)",
       apd: "inferred",
       apdNote: "ED-class phosphate crown, vd = 67.9. Nikon markets as ED element.",
@@ -106,7 +110,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.59319,
       vd: 67.9,
-      fl: 116.7,
+      focalLengthMm: 116.7,
       glass: "J-PSKH1 (Hikari)",
       apd: "inferred",
       apdNote: "Same ED glass as L12.",
@@ -119,7 +123,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.95375,
       vd: 32.33,
-      fl: -21.8,
+      focalLengthMm: -21.8,
       glass: "954323 — ultra-high-index lanthanum (S-LAH98 / TAFD45 family)",
       apd: false,
       role: "Variator primary negative — dominant zoom power, ultra-high nd for compact curvatures.",
@@ -131,7 +135,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.755,
       vd: 52.33,
-      fl: -36.5,
+      focalLengthMm: -36.5,
       glass: "N-LAK33B equiv. (175500/5233)",
       apd: false,
       role: "Variator secondary negative — chromatic balance partner for L21 and L23.",
@@ -143,7 +147,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.92286,
       vd: 20.88,
-      fl: 24.0,
+      focalLengthMm: 24.0,
       glass: "PBH21 (OHARA; historical 923209)",
       apd: false,
       role: "High-dispersion positive element — achromatization lever for zoom-dependent lateral color.",
@@ -155,7 +159,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.816,
       vd: 46.59,
-      fl: -37.4,
+      focalLengthMm: -37.4,
       glass: "S-LAH59 (OHARA)",
       apd: false,
       role: "Variator exit element — controls divergence angle entering long G2–G3 air gap.",
@@ -167,7 +171,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.90265,
       vd: 35.72,
-      fl: 39.0,
+      focalLengthMm: 39.0,
       glass: "903357 — high-index lanthanum flint (patent nd=1.90265, νd=35.72)",
       apd: false,
       role: "Relay positive — reconverges beam after stop, ultra-high nd minimises curvatures.",
@@ -179,11 +183,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 2.001,
       vd: 29.12,
-      fl: -50.3,
+      focalLengthMm: -50.3,
       glass: "001291 — ultra-high-index dense flint (patent nd=2.00100, νd=29.12)",
       apd: false,
-      cemented: "VR",
       role: "VR doublet flint — highest nd in design (2.001), creates strong cemented-interface correction.",
+      cemented: "VR",
     },
     {
       id: 10,
@@ -192,11 +196,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.57957,
       vd: 53.74,
-      fl: 28.7,
+      focalLengthMm: 28.7,
       glass: "N-BALF4 equiv. (580539; patent nd=1.57957, vd=53.74)",
       apd: false,
-      cemented: "VR",
       role: "VR doublet crown — dominant positive power, large Δnd at cemented interface corrects lateral color during VR.",
+      cemented: "VR",
     },
     {
       id: 11,
@@ -205,7 +209,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.95375,
       vd: 32.33,
-      fl: -42.6,
+      focalLengthMm: -42.6,
       glass: "954323 — ultra-high-index lanthanum (S-LAH98 / TAFD45 family)",
       apd: false,
       role: "Petzval flattener — compensates excess positive power from L31 and VR doublet.",
@@ -217,11 +221,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.83481,
       vd: 42.73,
-      fl: 22.9,
+      focalLengthMm: 22.9,
       glass: "S-LAH55V equiv. (183481/4273)",
       apd: false,
-      cemented: "D4a",
       role: "Relay doublet positive — symmetric biconvex minimises coma near relay conjugate.",
+      cemented: "D4a",
     },
     {
       id: 13,
@@ -230,11 +234,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.90366,
       vd: 31.27,
-      fl: -46.8,
+      focalLengthMm: -46.8,
       glass: "S-LAH95 (OHARA)",
       apd: false,
-      cemented: "D4a",
       role: "Relay doublet flint — chromatic partner to L41. Same glass as L11.",
+      cemented: "D4a",
     },
     {
       id: 14,
@@ -243,11 +247,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.95375,
       vd: 32.33,
-      fl: -33.8,
+      focalLengthMm: -33.8,
       glass: "954323 — ultra-high-index lanthanum (S-LAH98 / TAFD45 family)",
       apd: false,
-      cemented: "D4b",
       role: "Aspherical-ED doublet flint — high-dispersion partner for L44 secondary spectrum correction.",
+      cemented: "D4b",
     },
     {
       id: 15,
@@ -256,14 +260,14 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.4971,
       vd: 81.49,
-      fl: 23.5,
+      focalLengthMm: 23.5,
       glass: "M-FCD1 (HOYA) catalog equivalent (patent nd=1.49710, νd=81.49; production supplier unspecified)",
       apd: "inferred",
-      dPgF: 0.028,
       apdNote:
         "Inferred from the FCD1/S-FPL51 fluorophosphate family (ΔP(g,F) ≈ +0.028, family value, not patent-listed). M-FCD1 is HOYA's precision-molding grade of the exact patent coordinate.",
-      cemented: "D4b",
       role: "Aspherical ED element — triple duty: ED glass (secondary spectrum), asph S28A (SA correction), achromatic relay power.",
+      cemented: "D4b",
+      dPgF: 0.028,
     },
     {
       id: 16,
@@ -272,11 +276,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.84666,
       vd: 23.8,
-      fl: 40.7,
+      focalLengthMm: 40.7,
       glass: "S-TIH53 (OHARA)",
       apd: false,
-      cemented: "D5",
       role: "Focus doublet positive — ultra-high dispersion for focus-invariant chromatic correction.",
+      cemented: "D5",
     },
     {
       id: 17,
@@ -285,11 +289,11 @@ const LENS_DATA = {
       type: "Biconcave Negative (1× Asph)",
       nd: 1.85135,
       vd: 40.13,
-      fl: -19.8,
+      focalLengthMm: -19.8,
       glass: "M-TAFD305 (HOYA) catalog equivalent (patent nd=1.85135, νd=40.13; production supplier unspecified)",
       apd: false,
-      cemented: "D5",
       role: "Focus doublet negative — dominant net-negative power, asph S31A stabilises SA during focus travel.",
+      cemented: "D5",
     },
     {
       id: 18,
@@ -298,9 +302,8 @@ const LENS_DATA = {
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.8208,
       vd: 42.51,
-      fl: -95.1,
-      glass:
-        "M-TAFD51 catalog equivalent (patent nd=1.82080, νd=42.51; production supplier unspecified)",
+      focalLengthMm: -95.1,
+      glass: "M-TAFD51 catalog equivalent (patent nd=1.82080, νd=42.51; production supplier unspecified)",
       apd: false,
       role: "Rear field corrector negative — asph S33A corrects field curvature/astigmatism. Part of G6 air lens.",
     },
@@ -311,7 +314,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.68376,
       vd: 37.57,
-      fl: 101.2,
+      focalLengthMm: 101.2,
       glass: "J-KZFH6 (Hikari) — titanium flint (684376)",
       apd: false,
       role: "Final element — completes G6 air-lens field correction. Weak power, primarily corrective.",
@@ -319,98 +322,137 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
-  surfaces: [
-    /* ── G1: Front Positive (L11, L12, L13) ── */
-    { label: "1", R: 185.7354, d: 2.0, nd: 1.90366, elemId: 1, sd: 31.0 },
-    { label: "2", R: 75.9813, d: 1.0263, nd: 1.0, elemId: 0, sd: 31.0 },
-    { label: "3", R: 81.5981, d: 6.4204, nd: 1.59319, elemId: 2, sd: 29.4 },
-    { label: "4", R: -494.4016, d: 0.1, nd: 1.0, elemId: 0, sd: 29.4 },
-    { label: "5", R: 59.132, d: 6.13, nd: 1.59319, elemId: 3, sd: 28.0 },
-    { label: "6", R: 390.1369, d: 1.5, nd: 1.0, elemId: 0, sd: 28.0 }, // D1 — zoom only
-
-    /* ── G2: Negative Variator (L21, L22, L23, L24) ── */
-    { label: "7", R: 236.0277, d: 1.25, nd: 1.95375, elemId: 4, sd: 13.0 },
-    { label: "8", R: 19.0394, d: 5.0675, nd: 1.0, elemId: 0, sd: 11.6 },
-    { label: "9", R: -46.67, d: 1.1, nd: 1.755, elemId: 5, sd: 10.7 },
-    { label: "10", R: 68.1612, d: 0.4169, nd: 1.0, elemId: 0, sd: 11.4 },
-    { label: "11", R: 37.121, d: 3.384, nd: 1.92286, elemId: 6, sd: 9.6 },
-    { label: "12", R: -52.558, d: 0.5124, nd: 1.0, elemId: 0, sd: 8.8 },
-    { label: "13", R: -32.9357, d: 1.0, nd: 1.816, elemId: 7, sd: 9.5 },
-    { label: "14", R: 416.8076, d: 18.83905, nd: 1.0, elemId: 0, sd: 9.5 }, // D2 — zoom only
-
-    /* ── Aperture Stop ── */
-    { label: "STO", R: 1e15, d: 2.0, nd: 1.0, elemId: 0, sd: 7.5 },
-
-    /* ── G3: Positive Relay + VR (L31, L32+L33, L34) ── */
-    { label: "16", R: 39.8204, d: 2.5136, nd: 1.90265, elemId: 8, sd: 8.9 },
-    { label: "17", R: -292.5261, d: 0.5, nd: 1.0, elemId: 0, sd: 9.2 },
-    { label: "18", R: 36.7161, d: 1.0, nd: 2.001, elemId: 9, sd: 9.3 }, // L32 front
-    { label: "19", R: 20.9452, d: 3.3404, nd: 1.57957, elemId: 10, sd: 9.3 }, // L32→L33 junction
-    { label: "20", R: -76.062, d: 1.4447, nd: 1.0, elemId: 0, sd: 9.7 }, // L33 rear → air
-    { label: "21", R: -35.5626, d: 1.0, nd: 1.95375, elemId: 11, sd: 8.3 },
-    { label: "22", R: -290.1606, d: 12.23175, nd: 1.0, elemId: 0, sd: 8.3 }, // D3 — zoom only
-
-    /* ── G4: Positive Relay + Asph ED (L41+L42, L43+L44) ── */
-    { label: "23", R: 37.1374, d: 4.6344, nd: 1.83481, elemId: 12, sd: 11.1 }, // L41 front
-    { label: "24", R: -37.1374, d: 1.0, nd: 1.90366, elemId: 13, sd: 11.1 }, // L41→L42 junction
-    { label: "25", R: -308.9768, d: 0.1, nd: 1.0, elemId: 0, sd: 11.1 }, // L42 rear → air
-    { label: "26", R: 31.6449, d: 2.7756, nd: 1.95375, elemId: 14, sd: 11.4 }, // L43 front
-    { label: "27", R: 15.2741, d: 8.703, nd: 1.4971, elemId: 15, sd: 11.4 }, // L43→L44 junction
-    { label: "28A", R: -40.3095, d: 5.54311, nd: 1.0, elemId: 0, sd: 11.4 }, // L44 rear (asph) → air, D4
-
-    /* ── G5: Focus Group (L51+L52) ── */
-    { label: "29", R: 1365.4927, d: 3.0634, nd: 1.84666, elemId: 16, sd: 11.8 }, // L51 front
-    { label: "30", R: -35.3251, d: 1.0, nd: 1.85135, elemId: 17, sd: 11.8 }, // L51→L52 junction
-    { label: "31A", R: 32.6144, d: 10.05055, nd: 1.0, elemId: 0, sd: 11.8 }, // L52 rear (asph) → air, D5
-
-    /* ── G6: Rear Field Corrector (L61, L62) ── */
-    { label: "32", R: -16.9998, d: 1.4, nd: 1.8208, elemId: 18, sd: 13.3 },
-    { label: "33A", R: -22.5398, d: 0.1, nd: 1.0, elemId: 0, sd: 14.6 }, // L61 rear (asph) → air
-    { label: "34", R: 626.7496, d: 3.553, nd: 1.68376, elemId: 19, sd: 17.5 },
-    { label: "35", R: -77.6296, d: 11.75486, nd: 1.0, elemId: 0, sd: 17.5 }, // BF
-  ],
-
-  /* ── Aspherical coefficients ──
+  /* (moved from asph) ── Aspherical coefficients ──
    *  Patent convention: κ (kappa) where K = κ − 1.
    *  All three surfaces: κ = 1.0000 → K = 0 (spherical base).
    *  Coefficients A4–A12 from patent; A14 = 0 for all.
    */
-  asph: {
-    "28A": {
-      K: 0,
-      A4: 3.13017e-5,
-      A6: -1.0309e-7,
-      A8: 6.53525e-10,
-      A10: -2.5783e-12,
-      A12: 3.2673e-15,
-      A14: 0,
-    },
-    "31A": {
-      K: 0,
-      A4: -6.66636e-6,
-      A6: 5.10546e-8,
-      A8: 1.72567e-11,
-      A10: -2.40595e-12,
-      A12: 9.8445e-15,
-      A14: 0,
-    },
-    "33A": {
-      K: 0,
-      A4: -1.93366e-6,
-      A6: -2.0575e-8,
-      A8: 8.81224e-11,
-      A10: -2.94021e-13,
-      A12: 0,
-      A14: 0,
-    },
+  surfaces: [
+    /* ── G1: Front Positive (L11, L12, L13) ── */
+    { label: "1", R: 185.7354, d: 2.0, sd: 31.0, medium: 1 },
+    { label: "2", R: 75.9813, d: 1.0263, sd: 31.0 },
+    { label: "3", R: 81.5981, d: 6.4204, sd: 29.4, medium: 2 },
+    { label: "4", R: -494.4016, d: 0.1, sd: 29.4 },
+    { label: "5", R: 59.132, d: 6.13, sd: 28.0, medium: 3 },
+    { label: "6", R: 390.1369, sd: 28.0 }, // D1 — zoom only
+
+    /* ── G2: Negative Variator (L21, L22, L23, L24) ── */
+    { label: "7", R: 236.0277, d: 1.25, sd: 13.0, medium: 4 },
+    { label: "8", R: 19.0394, d: 5.0675, sd: 11.6 },
+    { label: "9", R: -46.67, d: 1.1, sd: 10.7, medium: 5 },
+    { label: "10", R: 68.1612, d: 0.4169, sd: 11.4 },
+    { label: "11", R: 37.121, d: 3.384, sd: 9.6, medium: 6 },
+    { label: "12", R: -52.558, d: 0.5124, sd: 8.8 },
+    { label: "13", R: -32.9357, d: 1.0, sd: 9.5, medium: 7 },
+    { label: "14", R: 416.8076, sd: 9.5 }, // D2 — zoom only
+
+    /* ── Aperture Stop ── */
+    { label: "STO", R: "flat", d: 2.0 },
+
+    /* ── G3: Positive Relay + VR (L31, L32+L33, L34) ── */
+    { label: "16", R: 39.8204, d: 2.5136, sd: 8.9, medium: 8 },
+    { label: "17", R: -292.5261, d: 0.5, sd: 9.2 },
+    { label: "18", R: 36.7161, d: 1.0, sd: 9.3, medium: 9 }, // L32 front
+    { label: "19", R: 20.9452, d: 3.3404, sd: 9.3, medium: 10 }, // L32→L33 junction
+    { label: "20", R: -76.062, d: 1.4447, sd: 9.7 }, // L33 rear → air
+    { label: "21", R: -35.5626, d: 1.0, sd: 8.3, medium: 11 },
+    { label: "22", R: -290.1606, sd: 8.3 }, // D3 — zoom only
+
+    /* ── G4: Positive Relay + Asph ED (L41+L42, L43+L44) ── */
+    { label: "23", R: 37.1374, d: 4.6344, sd: 11.1, medium: 12 }, // L41 front
+    { label: "24", R: -37.1374, d: 1.0, sd: 11.1, medium: 13 }, // L41→L42 junction
+    { label: "25", R: -308.9768, d: 0.1, sd: 11.1 }, // L42 rear → air
+    { label: "26", R: 31.6449, d: 2.7756, sd: 11.4, medium: 14 }, // L43 front
+    { label: "27", R: 15.2741, d: 8.703, sd: 11.4, medium: 15 }, // L43→L44 junction
+    {
+      label: "28A",
+      R: -40.3095,
+      sd: 11.4,
+      asphere: {
+        K: 0,
+        A4: 3.13017e-5,
+        A6: -1.0309e-7,
+        A8: 6.53525e-10,
+        A10: -2.5783e-12,
+        A12: 3.2673e-15,
+      },
+    }, // L44 rear (asph) → air, D4
+
+    /* ── G5: Focus Group (L51+L52) ── */
+    { label: "29", R: 1365.4927, d: 3.0634, sd: 11.8, medium: 16 }, // L51 front
+    { label: "30", R: -35.3251, d: 1.0, sd: 11.8, medium: 17 }, // L51→L52 junction
+    {
+      label: "31A",
+      R: 32.6144,
+      sd: 11.8,
+      asphere: {
+        K: 0,
+        A4: -6.66636e-6,
+        A6: 5.10546e-8,
+        A8: 1.72567e-11,
+        A10: -2.40595e-12,
+        A12: 9.8445e-15,
+      },
+    }, // L52 rear (asph) → air, D5
+
+    /* ── G6: Rear Field Corrector (L61, L62) ── */
+    { label: "32", R: -16.9998, d: 1.4, sd: 13.3, medium: 18 },
+    {
+      label: "33A",
+      R: -22.5398,
+      d: 0.1,
+      sd: 14.6,
+      asphere: {
+        K: 0,
+        A4: -1.93366e-6,
+        A6: -2.0575e-8,
+        A8: 8.81224e-11,
+        A10: -2.94021e-13,
+        A12: 0,
+      },
+    }, // L61 rear (asph) → air
+    { label: "34", R: 626.7496, d: 3.553, sd: 17.5, medium: 19 },
+    { label: "35", R: -77.6296, sd: 17.5 }, // BF
+  ],
+
+  zoom: {
+    /* (moved from zoomPositions) ── Zoom positions ── */
+    // (moved from publishedStations) Every authored zoom station is a source row.
+    // (moved from zoomCloseFocusM) Calculated object-to-image distances of the Table 1 near states (D0 + lens track + near BF), W / M1 / M2 / T.
+    /* (moved from nominalFno) ── Aperture configuration ── */
+    stations: [
+      {
+        focalLengthMm: 24.72,
+        nominalFNumber: 4.12,
+        closeFocusM: 0.4924,
+        label: "Wide",
+        published: true,
+        publishedFocus: [1],
+      },
+      { focalLengthMm: 50.0, nominalFNumber: 5.59, closeFocusM: 0.5425, published: true, publishedFocus: [1] },
+      { focalLengthMm: 105.05, nominalFNumber: 6.4, closeFocusM: 0.6426, published: true, publishedFocus: [1] },
+      {
+        focalLengthMm: 194.0,
+        nominalFNumber: 6.5,
+        closeFocusM: 0.693,
+        label: "Tele",
+        published: true,
+        publishedFocus: [1],
+      },
+    ],
+    // No iris diameters are published; the station iris is derived from the Table 1 FNO schedule.
+    apertureModel: "from-nominal-fno",
+    step: 0.004,
   },
 
-  /* ── Zoom positions ── */
-  zoomPositions: [24.72, 50.0, 105.05, 194.0],
-  zoomStep: 0.004,
-  zoomLabels: ["Wide", "Tele"],
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.4924,
+    description:
+      "Internal focus — G5 (cemented doublet L51+L52) translates toward the image (patent ¶0091). Table 1 G5 travel: 0.89 mm (W), 1.62 mm (M1), 4.31 mm (M2), 9.70 mm (T); near states are β = −0.062 to −0.284 at a calculated 0.49 m (W) to 0.69 m (T) object-to-image distance.",
+  },
 
-  /* ── Variable air spacings ──
+  /* (moved from var) ── Variable air spacings ──
    *  Zoom format: each value is [[d_inf, d_close], ...] per zoom position.
    *
    *  Zoom-only gaps (D1, D2, D3): identical inf/close at each position.
@@ -419,53 +461,64 @@ const LENS_DATA = {
    *  Focus mechanism: G5 translates toward image (D4 increases, D5 decreases).
    *  BF shifts slightly (~0.03–0.56 mm) due to residual conjugate shift.
    */
-  var: {
-    "6": [
-      [1.5, 1.5],
-      [17.29645, 17.29645],
-      [38.92328, 38.92328],
-      [54.52847, 54.52847],
-    ],
-    "14": [
-      [18.83905, 18.83905],
-      [10.91446, 10.91446],
-      [4.55495, 4.55495],
-      [1.10018, 1.10018],
-    ],
-    "22": [
-      [12.23175, 12.23175],
-      [6.39417, 6.39417],
-      [3.18615, 3.18615],
-      [1.47844, 1.47844],
-    ],
-    "28A": [
-      [5.54311, 6.43705],
-      [4.42699, 6.05192],
-      [5.70823, 10.02051],
-      [2.00068, 11.69839],
-    ],
-    "31A": [
-      [10.05055, 9.15661],
-      [17.0046, 15.37967],
-      [18.93085, 14.61857],
-      [24.34574, 14.64803],
-    ],
-    "35": [
-      [11.75486, 11.78171],
-      [22.41624, 22.50112],
-      [30.66474, 30.88824],
-      [38.48515, 39.045],
-    ],
+  gaps: {
+    "6": {
+      label: "D1",
+      values: [
+        [1.5, 1.5],
+        [17.29645, 17.29645],
+        [38.92328, 38.92328],
+        [54.52847, 54.52847],
+      ],
+    },
+    "14": {
+      label: "D2",
+      values: [
+        [18.83905, 18.83905],
+        [10.91446, 10.91446],
+        [4.55495, 4.55495],
+        [1.10018, 1.10018],
+      ],
+    },
+    "22": {
+      label: "D3",
+      values: [
+        [12.23175, 12.23175],
+        [6.39417, 6.39417],
+        [3.18615, 3.18615],
+        [1.47844, 1.47844],
+      ],
+    },
+    "28A": {
+      label: "D4",
+      values: [
+        [5.54311, 6.43705],
+        [4.42699, 6.05192],
+        [5.70823, 10.02051],
+        [2.00068, 11.69839],
+      ],
+    },
+    "31A": {
+      label: "D5",
+      values: [
+        [10.05055, 9.15661],
+        [17.0046, 15.37967],
+        [18.93085, 14.61857],
+        [24.34574, 14.64803],
+      ],
+    },
+    "35": {
+      label: "BF",
+      values: [
+        [11.75486, 11.78171],
+        [22.41624, 22.50112],
+        [30.66474, 30.88824],
+        [38.48515, 39.045],
+      ],
+    },
   },
 
-  varLabels: [
-    ["6", "D1"],
-    ["14", "D2"],
-    ["22", "D3"],
-    ["28A", "D4"],
-    ["31A", "D5"],
-    ["35", "BF"],
-  ],
+  aperture: { fStops: [4.12, 4.5, 5.6, 6.3, 8, 11, 16, 22], maxFNumber: 22, blades: 7, bladeRoundedness: 0.7 },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -476,7 +529,6 @@ const LENS_DATA = {
     { text: "G5(−)", fromSurface: "29", toSurface: "31A" },
     { text: "G6(−)", fromSurface: "32", toSurface: "35" },
   ],
-
   doublets: [
     { text: "VR", fromSurface: "18", toSurface: "20" },
     { text: "D4a", fromSurface: "23", toSurface: "25" },
@@ -484,34 +536,13 @@ const LENS_DATA = {
     { text: "D5", fromSurface: "29", toSurface: "31A" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.4924,
-  // Every authored zoom station is a source row.
-  publishedStations: { zoom: [0, 1, 2, 3], focus: [1] },
-  // Calculated object-to-image distances of the Table 1 near states (D0 + lens track + near BF), W / M1 / M2 / T.
-  zoomCloseFocusM: [0.4924, 0.5425, 0.6426, 0.693],
-  focusDescription:
-    "Internal focus — G5 (cemented doublet L51+L52) translates toward the image (patent ¶0091). Table 1 G5 travel: 0.89 mm (W), 1.62 mm (M1), 4.31 mm (M2), 9.70 mm (T); near states are β = −0.062 to −0.284 at a calculated 0.49 m (W) to 0.69 m (T) object-to-image distance.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: [4.12, 5.59, 6.4, 6.5],
-  // No iris diameters are published; the station iris is derived from the Table 1 FNO schedule.
-  zoomApertureModel: "from-nominal-fno",
-  fstopSeries: [4.12, 4.5, 5.6, 6.3, 8, 11, 16, 22],
-  maxFstop: 22,
-  apertureBlades: 7,
-  apertureBladeRoundedness: 0.7,
-
   /* ── Layout tuning ──
    * Nikon's published 24 mm construction diagram reads taller and more
    * compact through the rear relay/focus stack than the raw max-track zoom
    * framing suggests. Bias the display toward that wide-end silhouette
    * without altering the prescription itself.
    */
-  scFill: 0.5,
-  yScFill: 0.38,
-  maxAspectRatio: 2.0,
-  lensShiftFrac: 0.05,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.38, maxAspectRatio: 2.0, lensShiftFrac: 0.05 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

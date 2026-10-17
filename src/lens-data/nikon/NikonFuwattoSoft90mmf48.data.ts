@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -22,39 +22,43 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  close-focus back focus below is paraxially solved for the          ║
  * ║  production soft-focus minimum focus distance of 0.40 m.            ║
  * ║                                                                    ║
- * ║  Semi-diameters: the stop SD is set from the marketed 90 mm f/4.8   ║
- * ║  entrance-pupil diameter. Glass SDs are estimated from the scaled   ║
- * ║  patent field and checked against rim slope, edge thickness, and    ║
- * ║  element SD-ratio constraints.                                      ║
+ * ║  Semi-diameters: the stop radius is derived from the design         ║
+ * ║  f-number, using the marketed 90 mm f/4.8 entrance pupil. Glass     ║
+ * ║  SDs are estimated from the scaled patent field and checked         ║
+ * ║  against rim slope, edge thickness, and element SD-ratio            ║
+ * ║  constraints.                                                       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-fuwatto-soft-90mm-f48",
   maker: "Nikon",
   name: "NIKON FUWATTO SOFT 90mm f/4.8",
   subtitle: "US 5,796,530 Example 2 — second soft-focus configuration",
-  specs: [
-    "1 group / 2 elements",
-    "f = 90.63 mm computed; 90 mm marketed",
-    "f/4.8 fixed aperture",
-    "MFD 0.40 m",
-    "all-spherical cemented doublet",
-  ],
 
-  focalLengthMarketing: 90,
-  focalLengthDesign: 90.6267,
-  apertureMarketing: 4.8,
-  apertureDesign: 4.95,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 5,796,530",
-  patentAuthors: ["Kouichi Ohshita"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 1998,
-  elementCount: 2,
-  groupCount: 1,
-  focusDescription: "Unit extension; the whole reversed cemented doublet and stop translate together.",
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "1 group / 2 elements",
+      "f = 90.63 mm computed; 90 mm marketed",
+      "f/4.8 fixed aperture",
+      "MFD 0.40 m",
+      "all-spherical cemented doublet",
+    ],
+    elementCount: 2,
+    groupCount: 1,
+    focalLengthMm: { marketing: 90, design: 90.6267 },
+    fNumber: { marketing: 4.8, design: 4.95 },
+  },
+
+  source: {
+    patentNumber: "US 5,796,530",
+    patentYear: 1998,
+    authors: ["Kouichi Ohshita"],
+    assignees: ["Nikon Corporation"],
+  },
 
   elements: [
     {
@@ -64,7 +68,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80384,
       vd: 33.89,
-      fl: -60.71,
+      focalLengthMm: -60.71,
       glass: "E-LAFH2 (HIKARI, historical/obsolete; 804/339)",
       apd: false,
       role: "High-index flint element of the cemented achromat; front element after the patent doublet is reversed for soft-focus use.",
@@ -77,7 +81,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6228,
       vd: 57.03,
-      fl: 38.38,
+      focalLengthMm: 38.38,
       glass: "S-BSM10 (OHARA; 623/570)",
       apd: false,
       role: "Positive crown element carrying most of the doublet power; its strongly convex original front surface becomes the rear image-side surface in Fuwatto use.",
@@ -86,28 +90,25 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "STO", R: 1e15, d: 20.00004, nd: 1.0, elemId: 0, sd: 9.44 },
-    { label: "1", R: -94.95084, d: 1.40004, nd: 1.80384, elemId: 1, sd: 14.5 },
-    { label: "2", R: 101.0646, d: 6.20004, nd: 1.6228, elemId: 2, sd: 14.5 },
-    { label: "3", R: -30.57408, d: 94.77708, nd: 1.0, elemId: 0, sd: 14.5 },
+    { label: "STO", R: "flat", d: 20.00004 },
+    { label: "1", R: -94.95084, d: 1.40004, sd: 14.5, medium: 1 },
+    { label: "2", R: 101.0646, d: 6.20004, sd: 14.5, medium: 2 },
+    { label: "3", R: -30.57408, sd: 14.5 },
   ],
 
-  asph: {},
-
-  var: {
-    "3": [94.77708, 144.30234],
+  focus: {
+    closeFocusM: 0.4,
+    description: "Unit extension; the whole reversed cemented doublet and stop translate together.",
   },
-  varLabels: [["3", "BF"]],
+
+  gaps: { "3": { label: "BF", values: [[94.77708, 144.30234]] } },
+
+  aperture: { nominalFNumber: 4.8, fStops: [4.8, 5.6, 6, 8, 11, 16], maxFNumber: 16 },
 
   groups: [{ text: "G1 reversed soft-focus doublet", fromSurface: "1", toSurface: "3" }],
   doublets: [{ text: "G1", fromSurface: "1", toSurface: "3" }],
 
-  closeFocusM: 0.4,
-  nominalFno: 4.8,
-  fstopSeries: [4.8, 5.6, 6, 8, 11, 16],
-  maxFstop: 16,
-  scFill: 0.44,
-  yScFill: 0.52,
-} satisfies LensDataInput;
+  layout: { scFill: 0.44, yScFill: 0.52 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

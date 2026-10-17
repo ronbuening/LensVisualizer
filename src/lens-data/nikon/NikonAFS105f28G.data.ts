@@ -5,36 +5,39 @@
  * its fixed G1/G4 narrative; camera anchoring exposes that source difference.
  * No cover glass or filter rows occur in this selected prescription.
  */
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-afs-105f28-vr-micro",
-  name: "NIKON AF-S VR MICRO-NIKKOR 105mm f/2.8 G IF-ED",
   maker: "Nikon",
+  name: "NIKON AF-S VR MICRO-NIKKOR 105mm f/2.8 G IF-ED",
   subtitle: "US 7,218,457 B2 — Example 3 (Sensui, 2007)",
-  specs: [
-    "14 elements / 11 groups",
-    "Patent example; compatible glass counterparts",
-    "All-spherical",
-    "Centered VR configuration",
-    "F-mount (FX)",
-    "f/2.88 patent aperture",
-  ],
-  focalLengthMarketing: 105,
-  focalLengthDesign: 104.0,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.88,
-  lensMounts: ["nikon-f"],
-  acceptsTeleconverters: true, // Nikon lists this lens as compatible with the AF-S TC-20E III
-  imageFormat: "135-full-frame",
-  patentNumber: "US 7,218,457 B2",
-  patentAuthors: ["Takayuki Sensui"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 2007,
-  elementCount: 14,
-  groupCount: 11,
-  focusDescription:
-    "Source infinity, 0.5× and 1× focus stations: G2 moves imageward and G3 objectward. Published BF changes by 0.63904 mm despite the fixed-group description, producing that common camera-relative offset. The source varying iris diameter and lateral VR motion are not simulated.",
+
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "14 elements / 11 groups",
+      "Patent example; compatible glass counterparts",
+      "All-spherical",
+      "Centered VR configuration",
+      "F-mount (FX)",
+      "f/2.88 patent aperture",
+    ],
+    elementCount: 14,
+    groupCount: 11,
+    acceptsTeleconverters: true, // Nikon lists this lens as compatible with the AF-S TC-20E III
+    focalLengthMm: { marketing: 105, design: 104.0 },
+    fNumber: { marketing: 2.8, design: 2.88 },
+  },
+
+  source: {
+    patentNumber: "US 7,218,457 B2",
+    patentYear: 2007,
+    authors: ["Takayuki Sensui"],
+    assignees: ["Nikon Corporation"],
+  },
 
   elements: [
     // ── G1: Front collecting group (fixed) ──────────────────
@@ -45,7 +48,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 49.61,
-      fl: 103.17,
+      focalLengthMm: 103.17,
       glass: "S-LAH66 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
       role: "Positive front singlet in G1",
@@ -57,7 +60,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.61272,
       vd: 58.75,
-      fl: 95,
+      focalLengthMm: 95,
       glass: "BACD4 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
       role: "Positive meniscus in G1",
@@ -69,7 +72,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.71736,
       vd: 29.52,
-      fl: -45.49,
+      focalLengthMm: -45.49,
       glass: "S-TIH1 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
       role: "Negative singlet in G1",
@@ -81,7 +84,7 @@ const LENS_DATA = {
       type: "Plano-Convex",
       nd: 1.7725,
       vd: 49.61,
-      fl: 50.73,
+      focalLengthMm: 50.73,
       glass: "S-LAH66 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
       role: "Plano-convex rear singlet in G1",
@@ -94,7 +97,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.58267,
       vd: 46.43,
-      fl: -40.85,
+      focalLengthMm: -40.85,
       glass: "BAF3 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
       role: "Negative singlet in moving G2",
@@ -106,11 +109,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.53172,
       vd: 48.87,
-      fl: -42.99,
+      focalLengthMm: -42.99,
       glass: "S-TIL6 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
-      cemented: "D1",
       role: "Negative front element of cemented doublet D1",
+      cemented: "D1",
     },
     {
       id: 7,
@@ -119,11 +122,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.80518,
       vd: 25.43,
-      fl: 45.17,
+      focalLengthMm: 45.17,
       glass: "S-TIH6 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
-      cemented: "D1",
       role: "Positive rear element of cemented doublet D1",
+      cemented: "D1",
     },
     // ── G3: Main converging group (moves object-ward) ───────
     {
@@ -133,7 +136,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
-      fl: 115.62,
+      focalLengthMm: 115.62,
       glass: "S-FPL51 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
       role: "Low-dispersion positive singlet in moving G3",
@@ -145,11 +148,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.78,
-      fl: -65.28,
+      focalLengthMm: -65.28,
       glass: "S-TIH53W — compatible catalog counterpart; patent identity unspecified",
       apd: false,
-      cemented: "D2",
       role: "Negative front element of cemented doublet D2",
+      cemented: "D2",
     },
     {
       id: 10,
@@ -158,11 +161,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.62041,
       vd: 60.29,
-      fl: 32.77,
+      focalLengthMm: 32.77,
       glass: "S-BSM16 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
-      cemented: "D2",
       role: "Positive rear element of cemented doublet D2",
+      cemented: "D2",
     },
     // ── G4a: VR element (fixed axially, shifts ⊥ for VR) ───
     {
@@ -172,11 +175,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8061,
       vd: 40.94,
-      fl: -27.37,
+      focalLengthMm: -27.37,
       glass: "S-LAH53 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
-      cemented: "D3",
       role: "Negative front element of G4a stabilization doublet; centered here",
+      cemented: "D3",
     },
     {
       id: 12,
@@ -185,11 +188,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.80518,
       vd: 25.43,
-      fl: 54.86,
+      focalLengthMm: 54.86,
       glass: "S-TIH6 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
-      cemented: "D3",
       role: "Positive rear element of G4a stabilization doublet; centered here",
+      cemented: "D3",
     },
     // ── G4b: Field flattener / relay (fixed) ────────────────
     {
@@ -199,7 +202,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.51823,
       vd: 58.96,
-      fl: -113.38,
+      focalLengthMm: -113.38,
       glass: "S-NSL3 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
       role: "Negative meniscus in G4b",
@@ -211,7 +214,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7859,
       vd: 44.2,
-      fl: 57.11,
+      focalLengthMm: 57.11,
       glass: "S-LAH51 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
       role: "Positive rear singlet in G4b",
@@ -220,57 +223,58 @@ const LENS_DATA = {
 
   surfaces: [
     // ── G1 ──────────────────────────────────────────────────
-    { label: "1", R: 135.481, d: 4.8268, nd: 1.7725, elemId: 1, sd: 25.0 },
-    { label: "2", R: -190.5454, d: 0.2, nd: 1.0, elemId: 0, sd: 23.5 },
-    { label: "3", R: 49.725, d: 5.0443, nd: 1.61272, elemId: 2, sd: 23.5 },
-    { label: "4", R: 328.1282, d: 3.2512, nd: 1.0, elemId: 0, sd: 22.5 },
-    { label: "5", R: -301.4048, d: 1.3, nd: 1.71736, elemId: 3, sd: 22.5 },
-    { label: "6", R: 36.6648, d: 0.2601, nd: 1.0, elemId: 0, sd: 21.5 },
-    { label: "7", R: 39.1876, d: 5.0203, nd: 1.7725, elemId: 4, sd: 15.0 },
-    { label: "8", R: 1e15, d: 3.0, nd: 1.0, elemId: 0, sd: 18.0 }, // D8 (variable)
+    { label: "1", R: 135.481, d: 4.8268, sd: 25.0, medium: 1 },
+    { label: "2", R: -190.5454, d: 0.2, sd: 23.5 },
+    { label: "3", R: 49.725, d: 5.0443, sd: 23.5, medium: 2 },
+    { label: "4", R: 328.1282, d: 3.2512, sd: 22.5 },
+    { label: "5", R: -301.4048, d: 1.3, sd: 22.5, medium: 3 },
+    { label: "6", R: 36.6648, d: 0.2601, sd: 21.5 },
+    { label: "7", R: 39.1876, d: 5.0203, sd: 15.0, medium: 4 },
+    { label: "8", R: "flat", sd: 18.0 }, // D8 (variable)
     // ── G2 ──────────────────────────────────────────────────
-    { label: "9", R: -184.4593, d: 1.1, nd: 1.58267, elemId: 5, sd: 17.5 },
-    { label: "10", R: 27.3895, d: 4.0524, nd: 1.0, elemId: 0, sd: 14.0 },
-    { label: "11", R: -173.3863, d: 1.2519, nd: 1.53172, elemId: 6, sd: 12.0 }, // L6 (D1 front)
-    { label: "12", R: 26.3938, d: 4.0212, nd: 1.80518, elemId: 7, sd: 15.0 }, // L6→L7 junction
-    { label: "13", R: 89.6909, d: 21.449, nd: 1.0, elemId: 0, sd: 14.5 }, // D13 (variable)
+    { label: "9", R: -184.4593, d: 1.1, sd: 17.5, medium: 5 },
+    { label: "10", R: 27.3895, d: 4.0524, sd: 14.0 },
+    { label: "11", R: -173.3863, d: 1.2519, sd: 12.0, medium: 6 }, // L6 (D1 front)
+    { label: "12", R: 26.3938, d: 4.0212, sd: 15.0, medium: 7 }, // L6→L7 junction
+    { label: "13", R: 89.6909, sd: 14.5 }, // D13 (variable)
     // ── Aperture stop ───────────────────────────────────────
-    { label: "STO", R: 1e15, d: 14.484, nd: 1.0, elemId: 0, sd: 12.9 }, // D14 (variable)
+    { label: "STO", R: "flat" }, // D14 (variable)
     // ── G3 (surface 15 is an air reference plane moving with G3) ────
-    { label: "15", R: 1e15, d: 2.4681, nd: 1.0, elemId: 0, sd: 14.0 }, // Air reference spacer, not a lens or filter
-    { label: "16", R: 114.4253, d: 3.0007, nd: 1.497, elemId: 8, sd: 14.5 }, // L8 front
-    { label: "17", R: -114.4253, d: 0.15, nd: 1.0, elemId: 0, sd: 14.0 },
-    { label: "18", R: 52.1409, d: 1.1283, nd: 1.84666, elemId: 9, sd: 14.0 }, // L9 (D2 front)
-    { label: "19", R: 26.564, d: 6.9913, nd: 1.62041, elemId: 10, sd: 13.5 }, // L9→L10 junction
-    { label: "20", R: -77.9021, d: 2.0, nd: 1.0, elemId: 0, sd: 13.0 }, // D20 (variable)
+    { label: "15", R: "flat", d: 2.4681, sd: 14.0 }, // Air reference spacer, not a lens or filter
+    { label: "16", R: 114.4253, d: 3.0007, sd: 14.5, medium: 8 }, // L8 front
+    { label: "17", R: -114.4253, d: 0.15, sd: 14.0 },
+    { label: "18", R: 52.1409, d: 1.1283, sd: 14.0, medium: 9 }, // L9 (D2 front)
+    { label: "19", R: 26.564, d: 6.9913, sd: 13.5, medium: 10 }, // L9→L10 junction
+    { label: "20", R: -77.9021, sd: 13.0 }, // D20 (variable)
     // ── G4a (VR) ────────────────────────────────────────────
-    { label: "21", R: 754.4676, d: 1.1, nd: 1.8061, elemId: 11, sd: 13.0 }, // L11 (D3 front)
-    { label: "22", R: 21.4197, d: 4.805, nd: 1.80518, elemId: 12, sd: 12.5 }, // L11→L12 junction
-    { label: "23", R: 37.4268, d: 8.821, nd: 1.0, elemId: 0, sd: 12.0 }, // G4a→G4b air gap
+    { label: "21", R: 754.4676, d: 1.1, sd: 13.0, medium: 11 }, // L11 (D3 front)
+    { label: "22", R: 21.4197, d: 4.805, sd: 12.5, medium: 12 }, // L11→L12 junction
+    { label: "23", R: 37.4268, d: 8.821, sd: 12.0 }, // G4a→G4b air gap
     // ── G4b ─────────────────────────────────────────────────
-    { label: "24", R: -27.164, d: 1.1, nd: 1.51823, elemId: 13, sd: 14.0 },
-    { label: "25", R: -51.22, d: 0.15, nd: 1.0, elemId: 0, sd: 14.5 },
-    { label: "26", R: 88.6706, d: 4.9019, nd: 1.7859, elemId: 14, sd: 15.0 },
-    { label: "27", R: -88.6706, d: 53.12017, nd: 1.0, elemId: 0, sd: 15.5 }, // D27 / BFD (variable)
+    { label: "24", R: -27.164, d: 1.1, sd: 14.0, medium: 13 },
+    { label: "25", R: -51.22, d: 0.15, sd: 14.5 },
+    { label: "26", R: 88.6706, d: 4.9019, sd: 15.0, medium: 14 },
+    { label: "27", R: -88.6706, sd: 15.5 }, // D27 / BFD (variable)
   ],
 
-  asph: {},
-
-  focusPositions: [0, 0.7763697575697683, 1],
-  var: {
-    "8": [3.0, 12.247, 21.289], // G1→G2 gap: G2 moves image-ward
-    "13": [21.449, 12.203, 3.16], // G2→STO gap
-    STO: [14.484, 6.965, 0.0], // STO→G3 gap: G3 moves object-ward
-    "20": [2.0, 9.519, 16.484], // G3→G4a gap
-    "27": [53.12017, 52.48194, 52.48113], // BFD (slight change due to conjugate shift)
+  focus: {
+    closeFocusM: 0.30984563,
+    keyframes: [0, 0.7763697575697683, 1],
+    description:
+      "Source infinity, 0.5× and 1× focus stations: G2 moves imageward and G3 objectward. Published BF changes by 0.63904 mm despite the fixed-group description, producing that common camera-relative offset. The source varying iris diameter and lateral VR motion are not simulated.",
+    // (moved from publishedStations) Every focus keyframe is a source row.
+    published: [1, 2],
   },
-  varLabels: [
-    ["8", "D8"],
-    ["13", "D13"],
-    ["STO", "D14"],
-    ["20", "D20"],
-    ["27", "BF"],
-  ],
+
+  gaps: {
+    "8": { label: "D8", values: [[3.0, 12.247, 21.289]] }, // G1→G2 gap: G2 moves image-ward
+    "13": { label: "D13", values: [[21.449, 12.203, 3.16]] }, // G2→STO gap
+    STO: { label: "D14", values: [[14.484, 6.965, 0.0]] }, // STO→G3 gap: G3 moves object-ward
+    "20": { label: "D20", values: [[2.0, 9.519, 16.484]] }, // G3→G4a gap
+    "27": { label: "BF", values: [[53.12017, 52.48194, 52.48113]] }, // BFD (slight change due to conjugate shift)
+  },
+
+  aperture: { nominalFNumber: 2.88, fStops: [2.88, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32 },
 
   groups: [
     { text: "G1 (+55 mm)", fromSurface: "1", toSurface: "8" },
@@ -285,14 +289,7 @@ const LENS_DATA = {
     { text: "D3 (L11+L12) VR", fromSurface: "21", toSurface: "23" },
   ],
 
-  closeFocusM: 0.30984563,
-  // Every focus keyframe is a source row.
-  publishedStations: { focus: [1, 2] },
-  nominalFno: 2.88,
-  maxFstop: 32,
-  fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22, 32],
-  scFill: 0.55,
-  yScFill: 0.5,
-} satisfies LensDataInput;
+  layout: { scFill: 0.55, yScFill: 0.5 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

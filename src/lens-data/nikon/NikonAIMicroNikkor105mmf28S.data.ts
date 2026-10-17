@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -32,31 +32,35 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-ai-micro-nikkor-105mm-f28s",
   maker: "Nikon",
   name: "NIKON AI MICRO-NIKKOR 105mm f/2.8 S",
   subtitle: "US 4,392,724 Example 1 — Hamanishi / Nippon Kogaku",
-  specs: [
-    "10 elements / 9 groups",
-    "f = 105.003 mm",
-    "F/2.8",
-    "2ω = 23.25°",
-    "All-spherical",
-    "CRC floating focus to 1:2",
-  ],
 
-  focalLengthMarketing: 105,
-  focalLengthDesign: 105.003,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.8,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,392,724",
-  patentAuthors: ["Yoshinari Hamanishi"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1983,
-  elementCount: 10,
-  groupCount: 9,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "10 elements / 9 groups",
+      "f = 105.003 mm",
+      "F/2.8",
+      "2ω = 23.25°",
+      "All-spherical",
+      "CRC floating focus to 1:2",
+    ],
+    elementCount: 10,
+    groupCount: 9,
+    focalLengthMm: { marketing: 105, design: 105.003 },
+    fNumber: { marketing: 2.8, design: 2.8 },
+  },
+
+  source: {
+    patentNumber: "US 4,392,724",
+    patentYear: 1983,
+    authors: ["Yoshinari Hamanishi"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   elements: [
     {
@@ -66,7 +70,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.77279,
       vd: 49.4,
-      fl: 90.15,
+      focalLengthMm: 90.15,
       glass: "TAF1 / TAF105 class (HOYA, 773/496)",
       role: "High-index front positive collector; near plano-convex bend set by patent q1 condition.",
     },
@@ -77,7 +81,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.717,
       vd: 48.1,
-      fl: 76.62,
+      focalLengthMm: 76.62,
       glass: "LAF3 class (HOYA, 717/480; S-LAM3 equivalent)",
       role: "Second positive component in G1, convex to the object side.",
     },
@@ -88,7 +92,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7495,
       vd: 35.2,
-      fl: -44.33,
+      focalLengthMm: -44.33,
       glass: "E-LAF7 / S-LAM7 class (750/350-353)",
       role: "Achromatizing negative meniscus in the first group.",
     },
@@ -99,10 +103,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.68893,
       vd: 31.1,
-      fl: -40.91,
+      focalLengthMm: -40.91,
       glass: "E-FD8 / S-TIM28 class (689/311-313)",
-      cemented: "L21",
       role: "Front flint member of the weakly negative G2 cemented meniscus.",
+      cemented: "L21",
     },
     {
       id: 5,
@@ -111,10 +115,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7335,
       vd: 51.1,
-      fl: 50.87,
+      focalLengthMm: 50.87,
       glass: "TAC4 class (HOYA, 734/511)",
-      cemented: "L21",
       role: "Rear lanthanum-crown member of the G2 cemented meniscus.",
+      cemented: "L21",
     },
     {
       id: 6,
@@ -123,7 +127,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6935,
       vd: 53.8,
-      fl: 83.04,
+      focalLengthMm: 83.04,
       glass: "LAC13 class (HOYA, 694/533; patent νd = 53.8)",
       role: "Main positive power element of G2, immediately behind the diaphragm.",
     },
@@ -134,7 +138,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.59507,
       vd: 35.5,
-      fl: 130.32,
+      focalLengthMm: 130.32,
       glass: "Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)",
       role: "Positive entry element of the divergent rear group.",
     },
@@ -145,7 +149,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.79668,
       vd: 45.5,
-      fl: -43.97,
+      focalLengthMm: -43.97,
       glass: "TAF2 / J-LASF017 class (795/454; patent nd = 1.79668)",
       role: "Strong negative element carrying most of the rear group's divergent power.",
     },
@@ -156,7 +160,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59507,
       vd: 35.5,
-      fl: 61.57,
+      focalLengthMm: 61.57,
       glass: "Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)",
       role: "Positive element that balances the L32 divergence and assists field correction.",
     },
@@ -167,68 +171,58 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80454,
       vd: 39.6,
-      fl: -97.92,
+      focalLengthMm: -97.92,
       glass: "NBFD3 class (HOYA, 805/396)",
       role: "Final high-index negative meniscus in the fixed rear group.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 74.5, d: 5, nd: 1.77279, elemId: 1, sd: 25.2 },
-    { label: "2", R: -1042.7, d: 0.15, nd: 1, elemId: 0, sd: 24.7 },
-    { label: "3", R: 29, d: 5, nd: 1.717, elemId: 2, sd: 20 },
-    { label: "4", R: 57, d: 2, nd: 1, elemId: 0, sd: 20 },
-    { label: "5", R: 91.28, d: 2, nd: 1.7495, elemId: 3, sd: 20 },
-    { label: "6", R: 24.131, d: 13.9866, nd: 1, elemId: 0, sd: 19.8 },
-    { label: "7", R: -31.19, d: 2, nd: 1.68893, elemId: 4, sd: 16 },
-    { label: "8", R: 300, d: 10.5, nd: 1.7335, elemId: 5, sd: 16 },
-    { label: "9", R: -41.983, d: 1.5, nd: 1, elemId: 0, sd: 16 },
-    { label: "STO", R: 1e15, d: 1.5, nd: 1, elemId: 0, sd: 14.024 },
-    { label: "10", R: 310.3, d: 5, nd: 1.6935, elemId: 6, sd: 15.8 },
-    { label: "11", R: -70.248, d: 8.1258, nd: 1, elemId: 0, sd: 15.8 },
-    { label: "12", R: -191.637, d: 4, nd: 1.59507, elemId: 7, sd: 16 },
-    { label: "13", R: -55.637, d: 2, nd: 1, elemId: 0, sd: 16 },
-    { label: "14", R: -114.216, d: 1.8, nd: 1.79668, elemId: 8, sd: 15.5 },
-    { label: "15", R: 50.88, d: 1.8, nd: 1, elemId: 0, sd: 15.5 },
-    { label: "16", R: 45.69, d: 6, nd: 1.59507, elemId: 9, sd: 16 },
-    { label: "17", R: -175.85, d: 4.6, nd: 1, elemId: 0, sd: 16 },
-    { label: "18", R: -38.545, d: 2, nd: 1.80454, elemId: 10, sd: 16.2 },
-    { label: "19", R: -77.213, d: 43.1068, nd: 1, elemId: 0, sd: 16.2 },
+    { label: "1", R: 74.5, d: 5, sd: 25.2, medium: 1 },
+    { label: "2", R: -1042.7, d: 0.15, sd: 24.7 },
+    { label: "3", R: 29, d: 5, sd: 20, medium: 2 },
+    { label: "4", R: 57, d: 2, sd: 20 },
+    { label: "5", R: 91.28, d: 2, sd: 20, medium: 3 },
+    { label: "6", R: 24.131, sd: 19.8 },
+    { label: "7", R: -31.19, d: 2, sd: 16, medium: 4 },
+    { label: "8", R: 300, d: 10.5, sd: 16, medium: 5 },
+    { label: "9", R: -41.983, d: 1.5, sd: 16 },
+    { label: "STO", R: "flat", d: 1.5 },
+    { label: "10", R: 310.3, d: 5, sd: 15.8, medium: 6 },
+    { label: "11", R: -70.248, sd: 15.8 },
+    { label: "12", R: -191.637, d: 4, sd: 16, medium: 7 },
+    { label: "13", R: -55.637, d: 2, sd: 16 },
+    { label: "14", R: -114.216, d: 1.8, sd: 15.5, medium: 8 },
+    { label: "15", R: 50.88, d: 1.8, sd: 15.5 },
+    { label: "16", R: 45.69, d: 6, sd: 16, medium: 9 },
+    { label: "17", R: -175.85, d: 4.6, sd: 16 },
+    { label: "18", R: -38.545, d: 2, sd: 16.2, medium: 10 },
+    { label: "19", R: -77.213, d: 43.1068, sd: 16.2 },
   ],
 
-  asph: {},
-
-  var: {
-    "6": [13.9866, 20.682],
-    "11": [8.1258, 34.3666],
+  focus: {
+    closeFocusM: 0.41,
+    description:
+      "CRC floating focus: G1 and G2 move objectward relative to the fixed rear divergent group G3 while D6 and D11 increase; the diaphragm moves with G2.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
   },
 
-  varLabels: [
-    ["6", "D6 G1–G2"],
-    ["11", "D11 G2–G3"],
-  ],
+  gaps: {
+    "6": { label: "D6 G1–G2", values: [[13.9866, 20.682]] },
+    "11": { label: "D11 G2–G3", values: [[8.1258, 34.3666]] },
+  },
+
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 9 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "6" },
     { text: "G2", fromSurface: "7", toSurface: "11" },
     { text: "G3", fromSurface: "12", toSurface: "19" },
   ],
-
   doublets: [{ text: "L21", fromSurface: "7", toSurface: "9" }],
 
-  closeFocusM: 0.41,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  focusDescription:
-    "CRC floating focus: G1 and G2 move objectward relative to the fixed rear divergent group G3 while D6 and D11 increase; the diaphragm moves with G2.",
-
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
-  maxFstop: 32,
-  apertureBlades: 9,
-
-  scFill: 0.58,
-  yScFill: 0.58,
-} satisfies LensDataInput;
+  layout: { scFill: 0.58, yScFill: 0.58 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

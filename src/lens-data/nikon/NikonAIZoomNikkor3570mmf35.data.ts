@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
@@ -36,34 +36,34 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-ai-s-zoom-nikkor-35-70mm-f35",
   maker: "Nikon",
   name: "NIKON AI-S ZOOM-NIKKOR 35-70mm f/3.5",
   subtitle: "US 4,266,860, Second Embodiment — Nippon Kogaku / Hayashi",
-  specs: [
-    "10 elements / 9 groups",
-    "f = 36.02–68.79 mm design; marketed 35–70 mm",
-    "F/3.5 constant aperture",
-    "negative-positive two-group zoom",
-    "differential L11/L12 close-distance correction",
-  ],
 
-  focalLengthMarketing: [35, 70],
-  focalLengthDesign: [36.02194, 68.79028],
-  apertureMarketing: 3.5,
-  apertureDesign: 3.5,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,266,860",
-  patentAuthors: ["Kiyoshi Hayashi"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1981,
-  elementCount: 10,
-  groupCount: 9,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "10 elements / 9 groups",
+      "f = 36.02–68.79 mm design; marketed 35–70 mm",
+      "F/3.5 constant aperture",
+      "negative-positive two-group zoom",
+      "differential L11/L12 close-distance correction",
+    ],
+    elementCount: 10,
+    groupCount: 9,
+    focalLengthMm: { marketing: [35, 70], design: [36.02194, 68.79028] },
+    fNumber: { marketing: 3.5, design: 3.5 },
+  },
 
-  zoomPositions: [36.02194, 68.79028],
-  zoomLabels: ["35 mm", "70 mm"],
-  zoomStep: 0.004,
+  source: {
+    patentNumber: "US 4,266,860",
+    patentYear: 1981,
+    authors: ["Kiyoshi Hayashi"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   elements: [
     {
@@ -73,7 +73,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.60323,
       vd: 42.5,
-      fl: 97.03,
+      focalLengthMm: 97.03,
       glass: "603/425 barium flint; Sumita K-BaSF5-equivalent",
       apd: false,
       role: "Front positive collector in the divergent L11 sub-group.",
@@ -85,7 +85,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6779,
       vd: 55.5,
-      fl: -36.14,
+      focalLengthMm: -36.14,
       glass: "S-LAL12 (OHARA), lanthanum crown",
       apd: false,
       role: "Primary negative-power element of L11.",
@@ -97,7 +97,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.713,
       vd: 53.9,
-      fl: -78.98,
+      focalLengthMm: -78.98,
       glass: "S-LAL8 (OHARA), lanthanum crown",
       apd: false,
       role: "Secondary negative meniscus completing the divergent L11 power.",
@@ -109,7 +109,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.59507,
       vd: 35.6,
-      fl: 95.31,
+      focalLengthMm: 95.31,
       glass: "FF5 catalog equivalent (patent 595356; production supplier unspecified)",
       apd: false,
       role: "Convergent L12 element; the close-distance correction element within L1.",
@@ -121,7 +121,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.62041,
       vd: 60.3,
-      fl: 59.25,
+      focalLengthMm: 59.25,
       glass: "S-BSM16 / SK16 class dense barium crown",
       apd: false,
       role: "Positive crown member of the cemented achromat at the front of L2.",
@@ -134,7 +134,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.5,
-      fl: -183.99,
+      focalLengthMm: -183.99,
       glass: "S-TIH6 / SF6 class dense flint",
       apd: false,
       role: "Dense-flint member of the cemented achromat.",
@@ -147,7 +147,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.51118,
       vd: 50.9,
-      fl: 58.02,
+      focalLengthMm: 58.02,
       glass: "KF8 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
       role: "Positive relay element in the second group.",
@@ -159,7 +159,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.5168,
       vd: 64.2,
-      fl: 127.95,
+      focalLengthMm: 127.95,
       glass: "N-BK7 / BK7-type borosilicate crown; current OHARA S-BSL7 is not exact",
       apd: false,
       role: "Moderate positive relay meniscus behind L7.",
@@ -171,7 +171,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80518,
       vd: 25.5,
-      fl: -22.07,
+      focalLengthMm: -22.07,
       glass: "S-TIH6 / SF6 class dense flint",
       apd: false,
       role: "Strong negative field-flattening and chromatic-correction element in L2.",
@@ -183,7 +183,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.64831,
       vd: 33.8,
-      fl: 38.17,
+      focalLengthMm: 38.17,
       glass: "648/338 dense flint; SF12 / FD12 class, exact current catalog identity unresolved",
       apd: false,
       role: "Rear positive element controlling final convergence, field curvature, and distortion balance.",
@@ -191,49 +191,67 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 61.849, d: 8.2, nd: 1.60323, elemId: 1, sd: 22.5 },
-    { label: "2", R: -1037.164, d: 0.7, nd: 1.0, elemId: 0, sd: 22.0 },
-    { label: "3", R: 1000.0, d: 1.5, nd: 1.6779, elemId: 2, sd: 20.5 },
-    { label: "4", R: 23.9, d: 6.8, nd: 1.0, elemId: 0, sd: 20.0 },
-    { label: "5", R: 178.734, d: 1.5, nd: 1.713, elemId: 3, sd: 16.8 },
-    { label: "6", R: 42.672, d: 5.7, nd: 1.0, elemId: 0, sd: 16.8 },
-    { label: "7", R: 34.11, d: 3.9, nd: 1.59507, elemId: 4, sd: 18.0 },
-    { label: "8", R: 81.925, d: 33.45, nd: 1.0, elemId: 0, sd: 17.8 },
-    { label: "9", R: 72.84, d: 3.5, nd: 1.62041, elemId: 5, sd: 14.5 },
-    { label: "10", R: -72.84, d: 1.0, nd: 1.80518, elemId: 6, sd: 14.5 },
-    { label: "11", R: -144.173, d: 0.1, nd: 1.0, elemId: 0, sd: 14.5 },
-    { label: "12", R: 26.644, d: 4.9, nd: 1.51118, elemId: 7, sd: 14.5 },
-    { label: "13", R: 246.0, d: 0.1, nd: 1.0, elemId: 0, sd: 14.5 },
-    { label: "14", R: 20.743, d: 4.5, nd: 1.5168, elemId: 8, sd: 13.8 },
-    { label: "15", R: 27.99, d: 1.95, nd: 1.0, elemId: 0, sd: 13.2 },
-    { label: "STO", R: 1e15, d: 1.95, nd: 1.0, elemId: 0, sd: 9.6 },
-    { label: "16", R: -370.855, d: 1.5, nd: 1.80518, elemId: 9, sd: 11.2 },
-    { label: "17", R: 18.7, d: 5.2, nd: 1.0, elemId: 0, sd: 11.2 },
-    { label: "18", R: 64.66, d: 3.8, nd: 1.64831, elemId: 10, sd: 12.0 },
-    { label: "19", R: -39.168, d: 43.7, nd: 1.0, elemId: 0, sd: 12.0 },
+    { label: "1", R: 61.849, d: 8.2, sd: 22.5, medium: 1 },
+    { label: "2", R: -1037.164, d: 0.7, sd: 22.0 },
+    { label: "3", R: 1000.0, d: 1.5, sd: 20.5, medium: 2 },
+    { label: "4", R: 23.9, d: 6.8, sd: 20.0 },
+    { label: "5", R: 178.734, d: 1.5, sd: 16.8, medium: 3 },
+    { label: "6", R: 42.672, sd: 16.8 },
+    { label: "7", R: 34.11, d: 3.9, sd: 18.0, medium: 4 },
+    { label: "8", R: 81.925, sd: 17.8 },
+    { label: "9", R: 72.84, d: 3.5, sd: 14.5, medium: 5 },
+    { label: "10", R: -72.84, d: 1.0, sd: 14.5, medium: 6 },
+    { label: "11", R: -144.173, d: 0.1, sd: 14.5 },
+    { label: "12", R: 26.644, d: 4.9, sd: 14.5, medium: 7 },
+    { label: "13", R: 246.0, d: 0.1, sd: 14.5 },
+    { label: "14", R: 20.743, d: 4.5, sd: 13.8, medium: 8 },
+    { label: "15", R: 27.99, d: 1.95, sd: 13.2 },
+    { label: "STO", R: "flat", d: 1.95 },
+    { label: "16", R: -370.855, d: 1.5, sd: 11.2, medium: 9 },
+    { label: "17", R: 18.7, d: 5.2, sd: 11.2 },
+    { label: "18", R: 64.66, d: 3.8, sd: 12.0, medium: 10 },
+    { label: "19", R: -39.168, sd: 12.0 },
   ],
 
-  asph: {},
-
-  var: {
-    "6": [
-      [5.7, 6.2],
-      [5.7, 6.2],
+  zoom: {
+    stations: [
+      { focalLengthMm: 36.02194, label: "35 mm" },
+      { focalLengthMm: 68.79028, label: "70 mm" },
     ],
-    "8": [
-      [33.45, 57.06354],
-      [0.65, 12.32451],
-    ],
-    "19": [
-      [43.7, 43.7],
-      [66.3, 66.3],
-    ],
+    step: 0.004,
   },
-  varLabels: [
-    ["6", "D6 close correction"],
-    ["8", "D8 L1–L2 spacing"],
-    ["19", "BF"],
-  ],
+
+  focus: {
+    closeFocusM: 0.35,
+    description:
+      "L11 and L12 move objectward for close focus, with L11 moving farther so D6 increases from 5.7 mm to 6.2 mm; D8 close-focus values are paraxial beta=-0.25 proxy values.",
+  },
+
+  gaps: {
+    "6": {
+      label: "D6 close correction",
+      values: [
+        [5.7, 6.2],
+        [5.7, 6.2],
+      ],
+    },
+    "8": {
+      label: "D8 L1–L2 spacing",
+      values: [
+        [33.45, 57.06354],
+        [0.65, 12.32451],
+      ],
+    },
+    "19": {
+      label: "BF",
+      values: [
+        [43.7, 43.7],
+        [66.3, 66.3],
+      ],
+    },
+  },
+
+  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "L11", fromSurface: "1", toSurface: "6" },
@@ -243,15 +261,9 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "D1", fromSurface: "9", toSurface: "11" }],
 
-  focusDescription:
-    "L11 and L12 move objectward for close focus, with L11 moving farther so D6 increases from 5.7 mm to 6.2 mm; D8 close-focus values are paraxial beta=-0.25 proxy values.",
-  nominalFno: 3.5,
-  closeFocusM: 0.35,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-  scFill: 0.62,
-  yScFill: 0.5,
-  offAxisFieldFrac: 0.5,
-} satisfies LensDataInput;
+  layout: { scFill: 0.62, yScFill: 0.5 },
+
+  rays: { offAxisFieldFrac: 0.5 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

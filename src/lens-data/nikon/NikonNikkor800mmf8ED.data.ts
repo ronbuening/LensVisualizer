@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -21,9 +21,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  behind r9: a nominal front-of-focusing-unit estimate obtained by  ║
  * ║  comparing the 498 mm ED lens-head length in Nikon's 1978 sales    ║
  * ║  manual with the 481.3 mm patent vertex track. This is not a       ║
- * ║  measured diaphragm coordinate. Its SD is calibrated paraxially    ║
- * ║  to the published F/8 target and is not independent evidence of a  ║
- * ║  production iris diameter.                                         ║
+ * ║  measured diaphragm coordinate. The stop radius is derived from    ║
+ * ║  the design f-number, published F/8; it is not independent         ║
+ * ║  evidence of a production iris diameter.                           ║
  * ║                                                                    ║
  * ║  APERTURE PATH: this one-STO model represents the AU-1 automatic   ║
  * ║  diaphragm path, documented as f/8–f/22 for the 800mm lens. The    ║
@@ -58,123 +58,131 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-nikkor-800mm-f8-ed",
   maker: "Nikon",
   name: "NIKON NIKKOR 800mm f/8 ED",
   subtitle: "US 3,774,991 Example III — strong production correlation; stop and SDs modeled",
-  specs: [
-    "5 ELEMENTS / 4 GROUPS",
-    "f = 800.095 mm (d-line model)",
-    "F/8 (stop calibrated)",
-    "6° PATENT DESIGN FIELD",
-    "AU-1 UNIT FOCUS; 20 m MFD METADATA (61 ft alternate Nikon row)",
-  ],
 
-  focalLengthMarketing: 800,
-  focalLengthDesign: 800.094590318,
-  apertureMarketing: 8,
-  apertureDesign: 8,
-  lensMounts: ["nikon-f"],
-  imageFormat: "6x6",
-  patentNumber: "US 3,774,991",
-  patentAuthors: ["Yoshiyuki Shimizu"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1973,
-  elementCount: 5,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "6x6",
+    specs: [
+      "5 ELEMENTS / 4 GROUPS",
+      "f = 800.095 mm (d-line model)",
+      "F/8 (stop calibrated)",
+      "6° PATENT DESIGN FIELD",
+      "AU-1 UNIT FOCUS; 20 m MFD METADATA (61 ft alternate Nikon row)",
+    ],
+    elementCount: 5,
+    groupCount: 4,
+    focalLengthMm: { marketing: 800, design: 800.094590318 },
+    fNumber: { marketing: 8, design: 8 },
+  },
+
+  source: {
+    patentNumber: "US 3,774,991",
+    patentYear: 1973,
+    authors: ["Yoshiyuki Shimizu"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   elements: [
     {
       id: 1,
       name: "L1",
-      diagramLabel: "L1",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.48614,
       vd: 81.5,
       indexReference: "d",
-      fl: 365.630831,
+      focalLengthMm: 365.630831,
       glass: "Unmatched (486815 — fluophosphate crown / ED-class; vendor unresolved)",
       apd: "patent",
       apdNote:
         "The patent selects phosphate / fluophosphate crown for the positive component for its low partial-dispersion value k (US 3,774,991, printed pp. 1–3); production ED element by correlation.",
       role: "Low-dispersion positive front component of the achromatized forward group.",
+      diagramLabel: "L1",
     },
     {
       id: 2,
       name: "L2",
-      diagramLabel: "L2",
       label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.61266,
       vd: 44.3,
       indexReference: "d",
-      fl: -278.336772,
+      focalLengthMm: -278.336772,
       glass: "J-KZFH1 (HIKARI) — patent antimony flint 613443",
       apd: "patent",
       apdNote:
         "The patent selects antimony flint for the negative component for its partial-dispersion value k, paired with the phosphate crown to reduce secondary spectrum (US 3,774,991, printed pp. 1–3).",
       role: "Negative chromatic partner between the two positive forward components.",
+      diagramLabel: "L2",
     },
     {
       id: 3,
       name: "L3",
-      diagramLabel: "L3",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.56953,
       vd: 49.5,
       indexReference: "d",
-      fl: 436.601356,
+      focalLengthMm: 436.601356,
       glass: "570495 — barium flint class (supplier unresolved)",
       role: "Positive barium-flint component completing the net-positive forward group.",
+      diagramLabel: "L3",
     },
     {
       id: 4,
       name: "L4",
-      diagramLabel: "L4",
       label: "Element 4",
       type: "Plano-Concave Negative",
       nd: 1.51885,
       vd: 59,
       indexReference: "d",
-      fl: -289.100896,
+      focalLengthMm: -289.100896,
       glass: "J-K3 (HIKARI) nearest curve — patent 519590 crown, Δnd −0.00062",
       role: "Negative member of the weakly negative cemented rear group.",
+      diagramLabel: "L4",
       cemented: "D1",
     },
     {
       id: 5,
       name: "L5",
-      diagramLabel: "L5",
       label: "Element 5",
       type: "Plano-Convex Positive",
       nd: 1.62399,
       vd: 47,
       indexReference: "d",
-      fl: 373.836119,
+      focalLengthMm: 373.836119,
       glass: "624470 — BaF8-class / barium-flint coordinate (supplier unresolved)",
       role: "Positive member cemented to L4; the L4+L5 pair is weakly negative overall.",
+      diagramLabel: "L5",
       cemented: "D1",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 300, d: 13, nd: 1.48614, elemId: 1, sd: 56 },
-    { label: "2", R: -430, d: 7.3, nd: 1, elemId: 0, sd: 56 },
-    { label: "3", R: -382.5, d: 7.5, nd: 1.61266, elemId: 2, sd: 52.7 },
-    { label: "4", R: 310, d: 1.5, nd: 1, elemId: 0, sd: 52.7 },
-    { label: "5", R: 292, d: 10, nd: 1.56953, elemId: 3, sd: 52.2 },
-    { label: "6", R: -1654.4, d: 435, nd: 1, elemId: 0, sd: 52.2 },
-    { label: "7", R: -150, d: 2, nd: 1.51885, elemId: 4, sd: 20 },
-    { label: "8", R: 1e15, d: 5, nd: 1.62399, elemId: 5, sd: 20 },
-    { label: "9", R: -233.27, d: 16.7, nd: 1, elemId: 0, sd: 20 },
-    { label: "STO", R: 1e15, d: 225.188190036, nd: 1, elemId: 0, sd: 14.074261877 },
+    { label: "1", R: 300, d: 13, sd: 56, medium: 1 },
+    { label: "2", R: -430, d: 7.3, sd: 56 },
+    { label: "3", R: -382.5, d: 7.5, sd: 52.7, medium: 2 },
+    { label: "4", R: 310, d: 1.5, sd: 52.7 },
+    { label: "5", R: 292, d: 10, sd: 52.2, medium: 3 },
+    { label: "6", R: -1654.4, d: 435, sd: 52.2 },
+    { label: "7", R: -150, d: 2, sd: 20, medium: 4 },
+    { label: "8", R: "flat", d: 5, sd: 20, medium: 5 },
+    { label: "9", R: -233.27, d: 16.7, sd: 20 },
+    { label: "STO", R: "flat", d: 225.188190036 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 20,
+    description:
+      "Production focusing uses the AU-1 unit and Nikon states that focusing-unit super-telephotos moved the entire lens. This model preserves only the patent infinity prescription (NO_INTERNAL_RECONSTRUCTION); closeFocusM=20 m is sourced product metadata and no variable focus spacing is authored.",
+  },
+
+  aperture: { nominalFNumber: 8, fStops: [8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "FRONT", fromSurface: "1", toSurface: "6" },
@@ -182,15 +190,7 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
 
-  closeFocusM: 20,
-  focusDescription:
-    "Production focusing uses the AU-1 unit and Nikon states that focusing-unit super-telephotos moved the entire lens. This model preserves only the patent infinity prescription (NO_INTERNAL_RECONSTRUCTION); closeFocusM=20 m is sourced product metadata and no variable focus spacing is authored.",
-
-  nominalFno: 8,
-  fstopSeries: [8, 11, 16, 22],
-  maxFstop: 22,
-
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -25,9 +25,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    - No dimensional scaling is applied: s = 1.000000.                     ║
  * ║                                                                            ║
  * ║  STOP / PUPIL MODEL:                                                       ║
- * ║    - The patent publishes F/2.88 but no physical stop diameter. STO.sd is ║
- * ║      model-derived from the actual transcribed EFL so the infinity model  ║
- * ║      evaluates to F/2.88. It is not a patent-listed aperture dimension.   ║
+ * ║    - The patent publishes F/2.88 but no physical stop diameter. The stop   ║
+ * ║      radius is derived from the design f-number, F/2.88; it is not a       ║
+ * ║      patent-listed aperture dimension.                                     ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS:                                                           ║
  * ║    - The patent does not tabulate clear semi-diameters. Values below are  ║
@@ -49,31 +49,35 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "nikon-ai-af-s-nikkor-300mm-f28d-if-ed",
   maker: "Nikon",
   name: "NIKON AI AF-S NIKKOR 300mm f/2.8 D IF-ED",
   subtitle: "US 5,745,306 A — Example 1; correlated to the 1996 AF-S production lens",
-  specs: [
-    "11 ELEMENTS / 8 GROUPS",
-    "3 ED ELEMENTS",
-    "300mm f/2.8 (MARKETED)",
-    "f = 294.13 mm / F/2.88 (MODEL)",
-    "2.5 m MFD",
-  ],
 
-  focalLengthMarketing: 300,
-  focalLengthDesign: 294.129638,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.88,
-  lensMounts: ["nikon-f"],
-  acceptsTeleconverters: true, // Nikon lists this lens as compatible with the AF-S TC-20E III
-  imageFormat: "135-full-frame",
-  patentNumber: "US 5,745,306 A",
-  patentAuthors: ["Susumu Sato"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 1998,
-  elementCount: 11,
-  groupCount: 8,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "11 ELEMENTS / 8 GROUPS",
+      "3 ED ELEMENTS",
+      "300mm f/2.8 (MARKETED)",
+      "f = 294.13 mm / F/2.88 (MODEL)",
+      "2.5 m MFD",
+    ],
+    elementCount: 11,
+    groupCount: 8,
+    acceptsTeleconverters: true, // Nikon lists this lens as compatible with the AF-S TC-20E III
+    focalLengthMm: { marketing: 300, design: 294.129638 },
+    fNumber: { marketing: 2.8, design: 2.88 },
+  },
+
+  source: {
+    patentNumber: "US 5,745,306 A",
+    patentYear: 1998,
+    authors: ["Susumu Sato"],
+    assignees: ["Nikon Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -84,7 +88,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.52,
-      fl: 297.569744,
+      focalLengthMm: 297.569744,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
       apd: "inferred",
       apdNote: "ED assignment from Nikon's published three-element positions G1-1, G1-2, and G1-5.",
@@ -97,12 +101,12 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.52,
-      fl: 210.237398,
+      focalLengthMm: 210.237398,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
       apd: "inferred",
       apdNote: "ED assignment from Nikon's published three-element positions G1-1, G1-2, and G1-5.",
-      cemented: "D1",
       role: "Second positive ED element of G11; cemented to negative L13.",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -111,10 +115,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.804109,
       vd: 46.54,
-      fl: -240.539235,
+      focalLengthMm: -240.539235,
       glass: "TAF3D catalog equivalent (patent 804465; production supplier unspecified)",
-      cemented: "D1",
       role: "Negative member of the L12/L13 cemented achromat in G11.",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -123,10 +127,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.744,
       vd: 45,
-      fl: -175.442081,
+      focalLengthMm: -175.442081,
       glass: "H-LaF3B catalog equivalent (patent 744450; production supplier unspecified)",
-      cemented: "D2",
       role: "Negative meniscus front member of the positive G12 cemented group.",
+      cemented: "D2",
     },
     {
       id: 5,
@@ -135,12 +139,12 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.52,
-      fl: 107.791053,
+      focalLengthMm: 107.791053,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
       apd: "inferred",
       apdNote: "ED assignment from Nikon's published three-element positions G1-1, G1-2, and G1-5.",
-      cemented: "D2",
       role: "Positive ED rear member of G12; the third ED element in the active train.",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -149,7 +153,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.5168,
       vd: 64.1,
-      fl: -92.911518,
+      focalLengthMm: -92.911518,
       glass: "J-BK7A catalog equivalent (patent 517641; production supplier unspecified)",
       role: "Object-side negative element of the translating G2 internal-focus group.",
     },
@@ -160,10 +164,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.80384,
       vd: 33.89,
-      fl: 67.595194,
+      focalLengthMm: 67.595194,
       glass: "E-LAFH2 catalog equivalent (patent 804339; production supplier unspecified)",
-      cemented: "D3",
       role: "Positive meniscus front member of the cemented negative L22 focus component.",
+      cemented: "D3",
     },
     {
       id: 8,
@@ -172,10 +176,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.58913,
       vd: 61.09,
-      fl: -47.922375,
+      focalLengthMm: -47.922375,
       glass: "S-BAL35 catalog equivalent (patent 589611; production supplier unspecified)",
-      cemented: "D3",
       role: "Negative rear member of the cemented L22 focus component.",
+      cemented: "D3",
     },
     {
       id: 9,
@@ -184,7 +188,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.518601,
       vd: 69.98,
-      fl: 120.249843,
+      focalLengthMm: 120.249843,
       glass: "J-PKH1 catalog equivalent (patent 519700; production supplier unspecified)",
       role: "Front positive element of the fixed G3 rear group, immediately after the stop.",
     },
@@ -195,7 +199,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.79504,
       vd: 28.56,
-      fl: -180.848752,
+      focalLengthMm: -180.848752,
       glass: "J-LAFH3 catalog equivalent (patent 795286; production supplier unspecified)",
       role: "Negative meniscus in G3 for rear-group aberration balancing.",
     },
@@ -206,7 +210,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.41,
-      fl: 153.05176,
+      focalLengthMm: 153.05176,
       glass: "N-FK5 catalog equivalent (patent 487704; production supplier unspecified)",
       role: "Final positive meniscus of G3 ahead of the normalized rear air space.",
     },
@@ -227,74 +231,62 @@ const LENS_DATA = {
    * Cemented junctions S6, S9, and S14 carry the downstream element's elemId and refractive index.
    */
   surfaces: [
-    { label: "3", R: 173.8655, d: 12, nd: 1.49782, elemId: 1, sd: 51.1 },
-    { label: "4", R: -978.0647, d: 0.2, nd: 1, elemId: 0, sd: 50 },
-    { label: "5", R: 133.6355, d: 15, nd: 1.49782, elemId: 2, sd: 50 },
-    { label: "6", R: -464.694, d: 5, nd: 1.804109, elemId: 3, sd: 46.5 },
-    { label: "7", R: 332.9179, d: 46.3, nd: 1, elemId: 0, sd: 45.6 },
-    { label: "8", R: 99.5535, d: 3.5, nd: 1.744, elemId: 4, sd: 35.8 },
-    { label: "9", R: 55.631, d: 15.9, nd: 1.49782, elemId: 5, sd: 35 },
-    { label: "10", R: -1371.0602, d: 29.5505, nd: 1, elemId: 0, sd: 31.5 },
-    { label: "11", R: -169.9686, d: 2.7, nd: 1.5168, elemId: 6, sd: 21.7 },
-    { label: "12", R: 67.2847, d: 4.51, nd: 1, elemId: 0, sd: 19.5 },
-    { label: "13", R: -192.9273, d: 7, nd: 1.80384, elemId: 7, sd: 19.5 },
-    { label: "14", R: -43.081, d: 2.8, nd: 1.58913, elemId: 8, sd: 19.5 },
-    { label: "15", R: 83.8867, d: 19.2807, nd: 1, elemId: 0, sd: 19.5 },
-    { label: "STO", R: 1e15, d: 17, nd: 1, elemId: 0, sd: 19.356356 },
-    { label: "17", R: 194.0386, d: 5.8, nd: 1.518601, elemId: 9, sd: 19.6 },
-    { label: "18", R: -90.9579, d: 3.1, nd: 1, elemId: 0, sd: 19.6 },
-    { label: "19", R: -43.5951, d: 3.5, nd: 1.79504, elemId: 10, sd: 19.6 },
-    { label: "20", R: -64.7897, d: 7.6, nd: 1, elemId: 0, sd: 20 },
-    { label: "21", R: -175.8037, d: 6.7, nd: 1.48749, elemId: 11, sd: 16.0 },
+    { label: "3", R: 173.8655, d: 12, sd: 51.1, medium: 1 },
+    { label: "4", R: -978.0647, d: 0.2, sd: 50 },
+    { label: "5", R: 133.6355, d: 15, sd: 50, medium: 2 },
+    { label: "6", R: -464.694, d: 5, sd: 46.5, medium: 3 },
+    { label: "7", R: 332.9179, d: 46.3, sd: 45.6 },
+    { label: "8", R: 99.5535, d: 3.5, sd: 35.8, medium: 4 },
+    { label: "9", R: 55.631, d: 15.9, sd: 35, medium: 5 },
+    { label: "10", R: -1371.0602, sd: 31.5 },
+    { label: "11", R: -169.9686, d: 2.7, sd: 21.7, medium: 6 },
+    { label: "12", R: 67.2847, d: 4.51, sd: 19.5 },
+    { label: "13", R: -192.9273, d: 7, sd: 19.5, medium: 7 },
+    { label: "14", R: -43.081, d: 2.8, sd: 19.5, medium: 8 },
+    { label: "15", R: 83.8867, sd: 19.5 },
+    { label: "STO", R: "flat", d: 17 },
+    { label: "17", R: 194.0386, d: 5.8, sd: 19.6, medium: 9 },
+    { label: "18", R: -90.9579, d: 3.1, sd: 19.6 },
+    { label: "19", R: -43.5951, d: 3.5, sd: 19.6, medium: 10 },
+    { label: "20", R: -64.7897, d: 7.6, sd: 20 },
+    { label: "21", R: -175.8037, d: 6.7, sd: 16.0, medium: 11 },
     // S22 → rear filter: source d22 14.5 + d23 7.0 (field-stop plane S23 folded out)
-    { label: "22", R: -53.035, d: 21.5, nd: 1, elemId: 0, sd: 16.5 },
+    { label: "22", R: -53.035, d: 21.5, sd: 16.5 },
     // Slip-in filter F (US 5,745,306 A, Example 1 Table 1 surfaces 24–25), drawn as a plane-parallel plate.
     // Its sd is a ray-trace estimate (the source lists none).
     // Gap to the image: d25 10.0 + Bf 74.1335, field-stop plane S26 folded out
-    { label: "24", R: 1e15, d: 2.0, nd: 1.5168, elemId: 12, sd: 19.5 },
-    { label: "25", R: 1e15, d: 84.1335, nd: 1, elemId: 0, sd: 19.5 }, // slip-in filter → image plane
+    { label: "24", R: "flat", d: 2.0, sd: 19.5, medium: 12 },
+    { label: "25", R: "flat", d: 84.1335, sd: 19.5 }, // slip-in filter → image plane
   ],
 
-  asph: {},
-
-  /* ── Published internal-focus spacings ── */
-  var: {
-    "10": [29.5505, 40.3744],
-    "15": [19.2807, 8.4568],
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 2.5,
+    description:
+      "PUBLISHED internal focus: negative G2 translates imageward by 10.8239 mm; D10 increases 29.5505→40.3744 mm while D15 decreases 19.2807→8.4568 mm. The rear image spacing is fixed.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
   },
-  varLabels: [
-    ["10", "D10"],
-    ["15", "D15"],
-  ],
+
+  /* (moved from var) ── Published internal-focus spacings ── */
+  gaps: { "10": { label: "D10", values: [[29.5505, 40.3744]] }, "15": { label: "D15", values: [[19.2807, 8.4568]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.88, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 9 },
 
   groups: [
     { text: "G1", fromSurface: "3", toSurface: "10" },
     { text: "G2", fromSurface: "11", toSurface: "15" },
     { text: "G3", fromSurface: "17", toSurface: "22" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "5", toSurface: "7" },
     { text: "D2", fromSurface: "8", toSurface: "10" },
     { text: "D3", fromSurface: "13", toSurface: "15" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 2.5,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  focusDescription:
-    "PUBLISHED internal focus: negative G2 translates imageward by 10.8239 mm; D10 increases 29.5505→40.3744 mm while D15 decreases 19.2807→8.4568 mm. The rear image spacing is fixed.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.88,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
-  apertureBlades: 9,
-  maxFstop: 22,
-
   /* ── Layout tuning ── */
-  scFill: 0.72,
-  yScFill: 0.4,
-} satisfies LensDataInput;
+  layout: { scFill: 0.72, yScFill: 0.4 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

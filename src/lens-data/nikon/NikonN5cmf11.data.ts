@@ -48,27 +48,31 @@
  *     rims are 22.6 and 20.3 mm; the latter is below the 21.95 mm F/1.1 beam).
  */
 
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-5cm-f11",
   maker: "Nikon",
   name: "NIKON NIKKOR-N 5cm f/1.1",
   subtitle: "US 2,828,671 — Murakami 1958",
-  focalLengthMarketing: 50,
-  focalLengthDesign: 49.93,
-  apertureMarketing: 1.1,
-  apertureDesign: 1.1,
-  lensMounts: ["nikon-s", "leica-ltm"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 2,828,671",
-  patentAuthors: ["Saburo Murakami"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1958,
-  elementCount: 9,
-  groupCount: 6,
-  specs: ["9 elements / 6 groups", "Modified double-Gauss", "All-spherical", "Scaled 0.5× from f = 100 patent"],
-  focusDescription: "Unit focus — entire lens translates; only back focal distance changes (extension calculated)",
+
+  catalog: {
+    lensMounts: ["nikon-s", "leica-ltm"],
+    imageFormat: "135-full-frame",
+    specs: ["9 elements / 6 groups", "Modified double-Gauss", "All-spherical", "Scaled 0.5× from f = 100 patent"],
+    elementCount: 9,
+    groupCount: 6,
+    focalLengthMm: { marketing: 50, design: 49.93 },
+    fNumber: { marketing: 1.1, design: 1.1 },
+  },
+
+  source: {
+    patentNumber: "US 2,828,671",
+    patentYear: 1958,
+    authors: ["Saburo Murakami"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   elements: [
     {
@@ -78,7 +82,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6073,
       vd: 59.5,
-      fl: 223.9,
+      focalLengthMm: 223.9,
       glass: "K-SK7 (Sumita) catalog equivalent (patent 607595; production supplier unspecified)",
       role: "Low-power front positive meniscus distributing convergence gently across the front group.",
     },
@@ -89,7 +93,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6073,
       vd: 59.5,
-      fl: 169.45,
+      focalLengthMm: 169.45,
       glass: "K-SK7 (Sumita) catalog equivalent (patent 607595; production supplier unspecified)",
       role: "Second front meniscus; works with L1 to gradually converge the marginal ray bundle before Component III.",
     },
@@ -100,10 +104,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.717,
       vd: 47.9,
-      fl: 39.36,
+      focalLengthMm: 39.36,
       glass: "S-LAM3 catalog equivalent (patent 717479; production supplier unspecified)",
-      cemented: "D1",
       role: "Positive element of the front cemented doublet; uses the same patent 717479 lanthanum coordinate as L6 and L7.",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -112,10 +116,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.5927,
       vd: 35.4,
-      fl: -29.26,
+      focalLengthMm: -29.26,
       glass: "S-FTM16 (OHARA) catalog equivalent (patent 593354; production supplier unspecified)",
-      cemented: "D1",
       role: "Chromatic correction partner to L3 in cemented doublet D1; low Abbe number balances L3's positive power.",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -124,10 +128,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6483,
       vd: 33.8,
-      fl: -24.7,
+      focalLengthMm: -24.7,
       glass: "S-TIM22 (OHARA) nearest catalog neighbour (patent 648338 at nd 1.6483; catalog nd 1.64769)",
-      cemented: "D2",
       role: "Strongest negative element in the system; provides chromatic correction for the rear group immediately behind the stop.",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -136,10 +140,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.717,
       vd: 47.9,
-      fl: 29.7,
+      focalLengthMm: 29.7,
       glass: "S-LAM3 catalog equivalent (patent 717479; production supplier unspecified)",
-      cemented: "D2",
       role: "Strongest single positive element in the rear group; extraordinarily thick (20.5 mm). Lanthanum glass #2.",
+      cemented: "D2",
     },
     {
       id: 7,
@@ -148,7 +152,7 @@ const LENS_DATA = {
       type: "Plano-Convex",
       nd: 1.717,
       vd: 47.9,
-      fl: 81.1,
+      focalLengthMm: 81.1,
       glass: "S-LAM3 catalog equivalent (patent 717479; production supplier unspecified)",
       role: "Principal power element of the rear group; plano-convex with flat rear contributing zero Seidel aberrations. Lanthanum glass #3.",
     },
@@ -159,10 +163,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6259,
       vd: 35.6,
-      fl: -248.75,
+      focalLengthMm: -248.75,
       glass: "E-F1 (HOYA) catalog equivalent (patent 626356; production supplier unspecified)",
-      cemented: "D3",
       role: "Very weak negative meniscus providing final chromatic fine-tuning with minimal Petzval contribution.",
+      cemented: "D3",
     },
     {
       id: 9,
@@ -171,45 +175,47 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6385,
       vd: 55.5,
-      fl: 92.65,
+      focalLengthMm: 92.65,
       glass: "K-SK18 (Sumita) catalog equivalent (patent 639555; production supplier unspecified)",
-      cemented: "D3",
       role: "Rearmost element; achromatic corrector paired with L8 in cemented doublet D3.",
+      cemented: "D3",
     },
   ],
 
   surfaces: [
     // ── Component I: L1 ──
-    { label: "1", R: 83.8, d: 4.35, nd: 1.6073, elemId: 1, sd: 24.5 },
-    { label: "2", R: 214.15, d: 0.3, nd: 1.0, elemId: 0, sd: 24.0 },
+    { label: "1", R: 83.8, d: 4.35, sd: 24.5, medium: 1 },
+    { label: "2", R: 214.15, d: 0.3, sd: 24.0 },
     // ── Component II: L2 ──
-    { label: "3", R: 46.5, d: 4.25, nd: 1.6073, elemId: 2, sd: 24.0 },
-    { label: "4", R: 81.9, d: 0.7, nd: 1.0, elemId: 0, sd: 22.75 },
+    { label: "3", R: 46.5, d: 4.25, sd: 24.0, medium: 2 },
+    { label: "4", R: 81.9, d: 0.7, sd: 22.75 },
     // ── Component III: L3 + L4 cemented (D1) ──
-    { label: "5", R: 26.75, d: 9.7, nd: 1.717, elemId: 3, sd: 20.2 },
-    { label: "6", R: 436.05, d: 2.05, nd: 1.5927, elemId: 4, sd: 20.2 },
-    { label: "7", R: 16.65, d: 7.5, nd: 1.0, elemId: 0, sd: 13.8 },
+    { label: "5", R: 26.75, d: 9.7, sd: 20.2, medium: 3 },
+    { label: "6", R: 436.05, d: 2.05, sd: 20.2, medium: 4 },
+    { label: "7", R: 16.65, d: 7.5, sd: 13.8 },
     // ── Aperture stop (not tabulated; calculated placement inside d₇ = 12.6 mm, see header) ──
-    { label: "STO", R: 1e15, d: 5.1, nd: 1.0, elemId: 0, sd: 13.7 },
+    { label: "STO", R: "flat", d: 5.1 },
     // ── Component IV: L5 + L6 cemented (D2) ──
-    { label: "8", R: -21.3, d: 2.7, nd: 1.6483, elemId: 5, sd: 13.7 },
-    { label: "9", R: 67.85, d: 10.25, nd: 1.717, elemId: 6, sd: 18.0 },
-    { label: "10", R: -29.05, d: 0.3, nd: 1.0, elemId: 0, sd: 18.0 },
+    { label: "8", R: -21.3, d: 2.7, sd: 13.7, medium: 5 },
+    { label: "9", R: 67.85, d: 10.25, sd: 18.0, medium: 6 },
+    { label: "10", R: -29.05, d: 0.3, sd: 18.0 },
     // ── Component V: L7 ──
-    { label: "11", R: 58.15, d: 5.5, nd: 1.717, elemId: 7, sd: 17.8 },
-    { label: "12", R: 1e15, d: 0.3, nd: 1.0, elemId: 0, sd: 17.8 },
+    { label: "11", R: 58.15, d: 5.5, sd: 17.8, medium: 7 },
+    { label: "12", R: "flat", d: 0.3, sd: 17.8 },
     // ── Component VI: L8 + L9 cemented (D3) ──
-    { label: "13", R: 71.15, d: 1.45, nd: 1.6259, elemId: 8, sd: 18.1 },
-    { label: "14", R: 48.45, d: 3.9, nd: 1.6385, elemId: 9, sd: 18.1 },
-    { label: "15", R: 259.0, d: 23.05, nd: 1.0, elemId: 0, sd: 18.1 },
+    { label: "13", R: 71.15, d: 1.45, sd: 18.1, medium: 8 },
+    { label: "14", R: 48.45, d: 3.9, sd: 18.1, medium: 9 },
+    { label: "15", R: 259.0, sd: 18.1 },
   ],
 
-  asph: {},
-
-  var: {
-    "15": [23.05, 26.14],
+  focus: {
+    closeFocusM: 0.9,
+    description: "Unit focus — entire lens translates; only back focal distance changes (extension calculated)",
   },
-  varLabels: [["15", "BF"]],
+
+  gaps: { "15": { label: "BF", values: [[23.05, 26.14]] } },
+
+  aperture: { nominalFNumber: 1.1, fStops: [1.1, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16], maxFNumber: 16 },
 
   groups: [
     { text: "I", fromSurface: "1", toSurface: "2" },
@@ -225,14 +231,9 @@ const LENS_DATA = {
     { text: "D3", fromSurface: "13", toSurface: "15" },
   ],
 
-  closeFocusM: 0.9,
-  nominalFno: 1.1,
-  fstopSeries: [1.1, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
-  maxFstop: 16,
+  layout: { scFill: 0.5, yScFill: 0.38 },
 
-  scFill: 0.5,
-  yScFill: 0.38,
-  gapSagFrac: 0.98,
-} satisfies LensDataInput;
+  checks: { gapSagFrac: 0.98 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

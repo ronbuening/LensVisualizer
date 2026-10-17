@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -28,31 +28,33 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-gugotto-120mm-f45",
   maker: "Nikon",
   name: "NIKON GUGUTTO MACRO 120mm f/4.5",
   subtitle: "US 5,764,425 Example 4 — Kouichi Ohshita / Nikon",
-  specs: [
-    "3 elements / 2 groups",
-    "120mm f/4.5 fixed aperture",
-    "US5764425 Example 4 scaled ×1.2",
-    "all-spherical telephoto macro",
-  ],
 
-  focalLengthMarketing: 120,
-  focalLengthDesign: 120.002,
-  apertureMarketing: 4.5,
-  apertureDesign: 4.6,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 5,764,425",
-  patentAuthors: ["Kouichi Ohshita"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 1998,
-  elementCount: 3,
-  groupCount: 2,
-  focusDescription:
-    "Unit focus by whole optical assembly extension. Standard Gugutto Macro configuration focuses to about 0.64 m at approximately 1/3×; Sarani Gugutto close-up reassembly is not modeled here.",
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "3 elements / 2 groups",
+      "120mm f/4.5 fixed aperture",
+      "US5764425 Example 4 scaled ×1.2",
+      "all-spherical telephoto macro",
+    ],
+    elementCount: 3,
+    groupCount: 2,
+    focalLengthMm: { marketing: 120, design: 120.002 },
+    fNumber: { marketing: 4.5, design: 4.6 },
+  },
+
+  source: {
+    patentNumber: "US 5,764,425",
+    patentYear: 1998,
+    authors: ["Kouichi Ohshita"],
+    assignees: ["Nikon Corporation"],
+  },
 
   elements: [
     {
@@ -62,7 +64,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.58913,
       vd: 61.09,
-      fl: 41.63,
+      focalLengthMm: 41.63,
       glass: "Q-SK55S / L-BAL35 class (589/611, uncertain 1995 melt)",
       apd: false,
       role: "Primary positive element of the cemented front group; supplies most of the converging power.",
@@ -75,7 +77,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80384,
       vd: 33.89,
-      fl: -72.95,
+      focalLengthMm: -72.95,
       glass: "804339 - dense flint (E-LAFH2 code match; patent nd=1.80384, vd=33.89)",
       apd: false,
       role: "High-index negative achromatizing element cemented to L1; controls axial and lateral color and doublet spherical aberration.",
@@ -88,7 +90,7 @@ const LENS_DATA = {
       type: "Negative Meniscus (convex to image)",
       nd: 1.58913,
       vd: 61.09,
-      fl: -283.62,
+      focalLengthMm: -283.62,
       glass: "Q-SK55S / L-BAL35 class (589/611, uncertain 1995 melt)",
       apd: false,
       role: "Weak negative rear group; provides the telephoto ratio and acts as the field-flattening diverging component.",
@@ -96,22 +98,25 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 32.29764, d: 6.20004, nd: 1.58913, elemId: 1, sd: 16.1 },
-    { label: "2", R: -94.69164, d: 1.40004, nd: 1.80384, elemId: 2, sd: 16.1 },
-    { label: "3", R: 155.0232, d: 20.00004, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "STO", R: 1e15, d: 15.0, nd: 1.0, elemId: 0, sd: 9.18 },
+    { label: "1", R: 32.29764, d: 6.20004, sd: 16.1, medium: 1 },
+    { label: "2", R: -94.69164, d: 1.40004, sd: 16.1, medium: 2 },
+    { label: "3", R: 155.0232, d: 20.00004, sd: 16.0 },
+    { label: "STO", R: "flat", d: 15.0 },
     // Patent surface 5: fixed stop FS, positioned between the aperture stop and L3.
-    { label: "5", R: 1e15, d: 12.0, nd: 1.0, elemId: 0, sd: 10.8 },
-    { label: "6", R: -12.99312, d: 6.79884, nd: 1.58913, elemId: 3, sd: 11.5 },
-    { label: "7", R: -16.82172, d: 48.7884, nd: 1.0, elemId: 0, sd: 14.3 },
+    { label: "5", R: "flat", d: 12.0, sd: 10.8 },
+    { label: "6", R: -12.99312, d: 6.79884, sd: 11.5, medium: 3 },
+    { label: "7", R: -16.82172, sd: 14.3 },
   ],
 
-  asph: {},
-
-  var: {
-    "7": [48.7884, 88.55647],
+  focus: {
+    closeFocusM: 0.64,
+    description:
+      "Unit focus by whole optical assembly extension. Standard Gugutto Macro configuration focuses to about 0.64 m at approximately 1/3×; Sarani Gugutto close-up reassembly is not modeled here.",
   },
-  varLabels: [["7", "BF"]],
+
+  gaps: { "7": { label: "BF", values: [[48.7884, 88.55647]] } },
+
+  aperture: { nominalFNumber: 4.6, fStops: [4.6], maxFNumber: 4.6 },
 
   groups: [
     { text: "Front positive L12", fromSurface: "1", toSurface: "3" },
@@ -119,12 +124,7 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "L12", fromSurface: "1", toSurface: "3" }],
 
-  closeFocusM: 0.64,
-  nominalFno: 4.6,
-  maxFstop: 4.6,
-  fstopSeries: [4.6],
-  scFill: 0.58,
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { scFill: 0.58, yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

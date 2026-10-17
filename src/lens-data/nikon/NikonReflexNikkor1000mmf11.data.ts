@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Nikon Reflex-Nikkor 1000mm f/11
@@ -33,29 +33,27 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-reflex-nikkor-1000mm-f11",
   maker: "Nikon",
   name: "NIKON REFLEX-NIKKOR 1000mm f/11",
   subtitle: "US 3,507,556 Embodiment 1 — Nippon Kogaku / Shimizu",
-  specs: ["5 elements / 5 groups", "f ≈ 1001.4 mm", "Fixed f/11", "2ω = 2°30′", "All-spherical Mangin catadioptric"],
 
-  focalLengthMarketing: 1000,
-  focalLengthDesign: 1001.4,
-  apertureMarketing: 11,
-  apertureDesign: 11,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,507,556",
-  patentAuthors: ["Yoshiyuki Shimizu"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1970,
-  elementCount: 5,
-  groupCount: 5,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: ["5 elements / 5 groups", "f ≈ 1001.4 mm", "Fixed f/11", "2ω = 2°30′", "All-spherical Mangin catadioptric"],
+    elementCount: 5,
+    groupCount: 5,
+    focalLengthMm: { marketing: 1000, design: 1001.4 },
+    fNumber: { marketing: 11, design: 11 },
+  },
 
-  opticalPath: {
-    surfaceOrder: ["STO", "OBS", "1", "2", "M1F", "M1R", "M1F", "M2F", "M2R", "M2F", "L2F", "L2R", "L3F", "L3R"],
-    imagePlane: { z: 263.8236, label: "IMG" },
-    maxInteractions: 16,
+  source: {
+    patentNumber: "US 3,507,556",
+    patentYear: 1970,
+    authors: ["Yoshiyuki Shimizu"],
+    assignees: ["Nippon Kogaku K.K."],
   },
 
   elements: [
@@ -66,7 +64,7 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.51823,
       vd: 59.0,
-      fl: 1316.0,
+      focalLengthMm: 1316.0,
       glass: "K crown, 518/590 class (Hoya E-C3 / Ohara S-NSL3 equivalent)",
       apd: false,
       role: "Weak positive front corrector; contributes spherical-aberration and sine-condition balancing before the folded mirror train.",
@@ -78,7 +76,7 @@ const LENS_DATA = {
       type: "Negative Meniscus, second-surface concave mirror",
       nd: 1.54072,
       vd: 47.2,
-      fl: -1759.6,
+      focalLengthMm: -1759.6,
       glass: "Light flint, 541/472 class (Hoya E-FEL2 / Ohara S-TIL2 equivalent)",
       apd: false,
       role: "Annular primary Mangin. The glass substrate is weakly negative as a refractor, while the rear reflecting surface supplies the main convergence.",
@@ -90,7 +88,7 @@ const LENS_DATA = {
       type: "Meniscus, second-surface convex mirror",
       nd: 1.54814,
       vd: 45.9,
-      fl: -909.5,
+      focalLengthMm: -909.5,
       glass: "Light flint, 548/459 class (LLF1 / Hoya E-FEL1 / Ohara S-TIL1 equivalent)",
       apd: false,
       role: "Small convex Mangin secondary that enlarges and relays the primary image back through the primary perforation.",
@@ -102,7 +100,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.5168,
       vd: 64.2,
-      fl: -99.3,
+      focalLengthMm: -99.3,
       glass: "BK7-family borosilicate crown, 517/642 class (BSC7 / H-K9L equivalent)",
       apd: false,
       role: "Strong negative element in the rear diverging group; primary contributor to field-flattening power.",
@@ -114,7 +112,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.74077,
       vd: 27.7,
-      fl: 283.1,
+      focalLengthMm: 283.1,
       glass: "SF13-family dense flint, 741/277 class (Hoya E-FD13 / Hikari J-SF13 equivalent)",
       apd: false,
       role: "Positive dense-flint partner for L2; moderates colour and spherical residuals while keeping the rear group net negative.",
@@ -123,48 +121,56 @@ const LENS_DATA = {
 
   surfaces: [
     // Synthetic fixed entrance aperture and central obstruction. Not a mechanical diaphragm.
-    { label: "STO", R: 1e15, d: 0.05, nd: 1.0, elemId: 0, sd: 45.52 },
-    { label: "OBS", R: 1e15, d: 0.05, nd: 1.0, elemId: 0, sd: 18.2, interaction: { type: "block" } },
+    { label: "STO", R: "flat", d: 0.05, sd: 45.52 },
+    { label: "OBS", R: "flat", d: 0.05, sd: 18.2, interaction: { type: "block" } },
 
     // L1 front corrector.
-    { label: "1", R: 682.0, d: 10.0, nd: 1.51823, elemId: 1, sd: 52.0 },
-    { label: "2", R: 1e15, d: 4.7, nd: 1.0, elemId: 0, sd: 52.0 },
+    { label: "1", R: 682.0, d: 10.0, sd: 52.0, medium: 1 },
+    { label: "2", R: "flat", d: 4.7, sd: 52.0 },
 
     // M2 is physically near L1. Light later reaches M2F first, reflects from M2R, and exits M2F.
     {
       label: "M2R",
       R: -258.42,
       d: 3.3,
-      nd: 1.54814,
-      elemId: 3,
       sd: 22.0,
+      medium: 3,
       interaction: { type: "reflect", mirrorKind: "second-surface" },
     },
-    { label: "M2F", R: -169.43, d: 147.0, nd: 1.0, elemId: 0, sd: 22.0 },
+    { label: "M2F", R: -169.43, d: 147.0, sd: 22.0 },
 
     // Primary Mangin. The 10 mm patent thickness is R3→R4; the rear correctors sit inside the central opening.
-    { label: "M1F", R: -319.0, d: 10.0, nd: 1.54072, elemId: 2, sd: 48.0, innerSd: 16.5 },
+    { label: "M1F", R: -319.0, d: 10.0, sd: 48.0, innerSd: 16.5, medium: 2 },
     {
       label: "M1R",
       R: -485.185,
       d: -7.0,
-      nd: 1.0,
-      elemId: 0,
       sd: 48.0,
       innerSd: 16.5,
       interaction: { type: "reflect", mirrorKind: "second-surface" },
     },
 
     // Rear diverging/correcting pair, mounted through the primary opening.
-    { label: "L2F", R: -200.0, d: 1.7, nd: 1.5168, elemId: 4, sd: 16.5 },
-    { label: "L2R", R: 69.2, d: 2.0, nd: 1.0, elemId: 0, sd: 16.5 },
-    { label: "L3F", R: 600.0, d: 2.4, nd: 1.74077, elemId: 5, sd: 16.5 },
-    { label: "L3R", R: -321.86, d: 89.6236, nd: 1.0, elemId: 0, sd: 16.5 },
+    { label: "L2F", R: -200.0, d: 1.7, sd: 16.5, medium: 4 },
+    { label: "L2R", R: 69.2, d: 2.0, sd: 16.5 },
+    { label: "L3F", R: 600.0, d: 2.4, sd: 16.5, medium: 5 },
+    { label: "L3R", R: -321.86, d: 89.6236, sd: 16.5 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 8,
+    description:
+      "Manual focusing ring; the patent supplies only the infinity prescription, so close-focus variable spacing is not modeled.",
+  },
+
+  aperture: { nominalFNumber: 11, fStops: [11], maxFNumber: 11 },
+
+  opticalPath: {
+    surfaceOrder: ["STO", "OBS", "1", "2", "M1F", "M1R", "M1F", "M2F", "M2R", "M2F", "L2F", "L2R", "L3F", "L3R"],
+    imagePlane: { z: 263.8236, label: "IMG" },
+    maxInteractions: 16,
+  },
+
   groups: [
     { text: "L1", fromSurface: "1", toSurface: "2" },
     { text: "M2", fromSurface: "M2R", toSurface: "M2F" },
@@ -173,21 +179,9 @@ const LENS_DATA = {
   ],
   doublets: [],
 
-  nominalFno: 11,
-  closeFocusM: 8,
-  fstopSeries: [11],
-  maxFstop: 11,
-  focusDescription:
-    "Manual focusing ring; the patent supplies only the infinity prescription, so close-focus variable spacing is not modeled.",
+  layout: { svgW: 1180, svgH: 520, scFill: 0.82, yScFill: 0.62, maxAspectRatio: 2.4, lensShiftFrac: 0.08 },
 
-  svgW: 1180,
-  svgH: 520,
-  scFill: 0.82,
-  yScFill: 0.62,
-  rayLeadFrac: 0.18,
-  lensShiftFrac: 0.08,
-  offAxisFieldFrac: 0.8,
-  maxAspectRatio: 2.4,
-} satisfies LensDataInput;
+  rays: { rayLeadFrac: 0.18, offAxisFieldFrac: 0.8 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

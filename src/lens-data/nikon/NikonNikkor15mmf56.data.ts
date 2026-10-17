@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -31,10 +31,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  not counted in elementCount / groupCount.                                   ║
  * ║                                                                              ║
  * ║  NOTE ON STOP: The patent gives no diaphragm row. The stop is placed at the  ║
- * ║  midpoint of the 1.60 mm air gap between the flat faces r20 and r21 (0.80 +  ║
- * ║  0.80 mm), where Fig. 1 draws the diaphragm. Its semi-diameter is            ║
- * ║  calibrated by exact on-axis ray tracing to F/5.6 (paraxial pupil            ║
- * ║  calculation with the same iris: F/5.50); it is not a published iris size.   ║
+ * ║  midpoint of the 1.60 mm air gap between the flat faces r20 and r21          ║
+ * ║  (0.80 + 0.80 mm), where Fig. 1 draws the diaphragm. The stop radius is      ║
+ * ║  derived from the design f-number, F/5.6 (paraxial pupil calculation with    ║
+ * ║  the same iris: F/5.50); it is not a published iris size.                    ║
  * ║                                                                              ║
  * ║  NOTE ON SEMI-DIAMETERS: The patent lists none. Values follow the element    ║
  * ║  rims of patent Fig. 1 (PDF p. 4, 0.1317 mm/px at the 352 dpi native scan),  ║
@@ -73,25 +73,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "nikon-nikkor-15mm-f56",
   maker: "Nikon",
   name: "NIKON NIKKOR-QD·C AUTO 15mm f/5.6",
   subtitle:
     "JP S48-71634 A spherical reference table — production-correlated model (correlation not confirmed by Nikon)",
-  specs: ["14 ELEMENTS / 12 GROUPS + BUILT-IN FILTER", "MODELED EFL 15.309 mm", "F/5.6 · 110° FIELD", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 15,
-  focalLengthDesign: 15.309,
-  apertureMarketing: 5.6,
-  apertureDesign: 5.6,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP S48-71634 A",
-  patentAuthors: ["Tomowaki Takahashi"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1973,
-  elementCount: 14,
-  groupCount: 12,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "14 ELEMENTS / 12 GROUPS + BUILT-IN FILTER",
+      "MODELED EFL 15.309 mm",
+      "F/5.6 · 110° FIELD",
+      "ALL-SPHERICAL",
+    ],
+    elementCount: 14,
+    groupCount: 12,
+    focalLengthMm: { marketing: 15, design: 15.309 },
+    fNumber: { marketing: 5.6, design: 5.6 },
+  },
+
+  source: {
+    patentNumber: "JP S48-71634 A",
+    patentYear: 1973,
+    authors: ["Tomowaki Takahashi"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   /* ── Elements ──
    * nd / vd are the patent's n / ν columns. The patent does not state the spectral line; they are traced as
@@ -107,7 +116,7 @@ const LENS_DATA = {
       nd: 1.78764,
       vd: 47.5,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
-      fl: -143.38605684816815,
+      focalLengthMm: -143.38605684816815,
       glass:
         "788475 — lanthanum dense flint, LaSF014 class (nearest J-LASF014 HIKARI / TAF4 HOYA, Δnd +0.0004; supplier unconfirmed)",
       role: "Front negative meniscus; opens the diverging front group and sets the front diameter for the 110° field.",
@@ -120,7 +129,7 @@ const LENS_DATA = {
       nd: 1.71341,
       vd: 53.9,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
-      fl: 93.19418695841442,
+      focalLengthMm: 93.19418695841442,
       glass:
         "713539 — lanthanum crown, LaK8 class (nearest J-LAK8 HIKARI / LAC8 HOYA, Δnd −0.0004; supplier unconfirmed)",
       role: "Thick positive meniscus inside the diverging front group.",
@@ -133,7 +142,7 @@ const LENS_DATA = {
       nd: 1.6932,
       vd: 53.5,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
-      fl: -67.90550460774206,
+      focalLengthMm: -67.90550460774206,
       glass:
         "693535 — lanthanum crown, LaK13 class (nearest LAC13 HOYA / S-LAL13 OHARA, Δnd +0.0003; supplier unconfirmed)",
       role: "Second negative meniscus of the front group.",
@@ -146,7 +155,7 @@ const LENS_DATA = {
       nd: 1.6932,
       vd: 53.5,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
-      fl: -57.56568154518863,
+      focalLengthMm: -57.56568154518863,
       glass:
         "693535 — lanthanum crown, LaK13 class (nearest LAC13 HOYA / S-LAL13 OHARA, Δnd +0.0003; supplier unconfirmed)",
       role: "Third negative meniscus of the front group; spherical in this table (the patent's own embodiment makes its front surface aspheric).",
@@ -159,7 +168,7 @@ const LENS_DATA = {
       nd: 1.69684,
       vd: 55.6,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
-      fl: -63.72963386448068,
+      focalLengthMm: -63.72963386448068,
       glass:
         "697556 — lanthanum crown, LaK14 class (J-LAK14 HIKARI / S-LAL14 OHARA coordinate-compatible; supplier unconfirmed)",
       role: "Last negative meniscus of the front group, directly ahead of the built-in filter.",
@@ -182,10 +191,10 @@ const LENS_DATA = {
       nd: 1.84131,
       vd: 43.3,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
-      fl: -15.756286396747374,
+      focalLengthMm: -15.756286396747374,
       glass: "Unmatched (841433 lanthanum dense flint coordinate; no coordinate-compatible catalog glass)",
-      cemented: "D1",
       role: "Thin negative front member of cemented doublet D1.",
+      cemented: "D1",
     },
     {
       id: 8,
@@ -195,11 +204,11 @@ const LENS_DATA = {
       nd: 1.548,
       vd: 45.9,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
-      fl: 16.704838914558806,
+      focalLengthMm: 16.704838914558806,
       glass:
         "548459 — extra-light flint, LLF1 class (J-LLF1 HIKARI / LLF1 SCHOTT coordinate-compatible; supplier unconfirmed)",
-      cemented: "D1",
       role: "Thick positive rear member of cemented doublet D1.",
+      cemented: "D1",
     },
     {
       id: 9,
@@ -209,7 +218,7 @@ const LENS_DATA = {
       nd: 1.69684,
       vd: 55.6,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
-      fl: -23.313610610885714,
+      focalLengthMm: -23.313610610885714,
       glass:
         "697556 — lanthanum crown, LaK14 class (J-LAK14 HIKARI / S-LAL14 OHARA coordinate-compatible; supplier unconfirmed)",
       role: "Air-spaced negative meniscus between the two cemented doublets.",
@@ -222,10 +231,10 @@ const LENS_DATA = {
       nd: 1.59483,
       vd: 35.6,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
-      fl: 11.329126352489267,
+      focalLengthMm: 11.329126352489267,
       glass: "595356 — flint (nearest FF5 HOYA, Δnd −0.0021; not a period identification, supplier unconfirmed)",
-      cemented: "D2",
       role: "Positive front member of cemented doublet D2, ahead of the stop.",
+      cemented: "D2",
     },
     {
       id: 11,
@@ -235,10 +244,10 @@ const LENS_DATA = {
       nd: 1.5916,
       vd: 58.2,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
-      fl: -21.12914131169682,
+      focalLengthMm: -21.12914131169682,
       glass: "592582 — dense barium crown, SK13/BaCD13 class (nearest BACD13 HOYA, Δnd +0.0002; supplier unconfirmed)",
-      cemented: "D2",
       role: "Plano-concave rear member of cemented doublet D2; its flat face looks at the stop.",
+      cemented: "D2",
     },
     {
       id: 12,
@@ -248,7 +257,7 @@ const LENS_DATA = {
       nd: 1.59508,
       vd: 35.6,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
-      fl: 20.098138065469993,
+      focalLengthMm: 20.098138065469993,
       glass: "595356 — flint (nearest FF5 HOYA, Δnd −0.0024; not a period identification, supplier unconfirmed)",
       role: "Thick plano-convex positive element directly behind the stop.",
     },
@@ -260,7 +269,7 @@ const LENS_DATA = {
       nd: 1.86142,
       vd: 23.1,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
-      fl: -11.012497635516699,
+      focalLengthMm: -11.012497635516699,
       glass:
         "861231 — dense flint (nearest J-SFH2 HIKARI, Δnd −0.0007; modern coordinate-compatible curve, not a period glass; supplier unconfirmed)",
       role: "Strong biconcave negative element of the lowest Abbe number in the table.",
@@ -273,7 +282,7 @@ const LENS_DATA = {
       nd: 1.44772,
       vd: 67.2,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
-      fl: 25.61578241982477,
+      focalLengthMm: 25.61578241982477,
       glass: "Unmatched (448672 low-index crown coordinate; no coordinate-compatible catalog glass)",
       role: "Positive meniscus of unusually low index in the rear converging group.",
     },
@@ -285,7 +294,7 @@ const LENS_DATA = {
       nd: 1.50976,
       vd: 63.4,
       indexReferenceNote: "Patent n/ν spectral line not stated; values are traced as d-line on that assumption.",
-      fl: 43.763632491274464,
+      focalLengthMm: 43.763632491274464,
       glass: "510634 — borosilicate crown, BK1 class (nearest BK1 SUMITA, Δnd +0.0003; supplier unconfirmed)",
       role: "Final biconvex positive element.",
     },
@@ -296,41 +305,46 @@ const LENS_DATA = {
    * r21 holds the diaphragm; it is stored as 0.80 mm before STO + 0.80 mm after STO.
    */
   surfaces: [
-    { label: "1", R: 48.15, d: 3.1, nd: 1.78764, elemId: 1, sd: 39 },
-    { label: "2", R: 32.8, d: 10.3, nd: 1.0, elemId: 0, sd: 30.8 },
-    { label: "3", R: 46.24, d: 9.5, nd: 1.71341, elemId: 2, sd: 31 },
-    { label: "4", R: 138.86, d: 0.1, nd: 1.0, elemId: 0, sd: 30.6 },
-    { label: "5", R: 28, d: 1, nd: 1.6932, elemId: 3, sd: 19 },
-    { label: "6", R: 17.3, d: 4.4, nd: 1.0, elemId: 0, sd: 15.2 },
-    { label: "7", R: 22.9, d: 1, nd: 1.6932, elemId: 4, sd: 14.3 },
-    { label: "8", R: 14.29, d: 3.2, nd: 1.0, elemId: 0, sd: 11.9 },
-    { label: "9", R: 18.7, d: 1, nd: 1.69684, elemId: 5, sd: 11.2 },
-    { label: "10", R: 12.87, d: 6.3, nd: 1.0, elemId: 0, sd: 9.8 },
-    { label: "11", R: 1e15, d: 1.2, nd: 1.51743, elemId: 6, sd: 9.7 },
-    { label: "12", R: 1e15, d: 0.7, nd: 1.0, elemId: 0, sd: 9.7 },
-    { label: "13", R: -449.32, d: 0.8, nd: 1.84131, elemId: 7, sd: 8 },
-    { label: "14", R: 13.67, d: 12, nd: 1.548, elemId: 8, sd: 8 },
-    { label: "15", R: -19.1, d: 0.1, nd: 1.0, elemId: 0, sd: 8 },
-    { label: "16", R: 20.31, d: 0.8, nd: 1.69684, elemId: 9, sd: 5 },
-    { label: "17", R: 8.88, d: 2.5, nd: 1.0, elemId: 0, sd: 4.6 },
-    { label: "18", R: 13.4, d: 2.8, nd: 1.59483, elemId: 10, sd: 4.5 },
-    { label: "19", R: -12.5, d: 1.3, nd: 1.5916, elemId: 11, sd: 4.5 },
-    { label: "20", R: 1e15, d: 0.8, nd: 1.0, elemId: 0, sd: 4.5 },
-    { label: "STO", R: 1e15, d: 0.8, nd: 1.0, elemId: 0, sd: 3.3269935993387194 },
-    { label: "21", R: 1e15, d: 6.1, nd: 1.59508, elemId: 12, sd: 4.3 },
-    { label: "22", R: -11.96, d: 0.9, nd: 1.0, elemId: 0, sd: 4.8 },
-    { label: "23", R: -13.4, d: 1.8, nd: 1.86142, elemId: 13, sd: 4.9 },
-    { label: "24", R: 34.5, d: 0.6, nd: 1.0, elemId: 0, sd: 5.4 },
-    { label: "25", R: -190.05, d: 2.5, nd: 1.44772, elemId: 14, sd: 5.5 },
-    { label: "26", R: -10.86, d: 0.1, nd: 1.0, elemId: 0, sd: 5.9 },
-    { label: "27", R: 315.5, d: 5.7, nd: 1.50976, elemId: 15, sd: 7.6 },
-    { label: "28", R: -23.86, d: 38.77, nd: 1.0, elemId: 0, sd: 7.8 },
+    { label: "1", R: 48.15, d: 3.1, sd: 39, medium: 1 },
+    { label: "2", R: 32.8, d: 10.3, sd: 30.8 },
+    { label: "3", R: 46.24, d: 9.5, sd: 31, medium: 2 },
+    { label: "4", R: 138.86, d: 0.1, sd: 30.6 },
+    { label: "5", R: 28, d: 1, sd: 19, medium: 3 },
+    { label: "6", R: 17.3, d: 4.4, sd: 15.2 },
+    { label: "7", R: 22.9, d: 1, sd: 14.3, medium: 4 },
+    { label: "8", R: 14.29, d: 3.2, sd: 11.9 },
+    { label: "9", R: 18.7, d: 1, sd: 11.2, medium: 5 },
+    { label: "10", R: 12.87, d: 6.3, sd: 9.8 },
+    { label: "11", R: "flat", d: 1.2, sd: 9.7, medium: 6 },
+    { label: "12", R: "flat", d: 0.7, sd: 9.7 },
+    { label: "13", R: -449.32, d: 0.8, sd: 8, medium: 7 },
+    { label: "14", R: 13.67, d: 12, sd: 8, medium: 8 },
+    { label: "15", R: -19.1, d: 0.1, sd: 8 },
+    { label: "16", R: 20.31, d: 0.8, sd: 5, medium: 9 },
+    { label: "17", R: 8.88, d: 2.5, sd: 4.6 },
+    { label: "18", R: 13.4, d: 2.8, sd: 4.5, medium: 10 },
+    { label: "19", R: -12.5, d: 1.3, sd: 4.5, medium: 11 },
+    { label: "20", R: "flat", d: 0.8, sd: 4.5 },
+    { label: "STO", R: "flat", d: 0.8 },
+    { label: "21", R: "flat", d: 6.1, sd: 4.3, medium: 12 },
+    { label: "22", R: -11.96, d: 0.9, sd: 4.8 },
+    { label: "23", R: -13.4, d: 1.8, sd: 4.9, medium: 13 },
+    { label: "24", R: 34.5, d: 0.6, sd: 5.4 },
+    { label: "25", R: -190.05, d: 2.5, sd: 5.5, medium: 14 },
+    { label: "26", R: -10.86, d: 0.1, sd: 5.9 },
+    { label: "27", R: 315.5, d: 5.7, sd: 7.6, medium: 15 },
+    { label: "28", R: -23.86, d: 38.77, sd: 7.8 },
   ],
 
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 1e15,
+    description:
+      "Infinity prescription only. The production lens focuses to 0.3 m with a floating close-range correction, but the patent publishes no focusing gaps, so focus travel is not modeled.",
+  },
 
-  var: {},
-  varLabels: [],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 5.6, fStops: [5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "FRONT DIVERGING", fromSurface: "1", toSurface: "10" },
@@ -342,21 +356,13 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "18", toSurface: "20" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 1e15,
-  focusDescription:
-    "Infinity prescription only. The production lens focuses to 0.3 m with a floating close-range correction, but the patent publishes no focusing gaps, so focus travel is not modeled.",
+  layout: { yScFill: 0.35 },
 
-  /* ── Aperture configuration ── */
-  nominalFno: 5.6,
-  fstopSeries: [5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  /* ── Geometry limits ── see NOTE ON SEMI-DIAMETERS */
-  maxRimAngleDeg: 70,
-  gapSagFrac: 0.95,
-
-  yScFill: 0.35,
-} satisfies LensDataInput;
+  checks: {
+    gapSagFrac: 0.95,
+    /* ── Geometry limits ── see NOTE ON SEMI-DIAMETERS */
+    maxRimAngleDeg: 70,
+  },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

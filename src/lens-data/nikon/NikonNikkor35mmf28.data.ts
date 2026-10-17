@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -18,11 +18,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                              ║
  * ║  STOP MODEL: Fig. 1 draws the diaphragm in d6 between L3 and L4 but the      ║
  * ║  patent gives neither a numeric split nor a physical diameter. The scaled    ║
- * ║  6.0277 mm gap is split at its midpoint (3.01385 + 3.01385 mm). The stored   ║
- * ║  stop SD, 7.278 mm, is the radius at which the real axial f/2.8 beam         ║
- * ║  (entrance height 6.250 mm) crosses the stop plane, the same value the       ║
- * ║  application solves from nominalFno. The paraxial equivalent is 7.061 mm.    ║
- * ║  It is not a source measurement of the iris.                                 ║
+ * ║  6.0277 mm gap is split at its midpoint (3.01385 + 3.01385 mm). The stop     ║
+ * ║  radius is derived from the design f-number, f/2.8: the real axial beam      ║
+ * ║  (entrance height 6.250 mm) crosses the stop plane at 7.278 mm, with a       ║
+ * ║  paraxial equivalent of 7.061 mm. It is not a source measurement of the      ║
+ * ║  iris.                                                                       ║
  * ║                                                                              ║
  * ║  NOTE ON SEMI-DIAMETERS: The patent supplies none. The authored SDs follow   ║
  * ║  the optical rims measured on the patent's Fig. 1 (see the note above        ║
@@ -62,24 +62,28 @@ import type { LensDataInput } from "../../types/optics.js";
  * are set to 7.3 mm (just inside contact) and the outer surfaces R7/R10 to 7.6 mm. */
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "nikon-nikkor-35mm-f28",
   maker: "Nikon",
   name: "NIKON NEW NIKKOR 35mm f/2.8",
   subtitle: "US 3,874,770 A Example I — 0.35× scaled production-correlated model",
-  specs: ["6 ELEMENTS / 6 GROUPS", "MODELED EFL 35.001 mm", "F/2.8", "62° FIELD", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 35,
-  focalLengthDesign: 35.0005,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.8,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,874,770 A",
-  patentAuthors: ["Yoshiyuki Shimizu"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1975,
-  elementCount: 6,
-  groupCount: 6,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: ["6 ELEMENTS / 6 GROUPS", "MODELED EFL 35.001 mm", "F/2.8", "62° FIELD", "ALL-SPHERICAL"],
+    elementCount: 6,
+    groupCount: 6,
+    focalLengthMm: { marketing: 35, design: 35.0005 },
+    fNumber: { marketing: 2.8, design: 2.8 },
+  },
+
+  source: {
+    patentNumber: "US 3,874,770 A",
+    patentYear: 1975,
+    authors: ["Yoshiyuki Shimizu"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -91,7 +95,7 @@ const LENS_DATA = {
       nd: 1.51454,
       vd: 54.6,
       indexReference: "d",
-      fl: -42.710850915744,
+      focalLengthMm: -42.710850915744,
       glass: "515546 — crown flint, KF3 class (KF3 SUMITA coordinate-compatible; supplier unconfirmed)",
       role: "Front negative meniscus (patent lens F) that provides the retrofocus divergence.",
     },
@@ -103,7 +107,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       indexReference: "d",
-      fl: 1184.4870053732664,
+      focalLengthMm: 1184.4870053732664,
       glass:
         "517642 — borosilicate crown, BK7 class (J-BK7A HIKARI / N-BK7 SCHOTT coordinate-compatible; supplier unconfirmed)",
       role: "Thick, weakly positive meniscus (patent lens E) that lengthens the back focus.",
@@ -116,7 +120,7 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.9,
       indexReference: "d",
-      fl: 25.094679974373104,
+      focalLengthMm: 25.094679974373104,
       glass:
         "713539 — lanthanum crown, LaK8 class (J-LAK8 HIKARI / LAC8 HOYA coordinate-compatible; supplier unconfirmed)",
       role: "Thick biconvex positive (patent lens A) immediately ahead of the diaphragm.",
@@ -129,7 +133,7 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.5,
       indexReference: "d",
-      fl: -18.936347903761547,
+      focalLengthMm: -18.936347903761547,
       glass: "717295 — dense flint, SF1 class (J-SF1 HIKARI / SF1 SCHOTT coordinate-compatible; supplier unconfirmed)",
       role: "Biconcave dense-flint negative (patent lens B) directly behind the diaphragm.",
     },
@@ -141,7 +145,7 @@ const LENS_DATA = {
       nd: 1.74443,
       vd: 49.4,
       indexReference: "d",
-      fl: 36.80134938391843,
+      focalLengthMm: 36.80134938391843,
       glass: "744494 — lanthanum flint (nearest NBF1 HOYA / S-LAM60 OHARA, Δnd −0.0011; supplier unconfirmed)",
       role: "Positive meniscus (patent lens C), concave toward the diaphragm.",
     },
@@ -153,7 +157,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       indexReference: "d",
-      fl: 63.7481855168902,
+      focalLengthMm: 63.7481855168902,
       glass:
         "620603 — dense barium crown, SK16 class (J-SK16 HIKARI / S-BSM16 OHARA coordinate-compatible; supplier unconfirmed)",
       role: "Rear biconvex positive (patent lens D).",
@@ -165,44 +169,44 @@ const LENS_DATA = {
    * 3.01385 mm before STO + 3.01385 mm after STO.
    */
   surfaces: [
-    { label: "1", R: 46.66655, d: 1.9446, nd: 1.51454, elemId: 1, sd: 14.0 },
-    { label: "2", R: 14.72905, d: 7.7777, nd: 1.0, elemId: 0, sd: 11.4 },
-    { label: "3", R: -90.41655, d: 9.7223, nd: 1.5168, elemId: 2, sd: 11.2 },
-    { label: "4", R: -81.66655, d: 0.0973, nd: 1.0, elemId: 0, sd: 11.2 },
-    { label: "5", R: 25.5696, d: 13.125, nd: 1.713, elemId: 3, sd: 9.9 },
-    { label: "6", R: -46.86115, d: 3.01385, nd: 1.0, elemId: 0, sd: 9.9 },
-    { label: "STO", R: 1e15, d: 3.01385, nd: 1.0, elemId: 0, sd: 7.278 },
-    { label: "7", R: -20.6598, d: 1.45845, nd: 1.71736, elemId: 4, sd: 7.6 },
-    { label: "8", R: 40.83345, d: 1.3125, nd: 1.0, elemId: 0, sd: 7.3 },
-    { label: "9", R: -43.26385, d: 2.625, nd: 1.74443, elemId: 5, sd: 7.3 },
-    { label: "10", R: -17.20845, d: 0.0973, nd: 1.0, elemId: 0, sd: 7.6 },
-    { label: "11", R: 97.2223, d: 2.4304, nd: 1.62041, elemId: 6, sd: 9.3 },
-    { label: "12", R: -66.03415, d: 37.55230544567957, nd: 1.0, elemId: 0, sd: 9.3 },
+    { label: "1", R: 46.66655, d: 1.9446, sd: 14.0, medium: 1 },
+    { label: "2", R: 14.72905, d: 7.7777, sd: 11.4 },
+    { label: "3", R: -90.41655, d: 9.7223, sd: 11.2, medium: 2 },
+    { label: "4", R: -81.66655, d: 0.0973, sd: 11.2 },
+    { label: "5", R: 25.5696, d: 13.125, sd: 9.9, medium: 3 },
+    { label: "6", R: -46.86115, d: 3.01385, sd: 9.9 },
+    { label: "STO", R: "flat", d: 3.01385 },
+    { label: "7", R: -20.6598, d: 1.45845, sd: 7.6, medium: 4 },
+    { label: "8", R: 40.83345, d: 1.3125, sd: 7.3 },
+    { label: "9", R: -43.26385, d: 2.625, sd: 7.3, medium: 5 },
+    { label: "10", R: -17.20845, d: 0.0973, sd: 7.6 },
+    { label: "11", R: 97.2223, d: 2.4304, sd: 9.3, medium: 6 },
+    { label: "12", R: -66.03415, d: 37.55230544567957, sd: 9.3 },
   ],
 
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 1e15,
+    description:
+      "Infinity prescription only. The patent publishes no focusing data, so no focus movement is modelled and no minimum focus distance is specified.",
+  },
 
-  var: {},
-  varLabels: [],
+  /* ── Aperture configuration ── */
+  aperture: {
+    nominalFNumber: 2.8,
+    fStops: [2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22, // production minimum aperture
+  },
 
   groups: [],
   doublets: [],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 1e15,
-  focusDescription:
-    "Infinity prescription only. The patent publishes no focusing data, so no focus movement is modelled and no minimum focus distance is specified.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22, // production minimum aperture
+  layout: { yScFill: 0.3 },
 
   /* ── Layout tuning ── */
   // Fig. 1 draws L4 and L5 rim to rim: surfaces 8 and 9 meet at a 7.40 mm height, so their 7.3 mm rims leave
   // 0.034 mm of the 1.3125 mm air gap. 0.98 admits that near-contact pair without changing the patent spacing.
-  gapSagFrac: 0.98,
-  yScFill: 0.3,
-} satisfies LensDataInput;
+  checks: { gapSagFrac: 0.98 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

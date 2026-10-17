@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * LENS DATA — NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5
@@ -26,7 +26,8 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * STOP MODEL:
  * - The patent gives f/4.5 but no iris station or diameter. Exactly one inferred STO splits D18 at its midpoint,
- *   19.05 mm after r18. Its 15.642403 mm diameter reproduces f/4.5 at all three modeled zoom states paraxially.
+ *   19.05 mm after r18. The stop radius is derived from the design f-number and held at every zoom station. The
+ *   former paraxial calibration of one fixed stop reproduced f/4.5 at all three modeled zoom states.
  *
  * SEMI-DIAMETERS:
  * - The patent does not publish clear apertures. Values were measured from Figure 1 and checked against the f/4.5
@@ -41,33 +42,34 @@ import type { LensDataInput } from "../../types/optics.js";
  * - The patent supplies d-line nd and Abbe number only. nC, nF, ng, and dPgF are intentionally omitted.
  */
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-zoom-nikkor-auto-80-200mm-f4-5",
   maker: "Nikon",
   name: "NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5",
   subtitle: "US 3,615,125 — Example 1; constrained 126.4 mm zoom state",
-  specs: [
-    "15 elements / 10 groups",
-    "computed f = 80.009–200.341 mm",
-    "constant f/4.5",
-    "all spherical",
-    "focus not internally reconstructed",
-  ],
-  focalLengthMarketing: [80, 200],
-  focalLengthDesign: [80.009, 200.341],
-  apertureMarketing: 4.5,
-  apertureDesign: 4.5,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,615,125",
-  patentAuthors: ["Takashi Higuchi", "Soichi Nakamura"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1971,
-  elementCount: 15,
-  groupCount: 10,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: the patent publishes infinity-focus zoom kinematics only. " +
-    "The production 1.8 m minimum focus distance is catalog metadata; all authored variable-gap pairs remain " +
-    "identical at infinity and close focus, so no close-focus optical motion is modeled.",
+
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "15 elements / 10 groups",
+      "computed f = 80.009–200.341 mm",
+      "constant f/4.5",
+      "all spherical",
+      "focus not internally reconstructed",
+    ],
+    elementCount: 15,
+    groupCount: 10,
+    focalLengthMm: { marketing: [80, 200], design: [80.009, 200.341] },
+    fNumber: { marketing: 4.5, design: 4.5 },
+  },
+
+  source: {
+    patentNumber: "US 3,615,125",
+    patentYear: 1971,
+    authors: ["Takashi Higuchi", "Soichi Nakamura"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   elements: [
     {
@@ -77,7 +79,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.62041,
       vd: 60.3,
-      fl: 151.336,
+      focalLengthMm: 151.336,
       glass: "620603 - SK16 class (vendor unresolved)",
       apd: false,
       role: "Positive entrance singlet of the fixed first zoom group.",
@@ -89,11 +91,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.61375,
       vd: 56.3,
-      fl: 119.347,
+      focalLengthMm: 119.347,
       glass: "BACD6 (HOYA catalog-equivalent; patent supplier unspecified)",
       apd: false,
-      cemented: "D1",
       role: "Positive component of the fixed first-group cemented pair.",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -102,11 +104,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7552,
       vd: 27.5,
-      fl: -143.544,
+      focalLengthMm: -143.544,
       glass: "755275 - SF4 class (vendor unresolved)",
       apd: false,
-      cemented: "D1",
       role: "Negative component of the fixed first-group cemented pair.",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -115,11 +117,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.68893,
       vd: 31.1,
-      fl: 64.388,
+      focalLengthMm: 64.388,
       glass: "689311 - SF8 class (vendor unresolved)",
       apd: false,
-      cemented: "D2",
       role: "Positive component at the front of the negative variator.",
+      cemented: "D2",
     },
     {
       id: 5,
@@ -128,11 +130,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.51728,
       vd: 69.6,
-      fl: -45.305,
+      focalLengthMm: -45.305,
       glass: "S-APL1 (OHARA; 517696)",
       apd: false,
-      cemented: "D2",
       role: "Negative component of the variator cemented pair.",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -141,7 +143,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.62041,
       vd: 60.3,
-      fl: -55.865,
+      focalLengthMm: -55.865,
       glass: "620603 - SK16 class (vendor unresolved)",
       apd: false,
       role: "Rear negative singlet completing the variator.",
@@ -153,11 +155,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.62041,
       vd: 60.3,
-      fl: 58.671,
+      focalLengthMm: 58.671,
       glass: "620603 - SK16 class (vendor unresolved)",
       apd: false,
-      cemented: "D3",
       role: "Positive component of the moving compensator.",
+      cemented: "D3",
     },
     {
       id: 8,
@@ -166,11 +168,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.62004,
       vd: 36.3,
-      fl: -127.185,
+      focalLengthMm: -127.185,
       glass: "620363 - F2 class (vendor unresolved)",
       apd: false,
-      cemented: "D3",
       role: "Negative component of the net-positive compensator.",
+      cemented: "D3",
     },
     {
       id: 9,
@@ -179,7 +181,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.54814,
       vd: 45.9,
-      fl: 139.235,
+      focalLengthMm: 139.235,
       glass: "548459 - LLF1 class (vendor unresolved)",
       apd: false,
       role: "Front positive singlet of the fixed relay-front group.",
@@ -191,11 +193,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.53172,
       vd: 48.9,
-      fl: 54.235,
+      focalLengthMm: 54.235,
       glass: "532489 - LLF6 class (vendor unresolved)",
       apd: false,
-      cemented: "D4",
       role: "Positive component of the relay-front cemented pair.",
+      cemented: "D4",
     },
     {
       id: 11,
@@ -204,11 +206,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7847,
       vd: 26.1,
-      fl: -47.31,
+      focalLengthMm: -47.31,
       glass: "785261 - SFS3 / dense short-flint class (vendor unresolved)",
       apd: false,
-      cemented: "D4",
       role: "Negative component of the nearly afocal relay-front cemented pair.",
+      cemented: "D4",
     },
     {
       id: 12,
@@ -217,7 +219,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5168,
       vd: 64.2,
-      fl: 76.631,
+      focalLengthMm: 76.631,
       glass: "517642 - BK7 class (vendor unresolved)",
       apd: false,
       role: "Front positive singlet of the fixed relay-rear group.",
@@ -229,11 +231,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.744,
       vd: 44.9,
-      fl: -23.358,
+      focalLengthMm: -23.358,
       glass: "744449 - LAF2 class (vendor unresolved)",
       apd: false,
-      cemented: "D5",
       role: "Negative component of the relay-rear cemented pair.",
+      cemented: "D5",
     },
     {
       id: 14,
@@ -242,11 +244,11 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.69895,
       vd: 30,
-      fl: 57.229,
+      focalLengthMm: 57.229,
       glass: "SF15 (Sumita coefficient-backed equivalent), 699300",
       apd: false,
-      cemented: "D5",
       role: "Plano-convex positive component of the net-negative relay-rear cemented pair.",
+      cemented: "D5",
     },
     {
       id: 15,
@@ -255,7 +257,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.70154,
       vd: 41.1,
-      fl: 86.332,
+      focalLengthMm: 86.332,
       glass: "BASF7 (Sumita coefficient-backed equivalent), 702411",
       apd: false,
       role: "Final positive relay singlet before the image space.",
@@ -263,60 +265,79 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 123.951, d: 5, nd: 1.62041, elemId: 1, sd: 26 },
-    { label: "2", R: -381.17, d: 0.1, nd: 1, elemId: 0, sd: 25.5 },
-    { label: "3", R: 135.63, d: 7.3, nd: 1.61375, elemId: 2, sd: 24 },
-    { label: "4", R: -156, d: 2, nd: 1.7552, elemId: 3, sd: 24 },
-    { label: "5", R: 357.269, d: 1.33, nd: 1, elemId: 0, sd: 24 },
-    { label: "6", R: 10000, d: 3.7, nd: 1.68893, elemId: 4, sd: 16 },
-    { label: "7", R: -44.55, d: 1, nd: 1.51728, elemId: 5, sd: 16 },
-    { label: "8", R: 49.824, d: 4.4, nd: 1, elemId: 0, sd: 13.5 },
-    { label: "9", R: -45.25, d: 1.2, nd: 1.62041, elemId: 6, sd: 13.5 },
-    { label: "10", R: 149.585, d: 39.4, nd: 1, elemId: 0, sd: 16 },
-    { label: "11", R: 121.5, d: 4, nd: 1.62041, elemId: 7, sd: 13.5 },
-    { label: "12", R: -51.315, d: 1, nd: 1.62004, elemId: 8, sd: 13.5 },
-    { label: "13", R: -148.009, d: 10.88, nd: 1, elemId: 0, sd: 13.5 },
-    { label: "14", R: 80.803, d: 4.7, nd: 1.54814, elemId: 9, sd: 13.5 },
-    { label: "15", R: -1347.294, d: 0.7, nd: 1, elemId: 0, sd: 13.5 },
-    { label: "16", R: 32.6, d: 10.4, nd: 1.53172, elemId: 10, sd: 13.5 },
-    { label: "17", R: -222.2, d: 2.8, nd: 1.7847, elemId: 11, sd: 13.5 },
-    { label: "18", R: 44.818, d: 19.05, nd: 1, elemId: 0, sd: 13.5 },
-    { label: "STO", R: 1e15, d: 19.05, nd: 1, elemId: 0, sd: 7.821201623123754 },
-    { label: "19", R: 103.461, d: 3.8, nd: 1.5168, elemId: 12, sd: 15.2 },
-    { label: "20", R: -63.36, d: 3, nd: 1, elemId: 0, sd: 15.2 },
-    { label: "21", R: -31.22, d: 1.5, nd: 1.744, elemId: 13, sd: 15.2 },
-    { label: "22", R: 40, d: 4.9, nd: 1.69895, elemId: 14, sd: 15.2 },
-    { label: "23", R: 1e15, d: 0.1, nd: 1, elemId: 0, sd: 15.2 },
-    { label: "24", R: 62.328, d: 4, nd: 1.70154, elemId: 15, sd: 15.2 },
-    { label: "25", R: -2085.243, d: 40, nd: 1, elemId: 0, sd: 15.2 },
+    { label: "1", R: 123.951, d: 5, sd: 26, medium: 1 },
+    { label: "2", R: -381.17, d: 0.1, sd: 25.5 },
+    { label: "3", R: 135.63, d: 7.3, sd: 24, medium: 2 },
+    { label: "4", R: -156, d: 2, sd: 24, medium: 3 },
+    { label: "5", R: 357.269, sd: 24 },
+    { label: "6", R: 10000, d: 3.7, sd: 16, medium: 4 },
+    { label: "7", R: -44.55, d: 1, sd: 16, medium: 5 },
+    { label: "8", R: 49.824, d: 4.4, sd: 13.5 },
+    { label: "9", R: -45.25, d: 1.2, sd: 13.5, medium: 6 },
+    { label: "10", R: 149.585, sd: 16 },
+    { label: "11", R: 121.5, d: 4, sd: 13.5, medium: 7 },
+    { label: "12", R: -51.315, d: 1, sd: 13.5, medium: 8 },
+    { label: "13", R: -148.009, sd: 13.5 },
+    { label: "14", R: 80.803, d: 4.7, sd: 13.5, medium: 9 },
+    { label: "15", R: -1347.294, d: 0.7, sd: 13.5 },
+    { label: "16", R: 32.6, d: 10.4, sd: 13.5, medium: 10 },
+    { label: "17", R: -222.2, d: 2.8, sd: 13.5, medium: 11 },
+    { label: "18", R: 44.818, d: 19.05, sd: 13.5 },
+    { label: "STO", R: "flat", d: 19.05 },
+    { label: "19", R: 103.461, d: 3.8, sd: 15.2, medium: 12 },
+    { label: "20", R: -63.36, d: 3, sd: 15.2 },
+    { label: "21", R: -31.22, d: 1.5, sd: 15.2, medium: 13 },
+    { label: "22", R: 40, d: 4.9, sd: 15.2, medium: 14 },
+    { label: "23", R: "flat", d: 0.1, sd: 15.2 },
+    { label: "24", R: 62.328, d: 4, sd: 15.2, medium: 15 },
+    { label: "25", R: -2085.243, d: 40, sd: 15.2 },
   ],
 
-  asph: {},
-
-  zoomPositions: [80, 126.4, 200.3],
-  zoomLabels: ["80 mm", "200 mm"],
-  var: {
-    "5": [
-      [1.33, 1.33],
-      [24.70539772659737, 24.70539772659737],
-      [39.58, 39.58],
+  zoom: {
+    stations: [
+      { focalLengthMm: 80, label: "80 mm" },
+      { focalLengthMm: 126.4 },
+      { focalLengthMm: 200.3, label: "200 mm" },
     ],
-    "10": [
-      [39.4, 39.4],
-      [24.61075663686849, 24.61075663686849],
-      [1.04, 1.04],
-    ],
-    "13": [
-      [10.88, 10.88],
-      [2.293845636534147, 2.293845636534147],
-      [10.99, 10.99],
-    ],
+    apertureModel: "fixed-iris",
   },
-  varLabels: [
-    ["5", "D5"],
-    ["10", "D10"],
-    ["13", "D13"],
-  ],
+
+  focus: {
+    closeFocusM: 1.8,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION: the patent publishes infinity-focus zoom kinematics only. " +
+      "The production 1.8 m minimum focus distance is catalog metadata; all authored variable-gap pairs remain " +
+      "identical at infinity and close focus, so no close-focus optical motion is modeled.",
+  },
+
+  gaps: {
+    "5": {
+      label: "D5",
+      values: [
+        [1.33, 1.33],
+        [24.70539772659737, 24.70539772659737],
+        [39.58, 39.58],
+      ],
+    },
+    "10": {
+      label: "D10",
+      values: [
+        [39.4, 39.4],
+        [24.61075663686849, 24.61075663686849],
+        [1.04, 1.04],
+      ],
+    },
+    "13": {
+      label: "D13",
+      values: [
+        [10.88, 10.88],
+        [2.293845636534147, 2.293845636534147],
+        [10.99, 10.99],
+      ],
+    },
+  },
+
+  aperture: { nominalFNumber: 4.5, fStops: [4.5, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32 },
 
   groups: [
     { text: "G1 FIXED POSITIVE", fromSurface: "1", toSurface: "5" },
@@ -333,12 +354,7 @@ const LENS_DATA = {
     { text: "D5", fromSurface: "21", toSurface: "23" },
   ],
 
-  closeFocusM: 1.8,
-  nominalFno: 4.5,
-  zoomApertureModel: "fixed-iris",
-  maxFstop: 32,
-  fstopSeries: [4.5, 5.6, 8, 11, 16, 22, 32],
-  yScFill: 0.34,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.34 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

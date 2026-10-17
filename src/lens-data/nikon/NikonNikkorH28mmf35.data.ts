@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -19,24 +19,28 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-nikkor-h-auto-28mm-f35",
   maker: "Nikon",
   name: "NIKON NIKKOR-H AUTO 2.8cm f/3.5",
   subtitle: "JP Showa 38-26133 / JPB 1963026133 — Nippon Kogaku / Wakimoto",
-  specs: ["6 elements / 6 groups", "f ≈ 28.0 mm", "F/3.5", "2ω = 75° patent field", "all-spherical"],
 
-  focalLengthMarketing: 28,
-  focalLengthDesign: 28.001,
-  apertureMarketing: 3.5,
-  apertureDesign: 3.5,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP S38-26133 B",
-  patentAuthors: ["Zenji Wakimoto"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1963,
-  elementCount: 6,
-  groupCount: 6,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: ["6 elements / 6 groups", "f ≈ 28.0 mm", "F/3.5", "2ω = 75° patent field", "all-spherical"],
+    elementCount: 6,
+    groupCount: 6,
+    focalLengthMm: { marketing: 28, design: 28.001 },
+    fNumber: { marketing: 3.5, design: 3.5 },
+  },
+
+  source: {
+    patentNumber: "JP S38-26133 B",
+    patentYear: 1963,
+    authors: ["Zenji Wakimoto"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   elements: [
     {
@@ -46,7 +50,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6726,
       vd: 32.2,
-      fl: 160.269,
+      focalLengthMm: 160.269,
       glass: "SF5 (Schott equivalent)",
       apd: false,
       role: "Weak front positive meniscus; low-power front correction member in the retrofocus front group.",
@@ -58,7 +62,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6212,
       vd: 60.1,
-      fl: -38.165,
+      focalLengthMm: -38.165,
       glass: "SK16 class (Hikari/Schott equivalent)",
       apd: false,
       role: "Strong negative meniscus that supplies the retrofocus front-group divergence and back-focus extension.",
@@ -70,7 +74,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6387,
       vd: 55.3,
-      fl: 26.915,
+      focalLengthMm: 26.915,
       glass: "K-SK18 (Sumita) / SK18 class",
       apd: false,
       role: "Positive pre-stop collector at the entrance of the rear converging group.",
@@ -82,7 +86,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6726,
       vd: 32.2,
-      fl: -15.859,
+      focalLengthMm: -15.859,
       glass: "SF5 (Schott equivalent)",
       apd: false,
       role: "Strong negative post-stop element; principal rear-group chromatic and Petzval correction member.",
@@ -94,7 +98,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6582,
       vd: 50.8,
-      fl: 25.592,
+      focalLengthMm: 25.592,
       glass: "N-SSK5 (Schott) / SSK5 class",
       apd: false,
       role: "Positive meniscus with convex side toward the image; relay and oblique-aberration correction member.",
@@ -106,7 +110,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5163,
       vd: 64.0,
-      fl: 56.303,
+      focalLengthMm: 56.303,
       glass: "BK7 class (Schott/Ohara/CDGM equivalent)",
       apd: false,
       role: "Final low-dispersion positive relay element adjacent to the image space.",
@@ -114,44 +118,37 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 102.284, d: 5.096, nd: 1.6726, elemId: 1, sd: 25.2 },
-    { label: "2", R: 1960.0, d: 0.196, nd: 1.0, elemId: 0, sd: 22.2 },
-    { label: "3", R: 67.2, d: 1.652, nd: 1.6212, elemId: 2, sd: 16.0 },
-    { label: "4", R: 17.36, d: 25.76, nd: 1.0, elemId: 0, sd: 15.0 },
-    { label: "5", R: 17.976, d: 3.332, nd: 1.6387, elemId: 3, sd: 9.3 },
-    { label: "6", R: -365.176, d: 2.548, nd: 1.0, elemId: 0, sd: 7.7 },
-    { label: "STO", R: 1e15, d: 2.548, nd: 1.0, elemId: 0, sd: 5.22 },
-    { label: "7", R: -16.94, d: 0.868, nd: 1.6726, elemId: 4, sd: 6.9 },
-    { label: "8", R: 29.4, d: 1.484, nd: 1.0, elemId: 0, sd: 7.3 },
-    { label: "9", R: -112.588, d: 2.548, nd: 1.6582, elemId: 5, sd: 8.2 },
-    { label: "10", R: -14.784, d: 0.196, nd: 1.0, elemId: 0, sd: 8.8 },
-    { label: "11", R: 59.64, d: 1.764, nd: 1.5163, elemId: 6, sd: 9.4 },
-    { label: "12", R: -56.14, d: 37.1, nd: 1.0, elemId: 0, sd: 9.7 },
+    { label: "1", R: 102.284, d: 5.096, sd: 25.2, medium: 1 },
+    { label: "2", R: 1960.0, d: 0.196, sd: 22.2 },
+    { label: "3", R: 67.2, d: 1.652, sd: 16.0, medium: 2 },
+    { label: "4", R: 17.36, d: 25.76, sd: 15.0 },
+    { label: "5", R: 17.976, d: 3.332, sd: 9.3, medium: 3 },
+    { label: "6", R: -365.176, d: 2.548, sd: 7.7 },
+    { label: "STO", R: "flat", d: 2.548 },
+    { label: "7", R: -16.94, d: 0.868, sd: 6.9, medium: 4 },
+    { label: "8", R: 29.4, d: 1.484, sd: 7.3 },
+    { label: "9", R: -112.588, d: 2.548, sd: 8.2, medium: 5 },
+    { label: "10", R: -14.784, d: 0.196, sd: 8.8 },
+    { label: "11", R: 59.64, d: 1.764, sd: 9.4, medium: 6 },
+    { label: "12", R: -56.14, sd: 9.7 },
   ],
 
-  asph: {},
-
-  var: {
-    "12": [37.1, 38.602],
+  focus: {
+    closeFocusM: 0.6,
+    description: "Unit focusing; all optical spacings remain fixed and the whole optical assembly translates forward.",
   },
-  varLabels: [["12", "BF"]],
+
+  gaps: { "12": { label: "BF", values: [[37.1, 38.602]] } },
+
+  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16, 22] },
 
   groups: [
     { text: "FRONT", fromSurface: "1", toSurface: "4" },
     { text: "REAR", fromSurface: "5", toSurface: "12" },
   ],
-
   doublets: [],
 
-  closeFocusM: 0.6,
-  focusDescription:
-    "Unit focusing; all optical spacings remain fixed and the whole optical assembly translates forward.",
-
-  nominalFno: 3.5,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
-
-  scFill: 0.58,
-  yScFill: 0.62,
-} satisfies LensDataInput;
+  layout: { scFill: 0.58, yScFill: 0.62 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

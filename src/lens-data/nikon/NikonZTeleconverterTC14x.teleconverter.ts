@@ -1,4 +1,4 @@
-import type { TeleconverterDataInput } from "../../types/teleconverter.js";
+import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * JP 2021-189311 A (Konica Minolta, Inc. and Nikon Corporation), Example 1: converter Tables 3-5 and Figure 3,
@@ -33,269 +33,162 @@ import type { TeleconverterDataInput } from "../../types/teleconverter.js";
  */
 
 const TELECONVERTER_DATA = {
-  "key": "nikon-z-tc-1-4x",
-  "name": "NIKON Z TELECONVERTER TC-1.4x",
-  "maker": "Nikon",
-  "subtitle": "JP 2021-189311 A, Example 1 \u2014 production correlation",
-  "specs": [
-    "6 ELEMENTS / 4 GROUPS",
-    "1.4\u00d7 REAR CONVERTER",
-    "1 ASPHERICAL SURFACE / 1 ELEMENT"
-  ],
-  "lensMounts": [
-    "nikon-z"
-  ],
-  "magnification": 1.4,
-  "minHostFno": 2.8, // f/2.8 hosts on Nikon's compatibility list; rims pass the patent master's f/2.88 beam
-  "masterImageDistanceMm": 28.131364558659428,
-  "patentNumber": "JP 2021-189311 A",
-  "patentAuthors": [
-    "Katsuhiro Takamoto",
-    "Yasushi Yamamoto",
-    "Hiroshi Yabumoto"
-  ],
-  "patentAssignees": [
-    "Konica Minolta, Inc.",
-    "Nikon Corporation"
-  ],
-  "patentYear": 2021,
-  "elementCount": 6,
-  "groupCount": 4,
-  "elements": [
-    {
-      "id": 1,
-      "name": "L11",
-      "label": "Element 1",
-      "type": "Biconvex Positive",
-      "nd": 1.71736,
-      "vd": 29.5,
-      "glass": "E-FD1L class (coordinate candidate; supplier unconfirmed)",
-      "fl": 48.24180454053939,
-      "role": "Positive front singlet with a nearly flat object side; its power is set by the patent's condition (6-1) to balance spherical aberration against astigmatism"
-    },
-    {
-      "id": 2,
-      "name": "L12",
-      "label": "Element 2",
-      "type": "Biconcave Negative",
-      "nd": 1.883,
-      "vd": 40.8,
-      "glass": "TAFD30 class (coordinate candidate; supplier unconfirmed)",
-      "fl": -15.596119813553997,
-      "role": "High-index biconcave front member of the negative cemented doublet CL2, the converter's strongest single element",
-      "cemented": "D1"
-    },
-    {
-      "id": 3,
-      "name": "C2",
-      "label": "L12–L13 cement layer",
-      "type": "Optical Cement Layer",
-      "nd": 1.514,
-      "vd": 42.83,
-      "glass": "Optical cement (patent nd=1.51400, vd=42.83)",
-      "role": "Cement layer of the L12–L13 doublet D1: the 0.01 mm layer printed in the patent prescription; not counted as a lens element"
-    },
-    {
-      "id": 4,
-      "name": "L13",
-      "label": "Element 3",
-      "type": "Biconvex Positive",
-      "nd": 1.68893,
-      "vd": 31.16,
-      "glass": "E-FD8 class (coordinate candidate; supplier unconfirmed)",
-      "fl": 31.361929490327856,
-      "role": "Biconvex positive rear member of CL2; offsets part of L12's power, leaving the doublet at f = −33.46 mm",
-      "cemented": "D1"
-    },
-    {
-      "id": 5,
-      "name": "L14",
-      "label": "Element 4",
-      "type": "Biconcave Negative",
-      "nd": 2.001,
-      "vd": 29.13,
-      "glass": "TAFD55 class (coordinate candidate; supplier unconfirmed)",
-      "fl": -34.29144798608921,
-      "role": "Highest-index element: biconcave front member of the negative cemented doublet CL1",
-      "cemented": "D2"
-    },
-    {
-      "id": 6,
-      "name": "C1",
-      "label": "L14–L15 cement layer",
-      "type": "Optical Cement Layer",
-      "nd": 1.514,
-      "vd": 42.83,
-      "glass": "Optical cement (patent nd=1.51400, vd=42.83)",
-      "role": "Cement layer of the L14–L15 doublet D2: the 0.01 mm layer printed in the patent prescription; not counted as a lens element"
-    },
-    {
-      "id": 7,
-      "name": "L15",
-      "label": "Element 5",
-      "type": "Biconvex Positive",
-      "nd": 1.58313,
-      "vd": 59.5,
-      "glass": "M-BACD12 class (coordinate candidate; supplier unconfirmed)",
-      "fl": 193.76762139034875,
-      "role": "Weak positive rear member of CL1 and the converter's only aspherical element (image-side surface)",
-      "cemented": "D2"
-    },
-    {
-      "id": 8,
-      "name": "L16",
-      "label": "Element 6",
-      "type": "Biconvex Positive",
-      "nd": 1.5168,
-      "vd": 64.2,
-      "glass": "BSC7 class (coordinate candidate; supplier unconfirmed)",
-      "fl": 52.29314917547124,
-      "role": "Largest element: positive rear singlet whose power the patent's claim 1 bounds relative to the whole converter (fL/ft = −0.35)"
-    }
-  ],
-  "surfaces": [
-    {
-      "label": "1",
-      "R": 280.638,
-      "d": 4.4,
-      "nd": 1.71736,
-      "elemId": 1,
-      "sd": 14
-    },
-    {
-      "label": "2",
-      "R": -39.216,
-      "d": 2.94,
-      "nd": 1.0,
-      "elemId": 0,
-      "sd": 14
-    },
-    {
-      "label": "3",
-      "R": -29.864,
-      "d": 1.3,
-      "nd": 1.883,
-      "elemId": 2,
-      "sd": 14
-    },
-    {
-      "label": "4",
-      "R": 26.078,
-      "d": 0.01,
-      "nd": 1.514,
-      "elemId": 3,
-      "sd": 14
-    },
-    {
-      "label": "5",
-      "R": 26.078,
-      "d": 7.24,
-      "nd": 1.68893,
-      "elemId": 4,
-      "sd": 14
-    },
-    {
-      "label": "6",
-      "R": -111.73,
-      "d": 3.7,
-      "nd": 1.0,
-      "elemId": 0,
-      "sd": 14
-    },
-    {
-      "label": "7",
-      "R": -45.931,
-      "d": 1.4,
-      "nd": 2.001,
-      "elemId": 5,
-      "sd": 17
-    },
-    {
-      "label": "8",
-      "R": 137.925,
-      "d": 0.01,
-      "nd": 1.514,
-      "elemId": 6,
-      "sd": 17
-    },
-    {
-      "label": "9",
-      "R": 137.925,
-      "d": 3.99,
-      "nd": 1.58313,
-      "elemId": 7,
-      "sd": 17
-    },
-    {
-      "label": "10A",
-      "R": -618.383,
-      "d": 0.3,
-      "nd": 1.0,
-      "elemId": 0,
-      "sd": 17
-    },
-    {
-      "label": "11",
-      "R": 254.263,
-      "d": 9.9,
-      "nd": 1.5168,
-      "elemId": 8,
-      "sd": 21
-    },
-    {
-      "label": "12",
-      "R": -29.838,
-      "d": 11.42,
-      "nd": 1.0,
-      "elemId": 0,
-      "sd": 21
-    }
-  ],
-  "asph": {
-    "10A": {
-      "K": 30.0,
-      "A4": -4.72819e-06,
-      "A6": 4.56226e-09,
-      "A8": -1.48932e-11,
-      "A10": 1.09243e-14,
-      "A12": 0.0,
-      "A14": 0.0
-    }
+  schema: 2,
+  key: "nikon-z-tc-1-4x",
+  maker: "Nikon",
+  name: "NIKON Z TELECONVERTER TC-1.4x",
+  subtitle: "JP 2021-189311 A, Example 1 \u2014 production correlation",
+
+  catalog: {
+    lensMounts: ["nikon-z"],
+    specs: ["6 ELEMENTS / 4 GROUPS", "1.4\u00d7 REAR CONVERTER", "1 ASPHERICAL SURFACE / 1 ELEMENT"],
+    elementCount: 6,
+    groupCount: 4,
   },
-  "groups": [
+
+  source: {
+    patentNumber: "JP 2021-189311 A",
+    patentYear: 2021,
+    authors: ["Katsuhiro Takamoto", "Yasushi Yamamoto", "Hiroshi Yabumoto"],
+    assignees: ["Konica Minolta, Inc.", "Nikon Corporation"],
+  },
+
+  magnification: 1.4,
+  masterImageDistanceMm: 28.131364558659428,
+  minHostFNumber: 2.8, // f/2.8 hosts on Nikon's compatibility list; rims pass the patent master's f/2.88 beam
+
+  elements: [
     {
-      "text": "L11 (+)",
-      "fromSurface": "1",
-      "toSurface": "2"
+      id: 1,
+      name: "L11",
+      label: "Element 1",
+      type: "Biconvex Positive",
+      nd: 1.71736,
+      vd: 29.5,
+      focalLengthMm: 48.24180454053939,
+      glass: "E-FD1L class (coordinate candidate; supplier unconfirmed)",
+      role: "Positive front singlet with a nearly flat object side; its power is set by the patent's condition (6-1) to balance spherical aberration against astigmatism",
     },
     {
-      "text": "CL2 (−)",
-      "fromSurface": "3",
-      "toSurface": "6"
+      id: 2,
+      name: "L12",
+      label: "Element 2",
+      type: "Biconcave Negative",
+      nd: 1.883,
+      vd: 40.8,
+      focalLengthMm: -15.596119813553997,
+      glass: "TAFD30 class (coordinate candidate; supplier unconfirmed)",
+      role: "High-index biconcave front member of the negative cemented doublet CL2, the converter's strongest single element",
+      cemented: "D1",
     },
     {
-      "text": "CL1 (−)",
-      "fromSurface": "7",
-      "toSurface": "10A"
+      id: 3,
+      name: "C2",
+      label: "L12–L13 cement layer",
+      type: "Optical Cement Layer",
+      nd: 1.514,
+      vd: 42.83,
+      glass: "Optical cement (patent nd=1.51400, vd=42.83)",
+      role: "Cement layer of the L12–L13 doublet D1: the 0.01 mm layer printed in the patent prescription; not counted as a lens element",
     },
     {
-      "text": "L16 (+)",
-      "fromSurface": "11",
-      "toSurface": "12"
-    }
+      id: 4,
+      name: "L13",
+      label: "Element 3",
+      type: "Biconvex Positive",
+      nd: 1.68893,
+      vd: 31.16,
+      focalLengthMm: 31.361929490327856,
+      glass: "E-FD8 class (coordinate candidate; supplier unconfirmed)",
+      role: "Biconvex positive rear member of CL2; offsets part of L12's power, leaving the doublet at f = −33.46 mm",
+      cemented: "D1",
+    },
+    {
+      id: 5,
+      name: "L14",
+      label: "Element 4",
+      type: "Biconcave Negative",
+      nd: 2.001,
+      vd: 29.13,
+      focalLengthMm: -34.29144798608921,
+      glass: "TAFD55 class (coordinate candidate; supplier unconfirmed)",
+      role: "Highest-index element: biconcave front member of the negative cemented doublet CL1",
+      cemented: "D2",
+    },
+    {
+      id: 6,
+      name: "C1",
+      label: "L14–L15 cement layer",
+      type: "Optical Cement Layer",
+      nd: 1.514,
+      vd: 42.83,
+      glass: "Optical cement (patent nd=1.51400, vd=42.83)",
+      role: "Cement layer of the L14–L15 doublet D2: the 0.01 mm layer printed in the patent prescription; not counted as a lens element",
+    },
+    {
+      id: 7,
+      name: "L15",
+      label: "Element 5",
+      type: "Biconvex Positive",
+      nd: 1.58313,
+      vd: 59.5,
+      focalLengthMm: 193.76762139034875,
+      glass: "M-BACD12 class (coordinate candidate; supplier unconfirmed)",
+      role: "Weak positive rear member of CL1 and the converter's only aspherical element (image-side surface)",
+      cemented: "D2",
+    },
+    {
+      id: 8,
+      name: "L16",
+      label: "Element 6",
+      type: "Biconvex Positive",
+      nd: 1.5168,
+      vd: 64.2,
+      focalLengthMm: 52.29314917547124,
+      glass: "BSC7 class (coordinate candidate; supplier unconfirmed)",
+      role: "Largest element: positive rear singlet whose power the patent's claim 1 bounds relative to the whole converter (fL/ft = −0.35)",
+    },
   ],
-  "doublets": [
+
+  surfaces: [
+    { label: "1", R: 280.638, d: 4.4, sd: 14, medium: 1 },
+    { label: "2", R: -39.216, d: 2.94, sd: 14 },
+    { label: "3", R: -29.864, d: 1.3, sd: 14, medium: 2 },
+    { label: "4", R: 26.078, d: 0.01, sd: 14, medium: 3 },
+    { label: "5", R: 26.078, d: 7.24, sd: 14, medium: 4 },
+    { label: "6", R: -111.73, d: 3.7, sd: 14 },
+    { label: "7", R: -45.931, d: 1.4, sd: 17, medium: 5 },
+    { label: "8", R: 137.925, d: 0.01, sd: 17, medium: 6 },
+    { label: "9", R: 137.925, d: 3.99, sd: 17, medium: 7 },
     {
-      "text": "D1: L12 + L13",
-      "fromSurface": "3",
-      "toSurface": "6"
+      label: "10A",
+      R: -618.383,
+      d: 0.3,
+      sd: 17,
+      asphere: {
+        K: 30.0,
+        A4: -4.72819e-06,
+        A6: 4.56226e-09,
+        A8: -1.48932e-11,
+        A10: 1.09243e-14,
+        A12: 0,
+        A14: 0,
+      },
     },
-    {
-      "text": "D2: L14 + L15",
-      "fromSurface": "7",
-      "toSurface": "10A"
-    }
-  ]
-} satisfies TeleconverterDataInput;
+    { label: "11", R: 254.263, d: 9.9, sd: 21, medium: 8 },
+    { label: "12", R: -29.838, d: 11.42, sd: 21 },
+  ],
+
+  groups: [
+    { text: "L11 (+)", fromSurface: "1", toSurface: "2" },
+    { text: "CL2 (−)", fromSurface: "3", toSurface: "6" },
+    { text: "CL1 (−)", fromSurface: "7", toSurface: "10A" },
+    { text: "L16 (+)", fromSurface: "11", toSurface: "12" },
+  ],
+  doublets: [
+    { text: "D1: L12 + L13", fromSurface: "3", toSurface: "6" },
+    { text: "D2: L14 + L15", fromSurface: "7", toSurface: "10A" },
+  ],
+} satisfies TeleconverterDataV2Input;
 
 export default TELECONVERTER_DATA;

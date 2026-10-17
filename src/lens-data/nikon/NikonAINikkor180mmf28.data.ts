@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 // Nikon AI Nikkor 180mm f/2.8 ED
 // Source prescription: US 4,338,001, Embodiment 2 (Sei Matsui / Nippon Kogaku).
@@ -7,29 +7,35 @@ import type { LensDataInput } from "../../types/optics.js";
 // the patent does not publish semi-diameters. The stop position is inferred from Fig. 1 in the long d6 air gap.
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-ai-nikkor-180mm-f28-ed",
   maker: "Nikon",
   name: "NIKON AI NIKKOR 180mm f/2.8 ED",
   subtitle: "US 4,338,001 Embodiment 2 — Sei Matsui / Nippon Kogaku",
-  specs: [
-    "5 elements / 5 groups",
-    "f = 180.00 mm, scaled from patent f = 100",
-    "f/2.8, all-spherical",
-    "2ω = 13.6°",
-    "Unit focus model",
-  ],
-  focalLengthMarketing: 180,
-  focalLengthDesign: 180.004,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.8,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,338,001",
-  patentAuthors: ["Sei Matsui"],
-  patentAssignees: ["Nippon Kogaku K.K."],
-  patentYear: 1982,
-  elementCount: 5,
-  groupCount: 5,
+
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "5 elements / 5 groups",
+      "f = 180.00 mm, scaled from patent f = 100",
+      "f/2.8, all-spherical",
+      "2ω = 13.6°",
+      "Unit focus model",
+    ],
+    elementCount: 5,
+    groupCount: 5,
+    focalLengthMm: { marketing: 180, design: 180.004 },
+    fNumber: { marketing: 2.8, design: 2.8 },
+  },
+
+  source: {
+    patentNumber: "US 4,338,001",
+    patentYear: 1982,
+    authors: ["Sei Matsui"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
+
   elements: [
     {
       id: 1,
@@ -38,7 +44,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.50032,
       vd: 81.9,
-      fl: 118.099,
+      focalLengthMm: 118.099,
       glass: "Unmatched Nikon ED fluorophosphate (near S-FPL51/FCD1 class; nd offset +0.0033)",
       apd: "inferred",
       apdNote: "ED fluorophosphate class; the patent does not publish partial-dispersion constants.",
@@ -51,7 +57,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7495,
       vd: 35.0,
-      fl: -134.023,
+      focalLengthMm: -134.023,
       glass: "LAFN7 / E-LAF7 class (750/350 lanthanum flint)",
       role: "High-index flint partner to L1; its front surface nearly matches L1's rear curvature for chromatic correction.",
     },
@@ -62,7 +68,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.65844,
       vd: 50.8,
-      fl: 170.9,
+      focalLengthMm: 170.9,
       glass: "N-SSK5 / S-BSM25 class (658/509 dense barium crown)",
       role: "Completes the convergent forward group and balances spherical aberration and field curvature.",
     },
@@ -73,7 +79,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.51454,
       vd: 54.6,
-      fl: -73.841,
+      focalLengthMm: -73.841,
       glass: "KF3 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       role: "Primary divergent rear telephoto element; shortens total track and drives the rear-group distortion balance.",
     },
@@ -84,42 +90,43 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.79668,
       vd: 45.4,
-      fl: 117.873,
+      focalLengthMm: 117.873,
       glass: "Unmatched (TAF/LaSF-class high-index flint, nd=1.79668, νd=45.4; near HOYA TAF2 / HIKARI J-LASF017)",
       role: "Rear positive corrector; reduces L4 pincushion distortion and contributes to field flattening.",
     },
   ],
+
   surfaces: [
-    { label: "1", R: 99.0216, d: 11.5002, nd: 1.50032, elemId: 1, sd: 35.0 },
-    { label: "2", R: -140.8392, d: 2.1006, nd: 1.0, elemId: 0, sd: 32.0 },
-    { label: "3", R: -138.0564, d: 3.7008, nd: 1.7495, elemId: 2, sd: 31.5 },
-    { label: "4", R: 372.9996, d: 6.3, nd: 1.0, elemId: 0, sd: 31.0 },
-    { label: "5", R: 77.7744, d: 9.1998, nd: 1.65844, elemId: 3, sd: 31.0 },
-    { label: "6", R: 239.9994, d: 54.0, nd: 1.0, elemId: 0, sd: 29.5 },
-    { label: "STO", R: 1e15, d: 36.9, nd: 1.0, elemId: 0, sd: 16.145699 },
-    { label: "7", R: -35.4996, d: 1.8, nd: 1.51454, elemId: 4, sd: 18.5 },
-    { label: "8", R: -550.0008, d: 0.5004, nd: 1.0, elemId: 0, sd: 18.5 },
-    { label: "9", R: 219.9996, d: 5.0004, nd: 1.79668, elemId: 5, sd: 19.0 },
-    { label: "10", R: -162.1926, d: 41.260824, nd: 1.0, elemId: 0, sd: 19.5 },
+    { label: "1", R: 99.0216, d: 11.5002, sd: 35.0, medium: 1 },
+    { label: "2", R: -140.8392, d: 2.1006, sd: 32.0 },
+    { label: "3", R: -138.0564, d: 3.7008, sd: 31.5, medium: 2 },
+    { label: "4", R: 372.9996, d: 6.3, sd: 31.0 },
+    { label: "5", R: 77.7744, d: 9.1998, sd: 31.0, medium: 3 },
+    { label: "6", R: 239.9994, d: 54.0, sd: 29.5 },
+    { label: "STO", R: "flat", d: 36.9 },
+    { label: "7", R: -35.4996, d: 1.8, sd: 18.5, medium: 4 },
+    { label: "8", R: -550.0008, d: 0.5004, sd: 18.5 },
+    { label: "9", R: 219.9996, d: 5.0004, sd: 19.0, medium: 5 },
+    { label: "10", R: -162.1926, sd: 19.5 },
   ],
-  asph: {},
-  var: {
-    "10": [41.260824, 65.378011],
+
+  focus: {
+    closeFocusM: 1.8,
+    description:
+      "Unit focus. The whole optical unit translates; only the final back-focus gap varies from infinity to the 1.8 m close-focus setting.",
   },
-  varLabels: [["10", "BF"]],
+
+  gaps: { "10": { label: "BF", values: [[41.260824, 65.378011]] } },
+
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32 },
+
   groups: [
     { text: "FORWARD", fromSurface: "1", toSurface: "6" },
     { text: "REAR", fromSurface: "7", toSurface: "10" },
   ],
   doublets: [],
-  closeFocusM: 1.8,
-  focusDescription:
-    "Unit focus. The whole optical unit translates; only the final back-focus gap varies from infinity to the 1.8 m close-focus setting.",
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
-  maxFstop: 32,
-  scFill: 0.54,
-  yScFill: 0.48,
-} satisfies LensDataInput;
+
+  layout: { scFill: 0.54, yScFill: 0.48 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

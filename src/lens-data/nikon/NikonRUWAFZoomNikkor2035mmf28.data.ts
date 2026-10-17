@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8
@@ -44,29 +44,34 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-ruw-af-zoom-nikkor-20-35mm-f28",
   maker: "Nikon",
   name: "NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8",
   subtitle: "US 5,490,012 First Embodiment - Nikon / Kouichi Ohshita",
-  specs: [
-    "9 powered elements / 9 groups + rear protective plate",
-    "f = 20.60-34.00 mm in water",
-    "F/2.88 design aperture",
-    "2ω = 79.8°-51.4° in water",
-    "All-spherical underwater zoom",
-  ],
-  focalLengthMarketing: [20, 35],
-  focalLengthDesign: [20.6007, 34.0012],
-  apertureMarketing: 2.8,
-  apertureDesign: 2.88,
-  lensMounts: ["nikonos-rs"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 5,490,012",
-  patentAuthors: ["Kouichi Ohshita"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 1996,
-  elementCount: 9,
-  groupCount: 9,
+
+  catalog: {
+    lensMounts: ["nikonos-rs"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "9 powered elements / 9 groups + rear protective plate",
+      "f = 20.60-34.00 mm in water",
+      "F/2.88 design aperture",
+      "2ω = 79.8°-51.4° in water",
+      "All-spherical underwater zoom",
+    ],
+    elementCount: 9,
+    groupCount: 9,
+    focalLengthMm: { marketing: [20, 35], design: [20.6007, 34.0012] },
+    fNumber: { marketing: 2.8, design: 2.88 },
+  },
+
+  source: {
+    patentNumber: "US 5,490,012",
+    patentYear: 1996,
+    authors: ["Kouichi Ohshita"],
+    assignees: ["Nikon Corporation"],
+  },
 
   elements: [
     {
@@ -76,7 +81,7 @@ const LENS_DATA = {
       type: "Positive Meniscus / Water-contact Window",
       nd: 1.5168,
       vd: 64.1,
-      fl: 366.5,
+      focalLengthMm: 366.5,
       glass: "N-BK7 (Schott; BK7-class, patent nd/vd match)",
       role: "Water-contacting pressure window; weakly negative as a unit when the object medium is water.",
     },
@@ -87,7 +92,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.79668,
       vd: 45.4,
-      fl: -60.7,
+      focalLengthMm: -60.7,
       glass: "J-LASF017 (Hikari catalog-equivalent to patent 797454; supplier not identified)",
       role: "Front negative element of the G2 compensator.",
     },
@@ -98,7 +103,7 @@ const LENS_DATA = {
       type: "Plano-Concave Negative",
       nd: 1.77279,
       vd: 49.4,
-      fl: -51.2,
+      focalLengthMm: -51.2,
       glass: "M-TAF1 class (Hoya; 773/494)",
       role: "Second negative element of G2, adding compensator power with high-index glass.",
     },
@@ -109,7 +114,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.71736,
       vd: 29.5,
-      fl: 85.8,
+      focalLengthMm: 85.8,
       glass: "N-SF1 / S-TIH1 class (dense flint)",
       role: "Positive balancing element at the rear of the negative G2 compensator.",
     },
@@ -120,7 +125,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.66755,
       vd: 42.0,
-      fl: 44.1,
+      focalLengthMm: 44.1,
       glass: "J-BASF6 (Hikari) / BAH26 class (668419)",
       role: "First positive element of G3a, immediately before the aperture stop.",
     },
@@ -131,7 +136,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62041,
       vd: 60.2,
-      fl: 72.6,
+      focalLengthMm: 72.6,
       glass: "N-SK16 (Schott) / S-BSM16 class",
       role: "Low-dispersion positive partner completing the object-side positive subgroup G3a.",
     },
@@ -142,7 +147,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80518,
       vd: 25.4,
-      fl: -21.8,
+      focalLengthMm: -21.8,
       glass: "N-SF6 (Schott) / S-TIH6 class",
       role: "Strong negative element between the two positive subgroups of G3; primary Petzval and coma corrector.",
     },
@@ -153,7 +158,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6968,
       vd: 55.6,
-      fl: 91.0,
+      focalLengthMm: 91.0,
       glass: "S-LAL14 (Ohara) / N-LAK14 class",
       role: "First element of image-side positive subgroup G3b.",
     },
@@ -164,66 +169,91 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7481,
       vd: 52.3,
-      fl: 40.5,
+      focalLengthMm: 40.5,
       glass: "748523 — E-LAKH1 catalog equivalent (Hikari; production supplier unspecified)",
       role: "Final positive power element of G3b before the rear protective plate.",
     },
-
   ],
+
+  media: [{ id: "m1", nd: 1.33306 }],
 
   surfaces: [
-    { label: "WTR", R: 1e15, d: 0.001, nd: 1.33306, elemId: 0, sd: 70.0 },
-    { label: "1", R: 111.6, d: 20.0, nd: 1.5168, elemId: 1, sd: 62.5 },
-    { label: "2", R: 255.08, d: 7.9672, nd: 1.0, elemId: 0, sd: 50.0 },
-    { label: "3", R: 60.23, d: 3.0, nd: 1.79668, elemId: 2, sd: 38.0 },
-    { label: "4", R: 26.23, d: 15.0, nd: 1.0, elemId: 0, sd: 23.0 },
-    { label: "5", R: 2180.836, d: 2.0, nd: 1.77279, elemId: 3, sd: 23.0 },
-    { label: "6", R: 38.846, d: 5.6, nd: 1.0, elemId: 0, sd: 24.0 },
-    { label: "7", R: 40.565, d: 7.0, nd: 1.71736, elemId: 4, sd: 22.0 },
-    { label: "8", R: 110.316, d: 34.1678, nd: 1.0, elemId: 0, sd: 18.5 },
-    { label: "9", R: 49.471, d: 6.0, nd: 1.66755, elemId: 5, sd: 11.0 },
-    { label: "10", R: -69.274, d: 1.1, nd: 1.0, elemId: 0, sd: 9.0 },
-    { label: "STO", R: 1e15, d: 1.1, nd: 1.0, elemId: 0, sd: 8.21 },
-    { label: "11", R: 39.429, d: 5.5, nd: 1.62041, elemId: 6, sd: 8.9 },
-    { label: "12", R: 300.582, d: 2.0, nd: 1.0, elemId: 0, sd: 8.9 },
-    { label: "13", R: -35.2, d: 7.0, nd: 1.80518, elemId: 7, sd: 8.7 },
-    { label: "14", R: 37.948, d: 1.7, nd: 1.0, elemId: 0, sd: 8.85 },
-    { label: "15", R: -85.856, d: 4.0, nd: 1.6968, elemId: 8, sd: 8.85 },
-    { label: "16", R: -37.179, d: 0.4, nd: 1.0, elemId: 0, sd: 11.0 },
-    { label: "17", R: 327.07, d: 4.3, nd: 1.7481, elemId: 9, sd: 13.2 },
-    { label: "18", R: -33.237, d: 1.1021, nd: 1.0, elemId: 0, sd: 16.5 },
+    { label: "WTR", R: "flat", d: 0.001, sd: 70.0, medium: "m1" },
+    { label: "1", R: 111.6, d: 20.0, sd: 62.5, medium: 1 },
+    { label: "2", R: 255.08, sd: 50.0 },
+    { label: "3", R: 60.23, d: 3.0, sd: 38.0, medium: 2 },
+    { label: "4", R: 26.23, d: 15.0, sd: 23.0 },
+    { label: "5", R: 2180.836, d: 2.0, sd: 23.0, medium: 3 },
+    { label: "6", R: 38.846, d: 5.6, sd: 24.0 },
+    { label: "7", R: 40.565, d: 7.0, sd: 22.0, medium: 4 },
+    { label: "8", R: 110.316, sd: 18.5 },
+    { label: "9", R: 49.471, d: 6.0, sd: 11.0, medium: 5 },
+    { label: "10", R: -69.274, d: 1.1, sd: 9.0 },
+    { label: "STO", R: "flat", d: 1.1 },
+    { label: "11", R: 39.429, d: 5.5, sd: 8.9, medium: 6 },
+    { label: "12", R: 300.582, d: 2.0, sd: 8.9 },
+    { label: "13", R: -35.2, d: 7.0, sd: 8.7, medium: 7 },
+    { label: "14", R: 37.948, d: 1.7, sd: 8.85 },
+    { label: "15", R: -85.856, d: 4.0, sd: 8.85, medium: 8 },
+    { label: "16", R: -37.179, d: 0.4, sd: 11.0 },
+    { label: "17", R: 327.07, d: 4.3, sd: 13.2, medium: 9 },
+    { label: "18", R: -33.237, sd: 16.5 },
   ],
 
-  rearPlates: [{ label: "P", thicknessMm: 1.3, nd: 1.5168, vd: 64.1, glass: "N-BK7", gapAfterMm: 38.563, source: "US 5,490,012, Table 1 surfaces 19–20 and d20 zoom row" }],
-
-  asph: {},
-
-  zoomPositions: [20.6007, 26.5009, 34.0012],
-  zoomLabels: ["20.6 mm", "34.0 mm"],
-  zoomStep: 0.004,
-
-  var: {
-    "2": [
-      [7.9672, 7.9672],
-      [18.9022, 18.9022],
-      [24.4123, 24.4123],
+  zoom: {
+    stations: [
+      { focalLengthMm: 20.6007, label: "20.6 mm" },
+      { focalLengthMm: 26.5009 },
+      { focalLengthMm: 34.0012, label: "34.0 mm" },
     ],
-    "8": [
-      [34.1678, 34.1678],
-      [17.6102, 17.6102],
-      [4.9839, 4.9839],
-    ],
-    "18": [
-      [1.1021, 1.1021],
-      [6.7247, 6.7247],
-      [13.8409, 13.8409],
-    ],
+    step: 0.004,
   },
 
-  varLabels: [
-    ["2", "D2 G1-G2"],
-    ["8", "D8 G2-G3"],
-    ["18", "D18 G3-P"],
+  focus: {
+    closeFocusM: 0.12,
+    description:
+      "Patent-described G2 focusing; close-focus spacings are unpublished, so this file models verified infinity zoom positions only.",
+  },
+
+  gaps: {
+    "2": {
+      label: "D2 G1-G2",
+      values: [
+        [7.9672, 7.9672],
+        [18.9022, 18.9022],
+        [24.4123, 24.4123],
+      ],
+    },
+    "8": {
+      label: "D8 G2-G3",
+      values: [
+        [34.1678, 34.1678],
+        [17.6102, 17.6102],
+        [4.9839, 4.9839],
+      ],
+    },
+    "18": {
+      label: "D18 G3-P",
+      values: [
+        [1.1021, 1.1021],
+        [6.7247, 6.7247],
+        [13.8409, 13.8409],
+      ],
+    },
+  },
+
+  aperture: { nominalFNumber: 2.88, fStops: [2.88, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
+
+  rearPlates: [
+    {
+      label: "P",
+      thicknessMm: 1.3,
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "N-BK7",
+      gapAfterMm: 38.563,
+      source: "US 5,490,012, Table 1 surfaces 19–20 and d20 zoom row",
+    },
   ],
 
   groups: [
@@ -234,16 +264,9 @@ const LENS_DATA = {
   ],
   doublets: [],
 
-  focusDescription:
-    "Patent-described G2 focusing; close-focus spacings are unpublished, so this file models verified infinity zoom positions only.",
-  closeFocusM: 0.12,
-  nominalFno: 2.88,
-  fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22],
+  layout: { scFill: 0.58, yScFill: 0.72 },
 
-  scFill: 0.58,
-  yScFill: 0.72,
-  offAxisFieldFrac: 0.5,
-  maxFstop: 22,
-} satisfies LensDataInput;
+  rays: { offAxisFieldFrac: 0.5 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

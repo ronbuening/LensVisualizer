@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
@@ -29,29 +29,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "nikon-afp-dx-18-55mm-f35-56g-vr",
   maker: "Nikon",
   name: "NIKON AF-P DX NIKKOR 18-55mm f/3.5-5.6 G VR",
   subtitle: "US 10,690,896 B2 — First Example / Nikon",
-  specs: [
-    "12 elements / 9 groups (manufacturer count)",
-    "13 modeled optical material bodies",
-    "f = 18.50–53.40 mm patent design",
-    "FNO = 3.64–5.88 patent design",
-    "2 aspherical surfaces",
-    "Inner focus; G2 VR group",
-  ],
 
-  focalLengthMarketing: [18, 55],
-  focalLengthDesign: [18.5, 53.4],
-  lensMounts: ["nikon-f"],
-  imageFormat: "aps-c",
-  patentNumber: "US 10,690,896 B2",
-  patentAuthors: ["Kosuke Machida", "Takeshi Suzuki", "Takeru Uehara"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 2020,
-  elementCount: 12,
-  groupCount: 9,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "aps-c",
+    specs: [
+      "12 elements / 9 groups (manufacturer count)",
+      "13 modeled optical material bodies",
+      "f = 18.50–53.40 mm patent design",
+      "FNO = 3.64–5.88 patent design",
+      "2 aspherical surfaces",
+      "Inner focus; G2 VR group",
+    ],
+    elementCount: 12,
+    groupCount: 9,
+    focalLengthMm: { marketing: [18, 55], design: [18.5, 53.4] },
+  },
+
+  source: {
+    patentNumber: "US 10,690,896 B2",
+    patentYear: 2020,
+    authors: ["Kosuke Machida", "Takeshi Suzuki", "Takeru Uehara"],
+    assignees: ["Nikon Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -62,7 +67,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.58913,
       vd: 61.22,
-      fl: -42.34,
+      focalLengthMm: -42.34,
       glass: "J-SK5 (HIKARI); S-BAL35 / P-SK58A class, 589/612",
       apd: false,
       role: "Front negative field-collecting meniscus; glass substrate for the bonded resin asphere.",
@@ -75,7 +80,7 @@ const LENS_DATA = {
       type: "Hybrid Resin Aspherical Layer",
       nd: 1.56093,
       vd: 36.64,
-      fl: -324.42,
+      focalLengthMm: -324.42,
       glass: "UV-curable resin (patent material, no catalog match)",
       apd: false,
       role: "Thin bonded resin layer carrying the image-side aspherical profile of L11.",
@@ -88,7 +93,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.62299,
       vd: 58.12,
-      fl: -30.61,
+      focalLengthMm: -30.61,
       glass: "J-SK15 (HIKARI); N-SK15 / BACD15 / S-BSM15 class, 623/581",
       apd: false,
       role: "Negative member of the G1 rear cemented doublet; lateral-color and field correction.",
@@ -101,7 +106,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.8,
-      fl: 39.18,
+      focalLengthMm: 39.18,
       glass: "J-SF03 (HIKARI); S-TIH53 / dense flint class, 847/238",
       apd: false,
       role: "Positive high-dispersion partner in the G1 cemented doublet.",
@@ -114,7 +119,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.31,
-      fl: 76.67,
+      focalLengthMm: 76.67,
       glass: "J-FK5 (HIKARI); S-FSL5 / N-FK5 class, 487/703",
       apd: false,
       role: "Single positive G2 element; linked zoom member and vibration-reduction group.",
@@ -126,7 +131,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.62,
-      fl: -60.9,
+      focalLengthMm: -60.9,
       glass: "J-LASF016 (HIKARI); S-LAH66 / N-LAF34 / TAF1 class, 773/496",
       apd: false,
       role: "Single negative inner-focus group, moved toward the object side at close focus.",
@@ -138,7 +143,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.31,
-      fl: 39.35,
+      focalLengthMm: 39.35,
       glass: "J-FK5 (HIKARI); S-FSL5 / N-FK5 class, 487/703",
       apd: false,
       role: "Front positive singlet of G4; primary relay convergence before the stop.",
@@ -150,7 +155,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.31,
-      fl: 26.88,
+      focalLengthMm: 26.88,
       glass: "J-FK5 (HIKARI); S-FSL5 / N-FK5 class, 487/703",
       apd: false,
       role: "Strong positive member of the G4 achromatized cemented doublet.",
@@ -163,7 +168,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.8,
-      fl: -52.43,
+      focalLengthMm: -52.43,
       glass: "J-SF03 (HIKARI); S-TIH53 / dense flint class, 847/238",
       apd: false,
       role: "High-dispersion negative partner in the G4 cemented doublet.",
@@ -176,7 +181,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7552,
       vd: 27.57,
-      fl: 26.09,
+      focalLengthMm: 26.09,
       glass: "J-SF4 (HIKARI); S-TIH4 / N-SF4 / E-FD4 class, 755/276",
       apd: false,
       role: "Positive high-dispersion member of the negative G5 cemented group.",
@@ -189,7 +194,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.70154,
       vd: 41.02,
-      fl: -14.51,
+      focalLengthMm: -14.51,
       glass: "J-BASF7 (HIKARI); S-BAH27 / BAFD7 class, 702/410",
       apd: false,
       role: "Strong negative rear member of G5; completes the negative correcting doublet.",
@@ -202,7 +207,7 @@ const LENS_DATA = {
       type: "Positive Meniscus (1× Asph)",
       nd: 1.52444,
       vd: 56.21,
-      fl: 1411.95,
+      focalLengthMm: 1411.95,
       glass: "Optical plastic (patent material, no catalog match)",
       apd: false,
       role: "Weak positive plastic aspherical element in G6; field-dependent coma and astigmatism correction.",
@@ -214,7 +219,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.5168,
       vd: 63.88,
-      fl: 48.14,
+      focalLengthMm: 48.14,
       glass: "J-BK7A (HIKARI); S-BSL7 / N-BK7 class, 517/641",
       apd: false,
       role: "Rear positive glass element of G6 and durable image-side terminal element.",
@@ -222,101 +227,117 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
-  surfaces: [
-    { label: "1", R: 80.72, d: 2.0, nd: 1.58913, elemId: 1, sd: 15.3 },
-    { label: "2", R: 18.88, d: 0.17, nd: 1.56093, elemId: 2, sd: 14.9 },
-    { label: "3A", R: 17.05, d: 9.35, nd: 1.0, elemId: 0, sd: 14.7 },
-    { label: "4", R: 240.48, d: 1.4, nd: 1.62299, elemId: 3, sd: 14.7 },
-    { label: "5", R: 17.63, d: 5.0, nd: 1.84666, elemId: 4, sd: 14.5 },
-    { label: "6", R: 32.74, d: 33.51, nd: 1.0, elemId: 0, sd: 14.8 },
-    { label: "7", R: 164.19, d: 1.65, nd: 1.48749, elemId: 5, sd: 9.5 },
-    { label: "8", R: -48.23, d: 6.23, nd: 1.0, elemId: 0, sd: 9.5 },
-    { label: "9", R: -30.49, d: 0.8, nd: 1.7725, elemId: 6, sd: 10.5 },
-    { label: "10", R: -87.64, d: 2.96, nd: 1.0, elemId: 0, sd: 10.5 },
-    { label: "11", R: 46.43, d: 3.05, nd: 1.48749, elemId: 7, sd: 9.8 },
-    { label: "12", R: -31.99, d: 0.1, nd: 1.0, elemId: 0, sd: 9.8 },
-    { label: "13", R: 25.5, d: 4.2, nd: 1.48749, elemId: 8, sd: 9.5 },
-    { label: "14", R: -25.5, d: 0.8, nd: 1.84666, elemId: 9, sd: 9.2 },
-    { label: "15", R: -60.79, d: 0.75, nd: 1.0, elemId: 0, sd: 8.8 },
-    { label: "STO", R: 1e15, d: 1.7, nd: 1.0, elemId: 0, sd: 7.65 },
-    { label: "17", R: -43.88, d: 2.27, nd: 1.7552, elemId: 10, sd: 8.0 },
-    { label: "18", R: -13.9, d: 0.8, nd: 1.70154, elemId: 11, sd: 8.0 },
-    { label: "19", R: 38.98, d: 9.07, nd: 1.0, elemId: 0, sd: 8.5 },
-    { label: "20", R: 81.93, d: 1.3, nd: 1.52444, elemId: 12, sd: 11.5 },
-    { label: "21A", R: 91.62, d: 1.6, nd: 1.0, elemId: 0, sd: 11.8 },
-    { label: "22", R: -179.92, d: 2.3, nd: 1.5168, elemId: 13, sd: 9.4 },
-    { label: "23", R: -21.95, d: 43.85, nd: 1.0, elemId: 0, sd: 9.4 },
-  ],
-
-  /* ── Aspherical coefficients ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   // The patent tabulates conic coefficient κ in x=(h²/r)/(1+sqrt(1-κ(h/r)²))+... .
   // LensVisualizer uses the standard K convention x=(h²/R)/(1+sqrt(1-(1+K)(h/R)²))+... ; therefore K = κ - 1.
-  asph: {
-    "3A": {
-      K: -1,
-      A4: 1.43618e-5,
-      A6: 3.23919e-8,
-      A8: -6.25295e-11,
-      A10: 2.95784e-13,
-      A12: 0,
-      A14: 0,
+  surfaces: [
+    { label: "1", R: 80.72, d: 2.0, sd: 15.3, medium: 1 },
+    { label: "2", R: 18.88, d: 0.17, sd: 14.9, medium: 2 },
+    {
+      label: "3A",
+      R: 17.05,
+      d: 9.35,
+      sd: 14.7,
+      asphere: { K: -1, A4: 1.43618e-5, A6: 3.23919e-8, A8: -6.25295e-11, A10: 2.95784e-13 },
     },
-    "21A": {
-      K: -1,
-      A4: 2.4315e-5,
-      A6: -6.35221e-9,
-      A8: 2.2476e-10,
-      A10: -3.95108e-12,
-      A12: 0,
-      A14: 0,
+    { label: "4", R: 240.48, d: 1.4, sd: 14.7, medium: 3 },
+    { label: "5", R: 17.63, d: 5.0, sd: 14.5, medium: 4 },
+    { label: "6", R: 32.74, sd: 14.8 },
+    { label: "7", R: 164.19, d: 1.65, sd: 9.5, medium: 5 },
+    { label: "8", R: -48.23, sd: 9.5 },
+    { label: "9", R: -30.49, d: 0.8, sd: 10.5, medium: 6 },
+    { label: "10", R: -87.64, sd: 10.5 },
+    { label: "11", R: 46.43, d: 3.05, sd: 9.8, medium: 7 },
+    { label: "12", R: -31.99, d: 0.1, sd: 9.8 },
+    { label: "13", R: 25.5, d: 4.2, sd: 9.5, medium: 8 },
+    { label: "14", R: -25.5, d: 0.8, sd: 9.2, medium: 9 },
+    { label: "15", R: -60.79, d: 0.75, sd: 8.8 },
+    { label: "STO", R: "flat" },
+    { label: "17", R: -43.88, d: 2.27, sd: 8.0, medium: 10 },
+    { label: "18", R: -13.9, d: 0.8, sd: 8.0, medium: 11 },
+    { label: "19", R: 38.98, sd: 8.5 },
+    { label: "20", R: 81.93, d: 1.3, sd: 11.5, medium: 12 },
+    {
+      label: "21A",
+      R: 91.62,
+      d: 1.6,
+      sd: 11.8,
+      asphere: { K: -1, A4: 2.4315e-5, A6: -6.35221e-9, A8: 2.2476e-10, A10: -3.95108e-12 },
     },
-  },
-
-  /* ── Zoom and focus variables ── */
-  zoomPositions: [18.5, 35.0, 53.4],
-  zoomStep: 0.004,
-  zoomLabels: ["18.5 mm", "35 mm", "53.4 mm"],
-
-  var: {
-    "6": [
-      [33.51, 33.51],
-      [11.32, 11.32],
-      [3.41, 3.41],
-    ],
-    "8": [
-      [6.23, 3.414],
-      [7.18, 3.816],
-      [7.4, 3.338],
-    ],
-    "10": [
-      [2.96, 5.776],
-      [2.0, 5.364],
-      [1.78, 5.842],
-    ],
-    STO: [
-      [1.7, 1.7],
-      [5.67, 5.67],
-      [9.57, 9.57],
-    ],
-    "19": [
-      [9.07, 9.07],
-      [5.1, 5.1],
-      [1.2, 1.2],
-    ],
-    "23": [
-      [43.85, 43.85],
-      [59.92, 59.92],
-      [75.82, 75.82],
-    ],
-  },
-  varLabels: [
-    ["6", "d6: G1–G2"],
-    ["8", "d8: G2–G3 / focus"],
-    ["10", "d10: G3–G4 / focus"],
-    ["STO", "d16: Stop–G5"],
-    ["19", "d19: G5–G6"],
-    ["23", "Bf"],
+    { label: "22", R: -179.92, d: 2.3, sd: 9.4, medium: 13 },
+    { label: "23", R: -21.95, sd: 9.4 },
   ],
+
+  zoom: {
+    /* (moved from zoomPositions) ── Zoom and focus variables ── */
+    /* (moved from nominalFno) ── Aperture configuration ── */
+    stations: [
+      { focalLengthMm: 18.5, nominalFNumber: 3.5, label: "18.5 mm" },
+      { focalLengthMm: 35.0, nominalFNumber: 4.5, label: "35 mm" },
+      { focalLengthMm: 53.4, nominalFNumber: 5.6, label: "53.4 mm" },
+    ],
+    step: 0.004,
+  },
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.25,
+    description:
+      "Inner focus by G3/L31. Close-focus values are paraxially inferred for 0.25 m MFD by moving L31 object-side within the fixed G2–G4 pocket.",
+  },
+
+  gaps: {
+    "6": {
+      label: "d6: G1–G2",
+      values: [
+        [33.51, 33.51],
+        [11.32, 11.32],
+        [3.41, 3.41],
+      ],
+    },
+    "8": {
+      label: "d8: G2–G3 / focus",
+      values: [
+        [6.23, 3.414],
+        [7.18, 3.816],
+        [7.4, 3.338],
+      ],
+    },
+    "10": {
+      label: "d10: G3–G4 / focus",
+      values: [
+        [2.96, 5.776],
+        [2.0, 5.364],
+        [1.78, 5.842],
+      ],
+    },
+    STO: {
+      label: "d16: Stop–G5",
+      values: [
+        [1.7, 1.7],
+        [5.67, 5.67],
+        [9.57, 9.57],
+      ],
+    },
+    "19": {
+      label: "d19: G5–G6",
+      values: [
+        [9.07, 9.07],
+        [5.1, 5.1],
+        [1.2, 1.2],
+      ],
+    },
+    "23": {
+      label: "Bf",
+      values: [
+        [43.85, 43.85],
+        [59.92, 59.92],
+        [75.82, 75.82],
+      ],
+    },
+  },
+
+  aperture: { fStops: [3.5, 4, 4.5, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 7 },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -327,7 +348,6 @@ const LENS_DATA = {
     { text: "G5", fromSurface: "17", toSurface: "19" },
     { text: "G6", fromSurface: "20", toSurface: "23" },
   ],
-
   doublets: [
     { text: "H1", fromSurface: "1", toSurface: "3A" },
     { text: "D1", fromSurface: "4", toSurface: "6" },
@@ -335,20 +355,8 @@ const LENS_DATA = {
     { text: "D3", fromSurface: "17", toSurface: "19" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.25,
-  focusDescription:
-    "Inner focus by G3/L31. Close-focus values are paraxially inferred for 0.25 m MFD by moving L31 object-side within the fixed G2–G4 pocket.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: [3.5, 4.5, 5.6],
-  fstopSeries: [3.5, 4, 4.5, 5.6, 8, 11, 16, 22],
-  apertureBlades: 7,
-  maxFstop: 22,
-
   /* ── Layout tuning ── */
-  scFill: 0.52,
-  yScFill: 0.5,
-} satisfies LensDataInput;
+  layout: { scFill: 0.52, yScFill: 0.5 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

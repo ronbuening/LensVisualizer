@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════╗
@@ -19,9 +19,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  their small rear-plane inconsistency makes the fixed-plane model close at          ║
  * ║  0.398975 m mean. Both differ from Nikon's marketed 0.36 m production MFD.         ║
  * ║                                                                                      ║
- * ║  The patent's Table 5 reports FNO=2.89, while Fig. 10 reports 2.89 / 2.90 / 2.91. ║
- * ║  nominalFno preserves the state-specific Fig. 10 values because they control       ║
- * ║  stop/pupil geometry; apertureMarketing remains the production f/2.8 designation.  ║
+ * ║  The patent's Table 5 reports FNO=2.89, while Fig. 10 reports 2.89 / 2.90 / 2.91.  ║
+ * ║  nominalFNumber preserves the state-specific Fig. 10 values because they control   ║
+ * ║  stop/pupil geometry; fNumber.marketing remains the production f/2.8 designation.  ║
  * ║                                                                                      ║
  * ║  No uniform scale is applied. Patent and production zoom endpoints do not share    ║
  * ║  one scale factor. Radii, spacings, indices, and asphere coefficients remain at    ║
@@ -46,31 +46,35 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "nikon-af-s-dx-zoom-nikkor-17-55mm-f28g-if-ed",
   maker: "Nikon",
   name: "NIKON AF-S DX ZOOM-NIKKOR 17-55mm f/2.8 G IF-ED",
   subtitle: "US 2005/0013015 A1 Example 5 — Nikon / Takayuki Sensui",
-  specs: [
-    "14 ELEMENTS / 10 GROUPS",
-    "17.55-52.70 mm DESIGN",
-    "F/2.89-2.91 DESIGN",
-    "83.30°-31.16° FULL FIELD",
-    "3 ASPHERICAL SURFACES",
-    "PRODUCTION MFD 0.36 m",
-  ],
 
-  focalLengthMarketing: [17, 55],
-  focalLengthDesign: [17.549976901, 52.699891911],
-  apertureMarketing: 2.8,
-  apertureDesign: 2.89,
-  lensMounts: ["nikon-f"],
-  imageFormat: "aps-c",
-  patentNumber: "US 2005/0013015 A1",
-  patentAuthors: ["Takayuki Sensui"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 2005,
-  elementCount: 14,
-  groupCount: 10,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "aps-c",
+    specs: [
+      "14 ELEMENTS / 10 GROUPS",
+      "17.55-52.70 mm DESIGN",
+      "F/2.89-2.91 DESIGN",
+      "83.30°-31.16° FULL FIELD",
+      "3 ASPHERICAL SURFACES",
+      "PRODUCTION MFD 0.36 m",
+    ],
+    elementCount: 14,
+    groupCount: 10,
+    focalLengthMm: { marketing: [17, 55], design: [17.549976901, 52.699891911] },
+    fNumber: { marketing: 2.8, design: 2.89 },
+  },
+
+  source: {
+    patentNumber: "US 2005/0013015 A1",
+    patentYear: 2005,
+    authors: ["Takayuki Sensui"],
+    assignees: ["Nikon Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -81,7 +85,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.744429,
       vd: 49.55,
-      fl: -49.765033,
+      focalLengthMm: -49.765033,
       glass: "M-NBF1 catalog equivalent (patent 744495; production supplier unspecified)",
       role: "Front negative meniscus of G1; rear surface 2A is aspherical.",
     },
@@ -92,7 +96,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.518601,
       vd: 69.98,
-      fl: -61.228901,
+      focalLengthMm: -61.228901,
       glass: "J-PKH1 catalog equivalent (patent 519700; production supplier unspecified)",
       role: "Special-glass negative element SL1 in the cemented rear pair of G1.",
       cemented: "D1",
@@ -104,7 +108,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.80518,
       vd: 25.43,
-      fl: 121.11444,
+      focalLengthMm: 121.11444,
       glass: "SF6 class / 805254",
       role: "Positive cemented partner to L2 in G1.",
       cemented: "D1",
@@ -116,7 +120,7 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.6779,
       vd: 55.34,
-      fl: 95.399474,
+      focalLengthMm: 95.399474,
       glass: "S-LAL12 (OHARA)",
       role: "Front singlet of the rigid internal-focus carrier; surface 6A is aspherical.",
     },
@@ -127,7 +131,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.78,
-      fl: -55.950331,
+      focalLengthMm: -55.950331,
       glass: "S-TIH53 (OHARA)",
       role: "Negative member of the G2 focusing cemented doublet.",
       cemented: "D2",
@@ -139,7 +143,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.618,
       vd: 63.38,
-      fl: 47.297017,
+      focalLengthMm: 47.297017,
       glass: "618634 phosphate-crown class",
       role: "Positive member of the G2 focusing cemented doublet.",
       cemented: "D2",
@@ -151,7 +155,7 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.739929,
       vd: 49.25,
-      fl: 58.620218,
+      focalLengthMm: 58.620218,
       glass: "Unmatched (740493; nd=1.739929, vd=49.25)",
       role: "Rear G2 singlet; surface 11A is aspherical and does not join the focus translation.",
     },
@@ -162,7 +166,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.84666,
       vd: 23.78,
-      fl: 28.922092,
+      focalLengthMm: 28.922092,
       glass: "S-TIH53 (OHARA)",
       role: "Positive member of the G3 cemented doublet.",
       cemented: "D3",
@@ -174,7 +178,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.804,
       vd: 46.58,
-      fl: -26.604968,
+      focalLengthMm: -26.604968,
       glass: "S-LAH65V (OHARA)",
       role: "Negative member of the G3 cemented doublet.",
       cemented: "D3",
@@ -186,7 +190,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.804,
       vd: 46.58,
-      fl: -35.114431,
+      focalLengthMm: -35.114431,
       glass: "S-LAH65V (OHARA)",
       role: "Rear negative singlet of G3.",
     },
@@ -197,7 +201,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.49782,
       vd: 82.52,
-      fl: 70.995952,
+      focalLengthMm: 70.995952,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
       role: "Front positive special-glass element SL2 of G4.",
     },
@@ -208,7 +212,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.618,
       vd: 63.38,
-      fl: 89.140324,
+      focalLengthMm: 89.140324,
       glass: "618634 phosphate-crown class",
       role: "Central positive singlet of G4.",
     },
@@ -219,7 +223,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.52,
-      fl: 41.4825,
+      focalLengthMm: 41.4825,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
       role: "Positive special-glass element SL3 in the rear G4 cemented pair.",
       cemented: "D4",
@@ -231,7 +235,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.78,
-      fl: -43.345344,
+      focalLengthMm: -43.345344,
       glass: "S-TIH53 (OHARA)",
       role: "Negative cemented partner to L13 at the rear of G4.",
       cemented: "D4",
@@ -239,104 +243,144 @@ const LENS_DATA = {
   ],
 
   /* ── Surfaces ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 68.8329, d: 2.5, nd: 1.744429, elemId: 1, sd: 30.0 },
-    { label: "2A", R: 23.7109, d: 22.4287, nd: 1.0, elemId: 0, sd: 26.0 },
-    { label: "3", R: -58.4517, d: 1.3, nd: 1.518601, elemId: 2, sd: 20.0 },
-    { label: "4", R: 70.0469, d: 2.9936, nd: 1.80518, elemId: 3, sd: 20.0 },
-    { label: "5", R: 243.9094, d: 42.3175, nd: 1.0, elemId: 0, sd: 20.0 },
-    { label: "6A", R: 140.0441, d: 3.4072, nd: 1.6779, elemId: 4, sd: 18.0 },
-    { label: "7", R: -118.9794, d: 0.1, nd: 1.0, elemId: 0, sd: 18.0 },
-    { label: "8", R: 124.693, d: 1.0, nd: 1.84666, elemId: 5, sd: 16.5 },
-    { label: "9", R: 34.203, d: 5.1696, nd: 1.618, elemId: 6, sd: 16.0 },
-    { label: "10", R: -189.4107, d: 4.8624, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "11A", R: 53.9597, d: 5.3, nd: 1.739929, elemId: 7, sd: 16.0 },
-    { label: "12", R: -211.88, d: 1.35, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "STO", R: 1e15, d: 1.2, nd: 1.0, elemId: 0, sd: 7.968287391 },
-    { label: "14", R: 172.5088, d: 4.0, nd: 1.84666, elemId: 8, sd: 11.0 },
-    { label: "15", R: -28.2347, d: 1.0, nd: 1.804, elemId: 9, sd: 10.5 },
-    { label: "16", R: 89.6343, d: 1.9, nd: 1.0, elemId: 0, sd: 9.5 },
-    { label: "17", R: -39.5906, d: 1.0, nd: 1.804, elemId: 10, sd: 9.5 },
-    { label: "18", R: 99.5109, d: 19.8298, nd: 1.0, elemId: 0, sd: 11.0 },
-    { label: "19", R: -134.6632, d: 2.9801, nd: 1.49782, elemId: 11, sd: 12.0 },
-    { label: "20", R: -28.2015, d: 0.1, nd: 1.0, elemId: 0, sd: 12.0 },
-    { label: "21", R: 217.9857, d: 4.0048, nd: 1.618, elemId: 12, sd: 13.0 },
-    { label: "22", R: -73.2014, d: 0.1, nd: 1.0, elemId: 0, sd: 13.0 },
-    { label: "23", R: 52.8039, d: 5.0164, nd: 1.49782, elemId: 13, sd: 13.0 },
-    { label: "24", R: -32.8433, d: 1.0, nd: 1.84666, elemId: 14, sd: 12.5 },
-    { label: "25", R: -316.9872, d: 38.599926339, nd: 1.0, elemId: 0, sd: 13.0 },
+    { label: "1", R: 68.8329, d: 2.5, sd: 30.0, medium: 1 },
+    {
+      label: "2A",
+      R: 23.7109,
+      d: 22.4287,
+      sd: 26.0,
+      asphere: {
+        K: -1,
+        A4: 4.4061e-6,
+        A6: -5.8929e-11,
+        A8: 1.1253e-11,
+        A10: -1.8542e-14,
+        A12: 1.3297e-17,
+        A14: 0,
+      },
+    },
+    { label: "3", R: -58.4517, d: 1.3, sd: 20.0, medium: 2 },
+    { label: "4", R: 70.0469, d: 2.9936, sd: 20.0, medium: 3 },
+    { label: "5", R: 243.9094, sd: 20.0 },
+    {
+      label: "6A",
+      R: 140.0441,
+      d: 3.4072,
+      sd: 18.0,
+      medium: 4,
+      asphere: {
+        K: 0,
+        A4: -1.929e-6,
+        A6: 2.7118e-10,
+        A8: 2.5089e-12,
+        A10: 0,
+        A12: 0,
+        A14: 0,
+      },
+    },
+    { label: "7", R: -118.9794, d: 0.1, sd: 18.0 },
+    { label: "8", R: 124.693, d: 1.0, sd: 16.5, medium: 5 },
+    { label: "9", R: 34.203, d: 5.1696, sd: 16.0, medium: 6 },
+    { label: "10", R: -189.4107, sd: 16.0 },
+    {
+      label: "11A",
+      R: 53.9597,
+      d: 5.3,
+      sd: 16.0,
+      medium: 7,
+      asphere: {
+        K: 0,
+        A4: 1.5661e-6,
+        A6: -1.5382e-10,
+        A8: -4.1712e-13,
+        A10: -6.2541e-16,
+        A12: 0,
+        A14: 0,
+      },
+    },
+    { label: "12", R: -211.88, sd: 16.0 },
+    { label: "STO", R: "flat", d: 1.2 },
+    { label: "14", R: 172.5088, d: 4.0, sd: 11.0, medium: 8 },
+    { label: "15", R: -28.2347, d: 1.0, sd: 10.5, medium: 9 },
+    { label: "16", R: 89.6343, d: 1.9, sd: 9.5 },
+    { label: "17", R: -39.5906, d: 1.0, sd: 9.5, medium: 10 },
+    { label: "18", R: 99.5109, sd: 11.0 },
+    { label: "19", R: -134.6632, d: 2.9801, sd: 12.0, medium: 11 },
+    { label: "20", R: -28.2015, d: 0.1, sd: 12.0 },
+    { label: "21", R: 217.9857, d: 4.0048, sd: 13.0, medium: 12 },
+    { label: "22", R: -73.2014, d: 0.1, sd: 13.0 },
+    { label: "23", R: 52.8039, d: 5.0164, sd: 13.0, medium: 13 },
+    { label: "24", R: -32.8433, d: 1.0, sd: 12.5, medium: 14 },
+    { label: "25", R: -316.9872, sd: 13.0 },
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {
-    "2A": {
-      K: -1,
-      A4: 4.4061e-6,
-      A6: -5.8929e-11,
-      A8: 1.1253e-11,
-      A10: -1.8542e-14,
-      A12: 1.3297e-17,
-      A14: 0,
+  zoom: {
+    /* (moved from nominalFno) ── Aperture configuration ── */
+    stations: [
+      { focalLengthMm: 17.55, nominalFNumber: 2.89, label: "Wide" },
+      { focalLengthMm: 31.43, nominalFNumber: 2.9 },
+      { focalLengthMm: 52.7, nominalFNumber: 2.91, label: "Tele" },
+    ],
+    step: 0.004,
+  },
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.398974925,
+    description:
+      "CONSTRAINED_RECONSTRUCTION: surfaces 6A-10 translate rigidly imageward; D5 increases and D10 decreases by " +
+      "the same solved delta. Close endpoints reproduce the patent Example 5 close block-magnification rows and " +
+      "are fitted to the patent block rows. Because those rows contain a small rear-plane inconsistency, the authored " +
+      "fixed-image-plane model reaches its close conjugate at approximately 0.39897 m; Nikon markets 0.36 m MFD.",
+  },
+
+  /* (moved from var) ── Zoom / focus spacings ── */
+  gaps: {
+    "5": {
+      label: "D5",
+      values: [
+        [42.3175, 46.319902269],
+        [14.6473, 18.198358451],
+        [1.75, 5.606623717],
+      ],
     },
-    "6A": {
-      K: 0,
-      A4: -1.929e-6,
-      A6: 2.7118e-10,
-      A8: 2.5089e-12,
-      A10: 0,
-      A12: 0,
-      A14: 0,
+    "10": {
+      label: "D10",
+      values: [
+        [4.8624, 0.859997731],
+        [4.8624, 1.311341549],
+        [4.8624, 1.005776283],
+      ],
     },
-    "11A": {
-      K: 0,
-      A4: 1.5661e-6,
-      A6: -1.5382e-10,
-      A8: -4.1712e-13,
-      A10: -6.2541e-16,
-      A12: 0,
-      A14: 0,
+    "12": {
+      label: "D12",
+      values: [
+        [1.35, 1.35],
+        [13.2558, 13.2558],
+        [26.8816, 26.8816],
+      ],
+    },
+    "18": {
+      label: "D18",
+      values: [
+        [19.8298, 19.8298],
+        [14.0455, 14.0455],
+        [5.7725, 5.7725],
+      ],
+    },
+    "25": {
+      label: "BF",
+      values: [
+        [38.599926339, 38.599926339],
+        [42.748666069, 42.748666069],
+        [51.926156615, 51.926156615],
+      ],
     },
   },
 
-  /* ── Zoom / focus spacings ── */
-  var: {
-    "5": [
-      [42.3175, 46.319902269],
-      [14.6473, 18.198358451],
-      [1.75, 5.606623717],
-    ],
-    "10": [
-      [4.8624, 0.859997731],
-      [4.8624, 1.311341549],
-      [4.8624, 1.005776283],
-    ],
-    "12": [
-      [1.35, 1.35],
-      [13.2558, 13.2558],
-      [26.8816, 26.8816],
-    ],
-    "18": [
-      [19.8298, 19.8298],
-      [14.0455, 14.0455],
-      [5.7725, 5.7725],
-    ],
-    "25": [
-      [38.599926339, 38.599926339],
-      [42.748666069, 42.748666069],
-      [51.926156615, 51.926156615],
-    ],
-  },
-  varLabels: [
-    ["5", "D5"],
-    ["10", "D10"],
-    ["12", "D12"],
-    ["18", "D18"],
-    ["25", "BF"],
-  ],
-
-  zoomPositions: [17.55, 31.43, 52.7],
-  zoomStep: 0.004,
-  zoomLabels: ["Wide", "Tele"],
+  aperture: { fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 9 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "5" },
@@ -351,22 +395,8 @@ const LENS_DATA = {
     { text: "D4", fromSurface: "23", toSurface: "25" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.398974925,
-  focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: surfaces 6A-10 translate rigidly imageward; D5 increases and D10 decreases by " +
-    "the same solved delta. Close endpoints reproduce the patent Example 5 close block-magnification rows and " +
-    "are fitted to the patent block rows. Because those rows contain a small rear-plane inconsistency, the authored " +
-    "fixed-image-plane model reaches its close conjugate at approximately 0.39897 m; Nikon markets 0.36 m MFD.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: [2.89, 2.9, 2.91],
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
-  apertureBlades: 9,
-  maxFstop: 22,
-
   /* ── Layout ── */
-  yScFill: 0.4,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.4 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;
