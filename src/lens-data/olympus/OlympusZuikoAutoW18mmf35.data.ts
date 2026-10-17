@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * OLYMPUS ZUIKO AUTO-W 18mm f/3.5
@@ -24,9 +24,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * matching Olympus's production minimum-focus specification.
  *
  * Aperture stop: the patent neither tabulates nor labels a stop. A modeled stop is placed at the
- * midpoint of d10, near the transition from L5 to the first cemented doublet in Fig. 2. Its
- * semi-diameter is set by paraxial entrance-pupil tracing for f/3.5; pupil geometry is therefore
- * less certain than the patent-tabulated radii and thicknesses.
+ * midpoint of d10, near the transition from L5 to the first cemented doublet in Fig. 2. Its radius
+ * is derived from the design f-number, f/3.5; pupil geometry is therefore less certain than the
+ * patent-tabulated radii and thicknesses.
  *
  * Semi-diameters: not supplied by the patent. They are estimates from exact spherical marginal and
  * chief-ray traces, then constrained to element SD ratio <= 1.25, common-aperture edge thickness
@@ -36,37 +36,35 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* Identity */
+  schema: 2,
   key: "olympus-zuiko-auto-w-18f35",
   maker: "Olympus",
   name: "OLYMPUS ZUIKO AUTO-W 18mm f/3.5",
   subtitle: "US 4,029,397 EMBODIMENT 1 — NOBUO YAMASHITA / OLYMPUS",
-  specs: [
-    "11 ELEMENTS / 9 GROUPS",
-    "18.03 mm PARAXIAL EFL",
-    "f/3.5",
-    "100° DIAGONAL FIELD",
-    "FLOATING REAR GROUP",
-    "ALL SPHERICAL",
-  ],
-  focalLengthMarketing: 18,
-  focalLengthDesign: 18.032579,
-  apertureMarketing: 3.5,
-  apertureDesign: 3.5,
-  lensMounts: ["olympus-om"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,029,397",
-  patentAuthors: ["Nobuo Yamashita"],
-  patentAssignees: ["Olympus Optical Co., Ltd."],
-  patentYear: 1977,
-  elementCount: 11,
-  groupCount: 9,
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 100,
-    maxTraceFieldDeg: 50,
+
+  catalog: {
+    lensMounts: ["olympus-om"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "11 ELEMENTS / 9 GROUPS",
+      "18.03 mm PARAXIAL EFL",
+      "f/3.5",
+      "100° DIAGONAL FIELD",
+      "FLOATING REAR GROUP",
+      "ALL SPHERICAL",
+    ],
+    elementCount: 11,
+    groupCount: 9,
+    focalLengthMm: { marketing: 18, design: 18.032579 },
+    fNumber: { marketing: 3.5, design: 3.5 },
   },
-  focusDescription:
-    "Floating rear group: L3-L11 advances toward the fixed L1-L2 front group; the final BFD increases by the same amount.",
+
+  source: {
+    patentNumber: "US 4,029,397",
+    patentYear: 1977,
+    authors: ["Nobuo Yamashita"],
+    assignees: ["Olympus Optical Co., Ltd."],
+  },
 
   /* Elements — standalone focal lengths are thick-lens values in air. */
   elements: [
@@ -77,7 +75,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6779,
       vd: 55.33,
-      fl: 107.835,
+      focalLengthMm: 107.835,
       glass: "S-LAL12 (OHARA; coordinate match)",
       apd: false,
       role: "Weak positive front collector in the fixed negative front group.",
@@ -89,7 +87,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7859,
       vd: 44.24,
-      fl: -30.879,
+      focalLengthMm: -30.879,
       glass: "S-LAH51 (OHARA; coordinate match)",
       apd: false,
       role: "Strong negative meniscus completing the fixed front group.",
@@ -101,7 +99,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7859,
       vd: 44.24,
-      fl: -31.923,
+      focalLengthMm: -31.923,
       glass: "S-LAH51 (OHARA; coordinate match)",
       apd: false,
       role: "First element of the floating group; continues the retrofocus divergence.",
@@ -113,7 +111,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7859,
       vd: 44.24,
-      fl: -28.121,
+      focalLengthMm: -28.121,
       glass: "S-LAH51 (OHARA; coordinate match)",
       apd: false,
       role: "Third consecutive high-index negative meniscus in the front half of the design.",
@@ -125,7 +123,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.56732,
       vd: 42.83,
-      fl: 46.057,
+      focalLengthMm: 46.057,
       glass: "S-TIL26 (OHARA; coordinate match)",
       apd: false,
       role: "Positive transition element preceding the modeled aperture and cemented correction groups.",
@@ -137,11 +135,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6968,
       vd: 55.62,
-      fl: -17.882,
+      focalLengthMm: -17.882,
       glass: "S-LAL14 (OHARA; coordinate match)",
       apd: false,
-      cemented: "D1",
       role: "Negative crown member of the first cemented doublet; standalone in-air power shown.",
+      cemented: "D1",
     },
     {
       id: 7,
@@ -150,11 +148,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5927,
       vd: 35.54,
-      fl: 10.088,
+      focalLengthMm: 10.088,
       glass: "S-FTM16 class (OHARA; closest current coordinate match)",
       apd: false,
-      cemented: "D1",
       role: "Strong positive flint member; D1 has a net in-situ EFL of +19.080 mm.",
+      cemented: "D1",
     },
     {
       id: 8,
@@ -163,11 +161,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7859,
       vd: 44.24,
-      fl: 28.233,
+      focalLengthMm: 28.233,
       glass: "S-LAH51 (OHARA; coordinate match)",
       apd: false,
-      cemented: "D2",
       role: "Positive meniscus member of the second cemented doublet.",
+      cemented: "D2",
     },
     {
       id: 9,
@@ -176,11 +174,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.84666,
       vd: 23.88,
-      fl: -12.66,
+      focalLengthMm: -12.66,
       glass: "SF57 (SCHOTT; coordinate match)",
       apd: false,
-      cemented: "D2",
       role: "High-dispersion negative member; D2 has a net in-situ EFL of -19.082 mm.",
+      cemented: "D2",
     },
     {
       id: 10,
@@ -189,7 +187,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.618,
       vd: 63.38,
-      fl: 29.698,
+      focalLengthMm: 29.698,
       glass: "S-PHM52 (OHARA; coordinate match)",
       apd: false,
       role: "Low-dispersion rear positive meniscus in the floating group.",
@@ -201,7 +199,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.618,
       vd: 63.38,
-      fl: 39.176,
+      focalLengthMm: 39.176,
       glass: "S-PHM52 (OHARA; coordinate match)",
       apd: false,
       role: "Final low-dispersion positive meniscus and image-side field-correction element.",
@@ -210,41 +208,47 @@ const LENS_DATA = {
 
   /* Surface prescription — scaled ×0.18 from patent f=100 data. */
   surfaces: [
-    { label: "1", R: 35.6958, d: 4.4262, nd: 1.6779, elemId: 1, sd: 20.4 },
-    { label: "2", R: 66.2652, d: 0.099, nd: 1.0, elemId: 0, sd: 19.3 },
-    { label: "3", R: 22.8672, d: 1.476, nd: 1.7859, elemId: 2, sd: 12.7 },
-    { label: "4", R: 11.439, d: 6.318, nd: 1.0, elemId: 0, sd: 10.16 },
-    { label: "5", R: 19.9224, d: 1.476, nd: 1.7859, elemId: 3, sd: 8.3 },
-    { label: "6", R: 10.7424, d: 1.9566, nd: 1.0, elemId: 0, sd: 6.8 },
-    { label: "7", R: 20.4102, d: 0.9828, nd: 1.7859, elemId: 4, sd: 6.3 },
-    { label: "8", R: 10.386, d: 1.7496, nd: 1.0, elemId: 0, sd: 5.5 },
-    { label: "9", R: 29.088, d: 3.7242, nd: 1.56732, elemId: 5, sd: 5.1 },
-    { label: "10", R: -244.9602, d: 0.0738, nd: 1.0, elemId: 0, sd: 4.1 },
-    { label: "STO", R: 1e15, d: 0.0738, nd: 1.0, elemId: 0, sd: 3.840522 },
-    { label: "11", R: 28.1016, d: 0.9828, nd: 1.6968, elemId: 6, sd: 4.1 },
-    { label: "12", R: 8.5086, d: 7.0884, nd: 1.5927, elemId: 7, sd: 4.25 },
-    { label: "13", R: -13.878, d: 1.5732, nd: 1.0, elemId: 0, sd: 4.9 },
-    { label: "14", R: -24.0624, d: 6.282, nd: 1.7859, elemId: 8, sd: 4.9 },
-    { label: "15", R: -12.87, d: 0.9828, nd: 1.84666, elemId: 9, sd: 5.45 },
-    { label: "16", R: 66.3624, d: 0.5904, nd: 1.0, elemId: 0, sd: 5.3 },
-    { label: "17", R: -45.8982, d: 2.6262, nd: 1.618, elemId: 10, sd: 5.32 },
-    { label: "18", R: -13.3974, d: 0.1476, nd: 1.0, elemId: 0, sd: 6.62 },
-    { label: "19", R: -104.112, d: 2.8026, nd: 1.618, elemId: 11, sd: 7.6 },
-    { label: "20", R: -19.845, d: 36.500171, nd: 1.0, elemId: 0, sd: 8.15 },
+    { label: "1", R: 35.6958, d: 4.4262, sd: 20.4, medium: 1 },
+    { label: "2", R: 66.2652, d: 0.099, sd: 19.3 },
+    { label: "3", R: 22.8672, d: 1.476, sd: 12.7, medium: 2 },
+    { label: "4", R: 11.439, sd: 10.16 },
+    { label: "5", R: 19.9224, d: 1.476, sd: 8.3, medium: 3 },
+    { label: "6", R: 10.7424, d: 1.9566, sd: 6.8 },
+    { label: "7", R: 20.4102, d: 0.9828, sd: 6.3, medium: 4 },
+    { label: "8", R: 10.386, d: 1.7496, sd: 5.5 },
+    { label: "9", R: 29.088, d: 3.7242, sd: 5.1, medium: 5 },
+    { label: "10", R: -244.9602, d: 0.0738, sd: 4.1 },
+    { label: "STO", R: "flat", d: 0.0738 },
+    { label: "11", R: 28.1016, d: 0.9828, sd: 4.1, medium: 6 },
+    { label: "12", R: 8.5086, d: 7.0884, sd: 4.25, medium: 7 },
+    { label: "13", R: -13.878, d: 1.5732, sd: 4.9 },
+    { label: "14", R: -24.0624, d: 6.282, sd: 4.9, medium: 8 },
+    { label: "15", R: -12.87, d: 0.9828, sd: 5.45, medium: 9 },
+    { label: "16", R: 66.3624, d: 0.5904, sd: 5.3 },
+    { label: "17", R: -45.8982, d: 2.6262, sd: 5.32, medium: 10 },
+    { label: "18", R: -13.3974, d: 0.1476, sd: 6.62 },
+    { label: "19", R: -104.112, d: 2.8026, sd: 7.6, medium: 11 },
+    { label: "20", R: -19.845, sd: 8.15 },
   ],
 
-  asph: {},
-
-  /* Patent finite state plus production-calibrated endpoint; total track remains constant. */
-  focusPositions: [0, 0.8745516541873473, 1],
-  var: {
-    "4": [6.318, 4.392, 3.953324],
-    "20": [36.500171, 38.426171, 38.864847],
+  focus: {
+    closeFocusM: 0.25,
+    /* Patent finite state plus production-calibrated endpoint; total track remains constant. */
+    keyframes: [0, 0.8745516541873473, 1],
+    description:
+      "Floating rear group: L3-L11 advances toward the fixed L1-L2 front group; the final BFD increases by the same amount.",
+    // (moved from publishedStations) Only the listed focus rows are source-tabulated; the others are reconstructed.
+    published: [1],
   },
-  varLabels: [
-    ["4", "FLOAT"],
-    ["20", "BF"],
-  ],
+
+  gaps: {
+    "4": { label: "FLOAT", values: [[6.318, 4.392, 3.953324]] },
+    "20": { label: "BF", values: [[36.500171, 38.426171, 38.864847]] },
+  },
+
+  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16] },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 100, maxTraceFieldDeg: 50 },
 
   groups: [
     { text: "FIXED FRONT", fromSurface: "1", toSurface: "4" },
@@ -255,13 +259,7 @@ const LENS_DATA = {
     { text: "D2 (-)", fromSurface: "14", toSurface: "16" },
   ],
 
-  closeFocusM: 0.25,
-  // Only the listed focus rows are source-tabulated; the others are reconstructed.
-  publishedStations: { focus: [1] },
-  nominalFno: 3.5,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16],
-  scFill: 0.62,
-  yScFill: 0.72,
-} satisfies LensDataInput;
+  layout: { scFill: 0.62, yScFill: 0.72 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

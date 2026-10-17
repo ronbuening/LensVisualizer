@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -33,24 +33,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "olympus-zuiko-24f2-j",
   maker: "Olympus",
   name: "OLYMPUS J.ZUIKO AUTO-W 24mm f/2",
   subtitle: "US 3,830,559 EXAMPLE 1 — OLYMPUS / MATSUBARA",
-  specs: ["10 ELEMENTS / 8 GROUPS", "f ≈ 24.0 mm", "F/2.0", "2ω ≈ 84°", "ALL-SPHERICAL"],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: 24,
-  focalLengthDesign: 24.0,
-  apertureMarketing: 2.0,
-  lensMounts: ["olympus-om"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,830,559",
-  patentAuthors: ["Masaki Matsubara"],
-  patentAssignees: ["Olympus Optical Co., Ltd."],
-  patentYear: 1974,
-  elementCount: 10,
-  groupCount: 8,
+  catalog: {
+    lensMounts: ["olympus-om"],
+    imageFormat: "135-full-frame",
+    specs: ["10 ELEMENTS / 8 GROUPS", "f ≈ 24.0 mm", "F/2.0", "2ω ≈ 84°", "ALL-SPHERICAL"],
+    elementCount: 10,
+    groupCount: 8,
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: 24, design: 24.0 },
+    fNumber: { marketing: 2.0 },
+  },
+
+  source: {
+    patentNumber: "US 3,830,559",
+    patentYear: 1974,
+    authors: ["Masaki Matsubara"],
+    assignees: ["Olympus Optical Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -61,7 +66,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.757,
       vd: 47.9,
-      fl: 80.7,
+      focalLengthMm: 80.7,
       glass: "J-LAF04 (HIKARI catalog match; production glass unspecified), 757479",
       apd: false,
       role: "Front positive meniscus; distortion, coma, and lateral-color moderation",
@@ -73,7 +78,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.62,
       vd: 60.3,
-      fl: -44.5,
+      focalLengthMm: -44.5,
       glass: "N-SK16 class (SCHOTT) / S-BSM16 (OHARA), 620603",
       apd: false,
       role: "First negative meniscus of the retrofocus expander",
@@ -85,7 +90,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.62,
       vd: 60.3,
-      fl: -38.6,
+      focalLengthMm: -38.6,
       glass: "N-SK16 class (SCHOTT) / S-BSM16 (OHARA), 620603",
       apd: false,
       role: "Second negative meniscus of the retrofocus expander",
@@ -97,7 +102,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.67,
       vd: 57.3,
-      fl: -64.8,
+      focalLengthMm: -64.8,
       glass: "S-LAL52 class (OHARA) / E-LAK02 (HIKARI), 670573",
       apd: false,
       role: "Third negative meniscus; completes front retrofocus group",
@@ -109,11 +114,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.773,
       vd: 49.6,
-      fl: -42.4,
+      focalLengthMm: -42.4,
       glass: "S-LAH66 class (OHARA), 773496",
       apd: false,
-      cemented: "D1",
       role: "Dense LaF front member of positive cemented doublet (component III)",
+      cemented: "D1",
     },
     {
       id: 6,
@@ -122,11 +127,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.596,
       vd: 39.2,
-      fl: 18.4,
+      focalLengthMm: 18.4,
       glass: "S-TIM8 class (OHARA), 596392",
       apd: false,
-      cemented: "D1",
       role: "Thick positive flint member of pre-stop cemented doublet (component III)",
+      cemented: "D1",
     },
     {
       id: 7,
@@ -135,11 +140,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.773,
       vd: 49.6,
-      fl: 18.3,
+      focalLengthMm: 18.3,
       glass: "S-LAH66 class (OHARA), 773496",
       apd: false,
-      cemented: "D2",
       role: "Dense LaF front member of negative cemented doublet (component IV); floating group",
+      cemented: "D2",
     },
     {
       id: 8,
@@ -148,11 +153,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.689,
       vd: 31.1,
-      fl: -14.8,
+      focalLengthMm: -14.8,
       glass: "S-TIM28 class (OHARA), 689311",
       apd: false,
-      cemented: "D2",
       role: "High-dispersion flint rear member of post-stop doublet; R13 corrects sagittal coma and SA",
+      cemented: "D2",
     },
     {
       id: 9,
@@ -161,7 +166,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.697,
       vd: 55.6,
-      fl: 44.4,
+      focalLengthMm: 44.4,
       glass: "S-LAL14 class (OHARA) / N-LAK14 (SCHOTT), 697556",
       apd: false,
       role: "Positive meniscus; part of floating focus correction subassembly with L7/L8",
@@ -173,7 +178,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.697,
       vd: 55.6,
-      fl: 49.0,
+      focalLengthMm: 49.0,
       glass: "S-LAL14 class (OHARA) / N-LAK14 (SCHOTT), 697556",
       apd: false,
       role: "Final biconvex positive relay element; chromatic and spherical correction",
@@ -182,30 +187,34 @@ const LENS_DATA = {
 
   /* ── Surfaces ── */
   surfaces: [
-    { label: "1", R: 41.289, d: 4.905, nd: 1.757, elemId: 1, sd: 21.0 },
-    { label: "2", R: 127.353, d: 0.197, nd: 1.0, elemId: 0, sd: 20.5 },
-    { label: "3", R: 49.543, d: 1.766, nd: 1.62, elemId: 2, sd: 14.0 },
-    { label: "4", R: 17.733, d: 1.961, nd: 1.0, elemId: 0, sd: 11.0 },
-    { label: "5", R: 28.685, d: 1.471, nd: 1.62, elemId: 3, sd: 11.0 },
-    { label: "6", R: 13.052, d: 2.845, nd: 1.0, elemId: 0, sd: 10.0 },
-    { label: "7", R: 22.042, d: 1.471, nd: 1.67, elemId: 4, sd: 10.0 },
-    { label: "8", R: 14.62, d: 3.434, nd: 1.0, elemId: 0, sd: 10.5 },
-    { label: "9", R: 23.198, d: 1.471, nd: 1.773, elemId: 5, sd: 11.0 },
-    { label: "10", R: 13.582, d: 11.28, nd: 1.596, elemId: 6, sd: 10.5 },
-    { label: "11", R: -57.021, d: 1.178, nd: 1.0, elemId: 0, sd: 10.5 },
-    { label: "STO", R: 1e15, d: 1.178, nd: 1.0, elemId: 0, sd: 8.1 },
-    { label: "12", R: -106.393, d: 10.3, nd: 1.773, elemId: 7, sd: 10.0 },
-    { label: "13", R: -12.492, d: 1.569, nd: 1.689, elemId: 8, sd: 10.5 },
-    { label: "14", R: 55.173, d: 2.206, nd: 1.0, elemId: 0, sd: 10.5 },
-    { label: "15", R: -68.104, d: 2.696, nd: 1.697, elemId: 9, sd: 10.5 },
-    { label: "16", R: -21.285, d: 0.197, nd: 1.0, elemId: 0, sd: 12.0 },
-    { label: "17", R: 90.093, d: 3.727, nd: 1.697, elemId: 10, sd: 13.0 },
-    { label: "18", R: -55.085, d: 37.552, nd: 1.0, elemId: 0, sd: 13.0 },
+    { label: "1", R: 41.289, d: 4.905, sd: 21.0, medium: 1 },
+    { label: "2", R: 127.353, d: 0.197, sd: 20.5 },
+    { label: "3", R: 49.543, d: 1.766, sd: 14.0, medium: 2 },
+    { label: "4", R: 17.733, d: 1.961, sd: 11.0 },
+    { label: "5", R: 28.685, d: 1.471, sd: 11.0, medium: 3 },
+    { label: "6", R: 13.052, d: 2.845, sd: 10.0 },
+    { label: "7", R: 22.042, d: 1.471, sd: 10.0, medium: 4 },
+    { label: "8", R: 14.62, d: 3.434, sd: 10.5 },
+    { label: "9", R: 23.198, d: 1.471, sd: 11.0, medium: 5 },
+    { label: "10", R: 13.582, d: 11.28, sd: 10.5, medium: 6 },
+    { label: "11", R: -57.021, sd: 10.5 },
+    { label: "STO", R: "flat" },
+    { label: "12", R: -106.393, d: 10.3, sd: 10.0, medium: 7 },
+    { label: "13", R: -12.492, d: 1.569, sd: 10.5, medium: 8 },
+    { label: "14", R: 55.173, d: 2.206, sd: 10.5 },
+    { label: "15", R: -68.104, d: 2.696, sd: 10.5, medium: 9 },
+    { label: "16", R: -21.285, sd: 12.0 },
+    { label: "17", R: 90.093, d: 3.727, sd: 13.0, medium: 10 },
+    { label: "18", R: -55.085, sd: 13.0 },
   ],
 
-  asph: {},
+  /* ── Focus ── */
+  focus: {
+    closeFocusM: 0.25,
+    description: "Helicoid unit focus with floating correction (components IV+V translate together).",
+  },
 
-  /* ── Variable air spacings (helicoid + floating focus) ──
+  /* (moved from var) ── Variable air spacings (helicoid + floating focus) ──
    *  Components IV+V (L7–L9) translate as a rigid unit toward the object
    *  for close-range correction; d11 + d16 stays constant while BFD
    *  increases via helicoid extension.
@@ -213,19 +222,15 @@ const LENS_DATA = {
    *  Var gaps: "11" + "STO" = pre-stop to post-stop portion of d11,
    *  "16" = gap after L9, "18" = BFD.
    */
-  var: {
-    "11": [1.178, 0.336],
-    STO: [1.178, 0.336],
-    "16": [0.197, 1.879],
-    "18": [37.552, 39.85],
+  gaps: {
+    "11": { label: "D11a", values: [[1.178, 0.336]] },
+    STO: { label: "D11b", values: [[1.178, 0.336]] },
+    "16": { label: "D16", values: [[0.197, 1.879]] },
+    "18": { label: "BF", values: [[37.552, 39.85]] },
   },
 
-  varLabels: [
-    ["11", "D11a"],
-    ["STO", "D11b"],
-    ["16", "D16"],
-    ["18", "BF"],
-  ],
+  /* ── Aperture ── */
+  aperture: { nominalFNumber: 2.0, fStops: [2, 2.8, 4, 5.6, 8, 11, 16] },
 
   /* ── Groups and doublets ── */
   groups: [
@@ -236,23 +241,13 @@ const LENS_DATA = {
     { text: "V", fromSurface: "15", toSurface: "16" },
     { text: "VI", fromSurface: "17", toSurface: "18" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "9", toSurface: "11" },
     { text: "D2", fromSurface: "12", toSurface: "14" },
   ],
 
-  /* ── Focus ── */
-  closeFocusM: 0.25,
-  focusDescription: "Helicoid unit focus with floating correction (components IV+V translate together).",
-
-  /* ── Aperture ── */
-  nominalFno: 2.0,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  scFill: 0.42,
-  yScFill: 0.38,
-} satisfies LensDataInput;
+  layout: { scFill: 0.42, yScFill: 0.38 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

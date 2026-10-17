@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -30,30 +30,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "olympus-mzuiko-17mm-f28",
   maker: "Olympus",
   name: "OLYMPUS M.ZUIKO DIGITAL 17mm f/2.8",
   subtitle: "US 8,755,132 B2 Example 1 — Olympus / Yamada & Kimata",
-  specs: [
-    "6 elements / 4 groups",
-    "f = 17 mm (design 17.30 mm)",
-    "f/2.8 (design F/2.897)",
-    "64.9° diagonal AoV",
-    "2 aspherical surfaces / 1 aspherical element",
-  ],
 
-  focalLengthMarketing: 17,
-  focalLengthDesign: 17.2985,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.897,
-  lensMounts: ["micro-four-thirds"],
-  imageFormat: "four-thirds",
-  patentNumber: "US 8,755,132 B2",
-  patentAuthors: ["Yasuharu Yamada", "Hirohiko Kimata"],
-  patentAssignees: ["Olympus Imaging Corporation"],
-  patentYear: 2014,
-  elementCount: 6,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["micro-four-thirds"],
+    imageFormat: "four-thirds",
+    specs: [
+      "6 elements / 4 groups",
+      "f = 17 mm (design 17.30 mm)",
+      "f/2.8 (design F/2.897)",
+      "64.9° diagonal AoV",
+      "2 aspherical surfaces / 1 aspherical element",
+    ],
+    elementCount: 6,
+    groupCount: 4,
+    focalLengthMm: { marketing: 17, design: 17.2985 },
+    fNumber: { marketing: 2.8, design: 2.897 },
+  },
+
+  source: {
+    patentNumber: "US 8,755,132 B2",
+    patentYear: 2014,
+    authors: ["Yasuharu Yamada", "Hirohiko Kimata"],
+    assignees: ["Olympus Imaging Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -64,7 +68,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.48749,
       vd: 70.23,
-      fl: -21.96,
+      focalLengthMm: -21.96,
       glass: "S-FSL5 (OHARA)",
       apd: false,
       role: "Sole negative first-group element; establishes the retrofocus front negative power and long back focus.",
@@ -76,7 +80,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.834,
       vd: 37.16,
-      fl: 11.28,
+      focalLengthMm: 11.28,
       glass: "S-LAH60 (OHARA)",
       apd: false,
       role: "High-index positive component of the object-side cemented doublet.",
@@ -89,7 +93,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.57501,
       vd: 41.5,
-      fl: -22.74,
+      focalLengthMm: -22.74,
       glass: "S-TIL27 (OHARA)",
       apd: false,
       role: "Negative partner of SU21; its external shape is constrained by the patent's field-curvature conditions.",
@@ -102,7 +106,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.75211,
       vd: 25.05,
-      fl: -10.46,
+      focalLengthMm: -10.46,
       glass: "FF8 (HOYA)",
       apd: false,
       role: "High-dispersion dense-flint color-correcting member of the image-side cemented doublet.",
@@ -115,7 +119,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72916,
       vd: 54.68,
-      fl: 11.89,
+      focalLengthMm: 11.89,
       glass: "S-LAL18 (OHARA)",
       apd: false,
       role: "High-index, higher-Abbe positive partner of SU22; balances L23 chromatic power.",
@@ -128,7 +132,7 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.8061,
       vd: 40.88,
-      fl: 30,
+      focalLengthMm: 30,
       glass: "S-LAH53 (OHARA) / P-LASF47 class (806/409)",
       apd: false,
       role: "Terminal biconvex positive asphere; controls field curvature, distortion, and exit-pupil position.",
@@ -136,19 +140,48 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 58.585, d: 0.932, nd: 1.48749, elemId: 1, sd: 7.3 },
-    { label: "2", R: 9.004, d: 2.478, nd: 1, elemId: 0, sd: 6.75 },
-    { label: "3", R: 18.088, d: 3.046, nd: 1.834, elemId: 2, sd: 5.95 },
-    { label: "4", R: -18.088, d: 0.804, nd: 1.57501, elemId: 3, sd: 5.25 },
-    { label: "5", R: 47.964, d: 1.841, nd: 1, elemId: 0, sd: 4.85 },
-    { label: "STO", R: 1e15, d: 4.212, nd: 1, elemId: 0, sd: 3.22 },
-    { label: "7", R: -10.211, d: 0.752, nd: 1.75211, elemId: 4, sd: 6.1 },
-    { label: "8", R: 35.401, d: 4.899, nd: 1.72916, elemId: 5, sd: 7.35 },
-    { label: "9", R: -10.81, d: 0.15, nd: 1, elemId: 0, sd: 7.35 },
-    { label: "10A", R: 44.588, d: 3, nd: 1.8061, elemId: 6, sd: 9.25 },
-    { label: "11A", R: -51.256, d: 17.229, nd: 1, elemId: 0, sd: 9.65 },
+    { label: "1", R: 58.585, d: 0.932, sd: 7.3, medium: 1 },
+    { label: "2", R: 9.004, d: 2.478, sd: 6.75 },
+    { label: "3", R: 18.088, d: 3.046, sd: 5.95, medium: 2 },
+    { label: "4", R: -18.088, d: 0.804, sd: 5.25, medium: 3 },
+    { label: "5", R: 47.964, d: 1.841, sd: 4.85 },
+    { label: "STO", R: "flat", d: 4.212 },
+    { label: "7", R: -10.211, d: 0.752, sd: 6.1, medium: 4 },
+    { label: "8", R: 35.401, d: 4.899, sd: 7.35, medium: 5 },
+    { label: "9", R: -10.81, d: 0.15, sd: 7.35 },
+    {
+      label: "10A",
+      R: 44.588,
+      d: 3,
+      sd: 9.25,
+      medium: 6,
+      asphere: { K: -13.0866, A4: -4.046e-6, A6: 9.8902e-8, A8: 1.4424e-11, A10: 0 },
+    },
+    {
+      label: "11A",
+      R: -51.256,
+      sd: 9.65,
+      asphere: { K: -8.3127, A4: -6.2139e-6, A6: 8.9444e-8, A8: 5.679e-10, A10: 0 },
+    },
   ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.2,
+    description: "Unit focus. The full optical system translates ahead of the fixed sensor cover glass.",
+  },
+
+  /* (moved from var) ── Variable gaps ── */
+  gaps: {
+    // Unit focus: gap to the cover glass. Close value keeps the image plane of the earlier
+    // air-equivalent solve for manufacturer MFD = 0.2 m (22.6100389954 − 4.082/1.51633 − 0.745).
+    "11A": { label: "BF", values: [[17.229, 19.1730128533]] },
+  },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.897, fStops: [2.897, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Sensor cover glass (patent surfaces 12–13): traced, not drawn ── */
   rearPlates: [
@@ -162,59 +195,17 @@ const LENS_DATA = {
     },
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {
-    "10A": {
-      K: -13.0866,
-      A4: -4.046e-6,
-      A6: 9.8902e-8,
-      A8: 1.4424e-11,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
-    "11A": {
-      K: -8.3127,
-      A4: -6.2139e-6,
-      A6: 8.9444e-8,
-      A8: 5.679e-10,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
-  },
-
-  /* ── Variable gaps ── */
-  var: {
-    // Unit focus: gap to the cover glass. Close value keeps the image plane of the earlier
-    // air-equivalent solve for manufacturer MFD = 0.2 m (22.6100389954 − 4.082/1.51633 − 0.745).
-    "11A": [17.229, 19.1730128533],
-  },
-  varLabels: [["11A", "BF"]],
-
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
     { text: "G2", fromSurface: "3", toSurface: "11A" },
   ],
-
   doublets: [
     { text: "SU21", fromSurface: "3", toSurface: "5" },
     { text: "SU22", fromSurface: "7", toSurface: "9" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.2,
-  focusDescription:
-    "Unit focus. The full optical system translates ahead of the fixed sensor cover glass.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.897,
-  fstopSeries: [2.897, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
   /* ── Layout tuning ── */
-  scFill: 0.56,
-  yScFill: 0.44,
-} satisfies LensDataInput;
+  layout: { scFill: 0.56, yScFill: 0.44 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

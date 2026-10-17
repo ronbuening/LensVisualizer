@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -13,9 +13,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  fB = 32.58 from the published prescription.                       ║
  * ║                                                                    ║
  * ║  The patent does not locate the aperture stop. The modeled stop    ║
- * ║  is placed 1.0 mm behind surface 6, near the front of d6. Its     ║
- * ║  semi-diameter reproduces f/11 while keeping the full-field front  ║
- * ║  ray envelope within the production lens's 100 mm filter opening. ║
+ * ║  is placed 1.0 mm behind surface 6, near the front of d6. Its      ║
+ * ║  radius is derived from the design f-number, f/11. The full-field  ║
+ * ║  front ray envelope stays within the production lens's 100 mm      ║
+ * ║  filter opening.                                                   ║
  * ║                                                                    ║
  * ║  Semi-diameters are inferred from combined marginal/chief-ray      ║
  * ║  traces at the manufacturer-published 2.5° field, then checked     ║
@@ -29,26 +30,28 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "olympus-e-zuiko-auto-t-1000mm-f11",
   maker: "Olympus",
   name: "OLYMPUS E.ZUIKO AUTO-T 1000mm f/11",
   subtitle: "DE 2206106 A1 — SINGLE WORKED EXAMPLE — OLYMPUS / JIHEI NAKAGAWA",
-  specs: ["5 ELEMENTS / 5 GROUPS", "f = 1000.10 mm", "F/11", "2ω = 2.5°", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 1000,
-  focalLengthDesign: 1000.09768,
-  apertureMarketing: 11,
-  apertureDesign: 10.99994,
-  lensMounts: ["olympus-om"],
-  imageFormat: "135-full-frame",
-  patentNumber: "DE 2206106 A1",
-  patentAuthors: ["Jihei Nakagawa"],
-  patentAssignees: ["Olympus Optical Co., Ltd."],
-  patentYear: 1972,
-  elementCount: 5,
-  groupCount: 5,
-  focusDescription:
-    "Rack-and-pinion unit-focus model; the full optical assembly extends 36.70 mm from infinity to 30 m.",
+  catalog: {
+    lensMounts: ["olympus-om"],
+    imageFormat: "135-full-frame",
+    specs: ["5 ELEMENTS / 5 GROUPS", "f = 1000.10 mm", "F/11", "2ω = 2.5°", "ALL-SPHERICAL"],
+    elementCount: 5,
+    groupCount: 5,
+    focalLengthMm: { marketing: 1000, design: 1000.09768 },
+    fNumber: { marketing: 11, design: 10.99994 },
+  },
+
+  source: {
+    patentNumber: "DE 2206106 A1",
+    patentYear: 1972,
+    authors: ["Jihei Nakagawa"],
+    assignees: ["Olympus Optical Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -59,7 +62,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.618,
       vd: 63.38,
-      fl: 233.843,
+      focalLengthMm: 233.843,
       glass: "PCD4 class (618/634 dense phosphate crown; vendor uncertain)",
       apd: false,
       role: "Front collector and principal low-dispersion positive element.",
@@ -71,7 +74,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7552,
       vd: 27.5,
-      fl: -109.968,
+      focalLengthMm: -109.968,
       glass: "S-TIH4 (OHARA)",
       apd: false,
       role: "Strong dense-flint negative corrector in the front objective.",
@@ -83,7 +86,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.78472,
       vd: 25.68,
-      fl: 152.6,
+      focalLengthMm: 152.6,
       glass: "S-TIH11 (OHARA)",
       apd: false,
       role: "High-index positive element completing the front objective; nd emended from the printed table.",
@@ -95,7 +98,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.699,
       vd: 30.1,
-      fl: 537.654,
+      focalLengthMm: 537.654,
       glass: "S-TIM35 (OHARA)",
       apd: false,
       role: "Weak positive meniscus that moderates the rear negative unit and contributes coma correction.",
@@ -107,7 +110,7 @@ const LENS_DATA = {
       type: "Plano-Concave Negative",
       nd: 1.5687,
       vd: 63.1,
-      fl: -207.473,
+      focalLengthMm: -207.473,
       glass: "PCD2 / PSK2 class (569/631 phosphate crown; vendor uncertain)",
       apd: false,
       role: "Low-dispersion negative rear element providing most of the telephoto multiplication.",
@@ -116,26 +119,28 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 380.79, d: 13.51, nd: 1.618, elemId: 1, sd: 47.0 },
-    { label: "2", R: -229.75, d: 0.14, nd: 1.0, elemId: 0, sd: 46.2 },
-    { label: "3", R: -238.11, d: 8.0, nd: 1.7552, elemId: 2, sd: 46.2 },
-    { label: "4", R: 129.37, d: 2.09, nd: 1.0, elemId: 0, sd: 45.8 },
-    { label: "5", R: 133.23, d: 13.25, nd: 1.78472, elemId: 3, sd: 46.2 },
-    { label: "6", R: -1131.67, d: 1.0, nd: 1.0, elemId: 0, sd: 45.6 },
-    { label: "STO", R: 1e15, d: 330.62, nd: 1.0, elemId: 0, sd: 44.5 },
-    { label: "7", R: 239.28, d: 2.99, nd: 1.699, elemId: 4, sd: 23.5 },
-    { label: "8", R: 655.22, d: 0.5, nd: 1.0, elemId: 0, sd: 23.2 },
-    { label: "9", R: 1e15, d: 3.7, nd: 1.5687, elemId: 5, sd: 23.2 },
-    { label: "10", R: 117.99, d: 325.86519, nd: 1.0, elemId: 0, sd: 23.0 },
+    { label: "1", R: 380.79, d: 13.51, sd: 47.0, medium: 1 },
+    { label: "2", R: -229.75, d: 0.14, sd: 46.2 },
+    { label: "3", R: -238.11, d: 8.0, sd: 46.2, medium: 2 },
+    { label: "4", R: 129.37, d: 2.09, sd: 45.8 },
+    { label: "5", R: 133.23, d: 13.25, sd: 46.2, medium: 3 },
+    { label: "6", R: -1131.67, d: 1.0, sd: 45.6 },
+    { label: "STO", R: "flat", d: 330.62 },
+    { label: "7", R: 239.28, d: 2.99, sd: 23.5, medium: 4 },
+    { label: "8", R: 655.22, d: 0.5, sd: 23.2 },
+    { label: "9", R: "flat", d: 3.7, sd: 23.2, medium: 5 },
+    { label: "10", R: 117.99, sd: 23.0 },
   ],
 
-  asph: {},
-
-  /* ── Unit-focus back-focus variation ── */
-  var: {
-    "10": [325.86519, 362.56063],
+  focus: {
+    closeFocusM: 30,
+    description: "Rack-and-pinion unit-focus model; the full optical assembly extends 36.70 mm from infinity to 30 m.",
   },
-  varLabels: [["10", "BF"]],
+
+  /* (moved from var) ── Unit-focus back-focus variation ── */
+  gaps: { "10": { label: "BF", values: [[325.86519, 362.56063]] } },
+
+  aperture: { nominalFNumber: 11, fStops: [11, 16, 22, 32, 45], maxFNumber: 45 },
 
   groups: [
     { text: "FRONT OBJECTIVE (G1–G3)", fromSurface: "1", toSurface: "6" },
@@ -143,12 +148,7 @@ const LENS_DATA = {
   ],
   doublets: [],
 
-  closeFocusM: 30,
-  nominalFno: 11,
-  fstopSeries: [11, 16, 22, 32, 45],
-  maxFstop: 45,
-  scFill: 0.68,
-  yScFill: 0.68,
-} satisfies LensDataInput;
+  layout: { scFill: 0.68, yScFill: 0.68 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

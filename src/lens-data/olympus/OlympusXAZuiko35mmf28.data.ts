@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -36,24 +36,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "olympus-xa-zuiko-35-f28",
   maker: "Olympus",
   name: "OLYMPUS F.ZUIKO 35mm f/2.8 (Olympus XA)",
   subtitle: "US 4,235,521 EXAMPLE 1 — OLYMPUS / IMAI",
-  specs: ["6 ELEMENTS / 5 GROUPS", "f ≈ 35.0 mm", "F/2.8", "2ω ≈ 63°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata fields ── */
-  focalLengthMarketing: 35,
-  focalLengthDesign: 35.0,
-  apertureMarketing: 2.8,
-  lensMounts: ["fixed-lens-camera"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,235,521",
-  patentAuthors: ["Toshihiro Imai"],
-  patentAssignees: ["Olympus Optical Co., Ltd."],
-  patentYear: 1980,
-  elementCount: 6,
-  groupCount: 5,
+  catalog: {
+    lensMounts: ["fixed-lens-camera"],
+    imageFormat: "135-full-frame",
+    specs: ["6 ELEMENTS / 5 GROUPS", "f ≈ 35.0 mm", "F/2.8", "2ω ≈ 63°", "ALL SPHERICAL"],
+    elementCount: 6,
+    groupCount: 5,
+    /* ── Explicit metadata fields ── */
+    focalLengthMm: { marketing: 35, design: 35.0 },
+    fNumber: { marketing: 2.8 },
+  },
+
+  source: {
+    patentNumber: "US 4,235,521",
+    patentYear: 1980,
+    authors: ["Toshihiro Imai"],
+    assignees: ["Olympus Optical Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -64,7 +69,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.788,
       vd: 47.43,
-      fl: 22.3,
+      focalLengthMm: 22.3,
       glass: "S-LAH64 / N-LAF21 / TAF4 class (788/474)",
       apd: false,
       role: "High-index front collector; meniscus bending reduces Petzval burden",
@@ -76,7 +81,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.78472,
       vd: 25.71,
-      fl: -20.2,
+      focalLengthMm: -20.2,
       glass: "FD110 (HOYA) / S-TIH11 class (785/257)",
       apd: false,
       role: "Strong dispersive member; primary first-order chromatic correction",
@@ -88,11 +93,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8044,
       vd: 39.62,
-      fl: -32.5,
+      focalLengthMm: -32.5,
       glass: "S-LAH63 / NBFD3 class (804/396)",
       apd: false,
-      cemented: "C1",
       role: "Front cemented member; chromatic and spherical-aberration correction at cemented interface",
+      cemented: "C1",
     },
     {
       id: 4,
@@ -101,11 +106,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72,
       vd: 46.03,
-      fl: 11.8,
+      focalLengthMm: 11.8,
       glass: "S-LAM61 class (720/460)",
       apd: false,
-      cemented: "C1",
       role: "Main positive-power contributor in front group; thick element controls astigmatic difference",
+      cemented: "C1",
     },
     {
       id: 5,
@@ -114,7 +119,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.804,
       vd: 46.57,
-      fl: -20.6,
+      focalLengthMm: -20.6,
       glass: "S-LAH65 / TAF3 class (804/466)",
       apd: false,
       role: "Rear dispersive telephoto element; displaces rear principal plane forward for compactness",
@@ -126,7 +131,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7495,
       vd: 35.27,
-      fl: 70.3,
+      focalLengthMm: 70.3,
       glass: "S-LAM7 / S-NBH51 class (750/353)",
       apd: false,
       role: "Weak positive rear meniscus; reduces positive distortion from strong rear negative group",
@@ -137,51 +142,42 @@ const LENS_DATA = {
    *  Patent US 4,235,521 Embodiment 1, scaled ×0.35.
    *  STO position inferred from Fig. 2 — midpoint of patent d6 gap.
    */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 9.892, d: 2.572, nd: 1.788, elemId: 1, sd: 7.5 }, // L1 front
-    { label: "2", R: 20.006, d: 1.081, nd: 1.0, elemId: 0, sd: 6.0 }, // L1 rear → air
-    { label: "3", R: -97.1, d: 1.029, nd: 1.78472, elemId: 2, sd: 5.5 }, // L2 front
-    { label: "4", R: 18.98, d: 1.564, nd: 1.0, elemId: 0, sd: 5.5 }, // L2 rear → air
-    { label: "5", R: 15.903, d: 1.187, nd: 1.8044, elemId: 3, sd: 5.5 }, // L3a front (cemented)
-    { label: "6", R: 9.558, d: 3.78, nd: 1.72, elemId: 4, sd: 5.5 }, // L3a/L3b cemented interface
-    { label: "7", R: -65.094, d: 2.898, nd: 1.0, elemId: 0, sd: 5.0 }, // L3b rear → air (to STO)
-    { label: "STO", R: 1e15, d: 2.898, nd: 1.0, elemId: 0, sd: 3.5 }, // Aperture stop (inferred from Fig. 2)
-    { label: "8", R: -6.472, d: 1.029, nd: 1.804, elemId: 5, sd: 5.1 }, // L4 front
-    { label: "9", R: -11.387, d: 1.043, nd: 1.0, elemId: 0, sd: 5.4 }, // L4 rear → air
-    { label: "10", R: -65.972, d: 1.75, nd: 1.7495, elemId: 6, sd: 7.0 }, // L5 front
-    { label: "11", R: -29.635, d: 13.602, nd: 1.0, elemId: 0, sd: 7.4 }, // L5 rear → image (BFD)
+    { label: "1", R: 9.892, d: 2.572, sd: 7.5, medium: 1 }, // L1 front
+    { label: "2", R: 20.006, d: 1.081, sd: 6.0 }, // L1 rear → air
+    { label: "3", R: -97.1, d: 1.029, sd: 5.5, medium: 2 }, // L2 front
+    { label: "4", R: 18.98, d: 1.564, sd: 5.5 }, // L2 rear → air
+    { label: "5", R: 15.903, d: 1.187, sd: 5.5, medium: 3 }, // L3a front (cemented)
+    { label: "6", R: 9.558, d: 3.78, sd: 5.5, medium: 4 }, // L3a/L3b cemented interface
+    { label: "7", R: -65.094, d: 2.898, sd: 5.0 }, // L3b rear → air (to STO)
+    { label: "STO", R: "flat", d: 2.898 }, // Aperture stop (inferred from Fig. 2)
+    { label: "8", R: -6.472, d: 1.029, sd: 5.1, medium: 5 }, // L4 front
+    { label: "9", R: -11.387, d: 1.043, sd: 5.4 }, // L4 rear → air
+    { label: "10", R: -65.972, d: 1.75, sd: 7.0, medium: 6 }, // L5 front
+    { label: "11", R: -29.635, d: 13.602, sd: 7.4 }, // L5 rear → image (BFD)
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
-
-  /* ── Variable air spacings ──
+  /* ── Focus configuration ── */
+  /* (moved from var) ── Variable air spacings ──
    *  Patent publishes infinity-focus only; no finite-distance data.
    *  closeFocusM set to 0.85 m from Olympus XA camera instructions.
    *  var is empty because the patent provides no moving-group model.
    */
-  var: {},
-  varLabels: [],
+  focus: { closeFocusM: 0.85, description: "Coupled rangefinder focus, 0.85 m to infinity. Patent is infinity-only." },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22] },
 
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "FRONT", fromSurface: "1", toSurface: "7" },
     { text: "REAR", fromSurface: "8", toSurface: "11" },
   ],
-
   doublets: [{ text: "C1", fromSurface: "5", toSurface: "7" }],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.85,
-  focusDescription: "Coupled rangefinder focus, 0.85 m to infinity. Patent is infinity-only.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
-
   /* ── Layout tuning ── */
-  scFill: 0.55,
-  yScFill: 0.35,
-} satisfies LensDataInput;
+  layout: { scFill: 0.55, yScFill: 0.35 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -27,25 +27,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "olympus-zuiko-85mm-f2",
   maker: "Olympus",
   name: "OLYMPUS ZUIKO AUTO-T 85mm f/2",
   subtitle: "US 4,063,802 EMBODIMENT 1 — OLYMPUS / IMAI & IKEDA",
-  specs: ["5 ELEMENTS / 4 GROUPS", "f ≈ 85.0 mm", "F/2", "2ω ≈ 29°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata fields ── */
-  focalLengthMarketing: 85,
-  focalLengthDesign: 85.0,
-  apertureMarketing: 2,
-  apertureDesign: 2.04,
-  lensMounts: ["olympus-om"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,063,802",
-  patentAuthors: ["Toshihiro Imai", "Yoshitsugi Ikeda"],
-  patentAssignees: ["Olympus Optical Co., Ltd."],
-  patentYear: 1977,
-  elementCount: 5,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["olympus-om"],
+    imageFormat: "135-full-frame",
+    specs: ["5 ELEMENTS / 4 GROUPS", "f ≈ 85.0 mm", "F/2", "2ω ≈ 29°", "ALL SPHERICAL"],
+    elementCount: 5,
+    groupCount: 4,
+    /* ── Explicit metadata fields ── */
+    focalLengthMm: { marketing: 85, design: 85.0 },
+    fNumber: { marketing: 2, design: 2.04 },
+  },
+
+  source: {
+    patentNumber: "US 4,063,802",
+    patentYear: 1977,
+    authors: ["Toshihiro Imai", "Yoshitsugi Ikeda"],
+    assignees: ["Olympus Optical Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -56,7 +60,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.72,
       vd: 50.25,
-      fl: 82.3,
+      focalLengthMm: 82.3,
       glass: "J-LAK10 (Hikari, 720503)",
       apd: false,
       role: "Front positive meniscus; high-index (n>1.68 per condition 9) converging element that shares power with L2 while minimizing Petzval contribution",
@@ -68,7 +72,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.623,
       vd: 58.14,
-      fl: 73.3,
+      focalLengthMm: 73.3,
       glass: "BACD15 (HOYA, 623581)",
       apd: false,
       role: "Strongest positive element; with L1 forms the converging front group (f₁₂ ≈ 38.5 mm) that drives the telephoto compression",
@@ -80,7 +84,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7847,
       vd: 25.71,
-      fl: -27.5,
+      focalLengthMm: -27.5,
       glass: "HOYA FD110 (exact match, SF family, 785/257)",
       apd: false,
       role: "Strongly diverging telephoto spacer; its high-dispersion flint (ν<28) partially compensates front-group chromatic aberration. The near-equal |r₆/r₈|≈1 creates approximate coma symmetry about the stop",
@@ -92,7 +96,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7,
       vd: 48.08,
-      fl: 23.6,
+      focalLengthMm: 23.6,
       glass: "J-LAF01 (Hikari, 700481)",
       apd: false,
       role: "Positive element of rear achromatic doublet; high index (n₄/n₅>1.05 per condition 10) enables achromatization with modest Abbe-number spread",
@@ -105,7 +109,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.583,
       vd: 59.36,
-      fl: -36.1,
+      focalLengthMm: -36.1,
       glass: "OHARA S-BAL42 (near-exact, BaK family, 583/594)",
       apd: false,
       role: "Chromatic corrector in rear doublet; low-dispersion crown balances axial and lateral color from L4",
@@ -114,28 +118,33 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients (all-spherical design) ── */
   surfaces: [
     // ── Component 1: L1 positive meniscus ──
-    { label: "1", R: 50.606, d: 6.241, nd: 1.72, elemId: 1, sd: 23.0 },
-    { label: "2", R: 329.267, d: 0.153, nd: 1.0, elemId: 0, sd: 21.8 },
+    { label: "1", R: 50.606, d: 6.241, sd: 23.0, medium: 1 },
+    { label: "2", R: 329.267, d: 0.153, sd: 21.8 },
     // ── Component 2: L2 positive meniscus ──
-    { label: "3", R: 26.804, d: 10.425, nd: 1.623, elemId: 2, sd: 21.7 },
-    { label: "4", R: 55.228, d: 3.486, nd: 1.0, elemId: 0, sd: 16.7 },
+    { label: "3", R: 26.804, d: 10.425, sd: 21.7, medium: 2 },
+    { label: "4", R: 55.228, d: 3.486, sd: 16.7 },
     // ── Component 3: L3 negative meniscus ──
-    { label: "5", R: 123.958, d: 1.403, nd: 1.7847, elemId: 3, sd: 14.9 },
-    { label: "6", R: 18.26, d: 6.803, nd: 1.0, elemId: 0, sd: 14.3 },
+    { label: "5", R: 123.958, d: 1.403, sd: 14.9, medium: 3 },
+    { label: "6", R: 18.26, d: 6.803, sd: 14.3 },
     // ── Aperture stop (inferred from Fig. 1, ~40% into d₆ gap from L3) ──
-    { label: "STO", R: 1e15, d: 10.246, nd: 1.0, elemId: 0, sd: 12.5 },
+    { label: "STO", R: "flat" },
     // ── Component 4: L4+L5 cemented doublet (floating rear group) ──
-    { label: "7", R: 148.172, d: 7.602, nd: 1.7, elemId: 4, sd: 12.9 },
-    { label: "8", R: -18.217, d: 0.901, nd: 1.583, elemId: 5, sd: 12.6 }, // L4/L5 junction
-    { label: "9", R: -139.345, d: 44.011, nd: 1.0, elemId: 0, sd: 12.4 }, // BFD
+    { label: "7", R: 148.172, d: 7.602, sd: 12.9, medium: 4 },
+    { label: "8", R: -18.217, d: 0.901, sd: 12.6, medium: 5 }, // L4/L5 junction
+    { label: "9", R: -139.345, sd: 12.4 }, // BFD
   ],
 
-  /* ── Aspherical coefficients (all-spherical design) ── */
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.85,
+    description:
+      "Floating rear group: entire lens extends via helicoid (unit focus) while the cemented doublet (L4+L5) moves at a slightly different rate via an internal cam, changing d₆ to correct astigmatism and coma at close distances.",
+  },
 
-  /* ── Variable air spacings (floating rear group focus) ──
+  /* (moved from var) ── Variable air spacings (floating rear group focus) ──
    *  Two variable gaps during focusing:
    *    STO: stop-to-L4 gap increases as rear doublet floats back
    *    9:   BFD increases as the lens extends forward
@@ -146,36 +155,20 @@ const LENS_DATA = {
    *  a floating ratio estimated from Embodiment 4 at 1/20× magnification
    *  (Δd₆ = 0.63 mm at f=100 → floating ratio ≈ 12.6%).
    */
-  var: {
-    STO: [10.246, 11.789],
-    "9": [44.011, 54.708],
-  },
+  gaps: { STO: { label: "D₆b", values: [[10.246, 11.789]] }, "9": { label: "BF", values: [[44.011, 54.708]] } },
 
-  varLabels: [
-    ["STO", "D₆b"],
-    ["9", "BF"],
-  ],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.0, fStops: [2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16] },
 
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "FRONT", fromSurface: "1", toSurface: "6" },
     { text: "REAR", fromSurface: "7", toSurface: "9" },
   ],
-
   doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.85,
-  focusDescription:
-    "Floating rear group: entire lens extends via helicoid (unit focus) while the cemented doublet (L4+L5) moves at a slightly different rate via an internal cam, changing d₆ to correct astigmatism and coma at close distances.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.0,
-  fstopSeries: [2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  scFill: 0.5,
-  yScFill: 0.3,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.3 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

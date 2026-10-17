@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -16,9 +16,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON APERTURE STOP:                                            ║
  * ║    The patent gives F/5 but does not publish a stop surface or stop ║
  * ║    coordinate. The STO surface below is a synthetic diaphragm       ║
- * ║    inserted at the midpoint of the large L4-L5 air gap. Its semi-   ║
- * ║    diameter is paraxially solved to give an entrance-pupil diameter ║
- * ║    consistent with f/5 at the computed EFL.                         ║
+ * ║    inserted at the midpoint of the large L4-L5 air gap. Its radius  ║
+ * ║    is derived from the design f-number, f/5.                        ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent does not list clear apertures. SDs are conservative  ║
@@ -30,24 +29,28 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "olympus-zuiko-auto-t-200mm-f5",
   maker: "Olympus",
   name: "OLYMPUS F.ZUIKO AUTO-T 200mm f/5",
   subtitle: "US 3,804,494 Example 1 — Olympus / Keiichi Ito",
-  specs: ["6 elements / 5 groups", "f ≈ 200.02 mm", "F/5", "2ω = 12°10′", "All-spherical"],
 
-  focalLengthMarketing: 200,
-  focalLengthDesign: 200.019,
-  apertureMarketing: 5,
-  apertureDesign: 5,
-  lensMounts: ["olympus-om"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,804,494",
-  patentAuthors: ["Keiichi Ito"],
-  patentAssignees: ["Olympus Optical Co., Ltd."],
-  patentYear: 1974,
-  elementCount: 6,
-  groupCount: 5,
+  catalog: {
+    lensMounts: ["olympus-om"],
+    imageFormat: "135-full-frame",
+    specs: ["6 elements / 5 groups", "f ≈ 200.02 mm", "F/5", "2ω = 12°10′", "All-spherical"],
+    elementCount: 6,
+    groupCount: 5,
+    focalLengthMm: { marketing: 200, design: 200.019 },
+    fNumber: { marketing: 5, design: 5 },
+  },
+
+  source: {
+    patentNumber: "US 3,804,494",
+    patentYear: 1974,
+    authors: ["Keiichi Ito"],
+    assignees: ["Olympus Optical Co., Ltd."],
+  },
 
   elements: [
     {
@@ -57,12 +60,12 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.4875,
       vd: 70.2,
-      fl: 161.1,
+      focalLengthMm: 161.1,
       glass: "S-FSL5 (OHARA)",
+      role: "Low-index front positive meniscus; main front collector with low dispersion.",
       nC: 1.48534,
       nF: 1.49228,
       ng: 1.49596,
-      role: "Low-index front positive meniscus; main front collector with low dispersion.",
     },
     {
       id: 2,
@@ -71,13 +74,13 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7283,
       vd: 28.5,
-      fl: -135.37,
+      focalLengthMm: -135.37,
       glass: "S-TIH10 (OHARA)",
+      role: "High-index dense-flint component of the cemented chromatic-correction doublet.",
+      cemented: "D1",
       nC: 1.72086,
       nF: 1.74645,
       ng: 1.762,
-      cemented: "D1",
-      role: "High-index dense-flint component of the cemented chromatic-correction doublet.",
     },
     {
       id: 3,
@@ -86,10 +89,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.5014,
       vd: 56.4,
-      fl: 78.91,
+      focalLengthMm: 78.91,
       glass: "K10 (Schott)",
-      cemented: "D1",
       role: "Crown component of the cemented doublet; restores positive power after L2.",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -98,12 +101,12 @@ const LENS_DATA = {
       type: "Plano-Concave Negative",
       nd: 1.744,
       vd: 44.8,
-      fl: -160.94,
+      focalLengthMm: -160.94,
       glass: "S-LAM2 (OHARA)",
+      role: "High-index negative corrector closing the positive front group.",
       nC: 1.73905,
       nF: 1.75566,
       ng: 1.76506,
-      role: "High-index negative corrector closing the positive front group.",
     },
     {
       id: 5,
@@ -112,12 +115,12 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.713,
       vd: 54.0,
-      fl: -39.75,
+      focalLengthMm: -39.75,
       glass: "S-LAL8 (OHARA)",
+      role: "Strong negative relay element in the rear telephoto group.",
       nC: 1.70897,
       nF: 1.72221,
       ng: 1.72943,
-      role: "Strong negative relay element in the rear telephoto group.",
     },
     {
       id: 6,
@@ -126,49 +129,47 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5927,
       vd: 35.5,
-      fl: 58.78,
+      focalLengthMm: 58.78,
       glass: "S-FTM16 (OHARA)",
+      role: "Positive light-flint partner to L5 in the rear negative group.",
       nC: 1.58779,
       nF: 1.60458,
       ng: 1.61454,
-      role: "Positive light-flint partner to L5 in the rear negative group.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 54.74, d: 6.0, nd: 1.4875, elemId: 1, sd: 23.0 },
-    { label: "2", R: 174.18, d: 3.0, nd: 1.0, elemId: 0, sd: 22.0 },
-    { label: "3", R: 48.94, d: 3.0, nd: 1.7283, elemId: 2, sd: 21.0 },
-    { label: "4", R: 31.86, d: 6.0, nd: 1.5014, elemId: 3, sd: 19.2 },
-    { label: "5", R: 153.34, d: 20.0, nd: 1.0, elemId: 0, sd: 19.2 },
-    { label: "6", R: 1e15, d: 3.0, nd: 1.744, elemId: 4, sd: 17.5 },
-    { label: "7", R: 119.74, d: 25.0, nd: 1.0, elemId: 0, sd: 17.0 },
-    { label: "STO", R: 1e15, d: 25.0, nd: 1.0, elemId: 0, sd: 8.741 },
-    { label: "8", R: -24.1, d: 2.0, nd: 1.713, elemId: 5, sd: 13.0 },
-    { label: "9", R: -166.48, d: 1.0, nd: 1.0, elemId: 0, sd: 13.5 },
-    { label: "10", R: 711.18, d: 5.0, nd: 1.5927, elemId: 6, sd: 14.5 },
-    { label: "11", R: -36.54, d: 51.0, nd: 1.0, elemId: 0, sd: 15.0 },
+    { label: "1", R: 54.74, d: 6.0, sd: 23.0, medium: 1 },
+    { label: "2", R: 174.18, d: 3.0, sd: 22.0 },
+    { label: "3", R: 48.94, d: 3.0, sd: 21.0, medium: 2 },
+    { label: "4", R: 31.86, d: 6.0, sd: 19.2, medium: 3 },
+    { label: "5", R: 153.34, d: 20.0, sd: 19.2 },
+    { label: "6", R: "flat", d: 3.0, sd: 17.5, medium: 4 },
+    { label: "7", R: 119.74, d: 25.0, sd: 17.0 },
+    { label: "STO", R: "flat", d: 25.0 },
+    { label: "8", R: -24.1, d: 2.0, sd: 13.0, medium: 5 },
+    { label: "9", R: -166.48, d: 1.0, sd: 13.5 },
+    { label: "10", R: 711.18, d: 5.0, sd: 14.5, medium: 6 },
+    { label: "11", R: -36.54, sd: 15.0 },
   ],
 
-  asph: {},
-  var: {
-    "11": [51.0, 71.04],
+  focus: {
+    closeFocusM: 2.5,
+    description:
+      "Unit focus. The patent publishes only the infinity prescription; the close-focus BFD is estimated from the 2.5 m production MFD.",
   },
-  varLabels: [["11", "BF"]],
-  focusDescription:
-    "Unit focus. The patent publishes only the infinity prescription; the close-focus BFD is estimated from the 2.5 m production MFD.",
+
+  gaps: { "11": { label: "BF", values: [[51.0, 71.04]] } },
+
+  aperture: { nominalFNumber: 5, fStops: [5, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32 },
+
   groups: [
     { text: "FRONT I", fromSurface: "1", toSurface: "7" },
     { text: "REAR II", fromSurface: "8", toSurface: "11" },
   ],
   doublets: [{ text: "D1", fromSurface: "3", toSurface: "5" }],
 
-  closeFocusM: 2.5,
-  nominalFno: 5,
-  fstopSeries: [5, 5.6, 8, 11, 16, 22, 32],
-  maxFstop: 32,
-  scFill: 0.58,
-  yScFill: 0.62,
-} satisfies LensDataInput;
+  layout: { scFill: 0.58, yScFill: 0.62 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

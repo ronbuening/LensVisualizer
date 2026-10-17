@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -27,31 +27,35 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "pentax-a-200mm-f4-macro-ed",
   maker: "Pentax",
   name: "PENTAX SMC A* 200mm f/4 MACRO ED",
   subtitle: "US 4,666,260 Example 1 — Asahi Kogaku / Takayuki Itoh",
-  specs: [
-    "10 elements / 9 groups",
-    "f = 199.98 mm design",
-    "F/4",
-    "2ω = 12.4° patent field",
-    "All-spherical",
-    "Fixed-rear extension macro focus",
-  ],
 
-  focalLengthMarketing: 200,
-  focalLengthDesign: 199.98,
-  apertureMarketing: 4,
-  apertureDesign: 4,
-  lensMounts: ["pentax-k"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,666,260",
-  patentAuthors: ["Takayuki Ito"],
-  patentAssignees: ["Asahi Kogaku Kogyo Co., Ltd."],
-  patentYear: 1987,
-  elementCount: 10,
-  groupCount: 9,
+  catalog: {
+    lensMounts: ["pentax-k"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "10 elements / 9 groups",
+      "f = 199.98 mm design",
+      "F/4",
+      "2ω = 12.4° patent field",
+      "All-spherical",
+      "Fixed-rear extension macro focus",
+    ],
+    elementCount: 10,
+    groupCount: 9,
+    focalLengthMm: { marketing: 200, design: 199.98 },
+    fNumber: { marketing: 4, design: 4 },
+  },
+
+  source: {
+    patentNumber: "US 4,666,260",
+    patentYear: 1987,
+    authors: ["Takayuki Ito"],
+    assignees: ["Asahi Kogaku Kogyo Co., Ltd."],
+  },
 
   elements: [
     {
@@ -61,7 +65,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.1,
-      fl: 383.9,
+      focalLengthMm: 383.9,
       glass: "S-FSL5 (OHARA) / N-FK5 class",
       role: "Weak front low-dispersion positive meniscus in subgroup 1a.",
     },
@@ -72,7 +76,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.6,
-      fl: 109.9,
+      focalLengthMm: 109.9,
       glass: "S-FPL51 (OHARA) / FCD1 class ED",
       apd: "inferred",
       apdNote: "ED fluorophosphate class; patent lists nd/vd only, not partial dispersion.",
@@ -85,7 +89,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.6,
-      fl: 143.7,
+      focalLengthMm: 143.7,
       glass: "S-FPL51 (OHARA) / FCD1 class ED",
       apd: "inferred",
       apdNote: "ED fluorophosphate class; patent lists nd/vd only, not partial dispersion.",
@@ -98,7 +102,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6134,
       vd: 43.8,
-      fl: -61.7,
+      focalLengthMm: -61.7,
       glass: "BPM4 (OHARA legacy, 613/438 short flint)",
       role: "Negative meniscus closing subgroup 1a and providing the front-cell dispersing partner.",
     },
@@ -109,7 +113,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.61293,
       vd: 37,
-      fl: -114,
+      focalLengthMm: -114,
       glass: "S-TIM3 (OHARA, 613/370 flint)",
       role: "Negative member of the cemented doublet; its concave object-side surface is the governed divergent surface.",
       cemented: "D1",
@@ -121,7 +125,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6968,
       vd: 55.5,
-      fl: 189,
+      focalLengthMm: 189,
       glass: "S-LAL14 (OHARA)",
       role: "Positive lanthanum crown cemented to L5; restores power and forms a chromatic correction junction.",
       cemented: "D1",
@@ -133,7 +137,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.734,
       vd: 51.5,
-      fl: 122.4,
+      focalLengthMm: 122.4,
       glass: "S-LAL59 (OHARA)",
       role: "High-index positive power element terminating the moving first group.",
     },
@@ -144,7 +148,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.80518,
       vd: 25.4,
-      fl: 178,
+      focalLengthMm: 178,
       glass: "S-TIH6 (OHARA)",
       role: "Dense-flint positive at the front of negative rear subgroup 2a.",
     },
@@ -155,7 +159,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.713,
       vd: 53.8,
-      fl: -48.2,
+      focalLengthMm: -48.2,
       glass: "S-LAL8 (OHARA) / N-LAK8 class",
       role: "Strong negative lanthanum-crown element giving subgroup 2a its large negative power.",
     },
@@ -166,41 +170,48 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.51633,
       vd: 64.1,
-      fl: 143.7,
+      focalLengthMm: 143.7,
       glass: "S-BSL7 (OHARA) / N-BK7 class",
       role: "Unitary positive rear lens 2b, separated from subgroup 2a by the governed d17 gap.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 100.7, d: 4.5, nd: 1.48749, elemId: 1, sd: 29 },
-    { label: "2", R: 214.834, d: 0.5, nd: 1, elemId: 0, sd: 28.7 },
-    { label: "3", R: 56.079, d: 9.96, nd: 1.497, elemId: 2, sd: 31 },
-    { label: "4", R: -2002.939, d: 0.5, nd: 1, elemId: 0, sd: 29 },
-    { label: "5", R: 42.778, d: 7.32, nd: 1.497, elemId: 3, sd: 29 },
-    { label: "6", R: 100.598, d: 2.82, nd: 1, elemId: 0, sd: 25.5 },
-    { label: "7", R: 181.169, d: 2.8, nd: 1.6134, elemId: 4, sd: 23.5 },
-    { label: "8", R: 31.143, d: 12.41, nd: 1, elemId: 0, sd: 22 },
-    { label: "9", R: -59.122, d: 2.5, nd: 1.61293, elemId: 5, sd: 18.2 },
-    { label: "10", R: -389.821, d: 3.68, nd: 1.6968, elemId: 6, sd: 18 },
-    { label: "11", R: -98.827, d: 0.2, nd: 1, elemId: 0, sd: 17.8 },
-    { label: "12", R: 147.652, d: 4.59, nd: 1.734, elemId: 7, sd: 17.8 },
-    { label: "13", R: -226.517, d: 6.53, nd: 1, elemId: 0, sd: 17 },
-    { label: "STO", R: 1e15, d: 1, nd: 1, elemId: 0, sd: 13.54 },
-    { label: "14", R: -167.918, d: 2.5, nd: 1.80518, elemId: 8, sd: 14.5 },
-    { label: "15", R: -77.836, d: 0.7, nd: 1, elemId: 0, sd: 14.5 },
-    { label: "16", R: -95.674, d: 5.5, nd: 1.713, elemId: 9, sd: 14.4 },
-    { label: "17", R: 54.994, d: 39.83, nd: 1, elemId: 0, sd: 14.2 },
-    { label: "18", R: 95.94, d: 4.3, nd: 1.51633, elemId: 10, sd: 20.5 },
-    { label: "19", R: -321.938, d: 76.9, nd: 1, elemId: 0, sd: 20.5 },
+    { label: "1", R: 100.7, d: 4.5, sd: 29, medium: 1 },
+    { label: "2", R: 214.834, d: 0.5, sd: 28.7 },
+    { label: "3", R: 56.079, d: 9.96, sd: 31, medium: 2 },
+    { label: "4", R: -2002.939, d: 0.5, sd: 29 },
+    { label: "5", R: 42.778, d: 7.32, sd: 29, medium: 3 },
+    { label: "6", R: 100.598, d: 2.82, sd: 25.5 },
+    { label: "7", R: 181.169, d: 2.8, sd: 23.5, medium: 4 },
+    { label: "8", R: 31.143, d: 12.41, sd: 22 },
+    { label: "9", R: -59.122, d: 2.5, sd: 18.2, medium: 5 },
+    { label: "10", R: -389.821, d: 3.68, sd: 18, medium: 6 },
+    { label: "11", R: -98.827, d: 0.2, sd: 17.8 },
+    { label: "12", R: 147.652, d: 4.59, sd: 17.8, medium: 7 },
+    { label: "13", R: -226.517, sd: 17 },
+    { label: "STO", R: "flat", d: 1 },
+    { label: "14", R: -167.918, d: 2.5, sd: 14.5, medium: 8 },
+    { label: "15", R: -77.836, d: 0.7, sd: 14.5 },
+    { label: "16", R: -95.674, d: 5.5, sd: 14.4, medium: 9 },
+    { label: "17", R: 54.994, d: 39.83, sd: 14.2 },
+    { label: "18", R: 95.94, d: 4.3, sd: 20.5, medium: 10 },
+    { label: "19", R: -321.938, d: 76.9, sd: 20.5 },
   ],
 
-  asph: {},
-  focusPositions: [0, 0.765303983447137, 1],
-  var: {
-    "13": [6.53, 34.05, 61.58],
+  focus: {
+    closeFocusM: 0.55,
+    keyframes: [0, 0.765303983447137, 1],
+    description:
+      "Fixed-rear extension: the first lens group moves toward the object. The data varies surface 13 so that D13 + STO.d equals the patent d13 spacing.",
+    // (moved from publishedStations) Every focus keyframe is a source row.
+    published: [1, 2],
   },
-  varLabels: [["13", "D13"]],
+
+  gaps: { "13": { label: "D13", values: [[6.53, 34.05, 61.58]] } },
+
+  aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32 },
+
   groups: [
     { text: "1a", fromSurface: "1", toSurface: "8" },
     { text: "1b", fromSurface: "9", toSurface: "13" },
@@ -209,18 +220,9 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "D1", fromSurface: "9", toSurface: "11" }],
 
-  closeFocusM: 0.55,
-  // Every focus keyframe is a source row.
-  publishedStations: { focus: [1, 2] },
-  nominalFno: 4,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
-  maxFstop: 32,
-  rayLeadFrac: 0.28,
-  offAxisFieldFrac: 0.35,
-  scFill: 0.7,
-  yScFill: 0.56,
-  focusDescription:
-    "Fixed-rear extension: the first lens group moves toward the object. The data varies surface 13 so that D13 + STO.d equals the patent d13 spacing.",
-} satisfies LensDataInput;
+  layout: { scFill: 0.7, yScFill: 0.56 },
+
+  rays: { rayLeadFrac: 0.28, offAxisFieldFrac: 0.35 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

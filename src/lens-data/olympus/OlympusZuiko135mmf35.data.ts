@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -38,24 +38,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "olympus-zuiko-135-f35",
   maker: "Olympus",
   name: "OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5",
   subtitle: "US 3,838,911 EXAMPLE 1 — OLYMPUS / IKEDA",
-  specs: ["5 ELEMENTS / 4 GROUPS", "f ≈ 135.0 mm", "F/3.5", "2ω ≈ 18°", "ALL-SPHERICAL"],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: 135,
-  focalLengthDesign: 135.03,
-  apertureMarketing: 3.5,
-  lensMounts: ["olympus-om"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,838,911",
-  patentAuthors: ["Yoshitsugi Ikeda"],
-  patentAssignees: ["Olympus Optical Co., Ltd."],
-  patentYear: 1974,
-  elementCount: 5,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["olympus-om"],
+    imageFormat: "135-full-frame",
+    specs: ["5 ELEMENTS / 4 GROUPS", "f ≈ 135.0 mm", "F/3.5", "2ω ≈ 18°", "ALL-SPHERICAL"],
+    elementCount: 5,
+    groupCount: 4,
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: 135, design: 135.03 },
+    fNumber: { marketing: 3.5 },
+  },
+
+  source: {
+    patentNumber: "US 3,838,911",
+    patentYear: 1974,
+    authors: ["Yoshitsugi Ikeda"],
+    assignees: ["Olympus Optical Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -66,7 +71,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62041,
       vd: 60.2,
-      fl: 112.3,
+      focalLengthMm: 112.3,
       glass: "N-SK16 (Schott) / S-BSM16 (OHARA) class (620602)",
       apd: false,
       role: "Front positive collector; initiates convergence with moderate curvature at a high-index crown",
@@ -78,11 +83,11 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.48749,
       vd: 69.8,
-      fl: 80.6,
+      focalLengthMm: 80.6,
       glass: "S-FSL5 (OHARA catalog equivalent; patent code 487698, supplier unspecified)",
       apd: false,
-      cemented: "D1",
       role: "Crown member of the cemented achromat; supplies positive power with low dispersion",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -91,11 +96,11 @@ const LENS_DATA = {
       type: "Plano-Concave Negative",
       nd: 1.76182,
       vd: 26.5,
-      fl: -132.7,
+      focalLengthMm: -132.7,
       glass: "SF14 / N-SF14 (Schott) / S-TIH14 (OHARA) class (762265)",
       apd: false,
-      cemented: "D1",
       role: "Dense-flint achromatizing partner in the cemented doublet; controls axial color and zonal SA",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -104,7 +109,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.66998,
       vd: 39.3,
-      fl: -46.4,
+      focalLengthMm: -46.4,
       glass: "S-BAH32 (OHARA) exact match (670393)",
       apd: false,
       role: "Principal telephoto-shortening group; strong negative meniscus behind the stop, controls telephoto ratio",
@@ -116,7 +121,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.80518,
       vd: 25.4,
-      fl: 120.1,
+      focalLengthMm: 120.1,
       glass: "N-SF6 / SF6 (Schott) / S-TIH6 (OHARA) class (805254)",
       apd: false,
       role: "Rear positive meniscus corrector; moderates field curvature, astigmatism, and distortion",
@@ -124,28 +129,31 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 61.151, d: 5.94, nd: 1.62041, elemId: 1, sd: 21.0 },
-    { label: "2", R: 479.863, d: 5.981, nd: 1.0, elemId: 0, sd: 20.5 },
-    { label: "3", R: 39.289, d: 7.007, nd: 1.48749, elemId: 2, sd: 19.0 },
-    { label: "4", R: 1e15, d: 2.39, nd: 1.76182, elemId: 3, sd: 17.0 },
-    { label: "5", R: 101.102, d: 10.064, nd: 1.0, elemId: 0, sd: 16.5 },
-    { label: "STO", R: 1e15, d: 10.064, nd: 1.0, elemId: 0, sd: 12.4 }, // stop position inferred from Fig. 1 at ~50 % of d5 gap
-    { label: "6", R: 106.998, d: 2.417, nd: 1.66998, elemId: 4, sd: 11.5 },
-    { label: "7", R: 23.855, d: 19.845, nd: 1.0, elemId: 0, sd: 11.0 },
-    { label: "8", R: 45.827, d: 3.402, nd: 1.80518, elemId: 5, sd: 12.5 },
-    { label: "9", R: 84.232, d: 50.5, nd: 1.0, elemId: 0, sd: 12.0 },
+    { label: "1", R: 61.151, d: 5.94, sd: 21.0, medium: 1 },
+    { label: "2", R: 479.863, d: 5.981, sd: 20.5 },
+    { label: "3", R: 39.289, d: 7.007, sd: 19.0, medium: 2 },
+    { label: "4", R: "flat", d: 2.39, sd: 17.0, medium: 3 },
+    { label: "5", R: 101.102, d: 10.064, sd: 16.5 },
+    { label: "STO", R: "flat", d: 10.064 }, // stop position inferred from Fig. 1 at ~50 % of d5 gap
+    { label: "6", R: 106.998, d: 2.417, sd: 11.5, medium: 4 },
+    { label: "7", R: 23.855, d: 19.845, sd: 11.0 },
+    { label: "8", R: 45.827, d: 3.402, sd: 12.5, medium: 5 },
+    { label: "9", R: 84.232, sd: 12.0 },
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
-
-  /* ── Variable air spacings (unit focus) ── */
-  var: {
-    "9": [50.5, 65.67],
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 1.5,
+    description: "Unit focus — entire five-element optical block translates via straight helicoid.",
   },
 
-  varLabels: [["9", "BF"]],
+  /* (moved from var) ── Variable air spacings (unit focus) ── */
+  gaps: { "9": { label: "BF", values: [[50.5, 65.67]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16, 22] },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -154,20 +162,10 @@ const LENS_DATA = {
     { text: "G3", fromSurface: "6", toSurface: "7" },
     { text: "G4", fromSurface: "8", toSurface: "9" },
   ],
-
   doublets: [{ text: "D1", fromSurface: "3", toSurface: "5" }],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 1.5,
-  focusDescription: "Unit focus — entire five-element optical block translates via straight helicoid.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 3.5,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
-
   /* ── Layout tuning ── */
-  scFill: 0.5,
-  yScFill: 0.35,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.35 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

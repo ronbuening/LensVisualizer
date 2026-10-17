@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -31,24 +31,29 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "pentax-a-star-135mm-f18",
   maker: "Pentax",
   name: "PENTAX SMC A* 135mm f/1.8",
   subtitle: "US4447137 Example 2 — Asahi / Yasunori Arai",
-  specs: ["7 elements / 6 groups", "f = 134.99 mm", "F/1.8", "2ω = 18°", "all-spherical", "fixed rear element focus"],
 
-  focalLengthMarketing: 135,
-  focalLengthDesign: 134.9875,
-  apertureMarketing: 1.8,
-  apertureDesign: 1.8,
-  lensMounts: ["pentax-k"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,447,137",
-  patentAuthors: ["Yasunori Arai"],
-  patentAssignees: ["Asahi Kogaku Kogyo Co., Ltd."],
-  patentYear: 1984,
-  elementCount: 7,
-  groupCount: 6,
+  catalog: {
+    lensMounts: ["pentax-k"],
+    imageFormat: "135-full-frame",
+    specs: ["7 elements / 6 groups", "f = 134.99 mm", "F/1.8", "2ω = 18°", "all-spherical", "fixed rear element focus"],
+    elementCount: 7,
+    groupCount: 6,
+    focalLengthMm: { marketing: 135, design: 134.9875 },
+    fNumber: { marketing: 1.8, design: 1.8 },
+  },
+
+  source: {
+    patentNumber: "US 4,447,137",
+    patentYear: 1984,
+    authors: ["Yasunori Arai"],
+    assignees: ["Asahi Kogaku Kogyo Co., Ltd."],
+  },
+
   elements: [
     {
       id: 1,
@@ -57,7 +62,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62041,
       vd: 60.3,
-      fl: 117.016,
+      focalLengthMm: 117.016,
       glass: "S-BSM16 (OHARA) / N-SK16 / BACD16 class",
       role: "Front positive collector; high-Abbe crown member of the front achromatic/Petzval pair.",
     },
@@ -68,7 +73,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.72342,
       vd: 37.9,
-      fl: -119.214,
+      focalLengthMm: -119.214,
       glass: "S-BAH28 (OHARA) / BAFD8 class",
       role: "Negative flint member of the cemented second component; paired with L3 across the hyperchromatic r4 interface.",
       cemented: "D1",
@@ -80,7 +85,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6968,
       vd: 55.5,
-      fl: 61.307,
+      focalLengthMm: 61.307,
       glass: "S-LAL14 (OHARA) / LAC14 class",
       role: "Positive lanthanum-crown member of the cemented second component; forms the patent's front positive material pair with L1.",
       cemented: "D1",
@@ -92,7 +97,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6727,
       vd: 32.1,
-      fl: -48.525,
+      focalLengthMm: -48.525,
       glass: "S-TIM25 (OHARA) / N-SF5 / E-FD5 class",
       role: "Strong negative third component; balances the front positive components and controls higher-order aberrations with the following corrector.",
     },
@@ -103,7 +108,7 @@ const LENS_DATA = {
       type: "Weak Positive Meniscus",
       nd: 1.70154,
       vd: 41.2,
-      fl: 752.357,
+      focalLengthMm: 752.357,
       glass: "S-BAH27 (OHARA) / BAFD7 class",
       role: "Very weak near-concentric fourth component; patent-defined higher-order spherical aberration and coma corrector.",
     },
@@ -114,7 +119,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.72,
       vd: 46.0,
-      fl: 195.68,
+      focalLengthMm: 195.68,
       glass: "K-LaFn11 (Sumita) / H-LaF72 class",
       role: "Positive fifth component with the larger curvature toward the object; patent-defined distortion-control element.",
     },
@@ -125,54 +130,51 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7,
       vd: 48.1,
-      fl: 424.86,
+      focalLengthMm: 424.86,
       glass: "J-LAF01 (Hikari) / H-LaF51 class",
       role: "Fixed weak positive rear element; governs aberration stability during front-group extension focusing.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 71.398, d: 12.9, nd: 1.62041, elemId: 1, sd: 38.0 },
-    { label: "2", R: 4020.868, d: 0.1, nd: 1.0, elemId: 0, sd: 35.5 },
-    { label: "3", R: 52.33, d: 4.82, nd: 1.72342, elemId: 2, sd: 30.5 },
-    { label: "4", R: 31.309, d: 15.0, nd: 1.6968, elemId: 3, sd: 28.0 },
-    { label: "5", R: 94.161, d: 4.05, nd: 1.0, elemId: 0, sd: 26.5 },
-    { label: "6", R: 461.054, d: 8.17, nd: 1.6727, elemId: 4, sd: 24.5 },
-    { label: "7", R: 30.267, d: 8.5, nd: 1.0, elemId: 0, sd: 21.5 },
-    { label: "STO", R: 1e15, d: 25.88, nd: 1.0, elemId: 0, sd: 18.99085983 },
-    { label: "8", R: -41.362, d: 4.37, nd: 1.70154, elemId: 5, sd: 25.0 },
-    { label: "9", R: -40.027, d: 6.87, nd: 1.0, elemId: 0, sd: 26.5 },
-    { label: "10", R: 71.985, d: 4.05, nd: 1.72, elemId: 6, sd: 27.0 },
-    { label: "11", R: 143.722, d: 4.0, nd: 1.0, elemId: 0, sd: 26.5 },
-    { label: "12", R: 248.646, d: 4.0, nd: 1.7, elemId: 7, sd: 26.5 },
-    { label: "13", R: 1506.638, d: 40.754258341, nd: 1.0, elemId: 0, sd: 26.0 },
+    { label: "1", R: 71.398, d: 12.9, sd: 38.0, medium: 1 },
+    { label: "2", R: 4020.868, d: 0.1, sd: 35.5 },
+    { label: "3", R: 52.33, d: 4.82, sd: 30.5, medium: 2 },
+    { label: "4", R: 31.309, d: 15.0, sd: 28.0, medium: 3 },
+    { label: "5", R: 94.161, d: 4.05, sd: 26.5 },
+    { label: "6", R: 461.054, d: 8.17, sd: 24.5, medium: 4 },
+    { label: "7", R: 30.267, d: 8.5, sd: 21.5 },
+    { label: "STO", R: "flat", d: 25.88 },
+    { label: "8", R: -41.362, d: 4.37, sd: 25.0, medium: 5 },
+    { label: "9", R: -40.027, d: 6.87, sd: 26.5 },
+    { label: "10", R: 71.985, d: 4.05, sd: 27.0, medium: 6 },
+    { label: "11", R: 143.722, sd: 26.5 },
+    { label: "12", R: 248.646, d: 4.0, sd: 26.5, medium: 7 },
+    { label: "13", R: 1506.638, d: 40.754258341, sd: 26.0 },
   ],
 
-  asph: {},
-  focusPositions: [0, 0.7150276511555425, 1],
-  var: {
-    "11": [4.0, 20.42, 29.4034898751],
+  focus: {
+    closeFocusM: 1.2,
+    keyframes: [0, 0.7150276511555425, 1],
+    description:
+      "Fixed rear-element focus: the patent beta=-0.1 state is exact before the constrained 1.2 m endpoint; L1-L6 move together while L7 remains fixed.",
+    // (moved from publishedStations) The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+    published: [1],
   },
-  varLabels: [["11", "D11"]],
+
+  gaps: { "11": { label: "D11", values: [[4.0, 20.42, 29.4034898751]] } },
+
+  aperture: { nominalFNumber: 1.8, fStops: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 9 },
+
   groups: [
     { text: "Moving group (L1-L6)", fromSurface: "1", toSurface: "11" },
     { text: "Fixed rear (L7)", fromSurface: "12", toSurface: "13" },
   ],
   doublets: [{ text: "D1", fromSurface: "3", toSurface: "5" }],
 
-  closeFocusM: 1.2,
-  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
-  publishedStations: { focus: [1] },
-  focusDescription:
-    "Fixed rear-element focus: the patent beta=-0.1 state is exact before the constrained 1.2 m endpoint; L1-L6 move together while L7 remains fixed.",
-  nominalFno: 1.8,
-  fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-  apertureBlades: 9,
+  layout: { scFill: 0.74, yScFill: 0.72 },
 
-  offAxisFieldFrac: 0.35,
-  scFill: 0.74,
-  yScFill: 0.72,
-} satisfies LensDataInput;
+  rays: { offAxisFieldFrac: 0.35 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

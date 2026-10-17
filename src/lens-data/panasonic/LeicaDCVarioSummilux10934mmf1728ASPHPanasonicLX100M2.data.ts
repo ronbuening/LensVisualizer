@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════╗
@@ -30,7 +30,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                                     ║
  * ║ APERTURE / SEMI-DIAMETERS                                                           ║
  * ║ - The patent publishes the stop plane and f-numbers but no physical stop diameter. ║
- * ║   STO.sd is a modeled maximum iris envelope (6.3862 mm semi-diameter). Effective   ║
+ * ║   The stop radius is derived from the design f-number at each station. The         ║
  * ║   wide/middle/tele openings are f-number-calibrated in the audit and are not an     ║
  * ║   independent verification of a production diaphragm diameter.                      ║
  * ║ - Lens SDs are modeled from exact meridional Snell/asphere traces at the published ║
@@ -41,226 +41,359 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 // SD review (2026-09-15): exact local patent Fig. 1 optical rims; see the audit sidecar.
-// Revised apertures remain estimates; radii, spacings and calibrated stop are unchanged.
+// Revised apertures remain estimates; radii, spacings and calibrated stop were unchanged in that SD review.
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "leica-dc-vario-summilux-10934-f1728-lx100m2",
   maker: "Panasonic",
   name: "PANASONIC LEICA DC VARIO-SUMMILUX 10.9-34mm f/1.7-2.8 ASPH. (Panasonic Lumix LX100 / LX100 II; Leica D-Lux (Typ 109) / D-Lux 7 / D-Lux 8)",
   subtitle: "US 2016/0054550 A1 Example 1 — strong production correlation; normalized direct-cement model",
-  specs: [
-    "11 ELEMENTS / 8 GROUPS",
-    "MARKETED 10.9-34mm f/1.7-2.8",
-    "MODEL EFL 11.265-32.538 mm",
-    "DESIGN F/1.76551-2.91140",
-    "8 ASPHERICAL SURFACES",
-  ],
 
-  focalLengthMarketing: [10.9, 34],
-  focalLengthDesign: [11.265298534, 32.537812044],
-  apertureMarketing: 1.7, // wide-end scalar; full marketed range is retained in name/specs
-  apertureDesign: 1.76551, // wide-end scalar; full design range is retained in nominalFno
-  lensMounts: ["fixed-lens-camera"],
-  imageFormat: "four-thirds",
-  patentNumber: "US 2016/0054550 A1",
-  patentAuthors: ["Takakazu Bito", "Hiroaki Suzuki"],
-  patentAssignees: ["Panasonic Intellectual Property Management Co., Ltd."],
-  patentYear: 2016,
-  elementCount: 11,
-  groupCount: 8,
+  catalog: {
+    lensMounts: ["fixed-lens-camera"],
+    imageFormat: "four-thirds",
+    specs: [
+      "11 ELEMENTS / 8 GROUPS",
+      "MARKETED 10.9-34mm f/1.7-2.8",
+      "MODEL EFL 11.265-32.538 mm",
+      "DESIGN F/1.76551-2.91140",
+      "8 ASPHERICAL SURFACES",
+    ],
+    elementCount: 11,
+    groupCount: 8,
+    focalLengthMm: { marketing: [10.9, 34], design: [11.265298534, 32.537812044] },
+    fNumber: {
+      marketing: 1.7, // wide-end scalar; full marketed range is retained in name/specs
+      design: 1.76551, // wide-end scalar; full design range is retained in zoom.stations[].nominalFNumber
+    },
+  },
+
+  source: {
+    patentNumber: "US 2016/0054550 A1",
+    patentYear: 2016,
+    authors: ["Takakazu Bito", "Hiroaki Suzuki"],
+    assignees: ["Panasonic Intellectual Property Management Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
     {
       id: 1,
       name: "L1",
-      diagramLabel: "L1",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.59282,
       vd: 68.6,
       indexReference: "d",
-      fl: 66.803597,
+      focalLengthMm: 66.803597,
       glass: "FCD515 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "FCD515 spectral proxy has ΔPgF ≈ +0.0158; APD is catalog-inferred, not patent-listed or a supplier identification.",
+      apdNote:
+        "FCD515 spectral proxy has ΔPgF ≈ +0.0158; APD is catalog-inferred, not patent-listed or a supplier identification.",
       role: "Positive G1 front element.",
+      diagramLabel: "L1",
     },
     {
       id: 2,
       name: "L2",
-      diagramLabel: "L2",
       label: "Element 2",
       type: "Biconcave Negative (2× Asph)",
       nd: 1.805,
       vd: 41,
       indexReference: "d",
-      fl: -14.544581,
+      focalLengthMm: -14.544581,
       glass: "S-LAH53 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: false,
       role: "Negative G2 variator element with two aspherical surfaces.",
+      diagramLabel: "L2",
     },
     {
       id: 3,
       name: "L3",
-      diagramLabel: "L3",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.80518,
       vd: 25.5,
       indexReference: "d",
-      fl: -20.655611,
+      focalLengthMm: -20.655611,
       glass: "SF6 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: false,
       role: "Negative member of the L3-L4 cemented stabilization pair in G3.",
+      diagramLabel: "L3",
       cemented: "D34",
     },
     {
       id: 4,
       name: "L4",
-      diagramLabel: "L4",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.91082,
       vd: 35.3,
       indexReference: "d",
-      fl: 15.344762,
+      focalLengthMm: 15.344762,
       glass: "H-ZLaF4LA (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: false,
       role: "Positive member of the L3-L4 cemented stabilization pair in G3.",
+      diagramLabel: "L4",
       cemented: "D34",
     },
     {
       id: 5,
       name: "L5",
-      diagramLabel: "L5",
       label: "Element 5",
       type: "Negative Meniscus (1× Asph)",
       nd: 1.68826,
       vd: 31.1,
       indexReference: "d",
-      fl: -58.688265,
+      focalLengthMm: -58.688265,
       glass: "S-TIM28 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: false,
       role: "Weak negative rear element of G3; image-side surface is aspherical.",
+      diagramLabel: "L5",
     },
     {
       id: 6,
       name: "L6",
-      diagramLabel: "L6",
       label: "Element 6",
       type: "Biconcave Negative (1× Asph)",
       nd: 1.58332,
       vd: 59.3,
       indexReference: "d",
-      fl: -28.903684,
+      focalLengthMm: -28.903684,
       glass: "M-BACD12 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: false,
       role: "Negative member of the G4 cemented pair; object-side surface is aspherical.",
+      diagramLabel: "L6",
       cemented: "D67",
     },
     {
       id: 7,
       name: "L7",
-      diagramLabel: "L7",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 2.00272,
       vd: 19.3,
       indexReference: "d",
-      fl: 24.108291,
+      focalLengthMm: 24.108291,
       glass: "E-FDS2 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "E-FDS2 spectral proxy has ΔPgF ≈ +0.0338; APD is catalog-inferred, not patent-listed or a supplier identification.",
+      apdNote:
+        "E-FDS2 spectral proxy has ΔPgF ≈ +0.0338; APD is catalog-inferred, not patent-listed or a supplier identification.",
       role: "Positive high-index member of the G4 cemented pair ahead of the diaphragm.",
+      diagramLabel: "L7",
       cemented: "D67",
     },
     {
       id: 8,
       name: "L8",
-      diagramLabel: "L8",
       label: "Element 8",
       type: "Biconvex Positive (2× Asph)",
       nd: 1.55343,
       vd: 71.5,
       indexReference: "d",
-      fl: 20.173959,
+      focalLengthMm: 20.173959,
       glass: "M-FCD500 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "M-FCD500 spectral proxy has ΔPgF ≈ +0.0170; APD is catalog-inferred, not patent-listed or a supplier identification.",
+      apdNote:
+        "M-FCD500 spectral proxy has ΔPgF ≈ +0.0170; APD is catalog-inferred, not patent-listed or a supplier identification.",
       role: "Dual-sided aspherical positive element at the front of G5.",
+      diagramLabel: "L8",
     },
     {
       id: 9,
       name: "L9",
-      diagramLabel: "L9",
       label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
-      fl: 20.558244,
+      focalLengthMm: 20.558244,
       glass: "J-LASF016 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: false,
       role: "Positive member of the L9-L10 cemented pair in G5.",
+      diagramLabel: "L9",
       cemented: "D910",
     },
     {
       id: 10,
       name: "L10",
-      diagramLabel: "L10",
       label: "Element 10",
       type: "Biconcave Negative",
       nd: 1.84666,
       vd: 23.8,
       indexReference: "d",
-      fl: -12.214499,
+      focalLengthMm: -12.214499,
       glass: "J-SF03 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "J-SF03 spectral proxy has ΔPgF ≈ +0.0178; APD is catalog-inferred, not patent-listed or a supplier identification.",
+      apdNote:
+        "J-SF03 spectral proxy has ΔPgF ≈ +0.0178; APD is catalog-inferred, not patent-listed or a supplier identification.",
       role: "Negative member of the L9-L10 cemented pair in G5.",
+      diagramLabel: "L10",
       cemented: "D910",
     },
     {
       id: 11,
       name: "L11",
-      diagramLabel: "L11",
       label: "Element 11",
       type: "Positive Meniscus (2× Asph)",
       nd: 1.55343,
       vd: 71.5,
       indexReference: "d",
-      fl: 35.551589,
+      focalLengthMm: 35.551589,
       glass: "M-FCD500 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "M-FCD500 spectral proxy has ΔPgF ≈ +0.0170; APD is catalog-inferred, not patent-listed or a supplier identification.",
+      apdNote:
+        "M-FCD500 spectral proxy has ΔPgF ≈ +0.0170; APD is catalog-inferred, not patent-listed or a supplier identification.",
       role: "Dual-sided aspherical positive G6 focus group; no close-focus travel is reconstructed.",
+      diagramLabel: "L11",
     },
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 40.7214, d: 4.2249, nd: 1.59282, elemId: 1, sd: 14.5 },
-    { label: "2", R: -1385.6544, d: 0.7165, nd: 1, elemId: 0, sd: 14.5 },
-    { label: "3A", R: -112.9266, d: 1.1, nd: 1.805, elemId: 2, sd: 9.1 },
-    { label: "4A", R: 13.1195, d: 13.7558, nd: 1, elemId: 0, sd: 9.1 },
-    { label: "5", R: -42.5513, d: 0.5, nd: 1.80518, elemId: 3, sd: 7.15 },
-    { label: "6", R: 27.4462, d: 2.0864, nd: 1.91082, elemId: 4, sd: 7.15 },
-    { label: "8", R: -27.4462, d: 1.301, nd: 1, elemId: 0, sd: 7.15 },
-    { label: "9", R: -25.4603, d: 0.5, nd: 1.68826, elemId: 5, sd: 6.9 },
-    { label: "10A", R: -69.4222, d: 1.6811, nd: 1, elemId: 0, sd: 6.9 },
-    { label: "11A", R: -19.5955, d: 0.5, nd: 1.58332, elemId: 6, sd: 7.15 },
-    { label: "12", R: 121.9154, d: 1.9321, nd: 2.00272, elemId: 7, sd: 7.15 },
-    { label: "14", R: -29.9134, d: 0.51, nd: 1, elemId: 0, sd: 7.15 },
-    { label: "STO", R: 1e15, d: 11.4515, nd: 1, elemId: 0, sd: 6.3862 },
-    { label: "16A", R: 18.8036, d: 6, nd: 1.55343, elemId: 8, sd: 11.55 },
-    { label: "17A", R: -24.3593, d: 0.15, nd: 1, elemId: 0, sd: 11.55 },
-    { label: "18", R: 24.7292, d: 3.5866, nd: 1.7725, elemId: 9, sd: 10.2 },
-    { label: "19", R: -41.5809, d: 0.9896, nd: 1.84666, elemId: 10, sd: 10.2 },
-    { label: "21", R: 13.9152, d: 5.0978, nd: 1, elemId: 0, sd: 9 },
-    { label: "22A", R: 19.639, d: 4.6295, nd: 1.55343, elemId: 11, sd: 11.8 },
-    { label: "23A", R: 9746.5098, d: 12.689420384, nd: 1, elemId: 0, sd: 11.8 }, // gap to plate P (code-solved)
+    { label: "1", R: 40.7214, d: 4.2249, sd: 14.5, medium: 1 },
+    { label: "2", R: -1385.6544, sd: 14.5 },
+    {
+      label: "3A",
+      R: -112.9266,
+      d: 1.1,
+      sd: 9.1,
+      medium: 2,
+      asphere: { K: 0, A4: 4.0433e-5, A6: -5.92449e-8, A8: -1.80291e-9, A10: 1.41335e-11, A12: -3.271e-14, A14: 0 },
+    },
+    {
+      label: "4A",
+      R: 13.1195,
+      sd: 9.1,
+      asphere: { K: 0, A4: 5.69066e-7, A6: 8.11958e-7, A8: -1.24411e-8, A10: 5.48832e-11, A12: 0, A14: 0 },
+    },
+    { label: "5", R: -42.5513, d: 0.5, sd: 7.15, medium: 3 },
+    { label: "6", R: 27.4462, d: 2.0864, sd: 7.15, medium: 4 },
+    { label: "8", R: -27.4462, d: 1.301, sd: 7.15 },
+    { label: "9", R: -25.4603, d: 0.5, sd: 6.9, medium: 5 },
+    {
+      label: "10A",
+      R: -69.4222,
+      sd: 6.9,
+      asphere: { K: 0, A4: 8.18947e-5, A6: 4.95376e-7, A8: -3.42721e-9, A10: 1.05655e-10, A12: 0, A14: 0 },
+    },
+    {
+      label: "11A",
+      R: -19.5955,
+      d: 0.5,
+      sd: 7.15,
+      medium: 6,
+      asphere: { K: 0, A4: 7.43261e-5, A6: 3.73289e-7, A8: -5.11294e-9, A10: 1.31843e-10, A12: 0, A14: 0 },
+    },
+    { label: "12", R: 121.9154, d: 1.9321, sd: 7.15, medium: 7 },
+    { label: "14", R: -29.9134, d: 0.51, sd: 7.15 },
+    { label: "STO", R: "flat" },
+    {
+      label: "16A",
+      R: 18.8036,
+      d: 6,
+      sd: 11.55,
+      medium: 8,
+      asphere: { K: 0, A4: -3.76482e-5, A6: 1.07311e-7, A8: -1.38939e-9, A10: 1.81605e-11, A12: 0, A14: 0 },
+    },
+    {
+      label: "17A",
+      R: -24.3593,
+      d: 0.15,
+      sd: 11.55,
+      asphere: { K: 0, A4: 2.30876e-5, A6: 9.80261e-9, A8: -7.67882e-10, A10: 1.93662e-11, A12: 0, A14: 0 },
+    },
+    { label: "18", R: 24.7292, d: 3.5866, sd: 10.2, medium: 9 },
+    { label: "19", R: -41.5809, d: 0.9896, sd: 10.2, medium: 10 },
+    { label: "21", R: 13.9152, sd: 9 },
+    {
+      label: "22A",
+      R: 19.639,
+      d: 4.6295,
+      sd: 11.8,
+      medium: 11,
+      asphere: { K: 0, A4: -4.64106e-6, A6: 1.86129e-7, A8: -1.86394e-9, A10: 6.69528e-12, A12: 0, A14: 0 },
+    },
+    {
+      label: "23A",
+      R: 9746.5098,
+      sd: 11.8,
+      asphere: { K: 0, A4: 1.67447e-5, A6: 2.00177e-7, A8: -2.19294e-9, A10: 7.81576e-12, A12: 0, A14: 0 },
+    }, // gap to plate P (code-solved)
   ],
+
+  zoom: {
+    /* (moved from zoomPositions) ── Zoom control points use the patent Table 3 focal-length headings ── */
+    /* (moved from nominalFno) ── Aperture configuration ── */
+    stations: [
+      { focalLengthMm: 11.2612, nominalFNumber: 1.76551, label: "Wide" },
+      { focalLengthMm: 19.1449, nominalFNumber: 2.5139 },
+      { focalLengthMm: 32.5307, nominalFNumber: 2.9114, label: "Tele" },
+    ],
+  },
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.03,
+    description:
+      "Not modeled — G6 moves objectward for close focus; the patent provides only infinity-focus zoom spacings.",
+  },
+
+  /* (moved from var) ── Variable spacings: published infinity zoom states only ── */
+  gaps: {
+    "2": {
+      label: "D2",
+      values: [
+        [0.7165, 0.7165],
+        [7.7275, 7.7275],
+        [16.6911, 16.6911],
+      ],
+    },
+    "4A": {
+      label: "D4",
+      values: [
+        [13.7558, 13.7558],
+        [6.979, 6.979],
+        [4.0594, 4.0594],
+      ],
+    },
+    "10A": {
+      label: "D10",
+      values: [
+        [1.6811, 1.6811],
+        [2.99, 2.99],
+        [3.6811, 3.6811],
+      ],
+    },
+    STO: {
+      label: "D15",
+      values: [
+        [11.4515, 11.4515],
+        [6.1943, 6.1943],
+        [1.37, 1.37],
+      ],
+    },
+    "21": {
+      label: "D21",
+      values: [
+        [5.0978, 5.0978],
+        [13.6054, 13.6054],
+        [24.7534, 24.7534],
+      ],
+    },
+    "23A": {
+      label: "D23",
+      values: [
+        [12.689420384, 12.689420384],
+        [13.672731318, 13.672731318],
+        [13.524165783, 13.524165783],
+      ],
+    },
+  },
+
+  aperture: { fStops: [1.7, 2, 2.8, 4, 5.6, 8, 11, 16] },
 
   /* ── Parallel plate P (patent surfaces 24–25): traced, not drawn ── */
   rearPlates: [
@@ -274,128 +407,6 @@ const LENS_DATA = {
       source: "US 2016/0054550 A1, Example 1 Table 1 surfaces 24–25; BF from Table 3 (wide)",
     },
   ],
-
-  /* ── Aspherical coefficients ── */
-  asph: {
-    "3A": {
-      K: 0,
-      A4: 4.0433e-5,
-      A6: -5.92449e-8,
-      A8: -1.80291e-9,
-      A10: 1.41335e-11,
-      A12: -3.271e-14,
-      A14: 0,
-    },
-    "4A": {
-      K: 0,
-      A4: 5.69066e-7,
-      A6: 8.11958e-7,
-      A8: -1.24411e-8,
-      A10: 5.48832e-11,
-      A12: 0,
-      A14: 0,
-    },
-    "10A": {
-      K: 0,
-      A4: 8.18947e-5,
-      A6: 4.95376e-7,
-      A8: -3.42721e-9,
-      A10: 1.05655e-10,
-      A12: 0,
-      A14: 0,
-    },
-    "11A": {
-      K: 0,
-      A4: 7.43261e-5,
-      A6: 3.73289e-7,
-      A8: -5.11294e-9,
-      A10: 1.31843e-10,
-      A12: 0,
-      A14: 0,
-    },
-    "16A": {
-      K: 0,
-      A4: -3.76482e-5,
-      A6: 1.07311e-7,
-      A8: -1.38939e-9,
-      A10: 1.81605e-11,
-      A12: 0,
-      A14: 0,
-    },
-    "17A": {
-      K: 0,
-      A4: 2.30876e-5,
-      A6: 9.80261e-9,
-      A8: -7.67882e-10,
-      A10: 1.93662e-11,
-      A12: 0,
-      A14: 0,
-    },
-    "22A": {
-      K: 0,
-      A4: -4.64106e-6,
-      A6: 1.86129e-7,
-      A8: -1.86394e-9,
-      A10: 6.69528e-12,
-      A12: 0,
-      A14: 0,
-    },
-    "23A": {
-      K: 0,
-      A4: 1.67447e-5,
-      A6: 2.00177e-7,
-      A8: -2.19294e-9,
-      A10: 7.81576e-12,
-      A12: 0,
-      A14: 0,
-    },
-  },
-
-  /* ── Variable spacings: published infinity zoom states only ── */
-  var: {
-    "2": [
-      [0.7165, 0.7165],
-      [7.7275, 7.7275],
-      [16.6911, 16.6911],
-    ],
-    "4A": [
-      [13.7558, 13.7558],
-      [6.979, 6.979],
-      [4.0594, 4.0594],
-    ],
-    "10A": [
-      [1.6811, 1.6811],
-      [2.99, 2.99],
-      [3.6811, 3.6811],
-    ],
-    STO: [
-      [11.4515, 11.4515],
-      [6.1943, 6.1943],
-      [1.37, 1.37],
-    ],
-    "21": [
-      [5.0978, 5.0978],
-      [13.6054, 13.6054],
-      [24.7534, 24.7534],
-    ],
-    "23A": [
-      [12.689420384, 12.689420384],
-      [13.672731318, 13.672731318],
-      [13.524165783, 13.524165783],
-    ],
-  },
-  varLabels: [
-    ["2", "D2"],
-    ["4A", "D4"],
-    ["10A", "D10"],
-    ["STO", "D15"],
-    ["21", "D21"],
-    ["23A", "D23"],
-  ],
-
-  /* ── Zoom control points use the patent Table 3 focal-length headings ── */
-  zoomPositions: [11.2612, 19.1449, 32.5307],
-  zoomLabels: ["Wide", "Tele"],
 
   /* ── Group and cemented-pair annotations ── */
   groups: [
@@ -412,17 +423,8 @@ const LENS_DATA = {
     { text: "D910", fromSurface: "18", toSurface: "21" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.03,
-  focusDescription:
-    "Not modeled — G6 moves objectward for close focus; the patent provides only infinity-focus zoom spacings.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: [1.76551, 2.5139, 2.9114],
-  fstopSeries: [1.7, 2, 2.8, 4, 5.6, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  yScFill: 0.4,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.4 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

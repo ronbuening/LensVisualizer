@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -37,31 +37,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "panasonic-lumix-g-25mm-f17",
   maker: "Panasonic",
   name: "PANASONIC LUMIX G 25mm f/1.7 ASPH.",
   subtitle: "US 2017/0059832 A1 Example 4 — Panasonic / Yoshinaga",
-  specs: [
-    "8 elements / 7 groups",
-    "f = 25.878 mm design / 25 mm nominal",
-    "F/1.760 design / f/1.7 nominal",
-    "2ω = 47.26° patent field",
-    "4 aspherical surfaces on 2 elements",
-  ],
 
-  focalLengthMarketing: 25,
-  focalLengthDesign: 25.8784,
-  apertureMarketing: 1.7,
-  apertureDesign: 1.76012,
-  lensMounts: ["micro-four-thirds"],
-  imageFormat: "four-thirds",
-  patentNumber: "US 2017/0059832 A1",
-  patentAuthors: ["Shunichiro Yoshinaga"],
-  patentAssignees: ["Panasonic Intellectual Property Management Co., Ltd."],
-  patentYear: 2017,
-  elementCount: 8,
-  groupCount: 7,
-  apertureBlades: 7,
+  catalog: {
+    lensMounts: ["micro-four-thirds"],
+    imageFormat: "four-thirds",
+    specs: [
+      "8 elements / 7 groups",
+      "f = 25.878 mm design / 25 mm nominal",
+      "F/1.760 design / f/1.7 nominal",
+      "2ω = 47.26° patent field",
+      "4 aspherical surfaces on 2 elements",
+    ],
+    elementCount: 8,
+    groupCount: 7,
+    focalLengthMm: { marketing: 25, design: 25.8784 },
+    fNumber: { marketing: 1.7, design: 1.76012 },
+  },
+
+  source: {
+    patentNumber: "US 2017/0059832 A1",
+    patentYear: 2017,
+    authors: ["Shunichiro Yoshinaga"],
+    assignees: ["Panasonic Intellectual Property Management Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -72,15 +75,15 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 2.00069,
       vd: 25.5,
-      fl: 28.747,
+      focalLengthMm: 28.747,
       glass: "TAFD40 (Hoya) / H-ZLaF90 class",
       apd: false,
+      apdNote: "Patent Table 23 line indices retained; not a Table 36 APD-condition element.",
+      role: "Ultra-high-index front positive collector; main front-group power source.",
       dPgF: 0.0126,
       nC: 1.98941,
       nF: 2.02872,
       ng: 2.05283,
-      apdNote: "Patent Table 23 line indices retained; not a Table 36 APD-condition element.",
-      role: "Ultra-high-index front positive collector; main front-group power source.",
     },
     {
       id: 2,
@@ -89,15 +92,15 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.51742,
       vd: 52.1,
-      fl: -20.587,
+      focalLengthMm: -20.587,
       glass: "E-CF6 (Hoya) / S-NSL36 class",
       apd: false,
+      apdNote: "Patent Table 23 line indices retained; not a Table 36 APD-condition element.",
+      role: "Front negative meniscus that moderates the strong convergence from L1.",
       dPgF: 0.0027,
       nC: 1.51444,
       nF: 1.52436,
       ng: 1.5299,
-      apdNote: "Patent Table 23 line indices retained; not a Table 36 APD-condition element.",
-      role: "Front negative meniscus that moderates the strong convergence from L1.",
     },
     {
       id: 3,
@@ -106,16 +109,16 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.75211,
       vd: 25.0,
-      fl: -11.172,
+      focalLengthMm: -11.172,
       glass: "FF8 (Hoya, 752/251)",
       apd: "patent",
+      apdNote: "Table 36 condition (1) element A; patent line indices: PgF = 0.61909; ΔPgF ≈ +0.0173.",
+      role: "Dense-flint half of the cemented chromatic corrector in G1.",
+      cemented: "D1",
       dPgF: 0.0173,
       nC: 1.74352,
       nF: 1.77355,
       ng: 1.79214,
-      apdNote: "Table 36 condition (1) element A; patent line indices: PgF = 0.61909; ΔPgF ≈ +0.0173.",
-      role: "Dense-flint half of the cemented chromatic corrector in G1.",
-      cemented: "D1",
     },
     {
       id: 4,
@@ -124,16 +127,16 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72916,
       vd: 54.7,
-      fl: 14.691,
+      focalLengthMm: 14.691,
       glass: "TAC8 (Hoya) / S-LAL18 class",
       apd: false,
+      apdNote: "Patent Table 23 line indices retained; not a Table 36 APD-condition element.",
+      role: "Lanthanum-crown positive half of the L3-L4 cemented corrector.",
+      cemented: "D1",
       dPgF: -0.0066,
       nC: 1.7251,
       nF: 1.73844,
       ng: 1.74571,
-      apdNote: "Patent Table 23 line indices retained; not a Table 36 APD-condition element.",
-      role: "Lanthanum-crown positive half of the L3-L4 cemented corrector.",
-      cemented: "D1",
     },
     {
       id: 5,
@@ -142,15 +145,15 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.8042,
       vd: 46.5,
-      fl: 27.466,
+      focalLengthMm: 27.466,
       glass: "TAF3 (Hoya) / N-LASF44 class",
       apd: false,
+      apdNote: "Patent Table 23 line indices retained; not a Table 36 APD-condition element.",
+      role: "Post-stop positive element completing the first positive lens unit.",
       dPgF: -0.0077,
       nC: 1.799,
       nF: 1.8163,
       ng: 1.82594,
-      apdNote: "Patent Table 23 line indices retained; not a Table 36 APD-condition element.",
-      role: "Post-stop positive element completing the first positive lens unit.",
     },
     {
       id: 6,
@@ -159,15 +162,15 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.5338,
       vd: 55.6,
-      fl: -45.555,
+      focalLengthMm: -45.555,
       glass: "Unmatched (53380/55.6 anomalous PGM crown; patent line indices)",
       apd: "patent",
+      apdNote: "Table 36 condition (3) element C; patent line indices: PgF = 0.56232; ΔPgF ≈ +0.0120.",
+      role: "Single-element negative focusing group G2; both surfaces are aspherical.",
       dPgF: 0.012,
       nC: 1.531,
       nF: 1.5406,
       ng: 1.546,
-      apdNote: "Table 36 condition (3) element C; patent line indices: PgF = 0.56232; ΔPgF ≈ +0.0120.",
-      role: "Single-element negative focusing group G2; both surfaces are aspherical.",
     },
     {
       id: 7,
@@ -176,15 +179,15 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.5338,
       vd: 55.6,
-      fl: 24.177,
+      focalLengthMm: 24.177,
       glass: "Unmatched (53380/55.6 anomalous PGM crown; patent line indices)",
       apd: "patent",
+      apdNote: "Table 36 condition (2) element B; patent line indices: PgF = 0.56232; ΔPgF ≈ +0.0120.",
+      role: "Main rear positive relay element; both surfaces are aspherical.",
       dPgF: 0.012,
       nC: 1.531,
       nF: 1.5406,
       ng: 1.546,
-      apdNote: "Table 36 condition (2) element B; patent line indices: PgF = 0.56232; ΔPgF ≈ +0.0120.",
-      role: "Main rear positive relay element; both surfaces are aspherical.",
     },
     {
       id: 8,
@@ -193,37 +196,119 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.58144,
       vd: 40.9,
-      fl: -84.462,
+      focalLengthMm: -84.462,
       glass: "E-FL5 (Hoya) / S-TIL25 class",
       apd: false,
+      apdNote: "Patent Table 23 line indices retained; not a Table 36 APD-condition element.",
+      role: "Weak rear negative field-flattening meniscus.",
       dPgF: 0.0017,
       nC: 1.57723,
       nF: 1.59145,
       ng: 1.59965,
-      apdNote: "Patent Table 23 line indices retained; not a Table 36 APD-condition element.",
-      role: "Weak rear negative field-flattening meniscus.",
     },
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 23.8785, d: 4.3, nd: 2.00069, elemId: 1, sd: 14.3 },
-    { label: "2", R: 127.8616, d: 1.5265, nd: 1.0, elemId: 0, sd: 14.3 },
-    { label: "3", R: 183.8699, d: 0.7, nd: 1.51742, elemId: 2, sd: 8.2 },
-    { label: "4", R: 10.0557, d: 7.3268, nd: 1.0, elemId: 0, sd: 8.0 },
-    { label: "5", R: -14.1493, d: 2.77, nd: 1.75211, elemId: 3, sd: 8.0 },
-    { label: "6", R: 22.4277, d: 5.15, nd: 1.72916, elemId: 4, sd: 8.5 },
-    { label: "7", R: -18.52, d: 0.6, nd: 1.0, elemId: 0, sd: 8.5 },
-    { label: "STO", R: 1e15, d: 1.7, nd: 1.0, elemId: 0, sd: 8.34 },
-    { label: "9", R: 36.688, d: 5.5, nd: 1.8042, elemId: 5, sd: 9.8 },
-    { label: "10", R: -51.7984, d: 2.35, nd: 1.0, elemId: 0, sd: 9.8 },
-    { label: "11A", R: 253.2104, d: 2.5, nd: 1.5338, elemId: 6, sd: 10.2 },
-    { label: "12A", R: 22.1105, d: 9.5295, nd: 1.0, elemId: 0, sd: 10.2 },
-    { label: "13A", R: 31.3591, d: 6.5, nd: 1.5338, elemId: 7, sd: 11.8 },
-    { label: "14A", R: -20.3491, d: 3.5472, nd: 1.0, elemId: 0, sd: 11.8 },
-    { label: "15", R: -30.6242, d: 1.0, nd: 1.58144, elemId: 8, sd: 11.8 },
-    { label: "16", R: -82.3348, d: 10.8, nd: 1.0, elemId: 0, sd: 11.8 },
+    { label: "1", R: 23.8785, d: 4.3, sd: 14.3, medium: 1 },
+    { label: "2", R: 127.8616, d: 1.5265, sd: 14.3 },
+    { label: "3", R: 183.8699, d: 0.7, sd: 8.2, medium: 2 },
+    { label: "4", R: 10.0557, d: 7.3268, sd: 8.0 },
+    { label: "5", R: -14.1493, d: 2.77, sd: 8.0, medium: 3 },
+    { label: "6", R: 22.4277, d: 5.15, sd: 8.5, medium: 4 },
+    { label: "7", R: -18.52, d: 0.6, sd: 8.5 },
+    { label: "STO", R: "flat", d: 1.7 },
+    { label: "9", R: 36.688, d: 5.5, sd: 9.8, medium: 5 },
+    { label: "10", R: -51.7984, sd: 9.8 },
+    {
+      label: "11A",
+      R: 253.2104,
+      d: 2.5,
+      sd: 10.2,
+      medium: 6,
+      asphere: {
+        K: 0,
+        A4: 1.61276e-5,
+        A6: -5.81668e-7,
+        A8: -2.09502e-9,
+        A10: 7.71341e-10,
+        A12: -2.108e-11,
+        A14: 2.38633e-13,
+        A16: -1.00673e-15,
+      },
+    },
+    {
+      label: "12A",
+      R: 22.1105,
+      sd: 10.2,
+      asphere: {
+        K: 0,
+        A4: 1.81047e-5,
+        A6: 1.27838e-6,
+        A8: -1.03829e-7,
+        A10: 3.56865e-9,
+        A12: -6.09424e-11,
+        A14: 5.06181e-13,
+        A16: -1.58084e-15,
+      },
+    },
+    {
+      label: "13A",
+      R: 31.3591,
+      d: 6.5,
+      sd: 11.8,
+      medium: 7,
+      asphere: {
+        K: 0,
+        A4: 1.78062e-5,
+        A6: 2.01697e-7,
+        A8: -9.59188e-9,
+        A10: 2.58013e-10,
+        A12: -3.40082e-12,
+        A14: 2.22992e-14,
+        A16: -5.27487e-17,
+      },
+    },
+    {
+      label: "14A",
+      R: -20.3491,
+      d: 3.5472,
+      sd: 11.8,
+      asphere: {
+        K: 0,
+        A4: 4.8716e-5,
+        A6: -1.55628e-7,
+        A8: 3.63235e-9,
+        A10: -5.25127e-11,
+        A12: 9.47811e-13,
+        A14: -9.91324e-15,
+        A16: 4.47375e-17,
+      },
+    },
+    { label: "15", R: -30.6242, d: 1.0, sd: 11.8, medium: 8 },
+    { label: "16", R: -82.3348, sd: 11.8 },
   ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.25,
+    /* ── Variable air spacings ── */
+    keyframes: [0, 0.2477119647035117, 1],
+    description:
+      "Inner focus: the single negative L6 element (G2) moves imageward; patent plate M is modeled in rearPlates (traced, not drawn).",
+    // (moved from publishedStations) Every focus keyframe is a source row.
+    published: [1, 2],
+  },
+
+  gaps: {
+    "10": { label: "d10", values: [[2.35, 3.4869, 8.6131]] },
+    "12A": { label: "d12", values: [[9.5295, 8.3965, 3.2651]] },
+    "16": { label: "BF", values: [[10.8, 10.80027, 10.80133]] },
+  },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 1.76012, fStops: [1.76012, 2, 2.8, 4, 5.6, 8, 11, 16, 22], blades: 7 },
 
   /* ── Plane-parallel plate M (patent surfaces 17–18): traced, not drawn ── */
   rearPlates: [
@@ -233,71 +318,13 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       glass: "BSC7 (Hoya)",
+      dPgF: -0.00164,
       nC: 1.51432,
       nF: 1.52237,
       ng: 1.52667,
-      dPgF: -0.00164,
       gapAfterMm: 1.00461,
       source: "US 2017/0059832 A1, Numerical Example 4 surfaces 17–19 (Tables 22–23, 25; patent θgF 0.53418)",
     },
-  ],
-
-  /* ── Aspherical coefficients ── */
-  asph: {
-    "11A": {
-      K: 0,
-      A4: 1.61276e-5,
-      A6: -5.81668e-7,
-      A8: -2.09502e-9,
-      A10: 7.71341e-10,
-      A12: -2.108e-11,
-      A14: 2.38633e-13,
-      A16: -1.00673e-15,
-    },
-    "12A": {
-      K: 0,
-      A4: 1.81047e-5,
-      A6: 1.27838e-6,
-      A8: -1.03829e-7,
-      A10: 3.56865e-9,
-      A12: -6.09424e-11,
-      A14: 5.06181e-13,
-      A16: -1.58084e-15,
-    },
-    "13A": {
-      K: 0,
-      A4: 1.78062e-5,
-      A6: 2.01697e-7,
-      A8: -9.59188e-9,
-      A10: 2.58013e-10,
-      A12: -3.40082e-12,
-      A14: 2.22992e-14,
-      A16: -5.27487e-17,
-    },
-    "14A": {
-      K: 0,
-      A4: 4.8716e-5,
-      A6: -1.55628e-7,
-      A8: 3.63235e-9,
-      A10: -5.25127e-11,
-      A12: 9.47811e-13,
-      A14: -9.91324e-15,
-      A16: 4.47375e-17,
-    },
-  },
-
-  /* ── Variable air spacings ── */
-  focusPositions: [0, 0.2477119647035117, 1],
-  var: {
-    "10": [2.35, 3.4869, 8.6131],
-    "12A": [9.5295, 8.3965, 3.2651],
-    "16": [10.8, 10.80027, 10.80133],
-  },
-
-  varLabels: [
-    ["10", "d10"],
-    ["12A", "d12"],
-    ["16", "BF"],
   ],
 
   groups: [
@@ -305,23 +332,10 @@ const LENS_DATA = {
     { text: "G2 (-) Focus", fromSurface: "11A", toSurface: "12A" },
     { text: "G3 (+)", fromSurface: "13A", toSurface: "16" },
   ],
-
   doublets: [{ text: "D1", fromSurface: "5", toSurface: "7" }],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.25,
-  // Every focus keyframe is a source row.
-  publishedStations: { focus: [1, 2] },
-  focusDescription:
-    "Inner focus: the single negative L6 element (G2) moves imageward; patent plate M is modeled in rearPlates (traced, not drawn).",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 1.76012,
-  fstopSeries: [1.76012, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
-
   /* ── Layout tuning ── */
-  scFill: 0.56,
-  yScFill: 0.44,
-} satisfies LensDataInput;
+  layout: { scFill: 0.56, yScFill: 0.44 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

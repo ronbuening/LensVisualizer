@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5
@@ -14,9 +14,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * inference with no figure basis: a flat surface in the D2 air gap, 0.75 mm ahead of r13, moving with
  * Group III. Its inputs are the patent's F = 1:5 for the whole 85.0-250.0 mm range (table header; F5 on the
  * Figs. 6A-6C and 7A-7C plots at f = 85.0, 151.4 and 250.0), the tabulated D1-D3 spacings, and the requirement
- * that one fixed opening give F/5 at all three positions. A 13.42 mm semi-diameter at this plane does so
- * paraxially within 0.05%. That requirement excludes Groups I and II, where the paraxial F/5 marginal-ray
- * height changes with zoom (8.12 / 10.21 / 13.33 mm at r12), and is met anywhere from Group III to the image
+ * that one fixed opening give F/5 at all three positions. A single semi-diameter at this plane does so
+ * paraxially within 0.05%. The stop radius is derived from the design f-number at wide and held at every zoom
+ * station. The fixed-opening requirement excludes Groups I and II, where the paraxial F/5 marginal-ray height
+ * changes with zoom (8.12 / 10.21 / 13.33 mm at r12), and is met anywhere from Group III to the image
  * (13.836 / 13.825 / 13.824 mm at r16). The on-axis F-number therefore does not depend on the choice within
  * that region; pupil position, vignetting and off-axis ray selection do. The 0.75 mm offset leaves 0.74 mm to
  * r12 at 250 mm, where D2 is 1.49 mm.
@@ -41,24 +42,28 @@ import type { LensDataInput } from "../../types/optics.js";
  * paraxial clipping, not a manufacturer's mechanical aperture drawing.
  */
 const LENS_DATA = {
+  schema: 2,
   key: "olympus-zuiko-auto-zoom-85-250mm-f5",
   maker: "Olympus",
   name: "OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5",
   subtitle: "US 4,025,167 Embodiment 2 — Olympus / Ikeda",
-  specs: ["15 elements / 11 groups", "85-250mm", "f/5 constant aperture", "2ω ≈ 29°-10°", "All-spherical"],
 
-  focalLengthMarketing: [85, 250],
-  focalLengthDesign: [85.1196, 250.0038],
-  apertureMarketing: 5,
-  apertureDesign: 5,
-  lensMounts: ["olympus-om"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,025,167",
-  patentAuthors: ["Yoshitsugi Ikeda"],
-  patentAssignees: ["Olympus Optical Co., Ltd."],
-  patentYear: 1977,
-  elementCount: 15,
-  groupCount: 11,
+  catalog: {
+    lensMounts: ["olympus-om"],
+    imageFormat: "135-full-frame",
+    specs: ["15 elements / 11 groups", "85-250mm", "f/5 constant aperture", "2ω ≈ 29°-10°", "All-spherical"],
+    elementCount: 15,
+    groupCount: 11,
+    focalLengthMm: { marketing: [85, 250], design: [85.1196, 250.0038] },
+    fNumber: { marketing: 5, design: 5 },
+  },
+
+  source: {
+    patentNumber: "US 4,025,167",
+    patentYear: 1977,
+    authors: ["Yoshitsugi Ikeda"],
+    assignees: ["Olympus Optical Co., Ltd."],
+  },
 
   elements: [
     {
@@ -68,7 +73,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.2,
-      fl: 206.3,
+      focalLengthMm: 206.3,
       glass: "S-FSL5 (OHARA) / FK5 class",
       role: "Weak front positive lens in the focusing group; controls front-group spherical aberration variation.",
     },
@@ -79,7 +84,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.62041,
       vd: 60.3,
-      fl: 127.6,
+      focalLengthMm: 127.6,
       glass: "S-BSM16 (OHARA) / N-SK16 class",
       role: "Positive crown half of the front-group achromat.",
       cemented: "C1",
@@ -91,7 +96,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.78472,
       vd: 25.7,
-      fl: -204.8,
+      focalLengthMm: -204.8,
       glass: "S-TIH11 (OHARA) / SF11 class",
       role: "Negative flint half of the front-group achromat.",
       cemented: "C1",
@@ -103,7 +108,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.56873,
       vd: 63.2,
-      fl: -127.7,
+      focalLengthMm: -127.7,
       glass: "BAL22 (OHARA catalog equivalent; production supplier unspecified; patent 569632)",
       role: "First negative variator element.",
     },
@@ -114,7 +119,7 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.76182,
       vd: 26.6,
-      fl: 68.8,
+      focalLengthMm: 68.8,
       glass: "FD140 (HOYA) / PBH14 (OHARA) class",
       role: "Positive flint half of the reversed negative variator doublet.",
       cemented: "C2",
@@ -126,7 +131,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.618,
       vd: 63.4,
-      fl: -48.0,
+      focalLengthMm: -48.0,
       glass: "PSK53A / K-PSKn2 class",
       role: "Negative high-Abbe half of the reversed negative variator doublet.",
       cemented: "C2",
@@ -138,7 +143,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.56873,
       vd: 63.2,
-      fl: -102.7,
+      focalLengthMm: -102.7,
       glass: "BAL22 (OHARA catalog equivalent; production supplier unspecified; patent 569632)",
       role: "Rear negative meniscus of the variator group.",
     },
@@ -149,7 +154,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.62012,
       vd: 49.7,
-      fl: 47.2,
+      focalLengthMm: 47.2,
       glass: "K-SSK9 (Sumita) / BSM28 class",
       role: "Positive half of the compensator doublet.",
       cemented: "C3",
@@ -161,7 +166,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.72151,
       vd: 29.2,
-      fl: -79.7,
+      focalLengthMm: -79.7,
       glass: "S-TIH18 (OHARA) / FD18 class",
       role: "Negative flint half of the compensator doublet.",
       cemented: "C3",
@@ -173,7 +178,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.49831,
       vd: 65.0,
-      fl: 75.1,
+      focalLengthMm: 75.1,
       glass: "BSL3 (OHARA catalog equivalent; production supplier unspecified; patent 498650)",
       role: "First positive element of the fixed relay group.",
     },
@@ -184,7 +189,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.54739,
       vd: 53.6,
-      fl: 51.8,
+      focalLengthMm: 51.8,
       glass: "N-BALF5 / BAL5 class",
       role: "Positive half of the relay negative-power cemented component.",
       cemented: "C4",
@@ -196,7 +201,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.8061,
       vd: 40.9,
-      fl: -27.9,
+      focalLengthMm: -27.9,
       glass: "S-LAH53 (OHARA)",
       role: "High-index lanthanum-flint half of the relay negative-power cemented component.",
       cemented: "C4",
@@ -208,7 +213,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59551,
       vd: 39.2,
-      fl: 52.1,
+      focalLengthMm: 52.1,
       glass: "E-F8 (HOYA catalog-equivalent to F8 class; patent supplier unspecified)",
       role: "Strong positive relay element after the long relay air gap.",
     },
@@ -219,7 +224,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.72,
       vd: 43.7,
-      fl: -37.6,
+      focalLengthMm: -37.6,
       glass: "J-LAF02 class (Hikari; patent 720/437)",
       role: "Rear relay negative element for field and astigmatism correction.",
     },
@@ -230,76 +235,90 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.56384,
       vd: 60.8,
-      fl: 101.2,
+      focalLengthMm: 101.2,
       glass: "N-SK11 (SCHOTT) / BACD11 (HOYA) class",
       role: "Final positive relay element near the image plane.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 152.515, d: 6.27, nd: 1.48749, elemId: 1, sd: 27.3 },
-    { label: "2", R: -291.307, d: 0.59, nd: 1.0, elemId: 0, sd: 27.0 },
-    { label: "3", R: 121.674, d: 5.8, nd: 1.62041, elemId: 2, sd: 26.8 },
-    { label: "4", R: -222.315, d: 2.41, nd: 1.78472, elemId: 3, sd: 26.2 },
-    { label: "5", R: 583.052, d: 1.03, nd: 1.0, elemId: 0, sd: 25.8 },
-    { label: "6", R: -569.43, d: 1.7, nd: 1.56873, elemId: 4, sd: 15.0 },
-    { label: "7", R: 83.352, d: 2.0, nd: 1.0, elemId: 0, sd: 14.8 },
-    { label: "8", R: 1e15, d: 4.0, nd: 1.76182, elemId: 5, sd: 14.7 },
-    { label: "9", R: -52.45, d: 1.5, nd: 1.618, elemId: 6, sd: 14.5 },
-    { label: "10", R: 69.088, d: 4.51, nd: 1.0, elemId: 0, sd: 14.3 },
-    { label: "11", R: -47.831, d: 1.7, nd: 1.56873, elemId: 7, sd: 14.1 },
-    { label: "12", R: -267.438, d: 44.25, nd: 1.0, elemId: 0, sd: 14.1 },
-    { label: "STO", R: 1e15, d: 0.75, nd: 1.0, elemId: 0, sd: 13.42 },
-    { label: "13", R: 158.234, d: 5.52, nd: 1.62012, elemId: 8, sd: 15.1 },
-    { label: "14", R: -35.438, d: 1.51, nd: 1.72151, elemId: 9, sd: 15.4 },
-    { label: "15", R: -94.092, d: 16.71, nd: 1.0, elemId: 0, sd: 15.6 },
-    { label: "16", R: 42.042, d: 5.67, nd: 1.49831, elemId: 10, sd: 18.2 },
-    { label: "17", R: -325.217, d: 0.6, nd: 1.0, elemId: 0, sd: 18.0 },
-    { label: "18", R: 37.123, d: 10.6, nd: 1.54739, elemId: 11, sd: 18.0 },
-    { label: "19", R: -107.794, d: 2.52, nd: 1.8061, elemId: 12, sd: 16.3 },
-    { label: "20", R: 28.663, d: 39.0, nd: 1.0, elemId: 0, sd: 15.8 },
-    { label: "21", R: 100.383, d: 7.17, nd: 1.59551, elemId: 13, sd: 19.4 },
-    { label: "22", R: -43.65, d: 3.0, nd: 1.0, elemId: 0, sd: 19.4 },
-    { label: "23", R: -38.74, d: 2.05, nd: 1.72, elemId: 14, sd: 19.5 },
-    { label: "24", R: 91.922, d: 7.5, nd: 1.0, elemId: 0, sd: 19.5 },
-    { label: "25", R: 78.964, d: 6.0, nd: 1.56384, elemId: 15, sd: 21.5 },
-    { label: "26", R: -200.325, d: 54.0374319328, nd: 1.0, elemId: 0, sd: 21.8 },
+    { label: "1", R: 152.515, d: 6.27, sd: 27.3, medium: 1 },
+    { label: "2", R: -291.307, d: 0.59, sd: 27.0 },
+    { label: "3", R: 121.674, d: 5.8, sd: 26.8, medium: 2 },
+    { label: "4", R: -222.315, d: 2.41, sd: 26.2, medium: 3 },
+    { label: "5", R: 583.052, sd: 25.8 },
+    { label: "6", R: -569.43, d: 1.7, sd: 15.0, medium: 4 },
+    { label: "7", R: 83.352, d: 2.0, sd: 14.8 },
+    { label: "8", R: "flat", d: 4.0, sd: 14.7, medium: 5 },
+    { label: "9", R: -52.45, d: 1.5, sd: 14.5, medium: 6 },
+    { label: "10", R: 69.088, d: 4.51, sd: 14.3 },
+    { label: "11", R: -47.831, d: 1.7, sd: 14.1, medium: 7 },
+    { label: "12", R: -267.438, sd: 14.1 },
+    { label: "STO", R: "flat", d: 0.75 },
+    { label: "13", R: 158.234, d: 5.52, sd: 15.1, medium: 8 },
+    { label: "14", R: -35.438, d: 1.51, sd: 15.4, medium: 9 },
+    { label: "15", R: -94.092, sd: 15.6 },
+    { label: "16", R: 42.042, d: 5.67, sd: 18.2, medium: 10 },
+    { label: "17", R: -325.217, d: 0.6, sd: 18.0 },
+    { label: "18", R: 37.123, d: 10.6, sd: 18.0, medium: 11 },
+    { label: "19", R: -107.794, d: 2.52, sd: 16.3, medium: 12 },
+    { label: "20", R: 28.663, d: 39.0, sd: 15.8 },
+    { label: "21", R: 100.383, d: 7.17, sd: 19.4, medium: 13 },
+    { label: "22", R: -43.65, d: 3.0, sd: 19.4 },
+    { label: "23", R: -38.74, d: 2.05, sd: 19.5, medium: 14 },
+    { label: "24", R: 91.922, d: 7.5, sd: 19.5 },
+    { label: "25", R: 78.964, d: 6.0, sd: 21.5, medium: 15 },
+    { label: "26", R: -200.325, sd: 21.8 },
   ],
 
-  asph: {},
-
-  zoomPositions: [85, 151.4, 250],
-  zoomStep: 0.004,
-  zoomLabels: ["85mm", "250mm"],
-
-  var: {
-    "5": [
-      [1.03, 10.8738108715],
-      [32.28, 42.1235841244],
-      [48.06, 57.9035329394],
-    ],
-    "12": [
-      [44.25, 44.25],
-      [26.79, 26.79],
-      [0.74, 0.74],
-    ],
-    "15": [
-      [16.71, 16.71],
-      [3.0, 3.0],
-      [13.27, 13.27],
-    ],
-    "26": [
-      [54.0374319328, 54.0374319328],
-      [53.9201853657, 53.9201853657],
-      [53.9117772352, 53.9117772352],
-    ],
+  zoom: {
+    stations: [{ focalLengthMm: 85, label: "85mm" }, { focalLengthMm: 151.4 }, { focalLengthMm: 250, label: "250mm" }],
+    apertureModel: "fixed-iris",
+    step: 0.004,
   },
-  varLabels: [
-    ["5", "D1 / Focus"],
-    ["12", "D2a"],
-    ["15", "D3"],
-    ["26", "BF"],
-  ],
+
+  focus: {
+    closeFocusM: 2.0,
+    description:
+      "Front-group focusing. Group I advances for close focus; close-focus D1 values are paraxially inferred for 2.0 m because the patent gives 3 m aberration curves but no close-focus spacing table.",
+  },
+
+  gaps: {
+    "5": {
+      label: "D1 / Focus",
+      values: [
+        [1.03, 10.8738108715],
+        [32.28, 42.1235841244],
+        [48.06, 57.9035329394],
+      ],
+    },
+    "12": {
+      label: "D2a",
+      values: [
+        [44.25, 44.25],
+        [26.79, 26.79],
+        [0.74, 0.74],
+      ],
+    },
+    "15": {
+      label: "D3",
+      values: [
+        [16.71, 16.71],
+        [3.0, 3.0],
+        [13.27, 13.27],
+      ],
+    },
+    "26": {
+      label: "BF",
+      values: [
+        [54.0374319328, 54.0374319328],
+        [53.9201853657, 53.9201853657],
+        [53.9117772352, 53.9117772352],
+      ],
+    },
+  },
+
+  aperture: { nominalFNumber: 5, fStops: [5, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32 },
 
   groups: [
     { text: "G1 Focus", fromSurface: "1", toSurface: "5" },
@@ -314,15 +333,7 @@ const LENS_DATA = {
     { text: "C4 L11-L12", fromSurface: "18", toSurface: "20" },
   ],
 
-  closeFocusM: 2.0,
-  focusDescription:
-    "Front-group focusing. Group I advances for close focus; close-focus D1 values are paraxially inferred for 2.0 m because the patent gives 3 m aberration curves but no close-focus spacing table.",
-  nominalFno: 5,
-  zoomApertureModel: "fixed-iris",
-  fstopSeries: [5, 5.6, 8, 11, 16, 22, 32],
-  maxFstop: 32,
-  scFill: 0.82,
-  yScFill: 0.48,
-} satisfies LensDataInput;
+  layout: { scFill: 0.82, yScFill: 0.48 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

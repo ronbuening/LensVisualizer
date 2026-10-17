@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -32,7 +32,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Front group (L1–L4): estimated from patent Fig. 1 proportions   ║
  * ║    with physical constraints (edge thickness, sd/|R| < 0.9).       ║
- * ║    Stop: derived from F/3.5 and paraxial EP radius.                ║
+ * ║    Stop: radius derived from the design f-number, F/3.5.           ║
  * ║    Rear group (L6–L7): combined marginal + chief ray trace at      ║
  * ║    60% field (54° half-field) with 8% mechanical clearance.        ║
  * ║                                                                    ║
@@ -45,24 +45,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "olympus-zuiko-16mmf35-fisheye",
   maker: "Olympus",
   name: "OLYMPUS ZUIKO AUTO-FISHEYE 16mm f/3.5",
   subtitle: "US 3,850,509 Example 1 — Olympus / Nakagawa",
-  specs: ["11 ELEMENTS / 8 GROUPS", "f ≈ 16.0 mm", "F/3.5", "2ω = 180°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: 16,
-  focalLengthDesign: 16.0,
-  apertureMarketing: 3.5,
-  lensMounts: ["olympus-om"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,850,509",
-  patentAuthors: ["Jihei Nakagawa"],
-  patentAssignees: ["Olympus Optical Co., Ltd."],
-  patentYear: 1974,
-  elementCount: 11, // 10 optical elements + 1 built-in filter plate (filter excluded from prescription)
-  groupCount: 8, // 7 optical groups + 1 filter group (filter excluded from prescription)
+  catalog: {
+    lensMounts: ["olympus-om"],
+    imageFormat: "135-full-frame",
+    specs: ["11 ELEMENTS / 8 GROUPS", "f ≈ 16.0 mm", "F/3.5", "2ω = 180°", "ALL SPHERICAL"],
+    elementCount: 11, // 10 optical elements + 1 built-in filter plate (filter excluded from prescription)
+    groupCount: 8, // 7 optical groups + 1 filter group (filter excluded from prescription)
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: 16, design: 16.0 },
+    fNumber: { marketing: 3.5 },
+  },
+
+  source: {
+    patentNumber: "US 3,850,509",
+    patentYear: 1974,
+    authors: ["Jihei Nakagawa"],
+    assignees: ["Olympus Optical Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -73,7 +78,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.58913,
       vd: 61.1,
-      fl: -23.32,
+      focalLengthMm: -23.32,
       glass: "S-BAL35 (OHARA)",
       role: "Front fisheye entrance element; strong negative meniscus for 180° field compression and long BFD.",
     },
@@ -84,7 +89,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7859,
       vd: 44.2,
-      fl: 59.1,
+      focalLengthMm: 59.1,
       glass: "S-LAH51 (OHARA)",
       role: "Weak positive meniscus; corrects intermediate-field coma and lateral color at high obliquity.",
     },
@@ -95,7 +100,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.58913,
       vd: 61.1,
-      fl: -18.76,
+      focalLengthMm: -18.76,
       glass: "S-BAL35 (OHARA)",
       role: "Second negative element; assists L1 in splitting front converter power.",
     },
@@ -106,10 +111,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6968,
       vd: 55.6,
-      fl: -25.02,
+      focalLengthMm: -25.02,
       glass: "S-LAL14 (OHARA)",
-      cemented: "L4",
       role: "Crown side of L4 hyperchromatic doublet; nearly index-matched to L4b for chromatic correction.",
+      cemented: "L4",
     },
     {
       id: 5,
@@ -118,10 +123,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.69895,
       vd: 30.1,
-      fl: 15.71,
+      focalLengthMm: 15.71,
       glass: "S-TIM35 (OHARA)",
-      cemented: "L4",
       role: "Flint side of L4 doublet; high-dispersion element for lateral color correction.",
+      cemented: "L4",
     },
     {
       id: 6,
@@ -130,10 +135,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.78472,
       vd: 25.7,
-      fl: -19.26,
+      focalLengthMm: -19.26,
       glass: "S-TIH11 (OHARA)",
-      cemented: "L5",
       role: "Dense flint in L5 doublet; spherical and chromatic correction before the stop.",
+      cemented: "L5",
     },
     {
       id: 7,
@@ -142,10 +147,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.60342,
       vd: 38.0,
-      fl: 15.91,
+      focalLengthMm: 15.91,
       glass: "S-TIM5 (OHARA)",
-      cemented: "L5",
       role: "Moderate flint paired with L5a; cemented surface r13 is key aberration corrector.",
+      cemented: "L5",
     },
     {
       id: 8,
@@ -154,7 +159,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.51728,
       vd: 69.6,
-      fl: 62.1,
+      focalLengthMm: 62.1,
       glass: "S-APL1 (OHARA; 517696)",
       role: "Post-stop positive meniscus; low-dispersion relay element reconditioning the bundle.",
     },
@@ -165,10 +170,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.4,
-      fl: -35.71,
+      focalLengthMm: -35.71,
       glass: "S-TIH6 (OHARA)",
-      cemented: "L7",
       role: "Dense flint at front of rear cemented doublet; strong chromatic lever near image.",
+      cemented: "L7",
     },
     {
       id: 10,
@@ -177,10 +182,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.51728,
       vd: 69.6,
-      fl: 19.16,
+      focalLengthMm: 19.16,
       glass: "S-APL1 (OHARA; 517696)",
-      cemented: "L7",
       role: "Crown in rear doublet; final achromatizing and image-forming element.",
+      cemented: "L7",
     },
   ],
 
@@ -189,64 +194,57 @@ const LENS_DATA = {
    *  STO inserted at midpoint of original d14 air gap (between L5 and L6).
    *  Patent normalized to f = 1.0; all values ×16 to production scale.
    */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 88.294, d: 1.979, nd: 1.58913, elemId: 1, sd: 8.0 }, // L1 front
-    { label: "2", R: 11.792, d: 6.651, nd: 1.0, elemId: 0, sd: 7.0 }, // L1 rear → air
-    { label: "3", R: 25.734, d: 2.97, nd: 1.7859, elemId: 2, sd: 6.5 }, // L2 front
-    { label: "4", R: 54.774, d: 1.485, nd: 1.0, elemId: 0, sd: 5.5 }, // L2 rear → air
-    { label: "5", R: -1385.709, d: 1.187, nd: 1.58913, elemId: 3, sd: 5.0 }, // L3 front
-    { label: "6", R: 11.144, d: 4.157, nd: 1.0, elemId: 0, sd: 5.5 }, // L3 rear → air
-    { label: "7", R: 29.69, d: 0.99, nd: 1.6968, elemId: 4, sd: 5.5 }, // L4a front
-    { label: "8", R: 10.834, d: 2.454, nd: 1.69895, elemId: 5, sd: 5.5 }, // L4 cement (L4a→L4b)
-    { label: "9", R: 747.482, d: 3.377, nd: 1.0, elemId: 0, sd: 5.0 }, // L4b rear → air (filter folded)
-    { label: "10", R: 35.336, d: 1.198, nd: 1.78472, elemId: 6, sd: 5.0 }, // L5a front
-    { label: "11", R: 10.427, d: 3.227, nd: 1.60342, elemId: 7, sd: 5.0 }, // L5 cement (L5a→L5b)
-    { label: "12", R: -106.726, d: 1.693, nd: 1.0, elemId: 0, sd: 4.5 }, // L5b rear → air (pre-stop)
-    { label: "STO", R: 1e15, d: 1.693, nd: 1.0, elemId: 0, sd: 2.29 }, // Aperture stop (midpoint of d14)
-    { label: "13", R: -39.434, d: 1.979, nd: 1.51728, elemId: 8, sd: 6.0 }, // L6 front
-    { label: "14", R: -18.005, d: 0.099, nd: 1.0, elemId: 0, sd: 6.8 }, // L6 rear → air
-    { label: "15", R: 78.68, d: 0.99, nd: 1.80518, elemId: 9, sd: 6.8 }, // L7a front
-    { label: "16", R: 20.939, d: 2.97, nd: 1.51728, elemId: 10, sd: 7.0 }, // L7 cement (L7a→L7b)
-    { label: "17", R: -17.904, d: 36.666, nd: 1.0, elemId: 0, sd: 7.7 }, // L7b rear → BFD
+    { label: "1", R: 88.294, d: 1.979, sd: 8.0, medium: 1 }, // L1 front
+    { label: "2", R: 11.792, d: 6.651, sd: 7.0 }, // L1 rear → air
+    { label: "3", R: 25.734, d: 2.97, sd: 6.5, medium: 2 }, // L2 front
+    { label: "4", R: 54.774, d: 1.485, sd: 5.5 }, // L2 rear → air
+    { label: "5", R: -1385.709, d: 1.187, sd: 5.0, medium: 3 }, // L3 front
+    { label: "6", R: 11.144, d: 4.157, sd: 5.5 }, // L3 rear → air
+    { label: "7", R: 29.69, d: 0.99, sd: 5.5, medium: 4 }, // L4a front
+    { label: "8", R: 10.834, d: 2.454, sd: 5.5, medium: 5 }, // L4 cement (L4a→L4b)
+    { label: "9", R: 747.482, d: 3.377, sd: 5.0 }, // L4b rear → air (filter folded)
+    { label: "10", R: 35.336, d: 1.198, sd: 5.0, medium: 6 }, // L5a front
+    { label: "11", R: 10.427, d: 3.227, sd: 5.0, medium: 7 }, // L5 cement (L5a→L5b)
+    { label: "12", R: -106.726, d: 1.693, sd: 4.5 }, // L5b rear → air (pre-stop)
+    { label: "STO", R: "flat", d: 1.693 }, // Aperture stop (midpoint of d14)
+    { label: "13", R: -39.434, d: 1.979, sd: 6.0, medium: 8 }, // L6 front
+    { label: "14", R: -18.005, d: 0.099, sd: 6.8 }, // L6 rear → air
+    { label: "15", R: 78.68, d: 0.99, sd: 6.8, medium: 9 }, // L7a front
+    { label: "16", R: 20.939, d: 2.97, sd: 7.0, medium: 10 }, // L7 cement (L7a→L7b)
+    { label: "17", R: -17.904, sd: 7.7 }, // L7b rear → BFD
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.2,
+    description:
+      "Unit focus (whole-block helicoid). No floating elements identified in patent or production literature.",
+  },
 
-  /* ── Variable air spacings (unit focus) ──
+  /* (moved from var) ── Variable air spacings (unit focus) ──
    *  Whole-block helicoid; BFD changes with focus.
    *  Extension at MFD 0.2 m: f²/(MFD−f) = 256/184 ≈ 1.391 mm.
    */
-  var: {
-    "17": [36.666, 38.057],
-  },
+  gaps: { "17": { label: "BF", values: [[36.666, 38.057]] } },
 
-  varLabels: [["17", "BF"]],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16, 22] },
 
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "FRONT", fromSurface: "1", toSurface: "6" },
     { text: "REAR", fromSurface: "13", toSurface: "17" },
   ],
-
   doublets: [
     { text: "L4", fromSurface: "7", toSurface: "9" },
     { text: "L5", fromSurface: "10", toSurface: "12" },
     { text: "L7", fromSurface: "15", toSurface: "17" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.2,
-  focusDescription:
-    "Unit focus (whole-block helicoid). No floating elements identified in patent or production literature.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 3.5,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
-
   /* ── Layout tuning ── */
-  scFill: 0.5,
-  yScFill: 0.38,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.38 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

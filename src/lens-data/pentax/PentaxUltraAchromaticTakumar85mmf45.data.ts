@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -14,8 +14,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║  STOP: The patent gives no numerical stop station. Figure 1 places the     ║
  * ║  diaphragm in d6, between surfaces 6 and 7. The 7.225 mm production-scale  ║
- * ║  gap is therefore split 2.975 / 4.250 mm from the drawing. Stop SD is      ║
- * ║  solved paraxially for f/4.5.                                               ║
+ * ║  gap is therefore split 2.975 / 4.250 mm from the drawing. The stop radius ║
+ * ║  is derived from the design f-number, f/4.5.                               ║
  * ║                                                                            ║
  * ║  FOCUS: The patent publishes only the infinity prescription. Unit          ║
  * ║  extension is inferred for the production manual-focus lens. The final     ║
@@ -37,31 +37,35 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "pentax-ultra-achromatic-takumar-85f45",
   maker: "Pentax",
   name: "PENTAX ULTRA-ACHROMATIC-TAKUMAR 85mm f/4.5",
   subtitle: "US 3,490,825 — YASUO TAKAHASHI / ASAHI OPTICAL",
-  specs: [
-    "5 ELEMENTS / 5 GROUPS",
-    "f = 85mm (PATENT f = 100mm × 0.85)",
-    "F/4.5",
-    "2ω = 29° (PRODUCTION)",
-    "ALL-SPHERICAL FUSED-SILICA / FLUORITE",
-    "220–1000nm MANUFACTURER CORRECTION RANGE",
-  ],
 
-  focalLengthMarketing: 85,
-  focalLengthDesign: 84.9969,
-  apertureMarketing: 4.5,
-  apertureDesign: 4.5,
-  lensMounts: ["m42"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,490,825",
-  patentAuthors: ["Yasuo Takahashi"],
-  patentAssignees: ["Asahi Kogaku Kogyo Co., Ltd."],
-  patentYear: 1970,
-  elementCount: 5,
-  groupCount: 5,
+  catalog: {
+    lensMounts: ["m42"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "5 ELEMENTS / 5 GROUPS",
+      "f = 85mm (PATENT f = 100mm × 0.85)",
+      "F/4.5",
+      "2ω = 29° (PRODUCTION)",
+      "ALL-SPHERICAL FUSED-SILICA / FLUORITE",
+      "220–1000nm MANUFACTURER CORRECTION RANGE",
+    ],
+    elementCount: 5,
+    groupCount: 5,
+    focalLengthMm: { marketing: 85, design: 84.9969 },
+    fNumber: { marketing: 4.5, design: 4.5 },
+  },
+
+  source: {
+    patentNumber: "US 3,490,825",
+    patentYear: 1970,
+    authors: ["Yasuo Takahashi"],
+    assignees: ["Asahi Kogaku Kogyo Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -72,14 +76,14 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.45854,
       vd: 69.6,
-      fl: -53.1251,
+      focalLengthMm: -53.1251,
       glass: "Fused silica / synthetic quartz (SiO2; patent-identified; Corning HPFS reference dispersion)",
       apd: false,
+      role: "Strong negative front member; controls cumulative front-cell power and contributes to Petzval reduction.",
       dPgF: -0.00179355,
       nC: 1.456425,
       nF: 1.463183,
       ng: 1.466751,
-      role: "Strong negative front member; controls cumulative front-cell power and contributes to Petzval reduction.",
     },
     {
       id: 2,
@@ -88,15 +92,15 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.43387,
       vd: 94.9,
-      fl: 53.8104,
+      focalLengthMm: 53.8104,
       glass: "Calcium-fluoride fluorite (CaF2; patent-identified; Corning OptiGrade reference dispersion)",
       apd: "inferred",
       apdNote: "Corning OptiGrade reference: dPgF = +0.05702; strong positive anomalous partial dispersion.",
+      role: "First positive fluorite member in the compound front cell; balances L1 chromatically and optically.",
       dPgF: 0.05701938,
       nC: 1.43247,
       nF: 1.43702,
       ng: 1.43948,
-      role: "First positive fluorite member in the compound front cell; balances L1 chromatically and optically.",
     },
     {
       id: 3,
@@ -105,15 +109,15 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.43387,
       vd: 94.9,
-      fl: 41.1517,
+      focalLengthMm: 41.1517,
       glass: "Calcium-fluoride fluorite (CaF2; patent-identified; Corning OptiGrade reference dispersion)",
       apd: "inferred",
       apdNote: "Corning OptiGrade reference: dPgF = +0.05702; strong positive anomalous partial dispersion.",
+      role: "Strongest standalone positive element; completes the net-positive L1–L3 front equivalent.",
       dPgF: 0.05701938,
       nC: 1.43247,
       nF: 1.43702,
       ng: 1.43948,
-      role: "Strongest standalone positive element; completes the net-positive L1–L3 front equivalent.",
     },
     {
       id: 4,
@@ -122,14 +126,14 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.45854,
       vd: 69.0,
-      fl: -24.035,
+      focalLengthMm: -24.035,
       glass: "Fused silica / synthetic quartz (SiO2; patent-identified; Corning HPFS reference dispersion)",
       apd: false,
+      role: "Central negative member of the modified-triplet equivalent; drives L1–L4 cumulative power negative.",
       dPgF: -0.00179355,
       nC: 1.456425,
       nF: 1.463183,
       ng: 1.466751,
-      role: "Central negative member of the modified-triplet equivalent; drives L1–L4 cumulative power negative.",
     },
     {
       id: 5,
@@ -138,42 +142,44 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.43387,
       vd: 94.9,
-      fl: 47.0165,
+      focalLengthMm: 47.0165,
       glass: "Calcium-fluoride fluorite (CaF2; patent-identified; Corning OptiGrade reference dispersion)",
       apd: "inferred",
       apdNote: "Corning OptiGrade reference: dPgF = +0.05702; strong positive anomalous partial dispersion.",
+      role: "Rear positive member; restores final system power and participates in astigmatism/Petzval balance.",
       dPgF: 0.05701938,
       nC: 1.43247,
       nF: 1.43702,
       ng: 1.43948,
-      role: "Rear positive member; restores final system power and participates in astigmatism/Petzval balance.",
     },
   ],
 
   /* ── Surfaces: patent dimensions uniformly scaled ×0.85 ── */
   surfaces: [
-    { label: "1", R: -32.725, d: 1.275, nd: 1.45854, elemId: 1, sd: 12.4 },
-    { label: "2", R: 96.4665, d: 0.85, nd: 1.0, elemId: 0, sd: 12.4 },
-    { label: "3", R: 47.175, d: 4.25, nd: 1.43387, elemId: 2, sd: 12.4 },
-    { label: "4", R: -44.9616, d: 0.17, nd: 1.0, elemId: 0, sd: 12.4 },
-    { label: "5", R: 20.825, d: 5.1, nd: 1.43387, elemId: 3, sd: 12.0 },
-    { label: "6", R: -115.89495, d: 2.975, nd: 1.0, elemId: 0, sd: 12.0 },
-    { label: "STO", R: 1e15, d: 4.25, nd: 1.0, elemId: 0, sd: 8.461424 },
-    { label: "7", R: -32.3, d: 1.7, nd: 1.45854, elemId: 4, sd: 9.5 },
-    { label: "8", R: 17.00595, d: 5.95, nd: 1.0, elemId: 0, sd: 9.5 },
-    { label: "9", R: 33.15, d: 3.4, nd: 1.43387, elemId: 5, sd: 10.6 },
-    { label: "10", R: -51.3876, d: 66.711556, nd: 1.0, elemId: 0, sd: 10.6 },
+    { label: "1", R: -32.725, d: 1.275, sd: 12.4, medium: 1 },
+    { label: "2", R: 96.4665, d: 0.85, sd: 12.4 },
+    { label: "3", R: 47.175, d: 4.25, sd: 12.4, medium: 2 },
+    { label: "4", R: -44.9616, d: 0.17, sd: 12.4 },
+    { label: "5", R: 20.825, d: 5.1, sd: 12.0, medium: 3 },
+    { label: "6", R: -115.89495, d: 2.975, sd: 12.0 },
+    { label: "STO", R: "flat", d: 4.25 },
+    { label: "7", R: -32.3, d: 1.7, sd: 9.5, medium: 4 },
+    { label: "8", R: 17.00595, d: 5.95, sd: 9.5 },
+    { label: "9", R: 33.15, d: 3.4, sd: 10.6, medium: 5 },
+    { label: "10", R: -51.3876, sd: 10.6 },
   ],
 
-  asph: {},
-
-  /* ── Focus: inferred unit extension ── */
-  var: {
-    "10": [66.711556, 84.31344],
+  /* ── Product / UI data ── */
+  focus: {
+    closeFocusM: 0.6,
+    description:
+      "Unit extension (inferred from the fixed patent prescription and production helicoid); BFD increases 17.6019 mm from infinity to 0.6 m.",
   },
-  varLabels: [["10", "BF"]],
-  focusDescription:
-    "Unit extension (inferred from the fixed patent prescription and production helicoid); BFD increases 17.6019 mm from infinity to 0.6 m.",
+
+  /* (moved from var) ── Focus: inferred unit extension ── */
+  gaps: { "10": { label: "BF", values: [[66.711556, 84.31344]] } },
+
+  aperture: { nominalFNumber: 4.5, fStops: [4.5, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Diagram annotations ── */
   groups: [
@@ -183,13 +189,7 @@ const LENS_DATA = {
   ],
   doublets: [],
 
-  /* ── Product / UI data ── */
-  closeFocusM: 0.6,
-  nominalFno: 4.5,
-  fstopSeries: [4.5, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-  scFill: 0.62,
-  yScFill: 0.46,
-} satisfies LensDataInput;
+  layout: { scFill: 0.62, yScFill: 0.46 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
@@ -36,7 +36,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    section, and the 90 mm production barrel diameter as a mechanical       ║
  * ║    ceiling. Figure 1 proportions set the larger F3–F5 outlines where       ║
  * ║    the traced envelope alone understated their relative diameter. The      ║
- * ║    stop SD is solved from the modeled f/4.1 entrance pupil.                 ║
+ * ║    stop radius is derived from the design f-number, modeled f/4.1.         ║
  * ║    Edge thickness, actual rim slope, cross-gap intrusion, conic domain,    ║
  * ║    and both defined focus states were independently checked.               ║
  * ║                                                                            ║
@@ -49,35 +49,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "pentax-dfa645-25mm-f4-al-if-sdm-aw",
   maker: "Pentax",
   name: "PENTAX SMC D FA645 25mm f/4 AL [IF] SDM AW",
   subtitle: "US 8,422,143 B2 Example 1 — Masakazu Saori; strong production correlation",
-  specs: [
-    "12 REFRACTIVE ELEMENTS / 7 MODELED GROUPS",
-    "f = 25.6946 mm (DESIGN)",
-    "F/4.1 (DESIGN)",
-    "2ω = 109.4°",
-    "3 ASPHERICAL SURFACES",
-    "INNER FOCUS",
-  ],
 
-  focalLengthMarketing: 25,
-  focalLengthDesign: 25.69457925693763,
-  apertureMarketing: 4,
-  apertureDesign: 4.1,
-  lensMounts: ["pentax-645"],
-  imageFormat: "645",
-  patentNumber: "US 8,422,143 B2",
-  patentAuthors: ["Masakazu Saori"],
-  patentAssignees: ["Pentax Ricoh Imaging Company, Ltd."],
-  patentYear: 2013,
-  elementCount: 12,
-  groupCount: 7,
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 109.4,
-    maxTraceFieldDeg: 54.7,
+  catalog: {
+    lensMounts: ["pentax-645"],
+    imageFormat: "645",
+    specs: [
+      "12 REFRACTIVE ELEMENTS / 7 MODELED GROUPS",
+      "f = 25.6946 mm (DESIGN)",
+      "F/4.1 (DESIGN)",
+      "2ω = 109.4°",
+      "3 ASPHERICAL SURFACES",
+      "INNER FOCUS",
+    ],
+    elementCount: 12,
+    groupCount: 7,
+    focalLengthMm: { marketing: 25, design: 25.69457925693763 },
+    fNumber: { marketing: 4, design: 4.1 },
+  },
+
+  source: {
+    patentNumber: "US 8,422,143 B2",
+    patentYear: 2013,
+    authors: ["Masakazu Saori"],
+    assignees: ["Pentax Ricoh Imaging Company, Ltd."],
   },
 
   /* ── Elements ── */
@@ -85,222 +84,200 @@ const LENS_DATA = {
     {
       id: 1,
       name: "F1",
-      diagramLabel: "F1",
       label: "Front element F1",
       type: "Negative Meniscus",
       nd: 1.83481,
       vd: 42.7,
-      fl: -61.83826920811754,
+      focalLengthMm: -61.83826920811754,
       glass: "835427 — coordinate class (vendor not established)",
       role: "Front negative meniscus of the theoretical negative front group.",
+      diagramLabel: "F1",
     },
     {
       id: 2,
       name: "F2",
-      diagramLabel: "F2",
       label: "Front element F2",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.73077,
       vd: 40.5,
-      fl: -81.6923247996356,
+      focalLengthMm: -81.6923247996356,
       glass: "731405 — coordinate class (vendor not established)",
       role: "Double-sided aspherical negative meniscus in the front retrofocus group.",
+      diagramLabel: "F2",
     },
     {
       id: 3,
       name: "F3",
-      diagramLabel: "F3",
       label: "Front element F3",
       type: "Biconcave Negative",
       nd: 1.618,
       vd: 63.4,
-      fl: -51.017672823234676,
+      focalLengthMm: -51.017672823234676,
       glass: "618634 — coordinate class (vendor not established)",
       role: "Biconcave negative element preceding the front cemented doublet.",
+      diagramLabel: "F3",
     },
     {
       id: 4,
       name: "F4",
-      diagramLabel: "F4",
       label: "Front element F4",
       type: "Biconvex Positive",
       nd: 1.744,
       vd: 44.9,
-      fl: 33.65635599790236,
+      focalLengthMm: 33.65635599790236,
       glass: "744449 — coordinate class (vendor not established)",
-      cemented: "F4–F5",
       role: "Positive member of the front-group cemented doublet.",
+      diagramLabel: "F4",
+      cemented: "F4–F5",
     },
     {
       id: 5,
       name: "F5",
-      diagramLabel: "F5",
       label: "Front element F5",
       type: "Negative Meniscus",
       nd: 1.83481,
       vd: 42.7,
-      fl: -74.01890986835208,
+      focalLengthMm: -74.01890986835208,
       glass: "835427 — coordinate class (vendor not established)",
-      cemented: "F4–F5",
       role: "Negative member of the front-group cemented doublet.",
+      diagramLabel: "F5",
+      cemented: "F4–F5",
     },
     {
       id: 6,
       name: "R1",
-      diagramLabel: "R1",
       label: "Rear element R1",
       type: "Biconvex Positive",
       nd: 1.64769,
       vd: 33.8,
-      fl: 27.488136638586486,
+      focalLengthMm: 27.488136638586486,
       glass: "648338 — coordinate class (vendor not established)",
-      cemented: "R1–R2",
       role: "Positive member of the fixed rear-group cemented doublet ahead of the stop.",
+      diagramLabel: "R1",
+      cemented: "R1–R2",
     },
     {
       id: 7,
       name: "R2",
-      diagramLabel: "R2",
       label: "Rear element R2",
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.6,
-      fl: -38.01790903047997,
+      focalLengthMm: -38.01790903047997,
       glass: "773496 — coordinate class (vendor not established)",
-      cemented: "R1–R2",
       role: "Negative member of the fixed rear-group cemented doublet ahead of the stop.",
+      diagramLabel: "R2",
+      cemented: "R1–R2",
     },
     {
       id: 8,
       name: "R3",
-      diagramLabel: "R3",
       label: "Focus element R3",
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.6,
-      fl: 48.980619734764105,
+      focalLengthMm: 48.980619734764105,
       glass: "497816 — coordinate class (vendor not established)",
-      cemented: "R3–R5",
       role: "Positive first member of the rigid R3–R7 inner-focus block.",
+      diagramLabel: "R3",
+      cemented: "R3–R5",
     },
     {
       id: 9,
       name: "R4",
-      diagramLabel: "R4",
       label: "Focus element R4",
       type: "Biconcave Negative",
       nd: 1.8061,
       vd: 33.3,
-      fl: -23.15996995391677,
+      focalLengthMm: -23.15996995391677,
       glass: "806333 — coordinate class (vendor not established)",
-      cemented: "R3–R5",
       role: "Negative middle member of the rigid R3–R5 cemented focus triplet.",
+      diagramLabel: "R4",
+      cemented: "R3–R5",
     },
     {
       id: 10,
       name: "R5",
-      diagramLabel: "R5",
       label: "Focus element R5",
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.4,
-      fl: 29.395822902763175,
+      focalLengthMm: 29.395822902763175,
       glass: "487704 — coordinate class (vendor not established)",
-      cemented: "R3–R5",
       role: "Positive rear member of the rigid R3–R5 cemented focus triplet.",
+      diagramLabel: "R5",
+      cemented: "R3–R5",
     },
     {
       id: 11,
       name: "R6",
-      diagramLabel: "R6",
       label: "Focus element R6",
       type: "Biconcave Negative",
       nd: 1.83481,
       vd: 42.7,
-      fl: -34.77936390972613,
+      focalLengthMm: -34.77936390972613,
       glass: "835427 — coordinate class (vendor not established)",
-      cemented: "R6–R7",
       role: "Negative first member of the rear cemented doublet in the focus block.",
+      diagramLabel: "R6",
+      cemented: "R6–R7",
     },
     {
       id: 12,
       name: "R7",
-      diagramLabel: "R7",
       label: "Focus element R7",
       type: "Biconvex Positive (1× Asph)",
       nd: 1.58913,
       vd: 61.2,
-      fl: 40.50261846311165,
+      focalLengthMm: 40.50261846311165,
       glass: "589613 — coordinate class (vendor not established)",
-      cemented: "R6–R7",
       role: "Positive rear member of the focus block; image-side surface is aspherical.",
+      diagramLabel: "R7",
+      cemented: "R6–R7",
     },
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 78.423, d: 3, nd: 1.83481, elemId: 1, sd: 40.5 },
-    { label: "2", R: 30.589, d: 11, nd: 1, elemId: 0, sd: 27 },
-    { label: "3A", R: 56.395, d: 7, nd: 1.73077, elemId: 2, sd: 25 },
-    { label: "4A", R: 27.48, d: 16.17, nd: 1, elemId: 0, sd: 20.5 },
-    { label: "5", R: -112.052, d: 2.5, nd: 1.618, elemId: 3, sd: 21.7 },
-    { label: "6", R: 44.248, d: 5.16, nd: 1, elemId: 0, sd: 19.8 },
-    { label: "7", R: 60.515, d: 11.92, nd: 1.744, elemId: 4, sd: 20.3 },
-    { label: "8", R: -39.126, d: 2.5, nd: 1.83481, elemId: 5, sd: 20.3 },
-    { label: "9", R: -109.767, d: 26.347848101265825, nd: 1, elemId: 0, sd: 20.3 },
-    { label: "12", R: 55.742, d: 6, nd: 1.64769, elemId: 6, sd: 13 },
-    { label: "13", R: -25.052, d: 1.2, nd: 1.7725, elemId: 7, sd: 12.5 },
-    { label: "14", R: -173.995, d: 3.2, nd: 1, elemId: 0, sd: 12 },
-    { label: "STO", R: 1e15, d: 9.38, nd: 1, elemId: 0, sd: 9.67333760012721 },
-    { label: "16", R: 29.809, d: 7.4, nd: 1.497, elemId: 8, sd: 14.5 },
-    { label: "17", R: -121.824, d: 1.2, nd: 1.8061, elemId: 9, sd: 14.5 },
-    { label: "18", R: 22.145, d: 9, nd: 1.48749, elemId: 10, sd: 14.5 },
-    { label: "19", R: -35.199, d: 1.3, nd: 1, elemId: 0, sd: 15 },
-    { label: "20", R: -651.902, d: 1.2, nd: 1.83481, elemId: 11, sd: 15.5 },
-    { label: "21", R: 30.413, d: 7.4, nd: 1.58913, elemId: 12, sd: 16 },
-    { label: "22A", R: -100.773, d: 62.01, nd: 1, elemId: 0, sd: 16.5 },
+    { label: "1", R: 78.423, d: 3, sd: 40.5, medium: 1 },
+    { label: "2", R: 30.589, d: 11, sd: 27 },
+    { label: "3A", R: 56.395, d: 7, sd: 25, medium: 2, asphere: { K: 0, A4: 1.088e-5, A6: -4.936e-9, A8: 1.22e-12 } },
+    { label: "4A", R: 27.48, d: 16.17, sd: 20.5, asphere: { K: 0, A4: 7.529e-6, A6: -2.475e-9, A8: -3.269e-11 } },
+    { label: "5", R: -112.052, d: 2.5, sd: 21.7, medium: 3 },
+    { label: "6", R: 44.248, d: 5.16, sd: 19.8 },
+    { label: "7", R: 60.515, d: 11.92, sd: 20.3, medium: 4 },
+    { label: "8", R: -39.126, d: 2.5, sd: 20.3, medium: 5 },
+    { label: "9", R: -109.767, d: 26.347848101265825, sd: 20.3 },
+    { label: "12", R: 55.742, d: 6, sd: 13, medium: 6 },
+    { label: "13", R: -25.052, d: 1.2, sd: 12.5, medium: 7 },
+    { label: "14", R: -173.995, d: 3.2, sd: 12 },
+    { label: "STO", R: "flat" },
+    { label: "16", R: 29.809, d: 7.4, sd: 14.5, medium: 8 },
+    { label: "17", R: -121.824, d: 1.2, sd: 14.5, medium: 9 },
+    { label: "18", R: 22.145, d: 9, sd: 14.5, medium: 10 },
+    { label: "19", R: -35.199, d: 1.3, sd: 15 },
+    { label: "20", R: -651.902, d: 1.2, sd: 15.5, medium: 11 },
+    { label: "21", R: 30.413, d: 7.4, sd: 16, medium: 12 },
+    { label: "22A", R: -100.773, sd: 16.5, asphere: { K: 0, A4: 5.796e-6, A6: 2.608e-10, A8: 0 } },
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {
-    "3A": {
-      K: 0,
-      A4: 1.088e-5,
-      A6: -4.936e-9,
-      A8: 1.22e-12,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
-    "4A": {
-      K: 0,
-      A4: 7.529e-6,
-      A6: -2.475e-9,
-      A8: -3.269e-11,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
-    "22A": {
-      K: 0,
-      A4: 5.796e-6,
-      A6: 2.608e-10,
-      A8: 0,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.4,
+    description:
+      "CONSTRAINED_RECONSTRUCTION: patent-prescribed rigid R3–R7 inner-focus block moves 2.982301297 mm objectward at the official 0.4 m MFD; reconstruction was solved in the raw patent physical coordinates before OP-filter air-equivalent normalization and predicts 0.11241× magnification.",
   },
 
-  /* ── Variable air spacings (focus mechanism) ── */
-  var: {
-    STO: [9.38, 6.397698702994338],
-    "22A": [62.01, 64.99230129700567],
+  /* (moved from var) ── Variable air spacings (focus mechanism) ── */
+  gaps: {
+    STO: { label: "D15 (FOCUS)", values: [[9.38, 6.397698702994338]] },
+    "22A": { label: "BF", values: [[62.01, 64.99230129700567]] },
   },
-  varLabels: [
-    ["STO", "D15 (FOCUS)"],
-    ["22A", "BF"],
-  ],
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 4.1, fStops: [4.1, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 9 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 109.4, maxTraceFieldDeg: 54.7 },
 
   /* ── Group and cemented-unit annotations ── */
   groups: [
@@ -314,19 +291,8 @@ const LENS_DATA = {
     { text: "R6–R7", fromSurface: "20", toSurface: "22A" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.4,
-  focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: patent-prescribed rigid R3–R7 inner-focus block moves 2.982301297 mm objectward at the official 0.4 m MFD; reconstruction was solved in the raw patent physical coordinates before OP-filter air-equivalent normalization and predicts 0.11241× magnification.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 4.1,
-  fstopSeries: [4.1, 5.6, 8, 11, 16, 22, 32],
-  apertureBlades: 9,
-  maxFstop: 32,
-
   /* ── Layout tuning ── */
-  yScFill: 0.64,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.64 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -10,7 +10,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  Scaling: none. Patent f = 11.9795 mm; production nominal = 12 mm. ║
  * ║                                                                    ║
- * ║  Semi-diameters: patent 有効径 values divided by two.              ║
+ * ║  Semi-diameters: patent 有効径 values divided by two, FS included; ║
+ * ║  the aperture-stop radius is derived from the design f-number.     ║
  * ║                                                                    ║
  * ║  Filter note: patent surfaces 30-31 (optical filter F, 4.2000 mm,  ║
  * ║  nd 1.51680, νd 64.20) and the BF 0.9999 mm air gap to the image   ║
@@ -29,32 +30,35 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "panasonic-dg-summilux-12mm-f14",
   maker: "Panasonic",
   name: "PANASONIC LEICA DG SUMMILUX 12mm f/1.4 ASPH.",
   subtitle: "JP2017-167327A Example 1 — Sigma / Masakazu Hibino",
-  specs: [
-    "15 elements / 12 groups",
-    "12 mm nominal; f = 11.9795 mm design",
-    "F1.4 nominal; F1.45 design",
-    "2 aspherical surfaces",
-    "2 UED + 1 ED elements",
-    "Micro Four Thirds; 84° diagonal AOV",
-  ],
 
-  focalLengthMarketing: 12,
-  focalLengthDesign: 11.9795,
-  apertureMarketing: 1.4,
-  apertureDesign: 1.45,
-  lensMounts: ["micro-four-thirds"],
-  imageFormat: "four-thirds",
-  patentNumber: "JP 2017-167327 A",
-  patentAuthors: ["Masakazu Hibino"],
-  patentAssignees: ["Sigma Corporation"],
-  patentYear: 2017,
-  elementCount: 15,
-  groupCount: 12,
-  apertureBlades: 9,
+  catalog: {
+    lensMounts: ["micro-four-thirds"],
+    imageFormat: "four-thirds",
+    specs: [
+      "15 elements / 12 groups",
+      "12 mm nominal; f = 11.9795 mm design",
+      "F1.4 nominal; F1.45 design",
+      "2 aspherical surfaces",
+      "2 UED + 1 ED elements",
+      "Micro Four Thirds; 84° diagonal AOV",
+    ],
+    elementCount: 15,
+    groupCount: 12,
+    focalLengthMm: { marketing: 12, design: 11.9795 },
+    fNumber: { marketing: 1.4, design: 1.45 },
+  },
+
+  source: {
+    patentNumber: "JP 2017-167327 A",
+    patentYear: 2017,
+    authors: ["Masakazu Hibino"],
+    assignees: ["Sigma Corporation"],
+  },
 
   elements: [
     {
@@ -64,13 +68,13 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.5168,
       vd: 64.2,
-      fl: 208.4,
+      focalLengthMm: 208.4,
       glass: "BSC7 (Hoya)",
+      role: "Weak positive crown meniscus preceding the retrofocus negative section.",
       dPgF: -0.001654,
       nC: 1.51432,
       nF: 1.52237,
       ng: 1.52667,
-      role: "Weak positive crown meniscus preceding the retrofocus negative section.",
     },
     {
       id: 2,
@@ -79,13 +83,13 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.70154,
       vd: 41.15,
-      fl: -28.9,
+      focalLengthMm: -28.9,
       glass: "BAFD7 (Hoya)",
+      role: "Primary negative retrofocus power near the front of the lens.",
       dPgF: 0.001954,
       nC: 1.69651,
       nF: 1.71356,
       ng: 1.72339,
-      role: "Primary negative retrofocus power near the front of the lens.",
     },
     {
       id: 3,
@@ -94,13 +98,13 @@ const LENS_DATA = {
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.58913,
       vd: 61.25,
-      fl: -46.2,
+      focalLengthMm: -46.2,
       glass: "M-BACD5N (Hoya)",
+      role: "Moldable aspherical negative meniscus in the front group.",
       dPgF: -0.003355,
       nC: 1.58618,
       nF: 1.5958,
       ng: 1.60097,
-      role: "Moldable aspherical negative meniscus in the front group.",
     },
     {
       id: 4,
@@ -109,17 +113,17 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.437,
       vd: 95.1,
-      fl: -37.9,
+      focalLengthMm: -37.9,
       glass: "FCD100 (Hoya)",
       apd: "inferred",
       apdNote:
         "HOYA catalog equivalent; the patent prints no partial dispersion. PgF = 0.5326 from the authored nC/nF/ng; HOYA's catalog ΔPgF = +0.0564 is measured from HOYA's own normal line (≈ 0.6483 − 0.0018·νd); runtime dPgF +0.048767.",
+      role: "UED-class fluorophosphate in the nearly afocal front cemented pair.",
+      cemented: "D1",
       dPgF: 0.048767,
       nC: 1.43559,
       nF: 1.44019,
       ng: 1.44264,
-      role: "UED-class fluorophosphate in the nearly afocal front cemented pair.",
-      cemented: "D1",
     },
     {
       id: 5,
@@ -128,14 +132,14 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.8061,
       vd: 33.27,
-      fl: 40.7,
+      focalLengthMm: 40.7,
       glass: "NBFD15 (Hoya)",
+      role: "Dense-flint positive partner to the L4 UED-class element.",
+      cemented: "D1",
       dPgF: 0,
       nC: 1.79902,
       nF: 1.82325,
       ng: 1.8375,
-      role: "Dense-flint positive partner to the L4 UED-class element.",
-      cemented: "D1",
     },
     {
       id: 6,
@@ -144,13 +148,13 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.60342,
       vd: 38.01,
-      fl: -79.9,
+      focalLengthMm: -79.9,
       glass: "E-F5 (Hoya)",
+      role: "Negative meniscus at the rear of G1, just ahead of the aperture stop.",
       dPgF: 0.0029,
       nC: 1.59874,
       nF: 1.61462,
       ng: 1.62387,
-      role: "Negative meniscus at the rear of G1, just ahead of the aperture stop.",
     },
     {
       id: 7,
@@ -159,13 +163,13 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.83481,
       vd: 42.72,
-      fl: 23.9,
+      focalLengthMm: 23.9,
       glass: "TAFD5F (Hoya)",
+      role: "High-index positive power at the front of G2.",
       dPgF: -0.00695,
       nC: 1.82898,
       nF: 1.84852,
       ng: 1.85956,
-      role: "High-index positive power at the front of G2.",
     },
     {
       id: 8,
@@ -174,13 +178,13 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.74077,
       vd: 27.76,
-      fl: -95.1,
+      focalLengthMm: -95.1,
       glass: "E-FD13 (Hoya)",
+      role: "Dense-flint negative corrector in the main positive group.",
       dPgF: 0.010236,
       nC: 1.73307,
       nF: 1.75976,
       ng: 1.77597,
-      role: "Dense-flint negative corrector in the main positive group.",
     },
     {
       id: 9,
@@ -189,17 +193,17 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.437,
       vd: 95.1,
-      fl: 31.2,
+      focalLengthMm: 31.2,
       glass: "FCD100 (Hoya)",
       apd: "inferred",
       apdNote:
         "HOYA catalog equivalent; the patent prints no partial dispersion. PgF = 0.5326 from the authored nC/nF/ng; HOYA's catalog ΔPgF = +0.0564 is measured from HOYA's own normal line (≈ 0.6483 − 0.0018·νd); runtime dPgF +0.048767.",
+      role: "Second UED-class fluorophosphate; positive member of the G2 cemented achromat.",
+      cemented: "D2",
       dPgF: 0.048767,
       nC: 1.43559,
       nF: 1.44019,
       ng: 1.44264,
-      role: "Second UED-class fluorophosphate; positive member of the G2 cemented achromat.",
-      cemented: "D2",
     },
     {
       id: 10,
@@ -208,14 +212,14 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.90366,
       vd: 31.32,
-      fl: -61.5,
+      focalLengthMm: -61.5,
       glass: "TAFD25 (Hoya)",
+      role: "Very high-index negative partner to L9 in the G2 cemented doublet.",
+      cemented: "D2",
       dPgF: 0.003475,
       nC: 1.89526,
       nF: 1.92412,
       ng: 1.94128,
-      role: "Very high-index negative partner to L9 in the G2 cemented doublet.",
-      cemented: "D2",
     },
     {
       id: 11,
@@ -224,13 +228,13 @@ const LENS_DATA = {
       type: "Pos. Meniscus (1× Asph)",
       nd: 1.58913,
       vd: 61.25,
-      fl: 124.5,
+      focalLengthMm: 124.5,
       glass: "M-BACD5N (Hoya)",
+      role: "Weak positive aspherical meniscus at the rear of G2.",
       dPgF: -0.003355,
       nC: 1.58618,
       nF: 1.5958,
       ng: 1.60097,
-      role: "Weak positive aspherical meniscus at the rear of G2.",
     },
     {
       id: 12,
@@ -239,13 +243,13 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.45,
-      fl: 71.4,
+      focalLengthMm: 71.4,
       glass: "FC5 (Hoya)",
+      role: "Single-element positive inner-focus group.",
       dPgF: 0.005044,
       nC: 1.48535,
       nF: 1.49227,
       ng: 1.49594,
-      role: "Single-element positive inner-focus group.",
     },
     {
       id: 13,
@@ -254,13 +258,13 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8061,
       vd: 33.27,
-      fl: -42.4,
+      focalLengthMm: -42.4,
       glass: "NBFD15 (Hoya)",
+      role: "Negative member of the weak rear color-correction group.",
       dPgF: 0,
       nC: 1.79902,
       nF: 1.82325,
       ng: 1.8375,
-      role: "Negative member of the weak rear color-correction group.",
     },
     {
       id: 14,
@@ -269,17 +273,17 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.55032,
       vd: 75.5,
-      fl: 24.4,
+      focalLengthMm: 24.4,
       glass: "FCD705 (Hoya)",
       apd: "inferred",
       apdNote:
         "HOYA catalog equivalent; the patent prints no partial dispersion. PgF = 0.5405 from the authored nC/nF/ng; HOYA's catalog ΔPgF = +0.0277 is measured from HOYA's own normal line (≈ 0.6483 − 0.0018·νd); runtime dPgF +0.023657.",
+      role: "ED-class positive fluorophosphate in the rear cemented doublet.",
+      cemented: "D3",
       dPgF: 0.023657,
       nC: 1.5481,
       nF: 1.55539,
       ng: 1.55933,
-      role: "ED-class positive fluorophosphate in the rear cemented doublet.",
-      cemented: "D3",
     },
     {
       id: 15,
@@ -288,49 +292,74 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.78,
-      fl: -56.2,
+      focalLengthMm: -56.2,
       glass: "FDS90 (Hoya)",
+      role: "Dense-flint negative partner to L14 in the rear cemented doublet.",
+      cemented: "D3",
       dPgF: 0.015299,
       nC: 1.83649,
       nF: 1.87209,
       ng: 1.89413,
-      role: "Dense-flint negative partner to L14 in the rear cemented doublet.",
-      cemented: "D3",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 89.53, d: 4.32, nd: 1.5168, elemId: 1, sd: 20.51 },
-    { label: "2", R: 522.2, d: 0.68, nd: 1.0, elemId: 0, sd: 19.01 },
-    { label: "3", R: 32.0, d: 1.4, nd: 1.70154, elemId: 2, sd: 14.07 },
-    { label: "4", R: 12.18, d: 3.93, nd: 1.0, elemId: 0, sd: 10.43 },
-    { label: "5A", R: 23.45, d: 1.0, nd: 1.58913, elemId: 3, sd: 10.085 },
-    { label: "6", R: 12.4, d: 6.41, nd: 1.0, elemId: 0, sd: 8.845 },
-    { label: "7", R: -22.3, d: 1.0, nd: 1.437, elemId: 4, sd: 8.45 },
-    { label: "8", R: 64.96, d: 2.74, nd: 1.8061, elemId: 5, sd: 8.115 },
-    { label: "9", R: -64.96, d: 1.0, nd: 1.0, elemId: 0, sd: 7.92 },
-    { label: "FS", R: 1e15, d: 8.85, nd: 1.0, elemId: 0, sd: 7.45 },
-    { label: "11", R: -13.02, d: 1.4, nd: 1.60342, elemId: 6, sd: 8.395 },
-    { label: "12", R: -18.56, d: 0.85, nd: 1.0, elemId: 0, sd: 9.285 },
-    { label: "STO", R: 1e15, d: 1.0, nd: 1.0, elemId: 0, sd: 10.55 },
-    { label: "14", R: 57.77, d: 5.61, nd: 1.83481, elemId: 7, sd: 11.385 },
-    { label: "15", R: -29.22, d: 0.15, nd: 1.0, elemId: 0, sd: 11.59 },
-    { label: "16", R: -51.48, d: 0.8, nd: 1.74077, elemId: 8, sd: 11.36 },
-    { label: "17", R: -192.39, d: 0.15, nd: 1.0, elemId: 0, sd: 11.35 },
-    { label: "18", R: 53.25, d: 8.55, nd: 1.437, elemId: 9, sd: 11.26 },
-    { label: "19", R: -17.42, d: 1.0, nd: 1.90366, elemId: 10, sd: 10.905 },
-    { label: "20", R: -26.07, d: 0.15, nd: 1.0, elemId: 0, sd: 11.18 },
-    { label: "21", R: -384.4, d: 2.0, nd: 1.58913, elemId: 11, sd: 10.645 },
-    { label: "22A", R: -61.7, d: 3.76, nd: 1.0, elemId: 0, sd: 10.54 },
-    { label: "23", R: 30.0, d: 2.8, nd: 1.48749, elemId: 12, sd: 9.87 },
-    { label: "24", R: 210.95, d: 1.5, nd: 1.0, elemId: 0, sd: 9.6 },
-    { label: "25", R: 37.95, d: 0.8, nd: 1.8061, elemId: 13, sd: 9.535 },
-    { label: "26", R: 17.82, d: 2.66, nd: 1.0, elemId: 0, sd: 9.255 },
-    { label: "27", R: 54.88, d: 6.35, nd: 1.55032, elemId: 14, sd: 9.51 },
-    { label: "28", R: -17.08, d: 1.0, nd: 1.84666, elemId: 15, sd: 9.785 },
+    { label: "1", R: 89.53, d: 4.32, sd: 20.51, medium: 1 },
+    { label: "2", R: 522.2, d: 0.68, sd: 19.01 },
+    { label: "3", R: 32.0, d: 1.4, sd: 14.07, medium: 2 },
+    { label: "4", R: 12.18, d: 3.93, sd: 10.43 },
+    {
+      label: "5A",
+      R: 23.45,
+      d: 1.0,
+      sd: 10.085,
+      medium: 3,
+      asphere: { K: 0, A4: 1.225e-5, A6: 3.9007e-7, A8: -5.8222e-9, A10: 5.3837e-11, A12: -1.7991e-13 },
+    },
+    { label: "6", R: 12.4, d: 6.41, sd: 8.845 },
+    { label: "7", R: -22.3, d: 1.0, sd: 8.45, medium: 4 },
+    { label: "8", R: 64.96, d: 2.74, sd: 8.115, medium: 5 },
+    { label: "9", R: -64.96, d: 1.0, sd: 7.92 },
+    { label: "FS", R: "flat", d: 8.85, sd: 7.45 },
+    { label: "11", R: -13.02, d: 1.4, sd: 8.395, medium: 6 },
+    { label: "12", R: -18.56, d: 0.85, sd: 9.285 },
+    // JP 2017-167327 A, Numerical Example 1 surface-data table (PDF p. 10), surface 13 (絞り), prints a 21.10 mm
+    // effective diameter (有効径) at the stop.
+    { label: "STO", R: "flat", d: 1.0 },
+    { label: "14", R: 57.77, d: 5.61, sd: 11.385, medium: 7 },
+    { label: "15", R: -29.22, d: 0.15, sd: 11.59 },
+    { label: "16", R: -51.48, d: 0.8, sd: 11.36, medium: 8 },
+    { label: "17", R: -192.39, d: 0.15, sd: 11.35 },
+    { label: "18", R: 53.25, d: 8.55, sd: 11.26, medium: 9 },
+    { label: "19", R: -17.42, d: 1.0, sd: 10.905, medium: 10 },
+    { label: "20", R: -26.07, d: 0.15, sd: 11.18 },
+    { label: "21", R: -384.4, d: 2.0, sd: 10.645, medium: 11 },
+    {
+      label: "22A",
+      R: -61.7,
+      sd: 10.54,
+      asphere: { K: 0, A4: 2.7252e-5, A6: -1.1008e-8, A8: 5.2478e-11, A10: -3.6856e-13, A12: 2.1505e-16 },
+    },
+    { label: "23", R: 30.0, d: 2.8, sd: 9.87, medium: 12 },
+    { label: "24", R: 210.95, sd: 9.6 },
+    { label: "25", R: 37.95, d: 0.8, sd: 9.535, medium: 13 },
+    { label: "26", R: 17.82, d: 2.66, sd: 9.255 },
+    { label: "27", R: 54.88, d: 6.35, sd: 9.51, medium: 14 },
+    { label: "28", R: -17.08, d: 1.0, sd: 9.785, medium: 15 },
     // Last surface: patent gap to the optical filter F
-    { label: "29", R: -27.35, d: 11.94, nd: 1.0, elemId: 0, sd: 10.2 },
+    { label: "29", R: -27.35, d: 11.94, sd: 10.2 },
   ],
+
+  focus: {
+    closeFocusM: 0.2,
+    description: "Internal focus by L12/G3: d22 decreases and d24 increases by 1.6864 mm from infinity to 0.20 m.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
+  },
+
+  gaps: { "22A": { label: "d22", values: [[3.76, 2.0736]] }, "24": { label: "d24", values: [[1.5, 3.1864]] } },
+
+  aperture: { nominalFNumber: 1.45, fStops: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16], blades: 9 },
 
   /* ── Optical filter F (patent surfaces 30–31): traced, not drawn ── */
   rearPlates: [
@@ -345,60 +374,19 @@ const LENS_DATA = {
     },
   ],
 
-  asph: {
-    "5A": {
-      K: 0,
-      A4: 1.225e-5,
-      A6: 3.9007e-7,
-      A8: -5.8222e-9,
-      A10: 5.3837e-11,
-      A12: -1.7991e-13,
-      A14: 0,
-    },
-    "22A": {
-      K: 0,
-      A4: 2.7252e-5,
-      A6: -1.1008e-8,
-      A8: 5.2478e-11,
-      A10: -3.6856e-13,
-      A12: 2.1505e-16,
-      A14: 0,
-    },
-  },
-
-  var: {
-    "22A": [3.76, 2.0736],
-    "24": [1.5, 3.1864],
-  },
-
-  varLabels: [
-    ["22A", "d22"],
-    ["24", "d24"],
-  ],
-
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "12" },
     { text: "G2", fromSurface: "14", toSurface: "22A" },
     { text: "G3 focus", fromSurface: "23", toSurface: "24" },
     { text: "G4", fromSurface: "25", toSurface: "29" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "7", toSurface: "9" },
     { text: "D2", fromSurface: "18", toSurface: "20" },
     { text: "D3", fromSurface: "27", toSurface: "29" },
   ],
 
-  closeFocusM: 0.2,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  focusDescription: "Internal focus by L12/G3: d22 decreases and d24 increases by 1.6864 mm from infinity to 0.20 m.",
-
-  nominalFno: 1.45,
-  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16],
-
-  scFill: 0.56,
-  yScFill: 0.46,
-} satisfies LensDataInput;
+  layout: { scFill: 0.56, yScFill: 0.46 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

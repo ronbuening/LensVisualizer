@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -35,31 +35,35 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "pentax-da-16-50-f28",
   maker: "Pentax",
   name: "PENTAX DA* 16-50mm f/2.8 ED AL [IF] SDM",
   subtitle: "US 7,301,711 B2 Example 6 — PENTAX / Saori",
-  specs: [
-    "15 ELEMENTS / 12 GROUPS",
-    "f = 16.48–48.50 mm (2.94×)",
-    "F/2.8 (constant)",
-    "2ω ≈ 84.0–32.4°",
-    "3 ASPHERICAL ELEMENTS (4 SURFACES)",
-    "2 ED ELEMENTS",
-  ],
 
-  focalLengthMarketing: [16, 50],
-  focalLengthDesign: [16.48, 48.5],
-  apertureMarketing: 2.8,
-  apertureDesign: 2.9,
-  lensMounts: ["pentax-k"],
-  imageFormat: "aps-c",
-  patentNumber: "US 7,301,711 B2",
-  patentAuthors: ["Masakazu Saori"],
-  patentAssignees: ["Pentax Corporation"],
-  patentYear: 2007,
-  elementCount: 15,
-  groupCount: 12,
+  catalog: {
+    lensMounts: ["pentax-k"],
+    imageFormat: "aps-c",
+    specs: [
+      "15 ELEMENTS / 12 GROUPS",
+      "f = 16.48–48.50 mm (2.94×)",
+      "F/2.8 (constant)",
+      "2ω ≈ 84.0–32.4°",
+      "3 ASPHERICAL ELEMENTS (4 SURFACES)",
+      "2 ED ELEMENTS",
+    ],
+    elementCount: 15,
+    groupCount: 12,
+    focalLengthMm: { marketing: [16, 50], design: [16.48, 48.5] },
+    fNumber: { marketing: 2.8, design: 2.9 },
+  },
+
+  source: {
+    patentNumber: "US 7,301,711 B2",
+    patentYear: 2007,
+    authors: ["Masakazu Saori"],
+    assignees: ["Pentax Corporation"],
+  },
 
   /* ── Elements ──
    *  16 entries: the hybrid composite on L21 is split into resin layer (L21r, id 4)
@@ -74,11 +78,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.8,
-      fl: -179.6,
+      focalLengthMm: -179.6,
       glass: "S-TIH53 (OHARA)",
       apd: false,
-      cemented: "D1",
       role: "Achromatizing flint in G1 cemented doublet",
+      cemented: "D1",
     },
     {
       id: 2,
@@ -87,11 +91,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.713,
       vd: 53.9,
-      fl: 141.9,
+      focalLengthMm: 141.9,
       glass: "S-LAL8 (OHARA)",
       apd: false,
-      cemented: "D1",
       role: "Barium crown partner in G1 achromatic doublet",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -100,7 +104,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7725,
       vd: 49.6,
-      fl: 158.1,
+      focalLengthMm: 158.1,
       glass: "S-LAH66 (OHARA)",
       apd: false,
       role: "Lanthanum crown singlet adding positive power to G1",
@@ -114,11 +118,11 @@ const LENS_DATA = {
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.52972,
       vd: 42.7,
-      fl: -352.9,
+      focalLengthMm: -352.9,
       glass: "UV-cure aspherical resin (not catalog glass)",
       apd: false,
-      cemented: "H1",
       role: "Aspherical resin layer on front of hybrid composite; corrects SA and coma at wide",
+      cemented: "H1",
     },
     {
       id: 5,
@@ -127,11 +131,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.83481,
       vd: 42.7,
-      fl: -23.1,
+      focalLengthMm: -23.1,
       glass: "S-LAH55V (OHARA)",
       apd: false,
-      cemented: "H1",
       role: "Glass body of hybrid composite; primary negative power in G2 front sub-group",
+      cemented: "H1",
     },
     {
       id: 6,
@@ -140,7 +144,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.83481,
       vd: 42.7,
-      fl: -27.4,
+      focalLengthMm: -27.4,
       glass: "S-LAH55V (OHARA)",
       apd: false,
       role: "Strong negative element distributing G2 divergence",
@@ -152,7 +156,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.64769,
       vd: 33.8,
-      fl: 27.1,
+      focalLengthMm: 27.1,
       glass: "S-TIM22 (OHARA)",
       apd: false,
       role: "Chromatic corrector within G2; Petzval field-flattening",
@@ -164,11 +168,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.804,
       vd: 46.6,
-      fl: -19.1,
+      focalLengthMm: -19.1,
       glass: "S-LAH65V (OHARA)",
       apd: false,
-      cemented: "D2",
       role: "Strong negative in G2 cemented doublet; achromatizing junction with L25",
+      cemented: "D2",
     },
     {
       id: 9,
@@ -177,11 +181,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.84666,
       vd: 23.8,
-      fl: 30.6,
+      focalLengthMm: 30.6,
       glass: "S-TIH53 (OHARA)",
       apd: false,
-      cemented: "D2",
       role: "Positive flint partner in G2 closing doublet",
+      cemented: "D2",
     },
 
     // ── Group 30 (Positive Third Lens Group, f₃ = +92.6 mm) ──
@@ -192,7 +196,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.6,
-      fl: 77.7,
+      focalLengthMm: 77.7,
       glass: "S-FPL51 (OHARA)",
       apd: false,
       role: "ED element behind stop; primary chromatic correction",
@@ -204,7 +208,7 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.58636,
       vd: 60.9,
-      fl: 39.8,
+      focalLengthMm: 39.8,
       glass: "K-SKLD5-M (SUMITA K-SKLD5(M) catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Strongest positive element in G3; aspherical rear corrects field curvature and astigmatism",
@@ -216,7 +220,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.834,
       vd: 37.2,
-      fl: -26.0,
+      focalLengthMm: -26.0,
       glass: "S-LAH60 (OHARA)",
       apd: false,
       role: "Petzval-sum corrector; air-spaced achromatic pair with L32",
@@ -230,7 +234,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.6,
-      fl: 37.6,
+      focalLengthMm: 37.6,
       glass: "S-FPL51 (OHARA)",
       apd: false,
       role: "ED element; primary positive power in G4, lateral chromatic correction (condition 6: νd > 70)",
@@ -242,11 +246,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.4,
-      fl: -81.0,
+      focalLengthMm: -81.0,
       glass: "S-TIH6 (OHARA)",
       apd: false,
-      cemented: "D3",
       role: "High-dispersion flint for achromatizing cemented doublet in G4",
+      cemented: "D3",
     },
     {
       id: 15,
@@ -255,11 +259,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.2,
-      fl: 65.4,
+      focalLengthMm: 65.4,
       glass: "S-FSL5 (OHARA)",
       apd: false,
-      cemented: "D3",
       role: "Low-dispersion crown partner in G4 cemented doublet",
+      cemented: "D3",
     },
     {
       id: 16,
@@ -268,7 +272,7 @@ const LENS_DATA = {
       type: "Pos. Meniscus (2× Asph)",
       nd: 1.58636,
       vd: 60.9,
-      fl: 127.1,
+      focalLengthMm: 127.1,
       glass: "K-SKLD5-M (SUMITA K-SKLD5(M) catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Double-asphere final element; corrects coma, astigmatism, distortion per patent teaching",
@@ -282,48 +286,7 @@ const LENS_DATA = {
    *    surface "15" d = (d15 − 2.40) = 18.36/7.91/1.50  (variable)
    *    "STO" d = 2.40                                      (fixed)
    */
-  surfaces: [
-    // ── Group 10 ──
-    { label: "1", R: 228.853, d: 2.4, nd: 1.84666, elemId: 1, sd: 27.7 }, // L11 front
-    { label: "2", R: 90.908, d: 6.36, nd: 1.713, elemId: 2, sd: 26.5 }, // L11→L12 cemented junction
-    { label: "3", R: 868.199, d: 0.2, nd: 1.0, elemId: 0, sd: 25.9 }, // L12 rear → air
-    { label: "4", R: 66.977, d: 4.95, nd: 1.7725, elemId: 3, sd: 25.0 }, // L13 front
-    { label: "5", R: 143.503, d: 3.1, nd: 1.0, elemId: 0, sd: 23.6 }, // L13 rear → air (variable: G1–G2)
-
-    // ── Group 20 ──
-    { label: "6A", R: 69.698, d: 0.1, nd: 1.52972, elemId: 4, sd: 13.5 }, // L21r resin front (asph)
-    { label: "7", R: 50.745, d: 1.45, nd: 1.83481, elemId: 5, sd: 13.5 }, // L21r→L21g hybrid junction
-    { label: "8", R: 13.792, d: 6.68, nd: 1.0, elemId: 0, sd: 10.0 }, // L21g rear → air
-    { label: "9", R: -48.189, d: 1.2, nd: 1.83481, elemId: 6, sd: 9.0 }, // L22 front
-    { label: "10", R: 44.128, d: 0.34, nd: 1.0, elemId: 0, sd: 9.0 }, // L22 rear → air
-    { label: "11", R: 29.394, d: 6.7, nd: 1.64769, elemId: 7, sd: 9.2 }, // L23 front
-    { label: "12", R: -39.787, d: 1.14, nd: 1.0, elemId: 0, sd: 9.6 }, // L23 rear → air
-    { label: "13", R: -22.186, d: 1.2, nd: 1.804, elemId: 8, sd: 9.6 }, // L24 front
-    { label: "14", R: 50.962, d: 3.51, nd: 1.84666, elemId: 9, sd: 10.0 }, // L24→L25 cemented junction
-    { label: "15", R: -50.962, d: 18.36, nd: 1.0, elemId: 0, sd: 10.6 }, // L25 rear → air (variable: G2–STO)
-
-    // ── Aperture Stop ──
-    { label: "STO", R: 1e15, d: 2.4, nd: 1.0, elemId: 0, sd: 10.1 }, // stop, 2.40 mm before G3
-
-    // ── Group 30 ──
-    { label: "16", R: 55.754, d: 3.71, nd: 1.497, elemId: 10, sd: 12.0 }, // L31 front (ED)
-    { label: "17", R: -122.733, d: 0.2, nd: 1.0, elemId: 0, sd: 12.9 }, // L31 rear → air
-    { label: "18", R: 34.402, d: 6.4, nd: 1.58636, elemId: 11, sd: 12.9 }, // L32 front
-    { label: "19A", R: -67.745, d: 4.82, nd: 1.0, elemId: 0, sd: 13.3 }, // L32 rear → air (asph)
-    { label: "20", R: -22.339, d: 1.25, nd: 1.834, elemId: 12, sd: 13.1 }, // L33 front
-    { label: "21", R: 719.208, d: 5.39, nd: 1.0, elemId: 0, sd: 13.5 }, // L33 rear → air (variable: G3–G4)
-
-    // ── Group 40 ──
-    { label: "22", R: 35.999, d: 8.16, nd: 1.497, elemId: 13, sd: 14.1 }, // L41 front (ED)
-    { label: "23", R: -35.999, d: 0.62, nd: 1.0, elemId: 0, sd: 15.6 }, // L41 rear → air
-    { label: "24", R: 1796.044, d: 1.2, nd: 1.80518, elemId: 14, sd: 15.7 }, // L42 front
-    { label: "25", R: 62.947, d: 4.67, nd: 1.48749, elemId: 15, sd: 15.7 }, // L42→L43 cemented junction
-    { label: "26", R: -62.947, d: 0.3, nd: 1.0, elemId: 0, sd: 16.1 }, // L43 rear → air
-    { label: "27A", R: -500.0, d: 4.77, nd: 1.58636, elemId: 16, sd: 16.1 }, // L44 front (asph)
-    { label: "28A", R: -65.096, d: 39.0, nd: 1.0, elemId: 0, sd: 16.3 }, // L44 rear → image (BFD, variable)
-  ],
-
-  /* ── Aspherical coefficients ──
+  /* (moved from asph) ── Aspherical coefficients ──
    *  Patent sag equation: Z(h) = (h²/R)/[1+√(1−(1+K)(h/R)²)] + A4·h⁴ + A6·h⁶ + A8·h⁸ + A10·h¹⁰
    *  All conic constants K = 0 (spherical base curve).
    *  A10 not specified by patent; set to 0.
@@ -332,83 +295,120 @@ const LENS_DATA = {
    *  In Embodiment 5 these differ (−2.7625e-8 vs −1.4970e-8). May be a
    *  patent typographical artifact; we take the published values as authoritative.
    */
-  asph: {
-    "6A": {
-      K: 0,
-      A4: 1.7834e-5,
-      A6: -2.4983e-8,
-      A8: 8.4108e-11,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
-    "19A": {
-      K: 0,
-      A4: -6.7065e-6,
-      A6: -2.73e-8,
-      A8: 0,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
-    "27A": {
-      K: 0,
-      A4: -2.0218e-5,
-      A6: -2.73e-8,
-      A8: 1.0251e-10,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
-    "28A": {
-      K: 0,
-      A4: -1.691e-7,
-      A6: -4.1153e-9,
-      A8: 1.4111e-10,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
+  surfaces: [
+    // ── Group 10 ──
+    { label: "1", R: 228.853, d: 2.4, sd: 27.7, medium: 1 }, // L11 front
+    { label: "2", R: 90.908, d: 6.36, sd: 26.5, medium: 2 }, // L11→L12 cemented junction
+    { label: "3", R: 868.199, d: 0.2, sd: 25.9 }, // L12 rear → air
+    { label: "4", R: 66.977, d: 4.95, sd: 25.0, medium: 3 }, // L13 front
+    { label: "5", R: 143.503, sd: 23.6 }, // L13 rear → air (variable: G1–G2)
+
+    // ── Group 20 ──
+    {
+      label: "6A",
+      R: 69.698,
+      d: 0.1,
+      sd: 13.5,
+      medium: 4,
+      asphere: { K: 0, A4: 1.7834e-5, A6: -2.4983e-8, A8: 8.4108e-11, A10: 0 },
+    }, // L21r resin front (asph)
+    { label: "7", R: 50.745, d: 1.45, sd: 13.5, medium: 5 }, // L21r→L21g hybrid junction
+    { label: "8", R: 13.792, d: 6.68, sd: 10.0 }, // L21g rear → air
+    { label: "9", R: -48.189, d: 1.2, sd: 9.0, medium: 6 }, // L22 front
+    { label: "10", R: 44.128, d: 0.34, sd: 9.0 }, // L22 rear → air
+    { label: "11", R: 29.394, d: 6.7, sd: 9.2, medium: 7 }, // L23 front
+    { label: "12", R: -39.787, d: 1.14, sd: 9.6 }, // L23 rear → air
+    { label: "13", R: -22.186, d: 1.2, sd: 9.6, medium: 8 }, // L24 front
+    { label: "14", R: 50.962, d: 3.51, sd: 10.0, medium: 9 }, // L24→L25 cemented junction
+    { label: "15", R: -50.962, sd: 10.6 }, // L25 rear → air (variable: G2–STO)
+
+    // ── Aperture Stop ──
+    { label: "STO", R: "flat", d: 2.4 }, // stop, 2.40 mm before G3
+
+    // ── Group 30 ──
+    { label: "16", R: 55.754, d: 3.71, sd: 12.0, medium: 10 }, // L31 front (ED)
+    { label: "17", R: -122.733, d: 0.2, sd: 12.9 }, // L31 rear → air
+    { label: "18", R: 34.402, d: 6.4, sd: 12.9, medium: 11 }, // L32 front
+    { label: "19A", R: -67.745, d: 4.82, sd: 13.3, asphere: { K: 0, A4: -6.7065e-6, A6: -2.73e-8, A8: 0, A10: 0 } }, // L32 rear → air (asph)
+    { label: "20", R: -22.339, d: 1.25, sd: 13.1, medium: 12 }, // L33 front
+    { label: "21", R: 719.208, sd: 13.5 }, // L33 rear → air (variable: G3–G4)
+
+    // ── Group 40 ──
+    { label: "22", R: 35.999, d: 8.16, sd: 14.1, medium: 13 }, // L41 front (ED)
+    { label: "23", R: -35.999, d: 0.62, sd: 15.6 }, // L41 rear → air
+    { label: "24", R: 1796.044, d: 1.2, sd: 15.7, medium: 14 }, // L42 front
+    { label: "25", R: 62.947, d: 4.67, sd: 15.7, medium: 15 }, // L42→L43 cemented junction
+    { label: "26", R: -62.947, d: 0.3, sd: 16.1 }, // L43 rear → air
+    {
+      label: "27A",
+      R: -500.0,
+      d: 4.77,
+      sd: 16.1,
+      medium: 16,
+      asphere: { K: 0, A4: -2.0218e-5, A6: -2.73e-8, A8: 1.0251e-10, A10: 0 },
+    }, // L44 front (asph)
+    { label: "28A", R: -65.096, sd: 16.3, asphere: { K: 0, A4: -1.691e-7, A6: -4.1153e-9, A8: 1.4111e-10, A10: 0 } }, // L44 rear → image (BFD, variable)
+  ],
+
+  zoom: {
+    /* (moved from zoomPositions) ── Zoom positions ── */
+    stations: [
+      { focalLengthMm: 16.48, label: "Wide" },
+      { focalLengthMm: 28.0 },
+      { focalLengthMm: 48.5, label: "Tele" },
+    ],
+    step: 0.004,
   },
 
-  /* ── Zoom positions ── */
-  zoomPositions: [16.48, 28.0, 48.5],
-  zoomStep: 0.004,
-  zoomLabels: ["Wide", "Tele"],
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.3,
+    description:
+      "Internal focus (IF) via SDM ultrasonic motor. Patent provides zoom-only data; close-focus gaps not modeled.",
+  },
 
-  /* ── Variable air spacings (zoom only — no close-focus data in patent) ──
+  /* (moved from var) ── Variable air spacings (zoom only — no close-focus data in patent) ──
    *  Patent gap d15 is split: surface "15" carries (d15 − 2.40), STO carries fixed 2.40.
    *  All entries use identical [d_inf, d_close] pairs since close-focus tables
    *  were not published.
    */
-  var: {
-    "5": [
-      [3.1, 3.1],
-      [17.89, 17.89],
-      [36.27, 36.27],
-    ], // G1–G2
-    "15": [
-      [18.36, 18.36],
-      [7.91, 7.91],
-      [1.5, 1.5],
-    ], // G2–STO (d15 − 2.40)
-    "21": [
-      [5.39, 5.39],
-      [2.8, 2.8],
-      [1.27, 1.27],
-    ], // G3–G4
-    "28A": [
-      [39.0, 39.0],
-      [50.99, 50.99],
-      [65.07, 65.07],
-    ], // BFD
+  gaps: {
+    "5": {
+      label: "D5",
+      values: [
+        [3.1, 3.1],
+        [17.89, 17.89],
+        [36.27, 36.27],
+      ],
+    }, // G1–G2
+    "15": {
+      label: "D15",
+      values: [
+        [18.36, 18.36],
+        [7.91, 7.91],
+        [1.5, 1.5],
+      ],
+    }, // G2–STO (d15 − 2.40)
+    "21": {
+      label: "D21",
+      values: [
+        [5.39, 5.39],
+        [2.8, 2.8],
+        [1.27, 1.27],
+      ],
+    }, // G3–G4
+    "28A": {
+      label: "BF",
+      values: [
+        [39.0, 39.0],
+        [50.99, 50.99],
+        [65.07, 65.07],
+      ],
+    }, // BFD
   },
-  varLabels: [
-    ["5", "D5"],
-    ["15", "D15"],
-    ["21", "D21"],
-    ["28A", "BF"],
-  ],
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.9, fStops: [2.9, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22], blades: 9 },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -424,19 +424,8 @@ const LENS_DATA = {
     { text: "D3", fromSurface: "24", toSurface: "26" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.3,
-  focusDescription:
-    "Internal focus (IF) via SDM ultrasonic motor. Patent provides zoom-only data; close-focus gaps not modeled.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.9,
-  apertureBlades: 9,
-  fstopSeries: [2.9, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
-
   /* ── Layout tuning ── */
-  scFill: 0.48,
-  yScFill: 0.32,
-} satisfies LensDataInput;
+  layout: { scFill: 0.48, yScFill: 0.32 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -39,24 +39,35 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "olympus-zuiko-auto-w-21mm-f2",
   maker: "Olympus",
   name: "OLYMPUS ZUIKO AUTO-W 21mm f/2",
   subtitle: "US 4,210,388 EXAMPLE 1 — OLYMPUS / Y. IKEDA",
-  specs: ["11 ELEMENTS / 9 GROUPS", "f ≈ 21 mm (marketed) / 28.5 mm (computed)", "F/2.0", "2ω = 92°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata fields ── */
-  focalLengthMarketing: 21,
-  focalLengthDesign: 28.49,
-  apertureMarketing: 2.0,
-  lensMounts: ["olympus-om"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,210,388",
-  patentAuthors: ["Yoshitsugi Ikeda"],
-  patentAssignees: ["Olympus Optical Co., Ltd."],
-  patentYear: 1980,
-  elementCount: 11,
-  groupCount: 9,
+  catalog: {
+    lensMounts: ["olympus-om"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "11 ELEMENTS / 9 GROUPS",
+      "f ≈ 21 mm (marketed) / 28.5 mm (computed)",
+      "F/2.0",
+      "2ω = 92°",
+      "ALL SPHERICAL",
+    ],
+    elementCount: 11,
+    groupCount: 9,
+    /* ── Explicit metadata fields ── */
+    focalLengthMm: { marketing: 21, design: 28.49 },
+    fNumber: { marketing: 2.0 },
+  },
+
+  source: {
+    patentNumber: "US 4,210,388",
+    patentYear: 1980,
+    authors: ["Yoshitsugi Ikeda"],
+    assignees: ["Olympus Optical Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -67,7 +78,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.639,
       vd: 44.9,
-      fl: 108.1,
+      focalLengthMm: 108.1,
       glass: "639449 — LAC14 / BaLF5-class barium lanthanum flint (no exact public catalog match)",
       apd: false,
       role: "Weak positive collector in front diverging group; moderates total group divergence",
@@ -79,7 +90,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.734,
       vd: 51.5,
-      fl: -33.5,
+      focalLengthMm: -33.5,
       glass: "S-LAL59 (OHARA, 734515) / LaK9 class",
       apd: false,
       role: "Strong negative meniscus; primary diverging element for retrofocus BFD extension",
@@ -91,7 +102,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.6,
-      fl: -23.6,
+      focalLengthMm: -23.6,
       glass: "S-LAH66 (OHARA)",
       apd: false,
       role: "Strongest negative element; with L2 provides dominant retrofocus divergence",
@@ -103,7 +114,7 @@ const LENS_DATA = {
       type: "Plano-Convex",
       nd: 1.61659,
       vd: 36.6,
-      fl: 218.1,
+      focalLengthMm: 218.1,
       glass: "F4 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
       role: "Front half of split component 4; flare stop E sits in the gap after this element",
@@ -115,7 +126,7 @@ const LENS_DATA = {
       type: "Plano-Convex",
       nd: 1.61659,
       vd: 36.6,
-      fl: 686.4,
+      focalLengthMm: 686.4,
       glass: "F4 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
       role: "Rear half of split component 4; weak positive, begins reconvergence after front group",
@@ -127,7 +138,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6968,
       vd: 55.5,
-      fl: -57.96,
+      focalLengthMm: -57.96,
       glass: "S-LAL14 (OHARA, 697555) / LaK8 class",
       apd: false,
       role: "Crown negative in reversed achromat doublet (L5+L6); corrects retrofocus lateral color",
@@ -140,7 +151,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5934,
       vd: 34.8,
-      fl: 18.31,
+      focalLengthMm: 18.31,
       glass: "593348 — LF7-class light flint (no exact public catalog match)",
       apd: false,
       role: "Flint positive in reversed achromat; provides convergence and chromatic balancing",
@@ -153,7 +164,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.72,
       vd: 43.7,
-      fl: 27.93,
+      focalLengthMm: 27.93,
       glass: "S-LAM52 (OHARA, 720437) / LaF3 class",
       apd: false,
       role: "Lanthanum-flint positive in rear achromatic doublet (L7+L8)",
@@ -166,7 +177,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.84666,
       vd: 23.9,
-      fl: -15.31,
+      focalLengthMm: -15.31,
       glass: "S-NPH53 (OHARA, 847239) / SF57 class",
       apd: false,
       role: "Dense flint; strongest chromatic corrector in the system (highest nd, lowest vd)",
@@ -179,7 +190,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.713,
       vd: 53.9,
-      fl: 19.17,
+      focalLengthMm: 19.17,
       glass: "713539 — LaK21 / LAC11-class lanthanum crown (no exact public catalog match)",
       apd: false,
       role: "Strongest positive element in rear group; primary converging power toward image plane",
@@ -191,7 +202,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.72,
       vd: 50.2,
-      fl: -105.5,
+      focalLengthMm: -105.5,
       glass: "S-LAL10 (OHARA, 720502) / LaK14 class",
       apd: false,
       role: "Weak negative field corrector; flattens Petzval surface across 92° field of view",
@@ -204,44 +215,47 @@ const LENS_DATA = {
    *  Aperture stop S placed ~40% into d₁₃ gap (estimated from Fig. 7).
    *  Flare stop E gap (d₈) is a normal air space — not a separate stop surface.
    */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 43.1907, d: 3.906, nd: 1.639, elemId: 1, sd: 19.0 }, // L1 front
-    { label: "2", R: 111.153, d: 0.126, nd: 1.0, elemId: 0, sd: 19.0 }, // L1 rear → air
-    { label: "3", R: 21.3213, d: 1.3188, nd: 1.734, elemId: 2, sd: 10.5 }, // L2 front
-    { label: "4", R: 11.1252, d: 4.8846, nd: 1.0, elemId: 0, sd: 9.5 }, // L2 rear → air
-    { label: "5", R: 47.8695, d: 1.1823, nd: 1.7725, elemId: 3, sd: 8.2 }, // L3 front
-    { label: "6", R: 13.0689, d: 2.247, nd: 1.0, elemId: 0, sd: 7.2 }, // L3 rear → air
-    { label: "7", R: 134.4987, d: 3.3306, nd: 1.61659, elemId: 4, sd: 13.0 }, // L4a front
-    { label: "8", R: 1e15, d: 0.6846, nd: 1.0, elemId: 0, sd: 12.5 }, // L4a rear (flat) → air [flare stop E gap]
-    { label: "9", R: 1e15, d: 4.8846, nd: 1.61659, elemId: 5, sd: 12.5 }, // L4b front (flat)
-    { label: "10", R: -423.213, d: 0.0987, nd: 1.0, elemId: 0, sd: 12.0 }, // L4b rear → air
-    { label: "11", R: 23.2365, d: 1.4658, nd: 1.6968, elemId: 6, sd: 12.0 }, // L5 front
-    { label: "12", R: 14.368, d: 7.6188, nd: 1.5934, elemId: 7, sd: 11.0 }, // L5/L6 junction — elemId: 7 (L6)
-    { label: "13", R: -35.7399, d: 1.5, nd: 1.0, elemId: 0, sd: 11.0 }, // L6 rear → air (before STO)
-    { label: "STO", R: 1e15, d: 2.2107, nd: 1.0, elemId: 0, sd: 7.0 }, // Aperture stop S (position inferred from Fig. 7)
-    { label: "14", R: -219.765, d: 3.6918, nd: 1.72, elemId: 8, sd: 11.0 }, // L7 front
-    { label: "15", R: -18.5581, d: 1.4658, nd: 1.84666, elemId: 9, sd: 10.5 }, // L7/L8 junction — elemId: 9 (L8)
-    { label: "16", R: 44.6187, d: 2.1, nd: 1.0, elemId: 0, sd: 10.0 }, // L8 rear → air
-    { label: "17", R: 48.8187, d: 2.9295, nd: 1.713, elemId: 10, sd: 8.0 }, // L9 front
-    { label: "18", R: -18.4995, d: 0.0987, nd: 1.0, elemId: 0, sd: 8.0 }, // L9 rear → air
-    { label: "19", R: 96.5895, d: 2.9295, nd: 1.72, elemId: 11, sd: 10.0 }, // L10 front
-    { label: "20", R: 41.9706, d: 45.7904, nd: 1.0, elemId: 0, sd: 10.0 }, // L10 rear → image (BFD)
+    { label: "1", R: 43.1907, d: 3.906, sd: 19.0, medium: 1 }, // L1 front
+    { label: "2", R: 111.153, d: 0.126, sd: 19.0 }, // L1 rear → air
+    { label: "3", R: 21.3213, d: 1.3188, sd: 10.5, medium: 2 }, // L2 front
+    { label: "4", R: 11.1252, d: 4.8846, sd: 9.5 }, // L2 rear → air
+    { label: "5", R: 47.8695, d: 1.1823, sd: 8.2, medium: 3 }, // L3 front
+    { label: "6", R: 13.0689, d: 2.247, sd: 7.2 }, // L3 rear → air
+    { label: "7", R: 134.4987, d: 3.3306, sd: 13.0, medium: 4 }, // L4a front
+    { label: "8", R: "flat", d: 0.6846, sd: 12.5 }, // L4a rear (flat) → air [flare stop E gap]
+    { label: "9", R: "flat", d: 4.8846, sd: 12.5, medium: 5 }, // L4b front (flat)
+    { label: "10", R: -423.213, d: 0.0987, sd: 12.0 }, // L4b rear → air
+    { label: "11", R: 23.2365, d: 1.4658, sd: 12.0, medium: 6 }, // L5 front
+    { label: "12", R: 14.368, d: 7.6188, sd: 11.0, medium: 7 }, // L5/L6 junction — elemId: 7 (L6)
+    { label: "13", R: -35.7399, d: 1.5, sd: 11.0 }, // L6 rear → air (before STO)
+    { label: "STO", R: "flat", d: 2.2107 }, // Aperture stop S (position inferred from Fig. 7)
+    { label: "14", R: -219.765, d: 3.6918, sd: 11.0, medium: 8 }, // L7 front
+    { label: "15", R: -18.5581, d: 1.4658, sd: 10.5, medium: 9 }, // L7/L8 junction — elemId: 9 (L8)
+    { label: "16", R: 44.6187, d: 2.1, sd: 10.0 }, // L8 rear → air
+    { label: "17", R: 48.8187, d: 2.9295, sd: 8.0, medium: 10 }, // L9 front
+    { label: "18", R: -18.4995, d: 0.0987, sd: 8.0 }, // L9 rear → air
+    { label: "19", R: 96.5895, d: 2.9295, sd: 10.0, medium: 11 }, // L10 front
+    { label: "20", R: 41.9706, sd: 10.0 }, // L10 rear → image (BFD)
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.2,
+    description: "Unit focus (BFD only). Production lens uses floating elements — not modeled here.",
+  },
 
-  /* ── Variable air spacings (focus) ──
+  /* (moved from var) ── Variable air spacings (focus) ──
    *  Unit-focus approximation: only BFD changes.
    *  Production lens uses floating elements for close focus — data unavailable
    *  from this patent.  Close-focus BFD estimated via Gaussian conjugate shift
    *  at 0.20 m minimum focus distance.
    */
-  var: {
-    "20": [45.7904, 50.52],
-  },
+  gaps: { "20": { label: "BF", values: [[45.7904, 50.52]] } },
 
-  varLabels: [["20", "BF"]],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.0, fStops: [2, 2.8, 4, 5.6, 8, 11, 16] },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -249,23 +263,13 @@ const LENS_DATA = {
     { text: "L₂ FRONT CONVERGING", fromSurface: "7", toSurface: "13" },
     { text: "L₃ REAR CONVERGING", fromSurface: "14", toSurface: "20" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "11", toSurface: "13" },
     { text: "D2", fromSurface: "14", toSurface: "16" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.2,
-  focusDescription: "Unit focus (BFD only). Production lens uses floating elements — not modeled here.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.0,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  scFill: 0.45,
-  yScFill: 0.35,
-} satisfies LensDataInput;
+  layout: { scFill: 0.45, yScFill: 0.35 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

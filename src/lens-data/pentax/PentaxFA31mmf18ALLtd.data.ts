@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -28,24 +28,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "pentax-fa-31-f18-al-ltd",
   maker: "Pentax",
   name: "PENTAX FA 31mm f/1.8 AL Limited",
   subtitle: "US 6,560,042 B2 Example 3 — Pentax / Murata, Ito",
-  specs: ["9 ELEMENTS / 7 GROUPS", "f ≈ 31.8 mm", "F/1.8", "2ω ≈ 69.6°", "1 ASPHERICAL SURFACE"],
 
-  /* ── Explicit metadata fields ── */
-  focalLengthMarketing: 31,
-  focalLengthDesign: 31.8,
-  apertureMarketing: 1.8,
-  lensMounts: ["pentax-k"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 6,560,042 B2",
-  patentAuthors: ["Masayuki Murata", "Takayuki Ito"],
-  patentAssignees: ["Pentax Corporation"],
-  patentYear: 2003,
-  elementCount: 9,
-  groupCount: 7,
+  catalog: {
+    lensMounts: ["pentax-k"],
+    imageFormat: "135-full-frame",
+    specs: ["9 ELEMENTS / 7 GROUPS", "f ≈ 31.8 mm", "F/1.8", "2ω ≈ 69.6°", "1 ASPHERICAL SURFACE"],
+    elementCount: 9,
+    groupCount: 7,
+    /* ── Explicit metadata fields ── */
+    focalLengthMm: { marketing: 31, design: 31.8 },
+    fNumber: { marketing: 1.8 },
+  },
+
+  source: {
+    patentNumber: "US 6,560,042 B2",
+    patentYear: 2003,
+    authors: ["Masayuki Murata", "Takayuki Ito"],
+    assignees: ["Pentax Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -56,7 +61,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72916,
       vd: 54.7,
-      fl: +129.0,
+      focalLengthMm: +129.0,
       glass: "TAC8 / S-LAL18 (OHARA, 729547) class",
       apd: false,
       role: "Weakly positive front collector; high-index lanthanum crown reduces surface curvatures while controlling off-axis aberrations in the retrofocus front group.",
@@ -68,7 +73,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.76182,
       vd: 26.5,
-      fl: -53.1,
+      focalLengthMm: -53.1,
       glass: "S-TIH14 (OHARA)",
       apd: false,
       role: "First negative meniscus (convex to object) in front group; dense titanium flint achromatizes against the positive elements.",
@@ -80,7 +85,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.618,
       vd: 63.4,
-      fl: -51.1,
+      focalLengthMm: -51.1,
       glass: "S-PHM52 (OHARA)",
       apd: false,
       role: "Second negative meniscus completing the front group; low-dispersion phosphate crown controls lateral chromatic aberration across the wide field.",
@@ -92,7 +97,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.801,
       vd: 35.0,
-      fl: +37.5,
+      focalLengthMm: +37.5,
       glass: "S-LAM66 (OHARA)",
       apd: false,
       role: "Strong biconvex positive forming sub-group 20F; bridges the negative front group and the positive rear assembly. Part of the Fa focusing group.",
@@ -104,11 +109,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.51742,
       vd: 52.4,
-      fl: -24.3,
+      focalLengthMm: -24.3,
       glass: "S-NSL36 (OHARA; exact patent coordinate match)",
       apd: false,
-      cemented: "D1",
       role: "Negative element of the first cemented doublet D1; low-index crown paired with high-index L6 for achromatic correction in the converging rear group.",
+      cemented: "D1",
     },
     {
       id: 6,
@@ -117,11 +122,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.804,
       vd: 46.6,
-      fl: +18.8,
+      focalLengthMm: +18.8,
       glass: "S-LAH65 (OHARA)",
       apd: false,
-      cemented: "D1",
       role: "Strongest positive element in the system; high-index lanthanum crown provides the primary converging power of the rear group.",
+      cemented: "D1",
     },
     {
       id: 7,
@@ -130,11 +135,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.84666,
       vd: 23.8,
-      fl: -15.3,
+      focalLengthMm: -15.3,
       glass: "S-TIH53 (OHARA)",
       apd: false,
-      cemented: "D2",
       role: "Most strongly negative element; extra-dense titanium flint provides field flattening (Petzval correction) and efficient chromatic balancing with L8.",
+      cemented: "D2",
     },
     {
       id: 8,
@@ -143,11 +148,11 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.7275,
       vd: 40.3,
-      fl: +29.4,
+      focalLengthMm: +29.4,
       glass: "Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)",
       apd: false,
-      cemented: "D2",
       role: "Positive partner in the second cemented doublet D2; carries the single glass-molded aspherical surface on its rear face for distortion and field curvature correction.",
+      cemented: "D2",
     },
     {
       id: 9,
@@ -156,7 +161,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 49.6,
-      fl: +32.5,
+      focalLengthMm: +32.5,
       glass: "S-LAH66 (OHARA)",
       apd: false,
       role: "Rear field-flattening element with nearly plano front surface; controls exit pupil position for SLR compatibility.",
@@ -164,62 +169,62 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
-  surfaces: [
-    /* --- Group 10 (negative front group) --- */
-    { label: "1", R: 95.7, d: 4.68, nd: 1.72916, elemId: 1, sd: 24.0 }, // L1 front
-    { label: "2", R: -5402.519, d: 0.1, nd: 1.0, elemId: 0, sd: 23.5 }, // L1 rear → air
-    { label: "3", R: 195.22, d: 1.67, nd: 1.76182, elemId: 2, sd: 18.5 }, // L2 front
-    { label: "4", R: 33.385, d: 3.13, nd: 1.0, elemId: 0, sd: 15.5 }, // L2 rear → air
-    { label: "5", R: 93.0, d: 1.3, nd: 1.618, elemId: 3, sd: 15.5 }, // L3 front
-    { label: "6", R: 23.44, d: 12.29, nd: 1.0, elemId: 0, sd: 14.5 }, // L3 rear → air (large retrofocus gap)
-
-    /* --- Sub-group 20F (positive, single element) --- */
-    { label: "7", R: 38.68, d: 5.0, nd: 1.801, elemId: 4, sd: 15.5 }, // L4 front
-    { label: "8", R: -126.23, d: 5.46, nd: 1.0, elemId: 0, sd: 14.5 }, // L4 rear → air (VARIABLE: Fa–Fb gap)
-
-    /* --- Sub-group 20R (positive, 5 elements + stop) --- */
-    { label: "9", R: -43.081, d: 1.9, nd: 1.51742, elemId: 5, sd: 13.5 }, // L5 front (D1)
-    { label: "10", R: 18.044, d: 9.39, nd: 1.804, elemId: 6, sd: 13.0 }, // L5–L6 junction (D1)
-    { label: "11", R: -72.46, d: 1.2, nd: 1.0, elemId: 0, sd: 12.5 }, // L6 rear → air
-    { label: "STO", R: 1e15, d: 6.86, nd: 1.0, elemId: 0, sd: 11.1 }, // Aperture stop (9 blades)
-    { label: "12", R: -20.415, d: 1.6, nd: 1.84666, elemId: 7, sd: 10.5 }, // L7 front (D2)
-    { label: "13", R: 36.65, d: 4.74, nd: 1.7275, elemId: 8, sd: 11.0 }, // L7–L8 junction (D2)
-    { label: "14A", R: -48.519, d: 0.1, nd: 1.0, elemId: 0, sd: 11.5 }, // L8 rear → air (ASPHERICAL)
-    { label: "15", R: 1937.471, d: 4.42, nd: 1.7725, elemId: 9, sd: 12.0 }, // L9 front
-    { label: "16", R: -25.427, d: 36.9, nd: 1.0, elemId: 0, sd: 13.0 }, // L9 rear → BFD
-  ],
-
-  /* ── Aspherical coefficients ──
+  /* (moved from asph) ── Aspherical coefficients ──
    *  Single aspherical surface: surface 14A (rear face of L8).
    *  Patent convention: standard conic + even-order polynomial.
    *  K = 0 (spherical base curve); all departure from polynomial terms.
    *  Patent lists A4, A6, A8; A10 not listed (set to 0).
    */
-  asph: {
-    "14A": {
-      K: 0,
-      A4: 1.983e-5,
-      A6: 2.547e-8,
-      A8: 9.113e-13,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
+  surfaces: [
+    /* --- Group 10 (negative front group) --- */
+    { label: "1", R: 95.7, d: 4.68, sd: 24.0, medium: 1 }, // L1 front
+    { label: "2", R: -5402.519, d: 0.1, sd: 23.5 }, // L1 rear → air
+    { label: "3", R: 195.22, d: 1.67, sd: 18.5, medium: 2 }, // L2 front
+    { label: "4", R: 33.385, d: 3.13, sd: 15.5 }, // L2 rear → air
+    { label: "5", R: 93.0, d: 1.3, sd: 15.5, medium: 3 }, // L3 front
+    { label: "6", R: 23.44, d: 12.29, sd: 14.5 }, // L3 rear → air (large retrofocus gap)
+
+    /* --- Sub-group 20F (positive, single element) --- */
+    { label: "7", R: 38.68, d: 5.0, sd: 15.5, medium: 4 }, // L4 front
+    { label: "8", R: -126.23, sd: 14.5 }, // L4 rear → air (VARIABLE: Fa–Fb gap)
+
+    /* --- Sub-group 20R (positive, 5 elements + stop) --- */
+    { label: "9", R: -43.081, d: 1.9, sd: 13.5, medium: 5 }, // L5 front (D1)
+    { label: "10", R: 18.044, d: 9.39, sd: 13.0, medium: 6 }, // L5–L6 junction (D1)
+    { label: "11", R: -72.46, d: 1.2, sd: 12.5 }, // L6 rear → air
+    { label: "STO", R: "flat", d: 6.86 }, // Aperture stop (9 blades)
+    { label: "12", R: -20.415, d: 1.6, sd: 10.5, medium: 7 }, // L7 front (D2)
+    { label: "13", R: 36.65, d: 4.74, sd: 11.0, medium: 8 }, // L7–L8 junction (D2)
+    {
+      label: "14A",
+      R: -48.519,
+      d: 0.1,
+      sd: 11.5,
+      asphere: { K: 0, A4: 1.983e-5, A6: 2.547e-8, A8: 9.113e-13, A10: 0 },
+    }, // L8 rear → air (ASPHERICAL)
+    { label: "15", R: 1937.471, d: 4.42, sd: 12.0, medium: 9 }, // L9 front
+    { label: "16", R: -25.427, sd: 13.0 }, // L9 rear → BFD
+  ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.3,
+    description:
+      "Two-group differential-advance (floating) inner focus with non-linear cam. Fa (L1–L4) and Fb (L5–L9) advance toward object; Fb travels further, closing the Fa–Fb gap.",
+    // (moved from publishedStations) Patent read 2026-10-06: Close-focus gaps (d8 3.87, BF 41.88) are the US 6,560,042 Table 3 row for m = -0.155, u
+    // = 0.30 m; the patent's m = -0.070 row (4.77 / 39.15) is not authored.
+    published: [1],
   },
 
-  /* ── Variable air spacings (floating inner focus) ──
+  /* (moved from var) ── Variable air spacings (floating inner focus) ──
    *  Fa group (L1–L4) and Fb group (L5–L9) advance differentially.
    *  Gap d8 between Fa and Fb decreases; BFD (d16) increases.
    *  Ratio Xan/Xbn = 0.68 (non-linear cam, β = −0.005).
    */
-  var: {
-    "8": [5.46, 3.87],
-    "16": [36.9, 41.88],
-  },
-  varLabels: [
-    ["8", "D8"],
-    ["16", "BF"],
-  ],
+  gaps: { "8": { label: "D8", values: [[5.46, 3.87]] }, "16": { label: "BF", values: [[36.9, 41.88]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 1.8, fStops: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22], blades: 9 },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -232,22 +237,8 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "12", toSurface: "14A" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.3,
-  // Patent read 2026-10-06: Close-focus gaps (d8 3.87, BF 41.88) are the US 6,560,042 Table 3 row for m = -0.155, u
-  // = 0.30 m; the patent's m = -0.070 row (4.77 / 39.15) is not authored.
-  publishedStations: { focus: [1] },
-  focusDescription:
-    "Two-group differential-advance (floating) inner focus with non-linear cam. Fa (L1–L4) and Fb (L5–L9) advance toward object; Fb travels further, closing the Fa–Fb gap.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 1.8,
-  fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
-  apertureBlades: 9,
-
   /* ── Layout tuning ── */
-  scFill: 0.48,
-  yScFill: 0.5,
-} satisfies LensDataInput;
+  layout: { scFill: 0.48, yScFill: 0.5 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

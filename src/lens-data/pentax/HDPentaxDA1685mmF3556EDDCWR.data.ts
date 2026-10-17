@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * LENS DATA — HD PENTAX-DA 16-85mm F3.5-5.6 ED DC WR
@@ -24,13 +24,12 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * Aperture stop: the patent publishes the stop plane but not its clear diameter (Table 1 row 16 is a bare
  * plane), and Table 2 prints FNO 3.6 / 4.4 / 5.8 to one decimal. The model is one wide-open iris radius for
- * the whole zoom range (zoomApertureModel "fixed-iris"). By real marginal ray, any single radius from 7.0156
- * to 7.0716 mm gives all three printed values within their rounding. The three nominalFno values are those of
- * one real-ray iris radius at the midpoint of that interval consistent with the printed 3.6 / 4.4 / 5.8:
- * 3.5647 sizes the iris at the wide station (7.0435 mm traced; midpoint 7.0436 mm), and 4.432 / 5.776 are the
- * f-numbers that radius gives at the mid and tele stations. The STO row's sd of 6.95 mm is superseded at
- * build time by the radius traced from nominalFno[0]. No apertureDesign is set: the printed 3.6 is a one-decimal
- * rounding of the 3.5647 the model uses.
+ * the whole zoom range (zoom.apertureModel "fixed-iris"). By real marginal ray, any single radius from 7.0156
+ * to 7.0716 mm gives all three printed values within their rounding. The three nominalFNumber values are
+ * those of one real-ray iris radius at the midpoint of that interval consistent with the printed 3.6 / 4.4 /
+ * 5.8: 3.5647 sizes the iris at the wide station (7.0435 mm traced; midpoint 7.0436 mm), and 4.432 / 5.776
+ * are the f-numbers that radius gives at the mid and tele stations. No catalog.fNumber.design is set: the
+ * printed 3.6 is a one-decimal rounding of the 3.5647 the model uses.
  *
  * Semi-diameters: not published. They are modeling values derived from independent marginal/chief-ray
  * envelopes across all three zoom states, the patent Fig. 1/Fig. 4 silhouettes, and the current geometry
@@ -53,29 +52,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "hd-pentax-da-16-85mm-f35-56-ed-dc-wr",
   maker: "Pentax",
   name: "PENTAX HD DA 16-85mm f/3.5-5.6 ED DC WR",
   subtitle: "JP 2016-114800 A Example 1 — Ricoh Imaging / Yoichi Nomura",
-  specs: [
-    "16 ELEMENTS / 12 GROUPS",
-    "16-85mm f/3.5-5.6 (marketing)",
-    "16.48-82.45mm, modeled f/3.565-5.776 (Example 1)",
-    "3 ASPHERICAL SURFACES",
-    "1 PRODUCTION ED ELEMENT",
-    "APS-C / PENTAX K",
-  ],
 
-  focalLengthMarketing: [16, 85],
-  focalLengthDesign: [16.480103, 82.441997],
-  lensMounts: ["pentax-k"],
-  imageFormat: "aps-c",
-  patentNumber: "JP 2016-114800 A",
-  patentAuthors: ["Yoichi Nomura"],
-  patentAssignees: ["Ricoh Imaging Company, Ltd."],
-  patentYear: 2016,
-  elementCount: 16,
-  groupCount: 12,
+  catalog: {
+    lensMounts: ["pentax-k"],
+    imageFormat: "aps-c",
+    specs: [
+      "16 ELEMENTS / 12 GROUPS",
+      "16-85mm f/3.5-5.6 (marketing)",
+      "16.48-82.45mm, modeled f/3.565-5.776 (Example 1)",
+      "3 ASPHERICAL SURFACES",
+      "1 PRODUCTION ED ELEMENT",
+      "APS-C / PENTAX K",
+    ],
+    elementCount: 16,
+    groupCount: 12,
+    focalLengthMm: { marketing: [16, 85], design: [16.480103, 82.441997] },
+  },
+
+  source: {
+    patentNumber: "JP 2016-114800 A",
+    patentYear: 2016,
+    authors: ["Yoichi Nomura"],
+    assignees: ["Ricoh Imaging Company, Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -86,7 +90,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.8,
-      fl: -139.1918,
+      focalLengthMm: -139.1918,
       glass: "847238 (vendor-neutral optical code)",
       cemented: "D1",
     },
@@ -97,7 +101,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7725,
       vd: 49.6,
-      fl: 126.272069,
+      focalLengthMm: 126.272069,
       glass: "773496 (vendor-neutral optical code)",
       cemented: "D1",
     },
@@ -108,7 +112,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.804,
       vd: 46.6,
-      fl: 119.376823,
+      focalLengthMm: 119.376823,
       glass: "804466 (vendor-neutral optical code)",
     },
     {
@@ -118,7 +122,7 @@ const LENS_DATA = {
       type: "Aspheric Synthetic-Resin Layer",
       nd: 1.52972,
       vd: 42.7,
-      fl: -743.136801,
+      focalLengthMm: -743.136801,
       glass: "Unmatched (synthetic resin; patent nd=1.52972, vd=42.7)",
       cemented: "H21",
     },
@@ -129,7 +133,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.883,
       vd: 40.8,
-      fl: -19.418324,
+      focalLengthMm: -19.418324,
       glass: "883408 (vendor-neutral optical code)",
       cemented: "H21",
     },
@@ -140,7 +144,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7725,
       vd: 49.6,
-      fl: -24.711918,
+      focalLengthMm: -24.711918,
       glass: "773496 (vendor-neutral optical code)",
     },
     {
@@ -150,7 +154,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.76182,
       vd: 26.5,
-      fl: 25.683342,
+      focalLengthMm: 25.683342,
       glass: "762265 (vendor-neutral optical code)",
     },
     {
@@ -160,7 +164,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.804,
       vd: 46.6,
-      fl: -31.676811,
+      focalLengthMm: -31.676811,
       glass: "804466 (vendor-neutral optical code)",
       cemented: "D2",
     },
@@ -171,7 +175,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.76182,
       vd: 26.5,
-      fl: 60.788354,
+      focalLengthMm: 60.788354,
       glass: "762265 (vendor-neutral optical code)",
       cemented: "D2",
     },
@@ -182,7 +186,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.51633,
       vd: 64.1,
-      fl: 30.66729,
+      focalLengthMm: 30.66729,
       glass: "516641 (vendor-neutral optical code)",
     },
     {
@@ -192,7 +196,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.51633,
       vd: 64.1,
-      fl: 27.401008,
+      focalLengthMm: 27.401008,
       glass: "516641 (vendor-neutral optical code)",
       cemented: "D3",
     },
@@ -203,7 +207,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.79952,
       vd: 42.2,
-      fl: -31.516554,
+      focalLengthMm: -31.516554,
       glass: "800422 (vendor-neutral optical code)",
       cemented: "D3",
     },
@@ -214,7 +218,7 @@ const LENS_DATA = {
       type: "Biconcave Negative (1x Asph)",
       nd: 1.7433,
       vd: 49.3,
-      fl: -36.182304,
+      focalLengthMm: -36.182304,
       glass: "743493 (vendor-neutral optical code)",
     },
     {
@@ -224,7 +228,7 @@ const LENS_DATA = {
       type: "Biconvex Positive (1x Asph)",
       nd: 1.497,
       vd: 81.6,
-      fl: 43.228259,
+      focalLengthMm: 43.228259,
       glass: "497816 (vendor-neutral optical code)",
       apd: "patent",
       apdNote:
@@ -237,7 +241,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.618,
       vd: 63.4,
-      fl: 108.723291,
+      focalLengthMm: 108.723291,
       glass: "618634 (vendor-neutral optical code)",
       cemented: "D4",
     },
@@ -248,7 +252,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.883,
       vd: 40.8,
-      fl: -26.857313,
+      focalLengthMm: -26.857313,
       glass: "883408 (vendor-neutral optical code)",
       cemented: "D4",
     },
@@ -259,7 +263,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.53775,
       vd: 74.7,
-      fl: 34.89006,
+      focalLengthMm: 34.89006,
       glass: "538747 (vendor-neutral optical code)",
       apd: "patent",
       apdNote:
@@ -268,103 +272,115 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 345.162, d: 1.6, nd: 1.84666, elemId: 1, sd: 30.0 },
-    { label: "2", R: 87.666, d: 5.788, nd: 1.7725, elemId: 2, sd: 30.0 },
-    { label: "3", R: 840.691, d: 0.15, nd: 1.0, elemId: 0, sd: 30.0 },
-    { label: "4", R: 60.115, d: 4.797, nd: 1.804, elemId: 3, sd: 24.0 },
-    { label: "5", R: 155.158, d: 2.523, nd: 1.0, elemId: 0, sd: 24.0 },
-    { label: "6A", R: 54.995, d: 0.2, nd: 1.52972, elemId: 4, sd: 13.1 },
-    { label: "7", R: 48.193, d: 1.25, nd: 1.883, elemId: 5, sd: 13.1 },
-    { label: "8", R: 12.493, d: 7.732, nd: 1.0, elemId: 0, sd: 11.0 },
-    { label: "9", R: -29.668, d: 1.2, nd: 1.7725, elemId: 6, sd: 9.5 },
-    { label: "10", R: 54.485, d: 0.469, nd: 1.0, elemId: 0, sd: 9.5 },
-    { label: "11", R: 34.364, d: 4.255, nd: 1.76182, elemId: 7, sd: 9.75 },
-    { label: "12", R: -43.004, d: 0.579, nd: 1.0, elemId: 0, sd: 9.75 },
-    { label: "13", R: -30.485, d: 1.2, nd: 1.804, elemId: 8, sd: 9.75 },
-    { label: "14", R: 157.473, d: 3.076, nd: 1.76182, elemId: 9, sd: 9.75 },
-    { label: "15", R: -65.048, d: 25.03, nd: 1.0, elemId: 0, sd: 9.75 },
-    { label: "STO", R: 1e15, d: 0.8, nd: 1.0, elemId: 0, sd: 6.95 },
-    { label: "17", R: 30.478, d: 4.95, nd: 1.51633, elemId: 10, sd: 8.5 },
-    { label: "18", R: -31.134, d: 0.15, nd: 1.0, elemId: 0, sd: 8.5 },
-    { label: "19", R: 32.939, d: 4.33, nd: 1.51633, elemId: 11, sd: 8.5 },
-    { label: "20", R: -23.69, d: 1.2, nd: 1.79952, elemId: 12, sd: 8.5 },
-    { label: "21", R: -404.729, d: 2.261, nd: 1.0, elemId: 0, sd: 8.5 },
-    { label: "22A", R: -28.209, d: 1.2, nd: 1.7433, elemId: 13, sd: 9.0 },
-    { label: "23", R: 587.53, d: 7.451, nd: 1.0, elemId: 0, sd: 9.0 },
-    { label: "24", R: 30.626, d: 4.787, nd: 1.497, elemId: 14, sd: 10.0 },
-    { label: "25A", R: -68.242, d: 0.15, nd: 1.0, elemId: 0, sd: 10.0 },
-    { label: "26", R: 342.777, d: 2.426, nd: 1.618, elemId: 15, sd: 10.5 },
-    { label: "27", R: -83.347, d: 1.2, nd: 1.883, elemId: 16, sd: 10.5 },
-    { label: "28", R: 33.37, d: 2.01, nd: 1.0, elemId: 0, sd: 10.5 },
-    { label: "29", R: 117.624, d: 5.226, nd: 1.53775, elemId: 17, sd: 11.0 },
-    { label: "30", R: -21.976, d: 38.99, nd: 1.0, elemId: 0, sd: 11.0 },
+    { label: "1", R: 345.162, d: 1.6, sd: 30.0, medium: 1 },
+    { label: "2", R: 87.666, d: 5.788, sd: 30.0, medium: 2 },
+    { label: "3", R: 840.691, d: 0.15, sd: 30.0 },
+    { label: "4", R: 60.115, d: 4.797, sd: 24.0, medium: 3 },
+    { label: "5", R: 155.158, sd: 24.0 },
+    {
+      label: "6A",
+      R: 54.995,
+      d: 0.2,
+      sd: 13.1,
+      medium: 4,
+      asphere: { K: 0, A4: 1.598e-5, A6: -2.837e-8, A8: -5.046e-12, A10: 6.249e-14 },
+    },
+    { label: "7", R: 48.193, d: 1.25, sd: 13.1, medium: 5 },
+    { label: "8", R: 12.493, d: 7.732, sd: 11.0 },
+    { label: "9", R: -29.668, d: 1.2, sd: 9.5, medium: 6 },
+    { label: "10", R: 54.485, d: 0.469, sd: 9.5 },
+    { label: "11", R: 34.364, d: 4.255, sd: 9.75, medium: 7 },
+    { label: "12", R: -43.004, d: 0.579, sd: 9.75 },
+    { label: "13", R: -30.485, d: 1.2, sd: 9.75, medium: 8 },
+    { label: "14", R: 157.473, d: 3.076, sd: 9.75, medium: 9 },
+    { label: "15", R: -65.048, sd: 9.75 },
+    { label: "STO", R: "flat", d: 0.8 },
+    { label: "17", R: 30.478, d: 4.95, sd: 8.5, medium: 10 },
+    { label: "18", R: -31.134, d: 0.15, sd: 8.5 },
+    { label: "19", R: 32.939, d: 4.33, sd: 8.5, medium: 11 },
+    { label: "20", R: -23.69, d: 1.2, sd: 8.5, medium: 12 },
+    { label: "21", R: -404.729, d: 2.261, sd: 8.5 },
+    {
+      label: "22A",
+      R: -28.209,
+      d: 1.2,
+      sd: 9.0,
+      medium: 13,
+      asphere: { K: 0, A4: 1.291e-5, A6: -4.793e-9, A8: -2.705e-11, A10: 0 },
+    },
+    { label: "23", R: 587.53, sd: 9.0 },
+    { label: "24", R: 30.626, d: 4.787, sd: 10.0, medium: 14 },
+    {
+      label: "25A",
+      R: -68.242,
+      d: 0.15,
+      sd: 10.0,
+      asphere: { K: 0, A4: 4.185e-5, A6: -4.956e-8, A8: 7.569e-11, A10: -7.196e-13 },
+    },
+    { label: "26", R: 342.777, d: 2.426, sd: 10.5, medium: 15 },
+    { label: "27", R: -83.347, d: 1.2, sd: 10.5, medium: 16 },
+    { label: "28", R: 33.37, d: 2.01, sd: 10.5 },
+    { label: "29", R: 117.624, d: 5.226, sd: 11.0, medium: 17 },
+    { label: "30", R: -21.976, sd: 11.0 },
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {
-    "6A": {
-      K: 0,
-      A4: 1.598e-5,
-      A6: -2.837e-8,
-      A8: -5.046e-12,
-      A10: 6.249e-14,
-      A12: 0,
-      A14: 0,
+  zoom: {
+    /* (moved from nominalFno) ── Aperture configuration ── */
+    stations: [
+      { focalLengthMm: 16.48, nominalFNumber: 3.5647, label: "Wide" },
+      { focalLengthMm: 35.0, nominalFNumber: 4.432 },
+      { focalLengthMm: 82.45, nominalFNumber: 5.776, label: "Tele" },
+    ],
+    apertureModel: "fixed-iris",
+  },
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.35,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION: JP 2016-114800 A Example 1 publishes infinity-focus zoom states only; " +
+      "the production 0.35 m MFD is metadata and does not define internal focus travel.",
+  },
+
+  /* (moved from var) ── Zoom-only variable air spacings; no close-focus reconstruction ── */
+  gaps: {
+    "5": {
+      label: "D5",
+      values: [
+        [2.523, 2.523],
+        [22.037, 22.037],
+        [44.543, 44.543],
+      ],
     },
-    "22A": {
-      K: 0,
-      A4: 1.291e-5,
-      A6: -4.793e-9,
-      A8: -2.705e-11,
-      A10: 0,
-      A12: 0,
-      A14: 0,
+    "15": {
+      label: "D15",
+      values: [
+        [25.03, 25.03],
+        [10.55, 10.55],
+        [1.825, 1.825],
+      ],
     },
-    "25A": {
-      K: 0,
-      A4: 4.185e-5,
-      A6: -4.956e-8,
-      A8: 7.569e-11,
-      A10: -7.196e-13,
-      A12: 0,
-      A14: 0,
+    "23": {
+      label: "D23",
+      values: [
+        [7.451, 7.451],
+        [3.24, 3.24],
+        [1.5, 1.5],
+      ],
+    },
+    "30": {
+      label: "BF",
+      values: [
+        [38.99, 38.99],
+        [57.54, 57.54],
+        [83.47, 83.47],
+      ],
     },
   },
 
-  /* ── Zoom-only variable air spacings; no close-focus reconstruction ── */
-  var: {
-    "5": [
-      [2.523, 2.523],
-      [22.037, 22.037],
-      [44.543, 44.543],
-    ],
-    "15": [
-      [25.03, 25.03],
-      [10.55, 10.55],
-      [1.825, 1.825],
-    ],
-    "23": [
-      [7.451, 7.451],
-      [3.24, 3.24],
-      [1.5, 1.5],
-    ],
-    "30": [
-      [38.99, 38.99],
-      [57.54, 57.54],
-      [83.47, 83.47],
-    ],
-  },
-
-  varLabels: [
-    ["5", "D5"],
-    ["15", "D15"],
-    ["23", "D23"],
-    ["30", "BF"],
-  ],
-
-  zoomPositions: [16.48, 35.0, 82.45],
-  zoomLabels: ["Wide", "Tele"],
+  aperture: { fStops: [3.5, 4, 5.6, 8, 11, 16, 22], blades: 7 },
 
   /* ── Group and cemented/hybrid annotations ── */
   groups: [
@@ -373,7 +389,6 @@ const LENS_DATA = {
     { text: "G3 (+)", fromSurface: "17", toSurface: "23" },
     { text: "G4 (+)", fromSurface: "24", toSurface: "30" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "1", toSurface: "3" },
     { text: "H21", fromSurface: "6A", toSurface: "8" },
@@ -382,20 +397,8 @@ const LENS_DATA = {
     { text: "D4", fromSurface: "26", toSurface: "28" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.35,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: JP 2016-114800 A Example 1 publishes infinity-focus zoom states only; " +
-    "the production 0.35 m MFD is metadata and does not define internal focus travel.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: [3.5647, 4.432, 5.776],
-  zoomApertureModel: "fixed-iris",
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
-  apertureBlades: 7,
-
   /* ── Layout ── */
-  yScFill: 0.32,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.32 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

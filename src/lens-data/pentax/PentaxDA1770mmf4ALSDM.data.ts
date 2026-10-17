@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -27,9 +27,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  proportions; exact meridional tracing of the full-field chief ray, full     ║
  * ║  axial marginal ray, and default 0.6-field bundle at all zoom states sets    ║
  * ║  the clearance floor. The result is checked for edge thickness, actual rim  ║
- * ║  slope, cross-gap intrusion, and off-axis containment. The STO              ║
- * ║  sd stores the exact wide-state f/4.1 result; runtime zoom construction      ║
- * ║  resolves the larger middle/tele stop openings from nominalFno.              ║
+ * ║  slope, cross-gap intrusion, and off-axis containment. The stop radius is   ║
+ * ║  derived from the design f-number at each station, including the wide-state ║
+ * ║  f/4.1 target; the middle and tele openings are larger.                     ║
  * ║  L3 (surfaces 4/5) was raised to the 24.4 mm rim Figure 13 draws, which    ║
  * ║  passes the traced chief ray to the APS-C corner at every zoom state       ║
  * ║  (2026-09-24 field-coverage audit).                                        ║
@@ -40,30 +40,34 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "pentax-da-17-70mm-f4-al-if-sdm",
   maker: "Pentax",
   name: "PENTAX SMC DA 17-70mm f/4 AL [IF] SDM",
   subtitle: "US 7,804,652 B2 EMBODIMENT 4 — STRONG PRODUCTION CORRELATION",
-  specs: [
-    "17 ELEMENTS / 12 GROUPS",
-    "DESIGN 17.50–67.89 mm",
-    "F/4.1 MODELED",
-    "2ω = 80.6°–23.2°",
-    "2 HYBRID ASPHERICAL ELEMENTS",
-  ],
 
-  focalLengthMarketing: [17, 70],
-  focalLengthDesign: [17.5006, 67.8703],
-  apertureMarketing: 4,
-  apertureDesign: 4.1,
-  lensMounts: ["pentax-k"],
-  imageFormat: "aps-c",
-  patentNumber: "US 7,804,652 B2",
-  patentAuthors: ["Masakazu Saori"],
-  patentAssignees: ["Hoya Corporation"],
-  patentYear: 2010,
-  elementCount: 17,
-  groupCount: 12,
+  catalog: {
+    lensMounts: ["pentax-k"],
+    imageFormat: "aps-c",
+    specs: [
+      "17 ELEMENTS / 12 GROUPS",
+      "DESIGN 17.50–67.89 mm",
+      "F/4.1 MODELED",
+      "2ω = 80.6°–23.2°",
+      "2 HYBRID ASPHERICAL ELEMENTS",
+    ],
+    elementCount: 17,
+    groupCount: 12,
+    focalLengthMm: { marketing: [17, 70], design: [17.5006, 67.8703] },
+    fNumber: { marketing: 4, design: 4.1 },
+  },
+
+  source: {
+    patentNumber: "US 7,804,652 B2",
+    patentYear: 2010,
+    authors: ["Masakazu Saori"],
+    assignees: ["Hoya Corporation"],
+  },
 
   elements: [
     {
@@ -73,7 +77,7 @@ const LENS_DATA = {
       type: "Negative Meniscus, convex to object",
       nd: 1.84666,
       vd: 23.8,
-      fl: -172.3482,
+      focalLengthMm: -172.3482,
       glass: "847238 — dense flint (vendor unresolved)",
       cemented: "D1",
     },
@@ -84,7 +88,7 @@ const LENS_DATA = {
       type: "Positive Meniscus, convex to object",
       nd: 1.713,
       vd: 53.9,
-      fl: 138.6423,
+      focalLengthMm: 138.6423,
       glass: "713539 — LAC8/S-LAL8-class lanthanum crown (code equivalent)",
       cemented: "D1",
     },
@@ -95,7 +99,7 @@ const LENS_DATA = {
       type: "Positive Meniscus, convex to object",
       nd: 1.7725,
       vd: 49.6,
-      fl: 115.278,
+      focalLengthMm: 115.278,
       glass: "773496 — high-index lanthanum flint (vendor unresolved)",
     },
     {
@@ -105,7 +109,7 @@ const LENS_DATA = {
       type: "Hybrid Resin Negative Meniscus (1× Asph)",
       nd: 1.527,
       vd: 43.7,
-      fl: -341.4156,
+      focalLengthMm: -341.4156,
       glass: "Unmatched (hybrid aspherical resin nd=1.52700, vd=43.7)",
       cemented: "H1",
     },
@@ -116,7 +120,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.804,
       vd: 46.6,
-      fl: -21.8019,
+      focalLengthMm: -21.8019,
       glass: "804466 — high-index lanthanum flint (vendor unresolved)",
       cemented: "H1",
     },
@@ -127,7 +131,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.804,
       vd: 46.6,
-      fl: -34.721,
+      focalLengthMm: -34.721,
       glass: "804466 — high-index lanthanum flint (vendor unresolved)",
     },
     {
@@ -137,7 +141,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.834,
       vd: 37.2,
-      fl: -79.9033,
+      focalLengthMm: -79.9033,
       glass: "834372 — dense lanthanum flint (vendor unresolved)",
     },
     {
@@ -147,7 +151,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5927,
       vd: 35.3,
-      fl: 26.5302,
+      focalLengthMm: 26.5302,
       glass: "593353 — flint (vendor unresolved)",
     },
     {
@@ -157,7 +161,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.804,
       vd: 46.6,
-      fl: -22.5496,
+      focalLengthMm: -22.5496,
       glass: "804466 — high-index lanthanum flint (vendor unresolved)",
       cemented: "D2",
     },
@@ -168,7 +172,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.78472,
       vd: 25.7,
-      fl: 41.1325,
+      focalLengthMm: 41.1325,
       glass: "785257 — dense flint (vendor unresolved)",
       cemented: "D2",
     },
@@ -179,7 +183,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.56732,
       vd: 42.8,
-      fl: 32.9268,
+      focalLengthMm: 32.9268,
       glass: "567428 — light flint (vendor unresolved)",
     },
     {
@@ -189,7 +193,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.58913,
       vd: 61.2,
-      fl: 23.48,
+      focalLengthMm: 23.48,
       glass: "589612 — barium crown (vendor unresolved)",
       cemented: "D3",
     },
@@ -200,7 +204,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80518,
       vd: 25.4,
-      fl: -25.579,
+      focalLengthMm: -25.579,
       glass: "805254 — dense flint (vendor unresolved)",
       cemented: "D3",
     },
@@ -211,7 +215,7 @@ const LENS_DATA = {
       type: "Positive Meniscus, convex to image",
       nd: 1.84666,
       vd: 23.8,
-      fl: 28.2004,
+      focalLengthMm: 28.2004,
       glass: "847238 — dense flint (vendor unresolved)",
       cemented: "D4",
     },
@@ -222,7 +226,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.804,
       vd: 46.6,
-      fl: -17.4062,
+      focalLengthMm: -17.4062,
       glass: "804466 — high-index lanthanum flint (vendor unresolved)",
       cemented: "D4",
     },
@@ -233,7 +237,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.2,
-      fl: 40.0198,
+      focalLengthMm: 40.0198,
       glass: "487702 — fluor crown (vendor unresolved)",
     },
     {
@@ -243,7 +247,7 @@ const LENS_DATA = {
       type: "Hybrid Resin Positive Meniscus (1× Asph)",
       nd: 1.52972,
       vd: 42.7,
-      fl: 401.1494,
+      focalLengthMm: 401.1494,
       glass: "Unmatched (hybrid aspherical resin nd=1.52972, vd=42.7)",
       cemented: "H2",
     },
@@ -254,7 +258,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80518,
       vd: 25.4,
-      fl: -37.5119,
+      focalLengthMm: -37.5119,
       glass: "805254 — dense flint (vendor unresolved)",
       cemented: "H2",
     },
@@ -265,111 +269,125 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.2,
-      fl: 36.4522,
+      focalLengthMm: 36.4522,
       glass: "487702 — fluor crown (vendor unresolved)",
       cemented: "H2",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 285.09, d: 1.8, nd: 1.84666, elemId: 1, sd: 26.0 },
-    { label: "2", R: 96.239, d: 5.19, nd: 1.713, elemId: 2, sd: 24.5 },
-    { label: "3", R: 3559.161, d: 0.1, nd: 1.0, elemId: 0, sd: 23.0 },
-    { label: "4", R: 49.493, d: 5.49, nd: 1.7725, elemId: 3, sd: 24.4 },
-    { label: "5", R: 106.028, d: 3.1, nd: 1.0, elemId: 0, sd: 24.4 },
+    { label: "1", R: 285.09, d: 1.8, sd: 26.0, medium: 1 },
+    { label: "2", R: 96.239, d: 5.19, sd: 24.5, medium: 2 },
+    { label: "3", R: 3559.161, d: 0.1, sd: 23.0 },
+    { label: "4", R: 49.493, d: 5.49, sd: 24.4, medium: 3 },
+    { label: "5", R: 106.028, sd: 24.4 },
 
-    { label: "6A", R: 199.217, d: 0.1, nd: 1.527, elemId: 4, sd: 13.2 },
-    { label: "7", R: 94.524, d: 1.2, nd: 1.804, elemId: 5, sd: 13.2 },
-    { label: "8", R: 14.703, d: 5.47, nd: 1.0, elemId: 0, sd: 10.4 },
-    { label: "9", R: -91.784, d: 1.0, nd: 1.804, elemId: 6, sd: 9.5 },
-    { label: "10", R: 40.312, d: 1.27, nd: 1.0, elemId: 0, sd: 9.0 },
-    { label: "11", R: -792.605, d: 0.9, nd: 1.834, elemId: 7, sd: 8.8 },
-    { label: "12", R: 72.794, d: 0.15, nd: 1.0, elemId: 0, sd: 8.7 },
-    { label: "13", R: 30.191, d: 6.49, nd: 1.5927, elemId: 8, sd: 8.7 },
-    { label: "14", R: -30.191, d: 1.04, nd: 1.0, elemId: 0, sd: 7.8 },
-    { label: "15", R: -18.411, d: 1.0, nd: 1.804, elemId: 9, sd: 7.8 },
-    { label: "16", R: 1216.028, d: 2.3, nd: 1.78472, elemId: 10, sd: 8.5 },
-    { label: "17", R: -33.13, d: 16.92, nd: 1.0, elemId: 0, sd: 8.9 },
+    {
+      label: "6A",
+      R: 199.217,
+      d: 0.1,
+      sd: 13.2,
+      medium: 4,
+      asphere: { K: 0, A4: 2.3425e-5, A6: -5.5109e-8, A8: 1.3114e-10 },
+    },
+    { label: "7", R: 94.524, d: 1.2, sd: 13.2, medium: 5 },
+    { label: "8", R: 14.703, d: 5.47, sd: 10.4 },
+    { label: "9", R: -91.784, d: 1.0, sd: 9.5, medium: 6 },
+    { label: "10", R: 40.312, d: 1.27, sd: 9.0 },
+    { label: "11", R: -792.605, d: 0.9, sd: 8.8, medium: 7 },
+    { label: "12", R: 72.794, d: 0.15, sd: 8.7 },
+    { label: "13", R: 30.191, d: 6.49, sd: 8.7, medium: 8 },
+    { label: "14", R: -30.191, d: 1.04, sd: 7.8 },
+    { label: "15", R: -18.411, d: 1.0, sd: 7.8, medium: 9 },
+    { label: "16", R: 1216.028, d: 2.3, sd: 8.5, medium: 10 },
+    { label: "17", R: -33.13, sd: 8.9 },
 
-    { label: "18", R: 48.029, d: 3.67, nd: 1.56732, elemId: 11, sd: 9.7 },
-    { label: "19", R: -29.724, d: 0.1, nd: 1.0, elemId: 0, sd: 9.8 },
-    { label: "20", R: 32.462, d: 4.53, nd: 1.58913, elemId: 12, sd: 9.7 },
-    { label: "21", R: -22.857, d: 1.0, nd: 1.80518, elemId: 13, sd: 9.5 },
-    { label: "22", R: 212.245, d: 1.41, nd: 1.0, elemId: 0, sd: 9.3 },
-    { label: "STO", R: 1e15, d: 2.56, nd: 1.0, elemId: 0, sd: 4.997425 },
+    { label: "18", R: 48.029, d: 3.67, sd: 9.7, medium: 11 },
+    { label: "19", R: -29.724, d: 0.1, sd: 9.8 },
+    { label: "20", R: 32.462, d: 4.53, sd: 9.7, medium: 12 },
+    { label: "21", R: -22.857, d: 1.0, sd: 9.5, medium: 13 },
+    { label: "22", R: 212.245, d: 1.41, sd: 9.3 },
+    { label: "STO", R: "flat" },
 
-    { label: "23", R: -31.431, d: 2.8, nd: 1.84666, elemId: 14, sd: 8.3 },
-    { label: "24", R: -14.123, d: 1.0, nd: 1.804, elemId: 15, sd: 8.5 },
-    { label: "25", R: 1587.5, d: 13.39, nd: 1.0, elemId: 0, sd: 8.9 },
+    { label: "23", R: -31.431, d: 2.8, sd: 8.3, medium: 14 },
+    { label: "24", R: -14.123, d: 1.0, sd: 8.5, medium: 15 },
+    { label: "25", R: 1587.5, sd: 8.9 },
 
-    { label: "26", R: 43.935, d: 4.56, nd: 1.48749, elemId: 16, sd: 11.0 },
-    { label: "27", R: -33.898, d: 0.1, nd: 1.0, elemId: 0, sd: 11.2 },
-    { label: "28A", R: -7107.317, d: 0.1, nd: 1.52972, elemId: 17, sd: 11.2 },
-    { label: "29", R: -206.329, d: 1.0, nd: 1.80518, elemId: 18, sd: 11.2 },
-    { label: "30", R: 35.46, d: 5.23, nd: 1.48749, elemId: 19, sd: 11.3 },
-    { label: "31", R: -33.899, d: 39.04, nd: 1.0, elemId: 0, sd: 11.5 },
+    { label: "26", R: 43.935, d: 4.56, sd: 11.0, medium: 16 },
+    { label: "27", R: -33.898, d: 0.1, sd: 11.2 },
+    {
+      label: "28A",
+      R: -7107.317,
+      d: 0.1,
+      sd: 11.2,
+      medium: 17,
+      asphere: { K: 0, A4: -1.9525e-5, A6: -9.1623e-9, A8: 0 },
+    },
+    { label: "29", R: -206.329, d: 1.0, sd: 11.2, medium: 18 },
+    { label: "30", R: 35.46, d: 5.23, sd: 11.3, medium: 19 },
+    { label: "31", R: -33.899, sd: 11.5 },
   ],
 
-  asph: {
-    "6A": {
-      K: 0,
-      A4: 2.3425e-5,
-      A6: -5.5109e-8,
-      A8: 1.3114e-10,
-      A10: 0,
-      A12: 0,
-      A14: 0,
+  zoom: {
+    stations: [
+      { focalLengthMm: 17.5, label: "Wide" },
+      { focalLengthMm: 35.0 },
+      { focalLengthMm: 67.89, label: "Tele" },
+    ],
+    step: 0.004,
+  },
+
+  focus: {
+    closeFocusM: 0.28,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION: the production lens uses inner focusing, but Embodiment 4 publishes only " +
+      "infinity zoom states. Focus endpoint spacings are intentionally identical at every zoom position.",
+  },
+
+  gaps: {
+    "5": {
+      label: "D5",
+      values: [
+        [3.1, 3.1],
+        [18.13, 18.13],
+        [33.7, 33.7],
+      ],
     },
-    "28A": {
-      K: 0,
-      A4: -1.9525e-5,
-      A6: -9.1623e-9,
-      A8: 0,
-      A10: 0,
-      A12: 0,
-      A14: 0,
+    "17": {
+      label: "D17",
+      values: [
+        [16.92, 16.92],
+        [6.68, 6.68],
+        [1.0, 1.0],
+      ],
+    },
+    STO: {
+      label: "D22 − 1.41",
+      values: [
+        [2.56, 2.56],
+        [10.32, 10.32],
+        [14.93, 14.93],
+      ],
+    },
+    "25": {
+      label: "D25",
+      values: [
+        [13.39, 13.39],
+        [5.62, 5.62],
+        [1.0, 1.0],
+      ],
+    },
+    "31": {
+      label: "BF",
+      values: [
+        [39.04, 39.04],
+        [49.45, 49.45],
+        [64.38, 64.38],
+      ],
     },
   },
 
-  var: {
-    "5": [
-      [3.1, 3.1],
-      [18.13, 18.13],
-      [33.7, 33.7],
-    ],
-    "17": [
-      [16.92, 16.92],
-      [6.68, 6.68],
-      [1.0, 1.0],
-    ],
-    STO: [
-      [2.56, 2.56],
-      [10.32, 10.32],
-      [14.93, 14.93],
-    ],
-    "25": [
-      [13.39, 13.39],
-      [5.62, 5.62],
-      [1.0, 1.0],
-    ],
-    "31": [
-      [39.04, 39.04],
-      [49.45, 49.45],
-      [64.38, 64.38],
-    ],
-  },
-
-  varLabels: [
-    ["5", "D5"],
-    ["17", "D17"],
-    ["STO", "D22 − 1.41"],
-    ["25", "D25"],
-    ["31", "BF"],
-  ],
-
-  zoomPositions: [17.5, 35.0, 67.89],
-  zoomStep: 0.004,
-  zoomLabels: ["Wide", "Tele"],
+  aperture: { nominalFNumber: 4.1, fStops: [4.1, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 7 },
 
   groups: [
     { text: "G1 (+)", fromSurface: "1", toSurface: "5" },
@@ -378,7 +396,6 @@ const LENS_DATA = {
     { text: "G4 (−)", fromSurface: "23", toSurface: "25" },
     { text: "G5 (+)", fromSurface: "26", toSurface: "31" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "1", toSurface: "3" },
     { text: "H1", fromSurface: "6A", toSurface: "8" },
@@ -388,18 +405,7 @@ const LENS_DATA = {
     { text: "H2", fromSurface: "28A", toSurface: "31" },
   ],
 
-  closeFocusM: 0.28,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: the production lens uses inner focusing, but Embodiment 4 publishes only " +
-    "infinity zoom states. Focus endpoint spacings are intentionally identical at every zoom position.",
-
-  nominalFno: 4.1,
-  fstopSeries: [4.1, 5.6, 8, 11, 16, 22],
-  apertureBlades: 7,
-  maxFstop: 22,
-
-  scFill: 0.62,
-  yScFill: 0.46,
-} satisfies LensDataInput;
+  layout: { scFill: 0.62, yScFill: 0.46 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

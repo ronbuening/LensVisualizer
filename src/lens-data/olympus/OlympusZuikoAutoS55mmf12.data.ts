@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -39,24 +39,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "olympus-zuiko-auto-s-55-f12",
   maker: "Olympus",
   name: "OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2",
   subtitle: "US 3,743,387 — Jihei Nakagawa / Olympus Optical Co.",
-  specs: ["7 ELEMENTS / 6 GROUPS", "f ≈ 55.0 mm", "F/1.2", "2ω = 43°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata fields ── */
-  focalLengthMarketing: 55,
-  focalLengthDesign: 55.0,
-  apertureMarketing: 1.2,
-  lensMounts: ["olympus-om"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,743,387",
-  patentAuthors: ["Jihei Nakagawa"],
-  patentAssignees: ["Olympus Optical Co., Ltd."],
-  patentYear: 1973,
-  elementCount: 7,
-  groupCount: 6,
+  catalog: {
+    lensMounts: ["olympus-om"],
+    imageFormat: "135-full-frame",
+    specs: ["7 ELEMENTS / 6 GROUPS", "f ≈ 55.0 mm", "F/1.2", "2ω = 43°", "ALL SPHERICAL"],
+    elementCount: 7,
+    groupCount: 6,
+    /* ── Explicit metadata fields ── */
+    focalLengthMm: { marketing: 55, design: 55.0 },
+    fNumber: { marketing: 1.2 },
+  },
+
+  source: {
+    patentNumber: "US 3,743,387",
+    patentYear: 1973,
+    authors: ["Jihei Nakagawa"],
+    assignees: ["Olympus Optical Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -67,7 +72,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.803,
       vd: 46.6,
-      fl: 66.8,
+      focalLengthMm: 66.8,
       glass: "LaSF (S-LAH65 family, OHARA)",
       apd: false,
       role: "Front collector — strong positive power, begins converging the marginal bundle",
@@ -79,7 +84,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.8061,
       vd: 40.8,
-      fl: 79.9,
+      focalLengthMm: 79.9,
       glass: "LaSF (S-LAH53 equivalent, OHARA)",
       apd: false,
       role: "Secondary convergence with mildly flint-like dispersion for chromatic balancing",
@@ -91,7 +96,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7618,
       vd: 27.1,
-      fl: -33.2,
+      focalLengthMm: -33.2,
       glass: "PBH25 (OHARA catalog-equivalent; patent supplier unspecified)",
       apd: false,
       role: "Pre-stop diverger — primary SA corrector, strongest negative element in front group",
@@ -103,11 +108,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7283,
       vd: 28.5,
-      fl: -30.5,
+      focalLengthMm: -30.5,
       glass: "SF (S-TIH10 equivalent, OHARA / SF10 SCHOTT)",
       apd: false,
-      cemented: "D1",
       role: "Post-stop flint — most powerful individual element; cemented to L5",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -116,11 +121,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.755,
       vd: 52.4,
-      fl: 51.0,
+      focalLengthMm: 51.0,
       glass: "K-LaSKn1 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
-      cemented: "D1",
       role: "Positive crown in cemented doublet — chromatic corrector with L4",
+      cemented: "D1",
     },
     {
       id: 6,
@@ -129,7 +134,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.713,
       vd: 53.9,
-      fl: 62.3,
+      focalLengthMm: 62.3,
       glass: "LaK (N-LAK8 family, SCHOTT / LAC8 HOYA)",
       apd: false,
       role: "Rear converging element — strong positive power, lanthanum crown for low chromatism",
@@ -141,7 +146,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.713,
       vd: 53.9,
-      fl: 104.1,
+      focalLengthMm: 104.1,
       glass: "LaK (N-LAK8 family, SCHOTT / LAC8 HOYA)",
       apd: false,
       role: "Final convergence — nearly plano-convex, field curvature correction; same glass as L6",
@@ -149,33 +154,33 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 39.4075, d: 6.0665, nd: 1.803, elemId: 1, sd: 23.0 },
-    { label: "2", R: 138.259, d: 0.1155, nd: 1.0, elemId: 0, sd: 21.5 },
-    { label: "3", R: 25.861, d: 4.895, nd: 1.8061, elemId: 2, sd: 19.5 },
-    { label: "4", R: 39.567, d: 1.9085, nd: 1.0, elemId: 0, sd: 19.0 },
-    { label: "5", R: 47.6465, d: 1.76, nd: 1.7618, elemId: 3, sd: 14.5 },
-    { label: "6", R: 16.2635, d: 10.3243, nd: 1.0, elemId: 0, sd: 14.5 },
+    { label: "1", R: 39.4075, d: 6.0665, sd: 23.0, medium: 1 },
+    { label: "2", R: 138.259, d: 0.1155, sd: 21.5 },
+    { label: "3", R: 25.861, d: 4.895, sd: 19.5, medium: 2 },
+    { label: "4", R: 39.567, d: 1.9085, sd: 19.0 },
+    { label: "5", R: 47.6465, d: 1.76, sd: 14.5, medium: 3 },
+    { label: "6", R: 16.2635, d: 10.3243, sd: 14.5 },
     // STO position estimated from Fig. 1 at ~55% of the d₆ air gap (18.77 mm).
-    { label: "STO", R: 1e15, d: 8.4472, nd: 1.0, elemId: 0, sd: 15.1 },
-    { label: "7", R: -17.9685, d: 1.76, nd: 1.7283, elemId: 4, sd: 14.5 },
-    { label: "8", R: -97.7955, d: 7.634, nd: 1.755, elemId: 5, sd: 15.0 },
-    { label: "9", R: -28.5615, d: 0.099, nd: 1.0, elemId: 0, sd: 17.0 },
-    { label: "10", R: -101.167, d: 5.577, nd: 1.713, elemId: 6, sd: 17.0 },
-    { label: "11", R: -31.5755, d: 0.1155, nd: 1.0, elemId: 0, sd: 17.5 },
-    { label: "12", R: 80.6025, d: 3.4265, nd: 1.713, elemId: 7, sd: 17.0 },
-    { label: "13", R: -917.224, d: 37.95, nd: 1.0, elemId: 0, sd: 16.5 },
+    { label: "STO", R: "flat", d: 8.4472 },
+    { label: "7", R: -17.9685, d: 1.76, sd: 14.5, medium: 4 },
+    { label: "8", R: -97.7955, d: 7.634, sd: 15.0, medium: 5 },
+    { label: "9", R: -28.5615, d: 0.099, sd: 17.0 },
+    { label: "10", R: -101.167, d: 5.577, sd: 17.0, medium: 6 },
+    { label: "11", R: -31.5755, d: 0.1155, sd: 17.5 },
+    { label: "12", R: 80.6025, d: 3.4265, sd: 17.0, medium: 7 },
+    { label: "13", R: -917.224, sd: 16.5 },
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: { closeFocusM: 0.45, description: "Unit focus — entire optical assembly moves forward on straight helicoid." },
 
-  /* ── Variable air spacings (unit focus — BFD changes) ── */
-  var: {
-    "13": [37.95, 46.59],
-  },
+  /* (moved from var) ── Variable air spacings (unit focus — BFD changes) ── */
+  gaps: { "13": { label: "BF", values: [[37.95, 46.59]] } },
 
-  varLabels: [["13", "BF"]],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 1.2, fStops: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16] },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -186,20 +191,10 @@ const LENS_DATA = {
     { text: "G5", fromSurface: "10", toSurface: "11" },
     { text: "G6", fromSurface: "12", toSurface: "13" },
   ],
-
   doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.45,
-  focusDescription: "Unit focus — entire optical assembly moves forward on straight helicoid.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 1.2,
-  fstopSeries: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  scFill: 0.52,
-  yScFill: 0.32,
-} satisfies LensDataInput;
+  layout: { scFill: 0.52, yScFill: 0.32 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

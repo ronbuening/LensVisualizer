@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -34,31 +34,34 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "pentax-fa-28mm-f28-soft",
   maker: "Pentax",
   name: "PENTAX SMC FA 28mm f/2.8 Soft",
   subtitle: "US 5,822,132 Example 1 — Asahi Optical / Hirakawa",
-  specs: [
-    "5 elements / 5 groups",
-    "f = 28 mm",
-    "F/2.8 nominal; patent F.No. 1:2.9",
-    "2ω = 75° production; 75.8° patent",
-    "All-spherical soft-focus retrofocus",
-  ],
 
-  focalLengthMarketing: 28,
-  focalLengthDesign: 28.0006,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.9,
-  lensMounts: ["pentax-k"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 5,822,132",
-  patentAuthors: ["Jun Hirakawa"],
-  patentAssignees: ["Asahi Kogaku Kogyo Co., Ltd."],
-  patentYear: 1998,
-  elementCount: 5,
-  groupCount: 5,
-  apertureBlades: 8,
+  catalog: {
+    lensMounts: ["pentax-k"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "5 elements / 5 groups",
+      "f = 28 mm",
+      "F/2.8 nominal; patent F.No. 1:2.9",
+      "2ω = 75° production; 75.8° patent",
+      "All-spherical soft-focus retrofocus",
+    ],
+    elementCount: 5,
+    groupCount: 5,
+    focalLengthMm: { marketing: 28, design: 28.0006 },
+    fNumber: { marketing: 2.8, design: 2.9 },
+  },
+
+  source: {
+    patentNumber: "US 5,822,132",
+    patentYear: 1998,
+    authors: ["Jun Hirakawa"],
+    assignees: ["Asahi Kogaku Kogyo Co., Ltd."],
+  },
 
   elements: [
     {
@@ -68,7 +71,7 @@ const LENS_DATA = {
       type: "Weak Biconvex Positive",
       nd: 1.58913,
       vd: 61.2,
-      fl: 339.34,
+      focalLengthMm: 339.34,
       glass: "N-SK5 / BACD5 class",
       role: "Very weak positive entrance element ahead of the front negative meniscus.",
     },
@@ -79,7 +82,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.62041,
       vd: 60.3,
-      fl: -29.34,
+      focalLengthMm: -29.34,
       glass: "N-SK16 / S-BSM16 class",
       role: "Front-group negative meniscus, convex to object; primary retrofocus negative power.",
     },
@@ -90,7 +93,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 49.6,
-      fl: 21.85,
+      focalLengthMm: 21.85,
       glass: "S-LAH66 / N-LAF34 / TAF1 class",
       role: "Strong rear-group collector and main spherical-aberration generating positive element.",
     },
@@ -101,7 +104,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7847,
       vd: 26.2,
-      fl: -17.74,
+      focalLengthMm: -17.74,
       glass: "J-SFS3 / SF56A class dense flint",
       role: "High-dispersion negative element behind the stop; chromatic balancing partner for the rear positives.",
     },
@@ -112,50 +115,43 @@ const LENS_DATA = {
       type: "Near-Plano-Convex Positive",
       nd: 1.7725,
       vd: 49.6,
-      fl: 21.5,
+      focalLengthMm: 21.5,
       glass: "S-LAH66 / N-LAF34 / TAF1 class",
       role: "Rear positive lens completing the positive rear group.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 378.28, d: 2.9204, nd: 1.58913, elemId: 1, sd: 17.1 },
-    { label: "2", R: -422.7832, d: 0.098, nd: 1.0, elemId: 0, sd: 16.1 },
-    { label: "3", R: 63.112, d: 2.3352, nd: 1.62041, elemId: 2, sd: 14.3 },
-    { label: "4", R: 13.9272, d: 19.474, nd: 1.0, elemId: 0, sd: 12.4 },
-    { label: "5", R: 23.5956, d: 10.7044, nd: 1.7725, elemId: 3, sd: 12.0 },
-    { label: "6", R: -47.5944, d: 3.92, nd: 1.0, elemId: 0, sd: 10.0 },
-    { label: "STO", R: 1e15, d: 1.1424, nd: 1.0, elemId: 0, sd: 6.4 },
-    { label: "7", R: -23.688, d: 1.946, nd: 1.7847, elemId: 4, sd: 7.2 },
-    { label: "8", R: 34.9692, d: 0.6412, nd: 1.0, elemId: 0, sd: 6.9 },
-    { label: "9", R: 192.234, d: 3.1192, nd: 1.7725, elemId: 5, sd: 7.3 },
-    { label: "10", R: -18.0516, d: 35.63, nd: 1.0, elemId: 0, sd: 9.1 },
+    { label: "1", R: 378.28, d: 2.9204, sd: 17.1, medium: 1 },
+    { label: "2", R: -422.7832, d: 0.098, sd: 16.1 },
+    { label: "3", R: 63.112, d: 2.3352, sd: 14.3, medium: 2 },
+    { label: "4", R: 13.9272, d: 19.474, sd: 12.4 },
+    { label: "5", R: 23.5956, d: 10.7044, sd: 12.0, medium: 3 },
+    { label: "6", R: -47.5944, d: 3.92, sd: 10.0 },
+    { label: "STO", R: "flat", d: 1.1424 },
+    { label: "7", R: -23.688, d: 1.946, sd: 7.2, medium: 4 },
+    { label: "8", R: 34.9692, d: 0.6412, sd: 6.9 },
+    { label: "9", R: 192.234, d: 3.1192, sd: 7.3, medium: 5 },
+    { label: "10", R: -18.0516, sd: 9.1 },
   ],
 
-  asph: {},
-
-  var: {
-    "10": [35.63, 40.67],
+  focus: {
+    closeFocusM: 0.25,
+    description:
+      "Patent publishes infinity only. Close focus is modeled as inferred unit focus: final back-focus gap increases by about 5.04 mm from the Ricoh 0.18× maximum-magnification specification.",
   },
-  varLabels: [["10", "BF"]],
+
+  gaps: { "10": { label: "BF", values: [[35.63, 40.67]] } },
+
+  aperture: { nominalFNumber: 2.9, fStops: [2.9, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 8 },
 
   groups: [
     { text: "GF", fromSurface: "1", toSurface: "4" },
     { text: "GR", fromSurface: "5", toSurface: "10" },
   ],
-
   doublets: [],
 
-  closeFocusM: 0.25,
-  focusDescription:
-    "Patent publishes infinity only. Close focus is modeled as inferred unit focus: final back-focus gap increases by about 5.04 mm from the Ricoh 0.18× maximum-magnification specification.",
-
-  nominalFno: 2.9,
-  fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  scFill: 0.54,
-  yScFill: 0.44,
-} satisfies LensDataInput;
+  layout: { scFill: 0.54, yScFill: 0.44 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

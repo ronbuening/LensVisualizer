@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════╗
@@ -25,8 +25,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON APERTURE STOP:                                                 ║
  * ║    The patent drawing places the stop inside d8, between L4 and L5,     ║
  * ║    but does not tabulate the split. Its axial position is inferred from ║
- * ║    Fig. 3 at approximately 40% of d8 after surface 8. The 5.71 mm      ║
- * ║    stop semi-diameter reproduces F/2.8 paraxially at that location.     ║
+ * ║    Fig. 3 at approximately 40% of d8 after surface 8. The stop radius   ║
+ * ║    is derived from the design f-number, F/2.8.                          ║
  * ║                                                                          ║
  * ║  NOTE ON SEMI-DIAMETERS:                                                ║
  * ║    The patent omits clear apertures. SDs are rendering reconstructions  ║
@@ -48,24 +48,28 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "olympus-zuiko-auto-w-24mm-f28",
   maker: "Olympus",
   name: "OLYMPUS H.ZUIKO AUTO-W 24mm f/2.8",
   subtitle: "US 3,884,556 EMBODIMENT 4 — OLYMPUS / JIHEI NAKAGAWA",
-  specs: ["8 ELEMENTS / 7 GROUPS", "f = 23.999 mm", "F/2.8", "2ω = 84°", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 24,
-  focalLengthDesign: 23.9992,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.8,
-  lensMounts: ["olympus-om"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,884,556",
-  patentAuthors: ["Jihei Nakagawa"],
-  patentAssignees: ["Olympus Optical Co., Ltd."],
-  patentYear: 1975,
-  elementCount: 8,
-  groupCount: 7,
+  catalog: {
+    lensMounts: ["olympus-om"],
+    imageFormat: "135-full-frame",
+    specs: ["8 ELEMENTS / 7 GROUPS", "f = 23.999 mm", "F/2.8", "2ω = 84°", "ALL-SPHERICAL"],
+    elementCount: 8,
+    groupCount: 7,
+    focalLengthMm: { marketing: 24, design: 23.9992 },
+    fNumber: { marketing: 2.8, design: 2.8 },
+  },
+
+  source: {
+    patentNumber: "US 3,884,556",
+    patentYear: 1975,
+    authors: ["Jihei Nakagawa"],
+    assignees: ["Olympus Optical Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -76,7 +80,7 @@ const LENS_DATA = {
       type: "Positive Meniscus, convex to object",
       nd: 1.7234,
       vd: 38.0,
-      fl: 47.6047,
+      focalLengthMm: 47.6047,
       glass: "S-BAH28 (OHARA) equivalent",
       apd: false,
       role: "Front positive meniscus used to moderate negative distortion and establish the wide-angle chief-ray geometry.",
@@ -88,7 +92,7 @@ const LENS_DATA = {
       type: "Negative Meniscus, convex to object",
       nd: 1.6228,
       vd: 57.1,
-      fl: -21.5611,
+      focalLengthMm: -21.5611,
       glass: "S-BSM10 (OHARA) equivalent",
       apd: false,
       role: "Strongest negative member of the front diverging section; reduces front-group diameter and supplies retrofocus power.",
@@ -100,7 +104,7 @@ const LENS_DATA = {
       type: "Negative Meniscus, convex to object",
       nd: 1.713,
       vd: 54.0,
-      fl: -24.3538,
+      focalLengthMm: -24.3538,
       glass: "S-LAL8 (OHARA) equivalent",
       apd: false,
       role: "Completes the negative front section and shares off-axis and chromatic correction with L2.",
@@ -112,7 +116,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6141,
       vd: 55.0,
-      fl: 23.7971,
+      focalLengthMm: 23.7971,
       glass: "S-BSM9 (OHARA) equivalent",
       apd: false,
       role: "Thick positive relay element balancing spherical aberration and astigmatism from the negative front section.",
@@ -124,7 +128,7 @@ const LENS_DATA = {
       type: "Positive Meniscus, concave to object",
       nd: 1.7618,
       vd: 27.1,
-      fl: 13.827,
+      focalLengthMm: 13.827,
       glass: "PBH25 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Front member of the cemented negative doublet; standalone in-air power is positive, but its in-situ role is set by the cemented interface.",
@@ -137,7 +141,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.8052,
       vd: 25.4,
-      fl: -10.3284,
+      focalLengthMm: -10.3284,
       glass: "S-TIH6 (OHARA) equivalent",
       apd: false,
       role: "Rear, strongly negative member of the cemented L5 group; the complete doublet has EFL −38.316 mm.",
@@ -150,7 +154,7 @@ const LENS_DATA = {
       type: "Positive Meniscus, concave to object",
       nd: 1.618,
       vd: 63.4,
-      fl: 32.2041,
+      focalLengthMm: 32.2041,
       glass: "S-PHM52 (OHARA) equivalent",
       apd: false,
       role: "Low-dispersion positive rear meniscus contributing spherical-aberration, coma, and longitudinal-color correction.",
@@ -162,7 +166,7 @@ const LENS_DATA = {
       type: "Biconvex Positive, weak front surface",
       nd: 1.618,
       vd: 63.4,
-      fl: 43.9128,
+      focalLengthMm: 43.9128,
       glass: "S-PHM52 (OHARA) equivalent",
       apd: false,
       role: "Final positive element; its weakly convex front surface and stronger rear surface complete the rear converging section.",
@@ -171,31 +175,36 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 23.8296, d: 4.8768, nd: 1.7234, elemId: 1, sd: 15.8 },
-    { label: "2", R: 70.716, d: 0.0984, nd: 1.0, elemId: 0, sd: 15.5 },
-    { label: "3", R: 41.0016, d: 1.464, nd: 1.6228, elemId: 2, sd: 11.7 },
-    { label: "4", R: 9.9768, d: 3.7368, nd: 1.0, elemId: 0, sd: 8.29 },
-    { label: "5", R: 32.2488, d: 1.464, nd: 1.713, elemId: 3, sd: 9.0 },
-    { label: "6", R: 11.0736, d: 3.9408, nd: 1.0, elemId: 0, sd: 9.2 },
-    { label: "7", R: 20.2008, d: 8.9064, nd: 1.6141, elemId: 4, sd: 9.4 },
-    { label: "8", R: -43.9752, d: 0.98688, nd: 1.0, elemId: 0, sd: 8.0 },
-    { label: "STO", R: 1e15, d: 1.48032, nd: 1.0, elemId: 0, sd: 5.71 },
-    { label: "9", R: -108.6696, d: 6.0864, nd: 1.7618, elemId: 5, sd: 7.2 },
-    { label: "10", R: -9.8352, d: 1.3176, nd: 1.8052, elemId: 6, sd: 8.6 },
-    { label: "11", R: 57.072, d: 1.2, nd: 1.0, elemId: 0, sd: 7.7 },
-    { label: "12", R: -55.3488, d: 2.4384, nd: 1.618, elemId: 7, sd: 8.0 },
-    { label: "13", R: -14.8848, d: 0.1464, nd: 1.0, elemId: 0, sd: 8.65 },
-    { label: "14", R: 953.1336, d: 2.3424, nd: 1.618, elemId: 8, sd: 9.5 },
-    { label: "15", R: -27.9072, d: 36.7632, nd: 1.0, elemId: 0, sd: 9.6 },
+    { label: "1", R: 23.8296, d: 4.8768, sd: 15.8, medium: 1 },
+    { label: "2", R: 70.716, d: 0.0984, sd: 15.5 },
+    { label: "3", R: 41.0016, d: 1.464, sd: 11.7, medium: 2 },
+    { label: "4", R: 9.9768, d: 3.7368, sd: 8.29 },
+    { label: "5", R: 32.2488, d: 1.464, sd: 9.0, medium: 3 },
+    { label: "6", R: 11.0736, d: 3.9408, sd: 9.2 },
+    { label: "7", R: 20.2008, d: 8.9064, sd: 9.4, medium: 4 },
+    { label: "8", R: -43.9752, d: 0.98688, sd: 8.0 },
+    { label: "STO", R: "flat", d: 1.48032 },
+    { label: "9", R: -108.6696, d: 6.0864, sd: 7.2, medium: 5 },
+    { label: "10", R: -9.8352, d: 1.3176, sd: 8.6, medium: 6 },
+    { label: "11", R: 57.072, d: 1.2, sd: 7.7 },
+    { label: "12", R: -55.3488, d: 2.4384, sd: 8.0, medium: 7 },
+    { label: "13", R: -14.8848, d: 0.1464, sd: 8.65 },
+    { label: "14", R: 953.1336, d: 2.3424, sd: 9.5, medium: 8 },
+    { label: "15", R: -27.9072, sd: 9.6 },
   ],
 
-  asph: {},
-
-  /* ── Unit-focus spacing ── */
-  var: {
-    "15": [36.7632, 40.0292],
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.25,
+    description:
+      "Unit-focus reconstruction based on the Olympus straight-helicoid specification; all internal spacings remain fixed.",
   },
-  varLabels: [["15", "BF"]],
+
+  /* (moved from var) ── Unit-focus spacing ── */
+  gaps: { "15": { label: "BF", values: [[36.7632, 40.0292]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16] },
 
   /* ── Diagram annotations ── */
   groups: [
@@ -204,18 +213,8 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "L5", fromSurface: "9", toSurface: "11" }],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.25,
-  focusDescription:
-    "Unit-focus reconstruction based on the Olympus straight-helicoid specification; all internal spacings remain fixed.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  scFill: 0.58,
-  yScFill: 0.62,
-} satisfies LensDataInput;
+  layout: { scFill: 0.58, yScFill: 0.62 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;
