@@ -23,6 +23,9 @@ export function authoredMessages(
     acceptsTeleconverters: "catalog.acceptsTeleconverters",
     opticalConfiguration: "catalog.opticalConfiguration",
     sourceErrata: "source.errata",
+    patentNumber: "source.patentNumber",
+    patentAuthors: "source.authors",
+    patentAssignees: "source.assignees",
   };
   for (const row of LENS_SCHEMA_DEFAULTS) {
     if (!row.spread) names[row.v1Field] = row.path;

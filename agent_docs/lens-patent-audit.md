@@ -167,6 +167,11 @@ rules and the LCA quality-badge upgrade path.
 | `focus.description` | One short sentence on the focus mechanism. Important for inner-focus and floating-element designs. |
 | `maker` | Always, if missing. Maker pages depend on it. |
 
+The validator enforces each lens's patent metadata completeness and name rules in
+[`LENS_DATA_SPEC.md`](../src/lens-data/LENS_DATA_SPEC.md#validation-rules), for both V1 and V2 files. Cross-lens
+spelling/name order and reference-folder exclusions remain corpus checks. Empty party arrays retain the source
+meaning above.
+
 **Patent-comment enrichment** (file header). When the patent provides confirmation criteria you can describe in 2–4 lines (element/group count, MFD, ED count, asphere count, focal length match), add them to the header comment. See `NikonNikkorZ50f18S.data.ts` for the pattern.
 
 ### Phase 4 — Sync the analysis file

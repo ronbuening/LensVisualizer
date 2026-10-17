@@ -211,6 +211,8 @@ export const BANNERED_V1_PRIME = v1LensFile(`  /* ── Identity ── */
   imageFormat: "135-full-frame",
   patentNumber: "US 1,234,567 B2",
   patentYear: 2019,
+  patentAuthors: ["Ada Lovelace"],
+  patentAssignees: ["Fixture Optical Co., Ltd."],
   elementCount: 1,
   groupCount: 1,
 

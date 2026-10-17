@@ -69,6 +69,133 @@ function makeValid(overrides: Record<string, unknown> = {}): Record<string, unkn
 }
 
 describe("validateLensData", () => {
+  describe("patent metadata", () => {
+    const metadata = {
+      patentNumber: "JP 2000-000001 A",
+      patentAuthors: ["Ada Lovelace"],
+      patentAssignees: ["Fixture Optical Co., Ltd."],
+    };
+    const cases: { name: string; overrides: Record<string, unknown>; error: string }[] = [
+      ...[undefined, null, 123, "", "  ", " JP 2000-000001 A"].map((patentNumber) => ({
+        name: `missing, empty, wrong-typed or untrimmed publication number: ${String(patentNumber)}`,
+        overrides: { patentNumber },
+        error: '"patentNumber" must be a non-empty, trimmed string when patent metadata is provided',
+      })),
+      ...["not a patent", "JP2000-000001 A", "JP 2000-000001A", "jp 2000-000001 A"].map((patentNumber) => ({
+        name: `publication format: ${patentNumber}`,
+        overrides: { patentNumber },
+        error: '"patentNumber" must be a patent publication number with country and kind-code spacing',
+      })),
+      ...(["patentAuthors", "patentAssignees"] as const).flatMap((field) => [
+        ...[undefined, null, "Ada Lovelace"].map((value) => ({
+          name: `${field} must be an array: ${String(value)}`,
+          overrides: { [field]: value },
+          error: `"${field}" must be an array when patent metadata is provided`,
+        })),
+        ...["", " Ada Lovelace", "Ada Lovelace ", null, 123].map((value) => ({
+          name: `${field} non-empty trimmed string: ${String(value)}`,
+          overrides: { [field]: [value] },
+          error: `"${field}[0]" must be a non-empty, trimmed string`,
+        })),
+        {
+          name: `${field} uniqueness`,
+          overrides: { [field]: [metadata[field][0], metadata[field][0]] },
+          error: `"${field}" entries must be unique`,
+        },
+        {
+          name: `${field} explicit named parties`,
+          overrides: { [field]: ["Example et al."] },
+          error: `"${field}[0]" must list every named party explicitly`,
+        },
+        {
+          name: `${field} NFKC normalization`,
+          overrides: { [field]: ["Jose\u0301 Example"] },
+          error: `"${field}[0]" must use normalized Unicode (NFKC)`,
+        },
+        {
+          name: `${field} parenthetical annotations`,
+          overrides: { [field]: ["Example (Source)"] },
+          error: `"${field}[0]" must omit parenthetical source annotations`,
+        },
+        {
+          name: `${field} conventional capitalization`,
+          overrides: { [field]: ["EXAMPLE"] },
+          error: `"${field}[0]" must use conventional capitalization`,
+        },
+      ]),
+      {
+        name: "romanized inventor names",
+        overrides: { patentAuthors: ["仲田 丈晴"] },
+        error: '"patentAuthors[0]" must be romanized',
+      },
+      ...["Dr.", "Prof."].map((title) => ({
+        name: `inventor honorific: ${title}`,
+        overrides: { patentAuthors: [`${title} Ada Lovelace`] },
+        error: '"patentAuthors[0]" must omit honorifics',
+      })),
+      ...["Co", "Corp", "Inc", "Ltd", "KK"].map((suffix) => ({
+        name: `canonical corporate suffix: ${suffix}`,
+        overrides: { patentAssignees: [`Example ${suffix}`] },
+        error: '"patentAssignees[0]" must use canonical corporate suffixes',
+      })),
+      {
+        name: "inventor repeated as an assignee despite punctuation and case",
+        overrides: { patentAssignees: ["ada-lovelace"] },
+        error: '"patentAssignees" must contain organizations, not inventor-applicants',
+      },
+    ];
+
+    it.each(cases)("rejects $name through raw and canonical V1/V2 validation", ({ overrides, error }) => {
+      const data = makeValid({ ...metadata, ...overrides });
+      expect(validateLensData(data)).toEqual([error]);
+      expect(validateLensInput(data)).toEqual([error]);
+      expect(validateCanonicalLens(ingestLens(data as LensDataInput))).toEqual([error]);
+      const pair = FIXTURE_PAIRS.find((pair) => pair.family === "prime");
+      if (!pair || pair.kind !== "lens") throw new Error("missing prime fixture");
+      const v2 = {
+        ...pair.v2,
+        source: {
+          patentNumber: data.patentNumber,
+          authors: data.patentAuthors,
+          assignees: data.patentAssignees,
+        },
+      } as LensDataV2Input;
+      const v2Error = error
+        .replace("patentNumber", "source.patentNumber")
+        .replace("patentAuthors", "source.authors")
+        .replace("patentAssignees", "source.assignees");
+      expect(validateCanonicalLens(ingestLens(v2))).toEqual([v2Error]);
+    });
+
+    it("accepts source-declared empty party lists and synthetic lenses without patent metadata", () => {
+      for (const fields of [
+        {},
+        { patentYear: 2026 },
+        { patentAuthors: [], patentAssignees: [] },
+        metadata,
+        { ...metadata, patentAuthors: [], patentAssignees: [] },
+      ]) {
+        const data = makeValid(fields);
+        const before = structuredClone(data);
+        expect(validateLensData(data)).toEqual([]);
+        expect(validateCanonicalLens(ingestLens(data as LensDataInput))).toEqual([]);
+        expect(data).toEqual(before);
+      }
+    });
+
+    it("accepts romanized diacritics, initials and mixed-case corporate names", () => {
+      expect(
+        validateLensData(
+          makeValid({
+            ...metadata,
+            patentAuthors: ["José Example", "A. B. Smith"],
+            patentAssignees: ["FUJIFILM Corporation", "Example GmbH", "Example Co., Ltd."],
+          }),
+        ),
+      ).toEqual([]);
+    });
+  });
+
   it("validates canonical prescriptions in both formats without changing them", () => {
     for (const pair of FIXTURE_PAIRS) {
       if (pair.kind !== "lens") continue;

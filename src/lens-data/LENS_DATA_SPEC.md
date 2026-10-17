@@ -286,10 +286,11 @@ source: {
   conventional capitalization, reliable diacritics, and no honorifics, credentials, locations or source-database
   artifacts. Use one canonical spelling and romanization for the same person across the corpus, even when family
   publications vary in capitalization or name order. Prefer the published Latin-script form when the patent or an
-  official family front page provides one; otherwise keep a Unicode-normalized source-script name in its native
-  order, optionally followed by an established romanization in parentheses. Use `authors: []` when a historical or
-  corporate application names only the applicant and no individual inventor; do not substitute a later secondary
-  attribution.
+  official family front page provides one; otherwise establish a reliable romanization from source evidence.
+  Author names must use Latin script. Use `authors: []` when a historical or corporate application names only the
+  applicant and no individual inventor; do not substitute a later secondary attribution.
+- Both party lists require unique, non-empty, trimmed entries, explicit names (no `"et al."`), NFKC-normalized
+  Unicode and no parenthetical source annotations.
 - `assignees` records ownership at the source publication or grant. For WO, JP, CN and other documents that label the
   party as an applicant rather than an assignee, record the applicant here. Normalize capitalization, punctuation,
   reliable diacritics and corporate suffixes to the entity's conventional official form, and use the same display
@@ -1435,6 +1436,7 @@ Code: `src/optics/prescription/validate/`.
 | Labels unique and not reserved; `R`, `d`, `sd` present; `sd` positive; `innerSd` non-negative and below `sd`; `interaction` enums and normals; `diffractive` only on refracting surfaces; `stopPlacement` only on `STO`; exactly one `STO` | `validateSurfaces` (`schema.ts`) |
 | Element ids unique; `maxSdRatio` ≥ 1; `indexReference`, `apd` and `absorptionCoefficientPerMm` valid; no absorption on folded paths | `validateElements` (`schema.ts`) |
 | Every surface medium names an element, and every element is some surface's medium; asphere terms finite and known | `validateReferences` (`references.ts`) |
+| Patent metadata completeness, publication-number formatting, party-name rules and no inventor repeated as an assignee | `validatePatentMetadata` (`patent.ts`) |
 | `source.errata` entries | `validateSourceErrata` (`references.ts`) |
 | Element spans: both ends, in order; internal surfaces only an embedded stop or the folded exceptions | `validateSpans` (`references.ts`) |
 | `groups` and `doublets` name existing surfaces | `validateAnnotations` (`references.ts`) |
@@ -1448,11 +1450,17 @@ Code: `src/optics/prescription/validate/`.
 | Diffractive kind, wavelength, order and terms | `validateDiffractivePhase` (`diffractive.ts`) |
 | Edge thickness positive at the smaller clear aperture; front/rear clear-aperture ratio ≤ 3 (or `maxSdRatio`); rim slope ≤ `checks.maxRimAngleDeg`; `sd ≤ 0.98 × \|R\| / √(1+K)` for `K > 0`; cross-gap sag ≤ `checks.gapSagFrac` × gap over the shared radial band, at every zoom station | `validateGeometry` (`geometry.ts`) |
 
+A patent declaration (a number or named parties) requires a non-empty, trimmed publication number and both party
+arrays. Empty arrays retain their source meaning above. A year alone or empty party lists without a patent number
+can describe a non-patent source and do not require patent metadata. These rules run through canonical validation
+for both V1 and V2 files.
+
 ### Corpus sweeps
 
 Separate from validation, these run over every catalog file in `npm run test`:
 
-- structured patent metadata and author-name normalization, and the design f-number against `catalog.fNumber.design`
+- cross-lens author spelling/name order and assignee spelling, reference fixtures without patent metadata, converter
+  publication-number formatting, and the design f-number against `catalog.fNumber.design`
   (`__tests__/src/lens-data/patentMetadata.test.ts`);
 - the fixed-iris rule (`__tests__/src/lens-data/zoomApertureModel.test.ts`) and published stations
   (`__tests__/src/lens-data/publishedStations.test.ts`);
