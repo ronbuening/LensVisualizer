@@ -1000,12 +1000,12 @@ Three files in the tooling suite hold the harness to its contract.
   lens of Tier P under C0 and C3 and on one lens of one shard of Tier S, which are skipped where git cannot add a
   worktree. Synthetic head catalogs with a refused V2 converter or a V1 `schema: 3` converter fail under C0 and C3
   before any pair is selected, with the key and refusal in stderr and the job summary. Another run hands the driver a
-  description with both headings and checks that its declared transitions are held to the run; a bullet with no
-  reason stops the driver before it adds a base worktree. Three steps of the stage workflow are run as shell scripts
-  with the workflow's variables in their environment: the step that writes that file, whose output is read back by
-  the parser; the `plan` step, which must refuse a heading among the bullets; and the `result` step, on fabricated shard summaries, under C1 and under C0 (skipped where there is no
-  `jq`). The report of `transitions.md` is rendered from a fabricated summary. No test evaluates the workflow's own
-  expressions or dispatches it.
+  description with both headings and checks that its declared transitions are held to the run; a bullet with no reason
+  stops the driver before it adds a base worktree. Three steps of the stage workflow are run as shell scripts with the
+  workflow's variables in their environment: the step that writes that file, whose output is read back by the parser;
+  the `plan` step, which must refuse a heading among the bullets; and the `result` step, on fabricated shard summaries,
+  under C1 and under C0 (skipped where there is no `jq`). The report of `transitions.md` is rendered from a fabricated
+  summary. No test evaluates the workflow's own expressions or dispatches it.
 
 ## Refactor Test Expectations
 
