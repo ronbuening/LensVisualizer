@@ -15,9 +15,9 @@
 // restores 1.1066 while keeping f = 1 and the published φ1 / φ2 / D. The table is followed; the conflict is open.
 //
 // STOP: not tabulated. FIG. 1 draws the iris inside D10, roughly 42 % of the gap behind R10 (figure reading); the
-// file keeps its earlier 45 % split (2.43 + 2.96 mm), which is inside the drawing's precision. STO sd 9.6 mm is
-// the paraxial f/2 marginal height, and the FIG. 1 iris opening also reads ≈ 9.6 mm at the figure scale. The viewer
-// derives its working iris from nominalFno with a real ray (≈ 10.4 mm at f/2).
+// file keeps its earlier 45 % split (2.43 + 2.96 mm), which is inside the drawing's precision. The paraxial f/2
+// marginal height at the stop is 9.6 mm, and the FIG. 1 iris opening also reads ≈ 9.6 mm at the figure scale. The
+// viewer derives its working iris from nominalFno with a real ray (≈ 10.4 mm at f/2).
 //
 // FOCUS — three keyframes:
 //   t = 0      infinity; D10 = 0.1541 → 5.39 mm (patent value).
@@ -46,28 +46,26 @@
 // the repo catalog. Collector reports describe yellowing, radioactive (thoriated) glass in concave-front FD 35mm
 // f/2 lenses; neither the patent nor Canon identifies such a glass, so tying it to L5/L8 is an inference only.
 
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
+  schema: 2,
   key: "canon-fd-35-f2",
-  name: "CANON FD 35mm f/2 S.S.C. (I)",
   maker: "Canon",
+  name: "CANON FD 35mm f/2 S.S.C. (I)",
   subtitle: "US 3,748,022 — single numerical embodiment (Tajima, 1973)",
-  specs: ["35mm f/2", "9 elements / 8 groups", "Floating focus", "FD mount"],
-  focalLengthMarketing: 35,
-  focalLengthDesign: 35.0,
-  apertureMarketing: 2,
-  apertureDesign: 2.0,
-  lensMounts: ["canon-fd"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,748,022",
-  patentAuthors: ["Akira Tajima"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 1973,
-  elementCount: 9,
-  groupCount: 8,
-  focusDescription:
-    "Unit focus with floating correction — whole lens shifts forward while air space D10 (II₁–II₂) closes in proportion",
+
+  catalog: {
+    lensMounts: ["canon-fd"],
+    imageFormat: "135-full-frame",
+    specs: ["35mm f/2", "9 elements / 8 groups", "Floating focus", "FD mount"],
+    elementCount: 9,
+    groupCount: 8,
+    focalLengthMm: { marketing: 35, design: 35.0 },
+    fNumber: { marketing: 2, design: 2.0 },
+  },
+
+  source: { patentNumber: "US 3,748,022", patentYear: 1973, authors: ["Akira Tajima"], assignees: ["Canon Inc."] },
 
   elements: [
     {
@@ -77,7 +75,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.697,
       vd: 48.5,
-      fl: 362.5,
+      focalLengthMm: 362.5,
       glass: "S-LAM59 (OHARA catalog equivalent for patent coordinate; production supplier unspecified)",
       role: "Weakly positive meniscus, concave toward the object (R1 < 0) — the concave-front signature of this design",
     },
@@ -88,7 +86,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.51633,
       vd: 64.0,
-      fl: -46.6,
+      focalLengthMm: -46.6,
       glass: "S-BSL7 (OHARA catalog equivalent for patent coordinate; production supplier unspecified)",
       role: "Primary diverger of Group I; strongly curved rear surface carries most of the group's negative power",
     },
@@ -99,7 +97,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.70154,
       vd: 41.1,
-      fl: -785.2,
+      focalLengthMm: -785.2,
       glass: "BASF7 (Sumita coefficient-backed equivalent), 702411",
       role: "Weak negative field corrector at front of Group II₁; nearly concentric meniscus for astigmatism control",
     },
@@ -110,7 +108,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7,
       vd: 48.0,
-      fl: 57.3,
+      focalLengthMm: 57.3,
       glass: "S-LAM51 (OHARA)",
       role: "Strong positive in Group II₁; begins convergence of diverged beam",
     },
@@ -121,7 +119,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7737,
       vd: 49.2,
-      fl: 60.9,
+      focalLengthMm: 60.9,
       glass: "774492 — dense lanthanum crown (no catalog equivalent; nd=1.7737, νd=49.2)",
       role: "Thick positive meniscus; controls rear principal plane for retrofocus BFD; glass has no current catalog match",
     },
@@ -132,7 +130,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.76182,
       vd: 26.5,
-      fl: -32.1,
+      focalLengthMm: -32.1,
       glass: "S-TIH14 (OHARA catalog equivalent for patent coordinate; production supplier unspecified)",
       role: "Strongest negative element; leads Group II₂ after the variable gap; primary chromatic corrector",
     },
@@ -143,10 +141,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80518,
       vd: 25.4,
-      fl: -46.9,
+      focalLengthMm: -46.9,
       glass: "S-TIH6 (OHARA catalog equivalent for patent coordinate; production supplier unspecified)",
-      cemented: "D1",
       role: "Dense flint in cemented doublet; achromatic corrector paired with L8",
+      cemented: "D1",
     },
     {
       id: 8,
@@ -155,10 +153,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7737,
       vd: 49.2,
-      fl: 30.2,
+      focalLengthMm: 30.2,
       glass: "774492 — dense lanthanum crown (no catalog equivalent; nd=1.7737, νd=49.2)",
-      cemented: "D1",
       role: "Crown element of cemented doublet; same 1.7737 / 49.2 glass as L5",
+      cemented: "D1",
     },
     {
       id: 9,
@@ -167,7 +165,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.8061,
       vd: 40.8,
-      fl: 53.8,
+      focalLengthMm: 53.8,
       glass: "S-LAH53 (OHARA catalog equivalent for patent coordinate; production supplier unspecified)",
       role: "Rear positive element; controls exit pupil and final field flattening",
     },
@@ -175,43 +173,46 @@ const LENS_DATA = {
 
   surfaces: [
     // ---- Group I (negative front group) ----
-    { label: "1", R: -202.16, d: 3.41, nd: 1.697, elemId: 1, sd: 20.5 },
-    { label: "2", R: -113.09, d: 0.1, nd: 1.0, elemId: 0, sd: 19.5 },
-    { label: "3", R: 63.56, d: 1.46, nd: 1.51633, elemId: 2, sd: 19.0 },
-    { label: "4", R: 17.304, d: 12.12, nd: 1.0, elemId: 0, sd: 14.4 },
+    { label: "1", R: -202.16, d: 3.41, sd: 20.5, medium: 1 },
+    { label: "2", R: -113.09, d: 0.1, sd: 19.5 },
+    { label: "3", R: 63.56, d: 1.46, sd: 19.0, medium: 2 },
+    { label: "4", R: 17.304, d: 12.12, sd: 14.4 },
     // ---- Group II₁ (rear-front positive) ----
-    { label: "5", R: -34.12, d: 3.4, nd: 1.70154, elemId: 3, sd: 12.5 },
-    { label: "6", R: -37.87, d: 0.1, nd: 1.0, elemId: 0, sd: 12.5 },
-    { label: "7", R: 37.52, d: 3.36, nd: 1.7, elemId: 4, sd: 12.5 },
-    { label: "8", R: 554.05, d: 1.47, nd: 1.0, elemId: 0, sd: 12.5 },
-    { label: "9", R: 46.655, d: 10.12, nd: 1.7737, elemId: 5, sd: 12.5 },
-    { label: "10", R: 4343.5, d: 2.43, nd: 1.0, elemId: 0, sd: 12.5 },
+    { label: "5", R: -34.12, d: 3.4, sd: 12.5, medium: 3 },
+    { label: "6", R: -37.87, d: 0.1, sd: 12.5 },
+    { label: "7", R: 37.52, d: 3.36, sd: 12.5, medium: 4 },
+    { label: "8", R: 554.05, d: 1.47, sd: 12.5 },
+    { label: "9", R: 46.655, d: 10.12, sd: 12.5, medium: 5 },
+    { label: "10", R: 4343.5, sd: 12.5 },
     // ---- Aperture stop (inferred from FIG. 1, within variable gap D10 = 5.39 mm) ----
-    { label: "STO", R: 1e15, d: 2.96, nd: 1.0, elemId: 0, sd: 9.6 },
+    { label: "STO", R: "flat" },
     // ---- Group II₂ (rear-back positive) ----
-    { label: "11", R: -135.7, d: 0.98, nd: 1.76182, elemId: 6, sd: 11.0 },
-    { label: "12", R: 29.939, d: 3.17, nd: 1.0, elemId: 0, sd: 9.8 },
-    { label: "13", R: -40.95, d: 0.98, nd: 1.80518, elemId: 7, sd: 10.8 },
-    { label: "14", R: 488.6, d: 4.29, nd: 1.7737, elemId: 8, sd: 10.8 },
-    { label: "15", R: -24.46, d: 0.1, nd: 1.0, elemId: 0, sd: 10.8 },
-    { label: "16", R: 68.95, d: 2.89, nd: 1.8061, elemId: 9, sd: 11.2 },
-    { label: "17", R: -114.73, d: 37.96, nd: 1.0, elemId: 0, sd: 11.2 },
+    { label: "11", R: -135.7, d: 0.98, sd: 11.0, medium: 6 },
+    { label: "12", R: 29.939, d: 3.17, sd: 9.8 },
+    { label: "13", R: -40.95, d: 0.98, sd: 10.8, medium: 7 },
+    { label: "14", R: 488.6, d: 4.29, sd: 10.8, medium: 8 },
+    { label: "15", R: -24.46, d: 0.1, sd: 10.8 },
+    { label: "16", R: 68.95, d: 2.89, sd: 11.2, medium: 9 },
+    { label: "17", R: -114.73, sd: 11.2 },
   ],
 
-  asph: {},
-
-  // Keyframes: infinity (patent) · patent close shot m = 0.118 (D10 patent, BF calculated) · 0.3 m MFD (calculated)
-  focusPositions: [0, 0.769, 1],
-  var: {
-    "10": [2.43, 2.12, 1.98],
-    STO: [2.96, 2.59, 2.42],
-    "17": [37.96, 42.56, 44.61],
+  focus: {
+    closeFocusM: 0.3,
+    // Keyframes: infinity (patent) · patent close shot m = 0.118 (D10 patent, BF calculated) · 0.3 m MFD (calculated)
+    keyframes: [0, 0.769, 1],
+    description:
+      "Unit focus with floating correction — whole lens shifts forward while air space D10 (II₁–II₂) closes in proportion",
+    // (moved from publishedStations) Only the listed focus rows are source-tabulated; the others are reconstructed.
+    published: [1],
   },
-  varLabels: [
-    ["10", "D10a"],
-    ["STO", "D10b"],
-    ["17", "BF"],
-  ],
+
+  gaps: {
+    "10": { label: "D10a", values: [[2.43, 2.12, 1.98]] },
+    STO: { label: "D10b", values: [[2.96, 2.59, 2.42]] },
+    "17": { label: "BF", values: [[37.96, 42.56, 44.61]] },
+  },
+
+  aperture: { nominalFNumber: 2, fStops: [2, 2.8, 4, 5.6, 8, 11, 16] },
 
   groups: [
     { text: "I (neg)", fromSurface: "1", toSurface: "4" },
@@ -220,13 +221,7 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "D1", fromSurface: "13", toSurface: "15" }],
 
-  closeFocusM: 0.3,
-  // Only the listed focus rows are source-tabulated; the others are reconstructed.
-  publishedStations: { focus: [1] },
-  nominalFno: 2,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
-  scFill: 0.55,
-  yScFill: 0.55,
-} satisfies LensDataInput;
+  layout: { scFill: 0.55, yScFill: 0.55 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

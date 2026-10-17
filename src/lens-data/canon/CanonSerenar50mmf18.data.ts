@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -26,8 +26,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  NOTE ON STOP POSITION:                                            ║
  * ║    Not tabulated and not drawn (the figure shows glass only); the  ║
- * ║    text places it between r5 and r6. Mid-d5 split is a model      ║
- * ║    choice. STO sd records the f/1.8 iris radius (8.47 mm).        ║
+ * ║    text places it between r5 and r6. Mid-d5 split is a model       ║
+ * ║    choice. The stop radius is derived from the design f-number     ║
+ * ║    (the f/1.8 iris radius, 8.47 mm).                               ║
  * ║                                                                    ║
  * ║  NOTE ON CLOSE FOCUS:                                              ║
  * ║    No close state in the patent. The 1.0 m keyframe (production    ║
@@ -38,25 +39,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "canon-serenar-50f18",
   maker: "Canon",
   name: "CANON SERENAR 50mm f/1.8",
   subtitle: "US 2,681,594 sole example (claim 3) — Hiroshi Ito / Canon Camera Co.",
-  specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 50.0 mm", "F/1.8", "2ω ≈ 46°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: 50,
-  focalLengthDesign: 50.0,
-  apertureMarketing: 1.8,
-  apertureDesign: 1.8,
-  lensMounts: ["leica-ltm"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 2,681,594",
-  patentAuthors: ["Hiroshi Ito"],
-  patentAssignees: ["Canon Camera Co., Inc."],
-  patentYear: 1954,
-  elementCount: 6,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["leica-ltm"],
+    imageFormat: "135-full-frame",
+    specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 50.0 mm", "F/1.8", "2ω ≈ 46°", "ALL SPHERICAL"],
+    elementCount: 6,
+    groupCount: 4,
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: 50, design: 50.0 },
+    fNumber: { marketing: 1.8, design: 1.8 },
+  },
+
+  source: {
+    patentNumber: "US 2,681,594",
+    patentYear: 1954,
+    authors: ["Hiroshi Ito"],
+    assignees: ["Canon Camera Co., Inc."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -67,7 +72,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6204,
       vd: 60.3,
-      fl: 60.8,
+      focalLengthMm: 60.8,
       glass: "SK16 (Schott)",
       apd: false,
       role: "Front collector — positive meniscus, nearly plano-convex",
@@ -79,11 +84,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6261,
       vd: 39.1,
-      fl: 27.8,
+      focalLengthMm: 27.8,
       glass: "H-BaF8 (CDGM catalog-equivalent to patent 626391; production supplier unspecified)",
       apd: false,
-      cemented: "D1",
       role: "Front doublet convex — strongest converging surface in system",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -92,11 +97,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.74,
       vd: 28.2,
-      fl: -16.2,
+      focalLengthMm: -16.2,
       glass: "S-TIH3 (OHARA)",
       apd: false,
-      cemented: "D1",
       role: "Front doublet concave — highest nd; Ito innovation surface for coma correction",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -105,11 +110,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.5014,
       vd: 56.5,
-      fl: -27.1,
+      focalLengthMm: -27.1,
       glass: "K10 (Schott)",
       apd: false,
-      cemented: "D2",
       role: "Rear doublet concave — lowest nd in system; Petzval sum compensation",
+      cemented: "D2",
     },
     {
       id: 5,
@@ -118,11 +123,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6385,
       vd: 55.5,
-      fl: 26.1,
+      focalLengthMm: 26.1,
       glass: "K-SK18 (SUMITA catalog-equivalent to historical Schott SK18; patent supplier unspecified)",
       apd: false,
-      cemented: "D2",
       role: "Rear doublet convex — dominant positive power in Group III",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -131,7 +136,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6385,
       vd: 55.5,
-      fl: 63.7,
+      focalLengthMm: 63.7,
       glass: "K-SK18 (SUMITA catalog-equivalent to historical Schott SK18; patent supplier unspecified)",
       apd: false,
       role: "Rear collector — same glass as L5 for manufacturing simplicity",
@@ -142,28 +147,33 @@ const LENS_DATA = {
    *  Patent table (headed f = 1.00, computes to 0.8973) scaled ×55.725 to EFL 49.99 mm.
    *  Stop placed at center of patent air gap d₅ = 0.132 (split 0.066 / 0.066; model choice).
    */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 32.32, d: 5.294, nd: 1.6204, elemId: 1, sd: 15.5 }, // L1 front
-    { label: "2", R: 211.76, d: 0.279, nd: 1.0, elemId: 0, sd: 14.3 }, // L1 rear → air
-    { label: "3", R: 19.89, d: 8.08, nd: 1.6261, elemId: 2, sd: 13.2 }, // L2 front (D1)
-    { label: "4", R: -117.02, d: 2.452, nd: 1.74, elemId: 3, sd: 13.2 }, // L2→L3 junction (D1)
-    { label: "5", R: 13.43, d: 3.678, nd: 1.0, elemId: 0, sd: 9.8 }, // L3 rear → air
-    { label: "STO", R: 1e15, d: 3.678, nd: 1.0, elemId: 0, sd: 8.5 }, // Aperture stop (center of d₅)
-    { label: "6", R: -31.35, d: 1.95, nd: 1.5014, elemId: 4, sd: 8.7 }, // L4 front (D2)
-    { label: "7", R: 24.41, d: 9.195, nd: 1.6385, elemId: 5, sd: 11.4 }, // L4→L5 junction (D2)
-    { label: "8", R: -44.58, d: 0.167, nd: 1.0, elemId: 0, sd: 11.4 }, // L5 rear → air
-    { label: "9", R: 94.73, d: 3.901, nd: 1.6385, elemId: 6, sd: 12.8 }, // L6 front
-    { label: "10", R: -70.05, d: 25.43, nd: 1.0, elemId: 0, sd: 12.8 }, // L6 rear → BFD
+    { label: "1", R: 32.32, d: 5.294, sd: 15.5, medium: 1 }, // L1 front
+    { label: "2", R: 211.76, d: 0.279, sd: 14.3 }, // L1 rear → air
+    { label: "3", R: 19.89, d: 8.08, sd: 13.2, medium: 2 }, // L2 front (D1)
+    { label: "4", R: -117.02, d: 2.452, sd: 13.2, medium: 3 }, // L2→L3 junction (D1)
+    { label: "5", R: 13.43, d: 3.678, sd: 9.8 }, // L3 rear → air
+    { label: "STO", R: "flat", d: 3.678 }, // Aperture stop (center of d₅)
+    { label: "6", R: -31.35, d: 1.95, sd: 8.7, medium: 4 }, // L4 front (D2)
+    { label: "7", R: 24.41, d: 9.195, sd: 11.4, medium: 5 }, // L4→L5 junction (D2)
+    { label: "8", R: -44.58, d: 0.167, sd: 11.4 }, // L5 rear → air
+    { label: "9", R: 94.73, d: 3.901, sd: 12.8, medium: 6 }, // L6 front
+    { label: "10", R: -70.05, sd: 12.8 }, // L6 rear → BFD
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
-
-  /* ── Variable air spacings (unit focus — BFD only) ── */
-  var: {
-    "10": [25.43, 28.2],
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 1.0,
+    description:
+      "Unit focusing — entire lens group moves axially; the 1 m keyframe is a derived extension (patent publishes no close state).",
   },
-  varLabels: [["10", "BF"]],
+
+  /* (moved from var) ── Variable air spacings (unit focus — BFD only) ── */
+  gaps: { "10": { label: "BF", values: [[25.43, 28.2]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 1.8, fStops: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16], blades: 10 },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -172,25 +182,13 @@ const LENS_DATA = {
     { text: "III", fromSurface: "6", toSurface: "8" },
     { text: "IV", fromSurface: "9", toSurface: "10" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "3", toSurface: "5" },
     { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 1.0,
-  focusDescription:
-    "Unit focusing — entire lens group moves axially; the 1 m keyframe is a derived extension (patent publishes no close state).",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 1.8,
-  apertureBlades: 10,
-  fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  scFill: 0.55,
-  yScFill: 0.4,
-} satisfies LensDataInput;
+  layout: { scFill: 0.55, yScFill: 0.4 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

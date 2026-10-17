@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -12,7 +12,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  NOTE ON SCALING:                                                   ║
  * ║    Patent prescription is normalized to f = 100 mm. All radii,      ║
- * ║    thicknesses, air spaces, back focus, stop size, and estimated     ║
+ * ║    thicknesses, air spaces, back focus, and estimated                ║
  * ║    semi-diameters are scaled ×0.5 to the production 50 mm class.     ║
  * ║                                                                    ║
  * ║  NOTE ON STOP POSITION:                                             ║
@@ -29,25 +29,28 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "agfa-solagon-50mm-f2",
   maker: "Agfa",
   name: "AGFA SOLAGON 50mm f/2",
   subtitle: "US 2,745,315 Example 1 — Brendel / Agfa",
-  specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 50.08 mm", "F/2", "2ω ≈ 46.7°", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 50,
-  focalLengthDesign: 50.0848,
-  apertureMarketing: 2,
-  lensMounts: ["fixed-lens-camera"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 2,745,315",
-  patentAuthors: ["Theodor Brendel"],
-  patentAssignees: ["Agfa Camera-Werk AG"],
-  patentYear: 1956,
-  elementCount: 6,
-  groupCount: 4,
-  focusDescription:
-    "Unit focus; final back-focus gap varies from infinity to a representative 0.914 m (3 ft) close-focus setting; this finite state is not patent-published.",
+  catalog: {
+    lensMounts: ["fixed-lens-camera"],
+    imageFormat: "135-full-frame",
+    specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 50.08 mm", "F/2", "2ω ≈ 46.7°", "ALL-SPHERICAL"],
+    elementCount: 6,
+    groupCount: 4,
+    focalLengthMm: { marketing: 50, design: 50.0848 },
+    fNumber: { marketing: 2 },
+  },
+
+  source: {
+    patentNumber: "US 2,745,315",
+    patentYear: 1956,
+    authors: ["Theodor Brendel"],
+    assignees: ["Agfa Camera-Werk AG"],
+  },
 
   elements: [
     {
@@ -57,7 +60,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.623,
       vd: 58.1,
-      fl: 82.165,
+      focalLengthMm: 82.165,
       glass: "N-SK15 / SK15 class (Schott; patent 623/581)",
       role: "Front positive meniscus; one of the two low-dispersion outer singlets.",
     },
@@ -68,7 +71,7 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.6667,
       vd: 48.4,
-      fl: 25.367,
+      focalLengthMm: 25.367,
       glass: "S-BAH11 (Ohara) / BaF11 cross-reference class (patent 667/484)",
       role: "Positive element of the front cemented meniscus; plane rear cemented interface.",
       cemented: "D1",
@@ -80,7 +83,7 @@ const LENS_DATA = {
       type: "Plano-Concave Negative",
       nd: 1.6254,
       vd: 35.6,
-      fl: -18.838,
+      focalLengthMm: -18.838,
       glass: "F7 (HOYA catalog equivalent; production supplier unspecified; patent 625356)",
       role: "Negative element of the front cemented meniscus; concave rear surface faces the stop.",
       cemented: "D1",
@@ -92,7 +95,7 @@ const LENS_DATA = {
       type: "Concave-Plano Negative",
       nd: 1.6254,
       vd: 35.6,
-      fl: -23.356,
+      focalLengthMm: -23.356,
       glass: "F7 (HOYA catalog equivalent; production supplier unspecified; patent 625356)",
       role: "Negative element of the rear cemented meniscus; concave front surface faces the stop.",
       cemented: "D2",
@@ -104,7 +107,7 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.6667,
       vd: 48.4,
-      fl: 32.134,
+      focalLengthMm: 32.134,
       glass: "S-BAH11 (Ohara) / BaF11 cross-reference class (patent 667/484)",
       role: "Positive element of the rear cemented meniscus; plane front cemented interface.",
       cemented: "D2",
@@ -116,35 +119,38 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.623,
       vd: 58.1,
-      fl: 47.252,
+      focalLengthMm: 47.252,
       glass: "N-SK15 / SK15 class (Schott; patent 623/581)",
       role: "Rear positive singlet; strongest rear-half contributor to final convergence.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 34.9215, d: 3.33, nd: 1.623, elemId: 1, sd: 14.2 },
-    { label: "2", R: 105.8665, d: 0.305, nd: 1.0, elemId: 0, sd: 13.2 },
-    { label: "3", R: 16.9125, d: 5.795, nd: 1.6667, elemId: 2, sd: 11.2 },
-    { label: "4", R: 1e15, d: 1.445, nd: 1.6254, elemId: 3, sd: 11.2 },
-    { label: "5", R: 11.7815, d: 5.22, nd: 1.0, elemId: 0, sd: 10.0 },
+    { label: "1", R: 34.9215, d: 3.33, sd: 14.2, medium: 1 },
+    { label: "2", R: 105.8665, d: 0.305, sd: 13.2 },
+    { label: "3", R: 16.9125, d: 5.795, sd: 11.2, medium: 2 },
+    { label: "4", R: "flat", d: 1.445, sd: 11.2, medium: 3 },
+    { label: "5", R: 11.7815, d: 5.22, sd: 10.0 },
 
     // STO position inferred from Fig. 1; l2 split equally around the iris.
-    { label: "STO", R: 1e15, d: 5.22, nd: 1.0, elemId: 0, sd: 8.587057 },
+    { label: "STO", R: "flat", d: 5.22 },
 
-    { label: "6", R: -14.607, d: 1.495, nd: 1.6254, elemId: 4, sd: 10.2 },
-    { label: "7", R: 1e15, d: 5.41, nd: 1.6667, elemId: 5, sd: 11.2 },
-    { label: "8", R: -21.4235, d: 0.05, nd: 1.0, elemId: 0, sd: 12.9 },
-    { label: "9", R: 310.015, d: 3.135, nd: 1.623, elemId: 6, sd: 12.8 },
-    { label: "10", R: -32.4, d: 34.301821, nd: 1.0, elemId: 0, sd: 12.8 },
+    { label: "6", R: -14.607, d: 1.495, sd: 10.2, medium: 4 },
+    { label: "7", R: "flat", d: 5.41, sd: 11.2, medium: 5 },
+    { label: "8", R: -21.4235, d: 0.05, sd: 12.9 },
+    { label: "9", R: 310.015, d: 3.135, sd: 12.8, medium: 6 },
+    { label: "10", R: -32.4, sd: 12.8 },
   ],
 
-  asph: {},
-
-  var: {
-    "10": [34.301821, 37.37203],
+  focus: {
+    closeFocusM: 0.9144,
+    description:
+      "Unit focus; final back-focus gap varies from infinity to a representative 0.914 m (3 ft) close-focus setting; this finite state is not patent-published.",
   },
-  varLabels: [["10", "BF"]],
+
+  gaps: { "10": { label: "BF", values: [[34.301821, 37.37203]] } },
+
+  aperture: { nominalFNumber: 2, fStops: [2, 2.8, 4, 5.6, 8, 11, 16] },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -157,11 +163,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
 
-  closeFocusM: 0.9144,
-  nominalFno: 2,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
-  scFill: 0.53,
-  yScFill: 0.62,
-} satisfies LensDataInput;
+  layout: { scFill: 0.53, yScFill: 0.62 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

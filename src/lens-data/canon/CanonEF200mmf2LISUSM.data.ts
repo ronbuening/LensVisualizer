@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -30,38 +30,42 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ mm, 0.005 mm is left of the 0.10 mm gap between surfaces 6 and 7   ║
  * ║ (they touch at 40.99 mm); at 17.3 mm, 0.23 mm is left of the 3.93  ║
  * ║ mm gap between surfaces 20 and 21 (they touch at 17.83 mm).        ║
- * ║ Stop: the stored 19.9207 mm is the paraxial stop radius for EP SD  ║
- * ║ 47.56 mm (F/2.05). The exact F/2.05 marginal ray meets the stop    ║
- * ║ at 20.38 mm, which the build uses as the wide-open iris.           ║
+ * ║ Stop: the stop radius is derived from the design f-number (F/2.05, ║
+ * ║ EP SD 47.56 mm). The exact F/2.05 marginal ray meets the stop at   ║
+ * ║ 20.38 mm, which the build uses as the wide-open iris.              ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "canon-ef-200mm-f2l-is-usm",
   maker: "Canon",
   name: "CANON EF 200mm f/2 L IS USM",
   subtitle: "JP 2008-145584 A Example 1 — Canon / Yokoyama",
-  specs: [
-    "17 elements / 12 groups incl. drop-in filter",
-    "f = 194.991 mm design; 200 mm marketed",
-    "F/2.05 design; f/2.0 marketed",
-    "All-spherical, fluorite + 2 UD-class elements",
-    "Inner focus + L32 optical image stabilization",
-  ],
 
-  focalLengthMarketing: 200,
-  focalLengthDesign: 194.991,
-  apertureMarketing: 2.0,
-  apertureDesign: 2.05,
-  lensMounts: ["canon-ef"],
-  acceptsTeleconverters: true, // Canon lists Extender EF1.4x II / EF2x II compatibility
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 2008-145584 A",
-  patentAuthors: ["Takayoshi Yokoyama"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 2008,
-  elementCount: 17,
-  groupCount: 12,
+  catalog: {
+    lensMounts: ["canon-ef"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "17 elements / 12 groups incl. drop-in filter",
+      "f = 194.991 mm design; 200 mm marketed",
+      "F/2.05 design; f/2.0 marketed",
+      "All-spherical, fluorite + 2 UD-class elements",
+      "Inner focus + L32 optical image stabilization",
+    ],
+    elementCount: 17,
+    groupCount: 12,
+    acceptsTeleconverters: true, // Canon lists Extender EF1.4x II / EF2x II compatibility
+    focalLengthMm: { marketing: 200, design: 194.991 },
+    fNumber: { marketing: 2.0, design: 2.05 },
+  },
+
+  source: {
+    patentNumber: "JP 2008-145584 A",
+    patentYear: 2008,
+    authors: ["Takayoshi Yokoyama"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {
@@ -71,12 +75,12 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.2,
-      fl: 959.2,
+      focalLengthMm: 959.2,
       glass: "S-FSL5 (OHARA)",
+      role: "Weak front collector element; gentle pre-convergence with low chromatic burden.",
       nC: 1.48534,
       nF: 1.49228,
       ng: 1.49596,
-      role: "Weak front collector element; gentle pre-convergence with low chromatic burden.",
     },
     {
       id: 2,
@@ -85,10 +89,11 @@ const LENS_DATA = {
       type: "Biconvex Positive (Fluorite)",
       nd: 1.43387,
       vd: 95.1,
-      fl: 210.7,
+      focalLengthMm: 210.7,
       glass: "CaF2 fluorite",
       apd: "inferred",
-      apdNote: "Fluorite anomalous-dispersion element identified by the production special-glass count and nd/vd signature.",
+      apdNote:
+        "Fluorite anomalous-dispersion element identified by the production special-glass count and nd/vd signature.",
       role: "Primary positive anomalous-dispersion element for secondary-spectrum control in the front group.",
     },
     {
@@ -98,14 +103,14 @@ const LENS_DATA = {
       type: "Biconvex Positive (UD-class)",
       nd: 1.497,
       vd: 81.5,
-      fl: 147.3,
+      focalLengthMm: 147.3,
       glass: "S-FPL51 (OHARA)",
       apd: "inferred",
       apdNote: "Catalog UD fluorophosphate element; line-index fields provide the chromatic model.",
+      role: "First UD-class positive element in L1; works with fluorite to suppress axial color.",
       nC: 1.49514,
       nF: 1.50123,
       ng: 1.50451,
-      role: "First UD-class positive element in L1; works with fluorite to suppress axial color.",
     },
     {
       id: 4,
@@ -114,12 +119,12 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.65412,
       vd: 39.7,
-      fl: -188.1,
+      focalLengthMm: -188.1,
       glass: "S-NBH5 (OHARA)",
+      role: "Negative high-index flint-like corrector after the three front positive elements.",
       nC: 1.64923,
       nF: 1.66571,
       ng: 1.67517,
-      role: "Negative high-index flint-like corrector after the three front positive elements.",
     },
     {
       id: 5,
@@ -128,13 +133,13 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6968,
       vd: 55.5,
-      fl: -93.1,
+      focalLengthMm: -93.1,
       glass: "S-LAL14 (OHARA)",
+      role: "Front component of the L1 closing doublet; negative meniscus power at the cemented interface.",
+      cemented: "D1",
       nC: 1.69297,
       nF: 1.70552,
       ng: 1.71234,
-      cemented: "D1",
-      role: "Front component of the L1 closing doublet; negative meniscus power at the cemented interface.",
     },
     {
       id: 6,
@@ -143,15 +148,15 @@ const LENS_DATA = {
       type: "Positive Meniscus (UD-class)",
       nd: 1.497,
       vd: 81.5,
-      fl: 98.8,
+      focalLengthMm: 98.8,
       glass: "S-FPL51 (OHARA)",
       apd: "inferred",
       apdNote: "Second catalog UD fluorophosphate element; line-index fields provide the chromatic model.",
+      role: "Second UD-class element; rear half of the nearly afocal L1 chromatic-correction doublet.",
+      cemented: "D1",
       nC: 1.49514,
       nF: 1.50123,
       ng: 1.50451,
-      cemented: "D1",
-      role: "Second UD-class element; rear half of the nearly afocal L1 chromatic-correction doublet.",
     },
     {
       id: 7,
@@ -160,13 +165,13 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.8,
-      fl: 132.8,
+      focalLengthMm: 132.8,
       glass: "S-TIH53 (OHARA)",
+      role: "High-dispersion front component of the negative inner-focus doublet.",
+      cemented: "D2",
       nC: 1.83649,
       nF: 1.8721,
       ng: 1.89419,
-      cemented: "D2",
-      role: "High-dispersion front component of the negative inner-focus doublet.",
     },
     {
       id: 8,
@@ -175,13 +180,13 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7725,
       vd: 49.6,
-      fl: -50.3,
+      focalLengthMm: -50.3,
       glass: "S-LAH66 (OHARA)",
+      role: "Dominant negative-power component of the L2 focus group.",
+      cemented: "D2",
       nC: 1.7678,
       nF: 1.78337,
       ng: 1.79197,
-      cemented: "D2",
-      role: "Dominant negative-power component of the L2 focus group.",
     },
     {
       id: 9,
@@ -190,13 +195,13 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.65412,
       vd: 39.7,
-      fl: -96.8,
+      focalLengthMm: -96.8,
       glass: "S-NBH5 (OHARA)",
+      role: "Negative front component of L31, directly behind the stop.",
+      cemented: "D3",
       nC: 1.64923,
       nF: 1.66571,
       ng: 1.67517,
-      cemented: "D3",
-      role: "Negative front component of L31, directly behind the stop.",
     },
     {
       id: 10,
@@ -205,13 +210,13 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 49.6,
-      fl: 48.3,
+      focalLengthMm: 48.3,
       glass: "S-LAH66 (OHARA)",
+      role: "Strong positive rear component of L31; reconverges the beam before the IS group.",
+      cemented: "D3",
       nC: 1.7678,
       nF: 1.78337,
       ng: 1.79197,
-      cemented: "D3",
-      role: "Strong positive rear component of L31; reconverges the beam before the IS group.",
     },
     {
       id: 11,
@@ -220,12 +225,12 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6968,
       vd: 55.5,
-      fl: -78.8,
+      focalLengthMm: -78.8,
       glass: "S-LAL14 (OHARA)",
+      role: "Negative singlet at the front of the L32 image-stabilizer group.",
       nC: 1.69297,
       nF: 1.70552,
       ng: 1.71234,
-      role: "Negative singlet at the front of the L32 image-stabilizer group.",
     },
     {
       id: 12,
@@ -234,13 +239,13 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.8,
-      fl: 73.4,
+      focalLengthMm: 73.4,
       glass: "S-TIH53 (OHARA)",
+      role: "High-dispersion positive component within the L32 IS cemented doublet.",
+      cemented: "D4",
       nC: 1.83649,
       nF: 1.8721,
       ng: 1.89419,
-      cemented: "D4",
-      role: "High-dispersion positive component within the L32 IS cemented doublet.",
     },
     {
       id: 13,
@@ -249,13 +254,13 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.54072,
       vd: 47.2,
-      fl: -50.2,
+      focalLengthMm: -50.2,
       glass: "S-TIL2 (OHARA)",
+      role: "Negative rear component of the L32 IS doublet; completes the negative stabilizer group.",
+      cemented: "D4",
       nC: 1.5373,
       nF: 1.54875,
       ng: 1.55522,
-      cemented: "D4",
-      role: "Negative rear component of the L32 IS doublet; completes the negative stabilizer group.",
     },
     {
       id: 14,
@@ -264,13 +269,13 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72916,
       vd: 54.7,
-      fl: 41.5,
+      focalLengthMm: 41.5,
       glass: "S-LAL18 (OHARA)",
+      role: "Strong positive front component of the L33 rear converging doublet.",
+      cemented: "D5",
       nC: 1.7251,
       nF: 1.73844,
       ng: 1.7457,
-      cemented: "D5",
-      role: "Strong positive front component of the L33 rear converging doublet.",
     },
     {
       id: 15,
@@ -279,13 +284,13 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.4,
-      fl: -58.1,
+      focalLengthMm: -58.1,
       glass: "S-TIH6 (OHARA)",
+      role: "Dense flint rear component of the L33 cemented achromat.",
+      cemented: "D5",
       nC: 1.79611,
       nF: 1.82777,
       ng: 1.84729,
-      cemented: "D5",
-      role: "Dense flint rear component of the L33 cemented achromat.",
     },
     {
       id: 16,
@@ -294,12 +299,12 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.804,
       vd: 46.6,
-      fl: 104.2,
+      focalLengthMm: 104.2,
       glass: "S-LAH65V (OHARA)",
+      role: "Final high-index positive meniscus for rear-group convergence and field correction.",
       nC: 1.79882,
       nF: 1.81608,
       ng: 1.82569,
-      role: "Final high-index positive meniscus for rear-group convergence and field correction.",
     },
     {
       id: 17,
@@ -314,49 +319,52 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 469.673, d: 6.23, nd: 1.48749, elemId: 1, sd: 56 },
-    { label: "2", R: -105940, d: 0.52, nd: 1.0, elemId: 0, sd: 55 },
-    { label: "3", R: 91.926, d: 18.49, nd: 1.43387, elemId: 2, sd: 52 },
-    { label: "4", R: -15019.281, d: 1.94, nd: 1.0, elemId: 0, sd: 51 },
-    { label: "5", R: 82.868, d: 17.12, nd: 1.497, elemId: 3, sd: 45 },
-    { label: "6", R: -583.653, d: 0.1, nd: 1.0, elemId: 0, sd: 39.9 },
-    { label: "7", R: -545.88, d: 4.4, nd: 1.65412, elemId: 4, sd: 39.9 },
-    { label: "8", R: 159.373, d: 1.49, nd: 1.0, elemId: 0, sd: 39.9 },
-    { label: "9", R: 92.975, d: 5.0, nd: 1.6968, elemId: 5, sd: 34.8 },
-    { label: "10", R: 37.36, d: 14.85, nd: 1.497, elemId: 6, sd: 31 },
-    { label: "11", R: 135.809, d: 14.87, nd: 1.0, elemId: 0, sd: 31 },
-    { label: "12", R: -1035.916, d: 3.97, nd: 1.84666, elemId: 7, sd: 27 },
-    { label: "13", R: -101.579, d: 3.0, nd: 1.7725, elemId: 8, sd: 27 },
-    { label: "14", R: 63.713, d: 26.48, nd: 1.0, elemId: 0, sd: 27 },
-    { label: "STO", R: 1e15, d: 4.44, nd: 1.0, elemId: 0, sd: 19.9207 },
-    { label: "16", R: 124.242, d: 2.1, nd: 1.65412, elemId: 9, sd: 22 },
-    { label: "17", R: 41.666, d: 9.38, nd: 1.7725, elemId: 10, sd: 22 },
-    { label: "18", R: -320.108, d: 2.75, nd: 1.0, elemId: 0, sd: 22 },
-    { label: "19", R: -392.917, d: 1.9, nd: 1.6968, elemId: 11, sd: 18 },
-    { label: "20", R: 63.948, d: 3.93, nd: 1.0, elemId: 0, sd: 17.3 },
-    { label: "21", R: -114.597, d: 4.01, nd: 1.84666, elemId: 12, sd: 17.4 },
-    { label: "22", R: -40.943, d: 1.9, nd: 1.54072, elemId: 13, sd: 17.4 },
-    { label: "23", R: 81.99, d: 3.03, nd: 1.0, elemId: 0, sd: 17.4 },
-    { label: "24", R: 104.809, d: 8.01, nd: 1.72916, elemId: 14, sd: 20 },
-    { label: "25", R: -41.124, d: 2.0, nd: 1.80518, elemId: 15, sd: 20 },
-    { label: "26", R: -347.988, d: 0.2, nd: 1.0, elemId: 0, sd: 20 },
-    { label: "27", R: 72.365, d: 3.73, nd: 1.804, elemId: 16, sd: 21 },
-    { label: "28", R: 518.348, d: 3.27, nd: 1.0, elemId: 0, sd: 21 }, // patent gap to drop-in filter F
+    { label: "1", R: 469.673, d: 6.23, sd: 56, medium: 1 },
+    { label: "2", R: -105940, d: 0.52, sd: 55 },
+    { label: "3", R: 91.926, d: 18.49, sd: 52, medium: 2 },
+    { label: "4", R: -15019.281, d: 1.94, sd: 51 },
+    { label: "5", R: 82.868, d: 17.12, sd: 45, medium: 3 },
+    { label: "6", R: -583.653, d: 0.1, sd: 39.9 },
+    { label: "7", R: -545.88, d: 4.4, sd: 39.9, medium: 4 },
+    { label: "8", R: 159.373, d: 1.49, sd: 39.9 },
+    { label: "9", R: 92.975, d: 5.0, sd: 34.8, medium: 5 },
+    { label: "10", R: 37.36, d: 14.85, sd: 31, medium: 6 },
+    { label: "11", R: 135.809, sd: 31 },
+    { label: "12", R: -1035.916, d: 3.97, sd: 27, medium: 7 },
+    { label: "13", R: -101.579, d: 3.0, sd: 27, medium: 8 },
+    { label: "14", R: 63.713, sd: 27 },
+    { label: "STO", R: "flat", d: 4.44 },
+    { label: "16", R: 124.242, d: 2.1, sd: 22, medium: 9 },
+    { label: "17", R: 41.666, d: 9.38, sd: 22, medium: 10 },
+    { label: "18", R: -320.108, d: 2.75, sd: 22 },
+    { label: "19", R: -392.917, d: 1.9, sd: 18, medium: 11 },
+    { label: "20", R: 63.948, d: 3.93, sd: 17.3 },
+    { label: "21", R: -114.597, d: 4.01, sd: 17.4, medium: 12 },
+    { label: "22", R: -40.943, d: 1.9, sd: 17.4, medium: 13 },
+    { label: "23", R: 81.99, d: 3.03, sd: 17.4 },
+    { label: "24", R: 104.809, d: 8.01, sd: 20, medium: 14 },
+    { label: "25", R: -41.124, d: 2.0, sd: 20, medium: 15 },
+    { label: "26", R: -347.988, d: 0.2, sd: 20 },
+    { label: "27", R: 72.365, d: 3.73, sd: 21, medium: 16 },
+    { label: "28", R: 518.348, d: 3.27, sd: 21 }, // patent gap to drop-in filter F
     // Drop-in filter F (JP 2008-145584 A, Numerical Example 1 (Table 1) surfaces 29–30), drawn as a plane-parallel plate.
     // Its sd is a ray-trace estimate (the source lists none).
-    { label: "29", R: 1e15, d: 2.0, nd: 1.51633, elemId: 17, sd: 21.5 },
-    { label: "30", R: 1e15, d: 60.36, nd: 1.0, elemId: 0, sd: 21.5 }, // drop-in filter → image plane
+    { label: "29", R: "flat", d: 2.0, sd: 21.5, medium: 17 },
+    { label: "30", R: "flat", d: 60.36, sd: 21.5 }, // drop-in filter → image plane
   ],
 
-  asph: {},
-  var: {
-    "11": [14.87, 27.430417],
-    "14": [26.48, 13.919583],
+  focus: {
+    closeFocusM: 1.9,
+    description:
+      "Inner focus by imageward translation of the negative L2 cemented doublet; paraxial close-focus reconstruction gives +12.560 mm travel at 1.9 m MFD.",
   },
-  varLabels: [
-    ["11", "D11 IF"],
-    ["14", "D14 IF"],
-  ],
+
+  gaps: {
+    "11": { label: "D11 IF", values: [[14.87, 27.430417]] },
+    "14": { label: "D14 IF", values: [[26.48, 13.919583]] },
+  },
+
+  aperture: { nominalFNumber: 2.05, fStops: [2.05, 2.8, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 8 },
 
   groups: [
     { text: "L1", fromSurface: "1", toSurface: "11" },
@@ -373,18 +381,11 @@ const LENS_DATA = {
     { text: "D5", fromSurface: "24", toSurface: "26" },
   ],
 
-  closeFocusM: 1.9,
-  nominalFno: 2.05,
-  fstopSeries: [2.05, 2.8, 4, 5.6, 8, 11, 16, 22, 32],
-  maxFstop: 32,
-  apertureBlades: 8,
-  focusDescription:
-    "Inner focus by imageward translation of the negative L2 cemented doublet; paraxial close-focus reconstruction gives +12.560 mm travel at 1.9 m MFD.",
+  layout: { scFill: 0.58, yScFill: 0.7 },
+
   // Two air-spaced pairs meet at the rim in FIG. 1: 0.005 mm of the 0.10 mm gap between surfaces 6 and 7 is left at
   // 39.9 mm, and 0.23 mm of the 3.93 mm gap between surfaces 20 and 21 at 17.3 mm.
-  gapSagFrac: 0.95,
-  scFill: 0.58,
-  yScFill: 0.7,
-} satisfies LensDataInput;
+  checks: { gapSagFrac: 0.95 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

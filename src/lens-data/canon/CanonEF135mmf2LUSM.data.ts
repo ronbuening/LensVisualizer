@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -37,31 +37,35 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "canon-ef-135-f2l-usm",
   maker: "Canon",
   name: "CANON EF 135mm f/2 L USM",
   subtitle: "JP 2018-049102 A Example 1 — later apodized Canon embodiment correlated to EF 135mm f/2L USM",
-  specs: [
-    "10 ELEMENTS / 8 GROUPS",
-    "135 mm f/2 (marketing)",
-    "f = 133.495 mm / F2.0598 (design)",
-    "2ω ≈ 18.42°",
-    "PUBLISHED REAR/INTERNAL FOCUS",
-  ],
 
-  focalLengthMarketing: 135,
-  focalLengthDesign: 133.495358106,
-  apertureMarketing: 2,
-  apertureDesign: 2.059788166,
-  lensMounts: ["canon-ef"],
-  acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 2018-049102 A",
-  patentAuthors: ["Tomohiko Ishibashi"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 2018,
-  elementCount: 10,
-  groupCount: 8,
+  catalog: {
+    lensMounts: ["canon-ef"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "10 ELEMENTS / 8 GROUPS",
+      "135 mm f/2 (marketing)",
+      "f = 133.495 mm / F2.0598 (design)",
+      "2ω ≈ 18.42°",
+      "PUBLISHED REAR/INTERNAL FOCUS",
+    ],
+    elementCount: 10,
+    groupCount: 8,
+    acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
+    focalLengthMm: { marketing: 135, design: 133.495358106 },
+    fNumber: { marketing: 2, design: 2.059788166 },
+  },
+
+  source: {
+    patentNumber: "JP 2018-049102 A",
+    patentYear: 2018,
+    authors: ["Tomohiko Ishibashi"],
+    assignees: ["Canon Inc."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -72,7 +76,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.2,
-      fl: 160.740749,
+      focalLengthMm: 160.740749,
       glass: "487702 class (catalog-equivalent coefficient proxy; production supplier unspecified)",
       role: "Front positive collector in fixed G1.",
     },
@@ -83,7 +87,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.5,
-      fl: 130.141309,
+      focalLengthMm: 130.141309,
       glass: "497815 UD-class coordinate (catalog-equivalent coefficient proxy; production supplier unspecified)",
       apd: "inferred",
       apdNote:
@@ -98,7 +102,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.834,
       vd: 37.2,
-      fl: -97.181472,
+      focalLengthMm: -97.181472,
       glass: "834372 class (catalog-equivalent coefficient proxy; production supplier unspecified)",
       role: "Negative correction element in fixed G1.",
     },
@@ -109,7 +113,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.5,
-      fl: 110.583328,
+      focalLengthMm: 110.583328,
       glass: "497815 UD-class coordinate (catalog-equivalent coefficient proxy; production supplier unspecified)",
       apd: "inferred",
       apdNote:
@@ -124,7 +128,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.71736,
       vd: 29.5,
-      fl: -273.913242,
+      focalLengthMm: -273.913242,
       glass: "717295 class (catalog-equivalent coefficient proxy; production supplier unspecified)",
       role: "Weak negative element immediately before the aperture stop in fixed G1.",
     },
@@ -135,7 +139,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.9,
-      fl: 67.48193,
+      focalLengthMm: 67.48193,
       glass: "847239 class (catalog-equivalent coefficient proxy; production supplier unspecified)",
       role: "Positive component of the moving negative focus doublet G2.",
       cemented: "D1",
@@ -147,7 +151,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.71999,
       vd: 50.2,
-      fl: -32.91595,
+      focalLengthMm: -32.91595,
       glass: "720502 class (catalog-equivalent coefficient proxy; production supplier unspecified)",
       role: "Negative component of the moving focus doublet; the cemented L6+L7 component has net negative power.",
       cemented: "D1",
@@ -159,7 +163,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.74077,
       vd: 27.8,
-      fl: -35.53514,
+      focalLengthMm: -35.53514,
       glass: "741278 class (catalog-equivalent coefficient proxy; production supplier unspecified)",
       role: "Negative member of the fixed rear cemented pair in G3.",
       cemented: "D2",
@@ -171,7 +175,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 49.6,
-      fl: 43.342889,
+      focalLengthMm: 43.342889,
       glass: "773496 class (catalog-equivalent coefficient proxy; production supplier unspecified)",
       role: "Positive member of the fixed rear cemented pair; patent surface 17 carries the second radial-transmission film.",
       cemented: "D2",
@@ -183,49 +187,50 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.834,
       vd: 37.2,
-      fl: 83.436538,
+      focalLengthMm: 83.436538,
       glass: "834372 class (catalog-equivalent coefficient proxy; production supplier unspecified)",
       role: "Final positive element in fixed G3.",
     },
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspheres ── */
   surfaces: [
-    { label: "1", R: 106.149, d: 9.0, nd: 1.48749, elemId: 1, sd: 33.795 },
-    { label: "2", R: -290.997, d: 0.5, nd: 1.0, elemId: 0, sd: 33.46 },
-    { label: "3", R: 51.244, d: 9.5, nd: 1.497, elemId: 2, sd: 29.665 },
-    { label: "4", R: 231.499, d: 3.0, nd: 1.0, elemId: 0, sd: 28.985 },
-    { label: "5", R: -630.036, d: 3.5, nd: 1.834, elemId: 3, sd: 28.72 },
-    { label: "6", R: 93.25, d: 2.5, nd: 1.0, elemId: 0, sd: 26.87 },
-    { label: "7", R: 60.005, d: 8.0, nd: 1.497, elemId: 4, sd: 26.105 },
-    { label: "8", R: -624.746, d: 0.5, nd: 1.0, elemId: 0, sd: 25.7 },
-    { label: "9", R: 29.265, d: 3.2, nd: 1.71736, elemId: 5, sd: 21.16 },
-    { label: "10", R: 24.308, d: 12.5, nd: 1.0, elemId: 0, sd: 18.98 },
-    { label: "STO", R: 1e15, d: 2.28, nd: 1.0, elemId: 0, sd: 17.755 },
-    { label: "12", R: -2278.322, d: 4.5, nd: 1.84666, elemId: 6, sd: 16.95 },
-    { label: "13", R: -55.787, d: 2.0, nd: 1.71999, elemId: 7, sd: 16.575 },
-    { label: "14", R: 41.821, d: 22.52, nd: 1.0, elemId: 0, sd: 14.935 },
-    { label: "15", R: -30.566, d: 2.5, nd: 1.74077, elemId: 8, sd: 12.97 },
-    { label: "16", R: 196.247, d: 8.5, nd: 1.7725, elemId: 9, sd: 14.46 },
-    { label: "17", R: -39.608, d: 0.5, nd: 1.0, elemId: 0, sd: 16.11 },
-    { label: "18", R: 106.631, d: 6.0, nd: 1.834, elemId: 10, sd: 17.745 },
-    { label: "19", R: -195.173, d: 54.12, nd: 1.0, elemId: 0, sd: 18.035 },
+    { label: "1", R: 106.149, d: 9.0, sd: 33.795, medium: 1 },
+    { label: "2", R: -290.997, d: 0.5, sd: 33.46 },
+    { label: "3", R: 51.244, d: 9.5, sd: 29.665, medium: 2 },
+    { label: "4", R: 231.499, d: 3.0, sd: 28.985 },
+    { label: "5", R: -630.036, d: 3.5, sd: 28.72, medium: 3 },
+    { label: "6", R: 93.25, d: 2.5, sd: 26.87 },
+    { label: "7", R: 60.005, d: 8.0, sd: 26.105, medium: 4 },
+    { label: "8", R: -624.746, d: 0.5, sd: 25.7 },
+    { label: "9", R: 29.265, d: 3.2, sd: 21.16, medium: 5 },
+    { label: "10", R: 24.308, d: 12.5, sd: 18.98 },
+    // JP 2018-049102 A, Example 1 surface table, stop row: printed effective diameter 35.51 mm at the stop.
+    { label: "STO", R: "flat" },
+    { label: "12", R: -2278.322, d: 4.5, sd: 16.95, medium: 6 },
+    { label: "13", R: -55.787, d: 2.0, sd: 16.575, medium: 7 },
+    { label: "14", R: 41.821, sd: 14.935 },
+    { label: "15", R: -30.566, d: 2.5, sd: 12.97, medium: 8 },
+    { label: "16", R: 196.247, d: 8.5, sd: 14.46, medium: 9 },
+    { label: "17", R: -39.608, d: 0.5, sd: 16.11 },
+    { label: "18", R: 106.631, d: 6.0, sd: 17.745, medium: 10 },
+    { label: "19", R: -195.173, d: 54.12, sd: 18.035 },
   ],
 
-  /* ── Aspheres ── */
-  asph: {},
-
-  /* ── Published focus spacings ── */
-  var: {
-    STO: [2.28, 17.81],
-    "14": [22.52, 6.99],
+  /* ── Optical / UI parameters ── */
+  focus: {
+    closeFocusM: 0.9,
+    description:
+      "PUBLISHED rear/internal focus: negative G2 (L6+L7, surfaces 12-14) translates 15.53 mm imageward from infinity to 0.900 m; G1 and G3 remain fixed.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
   },
-  varLabels: [
-    ["STO", "D11"],
-    ["14", "D14"],
-  ],
-  focusDescription:
-    "PUBLISHED rear/internal focus: negative G2 (L6+L7, surfaces 12-14) translates 15.53 mm imageward from infinity to 0.900 m; G1 and G3 remain fixed.",
+
+  /* (moved from var) ── Published focus spacings ── */
+  gaps: { STO: { label: "D11", values: [[2.28, 17.81]] }, "14": { label: "D14", values: [[22.52, 6.99]] } },
+
+  aperture: { nominalFNumber: 2.059788166, fStops: [2.06, 2.8, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 8 },
 
   /* ── Diagram annotations ── */
   groups: [
@@ -238,15 +243,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "15", toSurface: "17" },
   ],
 
-  /* ── Optical / UI parameters ── */
-  closeFocusM: 0.9,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  nominalFno: 2.059788166,
-  fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16, 22, 32],
-  apertureBlades: 8,
-  maxFstop: 32,
-  yScFill: 0.32,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.32 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

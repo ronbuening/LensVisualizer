@@ -85,7 +85,6 @@ import buildLens, {
   ingestLens,
   ingestLensV1,
   ingestTeleconverter,
-  ingestTeleconverterV1,
   toLensData,
   toTeleconverterData,
 } from "../../../src/optics/buildLens.js";
@@ -95,6 +94,7 @@ import {
   REAR_PLATE_SCHEMA_DEFAULTS,
   type SchemaDefault,
 } from "../../../src/optics/prescription/defaults.js";
+import { toLensDataInput } from "../../../src/optics/prescription/toLensData.js";
 import { doLayout, traceRay } from "../../../src/optics/optics.js";
 import type { MtfMethod, MtfSpectrum } from "../../../src/types/mtf.js";
 import type { LensData, LensDataInput } from "../../../src/types/optics.js";
@@ -836,7 +836,10 @@ describe("engineDiff catalog export", () => {
 
     /* A host that does not build alone says nothing of its pairs. The composer drops a host's sibling
      * configurations, so a host whose own are in a form the engine cannot read still composes and builds. */
-    const hostAlone = edited("lenses", host, (data) => ({ ...data, opticalConfiguration: "in another form" }));
+    const hostAlone = edited("lenses", host, (data) => ({
+      ...toLensDataInput(ingestLens(data as unknown as LensDataInput)),
+      opticalConfiguration: "in another form",
+    }));
     const [alone] = captureRecords(hostAlone, [{ lens: { key: host }, state: null, family: "build" }]);
     expect(alone.payload.ok).toBe(false);
     expect(unbuiltPairs(hostAlone, CATALOG.pairs)).toEqual({});
@@ -1023,8 +1026,13 @@ describe("engineDiff Tier P requests", () => {
 
   it("names representatives that still carry their feature", () => {
     /* A representative whose data loses the feature would keep its row and quietly stop covering it. */
-    const lenses = new Map(CATALOG.lenses.map((lens) => [lens.key, decodeValue(lens.prescription) as LensData]));
-    const carries: Record<string, (data: LensData, state: Partial<typeof DEFAULT_STATE>) => boolean> = {
+    const lenses = new Map(
+      CATALOG.lenses.map((lens) => [
+        lens.key,
+        toLensDataInput(ingestLens(decodeValue(lens.prescription) as LensDataInput)),
+      ]),
+    );
+    const carries: Record<string, (data: LensDataInput, state: Partial<typeof DEFAULT_STATE>) => boolean> = {
       fisheye: (data) => data.projection !== undefined && data.projection.kind !== "rectilinear",
       "folded-auto-path": (data) => data.opticalPath?.mode === "auto",
       "folded-explicit-order": (data) => (data.opticalPath?.surfaceOrder?.length ?? 0) > 0,
@@ -2125,11 +2133,12 @@ describe("engineDiff capture", () => {
 
 /* ── Semantic fingerprint ── */
 
-describe("engineDiff semantic fingerprint", () => {
+/* The respelling cases capture a lens's Tier P records three times; on CI runners that exceeds the default limit. */
+describe("engineDiff semantic fingerprint", { timeout: 120_000 }, () => {
   const seam = resolveSeam();
-  const projectLens: SemanticProjection = (lens) => ingestLensV1(lens as LensDataInput).prescription;
+  const projectLens: SemanticProjection = (lens) => ingestLens(lens as LensDataInput).prescription;
   const projectConverter: SemanticProjection = (converter) =>
-    ingestTeleconverterV1(converter as Parameters<typeof ingestTeleconverterV1>[0]).prescription;
+    ingestTeleconverter(converter as Parameters<typeof ingestTeleconverter>[0]).prescription;
   const fingerprint = (lens: object) => semanticFingerprint(lens, projectLens);
   /** The plain twin with one edit applied to a private copy. */
   const edited = (edit: (lens: LensDataInput) => void): LensDataInput => {
@@ -2138,8 +2147,19 @@ describe("engineDiff semantic fingerprint", () => {
     return copy;
   };
   const base = fingerprint(plainTwin);
-  const authoredOf = (key: string) =>
-    decodeValue(CATALOG.lenses.find((lens) => lens.key === key)!.prescription) as LensData;
+  // Respelling tests edit V1 syntax. Give an omitted derived stop radius a finite value to perturb as well.
+  const authoredViews = new Map<string, LensData>();
+  const authoredOf = (key: string): LensData => {
+    let view = authoredViews.get(key);
+    if (!view) {
+      view = toLensDataInput(
+        ingestLens(decodeValue(CATALOG.lenses.find((lens) => lens.key === key)!.prescription) as LensDataInput),
+        { stopRadius: 1 },
+      ) as LensData;
+      authoredViews.set(key, view);
+    }
+    return structuredClone(view);
+  };
 
   it("is shared by two files that differ only in comments, layout, key order and written-out defaults", () => {
     /* The twins really are different objects: other key order, explicit defaults, an `undefined` member. */
@@ -2169,13 +2189,23 @@ describe("engineDiff semantic fingerprint", () => {
    * fingerprint must then hold in the payloads too, or a format-only change fails on a record that only hands
    * authored data back.
    */
-  const captureRespelled = (key: string, ids: readonly string[], respell: (lens: LensData) => void) => {
+  const captureRespelled = (
+    key: string,
+    ids: readonly string[],
+    respell: (lens: LensData) => void,
+    prepare?: (lens: LensData) => void,
+  ) => {
     const entry = CATALOG.lenses.find((lens) => lens.key === key)!;
-    const authored = decodeValue(entry.prescription) as LensData;
+    const authored = authoredOf(key);
+    // V2 has no empty V1 containers or redundant station declarations; spell them out for these cases.
+    prepare?.(authored);
+    expect(fingerprint(authored), `${key}: the V1 test spelling keeps the catalog fingerprint`).toBe(
+      fingerprint(decodeValue(entry.prescription) as object),
+    );
     const respelled = structuredClone(authored);
     respell(respelled);
     expect(JSON.stringify(encodeValue(respelled)), `${key}: the respelling edits the file`).not.toBe(
-      JSON.stringify(entry.prescription),
+      JSON.stringify(encodeValue(authored)),
     );
     expect(fingerprint(respelled), `${key}: the respelling keeps the fingerprint`).toBe(fingerprint(authored));
 
@@ -2186,8 +2216,13 @@ describe("engineDiff semantic fingerprint", () => {
       ),
     };
     const requests = tierPRequests(ids);
-    const before = captureRecords(CATALOG, requests);
+    const authoredCatalog: SerializedCatalog = {
+      ...CATALOG,
+      lenses: CATALOG.lenses.map((lens) => (lens === entry ? { ...entry, prescription: encodeValue(authored) } : lens)),
+    };
+    const before = captureRecords(authoredCatalog, requests);
     expect(before.filter((record) => !record.payload.ok)).toEqual([]);
+    expect(recordDigests(before)).toEqual(recordDigests(captureRecords(CATALOG, requests)));
     return { before, after: captureRecords(respelledCatalog, requests) };
   };
 
@@ -2244,11 +2279,11 @@ describe("engineDiff semantic fingerprint", () => {
 
   /** The first catalog lens, in key order, whose authored data passes `test`. */
   const firstLens = (test: (lens: LensData) => boolean): string => {
-    const found = CATALOG.lenses.find((entry) => test(decodeValue(entry.prescription) as LensData));
+    const found = CATALOG.lenses.find((entry) => test(authoredOf(entry.key)));
     expect(found, "the catalog has a lens to respell").toBeDefined();
     return found!.key;
   };
-  type Respelling = [name: string, key: string, respell: (lens: LensData) => void];
+  type Respelling = [name: string, key: string, respell: (lens: LensData) => void, prepare?: (lens: LensData) => void];
   const elementsWith = (field: "apd" | "indexReference", value: unknown) => (lens: LensData) =>
     lens.elements.some((element) => element[field] === value);
   const withoutOnElements = (field: "apd" | "indexReference") => (lens: LensData) => {
@@ -2267,15 +2302,20 @@ describe("engineDiff semantic fingerprint", () => {
     ],
     [
       "an empty asph left out",
-      firstLens((lens) => lens.asph !== undefined && Object.keys(lens.asph).length === 0),
+      firstLens((lens) => !aspheric(lens)),
       (lens) => delete lens.asph,
+      (lens) => (lens.asph = {}),
     ],
     [
       "an empty var and varLabels left out",
-      firstLens((lens) => lens.var !== undefined && Object.keys(lens.var).length === 0 && lens.varLabels?.length === 0),
+      firstLens((lens) => Object.keys(lens.var ?? {}).length === 0 && (lens.varLabels?.length ?? 0) === 0),
       (lens) => {
         delete lens.var;
         delete lens.varLabels;
+      },
+      (lens) => {
+        lens.var = {};
+        lens.varLabels = [];
       },
     ],
     ["apd: false left out", firstLens(elementsWith("apd", false)), withoutOnElements("apd")],
@@ -2306,9 +2346,14 @@ describe("engineDiff semantic fingerprint", () => {
       "a publishedStations.zoom that names every station left out",
       firstLens((lens) => {
         const { zoom, focus } = lens.publishedStations ?? {};
-        return zoom !== undefined && focus !== undefined && zoom.length === lens.zoomPositions?.length;
+        return (
+          focus !== undefined &&
+          lens.zoomPositions !== undefined &&
+          (zoom === undefined || zoom.length === lens.zoomPositions.length)
+        );
       }),
       (lens) => delete lens.publishedStations!.zoom,
+      (lens) => (lens.publishedStations!.zoom = lens.zoomPositions!.map((_, station) => station)),
     ],
     /* The schema default, every zoom station at infinity alone, in both spellings V1 validation accepts. */
     [
@@ -2316,9 +2361,14 @@ describe("engineDiff semantic fingerprint", () => {
       firstLens((lens) => {
         const { zoom, focus } = lens.publishedStations ?? {};
         const every = lens.zoomPositions?.map((_, station) => station);
-        return focus === undefined && every !== undefined && JSON.stringify(zoom) === JSON.stringify(every);
+        return (
+          focus === undefined &&
+          every !== undefined &&
+          (zoom === undefined || JSON.stringify(zoom) === JSON.stringify(every))
+        );
       }),
       (lens) => delete lens.publishedStations,
+      (lens) => (lens.publishedStations = { zoom: lens.zoomPositions!.map((_, station) => station) }),
     ],
     [
       "a missing publishedStations written as every zoom station",
@@ -2348,8 +2398,8 @@ describe("engineDiff semantic fingerprint", () => {
     ],
   ];
 
-  it.each(respellings)("keeps every Tier P record of a lens with %s", (_name, key, respell) => {
-    const { before, after } = captureRespelled(key, [key], respell);
+  it.each(respellings)("keeps every Tier P record of a lens with %s", (_name, key, respell, prepare) => {
+    const { before, after } = captureRespelled(key, [key], respell, prepare);
     expect(recordDigests(after)).toEqual(recordDigests(before));
   });
 
@@ -2381,7 +2431,7 @@ describe("engineDiff semantic fingerprint", () => {
      * capture for one. The engine's `publishedStationGrid` still reads each as its valid twin, and so do the
      * fingerprint and the echo. */
     const respelled = (key: string, declare: (lens: LensData) => LensData["publishedStations"]) => {
-      const authored = decodeValue(CATALOG.lenses.find((entry) => entry.key === key)!.prescription) as LensData;
+      const authored = authoredOf(key);
       const lens = structuredClone(authored);
       lens.publishedStations = declare(lens);
       expect(fingerprint(lens), `${key}: ${JSON.stringify(lens.publishedStations)}`).toBe(fingerprint(authored));
@@ -2399,7 +2449,11 @@ describe("engineDiff semantic fingerprint", () => {
     respelled(undeclaredPrime, () => ({ focus: [] }));
     const everyWithRows = firstLens((lens) => {
       const { zoom, focus } = lens.publishedStations ?? {};
-      return zoom !== undefined && focus !== undefined && zoom.length === lens.zoomPositions?.length;
+      return (
+        focus !== undefined &&
+        lens.zoomPositions !== undefined &&
+        (zoom === undefined || zoom.length === lens.zoomPositions.length)
+      );
     });
     respelled(everyWithRows, (lens) => ({ ...lens.publishedStations, zoom: [] }));
   });
@@ -2725,8 +2779,8 @@ describe("engineDiff semantic fingerprint", () => {
       );
     const offenders: string[] = [];
     const authorities = { authored: 0, schedule: 0, derived: 0 };
-    for (const { key, prescription } of CATALOG.lenses) {
-      const authored = decodeValue(prescription) as LensData;
+    for (const { key } of CATALOG.lenses) {
+      const authored = authoredOf(key);
       const shrunk = structuredClone(authored);
       const stop = shrunk.surfaces.find((surface) => surface.label === "STO");
       if (!stop) {

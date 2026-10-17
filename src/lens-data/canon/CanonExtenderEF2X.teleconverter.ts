@@ -1,4 +1,4 @@
-import type { TeleconverterDataInput } from "../../types/teleconverter.js";
+import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Canon Extender EF2X (the original 1987 version) — JP S63-106715 A, Example 2.
@@ -54,10 +54,25 @@ import type { TeleconverterDataInput } from "../../types/teleconverter.js";
  */
 
 const TELECONVERTER_DATA = {
+  schema: 2,
   key: "canon-extender-ef2x",
+  maker: "Canon",
   name: "CANON EXTENDER EF2X",
+  subtitle: "JP S63-106715 A, Example 2 — production correlation",
+
+  catalog: {
+    lensMounts: ["canon-ef"],
+    specs: ["7 ELEMENTS / 5 GROUPS", "2× REAR CONVERTER", "ALL SPHERICAL"],
+    elementCount: 7,
+    groupCount: 5,
+  },
+
+  source: { patentNumber: "JP S63-106715 A", patentYear: 1988, authors: ["Hideki Ogawa"], assignees: ["Canon Inc."] },
+
   magnification: 2,
-  lensMounts: ["canon-ef"],
+  masterImageDistanceMm: 49.1289656413155,
+  minHostFNumber: 2, // f/2.0-2.06 marginal rays clear every rim; an f/1.86 beam overfills surfaces 1 and 3 by 0.16 mm
+
   elements: [
     {
       id: 1,
@@ -66,8 +81,8 @@ const TELECONVERTER_DATA = {
       type: "Negative Meniscus",
       nd: 1.691,
       vd: 54.8,
+      focalLengthMm: -57.267684448,
       glass: "691548 - lanthanum crown (coordinate equivalent; supplier unconfirmed)",
-      fl: -57.267684448,
       role: "Front element of the positive first group (I): a negative meniscus, convex to the object.",
     },
     {
@@ -77,8 +92,8 @@ const TELECONVERTER_DATA = {
       type: "Biconvex Positive",
       nd: 1.5927,
       vd: 35.3,
+      focalLengthMm: 34.341956895,
       glass: "593353 - FTM16-class flint (coordinate equivalent; supplier unconfirmed)",
-      fl: 34.341956895,
       role: "Biconvex rear element of group I; it outweighs L11, so the group is positive (+72.8 mm).",
     },
     {
@@ -88,8 +103,8 @@ const TELECONVERTER_DATA = {
       type: "Positive Meniscus",
       nd: 1.60342,
       vd: 38,
+      focalLengthMm: 48.357915943,
       glass: "603380 - flint (coordinate equivalent; supplier unconfirmed)",
-      fl: 48.357915943,
       role: "Front element of the cemented triplet that forms the negative second group (II): a positive meniscus, convex to the image.",
       cemented: "T1",
     },
@@ -100,8 +115,8 @@ const TELECONVERTER_DATA = {
       type: "Biconcave Negative",
       nd: 1.8061,
       vd: 40.9,
+      focalLengthMm: -11.853493542,
       glass: "806409 - lanthanum flint (coordinate equivalent; supplier unconfirmed)",
-      fl: -11.853493542,
       role: "Biconcave centre of the cemented triplet; the converter's strongest element and the source of group II's negative power.",
       cemented: "T1",
     },
@@ -112,8 +127,8 @@ const TELECONVERTER_DATA = {
       type: "Biconvex Positive",
       nd: 1.58144,
       vd: 40.7,
+      focalLengthMm: 32.118212132,
       glass: "581407 - light flint (coordinate equivalent; supplier unconfirmed)",
-      fl: 32.118212132,
       role: "Biconvex rear element of the cemented triplet; its nearly flat rear surface faces the 12.19 mm air gap to group III.",
       cemented: "T1",
     },
@@ -124,8 +139,8 @@ const TELECONVERTER_DATA = {
       type: "Biconvex Positive",
       nd: 1.51112,
       vd: 60.5,
+      focalLengthMm: 46.012567759,
       glass: "511605 - crown (coordinate equivalent; supplier unconfirmed)",
-      fl: 46.012567759,
       role: "Front element of the positive third group (III): biconvex, with a weak front surface and a strong rear surface.",
     },
     {
@@ -135,145 +150,33 @@ const TELECONVERTER_DATA = {
       type: "Biconcave Negative",
       nd: 1.7725,
       vd: 49.6,
+      focalLengthMm: -58.008647322,
       glass: "773496 - lanthanum flint (coordinate equivalent; supplier unconfirmed)",
-      fl: -58.008647322,
       role: "Biconcave last element of the converter; with L31 it forms the weakly positive group III (+206 mm).",
     },
   ],
+
   surfaces: [
-    {
-      label: "1",
-      R: 101.227,
-      d: 2.3,
-      nd: 1.691,
-      elemId: 1,
-      sd: 13.3,
-    },
-    {
-      label: "2",
-      R: 28.186,
-      d: 2.2,
-      nd: 1,
-      elemId: 0,
-      sd: 13.3,
-    },
-    {
-      label: "3",
-      R: 36.841,
-      d: 7.93,
-      nd: 1.5927,
-      elemId: 2,
-      sd: 12.3,
-    },
-    {
-      label: "4",
-      R: -41.841,
-      d: 2.28,
-      nd: 1,
-      elemId: 0,
-      sd: 12.3,
-    },
-    {
-      label: "5",
-      R: -52.458,
-      d: 4.63,
-      nd: 1.60342,
-      elemId: 3,
-      sd: 10.4,
-    },
-    {
-      label: "6",
-      R: -19.373,
-      d: 1.5,
-      nd: 1.8061,
-      elemId: 4,
-      sd: 10.4,
-    },
-    {
-      label: "7",
-      R: 19.506,
-      d: 6.34,
-      nd: 1.58144,
-      elemId: 5,
-      sd: 10.4,
-    },
-    {
-      label: "8",
-      R: -385.882,
-      d: 12.19,
-      nd: 1,
-      elemId: 0,
-      sd: 10.4,
-    },
-    {
-      label: "9",
-      R: 246.435,
-      d: 6,
-      nd: 1.51112,
-      elemId: 6,
-      sd: 13.2,
-    },
-    {
-      label: "10",
-      R: -25.785,
-      d: 0.15,
-      nd: 1,
-      elemId: 0,
-      sd: 13.2,
-    },
-    {
-      label: "11",
-      R: -88.802,
-      d: 1.5,
-      nd: 1.7725,
-      elemId: 7,
-      sd: 13.1,
-    },
-    {
-      label: "12",
-      R: 91.126,
-      d: 54.250153768236906,
-      nd: 1,
-      elemId: 0,
-      sd: 13.1,
-    },
+    { label: "1", R: 101.227, d: 2.3, sd: 13.3, medium: 1 },
+    { label: "2", R: 28.186, d: 2.2, sd: 13.3 },
+    { label: "3", R: 36.841, d: 7.93, sd: 12.3, medium: 2 },
+    { label: "4", R: -41.841, d: 2.28, sd: 12.3 },
+    { label: "5", R: -52.458, d: 4.63, sd: 10.4, medium: 3 },
+    { label: "6", R: -19.373, d: 1.5, sd: 10.4, medium: 4 },
+    { label: "7", R: 19.506, d: 6.34, sd: 10.4, medium: 5 },
+    { label: "8", R: -385.882, d: 12.19, sd: 10.4 },
+    { label: "9", R: 246.435, d: 6, sd: 13.2, medium: 6 },
+    { label: "10", R: -25.785, d: 0.15, sd: 13.2 },
+    { label: "11", R: -88.802, d: 1.5, sd: 13.1, medium: 7 },
+    { label: "12", R: 91.126, d: 54.250153768236906, sd: 13.1 },
   ],
-  masterImageDistanceMm: 49.1289656413155,
-  maker: "Canon",
-  subtitle: "JP S63-106715 A, Example 2 — production correlation",
-  specs: ["7 ELEMENTS / 5 GROUPS", "2× REAR CONVERTER", "ALL SPHERICAL"],
-  minHostFno: 2, // f/2.0-2.06 marginal rays clear every rim; an f/1.86 beam overfills surfaces 1 and 3 by 0.16 mm
-  patentNumber: "JP S63-106715 A",
-  patentAuthors: ["Hideki Ogawa"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 1988,
-  elementCount: 7,
-  groupCount: 5,
-  asph: {},
+
   groups: [
-    {
-      text: "I (+)",
-      fromSurface: "1",
-      toSurface: "4",
-    },
-    {
-      text: "II (−)",
-      fromSurface: "5",
-      toSurface: "8",
-    },
-    {
-      text: "III (+)",
-      fromSurface: "9",
-      toSurface: "12",
-    },
+    { text: "I (+)", fromSurface: "1", toSurface: "4" },
+    { text: "II (−)", fromSurface: "5", toSurface: "8" },
+    { text: "III (+)", fromSurface: "9", toSurface: "12" },
   ],
-  doublets: [
-    {
-      text: "T1",
-      fromSurface: "5",
-      toSurface: "8",
-    },
-  ],
-} satisfies TeleconverterDataInput;
+  doublets: [{ text: "T1", fromSurface: "5", toSurface: "8" }],
+} satisfies TeleconverterDataV2Input;
 
 export default TELECONVERTER_DATA;

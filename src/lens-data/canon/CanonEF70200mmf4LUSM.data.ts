@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -24,11 +24,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ mean, 53.13085583884338 mm. The 0.008547 mm spread is source-rounding        ║
  * ║ residual, not a modeled image-plane movement.                                ║
  * ║                                                                              ║
- * ║ Stop: the patent gives the stop location and f/4.1 but no diameter. The      ║
- * ║ authored 14.25845124506584 mm semi-diameter is the common paraxial f/4.1     ║
- * ║ radius fitted to the three published zoom states. The fixed iris is traced   ║
- * ║ from nominalFno at 14.3750 mm, the height the real f/4.1 marginal ray        ║
- * ║ reaches at the stop at 71.92 mm.                                             ║
+ * ║ Stop: the patent gives the stop location and f/4.1 but no diameter. The stop ║
+ * ║ radius is derived from the design f-number. The fixed iris is traced from    ║
+ * ║ nominalFno at 14.3750 mm, the height the real f/4.1 marginal ray reaches at  ║
+ * ║ the stop at 71.92 mm.                                                        ║
  * ║                                                                              ║
  * ║ Semi-diameters: not published. They are inferred from d-line marginal-ray    ║
  * ║ envelopes, the Canon/patent optical sections, and the current geometry       ║
@@ -61,31 +60,35 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "canon-ef-70-200mm-f4-l-usm",
   maker: "Canon",
   name: "CANON EF 70-200mm f/4 L USM",
   subtitle: "JP2000284174A Example 1 — constrained L1b close-focus reconstruction",
-  specs: [
-    "16 ELEMENTS / 13 GROUPS",
-    "70-200mm f/4 (MARKETED)",
-    "71.92-194.57mm f/4.1 (PATENT)",
-    "1 FLUORITE + 2 UD (PRODUCTION)",
-    "INNER FOCUS",
-  ],
 
-  focalLengthMarketing: [70, 200],
-  focalLengthDesign: [71.901018294698, 194.54048138330802],
-  apertureMarketing: 4,
-  apertureDesign: 4.1,
-  lensMounts: ["canon-ef"],
-  acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 2000-284174 A",
-  patentAuthors: ["Akihiro Nishio"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 2000,
-  elementCount: 16,
-  groupCount: 13,
+  catalog: {
+    lensMounts: ["canon-ef"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "16 ELEMENTS / 13 GROUPS",
+      "70-200mm f/4 (MARKETED)",
+      "71.92-194.57mm f/4.1 (PATENT)",
+      "1 FLUORITE + 2 UD (PRODUCTION)",
+      "INNER FOCUS",
+    ],
+    elementCount: 16,
+    groupCount: 13,
+    acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
+    focalLengthMm: { marketing: [70, 200], design: [71.901018294698, 194.54048138330802] },
+    fNumber: { marketing: 4, design: 4.1 },
+  },
+
+  source: {
+    patentNumber: "JP 2000-284174 A",
+    patentYear: 2000,
+    authors: ["Akihiro Nishio"],
+    assignees: ["Canon Inc."],
+  },
 
   /* ── Physical elements ── */
   elements: [
@@ -97,7 +100,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       indexReference: "d",
-      fl: 504.97860448150544,
+      focalLengthMm: 504.97860448150544,
       glass: "S-FSL5 (OHARA) class",
       role: "L1a fixed front positive singlet.",
     },
@@ -109,7 +112,7 @@ const LENS_DATA = {
       nd: 1.721507,
       vd: 29.2,
       indexReference: "d",
-      fl: -232.7745541646512,
+      focalLengthMm: -232.7745541646512,
       glass: "S-TIH18 (OHARA) class",
       role: "First element of the translating L1b focus subgroup.",
     },
@@ -121,11 +124,12 @@ const LENS_DATA = {
       nd: 1.43387,
       vd: 95.1,
       indexReference: "d",
-      fl: 185.1837114353476,
+      focalLengthMm: 185.1837114353476,
       glass: "Synthetic fluorite (CaF2) coordinate-compatible spectral surrogate; material inferred",
-      role: "Fluorite-correlated positive element in L1b.",
       apd: "inferred",
-      apdNote: "Fluorite element inferred from Canon production correlation and compatible catalog dispersion; the patent publishes no partial-dispersion measurement or supplier identity.",
+      apdNote:
+        "Fluorite element inferred from Canon production correlation and compatible catalog dispersion; the patent publishes no partial-dispersion measurement or supplier identity.",
+      role: "Fluorite-correlated positive element in L1b.",
     },
     {
       id: 4,
@@ -135,11 +139,12 @@ const LENS_DATA = {
       nd: 1.496999,
       vd: 81.5,
       indexReference: "d",
-      fl: 151.5526516535952,
+      focalLengthMm: 151.5526516535952,
       glass: "S-FPL51 (OHARA) / FCD1-class UD glass",
-      role: "Low-dispersion positive element completing L1b.",
       apd: "inferred",
-      apdNote: "UD element inferred from Canon production correlation and compatible catalog dispersion; the patent publishes no partial-dispersion measurement or supplier identity.",
+      apdNote:
+        "UD element inferred from Canon production correlation and compatible catalog dispersion; the patent publishes no partial-dispersion measurement or supplier identity.",
+      role: "Low-dispersion positive element completing L1b.",
     },
     {
       id: 5,
@@ -149,7 +154,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       indexReference: "d",
-      fl: -40.04080045244512,
+      focalLengthMm: -40.04080045244512,
       glass: "804466 LASF class (HIKARI J-LASF015 spectral surrogate)",
       role: "Front negative element of variator L2.",
     },
@@ -161,10 +166,10 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.1,
       indexReference: "d",
-      fl: -48.772065290787715,
+      focalLengthMm: -48.772065290787715,
       glass: "S-BSL7 (OHARA) / N-BK7 class",
-      cemented: "D1",
       role: "Negative member of the L2 cemented pair.",
+      cemented: "D1",
     },
     {
       id: 7,
@@ -174,10 +179,10 @@ const LENS_DATA = {
       nd: 1.846658,
       vd: 23.9,
       indexReference: "d",
-      fl: 44.06754209338408,
+      focalLengthMm: 44.06754209338408,
       glass: "S-TIH53WN (OHARA) class; current spectral surrogate",
-      cemented: "D1",
       role: "Positive high-index member of the L2 cemented pair.",
+      cemented: "D1",
     },
     {
       id: 8,
@@ -187,7 +192,7 @@ const LENS_DATA = {
       nd: 1.7495,
       vd: 35,
       indexReference: "d",
-      fl: -123.02931910317324,
+      focalLengthMm: -123.02931910317324,
       glass: "LAFN7 (SCHOTT) coordinate-compatible spectral surrogate; supplier unspecified",
       role: "Rear negative singlet of variator L2.",
     },
@@ -199,10 +204,10 @@ const LENS_DATA = {
       nd: 1.622992,
       vd: 58.2,
       indexReference: "d",
-      fl: 42.10619768711282,
+      focalLengthMm: 42.10619768711282,
       glass: "S-BSM15 (OHARA) class",
-      cemented: "D2",
       role: "Positive member of compensator L3.",
+      cemented: "D2",
     },
     {
       id: 10,
@@ -212,10 +217,10 @@ const LENS_DATA = {
       nd: 1.762001,
       vd: 40.1,
       indexReference: "d",
-      fl: -69.68168623172724,
+      focalLengthMm: -69.68168623172724,
       glass: "762401 lanthanum-flint class (OHARA S-LAM55 spectral surrogate)",
-      cemented: "D2",
       role: "Negative member of compensator L3.",
+      cemented: "D2",
     },
     {
       id: 11,
@@ -225,7 +230,7 @@ const LENS_DATA = {
       nd: 1.603112,
       vd: 60.6,
       indexReference: "d",
-      fl: 62.58129794709216,
+      focalLengthMm: 62.58129794709216,
       glass: "603607 barium-crown class (OHARA S-BSM14 spectral surrogate)",
       role: "Front positive singlet of fixed relay L4.",
     },
@@ -237,12 +242,13 @@ const LENS_DATA = {
       nd: 1.496999,
       vd: 81.5,
       indexReference: "d",
-      fl: 62.25992084324545,
+      focalLengthMm: 62.25992084324545,
       glass: "S-FPL51 (OHARA) / FCD1-class UD glass",
-      cemented: "D3",
-      role: "Low-dispersion positive member of the relay cemented pair.",
       apd: "inferred",
-      apdNote: "UD element inferred from Canon production correlation and compatible catalog dispersion; the patent publishes no partial-dispersion measurement or supplier identity.",
+      apdNote:
+        "UD element inferred from Canon production correlation and compatible catalog dispersion; the patent publishes no partial-dispersion measurement or supplier identity.",
+      role: "Low-dispersion positive member of the relay cemented pair.",
+      cemented: "D3",
     },
     {
       id: 13,
@@ -252,10 +258,10 @@ const LENS_DATA = {
       nd: 1.804398,
       vd: 39.6,
       indexReference: "d",
-      fl: -40.06897146924538,
+      focalLengthMm: -40.06897146924538,
       glass: "J-LASF013 (HIKARI) coordinate-compatible spectral surrogate; supplier unspecified",
-      cemented: "D3",
       role: "Negative high-index member of the relay cemented pair.",
+      cemented: "D3",
     },
     {
       id: 14,
@@ -265,7 +271,7 @@ const LENS_DATA = {
       nd: 1.603112,
       vd: 60.6,
       indexReference: "d",
-      fl: 117.6441505848965,
+      focalLengthMm: 117.6441505848965,
       glass: "603607 barium-crown class (OHARA S-BSM14 spectral surrogate)",
       role: "Positive relay singlet.",
     },
@@ -277,7 +283,7 @@ const LENS_DATA = {
       nd: 1.696797,
       vd: 55.5,
       indexReference: "d",
-      fl: -75.16362790775038,
+      focalLengthMm: -75.16362790775038,
       glass: "697555 lanthanum-crown class (OHARA S-LAL14 spectral surrogate)",
       role: "Rear negative relay singlet.",
     },
@@ -289,7 +295,7 @@ const LENS_DATA = {
       nd: 1.592701,
       vd: 35.3,
       indexReference: "d",
-      fl: 208.66537800636974,
+      focalLengthMm: 208.66537800636974,
       glass: "593353 flint class (OHARA S-FTM16 spectral surrogate)",
       role: "Final positive relay singlet.",
     },
@@ -298,73 +304,90 @@ const LENS_DATA = {
   // Optical rims refined against the exact local patent at 600 dpi; see the companion analysis.
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 175.317, d: 3.7, nd: 1.48749, elemId: 1, sd: 26 },
-    { label: "2", R: 604.892, d: 14.82, nd: 1, elemId: 0, sd: 25.6 },
-    { label: "3", R: 89.957, d: 2.1, nd: 1.721507, elemId: 2, sd: 25.8 },
-    { label: "4", R: 58.007, d: 0.1, nd: 1, elemId: 0, sd: 21 },
-    { label: "5", R: 59.256, d: 5.3, nd: 1.43387, elemId: 3, sd: 21 },
-    { label: "6", R: 219.639, d: 0.15, nd: 1, elemId: 0, sd: 25.8 },
-    { label: "7", R: 81.599, d: 4.9, nd: 1.496999, elemId: 4, sd: 24.2 },
-    { label: "8", R: -959.561, d: 1.9, nd: 1, elemId: 0, sd: 24.2 },
-    { label: "9", R: -191.294, d: 1.4, nd: 1.804, elemId: 5, sd: 14 },
-    { label: "10", R: 38.833, d: 4.44, nd: 1, elemId: 0, sd: 13.8 },
-    { label: "11", R: -70.462, d: 1.4, nd: 1.51633, elemId: 6, sd: 13.2 },
-    { label: "12", R: 39.453, d: 3.6, nd: 1.846658, elemId: 7, sd: 13.2 },
-    { label: "13", R: -658.192, d: 1, nd: 1, elemId: 0, sd: 12.8 },
-    { label: "14", R: -81.31, d: 1.4, nd: 1.7495, elemId: 8, sd: 12.8 },
-    { label: "15", R: -692.9, d: 25.57, nd: 1, elemId: 0, sd: 14 },
-    { label: "16", R: 196.499, d: 5.6, nd: 1.622992, elemId: 9, sd: 15 },
-    { label: "17", R: -29.942, d: 1.5, nd: 1.762001, elemId: 10, sd: 15 },
-    { label: "18", R: -70.147, d: 19, nd: 1, elemId: 0, sd: 15 },
-    { label: "STO", R: 1e15, d: 1.2, nd: 1, elemId: 0, sd: 14.25845124506584 },
-    { label: "20", R: 39.066, d: 4.6, nd: 1.603112, elemId: 11, sd: 15 },
-    { label: "21", R: -1065.561, d: 0.2, nd: 1, elemId: 0, sd: 15 },
-    { label: "22", R: 37.556, d: 4.8, nd: 1.496999, elemId: 12, sd: 14.8 },
-    { label: "23", R: -168.276, d: 2.03, nd: 1.804398, elemId: 13, sd: 14 },
-    { label: "24", R: 40.082, d: 30.56, nd: 1, elemId: 0, sd: 13.5 },
-    { label: "25", R: 215.146, d: 3.5, nd: 1.603112, elemId: 14, sd: 15.3 },
-    { label: "26", R: -105.218, d: 10.18, nd: 1, elemId: 0, sd: 15.3 },
-    { label: "27", R: -27.22, d: 1.6, nd: 1.696797, elemId: 15, sd: 15.8 },
-    { label: "28", R: -58.044, d: 0.15, nd: 1, elemId: 0, sd: 15.8 },
-    { label: "29", R: 187.477, d: 3, nd: 1.592701, elemId: 16, sd: 16.4 },
-    { label: "30", R: -361.255, d: 53.13085583884338, nd: 1, elemId: 0, sd: 16.4 },
+    { label: "1", R: 175.317, d: 3.7, sd: 26, medium: 1 },
+    { label: "2", R: 604.892, sd: 25.6 },
+    { label: "3", R: 89.957, d: 2.1, sd: 25.8, medium: 2 },
+    { label: "4", R: 58.007, d: 0.1, sd: 21 },
+    { label: "5", R: 59.256, d: 5.3, sd: 21, medium: 3 },
+    { label: "6", R: 219.639, d: 0.15, sd: 25.8 },
+    { label: "7", R: 81.599, d: 4.9, sd: 24.2, medium: 4 },
+    { label: "8", R: -959.561, sd: 24.2 },
+    { label: "9", R: -191.294, d: 1.4, sd: 14, medium: 5 },
+    { label: "10", R: 38.833, d: 4.44, sd: 13.8 },
+    { label: "11", R: -70.462, d: 1.4, sd: 13.2, medium: 6 },
+    { label: "12", R: 39.453, d: 3.6, sd: 13.2, medium: 7 },
+    { label: "13", R: -658.192, d: 1, sd: 12.8 },
+    { label: "14", R: -81.31, d: 1.4, sd: 12.8, medium: 8 },
+    { label: "15", R: -692.9, sd: 14 },
+    { label: "16", R: 196.499, d: 5.6, sd: 15, medium: 9 },
+    { label: "17", R: -29.942, d: 1.5, sd: 15, medium: 10 },
+    { label: "18", R: -70.147, sd: 15 },
+    { label: "STO", R: "flat", d: 1.2 },
+    { label: "20", R: 39.066, d: 4.6, sd: 15, medium: 11 },
+    { label: "21", R: -1065.561, d: 0.2, sd: 15 },
+    { label: "22", R: 37.556, d: 4.8, sd: 14.8, medium: 12 },
+    { label: "23", R: -168.276, d: 2.03, sd: 14, medium: 13 },
+    { label: "24", R: 40.082, d: 30.56, sd: 13.5 },
+    { label: "25", R: 215.146, d: 3.5, sd: 15.3, medium: 14 },
+    { label: "26", R: -105.218, d: 10.18, sd: 15.3 },
+    { label: "27", R: -27.22, d: 1.6, sd: 15.8, medium: 15 },
+    { label: "28", R: -58.044, d: 0.15, sd: 15.8 },
+    { label: "29", R: 187.477, d: 3, sd: 16.4, medium: 16 },
+    { label: "30", R: -361.255, d: 53.13085583884338, sd: 16.4 },
   ],
 
-  asph: {},
-
-  /* ── Zoom and constrained focus motion ── */
-  zoomPositions: [71.92, 118.29, 194.57],
-  zoomLabels: ["Wide", "Tele"],
-  var: {
-    "2": [
-      [14.82, 1.2774233042763932],
-      [14.82, 1.2852889334020894],
-      [14.82, 1.2877302598412754],
+  zoom: {
+    /* (moved from zoomPositions) ── Zoom and constrained focus motion ── */
+    stations: [
+      { focalLengthMm: 71.92, label: "Wide" },
+      { focalLengthMm: 118.29 },
+      { focalLengthMm: 194.57, label: "Tele" },
     ],
-    "8": [
-      [1.9, 15.442576695723607],
-      [25.6, 39.134711066597916],
-      [41.25, 54.782269740158725],
-    ],
-    "15": [
-      [25.57, 25.57],
-      [17.09, 17.09],
-      [1.11, 1.11],
-    ],
-    "18": [
-      [19, 19],
-      [3.78, 3.78],
-      [4.11, 4.11],
-    ],
+    apertureModel: "fixed-iris",
   },
-  varLabels: [
-    ["2", "D2 / L1b FRONT"],
-    ["8", "D8 / L1b REAR"],
-    ["15", "D15"],
-    ["18", "D18"],
-  ],
-  focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: patent-published inner focus translates L1b (R3-R8) rigidly objectward. Close-focus D2/D8 endpoints are code-solved at Canon's 1.2 m MFD with the fixed common image plane; D2 decreases by the same amount D8 increases. D15 and D18 are zoom-only.",
+
+  focus: {
+    closeFocusM: 1.2,
+    description:
+      "CONSTRAINED_RECONSTRUCTION: patent-published inner focus translates L1b (R3-R8) rigidly objectward. Close-focus D2/D8 endpoints are code-solved at Canon's 1.2 m MFD with the fixed common image plane; D2 decreases by the same amount D8 increases. D15 and D18 are zoom-only.",
+  },
+
+  gaps: {
+    "2": {
+      label: "D2 / L1b FRONT",
+      values: [
+        [14.82, 1.2774233042763932],
+        [14.82, 1.2852889334020894],
+        [14.82, 1.2877302598412754],
+      ],
+    },
+    "8": {
+      label: "D8 / L1b REAR",
+      values: [
+        [1.9, 15.442576695723607],
+        [25.6, 39.134711066597916],
+        [41.25, 54.782269740158725],
+      ],
+    },
+    "15": {
+      label: "D15",
+      values: [
+        [25.57, 25.57],
+        [17.09, 17.09],
+        [1.11, 1.11],
+      ],
+    },
+    "18": {
+      label: "D18",
+      values: [
+        [19, 19],
+        [3.78, 3.78],
+        [4.11, 4.11],
+      ],
+    },
+  },
+
+  aperture: { nominalFNumber: 4.1, fStops: [4.1, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 8 },
 
   groups: [
     { text: "L1a FIXED", fromSurface: "1", toSurface: "2" },
@@ -379,14 +402,7 @@ const LENS_DATA = {
     { text: "D3", fromSurface: "22", toSurface: "24" },
   ],
 
-  closeFocusM: 1.2,
-  nominalFno: 4.1,
-  zoomApertureModel: "fixed-iris",
-  fstopSeries: [4.1, 5.6, 8, 11, 16, 22, 32],
-  apertureBlades: 8,
-  maxFstop: 32,
-
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

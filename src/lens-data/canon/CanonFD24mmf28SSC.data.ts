@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -34,29 +34,34 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "canon-fd-24mm-f28-ssc",
   maker: "Canon",
   name: "CANON FD 24mm f/2.8 S.S.C.",
   subtitle: "US 3,748,021 Example 2 — Canon Floating System retrofocus wide-angle",
-  specs: [
-    "24mm f/2.8",
-    "9 elements / 8 groups",
-    "84° diagonal field",
-    "Floating front-group air space",
-    "Canon FD mount",
-  ],
 
-  focalLengthMarketing: 24,
-  focalLengthDesign: 24,
-  apertureMarketing: 2.8,
-  lensMounts: ["canon-fd"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,748,021",
-  patentAuthors: ["Akira Tajima", "Kikuo Momiyama"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 1973,
-  elementCount: 9,
-  groupCount: 8,
+  catalog: {
+    lensMounts: ["canon-fd"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "24mm f/2.8",
+      "9 elements / 8 groups",
+      "84° diagonal field",
+      "Floating front-group air space",
+      "Canon FD mount",
+    ],
+    elementCount: 9,
+    groupCount: 8,
+    focalLengthMm: { marketing: 24, design: 24 },
+    fNumber: { marketing: 2.8 },
+  },
+
+  source: {
+    patentNumber: "US 3,748,021",
+    patentYear: 1973,
+    authors: ["Akira Tajima", "Kikuo Momiyama"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {
@@ -66,7 +71,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.58913,
       vd: 61.0,
-      fl: -61.13,
+      focalLengthMm: -61.13,
       glass: "S-BAL35 (OHARA; SK5-class equivalent)",
       role: "Large front negative meniscus of the divergent retrofocus group.",
     },
@@ -77,7 +82,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.58913,
       vd: 61.0,
-      fl: 101.36,
+      focalLengthMm: 101.36,
       glass: "S-BAL35 (OHARA; SK5-class equivalent)",
       role: "Weak positive front-group element; its rear surface bounds the floating D4 air space.",
     },
@@ -88,7 +93,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.57957,
       vd: 53.7,
-      fl: -20.94,
+      focalLengthMm: -20.94,
       glass: "N-BALF4 (SCHOTT; BaLF4-class equivalent)",
       role: "Strong front-group negative meniscus following the floating air space.",
     },
@@ -99,7 +104,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.80518,
       vd: 25.4,
-      fl: 46.09,
+      focalLengthMm: 46.09,
       glass: "S-TIH6 (OHARA; SF6-class equivalent)",
       role: "High-index positive member starting the rear convergent group.",
     },
@@ -110,7 +115,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.58913,
       vd: 61.0,
-      fl: 20.97,
+      focalLengthMm: 20.97,
       glass: "S-BAL35 (OHARA; SK5-class equivalent)",
       role: "Strong positive element immediately ahead of the aperture stop.",
     },
@@ -121,10 +126,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80518,
       vd: 25.4,
-      fl: -18.95,
+      focalLengthMm: -18.95,
       glass: "S-TIH6 (OHARA; SF6-class equivalent)",
-      cemented: "D1",
       role: "First component of the cemented negative doublet behind the stop.",
+      cemented: "D1",
     },
     {
       id: 7,
@@ -133,10 +138,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.72342,
       vd: 37.9,
-      fl: -151.16,
+      focalLengthMm: -151.16,
       glass: "S-BAH28 (OHARA; BaSF-class equivalent)",
-      cemented: "D1",
       role: "Weak negative partner in the cemented doublet; shares the R12 interface with E6.",
+      cemented: "D1",
     },
     {
       id: 8,
@@ -145,7 +150,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.713,
       vd: 53.9,
-      fl: 36.7,
+      focalLengthMm: 36.7,
       glass: "S-LAL8 (OHARA; LaK8-class equivalent)",
       role: "Rear high-index lanthanum-crown positive meniscus for Petzval and convergence control.",
     },
@@ -156,57 +161,53 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.713,
       vd: 53.9,
-      fl: 44.48,
+      focalLengthMm: 44.48,
       glass: "S-LAL8 (OHARA; LaK8-class equivalent)",
       role: "Terminal positive meniscus setting the final convergence and long back focus.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 41.938421, d: 1.960751, nd: 1.58913, elemId: 1, sd: 18.1 },
-    { label: "2", R: 19.039735, d: 7.426796, nd: 1.0, elemId: 0, sd: 15.0 },
-    { label: "3", R: 431.24254, d: 5.98811, nd: 1.58913, elemId: 2, sd: 14.2 },
-    { label: "4", R: -68.953481, d: 1.563789, nd: 1.0, elemId: 0, sd: 13.3 },
-    { label: "5", R: 179.037023, d: 5.295231, nd: 1.57957, elemId: 3, sd: 10.7 },
-    { label: "6", R: 11.244847, d: 4.467625, nd: 1.0, elemId: 0, sd: 9.3 },
-    { label: "7", R: 44.291322, d: 2.747457, nd: 1.80518, elemId: 4, sd: 9.6 },
-    { label: "8", R: -222.693206, d: 0.098639, nd: 1.0, elemId: 0, sd: 9.6 },
-    { label: "9", R: 32.813109, d: 12.094105, nd: 1.58913, elemId: 5, sd: 9.7 },
-    { label: "10", R: -17.107854, d: 1.471165, nd: 1.0, elemId: 0, sd: 8.2 },
-    { label: "STO", R: 1e15, d: 1.471165, nd: 1.0, elemId: 0, sd: 6.22 },
-    { label: "11", R: -21.115966, d: 2.355307, nd: 1.80518, elemId: 6, sd: 7.1 },
-    { label: "12", R: 57.768779, d: 2.45154, nd: 1.72342, elemId: 7, sd: 7.35 },
-    { label: "13", R: 37.126761, d: 1.176451, nd: 1.0, elemId: 0, sd: 7.5 },
-    { label: "14", R: -96.870727, d: 2.550179, nd: 1.713, elemId: 8, sd: 8.7 },
-    { label: "15", R: -20.827266, d: 0.146756, nd: 1.0, elemId: 0, sd: 9.4 },
-    { label: "16", R: -101.995143, d: 2.648818, nd: 1.713, elemId: 9, sd: 9.4 },
-    { label: "17", R: -24.455257, d: 35.799638, nd: 1.0, elemId: 0, sd: 10.0 },
+    { label: "1", R: 41.938421, d: 1.960751, sd: 18.1, medium: 1 },
+    { label: "2", R: 19.039735, d: 7.426796, sd: 15.0 },
+    { label: "3", R: 431.24254, d: 5.98811, sd: 14.2, medium: 2 },
+    { label: "4", R: -68.953481, sd: 13.3 },
+    { label: "5", R: 179.037023, d: 5.295231, sd: 10.7, medium: 3 },
+    { label: "6", R: 11.244847, d: 4.467625, sd: 9.3 },
+    { label: "7", R: 44.291322, d: 2.747457, sd: 9.6, medium: 4 },
+    { label: "8", R: -222.693206, d: 0.098639, sd: 9.6 },
+    { label: "9", R: 32.813109, d: 12.094105, sd: 9.7, medium: 5 },
+    { label: "10", R: -17.107854, d: 1.471165, sd: 8.2 },
+    { label: "STO", R: "flat", d: 1.471165 },
+    { label: "11", R: -21.115966, d: 2.355307, sd: 7.1, medium: 6 },
+    { label: "12", R: 57.768779, d: 2.45154, sd: 7.35, medium: 7 },
+    { label: "13", R: 37.126761, d: 1.176451, sd: 7.5 },
+    { label: "14", R: -96.870727, d: 2.550179, sd: 8.7, medium: 8 },
+    { label: "15", R: -20.827266, d: 0.146756, sd: 9.4 },
+    { label: "16", R: -101.995143, d: 2.648818, sd: 9.4, medium: 9 },
+    { label: "17", R: -24.455257, sd: 10.0 },
   ],
 
-  asph: {},
-  var: {
-    "4": [1.563789, 0.096233],
-    "17": [35.799638, 38.520068],
+  focus: {
+    closeFocusM: 0.3,
+    description:
+      "Whole-lens focusing with Canon Floating System correction: D4 closes as the lens advances; BF is solved to Canon's 0.3 m MFD.",
   },
-  varLabels: [
-    ["4", "D4"],
-    ["17", "BF"],
-  ],
+
+  gaps: {
+    "4": { label: "D4", values: [[1.563789, 0.096233]] },
+    "17": { label: "BF", values: [[35.799638, 38.520068]] },
+  },
+
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16], blades: 6 },
+
   groups: [
     { text: "Front divergent group", fromSurface: "1", toSurface: "6" },
     { text: "Rear convergent group", fromSurface: "7", toSurface: "17" },
   ],
   doublets: [{ text: "D1", fromSurface: "11", toSurface: "13" }],
 
-  closeFocusM: 0.3,
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
-  apertureBlades: 6,
-  focusDescription:
-    "Whole-lens focusing with Canon Floating System correction: D4 closes as the lens advances; BF is solved to Canon's 0.3 m MFD.",
-
-  scFill: 0.58,
-  yScFill: 0.56,
-} satisfies LensDataInput;
+  layout: { scFill: 0.58, yScFill: 0.56 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

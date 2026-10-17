@@ -1,5 +1,7 @@
 import { createTraceGeometry } from "../../../src/optics/trace/geometry.js";
 import { describe, expect, it } from "vitest";
+import { ingestLens } from "../../../src/optics/buildLens.js";
+import { toLensDataInput } from "../../../src/optics/prescription/toLensData.js";
 import PfRaw from "../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { compileDiffractivePhase } from "../../../src/optics/math/diffractivePhase.js";
@@ -77,7 +79,7 @@ describe("sequential diffractive surface", () => {
   });
 
   it("keeps a same-index phase plate active in automatic generalized path selection", () => {
-    const sameIndexData = structuredClone(PfRaw);
+    const sameIndexData = toLensDataInput(ingestLens(PfRaw));
     const phaseSurface = sameIndexData.surfaces.find((surface) => surface.label === PHASE_SURFACE_LABEL)!;
     const precedingIndex = sameIndexData.surfaces[sameIndexData.surfaces.indexOf(phaseSurface) - 1].nd;
     phaseSurface.nd = precedingIndex;

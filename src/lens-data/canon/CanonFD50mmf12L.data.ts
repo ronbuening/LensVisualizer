@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -38,7 +38,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    as approximately mid-gap D5. The normalised gap D5 = 30.851 mm ║
  * ║    is split at t = 15.426 mm from R5 → STO → 15.425 mm to R6.   ║
  * ║    Production split: 7.713 mm | STO | 7.713 mm.                  ║
- * ║    Physical stop SD ≈ 14.3 mm (prod.) from marginal ray trace;   ║
+ * ║    The stop radius is derived from the design f-number;          ║
  * ║    entrance pupil SD ≈ 20.8 mm (prod.); pupil mag. ≈ 1.46×.      ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
@@ -55,24 +55,24 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "canon-fd-50f1p2-l",
   maker: "Canon",
   name: "CANON FD 50mm f/1.2 L",
   subtitle: "US 4,364,644 EXAMPLE 1 — IKEMORI / CANON K.K.",
-  specs: ["8 ELEMENTS / 6 GROUPS", "f ≈ 50.0 mm", "F/1.2", "2ω = 46°", "1 ASPHERICAL SURFACE"],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: 50,
-  focalLengthDesign: 50.0,
-  apertureMarketing: 1.2,
-  lensMounts: ["canon-fd"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,364,644",
-  patentAuthors: ["Keiji Ikemori"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 1982,
-  elementCount: 8,
-  groupCount: 6,
+  catalog: {
+    lensMounts: ["canon-fd"],
+    imageFormat: "135-full-frame",
+    specs: ["8 ELEMENTS / 6 GROUPS", "f ≈ 50.0 mm", "F/1.2", "2ω = 46°", "1 ASPHERICAL SURFACE"],
+    elementCount: 8,
+    groupCount: 6,
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: 50, design: 50.0 },
+    fNumber: { marketing: 1.2 },
+  },
+
+  source: { patentNumber: "US 4,364,644", patentYear: 1982, authors: ["Keiji Ikemori"], assignees: ["Canon Inc."] },
 
   /* ── Elements ── */
   elements: [
@@ -83,7 +83,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.804,
       vd: 46.6,
-      fl: 90.3,
+      focalLengthMm: 90.3,
       glass: "S-LAH65V (OHARA)",
       apd: false,
       role: "Front light-gathering positive meniscus; high index suppresses higher-order spherical aberration",
@@ -95,11 +95,11 @@ const LENS_DATA = {
       type: "Positive Meniscus (1× Asph)",
       nd: 1.744,
       vd: 44.7,
-      fl: 64.1,
+      focalLengthMm: 64.1,
       glass: "S-LAM2 (OHARA)",
       apd: false,
-      cemented: "D1",
       role: "Aspherical front surface corrects sagittal flare and over-corrected spherical aberration; part of L2+L3 achromat",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -108,11 +108,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.63636,
       vd: 35.4,
-      fl: -36.9,
+      focalLengthMm: -36.9,
       glass: "S-TIM6 (OHARA)",
       apd: false,
-      cemented: "D1",
       role: "Negative meniscus cemented to L2; strong R5 provides Petzval correction; Δn=0.108 satisfies condition (7)",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -121,11 +121,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80518,
       vd: 25.4,
-      fl: -22.3,
+      focalLengthMm: -22.3,
       glass: "S-TIH6 / Schott SF6 (805254)",
       apd: false,
-      cemented: "D2",
       role: "Dense flint immediately behind stop; strongly curved R6 controls sagittal flare; conditions (4)+(5); part of L4+L5 achromat",
+      cemented: "D2",
     },
     {
       id: 5,
@@ -134,11 +134,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.816,
       vd: 46.6,
-      fl: 36.4,
+      focalLengthMm: 36.4,
       glass: "OHARA S-LAH59 (816466)",
       apd: false,
-      cemented: "D2",
       role: "Main positive power of rear inner group; high index limits curvatures; Δν=21.2 from L4 ensures chromatic correction",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -147,7 +147,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.883,
       vd: 40.8,
-      fl: 65.7,
+      focalLengthMm: 65.7,
       glass: "TAFD30 (HOYA)",
       apd: false,
       role: "Highest-index element (n_d=1.883); strongest rear singlet (condition 6: f₆<f₇<f₈); folds off-axis bundle, limits rear element diameters",
@@ -159,7 +159,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 49.6,
-      fl: 91.2,
+      focalLengthMm: 91.2,
       glass: "S-LAH66 (OHARA)",
       apd: false,
       role: "Last element of moving focus unit; asymmetric biconvex concentrates power at R12; contributes longitudinal chromatic correction",
@@ -171,7 +171,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.62299,
       vd: 58.2,
-      fl: 371.9,
+      focalLengthMm: 371.9,
       glass: "BACD15 (HOYA)",
       apd: false,
       role: "Fixed rear corrector; very weak positive power (f₈≈7.4f); Petzval fine-corrector; high Abbe number trims lateral colour",
@@ -183,25 +183,7 @@ const LENS_DATA = {
   // D5 (30.851 mm norm.) split at t = 15.426 mm from R5 → STO → 15.425 mm to R6.
   // Production split: surface "5" d = 7.713 mm | STO d = 7.713 mm.
   // Variable gap: surface "12" (D12), d_inf = 0.194 mm, d_MFD = 6.384 mm.
-  surfaces: [
-    { label: "1", R: 54.337, d: 4.341, nd: 1.804, elemId: 1, sd: 23.0 },
-    { label: "2", R: 208.109, d: 0.146, nd: 1.0, elemId: 0, sd: 22.0 },
-    { label: "3A", R: 39.163, d: 11.435, nd: 1.744, elemId: 2, sd: 22.0 }, // aspherical — R3 (front of L2)
-    { label: "4", R: 192.181, d: 1.996, nd: 1.63636, elemId: 3, sd: 18.0 }, // cemented junction L2→L3
-    { label: "5", R: 20.844, d: 7.713, nd: 1.0, elemId: 0, sd: 17.0 }, // R5 to STO (first half of D5)
-    { label: "STO", R: 1e15, d: 7.713, nd: 1.0, elemId: 0, sd: 14.3 }, // STO to R6 (second half of D5); pos. inferred from Fig. 1
-    { label: "6", R: -18.914, d: 1.163, nd: 1.80518, elemId: 4, sd: 15.0 },
-    { label: "7", R: 360.405, d: 8.664, nd: 1.816, elemId: 5, sd: 15.3 }, // cemented junction L4→L5
-    { label: "8", R: -32.002, d: 0.146, nd: 1.0, elemId: 0, sd: 17.0 },
-    { label: "9", R: -158.214, d: 3.876, nd: 1.883, elemId: 6, sd: 17.0 },
-    { label: "10", R: -42.943, d: 0.097, nd: 1.0, elemId: 0, sd: 17.5 },
-    { label: "11", R: 609.527, d: 3.246, nd: 1.7725, elemId: 7, sd: 17.5 },
-    { label: "12", R: -79.452, d: 0.194, nd: 1.0, elemId: 0, sd: 17.0 }, // variable focus gap D12; d_inf=0.194, d_MFD=6.384
-    { label: "13", R: 372.927, d: 1.744, nd: 1.62299, elemId: 8, sd: 17.0 },
-    { label: "14", R: -610.824, d: 35.636, nd: 1.0, elemId: 0, sd: 16.5 }, // d = BFD at infinity
-  ],
-
-  /* ── Aspherical coefficients ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   // Surface "3A" (R3, front of L2). Patent formula: X = R(1−√(1−H²/R²)) + BH⁴ + CH⁶ + DH⁸ + EH¹⁰
   // A=0 (K=0), so the standard sag form applies with conic K=0 and polynomial A4–A10.
   // Normalised (f=100) → Production (f=50) scaling: A_{2n} × k^(−(2n−1)) where k=0.5.
@@ -209,51 +191,59 @@ const LENS_DATA = {
   // A6: +6.303928×10⁻¹¹ / 0.5⁵ = +2.017257×10⁻⁹  (confirmed)
   // A8: −6.418568×10⁻¹⁴ / 0.5⁷ = −8.215767×10⁻¹²  (inferred — see file header)
   // A10: +2.08995×10⁻¹⁷ / 0.5⁹ = +1.070054×10⁻¹⁴   (strongly inferred — see file header)
-  asph: {
-    "3A": {
-      K: 0,
-      A4: -9.378696e-7,
-      A6: 2.017257e-9,
-      A8: -8.215767e-12,
-      A10: 1.070054e-14,
-      A12: 0,
-      A14: 0,
-    },
+  surfaces: [
+    { label: "1", R: 54.337, d: 4.341, sd: 23.0, medium: 1 },
+    { label: "2", R: 208.109, d: 0.146, sd: 22.0 },
+    {
+      label: "3A",
+      R: 39.163,
+      d: 11.435,
+      sd: 22.0,
+      medium: 2,
+      asphere: { K: 0, A4: -9.378696e-7, A6: 2.017257e-9, A8: -8.215767e-12, A10: 1.070054e-14 },
+    }, // aspherical — R3 (front of L2)
+    { label: "4", R: 192.181, d: 1.996, sd: 18.0, medium: 3 }, // cemented junction L2→L3
+    { label: "5", R: 20.844, d: 7.713, sd: 17.0 }, // R5 to STO (first half of D5)
+    { label: "STO", R: "flat", d: 7.713 }, // STO to R6 (second half of D5); pos. inferred from Fig. 1
+    { label: "6", R: -18.914, d: 1.163, sd: 15.0, medium: 4 },
+    { label: "7", R: 360.405, d: 8.664, sd: 15.3, medium: 5 }, // cemented junction L4→L5
+    { label: "8", R: -32.002, d: 0.146, sd: 17.0 },
+    { label: "9", R: -158.214, d: 3.876, sd: 17.0, medium: 6 },
+    { label: "10", R: -42.943, d: 0.097, sd: 17.5 },
+    { label: "11", R: 609.527, d: 3.246, sd: 17.5, medium: 7 },
+    { label: "12", R: -79.452, sd: 17.0 }, // variable focus gap D12; d_inf=0.194, d_MFD=6.384
+    { label: "13", R: 372.927, d: 1.744, sd: 17.0, medium: 8 },
+    { label: "14", R: -610.824, d: 35.636, sd: 16.5 }, // d = BFD at infinity
+  ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.6,
+    description:
+      "Split-unit focus: L1–L7 extend forward as a rigid assembly; L8 remains fixed relative to the camera mount. Only gap D12 (between R12 and R13) changes, increasing from 0.194 mm at infinity to ≈ 6.38 mm at MFD = 0.6 m.",
   },
 
-  /* ── Variable air gaps ── */
+  /* (moved from var) ── Variable air gaps ── */
   // Only surface "12" (D12, between L7 and fixed L8) changes during focus.
   // d_inf computed via paraxial ray trace at object distance = ∞.
   // d_MFD computed by iterative finite-conjugate ray trace at MFD = 0.6 m from film.
-  var: {
-    "12": [0.194, 6.384],
-  },
+  gaps: { "12": { label: "BF", values: [[0.194, 6.384]] } },
 
-  varLabels: [["12", "BF"]],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 1.2, fStops: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16] },
 
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "L2+L3 (D1)", fromSurface: "3A", toSurface: "5" },
     { text: "L4+L5 (D2)", fromSurface: "6", toSurface: "8" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "3A", toSurface: "5" },
     { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.6,
-  focusDescription:
-    "Split-unit focus: L1–L7 extend forward as a rigid assembly; L8 remains fixed relative to the camera mount. Only gap D12 (between R12 and R13) changes, increasing from 0.194 mm at infinity to ≈ 6.38 mm at MFD = 0.6 m.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 1.2,
-  fstopSeries: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  scFill: 0.52,
-  yScFill: 0.34,
-} satisfies LensDataInput;
+  layout: { scFill: 0.52, yScFill: 0.34 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

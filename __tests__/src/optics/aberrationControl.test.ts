@@ -17,6 +17,8 @@ import {
 import { computeBothPupilAberrationProfiles } from "../../../src/optics/pupilAberration.js";
 import MinoltaVarisoftRaw from "../../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.js";
 import type { ChromaticChannel, RuntimeLens } from "../../../src/types/optics.js";
+import { ingestLens } from "../../../src/optics/buildLens.js";
+import { toLensDataInput } from "../../../src/optics/prescription/toLensData.js";
 import { build } from "./testLensFixtures.js";
 
 /**
@@ -31,11 +33,12 @@ import { build } from "./testLensFixtures.js";
  */
 
 const VARISOFT = build(MinoltaVarisoftRaw);
-const CONTROL = MinoltaVarisoftRaw.aberrationControl;
+const VARISOFT_DATA = toLensDataInput(ingestLens(MinoltaVarisoftRaw));
+const CONTROL = VARISOFT_DATA.aberrationControl!;
 
 /** Centered variant: `[minimum, center, maximum]` triples around the authored sharp spacings. */
 function centeredVar(): Record<string, [number, number, number]> {
-  const sharpD = (label: string) => MinoltaVarisoftRaw.surfaces.find((surface) => surface.label === label)!.d;
+  const sharpD = (label: string) => VARISOFT_DATA.surfaces.find((surface) => surface.label === label)!.d;
   const sharpB0 = sharpD("9");
   const sharpBfd = sharpD("11");
   return {
@@ -47,7 +50,7 @@ function centeredVar(): Record<string, [number, number, number]> {
 
 function buildCenteredVarisoft(): RuntimeLens {
   return build({
-    ...MinoltaVarisoftRaw,
+    ...VARISOFT_DATA,
     aberrationControl: {
       ...CONTROL,
       minLabel: "UNDER",
@@ -90,6 +93,9 @@ describe("aberrationControl thickness resolution", () => {
     expect(L.aberrationControl?.label).toBe(CONTROL.label);
 
     for (const [label, [normal, maximum]] of Object.entries(CONTROL.var)) {
+      if (typeof normal !== "number" || typeof maximum !== "number") {
+        throw new Error("Expected a two-position prime ring range");
+      }
       const index = L.labelIdx[label];
       expect(thick(index, 0, 0, L, 0), `${label} at ring 0`).toBeCloseTo(normal, 8);
       expect(thick(index, 0, 0, L, 1), `${label} at ring 1`).toBeCloseTo(maximum, 8);
@@ -97,7 +103,7 @@ describe("aberrationControl thickness resolution", () => {
     }
 
     // Focus-only spacings must not move with the ring.
-    for (const label of Object.keys(MinoltaVarisoftRaw.var).filter((key) => !(key in CONTROL.var))) {
+    for (const label of Object.keys(VARISOFT_DATA.var!).filter((key) => !(key in CONTROL.var))) {
       const index = L.labelIdx[label];
       expect(thick(index, 0, 0, L, 1), `${label} should ignore the ring`).toBeCloseTo(thick(index, 0, 0, L, 0), 8);
     }

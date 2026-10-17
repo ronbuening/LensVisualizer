@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Canon PowerShot G1 X Mark II 12.5-62.5mm f/2.0-3.9.
@@ -38,43 +38,35 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "canon-powershot-g1-x-mark-ii-125-625-f20-39",
   maker: "Canon",
   name: "CANON 12.5-62.5mm f/2-3.9 (Canon PowerShot G1 X Mark II)",
   subtitle: "US 2015/0219882 A1 Numerical Example 2 — Canon / Shuichi Mogi",
-  specs: [
-    "14 elements / 11 groups",
-    "Patent table f = 12.84-60.72 mm",
-    "Gaussian paraxial EFL = 12.57-62.20 mm",
-    "f/2.0-3.9 marketed; patent Fno = 2.06-4.02",
-    "6 aspherical surfaces on 3 double-sided aspherical elements",
-    "1.5-inch-type fixed-lens camera format",
-  ],
-  focalLengthMarketing: [12.5, 62.5],
-  focalLengthDesign: [12.84, 60.72],
-  imageFormat: "1.5-inch-type",
-  apertureMarketing: 2.0,
-  apertureDesign: 2.06,
-  lensMounts: ["fixed-lens-camera"],
-  patentNumber: "US 2015/0219882 A1",
-  patentAuthors: ["Shuichi Mogi"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 2015,
-  elementCount: 14,
-  groupCount: 11,
 
-  zoomPositions: [12.84, 22.9, 60.72],
-  zoomLabels: ["Wide", "Middle", "Tele"],
-  zoomStep: 0.004,
-  nominalFno: [2.0, 3.5, 3.9],
-  closeFocusM: 0.05,
-  focusDescription:
-    "Inner focus by negative fifth zoom group B5. Patent supplies infinity zoom spacings only; close-focus spacings are paraxially fitted for visualization.",
-  fstopSeries: [2, 2.2, 2.5, 2.8, 3.2, 3.5, 3.9, 4, 4.5, 5, 5.6, 6.3, 7.1, 8, 9, 10, 11, 13, 14, 16],
+  catalog: {
+    lensMounts: ["fixed-lens-camera"],
+    imageFormat: "1.5-inch-type",
+    specs: [
+      "14 elements / 11 groups",
+      "Patent table f = 12.84-60.72 mm",
+      "Gaussian paraxial EFL = 12.57-62.20 mm",
+      "f/2.0-3.9 marketed; patent Fno = 2.06-4.02",
+      "6 aspherical surfaces on 3 double-sided aspherical elements",
+      "1.5-inch-type fixed-lens camera format",
+    ],
+    elementCount: 14,
+    groupCount: 11,
+    focalLengthMm: { marketing: [12.5, 62.5], design: [12.84, 60.72] },
+    fNumber: { marketing: 2.0, design: 2.06 },
+  },
 
-  yScFill: 0.72,
-  scFill: 0.62,
-  maxFstop: 16,
+  source: {
+    patentNumber: "US 2015/0219882 A1",
+    patentYear: 2015,
+    authors: ["Shuichi Mogi"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {
@@ -84,7 +76,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.92286,
       vd: 18.9,
-      fl: -155.41,
+      focalLengthMm: -155.41,
       glass: "S-NPH2 (OHARA)",
       role: "Front negative element of the B1 cemented doublet; high-index, high-dispersion achromatizing partner.",
       cemented: "D1",
@@ -96,7 +88,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7725,
       vd: 49.6,
-      fl: 42.38,
+      focalLengthMm: 42.38,
       glass: "S-LAH66 (OHARA)",
       role: "Positive collector element of B1; forms the front positive zoom group with L1.",
       cemented: "D1",
@@ -108,7 +100,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.91082,
       vd: 35.3,
-      fl: -13.86,
+      focalLengthMm: -13.86,
       glass: "TAFD35 / TAFD35L class (HOYA)",
       role: "Strongest negative element in variator group B2.",
     },
@@ -119,7 +111,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.713,
       vd: 53.9,
-      fl: -26.69,
+      focalLengthMm: -26.69,
       glass: "S-LAL8 (OHARA)",
       role: "Secondary negative element in B2; balances the strong diverging power of L3.",
     },
@@ -130,7 +122,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.95906,
       vd: 17.5,
-      fl: 31.26,
+      focalLengthMm: 31.26,
       glass: "S-NPH3 (OHARA)",
       role: "Positive high-dispersion element completing the negative-negative-positive B2 variator triplet.",
     },
@@ -141,7 +133,7 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.76802,
       vd: 49.2,
-      fl: 21.26,
+      focalLengthMm: 21.26,
       glass: "M-TAF101 (HOYA)",
       role: "Lead positive aspherical element of B3; primary spherical-aberration and coma correction near the stop.",
     },
@@ -152,7 +144,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.2,
-      fl: 50.25,
+      focalLengthMm: 50.25,
       glass: "S-FSL5 (OHARA)",
       role: "Low-dispersion positive element in the B3 cemented doublet.",
       cemented: "D2",
@@ -164,7 +156,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 2.00069,
       vd: 25.5,
-      fl: -22.43,
+      focalLengthMm: -22.43,
       glass: "TAFD40 (HOYA)",
       role: "Ultra-high-index negative chromatic partner to L7 in B3.",
       cemented: "D2",
@@ -176,7 +168,7 @@ const LENS_DATA = {
       type: "Positive Meniscus (2× Asph)",
       nd: 1.6935,
       vd: 53.2,
-      fl: 29.75,
+      focalLengthMm: 29.75,
       glass: "M-LAC130 / MP-LAC130 (HOYA)",
       role: "Lead positive aspherical relay element of B4.",
     },
@@ -187,7 +179,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80518,
       vd: 25.4,
-      fl: -36.27,
+      focalLengthMm: -36.27,
       glass: "S-TIH6 (OHARA)",
       role: "Negative high-dispersion element in the zero-air-gap B4 contact pair.",
     },
@@ -198,7 +190,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.2,
-      fl: 29.51,
+      focalLengthMm: 29.51,
       glass: "S-FSL5 (OHARA)",
       role: "Low-dispersion positive element in the zero-air-gap B4 contact pair.",
     },
@@ -209,7 +201,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.834,
       vd: 37.2,
-      fl: 147.8,
+      focalLengthMm: 147.8,
       glass: "S-LAH60V (OHARA)",
       role: "Weak positive front element of the negative B5 focus group.",
     },
@@ -220,7 +212,7 @@ const LENS_DATA = {
       type: "Biconcave Negative (2× Asph)",
       nd: 1.85135,
       vd: 40.1,
-      fl: -20.77,
+      focalLengthMm: -20.77,
       glass: "M-TAFD305 (HOYA)",
       role: "Dominant negative aspherical element of B5; main moving focus element.",
     },
@@ -231,41 +223,133 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.91082,
       vd: 35.3,
-      fl: 33.8,
+      focalLengthMm: 33.8,
       glass: "TAFD35 / TAFD35L class (HOYA)",
       role: "Single positive rear relay and field-flattener element of B6.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 40.487, d: 1.1, nd: 1.92286, elemId: 1, sd: 20 },
-    { label: "2", R: 31.162, d: 4.75, nd: 1.7725, elemId: 2, sd: 16.1 },
-    { label: "3", R: 605.034, d: 0.97, nd: 1, elemId: 0, sd: 16.1 },
-    { label: "4", R: -471.95, d: 0.75, nd: 1.91082, elemId: 3, sd: 9 },
-    { label: "5", R: 12.977, d: 5.65, nd: 1, elemId: 0, sd: 9 },
-    { label: "6", R: -29.035, d: 0.62, nd: 1.713, elemId: 4, sd: 9 },
-    { label: "7", R: 55.687, d: 0.06, nd: 1, elemId: 0, sd: 10 },
-    { label: "8", R: 32.928, d: 2.2, nd: 1.95906, elemId: 5, sd: 9.8 },
-    { label: "9", R: -323.996, d: 22.01, nd: 1, elemId: 0, sd: 9.8 },
-    { label: "11A", R: 17.819, d: 3.4, nd: 1.76802, elemId: 6, sd: 9.6 },
-    { label: "12A", R: -179.132, d: 0.1, nd: 1, elemId: 0, sd: 9.6 },
-    { label: "13", R: 12.449, d: 3.15, nd: 1.48749, elemId: 7, sd: 9.6 },
-    { label: "14", R: 23.216, d: 0.55, nd: 2.00069, elemId: 8, sd: 9.6 },
-    { label: "15", R: 11.276, d: 2.3, nd: 1, elemId: 0, sd: 8.2 },
-    { label: "STO", R: 1e15, d: 3.27, nd: 1, elemId: 0, sd: 6.1 },
-    { label: "17A", R: 16.452, d: 2.1, nd: 1.6935, elemId: 9, sd: 7.3 },
-    { label: "18A", R: 76.944, d: 1.15, nd: 1, elemId: 0, sd: 7.3 },
-    { label: "19", R: -96.18, d: 0.65, nd: 1.80518, elemId: 10, sd: 7.3 },
-    { label: "20", R: 42.072, d: 0, nd: 1, elemId: 0, sd: 7.3 },
-    { label: "21", R: 42.072, d: 3.05, nd: 1.48749, elemId: 11, sd: 8.2 },
-    { label: "22", R: -21.34, d: 1.6, nd: 1, elemId: 0, sd: 8.2 },
-    { label: "23", R: 29.406, d: 1.41, nd: 1.834, elemId: 12, sd: 7.8 },
-    { label: "24", R: 37.777, d: 1.51, nd: 1, elemId: 0, sd: 7 },
-    { label: "25A", R: -36.295, d: 0.7, nd: 1.85135, elemId: 13, sd: 7 },
-    { label: "26A", R: 34.775, d: 4.49, nd: 1, elemId: 0, sd: 7.8 },
-    { label: "27", R: 26.904, d: 3.5, nd: 1.91082, elemId: 14, sd: 13.2 },
-    { label: "28", R: 200, d: 3.41, nd: 1, elemId: 0, sd: 13.2 },
+    { label: "1", R: 40.487, d: 1.1, sd: 20, medium: 1 },
+    { label: "2", R: 31.162, d: 4.75, sd: 16.1, medium: 2 },
+    { label: "3", R: 605.034, sd: 16.1 },
+    { label: "4", R: -471.95, d: 0.75, sd: 9, medium: 3 },
+    { label: "5", R: 12.977, d: 5.65, sd: 9 },
+    { label: "6", R: -29.035, d: 0.62, sd: 9, medium: 4 },
+    { label: "7", R: 55.687, d: 0.06, sd: 10 },
+    { label: "8", R: 32.928, d: 2.2, sd: 9.8, medium: 5 },
+    { label: "9", R: -323.996, sd: 9.8 },
+    {
+      label: "11A",
+      R: 17.819,
+      d: 3.4,
+      sd: 9.6,
+      medium: 6,
+      asphere: { K: -1.39476e-3, A4: -1.91529e-5, A6: 3.48565e-9, A8: 0 },
+    },
+    { label: "12A", R: -179.132, d: 0.1, sd: 9.6, asphere: { K: 0, A4: 1.47762e-6, A6: 4.3006e-8, A8: 0 } },
+    { label: "13", R: 12.449, d: 3.15, sd: 9.6, medium: 7 },
+    { label: "14", R: 23.216, d: 0.55, sd: 9.6, medium: 8 },
+    { label: "15", R: 11.276, d: 2.3, sd: 8.2 },
+    { label: "STO", R: "flat" },
+    {
+      label: "17A",
+      R: 16.452,
+      d: 2.1,
+      sd: 7.3,
+      medium: 9,
+      asphere: { K: 0, A4: 1.01044e-5, A6: 5.60591e-7, A8: 8.60394e-9 },
+    },
+    { label: "18A", R: 76.944, d: 1.15, sd: 7.3, asphere: { K: 0, A4: 5.86535e-5, A6: 7.68295e-7, A8: 1.04881e-8 } },
+    { label: "19", R: -96.18, d: 0.65, sd: 7.3, medium: 10 },
+    { label: "20", R: 42.072, d: 0, sd: 7.3 },
+    { label: "21", R: 42.072, d: 3.05, sd: 8.2, medium: 11 },
+    { label: "22", R: -21.34, sd: 8.2 },
+    { label: "23", R: 29.406, d: 1.41, sd: 7.8, medium: 12 },
+    { label: "24", R: 37.777, d: 1.51, sd: 7 },
+    {
+      label: "25A",
+      R: -36.295,
+      d: 0.7,
+      sd: 7,
+      medium: 13,
+      asphere: { K: 0, A4: -1.08123e-4, A6: 3.83708e-6, A8: -3.59207e-8 },
+    },
+    { label: "26A", R: 34.775, sd: 7.8, asphere: { K: 0, A4: -7.39157e-5, A6: 3.22046e-6, A8: -2.90647e-8 } },
+    { label: "27", R: 26.904, d: 3.5, sd: 13.2, medium: 14 },
+    { label: "28", R: 200, sd: 13.2 },
   ],
+
+  zoom: {
+    stations: [
+      { focalLengthMm: 12.84, nominalFNumber: 2.0, label: "Wide" },
+      { focalLengthMm: 22.9, nominalFNumber: 3.5, label: "Middle" },
+      { focalLengthMm: 60.72, nominalFNumber: 3.9, label: "Tele" },
+    ],
+    step: 0.004,
+  },
+
+  focus: {
+    closeFocusM: 0.05,
+    description:
+      "Inner focus by negative fifth zoom group B5. Patent supplies infinity zoom spacings only; close-focus spacings are paraxially fitted for visualization.",
+  },
+
+  gaps: {
+    "3": {
+      label: "B1-B2",
+      values: [
+        [0.97, 0.97],
+        [7.14, 7.14],
+        [19.32, 19.32],
+      ],
+    },
+    "9": {
+      label: "B2-B3",
+      values: [
+        [22.01, 22.01],
+        [10.44, 10.44],
+        [0.25, 0.25],
+      ],
+    },
+    STO: {
+      label: "STO-B4",
+      values: [
+        [3.27, 3.27],
+        [3.19, 3.19],
+        [2.76, 2.76],
+      ],
+    },
+    "22": {
+      label: "B4-B5",
+      values: [
+        [1.6, 4.531551],
+        [3.74, 5.738717],
+        [10.36, 16.1186],
+      ],
+    },
+    "26A": {
+      label: "B5-B6",
+      values: [
+        [4.49, 1.558449],
+        [4.8, 2.801283],
+        [12.85, 7.0914],
+      ],
+    },
+    "28": {
+      label: "BF",
+      values: [
+        [3.41, 3.41],
+        [8.24, 8.24],
+        [9.52, 9.52],
+      ],
+    },
+  },
+
+  aperture: {
+    fStops: [2, 2.2, 2.5, 2.8, 3.2, 3.5, 3.9, 4, 4.5, 5, 5.6, 6.3, 7.1, 8, 9, 10, 11, 13, 14, 16],
+    maxFNumber: 16,
+  },
 
   /* ── Sensor/filter optical block (patent surfaces 29–30): traced, not drawn ── */
   rearPlates: [
@@ -277,56 +361,6 @@ const LENS_DATA = {
       gapAfterMm: 3.31,
       source: "US 2015/0219882 A1, Numerical Example 2 surfaces 29–30",
     },
-  ],
-
-  asph: {
-    "11A": { K: -1.39476e-3, A4: -1.91529e-5, A6: 3.48565e-9, A8: 0, A10: 0, A12: 0, A14: 0 },
-    "12A": { K: 0, A4: 1.47762e-6, A6: 4.3006e-8, A8: 0, A10: 0, A12: 0, A14: 0 },
-    "17A": { K: 0, A4: 1.01044e-5, A6: 5.60591e-7, A8: 8.60394e-9, A10: 0, A12: 0, A14: 0 },
-    "18A": { K: 0, A4: 5.86535e-5, A6: 7.68295e-7, A8: 1.04881e-8, A10: 0, A12: 0, A14: 0 },
-    "25A": { K: 0, A4: -1.08123e-4, A6: 3.83708e-6, A8: -3.59207e-8, A10: 0, A12: 0, A14: 0 },
-    "26A": { K: 0, A4: -7.39157e-5, A6: 3.22046e-6, A8: -2.90647e-8, A10: 0, A12: 0, A14: 0 },
-  },
-
-  var: {
-    "3": [
-      [0.97, 0.97],
-      [7.14, 7.14],
-      [19.32, 19.32],
-    ],
-    "9": [
-      [22.01, 22.01],
-      [10.44, 10.44],
-      [0.25, 0.25],
-    ],
-    STO: [
-      [3.27, 3.27],
-      [3.19, 3.19],
-      [2.76, 2.76],
-    ],
-    "22": [
-      [1.6, 4.531551],
-      [3.74, 5.738717],
-      [10.36, 16.1186],
-    ],
-    "26A": [
-      [4.49, 1.558449],
-      [4.8, 2.801283],
-      [12.85, 7.0914],
-    ],
-    "28": [
-      [3.41, 3.41],
-      [8.24, 8.24],
-      [9.52, 9.52],
-    ],
-  },
-  varLabels: [
-    ["3", "B1-B2"],
-    ["9", "B2-B3"],
-    ["STO", "STO-B4"],
-    ["22", "B4-B5"],
-    ["26A", "B5-B6"],
-    ["28", "BF"],
   ],
 
   groups: [
@@ -342,6 +376,8 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "13", toSurface: "15" },
     { text: "CP", fromSurface: "19", toSurface: "22" },
   ],
-} satisfies LensDataInput;
+
+  layout: { scFill: 0.62, yScFill: 0.72 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

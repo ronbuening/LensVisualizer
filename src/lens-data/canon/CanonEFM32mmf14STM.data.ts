@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 // Canon EF-M 32mm f/1.4 STM
 // Source: JP2018180366A, Numerical Data 1 / Example 1 (Canon Inc.).
@@ -14,30 +14,35 @@ import type { LensDataInput } from "../../types/optics.js";
 // and signed cross-gap sag clearance.
 
 const LENS_DATA = {
+  schema: 2,
   key: "canon-ef-m-32mm-f14-stm",
   maker: "Canon",
   name: "CANON EF-M 32mm f/1.4 STM",
   subtitle: "JP2018180366A Numerical Data 1 — Canon Inc.",
-  specs: [
-    "14 elements / 8 groups",
-    "f = 32.34 mm design",
-    "F/1.45 design; f/1.4 marketed",
-    "2ω = 45.8°",
-    "1 aspherical surface",
-  ],
-  focalLengthMarketing: 32,
-  focalLengthDesign: 32.3513,
-  apertureMarketing: 1.4,
-  apertureDesign: 1.45,
-  lensMounts: ["canon-ef-m"],
-  imageFormat: "aps-c",
-  patentNumber: "JP 2018-180366 A",
-  patentAuthors: ["Kenji Shinohara"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 2018,
-  elementCount: 14,
-  groupCount: 8,
-  apertureBlades: 7,
+
+  catalog: {
+    lensMounts: ["canon-ef-m"],
+    imageFormat: "aps-c",
+    specs: [
+      "14 elements / 8 groups",
+      "f = 32.34 mm design",
+      "F/1.45 design; f/1.4 marketed",
+      "2ω = 45.8°",
+      "1 aspherical surface",
+    ],
+    elementCount: 14,
+    groupCount: 8,
+    focalLengthMm: { marketing: 32, design: 32.3513 },
+    fNumber: { marketing: 1.4, design: 1.45 },
+  },
+
+  source: {
+    patentNumber: "JP 2018-180366 A",
+    patentYear: 2018,
+    authors: ["Kenji Shinohara"],
+    assignees: ["Canon Inc."],
+  },
+
   elements: [
     {
       id: 1,
@@ -46,7 +51,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6134,
       vd: 44.3,
-      fl: -33.43,
+      focalLengthMm: -33.43,
       glass: "S-NBM51 (OHARA, 613443)",
       role: "Front flare and field-angle control before the high-index collector stack.",
     },
@@ -57,7 +62,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.91082,
       vd: 35.3,
-      fl: 21.88,
+      focalLengthMm: 21.88,
       glass: "TAFD35L (HOYA, 911353)",
       role: "Very-high-index positive collector in the first cemented doublet.",
       cemented: "D1",
@@ -69,7 +74,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.85478,
       vd: 24.8,
-      fl: -39.96,
+      focalLengthMm: -39.96,
       glass: "S-NBH56 (OHARA, 855248)",
       role: "Dense high-dispersion negative partner for front achromatization.",
       cemented: "D1",
@@ -81,7 +86,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.91082,
       vd: 35.3,
-      fl: 28.55,
+      focalLengthMm: 28.55,
       glass: "TAFD35L (HOYA, 911353)",
       role: "Front positive power using the same very-high-index class as L2.",
     },
@@ -92,13 +97,13 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59282,
       vd: 68.6,
-      fl: 34.17,
+      focalLengthMm: 34.17,
       glass: "FCD515 (HOYA catalog-equivalent; 593686, production supplier unspecified)",
       apd: "patent",
       apdNote: "Patent-listed θgF = 0.5441; ΔPgF ≈ +0.0157 against the project normal line.",
-      dPgF: 0.0157,
       role: "Low-dispersion positive member immediately in front of the stop.",
       cemented: "LF",
+      dPgF: 0.0157,
     },
     {
       id: 6,
@@ -107,13 +112,13 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.738,
       vd: 32.3,
-      fl: -19.23,
+      focalLengthMm: -19.23,
       glass: "S-NBH53/S-NBH53V class (OHARA, 738323)",
       apd: "patent",
       apdNote: "Patent-listed θgF = 0.5899; ΔPgF ≈ +0.0004 against the project normal line.",
-      dPgF: 0.0004,
       role: "High-dispersion negative member of the stop-front chromatic-correction doublet.",
       cemented: "LF",
+      dPgF: 0.0004,
     },
     {
       id: 7,
@@ -122,13 +127,13 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.76385,
       vd: 48.5,
-      fl: 42.69,
+      focalLengthMm: 42.69,
       glass: "S-LAH96 (OHARA, 764485)",
       apd: "patent",
       apdNote: "Patent-listed θgF = 0.5589; ΔPgF ≈ -0.0033 against the project normal line.",
-      dPgF: -0.0033,
       role: "Positive member of the stop-rear LR doublet, satisfying the patent's partial-dispersion condition.",
       cemented: "LR",
+      dPgF: -0.0033,
     },
     {
       id: 8,
@@ -137,14 +142,14 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.67542,
       vd: 34.8,
-      fl: -17.53,
+      focalLengthMm: -17.53,
       glass: "Unmatched (675/348 partial-dispersion flint; patent nd=1.67542, vd=34.8, θgF=0.5825)",
       apd: "patent",
       apdNote:
         "Patent-listed θgF = 0.5825; ΔPgF ≈ -0.0028 against the project normal line. No exact public catalog match was found in the checked OHARA, HOYA, Schott, HIKARI, Sumita, and CDGM references.",
-      dPgF: -0.0028,
       role: "Negative member of the patent's principal LR doublet; contributes net negative power and secondary-spectrum correction.",
       cemented: "LR",
+      dPgF: -0.0028,
     },
     {
       id: 9,
@@ -153,7 +158,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.8,
-      fl: 12.66,
+      focalLengthMm: 12.66,
       glass: "S-LAH58 (OHARA, 883408)",
       role: "Strong high-index positive power behind the LR doublet.",
       cemented: "D4",
@@ -165,7 +170,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6727,
       vd: 32.1,
-      fl: -35.38,
+      focalLengthMm: -35.38,
       glass: "S-TIM25 (OHARA, 673321)",
       role: "Flint partner for the high-power L9 element.",
       cemented: "D4",
@@ -177,7 +182,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.51742,
       vd: 52.4,
-      fl: -25.8,
+      focalLengthMm: -25.8,
       glass: "S-NSL36 (OHARA, 517524)",
       role: "Low-index negative element preceding the molded aspherical positive member.",
       cemented: "D5",
@@ -189,7 +194,7 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.85135,
       vd: 40.1,
-      fl: 36.26,
+      focalLengthMm: 36.26,
       glass: "MP-TAFD305 / MC-TAFD305 (HOYA, 851401)",
       role: "High-index molded-glass aspherical member correcting spherical and off-axis residuals before the fixed rear relay.",
       cemented: "D5",
@@ -201,7 +206,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.8,
-      fl: 25.16,
+      focalLengthMm: 25.16,
       glass: "S-LAH58 (OHARA, 883408)",
       role: "Positive member of the fixed rear relay group.",
       cemented: "D6",
@@ -213,37 +218,55 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 2.00069,
       vd: 25.5,
-      fl: -35.01,
+      focalLengthMm: -35.01,
       glass: "TAFD40-W / TAFD40 (HOYA, 001255)",
       role: "Ultra-high-index dense-flint negative partner controlling the exit-side ray geometry.",
       cemented: "D6",
     },
   ],
+
   surfaces: [
-    { label: "1", R: -34.245, d: 1.1, nd: 1.6134, elemId: 1, sd: 12.9 },
-    { label: "2", R: 51.752, d: 1.16, nd: 1.0, elemId: 0, sd: 10.33 },
-    { label: "3", R: 136.382, d: 6.98, nd: 1.91082, elemId: 2, sd: 10.33 },
-    { label: "4", R: -22.773, d: 1.0, nd: 1.85478, elemId: 3, sd: 12.0 },
-    { label: "5", R: -69.705, d: 0.3, nd: 1.0, elemId: 0, sd: 12.0 },
-    { label: "6", R: 28.667, d: 5.32, nd: 1.91082, elemId: 4, sd: 12.0 },
-    { label: "7", R: -255.377, d: 0.3, nd: 1.0, elemId: 0, sd: 12.0 },
-    { label: "8", R: 33.178, d: 6.27, nd: 1.59282, elemId: 5, sd: 12.0 },
-    { label: "9", R: -48.343, d: 1.0, nd: 1.738, elemId: 6, sd: 12.0 },
-    { label: "10", R: 20.267, d: 4.11, nd: 1.0, elemId: 0, sd: 11.0 },
-    { label: "STO", R: 1e15, d: 4.08, nd: 1.0, elemId: 0, sd: 8.122 },
-    { label: "12", R: -19.197, d: 2.3, nd: 1.76385, elemId: 7, sd: 9.0 },
-    { label: "13", R: -12.71, d: 0.72, nd: 1.67542, elemId: 8, sd: 9.0 },
-    { label: "14", R: 177.418, d: 0.3, nd: 1.0, elemId: 0, sd: 9.0 },
-    { label: "15", R: 32.469, d: 7.65, nd: 1.883, elemId: 9, sd: 9.0 },
-    { label: "16", R: -15.16, d: 0.78, nd: 1.6727, elemId: 10, sd: 9.0 },
-    { label: "17", R: -42.629, d: 1.52, nd: 1.0, elemId: 0, sd: 7.25 },
-    { label: "18", R: -20.007, d: 0.82, nd: 1.51742, elemId: 11, sd: 7.25 },
-    { label: "19", R: 40.687, d: 3.81, nd: 1.85135, elemId: 12, sd: 9.0 },
-    { label: "20A", R: -122.383, d: 1.1, nd: 1.0, elemId: 0, sd: 10.5 },
-    { label: "21", R: 99.228, d: 5.55, nd: 1.883, elemId: 13, sd: 12.5 },
-    { label: "22", R: -27.877, d: 0.92, nd: 2.00069, elemId: 14, sd: 12.5 },
-    { label: "23", R: -138.637, d: 8.52, nd: 1.0, elemId: 0, sd: 12.5 }, // patent gap to the GB plate
+    { label: "1", R: -34.245, d: 1.1, sd: 12.9, medium: 1 },
+    { label: "2", R: 51.752, d: 1.16, sd: 10.33 },
+    { label: "3", R: 136.382, d: 6.98, sd: 10.33, medium: 2 },
+    { label: "4", R: -22.773, d: 1.0, sd: 12.0, medium: 3 },
+    { label: "5", R: -69.705, d: 0.3, sd: 12.0 },
+    { label: "6", R: 28.667, d: 5.32, sd: 12.0, medium: 4 },
+    { label: "7", R: -255.377, d: 0.3, sd: 12.0 },
+    { label: "8", R: 33.178, d: 6.27, sd: 12.0, medium: 5 },
+    { label: "9", R: -48.343, d: 1.0, sd: 12.0, medium: 6 },
+    { label: "10", R: 20.267, d: 4.11, sd: 11.0 },
+    { label: "STO", R: "flat", d: 4.08 },
+    { label: "12", R: -19.197, d: 2.3, sd: 9.0, medium: 7 },
+    { label: "13", R: -12.71, d: 0.72, sd: 9.0, medium: 8 },
+    { label: "14", R: 177.418, d: 0.3, sd: 9.0 },
+    { label: "15", R: 32.469, d: 7.65, sd: 9.0, medium: 9 },
+    { label: "16", R: -15.16, d: 0.78, sd: 9.0, medium: 10 },
+    { label: "17", R: -42.629, d: 1.52, sd: 7.25 },
+    { label: "18", R: -20.007, d: 0.82, sd: 7.25, medium: 11 },
+    { label: "19", R: 40.687, d: 3.81, sd: 9.0, medium: 12 },
+    {
+      label: "20A",
+      R: -122.383,
+      sd: 10.5,
+      asphere: { K: 0, A4: 2.81172e-5, A6: -5.36397e-8, A8: 1.08573e-9, A10: -7.33305e-12, A12: 1.98301e-14, A14: 0 },
+    },
+    { label: "21", R: 99.228, d: 5.55, sd: 12.5, medium: 13 },
+    { label: "22", R: -27.877, d: 0.92, sd: 12.5, medium: 14 },
+    { label: "23", R: -138.637, d: 8.52, sd: 12.5 }, // patent gap to the GB plate
   ],
+
+  focus: {
+    closeFocusM: 0.23,
+    description:
+      "Patent first-group focusing: surfaces 1-20A, including the stop, move objectward while rear group 21-23 remains fixed. The implemented variable gap is patent d20 = 1.10 mm at infinity and 9.71 mm at the patent close state (β≈-0.188).",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
+  },
+
+  gaps: { "20A": { label: "D20", values: [[1.1, 9.71]] } },
+
+  aperture: { nominalFNumber: 1.45, fStops: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16], blades: 7 },
 
   /* ── Glass block GB (patent surfaces 24–25): traced, not drawn ── */
   rearPlates: [
@@ -256,21 +279,7 @@ const LENS_DATA = {
       source: "JP 2018-180366 A, Numerical Data 1 surfaces 24–25",
     },
   ],
-  asph: {
-    "20A": {
-      K: 0,
-      A4: 2.81172e-5,
-      A6: -5.36397e-8,
-      A8: 1.08573e-9,
-      A10: -7.33305e-12,
-      A12: 1.98301e-14,
-      A14: 0,
-    },
-  },
-  var: {
-    "20A": [1.1, 9.71],
-  },
-  varLabels: [["20A", "D20"]],
+
   groups: [
     { text: "L1 moving group", fromSurface: "1", toSurface: "20A" },
     { text: "L2 fixed rear group", fromSurface: "21", toSurface: "23" },
@@ -283,15 +292,8 @@ const LENS_DATA = {
     { text: "D5", fromSurface: "18", toSurface: "20A" },
     { text: "D6", fromSurface: "21", toSurface: "23" },
   ],
-  focusDescription:
-    "Patent first-group focusing: surfaces 1-20A, including the stop, move objectward while rear group 21-23 remains fixed. The implemented variable gap is patent d20 = 1.10 mm at infinity and 9.71 mm at the patent close state (β≈-0.188).",
-  closeFocusM: 0.23,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  nominalFno: 1.45,
-  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16],
-  scFill: 0.58,
-  yScFill: 0.48,
-} satisfies LensDataInput;
+
+  layout: { scFill: 0.58, yScFill: 0.48 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

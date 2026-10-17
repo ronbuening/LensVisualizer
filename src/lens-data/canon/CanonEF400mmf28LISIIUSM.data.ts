@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════════════════════╗
@@ -18,9 +18,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ SCALE: none (s = 1.0). Patent f = 392.15 mm; the active authored arrays compute EFL ≈ 392.260742 mm.║
  * ║ Marketing 400 mm f/2.8 is kept separate from the patent/model design values.                      ║
  * ║                                                                                                    ║
- * ║ STOP: patent row 14 is STO. Its published 48.31 mm "effective diameter" is a ray-envelope value,  ║
- * ║ not the physical iris diameter. STO.sd = 23.251414 mm is independently calibrated so the modeled ║
- * ║ entrance pupil gives the patent f/2.90.                                                            ║
+ * ║ STOP: patent row 14 is STO. Its published 48.31 mm "effective diameter" is a ray-envelope value,   ║
+ * ║ not the physical iris diameter. The stop radius is derived from the patent design f-number         ║
+ * ║ (f/2.90). The 48.31 mm value is from the Second Numerical Embodiment patent surface table.         ║
  * ║                                                                                                    ║
  * ║ FOCUS — CONSTRAINED_RECONSTRUCTION: patent states cemented L16 moves imageward but gives no      ║
  * ║ finite-focus spacing table. Canon's 2.7 m MFD is referenced to the physical image plane: with Lt = ║
@@ -52,32 +52,36 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "canon-ef-400mm-f28-l-is-ii-usm",
   maker: "Canon",
   name: "CANON EF 400mm f/2.8 L IS II USM",
   subtitle: "US 2011/0090576 A1 Example 2 — production correlation; constrained L16 focus reconstruction",
-  specs: [
-    "15 ACTIVE ELEMENTS / 11 GROUPS (PLUS REAR FILTER PLATE G)",
-    "PATENT f = 392.15 mm; COMPUTED EFL 392.2607 mm",
-    "PATENT F/2.90 / MARKETED 400mm f/2.8",
-    "ALL-SPHERICAL",
-    "L16 IMAGEWARD INNER FOCUS; RECONSTRUCTED 2.7 m CLOSE STATE",
-    "L22 + L23 TRANSVERSE IS UNIT",
-  ],
 
-  focalLengthMarketing: 400,
-  focalLengthDesign: 392.2607419367617,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.9,
-  lensMounts: ["canon-ef"],
-  acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
-  imageFormat: "135-full-frame",
-  patentNumber: "US 2011/0090576 A1",
-  patentAuthors: ["Shigenobu Sugita"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 2011,
-  elementCount: 15,
-  groupCount: 11,
+  catalog: {
+    lensMounts: ["canon-ef"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "15 ACTIVE ELEMENTS / 11 GROUPS (PLUS REAR FILTER PLATE G)",
+      "PATENT f = 392.15 mm; COMPUTED EFL 392.2607 mm",
+      "PATENT F/2.90 / MARKETED 400mm f/2.8",
+      "ALL-SPHERICAL",
+      "L16 IMAGEWARD INNER FOCUS; RECONSTRUCTED 2.7 m CLOSE STATE",
+      "L22 + L23 TRANSVERSE IS UNIT",
+    ],
+    elementCount: 15,
+    groupCount: 11,
+    acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
+    focalLengthMm: { marketing: 400, design: 392.2607419367617 },
+    fNumber: { marketing: 2.8, design: 2.9 },
+  },
+
+  source: {
+    patentNumber: "US 2011/0090576 A1",
+    patentYear: 2011,
+    authors: ["Shigenobu Sugita"],
+    assignees: ["Canon Inc."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -88,10 +92,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.2,
-      fl: 336.8652924828807,
+      focalLengthMm: 336.8652924828807,
       glass: "487702 class (vendor unresolved; multiple catalog equivalents)",
-      dPgF: 0.0043,
       role: "Front protective/collector positive element ahead of the two Gp1 low-dispersion positives.",
+      dPgF: 0.0043,
     },
     {
       id: 2,
@@ -100,12 +104,12 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.43387,
       vd: 95.1,
-      fl: 191.6477734862689,
+      focalLengthMm: 191.6477734862689,
       glass: "CaF2 fluorite (Canon production-correlation inference; patent Gp1 coordinates)",
       apd: "patent",
       apdNote: "Patent Gp1 anomalous-partial-dispersion material; X = dPgF = +0.0534.",
-      dPgF: 0.0534,
       role: "First patent Gp1 positive; high ray height makes it a primary longitudinal-chromatic corrector.",
+      dPgF: 0.0534,
     },
     {
       id: 3,
@@ -114,10 +118,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.83481,
       vd: 42.7,
-      fl: -136.8606226959859,
+      focalLengthMm: -136.8606226959859,
       glass: "835427 class (vendor unresolved; multiple catalog equivalents)",
-      dPgF: -0.0083,
       role: "Front-unit negative element balancing the strong positive Gp1 collectors.",
+      dPgF: -0.0083,
     },
     {
       id: 4,
@@ -126,12 +130,12 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.43387,
       vd: 95.1,
-      fl: 194.34963604469866,
+      focalLengthMm: 194.34963604469866,
       glass: "CaF2 fluorite (Canon production-correlation inference; patent Gp1 coordinates)",
       apd: "patent",
       apdNote: "Patent Gp1 anomalous-partial-dispersion material; X = dPgF = +0.0534.",
-      dPgF: 0.0534,
       role: "Second patent Gp1 positive; works with L12 to control longitudinal chromatic aberration.",
+      dPgF: 0.0534,
     },
     {
       id: 5,
@@ -140,10 +144,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.48749,
       vd: 70.2,
-      fl: -838.1950441755673,
+      focalLengthMm: -838.1950441755673,
       glass: "487702 class (vendor unresolved; multiple catalog equivalents)",
-      dPgF: 0.0043,
       role: "Weak negative meniscus preceding the inner-focus cemented group.",
+      dPgF: 0.0043,
     },
     {
       id: 6,
@@ -152,11 +156,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.80518,
       vd: 25.4,
-      fl: 235.80586262670528,
+      focalLengthMm: 235.80586262670528,
       glass: "805254 class (vendor unresolved; multiple catalog equivalents)",
-      dPgF: 0.015,
-      cemented: "L16",
       role: "Positive member of the translating L16 inner-focus cemented group.",
+      cemented: "L16",
+      dPgF: 0.015,
     },
     {
       id: 7,
@@ -165,11 +169,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.804,
       vd: 46.6,
-      fl: -104.4059199159073,
+      focalLengthMm: -104.4059199159073,
       glass: "804466 class (vendor unresolved; multiple catalog equivalents)",
-      dPgF: -0.0083,
-      cemented: "L16",
       role: "Negative member of the L16 focus doublet; the cemented pair is weakly negative in isolation.",
+      cemented: "L16",
+      dPgF: -0.0083,
     },
     {
       id: 8,
@@ -178,11 +182,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.72825,
       vd: 28.5,
-      fl: -64.69897225645975,
+      focalLengthMm: -64.69897225645975,
       glass: "728285 class (vendor unresolved; multiple catalog equivalents)",
-      dPgF: 0.0117,
-      cemented: "L21",
       role: "Negative front member of the first rear-unit cemented group.",
+      cemented: "L21",
+      dPgF: 0.0117,
     },
     {
       id: 9,
@@ -191,11 +195,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.70154,
       vd: 41.2,
-      fl: 44.723174784377214,
+      focalLengthMm: 44.723174784377214,
       glass: "702412 class (vendor unresolved; multiple catalog equivalents)",
-      dPgF: 0.0021,
-      cemented: "L21",
       role: "Positive partner of L21; the cemented pair is net positive in isolation.",
+      cemented: "L21",
+      dPgF: 0.0021,
     },
     {
       id: 10,
@@ -204,11 +208,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.84666,
       vd: 23.8,
-      fl: 39.79585576614245,
+      focalLengthMm: 39.79585576614245,
       glass: "847238 class (vendor unresolved; multiple catalog equivalents)",
-      dPgF: 0.0167,
-      cemented: "L22",
       role: "Positive member of the L22 cemented stabilization subgroup.",
+      cemented: "L22",
+      dPgF: 0.0167,
     },
     {
       id: 11,
@@ -217,11 +221,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.8061,
       vd: 40.9,
-      fl: -29.264200800189005,
+      focalLengthMm: -29.264200800189005,
       glass: "806409 class (vendor unresolved; multiple catalog equivalents)",
-      dPgF: -0.0048,
-      cemented: "L22",
       role: "Negative member of L22; L22 moves transversely together with L23 for image stabilization.",
+      cemented: "L22",
+      dPgF: -0.0048,
     },
     {
       id: 12,
@@ -230,10 +234,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.83481,
       vd: 42.7,
-      fl: -50.66047357011775,
+      focalLengthMm: -50.66047357011775,
       glass: "835427 class (vendor unresolved; multiple catalog equivalents)",
-      dPgF: -0.0083,
       role: "Negative stabilization element moving laterally with cemented L22.",
+      dPgF: -0.0083,
     },
     {
       id: 13,
@@ -242,10 +246,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.64769,
       vd: 33.8,
-      fl: 71.98879921263543,
+      focalLengthMm: 71.98879921263543,
       glass: "648338 class (vendor unresolved; multiple catalog equivalents)",
-      dPgF: 0.0069,
       role: "Rear positive relay element ahead of the terminal chromatic-correction cemented pair.",
+      dPgF: 0.0069,
     },
     {
       id: 14,
@@ -254,13 +258,13 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.65412,
       vd: 39.7,
-      fl: 46.72992076667075,
+      focalLengthMm: 46.72992076667075,
       glass: "654397 anomalous-dispersion class (vendor unresolved; multiple catalog equivalents)",
       apd: "patent",
       apdNote: "Patent Gp2 partial-dispersion material; condition (6), X = dPgF = -0.0033.",
-      dPgF: -0.0033,
-      cemented: "L25",
       role: "Gp2 positive of the terminal cemented pair; patent condition (5)/(6) material.",
+      cemented: "L25",
+      dPgF: -0.0033,
     },
     {
       id: 15,
@@ -269,14 +273,13 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.8081,
       vd: 22.8,
-      fl: -46.18705402677947,
+      focalLengthMm: -46.18705402677947,
       glass: "808228 anomalous high-dispersion class (vendor unresolved; multiple catalog equivalents)",
       apd: "patent",
       apdNote: "Patent Gn1 high-index/high-dispersion anomalous material; X = dPgF = +0.0251.",
-      dPgF: 0.0251,
+      role: "Gn1 negative nearest the image; patent uses it for lateral color, field-curvature, and astigmatism control.",
       cemented: "L25",
-      role:
-        "Gn1 negative nearest the image; patent uses it for lateral color, field-curvature, and astigmatism control.",
+      dPgF: 0.0251,
     },
     {
       id: 16,
@@ -286,71 +289,66 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.14,
       glass: "516641 class (vendor unresolved; multiple catalog equivalents)",
+      role: "Plane-parallel glass block G of the patent prescription (rows 28-29; X = dPgF = -0.0007), in the rear drop-in filter holder. The patent defines back focus with it absent; Canon counts the drop-in filter in the production lens.",
       dPgF: -0.0007,
-      role:
-        "Plane-parallel glass block G of the patent prescription (rows 28-29; X = dPgF = -0.0007), in the rear drop-in filter holder. The patent defines back focus with it absent; Canon counts the drop-in filter in the production lens.",
     },
   ],
 
   /* ── Optical prescription ── */
   surfaces: [
-    { label: "1", R: 265.748, d: 17.78, nd: 1.48749, elemId: 1, sd: 72.0 },
-    { label: "2", R: -420.408, d: 48.08, nd: 1.0, elemId: 0, sd: 69.5 },
-    { label: "3", R: 143.732, d: 21.9, nd: 1.43387, elemId: 2, sd: 58.0 },
-    { label: "4", R: -188.181, d: 0.28, nd: 1.0, elemId: 0, sd: 52.62 },
-    { label: "5", R: -185.302, d: 6.25, nd: 1.83481, elemId: 3, sd: 52.5 },
-    { label: "6", R: 302.552, d: 49.95, nd: 1.0, elemId: 0, sd: 50.11 },
-    { label: "7", R: 108.673, d: 15.8, nd: 1.43387, elemId: 4, sd: 44.48 },
-    { label: "8", R: -359.764, d: 0.15, nd: 1.0, elemId: 0, sd: 43.75 },
-    { label: "9", R: 54.299, d: 7.3, nd: 1.48749, elemId: 5, sd: 40.5 },
-    { label: "10", R: 45.818, d: 16.22, nd: 1.0, elemId: 0, sd: 37.0 },
-    { label: "11", R: 420.291, d: 4.26, nd: 1.80518, elemId: 6, sd: 32.45 },
-    { label: "12", R: -344.747, d: 3.2, nd: 1.804, elemId: 7, sd: 32.135 },
-    { label: "13", R: 111.419, d: 43.73, nd: 1.0, elemId: 0, sd: 30.26 },
-    { label: "STO", R: 1e15, d: 6.55, nd: 1.0, elemId: 0, sd: 23.25141403856378 },
-    { label: "15", R: 185.602, d: 1.8, nd: 1.72825, elemId: 8, sd: 24.015 },
-    { label: "16", R: 37.424, d: 10.89, nd: 1.70154, elemId: 9, sd: 23.14 },
-    { label: "17", R: -170.826, d: 5.53, nd: 1.0, elemId: 0, sd: 23.015 },
-    { label: "18", R: 53.602, d: 7.3, nd: 1.84666, elemId: 10, sd: 20.035 },
-    { label: "19", R: -85.053, d: 1.7, nd: 1.8061, elemId: 11, sd: 19.67 },
-    { label: "20", R: 32.935, d: 6.65, nd: 1.0, elemId: 0, sd: 15.75 },
-    { label: "21", R: -65.258, d: 1.8, nd: 1.83481, elemId: 12, sd: 15.75 },
-    { label: "22", R: 121.68, d: 4.63, nd: 1.0, elemId: 0, sd: 16.885 },
-    { label: "23", R: 72.705, d: 6.32, nd: 1.64769, elemId: 13, sd: 18.295 },
-    { label: "24", R: -125.549, d: 0.2, nd: 1.0, elemId: 0, sd: 18.53 },
-    { label: "25", R: 92.173, d: 10.46, nd: 1.65412, elemId: 14, sd: 18.715 },
-    { label: "26", R: -43.681, d: 1.8, nd: 1.8081, elemId: 15, sd: 18.49 },
-    { label: "27", R: 261.177, d: 15.0, nd: 1.0, elemId: 0, sd: 18.455 },
+    { label: "1", R: 265.748, d: 17.78, sd: 72.0, medium: 1 },
+    { label: "2", R: -420.408, d: 48.08, sd: 69.5 },
+    { label: "3", R: 143.732, d: 21.9, sd: 58.0, medium: 2 },
+    { label: "4", R: -188.181, d: 0.28, sd: 52.62 },
+    { label: "5", R: -185.302, d: 6.25, sd: 52.5, medium: 3 },
+    { label: "6", R: 302.552, d: 49.95, sd: 50.11 },
+    { label: "7", R: 108.673, d: 15.8, sd: 44.48, medium: 4 },
+    { label: "8", R: -359.764, d: 0.15, sd: 43.75 },
+    { label: "9", R: 54.299, d: 7.3, sd: 40.5, medium: 5 },
+    { label: "10", R: 45.818, sd: 37.0 },
+    { label: "11", R: 420.291, d: 4.26, sd: 32.45, medium: 6 },
+    { label: "12", R: -344.747, d: 3.2, sd: 32.135, medium: 7 },
+    { label: "13", R: 111.419, sd: 30.26 },
+    // US 2011/0090576 A1, Second Numerical Embodiment surface table, row 14 prints a 48.31 mm effective diameter
+    // at the stop.
+    { label: "STO", R: "flat", d: 6.55 },
+    { label: "15", R: 185.602, d: 1.8, sd: 24.015, medium: 8 },
+    { label: "16", R: 37.424, d: 10.89, sd: 23.14, medium: 9 },
+    { label: "17", R: -170.826, d: 5.53, sd: 23.015 },
+    { label: "18", R: 53.602, d: 7.3, sd: 20.035, medium: 10 },
+    { label: "19", R: -85.053, d: 1.7, sd: 19.67, medium: 11 },
+    { label: "20", R: 32.935, d: 6.65, sd: 15.75 },
+    { label: "21", R: -65.258, d: 1.8, sd: 15.75, medium: 12 },
+    { label: "22", R: 121.68, d: 4.63, sd: 16.885 },
+    { label: "23", R: 72.705, d: 6.32, sd: 18.295, medium: 13 },
+    { label: "24", R: -125.549, d: 0.2, sd: 18.53 },
+    { label: "25", R: 92.173, d: 10.46, sd: 18.715, medium: 14 },
+    { label: "26", R: -43.681, d: 1.8, sd: 18.49, medium: 15 },
+    { label: "27", R: 261.177, d: 15.0, sd: 18.455 },
     // Drop-in filter G (patent rows 28-29), drawn as a plane-parallel plate. Its sd is a ray-trace estimate; the
     // patent's 36.00 mm effective diameter is a ray envelope and would limit this model's corner bundle.
-    { label: "28", R: 1e15, d: 2.2, nd: 1.51633, elemId: 16, sd: 21.5 },
-    { label: "29", R: 1e15, d: 54.269129, nd: 1.0, elemId: 0, sd: 21.5 }, // drop-in filter → image plane
+    { label: "28", R: "flat", d: 2.2, sd: 21.5, medium: 16 },
+    { label: "29", R: "flat", d: 54.269129, sd: 21.5 }, // drop-in filter → image plane
   ],
 
-  asph: {},
-
-  /* ── Focus ── */
-  var: {
-    "10": [16.22, 45.149493818598835],
-    "13": [43.73, 14.800506181401161],
+  focus: {
+    closeFocusM: 2.7,
+    description:
+      "CONSTRAINED_RECONSTRUCTION: the patent publishes L16 imageward inner focusing but no finite-focus spacing " +
+      "table. Canon's 2.7 m MFD is treated as physical image-plane-referenced (patent Lt = 372.00 mm, the modeled " +
+      "first-surface-to-IP track with filter plate G), giving an object-to-first-surface distance of 2328.00 mm. " +
+      "The close endpoint moves L16 +28.929493819 mm while holding D10 + D13 = 59.95 mm; it is reconstructed, " +
+      "not patent-published.",
   },
-  varLabels: [
-    ["10", "D10"],
-    ["13", "D13"],
-  ],
-  closeFocusM: 2.7,
-  focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: the patent publishes L16 imageward inner focusing but no finite-focus spacing " +
-    "table. Canon's 2.7 m MFD is treated as physical image-plane-referenced (patent Lt = 372.00 mm, the modeled " +
-    "first-surface-to-IP track with filter plate G), giving an object-to-first-surface distance of 2328.00 mm. " +
-    "The close endpoint moves L16 +28.929493819 mm while holding D10 + D13 = 59.95 mm; it is reconstructed, " +
-    "not patent-published.",
+
+  /* (moved from var) ── Focus ── */
+  gaps: {
+    "10": { label: "D10", values: [[16.22, 45.149493818598835]] },
+    "13": { label: "D13", values: [[43.73, 14.800506181401161]] },
+  },
 
   /* ── Aperture ── */
-  nominalFno: 2.9,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
-  maxFstop: 32,
-  apertureBlades: 9,
+  aperture: { nominalFNumber: 2.9, fStops: [2.8, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 9 },
 
   /* ── Diagram annotations ── */
   groups: [
@@ -365,7 +363,7 @@ const LENS_DATA = {
   ],
 
   /* ── Required per-lens layout ── */
-  yScFill: 0.72,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.72 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

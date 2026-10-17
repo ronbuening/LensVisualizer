@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -30,8 +30,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    The patent locates D within the r7-r8 air gap but does not publish its ║
  * ║    exact station or diameter. At the required f/1.2 rim, the stop plane   ║
  * ║    is centered between the opposing spherical profiles: 6.455948 mm      ║
- * ║    after r7 and 4.199052 mm before r8. Stop SD = 10.662193 mm gives an    ║
- * ║    entrance-pupil diameter of 42.094150 mm at EFL = 50.512979 mm.         ║
+ * ║    after r7 and 4.199052 mm before r8. The stop radius is derived from    ║
+ * ║    the design f-number, giving an entrance-pupil diameter of 42.094150 mm ║
+ * ║    at EFL = 50.512979 mm.                                                 ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS:                                                           ║
  * ║    The patent supplies none. Values are inferred from the f/1.2 marginal  ║
@@ -44,23 +45,28 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "canon-50f12-1956",
   maker: "Canon",
   name: "CANON 50mm f/1.2",
   subtitle: "US 2,836,102 Example 2 — Hiroshi Ito / Canon Camera Co., Inc.",
-  specs: ["7 ELEMENTS / 5 GROUPS", "50 mm (DESIGN 50.513 mm)", "F/1.2", "2ω = 40°", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 50,
-  focalLengthDesign: 50.512979,
-  apertureMarketing: 1.2,
-  lensMounts: ["leica-ltm"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 2,836,102",
-  patentAuthors: ["Hiroshi Ito"],
-  patentAssignees: ["Canon Camera Co., Inc."],
-  patentYear: 1958,
-  elementCount: 7,
-  groupCount: 5,
+  catalog: {
+    lensMounts: ["leica-ltm"],
+    imageFormat: "135-full-frame",
+    specs: ["7 ELEMENTS / 5 GROUPS", "50 mm (DESIGN 50.513 mm)", "F/1.2", "2ω = 40°", "ALL-SPHERICAL"],
+    elementCount: 7,
+    groupCount: 5,
+    focalLengthMm: { marketing: 50, design: 50.512979 },
+    fNumber: { marketing: 1.2 },
+  },
+
+  source: {
+    patentNumber: "US 2,836,102",
+    patentYear: 1958,
+    authors: ["Hiroshi Ito"],
+    assignees: ["Canon Camera Co., Inc."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -71,7 +77,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6935,
       vd: 53.5,
-      fl: 105.644794,
+      focalLengthMm: 105.644794,
       glass: "LAC13 (HOYA) class (694535 lanthanum crown; nd-exact, Δνd −0.16; H-LaK6A / S-LAL13 share the coordinate)",
       apd: false,
       role: "First half of the split positive front collector; convex toward the object.",
@@ -83,7 +89,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7173,
       vd: 47.9,
-      fl: 105.814527,
+      focalLengthMm: 105.814527,
       glass: "S-LAM3 (OHARA; 717479 coordinate equivalent, original Canon melt not identified)",
       apd: false,
       role: "Second half of the split front collector; nearly equal standalone power to L1.",
@@ -95,7 +101,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6385,
       vd: 55.5,
-      fl: 35.202908,
+      focalLengthMm: 35.202908,
       glass: "K-SK18 (Sumita; 639555 exact coordinate equivalent, original Canon melt not identified)",
       apd: false,
       role: "Positive crown component of the front cemented negative meniscus.",
@@ -108,7 +114,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7174,
       vd: 29.5,
-      fl: -17.529482,
+      focalLengthMm: -17.529482,
       glass: "S-TIH1 (OHARA; 717295 coordinate equivalent, original Canon melt not identified)",
       apd: false,
       role: "High-dispersion negative partner; the L3-L4 cemented net is negative.",
@@ -121,7 +127,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.5174,
       vd: 52.5,
-      fl: -26.478792,
+      focalLengthMm: -26.478792,
       glass: "S-NSL36 (OHARA; 517524 close coordinate equivalent to patent 517525, original Canon melt not identified)",
       apd: false,
       role: "Negative front element of the rear cemented meniscus.",
@@ -134,7 +140,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6935,
       vd: 53.5,
-      fl: 27.893319,
+      focalLengthMm: 27.893319,
       glass: "LAC13 (HOYA) class (694535 lanthanum crown; nd-exact, Δνd −0.16; H-LaK6A / S-LAL13 share the coordinate)",
       apd: false,
       role: "Positive partner of L5; the cemented L5-L6 net is only weakly positive.",
@@ -147,7 +153,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6935,
       vd: 53.5,
-      fl: 45.227211,
+      focalLengthMm: 45.227211,
       glass: "LAC13 (HOYA) class (694535 lanthanum crown; nd-exact, Δνd −0.16; H-LaK6A / S-LAL13 share the coordinate)",
       apd: false,
       role: "Rear positive singlet and final converging component.",
@@ -156,28 +162,30 @@ const LENS_DATA = {
 
   /* ── Surface prescription, object to image ── */
   surfaces: [
-    { label: "1", R: 47.0, d: 4.5, nd: 1.6935, elemId: 1, sd: 23.2 },
-    { label: "2", R: 125.965, d: 0.105, nd: 1.0, elemId: 0, sd: 23.0 },
-    { label: "3", R: 34.495, d: 4.0, nd: 1.7173, elemId: 2, sd: 21.3 },
-    { label: "4", R: 60.17, d: 0.48, nd: 1.0, elemId: 0, sd: 21.0 },
-    { label: "5", R: 25.48, d: 10.24, nd: 1.6385, elemId: 3, sd: 19.0 },
-    { label: "6", R: -160.85, d: 2.195, nd: 1.7174, elemId: 4, sd: 15.25 },
-    { label: "7", R: 13.72, d: 6.455948, nd: 1.0, elemId: 0, sd: 11.5 },
-    { label: "STO", R: 1e15, d: 4.199052, nd: 1.0, elemId: 0, sd: 10.662193 },
-    { label: "8", R: -21.51, d: 1.065, nd: 1.5174, elemId: 5, sd: 11.5 },
-    { label: "9", R: 38.37, d: 6.2, nd: 1.6935, elemId: 6, sd: 13.0 },
-    { label: "10", R: -36.43, d: 1.065, nd: 1.0, elemId: 0, sd: 13.7 },
-    { label: "11", R: 90.79, d: 3.585, nd: 1.6935, elemId: 7, sd: 13.7 },
-    { label: "12", R: -47.145, d: 21.072291, nd: 1.0, elemId: 0, sd: 13.7 },
+    { label: "1", R: 47.0, d: 4.5, sd: 23.2, medium: 1 },
+    { label: "2", R: 125.965, d: 0.105, sd: 23.0 },
+    { label: "3", R: 34.495, d: 4.0, sd: 21.3, medium: 2 },
+    { label: "4", R: 60.17, d: 0.48, sd: 21.0 },
+    { label: "5", R: 25.48, d: 10.24, sd: 19.0, medium: 3 },
+    { label: "6", R: -160.85, d: 2.195, sd: 15.25, medium: 4 },
+    { label: "7", R: 13.72, d: 6.455948, sd: 11.5 },
+    { label: "STO", R: "flat", d: 4.199052 },
+    { label: "8", R: -21.51, d: 1.065, sd: 11.5, medium: 5 },
+    { label: "9", R: 38.37, d: 6.2, sd: 13.0, medium: 6 },
+    { label: "10", R: -36.43, d: 1.065, sd: 13.7 },
+    { label: "11", R: 90.79, d: 3.585, sd: 13.7, medium: 7 },
+    { label: "12", R: -47.145, sd: 13.7 },
   ],
 
-  asph: {},
-
-  /* Unit focus is represented optically by increasing the rear BFD. */
-  var: {
-    "12": [21.072291, 23.878321],
+  focus: {
+    closeFocusM: 1.0,
+    description: "Unit focusing: the complete objective translates; the model varies only the rear BFD.",
   },
-  varLabels: [["12", "BF"]],
+
+  /* (moved from var) Unit focus is represented optically by increasing the rear BFD. */
+  gaps: { "12": { label: "BF", values: [[21.072291, 23.878321]] } },
+
+  aperture: { nominalFNumber: 1.2, fStops: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 11 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -191,14 +199,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "8", toSurface: "10" },
   ],
 
-  closeFocusM: 1.0,
-  focusDescription: "Unit focusing: the complete objective translates; the model varies only the rear BFD.",
-  nominalFno: 1.2,
-  apertureBlades: 11,
-  fstopSeries: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  yScFill: 0.72,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.72 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

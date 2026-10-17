@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
@@ -50,31 +50,35 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "canon-ef-400mm-f28l-is-usm",
   maker: "Canon",
   name: "CANON EF 400mm f/2.8 L IS USM",
   subtitle: "US 6,115,188 A — Numerical Example 25; production correlation to EF 400mm f/2.8 L IS USM",
-  specs: [
-    "400mm f/2.8 (marketed)",
-    "Patent f = 392.15 mm, F/2.9",
-    "17 elements / 13 groups marketed; 16 / 12 modeled plus drawn rear filter",
-    "3.0 m minimum focus",
-    "1 fluorite + 2 UD elements (manufacturer correlation)",
-  ],
 
-  focalLengthMarketing: 400,
-  focalLengthDesign: 392.15,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.9,
-  lensMounts: ["canon-ef"],
-  acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
-  imageFormat: "135-full-frame",
-  patentNumber: "US 6,115,188 A",
-  patentAuthors: ["Akihiro Nishio", "Hideki Ogawa", "Makoto Misaka"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 2000,
-  elementCount: 16,
-  groupCount: 12,
+  catalog: {
+    lensMounts: ["canon-ef"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "400mm f/2.8 (marketed)",
+      "Patent f = 392.15 mm, F/2.9",
+      "17 elements / 13 groups marketed; 16 / 12 modeled plus drawn rear filter",
+      "3.0 m minimum focus",
+      "1 fluorite + 2 UD elements (manufacturer correlation)",
+    ],
+    elementCount: 16,
+    groupCount: 12,
+    acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
+    focalLengthMm: { marketing: 400, design: 392.15 },
+    fNumber: { marketing: 2.8, design: 2.9 },
+  },
+
+  source: {
+    patentNumber: "US 6,115,188 A",
+    patentYear: 2000,
+    authors: ["Akihiro Nishio", "Hideki Ogawa", "Makoto Misaka"],
+    assignees: ["Canon Inc."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -95,7 +99,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.496999,
       vd: 81.5,
-      fl: 303.186311,
+      focalLengthMm: 303.186311,
       glass: "S-FPL51 coefficient proxy (patent 497815; production supplier unspecified; UD-class correlation)",
       role: "Single positive front subunit; one of the two production-correlated UD-class elements.",
     },
@@ -106,7 +110,7 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.496999,
       vd: 81.5,
-      fl: 227.594019,
+      focalLengthMm: 227.594019,
       glass: "S-FPL51 coefficient proxy (patent 497815; production supplier unspecified; UD-class correlation)",
       role: "Positive member of the negative-power L1b middle subunit; second production-correlated UD-class element.",
     },
@@ -117,7 +121,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.834807,
       vd: 42.7,
-      fl: -165.488385,
+      focalLengthMm: -165.488385,
       glass: "TAFD5G coefficient proxy (patent 835427; production supplier unspecified)",
       role: "Negative member completing the net-negative L1b middle subunit.",
     },
@@ -128,7 +132,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.43387,
       vd: 95.1,
-      fl: 212.185301,
+      focalLengthMm: 212.185301,
       glass: "Synthetic fluorite (CaF₂; manufacturer-correlated)",
       role: "Unique fluorite-coordinate positive element in the rear L1c subunit.",
     },
@@ -139,7 +143,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.51633,
       vd: 64.1,
-      fl: -462.297887,
+      focalLengthMm: -462.297887,
       glass: "S-BSL7 coefficient proxy (patent 516641; production supplier unspecified)",
       role: "Negative meniscus completing the net-positive L1c rear subunit.",
     },
@@ -150,7 +154,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.805181,
       vd: 25.4,
-      fl: 194.582241,
+      focalLengthMm: 194.582241,
       glass: "S-TIH6 coefficient proxy (patent 805254; production supplier unspecified)",
       role: "Positive component of the cemented inner-focus group L2.",
       cemented: "L2",
@@ -162,7 +166,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.804,
       vd: 46.6,
-      fl: -80.042831,
+      focalLengthMm: -80.042831,
       glass: "H-ZLaF50D coefficient proxy (patent 804466; production supplier unspecified)",
       role: "Negative component of the net-negative cemented inner-focus group L2.",
       cemented: "L2",
@@ -174,7 +178,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.846658,
       vd: 23.9,
-      fl: -93.365654,
+      focalLengthMm: -93.365654,
       glass: "PBH53 coefficient proxy (patent 847239; production supplier unspecified)",
       role: "Negative first component of the cemented, net-positive L3a subunit.",
       cemented: "L3a",
@@ -186,7 +190,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.772499,
       vd: 49.6,
-      fl: 52.93004,
+      focalLengthMm: 52.93004,
       glass: "E-LASF016 coefficient proxy (patent 772496; production supplier unspecified)",
       role: "Positive second component of L3a, converging the beam before the stabilization subunit.",
       cemented: "L3a",
@@ -198,7 +202,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.846658,
       vd: 23.9,
-      fl: 72.40268,
+      focalLengthMm: 72.40268,
       glass: "PBH53 coefficient proxy (patent 847239; production supplier unspecified)",
       role: "Positive first component of the transversely movable L3b image-stabilization subunit.",
       cemented: "L3b-1",
@@ -210,7 +214,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.622992,
       vd: 58.2,
-      fl: -53.607318,
+      focalLengthMm: -53.607318,
       glass: "S-BSM15 coefficient proxy (patent 623582; production supplier unspecified)",
       role: "Negative cemented partner in the first L3b pair.",
       cemented: "L3b-1",
@@ -222,7 +226,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.804,
       vd: 46.6,
-      fl: -53.979361,
+      focalLengthMm: -53.979361,
       glass: "H-ZLaF50D coefficient proxy (patent 804466; production supplier unspecified)",
       role: "Separate negative element after the strongly curved L3b air lens; completes the net-negative IS subunit.",
     },
@@ -233,7 +237,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.622992,
       vd: 58.2,
-      fl: 117.502293,
+      focalLengthMm: 117.502293,
       glass: "S-BSM15 coefficient proxy (patent 623582; production supplier unspecified)",
       role: "First positive element of the rear L3c subunit.",
     },
@@ -244,7 +248,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6779,
       vd: 55.3,
-      fl: 53.972822,
+      focalLengthMm: 53.972822,
       glass: "S-LAL12 coefficient proxy (patent 678553; production supplier unspecified)",
       role: "Positive component of the final cemented pair in L3c.",
       cemented: "L3c-2",
@@ -256,7 +260,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.882997,
       vd: 40.8,
-      fl: -80.89395,
+      focalLengthMm: -80.89395,
       glass: "S-LAH58 coefficient proxy (patent 883408; production supplier unspecified)",
       role: "Negative partner of the final cemented pair; the pair remains net positive within L3c.",
       cemented: "L3c-2",
@@ -275,52 +279,54 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 1e15, d: 6.0, nd: 1.51633, elemId: 1, sd: 72.0 },
-    { label: "2", R: 1e15, d: 1.5, nd: 1.0, elemId: 0, sd: 72.0 },
-    { label: "3", R: 231.603, d: 19.3, nd: 1.496999, elemId: 2, sd: 72.0 },
-    { label: "4", R: -419.344, d: 22.34, nd: 1.0, elemId: 0, sd: 72.0 },
-    { label: "5", R: 113.114, d: 19.2, nd: 1.496999, elemId: 3, sd: 61.8 },
-    { label: "6", R: 1e15, d: 2.68, nd: 1.0, elemId: 0, sd: 61.8 },
-    { label: "7", R: -597.7, d: 6.25, nd: 1.834807, elemId: 4, sd: 55.5 },
-    { label: "8", R: 180.537, d: 10.24, nd: 1.0, elemId: 0, sd: 55.5 },
-    { label: "9", R: 94.288, d: 17.8, nd: 1.43387, elemId: 5, sd: 52.5 },
-    { label: "10", R: -3674.804, d: 1.4, nd: 1.0, elemId: 0, sd: 52.5 },
-    { label: "11", R: 64.7, d: 7.3, nd: 1.51633, elemId: 6, sd: 45.0 },
-    { label: "12", R: 48.947, d: 24.36, nd: 1.0, elemId: 0, sd: 43.8 },
-    { label: "13", R: 5483.964, d: 4.7, nd: 1.805181, elemId: 7, sd: 34.0 },
-    { label: "14", R: -161.22, d: 3.2, nd: 1.804, elemId: 8, sd: 34.0 },
-    { label: "15", R: 108.057, d: 98.83, nd: 1.0, elemId: 0, sd: 34.0 },
-    { label: "STO", R: 1e15, d: 9.94, nd: 1.0, elemId: 0, sd: 19.938798067 },
-    { label: "17", R: 125.228, d: 1.8, nd: 1.846658, elemId: 9, sd: 21.0 },
-    { label: "18", R: 48.14, d: 6.5, nd: 1.772499, elemId: 10, sd: 21.0 },
-    { label: "19", R: -255.466, d: 4.62, nd: 1.0, elemId: 0, sd: 21.0 },
-    { label: "20", R: 76.097, d: 4.1, nd: 1.846658, elemId: 11, sd: 20.0 },
-    { label: "21", R: -307.47, d: 1.7, nd: 1.622992, elemId: 12, sd: 20.0 },
-    { label: "22", R: 37.546, d: 5.65, nd: 1.0, elemId: 0, sd: 20.0 },
-    { label: "23", R: -133.531, d: 1.8, nd: 1.804, elemId: 13, sd: 16.8 },
-    { label: "24", R: 64.683, d: 2.85, nd: 1.0, elemId: 0, sd: 16.8 },
-    { label: "25", R: 86.153, d: 5.0, nd: 1.622992, elemId: 14, sd: 21.0 },
-    { label: "26", R: -476.151, d: 0.2, nd: 1.0, elemId: 0, sd: 21.0 },
-    { label: "27", R: 55.777, d: 9.7, nd: 1.6779, elemId: 15, sd: 21.0 },
-    { label: "28", R: -98.88, d: 1.8, nd: 1.882997, elemId: 16, sd: 21.0 },
-    { label: "29", R: 259.489, d: 15.016884094, nd: 1.0, elemId: 0, sd: 21.0 },
+    { label: "1", R: "flat", d: 6.0, sd: 72.0, medium: 1 },
+    { label: "2", R: "flat", d: 1.5, sd: 72.0 },
+    { label: "3", R: 231.603, d: 19.3, sd: 72.0, medium: 2 },
+    { label: "4", R: -419.344, d: 22.34, sd: 72.0 },
+    { label: "5", R: 113.114, d: 19.2, sd: 61.8, medium: 3 },
+    { label: "6", R: "flat", d: 2.68, sd: 61.8 },
+    { label: "7", R: -597.7, d: 6.25, sd: 55.5, medium: 4 },
+    { label: "8", R: 180.537, d: 10.24, sd: 55.5 },
+    { label: "9", R: 94.288, d: 17.8, sd: 52.5, medium: 5 },
+    { label: "10", R: -3674.804, d: 1.4, sd: 52.5 },
+    { label: "11", R: 64.7, d: 7.3, sd: 45.0, medium: 6 },
+    { label: "12", R: 48.947, sd: 43.8 },
+    { label: "13", R: 5483.964, d: 4.7, sd: 34.0, medium: 7 },
+    { label: "14", R: -161.22, d: 3.2, sd: 34.0, medium: 8 },
+    { label: "15", R: 108.057, sd: 34.0 },
+    { label: "STO", R: "flat", d: 9.94 },
+    { label: "17", R: 125.228, d: 1.8, sd: 21.0, medium: 9 },
+    { label: "18", R: 48.14, d: 6.5, sd: 21.0, medium: 10 },
+    { label: "19", R: -255.466, d: 4.62, sd: 21.0 },
+    { label: "20", R: 76.097, d: 4.1, sd: 20.0, medium: 11 },
+    { label: "21", R: -307.47, d: 1.7, sd: 20.0, medium: 12 },
+    { label: "22", R: 37.546, d: 5.65, sd: 20.0 },
+    { label: "23", R: -133.531, d: 1.8, sd: 16.8, medium: 13 },
+    { label: "24", R: 64.683, d: 2.85, sd: 16.8 },
+    { label: "25", R: 86.153, d: 5.0, sd: 21.0, medium: 14 },
+    { label: "26", R: -476.151, d: 0.2, sd: 21.0 },
+    { label: "27", R: 55.777, d: 9.7, sd: 21.0, medium: 15 },
+    { label: "28", R: -98.88, d: 1.8, sd: 21.0, medium: 16 },
+    { label: "29", R: 259.489, d: 15.016884094, sd: 21.0 },
     // Drop-in filter FL (US 6,115,188 A, Numerical Example 25 surfaces R30–R31), drawn as a plane-parallel plate.
     // Its sd is a ray-trace estimate (the source lists none).
     // Gap to the image: FC plane R32 omitted; D31 15.28 to the inactive FC plane + D32 38.95 to IP
-    { label: "30", R: 1e15, d: 2.2, nd: 1.51633, elemId: 17, sd: 20.5 },
-    { label: "31", R: 1e15, d: 54.23, nd: 1.0, elemId: 0, sd: 20.5 }, // drop-in filter → image plane
+    { label: "30", R: "flat", d: 2.2, sd: 20.5, medium: 17 },
+    { label: "31", R: "flat", d: 54.23, sd: 20.5 }, // drop-in filter → image plane
   ],
 
-  asph: {},
-
-  var: {
-    "12": [24.36, 43.154827332],
-    "15": [98.83, 80.035172668],
+  focus: {
+    closeFocusM: 3.0,
+    description:
+      "CONSTRAINED_RECONSTRUCTION: patent-defined cemented L2 translates imageward. Canon's 3.0 m focal-plane MFD solves D12 = 24.36 + δ and D15 = 98.83 − δ with δ = 18.794827332 mm; D12 + D15 stays 123.19 mm. Rear drop-in filter FL is a drawn plane-parallel element (FC omitted); R29→FL is 15.016884094 mm at infinity (printed 15.00 plus the +0.016884094 mm paraxial-focus normalization).",
   },
-  varLabels: [
-    ["12", "D12 / pre-L2"],
-    ["15", "D15 / post-L2"],
-  ],
+
+  gaps: {
+    "12": { label: "D12 / pre-L2", values: [[24.36, 43.154827332]] },
+    "15": { label: "D15 / post-L2", values: [[98.83, 80.035172668]] },
+  },
+
+  aperture: { nominalFNumber: 2.9, fStops: [2.9, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 8 },
 
   groups: [
     { text: "HG", fromSurface: "1", toSurface: "2" },
@@ -328,7 +334,6 @@ const LENS_DATA = {
     { text: "L2 / FOCUS", fromSurface: "13", toSurface: "15" },
     { text: "L3", fromSurface: "17", toSurface: "29" },
   ],
-
   doublets: [
     { text: "L1a", fromSurface: "3", toSurface: "4" },
     { text: "L1b", fromSurface: "5", toSurface: "8" },
@@ -339,17 +344,11 @@ const LENS_DATA = {
     { text: "L3c", fromSurface: "25", toSurface: "29" },
   ],
 
-  closeFocusM: 3.0,
-  focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: patent-defined cemented L2 translates imageward. Canon's 3.0 m focal-plane MFD solves D12 = 24.36 + δ and D15 = 98.83 − δ with δ = 18.794827332 mm; D12 + D15 stays 123.19 mm. Rear drop-in filter FL is a drawn plane-parallel element (FC omitted); R29→FL is 15.016884094 mm at infinity (printed 15.00 plus the +0.016884094 mm paraxial-focus normalization).",
+  layout: { yScFill: 0.42 },
 
-  nominalFno: 2.9,
-  fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22, 32],
-  maxFstop: 32,
-  apertureBlades: 8,
-
-  yScFill: 0.42,
-  gapSagFrac: 0.97, // R6 / R7 (L1b-P rear, L1b-N front) nearly meet at the 55.5 mm rim: 0.098 mm of air remains
-} satisfies LensDataInput;
+  checks: {
+    gapSagFrac: 0.97, // R6 / R7 (L1b-P rear, L1b-N front) nearly meet at the 55.5 mm rim: 0.098 mm of air remains
+  },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -16,8 +16,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║ NOTE ON STOP AND SEMI-DIAMETERS:                                    ║
  * ║   Patent does not publish a stop station or clear semi-diameters.    ║
- * ║   STO is inferred from the figure and placed 5% of s2 behind R5,     ║
- * ║   then sized for a 90mm f/4 entrance pupil. Semi-diameters are       ║
+ * ║   STO is inferred from the figure and placed 5% of s2 behind R5;     ║
+ * ║   its radius is derived from the design f-number. Semi-diameters are ║
  * ║   conservative inferred clear apertures checked against f/4 on-axis  ║
  * ║   rays, the 15° chief ray, edge thickness, sd/|R| < 0.90 on the      ║
  * ║   tight spherical surfaces, and cross-gap sag intrusion.             ║
@@ -30,26 +30,28 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "agfa-color-telinear-90mm-f4",
   maker: "Agfa",
   name: "AGFA COLOR-TELINEAR 90mm f/4",
   subtitle: "US 2,819,651 — Baur / Otzen",
-  specs: ["5 elements / 3 groups", "f ≈ 90.0 mm", "F/4", "2ω = 30° patent field", "All spherical"],
 
-  focalLengthMarketing: 90,
-  focalLengthDesign: 90.000442,
-  apertureMarketing: 4,
-  apertureDesign: 4,
-  lensMounts: ["agfa-ambi-silette"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 2,819,651",
-  patentAuthors: ["Carl Baur", "Christian Otzen"],
-  patentAssignees: ["Agfa Camera-Werk AG"],
-  patentYear: 1958,
-  elementCount: 5,
-  groupCount: 3,
+  catalog: {
+    lensMounts: ["agfa-ambi-silette"],
+    imageFormat: "135-full-frame",
+    specs: ["5 elements / 3 groups", "f ≈ 90.0 mm", "F/4", "2ω = 30° patent field", "All spherical"],
+    elementCount: 5,
+    groupCount: 3,
+    focalLengthMm: { marketing: 90, design: 90.000442 },
+    fNumber: { marketing: 4, design: 4 },
+  },
 
-  focusDescription: "Unit focus by helicoid; close focus modeled as back-focus increase from 33.52 mm to 38.61 mm.",
+  source: {
+    patentNumber: "US 2,819,651",
+    patentYear: 1958,
+    authors: ["Carl Baur", "Christian Otzen"],
+    assignees: ["Agfa Camera-Werk AG"],
+  },
 
   elements: [
     {
@@ -59,7 +61,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.51633,
       vd: 64.0,
-      fl: 32.0003,
+      focalLengthMm: 32.0003,
       glass: "BK7 (Schott legacy / N-BK7 class)",
       role: "Positive crown component of the weak front achromat.",
       cemented: "D1",
@@ -71,7 +73,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.62606,
       vd: 39.1,
-      fl: -30.2066,
+      focalLengthMm: -30.2066,
       glass: "BASF1 / BAM21 class (legacy barium flint, 626/391)",
       role: "High-dispersion negative partner in the front cemented doublet.",
       cemented: "D1",
@@ -83,7 +85,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.57041,
       vd: 48.1,
-      fl: 54.8684,
+      focalLengthMm: 54.8684,
       glass: "KzF4 class (Schott-Jena legacy short flint, 570/481)",
       role: "Dominant positive-power meniscus placed close behind the front doublet.",
     },
@@ -94,7 +96,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.51454,
       vd: 54.7,
-      fl: -16.7808,
+      focalLengthMm: -16.7808,
       glass: "KF3 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       role: "Strong negative front component of the rear telephoto doublet.",
       cemented: "D2",
@@ -106,7 +108,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.60729,
       vd: 49.2,
-      fl: 24.268,
+      focalLengthMm: 24.268,
       glass: "BAF5 (HOYA) class (607493 barium flint, BAM5 type; nd-exact, Δνd +0.14; equivalent)",
       role: "Positive partner in the net-negative rear doublet.",
       cemented: "D2",
@@ -114,23 +116,25 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 26.7579, d: 5.7942, nd: 1.51633, elemId: 1, sd: 12.7 },
-    { label: "2", R: -40.0104, d: 1.143, nd: 1.62606, elemId: 2, sd: 12.5 },
-    { label: "3", R: 36.2556, d: 1.8945, nd: 1.0, elemId: 0, sd: 12.4 },
-    { label: "4", R: 23.3694, d: 4.3416, nd: 1.57041, elemId: 3, sd: 12.5 },
-    { label: "5", R: 86.0292, d: 1.328805, nd: 1.0, elemId: 0, sd: 12.3 },
-    { label: "STO", R: 1e15, d: 25.247295, nd: 1.0, elemId: 0, sd: 9.281263 },
-    { label: "6", R: -12.0096, d: 1.1223, nd: 1.51454, elemId: 4, sd: 10.2 },
-    { label: "7", R: 31.698, d: 4.4919, nd: 1.60729, elemId: 5, sd: 10.2 },
-    { label: "8", R: -26.0694, d: 33.521087, nd: 1.0, elemId: 0, sd: 10.2 },
+    { label: "1", R: 26.7579, d: 5.7942, sd: 12.7, medium: 1 },
+    { label: "2", R: -40.0104, d: 1.143, sd: 12.5, medium: 2 },
+    { label: "3", R: 36.2556, d: 1.8945, sd: 12.4 },
+    { label: "4", R: 23.3694, d: 4.3416, sd: 12.5, medium: 3 },
+    { label: "5", R: 86.0292, d: 1.328805, sd: 12.3 },
+    { label: "STO", R: "flat", d: 25.247295 },
+    { label: "6", R: -12.0096, d: 1.1223, sd: 10.2, medium: 4 },
+    { label: "7", R: 31.698, d: 4.4919, sd: 10.2, medium: 5 },
+    { label: "8", R: -26.0694, sd: 10.2 },
   ],
 
-  asph: {},
-
-  var: {
-    "8": [33.521087, 38.607519],
+  focus: {
+    closeFocusM: 1.8,
+    description: "Unit focus by helicoid; close focus modeled as back-focus increase from 33.52 mm to 38.61 mm.",
   },
-  varLabels: [["8", "BF"]],
+
+  gaps: { "8": { label: "BF", values: [[33.521087, 38.607519]] } },
+
+  aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 5 },
 
   groups: [
     { text: "G1 front positive doublet", fromSurface: "1", toSurface: "3" },
@@ -142,14 +146,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
 
-  closeFocusM: 1.8,
-  nominalFno: 4,
-  maxFstop: 32,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
-  apertureBlades: 5,
-
-  scFill: 0.7,
-  yScFill: 0.55,
-} satisfies LensDataInput;
+  layout: { scFill: 0.7, yScFill: 0.55 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

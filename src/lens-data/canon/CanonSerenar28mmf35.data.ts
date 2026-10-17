@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -39,25 +39,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "canon-serenar-28f35",
   maker: "Canon",
   name: "CANON SERENAR 28mm f/3.5",
   subtitle: "US 2,645,974 sole example (Fig. 1) — HIROSHI ITO / CANON",
-  specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 28.0 mm", "F/3.5", "2ω = 75°", "ALL SPHERICAL"],
 
-  /* ── Metadata ── */
-  focalLengthMarketing: 28,
-  focalLengthDesign: 28.0,
-  apertureMarketing: 3.5,
-  apertureDesign: 3.5,
-  lensMounts: ["leica-ltm"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 2,645,974",
-  patentAuthors: ["Hiroshi Ito"],
-  patentAssignees: ["Canon Camera Co., Inc."],
-  patentYear: 1953,
-  elementCount: 6,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["leica-ltm"],
+    imageFormat: "135-full-frame",
+    specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 28.0 mm", "F/3.5", "2ω = 75°", "ALL SPHERICAL"],
+    elementCount: 6,
+    groupCount: 4,
+    /* ── Metadata ── */
+    focalLengthMm: { marketing: 28, design: 28.0 },
+    fNumber: { marketing: 3.5, design: 3.5 },
+  },
+
+  source: {
+    patentNumber: "US 2,645,974",
+    patentYear: 1953,
+    authors: ["Hiroshi Ito"],
+    assignees: ["Canon Camera Co., Inc."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -68,9 +72,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.5638,
       vd: 60.7,
-      fl: 38.4,
+      focalLengthMm: 38.4,
       glass: "S-BAL41 (OHARA catalog equivalent; production supplier unspecified)",
-      apd: false as const,
+      apd: false,
       role: "Front positive collector — gathers wide-angle cone toward stop",
     },
     {
@@ -80,11 +84,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6237,
       vd: 47.0,
-      fl: 18.4,
+      focalLengthMm: 18.4,
       glass: "E-BAF8 (HOYA)",
-      apd: false as const,
-      cemented: "D1",
+      apd: false,
       role: "Front doublet positive — primary positive refracting element",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -93,11 +97,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.5955,
       vd: 39.2,
-      fl: -13.6,
+      focalLengthMm: -13.6,
       glass: "E-F8 (HOYA catalog equivalent for patent coordinate; production supplier unspecified)",
-      apd: false as const,
-      cemented: "D1",
+      apd: false,
       role: "Front doublet negative — chromatic correction and Gauss waist divergence",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -106,11 +110,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.5785,
       vd: 41.7,
-      fl: -11.2,
+      focalLengthMm: -11.2,
       glass: "FL4 (HOYA catalog equivalent; production supplier unspecified; patent 579417)",
-      apd: false as const,
-      cemented: "D2",
+      apd: false,
       role: "Rear doublet negative — strongest negative element, Gauss waist",
+      cemented: "D2",
     },
     {
       id: 5,
@@ -119,11 +123,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6204,
       vd: 60.3,
-      fl: 13.0,
+      focalLengthMm: 13.0,
       glass: "N-SK16 (Schott)",
-      apd: false as const,
-      cemented: "D2",
+      apd: false,
       role: "Rear doublet positive — redirects diverging beam toward image",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -132,9 +136,9 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.6204,
       vd: 60.3,
-      fl: 38.9,
+      focalLengthMm: 38.9,
       glass: "N-SK16 (Schott)",
-      apd: false as const,
+      apd: false,
       role: "Rear positive collector — final convergence to image plane",
     },
   ],
@@ -144,31 +148,36 @@ const LENS_DATA = {
    *  claim 5). All radii and thicknesses scaled ×27.8688 from the normalized (f = 1.00)
    *  prescription. Stop placed at center of patent gap d₅ (not tabulated, not drawn).
    */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 16.805, d: 1.895, nd: 1.5638, elemId: 1, sd: 5.7 }, // L1 front
-    { label: "2", R: 72.32, d: 0.139, nd: 1.0, elemId: 0, sd: 5.4 }, // L1 rear → air
-    { label: "3", R: 13.154, d: 2.731, nd: 1.6237, elemId: 2, sd: 4.6 }, // L2 front (D1)
-    { label: "4", R: -83.606, d: 0.669, nd: 1.5955, elemId: 3, sd: 4.0 }, // L2→L3 junction (D1)
-    { label: "5", R: 9.002, d: 1.394, nd: 1.0, elemId: 0, sd: 3.6 }, // L3 rear → air
-    { label: "STO", R: 1e15, d: 1.394, nd: 1.0, elemId: 0, sd: 3.15 }, // Aperture stop (center of d₅)
-    { label: "6", R: -9.225, d: 0.474, nd: 1.5785, elemId: 4, sd: 3.7 }, // L4 front (D2)
-    { label: "7", R: 22.239, d: 3.456, nd: 1.6204, elemId: 5, sd: 4.2 }, // L4→L5 junction (D2)
-    { label: "8", R: -11.928, d: 0.111, nd: 1.0, elemId: 0, sd: 4.9 }, // L5 rear → air
-    { label: "9", R: 1e15, d: 2.508, nd: 1.6204, elemId: 6, sd: 7.5 }, // L6 front (flat)
-    { label: "10", R: -24.134, d: 22.3, nd: 1.0, elemId: 0, sd: 7.5 }, // L6 rear → BFD
+    { label: "1", R: 16.805, d: 1.895, sd: 5.7, medium: 1 }, // L1 front
+    { label: "2", R: 72.32, d: 0.139, sd: 5.4 }, // L1 rear → air
+    { label: "3", R: 13.154, d: 2.731, sd: 4.6, medium: 2 }, // L2 front (D1)
+    { label: "4", R: -83.606, d: 0.669, sd: 4.0, medium: 3 }, // L2→L3 junction (D1)
+    { label: "5", R: 9.002, d: 1.394, sd: 3.6 }, // L3 rear → air
+    { label: "STO", R: "flat", d: 1.394 }, // Aperture stop (center of d₅)
+    { label: "6", R: -9.225, d: 0.474, sd: 3.7, medium: 4 }, // L4 front (D2)
+    { label: "7", R: 22.239, d: 3.456, sd: 4.2, medium: 5 }, // L4→L5 junction (D2)
+    { label: "8", R: -11.928, d: 0.111, sd: 4.9 }, // L5 rear → air
+    { label: "9", R: "flat", d: 2.508, sd: 7.5, medium: 6 }, // L6 front (flat)
+    { label: "10", R: -24.134, sd: 7.5 }, // L6 rear → BFD
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 1.0,
+    description:
+      "Unit focusing — entire lens moves as a rigid unit; the 1 m keyframe is a derived extension (patent publishes no close state).",
+  },
 
-  /* ── Variable air spacings (unit focus — only BFD changes) ──
+  /* (moved from var) ── Variable air spacings (unit focus — only BFD changes) ──
    *  Close keyframe is derived (no patent close state): +0.83 mm extension puts the
    *  object 1.0 m from the image plane.
    */
-  var: {
-    "10": [22.3, 23.13],
-  },
-  varLabels: [["10", "BF"]],
+  gaps: { "10": { label: "BF", values: [[22.3, 23.13]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -182,19 +191,8 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 1.0,
-  focusDescription:
-    "Unit focusing — entire lens moves as a rigid unit; the 1 m keyframe is a derived extension (patent publishes no close state).",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 3.5,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
   /* ── Layout tuning ── */
-  scFill: 0.5,
-  yScFill: 0.35,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.35 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

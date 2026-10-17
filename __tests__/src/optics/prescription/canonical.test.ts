@@ -57,19 +57,16 @@ function failureOf(check: () => void): string | null {
   }
 }
 
-/** V1 catalog lenses that ingest, with what they ingest to: the checks that use them read V1 fields. */
-const INGESTED = V1_LENSES.flatMap(({ file, data }) => {
-  try {
-    return [{ file, data, ingested: ingestLensV1(data) }];
-  } catch {
-    return [];
-  }
+/** Every catalog lens in V1 syntax, so field-level checks keep running after the last V1 file migrates. */
+const INGESTED = LENSES.map(({ file, data: authored }) => {
+  const data = toLensDataInput(ingestLens(authored), { stopRadius: 1 });
+  return { file, data, ingested: ingestLensV1(data) };
 });
 
 function lensByKey(key: string): LensDataInput {
   const found = LENSES.find(({ data }) => data.key === key);
   if (!found) throw new Error(`no catalog lens "${key}"`);
-  return found.data;
+  return toLensDataInput(ingestLens(found.data), { stopRadius: 1 });
 }
 
 /** Every object and array reachable from a value. */
@@ -193,9 +190,10 @@ describe("canonical prescription: catalog round trip", () => {
 
   it("notices a prescription that no longer gives its file back", () => {
     /* The round trip compares values, so it must fail when one canonical value moves. */
-    const result = ingestLensV1(lensByKey("canon-serenar-50f18"));
+    const data = prime();
+    const result = ingestLensV1(data);
     result.prescription.surfaces[1].d *= 1 + Number.EPSILON;
-    expect(failureOf(() => expect(toLensDataInput(result)).toEqual(lensByKey("canon-serenar-50f18")))).not.toBeNull();
+    expect(failureOf(() => expect(toLensDataInput(result)).toEqual(data))).not.toBeNull();
   });
 
   it("reads every catalog file without writing to it, and shares no object with it or with the view", () => {
@@ -334,14 +332,16 @@ describe("canonical prescription: schema defaults", () => {
       );
     }
     expect(offenders).toEqual([]);
-    /* Every row is exercised both ways: some catalog file leaves the field out and some writes it. */
+    /* Count default coverage on files of either version, independently of their V1 test spellings above. */
     const ways = new Map<string, Set<boolean>>();
     const note = (row: SchemaDefault, record: object, scope: string) => {
       const id = `${scope}.${row.path}`;
       if (!ways.has(id)) ways.set(id, new Set());
       ways.get(id)!.add(takesDefault(row, (record as Record<string, unknown>)[row.v1Field]));
     };
-    for (const { data, ingested: result } of INGESTED) {
+    for (const { data: authored } of LENSES) {
+      const result = ingestLens(authored);
+      const data = toLensDataInput(result);
       for (const row of LENS_SCHEMA_DEFAULTS) {
         if (!row.path.startsWith("zoom.") || result.prescription.zoom) note(row, data, "lens");
       }
@@ -415,7 +415,7 @@ describe("canonical prescription: schema defaults", () => {
     expect(toLensDataInput(b)).toEqual(written);
 
     const converter = TELECONVERTERS[0].data;
-    const result = ingestTeleconverterV1(converter);
+    const result = ingestTeleconverter(converter);
     expect(result.provenance.defaulted.every((path) => /^(elements|rearPlates)\[\d+\]\./.test(path))).toBe(true);
     expect(Object.hasOwn(result.prescription, "layout")).toBe(false);
     expect(Object.hasOwn(result.prescription, "visible")).toBe(converter.visible !== undefined);
@@ -644,7 +644,7 @@ describe("canonical prescription: spellings held as one", () => {
 
 describe("canonical prescription: stop radius", () => {
   it("keeps a derived stop's authored sd in provenance alone, and the view gives it back to the engine", () => {
-    const data = lensByKey("canon-serenar-50f18");
+    const data = prime();
     const result = ingested(data);
     const stop = data.surfaces.findIndex((surface) => surface.label === "STO");
     expect(result.prescription.aperture.stopRadius).toBe("derived");
@@ -1011,7 +1011,7 @@ describe("canonical prescription: refusals", () => {
   });
 
   it("refuses for a teleconverter as for a lens, naming it", () => {
-    const converter = () => structuredClone(TELECONVERTERS[0].data);
+    const converter = () => toTeleconverterData(ingestTeleconverter(TELECONVERTERS[0].data));
     const refuse = (data: TeleconverterData): string[] => {
       try {
         ingestTeleconverterV1(data);

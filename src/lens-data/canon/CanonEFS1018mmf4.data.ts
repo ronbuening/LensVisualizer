@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -40,24 +40,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "canon-efs-10-18-f4556-is-stm",
   maker: "Canon",
   name: "CANON EF-S 10-18mm f/4.5-5.6 IS STM",
   subtitle: "JP 2015-31869 A Example 1 — Canon / Nakahara",
-  specs: ["14 ELEMENTS / 11 GROUPS", "f = 10.30–17.46 mm", "F/4.64–5.71", "2ω = 106.0–76.1°", "2 ASPHERICAL SURFACES"],
 
-  focalLengthMarketing: [10, 18] as [number, number],
-  focalLengthDesign: [10.3, 17.46] as [number, number],
-  apertureMarketing: 4.5,
-  apertureDesign: 4.64,
-  lensMounts: ["canon-ef-s"],
-  imageFormat: "aps-c",
-  patentNumber: "JP 2015-031869 A",
-  patentAuthors: ["Makoto Nakahara"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 2015,
-  elementCount: 14,
-  groupCount: 11,
+  catalog: {
+    lensMounts: ["canon-ef-s"],
+    imageFormat: "aps-c",
+    specs: [
+      "14 ELEMENTS / 11 GROUPS",
+      "f = 10.30–17.46 mm",
+      "F/4.64–5.71",
+      "2ω = 106.0–76.1°",
+      "2 ASPHERICAL SURFACES",
+    ],
+    elementCount: 14,
+    groupCount: 11,
+    focalLengthMm: { marketing: [10, 18], design: [10.3, 17.46] },
+    fNumber: { marketing: 4.5, design: 4.64 },
+  },
+
+  source: {
+    patentNumber: "JP 2015-031869 A",
+    patentYear: 2015,
+    authors: ["Makoto Nakahara"],
+    assignees: ["Canon Inc."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -68,7 +78,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.6,
-      fl: -37.6,
+      focalLengthMm: -37.6,
       glass: "S-LAH66 (OHARA)",
       role: "Front diverging element; high-index dense lanthanum flint reduces curvature for given power",
     },
@@ -79,7 +89,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.52996,
       vd: 55.8,
-      fl: -80.0,
+      focalLengthMm: -80.0,
       glass: "PMo optical plastic (cyclo-olefin polymer)",
       role: "Large-diameter plastic-molded asphere; rear surface corrects field curvature and astigmatism",
     },
@@ -90,7 +100,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.6,
-      fl: -27.5,
+      focalLengthMm: -27.5,
       glass: "S-LAH66 (OHARA)",
       role: "Strongest negative element in Group 1; establishes wide field of view",
     },
@@ -101,7 +111,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.59522,
       vd: 67.7,
-      fl: -34.6,
+      focalLengthMm: -34.6,
       glass: "S-FPM2 (OHARA)",
       role: "Low-dispersion fluorophosphate crown; minimizes lateral color from front group",
     },
@@ -112,7 +122,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72047,
       vd: 34.7,
-      fl: 27.9,
+      focalLengthMm: 27.9,
       glass: "S-NBH8 (OHARA)",
       role: "Sole positive element in Group 1; high-dispersion niobate flint compensates lateral color",
     },
@@ -123,7 +133,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.2,
-      fl: 160.4,
+      focalLengthMm: 160.4,
       glass: "S-FSL5 (OHARA)",
       role: "IS stabilization element (Ls); decenters perpendicular to axis for shake correction",
     },
@@ -134,10 +144,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.91082,
       vd: 35.3,
-      fl: -19.9,
+      focalLengthMm: -19.9,
       glass: "TAFD35 (HOYA)",
-      cemented: "D1",
       role: "Front element of cemented doublet D1; high-index dense flint",
+      cemented: "D1",
     },
     {
       id: 8,
@@ -146,10 +156,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.60342,
       vd: 38.0,
-      fl: 14.5,
+      focalLengthMm: 14.5,
       glass: "S-TIM5 (OHARA)",
-      cemented: "D1",
       role: "Rear element of doublet D1; cemented interface corrects coma and spherical aberration",
+      cemented: "D1",
     },
     {
       id: 9,
@@ -158,10 +168,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.83481,
       vd: 42.7,
-      fl: -10.6,
+      focalLengthMm: -10.6,
       glass: "S-LAH55 (OHARA)",
-      cemented: "D2",
       role: "Front element of post-stop doublet D2; strong negative for field flattening",
+      cemented: "D2",
     },
     {
       id: 10,
@@ -170,10 +180,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.64769,
       vd: 33.8,
-      fl: 14.3,
+      focalLengthMm: 14.3,
       glass: "S-TIM22 (OHARA)",
-      cemented: "D2",
       role: "Rear element of doublet D2; high-dispersion titanium flint",
+      cemented: "D2",
     },
     {
       id: 11,
@@ -182,7 +192,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.5,
-      fl: 17.3,
+      focalLengthMm: 17.3,
       glass: "S-FPL51 (OHARA)",
       apd: "patent",
       apdNote: "UD (Ultra-low Dispersion) element; Canon Camera Museum designation",
@@ -195,7 +205,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.91082,
       vd: 35.3,
-      fl: -26.7,
+      focalLengthMm: -26.7,
       glass: "TAFD35 (HOYA)",
       role: "Focus group (LF); single element moves image-ward for close focus. STM driven.",
     },
@@ -206,10 +216,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.91082,
       vd: 35.3,
-      fl: -16.8,
+      focalLengthMm: -16.8,
       glass: "TAFD35 (HOYA)",
-      cemented: "D3",
       role: "Front element of rear doublet D3; high-index dense flint",
+      cemented: "D3",
     },
     {
       id: 14,
@@ -218,111 +228,128 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.58313,
       vd: 59.4,
-      fl: 14.5,
+      focalLengthMm: 14.5,
       glass: "S-BAL42 (OHARA)",
-      cemented: "D3",
       role: "Rear element of doublet D3; rear asphere corrects residual field aberrations. Barium crown, glass-molded.",
+      cemented: "D3",
     },
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     /* ── Group 1: Front negative group (L1–L5, surfaces 1–10) ── */
-    { label: "1", R: 55.999, d: 1.2, nd: 1.7725, elemId: 1, sd: 21.3 },
-    { label: "2", R: 18.939, d: 0.21, nd: 1.0, elemId: 0, sd: 16.9 },
-    { label: "3", R: 18.794, d: 3.0, nd: 1.52996, elemId: 2, sd: 16.7 },
-    { label: "4A", R: 12.302, d: 13.97, nd: 1.0, elemId: 0, sd: 14.8 },
-    { label: "5", R: 27.078, d: 0.85, nd: 1.7725, elemId: 3, sd: 11.2 },
-    { label: "6", R: 11.734, d: 5.86, nd: 1.0, elemId: 0, sd: 8.2 },
-    { label: "7", R: -18.556, d: 0.86, nd: 1.59522, elemId: 4, sd: 8.2 },
-    { label: "8", R: -193.388, d: 0.15, nd: 1.0, elemId: 0, sd: 9.4 },
-    { label: "9", R: 43.637, d: 3.35, nd: 1.72047, elemId: 5, sd: 9.4 },
-    { label: "10", R: -36.162, d: 18.12, nd: 1.0, elemId: 0, sd: 9.1 }, // d10 variable (zoom only)
+    { label: "1", R: 55.999, d: 1.2, sd: 21.3, medium: 1 },
+    { label: "2", R: 18.939, d: 0.21, sd: 16.9 },
+    { label: "3", R: 18.794, d: 3.0, sd: 16.7, medium: 2 },
+    {
+      label: "4A",
+      R: 12.302,
+      d: 13.97,
+      sd: 14.8,
+      asphere: {
+        K: -4.75949e-1,
+        A4: -3.84236e-5,
+        A6: -7.6339e-8,
+        A8: -6.26237e-10,
+        A10: 3.48984e-12,
+        A12: -1.12759e-14,
+      },
+    },
+    { label: "5", R: 27.078, d: 0.85, sd: 11.2, medium: 3 },
+    { label: "6", R: 11.734, d: 5.86, sd: 8.2 },
+    { label: "7", R: -18.556, d: 0.86, sd: 8.2, medium: 4 },
+    { label: "8", R: -193.388, d: 0.15, sd: 9.4 },
+    { label: "9", R: 43.637, d: 3.35, sd: 9.4, medium: 5 },
+    { label: "10", R: -36.162, sd: 9.1 }, // d10 variable (zoom only)
 
     /* ── Group 2: Main positive group (L6–L11, surfaces 11–21) ── */
-    { label: "11", R: -51.134, d: 1.22, nd: 1.48749, elemId: 6, sd: 3.5 },
-    { label: "12", R: -31.161, d: 1.29, nd: 1.0, elemId: 0, sd: 3.3 },
-    { label: "13", R: 24.67, d: 0.8, nd: 1.91082, elemId: 7, sd: 3.0 }, // D1 front (L7)
-    { label: "14", R: 10.275, d: 2.98, nd: 1.60342, elemId: 8, sd: 2.8 }, // D1 junction → L8
-    { label: "15", R: -52.144, d: 2.17, nd: 1.0, elemId: 0, sd: 2.3 },
-    { label: "STO", R: 1e15, d: 4.04, nd: 1.0, elemId: 0, sd: 1.7 }, // aperture stop
-    { label: "17", R: -69.148, d: 0.8, nd: 1.83481, elemId: 9, sd: 2.9 }, // D2 front (L9)
-    { label: "18", R: 10.223, d: 3.33, nd: 1.64769, elemId: 10, sd: 3.1 }, // D2 junction → L10
-    { label: "19", R: -84.53, d: 0.15, nd: 1.0, elemId: 0, sd: 3.9 },
-    { label: "20", R: 16.445, d: 4.22, nd: 1.497, elemId: 11, sd: 3.9 },
-    { label: "21", R: -16.445, d: 1.25, nd: 1.0, elemId: 0, sd: 4.7 }, // d21 variable (zoom+focus)
+    { label: "11", R: -51.134, d: 1.22, sd: 3.5, medium: 6 },
+    { label: "12", R: -31.161, d: 1.29, sd: 3.3 },
+    { label: "13", R: 24.67, d: 0.8, sd: 3.0, medium: 7 }, // D1 front (L7)
+    { label: "14", R: 10.275, d: 2.98, sd: 2.8, medium: 8 }, // D1 junction → L8
+    { label: "15", R: -52.144, d: 2.17, sd: 2.3 },
+    { label: "STO", R: "flat", d: 4.04 }, // aperture stop
+    { label: "17", R: -69.148, d: 0.8, sd: 2.9, medium: 9 }, // D2 front (L9)
+    { label: "18", R: 10.223, d: 3.33, sd: 3.1, medium: 10 }, // D2 junction → L10
+    { label: "19", R: -84.53, d: 0.15, sd: 3.9 },
+    { label: "20", R: 16.445, d: 4.22, sd: 3.9, medium: 11 },
+    { label: "21", R: -16.445, sd: 4.7 }, // d21 variable (zoom+focus)
 
     /* ── Group 3: Focus group (L12, surfaces 22–23) ── */
-    { label: "22", R: -43.861, d: 0.7, nd: 1.91082, elemId: 12, sd: 4.9 },
-    { label: "23", R: 54.842, d: 3.8, nd: 1.0, elemId: 0, sd: 5.0 }, // d23 variable (zoom+focus)
+    { label: "22", R: -43.861, d: 0.7, sd: 4.9, medium: 12 },
+    { label: "23", R: 54.842, sd: 5.0 }, // d23 variable (zoom+focus)
 
     /* ── Group 4: Rear positive group (L13+L14, surfaces 24–26A) ── */
-    { label: "24", R: 83.184, d: 0.8, nd: 1.91082, elemId: 13, sd: 6.3 }, // D3 front (L13)
-    { label: "25", R: 12.879, d: 7.14, nd: 1.58313, elemId: 14, sd: 6.4 }, // D3 junction → L14
-    { label: "26A", R: -19.588, d: 35.35, nd: 1.0, elemId: 0, sd: 8.4 }, // BFD; d26 variable (zoom only)
+    { label: "24", R: 83.184, d: 0.8, sd: 6.3, medium: 13 }, // D3 front (L13)
+    { label: "25", R: 12.879, d: 7.14, sd: 6.4, medium: 14 }, // D3 junction → L14
+    {
+      label: "26A",
+      R: -19.588,
+      sd: 8.4,
+      asphere: { K: 0, A4: 1.25041e-5, A6: -1.14292e-7, A8: 4.98491e-9, A10: -1.03089e-10, A12: 7.40509e-13 },
+    }, // BFD; d26 variable (zoom only)
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {
-    "4A": {
-      K: -4.75949e-1,
-      A4: -3.84236e-5,
-      A6: -7.6339e-8,
-      A8: -6.26237e-10,
-      A10: 3.48984e-12,
-      A12: -1.12759e-14,
-      A14: 0,
-    },
-    "26A": {
-      K: 0,
-      A4: 1.25041e-5,
-      A6: -1.14292e-7,
-      A8: 4.98491e-9,
-      A10: -1.03089e-10,
-      A12: 7.40509e-13,
-      A14: 0,
-    },
+  zoom: {
+    /* (moved from zoomPositions) ── Zoom lens fields ── */
+    /* (moved from nominalFno) ── Aperture configuration ── */
+    stations: [
+      { focalLengthMm: 10.3, nominalFNumber: 4.5, label: "Wide" },
+      { focalLengthMm: 13.96, nominalFNumber: 5.1 },
+      { focalLengthMm: 17.46, nominalFNumber: 5.6, label: "Tele" },
+    ],
+    step: 0.004,
   },
 
-  /* ── Variable air spacings ──
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.22,
+    description:
+      "Rear focus: Group 3 (L12, single biconcave) moves image-ward along optical axis. STM stepping motor drive.",
+  },
+
+  /* (moved from var) ── Variable air spacings ──
    *  d10, d26: zoom-only (identical inf/close at each zoom position).
    *  d21, d23: zoom + focus (L12 moves image-ward for close focus).
    *  Close-focus spacings solved via ABCD matrix at MFD = 0.22 m.
    */
-  var: {
-    "10": [
-      [18.12, 18.12],
-      [7.58, 7.58],
-      [1.64, 1.64],
-    ],
-    "21": [
-      [1.25, 1.53],
-      [1.57, 2.01],
-      [1.9, 2.54],
-    ],
-    "23": [
-      [3.8, 3.52],
-      [3.48, 3.04],
-      [3.15, 2.51],
-    ],
-    "26A": [
-      [35.35, 35.35],
-      [42.66, 42.66],
-      [49.42, 49.42],
-    ],
+  gaps: {
+    "10": {
+      label: "D10",
+      values: [
+        [18.12, 18.12],
+        [7.58, 7.58],
+        [1.64, 1.64],
+      ],
+    },
+    "21": {
+      label: "D21",
+      values: [
+        [1.25, 1.53],
+        [1.57, 2.01],
+        [1.9, 2.54],
+      ],
+    },
+    "23": {
+      label: "D23",
+      values: [
+        [3.8, 3.52],
+        [3.48, 3.04],
+        [3.15, 2.51],
+      ],
+    },
+    "26A": {
+      label: "BF",
+      values: [
+        [35.35, 35.35],
+        [42.66, 42.66],
+        [49.42, 49.42],
+      ],
+    },
   },
 
-  varLabels: [
-    ["10", "D10"],
-    ["21", "D21"],
-    ["23", "D23"],
-    ["26A", "BF"],
-  ],
-
-  /* ── Zoom lens fields ── */
-  zoomPositions: [10.3, 13.96, 17.46],
-  zoomStep: 0.004,
-  zoomLabels: ["Wide", "Tele"],
+  aperture: { fStops: [4.5, 5.6, 8, 11, 16, 22] },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -331,25 +358,14 @@ const LENS_DATA = {
     { text: "G3 (−) Focus", fromSurface: "22", toSurface: "23" },
     { text: "G4 (+)", fromSurface: "24", toSurface: "26A" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "13", toSurface: "15" },
     { text: "D2", fromSurface: "17", toSurface: "19" },
     { text: "D3", fromSurface: "24", toSurface: "26A" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.22,
-  focusDescription:
-    "Rear focus: Group 3 (L12, single biconcave) moves image-ward along optical axis. STM stepping motor drive.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: [4.5, 5.1, 5.6],
-  fstopSeries: [4.5, 5.6, 8, 11, 16, 22],
-
   /* ── Layout tuning ── */
-  scFill: 0.45,
-  yScFill: 0.35,
-} satisfies LensDataInput;
+  layout: { scFill: 0.45, yScFill: 0.35 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
@@ -32,8 +32,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  using the default 0.60× field as a containment target, then constrained ║
  * ║  by element edge thickness, actual rim slope, shared-gap sag intrusion,  ║
  * ║  the production 82 mm filter diameter, and rendered Fig. 1 proportions. ║
- * ║  A 600 dpi Fig. 1 audit tightens E3 to 12.2 mm and E4 to 12.7 mm;       ║
- * ║  the fixed stop remains pupil-calibrated rather than figure-measured.    ║
+ * ║  A 600 dpi Fig. 1 audit tightens E3 to 12.2 mm and E4 to 12.7 mm; the   ║
+ * ║  stop radius is derived from the design f-number, not figure-measured.   ║
  * ║  The front element is the intended vignetting boundary for the extreme   ║
  * ║  off-axis pupil edge; default LensVisualizer fractions remain contained. ║
  * ║                                                                            ║
@@ -48,29 +48,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "canon-rf600mmf11-is-stm",
   maker: "Canon",
   name: "CANON RF 600mm f/11 IS STM",
   subtitle: "JP 2020-173349 A — Numerical Example 1; production correlation to RF600mm F11 IS STM",
-  specs: [
-    "10 ELEMENTS / 7 GROUPS",
-    "600mm f/11 (MARKETED)",
-    "EXAMPLE 1: 581.65mm f/11.31",
-    "S2 DIFFRACTIVE PHASE SURFACE",
-    "OBJECTWARD SINGLE-ELEMENT INNER FOCUS",
-  ],
-  focalLengthMarketing: 600,
-  focalLengthDesign: 581.639114,
-  apertureMarketing: 11,
-  apertureDesign: 11.31,
-  lensMounts: ["canon-rf"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 2020-173349 A",
-  patentAuthors: ["Maki Yokoya", "Tomohiro Ino"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 2020,
-  elementCount: 10,
-  groupCount: 7,
+
+  catalog: {
+    lensMounts: ["canon-rf"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "10 ELEMENTS / 7 GROUPS",
+      "600mm f/11 (MARKETED)",
+      "EXAMPLE 1: 581.65mm f/11.31",
+      "S2 DIFFRACTIVE PHASE SURFACE",
+      "OBJECTWARD SINGLE-ELEMENT INNER FOCUS",
+    ],
+    elementCount: 10,
+    groupCount: 7,
+    focalLengthMm: { marketing: 600, design: 581.639114 },
+    fNumber: { marketing: 11, design: 11.31 },
+  },
+
+  source: {
+    patentNumber: "JP 2020-173349 A",
+    patentYear: 2020,
+    authors: ["Maki Yokoya", "Tomohiro Ino"],
+    assignees: ["Canon Inc."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -81,10 +86,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.2,
-      fl: 89.475284,
+      focalLengthMm: 89.475284,
       glass: "487702 patent coordinate; S-FSL5 catalog spectral proxy (production supplier unspecified)",
-      cemented: "DOE",
       role: "Front positive element; the rear cemented interface also carries the DOE phase interaction.",
+      cemented: "DOE",
     },
     {
       id: 2,
@@ -93,10 +98,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.59551,
       vd: 39.2,
-      fl: -246.071357,
+      focalLengthMm: -246.071357,
       glass: "596392 patent coordinate; E-F8 catalog spectral proxy (production supplier unspecified)",
-      cemented: "DOE",
       role: "Negative partner in the front cemented DOE group.",
+      cemented: "DOE",
     },
     {
       id: 3,
@@ -105,7 +110,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.83481,
       vd: 42.7,
-      fl: -97.028769,
+      focalLengthMm: -97.028769,
       glass: "835427 patent coordinate; S-LAH55 catalog spectral proxy (production supplier unspecified)",
       role: "Rear element of fixed positive lens unit L1.",
     },
@@ -116,7 +121,7 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.48749,
       vd: 70.2,
-      fl: 201.044124,
+      focalLengthMm: 201.044124,
       glass: "487702 patent coordinate; S-FSL5 catalog spectral proxy (production supplier unspecified)",
       role: "Single translating positive focus element forming lens unit L2.",
     },
@@ -127,10 +132,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.90043,
       vd: 37.4,
-      fl: -23.602837,
+      focalLengthMm: -23.602837,
       glass: "900374 patent coordinate; TAFD37A catalog spectral proxy (production supplier unspecified)",
-      cemented: "D2",
       role: "Negative member of the first rear cemented doublet in lens unit L3.",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -139,10 +144,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.65412,
       vd: 39.7,
-      fl: 27.148865,
+      focalLengthMm: 27.148865,
       glass: "654397 patent coordinate; N-KZFS5 catalog spectral proxy (production supplier unspecified)",
-      cemented: "D2",
       role: "Positive member of the first rear cemented doublet in lens unit L3.",
+      cemented: "D2",
     },
     {
       id: 7,
@@ -151,10 +156,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.65412,
       vd: 39.7,
-      fl: 28.539796,
+      focalLengthMm: 28.539796,
       glass: "654397 patent coordinate; N-KZFS5 catalog spectral proxy (production supplier unspecified)",
-      cemented: "D3",
       role: "Positive member of the second rear cemented doublet in lens unit L3.",
+      cemented: "D3",
     },
     {
       id: 8,
@@ -163,10 +168,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.59282,
       vd: 68.6,
-      fl: -34.943037,
+      focalLengthMm: -34.943037,
       glass: "593686 patent coordinate; FCD515 catalog spectral proxy (production supplier unspecified)",
-      cemented: "D3",
       role: "Negative member of the second rear cemented doublet in lens unit L3.",
+      cemented: "D3",
     },
     {
       id: 9,
@@ -175,7 +180,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.804,
       vd: 46.5,
-      fl: -39.371451,
+      focalLengthMm: -39.371451,
       glass: "804465 patent coordinate; TAF3D catalog spectral proxy (production supplier unspecified)",
       role: "Air-spaced negative rear corrector in lens unit L3.",
     },
@@ -186,7 +191,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59551,
       vd: 39.2,
-      fl: 98.012225,
+      focalLengthMm: 98.012225,
       glass: "596392 patent coordinate; E-F8 catalog spectral proxy (production supplier unspecified)",
       role: "Final positive rear element ahead of the long back-focus space.",
     },
@@ -194,14 +199,13 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 56.252, d: 12.2, nd: 1.48749, elemId: 1, sd: 29.0 },
+    { label: "1", R: 56.252, d: 12.2, sd: 29.0, medium: 1 },
     {
       label: "2",
       R: -180.408,
       d: 2.77,
-      nd: 1.59551,
-      elemId: 2,
       sd: 29.0,
+      medium: 2,
       diffractive: {
         kind: "radial-polynomial",
         referenceWavelengthNm: 587.6,
@@ -215,35 +219,39 @@ const LENS_DATA = {
         ],
       },
     },
-    { label: "3", R: 785.004, d: 59.15, nd: 1.0, elemId: 0, sd: 29.0 },
-    { label: "4", R: -42.901, d: 1.3, nd: 1.83481, elemId: 3, sd: 12.2 },
-    { label: "5", R: -92.466, d: 18.44, nd: 1.0, elemId: 0, sd: 12.2 },
-    { label: "6", R: 98.007, d: 2.09, nd: 1.48749, elemId: 4, sd: 12.7 },
-    { label: "7", R: 1e15, d: 20.0, nd: 1.0, elemId: 0, sd: 12.7 },
-    { label: "STO", R: 1e15, d: 6.44, nd: 1.0, elemId: 0, sd: 8.31053 },
-    { label: "9", R: -42.741, d: 1.0, nd: 1.90043, elemId: 5, sd: 8.7 },
-    { label: "10", R: 42.741, d: 3.85, nd: 1.65412, elemId: 6, sd: 8.7 },
-    { label: "11", R: -29.3, d: 12.2, nd: 1.0, elemId: 0, sd: 8.7 },
-    { label: "12", R: 107.876, d: 3.7, nd: 1.65412, elemId: 7, sd: 8.2 },
-    { label: "13", R: -22.269, d: 0.8, nd: 1.59282, elemId: 8, sd: 8.2 },
-    { label: "14", R: 300.803, d: 0.64, nd: 1.0, elemId: 0, sd: 8.2 },
-    { label: "15", R: -75.518, d: 0.8, nd: 1.804, elemId: 9, sd: 8.2 },
-    { label: "16", R: 54.756, d: 1.33, nd: 1.0, elemId: 0, sd: 8.2 },
-    { label: "17", R: 63.816, d: 2.1, nd: 1.59551, elemId: 10, sd: 8.3 },
-    { label: "18", R: -675.205, d: 138.06, nd: 1.0, elemId: 0, sd: 8.3 },
+    { label: "3", R: 785.004, d: 59.15, sd: 29.0 },
+    { label: "4", R: -42.901, d: 1.3, sd: 12.2, medium: 3 },
+    { label: "5", R: -92.466, sd: 12.2 },
+    { label: "6", R: 98.007, d: 2.09, sd: 12.7, medium: 4 },
+    { label: "7", R: "flat", sd: 12.7 },
+    { label: "STO", R: "flat", d: 6.44 },
+    { label: "9", R: -42.741, d: 1.0, sd: 8.7, medium: 5 },
+    { label: "10", R: 42.741, d: 3.85, sd: 8.7, medium: 6 },
+    { label: "11", R: -29.3, d: 12.2, sd: 8.7 },
+    { label: "12", R: 107.876, d: 3.7, sd: 8.2, medium: 7 },
+    { label: "13", R: -22.269, d: 0.8, sd: 8.2, medium: 8 },
+    { label: "14", R: 300.803, d: 0.64, sd: 8.2 },
+    { label: "15", R: -75.518, d: 0.8, sd: 8.2, medium: 9 },
+    { label: "16", R: 54.756, d: 1.33, sd: 8.2 },
+    { label: "17", R: 63.816, d: 2.1, sd: 8.3, medium: 10 },
+    { label: "18", R: -675.205, d: 138.06, sd: 8.3 },
   ],
 
-  asph: {},
-
-  /* Disclosed constrained reconstruction at infinity; published close-focus row retained. */
-  var: {
-    "5": [18.44, 3.5],
-    "7": [20.0, 34.94],
+  focus: {
+    closeFocusM: 4.5,
+    description:
+      "CONSTRAINED_RECONSTRUCTION: inner focus by the single positive L2 element (S6-S7), moving objectward " +
+      "toward close focus. The patent's raw infinity d5/d7=16.25/22.19 mm is internally inconsistent; " +
+      "the authored infinity base is the disclosed source-precision 18.44/20.00 mm solution under d5+d7=38.44 mm. " +
+      "The close endpoint is the published 3.50/34.94 mm row and computes about 4.49474 m object-to-image distance.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
   },
-  varLabels: [
-    ["5", "D5"],
-    ["7", "D7"],
-  ],
+
+  /* (moved from var) Disclosed constrained reconstruction at infinity; published close-focus row retained. */
+  gaps: { "5": { label: "D5", values: [[18.44, 3.5]] }, "7": { label: "D7", values: [[20.0, 34.94]] } },
+
+  aperture: { nominalFNumber: 11.31, fStops: [11.31], maxFNumber: 11.31 },
 
   groups: [
     { text: "L1 (+)", fromSurface: "1", toSurface: "5" },
@@ -256,20 +264,7 @@ const LENS_DATA = {
     { text: "D3", fromSurface: "12", toSurface: "14" },
   ],
 
-  closeFocusM: 4.5,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: inner focus by the single positive L2 element (S6-S7), moving objectward " +
-    "toward close focus. The patent's raw infinity d5/d7=16.25/22.19 mm is internally inconsistent; " +
-    "the authored infinity base is the disclosed source-precision 18.44/20.00 mm solution under d5+d7=38.44 mm. " +
-    "The close endpoint is the published 3.50/34.94 mm row and computes about 4.49474 m object-to-image distance.",
-
-  nominalFno: 11.31,
-  fstopSeries: [11.31],
-  maxFstop: 11.31,
-
-  yScFill: 0.44,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.44 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

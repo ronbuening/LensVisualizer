@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { ingestLens } from "../../../../src/optics/buildLens.js";
+import { toLensDataInput } from "../../../../src/optics/prescription/toLensData.js";
 import { build, buildChromaticPositiveElementLens } from "../testLensFixtures.js";
 import foldedFixture from "../../../../src/lens-data/reference/ReferenceCassegrainBackFocus.data.js";
 import {
@@ -35,10 +37,11 @@ function chromaticFixture() {
 describe("chromatic analysis helpers", () => {
   it("reduces folded chromatic rays at the current focus image plane", () => {
     // Guard the shared reducer against tagging current-state heights with a build-time plane.
+    const data = toLensDataInput(ingestLens(foldedFixture));
     const L = build({
-      ...foldedFixture,
+      ...data,
       opticalPath: { mode: "auto", maxInteractions: 10 },
-      surfaces: foldedFixture.surfaces.map((surface) => (surface.label === "M1B" ? { ...surface, d: 33 } : surface)),
+      surfaces: data.surfaces.map((surface) => (surface.label === "M1B" ? { ...surface, d: 33 } : surface)),
       var: { M1B: [33, 41.05] },
     });
     const state = prepareRuntimeState(L, 1, 0);
