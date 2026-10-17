@@ -256,8 +256,8 @@ const LENS_DATA = {
       R: -129.0571,
       d: 1.3423,
       sd: 9.8,
+      // Patent surface 10 — L5 rear
       asphere: {
-        // Patent surface 10 — L5 rear
         K: 0,
         A4: -9.82247e-6,
         A6: -9.90962e-9,
@@ -304,8 +304,8 @@ const LENS_DATA = {
       d: 7.1497,
       sd: 14.5,
       medium: 10,
+      // Patent surface 20 — L10 front
       asphere: {
-        // Patent surface 20 — L10 front
         K: 0,
         A4: -1.18748e-5,
         A6: 6.25689e-8,
@@ -319,8 +319,8 @@ const LENS_DATA = {
       label: "17A",
       R: -24.5159,
       sd: 15.3,
+      // Patent surface 21 — L10 rear
       asphere: {
-        // Patent surface 21 — L10 rear
         K: 0,
         A4: 3.3582e-6,
         A6: 1.04068e-7,
@@ -354,8 +354,8 @@ const LENS_DATA = {
       R: -295.0,
       d: 3.6,
       sd: 18.3,
+      // Patent surface 23 — L11 rear
       asphere: {
-        // Patent surface 23 — L11 rear
         K: 0,
         A4: 3.22163e-5,
         A6: -2.53939e-7,
