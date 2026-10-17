@@ -1960,9 +1960,13 @@ stay V1 until the migration closes, and the converted catalog is tested in the b
     - the metadata generator stops on a V1 file without writing it.
   - **Policy:** V1 stays readable only through ingest and the converter, and enters the catalog only as converted V2.
   - **Gate:** C0.
-  - **As built:** this step leaves catalog conversion to migration merge time. The organizer reuses the converter's
-    checked, transactional runner before filing root-level lenses or teleconverters; the schema gate is verified
-    against the partial catalog and a temporarily converted copy, with the original catalog restored afterward.
+  - **As built:**
+    - Batches T1–T8 converted every maker folder but one: an accented folder name (`p.-angénieux`) kept its three
+      files out of every batch's maker list. This step converts them under the batch gate, so `schemaVersion.test.ts`
+      holds on the whole catalog.
+    - The organizer reuses the converter's checked, transactional runner before filing root-level lenses or
+      teleconverters. An archived file's maker-folder imports are normalized in memory before the conversion's
+      type-check.
   - **Close:** after this step, a last merge of `main` and a check of the branch's preview against production,
     `lens-v2-migration` merges into `main` through one PR, as a merge commit, never a squash, so each batch stays a
     commit of its own. That PR's checks run on the merge result: a V1 file that reached `main` after the last merge
