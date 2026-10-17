@@ -41,11 +41,12 @@ function buildFixture(): RuntimeLens {
 
 /** The same fixture with the phase term removed: a plain same-index flat plate. */
 function buildRefractiveControl(): RuntimeLens {
-  const surfaces = FoldedDiffractiveRaw.surfaces.map((surface) => {
-    const { diffractive: _diffractive, ...rest } = surface as Record<string, unknown>;
+  const data = catalogLensData(FoldedDiffractiveRaw);
+  const surfaces = data.surfaces.map((surface) => {
+    const { diffractive: _diffractive, ...rest } = surface;
     return rest;
   });
-  return buildLens({ ...catalogLensData(FoldedDiffractiveRaw), surfaces } as unknown as LensData);
+  return buildLens({ ...data, surfaces } as unknown as LensData);
 }
 
 /**
@@ -78,10 +79,11 @@ describe("folded diffractive fixture — data contract", () => {
   });
 
   it("still rejects a phase term attached to the fold mirror", () => {
-    const surfaces = FoldedDiffractiveRaw.surfaces.map((surface) =>
+    const data = catalogLensData(FoldedDiffractiveRaw);
+    const surfaces = data.surfaces.map((surface) =>
       surface.label === "FOLD" ? { ...surface, diffractive: PHASE } : surface,
     );
-    const errors = validateLensData({ ...catalogLensData(FoldedDiffractiveRaw), surfaces } as unknown as LensData);
+    const errors = validateLensData({ ...data, surfaces } as unknown as LensData);
 
     expect(errors.some((error) => error.includes("diffractive is only valid on refracting surfaces"))).toBe(true);
   });

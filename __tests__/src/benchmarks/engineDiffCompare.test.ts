@@ -62,6 +62,8 @@ import {
   type CaptureRequest,
   type RequestFamily,
 } from "../../../src/benchmarks/engineDiff/requests.js";
+import { ingestLens, ingestTeleconverter, toTeleconverterData } from "../../../src/optics/buildLens.js";
+import { toLensDataInput } from "../../../src/optics/prescription/toLensData.js";
 import { INTERSECTION_TOLERANCE } from "../../../src/optics/constants.js";
 import type { LensDataInput } from "../../../src/types/optics.js";
 import plainTwin from "./engineDiffFixtures/fingerprintTwinPlain.js";
@@ -1647,7 +1649,7 @@ describe("engineDiff drift detection", () => {
       ...CATALOG,
       lenses: CATALOG.lenses.map((entry) => {
         if (entry.key !== ABSORBING) return entry;
-        const data = decodeValue(entry.prescription) as LensDataInput;
+        const data = toLensDataInput(ingestLens(decodeValue(entry.prescription) as LensDataInput));
         const elements = data.elements.map(({ absorptionCoefficientPerMm: _absorption, ...element }) => element);
         return { ...entry, prescription: encodeValue({ ...data, elements }) };
       }),
@@ -3058,7 +3060,7 @@ describe("engineDiff cross-evaluation", () => {
       ...CATALOG,
       lenses: CATALOG.lenses.map((entry) => {
         if (entry.key !== id) return entry;
-        const data = decodeValue(entry.prescription) as LensDataInput;
+        const data = toLensDataInput(ingestLens(decodeValue(entry.prescription) as LensDataInput));
         const elements = data.elements.map((element, index) =>
           index === data.elements.length - 1 ? { ...element, glass: "A glass no catalog holds" } : element,
         );
@@ -4086,7 +4088,19 @@ describe("engineDiff converter pairs", () => {
     ...catalog,
     [kind]: catalog[kind].map((entry) =>
       entry.key === key
-        ? { ...entry, prescription: encodeValue(edit(structuredClone(decodeValue(entry.prescription)) as never)) }
+        ? {
+            ...entry,
+            // These fault injections use V1 members, regardless of the catalog file's version.
+            prescription: encodeValue(
+              edit(
+                (kind === "lenses"
+                  ? toLensDataInput(ingestLens(decodeValue(entry.prescription) as LensDataInput))
+                  : toTeleconverterData(
+                      ingestTeleconverter(decodeValue(entry.prescription) as Parameters<typeof ingestTeleconverter>[0]),
+                    )) as unknown as Record<string, unknown>,
+              ),
+            ),
+          }
         : entry,
     ),
   });
@@ -4618,7 +4632,9 @@ describe("engineDiff changed converters", () => {
     ...CATALOG,
     teleconverters: CATALOG.teleconverters.map((entry) => {
       if (entry.key !== converter) return entry;
-      const data = structuredClone(decodeValue(entry.prescription)) as { surfaces: { d: number; elemId: number }[] };
+      const data = toTeleconverterData(
+        ingestTeleconverter(decodeValue(entry.prescription) as Parameters<typeof ingestTeleconverter>[0]),
+      );
       edit(data);
       return { ...entry, prescription: encodeValue(data) };
     }),

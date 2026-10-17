@@ -34,9 +34,13 @@
 import { realpathSync, writeFileSync } from "node:fs";
 import { argv } from "node:process";
 import { fileURLToPath } from "node:url";
-// The lens file has type-only imports, so it loads without the engine.
-import PLANAR from "../../../../src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.data.js";
+import PlanarRaw from "../../../../src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.data.js";
+import { ingestLens } from "../../../../src/optics/prescription/ingestV2.js";
+import { toLensDataInput } from "../../../../src/optics/prescription/toLensData.js";
 import { createFixedPoint, type FixedPoint } from "./fixedPoint.js";
+
+// Only the file syntax is normalized; the reference arithmetic below remains independent of the engine.
+const PLANAR = toLensDataInput(ingestLens(PlanarRaw), { stopRadius: 1 });
 
 /** Committed reference file, beside this generator. */
 export const PLANAR_REFERENCE_PATH = fileURLToPath(new URL("./planarPupilReference.json", import.meta.url));
@@ -310,6 +314,7 @@ function derive(F: FixedPoint): Derivation {
 
   /* Paraxial focal length and the entrance pupil it sets. */
   const nominalEfl = -F.div(F.one, traceParaxial(F, surfaces, F.one, 0n).u);
+  if (typeof PLANAR.nominalFno !== "number") throw new Error("The Planar reference requires a prime f-number");
   const entrancePupilSemiDiameter = F.over(nominalEfl, 2 * PLANAR.nominalFno);
   const stopSemiDiameter = atPlane(
     F,

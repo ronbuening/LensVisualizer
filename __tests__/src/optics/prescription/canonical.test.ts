@@ -57,19 +57,16 @@ function failureOf(check: () => void): string | null {
   }
 }
 
-/** V1 catalog lenses that ingest, with what they ingest to: the checks that use them read V1 fields. */
-const INGESTED = V1_LENSES.flatMap(({ file, data }) => {
-  try {
-    return [{ file, data, ingested: ingestLensV1(data) }];
-  } catch {
-    return [];
-  }
+/** Every catalog lens in V1 syntax, so field-level checks keep running after the last V1 file migrates. */
+const INGESTED = LENSES.map(({ file, data: authored }) => {
+  const data = toLensDataInput(ingestLens(authored), { stopRadius: 1 });
+  return { file, data, ingested: ingestLensV1(data) };
 });
 
 function lensByKey(key: string): LensDataInput {
   const found = LENSES.find(({ data }) => data.key === key);
   if (!found) throw new Error(`no catalog lens "${key}"`);
-  return found.data;
+  return toLensDataInput(ingestLens(found.data), { stopRadius: 1 });
 }
 
 /** Every object and array reachable from a value. */
@@ -335,7 +332,7 @@ describe("canonical prescription: schema defaults", () => {
       );
     }
     expect(offenders).toEqual([]);
-    /* Both versions contribute coverage as maker batches migrate out of the V1 sweep above. */
+    /* Count default coverage on files of either version, independently of their V1 test spellings above. */
     const ways = new Map<string, Set<boolean>>();
     const note = (row: SchemaDefault, record: object, scope: string) => {
       const id = `${scope}.${row.path}`;

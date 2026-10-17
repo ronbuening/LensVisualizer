@@ -1,5 +1,12 @@
 import { describe, it, expect, vi } from "vitest";
-import buildLens, { ingestLensV1, paraxialTrace, realTraceToStop, toLensData } from "../../../src/optics/buildLens.js";
+import buildLens, {
+  ingestLens,
+  ingestLensV1,
+  paraxialTrace,
+  realTraceToStop,
+  toLensData,
+} from "../../../src/optics/buildLens.js";
+import { toLensDataInput } from "../../../src/optics/prescription/toLensData.js";
 import { PrescriptionIngestError } from "../../../src/optics/prescription/canonical.js";
 import { v1CatalogDefaults } from "../../../src/optics/prescription/defaults.js";
 import { withLensDefaults } from "../../../src/optics/prescription/compile.js";
@@ -291,7 +298,7 @@ describe("buildLens — RuntimeLens property shape", () => {
 
 describe("buildLens — canonical ingest", () => {
   it("reads an authored file through ingest and its V1 view", () => {
-    expect(withLensDefaults(ApoLantharRaw as unknown as LensData)).toEqual(toLensData(ingestLensV1(ApoLantharRaw)));
+    expect(withLensDefaults(ApoLantharRaw as unknown as LensData)).toEqual(toLensData(ingestLens(ApoLantharRaw)));
   });
 
   it("builds a composed pair through its canonical association", () => {
@@ -394,11 +401,11 @@ describe("buildLens — error handling", () => {
         /asph key "1" is missing finite numeric coefficient A14/,
       ],
       [
-        { ...SonyFE1224Raw, zoomStopSemiDiameters: [8.115, undefined, 11.815] },
+        { ...toLensDataInput(ingestLens(SonyFE1224Raw)), zoomStopSemiDiameters: [8.115, undefined, 11.815] },
         /zoomStopSemiDiameters requires one positive finite radius per zoom station/,
       ],
       [
-        { ...SonyFE1224Raw, publishedStations: { zoom: [1, 0] } },
+        { ...toLensDataInput(ingestLens(SonyFE1224Raw)), publishedStations: { zoom: [1, 0] } },
         /"publishedStations.zoom" must be a non-empty, strictly/,
       ],
       [makeMinimalData({ maxFstop: undefined }), /Missing or non-finite required number field: "maxFstop"/],
@@ -720,11 +727,10 @@ describe("compiled first-order constants", () => {
 
 describe("published zoom iris schedule", () => {
   it("preserves supplied radii and interpolates between stations", () => {
-    const zoomPositions = NikkorZ70200Raw.zoomPositions;
+    const data = toLensDataInput(ingestLens(NikkorZ70200Raw));
+    const zoomPositions = data.zoomPositions!;
     const radii = zoomPositions.map((_, i) => 8 + 2 * i);
-    const L = buildLens(
-      catalogLensData({ ...NikkorZ70200Raw, zoomApertureModel: undefined, zoomStopSemiDiameters: radii }),
-    );
+    const L = buildLens(catalogLensData({ ...data, zoomApertureModel: undefined, zoomStopSemiDiameters: radii }));
     expect(L.stopPhysSD).toBe(radii[0]);
     expect(L.zoomStopSDs).toEqual(radii);
     expect(wideOpenStopAtZoom(0.5 / (radii.length - 1), L)).toBe(9);
