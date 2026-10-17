@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Rodenstock Apo-Sironar-W 150mm f/5.6
@@ -35,34 +35,33 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "rodenstock-apo-sironar-w-150f56",
   maker: "Rodenstock",
   name: "RODENSTOCK APO-SIRONAR-W 150mm f/5.6",
   subtitle: "DE 3907928 A1 Table 5 - EFL-reconciled reconstruction",
-  specs: [
-    "150mm marketed / 148.7mm design",
-    "f/5.6",
-    "8 elements / 5 groups in reconstructed table",
-    "80° published field",
-    "all-spherical",
-  ],
 
-  focalLengthMarketing: 150,
-  focalLengthDesign: 148.7,
-  apertureMarketing: 5.6,
-  apertureDesign: 5.6,
-  lensMounts: ["large-format-lens-board"],
-  imageFormat: "5x7",
-  patentNumber: "DE 3,907,928 A1",
-  patentAuthors: ["Ernst Rothe", "Josef Weiß"],
-  patentAssignees: ["Optische Werke G. Rodenstock"],
-  patentYear: 1990,
-  elementCount: 8,
-  groupCount: 5,
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 80,
-    maxTraceFieldDeg: 40,
+  catalog: {
+    lensMounts: ["large-format-lens-board"],
+    imageFormat: "5x7",
+    specs: [
+      "150mm marketed / 148.7mm design",
+      "f/5.6",
+      "8 elements / 5 groups in reconstructed table",
+      "80° published field",
+      "all-spherical",
+    ],
+    elementCount: 8,
+    groupCount: 5,
+    focalLengthMm: { marketing: 150, design: 148.7 },
+    fNumber: { marketing: 5.6, design: 5.6 },
+  },
+
+  source: {
+    patentNumber: "DE 3,907,928 A1",
+    patentYear: 1990,
+    authors: ["Ernst Rothe", "Josef Weiß"],
+    assignees: ["Optische Werke G. Rodenstock"],
   },
 
   elements: [
@@ -73,7 +72,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.52,
       vd: 64.2,
-      fl: 297.3,
+      focalLengthMm: 297.3,
       glass: "Unmatched (520642 patent-rounded crown; no unique catalog identity)",
       apd: false,
       role: "Weak positive front collector in the object-side wide-angle meniscus set.",
@@ -85,7 +84,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62,
       vd: 63.5,
-      fl: 64.2,
+      focalLengthMm: 64.2,
       glass: "N-PSK53A class (Schott equivalent; patent-rounded nd/vd)",
       apd: "inferred",
       apdNote: "Phosphate-crown / ED-class assignment inferred from rounded nd/vd only.",
@@ -99,7 +98,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.69,
       vd: 49.6,
-      fl: -33.0,
+      focalLengthMm: -33.0,
       glass: "Unmatched (dense lanthanum/barium flint class; patent-rounded nd=1.69, vd=49.6)",
       apd: false,
       role: "High-index negative partner that overcorrects L2 and makes the front cemented group net negative.",
@@ -112,7 +111,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.5,
       vd: 56.4,
-      fl: 220.6,
+      focalLengthMm: 220.6,
       glass: "K10 class (Schott equivalent; patent-rounded nd/vd)",
       apd: false,
       role: "Fourth front-group meniscus required by the patent to redistribute power and field curvature.",
@@ -124,7 +123,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.43384,
       vd: 95.23,
-      fl: 177.9,
+      focalLengthMm: 177.9,
       glass: "CaF2 class (inferred; EFL-reconciled Table 5 model)",
       apd: "inferred",
       apdNote:
@@ -139,7 +138,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.46,
       vd: 65.8,
-      fl: 109.6,
+      focalLengthMm: 109.6,
       glass: "Unmatched (460658 patent-rounded fluor-crown; no unique catalog identity)",
       apd: "inferred",
       apdNote: "Legacy fluor-crown class assignment inferred from rounded nd/vd only.",
@@ -153,7 +152,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.65,
       vd: 39.6,
-      fl: 54.2,
+      focalLengthMm: 54.2,
       glass: "Unmatched (650396 patent-rounded short flint; no unique catalog identity)",
       apd: "inferred",
       apdNote: "KZFS-class negative anomalous-partial-dispersion role inferred from rounded nd/vd and design position.",
@@ -167,7 +166,7 @@ const LENS_DATA = {
       type: "Plano-Concave Negative",
       nd: 1.62,
       vd: 53.2,
-      fl: -45.5,
+      focalLengthMm: -45.5,
       glass: "Unmatched (dense crown / short-flint class; patent-rounded nd=1.62, vd=53.2)",
       apd: false,
       role: "Negative rear field-flattener; the flat rear face is implicit in the printed table and explicit here as surface 13.",
@@ -176,27 +175,33 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 32.66, d: 5.0, nd: 1.52, elemId: 1, sd: 15.0 },
-    { label: "2", R: 39.24, d: 0.1, nd: 1.0, elemId: 0, sd: 15.0 },
-    { label: "3", R: 32.9, d: 9.2, nd: 1.62, elemId: 2, sd: 15.0 },
-    { label: "4", R: 169.09, d: 2.1, nd: 1.69, elemId: 3, sd: 15.0 },
-    { label: "5", R: 19.95, d: 2.91, nd: 1.0, elemId: 0, sd: 13.2 },
-    { label: "6", R: 36.13, d: 2.45, nd: 1.5, elemId: 4, sd: 13.2 },
-    { label: "7", R: 52.52, d: 7.45, nd: 1.0, elemId: 0, sd: 12.0 },
-    { label: "STO", R: 1e15, d: 1.15, nd: 1.0, elemId: 0, sd: 10.992131162998318 },
-    { label: "8", R: -163.71, d: 2.6408840731727103, nd: 1.43384, elemId: 5, sd: 12.0 },
-    { label: "9", R: -52.71, d: 2.35, nd: 1.46, elemId: 6, sd: 12.5 },
-    { label: "10", R: -26.13, d: 1.92, nd: 1.0, elemId: 0, sd: 12.5 },
-    { label: "11", R: -136.26, d: 2.4, nd: 1.65, elemId: 7, sd: 11.8 },
-    { label: "12", R: -28.18, d: 9.55, nd: 1.62, elemId: 8, sd: 11.8 },
-    { label: "13", R: 1e15, d: 116.09130644532162, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "1", R: 32.66, d: 5.0, sd: 15.0, medium: 1 },
+    { label: "2", R: 39.24, d: 0.1, sd: 15.0 },
+    { label: "3", R: 32.9, d: 9.2, sd: 15.0, medium: 2 },
+    { label: "4", R: 169.09, d: 2.1, sd: 15.0, medium: 3 },
+    { label: "5", R: 19.95, d: 2.91, sd: 13.2 },
+    { label: "6", R: 36.13, d: 2.45, sd: 13.2, medium: 4 },
+    { label: "7", R: 52.52, d: 7.45, sd: 12.0 },
+    { label: "STO", R: "flat", d: 1.15 },
+    { label: "8", R: -163.71, d: 2.6408840731727103, sd: 12.0, medium: 5 },
+    { label: "9", R: -52.71, d: 2.35, sd: 12.5, medium: 6 },
+    { label: "10", R: -26.13, d: 1.92, sd: 12.5 },
+    { label: "11", R: -136.26, d: 2.4, sd: 11.8, medium: 7 },
+    { label: "12", R: -28.18, d: 9.55, sd: 11.8, medium: 8 },
+    { label: "13", R: "flat", sd: 14.0 },
   ],
 
-  asph: {},
-  var: {
-    "13": [116.09130644532162, 122.67034675574259],
+  focus: {
+    closeFocusM: 3.5,
+    description:
+      "Unit focus on a view-camera bellows; close endpoint is an illustrative 3.5 m object distance, not a manufacturer minimum-focus specification.",
   },
-  varLabels: [["13", "BF"]],
+
+  gaps: { "13": { label: "BF", values: [[116.09130644532162, 122.67034675574259]] } },
+
+  aperture: { nominalFNumber: 5.6, fStops: [5.6, 8, 11, 16, 22, 32, 45], maxFNumber: 45 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 80, maxTraceFieldDeg: 40 },
 
   groups: [
     { text: "FRONT", fromSurface: "1", toSurface: "7" },
@@ -208,14 +213,7 @@ const LENS_DATA = {
     { text: "D3", fromSurface: "11", toSurface: "13" },
   ],
 
-  closeFocusM: 3.5,
-  focusDescription:
-    "Unit focus on a view-camera bellows; close endpoint is an illustrative 3.5 m object distance, not a manufacturer minimum-focus specification.",
-  nominalFno: 5.6,
-  fstopSeries: [5.6, 8, 11, 16, 22, 32, 45],
-  maxFstop: 45,
-  scFill: 0.62,
-  yScFill: 0.55,
-} satisfies LensDataInput;
+  layout: { scFill: 0.62, yScFill: 0.55 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

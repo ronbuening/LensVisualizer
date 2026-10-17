@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -26,39 +26,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "rodenstock-grandagon-n-65mm-f45",
   maker: "Rodenstock",
   name: "RODENSTOCK GRANDAGON-N 65mm f/4.5",
   subtitle: "DE 2444954 A1 Claim 4 — Rodenstock / Schlegel & Weiß",
-  specs: [
-    "8 ELEMENTS / 4 GROUPS",
-    "f′ = 65 mm; EFL ≈ 64.83 mm",
-    "F/4.5",
-    "105° COVERAGE / 170 mm IMAGE CIRCLE",
-    "ALL SPHERICAL",
-  ],
 
-  focalLengthMarketing: 65,
-  focalLengthDesign: 64.827,
-  apertureMarketing: 4.5,
-  apertureDesign: 4.5,
-  lensMounts: ["large-format-lens-board"],
-  imageFormat: "4x5",
-  patentNumber: "DE 2444954 A1",
-  patentAuthors: ["Franz Schlegel", "Josef Weiß"],
-  patentAssignees: ["Optische Werke G. Rodenstock"],
-  patentYear: 1976,
-  elementCount: 8,
-  groupCount: 4,
-
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 105,
-    maxTraceFieldDeg: 52.5,
+  catalog: {
+    lensMounts: ["large-format-lens-board"],
+    imageFormat: "4x5",
+    specs: [
+      "8 ELEMENTS / 4 GROUPS",
+      "f′ = 65 mm; EFL ≈ 64.83 mm",
+      "F/4.5",
+      "105° COVERAGE / 170 mm IMAGE CIRCLE",
+      "ALL SPHERICAL",
+    ],
+    elementCount: 8,
+    groupCount: 4,
+    focalLengthMm: { marketing: 65, design: 64.827 },
+    fNumber: { marketing: 4.5, design: 4.5 },
   },
 
-  focusDescription:
-    "Unit focus by view-camera bellows or helicoid; final air space varies from infinity to a representative 0.7 m subject distance.",
+  source: {
+    patentNumber: "DE 2444954 A1",
+    patentYear: 1976,
+    authors: ["Franz Schlegel", "Josef Weiß"],
+    assignees: ["Optische Werke G. Rodenstock"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -70,7 +65,7 @@ const LENS_DATA = {
       nd: 1.4662,
       vd: 65.56,
       indexReference: "e",
-      fl: -48.67,
+      focalLengthMm: -48.67,
       glass: "FK3 class (Schott legacy fluorite crown; patent e-line values)",
       role: "Front negative field-widening meniscus.",
     },
@@ -82,10 +77,10 @@ const LENS_DATA = {
       nd: 1.6776,
       vd: 31.97,
       indexReference: "e",
-      fl: -84.58,
+      focalLengthMm: -84.58,
       glass: "SF5 (Schott; patent ne=1.6776, ve=31.97 stored as nd/vd)",
-      cemented: "T1",
       role: "High-dispersion outer component of the front cemented triplet.",
+      cemented: "T1",
     },
     {
       id: 3,
@@ -95,10 +90,10 @@ const LENS_DATA = {
       nd: 1.625,
       vd: 52.86,
       indexReference: "e",
-      fl: 13.55,
+      focalLengthMm: 13.55,
       glass: "SSK2 class (Schott dense special crown; patent e-line values)",
-      cemented: "T1",
       role: "Main positive element of the front cemented triplet.",
+      cemented: "T1",
     },
     {
       id: 4,
@@ -108,10 +103,10 @@ const LENS_DATA = {
       nd: 1.5629,
       vd: 46.88,
       indexReference: "e",
-      fl: -22.97,
+      focalLengthMm: -22.97,
       glass: "Unmatched barium-flint / short-flint class (patent e-line values)",
-      cemented: "T1",
       role: "Stop-side negative component of the front cemented triplet.",
+      cemented: "T1",
     },
     {
       id: 5,
@@ -121,10 +116,10 @@ const LENS_DATA = {
       nd: 1.5846,
       vd: 59.19,
       indexReference: "e",
-      fl: -23.39,
+      focalLengthMm: -23.39,
       glass: "Unmatched barium crown / BaK class (patent e-line values)",
-      cemented: "T2",
       role: "Stop-side negative component of the rear cemented triplet.",
+      cemented: "T2",
     },
     {
       id: 6,
@@ -134,10 +129,10 @@ const LENS_DATA = {
       nd: 1.6113,
       vd: 58.65,
       indexReference: "e",
-      fl: 11.47,
+      focalLengthMm: 11.47,
       glass: "Unmatched dense crown, SK-class (patent e-line values)",
-      cemented: "T2",
       role: "Main positive element of the rear cemented triplet.",
+      cemented: "T2",
     },
     {
       id: 7,
@@ -147,10 +142,10 @@ const LENS_DATA = {
       nd: 1.67,
       vd: 46.13,
       indexReference: "e",
-      fl: -42.75,
+      focalLengthMm: -42.75,
       glass: "Unmatched high-index barium-flint class (patent e-line values; Claim 4 prints v_e = 46.13)",
-      cemented: "T2",
       role: "Outer negative component of the rear cemented triplet.",
+      cemented: "T2",
     },
     {
       id: 8,
@@ -160,7 +155,7 @@ const LENS_DATA = {
       nd: 1.4891,
       vd: 70.22,
       indexReference: "e",
-      fl: -43.55,
+      focalLengthMm: -43.55,
       glass: "FK5 / N-FK5 class (Schott fluorite crown; patent e-line values)",
       role: "Rear negative field-widening meniscus.",
     },
@@ -168,31 +163,36 @@ const LENS_DATA = {
 
   /* ── Surfaces ── */
   surfaces: [
-    { label: "1", R: 65.88, d: 4.75, nd: 1.4662, elemId: 1, sd: 18.0 },
-    { label: "2", R: 16.49, d: 8.55, nd: 1.0, elemId: 0, sd: 14.4 },
+    { label: "1", R: 65.88, d: 4.75, sd: 18.0, medium: 1 },
+    { label: "2", R: 16.49, d: 8.55, sd: 14.4 },
 
-    { label: "3", R: 26.23, d: 10.95, nd: 1.6776, elemId: 2, sd: 12.7 },
-    { label: "4", R: 14.96, d: 9.9, nd: 1.625, elemId: 3, sd: 9.3 },
-    { label: "5", R: -14.54, d: 0.65, nd: 1.5629, elemId: 4, sd: 9.3 },
-    { label: "6", R: 118.85, d: 1.65, nd: 1.0, elemId: 0, sd: 8.8 },
+    { label: "3", R: 26.23, d: 10.95, sd: 12.7, medium: 2 },
+    { label: "4", R: 14.96, d: 9.9, sd: 9.3, medium: 3 },
+    { label: "5", R: -14.54, d: 0.65, sd: 9.3, medium: 4 },
+    { label: "6", R: 118.85, d: 1.65, sd: 8.8 },
 
-    { label: "STO", R: 1e15, d: 0.36, nd: 1.0, elemId: 0, sd: 7.5445 },
+    { label: "STO", R: "flat", d: 0.36 },
 
-    { label: "7", R: 292.16, d: 0.75, nd: 1.5846, elemId: 5, sd: 8.8 },
-    { label: "8", R: 13.05, d: 9.55, nd: 1.6113, elemId: 6, sd: 9.3 },
-    { label: "9", R: -10.94, d: 8.1, nd: 1.67, elemId: 7, sd: 9.3 },
-    { label: "10", R: -22.96, d: 8.0, nd: 1.0, elemId: 0, sd: 12.7 },
+    { label: "7", R: 292.16, d: 0.75, sd: 8.8, medium: 5 },
+    { label: "8", R: 13.05, d: 9.55, sd: 9.3, medium: 6 },
+    { label: "9", R: -10.94, d: 8.1, sd: 9.3, medium: 7 },
+    { label: "10", R: -22.96, d: 8.0, sd: 12.7 },
 
-    { label: "11", R: -16.79, d: 2.75, nd: 1.4891, elemId: 8, sd: 14.4 },
-    { label: "12", R: -83.54, d: 44.8246, nd: 1.0, elemId: 0, sd: 18.0 },
+    { label: "11", R: -16.79, d: 2.75, sd: 14.4, medium: 8 },
+    { label: "12", R: -83.54, sd: 18.0 },
   ],
 
-  asph: {},
-
-  var: {
-    "12": [44.8246, 52.6393],
+  focus: {
+    closeFocusM: 0.7,
+    description:
+      "Unit focus by view-camera bellows or helicoid; final air space varies from infinity to a representative 0.7 m subject distance.",
   },
-  varLabels: [["12", "BF"]],
+
+  gaps: { "12": { label: "BF", values: [[44.8246, 52.6393]] } },
+
+  aperture: { nominalFNumber: 4.5, fStops: [4.5, 5.6, 8, 11, 16, 22, 32, 45], maxFNumber: 45 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 105, maxTraceFieldDeg: 52.5 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -205,14 +205,9 @@ const LENS_DATA = {
     { text: "T2", fromSurface: "7", toSurface: "10" },
   ],
 
-  closeFocusM: 0.7,
-  nominalFno: 4.5,
-  fstopSeries: [4.5, 5.6, 8, 11, 16, 22, 32, 45],
-  maxFstop: 45,
+  layout: { scFill: 0.62, yScFill: 0.72 },
 
-  scFill: 0.62,
-  yScFill: 0.72,
-  offAxisFieldFrac: 0.5,
-} satisfies LensDataInput;
+  rays: { offAxisFieldFrac: 0.5 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

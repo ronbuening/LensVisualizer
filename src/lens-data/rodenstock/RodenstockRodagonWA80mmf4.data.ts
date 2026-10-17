@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -28,39 +28,34 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "rodenstock-rodagon-wa-80mm-f4",
   maker: "Rodenstock",
   name: "RODENSTOCK RODAGON-WA 80mm f/4",
   subtitle: "DE 2818435 B1 — Optische Werke G. Rodenstock",
-  specs: [
-    "6 elements / 4 groups",
-    "f ≈ 79.95 mm (d-line)",
-    "f/4; stops to f/22",
-    "6×9 cm enlarging coverage",
-    "4–15× recommended scale range",
-  ],
 
-  focalLengthMarketing: 80,
-  focalLengthDesign: 79.949,
-  apertureMarketing: 4,
-  apertureDesign: 4,
-  lensMounts: ["enlarging-lens"],
-  imageFormat: "6x9",
-  patentNumber: "DE 2818435 B1",
-  patentAuthors: ["Franz Schlegel", "Josef Weiß"],
-  patentAssignees: ["Optische Werke G. Rodenstock"],
-  patentYear: 1978,
-  elementCount: 6,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["enlarging-lens"],
+    imageFormat: "6x9",
+    specs: [
+      "6 elements / 4 groups",
+      "f ≈ 79.95 mm (d-line)",
+      "f/4; stops to f/22",
+      "6×9 cm enlarging coverage",
+      "4–15× recommended scale range",
+    ],
+    elementCount: 6,
+    groupCount: 4,
+    focalLengthMm: { marketing: 80, design: 79.949 },
+    fNumber: { marketing: 4, design: 4 },
+  },
 
-  nominalFno: 4,
-  closeFocusM: 0.085,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-  yScFill: 0.74,
-  scFill: 0.64,
-  focusDescription:
-    "Finite-conjugate enlarging lens; focus is set by changing enlarger lens/negative/easel distances. The optical unit is rigid and the patent publishes no internal focus variables.",
+  source: {
+    patentNumber: "DE 2818435 B1",
+    patentYear: 1978,
+    authors: ["Franz Schlegel", "Josef Weiß"],
+    assignees: ["Optische Werke G. Rodenstock"],
+  },
 
   elements: [
     {
@@ -70,15 +65,15 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.691,
       vd: 54.71,
-      fl: 29.812,
+      focalLengthMm: 29.812,
       glass: "N-LAK9 (Schott)",
       apd: false,
+      role: "Front positive crown of the first cemented doublet; provides the strongest positive front-surface power.",
+      cemented: "D1",
       dPgF: -0.0083,
       nC: 1.68716,
       nF: 1.69979,
       ng: 1.70667,
-      cemented: "D1",
-      role: "Front positive crown of the first cemented doublet; provides the strongest positive front-surface power.",
     },
     {
       id: 2,
@@ -87,15 +82,15 @@ const LENS_DATA = {
       type: "Plano-Concave Negative",
       nd: 1.61336,
       vd: 44.49,
-      fl: -21.351,
+      focalLengthMm: -21.351,
       glass: "N-KZFS4 (Schott; KzFS4 class)",
       apd: false,
+      role: "Negative short-flint partner of the front doublet; balances L1 chromatically and optically.",
+      cemented: "D1",
       dPgF: -0.01,
       nC: 1.60922,
       nF: 1.623,
       ng: 1.63071,
-      cemented: "D1",
-      role: "Negative short-flint partner of the front doublet; balances L1 chromatically and optically.",
     },
     {
       id: 3,
@@ -104,14 +99,14 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62041,
       vd: 60.32,
-      fl: 86.311,
+      focalLengthMm: 86.311,
       glass: "N-SK16 (Schott)",
       apd: false,
+      role: "Positive front meniscus immediately before the stop; its edge nearly contacts L2 in the patent construction.",
       dPgF: -0.0011,
       nC: 1.61727,
       nF: 1.62756,
       ng: 1.63312,
-      role: "Positive front meniscus immediately before the stop; its edge nearly contacts L2 in the patent construction.",
     },
     {
       id: 4,
@@ -120,14 +115,14 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62041,
       vd: 60.32,
-      fl: 99.657,
+      focalLengthMm: 99.657,
       glass: "N-SK16 (Schott)",
       apd: false,
+      role: "Positive rear meniscus immediately after the stop; forms the rear-half counterpart to L3.",
       dPgF: -0.0011,
       nC: 1.61727,
       nF: 1.62756,
       ng: 1.63312,
-      role: "Positive rear meniscus immediately after the stop; forms the rear-half counterpart to L3.",
     },
     {
       id: 5,
@@ -136,15 +131,15 @@ const LENS_DATA = {
       type: "Plano-Concave Negative",
       nd: 1.61336,
       vd: 44.49,
-      fl: -30.168,
+      focalLengthMm: -30.168,
       glass: "N-KZFS4 (Schott; KzFS4 class)",
       apd: false,
+      role: "Negative short-flint component of the rear cemented doublet; weaker than L2 to break strict symmetry.",
+      cemented: "D2",
       dPgF: -0.01,
       nC: 1.60922,
       nF: 1.623,
       ng: 1.63071,
-      cemented: "D2",
-      role: "Negative short-flint component of the rear cemented doublet; weaker than L2 to break strict symmetry.",
     },
     {
       id: 6,
@@ -153,35 +148,39 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.62041,
       vd: 60.32,
-      fl: 32.508,
+      focalLengthMm: 32.508,
       glass: "N-SK16 (Schott)",
       apd: false,
+      role: "Rear positive crown of the final doublet; provides the last refracting power before the image side.",
+      cemented: "D2",
       dPgF: -0.0011,
       nC: 1.61727,
       nF: 1.62756,
       ng: 1.63312,
-      cemented: "D2",
-      role: "Rear positive crown of the final doublet; provides the last refracting power before the image side.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 20.6, d: 6.872, nd: 1.691, elemId: 1, sd: 12.2 },
-    { label: "2", R: 1e15, d: 2.856, nd: 1.61336, elemId: 2, sd: 10.4 },
-    { label: "3", R: 13.096, d: 1.16, nd: 1, elemId: 0, sd: 8.5 },
-    { label: "4", R: 18.976, d: 3.048, nd: 1.62041, elemId: 3, sd: 8.0 },
-    { label: "5", R: 27.584, d: 4.6, nd: 1, elemId: 0, sd: 7.2 },
-    { label: "STO", R: 1e15, d: 3.352, nd: 1, elemId: 0, sd: 7.433 },
-    { label: "6", R: -108.632, d: 4.016, nd: 1.62041, elemId: 4, sd: 7.2 },
-    { label: "7", R: -39.96, d: 1.144, nd: 1, elemId: 0, sd: 8.0 },
-    { label: "8", R: -18.504, d: 3.096, nd: 1.61336, elemId: 5, sd: 8.5 },
-    { label: "9", R: 1e15, d: 6.296, nd: 1.62041, elemId: 6, sd: 10.4 },
-    { label: "10", R: -20.168, d: 62.089, nd: 1, elemId: 0, sd: 12.2 },
+    { label: "1", R: 20.6, d: 6.872, sd: 12.2, medium: 1 },
+    { label: "2", R: "flat", d: 2.856, sd: 10.4, medium: 2 },
+    { label: "3", R: 13.096, d: 1.16, sd: 8.5 },
+    { label: "4", R: 18.976, d: 3.048, sd: 8.0, medium: 3 },
+    { label: "5", R: 27.584, d: 4.6, sd: 7.2 },
+    { label: "STO", R: "flat", d: 3.352 },
+    { label: "6", R: -108.632, d: 4.016, sd: 7.2, medium: 4 },
+    { label: "7", R: -39.96, d: 1.144, sd: 8.0 },
+    { label: "8", R: -18.504, d: 3.096, sd: 8.5, medium: 5 },
+    { label: "9", R: "flat", d: 6.296, sd: 10.4, medium: 6 },
+    { label: "10", R: -20.168, d: 62.089, sd: 12.2 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 0.085,
+    description:
+      "Finite-conjugate enlarging lens; focus is set by changing enlarger lens/negative/easel distances. The optical unit is rigid and the patent publishes no internal focus variables.",
+  },
+
+  aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "G1 front doublet", fromSurface: "1", toSurface: "3" },
@@ -193,6 +192,8 @@ const LENS_DATA = {
     { text: "D1", fromSurface: "1", toSurface: "3" },
     { text: "D2", fromSurface: "8", toSurface: "10" },
   ],
-} satisfies LensDataInput;
+
+  layout: { scFill: 0.64, yScFill: 0.74 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

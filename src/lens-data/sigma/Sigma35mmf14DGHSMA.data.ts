@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Sigma 35mm F1.4 DG HSM | Art (A012)
@@ -18,46 +18,35 @@ import type { LensDataInput } from "../../types/optics.js";
  * not patent-listed.
  */
 const LENS_DATA = {
+  schema: 2,
   key: "sigma-35mm-f14-dg-hsm-a",
   maker: "Sigma",
   name: "SIGMA 35mm f/1.4 DG HSM | Art",
   subtitle: "JP 2014-048488 A — Numerical Example 4",
-  specs: [
-    "13 elements / 11 groups",
-    "f = 35.16 mm design",
-    "F1.45 design / F1.4 marketed",
-    "2ω = 63.79° patent",
-    "2 aspherical surfaces",
-    "Floating inner focus",
-  ],
 
-  focalLengthMarketing: 35,
-  focalLengthDesign: 35.16,
-  apertureMarketing: 1.4,
-  apertureDesign: 1.45,
-  lensMounts: ["l-mount", "sony-fe", "sigma-sa", "canon-ef", "nikon-f", "pentax-k", "sony-a"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 2014-048488 A",
-  patentAuthors: ["Ryo Shioda"],
-  patentAssignees: ["Sigma Corporation"],
-  patentYear: 2014,
-  elementCount: 13,
-  groupCount: 11,
+  catalog: {
+    lensMounts: ["l-mount", "sony-fe", "sigma-sa", "canon-ef", "nikon-f", "pentax-k", "sony-a"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "13 elements / 11 groups",
+      "f = 35.16 mm design",
+      "F1.45 design / F1.4 marketed",
+      "2ω = 63.79° patent",
+      "2 aspherical surfaces",
+      "Floating inner focus",
+    ],
+    elementCount: 13,
+    groupCount: 11,
+    focalLengthMm: { marketing: 35, design: 35.16 },
+    fNumber: { marketing: 1.4, design: 1.45 },
+  },
 
-  nominalFno: 1.45,
-  closeFocusM: 0.3,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  fstopSeries: [1.45, 1.8, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
-  apertureBlades: 9,
-
-  yScFill: 0.58,
-  scFill: 0.56,
-  offAxisFieldFrac: 0.45,
-  maxFstop: 16,
-
-  focusDescription:
-    "Floating inner focus: G2 and G3 advance toward the object on separate trajectories; the aperture stop moves with G3.",
+  source: {
+    patentNumber: "JP 2014-048488 A",
+    patentYear: 2014,
+    authors: ["Ryo Shioda"],
+    assignees: ["Sigma Corporation"],
+  },
 
   elements: [
     {
@@ -67,7 +56,7 @@ const LENS_DATA = {
       type: "Negative Meniscus (1× Asph)",
       nd: 1.58913,
       vd: 61.25,
-      fl: -73.9,
+      focalLengthMm: -73.9,
       glass: "M-BACD5N (Hoya)",
       role: "Large front negative meniscus; aspherical object-side surface controls the wide retrofocus entrance bundle.",
     },
@@ -78,7 +67,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.437,
       vd: 95.1,
-      fl: -91.9,
+      focalLengthMm: -91.9,
       glass: "FCD100 (Hoya, FLD-class)",
       role: "Very-low-dispersion negative element in the fixed front group.",
     },
@@ -89,7 +78,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 2.001,
       vd: 29.13,
-      fl: 70.7,
+      focalLengthMm: 70.7,
       glass: "TAFD55-W (Hoya)",
       role: "High-index positive in the front group; contributes compact positive power with moderated curvature.",
     },
@@ -100,7 +89,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.72825,
       vd: 28.32,
-      fl: -49.2,
+      focalLengthMm: -49.2,
       glass: "E-FD10 (Hoya)",
       role: "Dense-flint negative element in the fixed front group.",
     },
@@ -111,7 +100,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59282,
       vd: 68.62,
-      fl: 51.5,
+      focalLengthMm: 51.5,
       glass: "FCD505 (Hoya, SLD-class)",
       role: "Low-dispersion positive rear element of G1.",
     },
@@ -122,7 +111,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 2.001,
       vd: 29.13,
-      fl: 48.7,
+      focalLengthMm: 48.7,
       glass: "TAFD55-W (Hoya)",
       role: "Leading positive element of G2; bends the axial marginal ray back toward the stop.",
     },
@@ -133,7 +122,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.60625,
       vd: 63.71,
-      fl: 50.4,
+      focalLengthMm: 50.4,
       glass: "LBC3N (Hoya)",
       role: "Low-dispersion positive component of the G2 cemented doublet.",
       cemented: "D1",
@@ -145,7 +134,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.61293,
       vd: 36.96,
-      fl: -34.1,
+      focalLengthMm: -34.1,
       glass: "E-F3 (Hoya)",
       role: "Negative flint component of the G2 cemented doublet; the doublet is net negative.",
       cemented: "D1",
@@ -157,7 +146,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.72825,
       vd: 28.32,
-      fl: -24.0,
+      focalLengthMm: -24.0,
       glass: "E-FD10 (Hoya)",
       role: "Most object-side negative element of G3, corresponding to the patent's L3A element.",
       cemented: "D2",
@@ -169,7 +158,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59282,
       vd: 68.62,
-      fl: 70.0,
+      focalLengthMm: 70.0,
       glass: "FCD505 (Hoya, SLD-class)",
       role: "Low-dispersion positive component cemented behind the L3A negative element.",
       cemented: "D2",
@@ -181,7 +170,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59282,
       vd: 68.62,
-      fl: 50.0,
+      focalLengthMm: 50.0,
       glass: "FCD505 (Hoya, SLD-class)",
       role: "Low-dispersion positive element supplying part of G3's split positive power.",
     },
@@ -192,7 +181,7 @@ const LENS_DATA = {
       type: "Biconcave Negative (1× Asph)",
       nd: 1.6935,
       vd: 53.2,
-      fl: -53.9,
+      focalLengthMm: -53.9,
       glass: "M-LAC130 (Hoya)",
       role: "Biconcave negative element in G3; object-side asphere and rear air-lens gap help control off-axis aberrations.",
     },
@@ -203,74 +192,77 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.8042,
       vd: 46.5,
-      fl: 29.3,
+      focalLengthMm: 29.3,
       glass: "TAF3D (Hoya)",
       role: "High-index rear positive element closing the retrofocus design.",
     },
   ],
 
   surfaces: [
-    { label: "1A", R: 51.8624, d: 2.5, nd: 1.58913, elemId: 1, sd: 21.0 },
-    { label: "2", R: 23.248, d: 14.0665, nd: 1.0, elemId: 0, sd: 19.8 },
-    { label: "3", R: -125.4639, d: 1.5, nd: 1.437, elemId: 2, sd: 19.8 },
-    { label: "4", R: 59.2477, d: 2.7352, nd: 1.0, elemId: 0, sd: 20.4 },
-    { label: "5", R: 177.4138, d: 4.2614, nd: 2.001, elemId: 3, sd: 20.4 },
-    { label: "6", R: -116.3349, d: 3.9519, nd: 1.0, elemId: 0, sd: 19.5 },
-    { label: "7", R: -39.4375, d: 1.3, nd: 1.72825, elemId: 4, sd: 19.5 },
-    { label: "8", R: 398.8043, d: 0.2712, nd: 1.0, elemId: 0, sd: 20.5 },
-    { label: "9", R: 73.1654, d: 8.8625, nd: 1.59282, elemId: 5, sd: 21.5 },
-    { label: "10", R: -50.0498, d: 7.5458, nd: 1.0, elemId: 0, sd: 21.5 },
+    {
+      label: "1A",
+      R: 51.8624,
+      d: 2.5,
+      sd: 21.0,
+      medium: 1,
+      asphere: { K: 0, A4: 1.81501e-6, A6: 1.05655e-9, A8: -1.63693e-14, A10: 0, A12: 0 },
+    },
+    { label: "2", R: 23.248, d: 14.0665, sd: 19.8 },
+    { label: "3", R: -125.4639, d: 1.5, sd: 19.8, medium: 2 },
+    { label: "4", R: 59.2477, d: 2.7352, sd: 20.4 },
+    { label: "5", R: 177.4138, d: 4.2614, sd: 20.4, medium: 3 },
+    { label: "6", R: -116.3349, d: 3.9519, sd: 19.5 },
+    { label: "7", R: -39.4375, d: 1.3, sd: 19.5, medium: 4 },
+    { label: "8", R: 398.8043, d: 0.2712, sd: 20.5 },
+    { label: "9", R: 73.1654, d: 8.8625, sd: 21.5, medium: 5 },
+    { label: "10", R: -50.0498, sd: 21.5 },
 
-    { label: "11", R: 54.2107, d: 6.0539, nd: 2.001, elemId: 6, sd: 21.5 },
-    { label: "12", R: -452.3459, d: 0.15, nd: 1.0, elemId: 0, sd: 21.5 },
-    { label: "13", R: 111.4174, d: 8.6383, nd: 1.60625, elemId: 7, sd: 21.0 },
-    { label: "14", R: -40.865, d: 1.5, nd: 1.61293, elemId: 8, sd: 17.5 },
-    { label: "15", R: 43.2524, d: 6.7163, nd: 1.0, elemId: 0, sd: 17.5 },
+    { label: "11", R: 54.2107, d: 6.0539, sd: 21.5, medium: 6 },
+    { label: "12", R: -452.3459, d: 0.15, sd: 21.5 },
+    { label: "13", R: 111.4174, d: 8.6383, sd: 21.0, medium: 7 },
+    { label: "14", R: -40.865, d: 1.5, sd: 17.5, medium: 8 },
+    { label: "15", R: 43.2524, sd: 17.5 },
 
-    { label: "STO", R: 1e15, d: 5.6552, nd: 1.0, elemId: 0, sd: 14.11 },
+    { label: "STO", R: "flat", d: 5.6552 },
 
-    { label: "17", R: -28.6526, d: 1.25, nd: 1.72825, elemId: 9, sd: 15.5 },
-    { label: "18", R: 45.5318, d: 4.3091, nd: 1.59282, elemId: 10, sd: 16.0 },
-    { label: "19", R: -454.5267, d: 0.15, nd: 1.0, elemId: 0, sd: 17.0 },
-    { label: "20", R: 70.0035, d: 6.3705, nd: 1.59282, elemId: 11, sd: 17.5 },
-    { label: "21", R: -49.6679, d: 0.15, nd: 1.0, elemId: 0, sd: 17.5 },
-    { label: "22A", R: -186.504, d: 1.1, nd: 1.6935, elemId: 12, sd: 17.0 },
-    { label: "23", R: 46.8561, d: 0.3229, nd: 1.0, elemId: 0, sd: 17.0 },
-    { label: "24", R: 51.204, d: 7.4393, nd: 1.8042, elemId: 13, sd: 17.3 },
-    { label: "25", R: -40.7915, d: 39.205, nd: 1.0, elemId: 0, sd: 17.3 },
+    { label: "17", R: -28.6526, d: 1.25, sd: 15.5, medium: 9 },
+    { label: "18", R: 45.5318, d: 4.3091, sd: 16.0, medium: 10 },
+    { label: "19", R: -454.5267, d: 0.15, sd: 17.0 },
+    { label: "20", R: 70.0035, d: 6.3705, sd: 17.5, medium: 11 },
+    { label: "21", R: -49.6679, d: 0.15, sd: 17.5 },
+    {
+      label: "22A",
+      R: -186.504,
+      d: 1.1,
+      sd: 17.0,
+      medium: 12,
+      asphere: { K: 0, A4: -8.88489e-6, A6: -1.53763e-9, A8: 2.41639e-12, A10: 0, A12: 0 },
+    },
+    { label: "23", R: 46.8561, d: 0.3229, sd: 17.0 },
+    { label: "24", R: 51.204, d: 7.4393, sd: 17.3, medium: 13 },
+    { label: "25", R: -40.7915, sd: 17.3 },
   ],
 
-  asph: {
-    "1A": {
-      K: 0,
-      A4: 1.81501e-6,
-      A6: 1.05655e-9,
-      A8: -1.63693e-14,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
-    "22A": {
-      K: 0,
-      A4: -8.88489e-6,
-      A6: -1.53763e-9,
-      A8: 2.41639e-12,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
+  focus: {
+    closeFocusM: 0.3,
+    description:
+      "Floating inner focus: G2 and G3 advance toward the object on separate trajectories; the aperture stop moves with G3.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
   },
 
-  var: {
-    "10": [7.5458, 1.0],
-    "15": [6.7163, 5.4213],
-    "25": [39.205, 47.0458],
+  gaps: {
+    "10": { label: "d10", values: [[7.5458, 1.0]] },
+    "15": { label: "d15", values: [[6.7163, 5.4213]] },
+    "25": { label: "BF", values: [[39.205, 47.0458]] },
   },
-  varLabels: [
-    ["10", "d10"],
-    ["15", "d15"],
-    ["25", "BF"],
-  ],
+
+  aperture: {
+    nominalFNumber: 1.45,
+    fStops: [1.45, 1.8, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
+    maxFNumber: 16,
+    blades: 9,
+  },
 
   groups: [
     { text: "G1", fromSurface: "1A", toSurface: "10" },
@@ -281,6 +273,10 @@ const LENS_DATA = {
     { text: "D1", fromSurface: "13", toSurface: "15" },
     { text: "D2", fromSurface: "17", toSurface: "19" },
   ],
-} satisfies LensDataInput;
+
+  layout: { scFill: 0.56, yScFill: 0.58 },
+
+  rays: { offAxisFieldFrac: 0.45 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
@@ -14,12 +14,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Every patent R and axial d is multiplied by 0.366. No aspheres exist.   ║
  * ║  Marketing focal length remains 35 mm; modeled Gaussian EFL is ≈36.6423. ║
  * ║                                                                            ║
- * ║  STOP: the patent publishes neither stop location nor diameter. The STO  ║
- * ║  is explicitly inferred at the midpoint of source gap d6 (between L3 and ║
- * ║  L4), the largest rear-component air gap and a physically plausible iris ║
- * ║  location. Scaled d6=2.99754 mm is split 1.49877 + 1.49877 mm. The stop  ║
- * ║  semi-diameter 7.0301716886 mm is calibrated paraxially so the modeled    ║
- * ║  entrance pupil gives f/2.8. It is not a published diaphragm diameter.    ║
+ * ║  STOP: the patent publishes neither stop location nor diameter. The STO is ║
+ * ║  explicitly inferred at the midpoint of source gap d6 (between L3 and L4), ║
+ * ║  the largest rear-component air gap and a physically plausible iris        ║
+ * ║  location. Scaled d6=2.99754 mm is split 1.49877 + 1.49877 mm. The stop    ║
+ * ║  radius is derived from the design f-number f/2.8. It is not a published   ║
+ * ║  diaphragm diameter.                                                       ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS: no source SDs are published. Element SDs are modeled    ║
  * ║  from exact spherical ray tracing at the scaled infinity state: full      ║
@@ -43,130 +43,138 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "schneider-curtagon-35mm-f28-gen2",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH CURTAGON 35mm f/2.8",
   subtitle: "US 3,318,653 sole example — six-element 35/2.8 design; production linkage inferred",
-  specs: ["6 ELEMENTS / 6 GROUPS", "35mm NOMINAL / 36.6mm EFFECTIVE", "f/2.8–22", "62.5° DIAGONAL", "MFD 0.30m"],
 
-  focalLengthMarketing: 35,
-  focalLengthDesign: 36.6423060342,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.8,
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,318,653",
-  patentAuthors: ["Karl Heinrich Macher"],
-  patentAssignees: ["Jos. Schneider & Co., Optische Werke"],
-  patentYear: 1967,
-  elementCount: 6,
-  groupCount: 6,
+  catalog: {
+    imageFormat: "135-full-frame",
+    specs: ["6 ELEMENTS / 6 GROUPS", "35mm NOMINAL / 36.6mm EFFECTIVE", "f/2.8–22", "62.5° DIAGONAL", "MFD 0.30m"],
+    elementCount: 6,
+    groupCount: 6,
+    focalLengthMm: { marketing: 35, design: 36.6423060342 },
+    fNumber: { marketing: 2.8, design: 2.8 },
+  },
+
+  source: {
+    patentNumber: "US 3,318,653",
+    patentYear: 1967,
+    authors: ["Karl Heinrich Macher"],
+    assignees: ["Jos. Schneider & Co., Optische Werke"],
+  },
 
   elements: [
     {
       id: 1,
       name: "L1",
-      diagramLabel: "L1",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.4645,
       vd: 65.79,
       indexReference: "d",
-      fl: -49.3496,
+      focalLengthMm: -49.3496,
       glass: "FK3 — 464658 coordinate; compatible spectral proxy (supplier unconfirmed)",
       apd: false,
       role: "Negative front component I; isolated front meniscus.",
+      diagramLabel: "L1",
     },
     {
       id: 2,
       name: "L2",
-      diagramLabel: "L2",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.7018,
       vd: 41.14,
       indexReference: "d",
-      fl: 29.2655,
+      focalLengthMm: 29.2655,
       glass: "BASF7 — 702411 coordinate; compatible spectral proxy (supplier unconfirmed)",
       apd: false,
       role: "First positive lens of rear component II.",
+      diagramLabel: "L2",
     },
     {
       id: 3,
       name: "L3",
-      diagramLabel: "L3",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.6172,
       vd: 54.04,
       indexReference: "d",
-      fl: 54.1488,
+      focalLengthMm: 54.1488,
       glass: "K-SSK1 — 617540 coordinate; compatible spectral proxy (supplier unconfirmed)",
       apd: false,
       role: "Positive meniscus in rear component II.",
+      diagramLabel: "L3",
     },
     {
       id: 4,
       name: "L4",
-      diagramLabel: "L4",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.7847,
       vd: 26.1,
       indexReference: "d",
-      fl: -16.3433,
+      focalLengthMm: -16.3433,
       glass: "SF56A — 785261 coordinate; compatible spectral proxy (supplier unconfirmed)",
       apd: false,
       role: "Biconcave negative lens in rear component II.",
+      diagramLabel: "L4",
     },
     {
       id: 5,
       name: "L5",
-      diagramLabel: "L5",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.589,
       vd: 48.64,
       indexReference: "d",
-      fl: 49.4166,
+      focalLengthMm: 49.4166,
       glass: "BAFN6 — coordinate-compatible spectral proxy (supplier unconfirmed)",
       apd: false,
       role: "Positive lens in rear component II.",
+      diagramLabel: "L5",
     },
     {
       id: 6,
       name: "L6",
-      diagramLabel: "L6",
       label: "Element 6",
       type: "Positive Meniscus",
       nd: 1.72,
       vd: 50.31,
       indexReference: "d",
-      fl: 50.535,
+      focalLengthMm: 50.535,
       glass: "LAC10 — 720503 coordinate; compatible spectral proxy (supplier unconfirmed)",
       apd: false,
       role: "Rear positive meniscus in rear component II.",
+      diagramLabel: "L6",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 72.9438, d: 2.196, nd: 1.4645, elemId: 1, sd: 9.5 },
-    { label: "2", R: 17.2752, d: 13.79088, nd: 1.0, elemId: 0, sd: 9.5 },
-    { label: "3", R: 28.68708, d: 4.89708, nd: 1.7018, elemId: 2, sd: 9.3 },
-    { label: "4", R: -67.2159, d: 0.35136, nd: 1.0, elemId: 0, sd: 9.3 },
-    { label: "5", R: 14.75712, d: 1.83732, nd: 1.6172, elemId: 3, sd: 8.2 },
-    { label: "6", R: 25.16982, d: 1.49877, nd: 1.0, elemId: 0, sd: 8.2 },
-    { label: "STO", R: 1e15, d: 1.49877, nd: 1.0, elemId: 0, sd: 7.0301716886 },
-    { label: "7", R: -64.05, d: 1.1895, nd: 1.7847, elemId: 4, sd: 7.4 },
-    { label: "8", R: 16.16622, d: 1.99836, nd: 1.0, elemId: 0, sd: 7.4 },
-    { label: "9", R: 145.68264, d: 2.29848, nd: 1.589, elemId: 5, sd: 7.5 },
-    { label: "10", R: -36.1608, d: 1.5189, nd: 1.0, elemId: 0, sd: 7.5 },
-    { label: "11", R: -30.9636, d: 2.7267, nd: 1.72, elemId: 6, sd: 8.5 },
-    { label: "12", R: -17.34474, d: 37.7894782771, nd: 1.0, elemId: 0, sd: 8.5 },
+    { label: "1", R: 72.9438, d: 2.196, sd: 9.5, medium: 1 },
+    { label: "2", R: 17.2752, d: 13.79088, sd: 9.5 },
+    { label: "3", R: 28.68708, d: 4.89708, sd: 9.3, medium: 2 },
+    { label: "4", R: -67.2159, d: 0.35136, sd: 9.3 },
+    { label: "5", R: 14.75712, d: 1.83732, sd: 8.2, medium: 3 },
+    { label: "6", R: 25.16982, d: 1.49877, sd: 8.2 },
+    { label: "STO", R: "flat", d: 1.49877 },
+    { label: "7", R: -64.05, d: 1.1895, sd: 7.4, medium: 4 },
+    { label: "8", R: 16.16622, d: 1.99836, sd: 7.4 },
+    { label: "9", R: 145.68264, d: 2.29848, sd: 7.5, medium: 5 },
+    { label: "10", R: -36.1608, d: 1.5189, sd: 7.5 },
+    { label: "11", R: -30.9636, d: 2.7267, sd: 8.5, medium: 6 },
+    { label: "12", R: -17.34474, d: 37.7894782771, sd: 8.5 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 0.3,
+    description:
+      "The production lens focuses from infinity to 0.30 m. The patent supplies only the infinity prescription, so focus travel is not modeled.",
+  },
+
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "COMPONENT I", fromSurface: "1", toSurface: "2" },
@@ -174,14 +182,7 @@ const LENS_DATA = {
   ],
   doublets: [],
 
-  closeFocusM: 0.3,
-  focusDescription: "The production lens focuses from infinity to 0.30 m. The patent supplies only the infinity prescription, so focus travel is not modeled.",
-
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  yScFill: 0.4,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.4 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

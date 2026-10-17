@@ -1,5 +1,5 @@
 // This import is correct for a root-level draft. generate:metadata rewrites it after organization.
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -39,166 +39,227 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "samyang-af-50mm-f1p4-fe",
   maker: "Samyang",
   name: "SAMYANG AF 50mm f/1.4 FE",
   subtitle: "KR 10-1825708 B1 — Numerical Example 1; first-generation AF 50mm F1.4 FE correlation",
-  specs: [
-    "9 ELEMENTS / 8 GROUPS",
-    "50mm f/1.4 MARKETED; 51.0386mm f/1.44 DESIGN",
-    "47.0° FULL-FRAME FIELD",
-    "3 ASPHERICAL ELEMENTS / 6 ASPHERICAL SURFACES",
-    "SINGLE-ELEMENT INNER FOCUS",
-  ],
 
-  focalLengthMarketing: 50,
-  focalLengthDesign: 51.0386262353,
-  apertureMarketing: 1.4,
-  apertureDesign: 1.44,
-  lensMounts: ["sony-fe"],
-  imageFormat: "135-full-frame",
-  patentNumber: "KR 10-1825708 B1",
-  patentAuthors: ["Jae Myung Ryu", "Hae Jin Lee", "Jung Du Lee"],
-  patentAssignees: ["Samyang Optics Co., Ltd."],
-  patentYear: 2018,
-  elementCount: 9,
-  groupCount: 8,
+  catalog: {
+    lensMounts: ["sony-fe"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "9 ELEMENTS / 8 GROUPS",
+      "50mm f/1.4 MARKETED; 51.0386mm f/1.44 DESIGN",
+      "47.0° FULL-FRAME FIELD",
+      "3 ASPHERICAL ELEMENTS / 6 ASPHERICAL SURFACES",
+      "SINGLE-ELEMENT INNER FOCUS",
+    ],
+    elementCount: 9,
+    groupCount: 8,
+    focalLengthMm: { marketing: 50, design: 51.0386262353 },
+    fNumber: { marketing: 1.4, design: 1.44 },
+  },
+
+  source: {
+    patentNumber: "KR 10-1825708 B1",
+    patentYear: 2018,
+    authors: ["Jae Myung Ryu", "Hae Jin Lee", "Jung Du Lee"],
+    assignees: ["Samyang Optics Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
     {
       id: 1,
       name: "L1",
-      diagramLabel: "L1-1",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.64769,
       vd: 33.84,
-      fl: -72.0458242152,
+      focalLengthMm: -72.0458242152,
       glass: "648338 class (vendor not identified by patent)",
       role: "Front negative meniscus; paired with L2 so the first two-element subsystem has net positive power.",
+      diagramLabel: "L1-1",
     },
     {
       id: 2,
       name: "L2",
-      diagramLabel: "L2-1",
       label: "Element 2",
       type: "Plano-Convex Positive",
       nd: 2.00069,
       vd: 25.46,
-      fl: 36.0920964534,
+      focalLengthMm: 36.0920964534,
       glass: "001255 class (vendor not identified by patent)",
       role: "Strong positive element preceding the first asphere; contributes to the positive L1+L2 subsystem.",
+      diagramLabel: "L2-1",
     },
     {
       id: 3,
       name: "L3",
-      diagramLabel: "L3-1",
       label: "Element 3",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.684,
       vd: 31.3,
-      fl: -65.6652064073,
+      focalLengthMm: -65.6652064073,
       glass: "Unmatched (684313 class; catalog identity unresolved)",
       role: "Double-aspherical negative meniscus in G1; the patent assigns it astigmatism and field-curvature correction.",
+      diagramLabel: "L3-1",
     },
     {
       id: 4,
       name: "L4",
-      diagramLabel: "L4-1",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.72825,
       vd: 28.32,
-      fl: -22.8639834487,
+      focalLengthMm: -22.8639834487,
       glass: "728283 class (vendor not identified by patent)",
-      cemented: "L4/L5",
       role: "Negative member of the cemented L4/L5 pair in the rear half of G1.",
+      diagramLabel: "L4-1",
+      cemented: "L4/L5",
     },
     {
       id: 5,
       name: "L5",
-      diagramLabel: "L5-1",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.6968,
       vd: 55.46,
-      fl: 28.2047329172,
+      focalLengthMm: 28.2047329172,
       glass: "697555 class (vendor not identified by patent)",
-      cemented: "L4/L5",
       role: "Positive member of the cemented L4/L5 pair; the cemented pair has weak net negative power.",
+      diagramLabel: "L5-1",
+      cemented: "L4/L5",
     },
     {
       id: 6,
       name: "L6",
-      diagramLabel: "L6-1",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.8,
-      fl: 41.8583565647,
+      focalLengthMm: 41.8583565647,
       glass: "883408 class (vendor not identified by patent)",
       role: "Positive rear element of fixed group G1 immediately ahead of the aperture stop.",
+      diagramLabel: "L6-1",
     },
     {
       id: 7,
       name: "L7",
-      diagramLabel: "L7-1",
       label: "Element 7",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.684,
       vd: 31.3,
-      fl: -53.4379573057,
+      focalLengthMm: -53.4379573057,
       glass: "Unmatched (684313 class; catalog identity unresolved)",
       role: "Single-element negative inner-focus group G2; translates imageward toward close focus.",
+      diagramLabel: "L7-1",
     },
     {
       id: 8,
       name: "L8",
-      diagramLabel: "L8-1",
       label: "Element 8",
       type: "Biconvex Positive (2× Asph)",
       nd: 1.6897,
       vd: 52.7,
-      fl: 35.0654081106,
+      focalLengthMm: 35.0654081106,
       glass: "K-VC80-M catalog-equivalent (patent coordinates retained; production supplier unspecified)",
       role: "Double-aspherical positive front element of fixed rear group G3.",
+      diagramLabel: "L8-1",
     },
     {
       id: 9,
       name: "L9",
-      diagramLabel: "L9-1",
       label: "Element 9",
       type: "Biconcave Negative",
       nd: 1.56883,
       vd: 56.04,
-      fl: -62.303748989,
+      focalLengthMm: -62.303748989,
       glass: "569560 class (vendor not identified by patent)",
       role: "Rear biconcave element; described by the patent as a field-flattener element near the image side.",
+      diagramLabel: "L9-1",
     },
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ──
+   * Patent convention is the standard conic constant K. All six Example-1 aspheres use K = -1.
+   */
   surfaces: [
-    { label: "1", R: 206.778, d: 2, nd: 1.64769, elemId: 1, sd: 23.4 },
-    { label: "2", R: 37.927, d: 0.2, nd: 1, elemId: 0, sd: 23 },
-    { label: "3", R: 36.117, d: 10.5, nd: 2.00069, elemId: 2, sd: 23 },
-    { label: "4", R: 1e15, d: 0.1, nd: 1, elemId: 0, sd: 20.1 },
-    { label: "5A", R: 59.625, d: 3, nd: 1.684, elemId: 3, sd: 20 },
-    { label: "6A", R: 25.094, d: 10.781, nd: 1, elemId: 0, sd: 18.6 },
-    { label: "7", R: -39.174, d: 2, nd: 1.72825, elemId: 4, sd: 16.1 },
-    { label: "8", R: 29.583, d: 12.45, nd: 1.6968, elemId: 5, sd: 16.8 },
-    { label: "9", R: -48.431, d: 0.1, nd: 1, elemId: 0, sd: 18.7 },
-    { label: "10", R: 50, d: 7.4, nd: 1.883, elemId: 6, sd: 18.7 },
-    { label: "11", R: -131.895, d: 0.6, nd: 1, elemId: 0, sd: 18 },
-    { label: "STO", R: 1e15, d: 2.00178, nd: 1, elemId: 0, sd: 16.7425250427 },
-    { label: "13A", R: 38, d: 2.5, nd: 1.684, elemId: 7, sd: 16.6 },
-    { label: "14A", R: 18.133, d: 18.32783, nd: 1, elemId: 0, sd: 15.6 },
-    { label: "15A", R: 65.226, d: 7.5, nd: 1.6897, elemId: 8, sd: 16.8 },
-    { label: "16A", R: -36.632, d: 7.539, nd: 1, elemId: 0, sd: 16.8 },
-    { label: "17", R: -123.03, d: 1.5, nd: 1.56883, elemId: 9, sd: 14.6 },
-    { label: "18", R: 50, d: 19.5, nd: 1, elemId: 0, sd: 14.4 }, // patent D3: gap to the filter plate OF
+    { label: "1", R: 206.778, d: 2, sd: 23.4, medium: 1 },
+    { label: "2", R: 37.927, d: 0.2, sd: 23 },
+    { label: "3", R: 36.117, d: 10.5, sd: 23, medium: 2 },
+    { label: "4", R: "flat", d: 0.1, sd: 20.1 },
+    {
+      label: "5A",
+      R: 59.625,
+      d: 3,
+      sd: 20,
+      medium: 3,
+      asphere: { K: -1, A4: -3.638351e-6, A6: -3.19132e-9, A8: -4.204817e-12, A10: 6.048832e-15, A12: 0 },
+    },
+    {
+      label: "6A",
+      R: 25.094,
+      d: 10.781,
+      sd: 18.6,
+      asphere: { K: -1, A4: 8.780333e-6, A6: 6.142542e-9, A8: 1.134598e-11, A10: -1.127929e-14, A12: 0 },
+    },
+    { label: "7", R: -39.174, d: 2, sd: 16.1, medium: 4 },
+    { label: "8", R: 29.583, d: 12.45, sd: 16.8, medium: 5 },
+    { label: "9", R: -48.431, d: 0.1, sd: 18.7 },
+    { label: "10", R: 50, d: 7.4, sd: 18.7, medium: 6 },
+    { label: "11", R: -131.895, d: 0.6, sd: 18 },
+    { label: "STO", R: "flat" },
+    {
+      label: "13A",
+      R: 38,
+      d: 2.5,
+      sd: 16.6,
+      medium: 7,
+      asphere: { K: -1, A4: -5.688391e-5, A6: 2.633654e-7, A8: -9.029458e-10, A10: 1.808817e-12, A12: -1.590491e-15 },
+    },
+    {
+      label: "14A",
+      R: 18.133,
+      sd: 15.6,
+      asphere: { K: -1, A4: -5.606567e-5, A6: 3.230809e-7, A8: -1.207755e-9, A10: 2.733286e-12, A12: -2.838987e-15 },
+    },
+    {
+      label: "15A",
+      R: 65.226,
+      d: 7.5,
+      sd: 16.8,
+      medium: 8,
+      asphere: { K: -1, A4: -5.079978e-7, A6: -1.413043e-9, A8: 1.094572e-11, A10: -1.56112e-14, A12: 0 },
+    },
+    {
+      label: "16A",
+      R: -36.632,
+      d: 7.539,
+      sd: 16.8,
+      asphere: { K: -1, A4: 2.189271e-6, A6: -5.682527e-9, A8: 1.737121e-11, A10: -2.077513e-14, A12: 0 },
+    },
+    { label: "17", R: -123.03, d: 1.5, sd: 14.6, medium: 9 },
+    { label: "18", R: 50, d: 19.5, sd: 14.4 }, // patent D3: gap to the filter plate OF
   ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.45,
+    description:
+      "Reconstructed inner focus: L7–1/G2 moves imageward while G1 and G3 remain fixed. The modeled close state focuses at the marketed 0.45 m distance with a fixed image plane. The patent’s close row changes an image-side spacing, so this endpoint is calculated rather than directly published.",
+  },
+
+  /* (moved from var) ── Variable air spacings: constrained fixed-sensor reconstruction ── */
+  gaps: {
+    STO: { label: "D1", values: [[2.00178, 8.7967167277]] },
+    "14A": { label: "D2", values: [[18.32783, 11.5328932723]] },
+  },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 1.44, fStops: [1.44, 2, 2.8, 4, 5.6, 8, 11, 16] },
 
   /* ── Optical filter OF (patent Table 1 surfaces S19–S20): traced, not drawn ── */
   rearPlates: [
@@ -213,76 +274,6 @@ const LENS_DATA = {
     },
   ],
 
-  /* ── Aspherical coefficients ──
-   * Patent convention is the standard conic constant K. All six Example-1 aspheres use K = -1.
-   */
-  asph: {
-    "5A": {
-      K: -1,
-      A4: -3.638351e-6,
-      A6: -3.19132e-9,
-      A8: -4.204817e-12,
-      A10: 6.048832e-15,
-      A12: 0,
-      A14: 0,
-    },
-    "6A": {
-      K: -1,
-      A4: 8.780333e-6,
-      A6: 6.142542e-9,
-      A8: 1.134598e-11,
-      A10: -1.127929e-14,
-      A12: 0,
-      A14: 0,
-    },
-    "13A": {
-      K: -1,
-      A4: -5.688391e-5,
-      A6: 2.633654e-7,
-      A8: -9.029458e-10,
-      A10: 1.808817e-12,
-      A12: -1.590491e-15,
-      A14: 0,
-    },
-    "14A": {
-      K: -1,
-      A4: -5.606567e-5,
-      A6: 3.230809e-7,
-      A8: -1.207755e-9,
-      A10: 2.733286e-12,
-      A12: -2.838987e-15,
-      A14: 0,
-    },
-    "15A": {
-      K: -1,
-      A4: -5.079978e-7,
-      A6: -1.413043e-9,
-      A8: 1.094572e-11,
-      A10: -1.56112e-14,
-      A12: 0,
-      A14: 0,
-    },
-    "16A": {
-      K: -1,
-      A4: 2.189271e-6,
-      A6: -5.682527e-9,
-      A8: 1.737121e-11,
-      A10: -2.077513e-14,
-      A12: 0,
-      A14: 0,
-    },
-  },
-
-  /* ── Variable air spacings: constrained fixed-sensor reconstruction ── */
-  var: {
-    STO: [2.00178, 8.7967167277],
-    "14A": [18.32783, 11.5328932723],
-  },
-  varLabels: [
-    ["STO", "D1"],
-    ["14A", "D2"],
-  ],
-
   /* ── Patent functional-group and cemented-pair annotations ── */
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "11" },
@@ -291,17 +282,8 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "L4/L5", fromSurface: "7", toSurface: "9" }],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.45,
-  focusDescription:
-    "Reconstructed inner focus: L7–1/G2 moves imageward while G1 and G3 remain fixed. The modeled close state focuses at the marketed 0.45 m distance with a fixed image plane. The patent’s close row changes an image-side spacing, so this endpoint is calculated rather than directly published.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 1.44,
-  fstopSeries: [1.44, 2, 2.8, 4, 5.6, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  yScFill: 0.5,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.5 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

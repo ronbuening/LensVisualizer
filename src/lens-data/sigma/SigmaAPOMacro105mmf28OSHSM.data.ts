@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -24,31 +24,35 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "sigma-apo-macro-105mm-f28-os-hsm",
   maker: "Sigma",
   name: "SIGMA MACRO 105mm f/2.8 EX DG OS HSM",
   subtitle: "JP 2012-58682 A Example 4 — Sigma / Ogasawara",
-  specs: [
-    "16 elements / 11 groups",
-    "105 mm marketed; 101.71 mm design",
-    "F2.8 marketed; F2.91 design",
-    "2ω = 24.09° design",
-    "Floating inner focus; L3a optical stabilizer",
-    "All spherical surfaces",
-  ],
 
-  focalLengthMarketing: 105,
-  focalLengthDesign: 101.71,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.91,
-  lensMounts: ["sigma-sa", "canon-ef", "nikon-f", "sony-a"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 2012-058682 A",
-  patentAuthors: ["Noriyuki Ogasawara"],
-  patentAssignees: ["Sigma Corporation"],
-  patentYear: 2012,
-  elementCount: 16,
-  groupCount: 11,
+  catalog: {
+    lensMounts: ["sigma-sa", "canon-ef", "nikon-f", "sony-a"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "16 elements / 11 groups",
+      "105 mm marketed; 101.71 mm design",
+      "F2.8 marketed; F2.91 design",
+      "2ω = 24.09° design",
+      "Floating inner focus; L3a optical stabilizer",
+      "All spherical surfaces",
+    ],
+    elementCount: 16,
+    groupCount: 11,
+    focalLengthMm: { marketing: 105, design: 101.71 },
+    fNumber: { marketing: 2.8, design: 2.91 },
+  },
+
+  source: {
+    patentNumber: "JP 2012-058682 A",
+    patentYear: 2012,
+    authors: ["Noriyuki Ogasawara"],
+    assignees: ["Sigma Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -59,7 +63,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.8042,
       vd: 46.5,
-      fl: 91.5,
+      focalLengthMm: 91.5,
       glass: "TAF3D / N-LASF44 class; close to OHARA S-LAH65VS (dense lanthanum flint)",
       apd: false,
       role: "High-index front collector element; reduces front-surface curvature while carrying substantial L1 positive power.",
@@ -71,7 +75,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
-      fl: 71.1,
+      focalLengthMm: 71.1,
       glass: "S-FPL51 (OHARA) / FCD1 (HOYA) class",
       apd: "inferred",
       apdNote:
@@ -86,7 +90,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.76182,
       vd: 26.61,
-      fl: -61.0,
+      focalLengthMm: -61.0,
       glass: "S-TIH14 (OHARA) class",
       apd: false,
       role: "High-index flint mate to E2; main front-group achromatizing partner.",
@@ -99,7 +103,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.59282,
       vd: 68.62,
-      fl: 101.8,
+      focalLengthMm: 101.8,
       glass: "FCD515 (HOYA) / S-FPM2-neighbor class",
       apd: "inferred",
       apdNote: "High-index SLD-class crown inferred from exact Hoya FCD515 code 593686; patent lists nd/vd only.",
@@ -112,7 +116,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.60342,
       vd: 38.01,
-      fl: -40.9,
+      focalLengthMm: -40.9,
       glass: "S-TIM5 (OHARA) / F5 class",
       apd: false,
       role: "Leading negative singlet of the moving L2a focus component.",
@@ -124,7 +128,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.5168,
       vd: 64.2,
-      fl: -41.5,
+      focalLengthMm: -41.5,
       glass: "N-BK7 / BSC7 class (517642)",
       apd: false,
       role: "Low-index crown negative in the L2a cemented pair.",
@@ -137,7 +141,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.78,
-      fl: 50.8,
+      focalLengthMm: 50.8,
       glass: "S-TIH53 (OHARA)",
       apd: false,
       role: "Dense-flint positive mate to E6; controls chromatic error of the moving negative focus component.",
@@ -150,7 +154,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.80518,
       vd: 25.46,
-      fl: 122.1,
+      focalLengthMm: 122.1,
       glass: "S-TIH6 (OHARA) / SF6 class",
       apd: false,
       role: "Fixed positive stop-group element; deliberately high dispersion under condition (3).",
@@ -162,7 +166,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.8042,
       vd: 46.5,
-      fl: 84.3,
+      focalLengthMm: 84.3,
       glass: "TAF3D / N-LASF44 class; close to OHARA S-LAH65VS (dense lanthanum flint)",
       apd: false,
       role: "Leading positive singlet of the moving L2c focus component.",
@@ -174,7 +178,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72916,
       vd: 54.67,
-      fl: 35.9,
+      focalLengthMm: 35.9,
       glass: "S-LAL18 (OHARA)",
       apd: false,
       role: "Strong positive in the L2c cemented pair; primary re-converging element after the stop.",
@@ -187,7 +191,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.76182,
       vd: 26.61,
-      fl: -43.1,
+      focalLengthMm: -43.1,
       glass: "S-TIH14 (OHARA) class",
       apd: false,
       role: "High-index flint mate to E10; achromatizes the moving positive L2c component.",
@@ -200,7 +204,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.80518,
       vd: 25.46,
-      fl: 57.2,
+      focalLengthMm: 57.2,
       glass: "S-TIH6 (OHARA) / SF6 class",
       apd: false,
       role: "Positive member of the L3a optical-stabilizer doublet.",
@@ -213,7 +217,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7725,
       vd: 49.62,
-      fl: -26.7,
+      focalLengthMm: -26.7,
       glass: "S-LAH66 (OHARA) / TAF1 / N-LAF34 class",
       apd: false,
       role: "Negative member of the L3a optical-stabilizer doublet; decentered with E12 for OS.",
@@ -226,7 +230,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.8061,
       vd: 33.27,
-      fl: -34.3,
+      focalLengthMm: -34.3,
       glass: "NBFD15 (HOYA) / H-ZLaF56B class",
       apd: false,
       role: "High-index negative in L3b; establishes the index split used for Petzval control.",
@@ -239,7 +243,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72916,
       vd: 54.67,
-      fl: 41.1,
+      focalLengthMm: 41.1,
       glass: "S-LAL18 (OHARA)",
       apd: false,
       role: "Lower-Abbe positive in L3b and positive member of the E14/E15 cemented pair.",
@@ -252,7 +256,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.58913,
       vd: 61.25,
-      fl: 81.8,
+      focalLengthMm: 81.8,
       glass: "M-BACD5N (HOYA)",
       apd: false,
       role: "Low-index rear positive; sets the minimum positive index term in condition (4).",
@@ -261,54 +265,57 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 129.085, d: 4.5536, nd: 1.8042, elemId: 1, sd: 24.0 },
-    { label: "2", R: -168.456, d: 0.7593, nd: 1.0, elemId: 0, sd: 23.5 },
-    { label: "3", R: 60.1581, d: 6.7285, nd: 1.497, elemId: 2, sd: 20.5 },
-    { label: "4", R: -82.4177, d: 1.2, nd: 1.76182, elemId: 3, sd: 20.5 },
-    { label: "5", R: 107.39, d: 0.15, nd: 1.0, elemId: 0, sd: 20.5 },
-    { label: "6", R: 49.2292, d: 3.5517, nd: 1.59282, elemId: 4, sd: 18.5 },
-    { label: "7", R: 260.546, d: 2.9138, nd: 1.0, elemId: 0, sd: 18.3 },
-    { label: "8", R: -359.578, d: 0.95, nd: 1.60342, elemId: 5, sd: 15.5 },
-    { label: "9", R: 26.4941, d: 4.9881, nd: 1.0, elemId: 0, sd: 12.4 },
-    { label: "10", R: -80.7403, d: 1.0, nd: 1.5168, elemId: 6, sd: 12.4 },
-    { label: "11", R: 29.3575, d: 3.9702, nd: 1.84666, elemId: 7, sd: 14.0 },
-    { label: "12", R: 86.6184, d: 20.1047, nd: 1.0, elemId: 0, sd: 15.0 },
-    { label: "STO", R: 1e15, d: 2.35, nd: 1.0, elemId: 0, sd: 14.76 },
-    { label: "14", R: 249.878, d: 2.9386, nd: 1.80518, elemId: 8, sd: 16.5 },
-    { label: "15", R: -161.212, d: 22.7964, nd: 1.0, elemId: 0, sd: 16.8 },
-    { label: "16", R: 570.884, d: 3.0684, nd: 1.8042, elemId: 9, sd: 18.0 },
-    { label: "17", R: -76.7882, d: 0.15, nd: 1.0, elemId: 0, sd: 18.0 },
-    { label: "18", R: 75.4847, d: 5.7703, nd: 1.72916, elemId: 10, sd: 16.0 },
-    { label: "19", R: -38.7023, d: 1.0, nd: 1.76182, elemId: 11, sd: 16.0 },
-    { label: "20", R: 218.324, d: 5.4077, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "21", R: -399.592, d: 3.3872, nd: 1.80518, elemId: 12, sd: 15.5 },
-    { label: "22", R: -41.4772, d: 0.95, nd: 1.7725, elemId: 13, sd: 15.5 },
-    { label: "23", R: 41.4772, d: 4.3666, nd: 1.0, elemId: 0, sd: 14.2 },
-    { label: "24", R: -78.7902, d: 1.2, nd: 1.8061, elemId: 14, sd: 14.2 },
-    { label: "25", R: 42.8746, d: 5.6999, nd: 1.72916, elemId: 15, sd: 17.0 },
-    { label: "26", R: -93.6099, d: 0.15, nd: 1.0, elemId: 0, sd: 17.0 },
-    { label: "27", R: 53.7454, d: 4.6951, nd: 1.58913, elemId: 16, sd: 19.2 },
-    { label: "28", R: -449.786, d: 53.3, nd: 1.0, elemId: 0, sd: 19.2 },
+    { label: "1", R: 129.085, d: 4.5536, sd: 24.0, medium: 1 },
+    { label: "2", R: -168.456, d: 0.7593, sd: 23.5 },
+    { label: "3", R: 60.1581, d: 6.7285, sd: 20.5, medium: 2 },
+    { label: "4", R: -82.4177, d: 1.2, sd: 20.5, medium: 3 },
+    { label: "5", R: 107.39, d: 0.15, sd: 20.5 },
+    { label: "6", R: 49.2292, d: 3.5517, sd: 18.5, medium: 4 },
+    { label: "7", R: 260.546, sd: 18.3 },
+    { label: "8", R: -359.578, d: 0.95, sd: 15.5, medium: 5 },
+    { label: "9", R: 26.4941, d: 4.9881, sd: 12.4 },
+    { label: "10", R: -80.7403, d: 1.0, sd: 12.4, medium: 6 },
+    { label: "11", R: 29.3575, d: 3.9702, sd: 14.0, medium: 7 },
+    { label: "12", R: 86.6184, sd: 15.0 },
+    { label: "STO", R: "flat", d: 2.35 },
+    { label: "14", R: 249.878, d: 2.9386, sd: 16.5, medium: 8 },
+    { label: "15", R: -161.212, sd: 16.8 },
+    { label: "16", R: 570.884, d: 3.0684, sd: 18.0, medium: 9 },
+    { label: "17", R: -76.7882, d: 0.15, sd: 18.0 },
+    { label: "18", R: 75.4847, d: 5.7703, sd: 16.0, medium: 10 },
+    { label: "19", R: -38.7023, d: 1.0, sd: 16.0, medium: 11 },
+    { label: "20", R: 218.324, sd: 16.0 },
+    { label: "21", R: -399.592, d: 3.3872, sd: 15.5, medium: 12 },
+    { label: "22", R: -41.4772, d: 0.95, sd: 15.5, medium: 13 },
+    { label: "23", R: 41.4772, d: 4.3666, sd: 14.2 },
+    { label: "24", R: -78.7902, d: 1.2, sd: 14.2, medium: 14 },
+    { label: "25", R: 42.8746, d: 5.6999, sd: 17.0, medium: 15 },
+    { label: "26", R: -93.6099, d: 0.15, sd: 17.0 },
+    { label: "27", R: 53.7454, d: 4.6951, sd: 19.2, medium: 16 },
+    { label: "28", R: -449.786, sd: 19.2 },
   ],
 
-  asph: {},
-
-  focusPositions: [0, 0.7874856150695161, 1],
-  var: {
-    "7": [2.9138, 10.4099, 18.6188],
-    "12": [20.1047, 12.6086, 4.3997],
-    "15": [22.7964, 12.4801, 3.3614],
-    "20": [5.4077, 15.724, 24.8427],
-    "28": [53.3, 53.3001, 53.3001],
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.312,
+    keyframes: [0, 0.7874856150695161, 1],
+    description:
+      "Floating inner focus. L2a (E5-E7) moves imageward and L2c (E9-E11) moves objectward from infinity to 1:1 while L1, L2b/stop, L3a, and L3b remain fixed relative to the image plane.",
+    // (moved from publishedStations) Patent read 2026-10-06: Focus keyframes 1 and 2 are the patent's Example 4 variable-spacing columns for 1:2 and
+    // 1:1 magnification, transcribed unscaled.
+    published: [1, 2],
   },
 
-  varLabels: [
-    ["7", "D7"],
-    ["12", "D12"],
-    ["15", "D15"],
-    ["20", "D20"],
-    ["28", "BF"],
-  ],
+  gaps: {
+    "7": { label: "D7", values: [[2.9138, 10.4099, 18.6188]] },
+    "12": { label: "D12", values: [[20.1047, 12.6086, 4.3997]] },
+    "15": { label: "D15", values: [[22.7964, 12.4801, 3.3614]] },
+    "20": { label: "D20", values: [[5.4077, 15.724, 24.8427]] },
+    "28": { label: "BF", values: [[53.3, 53.3001, 53.3001]] },
+  },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.91, fStops: [2.91, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "L1 fixed +", fromSurface: "1", toSurface: "7" },
@@ -318,7 +325,6 @@ const LENS_DATA = {
     { text: "L3a OS −", fromSurface: "21", toSurface: "23" },
     { text: "L3b fixed +", fromSurface: "24", toSurface: "28" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "3", toSurface: "5" },
     { text: "D2", fromSurface: "10", toSurface: "12" },
@@ -327,22 +333,8 @@ const LENS_DATA = {
     { text: "D5", fromSurface: "24", toSurface: "26" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.312,
-  // Patent read 2026-10-06: Focus keyframes 1 and 2 are the patent's Example 4 variable-spacing columns for 1:2 and
-  // 1:1 magnification, transcribed unscaled.
-  publishedStations: { focus: [1, 2] },
-  focusDescription:
-    "Floating inner focus. L2a (E5-E7) moves imageward and L2c (E9-E11) moves objectward from infinity to 1:1 while L1, L2b/stop, L3a, and L3b remain fixed relative to the image plane.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.91,
-  fstopSeries: [2.91, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
   /* ── Layout tuning ── */
-  scFill: 0.62,
-  yScFill: 0.44,
-} satisfies LensDataInput;
+  layout: { scFill: 0.62, yScFill: 0.44 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

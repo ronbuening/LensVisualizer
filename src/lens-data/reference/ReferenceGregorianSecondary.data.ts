@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Hidden regression fixture for a Gregorian-style secondary path. The concave
@@ -12,37 +12,22 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "reference-gregorian-secondary",
   maker: "Reference",
-  visible: false,
   name: "REFERENCE Gregorian Secondary",
   subtitle: "Hidden alternate-secondary folded fixture",
-  specs: ["GREGORIAN-STYLE", "CONCAVE SECONDARY", "ANNULAR PRIMARY", "BACK FOCUS"],
+  visible: false,
 
-  focalLengthMarketing: 100,
-  focalLengthDesign: 100,
-  apertureMarketing: 4,
-  apertureDesign: 4,
-  patentYear: 2026,
-  elementCount: 2,
-  groupCount: 2,
-  nominalFno: 4,
-  closeFocusM: 10,
-  yScFill: 0.5,
-  scFill: 0.62,
-  rayLeadFrac: 0.25,
-  maxFstop: 16,
-  fstopSeries: [4, 5.6, 8, 11, 16],
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 8,
-    maxTraceFieldDeg: 4,
+  catalog: {
+    specs: ["GREGORIAN-STYLE", "CONCAVE SECONDARY", "ANNULAR PRIMARY", "BACK FOCUS"],
+    elementCount: 2,
+    groupCount: 2,
+    focalLengthMm: { marketing: 100, design: 100 },
+    fNumber: { marketing: 4, design: 4 },
   },
-  opticalPath: {
-    surfaceOrder: ["M1", "SEC"],
-    imagePlane: { z: 110, label: "IMG" },
-    maxInteractions: 10,
-  },
+
+  source: { patentYear: 2026 },
 
   elements: [
     {
@@ -52,12 +37,11 @@ const LENS_DATA = {
       type: "Annular Concave First-Surface Mirror",
       nd: 1.0,
       vd: 0,
-      fl: 50,
+      focalLengthMm: 50,
       glass: "Aluminized annular front surface",
       apd: false,
-      fromSurface: "M1",
-      toSurface: "M1B",
       role: "Primary mirror whose returning beam crosses the front focus before reaching the Gregorian secondary.",
+      span: ["M1", "M1B"],
     },
     {
       id: 2,
@@ -68,45 +52,51 @@ const LENS_DATA = {
       vd: 0,
       glass: "Aluminized front surface",
       apd: false,
-      fromSurface: "SEC",
-      toSurface: "SECB",
       role: "Concave secondary beyond the primary focus, returning the beam through the primary hole.",
+      span: ["SEC", "SECB"],
     },
   ],
 
   surfaces: [
-    { label: "STO", R: 1e15, d: 100, nd: 1.0, elemId: 0, sd: 30 },
+    { label: "STO", R: "flat", d: 100, sd: 30 },
     {
       label: "M1",
       R: -100,
       d: 2,
-      nd: 1.0,
-      elemId: 1,
       sd: 30,
       innerSd: 9,
+      medium: 1,
       interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "first-surface" },
     },
-    { label: "M1B", R: 1e15, d: -112, nd: 1.0, elemId: 1, sd: 30, innerSd: 9 },
+    { label: "M1B", R: "flat", d: -112, sd: 30, innerSd: 9, medium: 1 },
     {
       label: "SEC",
       R: 80,
       d: 2,
-      nd: 1.0,
-      elemId: 2,
       sd: 16,
+      medium: 2,
       interaction: { type: "reflect", incidentSide: "rear", inactiveSide: "block", mirrorKind: "first-surface" },
     },
-    { label: "SECB", R: 1e15, d: 118, nd: 1.0, elemId: 2, sd: 16 },
+    { label: "SECB", R: "flat", d: 118, sd: 16, medium: 2 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: { closeFocusM: 10 },
+
+  aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16], maxFNumber: 16 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 8, maxTraceFieldDeg: 4 },
+
+  opticalPath: { surfaceOrder: ["M1", "SEC"], imagePlane: { z: 110, label: "IMG" }, maxInteractions: 10 },
+
   groups: [
     { text: "M1", fromSurface: "M1", toSurface: "M1B" },
     { text: "M2", fromSurface: "SEC", toSurface: "SECB" },
   ],
   doublets: [],
-} satisfies LensDataInput;
+
+  layout: { scFill: 0.62, yScFill: 0.5 },
+
+  rays: { rayLeadFrac: 0.25 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

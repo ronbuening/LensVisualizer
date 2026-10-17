@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
@@ -39,33 +39,30 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "schneider-technika-super-angulon-75mm-f8",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH TECHNIKA SUPER-ANGULON 75mm f/8",
   subtitle: "JP S42-023896 EXAMPLE 1 — JOS. SCHNEIDER & CO. / GÜNTER KLEMT",
-  specs: ["6 ELEMENTS / 4 GROUPS", "f = 76.51 mm (75 mm nominal)", "F/8", "2ω = 100° AT F/22", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 75,
-  focalLengthDesign: 76.5087,
-  apertureMarketing: 8,
-  apertureDesign: 8,
-  lensMounts: ["large-format-lens-board"],
-  imageFormat: "4x5",
-  imageCircleMm: 180, // Schneider Super-Angulon brochure (1976), f/8 series: 180.0 mm at f/22 (100°), 156.4 mm at f/8
+  catalog: {
+    lensMounts: ["large-format-lens-board"],
+    imageFormat: "4x5",
+    imageCircleMm: 180, // Schneider Super-Angulon brochure (1976), f/8 series: 180.0 mm at f/22 (100°), 156.4 mm at f/8
+    specs: ["6 ELEMENTS / 4 GROUPS", "f = 76.51 mm (75 mm nominal)", "F/8", "2ω = 100° AT F/22", "ALL-SPHERICAL"],
+    elementCount: 6,
+    groupCount: 4,
+    focalLengthMm: { marketing: 75, design: 76.5087 },
+    fNumber: { marketing: 8, design: 8 },
+  },
+
   // audit:image-circle flags rear surfaces 9–10 at this circle, but only through its wide-angle exit-pupil proxy;
   // an exact engine chief ray at the published 50° half-field clears them (17.5 mm vs sd 19.75 at surface 10).
-  patentNumber: "JP S42-023896 B",
-  patentAuthors: ["Günter Klemt"],
-  patentAssignees: ["Jos. Schneider & Co., Optische Werke"],
-  patentYear: 1967,
-  elementCount: 6,
-  groupCount: 4,
-
-  // Schneider publishes 100° coverage stopped to f/22; full-aperture coverage is 92°.
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 100,
-    maxTraceFieldDeg: 50,
+  source: {
+    patentNumber: "JP S42-023896 B",
+    patentYear: 1967,
+    authors: ["Günter Klemt"],
+    assignees: ["Jos. Schneider & Co., Optische Werke"],
   },
 
   /* ── Elements ── */
@@ -77,7 +74,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.4645,
       vd: 65.7,
-      fl: -43.6173,
+      focalLengthMm: -43.6173,
       glass: "FK3 class (465/657; probable historical Schott FK3)",
       role: "Front negative meniscus and field-expanding outer component.",
     },
@@ -88,10 +85,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7174,
       vd: 29.5,
-      fl: -55.4303,
+      focalLengthMm: -55.4303,
       glass: "SF1 (Schott, legacy dense flint; 717/295)",
-      cemented: "D1",
       role: "High-dispersion negative member of the front cemented doublet.",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -100,10 +97,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.5601,
       vd: 47,
-      fl: 19.3353,
+      focalLengthMm: 19.3353,
       glass: "FEL3 (HOYA catalog-equivalent; production supplier unspecified)",
-      cemented: "D1",
       role: "Positive member of the front cemented doublet.",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -112,10 +109,10 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.5827,
       vd: 46.5,
-      fl: 18.485,
+      focalLengthMm: 18.485,
       glass: "BAF3 class (583/465; modern Schott N-BAF3 / Hikari J-BAF3 equivalents)",
-      cemented: "D2",
       role: "Positive member of the rear cemented doublet.",
+      cemented: "D2",
     },
     {
       id: 5,
@@ -124,10 +121,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7174,
       vd: 29.5,
-      fl: -48.7083,
+      focalLengthMm: -48.7083,
       glass: "SF1 (Schott, legacy dense flint; 717/295)",
-      cemented: "D2",
       role: "High-dispersion negative member of the rear cemented doublet.",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -136,7 +133,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.4645,
       vd: 65.7,
-      fl: -41.741,
+      focalLengthMm: -41.741,
       glass: "FK3 class (465/657; probable historical Schott FK3)",
       role: "Rear negative meniscus and outer field component.",
     },
@@ -144,27 +141,33 @@ const LENS_DATA = {
 
   /* ── Surfaces ── */
   surfaces: [
-    { label: "1", R: 140.52285, d: 1.66005, nd: 1.4645, elemId: 1, sd: 19.75 },
-    { label: "2", R: 17.6409, d: 11.6433, nd: 1, elemId: 0, sd: 15.8 },
-    { label: "3", R: 19.56105, d: 8.5221, nd: 1.7174, elemId: 2, sd: 10.85 },
-    { label: "4", R: 10.7253, d: 8.39205, nd: 1.5601, elemId: 3, sd: 9.55 },
-    { label: "5", R: 800.1441, d: 0.983025, nd: 1, elemId: 0, sd: 5.75 },
+    { label: "1", R: 140.52285, d: 1.66005, sd: 19.75, medium: 1 },
+    { label: "2", R: 17.6409, d: 11.6433, sd: 15.8 },
+    { label: "3", R: 19.56105, d: 8.5221, sd: 10.85, medium: 2 },
+    { label: "4", R: 10.7253, d: 8.39205, sd: 9.55, medium: 3 },
+    { label: "5", R: 800.1441, d: 0.983025, sd: 5.75 },
     // STO position inferred from Fig. 1: midpoint of the patent's undivided d5 diaphragm space.
-    { label: "STO", R: 1e15, d: 0.983025, nd: 1, elemId: 0, sd: 5.288623 },
-    { label: "6", R: 1e15, d: 7.7877, nd: 1.5827, elemId: 4, sd: 5.75 },
-    { label: "7", R: -10.7712, d: 8.2926, nd: 1.7174, elemId: 5, sd: 9.55 },
-    { label: "8", R: -20.5785, d: 11.6433, nd: 1, elemId: 0, sd: 10.85 },
-    { label: "9", R: -17.83215, d: 1.66005, nd: 1.4645, elemId: 6, sd: 15.8 },
-    { label: "10", R: -228.68145, d: 56.152788, nd: 1, elemId: 0, sd: 19.75 },
+    { label: "STO", R: "flat", d: 0.983025 },
+    { label: "6", R: "flat", d: 7.7877, sd: 5.75, medium: 4 },
+    { label: "7", R: -10.7712, d: 8.2926, sd: 9.55, medium: 5 },
+    { label: "8", R: -20.5785, d: 11.6433, sd: 10.85 },
+    { label: "9", R: -17.83215, d: 1.66005, sd: 15.8, medium: 6 },
+    { label: "10", R: -228.68145, sd: 19.75 },
   ],
 
-  asph: {},
-
-  /* ── Unit-focus back-focus change ── */
-  var: {
-    "10": [56.152788, 66.57548],
+  focus: {
+    closeFocusM: 0.75,
+    description:
+      "Unit focus by camera standard/bellows; 0.75 m is a declared visualization endpoint, not a manufacturer MFD.",
   },
-  varLabels: [["10", "BF"]],
+
+  /* (moved from var) ── Unit-focus back-focus change ── */
+  gaps: { "10": { label: "BF", values: [[56.152788, 66.57548]] } },
+
+  aperture: { nominalFNumber: 8, fStops: [8, 11, 16, 22], maxFNumber: 22 },
+
+  // Schneider publishes 100° coverage stopped to f/22; full-aperture coverage is 92°.
+  projection: { kind: "rectilinear", fullFieldDeg: 100, maxTraceFieldDeg: 50 },
 
   groups: [
     { text: "I", fromSurface: "1", toSurface: "2" },
@@ -177,16 +180,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
 
-  closeFocusM: 0.75,
-  focusDescription:
-    "Unit focus by camera standard/bellows; 0.75 m is a declared visualization endpoint, not a manufacturer MFD.",
-
-  nominalFno: 8,
-  fstopSeries: [8, 11, 16, 22],
-  maxFstop: 22,
-
-  scFill: 0.54,
-  yScFill: 0.78,
-} satisfies LensDataInput;
+  layout: { scFill: 0.54, yScFill: 0.78 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

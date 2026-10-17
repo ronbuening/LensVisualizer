@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
@@ -20,11 +20,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   are unchanged. There are no aspheres. Computed EFL = 90.0123058875 mm. ║
  * ║                                                                            ║
  * ║ STOP                                                                      ║
- * ║   The patent only draws diaphragm B1 within l2. From the patent figure,   ║
- * ║   B1 is modeled at approximately 32% of l2 measured from r5. The scaled   ║
- * ║   22.239 mm gap is therefore split 7.11648 / 15.12252 mm. The physical   ║
- * ║   stop SD = 9.6550061489 mm is calibrated from the modeled entrance pupil║
- * ║   to f/2.8; it is not a published diaphragm diameter.                    ║
+ * ║   The patent only draws diaphragm B1 within l2. From the patent figure, B1║
+ * ║   is modeled at approximately 32% of l2 measured from r5. The scaled      ║
+ * ║   22.239 mm gap is therefore split 7.11648 / 15.12252 mm. The stop radius ║
+ * ║   is derived from the design f-number f/2.8; it is not a published        ║
+ * ║   diaphragm diameter.                                                     ║
  * ║                                                                            ║
  * ║ SEMI-DIAMETERS                                                            ║
  * ║   No clear apertures are published. SDs are modeled from exact spherical ║
@@ -52,96 +52,99 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "schacht-travenar-90f28",
   maker: "Schacht",
   name: "SCHACHT TRAVENAR 90mm f/2.8",
   subtitle: "US 2,721,501 Example 1 — strong inferred production correlation",
-  specs: ["4 ELEMENTS / 3 GROUPS", "f = 90.012 mm (modeled)", "f/2.8", "28° FULL FIELD", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 90,
-  focalLengthDesign: 90.0123058875,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.8,
-  lensMounts: ["exakta"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 2,721,501",
-  patentAuthors: ["Ludwig Bertele"],
-  patentAssignees: [],
-  patentYear: 1955,
-  elementCount: 4,
-  groupCount: 3,
+  catalog: {
+    lensMounts: ["exakta"],
+    imageFormat: "135-full-frame",
+    specs: ["4 ELEMENTS / 3 GROUPS", "f = 90.012 mm (modeled)", "f/2.8", "28° FULL FIELD", "ALL-SPHERICAL"],
+    elementCount: 4,
+    groupCount: 3,
+    focalLengthMm: { marketing: 90, design: 90.0123058875 },
+    fNumber: { marketing: 2.8, design: 2.8 },
+  },
+
+  source: { patentNumber: "US 2,721,501", patentYear: 1955, authors: ["Ludwig Bertele"], assignees: [] },
 
   elements: [
     {
       id: 1,
       name: "L1",
-      diagramLabel: "L1",
       label: "Front positive meniscus",
       type: "Positive Meniscus",
       nd: 1.66994,
       vd: 47.2,
       indexReference: "d",
-      fl: 97.5650489315,
+      focalLengthMm: 97.5650489315,
       glass: "BAF10 / S-BAH10 class (supplier unconfirmed)",
       role: "Positive front member; begins convergence before the negative-power cemented middle member.",
+      diagramLabel: "L1",
     },
     {
       id: 2,
       name: "L2",
-      diagramLabel: "L2",
       label: "Cemented positive lens",
       type: "Biconvex Positive",
       nd: 1.56536,
       vd: 55.8,
       indexReference: "d",
-      fl: 38.3045677292,
+      focalLengthMm: 38.3045677292,
       glass: "Unmatched (nd=1.56536, nu_d=55.8; nearest BAK4/BAL14 family outside delta-n=0.003)",
-      cemented: "D1",
       role: "Positive component of the cemented middle member.",
+      diagramLabel: "L2",
+      cemented: "D1",
     },
     {
       id: 3,
       name: "L3",
-      diagramLabel: "L3",
       label: "Cemented negative lens",
       type: "Biconcave Negative",
       nd: 1.68981,
       vd: 31.2,
       indexReference: "d",
-      fl: -23.2546036275,
+      focalLengthMm: -23.2546036275,
       glass: "SF8 / S-TIM28 class (supplier unconfirmed)",
-      cemented: "D1",
       role: "Negative component of the cemented middle member; reduces convergence before the rear member.",
+      diagramLabel: "L3",
+      cemented: "D1",
     },
     {
       id: 4,
       name: "L4",
-      diagramLabel: "L4",
       label: "Rear positive meniscus",
       type: "Positive Meniscus",
       nd: 1.72747,
       vd: 28.4,
       indexReference: "d",
-      fl: 123.1193262091,
+      focalLengthMm: 123.1193262091,
       glass: "SF10 / ZF4 / FD10 class (supplier unconfirmed)",
       role: "Positive rear member; restores convergence after the negative cemented middle member.",
+      diagramLabel: "L4",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 47.187, d: 4.14, nd: 1.66994, elemId: 1, sd: 22.2 },
-    { label: "2", R: 163.719, d: 0.414, nd: 1.0, elemId: 0, sd: 22.2 },
-    { label: "3", R: 23.796, d: 12.105, nd: 1.56536, elemId: 2, sd: 20.1 },
-    { label: "4", R: -196.551, d: 2.79, nd: 1.68981, elemId: 3, sd: 17.7 },
-    { label: "5", R: 17.568, d: 7.11648, nd: 1.0, elemId: 0, sd: 12.4 },
-    { label: "STO", R: 1e15, d: 15.12252, nd: 1.0, elemId: 0, sd: 9.6550061489 },
-    { label: "6", R: 62.379, d: 2.277, nd: 1.72747, elemId: 4, sd: 12.2 },
-    { label: "7", R: 202.347, d: 42.929364488, nd: 1.0, elemId: 0, sd: 12.3 },
+    { label: "1", R: 47.187, d: 4.14, sd: 22.2, medium: 1 },
+    { label: "2", R: 163.719, d: 0.414, sd: 22.2 },
+    { label: "3", R: 23.796, d: 12.105, sd: 20.1, medium: 2 },
+    { label: "4", R: -196.551, d: 2.79, sd: 17.7, medium: 3 },
+    { label: "5", R: 17.568, d: 7.11648, sd: 12.4 },
+    { label: "STO", R: "flat", d: 15.12252 },
+    { label: "6", R: 62.379, d: 2.277, sd: 12.2, medium: 4 },
+    { label: "7", R: 202.347, d: 42.929364488, sd: 12.3 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 1.0,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION — manufacturer literature specifies 1 m to infinity, but no internal finite-focus spacing law is published; the fixed patent prescription is retained without focus var.",
+  },
+
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "FRONT MEMBER", fromSurface: "1", toSurface: "2" },
@@ -150,15 +153,7 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "D1", fromSurface: "3", toSurface: "5" }],
 
-  closeFocusM: 1.0,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION — manufacturer literature specifies 1 m to infinity, but no internal finite-focus spacing law is published; the fixed patent prescription is retained without focus var.",
-
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

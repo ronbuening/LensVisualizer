@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Lens data — Albert Schacht Travenar 135mm f/3.5.
@@ -9,8 +9,8 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * The patent publishes f/3.5 but no physical diaphragm location or diameter. The model inserts exactly one STO at
  * the midpoint of the long L3-L4 air space, a neutral deterministic placement rather than a claimed source dimension.
- * Its semi-diameter is calibrated paraxially so the modeled entrance pupil gives f/3.5. Agreement with f/3.5 therefore
- * verifies the calibration, not an unpublished physical diaphragm diameter or location.
+ * Its radius is derived from the design f-number f/3.5. Agreement with f/3.5 therefore verifies the calibration,
+ * not an unpublished physical diaphragm diameter or location.
  *
  * The patent publishes no clear apertures. Surface semi-diameters are modeled from exact meridional spherical-ray
  * containment at the project's default 0.6 × 135-format diagonal half-field, then enlarged by 5% plus 0.2 mm and checked
@@ -27,24 +27,23 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "schacht-travenar-135mm-f35",
   maker: "Schacht",
   name: "SCHACHT TRAVENAR 135mm f/3.5",
   subtitle: "DE 843 305 Example 2 — 1.35× production-scale correlation; attribution circumstantial",
-  specs: ["4 ELEMENTS / 4 GROUPS", "ALL-SPHERICAL", "135 FORMAT"],
 
-  focalLengthMarketing: 135,
-  focalLengthDesign: 135.348216996,
-  apertureMarketing: 3.5,
-  apertureDesign: 3.5,
-  lensMounts: ["exakta"],
-  imageFormat: "135-full-frame",
-  patentNumber: "DE 843 305",
-  patentAuthors: ["Ludwig Bertele"],
-  patentAssignees: [],
-  patentYear: 1952,
-  elementCount: 4,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["exakta"],
+    imageFormat: "135-full-frame",
+    specs: ["4 ELEMENTS / 4 GROUPS", "ALL-SPHERICAL", "135 FORMAT"],
+    elementCount: 4,
+    groupCount: 4,
+    focalLengthMm: { marketing: 135, design: 135.348216996 },
+    fNumber: { marketing: 3.5, design: 3.5 },
+  },
+
+  source: { patentNumber: "DE 843 305", patentYear: 1952, authors: ["Ludwig Bertele"], assignees: [] },
 
   elements: [
     {
@@ -55,7 +54,7 @@ const LENS_DATA = {
       nd: 1.5516,
       vd: 62.6,
       indexReference: "d",
-      fl: 122.340434939,
+      focalLengthMm: 122.340434939,
       glass: "N-PSK3 — coordinate-compatible spectral proxy (supplier unconfirmed)",
       role: "Front collecting element; positive standalone paraxial power.",
     },
@@ -67,7 +66,7 @@ const LENS_DATA = {
       nd: 1.6204,
       vd: 60.3,
       indexReference: "d",
-      fl: 110.603025042,
+      focalLengthMm: 110.603025042,
       glass: "N-SK16 — 620603 coordinate; compatible spectral proxy (supplier unconfirmed)",
       role: "Second collecting element, strongly bent toward the object side.",
     },
@@ -79,7 +78,7 @@ const LENS_DATA = {
       nd: 1.7215,
       vd: 29.3,
       indexReference: "d",
-      fl: -47.424135496,
+      focalLengthMm: -47.424135496,
       glass: "S-TIH18 — coordinate-compatible spectral proxy (supplier unconfirmed)",
       role: "Diverging element that supplies the principal negative power in the telephoto form.",
     },
@@ -91,37 +90,36 @@ const LENS_DATA = {
       nd: 1.747,
       vd: 34.9,
       indexReference: "d",
-      fl: 149.741798078,
+      focalLengthMm: 149.741798078,
       glass: "LAFN7 — coordinate-compatible spectral proxy (supplier unconfirmed)",
       role: "Rear collecting element following the long internal air space.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 60.9525, d: 5.0085, nd: 1.5516, elemId: 1, sd: 21.36 },
-    { label: "2", R: 611.4555, d: 0.297, nd: 1.0, elemId: 0, sd: 20.99 },
-    { label: "3", R: 33.048, d: 8.964, nd: 1.6204, elemId: 2, sd: 19.42 },
-    { label: "4", R: 57.132, d: 6.264, nd: 1.0, elemId: 0, sd: 16.95 },
-    { label: "5", R: 104.706, d: 5.0085, nd: 1.7215, elemId: 3, sd: 14.43 },
-    { label: "6", R: 25.272, d: 15.5385, nd: 1.0, elemId: 0, sd: 12.08 },
-    { label: "STO", R: 1e15, d: 15.5385, nd: 1.0, elemId: 0, sd: 11.389937443 },
-    { label: "7", R: 68.6745, d: 3.0105, nd: 1.747, elemId: 4, sd: 15.5 },
-    { label: "8", R: 174.555, d: 69.454041222, nd: 1.0, elemId: 0, sd: 15.5 },
+    { label: "1", R: 60.9525, d: 5.0085, sd: 21.36, medium: 1 },
+    { label: "2", R: 611.4555, d: 0.297, sd: 20.99 },
+    { label: "3", R: 33.048, d: 8.964, sd: 19.42, medium: 2 },
+    { label: "4", R: 57.132, d: 6.264, sd: 16.95 },
+    { label: "5", R: 104.706, d: 5.0085, sd: 14.43, medium: 3 },
+    { label: "6", R: 25.272, d: 15.5385, sd: 12.08 },
+    { label: "STO", R: "flat", d: 15.5385 },
+    { label: "7", R: 68.6745, d: 3.0105, sd: 15.5, medium: 4 },
+    { label: "8", R: 174.555, d: 69.454041222, sd: 15.5 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 1.5,
+    description:
+      "The patent supplies only an infinity-focus prescription. The reported 1.5 m close-focus distance is product information; focus travel is not modeled.",
+  },
+
+  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16] },
+
   groups: [],
   doublets: [],
 
-  closeFocusM: 1.5,
-  focusDescription: "The patent supplies only an infinity-focus prescription. The reported 1.5 m close-focus distance is product information; focus travel is not modeled.",
-
-  nominalFno: 3.5,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16],
-
-  yScFill: 0.38,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.38 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

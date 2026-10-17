@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Hidden regression fixture for automatically resolved folded mirror paths.
@@ -12,37 +12,22 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "reference-newtonian-side-focus",
   maker: "Reference",
-  visible: false,
   name: "REFERENCE Newtonian Side Focus",
   subtitle: "Hidden automatic folded-path regression fixture",
-  specs: ["AUTO PATH", "DIAGONAL SECONDARY", "SIDE IMAGE PLANE", "f = 100 mm"],
+  visible: false,
 
-  focalLengthMarketing: 100,
-  focalLengthDesign: 100,
-  apertureMarketing: 4,
-  apertureDesign: 4,
-  patentYear: 2026,
-  elementCount: 2,
-  groupCount: 2,
-  nominalFno: 4,
-  closeFocusM: 10,
-  yScFill: 0.5,
-  scFill: 0.62,
-  rayLeadFrac: 0.25,
-  maxFstop: 16,
-  fstopSeries: [4, 5.6, 8, 11, 16],
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 8,
-    maxTraceFieldDeg: 4,
+  catalog: {
+    specs: ["AUTO PATH", "DIAGONAL SECONDARY", "SIDE IMAGE PLANE", "f = 100 mm"],
+    elementCount: 2,
+    groupCount: 2,
+    focalLengthMm: { marketing: 100, design: 100 },
+    fNumber: { marketing: 4, design: 4 },
   },
-  opticalPath: {
-    mode: "auto",
-    imagePlane: { z: 35, y: 25, normal: { z: 0, y: 1 }, label: "IMG" },
-    maxInteractions: 8,
-  },
+
+  source: { patentYear: 2026 },
 
   elements: [
     {
@@ -52,7 +37,7 @@ const LENS_DATA = {
       type: "Concave First-Surface Mirror",
       nd: 1.0,
       vd: 0,
-      fl: 100,
+      focalLengthMm: 100,
       glass: "Aluminized front surface",
       apd: false,
       role: "Spherical primary mirror that sends the beam back toward the diagonal secondary.",
@@ -66,21 +51,19 @@ const LENS_DATA = {
       vd: 0,
       glass: "Aluminized flat surface",
       apd: false,
-      fromSurface: "SEC",
-      toSurface: "SECB",
       role: "Meridional fold mirror active only from the rear side after primary reflection.",
+      span: ["SEC", "SECB"],
     },
   ],
 
   surfaces: [
-    { label: "STO", R: 1e15, d: 35, nd: 1.0, elemId: 0, sd: 30 },
+    { label: "STO", R: "flat", d: 35, sd: 30 },
     {
       label: "SEC",
-      R: 1e15,
+      R: "flat",
       d: 0.5,
-      nd: 1.0,
-      elemId: 2,
       sd: 10,
+      medium: 2,
       interaction: {
         type: "reflect",
         incidentSide: "rear",
@@ -89,27 +72,35 @@ const LENS_DATA = {
         normal: { z: 1, y: 1 },
       },
     },
-    { label: "SECB", R: 1e15, d: 64.5, nd: 1.0, elemId: 0, sd: 10, interaction: { type: "refract", normal: { z: 1, y: 1 } } },
+    { label: "SECB", R: "flat", d: 64.5, sd: 10, interaction: { type: "refract", normal: { z: 1, y: 1 } } },
     {
       label: "M1",
       R: -200,
       d: 2,
-      nd: 1.0,
-      elemId: 1,
       sd: 30,
+      medium: 1,
       interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "first-surface" },
     },
-    { label: "M1B", R: 1e15, d: 0, nd: 1.0, elemId: 0, sd: 30 },
+    { label: "M1B", R: "flat", d: 0, sd: 30 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: { closeFocusM: 10 },
+
+  aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16], maxFNumber: 16 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 8, maxTraceFieldDeg: 4 },
+
+  opticalPath: { mode: "auto", imagePlane: { z: 35, y: 25, normal: { z: 0, y: 1 }, label: "IMG" }, maxInteractions: 8 },
+
   groups: [
     { text: "M2", fromSurface: "SEC", toSurface: "SECB" },
     { text: "M1", fromSurface: "M1", toSurface: "M1B" },
   ],
   doublets: [],
-} satisfies LensDataInput;
+
+  layout: { scFill: 0.62, yScFill: 0.5 },
+
+  rays: { rayLeadFrac: 0.25 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

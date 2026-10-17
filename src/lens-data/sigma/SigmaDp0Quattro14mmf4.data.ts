@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -29,25 +29,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "sigma-dp0-quattro-14-f4",
   maker: "Sigma",
   name: "SIGMA 14mm f/4 (Sigma dp0 Quattro)",
   subtitle: "JP 2016-139087 A EXAMPLE 2 — SIGMA / KŌNO, OGASAWARA",
-  specs: ["11 ELEMENTS / 8 GROUPS", "f ≈ 13.97 mm", "F/4.13", "2ω ≈ 90.9°", "3 ASPHERICAL SURFACES"],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: 14,
-  focalLengthDesign: 13.97,
-  apertureMarketing: 4,
-  apertureDesign: 4.13,
-  lensMounts: ["fixed-lens-camera"],
-  imageFormat: "aps-c",
-  patentNumber: "JP 2016-139087 A",
-  patentAuthors: ["Tomoki Kono", "Noriyuki Ogasawara"],
-  patentAssignees: ["Sigma Corporation"],
-  patentYear: 2016,
-  elementCount: 11,
-  groupCount: 8,
+  catalog: {
+    lensMounts: ["fixed-lens-camera"],
+    imageFormat: "aps-c",
+    specs: ["11 ELEMENTS / 8 GROUPS", "f ≈ 13.97 mm", "F/4.13", "2ω ≈ 90.9°", "3 ASPHERICAL SURFACES"],
+    elementCount: 11,
+    groupCount: 8,
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: 14, design: 13.97 },
+    fNumber: { marketing: 4, design: 4.13 },
+  },
+
+  source: {
+    patentNumber: "JP 2016-139087 A",
+    patentYear: 2016,
+    authors: ["Tomoki Kono", "Noriyuki Ogasawara"],
+    assignees: ["Sigma Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -58,7 +62,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.58313,
       vd: 59.46,
-      fl: -26.7,
+      focalLengthMm: -26.7,
       glass: "S-BAL42 (OHARA)",
       apd: false,
       role: "Front diverging meniscus with double-sided aspherical surfaces for distortion control. Dominant A4 on front flattens peripheral refraction; paraboloidal rear (K = −1) extends usable aperture beyond the sphere's geometric limit.",
@@ -70,7 +74,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.497,
       vd: 81.6,
-      fl: -65.1,
+      focalLengthMm: -65.1,
       glass: "S-FPL51 (OHARA) / FCD1 (HOYA)",
       apd: "inferred",
       apdNote: "ED fluorophosphate (SLD); ΔPgF ≈ +0.038. Satisfies conditional (1): νdLA > 70.",
@@ -83,7 +87,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.437,
       vd: 95.1,
-      fl: -127.2,
+      focalLengthMm: -127.2,
       glass: "FCD100 (HOYA)",
       apd: "inferred",
       apdNote: "Super-ED fluoride crown (FLD); near-fluorite dispersion. Low density enables lightweight focus group.",
@@ -96,7 +100,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.59282,
       vd: 68.62,
-      fl: -24.1,
+      focalLengthMm: -24.1,
       glass: "FCD515 (HOYA)",
       apd: "inferred",
       apdNote: "Phosphate crown (SLD); positive anomalous partial dispersion.",
@@ -110,7 +114,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5168,
       vd: 64.19,
-      fl: 14.8,
+      focalLengthMm: 14.8,
       glass: "BSC7 (HOYA)",
       apd: false,
       role: "Positive element of doublet Ja (combined f = +36.8 mm). Standard BK7-class crown. Begins converging the divergent beam from G1/G2.",
@@ -123,7 +127,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.437,
       vd: 95.1,
-      fl: 46.6,
+      focalLengthMm: 46.6,
       glass: "FCD100 (HOYA)",
       apd: "inferred",
       apdNote:
@@ -137,7 +141,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.83481,
       vd: 42.72,
-      fl: -31.5,
+      focalLengthMm: -31.5,
       glass: "S-LAH55V (OHARA)",
       apd: false,
       role: "Negative lanthanum dense flint in doublet Jb. Large Δνd = 52.4 against FLD partner L3e drives primary axial color correction.",
@@ -150,7 +154,7 @@ const LENS_DATA = {
       type: "Biconvex Positive (Equi-Convex)",
       nd: 1.437,
       vd: 95.1,
-      fl: 22.4,
+      focalLengthMm: 22.4,
       glass: "FCD100 (HOYA)",
       apd: "inferred",
       apdNote: "Super-ED fluoride crown (FLD). Equi-convex form (R = ±18.81 mm) minimizes coma.",
@@ -164,7 +168,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.437,
       vd: 95.1,
-      fl: 26.4,
+      focalLengthMm: 26.4,
       glass: "FCD100 (HOYA)",
       apd: "inferred",
       apdNote: "Super-ED fluoride crown (FLD).",
@@ -178,7 +182,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.883,
       vd: 40.8,
-      fl: -23.8,
+      focalLengthMm: -23.8,
       glass: "TAFD30 (HOYA)",
       apd: false,
       role: "Highest-index glass in the design (nd = 1.883). Negative meniscus in doublet Jc; Δνd = 54.3 with L3f. Second major chromatic correction interface.",
@@ -191,7 +195,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.8061,
       vd: 40.73,
-      fl: -84.4,
+      focalLengthMm: -84.4,
       glass: "NBFD13 (HOYA)",
       apd: false,
       role: "Last element before image. Rear aspherical surface provides field-flattening and residual astigmatism correction. Titanium flint; aspherical departure ~0.03 mm suggests polished glass asphere.",
@@ -199,85 +203,83 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     // ─── G1: front diverging group ───
-    { label: "1A", R: 23.0837, d: 2.0, nd: 1.58313, elemId: 1, sd: 15.0 }, // L1a front (asph)
-    { label: "2A", R: 9.0102, d: 3.1875, nd: 1.0, elemId: 0, sd: 12.5 }, // L1a rear (asph) → air
-    { label: "3", R: 16.1661, d: 1.2, nd: 1.497, elemId: 2, sd: 10.8 }, // L1b front
-    { label: "4", R: 10.5125, d: 16.797, nd: 1.0, elemId: 0, sd: 9.4 }, // L1b rear → air (d4, var)
+    {
+      label: "1A",
+      R: 23.0837,
+      d: 2.0,
+      sd: 15.0,
+      medium: 1,
+      asphere: { K: 0, A4: -3.96887e-5, A6: 2.9429e-8, A8: -5.15347e-11, A10: 0 },
+    }, // L1a front (asph)
+    {
+      label: "2A",
+      R: 9.0102,
+      d: 3.1875,
+      sd: 12.5,
+      asphere: { K: -1.0, A4: 3.35668e-5, A6: -1.00793e-7, A8: -1.13985e-9, A10: 0 },
+    }, // L1a rear (asph) → air
+    { label: "3", R: 16.1661, d: 1.2, sd: 10.8, medium: 2 }, // L1b front
+    { label: "4", R: 10.5125, sd: 9.4 }, // L1b rear → air (d4, var)
 
     // ─── G2: inner focus group ───
-    { label: "5", R: -200.0, d: 1.0, nd: 1.437, elemId: 3, sd: 5.8 }, // L2a front
-    { label: "6", R: 77.0673, d: 4.4772, nd: 1.0, elemId: 0, sd: 5.5 }, // L2a rear → air (d6, var)
+    { label: "5", R: -200.0, d: 1.0, sd: 5.8, medium: 3 }, // L2a front
+    { label: "6", R: 77.0673, sd: 5.5 }, // L2a rear → air (d6, var)
 
     // ─── G3: positive rear group (with stop) ───
-    { label: "STO", R: 1e15, d: 2.6974, nd: 1.0, elemId: 0, sd: 1.691 }, // aperture stop
+    { label: "STO", R: "flat", d: 2.6974 }, // aperture stop
 
     // Doublet Ja (L3a + L3b)
-    { label: "7", R: 33.105, d: 0.8, nd: 1.59282, elemId: 4, sd: 5.5 }, // L3a front
-    { label: "8", R: 9.9, d: 3.5521, nd: 1.5168, elemId: 5, sd: 5.8 }, // junction → L3b
-    { label: "9", R: -29.6381, d: 4.7753, nd: 1.0, elemId: 0, sd: 6.5 }, // L3b rear → air (incl. 1.4753 mm flare cut gap)
+    { label: "7", R: 33.105, d: 0.8, sd: 5.5, medium: 4 }, // L3a front
+    { label: "8", R: 9.9, d: 3.5521, sd: 5.8, medium: 5 }, // junction → L3b
+    { label: "9", R: -29.6381, d: 4.7753, sd: 6.5 }, // L3b rear → air (incl. 1.4753 mm flare cut gap)
 
     // L3c singlet
-    { label: "10", R: 18.5751, d: 3.1373, nd: 1.437, elemId: 6, sd: 8.5 }, // L3c front
-    { label: "11", R: 202.4366, d: 3.3777, nd: 1.0, elemId: 0, sd: 8.5 }, // L3c rear → air
+    { label: "10", R: 18.5751, d: 3.1373, sd: 8.5, medium: 6 }, // L3c front
+    { label: "11", R: 202.4366, d: 3.3777, sd: 8.5 }, // L3c rear → air
 
     // Doublet Jb (L3d + L3e)
-    { label: "12", R: 68.6065, d: 1.4048, nd: 1.83481, elemId: 7, sd: 8.8 }, // L3d front
-    { label: "13", R: 18.8114, d: 4.7258, nd: 1.437, elemId: 8, sd: 8.8 }, // junction → L3e
-    { label: "14", R: -18.8114, d: 2.6357, nd: 1.0, elemId: 0, sd: 8.8 }, // L3e rear → air
+    { label: "12", R: 68.6065, d: 1.4048, sd: 8.8, medium: 7 }, // L3d front
+    { label: "13", R: 18.8114, d: 4.7258, sd: 8.8, medium: 8 }, // junction → L3e
+    { label: "14", R: -18.8114, d: 2.6357, sd: 8.8 }, // L3e rear → air
 
     // Doublet Jc (L3f + L3g)
-    { label: "15", R: 40.1618, d: 4.7212, nd: 1.437, elemId: 9, sd: 9.5 }, // L3f front
-    { label: "16", R: -15.614, d: 0.75, nd: 1.883, elemId: 10, sd: 9.0 }, // junction → L3g
-    { label: "17", R: -62.2753, d: 2.5693, nd: 1.0, elemId: 0, sd: 9.0 }, // L3g rear → air
+    { label: "15", R: 40.1618, d: 4.7212, sd: 9.5, medium: 9 }, // L3f front
+    { label: "16", R: -15.614, d: 0.75, sd: 9.0, medium: 10 }, // junction → L3g
+    { label: "17", R: -62.2753, d: 2.5693, sd: 9.0 }, // L3g rear → air
 
     // L3h singlet
-    { label: "18", R: -27.7936, d: 1.1, nd: 1.8061, elemId: 11, sd: 9.0 }, // L3h front
-    { label: "19A", R: -47.8074, d: 17.6874, nd: 1.0, elemId: 0, sd: 9.0 }, // L3h rear (asph) → BFD
+    { label: "18", R: -27.7936, d: 1.1, sd: 9.0, medium: 11 }, // L3h front
+    {
+      label: "19A",
+      R: -47.8074,
+      d: 17.6874,
+      sd: 9.0,
+      asphere: { K: 0, A4: 4.27783e-5, A6: 8.80624e-8, A8: 3.92712e-10, A10: 2.22145e-12 },
+    }, // L3h rear (asph) → BFD
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {
-    "1A": {
-      K: 0,
-      A4: -3.96887e-5,
-      A6: 2.9429e-8,
-      A8: -5.15347e-11,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
-    "2A": {
-      K: -1.0,
-      A4: 3.35668e-5,
-      A6: -1.00793e-7,
-      A8: -1.13985e-9,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
-    "19A": {
-      K: 0,
-      A4: 4.27783e-5,
-      A6: 8.80624e-8,
-      A8: 3.92712e-10,
-      A10: 2.22145e-12,
-      A12: 0,
-      A14: 0,
-    },
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.2,
+    description:
+      "Inner focus — G2 (single FLD biconcave L2a) moves forward toward the object. " +
+      "Gap conservation: Δd4 + Δd6 = 0; total track and BFD fixed. " +
+      "Patent close focus at 200 mm (object to image); production dp0 Quattro specifies MFD = 18 cm.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
   },
 
-  /* ── Variable air spacings (inner focus) ── */
-  var: {
-    "4": [16.797, 12.9201], // d4: L1b rear → L2a front
-    "6": [4.4772, 8.3541], // d6: L2a rear → STO
+  /* (moved from var) ── Variable air spacings (inner focus) ── */
+  gaps: {
+    "4": { label: "D4", values: [[16.797, 12.9201]] }, // d4: L1b rear → L2a front
+    "6": { label: "D6", values: [[4.4772, 8.3541]] }, // d6: L2a rear → STO
   },
 
-  varLabels: [
-    ["4", "D4"],
-    ["6", "D6"],
-  ],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 4.13, fStops: [4.13, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22], blades: 7 },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -285,30 +287,14 @@ const LENS_DATA = {
     { text: "G2", fromSurface: "5", toSurface: "6" },
     { text: "G3", fromSurface: "STO", toSurface: "19A" },
   ],
-
   doublets: [
     { text: "Ja", fromSurface: "7", toSurface: "9" },
     { text: "Jb", fromSurface: "12", toSurface: "14" },
     { text: "Jc", fromSurface: "15", toSurface: "17" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.2,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  focusDescription:
-    "Inner focus — G2 (single FLD biconcave L2a) moves forward toward the object. " +
-    "Gap conservation: Δd4 + Δd6 = 0; total track and BFD fixed. " +
-    "Patent close focus at 200 mm (object to image); production dp0 Quattro specifies MFD = 18 cm.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 4.13,
-  apertureBlades: 7,
-  fstopSeries: [4.13, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22],
-
   /* ── Layout tuning ── */
-  scFill: 0.48,
-  yScFill: 0.36,
-} satisfies LensDataInput;
+  layout: { scFill: 0.48, yScFill: 0.36 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

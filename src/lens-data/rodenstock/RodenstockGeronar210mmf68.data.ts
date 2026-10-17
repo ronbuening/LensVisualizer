@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -39,24 +39,28 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "rodenstock-geronar-210mm-f68",
   maker: "Rodenstock",
   name: "RODENSTOCK GERONAR 210mm f/6.8",
   subtitle: "DE 28 18 394 B1 — sole numerical example",
-  specs: ["3 elements / 3 groups", "f' = 210.10 mm (d-line)", "f/6.8", "2ω ≥ 56° patent field", "all-spherical"],
 
-  focalLengthMarketing: 210,
-  focalLengthDesign: 210.1035,
-  apertureMarketing: 6.8,
-  apertureDesign: 6.8,
-  lensMounts: ["large-format-lens-board"],
-  imageFormat: "5x7",
-  patentNumber: "DE 28 18 394 B1",
-  patentAuthors: ["Josef Weiß", "Franz Schlegel"],
-  patentAssignees: ["Optische Werke G. Rodenstock"],
-  patentYear: 1979,
-  elementCount: 3,
-  groupCount: 3,
+  catalog: {
+    lensMounts: ["large-format-lens-board"],
+    imageFormat: "5x7",
+    specs: ["3 elements / 3 groups", "f' = 210.10 mm (d-line)", "f/6.8", "2ω ≥ 56° patent field", "all-spherical"],
+    elementCount: 3,
+    groupCount: 3,
+    focalLengthMm: { marketing: 210, design: 210.1035 },
+    fNumber: { marketing: 6.8, design: 6.8 },
+  },
+
+  source: {
+    patentNumber: "DE 28 18 394 B1",
+    patentYear: 1979,
+    authors: ["Josef Weiß", "Franz Schlegel"],
+    assignees: ["Optische Werke G. Rodenstock"],
+  },
 
   elements: [
     {
@@ -66,14 +70,14 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.62041,
       vd: 60.32,
-      fl: 52.07,
+      focalLengthMm: 52.07,
       glass: "N-SK16 / SK16 (Schott)",
       apd: false,
+      role: "Strong front positive crown; the rear radius is nearly plano relative to the front curvature.",
       dPgF: -0.0011,
       nC: 1.61727,
       nF: 1.62756,
       ng: 1.63312,
-      role: "Strong front positive crown; the rear radius is nearly plano relative to the front curvature.",
     },
     {
       id: 2,
@@ -82,14 +86,14 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.54814,
       vd: 45.75,
-      fl: -46.28,
+      focalLengthMm: -46.28,
       glass: "LLF1 (Schott)",
       apd: false,
+      role: "Thin extra-light flint negative corrector tightly spaced behind L1.",
       dPgF: -0.0009,
       nC: 1.54457,
       nF: 1.55655,
       ng: 1.56333,
-      role: "Thin extra-light flint negative corrector tightly spaced behind L1.",
     },
     {
       id: 3,
@@ -98,52 +102,45 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5168,
       vd: 64.17,
-      fl: 200.12,
+      focalLengthMm: 200.12,
       glass: "N-BK7 / BK7 (Schott)",
       apd: false,
+      role: "Weak rear positive crown completing the triplet and setting the back focal position.",
       dPgF: -0.0009,
       nC: 1.51432,
       nF: 1.52238,
       ng: 1.52668,
-      role: "Weak rear positive crown completing the triplet and setting the back focal position.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 33.285, d: 5.25, nd: 1.62041, elemId: 1, sd: 16.9 },
-    { label: "2", R: -1030.281, d: 3.402, nd: 1.0, elemId: 0, sd: 16.9 },
-    { label: "3", R: -151.41, d: 0.798, nd: 1.54814, elemId: 2, sd: 15.5 },
-    { label: "4", R: 30.534, d: 4.809, nd: 1.0, elemId: 0, sd: 15.5 },
-    { label: "STO", R: 1e15, d: 16.254, nd: 1.0, elemId: 0, sd: 13.342 },
-    { label: "5", R: 377.58, d: 8.106, nd: 1.5168, elemId: 3, sd: 28.0 },
-    { label: "6", R: -141.393, d: 177.896912, nd: 1.0, elemId: 0, sd: 28.0 },
+    { label: "1", R: 33.285, d: 5.25, sd: 16.9, medium: 1 },
+    { label: "2", R: -1030.281, d: 3.402, sd: 16.9 },
+    { label: "3", R: -151.41, d: 0.798, sd: 15.5, medium: 2 },
+    { label: "4", R: 30.534, d: 4.809, sd: 15.5 },
+    { label: "STO", R: "flat", d: 16.254 },
+    { label: "5", R: 377.58, d: 8.106, sd: 28.0, medium: 3 },
+    { label: "6", R: -141.393, sd: 28.0 },
   ],
 
-  asph: {},
-
-  var: {
-    "6": [177.896912, 206.359055],
+  focus: {
+    closeFocusM: 2.0,
+    description:
+      "Whole-lens unit focus by view-camera rail/bellows; close-focus slider endpoint is illustrative, not lens-limited.",
   },
 
-  varLabels: [["6", "BF"]],
+  gaps: { "6": { label: "BF", values: [[177.896912, 206.359055]] } },
+
+  aperture: { nominalFNumber: 6.8, fStops: [6.8, 8, 11, 16, 22, 32, 45], maxFNumber: 45 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
     { text: "G2", fromSurface: "3", toSurface: "4" },
     { text: "G3", fromSurface: "5", toSurface: "6" },
   ],
-
   doublets: [],
 
-  closeFocusM: 2.0,
-  focusDescription: "Whole-lens unit focus by view-camera rail/bellows; close-focus slider endpoint is illustrative, not lens-limited.",
-
-  nominalFno: 6.8,
-  fstopSeries: [6.8, 8, 11, 16, 22, 32, 45],
-  maxFstop: 45,
-
-  scFill: 0.55,
-  yScFill: 0.72,
-} satisfies LensDataInput;
+  layout: { scFill: 0.55, yScFill: 0.72 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Hidden regression fixture for second-surface mirror tracing.
@@ -13,37 +13,22 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "reference-mangin-second-surface-mirror",
   maker: "Reference",
-  visible: false,
   name: "REFERENCE Mangin Second-Surface Mirror",
   subtitle: "Hidden repeated-surface regression fixture",
-  specs: ["SECOND-SURFACE MIRROR", "REPEATED FRONT SURFACE", "n = 1.5", "f = 73.3 mm"],
+  visible: false,
 
-  focalLengthMarketing: 73,
-  focalLengthDesign: 73.33,
-  apertureMarketing: 4,
-  apertureDesign: 4,
-  patentYear: 2026,
-  elementCount: 1,
-  groupCount: 1,
-  nominalFno: 4,
-  closeFocusM: 10,
-  yScFill: 0.55,
-  scFill: 0.62,
-  rayLeadFrac: 0.3,
-  maxFstop: 16,
-  fstopSeries: [4, 5.6, 8, 11, 16],
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 8,
-    maxTraceFieldDeg: 4,
+  catalog: {
+    specs: ["SECOND-SURFACE MIRROR", "REPEATED FRONT SURFACE", "n = 1.5", "f = 73.3 mm"],
+    elementCount: 1,
+    groupCount: 1,
+    focalLengthMm: { marketing: 73, design: 73.33 },
+    fNumber: { marketing: 4, design: 4 },
   },
-  opticalPath: {
-    surfaceOrder: ["STO", "MG1", "MG2", "MG1"],
-    imagePlane: { z: 35, label: "IMG" },
-    maxInteractions: 5,
-  },
+
+  source: { patentYear: 2026 },
 
   elements: [
     {
@@ -53,7 +38,7 @@ const LENS_DATA = {
       type: "Plano-Concave Second-Surface Mirror",
       nd: 1.5,
       vd: 60,
-      fl: 73.33,
+      focalLengthMm: 73.33,
       glass: "Reference crown glass",
       apd: false,
       role: "Glass body whose rear surface reflects rays back through the entrance surface.",
@@ -61,24 +46,31 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "STO", R: 1e15, d: 100, nd: 1.0, elemId: 0, sd: 25 },
-    { label: "MG1", R: 1e15, d: 10, nd: 1.5, elemId: 1, sd: 25 },
+    { label: "STO", R: "flat", d: 100, sd: 25 },
+    { label: "MG1", R: "flat", d: 10, sd: 25, medium: 1 },
     {
       label: "MG2",
       R: -220,
       d: 0,
-      nd: 1.0,
-      elemId: 0,
       sd: 25,
       interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "second-surface" },
     },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: { closeFocusM: 10 },
+
+  aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16], maxFNumber: 16 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 8, maxTraceFieldDeg: 4 },
+
+  opticalPath: { surfaceOrder: ["STO", "MG1", "MG2", "MG1"], imagePlane: { z: 35, label: "IMG" }, maxInteractions: 5 },
+
   groups: [{ text: "MG", fromSurface: "MG1", toSurface: "MG2" }],
   doublets: [],
-} satisfies LensDataInput;
+
+  layout: { scFill: 0.62, yScFill: 0.55 },
+
+  rays: { rayLeadFrac: 0.3 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

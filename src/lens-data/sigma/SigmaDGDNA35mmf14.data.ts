@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * SIGMA 35mm F1.4 DG DN | Art
@@ -66,177 +66,37 @@ import type { LensDataInput } from "../../types/optics.js";
  * registry.
  */
 
-export const sigmaDgDnA35mmF14Data = {
+const sigmaDgDnA35mmF14Data = {
   /* ── Identity ── */
+  schema: 2,
   key: "sigma-35-f14-dgdn-art",
   maker: "Sigma",
   name: "SIGMA 35mm f/1.4 DG DN | Art",
   subtitle: "JP 2022-33487 A Example 1 — Sigma / Shioda",
-  specs: ["15 ELEMENTS / 11 GROUPS", "f ≈ 33.72 mm (35 mm marketed)", "F/1.4", "2ω ≈ 67.78°", "2 ASPHERICAL SURFACES"],
 
-  /* ── Patent / production metadata ── */
-  focalLengthMarketing: 35,
-  focalLengthDesign: 33.72,
-  lensMounts: ["sony-fe", "l-mount"],
-  imageFormat: "135-full-frame",
-  apertureMarketing: 1.4,
-  apertureDesign: 1.46,
-  patentNumber: "JP 2022-033487 A",
-  patentAuthors: ["Ryo Shioda"],
-  patentAssignees: ["Sigma Corporation"],
-  patentYear: 2022,
-  elementCount: 15,
-  groupCount: 11,
-
-  /* ── Focus configuration ── */
-  closeFocusM: 0.3,
-  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
-  publishedStations: { focus: [1] },
-  focusDescription:
-    "Inner focus by the single-element negative middle group L9. The patent 1.47 m row is exact before the constrained 0.30 m endpoint; lens length remains fixed.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 1.46,
-  fstopSeries: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16],
-
-  /* ── Layout tuning (yScFill required, no default) ── */
-  yScFill: 0.3,
-
-  /* ── Surface prescription ──
-   * 27 optical surfaces, image plane excluded.
-   *   R       radius of curvature in mm; 1e15 = flat (the STO).
-   *   d       thickness to next surface in mm (or BF for the last surface).
-   *   nd      d-line refractive index of the medium *after* this surface;
-   *           1.0 = air.
-   *   elemId  binds glass-entry surfaces to their element (1..15) and is 0
-   *           for every air-side surface and for the STO.
-   *   sd      semi-diameter (half clear aperture) in mm. Initial SDs were
-   *           solved by an iterative marginal-plus-chief-ray paraxial trace at
-   *           F/1.4, then conservatively rebalanced against Sigma's published
-   *           optical-section diagram so L1 reads as the largest front
-   *           collector, the L2-L8 block steps down, L9 remains visibly
-   *           compact, and the final aspheric doublet rises slightly again.
-   *           All values are validated against edge-thickness ≥ 0.4 mm and
-   *           cross-gap rim sag intrusion ≤ 85% of the centre-axis gap.
-   *
-   * Surface labels follow patent numbering. Aspherical surfaces use the "A"
-   * suffix per project convention; the aperture stop is labeled "STO".
-   * Variable gaps (d15 = STO-to-S16, d17 = S17-to-S18) carry their infinity
-   * values here; close-focus values appear in the var object below. */
-  surfaces: [
-    // GFA — L1..L5
-    { label: "1", R: 305.0235, d: 2.2, nd: 1.48749, elemId: 1, sd: 22.0 },
-    { label: "2", R: 24.7212, d: 14.4681, nd: 1.0, elemId: 0, sd: 21.6 },
-    { label: "3", R: -50.0835, d: 1.5, nd: 1.437, elemId: 2, sd: 19.2 },
-    { label: "4", R: 76.0889, d: 0.63, nd: 1.0, elemId: 0, sd: 18.9 },
-    { label: "5", R: 59.3842, d: 6.8109, nd: 1.881, elemId: 3, sd: 19.6 },
-    { label: "6", R: -134.6441, d: 3.9968, nd: 1.0, elemId: 0, sd: 19.2 },
-    // L4/L5 cemented doublet (D1); S7 aspherical
-    { label: "7A", R: 240.5313, d: 6.4886, nd: 1.7725, elemId: 4, sd: 18.9 },
-    { label: "8", R: -43.7781, d: 1.0, nd: 1.5927, elemId: 5, sd: 18.4 },
-    { label: "9", R: 58.963, d: 1.1632, nd: 1.0, elemId: 0, sd: 18.1 },
-
-    // GFB — L6..L8
-    // L6/L7 cemented doublet (D2)
-    { label: "10", R: 46.0805, d: 1.0, nd: 1.6134, elemId: 6, sd: 17.4 },
-    { label: "11", R: 25.4742, d: 10.9986, nd: 1.4586, elemId: 7, sd: 18.6 },
-    { label: "12", R: -128.5813, d: 0.15, nd: 1.0, elemId: 0, sd: 18.4 },
-    { label: "13", R: 54.1975, d: 7.3991, nd: 1.55032, elemId: 8, sd: 18.7 },
-    { label: "14", R: -69.1018, d: 1.05, nd: 1.0, elemId: 0, sd: 18.0 },
-
-    // Aperture stop — between L8 and L9, at the GFB / GM boundary
-    { label: "STO", R: 1e15, d: 3.9908, nd: 1.0, elemId: 0, sd: 16.22 },
-
-    // GM — L9 (focus element, single biconcave)
-    { label: "16", R: -201.4141, d: 0.9, nd: 1.48749, elemId: 9, sd: 13.6 },
-    { label: "17", R: 26.6994, d: 12.0473, nd: 1.0, elemId: 0, sd: 13.5 },
-
-    // GRA — L10..L12
-    // L10/L11 cemented doublet (D3)
-    { label: "18", R: 37.4241, d: 0.85, nd: 1.85451, elemId: 10, sd: 14.8 },
-    { label: "19", R: 23.7169, d: 7.4401, nd: 1.55032, elemId: 11, sd: 15.4 },
-    { label: "20", R: -202.1596, d: 0.15, nd: 1.0, elemId: 0, sd: 15.2 },
-    { label: "21", R: 44.6216, d: 6.0412, nd: 1.95375, elemId: 12, sd: 14.8 },
-    { label: "22", R: -81.3192, d: 0.3285, nd: 1.0, elemId: 0, sd: 14.6 },
-
-    // GRB — L13..L15
-    { label: "23", R: -163.446, d: 0.9, nd: 1.6134, elemId: 13, sd: 13.8 },
-    { label: "24", R: 22.8329, d: 4.026, nd: 1.0, elemId: 0, sd: 13.6 },
-    // L14/L15 cemented doublet (D4); S25 aspherical
-    { label: "25A", R: 54.8915, d: 6.5602, nd: 1.7725, elemId: 14, sd: 15.0 },
-    { label: "26", R: -42.0436, d: 0.9, nd: 1.77047, elemId: 15, sd: 13.9 },
-    { label: "27", R: 76.9936, d: 20.9607, nd: 1.0, elemId: 0, sd: 13.2 },
-  ],
-
-  /* ── Aspheric coefficients ──
-   * Even-order polynomial: z(h) = c·h²/(1 + √(1 − (1+K)·c²·h²)) + Σ A2i·h^(2i)
-   * K = 0 means the base is a sphere; A4..A16 are the polynomial departure.
-   * Patent's general form admits A3..A15 odd orders, but Example 1 uses none. */
-  asph: {
-    "7A": {
-      K: 0,
-      A4: -3.04814e-6,
-      A6: 6.39807e-10,
-      A8: 4.52327e-13,
-      A10: -1.6076e-14,
-      A12: 7.81018e-17,
-      A14: -1.3303e-19,
-      A16: 8.3289e-23,
-    },
-    "25A": {
-      K: 0,
-      A4: -4.06671e-6,
-      A6: 6.92529e-10,
-      A8: -6.11485e-11,
-      A10: 6.42866e-13,
-      A12: -3.52967e-15,
-      A14: 8.54521e-18,
-      A16: -6.58266e-21,
-    },
+  catalog: {
+    lensMounts: ["sony-fe", "l-mount"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "15 ELEMENTS / 11 GROUPS",
+      "f ≈ 33.72 mm (35 mm marketed)",
+      "F/1.4",
+      "2ω ≈ 67.78°",
+      "2 ASPHERICAL SURFACES",
+    ],
+    elementCount: 15,
+    groupCount: 11,
+    /* ── Patent / production metadata ── */
+    focalLengthMm: { marketing: 35, design: 33.72 },
+    fNumber: { marketing: 1.4, design: 1.46 },
   },
 
-  /* ── Variable air gaps ──
-   * Infinity, the patent 1.47 m state, and the reconstructed 0.30 m state
-   * are stored as keyframes. Sum of the two variable gaps is invariant:
-   * d15 + d17 = 16.0381 mm at every state
-   * (rigid translation of L9 toward the image plane). */
-  focusPositions: [0, 0.2039949861473531, 1],
-  var: {
-    STO: [3.9908, 4.8959, 10.8551],
-    "17": [12.0473, 11.1422, 5.183],
+  source: {
+    patentNumber: "JP 2022-033487 A",
+    patentYear: 2022,
+    authors: ["Ryo Shioda"],
+    assignees: ["Sigma Corporation"],
   },
-
-  varLabels: [
-    ["STO", "D15"],
-    ["17", "D17"],
-  ],
-
-  /* ── Functional sub-groups ──
-   * Group focal lengths (computed independently against patent to < 0.005 mm,
-   * recorded in the analysis): GFA = -83.96, GFB = +37.31, GM = -48.30,
-   * GRA = +23.48, GRB = -37.50 mm. The patent's two top-level groups are
-   * GF = +34.53 (GFA + GFB) and GR = +45.13 (GRA + GRB). Numbers are kept
-   * here as comments because AnnotationData has no focal-length field. */
-  groups: [
-    { text: "GFA", fromSurface: "1", toSurface: "9" },
-    { text: "GFB", fromSurface: "10", toSurface: "14" },
-    { text: "GM", fromSurface: "16", toSurface: "17" },
-    { text: "GRA", fromSurface: "18", toSurface: "22" },
-    { text: "GRB", fromSurface: "23", toSurface: "27" },
-  ],
-
-  /* ── Cemented doublets ──
-   * fromSurface/toSurface are the outermost (air-facing) surfaces of each
-   * cemented group; the cement junction is the surface immediately interior
-   * to the front face (S8 in D1, S11 in D2, S19 in D3, S26 in D4) and is
-   * identified in the surfaces array by an elemId that jumps to the second
-   * element of the pair. */
-  doublets: [
-    { text: "D1", fromSurface: "7A", toSurface: "9" }, // L4/L5
-    { text: "D2", fromSurface: "10", toSurface: "12" }, // L6/L7
-    { text: "D3", fromSurface: "18", toSurface: "20" }, // L10/L11
-    { text: "D4", fromSurface: "25A", toSurface: "27" }, // L14/L15
-  ],
 
   /* ── Element registry ──
    * label and type are required for inspector display; nd is required and
@@ -275,11 +135,11 @@ export const sigmaDgDnA35mmF14Data = {
       type: "Negative Meniscus",
       nd: 1.48749,
       vd: 70.44,
-      fl: -55.3,
+      focalLengthMm: -55.3,
       glass: "HOYA FC5 (487/704)",
       apd: false,
-      dPgF: 0.005171,
       role: "Front collector, convex to object; FK-class crown chosen for low mass and mild lateral-CA contribution.",
+      dPgF: 0.005171,
     },
     {
       id: 2,
@@ -288,11 +148,11 @@ export const sigmaDgDnA35mmF14Data = {
       type: "Biconcave Negative",
       nd: 1.437,
       vd: 95.1,
-      fl: -68.9,
+      focalLengthMm: -68.9,
       glass: "HOYA FCD100 (437/951)",
       apd: "patent",
-      dPgF: 0.049674,
       role: "FLD — extreme anomalous-dispersion crown; primary load-bearer for lateral-CA correction in GFA.",
+      dPgF: 0.049674,
     },
     {
       id: 3,
@@ -301,11 +161,11 @@ export const sigmaDgDnA35mmF14Data = {
       type: "Biconvex Positive",
       nd: 1.881,
       vd: 40.14,
-      fl: 47.6,
+      focalLengthMm: 47.6,
       glass: "HOYA TAFD33 (881/401)",
       apd: false,
-      dPgF: -0.006317,
       role: "Strong front-group converger; high index keeps element thin and reduces GFA Petzval contribution.",
+      dPgF: -0.006317,
     },
     {
       id: 4,
@@ -314,12 +174,12 @@ export const sigmaDgDnA35mmF14Data = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.7725,
       vd: 49.5,
-      fl: 48.4,
+      focalLengthMm: 48.4,
       glass: "HOYA M-TAF105 (773/495)",
       apd: false,
-      dPgF: -0.008737,
-      cemented: "D1",
       role: "Aspherical front of D1 doublet; S7 carries the bulk of front-group high-order spherical-aberration correction.",
+      cemented: "D1",
+      dPgF: -0.008737,
     },
     {
       id: 5,
@@ -328,12 +188,12 @@ export const sigmaDgDnA35mmF14Data = {
       type: "Biconcave Negative",
       nd: 1.5927,
       vd: 35.45,
-      fl: -42.2,
+      focalLengthMm: -42.2,
       glass: "FF5 (HOYA catalog-equivalent to patent 593355; production supplier unspecified)",
       apd: false,
-      dPgF: 0.0081,
-      cemented: "D1",
       role: "Cemented partner of L4; balances axial CA within the front sub-group.",
+      cemented: "D1",
+      dPgF: 0.0081,
     },
     {
       id: 6,
@@ -342,12 +202,12 @@ export const sigmaDgDnA35mmF14Data = {
       type: "Negative Meniscus",
       nd: 1.6134,
       vd: 44.27,
-      fl: -94.6,
+      focalLengthMm: -94.6,
       glass: "OHARA S-NBM51 (613/443)",
       apd: false,
-      dPgF: -0.006077,
-      cemented: "D2",
       role: "Negative front of D2, convex to object; offsets L7's strongly positive ΔθgF across the cement junction.",
+      cemented: "D2",
+      dPgF: -0.006077,
     },
     {
       id: 7,
@@ -356,12 +216,12 @@ export const sigmaDgDnA35mmF14Data = {
       type: "Biconvex Positive",
       nd: 1.4586,
       vd: 90.19,
-      fl: 47.4,
+      focalLengthMm: 47.4,
       glass: "459902 — HOYA FCD10A (ELD fluorophosphate crown; no coefficient-backed catalog entry yet)",
       apd: "patent",
-      dPgF: 0.042932,
-      cemented: "D2",
       role: "ELD — anomalous-dispersion crown; cancels secondary spectrum of the D2 cemented pair.",
+      cemented: "D2",
+      dPgF: 0.042932,
     },
     {
       id: 8,
@@ -370,11 +230,11 @@ export const sigmaDgDnA35mmF14Data = {
       type: "Biconvex Positive",
       nd: 1.55032,
       vd: 75.5,
-      fl: 56.4,
+      focalLengthMm: 56.4,
       glass: "HOYA FCD705 (550/755)",
       apd: "patent",
-      dPgF: 0.023072,
       role: "SLD — final converger before the stop; with L7 raises GFB-positive ΔθgF average to +0.0384.",
+      dPgF: 0.023072,
     },
     {
       id: 9,
@@ -383,11 +243,11 @@ export const sigmaDgDnA35mmF14Data = {
       type: "Biconcave Negative",
       nd: 1.48749,
       vd: 70.44,
-      fl: -48.3,
+      focalLengthMm: -48.3,
       glass: "HOYA FC5 (487/704)",
       apd: false,
-      dPgF: 0.005171,
       role: "Sole element of GM — the focus group; FK-class glass chosen for minimum mass on the moving cam.",
+      dPgF: 0.005171,
     },
     {
       id: 10,
@@ -396,12 +256,12 @@ export const sigmaDgDnA35mmF14Data = {
       type: "Negative Meniscus",
       nd: 1.85451,
       vd: 25.15,
-      fl: -78.0,
+      focalLengthMm: -78.0,
       glass: "HOYA NBFD25 (855/252)",
       apd: false,
-      dPgF: 0.008662,
-      cemented: "D3",
       role: "Achromatising flint of D3, convex to object; very low νd typical for image-side achromats in fast normal-class designs.",
+      cemented: "D3",
+      dPgF: 0.008662,
     },
     {
       id: 11,
@@ -410,12 +270,12 @@ export const sigmaDgDnA35mmF14Data = {
       type: "Biconvex Positive",
       nd: 1.55032,
       vd: 75.5,
-      fl: 39.0,
+      focalLengthMm: 39.0,
       glass: "HOYA FCD705 (550/755)",
       apd: "patent",
-      dPgF: 0.023072,
-      cemented: "D3",
       role: "SLD #2 — anomalous-dispersion converger of D3; image-side counterpart to L8.",
+      cemented: "D3",
+      dPgF: 0.023072,
     },
     {
       id: 12,
@@ -424,11 +284,11 @@ export const sigmaDgDnA35mmF14Data = {
       type: "Biconvex Positive",
       nd: 1.95375,
       vd: 32.32,
-      fl: 30.9,
+      focalLengthMm: 30.9,
       glass: "HOYA TAFD45 / OHARA S-LAH98 (953/323)",
       apd: false,
-      dPgF: 0.000564,
       role: "Highest-index lens in the system; carries strong positive power with minimum Petzval contribution.",
+      dPgF: 0.000564,
     },
     {
       id: 13,
@@ -437,11 +297,11 @@ export const sigmaDgDnA35mmF14Data = {
       type: "Biconcave Negative",
       nd: 1.6134,
       vd: 44.27,
-      fl: -32.6,
+      focalLengthMm: -32.6,
       glass: "OHARA S-NBM51 (613/443)",
       apd: false,
-      dPgF: -0.006077,
       role: "Entry of GRB; begins back-focus shortening with weak negative power.",
+      dPgF: -0.006077,
     },
     {
       id: 14,
@@ -450,12 +310,12 @@ export const sigmaDgDnA35mmF14Data = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.7725,
       vd: 49.5,
-      fl: 31.8,
+      focalLengthMm: 31.8,
       glass: "HOYA M-TAF105 (773/495)",
       apd: false,
-      dPgF: -0.008737,
-      cemented: "D4",
       role: "Aspherical front of D4; S25 balances residual SA + coma in the post-stop diverging cone.",
+      cemented: "D4",
+      dPgF: -0.008737,
     },
     {
       id: 15,
@@ -464,14 +324,168 @@ export const sigmaDgDnA35mmF14Data = {
       type: "Biconcave Negative",
       nd: 1.77047,
       vd: 29.74,
-      fl: -35.2,
+      focalLengthMm: -35.2,
       glass: "HOYA NBFD29 (770/297)",
       apd: false,
-      dPgF: 0.001219,
-      cemented: "D4",
       role: "Rear element of the lens; high-index biconcave finishing the back-focus shortening function of GRB.",
+      cemented: "D4",
+      dPgF: 0.001219,
     },
   ],
-} satisfies LensDataInput;
+
+  /* ── Surface prescription ──
+   * 27 optical surfaces, image plane excluded.
+   *   R       radius of curvature in mm; 1e15 = flat (the STO).
+   *   d       thickness to next surface in mm (or BF for the last surface).
+   *   nd      d-line refractive index of the medium *after* this surface;
+   *           1.0 = air.
+   *   elemId  binds glass-entry surfaces to their element (1..15) and is 0
+   *           for every air-side surface and for the STO.
+   *   sd      semi-diameter (half clear aperture) in mm. Initial SDs were
+   *           solved by an iterative marginal-plus-chief-ray paraxial trace at
+   *           F/1.4, then conservatively rebalanced against Sigma's published
+   *           optical-section diagram so L1 reads as the largest front
+   *           collector, the L2-L8 block steps down, L9 remains visibly
+   *           compact, and the final aspheric doublet rises slightly again.
+   *           All values are validated against edge-thickness ≥ 0.4 mm and
+   *           cross-gap rim sag intrusion ≤ 85% of the centre-axis gap.
+   *
+   * Surface labels follow patent numbering. Aspherical surfaces use the "A"
+   * suffix per project convention; the aperture stop is labeled "STO".
+   * Variable gaps (d15 = STO-to-S16, d17 = S17-to-S18) carry their infinity
+   * values here; close-focus values appear in the var object below. */
+  /* (moved from asph) ── Aspheric coefficients ──
+   * Even-order polynomial: z(h) = c·h²/(1 + √(1 − (1+K)·c²·h²)) + Σ A2i·h^(2i)
+   * K = 0 means the base is a sphere; A4..A16 are the polynomial departure.
+   * Patent's general form admits A3..A15 odd orders, but Example 1 uses none. */
+  surfaces: [
+    // GFA — L1..L5
+    { label: "1", R: 305.0235, d: 2.2, sd: 22.0, medium: 1 },
+    { label: "2", R: 24.7212, d: 14.4681, sd: 21.6 },
+    { label: "3", R: -50.0835, d: 1.5, sd: 19.2, medium: 2 },
+    { label: "4", R: 76.0889, d: 0.63, sd: 18.9 },
+    { label: "5", R: 59.3842, d: 6.8109, sd: 19.6, medium: 3 },
+    { label: "6", R: -134.6441, d: 3.9968, sd: 19.2 },
+    // L4/L5 cemented doublet (D1); S7 aspherical
+    {
+      label: "7A",
+      R: 240.5313,
+      d: 6.4886,
+      sd: 18.9,
+      medium: 4,
+      asphere: {
+        K: 0,
+        A4: -3.04814e-6,
+        A6: 6.39807e-10,
+        A8: 4.52327e-13,
+        A10: -1.6076e-14,
+        A12: 7.81018e-17,
+        A14: -1.3303e-19,
+        A16: 8.3289e-23,
+      },
+    },
+    { label: "8", R: -43.7781, d: 1.0, sd: 18.4, medium: 5 },
+    { label: "9", R: 58.963, d: 1.1632, sd: 18.1 },
+
+    // GFB — L6..L8
+    // L6/L7 cemented doublet (D2)
+    { label: "10", R: 46.0805, d: 1.0, sd: 17.4, medium: 6 },
+    { label: "11", R: 25.4742, d: 10.9986, sd: 18.6, medium: 7 },
+    { label: "12", R: -128.5813, d: 0.15, sd: 18.4 },
+    { label: "13", R: 54.1975, d: 7.3991, sd: 18.7, medium: 8 },
+    { label: "14", R: -69.1018, d: 1.05, sd: 18.0 },
+
+    // Aperture stop — between L8 and L9, at the GFB / GM boundary
+    { label: "STO", R: "flat" },
+
+    // GM — L9 (focus element, single biconcave)
+    { label: "16", R: -201.4141, d: 0.9, sd: 13.6, medium: 9 },
+    { label: "17", R: 26.6994, sd: 13.5 },
+
+    // GRA — L10..L12
+    // L10/L11 cemented doublet (D3)
+    { label: "18", R: 37.4241, d: 0.85, sd: 14.8, medium: 10 },
+    { label: "19", R: 23.7169, d: 7.4401, sd: 15.4, medium: 11 },
+    { label: "20", R: -202.1596, d: 0.15, sd: 15.2 },
+    { label: "21", R: 44.6216, d: 6.0412, sd: 14.8, medium: 12 },
+    { label: "22", R: -81.3192, d: 0.3285, sd: 14.6 },
+
+    // GRB — L13..L15
+    { label: "23", R: -163.446, d: 0.9, sd: 13.8, medium: 13 },
+    { label: "24", R: 22.8329, d: 4.026, sd: 13.6 },
+    // L14/L15 cemented doublet (D4); S25 aspherical
+    {
+      label: "25A",
+      R: 54.8915,
+      d: 6.5602,
+      sd: 15.0,
+      medium: 14,
+      asphere: {
+        K: 0,
+        A4: -4.06671e-6,
+        A6: 6.92529e-10,
+        A8: -6.11485e-11,
+        A10: 6.42866e-13,
+        A12: -3.52967e-15,
+        A14: 8.54521e-18,
+        A16: -6.58266e-21,
+      },
+    },
+    { label: "26", R: -42.0436, d: 0.9, sd: 13.9, medium: 15 },
+    { label: "27", R: 76.9936, d: 20.9607, sd: 13.2 },
+  ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.3,
+    /* ── Variable air gaps ──
+     * Infinity, the patent 1.47 m state, and the reconstructed 0.30 m state
+     * are stored as keyframes. Sum of the two variable gaps is invariant:
+     * d15 + d17 = 16.0381 mm at every state
+     * (rigid translation of L9 toward the image plane). */
+    keyframes: [0, 0.2039949861473531, 1],
+    description:
+      "Inner focus by the single-element negative middle group L9. The patent 1.47 m row is exact before the constrained 0.30 m endpoint; lens length remains fixed.",
+    // (moved from publishedStations) The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+    published: [1],
+  },
+
+  gaps: {
+    STO: { label: "D15", values: [[3.9908, 4.8959, 10.8551]] },
+    "17": { label: "D17", values: [[12.0473, 11.1422, 5.183]] },
+  },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 1.46, fStops: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16] },
+
+  /* ── Functional sub-groups ──
+   * Group focal lengths (computed independently against patent to < 0.005 mm,
+   * recorded in the analysis): GFA = -83.96, GFB = +37.31, GM = -48.30,
+   * GRA = +23.48, GRB = -37.50 mm. The patent's two top-level groups are
+   * GF = +34.53 (GFA + GFB) and GR = +45.13 (GRA + GRB). Numbers are kept
+   * here as comments because AnnotationData has no focal-length field. */
+  groups: [
+    { text: "GFA", fromSurface: "1", toSurface: "9" },
+    { text: "GFB", fromSurface: "10", toSurface: "14" },
+    { text: "GM", fromSurface: "16", toSurface: "17" },
+    { text: "GRA", fromSurface: "18", toSurface: "22" },
+    { text: "GRB", fromSurface: "23", toSurface: "27" },
+  ],
+  /* ── Cemented doublets ──
+   * fromSurface/toSurface are the outermost (air-facing) surfaces of each
+   * cemented group; the cement junction is the surface immediately interior
+   * to the front face (S8 in D1, S11 in D2, S19 in D3, S26 in D4) and is
+   * identified in the surfaces array by an elemId that jumps to the second
+   * element of the pair. */
+  doublets: [
+    { text: "D1", fromSurface: "7A", toSurface: "9" }, // L4/L5
+    { text: "D2", fromSurface: "10", toSurface: "12" }, // L6/L7
+    { text: "D3", fromSurface: "18", toSurface: "20" }, // L10/L11
+    { text: "D4", fromSurface: "25A", toSurface: "27" }, // L14/L15
+  ],
+
+  /* ── Layout tuning (yScFill required, no default) ── */
+  layout: { yScFill: 0.3 },
+} satisfies LensDataV2Input;
 
 export default sigmaDgDnA35mmF14Data;

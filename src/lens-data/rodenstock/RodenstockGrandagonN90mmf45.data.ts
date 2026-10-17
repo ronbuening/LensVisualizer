@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -25,31 +25,28 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "rodenstock-grandagon-n-90mm-f45",
   maker: "Rodenstock",
   name: "RODENSTOCK GRANDAGON-N 90mm f/4.5",
   subtitle: "DE 2444954 A1 Claim 2 — f′ = 90 mm",
-  specs: ["8 ELEMENTS / 4 GROUPS", "f′ = 90 mm patent example", "F/4.5", "105° published coverage", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 90,
-  focalLengthDesign: 91.27,
-  apertureMarketing: 4.5,
-  apertureDesign: 4.5,
-  lensMounts: ["large-format-lens-board"],
-  imageFormat: "5x7",
-  patentNumber: "DE 2444954 A1",
-  patentAuthors: ["Franz Schlegel", "Josef Weiß"],
-  patentAssignees: ["Optische Werke G. Rodenstock"],
-  patentYear: 1976,
-  elementCount: 8,
-  groupCount: 4,
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 105,
-    maxTraceFieldDeg: 52.5,
+  catalog: {
+    lensMounts: ["large-format-lens-board"],
+    imageFormat: "5x7",
+    specs: ["8 ELEMENTS / 4 GROUPS", "f′ = 90 mm patent example", "F/4.5", "105° published coverage", "ALL-SPHERICAL"],
+    elementCount: 8,
+    groupCount: 4,
+    focalLengthMm: { marketing: 90, design: 91.27 },
+    fNumber: { marketing: 4.5, design: 4.5 },
   },
-  focusDescription:
-    "Unit focus by camera bellows; no internal focus groups. The focus slider varies only the final back-focus gap.",
+
+  source: {
+    patentNumber: "DE 2444954 A1",
+    patentYear: 1976,
+    authors: ["Franz Schlegel", "Josef Weiß"],
+    assignees: ["Optische Werke G. Rodenstock"],
+  },
 
   elements: [
     {
@@ -59,7 +56,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.4645,
       vd: 65.77,
-      fl: -67.78,
+      focalLengthMm: -67.78,
       glass: "FK3 (Schott inquiry glass)",
       role: "Front diverging meniscus for wide-angle field bending and Petzval compensation.",
     },
@@ -70,10 +67,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6727,
       vd: 32.21,
-      fl: -117.8,
+      focalLengthMm: -117.8,
       glass: "SF5 (Schott)",
-      cemented: "T1",
       role: "High-index dense-flint outer element of the front cemented triplet.",
+      cemented: "T1",
     },
     {
       id: 3,
@@ -82,10 +79,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.62229,
       vd: 53.27,
-      fl: 18.86,
+      focalLengthMm: 18.86,
       glass: "SSK2 / N-SSK2 (Schott)",
-      cemented: "T1",
       role: "Strong positive crown element in the front triplet.",
+      cemented: "T1",
     },
     {
       id: 4,
@@ -94,10 +91,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.56091,
       vd: 46.78,
-      fl: -31.96,
+      focalLengthMm: -31.96,
       glass: "FEL3 (HOYA catalog equivalent; production supplier unspecified)",
-      cemented: "T1",
       role: "Inner negative element of the front triplet; FEL3 reproduces the patent e-line coordinate.",
+      cemented: "T1",
     },
     {
       id: 5,
@@ -106,10 +103,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.58313,
       vd: 59.38,
-      fl: -32.52,
+      focalLengthMm: -32.52,
       glass: "SK12 / S-BAL42 class (Schott/Ohara equivalent)",
-      cemented: "T2",
       role: "Inner negative crown element of the rear cemented triplet.",
+      cemented: "T2",
     },
     {
       id: 6,
@@ -118,10 +115,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.60881,
       vd: 58.86,
-      fl: 15.97,
+      focalLengthMm: 15.97,
       glass: "SK3 (SUMITA catalog equivalent for patent coordinate; historical production supplier unspecified)",
-      cemented: "T2",
       role: "Strong positive element in the rear triplet.",
+      cemented: "T2",
     },
     {
       id: 7,
@@ -130,10 +127,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.66672,
       vd: 48.33,
-      fl: -59.44,
+      focalLengthMm: -59.44,
       glass: "BaF11 / S-BAH11 class (Schott/Ohara equivalent)",
-      cemented: "T2",
       role: "High-index outer negative element of the rear triplet.",
+      cemented: "T2",
     },
     {
       id: 8,
@@ -142,37 +139,43 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.48749,
       vd: 70.41,
-      fl: -60.62,
+      focalLengthMm: -60.62,
       glass: "N-FK5 / FK5 (Schott)",
       role: "Rear diverging meniscus and field-flattening outer element.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 91.73, d: 6.65, nd: 1.4645, elemId: 1, sd: 25.2 },
-    { label: "2", R: 22.96, d: 11.9, nd: 1.0, elemId: 0, sd: 20.2 },
+    { label: "1", R: 91.73, d: 6.65, sd: 25.2, medium: 1 },
+    { label: "2", R: 22.96, d: 11.9, sd: 20.2 },
 
-    { label: "3", R: 36.52, d: 15.25, nd: 1.6727, elemId: 2, sd: 17.5 },
-    { label: "4", R: 20.83, d: 13.8, nd: 1.62229, elemId: 3, sd: 13.0 },
-    { label: "5", R: -20.24, d: 1.0, nd: 1.56091, elemId: 4, sd: 13.0 },
-    { label: "6", R: 164.89, d: 2.1, nd: 1.0, elemId: 0, sd: 12.2 },
+    { label: "3", R: 36.52, d: 15.25, sd: 17.5, medium: 2 },
+    { label: "4", R: 20.83, d: 13.8, sd: 13.0, medium: 3 },
+    { label: "5", R: -20.24, d: 1.0, sd: 13.0, medium: 4 },
+    { label: "6", R: 164.89, d: 2.1, sd: 12.2 },
 
-    { label: "STO", R: 1e15, d: 0.65, nd: 1.0, elemId: 0, sd: 10.63 },
+    { label: "STO", R: "flat", d: 0.65 },
 
-    { label: "7", R: 405.33, d: 1.0, nd: 1.58313, elemId: 5, sd: 12.2 },
-    { label: "8", R: 18.17, d: 13.3, nd: 1.60881, elemId: 6, sd: 13.0 },
-    { label: "9", R: -15.23, d: 11.25, nd: 1.66672, elemId: 7, sd: 13.0 },
-    { label: "10", R: -31.97, d: 11.15, nd: 1.0, elemId: 0, sd: 17.5 },
+    { label: "7", R: 405.33, d: 1.0, sd: 12.2, medium: 5 },
+    { label: "8", R: 18.17, d: 13.3, sd: 13.0, medium: 6 },
+    { label: "9", R: -15.23, d: 11.25, sd: 13.0, medium: 7 },
+    { label: "10", R: -31.97, d: 11.15, sd: 17.5 },
 
-    { label: "11", R: -23.37, d: 3.85, nd: 1.48749, elemId: 8, sd: 20.2 },
-    { label: "12", R: -116.31, d: 63.3142, nd: 1.0, elemId: 0, sd: 25.2 },
+    { label: "11", R: -23.37, d: 3.85, sd: 20.2, medium: 8 },
+    { label: "12", R: -116.31, sd: 25.2 },
   ],
 
-  asph: {},
-  var: {
-    "12": [63.3142, 72.482],
+  focus: {
+    closeFocusM: 1.0,
+    description:
+      "Unit focus by camera bellows; no internal focus groups. The focus slider varies only the final back-focus gap.",
   },
-  varLabels: [["12", "BF"]],
+
+  gaps: { "12": { label: "BF", values: [[63.3142, 72.482]] } },
+
+  aperture: { nominalFNumber: 4.5, fStops: [4.5, 5.6, 8, 11, 16, 22, 32, 45, 64], maxFNumber: 64 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 105, maxTraceFieldDeg: 52.5 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -185,15 +188,9 @@ const LENS_DATA = {
     { text: "Rear triplet", fromSurface: "7", toSurface: "10" },
   ],
 
-  closeFocusM: 1.0,
-  nominalFno: 4.5,
-  fstopSeries: [4.5, 5.6, 8, 11, 16, 22, 32, 45, 64],
-  maxFstop: 64,
+  layout: { scFill: 0.72, yScFill: 0.82 },
 
-  scFill: 0.72,
-  yScFill: 0.82,
-  offAxisFieldFrac: 0.35,
-  rayLeadFrac: 0.28,
-} satisfies LensDataInput;
+  rays: { rayLeadFrac: 0.28, offAxisFieldFrac: 0.35 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;
