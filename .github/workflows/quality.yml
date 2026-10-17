@@ -68,12 +68,13 @@ jobs:
 
   # Tier P of the engine differential harness (agent_docs/architecture/testing.md). Pull requests only: a push to
   # main has nothing to compare with. It is not one of build's needs, so skipping it never skips the build.
-  # Every changed lens runs every Tier P request, so a pull request that changes a large share of the catalog (a
-  # lens-data conversion batch of 200 lenses took over 30 minutes) needs more than the usual run's time.
+  # Every changed lens runs every Tier P request, so a pull request that changes much of the catalog needs far more
+  # than the usual run's time: a 200-lens conversion batch takes about an hour, and a change to every lens (the
+  # lens-data V2 migration's merge into main) about three. 360 minutes is a hosted runner's ceiling.
   engine-diff:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 360
     permissions:
       contents: read
       pull-requests: read
