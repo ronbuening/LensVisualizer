@@ -1,6 +1,7 @@
 name: Engine Diff Stage
 
 # Tier S or Tier F of the engine differential harness (agent_docs/architecture/testing.md), one shard per runner.
+# The driver deterministically balances whole lenses by estimated capture cost on every runner.
 # It is started by hand for a stage gate. A push to an engine-diff-stage/** branch starts it too, with every input
 # at its fallback: Tier S of the pushed commit against itself. GitHub dispatches a workflow only once its file is on
 # the default branch, so that push is how a pull request that adds or changes this file gets its run before merging.

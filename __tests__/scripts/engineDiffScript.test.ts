@@ -194,7 +194,8 @@ describe("engine-diff run", () => {
     const shard = { index: 2, count: 3 };
     /* The lens of the shard that the tier asks least of: a prime outside the analysis and MTF rows. */
     const requestsOf = new Map<string, number>();
-    for (const request of shardRequests(tierRequests("s", requestCatalog(exportCatalog())), shard)) {
+    const catalog = requestCatalog(exportCatalog());
+    for (const request of shardRequests(tierRequests("s", catalog), shard, catalog)) {
       requestsOf.set(lensId(request.lens), (requestsOf.get(lensId(request.lens)) ?? 0) + 1);
     }
     const [lens, records] = [...requestsOf].reduce((least, entry) => (entry[1] < least[1] ? entry : least));

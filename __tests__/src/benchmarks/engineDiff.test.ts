@@ -56,6 +56,7 @@ import {
   ON_AXIS_PUPIL_FRACTIONS,
   SEEDED_DRAW_COUNT,
   STOPPED_DOWN_T,
+  estimateLensCosts,
   lensId,
   mtfRequestOf,
   shardRequests,
@@ -1501,8 +1502,10 @@ describe("engineDiff shards", () => {
 
   it.each(tiers)("splits tier %s into disjoint parts that together are the tier", (_tier, requests) => {
     const tierIds = lensIds(requests);
-    for (const count of [1, 2, 3, 5, 8, 16, 64]) {
-      const shards = Array.from({ length: count }, (_, index) => shardRequests(requests, { index: index + 1, count }));
+    for (const count of [1, 2, 3, 5, 8, 16, 32, 64]) {
+      const shards = Array.from({ length: count }, (_, index) =>
+        shardRequests(requests, { index: index + 1, count }, REQUEST_CATALOG),
+      );
 
       /* Complete and disjoint: every request of the tier is in exactly one shard, and nothing else is in any. */
       const dealt = shards.flat();
@@ -1514,34 +1517,45 @@ describe("engineDiff shards", () => {
       expect(shardIds.flat()).toHaveLength(tierIds.length);
       expect(new Set(shardIds.flat())).toEqual(new Set(tierIds));
 
-      /* Each shard keeps the tier's order, and the shards hold as many lenses as one another, give or take one. */
+      /* Balancing changes membership, but preserves capture order. */
       shards.forEach((shard, index) => {
         const ids = new Set(shardIds[index]);
         expect(shard).toEqual(requests.filter((request) => ids.has(lensId(request.lens))));
       });
-      const sizes = shardIds.map((ids) => ids.length);
-      expect(Math.max(...sizes) - Math.min(...sizes)).toBeLessThanOrEqual(1);
     }
   });
 
-  it("deals lens ids out in code-unit order, whatever the order of the list", () => {
-    const sorted = lensIds(TIER_S).sort();
+  it("assigns deterministically regardless of request and catalog enumeration", () => {
     const count = 5;
-    const reversed = [...TIER_S].reverse();
+    const reversedCatalog = { ...REQUEST_CATALOG, lenses: [...REQUEST_CATALOG.lenses].reverse() };
     for (let index = 1; index <= count; index++) {
-      const expected = sorted.filter((_, position) => position % count === index - 1);
-      expect(lensIds(shardRequests(TIER_S, { index, count }))).toEqual(expected);
-      expect(lensIds(shardRequests(reversed, { index, count })).sort()).toEqual(expected);
+      const expected = lensIds(shardRequests(TIER_S, { index, count }, REQUEST_CATALOG));
+      expect(lensIds(shardRequests([...TIER_S].reverse(), { index, count }, reversedCatalog)).sort()).toEqual(expected);
     }
-    /* A pair is a lens id of its own, dealt apart from its host. */
-    expect(sorted.filter((id) => id.includes("+"))).toHaveLength(CATALOG.pairs.length);
+    /* Equal costs use code-unit order (uppercase before lowercase), then the lowest shard index. */
+    const keys = ["z", "a", "Z", "A"];
+    const catalog = { lenses: keys.map((key) => ({ ...REQUEST_CATALOG.lenses[0], key })), pairs: [] };
+    const requests = keys.map((key): CaptureRequest => ({ lens: { key }, state: null, family: "build" }));
+    expect(lensIds(shardRequests(requests, { index: 1, count: 2 }, catalog)).sort()).toEqual(["A", "a"]);
+  });
+
+  it("keeps a heavy lens apart from the many cheap lenses a count split would give it", () => {
+    const keys = ["heavy", ...Array.from({ length: 12 }, (_, i) => `light-${i}`)];
+    const catalog = { lenses: keys.map((key) => ({ ...REQUEST_CATALOG.lenses[0], key, projection: null })), pairs: [] };
+    const requests = keys.flatMap((key): CaptureRequest[] => [
+      { lens: { key }, state: null, family: "build" },
+      { lens: { key }, state: DEFAULT_STATE, family: key === "heavy" ? "analysis" : "layout" },
+    ]);
+    const heavyShard = shardRequests(requests, { index: 1, count: 3 }, catalog);
+    expect(lensIds(heavyShard)).toEqual(["heavy"]);
+    expect(estimateLensCosts(requests, catalog).get("heavy")).toBeGreaterThan(12 * 2);
   });
 
   it("leaves a shard empty when there are fewer lenses than shards, and refuses a shard that is not i of n", () => {
     const one = TIER_P.filter((request) => request.lens.key === SERENAR);
-    expect(shardRequests(one, { index: 1, count: 3 })).toEqual(one);
-    expect(shardRequests(one, { index: 2, count: 3 })).toEqual([]);
-    expect(shardRequests([], { index: 1, count: 1 })).toEqual([]);
+    expect(shardRequests(one, { index: 1, count: 3 }, REQUEST_CATALOG)).toEqual(one);
+    expect(shardRequests(one, { index: 2, count: 3 }, REQUEST_CATALOG)).toEqual([]);
+    expect(shardRequests([], { index: 1, count: 1 }, REQUEST_CATALOG)).toEqual([]);
     for (const [index, count] of [
       [0, 4],
       [5, 4],
@@ -1551,7 +1565,7 @@ describe("engineDiff shards", () => {
       [Number.NaN, 4],
       [-1, -1],
     ]) {
-      expect(() => shardRequests(TIER_P, { index, count })).toThrow("is not i/n with 1 <= i <= n");
+      expect(() => shardRequests(TIER_P, { index, count }, REQUEST_CATALOG)).toThrow("is not i/n with 1 <= i <= n");
     }
   });
 });

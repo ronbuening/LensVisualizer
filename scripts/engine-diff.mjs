@@ -25,7 +25,7 @@
  * engine can, is uncompared instead, and one that only the head's prescriptions permit is compared as a new lens.
  * A record that throws on both engines fails the run in any class.
  *
- * A tier too long for one run is split with `--shard i/n`: the tier's lenses are dealt into n parts, and the run
+ * A tier too long for one run is split with `--shard i/n`: the tier's lenses are cost-balanced into n parts, and the run
  * covers part i, counted from 1. The parts of a tier share no lens and together hold all of them, so n runs with
  * the same base, tier and class are one comparison of the tier.
  *
@@ -458,13 +458,16 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
      * them: a pair one engine lost is still asked of both, and that engine throws on it. Tier P sends a changed or
      * new lens, and each pair of a changed or new host or converter, through every request it has. */
     const requestsByLens = new Map();
-    const tierRequests = headCapture.tierRequests(options.tier, {
+    const requestCatalog = {
       ...headCapture.requestCatalog({ ...headCatalog, pairs: pairs.requested }),
       changedLensKeys: Object.keys(changes.lenses),
       changedTeleconverterKeys: Object.keys(changes.teleconverters),
-    });
+    };
+    const tierRequests = headCapture.tierRequests(options.tier, requestCatalog);
     /* The shard is cut from the whole tier, before any narrowing, so a lens is in the same shard in every run. */
-    const requests = options.shard ? headCapture.shardRequests(tierRequests, options.shard) : tierRequests;
+    const requests = options.shard
+      ? headCapture.shardRequests(tierRequests, options.shard, requestCatalog)
+      : tierRequests;
     for (const request of requests) {
       const id = headCapture.lensId(request.lens);
       if (options.lens !== null && id !== options.lens) continue;

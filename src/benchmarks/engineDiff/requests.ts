@@ -679,25 +679,94 @@ export interface Shard {
   count: number;
 }
 
+/* Relative work units, not measured seconds. Dense analysis jobs dominate small ray fans;
+ * MTF scales separately with its requested pupil grid, fields, spectra and method. */
+const REQUEST_COST = {
+  composition: 1,
+  build: 1,
+  layout: 1,
+  traces: 4,
+  fieldGeometry: 2,
+  chiefSolves: 8,
+  analysis: 256,
+  mtf: 16,
+} satisfies Record<RequestFamily, number>;
+
 /**
- * The requests of one shard of a request list.
+ * Estimate capture work from the actual tier requests and prescription facts, without running either engine.
+ * Summing requests counts the tier's stations, focus keyframes, apertures, ring positions and movement poses
+ * exactly once, including its deduplicated analysis and MTF rows. A converter pair remains its own lens id and
+ * uses its host's projection. Both engine captures share this work; their common factor of two is omitted.
  *
- * A list is split by lens, never inside one: a driver compares lens by lens, and a lens's records must not
- * straddle two runs. The lens ids are put in code-unit order, whatever the order of the list, and dealt out in
- * turn, so the lens at position `k` falls in shard `k mod count`, plus one. Each shard gets its share of every
- * stretch of the alphabet, and with it of the makers whose lenses cost most.
+ * @param requests - the whole tier's requests
+ * @param catalog - the head prescription facts used to build the tier
+ * @returns relative integer cost per lens id, not a wall-time prediction
+ */
+export function estimateLensCosts(requests: readonly CaptureRequest[], catalog: RequestCatalog): Map<string, number> {
+  const lensOf = lensesByKey(catalog);
+  const costs = new Map<string, number>();
+  for (const request of requests) {
+    const { lens, family, state } = request;
+    const { projection } = lensOf(lens.key);
+    let cost: number = REQUEST_COST[family];
+    if (family === "mtf") {
+      const mtf = mtfRequestOf(request.variant);
+      const wavelengths = { reference: 1, cdf: 3, photopic: 5 }[mtf.spectrum];
+      cost *= (mtf.maxGridSize / 32) ** 2 * wavelengths * (mtf.fieldFractions.length / 3);
+      if (mtf.method === "diffraction") cost *= 2;
+    }
+    /* Conservative premiums for iterative field solves and moved perspective analyses. These are fixed
+     * heuristics, not fitted timings; convergence, clipping and unavailable jobs still vary by engine. */
+    if (
+      projection !== null &&
+      projection !== "rectilinear" &&
+      family !== "build" &&
+      family !== "composition" &&
+      family !== "layout"
+    ) {
+      cost *= 4;
+    }
+    if (family === "analysis" && state && (state.shiftMm !== 0 || state.tiltDeg !== 0)) cost *= 4;
+    const id = lensId(lens);
+    costs.set(id, (costs.get(id) ?? 0) + cost);
+  }
+  return costs;
+}
+
+/**
+ * The requests of one shard, balanced by greedy longest-processing-time assignment.
  *
- * @param requests - a request list
+ * A lens's records never straddle runs. Descending estimated costs break ties by code-unit lens id; each lens
+ * goes to the least-loaded shard, ties going to the lowest index. Neither input enumeration nor runner locale
+ * affects membership. Filtering afterwards preserves the original capture order within each shard.
+ *
+ * @param requests - the whole tier's request list, before any lens narrowing
  * @param shard - which part, of how many
+ * @param catalog - the head prescription facts used to build the tier
  * @returns the shard's requests, in the order of the list
  * @throws when the shard is not `1 <= index <= count`, in whole numbers
  */
-export function shardRequests(requests: readonly CaptureRequest[], shard: Shard): CaptureRequest[] {
+export function shardRequests(
+  requests: readonly CaptureRequest[],
+  shard: Shard,
+  catalog: RequestCatalog,
+): CaptureRequest[] {
   const { index, count } = shard;
   if (!(Number.isInteger(index) && Number.isInteger(count) && index >= 1 && index <= count)) {
     throw new Error(`engineDiff: shard ${index}/${count} is not i/n with 1 <= i <= n`);
   }
-  const ids = [...new Set(requests.map((request) => lensId(request.lens)))].sort(codeUnitOrder);
-  const inShard = new Set(ids.filter((_, position) => position % count === index - 1));
+  const costs = [...estimateLensCosts(requests, catalog)].sort(
+    ([a, costA], [b, costB]) => costB - costA || codeUnitOrder(a, b),
+  );
+  const loads = Array<number>(count).fill(0);
+  const inShard = new Set<string>();
+  for (const [id, cost] of costs) {
+    let lightest = 0;
+    for (let candidate = 1; candidate < count; candidate++) {
+      if (loads[candidate] < loads[lightest]) lightest = candidate;
+    }
+    loads[lightest] += cost;
+    if (lightest === index - 1) inShard.add(id);
+  }
   return requests.filter((request) => inShard.has(lensId(request.lens)));
 }

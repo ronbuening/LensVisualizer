@@ -338,8 +338,21 @@ tier chooses from are every pair that either engine's fit predicate permits for 
 - **Tier F**, the full tier, is Tier S with its second row widened: every catalog lens and every pair is asked for
   every analysis job at every authored station, wide open and stopped down.
 
-`shardRequests` cuts a list into `n` parts by lens: the lens ids are put in code-unit order and dealt out in turn, so
-a lens's records never straddle two shards, the shards share no lens, and together they hold the list.
+`shardRequests` balances a tier into `n` parts by estimated cost with greedy longest-processing-time assignment.
+It sums the generated requests per lens id, counting the tier's actual zoom stations, focus keyframes, apertures,
+ring positions, movement poses and analysis rows. Relative family weights are composition/build/layout 1,
+field geometry 2, traces 4, chief solves 8, analysis 256 and MTF 16. MTF scales by squared grid size relative to 32,
+field count relative to three, spectrum samples (1/3/5), and 2 for diffraction. Non-rectilinear projections multiply
+ray/analysis/MTF work by 4; moved analysis requests multiply it by 4 again. These are fixed heuristics, not seconds:
+convergence, clipping, unavailable analyses and data-change captures can still change actual runtime. The shared
+factor of two for base and head engine captures does not affect assignment. The harness records phase totals,
+not reusable per-lens timings, so assignment uses prescription facts and requests alone.
+
+Lenses are sorted by descending cost, ties by code-unit id, and assigned to the least-loaded shard, ties by lowest
+shard index. A pair remains its own `host+converter` id and uses its host's projection. Every lens's records remain
+together, every lens appears in exactly one shard, and filtering preserves capture order. Assignment is computed
+from the whole tier before `--lens` narrowing, identically on every runner with the same inputs. The workflow's
+shard inputs and defaults remain 8 for Tier S and 32 for Tier F.
 
 ### What a Run Compares
 

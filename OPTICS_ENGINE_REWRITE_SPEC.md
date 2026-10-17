@@ -688,7 +688,13 @@ minutes in CI, its lens subset shrinks by documented stratification; its asserti
 
 - **Each tier holds the one before it.** A test checks that every Tier P request is a Tier S request, and every Tier S
   request a Tier F request.
-- **Shards** split a tier by lens, never inside one. The stage workflow defaults to 8 for Tier S and 32 for Tier F.
+- **Shards** split a tier by lens (a converter pair is its own id), never inside one. Greedy longest-processing-time
+  assignment balances estimated cost from the tier's generated states and weighted request families, with fixed
+  premiums for moved analyses, fisheye fields and MTF grid/spectrum/method. Costs use prescription facts, not timings;
+  the harness records only phase totals. Descending costs break ties by code-unit lens id, and the least-loaded
+  shard breaks ties by index. Each runner assigns the whole tier before lens narrowing. See
+  [the harness cost model](agent_docs/architecture/testing.md#tiers) for weights and limitations.
+  The stage workflow defaults remain 8 for Tier S and 32 for Tier F.
 - **Every analysis job** means the analysis-context accessors, centered and perspective; field curvature; the three
   group-movement modes; cardinal elements; aspheric comparison; and the tab readouts computed outside the context:
   the chromatic field-focus summary, longitudinal chromatic focus, LoCA bar offsets, aspheric departure and the
