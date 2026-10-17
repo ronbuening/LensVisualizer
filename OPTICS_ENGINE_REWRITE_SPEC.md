@@ -217,8 +217,8 @@ and 2.6, which run on `main` after promotion ([Stage dependencies](#stage-depend
   - a check of the branch's preview deployment;
   - the changelog entries for what users will see.
 
-  The promotion merge commit is tagged `optics-rewrite/promotion`, the Stage 2 gate's base. `engine-next` is deleted
-  once it has merged.
+  The promotion merge commit is tagged `optics-rewrite/promotion`, the Stage 2 gate's base. `engine-next` is kept
+  after it has merged, and nothing merges into it again.
 
 - **One step per PR.** This keeps the branch from becoming one large unreviewed change like
   [#518](https://github.com/ronbuening/LensVisualizer/pull/518), the 193-file PR that ended the optics-2 migration.
@@ -442,7 +442,7 @@ read as passing; the step names those divergences.
   V2 ingest (S2.P2.T1) reads a V2 file. Against an older anchor, every converted lens would be a declared exception
   and a stage gate would compare no engine output.
   - The commit of `main` on which the Stage 2 gate passes becomes the anchor and is tagged `optics-rewrite/s2`. It is
-    the commit that closes the migration (S2.P5.T9), or a later one if the gate needed a fix.
+    the merge commit that closes the migration (S2.P5.T9), or a later one if the gate needed a fix.
   - The Stage 6, 7 and 8 gates compare against the current anchor: `optics-rewrite/s2`, or a later one an engine C3
     sets. The migration therefore closes before the Stage 6 gate.
   - The comparison from the old anchor is carried in three parts. The Stage 5 gate and the promotion's Tier F run on
@@ -1364,8 +1364,8 @@ flowchart LR
 - Phase 2.5 closes, and the Stage 2 gate passes, before the Stage 6 gate. The commit the Stage 2 gate passes on is the
   Stage 6 gate's anchor ([Anchors and comparison coverage](#anchors-and-comparison-coverage)).
 
-Phases 2.1 to 2.3 run on `engine-next`. Phases 2.5 and 2.6 run on `main` after promotion, so the catalog is V1 on both
-branches for as long as there are two. Phase 2.4 is documents only, off the critical path: it is drafted on
+Phases 2.1 to 2.3 run on `engine-next`, so the catalog was V1 on both branches while there were two. Phase 2.5 runs
+after promotion on its own branch from `main`, `lens-v2-migration`, and Phase 2.6 on `main` after it. Phase 2.4 is documents only, off the critical path: it is drafted on
 `engine-next`, stacked on the converter stack (Phase 2.3), and reaches `main` with promotion. `main` cannot read a V2
 file before promotion, so the V2 authoring documents must not reach it earlier. No V2-independent correction to the
 V1 spec goes to `main` separately.
@@ -1896,7 +1896,23 @@ correction to the V1 spec goes to `main` separately: S2.P4.T1 fixes the spec–c
 
 **Phase 2.5 — Catalog migration**
 
-This phase runs on `main`, after `engine-next` has been promoted.
+This phase runs after promotion on `lens-v2-migration`, a branch from `main` at `ee51f344`. `main` and its lens PRs
+stay V1 until the migration closes, and the converted catalog is tested in the branch's preview before it reaches
+`main`.
+
+- **The migration branch.**
+  - Each step is a PR into `lens-v2-migration`, squash-merged. The branch carries only this phase's steps: an engine
+    change goes to `main`. Its pull requests get `main`'s checks (`.github/workflows/quality.yml`); only `main` deploys.
+  - `main` is merged into the branch often, and before each batch PR is opened, as a merge commit through a PR whose
+    own `engine-diff` job checks the merge under its declared class (C3 when `main`'s changes move outputs, as #843's
+    glass rows did). Tier P of the merged head against `main` is then run and recorded in that PR: every lens is a
+    format-only change or unchanged, and the run is bit-identical.
+  - **Conflicts.** A lens a batch converted and `main` then edited conflicts in that merge. The merge takes `main`'s V1
+    file, converts it, and re-applies the batch's hand resolutions from its conversion report: stop comments, printed
+    values and restored zeros. A V1 file new on `main` whose maker's batch has merged is converted in the merge too.
+    The merge PR lists each file it converted.
+  - **Page dates.** The freshness query, `git log --follow`, lists no merge commit, so a conversion made while
+    resolving a merge moves no page date. A conversion made in a later commit begins its subject with the step ID.
 
 - **S2.P5.T1–T8 Convert by maker batches.**
   - **Batches:** eight PRs, one per alphabetical group of maker directories under `src/lens-data/`. Each runs
@@ -1911,12 +1927,13 @@ This phase runs on `main`, after `engine-next` has been promoted.
       [Stop radius](#stop-radius); a printed value that disagrees is its own investigation.
   - **Zero asphere terms:** the conversion report lists the zero terms it dropped, by surface. The batch PR restores,
     as an explicit `0`, any zero that the lens's audit log or analysis relies on.
-  - **In-flight V1 PRs:** V1 ingest keeps a V1 file working until S2.P5.T9. Once the file's maker has been converted,
-    its author runs the converter before merge. From S2.P5.T9 the PR's checks fail until the file is V2.
-    - A new V1 file is converted by `npm run organize:lens-data` after `main` is merged into the PR.
-    - A PR that edits a lens a batch has converted takes `main`'s V2 file and applies its own edit there. Converting
-      its V1 copy instead would lose the batch's hand resolutions, the restored zeros among them, and no gate would
-      notice: a restored zero does not change the fingerprint.
+  - **V1 PRs on `main`:** `main` stays V1 until the migration merges, so a lens PR there changes V1 files as before,
+    and the next merge of `main` into the branch converts them. From the migration's merge, `main`'s checks fail on a
+    V1 file.
+    - A new V1 file is then converted by `npm run organize:lens-data` after `main` is merged into the PR.
+    - A PR that edits a converted lens takes `main`'s V2 file and applies its own edit there. Converting a V1 copy
+      instead would lose the batch's hand resolutions, the restored zeros among them, and no gate would notice: a
+      restored zero does not change the fingerprint.
   - **Tests:** a test that reads a catalog file's authored fields changes in the batch that converts the file, to
     read the V2 shape or to go through the catalog. S2.P4.T1 already made the catalog suites (patent metadata,
     published stations, the catalog, canonical round trips, zoom aperture models) read a file of either version.
@@ -1926,7 +1943,7 @@ This phase runs on `main`, after `engine-next` has been promoted.
   - **Rollback:** a batch reverts as [Rollback](#rollback) states.
 - **S2.P5.T9 Close the migration and convert on arrival.**
   - **Change:**
-    - first convert, under the batch gate, any V1 file that reached `main` after its maker's batch;
+    - first convert, under the batch gate, any V1 file still on the branch;
     - add `__tests__/src/lens-data/schemaVersion.test.ts`, which requires every catalog file to be V2;
     - the organizer converts any V1 lens or converter file it finds, and `generate-build-metadata.mjs` stops on one
       with the command to run ([Ingest, conversion and comments](#ingest-conversion-and-comments));
@@ -1946,6 +1963,10 @@ This phase runs on `main`, after `engine-next` has been promoted.
     - the metadata generator stops on a V1 file without writing it.
   - **Policy:** V1 stays readable only through ingest and the converter, and enters the catalog only as converted V2.
   - **Gate:** C0.
+  - **Close:** after this step, a last merge of `main` and a check of the branch's preview against production,
+    `lens-v2-migration` merges into `main` through one PR, as a merge commit, never a squash, so each batch stays a
+    commit of its own. That PR's checks run on the merge result: a V1 file that reached `main` after the last merge
+    fails them, and `main` is merged again. Its merge commit closes the migration.
 
 **Phase 2.6 — Settled follow-ups**
 
@@ -2003,7 +2024,7 @@ Each step is its own PR after S2.P5. The phase blocks only S8.P2.T3.
   - **Gate:** C3 on what the UI shows, with the report as evidence and a changelog entry.
   - **Open:** what its edits do to page modified dates (the list after [Settled decisions](#settled-decisions)).
 
-**Stage 2 gate:** on `main` after promotion, on the commit that closes the migration (S2.P5.T9) or a later one, and
+**Stage 2 gate:** on `main` after promotion, on the merge commit that closes the migration (S2.P5.T9) or a later one, and
 before the Stage 6 gate. A stage run takes a branch's head, so the gate runs through a temporary ref at that commit,
 or on a later commit of `main`. Its base is the promotion merge commit, `optics-rewrite/promotion`.
 
@@ -2764,6 +2785,13 @@ Settled on 2026-10-16, answering the S2.P4.T1 questions:
 | 88 | The spec says what the code does at each contradiction S2.P4.T1 names; the plan names them and gives no count | S2.P4.T1 |
 | 89 | Phase 2.4 is drafted on `engine-next`, stacked on the converter stack, and reaches `main` with promotion; no V2-independent correction to the V1 spec goes to `main` separately (Q57) | [Stage dependencies](#stage-dependencies); Phase 2.4 |
 
+Settled on 2026-10-17, after promotion:
+
+| # | Decision | Where |
+| --- | --- | --- |
+| 90 | `engine-next` is kept after promotion; nothing merges into it again | [Integration model](#integration-model) |
+| 91 | Phase 2.5 runs on `lens-v2-migration`; `main` merges into it often, and it merges into `main` once, as a merge commit, on which the Stage 2 gate runs | Phase 2.5; S2.P5.T9 |
+
 The maintainer settled the Olympus Zuiko Auto-W 18mm's distortion on 2026-10-15; its engine C3 is #815, whose merge
 commit is anchor A3:
 
@@ -2805,7 +2833,9 @@ Open, none of them needed before promotion:
   changes.
 - Until promotion, `main` keeps its pre-program engine, apart from the glass rows and rules that lens batches add
   ([Integration model](#integration-model)). Not promoting `engine-next` rolls back everything on it.
-- Until S2.P5.T9, a catalog batch also reverts with `convert-lens-data --to-version 1`. From S2.P5.T9 the schema test
-  and the organizer hold the catalog at V2, so a batch goes back only after S2.P5.T9 is reverted.
+- Until the migration merges into `main`, a catalog batch reverts on `lens-v2-migration`, and not merging the branch
+  rolls back the whole migration. Until S2.P5.T9, a batch also reverts with `convert-lens-data --to-version 1`. From
+  S2.P5.T9 the schema test and the organizer hold the catalog at V2, so a batch goes back only after S2.P5.T9 is
+  reverted.
 - From S8.P2.T2 the app reads only V2, and a revert of S8.P2.T2 restores V1 ingest.
 - There is no in-tree old engine to fall back to. A failing step is fixed or reverted, never routed around.

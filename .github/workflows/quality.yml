@@ -1,12 +1,13 @@
 name: Quality Checks
 
-# engine-next is the integration branch of the optics engine rewrite (OPTICS_ENGINE_REWRITE_SPEC.md, Integration
-# model). Its pull requests and pushes get the same checks as main's; only main deploys.
+# engine-next was the integration branch of the optics engine rewrite (OPTICS_ENGINE_REWRITE_SPEC.md, Integration
+# model); lens-v2-migration carries its catalog conversion (Phase 2.5). Their pull requests and pushes get the same
+# checks as main's; only main deploys.
 on:
   pull_request:
-    branches: [main, engine-next]
+    branches: [main, engine-next, lens-v2-migration]
   push:
-    branches: [main, engine-next]
+    branches: [main, engine-next, lens-v2-migration]
 
 jobs:
   lint-format:
