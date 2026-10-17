@@ -39,11 +39,12 @@ export function thickLensFocalLength(r1: number | "flat", r2: number | "flat", d
  * Compute the thick-lens focal length for one runtime lens element.
  *
  * Resolves the element's bounding surfaces from `L.ES`, accumulates axial centre
- * thickness across intermediate surfaces (e.g. embedded stops), and evaluates the
- * medium index at the element's reference line via `L.indexByIdx`.
+ * thickness across intermediate surfaces (e.g. embedded stops), and uses the front
+ * surface's authored `nd`, matching monochromatic tracing at the reference line
+ * (helium d, or mercury e when the element's `indexReference` is `"e"`).
  *
  * @param element - element metadata record
- * @param L - runtime lens containing surfaces and dispersion tables
+ * @param L - runtime lens containing surfaces and element spans
  * @returns thick-lens focal length in mm, or null if element span is unresolved
  */
 export function computeElementFocalLength(element: ElementData, L: RuntimeLens): number | null {
@@ -59,7 +60,7 @@ export function computeElementFocalLength(element: ElementData, L: RuntimeLens):
 
   const r1 = L.S[s1].R;
   const r2 = L.S[s2].R;
-  const n = L.indexByIdx?.[s1]?.fn("G") ?? element.nd;
+  const n = L.S[s1].nd;
 
   return thickLensFocalLength(r1, r2, d, n);
 }

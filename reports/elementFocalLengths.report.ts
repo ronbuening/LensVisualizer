@@ -310,11 +310,9 @@ describe("element focal lengths report", () => {
     );
     lines.push("  centre thickness $d$ is the cumulative axial distance between its front and rear surfaces.");
     lines.push(
-      "- **Refractive index**: the medium's index is resolved through the optics engine's dispersion resolution",
+      "- **Refractive index**: use the front surface's authored `nd` (`L.S[s1].nd`), matching monochromatic tracing",
     );
-    lines.push(
-      '  (`indexByIdx.fn("G")`), using the catalog Sellmeier index where resolved rather than hard-coding raw `nd`.',
-    );
+    lines.push('  at the reference line (helium d, or mercury e when the element\'s `indexReference` is `"e"`).');
     lines.push("");
     lines.push("**Regenerate this file** by running `npm run generate:reports -- elementFocalLengths`.");
     lines.push("");
