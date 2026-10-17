@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Minolta MD 28mm f/2.8 (5/5), modeled from US 4,493,536 Example 1.
@@ -6,7 +6,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * Source/model mapping:
  * - Patent Example 1 is normalized to f = 100; every prescription length is uniformly scaled by 0.28.
  * - The patent publishes no physical stop. One flat STO is inserted at the midpoint of d4 (between L2 and L3),
- *   and its semi-diameter is calibrated from the parsed model to reproduce the published f/2.8 paraxially.
+ *   and its radius is derived from the design f-number, the published f/2.8.
  *   This is a modeling choice, not independent evidence of the production diaphragm diameter or axial position.
  * - The patent publishes no semi-diameters. Surface SDs below are modeled from exact spherical ray envelopes plus
  *   the current edge-thickness, rim-slope, and shared-gap constraints; they are not source dimensions.
@@ -19,23 +19,28 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "minolta-md-28mm-f28-v2",
   maker: "Minolta",
   name: "MINOLTA MD 28mm f/2.8 (5 elements / 5 groups)",
   subtitle: "US 4,493,536 Example 1 — 0.28× model; strong secondary correlation to the later 5/5 MD variant",
-  specs: ["5 ELEMENTS / 5 GROUPS", "28.0119 mm MODEL EFL", "f/2.8", "76° PATENT FULL FIELD"],
 
-  focalLengthMarketing: 28,
-  focalLengthDesign: 28.011903936175628,
-  apertureMarketing: 2.8,
-  lensMounts: ["minolta-sr"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,493,536",
-  patentAuthors: ["Yoshinobu Kudo"],
-  patentAssignees: ["Minolta Camera Co., Ltd."],
-  patentYear: 1985,
-  elementCount: 5,
-  groupCount: 5,
+  catalog: {
+    lensMounts: ["minolta-sr"],
+    imageFormat: "135-full-frame",
+    specs: ["5 ELEMENTS / 5 GROUPS", "28.0119 mm MODEL EFL", "f/2.8", "76° PATENT FULL FIELD"],
+    elementCount: 5,
+    groupCount: 5,
+    focalLengthMm: { marketing: 28, design: 28.011903936175628 },
+    fNumber: { marketing: 2.8 },
+  },
+
+  source: {
+    patentNumber: "US 4,493,536",
+    patentYear: 1985,
+    authors: ["Yoshinobu Kudo"],
+    assignees: ["Minolta Camera Co., Ltd."],
+  },
 
   elements: [
     {
@@ -46,7 +51,7 @@ const LENS_DATA = {
       nd: 1.78831,
       vd: 47.32,
       indexReference: "d",
-      fl: -40.18146740978978,
+      focalLengthMm: -40.18146740978978,
       glass: "S-LAH64 class (coordinate-compatible spectral proxy; native d 1.78831/47.32; supplier/melt unproven)",
       apd: false,
     },
@@ -58,7 +63,7 @@ const LENS_DATA = {
       nd: 1.805,
       vd: 44.53,
       indexReference: "d",
-      fl: 26.209615395271985,
+      focalLengthMm: 26.209615395271985,
       glass: "Unmatched (805445 coordinate; supplier unresolved)",
       apd: false,
     },
@@ -70,7 +75,7 @@ const LENS_DATA = {
       nd: 1.75,
       vd: 25.14,
       indexReference: "d",
-      fl: -17.462861261697892,
+      focalLengthMm: -17.462861261697892,
       glass: "Unmatched (750251 coordinate; supplier unresolved)",
       apd: false,
     },
@@ -82,7 +87,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.77,
       indexReference: "d",
-      fl: 31.854754556499355,
+      focalLengthMm: 31.854754556499355,
       glass: "N-LAF34 class (coordinate-compatible spectral proxy; native d 1.7725/49.77; supplier/melt unproven)",
       apd: false,
     },
@@ -94,41 +99,38 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 56.47,
       indexReference: "d",
-      fl: 47.18197285090249,
+      focalLengthMm: 47.18197285090249,
       glass: "H-LaK12 class (coordinate-compatible spectral proxy; native d 1.6968/56.47; supplier/melt unproven)",
       apd: false,
     },
   ],
 
   surfaces: [
-    { label: "1", R: 43.5652, d: 1.6772, nd: 1.78831, elemId: 1, sd: 15.5 },
-    { label: "2", R: 18.0292, d: 21.3388, nd: 1.0, elemId: 0, sd: 13 },
-    { label: "3", R: 30.2652, d: 7.854, nd: 1.805, elemId: 2, sd: 8 },
-    { label: "4", R: -61.6, d: 4.0628, nd: 1.0, elemId: 0, sd: 8 },
-    { label: "STO", R: 1e15, d: 4.0628, nd: 1.0, elemId: 0, sd: 6.541810862460941 },
-    { label: "5", R: -17.2648, d: 4.3428, nd: 1.75, elemId: 3, sd: 7.3 },
-    { label: "6", R: 60.1048, d: 0.798, nd: 1.0, elemId: 0, sd: 6.9 },
-    { label: "7", R: -79.4108, d: 2.0804, nd: 1.7725, elemId: 4, sd: 6.9 },
-    { label: "8", R: -19.0008, d: 0.084, nd: 1.0, elemId: 0, sd: 7.6 },
-    { label: "9", R: -498.5232, d: 2.0776, nd: 1.6968, elemId: 5, sd: 8.5 },
-    { label: "10", R: -30.8952, d: 35.75538554189261, nd: 1.0, elemId: 0, sd: 8.5 },
+    { label: "1", R: 43.5652, d: 1.6772, sd: 15.5, medium: 1 },
+    { label: "2", R: 18.0292, d: 21.3388, sd: 13 },
+    { label: "3", R: 30.2652, d: 7.854, sd: 8, medium: 2 },
+    { label: "4", R: -61.6, d: 4.0628, sd: 8 },
+    { label: "STO", R: "flat", d: 4.0628 },
+    { label: "5", R: -17.2648, d: 4.3428, sd: 7.3, medium: 3 },
+    { label: "6", R: 60.1048, d: 0.798, sd: 6.9 },
+    { label: "7", R: -79.4108, d: 2.0804, sd: 6.9, medium: 4 },
+    { label: "8", R: -19.0008, d: 0.084, sd: 7.6 },
+    { label: "9", R: -498.5232, d: 2.0776, sd: 8.5, medium: 5 },
+    { label: "10", R: -30.8952, d: 35.75538554189261, sd: 8.5 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 0.3,
+    description:
+      "Focus travel is not modeled: 0.3 m is production metadata only; US 4,493,536 Example 1 publishes no finite-object spacing state, so the optical model remains at the published infinity prescription.",
+  },
+
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
+
   groups: [],
   doublets: [],
 
-  closeFocusM: 0.3,
-  focusDescription:
-    "Focus travel is not modeled: 0.3 m is production metadata only; US 4,493,536 Example 1 publishes no finite-object spacing state, so the optical model remains at the published infinity prescription.",
-
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  yScFill: 0.38,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.38 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

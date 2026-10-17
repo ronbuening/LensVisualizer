@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -15,10 +15,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║  STOP INFERENCE: the patent gives only stop topology inside d7 = 24.08 mm.║
  * ║  A 600 dpi measurement of Fig. 1 places the stop at 0.3368 of d7 from r7,║
- * ║  implemented as 8.11 mm before STO and 15.97 mm after STO. STO sd is      ║
- * ║  calibrated to 12.358523 mm so the paraxial entrance-pupil diameter is    ║
- * ║  49.999993 mm and the modeled f-number is 2.000000. This calibrates to    ║
- * ║  the published 1:2 ratio; it does not establish an unpublished iris size. ║
+ * ║  implemented as 8.11 mm before STO and 15.97 mm after STO. The stop radius║
+ * ║  is derived from the design f-number. The former paraxial calibration gave║
+ * ║  a 49.999993 mm entrance-pupil diameter and f/2.000000; that agreement    ║
+ * ║  with the published 1:2 ratio does not establish an unpublished iris size.║
  * ║                                                                            ║
  * ║  IMAGE PLANE: the patent gives no spacing after r11. The final d below is ║
  * ║  the independently computed infinity paraxial BFD, 37.795983541 mm.       ║
@@ -32,24 +32,28 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "minolta-auto-tele-rokkor-100f2",
   maker: "Minolta",
   name: "MINOLTA AUTO TELE ROKKOR-PF 100mm f/2",
   subtitle: "JP 1963-011590 B, Example 2 — production correlation inferred",
-  specs: ["6 ELEMENTS / 5 GROUPS", "f = 100 mm", "f/2", "2ω = 24°", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 100,
-  focalLengthDesign: 99.99998656600513,
-  apertureMarketing: 2,
-  apertureDesign: 2,
-  lensMounts: ["minolta-sr"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 1963-011590 B",
-  patentAuthors: ["Tadayoshi Nito"],
-  patentAssignees: ["Minolta Camera Co., Ltd."],
-  patentYear: 1963,
-  elementCount: 6,
-  groupCount: 5,
+  catalog: {
+    lensMounts: ["minolta-sr"],
+    imageFormat: "135-full-frame",
+    specs: ["6 ELEMENTS / 5 GROUPS", "f = 100 mm", "f/2", "2ω = 24°", "ALL-SPHERICAL"],
+    elementCount: 6,
+    groupCount: 5,
+    focalLengthMm: { marketing: 100, design: 99.99998656600513 },
+    fNumber: { marketing: 2, design: 2 },
+  },
+
+  source: {
+    patentNumber: "JP 1963-011590 B",
+    patentYear: 1963,
+    authors: ["Tadayoshi Nito"],
+    assignees: ["Minolta Camera Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -61,7 +65,7 @@ const LENS_DATA = {
       nd: 1.67975,
       vd: 55.7,
       indexReference: "d",
-      fl: 114.76516247656772,
+      focalLengthMm: 114.76516247656772,
       glass: "680557 — supplier unresolved",
       apd: false,
       role: "Front positive collector group.",
@@ -74,11 +78,11 @@ const LENS_DATA = {
       nd: 1.68287,
       vd: 31.5,
       indexReference: "d",
-      fl: -97.18376442178145,
+      focalLengthMm: -97.18376442178145,
       glass: "683315 — supplier unresolved",
       apd: false,
-      cemented: "D1",
       role: "Front element of the cemented positive second group.",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -88,11 +92,11 @@ const LENS_DATA = {
       nd: 1.67975,
       vd: 55.7,
       indexReference: "d",
-      fl: 46.47599405189926,
+      focalLengthMm: 46.47599405189926,
       glass: "680557 — supplier unresolved",
       apd: false,
-      cemented: "D1",
       role: "Rear element of the cemented positive second group.",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -102,7 +106,7 @@ const LENS_DATA = {
       nd: 1.66797,
       vd: 35.8,
       indexReference: "d",
-      fl: -41.99816233824494,
+      focalLengthMm: -41.99816233824494,
       glass: "668358 — supplier unresolved",
       apd: false,
       role: "Negative third group immediately before the aperture stop.",
@@ -115,7 +119,7 @@ const LENS_DATA = {
       nd: 1.57526,
       vd: 39.1,
       indexReference: "d",
-      fl: -136.81910973846735,
+      focalLengthMm: -136.81910973846735,
       glass: "575391 — supplier unresolved",
       apd: false,
       role: "Negative fourth group immediately after the aperture stop.",
@@ -128,7 +132,7 @@ const LENS_DATA = {
       nd: 1.70442,
       vd: 40.8,
       indexReference: "d",
-      fl: 57.07570973106505,
+      focalLengthMm: 57.07570973106505,
       glass: "704408 — supplier unresolved",
       apd: false,
       role: "Rear positive group.",
@@ -137,23 +141,29 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 61.5, d: 7.2, nd: 1.67975, elemId: 1, sd: 29.5 },
-    { label: "2", R: 276.8, d: 0.2, nd: 1, elemId: 0, sd: 29 },
-    { label: "3", R: 37.564, d: 1.4, nd: 1.68287, elemId: 2, sd: 24.8 },
-    { label: "4", R: 23.624, d: 11.5, nd: 1.67975, elemId: 3, sd: 21.2 },
-    { label: "5", R: 75.214, d: 8.778, nd: 1, elemId: 0, sd: 20.4 },
-    { label: "6", R: 119.994, d: 3, nd: 1.66797, elemId: 4, sd: 15.7 },
-    { label: "7", R: 22.51, d: 8.11, nd: 1, elemId: 0, sd: 13.5 },
+    { label: "1", R: 61.5, d: 7.2, sd: 29.5, medium: 1 },
+    { label: "2", R: 276.8, d: 0.2, sd: 29 },
+    { label: "3", R: 37.564, d: 1.4, sd: 24.8, medium: 2 },
+    { label: "4", R: 23.624, d: 11.5, sd: 21.2, medium: 3 },
+    { label: "5", R: 75.214, d: 8.778, sd: 20.4 },
+    { label: "6", R: 119.994, d: 3, sd: 15.7, medium: 4 },
+    { label: "7", R: 22.51, d: 8.11, sd: 13.5 },
     // STO position inferred from patent Fig. 1; 8.11 + 15.97 preserves published d7 = 24.08 mm.
-    { label: "STO", R: 1e15, d: 15.97, nd: 1, elemId: 0, sd: 12.358522995535482 },
-    { label: "8", R: -28.276, d: 2, nd: 1.57526, elemId: 5, sd: 12.7 },
-    { label: "9", R: -45.27, d: 0.4, nd: 1, elemId: 0, sd: 13.9 },
-    { label: "10", R: 129.36, d: 6, nd: 1.70442, elemId: 6, sd: 15.5 },
+    { label: "STO", R: "flat", d: 15.97 },
+    { label: "8", R: -28.276, d: 2, sd: 12.7, medium: 5 },
+    { label: "9", R: -45.27, d: 0.4, sd: 13.9 },
+    { label: "10", R: 129.36, d: 6, sd: 15.5, medium: 6 },
     // Computed infinity paraxial BFD; no image-plane spacing is published after r11.
-    { label: "11", R: -57.218, d: 37.7959835413548, nd: 1, elemId: 0, sd: 16.1 },
+    { label: "11", R: -57.218, d: 37.7959835413548, sd: 16.1 },
   ],
 
-  asph: {},
+  focus: {
+    closeFocusM: 1.2192,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION: published Example 2 is modeled at infinity only; the production 4 ft minimum-focus specification is metadata and is not converted into an internal spacing law.",
+  },
+
+  aperture: { nominalFNumber: 2, fStops: [2, 2.8, 4, 5.6, 8, 11, 16] },
 
   groups: [
     { text: "G1 +", fromSurface: "1", toSurface: "2" },
@@ -162,17 +172,9 @@ const LENS_DATA = {
     { text: "G4 −", fromSurface: "8", toSurface: "9" },
     { text: "G5 +", fromSurface: "10", toSurface: "11" },
   ],
-
   doublets: [{ text: "D1", fromSurface: "3", toSurface: "5" }],
 
-  closeFocusM: 1.2192,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: published Example 2 is modeled at infinity only; the production 4 ft minimum-focus specification is metadata and is not converted into an internal spacing law.",
-
-  nominalFno: 2,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
-
-  yScFill: 0.44,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.44 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

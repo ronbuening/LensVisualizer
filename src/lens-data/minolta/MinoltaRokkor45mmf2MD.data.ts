@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -37,23 +37,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "minolta-md-rokkor-45f2",
   maker: "Minolta",
   name: "MINOLTA MD ROKKOR 45mm f/2",
   subtitle: "US 4,277,149 Example 7 — Minolta / Kunihiko Konoma",
-  specs: ["6 ELEMENTS / 5 GROUPS", "f ≈ 45.0 mm", "F/2.0", "2ω ≈ 51.4°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: 45,
-  apertureMarketing: 2,
-  lensMounts: ["minolta-sr"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,277,149",
-  patentAuthors: ["Kunihiko Konoma"],
-  patentAssignees: ["Minolta Camera Co., Ltd."],
-  patentYear: 1981,
-  elementCount: 6,
-  groupCount: 5,
+  catalog: {
+    lensMounts: ["minolta-sr"],
+    imageFormat: "135-full-frame",
+    specs: ["6 ELEMENTS / 5 GROUPS", "f ≈ 45.0 mm", "F/2.0", "2ω ≈ 51.4°", "ALL SPHERICAL"],
+    elementCount: 6,
+    groupCount: 5,
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: 45 },
+    fNumber: { marketing: 2 },
+  },
+
+  source: {
+    patentNumber: "US 4,277,149",
+    patentYear: 1981,
+    authors: ["Kunihiko Konoma"],
+    assignees: ["Minolta Camera Co., Ltd."],
+  },
 
   /* ── Elements ──
    *  Modified Gauss: L1–L3 singlets (front half), L4+L5 cemented doublet,
@@ -69,7 +75,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.781,
       vd: 44.5,
-      fl: 53.9,
+      focalLengthMm: 53.9,
       glass: "781445 - lanthanum flint (catalog unresolved)",
       apd: false,
       role: "Front collector. Strongest single-surface power in the front half; high-index lanthanum flint reduces curvature for a given power, limiting SA and coma at full aperture.",
@@ -81,7 +87,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7495,
       vd: 50.1,
-      fl: 67.6,
+      focalLengthMm: 67.6,
       glass: "750501 - lanthanum crown (catalog unresolved)",
       apd: false,
       role: "Separated positive meniscus — the patent's key structural innovation. Provides an extra degree of freedom (air gap d4) for independent coma and astigmatism balancing.",
@@ -93,7 +99,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7006,
       vd: 30.1,
-      fl: -28.6,
+      focalLengthMm: -28.6,
       glass: "701301 - dense flint (catalog unresolved)",
       apd: false,
       role: "Principal diverging element of the front half. Strongest individual element by absolute power. Controls Petzval sum, provides chromatic over-correction, and forms the front surface of the central air lens.",
@@ -105,11 +111,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6398,
       vd: 35.3,
-      fl: -24.9,
+      focalLengthMm: -24.9,
       glass: "640353 - medium flint (catalog unresolved)",
       apd: false,
-      cemented: "D1",
       role: "Front (negative) component of the cemented doublet. Its strongly curved front surface (r7) is the primary source of negative SA in the rear group and forms the rear surface of the diverging air lens.",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -118,11 +124,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7545,
       vd: 50.1,
-      fl: 30.0,
+      focalLengthMm: 30.0,
       glass: "755501 - lanthanum crown (catalog unresolved)",
       apd: false,
-      cemented: "D1",
       role: "Rear (positive) component of the cemented doublet. Shares νd = 50.1 with L2, forming a symmetric achromatic pair across the stop. The doublet L4+L5 is nearly afocal (f ≈ −535 mm combined), functioning as an aberration corrector.",
+      cemented: "D1",
     },
     {
       id: 6,
@@ -131,7 +137,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6968,
       vd: 55.5,
-      fl: 44.7,
+      focalLengthMm: 44.7,
       glass: "697555 - lanthanum crown (catalog unresolved)",
       apd: false,
       role: "Final converging element and the principal contributor to the long BFD. Nearly flat front surface (R ≈ 622 mm) with a strongly curved rear; this reversed-curvature configuration (|r10| > |r11|) is a key patent innovation.",
@@ -148,43 +154,47 @@ const LENS_DATA = {
    *
    *  STO placed at the midpoint of patent gap d6 (see file header note).
    */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     // ── Group 1: L1 (positive meniscus, convex to object) ──
-    { label: "1", R: 37.485, d: 2.925, nd: 1.781, elemId: 1, sd: 14.0 },
-    { label: "2", R: 332.748, d: 0.113, nd: 1.0, elemId: 0, sd: 13.5 },
+    { label: "1", R: 37.485, d: 2.925, sd: 14.0, medium: 1 },
+    { label: "2", R: 332.748, d: 0.113, sd: 13.5 },
 
     // ── Group 2: L2 (positive meniscus, convex to object) ──
-    { label: "3", R: 19.454, d: 3.353, nd: 1.7495, elemId: 2, sd: 13.0 },
-    { label: "4", R: 29.255, d: 1.35, nd: 1.0, elemId: 0, sd: 11.0 },
+    { label: "3", R: 19.454, d: 3.353, sd: 13.0, medium: 2 },
+    { label: "4", R: 29.255, d: 1.35, sd: 11.0 },
 
     // ── Group 3: L3 (negative meniscus, convex to object) ──
-    { label: "5", R: 69.602, d: 1.17, nd: 1.7006, elemId: 3, sd: 10.5 },
-    { label: "6", R: 15.444, d: 4.572, nd: 1.0, elemId: 0, sd: 10.5 },
+    { label: "5", R: 69.602, d: 1.17, sd: 10.5, medium: 3 },
+    { label: "6", R: 15.444, d: 4.572, sd: 10.5 },
 
     // ── Aperture stop (midpoint of patent d6 gap) ──
-    { label: "STO", R: 1e15, d: 4.572, nd: 1.0, elemId: 0, sd: 8.5 },
+    { label: "STO", R: "flat", d: 4.572 },
 
     // ── Group 4: L4 + L5 cemented doublet (meniscus, concave to object) ──
-    { label: "7", R: -13.01, d: 1.17, nd: 1.6398, elemId: 4, sd: 9.9 }, // capped by S6→S7 cross-gap sag
-    { label: "8", R: -72.986, d: 3.825, nd: 1.7545, elemId: 5, sd: 10.5 },
-    { label: "9", R: -17.667, d: 0.113, nd: 1.0, elemId: 0, sd: 12.0 },
+    { label: "7", R: -13.01, d: 1.17, sd: 9.9, medium: 4 }, // capped by S6→S7 cross-gap sag
+    { label: "8", R: -72.986, d: 3.825, sd: 10.5, medium: 5 },
+    { label: "9", R: -17.667, d: 0.113, sd: 12.0 },
 
     // ── Group 5: L6 (biconvex positive) ──
-    { label: "10", R: 622.35, d: 2.97, nd: 1.6968, elemId: 6, sd: 12.0 },
-    { label: "11", R: -32.76, d: 36.063, nd: 1.0, elemId: 0, sd: 12.5 },
+    { label: "10", R: 622.35, d: 2.97, sd: 12.0, medium: 6 },
+    { label: "11", R: -32.76, sd: 12.5 },
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.6,
+    description: "Unit focus — entire optical assembly translates forward along the optical axis.",
+  },
 
-  /* ── Variable air spacings (unit focus) ──
+  /* (moved from var) ── Variable air spacings (unit focus) ──
    *  Unit focus: entire lens translates; only BFD changes.
    *  Extension at MFD (0.6 m): Δ = f²/(d_o − f) ≈ 3.65 mm.
    */
-  var: {
-    "11": [36.063, 39.71],
-  },
-  varLabels: [["11", "BF"]],
+  gaps: { "11": { label: "BF", values: [[36.063, 39.71]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2, fStops: [2, 2.8, 4, 5.6, 8, 11, 16], blades: 5 },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -196,18 +206,8 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.6,
-  focusDescription: "Unit focus — entire optical assembly translates forward along the optical axis.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
-  apertureBlades: 5,
-
   /* ── Layout tuning ── */
-  scFill: 0.5,
-  yScFill: 0.4,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.4 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

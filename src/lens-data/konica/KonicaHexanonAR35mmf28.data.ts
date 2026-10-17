@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -22,24 +22,28 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "konica-hexanon-ar-35mm-f28",
   maker: "Konica",
   name: "KONICA HEXANON AR 35mm f/2.8",
   subtitle: "US 4,170,403 Example 1 — Konishiroku / Shimokura",
-  specs: ["5 ELEMENTS / 5 GROUPS", "f ≈ 35.00 mm", "F/2.8", "2ω = 64°", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 35,
-  focalLengthDesign: 35.0008,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.8,
-  lensMounts: ["konica-ar"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,170,403",
-  patentAuthors: ["Toshiko Shimokura"],
-  patentAssignees: ["Konishiroku Photo Industry Co., Ltd."],
-  patentYear: 1979,
-  elementCount: 5,
-  groupCount: 5,
+  catalog: {
+    lensMounts: ["konica-ar"],
+    imageFormat: "135-full-frame",
+    specs: ["5 ELEMENTS / 5 GROUPS", "f ≈ 35.00 mm", "F/2.8", "2ω = 64°", "ALL-SPHERICAL"],
+    elementCount: 5,
+    groupCount: 5,
+    focalLengthMm: { marketing: 35, design: 35.0008 },
+    fNumber: { marketing: 2.8, design: 2.8 },
+  },
+
+  source: {
+    patentNumber: "US 4,170,403",
+    patentYear: 1979,
+    authors: ["Toshiko Shimokura"],
+    assignees: ["Konishiroku Photo Industry Co., Ltd."],
+  },
 
   elements: [
     {
@@ -49,12 +53,12 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.5163,
       vd: 64.1,
-      fl: -40.27,
+      focalLengthMm: -40.27,
       glass: "S-BSL7 (OHARA)",
+      role: "Front negative meniscus providing retrofocus back focal distance.",
       nC: 1.51386,
       nF: 1.52191,
       ng: 1.52621,
-      role: "Front negative meniscus providing retrofocus back focal distance.",
     },
     {
       id: 2,
@@ -63,12 +67,12 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.757,
       vd: 47.9,
-      fl: 24.12,
+      focalLengthMm: 24.12,
       glass: "J-LAF04 (HIKARI)",
+      role: "Thick high-index positive lens; primary front positive collector and aberration-correction element.",
       nC: 1.752239,
       nF: 1.768055,
       ng: 1.776843,
-      role: "Thick high-index positive lens; primary front positive collector and aberration-correction element.",
     },
     {
       id: 3,
@@ -77,12 +81,12 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7407,
       vd: 27.8,
-      fl: -19.37,
+      focalLengthMm: -19.37,
       glass: "S-TIH13 (OHARA)",
+      role: "Dense-flint negative element behind the stop; chromatic correction partner to L2.",
       nC: 1.73309,
       nF: 1.75975,
       ng: 1.77599,
-      role: "Dense-flint negative element behind the stop; chromatic correction partner to L2.",
     },
     {
       id: 4,
@@ -91,12 +95,12 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6968,
       vd: 55.5,
-      fl: 64.26,
+      focalLengthMm: 64.26,
       glass: "S-LAL14 (OHARA)",
+      role: "First rear positive meniscus, concave to object; distortion correction through rear diverging action.",
       nC: 1.69297,
       nF: 1.70552,
       ng: 1.71234,
-      role: "First rear positive meniscus, concave to object; distortion correction through rear diverging action.",
     },
     {
       id: 5,
@@ -105,37 +109,38 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.713,
       vd: 53.9,
-      fl: 32.43,
+      focalLengthMm: 32.43,
       glass: "S-LAL8 (OHARA)",
+      role: "Final positive meniscus, concave to object; rear image-forming power.",
       nC: 1.70897,
       nF: 1.72221,
       ng: 1.72943,
-      role: "Final positive meniscus, concave to object; rear image-forming power.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 49.5915, d: 1.4805, nd: 1.5163, elemId: 1, sd: 16.0 },
-    { label: "2", R: 14.5005, d: 8.89, nd: 1.0, elemId: 0, sd: 12.9 },
-    { label: "3", R: 26.649, d: 11.851, nd: 1.757, elemId: 2, sd: 12.9 },
-    { label: "4", R: -46.865, d: 2.45, nd: 1.0, elemId: 0, sd: 12.1 },
-    { label: "STO", R: 1e15, d: 2.6845, nd: 1.0, elemId: 0, sd: 6.734 },
-    { label: "5", R: -20.3, d: 2.4675, nd: 1.7407, elemId: 3, sd: 7.6 },
-    { label: "6", R: 51.443, d: 1.302, nd: 1.0, elemId: 0, sd: 6.6 },
-    { label: "7", R: -29.652, d: 2.072, nd: 1.6968, elemId: 4, sd: 6.6 },
-    { label: "8", R: -18.3505, d: 0.098, nd: 1.0, elemId: 0, sd: 8.4 },
-    { label: "9", R: -489.51, d: 3.059, nd: 1.713, elemId: 5, sd: 9.4 },
-    { label: "10", R: -22.134, d: 39.061967, nd: 1.0, elemId: 0, sd: 11.4 },
+    { label: "1", R: 49.5915, d: 1.4805, sd: 16.0, medium: 1 },
+    { label: "2", R: 14.5005, d: 8.89, sd: 12.9 },
+    { label: "3", R: 26.649, d: 11.851, sd: 12.9, medium: 2 },
+    { label: "4", R: -46.865, d: 2.45, sd: 12.1 },
+    { label: "STO", R: "flat", d: 2.6845 },
+    { label: "5", R: -20.3, d: 2.4675, sd: 7.6, medium: 3 },
+    { label: "6", R: 51.443, d: 1.302, sd: 6.6 },
+    { label: "7", R: -29.652, d: 2.072, sd: 6.6, medium: 4 },
+    { label: "8", R: -18.3505, d: 0.098, sd: 8.4 },
+    { label: "9", R: -489.51, d: 3.059, sd: 9.4, medium: 5 },
+    { label: "10", R: -22.134, sd: 11.4 },
   ],
 
-  asph: {},
-
-  var: {
-    "10": [39.061967, 44.885799],
+  focus: {
+    closeFocusM: 0.3,
+    description:
+      "Unit focus approximation; whole optical unit translates and only the final back focal distance changes.",
   },
-  varLabels: [["10", "BF"]],
-  focusDescription:
-    "Unit focus approximation; whole optical unit translates and only the final back focal distance changes.",
+
+  gaps: { "10": { label: "BF", values: [[39.061967, 44.885799]] } },
+
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -146,12 +151,7 @@ const LENS_DATA = {
   ],
   doublets: [],
 
-  closeFocusM: 0.3,
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-  scFill: 0.62,
-  yScFill: 0.52,
-} satisfies LensDataInput;
+  layout: { scFill: 0.62, yScFill: 0.52 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

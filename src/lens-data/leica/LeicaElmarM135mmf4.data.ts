@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -24,9 +24,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON STOP AND SEMI-DIAMETERS:                                  ║
  * ║    The patent drawing places the stop just behind r6 but gives no  ║
  * ║    stop diameter or clear apertures. The stop is placed 0.03000 f  ║
- * ║    behind r6 from the drawing; its SD is computed for f/4. Surface ║
- * ║    SDs are conservative inferred clear apertures constrained by    ║
- * ║    the figure proportions, edge thickness, and cross-gap clearance.║
+ * ║    behind r6 from the drawing; its radius is derived from the      ║
+ * ║    design f-number, f/4. Surface SDs are conservative inferred     ║
+ * ║    clear apertures constrained by the figure proportions, edge     ║
+ * ║    thickness, and cross-gap clearance.                             ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)    ║
@@ -36,24 +37,28 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "leica-elmar-m-135mm-f4",
   maker: "Leica",
   name: "LEICA ELMAR-M 135mm f/4",
   subtitle: "DE 1 183 707 B — Ernst Leitz single worked example",
-  specs: ["5 elements / 3 groups", "f ≈ 134.5 mm", "F/4", "2ω ≈ 18°", "all-spherical", "unit focus"],
 
-  focalLengthMarketing: 135,
-  focalLengthDesign: 134.49,
-  apertureMarketing: 4,
-  apertureDesign: 4,
-  lensMounts: ["leica-m"],
-  imageFormat: "135-full-frame",
-  patentNumber: "DE 1,183,707 B",
-  patentAuthors: ["Otto Zimmermann", "Gustav Kleineberg", "Eugen Hermanni"],
-  patentAssignees: ["Ernst Leitz GmbH"],
-  patentYear: 1964,
-  elementCount: 5,
-  groupCount: 3,
+  catalog: {
+    lensMounts: ["leica-m"],
+    imageFormat: "135-full-frame",
+    specs: ["5 elements / 3 groups", "f ≈ 134.5 mm", "F/4", "2ω ≈ 18°", "all-spherical", "unit focus"],
+    elementCount: 5,
+    groupCount: 3,
+    focalLengthMm: { marketing: 135, design: 134.49 },
+    fNumber: { marketing: 4, design: 4 },
+  },
+
+  source: {
+    patentNumber: "DE 1,183,707 B",
+    patentYear: 1964,
+    authors: ["Otto Zimmermann", "Gustav Kleineberg", "Eugen Hermanni"],
+    assignees: ["Ernst Leitz GmbH"],
+  },
 
   elements: [
     {
@@ -64,7 +69,7 @@ const LENS_DATA = {
       nd: 1.57125,
       vd: 55.8,
       indexReference: "e",
-      fl: 114.18,
+      focalLengthMm: 114.18,
       glass: "Unmatched (barium crown; patent e-line value stored)",
       apd: false,
       role: "Front crown collector in the object-side positive cemented meniscus.",
@@ -78,7 +83,7 @@ const LENS_DATA = {
       nd: 1.58403,
       vd: 41.4,
       indexReference: "e",
-      fl: -478.81,
+      focalLengthMm: -478.81,
       glass: "Unmatched (584/414 e-line light-flint class; LF5-adjacent, no exact public catalog match)",
       apd: false,
       role: "Weak negative flint cemented to L1; completes the front positive meniscus group.",
@@ -92,7 +97,7 @@ const LENS_DATA = {
       nd: 1.51871,
       vd: 64.0,
       indexReference: "e",
-      fl: 58.92,
+      focalLengthMm: 58.92,
       glass: "N-BK7 / BK7 class (Schott; patent e-line value stored)",
       apd: false,
       role: "Strong crown component of the central thick negative cemented meniscus.",
@@ -106,7 +111,7 @@ const LENS_DATA = {
       nd: 1.60718,
       vd: 37.8,
       indexReference: "e",
-      fl: -34.14,
+      focalLengthMm: -34.14,
       glass: "F5 (Schott; patent ne=1.60718, ve=37.8 stored as nd/vd)",
       apd: false,
       role: "Dominant negative element; the r5 cemented junction is the diverging cemented surface described in the patent.",
@@ -120,7 +125,7 @@ const LENS_DATA = {
       nd: 1.69416,
       vd: 30.9,
       indexReference: "e",
-      fl: 186.36,
+      focalLengthMm: 186.36,
       glass: "Unmatched SF8-class dense flint (Schott e-line source values; patent ne=1.69416, νe=30.9)",
       apd: false,
       role: "Rear positive dense-flint meniscus behind the long telephoto air space.",
@@ -128,47 +133,38 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 65.2266, d: 5.74965, nd: 1.57125, elemId: 1, sd: 19.0 },
-    { label: "2", R: 1e15, d: 3.3102, nd: 1.58403, elemId: 2, sd: 18.9 },
-    { label: "3", R: 279.63765, d: 0.2862, nd: 1.0, elemId: 0, sd: 18.5 },
-    { label: "4", R: 37.2735, d: 8.62245, nd: 1.51871, elemId: 3, sd: 18.7 },
-    { label: "5", R: -156.4029, d: 18.6732, nd: 1.60718, elemId: 4, sd: 18.7 },
-    { label: "6", R: 24.975, d: 4.05, nd: 1.0, elemId: 0, sd: 15.3 },
-    { label: "STO", R: 1e15, d: 19.0701, nd: 1.0, elemId: 0, sd: 9.8991 },
-    { label: "7", R: 70.3647, d: 3.591, nd: 1.69416, elemId: 5, sd: 14.0 },
-    { label: "8", R: 151.05555, d: 64.3607969, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "1", R: 65.2266, d: 5.74965, sd: 19.0, medium: 1 },
+    { label: "2", R: "flat", d: 3.3102, sd: 18.9, medium: 2 },
+    { label: "3", R: 279.63765, d: 0.2862, sd: 18.5 },
+    { label: "4", R: 37.2735, d: 8.62245, sd: 18.7, medium: 3 },
+    { label: "5", R: -156.4029, d: 18.6732, sd: 18.7, medium: 4 },
+    { label: "6", R: 24.975, d: 4.05, sd: 15.3 },
+    { label: "STO", R: "flat", d: 19.0701 },
+    { label: "7", R: 70.3647, d: 3.591, sd: 14.0, medium: 5 },
+    { label: "8", R: 151.05555, sd: 14.0 },
   ],
 
-  asph: {},
-
-  var: {
-    "8": [64.3607969, 79.463386],
+  focus: {
+    closeFocusM: 1.5,
+    description:
+      "Unit focus; the complete optical cell translates, represented by BFD extension from 64.361 mm at infinity to 79.463 mm at 1.5 m.",
   },
 
-  varLabels: [["8", "BF"]],
+  gaps: { "8": { label: "BF", values: [[64.3607969, 79.463386]] } },
+
+  aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 10 },
 
   groups: [
     { text: "G1 positive", fromSurface: "1", toSurface: "3" },
     { text: "G2 negative", fromSurface: "4", toSurface: "6" },
     { text: "G3 positive", fromSurface: "7", toSurface: "8" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "1", toSurface: "3" },
     { text: "D2", fromSurface: "4", toSurface: "6" },
   ],
 
-  closeFocusM: 1.5,
-  focusDescription:
-    "Unit focus; the complete optical cell translates, represented by BFD extension from 64.361 mm at infinity to 79.463 mm at 1.5 m.",
-
-  nominalFno: 4,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
-  apertureBlades: 10,
-
-  maxFstop: 22,
-  scFill: 0.48,
-  yScFill: 0.5,
-} satisfies LensDataInput;
+  layout: { scFill: 0.48, yScFill: 0.5 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

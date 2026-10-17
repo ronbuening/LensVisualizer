@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * LEICA ELMAR 35mm f/3.5 (Leica Mini II)
@@ -46,214 +46,147 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
-  "key": "leica-elmar-35mm-f35-mini-ii",
-  "maker": "Leica",
-  "name": "LEICA ELMAR 35mm f/3.5 (Leica Mini II)",
-  "sourceErrata": [
-    {
-      "status": "corrected",
-      "surface": "3",
-      "field": "R",
-      "printed": 19.1519,
-      "applied": 19.635,
-      "evidence": [
-        "source-summary",
-        "aberration-figure"
-      ],
-      "note": "The printed table traces to f = 34.5026 mm against the stated 33.6323 mm. R3 = 19.635 reproduces the stated focal length (33.6326 mm), the printed last gap (paraxial focus 24.5161 mm behind the stop against the printed 24.5165 mm) and the stated pupil magnification (0.7289 against 0.7290) together. The patent's distortion and field-curvature plots (Figs. 2A, 2D) fit the corrected value and not the printed one. The printed decimals repeat those of the row above (39.1519). The fourth decimal of the applied value is inferred from the stated focal length (within 0.0005); no publication prints it, and the US and EP prints carry the same 19.1519. Separately, the summary back focus 26.7165 differs from the table's d7 + d8 = 25.7165 by exactly 1.0000 and is read as a digit slip in the summary line; the file keeps the printed gaps."
-    }
-  ],
-  "subtitle": "US 5,321,555 A, Fig. 1 / Claim 2 — qualified production correlation",
-  "specs": [
-    "4 ELEMENTS / 3 GROUPS",
-    "DESIGN f = 33.63 mm",
-    "DESIGN F/3.5",
-    "ALL SPHERICAL",
-    "ESTIMATED UNIT FOCUS TO 0.65 m"
-  ],
-  "focalLengthMarketing": 35,
-  "focalLengthDesign": 33.6326,
-  "apertureMarketing": 3.5,
-  "apertureDesign": 3.5,
-  "lensMounts": [
-    "fixed-lens-camera"
-  ],
-  "imageFormat": "135-full-frame",
-  "patentNumber": "US 5,321,555 A",
-  "patentAuthors": [
-    "Lothar Koelsch",
-    "Klaus-Dieter Schaefer"
-  ],
-  "patentAssignees": [
-    "Leica Camera GmbH"
-  ],
-  "patentYear": 1994,
-  "elementCount": 4,
-  "groupCount": 3,
-  "elements": [
-    {
-      "id": 1,
-      "name": "L1",
-      "diagramLabel": "L1",
-      "label": "Element 1",
-      "type": "Positive Meniscus",
-      "nd": 1.808109,
-      "vd": 46.34,
-      "indexReference": "e",
-      "fl": 18.21176023919409,
-      "glass": "S-LAH65V (OHARA catalog equivalent; patent ne 1.808109 / νe 46.34; production supplier unspecified)",
-      "role": "Positive meniscus front element of the cemented doublet; its front surface is the strongest positive surface in the lens.",
-      "cemented": "D1"
-    },
-    {
-      "id": 2,
-      "name": "L2",
-      "diagramLabel": "L2",
-      "label": "Element 2",
-      "type": "Negative Meniscus",
-      "nd": 1.81264,
-      "vd": 25.23,
-      "indexReference": "e",
-      "fl": -50.831017,
-      "glass": "S-TIH6 (OHARA catalog equivalent; patent ne 1.81264 / νe 25.23; production supplier unspecified)",
-      "role": "Negative meniscus cemented behind L1, with nearly the same index and much higher dispersion; the patent uses the cemented surface to balance the lateral color of the last surface.",
-      "cemented": "D1"
-    },
-    {
-      "id": 3,
-      "name": "L3",
-      "diagramLabel": "L3",
-      "label": "Element 3",
-      "type": "Biconcave Negative",
-      "nd": 1.65223,
-      "vd": 33.57,
-      "indexReference": "e",
-      "fl": -12.67567822780607,
-      "glass": "E-FD2 (HOYA catalog equivalent, catalog ne 1.65222 / νe 33.58; patent ne 1.65223 / νe 33.57; production supplier unspecified)",
-      "role": "Biconcave negative middle element of the triplet; it offsets the field curvature of the two positive groups."
-    },
-    {
-      "id": 4,
-      "name": "L4",
-      "diagramLabel": "L4",
-      "label": "Element 4",
-      "type": "Biconvex Positive",
-      "nd": 1.7167,
-      "vd": 42.89,
-      "indexReference": "e",
-      "fl": 16.046751890986677,
-      "glass": "LAFL4 (HOYA spectral proxy; catalog ne 1.716614 / νe 43.056 versus patent ne 1.7167 / νe 42.89; original type and production supplier unconfirmed)",
-      "role": "Biconvex positive rear element, 1.2 mm ahead of the rear aperture stop."
-    }
-  ],
-  "surfaces": [
-    {
-      "label": "1",
-      "R": 11.0297,
-      "d": 2.73,
-      "nd": 1.808109,
-      "elemId": 1,
-      "sd": 6.6
-    },
-    {
-      "label": "2",
-      "R": 39.1519,
-      "d": 2.0219,
-      "nd": 1.81264,
-      "elemId": 2,
-      "sd": 6.6
-    },
-    {
-      "label": "3",
-      "R": 19.635, // patent prints 19.1519, repeating the decimals of the row above; corrected, see header and sourceErrata
-      "d": 0.7,
-      "nd": 1,
-      "elemId": 0,
-      "sd": 4.05 // Fig. 1 draws this face polished to about 4.0 mm, then chamfered back to the 6.6 mm rim
-    },
-    {
-      "label": "4",
-      "R": -40.8013,
-      "d": 1.0051,
-      "nd": 1.65223,
-      "elemId": 3,
-      "sd": 4.05
-    },
-    {
-      "label": "5",
-      "R": 10.4692,
-      "d": 0.8,
-      "nd": 1,
-      "elemId": 0,
-      "sd": 4.05
-    },
-    {
-      "label": "6",
-      "R": 20.7116,
-      "d": 3.543,
-      "nd": 1.7167,
-      "elemId": 4,
-      "sd": 3.9
-    },
-    {
-      "label": "7",
-      "R": -24.0136,
-      "d": 1.2,
-      "nd": 1,
-      "elemId": 0,
-      "sd": 3.9
-    },
-    {
-      "label": "STO",
-      "R": 1000000000000000.0,
-      "d": 24.5165, // printed d8, stop to image
-      "nd": 1,
-      "elemId": 0,
-      "sd": 3.544664 // height of the real axial f/3.5 marginal ray at the stop
-    }
-  ],
-  "asph": {},
-  "focusPositions": [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1],
-  "var": {
-    "STO": [24.5165, 24.736655, 24.963363, 25.196589, 25.436687, 25.684044, 25.939077, 26.202241, 26.474035]
+  schema: 2,
+  key: "leica-elmar-35mm-f35-mini-ii",
+  maker: "Leica",
+  name: "LEICA ELMAR 35mm f/3.5 (Leica Mini II)",
+  subtitle: "US 5,321,555 A, Fig. 1 / Claim 2 — qualified production correlation",
+
+  catalog: {
+    lensMounts: ["fixed-lens-camera"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "4 ELEMENTS / 3 GROUPS",
+      "DESIGN f = 33.63 mm",
+      "DESIGN F/3.5",
+      "ALL SPHERICAL",
+      "ESTIMATED UNIT FOCUS TO 0.65 m",
+    ],
+    elementCount: 4,
+    groupCount: 3,
+    focalLengthMm: { marketing: 35, design: 33.6326 },
+    fNumber: { marketing: 3.5, design: 3.5 },
   },
-  "varLabels": [["STO", "Stop to image"]],
-  "groups": [
+
+  source: {
+    patentNumber: "US 5,321,555 A",
+    patentYear: 1994,
+    authors: ["Lothar Koelsch", "Klaus-Dieter Schaefer"],
+    assignees: ["Leica Camera GmbH"],
+    errata: [
+      {
+        status: "corrected",
+        surface: "3",
+        field: "R",
+        printed: 19.1519,
+        applied: 19.635,
+        evidence: ["source-summary", "aberration-figure"],
+        note: "The printed table traces to f = 34.5026 mm against the stated 33.6323 mm. R3 = 19.635 reproduces the stated focal length (33.6326 mm), the printed last gap (paraxial focus 24.5161 mm behind the stop against the printed 24.5165 mm) and the stated pupil magnification (0.7289 against 0.7290) together. The patent's distortion and field-curvature plots (Figs. 2A, 2D) fit the corrected value and not the printed one. The printed decimals repeat those of the row above (39.1519). The fourth decimal of the applied value is inferred from the stated focal length (within 0.0005); no publication prints it, and the US and EP prints carry the same 19.1519. Separately, the summary back focus 26.7165 differs from the table's d7 + d8 = 25.7165 by exactly 1.0000 and is read as a digit slip in the summary line; the file keeps the printed gaps.",
+      },
+    ],
+  },
+
+  elements: [
     {
-      "text": "G1 (+)",
-      "fromSurface": "1",
-      "toSurface": "3"
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      nd: 1.808109,
+      vd: 46.34,
+      indexReference: "e",
+      focalLengthMm: 18.21176023919409,
+      glass: "S-LAH65V (OHARA catalog equivalent; patent ne 1.808109 / νe 46.34; production supplier unspecified)",
+      role: "Positive meniscus front element of the cemented doublet; its front surface is the strongest positive surface in the lens.",
+      diagramLabel: "L1",
+      cemented: "D1",
     },
     {
-      "text": "G2 (-)",
-      "fromSurface": "4",
-      "toSurface": "5"
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Negative Meniscus",
+      nd: 1.81264,
+      vd: 25.23,
+      indexReference: "e",
+      focalLengthMm: -50.831017,
+      glass: "S-TIH6 (OHARA catalog equivalent; patent ne 1.81264 / νe 25.23; production supplier unspecified)",
+      role: "Negative meniscus cemented behind L1, with nearly the same index and much higher dispersion; the patent uses the cemented surface to balance the lateral color of the last surface.",
+      diagramLabel: "L2",
+      cemented: "D1",
     },
     {
-      "text": "G3 (+)",
-      "fromSurface": "6",
-      "toSurface": "7"
-    }
-  ],
-  "doublets": [
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Biconcave Negative",
+      nd: 1.65223,
+      vd: 33.57,
+      indexReference: "e",
+      focalLengthMm: -12.67567822780607,
+      glass:
+        "E-FD2 (HOYA catalog equivalent, catalog ne 1.65222 / νe 33.58; patent ne 1.65223 / νe 33.57; production supplier unspecified)",
+      role: "Biconcave negative middle element of the triplet; it offsets the field curvature of the two positive groups.",
+      diagramLabel: "L3",
+    },
     {
-      "text": "D1",
-      "fromSurface": "1",
-      "toSurface": "3"
-    }
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Biconvex Positive",
+      nd: 1.7167,
+      vd: 42.89,
+      indexReference: "e",
+      focalLengthMm: 16.046751890986677,
+      glass:
+        "LAFL4 (HOYA spectral proxy; catalog ne 1.716614 / νe 43.056 versus patent ne 1.7167 / νe 42.89; original type and production supplier unconfirmed)",
+      role: "Biconvex positive rear element, 1.2 mm ahead of the rear aperture stop.",
+      diagramLabel: "L4",
+    },
   ],
-  "closeFocusM": 0.65,
-  "focusDescription": "ESTIMATED unit focusing. The complete four-element lens and rear iris move 1.958 mm toward the object at the brochure’s 0.65 m limit, interpreted from the image plane. Travel is calculated from this prescription; the patent prints infinity only and the actual camera mechanism is unconfirmed. Internal gaps stay fixed; intermediate positions interpolate nine calculated inverse-distance samples.",
-  "nominalFno": 3.5,
-  "fstopSeries": [
-    3.5,
-    4,
-    5.6,
-    8,
-    11,
-    16
+
+  surfaces: [
+    { label: "1", R: 11.0297, d: 2.73, sd: 6.6, medium: 1 },
+    { label: "2", R: 39.1519, d: 2.0219, sd: 6.6, medium: 2 },
+    {
+      label: "3",
+      R: 19.635, // patent prints 19.1519, repeating the decimals of the row above; corrected, see header and sourceErrata
+      d: 0.7,
+      sd: 4.05, // Fig. 1 draws this face polished to about 4.0 mm, then chamfered back to the 6.6 mm rim
+    },
+    { label: "4", R: -40.8013, d: 1.0051, sd: 4.05, medium: 3 },
+    { label: "5", R: 10.4692, d: 0.8, sd: 4.05 },
+    { label: "6", R: 20.7116, d: 3.543, sd: 3.9, medium: 4 },
+    { label: "7", R: -24.0136, d: 1.2, sd: 3.9 },
+    // (moved from surfaces[7].d) printed d8, stop to image
+    // (moved from surfaces[7].sd) radius derived from the design f-number
+    { label: "STO", R: "flat" },
   ],
-  "yScFill": 0.3
-} satisfies LensDataInput;
+
+  focus: {
+    closeFocusM: 0.65,
+    keyframes: [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1],
+    description:
+      "ESTIMATED unit focusing. The complete four-element lens and rear iris move 1.958 mm toward the object at the brochure’s 0.65 m limit, interpreted from the image plane. Travel is calculated from this prescription; the patent prints infinity only and the actual camera mechanism is unconfirmed. Internal gaps stay fixed; intermediate positions interpolate nine calculated inverse-distance samples.",
+  },
+
+  gaps: {
+    STO: {
+      label: "Stop to image",
+      values: [[24.5165, 24.736655, 24.963363, 25.196589, 25.436687, 25.684044, 25.939077, 26.202241, 26.474035]],
+    },
+  },
+
+  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16] },
+
+  groups: [
+    { text: "G1 (+)", fromSurface: "1", toSurface: "3" },
+    { text: "G2 (-)", fromSurface: "4", toSurface: "5" },
+    { text: "G3 (+)", fromSurface: "6", toSurface: "7" },
+  ],
+  doublets: [{ text: "D1", fromSurface: "1", toSurface: "3" }],
+
+  layout: { yScFill: 0.3 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

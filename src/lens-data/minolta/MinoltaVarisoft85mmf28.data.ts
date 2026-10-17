@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -45,28 +45,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "varisoft-rokkor-85f28",
   maker: "Minolta",
   name: "MINOLTA VARISOFT ROKKOR 85mm f/2.8",
   subtitle: "US 4,124,276 EMBODIMENT 3 — MINOLTA / OKANO, NAKAMURA, OGURA",
-  specs: [
-    "6 ELEMENTS / 5 GROUPS",
-    "f ≈ 85.0 mm (production) · 100.0 mm (patent)",
-    "F/2.8",
-    "2ω ≈ 28°",
-    "ALL SPHERICAL · VARIABLE SOFT FOCUS",
-  ],
-  focalLengthMarketing: 85,
-  focalLengthDesign: 85.0,
-  apertureMarketing: 2.8,
-  lensMounts: ["minolta-sr"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,124,276",
-  patentAuthors: ["Yukio Okano", "Akiyoshi Nakamura", "Toshinobu Ogura"],
-  patentAssignees: ["Minolta Camera Co., Ltd."],
-  patentYear: 1978,
-  elementCount: 6,
-  groupCount: 5,
+
+  catalog: {
+    lensMounts: ["minolta-sr"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "6 ELEMENTS / 5 GROUPS",
+      "f ≈ 85.0 mm (production) · 100.0 mm (patent)",
+      "F/2.8",
+      "2ω ≈ 28°",
+      "ALL SPHERICAL · VARIABLE SOFT FOCUS",
+    ],
+    elementCount: 6,
+    groupCount: 5,
+    focalLengthMm: { marketing: 85, design: 85.0 },
+    fNumber: { marketing: 2.8 },
+  },
+
+  source: {
+    patentNumber: "US 4,124,276",
+    patentYear: 1978,
+    authors: ["Yukio Okano", "Akiyoshi Nakamura", "Toshinobu Ogura"],
+    assignees: ["Minolta Camera Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -77,7 +83,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7495,
       vd: 50.1,
-      fl: 56.6,
+      focalLengthMm: 56.6,
       glass: "749501 - lanthanum crown (catalog unresolved)",
       apd: false,
       role: "Front positive collector — high-index lanthanum crown reduces surface curvatures; nearly plano-convex (R2/R1 ≈ 21), dominant source of under-corrected SA.",
@@ -89,7 +95,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6398,
       vd: 34.7,
-      fl: -31.4,
+      focalLengthMm: -31.4,
       glass: "S-TIM27 (OHARA)",
       apd: false,
       role: "Tessar disperser — biconcave flint immediately before the stop; chromatic correction partner for L1; contributes to Petzval sum correction.",
@@ -101,11 +107,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.54072,
       vd: 46.8,
-      fl: 145.4,
+      focalLengthMm: 145.4,
       glass: "S-TIL2 (OHARA catalog equivalent; patent code 541468, supplier unspecified)",
       apd: false,
-      cemented: "D1",
       role: "Front element of cemented doublet — negative in isolation (f ≈ −60 mm in air), acts as achromatizing partner for L4 via Abbe-number differential at the junction surface.",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -114,11 +120,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72,
       vd: 52.1,
-      fl: 47.5,
+      focalLengthMm: 47.5,
       glass: "720521 - lanthanum crown (catalog unresolved)",
       apd: false,
-      cemented: "D1",
       role: "Rear element of cemented doublet — dominant positive power behind the stop; high-index lanthanum crown; thick center section carries substantial power while maintaining chromatic correction.",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -127,7 +133,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6968,
       vd: 55.5,
-      fl: 121.7,
+      focalLengthMm: 121.7,
       glass: "S-LAL14 (OHARA)",
       apd: false,
       role: "Group AII field relay — weak positive meniscus concave to object; stationary during focus; pivot between focus gap (d_A7) and soft-focus gap (d_B0).",
@@ -139,7 +145,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.57616,
       vd: 41.4,
-      fl: -141.8,
+      focalLengthMm: -141.8,
       glass: "FL57 (HOYA catalog-equivalent; patent supplier unspecified)",
       apd: false,
       role: "Group B soft-focus control element — low-index light flint provides fine SA control; as d_B0 widens, marginal ray height on L6 decreases, shifting the 3rd/5th-order SA balance to produce controlled image softening.",
@@ -147,30 +153,39 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     // ── Group AI (focus group: L1–L4) ──
-    { label: "1", R: 40.559, d: 7.344, nd: 1.7495, elemId: 1, sd: 19.9 }, // L1 front
-    { label: "2", R: 846.19, d: 7.965, nd: 1.0, elemId: 0, sd: 17.8 }, // L1 rear → air
-    { label: "3", R: -60.866, d: 2.737, nd: 1.6398, elemId: 2, sd: 13.8 }, // L2 front
-    { label: "4", R: 30.572, d: 3.392, nd: 1.0, elemId: 0, sd: 13.2 }, // L2 rear → air (to stop)
+    { label: "1", R: 40.559, d: 7.344, sd: 19.9, medium: 1 }, // L1 front
+    { label: "2", R: 846.19, d: 7.965, sd: 17.8 }, // L1 rear → air
+    { label: "3", R: -60.866, d: 2.737, sd: 13.8, medium: 2 }, // L2 front
+    { label: "4", R: 30.572, d: 3.392, sd: 13.2 }, // L2 rear → air (to stop)
     // STO position inferred at 54% of 7.39mm gap from L2 rear (patent scale);
     // driven by cross-gap sag constraint against L2 rear surface (R = +30.572).
-    { label: "STO", R: 1e15, d: 2.889, nd: 1.0, elemId: 0, sd: 12.9 }, // aperture stop
-    { label: "5", R: 553.109, d: 2.151, nd: 1.54072, elemId: 3, sd: 13.8 }, // L3 front (cemented D1)
-    { label: "6", R: 30.354, d: 9.087, nd: 1.72, elemId: 4, sd: 14.2 }, // L3→L4 junction
-    { label: "7", R: -46.084, d: 2.346, nd: 1.0, elemId: 0, sd: 15.2 }, // L4 rear → air (focus gap d_A7)
+    { label: "STO", R: "flat", d: 2.889 }, // aperture stop
+    { label: "5", R: 553.109, d: 2.151, sd: 13.8, medium: 3 }, // L3 front (cemented D1)
+    { label: "6", R: 30.354, d: 9.087, sd: 14.2, medium: 4 }, // L3→L4 junction
+    { label: "7", R: -46.084, sd: 15.2 }, // L4 rear → air (focus gap d_A7)
     // ── Group AII (stationary during focus) ──
-    { label: "8", R: -42.2, d: 4.913, nd: 1.6968, elemId: 5, sd: 15.1 }, // L5 front
-    { label: "9", R: -29.521, d: 2.074, nd: 1.0, elemId: 0, sd: 15.7 }, // L5 rear → air (soft-focus gap d_B0, sharp #0)
+    { label: "8", R: -42.2, d: 4.913, sd: 15.1, medium: 5 }, // L5 front
+    { label: "9", R: -29.521, d: 2.074, sd: 15.7 }, // L5 rear → air (soft-focus gap d_B0, sharp #0)
     // ── Group B (soft-focus control) ──
-    { label: "10", R: -26.825, d: 2.737, nd: 1.57616, elemId: 6, sd: 15.4 }, // L6 front
-    { label: "11", R: -41.432, d: 64.427, nd: 1.0, elemId: 0, sd: 15.7 }, // L6 rear → image (BFD)
+    { label: "10", R: -26.825, d: 2.737, sd: 15.4, medium: 6 }, // L6 front
+    { label: "11", R: -41.432, d: 64.427, sd: 15.7 }, // L6 rear → image (BFD)
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.8,
+    description:
+      "Inner focus — Group AI (L1–L4) moves forward; AII (L5) and B (L6) remain stationary. " +
+      "Separate 4-position click-stopped ring varies d_B0 for soft-focus control.",
+    // (moved from publishedStations) Patent read 2026-10-06: Close-focus d_A7 = 11.433 is the patent's printed FIGS. 10a/10b value (13.45 at
+    // magnification 0.11, f = 100) scaled x0.85; the patent states it in text, not in a table.
+    published: [1],
+  },
 
-  /* ── Variable air spacings (focus) ──
+  /* (moved from var) ── Variable air spacings (focus) ──
    *  Inner focus: AI (L1–L4) moves forward on the focus helicoid.
    *  AII (L5), B (L6), and the image-side back focus remain fixed.
    *  Only d_A7 (focus gap between AI and AII) widens for close focus.
@@ -179,10 +194,10 @@ const LENS_DATA = {
    *  and is modeled separately below as an aberration-control variable.
    *  The base surface table represents the "sharp" (#0) setting.
    */
-  var: {
-    "7": [2.346, 11.433],
-  },
-  varLabels: [["7", "D(A7)"]],
+  gaps: { "7": { label: "D(A7)", values: [[2.346, 11.433]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], blades: 8 },
 
   /* ── Aberration control (soft-focus ring) ──
    *  The separate Varisoft ring opens d_B0 from the sharp #0 setting to
@@ -195,14 +210,7 @@ const LENS_DATA = {
     minLabel: "0",
     maxLabel: "3",
     step: 0.001,
-    var: {
-      "9": [2.074, 6.962],
-      "11": [64.427, 53.951],
-    },
-    varLabels: [
-      ["9", "D(B0)"],
-      ["11", "BF"],
-    ],
+    gaps: { "9": { label: "D(B0)", values: [2.074, 6.962] }, "11": { label: "BF", values: [64.427, 53.951] } },
   },
 
   /* ── Group and doublet annotations ── */
@@ -213,23 +221,8 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "D1", fromSurface: "5", toSurface: "7" }],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.8,
-  // Patent read 2026-10-06: Close-focus d_A7 = 11.433 is the patent's printed FIGS. 10a/10b value (13.45 at
-  // magnification 0.11, f = 100) scaled x0.85; the patent states it in text, not in a table.
-  publishedStations: { focus: [1] },
-  focusDescription:
-    "Inner focus — Group AI (L1–L4) moves forward; AII (L5) and B (L6) remain stationary. " +
-    "Separate 4-position click-stopped ring varies d_B0 for soft-focus control.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
-  apertureBlades: 8,
-
   /* ── Layout tuning ── */
-  scFill: 0.45,
-  yScFill: 0.45,
-} satisfies LensDataInput;
+  layout: { scFill: 0.45, yScFill: 0.45 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

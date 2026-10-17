@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -15,7 +15,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║ STOP: The patent places the Seidel stop at the tangent plane of surface 1. ║
  * ║ STO is therefore coincident with surface 1 (d = 0). The physical diameter  ║
- * ║ is not published; sd = 23.786091 mm is inferred from traced EFL / f/6.3.  ║
+ * ║ is not published; the stop radius derives from the design f-number, f/6.3. ║
  * ║                                                                            ║
  * ║ FOCUS: NO_INTERNAL_RECONSTRUCTION. The patent publishes infinity only.     ║
  * ║ The manufacturer's 4.5 m minimum focus is metadata only; var remains empty.║
@@ -35,30 +35,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "konica-fl-hexanon-ar-300mm-f63",
   maker: "Konica",
   name: "KONICA FL-HEXANON AR 300mm f/6.3",
   subtitle: "JP 1974-023892 Example 1 — literal ×300 scale; Konica 300mm f/6.3 fluorite correlation",
-  specs: [
-    "9 ELEMENTS / 5 GROUPS",
-    "300mm f/6.3 (MARKETED)",
-    "EFL 299.705 mm (TRACED)",
-    "8.25° FULL FIELD (PATENT)",
-    "ALL SPHERICAL",
-  ],
 
-  focalLengthMarketing: 300,
-  focalLengthDesign: 299.704746,
-  apertureMarketing: 6.3,
-  apertureDesign: 6.3,
-  lensMounts: ["konica-ar"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 1974-023892 B1",
-  patentAuthors: ["Masamichi Kitagawa"],
-  patentAssignees: ["Konishiroku Photo Industry Co., Ltd."],
-  patentYear: 1974,
-  elementCount: 9,
-  groupCount: 5,
+  catalog: {
+    lensMounts: ["konica-ar"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "9 ELEMENTS / 5 GROUPS",
+      "300mm f/6.3 (MARKETED)",
+      "EFL 299.705 mm (TRACED)",
+      "8.25° FULL FIELD (PATENT)",
+      "ALL SPHERICAL",
+    ],
+    elementCount: 9,
+    groupCount: 5,
+    focalLengthMm: { marketing: 300, design: 299.704746 },
+    fNumber: { marketing: 6.3, design: 6.3 },
+  },
+
+  source: {
+    patentNumber: "JP 1974-023892 B1",
+    patentYear: 1974,
+    authors: ["Masamichi Kitagawa"],
+    assignees: ["Konishiroku Photo Industry Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -69,7 +73,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.43389,
       vd: 94.7,
-      fl: 197.238653,
+      focalLengthMm: 197.238653,
       glass: "Fluorite (CaF₂ crystal; supplier unspecified)",
       apd: "inferred",
       apdNote:
@@ -83,7 +87,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.43389,
       vd: 94.7,
-      fl: 126.333573,
+      focalLengthMm: 126.333573,
       glass: "Fluorite (CaF₂ crystal; supplier unspecified)",
       apd: "inferred",
       apdNote:
@@ -97,9 +101,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8044,
       vd: 39.6,
-      fl: -38.587412,
-      glass:
-        "804396 class; S-LAH63Q catalog-equivalent coefficient proxy (production supplier unspecified)",
+      focalLengthMm: -38.587412,
+      glass: "804396 class; S-LAH63Q catalog-equivalent coefficient proxy (production supplier unspecified)",
       role: "Negative front member of the central cemented triplet.",
       cemented: "J1",
     },
@@ -110,7 +113,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.51118,
       vd: 50.9,
-      fl: 30.047986,
+      focalLengthMm: 30.047986,
       glass: "511509 class; KF8 catalog-equivalent coefficient proxy (production supplier unspecified)",
       role: "Strong positive center member of the central cemented triplet.",
       cemented: "J1",
@@ -122,7 +125,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.49831,
       vd: 65,
-      fl: -51.299284,
+      focalLengthMm: -51.299284,
       glass: "498650 class; BSL3 catalog-equivalent coefficient proxy (production supplier unspecified)",
       role: "Negative rear member of the central cemented triplet.",
       cemented: "J1",
@@ -134,9 +137,8 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7865,
       vd: 50.1,
-      fl: -29.418622,
-      glass:
-        "787501 class; YGH52 catalog-equivalent coefficient proxy (production supplier unspecified)",
+      focalLengthMm: -29.418622,
+      glass: "787501 class; YGH52 catalog-equivalent coefficient proxy (production supplier unspecified)",
       role: "Negative front member of the first rear cemented doublet.",
       cemented: "J2",
     },
@@ -147,7 +149,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5927,
       vd: 35.4,
-      fl: 88.27418,
+      focalLengthMm: 88.27418,
       glass: "593354 class; FF5 catalog-equivalent coefficient proxy (production supplier unspecified)",
       role: "Positive rear member of the first rear cemented doublet.",
       cemented: "J2",
@@ -159,7 +161,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5927,
       vd: 35.4,
-      fl: 30.332565,
+      focalLengthMm: 30.332565,
       glass: "593354 class; FF5 catalog-equivalent coefficient proxy (production supplier unspecified)",
       role: "Positive front member of the final cemented doublet.",
       cemented: "J3",
@@ -171,9 +173,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.81554,
       vd: 44.5,
-      fl: -36.004587,
-      glass:
-        "816445 class; TAFD10 catalog-equivalent coefficient proxy (production supplier unspecified)",
+      focalLengthMm: -36.004587,
+      glass: "816445 class; TAFD10 catalog-equivalent coefficient proxy (production supplier unspecified)",
       role: "Negative rear member of the final cemented doublet.",
       cemented: "J3",
     },
@@ -181,27 +182,32 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    // Source-defined Seidel stop plane; stop size is inferred, not patent-published.
-    { label: "STO", R: 1e15, d: 0, nd: 1, elemId: 0, sd: 23.786090966573127 },
-    { label: "1", R: 79.74, d: 6, nd: 1.43389, elemId: 1, sd: 24.5 },
-    { label: "2", R: 1141.935, d: 0.3, nd: 1, elemId: 0, sd: 24.5 },
-    { label: "3", R: 41.205, d: 7.5, nd: 1.43389, elemId: 2, sd: 24 },
-    { label: "4", R: 156.816, d: 14.4, nd: 1, elemId: 0, sd: 24 },
-    { label: "5", R: 1320, d: 2.01, nd: 1.8044, elemId: 3, sd: 18.2 },
-    { label: "6", R: 30.306, d: 13.65, nd: 1.51118, elemId: 4, sd: 18.2 },
-    { label: "7", R: -26.4, d: 2.01, nd: 1.49831, elemId: 5, sd: 18.2 },
-    { label: "8", R: 826.65, d: 65.7, nd: 1, elemId: 0, sd: 18.2 },
-    { label: "9", R: -40.95, d: 1.5, nd: 1.7865, elemId: 6, sd: 13.2 },
-    { label: "10", R: 54.051, d: 2.4, nd: 1.5927, elemId: 7, sd: 13.2 },
-    { label: "11", R: -1606.815, d: 0.3, nd: 1, elemId: 0, sd: 13.2 },
-    { label: "12", R: 49.5, d: 6.51, nd: 1.5927, elemId: 8, sd: 13.2 },
-    { label: "13", R: -26.85, d: 1.5, nd: 1.81554, elemId: 9, sd: 13.2 },
-    { label: "14", R: -321.579, d: 52.08, nd: 1, elemId: 0, sd: 13.2 },
+    // Source-defined Seidel stop plane; stop size is not patent-published; radius derived from the design f-number.
+    { label: "STO", R: "flat", d: 0 },
+    { label: "1", R: 79.74, d: 6, sd: 24.5, medium: 1 },
+    { label: "2", R: 1141.935, d: 0.3, sd: 24.5 },
+    { label: "3", R: 41.205, d: 7.5, sd: 24, medium: 2 },
+    { label: "4", R: 156.816, d: 14.4, sd: 24 },
+    { label: "5", R: 1320, d: 2.01, sd: 18.2, medium: 3 },
+    { label: "6", R: 30.306, d: 13.65, sd: 18.2, medium: 4 },
+    { label: "7", R: -26.4, d: 2.01, sd: 18.2, medium: 5 },
+    { label: "8", R: 826.65, d: 65.7, sd: 18.2 },
+    { label: "9", R: -40.95, d: 1.5, sd: 13.2, medium: 6 },
+    { label: "10", R: 54.051, d: 2.4, sd: 13.2, medium: 7 },
+    { label: "11", R: -1606.815, d: 0.3, sd: 13.2 },
+    { label: "12", R: 49.5, d: 6.51, sd: 13.2, medium: 8 },
+    { label: "13", R: -26.85, d: 1.5, sd: 13.2, medium: 9 },
+    { label: "14", R: -321.579, d: 52.08, sd: 13.2 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 4.5,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION: the patent publishes the infinity prescription only; the 4.5 m manufacturer " +
+      "MFD is metadata and no focus motion is modeled.",
+  },
+
+  aperture: { nominalFNumber: 6.3, fStops: [6.3, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "G1 (+)", fromSurface: "1", toSurface: "2" },
@@ -216,16 +222,7 @@ const LENS_DATA = {
     { text: "J3", fromSurface: "12", toSurface: "14" },
   ],
 
-  closeFocusM: 4.5,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: the patent publishes the infinity prescription only; the 4.5 m manufacturer " +
-    "MFD is metadata and no focus motion is modeled.",
-
-  nominalFno: 6.3,
-  fstopSeries: [6.3, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  yScFill: 0.36,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.36 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

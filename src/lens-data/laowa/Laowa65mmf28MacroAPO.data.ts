@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -40,33 +40,37 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "laowa-65mm-f28-macro-apo",
   maker: "Laowa",
   name: "LAOWA 65mm f/2.8 2× Ultra Macro APO",
   subtitle: "CN 110161666A EXAMPLE 2 — 安徽长庚光学科技 / LI DAYONG",
-  specs: [
-    "14 ELEMENTS / 10 GROUPS",
-    "f ≈ 66.0 mm (design) / 65 mm (marketed)",
-    "F/2.9 (design) / F/2.8 (marketed)",
-    "2ω ≈ 24.3°",
-    "ALL SPHERICAL",
-    "3 ED ELEMENTS (H-FK61)",
-    "2:1 MACRO (1.95× patent)",
-  ],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: 65,
-  focalLengthDesign: 66.02,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.9,
-  lensMounts: ["fujifilm-x", "sony-fe", "canon-ef-m", "nikon-z", "canon-rf", "l-mount"],
-  imageFormat: "aps-c",
-  patentNumber: "CN 110161666 A",
-  patentAuthors: ["Dayong Li"],
-  patentAssignees: ["Anhui Changgeng Optics Technology Co., Ltd."],
-  patentYear: 2019,
-  elementCount: 14,
-  groupCount: 10,
+  catalog: {
+    lensMounts: ["fujifilm-x", "sony-fe", "canon-ef-m", "nikon-z", "canon-rf", "l-mount"],
+    imageFormat: "aps-c",
+    specs: [
+      "14 ELEMENTS / 10 GROUPS",
+      "f ≈ 66.0 mm (design) / 65 mm (marketed)",
+      "F/2.9 (design) / F/2.8 (marketed)",
+      "2ω ≈ 24.3°",
+      "ALL SPHERICAL",
+      "3 ED ELEMENTS (H-FK61)",
+      "2:1 MACRO (1.95× patent)",
+    ],
+    elementCount: 14,
+    groupCount: 10,
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: 65, design: 66.02 },
+    fNumber: { marketing: 2.8, design: 2.9 },
+  },
+
+  source: {
+    patentNumber: "CN 110161666 A",
+    patentYear: 2019,
+    authors: ["Dayong Li"],
+    assignees: ["Anhui Changgeng Optics Technology Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -77,7 +81,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.618,
       vd: 63.39,
-      fl: -156.9,
+      focalLengthMm: -156.9,
       glass: "S-PHM52 (OHARA)",
       apd: false,
       role: "Front element of G1 cemented doublet; weak negative crown for chromatic pre-correction.",
@@ -90,7 +94,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.60342,
       vd: 38.01,
-      fl: 142.0,
+      focalLengthMm: 142.0,
       glass: "E-F5 (HOYA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Rear element of G1 doublet; weak positive light flint completing the nearly afocal achromatic pair.",
@@ -103,7 +107,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 53.0,
-      fl: 52.3,
+      focalLengthMm: 52.3,
       glass: "773530 — high-index lanthanum crown (patent nd=1.77250, νd=53.00; no exact public catalog match)",
       apd: false,
       role: "Leading positive element of G2 focusing group; high-index quasi-plano-convex providing the first substantial converging power.",
@@ -115,12 +119,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.61,
-      fl: 66.7,
+      focalLengthMm: 66.7,
       glass: "H-FK61 (CDGM)",
       apd: "inferred",
       apdNote: "FK61-class fluorophosphate; anomalous partial dispersion inferred from glass family.",
       role: "First ED element; positive meniscus contributing power with minimal chromatic aberration.",
-      cemented: undefined,
     },
     {
       id: 5,
@@ -129,7 +132,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80518,
       vd: 25.46,
-      fl: -11.4,
+      focalLengthMm: -11.4,
       glass: "H-ZF7LA (CDGM)",
       apd: false,
       role: "Front half of split-flint doublet D2; strongly negative with high dispersion for chromatic and Petzval correction.",
@@ -142,7 +145,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.92286,
       vd: 20.88,
-      fl: 25.6,
+      focalLengthMm: 25.6,
       glass: "H-ZF72A (CDGM)",
       apd: false,
       role: "Rear half of split-flint doublet D2; super-dense flint exploiting partial-dispersion difference for secondary spectrum correction.",
@@ -155,7 +158,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8042,
       vd: 46.5,
-      fl: -61.8,
+      focalLengthMm: -61.8,
       glass: "H-ZLAF50D (CDGM)",
       apd: false,
       role: "Front half of ED achromat D3; lanthanum dense flint providing negative power and controlled chromatic contribution.",
@@ -168,7 +171,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
-      fl: 19.3,
+      focalLengthMm: 19.3,
       glass: "H-FK61 (CDGM)",
       apd: "inferred",
       apdNote: "FK61-class fluorophosphate; strongest positive power in G2 — most tolerance-sensitive element.",
@@ -182,7 +185,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.92286,
       vd: 20.88,
-      fl: 57.5,
+      focalLengthMm: 57.5,
       glass: "H-ZF72A (CDGM)",
       apd: false,
       role: "Petzval corrector at G2 rear; super-dense flint used as a weak positive to flatten the field via its extreme index.",
@@ -194,7 +197,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.72916,
       vd: 57.67,
-      fl: -27.6,
+      focalLengthMm: -27.6,
       glass: "Unmatched (patent nd=1.72916, νd=57.67; prior H-LAK52 candidate rejected on dispersion)",
       apd: false,
       role: "First element of G3; strong negative meniscus diverging the beam for BFD extension and Petzval correction.",
@@ -206,7 +209,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.76182,
       vd: 26.61,
-      fl: -14.8,
+      focalLengthMm: -14.8,
       glass: "S-TIH14 (OHARA)",
       apd: false,
       role: "Front half of split-flint doublet D4; dense flint for overcorrecting chromatic aberration in G3.",
@@ -219,7 +222,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.90366,
       vd: 31.31,
-      fl: 10.9,
+      focalLengthMm: 10.9,
       glass: "S-LAH95 / TAFD25 class (904313)",
       apd: false,
       role: "Rear half of split-flint doublet D4; high-index lanthanum flint for Petzval flattening and coma correction.",
@@ -232,7 +235,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.497,
       vd: 81.61,
-      fl: -25.1,
+      focalLengthMm: -25.1,
       glass: "H-FK61 (CDGM)",
       apd: "inferred",
       apdNote:
@@ -246,7 +249,7 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.51823,
       vd: 58.96,
-      fl: 51.8,
+      focalLengthMm: 51.8,
       glass: "E-C3 (HOYA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Rear field flattener; low-index crown bending marginal and chief rays to flatten the image surface near the sensor.",
@@ -254,40 +257,66 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     // ── G1: Fixed front cemented doublet (L1 + L2) ──
-    { label: "1", R: 131.0392, d: 1.0, nd: 1.618, elemId: 1, sd: 20.5 },
-    { label: "2", R: 55.5671, d: 3.5853, nd: 1.60342, elemId: 2, sd: 20.0 },
-    { label: "3", R: 154.2525, d: 36.0482, nd: 1.0, elemId: 0, sd: 19.5 }, // D(3) — variable
+    { label: "1", R: 131.0392, d: 1.0, sd: 20.5, medium: 1 },
+    { label: "2", R: 55.5671, d: 3.5853, sd: 20.0, medium: 2 },
+    { label: "3", R: 154.2525, sd: 19.5 }, // D(3) — variable
 
     // ── G2: Moving focus group (L3 – L9) ──
-    { label: "4", R: 45.5262, d: 3.1741, nd: 1.7725, elemId: 3, sd: 14.0 },
-    { label: "5", R: -348.9313, d: 1.26, nd: 1.0, elemId: 0, sd: 13.5 },
-    { label: "6", R: 25.1847, d: 3.2661, nd: 1.497, elemId: 4, sd: 12.5 },
-    { label: "7", R: 100.2668, d: 3.5733, nd: 1.0, elemId: 0, sd: 12.0 },
-    { label: "8", R: -65.8922, d: 1.2, nd: 1.80518, elemId: 5, sd: 9.5 },
-    { label: "9", R: 10.7033, d: 3.2025, nd: 1.92286, elemId: 6, sd: 9.0 },
-    { label: "10", R: 16.7653, d: 0.15, nd: 1.0, elemId: 0, sd: 8.8 },
-    { label: "11", R: 15.2, d: 1.0, nd: 1.8042, elemId: 7, sd: 8.8 },
-    { label: "12", R: 11.3, d: 4.5886, nd: 1.497, elemId: 8, sd: 8.0 },
-    { label: "13", R: -54.04, d: 0.15, nd: 1.0, elemId: 0, sd: 8.0 },
-    { label: "14", R: 249.3084, d: 2.0293, nd: 1.92286, elemId: 9, sd: 8.5 },
-    { label: "15", R: -67.1764, d: 1.2, nd: 1.0, elemId: 0, sd: 8.0 }, // 1.0 + 0.2 (folded spacer S16)
+    { label: "4", R: 45.5262, d: 3.1741, sd: 14.0, medium: 3 },
+    { label: "5", R: -348.9313, d: 1.26, sd: 13.5 },
+    { label: "6", R: 25.1847, d: 3.2661, sd: 12.5, medium: 4 },
+    { label: "7", R: 100.2668, d: 3.5733, sd: 12.0 },
+    { label: "8", R: -65.8922, d: 1.2, sd: 9.5, medium: 5 },
+    { label: "9", R: 10.7033, d: 3.2025, sd: 9.0, medium: 6 },
+    { label: "10", R: 16.7653, d: 0.15, sd: 8.8 },
+    { label: "11", R: 15.2, d: 1.0, sd: 8.8, medium: 7 },
+    { label: "12", R: 11.3, d: 4.5886, sd: 8.0, medium: 8 },
+    { label: "13", R: -54.04, d: 0.15, sd: 8.0 },
+    { label: "14", R: 249.3084, d: 2.0293, sd: 8.5, medium: 9 },
+    { label: "15", R: -67.1764, d: 1.2, sd: 8.0 }, // 1.0 + 0.2 (folded spacer S16)
 
     // ── Aperture stop (moves with G2) ──
-    { label: "STO", R: 1e15, d: 1.3, nd: 1.0, elemId: 0, sd: 7.3 }, // D(17) — variable
+    { label: "STO", R: "flat" }, // D(17) — variable
 
     // ── G3: Fixed rear relay group (L10 – L14) ──
-    { label: "16", R: 70.696, d: 0.8, nd: 1.72916, elemId: 10, sd: 7.5 },
-    { label: "17", R: 15.5978, d: 5.6256, nd: 1.0, elemId: 0, sd: 7.5 },
-    { label: "18", R: -40.2688, d: 1.0, nd: 1.76182, elemId: 11, sd: 8.5 },
-    { label: "19", R: 15.897, d: 6.7521, nd: 1.90366, elemId: 12, sd: 8.5 },
-    { label: "20", R: -20.9235, d: 0.6129, nd: 1.0, elemId: 0, sd: 8.8 },
-    { label: "21", R: -17.1788, d: 0.8, nd: 1.497, elemId: 13, sd: 8.5 },
-    { label: "22", R: 46.3288, d: 6.9569, nd: 1.0, elemId: 0, sd: 9.0 },
-    { label: "23", R: 26.8458, d: 7.0, nd: 1.51823, elemId: 14, sd: 10.0 },
-    { label: "24", R: 1e15, d: 12.3, nd: 1.0, elemId: 0, sd: 10.0 }, // patent S26: gap to cover glass
+    { label: "16", R: 70.696, d: 0.8, sd: 7.5, medium: 10 },
+    { label: "17", R: 15.5978, d: 5.6256, sd: 7.5 },
+    { label: "18", R: -40.2688, d: 1.0, sd: 8.5, medium: 11 },
+    { label: "19", R: 15.897, d: 6.7521, sd: 8.5, medium: 12 },
+    { label: "20", R: -20.9235, d: 0.6129, sd: 8.8 },
+    { label: "21", R: -17.1788, d: 0.8, sd: 8.5, medium: 13 },
+    { label: "22", R: 46.3288, d: 6.9569, sd: 9.0 },
+    { label: "23", R: 26.8458, d: 7.0, sd: 10.0, medium: 14 },
+    { label: "24", R: "flat", d: 12.3, sd: 10.0 }, // patent S26: gap to cover glass
   ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.17,
+    description:
+      "Inner focus — G2 (L3–L9, 7 elements) translates 35 mm forward as a rigid unit. " +
+      "G1 (L1–L2) and G3 (L10–L14) are fixed. Manual focus only, ~270° helicoid rotation. " +
+      "Patent max magnification 1.95×; production rated 2:1.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
+  },
+
+  /* (moved from var) ── Variable air spacings (inner focus) ──
+   *  G2 moves as a rigid unit; G1 and G3 fixed.
+   *  D(3):  gap between G1 rear (L2) and G2 front (L3) — collapses as G2 advances.
+   *  D(17): gap between stop and G3 front (L10) — opens as G2 advances.
+   *  Conservation: D(3) + D(17) = 37.3482 mm at all focus positions.
+   */
+  gaps: {
+    "3": { label: "D3 (G1–G2)", values: [[36.0482, 1.0481]] },
+    STO: { label: "D17 (STO–G3)", values: [[1.3, 36.3001]] },
+  },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.9, fStops: [2.9, 4, 5.6, 8, 11, 16, 22] },
 
   /* ── Cover glass (patent surfaces 27–28): traced, not drawn ── */
   rearPlates: [
@@ -301,32 +330,12 @@ const LENS_DATA = {
     },
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
-
-  /* ── Variable air spacings (inner focus) ──
-   *  G2 moves as a rigid unit; G1 and G3 fixed.
-   *  D(3):  gap between G1 rear (L2) and G2 front (L3) — collapses as G2 advances.
-   *  D(17): gap between stop and G3 front (L10) — opens as G2 advances.
-   *  Conservation: D(3) + D(17) = 37.3482 mm at all focus positions.
-   */
-  var: {
-    "3": [36.0482, 1.0481],
-    STO: [1.3, 36.3001],
-  },
-
-  varLabels: [
-    ["3", "D3 (G1–G2)"],
-    ["STO", "D17 (STO–G3)"],
-  ],
-
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "G1 (fixed)", fromSurface: "1", toSurface: "3" },
     { text: "G2 (focus)", fromSurface: "4", toSurface: "15" },
     { text: "G3 (fixed)", fromSurface: "16", toSurface: "24" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "1", toSurface: "3" },
     { text: "D2", fromSurface: "8", toSurface: "10" },
@@ -334,22 +343,8 @@ const LENS_DATA = {
     { text: "D4", fromSurface: "18", toSurface: "20" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.17,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  focusDescription:
-    "Inner focus — G2 (L3–L9, 7 elements) translates 35 mm forward as a rigid unit. " +
-    "G1 (L1–L2) and G3 (L10–L14) are fixed. Manual focus only, ~270° helicoid rotation. " +
-    "Patent max magnification 1.95×; production rated 2:1.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.9,
-  fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22],
-
   /* ── Layout tuning ── */
-  scFill: 0.52,
-  yScFill: 0.28,
-} satisfies LensDataInput;
+  layout: { scFill: 0.52, yScFill: 0.28 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

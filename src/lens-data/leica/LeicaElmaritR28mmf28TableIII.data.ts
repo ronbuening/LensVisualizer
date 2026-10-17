@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * US 3,740,120 A, Table III (claim 3). The patent is normalized to f = 1; every radius and axial distance
@@ -41,325 +41,190 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
-  "key": "elmarit-r-28f28",
-  "maker": "Leica",
-  "name": "LEICA ELMARIT-R 28mm f/2.8",
-  "subtitle": "US 3,740,120 A, Table III — qualified production correlation",
-  "specs": [
-    "8 ELEMENTS / 8 GROUPS",
-    "DESIGN f = 28.00 mm",
-    "DESIGN F/2.8",
-    "ALL SPHERICAL",
-    "UNIT FOCUS"
-  ],
-  "focalLengthMarketing": 28,
-  "focalLengthDesign": 27.99883069375396,
-  "apertureMarketing": 2.8,
-  "apertureDesign": 2.8,
-  "lensMounts": [
-    "leica-r"
-  ],
-  "imageFormat": "135-full-frame",
-  "patentNumber": "US 3,740,120 A",
-  "patentAuthors": [
-    "Rudolf Rühl"
-  ],
-  "patentAssignees": [
-    "Ernst Leitz GmbH"
-  ],
-  "patentYear": 1973,
-  "elementCount": 8,
-  "groupCount": 8,
-  "elements": [
-    {
-      "id": 1,
-      "name": "L1",
-      "diagramLabel": "LI",
-      "label": "Element 1",
-      "type": "Negative Meniscus",
-      "nd": 1.48914,
-      "vd": 70.22,
-      "indexReference": "e",
-      "fl": -95.38291343579559,
-      "glass": "N-FK5 (Schott catalog equivalent of FK5; patent ne 1.48914 / νe 70.22; production supplier unspecified)",
-      "apd": false,
-      "role": "Object-facing negative meniscus of the net-negative front group."
-    },
-    {
-      "id": 2,
-      "name": "L2",
-      "diagramLabel": "LII",
-      "label": "Element 2",
-      "type": "Biconvex Positive",
-      "nd": 1.67133,
-      "vd": 41.64,
-      "indexReference": "e",
-      "fl": 70.96767856606199,
-      "glass": "J-BASF6 (HIKARI catalog equivalent of BaSF6, catalog νe 41.60; patent ne 1.67133 / νe 41.64; production supplier unspecified)",
-      "apd": false,
-      "role": "Biconvex positive element between the two front negative menisci."
-    },
-    {
-      "id": 3,
-      "name": "L3",
-      "diagramLabel": "LIII",
-      "label": "Element 3",
-      "type": "Negative Meniscus",
-      "nd": 1.48914,
-      "vd": 70.22,
-      "indexReference": "e",
-      "fl": -30.28555772571423,
-      "glass": "N-FK5 (Schott catalog equivalent of FK5; patent ne 1.48914 / νe 70.22; production supplier unspecified)",
-      "apd": false,
-      "role": "Second object-facing negative meniscus, followed by the main air separation."
-    },
-    {
-      "id": 4,
-      "name": "L4",
-      "diagramLabel": "LIV",
-      "label": "Element 4",
-      "type": "Positive Meniscus",
-      "nd": 1.67341,
-      "vd": 46.82,
-      "indexReference": "e",
-      "fl": 72.54205969182219,
-      "glass": "N-BAF10 (Schott catalog equivalent of BaF10; patent ne 1.67341 / νe 46.82; production supplier unspecified)",
-      "apd": false,
-      "role": "Positive meniscus before the diaphragm, concave toward the stop."
-    },
-    {
-      "id": 5,
-      "name": "L5",
-      "diagramLabel": "LV",
-      "label": "Element 5",
-      "type": "Biconvex Positive",
-      "nd": 1.69401,
-      "vd": 54.48,
-      "indexReference": "e",
-      "fl": 37.71400985024495,
-      "glass": "N-LAK9 (Schott catalog equivalent of LaK9; patent ne 1.69401 / νe 54.48; production supplier unspecified)",
-      "apd": false,
-      "role": "Biconvex positive element immediately after the diaphragm."
-    },
-    {
-      "id": 6,
-      "name": "L6",
-      "diagramLabel": "LVI",
-      "label": "Element 6",
-      "type": "Biconcave Negative",
-      "nd": 1.7918,
-      "vd": 25.87,
-      "indexReference": "e",
-      "fl": -23.473293899087828,
-      "glass": "SF56A (Schott catalog equivalent of SF56; patent ne 1.7918 / νe 25.87; production supplier unspecified)",
-      "apd": false,
-      "role": "Biconcave negative element between the two positive rear subgroups."
-    },
-    {
-      "id": 7,
-      "name": "L7",
-      "diagramLabel": "LVII",
-      "label": "Element 7",
-      "type": "Positive Meniscus",
-      "nd": 1.69401,
-      "vd": 54.48,
-      "indexReference": "e",
-      "fl": 55.84698001437243,
-      "glass": "N-LAK9 (Schott catalog equivalent of LaK9; patent ne 1.69401 / νe 54.48; production supplier unspecified)",
-      "apd": false,
-      "role": "Image-side positive meniscus, concave toward the diaphragm."
-    },
-    {
-      "id": 8,
-      "name": "L8",
-      "diagramLabel": "LVIII",
-      "label": "Element 8",
-      "type": "Biconvex Positive",
-      "nd": 1.69401,
-      "vd": 54.48,
-      "indexReference": "e",
-      "fl": 32.36958575857208,
-      "glass": "N-LAK9 (Schott catalog equivalent of LaK9; patent ne 1.69401 / νe 54.48; production supplier unspecified)",
-      "apd": false,
-      "role": "Rear biconvex positive element completing the second positive subgroup."
-    }
-  ],
-  "surfaces": [
-    {
-      "label": "1",
-      "R": 31.2704,
-      "d": 2.6264,
-      "nd": 1.48914,
-      "elemId": 1,
-      "sd": 17.69
-    },
-    {
-      "label": "2",
-      "R": 18.2056,
-      "d": 6.496,
-      "nd": 1,
-      "elemId": 0,
-      "sd": 13.85
-    },
-    {
-      "label": "3",
-      "R": 70.3752,
-      "d": 2.9764,
-      "nd": 1.67133,
-      "elemId": 2,
-      "sd": 13.77
-    },
-    {
-      "label": "4",
-      "R": -144.9868,
-      "d": 0.1008,
-      "nd": 1,
-      "elemId": 0,
-      "sd": 13.77
-    },
-    {
-      "label": "5",
-      "R": 75.3648,
-      "d": 1.8452,
-      "nd": 1.48914,
-      "elemId": 3,
-      "sd": 11.8
-    },
-    {
-      "label": "6",
-      "R": 12.2808,
-      "d": 9.324,
-      "nd": 1,
-      "elemId": 0,
-      "sd": 8.3
-    },
-    {
-      "label": "7",
-      "R": 22.582,
-      "d": 6.9972,
-      "nd": 1.67341,
-      "elemId": 4,
-      "sd": 7.79
-    },
-    {
-      "label": "8",
-      "R": 36.7584,
-      "d": 2.093,
-      "nd": 1,
-      "elemId": 0,
-      "sd": 7.79
-    },
-    {
-      "label": "STO",
-      "R": 1000000000000000.0,
-      "d": 0.9142,
-      "nd": 1,
-      "elemId": 0,
-      "sd": 6.750736173297881
-    },
-    {
-      "label": "9",
-      "R": 60.0908,
-      "d": 3.7604,
-      "nd": 1.69401,
-      "elemId": 5,
-      "sd": 7.79
-    },
-    {
-      "label": "10",
-      "R": -45.1836,
-      "d": 2.9484,
-      "nd": 1,
-      "elemId": 0,
-      "sd": 7.79
-    },
-    {
-      "label": "11",
-      "R": -32.0208,
-      "d": 1.1032,
-      "nd": 1.7918,
-      "elemId": 6,
-      "sd": 8.25
-    },
-    {
-      "label": "12",
-      "R": 44.9736,
-      "d": 1.6044,
-      "nd": 1,
-      "elemId": 0,
-      "sd": 8.25
-    },
-    {
-      "label": "13",
-      "R": -41.1516,
-      "d": 2.2064,
-      "nd": 1.69401,
-      "elemId": 7,
-      "sd": 8.82
-    },
-    {
-      "label": "14",
-      "R": -20.398,
-      "d": 0.1008,
-      "nd": 1,
-      "elemId": 0,
-      "sd": 8.82
-    },
-    {
-      "label": "15",
-      "R": 117.3928,
-      "d": 2.9988,
-      "nd": 1.69401,
-      "elemId": 8,
-      "sd": 10.61
-    },
-    {
-      "label": "16",
-      "R": -27.4904,
-      "d": 38.444,
-      "nd": 1,
-      "elemId": 0,
-      "sd": 10.61
-    }
-  ],
-  "asph": {},
-  "var": {
-    "16": [38.444, 42.0387]
+  schema: 2,
+  key: "elmarit-r-28f28",
+  maker: "Leica",
+  name: "LEICA ELMARIT-R 28mm f/2.8",
+  subtitle: "US 3,740,120 A, Table III — qualified production correlation",
+
+  catalog: {
+    lensMounts: ["leica-r"],
+    imageFormat: "135-full-frame",
+    specs: ["8 ELEMENTS / 8 GROUPS", "DESIGN f = 28.00 mm", "DESIGN F/2.8", "ALL SPHERICAL", "UNIT FOCUS"],
+    elementCount: 8,
+    groupCount: 8,
+    focalLengthMm: { marketing: 28, design: 27.99883069375396 },
+    fNumber: { marketing: 2.8, design: 2.8 },
   },
-  "varLabels": [["16", "BF"]],
-  "groups": [
+
+  source: {
+    patentNumber: "US 3,740,120 A",
+    patentYear: 1973,
+    authors: ["Rudolf Rühl"],
+    assignees: ["Ernst Leitz GmbH"],
+  },
+
+  elements: [
     {
-      "text": "FLG (−)",
-      "fromSurface": "1",
-      "toSurface": "6"
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Negative Meniscus",
+      nd: 1.48914,
+      vd: 70.22,
+      indexReference: "e",
+      focalLengthMm: -95.38291343579559,
+      glass: "N-FK5 (Schott catalog equivalent of FK5; patent ne 1.48914 / νe 70.22; production supplier unspecified)",
+      apd: false,
+      role: "Object-facing negative meniscus of the net-negative front group.",
+      diagramLabel: "LI",
     },
     {
-      "text": "RLG (+)",
-      "fromSurface": "7",
-      "toSurface": "16"
-    }
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Biconvex Positive",
+      nd: 1.67133,
+      vd: 41.64,
+      indexReference: "e",
+      focalLengthMm: 70.96767856606199,
+      glass:
+        "J-BASF6 (HIKARI catalog equivalent of BaSF6, catalog νe 41.60; patent ne 1.67133 / νe 41.64; production supplier unspecified)",
+      apd: false,
+      role: "Biconvex positive element between the two front negative menisci.",
+      diagramLabel: "LII",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Negative Meniscus",
+      nd: 1.48914,
+      vd: 70.22,
+      indexReference: "e",
+      focalLengthMm: -30.28555772571423,
+      glass: "N-FK5 (Schott catalog equivalent of FK5; patent ne 1.48914 / νe 70.22; production supplier unspecified)",
+      apd: false,
+      role: "Second object-facing negative meniscus, followed by the main air separation.",
+      diagramLabel: "LIII",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Positive Meniscus",
+      nd: 1.67341,
+      vd: 46.82,
+      indexReference: "e",
+      focalLengthMm: 72.54205969182219,
+      glass:
+        "N-BAF10 (Schott catalog equivalent of BaF10; patent ne 1.67341 / νe 46.82; production supplier unspecified)",
+      apd: false,
+      role: "Positive meniscus before the diaphragm, concave toward the stop.",
+      diagramLabel: "LIV",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Biconvex Positive",
+      nd: 1.69401,
+      vd: 54.48,
+      indexReference: "e",
+      focalLengthMm: 37.71400985024495,
+      glass:
+        "N-LAK9 (Schott catalog equivalent of LaK9; patent ne 1.69401 / νe 54.48; production supplier unspecified)",
+      apd: false,
+      role: "Biconvex positive element immediately after the diaphragm.",
+      diagramLabel: "LV",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Biconcave Negative",
+      nd: 1.7918,
+      vd: 25.87,
+      indexReference: "e",
+      focalLengthMm: -23.473293899087828,
+      glass: "SF56A (Schott catalog equivalent of SF56; patent ne 1.7918 / νe 25.87; production supplier unspecified)",
+      apd: false,
+      role: "Biconcave negative element between the two positive rear subgroups.",
+      diagramLabel: "LVI",
+    },
+    {
+      id: 7,
+      name: "L7",
+      label: "Element 7",
+      type: "Positive Meniscus",
+      nd: 1.69401,
+      vd: 54.48,
+      indexReference: "e",
+      focalLengthMm: 55.84698001437243,
+      glass:
+        "N-LAK9 (Schott catalog equivalent of LaK9; patent ne 1.69401 / νe 54.48; production supplier unspecified)",
+      apd: false,
+      role: "Image-side positive meniscus, concave toward the diaphragm.",
+      diagramLabel: "LVII",
+    },
+    {
+      id: 8,
+      name: "L8",
+      label: "Element 8",
+      type: "Biconvex Positive",
+      nd: 1.69401,
+      vd: 54.48,
+      indexReference: "e",
+      focalLengthMm: 32.36958575857208,
+      glass:
+        "N-LAK9 (Schott catalog equivalent of LaK9; patent ne 1.69401 / νe 54.48; production supplier unspecified)",
+      apd: false,
+      role: "Rear biconvex positive element completing the second positive subgroup.",
+      diagramLabel: "LVIII",
+    },
   ],
-  "doublets": [],
-  "closeFocusM": 0.3,
-  "focusDescription": "Unit focusing — the whole optical assembly moves forward; the 0.30 m extension (3.59 mm) is calculated, not printed.",
-  "nominalFno": 2.8,
-  "fstopSeries": [
-    2.8,
-    4,
-    5.6,
-    8,
-    11,
-    16,
-    22
+
+  surfaces: [
+    { label: "1", R: 31.2704, d: 2.6264, sd: 17.69, medium: 1 },
+    { label: "2", R: 18.2056, d: 6.496, sd: 13.85 },
+    { label: "3", R: 70.3752, d: 2.9764, sd: 13.77, medium: 2 },
+    { label: "4", R: -144.9868, d: 0.1008, sd: 13.77 },
+    { label: "5", R: 75.3648, d: 1.8452, sd: 11.8, medium: 3 },
+    { label: "6", R: 12.2808, d: 9.324, sd: 8.3 },
+    { label: "7", R: 22.582, d: 6.9972, sd: 7.79, medium: 4 },
+    { label: "8", R: 36.7584, d: 2.093, sd: 7.79 },
+    { label: "STO", R: "flat", d: 0.9142 },
+    { label: "9", R: 60.0908, d: 3.7604, sd: 7.79, medium: 5 },
+    { label: "10", R: -45.1836, d: 2.9484, sd: 7.79 },
+    { label: "11", R: -32.0208, d: 1.1032, sd: 8.25, medium: 6 },
+    { label: "12", R: 44.9736, d: 1.6044, sd: 8.25 },
+    { label: "13", R: -41.1516, d: 2.2064, sd: 8.82, medium: 7 },
+    { label: "14", R: -20.398, d: 0.1008, sd: 8.82 },
+    { label: "15", R: 117.3928, d: 2.9988, sd: 10.61, medium: 8 },
+    { label: "16", R: -27.4904, sd: 10.61 },
   ],
-  "maxFstop": 22,
-  "yScFill": 0.3,
-  "gapSagFrac": 1,
-  "projection": {
-    "kind": "rectilinear",
-    "fullFieldDeg": 76,
-    "maxTraceFieldDeg": 38
-  }
-} satisfies LensDataInput;
+
+  focus: {
+    closeFocusM: 0.3,
+    description:
+      "Unit focusing — the whole optical assembly moves forward; the 0.30 m extension (3.59 mm) is calculated, not printed.",
+  },
+
+  gaps: { "16": { label: "BF", values: [[38.444, 42.0387]] } },
+
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 76, maxTraceFieldDeg: 38 },
+
+  groups: [
+    { text: "FLG (−)", fromSurface: "1", toSurface: "6" },
+    { text: "RLG (+)", fromSurface: "7", toSurface: "16" },
+  ],
+  doublets: [],
+
+  layout: { yScFill: 0.3 },
+
+  checks: { gapSagFrac: 1 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

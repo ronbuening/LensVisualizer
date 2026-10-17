@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * LENS DATA — LEICA SUMMILUX-M 35mm f/1.4
@@ -18,9 +18,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * STOP MODEL: the patent fixes the diaphragm only within a2, between r5 and
  * r6. The modeled STO is placed 75% of the way from r5 toward r6:
  * r5→STO = 6.061125 mm and STO→r6 = 2.020375 mm, preserving a2 exactly.
- * STO SD = 7.827435982 mm is calibrated from the modeled paraxial entrance
- * pupil to the patent's published f/1.4 ratio. This is not an independently
- * published or measured physical diaphragm diameter.
+ * The stop radius is derived from the design f-number, the patent's published
+ * f/1.4 ratio. This is not an independently published or measured physical
+ * diaphragm diameter.
  *
  * SEMI-DIAMETERS: inferred, not published. Fig. 1 suggests outer front/rear
  * rims of about 13/10.4 mm, but with the modeled stop those clip the chief ray
@@ -43,25 +43,29 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "leica-summilux-m-35f14",
   maker: "Leica",
   name: "LEICA SUMMILUX-M 35mm f/1.4",
   subtitle:
     "FR 1.233.449 / US 2,975,673 Example 1 — strong correlation to the 1961 Summilux-M 35 f/1.4; attribution not manufacturer-confirmed",
-  specs: ["7 ELEMENTS / 5 GROUPS", "f = 35.143 mm MODELED", "f/1.4 CALIBRATED STOP", "2ω = 64° PATENT"],
 
-  focalLengthMarketing: 35,
-  focalLengthDesign: 35.14317682867564,
-  apertureMarketing: 1.4,
-  apertureDesign: 1.4,
-  lensMounts: ["leica-m"],
-  imageFormat: "135-full-frame",
-  patentNumber: "FR 1.233.449",
-  patentAuthors: ["Walter Mandler", "Erich Wagner"],
-  patentAssignees: ["Ernst Leitz Canada Limited"],
-  patentYear: 1960,
-  elementCount: 7,
-  groupCount: 5,
+  catalog: {
+    lensMounts: ["leica-m"],
+    imageFormat: "135-full-frame",
+    specs: ["7 ELEMENTS / 5 GROUPS", "f = 35.143 mm MODELED", "f/1.4 CALIBRATED STOP", "2ω = 64° PATENT"],
+    elementCount: 7,
+    groupCount: 5,
+    focalLengthMm: { marketing: 35, design: 35.14317682867564 },
+    fNumber: { marketing: 1.4, design: 1.4 },
+  },
+
+  source: {
+    patentNumber: "FR 1.233.449",
+    patentYear: 1960,
+    authors: ["Walter Mandler", "Erich Wagner"],
+    assignees: ["Ernst Leitz Canada Limited"],
+  },
 
   elements: [
     {
@@ -72,7 +76,7 @@ const LENS_DATA = {
       nd: 1.72341,
       vd: 50.1,
       indexReference: "e",
-      fl: 59.13229840179422,
+      focalLengthMm: 59.13229840179422,
       glass: "LAC10 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Front positive collector preceding the first negative cemented pair.",
@@ -85,11 +89,11 @@ const LENS_DATA = {
       nd: 1.7899,
       vd: 48,
       indexReference: "e",
-      fl: 27.39004492299925,
+      focalLengthMm: 27.39004492299925,
       glass: "TAF4 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
-      cemented: "D1",
       role: "Positive member of the front cemented negative meniscus assembly.",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -99,11 +103,11 @@ const LENS_DATA = {
       nd: 1.70444,
       vd: 29.84,
       indexReference: "e",
-      fl: -18.464424831012636,
+      focalLengthMm: -18.464424831012636,
       glass: "SF15 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
-      cemented: "D1",
       role: "Negative member completing the front cemented assembly ahead of the diaphragm.",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -113,7 +117,7 @@ const LENS_DATA = {
       nd: 1.7899,
       vd: 48,
       indexReference: "e",
-      fl: 80.10556112896559,
+      focalLengthMm: 80.10556112896559,
       glass: "TAF4 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Interposed positive meniscus immediately behind the modeled diaphragm plane.",
@@ -126,11 +130,11 @@ const LENS_DATA = {
       nd: 1.76167,
       vd: 27.34,
       indexReference: "e",
-      fl: -21.504355264338525,
+      focalLengthMm: -21.504355264338525,
       glass: "SF4 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
-      cemented: "D2",
       role: "Negative member of the rear cemented meniscus assembly.",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -140,11 +144,11 @@ const LENS_DATA = {
       nd: 1.7899,
       vd: 48,
       indexReference: "e",
-      fl: 28.604536799873042,
+      focalLengthMm: 28.604536799873042,
       glass: "TAF4 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
-      cemented: "D2",
       role: "Positive member cemented behind L5 in the rear assembly.",
+      cemented: "D2",
     },
     {
       id: 7,
@@ -154,7 +158,7 @@ const LENS_DATA = {
       nd: 1.72056,
       vd: 47.69,
       indexReference: "e",
-      fl: 42.552847946602554,
+      focalLengthMm: 42.552847946602554,
       glass: "S-LAM3 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Final positive meniscus preceding the source image plane.",
@@ -162,24 +166,27 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 29.45985, d: 3.5, nd: 1.72341, elemId: 1, sd: 14.9 },
-    { label: "2", R: 89.9115, d: 0.021, nd: 1, elemId: 0, sd: 14.9 },
-    { label: "3", R: 13.447, d: 4.5395, nd: 1.7899, elemId: 2, sd: 11.65 },
-    { label: "4", R: 30.2365, d: 1.309, nd: 1.70444, elemId: 3, sd: 11.65 },
-    { label: "5", R: 8.932, d: 6.061125, nd: 1, elemId: 0, sd: 8.02 },
-    { label: "STO", R: 1e15, d: 2.020375, nd: 1, elemId: 0, sd: 7.827435981936604 },
-    { label: "6", R: -56.2695, d: 1.939, nd: 1.7899, elemId: 4, sd: 8 },
-    { label: "7", R: -30.2365, d: 1.729, nd: 1, elemId: 0, sd: 7.56 },
-    { label: "8", R: -12.068, d: 1.309, nd: 1.76167, elemId: 5, sd: 9.4 },
-    { label: "9", R: -47.999, d: 4.599, nd: 1.7899, elemId: 6, sd: 9.4 },
-    { label: "10", R: -16.0125, d: 0.5985, nd: 1, elemId: 0, sd: 10.6 },
-    { label: "11", R: -700, d: 4.7985, nd: 1.72056, elemId: 7, sd: 12.9 },
-    { label: "12", R: -29.4595, d: 19.1415, nd: 1, elemId: 0, sd: 12.9 },
+    { label: "1", R: 29.45985, d: 3.5, sd: 14.9, medium: 1 },
+    { label: "2", R: 89.9115, d: 0.021, sd: 14.9 },
+    { label: "3", R: 13.447, d: 4.5395, sd: 11.65, medium: 2 },
+    { label: "4", R: 30.2365, d: 1.309, sd: 11.65, medium: 3 },
+    { label: "5", R: 8.932, d: 6.061125, sd: 8.02 },
+    { label: "STO", R: "flat", d: 2.020375 },
+    { label: "6", R: -56.2695, d: 1.939, sd: 8, medium: 4 },
+    { label: "7", R: -30.2365, d: 1.729, sd: 7.56 },
+    { label: "8", R: -12.068, d: 1.309, sd: 9.4, medium: 5 },
+    { label: "9", R: -47.999, d: 4.599, sd: 9.4, medium: 6 },
+    { label: "10", R: -16.0125, d: 0.5985, sd: 10.6 },
+    { label: "11", R: -700, d: 4.7985, sd: 12.9, medium: 7 },
+    { label: "12", R: -29.4595, d: 19.1415, sd: 12.9 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 1,
+    description: "Infinity prescription only; the patent gives no focus travel. The production lens focuses to 1.0 m.",
+  },
+
+  aperture: { nominalFNumber: 1.4, fStops: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16] },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -193,15 +200,9 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "8", toSurface: "10" },
   ],
 
-  closeFocusM: 1,
-  focusDescription:
-    "Infinity prescription only; the patent gives no focus travel. The production lens focuses to 1.0 m.",
+  layout: { yScFill: 0.45 },
 
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
-
-  gapSagFrac: 0.985,
-  yScFill: 0.45,
-} satisfies LensDataInput;
+  checks: { gapSagFrac: 0.985 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

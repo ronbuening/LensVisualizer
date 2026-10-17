@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Leica Macro-Elmarit-R 60mm f/2.8
@@ -22,33 +22,35 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "leica-macro-elmarit-r-60mm-f28",
   maker: "Leica",
   name: "LEICA MACRO-ELMARIT-R 60mm f/2.8",
   subtitle: "US 3,552,833 — Ernst Leitz / Heinz Marquardt",
-  specs: [
-    "6 elements / 5 groups",
-    "f = 61.4 mm design, 60 mm nominal",
-    "F/2.8",
-    "40° diagonal field (published)",
-    "All-spherical modified Gauss",
-    "Unit focus",
-  ],
 
-  focalLengthMarketing: 60,
-  focalLengthDesign: 61.4,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.8,
-  lensMounts: ["leica-r"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,552,833",
-  patentAuthors: ["Heinz Marquardt"],
-  patentAssignees: ["Ernst Leitz GmbH"],
-  patentYear: 1971,
-  elementCount: 6,
-  groupCount: 5,
-  focusDescription:
-    "Unit focus. The production lens focuses from infinity to 0.27 m / 1:2 natively, and reaches 1:1 with the Macro-Adapter-R.",
+  catalog: {
+    lensMounts: ["leica-r"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "6 elements / 5 groups",
+      "f = 61.4 mm design, 60 mm nominal",
+      "F/2.8",
+      "40° diagonal field (published)",
+      "All-spherical modified Gauss",
+      "Unit focus",
+    ],
+    elementCount: 6,
+    groupCount: 5,
+    focalLengthMm: { marketing: 60, design: 61.4 },
+    fNumber: { marketing: 2.8, design: 2.8 },
+  },
+
+  source: {
+    patentNumber: "US 3,552,833",
+    patentYear: 1971,
+    authors: ["Heinz Marquardt"],
+    assignees: ["Ernst Leitz GmbH"],
+  },
 
   elements: [
     {
@@ -59,7 +61,7 @@ const LENS_DATA = {
       nd: 1.74795,
       vd: 44.5,
       indexReference: "e",
-      fl: 98.92,
+      focalLengthMm: 98.92,
       glass: "Unmatched (LAF2-class patent e-line value; no verified d-line catalog identity)",
       role: "Front positive meniscus collector; high-index moderate-dispersion glass reduces curvature for the required front power.",
     },
@@ -71,10 +73,10 @@ const LENS_DATA = {
       nd: 1.69282,
       vd: 49.5,
       indexReference: "e",
-      fl: 32.7,
+      focalLengthMm: 32.7,
       glass: "Unmatched (693/495 e-line; positive member of front cemented doublet)",
-      cemented: "D1",
       role: "Positive member of the cemented negative meniscus doublet before the stop.",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -84,10 +86,10 @@ const LENS_DATA = {
       nd: 1.67764,
       vd: 32.0,
       indexReference: "e",
-      fl: -21.3,
+      focalLengthMm: -21.3,
       glass: "Unmatched (dense-flint patent e-line value; no verified d-line catalog identity)",
-      cemented: "D1",
       role: "High-dispersion negative member of the front cemented doublet; supplies most of the doublet's negative power.",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -97,7 +99,7 @@ const LENS_DATA = {
       nd: 1.7407,
       vd: 26.2,
       indexReference: "e",
-      fl: -70.29,
+      focalLengthMm: -70.29,
       glass: "Unmatched (dense flint, 741/262 e-line; no close current HOYA/OHARA match)",
       role: "Rear-side negative meniscus immediately behind the stop; strong field-flattening and chromatic overcorrection member.",
     },
@@ -109,7 +111,7 @@ const LENS_DATA = {
       nd: 1.62287,
       vd: 60.1,
       indexReference: "e",
-      fl: 69.83,
+      focalLengthMm: 69.83,
       glass: "BACD16 / S-BSM16 class (e-line catalog match; patent vendor not named)",
       role: "First rear positive meniscus; balances the L4 flint power while limiting chromatic residuals.",
     },
@@ -121,32 +123,37 @@ const LENS_DATA = {
       nd: 1.61521,
       vd: 58.4,
       indexReference: "e",
-      fl: 66.54,
+      focalLengthMm: 66.54,
       glass: "BACD4 class (e-line catalog match; patent vendor not named)",
       role: "Final positive meniscus and rear field-correcting element.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 39.1641, d: 3.6872, nd: 1.74795, elemId: 1, sd: 20.0 },
-    { label: "2", R: 79.8584, d: 2.3967, nd: 1.0, elemId: 0, sd: 18.0 },
-    { label: "3", R: 17.7907, d: 6.3235, nd: 1.69282, elemId: 2, sd: 14.0 },
-    { label: "4", R: 70.8002, d: 2.0341, nd: 1.67764, elemId: 3, sd: 12.8 },
-    { label: "5", R: 11.8482, d: 5.6058, nd: 1.0, elemId: 0, sd: 10.5 },
-    { label: "STO", R: 1e15, d: 8.1228, nd: 1.0, elemId: 0, sd: 7.36 },
-    { label: "6", R: -12.4135, d: 2.2062, nd: 1.7407, elemId: 4, sd: 11.0 },
-    { label: "7", R: -17.5326, d: 0.1721, nd: 1.0, elemId: 0, sd: 12.3 },
-    { label: "8", R: -70.2287, d: 2.6548, nd: 1.62287, elemId: 5, sd: 12.5 },
-    { label: "9", R: -27.2483, d: 0.1721, nd: 1.0, elemId: 0, sd: 13.4 },
-    { label: "10", R: -36.6937, d: 2.7039, nd: 1.61521, elemId: 6, sd: 12.8 },
-    { label: "11", R: -19.8924, d: 42.0224, nd: 1.0, elemId: 0, sd: 12.8 },
+    { label: "1", R: 39.1641, d: 3.6872, sd: 20.0, medium: 1 },
+    { label: "2", R: 79.8584, d: 2.3967, sd: 18.0 },
+    { label: "3", R: 17.7907, d: 6.3235, sd: 14.0, medium: 2 },
+    { label: "4", R: 70.8002, d: 2.0341, sd: 12.8, medium: 3 },
+    { label: "5", R: 11.8482, d: 5.6058, sd: 10.5 },
+    { label: "STO", R: "flat", d: 8.1228 },
+    { label: "6", R: -12.4135, d: 2.2062, sd: 11.0, medium: 4 },
+    { label: "7", R: -17.5326, d: 0.1721, sd: 12.3 },
+    { label: "8", R: -70.2287, d: 2.6548, sd: 12.5, medium: 5 },
+    { label: "9", R: -27.2483, d: 0.1721, sd: 13.4 },
+    { label: "10", R: -36.6937, d: 2.7039, sd: 12.8, medium: 6 },
+    { label: "11", R: -19.8924, sd: 12.8 },
   ],
 
-  asph: {},
-  var: {
-    "11": [42.0224, 72.7224],
+  focus: {
+    closeFocusM: 0.27,
+    description:
+      "Unit focus. The production lens focuses from infinity to 0.27 m / 1:2 natively, and reaches 1:1 with the Macro-Adapter-R.",
   },
-  varLabels: [["11", "BF"]],
+
+  gaps: { "11": { label: "BF", values: [[42.0224, 72.7224]] } },
+
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
+
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
     { text: "G2", fromSurface: "3", toSurface: "5" },
@@ -156,12 +163,7 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "D1", fromSurface: "3", toSurface: "5" }],
 
-  closeFocusM: 0.27,
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-  scFill: 0.55,
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { scFill: 0.55, yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

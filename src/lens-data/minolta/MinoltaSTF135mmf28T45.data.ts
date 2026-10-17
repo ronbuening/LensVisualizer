@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
@@ -16,10 +16,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ No uniform scaling is applied. Individual patent rows are authoritative: d1...d14 sum to 93.877 mm, while the  ║
  * ║ Example 1 summary prints 93.86 mm. The 0.017 mm source arithmetic discrepancy is preserved in the audit.        ║
  * ║                                                                                                                  ║
- * ║ The patent does not publish clear semi-diameters or the physical stop diameter. STO sd = 14.3790636652 mm is    ║
- * ║ derived from modeled EFL and FNO = 2.83. Other sd values are derived from exact spherical meridional ray        ║
+ * ║ The patent does not publish clear semi-diameters or the physical stop diameter. The stop radius is derived     ║
+ * ║ from the design f-number, FNO = 2.83. Other sd values are derived from exact spherical meridional ray          ║
  * ║ envelopes over the full Y' = 21.6 mm field at infinity and the beta = -0.25 close state, then checked against  ║
- * ║ edge thickness, actual rim slope, cross-gap intrusion, and off-axis containment.                                 ║
+ * ║ edge thickness, actual rim slope, cross-gap intrusion, and off-axis containment.                               ║
  * ║                                                                                                                  ║
  * ║ L5 + L6 are the active apodization filter and remain in the prescription. L5 is absorbing ND glass with         ║
  * ║ alpha = 0.55 mm^-1; exact ray path length through it now weights bokeh and relative illumination. L6 is the     ║
@@ -29,167 +29,175 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "minolta-stf-135f28-t45",
   maker: "Minolta",
   name: "MINOLTA AF 135mm f/2.8 [T4.5] STF",
   subtitle: "JP 1999-231209 A, Example 1 — Minolta AF 135mm STF production-design correlation",
-  specs: [
-    "8 ELEMENTS / 6 GROUPS",
-    "135mm f/2.8 [T4.5] STF",
-    "MODELED EFL 135.001536 mm",
-    "2ω ≈ 18.18° AT Y′ = 21.6 mm",
-    "0.87 m MFD / 0.25×",
-    "POWERED 2-ELEMENT APODIZATION FILTER",
-  ],
 
-  focalLengthMarketing: 135,
-  focalLengthDesign: 135.0015363444206,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.83,
-  lensMounts: ["sony-a"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 1999-231209 A",
-  patentAuthors: ["Yoshinobu Kudo"],
-  patentAssignees: ["Minolta Co., Ltd."],
-  patentYear: 1999,
-  elementCount: 8,
-  groupCount: 6,
+  catalog: {
+    lensMounts: ["sony-a"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "8 ELEMENTS / 6 GROUPS",
+      "135mm f/2.8 [T4.5] STF",
+      "MODELED EFL 135.001536 mm",
+      "2ω ≈ 18.18° AT Y′ = 21.6 mm",
+      "0.87 m MFD / 0.25×",
+      "POWERED 2-ELEMENT APODIZATION FILTER",
+    ],
+    elementCount: 8,
+    groupCount: 6,
+    focalLengthMm: { marketing: 135, design: 135.0015363444206 },
+    fNumber: { marketing: 2.8, design: 2.83 },
+  },
+
+  source: {
+    patentNumber: "JP 1999-231209 A",
+    patentYear: 1999,
+    authors: ["Yoshinobu Kudo"],
+    assignees: ["Minolta Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
     {
       id: 1,
       name: "L1",
-      diagramLabel: "L1",
       label: "Element 1",
       type: "Plano-Convex Positive",
       nd: 1.60311,
       vd: 60.74,
-      fl: 124.45988294009383,
+      focalLengthMm: 124.45988294009383,
       glass: "603607 — crown class (vendor unresolved)",
       role: "Front positive collector; plano rear surface is patent r2.",
+      diagramLabel: "L1",
     },
     {
       id: 2,
       name: "L2",
-      diagramLabel: "L2",
       label: "Element 2",
       type: "Negative Meniscus",
       nd: 1.72342,
       vd: 37.99,
-      fl: -144.94680707085612,
+      focalLengthMm: -144.94680707085612,
       glass: "723380 — dense barium-flint class (vendor unresolved)",
       role: "Negative member of the cemented L2/L3 pair in Gr1.",
+      diagramLabel: "L2",
       cemented: "D1",
     },
     {
       id: 3,
       name: "L3",
-      diagramLabel: "L3",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.5168,
       vd: 64.2,
-      fl: 64.17936459492185,
+      focalLengthMm: 64.17936459492185,
       glass: "517642 — crown class (vendor unresolved)",
       role: "Positive member of the cemented L2/L3 pair in Gr1.",
+      diagramLabel: "L3",
       cemented: "D1",
     },
     {
       id: 4,
       name: "L4",
-      diagramLabel: "L4",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.61293,
       vd: 36.96,
-      fl: -52.31297893278733,
+      focalLengthMm: -52.31297893278733,
       glass: "613370 — flint class (vendor unresolved)",
       role: "Rear negative element of Gr1 immediately before the variable inter-group gap.",
+      diagramLabel: "L4",
     },
     {
       id: 5,
       name: "L5",
-      diagramLabel: "L5",
       label: "Element 5",
       type: "Plano-Concave Absorbing ND",
       nd: 1.5069,
       vd: 58.94,
-      fl: -40.897612941408575,
+      focalLengthMm: -40.897612941408575,
       glass: "507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)",
-      absorptionCoefficientPerMm: 0.55,
       role: "Absorbing plano-concave member of the active apodization filter.",
+      diagramLabel: "L5",
+      absorptionCoefficientPerMm: 0.55,
       cemented: "AF",
     },
     {
       id: 6,
       name: "L6",
-      diagramLabel: "L6",
       label: "Element 6",
       type: "Plano-Convex Positive",
       nd: 1.50137,
       vd: 56.46,
-      fl: 41.348704549534276,
+      focalLengthMm: 41.348704549534276,
       glass: "501565 — crown class (K10-family equivalent; vendor unresolved)",
       role: "Near-index compensator cemented to L5; AF net power remains small and negative.",
+      diagramLabel: "L6",
       cemented: "AF",
     },
     {
       id: 7,
       name: "L7",
-      diagramLabel: "L7",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.58913,
       vd: 61.11,
-      fl: 55.32360617164056,
+      focalLengthMm: 55.32360617164056,
       glass: "S-BAL35 (OHARA catalog equivalent; patent 589611; production supplier unspecified)",
       role: "Positive front element of rear group Gr2.",
+      diagramLabel: "L7",
     },
     {
       id: 8,
       name: "L8",
-      diagramLabel: "L8",
       label: "Element 8",
       type: "Negative Meniscus",
       nd: 1.62041,
       vd: 60.29,
-      fl: -70.46073541232649,
+      focalLengthMm: -70.46073541232649,
       glass: "620603 — dense-crown class (vendor unresolved)",
       role: "Rear negative meniscus completing Gr2.",
+      diagramLabel: "L8",
     },
   ],
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 75.063, d: 9.0, nd: 1.60311, elemId: 1, sd: 34.0 },
-    { label: "2", R: 1e15, d: 0.25, nd: 1.0, elemId: 0, sd: 34.0 },
-    { label: "3", R: 37.102, d: 3.0, nd: 1.72342, elemId: 2, sd: 28.0 },
-    { label: "4", R: 26.475, d: 16.0, nd: 1.5168, elemId: 3, sd: 23.7 },
-    { label: "5", R: 104.186, d: 2.05, nd: 1.0, elemId: 0, sd: 21.0 },
-    { label: "6", R: 678.979, d: 2.0, nd: 1.61293, elemId: 4, sd: 21.0 },
-    { label: "7", R: 30.584, d: 14.397, nd: 1.0, elemId: 0, sd: 18.5 },
-    { label: "STO", R: 1e15, d: 1.5, nd: 1.0, elemId: 0, sd: 14.3790636652 },
-    { label: "9", R: 1e15, d: 0.3, nd: 1.5069, elemId: 5, sd: 15.0 },
-    { label: "10", R: 20.731, d: 9.33, nd: 1.50137, elemId: 6, sd: 16.0 },
-    { label: "11", R: 1e15, d: 17.25, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "12", R: 97.643, d: 7.5, nd: 1.58913, elemId: 7, sd: 20.0 },
-    { label: "13", R: -47.53, d: 9.5, nd: 1.0, elemId: 0, sd: 20.0 },
-    { label: "14", R: -41.707, d: 1.8, nd: 1.62041, elemId: 8, sd: 18.5 },
-    { label: "15", R: -923.182, d: 46.800155821336546, nd: 1.0, elemId: 0, sd: 18.5 },
+    { label: "1", R: 75.063, d: 9.0, sd: 34.0, medium: 1 },
+    { label: "2", R: "flat", d: 0.25, sd: 34.0 },
+    { label: "3", R: 37.102, d: 3.0, sd: 28.0, medium: 2 },
+    { label: "4", R: 26.475, d: 16.0, sd: 23.7, medium: 3 },
+    { label: "5", R: 104.186, d: 2.05, sd: 21.0 },
+    { label: "6", R: 678.979, d: 2.0, sd: 21.0, medium: 4 },
+    { label: "7", R: 30.584, sd: 18.5 },
+    { label: "STO", R: "flat", d: 1.5 },
+    { label: "9", R: "flat", d: 0.3, sd: 15.0, medium: 5 },
+    { label: "10", R: 20.731, d: 9.33, sd: 16.0, medium: 6 },
+    { label: "11", R: "flat", d: 17.25, sd: 16.0 },
+    { label: "12", R: 97.643, d: 7.5, sd: 20.0, medium: 7 },
+    { label: "13", R: -47.53, d: 9.5, sd: 20.0 },
+    { label: "14", R: -41.707, d: 1.8, sd: 18.5, medium: 8 },
+    { label: "15", R: -923.182, sd: 18.5 },
   ],
 
-  asph: {},
-
-  /* ── Focus reconstruction ── */
-  var: {
-    "7": [14.397, 18.198],
-    "15": [46.800155821336546, 80.00729449712114],
+  focus: {
+    closeFocusM: 0.87,
+    description:
+      "CONSTRAINED_RECONSTRUCTION: patent d7 changes 14.397→18.198 mm; BF is solved from β=-0.25 as 46.800156→80.007294 mm. The implied front/rear movement ratio is 1.114463:1 versus the patent's rounded 1.11:1.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
   },
-  varLabels: [
-    ["7", "D7"],
-    ["15", "BF"],
-  ],
+
+  /* (moved from var) ── Focus reconstruction ── */
+  gaps: {
+    "7": { label: "D7", values: [[14.397, 18.198]] },
+    "15": { label: "BF", values: [[46.800155821336546, 80.00729449712114]] },
+  },
+
+  aperture: { nominalFNumber: 2.83, fStops: [2.8, 4, 5.6, 8, 11, 16, 22, 31], maxFNumber: 31, blades: 9 },
 
   groups: [
     { text: "Gr1", fromSurface: "1", toSurface: "7" },
@@ -201,18 +209,7 @@ const LENS_DATA = {
     { text: "AF", fromSurface: "9", toSurface: "11" },
   ],
 
-  closeFocusM: 0.87,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: patent d7 changes 14.397→18.198 mm; BF is solved from β=-0.25 as 46.800156→80.007294 mm. The implied front/rear movement ratio is 1.114463:1 versus the patent's rounded 1.11:1.",
-
-  nominalFno: 2.83,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 31],
-  maxFstop: 31,
-  apertureBlades: 9,
-
-  yScFill: 0.52,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.52 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

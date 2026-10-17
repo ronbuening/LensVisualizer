@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * LEICA SUPER-ANGULON-R 21mm f/4 — US 3,512,874 Example 3.
@@ -13,8 +13,8 @@ import type { LensDataInput } from "../../types/optics.js";
  *   about 58.5% of the way from the r12 vertex to the r13 vertex (600 dpi measurement; the d12 dimension leader, not
  *   a blade, is at about 30%), so the model splits d12 as 1.7002 / 1.2062 mm after scaling. This is a figure
  *   reading, not a published coordinate.
- * - Stop semi-diameter 4.2695 mm is calibrated from the published f/4 target using the modeled paraxial entrance
- *   pupil (2.62492 mm). It is not a published physical diaphragm diameter.
+ * - The stop radius is derived from the design f-number, the published f/4 target. It is not a published physical
+ *   diaphragm diameter.
  * - NOTE ON SEMI-DIAMETERS: the patent publishes no clear diameters. Values began as exact spherical meridional ray
  *   envelopes (about 2% clearance at the 45° half-field where geometry permits; surfaces 6 and 14/15 limited by the
  *   90%-of-gap intrusion rule). The 2026-09-23 figure pass measured Fig. 3 at 300/600 dpi (≈21.7 px/mm at 300 dpi
@@ -33,35 +33,33 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "leica-super-angulon-r-21mm-f4",
   maker: "Leica",
   name: "LEICA SUPER-ANGULON-R 21mm f/4",
   subtitle: "US 3,512,874 Example 3 — strong research correlation; not manufacturer-confirmed attribution",
-  specs: [
-    "10 ELEMENTS / 8 GROUPS",
-    "21mm (20.9993mm MODELED EFL)",
-    "f/4",
-    "90° PATENT FIELD / 92° MARKETED ANGLE",
-    "ALL-SPHERICAL",
-  ],
 
-  focalLengthMarketing: 21,
-  focalLengthDesign: 20.9993225372,
-  apertureMarketing: 4,
-  apertureDesign: 4,
-  lensMounts: ["leica-r"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,512,874",
-  patentAuthors: ["Walter Wöltche"],
-  patentAssignees: ["Jos. Schneider & Co., Optische Werke"],
-  patentYear: 1970,
-  elementCount: 10,
-  groupCount: 8,
+  catalog: {
+    lensMounts: ["leica-r"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "10 ELEMENTS / 8 GROUPS",
+      "21mm (20.9993mm MODELED EFL)",
+      "f/4",
+      "90° PATENT FIELD / 92° MARKETED ANGLE",
+      "ALL-SPHERICAL",
+    ],
+    elementCount: 10,
+    groupCount: 8,
+    focalLengthMm: { marketing: 21, design: 20.9993225372 },
+    fNumber: { marketing: 4, design: 4 },
+  },
 
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 90,
-    maxTraceFieldDeg: 45,
+  source: {
+    patentNumber: "US 3,512,874",
+    patentYear: 1970,
+    authors: ["Walter Wöltche"],
+    assignees: ["Jos. Schneider & Co., Optische Werke"],
   },
 
   elements: [
@@ -73,7 +71,7 @@ const LENS_DATA = {
       nd: 1.52736,
       vd: 64.31,
       indexReference: "e",
-      fl: 164.830086,
+      focalLengthMm: 164.830086,
       glass: "PC3 (HOYA equivalent; PK3 class, supplier unproven)",
       role: "Front positive meniscus preceding the two negative front menisci.",
     },
@@ -85,7 +83,7 @@ const LENS_DATA = {
       nd: 1.62287,
       vd: 60.06,
       indexReference: "e",
-      fl: -53.796526,
+      focalLengthMm: -53.796526,
       glass: "N-SK16 class (supplier unproven)",
       role: "First negative meniscus of the front retrofocus section.",
     },
@@ -97,7 +95,7 @@ const LENS_DATA = {
       nd: 1.66104,
       vd: 57.08,
       indexReference: "e",
-      fl: -23.689676,
+      focalLengthMm: -23.689676,
       glass: "K-LaK11 (SUMITA equivalent; LaK11 class, supplier unproven)",
       role: "Second negative front meniscus; completes the strongly negative front component A.",
     },
@@ -109,10 +107,10 @@ const LENS_DATA = {
       nd: 1.62287,
       vd: 60.06,
       indexReference: "e",
-      fl: -27.484387,
+      focalLengthMm: -27.484387,
       glass: "N-SK16 class (supplier unproven)",
-      cemented: "IV",
       role: "Negative first lens of the thick positive fourth member.",
+      cemented: "IV",
     },
     {
       id: 5,
@@ -122,10 +120,10 @@ const LENS_DATA = {
       nd: 1.5353,
       vd: 45.67,
       indexReference: "e",
-      fl: 25.164583,
+      focalLengthMm: 25.164583,
       glass: "FTM8 (OHARA proxy; supplier unproven)",
-      cemented: "IV",
       role: "Positive second lens of member IV; the cemented member is deliberately thick ahead of the diaphragm.",
+      cemented: "IV",
     },
     {
       id: 6,
@@ -135,10 +133,10 @@ const LENS_DATA = {
       nd: 1.61114,
       vd: 45.92,
       indexReference: "e",
-      fl: 29.548135,
+      focalLengthMm: 29.548135,
       glass: "H-BaF6 class (supplier unproven)",
-      cemented: "V",
       role: "Positive first lens of the fifth member immediately before the diaphragm.",
+      cemented: "V",
     },
     {
       id: 7,
@@ -148,10 +146,10 @@ const LENS_DATA = {
       nd: 1.5343,
       vd: 48.66,
       indexReference: "e",
-      fl: 53.773349,
+      focalLengthMm: 53.773349,
       glass: "S-TIL6 class (supplier unproven)",
-      cemented: "V",
       role: "Positive second lens of member V; its cemented interface is cited for higher-order pupil/asymmetry control.",
+      cemented: "V",
     },
     {
       id: 8,
@@ -161,7 +159,7 @@ const LENS_DATA = {
       nd: 1.74618,
       vd: 27.97,
       indexReference: "e",
-      fl: -15.13237,
+      focalLengthMm: -15.13237,
       glass: "FD3 (HOYA equivalent; SF3 class, supplier unproven)",
       role: "Negative sixth member immediately behind the diaphragm.",
     },
@@ -173,7 +171,7 @@ const LENS_DATA = {
       nd: 1.62287,
       vd: 60.06,
       indexReference: "e",
-      fl: 29.256133,
+      focalLengthMm: 29.256133,
       glass: "N-SK16 class (supplier unproven)",
       role: "Positive seventh member in the rear component.",
     },
@@ -185,37 +183,43 @@ const LENS_DATA = {
       nd: 1.59142,
       vd: 61.03,
       indexReference: "e",
-      fl: 34.715938,
+      focalLengthMm: 34.715938,
       glass: "N-SK5 (SCHOTT equivalent; supplier unproven)",
       role: "Positive rear member completing the long-back-focus relay.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 59.9151, d: 5.8128, nd: 1.52736, elemId: 1, sd: 27.45 },
-    { label: "2", R: 186.3645, d: 0.0966, nd: 1, elemId: 0, sd: 26.4 },
-    { label: "3", R: 29.0577, d: 2.1315, nd: 1.62287, elemId: 2, sd: 18.55 },
-    { label: "4", R: 15.1242, d: 5.8128, nd: 1, elemId: 0, sd: 13.54 },
-    { label: "5", R: 30.849, d: 1.743, nd: 1.66104, elemId: 3, sd: 13.15 },
-    { label: "6", R: 10.1535, d: 5.3298, nd: 1, elemId: 0, sd: 8.6 },
-    { label: "7", R: 1e15, d: 6.783, nd: 1.62287, elemId: 4, sd: 8.7 },
-    { label: "8", R: 17.1192, d: 4.263, nd: 1.5353, elemId: 5, sd: 8.65 },
-    { label: "9", R: -57.7164, d: 0.1932, nd: 1, elemId: 0, sd: 8.5 },
-    { label: "10", R: 23.5347, d: 3.8745, nd: 1.61114, elemId: 6, sd: 6.4 },
-    { label: "11", R: -72.7545, d: 5.6196, nd: 1.5343, elemId: 7, sd: 6.4 },
-    { label: "12", R: -21.1512, d: 1.7002, nd: 1, elemId: 0, sd: 6.3 },
-    { label: "STO", R: 1e15, d: 1.2062, nd: 1, elemId: 0, sd: 4.2695 },
-    { label: "13", R: -15.1725, d: 1.0668, nd: 1.74618, elemId: 8, sd: 4.9 },
-    { label: "14", R: 45.4692, d: 0.6783, nd: 1, elemId: 0, sd: 5.45 },
-    { label: "15", R: -54.5391, d: 1.9383, nd: 1.62287, elemId: 9, sd: 5.45 },
-    { label: "16", R: -13.8453, d: 0.0966, nd: 1, elemId: 0, sd: 6.3 },
-    { label: "17", R: 1e15, d: 1.9383, nd: 1.59142, elemId: 10, sd: 7.3 },
-    { label: "18", R: -20.5317, d: 36.5226699516, nd: 1, elemId: 0, sd: 7.5 },
+    { label: "1", R: 59.9151, d: 5.8128, sd: 27.45, medium: 1 },
+    { label: "2", R: 186.3645, d: 0.0966, sd: 26.4 },
+    { label: "3", R: 29.0577, d: 2.1315, sd: 18.55, medium: 2 },
+    { label: "4", R: 15.1242, d: 5.8128, sd: 13.54 },
+    { label: "5", R: 30.849, d: 1.743, sd: 13.15, medium: 3 },
+    { label: "6", R: 10.1535, d: 5.3298, sd: 8.6 },
+    { label: "7", R: "flat", d: 6.783, sd: 8.7, medium: 4 },
+    { label: "8", R: 17.1192, d: 4.263, sd: 8.65, medium: 5 },
+    { label: "9", R: -57.7164, d: 0.1932, sd: 8.5 },
+    { label: "10", R: 23.5347, d: 3.8745, sd: 6.4, medium: 6 },
+    { label: "11", R: -72.7545, d: 5.6196, sd: 6.4, medium: 7 },
+    { label: "12", R: -21.1512, d: 1.7002, sd: 6.3 },
+    { label: "STO", R: "flat", d: 1.2062 },
+    { label: "13", R: -15.1725, d: 1.0668, sd: 4.9, medium: 8 },
+    { label: "14", R: 45.4692, d: 0.6783, sd: 5.45 },
+    { label: "15", R: -54.5391, d: 1.9383, sd: 5.45, medium: 9 },
+    { label: "16", R: -13.8453, d: 0.0966, sd: 6.3 },
+    { label: "17", R: "flat", d: 1.9383, sd: 7.3, medium: 10 },
+    { label: "18", R: -20.5317, d: 36.5226699516, sd: 7.5 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 0.2,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION — static patent prescription only; production MFD 0.2 m is metadata, not a reconstructed focus state.",
+  },
+
+  aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 90, maxTraceFieldDeg: 45 },
 
   groups: [
     { text: "A", fromSurface: "1", toSurface: "6" },
@@ -223,21 +227,12 @@ const LENS_DATA = {
     { text: "C", fromSurface: "10", toSurface: "12" },
     { text: "D", fromSurface: "13", toSurface: "18" },
   ],
-
   doublets: [
     { text: "IV", fromSurface: "7", toSurface: "9" },
     { text: "V", fromSurface: "10", toSurface: "12" },
   ],
 
-  closeFocusM: 0.2,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION — static patent prescription only; production MFD 0.2 m is metadata, not a reconstructed focus state.",
-
-  nominalFno: 4,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  yScFill: 0.5,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.5 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

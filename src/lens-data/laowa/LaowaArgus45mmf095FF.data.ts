@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * CN 112285890 B, Example 2 (Figure 3); patent millimetres and d-line nd/vd, no scaling and no value changes.
@@ -35,499 +35,274 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
-  "key": "laowa-argus-45mm-f095-ff",
-  "name": "LAOWA ARGUS 45mm f/0.95 FF",
-  "maker": "Laowa",
-  "subtitle": "CN 112285890 B, Example 2 — construction-based production correlation",
-  "patentNumber": "CN 112285890 B",
-  "patentAuthors": [
-    "Dayong Li"
-  ],
-  "patentAssignees": [
-    "Anhui Changgeng Optics Technology Co., Ltd."
-  ],
-  "patentYear": 2024,
-  "elementCount": 13,
-  "groupCount": 9,
-  "lensMounts": [
-    "sony-fe",
-    "nikon-z",
-    "canon-rf"
-  ],
-  "imageFormat": "135-full-frame",
-  "focalLengthMarketing": 45,
-  "focalLengthDesign": 44.89043935178832,
-  "apertureMarketing": 0.95,
-  "apertureDesign": 0.98,
-  "nominalFno": 0.98,
-  "closeFocusM": 2.619397222499145,
-  "focusPositions": [
-    0,
-    1
-  ],
-  "publishedStations": {
-    "focus": [
-      1
-    ]
+  schema: 2,
+  key: "laowa-argus-45mm-f095-ff",
+  maker: "Laowa",
+  name: "LAOWA ARGUS 45mm f/0.95 FF",
+  subtitle: "CN 112285890 B, Example 2 — construction-based production correlation",
+
+  catalog: {
+    lensMounts: ["sony-fe", "nikon-z", "canon-rf"],
+    imageFormat: "135-full-frame",
+    specs: ["13 ELEMENTS / 9 GROUPS", "DESIGN f = 44.89 mm", "DESIGN F/0.98", "2 ASPHERICAL SURFACES / 1 ELEMENT"],
+    elementCount: 13,
+    groupCount: 9,
+    focalLengthMm: { marketing: 45, design: 44.89043935178832 },
+    fNumber: { marketing: 0.95, design: 0.98 },
   },
-  "focusDescription": "PUBLISHED gap sets for infinity and for a 2500 mm object distance, the only two states the patent tabulates; the model places that object 2497 mm in front of the first surface. G1 is fixed. G2 (auxiliary) and G3 (main) move toward the object independently, by 2.25 mm and 0.91 mm at the near state, and the stop rides with G3; overall length is constant. The 2.62 m near limit is that state's paraxial object-to-image distance, not the marketed 0.5 m minimum focus. Intermediate positions and distance labels are linear interpolations, not a published cam.",
-  "specs": [
-    "13 ELEMENTS / 9 GROUPS",
-    "DESIGN f = 44.89 mm",
-    "DESIGN F/0.98",
-    "2 ASPHERICAL SURFACES / 1 ELEMENT"
-  ],
-  "elements": [
-    {
-      "id": 1,
-      "name": "L1",
-      "diagramLabel": "L1",
-      "label": "Element 1",
-      "type": "Negative Meniscus",
-      "nd": 1.497,
-      "vd": 81.61,
-      "indexReference": "d",
-      "fl": -220.1436863164563,
-      "glass": "H-FK61 (CDGM, coordinate equivalent; supplier unconfirmed)"
-    },
-    {
-      "id": 2,
-      "name": "L2",
-      "diagramLabel": "L2",
-      "label": "Element 2",
-      "type": "Positive Meniscus",
-      "nd": 1.88421,
-      "vd": 37.0,
-      "indexReference": "d",
-      "fl": 168.97125859772416,
-      "glass": "Unmatched (nd 1.88421, vd 37.00; no close catalog match)"
-    },
-    {
-      "id": 3,
-      "name": "L3",
-      "diagramLabel": "L3",
-      "label": "Element 3",
-      "type": "Positive Meniscus",
-      "nd": 1.883,
-      "vd": 40.8,
-      "indexReference": "d",
-      "fl": 54.738699842190236,
-      "glass": "TAFD30 (HOYA, coordinate equivalent; supplier unconfirmed)"
-    },
-    {
-      "id": 4,
-      "name": "L4",
-      "diagramLabel": "L4",
-      "label": "Element 4",
-      "type": "Positive Meniscus",
-      "nd": 1.92286,
-      "vd": 20.88,
-      "indexReference": "d",
-      "fl": 195.13855448831984,
-      "glass": "E-FDS1 (HOYA, coordinate equivalent; supplier unconfirmed)",
-      "cemented": "C1"
-    },
-    {
-      "id": 5,
-      "name": "L5",
-      "diagramLabel": "L5",
-      "label": "Element 5",
-      "type": "Biconcave Negative",
-      "nd": 1.6966,
-      "vd": 28.87,
-      "indexReference": "d",
-      "fl": -31.940642968254895,
-      "glass": "Unmatched (nd 1.69660, vd 28.87; no close catalog match)",
-      "cemented": "C1"
-    },
-    {
-      "id": 6,
-      "name": "L6",
-      "diagramLabel": "L6",
-      "label": "Element 6",
-      "type": "Biconcave Negative",
-      "nd": 1.64465,
-      "vd": 33.02,
-      "indexReference": "d",
-      "fl": -34.86547198966114,
-      "glass": "Unmatched (nd 1.64465, vd 33.02; no close catalog match)",
-      "cemented": "C2"
-    },
-    {
-      "id": 7,
-      "name": "L7",
-      "diagramLabel": "L7",
-      "label": "Element 7",
-      "type": "Biconvex Positive",
-      "nd": 1.83098,
-      "vd": 46.0,
-      "indexReference": "d",
-      "fl": 35.32416094434064,
-      "glass": "Unmatched (nd 1.83098, vd 46.00; no close catalog match)",
-      "cemented": "C2"
-    },
-    {
-      "id": 8,
-      "name": "L8",
-      "diagramLabel": "L8",
-      "label": "Element 8",
-      "type": "Biconvex Positive",
-      "nd": 1.497,
-      "vd": 81.61,
-      "indexReference": "d",
-      "fl": 46.58640311708475,
-      "glass": "H-FK61 (CDGM, coordinate equivalent; supplier unconfirmed)",
-      "cemented": "C3",
-      "apd": "inferred",
-      "apdNote": "ED fluorophosphate class inferred from nd = 1.497 and νd = 81.61; Venus Optics' construction diagram marks this element as the lens's single ED element, while L1 has the same nd/νd but is not marked and is left untagged. The patent publishes no partial-dispersion data."
-    },
-    {
-      "id": 9,
-      "name": "L9",
-      "diagramLabel": "L9",
-      "label": "Element 9",
-      "type": "Biconcave Negative",
-      "nd": 1.62004,
-      "vd": 36.3,
-      "indexReference": "d",
-      "fl": -54.0675792165704,
-      "glass": "E-F2 (HOYA, coordinate equivalent; supplier unconfirmed)",
-      "cemented": "C3"
-    },
-    {
-      "id": 10,
-      "name": "L10",
-      "diagramLabel": "L10",
-      "label": "Element 10",
-      "type": "Positive Meniscus",
-      "nd": 1.883,
-      "vd": 40.8,
-      "indexReference": "d",
-      "fl": 67.78227591700897,
-      "glass": "TAFD30 (HOYA, coordinate equivalent; supplier unconfirmed)",
-      "cemented": "C3"
-    },
-    {
-      "id": 11,
-      "name": "L11",
-      "diagramLabel": "L11",
-      "label": "Element 11",
-      "type": "Biconvex Positive",
-      "nd": 1.883,
-      "vd": 40.8,
-      "indexReference": "d",
-      "fl": 49.988449619898276,
-      "glass": "TAFD30 (HOYA, coordinate equivalent; supplier unconfirmed)"
-    },
-    {
-      "id": 12,
-      "name": "L12",
-      "diagramLabel": "L12",
-      "label": "Element 12",
-      "type": "Biconcave Negative",
-      "nd": 1.64079,
-      "vd": 33.41,
-      "indexReference": "d",
-      "fl": -61.220658870464945,
-      "glass": "Unmatched (nd 1.64079, vd 33.41; no close catalog match)"
-    },
-    {
-      "id": 13,
-      "name": "L13",
-      "diagramLabel": "L13",
-      "label": "Element 13",
-      "type": "Negative Meniscus (2x Asph)",
-      "nd": 1.883,
-      "vd": 40.8,
-      "indexReference": "d",
-      "fl": -328.53981977534767,
-      "glass": "TAFD30 (HOYA, coordinate equivalent; supplier unconfirmed)"
-    }
-  ],
-  "surfaces": [
-    {
-      "label": "1",
-      "R": 62.435,
-      "d": 1.6,
-      "nd": 1.497,
-      "elemId": 1,
-      "sd": 31.5
-    },
-    {
-      "label": "2",
-      "R": 39.413,
-      "d": 11.666,
-      "nd": 1.0,
-      "elemId": 0,
-      "sd": 28.2
-    },
-    {
-      "label": "3",
-      "R": 54.827,
-      "d": 3.978,
-      "nd": 1.88421,
-      "elemId": 2,
-      "sd": 27.5
-    },
-    {
-      "label": "4",
-      "R": 83.661,
-      "d": 0.572,
-      "nd": 1.0,
-      "elemId": 0,
-      "sd": 24.4
-    },
-    {
-      "label": "5",
-      "R": 42.592,
-      "d": 7.5,
-      "nd": 1.883,
-      "elemId": 3,
-      "sd": 25.4
-    },
-    {
-      "label": "6",
-      "R": 328.905,
-      "d": 0.99,
-      "nd": 1.0,
-      "elemId": 0,
-      "sd": 23.2
-    },
-    {
-      "label": "7",
-      "R": -2172.659,
-      "d": 5.0,
-      "nd": 1.92286,
-      "elemId": 4,
-      "sd": 25.1
-    },
-    {
-      "label": "8",
-      "R": -166.485,
-      "d": 5.287,
-      "nd": 1.6966,
-      "elemId": 5,
-      "sd": 25.1
-    },
-    {
-      "label": "9",
-      "R": 26.017,
-      "d": 8.966,
-      "nd": 1.0,
-      "elemId": 0,
-      "sd": 18.5
-    },
-    {
-      "label": "STO",
-      "R": 1000000000000000.0,
-      "d": 9.285,
-      "nd": 1.0,
-      "elemId": 0,
-      "sd": 18.026436837451403
-    },
-    {
-      "label": "11",
-      "R": -38.48,
-      "d": 1.2,
-      "nd": 1.64465,
-      "elemId": 6,
-      "sd": 18.8
-    },
-    {
-      "label": "12",
-      "R": 54.702,
-      "d": 12.7,
-      "nd": 1.83098,
-      "elemId": 7,
-      "sd": 23.5
-    },
-    {
-      "label": "13",
-      "R": -56.671,
-      "d": 0.15,
-      "nd": 1.0,
-      "elemId": 0,
-      "sd": 23.5
-    },
-    {
-      "label": "14",
-      "R": 29.032,
-      "d": 15.0,
-      "nd": 1.497,
-      "elemId": 8,
-      "sd": 23.2
-    },
-    {
-      "label": "15",
-      "R": -94.732,
-      "d": 1.2,
-      "nd": 1.62004,
-      "elemId": 9,
-      "sd": 22.0
-    },
-    {
-      "label": "16",
-      "R": 52.137,
-      "d": 6.41,
-      "nd": 1.883,
-      "elemId": 10,
-      "sd": 22.0
-    },
-    {
-      "label": "17",
-      "R": 381.164,
-      "d": 0.383,
-      "nd": 1.0,
-      "elemId": 0,
-      "sd": 22.0
-    },
-    {
-      "label": "18",
-      "R": 45.653,
-      "d": 8.0,
-      "nd": 1.883,
-      "elemId": 11,
-      "sd": 19.3
-    },
-    {
-      "label": "19",
-      "R": -1222.262,
-      "d": 0.904,
-      "nd": 1.0,
-      "elemId": 0,
-      "sd": 19.3
-    },
-    {
-      "label": "20",
-      "R": -150.009,
-      "d": 1.0,
-      "nd": 1.64079,
-      "elemId": 12,
-      "sd": 17.1
-    },
-    {
-      "label": "21",
-      "R": 53.26,
-      "d": 6.176,
-      "nd": 1.0,
-      "elemId": 0,
-      "sd": 17.1
-    },
-    {
-      "label": "22A",
-      "R": -117.94,
-      "d": 1.6,
-      "nd": 1.883,
-      "elemId": 13,
-      "sd": 15.7
-    },
-    {
-      "label": "23A",
-      "R": -200.0,
-      "d": 12.8692,
-      "nd": 1.0,
-      "elemId": 0,
-      "sd": 17.9
-    }
-  ],
-  "asph": {
-    "22A": {
-      "K": -95.0,
-      "A4": -5.4446e-05,
-      "A6": 1.29944e-07,
-      "A8": -2.15045e-10,
-      "A10": 3.43403e-13,
-      "A12": -2.08375e-15,
-      "A14": 0.0
-    },
-    "23A": {
-      "K": 0.0,
-      "A4": -2.26938e-05,
-      "A6": 4.66871e-08,
-      "A8": 5.31197e-10,
-      "A10": -2.34658e-12,
-      "A12": 2.67922e-15,
-      "A14": 0.0
-    }
+
+  source: {
+    patentNumber: "CN 112285890 B",
+    patentYear: 2024,
+    authors: ["Dayong Li"],
+    assignees: ["Anhui Changgeng Optics Technology Co., Ltd."],
   },
-  "var": {
-    "2": [
-      11.666,
-      9.4148
-    ],
-    "9": [
-      8.966,
-      10.3063
-    ],
-    "23A": [
-      12.8692,
-      13.7801
-    ]
+
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Negative Meniscus",
+      nd: 1.497,
+      vd: 81.61,
+      indexReference: "d",
+      focalLengthMm: -220.1436863164563,
+      glass: "H-FK61 (CDGM, coordinate equivalent; supplier unconfirmed)",
+      diagramLabel: "L1",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Positive Meniscus",
+      nd: 1.88421,
+      vd: 37.0,
+      indexReference: "d",
+      focalLengthMm: 168.97125859772416,
+      glass: "Unmatched (nd 1.88421, vd 37.00; no close catalog match)",
+      diagramLabel: "L2",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Positive Meniscus",
+      nd: 1.883,
+      vd: 40.8,
+      indexReference: "d",
+      focalLengthMm: 54.738699842190236,
+      glass: "TAFD30 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      diagramLabel: "L3",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Positive Meniscus",
+      nd: 1.92286,
+      vd: 20.88,
+      indexReference: "d",
+      focalLengthMm: 195.13855448831984,
+      glass: "E-FDS1 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      diagramLabel: "L4",
+      cemented: "C1",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Biconcave Negative",
+      nd: 1.6966,
+      vd: 28.87,
+      indexReference: "d",
+      focalLengthMm: -31.940642968254895,
+      glass: "Unmatched (nd 1.69660, vd 28.87; no close catalog match)",
+      diagramLabel: "L5",
+      cemented: "C1",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Biconcave Negative",
+      nd: 1.64465,
+      vd: 33.02,
+      indexReference: "d",
+      focalLengthMm: -34.86547198966114,
+      glass: "Unmatched (nd 1.64465, vd 33.02; no close catalog match)",
+      diagramLabel: "L6",
+      cemented: "C2",
+    },
+    {
+      id: 7,
+      name: "L7",
+      label: "Element 7",
+      type: "Biconvex Positive",
+      nd: 1.83098,
+      vd: 46.0,
+      indexReference: "d",
+      focalLengthMm: 35.32416094434064,
+      glass: "Unmatched (nd 1.83098, vd 46.00; no close catalog match)",
+      diagramLabel: "L7",
+      cemented: "C2",
+    },
+    {
+      id: 8,
+      name: "L8",
+      label: "Element 8",
+      type: "Biconvex Positive",
+      nd: 1.497,
+      vd: 81.61,
+      indexReference: "d",
+      focalLengthMm: 46.58640311708475,
+      glass: "H-FK61 (CDGM, coordinate equivalent; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote:
+        "ED fluorophosphate class inferred from nd = 1.497 and νd = 81.61; Venus Optics' construction diagram marks this element as the lens's single ED element, while L1 has the same nd/νd but is not marked and is left untagged. The patent publishes no partial-dispersion data.",
+      diagramLabel: "L8",
+      cemented: "C3",
+    },
+    {
+      id: 9,
+      name: "L9",
+      label: "Element 9",
+      type: "Biconcave Negative",
+      nd: 1.62004,
+      vd: 36.3,
+      indexReference: "d",
+      focalLengthMm: -54.0675792165704,
+      glass: "E-F2 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      diagramLabel: "L9",
+      cemented: "C3",
+    },
+    {
+      id: 10,
+      name: "L10",
+      label: "Element 10",
+      type: "Positive Meniscus",
+      nd: 1.883,
+      vd: 40.8,
+      indexReference: "d",
+      focalLengthMm: 67.78227591700897,
+      glass: "TAFD30 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      diagramLabel: "L10",
+      cemented: "C3",
+    },
+    {
+      id: 11,
+      name: "L11",
+      label: "Element 11",
+      type: "Biconvex Positive",
+      nd: 1.883,
+      vd: 40.8,
+      indexReference: "d",
+      focalLengthMm: 49.988449619898276,
+      glass: "TAFD30 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      diagramLabel: "L11",
+    },
+    {
+      id: 12,
+      name: "L12",
+      label: "Element 12",
+      type: "Biconcave Negative",
+      nd: 1.64079,
+      vd: 33.41,
+      indexReference: "d",
+      focalLengthMm: -61.220658870464945,
+      glass: "Unmatched (nd 1.64079, vd 33.41; no close catalog match)",
+      diagramLabel: "L12",
+    },
+    {
+      id: 13,
+      name: "L13",
+      label: "Element 13",
+      type: "Negative Meniscus (2x Asph)",
+      nd: 1.883,
+      vd: 40.8,
+      indexReference: "d",
+      focalLengthMm: -328.53981977534767,
+      glass: "TAFD30 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      diagramLabel: "L13",
+    },
+  ],
+
+  surfaces: [
+    { label: "1", R: 62.435, d: 1.6, sd: 31.5, medium: 1 },
+    { label: "2", R: 39.413, sd: 28.2 },
+    { label: "3", R: 54.827, d: 3.978, sd: 27.5, medium: 2 },
+    { label: "4", R: 83.661, d: 0.572, sd: 24.4 },
+    { label: "5", R: 42.592, d: 7.5, sd: 25.4, medium: 3 },
+    { label: "6", R: 328.905, d: 0.99, sd: 23.2 },
+    { label: "7", R: -2172.659, d: 5.0, sd: 25.1, medium: 4 },
+    { label: "8", R: -166.485, d: 5.287, sd: 25.1, medium: 5 },
+    { label: "9", R: 26.017, sd: 18.5 },
+    { label: "STO", R: "flat", d: 9.285 },
+    { label: "11", R: -38.48, d: 1.2, sd: 18.8, medium: 6 },
+    { label: "12", R: 54.702, d: 12.7, sd: 23.5, medium: 7 },
+    { label: "13", R: -56.671, d: 0.15, sd: 23.5 },
+    { label: "14", R: 29.032, d: 15.0, sd: 23.2, medium: 8 },
+    { label: "15", R: -94.732, d: 1.2, sd: 22.0, medium: 9 },
+    { label: "16", R: 52.137, d: 6.41, sd: 22.0, medium: 10 },
+    { label: "17", R: 381.164, d: 0.383, sd: 22.0 },
+    { label: "18", R: 45.653, d: 8.0, sd: 19.3, medium: 11 },
+    { label: "19", R: -1222.262, d: 0.904, sd: 19.3 },
+    { label: "20", R: -150.009, d: 1.0, sd: 17.1, medium: 12 },
+    { label: "21", R: 53.26, d: 6.176, sd: 17.1 },
+    {
+      label: "22A",
+      R: -117.94,
+      d: 1.6,
+      sd: 15.7,
+      medium: 13,
+      asphere: {
+        K: -95.0,
+        A4: -5.4446e-05,
+        A6: 1.29944e-07,
+        A8: -2.15045e-10,
+        A10: 3.43403e-13,
+        A12: -2.08375e-15,
+        A14: 0,
+      },
+    },
+    {
+      label: "23A",
+      R: -200.0,
+      sd: 17.9,
+      asphere: { K: 0, A4: -2.26938e-05, A6: 4.66871e-08, A8: 5.31197e-10, A10: -2.34658e-12, A12: 2.67922e-15, A14: 0 },
+    },
+  ],
+
+  focus: {
+    closeFocusM: 2.619397222499145,
+    keyframes: [0, 1],
+    description:
+      "PUBLISHED gap sets for infinity and for a 2500 mm object distance, the only two states the patent tabulates; the model places that object 2497 mm in front of the first surface. G1 is fixed. G2 (auxiliary) and G3 (main) move toward the object independently, by 2.25 mm and 0.91 mm at the near state, and the stop rides with G3; overall length is constant. The 2.62 m near limit is that state's paraxial object-to-image distance, not the marketed 0.5 m minimum focus. Intermediate positions and distance labels are linear interpolations, not a published cam.",
+    published: [1],
   },
-  "varLabels": [
-    [
-      "2",
-      "D(2)"
-    ],
-    [
-      "9",
-      "D(9)"
-    ],
-    [
-      "23A",
-      "BF"
-    ]
+
+  gaps: {
+    "2": { label: "D(2)", values: [[11.666, 9.4148]] },
+    "9": { label: "D(9)", values: [[8.966, 10.3063]] },
+    "23A": { label: "BF", values: [[12.8692, 13.7801]] },
+  },
+
+  aperture: { nominalFNumber: 0.98, fStops: [0.98, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16], maxFNumber: 16, blades: 15 },
+
+  groups: [
+    { text: "G1 (FIXED)", fromSurface: "1", toSurface: "2" },
+    { text: "G2 (AUX FOCUS)", fromSurface: "3", toSurface: "9" },
+    { text: "G3 (MAIN FOCUS)", fromSurface: "11", toSurface: "23A" },
   ],
-  "groups": [
-    {
-      "text": "G1 (FIXED)",
-      "fromSurface": "1",
-      "toSurface": "2"
-    },
-    {
-      "text": "G2 (AUX FOCUS)",
-      "fromSurface": "3",
-      "toSurface": "9"
-    },
-    {
-      "text": "G3 (MAIN FOCUS)",
-      "fromSurface": "11",
-      "toSurface": "23A"
-    }
+  doublets: [
+    { text: "C1", fromSurface: "7", toSurface: "9" },
+    { text: "C2", fromSurface: "11", toSurface: "13" },
+    { text: "C3", fromSurface: "14", toSurface: "17" },
   ],
-  "doublets": [
-    {
-      "text": "C1",
-      "fromSurface": "7",
-      "toSurface": "9"
-    },
-    {
-      "text": "C2",
-      "fromSurface": "11",
-      "toSurface": "13"
-    },
-    {
-      "text": "C3",
-      "fromSurface": "14",
-      "toSurface": "17"
-    }
-  ],
-  "fstopSeries": [
-    0.98,
-    1.4,
-    2,
-    2.8,
-    4,
-    5.6,
-    8,
-    11,
-    16
-  ],
-  "maxFstop": 16,
-  "apertureBlades": 15,
-  "scFill": 0.72,
-  "yScFill": 0.62,
-  "gapSagFrac": 0.96
-} satisfies LensDataInput;
+
+  layout: { scFill: 0.72, yScFill: 0.62 },
+
+  checks: { gapSagFrac: 0.96 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

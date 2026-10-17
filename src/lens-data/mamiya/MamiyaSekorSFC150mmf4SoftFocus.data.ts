@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Data source: JP S52-141223 A, Example 1 (Yusuke Nanjo / Mamiya Koki Co., Ltd.).
@@ -14,7 +14,7 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * Stop: The patent figure places the stop in the r5-r6 air gap but gives no numerical split.
  * The model uses the disclosed midpoint inference and conserves the published total d5 spacing.
- * Stop SD is solved from the modeled EFL and the published f/4 aperture ratio.
+ * The stop radius is derived from the design f-number, the published f/4.
  *
  * Semi-diameters: The patent publishes none. SDs are constrained by the f/4 pupil, the Figure 3
  * section, positive edge thickness, actual spherical rim slope, cross-gap clearance, and exact
@@ -30,31 +30,35 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "mamiya-sekor-sfc-150f4-soft-focus",
   maker: "Mamiya",
   name: "MAMIYA-SEKOR SFC 150mm f/4 SOFT FOCUS",
   subtitle: "JP S52-141223 A Example 1 — production-correlated RB67 prescription",
-  specs: [
-    "5 ELEMENTS / 3 GROUPS",
-    "f = 150.026 mm (MODELED)",
-    "F/4",
-    "2ω = 33°",
-    "ALL-SPHERICAL",
-    "EXTERNAL BELLOWS FOCUS",
-  ],
 
-  focalLengthMarketing: 150,
-  focalLengthDesign: 150.02642952658826,
-  apertureMarketing: 4,
-  apertureDesign: 4,
-  lensMounts: ["mamiya-rb67"],
-  imageFormat: "6x7",
-  patentNumber: "JP S52-141223 A",
-  patentAuthors: ["Yusuke Nanjo"],
-  patentAssignees: ["Mamiya Koki Co., Ltd."],
-  patentYear: 1977,
-  elementCount: 5,
-  groupCount: 3,
+  catalog: {
+    lensMounts: ["mamiya-rb67"],
+    imageFormat: "6x7",
+    specs: [
+      "5 ELEMENTS / 3 GROUPS",
+      "f = 150.026 mm (MODELED)",
+      "F/4",
+      "2ω = 33°",
+      "ALL-SPHERICAL",
+      "EXTERNAL BELLOWS FOCUS",
+    ],
+    elementCount: 5,
+    groupCount: 3,
+    focalLengthMm: { marketing: 150, design: 150.02642952658826 },
+    fNumber: { marketing: 4, design: 4 },
+  },
+
+  source: {
+    patentNumber: "JP S52-141223 A",
+    patentYear: 1977,
+    authors: ["Yusuke Nanjo"],
+    assignees: ["Mamiya Koki Co., Ltd."],
+  },
 
   elements: [
     {
@@ -64,7 +68,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6935,
       vd: 53.3,
-      fl: 39.44652153862821,
+      focalLengthMm: 39.44652153862821,
       glass: "694533 class (vendor unspecified)",
       apd: false,
       role: "Front positive component of the cemented collector doublet.",
@@ -77,7 +81,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.60311,
       vd: 60.7,
-      fl: -68.91733526017431,
+      focalLengthMm: -68.91733526017431,
       glass: "603607 class (vendor unspecified)",
       apd: false,
       role: "Negative achromatizing component of the front cemented doublet.",
@@ -90,7 +94,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6727,
       vd: 32.1,
-      fl: -45.3524096595212,
+      focalLengthMm: -45.3524096595212,
       glass: "673321 class (vendor unspecified)",
       apd: false,
       role: "Central negative singlet that separates the positive front and rear groups.",
@@ -102,7 +106,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.734,
       vd: 51.5,
-      fl: 22.470292522071837,
+      focalLengthMm: 22.470292522071837,
       glass: "734515 class (vendor unspecified)",
       apd: false,
       role: "Strong positive component of the rear doublet adjacent to the aperture stop.",
@@ -115,7 +119,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.72,
       vd: 50.2,
-      fl: -31.64462731164338,
+      focalLengthMm: -31.64462731164338,
       glass: "720502 class (vendor unspecified)",
       apd: false,
       role:
@@ -126,48 +130,41 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 51.72, d: 13.815, nd: 1.6935, elemId: 1, sd: 24.5 },
-    { label: "2", R: -51.72, d: 4.935, nd: 1.60311, elemId: 2, sd: 24.5 },
-    { label: "3", R: 219.285, d: 6.465, nd: 1, elemId: 0, sd: 22.5 },
-    { label: "4", R: -82.2, d: 2.76, nd: 1.6727, elemId: 3, sd: 18 },
-    { label: "5", R: 49.17, d: 5.6625, nd: 1, elemId: 0, sd: 16.5 },
+    { label: "1", R: 51.72, d: 13.815, sd: 24.5, medium: 1 },
+    { label: "2", R: -51.72, d: 4.935, sd: 24.5, medium: 2 },
+    { label: "3", R: 219.285, d: 6.465, sd: 22.5 },
+    { label: "4", R: -82.2, d: 2.76, sd: 18, medium: 3 },
+    { label: "5", R: 49.17, d: 5.6625, sd: 16.5 },
     // Stop position inferred as the midpoint of patent gap d5 in Fig. 3.
-    { label: "STO", R: 1e15, d: 5.6625, nd: 1, elemId: 0, sd: 14.520521959323112 },
-    { label: "6", R: 186.915, d: 14.265, nd: 1.734, elemId: 4, sd: 16.5 },
-    { label: "7", R: -17.505, d: 5.325, nd: 1.72, elemId: 5, sd: 15.4 },
-    { label: "8", R: -85.17, d: 120.47128200216788, nd: 1, elemId: 0, sd: 18.5 },
+    { label: "STO", R: "flat", d: 5.6625 },
+    { label: "6", R: 186.915, d: 14.265, sd: 16.5, medium: 4 },
+    { label: "7", R: -17.505, d: 5.325, sd: 15.4, medium: 5 },
+    { label: "8", R: -85.17, sd: 18.5 },
   ],
 
-  asph: {},
-
-  var: {
-    "8": [120.47128200216788, 164.75508166035587],
+  focus: {
+    closeFocusM: 0.856,
+    description:
+      "CONSTRAINED_RECONSTRUCTION: external unit focus on the RB67 bellows. All internal gaps " +
+      "remain fixed; BF changes from 120.471282 mm at infinity to 164.755082 mm at the published " +
+      "0.856 m object-to-film distance, giving 0.295173× paraxial magnification.",
   },
 
-  varLabels: [["8", "BF"]],
+  gaps: { "8": { label: "BF", values: [[120.47128200216788, 164.75508166035587]] } },
+
+  aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "3" },
     { text: "G2", fromSurface: "4", toSurface: "5" },
     { text: "G3", fromSurface: "6", toSurface: "8" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "1", toSurface: "3" },
     { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
 
-  closeFocusM: 0.856,
-  focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: external unit focus on the RB67 bellows. All internal gaps " +
-    "remain fixed; BF changes from 120.471282 mm at infinity to 164.755082 mm at the published " +
-    "0.856 m object-to-film distance, giving 0.295173× paraxial magnification.",
-
-  nominalFno: 4,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
-  maxFstop: 32,
-
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

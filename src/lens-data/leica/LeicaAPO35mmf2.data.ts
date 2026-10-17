@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -55,31 +55,35 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "leica-apo-summicron-m-35f2",
   maker: "Leica",
   name: "LEICA APO-SUMMICRON-M 35mm f/2 ASPH.",
   subtitle: "US 2022/0066176 A1 Ex. 1 — Leica Camera AG / Roth & Keller",
-  specs: [
-    "10 ELEMENTS / 5 GROUPS",
-    "f = 35.0 mm (e-line, patent f = 1 × 35)",
-    "F/2.0",
-    "2ω = 62.2°",
-    "4 ASPHERICAL SURFACES (3 ELEMENTS)",
-  ],
 
-  /* ── Explicit metadata fields ── */
-  focalLengthMarketing: 35,
-  focalLengthDesign: 35.0,
-  apertureMarketing: 2.0,
-  apertureDesign: 2.0,
-  lensMounts: ["leica-m"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 2022/0066176 A1",
-  patentAuthors: ["Stefan Roth", "Kathrin Keller"],
-  patentAssignees: ["Leica Camera AG"],
-  patentYear: 2022,
-  elementCount: 10,
-  groupCount: 5,
+  catalog: {
+    lensMounts: ["leica-m"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "10 ELEMENTS / 5 GROUPS",
+      "f = 35.0 mm (e-line, patent f = 1 × 35)",
+      "F/2.0",
+      "2ω = 62.2°",
+      "4 ASPHERICAL SURFACES (3 ELEMENTS)",
+    ],
+    elementCount: 10,
+    groupCount: 5,
+    /* ── Explicit metadata fields ── */
+    focalLengthMm: { marketing: 35, design: 35.0 },
+    fNumber: { marketing: 2.0, design: 2.0 },
+  },
+
+  source: {
+    patentNumber: "US 2022/0066176 A1",
+    patentYear: 2022,
+    authors: ["Stefan Roth", "Kathrin Keller"],
+    assignees: ["Leica Camera AG"],
+  },
 
   /* ── Elements ──
    *  nd / vd hold the patent's native n_e / ν_e (indexReference "e").
@@ -94,7 +98,7 @@ const LENS_DATA = {
       nd: 1.855,
       vd: 40,
       indexReference: "e",
-      fl: 19.0,
+      focalLengthMm: 19.0,
       glass: "S-LAH89 (OHARA) — patent-named example; catalog ne 1.8565 / νe 40.5",
       apd: false,
       role: "Front positive; aspherical object surface controls distortion. Patent-specified for Knoop hardness ≥ 600 and acid resistance.",
@@ -108,13 +112,13 @@ const LENS_DATA = {
       nd: 1.658,
       vd: 39,
       indexReference: "e",
-      fl: -17.9,
+      focalLengthMm: -17.9,
       glass: "N-KZFS5 (Schott) / S-NBH5 (OHARA) — catalog equivalents (ne 1.65803 / νe 39.5)",
       apd: "patent",
-      dPgF: -0.004,
       apdNote: "ΔPgF = −0.004 (patent table); short-flint negative element",
       role: "Nearly afocal doublet with L1 (G1, f'/f ≈ 48). Begins lateral color and secondary spectrum correction.",
       cemented: "G1",
+      dPgF: -0.004,
     },
     {
       id: 3,
@@ -124,13 +128,13 @@ const LENS_DATA = {
       nd: 1.658,
       vd: 39,
       indexReference: "e",
-      fl: -18.6,
+      focalLengthMm: -18.6,
       glass: "N-KZFS5 (Schott) / S-NBH5 (OHARA) — catalog equivalents (ne 1.65803 / νe 39.5)",
       apd: "patent",
-      dPgF: -0.004,
       apdNote: "ΔPgF = −0.004 (patent table)",
       role: "Negative element in G2 doublet; Petzval sum reduction. Exempted from D/d_M ≥ 18 thinness constraint per patent.",
       cemented: "G2",
+      dPgF: -0.004,
     },
     {
       id: 4,
@@ -140,7 +144,7 @@ const LENS_DATA = {
       nd: 1.888,
       vd: 41,
       indexReference: "e",
-      fl: 16.6,
+      focalLengthMm: 16.6,
       glass: "S-LAH58 (OHARA) — catalog equivalent (ne 1.88815 / νe 40.5)",
       apd: false,
       role: "Highest-index element (ne 1.888). Primary power element of VG (G2, f'/f = 2.47). High n minimizes Petzval contribution.",
@@ -154,13 +158,13 @@ const LENS_DATA = {
       nd: 1.498,
       vd: 81,
       indexReference: "e",
-      fl: 53.3,
+      focalLengthMm: 53.3,
       glass: "S-FPL51 (OHARA) — catalog equivalent (ne 1.49845 / νe 81.2)",
       apd: "patent",
-      dPgF: 0.031,
       apdNote: "ΔPgF = +0.031 (patent table)",
       role: "Front crown of apochromatic triplet (G3). Nearly plano-convex; power concentrated at cemented rear surface.",
       cemented: "G3",
+      dPgF: 0.031,
     },
     {
       id: 6,
@@ -170,13 +174,13 @@ const LENS_DATA = {
       nd: 1.658,
       vd: 39,
       indexReference: "e",
-      fl: -19.5,
+      focalLengthMm: -19.5,
       glass: "N-KZFS5 (Schott) / S-NBH5 (OHARA) — catalog equivalents (ne 1.65803 / νe 39.5)",
       apd: "patent",
-      dPgF: -0.004,
       apdNote: "ΔPgF = −0.004 (patent table)",
       role: "Central flint of apochromatic triplet (G3). Short flint sandwiched between fluorophosphate crowns for three-wavelength correction.",
       cemented: "G3",
+      dPgF: -0.004,
     },
     {
       id: 7,
@@ -186,13 +190,13 @@ const LENS_DATA = {
       nd: 1.498,
       vd: 81,
       indexReference: "e",
-      fl: 26.0,
+      focalLengthMm: 26.0,
       glass: "S-FPL51 (OHARA) — catalog equivalent (ne 1.49845 / νe 81.2)",
       apd: "patent",
-      dPgF: 0.031,
       apdNote: "ΔPgF = +0.031 (patent table)",
       role: "Rear crown of apochromatic triplet (G3). Stronger curvature than L5; carries more refractive power.",
       cemented: "G3",
+      dPgF: 0.031,
     },
     {
       id: 8,
@@ -202,7 +206,7 @@ const LENS_DATA = {
       nd: 1.855,
       vd: 40,
       indexReference: "e",
-      fl: 15.4,
+      focalLengthMm: 15.4,
       glass: "S-LAH89 (OHARA) — same row as L1; catalog ne 1.8565 / νe 40.5",
       apd: false,
       role: "Strongest positive element (f' = 15.4 mm). Aspherical front surface minimizes spherical aberration. Mirrors L1 across stop (quasi-symmetry).",
@@ -216,13 +220,13 @@ const LENS_DATA = {
       nd: 1.658,
       vd: 39,
       indexReference: "e",
-      fl: -16.7,
+      focalLengthMm: -16.7,
       glass: "N-KZFS5 (Schott) / S-NBH5 (OHARA) — catalog equivalents (ne 1.65803 / νe 39.5)",
       apd: "patent",
-      dPgF: -0.004,
       apdNote: "ΔPgF = −0.004 (patent table)",
       role: "Fourth short-flint element; completes G4 doublet. Insensitive to decentration in combined assembly.",
       cemented: "G4",
+      dPgF: -0.004,
     },
     {
       id: 10,
@@ -232,7 +236,7 @@ const LENS_DATA = {
       nd: 1.583,
       vd: 59,
       indexReference: "e",
-      fl: -115.1,
+      focalLengthMm: -115.1,
       glass: "L-BAL42 (OHARA PGM) class — nearest catalog at e (ne 1.5855 / νe 59.1 vs patent 1.583 / 59)",
       apd: false,
       role: "Field corrector; both surfaces aspherical (precision glass molded). Weak net power but critical for astigmatism/coma/field curvature over full 62° field.",
@@ -246,38 +250,7 @@ const LENS_DATA = {
    *  d16 is the paraxial e-line back focal distance (patent d16 = 0.36 × 35 = 12.6;
    *  patent S'O'/f = 0.43 → 15.05; computed 14.62).
    */
-  surfaces: [
-    // ── Front Group (VG) ──
-    // G1: L1 + L2 cemented doublet
-    { label: "1A", R: 54.11, d: 5.95, nd: 1.855, elemId: 1, sd: 12.5 }, // L1 front (asph)
-    { label: "2", R: -21.98, d: 1.05, nd: 1.658, elemId: 2, sd: 12.5 }, // L1→L2 junction
-    { label: "3", R: 25.97, d: 3.5, nd: 1.0, elemId: 0, sd: 10.0 }, // L2 rear → air
-    // G2: L3 + L4 cemented doublet
-    { label: "4", R: -27.65, d: 2.1, nd: 1.658, elemId: 3, sd: 9.0 }, // L3 front
-    { label: "5", R: 22.68, d: 4.55, nd: 1.888, elemId: 4, sd: 9.0 }, // L3→L4 junction
-    { label: "6", R: -37.835, d: 1.4, nd: 1.0, elemId: 0, sd: 9.0 }, // L4 rear → air
-
-    // ── Aperture Stop ──
-    { label: "STO", R: 1e15, d: 1.4, nd: 1.0, elemId: 0, sd: 8.75 },
-
-    // ── Middle Group (MG) ──
-    // G3: L5 + L6 + L7 cemented triplet
-    { label: "8", R: 182.315, d: 6.65, nd: 1.498, elemId: 5, sd: 9.5 }, // L5 front
-    { label: "9", R: -30.66, d: 1.05, nd: 1.658, elemId: 6, sd: 10.5 }, // L5→L6 junction
-    { label: "10", R: 22.435, d: 5.25, nd: 1.498, elemId: 7, sd: 10.5 }, // L6→L7 junction
-    { label: "11", R: -28.315, d: 0.35, nd: 1.0, elemId: 0, sd: 10.8 }, // L7 rear → air
-
-    // ── Rear Group (HG) ──
-    // G4: L8 + L9 cemented doublet
-    { label: "12A", R: 28.07, d: 7.7, nd: 1.855, elemId: 8, sd: 12.2 }, // L8 front (asph)
-    { label: "13", R: -21.56, d: 1.05, nd: 1.658, elemId: 9, sd: 12.2 }, // L8→L9 junction
-    { label: "14", R: 22.855, d: 6.65, nd: 1.0, elemId: 0, sd: 12.2 }, // L9 rear → air
-    // G5: L10 single lens
-    { label: "15A", R: -52.15, d: 1.05, nd: 1.583, elemId: 10, sd: 10.5 }, // L10 front (asph)
-    { label: "16A", R: -235.97, d: 14.62, nd: 1.0, elemId: 0, sd: 10.5 }, // L10 rear (asph) → image; d = BFD
-  ],
-
-  /* ── Aspherical coefficients ──
+  /* (moved from asph) ── Aspherical coefficients ──
    *  Patent convention: z(h) = h²/r₀ / [1+√(1−(1+k)(h/r₀)²)] + a2·h⁴ + a3·h⁶ + ... + a6·h¹²
    *  Patent coefficients are at f = 1 normalization ("D±n" = ×10^±n):
    *    S1:  k 0, a2 0.1569D−4, a3 −0.182035D+1, a4 0.2404D−10
@@ -292,46 +265,66 @@ const LENS_DATA = {
    *  spherical aberration (LA' ≈ −5 mm at f/2) and turns surfaces 15/16 over at
    *  h ≈ 8.4 mm. Kept as printed — see the header note and audit log.
    */
-  asph: {
-    "1A": {
-      K: 0,
-      A4: 3.6595e-10,
-      A6: -3.4659e-8,
-      A8: 3.7364e-22,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
-    "12A": {
-      K: 0,
-      A4: 2.5913e-11,
-      A6: -9.9778e-9,
-      A8: 7.4014e-22,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
-    "15A": {
-      K: 0,
-      A4: 2.1901e-9,
-      A6: 6.8035e-7,
-      A8: 1.4114e-20,
-      A10: 2.1561e-13,
-      A12: 8.0778e-33,
-      A14: 0,
-    },
-    "16A": {
-      K: 0,
-      A4: 1.5566e-9,
-      A6: 6.9795e-7,
-      A8: 1.6786e-20,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
+  surfaces: [
+    // ── Front Group (VG) ──
+    // G1: L1 + L2 cemented doublet
+    {
+      label: "1A",
+      R: 54.11,
+      d: 5.95,
+      sd: 12.5,
+      medium: 1,
+      asphere: { K: 0, A4: 3.6595e-10, A6: -3.4659e-8, A8: 3.7364e-22 },
+    }, // L1 front (asph)
+    { label: "2", R: -21.98, d: 1.05, sd: 12.5, medium: 2 }, // L1→L2 junction
+    { label: "3", R: 25.97, d: 3.5, sd: 10.0 }, // L2 rear → air
+    // G2: L3 + L4 cemented doublet
+    { label: "4", R: -27.65, d: 2.1, sd: 9.0, medium: 3 }, // L3 front
+    { label: "5", R: 22.68, d: 4.55, sd: 9.0, medium: 4 }, // L3→L4 junction
+    { label: "6", R: -37.835, d: 1.4, sd: 9.0 }, // L4 rear → air
+
+    // ── Aperture Stop ──
+    { label: "STO", R: "flat", d: 1.4 },
+
+    // ── Middle Group (MG) ──
+    // G3: L5 + L6 + L7 cemented triplet
+    { label: "8", R: 182.315, d: 6.65, sd: 9.5, medium: 5 }, // L5 front
+    { label: "9", R: -30.66, d: 1.05, sd: 10.5, medium: 6 }, // L5→L6 junction
+    { label: "10", R: 22.435, d: 5.25, sd: 10.5, medium: 7 }, // L6→L7 junction
+    { label: "11", R: -28.315, sd: 10.8 }, // L7 rear → air
+
+    // ── Rear Group (HG) ──
+    // G4: L8 + L9 cemented doublet
+    {
+      label: "12A",
+      R: 28.07,
+      d: 7.7,
+      sd: 12.2,
+      medium: 8,
+      asphere: { K: 0, A4: 2.5913e-11, A6: -9.9778e-9, A8: 7.4014e-22 },
+    }, // L8 front (asph)
+    { label: "13", R: -21.56, d: 1.05, sd: 12.2, medium: 9 }, // L8→L9 junction
+    { label: "14", R: 22.855, d: 6.65, sd: 12.2 }, // L9 rear → air
+    // G5: L10 single lens
+    {
+      label: "15A",
+      R: -52.15,
+      d: 1.05,
+      sd: 10.5,
+      medium: 10,
+      asphere: { K: 0, A4: 2.1901e-9, A6: 6.8035e-7, A8: 1.4114e-20, A10: 2.1561e-13, A12: 8.0778e-33 },
+    }, // L10 front (asph)
+    { label: "16A", R: -235.97, sd: 10.5, asphere: { K: 0, A4: 1.5566e-9, A6: 6.9795e-7, A8: 1.6786e-20 } }, // L10 rear (asph) → image; d = BFD
+  ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.3,
+    description:
+      "Floating rear group: VG+BL+MG translate forward together; HG translates forward with shorter travel (assumed 70% of the front assembly — the patent gives the direction but no travel). Differential motion compensates coma and astigmatic difference at close range.",
   },
 
-  /* ── Variable air spacings (floating-element focus) ──
+  /* (moved from var) ── Variable air spacings (floating-element focus) ──
    *  VG + BL + MG (surfaces 1–11) translate forward as a unit.
    *  HG (surfaces 12–16) translates forward with shorter travel.
    *  Two gaps change: surface 11 (MG→HG) and surface 16 (BFD).
@@ -342,14 +335,10 @@ const LENS_DATA = {
    *  FIG. 2 (close setting) shows the MG→HG gap opening by roughly
    *  2–4 mm at the figure's uneven scale, consistent in magnitude.
    */
-  var: {
-    "11": [0.35, 2.55],
-    "16A": [14.62, 19.76],
-  },
-  varLabels: [
-    ["11", "D11"],
-    ["16A", "BF"],
-  ],
+  gaps: { "11": { label: "D11", values: [[0.35, 2.55]] }, "16A": { label: "BF", values: [[14.62, 19.76]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.0, fStops: [2, 2.8, 4, 5.6, 8, 11, 16], blades: 11 },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -364,19 +353,8 @@ const LENS_DATA = {
     { text: "G4", fromSurface: "12A", toSurface: "14" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.3,
-  focusDescription:
-    "Floating rear group: VG+BL+MG translate forward together; HG translates forward with shorter travel (assumed 70% of the front assembly — the patent gives the direction but no travel). Differential motion compensates coma and astigmatic difference at close range.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.0,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
-  apertureBlades: 11,
-
   /* ── Layout tuning ── */
-  scFill: 0.5,
-  yScFill: 0.35,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.35 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

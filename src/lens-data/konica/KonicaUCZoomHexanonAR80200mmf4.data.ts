@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -49,8 +49,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║ STOP / SEMI-DIAMETERS                                                      ║
  * ║ - Stop station is inferred from Fig. 1: 2.530 mm objectward of r14.        ║
- * ║   Stop radius 15.628207312 mm is the mean endpoint radius that gives the   ║
- * ║   raw prescription approximately f/4 at both zoom endpoints.               ║
+ * ║   The stop radius is derived from the design f-number and held at every    ║
+ * ║   zoom station. The former mean-endpoint calibration gave the raw          ║
+ * ║   prescription approximately f/4 at both zoom endpoints.                   ║
  * ║ - Lens semi-diameters are inferred, because the patent publishes none.     ║
  * ║   They are constrained by paraxial marginal/chief rays, the 21.6 mm        ║
  * ║   image-height evidence, the optical section, the 62 mm production filter  ║
@@ -74,29 +75,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "konica-uc-zoom-hexanon-ar-80-200-f4",
   maker: "Konica",
   name: "KONICA UC ZOOM HEXANON AR 80-200mm f/4",
   subtitle: "JP S51-37247 A Example 1 — raw prescription with disclosed stop/focus reconstruction",
-  specs: ["14 ELEMENTS / 10 GROUPS", "80–200mm f/4", "0.7 m MFD", "ALL SPHERICAL"],
 
-  focalLengthMarketing: [80, 200],
-  focalLengthDesign: [80.87930415610688, 199.74908322312632],
-  apertureMarketing: 4,
-  lensMounts: ["konica-ar"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP S51-37247 A",
-  patentAuthors: ["Hideo Shizume"],
-  patentAssignees: ["Konishiroku Photo Industry Co., Ltd."],
-  patentYear: 1976,
-  sourceErrata: [
-    {
-      status: "unresolved",
-      note: "The printed table traces to f = 80.88 / 199.75 mm and back focus 49.50 / 49.49 mm; the patent states f = 79.925~196.158 and fB = 48.523. The table reproduces the stated total length 142.822, and its zoom ratio matches the focal lengths labelled on the aberration plots (80.0 / 197.5 mm); 196.158 divided by that ratio is 79.425, one digit from the stated 79.925. Its spherical aberration and distortion have the form of Figs. 2A and 2C but differ from them by up to about 0.1 mm and 0.4 percentage points. No single misprinted value reproduces the stated focal lengths and back focus together.",
-    },
-  ],
-  elementCount: 14,
-  groupCount: 10,
+  catalog: {
+    lensMounts: ["konica-ar"],
+    imageFormat: "135-full-frame",
+    specs: ["14 ELEMENTS / 10 GROUPS", "80–200mm f/4", "0.7 m MFD", "ALL SPHERICAL"],
+    elementCount: 14,
+    groupCount: 10,
+    focalLengthMm: { marketing: [80, 200], design: [80.87930415610688, 199.74908322312632] },
+    fNumber: { marketing: 4 },
+  },
+
+  source: {
+    patentNumber: "JP S51-37247 A",
+    patentYear: 1976,
+    authors: ["Hideo Shizume"],
+    assignees: ["Konishiroku Photo Industry Co., Ltd."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "The printed table traces to f = 80.88 / 199.75 mm and back focus 49.50 / 49.49 mm; the patent states f = 79.925~196.158 and fB = 48.523. The table reproduces the stated total length 142.822, and its zoom ratio matches the focal lengths labelled on the aberration plots (80.0 / 197.5 mm); 196.158 divided by that ratio is 79.425, one digit from the stated 79.925. Its spherical aberration and distortion have the form of Figs. 2A and 2C but differ from them by up to about 0.1 mm and 0.4 percentage points. No single misprinted value reproduces the stated focal lengths and back focus together.",
+      },
+    ],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -104,256 +110,273 @@ const LENS_DATA = {
       id: 1,
       name: "L1a",
       label: "Element 1a",
-      diagramLabel: "L1a",
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.4,
-      fl: -157.46368877051538,
+      focalLengthMm: -157.46368877051538,
       glass: "S-TIH6 catalog-equivalent coefficient proxy (patent 805254; production supplier unspecified)",
       apd: false,
-      cemented: "D1",
       role: "Front negative member of the cemented pair in the positive focusing component F1.",
+      diagramLabel: "L1a",
+      cemented: "D1",
     },
     {
       id: 2,
       name: "L1b",
       label: "Element 1b",
-      diagramLabel: "L1b",
       type: "Biconvex Positive",
       nd: 1.62299,
       vd: 58.2,
-      fl: 100.8986769473202,
+      focalLengthMm: 100.8986769473202,
       glass: "S-BSM15 catalog-equivalent coefficient proxy (patent 623582; production supplier unspecified)",
       apd: false,
-      cemented: "D1",
       role: "Positive rear member of the front cemented pair; the pair is positive net.",
+      diagramLabel: "L1b",
+      cemented: "D1",
     },
     {
       id: 3,
       name: "L2",
       label: "Element 2",
-      diagramLabel: "L2",
       type: "Positive Meniscus",
       nd: 1.62299,
       vd: 58.2,
-      fl: 162.60693489330663,
+      focalLengthMm: 162.60693489330663,
       glass: "S-BSM15 catalog-equivalent coefficient proxy (patent 623582; production supplier unspecified)",
       apd: false,
       role: "Positive singlet completing the front focusing component F1.",
+      diagramLabel: "L2",
     },
     {
       id: 4,
       name: "L3",
       label: "Element 3",
-      diagramLabel: "L3",
       type: "Negative Meniscus",
       nd: 1.62299,
       vd: 58.2,
-      fl: -67.78176463845728,
+      focalLengthMm: -67.78176463845728,
       glass: "S-BSM15 catalog-equivalent coefficient proxy (patent 623582; production supplier unspecified)",
       apd: false,
       role: "Negative singlet at the front of the variator component F2.",
+      diagramLabel: "L3",
     },
     {
       id: 5,
       name: "L4a",
       label: "Element 4a",
-      diagramLabel: "L4a",
       type: "Biconcave Negative",
       nd: 1.62299,
       vd: 58.2,
-      fl: -34.46303962366176,
+      focalLengthMm: -34.46303962366176,
       glass: "S-BSM15 catalog-equivalent coefficient proxy (patent 623582; production supplier unspecified)",
       apd: false,
-      cemented: "D2",
       role: "Strong negative member of the cemented pair in variator F2.",
+      diagramLabel: "L4a",
+      cemented: "D2",
     },
     {
       id: 6,
       name: "L4b",
       label: "Element 4b",
-      diagramLabel: "L4b",
       type: "Positive Meniscus",
       nd: 1.80518,
       vd: 25.4,
-      fl: 58.9235702608087,
+      focalLengthMm: 58.9235702608087,
       glass: "S-TIH6 catalog-equivalent coefficient proxy (patent 805254; production supplier unspecified)",
       apd: false,
-      cemented: "D2",
       role: "Positive high-index partner in the net-negative cemented pair of F2.",
+      diagramLabel: "L4b",
+      cemented: "D2",
     },
     {
       id: 7,
       name: "L5a",
       label: "Element 5a",
-      diagramLabel: "L5a",
       type: "Biconvex Positive",
       nd: 1.62299,
       vd: 58.2,
-      fl: 64.0342119016787,
+      focalLengthMm: 64.0342119016787,
       glass: "S-BSM15 catalog-equivalent coefficient proxy (patent 623582; production supplier unspecified)",
       apd: false,
-      cemented: "D3",
       role: "Positive front member of the compensator component F3.",
+      diagramLabel: "L5a",
+      cemented: "D3",
     },
     {
       id: 8,
       name: "L5b",
       label: "Element 5b",
-      diagramLabel: "L5b",
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.4,
-      fl: -170.64768472062443,
+      focalLengthMm: -170.64768472062443,
       glass: "S-TIH6 catalog-equivalent coefficient proxy (patent 805254; production supplier unspecified)",
       apd: false,
-      cemented: "D3",
       role: "Negative high-index rear member of the positive compensator doublet F3.",
+      diagramLabel: "L5b",
+      cemented: "D3",
     },
     {
       id: 9,
       name: "L6",
       label: "Element 6",
-      diagramLabel: "L6",
       type: "Positive Meniscus",
       nd: 1.54077,
       vd: 47.2,
-      fl: 154.31011535467894,
+      focalLengthMm: 154.31011535467894,
       glass: "S-TIL2 catalog-equivalent coefficient proxy (patent 541472; production supplier unspecified)",
       apd: false,
       role: "Positive singlet immediately behind the aperture stop in rear component F4.",
+      diagramLabel: "L6",
     },
     {
       id: 10,
       name: "L7a",
       label: "Element 7a",
-      diagramLabel: "L7a",
       type: "Biconvex Positive",
       nd: 1.53172,
       vd: 48.9,
-      fl: 49.78192028653342,
+      focalLengthMm: 49.78192028653342,
       glass:
         "S-TIL6 catalog-equivalent coefficient proxy (patent 532489 at nd 1.53172; production supplier unspecified)",
       apd: false,
-      cemented: "D4",
       role: "Strong positive front member of the cemented pair in rear component F4.",
+      diagramLabel: "L7a",
+      cemented: "D4",
     },
     {
       id: 11,
       name: "L7b",
       label: "Element 7b",
-      diagramLabel: "L7b",
       type: "Biconcave Negative",
       nd: 1.7552,
       vd: 27.5,
-      fl: -44.22327280529317,
+      focalLengthMm: -44.22327280529317,
       glass: "E-FD4 catalog-equivalent coefficient proxy (patent 755275; production supplier unspecified)",
       apd: false,
-      cemented: "D4",
       role: "Negative high-index partner of the weakly positive cemented pair in F4.",
+      diagramLabel: "L7b",
+      cemented: "D4",
     },
     {
       id: 12,
       name: "L8",
       label: "Element 8",
-      diagramLabel: "L8",
       type: "Biconvex Positive",
       nd: 1.53177,
       vd: 48.9,
-      fl: 52.24814420341493,
+      focalLengthMm: 52.24814420341493,
       glass:
         "S-TIL6 catalog-equivalent coefficient proxy (patent 532489 at nd 1.53177; production supplier unspecified)",
       apd: false,
       role: "Positive first singlet of the final three-singlet component F5.",
+      diagramLabel: "L8",
     },
     {
       id: 13,
       name: "L9",
       label: "Element 9",
-      diagramLabel: "L9",
       type: "Biconcave Negative",
       nd: 1.7432,
       vd: 49.4,
-      fl: -24.558290523536698,
+      focalLengthMm: -24.558290523536698,
       glass: "S-LAM60 catalog-equivalent coefficient proxy (patent 743494; production supplier unspecified)",
       apd: false,
       role: "Strong negative middle singlet of F5.",
+      diagramLabel: "L9",
     },
     {
       id: 14,
       name: "L10",
       label: "Element 10",
-      diagramLabel: "L10",
       type: "Biconvex Positive",
       nd: 1.56732,
       vd: 42.8,
-      fl: 59.05561552874483,
+      focalLengthMm: 59.05561552874483,
       glass: "S-TIL26 catalog-equivalent coefficient proxy (patent 567428; production supplier unspecified)",
       apd: false,
       role: "Positive final singlet before the image plane.",
+      diagramLabel: "L10",
     },
   ],
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 300.239, d: 2.0, nd: 1.80518, elemId: 1, sd: 26.5 },
-    { label: "2", R: 88.878, d: 6.1, nd: 1.62299, elemId: 2, sd: 26.5 },
-    { label: "3", R: -209.061, d: 0.1, nd: 1.0, elemId: 0, sd: 26.5 },
-    { label: "4", R: 79.669, d: 4.5, nd: 1.62299, elemId: 3, sd: 25.0 },
-    { label: "5", R: 364.975, d: 2.535, nd: 1.0, elemId: 0, sd: 25.0 },
-    { label: "6", R: 360.022, d: 1.4, nd: 1.62299, elemId: 4, sd: 18.5 },
-    { label: "7", R: 37.738, d: 5.85, nd: 1.0, elemId: 0, sd: 15.0 },
-    { label: "8", R: -43.86, d: 1.2, nd: 1.62299, elemId: 5, sd: 14.9 },
-    { label: "9", R: 42.5, d: 3.6, nd: 1.80518, elemId: 6, sd: 17.2 },
-    { label: "10", R: 392.427, d: 33.846, nd: 1.0, elemId: 0, sd: 17.2 },
-    { label: "11", R: 120.028, d: 4.5, nd: 1.62299, elemId: 7, sd: 18.5 },
-    { label: "12", R: -58.892, d: 1.5, nd: 1.80518, elemId: 8, sd: 18.5 },
-    { label: "13", R: -104.239, d: 9.061, nd: 1.0, elemId: 0, sd: 18.5 },
+    { label: "1", R: 300.239, d: 2.0, sd: 26.5, medium: 1 },
+    { label: "2", R: 88.878, d: 6.1, sd: 26.5, medium: 2 },
+    { label: "3", R: -209.061, d: 0.1, sd: 26.5 },
+    { label: "4", R: 79.669, d: 4.5, sd: 25.0, medium: 3 },
+    { label: "5", R: 364.975, sd: 25.0 },
+    { label: "6", R: 360.022, d: 1.4, sd: 18.5, medium: 4 },
+    { label: "7", R: 37.738, d: 5.85, sd: 15.0 },
+    { label: "8", R: -43.86, d: 1.2, sd: 14.9, medium: 5 },
+    { label: "9", R: 42.5, d: 3.6, sd: 17.2, medium: 6 },
+    { label: "10", R: 392.427, sd: 17.2 },
+    { label: "11", R: 120.028, d: 4.5, sd: 18.5, medium: 7 },
+    { label: "12", R: -58.892, d: 1.5, sd: 18.5, medium: 8 },
+    { label: "13", R: -104.239, sd: 18.5 },
     // STO position is inferred from patent Fig. 1; 9.061 + 2.530 = published wide d13 = 11.591 mm.
-    { label: "STO", R: 1e15, d: 2.53, nd: 1.0, elemId: 0, sd: 15.628207312428374 },
-    { label: "14", R: 71.579, d: 3.0, nd: 1.54077, elemId: 9, sd: 18.5 },
-    { label: "15", R: 495.913, d: 0.1, nd: 1.0, elemId: 0, sd: 18.5 },
-    { label: "16", R: 30.407, d: 13.0, nd: 1.53172, elemId: 10, sd: 18.5 },
-    { label: "17", R: -174.099, d: 2.0, nd: 1.7552, elemId: 11, sd: 18.5 },
-    { label: "18", R: 41.529, d: 30.0, nd: 1.0, elemId: 0, sd: 18.5 },
-    { label: "19", R: 49.454, d: 4.5, nd: 1.53177, elemId: 12, sd: 14.2 },
-    { label: "20", R: -61.404, d: 2.0, nd: 1.0, elemId: 0, sd: 14.2 },
-    { label: "21", R: -29.989, d: 1.5, nd: 1.7432, elemId: 13, sd: 15.5 },
-    { label: "22", R: 47.628, d: 3.0, nd: 1.0, elemId: 0, sd: 15.5 },
-    { label: "23", R: 48.034, d: 5.0, nd: 1.56732, elemId: 14, sd: 15.5 },
-    { label: "24", R: -106.58, d: 49.502094162047726, nd: 1.0, elemId: 0, sd: 15.5 },
+    { label: "STO", R: "flat", d: 2.53 },
+    { label: "14", R: 71.579, d: 3.0, sd: 18.5, medium: 9 },
+    { label: "15", R: 495.913, d: 0.1, sd: 18.5 },
+    { label: "16", R: 30.407, d: 13.0, sd: 18.5, medium: 10 },
+    { label: "17", R: -174.099, d: 2.0, sd: 18.5, medium: 11 },
+    { label: "18", R: 41.529, d: 30.0, sd: 18.5 },
+    { label: "19", R: 49.454, d: 4.5, sd: 14.2, medium: 12 },
+    { label: "20", R: -61.404, d: 2.0, sd: 14.2 },
+    { label: "21", R: -29.989, d: 1.5, sd: 15.5, medium: 13 },
+    { label: "22", R: 47.628, d: 3.0, sd: 15.5 },
+    { label: "23", R: 48.034, d: 5.0, sd: 15.5, medium: 14 },
+    { label: "24", R: -106.58, sd: 15.5 },
   ],
 
-  asph: {},
-
-  /* ── Zoom + constrained focus spacings ── */
-  var: {
-    "5": [
-      [2.535, 30.2250516470292],
-      [36.375, 64.0650516470292],
+  zoom: {
+    stations: [
+      { focalLengthMm: 79.925, label: "Wide" },
+      { focalLengthMm: 196.158, label: "Tele" },
     ],
-    "10": [
-      [33.846, 33.846],
-      [0.381, 0.381],
-    ],
-    "13": [
-      [9.061, 9.061],
-      [8.686, 8.686],
-    ],
-    "24": [
-      [49.502094162047726, 49.502094162047726],
-      [49.48700818160646, 49.48700818160646],
-    ],
+    apertureModel: "fixed-iris",
   },
-  varLabels: [
-    ["5", "d5 (ZOOM + FOCUS)"],
-    ["10", "d10 (ZOOM)"],
-    ["13", "d13→STO (ZOOM)"],
-    ["24", "BF (NORMALIZED)"],
-  ],
 
-  zoomPositions: [79.925, 196.158],
-  zoomLabels: ["Wide", "Tele"],
+  focus: {
+    closeFocusM: 0.7,
+    description:
+      "CONSTRAINED_RECONSTRUCTION: front positive component only; common 27.690051647 mm objectward extension solved from the 0.7 m film-plane MFD. Patent supplies no close-focus spacing table.",
+  },
+
+  /* (moved from var) ── Zoom + constrained focus spacings ── */
+  gaps: {
+    "5": {
+      label: "d5 (ZOOM + FOCUS)",
+      values: [
+        [2.535, 30.2250516470292],
+        [36.375, 64.0650516470292],
+      ],
+    },
+    "10": {
+      label: "d10 (ZOOM)",
+      values: [
+        [33.846, 33.846],
+        [0.381, 0.381],
+      ],
+    },
+    "13": {
+      label: "d13→STO (ZOOM)",
+      values: [
+        [9.061, 9.061],
+        [8.686, 8.686],
+      ],
+    },
+    "24": {
+      label: "BF (NORMALIZED)",
+      values: [
+        [49.502094162047726, 49.502094162047726],
+        [49.48700818160646, 49.48700818160646],
+      ],
+    },
+  },
+
+  aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16] },
 
   groups: [
     { text: "F1 (+ / FOCUS)", fromSurface: "1", toSurface: "5" },
@@ -369,16 +392,9 @@ const LENS_DATA = {
     { text: "D4", fromSurface: "16", toSurface: "18" },
   ],
 
-  closeFocusM: 0.7,
-  focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: front positive component only; common 27.690051647 mm objectward extension solved from the 0.7 m film-plane MFD. Patent supplies no close-focus spacing table.",
+  layout: { yScFill: 0.42 },
 
-  nominalFno: 4,
-  zoomApertureModel: "fixed-iris",
-  fstopSeries: [4, 5.6, 8, 11, 16],
-
-  gapSagFrac: 0.98,
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  checks: { gapSagFrac: 0.98 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -27,32 +27,35 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "minolta-af-300mm-f28",
   maker: "Minolta",
   name: "MINOLTA AF APO TELE 300mm f/2.8",
   subtitle: "US 4,518,229 Example 8 — Minolta / Yasukuni",
-  specs: [
-    "Patent Example 8: f = 295.0 mm, FN = 2.9",
-    "Marketed as 300mm f/2.8",
-    "10 prescription elements / 8 groups",
-    "11 / 9 production count includes rear filter",
-    "Inner focus to patent 3 m endpoint",
-    "All spherical surfaces",
-  ],
 
-  focalLengthMarketing: 300,
-  focalLengthDesign: 294.999,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.9,
-  lensMounts: ["sony-a"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,518,229",
-  patentAuthors: ["Mitsuo Yasukuni"],
-  patentAssignees: ["Minolta Camera Co., Ltd."],
-  patentYear: 1985,
-  elementCount: 10,
-  groupCount: 8,
-  apertureBlades: 9,
+  catalog: {
+    lensMounts: ["sony-a"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "Patent Example 8: f = 295.0 mm, FN = 2.9",
+      "Marketed as 300mm f/2.8",
+      "10 prescription elements / 8 groups",
+      "11 / 9 production count includes rear filter",
+      "Inner focus to patent 3 m endpoint",
+      "All spherical surfaces",
+    ],
+    elementCount: 10,
+    groupCount: 8,
+    focalLengthMm: { marketing: 300, design: 294.999 },
+    fNumber: { marketing: 2.8, design: 2.9 },
+  },
+
+  source: {
+    patentNumber: "US 4,518,229",
+    patentYear: 1985,
+    authors: ["Mitsuo Yasukuni"],
+    assignees: ["Minolta Camera Co., Ltd."],
+  },
 
   elements: [
     {
@@ -62,7 +65,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.4952,
       vd: 79.74,
-      fl: 218.33,
+      focalLengthMm: 218.33,
       glass: "495797 - fluorophosphate ED-class crown (catalog unresolved; not S-FPL51)",
       apd: "inferred",
       apdNote:
@@ -76,7 +79,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.4952,
       vd: 79.74,
-      fl: 202.12,
+      focalLengthMm: 202.12,
       glass: "495797 - fluorophosphate ED-class crown (catalog unresolved; not S-FPL51)",
       apd: "inferred",
       apdNote:
@@ -90,7 +93,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6815,
       vd: 36.64,
-      fl: -183.98,
+      focalLengthMm: -183.98,
       glass: "682366 - dense flint class (catalog unresolved)",
       role: "Front-group negative flint used to balance the two low-dispersion positive crowns.",
     },
@@ -101,7 +104,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.65446,
       vd: 33.86,
-      fl: -520.27,
+      focalLengthMm: -520.27,
       glass: "654339 - dense flint class (Hikari SF9 public code match)",
       role: "Concave leading element of rear subunit II-1; central surface-level aberration corrector in the patent claims.",
     },
@@ -112,7 +115,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.60311,
       vd: 60.74,
-      fl: 235.41,
+      focalLengthMm: 235.41,
       glass: "S-BSM14 class (OHARA; close vintage 603/607 match)",
       role: "Positive trailing element of subunit II-1.",
     },
@@ -123,7 +126,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.71736,
       vd: 29.42,
-      fl: 96.15,
+      focalLengthMm: 96.15,
       glass: "S-TIH1 class (OHARA; close vintage 717/295 match)",
       role: "Dense-flint component of the weakly negative cemented corrector in the moving focus subunit.",
       cemented: "D1",
@@ -135,7 +138,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.60311,
       vd: 60.74,
-      fl: -92.0,
+      focalLengthMm: -92.0,
       glass: "S-BSM14 class (OHARA; close vintage 603/607 match)",
       role: "Crown component paired with L6 in the first cemented doublet of the moving focus subunit.",
       cemented: "D1",
@@ -147,7 +150,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.67,
       vd: 57.07,
-      fl: -76.94,
+      focalLengthMm: -76.94,
       glass: "S-LAL52 (OHARA catalog-equivalent to 670571; patent vendor unspecified)",
       role: "Primary negative-power element of the moving focus subunit II-2.",
     },
@@ -158,7 +161,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.60311,
       vd: 60.74,
-      fl: 67.23,
+      focalLengthMm: 67.23,
       glass: "S-BSM14 class (OHARA; close vintage 603/607 match)",
       role: "Positive crown component of the final re-converging cemented doublet.",
       cemented: "D2",
@@ -170,7 +173,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.65446,
       vd: 33.86,
-      fl: -137.58,
+      focalLengthMm: -137.58,
       glass: "654339 - dense flint class (Hikari SF9 public code match)",
       role: "Negative flint component of the final cemented doublet, correcting L9 chromatic power.",
       cemented: "D2",
@@ -178,38 +181,39 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 140.872, d: 16.0, nd: 1.4952, elemId: 1, sd: 56.0 },
-    { label: "2", R: -447.513, d: 0.42, nd: 1.0, elemId: 0, sd: 53.85 },
-    { label: "3", R: 115.956, d: 14.5, nd: 1.4952, elemId: 2, sd: 53.75 },
-    { label: "4", R: -701.292, d: 2.52, nd: 1.0, elemId: 0, sd: 49.05 },
-    { label: "5", R: -474.476, d: 3.7, nd: 1.6815, elemId: 3, sd: 46.25 },
+    { label: "1", R: 140.872, d: 16.0, sd: 56.0, medium: 1 },
+    { label: "2", R: -447.513, d: 0.42, sd: 53.85 },
+    { label: "3", R: 115.956, d: 14.5, sd: 53.75, medium: 2 },
+    { label: "4", R: -701.292, d: 2.52, sd: 49.05 },
+    { label: "5", R: -474.476, d: 3.7, sd: 46.25, medium: 3 },
     // Patent d6 = 78.00 mm. Split here to insert an inferred aperture stop: 7.00 + 71.00 = 78.00.
-    { label: "6", R: 170.954, d: 7.0, nd: 1.0, elemId: 0, sd: 46.75 },
-    { label: "STO", R: 1e15, d: 71.0, nd: 1.0, elemId: 0, sd: 42.3 },
-    { label: "7", R: -131.706, d: 2.5, nd: 1.65446, elemId: 4, sd: 26.05 },
-    { label: "8", R: -216.4, d: 1.35, nd: 1.0, elemId: 0, sd: 25.8 },
-    { label: "9", R: 111.332, d: 4.0, nd: 1.60311, elemId: 5, sd: 25.55 },
-    { label: "10", R: 508.815, d: 3.0, nd: 1.0, elemId: 0, sd: 24.65 },
-    { label: "11", R: -1256.8, d: 6.5, nd: 1.71736, elemId: 6, sd: 23.7 },
-    { label: "12", R: -65.525, d: 1.85, nd: 1.60311, elemId: 7, sd: 22.5 },
-    { label: "13", R: 366.046, d: 3.15, nd: 1.0, elemId: 0, sd: 22.1 },
-    { label: "14", R: -228.633, d: 1.7, nd: 1.67, elemId: 8, sd: 21.1 },
-    { label: "15", R: 66.759, d: 22.0, nd: 1.0, elemId: 0, sd: 20.85 },
-    { label: "16", R: 1084.8, d: 7.0, nd: 1.60311, elemId: 9, sd: 19.95 },
-    { label: "17", R: -42.017, d: 1.6, nd: 1.65446, elemId: 10, sd: 19.7 },
-    { label: "18", R: -79.965, d: 103.708841, nd: 1.0, elemId: 0, sd: 19.7 },
+    { label: "6", R: 170.954, d: 7.0, sd: 46.75 },
+    { label: "STO", R: "flat", d: 71.0 },
+    { label: "7", R: -131.706, d: 2.5, sd: 26.05, medium: 4 },
+    { label: "8", R: -216.4, d: 1.35, sd: 25.8 },
+    { label: "9", R: 111.332, d: 4.0, sd: 25.55, medium: 5 },
+    { label: "10", R: 508.815, sd: 24.65 },
+    { label: "11", R: -1256.8, d: 6.5, sd: 23.7, medium: 6 },
+    { label: "12", R: -65.525, d: 1.85, sd: 22.5, medium: 7 },
+    { label: "13", R: 366.046, d: 3.15, sd: 22.1 },
+    { label: "14", R: -228.633, d: 1.7, sd: 21.1, medium: 8 },
+    { label: "15", R: 66.759, sd: 20.85 },
+    { label: "16", R: 1084.8, d: 7.0, sd: 19.95, medium: 9 },
+    { label: "17", R: -42.017, d: 1.6, sd: 19.7, medium: 10 },
+    { label: "18", R: -79.965, d: 103.708841, sd: 19.7 },
   ],
 
-  asph: {},
-
-  var: {
-    "10": [3.0, 14.76],
-    "15": [22.0, 10.24],
+  focus: {
+    closeFocusM: 3.0,
+    description:
+      "Inner focus by image-side translation of subunit II-2 (L6-L8). Patent Table 9 gives 11.760 mm travel for a 3 m object distance; production MFD is 2.5 m but is not tabulated in the patent.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
   },
-  varLabels: [
-    ["10", "D10"],
-    ["15", "D15"],
-  ],
+
+  gaps: { "10": { label: "D10", values: [[3.0, 14.76]] }, "15": { label: "D15", values: [[22.0, 10.24]] } },
+
+  aperture: { nominalFNumber: 2.9, fStops: [2.9, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 9 },
 
   groups: [
     { text: "I", fromSurface: "1", toSurface: "6" },
@@ -222,19 +226,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "16", toSurface: "18" },
   ],
 
-  focusDescription:
-    "Inner focus by image-side translation of subunit II-2 (L6-L8). Patent Table 9 gives 11.760 mm travel for a 3 m object distance; production MFD is 2.5 m but is not tabulated in the patent.",
-
-  closeFocusM: 3.0,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  nominalFno: 2.9,
-  maxFstop: 32,
-  fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22, 32],
-
-  scFill: 0.74,
-  yScFill: 0.72,
-  maxAspectRatio: 3.0,
-} satisfies LensDataInput;
+  layout: { scFill: 0.74, yScFill: 0.72, maxAspectRatio: 3.0 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

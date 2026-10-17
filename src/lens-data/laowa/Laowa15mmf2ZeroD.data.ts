@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Laowa 15mm f/2 Zero-D
@@ -22,31 +22,35 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "laowa-15mm-f2-zero-d",
   maker: "Laowa",
   name: "LAOWA 15mm f/2 Zero-D",
   subtitle: "US 2018/0149842 A1 Example 1 - Anhui Changgeng Optics / Xiaohua Zhang",
-  specs: [
-    "Patent Example 1",
-    "12 elements / 9 groups",
-    "f = 15.505 mm design",
-    "F/2.06 design; f/2 marketed",
-    "2ω = 109.4° patent field",
-    "4 aspherical surfaces on 2 elements",
-  ],
 
-  focalLengthMarketing: 15,
-  focalLengthDesign: 15.5052,
-  apertureMarketing: 2,
-  apertureDesign: 2.06,
-  lensMounts: ["sony-fe", "canon-rf", "nikon-z", "l-mount"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 2018/0149842 A1",
-  patentAuthors: ["Xiaohua Zhang"],
-  patentAssignees: ["Anhui Changgeng Optics Technology Co., Ltd."],
-  patentYear: 2018,
-  elementCount: 12,
-  groupCount: 9,
+  catalog: {
+    lensMounts: ["sony-fe", "canon-rf", "nikon-z", "l-mount"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "Patent Example 1",
+      "12 elements / 9 groups",
+      "f = 15.505 mm design",
+      "F/2.06 design; f/2 marketed",
+      "2ω = 109.4° patent field",
+      "4 aspherical surfaces on 2 elements",
+    ],
+    elementCount: 12,
+    groupCount: 9,
+    focalLengthMm: { marketing: 15, design: 15.5052 },
+    fNumber: { marketing: 2, design: 2.06 },
+  },
+
+  source: {
+    patentNumber: "US 2018/0149842 A1",
+    patentYear: 2018,
+    authors: ["Xiaohua Zhang"],
+    assignees: ["Anhui Changgeng Optics Technology Co., Ltd."],
+  },
 
   elements: [
     {
@@ -56,7 +60,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.72916,
       vd: 54.67,
-      fl: -46.41,
+      focalLengthMm: -46.41,
       glass: "TAC8 / S-LAL18 / H-LaK52 class (729-547)",
       apd: false,
       role: "Large front meniscus for wide-angle field acceptance and front-group angular compression.",
@@ -68,7 +72,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2x Asph)",
       nd: 1.8061,
       vd: 40.73,
-      fl: -35.11,
+      focalLengthMm: -35.11,
       glass: "M-NBFD130 / NBFD13 class (806-407)",
       apd: false,
       role: "Double-sided aspherical negative element for distortion, coma, and astigmatism control in the high-field front section.",
@@ -80,7 +84,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.46,
-      fl: -50.34,
+      focalLengthMm: -50.34,
       glass: "FD60 / N-SF6 class (805-255)",
       apd: false,
       role: "Dense-flint member completing the strongly negative G1F front sub-group and contributing lateral-color balance.",
@@ -92,7 +96,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.91082,
       vd: 35.25,
-      fl: 28.54,
+      focalLengthMm: 28.54,
       glass: "TAFD35L / TAFD35 class (911-353)",
       apd: false,
       role: "Strong positive recovery element at the front of G1B, restoring convergence after G1F.",
@@ -104,10 +108,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.497,
       vd: 81.61,
-      fl: -22.4,
+      focalLengthMm: -22.4,
       glass: "FCD1 / N-PK52A / S-FPL51 class (497-816)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate class inferred from nd=1.49700 and νd=81.61; patent publishes no partial-dispersion data.",
+      apdNote:
+        "ED fluorophosphate class inferred from nd=1.49700 and νd=81.61; patent publishes no partial-dispersion data.",
       role: "Negative ED member of the fixed-front achromatizing doublet.",
       cemented: "D1",
     },
@@ -118,7 +123,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.62004,
       vd: 36.3,
-      fl: 19.64,
+      focalLengthMm: 19.64,
       glass: "E-F2 / N-F2 class (620-363)",
       apd: false,
       role: "Positive flint partner in the G1B cemented/contact doublet.",
@@ -131,7 +136,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.8061,
       vd: 33.27,
-      fl: -39.62,
+      focalLengthMm: -39.62,
       glass: "NBFD15 / NBFD15-W class (806-333)",
       apd: false,
       role: "Post-stop negative cone shaper and field-control element at the front of the moving rear group.",
@@ -143,7 +148,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.90366,
       vd: 31.31,
-      fl: -49.98,
+      focalLengthMm: -49.98,
       glass: "TAFD25 / N-LASF46B class (904-313)",
       apd: false,
       role: "High-index negative member of the rear correction triplet.",
@@ -156,10 +161,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
-      fl: 14.41,
+      focalLengthMm: 14.41,
       glass: "FCD1 / N-PK52A / S-FPL51 class (497-816)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate class inferred from nd=1.49700 and νd=81.61; patent publishes no partial-dispersion data.",
+      apdNote:
+        "ED fluorophosphate class inferred from nd=1.49700 and νd=81.61; patent publishes no partial-dispersion data.",
       role: "Strong positive ED core of the moving rear triplet.",
       cemented: "T1",
     },
@@ -170,7 +176,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.83481,
       vd: 42.72,
-      fl: -29.67,
+      focalLengthMm: -29.67,
       glass: "TAFD5G class (835-427)",
       apd: false,
       role: "High-index negative rear member of the triplet, balancing the strong positive ED core.",
@@ -183,10 +189,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
-      fl: 28.38,
+      focalLengthMm: 28.38,
       glass: "FCD1 / N-PK52A / S-FPL51 class (497-816)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate class inferred from nd=1.49700 and νd=81.61; patent publishes no partial-dispersion data.",
+      apdNote:
+        "ED fluorophosphate class inferred from nd=1.49700 and νd=81.61; patent publishes no partial-dispersion data.",
       role: "Rear positive ED singlet for axial-color, rear-convergence, and field correction.",
     },
     {
@@ -196,7 +203,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2x Asph)",
       nd: 1.58313,
       vd: 59.46,
-      fl: -91.42,
+      focalLengthMm: -91.42,
       glass: "M-BACD12 / L-BAL42 / D-ZK2 class (583-595)",
       apd: false,
       role: "Weak rear double-sided aspherical meniscus for final distortion, astigmatism, and field-curvature trimming.",
@@ -204,29 +211,66 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 43.7777, d: 1.8, nd: 1.72916, elemId: 1, sd: 20.6 },
-    { label: "2", R: 18.7557, d: 5.6312, nd: 1.0, elemId: 0, sd: 16.6 },
-    { label: "3A", R: 25.0, d: 2.0, nd: 1.8061, elemId: 2, sd: 10.0 },
-    { label: "4A", R: 12.8006, d: 3.4629, nd: 1.0, elemId: 0, sd: 8.3 },
-    { label: "5", R: 35.2429, d: 1.5, nd: 1.80518, elemId: 3, sd: 8.4 },
-    { label: "6", R: 18.4938, d: 3.6876, nd: 1.0, elemId: 0, sd: 8.4 },
-    { label: "7", R: 49.4811, d: 10.0, nd: 1.91082, elemId: 4, sd: 10.8 },
-    { label: "8", R: -49.4811, d: 1.5, nd: 1.0, elemId: 0, sd: 10.8 },
-    { label: "9", R: -34.1159, d: 2.0, nd: 1.497, elemId: 5, sd: 9.2 },
-    { label: "10", R: 16.8442, d: 7.5, nd: 1.62004, elemId: 6, sd: 9.2 },
-    { label: "12", R: -36.4636, d: 3.448, nd: 1.0, elemId: 0, sd: 9.2 },
-    { label: "STO", R: 1e15, d: 2.4344, nd: 1.0, elemId: 0, sd: 7.86813 },
-    { label: "14", R: -64.3212, d: 2.0, nd: 1.8061, elemId: 7, sd: 9.0 },
-    { label: "15", R: 64.3212, d: 1.0, nd: 1.0, elemId: 0, sd: 9.0 },
-    { label: "16", R: 18.1302, d: 1.5, nd: 1.90366, elemId: 8, sd: 9.7 },
-    { label: "17", R: 12.4289, d: 9.9, nd: 1.497, elemId: 9, sd: 9.7 },
-    { label: "18", R: -12.4289, d: 1.5, nd: 1.83481, elemId: 10, sd: 9.7 },
-    { label: "19", R: -26.3138, d: 0.15, nd: 1.0, elemId: 0, sd: 9.7 },
-    { label: "20", R: 30.3336, d: 7.0, nd: 1.497, elemId: 11, sd: 10.0 },
-    { label: "21", R: -24.3462, d: 10.5287, nd: 1.0, elemId: 0, sd: 10.0 },
-    { label: "22A", R: -14.0614, d: 1.8, nd: 1.58313, elemId: 12, sd: 9.0 },
-    { label: "23A", R: -20.0, d: 15.6837, nd: 1.0, elemId: 0, sd: 10.1 },
+    { label: "1", R: 43.7777, d: 1.8, sd: 20.6, medium: 1 },
+    { label: "2", R: 18.7557, d: 5.6312, sd: 16.6 },
+    {
+      label: "3A",
+      R: 25.0,
+      d: 2.0,
+      sd: 10.0,
+      medium: 2,
+      asphere: { K: -1.3707, A4: -1.17922e-5, A6: -2.42926e-8, A8: 1.19122e-10, A10: -4.63418e-13, A12: 4.68088e-16 },
+    },
+    {
+      label: "4A",
+      R: 12.8006,
+      d: 3.4629,
+      sd: 8.3,
+      asphere: { K: 0.2535, A4: -2.62577e-5, A6: -1.64819e-7, A8: 4.27783e-10, A10: -2.38377e-12, A12: 4.58404e-15 },
+    },
+    { label: "5", R: 35.2429, d: 1.5, sd: 8.4, medium: 3 },
+    { label: "6", R: 18.4938, d: 3.6876, sd: 8.4 },
+    { label: "7", R: 49.4811, d: 10.0, sd: 10.8, medium: 4 },
+    { label: "8", R: -49.4811, d: 1.5, sd: 10.8 },
+    { label: "9", R: -34.1159, d: 2.0, sd: 9.2, medium: 5 },
+    { label: "10", R: 16.8442, d: 7.5, sd: 9.2, medium: 6 },
+    { label: "12", R: -36.4636, sd: 9.2 },
+    { label: "STO", R: "flat", d: 2.4344 },
+    { label: "14", R: -64.3212, d: 2.0, sd: 9.0, medium: 7 },
+    { label: "15", R: 64.3212, d: 1.0, sd: 9.0 },
+    { label: "16", R: 18.1302, d: 1.5, sd: 9.7, medium: 8 },
+    { label: "17", R: 12.4289, d: 9.9, sd: 9.7, medium: 9 },
+    { label: "18", R: -12.4289, d: 1.5, sd: 9.7, medium: 10 },
+    { label: "19", R: -26.3138, d: 0.15, sd: 9.7 },
+    { label: "20", R: 30.3336, d: 7.0, sd: 10.0, medium: 11 },
+    { label: "21", R: -24.3462, d: 10.5287, sd: 10.0 },
+    {
+      label: "22A",
+      R: -14.0614,
+      d: 1.8,
+      sd: 9.0,
+      medium: 12,
+      asphere: { K: 1.1397, A4: 2.80111e-5, A6: 1.12817e-7, A8: -9.53129e-9, A10: 2.83332e-11, A12: 0 },
+    },
+    {
+      label: "23A",
+      R: -20.0,
+      sd: 10.1,
+      asphere: { K: -6.2261, A4: -3.98955e-5, A6: 1.56517e-6, A8: -1.18499e-8, A10: 4.20888e-11, A12: -6.3552e-14 },
+    },
   ],
+
+  focus: {
+    closeFocusM: 0.97,
+    description:
+      "Patent rear/inner focus: Gr1 fixed; the stop plus Gr2 translate objectward by 0.298 mm at the patent 0.020x state. The production 0.15 m / 0.25x close-focus spacing is not published in the patent and is not extrapolated here.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
+  },
+
+  gaps: { "12": { label: "D12", values: [[3.448, 3.15]] }, "23A": { label: "BF", values: [[15.6837, 15.9816]] } },
+
+  aperture: { nominalFNumber: 2.06, fStops: [2.06, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Image-side plane-parallel plate (patent surfaces 24–25): traced, not drawn ── */
   rearPlates: [
@@ -240,54 +284,6 @@ const LENS_DATA = {
     },
   ],
 
-  asph: {
-    "3A": {
-      K: -1.3707,
-      A4: -1.17922e-5,
-      A6: -2.42926e-8,
-      A8: 1.19122e-10,
-      A10: -4.63418e-13,
-      A12: 4.68088e-16,
-      A14: 0,
-    },
-    "4A": {
-      K: 0.2535,
-      A4: -2.62577e-5,
-      A6: -1.64819e-7,
-      A8: 4.27783e-10,
-      A10: -2.38377e-12,
-      A12: 4.58404e-15,
-      A14: 0,
-    },
-    "22A": {
-      K: 1.1397,
-      A4: 2.80111e-5,
-      A6: 1.12817e-7,
-      A8: -9.53129e-9,
-      A10: 2.83332e-11,
-      A12: 0,
-      A14: 0,
-    },
-    "23A": {
-      K: -6.2261,
-      A4: -3.98955e-5,
-      A6: 1.56517e-6,
-      A8: -1.18499e-8,
-      A10: 4.20888e-11,
-      A12: -6.3552e-14,
-      A14: 0,
-    },
-  },
-
-  var: {
-    "12": [3.448, 3.15],
-    "23A": [15.6837, 15.9816],
-  },
-  varLabels: [
-    ["12", "D12"],
-    ["23A", "BF"],
-  ],
-
   groups: [
     { text: "G1F", fromSurface: "1", toSurface: "6" },
     { text: "G1B", fromSurface: "7", toSurface: "12" },
@@ -298,17 +294,9 @@ const LENS_DATA = {
     { text: "T1", fromSurface: "16", toSurface: "19" },
   ],
 
-  focusDescription:
-    "Patent rear/inner focus: Gr1 fixed; the stop plus Gr2 translate objectward by 0.298 mm at the patent 0.020x state. The production 0.15 m / 0.25x close-focus spacing is not published in the patent and is not extrapolated here.",
-  closeFocusM: 0.97,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  nominalFno: 2.06,
-  maxFstop: 22,
-  fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16, 22],
-  scFill: 0.62,
-  yScFill: 0.58,
-  offAxisFieldFrac: 0.2,
-} satisfies LensDataInput;
+  layout: { scFill: 0.62, yScFill: 0.58 },
+
+  rays: { offAxisFieldFrac: 0.2 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

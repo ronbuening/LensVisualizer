@@ -1,6 +1,6 @@
 // Root-level draft import. When authoring directly in a maker folder use "../../types/optics.js";
 // generate:metadata rewrites it when it organizes a root-level draft. See LENS_DATA_SPEC.md § Quick Start.
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -65,29 +65,34 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "minolta-md-zoom-24-50-f4",
   maker: "Minolta",
   name: "MINOLTA MD ZOOM 24-50mm f/4",
   subtitle: "US 4,147,410 Embodiment 1 — Minolta / Shimomura, Horimoto; production correlation",
-  specs: [
-    "13 ELEMENTS / 11 GROUPS",
-    "DESIGN f = 24.51-48.59 mm",
-    "F/4 CONSTANT (INFERRED IRIS SCHEDULE)",
-    "2ω = 84°-47°",
-    "ALL-SPHERICAL",
-  ],
 
-  focalLengthMarketing: [24, 50],
-  focalLengthDesign: [24.513, 48.593],
-  apertureMarketing: 4,
-  lensMounts: ["minolta-sr"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,147,410",
-  patentAuthors: ["Masaichi Shimomura", "Mitsuaki Horimoto"],
-  patentAssignees: ["Minolta Camera Co., Ltd."],
-  patentYear: 1979,
-  elementCount: 13,
-  groupCount: 11,
+  catalog: {
+    lensMounts: ["minolta-sr"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "13 ELEMENTS / 11 GROUPS",
+      "DESIGN f = 24.51-48.59 mm",
+      "F/4 CONSTANT (INFERRED IRIS SCHEDULE)",
+      "2ω = 84°-47°",
+      "ALL-SPHERICAL",
+    ],
+    elementCount: 13,
+    groupCount: 11,
+    focalLengthMm: { marketing: [24, 50], design: [24.513, 48.593] },
+    fNumber: { marketing: 4 },
+  },
+
+  source: {
+    patentNumber: "US 4,147,410",
+    patentYear: 1979,
+    authors: ["Masaichi Shimomura", "Mitsuaki Horimoto"],
+    assignees: ["Minolta Camera Co., Ltd."],
+  },
 
   elements: [
     {
@@ -97,7 +102,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6,
       vd: 64.4,
-      fl: 202.67,
+      focalLengthMm: 202.67,
       glass:
         "Unmatched (600644 phosphate-crown class; nearest current catalog coordinates sit at Δnd +0.003, outside the runtime window)",
       role: "Component I-1: weak positive front meniscus, convex to the object (condition (2))",
@@ -109,7 +114,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7435,
       vd: 49.2,
-      fl: -40.44,
+      focalLengthMm: -40.44,
       glass: "743492 — lanthanum flint (NBF1 / S-LAM60 class; supplier unconfirmed)",
       role: "Component I-2, sub-component a: strongest negative meniscus of I-2 (φ1; condition (3))",
     },
@@ -120,7 +125,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7435,
       vd: 49.2,
-      fl: -56.74,
+      focalLengthMm: -56.74,
       glass: "743492 — lanthanum flint (NBF1 / S-LAM60 class; supplier unconfirmed)",
       role: "Component I-2, sub-component b: second negative meniscus (φ2)",
     },
@@ -131,8 +136,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7106,
       vd: 43.3,
-      fl: 73.72,
-      glass: "Unmatched (711433 lanthanum-flint class; nearest catalog coordinate is HOYA LAFL4 at Δnd +0.0021, outside the relabel window)",
+      focalLengthMm: 73.72,
+      glass:
+        "Unmatched (711433 lanthanum-flint class; nearest catalog coordinate is HOYA LAFL4 at Δnd +0.0021, outside the relabel window)",
       role: "Component I-2, sub-component c (front): positive half of the weakly negative cemented doublet (φ3)",
       cemented: "c",
     },
@@ -143,7 +149,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6385,
       vd: 55.7,
-      fl: -58.93,
+      focalLengthMm: -58.93,
       glass: "639557 — dense barium crown (S-BSM18 / BACD18 class; supplier unconfirmed)",
       role: "Component I-2, sub-component c (rear): negative half of the cemented doublet",
       cemented: "c",
@@ -155,7 +161,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7174,
       vd: 29.4,
-      fl: 78.8,
+      focalLengthMm: 78.8,
       glass: "717294 — dense flint (S-TIH1 / SF1 class; supplier unconfirmed)",
       role: "Component I-3: positive dense-flint meniscus closing group I",
     },
@@ -166,7 +172,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5168,
       vd: 64.0,
-      fl: 78.37,
+      focalLengthMm: 78.37,
       glass: "517640 — borosilicate crown (N-BK7 / BSC7 class; supplier unconfirmed)",
       role: "Component II-1, first element: biconvex crown",
     },
@@ -177,7 +183,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.5168,
       vd: 64.0,
-      fl: 44.39,
+      focalLengthMm: 44.39,
       glass: "517640 — borosilicate crown (N-BK7 / BSC7 class; supplier unconfirmed)",
       role: "Component II-1, second element: strongest positive crown of group II",
     },
@@ -188,7 +194,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.5168,
       vd: 64.0,
-      fl: 128.83,
+      focalLengthMm: 128.83,
       glass: "517640 — borosilicate crown (N-BK7 / BSC7 class; supplier unconfirmed)",
       role: "Component II-1, third element (II-1 sets condition (4))",
     },
@@ -199,7 +205,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.8052,
       vd: 25.4,
-      fl: 49.46,
+      focalLengthMm: 49.46,
       glass: "805254 — dense flint (SF6 / S-TIH6 class; supplier unconfirmed)",
       role: "Component II-2 (front): positive dense-flint meniscus, concave to the object",
       cemented: "II-2",
@@ -211,7 +217,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7569,
       vd: 29.7,
-      fl: -13.72,
+      focalLengthMm: -13.72,
       glass: "Unmatched (757297 lanthanum dense-flint class; no current catalog glass within Δnd 0.003 / Δνd 2)",
       role: "Component II-2 (rear): strong biconcave flint, the principal negative power of group II",
       cemented: "II-2",
@@ -223,7 +229,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.5168,
       vd: 64.0,
-      fl: 61.74,
+      focalLengthMm: 61.74,
       glass: "517640 — borosilicate crown (N-BK7 / BSC7 class; supplier unconfirmed)",
       role: "Component II-3, first element: positive meniscus concave to the object",
     },
@@ -234,7 +240,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6,
       vd: 64.4,
-      fl: 57.66,
+      focalLengthMm: 57.66,
       glass:
         "Unmatched (600644 phosphate-crown class; nearest current catalog coordinates sit at Δnd +0.003, outside the runtime window)",
       role: "Component II-3, rear element: biconvex closing element",
@@ -242,90 +248,97 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 94.69, d: 6.0, nd: 1.6, elemId: 1, sd: 27.35 },
-    { label: "2", R: 417.7, d: 0.2, nd: 1.0, elemId: 0, sd: 25.45 },
-    { label: "3", R: 73.24, d: 1.5, nd: 1.7435, elemId: 2, sd: 21.8 },
-    { label: "4", R: 21.13, d: 7.5, nd: 1.0, elemId: 0, sd: 17.0 },
-    { label: "5", R: 148.3, d: 1.5, nd: 1.7435, elemId: 3, sd: 16.2 }, // SD limited by D4 gap intrusion
-    { label: "6", R: 32.7, d: 3.5, nd: 1.0, elemId: 0, sd: 16.2 },
-    { label: "7", R: 129.8, d: 4.0, nd: 1.7106, elemId: 4, sd: 16.0 },
-    { label: "8", R: -86.7, d: 1.0, nd: 1.6385, elemId: 5, sd: 16.0 }, // L4→L5 cemented junction
-    { label: "9", R: 66.78, d: 2.5, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "10", R: 33.47, d: 3.0, nd: 1.7174, elemId: 6, sd: 14.6 },
-    { label: "11", R: 78.98, d: 27.93, nd: 1.0, elemId: 0, sd: 14.4 }, // D11: zoom + focus
-    { label: "12", R: 53.95, d: 2.5, nd: 1.5168, elemId: 7, sd: 10.6 },
-    { label: "13", R: -159.9, d: 0.1, nd: 1.0, elemId: 0, sd: 10.6 },
-    { label: "14", R: 19.8, d: 3.36, nd: 1.5168, elemId: 8, sd: 10.4 },
-    { label: "15", R: 136.34, d: 0.1, nd: 1.0, elemId: 0, sd: 10.2 },
-    { label: "16", R: 22.44, d: 2.0, nd: 1.5168, elemId: 9, sd: 9.9 },
-    { label: "17", R: 32.82, d: 2.25, nd: 1.0, elemId: 0, sd: 9.4 }, // patent d17 = 4.5 split at the inferred stop
-    { label: "STO", R: 1e15, d: 2.25, nd: 1.0, elemId: 0, sd: 5.652 }, // inferred stop; wide-station f/4 radius
-    { label: "18", R: -61.82, d: 2.0, nd: 1.8052, elemId: 10, sd: 8.65 },
-    { label: "19", R: -24.57, d: 0.8, nd: 1.7569, elemId: 11, sd: 8.65 }, // L10→L11 cemented junction
-    { label: "20", R: 18.24, d: 2.19, nd: 1.0, elemId: 0, sd: 7.5 }, // SD limited by D20 gap intrusion
-    { label: "21", R: -57.47, d: 2.0, nd: 1.5168, elemId: 12, sd: 8.1 }, // patent row prints "d20 = 2.0"; read as d21
-    { label: "22", R: -20.76, d: 0.1, nd: 1.0, elemId: 0, sd: 8.2 },
-    { label: "23", R: 38.02, d: 2.3, nd: 1.6, elemId: 13, sd: 8.3 },
-    { label: "24", R: -375.8, d: 38.3236, nd: 1.0, elemId: 0, sd: 8.3 }, // BF: computed paraxial image distance
+    { label: "1", R: 94.69, d: 6.0, sd: 27.35, medium: 1 },
+    { label: "2", R: 417.7, d: 0.2, sd: 25.45 },
+    { label: "3", R: 73.24, d: 1.5, sd: 21.8, medium: 2 },
+    { label: "4", R: 21.13, d: 7.5, sd: 17.0 },
+    { label: "5", R: 148.3, d: 1.5, sd: 16.2, medium: 3 }, // SD limited by D4 gap intrusion
+    { label: "6", R: 32.7, d: 3.5, sd: 16.2 },
+    { label: "7", R: 129.8, d: 4.0, sd: 16.0, medium: 4 },
+    { label: "8", R: -86.7, d: 1.0, sd: 16.0, medium: 5 }, // L4→L5 cemented junction
+    { label: "9", R: 66.78, d: 2.5, sd: 16.0 },
+    { label: "10", R: 33.47, d: 3.0, sd: 14.6, medium: 6 },
+    { label: "11", R: 78.98, sd: 14.4 }, // D11: zoom + focus
+    { label: "12", R: 53.95, d: 2.5, sd: 10.6, medium: 7 },
+    { label: "13", R: -159.9, d: 0.1, sd: 10.6 },
+    { label: "14", R: 19.8, d: 3.36, sd: 10.4, medium: 8 },
+    { label: "15", R: 136.34, d: 0.1, sd: 10.2 },
+    { label: "16", R: 22.44, d: 2.0, sd: 9.9, medium: 9 },
+    { label: "17", R: 32.82, d: 2.25, sd: 9.4 }, // patent d17 = 4.5 split at the inferred stop
+    { label: "STO", R: "flat", d: 2.25 }, // inferred stop; radius derived from the design f-number at each station
+    { label: "18", R: -61.82, d: 2.0, sd: 8.65, medium: 10 },
+    { label: "19", R: -24.57, d: 0.8, sd: 8.65, medium: 11 }, // L10→L11 cemented junction
+    { label: "20", R: 18.24, d: 2.19, sd: 7.5 }, // SD limited by D20 gap intrusion
+    { label: "21", R: -57.47, d: 2.0, sd: 8.1, medium: 12 }, // patent row prints "d20 = 2.0"; read as d21
+    { label: "22", R: -20.76, d: 0.1, sd: 8.2 },
+    { label: "23", R: 38.02, d: 2.3, sd: 8.3, medium: 13 },
+    { label: "24", R: -375.8, sd: 8.3 }, // BF: computed paraxial image distance
   ],
 
-  asph: {},
-
-  var: {
-    // [d_infinity, d_close] per zoom station; close = 0.7 m object-to-film, group I extension (reconstruction)
-    "11": [
-      [27.93, 30.2993],
-      [21.327, 23.6828],
-      [16.171, 18.5191],
-      [11.96, 14.304],
-      [7.816, 10.1591],
-      [4.451, 6.7963],
-      [1.66, 4.01],
+  zoom: {
+    // (moved from zoomPositions) Published stations: 24.513 (d11 = 27.93), 35.081 (11.96), 48.593 (1.66). 28 / 31.5 / 39.5 / 44 are derived.
+    // (moved from publishedStations) Source rows only; the other zoom stations are solved or sampled control points.
+    stations: [
+      { focalLengthMm: 24.513, label: "Wide", published: true },
+      { focalLengthMm: 28, published: false },
+      { focalLengthMm: 31.5, published: false },
+      { focalLengthMm: 35.081, published: true },
+      { focalLengthMm: 39.5, published: false },
+      { focalLengthMm: 44, published: false },
+      { focalLengthMm: 48.593, label: "Tele", published: true },
     ],
-    // zoom only: BF unchanged by focusing (group II and film plane fixed)
-    "24": [
-      [38.3236, 38.3236],
-      [41.3902, 41.3902],
-      [44.4672, 44.4672],
-      [47.6159, 47.6159],
-      [51.5013, 51.5013],
-      [55.4586, 55.4586],
-      [59.4964, 59.4964],
-    ],
+    apertureModel: "from-nominal-fno",
   },
 
-  varLabels: [
-    ["11", "D11"],
-    ["24", "BF"],
-  ],
+  focus: {
+    closeFocusM: 0.7,
+    description:
+      "Reconstructed front-group focus: the patent publishes infinity states only. Group I translates toward the object (D11 grows) while group II and the film plane stay fixed; the 2.34-2.37 mm extension is solved at each zoom station for an object 0.7 m from the film plane (Minolta 2.3 ft minimum focus). Minolta does not state which group focuses.",
+  },
 
-  // Published stations: 24.513 (d11 = 27.93), 35.081 (11.96), 48.593 (1.66). 28 / 31.5 / 39.5 / 44 are derived.
-  zoomPositions: [24.513, 28, 31.5, 35.081, 39.5, 44, 48.593],
-  zoomLabels: ["Wide", "Tele"],
-  zoomApertureModel: "from-nominal-fno",
+  gaps: {
+    // [d_infinity, d_close] per zoom station; close = 0.7 m object-to-film, group I extension (reconstruction)
+    "11": {
+      label: "D11",
+      values: [
+        [27.93, 30.2993],
+        [21.327, 23.6828],
+        [16.171, 18.5191],
+        [11.96, 14.304],
+        [7.816, 10.1591],
+        [4.451, 6.7963],
+        [1.66, 4.01],
+      ],
+    },
+    // zoom only: BF unchanged by focusing (group II and film plane fixed)
+    "24": {
+      label: "BF",
+      values: [
+        [38.3236, 38.3236],
+        [41.3902, 41.3902],
+        [44.4672, 44.4672],
+        [47.6159, 47.6159],
+        [51.5013, 51.5013],
+        [55.4586, 55.4586],
+        [59.4964, 59.4964],
+      ],
+    },
+  },
+
+  aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "I (−)", fromSurface: "1", toSurface: "11" },
     { text: "II (+)", fromSurface: "12", toSurface: "24" },
   ],
-
   doublets: [
     { text: "c", fromSurface: "7", toSurface: "9" },
     { text: "II-2", fromSurface: "18", toSurface: "20" },
   ],
 
-  closeFocusM: 0.7,
-  // Source rows only; the other zoom stations are solved or sampled control points.
-  publishedStations: { zoom: [0, 3, 6] },
-  focusDescription:
-    "Reconstructed front-group focus: the patent publishes infinity states only. Group I translates toward the object (D11 grows) while group II and the film plane stay fixed; the 2.34-2.37 mm extension is solved at each zoom station for an object 0.7 m from the film plane (Minolta 2.3 ft minimum focus). Minolta does not state which group focuses.",
+  layout: { yScFill: 0.32 },
 
-  nominalFno: 4,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  gapSagFrac: 0.97,
-  yScFill: 0.32,
-} satisfies LensDataInput;
+  checks: { gapSagFrac: 0.97 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

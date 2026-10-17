@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -34,25 +34,28 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "leica-elmarit-m-135mm-f28",
   maker: "Leica",
   name: "LEICA ELMARIT-M 135mm f/2.8",
   subtitle: "US 3,108,152 Table II — Eugen Hermanni / Ernst Leitz GmbH",
-  specs: ["5 elements / 4 groups", "f ≈ 135.1 mm", "F/2.8", "2ω = 18°", "all-spherical"],
 
-  focalLengthMarketing: 135,
-  focalLengthDesign: 135.11,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.8,
-  lensMounts: ["leica-m", "leica-r"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,108,152",
-  patentAuthors: ["Eugen Hermanni"],
-  patentAssignees: ["Ernst Leitz GmbH"],
-  patentYear: 1963,
-  elementCount: 5,
-  groupCount: 4,
-  apertureBlades: 12,
+  catalog: {
+    lensMounts: ["leica-m", "leica-r"],
+    imageFormat: "135-full-frame",
+    specs: ["5 elements / 4 groups", "f ≈ 135.1 mm", "F/2.8", "2ω = 18°", "all-spherical"],
+    elementCount: 5,
+    groupCount: 4,
+    focalLengthMm: { marketing: 135, design: 135.11 },
+    fNumber: { marketing: 2.8, design: 2.8 },
+  },
+
+  source: {
+    patentNumber: "US 3,108,152",
+    patentYear: 1963,
+    authors: ["Eugen Hermanni"],
+    assignees: ["Ernst Leitz GmbH"],
+  },
 
   elements: [
     {
@@ -63,7 +66,7 @@ const LENS_DATA = {
       nd: 1.62303,
       vd: 60.1,
       indexReference: "e",
-      fl: 308.5,
+      focalLengthMm: 308.5,
       glass: "Leitz proprietary / N-SK16-class crown (e-line source values)",
       apd: false,
       role: "First positive meniscus in the split front collector; convex toward the object.",
@@ -76,7 +79,7 @@ const LENS_DATA = {
       nd: 1.62303,
       vd: 60.1,
       indexReference: "e",
-      fl: 277.3,
+      focalLengthMm: 277.3,
       glass: "Leitz proprietary / N-SK16-class crown (e-line source values)",
       apd: false,
       role: "Second positive meniscus in the front collector, separated from L1 and L3 by thin air lenses.",
@@ -89,11 +92,11 @@ const LENS_DATA = {
       nd: 1.55897,
       vd: 58.3,
       indexReference: "e",
-      fl: 73.5,
+      focalLengthMm: 73.5,
       glass: "Unmatched vintage BaK/SK-class crown (patent e-line values)",
       apd: false,
-      cemented: "D1",
       role: "Positive crown half of the cemented negative meniscus member; planar rear cemented interface.",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -103,11 +106,11 @@ const LENS_DATA = {
       nd: 1.67764,
       vd: 32.0,
       indexReference: "e",
-      fl: -39.0,
+      focalLengthMm: -39.0,
       glass: "SF5 (Schott; patent ne=1.67764, ve=32.0 stored as nd/vd)",
       apd: false,
-      cemented: "D1",
       role: "Negative flint half of the cemented member; supplies the strongest negative surface power.",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -117,7 +120,7 @@ const LENS_DATA = {
       nd: 1.69416,
       vd: 30.9,
       indexReference: "e",
-      fl: 154.8,
+      focalLengthMm: 154.8,
       glass: "Unmatched SF8-class dense flint (Schott e-line source values; patent ne=1.69416, νe=30.9)",
       apd: false,
       role: "Rear positive meniscus behind the stop; balances the front and cemented-member powers.",
@@ -125,25 +128,27 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 84.55995, d: 6.75, nd: 1.62303, elemId: 1, sd: 33.0 },
-    { label: "2", R: 146.3535, d: 0.081, nd: 1.0, elemId: 0, sd: 32.0 },
-    { label: "3", R: 60.9579, d: 5.67, nd: 1.62303, elemId: 2, sd: 32.0 },
-    { label: "4", R: 90.83205, d: 0.081, nd: 1.0, elemId: 0, sd: 30.0 },
-    { label: "5", R: 41.06295, d: 9.9603, nd: 1.55897, elemId: 3, sd: 26.0 },
-    { label: "6", R: 1e15, d: 17.712, nd: 1.67764, elemId: 4, sd: 25.0 },
-    { label: "7", R: 26.4222, d: 10.14525, nd: 1.0, elemId: 0, sd: 20.0 },
-    { label: "STO", R: 1e15, d: 12.39975, nd: 1.0, elemId: 0, sd: 13.32757 },
-    { label: "8", R: 69.40755, d: 3.78, nd: 1.69416, elemId: 5, sd: 17.0 },
-    { label: "9", R: 191.56635, d: 64.962, nd: 1.0, elemId: 0, sd: 17.0 },
+    { label: "1", R: 84.55995, d: 6.75, sd: 33.0, medium: 1 },
+    { label: "2", R: 146.3535, d: 0.081, sd: 32.0 },
+    { label: "3", R: 60.9579, d: 5.67, sd: 32.0, medium: 2 },
+    { label: "4", R: 90.83205, d: 0.081, sd: 30.0 },
+    { label: "5", R: 41.06295, d: 9.9603, sd: 26.0, medium: 3 },
+    { label: "6", R: "flat", d: 17.712, sd: 25.0, medium: 4 },
+    { label: "7", R: 26.4222, d: 10.14525, sd: 20.0 },
+    { label: "STO", R: "flat", d: 12.39975 },
+    { label: "8", R: 69.40755, d: 3.78, sd: 17.0, medium: 5 },
+    { label: "9", R: 191.56635, sd: 17.0 },
   ],
 
-  asph: {},
-  var: {
-    "9": [64.962, 80.21492],
+  focus: {
+    closeFocusM: 1.5,
+    description:
+      "Unit focus: the complete optical cell translates on the helical. BF close-focus value is computed paraxially for 1.5 m object distance from the image plane.",
   },
-  varLabels: [["9", "BF"]],
-  focusDescription:
-    "Unit focus: the complete optical cell translates on the helical. BF close-focus value is computed paraxially for 1.5 m object distance from the image plane.",
+
+  gaps: { "9": { label: "BF", values: [[64.962, 80.21492]] } },
+
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 12 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -153,12 +158,7 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "D1", fromSurface: "5", toSurface: "7" }],
 
-  closeFocusM: 1.5,
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
-  maxFstop: 32,
-  scFill: 0.56,
-  yScFill: 0.6,
-} satisfies LensDataInput;
+  layout: { scFill: 0.56, yScFill: 0.6 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

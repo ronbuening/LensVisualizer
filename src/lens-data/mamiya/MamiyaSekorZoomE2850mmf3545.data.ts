@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -12,11 +12,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ semi-diameters, stop coordinates, and BFDs are scaled uniformly ×28.        ║
  * ║ The all-spherical prescription has no asphere coefficients to transform.     ║
  * ║                                                                              ║
- * ║ Zoom: D8 and BF are the published infinity-state variables. D8 is split at  ║
- * ║ an inferred STO placed 0.0500 patent unit (1.4000 mm scaled) before r9.     ║
- * ║ The stop position is inferred from Fig. 1, not numerically published.        ║
- * ║ STO.sd stores the wide-end base radius derived paraxially for f/3.5; the    ║
- * ║ nominalFno array is the authoritative source f-number sequence.              ║
+ * ║ Zoom: D8 and BF are the published infinity-state variables. D8 is split at   ║
+ * ║ an inferred STO placed 0.0500 patent unit (1.4000 mm scaled) before r9. The  ║
+ * ║ stop position is inferred from Fig. 1, not numerically published. The stop   ║
+ * ║ radius is derived from the design f-number at each station; the station      ║
+ * ║ nominalFNumber values retain the authoritative source f-number sequence.     ║
  * ║                                                                              ║
  * ║ Semi-diameters are modeled, not source-published. They were derived from     ║
  * ║ exact meridional marginal/chief-ray checks, the Fig. 1 silhouette, and the  ║
@@ -35,28 +35,33 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "mamiya-sekor-zoom-e-28-50mm-f3-5-4-5",
   maker: "Mamiya",
   name: "MAMIYA-SEKOR ZOOM E 28-50mm f/3.5-4.5",
   subtitle: "JP 1981-119109 A Example 1 — normalized prescription scaled ×28",
-  specs: [
-    "9 ELEMENTS / 8 GROUPS",
-    "28-47.55 mm DESIGN / 28-50 mm MARKETED",
-    "f/3.5-4.5",
-    "75°-47.6° SOURCE FIELD",
-    "ALL-SPHERICAL",
-  ],
 
-  focalLengthMarketing: [28, 50],
-  focalLengthDesign: [28.0021, 47.5505],
-  lensMounts: ["mamiya-ze"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 1981-119109 A",
-  patentAuthors: ["Yusuke Nanjo"],
-  patentAssignees: ["Mamiya Koki Co., Ltd."],
-  patentYear: 1981,
-  elementCount: 9,
-  groupCount: 8,
+  catalog: {
+    lensMounts: ["mamiya-ze"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "9 ELEMENTS / 8 GROUPS",
+      "28-47.55 mm DESIGN / 28-50 mm MARKETED",
+      "f/3.5-4.5",
+      "75°-47.6° SOURCE FIELD",
+      "ALL-SPHERICAL",
+    ],
+    elementCount: 9,
+    groupCount: 8,
+    focalLengthMm: { marketing: [28, 50], design: [28.0021, 47.5505] },
+  },
+
+  source: {
+    patentNumber: "JP 1981-119109 A",
+    patentYear: 1981,
+    authors: ["Yusuke Nanjo"],
+    assignees: ["Mamiya Koki Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -67,7 +72,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.56883,
       vd: 56.2,
-      fl: 186.9124,
+      focalLengthMm: 186.9124,
       glass: "569562 — BAC4 catalog equivalent (production supplier unspecified)",
       apd: false,
       role: "Front positive lens of major group I.",
@@ -79,7 +84,7 @@ const LENS_DATA = {
       type: "Negative Meniscus (concave to image)",
       nd: 1.72,
       vd: 50.2,
-      fl: -28.304,
+      focalLengthMm: -28.304,
       glass: "720502 — lanthanum crown class (vendor unresolved)",
       apd: false,
       role: "Strong negative member of major group I.",
@@ -91,7 +96,7 @@ const LENS_DATA = {
       type: "Negative Meniscus (concave to image)",
       nd: 1.51823,
       vd: 59,
-      fl: -77.5693,
+      focalLengthMm: -77.5693,
       glass: "518590 — crown class (vendor unresolved)",
       apd: false,
       role: "Negative meniscus continuing the front-group retrofocus power distribution.",
@@ -103,7 +108,7 @@ const LENS_DATA = {
       type: "Positive Meniscus (convex to object)",
       nd: 1.6727,
       vd: 32.1,
-      fl: 55.4885,
+      focalLengthMm: 55.4885,
       glass: "673321 — dense flint class (vendor unresolved)",
       apd: false,
       role: "Positive meniscus completing major group I.",
@@ -115,7 +120,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 49.6,
-      fl: 32.0652,
+      focalLengthMm: 32.0652,
       glass: "773496 — lanthanum high-index class (vendor unresolved)",
       apd: false,
       role: "Front positive member of major group II.",
@@ -127,7 +132,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.56883,
       vd: 56.2,
-      fl: 19.9776,
+      focalLengthMm: 19.9776,
       glass: "569562 — BAC4 catalog equivalent (production supplier unspecified)",
       apd: false,
       role: "Positive member of the cemented sixth patent lens group.",
@@ -140,7 +145,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.72342,
       vd: 38,
-      fl: -16.0211,
+      focalLengthMm: -16.0211,
       glass: "723380 — barium dense-flint class (vendor unresolved)",
       apd: false,
       role: "Negative member of the cemented sixth patent lens group.",
@@ -153,7 +158,7 @@ const LENS_DATA = {
       type: "Negative Meniscus (concave to image)",
       nd: 1.7552,
       vd: 27.5,
-      fl: -43.8747,
+      focalLengthMm: -43.8747,
       glass: "755275 — dense flint class (vendor unresolved)",
       apd: false,
       role: "Negative meniscus in the rear major group.",
@@ -165,7 +170,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 49.6,
-      fl: 34.7531,
+      focalLengthMm: 34.7531,
       glass: "773496 — lanthanum high-index class (vendor unresolved)",
       apd: false,
       role: "Final positive member of major group II.",
@@ -174,51 +179,64 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 212.1084, d: 2.94, nd: 1.56883, elemId: 1, sd: 18 },
-    { label: "2", R: -212.1084, d: 0.196, nd: 1, elemId: 0, sd: 18 },
-    { label: "3", R: 131.6084, d: 1.96, nd: 1.72, elemId: 2, sd: 14.7 },
-    { label: "4", R: 17.5364, d: 9.5872, nd: 1, elemId: 0, sd: 14.7 },
-    { label: "5", R: 92.8536, d: 1.47, nd: 1.51823, elemId: 3, sd: 10.6 },
-    { label: "6", R: 27.902, d: 0.5096, nd: 1, elemId: 0, sd: 10.6 },
-    { label: "7", R: 22.4952, d: 3.234, nd: 1.6727, elemId: 4, sd: 9.6 },
-    { label: "8", R: 53.34, d: 21.238, nd: 1, elemId: 0, sd: 9.6 },
+    { label: "1", R: 212.1084, d: 2.94, sd: 18, medium: 1 },
+    { label: "2", R: -212.1084, d: 0.196, sd: 18 },
+    { label: "3", R: 131.6084, d: 1.96, sd: 14.7, medium: 2 },
+    { label: "4", R: 17.5364, d: 9.5872, sd: 14.7 },
+    { label: "5", R: 92.8536, d: 1.47, sd: 10.6, medium: 3 },
+    { label: "6", R: 27.902, d: 0.5096, sd: 10.6 },
+    { label: "7", R: 22.4952, d: 3.234, sd: 9.6, medium: 4 },
+    { label: "8", R: 53.34, sd: 9.6 },
     // STO position inferred from patent Fig. 1: fixed 1.4000 mm before r9 after the ×28 scale.
-    { label: "STO", R: 1e15, d: 1.4, nd: 1, elemId: 0, sd: 7.323855 },
-    { label: "9", R: 35.0784, d: 2.548, nd: 1.7725, elemId: 5, sd: 7 },
-    { label: "10", R: -81.6256, d: 0.196, nd: 1, elemId: 0, sd: 7 },
-    { label: "11", R: 21.322, d: 4.256, nd: 1.56883, elemId: 6, sd: 7 },
+    { label: "STO", R: "flat", d: 1.4 },
+    { label: "9", R: 35.0784, d: 2.548, sd: 7, medium: 5 },
+    { label: "10", R: -81.6256, d: 0.196, sd: 7 },
+    { label: "11", R: 21.322, d: 4.256, sd: 7, medium: 6 },
     // Cemented n6→n7 junction: downstream element L7 owns the interface.
-    { label: "12", R: -22.5708, d: 1.7556, nd: 1.72342, elemId: 7, sd: 7 },
-    { label: "13", R: 24.6008, d: 5.5104, nd: 1, elemId: 0, sd: 7 },
-    { label: "14", R: 78.9936, d: 1.47, nd: 1.7552, elemId: 8, sd: 8.8 },
-    { label: "15", R: 23.156, d: 1.2852, nd: 1, elemId: 0, sd: 8.8 },
-    { label: "16", R: 166.6084, d: 2.94, nd: 1.7725, elemId: 9, sd: 7.5 },
-    { label: "17", R: -31.7576, d: 37.716, nd: 1, elemId: 0, sd: 7.5 },
+    { label: "12", R: -22.5708, d: 1.7556, sd: 7, medium: 7 },
+    { label: "13", R: 24.6008, d: 5.5104, sd: 7 },
+    { label: "14", R: 78.9936, d: 1.47, sd: 8.8, medium: 8 },
+    { label: "15", R: 23.156, d: 1.2852, sd: 8.8 },
+    { label: "16", R: 166.6084, d: 2.94, sd: 7.5, medium: 9 },
+    { label: "17", R: -31.7576, sd: 7.5 },
   ],
 
-  asph: {},
-
-  /* ── Published infinity-state zoom variables only; no close-focus reconstruction ── */
-  var: {
-    "8": [
-      [21.238, 21.238],
-      [12.46, 12.46],
-      [1.624, 1.624],
+  zoom: {
+    stations: [
+      { focalLengthMm: 28, nominalFNumber: 3.5, label: "Wide" },
+      { focalLengthMm: 34.328, nominalFNumber: 3.9 },
+      { focalLengthMm: 47.544, nominalFNumber: 4.5, label: "Tele" },
     ],
-    "17": [
-      [37.716, 37.716],
-      [42.504, 42.504],
-      [52.584, 52.584],
-    ],
+    step: 0.004,
   },
-  varLabels: [
-    ["8", "D8 to STO"],
-    ["17", "BF"],
-  ],
 
-  zoomPositions: [28, 34.328, 47.544],
-  zoomStep: 0.004,
-  zoomLabels: ["Wide", "Tele"],
+  focus: {
+    closeFocusM: 0.6,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION — the patent publishes infinity-focus zoom states only. The marketed 0.6 m minimum focusing distance is metadata; all authored focus pairs remain at their published infinity values.",
+  },
+
+  /* (moved from var) ── Published infinity-state zoom variables only; no close-focus reconstruction ── */
+  gaps: {
+    "8": {
+      label: "D8 to STO",
+      values: [
+        [21.238, 21.238],
+        [12.46, 12.46],
+        [1.624, 1.624],
+      ],
+    },
+    "17": {
+      label: "BF",
+      values: [
+        [37.716, 37.716],
+        [42.504, 42.504],
+        [52.584, 52.584],
+      ],
+    },
+  },
+
+  aperture: { fStops: [3.5, 4, 4.5, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "I (−)", fromSurface: "1", toSurface: "8" },
@@ -226,15 +244,7 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "G6", fromSurface: "11", toSurface: "13" }],
 
-  closeFocusM: 0.6,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION — the patent publishes infinity-focus zoom states only. The marketed 0.6 m minimum focusing distance is metadata; all authored focus pairs remain at their published infinity values.",
-
-  nominalFno: [3.5, 3.9, 4.5],
-  fstopSeries: [3.5, 4, 4.5, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  yScFill: 0.48,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.48 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

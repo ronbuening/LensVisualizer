@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
@@ -23,8 +23,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON APERTURE STOP:                                                   ║
  * ║    The drawing places the stop in air gap l3, between R7 and R8, but the  ║
  * ║    table does not give an axial stop coordinate. The l3 gap is split      ║
- * ║    equally here. Stop semi-diameter is computed from the f/2.8 entrance   ║
- * ║    pupil using the paraxial transfer to that inferred stop plane.         ║
+ * ║    equally here. The stop radius is derived from the design f-number,     ║
+ * ║    f/2.8.                                                                 ║
  * ║                                                                            ║
  * ║  NOTE ON SEMI-DIAMETERS:                                                  ║
  * ║    The patent omits clear apertures. Values below are conservative        ║
@@ -38,26 +38,23 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "leica-elmarit-r-35mm-f28",
   maker: "Leica",
   name: "LEICA ELMARIT-R 35mm f/2.8",
   subtitle: "FR 1,471,493 — Ernst Leitz G.m.b.H.",
-  specs: ["7 elements / 5 groups", "f ≈ 35.1 mm", "1:2.8", "2ω ≈ 63.3°", "all spherical"],
 
-  focalLengthMarketing: 35,
-  focalLengthDesign: 35.073,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.8,
-  lensMounts: ["leica-r"],
-  imageFormat: "135-full-frame",
-  patentNumber: "FR 1,471,493",
-  patentAuthors: [],
-  patentAssignees: ["Ernst Leitz GmbH"],
-  patentYear: 1967,
-  elementCount: 7,
-  groupCount: 5,
-  focusDescription:
-    "Unit focusing. The patent publishes only the infinity prescription; close focus is approximated as rear BF extension to 0.30 m.",
+  catalog: {
+    lensMounts: ["leica-r"],
+    imageFormat: "135-full-frame",
+    specs: ["7 elements / 5 groups", "f ≈ 35.1 mm", "1:2.8", "2ω ≈ 63.3°", "all spherical"],
+    elementCount: 7,
+    groupCount: 5,
+    focalLengthMm: { marketing: 35, design: 35.073 },
+    fNumber: { marketing: 2.8, design: 2.8 },
+  },
+
+  source: { patentNumber: "FR 1,471,493", patentYear: 1967, authors: [], assignees: ["Ernst Leitz GmbH"] },
 
   /* ── Elements ── */
   elements: [
@@ -69,7 +66,7 @@ const LENS_DATA = {
       nd: 1.4892,
       vd: 69.9,
       indexReference: "e",
-      fl: -54.908,
+      focalLengthMm: -54.908,
       glass: "FK5 / N-FK5 class (Schott legacy; patent n_e)",
       apd: false,
       role: "Front negative meniscus establishing the retrofocus extension and helping field flattening.",
@@ -82,7 +79,7 @@ const LENS_DATA = {
       nd: 1.6713,
       vd: 41.6,
       indexReference: "e",
-      fl: 16.463,
+      focalLengthMm: 16.463,
       glass: "BaSF6 class; J-BASF6 catalog e-line spectral proxy (production supplier unspecified)",
       apd: false,
       role: "Strong positive collector in the front cemented doublet.",
@@ -96,7 +93,7 @@ const LENS_DATA = {
       nd: 1.6299,
       vd: 38.8,
       indexReference: "e",
-      fl: -23.183,
+      focalLengthMm: -23.183,
       glass: "Unmatched (flint/barium-flint position; no confident public catalog match; patent n_e)",
       apd: false,
       role: "Negative rear element of the front doublet; creates the weak positive cemented junction at R4.",
@@ -110,7 +107,7 @@ const LENS_DATA = {
       nd: 1.6241,
       vd: 60.1,
       indexReference: "e",
-      fl: 36.457,
+      focalLengthMm: 36.457,
       glass: "Unmatched (SK16-class patent e-line value; no verified d-line catalog identity)",
       apd: false,
       role: "Front positive member of the triplet-like rear subsystem, immediately before the stop.",
@@ -123,7 +120,7 @@ const LENS_DATA = {
       nd: 1.7046,
       vd: 34.6,
       indexReference: "e",
-      fl: -18.039,
+      focalLengthMm: -18.039,
       glass: "Unmatched (dense flint; no confident public catalog match; patent n_e)",
       apd: false,
       role: "Central negative triplet element; primary negative Petzval and chromatic counterweight.",
@@ -136,7 +133,7 @@ const LENS_DATA = {
       nd: 1.6734,
       vd: 46.9,
       indexReference: "e",
-      fl: -19.237,
+      focalLengthMm: -19.237,
       glass: "Unmatched (BaF13-class patent e-line value; no verified d-line catalog identity)",
       apd: false,
       role: "Negative front element of the rear cemented doublet; forms weak positive cemented junction with L7.",
@@ -150,7 +147,7 @@ const LENS_DATA = {
       nd: 1.694,
       vd: 54.6,
       indexReference: "e",
-      fl: 12.082,
+      focalLengthMm: 12.082,
       glass: "Unmatched (LAK9-class lanthanum crown; patent e-line value stored)",
       apd: false,
       role: "Rear positive doublet member and final strong converging element.",
@@ -160,28 +157,31 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 39.025, d: 2.24, nd: 1.4892, elemId: 1, sd: 13.7 },
-    { label: "2", R: 15.61, d: 15.365, nd: 1.0, elemId: 0, sd: 13.7 },
-    { label: "3", R: 52.115, d: 10.605, nd: 1.6713, elemId: 2, sd: 11.2 },
-    { label: "4", R: -12.88, d: 1.855, nd: 1.6299, elemId: 3, sd: 11.2 },
-    { label: "5", R: -115.255, d: 0.105, nd: 1.0, elemId: 0, sd: 10.7 },
-    { label: "6", R: 23.59, d: 2.975, nd: 1.6241, elemId: 4, sd: 10.2 },
-    { label: "7", R: -609.98, d: 1.6625, nd: 1.0, elemId: 0, sd: 10.2 },
-    { label: "STO", R: 1e15, d: 1.6625, nd: 1.0, elemId: 0, sd: 7.008 },
-    { label: "8", R: -39.935, d: 1.505, nd: 1.7046, elemId: 5, sd: 8.4 },
-    { label: "9", R: 18.935, d: 1.96, nd: 1.0, elemId: 0, sd: 7.8 },
-    { label: "10", R: 400.925, d: 1.505, nd: 1.6734, elemId: 6, sd: 7.8 },
-    { label: "11", R: 12.53, d: 6.3, nd: 1.694, elemId: 7, sd: 8.6 },
-    { label: "12", R: -20.125, d: 38.213, nd: 1.0, elemId: 0, sd: 8.6 },
+    { label: "1", R: 39.025, d: 2.24, sd: 13.7, medium: 1 },
+    { label: "2", R: 15.61, d: 15.365, sd: 13.7 },
+    { label: "3", R: 52.115, d: 10.605, sd: 11.2, medium: 2 },
+    { label: "4", R: -12.88, d: 1.855, sd: 11.2, medium: 3 },
+    { label: "5", R: -115.255, d: 0.105, sd: 10.7 },
+    { label: "6", R: 23.59, d: 2.975, sd: 10.2, medium: 4 },
+    { label: "7", R: -609.98, d: 1.6625, sd: 10.2 },
+    { label: "STO", R: "flat", d: 1.6625 },
+    { label: "8", R: -39.935, d: 1.505, sd: 8.4, medium: 5 },
+    { label: "9", R: 18.935, d: 1.96, sd: 7.8 },
+    { label: "10", R: 400.925, d: 1.505, sd: 7.8, medium: 6 },
+    { label: "11", R: 12.53, d: 6.3, sd: 8.6, medium: 7 },
+    { label: "12", R: -20.125, sd: 8.6 },
   ],
 
-  asph: {},
-
-  /* Patent gives only infinity data. The close-focus value is a unit-focus BF extension estimate for 0.30 m. */
-  var: {
-    "12": [38.213, 44.211],
+  focus: {
+    closeFocusM: 0.3,
+    description:
+      "Unit focusing. The patent publishes only the infinity prescription; close focus is approximated as rear BF extension to 0.30 m.",
   },
-  varLabels: [["12", "BF"]],
+
+  /* (moved from var) Patent gives only infinity data. The close-focus value is a unit-focus BF extension estimate for 0.30 m. */
+  gaps: { "12": { label: "BF", values: [[38.213, 44.211]] } },
+
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16] },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -195,11 +195,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "10", toSurface: "12" },
   ],
 
-  closeFocusM: 0.3,
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
-  scFill: 0.58,
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { scFill: 0.58, yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

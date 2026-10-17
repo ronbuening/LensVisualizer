@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -14,11 +14,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║ STOP: the patent figure places the diaphragm inside d5 but gives   ║
  * ║ no numerical split. The model uses a disclosed midpoint split of   ║
- * ║ the scaled d5 = 9.6192 mm: 4.8096 mm + STO + 4.8096 mm. The stop  ║
- * ║ semi-diameter is calibrated from the patent/manufacturer f/2 value ║
- * ║ using the modeled paraxial entrance pupil. Agreement with f/2 is   ║
- * ║ therefore a calibration result, not independent evidence of the    ║
- * ║ production diaphragm diameter.                                    ║
+ * ║ the scaled d5 = 9.6192 mm: 4.8096 mm + STO + 4.8096 mm. The stop   ║
+ * ║ radius is derived from the design f-number, the patent/manufacturer║
+ * ║ f/2 value. Agreement with f/2 is therefore a calibration result,   ║
+ * ║ not independent evidence of the production diaphragm diameter.     ║
  * ║                                                                    ║
  * ║ SEMI-DIAMETERS: no clear apertures are published. Surface SDs are  ║
  * ║ modeled from exact spherical-ray envelopes over ±17.04° field      ║
@@ -43,24 +42,28 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "leica-summicron-c-40mm-f2",
   maker: "Leica",
   name: "LEICA SUMMICRON-C 40mm f/2",
   subtitle: "DE 2 222 892 A1 · Example 3 (A1 claim 4) · strong production correlation, not manufacturer-confirmed",
-  specs: ["6 ELEMENTS / 4 GROUPS", "f = 39.9987 mm (DESIGN)", "f/2", "2ω = 56.8°", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 40,
-  focalLengthDesign: 39.99869945077084,
-  apertureMarketing: 2,
-  apertureDesign: 2,
-  lensMounts: ["leica-m"],
-  imageFormat: "135-full-frame",
-  patentNumber: "DE 2 222 892 A1",
-  patentAuthors: ["Georg Knetsch", "Hermann Desch", "Heinz Marquardt", "Walter Watz"],
-  patentAssignees: ["Ernst Leitz GmbH"],
-  patentYear: 1973,
-  elementCount: 6,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["leica-m"],
+    imageFormat: "135-full-frame",
+    specs: ["6 ELEMENTS / 4 GROUPS", "f = 39.9987 mm (DESIGN)", "f/2", "2ω = 56.8°", "ALL-SPHERICAL"],
+    elementCount: 6,
+    groupCount: 4,
+    focalLengthMm: { marketing: 40, design: 39.99869945077084 },
+    fNumber: { marketing: 2, design: 2 },
+  },
+
+  source: {
+    patentNumber: "DE 2 222 892 A1",
+    patentYear: 1973,
+    authors: ["Georg Knetsch", "Hermann Desch", "Heinz Marquardt", "Walter Watz"],
+    assignees: ["Ernst Leitz GmbH"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -72,7 +75,7 @@ const LENS_DATA = {
       nd: 1.81527,
       vd: 45.06,
       indexReference: "e",
-      fl: 50.62571904461374,
+      focalLengthMm: 50.62571904461374,
       glass: "Unmatched (native e-line ne=1.81527, nu_e=45.06; supplier unresolved)",
       apd: false,
       role: "Front positive singlet ahead of the stop.",
@@ -85,7 +88,7 @@ const LENS_DATA = {
       nd: 1.81527,
       vd: 45.06,
       indexReference: "e",
-      fl: 28.44327451962119,
+      focalLengthMm: 28.44327451962119,
       glass: "Unmatched (native e-line ne=1.81527, nu_e=45.06; supplier unresolved)",
       apd: false,
       role: "Positive member of the front cemented meniscus.",
@@ -99,7 +102,7 @@ const LENS_DATA = {
       nd: 1.7918,
       vd: 25.87,
       indexReference: "e",
-      fl: -18.466885950888315,
+      focalLengthMm: -18.466885950888315,
       glass: "SF56A (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: false,
       role: "Negative member of the front cemented meniscus, concave toward the stop.",
@@ -113,7 +116,7 @@ const LENS_DATA = {
       nd: 1.64062,
       vd: 35.09,
       indexReference: "e",
-      fl: -40.6672048998297,
+      focalLengthMm: -40.6672048998297,
       glass: "S-TIM6 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: false,
       role: "Stop-side negative member of the rear cemented meniscus.",
@@ -127,7 +130,7 @@ const LENS_DATA = {
       nd: 1.69232,
       vd: 49.18,
       indexReference: "e",
-      fl: 75.40341577817456,
+      focalLengthMm: 75.40341577817456,
       glass: "Unmatched (native e-line ne=1.69232, nu_e=49.18; supplier unresolved)",
       apd: false,
       role: "Image-side positive member of the rear cemented meniscus.",
@@ -141,7 +144,7 @@ const LENS_DATA = {
       nd: 1.64304,
       vd: 59.85,
       indexReference: "e",
-      fl: 35.69369088842701,
+      focalLengthMm: 35.69369088842701,
       glass: "N-LAK21 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: false,
       role: "Rear positive singlet nearest the image plane.",
@@ -150,22 +153,26 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 23.9976, d: 2.8, nd: 1.81527, elemId: 1, sd: 14.2 },
-    { label: "2", R: 54.3276, d: 0.03, nd: 1, elemId: 0, sd: 13.98 },
-    { label: "3", R: 12.9932, d: 3.6996, nd: 1.81527, elemId: 2, sd: 11.31 },
-    { label: "4", R: 25.7724, d: 1.31, nd: 1.7918, elemId: 3, sd: 10.87 },
-    { label: "5", R: 9.1196, d: 4.8096, nd: 1, elemId: 0, sd: 7.91 },
-    { label: "STO", R: 1e15, d: 4.8096, nd: 1, elemId: 0, sd: 6.550350995261337 },
-    { label: "6", R: -12.7992, d: 1.41, nd: 1.64062, elemId: 4, sd: 8.05 },
-    { label: "7", R: -26.2424, d: 1.9, nd: 1.69232, elemId: 5, sd: 9.32 },
-    { label: "8", R: -17.9808, d: 0.03, nd: 1, elemId: 0, sd: 9.8 },
-    { label: "9", R: -7914.48, d: 3.7996, nd: 1.64304, elemId: 6, sd: 10.96 },
-    { label: "10", R: -22.8904, d: 23.639670756819626, nd: 1, elemId: 0, sd: 11.3 },
+    { label: "1", R: 23.9976, d: 2.8, sd: 14.2, medium: 1 },
+    { label: "2", R: 54.3276, d: 0.03, sd: 13.98 },
+    { label: "3", R: 12.9932, d: 3.6996, sd: 11.31, medium: 2 },
+    { label: "4", R: 25.7724, d: 1.31, sd: 10.87, medium: 3 },
+    { label: "5", R: 9.1196, d: 4.8096, sd: 7.91 },
+    { label: "STO", R: "flat", d: 4.8096 },
+    { label: "6", R: -12.7992, d: 1.41, sd: 8.05, medium: 4 },
+    { label: "7", R: -26.2424, d: 1.9, sd: 9.32, medium: 5 },
+    { label: "8", R: -17.9808, d: 0.03, sd: 9.8 },
+    { label: "9", R: -7914.48, d: 3.7996, sd: 10.96, medium: 6 },
+    { label: "10", R: -22.8904, d: 23.639670756819626, sd: 11.3 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 0.8,
+    description:
+      "Not modeled — production helical focus reaches 0.8 m, but the patent supplies only the nominal prescription; no finite-focus internal spacing is modeled.",
+  },
+
+  aperture: { nominalFNumber: 2, fStops: [2, 2.8, 4, 5.6, 8, 11, 16] },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -178,14 +185,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
 
-  closeFocusM: 0.8,
-  focusDescription:
-    "Not modeled — production helical focus reaches 0.8 m, but the patent supplies only the nominal prescription; no finite-focus internal spacing is modeled.",
-
-  nominalFno: 2,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
-
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

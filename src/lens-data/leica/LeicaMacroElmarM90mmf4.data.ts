@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * LEICA MACRO-ELMAR-M 90mm f/4 — DE 2 246 966 A1, Example 1 (claim 3).
@@ -14,9 +14,9 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * Stop: Fig. 1 places the diaphragm inside d6 but does not dimension its station.
  * The rendered figure was measured at approximately 32.6% of d6 after surface 6,
- * giving 7.459 mm before STO and 15.428 mm after STO (sum = 22.887 mm). STO.sd is
- * calibrated from the implemented paraxial entrance pupil to reproduce the source
- * f/4 target; it is not a published physical diaphragm diameter.
+ * giving 7.459 mm before STO and 15.428 mm after STO (sum = 22.887 mm). The stop
+ * radius is derived from the design f-number, the source f/4 target; it is not a
+ * published physical diaphragm diameter.
  *
  * Semi-diameters: the patent publishes none. Surface SDs below are modeled from
  * exact spherical e-line ray envelopes for the full pupil at 8.1 degrees (0.6 x the
@@ -33,24 +33,28 @@ import type { LensDataInput } from "../../types/optics.js";
  * only as product metadata and does not create internal focus motion here.
  */
 const LENS_DATA = {
+  schema: 2,
   key: "leica-macro-elmar-m-90mm-f4",
   maker: "Leica",
   name: "LEICA MACRO-ELMAR-M 90mm f/4",
   subtitle: "DE 2 246 966 A1 Example 1 — inferred production correlation",
-  specs: ["4 ELEMENTS / 4 GROUPS", "f = 89.958 mm (modeled)", "f/4 (stop-calibrated)", "2ω = 27°", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 90,
-  focalLengthDesign: 89.957712316549,
-  apertureMarketing: 4,
-  apertureDesign: 4,
-  lensMounts: ["leica-m"],
-  imageFormat: "135-full-frame",
-  patentNumber: "DE 2 246 966 A1",
-  patentAuthors: ["Georg Knetsch", "Walter Watz"],
-  patentAssignees: ["Ernst Leitz GmbH"],
-  patentYear: 1974,
-  elementCount: 4,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["leica-m"],
+    imageFormat: "135-full-frame",
+    specs: ["4 ELEMENTS / 4 GROUPS", "f = 89.958 mm (modeled)", "f/4 (stop-calibrated)", "2ω = 27°", "ALL-SPHERICAL"],
+    elementCount: 4,
+    groupCount: 4,
+    focalLengthMm: { marketing: 90, design: 89.957712316549 },
+    fNumber: { marketing: 4, design: 4 },
+  },
+
+  source: {
+    patentNumber: "DE 2 246 966 A1",
+    patentYear: 1974,
+    authors: ["Georg Knetsch", "Walter Watz"],
+    assignees: ["Ernst Leitz GmbH"],
+  },
 
   elements: [
     {
@@ -61,7 +65,7 @@ const LENS_DATA = {
       nd: 1.64304,
       vd: 59.85,
       indexReference: "e",
-      fl: 46.793896231130866,
+      focalLengthMm: 46.793896231130866,
       glass: "N-LAK21 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
@@ -72,7 +76,7 @@ const LENS_DATA = {
       nd: 1.64304,
       vd: 59.85,
       indexReference: "e",
-      fl: 55.18405004565967,
+      focalLengthMm: 55.18405004565967,
       glass: "N-LAK21 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
@@ -83,7 +87,7 @@ const LENS_DATA = {
       nd: 1.75458,
       vd: 34.72,
       indexReference: "e",
-      fl: -22.54086907294271,
+      focalLengthMm: -22.54086907294271,
       glass: "LAFN7 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
@@ -94,27 +98,31 @@ const LENS_DATA = {
       nd: 1.7918,
       vd: 25.87,
       indexReference: "e",
-      fl: 154.32363383636715,
+      focalLengthMm: 154.32363383636715,
       glass: "SF56A (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 23.1795, d: 4.032, nd: 1.64304, elemId: 1, sd: 14.1 },
-    { label: "2", R: 94.0545, d: 0.072, nd: 1, elemId: 0, sd: 14.1 },
-    { label: "3", R: 20.8503, d: 3.699, nd: 1.64304, elemId: 2, sd: 12.7 },
-    { label: "4", R: 47.0448, d: 1.863, nd: 1, elemId: 0, sd: 12.7 },
-    { label: "5", R: 91.8495, d: 1.485, nd: 1.75458, elemId: 3, sd: 11 },
+    { label: "1", R: 23.1795, d: 4.032, sd: 14.1, medium: 1 },
+    { label: "2", R: 94.0545, d: 0.072, sd: 14.1 },
+    { label: "3", R: 20.8503, d: 3.699, sd: 12.7, medium: 2 },
+    { label: "4", R: 47.0448, d: 1.863, sd: 12.7 },
+    { label: "5", R: 91.8495, d: 1.485, sd: 11, medium: 3 },
     // STO station inferred from DE2246966 Fig. 1; 7.459 + 15.428 = published d6 = 22.887 mm.
-    { label: "6", R: 14.2515, d: 7.459, nd: 1, elemId: 0, sd: 11 },
-    { label: "STO", R: 1e15, d: 15.428, nd: 1, elemId: 0, sd: 7.316636566 },
-    { label: "7", R: 59.3019, d: 2.952, nd: 1.7918, elemId: 4, sd: 10 },
-    { label: "8", R: 112.6845, d: 45.918, nd: 1, elemId: 0, sd: 10 },
+    { label: "6", R: 14.2515, d: 7.459, sd: 11 },
+    { label: "STO", R: "flat", d: 15.428 },
+    { label: "7", R: 59.3019, d: 2.952, sd: 10, medium: 4 },
+    { label: "8", R: 112.6845, d: 45.918, sd: 10 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 0.8,
+    description:
+      "Not modeled — the patent supplies a static prescription, with no finite-focus spacings. Production minimum focus is 0.8 m.",
+  },
+
+  aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "FRONT", fromSurface: "1", toSurface: "6" },
@@ -122,15 +130,7 @@ const LENS_DATA = {
   ],
   doublets: [],
 
-  closeFocusM: 0.8,
-  focusDescription:
-    "Not modeled — the patent supplies a static prescription, with no finite-focus spacings. Production minimum focus is 0.8 m.",
-
-  nominalFno: 4,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  yScFill: 0.34,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.34 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

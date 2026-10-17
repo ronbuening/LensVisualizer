@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -27,10 +27,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ 16.500 / 23.224 / 33.386 mm (W/M/T); stored track includes the plate.        ║
  * ║ No uniform prescription scaling is applied (s = 1).                         ║
  * ║                                                                              ║
- * ║ Aperture stop: the patent publishes the stop plane but no diameter. STO.sd  ║
- * ║ is the wide-end f/3.55 calibration (8.057096 mm semi-diameter). The         ║
- * ║ nominalFno array calibrates the state-dependent wide-open pupil model; this  ║
- * ║ is not independent evidence of the manufactured iris diameter.              ║
+ * ║ Aperture stop: the patent publishes the stop plane but no diameter. The stop ║
+ * ║ radius is derived from the design f-number at each station, with the         ║
+ * ║ published wide-end f/3.55 target. The nominalFno array calibrates the        ║
+ * ║ state-dependent wide-open pupil model; this is not independent evidence of   ║
+ * ║ the manufactured iris diameter.                                              ║
  * ║                                                                              ║
  * ║ NOTE ON SEMI-DIAMETERS: not patent-published. Middle groups (L6-L15) keep  ║
  * ║ the original exact-ray-envelope values (within ~15% of Fig. 1). Gr1 (S1-S9)║
@@ -51,30 +52,34 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "leica-super-vario-elmar-sl-16-35mm-f35-45-asph",
   maker: "Leica",
   name: "LEICA SUPER-VARIO-ELMAR-SL 16-35mm f/3.5-4.5 ASPH.",
   subtitle: "JP 2018-087903 A Example 1 — strong production correlation, not manufacturer-confirmed",
-  specs: [
-    "18 ELEMENTS / 12 GROUPS",
-    "16-35mm marketed; 16.399-34.194mm computed design EFL",
-    "f/3.5-4.5 marketed; f/3.55-4.60 modeled",
-    "4 ASPHERICAL SURFACES / 2 ELEMENTS",
-    "0.35 m PUBLISHED MODEL FOCUS ENDPOINT; 0.25 m MARKETED MFD",
-  ],
 
-  focalLengthMarketing: [16, 35],
-  focalLengthDesign: [16.398554, 34.194222],
-  apertureMarketing: 3.5,
-  apertureDesign: 3.55,
-  lensMounts: ["l-mount"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 2018-087903 A",
-  patentAuthors: ["Yoshihito Souma"],
-  patentAssignees: ["Konica Minolta, Inc."],
-  patentYear: 2018,
-  elementCount: 18,
-  groupCount: 12,
+  catalog: {
+    lensMounts: ["l-mount"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "18 ELEMENTS / 12 GROUPS",
+      "16-35mm marketed; 16.399-34.194mm computed design EFL",
+      "f/3.5-4.5 marketed; f/3.55-4.60 modeled",
+      "4 ASPHERICAL SURFACES / 2 ELEMENTS",
+      "0.35 m PUBLISHED MODEL FOCUS ENDPOINT; 0.25 m MARKETED MFD",
+    ],
+    elementCount: 18,
+    groupCount: 12,
+    focalLengthMm: { marketing: [16, 35], design: [16.398554, 34.194222] },
+    fNumber: { marketing: 3.5, design: 3.55 },
+  },
+
+  source: {
+    patentNumber: "JP 2018-087903 A",
+    patentYear: 2018,
+    authors: ["Yoshihito Souma"],
+    assignees: ["Konica Minolta, Inc."],
+  },
 
   elements: [
     {
@@ -85,7 +90,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.72,
       indexReference: "d",
-      fl: -46.352102,
+      focalLengthMm: -46.352102,
       glass: "TAFD5G (HOYA catalog equivalent; supplier unspecified)",
       role: "Front negative element of Gr1",
     },
@@ -97,7 +102,7 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.39,
       indexReference: "d",
-      fl: -39.698505,
+      focalLengthMm: -39.698505,
       glass: "L-BAL42 (OHARA catalog equivalent; supplier unspecified)",
       role: "Double-sided aspherical negative element of Gr1",
     },
@@ -109,10 +114,10 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.84,
       indexReference: "d",
-      fl: 45.089668,
+      focalLengthMm: 45.089668,
       glass: "E-FD2 (HOYA catalog equivalent; supplier unspecified)",
-      cemented: "D1",
       role: "Positive member of Gr1 cemented pair D1",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -122,10 +127,10 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.67,
       indexReference: "d",
-      fl: -23.411293,
+      focalLengthMm: -23.411293,
       glass: "TAC8 (HOYA catalog equivalent; supplier unspecified)",
-      cemented: "D1",
       role: "Negative member of Gr1 cemented pair D1",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -135,7 +140,7 @@ const LENS_DATA = {
       nd: 1.74077,
       vd: 27.76,
       indexReference: "d",
-      fl: 48.74463,
+      focalLengthMm: 48.74463,
       glass: "E-FD13 (HOYA catalog equivalent; supplier unspecified)",
       role: "Rear positive meniscus of Gr1",
     },
@@ -147,10 +152,10 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.44,
       indexReference: "d",
-      fl: 54.922455,
+      focalLengthMm: 54.922455,
       glass: "FC5 (HOYA catalog equivalent; supplier unspecified)",
-      cemented: "D2",
       role: "Positive member of the published Gr2a focus group",
+      cemented: "D2",
     },
     {
       id: 7,
@@ -160,10 +165,10 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.62,
       indexReference: "d",
-      fl: -108.681447,
+      focalLengthMm: -108.681447,
       glass: "N-LAF34 (SCHOTT catalog equivalent of the HOYA TAF1 coordinate; supplier unspecified)",
-      cemented: "D2",
       role: "Negative member of the published Gr2a focus group",
+      cemented: "D2",
     },
     {
       id: 8,
@@ -173,7 +178,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.44,
       indexReference: "d",
-      fl: 39.046699,
+      focalLengthMm: 39.046699,
       glass: "FC5 (HOYA catalog equivalent; supplier unspecified)",
       role: "Front positive element of Gr2b behind the stop",
     },
@@ -185,10 +190,10 @@ const LENS_DATA = {
       nd: 1.76182,
       vd: 26.61,
       indexReference: "d",
-      fl: 65.664972,
+      focalLengthMm: 65.664972,
       glass: "FD140 (HOYA catalog equivalent; supplier unspecified)",
-      cemented: "D3",
       role: "Positive member of Gr2b cemented pair D3",
+      cemented: "D3",
     },
     {
       id: 10,
@@ -198,10 +203,10 @@ const LENS_DATA = {
       nd: 1.91082,
       vd: 35.25,
       indexReference: "d",
-      fl: -21.78556,
+      focalLengthMm: -21.78556,
       glass: "TAFD35 (HOYA catalog equivalent; supplier unspecified)",
-      cemented: "D3",
       role: "Negative member of Gr2b cemented pair D3",
+      cemented: "D3",
     },
     {
       id: 11,
@@ -211,7 +216,7 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.39,
       indexReference: "d",
-      fl: 28.559184,
+      focalLengthMm: 28.559184,
       glass: "L-BAL42 (OHARA catalog equivalent; supplier unspecified)",
       role: "Double-sided aspherical front positive element of Gr3",
     },
@@ -223,10 +228,10 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.44,
       indexReference: "d",
-      fl: 21.566812,
+      focalLengthMm: 21.566812,
       glass: "FC5 (HOYA catalog equivalent; supplier unspecified)",
-      cemented: "D4",
       role: "Positive member of Gr3 cemented pair D4",
+      cemented: "D4",
     },
     {
       id: 13,
@@ -236,10 +241,10 @@ const LENS_DATA = {
       nd: 1.91082,
       vd: 35.25,
       indexReference: "d",
-      fl: -60.169521,
+      focalLengthMm: -60.169521,
       glass: "TAFD35 (HOYA catalog equivalent; supplier unspecified)",
-      cemented: "D4",
       role: "Negative member of Gr3 cemented pair D4",
+      cemented: "D4",
     },
     {
       id: 14,
@@ -249,10 +254,10 @@ const LENS_DATA = {
       nd: 1.91082,
       vd: 35.25,
       indexReference: "d",
-      fl: -13.560009,
+      focalLengthMm: -13.560009,
       glass: "TAFD35 (HOYA catalog equivalent; supplier unspecified)",
-      cemented: "D5",
       role: "Negative member of Gr3 cemented pair D5",
+      cemented: "D5",
     },
     {
       id: 15,
@@ -262,10 +267,10 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       indexReference: "d",
-      fl: 24.86216,
+      focalLengthMm: 24.86216,
       glass: "N-BK7 (SCHOTT catalog equivalent of the HOYA BSC7 coordinate; supplier unspecified)",
-      cemented: "D5",
       role: "Positive member of Gr3 cemented pair D5",
+      cemented: "D5",
     },
     {
       id: 16,
@@ -275,14 +280,14 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.88,
       indexReference: "d",
-      fl: 15.29294,
+      focalLengthMm: 15.29294,
       glass: "E-FDS1 (HOYA catalog equivalent; supplier unspecified)",
       apd: "patent",
       apdNote:
         "Patent Table 1 ΔPgf = +0.028 by the patent's line (Pgf + 0.0018·νd − 0.64842), so PgF = 0.6388; runtime dPgF +0.03016.",
-      dPgF: 0.030156,
-      cemented: "D6",
       role: "Positive member of Gr4 cemented pair D6; patent condition-(6) glass",
+      cemented: "D6",
+      dPgF: 0.030156,
     },
     {
       id: 17,
@@ -292,10 +297,10 @@ const LENS_DATA = {
       nd: 1.91082,
       vd: 35.25,
       indexReference: "d",
-      fl: -21.901881,
+      focalLengthMm: -21.901881,
       glass: "TAFD35 (HOYA catalog equivalent; supplier unspecified)",
-      cemented: "D6",
       role: "Negative member of Gr4 cemented pair D6",
+      cemented: "D6",
     },
     {
       id: 18,
@@ -305,45 +310,131 @@ const LENS_DATA = {
       nd: 1.91082,
       vd: 35.25,
       indexReference: "d",
-      fl: -22.44461,
+      focalLengthMm: -22.44461,
       glass: "TAFD35 (HOYA catalog equivalent; supplier unspecified)",
       role: "Rear negative element of Gr4",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 50.203, d: 3.0, nd: 1.83481, elemId: 1, sd: 26.6 },
-    { label: "2", R: 21.258, d: 8.955, nd: 1.0, elemId: 0, sd: 17.9 },
-    { label: "3A", R: 102.763, d: 2.5, nd: 1.58313, elemId: 2, sd: 19.8 },
-    { label: "4A", R: 18.724, d: 6.128, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "5", R: 93.02, d: 5.786, nd: 1.64769, elemId: 3, sd: 16.5 },
-    { label: "6", R: -41.528, d: 2.0, nd: 1.72916, elemId: 4, sd: 16.0 },
-    { label: "7", R: 29.574, d: 2.577, nd: 1.0, elemId: 0, sd: 13.6 },
-    { label: "8", R: 32.375, d: 4.084, nd: 1.74077, elemId: 5, sd: 15.0 },
-    { label: "9", R: 296.302, d: 24.477, nd: 1.0, elemId: 0, sd: 15.0 },
-    { label: "10", R: -530.796, d: 2.766, nd: 1.48749, elemId: 6, sd: 10.7 },
-    { label: "11", R: -25.532, d: 1.0, nd: 1.7725, elemId: 7, sd: 10.8 },
-    { label: "12", R: -37.316, d: 8.055, nd: 1.0, elemId: 0, sd: 10.9 },
-    { label: "STO", R: 1e15, d: 2.0, nd: 1.0, elemId: 0, sd: 8.057096 },
-    { label: "14", R: 25.829, d: 6.719, nd: 1.48749, elemId: 8, sd: 11.7 },
-    { label: "15", R: -66.195, d: 5.9, nd: 1.0, elemId: 0, sd: 11.6 },
-    { label: "16", R: -29.265, d: 2.417, nd: 1.76182, elemId: 9, sd: 11.1 },
-    { label: "17", R: -19.123, d: 1.013, nd: 1.91082, elemId: 10, sd: 11.3 },
-    { label: "18", R: -540.532, d: 4.056, nd: 1.0, elemId: 0, sd: 11.9 },
-    { label: "19A", R: 42.882, d: 6.247, nd: 1.58313, elemId: 11, sd: 12.5 },
-    { label: "20A", R: -25.767, d: 0.15, nd: 1.0, elemId: 0, sd: 12.7 },
-    { label: "21", R: 40.485, d: 9.026, nd: 1.48749, elemId: 12, sd: 11.6 },
-    { label: "22", R: -13.164, d: 1.035, nd: 1.91082, elemId: 13, sd: 11.6 },
-    { label: "23", R: -17.975, d: 0.15, nd: 1.0, elemId: 0, sd: 12.3 },
-    { label: "24", R: -42.442, d: 1.007, nd: 1.91082, elemId: 14, sd: 10.7 },
-    { label: "25", R: 17.617, d: 6.06, nd: 1.5168, elemId: 15, sd: 10.1 },
-    { label: "26", R: -41.908, d: 0.5, nd: 1.0, elemId: 0, sd: 10.1 },
-    { label: "27", R: -171.418, d: 6.994, nd: 1.92286, elemId: 16, sd: 11.8 },
-    { label: "28", R: -13.295, d: 1.5, nd: 1.91082, elemId: 17, sd: 11.5 },
-    { label: "29", R: -42.004, d: 1.937, nd: 1.0, elemId: 0, sd: 11.5 },
-    { label: "30", R: -20.443, d: 1.5, nd: 1.91082, elemId: 18, sd: 10.9 },
-    { label: "31", R: 1e15, d: 16.5, nd: 1.0, elemId: 0, sd: 12.8 }, // D31 var — gap to the PT plate
+    { label: "1", R: 50.203, d: 3.0, sd: 26.6, medium: 1 },
+    { label: "2", R: 21.258, d: 8.955, sd: 17.9 },
+    {
+      label: "3A",
+      R: 102.763,
+      d: 2.5,
+      sd: 19.8,
+      medium: 2,
+      asphere: { K: 0, A4: 9.35436e-6, A6: -2.36867e-8, A8: -3.81596e-11, A10: 1.25911e-13, A12: 0, A14: 0 },
+    },
+    {
+      label: "4A",
+      R: 18.724,
+      d: 6.128,
+      sd: 16.0,
+      asphere: { K: 0, A4: -1.01736e-5, A6: -2.73739e-8, A8: -3.93424e-10, A10: 5.42735e-13, A12: 0, A14: 0 },
+    },
+    { label: "5", R: 93.02, d: 5.786, sd: 16.5, medium: 3 },
+    { label: "6", R: -41.528, d: 2.0, sd: 16.0, medium: 4 },
+    { label: "7", R: 29.574, d: 2.577, sd: 13.6 },
+    { label: "8", R: 32.375, d: 4.084, sd: 15.0, medium: 5 },
+    { label: "9", R: 296.302, sd: 15.0 },
+    { label: "10", R: -530.796, d: 2.766, sd: 10.7, medium: 6 },
+    { label: "11", R: -25.532, d: 1.0, sd: 10.8, medium: 7 },
+    { label: "12", R: -37.316, sd: 10.9 },
+    { label: "STO", R: "flat", d: 2.0 },
+    { label: "14", R: 25.829, d: 6.719, sd: 11.7, medium: 8 },
+    { label: "15", R: -66.195, d: 5.9, sd: 11.6 },
+    { label: "16", R: -29.265, d: 2.417, sd: 11.1, medium: 9 },
+    { label: "17", R: -19.123, d: 1.013, sd: 11.3, medium: 10 },
+    { label: "18", R: -540.532, sd: 11.9 },
+    {
+      label: "19A",
+      R: 42.882,
+      d: 6.247,
+      sd: 12.5,
+      medium: 11,
+      asphere: { K: 0, A4: -4.72963e-6, A6: -2.06187e-8, A8: 8.70833e-10, A10: -7.66952e-12, A12: 0, A14: 0 },
+    },
+    {
+      label: "20A",
+      R: -25.767,
+      d: 0.15,
+      sd: 12.7,
+      asphere: { K: 0, A4: 2.08902e-5, A6: -2.67501e-8, A8: 1.02156e-9, A10: -8.04252e-12, A12: 0, A14: 0 },
+    },
+    { label: "21", R: 40.485, d: 9.026, sd: 11.6, medium: 12 },
+    { label: "22", R: -13.164, d: 1.035, sd: 11.6, medium: 13 },
+    { label: "23", R: -17.975, d: 0.15, sd: 12.3 },
+    { label: "24", R: -42.442, d: 1.007, sd: 10.7, medium: 14 },
+    { label: "25", R: 17.617, d: 6.06, sd: 10.1, medium: 15 },
+    { label: "26", R: -41.908, sd: 10.1 },
+    { label: "27", R: -171.418, d: 6.994, sd: 11.8, medium: 16 },
+    { label: "28", R: -13.295, d: 1.5, sd: 11.5, medium: 17 },
+    { label: "29", R: -42.004, d: 1.937, sd: 11.5 },
+    { label: "30", R: -20.443, d: 1.5, sd: 10.9, medium: 18 },
+    { label: "31", R: "flat", sd: 12.8 }, // D31 var — gap to the PT plate
   ],
+
+  zoom: {
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    stations: [
+      { focalLengthMm: 16.4, nominalFNumber: 3.55, label: "Wide", published: true, publishedFocus: [1] },
+      { focalLengthMm: 23.7, nominalFNumber: 4.1, published: true, publishedFocus: [1] },
+      { focalLengthMm: 34.2, nominalFNumber: 4.6, label: "Tele", published: true, publishedFocus: [1] },
+    ],
+  },
+
+  focus: {
+    closeFocusM: 0.35,
+    description:
+      "PUBLISHED: Gr2a (cemented L6+L7, surfaces 10-12) translates imageward to the patent's nominal 0.35 m state. The marketed 0.25 m MFD is metadata only; no internal 0.25 m reconstruction is authored.",
+  },
+
+  gaps: {
+    "9": {
+      label: "D9 / Gr1–Gr2a",
+      values: [
+        [24.477, 26.783],
+        [12.027, 14.553],
+        [4.313, 7.123],
+      ],
+    },
+    "12": {
+      label: "D12 / Gr2a–STO",
+      values: [
+        [8.055, 5.75],
+        [8.055, 5.53],
+        [8.055, 5.246],
+      ],
+    },
+    "18": {
+      label: "D18 / Gr2–Gr3",
+      values: [
+        [4.056, 4.056],
+        [2.141, 2.141],
+        [0.5, 0.5],
+      ],
+    },
+    "26": {
+      label: "D26 / Gr3–Gr4",
+      values: [
+        [0.5, 0.5],
+        [2.415, 2.415],
+        [4.056, 4.056],
+      ],
+    },
+    "31": {
+      label: "D31 / Gr4–PT",
+      values: [
+        [16.5, 16.5],
+        [23.224, 23.224],
+        [33.386, 33.386],
+      ],
+    },
+  },
+
+  aperture: { fStops: [3.5, 4, 4.5, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Parallel plate PT (patent surfaces 32–33): traced, not drawn ── */
   rearPlates: [
@@ -357,83 +448,6 @@ const LENS_DATA = {
       source: "JP 2018-087903 A, Example 1 surfaces 32–33 (BF 0.500)",
     },
   ],
-
-  asph: {
-    "3A": {
-      K: 0,
-      A4: 9.35436e-6,
-      A6: -2.36867e-8,
-      A8: -3.81596e-11,
-      A10: 1.25911e-13,
-      A12: 0,
-      A14: 0,
-    },
-    "4A": {
-      K: 0,
-      A4: -1.01736e-5,
-      A6: -2.73739e-8,
-      A8: -3.93424e-10,
-      A10: 5.42735e-13,
-      A12: 0,
-      A14: 0,
-    },
-    "19A": {
-      K: 0,
-      A4: -4.72963e-6,
-      A6: -2.06187e-8,
-      A8: 8.70833e-10,
-      A10: -7.66952e-12,
-      A12: 0,
-      A14: 0,
-    },
-    "20A": {
-      K: 0,
-      A4: 2.08902e-5,
-      A6: -2.67501e-8,
-      A8: 1.02156e-9,
-      A10: -8.04252e-12,
-      A12: 0,
-      A14: 0,
-    },
-  },
-
-  var: {
-    "9": [
-      [24.477, 26.783],
-      [12.027, 14.553],
-      [4.313, 7.123],
-    ],
-    "12": [
-      [8.055, 5.75],
-      [8.055, 5.53],
-      [8.055, 5.246],
-    ],
-    "18": [
-      [4.056, 4.056],
-      [2.141, 2.141],
-      [0.5, 0.5],
-    ],
-    "26": [
-      [0.5, 0.5],
-      [2.415, 2.415],
-      [4.056, 4.056],
-    ],
-    "31": [
-      [16.5, 16.5],
-      [23.224, 23.224],
-      [33.386, 33.386],
-    ],
-  },
-  varLabels: [
-    ["9", "D9 / Gr1–Gr2a"],
-    ["12", "D12 / Gr2a–STO"],
-    ["18", "D18 / Gr2–Gr3"],
-    ["26", "D26 / Gr3–Gr4"],
-    ["31", "D31 / Gr4–PT"],
-  ],
-
-  zoomPositions: [16.4, 23.7, 34.2],
-  zoomLabels: ["Wide", "Tele"],
 
   groups: [
     { text: "Gr1", fromSurface: "1", toSurface: "9" },
@@ -450,17 +464,7 @@ const LENS_DATA = {
     { text: "D6", fromSurface: "27", toSurface: "29" },
   ],
 
-  closeFocusM: 0.35,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  focusDescription:
-    "PUBLISHED: Gr2a (cemented L6+L7, surfaces 10-12) translates imageward to the patent's nominal 0.35 m state. The marketed 0.25 m MFD is metadata only; no internal 0.25 m reconstruction is authored.",
-
-  nominalFno: [3.55, 4.1, 4.6],
-  fstopSeries: [3.5, 4, 4.5, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

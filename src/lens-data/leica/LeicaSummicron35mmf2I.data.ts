@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * LENS DATA — LEICA SUMMICRON 35mm f/2 I
@@ -13,9 +13,9 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * STOP: Figure 2 places diaphragm 10 approximately at the midpoint of a3 = 10.9 mm. Because the patent does not
  * dimension the split, the modeled scaled gap 3.815 mm is split equally as 1.9075 mm + 1.9075 mm. The physical stop
- * diameter is unpublished. STO sd = 6.058798 mm is paraxially calibrated to the patent F:2 target; this is not
- * independent evidence of diaphragm diameter. The rounded stored stop gives modeled f/2.000000026, used for
- * apertureDesign and nominalFno.
+ * diameter is unpublished. The stop radius is derived from the design f-number; this is not independent evidence of
+ * diaphragm diameter. The design f-number 2.000000026 is the modeled f-number of the former paraxial stop calibration
+ * to the patent F:2 target, retained in fNumber.design and nominalFNumber.
  *
  * SEMI-DIAMETERS: The patent publishes none. These are modeled from exact meridional ray envelopes for the infinity
  * state (full on-axis aperture plus the default fan at ±0.6 of the full-frame diagonal half-field), then constrained
@@ -33,168 +33,175 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "leica-summicron-35mm-f2-i",
   maker: "Leica",
   name: "LEICA SUMMICRON 35mm f/2 I",
   subtitle: "US 3,006,249 Example II — scaled ×0.35; production correlation not manufacturer-confirmed",
-  specs: ["8 ELEMENTS / 6 GROUPS", "35.226 mm DESIGN EFL", "f/2.0", "62° PATENT FIELD"],
 
-  focalLengthMarketing: 35,
-  focalLengthDesign: 35.225961,
-  apertureMarketing: 2,
-  apertureDesign: 2.000000026,
-  lensMounts: ["leica-m"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,006,249",
-  patentAuthors: ["Walter Mandler"],
-  patentAssignees: ["Ernst Leitz Canada Limited"],
-  patentYear: 1961,
-  elementCount: 8,
-  groupCount: 6,
+  catalog: {
+    lensMounts: ["leica-m"],
+    imageFormat: "135-full-frame",
+    specs: ["8 ELEMENTS / 6 GROUPS", "35.226 mm DESIGN EFL", "f/2.0", "62° PATENT FIELD"],
+    elementCount: 8,
+    groupCount: 6,
+    focalLengthMm: { marketing: 35, design: 35.225961 },
+    fNumber: { marketing: 2, design: 2.000000026 },
+  },
+
+  source: {
+    patentNumber: "US 3,006,249",
+    patentYear: 1961,
+    authors: ["Walter Mandler"],
+    assignees: ["Ernst Leitz Canada Limited"],
+  },
 
   elements: [
     {
       id: 1,
       name: "L1",
-      diagramLabel: "I",
       label: "Element I",
       type: "Positive Meniscus",
       nd: 1.744,
       vd: 44.9,
       indexReference: "d",
-      fl: 123.692106,
+      focalLengthMm: 123.692106,
       glass: "H-LaF3B (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Outer positive meniscus of the front half.",
+      diagramLabel: "I",
     },
     {
       id: 2,
       name: "L2",
-      diagramLabel: "II",
       label: "Element II",
       type: "Positive Meniscus",
       nd: 1.744,
       vd: 44.9,
       indexReference: "d",
-      fl: 19.070418,
+      focalLengthMm: 19.070418,
       glass: "H-LaF3B (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Front member of the first cemented composite negative pair.",
+      diagramLabel: "II",
       cemented: "D1",
     },
     {
       id: 3,
       name: "L3",
-      diagramLabel: "III",
       label: "Element III",
       type: "Negative Meniscus",
       nd: 1.6477,
       vd: 33.88,
       indexReference: "d",
-      fl: -15.137974,
+      focalLengthMm: -15.137974,
       glass: "H-ZF1 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Rear member of the first cemented composite negative pair.",
+      diagramLabel: "III",
       cemented: "D1",
     },
     {
       id: 4,
       name: "L4",
-      diagramLabel: "IV",
       label: "Element IV",
       type: "Positive Meniscus",
       nd: 1.72,
       vd: 50.31,
       indexReference: "d",
-      fl: 121.820695,
+      focalLengthMm: 121.820695,
       glass: "LAC10 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Positive meniscus adjacent to the diaphragm in the front half.",
+      diagramLabel: "IV",
     },
     {
       id: 5,
       name: "L5",
-      diagramLabel: "V",
       label: "Element V",
       type: "Positive Meniscus",
       nd: 1.72,
       vd: 50.31,
       indexReference: "d",
-      fl: 48.191255,
+      focalLengthMm: 48.191255,
       glass: "LAC10 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Positive meniscus adjacent to the diaphragm in the rear half.",
+      diagramLabel: "V",
     },
     {
       id: 6,
       name: "L6",
-      diagramLabel: "VI",
       label: "Element VI",
       type: "Negative Meniscus",
       nd: 1.6989,
       vd: 30.05,
       indexReference: "d",
-      fl: -16.867163,
+      focalLengthMm: -16.867163,
       glass: "S-TIM35 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Front member of the second cemented composite negative pair.",
+      diagramLabel: "VI",
       cemented: "D2",
     },
     {
       id: 7,
       name: "L7",
-      diagramLabel: "VII",
       label: "Element VII",
       type: "Positive Meniscus",
       nd: 1.788,
       vd: 47.44,
       indexReference: "d",
-      fl: 21.042373,
+      focalLengthMm: 21.042373,
       glass: "N-LAF21 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Rear member of the second cemented composite negative pair; patent composition is published.",
+      diagramLabel: "VII",
       cemented: "D2",
     },
     {
       id: 8,
       name: "L8",
-      diagramLabel: "VIII",
       label: "Element VIII",
       type: "Positive Meniscus",
       nd: 1.744,
       vd: 44.9,
       indexReference: "d",
-      fl: 76.200464,
+      focalLengthMm: 76.200464,
       glass: "H-LaF3B (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Outer positive meniscus of the rear half.",
+      diagramLabel: "VIII",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 29.015, d: 2.625, nd: 1.744, elemId: 1, sd: 12 },
-    { label: "2", R: 40.74, d: 0.231, nd: 1, elemId: 0, sd: 11.2 },
-    { label: "3", R: 12.635, d: 3.955, nd: 1.744, elemId: 2, sd: 9.5 },
-    { label: "4", R: 99.995, d: 1.12, nd: 1.6477, elemId: 3, sd: 9.4 },
-    { label: "5", R: 8.89, d: 2.065, nd: 1, elemId: 0, sd: 7 },
-    { label: "6", R: 17.01, d: 1.68, nd: 1.72, elemId: 4, sd: 6.8 },
-    { label: "7", R: 20.23, d: 1.9075, nd: 1, elemId: 0, sd: 6.5 },
-    { label: "STO", R: 1e15, d: 1.9075, nd: 1, elemId: 0, sd: 6.058798 },
-    { label: "8", R: -44.905, d: 1.68, nd: 1.72, elemId: 5, sd: 6.2 },
-    { label: "9", R: -19.88, d: 1.26, nd: 1, elemId: 0, sd: 6.1 },
-    { label: "10", R: -10.01, d: 1.12, nd: 1.6989, elemId: 6, sd: 6.1 },
-    { label: "11", R: -69.405, d: 3.955, nd: 1.788, elemId: 7, sd: 7.8 },
-    { label: "12", R: -13.72, d: 0.231, nd: 1, elemId: 0, sd: 8.6 },
-    { label: "13", R: -36.155, d: 5.005, nd: 1.744, elemId: 8, sd: 9 },
-    { label: "14", R: -23.38, d: 22.658268, nd: 1, elemId: 0, sd: 10 },
+    { label: "1", R: 29.015, d: 2.625, sd: 12, medium: 1 },
+    { label: "2", R: 40.74, d: 0.231, sd: 11.2 },
+    { label: "3", R: 12.635, d: 3.955, sd: 9.5, medium: 2 },
+    { label: "4", R: 99.995, d: 1.12, sd: 9.4, medium: 3 },
+    { label: "5", R: 8.89, d: 2.065, sd: 7 },
+    { label: "6", R: 17.01, d: 1.68, sd: 6.8, medium: 4 },
+    { label: "7", R: 20.23, d: 1.9075, sd: 6.5 },
+    { label: "STO", R: "flat", d: 1.9075 },
+    { label: "8", R: -44.905, d: 1.68, sd: 6.2, medium: 5 },
+    { label: "9", R: -19.88, d: 1.26, sd: 6.1 },
+    { label: "10", R: -10.01, d: 1.12, sd: 6.1, medium: 6 },
+    { label: "11", R: -69.405, d: 3.955, sd: 7.8, medium: 7 },
+    { label: "12", R: -13.72, d: 0.231, sd: 8.6 },
+    { label: "13", R: -36.155, d: 5.005, sd: 9, medium: 8 },
+    { label: "14", R: -23.38, sd: 10 },
   ],
 
-  asph: {},
-
-  var: {
-    "14": [22.658268, 24.591778],
+  focus: {
+    closeFocusM: 0.7112,
+    description:
+      "Approximate unit focus from infinity to 0.7112 m: all elements move together away from the fixed image plane. Intermediate distances are interpolated.",
   },
-  varLabels: [["14", "BF"]],
+
+  gaps: { "14": { label: "BF", values: [[22.658268, 24.591778]] } },
+
+  aperture: { nominalFNumber: 2.000000026, fStops: [2, 2.8, 4, 5.6, 8, 11, 16] },
 
   groups: [
     { text: "FRONT", fromSurface: "1", toSurface: "7" },
@@ -205,14 +212,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "10", toSurface: "12" },
   ],
 
-  closeFocusM: 0.7112,
-  focusDescription:
-    "Approximate unit focus from infinity to 0.7112 m: all elements move together away from the fixed image plane. Intermediate distances are interpolated.",
-
-  nominalFno: 2.000000026,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
-
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

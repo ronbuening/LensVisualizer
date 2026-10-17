@@ -1,35 +1,40 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * Miranda Auto E 50mm f/1.4 correlation: US 3,634,001 A, Example 1.
  * Seven elements / five groups; all spherical. Correlation remains unconfirmed.
  * Uniform scale s=0.5 applied to every length; nd/vd unchanged.
  * Infinity prescription only; the source does not specify focus travel.
- * Stop position inferred at midpoint of D5; stop radius calibrated from exact
- * on-axis ray at EFL/(2*1.4), not measured or independently verified diaphragm.
+ * Stop position inferred at midpoint of D5; the stop radius is derived from the
+ * design f-number, f/1.4, not a measured or independently verified diaphragm size.
  * Semi-diameters are modeled clear apertures, not patent dimensions.
  * Published BF*0.5 = 35.53 mm retained. Computed paraxial BFD is 35.545147190 mm;
  * source N5 rounding compatibility is documented, with no prescription change.
  * Named glass curves are spectral proxies; historical melt/supplier unconfirmed.
  */
 const LENS_DATA = {
+  schema: 2,
   key: "miranda-auto-e-50mm-f14",
   maker: "Miranda",
   name: "MIRANDA AUTO E 50mm f/1.4",
   subtitle: "US 3,634,001 A Example 1 — Kunio Shimada; production correlation unconfirmed",
-  specs: ["7 ELEMENTS / 5 GROUPS", "f ≈ 50.004 mm", "F/1.4", "PATENT 2ω = 45°", "ALL SPHERICAL"],
-  focalLengthMarketing: 50,
-  focalLengthDesign: 50.00366482471798,
-  apertureMarketing: 1.4,
-  apertureDesign: 1.4,
-  lensMounts: ["miranda-bayonet"],
-  imageFormat: "135-full-frame",
-  projection: { kind: "rectilinear", fullFieldDeg: 45, maxTraceFieldDeg: 22.5 },
-  patentNumber: "US 3,634,001 A",
-  patentAuthors: ["Kunio Shimada"],
-  patentAssignees: ["Miranda Camera Co., Ltd."],
-  patentYear: 1972,
-  elementCount: 7,
-  groupCount: 5,
+
+  catalog: {
+    lensMounts: ["miranda-bayonet"],
+    imageFormat: "135-full-frame",
+    specs: ["7 ELEMENTS / 5 GROUPS", "f ≈ 50.004 mm", "F/1.4", "PATENT 2ω = 45°", "ALL SPHERICAL"],
+    elementCount: 7,
+    groupCount: 5,
+    focalLengthMm: { marketing: 50, design: 50.00366482471798 },
+    fNumber: { marketing: 1.4, design: 1.4 },
+  },
+
+  source: {
+    patentNumber: "US 3,634,001 A",
+    patentYear: 1972,
+    authors: ["Kunio Shimada"],
+    assignees: ["Miranda Camera Co., Ltd."],
+  },
+
   elements: [
     {
       id: 1,
@@ -38,9 +43,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.72342,
       vd: 37.9,
-      fl: 74.61028773394432,
-      glass: "J-BASF8 (Hikari spectral proxy for patent BaSF8; historical supplier/melt unconfirmed)",
       indexReference: "d",
+      focalLengthMm: 74.61028773394432,
+      glass: "J-BASF8 (Hikari spectral proxy for patent BaSF8; historical supplier/melt unconfirmed)",
     },
     {
       id: 2,
@@ -49,9 +54,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72342,
       vd: 37.9,
-      fl: 31.598925917038454,
-      glass: "J-BASF8 (Hikari spectral proxy for patent BaSF8; historical supplier/melt unconfirmed)",
       indexReference: "d",
+      focalLengthMm: 31.598925917038454,
+      glass: "J-BASF8 (Hikari spectral proxy for patent BaSF8; historical supplier/melt unconfirmed)",
       cemented: "D1",
     },
     {
@@ -61,9 +66,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.71736,
       vd: 29.5,
-      fl: -19.73265530120962,
-      glass: "SF1 (Schott spectral proxy for patent SF1; historical supplier/melt unconfirmed)",
       indexReference: "d",
+      focalLengthMm: -19.73265530120962,
+      glass: "SF1 (Schott spectral proxy for patent SF1; historical supplier/melt unconfirmed)",
       cemented: "D1",
     },
     {
@@ -73,9 +78,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.71736,
       vd: 29.5,
-      fl: -19.78943569452949,
-      glass: "SF1 (Schott spectral proxy for patent SF1; historical supplier/melt unconfirmed)",
       indexReference: "d",
+      focalLengthMm: -19.78943569452949,
+      glass: "SF1 (Schott spectral proxy for patent SF1; historical supplier/melt unconfirmed)",
       cemented: "D2",
     },
     {
@@ -85,9 +90,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.734,
       vd: 51.3,
-      fl: 29.637283750742895,
-      glass: "J-LAK09 (Hikari spectral proxy for patent LaK09; historical supplier/melt unconfirmed)",
       indexReference: "d",
+      focalLengthMm: 29.637283750742895,
+      glass: "J-LAK09 (Hikari spectral proxy for patent LaK09; historical supplier/melt unconfirmed)",
       cemented: "D2",
     },
     {
@@ -97,9 +102,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.66672,
       vd: 48.3,
-      fl: 62.60025305121755,
-      glass: "J-BAF11 (Hikari spectral proxy for patent BaF11; historical supplier/melt unconfirmed)",
       indexReference: "d",
+      focalLengthMm: 62.60025305121755,
+      glass: "J-BAF11 (Hikari spectral proxy for patent BaF11; historical supplier/melt unconfirmed)",
     },
     {
       id: 7,
@@ -108,151 +113,48 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.66672,
       vd: 48.3,
-      fl: 94.95463646111911,
-      glass: "J-BAF11 (Hikari spectral proxy for patent BaF11; historical supplier/melt unconfirmed)",
       indexReference: "d",
+      focalLengthMm: 94.95463646111911,
+      glass: "J-BAF11 (Hikari spectral proxy for patent BaF11; historical supplier/melt unconfirmed)",
     },
   ],
+
   surfaces: [
-    {
-      label: "1",
-      R: 38.975,
-      d: 5.775,
-      nd: 1.72342,
-      elemId: 1,
-      sd: 18,
-    },
-    {
-      label: "2",
-      R: 131.525,
-      d: 0.095,
-      nd: 1.0,
-      elemId: 0,
-      sd: 18,
-    },
-    {
-      label: "3",
-      R: 26.035,
-      d: 7.89,
-      nd: 1.72342,
-      elemId: 2,
-      sd: 16.2,
-    },
-    {
-      label: "4",
-      R: -163.565,
-      d: 1.73,
-      nd: 1.71736,
-      elemId: 3,
-      sd: 16.2,
-    },
-    {
-      label: "5",
-      R: 15.565,
-      d: 7.9175,
-      nd: 1.0,
-      elemId: 0,
-      sd: 12,
-    },
-    {
-      label: "STO",
-      R: 1000000000000000.0,
-      d: 7.9175,
-      nd: 1.0,
-      elemId: 0,
-      sd: 11.492907311923025,
-    },
-    {
-      label: "6",
-      R: -14.97,
-      d: 1.83,
-      nd: 1.71736,
-      elemId: 4,
-      sd: 12,
-    },
-    {
-      label: "7",
-      R: 288.645,
-      d: 7.59,
-      nd: 1.734,
-      elemId: 5,
-      sd: 15,
-    },
-    {
-      label: "8",
-      R: -23.265,
-      d: 0.175,
-      nd: 1.0,
-      elemId: 0,
-      sd: 15,
-    },
-    {
-      label: "9",
-      R: -108.02,
-      d: 4.755,
-      nd: 1.66672,
-      elemId: 6,
-      sd: 15.4,
-    },
-    {
-      label: "10",
-      R: -30.635,
-      d: 0.095,
-      nd: 1.0,
-      elemId: 0,
-      sd: 15.4,
-    },
-    {
-      label: "11",
-      R: 78.07,
-      d: 3.52,
-      nd: 1.66672,
-      elemId: 7,
-      sd: 16,
-    },
-    {
-      label: "12",
-      R: -328.775,
-      d: 35.53,
-      nd: 1.0,
-      elemId: 0,
-      sd: 16,
-    },
+    { label: "1", R: 38.975, d: 5.775, sd: 18, medium: 1 },
+    { label: "2", R: 131.525, d: 0.095, sd: 18 },
+    { label: "3", R: 26.035, d: 7.89, sd: 16.2, medium: 2 },
+    { label: "4", R: -163.565, d: 1.73, sd: 16.2, medium: 3 },
+    { label: "5", R: 15.565, d: 7.9175, sd: 12 },
+    { label: "STO", R: "flat", d: 7.9175 },
+    { label: "6", R: -14.97, d: 1.83, sd: 12, medium: 4 },
+    { label: "7", R: 288.645, d: 7.59, sd: 15, medium: 5 },
+    { label: "8", R: -23.265, d: 0.175, sd: 15 },
+    { label: "9", R: -108.02, d: 4.755, sd: 15.4, medium: 6 },
+    { label: "10", R: -30.635, d: 0.095, sd: 15.4 },
+    { label: "11", R: 78.07, d: 3.52, sd: 16, medium: 7 },
+    { label: "12", R: -328.775, d: 35.53, sd: 16 },
   ],
-  asph: {},
-  var: {},
-  varLabels: [],
+
+  focus: {
+    closeFocusM: 1000000000000000.0,
+    description:
+      "Only the patent's infinity prescription is modeled. The production lens focuses to 0.43 m, but the source does not establish its optical focus movement.",
+  },
+
+  aperture: { nominalFNumber: 1.4, fStops: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16], maxFNumber: 16 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 45, maxTraceFieldDeg: 22.5 },
+
   groups: [
-    {
-      text: "FRONT",
-      fromSurface: "1",
-      toSurface: "5",
-    },
-    {
-      text: "REAR",
-      fromSurface: "6",
-      toSurface: "12",
-    },
+    { text: "FRONT", fromSurface: "1", toSurface: "5" },
+    { text: "REAR", fromSurface: "6", toSurface: "12" },
   ],
   doublets: [
-    {
-      text: "D1",
-      fromSurface: "3",
-      toSurface: "5",
-    },
-    {
-      text: "D2",
-      fromSurface: "6",
-      toSurface: "8",
-    },
+    { text: "D1", fromSurface: "3", toSurface: "5" },
+    { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
-  closeFocusM: 1000000000000000.0,
-  focusDescription:
-    "Only the patent's infinity prescription is modeled. The production lens focuses to 0.43 m, but the source does not establish its optical focus movement.",
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
-  maxFstop: 16,
-  yScFill: 0.3,
-} satisfies LensDataInput;
+
+  layout: { yScFill: 0.3 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

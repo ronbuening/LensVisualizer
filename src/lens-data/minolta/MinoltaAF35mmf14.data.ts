@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -23,8 +23,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  moves with GII. The model places S approximately one-third of    ║
  * ║  d11 imageward of r11, based on the figure. r11→STO therefore     ║
  * ║  stays fixed during focus; STO→r12 carries the remaining d11      ║
- * ║  change. STO semi-diameter is solved paraxially so the modeled    ║
- * ║  entrance pupil gives the patent FNO=1.45.                         ║
+ * ║  change. The stop radius is derived from the design f-number, the ║
+ * ║  patent FNO=1.45.                                                 ║
  * ║                                                                    ║
  * ║  SEMI-DIAMETERS: Example 2 publishes no aperture heights. SDs are ║
  * ║  inferred from the Fig. 5 silhouette, the f/1.45 marginal bundle, ║
@@ -48,30 +48,35 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "minolta-af-35mm-f14",
   maker: "Minolta",
   name: "MINOLTA AF 35mm f/1.4",
   subtitle: "US 4,806,003 — Example 2; production-correlated, 0.35× scaled",
-  specs: [
-    "10 ELEMENTS / 8 GROUPS",
-    "35mm MARKETED / 34.983 mm DESIGN",
-    "f/1.4 MARKETED / F/1.45 DESIGN",
-    "2ω = 64° PATENT FIELD",
-    "1 ASPHERICAL SURFACE",
-    "DOUBLE-FLOATING REAR FOCUS",
-  ],
-  focalLengthMarketing: 35,
-  focalLengthDesign: 34.983445722,
-  apertureMarketing: 1.4,
-  apertureDesign: 1.45,
-  lensMounts: ["sony-a"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,806,003",
-  patentAuthors: ["Hiromu Mukai", "Hisashi Tokumaru"],
-  patentAssignees: ["Minolta Camera Co., Ltd."],
-  patentYear: 1989,
-  elementCount: 10,
-  groupCount: 8,
+
+  catalog: {
+    lensMounts: ["sony-a"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "10 ELEMENTS / 8 GROUPS",
+      "35mm MARKETED / 34.983 mm DESIGN",
+      "f/1.4 MARKETED / F/1.45 DESIGN",
+      "2ω = 64° PATENT FIELD",
+      "1 ASPHERICAL SURFACE",
+      "DOUBLE-FLOATING REAR FOCUS",
+    ],
+    elementCount: 10,
+    groupCount: 8,
+    focalLengthMm: { marketing: 35, design: 34.983445722 },
+    fNumber: { marketing: 1.4, design: 1.45 },
+  },
+
+  source: {
+    patentNumber: "US 4,806,003",
+    patentYear: 1989,
+    authors: ["Hiromu Mukai", "Hisashi Tokumaru"],
+    assignees: ["Minolta Camera Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -83,7 +88,7 @@ const LENS_DATA = {
       nd: 1.6228,
       vd: 56.98,
       indexReference: "d",
-      fl: -69.653802,
+      focalLengthMm: -69.653802,
       glass: "623570 SK10-class (vendor unresolved)",
       role: "Front negative meniscus of fixed negative group GI.",
     },
@@ -95,7 +100,7 @@ const LENS_DATA = {
       nd: 1.6172,
       vd: 54,
       indexReference: "d",
-      fl: -56.793881,
+      focalLengthMm: -56.793881,
       glass: "617540 SSK1-class (vendor unresolved)",
       role: "Second negative element of fixed group GI.",
     },
@@ -107,7 +112,7 @@ const LENS_DATA = {
       nd: 1.7885,
       vd: 45.68,
       indexReference: "d",
-      fl: 49.743878,
+      focalLengthMm: 49.743878,
       glass: "J-LASF014 coefficient proxy (supplier unspecified; patent 1.78850/45.68)",
       role: "Positive rear element of fixed group GI.",
     },
@@ -119,7 +124,7 @@ const LENS_DATA = {
       nd: 1.7885,
       vd: 45.68,
       indexReference: "d",
-      fl: 67.005266,
+      focalLengthMm: 67.005266,
       glass: "J-LASF014 coefficient proxy (supplier unspecified; patent 1.78850/45.68)",
       role: "Positive front element of moving group GII.",
     },
@@ -131,10 +136,10 @@ const LENS_DATA = {
       nd: 1.765,
       vd: 46.25,
       indexReference: "d",
-      fl: 24.667375,
+      focalLengthMm: 24.667375,
       glass: "Q-LASFPH2S coefficient proxy (supplier unspecified; patent 1.76500/46.25)",
-      cemented: "D1",
       role: "Positive constituent of the weakly negative cemented L5 component in GII.",
+      cemented: "D1",
     },
     {
       id: 6,
@@ -144,10 +149,10 @@ const LENS_DATA = {
       nd: 1.72342,
       vd: 37.88,
       indexReference: "d",
-      fl: -20.812694,
+      focalLengthMm: -20.812694,
       glass: "723380 BAF/BASF-class (vendor unresolved)",
-      cemented: "D1",
       role: "Negative constituent of the weakly negative cemented L5 component in GII.",
+      cemented: "D1",
     },
     {
       id: 7,
@@ -157,10 +162,10 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.51,
       indexReference: "d",
-      fl: -21.20495,
+      focalLengthMm: -21.20495,
       glass: "755275 SF4/TIH4-class (vendor unresolved)",
-      cemented: "D2",
       role: "High-dispersion negative constituent of the cemented L6 component in GIII.",
+      cemented: "D2",
     },
     {
       id: 8,
@@ -170,10 +175,10 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 50.31,
       indexReference: "d",
-      fl: 34.38138,
+      focalLengthMm: 34.38138,
       glass: "720503 LAK10/LAC10-class (vendor unresolved)",
-      cemented: "D2",
       role: "Low-dispersion positive constituent of the negative cemented L6 component in GIII.",
+      cemented: "D2",
     },
     {
       id: 9,
@@ -183,7 +188,7 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 50.31,
       indexReference: "d",
-      fl: 209.74434,
+      focalLengthMm: 209.74434,
       glass: "720503 LAK10/LAC10-class (vendor unresolved)",
       role: "Weak positive meniscus in GIII; rear surface r16 is aspherical.",
     },
@@ -195,60 +200,59 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 50.31,
       indexReference: "d",
-      fl: 44.020599,
+      focalLengthMm: 44.020599,
       glass: "720503 LAK10/LAC10-class (vendor unresolved)",
       role: "Rear positive element of GIII.",
     },
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 83.9531, d: 1.8774, nd: 1.6228, elemId: 1, sd: 20.5 },
-    { label: "2", R: 28.35595, d: 10.0562, nd: 1, elemId: 0, sd: 19.1 },
-    { label: "3", R: -100.19065, d: 1.9719, nd: 1.6172, elemId: 2, sd: 18.3 },
-    { label: "4", R: 54.32175, d: 3.45065, nd: 1, elemId: 0, sd: 18.3 },
-    { label: "5", R: 54.4131, d: 6.4085, nd: 1.7885, elemId: 3, sd: 19.2 },
-    { label: "6", R: -133.20755, d: 7.88725, nd: 1, elemId: 0, sd: 19.2 },
-    { label: "7", R: 62.13445, d: 5.817, nd: 1.7885, elemId: 4, sd: 17.9 },
-    { label: "8", R: -338.3898, d: 0.19705, nd: 1, elemId: 0, sd: 17.6 },
-    { label: "9", R: 40.1443, d: 9.85915, nd: 1.765, elemId: 5, sd: 16.9 },
-    { label: "10", R: -31.81885, d: 1.97225, nd: 1.72342, elemId: 6, sd: 16.9 },
-    { label: "11", R: 29.3237, d: 3.943683333333333, nd: 1, elemId: 0, sd: 13.5 },
+    { label: "1", R: 83.9531, d: 1.8774, sd: 20.5, medium: 1 },
+    { label: "2", R: 28.35595, d: 10.0562, sd: 19.1 },
+    { label: "3", R: -100.19065, d: 1.9719, sd: 18.3, medium: 2 },
+    { label: "4", R: 54.32175, d: 3.45065, sd: 18.3 },
+    { label: "5", R: 54.4131, d: 6.4085, sd: 19.2, medium: 3 },
+    { label: "6", R: -133.20755, sd: 19.2 },
+    { label: "7", R: 62.13445, d: 5.817, sd: 17.9, medium: 4 },
+    { label: "8", R: -338.3898, d: 0.19705, sd: 17.6 },
+    { label: "9", R: 40.1443, d: 9.85915, sd: 16.9, medium: 5 },
+    { label: "10", R: -31.81885, d: 1.97225, sd: 16.9, medium: 6 },
+    { label: "11", R: 29.3237, d: 3.943683333333333, sd: 13.5 },
     // Stop position inferred from Fig. 5: approximately 1/3 of the original d11 gap from r11 toward r12.
-    { label: "STO", R: 1e15, d: 7.887366666667, nd: 1, elemId: 0, sd: 12.684073075931 },
-    { label: "12", R: -20.0179, d: 1.9719, nd: 1.7552, elemId: 7, sd: 13.5 },
-    { label: "13", R: 83.45645, d: 6.4085, nd: 1.72, elemId: 8, sd: 15.2 },
-    { label: "14", R: -34.06235, d: 0.19705, nd: 1, elemId: 0, sd: 15.2 },
-    { label: "15", R: -86.32715, d: 3.45065, nd: 1.72, elemId: 9, sd: 16 },
-    { label: "16A", R: -55.84705, d: 0.19705, nd: 1, elemId: 0, sd: 16 },
-    { label: "17", R: 403.96055, d: 6.70425, nd: 1.72, elemId: 10, sd: 17 },
-    { label: "18", R: -34.1544, d: 36.740699721252, nd: 1, elemId: 0, sd: 17 },
-  ],
-
-  /* ── Aspherical coefficients ── */
-  asph: {
-    "16A": {
-      K: 0,
-      A4: 6.822390670553938e-6,
-      A6: 6.993847801511277e-9,
-      A8: -7.272227436818725e-12,
-      A10: 0,
-      A12: 0,
-      A14: 0,
+    { label: "STO", R: "flat" },
+    { label: "12", R: -20.0179, d: 1.9719, sd: 13.5, medium: 7 },
+    { label: "13", R: 83.45645, d: 6.4085, sd: 15.2, medium: 8 },
+    { label: "14", R: -34.06235, d: 0.19705, sd: 15.2 },
+    { label: "15", R: -86.32715, d: 3.45065, sd: 16, medium: 9 },
+    {
+      label: "16A",
+      R: -55.84705,
+      d: 0.19705,
+      sd: 16,
+      asphere: { K: 0, A4: 6.822390670553938e-6, A6: 6.993847801511277e-9, A8: -7.272227436818725e-12 },
     },
+    { label: "17", R: 403.96055, d: 6.70425, sd: 17, medium: 10 },
+    { label: "18", R: -34.1544, sd: 17 },
+  ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.3,
+    description:
+      "CONSTRAINED_RECONSTRUCTION: GI is fixed; GII (E4-E6) and GIII (E7-E10) translate objectward with x3/x2=1.43 from Table 2, solved to beta=-0.175 at a fixed image plane. The stop moves with GII. The reconstructed image-plane-to-object distance is 0.30874 m; Minolta specifies 0.3 m minimum focus. Fig. 7 text states R=1.15, contradicting Table 2 and therefore not used for the primary model.",
   },
 
-  /* ── Variable air spacings (focus mechanism) ── */
-  var: {
-    "6": [7.88725, 2.982297621638],
-    STO: [7.887366666667, 5.778237143971],
-    "18": [36.740699721252, 43.75478162231],
+  /* (moved from var) ── Variable air spacings (focus mechanism) ── */
+  gaps: {
+    "6": { label: "D6", values: [[7.88725, 2.982297621638]] },
+    STO: { label: "D11 (STO→GIII)", values: [[7.887366666667, 5.778237143971]] },
+    "18": { label: "BF", values: [[36.740699721252, 43.75478162231]] },
   },
-  varLabels: [
-    ["6", "D6"],
-    ["STO", "D11 (STO→GIII)"],
-    ["18", "BF"],
-  ],
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 1.45, fStops: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16] },
 
   /* ── Group and cemented-component annotations ── */
   groups: [
@@ -261,17 +265,8 @@ const LENS_DATA = {
     { text: "L6", fromSurface: "12", toSurface: "14" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.3,
-  focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: GI is fixed; GII (E4-E6) and GIII (E7-E10) translate objectward with x3/x2=1.43 from Table 2, solved to beta=-0.175 at a fixed image plane. The stop moves with GII. The reconstructed image-plane-to-object distance is 0.30874 m; Minolta specifies 0.3 m minimum focus. Fig. 7 text states R=1.15, contradicting Table 2 and therefore not used for the primary model.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 1.45,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  yScFill: 0.45,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.45 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

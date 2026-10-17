@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════════════════════╗
@@ -19,7 +19,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  STOP MODEL                                                                                          ║
  * ║  Figure 10 locates the physical stop in the d12 air gap between r12 and r13 but gives no coordinate ║
  * ║  or diameter. The source gap is preserved exactly and split at its midpoint: 1.5761 + 1.5761 mm.    ║
- * ║  STO.sd = 6.459872574 mm is solved from the published f/2.8 at that inferred stop station.          ║
+ * ║  The stop radius is derived from the published f/2.8 design f-number at that inferred stop station. ║
  * ║  This stop coordinate and diameter are modeling inferences, not patent-tabulated values.            ║
  * ║                                                                                                      ║
  * ║  SEMI-DIAMETERS                                                                                     ║
@@ -48,30 +48,27 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "minolta-af-20mm-f28",
   maker: "Minolta",
   name: "MINOLTA AF 20mm f/2.8",
   subtitle: "JP 1987-249119 A Example 4 — 0.2× production-scaled patent model",
-  specs: ["10 ELEMENTS / 9 GROUPS", "20mm", "f/2.8", "94°", "REAR FOCUS"],
 
-  focalLengthMarketing: 20,
-  focalLengthDesign: 19.99986,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.8,
-  lensMounts: ["sony-a"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 1987-249119 A",
-  patentAuthors: ["Tetsuya Arimoto"],
-  patentAssignees: ["Minolta Camera Co., Ltd."],
-  patentYear: 1987,
-  elementCount: 10,
-  groupCount: 9,
+  catalog: {
+    lensMounts: ["sony-a"],
+    imageFormat: "135-full-frame",
+    specs: ["10 ELEMENTS / 9 GROUPS", "20mm", "f/2.8", "94°", "REAR FOCUS"],
+    elementCount: 10,
+    groupCount: 9,
+    focalLengthMm: { marketing: 20, design: 19.99986 },
+    fNumber: { marketing: 2.8, design: 2.8 },
+  },
 
-  // Patent Fig. 11 and the production specification both give 94° full field on 35 mm.
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 94,
-    maxTraceFieldDeg: 47,
+  source: {
+    patentNumber: "JP 1987-249119 A",
+    patentYear: 1987,
+    authors: ["Tetsuya Arimoto"],
+    assignees: ["Minolta Camera Co., Ltd."],
   },
 
   elements: [
@@ -82,7 +79,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.5168,
       vd: 64.2,
-      fl: 260.847995,
+      focalLengthMm: 260.847995,
       glass: "BSC7 (Hoya; exact coordinate equivalent, patent vendor unresolved)",
       role: "Weak positive front meniscus in the divergent front functional group Gf.",
     },
@@ -93,7 +90,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.618,
       vd: 63.45,
-      fl: -47.482699,
+      focalLengthMm: -47.482699,
       glass: "PCD4 coefficient proxy (supplier unspecified; patent 618635)",
       role: "Strong negative front meniscus completing the divergent front group Gf.",
     },
@@ -104,7 +101,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6968,
       vd: 56.47,
-      fl: -28.542051,
+      focalLengthMm: -28.542051,
       glass: "H-LaK12 coefficient proxy (supplier unspecified; patent 697565)",
       role: "First element of the translating rear group Gr; negative power ahead of the internal stop.",
     },
@@ -115,7 +112,7 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.683,
       vd: 31.52,
-      fl: 168.097511,
+      focalLengthMm: 168.097511,
       glass: "683315 — flint class (catalog unresolved)",
       role: "Weak positive element in the pre-stop portion of Gr.",
     },
@@ -126,7 +123,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7856,
       vd: 42.81,
-      fl: -27.593404,
+      focalLengthMm: -27.593404,
       glass: "NBFD11 coefficient proxy (supplier unspecified; patent 786428)",
       role: "Negative pre-stop meniscus contributing strong local aberration balance in Gr.",
     },
@@ -137,7 +134,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.834,
       vd: 37.05,
-      fl: 15.841755,
+      focalLengthMm: 15.841755,
       glass: "S-LAH60 coefficient proxy (supplier unspecified; patent 834371)",
       role: "Strong positive biconvex element immediately before the aperture-stop gap.",
     },
@@ -148,7 +145,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.84666,
       vd: 23.83,
-      fl: -36.410699,
+      focalLengthMm: -36.410699,
       glass: "SF57 (Schott; exact coordinate equivalent, patent vendor unresolved)",
       role: "Dense-flint negative element immediately behind the stop.",
     },
@@ -159,7 +156,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.618,
       vd: 63.45,
-      fl: 32.048601,
+      focalLengthMm: 32.048601,
       glass: "PCD4 coefficient proxy (supplier unspecified; patent 618635)",
       role: "Positive post-stop meniscus in the translating rear group.",
     },
@@ -170,10 +167,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.834,
       vd: 37.05,
-      fl: -29.699386,
+      focalLengthMm: -29.699386,
       glass: "S-LAH60 coefficient proxy (supplier unspecified; patent 834371)",
-      cemented: "D1",
       role: "Negative front component of the cemented rear pair D1.",
+      cemented: "D1",
     },
     {
       id: 10,
@@ -182,70 +179,65 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.51728,
       vd: 69.68,
-      fl: 22.684972,
+      focalLengthMm: 22.684972,
       glass: "PCS1 (Hoya; near-exact coordinate equivalent, patent vendor unresolved)",
-      cemented: "D1",
       role: "Positive rear component of D1; the isolated cemented pair has positive net air-to-air power.",
+      cemented: "D1",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 87.667, d: 4.8794, nd: 1.5168, elemId: 1, sd: 25.5 },
-    { label: "2", R: 245.951, d: 0.1172, nd: 1.0, elemId: 0, sd: 23.4 },
-    { label: "3", R: 24.9896, d: 1.9518, nd: 1.618, elemId: 2, sd: 16.0 },
-    { label: "4", R: 13.0936, d: 9.349, nd: 1.0, elemId: 0, sd: 11.65 },
-    { label: "5", R: 30.5308, d: 1.2686, nd: 1.6968, elemId: 3, sd: 9.2 },
-    { label: "6", R: 11.8376, d: 3.9036, nd: 1.0, elemId: 0, sd: 8.2 },
-    { label: "7", R: 1e15, d: 3.9036, nd: 1.683, elemId: 4, sd: 8.2 },
-    { label: "8", R: -114.8106, d: 0.322, nd: 1.0, elemId: 0, sd: 8.15 },
-    { label: "9", R: 43.1772, d: 1.171, nd: 1.7856, elemId: 5, sd: 8.05 },
-    { label: "10", R: 14.2596, d: 1.6298, nd: 1.0, elemId: 0, sd: 7.75 },
-    { label: "11", R: 21.1242, d: 9.7588, nd: 1.834, elemId: 6, sd: 8.0 },
-    { label: "12", R: -27.8636, d: 1.5761, nd: 1.0, elemId: 0, sd: 7.75 },
+    { label: "1", R: 87.667, d: 4.8794, sd: 25.5, medium: 1 },
+    { label: "2", R: 245.951, d: 0.1172, sd: 23.4 },
+    { label: "3", R: 24.9896, d: 1.9518, sd: 16.0, medium: 2 },
+    { label: "4", R: 13.0936, sd: 11.65 },
+    { label: "5", R: 30.5308, d: 1.2686, sd: 9.2, medium: 3 },
+    { label: "6", R: 11.8376, d: 3.9036, sd: 8.2 },
+    { label: "7", R: "flat", d: 3.9036, sd: 8.2, medium: 4 },
+    { label: "8", R: -114.8106, d: 0.322, sd: 8.15 },
+    { label: "9", R: 43.1772, d: 1.171, sd: 8.05, medium: 5 },
+    { label: "10", R: 14.2596, d: 1.6298, sd: 7.75 },
+    { label: "11", R: 21.1242, d: 9.7588, sd: 8.0, medium: 6 },
+    { label: "12", R: -27.8636, d: 1.5761, sd: 7.75 },
     // STO position inferred from Figure 10 by midpoint-splitting the published d12 air gap.
-    { label: "STO", R: 1e15, d: 1.5761, nd: 1.0, elemId: 0, sd: 6.459872574 },
-    { label: "13", R: -142.1088, d: 3.9036, nd: 1.84666, elemId: 7, sd: 7.4 },
-    { label: "14", R: 39.8632, d: 1.7566, nd: 1.0, elemId: 0, sd: 8.5 },
-    { label: "15", R: -126.1296, d: 2.635, nd: 1.618, elemId: 8, sd: 9.0 },
-    { label: "16", R: -17.2546, d: 0.1172, nd: 1.0, elemId: 0, sd: 9.2 },
-    { label: "17", R: 108.993, d: 1.4638, nd: 1.834, elemId: 9, sd: 10.3 },
+    { label: "STO", R: "flat", d: 1.5761 },
+    { label: "13", R: -142.1088, d: 3.9036, sd: 7.4, medium: 7 },
+    { label: "14", R: 39.8632, d: 1.7566, sd: 8.5 },
+    { label: "15", R: -126.1296, d: 2.635, sd: 9.0, medium: 8 },
+    { label: "16", R: -17.2546, d: 0.1172, sd: 9.2 },
+    { label: "17", R: 108.993, d: 1.4638, sd: 10.3, medium: 9 },
     // Cemented L9→L10 junction: downstream element L10 owns the junction surface.
-    { label: "18", R: 20.0594, d: 6.1482, nd: 1.51728, elemId: 10, sd: 10.75 },
+    { label: "18", R: 20.0594, d: 6.1482, sd: 10.75, medium: 10 },
     // Infinity r19→IMG spacing is the independently solved scaled paraxial BFD.
-    { label: "19", R: -25.3204, d: 35.829815933, nd: 1.0, elemId: 0, sd: 11.1 },
+    { label: "19", R: -25.3204, sd: 11.1 },
   ],
 
-  asph: {},
-
-  focusPositions: [0, 0.8669314286221126, 1],
-  var: {
-    "4": [9.349, 7.0094, 6.411157394],
-    "19": [35.829815933, 38.169415933, 38.767658539],
+  focus: {
+    closeFocusM: 0.25,
+    keyframes: [0, 0.8669314286221126, 1],
+    description:
+      "CONSTRAINED_RECONSTRUCTION: the complete rear group Gr translates toward the object with the patent-published beta=0.1 state stored exactly before the reconstructed 0.25 m endpoint. D4 and r19-to-IMG change by equal and opposite amounts to keep the image plane fixed.",
+    // (moved from publishedStations) The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
+    published: [1],
   },
 
-  varLabels: [
-    ["4", "D4"],
-    ["19", "BF"],
-  ],
+  gaps: {
+    "4": { label: "D4", values: [[9.349, 7.0094, 6.411157394]] },
+    "19": { label: "BF", values: [[35.829815933, 38.169415933, 38.767658539]] },
+  },
+
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
+
+  // Patent Fig. 11 and the production specification both give 94° full field on 35 mm.
+  projection: { kind: "rectilinear", fullFieldDeg: 94, maxTraceFieldDeg: 47 },
 
   groups: [
     { text: "Gf", fromSurface: "1", toSurface: "4" },
     { text: "Gr", fromSurface: "5", toSurface: "19" },
   ],
-
   doublets: [{ text: "D1", fromSurface: "17", toSurface: "19" }],
 
-  closeFocusM: 0.25,
-  // The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
-  publishedStations: { focus: [1] },
-  focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: the complete rear group Gr translates toward the object with the patent-published beta=0.1 state stored exactly before the reconstructed 0.25 m endpoint. D4 and r19-to-IMG change by equal and opposite amounts to keep the image plane fixed.",
-
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -19,8 +19,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  conditions. The modeled values are therefore R4 < 0 and R6 < 0.           ║
  * ║                                                                            ║
  * ║  STOP: The patent draws S inside d5 but gives no coordinate. Its position   ║
- * ║  is inferred from Figure 1 at 0.483 of d5 after surface 5. The physical    ║
- * ║  stop radius is solved paraxially for the modeled f/8.15 entrance pupil.    ║
+ * ║  is inferred from Figure 1 at 0.483 of d5 after surface 5. The stop radius  ║
+ * ║  is derived from the design f-number, modeled f/8.15.                       ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS: The patent does not tabulate clear apertures. Values were  ║
  * ║  constrained by the Figure 1 element-height proportions, paraxial and exact ║
@@ -36,30 +36,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "mamiya-n-210mm-f8-l",
   maker: "Mamiya",
   name: "MAMIYA N 210mm f/8 L",
   subtitle: "JP 2000-028919 A Example 1 — scaled production correlation",
-  specs: [
-    "7 ELEMENTS / 5 GROUPS",
-    "f = 209.958 mm (SCALED DESIGN)",
-    "F/8.15 MODELED / f/8 MARKETED",
-    "2ω = 24.38°",
-    "ALL-SPHERICAL TELEPHOTO",
-  ],
 
-  focalLengthMarketing: 210,
-  focalLengthDesign: 209.958369574,
-  apertureMarketing: 8,
-  apertureDesign: 8.15,
-  lensMounts: ["mamiya-7"],
-  imageFormat: "6x7",
-  patentNumber: "JP 2000-028919 A",
-  patentAuthors: ["Hideyuki Suga"],
-  patentAssignees: ["Mamiya-OP Co., Ltd."],
-  patentYear: 2000,
-  elementCount: 7,
-  groupCount: 5,
+  catalog: {
+    lensMounts: ["mamiya-7"],
+    imageFormat: "6x7",
+    specs: [
+      "7 ELEMENTS / 5 GROUPS",
+      "f = 209.958 mm (SCALED DESIGN)",
+      "F/8.15 MODELED / f/8 MARKETED",
+      "2ω = 24.38°",
+      "ALL-SPHERICAL TELEPHOTO",
+    ],
+    elementCount: 7,
+    groupCount: 5,
+    focalLengthMm: { marketing: 210, design: 209.958369574 },
+    fNumber: { marketing: 8, design: 8.15 },
+  },
+
+  source: {
+    patentNumber: "JP 2000-028919 A",
+    patentYear: 2000,
+    authors: ["Hideyuki Suga"],
+    assignees: ["Mamiya-OP Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -70,7 +74,7 @@ const LENS_DATA = {
       type: "Positive Meniscus, convex to object",
       nd: 1.4875,
       vd: 70.2,
-      fl: 114.401921881,
+      focalLengthMm: 114.401921881,
       glass: "487702/704 fluor-crown class (catalog equivalent not unique)",
       apd: false,
       role: "Front positive collector in the converging group.",
@@ -82,7 +86,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.6,
-      fl: 85.537214185,
+      focalLengthMm: 85.537214185,
       glass: "497816 low-dispersion fluorophosphate-crown class",
       apd: "inferred",
       apdNote:
@@ -98,7 +102,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.757,
       vd: 47.8,
-      fl: -64.842405125,
+      focalLengthMm: -64.842405125,
       glass: "757478 lanthanum-flint class",
       apd: false,
       role: "Negative member of the front cemented doublet; moderates front-group power and color.",
@@ -111,7 +115,7 @@ const LENS_DATA = {
       type: "Positive Meniscus, concave to object",
       nd: 1.6989,
       vd: 30.1,
-      fl: 203.461570915,
+      focalLengthMm: 203.461570915,
       glass: "699301 dense-flint class",
       apd: false,
       role: "Weak positive lead element of the net-diverging rear group.",
@@ -123,7 +127,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6031,
       vd: 60.6,
-      fl: -41.241552822,
+      focalLengthMm: -41.241552822,
       glass: "603606/607 dense-crown class",
       apd: false,
       role: "Strong negative member of the rear cemented doublet.",
@@ -136,7 +140,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 49.6,
-      fl: 56.261031522,
+      focalLengthMm: 56.261031522,
       glass: "773496 lanthanum-flint class",
       apd: false,
       role: "Positive member of the rear cemented doublet; balances L5 and the rear-group divergence.",
@@ -149,7 +153,7 @@ const LENS_DATA = {
       type: "Negative Meniscus, concave to object",
       nd: 1.7618,
       vd: 26.5,
-      fl: -244.95684106,
+      focalLengthMm: -244.95684106,
       glass: "762265/266 dense-flint class",
       apd: false,
       role: "Rear negative meniscus controlling the final conjugate and field behavior.",
@@ -158,25 +162,30 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 52.905056966, d: 5.309814112, nd: 1.4875, elemId: 1, sd: 15.5 },
-    { label: "2", R: 995.684589246, d: 0.503697781, nd: 1, elemId: 0, sd: 15.5 },
-    { label: "3", R: 45.301319208, d: 5.120927444, nd: 1.497, elemId: 2, sd: 14.5 },
-    { label: "4", R: -664.524285429, d: 2.287627424, nd: 1.757, elemId: 3, sd: 14.5 },
-    { label: "5", R: 53.079252449, d: 27.298719768, nd: 1, elemId: 0, sd: 14.5 },
+    { label: "1", R: 52.905056966, d: 5.309814112, sd: 15.5, medium: 1 },
+    { label: "2", R: 995.684589246, d: 0.503697781, sd: 15.5 },
+    { label: "3", R: 45.301319208, d: 5.120927444, sd: 14.5, medium: 2 },
+    { label: "4", R: -664.524285429, d: 2.287627424, sd: 14.5, medium: 3 },
+    { label: "5", R: 53.079252449, d: 27.298719768, sd: 14.5 },
     // STO position inferred from JP 2000-028919 A Figure 1 at 0.483 of d5 after surface 5.
-    { label: "STO", R: 1e15, d: 29.220368779, nd: 1, elemId: 0, sd: 8.940884694 },
-    { label: "6", R: -876.371177294, d: 4.071557066, nd: 1.6989, elemId: 4, sd: 15.5 },
-    { label: "7", R: -122.581151309, d: 10.157905257, nd: 1, elemId: 0, sd: 15.5 },
-    { label: "8", R: -38.19498301, d: 3.651808915, nd: 1.6031, elemId: 5, sd: 22.5 },
-    { label: "9", R: 73.875674595, d: 6.61103338, nd: 1.7725, elemId: 6, sd: 22.5 },
-    { label: "10", R: -101.451029382, d: 3.043174096, nd: 1, elemId: 0, sd: 22.5 },
-    { label: "11", R: -68.649810114, d: 6.799920048, nd: 1.7618, elemId: 7, sd: 24.5 },
-    { label: "12", R: -113.254347392, d: 73.666247345, nd: 1, elemId: 0, sd: 24.5 },
+    { label: "STO", R: "flat", d: 29.220368779 },
+    { label: "6", R: -876.371177294, d: 4.071557066, sd: 15.5, medium: 4 },
+    { label: "7", R: -122.581151309, d: 10.157905257, sd: 15.5 },
+    { label: "8", R: -38.19498301, d: 3.651808915, sd: 22.5, medium: 5 },
+    { label: "9", R: 73.875674595, d: 6.61103338, sd: 22.5, medium: 6 },
+    { label: "10", R: -101.451029382, d: 3.043174096, sd: 22.5 },
+    { label: "11", R: -68.649810114, d: 6.799920048, sd: 24.5, medium: 7 },
+    { label: "12", R: -113.254347392, d: 73.666247345, sd: 24.5 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 7,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION: the patent publishes only the infinity prescription and no moving spacings. " +
+      "The marketed 7 m minimum focus distance is retained as metadata, not as an invented optical state.",
+  },
+
+  aperture: { nominalFNumber: 8.15, fStops: [8, 11, 16, 22, 32], maxFNumber: 32 },
 
   groups: [
     { text: "G1 FRONT", fromSurface: "1", toSurface: "5" },
@@ -187,17 +196,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "8", toSurface: "10" },
   ],
 
-  closeFocusM: 7,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: the patent publishes only the infinity prescription and no moving spacings. " +
-    "The marketed 7 m minimum focus distance is retained as metadata, not as an invented optical state.",
-
-  nominalFno: 8.15,
-  fstopSeries: [8, 11, 16, 22, 32],
-  maxFstop: 32,
-
-  scFill: 0.58,
-  yScFill: 0.48,
-} satisfies LensDataInput;
+  layout: { scFill: 0.58, yScFill: 0.48 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;
