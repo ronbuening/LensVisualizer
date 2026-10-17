@@ -90,7 +90,9 @@ Existing tests cover:
 - Corpus sweeps over every catalog lens: the full-catalog `validateLensData` pass (`validateLensData.test.ts`), render
   trim and cross-gap diagnostics (`elementRenderDiagnostics.test.ts`), finite/unclipped representative rays
   (`exactTraceCatalog.test.ts`), catalog and summary invariants under `__tests__/src/utils/catalog/`, and the
-  data-contract sweeps under `__tests__/src/lens-data/`: structured patent metadata (`patentMetadata.test.ts`), the
+  data-contract sweeps under `__tests__/src/lens-data/`: cross-lens patent spelling and name order, reference
+  fixtures without patent metadata, converter publication formatting and the design f-number ratchet
+  (`patentMetadata.test.ts`; per-lens patent rules are the validator's, `validate/patent.ts`), the
   analysis-file metadata/section floor (`analysisFiles.test.ts`), exact focus-keyframe reproduction
   (`focusKeyframes.test.ts`), fixed-iris declarations that match their stated station f-numbers
   (`zoomApertureModel.test.ts`), `dPgF` stored against the engine's normal line

@@ -118,9 +118,11 @@ list is in [Validation Rules](../src/lens-data/LENS_DATA_SPEC.md#validation-rule
 (`stopPlacement: "inside-element"` with an element `span`) follow
 [Stop and Aperture](../src/lens-data/LENS_DATA_SPEC.md#stop-and-aperture).
 
-Corpus tests add policy checks beyond the runtime validator: structured patent metadata, the analysis-file
-metadata/section floor, catalog integrity, and production render diagnostics. Passing a single `buildLens()` call is
-therefore necessary but not the complete integration gate; `npm run test` is.
+Corpus tests add policy checks beyond the runtime validator: cross-lens author and assignee spelling, the
+analysis-file metadata/section floor, catalog integrity, and production render diagnostics
+([Corpus sweeps](../src/lens-data/LENS_DATA_SPEC.md#corpus-sweeps)). Per-lens patent metadata rules are the
+validator's. Passing a single `buildLens()` call is therefore necessary but not the complete integration gate;
+`npm run test` is.
 
 Those corpus sweeps are the only tests a new lens needs — see "Per-Lens And Audit Test Retention" in
 [architecture/testing.md](architecture/testing.md) before adding any test file.
