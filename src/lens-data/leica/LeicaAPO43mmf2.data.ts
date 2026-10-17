@@ -240,8 +240,8 @@ const LENS_DATA = {
       d: 2.8,
       sd: 9.8,
       medium: 5,
+      // Patent surface 9 — L5 front
       asphere: {
-        // Patent surface 9 — L5 front
         K: 0,
         A4: -1.30306e-5,
         A6: -5.62107e-8,
