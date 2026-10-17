@@ -17,10 +17,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    at 16.486 mm and the production focal length is stored as the   ║
  * ║    marketed 16 mm value.                                           ║
  * ║                                                                    ║
- * ║  NOTE ON APERTURE:                                                 ║
- * ║    The patent reports F/2.90 and does not publish a stop radius.    ║
- * ║    The STO semi-diameter below was inferred for the marketed f/2.8 ║
- * ║    aperture; nominalFno and apertureDesign carry the patent value. ║
+ * ║ NOTE ON APERTURE: The patent reports F/2.90 and does not publish a ║
+ * ║ stop radius. The stop radius is derived from the design f-number   ║
+ * ║ (F/2.90); the marketed f/2.8 is catalog metadata only.             ║
  * ║                                                                    ║
  * ║  NOTE ON TRACE FIELD:                                              ║
  * ║    maxTraceFieldDeg is 52.9°, the field of the Fig. 6 aberration   ║

@@ -35,12 +35,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    The MFD reference-plane convention and retail rounding remain   ║
  * ║    limitations; these values are not a published production cam.  ║
  * ║                                                                    ║
- * ║  APERTURE MODEL:                                                    ║
- * ║    The patent publishes design f/3.6 wide and f/4.6 tele. Runtime  ║
- * ║    nominalFno follows the marketed f/3.5-4.5 specification, with   ║
- * ║    an explicitly inferred f/4.0 middle control point. Stop SD is   ║
- * ║    inferred by exact tracing from [3.5, 4.0, 4.5]; no stop clear   ║
- * ║    diameter is patent-published.                                  ║
+ * ║ APERTURE MODEL: The patent publishes design f/3.6 wide and f/4.6   ║
+ * ║ tele. Runtime nominalFno follows the marketed f/3.5-4.5            ║
+ * ║ specification, with an explicitly inferred f/4.0 middle control    ║
+ * ║ point. The stop radius is derived from the station f-numbers [3.5, ║
+ * ║ 4.0, 4.5]; no stop clear diameter is patent-published.             ║
  * ║                                                                    ║
  * ║  SEMI-DIAMETERS:                                                    ║
  * ║    The patent publishes no clear apertures. SDs are inferred from  ║

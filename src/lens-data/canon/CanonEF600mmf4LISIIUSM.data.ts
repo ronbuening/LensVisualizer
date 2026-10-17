@@ -27,10 +27,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ MFD gives +20.112105825 mm L16 travel: d10 31.84 -> 51.952105825 mm and d13 72.57 ->                ║
  * ║ 52.457894175 mm. Their sum remains 104.41 mm, preserving the fixed image plane.                     ║
  * ║                                                                                                      ║
- * ║ STOP / F-NUMBER: the Third Numerical Embodiment patent surface table prints a 43.11 mm effective     ║
- * ║ diameter (21.555 mm radius) at row 14. A paraxial pupil projection alone gives f/4.036, but an exact ║
- * ║ spherical marginal-ray solve through surfaces 1-13 gives an effective entrance beam of 141.972 mm  ║
- * ║ and f/4.119, consistent with the published FNO = 4.12. No stop-diameter correction is applied.      ║
+ * ║ STOP / F-NUMBER: The stop radius is derived from the design f-number. The Third Numerical Embodiment ║
+ * ║ patent surface table prints a 43.11 mm effective diameter (21.555 mm radius) at row 14. A paraxial   ║
+ * ║ pupil projection alone gives f/4.036, but an exact spherical marginal-ray solve through surfaces     ║
+ * ║ 1-13 gives an effective entrance beam of 141.972 mm and f/4.119, consistent with the published FNO = ║
+ * ║ 4.12. The printed diameter agrees with the derived radius.                                           ║
  * ║                                                                                                      ║
  * ║ SEMI-DIAMETERS: patent effective diameters are halved. The US publication's Example 3 row 1 prints ║
  * ║ 45.69 mm, but the priority Japanese publication JP2011085788A prints 145.69 mm for the same row, ║
@@ -328,6 +329,8 @@ const LENS_DATA = {
     { label: "11", R: 413.496, d: 5.41, sd: 32.215, medium: 6 },
     { label: "12", R: -200.76, d: 3.3, sd: 31.9, medium: 7 },
     { label: "13", R: 116.31, sd: 30.055 },
+    // US 2011/0090576 A1, Third Numerical Embodiment surface table, row 14: printed effective
+    // diameter 43.11 mm at the stop.
     { label: "STO", R: "flat", d: 7.03 },
     { label: "15", R: 218.039, d: 2.0, sd: 20.565, medium: 8 },
     { label: "16", R: 53.513, d: 6.1, sd: 20.02, medium: 9 },

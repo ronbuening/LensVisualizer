@@ -16,8 +16,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Back focus: d33 equals the tabulated BF; the patent lists no filter or cover glass.
  * Focus: L4 (single element) moves toward the image [0069]. Close-focus spacings are
  *   not published; the stored close values are calculated for 0.45 m object-to-image.
- * Aperture: FNO 4.12 at all stations; the stop moves with L3. Iris schedule inferred via
- *   zoomApertureModel "from-nominal-fno"; the STO sd records the tele iris (patent ED/2).
+ * Aperture: FNO 4.12 at all stations; the stop moves with L3. The stop radius is derived
+ *   from the design f-number at each station (zoom.apertureModel "from-nominal-fno"). The
+ *   Numerical Example 2 surface table [0097] prints one stop ED of 19.35 mm, agreeing
+ *   with the derived tele iris.
  *
  * NOTE ON SEMI-DIAMETERS:
  *   Every sd is the patent's tabulated effective diameter ÷ 2 (2026-09-23 audit). A real
@@ -290,7 +292,8 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   /* (moved from asph) ── Aspherical coefficients (patent K is the conic constant; K = 0 on every surface) ── */
   surfaces: [
-    // Labels follow the patent's surface numbers (stop = patent surface 14). sd = patent effective diameter ÷ 2.
+    // Labels follow the patent's surface numbers (stop = patent surface 14). Refracting-surface sd = patent
+    // effective diameter ÷ 2.
     // ── L1: Unit L1 (positive, f = +88.25 mm) ──
     // L1 + L2 cemented doublet (D1)
     { label: "1", R: 266.275, d: 1.8, sd: 31.5, medium: 1 },

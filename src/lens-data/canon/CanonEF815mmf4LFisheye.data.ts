@@ -263,6 +263,8 @@ const LENS_DATA = {
     { label: "SS", R: "flat", d: 1.46, sd: 5.13 },
     { label: "12", R: 43.413, d: 1.62, sd: 5.435, medium: 6 },
     { label: "13", R: -94.26, d: 1.85, sd: 5.47 },
+    // US 2012/0013996 A1, First Embodiment Table 1, surface 14: printed effective
+    // diameter 10.95 mm at the stop.
     { label: "STO", R: "flat", d: 1.7 },
     { label: "15", R: -19.292, d: 0.75, sd: 5.48, medium: 7 },
     { label: "16", R: 32.493, d: 3.22, sd: 5.765, medium: 8 },

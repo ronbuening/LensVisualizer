@@ -322,6 +322,8 @@ const LENS_DATA = {
     { label: "15", R: -71.957, sd: 11.925 }, // E9 rear → air (variable: L2→L3)
 
     // ── Unit 3 (L3): Stop + E10–E12, relay group ──
+    // US 2019/0278068 A1, Numerical Example 5 surface table [0100], surface 16 prints a 25.91 mm effective
+    // diameter at the stop.
     { label: "STO", R: "flat", d: 0.4 }, // Aperture stop
     { label: "17", R: 78.059, d: 4.31, sd: 13.43, medium: 10 }, // E10 front
     { label: "18", R: -59.447, d: 0.15, sd: 13.565 }, // E10 rear → air

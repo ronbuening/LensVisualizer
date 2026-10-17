@@ -27,10 +27,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ numerical close-focus spacing row; interpolation between endpoints is a ║
  * ║ viewer model, not a published mechanical schedule.                      ║
  * ║                                                                          ║
- * ║ Semi-diameters: patent `ea` is treated as a full effective-aperture     ║
- * ║ diameter, so lens-surface sd = ea/2. The STO sd is NOT ea13/2: it is    ║
- * ║ the physical maximum-aperture radius derived from the modeled F/3.56,   ║
- * ║ computed EFL, and entrance-pupil magnification: 9.773318416 mm.          ║
+ * ║ Semi-diameters: patent `ea` is treated as a full effective-aperture      ║
+ * ║ diameter, so lens-surface sd = ea/2. The stop radius is derived from the ║
+ * ║ design f-number (F/3.56). The Numerical Example 1 patent surface table   ║
+ * ║ prints ea13 (Stop) = 20.09 mm (10.045 mm half-diameter).                 ║
  * ║                                                                          ║
  * ║ Glass: the patent identifies no vendors. Vendor-neutral six-digit       ║
  * ║ nd/νd coordinate codes are retained. G3/L3 carries patent Table 1's     ║
@@ -282,7 +282,15 @@ const LENS_DATA = {
       R: 13.969,
       d: 7.22,
       sd: 16.425,
-      asphere: { K: -0.660488, A4: 1.6903e-6, A6: 5.21355e-11, A8: 1.39305e-11, A10: -6.83548e-14, A12: -1.94007e-17 },
+      asphere: {
+        K: -0.660488,
+        A4: 1.6903e-6,
+        A6: 5.21355e-11,
+        A8: 1.39305e-11,
+        A10: -6.83548e-14,
+        A12: -1.94007e-17,
+        A14: 0,
+      },
     },
     { label: "3", R: 27.17, d: 1.8, sd: 15.72, medium: 2 },
     { label: "4", R: 16.83, d: 8.98, sd: 13.32 },
@@ -294,6 +302,8 @@ const LENS_DATA = {
     { label: "10", R: 163.816, d: 8.61, sd: 11.825, medium: 6 },
     { label: "11", R: -16.58, d: 1.48, sd: 11.72, medium: 7 },
     { label: "12", R: -49.402, sd: 11.5 },
+    // US 2010/0208366 A1, Numerical Example 1 surface table, surface 13: printed effective
+    // diameter 20.09 mm at the stop.
     { label: "STO", R: "flat", d: 0.47 },
     { label: "14", R: 22.758, d: 1.2, sd: 10.045, medium: 8 },
     { label: "15", R: 15.678, d: 5.07, sd: 9.595, medium: 9 },

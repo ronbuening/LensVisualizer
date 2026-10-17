@@ -13,9 +13,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   Petzval sum = 0.001287 mm^-1 using Σ φ/(n*n')
  *
  * The patent omits clear apertures and stop location. The aperture stop is inferred in the
- * large d5 air space, 2.0 mm behind r5 and 14.0 mm before r6. The stop semi-diameter was
- * solved to give f/3.5 at the computed EFL. Semi-diameters are conservative renderer-safe
- * estimates constrained by edge thickness and cross-gap sag clearance, not factory CA data.
+ * large d5 air space, 2.0 mm behind r5 and 14.0 mm before r6. The stop radius is derived
+ * from the design f-number (f/3.5). Semi-diameters are conservative renderer-safe estimates
+ * constrained by edge thickness and cross-gap sag clearance, not factory CA data.
  */
 const LENS_DATA = {
   schema: 2,

@@ -241,7 +241,8 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ──
-   * Patent effective diameters are halved for sd, the stop row (surface 17, 9.86 mm) included.
+   * Patent effective diameters are halved for sd on refracting surfaces. The Numerical Embodiment 1
+   * surface table prints 9.86 mm at stop surface 17; its radius is derived from the design f-number.
    * Patent surfaces 26-29 (optical block G) are omitted; their air-equivalent path is folded into d25.
    */
   /* (moved from asph) ── Aspherical coefficients ──
@@ -271,6 +272,8 @@ const LENS_DATA = {
     { label: "14", R: 14.081, d: 3.8, sd: 5.475, medium: 8 },
     { label: "15", R: -14.081, d: 0.8, sd: 5.35, medium: 9 },
     { label: "16", R: -24.638, d: 0.8, sd: 5.305 },
+    // US 2013/0335830 A1, Numerical Embodiment 1 surface table, surface 17: printed
+    // effective diameter 9.86 mm at the stop.
     { label: "STO", R: "flat", d: 2.0 },
     {
       label: "18A",

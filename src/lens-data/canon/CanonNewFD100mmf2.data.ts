@@ -11,10 +11,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * production 100 mm class lens. The rounded prescription computes to
  * EFL = 100.003 mm and BFD = 42.700 mm by independent y-nu paraxial trace.
  *
- * 6 elements / 4 groups, all spherical. The aperture stop is not listed as
- * a separate numerical surface in the patent table; it is placed at the
- * midpoint of patent gap d7 between surfaces 7 and 8 for visualization and
- * f-number tracing. With that placement, the stop radius is derived from the design f-number.
+ * 6 elements / 4 groups, all spherical. The aperture stop is not listed
+ * as a separate numerical surface in the patent table; it is placed at
+ * the midpoint of patent gap d7 between surfaces 7 and 8 for
+ * visualization and f-number tracing. With that placement, the stop
+ * radius is derived from the design f-number.
  *
  * Semi-diameters are not tabulated in the patent. They are conservative
  * clear-aperture estimates from the f/2 marginal ray, reduced off-axis

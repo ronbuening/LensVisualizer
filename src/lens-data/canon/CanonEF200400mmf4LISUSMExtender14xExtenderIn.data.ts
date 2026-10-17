@@ -17,12 +17,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Stop: patent surface 30 (SP/STO), in the fixed fourth unit ahead of the extender. The Numerical Example 1
  * patent surface table prints a 39.75 mm effective diameter (19.875 mm radius). By real marginal ray that
- * opening gives f/5.764
- * at 287.00 mm and f/5.765 at 545.98 mm, 0.1 % under the patent's f/5.77 (the computed focal lengths are 0.06 %
- * under the printed ones); a paraxial f-number for the same opening is f/5.617.
- * The trace sizes the wide-open iris from nominalFno by real marginal ray: 19.872 mm, 0.015 % under the printed
- * radius, held at both zoom positions and the same opening the EXT OUT member traces.
- * Semi-diameters: one-half of the patent effective diameters on every optical surface, the stop included.
+ * opening gives f/5.764 at 287.00 mm and f/5.765 at 545.98 mm, 0.1 % under the patent's f/5.77 (the computed
+ * focal lengths are 0.06 % under the printed ones); a paraxial f-number for the same opening is f/5.617. The
+ * trace sizes the wide-open iris from nominalFno by real marginal ray: 19.872 mm, 0.015 % under the printed
+ * radius, held at both zoom positions and the same opening the EXT OUT member traces. Semi-diameters:
+ * one-half of the patent effective diameters on every refracting surface; the stop radius is derived from
+ * the design f-number.
  *
  * No scaling is applied. All surfaces are spherical; no asphere or conic conversion is applicable.
  * Glass source: the patent publishes nd/νd only and is vendor-silent. Glass strings therefore use coordinate

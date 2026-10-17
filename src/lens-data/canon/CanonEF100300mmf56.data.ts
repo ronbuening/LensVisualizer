@@ -31,13 +31,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ is manufacturer metadata only and does not define an internal focus state. ║
  * ║ The Group III path reverses between the 198 and 290 mm tabulated states.    ║
  * ║                                                                              ║
- * ║ Semi-diameters are not published. They were derived from exact spherical   ║
- * ║ real-ray tracing at all four infinity zoom states through the paraxial      ║
- * ║ physical stop implied by FNO=5.6, then rounded outward and checked for edge ║
- * ║ thickness, rim slope, cross-gap intrusion, and traced-ray containment.     ║
- * ║ The stop radius is derived from the design f-number at each station. The     ║
- * ║ 100/198/290 mm implied radii are about 14.7536/14.7499/14.7485 mm;         ║
- * ║ nominalFno=5.6 is authoritative. The patent gives no iris-motion law.      ║
+ * ║ Semi-diameters are not published. They were derived from exact spherical     ║
+ * ║ real-ray tracing at all four infinity zoom states through the paraxial       ║
+ * ║ physical stop implied by FNO=5.6, then rounded outward and checked for edge  ║
+ * ║ thickness, rim slope, cross-gap intrusion, and traced-ray containment. The   ║
+ * ║ stop radius is derived from the design f-number at each station. The         ║
+ * ║ paraxial 100/198/290 mm implied radii are about 14.7536/14.7499/14.7485 mm;  ║
+ * ║ nominalFno=5.6 is authoritative. The patent gives no iris-motion law.        ║
  * ║                                                                              ║
  * ║ No scale is applied (s = 1.0). The d-line index reference is an inference  ║
  * ║ from the glass coordinates; the patent does not explicitly name the line.  ║

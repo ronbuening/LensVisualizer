@@ -30,13 +30,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * z=0.50540029. The 21-point schedule samples those source cams, includes L4's turning point at z=0.0748997827, and
  * retains the three printed W/M/T gaps exactly. Intermediate zoomPositions are computed d-line EFL labels.
  *
- * Semi-diameters are inferred because Example 1 publishes no clear apertures. The draft values combine the 600 dpi
- * Figure 1 optical outlines with the current edge/slope/cross-gap/render constraints and targeted ray containment at
- * all 21 zoom knots, at infinity and 1.5 m focus. They are modeling apertures, not patent dimensions. The patent
- * gives only rounded endpoint f-numbers and no stop radius; nominalFno therefore uses the published 4.6/5.8
- * endpoints plus a disclosed 5.2 middle interpolation. The stop radius is derived from the design f-number at
- * each zoom station.
- * Surface SDs 4/5 and 7/8 contain that tele marginal ray and remain consistent with the 600 dpi Figure 1 outline.
+ * Semi-diameters are inferred because Example 1 publishes no clear apertures. The draft values combine the
+ * 600 dpi Figure 1 optical outlines with the current edge/slope/cross-gap/render constraints and targeted ray
+ * containment at all 21 zoom knots, at infinity and 1.5 m focus. They are modeling apertures, not patent
+ * dimensions. The patent gives only rounded endpoint f-numbers and no stop radius; nominalFno therefore uses
+ * the published 4.6/5.8 endpoints plus a disclosed 5.2 middle interpolation. The stop radius is derived from
+ * the design f-number at each zoom station; the largest exact marginal-ray opening is 10.408 mm, at tele.
+ * Surface SDs 4/5 and 7/8 contain that tele marginal ray and remain consistent with the 600 dpi Figure 1
+ * outline.
  *
  * The zero-distance, equal-radius air split at source surfaces 29/30 is collapsed to one direct E15-to-E16 interface
  * labeled 29, with source d30=0.95 mm retained. This leaves the paraxial, exact-refractive, and Petzval behavior

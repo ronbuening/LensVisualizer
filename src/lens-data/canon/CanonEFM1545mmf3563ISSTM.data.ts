@@ -22,19 +22,19 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  station to a 0.25 m object-to-image-plane calibration while conserving s14+s16 = 7.72 mm.         ║
  * ║  These close-focus rows are modeling values, not patent-published values.                           ║
  * ║                                                                                                    ║
- * ║  Stop: patent s12 effective diameter 9.40 mm is not the physical wide-open iris diameter.          ║
- * ║  STO.sd below is the wide-end physical stop semi-diameter solved from the patent f/3.58 model;     ║
- * ║  nominalFno supplies the zoom-dependent wide-open aperture states.                                  ║
+ * ║ Stop: the JP 2016-118658 A Numerical Example 8 surface table prints a 9.40 mm effective diameter   ║
+ * ║ at s12; it is not the wide-open iris diameter at the wide end. The stop radius is derived from the ║
+ * ║ design f-number at each zoom station.                                                              ║
  * ║                                                                                                    ║
  * ║  Source s21 is a fixed-diameter flare-cut stop (FS), not an active refractive surface. It is        ║
  * ║  omitted from the ordinary sequential model. The source s20->FS 0.20 mm plus FS->image 10.60 mm   ║
  * ║  is preserved as the 10.80 mm air-equivalent rear spacing on surface 20.                            ║
  * ║                                                                                                    ║
- * ║  Semi-diameters are half of the patent-published effective diameters, except STO.sd as noted.      ║
- * ║  The patent asphere equation has a printed missing H^2 numerator; the intended standard sag form   ║
- * ║  is used here. K is the standard conic constant. The general equation also includes A2*H^2, but    ║
- * ║  Example 8 publishes no A2 values, so A2 = 0 and is omitted by the schema. A12 is modeled as 0     ║
- * ║  on s13/s14 where omitted; A14 = 0 is schema padding on all aspheres.                              ║
+ * ║ Refracting-surface semi-diameters are half of the patent-published effective diameters; the stop   ║
+ * ║ radius is derived. The patent asphere equation has a printed missing H^2 numerator; the intended   ║
+ * ║ standard sag form is used here. K is the standard conic constant. The general equation also        ║
+ * ║ includes A2*H^2, but Example 8 publishes no A2 values, so A2 = 0 and is omitted by the schema. A12 ║
+ * ║ is modeled as 0 on s13/s14 where omitted; A14 = 0 is schema padding on all aspheres.               ║
  * ║                                                                                                    ║
  * ║  Glass strings are vendor-neutral coordinate classes unless explicitly Unmatched. The patent       ║
  * ║  does not publish nC, nF, ng, or dPgF, and vendor identity is unresolved, so those optional         ║
@@ -229,6 +229,8 @@ const LENS_DATA = {
     { label: "9", R: 12.112, d: 3.25, sd: 5.425, medium: 5 },
     { label: "10", R: -204.584, d: 0.93, sd: 5.12, medium: 6 },
     { label: "11", R: 34.799, d: 1.85, sd: 4.925 },
+    // JP 2016-118658 A, Numerical Example 8 surface table, surface 12: printed
+    // effective diameter 9.40 mm at the stop.
     { label: "STO", R: "flat", d: 1.75 },
     {
       label: "13A",

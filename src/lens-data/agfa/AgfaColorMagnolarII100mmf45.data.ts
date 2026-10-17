@@ -13,8 +13,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Stop: GB 775,944 does not tabulate the diaphragm position or physical stop diameter.
  * The STO surface is inferred from the patent figure as lying in the l2 air gap between
- * r5 and r6 and is placed at the midpoint of that gap for rendering. Its semi-diameter
- * is paraxially computed so the entrance pupil is 100 / (2 * 4.5) = 11.111 mm.
+ * r5 and r6 and is placed at the midpoint of that gap for rendering. The stop radius is
+ * derived from the design f-number.
  *
  * Semi-diameters: the patent omits clear apertures. Values here are conservative
  * renderer estimates based on the f/4.5 marginal ray plus mechanical clearance, then

@@ -24,9 +24,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  patent surface table prints a 9.16 mm effective-diameter envelope (4.58 mm radius), ║
  * ║  not an asserted hard-iris radius.                                                   ║
  * ║                                                                                      ║
- * ║  SEMI-DIAMETERS: patent effective diameters divided by two; no inferred SDs.         ║
- * ║  SPECTRAL DATA: patent publishes nd/νd only. Vendor identity is unresolved, so      ║
- * ║    nC, nF, ng, and dPgF are intentionally not fabricated.                           ║
+ * ║ SEMI-DIAMETERS: refracting surfaces use patent effective diameters divided by two;   ║
+ * ║ the stop radius is derived from the design f-number. SPECTRAL DATA: patent publishes ║
+ * ║ nd/νd only. Vendor identity is unresolved, so nC, nF, ng, and dPgF are intentionally ║
+ * ║ not fabricated.                                                                      ║
  * ╚══════════════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -162,6 +163,8 @@ const LENS_DATA = {
     { label: "6", R: 174.749, sd: 9.315 },
     { label: "7", R: 139.916, d: 1.73, sd: 4.49, medium: 4 },
     { label: "8", R: -44.483, d: 1.0, sd: 4.56 },
+    // JP 2021-86024 A, Numerical Example 2 surface table, surface 9: printed
+    // effective diameter 9.16 mm at the stop.
     { label: "STO", R: "flat", d: 1.5 },
     { label: "10", R: 16.314, d: 2.57, sd: 4.615, medium: 5 },
     { label: "11", R: 156.41, sd: 4.38 },

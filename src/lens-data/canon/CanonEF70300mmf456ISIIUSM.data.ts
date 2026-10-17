@@ -19,12 +19,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ordinary sequential model. Its incoming 0.20 mm air space is folded into the published 37.80 mm BF, so the
  * last refracting surface (30) has d = 38.00 mm to the image plane.
  *
- * Semi-diameters are one-half of the patent's published "Effective diameter" values. At STO this value is kept
- * as the source-backed geometric aperture proxy; it is not treated as the exact wide-open iris diameter because
- * the patent f-numbers imply a slightly smaller stop. nominalFno therefore controls wide-open stop/pupil geometry.
- * Surface 10 is the one SD refinement: the patent effective-diameter proxy (11.575 mm semi-diameter) would make
- * the 0.6-field wide-open bundle clip at the E6/E7 cemented interface. Its render/trace SD is therefore 12.15 mm,
- * derived from the verified off-axis ray envelope so clipping moves to an external element/air boundary.
+ * Refracting-surface semi-diameters are one-half of the patent's published "Effective diameter" values. The
+ * stop radius is derived from the design f-number at each zoom station. The Example 5 patent surface table
+ * prints a 24.44 mm effective diameter at stop surface 14; it is a source envelope, not a fixed iris
+ * schedule. Surface 10 is the one SD refinement: the patent effective-diameter proxy (11.575 mm
+ * semi-diameter) would make the 0.6-field wide-open bundle clip at the E6/E7 cemented interface. Its
+ * render/trace SD is therefore 12.15 mm, derived from the verified off-axis ray envelope so clipping moves to
+ * an external element/air boundary.
  *
  * The patent publishes nd and vd only. Glass labels select representative OHARA spectral proxies at
  * the patent's published precision; they do not establish Canon's actual melt vendor, and rounded coordinates do
@@ -264,6 +265,7 @@ const LENS_DATA = {
     { label: "11", R: 70.182, d: 2.33, sd: 11.465 },
     { label: "12", R: -59.794, d: 1.05, sd: 11.465, medium: 8 },
     { label: "13", R: 497.341, sd: 11.66 },
+    // US 2017/0003486 A1, Example 5 surface table, surface 14: printed effective diameter 24.44 mm at the stop.
     { label: "STO", R: "flat", d: 0.98 },
     { label: "15", R: 85.803, d: 3.25, sd: 12.515, medium: 9 },
     { label: "16", R: -85.803, d: 0.15, sd: 12.56 },

@@ -23,12 +23,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  while conserving D19 + D21 = 11.86 mm at each zoom position. The special   ║
  * ║  0.128 m / 0.52× 15 mm manual-focus state is intentionally not generalized. ║
  * ║                                                                              ║
- * ║  Semi-diameters: patent effective diameters / 2 except STO and surface 5.    ║
- * ║  Patent STO ED 10.25 mm is a clear envelope, not the wide-open iris. STO sd  ║
- * ║  is 5.089324315 mm, derived from the modeled f/4.60 pupil geometry.          ║
- * ║  Surface 5 raw patent sd is 12.290 mm; stored 12.289 mm is an explicit       ║
- * ║  source-precision adjustment (1 µm) so the S4→S5 shared-band cross-gap       ║
- * ║  intrusion remains below the current gapSagFrac = 0.90 policy.               ║
+ * ║ Semi-diameters: patent effective diameters / 2 except STO and surface 5.     ║
+ * ║ Patent STO ED 10.25 mm is a clear envelope, not the wide-open iris. The stop ║
+ * ║ radius is derived from the design f-number at each zoom station. Surface 5   ║
+ * ║ raw patent sd is 12.290 mm; stored 12.289 mm is an explicit source-precision ║
+ * ║ adjustment (1 µm) so the S4→S5 shared-band cross-gap intrusion remains below ║
+ * ║ the current gapSagFrac = 0.90 policy.                                        ║
  * ║                                                                              ║
  * ║  The patent does not publish per-element nC/nF/ng/dPgF. Vendor identity is   ║
  * ║  underdetermined for the patent nd/νd coordinates, so the data file keeps    ║

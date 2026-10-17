@@ -32,10 +32,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ The precise internal shifts are one compatible paraxial model, not         ║
  * ║ patent-published or measured production travel.                            ║
  * ║                                                                            ║
- * ║ Aperture: the patent publishes FNo = 4.6 / 5.1 / 5.8 but no physical      ║
- * ║ stop diameter. The base STO semi-diameter is the wide-state value implied  ║
- * ║ by the traced entrance pupil; nominalFno carries the three design values   ║
- * ║ so the zoom-aperture model derives the appropriate stop at each position. ║
+ * ║ Aperture: the patent publishes FNo = 4.6 / 5.1 / 5.8 but no physical stop  ║
+ * ║ diameter. The stop radius is derived from the design f-number at each zoom ║
+ * ║ station; station nominalFNumber values carry the three published design    ║
+ * ║ values.                                                                    ║
  * ║                                                                            ║
  * ║ Glass: the patent supplies nd/nu_d pairs but not vendor identities or      ║
  * ║ nC/nF/ng/dPgF line data. Vendor-neutral six-digit/class labels are used;   ║

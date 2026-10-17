@@ -232,6 +232,8 @@ const LENS_DATA = {
     { label: "12", R: 29.897, d: 4.4, sd: 12.945, medium: 7 },
     { label: "13", R: 1984.002, sd: 12.96 },
     { label: "14", R: "flat", d: 2.14, sd: 13.415 },
+    // US 7,864,451 B2, First Numerical Example surface table, surface 15: printed effective
+    // diameter 26.92 mm at the stop.
     { label: "STO", R: "flat", d: 3.53 },
     { label: "16", R: -64.028, d: 2.12, sd: 13.5, medium: 8 },
     { label: "17", R: -49.358, sd: 13.675 },

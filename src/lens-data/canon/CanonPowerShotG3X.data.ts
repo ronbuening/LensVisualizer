@@ -334,6 +334,8 @@ const LENS_DATA = {
     { label: "17", R: 18.552, d: 0.57, sd: 6.40 },
     { label: "18", R: 34.234, d: 2.10, sd: 6.50, medium: 10 },
     { label: "19", R: -34.234, d: 0.25, sd: 6.50 },
+    // JP 2016-148731 A, Numerical Example 6 surface table, surface 20: printed effective
+    // diameter 10.20 mm at the stop.
     { label: "STO", R: "flat" }, // source S20; SP per patent ¶0019 and Fig. 11
     {
       label: "21A",

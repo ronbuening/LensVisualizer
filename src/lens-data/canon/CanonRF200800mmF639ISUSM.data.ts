@@ -19,9 +19,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ only and does not imply a traced close-focus prescription.              ║
  * ║                                                                          ║
  * ║ Stop: physical diameter is unpublished. The stop radius is derived from  ║
- * ║ the design f-number. The nominalFno zoom                                 ║
- * ║ array implies 13.220/13.251 mm at the later states. Agreement with the  ║
- * ║ calibrated f-numbers is not independent diaphragm-diameter evidence.    ║
+ * ║ the design f-number. The original hand calibration to the nominal        ║
+ * ║ f-number array gave 13.220/13.251 mm at the later states. Agreement with ║
+ * ║ the calibrated f-numbers is not independent diaphragm-diameter evidence. ║
  * ║                                                                          ║
  * ║ Semi-diameters: modeled from exact spherical ray envelopes at the three ║
  * ║ published states using the default on-axis fan and 0.6-field off-axis   ║

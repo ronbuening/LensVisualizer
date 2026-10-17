@@ -289,6 +289,8 @@ const LENS_DATA = {
     { label: "14", R: -409.038, d: 2.55, sd: 16.395 },
 
     /* ──── Aperture stop ──── */
+    // JP 2021-047297 A, Numerical Example 1 surface table, surface 15: printed effective
+    // diameter 30.81 mm at the stop.
     { label: "STO", R: "flat" },
 
     /* ──── Group L2: 1st focus group / SA control, negative (surfaces 16–20) ──── */

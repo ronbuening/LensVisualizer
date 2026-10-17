@@ -250,6 +250,8 @@ const LENS_DATA = {
     { label: "13", R: 30.717, d: 5.21, sd: 10.19, medium: 8 },
     { label: "14", R: -48.144, d: 1.12, sd: 9.83, medium: 9 },
     { label: "15", R: 127.403, d: 2.65, sd: 9.66 },
+    // US 2014/0211029 A1, Numerical Embodiment 3 surface table, surface 16: printed effective
+    // diameter 19.04 mm at the stop.
     { label: "STO", R: "flat" },
     { label: "17", R: -85.617, d: 1.0, sd: 8.555, medium: 10 },
     { label: "18", R: 39.709, d: 0.36, sd: 8.61 },

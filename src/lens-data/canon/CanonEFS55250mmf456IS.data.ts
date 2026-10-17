@@ -21,11 +21,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║       Canon's 1.1 m MFD is measured from the image/focal plane. L2, L3, and   ║
  * ║       the image plane are fixed while L1 is code-solved at each zoom node.   ║
  * ║                                                                              ║
- * ║ APERTURE MODEL                                                               ║
- * ║   Patent endpoint Fno values are 4.16 and 5.88. The required middle node     ║
- * ║   uses Fno=5.129132321041215, a disclosed linear interpolation in the        ║
- * ║   patent focal-length coordinate. The STO sd below is the inferred wide-end  ║
- * ║   physical stop radius; per-zoom nominalFno controls the viewer aperture.     ║
+ * ║ APERTURE MODEL Patent endpoint Fno values are 4.16 and 5.88. The required    ║
+ * ║ middle node uses Fno=5.129132321041215, a disclosed linear interpolation in  ║
+ * ║ the patent focal-length coordinate. The stop radius is derived from the      ║
+ * ║ design f-number at each zoom station; station nominalFNumber controls the    ║
+ * ║ viewer aperture.                                                             ║
  * ║                                                                              ║
  * ║ SEMI-DIAMETERS                                                               ║
  * ║   Example 2 publishes no clear-aperture table. SDs are modeling inferences   ║

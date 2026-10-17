@@ -14,12 +14,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  and L3 move together while L2 moves objectward by a smaller       ║
  * ║  amount. This is represented by variable d6, d10, and BF.          ║
  * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║  The patent's "Effective diameter" entries are full clear          ║
- * ║  diameters. They are divided by two for surface `sd` values. The   ║
- * ║  stop row's effective-diameter value is not the physical aperture  ║
- * ║  diameter; the STO semi-diameter was solved from the patent        ║
- * ║  F-number 2.88 and the computed front-group pupil magnification.   ║
+ * ║ NOTE ON SEMI-DIAMETERS: The patent's "Effective diameter" entries  ║
+ * ║ are full clear diameters. They are divided by two for surface `sd` ║
+ * ║ values. The Numerical Data 1 surface table prints a 29.80 mm       ║
+ * ║ effective diameter at the stop; it is a clear envelope, not the    ║
+ * ║ physical aperture diameter. The stop radius is derived from the    ║
+ * ║ design f-number.                                                   ║
  * ║                                                                    ║
  * ║  NOTE ON FIELD COVERAGE:                                           ║
  * ║  The patent image height is 33.63 mm (67.26 mm image circle), so   ║
@@ -213,6 +213,8 @@ const LENS_DATA = {
     { label: "14", R: 40.0, d: 7.2, sd: 12.75, medium: 8 },
     { label: "15", R: -40.0, d: 1.3, sd: 11.75, medium: 9 },
     { label: "16", R: 30.497, d: 4.44, sd: 10.4 },
+    // US 10,571,651 B2, Numerical Data 1 surface table, stop row: printed effective
+    // diameter 29.80 mm at the stop.
     { label: "STO", R: "flat", d: 6.53 },
     { label: "18", R: -19.525, d: 1.2, sd: 8.8, medium: 10 },
     { label: "19", R: 139.306, d: 5.5, sd: 9.3, medium: 11 },

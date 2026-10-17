@@ -143,6 +143,7 @@ const LENS_DATA = {
     { label: "4", R: 7.213, d: 7.26, sd: 5.06 }, // L2 rear → air (includes 3.26 mm flare-cut gap)
 
     // ── Aperture stop ──
+    // JP 2015-111192 A, Example 1 surface table, surface 6: printed effective diameter 8.78 mm at the stop.
     { label: "STO", R: "flat", d: 3.24 },
 
     // ── Rear group RB (positive) ──

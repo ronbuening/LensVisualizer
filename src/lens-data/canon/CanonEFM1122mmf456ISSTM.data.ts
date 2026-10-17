@@ -19,12 +19,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * These are not patent-published close-focus spacings. At 22 mm the reconstructed paraxial magnification is 0.3115x,
  * consistent with Canon's rounded marketed 0.30x.
  *
- * Aperture: Example 3 publishes Fno = 4.00 / 4.63 / 5.60. The diaphragm row's 9.62 mm "light effective diameter" is
- * a clear-light envelope, not the physical iris opening: treating 9.62 mm as the fixed stop diameter contradicts the
- * patent Fno sequence. nominalFno therefore stores the published modeled values. STO.sd stores the wide-state
- * runtime-equivalent physical stop semi-diameter obtained by exact Snell tracing from EFL/(2*Fno); the resulting wide /
- * middle / tele radii are 4.701431 / 4.774619 / 4.811568 mm. The last value is 0.001568 mm above the nominal
- * 4.810 mm half-envelope only because the patent diameter is rounded to 0.01 mm (9.6231 mm rounds to 9.62 mm).
+ * Aperture: Example 3 publishes Fno = 4.00 / 4.63 / 5.60. The Numerical Example 3 patent surface table
+ * diaphragm row (surface 9) prints a 9.62 mm "light effective diameter". It is a clear-light envelope, not
+ * the physical iris opening: treating 9.62 mm as the fixed stop diameter contradicts the patent Fno sequence.
+ * Station nominalFNumber therefore stores the published modeled values. The stop radius is derived from the
+ * design f-number at each station by exact Snell tracing from EFL/(2*Fno); the wide / middle / tele radii are
+ * 4.701431 / 4.774619 / 4.811568 mm. The last value is 0.001568 mm above the nominal 4.810 mm half-envelope
+ * only because the patent diameter is rounded to 0.01 mm (9.6231 mm rounds to 9.62 mm).
  *
  * Semi-diameters: Example 3 publishes light-effective diameters for every optical surface. Non-stop sd values below are
  * one-half of those published diameters and are not enlarged or reduced for rendering. They are independently checked
@@ -256,6 +257,8 @@ const LENS_DATA = {
     { label: "6", R: -110.63, sd: 9.235 },
     { label: "7", R: -130.232, d: 1.28, sd: 4.545, medium: 4 },
     { label: "8", R: -36.876, d: 3.5, sd: 4.615 },
+    // US 2014/0098253 A1, Numerical Example 3 surface table, surface 9: printed
+    // effective diameter 9.62 mm at the stop.
     { label: "STO", R: "flat", d: 2.0 },
     { label: "10", R: 11.211, d: 4.49, sd: 5.0, medium: 5 },
     { label: "11", R: -14.765, d: 0.8, sd: 4.675, medium: 6 },

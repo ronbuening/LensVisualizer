@@ -20,10 +20,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ focus states or mechanism-constrained focus table. Every focus pair is   ║
  * ║ therefore identical; the production 1.5 m MFD is metadata only.          ║
  * ║                                                                            ║
- * ║ Stop model: the patent publishes the stop location but not its diameter. ║
- * ║ The stop radius is derived from the design f-number and held at every zoom ║
- * ║ station. The exact modeled nominalFno                                      ║
- * ║ values below control LensVisualizer stop/pupil geometry.                  ║
+ * ║ Stop model: the patent publishes the stop location but not its diameter.   ║
+ * ║ The stop radius is derived from the design f-number (the wide station's    ║
+ * ║ nominalFNumber) and held at every zoom station. The station f-numbers are  ║
+ * ║ exact traced values of one constant stop fitted by spherical Snell tracing ║
+ * ║ and least squares to the patent's rounded FNo 4.1 and 5.9; they control    ║
+ * ║ LensVisualizer stop/pupil geometry.                                        ║
  * ║                                                                            ║
  * ║ Semi-diameters: not published. They are inferred from exact full-pupil   ║
  * ║ axial rays, 0.6-field off-axis bundles, the patent Fig. 1 silhouette,    ║

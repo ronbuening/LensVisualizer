@@ -27,8 +27,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ from exact nonlinear on-axis marginal rays plus the default 0.6-field,     ║
  * ║ ±0.75-pupil off-axis bundles at all three zoom states, with conservative   ║
  * ║ mechanical clearance and the patent Fig. 1 section as a shape check. The   ║
- * ║ STO base SD is reverse-calibrated from the modeled wide-state f/2.06 and   ║
- * ║ is not source-published aperture data.                                     ║
+ * ║ stop radius is derived from the design f-number at each zoom state (f/2.06 ║
+ * ║ wide) and is not source-published aperture data.                           ║
  * ║                                                                            ║
  * ║ Example 1 publishes nd, νd, and selected θgF, but not absolute nC/nF/ng or ║
  * ║ dPgF. Published θgF is converted using dPgF = θgF − (0.6438 − 0.001682νd). ║

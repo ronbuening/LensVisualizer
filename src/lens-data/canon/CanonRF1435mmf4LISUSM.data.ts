@@ -26,8 +26,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ effective diameter is treated as a clear envelope, not one fixed working   ║
  * ║ iris. The Numerical Example 3 patent surface table gives that 18.03 mm     ║
  * ║ clear envelope (9.015 mm radius); nominalFno [4.08, 4.08, 4.12] controls   ║
- * ║ working pupil sizing.                                                      ║
- * ║ The solved working iris diameters are 11.32–17.27 mm, all within it.        ║
+ * ║ working pupil sizing. The stop radius is derived from the design f-number  ║
+ * ║ at each zoom station.                                                      ║
  * ║                                                                            ║
  * ║ Semi-diameters: all refracting surfaces use one-half of the patent-listed  ║
  * ║ effective diameters. The 4A→5 air gap is physically non-intersecting but   ║
@@ -332,6 +332,8 @@ const LENS_DATA = {
     { label: "6", R: 57.018, d: 0.2, sd: 12.985 },
     { label: "7", R: 34.464, d: 5, sd: 13.09, medium: 4 },
     { label: "8", R: -232.206, sd: 12.8 },
+    // US 2022/0171174 A1, Numerical Example 3 surface table, surface 9: printed effective
+    // diameter 18.03 mm at the stop.
     { label: "STO", R: "flat", d: 0.3 },
     { label: "10", R: 28.19, d: 0.9, sd: 9.355, medium: 5 },
     { label: "11", R: 16.928, d: 4.39, sd: 9.185, medium: 6 },

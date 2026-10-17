@@ -186,6 +186,7 @@ const LENS_DATA = {
     { label: "8", R: 22.447, d: 3.4, sd: 6.995, medium: 4 },
     { label: "9", R: -42.595, d: 0.72, sd: 6.845, medium: 5 },
     { label: "10", R: 29.265, d: 3.28, sd: 6.62 },
+    // JP 2013-054269 A, Numerical Example 1 surface table: printed effective diameter 13.11 mm at the stop.
     { label: "STO", R: "flat", d: 4.09 },
     { label: "12", R: 105.862, d: 1.59, sd: 6.75, medium: 6 },
     { label: "13", R: -105.862, d: 3.57, sd: 6.75 },

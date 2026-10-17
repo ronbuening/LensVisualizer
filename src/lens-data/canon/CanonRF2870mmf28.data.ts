@@ -22,10 +22,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  from infinity to close (¶0065). The patent publishes infinity      ║
  * ║  spacings only, so focus travel is not modelled (zoom-only gaps).    ║
  * ║                                                                      ║
- * ║  APERTURE: patent FNO 2.88 / 2.88 / 2.92 with a moving stop and no   ║
- * ║  published iris diameters; zoomApertureModel "from-nominal-fno"      ║
- * ║  infers iris radii 9.04 / 10.68 / 11.94 mm (calculated). STO sd      ║
- * ║  records the largest inferred radius.                                ║
+ * ║ APERTURE: patent FNO 2.88 / 2.88 / 2.92 with a moving stop and no    ║
+ * ║ published iris diameters; zoomApertureModel "from-nominal-fno"       ║
+ * ║ infers iris radii 9.04 / 10.68 / 11.94 mm (calculated). The stop     ║
+ * ║ radius is derived from the design f-number at each station.          ║
  * ║                                                                      ║
  * ║  COVER GLASS: patent surfaces 29–30 (GB, 2.00 mm, nd 1.54400,        ║
  * ║  νd 66.3; no catalog match, Abbe dispersion) and d30 = 1.09 mm are  ║

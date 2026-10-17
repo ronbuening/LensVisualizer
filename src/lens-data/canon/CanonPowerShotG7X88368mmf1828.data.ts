@@ -24,14 +24,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  scale factor maps both endpoints, so the design prescription and marketing   ║
  * ║  specifications are recorded separately.                                      ║
  * ║                                                                                ║
- * ║  NOTE ON SEMI-DIAMETERS AND STOP DIAMETER:                                    ║
- * ║  The patent column is labeled "Effective diameter" and lists full clear       ║
- * ║  diameters. Each surface `sd` below is exactly one half of the patent-listed  ║
- * ║  effective diameter. The OCR text drops leading "1" digits on several rows;  ║
- * ║  the values here were checked against the rendered patent table. The stop     ║
- * ║  `sd` is treated as the patent clear diameter/2; the wide-open f-number      ║
- * ║  comes from `nominalFno`, not from treating that clear aperture as a fixed    ║
- * ║  iris opening at every zoom state.                                            ║
+ * ║ NOTE ON SEMI-DIAMETERS AND STOP DIAMETER: The patent column is labeled         ║
+ * ║ "Effective diameter" and lists full clear diameters. Each surface `sd` below   ║
+ * ║ is exactly one half of the patent-listed effective diameter. The OCR text      ║
+ * ║ drops leading "1" digits on several rows; the values here were checked against ║
+ * ║ the rendered patent table. The stop radius is derived from the design f-number ║
+ * ║ at each zoom station. The Numerical Example 1 patent surface table prints a    ║
+ * ║ 10.62 mm effective diameter at stop surface 10; it is not treated as a fixed   ║
+ * ║ iris opening at every zoom state.                                              ║
  * ║                                                                                ║
  * ║  IMPORTANT: This file describes only the optical prescription. It excludes    ║
  * ║  sensor cover glass, filters, stabilization mechanics, shutter/iris blade     ║
@@ -236,6 +236,8 @@ const LENS_DATA = {
     { label: "8", R: 30.603, d: 1.2, sd: 6.135, medium: 5 },
     { label: "9", R: 717.339, sd: 6.06 },
 
+    // US 2016/0062096 A1, Numerical Example 1 surface table, surface 10: printed effective
+    // diameter 10.62 mm at the stop.
     { label: "STO", R: "flat" },
 
     { label: "11A", R: 15.47, d: 2.65, sd: 6.485, medium: 6, asphere: { K: 0, A4: -4.42389e-5, A6: 1.20948e-7, A8: 0, A10: 0, A12: 0, A14: 0 } },

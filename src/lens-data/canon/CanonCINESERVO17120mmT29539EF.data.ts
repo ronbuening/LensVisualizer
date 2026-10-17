@@ -11,7 +11,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * iris radius required at each published zoom station; the patent's surface-30 effective diameter is not
  * treated as a published physical iris schedule.
  * Semi-diameters: source effective radii are retained except 20/21 -> 14.38 mm, 38 -> 10.87 mm,
- * 48/49 -> 13.95 mm for validated shared-gap/off-axis containment, and STO -> the inferred wide-state iris radius.
+ * 48/49 -> 13.95 mm for validated shared-gap/off-axis containment. The stop radius is derived from the design
+ * f-number at each zoom station.
  * Glass strings are supplier-neutral spectral proxies resolved by the shared catalog,
  * not proof of Canon's actual supplier or melt. No catalog-derived line indices or dPgF values are authored.
  * Product correlation to CN7×17 KAS S/E1 is convergent but not manufacturer-confirmed.
@@ -435,6 +436,8 @@ const LENS_DATA = {
     { label: "27", R: -47.481, d: 1.0, sd: 13.525, medium: 15 },
     { label: "28", R: 196.255, d: 2.71, sd: 14.14, medium: 16 },
     { label: "29", R: -525.842, sd: 14.44 },
+    // JP 2015-94867 A, Numerical Example 1 surface table, surface 30: printed effective
+    // diameter 34.40 mm at the stop.
     { label: "STO", R: "flat", d: 1.46 }, // radius derived from the design f-number
     { label: "31", R: 533.292, d: 5.59, sd: 17.675, medium: 17 },
     { label: "32", R: -47.782, d: 0.15, sd: 17.945 },

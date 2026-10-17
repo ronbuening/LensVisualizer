@@ -30,12 +30,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                                     ║
  * ║ SEMI-DIAMETERS: the patent does not publish clear apertures. SDs are modeled from   ║
  * ║ the f/1.45 pupil constraint (stop radius derived from the design f-number), on-axis ║
- * ║ marginal rays,                                                                      ║
- * ║ +/-32 deg chief rays at infinity and the 0.3 m state, and the official Canon block  ║
- * ║ diagram. Surface-specific SDs were then checked for edge thickness, actual rim      ║
- * ║ slope, conic limit, shared-gap intrusion, off-axis containment, and silhouette.     ║
- * ║ Off-axis vignetting is allowed at air-facing element edges; neither cemented        ║
- * ║ junction is the first clipping surface in the verification bundles.                 ║
+ * ║ marginal rays, +/-32 deg chief rays at infinity and the 0.3 m state, and the        ║
+ * ║ official Canon block diagram. Surface-specific SDs were then checked for edge       ║
+ * ║ thickness, actual rim slope, conic limit, shared-gap intrusion, off-axis            ║
+ * ║ containment, and silhouette. Off-axis vignetting is allowed at air-facing element   ║
+ * ║ edges; neither cemented junction is the first clipping surface in the verification  ║
+ * ║ bundles.                                                                            ║
  * ║                                                                                     ║
  * ║ GLASS: the patent gives d-line nd / vd coordinates but no vendor names or line      ║
  * ║ indices. Generic coordinate classes are stored; nC, nF, ng, and dPgF are omitted    ║

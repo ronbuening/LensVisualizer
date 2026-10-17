@@ -369,6 +369,8 @@ const LENS_DATA = {
     { label: "13", R: 821.472, sd: 9.32 }, // L7 rear → air (zoom var)
 
     // ── Unit 3: Correction Group with IS — XYZ (f = +60.67 mm) ──
+    // US 2020/0142167 A1, Numerical Data 1 surface table, surface 14: printed effective
+    // diameter 16.32 mm at the stop.
     { label: "STO", R: "flat", d: 0.35 }, // Aperture stop
     // Subunit X (positive, f = +55.81 mm)
     { label: "15", R: 27.034, d: 3.05, sd: 8.515, medium: 8 }, // L8 front

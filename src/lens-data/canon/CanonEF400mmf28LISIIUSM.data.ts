@@ -309,6 +309,8 @@ const LENS_DATA = {
     { label: "11", R: 420.291, d: 4.26, sd: 32.45, medium: 6 },
     { label: "12", R: -344.747, d: 3.2, sd: 32.135, medium: 7 },
     { label: "13", R: 111.419, sd: 30.26 },
+    // US 2011/0090576 A1, Second Numerical Embodiment surface table, row 14 prints a 48.31 mm effective diameter
+    // at the stop.
     { label: "STO", R: "flat", d: 6.55 },
     { label: "15", R: 185.602, d: 1.8, sd: 24.015, medium: 8 },
     { label: "16", R: 37.424, d: 10.89, sd: 23.14, medium: 9 },
