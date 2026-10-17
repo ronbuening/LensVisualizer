@@ -23,7 +23,8 @@
  * Converter pairs are requested for every pair either engine's fit predicate permits for the head's prescriptions,
  * and the two engines must permit the same ones. A pair the base engine cannot compose and build, while the head
  * engine can, is uncompared instead, and one that only the head's prescriptions permit is compared as a new lens.
- * A record that throws on both engines fails the run in any class.
+ * A record that throws on both engines fails the run in any class, as does a converter of the head catalog that
+ * the head engine cannot read (ingest refuses it or its view fails).
  *
  * A tier too long for one run is split with `--shard i/n`: the tier's lenses are cost-balanced into n parts, and the run
  * covers part i, counted from 1. The parts of a tier share no lens and together hold all of them, so n runs with
@@ -33,9 +34,9 @@
  * summary.md, data-impact.md, uncompared.json and failing-records.ndjson.gz, and above C0 transitions.md, which holds
  * a line to paste for every unit with a transition that nothing declares, the units that no line can declare, and
  * every difference each matched line covers. Nothing it writes belongs in the repository. The exit code is 0 when
- * the run passes and 1 when it fails or cannot run. A declared transition that cannot be read stops the run before
- * it adds its base worktree. Told to stop by SIGINT or SIGTERM, it removes its base worktree and its temporary
- * directories first.
+ * the run passes and 1 when it fails or cannot run. An unreadable declared transition or head-catalog converter
+ * stops the run before it adds its base worktree. Told to stop by SIGINT or SIGTERM, it removes its base worktree
+ * and its temporary directories first.
  *
  * Usage:
  *   node scripts/engine-diff.mjs --base <ref> [--tier p|s|f] [--class c0|c1|c2|c3] [--shard i/n] [--lens <id>]
@@ -391,7 +392,7 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
     /* The head's capture is bundled first, because the reader of the declared transitions is in it. A run reads
      * them when it is made, so one is made here for that alone: a bullet that cannot be read then stops the run
      * before a base worktree is added and anything is captured, and the job summary says which bullet.
-     * Head converter ingest is checked here too, before pair selection can hide a refusal. */
+     * Every head converter is read here too, by ingest and its V1 view, before pair selection can hide a failure. */
     const headCapture = await clock.timeAsync("Capture bundles", () => loadCapture(ROOT, join(bundlesDir, "head")));
     let head;
     try {

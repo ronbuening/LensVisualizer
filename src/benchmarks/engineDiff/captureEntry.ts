@@ -170,24 +170,31 @@ export function unbuiltPairs(catalog: SerializedCatalog, pairs: SerializedCatalo
  * Export this bundle's own catalog: every lens (hidden ones included), every teleconverter, and every host and
  * converter pair this engine permits.
  *
- * @param options - require every converter to pass this engine's ingest when exporting the head catalog
+ * @param options - `validateTeleconverters` requires every converter to pass this engine's ingest and, where
+ * available, its V1 view when exporting the head catalog
  * @returns JSON-safe prescriptions sorted by key, and pairs sorted by host then converter
- * @throws when head validation finds a converter this engine refuses, naming its key and refusal
+ * @throws when a catalog file has no key or repeats a key, or a required engine seam is missing
+ * @throws when a prescription contains a value the tagged encoding cannot serialize
+ * @throws when head validation has no teleconverter ingest
+ * @throws when head validation finds an ingest or V1-view failure, naming each key and error
  */
 export function exportCatalog({ validateTeleconverters = false } = {}): SerializedCatalog {
   const files = ownCatalogFiles();
   const lenses = serializeFiles(files.lenses, "lens");
   const teleconverters = serializeFiles(files.teleconverters, "teleconverter");
   if (validateTeleconverters) {
-    const { ingestTeleconverter } = resolveOptionalSeam();
+    const { ingestTeleconverter, teleconverterView } = resolveOptionalSeam();
     if (!ingestTeleconverter) throw new Error("engineDiff: the head engine has no teleconverter ingest");
     const refused: string[] = [];
     for (const { key, prescription } of teleconverters) {
-      const read = outcomeOf(() => ingestTeleconverter(decodeValue(prescription) as TeleconverterData));
+      const read = outcomeOf(() => {
+        const converter = ingestTeleconverter(decodeValue(prescription) as TeleconverterData);
+        return teleconverterView ? teleconverterView(converter) : converter;
+      });
       if (!read.ok) refused.push(`${key}: ${read.error.name}: ${read.error.message}`);
     }
     if (refused.length > 0) {
-      throw new Error(`engineDiff: head catalog teleconverter ingest refused:\n${refused.join("\n")}`);
+      throw new Error(`engineDiff: head catalog teleconverter cannot be read:\n${refused.join("\n")}`);
     }
   }
   return { lenses, teleconverters, pairs: permittedPairs({ lenses, teleconverters }) };
@@ -318,9 +325,9 @@ export function catalogLensData(authored: LensData): LensData {
  * A converter file as this engine's catalog hands it to the composer and the fit predicate: through canonical ingest
  * and its V1 view where the engine has them, so a V2 file reads, and as authored on an older ref.
  *
- * A file ingest refuses is handed on as authored, preserving base-engine and base-data behavior. The driver
- * separately validates every head-catalog converter through the head's ingest at export, before selecting pairs;
- * any refusal fails the run in every class, even when no pair uses that converter.
+ * A file whose ingest or view fails is handed on as authored, preserving base-engine and base-data behavior. The
+ * driver separately validates every head-catalog converter through the head's ingest and available V1 view at
+ * export, before selecting pairs; either failure fails the run in every class, even when no pair uses that converter.
  *
  * @param authored - a converter file as authored
  * @returns the catalog's converter data, on this engine

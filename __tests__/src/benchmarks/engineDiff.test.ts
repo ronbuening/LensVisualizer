@@ -732,6 +732,8 @@ describe("engineDiff catalog export", () => {
   it("validates head converters even without pairs, and leaves base refusals as authored", () => {
     /* A converter can be refused without any pair build seeing it. Keep the guard independent of pair selection. */
     const fixture = FIXTURE_PAIRS.find((pair) => pair.kind === "teleconverter")!;
+    const malformed = { ...fixture.v2, catalog: { ...fixture.v2.catalog, lensMounts: null as never } };
+    expect(() => ingestTeleconverter(malformed)).not.toThrow();
     const files = vi.spyOn(seamAdapter, "ownCatalogFiles");
     try {
       for (const valid of [fixture.v1, fixture.v2]) {
@@ -739,14 +741,11 @@ describe("engineDiff catalog export", () => {
         expect(exportCatalog({ validateTeleconverters: true })).toEqual(exportCatalog());
         expect(exportCatalog().pairs).toEqual([]);
       }
-      for (const refused of [
-        { ...fixture.v2, unknownField: true },
-        { ...fixture.v1, schema: 3 },
-      ]) {
+      for (const refused of [{ ...fixture.v2, unknownField: true }, { ...fixture.v1, schema: 3 }, malformed]) {
         files.mockReturnValue({ lenses: {}, teleconverters: { "fixture.teleconverter.ts": refused } });
-        const result = outcomeOf(() => ingestTeleconverter(refused));
+        const result = outcomeOf(() => toTeleconverterData(ingestTeleconverter(refused)));
         expect(result.ok).toBe(false);
-        if (result.ok) throw new Error("the fixture must be refused by ingest");
+        if (result.ok) throw new Error("the fixture's ingest or view must fail");
         expect(() => exportCatalog({ validateTeleconverters: true })).toThrow(
           `${refused.key}: ${result.error.name}: ${result.error.message}`,
         );

@@ -26,7 +26,7 @@ import { USAGE, parseArgs, renderTransitionsReport } from "../../scripts/engine-
 import { exportCatalog, requestCatalog } from "../../src/benchmarks/engineDiff/captureEntry.js";
 import { parseDeclaredExceptions, parseDeclaredTransitions } from "../../src/benchmarks/engineDiff/compare.js";
 import { lensId, shardRequests, tierRequests } from "../../src/benchmarks/engineDiff/requests.js";
-import { ingestTeleconverter } from "../../src/optics/buildLens.js";
+import { ingestTeleconverter, toTeleconverterData } from "../../src/optics/buildLens.js";
 import { FIXTURE_PAIRS } from "../src/optics/prescription/ingestV2Fixtures.js";
 
 describe("engine-diff command line", () => {
@@ -141,16 +141,11 @@ describe("engine-diff run", () => {
     (changeClass, context) => {
       const outDir = mkdtempSync(join(tmpdir(), "engine-diff-test-"));
       try {
-        const run = runDriver([
-          "--tier",
-          "p",
-          "--class",
-          changeClass,
-          "--lens",
-          "canon-serenar-50f18",
-          "--out",
-          outDir,
-        ]);
+        const run = runDriver(
+          ["--tier", "p", "--class", changeClass, "--lens", "canon-serenar-50f18", "--out", outDir],
+          resolve("."),
+          { ...env, GITHUB_STEP_SUMMARY: join(outDir, "step-summary.md") },
+        );
         if (!run) return context.skip("git cannot create a worktree here, so the driver was not run");
         if (run.status !== "passed") throw new Error(`engine-diff.mjs failed: ${run.stderr}`);
         const output = run.stdout;
@@ -217,23 +212,29 @@ describe("engine-diff run", () => {
     },
   );
 
-  it.each(["c0", "c3"].flatMap((changeClass) => ["v2", "v1-schema"].map((form) => ({ changeClass, form }))))(
-    "fails head converter ingest under $changeClass for $form before selecting pairs",
+  it.each(["c0", "c3"].flatMap((changeClass) => ["v2", "v1-schema", "v2-view"].map((form) => ({ changeClass, form }))))(
+    "fails unreadable head converters under $changeClass for $form before selecting pairs",
     { timeout: 180_000 },
     ({ changeClass, form }) => {
       const fixture = FIXTURE_PAIRS.find((pair) => pair.kind === "teleconverter")!;
-      const refused = form === "v2" ? { ...fixture.v2, unknownField: true } : { ...fixture.v1, schema: 3 };
+      const refused =
+        form === "v2"
+          ? { ...fixture.v2, unknownField: true }
+          : form === "v1-schema"
+            ? { ...fixture.v1, schema: 3 }
+            : { ...fixture.v2, catalog: { ...fixture.v2.catalog, lensMounts: null as never } };
+      if (form === "v2-view") expect(() => ingestTeleconverter(refused)).not.toThrow();
       let message = "";
       try {
-        ingestTeleconverter(refused);
+        toTeleconverterData(ingestTeleconverter(refused));
       } catch (error) {
         message = (error as Error).message;
       }
       expect(message).not.toBe("");
       const root = mkdtempSync(join(tmpdir(), "engine-diff-refusal-test-"));
       try {
-        /* An isolated head catalog with no hosts: no pair or narrowed request can catch this refusal. The git
-         * metadata is read only; the driver must fail before it tries to add a base worktree. */
+        /* An isolated head catalog with no hosts: no pair or narrowed request can catch this failure. Disable git's
+         * optional locks to keep status from refreshing the shared index; validation must stop before worktree add. */
         for (const path of ["src", "scripts", "package.json"]) cpSync(path, join(root, path), { recursive: true });
         for (const path of [".git", "node_modules"]) symlinkSync(resolve(path), join(root, path));
         const dataDir = join(root, "src/lens-data");
@@ -244,10 +245,10 @@ describe("engine-diff run", () => {
         const run = runDriver(
           ["--class", changeClass, "--lens", "canon-serenar-50f18", "--out", join(root, "out")],
           root,
-          { ...env, GITHUB_STEP_SUMMARY: stepSummary },
+          { ...env, GIT_OPTIONAL_LOCKS: "0", GITHUB_STEP_SUMMARY: stepSummary },
         );
         expect(run?.status).toBe("failed");
-        expect(run?.stderr).toContain(`head catalog teleconverter ingest refused:\n${refused.key}:`);
+        expect(run?.stderr).toContain(`head catalog teleconverter cannot be read:\n${refused.key}:`);
         expect(run?.stderr).toContain(message);
         expect(run?.stdout).not.toContain("engine-diff: base worktree");
         const summary = readFileSync(stepSummary, "utf8");
@@ -274,7 +275,12 @@ describe("engine-diff run", () => {
 
     const outDir = mkdtempSync(join(tmpdir(), "engine-diff-test-"));
     try {
-      const run = runDriver(["--tier", "s", "--shard", "2/3", "--lens", lens, "--out", outDir]);
+      const environment = { ...env, GITHUB_STEP_SUMMARY: join(outDir, "step-summary.md") };
+      const run = runDriver(
+        ["--tier", "s", "--shard", "2/3", "--lens", lens, "--out", outDir],
+        resolve("."),
+        environment,
+      );
       if (!run) return context.skip("git cannot create a worktree here, so the driver was not run");
       if (run.status !== "passed") throw new Error(`engine-diff.mjs failed: ${run.stderr}`);
       expect(run.stdout).toContain("engine-diff: tier s shard 2/3, base ");
@@ -292,7 +298,11 @@ describe("engine-diff run", () => {
       );
 
       /* The same lens is in no other shard: the run has nothing to compare, and says so instead of passing. */
-      const elsewhere = runDriver(["--tier", "s", "--shard", "1/3", "--lens", lens, "--out", outDir]);
+      const elsewhere = runDriver(
+        ["--tier", "s", "--shard", "1/3", "--lens", lens, "--out", outDir],
+        resolve("."),
+        environment,
+      );
       expect(elsewhere).toMatchObject({
         status: "failed",
         stderr: expect.stringContaining(`tier s shard 1/3 has no request for the lens "${lens}"`),
@@ -400,7 +410,10 @@ describe("engine-diff declared transitions", () => {
           "utf8",
         );
         const args = ["--tier", "p", "--lens", "canon-serenar-50f18", "--exceptions", description, "--out", outDir];
-        const run = runDriver([...args, "--class", "c1"]);
+        const run = runDriver([...args, "--class", "c1"], resolve("."), {
+          ...env,
+          GITHUB_STEP_SUMMARY: join(outDir, "step-summary.md"),
+        });
         if (!run) return context.skip("git cannot create a worktree here, so the driver was not run");
         /* HEAD against itself has no transition, so the line that declares one fails the run. */
         expect(run.status).toBe("failed");

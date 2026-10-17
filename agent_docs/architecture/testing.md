@@ -247,9 +247,9 @@ and bundled there.
   catalog merge is another: each bundle merges a host as its own catalog does, by spreading its V1 defaults object at
   a ref before S2.P1.T2, and by ingest and the V1 view at a later one (`catalogLensData` in `captureEntry.ts`). A
   converter is read the same way where the ref has its view (`catalogTeleconverterData`), and as authored before.
-  The driver validates every head-catalog converter through the head engine's ingest before selecting pairs. Any
-  refusal fails the run in every class, naming the converter key and refusal in stderr and the job summary. Base
-  converters that ingest refuses are still handed on as authored.
+  The driver validates every head-catalog converter through the head engine's ingest and available V1 view before
+  selecting pairs (rule 6 below). Outside that validation, an ingest or view failure still hands the converter on
+  as authored, preserving base-engine and base-data behavior.
   From S2.P2.T1 ingest reads either lens-data version, and the request list reads a V2 file's stations and keyframes
   (`requestCatalog`), so a V2 set and its V1 twin give the same requests, pairs and records.
 - `requests.ts` defines a tier as a deterministic list of lens × state × request family, and cuts a list into
@@ -460,6 +460,8 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
    head's prescriptions, and a difference fails the run and names the pairs, under every class but C3, which reports
    it. Requests are built from the pairs either engine permits, so a pair one engine lost is still asked of both and
    that engine throws on it.
+   - A converter of the head catalog that the head engine cannot read (ingest refuses it or its view fails) fails
+     the run in every class, before selecting pairs, naming its key and error in stderr and the job summary.
    - A pair is set aside from that comparison exactly when the base engine cannot compose and build it from the
      head's prescriptions while the head engine can. Each engine is asked for the build record of every pair either
      predicate permits, once, before any lens is captured, and asking never ends the run. The answer is the pair's
@@ -481,8 +483,8 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
      change only on a status that turned to a failure, a number that turned non-finite or a lens that no longer
      builds, and a converter that fits nothing is none of these. A changed host or converter that lost every pair
      it had with the base data is therefore named in a warning, with the pairs it lost: among the failure lines at
-     the top of `summary.md`, and on stderr. Nothing in the run evaluated such a converter, and the run does not
-     fail on it.
+     the top of `summary.md`, and on stderr. Head validation still applies; the loss of every pair alone does not
+     fail the run.
 
 ### Change Classes and Budgets
 
@@ -494,7 +496,7 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
   declares its unit (see "Declared Transitions"). C2 uses the C1 budgets: the C2 criteria of the quantity table in
   `OPTICS_ENGINE_REWRITE_SPEC.md` carry a solver tolerance through a derivative, which two payloads cannot supply.
 - **C3**: engine drift is reported and does not fail, and declared transitions are matched and reported. Rules 2, 4
-  and 5 above still fail.
+  and 5 above still fail, as does an unreadable head converter under rule 6.
 
 The classes in `budgets.ts`:
 
@@ -855,9 +857,9 @@ Its output goes under `--out`, or under a new directory in the system temp direc
 gzip NDJSON payloads in a `payloads` folder, and the small files in a `reports` folder beside it (`summary.json`,
 `summary.md`, `data-impact.md`, `uncompared.json`, the failing record pairs and, above C0, `transitions.md`). Nothing
 it writes is committed. It exits non-zero when a comparison fails, when the uncompared lenses differ from the
-declared exceptions in either direction, or when the transitions it found differ from the declared ones. It reads
-the declared transitions before it adds its base worktree, so a bullet it cannot read stops it at once, with the
-bullet on stderr and in the job summary.
+declared exceptions in either direction, or when the transitions it found differ from the declared ones. An unreadable
+declared transition or head-catalog converter also stops the run before it adds its base worktree, with the bullet
+or converter key and error on stderr and in the job summary.
 
 ### CI
 
@@ -942,7 +944,8 @@ Three files in the tooling suite hold the harness to its contract.
   prescription holds as one), the harness's copy of the inline defaults equals the engine's, a member of a built
   surface that the engine alone changed gives another build record, and no analysis or MTF record carries a skip
   marker. Asking an engine which pairs it permits does not throw on a prescription it cannot read, and it names the
-  pairs it cannot build, each by the pair's own build record.
+  pairs it cannot build, each by the pair's own build record. Head export validation catches ingest and V1-view
+  failures even without hosts or pairs, leaves the unvalidated fallback as authored, and preserves the valid catalog.
   Each tier's list is the same on every build and for any order of the catalog, Tier S holds every request of Tier
   P and Tier F every request of Tier S, a pair that one engine alone permits is still asked, and the shards of every
   tier are disjoint and complete at several shard counts. It also compares what `requests.ts` has to copy with its
@@ -998,9 +1001,10 @@ Three files in the tooling suite hold the harness to its contract.
   change is excused by no line, and a lens handed over in parts gets the verdict of the lens whole.
 - `__tests__/scripts/engineDiffScript.test.ts`: the command line, and runs of the real driver against `HEAD`, on one
   lens of Tier P under C0 and C3 and on one lens of one shard of Tier S, which are skipped where git cannot add a
-  worktree. Synthetic head catalogs with a refused V2 converter or a V1 `schema: 3` converter fail under C0 and C3
-  before any pair is selected, with the key and refusal in stderr and the job summary. Another run hands the driver a
-  description with both headings and checks that its declared transitions are held to the run; a bullet with no reason
+  worktree. Synthetic head catalogs with a refused V2 converter, a V1 `schema: 3` converter, or malformed `lensMounts`
+  that ingest accepts but whose V1 view throws fail under C0 and C3 before any pair is selected, with the key and error
+  in stderr and the job summary. Another run hands the driver a description with both headings and checks that its
+  declared transitions are held to the run; a bullet with no reason
   stops the driver before it adds a base worktree. Three steps of the stage workflow are run as shell scripts with the
   workflow's variables in their environment: the step that writes that file, whose output is read back by the parser;
   the `plan` step, which must refuse a heading among the bullets; and the `result` step, on fabricated shard summaries,
