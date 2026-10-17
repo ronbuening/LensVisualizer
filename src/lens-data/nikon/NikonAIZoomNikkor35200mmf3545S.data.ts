@@ -29,6 +29,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+// Table 2's infinity columns are f = 36.16 and 193.96 mm; these define the zoom
+// stations and catalog design range. The nominal range is 35–200 mm; the unchanged
+// prescription traces to 36.2278–194.8533 mm.
 const LENS_DATA = {
   schema: 2,
   key: "nikon-ai-zoom-nikkor-35-200mm-f3-5-4-5s",
@@ -48,7 +51,7 @@ const LENS_DATA = {
     ],
     elementCount: 17,
     groupCount: 13,
-    focalLengthMm: { marketing: [35, 200], design: [36.23, 194.85] },
+    focalLengthMm: { marketing: [35, 200], design: [36.16, 193.96] },
   },
 
   source: {
@@ -296,8 +299,8 @@ const LENS_DATA = {
   zoom: {
     // (moved from publishedStations) Source-tabulated focus rows differ by zoom station.
     stations: [
-      { focalLengthMm: 35, nominalFNumber: 3.5, label: "35 mm", published: true },
-      { focalLengthMm: 200, nominalFNumber: 4.5, label: "200 mm", published: true, publishedFocus: [1] },
+      { focalLengthMm: 36.16, nominalFNumber: 3.5, label: "36.16 mm", published: true },
+      { focalLengthMm: 193.96, nominalFNumber: 4.5, label: "193.96 mm", published: true, publishedFocus: [1] },
     ],
     step: 0.004,
   },

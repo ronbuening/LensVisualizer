@@ -20,9 +20,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ values 10.60231 / 24.65306 / 31.47480 mm are retained in the audit only.           ║
  * ║                                                                                    ║
  * ║ ZOOM CONTROL COLUMNS                                                               ║
- * ║ zoomPositions preserve the patent table headings 81.55 / 135 / 194 mm. The         ║
- * ║ tele column independently computes to EFL = 195.999955682 mm; this source-table    ║
- * ║ contradiction is preserved rather than silently relabeling the control column.     ║
+ * ║ zoom.stations and catalog.focalLengthMm.design retain Table 1's printed 81.55 /  ║
+ * ║ 135 / 194 mm columns and 81.55–194.00 mm range. The tele prescription            ║
+ * ║ independently computes to EFL = 195.999955682 mm. This unresolved source         ║
+ * ║ contradiction is disclosed in source.errata; no prescription value is changed.   ║
  * ║ Infinity spacings otherwise reproduce the patent table exactly.                    ║
  * ║ Between the three published zoom columns, LensVisualizer uses its standard         ║
  * ║ piecewise-linear spacing interpolation. That visualization is not asserted as      ║
@@ -81,14 +82,15 @@ const LENS_DATA = {
     specs: [
       "18 ELEMENTS / 14 GROUPS",
       "MARKETED 80-200mm f/2.8",
-      "DESIGN EFL ≈ 81.55-196.00mm",
+      "COMPUTED EFL ≈ 81.55-196.00mm",
       "MODELED f/2.88",
       "5 ED ELEMENTS",
     ],
     elementCount: 18,
     groupCount: 14,
     acceptsTeleconverters: true, // Nikon lists this lens as compatible with the AF-S TC-20E III
-    focalLengthMm: { marketing: [80, 200], design: [81.549920824, 195.999955682] },
+    // Table 1, pp. 6–7: source-stated range; tele prescription computes to 195.999955682 mm (unresolved).
+    focalLengthMm: { marketing: [80, 200], design: [81.55, 194] },
     fNumber: { marketing: 2.8, design: 2.88 },
   },
 
@@ -97,6 +99,12 @@ const LENS_DATA = {
     patentYear: 2000,
     authors: ["Susumu Sato"],
     assignees: ["Nikon Corporation"],
+    errata: [
+      {
+        status: "unresolved",
+        note: "JP 2000-19398 A Example 1, Table 1 (PDF pp. 6–7), states F = 81.55–194.00 mm and labels the tele infinity column 194.0000 mm. Its published prescription calculates to 195.999955682 mm at that column. The printed range and station labels are retained; no erroneous prescription cell or corrected source focal length has been isolated.",
+      },
+    ],
   },
 
   /* ── Elements ── */

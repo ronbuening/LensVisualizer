@@ -106,3 +106,17 @@ Left open:
 - The patent's 1:6.3 at fmax is not what an unchanged iris gives by the patent's own focal lengths: nothing ahead of the stop moves above fmed, so the f-number scales with focal length, 2.1 × 29.6 / 14.5 = 4.29 (the file's 4.507 is 2.0806 × 613.643 / 283.255). In the file's prescription 1:6.3 at 592 mm needs a 15.99 mm iris, against the 22.15-22.35 mm that 1:2.1 needs from 20 to 290 mm. The patent prints no clear apertures that would explain the difference.
 - The coupled diaphragm of FIG. 1 and claims 8-10 (1:2.1 over the entire range) is not modeled.
 - The rim limits on the on-axis beam are a separate queue row.
+
+## 2026-10-17 — V2 source-stated design focal length
+
+Source: US 3,912,373, Example 1, TABLE IB, PDF p. 10, col. 5, scaled ×20. Applied the approved focal-length metadata proposal.
+
+| Field | Before | After |
+|---|---|---|
+| `catalog.focalLengthMm.design` | `[19.833025763378, 613.643291786978]` | `[20, 592]` |
+
+Retained all station labels, marketing values, prescription geometry and image distances. The former design values were rounded or full-precision computed EFLs; the catalog field now records the source-stated endpoints.
+
+The approved proposal independently reproduced infinity EFLs of 19.833025763378–613.643291786978 mm; those traced results remain documented separately. Both S2.P6.T3 endpoint comparisons now have zero difference. This is a metadata correction, not a source-prescription correction.
+
+The existing unresolved `source.errata` entry and Section G investigation are retained unchanged; metadata agreement does not resolve the source contradiction.

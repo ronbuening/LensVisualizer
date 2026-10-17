@@ -18,7 +18,7 @@ The selected production correlation is the **KONICA UC ZOOM HEXANON AR 80-200mm 
 3. The product sheet states that the lens focuses continuously to 0.7m, reaches approximately 1:2 reproduction at 200mm, and can be zoomed to 80mm without refocusing for approximately 1:5 reproduction. The patent states that close focusing is performed by moving the front positive component toward the object.
 4. The Autoreflex T4 lens table independently lists the 80–200mm f/4 as a 14-element/10-group Konica bayonet zoom with 0.7m closest distance and a 62mm filter. The associated camera system is 35mm, consistent with the data file's `konica-ar` mount and `135-full-frame` format.
 
-Marketing, patent-state, and traced design quantities are kept separate. The production designation remains 80–200mm f/4. The data file keeps the patent's printed zoom-state endpoints, 79.925mm and 196.158mm, in `zoomPositions`, while `focalLengthDesign` stores the independently traced raw-prescription EFLs, 80.879304mm and 199.749083mm. No scale factor is applied.
+The marketed designation remains 80–200mm f/4. Both `zoom.stations[].focalLengthMm` and `catalog.focalLengthMm.design` record the patent's stated endpoints, 79.925mm and 196.158mm. The unchanged prescription independently traces to 80.879304mm and 199.749083mm; these computed EFLs remain distinct from the source-stated design range. No scale factor is applied.
 
 ## Optical Architecture
 
@@ -146,7 +146,7 @@ The patent states that close focusing is performed by moving the front positive 
 
 Only the air space following F1 changes with focus. A common objectward extension of 27.690052mm is applied at both zoom endpoints; no additional internal motion is introduced.
 
-| Endpoint | Design EFL | d5 at infinity | d5 at 0.7m | Computed magnification | Manufacturer rounded value |
+| Endpoint | Traced infinity EFL | d5 at infinity | d5 at 0.7m | Computed magnification | Manufacturer rounded value |
 |---|---:|---:|---:|---:|---:|
 | Wide | 80.879304mm | 2.535000mm | 30.225052mm | 0.21218 | about 1:5 |
 | Tele | 199.749083mm | 36.375000mm | 64.065052mm | 0.52402 | about 1:2 |
@@ -177,7 +177,7 @@ The first two conditions regulate the relative positive and negative powers of t
 
 The patent prints `f = 79.925–196.158mm`, `F4`, `fB = 48.523mm`, and a first-to-last surface length of 142.822mm. Direct tracing of the unchanged numerical surface table instead gives 80.879304mm and 199.749083mm effective focal length, with back focal distances of 49.502094mm and 49.487008mm. The final data does not alter any refracting radius, axial spacing, refractive index, or Abbe value to force agreement.
 
-Instead, the model separates the rounded marketing designation from the computed design values and places the image plane at the independently traced paraxial focus of the raw prescription. The small difference between the two endpoint BFDs is therefore a model normalization of the image plane, not a correction to a patent surface.
+Instead, the model distinguishes the marketing designation, the source-stated design values, and the independently computed EFLs and places the image plane at the independently traced paraxial focus of the raw prescription. The small difference between the two endpoint BFDs is therefore a model normalization of the image plane, not a correction to a patent surface.
 
 The disagreement is internal to the patent, not a transcription fault. All 24 radii, 23 axial spacings, and 14 index/Abbe pairs in the data, and both sets of variable spacings, match the table on page 303, and the printed spacings sum to the printed 142.822mm at both zoom states. Three further checks compare the table with the rest of the publication. Its zoom ratio, 2.4697, agrees with the focal lengths labelled on the aberration plots (80.0mm and 197.5mm, a ratio of 2.469) rather than with the header's 2.4543. Its traced on-axis spherical aberration at f/4 is -0.12mm at half aperture and +0.51mm at the margin at the wide endpoint, and -0.17mm at the margin at the tele endpoint; Figures 2C and 2A plot about -0.14mm, +0.4mm, and -0.16mm. Its distortion at the 21.63mm image height is -1.4% at the wide endpoint and +3.2% at the tele endpoint, against about -1.8% and +3.0% on the same figures. The traced curves have the form of the plotted ones, but the wide-endpoint margin lies about 0.1mm and the wide-endpoint distortion about 0.4 percentage points from the figures.
 

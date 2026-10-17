@@ -7,11 +7,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Data source: JP S55-163511 A Example 1 (Nippon Kogaku / Mogami). ║
  * ║  8 elements / 8 air-spaced lens groups; 2 moving zoom groups.   ║
  * ║                                                                    ║
- * ║  Zoom: patent infinity spacing l = 41.4 -> 0.1 mm.               ║
- * ║  The literal patent prescription traces to EFL 39.353836 mm at   ║
- * ║  l=41.4 and 69.653851 mm at l=0.1. The printed f=37-69 mm       ║
- * ║  labels are retained as zoomPositions; the wide-end discrepancy  ║
- * ║  is not silently corrected.                                      ║
+ * ║ Patent Example 1 prints f=37–69 mm at l=41.4–0.1 mm; these are ║
+ * ║ the catalog design range and zoom-station labels. The          ║
+ * ║ unchanged prescription traces to EFL 39.353836–69.653851 mm.   ║
+ * ║ The wide-end source contradiction remains unresolved.          ║
  * ║                                                                    ║
  * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes ║
  * ║  no finite-focus spacing rows, and the available Nikon sources   ║
@@ -57,7 +56,8 @@ const LENS_DATA = {
     ],
     elementCount: 8,
     groupCount: 8,
-    focalLengthMm: { marketing: [36, 72], design: [39.353836021781, 69.65385117607] },
+    // Patent Example 1 stated range; traced EFL is 39.353836–69.653851 mm (unresolved source discrepancy).
+    focalLengthMm: { marketing: [36, 72], design: [37, 69] },
     fNumber: { marketing: 3.5, design: 3.5 },
   },
 
@@ -66,6 +66,12 @@ const LENS_DATA = {
     patentYear: 1980,
     authors: ["Satoshi Mogami"],
     assignees: ["Nippon Kogaku K.K."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "JP S55-163511 A Example 1, p. 4, prints f=37–69 mm and l=41.4–0.1 mm. The unchanged prescription traces to 39.353836–69.653851 mm. The wide-end contradiction is unresolved; no printed radius, thickness, index or zoom gap has been corrected.",
+      },
+    ],
   },
 
   elements: [

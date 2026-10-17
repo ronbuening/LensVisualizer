@@ -64,3 +64,17 @@ Left open:
 - The aperture audit cannot bracket a marginal ray at either station (limiter reported as `STO (noBracket)`), with r19 at either value. The stop plane at zero distance behind surface 21 (R = +94.78) lies inside that surface's sag, and the 15.0042 mm iris is wider than surface 21's 15 mm semi-diameter. The patent gives no stop distance, so an axial offset is a modelling choice and is not made here; the lens stays on `agent_docs/sd-audit-queue.md`.
 - The computed EFLs sit 2.83 % above and 0.97 % below the nominal 70–205 mm labels. The gap sums and the two back focal lengths (0.024 mm apart) leave no sign of a misread zoom spacing, so the labels are treated as nominal.
 - US 3,817,600 is not held locally, so r19 in the US text was not read. Its Group IV focal length of about +44.04 mm, as quoted in the analysis note, is reproduced by 38.35 (+44.0400) and not by 38.55 (+44.1873).
+
+## 2026-10-17 — V2 source-stated design focal length
+
+Source: JP S51-63635 A, Table 1, PDF pp. 3–4. Applied the approved focal-length metadata proposal.
+
+| Field | Before | After |
+|---|---|---|
+| `catalog.focalLengthMm.design` | `[71.979219, 203.013778]` | `[70, 205]` |
+
+Retained all station labels, marketing values, prescription geometry and image distances. The former design values were rounded or full-precision computed EFLs; the catalog field now records the source-stated endpoints.
+
+The approved proposal independently reproduced infinity EFLs of 71.979219 / 203.013778 mm; those traced results remain documented separately. Both S2.P6.T3 endpoint comparisons now have zero difference. This is a metadata correction, not a source-prescription correction.
+
+Added an `unresolved` `source.errata` entry, a header disclosure, and a Section G queue row. JP S51-63635 A, Table 1 (PDF pp. 3–4; gazette pp. 265–266), states f = 70–205 mm; Figure 2(a,c) repeats those endpoints. The unscaled printed prescription, including r19 = 38.35 mm, traces to 71.979219/203.013778 mm at the published endpoint gaps. The cause of the discrepancy is not isolated; the printed prescription is retained.

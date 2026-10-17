@@ -27,7 +27,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  (45.82 wide / 46.37 tele — the design is varifocal by 0.55 mm),  ║
  * ║  plus the common unit-focus extension at close focus.              ║
  * ║                                                                    ║
- * ║  NOTE ON EFL DISCREPANCY (sourceErrata: unresolved):               ║
+ * ║  NOTE ON EFL DISCREPANCY (source.errata: unresolved):               ║
  * ║    Every row of Table I matches this file, and so do the copies in ║
  * ║    claims 7, 8 and 17 (claim 17 as corrected), except that claim 8 ║
  * ║    prints R21 as −35.95.                                           ║
@@ -45,7 +45,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    further off (38.86 / 90.02 mm). The patent has no aberration    ║
  * ║    plots and no second example, and the printed rows satisfy every ║
  * ║    claimed condition, so the table is kept as printed;             ║
- * ║    focalLengthDesign records the computed EFL.                     ║
+ * ║ catalog.focalLengthMm.design and the station labels record the ║
+ * ║ patent's stated 36–83 mm; the unchanged Table I prescription   ║
+ * ║ traces to 38.46 / 89.08 mm, as reported in specs and           ║
+ * ║ source.errata.                                                 ║
  * ║                                                                    ║
  * ║  NOTE ON STOP POSITION:                                            ║
  * ║    Fig. 1 draws the iris symbol between L10 and L11, inside the    ║
@@ -98,7 +101,7 @@ const LENS_DATA = {
     ],
     elementCount: 12,
     groupCount: 9,
-    focalLengthMm: { marketing: [35, 85], design: [38.5, 89.1] },
+    focalLengthMm: { marketing: [35, 85], design: [36, 83] },
     fNumber: { marketing: 2.8 },
   },
 

@@ -212,6 +212,8 @@ All load-bearing first-order quantities were recalculated from the transcribed p
 | Half-field for 43.27 mm diagonal | 8.113 deg | 4.122 deg | 2.081 deg |
 | Patent aberration-figure field | 8.2 deg | 4.1 deg | 2.1 deg |
 
+Catalog design focal length records the patent-stated 150–600 mm range; the computed EFLs above are separate results from the unchanged Example 4 prescription. The wide-end computed EFL exceeds the printed 150 mm position by 1.172%; the cause is not established here.
+
 The surface-by-surface Petzval sum, computed as $\sum \Phi/(n n')$, is $1.588 \times 10^{-4}\ \mathrm{mm}^{-1}$, corresponding to a Petzval radius of about 6297 mm. This is a very weak residual Petzval curvature for a system of this focal length and is consistent with the strong cancellation among the large positive and negative sub-group powers.
 
 The aperture stop semi-diameter stored in the data file is 18.38928 mm. The stop is placed 0.5 mm before R25 inside the patent $l_3$ air space, and the stored value is the radius at which the paraxial entrance pupil gives f/5.6 at all three zoom positions. The model declares a fixed iris: the wide-open opening is sized by real ray at the 150 mm station, 18.457 mm, and held across the zoom range. Traced on axis, the model gives f/5.60 at 150 mm and f/5.59 at 300 mm, both limited by the iris, and f/5.60 at 600 mm, where the rim of surface 9 sits on the stated ray.

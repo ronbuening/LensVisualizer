@@ -1,5 +1,9 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+// US 4,110,006, Example 4 (PDF pp. 18–19): source-stated f = 150–600 mm;
+// zoom columns are 150 / 300 / 600 mm. Infinity paraxial EFLs from the
+// printed prescription are 151.7585 / 300.1933 / 595.4652 mm; design metadata
+// records the stated range, not these computed values. No scale factor applied.
 const LENS_DATA = {
   schema: 2,
   key: "canon-fd-150-600mm-f56-l",
@@ -19,7 +23,7 @@ const LENS_DATA = {
     ],
     elementCount: 19,
     groupCount: 15,
-    focalLengthMm: { marketing: [150, 600], design: [151.759, 595.465] },
+    focalLengthMm: { marketing: [150, 600], design: [150, 600] },
     fNumber: { marketing: 5.6, design: 5.6 },
   },
 

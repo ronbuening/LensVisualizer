@@ -45,3 +45,16 @@ Patent: US 4,770,511, Example 2 / Table 2
 - Assigned J-LASFH9, TAF3D, and J-PKH1 as coefficient-backed optical equivalents. The labels do not identify
   Nikon's production supplier.
 - No patent constants, geometry, or zoom states changed.
+
+## 2026-10-17 — V2 source-stated design focal length
+
+Source: US 4,770,511, Table 2, PDF p. 12. Applied the approved focal-length metadata proposal.
+
+| Field | Before | After |
+|---|---|---|
+| `catalog.focalLengthMm.design` | `[36.23, 194.85]` | `[36.16, 193.96]` |
+| Endpoint station focal lengths / labels | 35 / 200 mm | 36.16 / 193.96 mm |
+
+Retained marketing 35–200 mm, all prescription geometry and derived BFDs. The station values and display labels now match Table 2. Interior millimetre-valued zoom links can select a different normalized zoom state; geometry at a fixed normalized state is unchanged.
+
+The approved proposal independently reproduced infinity EFLs of 36.227839 / 194.853344 mm; those traced results remain documented separately. Both S2.P6.T3 endpoint comparisons now have zero difference. This is a metadata correction, not a source-prescription correction.

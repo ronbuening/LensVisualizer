@@ -16,7 +16,7 @@ The prescription modeled here is the First Embodiment of US 4,437,733. The paten
 published focal-length endpoints of 11.5 and 69.0 mm, an f-number of 1.2, a 16.54 mm back focal length, a 53.5 mm
 forward-lens effective diameter, and useful performance to a stated short distance of 0.93 m. It also places a
 plane-parallel half-prism between the fourth and fifth powered groups to divert light to the viewfinder. These facts are
-published in the First Embodiment description and numerical table. See US 4,437,733, PDF pp. 12–13 (printed pp. 6–8),
+published in the First Embodiment description and numerical table. See US 4,437,733, PDF pp. 12–13 (printed columns 6–8),
 Fig. 1 and the First Embodiment table.
 
 The production-lens identification is a convergent correlation rather than a manufacturer-confirmed patent mapping:
@@ -81,8 +81,7 @@ G2 therefore moves monotonically toward image space. G3 first moves toward the o
 reverses and moves toward image space between middle and tele. That reversal is a characteristic part of the compensator
 motion rather than an interpolation artifact. G4 remains fixed to the precision of the published spacing table.
 
-The patent's three station labels are retained as source zoom coordinates rather than redefined as exact Gaussian focal
-lengths. The rounded prescription computes the following first-order values:
+The patent's three station labels and the catalog design endpoints retain its stated focal lengths. The modeled prescription computes the following first-order values; the source/model discrepancy remains unresolved and is not established to arise solely from rounding.
 
 | State | Published station | Computed EFL | Computed BFD from r26 |
 |---|---:|---:|---:|

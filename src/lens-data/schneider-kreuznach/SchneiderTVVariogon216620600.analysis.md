@@ -18,6 +18,8 @@ The production-lens identification is a strong correlation rather than a manufac
 
 The modeled production correlation applies a uniform scale of **20×** to every patent length. Thus TABLE IB's 1.0-29.6 mm source stations become 20-592 mm model stations. The marketed 20-600 mm range remains a separate product specification; 592 mm is the scaled source endpoint, not a redefinition of the marketed 600 mm endpoint. No radius, spacing, or refractive index is tuned to make the rounded patent table reproduce the marketed endpoint.
 
+`catalog.focalLengthMm.design` records the stated source range, 20–592 mm; the computed EFL range remains 19.833–613.643 mm, as tabulated below, and is not substituted for the source labels.
+
 ## Optical Architecture
 
 This is a seven-component mechanically compensated zoom with component-power sequence **positive - negative - negative - positive - negative - negative - positive**. The independently recomputed component focal lengths, after the 20× scaling, are:

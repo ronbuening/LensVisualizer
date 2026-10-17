@@ -6,6 +6,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Source model: 31 lenses in 22 air-separated lens members, seven operational components, plus rear prism P.
  * Uniform production-correlation scale s = 20 is applied to every prescription length. The nine patent stations
  * therefore become 20, 40, 80, 140, 200, 290, 400, 500, and 592 mm; marketed 20-600 mm remains separate.
+ * Catalog design [20, 592] and station focal lengths are TABLE IB's stated values scaled ×20; the implemented
+ * prescription computes 19.833025763378–613.643291786978 mm. The discrepancy remains unresolved in source.errata.
  *
  * Prism P is represented as rearPlates, not as a 32nd lens element. The authored 3.24 mm gap after the prism is
  * the patent's 0.162 mm rear-face BFD scaled by 20. Rounded Table I/IB does not paraxially refocus to this plane.
@@ -64,7 +66,7 @@ const LENS_DATA = {
     ],
     elementCount: 31,
     groupCount: 22,
-    focalLengthMm: { marketing: [20, 600], design: [19.833025763378, 613.643291786978] },
+    focalLengthMm: { marketing: [20, 600], design: [20, 592] },
     fNumber: { marketing: 2.1 },
   },
 

@@ -240,7 +240,7 @@ All paraxial results were recomputed from a literal transcription of Table 1 usi
 | Maximum-macro EFL | not stated | 53.9716 mm |
 | Maximum macro magnification | not stated | 0.44422× = 1:2.251 |
 
-The table gives 71.9792 mm at the wide station and 203.0138 mm at the tele station, 2.83% above and 0.97% below the patent’s nominal 70 and 205 mm. Both differences follow directly from the printed prescription: the endpoint gap sums agree to 0.001 mm and the two back focal lengths agree to 0.024 mm, which leaves no room for a misread zoom spacing at either station. The 70–205 mm figures are treated as nominal and are not corrected by uniform scaling.
+The table gives 71.9792 mm at the wide station and 203.0138 mm at the tele station, 2.83% above and 0.97% below the patent’s nominal 70 and 205 mm. The file matches Table 1's endpoint gaps and reproduces near-equal endpoint BFLs. The stated 70–205 mm range is retained in design metadata and station labels; the independently traced 71.979219/203.013778 mm values are calculated results. The source-stated versus traced discrepancy remains unresolved and is not corrected by scaling.
 
 With the inferred 1.2 mm stop offset, the wide-open iris is one radius at both stations, 14.7778 mm, traced with a real marginal ray from the 1:3.65 design aperture at the wide station. The tele station needs 14.7614 mm for 1:3.65, a 0.11% spread. Including the authored clear apertures, the endpoint axial beams are f/3.6500 and f/3.6463 and are limited by the iris. The stored `STO` semi-diameter is the wide-station result rounded to six decimals; the runtime still derives its radius from the design aperture.
 

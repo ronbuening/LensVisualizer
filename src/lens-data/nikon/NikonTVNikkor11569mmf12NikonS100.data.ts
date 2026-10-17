@@ -36,6 +36,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 
 // Patent optical-rim and compatible glass review: see the sibling .audit.md (2026-10-02 UTC).
+// Focal-length metadata and zoom coordinates retain the First Embodiment's printed
+// 11.5 / 28.0 / 69.0 mm values (US 4,437,733, PDF p. 13). The modeled prescription
+// traces to 11.735474 / 28.031359 / 66.962358 mm; the cause of that discrepancy is
+// unresolved. No endpoint prescription correction is applied.
 const LENS_DATA = {
   schema: 2,
   key: "nikon-tv-nikkor-115-69-f12-s100",
@@ -55,7 +59,7 @@ const LENS_DATA = {
     ],
     elementCount: 15,
     groupCount: 11,
-    focalLengthMm: { marketing: [11.5, 69], design: [11.735474, 66.962358] },
+    focalLengthMm: { marketing: [11.5, 69], design: [11.5, 69] },
     fNumber: { marketing: 1.2, design: 1.2 },
   },
 
@@ -64,6 +68,12 @@ const LENS_DATA = {
     patentYear: 1984,
     authors: ["Tomowaki Takahashi", "Kunio Konno", "Toshihiro Sasaya"],
     assignees: ["Nippon Kogaku K.K."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "US 4,437,733, First Embodiment, PDF p. 13, states FW/FM/FT = 11.5/28.0/69.0 mm. The modeled prescription traces to 11.735474/28.031359/66.962358 mm with the separately documented middle D12 = 5.99 mm correction. The endpoint discrepancy is unaffected by that correction; its cause is unresolved. Printed focal-length metadata is retained.",
+      },
+    ],
   },
 
   elements: [
