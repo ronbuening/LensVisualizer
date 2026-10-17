@@ -1415,9 +1415,10 @@ As built of `OPTICS_ENGINE_REWRITE_SPEC.md`.
 | The stop carries `sd` exactly when its radius is authored | `ingestSurfaces`, with the authority from `stopRadiusAuthority` (`canonical.ts`) |
 
 Ingest copies some records whole and refuses no member inside them: `catalog.opticalConfiguration`, the `source.errata`
-entries, a surface's `diffractive` (and its `terms`) and `interaction`, `projection`, `perspectiveControl` (and its
-`tiltPivot`), `opticalPath` (and its `imagePlane`), and the `groups` and `doublets` entries. An unknown member in one of
-them is refused by the file's `satisfies LensDataV2Input` when it is type-checked, not by ingest.
+entries, a surface's `diffractive` (and its `terms`) and `interaction` (and its `normal`), `projection`,
+`perspectiveControl` (and its `tiltPivot`), `opticalPath` (and its `imagePlane` and `imagePlane.normal`), and the `groups`
+and `doublets` entries. An unknown member in one of them is refused by the file's `satisfies LensDataV2Input` when it is
+type-checked, not by ingest.
 
 ### Validator
 

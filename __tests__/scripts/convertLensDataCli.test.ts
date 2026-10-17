@@ -231,6 +231,26 @@ describe("refusals", () => {
     expect(run.stderr).toContain("3 inputs: 1 would convert to V2, 1 already V2 and left as it is, 1 refused");
   });
 
+  it("a file input in a directory that cannot be listed refuses the run before anything converts", async () => {
+    const directory = catalog();
+    const before = snapshot(directory);
+    const list = nodeFs.readdirSync as (...args: unknown[]) => unknown;
+    const fs = {
+      ...nodeFs,
+      readdirSync: (path: string, ...rest: unknown[]) => {
+        if (path === directory) throw new Error("injected EACCES");
+        return list(path, ...rest);
+      },
+    };
+    const run = await cli(["--input", join(directory, "a.data.ts"), "--write"], { fs, typeCheck: NO_TYPE_CHECK });
+    expect(run.code).toBe(2);
+    expect(run.stdout).toBe("");
+    expect(run.stderr).toBe(
+      `convert-lens-data: refused before converting anything: ${directory} cannot be read: injected EACCES\n`,
+    );
+    expect(snapshot(directory)).toEqual(before);
+  });
+
   it("a directory under --input that cannot be listed refuses the run before anything converts", async () => {
     const directory = catalog();
     const sub = join(directory, "sub");

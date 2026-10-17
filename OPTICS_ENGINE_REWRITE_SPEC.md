@@ -1256,11 +1256,15 @@ The stop radius has exactly one authority per lens:
     the line (a line comment, or a block comment spanning lines). When two such comments come to one node, as a V1
     surface's `nd` and `elemId` both come to its `medium`, the first trails the node and each later one leads it,
     after its own leading comments, in source order.
-  - In a list of numbers, which Prettier fills, the one-line block comments that end an item's leading comments share
-    its line before it, where Prettier keeps them; on a line of their own, Prettier would join them to the item before.
+  - In a list of numbers, which Prettier fills, the printer puts the one-line block comments that end an item's
+    leading comments before it on its line. A single such comment stays before the item; with several inline block
+    comments, the reader can attach earlier ones to the previous item. The converter checks that printing and
+    formatting keep each comment on the node and in the placement chosen by the placer.
   - The reader attaches by position, as Prettier does: a block comment with nothing but spaces between it and the next
     entry, on the same line, leads that entry. A comment inside a spread, whose items are never read, is refused, as a
     comment outside the object is.
+  - Removing a moved-comment note keeps the space it added after an unspaced opening delimiter: `//x` returns as
+    `// x`, and `/**doc */` as `/* *doc */`. The original delimiter spacing is not recoverable from the note.
   - The converter refuses a file unless:
     - every source comment, header included, is in the converted file once, as written or with its prefix;
     - the printed text reads every comment on its node, in the placement the placer gave it;

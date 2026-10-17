@@ -250,7 +250,13 @@ function collectInputs(fs, args, cwd) {
       throw new CollisionError(`${entry.destination}, where ${entry.path} would be written, exists`);
     }
     const directory = dirname(entry.path);
-    if (!listings.has(directory)) listings.set(directory, fs.readdirSync(directory));
+    if (!listings.has(directory)) {
+      try {
+        listings.set(directory, fs.readdirSync(directory));
+      } catch (error) {
+        throw new InputError(`${directory} cannot be read: ${error.message}`);
+      }
+    }
     const backup = listings.get(directory).find((name) => isBackupOf(name, basename(entry.path)));
     if (backup !== undefined) {
       throw new CollisionError(
