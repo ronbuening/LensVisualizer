@@ -254,7 +254,7 @@ const LENS_DATA = {
     { label: "9", R: 75.709, d: 2.91, sd: 6.31, medium: 5 },
     { label: "10", R: -99.071, d: 5, sd: 5.875 },
     // Second Numerical Embodiment patent surface table: surface-11 effective diameter is 10.25 mm, a clear envelope.
-    // radius derived from the design f-number
+    // The stop radius is derived from the design f-number at each zoom station.
     { label: "STO", R: "flat", d: 3 },
     { label: "12", R: 90.807, d: 1, sd: 5.1, medium: 6 },
     { label: "13", R: 21.203, d: 2.41, sd: 5.055, medium: 7 },

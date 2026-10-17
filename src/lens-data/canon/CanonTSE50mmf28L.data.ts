@@ -18,9 +18,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  The patent's "Effective diameter" entries are full clear          ║
  * ║  diameters. They are divided by two for surface `sd` values. The   ║
  * ║  Numerical Data 1 surface table prints a 29.80 mm effective        ║
- * ║  diameter at the stop; it is a clear envelope, not the physical    ║
- * ║  aperture diameter. The patent quotes F/2.88. The stop radius is   ║
- * ║  derived from the design f-number.                                 ║
+ * ║  diameter at the stop; it is not the physical aperture diameter.   ║
+ * ║  The patent quotes F/2.88, but the stop radius is derived from     ║
+ * ║  aperture.nominalFNumber 2.8.                                      ║
  * ║                                                                    ║
  * ║  NOTE ON FIELD COVERAGE:                                           ║
  * ║  The patent image height is 33.63 mm (67.26 mm image circle), so   ║

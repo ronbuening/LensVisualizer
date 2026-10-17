@@ -25,7 +25,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Canon specifies a fixed f/11 opening with no diaphragm blades, so the     ║
  * ║ visualization is intentionally aperture-locked at the modeled F/11.31.    ║
  * ║                                                                            ║
- * ║ SEMI-DIAMETERS: the patent publishes none. The stop radius is derived     ║
+ * ║ SEMI-DIAMETERS: the patent publishes none. The stop radius is derived    ║
  * ║ from the design f-number (F/11.31) at the reconstructed infinity state.   ║
  * ║ Glass-surface SDs were derived from infinity/near marginal and chief-ray  ║
  * ║ envelopes, then constrained by edge thickness, actual spherical rim       ║

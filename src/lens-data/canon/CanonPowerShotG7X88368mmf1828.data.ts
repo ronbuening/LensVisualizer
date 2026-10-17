@@ -31,8 +31,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  the values here were checked against the rendered patent table. The stop     ║
  * ║  radius is derived from the design f-number at each zoom station. The         ║
  * ║  Numerical Example 1 patent surface table prints a 10.62 mm effective         ║
- * ║  diameter at stop surface 10; it is not treated as a fixed iris opening       ║
- * ║  at every zoom state.                                                         ║
+ * ║  diameter at stop surface 10; it is not treated as a fixed iris opening at    ║
+ * ║  every zoom state.                                                            ║
  * ║                                                                                ║
  * ║  IMPORTANT: This file describes only the optical prescription. It excludes    ║
  * ║  sensor cover glass, filters, stabilization mechanics, shutter/iris blade     ║

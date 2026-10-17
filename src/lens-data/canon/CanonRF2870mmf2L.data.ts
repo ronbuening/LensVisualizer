@@ -39,10 +39,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    section (8.70 px/mm at 400 dpi, calibrated on the S1–S34 vertex  ║
  * ║    spacing and confirmed by the drawn axial beam at SP) where the   ║
  * ║    earlier estimate was ≳15 % off or clipped the tele f/2.06 axial  ║
- * ║    beam: S1–S2, S7, S15–S16, S20, S23–S29, S32–S34. Other          ║
- * ║    surfaces keep the earlier ray-trace estimate (within ~15 % of    ║
- * ║    the figure). S7 (16.0 vs figure 15.1) and S32 (15.4 vs 14.8)     ║
- * ║    sit slightly above the figure so the engine's paraxial wide     ║
+ * ║    beam: S1–S2, S7, S15–S16, S20, S23–S29, S32–S34. Other surfaces ║
+ * ║    keep the earlier ray-trace estimate (within ~15 % of the         ║
+ * ║    figure). S7 (16.0 vs figure 15.1) and S32 (15.4 vs 14.8) sit     ║
+ * ║    slightly above the figure so the engine's paraxial wide         ║
  * ║    half-field (37.1°) still covers the patent ω = 36.82°.          ║
  * ║    Full-field corner bundles are mechanically                       ║
  * ║    vignetted at wide, as the patent figure's narrow drawn bundle    ║

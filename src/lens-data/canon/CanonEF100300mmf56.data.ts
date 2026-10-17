@@ -36,8 +36,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ physical stop implied by FNO=5.6, then rounded outward and checked for edge ║
  * ║ thickness, rim slope, cross-gap intrusion, and traced-ray containment.     ║
  * ║ The stop radius is derived from the design f-number at each station. The   ║
- * ║ paraxial 100/198/290 mm implied radii are about 14.7536/14.7499/14.7485 mm; ║
- * ║ nominalFno=5.6 is authoritative. The patent gives no iris-motion law.      ║
+ * ║ paraxial 100/198/290 mm implied radii are about                            ║
+ * ║ 14.7536/14.7499/14.7485 mm; nominalFno=5.6 is authoritative. The patent    ║
+ * ║ gives no iris-motion law.                                                  ║
  * ║                                                                              ║
  * ║ No scale is applied (s = 1.0). The d-line index reference is an inference  ║
  * ║ from the glass coordinates; the patent does not explicitly name the line.  ║

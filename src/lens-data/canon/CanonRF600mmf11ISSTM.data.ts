@@ -32,7 +32,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  using the default 0.60× field as a containment target, then constrained ║
  * ║  by element edge thickness, actual rim slope, shared-gap sag intrusion,  ║
  * ║  the production 82 mm filter diameter, and rendered Fig. 1 proportions. ║
- * ║  A 600 dpi Fig. 1 audit tightens E3 to 12.2 mm and E4 to 12.7 mm; the    ║
+ * ║  A 600 dpi Fig. 1 audit tightens E3 to 12.2 mm and E4 to 12.7 mm; the   ║
  * ║  stop radius is derived from the design f-number, not figure-measured.   ║
  * ║  The front element is the intended vignetting boundary for the extreme   ║
  * ║  off-axis pupil edge; default LensVisualizer fractions remain contained. ║

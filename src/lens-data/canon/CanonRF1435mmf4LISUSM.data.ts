@@ -22,12 +22,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ d23 + d25 conserved at each zoom state. These close values are not         ║
  * ║ patent-published prescription data.                                        ║
  * ║                                                                            ║
- * ║ Stop: patent surface 9 is the sole aperture stop. Its printed 18.03 mm     ║
- * ║ effective diameter is treated as a clear envelope, not one fixed working   ║
- * ║ iris. The Numerical Example 3 patent surface table gives that 18.03 mm     ║
- * ║ clear envelope (9.015 mm radius); nominalFno [4.08, 4.08, 4.12] controls   ║
- * ║ working pupil sizing. The stop radius is derived from the design f-number  ║
- * ║ at each zoom station.                                                      ║
+ * ║ Stop: patent surface 9 is the sole aperture stop. Its 18.03 mm effective   ║
+ * ║ diameter (9.015 mm radius), printed in the Numerical Example 3 patent      ║
+ * ║ surface table, is treated as a clear envelope, not one fixed working iris; ║
+ * ║ nominalFno [4.08, 4.08, 4.12] controls working pupil sizing. The stop      ║
+ * ║ radius is derived from the design f-number at each zoom station.           ║
  * ║                                                                            ║
  * ║ Semi-diameters: all refracting surfaces use one-half of the patent-listed  ║
  * ║ effective diameters. The 4A→5 air gap is physically non-intersecting but   ║
