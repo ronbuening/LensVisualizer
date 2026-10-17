@@ -182,6 +182,8 @@ three guards over `src/optics/`:
 - **Seam.** An import into `src/optics/` from the rest of `src/`, from `scripts/` or from `reports/` targets a
   registered module. Type-only imports count, and so do the path strings that scripts load. Tests are not importers,
   because they follow the internals they test, and targets under `src/optics/mount/` are skipped.
+  `REPORT_INTERNAL_IMPORTS` permits only the element-focal-length report to import the internal thick-lens formula;
+  the guard rejects other importers and stale pairs. Report-only formulas do not expand the public optics API.
 - **Caches.** Every module-level `Map`, `WeakMap`, `Set` or `WeakSet` is registered as a constant lookup table, a
   bounded cache, or a `WeakMap` keyed by its owner whose per-owner value cannot grow without bound.
 
