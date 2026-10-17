@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -27,8 +27,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                              ║
  * ║  STOP MODEL: Claim 7 and Fig. 1 place the diaphragm in D8 but do not give    ║
  * ║  its axial split. D8 is split at its midpoint (5.499 + STO + 5.499 mm).      ║
- * ║  The physical stop semi-diameter 18.208695 mm is the paraxial value needed   ║
- * ║  for the published f/2.3 at that inferred position.                          ║
+ * ║  The stop radius is derived from the design f-number, the published f/2.3,   ║
+ * ║  at that inferred position.                                                  ║
  * ║                                                                              ║
  * ║  SEMI-DIAMETERS: The patent publishes none. The authored values were solved  ║
  * ║  from the on-axis marginal ray and the 0.6-field chief-ray bundle, then      ║
@@ -53,187 +53,188 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "angenieux-dem-180mm-f23-apo",
   maker: "P. Angénieux",
   name: "P. ANGÉNIEUX DEM 180mm f/2.3 APO",
   subtitle: "US 4,726,669, Example 1 — uniformly scaled ×1.8; strong production correlation",
-  specs: [
-    "8 ELEMENTS / 6 GROUPS",
-    "f = 179.927 mm (DESIGN)",
-    "f/2.3",
-    "2ω = 13.6°",
-    "PUBLISHED COMPOUND FOCUS",
-    "ALL-SPHERICAL",
-  ],
 
-  focalLengthMarketing: 180,
-  focalLengthDesign: 179.9270350897788,
-  apertureMarketing: 2.3,
-  apertureDesign: 2.3,
-  lensMounts: ["canon-fd", "contax-yashica", "leica-r", "nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,726,669",
-  patentAuthors: ["Pierre Angénieux"],
-  patentAssignees: [],
-  patentYear: 1988,
-  elementCount: 8,
-  groupCount: 6,
+  catalog: {
+    lensMounts: ["canon-fd", "contax-yashica", "leica-r", "nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "8 ELEMENTS / 6 GROUPS",
+      "f = 179.927 mm (DESIGN)",
+      "f/2.3",
+      "2ω = 13.6°",
+      "PUBLISHED COMPOUND FOCUS",
+      "ALL-SPHERICAL",
+    ],
+    elementCount: 8,
+    groupCount: 6,
+    focalLengthMm: { marketing: 180, design: 179.9270350897788 },
+    fNumber: { marketing: 2.3, design: 2.3 },
+  },
+
+  source: { patentNumber: "US 4,726,669", patentYear: 1988, authors: ["Pierre Angénieux"], assignees: [] },
 
   /* ── Elements ── */
   elements: [
     {
       id: 1,
       name: "L1",
-      diagramLabel: "L1",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.589,
       vd: 61.2,
-      fl: 139.8057822716505,
+      focalLengthMm: 139.8057822716505,
       glass: "SK5 (Sumita catalog equivalent to patent 589612; production supplier unspecified)",
       apd: false,
       role: "Positive front collector forming Component I.",
+      diagramLabel: "L1",
     },
     {
       id: 2,
       name: "L2",
-      diagramLabel: "L2",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.6,
-      fl: 125.6928014713203,
+      focalLengthMm: 125.6928014713203,
       glass: "S-FPL51 (OHARA catalog equivalent to patent 497816; production supplier unspecified)",
       apd: "patent",
       apdNote:
         "Patent condition (6) requires ED/APD glass; nC/nF/ng are evaluated from current OHARA S-FPL51 Sellmeier data and dPgF uses the patent normal-line formula. This is a class match, not a melt identification.",
+      role: "Low-dispersion positive element in the moving Component II.",
+      diagramLabel: "L2",
       dPgF: 0.030940945693203825,
       nC: 1.495136,
       nF: 1.501231,
       ng: 1.504507,
-      role: "Low-dispersion positive element in the moving Component II.",
     },
     {
       id: 3,
       name: "L3",
-      diagramLabel: "L3",
       label: "Element 3",
       type: "Plano-Concave Negative",
       nd: 1.785,
       vd: 25.9,
-      fl: -166.9849681528663,
+      focalLengthMm: -166.9849681528663,
       glass: "K-SFLD11 (Sumita catalog equivalent to patent 785259; production supplier unspecified)",
       apd: false,
       role: "Negative partner in Component II, separated from L2 by a 0.108 mm air gap.",
+      diagramLabel: "L3",
     },
     {
       id: 4,
       name: "L4",
-      diagramLabel: "L4",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.772,
       vd: 49.7,
-      fl: -53.2662218216995,
+      focalLengthMm: -53.2662218216995,
       glass: "S-LAH66 (OHARA catalog equivalent to patent 772497; production supplier unspecified)",
       apd: false,
       role: "Front, strongly negative part of nominally fixed Component III.",
+      diagramLabel: "L4",
     },
     {
       id: 5,
       name: "L5",
-      diagramLabel: "L5",
       label: "Element 5",
       type: "Positive Meniscus",
       nd: 1.806,
       vd: 40.9,
-      fl: 48.28355174404824,
+      focalLengthMm: 48.28355174404824,
       glass: "S-LAH53 (OHARA catalog equivalent to patent 806409; production supplier unspecified)",
       apd: false,
       role: "Positive member of the near-afocal L5/L6 cemented correction doublet.",
+      diagramLabel: "L5",
       cemented: "L5/L6",
     },
     {
       id: 6,
       name: "L6",
-      diagramLabel: "L6",
       label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.772,
       vd: 49.7,
-      fl: -51.89848444163154,
+      focalLengthMm: -51.89848444163154,
       glass: "S-LAH66 (OHARA catalog equivalent to patent 772497; production supplier unspecified)",
       apd: false,
       role: "Negative member of the near-afocal L5/L6 cemented correction doublet.",
+      diagramLabel: "L6",
       cemented: "L5/L6",
     },
     {
       id: 7,
       name: "L7",
-      diagramLabel: "L7",
       label: "Element 7",
       type: "Negative Meniscus",
       nd: 1.728,
       vd: 28.4,
-      fl: -156.6975460444766,
+      focalLengthMm: -156.6975460444766,
       glass: "S-TIH10 (OHARA catalog equivalent to patent 728284; production supplier unspecified)",
       apd: false,
       role: "Negative front member of the moving Component IV cemented doublet.",
+      diagramLabel: "L7",
       cemented: "L7/L8",
     },
     {
       id: 8,
       name: "L8",
-      diagramLabel: "L8",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.772,
       vd: 49.7,
-      fl: 61.75525221683669,
+      focalLengthMm: 61.75525221683669,
       glass: "S-LAH66 (OHARA catalog equivalent to patent 772497; production supplier unspecified)",
       apd: false,
       role: "Positive rear member of the moving Component IV cemented doublet.",
+      diagramLabel: "L8",
       cemented: "L7/L8",
     },
   ],
 
   /* ── Surface prescription: patent lengths ×1.8 ── */
   surfaces: [
-    { label: "1", R: 85.6872, d: 11.988, nd: 1.589, elemId: 1, sd: 42.0 },
-    { label: "2", R: -2002.0536, d: 3.006, nd: 1.0, elemId: 0, sd: 42.0 },
-    { label: "3", R: 61.839, d: 13.986, nd: 1.497, elemId: 2, sd: 38.5 },
-    { label: "4", R: 5668.4898, d: 0.108, nd: 1.0, elemId: 0, sd: 32.0 },
-    { label: "5", R: 1e15, d: 3.996, nd: 1.785, elemId: 3, sd: 32.0 },
-    { label: "6", R: 131.0832, d: 26.982, nd: 1.0, elemId: 0, sd: 32.0 },
-    { label: "7", R: 1784.2662, d: 2.502, nd: 1.772, elemId: 4, sd: 20.5 },
-    { label: "8", R: 40.1706, d: 5.499, nd: 1.0, elemId: 0, sd: 20.0 },
+    { label: "1", R: 85.6872, d: 11.988, sd: 42.0, medium: 1 },
+    { label: "2", R: -2002.0536, sd: 42.0 },
+    { label: "3", R: 61.839, d: 13.986, sd: 38.5, medium: 2 },
+    { label: "4", R: 5668.4898, d: 0.108, sd: 32.0 },
+    { label: "5", R: "flat", d: 3.996, sd: 32.0, medium: 3 },
+    { label: "6", R: 131.0832, sd: 32.0 },
+    { label: "7", R: 1784.2662, d: 2.502, sd: 20.5, medium: 4 },
+    { label: "8", R: 40.1706, d: 5.499, sd: 20.0 },
     // Claim 7 and Fig. 1 locate the stop in D8; the midpoint split is a disclosed model inference.
-    { label: "STO", R: 1e15, d: 5.499, nd: 1.0, elemId: 0, sd: 18.20869463084469 },
-    { label: "9", R: -57.2148, d: 7.992, nd: 1.806, elemId: 5, sd: 20.0 },
+    { label: "STO", R: "flat", d: 5.499 },
+    { label: "9", R: -57.2148, d: 7.992, sd: 20.0, medium: 5 },
     // Cemented L5→L6 interface: downstream element L6 owns the junction.
-    { label: "10", R: -24.606, d: 2.502, nd: 1.772, elemId: 6, sd: 20.0 },
-    { label: "11", R: -66.5946, d: 17.982, nd: 1.0, elemId: 0, sd: 20.5 },
-    { label: "12", R: 94.4082, d: 2.502, nd: 1.728, elemId: 7, sd: 22.4 },
+    { label: "10", R: -24.606, d: 2.502, sd: 20.0, medium: 6 },
+    { label: "11", R: -66.5946, sd: 20.5 },
+    { label: "12", R: 94.4082, d: 2.502, sd: 22.4, medium: 7 },
     // Cemented L7→L8 interface: downstream element L8 owns the junction.
-    { label: "13", R: 51.0804, d: 5.994, nd: 1.772, elemId: 8, sd: 22.4 },
-    { label: "14", R: -678.5694, d: 80.622, nd: 1.0, elemId: 0, sd: 22.4 },
+    { label: "13", R: 51.0804, d: 5.994, sd: 22.4, medium: 8 },
+    { label: "14", R: -678.5694, sd: 22.4 },
   ],
 
-  asph: {},
-
-  /* Published infinity and β = −0.12 states; BF close value preserves the fixed image plane. */
-  var: {
-    "2": [3.006, 0.432],
-    "6": [26.982, 29.538],
-    "11": [17.982, 0.576],
-    "14": [80.622, 98.046],
+  focus: {
+    closeFocusM: 1.7886507000747824,
+    description:
+      "PUBLISHED compound internal focus using the patent's D2, D6, and D11 endpoints at infinity and β = −0.12. D2 contracts by 2.574 mm and D11 by 17.406 mm; the rounded D2+D6 totals leave a 0.018 mm coordinate residual, so Component IV shifts 17.424 mm relative to R1. The authored BF endpoint is the fixed-image-plane completion; the corresponding model object-to-image distance is 1.78865 m and the traced magnification is −0.120513.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
   },
-  varLabels: [
-    ["2", "D2"],
-    ["6", "D6"],
-    ["11", "D11"],
-    ["14", "BF"],
-  ],
+
+  /* (moved from var) Published infinity and β = −0.12 states; BF close value preserves the fixed image plane. */
+  gaps: {
+    "2": { label: "D2", values: [[3.006, 0.432]] },
+    "6": { label: "D6", values: [[26.982, 29.538]] },
+    "11": { label: "D11", values: [[17.982, 0.576]] },
+    "14": { label: "BF", values: [[80.622, 98.046]] },
+  },
+
+  aperture: { nominalFNumber: 2.3, fStops: [2.3, 2.8, 4, 5.6, 8, 11, 16] },
 
   groups: [
     { text: "I", fromSurface: "1", toSurface: "2" },
@@ -243,17 +244,7 @@ const LENS_DATA = {
   ],
   doublets: [],
 
-  closeFocusM: 1.7886507000747824,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  focusDescription:
-    "PUBLISHED compound internal focus using the patent's D2, D6, and D11 endpoints at infinity and β = −0.12. D2 contracts by 2.574 mm and D11 by 17.406 mm; the rounded D2+D6 totals leave a 0.018 mm coordinate residual, so Component IV shifts 17.424 mm relative to R1. The authored BF endpoint is the fixed-image-plane completion; the corresponding model object-to-image distance is 1.78865 m and the traced magnification is −0.120513.",
-
-  nominalFno: 2.3,
-  fstopSeries: [2.3, 2.8, 4, 5.6, 8, 11, 16],
-
-  scFill: 0.55,
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { scFill: 0.55, yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;
