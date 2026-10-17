@@ -11,13 +11,15 @@
 6. Done — the lens pipeline auto-registers every `src/lens-data/**/*.data.ts` file. No manual imports, catalog edits, or
    per-lens tests are needed
 
-The organizer moves only the root-level `.data.ts` file and its same-stem `.analysis.md`; create or relocate an
-`.audit.md` log separately in the final maker folder. If authoring directly inside a maker folder, import from
+The organizer files root-level `.data.ts` and `.teleconverter.ts` files, and a lens's same-stem `.analysis.md`.
+Create or relocate an `.audit.md` log separately in the final maker folder. If authoring directly inside a maker folder, import from
 `../../types/lensDataV2.js` instead of the template's root-level `../types/lensDataV2.js`.
 
-For a new draft written in V1, use `npm run convert:lens-data` as described in the spec's
-[Quick Start](../src/lens-data/LENS_DATA_SPEC.md#quick-start). For existing V1 catalog files, use
-[Reading V1 Audits](../src/lens-data/LENS_DATA_SPEC.md#reading-v1-audits); S2.P5 owns their batch conversion.
+For an archived V1 lens or teleconverter, drop the file into `src/lens-data/`, run
+`npm run organize:lens-data`, review the conversion report, and commit the resulting V2 file. The organizer also
+converts V1 files already inside maker folders in place. A conversion refusal stops organization and leaves the
+source unchanged. Metadata generation refuses V1 files and names the organizer command; it never converts them.
+For old audit field names, see [Reading V1 Audits](../src/lens-data/LENS_DATA_SPEC.md#reading-v1-audits).
 
 On `npm run build`, every visible lens is also eligible for `/feeds/lenses.xml` (the 50 newest by publication date, normally derived from Git; `visible: false` fixtures are excluded). See `agent_docs/architecture/routing-and-content.md`.
 

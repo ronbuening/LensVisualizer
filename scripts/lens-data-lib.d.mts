@@ -57,6 +57,8 @@ export interface OrganizeRootLensFilesResult {
   movedFileCount: number;
 }
 
+export function assertV2Catalog(lensDataDir: string): Promise<void>;
+
 export const MAKER_PREFIXES: MakerPrefix[];
 
 export function deriveMakerSlug(nameOrMaker: string, makerField?: string | null): string;
@@ -122,5 +124,7 @@ export function organizeRootLensFiles(
     rename?: (from: string, to: string) => void;
     log?: (message: string) => void;
     rewriteImport?: (filePath: string) => void;
+    stdout?: { write(text: string): unknown };
+    stderr?: { write(text: string): unknown };
   },
-): OrganizeRootLensFilesResult;
+): Promise<OrganizeRootLensFilesResult>;

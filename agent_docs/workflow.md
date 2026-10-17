@@ -26,7 +26,7 @@ npm run build              # Organize lens data, generate metadata + folder read
 npm run generate:metadata  # Organize lens data, refresh src/generated/build-metadata.json, rewrite src/**/readme.md
 npm run generate:readmes   # Rewrite the src/**/readme.md folder docs alone (also runs inside generate:metadata)
 npm run generate:feeds     # Rebuild dist/feeds/ RSS from metadata, lens summaries, changelog
-npm run organize:lens-data # Move stray root-level lens files into maker folders
+npm run organize:lens-data # Convert archived V1 files and file root-level lenses/converters under their makers
 npm run convert:lens-data -- --input <file|dir> # Convert lens files between V1 and V2; dry run unless --write
 npm run preview
 npm run test
@@ -54,6 +54,14 @@ npm run format
 npm run format:check
 npm run seo:audit
 ```
+
+## Adding Archived V1 Files
+
+Drop an archived V1 lens or teleconverter into `src/lens-data/`, run `npm run organize:lens-data`, review the
+conversion report, and commit the V2 file. Files already in maker folders convert in place. The organizer uses the
+converter's checks and safe writes; a refusal leaves the source unchanged and exits non-zero before any files move.
+Metadata generation stops on V1 with the organizer command, without writing the catalog or generated metadata.
+The catalog schema test requires V2 for every lens and teleconverter, including hidden fixtures.
 
 ## Pre-Commit Checks
 

@@ -39,7 +39,6 @@ export const TELECONVERTER_SUMMARY_FIELDS: readonly string[];
 
 export function loadLensDataConversion(): Promise<LensDataConversion>;
 
-export function isV1LensData(file: object): boolean;
 
 export function v1Prescription(
   file: object,

@@ -34,7 +34,7 @@ import {
   projectClientMetadata,
   getGitFileFreshnessAsync,
 } from "./build-metadata-lib.mjs";
-import { collectLensDataAsync } from "./lens-data-lib.mjs";
+import { assertV2Catalog, collectLensDataAsync } from "./lens-data-lib.mjs";
 import { lensSummary, teleconverterSummary, v1Prescription } from "./lens-summaries.mjs";
 import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
 import { buildAuthorMetadata, buildAssigneeMetadata } from "./author-metadata.mjs";
@@ -158,6 +158,7 @@ function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, author
 /* ── Main ─────────────────────────────────────────────────────────────── */
 
 async function main() {
+  await assertV2Catalog(LENS_DATA_DIR);
   if (!existsSync(OUT_DIR)) mkdirSync(OUT_DIR, { recursive: true });
   assertFullGitHistory({ cwd: ROOT });
   const fallbackDate = new Date().toISOString().slice(0, 10);

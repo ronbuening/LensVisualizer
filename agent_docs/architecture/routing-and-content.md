@@ -183,15 +183,19 @@ Metadata generation is split across:
 - `scripts/lens-data-lib.mjs` - lens data scanning, root-file organization helpers, maker slug derivation. Identity
   fields come from `scripts/lens-data-ast.mjs`, which evaluates a file's default export from its source with the
   TypeScript compiler API, never running it, and reads a file of either lens-data version (a V2 file keeps its mounts
-  and format in `catalog`). The organizer rewrites a filed file's `types/optics.js` or `types/lensDataV2.js` import.
+  and format in `catalog`). Before filing root-level lenses and converters, the organizer converts V1 files anywhere
+  in the catalog through the converter runner, prints its report, and stops on a refusal. It rewrites a filed V2
+  file's `types/lensDataV2.js` import.
   The converter (`scripts/lens-data-convert/`) reads through the same module, which also shows it the syntax behind
   each value (`walkLensDataSource`).
 - `scripts/lens-summaries.mjs` - lens and teleconverter summary fields, in V1 names. A V2 file is read through the
   engine's canonical ingest and its V1 view, so it and its V1 twin summarize alike. They come from the conversion
-  seam, `src/optics/lensDataConversion.ts`, which the script loads by path on the first V2 file.
+  seam, `src/optics/lensDataConversion.ts`, loaded by path on every metadata run; the AST reader and summaries use
+  its version rule.
 - `scripts/build-metadata-lib.mjs` - git freshness helpers, bounded concurrency, route freshness aggregation.
 - `scripts/generate-build-metadata.mjs` - top-level metadata orchestration, concrete route enumeration, generated route
-  freshness, generated author index, generated maker-prefix JSON, and README lens-count refresh. It also writes
+  freshness, generated author index, generated maker-prefix JSON, and README lens-count refresh. Before writing, it
+  rejects V1 catalog files with the command `npm run organize:lens-data`. It also writes
   `src/generated/teleconverter-summaries.json`: each `*.teleconverter.ts` summary plus `compatibleLensKeys`, resolved
   by importing the import-free fit predicate (`src/optics/prescription/teleconverterCompatibility.ts`) under plain Node
   so the page lists and the viewer cannot disagree. Hidden converters (`visible: false`) keep a summary but get no

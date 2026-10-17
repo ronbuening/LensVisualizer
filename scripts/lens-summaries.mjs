@@ -4,7 +4,7 @@
  * Summaries are written in V1 field names. A V1 file is read as it is. A V2 file (`schema: 2`) is read through the
  * engine's canonical ingest and its V1 view, so a V2 file and its V1 twin give the same summary, and the converter
  * fit predicate sees the same host and converter. Those engine functions come from the lens-data conversion seam,
- * `src/optics/lensDataConversion.ts`, loaded on the first V2 file.
+ * `src/optics/lensDataConversion.ts`, loaded for every metadata run.
  */
 
 import { register } from "node:module";
@@ -16,7 +16,7 @@ let lensDataConversion;
 
 /**
  * Load the engine's lens-data conversion seam under plain Node. Its modules import one another by their `.js`
- * specifiers, so the specifier hook is registered first; a V1-only catalog never loads them.
+ * specifiers, so the specifier hook is registered first.
  *
  * @returns {Promise<import("./lens-summaries.d.mts").LensDataConversion>} canonical ingest, the V1 and V2 views,
  *   the V2 source map, the prescription comparison and the path spelling: every export of the seam
@@ -71,27 +71,18 @@ export const TELECONVERTER_SUMMARY_FIELDS = [
 ];
 
 /**
- * Mirrors the engine's `isV1File` (src/optics/prescription/ingestV2.ts): a file that leaves `schema` out is V1.
- *
- * @param {object} file - a lens or teleconverter file's evaluated default export
- * @returns {boolean} whether the file is V1
- */
-export function isV1LensData(file) {
-  return file.schema === undefined;
-}
-
-/**
  * A lens or teleconverter file in V1 field names: a V1 file as it is, a V2 file as its V1 view.
  *
  * @param {Record<string, unknown>} file - a file's evaluated default export
  * @param {"lens" | "teleconverter"} kind - which kind of file it is
  * @param {() => Promise<{ ingestLens: Function, ingestTeleconverter: Function, toLensDataInput: Function,
- *   toTeleconverterData: Function }>} [loadViews] - loads the engine's ingest and V1 views, on the first V2 file;
+ *   toTeleconverterData: Function }>} [loadViews] - loads the engine's ingest and V1 views;
  *   the conversion seam by default
  * @returns {Promise<Record<string, unknown>>} the file in V1 field names
  */
 export async function v1Prescription(file, kind, loadViews = loadLensDataConversion) {
-  if (isV1LensData(file)) return file;
+  const { lensDataVersion } = await loadLensDataConversion();
+  if (lensDataVersion(file) === 1) return file;
   const views = await loadViews();
   return kind === "lens"
     ? views.toLensDataInput(views.ingestLens(file))

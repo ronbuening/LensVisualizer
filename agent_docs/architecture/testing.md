@@ -1022,7 +1022,9 @@ When refactoring:
 - Add script helper tests when changing metadata generation, route expansion, or git freshness lookup.
   `__tests__/scripts/lensDataV2Readers.test.ts` holds the lens-data readers to both versions: the AST reader against
   every catalog module, identity, summaries and converter fit from V2 twins, the organizer's V2 import, and page dates
-  that skip conversion commits, and the scripts' copies of the V1 rule to `isV1File`.
+  that skip conversion commits. `lensDataScripts.test.ts` also checks conversion on arrival, refusals without source
+  changes, V2 no-ops, and metadata rejection before writes. `__tests__/src/lens-data/schemaVersion.test.ts` requires
+  every catalog lens and teleconverter, including hidden fixtures, to be V2 through the engine's version rule.
   `__tests__/scripts/auditImageCircle.test.ts`, in the tooling suite, runs each audit that reads a lens file on a V2
   fixture and on its V1 twin through its npm entry. `__tests__/scripts/convertLensData.test.ts` holds the converter
   library to synthetic source-text fixtures (`convertLensDataFixtures.ts`, strings so `format:check` never reaches

@@ -16,6 +16,9 @@
  */
 
 import ts from "typescript";
+import { loadLensDataConversion } from "./lens-summaries.mjs";
+
+const { lensDataVersion } = await loadLensDataConversion();
 
 /**
  * Parse a lens-data source file.
@@ -251,16 +254,6 @@ export function walkLensDataSource(content, fileName, visit) {
 }
 
 /**
- * Mirrors the engine's `isV1File` (src/optics/prescription/ingestV2.ts): a file that leaves `schema` out is V1.
- *
- * @param {object} file - a lens or teleconverter file's evaluated default export
- * @returns {boolean} whether the file is V1
- */
-export function isV1LensData(file) {
-  return file.schema === undefined;
-}
-
-/**
  * The identity fields of a lens or teleconverter file of either version. A V2 file keeps its mounts and format in
  * `catalog`; the other fields sit where V1 has them.
  *
@@ -271,7 +264,7 @@ export function isV1LensData(file) {
  */
 export function readLensIdentity(data) {
   const file = data !== null && typeof data === "object" ? data : {};
-  const catalog = isV1LensData(file) ? file : (file.catalog ?? {});
+  const catalog = lensDataVersion(file) === 1 ? file : (file.catalog ?? {});
   const text = (value) => (typeof value === "string" ? value : null);
   return {
     key: text(file.key),

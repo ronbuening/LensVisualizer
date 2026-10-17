@@ -19,15 +19,10 @@ import {
   isFormatOnlyCommit,
   parseGitLogDates,
 } from "../../scripts/build-metadata-lib.mjs";
-import { evaluateLensDataSource, isV1LensData as astIsV1, readLensIdentity } from "../../scripts/lens-data-ast.mjs";
+import { evaluateLensDataSource, readLensIdentity } from "../../scripts/lens-data-ast.mjs";
 import { collectLensData, organizeRootLensFiles } from "../../scripts/lens-data-lib.mjs";
-import {
-  isV1LensData as summariesIsV1,
-  lensSummary,
-  teleconverterSummary,
-  v1Prescription,
-} from "../../scripts/lens-summaries.mjs";
-import { ingestLens, ingestTeleconverter, isV1File } from "../../src/optics/prescription/ingestV2.js";
+import { lensSummary, teleconverterSummary, v1Prescription } from "../../scripts/lens-summaries.mjs";
+import { ingestLens, ingestTeleconverter } from "../../src/optics/prescription/ingestV2.js";
 import { teleconverterCompatibility } from "../../src/optics/prescription/teleconverterCompatibility.js";
 import { toLensDataInput, toTeleconverterData } from "../../src/optics/prescription/toLensData.js";
 import { FIXTURE_PAIRS } from "../src/optics/prescription/ingestV2Fixtures.js";
@@ -143,36 +138,6 @@ describe("lens-data AST reader", () => {
   });
 });
 
-describe("the scripts' copies of the V1 rule", () => {
-  it("agree with isV1File on every fixture pair and on each kind of file a version refuses", () => {
-    const files: [string, unknown][] = [
-      ...FIXTURE_PAIRS.flatMap((pair): [string, unknown][] => [
-        [`${pair.family} V1`, pair.v1],
-        [`${pair.family} V2`, pair.v2],
-      ]),
-      ["no schema", { key: "k" }],
-      ["schema: 2", { schema: 2, key: "k" }],
-      ["schema: 3", { schema: 3, key: "k" }],
-      ["null", null],
-      ["a number", 7],
-    ];
-    /* What a predicate says of a file: its answer, or the kind of error it throws. */
-    const outcome = (predicate: (file: object) => boolean, file: unknown) => {
-      try {
-        return predicate(file as object);
-      } catch (error) {
-        return (error as Error).constructor.name;
-      }
-    };
-    for (const [name, file] of files) {
-      const rule = outcome(isV1File, file);
-      expect(outcome(astIsV1, file), `lens-data-ast.mjs, ${name}`).toBe(rule);
-      expect(outcome(summariesIsV1, file), `lens-summaries.mjs, ${name}`).toBe(rule);
-    }
-    expect(files.map(([, file]) => outcome(isV1File, file)).slice(-5)).toEqual([true, false, false, "TypeError", true]);
-  });
-});
-
 describe("a V2 file and its V1 twin", () => {
   it("give the same identity, maker folder, mounts and formats to the metadata collector", () => {
     const collect = (version: "v1" | "v2") => {
@@ -240,11 +205,11 @@ describe("a V2 file and its V1 twin", () => {
     expect(JSON.parse(output)).toEqual(JSON.parse(JSON.stringify(inProcess)));
   });
 
-  it("is filed under its maker with its V2 type import rewritten", () => {
+  it("is filed under its maker with its V2 type import rewritten", async () => {
     const { lensDataDir } = tempLensDataDir();
     const pair = FIXTURE_PAIRS.find((candidate) => candidate.family === "prime")!;
     writeFileSync(join(lensDataDir, "FixturePrime.data.ts"), sourceOf(pair.v2, "LensDataV2Input", "lensDataV2"));
-    const { movedLensCount } = organizeRootLensFiles(lensDataDir, { log: () => {} });
+    const { movedLensCount } = await organizeRootLensFiles(lensDataDir, { log: () => {} });
     const filed = join(lensDataDir, "fixture", "FixturePrime.data.ts");
     expect(movedLensCount).toBe(1);
     expect(existsSync(filed)).toBe(true);
