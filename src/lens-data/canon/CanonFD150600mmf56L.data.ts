@@ -253,9 +253,9 @@ const LENS_DATA = {
   // face (45.3, 43.8) and stand 1.25 and 0.80 mm above the ray. Surfaces 1-4 clear that ray by 6.2-6.6 mm and
   // surfaces 11-14 by 0.02-0.64 mm.
   // The diaphragm is modeled 0.5 mm in front of R25, splitting the patent l3 variable air space. The stop radius is
-  // derived from the design f-number: the fixed wide-open iris is sized by real ray at 150 mm, 18.457 mm, and held at
-  // every zoom station. On axis the model traces f/5.60 at 150 mm and f/5.59 at 300 mm (iris) and f/5.60 at 600 mm
-  // (rim of surface 9 on the stated ray).
+  // derived from the design f-number; the fixed wide-open iris is sized by real ray at 150 mm, 18.457 mm. On axis
+  // the model traces f/5.60 at 150 mm and f/5.59 at 300 mm (iris) and f/5.60 at 600 mm (rim of surface 9 on the
+  // stated ray).
   surfaces: [
     { label: "1", R: 344.101, d: 8.34, sd: 59.4, medium: 1 },
     { label: "2", R: -621.384, d: 0.2, sd: 59.3 },

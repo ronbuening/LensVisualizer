@@ -13,7 +13,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  independently traced EFL is 50.049915 mm.                         ║
  * ║                                                                    ║
  * ║  STOP: The patent states F:2.8 but gives no iris position or       ║
- * ║  diameter. STO is an implementation inference in d4, 2.000 mm      ║
+ * ║  diameter. STO is an implementation inference in d4, 2.000 mm     ║
  * ║  behind surface 4 and 1.050 mm before surface 5. The stop radius   ║
  * ║  is derived from the design f-number (f/2.8).                      ║
  * ║                                                                    ║

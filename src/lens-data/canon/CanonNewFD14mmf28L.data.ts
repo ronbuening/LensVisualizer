@@ -13,11 +13,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    paraxial trace gives EFL = 0.999615788, so all R and d values    ║
  * ║    are scaled ×14.005381029 to produce EFL ≈ 14.000 mm.                ║
  * ║                                                                    ║
- * ║  NOTE ON STOP PLACEMENT:                                           ║
- * ║    The patent table gives D16 as one air gap between R16 and R17.  ║
- * ║    The figure places the diaphragm inside that gap; D16 is split   ║
- * ║    evenly here. The stop radius is derived from the design         ║
- * ║    f-number (f/2.8), not from a patent-listed aperture diameter.   ║
+ * ║  NOTE ON STOP PLACEMENT:                                            ║
+ * ║    The patent table gives D16 as one air gap between R16 and R17.   ║
+ * ║    The figure places the diaphragm inside that gap; D16 is split    ║
+ * ║    evenly here. The stop radius is derived from the design          ║
+ * ║    f-number (f/2.8), not from a patent-listed aperture diameter.    ║
  * ║                                                                    ║
  * ║  NOTE ON FOCUS:                                                     ║
  * ║    Canon's production description states that the lens uses a       ║

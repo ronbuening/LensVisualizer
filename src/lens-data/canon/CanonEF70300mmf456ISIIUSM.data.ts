@@ -20,13 +20,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * last refracting surface (30) has d = 38.00 mm to the image plane.
  *
  * Refracting-surface semi-diameters are one-half of the patent's published "Effective diameter" values. The
- * stop radius is derived from the design f-number at each zoom station. The Example 5 patent surface table
- * prints a 24.44 mm effective diameter at stop surface 14; it is a source envelope, not a fixed iris
- * schedule. The patent f-numbers imply a slightly smaller stop, so nominalFNumber controls wide-open stop/pupil
- * geometry. Surface 10 is the one SD refinement: the patent effective-diameter proxy (11.575 mm
- * semi-diameter) would make the 0.6-field wide-open bundle clip at the E6/E7 cemented interface. Its
- * render/trace SD is therefore 12.15 mm, derived from the verified off-axis ray envelope so clipping moves to
- * an external element/air boundary.
+ * Example 5 patent surface table prints a 24.44 mm effective diameter at stop surface 14, a source-backed
+ * geometric aperture proxy; it is not treated as the exact wide-open iris diameter because the patent f-numbers
+ * imply a slightly smaller stop. nominalFNumber therefore controls wide-open stop/pupil geometry: the stop radius
+ * is derived from the design f-number at each zoom station. Surface 10 is the one SD refinement: the patent
+ * effective-diameter proxy (11.575 mm semi-diameter) would make the 0.6-field wide-open bundle clip at the E6/E7
+ * cemented interface. Its render/trace SD is therefore 12.15 mm, derived from the verified off-axis ray envelope
+ * so clipping moves to an external element/air boundary.
  *
  * The patent publishes nd and vd only. Glass labels select representative OHARA spectral proxies at
  * the patent's published precision; they do not establish Canon's actual melt vendor, and rounded coordinates do

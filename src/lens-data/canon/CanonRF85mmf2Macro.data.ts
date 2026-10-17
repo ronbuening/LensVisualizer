@@ -17,7 +17,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  i.e. the production 0.35 m MFD. No cover glass or filter is      ║
  * ║  listed; the last gap is the patent BF 17.60 mm.                  ║
  * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                          ║
+ * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent publishes no effective diameters. Values are        ║
  * ║    ray-clearance estimates checked against FIG. 1 (profiled at    ║
  * ║    0.0983 mm/px from the S1–S24 vertex span). Stored rims sit     ║

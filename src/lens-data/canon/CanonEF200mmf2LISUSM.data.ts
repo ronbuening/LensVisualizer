@@ -26,14 +26,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ draws each of those elements taller. Element L4 and the L12+L13    ║
  * ║ doublet (D4) are drawn square-cut, so each carries one height:     ║
  * ║ 39.9 mm on surfaces 7 and 8, 17.4 mm on 21-23. Two air-spaced      ║
- * ║ pairs meet at the rim in FIG. 1, so gapSagFrac is 0.95: at         ║
- * ║ 39.9 mm, 0.005 mm is left of the 0.10 mm gap between surfaces 6    ║
- * ║ and 7 (they touch at 40.99 mm); at 17.3 mm, 0.23 mm is left of the ║
- * ║ 3.93 mm gap between surfaces 20 and 21 (they touch at 17.83 mm).   ║
- * ║ Stop: the stop radius is derived from the design f-number (F/2.05; ║
- * ║ entrance-pupil semi-diameter 47.56 mm). The exact F/2.05 marginal  ║
- * ║ ray meets the stop at 20.38 mm, which the build uses as the        ║
- * ║ wide-open iris.                                                    ║
+ * ║ pairs meet at the rim in FIG. 1, so gapSagFrac is 0.95: at 39.9    ║
+ * ║ mm, 0.005 mm is left of the 0.10 mm gap between surfaces 6 and 7   ║
+ * ║ (they touch at 40.99 mm); at 17.3 mm, 0.23 mm is left of the 3.93  ║
+ * ║ mm gap between surfaces 20 and 21 (they touch at 17.83 mm).        ║
+ * ║ Stop: the stop radius is derived from the design f-number (F/2.05, ║
+ * ║ EP SD 47.56 mm). The exact F/2.05 marginal ray meets the stop at   ║
+ * ║ 20.38 mm, which the build uses as the wide-open iris.              ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 

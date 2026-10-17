@@ -16,8 +16,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * clear apertures.  Surfaces 1A-4 were raised to pass the traced chief ray to the full-frame corner at
  * the 20.6 mm end, where FIG. 2(a) prints ω = 46.4° (2026-09-24 field-coverage audit).
  *
- * The stop radius is derived from the design f-number at each zoom station.  The wide-open iris radius at
- * each zoom position is traced from nominalFno, the catalog aperture used by the UI.
+ * The stop radius is derived from the design f-number: the wide-open iris radius at each zoom position is traced
+ * from nominalFno, the catalog aperture used by the UI.
  */
 
 const LENS_DATA = {

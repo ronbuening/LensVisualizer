@@ -13,12 +13,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Zoom-only variable gaps: d8, d18, d25. Each var pair keeps infinity/close values identical at a given zoom
  * position.
  *
- * Stop: patent surface 30 (SP/STO), in the fixed fourth unit. The Numerical Example 1 patent surface table
- * prints a 39.75 mm effective diameter (19.875 mm radius). By real marginal ray that opening gives f/4.119 at
- * 205.00 mm and f/4.120 at 389.99 mm, the patent's f/4.12 at both ends; a paraxial f-number for the same
- * opening is f/4.014. The trace sizes the wide-open iris from nominalFno by real marginal ray: 19.872 mm,
- * 0.015 % under the printed radius, held at both zoom positions. Semi-diameters: one-half of the patent
- * effective diameters on every refracting surface; the stop radius is derived from the design f-number.
+ * Stop: patent surface 30 (SP/STO), in the fixed fourth unit. The Numerical Example 1 patent surface table prints a
+ * 39.75 mm effective diameter (19.875 mm radius). By real marginal ray that opening gives f/4.119 at 205.00 mm and
+ * f/4.120 at 389.99 mm, the patent's f/4.12 at both ends; a paraxial f-number for the same opening is f/4.014.
+ * The trace sizes the wide-open iris from nominalFno by real marginal ray: 19.872 mm, 0.015 % under the printed
+ * radius, held at both zoom positions.
+ * Semi-diameters: one-half of the patent effective diameters on every refracting surface; the stop radius is derived
+ * from the design f-number.
  *
  * No scaling is applied. All surfaces are spherical; no asphere or conic conversion is applicable.
  * Glass source: the patent publishes nd/νd only and is vendor-silent. Glass strings therefore use coordinate

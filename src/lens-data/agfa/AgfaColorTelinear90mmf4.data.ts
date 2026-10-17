@@ -16,8 +16,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                    ║
  * ║ NOTE ON STOP AND SEMI-DIAMETERS:                                    ║
  * ║   Patent does not publish a stop station or clear semi-diameters.    ║
- * ║   STO is inferred from the figure and placed 5% of s2 behind R5,     ║
- * ║   then sized for a 90mm f/4 entrance pupil. Semi-diameters are       ║
+ * ║   STO is inferred from the figure and placed 5% of s2 behind R5;     ║
+ * ║   its radius is derived from the design f-number. Semi-diameters are ║
  * ║   conservative inferred clear apertures checked against f/4 on-axis  ║
  * ║   rays, the 15° chief ray, edge thickness, sd/|R| < 0.90 on the      ║
  * ║   tight spherical surfaces, and cross-gap sag intrusion.             ║

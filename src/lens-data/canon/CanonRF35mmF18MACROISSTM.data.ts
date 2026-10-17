@@ -22,7 +22,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    • The stop radius is derived from the published design f-number        ║
  * ║      (F/1.85); the Numerical Data 1 patent surface table prints a         ║
  * ║      20.16 mm stop-row effective diameter.                                ║
- * ║    • The 2→3 air gap is physically clear but uses 91.77% of its 1.92 mm   ║
+ * ║    • The 2→3 air gap is physically clear but uses 91.77% of its 1.92 mm  ║
  * ║      axial gap at the shared published ray-envelope radius. To preserve   ║
  * ║      the patent aperture envelope without clipping full-field rays, the   ║
  * ║      validator's gapSagFrac is explicitly set to 0.92.                    ║
@@ -221,7 +221,8 @@ const LENS_DATA = {
     { label: "5", R: -47.674, d: 1.3, sd: 10.22, medium: 3 },
     { label: "6", R: 17.367, d: 5.73, sd: 10.8, medium: 4 },
     { label: "7", R: 777.674, d: 3.72, sd: 10.63 },
-    // radius derived from the design f-number; Numerical Data 1 patent surface table prints a 20.16 mm effective diameter.
+    // Stop radius derived from the design f-number (published F/1.85); the Numerical Data 1 patent surface table
+    // prints a 20.16 mm effective diameter in the stop row.
     { label: "STO", R: "flat", d: 3.62 },
     { label: "9", R: 64.497, d: 2.12, sd: 9.52, medium: 5 },
     { label: "10", R: -262.934, d: 3.56, sd: 9.345 },

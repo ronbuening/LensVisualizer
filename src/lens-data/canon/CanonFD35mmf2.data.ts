@@ -15,9 +15,9 @@
 // restores 1.1066 while keeping f = 1 and the published φ1 / φ2 / D. The table is followed; the conflict is open.
 //
 // STOP: not tabulated. FIG. 1 draws the iris inside D10, roughly 42 % of the gap behind R10 (figure reading); the
-// file keeps its earlier 45 % split (2.43 + 2.96 mm), which is inside the drawing's precision. The stop radius
-// is derived from the design f-number; the FIG. 1 iris opening ends ≈ 9.6 mm from the axis at the figure scale.
-// The viewer derives its working iris from nominalFno with a real ray (≈ 10.4 mm at f/2).
+// file keeps its earlier 45 % split (2.43 + 2.96 mm), which is inside the drawing's precision. The paraxial f/2
+// marginal height at the stop is 9.6 mm, and the FIG. 1 iris opening also reads ≈ 9.6 mm at the figure scale. The
+// viewer derives its working iris from nominalFno with a real ray (≈ 10.4 mm at f/2).
 //
 // FOCUS — three keyframes:
 //   t = 0      infinity; D10 = 0.1541 → 5.39 mm (patent value).

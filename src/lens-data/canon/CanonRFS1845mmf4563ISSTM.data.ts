@@ -25,10 +25,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    radius), not an asserted hard-iris radius.                                        ║
  * ║                                                                                      ║
  * ║  SEMI-DIAMETERS: refracting surfaces use patent effective diameters divided by two;  ║
- * ║    no inferred SDs; the stop radius is derived from the design f-number at each zoom ║
- * ║    station.                                                                          ║
- * ║  SPECTRAL DATA: patent publishes nd/νd only. Vendor identity is unresolved, so nC,   ║
- * ║    nF, ng, and dPgF are intentionally not fabricated.                                ║
+ * ║    no inferred SDs; the stop radius is derived from the design f-number at each      ║
+ * ║    zoom station.                                                                     ║
+ * ║  SPECTRAL DATA: patent publishes nd/νd only. Vendor identity is unresolved, so      ║
+ * ║    nC, nF, ng, and dPgF are intentionally not fabricated.                           ║
  * ╚══════════════════════════════════════════════════════════════════════════════════════╝
  */
 

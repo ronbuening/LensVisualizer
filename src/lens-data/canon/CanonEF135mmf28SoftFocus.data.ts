@@ -32,8 +32,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                            ║
  * ║ SEMI-DIAMETERS                                                             ║
  * ║ The patent publishes none. R7A/R8 are the inferred f/2.8 soft-state clear  ║
- * ║ radii. The stop radius is derived from the design f-number (nominalFNumber ║
- * ║ 2.8) in the normal base state. Other SDs are conservative ray-envelope     ║
+ * ║ radii. The stop radius is derived from the design f-number in the normal   ║
+ * ║ base state (nominalFNumber 2.8). Other SDs are conservative ray-envelope   ║
  * ║ values checked against axial bundles, the default 60%-field off-axis fan,  ║
  * ║ the 9.1-degree chief ray, close focus, and Figure 10.                      ║
  * ║                                                                            ║

@@ -28,7 +28,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    Not tabulated and not drawn (the figure shows glass only); the  ║
  * ║    text places it between r5 and r6. Mid-d5 split is a model       ║
  * ║    choice. The stop radius is derived from the design f-number     ║
- * ║    (f/1.8; approximately 8.47 mm).                                 ║
+ * ║    (the f/1.8 iris radius, 8.47 mm).                               ║
  * ║                                                                    ║
  * ║  NOTE ON CLOSE FOCUS:                                              ║
  * ║    No close state in the patent. The 1.0 m keyframe (production    ║

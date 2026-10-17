@@ -18,9 +18,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    the transcribed patent prescription.                                  ║
  * ║                                                                          ║
  * ║  NOTE ON APERTURE STOP:                                                  ║
- * ║    The patent does not tabulate a stop surface. A working stop position  ║
- * ║    is estimated in D13 from Canon's production block diagram, 8.00 mm    ║
- * ║    before R14. D13 remains 32.20 mm at infinity and 17.71 mm at 2.5 m.   ║
+ * ║    The patent does not tabulate a stop surface. A working stop position ║
+ * ║    is estimated in D13 from Canon's production block diagram, 8.00 mm   ║
+ * ║    before R14. D13 remains 32.20 mm at infinity and 17.71 mm at 2.5 m.  ║
  * ║    The stop radius is derived from the patent design f-number (f/1.86).  ║
  * ║                                                                          ║
  * ║  NOTE ON SEMI-DIAMETERS:                                                 ║

@@ -286,7 +286,8 @@ const LENS_DATA = {
     }, // L5 front (aspherical)
     { label: "9", R: 27.701, d: 10.68, sd: 17.58 }, // L5 rear → air
 
-    // Aperture stop (patent surface 10); First Numerical Embodiment patent surface table prints a 33.10 mm effective diameter
+    // Aperture stop (patent surface 10). The First Numerical Embodiment patent surface table prints a 33.10 mm
+    // effective ray diameter at the stop, the f/1.24 iris.
     { label: "STO", R: "flat", d: 4.51 },
 
     // Cemented doublet L6 + L7 (S11–S14 raised above patent ÷ 2 for the close-focus f/1.24 pencil)

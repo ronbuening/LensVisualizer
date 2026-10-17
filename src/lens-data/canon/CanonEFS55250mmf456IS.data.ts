@@ -23,10 +23,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                              ║
  * ║ APERTURE MODEL                                                               ║
  * ║   Patent endpoint Fno values are 4.16 and 5.88. The required middle node     ║
- * ║   uses Fno=5.129132321041215, a disclosed linear interpolation in the patent ║
- * ║   focal-length coordinate. The stop radius is derived from the design        ║
- * ║   f-number at each zoom station; station nominalFNumber controls the viewer  ║
- * ║   aperture.                                                                  ║
+ * ║   uses Fno=5.129132321041215, a disclosed linear interpolation in the        ║
+ * ║   patent focal-length coordinate. The stop radius is derived from the        ║
+ * ║   design f-number at each zoom station; per-zoom nominalFno controls the     ║
+ * ║   viewer aperture.                                                           ║
  * ║                                                                              ║
  * ║ SEMI-DIAMETERS                                                               ║
  * ║   Example 2 publishes no clear-aperture table. SDs are modeling inferences   ║

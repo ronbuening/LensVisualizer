@@ -28,9 +28,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  9.86 mm (4.93 mm radius) at stop surface 17. nominalFno stores the patent       ║
  * ║  F-numbers 3.60 / 4.27 / 5.69. The iris is one fixed opening sized from the wide ║
  * ║  value: a real marginal ray at f/3.60 meets the stop at 4.928 mm, a 9.856 mm     ║
- * ║  diameter. Through the published clear apertures the axial beam traces f/3.6003  ║
- * ║  / 4.2709 / 5.6856. The rim of surface 13 (9.67 mm) limits the middle and        ║
- * ║  telephoto states, where the iris alone passes about f/4.25 and f/5.65.          ║
+ * ║  diameter. Through the published clear apertures the axial beam traces           ║
+ * ║  f/3.6003 / 4.2709 / 5.6856. The rim of surface 13 (9.67 mm) limits the middle   ║
+ * ║  and telephoto states, where the iris alone passes about f/4.25 and f/5.65.      ║
  * ║                                                                                  ║
  * ║  Patent movement-sign contradiction: ¶0055 defines image-side motion positive,   ║
  * ║  while ¶0078 says object-side positive. The spacing table and Table 2 agree with  ║

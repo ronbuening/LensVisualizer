@@ -39,7 +39,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * SD audit (2026-09-06): Fig. 1, local PDF p.20 at 600 dpi supports
  * enlarging L11 to 9.4 mm, L12 to 8.5 mm, and L31 to 9.0 mm. These
  * replace ray-bundle minimum envelopes with optical-outline estimates;
- * the central group is retained; the stop radius is derived from the design f-number at each zoom station.
+ * the central group is retained; the stop radius is derived from the
+ * design f-number at each zoom station.
  *
  * Manufacturer references:
  * - https://global.canon/en/c-museum/product/dcc837.html

@@ -22,11 +22,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 28.904387667 / 50.014500526 / 86.899293947 mm. The marketed 28-90mm range is not a uniform scale of the design.
  * Asphere coefficients therefore remain unscaled; K remains 0.
  *
- * Aperture model: the patent does not publish a stop diameter. The stop radius is derived from each
- * station's nominal f-number (4 / 4.451141943 / 5.6). A single fixed stop fitted by minimizing the
- * three-state f-number residual gives 3.846027780 / 4.451141943 / 5.878770585; the catalog design value
- * is the wide one. Per project convention, station nominalFNumber uses the marketed f/4 wide endpoint and
- * f/5.6 tele endpoint; the intermediate value remains the modeled 4.451141943.
+ * Aperture model: the patent does not publish a stop diameter. The stop radius is derived from each station's
+ * nominal f-number. A single fixed stop fitted by minimizing the three-state f-number residual gives design
+ * f-numbers of 3.846027780 / 4.451141943 / 5.878770585. Per project convention, nominalFno uses the marketed
+ * f/4 wide endpoint and f/5.6 tele endpoint; the intermediate value remains the modeled 4.451141943.
  *
  * Focus model: CONSTRAINED_RECONSTRUCTION. The patent states that Group 1 focuses but publishes no finite-focus
  * spacing table. At each zoom state, Group 1 is translated objectward while Groups 2-4 and the image plane remain

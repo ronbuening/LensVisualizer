@@ -10,10 +10,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  6 elements / 4 groups, all spherical.                              ║
  * ║  Focus: unit focus; only the final image-side gap changes.          ║
  * ║                                                                    ║
- * ║  NOTE ON SCALING:                                                  ║
- * ║    Patent prescription is normalized to f = 100 mm. All radii,     ║
- * ║    thicknesses, air spaces, back focus, and estimated              ║
- * ║    semi-diameters are scaled ×0.5 to the production 50 mm class.   ║
+ * ║  NOTE ON SCALING:                                                   ║
+ * ║    Patent prescription is normalized to f = 100 mm. All radii,      ║
+ * ║    thicknesses, air spaces, back focus, and estimated                ║
+ * ║    semi-diameters are scaled ×0.5 to the production 50 mm class.     ║
  * ║                                                                    ║
  * ║  NOTE ON STOP POSITION:                                             ║
  * ║    The patent table gives only the full central air space l2. The    ║

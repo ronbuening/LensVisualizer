@@ -29,18 +29,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    to the plate: 15.00 / 24.22 / 29.66 mm.                           ║
  * ║                                                                      ║
  * ║  NOTE ON APERTURE:                                                   ║
- * ║    Patent FNO 2.06 at all three stations; the stop (S14) moves with  ║
- * ║    G3 and no iris diameters are published, so the station iris is    ║
- * ║    inferred from the nominal f-number (zoomApertureModel). The stop  ║
- * ║    radius is derived from the design f-number at each zoom station;  ║
- * ║    the largest (tele) real-ray iris radius is 16.9 mm.               ║
+ * ║    Patent FNO 2.06 at all three stations; the stop (S14) moves with ║
+ * ║    G3 and no iris diameters are published, so the station iris is   ║
+ * ║    inferred from the nominal f-number (zoomApertureModel). The      ║
+ * ║    largest (tele) real-ray iris radius is 16.9 mm.                  ║
  * ║                                                                      ║
  * ║  NOTE ON SEMI-DIAMETERS:                                             ║
  * ║    Not listed in the patent. Measured from the Fig. 1 wide-angle    ║
  * ║    section (8.70 px/mm at 400 dpi, calibrated on the S1–S34 vertex  ║
  * ║    spacing and confirmed by the drawn axial beam at SP) where the   ║
  * ║    earlier estimate was ≳15 % off or clipped the tele f/2.06 axial  ║
- * ║    beam: S1–S2, S7, STO, S15–S16, S20, S23–S29, S32–S34. Other     ║
+ * ║    beam: S1–S2, S7, S15–S16, S20, S23–S29, S32–S34. Other          ║
  * ║    surfaces keep the earlier ray-trace estimate (within ~15 % of    ║
  * ║    the figure). S7 (16.0 vs figure 15.1) and S32 (15.4 vs 14.8)     ║
  * ║    sit slightly above the figure so the engine's paraxial wide     ║

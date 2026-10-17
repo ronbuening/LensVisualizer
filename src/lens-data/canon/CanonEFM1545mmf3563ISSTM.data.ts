@@ -23,8 +23,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  These close-focus rows are modeling values, not patent-published values.                           ║
  * ║                                                                                                    ║
  * ║  Stop: the JP 2016-118658 A Numerical Example 8 surface table prints a 9.40 mm effective diameter  ║
- * ║  at s12; it is not the wide-open iris diameter at the wide end. The stop radius is derived from    ║
- * ║  the design f-number at each zoom station (f/3.58 wide).                                           ║
+ * ║  at s12; it is not the physical wide-open iris diameter. The stop radius is derived from the       ║
+ * ║  design f-number (f/3.58 at the wide end) at each zoom station; nominalFno supplies the            ║
+ * ║  zoom-dependent wide-open aperture states.                                                         ║
  * ║                                                                                                    ║
  * ║  Source s21 is a fixed-diameter flare-cut stop (FS), not an active refractive surface. It is        ║
  * ║  omitted from the ordinary sequential model. The source s20->FS 0.20 mm plus FS->image 10.60 mm   ║

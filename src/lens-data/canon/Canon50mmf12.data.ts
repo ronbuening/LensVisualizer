@@ -27,12 +27,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    remains unmatched. No original 1955 melt or vendor is asserted.        ║
  * ║                                                                            ║
  * ║  APERTURE STOP:                                                            ║
- * ║    The patent locates D within the r7-r8 air gap but does not publish its  ║
- * ║    exact station or diameter. At the required f/1.2 rim, the stop plane is ║
- * ║    centered between the opposing spherical profiles: 6.455948 mm after r7  ║
- * ║    and 4.199052 mm before r8. The stop radius is derived from the design   ║
- * ║    f-number. The entrance-pupil diameter is 42.094150 mm at                ║
- * ║    EFL = 50.512979 mm.                                                     ║
+ * ║    The patent locates D within the r7-r8 air gap but does not publish its ║
+ * ║    exact station or diameter. At the required f/1.2 rim, the stop plane   ║
+ * ║    is centered between the opposing spherical profiles: 6.455948 mm      ║
+ * ║    after r7 and 4.199052 mm before r8. The stop radius is derived from    ║
+ * ║    the design f-number, giving an entrance-pupil diameter of 42.094150 mm ║
+ * ║    at EFL = 50.512979 mm.                                                 ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS:                                                           ║
  * ║    The patent supplies none. Values are inferred from the f/1.2 marginal  ║

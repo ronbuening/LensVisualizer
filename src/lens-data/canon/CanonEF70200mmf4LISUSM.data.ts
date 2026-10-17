@@ -25,9 +25,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * (54.492664, 54.493981, 54.498014 mm). A fixed rear spacing preserves the patent's fixed L4 / image-plane architecture
  * instead of encoding a spurious ~0.005 mm zoom motion caused by rounded source values.
  *
- * Stop: source surface 19 is SP. Its diameter is not published. The stop radius is derived from the design
- * f-number (published Fno. 4.1) at the wide state and held at every zoom station. The earlier paraxial wide-state
- * stop solution predicts F/4.10005 and F/4.10019 at the middle and tele states from the rounded prescription.
+ * Stop: source surface 19 is SP. Its diameter is not published. The stop radius is derived from the design f-number
+ * (published Fno. 4.1) at the wide state and held at every zoom station. A paraxial stop sized to Fno. 4.1 at the
+ * wide state predicts F/4.10005 and F/4.10019 at the middle and tele states from the rounded prescription.
  *
  * Semi-diameters: not published. They were inferred from exact spherical sequential rays using the F/4.1 stop,
  * full-field chief rays for patent Y = 21.6 mm, representative 0.6-field bundles, the patent Fig. 1 optical section,

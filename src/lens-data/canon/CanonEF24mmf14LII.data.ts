@@ -231,8 +231,7 @@ const LENS_DATA = {
     { label: "14", R: 76.688, d: 0.2, sd: 11.88 },
     { label: "15", R: 26.781, d: 6.55, sd: 12.58, medium: 9 },
     { label: "16", R: -64.437, d: 3.4, sd: 12.575 },
-    // US 2010/0033848 A1, Numerical Example 3 surface table, stop row: printed effective
-    // diameter 24.16 mm at the stop.
+    // US 2010/0033848 A1 Numerical Example 3 surface table prints a 24.16 mm effective diameter at the stop.
     { label: "STO", R: "flat" },
     { label: "18", R: -18.579, d: 3.55, sd: 11.825, medium: 10 },
     { label: "19", R: -15.481, d: 1.6, sd: 12.18, medium: 11 },

@@ -22,7 +22,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    consistent with a nominally marketed 20 mm lens and with the    ║
  * ║    patent's 93.1° full field on the 36 × 24 mm format.              ║
  * ║                                                                    ║
- * ║  NOTE ON APERTURE AND FIELD:                                       ║
+ * ║  NOTE ON APERTURE AND FIELD:                                        ║
  * ║    The patent design is f/2.9 and 93.1° full field. nominalFno     ║
  * ║    carries f/2.9; the published 94° diagonal field is kept. The    ║
  * ║    stop radius is derived from the design f-number.                ║

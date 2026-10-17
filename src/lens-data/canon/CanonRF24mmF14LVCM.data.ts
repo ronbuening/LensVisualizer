@@ -26,14 +26,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  and are excluded. Their optical effect is normalized to a 15.18 mm      ║
  * ║  air-equivalent spacing from surface 27 to IMG, preserving patent BF/TL. ║
  * ║                                                                            ║
- * ║  Semi-diameters are modeling values, not patent clear apertures. The       ║
- * ║  patent publishes none. They were derived from the patent Fig. 5 section   ║
- * ║  and calibrated stop/pupil geometry, then checked with exact meridional    ║
- * ║  ray envelopes in all four published focus states plus edge thickness,     ║
- * ║  actual rim slope, shared-gap intrusion, conic limits, and render-trim     ║
- * ║  proxies. A 600 dpi Figure 5 audit refined the cemented E9/E10 rim from    ║
- * ║  13.5 to 11.7 mm. The stop radius is derived from the design f-number      ║
- * ║  (F/1.46) and is therefore inferred rather than independently published.   ║
+ * ║  Semi-diameters are modeling values, not patent clear apertures. The     ║
+ * ║  patent publishes none. They were derived from the patent Fig. 5 section ║
+ * ║  and calibrated stop/pupil geometry, then checked with exact meridional  ║
+ * ║  ray envelopes in all four published focus states plus edge thickness,   ║
+ * ║  actual rim slope, shared-gap intrusion, conic limits, and render-trim   ║
+ * ║  proxies. A 600 dpi Figure 5 audit refined the cemented E9/E10 rim from  ║
+ * ║  13.5 to 11.7 mm. The stop radius is derived from the design f-number    ║
+ * ║  (F/1.46) and is therefore inferred rather than independently published. ║
  * ║                                                                            ║
  * ║  Glass note: the patent supplies nd and νd only. All 15 elements use    ║
  * ║  coordinate-compatible catalog-equivalent Sellmeier curves, with labels ║
