@@ -193,9 +193,10 @@ describe("canonical prescription: catalog round trip", () => {
 
   it("notices a prescription that no longer gives its file back", () => {
     /* The round trip compares values, so it must fail when one canonical value moves. */
-    const result = ingestLensV1(lensByKey("canon-serenar-50f18"));
+    const data = prime();
+    const result = ingestLensV1(data);
     result.prescription.surfaces[1].d *= 1 + Number.EPSILON;
-    expect(failureOf(() => expect(toLensDataInput(result)).toEqual(lensByKey("canon-serenar-50f18")))).not.toBeNull();
+    expect(failureOf(() => expect(toLensDataInput(result)).toEqual(data))).not.toBeNull();
   });
 
   it("reads every catalog file without writing to it, and shares no object with it or with the view", () => {
@@ -334,14 +335,16 @@ describe("canonical prescription: schema defaults", () => {
       );
     }
     expect(offenders).toEqual([]);
-    /* Every row is exercised both ways: some catalog file leaves the field out and some writes it. */
+    /* Both versions contribute coverage as maker batches migrate out of the V1 sweep above. */
     const ways = new Map<string, Set<boolean>>();
     const note = (row: SchemaDefault, record: object, scope: string) => {
       const id = `${scope}.${row.path}`;
       if (!ways.has(id)) ways.set(id, new Set());
       ways.get(id)!.add(takesDefault(row, (record as Record<string, unknown>)[row.v1Field]));
     };
-    for (const { data, ingested: result } of INGESTED) {
+    for (const { data: authored } of LENSES) {
+      const result = ingestLens(authored);
+      const data = toLensDataInput(result);
       for (const row of LENS_SCHEMA_DEFAULTS) {
         if (!row.path.startsWith("zoom.") || result.prescription.zoom) note(row, data, "lens");
       }
@@ -415,7 +418,7 @@ describe("canonical prescription: schema defaults", () => {
     expect(toLensDataInput(b)).toEqual(written);
 
     const converter = TELECONVERTERS[0].data;
-    const result = ingestTeleconverterV1(converter);
+    const result = ingestTeleconverter(converter);
     expect(result.provenance.defaulted.every((path) => /^(elements|rearPlates)\[\d+\]\./.test(path))).toBe(true);
     expect(Object.hasOwn(result.prescription, "layout")).toBe(false);
     expect(Object.hasOwn(result.prescription, "visible")).toBe(converter.visible !== undefined);
@@ -644,7 +647,7 @@ describe("canonical prescription: spellings held as one", () => {
 
 describe("canonical prescription: stop radius", () => {
   it("keeps a derived stop's authored sd in provenance alone, and the view gives it back to the engine", () => {
-    const data = lensByKey("canon-serenar-50f18");
+    const data = prime();
     const result = ingested(data);
     const stop = data.surfaces.findIndex((surface) => surface.label === "STO");
     expect(result.prescription.aperture.stopRadius).toBe("derived");
@@ -1011,7 +1014,7 @@ describe("canonical prescription: refusals", () => {
   });
 
   it("refuses for a teleconverter as for a lens, naming it", () => {
-    const converter = () => structuredClone(TELECONVERTERS[0].data);
+    const converter = () => toTeleconverterData(ingestTeleconverter(TELECONVERTERS[0].data));
     const refuse = (data: TeleconverterData): string[] => {
       try {
         ingestTeleconverterV1(data);

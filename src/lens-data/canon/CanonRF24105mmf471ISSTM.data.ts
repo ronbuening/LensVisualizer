@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
@@ -54,29 +54,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "canon-rf-24-105mm-f4-71-is-stm",
   maker: "Canon",
   name: "CANON RF 24-105mm f/4-7.1 IS STM",
   subtitle: "US 2021/0003831 A1 Example 1 — production correlation to Canon RF 24-105mm F4-7.1 IS STM",
-  specs: [
-    "13 ELEMENTS / 11 GROUPS",
-    "24-105mm f/4-7.1 (MARKETED)",
-    "PATENT f = 24.72-101.85 mm",
-    "PATENT F/4.11-7.31",
-    "2 ASPHERICAL SURFACES",
-    "B3B OPTICAL IS",
-  ],
 
-  focalLengthMarketing: [24, 105],
-  focalLengthDesign: [24.721164, 101.867735],
-  lensMounts: ["canon-rf"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 2021/0003831 A1",
-  patentAuthors: ["Yasuaki Hagiwara"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 2021,
-  elementCount: 13,
-  groupCount: 11,
+  catalog: {
+    lensMounts: ["canon-rf"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "13 ELEMENTS / 11 GROUPS",
+      "24-105mm f/4-7.1 (MARKETED)",
+      "PATENT f = 24.72-101.85 mm",
+      "PATENT F/4.11-7.31",
+      "2 ASPHERICAL SURFACES",
+      "B3B OPTICAL IS",
+    ],
+    elementCount: 13,
+    groupCount: 11,
+    focalLengthMm: { marketing: [24, 105], design: [24.721164, 101.867735] },
+  },
+
+  source: {
+    patentNumber: "US 2021/0003831 A1",
+    patentYear: 2021,
+    authors: ["Yasuaki Hagiwara"],
+    assignees: ["Canon Inc."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -88,7 +93,7 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.6,
       indexReference: "d",
-      fl: 108.480453,
+      focalLengthMm: 108.480453,
       glass: "603606 SK14-class (vendor unresolved)",
       apd: false,
       role: "Single positive element forming the first zoom unit B1.",
@@ -101,7 +106,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.3,
       indexReference: "d",
-      fl: -20.029324,
+      focalLengthMm: -20.029324,
       glass: "904313 class (vendor unresolved)",
       apd: false,
       role: "Leading negative element of the net-negative second zoom unit B2.",
@@ -114,7 +119,7 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.6,
       indexReference: "d",
-      fl: -37.156145,
+      focalLengthMm: -37.156145,
       glass: "603606 SK14-class (vendor unresolved)",
       apd: false,
       role: "Second negative element of B2.",
@@ -127,7 +132,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       indexReference: "d",
-      fl: 34.151341,
+      focalLengthMm: 34.151341,
       glass: "847239 class (vendor unresolved)",
       apd: false,
       role: "Positive rear element completing the net-negative B2 zoom unit.",
@@ -140,7 +145,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.3,
       indexReference: "d",
-      fl: 28.275015,
+      focalLengthMm: 28.275015,
       glass: "904313 class (vendor unresolved)",
       apd: false,
       role: "Front positive element of subunit B3A, immediately ahead of its cemented pair.",
@@ -153,11 +158,11 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.6,
       indexReference: "d",
-      fl: 20.158387,
+      focalLengthMm: 20.158387,
       glass: "603606 SK14-class (vendor unresolved)",
       apd: false,
-      cemented: "B3A-D1",
       role: "Positive component of the cemented B3A pair.",
+      cemented: "B3A-D1",
     },
     {
       id: 7,
@@ -167,11 +172,11 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.3,
       indexReference: "d",
-      fl: -11.913397,
+      focalLengthMm: -11.913397,
       glass: "904313 class (vendor unresolved)",
       apd: false,
-      cemented: "B3A-D1",
       role: "Negative component of the cemented B3A pair; the cemented pair is net negative.",
+      cemented: "B3A-D1",
     },
     {
       id: 8,
@@ -181,11 +186,11 @@ const LENS_DATA = {
       nd: 1.91082,
       vd: 35.3,
       indexReference: "d",
-      fl: -38.055897,
+      focalLengthMm: -38.055897,
       glass: "911353 class (vendor unresolved)",
       apd: false,
-      cemented: "B3B-IS",
       role: "Negative component of the cemented image-stabilizing subunit B3B.",
+      cemented: "B3B-IS",
     },
     {
       id: 9,
@@ -195,11 +200,11 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.6,
       indexReference: "d",
-      fl: 18.706681,
+      focalLengthMm: 18.706681,
       glass: "603606 SK14-class (vendor unresolved)",
       apd: false,
-      cemented: "B3B-IS",
       role: "Positive component that makes B3B net positive; B3B shifts transversely for optical IS.",
+      cemented: "B3B-IS",
     },
     {
       id: 10,
@@ -209,7 +214,7 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.6,
       indexReference: "d",
-      fl: 51.123344,
+      focalLengthMm: 51.123344,
       glass: "603606 SK14-class (vendor unresolved)",
       apd: false,
       role: "Single positive element forming subunit B3C.",
@@ -222,7 +227,7 @@ const LENS_DATA = {
       nd: 1.91082,
       vd: 35.3,
       indexReference: "d",
-      fl: -31.637406,
+      focalLengthMm: -31.637406,
       glass: "911353 class (vendor unresolved)",
       apd: false,
       role: "Single negative fourth unit; the patent identifies B4 as the axial focus unit.",
@@ -235,7 +240,7 @@ const LENS_DATA = {
       nd: 1.5311,
       vd: 55.9,
       indexReference: "d",
-      fl: -103.73225,
+      focalLengthMm: -103.73225,
       glass: "Unmatched (1.53110/55.9; no exact public catalog match)",
       apd: false,
       role: "Double-sided aspherical negative element forming the fifth zoom unit B5.",
@@ -248,7 +253,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       indexReference: "d",
-      fl: 76.673936,
+      focalLengthMm: 76.673936,
       glass: "847239 class (vendor unresolved)",
       apd: false,
       role: "Single positive rear unit B6, immediately ahead of the rear GB block and image-space gap.",
@@ -259,33 +264,123 @@ const LENS_DATA = {
    * Flat optical planes use the project infinity-radius convention R = 1e15.
    * Surface 25 d is the patent d25 gap to the GB block, which is modeled in rearPlates.
    */
+  /* (moved from asph) ── Aspherical surfaces ──
+   * Patent equation uses the standard conic denominator with (1 + K), so K is direct.
+   */
   surfaces: [
-    { label: "1", R: 56.962, d: 6.4, nd: 1.60311, elemId: 1, sd: 21.3 },
-    { label: "2", R: 421.715, d: 1.44, nd: 1, elemId: 0, sd: 20.7 },
-    { label: "3", R: 142.374, d: 1.2, nd: 1.90366, elemId: 2, sd: 16.2 },
-    { label: "4", R: 15.994, d: 8.29, nd: 1, elemId: 0, sd: 12.6 },
-    { label: "5", R: -85.062, d: 1, nd: 1.60311, elemId: 3, sd: 12.2 },
-    { label: "6", R: 30.559, d: 0.17, nd: 1, elemId: 0, sd: 12.2 },
-    { label: "7", R: 24.88, d: 4.9, nd: 1.84666, elemId: 4, sd: 11.9 },
-    { label: "8", R: 162.207, d: 24.94, nd: 1, elemId: 0, sd: 11.7 },
-    { label: "9", R: 25.551, d: 2.3, nd: 1.90366, elemId: 5, sd: 7.5 },
-    { label: "10", R: 1e15, d: 0.82, nd: 1, elemId: 0, sd: 7.3 },
-    { label: "11", R: 16.661, d: 4.5, nd: 1.60311, elemId: 6, sd: 6.8 },
-    { label: "12", R: -40.41, d: 0.7, nd: 1.90366, elemId: 7, sd: 6.6 },
-    { label: "13", R: 14.796, d: 3.21, nd: 1, elemId: 0, sd: 6.2 },
-    { label: "STO", R: 1e15, d: 1.82, nd: 1, elemId: 0, sd: 5.368444471 },
-    { label: "15", R: 23.294, d: 0.7, nd: 1.91082, elemId: 8, sd: 6.1 },
-    { label: "16", R: 13.732, d: 4, nd: 1.60311, elemId: 9, sd: 6.1 },
-    { label: "17", R: -56.31, d: 0.8, nd: 1, elemId: 0, sd: 6 },
-    { label: "18", R: 30.833, d: 1.9, nd: 1.60311, elemId: 10, sd: 5.8 },
-    { label: "19", R: 1e15, d: 2.5, nd: 1, elemId: 0, sd: 5.6 },
-    { label: "20", R: 42.206, d: 0.7, nd: 1.91082, elemId: 11, sd: 5.5 },
-    { label: "21", R: 16.989, d: 15.04, nd: 1, elemId: 0, sd: 5.4 },
-    { label: "22A", R: -51.498, d: 2, nd: 1.5311, elemId: 12, sd: 11.9 },
-    { label: "23A", R: -800, d: 1.16, nd: 1, elemId: 0, sd: 12.8 },
-    { label: "24", R: 144.43, d: 3.6, nd: 1.84666, elemId: 13, sd: 16.1 },
-    { label: "25", R: -116.569, d: 11.12, nd: 1, elemId: 0, sd: 16.5 },
+    { label: "1", R: 56.962, d: 6.4, sd: 21.3, medium: 1 },
+    { label: "2", R: 421.715, sd: 20.7 },
+    { label: "3", R: 142.374, d: 1.2, sd: 16.2, medium: 2 },
+    { label: "4", R: 15.994, d: 8.29, sd: 12.6 },
+    { label: "5", R: -85.062, d: 1, sd: 12.2, medium: 3 },
+    { label: "6", R: 30.559, d: 0.17, sd: 12.2 },
+    { label: "7", R: 24.88, d: 4.9, sd: 11.9, medium: 4 },
+    { label: "8", R: 162.207, sd: 11.7 },
+    { label: "9", R: 25.551, d: 2.3, sd: 7.5, medium: 5 },
+    { label: "10", R: "flat", d: 0.82, sd: 7.3 },
+    { label: "11", R: 16.661, d: 4.5, sd: 6.8, medium: 6 },
+    { label: "12", R: -40.41, d: 0.7, sd: 6.6, medium: 7 },
+    { label: "13", R: 14.796, d: 3.21, sd: 6.2 },
+    { label: "STO", R: "flat", d: 1.82 },
+    { label: "15", R: 23.294, d: 0.7, sd: 6.1, medium: 8 },
+    { label: "16", R: 13.732, d: 4, sd: 6.1, medium: 9 },
+    { label: "17", R: -56.31, d: 0.8, sd: 6 },
+    { label: "18", R: 30.833, d: 1.9, sd: 5.8, medium: 10 },
+    { label: "19", R: "flat", sd: 5.6 },
+    { label: "20", R: 42.206, d: 0.7, sd: 5.5, medium: 11 },
+    { label: "21", R: 16.989, sd: 5.4 },
+    {
+      label: "22A",
+      R: -51.498,
+      d: 2,
+      sd: 11.9,
+      medium: 12,
+      asphere: { K: 0, A4: -1.57463e-4, A6: 1.04871e-6, A8: -1.26019e-9, A10: -4.88195e-11, A12: 2.09933e-13, A14: 0 },
+    },
+    {
+      label: "23A",
+      R: -800,
+      sd: 12.8,
+      asphere: { K: 0, A4: -1.4514e-4, A6: 1.09597e-6, A8: -5.39275e-9, A10: 6.43335e-12, A12: 1.24146e-14, A14: 0 },
+    },
+    { label: "24", R: 144.43, d: 3.6, sd: 16.1, medium: 13 },
+    { label: "25", R: -116.569, sd: 16.5 },
   ],
+
+  zoom: {
+    /* (moved from nominalFno) ── Aperture configuration ──
+     * Exact modeled/patent f-numbers control pupil and stop geometry at each published zoom state.
+     */
+    stations: [
+      { focalLengthMm: 24.72, nominalFNumber: 4.11, label: "Wide" },
+      { focalLengthMm: 66.67, nominalFNumber: 6.18 },
+      { focalLengthMm: 101.85, nominalFNumber: 7.31, label: "Tele" },
+    ],
+  },
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.13,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION: Example 1 publishes infinity-only zoom states. B4 is the negative axial focus unit, but no finite-focus spacings are authored. Canon's 0.13 m minimum manual-focus distance is metadata only.",
+  },
+
+  /* (moved from var) ── Zoom / focus spacings ──
+   * Every pair is [infinity, close]. Focus is intentionally not reconstructed,
+   * so each pair contains identical values at a given zoom position.
+   */
+  gaps: {
+    "2": {
+      label: "D2 (ZOOM)",
+      values: [
+        [1.44, 1.44],
+        [19.55, 19.55],
+        [32.15, 32.15],
+      ],
+    },
+    "8": {
+      label: "D8 (ZOOM)",
+      values: [
+        [24.94, 24.94],
+        [4.11, 4.11],
+        [0.7, 0.7],
+      ],
+    },
+    "19": {
+      label: "D19 / PRE-FOCUS (ZOOM)",
+      values: [
+        [2.5, 2.5],
+        [3.87, 3.87],
+        [4.03, 4.03],
+      ],
+    },
+    "21": {
+      label: "D21 / POST-FOCUS (ZOOM)",
+      values: [
+        [15.04, 15.04],
+        [13.66, 13.66],
+        [13.5, 13.5],
+      ],
+    },
+    "23A": {
+      label: "D23 (ZOOM)",
+      values: [
+        [1.16, 1.16],
+        [2.75, 2.75],
+        [19.87, 19.87],
+      ],
+    },
+    "25": {
+      label: "D25 / TO GB (ZOOM)",
+      values: [
+        [11.12, 11.12],
+        [34.65, 34.65],
+        [35.56, 35.56],
+      ],
+    },
+  },
+
+  aperture: { fStops: [4.11, 5.6, 6.18, 7.31, 8, 11, 16, 22, 32, 40], maxFNumber: 40, blades: 7 },
 
   /* ── Glass block GB (patent surfaces 26–27): traced, not drawn ── */
   rearPlates: [
@@ -299,78 +394,6 @@ const LENS_DATA = {
       source: "US 2021/0003831 A1, Numerical Example 1 surfaces 26–27",
     },
   ],
-
-  /* ── Aspherical surfaces ──
-   * Patent equation uses the standard conic denominator with (1 + K), so K is direct.
-   */
-  asph: {
-    "22A": {
-      K: 0,
-      A4: -1.57463e-4,
-      A6: 1.04871e-6,
-      A8: -1.26019e-9,
-      A10: -4.88195e-11,
-      A12: 2.09933e-13,
-      A14: 0,
-    },
-    "23A": {
-      K: 0,
-      A4: -1.4514e-4,
-      A6: 1.09597e-6,
-      A8: -5.39275e-9,
-      A10: 6.43335e-12,
-      A12: 1.24146e-14,
-      A14: 0,
-    },
-  },
-
-  /* ── Zoom / focus spacings ──
-   * Every pair is [infinity, close]. Focus is intentionally not reconstructed,
-   * so each pair contains identical values at a given zoom position.
-   */
-  var: {
-    "2": [
-      [1.44, 1.44],
-      [19.55, 19.55],
-      [32.15, 32.15],
-    ],
-    "8": [
-      [24.94, 24.94],
-      [4.11, 4.11],
-      [0.7, 0.7],
-    ],
-    "19": [
-      [2.5, 2.5],
-      [3.87, 3.87],
-      [4.03, 4.03],
-    ],
-    "21": [
-      [15.04, 15.04],
-      [13.66, 13.66],
-      [13.5, 13.5],
-    ],
-    "23A": [
-      [1.16, 1.16],
-      [2.75, 2.75],
-      [19.87, 19.87],
-    ],
-    "25": [
-      [11.12, 11.12],
-      [34.65, 34.65],
-      [35.56, 35.56],
-    ],
-  },
-  varLabels: [
-    ["2", "D2 (ZOOM)"],
-    ["8", "D8 (ZOOM)"],
-    ["19", "D19 / PRE-FOCUS (ZOOM)"],
-    ["21", "D21 / POST-FOCUS (ZOOM)"],
-    ["23A", "D23 (ZOOM)"],
-    ["25", "D25 / TO GB (ZOOM)"],
-  ],
-
-  zoomPositions: [24.72, 66.67, 101.85],
-  zoomLabels: ["Wide", "Tele"],
 
   groups: [
     { text: "B1 (+)", fromSurface: "1", toSurface: "2" },
@@ -387,22 +410,8 @@ const LENS_DATA = {
     { text: "B3B-IS", fromSurface: "15", toSurface: "17" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.13,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: Example 1 publishes infinity-only zoom states. B4 is the negative axial focus unit, but no finite-focus spacings are authored. Canon's 0.13 m minimum manual-focus distance is metadata only.",
-
-  /* ── Aperture configuration ──
-   * Exact modeled/patent f-numbers control pupil and stop geometry at each published zoom state.
-   */
-  nominalFno: [4.11, 6.18, 7.31],
-  fstopSeries: [4.11, 5.6, 6.18, 7.31, 8, 11, 16, 22, 32, 40],
-  maxFstop: 40,
-  apertureBlades: 7,
-
   /* ── Layout ── */
-  scFill: 0.7,
-  yScFill: 0.68,
-} satisfies LensDataInput;
+  layout: { scFill: 0.7, yScFill: 0.68 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

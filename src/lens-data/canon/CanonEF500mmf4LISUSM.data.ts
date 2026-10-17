@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -49,31 +49,35 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "canon-ef-500mm-f4l-is-usm",
   maker: "Canon",
   name: "CANON EF 500mm f/4 L IS USM",
   subtitle: "US 6,115,188 A — Numerical Example 24; correlated to the Canon EF 500mm f/4L IS USM",
-  specs: [
-    "15 POWERED ELEMENTS / 11 GROUPS + FILTER",
-    "PATENT f = 490.56 mm; ARRAY EFL ≈ 491.36 mm",
-    "F/4.1 DESIGN / f/4 MARKETED",
-    "2ω = 5.0°",
-    "INNER FOCUS + TRANSVERSE IS GROUP",
-  ],
 
-  focalLengthMarketing: 500,
-  focalLengthDesign: 490.56,
-  apertureMarketing: 4,
-  apertureDesign: 4.1,
-  acceptsTeleconverters: true, // Canon lists this host with Extender EF2x I/II/III.
-  lensMounts: ["canon-ef"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 6,115,188 A",
-  patentAuthors: ["Akihiro Nishio", "Hideki Ogawa", "Makoto Misaka"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 2000,
-  elementCount: 17,
-  groupCount: 13,
+  catalog: {
+    lensMounts: ["canon-ef"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "15 POWERED ELEMENTS / 11 GROUPS + FILTER",
+      "PATENT f = 490.56 mm; ARRAY EFL ≈ 491.36 mm",
+      "F/4.1 DESIGN / f/4 MARKETED",
+      "2ω = 5.0°",
+      "INNER FOCUS + TRANSVERSE IS GROUP",
+    ],
+    elementCount: 17,
+    groupCount: 13,
+    acceptsTeleconverters: true, // Canon lists this host with Extender EF2x I/II/III.
+    focalLengthMm: { marketing: 500, design: 490.56 },
+    fNumber: { marketing: 4, design: 4.1 },
+  },
+
+  source: {
+    patentNumber: "US 6,115,188 A",
+    patentYear: 2000,
+    authors: ["Akihiro Nishio", "Hideki Ogawa", "Makoto Misaka"],
+    assignees: ["Canon Inc."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -84,10 +88,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.496999,
       vd: 81.5,
-      fl: 344.3304,
+      focalLengthMm: 344.3304,
       glass: "497816 — low-dispersion / UD coordinate class",
-      role:
-        "Front positive collector; production correlation assigns one of Canon's two UD elements to this coordinate.",
+      role: "Front positive collector; production correlation assigns one of Canon's two UD elements to this coordinate.",
     },
     {
       id: 2,
@@ -96,7 +99,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.496999,
       vd: 81.5,
-      fl: 230.7498,
+      focalLengthMm: 230.7498,
       glass: "497816 — low-dispersion / UD coordinate class",
       role: "Positive member of the negative-power L1b middle subunit.",
     },
@@ -107,7 +110,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.834807,
       vd: 42.7,
-      fl: -174.666,
+      focalLengthMm: -174.666,
       glass: "835427 — lanthanum dense-crown coordinate class",
       role: "Negative member that makes L1b net negative and reduces front-unit aberration burden.",
     },
@@ -118,7 +121,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.43387,
       vd: 95.1,
-      fl: 217.8146,
+      focalLengthMm: 217.8146,
       glass: "Fluorite (CaF2; manufacturer-correlated crystal)",
       role: "Strong low-dispersion positive member; uniquely correlated with Canon's published fluorite element.",
     },
@@ -129,7 +132,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.51633,
       vd: 64.1,
-      fl: -488.4803,
+      focalLengthMm: -488.4803,
       glass: "516641 — S-BSL7 / K-BK7 coordinate class",
       role: "Weak negative partner completing the net-positive L1c rear subunit.",
     },
@@ -140,10 +143,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.805181,
       vd: 25.4,
-      fl: 209.1537,
+      focalLengthMm: 209.1537,
       glass: "805254 — dense-flint coordinate class",
-      cemented: "L2",
       role: "Positive front member of the cemented internal-focus doublet.",
+      cemented: "L2",
     },
     {
       id: 7,
@@ -152,10 +155,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.834807,
       vd: 42.7,
-      fl: -100.9907,
+      focalLengthMm: -100.9907,
       glass: "835427 — lanthanum dense-crown coordinate class",
-      cemented: "L2",
       role: "Negative rear member; the cemented L2 unit has net negative power and moves axially for focus.",
+      cemented: "L2",
     },
     {
       id: 8,
@@ -164,10 +167,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.846658,
       vd: 23.9,
-      fl: -72.461,
+      focalLengthMm: -72.461,
       glass: "847239 — dense-flint coordinate class",
-      cemented: "L3a",
       role: "Negative front member of the net-positive L3a cemented doublet.",
+      cemented: "L3a",
     },
     {
       id: 9,
@@ -176,10 +179,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.834807,
       vd: 42.7,
-      fl: 49.0812,
+      focalLengthMm: 49.0812,
       glass: "835427 — lanthanum dense-crown coordinate class",
-      cemented: "L3a",
       role: "Positive rear member of L3a, converging the beam ahead of the stabilization subunit.",
+      cemented: "L3a",
     },
     {
       id: 10,
@@ -188,10 +191,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.846658,
       vd: 23.9,
-      fl: 77.3004,
+      focalLengthMm: 77.3004,
       glass: "847239 — dense-flint coordinate class",
-      cemented: "L3b",
       role: "Positive member of the transverse image-stabilization subunit.",
+      cemented: "L3b",
     },
     {
       id: 11,
@@ -200,10 +203,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6779,
       vd: 55.3,
-      fl: -48.073,
+      focalLengthMm: -48.073,
       glass: "678553 — lanthanum crown coordinate class",
-      cemented: "L3b",
       role: "Negative cemented partner; together with L3b-3 it makes the stabilization subunit net negative.",
+      cemented: "L3b",
     },
     {
       id: 12,
@@ -212,7 +215,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.733997,
       vd: 51.5,
-      fl: -65.4005,
+      focalLengthMm: -65.4005,
       glass: "734515 — lanthanum crown coordinate class",
       role: "Negative singlet completing the transversely movable L3b stabilization subunit.",
     },
@@ -223,7 +226,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.696797,
       vd: 55.5,
-      fl: 151.3467,
+      focalLengthMm: 151.3467,
       glass: "697555 — lanthanum crown coordinate class",
       role: "Positive singlet beginning the rear L3c subunit.",
     },
@@ -234,10 +237,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.517417,
       vd: 52.4,
-      fl: 61.7463,
+      focalLengthMm: 61.7463,
       glass: "517524 — crown coordinate class",
-      cemented: "L3c",
       role: "Strong positive member of the rear cemented doublet.",
+      cemented: "L3c",
     },
     {
       id: 15,
@@ -246,10 +249,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.72,
       vd: 43.7,
-      fl: -118.8387,
+      focalLengthMm: -118.8387,
       glass: "720437 — legacy S-LAM52 / H-LaF62 coordinate class",
-      cemented: "L3c",
       role: "Negative cemented partner that tempers the strong positive power of L3c.",
+      cemented: "L3c",
     },
     {
       id: 16,
@@ -265,51 +268,57 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "3", R: 239.798, d: 14.3, nd: 1.496999, elemId: 1, sd: 61.0 },
-    { label: "4", R: -585.8, d: 48.85, nd: 1.0, elemId: 0, sd: 60.8 },
-    { label: "5", R: 117.916, d: 14.4, nd: 1.496999, elemId: 2, sd: 50.2 },
-    { label: "6", R: -4012.478, d: 1.78, nd: 1.0, elemId: 0, sd: 48.8 },
-    { label: "7", R: -597.656, d: 5.0, nd: 1.834807, elemId: 3, sd: 48.8 },
-    { label: "8", R: 193.601, d: 19.16, nd: 1.0, elemId: 0, sd: 47.0 },
-    { label: "9", R: 98.885, d: 13.8, nd: 1.43387, elemId: 4, sd: 44.4 },
-    { label: "10", R: -2042.619, d: 1.5, nd: 1.0, elemId: 0, sd: 43.6 },
-    { label: "11", R: 69.144, d: 8.0, nd: 1.51633, elemId: 5, sd: 39.0 },
-    { label: "12", R: 52.129, d: 20.52, nd: 1.0, elemId: 0, sd: 34.9 },
-    { label: "13", R: 734.785, d: 4.0, nd: 1.805181, elemId: 6, sd: 30.4 },
-    { label: "14", R: -217.95, d: 3.0, nd: 1.834807, elemId: 7, sd: 30.2 },
-    { label: "15", R: 138.354, d: 93.55, nd: 1.0, elemId: 0, sd: 28.9 },
-    { label: "STO", R: 1e15, d: 17.65, nd: 1.0, elemId: 0, sd: 17.719982840242565 },
-    { label: "17", R: 164.033, d: 1.7, nd: 1.846658, elemId: 8, sd: 16.1 },
-    { label: "18", R: 44.438, d: 5.4, nd: 1.834807, elemId: 9, sd: 15.7 },
-    { label: "19", R: -496.476, d: 1.5, nd: 1.0, elemId: 0, sd: 15.4 },
-    { label: "20", R: 95.332, d: 3.3, nd: 1.846658, elemId: 10, sd: 14.8 },
-    { label: "21", R: -205.46, d: 1.6, nd: 1.6779, elemId: 11, sd: 14.5 },
-    { label: "22", R: 38.854, d: 4.45, nd: 1.0, elemId: 0, sd: 13.6 },
-    { label: "23", R: -96.365, d: 1.7, nd: 1.733997, elemId: 12, sd: 13.4 },
-    { label: "24", R: 96.367, d: 3.23, nd: 1.0, elemId: 0, sd: 13.4 },
-    { label: "25", R: 143.981, d: 4.0, nd: 1.696797, elemId: 13, sd: 13.5 },
-    { label: "26", R: -389.655, d: 0.3, nd: 1.0, elemId: 0, sd: 13.6 },
-    { label: "27", R: 62.574, d: 7.6, nd: 1.517417, elemId: 14, sd: 13.6 },
-    { label: "28", R: -62.574, d: 1.8, nd: 1.72, elemId: 15, sd: 13.2 },
-    { label: "29", R: -235.693, d: 30.0, nd: 1.0, elemId: 0, sd: 13.0 },
+    { label: "3", R: 239.798, d: 14.3, sd: 61.0, medium: 1 },
+    { label: "4", R: -585.8, d: 48.85, sd: 60.8 },
+    { label: "5", R: 117.916, d: 14.4, sd: 50.2, medium: 2 },
+    { label: "6", R: -4012.478, d: 1.78, sd: 48.8 },
+    { label: "7", R: -597.656, d: 5.0, sd: 48.8, medium: 3 },
+    { label: "8", R: 193.601, d: 19.16, sd: 47.0 },
+    { label: "9", R: 98.885, d: 13.8, sd: 44.4, medium: 4 },
+    { label: "10", R: -2042.619, d: 1.5, sd: 43.6 },
+    { label: "11", R: 69.144, d: 8.0, sd: 39.0, medium: 5 },
+    { label: "12", R: 52.129, sd: 34.9 },
+    { label: "13", R: 734.785, d: 4.0, sd: 30.4, medium: 6 },
+    { label: "14", R: -217.95, d: 3.0, sd: 30.2, medium: 7 },
+    { label: "15", R: 138.354, sd: 28.9 },
+    { label: "STO", R: "flat", d: 17.65 },
+    { label: "17", R: 164.033, d: 1.7, sd: 16.1, medium: 8 },
+    { label: "18", R: 44.438, d: 5.4, sd: 15.7, medium: 9 },
+    { label: "19", R: -496.476, d: 1.5, sd: 15.4 },
+    { label: "20", R: 95.332, d: 3.3, sd: 14.8, medium: 10 },
+    { label: "21", R: -205.46, d: 1.6, sd: 14.5, medium: 11 },
+    { label: "22", R: 38.854, d: 4.45, sd: 13.6 },
+    { label: "23", R: -96.365, d: 1.7, sd: 13.4, medium: 12 },
+    { label: "24", R: 96.367, d: 3.23, sd: 13.4 },
+    { label: "25", R: 143.981, d: 4.0, sd: 13.5, medium: 13 },
+    { label: "26", R: -389.655, d: 0.3, sd: 13.6 },
+    { label: "27", R: 62.574, d: 7.6, sd: 13.6, medium: 14 },
+    { label: "28", R: -62.574, d: 1.8, sd: 13.2, medium: 15 },
+    { label: "29", R: -235.693, d: 30.0, sd: 13.0 },
     // Drop-in filter FL (US 6,115,188 A, Numerical Example 24, R30–R31), drawn as a plane-parallel plate.
     // Its sd is a ray-trace estimate (the source lists none).
     // Gap to the image: D31 + D32 to the image, inactive FC plane R32 omitted
-    { label: "30", R: 1e15, d: 2.2, nd: 1.51633, elemId: 16, sd: 17.5 },
-    { label: "31", R: 1e15, d: 70.28, nd: 1.0, elemId: 0, sd: 17.5 }, // drop-in filter → image plane
+    { label: "30", R: "flat", d: 2.2, sd: 17.5, medium: 16 },
+    { label: "31", R: "flat", d: 70.28, sd: 17.5 }, // drop-in filter → image plane
   ],
 
-  asph: {},
-
-  /* ── Focus variables ── */
-  var: {
-    "12": [20.52, 37.35398161538062],
-    "15": [93.55, 76.71601838461939],
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 4.497548306766997,
+    description:
+      "CONSTRAINED_RECONSTRUCTION: the cemented L2 focus doublet translates 16.833981615 mm imageward from infinity " +
+      "to the normalized 4.497548307 m close state; D12 increases and D15 decreases equally, preserving 114.07 mm. " +
+      "The reconstruction is solved from Canon's marketed 4.5 m MFD. L3b image-stabilization motion is transverse only.",
   },
-  varLabels: [
-    ["12", "L2 FRONT GAP"],
-    ["15", "L2 REAR GAP"],
-  ],
+
+  /* (moved from var) ── Focus variables ── */
+  gaps: {
+    "12": { label: "L2 FRONT GAP", values: [[20.52, 37.35398161538062]] },
+    "15": { label: "L2 REAR GAP", values: [[93.55, 76.71601838461939]] },
+  },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 4.1, fStops: [4.1, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 8 },
 
   /* ── Diagram annotations ── */
   groups: [
@@ -327,26 +336,13 @@ const LENS_DATA = {
     { text: "L3c", fromSurface: "25", toSurface: "29" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 4.497548306766997,
-  focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: the cemented L2 focus doublet translates 16.833981615 mm imageward from infinity " +
-    "to the normalized 4.497548307 m close state; D12 increases and D15 decreases equally, preserving 114.07 mm. " +
-    "The reconstruction is solved from Canon's marketed 4.5 m MFD. L3b image-stabilization motion is transverse only.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 4.1,
-  fstopSeries: [4.1, 5.6, 8, 11, 16, 22, 32],
-  apertureBlades: 8,
-  maxFstop: 32,
+  /* ── Layout tuning ── */
+  layout: { scFill: 0.68, yScFill: 0.46 },
 
   /* ── Ray / geometry authoring overrides ── */
-  offAxisFractions: [-0.6, -0.3, 0, 0.3, 0.6],
-  gapSagFrac: 0.96,
+  rays: { offAxisFractions: [-0.6, -0.3, 0, 0.3, 0.6] },
 
-  /* ── Layout tuning ── */
-  scFill: 0.68,
-  yScFill: 0.46,
-} satisfies LensDataInput;
+  checks: { gapSagFrac: 0.96 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;
