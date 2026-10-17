@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -30,25 +30,30 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "carl-zeiss-jena-pancolar-50f2",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA PANCOLAR 50mm f/2",
   subtitle: "GB 850,117 CLAIM 2 — VEB CARL ZEISS JENA / HUBERT & ZÖLLNER",
-  specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 50.6 mm", "F/2.0", "2ω ≈ 46.3°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: 50,
-  focalLengthDesign: 50.6,
-  apertureMarketing: 2.0,
   // apertureDesign omitted — matches marketing
-  lensMounts: ["m42","exakta"],
-  imageFormat: "135-full-frame",
-  patentNumber: "GB 850,117",
-  patentAuthors: ["Eduard Hubert", "Harry Zöllner"],
-  patentAssignees: ["VEB Carl Zeiss Jena"],
-  patentYear: 1960,
-  elementCount: 6,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["m42", "exakta"],
+    imageFormat: "135-full-frame",
+    specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 50.6 mm", "F/2.0", "2ω ≈ 46.3°", "ALL SPHERICAL"],
+    elementCount: 6,
+    groupCount: 4,
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: 50, design: 50.6 },
+    fNumber: { marketing: 2.0 },
+  },
+
+  source: {
+    patentNumber: "GB 850,117",
+    patentYear: 1960,
+    authors: ["Eduard Hubert", "Harry Zöllner"],
+    assignees: ["VEB Carl Zeiss Jena"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -59,7 +64,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.662,
       vd: 56.1,
-      fl: 63.4,
+      focalLengthMm: 63.4,
       glass: "SSK / LaK (Jena in-house, 662/561)",
       apd: false,
       role: "Front positive power element; meniscus form reduces off-axis aberrations",
@@ -71,11 +76,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.662,
       vd: 56.1,
-      fl: 138.7,
+      focalLengthMm: 138.7,
       glass: "SSK / LaK (Jena in-house, 662/561)",
       apd: false,
-      cemented: "D1",
       role: "Front doublet crown; provides chromatic correction with L3",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -84,11 +89,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.67246,
       vd: 32.3,
-      fl: -45.3,
+      focalLengthMm: -45.3,
       glass: "Dense flint (672/323, Jena in-house; no exact public catalog match)",
       apd: false,
-      cemented: "D1",
       role: "Front doublet flint; steep r₅ generates negative Petzval and spherical correction",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -97,11 +102,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.60156,
       vd: 35.2,
-      fl: -20.3,
+      focalLengthMm: -20.3,
       glass: "Special light flint (Jena in-house, 602/352)",
       apd: false,
-      cemented: "D2",
       role: "Rear doublet flint; strong negative spherical aberration corrects the diaphragm air gap",
+      cemented: "D2",
     },
     {
       id: 5,
@@ -110,11 +115,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.662,
       vd: 56.1,
-      fl: 25.4,
+      focalLengthMm: 25.4,
       glass: "SSK / LaK (Jena in-house, 662/561)",
       apd: false,
-      cemented: "D2",
       role: "Rear doublet crown; thick biconvex (7.05 mm) manages marginal ray height through rear group",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -123,7 +128,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.662,
       vd: 56.1,
-      fl: 51.6,
+      focalLengthMm: 51.6,
       glass: "SSK / LaK (Jena in-house, 662/561)",
       apd: false,
       role: "Rear positive power element; asymmetric biconvex converges rays to focus",
@@ -134,55 +139,45 @@ const LENS_DATA = {
    *  All values at production scale (patent f = 100 scaled ×0.5).
    *  Diaphragm position inferred from patent Fig. 1 (~65% through l₂ gap).
    */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 28.95, d: 4.6, nd: 1.662, elemId: 1, sd: 18.0 },
-    { label: "2", R: 87.45, d: 0.1, nd: 1.0, elemId: 0, sd: 17.0 },
-    { label: "3", R: 21.75, d: 3.35, nd: 1.662, elemId: 2, sd: 17.0 },
-    { label: "4", R: 26.75, d: 4.2, nd: 1.67246, elemId: 3, sd: 15.0 }, // L2→L3 cemented junction
-    { label: "5", R: 13.35, d: 6.47, nd: 1.0, elemId: 0, sd: 11.0 }, // L3 rear → air; d = distance to STO
-    { label: "STO", R: 1e15, d: 3.48, nd: 1.0, elemId: 0, sd: 8.7 }, // STO position inferred from Fig. 1
-    { label: "6", R: -15.05, d: 1.9, nd: 1.60156, elemId: 4, sd: 10.0 },
-    { label: "7", R: 68.5, d: 7.05, nd: 1.662, elemId: 5, sd: 11.0 }, // L4→L5 cemented junction
-    { label: "8", R: -21.4, d: 0.3, nd: 1.0, elemId: 0, sd: 13.5 },
-    { label: "9", R: 113.65, d: 4.75, nd: 1.662, elemId: 6, sd: 13.5 },
-    { label: "10", R: -48.0, d: 36.86, nd: 1.0, elemId: 0, sd: 15.0 }, // BFD to image plane
+    { label: "1", R: 28.95, d: 4.6, sd: 18.0, medium: 1 },
+    { label: "2", R: 87.45, d: 0.1, sd: 17.0 },
+    { label: "3", R: 21.75, d: 3.35, sd: 17.0, medium: 2 },
+    { label: "4", R: 26.75, d: 4.2, sd: 15.0, medium: 3 }, // L2→L3 cemented junction
+    { label: "5", R: 13.35, d: 6.47, sd: 11.0 }, // L3 rear → air; d = distance to STO
+    { label: "STO", R: "flat", d: 3.48 }, // STO position inferred from Fig. 1
+    { label: "6", R: -15.05, d: 1.9, sd: 10.0, medium: 4 },
+    { label: "7", R: 68.5, d: 7.05, sd: 11.0, medium: 5 }, // L4→L5 cemented junction
+    { label: "8", R: -21.4, d: 0.3, sd: 13.5 },
+    { label: "9", R: 113.65, d: 4.75, sd: 13.5, medium: 6 },
+    { label: "10", R: -48.0, sd: 15.0 }, // BFD to image plane
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: { closeFocusM: 0.5, description: "Unit focusing — entire lens translates forward via helicoid." },
 
-  /* ── Variable air spacings (unit focus) ──
+  /* (moved from var) ── Variable air spacings (unit focus) ──
    *  Only the BFD changes during focus. Entire lens translates as a rigid unit.
    *  Close-focus BFD computed via Newton's equation at MFD = 0.5 m.
    */
-  var: {
-    "10": [36.86, 42.56],
-  },
+  gaps: { "10": { label: "BF", values: [[36.86, 42.56]] } },
 
-  varLabels: [["10", "BF"]],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.0, fStops: [2, 2.8, 4, 5.6, 8, 11, 16, 22] },
 
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "FRONT", fromSurface: "1", toSurface: "5" },
     { text: "REAR", fromSurface: "6", toSurface: "10" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "3", toSurface: "5" },
     { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.5,
-  focusDescription: "Unit focusing — entire lens translates forward via helicoid.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.0,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
-
   /* ── Layout tuning ── */
-  scFill: 0.5,
-  yScFill: 0.32,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.32 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

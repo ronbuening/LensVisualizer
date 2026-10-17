@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -32,23 +32,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "carl-zeiss-contarex-planar-55f14",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS CONTAREX PLANAR 55mm f/1.4",
   subtitle: "DE 1,170,157 B — CARL ZEISS / BERGER & LANGE",
-  specs: ["7 ELEMENTS / 5 GROUPS", "f = 55.0 mm", "F/1.4", "2ω ≈ 42.9°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata fields ── */
-  focalLengthMarketing: 55,
-  apertureMarketing: 1.4,
-  lensMounts: ["zeiss-contarex"],
-  imageFormat: "135-full-frame",
-  patentNumber: "DE 1,170,157 B",
-  patentAuthors: ["Johannes Berger", "Günther Lange"],
-  patentAssignees: ["Carl-Zeiss-Stiftung"],
-  patentYear: 1964,
-  elementCount: 7,
-  groupCount: 5,
+  catalog: {
+    lensMounts: ["zeiss-contarex"],
+    imageFormat: "135-full-frame",
+    specs: ["7 ELEMENTS / 5 GROUPS", "f = 55.0 mm", "F/1.4", "2ω ≈ 42.9°", "ALL SPHERICAL"],
+    elementCount: 7,
+    groupCount: 5,
+    /* ── Explicit metadata fields ── */
+    focalLengthMm: { marketing: 55 },
+    fNumber: { marketing: 1.4 },
+  },
+
+  source: {
+    patentNumber: "DE 1,170,157 B",
+    patentYear: 1964,
+    authors: ["Johannes Berger", "Günther Lange"],
+    assignees: ["Carl-Zeiss-Stiftung"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -59,7 +65,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.717,
       vd: 47.9,
-      fl: 92.0,
+      focalLengthMm: 92.0,
       glass: "LaF3 (Schott 717479)",
       apd: false,
       role: "Front positive meniscus — gentle convergence at full aperture diameter",
@@ -71,7 +77,7 @@ const LENS_DATA = {
       type: "Plano-Convex",
       nd: 1.62299,
       vd: 58.12,
-      fl: 42.6,
+      focalLengthMm: 42.6,
       glass: "SK/SSK family (623581, discontinued?)",
       apd: false,
       role: "Strongest positive element — primary front-group convergence",
@@ -84,7 +90,7 @@ const LENS_DATA = {
       type: "Plano-Concave",
       nd: 1.57501,
       vd: 41.31,
-      fl: -28.7,
+      focalLengthMm: -28.7,
       glass: "LF7 class; J-LF7 catalog spectral proxy (production supplier unspecified)",
       apd: false,
       role: "Negative flint — Petzval correction and front doublet achromatization",
@@ -97,7 +103,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80518,
       vd: 25.46,
-      fl: -22.5,
+      focalLengthMm: -22.5,
       glass: "SF6 (Schott 805255)",
       apd: false,
       role: "Dense flint — strongest negative surface power; primary Petzval corrector",
@@ -110,7 +116,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.78443,
       vd: 43.77,
-      fl: 37.4,
+      focalLengthMm: 37.4,
       glass: "LaF10 (Schott 784438)",
       apd: false,
       role: "Primary rear-group power carrier; cemented against L4 for chromatic correction",
@@ -123,7 +129,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.78443,
       vd: 43.77,
-      fl: 100.3,
+      focalLengthMm: 100.3,
       glass: "LaF10 (Schott 784438)",
       apd: false,
       role: "Field corrector — manages off-axis ray bundle geometry",
@@ -135,7 +141,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.717,
       vd: 47.9,
-      fl: 59.7,
+      focalLengthMm: 59.7,
       glass: "LaF3 (Schott 717479)",
       apd: false,
       role: "Final element — directs converging beam to image plane at correct BFD",
@@ -147,58 +153,48 @@ const LENS_DATA = {
    *  Cemented doublets D1 (L_II+L_III) and D2 (L_IV+L_V) have merged junction surfaces.
    *  Junction at D1 is flat (R = ∞); junction at D2 is very weakly curved (R = +205.0 mm).
    */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 46.563, d: 6.32, nd: 1.717, elemId: 1, sd: 22.0 }, // L1 front
-    { label: "2", R: 149.38, d: 0.094, nd: 1.0, elemId: 0, sd: 20.5 }, // L1 rear → air
-    { label: "3", R: 26.565, d: 9.757, nd: 1.62299, elemId: 2, sd: 19.5 }, // L2 front (D1)
-    { label: "4", R: 1e15, d: 1.392, nd: 1.57501, elemId: 3, sd: 16.0 }, // D1 junction (flat) → L3
-    { label: "5", R: 16.522, d: 7.898, nd: 1.0, elemId: 0, sd: 14.5 }, // L3 rear → air (to stop)
-    { label: "STO", R: 1e15, d: 7.898, nd: 1.0, elemId: 0, sd: 12.8 }, // STO inferred from Fig. 1, 50% of d6 gap
-    { label: "6", R: -19.921, d: 2.046, nd: 1.80518, elemId: 4, sd: 12.8 }, // L4 front (D2)
-    { label: "7", R: 205.0, d: 8.173, nd: 1.78443, elemId: 5, sd: 12.8 }, // D2 junction → L5
-    { label: "8", R: -33.688, d: 0.094, nd: 1.0, elemId: 0, sd: 14.0 }, // L5 rear → air
-    { label: "9", R: -88.979, d: 4.648, nd: 1.78443, elemId: 6, sd: 14.0 }, // L6 front
-    { label: "10", R: -42.713, d: 0.094, nd: 1.0, elemId: 0, sd: 14.5 }, // L6 rear → air
-    { label: "11", R: 131.23, d: 4.648, nd: 1.717, elemId: 7, sd: 14.5 }, // L7 front
-    { label: "12", R: -62.541, d: 36.47, nd: 1.0, elemId: 0, sd: 14.0 }, // L7 rear → image (BFD)
+    { label: "1", R: 46.563, d: 6.32, sd: 22.0, medium: 1 }, // L1 front
+    { label: "2", R: 149.38, d: 0.094, sd: 20.5 }, // L1 rear → air
+    { label: "3", R: 26.565, d: 9.757, sd: 19.5, medium: 2 }, // L2 front (D1)
+    { label: "4", R: "flat", d: 1.392, sd: 16.0, medium: 3 }, // D1 junction (flat) → L3
+    { label: "5", R: 16.522, d: 7.898, sd: 14.5 }, // L3 rear → air (to stop)
+    { label: "STO", R: "flat", d: 7.898 }, // STO inferred from Fig. 1, 50% of d6 gap
+    { label: "6", R: -19.921, d: 2.046, sd: 12.8, medium: 4 }, // L4 front (D2)
+    { label: "7", R: 205.0, d: 8.173, sd: 12.8, medium: 5 }, // D2 junction → L5
+    { label: "8", R: -33.688, d: 0.094, sd: 14.0 }, // L5 rear → air
+    { label: "9", R: -88.979, d: 4.648, sd: 14.0, medium: 6 }, // L6 front
+    { label: "10", R: -42.713, d: 0.094, sd: 14.5 }, // L6 rear → air
+    { label: "11", R: 131.23, d: 4.648, sd: 14.5, medium: 7 }, // L7 front
+    { label: "12", R: -62.541, sd: 14.0 }, // L7 rear → image (BFD)
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: { closeFocusM: 0.45, description: "Unit focus — entire optical assembly translates forward for close focus." },
 
-  /* ── Variable air spacings (unit focus) ──
+  /* (moved from var) ── Variable air spacings (unit focus) ──
    *  Unit focus — entire lens translates forward.
    *  Only the back focal distance changes.
    *  Close focus at 0.45 m: lens extension ≈ 8.7 mm (thick-lens computation).
    */
-  var: {
-    "12": [36.47, 45.17],
-  },
+  gaps: { "12": { label: "BF", values: [[36.47, 45.17]] } },
 
-  varLabels: [["12", "BF"]],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 1.4, fStops: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22] },
 
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "FRONT", fromSurface: "1", toSurface: "5" },
     { text: "REAR", fromSurface: "6", toSurface: "12" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "3", toSurface: "5" },
     { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.45,
-  focusDescription: "Unit focus — entire optical assembly translates forward for close focus.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
-
   /* ── Layout tuning ── */
-  scFill: 0.5,
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

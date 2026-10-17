@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * LENS DATA — CARL ZEISS MIROTAR 500mm f/4.5
@@ -50,35 +50,28 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "carl-zeiss-mirotar-500f45",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS MIROTAR 500mm f/4.5",
   subtitle: "GB 975,446 Example 1 — correlated to ZEISS Mirotar f/4.5 500 mm",
-  specs: [
-    "5 PHYSICAL ELEMENTS / 5 GROUPS (PRIMARY MIRROR INCLUDED)",
-    "PATENT-SCALE EFL ≈ 502.96 mm",
-    "GEOMETRIC f/4.00 / PRODUCTION f/4.5",
-    "135 FULL-FRAME",
-    "ALL-SPHERICAL CASSEGRAIN",
-  ],
 
-  focalLengthMarketing: 500,
-  focalLengthDesign: 502.9568822336663,
-  apertureMarketing: 4.5,
-  apertureDesign: 4.003594320334015,
-  imageFormat: "135-full-frame",
-  patentNumber: "GB 975,446",
-  patentAuthors: [],
-  patentAssignees: ["Carl-Zeiss-Stiftung"],
-  patentYear: 1964,
-  elementCount: 5,
-  groupCount: 5,
-
-  opticalPath: {
-    mode: "auto",
-    imagePlane: { z: 254.3, y: 0, normal: { z: 1, y: 0 }, label: "IMG" },
-    maxInteractions: 16,
+  catalog: {
+    imageFormat: "135-full-frame",
+    specs: [
+      "5 PHYSICAL ELEMENTS / 5 GROUPS (PRIMARY MIRROR INCLUDED)",
+      "PATENT-SCALE EFL ≈ 502.96 mm",
+      "GEOMETRIC f/4.00 / PRODUCTION f/4.5",
+      "135 FULL-FRAME",
+      "ALL-SPHERICAL CASSEGRAIN",
+    ],
+    elementCount: 5,
+    groupCount: 5,
+    focalLengthMm: { marketing: 500, design: 502.9568822336663 },
+    fNumber: { marketing: 4.5, design: 4.003594320334015 },
   },
+
+  source: { patentNumber: "GB 975,446", patentYear: 1964, authors: [], assignees: ["Carl-Zeiss-Stiftung"] },
 
   elements: [
     {
@@ -89,7 +82,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       indexReference: "d",
-      fl: 1718.112504557618,
+      focalLengthMm: 1718.112504557618,
       glass: "N-BK7 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Weak positive member of the nearly afocal front corrector.",
@@ -102,7 +95,7 @@ const LENS_DATA = {
       nd: 1.5184,
       vd: 60.34,
       indexReference: "d",
-      fl: -1721.3926390952024,
+      focalLengthMm: -1721.3926390952024,
       glass: "BALK3 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Weak negative front-corrector partner; its rear central zone carries the modeled r6 secondary coating.",
@@ -115,7 +108,7 @@ const LENS_DATA = {
       nd: 1.5614,
       vd: 45.27,
       indexReference: "d",
-      fl: 278.2686141788387,
+      focalLengthMm: 278.2686141788387,
       glass: "LLF4 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Positive member of the rear negative-power correcting pair.",
@@ -128,7 +121,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       indexReference: "d",
-      fl: -188.87552591549235,
+      focalLengthMm: -188.87552591549235,
       glass: "N-BK7 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Strong negative rear corrector; r9 uses the Claim-2 corrected source reading.",
@@ -137,67 +130,50 @@ const LENS_DATA = {
 
   surfaces: [
     // Equivalent entrance-pupil plane in air, coincident with the first vertex.
-    { label: "STO", R: 1e15, d: 0, nd: 1, elemId: 0, sd: 64 },
-    {
-      label: "1",
-      R: 290.07,
-      d: 18,
-      nd: 1.5168,
-      elemId: 1,
-      sd: 64,
-    }, // patent r1; equivalent entrance-pupil stop inferred from ZEISS 128.0 mm pupil at the first vertex
-    { label: "2", R: 421.7, d: 16.5, nd: 1, elemId: 0, sd: 64 },
-    { label: "3", R: -240.57, d: 12, nd: 1.5184, elemId: 2, sd: 64 },
-    { label: "4", R: -334.97, d: 111, nd: 1, elemId: 0, sd: 65 },
+    { label: "STO", R: "flat", d: 0, sd: 64 },
+    { label: "1", R: 290.07, d: 18, sd: 64, medium: 1 }, // patent r1; equivalent entrance-pupil stop inferred from ZEISS 128.0 mm pupil at the first vertex
+    { label: "2", R: 421.7, d: 16.5, sd: 64 },
+    { label: "3", R: -240.57, d: 12, sd: 64, medium: 2 },
+    { label: "4", R: -334.97, d: 111, sd: 65 },
     {
       label: "5",
       R: -403.88,
       d: -111,
-      nd: 1,
-      elemId: 0,
       sd: 62.5,
       innerSd: 24,
-      interaction: {
-        type: "reflect",
-        incidentSide: "front",
-        inactiveSide: "block",
-        mirrorKind: "first-surface",
-      },
+      interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "first-surface" },
     }, // patent r5 primary; 125.0 mm outer diameter derived from patent f/4 collector statement
     {
       label: "6",
       R: -334.7,
       d: 120,
-      nd: 1,
-      elemId: 0,
       sd: 28.5,
-      interaction: {
-        type: "reflect",
-        incidentSide: "rear",
-        inactiveSide: "block",
-        mirrorKind: "second-surface",
-      },
+      interaction: { type: "reflect", incidentSide: "rear", inactiveSide: "block", mirrorKind: "second-surface" },
     }, // patent r6; modeled secondary clear radius, source radius retained
-    { label: "7", R: 1e15, d: 5, nd: 1.5614, elemId: 3, sd: 23.5 },
-    { label: "8", R: -156.22, d: 2, nd: 1, elemId: 0, sd: 23.5 },
-    { label: "9", R: -105.93, d: 4, nd: 1.5168, elemId: 4, sd: 23.5 },
-    { label: "10", R: 1258.9, d: 76.8, nd: 1, elemId: 0, sd: 23.5 },
+    { label: "7", R: "flat", d: 5, sd: 23.5, medium: 3 },
+    { label: "8", R: -156.22, d: 2, sd: 23.5 },
+    { label: "9", R: -105.93, d: 4, sd: 23.5, medium: 4 },
+    { label: "10", R: 1258.9, d: 76.8, sd: 23.5 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 3.5,
+    description:
+      "Fixed patent optics. The production lens uses bellows focusing to 3.5 m; bellows travel is not modeled.",
+  },
+
+  aperture: { nominalFNumber: 4.003594320334015, fStops: [4.003594320334015], maxFNumber: 4.003594320334015 },
+
+  opticalPath: {
+    mode: "auto",
+    imagePlane: { z: 254.3, y: 0, normal: { z: 1, y: 0 }, label: "IMG" },
+    maxInteractions: 16,
+  },
+
   groups: [],
   doublets: [],
 
-  closeFocusM: 3.5,
-  focusDescription: "Fixed patent optics. The production lens uses bellows focusing to 3.5 m; bellows travel is not modeled.",
-
-  nominalFno: 4.003594320334015,
-  fstopSeries: [4.003594320334015],
-  maxFstop: 4.003594320334015,
-
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

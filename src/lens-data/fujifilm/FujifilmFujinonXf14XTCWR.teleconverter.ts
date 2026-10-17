@@ -1,4 +1,4 @@
-import type { TeleconverterDataInput } from "../../types/teleconverter.js";
+import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -60,60 +60,68 @@ import type { TeleconverterDataInput } from "../../types/teleconverter.js";
 
 const TELECONVERTER_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "fujifilm-xf14x-tc-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON TELECONVERTER XF1.4X TC WR",
   subtitle: "US 2017/0090163 A1 Example 1 — rear converter; production correlation not manufacturer-confirmed",
-  specs: ["7 ELEMENTS / 3 GROUPS", "1.4× REAR CONVERTER", "ALL SPHERICAL"],
+
+  catalog: {
+    lensMounts: ["fujifilm-x"],
+    specs: ["7 ELEMENTS / 3 GROUPS", "1.4× REAR CONVERTER", "ALL SPHERICAL"],
+    elementCount: 7,
+    groupCount: 3,
+  },
+
+  /* ── Patent metadata ── */
+  source: {
+    patentNumber: "US 2017/0090163 A1",
+    patentYear: 2017,
+    authors: ["Tetsuya Ori"],
+    assignees: ["Fujifilm Corporation"],
+  },
 
   /* ── Fit ── */
   magnification: 1.4,
-  lensMounts: ["fujifilm-x"],
-  minHostFno: 2.8, // the patent master is f/2.88; Fujifilm lists the f/2 XF 200mm as not compatible
-
-  /* ── Patent metadata ── */
-  patentNumber: "US 2017/0090163 A1",
-  patentAuthors: ["Tetsuya Ori"],
-  patentAssignees: ["Fujifilm Corporation"],
-  patentYear: 2017,
-  elementCount: 7,
-  groupCount: 3,
+  /* ── Geometry ── master back focus in air 26.4281 + 2.85 / 1.5168 + 1.10 = 29.4071 mm (Table 2 prints 29.41), minus the patent gap d40 = 2.5000 */
+  masterImageDistanceMm: 26.9071,
+  minHostFNumber: 2.8, // the patent master is f/2.88; Fujifilm lists the f/2 XF 200mm as not compatible
 
   /* ── Elements ── */
   elements: [
     // RG1 — positive, f = 95.57 mm
     // prettier-ignore
-    { id: 1, name: "RL11", label: "Element 1", type: "Negative Meniscus", nd: 1.883, vd: 40.76, fl: -36.8015, glass: "S-LAH58 (OHARA coordinate match; supplier unconfirmed)", role: "Front negative meniscus of RG1, concave to the image; high-index partner of RL12 that limits the added axial colour", cemented: "D1" },
+    { id: 1, name: "RL11", label: "Element 1", type: "Negative Meniscus", nd: 1.883, vd: 40.76, focalLengthMm: -36.8015, glass: "S-LAH58 (OHARA coordinate match; supplier unconfirmed)", role: "Front negative meniscus of RG1, concave to the image; high-index partner of RL12 that limits the added axial colour", cemented: "D1" },
     // prettier-ignore
-    { id: 2, name: "RL12", label: "Element 2", type: "Biconvex Positive", nd: 1.6727, vd: 32.1, fl: 27.1861, glass: "S-TIM25 (OHARA coordinate match; supplier unconfirmed)", role: "Positive element of RG1; gives the front group net positive power, pulling the front principal point toward the image", cemented: "D1" },
+    { id: 2, name: "RL12", label: "Element 2", type: "Biconvex Positive", nd: 1.6727, vd: 32.1, focalLengthMm: 27.1861, glass: "S-TIM25 (OHARA coordinate match; supplier unconfirmed)", role: "Positive element of RG1; gives the front group net positive power, pulling the front principal point toward the image", cemented: "D1" },
     // RG2 — negative, f = -19.65 mm
     // prettier-ignore
-    { id: 3, name: "RL21", label: "Element 3", type: "Biconcave Negative", nd: 1.883, vd: 40.76, fl: -18.8858, glass: "S-LAH58 (OHARA coordinate match; supplier unconfirmed)", role: "Front negative of the RG2 triplet; carries much of the converter's diverging power", cemented: "T1" },
+    { id: 3, name: "RL21", label: "Element 3", type: "Biconcave Negative", nd: 1.883, vd: 40.76, focalLengthMm: -18.8858, glass: "S-LAH58 (OHARA coordinate match; supplier unconfirmed)", role: "Front negative of the RG2 triplet; carries much of the converter's diverging power", cemented: "T1" },
     // prettier-ignore
-    { id: 4, name: "RL22", label: "Element 4", type: "Biconvex Positive", nd: 1.5927, vd: 35.31, fl: 21.1329, glass: "S-FTM16 (OHARA coordinate match; supplier unconfirmed)", role: "Symmetric biconvex core of the RG2 triplet; lower-index positive between two high-index negatives for chromatic balance", cemented: "T1" },
+    { id: 4, name: "RL22", label: "Element 4", type: "Biconvex Positive", nd: 1.5927, vd: 35.31, focalLengthMm: 21.1329, glass: "S-FTM16 (OHARA coordinate match; supplier unconfirmed)", role: "Symmetric biconvex core of the RG2 triplet; lower-index positive between two high-index negatives for chromatic balance", cemented: "T1" },
     // prettier-ignore
-    { id: 5, name: "RL23", label: "Element 5", type: "Biconcave Negative", nd: 1.883, vd: 40.76, fl: -21.9268, glass: "S-LAH58 (OHARA coordinate match; supplier unconfirmed)", role: "Rear negative of the RG2 triplet; completes the diverging group", cemented: "T1" },
+    { id: 5, name: "RL23", label: "Element 5", type: "Biconcave Negative", nd: 1.883, vd: 40.76, focalLengthMm: -21.9268, glass: "S-LAH58 (OHARA coordinate match; supplier unconfirmed)", role: "Rear negative of the RG2 triplet; completes the diverging group", cemented: "T1" },
     // RG3 — positive, f = 54.10 mm
     // prettier-ignore
-    { id: 6, name: "RL31", label: "Element 6", type: "Plano-Convex", nd: 1.7432, vd: 49.34, fl: 37.348, glass: "S-LAM60 (OHARA coordinate match; supplier unconfirmed)", role: "Convex-to-object positive of RG3; restores field flatness and spherical balance after the diverging triplet", cemented: "D2" },
+    { id: 6, name: "RL31", label: "Element 6", type: "Plano-Convex", nd: 1.7432, vd: 49.34, focalLengthMm: 37.348, glass: "S-LAM60 (OHARA coordinate match; supplier unconfirmed)", role: "Convex-to-object positive of RG3; restores field flatness and spherical balance after the diverging triplet", cemented: "D2" },
     // prettier-ignore
-    { id: 7, name: "RL32", label: "Element 7", type: "Plano-Concave", nd: 1.92286, vd: 18.9, fl: -108.321, glass: "S-NPH2 (OHARA coordinate match; supplier unconfirmed)", role: "Very high-dispersion rear negative of RG3; trims lateral colour at the image-side end of the converter", cemented: "D2" },
+    { id: 7, name: "RL32", label: "Element 7", type: "Plano-Concave", nd: 1.92286, vd: 18.9, focalLengthMm: -108.321, glass: "S-NPH2 (OHARA coordinate match; supplier unconfirmed)", role: "Very high-dispersion rear negative of RG3; trims lateral colour at the image-side end of the converter", cemented: "D2" },
   ],
 
   /* ── Surface prescription ──
    *  Patent Table 3 rows 41–50, radii and spacings exactly as printed. No stop: the host lens's stop is the
    *  system stop. The last gap is the physical distance to optical member PP. Semi-diameters are from FIG. 1. */
   surfaces: [
-    { label: "1", R: 138.7894, d: 0.93, nd: 1.883, elemId: 1, sd: 12.0 }, // RL11 front
-    { label: "2", R: 26.248, d: 4.94, nd: 1.6727, elemId: 2, sd: 11.4 }, // RL11/RL12 junction
-    { label: "3", R: -55.7408, d: 3.75, nd: 1.0, elemId: 0, sd: 11.4 }, // RL12 rear → air
-    { label: "4", R: -57.9214, d: 0.93, nd: 1.883, elemId: 3, sd: 12.2 }, // RL21 front
-    { label: "5", R: 23.595, d: 7.37, nd: 1.5927, elemId: 4, sd: 12.2 }, // RL21/RL22 junction
-    { label: "6", R: -23.595, d: 0.93, nd: 1.883, elemId: 5, sd: 12.3 }, // RL22/RL23 junction
-    { label: "7", R: 109.8995, d: 0.2, nd: 1.0, elemId: 0, sd: 12.7 }, // RL23 rear → air
-    { label: "8", R: 27.757, d: 5.12, nd: 1.7432, elemId: 6, sd: 13.6 }, // RL31 front
-    { label: "9", R: 1e15, d: 1.66, nd: 1.92286, elemId: 7, sd: 13.6 }, // RL31/RL32 junction
-    { label: "10", R: 99.9651, d: 13.1685, nd: 1.0, elemId: 0, sd: 13.6 }, // RL32 rear → optical member PP
+    { label: "1", R: 138.7894, d: 0.93, sd: 12.0, medium: 1 }, // RL11 front
+    { label: "2", R: 26.248, d: 4.94, sd: 11.4, medium: 2 }, // RL11/RL12 junction
+    { label: "3", R: -55.7408, d: 3.75, sd: 11.4 }, // RL12 rear → air
+    { label: "4", R: -57.9214, d: 0.93, sd: 12.2, medium: 3 }, // RL21 front
+    { label: "5", R: 23.595, d: 7.37, sd: 12.2, medium: 4 }, // RL21/RL22 junction
+    { label: "6", R: -23.595, d: 0.93, sd: 12.3, medium: 5 }, // RL22/RL23 junction
+    { label: "7", R: 109.8995, d: 0.2, sd: 12.7 }, // RL23 rear → air
+    { label: "8", R: 27.757, d: 5.12, sd: 13.6, medium: 6 }, // RL31 front
+    { label: "9", R: "flat", d: 1.66, sd: 13.6, medium: 7 }, // RL31/RL32 junction
+    { label: "10", R: 99.9651, d: 13.1685, sd: 13.6 }, // RL32 rear → optical member PP
   ],
 
   /* ── Optical member PP (the patent's two plane surfaces after the converter) ── */
@@ -128,22 +136,16 @@ const TELECONVERTER_DATA = {
     },
   ],
 
-  asph: {},
-
   groups: [
     { text: "RG1 (+)", fromSurface: "1", toSurface: "3" },
     { text: "RG2 (−)", fromSurface: "4", toSurface: "7" },
     { text: "RG3 (+)", fromSurface: "8", toSurface: "10" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "1", toSurface: "3" },
     { text: "T1", fromSurface: "4", toSurface: "7" },
     { text: "D2", fromSurface: "8", toSurface: "10" },
   ],
-
-  /* ── Geometry ── master back focus in air 26.4281 + 2.85 / 1.5168 + 1.10 = 29.4071 mm (Table 2 prints 29.41), minus the patent gap d40 = 2.5000 */
-  masterImageDistanceMm: 26.9071,
-} satisfies TeleconverterDataInput;
+} satisfies TeleconverterDataV2Input;
 
 export default TELECONVERTER_DATA;

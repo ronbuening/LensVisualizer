@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -13,7 +13,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║         constant overall length, leaf-shutter compatible.         ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent-listed H*2 (effective diameter) values halved.           ║
+ * ║    Non-stop semi-diameters halve the patent-listed H*2 effective   ║
+ * ║    diameters; the stop radius is derived from the design f-number. ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                              ║
  * ║    Patent Fig. 6 surfaces 19–20 (COVER, 1.80 mm, nd 1.51633,       ║
@@ -30,23 +31,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "hasselblad-xcd-120-f35-macro",
   maker: "Hasselblad",
   name: "HASSELBLAD XCD 120mm f/3.5 Macro",
   subtitle: "US 2020/0192060 A1 Example 2 — Nittoh Inc. / Sawamoto",
-  specs: ["10 ELEMENTS / 7 GROUPS", "f = 120.0 mm", "F/3.5", "2ω ≈ 26°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata fields ── */
-  focalLengthMarketing: 120,
-  apertureMarketing: 3.5,
-  lensMounts: ["hasselblad-xcd"],
-  imageFormat: "44x33",
-  patentNumber: "US 2020/0192060 A1",
-  patentAuthors: ["Akira Sawamoto"],
-  patentAssignees: ["Nittoh Inc."],
-  patentYear: 2020,
-  elementCount: 10,
-  groupCount: 7,
+  catalog: {
+    lensMounts: ["hasselblad-xcd"],
+    imageFormat: "44x33",
+    specs: ["10 ELEMENTS / 7 GROUPS", "f = 120.0 mm", "F/3.5", "2ω ≈ 26°", "ALL SPHERICAL"],
+    elementCount: 10,
+    groupCount: 7,
+    /* ── Explicit metadata fields ── */
+    focalLengthMm: { marketing: 120 },
+    fNumber: { marketing: 3.5 },
+  },
+
+  source: {
+    patentNumber: "US 2020/0192060 A1",
+    patentYear: 2020,
+    authors: ["Akira Sawamoto"],
+    assignees: ["Nittoh Inc."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -57,7 +64,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.85026,
       vd: 32.27,
-      fl: 156.7,
+      focalLengthMm: 156.7,
       glass: "S-LAH71 (OHARA)",
       apd: false,
       role: "Front positive collector; equiconvex symmetry, fixed G1",
@@ -69,7 +76,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.53775,
       vd: 74.7,
-      fl: 52.6,
+      focalLengthMm: 52.6,
       glass: "S-FPM3 (OHARA)",
       apd: "inferred",
       apdNote:
@@ -84,7 +91,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.74077,
       vd: 27.79,
-      fl: -33.2,
+      focalLengthMm: -33.2,
       glass: "S-TIH13 (OHARA)",
       apd: false,
       role: "Dense flint; achromatic partner in cemented doublet B1",
@@ -97,7 +104,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.9165,
       vd: 31.6,
-      fl: 63.6,
+      focalLengthMm: 63.6,
       glass: "S-LAH88 (OHARA)",
       apd: false,
       role: "Positive power contributor of G2; convex to object",
@@ -109,7 +116,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.89286,
       vd: 20.36,
-      fl: 50.4,
+      focalLengthMm: 50.4,
       glass: "893204 - ultra-high-dispersion flint (S-NPH4 code match; patent nd=1.89286, vd=20.36)",
       apd: false,
       role: "Nearly plano-convex positive in fixed G3; front curvature R ≈ 17 km",
@@ -122,7 +129,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6727,
       vd: 32.1,
-      fl: -31.6,
+      focalLengthMm: -31.6,
       glass: "S-TIM25 (OHARA)",
       apd: false,
       role: "Diverging element in cemented doublet B2; fixed G3",
@@ -135,7 +142,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.24,
-      fl: 91.4,
+      focalLengthMm: 91.4,
       glass: "S-FSL5 (OHARA)",
       apd: false,
       role: "Primary focus element; equiconvex ED singlet, 40 mm travel, moving G4",
@@ -147,7 +154,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.8,
       vd: 29.84,
-      fl: -45.4,
+      focalLengthMm: -45.4,
       glass: "S-NBH55 (OHARA)",
       apd: false,
       role: "Negative element in cemented doublet B3; moving G5",
@@ -160,7 +167,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.9165,
       vd: 31.6,
-      fl: 35.5,
+      focalLengthMm: 35.5,
       glass: "S-LAH88 (OHARA)",
       apd: false,
       role: "Positive element in doublet B3; aberration fine-tuning, moving G5",
@@ -173,7 +180,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.69895,
       vd: 30.13,
-      fl: -76.6,
+      focalLengthMm: -76.6,
       glass: "E-FD15L (HOYA) / S-TIM35 (OHARA)",
       apd: false,
       role: "Field flattener / image-circle expander; fixed G6",
@@ -181,39 +188,70 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     // G1 — L11 (fixed)
-    { label: "1", R: 265.465, d: 4.05, nd: 1.85026, elemId: 1, sd: 21.0 },
-    { label: "2", R: -265.465, d: 9.65052, nd: 1.0, elemId: 0, sd: 21.0 }, // VAR: G1↔G2
+    { label: "1", R: 265.465, d: 4.05, sd: 21.0, medium: 1 },
+    { label: "2", R: -265.465, sd: 21.0 }, // VAR: G1↔G2
 
     // G2 — B1 (L21+L22 cemented) + L23 (moving group)
-    { label: "3", R: 43.71, d: 7.05, nd: 1.53775, elemId: 2, sd: 16.0 }, // L21 front
-    { label: "4", R: -75.472, d: 1.0, nd: 1.74077, elemId: 3, sd: 15.6 }, // L21→L22 junction
-    { label: "5", R: 36.655, d: 0.77315, nd: 1.0, elemId: 0, sd: 14.85 }, // L22 rear → air
-    { label: "6", R: 40.361, d: 4.4, nd: 1.9165, elemId: 4, sd: 14.9 }, // L23 front
-    { label: "7", R: 124.216, d: 5.15475, nd: 1.0, elemId: 0, sd: 14.6 }, // VAR: G2↔G3
+    { label: "3", R: 43.71, d: 7.05, sd: 16.0, medium: 2 }, // L21 front
+    { label: "4", R: -75.472, d: 1.0, sd: 15.6, medium: 3 }, // L21→L22 junction
+    { label: "5", R: 36.655, d: 0.77315, sd: 14.85 }, // L22 rear → air
+    { label: "6", R: 40.361, d: 4.4, sd: 14.9, medium: 4 }, // L23 front
+    { label: "7", R: 124.216, sd: 14.6 }, // VAR: G2↔G3
 
     // G3 — B2 (L31+L32 cemented, fixed)
-    { label: "8", R: 17080.49126, d: 4.35, nd: 1.89286, elemId: 5, sd: 13.4 }, // L31 front (near-plano)
-    { label: "9", R: -45.124, d: 1.65, nd: 1.6727, elemId: 6, sd: 13.15 }, // L31→L32 junction
-    { label: "10", R: 40.879, d: 7.93376, nd: 1.0, elemId: 0, sd: 12.25 }, // L32 rear → air
+    { label: "8", R: 17080.49126, d: 4.35, sd: 13.4, medium: 5 }, // L31 front (near-plano)
+    { label: "9", R: -45.124, d: 1.65, sd: 13.15, medium: 6 }, // L31→L32 junction
+    { label: "10", R: 40.879, d: 7.93376, sd: 12.25 }, // L32 rear → air
 
     // Aperture stop
-    { label: "STO", R: 1e15, d: 45.0101, nd: 1.0, elemId: 0, sd: 11.51 }, // VAR: STO↔G4
+    // US 2020/0192060 A1 Fig. 6 prescription table, Example 2, St row prints effective diameter H*2 = 23.02 mm.
+    // Radius derived from the design f-number.
+    { label: "STO", R: "flat" }, // VAR: STO↔G4
 
     // G4 — L41 (moving, primary focus)
-    { label: "12", R: 88.124, d: 6.2, nd: 1.48749, elemId: 7, sd: 18.0 }, // L41 front (equiconvex)
-    { label: "13", R: -88.124, d: 0.8, nd: 1.0, elemId: 0, sd: 18.4 }, // VAR: G4↔G5
+    { label: "12", R: 88.124, d: 6.2, sd: 18.0, medium: 7 }, // L41 front (equiconvex)
+    { label: "13", R: -88.124, sd: 18.4 }, // VAR: G4↔G5
 
     // G5 — B3 (L51+L52 cemented, moving with reversal)
-    { label: "14", R: -333.146, d: 1.0, nd: 1.8, elemId: 8, sd: 18.75 }, // L51 front
-    { label: "15", R: 40.803, d: 8.6, nd: 1.9165, elemId: 9, sd: 19.4 }, // L51→L52 junction
-    { label: "16", R: -144.777, d: 11.23909, nd: 1.0, elemId: 0, sd: 19.5 }, // VAR: G5↔G6
+    { label: "14", R: -333.146, d: 1.0, sd: 18.75, medium: 8 }, // L51 front
+    { label: "15", R: 40.803, d: 8.6, sd: 19.4, medium: 9 }, // L51→L52 junction
+    { label: "16", R: -144.777, sd: 19.5 }, // VAR: G5↔G6
 
     // G6 — L61 (fixed, field flattener)
-    { label: "17", R: -61.952, d: 2.0, nd: 1.69895, elemId: 10, sd: 19.35 }, // L61 front
-    { label: "18", R: 401.068, d: 31.25575, nd: 1.0, elemId: 0, sd: 20.0 }, // patent gap to the cover glass
+    { label: "17", R: -61.952, d: 2.0, sd: 19.35, medium: 10 }, // L61 front
+    { label: "18", R: 401.068, d: 31.25575, sd: 20.0 }, // patent gap to the cover glass
   ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.43,
+    /* ── Variable air spacings (focus) ──
+     *  Triple-group inner focus: G2, G4, G5 move; G1, G3, G6, STO fixed.
+     *  G2 moves +8.24 mm toward object (infinity → 0.43 m).
+     *  G4 moves +40.39 mm toward object (primary focus adjustment).
+     *  G5 moves −1.01 mm net (reversal: first toward image, then toward object).
+     *  Total optical length (surface 1 → cover glass) is constant at 152.12 mm.
+     */
+    keyframes: [0, 0.21386551368720905, 1],
+    description:
+      "Triple-group inner focus (G2 + G4 + G5 move toward object); constant overall length. G4 is primary focus element (40 mm travel). G5 reversal motion fine-tunes aberrations at macro magnifications.",
+    // (moved from publishedStations) Every focus keyframe is a source row.
+    published: [1, 2],
+  },
+
+  gaps: {
+    "2": { label: "D2", values: [[9.65052, 8.84413, 1.41023]] }, // G1↔G2
+    "7": { label: "D7", values: [[5.15475, 5.96115, 13.39504]] }, // G2↔G3
+    STO: { label: "D(STO)", values: [[45.0101, 37.35039, 4.62225]] }, // STO↔G4
+    "13": { label: "D13", values: [[0.8, 10.09897, 42.1999]] }, // G4↔G5
+    "16": { label: "BF", values: [[11.23909, 9.59983, 10.22703]] }, // G5↔G6 reversal
+  },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32, 45], maxFNumber: 45 },
 
   /* ── Cover glass COVER (patent Fig. 6 surfaces 19–20): traced, not drawn ── */
   rearPlates: [
@@ -228,33 +266,6 @@ const LENS_DATA = {
     },
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
-
-  /* ── Variable air spacings (focus) ──
-   *  Triple-group inner focus: G2, G4, G5 move; G1, G3, G6, STO fixed.
-   *  G2 moves +8.24 mm toward object (infinity → 0.43 m).
-   *  G4 moves +40.39 mm toward object (primary focus adjustment).
-   *  G5 moves −1.01 mm net (reversal: first toward image, then toward object).
-   *  Total optical length (surface 1 → cover glass) is constant at 152.12 mm.
-   */
-  focusPositions: [0, 0.21386551368720905, 1],
-  var: {
-    "2": [9.65052, 8.84413, 1.41023], // G1↔G2
-    "7": [5.15475, 5.96115, 13.39504], // G2↔G3
-    STO: [45.0101, 37.35039, 4.62225], // STO↔G4
-    "13": [0.8, 10.09897, 42.1999], // G4↔G5
-    "16": [11.23909, 9.59983, 10.22703], // G5↔G6 reversal
-  },
-
-  varLabels: [
-    ["2", "D2"],
-    ["7", "D7"],
-    ["STO", "D(STO)"],
-    ["13", "D13"],
-    ["16", "BF"],
-  ],
-
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -264,28 +275,14 @@ const LENS_DATA = {
     { text: "G5", fromSurface: "14", toSurface: "16" },
     { text: "G6", fromSurface: "17", toSurface: "18" },
   ],
-
   doublets: [
     { text: "B1", fromSurface: "3", toSurface: "5" },
     { text: "B2", fromSurface: "8", toSurface: "10" },
     { text: "B3", fromSurface: "14", toSurface: "16" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.43,
-  // Every focus keyframe is a source row.
-  publishedStations: { focus: [1, 2] },
-  focusDescription:
-    "Triple-group inner focus (G2 + G4 + G5 move toward object); constant overall length. G4 is primary focus element (40 mm travel). G5 reversal motion fine-tunes aberrations at macro magnifications.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 3.5,
-  fstopSeries: [3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32, 45],
-
   /* ── Layout tuning ── */
-  scFill: 0.52,
-  yScFill: 0.28,
-  maxFstop: 45,
-} satisfies LensDataInput;
+  layout: { scFill: 0.52, yScFill: 0.28 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

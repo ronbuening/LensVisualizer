@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -37,23 +37,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "zeiss-pro-tessar-35f32",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS PRO-TESSAR 35mm f/3.2",
   subtitle: "DE 1,089,183 TABLE 1 — CARL ZEISS / DR. GÜNTHER LANGE",
-  specs: ["8 ELEMENTS / 6 GROUPS", "f = 35.0 mm", "F/3.2", "2ω ≈ 64°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata fields ── */
-  focalLengthMarketing: 35,
-  apertureMarketing: 3.2,
-  lensMounts: ["zeiss-contaflex"],
-  imageFormat: "135-full-frame",
-  patentNumber: "DE 1,089,183",
-  patentAuthors: ["Günther Lange"],
-  patentAssignees: ["Carl-Zeiss-Stiftung"],
-  patentYear: 1960,
-  elementCount: 8,
-  groupCount: 6,
+  catalog: {
+    lensMounts: ["zeiss-contaflex"],
+    imageFormat: "135-full-frame",
+    specs: ["8 ELEMENTS / 6 GROUPS", "f = 35.0 mm", "F/3.2", "2ω ≈ 64°", "ALL SPHERICAL"],
+    elementCount: 8,
+    groupCount: 6,
+    /* ── Explicit metadata fields ── */
+    focalLengthMm: { marketing: 35 },
+    fNumber: { marketing: 3.2 },
+  },
+
+  source: {
+    patentNumber: "DE 1,089,183",
+    patentYear: 1960,
+    authors: ["Günther Lange"],
+    assignees: ["Carl-Zeiss-Stiftung"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -64,7 +70,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.74,
       vd: 28.2,
-      fl: -41.7,
+      focalLengthMm: -41.7,
       glass: "S-TIH3 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Dense flint front element of cemented diverging doublet; chromatic balancing against L_II",
@@ -77,7 +83,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.744,
       vd: 44.9,
-      fl: -41.7,
+      focalLengthMm: -41.7,
       glass: "LaF2 class; N-LAF2 catalog spectral proxy (production supplier unspecified)",
       apd: false,
       role: "Lanthanum flint rear element of cemented diverging doublet; strong negative power at r₃ drives quasi-retrofocus behavior",
@@ -90,7 +96,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.50378,
       vd: 66.7,
-      fl: 59.9,
+      focalLengthMm: 59.9,
       glass: "PK1 class; PC1 catalog spectral proxy (production supplier unspecified)",
       apd: false,
       role: "Phosphate crown positive meniscus; moderate convergence with minimal chromatic contribution",
@@ -102,7 +108,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.50378,
       vd: 66.7,
-      fl: 23.1,
+      focalLengthMm: 23.1,
       glass: "PK1 class; PC1 catalog spectral proxy (production supplier unspecified)",
       apd: false,
       role: "Dominant positive power element of front cell; low-dispersion phosphate crown for chromatic control",
@@ -114,7 +120,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.744,
       vd: 44.9,
-      fl: -68.5,
+      focalLengthMm: -68.5,
       glass: "LaF2 class; N-LAF2 catalog spectral proxy (production supplier unspecified)",
       apd: false,
       role: "Lanthanum flint negative meniscus; chromatically corrects the L_III–L_IV positive cluster and contributes negative Petzval",
@@ -126,7 +132,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.62536,
       vd: 35.6,
-      fl: -18.4,
+      focalLengthMm: -18.4,
       glass: "H-F6 (CDGM catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Body-mounted Tessar middle lens; strongest negative element, dominant Petzval field-flattener",
@@ -138,7 +144,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.54869,
       vd: 45.4,
-      fl: 30.1,
+      focalLengthMm: 30.1,
       glass: "LLF7 (Schott)",
       apd: false,
       role: "Front element of body-mounted rear cemented doublet; light flint provides chromatic leverage at junction",
@@ -151,7 +157,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72,
       vd: 50.3,
-      fl: 30.1,
+      focalLengthMm: 30.1,
       glass: "LaK10 class; J-LAK10 catalog spectral proxy (production supplier unspecified)",
       apd: false,
       role: "Rear element of body-mounted cemented doublet; lanthanum crown provides final convergence and chromatic correction",
@@ -160,60 +166,55 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     // Front cell (L_I through L_V) — interchangeable Pro-Tessar unit
-    { label: "1", R: 35.3728, d: 4.774, nd: 1.74, elemId: 1, sd: 18.0 }, // L_I front
-    { label: "2", R: 111.8555, d: 1.241, nd: 1.744, elemId: 2, sd: 15.5 }, // L_I/L_II cemented junction
-    { label: "3", R: 15.3523, d: 18.968, nd: 1.0, elemId: 0, sd: 13.5 }, // L_II rear → air
-    { label: "4", R: -358.855, d: 9.548, nd: 1.50378, elemId: 3, sd: 13.5 }, // L_III front
-    { label: "5", R: -28.0971, d: 2.387, nd: 1.0, elemId: 0, sd: 13.0 }, // L_III rear → air
-    { label: "6", R: 19.4665, d: 9.214, nd: 1.50378, elemId: 4, sd: 12.0 }, // L_IV front
-    { label: "7", R: -24.3313, d: 0.649, nd: 1.0, elemId: 0, sd: 8.5 }, // L_IV rear → air
-    { label: "8", R: -23.641, d: 0.955, nd: 1.744, elemId: 5, sd: 8.0 }, // L_V front
-    { label: "9", R: -44.8528, d: 0.955, nd: 1.0, elemId: 0, sd: 7.5 }, // L_V rear → air (to stop)
+    { label: "1", R: 35.3728, d: 4.774, sd: 18.0, medium: 1 }, // L_I front
+    { label: "2", R: 111.8555, d: 1.241, sd: 15.5, medium: 2 }, // L_I/L_II cemented junction
+    { label: "3", R: 15.3523, d: 18.968, sd: 13.5 }, // L_II rear → air
+    { label: "4", R: -358.855, d: 9.548, sd: 13.5, medium: 3 }, // L_III front
+    { label: "5", R: -28.0971, d: 2.387, sd: 13.0 }, // L_III rear → air
+    { label: "6", R: 19.4665, d: 9.214, sd: 12.0, medium: 4 }, // L_IV front
+    { label: "7", R: -24.3313, d: 0.649, sd: 8.5 }, // L_IV rear → air
+    { label: "8", R: -23.641, d: 0.955, sd: 8.0, medium: 5 }, // L_V front
+    { label: "9", R: -44.8528, d: 0.955, sd: 7.5 }, // L_V rear → air (to stop)
     // Aperture stop — STO position inferred from Fig. 1 "Bl" placement, ~50% of d₉ gap
-    { label: "STO", R: 1e15, d: 0.955, nd: 1.0, elemId: 0, sd: 6.5 },
+    { label: "STO", R: "flat", d: 0.955 },
     // Body-mounted rear section (L_VII through L_IX) — fixed in Contaflex camera body
-    { label: "10", R: -40.264, d: 1.289, nd: 1.62536, elemId: 6, sd: 7.0 }, // L_VII front
-    { label: "11", R: 16.2613, d: 3.896, nd: 1.0, elemId: 0, sd: 7.5 }, // L_VII rear → air
-    { label: "12", R: -458.315, d: 1.146, nd: 1.54869, elemId: 7, sd: 9.5 }, // L_VIII front
-    { label: "13", R: 20.1798, d: 4.297, nd: 1.72, elemId: 8, sd: 9.5 }, // L_VIII/L_IX cemented junction
-    { label: "14", R: -27.2998, d: 40.6, nd: 1.0, elemId: 0, sd: 9.5 }, // L_IX rear → image (BFD)
+    { label: "10", R: -40.264, d: 1.289, sd: 7.0, medium: 6 }, // L_VII front
+    { label: "11", R: 16.2613, d: 3.896, sd: 7.5 }, // L_VII rear → air
+    { label: "12", R: -458.315, d: 1.146, sd: 9.5, medium: 7 }, // L_VIII front
+    { label: "13", R: 20.1798, d: 4.297, sd: 9.5, medium: 8 }, // L_VIII/L_IX cemented junction
+    { label: "14", R: -27.2998, sd: 9.5 }, // L_IX rear → image (BFD)
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
-
-  /* ── Variable air spacings (unit focus — only BFD changes) ── */
-  var: {
-    "14": [40.6, 42.02], // [BFD_infinity, BFD_close] — close focus estimated at ~0.9 m
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.9,
+    description:
+      "Unit focusing — entire lens assembly moves via camera body helical mechanism; only back focal distance changes.",
   },
 
-  varLabels: [["14", "BF"]],
+  /* (moved from var) ── Variable air spacings (unit focus — only BFD changes) ── */
+  gaps: {
+    "14": { label: "BF", values: [[40.6, 42.02]] }, // [BFD_infinity, BFD_close] — close focus estimated at ~0.9 m
+  },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 3.2, fStops: [3.2, 4, 5.6, 8, 11, 16, 22] },
 
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "FRONT CELL", fromSurface: "1", toSurface: "9" },
     { text: "BODY REAR", fromSurface: "10", toSurface: "14" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "1", toSurface: "3" },
     { text: "D2", fromSurface: "12", toSurface: "14" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.9,
-  focusDescription:
-    "Unit focusing — entire lens assembly moves via camera body helical mechanism; only back focal distance changes.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 3.2,
-  fstopSeries: [3.2, 4, 5.6, 8, 11, 16, 22],
-
   /* ── Layout tuning ── */
-  scFill: 0.45,
-  yScFill: 0.28,
-} satisfies LensDataInput;
+  layout: { scFill: 0.45, yScFill: 0.28 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

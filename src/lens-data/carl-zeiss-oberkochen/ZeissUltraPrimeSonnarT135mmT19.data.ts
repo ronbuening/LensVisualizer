@@ -1,6 +1,6 @@
 // Root-level draft import. When authoring directly in a maker folder use "../../types/optics.js";
 // generate:metadata rewrites it when it organizes a root-level draft. See LENS_DATA_SPEC.md § Quick Start.
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -43,8 +43,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON SEMI-DIAMETERS: no SDs published. SDs read from the to-     ║
  * ║    scale Fig. 7 layout (±0.5 mm reading), then checked against real  ║
  * ║    f/1.8 marginal rays, field bundles, and edge/slope/gap rules.     ║
- * ║    STO SD is calibrated paraxially to the patent's f/1.8; it is not  ║
- * ║    a published diaphragm diameter.                                   ║
+ * ║    The stop radius is derived from the design f-number (f/1.8); it   ║
+ * ║    is not a published diaphragm diameter.                            ║
  * ║  NOTE ON STOP POSITION: source surface 12 "(stop)", ¶0084.           ║
  * ║  NOTE ON FIELD: projection declares ARRI's 31.14 mm design image     ║
  * ║    diameter (real half-field 6.56°); SD-limited chief rays would     ║
@@ -59,30 +59,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "zeiss-ultra-prime-135-t19",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS ULTRA PRIME SONNAR T* 135mm T1.9",
   subtitle: "US 2017/0307860 A1 EXAMPLE 1 — CARL ZEISS AG / PRETORIUS, BLAHNIK (MANIPULATOR OMITTED)",
-  specs: ["8 ELEMENTS / 7 GROUPS", "f ≈ 134.3 mm", "F/1.8", "2ω ≈ 13.1° (31.14 mm ID)", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata fields ── */
-  focalLengthMarketing: 135,
-  focalLengthDesign: 134.3, // computed d-line EFL of this model (patent states 135 mm)
-  lensMounts: ["arri-pl"],
-  imageFormat: "super-35-cinema",
-  // apertureMarketing omitted: marketed value is T1.9, a transmission stop, not an f-number.
-  apertureDesign: 1.8, // patent ¶0078 relative aperture
-  patentNumber: "US 2017/0307860 A1",
-  patentAuthors: ["Marco Pretorius", "Vladan Blahnik"],
-  patentAssignees: ["Carl Zeiss AG"],
-  patentYear: 2017,
-  elementCount: 8, // modeled donor lens; patent Example 1 with manipulator plates = 10 elements / 9 groups
-  groupCount: 7,
+  catalog: {
+    lensMounts: ["arri-pl"],
+    imageFormat: "super-35-cinema",
+    specs: ["8 ELEMENTS / 7 GROUPS", "f ≈ 134.3 mm", "F/1.8", "2ω ≈ 13.1° (31.14 mm ID)", "ALL SPHERICAL"],
+    elementCount: 8, // modeled donor lens; patent Example 1 with manipulator plates = 10 elements / 9 groups
+    groupCount: 7,
+    /* ── Explicit metadata fields ── */
+    focalLengthMm: {
+      marketing: 135,
+      design: 134.3, // computed d-line EFL of this model (patent states 135 mm)
+    },
+    // apertureMarketing omitted: marketed value is T1.9, a transmission stop, not an f-number.
+    fNumber: {
+      design: 1.8, // patent ¶0078 relative aperture
+    },
+  },
 
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 13.12, // real chief ray to 15.57 mm image height (ARRI design ID 31.14 mm)
-    maxTraceFieldDeg: 6.56,
+  source: {
+    patentNumber: "US 2017/0307860 A1",
+    patentYear: 2017,
+    authors: ["Marco Pretorius", "Vladan Blahnik"],
+    assignees: ["Carl Zeiss AG"],
   },
 
   // Spectral line indices are evaluated from the catalog curves at runtime.
@@ -96,11 +100,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.41,
-      fl: 204.5,
+      focalLengthMm: 204.5,
       glass: "N-FK5 (Schott)",
       apd: false,
-      dPgF: 0.0036,
       role: "Front positive collector; rear face nearly flat (R = −2511.9 mm)",
+      dPgF: 0.0036,
     },
     {
       id: 2,
@@ -109,13 +113,13 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.496999,
       vd: 81.54,
-      fl: 160.6,
+      focalLengthMm: 160.6,
       glass: "S-FPL51 (OHARA)",
       apd: "inferred",
       apdNote:
         "ΔPg,F = +0.0308 on the SCHOTT normal line, from the OHARA catalog line indices; OHARA prints Δθg,F = +0.0280 on its own normal line. Not published in the patent.",
-      dPgF: 0.0308,
       role: "Second positive meniscus, convex to object, in fluorophosphate crown",
+      dPgF: 0.0308,
     },
     {
       id: 3,
@@ -124,12 +128,12 @@ const LENS_DATA = {
       type: "Plano-Convex",
       nd: 1.80518,
       vd: 25.36,
-      fl: 117.2,
+      focalLengthMm: 117.2,
       glass: "N-SF6 (Schott)",
       apd: false,
-      dPgF: 0.0146,
       role: "Flat-fronted dense-flint positive component of the front cemented doublet",
       cemented: "D1",
+      dPgF: 0.0146,
     },
     {
       id: 4,
@@ -138,12 +142,12 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.64769,
       vd: 33.85,
-      fl: -42.0,
+      focalLengthMm: -42.0,
       glass: "SF2 (Schott)",
       apd: false,
-      dPgF: 0.0017,
       role: "Negative component of D1; doublet net f ≈ −67.0 mm",
       cemented: "D1",
+      dPgF: 0.0017,
     },
     {
       id: 5,
@@ -152,11 +156,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.62014,
       vd: 63.48,
-      fl: 69.2,
+      focalLengthMm: 69.2,
       glass: "N-PSK53 (Schott)",
       apd: false,
-      dPgF: 0.0053,
       role: "First rear-group positive, 1.0 mm behind the stop",
+      dPgF: 0.0053,
     },
     {
       id: 6,
@@ -165,11 +169,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.71736,
       vd: 29.51,
-      fl: -97.5,
+      focalLengthMm: -97.5,
       glass: "SF1 (Schott)",
       apd: false,
-      dPgF: 0.0042,
       role: "Rear-group negative flint, air-spaced 0.2 mm from L7",
+      dPgF: 0.0042,
     },
     {
       id: 7,
@@ -178,11 +182,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.48749,
       vd: 70.41,
-      fl: -781.9,
+      focalLengthMm: -781.9,
       glass: "N-FK5 (Schott)",
       apd: false,
-      dPgF: 0.0036,
       role: "Thick (17.3 mm) meniscus, convex to object; weak standalone power",
+      dPgF: 0.0036,
     },
     {
       id: 8,
@@ -191,40 +195,51 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.80518,
       vd: 25.36,
-      fl: 141.4,
+      focalLengthMm: 141.4,
       glass: "N-SF6 (Schott)",
       apd: false,
-      dPgF: 0.0146,
       role: "Last positive meniscus ahead of the image plane",
+      dPgF: 0.0146,
     },
   ],
 
   /* ── Surface prescription ── labels are patent surface numbers; 8–11 omitted, 12 = STO */
+  /* (moved from asph) ── Aspherical coefficients ── all-spherical main lens (¶0078: k = 0) */
   surfaces: [
-    { label: "1", R: 103.66, d: 12.8, nd: 1.48749, elemId: 1, sd: 42.5 }, // L1 front
-    { label: "2", R: -2511.9, d: 0.3, nd: 1.0, elemId: 0, sd: 42.5 }, // L1 rear → air
-    { label: "3", R: 51.212, d: 16.4, nd: 1.496999, elemId: 2, sd: 38.2 }, // L2 front
-    { label: "4", R: 127.72, d: 8.0, nd: 1.0, elemId: 0, sd: 31.8 }, // L2 rear → air
-    { label: "5", R: 1e15, d: 17.9, nd: 1.80518, elemId: 3, sd: 32.4 }, // L3 front (flat)
-    { label: "6", R: -94.406, d: 3.95, nd: 1.64769, elemId: 4, sd: 32.4 }, // L3→L4 cemented junction
-    { label: "7", R: 38.861, d: 35.0758, nd: 1.0, elemId: 0, sd: 22.3 }, // L4 rear → air; patent d7…d11 summed
-    { label: "STO", R: 1e15, d: 1.0, nd: 1.0, elemId: 0, sd: 18.22 }, // source surface 12 (stop); f/1.8 calibration
-    { label: "13", R: 65.407, d: 7.8, nd: 1.62014, elemId: 5, sd: 21.9 }, // L5 front
-    { label: "14", R: -118.85, d: 2.0, nd: 1.0, elemId: 0, sd: 21.9 }, // L5 rear → air
-    { label: "15", R: -82.343, d: 3.6, nd: 1.71736, elemId: 6, sd: 20.9 }, // L6 front
-    { label: "16", R: 473.15, d: 0.2, nd: 1.0, elemId: 0, sd: 20.9 }, // L6 rear → air
-    { label: "17", R: 34.475, d: 17.3, nd: 1.48749, elemId: 7, sd: 21.5 }, // L7 front
-    { label: "18", R: 26.416, d: 5.17, nd: 1.0, elemId: 0, sd: 16.2 }, // L7 rear → air
-    { label: "19", R: 109.02, d: 3.9, nd: 1.80518, elemId: 8, sd: 18.2 }, // L8 front
-    { label: "20", R: 2511.9, d: 33.2175, nd: 1.0, elemId: 0, sd: 18.2 }, // L8 rear → image; model paraxial BFL
+    { label: "1", R: 103.66, d: 12.8, sd: 42.5, medium: 1 }, // L1 front
+    { label: "2", R: -2511.9, d: 0.3, sd: 42.5 }, // L1 rear → air
+    { label: "3", R: 51.212, d: 16.4, sd: 38.2, medium: 2 }, // L2 front
+    { label: "4", R: 127.72, d: 8.0, sd: 31.8 }, // L2 rear → air
+    { label: "5", R: "flat", d: 17.9, sd: 32.4, medium: 3 }, // L3 front (flat)
+    { label: "6", R: -94.406, d: 3.95, sd: 32.4, medium: 4 }, // L3→L4 cemented junction
+    { label: "7", R: 38.861, d: 35.0758, sd: 22.3 }, // L4 rear → air; patent d7…d11 summed
+    { label: "STO", R: "flat", d: 1.0 }, // source surface 12 (stop); radius derived from the design f-number
+    { label: "13", R: 65.407, d: 7.8, sd: 21.9, medium: 5 }, // L5 front
+    { label: "14", R: -118.85, d: 2.0, sd: 21.9 }, // L5 rear → air
+    { label: "15", R: -82.343, d: 3.6, sd: 20.9, medium: 6 }, // L6 front
+    { label: "16", R: 473.15, d: 0.2, sd: 20.9 }, // L6 rear → air
+    { label: "17", R: 34.475, d: 17.3, sd: 21.5, medium: 7 }, // L7 front
+    { label: "18", R: 26.416, d: 5.17, sd: 16.2 }, // L7 rear → air
+    { label: "19", R: 109.02, d: 3.9, sd: 18.2, medium: 8 }, // L8 front
+    { label: "20", R: 2511.9, d: 33.2175, sd: 18.2 }, // L8 rear → image; model paraxial BFL
   ],
 
-  /* ── Aspherical coefficients ── all-spherical main lens (¶0078: k = 0) */
-  asph: {},
+  /* ── Focus configuration ── */
+  /* (moved from var) ── Variable air spacings ── none: no finite-object spacings are published */
+  focus: {
+    closeFocusM: 1.5, // ARRI/ZEISS production close focus; not modeled optically
+    description:
+      "Infinity only. Production focus is floating/internal (ARRI/ZEISS); no close-focus spacings are published.",
+  },
 
-  /* ── Variable air spacings ── none: no finite-object spacings are published */
-  var: {},
-  varLabels: [],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 1.8, fStops: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
+
+  projection: {
+    kind: "rectilinear",
+    fullFieldDeg: 13.12, // real chief ray to 15.57 mm image height (ARRI design ID 31.14 mm)
+    maxTraceFieldDeg: 6.56,
+  },
 
   /* ── Group and doublet annotations ── patent reference numerals 1 and 3 */
   groups: [
@@ -233,18 +248,8 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "D1", fromSurface: "5", toSurface: "7" }],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 1.5, // ARRI/ZEISS production close focus; not modeled optically
-  focusDescription:
-    "Infinity only. Production focus is floating/internal (ARRI/ZEISS); no close-focus spacings are published.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 1.8,
-  fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
   /* ── Layout tuning ── */
-  yScFill: 0.5,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.5 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

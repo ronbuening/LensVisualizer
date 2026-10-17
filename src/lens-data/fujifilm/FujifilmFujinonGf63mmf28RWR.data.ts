@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════════════╗
@@ -41,194 +41,210 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "fujifilm-fujinon-gf-63mm-f28-r-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON GF 63mm f/2.8 R WR",
   subtitle: "US 2017/0242219 A1 Example 1 — constrained production-focus reconstruction",
-  specs: [
-    "10 ELEMENTS / 8 GROUPS / 1 ED",
-    "63mm marketed / 62.125mm design",
-    "f/2.8 marketed / f/2.87 design",
-    "46.9° production diagonal angle of view",
-    "0.50m MFD / 0.17× max magnification",
-  ],
 
-  /* ── Product and patent metadata ── */
-  focalLengthMarketing: 63,
-  focalLengthDesign: 62.1249820968,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.87,
-  lensMounts: ["fujifilm-g"],
-  imageFormat: "44x33",
-  patentNumber: "US 2017/0242219 A1",
-  patentAuthors: ["Masato Kondo"],
-  patentAssignees: ["Fujifilm Corporation"],
-  patentYear: 2017,
-  elementCount: 10,
-  groupCount: 8,
+  catalog: {
+    lensMounts: ["fujifilm-g"],
+    imageFormat: "44x33",
+    specs: [
+      "10 ELEMENTS / 8 GROUPS / 1 ED",
+      "63mm marketed / 62.125mm design",
+      "f/2.8 marketed / f/2.87 design",
+      "46.9° production diagonal angle of view",
+      "0.50m MFD / 0.17× max magnification",
+    ],
+    elementCount: 10,
+    groupCount: 8,
+    /* ── Product and patent metadata ── */
+    focalLengthMm: { marketing: 63, design: 62.1249820968 },
+    fNumber: { marketing: 2.8, design: 2.87 },
+  },
+
+  source: {
+    patentNumber: "US 2017/0242219 A1",
+    patentYear: 2017,
+    authors: ["Masato Kondo"],
+    assignees: ["Fujifilm Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
     {
       id: 1,
       name: "L11",
-      diagramLabel: "L11",
       label: "L11",
       type: "Positive Meniscus",
       nd: 1.95375,
       vd: 32.32,
-      fl: 61.91184,
+      focalLengthMm: 61.91184,
       glass: "954323 — high-index flint class",
       apd: false,
       role: "Front positive meniscus of G1.",
+      diagramLabel: "L11",
     },
     {
       id: 2,
       name: "L12",
-      diagramLabel: "L12",
       label: "L12",
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.24,
-      fl: 53.685298,
+      focalLengthMm: 53.685298,
       glass: "487702 — low-dispersion crown class",
       apd: false,
       role: "Second positive meniscus of G1.",
+      diagramLabel: "L12",
     },
     {
       id: 3,
       name: "L13",
-      diagramLabel: "L13",
       label: "L13",
       type: "Negative Meniscus",
       nd: 1.69895,
       vd: 30.13,
-      fl: -26.776688,
+      focalLengthMm: -26.776688,
       glass: "699301 — dense-flint class",
       apd: false,
       role: "Negative rear meniscus of G1.",
+      diagramLabel: "L13",
     },
     {
       id: 4,
       name: "L21",
-      diagramLabel: "L21",
       label: "L21",
       type: "Positive Meniscus",
       nd: 1.59282,
       vd: 68.62,
-      fl: 139.997886,
+      focalLengthMm: 139.997886,
       glass: "593686 — FCD505-class ED crown (supplier unproven)",
       // Compatible catalog curve supports APD; production glass identity is unresolved.
       apd: "inferred",
       role: "Object-side member of the L21+L22 cemented pair; production ED element.",
+      diagramLabel: "L21",
       cemented: "L21+L22",
     },
     {
       id: 5,
       name: "L22",
-      diagramLabel: "L22",
       label: "L22",
       type: "Negative Meniscus",
       nd: 1.5927,
       vd: 35.31,
-      fl: -44.01419,
+      focalLengthMm: -44.01419,
       glass: "593353 — flint class",
       apd: false,
       role: "Negative cemented partner to L21.",
+      diagramLabel: "L22",
       cemented: "L21+L22",
     },
     {
       id: 6,
       name: "L23",
-      diagramLabel: "L23",
       label: "L23",
       type: "Positive Meniscus",
       nd: 1.788,
       vd: 47.37,
-      fl: 86.630579,
+      focalLengthMm: 86.630579,
       glass: "788474 — lanthanum high-index class",
       apd: false,
       role: "Positive meniscus in G2.",
+      diagramLabel: "L23",
     },
     {
       id: 7,
       name: "L24",
-      diagramLabel: "L24",
       label: "L24",
       type: "Positive Meniscus",
       nd: 1.816,
       vd: 46.62,
-      fl: 59.211458,
+      focalLengthMm: 59.211458,
       glass: "816466 — lanthanum high-index class",
       apd: false,
       role: "Positive rear meniscus of G2.",
+      diagramLabel: "L24",
     },
     {
       id: 8,
       name: "L31",
-      diagramLabel: "L31",
       label: "L31",
       type: "Biconvex Positive",
       nd: 1.6968,
       vd: 55.53,
-      fl: 50.448806,
+      focalLengthMm: 50.448806,
       glass: "697555 — lanthanum crown class",
       apd: false,
       role: "Positive object-side member of the fixed G3 cemented pair.",
+      diagramLabel: "L31",
       cemented: "L31+L32",
     },
     {
       id: 9,
       name: "L32",
-      diagramLabel: "L32",
       label: "L32",
       type: "Plano-Concave Negative",
       nd: 1.60342,
       vd: 38.03,
-      fl: -69.619834,
+      focalLengthMm: -69.619834,
       glass: "603380 — F5/TIM5 flint class",
       apd: false,
       role: "Negative plano-concave cemented partner to L31.",
+      diagramLabel: "L32",
       cemented: "L31+L32",
     },
     {
       id: 10,
       name: "L33",
-      diagramLabel: "L33",
       label: "L33",
       type: "Negative Meniscus",
       nd: 1.51633,
       vd: 64.14,
-      fl: -222.939993,
+      focalLengthMm: -222.939993,
       glass: "516641 — crown class",
       apd: false,
       role: "Rear negative meniscus of fixed G3.",
+      diagramLabel: "L33",
     },
   ],
 
   /* ── Surface prescription: Example 1 (PP plate S20–S21 in `rearPlates`) ── */
   surfaces: [
-    { label: "1", R: 32.3262, d: 4.23, nd: 1.95375, elemId: 1, sd: 16.6 },
-    { label: "2", R: 66.8687, d: 0.13, nd: 1.0, elemId: 0, sd: 16.6 },
-    { label: "3", R: 21.5069, d: 5.21, nd: 1.48749, elemId: 2, sd: 13.4 },
-    { label: "4", R: 111.0969, d: 0.05, nd: 1.0, elemId: 0, sd: 13.4 },
-    { label: "5", R: 92.4044, d: 1.6, nd: 1.69895, elemId: 3, sd: 13.15 },
-    { label: "6", R: 15.4525, d: 7.908, nd: 1.0, elemId: 0, sd: 9.0 },
-    { label: "STO", R: 1e15, d: 10.211, nd: 1.0, elemId: 0, sd: 7.8158748586 },
-    { label: "8", R: -18.1789, d: 2.36, nd: 1.59282, elemId: 4, sd: 10.4 },
-    { label: "9", R: -15.633, d: 1.05, nd: 1.5927, elemId: 5, sd: 10.4 },
-    { label: "10", R: -39.9853, d: 0.68, nd: 1.0, elemId: 0, sd: 12.0 },
-    { label: "11", R: -59.5014, d: 2.96, nd: 1.788, elemId: 6, sd: 13.6 },
-    { label: "12", R: -32.4883, d: 0.1, nd: 1.0, elemId: 0, sd: 13.6 },
-    { label: "13", R: -93.3949, d: 3.65, nd: 1.816, elemId: 7, sd: 14.9 },
-    { label: "14", R: -32.4022, d: 1.26, nd: 1.0, elemId: 0, sd: 14.9 },
-    { label: "15", R: 200.7689, d: 6.93, nd: 1.6968, elemId: 8, sd: 18.9 },
-    { label: "16", R: -42.01, d: 1.47, nd: 1.60342, elemId: 9, sd: 18.9 },
-    { label: "17", R: 1e15, d: 4.87, nd: 1.0, elemId: 0, sd: 20.8 },
-    { label: "18", R: -85.0921, d: 1.44, nd: 1.51633, elemId: 10, sd: 21.0 },
+    { label: "1", R: 32.3262, d: 4.23, sd: 16.6, medium: 1 },
+    { label: "2", R: 66.8687, d: 0.13, sd: 16.6 },
+    { label: "3", R: 21.5069, d: 5.21, sd: 13.4, medium: 2 },
+    { label: "4", R: 111.0969, d: 0.05, sd: 13.4 },
+    { label: "5", R: 92.4044, d: 1.6, sd: 13.15, medium: 3 },
+    { label: "6", R: 15.4525, d: 7.908, sd: 9.0 },
+    { label: "STO", R: "flat", d: 10.211 },
+    { label: "8", R: -18.1789, d: 2.36, sd: 10.4, medium: 4 },
+    { label: "9", R: -15.633, d: 1.05, sd: 10.4, medium: 5 },
+    { label: "10", R: -39.9853, d: 0.68, sd: 12.0 },
+    { label: "11", R: -59.5014, d: 2.96, sd: 13.6, medium: 6 },
+    { label: "12", R: -32.4883, d: 0.1, sd: 13.6 },
+    { label: "13", R: -93.3949, d: 3.65, sd: 14.9, medium: 7 },
+    { label: "14", R: -32.4022, sd: 14.9 },
+    { label: "15", R: 200.7689, d: 6.93, sd: 18.9, medium: 8 },
+    { label: "16", R: -42.01, d: 1.47, sd: 18.9, medium: 9 },
+    { label: "17", R: "flat", d: 4.87, sd: 20.8 },
+    { label: "18", R: -85.0921, d: 1.44, sd: 21.0, medium: 10 },
     // Last surface: patent gap to the PP plate
-    { label: "19", R: -328.1791, d: 30.0, nd: 1.0, elemId: 0, sd: 21.0 },
+    { label: "19", R: -328.1791, d: 30.0, sd: 21.0 },
   ],
+
+  focus: {
+    closeFocusM: 0.5,
+    description:
+      "Front-group focus: G1, the stop, and G2 move together toward the object; G3 stays fixed. The 0.50 m endpoint is a constrained reconstruction: D14 increases from 1.26 to 14.167 mm, giving 12.907 mm travel and approximately 0.171× magnification.",
+  },
+
+  /* (moved from var) ── Focus: constrained one-degree-of-freedom reconstruction ── */
+  gaps: { "14": { label: "D14", values: [[1.26, 14.1674477062]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.87, fStops: [2.87, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 9 },
 
   /* ── Filter/protective plate PP (patent Table 1 surfaces 20–21): traced, not drawn ── */
   rearPlates: [
@@ -243,14 +259,6 @@ const LENS_DATA = {
     },
   ],
 
-  asph: {},
-
-  /* ── Focus: constrained one-degree-of-freedom reconstruction ── */
-  var: {
-    "14": [1.26, 14.1674477062],
-  },
-  varLabels: [["14", "D14"]],
-
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "6" },
     { text: "G2", fromSurface: "8", toSurface: "14" },
@@ -261,18 +269,8 @@ const LENS_DATA = {
     { text: "L31+L32", fromSurface: "15", toSurface: "17" },
   ],
 
-  closeFocusM: 0.5,
-  focusDescription:
-    "Front-group focus: G1, the stop, and G2 move together toward the object; G3 stays fixed. The 0.50 m endpoint is a constrained reconstruction: D14 increases from 1.26 to 14.167 mm, giving 12.907 mm travel and approximately 0.171× magnification.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.87,
-  fstopSeries: [2.87, 4, 5.6, 8, 11, 16, 22, 32],
-  apertureBlades: 9,
-  maxFstop: 32,
-
   /* ── Layout ── */
-  yScFill: 0.45,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.45 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

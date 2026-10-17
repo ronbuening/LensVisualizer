@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
@@ -19,7 +19,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  traditional reflected Newton-ring surface-height convention             ║
  * ║  (one fringe = λ/2) and the Hg green reference λ = 546.07 nm. The       ║
  * ║  effective S2 edge is independently solved by exact meridional tracing   ║
- * ║  of the ray that reaches the modeled f/4.5 physical stop edge:           ║
+ * ║  of the ray that reached the original paraxial f/4.5 stop edge:          ║
  * ║  y = 22.649291126 mm. This gives A8 = -7.885176251e-14 mm^-7 and       ║
  * ║  -5.460700 µm departure at that edge.                                    ║
  * ║  This coefficient is a disclosed modeling reconstruction, not a value     ║
@@ -28,8 +28,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  STOP MODEL: The patent gives no stop station. Figure 7 shows the         ║
  * ║  conventional Tessar group layout but no iris, so the 12.3 mm S4→S5      ║
  * ║  air gap is split at its neutral midpoint: 6.15 mm before STO and         ║
- * ║  6.15 mm after. The physical stop SD = 19.708728064 mm is solved         ║
- * ║  paraxially so the modeled entrance pupil gives exactly f/4.5.            ║
+ * ║  6.15 mm after. The stop radius is derived from the design f-number.      ║
  * ║  Stop-location sensitivity within exact-trace-valid interior stations     ║
  * ║  changes reconstructed |A8| by about -1.09% to +2.66% vs the midpoint.   ║
  * ║                                                                            ║
@@ -39,7 +38,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  it is not a modeled MFD. View-camera bellows/standard translation lies ║
  * ║  outside the lens model.                                                   ║
  * ║                                                                            ║
- * ║  SEMI-DIAMETERS: None are published. S2A is the reconstructed effective  ║
+ * ║  SEMI-DIAMETERS: None are published. S2A was the reconstructed effective ║
  * ║  f/4.5 edge used by the patent's 20-ring criterion. The other clear      ║
  * ║  apertures are conservative inferences from the exact wide-open axial     ║
  * ║  marginal envelope and Figure 7 proportions. Edge thickness, actual rim   ║
@@ -56,23 +55,27 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "fujifilm-fujinar-210mm-f45",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINAR 210mm f/4.5",
   subtitle: "JP S29-2685 B, Example 1 — constrained A8 reconstruction from the published ~20-ring edge criterion",
-  specs: ["4 ELEMENTS / 3 GROUPS", "PATENT f′ = 210 mm", "COMPUTED EFL 210.947 mm", "F/4.5", "1 ASPHERICAL SURFACE"],
 
-  focalLengthMarketing: 210,
-  focalLengthDesign: 210.94657188568956,
-  apertureMarketing: 4.5,
-  apertureDesign: 4.5,
-  lensMounts: ["large-format-lens-board"],
-  patentNumber: "JP S29-2685 B",
-  patentAuthors: ["Ryoichi Doi"],
-  patentAssignees: ["Fuji Photo Film Co., Ltd."],
-  patentYear: 1954,
-  elementCount: 4,
-  groupCount: 3,
+  catalog: {
+    lensMounts: ["large-format-lens-board"],
+    specs: ["4 ELEMENTS / 3 GROUPS", "PATENT f′ = 210 mm", "COMPUTED EFL 210.947 mm", "F/4.5", "1 ASPHERICAL SURFACE"],
+    elementCount: 4,
+    groupCount: 3,
+    focalLengthMm: { marketing: 210, design: 210.94657188568956 },
+    fNumber: { marketing: 4.5, design: 4.5 },
+  },
+
+  source: {
+    patentNumber: "JP S29-2685 B",
+    patentYear: 1954,
+    authors: ["Ryoichi Doi"],
+    assignees: ["Fuji Photo Film Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -82,7 +85,7 @@ const LENS_DATA = {
       label: "Element 1",
       type: "Plano-Convex Positive",
       nd: 1.6126,
-      fl: 94.67841984982043,
+      focalLengthMm: 94.67841984982043,
       glass: "Unmatched (N=1.6126; Abbe number and spectral reference not published)",
       role: "Front positive collector; its plane rear face is the deliberately eighth-order aspherical surface.",
     },
@@ -92,7 +95,7 @@ const LENS_DATA = {
       label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.5783,
-      fl: -64.61181654876765,
+      focalLengthMm: -64.61181654876765,
       glass: "Unmatched (N=1.5783; Abbe number and spectral reference not published)",
       role: "Air-spaced negative middle element of the Tessar-type front section.",
     },
@@ -102,10 +105,10 @@ const LENS_DATA = {
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.5293,
-      fl: -92.27818929622974,
+      focalLengthMm: -92.27818929622974,
       glass: "Unmatched (N=1.5293; Abbe number and spectral reference not published)",
-      cemented: "D1",
       role: "Negative front component of the cemented rear positive group.",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -113,10 +116,10 @@ const LENS_DATA = {
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.6227,
-      fl: 54.970937052383185,
+      focalLengthMm: 54.970937052383185,
       glass: "Unmatched (N=1.6227; Abbe number and spectral reference not published)",
-      cemented: "D1",
       role: "Strong positive rear component of the cemented rear group.",
+      cemented: "D1",
     },
   ],
 
@@ -125,32 +128,33 @@ const LENS_DATA = {
    * The original S4→S5 air gap is 12.3 mm and is preserved as 6.15 + STO + 6.15 mm.
    * S7 d is the independently computed paraxial infinity-image BFD, not a patent-published spacing.
    */
+  /* (moved from asph) ── Constrained surface-2 reconstruction ── */
   surfaces: [
-    { label: "1", R: 58.0, d: 8.4, nd: 1.6126, elemId: 1, sd: 24.0 },
-    { label: "2A", R: 1e15, d: 9.6, nd: 1.0, elemId: 0, sd: 22.649291126274083 },
-    { label: "3", R: -129.4, d: 3.8, nd: 1.5783, elemId: 2, sd: 21.5 },
-    { label: "4", R: 53.1, d: 6.15, nd: 1.0, elemId: 0, sd: 20.5 },
-    { label: "STO", R: 1e15, d: 6.15, nd: 1.0, elemId: 0, sd: 19.708728063871487 },
-    { label: "5", R: -409.9, d: 3.2, nd: 1.5293, elemId: 3, sd: 21.5 },
-    { label: "6", R: 55.6, d: 11.0, nd: 1.6227, elemId: 4, sd: 21.5 },
-    { label: "7", R: -82.3, d: 184.399752680287, nd: 1.0, elemId: 0, sd: 22.0 },
+    { label: "1", R: 58.0, d: 8.4, sd: 24.0, medium: 1 },
+    {
+      label: "2A",
+      R: "flat",
+      d: 9.6,
+      sd: 22.649291126274083,
+      asphere: { K: 0, A4: 0, A6: 0, A8: -7.885176251421168e-14, A10: 0, A12: 0, A14: 0 },
+    },
+    { label: "3", R: -129.4, d: 3.8, sd: 21.5, medium: 2 },
+    { label: "4", R: 53.1, d: 6.15, sd: 20.5 },
+    { label: "STO", R: "flat", d: 6.15 },
+    { label: "5", R: -409.9, d: 3.2, sd: 21.5, medium: 3 },
+    { label: "6", R: 55.6, d: 11.0, sd: 21.5, medium: 4 },
+    { label: "7", R: -82.3, d: 184.399752680287, sd: 22.0 },
   ],
 
-  /* ── Constrained surface-2 reconstruction ── */
-  asph: {
-    "2A": {
-      K: 0,
-      A4: 0,
-      A6: 0,
-      A8: -7.885176251421168e-14,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 1.0,
+    description:
+      "Infinity prescription only. The patent publishes no internal focus motion or minimum focus distance. The disabled 1.00 m endpoint is a placeholder; external view-camera bellows travel is not modeled.",
   },
 
-  var: {},
-  varLabels: [],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 4.5, fStops: [4.5, 5.6, 8, 11, 16] },
 
   groups: [
     { text: "G1 (+)", fromSurface: "1", toSurface: "2A" },
@@ -159,16 +163,7 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "D1", fromSurface: "5", toSurface: "7" }],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 1.0,
-  focusDescription:
-    "Infinity prescription only. The patent publishes no internal focus motion or minimum focus distance. The disabled 1.00 m endpoint is a placeholder; external view-camera bellows travel is not modeled.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 4.5,
-  fstopSeries: [4.5, 5.6, 8, 11, 16],
-
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

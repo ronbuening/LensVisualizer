@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -42,32 +42,36 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "hasselblad-xcd-90-f25-v",
   maker: "Hasselblad",
   name: "HASSELBLAD XCD 90mm f/2.5 V",
   subtitle: "JP 2022-99402 A Example 1 — Panasonic IP Management / Nishioka",
-  specs: [
-    "9 ELEMENTS / 6 GROUPS",
-    "f ≈ 90.0 mm",
-    "F/2.5",
-    "2ω ≈ 34°",
-    "2 ASPHERICAL SURFACES (1 ELEMENT)",
-    "1 ED ELEMENT",
-  ],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: 90,
-  focalLengthDesign: 90.0,
-  apertureMarketing: 2.5,
-  apertureDesign: 2.56,
-  lensMounts: ["hasselblad-xcd"],
-  imageFormat: "44x33",
-  patentNumber: "JP 2022-099402 A",
-  patentAuthors: ["Takehiro Nishioka"],
-  patentAssignees: ["Panasonic Intellectual Property Management Co., Ltd."],
-  patentYear: 2022,
-  elementCount: 9,
-  groupCount: 6,
+  catalog: {
+    lensMounts: ["hasselblad-xcd"],
+    imageFormat: "44x33",
+    specs: [
+      "9 ELEMENTS / 6 GROUPS",
+      "f ≈ 90.0 mm",
+      "F/2.5",
+      "2ω ≈ 34°",
+      "2 ASPHERICAL SURFACES (1 ELEMENT)",
+      "1 ED ELEMENT",
+    ],
+    elementCount: 9,
+    groupCount: 6,
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: 90, design: 90.0 },
+    fNumber: { marketing: 2.5, design: 2.56 },
+  },
+
+  source: {
+    patentNumber: "JP 2022-099402 A",
+    patentYear: 2022,
+    authors: ["Takehiro Nishioka"],
+    assignees: ["Panasonic Intellectual Property Management Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -78,7 +82,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.72916,
       vd: 54.7,
-      fl: 73.9,
+      focalLengthMm: 73.9,
       glass: "S-LAL18 (OHARA)",
       apd: false,
       role: "Front positive collector; lanthanum crown distributes converging power with moderate curvatures.",
@@ -90,7 +94,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.6,
-      fl: 69.7,
+      focalLengthMm: 69.7,
       glass: "S-FPL51 (OHARA)",
       apd: "inferred",
       apdNote: "ED fluorophosphate; anomalous positive ΔPgF enables secondary-spectrum reduction.",
@@ -104,7 +108,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.77047,
       vd: 29.7,
-      fl: -36.2,
+      focalLengthMm: -36.2,
       glass: "NBFD29 (HOYA, 770297)",
       apd: false,
       apdNote: "Patent-published PgF = 0.5951; condition (5) value = +0.0003, near the Schott normal line.",
@@ -118,7 +122,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.77047,
       vd: 29.7,
-      fl: 76.4,
+      focalLengthMm: 76.4,
       glass: "NBFD29 (HOYA, 770297)",
       apd: false,
       apdNote:
@@ -132,7 +136,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.85896,
       vd: 22.7,
-      fl: 31.1,
+      focalLengthMm: 31.1,
       glass: "S-NPH5 (OHARA)",
       apd: false,
       role: "Ultra-high-dispersion positive element in focus group G2; reverse-dispersion achromatic pairing per conditions (1)–(2).",
@@ -145,7 +149,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.91082,
       vd: 35.2,
-      fl: -18.4,
+      focalLengthMm: -18.4,
       glass: "TAFD35 (HOYA, 911353; patent rounds vd to 35.2)",
       apd: false,
       role: "Negative element of focus doublet G2; high index per condition (3) controls aberration sensitivity during focus travel.",
@@ -158,7 +162,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6968,
       vd: 55.5,
-      fl: 29.0,
+      focalLengthMm: 29.0,
       glass: "S-LAL14 (OHARA)",
       apd: false,
       role: "Most powerful positive element; anchors G3 relay function.",
@@ -171,7 +175,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus",
       nd: 1.84666,
       vd: 23.8,
-      fl: -170.9,
+      focalLengthMm: -170.9,
       glass: "S-TIH53 (OHARA)",
       apd: false,
       role: "Achromatising negative in G3 relay doublet; weakly negative, partial colour cancellation is deliberate.",
@@ -184,43 +188,103 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.68863,
       vd: 31.2,
-      fl: -45.8,
+      focalLengthMm: -45.8,
       glass: "E-FD8 (HOYA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "PGM aspherical field flattener; both surfaces aspherical. Satisfies condition (7): fG3n/f = −0.51.",
     },
   ],
 
+  media: [{ id: "m1", nd: 1.56732 }],
+
   /* ── Surfaces ── */
+  /* (moved from asph) ── Aspherical coefficients ──
+   *  Patent convention (¶0180): Z = h²/r / [1+√(1−(1+κ)(h/r)²)] + Σ An·h^n
+   *  where κ = K (standard conic constant). Coefficients scaled from patent
+   *  via An_prod = An_patent / k^(n−1) where k = 90/71.2785.
+   */
   surfaces: [
     // ── G1: Front collector (L1, L2–L3 cemented, L4) ──
-    { label: "1", R: 47.249, d: 6.67842, nd: 1.72916, elemId: 1, sd: 22.5 },
-    { label: "2", R: 361.532, d: 0.20202, nd: 1.0, elemId: 0, sd: 22.0 },
-    { label: "3", R: 36.223, d: 5.98712, nd: 1.497, elemId: 2, sd: 19.0 },
-    { label: "4", R: -741.931, d: 0.01263, nd: 1.56732, elemId: 0, sd: 19.0 }, // L2–L3 cement
-    { label: "5", R: -741.931, d: 1.41417, nd: 1.77047, elemId: 3, sd: 19.0 },
-    { label: "6", R: 28.998, d: 4.21347, nd: 1.0, elemId: 0, sd: 20.0 },
-    { label: "7", R: 40.311, d: 3.35487, nd: 1.77047, elemId: 4, sd: 18.3 },
-    { label: "8", R: 123.322, d: 7.15672, nd: 1.0, elemId: 0, sd: 18.3 },
+    { label: "1", R: 47.249, d: 6.67842, sd: 22.5, medium: 1 },
+    { label: "2", R: 361.532, d: 0.20202, sd: 22.0 },
+    { label: "3", R: 36.223, d: 5.98712, sd: 19.0, medium: 2 },
+    { label: "4", R: -741.931, d: 0.01263, sd: 19.0, medium: "m1" }, // L2–L3 cement
+    { label: "5", R: -741.931, d: 1.41417, sd: 19.0, medium: 3 },
+    { label: "6", R: 28.998, d: 4.21347, sd: 20.0 },
+    { label: "7", R: 40.311, d: 3.35487, sd: 18.3, medium: 4 },
+    { label: "8", R: 123.322, d: 7.15672, sd: 18.3 },
 
     // ── Aperture stop ──
-    { label: "STO", R: 1e15, d: 2.52329, nd: 1.0, elemId: 0, sd: 19.0 },
+    { label: "STO", R: "flat" },
 
     // ── G2: Inner-focus group (L5–L6 cemented) ──
-    { label: "9", R: 194.674, d: 4.02685, nd: 1.85896, elemId: 5, sd: 13.7 },
-    { label: "10", R: -30.645, d: 0.01263, nd: 1.56732, elemId: 0, sd: 13.7 }, // L5–L6 cement
-    { label: "11", R: -30.645, d: 0.8081, nd: 1.91082, elemId: 6, sd: 13.7 },
-    { label: "12", R: 37.409, d: 15.28214, nd: 1.0, elemId: 0, sd: 15.2 },
+    { label: "9", R: 194.674, d: 4.02685, sd: 13.7, medium: 5 },
+    { label: "10", R: -30.645, d: 0.01263, sd: 13.7, medium: "m1" }, // L5–L6 cement
+    { label: "11", R: -30.645, d: 0.8081, sd: 13.7, medium: 6 },
+    { label: "12", R: 37.409, sd: 15.2 },
 
     // ── G3: Rear relay (L7–L8 cemented, L9 aspherical) ──
-    { label: "13", R: 56.176, d: 8.6344, nd: 1.6968, elemId: 7, sd: 17.3 },
-    { label: "14", R: -29.539, d: 0.01263, nd: 1.56732, elemId: 0, sd: 17.3 }, // L7–L8 cement
-    { label: "15", R: -29.539, d: 9.85437, nd: 1.84666, elemId: 8, sd: 17.3 },
-    { label: "16", R: -42.79, d: 15.54364, nd: 1.0, elemId: 0, sd: 22.0 },
-    { label: "17A", R: -20.856, d: 3.03037, nd: 1.68863, elemId: 9, sd: 17.7 },
+    { label: "13", R: 56.176, d: 8.6344, sd: 17.3, medium: 7 },
+    { label: "14", R: -29.539, d: 0.01263, sd: 17.3, medium: "m1" }, // L7–L8 cement
+    { label: "15", R: -29.539, d: 9.85437, sd: 17.3, medium: 8 },
+    { label: "16", R: -42.79, d: 15.54364, sd: 22.0 },
+    {
+      label: "17A",
+      R: -20.856,
+      d: 3.03037,
+      sd: 17.7,
+      medium: 9,
+      asphere: {
+        K: -5.6767e-2,
+        A4: -1.85467e-6,
+        A6: 1.54979e-7,
+        A8: -6.78257e-10,
+        A10: 9.87536e-13,
+        A12: 5.00804e-15,
+        A14: -2.09469e-17,
+        A16: 2.36783e-20,
+      },
+    },
     // Last surface: patent d19 = 10.679 (×1.26265) physical gap to plate P
-    { label: "18A", R: -65.154, d: 13.48387, nd: 1.0, elemId: 0, sd: 20.4 },
+    {
+      label: "18A",
+      R: -65.154,
+      d: 13.48387,
+      sd: 20.4,
+      asphere: {
+        K: 0,
+        A4: -1.32574e-5,
+        A6: 1.17941e-7,
+        A8: -5.75862e-10,
+        A10: 1.52356e-12,
+        A12: -1.88892e-15,
+        A14: 4.49279e-19,
+        A16: 6.90366e-22,
+      },
+    },
   ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.67,
+    description:
+      "Inner focus via G2 (L5–L6 cemented doublet). G2 translates toward image during close focus; G1, stop, and G3 remain fixed. Linear stepping motor drive.",
+  },
+
+  /* (moved from var) ── Variable air spacings (focus) ──
+   *  Inner focus: G2 (L5–L6) moves toward image.
+   *  G1 and G3 fixed. Two variable gaps:
+   *    STO: gap from stop to L5 front — expands during close focus.
+   *    12:  gap from L6 rear to L7 front — compresses during close focus.
+   *  Close-focus values computed via brentq for MFD = 0.67 m (production).
+   */
+  gaps: {
+    STO: { label: "D(STO)", values: [[2.52329, 11.90774]] },
+    "12": { label: "D12", values: [[15.28214, 5.89769]] },
+  },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.56, fStops: [2.56, 2.8, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32 },
 
   /* ── Parallel plate P (patent Table 1A surfaces 20–21): traced, not drawn ── */
   rearPlates: [
@@ -235,77 +299,20 @@ const LENS_DATA = {
     },
   ],
 
-  /* ── Aspherical coefficients ──
-   *  Patent convention (¶0180): Z = h²/r / [1+√(1−(1+κ)(h/r)²)] + Σ An·h^n
-   *  where κ = K (standard conic constant). Coefficients scaled from patent
-   *  via An_prod = An_patent / k^(n−1) where k = 90/71.2785.
-   */
-  asph: {
-    "17A": {
-      K: -5.6767e-2,
-      A4: -1.85467e-6,
-      A6: 1.54979e-7,
-      A8: -6.78257e-10,
-      A10: 9.87536e-13,
-      A12: 5.00804e-15,
-      A14: -2.09469e-17,
-      A16: 2.36783e-20,
-    },
-    "18A": {
-      K: 0,
-      A4: -1.32574e-5,
-      A6: 1.17941e-7,
-      A8: -5.75862e-10,
-      A10: 1.52356e-12,
-      A12: -1.88892e-15,
-      A14: 4.49279e-19,
-      A16: 6.90366e-22,
-    },
-  },
-
-  /* ── Variable air spacings (focus) ──
-   *  Inner focus: G2 (L5–L6) moves toward image.
-   *  G1 and G3 fixed. Two variable gaps:
-   *    STO: gap from stop to L5 front — expands during close focus.
-   *    12:  gap from L6 rear to L7 front — compresses during close focus.
-   *  Close-focus values computed via brentq for MFD = 0.67 m (production).
-   */
-  var: {
-    STO: [2.52329, 11.90774],
-    "12": [15.28214, 5.89769],
-  },
-
-  varLabels: [
-    ["STO", "D(STO)"],
-    ["12", "D12"],
-  ],
-
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "G1 (+)", fromSurface: "1", toSurface: "8" },
     { text: "G2 (−)", fromSurface: "9", toSurface: "12" },
     { text: "G3 (+)", fromSurface: "13", toSurface: "18A" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "3", toSurface: "6" },
     { text: "D2", fromSurface: "9", toSurface: "12" },
     { text: "D3", fromSurface: "13", toSurface: "16" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.67,
-  focusDescription:
-    "Inner focus via G2 (L5–L6 cemented doublet). G2 translates toward image during close focus; G1, stop, and G3 remain fixed. Linear stepping motor drive.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.56,
-  fstopSeries: [2.56, 2.8, 4, 5.6, 8, 11, 16, 22, 32],
-  maxFstop: 32,
-
   /* ── Layout tuning ── */
-  scFill: 0.52,
-  yScFill: 0.32,
-} satisfies LensDataInput;
+  layout: { scFill: 0.52, yScFill: 0.32 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -34,24 +34,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "zeiss-olympia-sonnar-180f28-contarex",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS OLYMPIA-SONNAR 180mm f/2.8",
   subtitle: "DE 1,268,404 EXAMPLE 2 — KONSCHACK & LANGE / CARL ZEISS",
-  specs: ["4 ELEMENTS / 4 GROUPS", "f ≈ 180.1 mm", "F/2.8", "2ω ≈ 13.7°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata fields ── */
-  focalLengthMarketing: 180,
-  focalLengthDesign: 180.1,
-  apertureMarketing: 2.8,
-  lensMounts: ["zeiss-contarex"],
-  imageFormat: "135-full-frame",
-  patentNumber: "DE 1,268,404",
-  patentAuthors: ["Erwin Konschack", "Günther Lange"],
-  patentAssignees: ["Carl-Zeiss-Stiftung"],
-  patentYear: 1968,
-  elementCount: 4,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["zeiss-contarex"],
+    imageFormat: "135-full-frame",
+    specs: ["4 ELEMENTS / 4 GROUPS", "f ≈ 180.1 mm", "F/2.8", "2ω ≈ 13.7°", "ALL SPHERICAL"],
+    elementCount: 4,
+    groupCount: 4,
+    /* ── Explicit metadata fields ── */
+    focalLengthMm: { marketing: 180, design: 180.1 },
+    fNumber: { marketing: 2.8 },
+  },
+
+  source: {
+    patentNumber: "DE 1,268,404",
+    patentYear: 1968,
+    authors: ["Erwin Konschack", "Günther Lange"],
+    assignees: ["Carl-Zeiss-Stiftung"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -62,7 +67,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62041,
       vd: 60.29,
-      fl: 125.8,
+      focalLengthMm: 125.8,
       glass: "SK16 (Schott)",
       apd: false,
       role: "Front positive — near-plano-convex form (r2 ≈ flat); convex face toward subject minimises spherical aberration",
@@ -74,7 +79,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62041,
       vd: 60.29,
-      fl: 174.0,
+      focalLengthMm: 174.0,
       glass: "SK16 (Schott)",
       apd: false,
       role: "Second positive meniscus — adds converging power to front group; concave side faces rear",
@@ -86,7 +91,7 @@ const LENS_DATA = {
       type: "Plano-Concave Negative",
       nd: 1.7847,
       vd: 26.1,
-      fl: -52.2,
+      focalLengthMm: -52.2,
       glass: "SF56A / SF11 (Schott, 785261)",
       apd: false,
       role: "Strong negative diverger — provides telephoto compression, primary chromatic correction, and Petzval flattening",
@@ -98,7 +103,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7552,
       vd: 27.53,
-      fl: 151.5,
+      focalLengthMm: 151.5,
       glass: "SF4 (Schott)",
       apd: false,
       role: "Rear positive in dense flint glass — unconventional choice for Gauss error (secondary spectrum) control",
@@ -106,26 +111,30 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 76.014, d: 15.732, nd: 1.62041, elemId: 1, sd: 33.0 }, // L1 front
-    { label: "2", R: 2658.366, d: 0.054, nd: 1.0, elemId: 0, sd: 31.0 }, // L1 rear → air
-    { label: "3", R: 60.381, d: 10.872, nd: 1.62041, elemId: 2, sd: 30.5 }, // L2 front
-    { label: "4", R: 127.611, d: 14.904, nd: 1.0, elemId: 0, sd: 27.0 }, // L2 rear → air
-    { label: "5", R: 1e15, d: 5.814, nd: 1.7847, elemId: 3, sd: 20.5 }, // L3 front (flat)
-    { label: "6", R: 40.9392, d: 17.0, nd: 1.0, elemId: 0, sd: 19.0 }, // L3 rear → air
-    { label: "STO", R: 1e15, d: 31.33, nd: 1.0, elemId: 0, sd: 16.4 }, // Aperture stop — position inferred from Fig. 2
-    { label: "7", R: 344.448, d: 4.932, nd: 1.7552, elemId: 4, sd: 15.0 }, // L4 front
-    { label: "8", R: -170.1828, d: 74.268, nd: 1.0, elemId: 0, sd: 14.5 }, // L4 rear → image (BFD)
+    { label: "1", R: 76.014, d: 15.732, sd: 33.0, medium: 1 }, // L1 front
+    { label: "2", R: 2658.366, d: 0.054, sd: 31.0 }, // L1 rear → air
+    { label: "3", R: 60.381, d: 10.872, sd: 30.5, medium: 2 }, // L2 front
+    { label: "4", R: 127.611, d: 14.904, sd: 27.0 }, // L2 rear → air
+    { label: "5", R: "flat", d: 5.814, sd: 20.5, medium: 3 }, // L3 front (flat)
+    { label: "6", R: 40.9392, d: 17.0, sd: 19.0 }, // L3 rear → air
+    { label: "STO", R: "flat", d: 31.33 }, // Aperture stop — position inferred from Fig. 2
+    { label: "7", R: 344.448, d: 4.932, sd: 15.0, medium: 4 }, // L4 front
+    { label: "8", R: -170.1828, sd: 14.5 }, // L4 rear → image (BFD)
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
-
-  /* ── Variable air spacings (unit focus — BFD only) ── */
-  var: {
-    "8": [74.268, 96.67],
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 1.8,
+    description: "Unit focus — entire four-element assembly translates forward via quick-focusing helicoid.",
   },
-  varLabels: [["8", "BF"]],
+
+  /* (moved from var) ── Variable air spacings (unit focus — BFD only) ── */
+  gaps: { "8": { label: "BF", values: [[74.268, 96.67]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22] },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -134,17 +143,8 @@ const LENS_DATA = {
   ],
   doublets: [],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 1.8,
-  focusDescription: "Unit focus — entire four-element assembly translates forward via quick-focusing helicoid.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
-
   /* ── Layout tuning ── */
-  scFill: 0.5,
-  yScFill: 0.3,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.3 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

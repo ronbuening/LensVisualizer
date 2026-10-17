@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
@@ -15,15 +15,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  STOP MODEL: The patent publishes f/1.4 but no physical stop station or   ║
  * ║  diameter. One modeled STO is inserted in the central r5→r6 air lens.     ║
  * ║  Its station is inferred by balancing the current shared-band gap-sag     ║
- * ║  margin for the modeled 10.8 mm inner-component semi-diameters. Its       ║
- * ║  11.522193288 mm semi-diameter is paraxially calibrated to the published  ║
- * ║  f/1.4 target. This is not an independently verified production iris.     ║
+ * ║  margin for the modeled 10.8 mm inner-component semi-diameters. The stop  ║
+ * ║  radius is derived from the design f-number; this is not an independently ║
+ * ║  verified production iris.                                                ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS: No clear apertures are published. The authored SDs are   ║
  * ║  modeled values constrained by exact meridional d-line tracing of the     ║
  * ║  default on-axis fan and a ±14.05° off-axis construction sample, plus     ║
  * ║  positive edge thickness, actual rim slope, and shared-band gap geometry. ║
- * ║  They are not production barrel dimensions. The calibrated full nominal  ║
+ * ║  They are not production barrel dimensions. The derived full nominal      ║
  * ║  pupil is not claimed to be independently clear at every rim; the Stage 2 ║
  * ║  audit records this source/model limitation explicitly.                   ║
  * ║                                                                            ║
@@ -43,127 +43,135 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "zeiss-biotar-50f14",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA BIOTAR 50mm f/1.4",
   subtitle: "US 1,786,916 Example 2 — 0.5× patent scale; Biotar correlation qualified",
-  specs: ["6 ELEMENTS / 4 GROUPS", "f = 49.9567 mm", "F/1.4", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 50,
-  focalLengthDesign: 49.95674516822688,
-  apertureMarketing: 1.4,
-  apertureDesign: 1.4,
-  patentNumber: "US 1,786,916",
-  patentAuthors: ["Willy Merté"],
-  patentAssignees: ["Carl-Zeiss-Stiftung"],
-  patentYear: 1930,
-  elementCount: 6,
-  groupCount: 4,
+  catalog: {
+    specs: ["6 ELEMENTS / 4 GROUPS", "f = 49.9567 mm", "F/1.4", "ALL-SPHERICAL"],
+    elementCount: 6,
+    groupCount: 4,
+    focalLengthMm: { marketing: 50, design: 49.95674516822688 },
+    fNumber: { marketing: 1.4, design: 1.4 },
+  },
+
+  source: {
+    patentNumber: "US 1,786,916",
+    patentYear: 1930,
+    authors: ["Willy Merté"],
+    assignees: ["Carl-Zeiss-Stiftung"],
+  },
 
   /* ── Elements ── */
   elements: [
     {
       id: 1,
       name: "L1",
-      diagramLabel: "I",
       label: "Element I",
       type: "Positive Meniscus",
       nd: 1.64238,
       vd: 48.0,
       indexReference: "d",
-      fl: 86.45379603250042,
+      focalLengthMm: 86.45379603250042,
       glass: "BAF9 — barium-flint dispersion proxy (vintage 642480; supplier unproven)",
       role: "Front collective meniscus forming the first positive component.",
+      diagramLabel: "I",
     },
     {
       id: 2,
       name: "L2",
-      diagramLabel: "II",
       label: "Element II",
       type: "Biconvex Positive",
       nd: 1.62306,
       vd: 56.9,
       indexReference: "d",
-      fl: 34.77731009181846,
+      focalLengthMm: 34.77731009181846,
       glass: "N-SK10 — dense-crown dispersion proxy (623569; supplier unproven)",
       role: "Positive member of the first inner cemented component.",
+      diagramLabel: "II",
       cemented: "D1",
     },
     {
       id: 3,
       name: "L3",
-      diagramLabel: "III",
       label: "Element III",
       type: "Biconcave Negative",
       nd: 1.57566,
       vd: 41.2,
       indexReference: "d",
-      fl: -23.952610833271063,
+      focalLengthMm: -23.952610833271063,
       glass: "QF3 — light-flint dispersion proxy (vintage 576412; supplier unproven)",
       role: "Negative member that makes the first inner cemented component net negative.",
+      diagramLabel: "III",
       cemented: "D1",
     },
     {
       id: 4,
       name: "L4",
-      diagramLabel: "IV",
       label: "Element IV",
       type: "Biconcave Negative",
       nd: 1.6727,
       vd: 32.2,
       indexReference: "d",
-      fl: -15.87492598917335,
+      focalLengthMm: -15.87492598917335,
       glass: "673322 — SF5-class dense flint (supplier unproven)",
       role: "Dense-flint negative member of the second inner cemented component.",
+      diagramLabel: "IV",
       cemented: "D2",
     },
     {
       id: 5,
       name: "L5",
-      diagramLabel: "V",
       label: "Element V",
       type: "Biconvex Positive",
       nd: 1.64238,
       vd: 48.0,
       indexReference: "d",
-      fl: 21.919537208596626,
+      focalLengthMm: 21.919537208596626,
       glass: "BAF9 — barium-flint dispersion proxy (vintage 642480; supplier unproven)",
       role: "Positive member paired with L4; the complete second inner component remains net negative.",
+      diagramLabel: "V",
       cemented: "D2",
     },
     {
       id: 6,
       name: "L6",
-      diagramLabel: "VI",
       label: "Element VI",
       type: "Biconvex Positive",
       nd: 1.64238,
       vd: 48.0,
       indexReference: "d",
-      fl: 44.88815954445126,
+      focalLengthMm: 44.88815954445126,
       glass: "BAF9 — barium-flint dispersion proxy (vintage 642480; supplier unproven)",
       role: "Rear biconvex collective component.",
+      diagramLabel: "VI",
     },
   ],
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 41.8, d: 5.375, nd: 1.64238, elemId: 1, sd: 19.5 },
-    { label: "2", R: 160.5, d: 0.825, nd: 1.0, elemId: 0, sd: 19.0 },
-    { label: "3", R: 22.4, d: 7.775, nd: 1.62306, elemId: 2, sd: 16.0 },
-    { label: "4", R: -575.0, d: 2.525, nd: 1.57566, elemId: 3, sd: 14.7 },
-    { label: "5", R: 14.15, d: 5.685929099359121, nd: 1.0, elemId: 0, sd: 10.8 },
-    { label: "STO", R: 1e15, d: 3.7640709006408786, nd: 1.0, elemId: 0, sd: 11.522193288211447 },
-    { label: "6", R: -19.25, d: 2.525, nd: 1.6727, elemId: 4, sd: 10.8 },
-    { label: "7", R: 25.25, d: 10.61, nd: 1.64238, elemId: 5, sd: 13.0 },
-    { label: "8", R: -26.6, d: 0.485, nd: 1.0, elemId: 0, sd: 14.5 },
-    { label: "9", R: 53.0, d: 6.95, nd: 1.64238, elemId: 6, sd: 16.8 },
-    { label: "10", R: -60.0, d: 32.66434646169834, nd: 1.0, elemId: 0, sd: 16.8 },
+    { label: "1", R: 41.8, d: 5.375, sd: 19.5, medium: 1 },
+    { label: "2", R: 160.5, d: 0.825, sd: 19.0 },
+    { label: "3", R: 22.4, d: 7.775, sd: 16.0, medium: 2 },
+    { label: "4", R: -575.0, d: 2.525, sd: 14.7, medium: 3 },
+    { label: "5", R: 14.15, d: 5.685929099359121, sd: 10.8 },
+    { label: "STO", R: "flat", d: 3.7640709006408786 },
+    { label: "6", R: -19.25, d: 2.525, sd: 10.8, medium: 4 },
+    { label: "7", R: 25.25, d: 10.61, sd: 13.0, medium: 5 },
+    { label: "8", R: -26.6, d: 0.485, sd: 14.5 },
+    { label: "9", R: 53.0, d: 6.95, sd: 16.8, medium: 6 },
+    { label: "10", R: -60.0, d: 32.66434646169834, sd: 16.8 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 1.0,
+    description:
+      "US 1,786,916 Example 2 publishes one static prescription. Focus travel and minimum focus distance are not documented.",
+  },
+
+  aperture: { nominalFNumber: 1.4, fStops: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16] },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -176,13 +184,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
 
-  closeFocusM: 1.0,
-  focusDescription:
-    "US 1,786,916 Example 2 publishes one static prescription. Focus travel and minimum focus distance are not documented.",
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
-
-  yScFill: 0.34,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.34 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

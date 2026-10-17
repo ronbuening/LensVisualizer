@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -46,24 +46,28 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "hasselblad-hc-50-f35",
   maker: "Hasselblad",
   name: "HASSELBLAD HC 50mm f/3.5",
   subtitle: "US 2003/0011895 A1 Example 4 — Fuji Photo Optical / Masao Mori",
-  specs: ["10 ELEMENTS / 9 GROUPS", "f ≈ 50.0 mm", "F/3.5", "2ω ≈ 69.4°", "ALL SPHERICAL"],
 
-  focalLengthMarketing: 50,
-  focalLengthDesign: 50.03,
-  apertureMarketing: 3.5,
-  apertureDesign: 3.5,
-  lensMounts: ["hasselblad-h"],
-  imageFormat: "645",
-  patentNumber: "US 2003/0011895 A1",
-  patentAuthors: ["Masao Mori"],
-  patentAssignees: ["Fuji Photo Optical Co., Ltd."],
-  patentYear: 2003,
-  elementCount: 10,
-  groupCount: 9,
+  catalog: {
+    lensMounts: ["hasselblad-h"],
+    imageFormat: "645",
+    specs: ["10 ELEMENTS / 9 GROUPS", "f ≈ 50.0 mm", "F/3.5", "2ω ≈ 69.4°", "ALL SPHERICAL"],
+    elementCount: 10,
+    groupCount: 9,
+    focalLengthMm: { marketing: 50, design: 50.03 },
+    fNumber: { marketing: 3.5, design: 3.5 },
+  },
+
+  source: {
+    patentNumber: "US 2003/0011895 A1",
+    patentYear: 2003,
+    authors: ["Masao Mori"],
+    assignees: ["Fuji Photo Optical Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -74,7 +78,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8061,
       vd: 40.9,
-      fl: -82.9,
+      focalLengthMm: -82.9,
       glass: "S-LAH53 (OHARA)",
       role: "Front negative meniscus pair (1 of 2) — progressive divergence of wide-angle beam",
     },
@@ -85,7 +89,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8061,
       vd: 40.9,
-      fl: -65.2,
+      focalLengthMm: -65.2,
       glass: "S-LAH53 (OHARA)",
       role: "Front negative meniscus pair (2 of 2) — combined f_n ≈ −34.4 mm with L11",
     },
@@ -96,7 +100,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7847,
       vd: 26.3,
-      fl: 86.9,
+      focalLengthMm: 86.9,
       glass: "S-TIH23 (OHARA)",
       role: "Positive corrector in front diverging group — distortion reduction per cond. (3)",
     },
@@ -107,10 +111,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8081,
       vd: 22.8,
-      fl: -145.9,
+      focalLengthMm: -145.9,
       glass: "S-NPH1 (OHARA)",
-      cemented: "D1",
       role: "Cemented doublet flint — standalone in-air f = −145.9 mm; cemented pair f = +46.0 mm",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -119,10 +123,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.713,
       vd: 53.9,
-      fl: 34.1,
+      focalLengthMm: 34.1,
       glass: "S-LAL8 (OHARA)",
-      cemented: "D1",
       role: "Cemented doublet crown — primary achromatic correction in G1B",
+      cemented: "D1",
     },
     {
       id: 6,
@@ -131,7 +135,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.51742,
       vd: 52.4,
-      fl: -75.3,
+      focalLengthMm: -75.3,
       glass: "S-NSL36 (OHARA)",
       role: "Field flattener at rear of G1B — reduces Petzval sum without compromising G1B power",
     },
@@ -142,7 +146,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7725,
       vd: 49.6,
-      fl: 74.9,
+      focalLengthMm: 74.9,
       glass: "S-LAH66 (OHARA)",
       role: "Lead positive in focus group G2 — concave to object, convex to image",
     },
@@ -153,7 +157,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6398,
       vd: 34.5,
-      fl: -32.9,
+      focalLengthMm: -32.9,
       glass: "S-TIM27 (OHARA)",
       role: "Sole negative in G2 — distortion correction and chromatic balance against L23/L24",
     },
@@ -164,7 +168,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.618,
       vd: 63.3,
-      fl: 75.6,
+      focalLengthMm: 75.6,
       glass: "S-PHM52 (OHARA)",
       apd: "inferred",
       apdNote:
@@ -178,7 +182,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.5,
-      fl: 73.0,
+      focalLengthMm: 73.0,
       glass: "S-FPL51 (OHARA)",
       apd: "inferred",
       apdNote:
@@ -188,62 +192,65 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients — all-spherical design ── */
   surfaces: [
     // ── G1A: Front Diverging Group (negative) ──
     // L11 — Negative Meniscus, convex to object
-    { label: "1", R: 65.765, d: 2.685, nd: 1.8061, elemId: 1, sd: 24.1 },
-    { label: "2", R: 32.54, d: 8.34, nd: 1.0, elemId: 0, sd: 21.1 },
+    { label: "1", R: 65.765, d: 2.685, sd: 24.1, medium: 1 },
+    { label: "2", R: 32.54, d: 8.34, sd: 21.1 },
     // L12 — Negative Meniscus, convex to object
-    { label: "3", R: 109.76, d: 2.285, nd: 1.8061, elemId: 2, sd: 20.0 },
-    { label: "4", R: 35.195, d: 11.635, nd: 1.0, elemId: 0, sd: 18.5 },
+    { label: "3", R: 109.76, d: 2.285, sd: 20.0, medium: 2 },
+    { label: "4", R: 35.195, d: 11.635, sd: 18.5 },
     // L13 — Biconvex Positive
-    { label: "5", R: 105.535, d: 8.91, nd: 1.7847, elemId: 3, sd: 25.5 },
-    { label: "6", R: -185.45, d: 2.985, nd: 1.0, elemId: 0, sd: 24.7 },
+    { label: "5", R: 105.535, d: 8.91, sd: 25.5, medium: 3 },
+    { label: "6", R: -185.45, d: 2.985, sd: 24.7 },
 
     // ── G1B: Rear Collecting Group (positive) ──
     // L14 + L15 — Cemented Doublet (D1)
-    { label: "7", R: 51.355, d: 4.97, nd: 1.8081, elemId: 4, sd: 23.9 }, // L14 front
-    { label: "8", R: 34.23, d: 13.51, nd: 1.713, elemId: 5, sd: 22.0 }, // L14→L15 junction
-    { label: "9", R: -70.405, d: 3.17, nd: 1.0, elemId: 0, sd: 17.6 }, // L15 rear → air
+    { label: "7", R: 51.355, d: 4.97, sd: 23.9, medium: 4 }, // L14 front
+    { label: "8", R: 34.23, d: 13.51, sd: 22.0, medium: 5 }, // L14→L15 junction
+    { label: "9", R: -70.405, d: 3.17, sd: 17.6 }, // L15 rear → air
     // L16 — Negative Meniscus, convex to object
-    { label: "10", R: 306.94, d: 2.345, nd: 1.51742, elemId: 6, sd: 12.1 },
-    { label: "11", R: 34.48, d: 12.13, nd: 1.0, elemId: 0, sd: 12.1 }, // folded: d_L16_rear + d_fc1
+    { label: "10", R: 306.94, d: 2.345, sd: 12.1, medium: 6 },
+    { label: "11", R: 34.48, d: 12.13, sd: 12.1 }, // folded: d_L16_rear + d_fc1
 
     // ── Aperture Stop (with fc2 folded in) ──
-    { label: "STO", R: 1e15, d: 12.4, nd: 1.0, elemId: 0, sd: 7.1 }, // folded: d_stop + d_fc2
+    { label: "STO", R: "flat" }, // folded: d_stop + d_fc2
 
     // ── G2: Rear Positive Group / Focus Group ──
     // L21 — Positive Meniscus, convex to image
-    { label: "12", R: -116.945, d: 3.18, nd: 1.7725, elemId: 7, sd: 13.5 },
-    { label: "13", R: -39.16, d: 1.98, nd: 1.0, elemId: 0, sd: 14.6 },
+    { label: "12", R: -116.945, d: 3.18, sd: 13.5, medium: 7 },
+    { label: "13", R: -39.16, d: 1.98, sd: 14.6 },
     // L22 — Negative Meniscus, concave to object
-    { label: "14", R: -20.395, d: 1.59, nd: 1.6398, elemId: 8, sd: 10.3 },
-    { label: "15", R: -691.675, d: 1.49, nd: 1.0, elemId: 0, sd: 10.3 },
+    { label: "14", R: -20.395, d: 1.59, sd: 10.3, medium: 8 },
+    { label: "15", R: -691.675, d: 1.49, sd: 10.3 },
     // L23 — Positive Meniscus, convex to image
-    { label: "16", R: -68.115, d: 5.12, nd: 1.618, elemId: 9, sd: 17.1 },
-    { label: "17", R: -28.5, d: 0.2, nd: 1.0, elemId: 0, sd: 20.1 },
+    { label: "16", R: -68.115, d: 5.12, sd: 17.1, medium: 9 },
+    { label: "17", R: -28.5, d: 0.2, sd: 20.1 },
     // L24 — Positive Meniscus, convex to image
-    { label: "18", R: -254.73, d: 8.105, nd: 1.497, elemId: 10, sd: 20.2 },
-    { label: "19", R: -32.085, d: 64.965, nd: 1.0, elemId: 0, sd: 23.1 }, // BFD
+    { label: "18", R: -254.73, d: 8.105, sd: 20.2, medium: 10 },
+    { label: "19", R: -32.085, sd: 23.1 }, // BFD
   ],
 
-  /* ── Aspherical coefficients — all-spherical design ── */
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.6,
+    description: "Rear focus — G2 (L21–L24) translates 5.9 mm toward object. Flare-cut fc2 co-travels with G2.",
+    // (moved from publishedStations) Patent read 2026-10-06: Close-focus gaps apply the patent's FIG. 9B Example 4 focusing amount (0.1177 at f=1,
+    // 5.885 mm at x50) to the FIG. 8 gaps; the patent states no distance, 0.6 m is the production MFD.
+    published: [1],
+  },
 
-  /* ── Variable air spacings (rear focus) ──
+  /* (moved from var) ── Variable air spacings (rear focus) ──
    *  Two variable gaps: STO (stop-to-G2) and surface 19 (BFD).
    *  G2 moves toward object at close focus; fc2 travels with G2.
    *  Conservation: d_STO + d_19 = 77.365 mm at all focus positions.
    *  Focus travel: 5.885 mm (normalized 0.1177).
    */
-  var: {
-    STO: [12.4, 6.515],
-    "19": [64.965, 70.85],
-  },
-  varLabels: [
-    ["STO", "Stop–G2"],
-    ["19", "BF"],
-  ],
+  gaps: { STO: { label: "Stop–G2", values: [[12.4, 6.515]] }, "19": { label: "BF", values: [[64.965, 70.85]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22, 32] },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -253,20 +260,8 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.6,
-  // Patent read 2026-10-06: Close-focus gaps apply the patent's FIG. 9B Example 4 focusing amount (0.1177 at f=1,
-  // 5.885 mm at x50) to the FIG. 8 gaps; the patent states no distance, 0.6 m is the production MFD.
-  publishedStations: { focus: [1] },
-  focusDescription: "Rear focus — G2 (L21–L24) translates 5.9 mm toward object. Flare-cut fc2 co-travels with G2.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 3.5,
-  fstopSeries: [3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22, 32],
-
   /* ── Layout tuning ── */
-  scFill: 0.45,
-  yScFill: 0.4,
-} satisfies LensDataInput;
+  layout: { scFill: 0.45, yScFill: 0.4 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

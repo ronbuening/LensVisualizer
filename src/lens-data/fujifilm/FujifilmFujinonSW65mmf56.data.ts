@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -36,24 +36,28 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "fujifilm-fujinon-sw-65f56",
-  name: "FUJIFILM EBC FUJINON SW 65mm f/5.6 (Fujica GSW690 Professional)",
   maker: "Fujifilm",
+  name: "FUJIFILM EBC FUJINON SW 65mm f/5.6 (Fujica GSW690 Professional)",
   subtitle: "JP S56-140311 (A) Example 1 — Fuji Photo Optical",
-  specs: ["6 elements / 4 groups", "f ≈ 65.0 mm", "F/5.6", "2ω = 75°", "All-spherical"],
 
-  focalLengthMarketing: 65,
-  focalLengthDesign: 65.001,
-  apertureMarketing: 5.6,
-  apertureDesign: 5.6,
-  lensMounts: ["fixed-lens-camera"],
-  imageFormat: "6x9",
-  patentNumber: "JP S56-140311 A",
-  patentAuthors: ["Ryoichi Doi", "Yutaka Sakai", "Kazunori Ohno"],
-  patentAssignees: ["Fuji Photo Optical Co., Ltd."],
-  patentYear: 1981,
-  elementCount: 6,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["fixed-lens-camera"],
+    imageFormat: "6x9",
+    specs: ["6 elements / 4 groups", "f ≈ 65.0 mm", "F/5.6", "2ω = 75°", "All-spherical"],
+    elementCount: 6,
+    groupCount: 4,
+    focalLengthMm: { marketing: 65, design: 65.001 },
+    fNumber: { marketing: 5.6, design: 5.6 },
+  },
+
+  source: {
+    patentNumber: "JP S56-140311 A",
+    patentYear: 1981,
+    authors: ["Ryoichi Doi", "Yutaka Sakai", "Kazunori Ohno"],
+    assignees: ["Fuji Photo Optical Co., Ltd."],
+  },
 
   elements: [
     {
@@ -63,13 +67,13 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.51823,
       vd: 59.0,
-      fl: -95.44,
+      focalLengthMm: -95.44,
       glass: "S-NSL3 (OHARA)",
       apd: false,
+      role: "Front negative meniscus for wide-field collection and compact track control.",
       nC: 1.51556,
       nF: 1.52435,
       ng: 1.52915,
-      role: "Front negative meniscus for wide-field collection and compact track control.",
     },
     {
       id: 2,
@@ -78,14 +82,14 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6935,
       vd: 53.4,
-      fl: 25.99,
+      focalLengthMm: 25.99,
       glass: "S-LAL13 (OHARA, close; patent vd=53.4)",
       apd: false,
+      role: "High-index positive member of the front cemented doublet.",
+      cemented: "D1",
       nC: 1.68955,
       nF: 1.70258,
       ng: 1.70972,
-      cemented: "D1",
-      role: "High-index positive member of the front cemented doublet.",
     },
     {
       id: 3,
@@ -94,14 +98,14 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.56732,
       vd: 42.8,
-      fl: -35.0,
+      focalLengthMm: -35.0,
       glass: "S-TIL26 (OHARA)",
       apd: false,
+      role: "Negative flint member of the front cemented doublet; chromatic and coma-flare correction.",
+      cemented: "D1",
       nC: 1.56339,
       nF: 1.57664,
       ng: 1.58423,
-      cemented: "D1",
-      role: "Negative flint member of the front cemented doublet; chromatic and coma-flare correction.",
     },
     {
       id: 4,
@@ -110,14 +114,14 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.56732,
       vd: 42.8,
-      fl: -27.77,
+      focalLengthMm: -27.77,
       glass: "S-TIL26 (OHARA)",
       apd: false,
+      role: "Negative member of the stronger rear cemented doublet.",
+      cemented: "D2",
       nC: 1.56339,
       nF: 1.57664,
       ng: 1.58423,
-      cemented: "D2",
-      role: "Negative member of the stronger rear cemented doublet.",
     },
     {
       id: 5,
@@ -126,14 +130,14 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6935,
       vd: 53.4,
-      fl: 20.98,
+      focalLengthMm: 20.98,
       glass: "S-LAL13 (OHARA, close; patent vd=53.4)",
       apd: false,
+      role: "Strong high-index positive member of the rear cemented doublet.",
+      cemented: "D2",
       nC: 1.68955,
       nF: 1.70258,
       ng: 1.70972,
-      cemented: "D2",
-      role: "Strong high-index positive member of the rear cemented doublet.",
     },
     {
       id: 6,
@@ -142,36 +146,39 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.60342,
       vd: 38.0,
-      fl: -70.29,
+      focalLengthMm: -70.29,
       glass: "S-TIM5 (OHARA)",
       apd: false,
+      role: "Rear negative meniscus for field, exit-geometry, and lateral-color correction.",
       nC: 1.59875,
       nF: 1.61462,
       ng: 1.62388,
-      role: "Rear negative meniscus for field, exit-geometry, and lateral-color correction.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 30.589, d: 1.5925, nd: 1.51823, elemId: 1, sd: 19.0 },
-    { label: "2", R: 18.564, d: 14.326, nd: 1.0, elemId: 0, sd: 16.4 },
-    { label: "3", R: 43.108, d: 16.0745, nd: 1.6935, elemId: 2, sd: 14.6 },
-    { label: "4", R: -26.2405, d: 1.079, nd: 1.56732, elemId: 3, sd: 13.2 },
-    { label: "5", R: 82.7905, d: 1.6705, nd: 1.0, elemId: 0, sd: 12.0 },
-    { label: "STO", R: 1e15, d: 1.6705, nd: 1.0, elemId: 0, sd: 6.0395 },
-    { label: "6", R: -104.6955, d: 1.9305, nd: 1.56732, elemId: 4, sd: 12.0 },
-    { label: "7", R: 18.668, d: 20.4425, nd: 1.6935, elemId: 5, sd: 13.2 },
-    { label: "8", R: -36.374, d: 12.0705, nd: 1.0, elemId: 0, sd: 15.2 },
-    { label: "9", R: -17.8035, d: 1.742, nd: 1.60342, elemId: 6, sd: 15.7 },
-    { label: "10", R: -31.811, d: 41.6297, nd: 1.0, elemId: 0, sd: 17.6 },
+    { label: "1", R: 30.589, d: 1.5925, sd: 19.0, medium: 1 },
+    { label: "2", R: 18.564, d: 14.326, sd: 16.4 },
+    { label: "3", R: 43.108, d: 16.0745, sd: 14.6, medium: 2 },
+    { label: "4", R: -26.2405, d: 1.079, sd: 13.2, medium: 3 },
+    { label: "5", R: 82.7905, d: 1.6705, sd: 12.0 },
+    { label: "STO", R: "flat", d: 1.6705 },
+    { label: "6", R: -104.6955, d: 1.9305, sd: 12.0, medium: 4 },
+    { label: "7", R: 18.668, d: 20.4425, sd: 13.2, medium: 5 },
+    { label: "8", R: -36.374, d: 12.0705, sd: 15.2 },
+    { label: "9", R: -17.8035, d: 1.742, sd: 15.7, medium: 6 },
+    { label: "10", R: -31.811, sd: 17.6 },
   ],
 
-  asph: {},
-
-  var: {
-    "10": [41.6297, 46.5959],
+  focus: {
+    closeFocusM: 1.0,
+    description:
+      "Unit focus; patent publishes only infinity data, so close focus is represented by increasing BFD for a 1 m object-distance paraxial estimate.",
   },
-  varLabels: [["10", "BF"]],
+
+  gaps: { "10": { label: "BF", values: [[41.6297, 46.5959]] } },
+
+  aperture: { nominalFNumber: 5.6, fStops: [5.6, 8, 11, 16, 22, 32], maxFNumber: 32 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -179,22 +186,12 @@ const LENS_DATA = {
     { text: "G3", fromSurface: "6", toSurface: "8" },
     { text: "G4", fromSurface: "9", toSurface: "10" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "3", toSurface: "5" },
     { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
 
-  closeFocusM: 1.0,
-  focusDescription:
-    "Unit focus; patent publishes only infinity data, so close focus is represented by increasing BFD for a 1 m object-distance paraxial estimate.",
-
-  nominalFno: 5.6,
-  fstopSeries: [5.6, 8, 11, 16, 22, 32],
-  maxFstop: 32,
-
-  scFill: 0.54,
-  yScFill: 0.55,
-} satisfies LensDataInput;
+  layout: { scFill: 0.54, yScFill: 0.55 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

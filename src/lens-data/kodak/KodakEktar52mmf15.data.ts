@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -22,10 +22,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ STOP: Fig. 1 places the diaphragm within source gap s3 (R7→R8) but does not  ║
  * ║ dimension it. A 600 dpi measurement of the figure places it about 0.78 of    ║
  * ║ the way from R7 to R8; the 10.9 mm source gap is therefore split 8.5/2.4 mm  ║
- * ║ before scaling. The STO sd (10.96 mm) records the real-ray stop radius the   ║
- * ║ engine derives for f/1.5 (paraxial EP 17.34 mm traced to the stop: 10.955    ║
- * ║ mm); Fig. 1's stop bar inner edge scales to about 10.7–10.9 mm. It is a      ║
- * ║ model value, not a published diaphragm diameter.                             ║
+ * ║ before scaling. The stop radius is derived from the design f-number: the     ║
+ * ║ engine's real-ray radius for f/1.5 (paraxial EP 17.34 mm traced to the stop: ║
+ * ║ 10.955 mm); Fig. 1's stop bar inner edge scales to about 10.7–10.9 mm. The   ║
+ * ║ derived radius is a model value, not a published diaphragm diameter.         ║
  * ║                                                                              ║
  * ║ NOTE ON SEMI-DIAMETERS: no numerical clear apertures are published. Values   ║
  * ║ follow the Fig. 1 silhouette (300 dpi, 0.0475 mm/px from the R1→R11 vertex   ║
@@ -42,145 +42,155 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "kodak-ektar-52f15",
   maker: "Kodak",
   name: "KODAK EKTAR 52mm f/1.5",
   subtitle: "US 2,397,565 — Example 1; scaled ×0.52; production correlation plausible, not manufacturer-confirmed",
-  specs: ["7 ELEMENTS / 4 GROUPS", "f = 52.0207 mm (scaled design)", "f/1.5", "ALL-SPHERICAL"],
 
-  focalLengthDesign: 52.020686999914865,
-  apertureDesign: 1.5,
-  patentNumber: "US 2,397,565",
-  patentAuthors: ["Willy Schade"],
-  patentAssignees: ["Eastman Kodak Company"],
-  patentYear: 1946,
-  elementCount: 7,
-  groupCount: 4,
+  catalog: {
+    specs: ["7 ELEMENTS / 4 GROUPS", "f = 52.0207 mm (scaled design)", "f/1.5", "ALL-SPHERICAL"],
+    elementCount: 7,
+    groupCount: 4,
+    focalLengthMm: { design: 52.020686999914865 },
+    fNumber: { design: 1.5 },
+  },
+
+  source: {
+    patentNumber: "US 2,397,565",
+    patentYear: 1946,
+    authors: ["Willy Schade"],
+    assignees: ["Eastman Kodak Company"],
+  },
 
   elements: [
     {
       id: 1,
       name: "I",
-      diagramLabel: "I",
       label: "Element I",
       type: "Positive Meniscus",
       nd: 1.638,
       vd: 55.5,
       indexReference: "d",
-      fl: 79.38465029133101,
+      focalLengthMm: 79.38465029133101,
       glass: "K-SK18 catalog proxy; 638555 SK18 class (supplier unconfirmed)",
       apd: false,
       role: "Front positive collector; source coordinate N_D=1.638, V=55.5.",
+      diagramLabel: "I",
     },
     {
       id: 2,
       name: "II",
-      diagramLabel: "II",
       label: "Element II",
       type: "Negative Meniscus",
       nd: 1.617,
       vd: 38.5,
       indexReference: "d",
-      fl: -70.98663744614885,
+      focalLengthMm: -70.98663744614885,
       glass: "Unmatched (vintage barium-flint class, N_D=1.617, V=38.5)",
       apd: false,
       role: "Negative front member of the cemented second component.",
+      diagramLabel: "II",
       cemented: "C2",
     },
     {
       id: 3,
       name: "III",
-      diagramLabel: "III",
       label: "Element III",
       type: "Positive Meniscus",
       nd: 1.638,
       vd: 55.5,
       indexReference: "d",
-      fl: 33.19986560126641,
+      focalLengthMm: 33.19986560126641,
       glass: "K-SK18 catalog proxy; 638555 SK18 class (supplier unconfirmed)",
       apd: false,
       role: "Positive rear member of the cemented second component; higher index than II by 0.021.",
+      diagramLabel: "III",
       cemented: "C2",
     },
     {
       id: 4,
       name: "IV",
-      diagramLabel: "IV",
       label: "Element IV",
       type: "Biconcave Negative",
       nd: 1.673,
       vd: 32.2,
       indexReference: "d",
-      fl: -25.302158057141042,
+      focalLengthMm: -25.302158057141042,
       glass: "SF5 catalog proxy; 673322 dense-flint class (supplier unconfirmed)",
       apd: false,
       role: "Air-spaced negative third component immediately ahead of the diaphragm gap.",
+      diagramLabel: "IV",
     },
     {
       id: 5,
       name: "V",
-      diagramLabel: "V",
       label: "Element V",
       type: "Biconvex Positive",
       nd: 1.67,
       vd: 47.2,
       indexReference: "d",
-      fl: 21.367121987236963,
+      focalLengthMm: 21.367121987236963,
       glass: "S-BAH10 catalog proxy; 670472 BAF10 class (supplier unconfirmed)",
       apd: false,
       role: "Positive front member of the cemented rear triplet.",
+      diagramLabel: "V",
       cemented: "C4",
     },
     {
       id: 6,
       name: "VI",
-      diagramLabel: "VI",
       label: "Element VI",
       type: "Biconcave Negative",
       nd: 1.541,
       vd: 47.5,
       indexReference: "d",
-      fl: -20.216642437162793,
+      focalLengthMm: -20.216642437162793,
       glass: "S-TIL2 catalog proxy; 541472 light-flint class (supplier unconfirmed)",
       apd: false,
       role: "Low-index biconcave middle member of the cemented rear triplet.",
+      diagramLabel: "VI",
       cemented: "C4",
     },
     {
       id: 7,
       name: "VII",
-      diagramLabel: "VII",
       label: "Element VII",
       type: "Biconvex Positive",
       nd: 1.734,
       vd: 51.1,
       indexReference: "d",
-      fl: 33.22579852853801,
+      focalLengthMm: 33.22579852853801,
       glass: "TAC4 catalog proxy; 734511 lanthanum-crown class (supplier unconfirmed)",
       apd: false,
       role: "High-index positive rear member of the cemented rear triplet.",
+      diagramLabel: "VII",
       cemented: "C4",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 38.48, d: 6.552, nd: 1.638, elemId: 1, sd: 17.6 },
-    { label: "2", R: 149.552, d: 0.312, nd: 1, elemId: 0, sd: 17 },
-    { label: "3", R: 26.468, d: 3.12, nd: 1.617, elemId: 2, sd: 15.9 },
-    { label: "4", R: 15.756, d: 7.384, nd: 1.638, elemId: 3, sd: 14.15 },
-    { label: "5", R: 50.284, d: 2.288, nd: 1, elemId: 0, sd: 12.9 },
-    { label: "6", R: -236.496, d: 1.872, nd: 1.673, elemId: 4, sd: 13 },
-    { label: "7", R: 18.408, d: 4.42, nd: 1, elemId: 0, sd: 12 },
-    { label: "STO", R: 1e15, d: 1.248, nd: 1, elemId: 0, sd: 10.96 },
-    { label: "8", R: 63.076, d: 7.124, nd: 1.67, elemId: 5, sd: 11.4 },
-    { label: "9", R: -17.68, d: 1.872, nd: 1.541, elemId: 6, sd: 11.4 },
-    { label: "10", R: 29.744, d: 4.732, nd: 1.734, elemId: 7, sd: 14 },
-    { label: "11", R: -126.308, d: 26.38628440114587, nd: 1, elemId: 0, sd: 14 },
+    { label: "1", R: 38.48, d: 6.552, sd: 17.6, medium: 1 },
+    { label: "2", R: 149.552, d: 0.312, sd: 17 },
+    { label: "3", R: 26.468, d: 3.12, sd: 15.9, medium: 2 },
+    { label: "4", R: 15.756, d: 7.384, sd: 14.15, medium: 3 },
+    { label: "5", R: 50.284, d: 2.288, sd: 12.9 },
+    { label: "6", R: -236.496, d: 1.872, sd: 13, medium: 4 },
+    { label: "7", R: 18.408, d: 4.42, sd: 12 },
+    { label: "STO", R: "flat", d: 1.248 },
+    { label: "8", R: 63.076, d: 7.124, sd: 11.4, medium: 5 },
+    { label: "9", R: -17.68, d: 1.872, sd: 11.4, medium: 6 },
+    { label: "10", R: 29.744, d: 4.732, sd: 14, medium: 7 },
+    { label: "11", R: -126.308, d: 26.38628440114587, sd: 14 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 1e15,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION: Example 1 is fixed at infinity; closeFocusM=1e15 is a UI sentinel, not product MFD.",
+  },
+
+  aperture: { nominalFNumber: 1.5, fStops: [1.5, 2, 2.8, 4, 5.6, 8, 11, 16] },
 
   groups: [
     { text: "G1 (+)", fromSurface: "1", toSurface: "2" },
@@ -193,14 +203,7 @@ const LENS_DATA = {
     { text: "C4", fromSurface: "8", toSurface: "11" },
   ],
 
-  closeFocusM: 1e15,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: Example 1 is fixed at infinity; closeFocusM=1e15 is a UI sentinel, not product MFD.",
-
-  nominalFno: 1.5,
-  fstopSeries: [1.5, 2, 2.8, 4, 5.6, 8, 11, 16],
-
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

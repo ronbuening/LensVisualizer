@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -38,29 +38,30 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "zeiss-hologon-15f8",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS HOLOGON 15mm f/8 (Contarex Hologon / Leica M)",
-  visible: true,
   subtitle: "DE 1,241,637 B — GLATZEL & SCHULZ / CARL ZEISS",
-  specs: ["3 ELEMENTS / 3 GROUPS", "f ≈ 15.0 mm", "F/8.0 (FIXED)", "2ω = 110°", "ALL SPHERICAL"],
+  visible: true,
 
-  /* ── Explicit metadata fields ── */
-  focalLengthMarketing: 15,
-  apertureMarketing: 8,
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 120,
-    maxTraceFieldDeg: 60,
+  catalog: {
+    lensMounts: ["fixed-lens-camera", "leica-m"],
+    imageFormat: "135-full-frame",
+    specs: ["3 ELEMENTS / 3 GROUPS", "f ≈ 15.0 mm", "F/8.0 (FIXED)", "2ω = 110°", "ALL SPHERICAL"],
+    elementCount: 3,
+    groupCount: 3,
+    /* ── Explicit metadata fields ── */
+    focalLengthMm: { marketing: 15 },
+    fNumber: { marketing: 8 },
   },
-  lensMounts: ["fixed-lens-camera", "leica-m"],
-  imageFormat: "135-full-frame",
-  patentNumber: "DE 1,241,637 B",
-  patentAuthors: ["Erhard Glatzel", "Hans Schulz"],
-  patentAssignees: ["Carl-Zeiss-Stiftung"],
-  patentYear: 1967,
-  elementCount: 3,
-  groupCount: 3,
+
+  source: {
+    patentNumber: "DE 1,241,637 B",
+    patentYear: 1967,
+    authors: ["Erhard Glatzel", "Hans Schulz"],
+    assignees: ["Carl-Zeiss-Stiftung"],
+  },
 
   /* ── Elements ──
    *  L_II explicitly spans across the internal aperture stop. The STO surface
@@ -74,7 +75,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.46,
-      fl: -13.1,
+      focalLengthMm: -13.1,
       glass: "SF6 (Schott)",
       apd: false,
       role: "Front negative meniscus — field expansion, Petzval flattening, near-concentric oblique-ray control",
@@ -86,12 +87,11 @@ const LENS_DATA = {
       type: "Biconvex Positive (internal stop)",
       nd: 1.713,
       vd: 53.89,
-      fl: 5.5,
+      focalLengthMm: 5.5,
       glass: "N-LAK8 catalog equivalent (historical LAK8 family; production supplier unspecified)",
       apd: false,
-      fromSurface: "3",
-      toSurface: "4",
       role: "Central positive element with internal stop — converging power, chromatic anchor",
+      span: ["3", "4"],
     },
     {
       id: 3,
@@ -100,7 +100,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.46,
-      fl: -13.4,
+      focalLengthMm: -13.4,
       glass: "SF6 (Schott)",
       apd: false,
       role: "Rear negative meniscus — symmetry partner to L_I, field compression, Petzval flattening",
@@ -112,28 +112,34 @@ const LENS_DATA = {
    *  STO inserted at center of L_II (d₃ split into two equal halves).
    *  All surfaces spherical.
    */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 11.64, d: 7.9785, nd: 1.80518, elemId: 1, sd: 11.45 }, // L_I front (r₁)
-    { label: "2", R: 3.843, d: 2.703, nd: 1.0, elemId: 0, sd: 3.82 }, // L_I rear → air (r₂)
-    { label: "3", R: 5.6685, d: 3.8243, nd: 1.713, elemId: 2, sd: 3.83 }, // L_II front (r₃)
-    { label: "STO", R: 1e15, d: 3.8243, nd: 1.713, elemId: 2, sd: 0.9375, stopPlacement: "inside-element" }, // Internal stop inside L_II
-    { label: "4", R: -5.508, d: 2.4045, nd: 1.0, elemId: 0, sd: 3.83 }, // L_II rear → air (r₄)
-    { label: "5", R: -3.6285, d: 5.2365, nd: 1.80518, elemId: 3, sd: 3.6 }, // L_III front (r₅)
-    { label: "6", R: -8.9835, d: 4.545, nd: 1.0, elemId: 0, sd: 8.84 }, // L_III rear → BFD (r₆)
+    { label: "1", R: 11.64, d: 7.9785, sd: 11.45, medium: 1 }, // L_I front (r₁)
+    { label: "2", R: 3.843, d: 2.703, sd: 3.82 }, // L_I rear → air (r₂)
+    { label: "3", R: 5.6685, d: 3.8243, sd: 3.83, medium: 2 }, // L_II front (r₃)
+    { label: "STO", R: "flat", d: 3.8243, sd: 0.9375, medium: 2, stopPlacement: "inside-element" }, // Internal stop inside L_II
+    { label: "4", R: -5.508, d: 2.4045, sd: 3.83 }, // L_II rear → air (r₄)
+    { label: "5", R: -3.6285, d: 5.2365, sd: 3.6, medium: 3 }, // L_III front (r₅)
+    { label: "6", R: -8.9835, sd: 8.84 }, // L_III rear → BFD (r₆)
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.2,
+    description:
+      "Unit focus — entire optical assembly translates on helicoid (Leica M version). Fixed focus at hyperfocal distance in Contarex version.",
+  },
 
-  /* ── Variable air spacings (unit focus) ──
+  /* (moved from var) ── Variable air spacings (unit focus) ──
    *  Leica M version: entire lens translates, only BFD changes.
    *  Close focus at 0.2 m increases BFD by ≈15²/(200−15) = 1.2162 mm.
    */
-  var: {
-    "6": [4.545, 5.7612],
-  },
+  gaps: { "6": { label: "BF", values: [[4.545, 5.7612]] } },
 
-  varLabels: [["6", "BF"]],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 8, fStops: [8], maxFNumber: 8 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 120, maxTraceFieldDeg: 60 },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -141,23 +147,12 @@ const LENS_DATA = {
     { text: "L_II", fromSurface: "3", toSurface: "4" },
     { text: "L_III", fromSurface: "5", toSurface: "6" },
   ],
-
   doublets: [],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.2,
-  focusDescription:
-    "Unit focus — entire optical assembly translates on helicoid (Leica M version). Fixed focus at hyperfocal distance in Contarex version.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 8,
-  maxFstop: 8,
-  fstopSeries: [8],
-
   /* ── Layout tuning ── */
-  scFill: 0.5,
-  yScFill: 0.58,
-  maxRimAngleDeg: 84,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.58 },
+
+  checks: { maxRimAngleDeg: 84 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

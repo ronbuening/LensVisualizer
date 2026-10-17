@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * FUJIFILM EBC FUJINON-W 35mm f/1.9
@@ -25,24 +25,28 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "fujifilm-fujinon-w-35mm-f19",
   maker: "Fujifilm",
   name: "FUJIFILM EBC FUJINON-W 35mm f/1.9",
   subtitle: "US 4,018,512 Example 1 — Fuji Photo Optical / Yutaka Sakai",
-  specs: ["8 elements / 6 groups", "35mm", "f/1.9", "63° patent field", "all-spherical"],
 
-  focalLengthMarketing: 35,
-  focalLengthDesign: 35,
-  apertureMarketing: 1.9,
-  apertureDesign: 1.9,
-  lensMounts: ["m42"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,018,512",
-  patentAuthors: ["Yutaka Sakai"],
-  patentAssignees: ["Fuji Photo Optical Co., Ltd."],
-  patentYear: 1977,
-  elementCount: 8,
-  groupCount: 6,
+  catalog: {
+    lensMounts: ["m42"],
+    imageFormat: "135-full-frame",
+    specs: ["8 elements / 6 groups", "35mm", "f/1.9", "63° patent field", "all-spherical"],
+    elementCount: 8,
+    groupCount: 6,
+    focalLengthMm: { marketing: 35, design: 35 },
+    fNumber: { marketing: 1.9, design: 1.9 },
+  },
+
+  source: {
+    patentNumber: "US 4,018,512",
+    patentYear: 1977,
+    authors: ["Yutaka Sakai"],
+    assignees: ["Fuji Photo Optical Co., Ltd."],
+  },
 
   elements: [
     {
@@ -52,7 +56,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.51633,
       vd: 64.0,
-      fl: -68.09,
+      focalLengthMm: -68.09,
       glass: "S-BSL7 (OHARA catalog-equivalent)",
       apd: false,
       role: "Front retrofocus negative meniscus, convex to object.",
@@ -64,7 +68,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.77252,
       vd: 49.6,
-      fl: 28.93,
+      focalLengthMm: 28.93,
       glass: "S-LAH66 (OHARA catalog-equivalent)",
       apd: false,
       role: "High-index positive collector that compensates L1 spherical aberration and lower-stop coma.",
@@ -76,11 +80,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.72,
       vd: 43.7,
-      fl: 39.58,
+      focalLengthMm: 39.58,
       glass: "S-LAM52 / J-LAF02 class (catalog-equivalent; patent nd rounded)",
       apd: false,
-      cemented: "D1",
       role: "Front positive element of the cemented negative component.",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -89,11 +93,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.62606,
       vd: 39.1,
-      fl: -15.61,
+      focalLengthMm: -15.61,
       glass: "H-BaF8 (CDGM catalog-equivalent)",
       apd: false,
-      cemented: "D1",
       role: "Rear element of the cemented negative component; the r6 junction supplies controlled high-order spherical aberration.",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -102,11 +106,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.69895,
       vd: 30.1,
-      fl: -41.81,
+      focalLengthMm: -41.81,
       glass: "S-TIM35 (OHARA catalog-equivalent)",
       apd: false,
-      cemented: "D2",
       role: "Dense-flint negative half of the cemented positive meniscus component.",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -115,11 +119,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6968,
       vd: 55.6,
-      fl: 25.99,
+      focalLengthMm: 25.99,
       glass: "S-LAL14 (OHARA catalog-equivalent)",
       apd: false,
-      cemented: "D2",
       role: "Positive lanthanum-crown half of the cemented positive meniscus component.",
+      cemented: "D2",
     },
     {
       id: 7,
@@ -128,7 +132,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6968,
       vd: 55.6,
-      fl: 71.05,
+      focalLengthMm: 71.05,
       glass: "S-LAL14 (OHARA catalog-equivalent)",
       apd: false,
       role: "Positive relay meniscus, convex to image.",
@@ -140,7 +144,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6968,
       vd: 55.6,
-      fl: 123.83,
+      focalLengthMm: 123.83,
       glass: "S-LAL14 (OHARA catalog-equivalent)",
       apd: false,
       role: "Rear positive meniscus / field flattener, convex to image.",
@@ -148,30 +152,32 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 41.95725, d: 1.74922, nd: 1.51633, elemId: 1, sd: 20.5 },
-    { label: "2", R: 18.85734, d: 17.56221, nd: 1.0, elemId: 0, sd: 16.5 },
-    { label: "3", R: 32.99877, d: 6.75201, nd: 1.77252, elemId: 2, sd: 15.0 },
-    { label: "4", R: -63.04835, d: 2.09907, nd: 1.0, elemId: 0, sd: 13.4 },
-    { label: "STO", R: 1e15, d: 4.19814, nd: 1.0, elemId: 0, sd: 10.38846 },
-    { label: "5", R: -21.86706, d: 3.49845, nd: 1.72, elemId: 3, sd: 12.6 },
-    { label: "6", R: -13.20175, d: 1.04953, nd: 1.62606, elemId: 4, sd: 11.4 },
-    { label: "7", R: 38.77296, d: 2.09907, nd: 1.0, elemId: 0, sd: 10.4 },
-    { label: "8", R: -84.69535, d: 1.04953, nd: 1.69895, elemId: 5, sd: 9.9 },
-    { label: "9", R: 44.85186, d: 4.19814, nd: 1.6968, elemId: 6, sd: 11.4 },
-    { label: "10", R: -29.19771, d: 0.34984, nd: 1.0, elemId: 0, sd: 11.4 },
-    { label: "11", R: -123.57046, d: 2.79876, nd: 1.6968, elemId: 7, sd: 13.6 },
-    { label: "12", R: -35.67613, d: 0.34984, nd: 1.0, elemId: 0, sd: 14.0 },
-    { label: "13", R: -634.27229, d: 2.79876, nd: 1.6968, elemId: 8, sd: 17.0 },
-    { label: "14", R: -76.08847, d: 37.49823, nd: 1.0, elemId: 0, sd: 18.0 },
+    { label: "1", R: 41.95725, d: 1.74922, sd: 20.5, medium: 1 },
+    { label: "2", R: 18.85734, d: 17.56221, sd: 16.5 },
+    { label: "3", R: 32.99877, d: 6.75201, sd: 15.0, medium: 2 },
+    { label: "4", R: -63.04835, d: 2.09907, sd: 13.4 },
+    { label: "STO", R: "flat", d: 4.19814 },
+    { label: "5", R: -21.86706, d: 3.49845, sd: 12.6, medium: 3 },
+    { label: "6", R: -13.20175, d: 1.04953, sd: 11.4, medium: 4 },
+    { label: "7", R: 38.77296, d: 2.09907, sd: 10.4 },
+    { label: "8", R: -84.69535, d: 1.04953, sd: 9.9, medium: 5 },
+    { label: "9", R: 44.85186, d: 4.19814, sd: 11.4, medium: 6 },
+    { label: "10", R: -29.19771, d: 0.34984, sd: 11.4 },
+    { label: "11", R: -123.57046, d: 2.79876, sd: 13.6, medium: 7 },
+    { label: "12", R: -35.67613, d: 0.34984, sd: 14.0 },
+    { label: "13", R: -634.27229, d: 2.79876, sd: 17.0, medium: 8 },
+    { label: "14", R: -76.08847, sd: 18.0 },
   ],
 
-  asph: {},
-  var: {
-    "14": [37.49823, 40.85439],
+  focus: {
+    closeFocusM: 0.4,
+    description:
+      "Unit focus; patent publishes only the infinity prescription, so close-focus travel is approximated from the 0.40 m production minimum-focus specification.",
   },
-  varLabels: [["14", "BF"]],
-  focusDescription:
-    "Unit focus; patent publishes only the infinity prescription, so close-focus travel is approximated from the 0.40 m production minimum-focus specification.",
+
+  gaps: { "14": { label: "BF", values: [[37.49823, 40.85439]] } },
+
+  aperture: { nominalFNumber: 1.9, fStops: [1.9, 2.8, 4, 5.6, 8, 11, 16], maxFNumber: 16 },
 
   groups: [
     { text: "Front", fromSurface: "1", toSurface: "4" },
@@ -182,12 +188,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "8", toSurface: "10" },
   ],
 
-  closeFocusM: 0.4,
-  nominalFno: 1.9,
-  fstopSeries: [1.9, 2.8, 4, 5.6, 8, 11, 16],
-  maxFstop: 16,
-  scFill: 0.62,
-  yScFill: 0.56,
-} satisfies LensDataInput;
+  layout: { scFill: 0.62, yScFill: 0.56 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

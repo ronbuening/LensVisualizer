@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Fujifilm GFX100RF 35mm f/4
@@ -10,13 +10,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * G2 remains fixed relative to the image plane.
  *
  * Semi-diameters are inferred because Table 13 does not list clear apertures. The stop
- * semi-diameter is derived from the patent F-number and entrance-pupil geometry; element
- * clear apertures are conservative renderer apertures checked against edge thickness,
- * conic limits, and cross-gap sag intrusion. The 2026-07-24 patent-figure audit raised
- * S16/S17 (L22) from 11.6/12.6 to 12.3/13.5 mm: the old pair fell just under the
- * semi-diagonal a 44x33 corner ray needs 15.5 and 14.4 mm ahead of the image plane.
- * S17 was then raised to 16.2 mm to pass the traced chief ray to the 44x33 corner that
- * the patent's 2ω = 83.0° reaches; S16 already clears it (2026-09-24 field-coverage audit).
+ * radius is derived from the design f-number; element clear apertures are conservative
+ * renderer apertures checked against edge thickness, conic limits, and cross-gap sag
+ * intrusion. The 2026-07-24 patent-figure audit raised S16/S17 (L22) from
+ * 11.6/12.6 to 12.3/13.5 mm: the old pair fell just under the semi-diagonal a 44x33
+ * corner ray needs 15.5 and 14.4 mm ahead of the image plane. S17 was then raised to
+ * 16.2 mm to pass the traced chief ray to the 44x33 corner that the patent's 2ω = 83.0°
+ * reaches; S16 already clears it (2026-09-24 field-coverage audit).
  *
  * Surface 15A carries the patent's exact odd/even aspherical coefficients (A4-A20,
  * including odd orders A5-A19). Earlier revisions stored an even-order least-squares
@@ -25,38 +25,34 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "fujifilm-gfx100rf-35mm-f4",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON 35mm f/4 (Fujifilm GFX100RF)",
   subtitle: "US 2025/0362482 A1 Example 5 — Fujifilm / Komatsu",
-  specs: [
-    "10 elements / 8 groups",
-    "f = 34.846 mm",
-    "FNo = 4.12",
-    "2ω = 83.0°",
-    "2 aspherical lenses / 4 aspherical surfaces",
-  ],
-  focalLengthMarketing: 35,
-  focalLengthDesign: 34.8463,
-  apertureMarketing: 4,
-  apertureDesign: 4.12,
-  lensMounts: ["fixed-lens-camera"],
-  imageFormat: "44x33",
-  patentNumber: "US 2025/0362482 A1",
-  patentAuthors: ["Daiki Komatsu"],
-  patentAssignees: ["Fujifilm Corporation"],
-  patentYear: 2025,
-  elementCount: 10,
-  groupCount: 8,
-  focusDescription:
-    "First-group unit focus: G1 (L11-L17 plus the stop) moves objectward while G2 remains fixed. The close-focus dF value is a paraxial estimate for a 0.20 m object distance from the first surface; the patent tabulates only the infinity position.",
-  apertureBlades: 9,
-  nominalFno: 4.12,
-  closeFocusM: 0.2,
-  maxFstop: 22,
-  fstopSeries: [4.12, 5.6, 8, 11, 16, 22],
-  scFill: 0.5,
-  yScFill: 0.78,
+
+  catalog: {
+    lensMounts: ["fixed-lens-camera"],
+    imageFormat: "44x33",
+    specs: [
+      "10 elements / 8 groups",
+      "f = 34.846 mm",
+      "FNo = 4.12",
+      "2ω = 83.0°",
+      "2 aspherical lenses / 4 aspherical surfaces",
+    ],
+    elementCount: 10,
+    groupCount: 8,
+    focalLengthMm: { marketing: 35, design: 34.8463 },
+    fNumber: { marketing: 4, design: 4.12 },
+  },
+
+  source: {
+    patentNumber: "US 2025/0362482 A1",
+    patentYear: 2025,
+    authors: ["Daiki Komatsu"],
+    assignees: ["Fujifilm Corporation"],
+  },
 
   elements: [
     {
@@ -66,12 +62,12 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.54814,
       vd: 45.78,
-      fl: -20.653,
+      focalLengthMm: -20.653,
       glass: "S-TIL1 (OHARA)",
       apd: false,
-      dPgF: 0.00179,
       role: "Front negative member of the weak cemented G1f collector; concave object-side surface helps spherical-aberration correction.",
       cemented: "D1",
+      dPgF: 0.00179,
     },
     {
       id: 2,
@@ -80,12 +76,12 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.8707,
       vd: 40.73,
-      fl: 16.839,
+      focalLengthMm: 16.839,
       glass: "TAFD32 (HOYA) / H-ZLaF64 class",
       apd: false,
-      dPgF: -0.00704,
       role: "High-index positive cemented partner in G1f; supplies most of the doublet power and chromatic balancing.",
       cemented: "D1",
+      dPgF: -0.00704,
     },
     {
       id: 3,
@@ -94,11 +90,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.755,
       vd: 52.32,
-      fl: 34.622,
+      focalLengthMm: 34.622,
       glass: "S-LAH97 (OHARA) / TAC6 class",
       apd: false,
-      dPgF: -0.00823,
       role: "Positive lens immediately after the stop; symmetric form moderates spherical aberration and coma.",
+      dPgF: -0.00823,
     },
     {
       id: 4,
@@ -107,12 +103,12 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.62004,
       vd: 36.26,
-      fl: -13.112,
+      focalLengthMm: -13.112,
       glass: "S-TIM2 (OHARA) / N-F2 class",
       apd: false,
-      dPgF: 0.00519,
       role: "High-dispersion negative member of the rear G1r cemented doublet; chromatic corrector.",
       cemented: "D2",
+      dPgF: 0.00519,
     },
     {
       id: 5,
@@ -121,12 +117,12 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.61997,
       vd: 63.88,
-      fl: 15.965,
+      focalLengthMm: 15.965,
       glass: "PCD40 (HOYA) / H-PK65 class",
       apd: false,
-      dPgF: 0.00617,
       role: "Low-dispersion positive partner of L14; turns the L14-L15 pair into a mainly achromatizing doublet.",
       cemented: "D2",
+      dPgF: 0.00617,
     },
     {
       id: 6,
@@ -135,11 +131,11 @@ const LENS_DATA = {
       type: "Weak Negative Meniscus",
       nd: 1.56732,
       vd: 42.82,
-      fl: -96.987,
+      focalLengthMm: -96.987,
       glass: "S-TIL26 (OHARA)",
       apd: false,
-      dPgF: 0.00131,
       role: "Weak negative field-trim element between the cemented doublet and first asphere.",
+      dPgF: 0.00131,
     },
     {
       id: 7,
@@ -148,11 +144,11 @@ const LENS_DATA = {
       type: "Positive Meniscus (2x Asph)",
       nd: 1.76802,
       vd: 49.24,
-      fl: 34.512,
+      focalLengthMm: 34.512,
       glass: "M-TAF101 (HOYA) / D-LaF050 class",
       apd: false,
-      dPgF: -0.00934,
       role: "Positive first aspherical lens at the image side of G1; principal spherical-aberration and field-curvature corrector.",
+      dPgF: -0.00934,
     },
     {
       id: 8,
@@ -161,11 +157,11 @@ const LENS_DATA = {
       type: "Negative Meniscus (2x Asph)",
       nd: 1.68863,
       vd: 31.19,
-      fl: -56.502,
+      focalLengthMm: -56.502,
       glass: "M-FD80 (HOYA) / D-ZF10 class (probable)",
       apd: false,
-      dPgF: 0.00935,
       role: "First G2 lens and second aspherical lens; strong off-axis field and lateral-color correction.",
+      dPgF: 0.00935,
     },
     {
       id: 9,
@@ -174,11 +170,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.51633,
       vd: 64.14,
-      fl: -46.6,
+      focalLengthMm: -46.6,
       glass: "S-BSL7 (OHARA) / BSC7 class",
       apd: false,
-      dPgF: -0.00061,
       role: "Low-dispersion negative meniscus in G2; field correction with limited chromatic penalty.",
+      dPgF: -0.00061,
     },
     {
       id: 10,
@@ -187,102 +183,126 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.92119,
       vd: 23.96,
-      fl: 75.906,
+      focalLengthMm: 75.906,
       glass: "FDS24 (HOYA)",
       apd: "patent",
       apdNote: "Patent θgF = 0.62025; ΔPgF ≈ +0.01675; high-θgF ultra-high-index short flint.",
-      dPgF: 0.01675,
       role: "Ultra-high-index rear positive lens very close to the sensor; bends the exit cone while controlling chief-ray incidence.",
+      dPgF: 0.01675,
     },
   ],
 
   surfaces: [
-    { label: "1", R: -50.3724, d: 0.58, nd: 1.54814, elemId: 1, sd: 7.4 },
-    { label: "2", R: 14.6617, d: 2.16, nd: 1.8707, elemId: 2, sd: 7.2 },
-    { label: "3", R: 1e15, d: 1.6, nd: 1.0, elemId: 0, sd: 7.0 },
-    { label: "STO", R: 1e15, d: 3.21, nd: 1.0, elemId: 0, sd: 4.116 },
-    { label: "5", R: 51.9089, d: 1.71, nd: 1.755, elemId: 3, sd: 6.8 },
-    { label: "6", R: -51.9089, d: 1.0124, nd: 1.0, elemId: 0, sd: 4.8 },
-    { label: "7", R: -11.4182, d: 0.55, nd: 1.62004, elemId: 4, sd: 7.2 },
-    { label: "8", R: 28.7482, d: 4.37, nd: 1.61997, elemId: 5, sd: 7.9 },
-    { label: "9", R: -14.217, d: 0.1, nd: 1.0, elemId: 0, sd: 8.9 },
-    { label: "10", R: -45.1189, d: 0.64, nd: 1.56732, elemId: 6, sd: 9.3 },
-    { label: "11", R: -251.9504, d: 0.3663, nd: 1.0, elemId: 0, sd: 8.8 },
-    { label: "12A", R: -83.7111, d: 3.08, nd: 1.76802, elemId: 7, sd: 9.0 },
-    { label: "13A", R: -20.4535, d: 6.0, nd: 1.0, elemId: 0, sd: 11.4 },
-    { label: "14A", R: -30.1885, d: 1.66, nd: 1.68863, elemId: 8, sd: 12.5 },
-    { label: "15A", R: -137.7142, d: 6.55, nd: 1.0, elemId: 0, sd: 13.0 },
-    { label: "16", R: -14.3492, d: 1.14, nd: 1.51633, elemId: 9, sd: 12.3 },
-    { label: "17", R: -36.5121, d: 3.23, nd: 1.0, elemId: 0, sd: 16.2 },
-    { label: "18", R: 1e15, d: 5.76, nd: 1.92119, elemId: 10, sd: 25.8 },
-    { label: "19", R: -69.9242, d: 5.3962, nd: 1.0, elemId: 0, sd: 25.8 },
+    { label: "1", R: -50.3724, d: 0.58, sd: 7.4, medium: 1 },
+    { label: "2", R: 14.6617, d: 2.16, sd: 7.2, medium: 2 },
+    { label: "3", R: "flat", d: 1.6, sd: 7.0 },
+    { label: "STO", R: "flat", d: 3.21 },
+    { label: "5", R: 51.9089, d: 1.71, sd: 6.8, medium: 3 },
+    { label: "6", R: -51.9089, d: 1.0124, sd: 4.8 },
+    { label: "7", R: -11.4182, d: 0.55, sd: 7.2, medium: 4 },
+    { label: "8", R: 28.7482, d: 4.37, sd: 7.9, medium: 5 },
+    { label: "9", R: -14.217, d: 0.1, sd: 8.9 },
+    { label: "10", R: -45.1189, d: 0.64, sd: 9.3, medium: 6 },
+    { label: "11", R: -251.9504, d: 0.3663, sd: 8.8 },
+    {
+      label: "12A",
+      R: -83.7111,
+      d: 3.08,
+      sd: 9.0,
+      medium: 7,
+      asphere: {
+        K: 2.1024553941,
+        A4: -7.0023045429e-6,
+        A6: -9.4753226086e-8,
+        A8: 3.1001699495e-9,
+        A10: -3.4374049665e-12,
+        A12: -2.7796877419e-13,
+        A14: 2.7035420141e-15,
+        A16: -1.1894030479e-17,
+        A18: 2.5901002226e-20,
+        A20: -2.2489114855e-23,
+      },
+    },
+    {
+      label: "13A",
+      R: -20.4535,
+      sd: 11.4,
+      asphere: {
+        K: 8.414798937e-1,
+        A4: 2.6535069872e-5,
+        A6: -1.7876968415e-7,
+        A8: 4.3566170495e-9,
+        A10: -2.7653832283e-11,
+        A12: 1.9196600442e-13,
+        A14: -1.1912570741e-15,
+        A16: 3.8662215401e-18,
+        A18: -5.8797851965e-21,
+        A20: 3.380980175e-24,
+      },
+    },
+    {
+      label: "14A",
+      R: -30.1885,
+      d: 1.66,
+      sd: 12.5,
+      medium: 8,
+      asphere: {
+        K: 5.386343333e-1,
+        A4: -1.2557231818e-4,
+        A6: 1.2241585705e-6,
+        A8: -3.9408797975e-8,
+        A10: 1.0117637781e-9,
+        A12: -1.484449169e-11,
+        A14: 1.2872743002e-13,
+        A16: -6.5119887653e-16,
+        A18: 1.7741841901e-18,
+        A20: -2.0096774496e-21,
+      },
+    },
+    {
+      label: "15A",
+      R: -137.7142,
+      d: 6.55,
+      sd: 13.0,
+      // Exact patent odd/even coefficients (Table 15, KA = 7.0896629652 → K = KA − 1;
+      // A3 = 0 omitted; A7 uses the re-review-corrected 2.1858635689e-7).
+      asphere: {
+        K: 6.0896629652,
+        A4: -1.0499566787e-4,
+        A6: 4.5030349598e-6,
+        A8: -1.8332704424e-7,
+        A10: 3.2832007849e-9,
+        A12: -2.6860875467e-11,
+        A14: 6.2135840221e-14,
+        A16: 4.8063364846e-16,
+        A18: -3.3492681519e-18,
+        A20: 6.0349230674e-21,
+        A5: -1.7524859132e-5,
+        A7: 2.1858635689e-7,
+        A9: 1.0104186656e-8,
+        A11: -3.5373721277e-10,
+        A13: 4.6941325681e-12,
+        A15: -3.1574129484e-14,
+        A17: 1.0713713899e-16,
+        A19: -1.4581851029e-19,
+      },
+    },
+    { label: "16", R: -14.3492, d: 1.14, sd: 12.3, medium: 9 },
+    { label: "17", R: -36.5121, d: 3.23, sd: 16.2 },
+    { label: "18", R: "flat", d: 5.76, sd: 25.8, medium: 10 },
+    { label: "19", R: -69.9242, d: 5.3962, sd: 25.8 },
   ],
 
-  asph: {
-    "12A": {
-      K: 2.1024553941,
-      A4: -7.0023045429e-6,
-      A6: -9.4753226086e-8,
-      A8: 3.1001699495e-9,
-      A10: -3.4374049665e-12,
-      A12: -2.7796877419e-13,
-      A14: 2.7035420141e-15,
-      A16: -1.1894030479e-17,
-      A18: 2.5901002226e-20,
-      A20: -2.2489114855e-23,
-    },
-    "13A": {
-      K: 8.414798937e-1,
-      A4: 2.6535069872e-5,
-      A6: -1.7876968415e-7,
-      A8: 4.3566170495e-9,
-      A10: -2.7653832283e-11,
-      A12: 1.9196600442e-13,
-      A14: -1.1912570741e-15,
-      A16: 3.8662215401e-18,
-      A18: -5.8797851965e-21,
-      A20: 3.380980175e-24,
-    },
-    "14A": {
-      K: 5.386343333e-1,
-      A4: -1.2557231818e-4,
-      A6: 1.2241585705e-6,
-      A8: -3.9408797975e-8,
-      A10: 1.0117637781e-9,
-      A12: -1.484449169e-11,
-      A14: 1.2872743002e-13,
-      A16: -6.5119887653e-16,
-      A18: 1.7741841901e-18,
-      A20: -2.0096774496e-21,
-    },
-    // Exact patent odd/even coefficients (Table 15, KA = 7.0896629652 → K = KA − 1;
-    // A3 = 0 omitted; A7 uses the re-review-corrected 2.1858635689e-7).
-    "15A": {
-      K: 6.0896629652,
-      A4: -1.0499566787e-4,
-      A5: -1.7524859132e-5,
-      A6: 4.5030349598e-6,
-      A7: 2.1858635689e-7,
-      A8: -1.8332704424e-7,
-      A9: 1.0104186656e-8,
-      A10: 3.2832007849e-9,
-      A11: -3.5373721277e-10,
-      A12: -2.6860875467e-11,
-      A13: 4.6941325681e-12,
-      A14: 6.2135840221e-14,
-      A15: -3.1574129484e-14,
-      A16: 4.8063364846e-16,
-      A17: 1.0713713899e-16,
-      A18: -3.3492681519e-18,
-      A19: -1.4581851029e-19,
-      A20: 6.0349230674e-21,
-    },
+  focus: {
+    closeFocusM: 0.2,
+    description:
+      "First-group unit focus: G1 (L11-L17 plus the stop) moves objectward while G2 remains fixed. The close-focus dF value is a paraxial estimate for a 0.20 m object distance from the first surface; the patent tabulates only the infinity position.",
   },
 
-  var: {
-    "13A": [6.0, 8.5936],
-  },
-  varLabels: [["13A", "dF"]],
+  gaps: { "13A": { label: "dF", values: [[6.0, 8.5936]] } },
+
+  aperture: { nominalFNumber: 4.12, fStops: [4.12, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 9 },
+
   groups: [
     { text: "G1f", fromSurface: "1", toSurface: "3" },
     { text: "G1r", fromSurface: "5", toSurface: "13A" },
@@ -292,6 +312,8 @@ const LENS_DATA = {
     { text: "D1", fromSurface: "1", toSurface: "3" },
     { text: "D2", fromSurface: "7", toSurface: "9" },
   ],
-} satisfies LensDataInput;
+
+  layout: { scFill: 0.5, yScFill: 0.78 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

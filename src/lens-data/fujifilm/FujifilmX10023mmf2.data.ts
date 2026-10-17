@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -53,25 +53,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "fujifilm-x100-23f2",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON 23mm f/2 (Fujifilm X100)",
   subtitle: "US 2012/0069456 A1 Example 1 — Fujifilm / Suzuki",
-  specs: ["8 ELEMENTS / 6 GROUPS", "f ≈ 23.7 mm", "F/2.0", "2ω ≈ 62.0°", "2 ASPHERICAL SURFACES (1 GMo ELEMENT)"],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: 23,
-  focalLengthDesign: 23.72,
-  apertureMarketing: 2.0,
-  apertureDesign: 2.06,
-  lensMounts: ["fixed-lens-camera"],
-  imageFormat: "aps-c",
-  patentNumber: "US 2012/0069456 A1",
-  patentAuthors: ["Takashi Suzuki"],
-  patentAssignees: ["Fujifilm Corporation"],
-  patentYear: 2012,
-  elementCount: 8,
-  groupCount: 6,
+  catalog: {
+    lensMounts: ["fixed-lens-camera"],
+    imageFormat: "aps-c",
+    specs: ["8 ELEMENTS / 6 GROUPS", "f ≈ 23.7 mm", "F/2.0", "2ω ≈ 62.0°", "2 ASPHERICAL SURFACES (1 GMo ELEMENT)"],
+    elementCount: 8,
+    groupCount: 6,
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: 23, design: 23.72 },
+    fNumber: { marketing: 2.0, design: 2.06 },
+  },
+
+  source: {
+    patentNumber: "US 2012/0069456 A1",
+    patentYear: 2012,
+    authors: ["Takashi Suzuki"],
+    assignees: ["Fujifilm Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -82,7 +86,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.74077,
       vd: 27.8,
-      fl: -21.4,
+      focalLengthMm: -21.4,
       glass: "S-TIH13 (OHARA)",
       apd: false,
       role: "G1 front — negative meniscus (convex to object), chromatic corrector paired with L2",
@@ -95,7 +99,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.883,
       vd: 40.8,
-      fl: 12.9,
+      focalLengthMm: 12.9,
       glass: "S-LAH58 (OHARA)",
       apd: false,
       role: "G1 rear — positive meniscus (convex to object), primary G1 power, cemented with L1",
@@ -108,7 +112,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.883,
       vd: 40.8,
-      fl: 46.8,
+      focalLengthMm: 46.8,
       glass: "S-LAH58 (OHARA)",
       apd: false,
       role: "G2 front — positive meniscus (convex to image), post-stop collector",
@@ -120,7 +124,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.5927,
       vd: 35.3,
-      fl: -9.5,
+      focalLengthMm: -9.5,
       glass: "S-FTM16 (OHARA)",
       apd: false,
       role: "G2 cemented doublet negative — Petzval flattener and chromatic correction",
@@ -133,7 +137,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.8,
-      fl: 9.9,
+      focalLengthMm: 9.9,
       glass: "S-LAH58 (OHARA)",
       apd: false,
       role: "G2 cemented doublet positive — primary system power, highest φ element",
@@ -146,7 +150,7 @@ const LENS_DATA = {
       type: "Pos. Meniscus (2× Asph)",
       nd: 1.56865,
       vd: 58.6,
-      fl: 178.3,
+      focalLengthMm: 178.3,
       glass: "Unmatched (569586 patent molded crown; no exact public catalog identity)",
       apd: false,
       role: "G2 rear — glass-molded aspherical corrector for SA and field curvature",
@@ -158,7 +162,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80809,
       vd: 22.8,
-      fl: -22.0,
+      focalLengthMm: -22.0,
       glass: "J-SFH1 (Hikari)",
       apd: false,
       role: "G3 front — negative meniscus (concave to object), diverges off-axis rays for telecentricity",
@@ -170,7 +174,7 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.883,
       vd: 40.8,
-      fl: 52.8,
+      focalLengthMm: 52.8,
       glass: "S-LAH58 (OHARA)",
       apd: false,
       role: "G3 rear — plano-convex field lens, condenses chief rays for near-telecentric exit",
@@ -178,30 +182,101 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ──
+   *  Exact Example 1 Table 2 values. Patent K=0 converts to standard K=-1.
+   */
   surfaces: [
     // ── G1: Cemented doublet L1 + L2 ──
-    { label: "1", R: 29.787, d: 0.91, nd: 1.74077, elemId: 1, sd: 7.6 }, // L1 front
-    { label: "2", R: 10.216, d: 3.07, nd: 1.883, elemId: 2, sd: 6.8 }, // L1/L2 junction → L2
-    { label: "3", R: 85.567, d: 0.9, nd: 1.0, elemId: 0, sd: 5.6 }, // L2 rear → air
+    { label: "1", R: 29.787, d: 0.91, sd: 7.6, medium: 1 }, // L1 front
+    { label: "2", R: 10.216, d: 3.07, sd: 6.8, medium: 2 }, // L1/L2 junction → L2
+    { label: "3", R: 85.567, d: 0.9, sd: 5.6 }, // L2 rear → air
 
     // ── Aperture stop ──
-    { label: "STO", R: 1e15, d: 5.01, nd: 1.0, elemId: 0, sd: 5.17 },
+    { label: "STO", R: "flat", d: 5.01 },
 
     // ── G2: L3 + cemented doublet L4/L5 + aspherical L6 ──
-    { label: "5", R: -15.211, d: 1.7, nd: 1.883, elemId: 3, sd: 5.4 }, // L3 front
-    { label: "6", R: -11.699, d: 0.3, nd: 1.0, elemId: 0, sd: 4.8 }, // L3 rear → air
-    { label: "7", R: -10.059, d: 0.91, nd: 1.5927, elemId: 4, sd: 5.4 }, // L4 front
-    { label: "8", R: 13.211, d: 7.36, nd: 1.883, elemId: 5, sd: 6.9 }, // L4/L5 junction → L5
-    { label: "9", R: -18.976, d: 0.2, nd: 1.0, elemId: 0, sd: 7.2 }, // L5 rear → air
-    { label: "10A", R: 47.945, d: 2.5, nd: 1.56865, elemId: 6, sd: 7.9 }, // L6 front (asph)
-    { label: "11A", R: 89.234, d: 5.13, nd: 1.0, elemId: 0, sd: 8.4 }, // L6 rear (asph) → air
+    { label: "5", R: -15.211, d: 1.7, sd: 5.4, medium: 3 }, // L3 front
+    { label: "6", R: -11.699, d: 0.3, sd: 4.8 }, // L3 rear → air
+    { label: "7", R: -10.059, d: 0.91, sd: 5.4, medium: 4 }, // L4 front
+    { label: "8", R: 13.211, d: 7.36, sd: 6.9, medium: 5 }, // L4/L5 junction → L5
+    { label: "9", R: -18.976, d: 0.2, sd: 7.2 }, // L5 rear → air
+    {
+      label: "10A",
+      R: 47.945,
+      d: 2.5,
+      sd: 7.9,
+      medium: 6,
+      asphere: {
+        K: -1,
+        A4: 3.7162356e-6,
+        A6: 1.2224508e-5,
+        A8: -7.0851318e-8,
+        A10: 4.694365e-10,
+        A12: 4.0056802e-12,
+        A14: -6.2786396e-14,
+        A16: -6.2665147e-16,
+        A18: 7.5045399e-18,
+        A20: -7.9734604e-19,
+        A3: 1.359265e-4,
+        A5: -6.5383916e-5,
+        A7: -6.7024023e-7,
+        A9: -1.4834043e-9,
+        A11: 7.0944713e-11,
+        A13: -2.5358331e-13,
+        A15: -7.2519329e-15,
+        A17: -1.2454499e-16,
+        A19: 9.487108e-18,
+      },
+    }, // L6 front (asph)
+    {
+      label: "11A",
+      R: 89.234,
+      sd: 8.4,
+      asphere: {
+        K: -1,
+        A4: 1.5137686e-3,
+        A6: 6.8718645e-4,
+        A8: 2.2970993e-5,
+        A10: 1.7608222e-7,
+        A12: 5.2054679e-9,
+        A14: -9.4611209e-11,
+        A16: 5.9858623e-13,
+        A18: -1.1788037e-15,
+        A20: 1.8725398e-17,
+        A3: -3.6381176e-4,
+        A5: -1.4708597e-3,
+        A7: -1.7619011e-4,
+        A9: -1.2455617e-6,
+        A11: -6.3140576e-8,
+        A13: 6.6772864e-10,
+        A15: -3.2254692e-12,
+        A17: 2.3337864e-14,
+        A19: -3.5021994e-16,
+      },
+    }, // L6 rear (asph) → air
 
     // ── G3: L7 (neg. meniscus) + L8 (plano-convex) ──
-    { label: "12", R: -12.593, d: 1.1, nd: 1.80809, elemId: 7, sd: 8.9 }, // L7 front
-    { label: "13", R: -45.06, d: 0.2, nd: 1.0, elemId: 0, sd: 10.4 }, // L7 rear → air
-    { label: "14", R: 46.628, d: 3.08, nd: 1.883, elemId: 8, sd: 12.6 }, // L8 front
-    { label: "15", R: 1e15, d: 2.8, nd: 1.0, elemId: 0, sd: 12.9 }, // L8 rear → air (physical gap to PP)
+    { label: "12", R: -12.593, d: 1.1, sd: 8.9, medium: 7 }, // L7 front
+    { label: "13", R: -45.06, d: 0.2, sd: 10.4 }, // L7 rear → air
+    { label: "14", R: 46.628, d: 3.08, sd: 12.6, medium: 8 }, // L8 front
+    { label: "15", R: "flat", d: 2.8, sd: 12.9 }, // L8 rear → air (physical gap to PP)
   ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.1,
+    description: "Front focus — G1 and G2 move together as one body toward the object (¶0039, ¶0106).",
+  },
+
+  /* (moved from var) ── Variable air spacings ──
+   *  Front focus: G1+G2 move together toward object. Only gap S11A
+   *  (between G2 rear and G3 front) changes. G3 and BFD remain fixed.
+   *  Close-focus value estimated — patent does not publish close-focus data.
+   */
+  gaps: { "11A": { label: "BF (G2–G3)", values: [[5.13, 12.5]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.06, fStops: [2.06, 2.8, 4, 5.6, 8, 11, 16], blades: 9 },
 
   /* ── Optical member PP (patent Table 1 surfaces 16–17): traced, not drawn ──
    *  Table 1 prints no gap after PP; ≈1.194 mm = BF 5.53 (Table 11, in air) − 2.80 − 2.33/1.5168.
@@ -218,89 +293,19 @@ const LENS_DATA = {
     },
   ],
 
-  /* ── Aspherical coefficients ──
-   *  Exact Example 1 Table 2 values. Patent K=0 converts to standard K=-1.
-   */
-  asph: {
-    "10A": {
-      K: -1,
-      A3: 1.359265e-4,
-      A4: 3.7162356e-6,
-      A5: -6.5383916e-5,
-      A6: 1.2224508e-5,
-      A7: -6.7024023e-7,
-      A8: -7.0851318e-8,
-      A9: -1.4834043e-9,
-      A10: 4.694365e-10,
-      A11: 7.0944713e-11,
-      A12: 4.0056802e-12,
-      A13: -2.5358331e-13,
-      A14: -6.2786396e-14,
-      A15: -7.2519329e-15,
-      A16: -6.2665147e-16,
-      A17: -1.2454499e-16,
-      A18: 7.5045399e-18,
-      A19: 9.487108e-18,
-      A20: -7.9734604e-19,
-    },
-    "11A": {
-      K: -1,
-      A3: -3.6381176e-4,
-      A4: 1.5137686e-3,
-      A5: -1.4708597e-3,
-      A6: 6.8718645e-4,
-      A7: -1.7619011e-4,
-      A8: 2.2970993e-5,
-      A9: -1.2455617e-6,
-      A10: 1.7608222e-7,
-      A11: -6.3140576e-8,
-      A12: 5.2054679e-9,
-      A13: 6.6772864e-10,
-      A14: -9.4611209e-11,
-      A15: -3.2254692e-12,
-      A16: 5.9858623e-13,
-      A17: 2.3337864e-14,
-      A18: -1.1788037e-15,
-      A19: -3.5021994e-16,
-      A20: 1.8725398e-17,
-    },
-  },
-
-  /* ── Variable air spacings ──
-   *  Front focus: G1+G2 move together toward object. Only gap S11A
-   *  (between G2 rear and G3 front) changes. G3 and BFD remain fixed.
-   *  Close-focus value estimated — patent does not publish close-focus data.
-   */
-  var: {
-    "11A": [5.13, 12.5],
-  },
-
-  varLabels: [["11A", "BF (G2–G3)"]],
-
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "G1 (+)", fromSurface: "1", toSurface: "3" },
     { text: "G2 (+)", fromSurface: "5", toSurface: "11A" },
     { text: "G3 (−)", fromSurface: "12", toSurface: "15" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "1", toSurface: "3" },
     { text: "D2", fromSurface: "7", toSurface: "9" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.1,
-  focusDescription: "Front focus — G1 and G2 move together as one body toward the object (¶0039, ¶0106).",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.06,
-  fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16],
-  apertureBlades: 9,
-
   /* ── Layout tuning ── */
-  scFill: 0.48,
-  yScFill: 0.38,
-} satisfies LensDataInput;
+  layout: { scFill: 0.48, yScFill: 0.38 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -25,25 +25,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "hasselblad-hc-300-f4p5",
   maker: "Hasselblad",
   name: "HASSELBLAD HC 300mm f/4.5",
   subtitle: "US 2006/0209426 A1 Example 1 — Fujinon / Suzuki",
-  specs: ["9 ELEMENTS / 7 GROUPS", "f ≈ 292.0 mm", "F/4.66", "2ω ≈ 13.4°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: 300,
-  focalLengthDesign: 291.96,
-  apertureMarketing: 4.5,
-  apertureDesign: 4.66,
-  lensMounts: ["hasselblad-h"],
-  imageFormat: "645",
-  patentNumber: "US 2006/0209426 A1",
-  patentAuthors: ["Takashi Suzuki"],
-  patentAssignees: ["Fujinon Corporation"],
-  patentYear: 2006,
-  elementCount: 9,
-  groupCount: 7,
+  catalog: {
+    lensMounts: ["hasselblad-h"],
+    imageFormat: "645",
+    specs: ["9 ELEMENTS / 7 GROUPS", "f ≈ 292.0 mm", "F/4.66", "2ω ≈ 13.4°", "ALL SPHERICAL"],
+    elementCount: 9,
+    groupCount: 7,
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: 300, design: 291.96 },
+    fNumber: { marketing: 4.5, design: 4.66 },
+  },
+
+  source: {
+    patentNumber: "US 2006/0209426 A1",
+    patentYear: 2006,
+    authors: ["Takashi Suzuki"],
+    assignees: ["Fujinon Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -54,7 +58,7 @@ const LENS_DATA = {
       type: "Pos. Meniscus",
       nd: 1.70154,
       vd: 41.1,
-      fl: 206.5,
+      focalLengthMm: 206.5,
       glass: "S-BAH27 (OHARA)",
       apd: false,
       role: "Front collector; deliberate moderate-dispersion choice per Condition (1)",
@@ -66,7 +70,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus",
       nd: 1.8061,
       vd: 33.3,
-      fl: -100.0,
+      focalLengthMm: -100.0,
       glass: "NBFD15 (HOYA, 806333 code)",
       apd: false,
       role: "Primary negative power; flint partner for achromatizing pair",
@@ -78,12 +82,12 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.43875,
       vd: 95.0,
-      fl: 108.4,
+      focalLengthMm: 108.4,
       glass: "S-FPL53 (OHARA)",
       apd: "patent",
       apdNote: "ΔPg,F ≈ +0.046 (OHARA NSL 7/PBM 2 ref); sole ED element; secondary-spectrum corrector",
-      dPgF: 0.0459,
       role: "ED achromatizer — corrects primary and secondary chromatic aberration",
+      dPgF: 0.0459,
     },
     {
       id: 4,
@@ -92,7 +96,7 @@ const LENS_DATA = {
       type: "Pos. Meniscus",
       nd: 1.62041,
       vd: 60.4,
-      fl: 189.6,
+      focalLengthMm: 189.6,
       glass: "S-BSM16 (OHARA)",
       apd: false,
       role: "Rear positive of front group; beam diameter control before focusing group",
@@ -104,11 +108,11 @@ const LENS_DATA = {
       type: "Biconvex Positive (weak)",
       nd: 1.80518,
       vd: 25.5,
-      fl: 330.0,
+      focalLengthMm: 330.0,
       glass: "S-TIH6 (OHARA)",
       apd: false,
-      cemented: "D1",
       role: "Focus-group front; high-dispersion flint for internal achromatism",
+      cemented: "D1",
     },
     {
       id: 6,
@@ -117,13 +121,13 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.744,
       vd: 44.8,
-      fl: -82.0,
+      focalLengthMm: -82.0,
       glass: "S-LAM2 (OHARA)",
       apd: "inferred",
       apdNote: "ΔPg,F ≈ −0.004 (mild negative); complements S-FPL53 secondary-spectrum correction",
-      dPgF: -0.004,
-      cemented: "D1",
       role: "Focus-group rear; dominant negative power of Group 20",
+      cemented: "D1",
+      dPgF: -0.004,
     },
     {
       id: 7,
@@ -132,7 +136,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus",
       nd: 1.7432,
       vd: 49.3,
-      fl: -134.8,
+      focalLengthMm: -134.8,
       glass: "S-LAM60 (OHARA)",
       apd: false,
       role: "Post-stop field corrector; coma and lateral color control",
@@ -144,11 +148,11 @@ const LENS_DATA = {
       type: "Neg. Meniscus",
       nd: 1.80518,
       vd: 25.5,
-      fl: -123.0,
+      focalLengthMm: -123.0,
       glass: "S-TIH6 (OHARA)",
       apd: false,
-      cemented: "D2",
       role: "Rear corrector front; chromatic dispersion partner",
+      cemented: "D2",
     },
     {
       id: 9,
@@ -157,52 +161,48 @@ const LENS_DATA = {
       type: "Pos. Meniscus",
       nd: 1.8061,
       vd: 33.3,
-      fl: 197.0,
+      focalLengthMm: 197.0,
       glass: "NBFD15 (HOYA, 806333 code)",
       apd: false,
-      cemented: "D2",
       role: "Rear corrector rear; near-zero Δn cemented interface acts as pure dispersive boundary",
+      cemented: "D2",
     },
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 76.668, d: 8.94, nd: 1.70154, elemId: 1, sd: 43.0 }, // G11 front
-    { label: "2", R: 154.99, d: 13.27, nd: 1.0, elemId: 0, sd: 42.0 }, // G11 rear → air
-    { label: "3", R: 127.54, d: 2.9, nd: 1.8061, elemId: 2, sd: 38.0 }, // G12 front
-    { label: "4", R: 48.901, d: 0.48, nd: 1.0, elemId: 0, sd: 36.0 }, // G12 rear → air
-    { label: "5", R: 48.803, d: 16.36, nd: 1.43875, elemId: 3, sd: 36.0 }, // G13 front
-    { label: "6", R: -1650.8, d: 0.25, nd: 1.0, elemId: 0, sd: 35.0 }, // G13 rear → air
-    { label: "7", R: 81.457, d: 30.0, nd: 1.62041, elemId: 4, sd: 34.0 }, // G14 front
-    { label: "8", R: 227.58, d: 5.55, nd: 1.0, elemId: 0, sd: 28.0 }, // G14 rear → air (var)
-    { label: "9", R: 1463.5, d: 4.2, nd: 1.80518, elemId: 5, sd: 25.0 }, // G21 front
-    { label: "10", R: -88.987, d: 2.8, nd: 1.744, elemId: 6, sd: 24.5 }, // G21→G22 junction
-    { label: "11", R: 69.551, d: 32.87, nd: 1.0, elemId: 0, sd: 24.0 }, // G22 rear → air (var)
-    { label: "STO", R: 1e15, d: 37.08, nd: 1.0, elemId: 0, sd: 13.5 }, // Aperture stop
-    { label: "13", R: 147.6, d: 3.0, nd: 1.7432, elemId: 7, sd: 18.0 }, // G31 front
-    { label: "14", R: 59.167, d: 16.37, nd: 1.0, elemId: 0, sd: 18.5 }, // G31 rear → air
-    { label: "15", R: 73.26, d: 2.1, nd: 1.80518, elemId: 8, sd: 23.0 }, // G32 front
-    { label: "16", R: 42.11, d: 8.54, nd: 1.8061, elemId: 9, sd: 23.0 }, // G32→G33 junction
-    { label: "17", R: 205.07, d: 70.18, nd: 1.0, elemId: 0, sd: 23.5 }, // G33 rear → BFD
+    { label: "1", R: 76.668, d: 8.94, sd: 43.0, medium: 1 }, // G11 front
+    { label: "2", R: 154.99, d: 13.27, sd: 42.0 }, // G11 rear → air
+    { label: "3", R: 127.54, d: 2.9, sd: 38.0, medium: 2 }, // G12 front
+    { label: "4", R: 48.901, d: 0.48, sd: 36.0 }, // G12 rear → air
+    { label: "5", R: 48.803, d: 16.36, sd: 36.0, medium: 3 }, // G13 front
+    { label: "6", R: -1650.8, d: 0.25, sd: 35.0 }, // G13 rear → air
+    { label: "7", R: 81.457, d: 30.0, sd: 34.0, medium: 4 }, // G14 front
+    { label: "8", R: 227.58, sd: 28.0 }, // G14 rear → air (var)
+    { label: "9", R: 1463.5, d: 4.2, sd: 25.0, medium: 5 }, // G21 front
+    { label: "10", R: -88.987, d: 2.8, sd: 24.5, medium: 6 }, // G21→G22 junction
+    { label: "11", R: 69.551, sd: 24.0 }, // G22 rear → air (var)
+    { label: "STO", R: "flat", d: 37.08 }, // Aperture stop
+    { label: "13", R: 147.6, d: 3.0, sd: 18.0, medium: 7 }, // G31 front
+    { label: "14", R: 59.167, d: 16.37, sd: 18.5 }, // G31 rear → air
+    { label: "15", R: 73.26, d: 2.1, sd: 23.0, medium: 8 }, // G32 front
+    { label: "16", R: 42.11, d: 8.54, sd: 23.0, medium: 9 }, // G32→G33 junction
+    { label: "17", R: 205.07, d: 70.18, sd: 23.5 }, // G33 rear → BFD
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: { closeFocusM: 2.44, description: "Inner focus — Group 20 (G21+G22 cemented doublet) translates rearward." },
 
-  /* ── Variable air spacings (inner focus) ──
+  /* (moved from var) ── Variable air spacings (inner focus) ──
    *  Group 20 translates rearward for close focus.
    *  D8 + D11 = 38.42 mm (conserved).
    *  Focus travel: 6.78 mm for MFD = 2.44 m (8 ft).
    */
-  var: {
-    "8": [5.55, 12.33],
-    "11": [32.87, 26.09],
-  },
+  gaps: { "8": { label: "D8", values: [[5.55, 12.33]] }, "11": { label: "D11", values: [[32.87, 26.09]] } },
 
-  varLabels: [
-    ["8", "D8"],
-    ["11", "D11"],
-  ],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 4.66, fStops: [4.66, 5.6, 6.3, 8, 11, 16, 22, 32, 45] },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -210,23 +210,13 @@ const LENS_DATA = {
     { text: "GROUP 20", fromSurface: "9", toSurface: "11" },
     { text: "GROUP 30", fromSurface: "STO", toSurface: "17" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "9", toSurface: "11" },
     { text: "D2", fromSurface: "15", toSurface: "17" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 2.44,
-  focusDescription: "Inner focus — Group 20 (G21+G22 cemented doublet) translates rearward.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 4.66,
-  fstopSeries: [4.66, 5.6, 6.3, 8, 11, 16, 22, 32, 45],
-
   /* ── Layout tuning ── */
-  scFill: 0.5,
-  yScFill: 0.22,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.22 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

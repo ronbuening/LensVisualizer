@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -24,9 +24,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON STOP AND SEMI-DIAMETERS:                                  ║
  * ║    The patent drawing shows the stop in l2 between L2 and L3 but    ║
  * ║    does not publish an axial stop coordinate or clear apertures.    ║
- * ║    l2 is split evenly around STO; STO sd is solved paraxially for   ║
- * ║    f/3.5. Element SDs are inferred from marginal/chief ray          ║
- * ║    envelopes and constrained by plausible mechanical clearances.    ║
+ * ║    l2 is split evenly around STO; the stop radius is derived from   ║
+ * ║    the design f-number (f/3.5). Element SDs are inferred from       ║
+ * ║    marginal/chief ray envelopes and constrained by plausible        ║
+ * ║    mechanical clearances.                                           ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:            ║
  * ║    ✓ Glass elements and surfaces from front element to image plane  ║
@@ -37,25 +38,28 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "enna-munchen-lithagon-35mm-f35",
   maker: "Enna München",
   name: "ENNA MÜNCHEN LITHAGON 35mm f/3.5",
   subtitle: "US 2,821,112 — Lautenbacher / Brendel, Enna-Werk",
-  specs: ["4 elements / 4 groups", "f ≈ 35.0 mm", "F/3.5", "2ω ≈ 63.4°", "all-spherical"],
 
-  focalLengthMarketing: 35,
-  focalLengthDesign: 35.0008,
-  apertureMarketing: 3.5,
-  apertureDesign: 3.5,
-  lensMounts: ["exakta", "m42", "praktina"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 2,821,112",
-  patentAuthors: ["Johann Lautenbacher", "Theodor Brendel"],
-  patentAssignees: ["Enna-Werk Optische Anstalt Dr. Appelt K.G."],
-  patentYear: 1958,
-  elementCount: 4,
-  groupCount: 4,
-  apertureBlades: 8,
+  catalog: {
+    lensMounts: ["exakta", "m42", "praktina"],
+    imageFormat: "135-full-frame",
+    specs: ["4 elements / 4 groups", "f ≈ 35.0 mm", "F/3.5", "2ω ≈ 63.4°", "all-spherical"],
+    elementCount: 4,
+    groupCount: 4,
+    focalLengthMm: { marketing: 35, design: 35.0008 },
+    fNumber: { marketing: 3.5, design: 3.5 },
+  },
+
+  source: {
+    patentNumber: "US 2,821,112",
+    patentYear: 1958,
+    authors: ["Johann Lautenbacher", "Theodor Brendel"],
+    assignees: ["Enna-Werk Optische Anstalt Dr. Appelt K.G."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -66,7 +70,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.51821,
       vd: 65.2,
-      fl: -127.02,
+      focalLengthMm: -127.02,
       glass: "PC2 (HOYA catalog equivalent; production supplier unspecified; patent 518652)",
       apd: false,
       role: "Front negative meniscus that provides the long-back-focus retrofocus layout.",
@@ -78,7 +82,7 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.744,
       vd: 44.9,
-      fl: 21.64,
+      focalLengthMm: 21.64,
       glass: "N-LAF2 (Schott, equivalent)",
       apd: false,
       role: "Front positive element of the rear triplet.",
@@ -90,7 +94,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6727,
       vd: 32.2,
-      fl: -13.25,
+      focalLengthMm: -13.25,
       glass: "SF5 (Schott)",
       apd: false,
       role: "High-dispersion negative element of the rear triplet.",
@@ -102,7 +106,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6516,
       vd: 58.5,
-      fl: 19.99,
+      focalLengthMm: 19.99,
       glass: "N-LAK7 (Schott)",
       apd: false,
       role: "Rear positive element of the triplet and final converging member.",
@@ -111,45 +115,34 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 69.44, d: 1.75, nd: 1.51821, elemId: 1, sd: 20.0 },
-    { label: "2", R: 33.5013, d: 26.6, nd: 1.0, elemId: 0, sd: 19.5 },
-    { label: "3", R: 16.1, d: 3.15, nd: 1.744, elemId: 2, sd: 9.0 },
-    { label: "4", R: 1e15, d: 1.75, nd: 1.0, elemId: 0, sd: 7.5 },
+    { label: "1", R: 69.44, d: 1.75, sd: 20.0, medium: 1 },
+    { label: "2", R: 33.5013, d: 26.6, sd: 19.5 },
+    { label: "3", R: 16.1, d: 3.15, sd: 9.0, medium: 2 },
+    { label: "4", R: "flat", d: 1.75, sd: 7.5 },
     // STO position inferred from Fig. 1; patent l2=0.100f is split 0.050f/0.050f around the stop.
-    { label: "STO", R: 1e15, d: 1.75, nd: 1.0, elemId: 0, sd: 5.15746 },
-    { label: "5", R: -18.83, d: 0.98, nd: 1.6727, elemId: 3, sd: 6.2 },
-    { label: "6", R: 17.29, d: 2.1, nd: 1.0, elemId: 0, sd: 6.5 },
-    { label: "7", R: 91.0, d: 3.29, nd: 1.6516, elemId: 4, sd: 8.3 },
-    { label: "8", R: -14.9856, d: 35.68017, nd: 1.0, elemId: 0, sd: 8.3 },
+    { label: "STO", R: "flat", d: 1.75 },
+    { label: "5", R: -18.83, d: 0.98, sd: 6.2, medium: 3 },
+    { label: "6", R: 17.29, d: 2.1, sd: 6.5 },
+    { label: "7", R: 91.0, d: 3.29, sd: 8.3, medium: 4 },
+    { label: "8", R: -14.9856, sd: 8.3 },
   ],
 
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: { closeFocusM: 0.5, description: "Unit focus; only the back-focus gap changes in the data model." },
 
-  var: {
-    "8": [35.68017, 38.60566],
-  },
+  gaps: { "8": { label: "BF", values: [[35.68017, 38.60566]] } },
 
-  varLabels: [["8", "BF"]],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 8 },
 
   groups: [
     { text: "M", fromSurface: "1", toSurface: "2" },
     { text: "T", fromSurface: "3", toSurface: "8" },
   ],
-
   doublets: [],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.5,
-  focusDescription: "Unit focus; only the back-focus gap changes in the data model.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 3.5,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
   /* ── Layout tuning ── */
-  scFill: 0.56,
-  yScFill: 0.54,
-} satisfies LensDataInput;
+  layout: { scFill: 0.56, yScFill: 0.54 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

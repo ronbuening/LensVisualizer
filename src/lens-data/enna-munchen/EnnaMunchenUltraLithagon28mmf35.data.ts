@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Enna München Ultra-Lithagon 28mm f/3.5
@@ -25,28 +25,27 @@ import type { LensDataInput } from "../../types/optics.js";
  * to 38.836352 mm.
  */
 const LENS_DATA = {
+  schema: 2,
   key: "enna-munchen-ultra-lithagon-28mm-f35",
   maker: "Enna München",
   name: "ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5",
   subtitle: "US 2,959,100 Example 1 — Enna Werk / Hans Lautenbacher",
-  specs: ["6 elements / 6 groups", "f ≈ 28.00 mm", "f/3.5", "2ω = 75°", "All-spherical retrofocus"],
 
-  focalLengthMarketing: 28,
-  focalLengthDesign: 28.00055,
-  apertureMarketing: 3.5,
-  apertureDesign: 3.5,
-  lensMounts: ["exakta", "m42"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 2,959,100",
-  patentAuthors: ["Hans Lautenbacher"],
-  patentAssignees: ["Enna-Werk Optische Anstalt Dr. Appelt K.G."],
-  patentYear: 1960,
-  elementCount: 6,
-  groupCount: 6,
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 75,
-    maxTraceFieldDeg: 37.5,
+  catalog: {
+    lensMounts: ["exakta", "m42"],
+    imageFormat: "135-full-frame",
+    specs: ["6 elements / 6 groups", "f ≈ 28.00 mm", "f/3.5", "2ω = 75°", "All-spherical retrofocus"],
+    elementCount: 6,
+    groupCount: 6,
+    focalLengthMm: { marketing: 28, design: 28.00055 },
+    fNumber: { marketing: 3.5, design: 3.5 },
+  },
+
+  source: {
+    patentNumber: "US 2,959,100",
+    patentYear: 1960,
+    authors: ["Hans Lautenbacher"],
+    assignees: ["Enna-Werk Optische Anstalt Dr. Appelt K.G."],
   },
 
   elements: [
@@ -57,7 +56,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6228,
       vd: 56.9,
-      fl: -42.01,
+      focalLengthMm: -42.01,
       glass: "S-BSM10 equivalent (OHARA; legacy SK10-class, patent nd/vd)",
       apd: false,
       role: "Diverging front meniscus of part F; establishes the retrofocus back-focus extension.",
@@ -69,7 +68,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62536,
       vd: 35.6,
-      fl: 280.44,
+      focalLengthMm: 280.44,
       glass: "F7 (HOYA catalog equivalent; production supplier unspecified; patent 625356)",
       apd: false,
       role: "Weak collective median element of part S; patent uses it to stretch the astigmatic field curves.",
@@ -81,7 +80,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.61272,
       vd: 58.6,
-      fl: 30.525,
+      focalLengthMm: 30.525,
       glass: "BACD4 (HOYA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Primary positive element at the front of the rear main part H.",
@@ -93,7 +92,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62536,
       vd: 35.6,
-      fl: 56.636,
+      focalLengthMm: 56.636,
       glass: "F7 (HOYA catalog equivalent; production supplier unspecified; patent 625356)",
       apd: false,
       role: "Positive flint meniscus following L3 across a very narrow air gap.",
@@ -105,7 +104,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7552,
       vd: 27.5,
-      fl: -14.426,
+      focalLengthMm: -14.426,
       glass: "SF4 (SCHOTT)",
       apd: false,
       role: "Strong negative dense-flint element in part H; main achromatizing counterweight to the positive rear elements.",
@@ -117,7 +116,7 @@ const LENS_DATA = {
       type: "Plano-Convex",
       nd: 1.6172,
       vd: 54.0,
-      fl: 23.746,
+      focalLengthMm: 23.746,
       glass: "K-SSK1 catalog equivalent (patent coordinate; production supplier unspecified)",
       apd: false,
       role: "Rear positive element providing final convergence to the image plane.",
@@ -125,26 +124,33 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 54.04, d: 1.176, nd: 1.6228, elemId: 1, sd: 15.3 },
-    { label: "2", R: 17.48152, d: 16.24, nd: 1.0, elemId: 0, sd: 15.3 },
-    { label: "3", R: -98.0, d: 2.8, nd: 1.62536, elemId: 2, sd: 11.2 },
-    { label: "4", R: -63.56, d: 10.78, nd: 1.0, elemId: 0, sd: 11.0 },
-    { label: "5", R: 34.16, d: 2.38, nd: 1.61272, elemId: 3, sd: 8.6 },
-    { label: "6", R: -40.24048, d: 0.14, nd: 1.0, elemId: 0, sd: 8.5 },
-    { label: "7", R: 16.464, d: 1.68, nd: 1.62536, elemId: 4, sd: 8.4 },
-    { label: "8", R: 29.55736, d: 2.24, nd: 1.0, elemId: 0, sd: 7.7 },
-    { label: "STO", R: 1e15, d: 2.24, nd: 1.0, elemId: 0, sd: 5.4715 },
-    { label: "9", R: -28.0, d: 1.848, nd: 1.7552, elemId: 5, sd: 6.4 },
-    { label: "10", R: 18.34, d: 2.24, nd: 1.0, elemId: 0, sd: 6.7 },
-    { label: "11", R: 1e15, d: 2.8, nd: 1.6172, elemId: 6, sd: 7.8 },
-    { label: "12", R: -14.65632, d: 35.227689, nd: 1.0, elemId: 0, sd: 8.0 },
+    { label: "1", R: 54.04, d: 1.176, sd: 15.3, medium: 1 },
+    { label: "2", R: 17.48152, d: 16.24, sd: 15.3 },
+    { label: "3", R: -98.0, d: 2.8, sd: 11.2, medium: 2 },
+    { label: "4", R: -63.56, d: 10.78, sd: 11.0 },
+    { label: "5", R: 34.16, d: 2.38, sd: 8.6, medium: 3 },
+    { label: "6", R: -40.24048, d: 0.14, sd: 8.5 },
+    { label: "7", R: 16.464, d: 1.68, sd: 8.4, medium: 4 },
+    { label: "8", R: 29.55736, d: 2.24, sd: 7.7 },
+    { label: "STO", R: "flat", d: 2.24 },
+    { label: "9", R: -28.0, d: 1.848, sd: 6.4, medium: 5 },
+    { label: "10", R: 18.34, d: 2.24, sd: 6.7 },
+    { label: "11", R: "flat", d: 2.8, sd: 7.8, medium: 6 },
+    { label: "12", R: -14.65632, sd: 8.0 },
   ],
 
-  asph: {},
-  var: {
-    "12": [35.227689, 38.836352],
+  focus: {
+    closeFocusM: 0.3,
+    description:
+      "Unit focus; close state modeled by increasing BF from 35.227689 mm to 38.836352 mm for a 0.30 m object-to-image distance.",
   },
-  varLabels: [["12", "BF"]],
+
+  gaps: { "12": { label: "BF", values: [[35.227689, 38.836352]] } },
+
+  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 75, maxTraceFieldDeg: 37.5 },
+
   groups: [
     { text: "F", fromSurface: "1", toSurface: "2" },
     { text: "S", fromSurface: "3", toSurface: "4" },
@@ -152,14 +158,7 @@ const LENS_DATA = {
   ],
   doublets: [],
 
-  closeFocusM: 0.3,
-  focusDescription:
-    "Unit focus; close state modeled by increasing BF from 35.227689 mm to 38.836352 mm for a 0.30 m object-to-image distance.",
-  nominalFno: 3.5,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-  scFill: 0.56,
-  yScFill: 0.58,
-} satisfies LensDataInput;
+  layout: { scFill: 0.56, yScFill: 0.58 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -16,9 +16,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ STOP: Figure 1 shows F inside S3 but does not dimension the split. The      ║
  * ║ modeled stop is inferred at q = 0.235 of S3 from surface 6 toward surface  ║
  * ║ 7 from the rendered Figure 1 geometry.                                     ║
- * ║ This gives 2.4389475 mm before STO and 7.9395525 mm after STO. The stop     ║
- * ║ semi-diameter 9.089612803568102 mm makes the traced rounded prescription   ║
- * ║ f/2.8 using its independently computed EFL.                                ║
+ * ║ This gives 2.4389475 mm before STO and 7.9395525 mm after STO. The stop    ║
+ * ║ radius is derived from the design f-number (f/2.8).                        ║
  * ║                                                                            ║
  * ║ SEMI-DIAMETERS: the patent publishes none. Values are modeled from exact    ║
  * ║ ray envelopes, the Figure 1 section, and mechanical/geometry constraints:  ║
@@ -44,38 +43,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "fujifilm-fujinon-85mm-f4-sf-ebc",
   maker: "Fujifilm",
   name: "FUJIFILM EBC FUJINON 85mm f/4 SOFT-FOCUS",
   subtitle: "JP S55-560 A Example 1 — fixed embodiment; patent f/2.8 vs marketed f/4",
-  specs: [
-    "4 ELEMENTS / 4 GROUPS",
-    "85 mm MARKETED; 89.814 mm TRACED DESIGN",
-    "f/4 MARKETED; f/2.8 PATENT EXAMPLE",
-    "2ω = 28° (PATENT)",
-    "ALL-SPHERICAL",
-  ],
 
-  focalLengthMarketing: 85,
-  focalLengthDesign: 89.81416894444722,
-  apertureMarketing: 4,
-  apertureDesign: 2.8,
-  lensMounts: ["m42"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP S55-560 A",
-  // 高橋宗甫 is provisionally romanized as Soho Takahashi; see the analysis source note.
-  patentAuthors: ["Ryoichi Doi", "Soho Takahashi"],
-  patentAssignees: ["Fuji Photo Optical Co., Ltd."],
-  patentYear: 1980,
-  elementCount: 4,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["m42"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "4 ELEMENTS / 4 GROUPS",
+      "85 mm MARKETED; 89.814 mm TRACED DESIGN",
+      "f/4 MARKETED; f/2.8 PATENT EXAMPLE",
+      "2ω = 28° (PATENT)",
+      "ALL-SPHERICAL",
+    ],
+    elementCount: 4,
+    groupCount: 4,
+    focalLengthMm: { marketing: 85, design: 89.81416894444722 },
+    fNumber: { marketing: 4, design: 2.8 },
+  },
 
-  // Preserve the patent's explicit 2ω = 28° coverage despite the rounded table's
-  // independently verified EFL mismatch against the printed f = 1.0 normalization.
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 28,
-    maxTraceFieldDeg: 14,
+  source: {
+    patentNumber: "JP S55-560 A",
+    patentYear: 1980,
+    // 高橋宗甫 is provisionally romanized as Soho Takahashi; see the analysis source note.
+    authors: ["Ryoichi Doi", "Soho Takahashi"],
+    assignees: ["Fuji Photo Optical Co., Ltd."],
   },
 
   /* ── Elements ── */
@@ -83,87 +78,89 @@ const LENS_DATA = {
     {
       id: 1,
       name: "G1",
-      diagramLabel: "G1",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.60311,
       vd: 60.7,
       indexReference: "d",
-      fl: 107.38120953067548,
+      focalLengthMm: 107.38120953067548,
       glass: "603607 — SK14/BSM14/BACD14-class crown (vendor unresolved)",
       role: "Front positive meniscus; first positive collector in the patent four-element soft-focus form.",
+      diagramLabel: "G1",
     },
     {
       id: 2,
       name: "G2",
-      diagramLabel: "G2",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.60311,
       vd: 60.7,
       indexReference: "d",
-      fl: 406.8862561112942,
+      focalLengthMm: 406.8862561112942,
       glass: "603607 — SK14/BSM14/BACD14-class crown (vendor unresolved)",
       role: "Weak positive meniscus ahead of the strong negative third element.",
+      diagramLabel: "G2",
     },
     {
       id: 3,
       name: "G3",
-      diagramLabel: "G3",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.76182,
       vd: 26.5,
       indexReference: "d",
-      fl: -74.81627570842029,
+      focalLengthMm: -74.81627570842029,
       glass: "762265 — SF14/TIH14/SFLD14-class dense flint (vendor unresolved)",
       role: "Strong negative meniscus immediately ahead of the aperture-stop interval.",
+      diagramLabel: "G3",
     },
     {
       id: 4,
       name: "G4",
-      diagramLabel: "G4",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.60311,
       vd: 60.7,
       indexReference: "d",
-      fl: 74.62745621497336,
+      focalLengthMm: 74.62745621497336,
       glass: "603607 — SK14/BSM14/BACD14-class crown (vendor unresolved)",
       role: "Rear positive meniscus following the aperture stop.",
+      diagramLabel: "G4",
     },
   ],
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 44.210964319151145, d: 6.545, nd: 1.60311, elemId: 1, sd: 24 },
-    { label: "2", R: 131.55858226280762, d: 4.42, nd: 1, elemId: 0, sd: 24 },
-    { label: "3", R: 68.38844637541234, d: 8.5, nd: 1.60311, elemId: 2, sd: 21 },
-    { label: "4", R: 90.37745879851143, d: 3.825, nd: 1, elemId: 0, sd: 21 },
-    { label: "5", R: 485.9919954259577, d: 25.5, nd: 1.76182, elemId: 3, sd: 17 },
-    { label: "6", R: 49.85629655698281, d: 2.4389475, nd: 1, elemId: 0, sd: 17 },
-    { label: "STO", R: 1e15, d: 7.9395525, nd: 1, elemId: 0, sd: 9.089612803568102 },
-    { label: "7", R: -855.1307847082494, d: 6.8, nd: 1.60311, elemId: 4, sd: 20 },
-    { label: "8", R: -42.88597376387487, d: 46.401311100778706, nd: 1, elemId: 0, sd: 20 },
+    { label: "1", R: 44.210964319151145, d: 6.545, sd: 24, medium: 1 },
+    { label: "2", R: 131.55858226280762, d: 4.42, sd: 24 },
+    { label: "3", R: 68.38844637541234, d: 8.5, sd: 21, medium: 2 },
+    { label: "4", R: 90.37745879851143, d: 3.825, sd: 21 },
+    { label: "5", R: 485.9919954259577, d: 25.5, sd: 17, medium: 3 },
+    { label: "6", R: 49.85629655698281, d: 2.4389475, sd: 17 },
+    { label: "STO", R: "flat", d: 7.9395525 },
+    { label: "7", R: -855.1307847082494, d: 6.8, sd: 20, medium: 4 },
+    { label: "8", R: -42.88597376387487, d: 46.401311100778706, sd: 20 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 1,
+    description:
+      "Infinity prescription only. Example 1 publishes no focus spacing schedule. The manufacturer’s 1.0 m minimum focus distance is shown for reference; internal travel is not modeled.",
+  },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16] },
+
+  // Preserve the patent's explicit 2ω = 28° coverage despite the rounded table's
+  // independently verified EFL mismatch against the printed f = 1.0 normalization.
+  projection: { kind: "rectilinear", fullFieldDeg: 28, maxTraceFieldDeg: 14 },
+
   groups: [],
   doublets: [],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 1,
-  focusDescription:
-    "Infinity prescription only. Example 1 publishes no focus spacing schedule. The manufacturer’s 1.0 m minimum focus distance is shown for reference; internal travel is not modeled.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;
