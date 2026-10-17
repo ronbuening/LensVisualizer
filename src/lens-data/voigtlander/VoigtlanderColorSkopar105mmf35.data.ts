@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
@@ -18,7 +18,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  STOP MODEL: The patent publishes only the combined R4-to-R5 gap.        ║
  * ║  The split at STO is inferred from Fig. 1: 5.32625mm before the stop     ║
  * ║  and 2.53321mm after it. Their sum preserves the scaled 7.85946mm gap.   ║
- * ║  The stop semi-diameter is solved for the modeled f/3.5 entrance pupil.  ║
+ * ║  The stop radius is derived from the design f-number, f/3.5.             ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS: The patent supplies none. Values are inferred from      ║
  * ║  the f/3.5 marginal bundle, the viewer default field bundle, and      ║
@@ -37,24 +37,28 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "voigtlander-color-skopar-105mm-f35",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER COLOR-SKOPAR 105mm f/3.5 (Voigtländer Bessa II)",
   subtitle: "US 2,573,511 A Example 1 — uniformly scaled ×1.05 production correlation",
-  specs: ["4 ELEMENTS / 3 GROUPS", "f = 104.999mm", "F/3.5", "2ω ≈ 51.35°", "ALL-SPHERICAL"],
 
-  focalLengthMarketing: 105,
-  focalLengthDesign: 104.9990862687,
-  apertureMarketing: 3.5,
-  apertureDesign: 3.5,
-  lensMounts: ["fixed-lens-camera"],
-  imageFormat: "6x9",
-  patentNumber: "US 2,573,511 A",
-  patentAuthors: ["Albrecht Wilhelm Tronnier"],
-  patentAssignees: ["Voigtländer & Sohn AG"],
-  patentYear: 1951,
-  elementCount: 4,
-  groupCount: 3,
+  catalog: {
+    lensMounts: ["fixed-lens-camera"],
+    imageFormat: "6x9",
+    specs: ["4 ELEMENTS / 3 GROUPS", "f = 104.999mm", "F/3.5", "2ω ≈ 51.35°", "ALL-SPHERICAL"],
+    elementCount: 4,
+    groupCount: 3,
+    focalLengthMm: { marketing: 105, design: 104.9990862687 },
+    fNumber: { marketing: 3.5, design: 3.5 },
+  },
+
+  source: {
+    patentNumber: "US 2,573,511 A",
+    patentYear: 1951,
+    authors: ["Albrecht Wilhelm Tronnier"],
+    assignees: ["Voigtländer & Sohn AG"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -65,7 +69,7 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.62166,
       vd: 60.3,
-      fl: 57.3812855902,
+      focalLengthMm: 57.3812855902,
       glass: "N-SK16 (Schott catalog equivalent; production supplier unspecified)",
       role: "Front positive collector; its plane rear face bounds the first negative air lens.",
     },
@@ -76,7 +80,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.57911,
       vd: 41.7,
-      fl: -36.0790950817,
+      focalLengthMm: -36.0790950817,
       glass: "J-LF5 (Hikari catalog equivalent; production supplier unspecified)",
       role: "Strong negative middle element immediately before the aperture stop.",
     },
@@ -87,7 +91,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.57911,
       vd: 41.7,
-      fl: -50.4444632325,
+      focalLengthMm: -50.4444632325,
       glass: "J-LF5 (Hikari catalog equivalent; production supplier unspecified)",
       role: "Negative front component of the cemented rear doublet.",
       cemented: "D1",
@@ -99,7 +103,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6577,
       vd: 50.7876447876,
-      fl: 28.7236376695,
+      focalLengthMm: 28.7236376695,
       glass: "J-SSK5 (Hikari catalog equivalent; production supplier unspecified)",
       role: "High-power positive rear component; the L3-L4 cemented group is net positive.",
       cemented: "D1",
@@ -111,20 +115,24 @@ const LENS_DATA = {
    * The R6 cemented junction carries downstream element L4's elemId and index.
    */
   surfaces: [
-    { label: "1", R: 35.67165, d: 6.49719, nd: 1.62166, elemId: 1, sd: 18.5 },
-    { label: "2", R: 1e15, d: 7.33551, nd: 1.0, elemId: 0, sd: 18.0 },
-    { label: "3", R: -65.80602, d: 2.619855, nd: 1.57911, elemId: 2, sd: 14.0 },
-    { label: "4", R: 31.060785, d: 5.32625, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "1", R: 35.67165, d: 6.49719, sd: 18.5, medium: 1 },
+    { label: "2", R: "flat", d: 7.33551, sd: 18.0 },
+    { label: "3", R: -65.80602, d: 2.619855, sd: 14.0, medium: 2 },
+    { label: "4", R: 31.060785, d: 5.32625, sd: 14.0 },
     // STO position inferred from Fig. 1; the combined surface-4-to-surface-5 gap remains exactly 7.85946mm.
-    { label: "STO", R: 1e15, d: 2.53321, nd: 1.0, elemId: 0, sd: 12.11831116 },
-    { label: "5", R: 1706.87475, d: 2.305485, nd: 1.57911, elemId: 3, sd: 15.5 },
-    { label: "6", R: 28.707105, d: 8.5988595, nd: 1.6577, elemId: 4, sd: 15.5 },
-    { label: "7", R: -48.68493, d: 87.52275, nd: 1.0, elemId: 0, sd: 15.5 },
+    { label: "STO", R: "flat", d: 2.53321 },
+    { label: "5", R: 1706.87475, d: 2.305485, sd: 15.5, medium: 3 },
+    { label: "6", R: 28.707105, d: 8.5988595, sd: 15.5, medium: 4 },
+    { label: "7", R: -48.68493, d: 87.52275, sd: 15.5 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 1.0,
+    description:
+      "Production camera focusing is documented to approximately 1.0m, but US 2,573,511 A publishes only the infinity prescription; no focus gaps are modeled (NO_INTERNAL_RECONSTRUCTION).",
+  },
+
+  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -133,15 +141,7 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "D1", fromSurface: "5", toSurface: "7" }],
 
-  closeFocusM: 1.0,
-  focusDescription:
-    "Production camera focusing is documented to approximately 1.0m, but US 2,573,511 A publishes only the infinity prescription; no focus gaps are modeled (NO_INTERNAL_RECONSTRUCTION).",
-
-  nominalFno: 3.5,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════════════════════╗
@@ -13,8 +13,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ - The patent's 23 mm "opening" is treated as the entrance-pupil diameter. nominalFno therefore       ║
  * ║   uses the modeled f/4.3416595905 value; f/4.5 remains the product/designation aperture.             ║
  * ║ - The stop is published only as lying in d5. Its position is inferred from the patent drawing and    ║
- * ║   split 1.70 mm after r5 / 4.07 mm before r6. The physical stop SD is solved so that the entrance    ║
- * ║   pupil diameter is exactly 23 mm in the paraxial model.                                             ║
+ * ║   split 1.70 mm after r5 / 4.07 mm before r6. The stop radius is derived from the design f-number.   ║
+ * ║   The original paraxial calibration gave an exact 23 mm entrance-pupil diameter.                     ║
  * ║ - Surface semi-diameters are inferred from the full on-axis pupil, the 92 mm image-circle field,     ║
  * ║   exact meridional ray probes, the patent section, and current geometry limits. A 600 dpi figure     ║
  * ║   audit set the three groups to a near-equal-height silhouette; the rear group stops at its positive ║
@@ -29,35 +29,33 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "voigtlander-heliar-100mm-f4-5-second-asymmetric",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER HELIAR 100mm f/4.5 (Second Asymmetric Form)",
   subtitle: "DE 143889 C — worked numerical example (job-card Example 1), second asymmetric form",
-  specs: [
-    "5 ELEMENTS / 3 GROUPS",
-    "f = 99.858 mm DESIGN",
-    "f/4.342 MODELED / f/4.5 DESIGNATION",
-    "92 mm IMAGE DIAMETER",
-    "49.47° FULL FIELD",
-    "ALL-SPHERICAL",
-  ],
 
-  focalLengthMarketing: 100,
-  focalLengthDesign: 99.8581705817869,
-  apertureMarketing: 4.5,
-  apertureDesign: 4.3416595905124735,
-  lensMounts: ["large-format-lens-board"],
-  patentNumber: "DE 143889 C",
-  patentAuthors: ["Carl August Hans Harting"],
-  patentAssignees: ["Voigtländer & Sohn AG"],
-  patentYear: 1903,
-  elementCount: 5,
-  groupCount: 3,
+  catalog: {
+    lensMounts: ["large-format-lens-board"],
+    specs: [
+      "5 ELEMENTS / 3 GROUPS",
+      "f = 99.858 mm DESIGN",
+      "f/4.342 MODELED / f/4.5 DESIGNATION",
+      "92 mm IMAGE DIAMETER",
+      "49.47° FULL FIELD",
+      "ALL-SPHERICAL",
+    ],
+    elementCount: 5,
+    groupCount: 3,
+    focalLengthMm: { marketing: 100, design: 99.8581705817869 },
+    fNumber: { marketing: 4.5, design: 4.3416595905124735 },
+  },
 
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 49.46663736183893,
-    maxTraceFieldDeg: 24.73331868091946,
+  source: {
+    patentNumber: "DE 143889 C",
+    patentYear: 1903,
+    authors: ["Carl August Hans Harting"],
+    assignees: ["Voigtländer & Sohn AG"],
   },
 
   elements: [
@@ -67,7 +65,7 @@ const LENS_DATA = {
       label: "Element a1",
       type: "Negative Meniscus",
       nd: 1.5499,
-      fl: -63.6879434823,
+      focalLengthMm: -63.6879434823,
       glass: "Unmatched (DE143889C a1; historical nD/nG′ pair only)",
       role: "Front negative component of the first cemented doublet.",
       cemented: "D1",
@@ -79,7 +77,7 @@ const LENS_DATA = {
       label: "Element b1",
       type: "Positive Meniscus",
       nd: 1.61294,
-      fl: 34.8738681521,
+      focalLengthMm: 34.8738681521,
       glass: "Unmatched (DE143889C b1; historical nD/nG′ pair only)",
       role: "Positive crown component completing the weaker front cemented group.",
       cemented: "D1",
@@ -91,7 +89,7 @@ const LENS_DATA = {
       label: "Element c",
       type: "Biconcave Negative",
       nd: 1.53644,
-      fl: -31.9005309903,
+      focalLengthMm: -31.9005309903,
       glass: "Unmatched (DE143889C c; historical nD/nG′ pair only)",
       role: "Thin central negative singlet separating the unequal positive cemented groups.",
       // Patent nG′ = 1.54988; G′ is not the schema's modern mercury-g line, so it is not stored as ng.
@@ -102,7 +100,7 @@ const LENS_DATA = {
       label: "Element b2",
       type: "Biconvex Positive",
       nd: 1.61294,
-      fl: 24.9538206137,
+      focalLengthMm: 24.9538206137,
       glass: "Unmatched (DE143889C b2; historical nD/nG′ pair only)",
       role: "Strong positive crown component of the rear cemented group.",
       cemented: "D2",
@@ -114,7 +112,7 @@ const LENS_DATA = {
       label: "Element a2",
       type: "Negative Meniscus",
       nd: 1.57073,
-      fl: -66.3554519001,
+      focalLengthMm: -66.3554519001,
       glass: "Unmatched (DE143889C a2; historical nD/nG′ pair only)",
       role: "Rear negative flint component completing the stronger rear cemented group.",
       cemented: "D2",
@@ -123,22 +121,30 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 40.38, d: 1.61, nd: 1.5499, elemId: 1, sd: 12.7 },
-    { label: "2", R: 18.49, d: 4.82, nd: 1.61294, elemId: 2, sd: 12.7 },
-    { label: "3", R: 123.4, d: 11.22, nd: 1.0, elemId: 0, sd: 12.7 },
-    { label: "4", R: -38.46, d: 0.64, nd: 1.53644, elemId: 3, sd: 12.5 },
-    { label: "5", R: 31.01, d: 1.7, nd: 1.0, elemId: 0, sd: 12.5 },
+    { label: "1", R: 40.38, d: 1.61, sd: 12.7, medium: 1 },
+    { label: "2", R: 18.49, d: 4.82, sd: 12.7, medium: 2 },
+    { label: "3", R: 123.4, d: 11.22, sd: 12.7 },
+    { label: "4", R: -38.46, d: 0.64, sd: 12.5, medium: 3 },
+    { label: "5", R: 31.01, d: 1.7, sd: 12.5 },
     // STO location inferred from the patent drawing; d5 remains exactly 1.70 + 4.07 = 5.77 mm.
-    { label: "STO", R: 1e15, d: 4.07, nd: 1.0, elemId: 0, sd: 9.40182409422752 },
-    { label: "6", R: 67.63, d: 4.82, nd: 1.61294, elemId: 4, sd: 11.5 },
-    { label: "7", R: -19.23, d: 0.64, nd: 1.57073, elemId: 5, sd: 11.5 },
+    { label: "STO", R: "flat", d: 4.07 },
+    { label: "6", R: 67.63, d: 4.82, sd: 11.5, medium: 4 },
+    { label: "7", R: -19.23, d: 0.64, sd: 11.5, medium: 5 },
     // Patent omits image distance; d is the independently solved infinity-focus paraxial BFD from r8.
-    { label: "8", R: -39.54, d: 88.2482462502744, nd: 1.0, elemId: 0, sd: 11.5 },
+    { label: "8", R: -39.54, d: 88.2482462502744, sd: 11.5 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 1.0,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION: DE 143889 C publishes only the infinity prescription and no MFD or movement law. " +
+      "closeFocusM=1.0 is a schema-required UI placeholder, not a claimed source value; " +
+      "no variable optical gap is modeled.",
+  },
+
+  aperture: { nominalFNumber: 4.3416595905124735, fStops: [4.5, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 49.46663736183893, maxTraceFieldDeg: 24.73331868091946 },
 
   groups: [
     { text: "G1 — FRONT DOUBLET", fromSurface: "1", toSurface: "3" },
@@ -150,18 +156,7 @@ const LENS_DATA = {
     { text: "D2 (b2 + a2)", fromSurface: "6", toSurface: "8" },
   ],
 
-  closeFocusM: 1.0,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: DE 143889 C publishes only the infinity prescription and no MFD or movement law. " +
-    "closeFocusM=1.0 is a schema-required UI placeholder, not a claimed source value; " +
-    "no variable optical gap is modeled.",
-
-  nominalFno: 4.3416595905124735,
-  fstopSeries: [4.5, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  scFill: 0.54,
-  yScFill: 0.46,
-} satisfies LensDataInput;
+  layout: { scFill: 0.54, yScFill: 0.46 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

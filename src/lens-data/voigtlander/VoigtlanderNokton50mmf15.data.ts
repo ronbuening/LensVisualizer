@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -15,10 +15,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  scaled uniformly ×50 for this production-correlated model. No     ║
  * ║  asphere scaling is required.                                      ║
  * ║                                                                    ║
- * ║  STOP: the patent publishes only the total diaphragm space a3.     ║
- * ║  STO is placed at its Figure-2 midpoint: 5.8405 mm after surface 7 ║
- * ║  and 5.8405 mm before surface 8. Its 10.128514 mm semi-diameter is  ║
- * ║  solved from the published f/1.5 entrance aperture.                ║
+ * ║  STOP: the patent publishes only the total diaphragm space a3. STO ║
+ * ║  is placed at its Figure-2 midpoint: 5.8405 mm after surface 7 and ║
+ * ║  5.8405 mm before surface 8. Its radius is derived from the design ║
+ * ║  f-number, set by the published f/1.5 entrance aperture.           ║
  * ║                                                                    ║
  * ║  FOCUS STATUS — CONSTRAINED_RECONSTRUCTION: the patent gives no    ║
  * ║  focus states. Unit focus preserves every internal spacing and     ║
@@ -42,30 +42,34 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "voigtlander-nokton-50f15",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER NOKTON 50mm f/1.5",
   subtitle: "US 2,646,721 A — sole numerical example / Figure 2; uniformly scaled ×50",
-  specs: [
-    "7 ELEMENTS / 5 GROUPS",
-    "f = 49.9999 mm (DESIGN)",
-    "f/1.5000 (DESIGN)",
-    "2ω ≈ 46.8° (135 FORMAT, PARAXIAL)",
-    "ALL-SPHERICAL",
-  ],
 
-  focalLengthMarketing: 50,
-  focalLengthDesign: 49.99988582182795,
-  apertureMarketing: 1.5,
-  apertureDesign: 1.4999965746548385,
-  lensMounts: ["voigtlander-prominent"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 2,646,721 A",
-  patentAuthors: ["Albrecht Wilhelm Tronnier"],
-  patentAssignees: ["Voigtländer & Sohn AG"],
-  patentYear: 1953,
-  elementCount: 7,
-  groupCount: 5,
+  catalog: {
+    lensMounts: ["voigtlander-prominent"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "7 ELEMENTS / 5 GROUPS",
+      "f = 49.9999 mm (DESIGN)",
+      "f/1.5000 (DESIGN)",
+      "2ω ≈ 46.8° (135 FORMAT, PARAXIAL)",
+      "ALL-SPHERICAL",
+    ],
+    elementCount: 7,
+    groupCount: 5,
+    focalLengthMm: { marketing: 50, design: 49.99988582182795 },
+    fNumber: { marketing: 1.5, design: 1.4999965746548385 },
+  },
+
+  source: {
+    patentNumber: "US 2,646,721 A",
+    patentYear: 1953,
+    authors: ["Albrecht Wilhelm Tronnier"],
+    assignees: ["Voigtländer & Sohn AG"],
+  },
 
   elements: [
     {
@@ -75,7 +79,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.70315,
       vd: 41.1,
-      fl: -80.99535704846417,
+      focalLengthMm: -80.99535704846417,
       glass: "BASF7 (Sumita catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Diverging front member of patent Group I.",
@@ -88,7 +92,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62095,
       vd: 60.3,
-      fl: 40.58510299122209,
+      focalLengthMm: 40.58510299122209,
       glass: "N-SK16 (Schott catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Converging rear member of patent Group I.",
@@ -101,7 +105,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62095,
       vd: 60.3,
-      fl: 40.58510299122209,
+      focalLengthMm: 40.58510299122209,
       glass: "N-SK16 (Schott catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Converging front member of patent Group II.",
@@ -113,7 +117,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.5325,
       vd: 46.2,
-      fl: -26.318061708431262,
+      focalLengthMm: -26.318061708431262,
       glass: "FTM8 (Ohara catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Low-index negative member adjacent to the diaphragm.",
@@ -125,7 +129,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.64783,
       vd: 33.8,
-      fl: -17.366277620480624,
+      focalLengthMm: -17.366277620480624,
       glass: "SF2 (Schott catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Diverging front member of patent Group III.",
@@ -138,7 +142,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.61948,
       vd: 60.4,
-      fl: 24.05581460846287,
+      focalLengthMm: 24.05581460846287,
       glass: "N-SK16 (Schott catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Converging rear member of patent Group III.",
@@ -151,7 +155,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.70315,
       vd: 41.1,
-      fl: 34.99846969762474,
+      focalLengthMm: 34.99846969762474,
       glass: "BASF7 (Sumita catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "High-index positive rear singlet forming patent Group IV.",
@@ -159,27 +163,32 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 33.3045, d: 1.682, nd: 1.70315, elemId: 1, sd: 17.2 },
-    { label: "2", R: 20.577, d: 6.635, nd: 1.62095, elemId: 2, sd: 16.15 },
-    { label: "3", R: 98.2875, d: 0.514, nd: 1.0, elemId: 0, sd: 16.1 },
-    { label: "4", R: 20.577, d: 6.635, nd: 1.62095, elemId: 3, sd: 11.5 },
-    { label: "5", R: 98.2875, d: 0.7475, nd: 1.0, elemId: 0, sd: 11.5 },
-    { label: "6", R: 122.948, d: 2.4295, nd: 1.5325, elemId: 4, sd: 11.5 },
-    { label: "7", R: 12.494, d: 5.8405, nd: 1.0, elemId: 0, sd: 10.25 },
-    { label: "STO", R: 1e15, d: 5.8405, nd: 1.0, elemId: 0, sd: 10.128513979366193 },
-    { label: "8", R: -14.7085, d: 0.981, nd: 1.64783, elemId: 5, sd: 11.5 },
-    { label: "9", R: 49.1065, d: 4.906, nd: 1.61948, elemId: 6, sd: 11.5 },
-    { label: "10", R: -20.577, d: 0.187, nd: 1.0, elemId: 0, sd: 11.5 },
-    { label: "11", R: 122.948, d: 3.224, nd: 1.70315, elemId: 7, sd: 11.9 },
-    { label: "12", R: -30.4345, d: 30.012221991244715, nd: 1.0, elemId: 0, sd: 11.9 },
+    { label: "1", R: 33.3045, d: 1.682, sd: 17.2, medium: 1 },
+    { label: "2", R: 20.577, d: 6.635, sd: 16.15, medium: 2 },
+    { label: "3", R: 98.2875, d: 0.514, sd: 16.1 },
+    { label: "4", R: 20.577, d: 6.635, sd: 11.5, medium: 3 },
+    { label: "5", R: 98.2875, d: 0.7475, sd: 11.5 },
+    { label: "6", R: 122.948, d: 2.4295, sd: 11.5, medium: 4 },
+    { label: "7", R: 12.494, d: 5.8405, sd: 10.25 },
+    { label: "STO", R: "flat", d: 5.8405 },
+    { label: "8", R: -14.7085, d: 0.981, sd: 11.5, medium: 5 },
+    { label: "9", R: 49.1065, d: 4.906, sd: 11.5, medium: 6 },
+    { label: "10", R: -20.577, d: 0.187, sd: 11.5 },
+    { label: "11", R: 122.948, d: 3.224, sd: 11.9, medium: 7 },
+    { label: "12", R: -30.4345, sd: 11.9 },
   ],
 
-  asph: {},
-
-  var: {
-    "12": [30.012221991244715, 32.57223722492306],
+  focus: {
+    closeFocusM: 1.0668,
+    description:
+      "CONSTRAINED_RECONSTRUCTION: unit focus inferred from the Prominent body focusing mechanism; all internal " +
+      "spacings remain fixed and the R11-to-image gap increases from 30.012222 mm at infinity to 32.572237 mm at " +
+      "1.0668 m, assuming the distance is measured from the film plane.",
   },
-  varLabels: [["12", "BF"]],
+
+  gaps: { "12": { label: "BF", values: [[30.012221991244715, 32.57223722492306]] } },
+
+  aperture: { nominalFNumber: 1.4999965746548385, fStops: [1.5, 2, 2.8, 4, 5.6, 8, 11, 16] },
 
   groups: [
     { text: "I", fromSurface: "1", toSurface: "3" },
@@ -192,16 +201,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "8", toSurface: "10" },
   ],
 
-  closeFocusM: 1.0668,
-  focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: unit focus inferred from the Prominent body focusing mechanism; all internal " +
-    "spacings remain fixed and the R11-to-image gap increases from 30.012222 mm at infinity to 32.572237 mm at " +
-    "1.0668 m, assuming the distance is measured from the film plane.",
-
-  nominalFno: 1.4999965746548385,
-  fstopSeries: [1.5, 2, 2.8, 4, 5.6, 8, 11, 16],
-
-  yScFill: 0.55,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.55 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

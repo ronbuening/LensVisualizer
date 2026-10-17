@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -12,8 +12,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  production 100 mm prescription.                                           ║
  * ║                                                                            ║
  * ║  SCALING: The patent table is normalized to f = 1. All radii, thicknesses, ║
- * ║  air spaces, image distance, stop size, and inferred semi-diameters are     ║
- * ║  scaled ×100. No asphere coefficients are present.                         ║
+ * ║  air spaces, image distance, and inferred lens semi-diameters are scaled   ║
+ * ║  ×100. No asphere coefficients are present.                                ║
  * ║                                                                            ║
  * ║  SOURCE CONTRADICTION: The raw printed table is preserved, including       ║
  * ║  a2 = 0.27242. It computes EFL = 101.259059 mm and BFD = 39.682367 mm,     ║
@@ -22,9 +22,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  only. Neither uncorroborated correction is applied.                       ║
  * ║                                                                            ║
  * ║  STOP: The patent publishes only the full diaphragm space a2. A fresh      ║
- * ║  measurement of Figure 3 places STO at about 62% of the R4-to-R5 gap:     ║
- * ║  16.89004 mm before STO and 10.35196 mm after it. The inferred physical   ║
- * ║  stop SD 6.312254 mm gives an 18.5 mm entrance pupil and f/5.473463.       ║
+ * ║  measurement of Figure 3 places STO at about 62% of the R4-to-R5 gap:      ║
+ * ║  16.89004 mm before STO and 10.35196 mm after it. The stop radius is       ║
+ * ║  derived from the design f-number, f/5.473463, based on the 18.5 mm        ║
+ * ║  entrance pupil.                                                           ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS: The patent publishes none. The values below are modeling  ║
  * ║  inferences constrained by exact spherical ray tracing over the 24×36 mm   ║
@@ -50,31 +51,28 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "voigtlander-telomar-100mm-f55",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER TELOMAR 100mm f/5.5",
   subtitle: "US 2,662,446 A — sole Numerical Example / Figure 3; ×100 family-correlation model",
-  specs: [
-    "5 ELEMENTS / 4 GROUPS",
-    "DESIGN f = 101.259 mm",
-    "MODELED f/5.473",
-    "135 FULL-FRAME",
-    "ALL SPHERICAL",
-  ],
 
-  focalLengthMarketing: 100,
-  focalLengthDesign: 101.25905877084244,
-  apertureMarketing: 5.5,
-  apertureDesign: 5.473462636261754,
-  nominalFno: 5.473462636261754,
-  lensMounts: ["voigtlander-prominent"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 2,662,446 A",
-  patentAuthors: ["Albrecht Wilhelm Tronnier"],
-  patentAssignees: ["Voigtländer AG"],
-  patentYear: 1953,
-  elementCount: 5,
-  groupCount: 4,
+  catalog: {
+    lensMounts: ["voigtlander-prominent"],
+    imageFormat: "135-full-frame",
+    specs: ["5 ELEMENTS / 4 GROUPS", "DESIGN f = 101.259 mm", "MODELED f/5.473", "135 FULL-FRAME", "ALL SPHERICAL"],
+    elementCount: 5,
+    groupCount: 4,
+    focalLengthMm: { marketing: 100, design: 101.25905877084244 },
+    fNumber: { marketing: 5.5, design: 5.473462636261754 },
+  },
+
+  source: {
+    patentNumber: "US 2,662,446 A",
+    patentYear: 1953,
+    authors: ["Albrecht Wilhelm Tronnier"],
+    assignees: ["Voigtländer AG"],
+  },
 
   elements: [
     {
@@ -84,7 +82,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5836,
       vd: 46.2,
-      fl: 27.8625899111698,
+      focalLengthMm: 27.8625899111698,
       glass: "J-BAF3 (Hikari catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Strong front positive collector in the Fraunhofer-type positive front member.",
@@ -96,7 +94,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.72755,
       vd: 28.4,
-      fl: -42.86426809522021,
+      focalLengthMm: -42.86426809522021,
       glass: "SF10 (Schott catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Negative achromatizing partner separated from L1 by the patent's retained 0.117 mm air space.",
@@ -108,7 +106,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.62355,
       vd: 47.0,
-      fl: 85.87943252931777,
+      focalLengthMm: 85.87943252931777,
       glass: "E-BAF8 (Hikari catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Positive collector that begins the rear functional member after the diaphragm space.",
@@ -120,7 +118,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.58264,
       vd: 42.1,
-      fl: -21.1216507575926,
+      focalLengthMm: -21.1216507575926,
       glass: "LF3 (Sumita catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Strong negative element carrying the characteristic concave R7 surface.",
@@ -133,7 +131,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.75512,
       vd: 27.0,
-      fl: 45.823424457371,
+      focalLengthMm: 45.823424457371,
       glass: "SF4 (Schott catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Positive cemented partner; the L4+L5 member remains net negative in isolation.",
@@ -142,30 +140,30 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 24.249, d: 3.716, nd: 1.5836, elemId: 1, sd: 10.3 },
-    { label: "2", R: -46.572, d: 0.117, nd: 1.0, elemId: 0, sd: 10.3 },
-    { label: "3", R: -46.572, d: 1.395, nd: 1.72755, elemId: 2, sd: 10.3 },
-    { label: "4", R: 95.587, d: 16.89004, nd: 1.0, elemId: 0, sd: 10.3 },
+    { label: "1", R: 24.249, d: 3.716, sd: 10.3, medium: 1 },
+    { label: "2", R: -46.572, d: 0.117, sd: 10.3 },
+    { label: "3", R: -46.572, d: 1.395, sd: 10.3, medium: 2 },
+    { label: "4", R: 95.587, d: 16.89004, sd: 10.3 },
 
     // STO position inferred from Figure 3: approximately 62% of a2 measured from R4.
-    { label: "STO", R: 1e15, d: 10.35196, nd: 1.0, elemId: 0, sd: 6.31225354830045 },
+    { label: "STO", R: "flat", d: 10.35196 },
 
-    { label: "5", R: 95.587, d: 2.906, nd: 1.62355, elemId: 3, sd: 10.0 },
-    { label: "6", R: -120.345, d: 4.413, nd: 1.0, elemId: 0, sd: 10.0 },
-    { label: "7", R: -17.794, d: 1.741, nd: 1.58264, elemId: 4, sd: 11.0 },
-    { label: "8", R: 41.341, d: 3.098, nd: 1.75512, elemId: 5, sd: 11.0 },
-    { label: "9", R: -205.432, d: 39.68236651524317, nd: 1.0, elemId: 0, sd: 11.0 },
+    { label: "5", R: 95.587, d: 2.906, sd: 10.0, medium: 3 },
+    { label: "6", R: -120.345, d: 4.413, sd: 10.0 },
+    { label: "7", R: -17.794, d: 1.741, sd: 11.0, medium: 4 },
+    { label: "8", R: 41.341, d: 3.098, sd: 11.0, medium: 5 },
+    { label: "9", R: -205.432, d: 39.68236651524317, sd: 11.0 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 1.8288,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION: the patent publishes only the infinity prescription. " +
+      "The approximate 1.8288 m (6 ft) metadata value is inferred from the supplied manual; " +
+      "no variable optical gap is modeled.",
+  },
 
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: the patent publishes only the infinity prescription. " +
-    "The approximate 1.8288 m (6 ft) metadata value is inferred from the supplied manual; " +
-    "no variable optical gap is modeled.",
-  closeFocusM: 1.8288,
+  aperture: { nominalFNumber: 5.473462636261754, fStops: [5.5, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "FRONT (I–II)", fromSurface: "1", toSurface: "4" },
@@ -173,11 +171,7 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "IV", fromSurface: "7", toSurface: "9" }],
 
-  fstopSeries: [5.5, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  scFill: 0.58,
-  yScFill: 0.46,
-} satisfies LensDataInput;
+  layout: { scFill: 0.58, yScFill: 0.46 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

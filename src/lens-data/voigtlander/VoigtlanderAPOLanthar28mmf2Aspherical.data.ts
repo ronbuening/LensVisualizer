@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -24,9 +24,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ L10, while L14/L15 step up behind L13 and L16 is only slightly      ║
  * ║ taller than the front L9 element.                                   ║
  * ║                                                                    ║
- * ║ STOP: the patent omits its diameter. STO sd = 7.8641922198 mm      ║
- * ║ enforces F/2.06 against the 28.9421080118 mm paraxial EFL computed ║
- * ║ from this prescription.                                            ║
+ * ║ STOP: the patent omits its diameter. The stop radius is derived    ║
+ * ║ from the design f-number, F/2.06, using the                        ║
+ * ║ 28.9421080118 mm paraxial EFL computed from this prescription.     ║
  * ║                                                                    ║
  * ║ GLASS: names are catalog-equivalent matches or explicitly          ║
  * ║ disclosed proxies, not patent-stated vendors. L9 and L13r use      ║
@@ -52,32 +52,36 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "voigtlander-apo-lanthar-28mm-f2-aspherical-vm",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER APO-LANTHAR 28mm f/2 Aspherical VM",
   subtitle: "JP 2026-98935 A Example 2 — closest production correlation: VM 0.5 m focus state",
-  specs: [
-    "12 ELEMENTS / 8 GROUPS",
-    "28mm f/2 (PRODUCTION)",
-    "f = 28.84mm / F2.06 (PATENT)",
-    "2ω = 74.04°",
-    "4 ASPHERICAL SURFACES",
-    "6 / 12 APD GLASS ELEMENTS",
-    "DOUBLE-FLOATING FOCUS",
-  ],
 
-  focalLengthMarketing: 28,
-  focalLengthDesign: 28.94210801178852,
-  apertureMarketing: 2,
-  apertureDesign: 2.06,
-  lensMounts: ["leica-m"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 2026-98935 A",
-  patentAuthors: ["Nozomu Mishima"],
-  patentAssignees: ["Cosina Co., Ltd."],
-  patentYear: 2026,
-  elementCount: 12,
-  groupCount: 8,
+  catalog: {
+    lensMounts: ["leica-m"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "12 ELEMENTS / 8 GROUPS",
+      "28mm f/2 (PRODUCTION)",
+      "f = 28.84mm / F2.06 (PATENT)",
+      "2ω = 74.04°",
+      "4 ASPHERICAL SURFACES",
+      "6 / 12 APD GLASS ELEMENTS",
+      "DOUBLE-FLOATING FOCUS",
+    ],
+    elementCount: 12,
+    groupCount: 8,
+    focalLengthMm: { marketing: 28, design: 28.94210801178852 },
+    fNumber: { marketing: 2, design: 2.06 },
+  },
+
+  source: {
+    patentNumber: "JP 2026-98935 A",
+    patentYear: 2026,
+    authors: ["Nozomu Mishima"],
+    assignees: ["Cosina Co., Ltd."],
+  },
 
   elements: [
     {
@@ -87,16 +91,16 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.5168,
       vd: 64.2,
-      fl: -42.90144,
+      focalLengthMm: -42.90144,
       glass: "H-K9LGT (CDGM) equivalent — 517642",
       apd: false,
       apdNote:
         "Patent ΔPgF = +0.0031 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.535870; runtime dPgF +0.000054. This position is not one of the six APD elements marked in Cosina's production section.",
+      role: "Front negative meniscus; both surfaces are aspherical and establish the wide-angle entrance geometry.",
       dPgF: 0.000054,
       nC: 1.5143265355014959,
       nF: 1.522376656476826,
       ng: 1.5266903171582615,
-      role: "Front negative meniscus; both surfaces are aspherical and establish the wide-angle entrance geometry.",
     },
     {
       id: 2,
@@ -105,17 +109,17 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.8515,
       vd: 40.78,
-      fl: 52.423822,
+      focalLengthMm: 52.423822,
       glass: "S-LAH89 (OHARA) equivalent — 852408",
       apd: false,
       apdNote:
         "Patent ΔPgF = -0.0054; this position is not one of the six APD elements marked in Cosina's production section.",
+      role: "Positive half of the negative L10 cemented pair; high index bends the front bundle compactly.",
+      cemented: "L10",
       dPgF: -0.0054,
       nC: 1.8453,
       nF: 1.86618,
       ng: 1.87807,
-      role: "Positive half of the negative L10 cemented pair; high index bends the front bundle compactly.",
-      cemented: "L10",
     },
     {
       id: 3,
@@ -124,17 +128,17 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7888,
       vd: 28.43,
-      fl: -36.365402,
+      focalLengthMm: -36.365402,
       glass: "S-NBH58 (OHARA) equivalent — 789284",
       apd: "inferred",
       apdNote:
         "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = +0.0037 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.600856; runtime dPgF +0.004875.",
+      role: "Negative half of L10; forms the net-negative G1b front corrector with L10f.",
+      cemented: "L10",
       dPgF: 0.004875,
       nC: 1.78076,
       nF: 1.8085,
       ng: 1.82518,
-      role: "Negative half of L10; forms the net-negative G1b front corrector with L10f.",
-      cemented: "L10",
     },
     {
       id: 4,
@@ -143,16 +147,16 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 2.001,
       vd: 29.13,
-      fl: 33.291042,
+      focalLengthMm: 33.291042,
       glass: "TAFD55 (HOYA) equivalent — 001291",
       apd: false,
       apdNote:
         "Patent ΔPgF = +0.0036 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.599496; runtime dPgF +0.004693. This position is not one of the six APD elements marked in Cosina's production section.",
+      role: "Strong positive G1c singlet that recovers power after the negative front subsections.",
       dPgF: 0.004693,
       nC: 1.9910461402030342,
       nF: 2.025403881691904,
       ng: 2.0460011117376657,
-      role: "Strong positive G1c singlet that recovers power after the negative front subsections.",
     },
     {
       id: 5,
@@ -161,17 +165,17 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.90043,
       vd: 37.37,
-      fl: 28.982846,
+      focalLengthMm: 28.982846,
       glass: "TAFD37A (HOYA) equivalent — 900374",
       apd: false,
       apdNote:
         "Patent ΔPgF = -0.0044; this position is not one of the six APD elements marked in Cosina's production section.",
+      role: "Positive half of the net-positive L12 cemented doublet immediately before the stop.",
+      cemented: "L12",
       dPgF: -0.0044,
       nC: 1.8933260531486942,
       nF: 1.9174194697943583,
       ng: 1.9313130902894817,
-      role: "Positive half of the net-positive L12 cemented doublet immediately before the stop.",
-      cemented: "L12",
     },
     {
       id: 6,
@@ -180,17 +184,17 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.85451,
       vd: 25.15,
-      fl: -39.294469,
+      focalLengthMm: -39.294469,
       glass: "NBFD25 (HOYA) equivalent — 855252",
       apd: "inferred",
       apdNote:
         "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = +0.0072 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.610260; runtime dPgF +0.008762.",
+      role: "Negative partner in L12; balances the strong positive front component and secondary spectrum.",
+      cemented: "L12",
       dPgF: 0.008762,
       nC: 1.8447296685445198,
       nF: 1.878699672495783,
       ng: 1.8994309735035382,
-      role: "Negative partner in L12; balances the strong positive front component and secondary spectrum.",
-      cemented: "L12",
     },
     {
       id: 7,
@@ -199,17 +203,17 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.72047,
       vd: 34.71,
-      fl: -12.673277,
+      focalLengthMm: -12.673277,
       glass: "S-NBH8 (OHARA) equivalent — 720347",
       apd: "inferred",
       apdNote:
         "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = -0.0025 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.583352; runtime dPgF -0.002066.",
+      role: "Strong negative front half of the net-negative L13 doublet behind the stop.",
+      cemented: "L13",
       dPgF: -0.002066,
       nC: 1.71437,
       nF: 1.73512,
       ng: 1.74723,
-      role: "Strong negative front half of the net-negative L13 doublet behind the stop.",
-      cemented: "L13",
     },
     {
       id: 8,
@@ -218,17 +222,17 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.62846,
       vd: 59.17,
-      fl: 19.31697,
+      focalLengthMm: 19.31697,
       glass: "J-PSKH8 (HIKARI) equivalent — 628592",
       apd: "inferred",
       apdNote:
         "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = +0.0139 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.555724; runtime dPgF +0.011448.",
+      role: "Anomalous-dispersion positive partner in L13; combines with L13f into a weak net-negative unit.",
+      cemented: "L13",
       dPgF: 0.011448,
       nC: 1.625268,
       nF: 1.635889,
       ng: 1.641791,
-      role: "Anomalous-dispersion positive partner in L13; combines with L13f into a weak net-negative unit.",
-      cemented: "L13",
     },
     {
       id: 9,
@@ -237,16 +241,16 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.90525,
       vd: 35.04,
-      fl: 20.62574,
+      focalLengthMm: 20.62574,
       glass: "S-LAH93 (OHARA) equivalent — 905350",
       apd: false,
       apdNote:
         "Patent ΔPgF = -0.0005 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.584758; runtime dPgF -0.000105. This position is not one of the six APD elements marked in Cosina's production section.",
+      role: "Strong positive G2b singlet and the principal positive-power component of the rear group.",
       dPgF: -0.000105,
       nC: 1.89768,
       nF: 1.92351,
       ng: 1.93862,
-      role: "Strong positive G2b singlet and the principal positive-power component of the rear group.",
     },
     {
       id: 10,
@@ -255,17 +259,17 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.55032,
       vd: 75.5,
-      fl: 33.539224,
+      focalLengthMm: 33.539224,
       glass: "FCD705 (HOYA) equivalent — 550755",
       apd: "inferred",
       apdNote:
         "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = +0.0277 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.540130; runtime dPgF +0.023321.",
+      role: "Low-dispersion positive half of L15; supplies the rear unit's strongest positive anomalous dispersion.",
+      cemented: "L15",
       dPgF: 0.023321,
       nC: 1.5481010815705685,
       nF: 1.5553904824529587,
       ng: 1.559326656732765,
-      role: "Low-dispersion positive half of L15; supplies the rear unit's strongest positive anomalous dispersion.",
-      cemented: "L15",
     },
     {
       id: 11,
@@ -274,17 +278,17 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.72047,
       vd: 34.71,
-      fl: -23.541155,
+      focalLengthMm: -23.541155,
       glass: "S-NBH8 (OHARA) equivalent — 720347",
       apd: "inferred",
       apdNote:
         "Cosina's production section marks this position as APD; the mapping is inferred from the matching Example 2 topology. Patent ΔPgF = -0.0025 by the patent's line (PgF − 0.64833 + 0.00180·νd), implying PgF 0.583352; runtime dPgF -0.002066.",
+      role: "Negative partner in L15; makes the cemented pair net negative and controls rear-group color power.",
+      cemented: "L15",
       dPgF: -0.002066,
       nC: 1.71437,
       nF: 1.73512,
       ng: 1.74723,
-      role: "Negative partner in L15; makes the cemented pair net negative and controls rear-group color power.",
-      cemented: "L15",
     },
     {
       id: 12,
@@ -293,90 +297,74 @@ const LENS_DATA = {
       type: "Biconcave Negative (2× Asph)",
       nd: 1.8061,
       vd: 40.73,
-      fl: -129.492431,
+      focalLengthMm: -129.492431,
       glass: "Unmatched (806407 class; HIKARI Q-LASF03S line-index proxy; no joint nd/νd/ΔPgF match)",
       apd: false,
       apdNote:
         "Patent ΔPgF = -0.0056; this position is not one of Cosina's six marked APD elements. nC/nF/ng use the disclosed Q-LASF03S proxy; no public candidate matches nd, νd, and ΔPgF jointly.",
+      role: "Weak negative double-sided asphere near the image plane; final field and higher-order correction element.",
       dPgF: -0.0056,
       nC: 1.800166,
       nF: 1.819952,
       ng: 1.83121,
-      role: "Weak negative double-sided asphere near the image plane; final field and higher-order correction element.",
     },
   ],
 
   surfaces: [
-    { label: "1A", R: 120.686, d: 1.2, nd: 1.5168, elemId: 1, sd: 11.5 },
-    { label: "2A", R: 18.667, d: 5.17, nd: 1.0, elemId: 0, sd: 9.66 },
-    { label: "3", R: -26.163, d: 3.1, nd: 1.8515, elemId: 2, sd: 9.5 },
-    { label: "4", R: -17.394, d: 1.0, nd: 1.7888, elemId: 3, sd: 9.5 },
-    { label: "5", R: -45.31, d: 0.3, nd: 1.0, elemId: 0, sd: 9.5 },
-    { label: "6", R: 35.585, d: 3.33, nd: 2.001, elemId: 4, sd: 8.5 },
-    { label: "7", R: -500.0, d: 0.31, nd: 1.0, elemId: 0, sd: 8.5 },
-    { label: "8", R: 51.264, d: 3.86, nd: 1.90043, elemId: 5, sd: 8.6 },
-    { label: "9", R: -51.262, d: 1.0, nd: 1.85451, elemId: 6, sd: 8.6 },
-    { label: "10", R: 98.206, d: 3.84, nd: 1.0, elemId: 0, sd: 8.6 },
-    { label: "STO", R: 1e15, d: 3.83, nd: 1.0, elemId: 0, sd: 7.864192219821862 },
-    { label: "12", R: -19.549, d: 1.0, nd: 1.72047, elemId: 7, sd: 9.0 },
-    { label: "13", R: 17.5, d: 5.84, nd: 1.62846, elemId: 8, sd: 9.0 },
-    { label: "14", R: -34.531, d: 0.3, nd: 1.0, elemId: 0, sd: 9.0 },
-    { label: "15", R: 36.135, d: 4.92, nd: 1.90525, elemId: 9, sd: 10.4 },
-    { label: "16", R: -36.135, d: 0.15, nd: 1.0, elemId: 0, sd: 10.4 },
-    { label: "17", R: 580.403, d: 5.45, nd: 1.55032, elemId: 10, sd: 10.6 },
-    { label: "18", R: -19.0, d: 1.0, nd: 1.72047, elemId: 11, sd: 10.6 },
-    { label: "19", R: 161.504, d: 5.64, nd: 1.0, elemId: 0, sd: 10.6 },
-    { label: "20A", R: -116.659, d: 2.1, nd: 1.8061, elemId: 12, sd: 12 },
-    { label: "21A", R: 1000.0, d: 18.21, nd: 1.0, elemId: 0, sd: 12 },
+    {
+      label: "1A",
+      R: 120.686,
+      d: 1.2,
+      sd: 11.5,
+      medium: 1,
+      asphere: { K: 0, A4: 1.563e-5, A6: -2.0081e-7, A8: 1.7924e-9, A10: -8.9064e-12, A12: 1.845e-14, A14: 0 },
+    },
+    {
+      label: "2A",
+      R: 18.667,
+      d: 5.17,
+      sd: 9.66,
+      asphere: { K: 1.111, A4: -2.4287e-6, A6: -3.687e-7, A8: 2.3518e-9, A10: -1.5366e-11, A12: 0, A14: 0 },
+    },
+    { label: "3", R: -26.163, d: 3.1, sd: 9.5, medium: 2 },
+    { label: "4", R: -17.394, d: 1.0, sd: 9.5, medium: 3 },
+    { label: "5", R: -45.31, d: 0.3, sd: 9.5 },
+    { label: "6", R: 35.585, d: 3.33, sd: 8.5, medium: 4 },
+    { label: "7", R: -500.0, d: 0.31, sd: 8.5 },
+    { label: "8", R: 51.264, d: 3.86, sd: 8.6, medium: 5 },
+    { label: "9", R: -51.262, d: 1.0, sd: 8.6, medium: 6 },
+    { label: "10", R: 98.206, d: 3.84, sd: 8.6 },
+    { label: "STO", R: "flat" },
+    { label: "12", R: -19.549, d: 1.0, sd: 9.0, medium: 7 },
+    { label: "13", R: 17.5, d: 5.84, sd: 9.0, medium: 8 },
+    { label: "14", R: -34.531, d: 0.3, sd: 9.0 },
+    { label: "15", R: 36.135, d: 4.92, sd: 10.4, medium: 9 },
+    { label: "16", R: -36.135, d: 0.15, sd: 10.4 },
+    { label: "17", R: 580.403, d: 5.45, sd: 10.6, medium: 10 },
+    { label: "18", R: -19.0, d: 1.0, sd: 10.6, medium: 11 },
+    { label: "19", R: 161.504, d: 5.64, sd: 10.6 },
+    { label: "20A", R: -116.659, d: 2.1, sd: 12, medium: 12, asphere: { K: 52.843, A4: -3.286e-5, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },
+    {
+      label: "21A",
+      R: 1000.0,
+      sd: 12,
+      asphere: { K: 0, A4: 4.4019e-6, A6: 4.5548e-8, A8: -6.0419e-11, A10: 1.081e-12, A12: -4.5187e-15, A14: 0 },
+    },
   ],
 
-  asph: {
-    "1A": {
-      K: 0.0,
-      A4: 1.563e-5,
-      A6: -2.0081e-7,
-      A8: 1.7924e-9,
-      A10: -8.9064e-12,
-      A12: 1.845e-14,
-      A14: 0.0,
-    },
-    "2A": {
-      K: 1.111,
-      A4: -2.4287e-6,
-      A6: -3.687e-7,
-      A8: 2.3518e-9,
-      A10: -1.5366e-11,
-      A12: 0.0,
-      A14: 0.0,
-    },
-    "20A": {
-      K: 52.843,
-      A4: -3.286e-5,
-      A6: 0.0,
-      A8: 0.0,
-      A10: 0.0,
-      A12: 0.0,
-      A14: 0.0,
-    },
-    "21A": {
-      K: 0.0,
-      A4: 4.4019e-6,
-      A6: 4.5548e-8,
-      A8: -6.0419e-11,
-      A10: 1.081e-12,
-      A12: -4.5187e-15,
-      A14: 0.0,
-    },
+  focus: {
+    closeFocusM: 0.5,
+    description:
+      "PUBLISHED double-floating endpoints: G1 and G2 move independently toward the object; " +
+      "D11 3.83→3.36 mm and BF 18.21→20.28 mm. The printed endpoint is preserved although " +
+      "its first-order object-to-image matrix has B = -0.648 mm.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
   },
 
-  var: {
-    STO: [3.83, 3.36],
-    "21A": [18.21, 20.28],
-  },
-  varLabels: [
-    ["STO", "D11"],
-    ["21A", "BF"],
-  ],
+  gaps: { STO: { label: "D11", values: [[3.83, 3.36]] }, "21A": { label: "BF", values: [[18.21, 20.28]] } },
+
+  aperture: { nominalFNumber: 2.06, fStops: [2.06, 2.8, 4, 5.6, 8, 11, 16], blades: 12 },
 
   groups: [
     { text: "G1a", fromSurface: "1A", toSurface: "2A" },
@@ -393,19 +381,7 @@ const LENS_DATA = {
     { text: "L15", fromSurface: "17", toSurface: "19" },
   ],
 
-  closeFocusM: 0.5,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  focusDescription:
-    "PUBLISHED double-floating endpoints: G1 and G2 move independently toward the object; " +
-    "D11 3.83→3.36 mm and BF 18.21→20.28 mm. The printed endpoint is preserved although " +
-    "its first-order object-to-image matrix has B = -0.648 mm.",
-
-  nominalFno: 2.06,
-  fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16],
-  apertureBlades: 12,
-
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

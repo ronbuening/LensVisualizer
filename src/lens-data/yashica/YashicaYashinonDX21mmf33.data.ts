@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
@@ -12,10 +12,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                          ║
  * ║  8 elements / 5 air-separated groups, all spherical.                    ║
  * ║  Stop: patent-published 3.5 normalized units behind r7; the source      ║
- * ║  d7 = 5.37 gap is split into r7→STO = 0.7350 mm and STO→r8 =           ║
- * ║  0.3927 mm after scaling. The patent does not publish stop diameter;    ║
- * ║  STO.sd is calibrated to the published f/3.3 using the modeled entrance║
- * ║  pupil.                                                                  ║
+ * ║  d7 = 5.37 gap is split into r7→STO = 0.7350 mm and STO→r8 = 0.3927 mm  ║
+ * ║  after scaling. The patent does not publish stop diameter; the stop     ║
+ * ║  radius is derived from the design f-number, the published f/3.3, using ║
+ * ║  the modeled entrance pupil.                                            ║
  * ║                                                                          ║
  * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. Example 1 publishes one fixed║
  * ║  prescription and no finite-object motion table. The marketed 0.8m MFD ║
@@ -41,28 +41,27 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "yashica-yashinon-dx-21mm-f3-3",
   maker: "Yashica",
   name: "YASHICA YASHINON-DX 21mm f/3.3",
   subtitle: "JP 1969-024068 Example 1 — f=100 prescription scaled ×0.21",
-  specs: ["8 ELEMENTS / 5 GROUPS", "21mm", "f/3.3", "92°", "MFD 0.8m"],
 
-  focalLengthMarketing: 21,
-  focalLengthDesign: 21.001562506,
-  apertureMarketing: 3.3,
-  apertureDesign: 3.3,
-  lensMounts: ["m42"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 1969-024068 B",
-  patentAuthors: ["Iwatatsu Fujioka"],
-  patentAssignees: ["Yashica Co., Ltd."],
-  patentYear: 1969,
-  elementCount: 8,
-  groupCount: 5,
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 92,
-    maxTraceFieldDeg: 46,
+  catalog: {
+    lensMounts: ["m42"],
+    imageFormat: "135-full-frame",
+    specs: ["8 ELEMENTS / 5 GROUPS", "21mm", "f/3.3", "92°", "MFD 0.8m"],
+    elementCount: 8,
+    groupCount: 5,
+    focalLengthMm: { marketing: 21, design: 21.001562506 },
+    fNumber: { marketing: 3.3, design: 3.3 },
+  },
+
+  source: {
+    patentNumber: "JP 1969-024068 B",
+    patentYear: 1969,
+    authors: ["Iwatatsu Fujioka"],
+    assignees: ["Yashica Co., Ltd."],
   },
 
   /* ── Elements ── */
@@ -75,7 +74,7 @@ const LENS_DATA = {
       nd: 1.67,
       vd: 57.3,
       indexReference: "d",
-      fl: -23.455464,
+      focalLengthMm: -23.455464,
       glass: "670573 d-line class (historical vendor unresolved)",
       apd: false,
     },
@@ -87,7 +86,7 @@ const LENS_DATA = {
       nd: 1.717,
       vd: 47.9,
       indexReference: "d",
-      fl: 10.813995,
+      focalLengthMm: 10.813995,
       glass: "717479 d-line class (historical vendor unresolved)",
       apd: false,
       cemented: "D1",
@@ -100,7 +99,7 @@ const LENS_DATA = {
       nd: 1.64328,
       vd: 47.8,
       indexReference: "d",
-      fl: -8.294325,
+      focalLengthMm: -8.294325,
       glass: "643478 d-line class (historical vendor unresolved)",
       apd: false,
       cemented: "D1",
@@ -113,7 +112,7 @@ const LENS_DATA = {
       nd: 1.64085,
       vd: 56.8,
       indexReference: "d",
-      fl: 13.584363,
+      focalLengthMm: 13.584363,
       glass: "641568 d-line class; LACL1 catalog equivalent (production supplier unspecified)",
       apd: false,
     },
@@ -125,7 +124,7 @@ const LENS_DATA = {
       nd: 1.589,
       vd: 48.6,
       indexReference: "d",
-      fl: -13.395826,
+      focalLengthMm: -13.395826,
       glass: "589486 d-line class; BAF6 catalog equivalent (production supplier unspecified)",
       apd: false,
       cemented: "T1",
@@ -138,7 +137,7 @@ const LENS_DATA = {
       nd: 1.6223,
       vd: 53.1,
       indexReference: "d",
-      fl: 7.236541,
+      focalLengthMm: 7.236541,
       glass: "622531 d-line class (historical vendor unresolved)",
       apd: false,
       cemented: "T1",
@@ -151,7 +150,7 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.5,
       indexReference: "d",
-      fl: -20.505852,
+      focalLengthMm: -20.505852,
       glass: "717295 d-line class (historical vendor unresolved)",
       apd: false,
       cemented: "T1",
@@ -164,7 +163,7 @@ const LENS_DATA = {
       nd: 1.57099,
       vd: 51,
       indexReference: "d",
-      fl: -24.970353,
+      focalLengthMm: -24.970353,
       glass: "571510 d-line class; BAFL2 catalog equivalent (production supplier unspecified)",
       apd: false,
     },
@@ -172,25 +171,33 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 34.3665, d: 1.3776, nd: 1.67, elemId: 1, sd: 11.1 },
-    { label: "2", R: 10.61046, d: 10.2249, nd: 1, elemId: 0, sd: 8.6 },
-    { label: "3", R: 13.00362, d: 5.796, nd: 1.717, elemId: 2, sd: 7.7 },
-    { label: "4", R: -15.6303, d: 0.819, nd: 1.64328, elemId: 3, sd: 6.9 },
-    { label: "5", R: 8.26707, d: 0.5166, nd: 1, elemId: 0, sd: 5.35 },
-    { label: "6", R: 10.10268, d: 4.0005, nd: 1.64085, elemId: 4, sd: 5.35 },
-    { label: "7", R: -53.214, d: 0.735, nd: 1, elemId: 0, sd: 4.8 },
-    { label: "STO", R: 1e15, d: 0.3927, nd: 1, elemId: 0, sd: 3.873197413 },
-    { label: "8", R: -62.5821, d: 0.819, nd: 1.589, elemId: 5, sd: 4.3 },
-    { label: "9", R: 9.07221, d: 6.3945, nd: 1.6223, elemId: 6, sd: 4.7 },
-    { label: "10", R: -6.52428, d: 4.1391, nd: 1.71736, elemId: 7, sd: 5.3 },
-    { label: "11", R: -14.83125, d: 8.6289, nd: 1, elemId: 0, sd: 6.4 },
-    { label: "12", R: -9.40737, d: 2.3646, nd: 1.57099, elemId: 8, sd: 7.9 },
-    { label: "13", R: -30.1791, d: 7.838027884, nd: 1, elemId: 0, sd: 11.2 },
+    { label: "1", R: 34.3665, d: 1.3776, sd: 11.1, medium: 1 },
+    { label: "2", R: 10.61046, d: 10.2249, sd: 8.6 },
+    { label: "3", R: 13.00362, d: 5.796, sd: 7.7, medium: 2 },
+    { label: "4", R: -15.6303, d: 0.819, sd: 6.9, medium: 3 },
+    { label: "5", R: 8.26707, d: 0.5166, sd: 5.35 },
+    { label: "6", R: 10.10268, d: 4.0005, sd: 5.35, medium: 4 },
+    { label: "7", R: -53.214, d: 0.735, sd: 4.8 },
+    { label: "STO", R: "flat", d: 0.3927 },
+    { label: "8", R: -62.5821, d: 0.819, sd: 4.3, medium: 5 },
+    { label: "9", R: 9.07221, d: 6.3945, sd: 4.7, medium: 6 },
+    { label: "10", R: -6.52428, d: 4.1391, sd: 5.3, medium: 7 },
+    { label: "11", R: -14.83125, d: 8.6289, sd: 6.4 },
+    { label: "12", R: -9.40737, d: 2.3646, sd: 7.9, medium: 8 },
+    { label: "13", R: -30.1791, d: 7.838027884, sd: 11.2 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.8,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION — JP 1969-024068 Example 1 publishes one fixed prescription and no finite-focus movement table; the 0.8m marketed MFD is metadata only and no focus movement is modeled.",
+  },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 3.3, fStops: [3.3, 4, 5.6, 8, 11, 16] },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 92, maxTraceFieldDeg: 46 },
 
   groups: [
     { text: "I", fromSurface: "1", toSurface: "2" },
@@ -203,17 +210,8 @@ const LENS_DATA = {
     { text: "T1", fromSurface: "8", toSurface: "11" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.8,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION — JP 1969-024068 Example 1 publishes one fixed prescription and no finite-focus movement table; the 0.8m marketed MFD is metadata only and no focus movement is modeled.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 3.3,
-  fstopSeries: [3.3, 4, 5.6, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  yScFill: 0.36,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.36 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -25,8 +25,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  residual rather than forcing the image plane to the rounded source value. ║
  * ║                                                                              ║
  * ║  STOP: the patent publishes the R5→stop / stop→R6 split but not the stop   ║
- * ║  diameter. STO sd = 19.507679083388 mm is inferred from the actual         ║
- * ║  scaled prescription so the modeled entrance pupil gives exactly f/4.5.    ║
+ * ║  diameter. The stop radius is derived from the design f-number, exactly    ║
+ * ║  f/4.5, using the actual scaled prescription.                              ║
  * ║                                                                              ║
  * ║  SEMI-DIAMETERS: the patent publishes no clear apertures. Non-stop SDs     ║
  * ║  are model-derived from exact spherical ray envelopes at ±18° object       ║
@@ -48,122 +48,130 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "voigtlander-apo-lanthar-210mm-f45",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER APO-LANTHAR 210mm f/4.5",
   subtitle: "US 2,645,154 Example 1 — production-correlated 210mm f/4.5 scale",
-  specs: [
-    "5 ELEMENTS / 3 GROUPS",
-    "210mm f/4.5 (PRODUCTION)",
-    "f = 210.004 mm (MODELED)",
-    "FIELD: ALMOST 60° (PATENT)",
-  ],
 
-  focalLengthMarketing: 210,
-  focalLengthDesign: 210.004074571199,
-  imageFormat: "4x5",
-  apertureMarketing: 4.5,
-  apertureDesign: 4.5,
-  lensMounts: ["large-format-lens-board"],
-  patentNumber: "US 2,645,154",
-  patentAuthors: ["Albrecht Wilhelm Tronnier"],
-  patentAssignees: ["Voigtländer & Sohn AG"],
-  patentYear: 1953,
-  elementCount: 5,
-  groupCount: 3,
+  catalog: {
+    lensMounts: ["large-format-lens-board"],
+    imageFormat: "4x5",
+    specs: [
+      "5 ELEMENTS / 3 GROUPS",
+      "210mm f/4.5 (PRODUCTION)",
+      "f = 210.004 mm (MODELED)",
+      "FIELD: ALMOST 60° (PATENT)",
+    ],
+    elementCount: 5,
+    groupCount: 3,
+    focalLengthMm: { marketing: 210, design: 210.004074571199 },
+    fNumber: { marketing: 4.5, design: 4.5 },
+  },
+
+  source: {
+    patentNumber: "US 2,645,154",
+    patentYear: 1953,
+    authors: ["Albrecht Wilhelm Tronnier"],
+    assignees: ["Voigtländer & Sohn AG"],
+  },
 
   elements: [
     {
       id: 1,
       name: "L1",
-      diagramLabel: "L1",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.65953,
       vd: 57.0,
       indexReference: "d",
-      fl: 70.480418181577,
-      glass: "660570 — patent barium crown class; K-LaK11 coordinate-compatible spectral proxy, not a composition or supplier identification",
+      focalLengthMm: 70.480418181577,
+      glass:
+        "660570 — patent barium crown class; K-LaK11 coordinate-compatible spectral proxy, not a composition or supplier identification",
       apd: false,
       role: "Front positive component of the cemented front member.",
+      diagramLabel: "L1",
       cemented: "D1",
     },
     {
       id: 2,
       name: "L2",
-      diagramLabel: "L2",
       label: "Element 2",
       type: "Plano-Concave Negative",
       nd: 1.60266,
       vd: 38.4,
       indexReference: "d",
-      fl: -295.138054624498,
+      focalLengthMm: -295.138054624498,
       glass: "603384 — F5 compatible spectral proxy; patent vendor unspecified",
       apd: false,
       role: "Negative cemented partner completing the front member.",
+      diagramLabel: "L2",
       cemented: "D1",
     },
     {
       id: 3,
       name: "L3",
-      diagramLabel: "L3",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.64282,
       vd: 47.9,
       indexReference: "d",
-      fl: -61.814711022918,
+      focalLengthMm: -61.814711022918,
       glass: "643479 — BAF9 compatible barium-flint spectral proxy; patent vendor unspecified",
       apd: false,
       role: "Isolated unequal-curvature negative element between the two cemented members.",
+      diagramLabel: "L3",
     },
     {
       id: 4,
       name: "L4",
-      diagramLabel: "L4",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.60266,
       vd: 38.4,
       indexReference: "d",
-      fl: -74.534367586247,
+      focalLengthMm: -74.534367586247,
       glass: "603384 — F5 compatible spectral proxy; patent vendor unspecified",
       apd: false,
       role: "Negative component at the front of the cemented rear member.",
+      diagramLabel: "L4",
       cemented: "D2",
     },
     {
       id: 5,
       name: "L5",
-      diagramLabel: "L5",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.66867,
       vd: 47.5,
       indexReference: "d",
-      fl: 48.558050554347,
+      focalLengthMm: 48.558050554347,
       glass: "669475 — S-BAH10 compatible spectral proxy; patent barium crown class, supplier unspecified",
       apd: false,
       role: "Strong positive rear component completing the cemented rear member.",
+      diagramLabel: "L5",
       cemented: "D2",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 61.3347, d: 11.3463, nd: 1.65953, elemId: 1, sd: 31.0 },
-    { label: "2", R: -177.8679, d: 2.9442, nd: 1.60266, elemId: 2, sd: 31 },
-    { label: "3", R: 1e15, d: 6.8082, nd: 1.0, elemId: 0, sd: 31 },
-    { label: "4", R: -133.6251, d: 2.9442, nd: 1.64282, elemId: 3, sd: 24.8 },
-    { label: "5", R: 57.0402, d: 8.1585, nd: 1.0, elemId: 0, sd: 24.8 },
-    { label: "STO", R: 1e15, d: 4.2924, nd: 1.0, elemId: 0, sd: 19.507679083388 },
-    { label: "6", R: -509.0715, d: 2.9442, nd: 1.60266, elemId: 4, sd: 26 },
-    { label: "7", R: 49.3731, d: 12.4509, nd: 1.66867, elemId: 5, sd: 26 },
-    { label: "8", R: -85.2537, d: 181.93478162984, nd: 1.0, elemId: 0, sd: 26.0 },
+    { label: "1", R: 61.3347, d: 11.3463, sd: 31.0, medium: 1 },
+    { label: "2", R: -177.8679, d: 2.9442, sd: 31, medium: 2 },
+    { label: "3", R: "flat", d: 6.8082, sd: 31 },
+    { label: "4", R: -133.6251, d: 2.9442, sd: 24.8, medium: 3 },
+    { label: "5", R: 57.0402, d: 8.1585, sd: 24.8 },
+    { label: "STO", R: "flat", d: 4.2924 },
+    { label: "6", R: -509.0715, d: 2.9442, sd: 26, medium: 4 },
+    { label: "7", R: 49.3731, d: 12.4509, sd: 26, medium: 5 },
+    { label: "8", R: -85.2537, d: 181.93478162984, sd: 26.0 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 1.0,
+    description: "The patent provides only an infinity prescription. View-camera bellows focusing is not modeled.",
+  },
+
+  aperture: { nominalFNumber: 4.5, fStops: [4.5, 5.6, 8, 11, 16] },
 
   groups: [
     { text: "G1 (+)", fromSurface: "1", toSurface: "3" },
@@ -175,13 +183,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
 
-  closeFocusM: 1.0,
-  focusDescription: "The patent provides only an infinity prescription. View-camera bellows focusing is not modeled.",
-
-  nominalFno: 4.5,
-  fstopSeries: [4.5, 5.6, 8, 11, 16],
-
-  yScFill: 0.4,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.4 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

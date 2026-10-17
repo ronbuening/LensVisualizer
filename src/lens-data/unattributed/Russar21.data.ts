@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  *
@@ -34,126 +34,132 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "russar-21-60f18",
   // Russar is a design family; the historical manufacturer is unconfirmed.
   maker: null,
   name: "RUSSAR-21 60mm f/18",
   subtitle: "US 2,516,724 A — Example I; strong Russar-21 correlation, not manufacturer-confirmed production drawing",
-  specs: ["6 ELEMENTS / 4 GROUPS", "f = 59.426 mm", "F/17.929", "133° PUBLISHED FIELD", "ALL SPHERICAL"],
 
-  focalLengthDesign: 59.42580334941011,
-  apertureDesign: 17.928942968865105,
-  patentNumber: "US 2,516,724 A",
-  patentAuthors: ["Michael Michaelovitch Roossinov"],
-  patentAssignees: [],
-  patentYear: 1950,
-  elementCount: 6,
-  groupCount: 4,
+  catalog: {
+    specs: ["6 ELEMENTS / 4 GROUPS", "f = 59.426 mm", "F/17.929", "133° PUBLISHED FIELD", "ALL SPHERICAL"],
+    elementCount: 6,
+    groupCount: 4,
+    focalLengthMm: { design: 59.42580334941011 },
+    fNumber: { design: 17.928942968865105 },
+  },
 
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 133,
-    maxTraceFieldDeg: 66.5,
+  source: {
+    patentNumber: "US 2,516,724 A",
+    patentYear: 1950,
+    authors: ["Michael Michaelovitch Roossinov"],
+    assignees: [],
   },
 
   elements: [
     {
       id: 1,
       name: "L1",
-      diagramLabel: "1",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.6395,
       vd: 43.3,
-      fl: -72.57414789414611,
+      focalLengthMm: -72.57414789414611,
       glass: "Unmatched (Lenzos L-67; nd=1.6395, vd=43.3; reference wavelength unstated)",
       role: "Front exterior negative meniscus; source geometry is near-hemispherical on its inner surface.",
+      diagramLabel: "1",
     },
     {
       id: 2,
       name: "L2",
-      diagramLabel: "2",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.6126,
       vd: 58.6,
-      fl: 24.638633126651534,
+      focalLengthMm: 24.638633126651534,
       glass: "BACD4 spectral proxy (Lenzos L-24 / historical SK4 class; production melt unresolved)",
       role: "Positive component of the front cemented medial member.",
+      diagramLabel: "2",
       cemented: "D1",
     },
     {
       id: 3,
       name: "L3",
-      diagramLabel: "3",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.548,
       vd: 45.9,
-      fl: -34.80083968325312,
+      focalLengthMm: -34.80083968325312,
       glass: "LLF1 spectral proxy (Lenzos L-28; production melt unresolved)",
       role: "Negative component of the front cemented medial member.",
+      diagramLabel: "3",
       cemented: "D1",
     },
     {
       id: 4,
       name: "L4",
-      // Patent Example I: 10 mm cemented radius / 2.2671 mm stop-facing radius.
-      maxSdRatio: 4.5,
-      diagramLabel: "4",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.548,
       vd: 45.9,
-      fl: -34.80083968325312,
+      focalLengthMm: -34.80083968325312,
       glass: "LLF1 spectral proxy (Lenzos L-28; production melt unresolved)",
       role: "Negative component of the rear cemented medial member.",
+      diagramLabel: "4",
+      // Patent Example I: 10 mm cemented radius / 2.2671 mm stop-facing radius.
+      maxSdRatio: 4.5,
       cemented: "D2",
     },
     {
       id: 5,
       name: "L5",
-      diagramLabel: "5",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.6126,
       vd: 58.6,
-      fl: 24.638633126651534,
+      focalLengthMm: 24.638633126651534,
       glass: "BACD4 spectral proxy (Lenzos L-24 / historical SK4 class; production melt unresolved)",
       role: "Positive component of the rear cemented medial member.",
+      diagramLabel: "5",
       cemented: "D2",
     },
     {
       id: 6,
       name: "L6",
-      diagramLabel: "6",
       label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.6259,
       vd: 39.1,
-      fl: -73.13588762106855,
+      focalLengthMm: -73.13588762106855,
       glass: "H-BaF8 spectral proxy (Lenzos L-15 / historical BaSF1 class; production melt unresolved)",
       role: "Rear exterior negative meniscus; source geometry is near-hemispherical on its inner surface.",
+      diagramLabel: "6",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 35.218, d: 1.91, nd: 1.6395, elemId: 1, sd: 32.5 },
-    { label: "2", R: 19.6, d: 31.44, nd: 1, elemId: 0, sd: 19.598 },
-    { label: "3", R: 42.2, d: 8.17, nd: 1.6126, elemId: 2, sd: 10 },
-    { label: "4", R: -21.77, d: 2.72, nd: 1.548, elemId: 3, sd: 10 },
-    { label: "5", R: 160.62, d: 0.2205, nd: 1, elemId: 0, sd: 5 },
-    { label: "STO", R: 1e15, d: 0.2205, nd: 1, elemId: 0, sd: 2.25 },
-    { label: "6", R: -160.62, d: 2.72, nd: 1.548, elemId: 4, sd: 2.2671 },
-    { label: "7", R: 21.77, d: 8.17, nd: 1.6126, elemId: 5, sd: 10 },
-    { label: "8", R: -42.2, d: 31.44, nd: 1, elemId: 0, sd: 10 },
-    { label: "9", R: -19.6, d: 1.91, nd: 1.6259, elemId: 6, sd: 19.598 },
-    { label: "10", R: -35.562, d: 31.91133191002311, nd: 1, elemId: 0, sd: 32.5 },
+    { label: "1", R: 35.218, d: 1.91, sd: 32.5, medium: 1 },
+    { label: "2", R: 19.6, d: 31.44, sd: 19.598 },
+    { label: "3", R: 42.2, d: 8.17, sd: 10, medium: 2 },
+    { label: "4", R: -21.77, d: 2.72, sd: 10, medium: 3 },
+    { label: "5", R: 160.62, d: 0.2205, sd: 5 },
+    // US 2,516,724 A Example I diaphragm text and data list print a 4.5 mm central diaphragm aperture.
+    { label: "STO", R: "flat", d: 0.2205 },
+    { label: "6", R: -160.62, d: 2.72, sd: 2.2671, medium: 4 },
+    { label: "7", R: 21.77, d: 8.17, sd: 10, medium: 5 },
+    { label: "8", R: -42.2, d: 31.44, sd: 10 },
+    { label: "9", R: -19.6, d: 1.91, sd: 19.598, medium: 6 },
+    { label: "10", R: -35.562, d: 31.91133191002311, sd: 32.5 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 1000000,
+    description: "Fixed patent prescription at infinity; no finite-focus movement is modeled.",
+  },
+
+  aperture: { nominalFNumber: 17.928942968865105, fStops: [18, 22, 32], maxFNumber: 32 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 133, maxTraceFieldDeg: 66.5 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
@@ -166,15 +172,9 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
 
-  closeFocusM: 1000000,
-  focusDescription: "Fixed patent prescription at infinity; no finite-focus movement is modeled.",
+  layout: { yScFill: 0.55 },
 
-  nominalFno: 17.928942968865105,
-  fstopSeries: [18, 22, 32],
-  maxFstop: 32,
-
-  maxRimAngleDeg: 89.5,
-  yScFill: 0.55,
-} satisfies LensDataInput;
+  checks: { maxRimAngleDeg: 89.5 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

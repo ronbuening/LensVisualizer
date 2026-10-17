@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
@@ -52,34 +52,33 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "voigtlander-color-skopar-vm-35mm-f35-aspherical",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER COLOR-SKOPAR 35mm f/3.5 Aspherical",
   subtitle: "JP 2026-121744 A Example 3 — production correlation; patent scale retained",
-  specs: [
-    "6 ELEMENTS / 4 GROUPS",
-    "35mm f/3.5 (35.741mm f/3.58 design)",
-    "2ω = 61.5° (61.6° marketed)",
-    "2 ASPHERICAL SURFACES",
-    "UNIT FOCUS",
-  ],
 
-  focalLengthMarketing: 35,
-  focalLengthDesign: 35.741015038857,
-  apertureMarketing: 3.5,
-  apertureDesign: 3.58,
-  lensMounts: ["leica-m"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 2026-121744 A",
-  patentAuthors: ["Nozomu Mishima"],
-  patentAssignees: ["Cosina Co., Ltd."],
-  patentYear: 2026,
-  elementCount: 6,
-  groupCount: 4,
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 61.5,
-    maxTraceFieldDeg: 30.75,
+  catalog: {
+    lensMounts: ["leica-m"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "6 ELEMENTS / 4 GROUPS",
+      "35mm f/3.5 (35.741mm f/3.58 design)",
+      "2ω = 61.5° (61.6° marketed)",
+      "2 ASPHERICAL SURFACES",
+      "UNIT FOCUS",
+    ],
+    elementCount: 6,
+    groupCount: 4,
+    focalLengthMm: { marketing: 35, design: 35.741015038857 },
+    fNumber: { marketing: 3.5, design: 3.58 },
+  },
+
+  source: {
+    patentNumber: "JP 2026-121744 A",
+    patentYear: 2026,
+    authors: ["Nozomu Mishima"],
+    assignees: ["Cosina Co., Ltd."],
   },
 
   elements: [
@@ -90,11 +89,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.91082,
       vd: 35.25,
-      dPgF: -0.00263,
-      fl: 13.799161,
+      focalLengthMm: 13.799161,
       glass: "TAFD35 (HOYA catalog equivalent; production supplier unspecified)",
-      cemented: "L9",
       role: "Dense positive front member of cemented G1; supplies most of the front-group power.",
+      cemented: "L9",
+      dPgF: -0.00263,
     },
     {
       id: 2,
@@ -103,11 +102,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80809,
       vd: 22.76,
-      dPgF: 0.022844,
-      fl: -17.571227,
+      focalLengthMm: -17.571227,
       glass: "FD225 (HOYA catalog equivalent; production supplier unspecified)",
-      cemented: "L9",
       role: "Negative cemented partner that moderates the front doublet's chromatic and spherical power.",
+      cemented: "L9",
+      dPgF: 0.022844,
     },
     {
       id: 3,
@@ -116,11 +115,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6134,
       vd: 44.27,
-      dPgF: -0.005694,
-      fl: -17.457979,
+      focalLengthMm: -17.457979,
       glass: "S-NBM51 catalog equivalent (patent 613443; production supplier unspecified)",
-      cemented: "L10",
       role: "Negative member of G2a; the patent constrains its low index and negative dPgF.",
+      cemented: "L10",
+      dPgF: -0.005694,
     },
     {
       id: 4,
@@ -129,11 +128,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.81,
-      dPgF: -0.009,
-      fl: 24.261811,
+      focalLengthMm: 24.261811,
       glass: "TAFD30 (HOYA catalog equivalent; production supplier unspecified)",
-      cemented: "L10",
       role: "Dense positive cemented partner; the complete L10 cemented subgroup remains net negative.",
+      cemented: "L10",
+      dPgF: -0.009,
     },
     {
       id: 5,
@@ -142,10 +141,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
-      dPgF: 0.0319,
-      fl: 31.911859,
+      focalLengthMm: 31.911859,
       glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Low-dispersion positive element and the strongest positive member of G2b.",
+      dPgF: 0.0319,
     },
     {
       id: 6,
@@ -154,53 +153,50 @@ const LENS_DATA = {
       type: "Negative Meniscus (2× Asph)",
       nd: 1.51633,
       vd: 64.06,
-      dPgF: -0.003029,
-      fl: -66.426138,
-      glass:
-        "S-BSL7 / K-BK7 catalog-equivalent borosilicate crown class (production supplier unspecified)",
+      focalLengthMm: -66.426138,
+      glass: "S-BSL7 / K-BK7 catalog-equivalent borosilicate crown class (production supplier unspecified)",
       role: "Double-sided aspherical negative meniscus near the image plane for coma, astigmatism, and field control.",
+      dPgF: -0.003029,
     },
   ],
 
   surfaces: [
-    { label: "1", R: 13.403, d: 3.11, nd: 1.91082, elemId: 1, sd: 7.9 },
-    { label: "2", R: -179.549, d: 0.9, nd: 1.80809, elemId: 2, sd: 7.9 },
-    { label: "3", R: 15.453, d: 3.1, nd: 1.0, elemId: 0, sd: 7.9 },
-    { label: "STO", R: 1e15, d: 2.64, nd: 1.0, elemId: 0, sd: 3.961125955704 },
-    { label: "5", R: -14.459, d: 0.9, nd: 1.6134, elemId: 3, sd: 6.2 },
-    { label: "6", R: 42.264, d: 2.45, nd: 1.883, elemId: 4, sd: 6.2 },
-    { label: "7", R: -42.264, d: 0.25, nd: 1.0, elemId: 0, sd: 6.2 },
-    { label: "8", R: 31.099, d: 3.67, nd: 1.497, elemId: 5, sd: 8.3 },
-    { label: "9", R: -31.099, d: 5.8, nd: 1.0, elemId: 0, sd: 8.3 },
-    { label: "10A", R: -25.356, d: 2.1, nd: 1.51633, elemId: 6, sd: 10.15 },
-    { label: "11A", R: -100.0, d: 15.11, nd: 1.0, elemId: 0, sd: 10.15 },
+    { label: "1", R: 13.403, d: 3.11, sd: 7.9, medium: 1 },
+    { label: "2", R: -179.549, d: 0.9, sd: 7.9, medium: 2 },
+    { label: "3", R: 15.453, d: 3.1, sd: 7.9 },
+    { label: "STO", R: "flat", d: 2.64 },
+    { label: "5", R: -14.459, d: 0.9, sd: 6.2, medium: 3 },
+    { label: "6", R: 42.264, d: 2.45, sd: 6.2, medium: 4 },
+    { label: "7", R: -42.264, d: 0.25, sd: 6.2 },
+    { label: "8", R: 31.099, d: 3.67, sd: 8.3, medium: 5 },
+    { label: "9", R: -31.099, d: 5.8, sd: 8.3 },
+    {
+      label: "10A",
+      R: -25.356,
+      d: 2.1,
+      sd: 10.15,
+      medium: 6,
+      asphere: { K: 0, A4: -5.5781e-4, A6: 2.2937e-6, A8: -6.1771e-8, A10: 1.0322e-9, A12: -4.0737e-12, A14: 0 },
+    },
+    {
+      label: "11A",
+      R: -100.0,
+      sd: 10.15,
+      asphere: { K: 0, A4: -4.1509e-4, A6: 2.7671e-6, A8: -2.4381e-8, A10: 2.5192e-10, A12: -8.7175e-13, A14: 0 },
+    },
   ],
 
-  asph: {
-    "10A": {
-      K: 0,
-      A4: -5.5781e-4,
-      A6: 2.2937e-6,
-      A8: -6.1771e-8,
-      A10: 1.0322e-9,
-      A12: -4.0737e-12,
-      A14: 0,
-    },
-    "11A": {
-      K: 0,
-      A4: -4.1509e-4,
-      A6: 2.7671e-6,
-      A8: -2.4381e-8,
-      A10: 2.5192e-10,
-      A12: -8.7175e-13,
-      A14: 0,
-    },
+  focus: {
+    closeFocusM: 0.7,
+    description:
+      "Unit focus. The 0.7 m endpoint is a mechanism-constrained reconstruction from Cosina's image-plane-referenced minimum focus; D11 changes from 15.11 mm to 17.166711 mm while every internal spacing remains fixed.",
   },
 
-  var: {
-    "11A": [15.11, 17.166711491888],
-  },
-  varLabels: [["11A", "BF"]],
+  gaps: { "11A": { label: "BF", values: [[15.11, 17.166711491888]] } },
+
+  aperture: { nominalFNumber: 3.58, fStops: [3.5, 4, 5.6, 8, 11, 16, 22], blades: 10 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 61.5, maxTraceFieldDeg: 30.75 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "3" },
@@ -212,15 +208,7 @@ const LENS_DATA = {
     { text: "L10", fromSurface: "5", toSurface: "7" },
   ],
 
-  closeFocusM: 0.7,
-  focusDescription:
-    "Unit focus. The 0.7 m endpoint is a mechanism-constrained reconstruction from Cosina's image-plane-referenced minimum focus; D11 changes from 15.11 mm to 17.166711 mm while every internal spacing remains fixed.",
-
-  nominalFno: 3.58,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
-  apertureBlades: 10,
-
-  yScFill: 0.38,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.38 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

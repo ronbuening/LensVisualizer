@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════════════════════════════╗
@@ -14,12 +14,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * 13.929 mm air + 2.8 mm glass (nd=1.517, vd=64.199) + 0.5 mm air.
  * It is hidden from the lens diagram; its physical dispersion is unresolved.
  * ║                                                                                                    ║
- * ║  Semi-diameters are MODELING INFERENCES because Example 4 publishes none. STO.sd is calibrated    ║
- * ║  by first-order pupil tracing to the patent's nominal f/1.2 infinity state. Lens-surface SDs were  ║
- * ║  derived from exact meridional d-line ray envelopes at infinity and the published nearest-focus   ║
+ * ║  Semi-diameters are MODELING INFERENCES because Example 4 publishes none. The stop radius is       ║
+ * ║  derived from the design f-number, the patent's nominal f/1.2 at infinity. Lens-surface SDs were   ║
+ * ║  derived from exact meridional d-line ray envelopes at infinity and the published nearest-focus    ║
  * ║  state, checked at the patent 27.6° half-field and at the viewer's 0.6-field sample, then limited  ║
  * ║  where required by positive edge thickness, actual rim slope, and the 0.90 cross-gap policy.       ║
- * ║  Full-field edge-pupil clipping is therefore modeled as physical vignetting rather than hidden    ║
+ * ║  Full-field edge-pupil clipping is therefore modeled as physical vignetting rather than hidden     ║
  * ║  renderer trim.                                                                                    ║
  * ║                                                                                                    ║
  * The patent publishes nd/νd only. Named catalog curves are compatible spectral proxies;
@@ -47,239 +47,271 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "viltrox-af-27mm-f12-pro-xf",
   maker: "Viltrox",
   name: "VILTROX AF 27mm f/1.2 PRO XF",
   subtitle: "CN 115840281 A Example 4 — production correlation to AF 27mm f/1.2 PRO XF",
-  specs: [
-    "15 ELEMENTS / 11 GROUPS",
-    "f = 27.7066 mm (DESIGN)",
-    "F/1.2",
-    "2ω = 55.2° (PATENT)",
-    "1 ASPHERICAL ELEMENT / 2 ASPHERICAL SURFACES",
-    "PUBLISHED INNER FOCUS",
-  ],
 
-  focalLengthMarketing: 27,
-  focalLengthDesign: 27.706644932113033,
-  apertureMarketing: 1.2,
-  apertureDesign: 1.2,
-  lensMounts: ["fujifilm-x"],
-  imageFormat: "aps-c",
-  patentNumber: "CN 115840281 A",
-  patentAuthors: ["Liu Chen"],
-  patentAssignees: ["Shenzhen Leiying Photoelectric Technology Co., Ltd."],
-  patentYear: 2023,
-  elementCount: 15,
-  groupCount: 11,
+  catalog: {
+    lensMounts: ["fujifilm-x"],
+    imageFormat: "aps-c",
+    specs: [
+      "15 ELEMENTS / 11 GROUPS",
+      "f = 27.7066 mm (DESIGN)",
+      "F/1.2",
+      "2ω = 55.2° (PATENT)",
+      "1 ASPHERICAL ELEMENT / 2 ASPHERICAL SURFACES",
+      "PUBLISHED INNER FOCUS",
+    ],
+    elementCount: 15,
+    groupCount: 11,
+    focalLengthMm: { marketing: 27, design: 27.706644932113033 },
+    fNumber: { marketing: 1.2, design: 1.2 },
+  },
+
+  source: {
+    patentNumber: "CN 115840281 A",
+    patentYear: 2023,
+    authors: ["Liu Chen"],
+    assignees: ["Shenzhen Leiying Photoelectric Technology Co., Ltd."],
+  },
 
   /* ── Physical elements ── */
   elements: [
     {
       id: 1,
       name: "L11",
-      diagramLabel: "L11",
       label: "L11",
       type: "Positive Meniscus",
       nd: 1.923,
       vd: 20.88,
-      fl: 87.78089683366176,
+      focalLengthMm: 87.78089683366176,
       glass: "N-SF66 (catalog-equivalent spectral proxy; supplier unresolved)",
+      diagramLabel: "L11",
     },
     {
       id: 2,
       name: "L12",
-      diagramLabel: "L12",
       label: "L12",
       type: "Negative Meniscus",
       nd: 1.497,
       vd: 81.605,
-      fl: -57.50193936428703,
+      focalLengthMm: -57.50193936428703,
       glass: "H-FK61 (catalog-equivalent spectral proxy; supplier unresolved)",
+      diagramLabel: "L12",
     },
     {
       id: 3,
       name: "L21",
-      diagramLabel: "L21",
       label: "L21",
       type: "Biconcave Negative",
       nd: 1.541,
       vd: 47.201,
-      fl: -27.643292170650593,
+      focalLengthMm: -27.643292170650593,
       glass: "S-TIL2 (catalog-equivalent spectral proxy; supplier unresolved)",
+      diagramLabel: "L21",
       cemented: "D1",
     },
     {
       id: 4,
       name: "L22",
-      diagramLabel: "L22",
       label: "L22",
       type: "Biconvex Positive",
       nd: 2.001,
       vd: 25.426,
-      fl: 20.163423918662467,
+      focalLengthMm: 20.163423918662467,
       glass: "H-ZLaF90 (catalog-equivalent spectral proxy; supplier unresolved)",
+      diagramLabel: "L22",
       cemented: "D1",
     },
     {
       id: 5,
       name: "L23",
-      diagramLabel: "L23",
       label: "L23",
       type: "Positive Meniscus",
       nd: 1.593,
       vd: 68.342,
-      fl: 40.10113454728334,
+      focalLengthMm: 40.10113454728334,
       glass: "H-ZPK5 (catalog-equivalent spectral proxy; supplier unresolved)",
+      diagramLabel: "L23",
       cemented: "D2",
     },
     {
       id: 6,
       name: "L24",
-      diagramLabel: "L24",
       label: "L24",
       type: "Biconcave Negative",
       nd: 1.648,
       vd: 33.841,
-      fl: -17.814434226457355,
+      focalLengthMm: -17.814434226457355,
       glass: "H-ZF1 (catalog-equivalent spectral proxy; supplier unresolved)",
+      diagramLabel: "L24",
       cemented: "D2",
     },
     {
       id: 7,
       name: "L25",
-      diagramLabel: "L25",
       label: "L25",
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 39.218,
-      fl: 35.84794306803668,
+      focalLengthMm: 35.84794306803668,
       glass: "H-ZLaF68L (catalog-equivalent spectral proxy; supplier unresolved)",
+      diagramLabel: "L25",
     },
     {
       id: 8,
       name: "L26",
-      diagramLabel: "L26",
       label: "L26",
       type: "Biconcave Negative",
       nd: 1.847,
       vd: 23.785,
-      fl: -14.48256966512536,
+      focalLengthMm: -14.48256966512536,
       glass: "H-ZF52 (catalog-equivalent spectral proxy; supplier unresolved)",
+      diagramLabel: "L26",
       cemented: "D3",
     },
     {
       id: 9,
       name: "L27",
-      diagramLabel: "L27",
       label: "L27",
       type: "Biconvex Positive",
       nd: 1.816,
       vd: 46.549,
-      fl: 19.659384192013835,
+      focalLengthMm: 19.659384192013835,
       glass: "TAF5 (catalog-equivalent spectral proxy; supplier unresolved)",
+      diagramLabel: "L27",
       cemented: "D3",
     },
     {
       id: 10,
       name: "L31",
-      diagramLabel: "L31",
       label: "L31",
       type: "Biconvex Positive",
       nd: 1.911,
       vd: 35.25,
-      fl: 32.11247872235829,
+      focalLengthMm: 32.11247872235829,
       glass: "TAFD35 (catalog-equivalent spectral proxy; supplier unresolved)",
+      diagramLabel: "L31",
     },
     {
       id: 11,
       name: "L41",
-      diagramLabel: "L41",
       label: "L41",
       type: "Biconcave Negative",
       nd: 1.689,
       vd: 31.161,
-      fl: -36.09625727473254,
+      focalLengthMm: -36.09625727473254,
       glass: "J-SF8 (catalog-equivalent spectral proxy; supplier unresolved)",
+      diagramLabel: "L41",
     },
     {
       id: 12,
       name: "L51",
-      diagramLabel: "L51",
       label: "L51",
       type: "Biconvex Positive",
       nd: 1.755,
       vd: 52.322,
-      fl: 18.158981391716683,
+      focalLengthMm: 18.158981391716683,
       glass: "S-LAH97 (catalog-equivalent spectral proxy; supplier unresolved)",
+      diagramLabel: "L51",
       cemented: "D4",
     },
     {
       id: 13,
       name: "L52",
-      diagramLabel: "L52",
       label: "L52",
       type: "Biconcave Negative",
       nd: 1.847,
       vd: 23.785,
-      fl: -17.930804902474733,
+      focalLengthMm: -17.930804902474733,
       glass: "H-ZF52 (catalog-equivalent spectral proxy; supplier unresolved)",
+      diagramLabel: "L52",
       cemented: "D4",
     },
     {
       id: 14,
       name: "L53",
-      diagramLabel: "L53",
       label: "L53",
       type: "Biconvex Positive",
       nd: 1.946,
       vd: 17.942,
-      fl: 25.104617304306263,
+      focalLengthMm: 25.104617304306263,
       glass: "H-ZF88 (catalog-equivalent spectral proxy; supplier unresolved)",
+      diagramLabel: "L53",
     },
     {
       id: 15,
       name: "L54",
-      diagramLabel: "L54",
       label: "L54",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.822,
       vd: 42.715,
-      fl: -79.59615159146675,
+      focalLengthMm: -79.59615159146675,
       glass: "M-TAFD51 (catalog-equivalent spectral proxy; supplier unresolved)",
+      diagramLabel: "L54",
     },
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical surfaces: patent uses the standard K convention ── */
   surfaces: [
-    { label: "1", R: 48.6, d: 5.5, nd: 1.923, elemId: 1, sd: 23.5 },
-    { label: "2", R: 114.854, d: 0.15, nd: 1.0, elemId: 0, sd: 23.5 },
-    { label: "3", R: 44.69, d: 1.2, nd: 1.497, elemId: 2, sd: 20.1 },
-    { label: "4", R: 17.276, d: 12.73, nd: 1.0, elemId: 0, sd: 15.5 },
-    { label: "5", R: -38.008, d: 1.2, nd: 1.541, elemId: 3, sd: 13.5 },
-    { label: "6", R: 24.93, d: 7.214, nd: 2.001, elemId: 4, sd: 13.5 },
-    { label: "7", R: -90.666, d: 0.2, nd: 1.0, elemId: 0, sd: 13.0 },
-    { label: "8", R: -1676.832, d: 5.1, nd: 1.593, elemId: 5, sd: 12.7 },
-    { label: "9", R: -23.474, d: 1.0, nd: 1.648, elemId: 6, sd: 12.2 },
-    { label: "10", R: 23.094, d: 2.289, nd: 1.0, elemId: 0, sd: 10.79 },
-    { label: "11", R: 94.311, d: 3.6, nd: 1.883, elemId: 7, sd: 11.2 },
-    { label: "12", R: -46.792, d: 1.256, nd: 1.0, elemId: 0, sd: 11.5 },
-    { label: "13", R: -27.106, d: 1.0, nd: 1.847, elemId: 8, sd: 11.5 },
-    { label: "14", R: 22.786, d: 8.0, nd: 1.816, elemId: 9, sd: 12.6 },
-    { label: "15", R: -45.651, d: 3.019, nd: 1.0, elemId: 0, sd: 13.0 },
-    { label: "STO", R: 1e15, d: 2.0, nd: 1.0, elemId: 0, sd: 13.0957725024356 },
-    { label: "17", R: 58.259, d: 4.9, nd: 1.911, elemId: 10, sd: 15.0 },
-    { label: "18", R: -56.405, d: 0.94, nd: 1.0, elemId: 0, sd: 15.0 },
-    { label: "19", R: -549.404, d: 0.8, nd: 1.689, elemId: 11, sd: 13.3 },
-    { label: "20", R: 26.065, d: 6.02, nd: 1.0, elemId: 0, sd: 12.9 },
-    { label: "21", R: 24.627, d: 6.5, nd: 1.755, elemId: 12, sd: 12.4 },
-    { label: "22", R: -27.416, d: 1.0, nd: 1.847, elemId: 13, sd: 12.4 },
-    { label: "23", R: 34.619, d: 6.157, nd: 1.0, elemId: 0, sd: 12.4 },
-    { label: "24", R: 36.502, d: 6.6, nd: 1.946, elemId: 14, sd: 15.2 },
-    { label: "25", R: -62.0, d: 1.842, nd: 1.0, elemId: 0, sd: 15.2 },
-    { label: "26A", R: 32.474, d: 1.6, nd: 1.822, elemId: 15, sd: 14.2 },
-    { label: "27A", R: 21.22, d: 13.929, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "1", R: 48.6, d: 5.5, sd: 23.5, medium: 1 },
+    { label: "2", R: 114.854, d: 0.15, sd: 23.5 },
+    { label: "3", R: 44.69, d: 1.2, sd: 20.1, medium: 2 },
+    { label: "4", R: 17.276, d: 12.73, sd: 15.5 },
+    { label: "5", R: -38.008, d: 1.2, sd: 13.5, medium: 3 },
+    { label: "6", R: 24.93, d: 7.214, sd: 13.5, medium: 4 },
+    { label: "7", R: -90.666, d: 0.2, sd: 13.0 },
+    { label: "8", R: -1676.832, d: 5.1, sd: 12.7, medium: 5 },
+    { label: "9", R: -23.474, d: 1.0, sd: 12.2, medium: 6 },
+    { label: "10", R: 23.094, d: 2.289, sd: 10.79 },
+    { label: "11", R: 94.311, d: 3.6, sd: 11.2, medium: 7 },
+    { label: "12", R: -46.792, d: 1.256, sd: 11.5 },
+    { label: "13", R: -27.106, d: 1.0, sd: 11.5, medium: 8 },
+    { label: "14", R: 22.786, d: 8.0, sd: 12.6, medium: 9 },
+    { label: "15", R: -45.651, d: 3.019, sd: 13.0 },
+    { label: "STO", R: "flat", d: 2.0 },
+    { label: "17", R: 58.259, d: 4.9, sd: 15.0, medium: 10 },
+    { label: "18", R: -56.405, sd: 15.0 },
+    { label: "19", R: -549.404, d: 0.8, sd: 13.3, medium: 11 },
+    { label: "20", R: 26.065, sd: 12.9 },
+    { label: "21", R: 24.627, d: 6.5, sd: 12.4, medium: 12 },
+    { label: "22", R: -27.416, d: 1.0, sd: 12.4, medium: 13 },
+    { label: "23", R: 34.619, d: 6.157, sd: 12.4 },
+    { label: "24", R: 36.502, d: 6.6, sd: 15.2, medium: 14 },
+    { label: "25", R: -62.0, d: 1.842, sd: 15.2 },
+    {
+      label: "26A",
+      R: 32.474,
+      d: 1.6,
+      sd: 14.2,
+      medium: 15,
+      asphere: { K: 0, A4: -4.681e-5, A6: -1.994e-7, A8: 1.171e-9, A10: -3.72e-12, A12: 3.2e-15 },
+    },
+    {
+      label: "27A",
+      R: 21.22,
+      d: 13.929,
+      sd: 14.0,
+      asphere: { K: 0, A4: -4.079e-5, A6: -4.07e-8, A8: -3.876e-10, A10: 5.398e-12, A12: -1.781e-14 },
+    },
   ],
+
+  /* ── Product/control metadata ── */
+  focus: {
+    closeFocusM: 0.28,
+    description:
+      "PUBLISHED inner focus: patent G4/L41 translates 5.09 mm imageward; D1 (s18) changes 0.94→6.03 mm and D2 (s20) 6.02→0.93 mm. Patent Table 11 labels the near state 0.158 m at an undefined reference plane; closeFocusM uses Viltrox's 0.28 m sensor-referenced minimum shooting distance.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
+  },
+
+  /* (moved from var) ── Published focus movement ── */
+  gaps: { "18": { label: "D1", values: [[0.94, 6.03]] }, "20": { label: "D2", values: [[6.02, 0.93]] } },
+
+  aperture: { nominalFNumber: 1.2, fStops: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16], blades: 11 },
 
   rearPlates: [
     {
@@ -291,40 +323,6 @@ const LENS_DATA = {
       source: "CN115840281A, Example 4 Table 10, surfaces 28–29",
     },
   ],
-
-  /* ── Aspherical surfaces: patent uses the standard K convention ── */
-  asph: {
-    "26A": {
-      K: 0,
-      A4: -4.681e-5,
-      A6: -1.994e-7,
-      A8: 1.171e-9,
-      A10: -3.72e-12,
-      A12: 3.2e-15,
-      A14: 0,
-    },
-    "27A": {
-      K: 0,
-      A4: -4.079e-5,
-      A6: -4.07e-8,
-      A8: -3.876e-10,
-      A10: 5.398e-12,
-      A12: -1.781e-14,
-      A14: 0,
-    },
-  },
-
-  /* ── Published focus movement ── */
-  var: {
-    "18": [0.94, 6.03],
-    "20": [6.02, 0.93],
-  },
-  varLabels: [
-    ["18", "D1"],
-    ["20", "D2"],
-  ],
-  focusDescription:
-    "PUBLISHED inner focus: patent G4/L41 translates 5.09 mm imageward; D1 (s18) changes 0.94→6.03 mm and D2 (s20) 6.02→0.93 mm. Patent Table 11 labels the near state 0.158 m at an undefined reference plane; closeFocusM uses Viltrox's 0.28 m sensor-referenced minimum shooting distance.",
 
   /* ── Diagram annotations ── */
   groups: [
@@ -341,16 +339,8 @@ const LENS_DATA = {
     { text: "D4", fromSurface: "21", toSurface: "23" },
   ],
 
-  /* ── Product/control metadata ── */
-  closeFocusM: 0.28,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  nominalFno: 1.2,
-  fstopSeries: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
-  apertureBlades: 11,
-
   /* ── Layout ── */
-  yScFill: 0.45,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.45 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

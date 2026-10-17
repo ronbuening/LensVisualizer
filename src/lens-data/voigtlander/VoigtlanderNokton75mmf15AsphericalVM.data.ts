@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -19,7 +19,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  from the reverse-solved f/1.54 stop, paraxial marginal/chief-ray envelopes, ║
  * ║  the patent section, the production barrel/filter envelope, and the current  ║
  * ║  edge-thickness, actual-rim-slope, shared-gap, off-axis, and trim policies.  ║
- * ║  The stop semi-diameter 13.28514015663278 mm is derived, not patent-listed.  ║
+ * ║  The stop radius is derived from the design f-number, not patent-listed.     ║
  * ║                                                                              ║
  * ║  GLASS DATA: the patent publishes nd and νd but no vendor names or per-glass ║
  * ║  nC/nF/ng. Glass names are therefore retained as six-digit material classes. ║
@@ -32,32 +32,36 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "voigtlander-nokton-vintage-line-vm-75mm-f1-5-aspherical",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER NOKTON Vintage Line 75mm f/1.5 Aspherical VM",
   subtitle: "JP 2020-122918 A — Example 3; production correlation",
-  specs: [
-    "7 ELEMENTS / 6 GROUPS",
-    "EFL 74.503 mm MODEL / 74.5 mm PATENT",
-    "75 mm / f/1.5 MARKETED",
-    "F/1.54 / 2ω = 32.0° PATENT",
-    "32.6° MARKETED AOV",
-    "3 APD ELEMENTS (PATENT / MANUFACTURER)",
-    "2 ASPHERICAL SURFACES",
-  ],
 
-  focalLengthMarketing: 75,
-  focalLengthDesign: 74.50250731409284,
-  apertureMarketing: 1.5,
-  apertureDesign: 1.54,
-  lensMounts: ["leica-m"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 2020-122918 A",
-  patentAuthors: ["Hirokazu Shimada", "Yasuyuki Sugano"],
-  patentAssignees: ["Cosina Co., Ltd."],
-  patentYear: 2020,
-  elementCount: 7,
-  groupCount: 6,
+  catalog: {
+    lensMounts: ["leica-m"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "7 ELEMENTS / 6 GROUPS",
+      "EFL 74.503 mm MODEL / 74.5 mm PATENT",
+      "75 mm / f/1.5 MARKETED",
+      "F/1.54 / 2ω = 32.0° PATENT",
+      "32.6° MARKETED AOV",
+      "3 APD ELEMENTS (PATENT / MANUFACTURER)",
+      "2 ASPHERICAL SURFACES",
+    ],
+    elementCount: 7,
+    groupCount: 6,
+    focalLengthMm: { marketing: 75, design: 74.50250731409284 },
+    fNumber: { marketing: 1.5, design: 1.54 },
+  },
+
+  source: {
+    patentNumber: "JP 2020-122918 A",
+    patentYear: 2020,
+    authors: ["Hirokazu Shimada", "Yasuyuki Sugano"],
+    assignees: ["Cosina Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -68,7 +72,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.72916,
       vd: 54.67,
-      fl: 155.972,
+      focalLengthMm: 155.972,
       glass: "729547 — lanthanum crown (vendor unresolved)",
       apd: false,
       role: "Front positive collector; begins the three-meniscus positive sequence.",
@@ -80,7 +84,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.61,
-      fl: 164.925,
+      focalLengthMm: 164.925,
       glass: "497816 — ED crown (vendor unresolved)",
       apd: "patent",
       apdNote: "Patent Example 3 publishes unsigned |ΔθgF| = 0.0375; no signed dPgF or line indices are available.",
@@ -93,7 +97,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.61,
-      fl: 103.428,
+      focalLengthMm: 103.428,
       glass: "497816 — ED crown (vendor unresolved)",
       apd: "patent",
       apdNote: "Patent Example 3 publishes unsigned |ΔθgF| = 0.0375; no signed dPgF or line indices are available.",
@@ -106,13 +110,12 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.69895,
       vd: 30.05,
-      fl: -38.892,
+      focalLengthMm: -38.892,
       glass: "699301 — dense flint (vendor unresolved)",
       apd: "inferred",
       apdNote:
         "The manufacturer diagram marks this production position as APD; Example 3 gives no numerical partial-dispersion value.",
-      role:
-        "Strong negative front-group element immediately before the stop; moderates front-group power and aberrations.",
+      role: "Strong negative front-group element immediately before the stop; moderates front-group power and aberrations.",
     },
     {
       id: 5,
@@ -121,11 +124,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.60342,
       vd: 38.01,
-      fl: -25.373,
+      focalLengthMm: -25.373,
       glass: "603380 — flint (vendor unresolved)",
       apd: false,
-      cemented: "L5",
       role: "Negative member of the rear cemented doublet.",
+      cemented: "L5",
     },
     {
       id: 6,
@@ -134,11 +137,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.81,
-      fl: 23.106,
+      focalLengthMm: 23.106,
       glass: "883408 — high-index lanthanum glass (vendor unresolved)",
       apd: false,
-      cemented: "L5",
       role: "High-index positive member of the rear cemented doublet; satisfies the patent's nd > 1.85 condition.",
+      cemented: "L5",
     },
     {
       id: 7,
@@ -147,7 +150,7 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.51633,
       vd: 64.14,
-      fl: 131.437,
+      focalLengthMm: 131.437,
       glass: "516641 — borosilicate crown (vendor unresolved)",
       apd: false,
       role: "Double-sided aspherical rear positive element used for residual off-axis correction.",
@@ -155,50 +158,48 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription: JP 2020-122918 A, Example 3 ── */
+  /* (moved from asph) Patent equation uses the standard conic constant K; K = 0 is a spherical base conic. */
   surfaces: [
-    { label: "1", R: 72.787, d: 4.68, nd: 1.72916, elemId: 1, sd: 25.5 },
-    { label: "2", R: 196.707, d: 0.3, nd: 1.0, elemId: 0, sd: 24.8 },
-    { label: "3", R: 41.103, d: 6.79, nd: 1.497, elemId: 2, sd: 24.2 },
-    { label: "4", R: 77.924, d: 0.3, nd: 1.0, elemId: 0, sd: 22.2 },
-    { label: "5", R: 28.177, d: 8.82, nd: 1.497, elemId: 3, sd: 22.0 },
-    { label: "6", R: 55.879, d: 1.87, nd: 1.0, elemId: 0, sd: 18.2 },
-    { label: "7", R: 64.799, d: 4.5, nd: 1.69895, elemId: 4, sd: 17.4 },
-    { label: "8", R: 18.603, d: 8.24, nd: 1.0, elemId: 0, sd: 15.2 },
-    { label: "STO", R: 1e15, d: 5.3, nd: 1.0, elemId: 0, sd: 13.28514015663278 },
-    { label: "10", R: -31.569, d: 1.97, nd: 1.60342, elemId: 5, sd: 13.2 },
-    { label: "11", R: 30.427, d: 8.01, nd: 1.883, elemId: 6, sd: 13.5 },
-    { label: "12", R: -54.286, d: 0.48, nd: 1.0, elemId: 0, sd: 14.0 },
-    { label: "13A", R: 356.22, d: 3.42, nd: 1.51633, elemId: 7, sd: 13.8 },
-    { label: "14A", R: -83.563, d: 36.19, nd: 1.0, elemId: 0, sd: 13.2 },
+    { label: "1", R: 72.787, d: 4.68, sd: 25.5, medium: 1 },
+    { label: "2", R: 196.707, d: 0.3, sd: 24.8 },
+    { label: "3", R: 41.103, d: 6.79, sd: 24.2, medium: 2 },
+    { label: "4", R: 77.924, d: 0.3, sd: 22.2 },
+    { label: "5", R: 28.177, d: 8.82, sd: 22.0, medium: 3 },
+    { label: "6", R: 55.879, d: 1.87, sd: 18.2 },
+    { label: "7", R: 64.799, d: 4.5, sd: 17.4, medium: 4 },
+    { label: "8", R: 18.603, d: 8.24, sd: 15.2 },
+    { label: "STO", R: "flat", d: 5.3 },
+    { label: "10", R: -31.569, d: 1.97, sd: 13.2, medium: 5 },
+    { label: "11", R: 30.427, d: 8.01, sd: 13.5, medium: 6 },
+    { label: "12", R: -54.286, d: 0.48, sd: 14.0 },
+    {
+      label: "13A",
+      R: 356.22,
+      d: 3.42,
+      sd: 13.8,
+      medium: 7,
+      asphere: { K: 0, A4: 1.22362e-6, A6: -4.66525e-8, A8: 3.7835e-10, A10: -7.05913e-13, A12: 0, A14: 0 },
+    },
+    {
+      label: "14A",
+      R: -83.563,
+      sd: 13.2,
+      asphere: { K: 0, A4: 5.36088e-6, A6: -4.41481e-8, A8: 4.15234e-10, A10: -8.17896e-13, A12: 0, A14: 0 },
+    },
   ],
 
-  /* Patent equation uses the standard conic constant K; K = 0 is a spherical base conic. */
-  asph: {
-    "13A": {
-      K: 0,
-      A4: 1.22362e-6,
-      A6: -4.66525e-8,
-      A8: 3.7835e-10,
-      A10: -7.05913e-13,
-      A12: 0,
-      A14: 0,
-    },
-    "14A": {
-      K: 0,
-      A4: 5.36088e-6,
-      A6: -4.41481e-8,
-      A8: 4.15234e-10,
-      A10: -8.17896e-13,
-      A12: 0,
-      A14: 0,
-    },
+  focus: {
+    closeFocusM: 0.7,
+    description:
+      "CONSTRAINED_RECONSTRUCTION: rigid translation of the complete optical unit on the published helicoid; the patent " +
+      "gives only infinity data. The modeled rear image gap increases from 36.19 mm to 46.29933327830486 mm at the " +
+      "manufacturer's 0.7 m minimum focus, with all internal spacings unchanged.",
   },
 
-  /* Rigid-unit close-focus reconstruction; all internal gaps remain fixed. */
-  var: {
-    "14A": [36.19, 46.29933327830486],
-  },
-  varLabels: [["14A", "BF"]],
+  /* (moved from var) Rigid-unit close-focus reconstruction; all internal gaps remain fixed. */
+  gaps: { "14A": { label: "BF", values: [[36.19, 46.29933327830486]] } },
+
+  aperture: { nominalFNumber: 1.54, fStops: [1.54, 2, 2.8, 4, 5.6, 8, 11, 16], blades: 12 },
 
   groups: [
     { text: "FRONT (101)", fromSurface: "1", toSurface: "8" },
@@ -206,17 +207,7 @@ const LENS_DATA = {
   ],
   doublets: [{ text: "L5", fromSurface: "10", toSurface: "12" }],
 
-  closeFocusM: 0.7,
-  focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: rigid translation of the complete optical unit on the published helicoid; the patent " +
-    "gives only infinity data. The modeled rear image gap increases from 36.19 mm to 46.29933327830486 mm at the " +
-    "manufacturer's 0.7 m minimum focus, with all internal spacings unchanged.",
-
-  nominalFno: 1.54,
-  fstopSeries: [1.54, 2, 2.8, 4, 5.6, 8, 11, 16],
-  apertureBlades: 12,
-
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

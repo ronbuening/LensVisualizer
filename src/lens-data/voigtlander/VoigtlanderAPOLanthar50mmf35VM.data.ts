@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -15,11 +15,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  SCALING: none. All radii, spacings, and image-plane coordinates retain    ║
  * ║  the patent's native millimeter scale.                                      ║
  * ║                                                                              ║
- * ║  SEMI-DIAMETERS: the patent omits clear apertures. Surface SDs were derived ║
- * ║  from Cosina's official optical-section SVG by fitting its axial vertices  ║
- * ║  to the patent prescription (9.310868 px/mm), then checked against exact   ║
- * ║  spherical on-axis and 0.6-field ray envelopes. The stop SD is inferred    ║
- * ║  from the modeled f/3.56 entrance pupil.                                    ║
+ * ║  SEMI-DIAMETERS: the patent omits clear apertures. Surface SDs were        ║
+ * ║  derived from Cosina's official optical-section SVG by fitting its axial   ║
+ * ║  vertices to the patent prescription (9.310868 px/mm), then checked        ║
+ * ║  against exact spherical on-axis and 0.6-field ray envelopes. The stop     ║
+ * ║  radius is derived from the design f-number, f/3.56.                       ║
  * ║                                                                              ║
  * ║  GLASS: the patent publishes only nd and νd. Generic six-digit/class labels║
  * ║  are used because vendor identity is not unique. Cosina's diagram marks    ║
@@ -29,31 +29,35 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "voigtlander-apo-lanthar-50mm-f35-vm",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 (Type II) VM",
   subtitle: "JP 2025-108279 A Example 1 — shared Type I / Type II optical prescription",
-  specs: [
-    "8 ELEMENTS / 6 GROUPS",
-    "EFL 49.101 mm MODEL / 49.10 mm PATENT",
-    "50 mm / f/3.5 MARKETED",
-    "F/3.56 / 2ω = 47.88° PATENT",
-    "45.7° MARKETED AOV",
-    "4 APD ELEMENTS (MANUFACTURER-MARKED)",
-  ],
 
-  focalLengthMarketing: 50,
-  focalLengthDesign: 49.101170846,
-  apertureMarketing: 3.5,
-  apertureDesign: 3.56,
-  lensMounts: ["leica-m"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 2025-108279 A",
-  patentAuthors: ["Yoshihisa Yomogida", "Yuki Shibata"],
-  patentAssignees: ["Cosina Co., Ltd."],
-  patentYear: 2025,
-  elementCount: 8,
-  groupCount: 6,
+  catalog: {
+    lensMounts: ["leica-m"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "8 ELEMENTS / 6 GROUPS",
+      "EFL 49.101 mm MODEL / 49.10 mm PATENT",
+      "50 mm / f/3.5 MARKETED",
+      "F/3.56 / 2ω = 47.88° PATENT",
+      "45.7° MARKETED AOV",
+      "4 APD ELEMENTS (MANUFACTURER-MARKED)",
+    ],
+    elementCount: 8,
+    groupCount: 6,
+    focalLengthMm: { marketing: 50, design: 49.101170846 },
+    fNumber: { marketing: 3.5, design: 3.56 },
+  },
+
+  source: {
+    patentNumber: "JP 2025-108279 A",
+    patentYear: 2025,
+    authors: ["Yoshihisa Yomogida", "Yuki Shibata"],
+    assignees: ["Cosina Co., Ltd."],
+  },
 
   elements: [
     {
@@ -63,7 +67,7 @@ const LENS_DATA = {
       type: "Negative Meniscus, convex to object",
       nd: 1.48749,
       vd: 70.44,
-      fl: -96.247194,
+      focalLengthMm: -96.247194,
       glass: "487704 — low-dispersion crown; vendor identity not unique",
       apd: "inferred",
       apdNote:
@@ -77,7 +81,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.883,
       vd: 40.81,
-      fl: 61.211191,
+      focalLengthMm: 61.211191,
       glass: "883408 — high-index lanthanum crown; vendor identity not unique",
       apd: false,
       role: "High-index front-core positive meniscus.",
@@ -89,7 +93,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72916,
       vd: 54.67,
-      fl: 17.606467,
+      focalLengthMm: 17.606467,
       glass: "729547 — lanthanum crown; vendor identity not unique",
       apd: false,
       role: "Positive member of the front cemented doublet.",
@@ -102,7 +106,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.60342,
       vd: 38.01,
-      fl: -15.657185,
+      focalLengthMm: -15.657185,
       glass: "603380 — F5-class flint; vendor identity not unique",
       apd: "inferred",
       apdNote:
@@ -117,7 +121,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.56732,
       vd: 42.84,
-      fl: -35.343945,
+      focalLengthMm: -35.343945,
       glass: "567428 — FL6/S-TIL26-class light flint; vendor identity not unique",
       apd: false,
       role: "Negative member of the rear cemented doublet, concave toward the stop.",
@@ -130,7 +134,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
-      fl: 65.800658,
+      focalLengthMm: 65.800658,
       glass: "497816 — FCD1/S-FPL51/N-PK52A-class fluorophosphate crown; vendor identity not unique",
       apd: "inferred",
       apdNote:
@@ -145,7 +149,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.713,
       vd: 53.94,
-      fl: 28.497104,
+      focalLengthMm: 28.497104,
       glass: "713539 — LAK8/LAC8-class lanthanum crown; vendor identity not unique",
       apd: false,
       role: "Rear-core positive collector preceding the final negative meniscus.",
@@ -157,7 +161,7 @@ const LENS_DATA = {
       type: "Negative Meniscus, convex to image",
       nd: 1.68893,
       vd: 31.16,
-      fl: -127.948064,
+      focalLengthMm: -127.948064,
       glass: "689312 — FD8/SF8/S-TIM28-class dense flint; vendor identity not unique",
       apd: "inferred",
       apdNote:
@@ -167,26 +171,30 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 25.402, d: 1.1, nd: 1.48749, elemId: 1, sd: 10.63 },
-    { label: "2", R: 16.246, d: 2.67, nd: 1.0, elemId: 0, sd: 9.34 },
-    { label: "3", R: 27.07, d: 2.81, nd: 1.883, elemId: 2, sd: 9.41 },
-    { label: "4", R: 51.591, d: 0.46, nd: 1.0, elemId: 0, sd: 8.22 },
-    { label: "5", R: 16.622, d: 5.07, nd: 1.72916, elemId: 3, sd: 7.77 },
-    { label: "6", R: -49.139, d: 1.13, nd: 1.60342, elemId: 4, sd: 7.76 },
-    { label: "7", R: 11.798, d: 4.41, nd: 1.0, elemId: 0, sd: 5.84 },
-    { label: "STO", R: 1e15, d: 3.49, nd: 1.0, elemId: 0, sd: 5.197982 },
-    { label: "9", R: -34.603, d: 1.5, nd: 1.56732, elemId: 5, sd: 6.13 },
-    { label: "10", R: 48.429, d: 3.56, nd: 1.497, elemId: 6, sd: 6.99 },
-    { label: "11", R: -98.252, d: 2.3, nd: 1.0, elemId: 0, sd: 6.99 },
-    { label: "12", R: 344.13, d: 5.03, nd: 1.713, elemId: 7, sd: 8.33 },
-    { label: "13", R: -21.462, d: 1.46, nd: 1.0, elemId: 0, sd: 9.58 },
-    { label: "14", R: -21.458, d: 1.6, nd: 1.68893, elemId: 8, sd: 9.27 },
-    { label: "15", R: -29.225, d: 33.14, nd: 1.0, elemId: 0, sd: 10.63 },
+    { label: "1", R: 25.402, d: 1.1, sd: 10.63, medium: 1 },
+    { label: "2", R: 16.246, d: 2.67, sd: 9.34 },
+    { label: "3", R: 27.07, d: 2.81, sd: 9.41, medium: 2 },
+    { label: "4", R: 51.591, d: 0.46, sd: 8.22 },
+    { label: "5", R: 16.622, d: 5.07, sd: 7.77, medium: 3 },
+    { label: "6", R: -49.139, d: 1.13, sd: 7.76, medium: 4 },
+    { label: "7", R: 11.798, d: 4.41, sd: 5.84 },
+    { label: "STO", R: "flat", d: 3.49 },
+    { label: "9", R: -34.603, d: 1.5, sd: 6.13, medium: 5 },
+    { label: "10", R: 48.429, d: 3.56, sd: 6.99, medium: 6 },
+    { label: "11", R: -98.252, d: 2.3, sd: 6.99 },
+    { label: "12", R: 344.13, d: 5.03, sd: 8.33, medium: 7 },
+    { label: "13", R: -21.462, d: 1.46, sd: 9.58 },
+    { label: "14", R: -21.458, d: 1.6, sd: 9.27, medium: 8 },
+    { label: "15", R: -29.225, d: 33.14, sd: 10.63 },
   ],
 
-  asph: {},
-  var: {},
-  varLabels: [],
+  focus: {
+    closeFocusM: 0.35,
+    description:
+      "Published whole-lens unit focus; no finite-distance optical state is encoded. Type II reaches 0.35 m and Type I reaches 0.45 m with the same prescription.",
+  },
+
+  aperture: { nominalFNumber: 3.56, fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 10 },
 
   groups: [
     { text: "G1F", fromSurface: "3", toSurface: "7" },
@@ -195,17 +203,7 @@ const LENS_DATA = {
   ],
   doublets: [],
 
-  closeFocusM: 0.35,
-  focusDescription:
-    "Published whole-lens unit focus; no finite-distance optical state is encoded. Type II reaches 0.35 m and Type I reaches 0.45 m with the same prescription.",
-
-  nominalFno: 3.56,
-  fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],
-  apertureBlades: 10,
-  maxFstop: 22,
-
-  scFill: 0.55,
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { scFill: 0.55, yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

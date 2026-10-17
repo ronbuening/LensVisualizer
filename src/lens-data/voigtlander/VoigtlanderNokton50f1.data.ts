@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * JP2023063766A Example 1, Tables 1–2; Figure 1 supplies estimated optical rims.
@@ -10,28 +10,28 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "nokton-50f1",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER NOKTON 50mm f/1 Aspherical",
   subtitle: "JP2023063766A EXAMPLE 1 — COSINA / OGINO",
-  specs: ["9 ELEMENTS / 7 GROUPS", "f = 49.998 mm", "F/1.0", "2ω = 47.9°", "3 ASPHERICAL SURFACES"],
 
-  focalLengthMarketing: 50,
-  focalLengthDesign: 49.9977,
-  apertureMarketing: 1.0,
-  apertureDesign: 1.0,
-  lensMounts: ["nikon-z", "sony-fe", "leica-m", "canon-rf"],
-  imageFormat: "135-full-frame",
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 47.9,
+  catalog: {
+    lensMounts: ["nikon-z", "sony-fe", "leica-m", "canon-rf"],
+    imageFormat: "135-full-frame",
+    specs: ["9 ELEMENTS / 7 GROUPS", "f = 49.998 mm", "F/1.0", "2ω = 47.9°", "3 ASPHERICAL SURFACES"],
+    elementCount: 9,
+    groupCount: 7,
+    focalLengthMm: { marketing: 50, design: 49.9977 },
+    fNumber: { marketing: 1.0, design: 1.0 },
   },
-  patentNumber: "JP 2023-063766 A",
-  patentAuthors: ["Kazuhiro Ogino"],
-  patentAssignees: ["Cosina Co., Ltd."],
-  patentYear: 2023,
-  elementCount: 9,
-  groupCount: 7,
+
+  source: {
+    patentNumber: "JP 2023-063766 A",
+    patentYear: 2023,
+    authors: ["Kazuhiro Ogino"],
+    assignees: ["Cosina Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -42,7 +42,7 @@ const LENS_DATA = {
       type: "Pos. Meniscus (1× Asph)",
       nd: 1.90525,
       vd: 35.04,
-      fl: 119.3,
+      focalLengthMm: 119.3,
       glass: "S-LAH93 (OHARA, catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Front positive meniscus; ASP1 corrects spherical aberration — 739 µm departure at H = 26 mm",
@@ -54,7 +54,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.90043,
       vd: 37.37,
-      fl: 60.2,
+      focalLengthMm: 60.2,
       glass: "TAFD37A (HOYA, catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Second extreme-index power element; shares G1 refractive load with L1",
@@ -66,7 +66,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.46,
-      fl: -37.2,
+      focalLengthMm: -37.2,
       glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "G1 negative element; Petzval corrector and chromatic balancer (νd = 25.46)",
@@ -78,7 +78,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.76182,
       vd: 26.61,
-      fl: -21.2,
+      focalLengthMm: -21.2,
       glass: "S-TIH14 (OHARA, catalog equivalent; production supplier unspecified) / SF14-family dense flint",
       apd: false,
       role: "Cemented in L4; primary chromatic lever — strongest negative power in system (f = −21.2 mm)",
@@ -91,7 +91,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.69,
-      fl: 23.3,
+      focalLengthMm: 23.3,
       glass: "S-LAH58 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Cemented in L4; high-index positive partner, same patent nd/vd as L5 and L6f",
@@ -104,7 +104,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.69,
-      fl: 54.7,
+      focalLengthMm: 54.7,
       glass: "S-LAH58 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Standalone positive element; power-sharing with L4r and L6f (same patent nd/vd)",
@@ -116,7 +116,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.69,
-      fl: 36.1,
+      focalLengthMm: 36.1,
       glass: "S-LAH58 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Cemented in L6; field and chromatic correction, third element with the same patent nd/vd",
@@ -129,7 +129,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.55298,
       vd: 55.07,
-      fl: -52.3,
+      focalLengthMm: -52.3,
       glass: "J-KZFH4 (HIKARI catalog-equivalent to patent 553551; production supplier unspecified)",
       apd: false,
       role: "Cemented in L6; low-index negative partner for field curvature correction",
@@ -142,7 +142,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.80835,
       vd: 40.55,
-      fl: -154.6,
+      focalLengthMm: -154.6,
       glass: "L-LAH84 (OHARA catalog-equivalent; patent supplier unspecified)",
       apd: false,
       role: "Rear negative meniscus with two patent aspheres; f/f_le = −0.3234",
@@ -153,101 +153,114 @@ const LENS_DATA = {
    * Figure 1 optical rims give L5 ~18 mm, L6 cemented interface ~15.5 mm,
    * and L7 ~13 mm. Surface 15 uses 12.2 mm for cross-gap clearance.
    * Front apertures retain the existing ray-envelope allowance above drawn rims.
-   * STO is an authored estimate; runtime aperture sizing derives its working opening.
+   * The stop radius is derived from the design f-number by runtime aperture sizing.
    */
-  surfaces: [
-    { label: "1A", R: 40.765, d: 4.89, nd: 1.90525, elemId: 1, sd: 27.0 },
-    { label: "2", R: 65.488, d: 1.07, nd: 1.0, elemId: 0, sd: 26.0 },
-    { label: "3", R: 32.975, d: 8.01, nd: 1.90043, elemId: 2, sd: 24.0 },
-    { label: "4", R: 84.15, d: 0.87, nd: 1.0, elemId: 0, sd: 20.0 },
-    { label: "5", R: 58.596, d: 1.65, nd: 1.80518, elemId: 3, sd: 19.0 },
-    { label: "6", R: 19.835, d: 12.05, nd: 1.0, elemId: 0, sd: 17.0 },
-    { label: "STO", R: 1e15, d: 3.24, nd: 1.0, elemId: 0, sd: 16.14 },
-    { label: "8", R: -40.995, d: 1.55, nd: 1.76182, elemId: 4, sd: 17.0 },
-    { label: "9", R: 26.578, d: 10.8, nd: 1.883, elemId: 5, sd: 17.0 },
-    { label: "10", R: -90.702, d: 0.31, nd: 1.0, elemId: 0, sd: 17.0 },
-    { label: "11", R: 78.611, d: 5.05, nd: 1.883, elemId: 6, sd: 18 },
-    { label: "12", R: -125.199, d: 0.31, nd: 1.0, elemId: 0, sd: 18 },
-    { label: "13", R: 53.736, d: 9.47, nd: 1.883, elemId: 7, sd: 16.0 },
-    { label: "14", R: -78.407, d: 1.55, nd: 1.55298, elemId: 8, sd: 15.5 },
-    { label: "15", R: 45.846, d: 1.42, nd: 1.0, elemId: 0, sd: 12.2 },
-    { label: "16A", R: 3376.612, d: 2.78, nd: 1.80835, elemId: 9, sd: 13 },
-    { label: "17A", R: 120.496, d: 18.74, nd: 1.0, elemId: 0, sd: 13 },
-  ],
-
-  /* ── Aspherical coefficients — Patent Table 2, Example 1 ──
+  /* (moved from asph) ── Aspherical coefficients — Patent Table 2, Example 1 ──
    *  Keyed by surface label.  Sag equation:
    *    Z = (C·H²)/(1+√(1−(1+K)·C²·H²)) + A4·H⁴ + A6·H⁶ + ... + A14·H¹⁴
    *  Used for element shape and exact surface tracing.
    *  For all-spherical designs, set asph: {}
    */
-  asph: {
-    "1A": {
-      K: -0.02238,
-      A4: -1.0281e-6,
-      A6: 6.04388e-10,
-      A8: -4.31143e-12,
-      A10: 5.62572e-15,
-      A12: -3.29805e-18,
-      A14: -5.97602e-23,
+  surfaces: [
+    {
+      label: "1A",
+      R: 40.765,
+      d: 4.89,
+      sd: 27.0,
+      medium: 1,
+      asphere: {
+        K: -0.02238,
+        A4: -1.0281e-6,
+        A6: 6.04388e-10,
+        A8: -4.31143e-12,
+        A10: 5.62572e-15,
+        A12: -3.29805e-18,
+        A14: -5.97602e-23,
+      },
     },
-    "16A": {
-      K: -20,
-      A4: 2.4371e-5,
-      A6: -9.23649e-8,
-      A8: 1.14851e-9,
-      A10: -1.18851e-11,
-      A12: 5.37423e-14,
-      A14: -9.17045e-17,
+    { label: "2", R: 65.488, d: 1.07, sd: 26.0 },
+    { label: "3", R: 32.975, d: 8.01, sd: 24.0, medium: 2 },
+    { label: "4", R: 84.15, d: 0.87, sd: 20.0 },
+    { label: "5", R: 58.596, d: 1.65, sd: 19.0, medium: 3 },
+    { label: "6", R: 19.835, d: 12.05, sd: 17.0 },
+    { label: "STO", R: "flat", d: 3.24 },
+    { label: "8", R: -40.995, d: 1.55, sd: 17.0, medium: 4 },
+    { label: "9", R: 26.578, d: 10.8, sd: 17.0, medium: 5 },
+    { label: "10", R: -90.702, d: 0.31, sd: 17.0 },
+    { label: "11", R: 78.611, d: 5.05, sd: 18, medium: 6 },
+    { label: "12", R: -125.199, d: 0.31, sd: 18 },
+    { label: "13", R: 53.736, d: 9.47, sd: 16.0, medium: 7 },
+    { label: "14", R: -78.407, d: 1.55, sd: 15.5, medium: 8 },
+    { label: "15", R: 45.846, d: 1.42, sd: 12.2 },
+    {
+      label: "16A",
+      R: 3376.612,
+      d: 2.78,
+      sd: 13,
+      medium: 9,
+      asphere: {
+        K: -20,
+        A4: 2.4371e-5,
+        A6: -9.23649e-8,
+        A8: 1.14851e-9,
+        A10: -1.18851e-11,
+        A12: 5.37423e-14,
+        A14: -9.17045e-17,
+      },
     },
-    "17A": {
-      K: 20,
-      A4: 3.37528e-5,
-      A6: -2.40831e-8,
-      A8: -1.16539e-10,
-      A10: 1.9524e-13,
-      A12: -7.7965e-16,
-      A14: 2.20734e-18,
+    {
+      label: "17A",
+      R: 120.496,
+      sd: 13,
+      asphere: {
+        K: 20,
+        A4: 3.37528e-5,
+        A6: -2.40831e-8,
+        A8: -1.16539e-10,
+        A10: 1.9524e-13,
+        A12: -7.7965e-16,
+        A14: 2.20734e-18,
+      },
     },
+  ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.45,
+    description:
+      "JP2023063766A discloses infinity only. The 0.45 m endpoint is an inferred paraxial unit-extension model: all optics and the stop move 7.395 mm toward the object. It does not reproduce the mirrorless production floating mechanism.",
   },
 
-  /* ── Variable air spacings ──
+  /* (moved from var) ── Variable air spacings ──
    *  Keyed by surface label.  [thickness_infinity, thickness_close_focus]
    *  Inferred unit extension: BFD increases by 7.394899233 mm, solving the
    * paraxial object-to-image conjugate at 450 mm. Cosina
    *  advertises a floating mechanism for the mirrorless variants, but this
    *  patent does not provide close-focus internal-spacing tables.
    */
-  var: {
-    "17A": [18.74, 26.134899232679075],
+  gaps: { "17A": { label: "BF (modeled)", values: [[18.74, 26.134899232679075]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: {
+    nominalFNumber: 1.0,
+    fStops: [1, 1.2, 1.4, 1.8, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16],
+    blades: 12,
   },
 
-  varLabels: [["17A", "BF (modeled)"]],
+  projection: { kind: "rectilinear", fullFieldDeg: 47.9 },
 
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "G1 (FRONT)", fromSurface: "1A", toSurface: "6" },
     { text: "G2 (REAR)", fromSurface: "8", toSurface: "17A" },
   ],
-
   doublets: [
     { text: "L4", fromSurface: "8", toSurface: "10" },
     { text: "L6", fromSurface: "13", toSurface: "15" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.45,
-  focusDescription:
-    "JP2023063766A discloses infinity only. The 0.45 m endpoint is an inferred paraxial unit-extension model: all optics and the stop move 7.395 mm toward the object. It does not reproduce the mirrorless production floating mechanism.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 1.0,
-  apertureBlades: 12,
-  fstopSeries: [1, 1.2, 1.4, 1.8, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16],
-
   /* ── Layout tuning (overrides defaults) ── */
-  scFill: 0.5,
-  yScFill: 0.3,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.3 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

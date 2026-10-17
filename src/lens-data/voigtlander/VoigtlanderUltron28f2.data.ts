@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /** JP2022100641A Example1: table p.7, equation p.8, Figure1 p.16 (600dpi).
  * Matching JP7546909B2 table p.6 retains the same malformed ASP18 A6=-336E-07.
@@ -16,31 +16,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "ultron-28f2-asph",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER ULTRON Vintage Line 28mm f/2 Aspherical",
   subtitle: "JP2022-100641A EXAMPLE 1 — COSINA / YOSHIHISA YOMOGIDA, YUKI SHIBATA",
-  specs: [
-    "10 ELEMENTS / 7 GROUPS",
-    "f = 28.50 mm",
-    "F/2.0",
-    "2ω = 75.4°",
-    "2 ASPHERICAL SURFACES (1 ELEMENT)",
-  ],
 
-  /* ── Explicit metadata fields ── */
-  focalLengthMarketing: 28,
-  focalLengthDesign: 28.5,
-  apertureMarketing: 2.0,
-  apertureDesign: 2.0,
-  lensMounts: ["leica-m"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 2022-100641 A",
-  patentAuthors: ["Yoshihisa Yomogida", "Yuki Shibata"],
-  patentAssignees: ["Cosina Co., Ltd."],
-  patentYear: 2022,
-  elementCount: 10,
-  groupCount: 7,
+  catalog: {
+    lensMounts: ["leica-m"],
+    imageFormat: "135-full-frame",
+    specs: ["10 ELEMENTS / 7 GROUPS", "f = 28.50 mm", "F/2.0", "2ω = 75.4°", "2 ASPHERICAL SURFACES (1 ELEMENT)"],
+    elementCount: 10,
+    groupCount: 7,
+    /* ── Explicit metadata fields ── */
+    focalLengthMm: { marketing: 28, design: 28.5 },
+    fNumber: { marketing: 2.0, design: 2.0 },
+  },
+
+  source: {
+    patentNumber: "JP 2022-100641 A",
+    patentYear: 2022,
+    authors: ["Yoshihisa Yomogida", "Yuki Shibata"],
+    assignees: ["Cosina Co., Ltd."],
+  },
 
   /* ── Elements ──
    *  10 optical elements, front to rear.
@@ -57,7 +55,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.5168,
       vd: 64.2,
-      fl: -57.14,
+      focalLengthMm: -57.14,
       glass: "BSC7 (HOYA) / N-BK7 (Schott) (inferred coordinate counterpart)",
       apd: false,
       role: "Front negative meniscus, convex toward the object, in Gf.",
@@ -69,11 +67,11 @@ const LENS_DATA = {
       type: "Plano-Concave",
       nd: 1.64769,
       vd: 33.84,
-      fl: -36.4,
+      focalLengthMm: -36.4,
       glass: "E-FD2 (HOYA, patent nd/vd match) / SF2 (Schott) (inferred coordinate counterpart)",
       apd: false,
-      cemented: "Jw",
       role: "Plano-concave negative member of Jw; the cemented interface is flat.",
+      cemented: "Jw",
     },
     {
       id: 3,
@@ -82,11 +80,11 @@ const LENS_DATA = {
       type: "Plano-Convex",
       nd: 1.91082,
       vd: 35.25,
-      fl: 40.4,
+      focalLengthMm: 40.4,
       glass: "TAFD35 (HOYA, patent nd/vd match) (inferred coordinate counterpart)",
       apd: false,
-      cemented: "Jw",
       role: "Plano-convex positive member of Jw; source high-index coordinate also used for L4.",
+      cemented: "Jw",
     },
     {
       id: 4,
@@ -95,11 +93,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.91082,
       vd: 35.25,
-      fl: 13.7,
+      focalLengthMm: 13.7,
       glass: "TAFD35 (HOYA, patent nd/vd match) (inferred coordinate counterpart)",
       apd: false,
-      cemented: "Jy",
       role: "Biconvex positive member of Jy; source-listed isolated focal length 13.70 mm.",
+      cemented: "Jy",
     },
     {
       id: 5,
@@ -108,11 +106,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.76182,
       vd: 26.61,
-      fl: -25.39,
+      focalLengthMm: -25.39,
       glass: "S-TIH14 (OHARA, patent nd/vd match) (inferred coordinate counterpart)",
       apd: false,
-      cemented: "Jy",
       role: "Biconcave negative member of Jy with a lower Abbe number than L4.",
+      cemented: "Jy",
     },
     {
       id: 6,
@@ -121,11 +119,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.71736,
       vd: 29.5,
-      fl: -12.16,
+      focalLengthMm: -12.16,
       glass: "S-TIH1 (OHARA) / SF1 (Schott) (inferred coordinate counterpart)",
       apd: false,
-      cemented: "Jx",
       role: "Biconcave negative member of Jx after the stop.",
+      cemented: "Jx",
     },
     {
       id: 7,
@@ -134,11 +132,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6968,
       vd: 55.46,
-      fl: 22.98,
+      focalLengthMm: 22.98,
       glass: "S-LAC14 (OHARA) / N-LaK14 (Schott) (inferred coordinate counterpart)",
       apd: false,
-      cemented: "Jx",
       role: "Biconvex positive member of Jx. No patent partial-dispersion evidence identifies it as APD.",
+      cemented: "Jx",
     },
     {
       id: 8,
@@ -147,7 +145,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.81,
-      fl: 18.17,
+      focalLengthMm: 18.17,
       glass: "H-ZLAF68C (CDGM, patent nd/vd match) (inferred coordinate counterpart)",
       apd: false,
       role: "Positive singlet in Gr, between Jx and the two final negative lenses.",
@@ -159,8 +157,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.62999,
       vd: 58.12,
-      fl: -100.0,
-      glass: "J-PSKH8 catalog equivalent (patent 630581; production supplier unspecified) (inferred coordinate counterpart)",
+      focalLengthMm: -100.0,
+      glass:
+        "J-PSKH8 catalog equivalent (patent 630581; production supplier unspecified) (inferred coordinate counterpart)",
       apd: false,
       role: "Weak negative meniscus. Source FL is −100 mm, while the rounded radii/index give about −98.90 mm; no patent APD claim.",
     },
@@ -171,7 +170,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.8061,
       vd: 40.73,
-      fl: -500.0,
+      focalLengthMm: -500.0,
       glass: "NBFD3 (HOYA) / S-LAH63Q (OHARA) (inferred coordinate counterpart)",
       apd: false,
       role: "Final weak negative meniscus with two aspheric faces. Source FL is −500 mm; ASP18 A6 remains an explicitly inferred repair.",
@@ -179,31 +178,7 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
-  surfaces: [
-    // ── Front group Gf: L1, Jw (L2+L3), Jy (L4+L5) ──────────────────
-    { label: "1", R: 89.943, d: 1.2, nd: 1.5168, elemId: 1, sd: 12.0 }, // L1 front
-    { label: "2", R: 22.131, d: 5.24, nd: 1.0, elemId: 0, sd: 10.1 }, // L1 rear → air
-    { label: "3", R: -23.578, d: 1.05, nd: 1.64769, elemId: 2, sd: 9.7 }, // L2 front (Jw)
-    { label: "4", R: 1e15, d: 2.75, nd: 1.91082, elemId: 3, sd: 9.3 }, // L2→L3 junction (flat)
-    { label: "5", R: -36.797, d: 0.15, nd: 1.0, elemId: 0, sd: 9.3 }, // L3 rear → air
-    { label: "6", R: 22.947, d: 5.46, nd: 1.91082, elemId: 4, sd: 9.3 }, // L4 front (Jy)
-    { label: "7", R: -24.267, d: 1.1, nd: 1.76182, elemId: 5, sd: 9.3 }, // L4→L5 junction
-    { label: "8", R: 97.122, d: 2.27, nd: 1.0, elemId: 0, sd: 9.3 }, // L5 rear → air
-    // ── Aperture stop ─────────────────────────────────────────────────
-    { label: "STO", R: 1e15, d: 3.54, nd: 1.0, elemId: 0, sd: 8.0 }, // stop
-    // ── Rear group Gr: Jx (L6+L7), L8, L9, L10 ──────────────────────
-    { label: "10", R: -17.809, d: 1.0, nd: 1.71736, elemId: 6, sd: 8.1 }, // L6 front (Jx)
-    { label: "11", R: 17.5, d: 3.86, nd: 1.6968, elemId: 7, sd: 8.0 }, // L6→L7 junction
-    { label: "12", R: -171.048, d: 0.32, nd: 1.0, elemId: 0, sd: 9.0 }, // L7 rear → air
-    { label: "13", R: 35.878, d: 4.85, nd: 1.883, elemId: 8, sd: 9.9 }, // L8 front
-    { label: "14", R: -27.184, d: 1.14, nd: 1.0, elemId: 0, sd: 9.7 }, // L8 rear → air
-    { label: "15", R: -32.873, d: 1.5, nd: 1.62999, elemId: 9, sd: 9.5 }, // L9 front
-    { label: "16", R: -70.814, d: 4.31, nd: 1.0, elemId: 0, sd: 10.3 }, // L9 rear → air
-    { label: "17A", R: -38.03, d: 2.1, nd: 1.8061, elemId: 10, sd: 11.9 }, // L10 front [asph]
-    { label: "18A", R: -43.027, d: 18.4, nd: 1.0, elemId: 0, sd: 11.9 }, // L10 rear → BF [asph]
-  ],
-
-  /* ── Aspherical surface coefficients ──
+  /* (moved from asph) ── Aspherical surface coefficients ──
    *  Standard even-polynomial form with K = 0 (sphere + polynomial).
    *  Z(h) = (h²/R)/[1+√(1−(1+K)·(h/R)²)] + A4·h⁴ + A6·h⁶ + A8·h⁸ + ...
    *
@@ -211,68 +186,78 @@ const LENS_DATA = {
    *  as an inferred missing-decimal repair consistent with the drawing. The grant
    *  does not independently confirm it; this remains a source limitation.
    */
-  asph: {
-    "17A": {
-      K: 0.0,
-      A4: -9.97e-5,
-      A6: -5.86e-7,
-      A8: 7.76e-9,
-      A10: -2.26e-11,
-      A12: 0,
-      A14: 0,
-    },
-    "18A": {
-      K: 0.0,
-      A4: -4.13e-5,
-      A6: -3.36e-7,
-      A8: 6.38e-9,
-      A10: -2.06e-11,
-      A12: 9.67e-15,
-      A14: 0,
-    },
+  surfaces: [
+    // ── Front group Gf: L1, Jw (L2+L3), Jy (L4+L5) ──────────────────
+    { label: "1", R: 89.943, d: 1.2, sd: 12.0, medium: 1 }, // L1 front
+    { label: "2", R: 22.131, d: 5.24, sd: 10.1 }, // L1 rear → air
+    { label: "3", R: -23.578, d: 1.05, sd: 9.7, medium: 2 }, // L2 front (Jw)
+    { label: "4", R: "flat", d: 2.75, sd: 9.3, medium: 3 }, // L2→L3 junction (flat)
+    { label: "5", R: -36.797, d: 0.15, sd: 9.3 }, // L3 rear → air
+    { label: "6", R: 22.947, d: 5.46, sd: 9.3, medium: 4 }, // L4 front (Jy)
+    { label: "7", R: -24.267, d: 1.1, sd: 9.3, medium: 5 }, // L4→L5 junction
+    { label: "8", R: 97.122, d: 2.27, sd: 9.3 }, // L5 rear → air
+    // ── Aperture stop ─────────────────────────────────────────────────
+    { label: "STO", R: "flat", d: 3.54 }, // stop
+    // ── Rear group Gr: Jx (L6+L7), L8, L9, L10 ──────────────────────
+    { label: "10", R: -17.809, d: 1.0, sd: 8.1, medium: 6 }, // L6 front (Jx)
+    { label: "11", R: 17.5, d: 3.86, sd: 8.0, medium: 7 }, // L6→L7 junction
+    { label: "12", R: -171.048, d: 0.32, sd: 9.0 }, // L7 rear → air
+    { label: "13", R: 35.878, d: 4.85, sd: 9.9, medium: 8 }, // L8 front
+    { label: "14", R: -27.184, d: 1.14, sd: 9.7 }, // L8 rear → air
+    { label: "15", R: -32.873, d: 1.5, sd: 9.5, medium: 9 }, // L9 front
+    { label: "16", R: -70.814, d: 4.31, sd: 10.3 }, // L9 rear → air
+    {
+      label: "17A",
+      R: -38.03,
+      d: 2.1,
+      sd: 11.9,
+      medium: 10,
+      asphere: { K: 0, A4: -9.97e-5, A6: -5.86e-7, A8: 7.76e-9, A10: -2.26e-11 },
+    }, // L10 front [asph]
+    {
+      label: "18A",
+      R: -43.027,
+      sd: 11.9,
+      asphere: { K: 0, A4: -4.13e-5, A6: -3.36e-7, A8: 6.38e-9, A10: -2.06e-11, A12: 9.67e-15 },
+    }, // L10 rear → BF [asph]
+  ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.4921574,
+    description:
+      "Source near station: ZD0=430 mm plus LT=60.2274 mm and 1.93 mm extension gives 49.22 cm. All lenses and stop move together. The rounded prescription instead computes about 50.98 cm; this source discrepancy remains unresolved.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
   },
 
-  /* ── Variable air spacings (unit focus) ──
+  /* (moved from var) ── Variable air spacings (unit focus) ──
    *  Entire lens translates as a unit; only the BFD changes.
    *  ZD 0 = object distance from S1: ∞ → 430.00 mm (m = 0.0676).
    *  ZD 18 = BFD: 18.40 → 20.33 mm (focus extension 1.93 mm).
    */
-  var: {
-    "18A": [18.4, 20.33],
-  },
-  varLabels: [["18A", "BF"]],
+  gaps: { "18A": { label: "BF", values: [[18.4, 20.33]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.0, fStops: [2, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "Gf (front)", fromSurface: "1", toSurface: "8" },
     { text: "Gr (rear)", fromSurface: "10", toSurface: "18A" },
   ],
-
   doublets: [
     { text: "Jw", fromSurface: "3", toSurface: "5" },
     { text: "Jy", fromSurface: "6", toSurface: "8" },
     { text: "Jx", fromSurface: "10", toSurface: "12" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.4921574,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  focusDescription:
-    "Source near station: ZD0=430 mm plus LT=60.2274 mm and 1.93 mm extension gives 49.22 cm. All lenses and stop move together. The rounded prescription instead computes about 50.98 cm; this source discrepancy remains unresolved.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.0,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
   /* ── Layout tuning ──
    *  Compact lens (LT = 60.2 mm) with moderate front-to-rear SD variation.
    *  scFill moderate to avoid cramping the 10 elements in a short track.
    *  yScFill kept low — front elements are only slightly larger than rear.
    */
-  scFill: 0.5,
-  yScFill: 0.38,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.38 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

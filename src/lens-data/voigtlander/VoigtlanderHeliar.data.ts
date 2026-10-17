@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * US 716,035, sole symmetric example, normalized f=100 interpreted as mm.
@@ -10,24 +10,28 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "heliar-symmetric-1902",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER HELIAR (Symmetric) f/4",
   subtitle: "US 716,035 — Harting / Voigtländer & Sohn AG (1902)",
   visible: true,
-  specs: ["5 ELEMENTS / 3 GROUPS", "f = 100 (normalized)", "F/4.0", "2ω ≈ 43.6°", "ALL SPHERICAL"],
 
-  focalLengthMarketing: 100,
-  focalLengthDesign: 100.0,
-  apertureMarketing: 4.0,
-  apertureDesign: 4.0,
-  lensMounts: ["large-format-lens-board"],
-  patentNumber: "US 716,035",
-  patentAuthors: ["Carl August Hans Harting"],
-  patentAssignees: ["Voigtländer & Sohn AG"],
-  patentYear: 1902,
-  elementCount: 5,
-  groupCount: 3,
+  catalog: {
+    lensMounts: ["large-format-lens-board"],
+    specs: ["5 ELEMENTS / 3 GROUPS", "f = 100 (normalized)", "F/4.0", "2ω ≈ 43.6°", "ALL SPHERICAL"],
+    elementCount: 5,
+    groupCount: 3,
+    focalLengthMm: { marketing: 100, design: 100.0 },
+    fNumber: { marketing: 4.0, design: 4.0 },
+  },
+
+  source: {
+    patentNumber: "US 716,035",
+    patentYear: 1902,
+    authors: ["Carl August Hans Harting"],
+    assignees: ["Voigtländer & Sohn AG"],
+  },
 
   /* ── Elements ──
    *  Five elements: front cemented doublet (a + b), central biconcave (c),
@@ -43,7 +47,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.5638,
       vd: 42.0,
-      fl: -122.9,
+      focalLengthMm: -122.9,
       glass: "Unmatched Glass I (patent nD; estimated Abbe 42; supplier unspecified)",
       apd: false,
       role: "Dispersive (flint) component of front achromatic doublet. Weak negative power; meniscus shape contributes to field flattening.",
@@ -56,7 +60,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.608,
       vd: 57.0,
-      fl: 40.6,
+      focalLengthMm: 40.6,
       glass: "Unmatched Glass II (patent nD; estimated Abbe 57; supplier unspecified)",
       apd: false,
       role: "Primary positive power-contributor. The higher-index, lower-dispersion medium pairs with element a; the glass-air rear surface also contributes positive power.",
@@ -69,7 +73,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.5638,
       vd: 42.0,
-      fl: -39.7,
+      focalLengthMm: -39.7,
       glass: "Unmatched Glass I (patent nD; estimated Abbe 42; supplier unspecified)",
       apd: false,
       role: "Central negative element (Cooke Triplet inheritance). Controls Petzval sum, spherical aberration balance, and power leverage. Its dispersive negative power also contributes to the system chromatic balance.",
@@ -81,7 +85,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.608,
       vd: 57.0,
-      fl: 40.6,
+      focalLengthMm: 40.6,
       glass: "Unmatched Glass II (patent nD; estimated Abbe 57; supplier unspecified)",
       apd: false,
       role: "Mirror image of element b. Primary positive power in rear group.",
@@ -94,7 +98,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.5638,
       vd: 42.0,
-      fl: -122.9,
+      focalLengthMm: -122.9,
       glass: "Unmatched Glass I (patent nD; estimated Abbe 42; supplier unspecified)",
       apd: false,
       role: "Mirror image of element a. Dispersive component of rear achromatic doublet.",
@@ -112,42 +116,46 @@ const LENS_DATA = {
    *    Front (D1): S1 = a front (elemId: 1), S2 = a|b junction (elemId: 2), S3 = b rear (elemId: 0)
    *    Rear (D2):  S6 = b′ front (elemId: 4), S7 = b′|a′ junction (elemId: 5), S8 = a′ rear (elemId: 0)
    */
-  surfaces: [
-    /* ── Front cemented doublet (D1: a + b) ── */
-    { label: "1", R: 41.0, d: 1.6, nd: 1.5638, elemId: 1, sd: 13.5 }, // a front
-    { label: "2", R: 25.76, d: 3.6, nd: 1.608, elemId: 2, sd: 12.5 }, // a|b cement junction
-    { label: "3", R: -583.8, d: 8.1, nd: 1.0, elemId: 0, sd: 12.5 }, // b rear → air
-
-    /* ── Central biconcave (c) ── */
-    { label: "4", R: -44.76, d: 1.6, nd: 1.5638, elemId: 3, sd: 11.5 }, // c front
-    { label: "5", R: 44.76, d: 1.6, nd: 1.0, elemId: 0, sd: 11.5 }, // c rear → stop
-
-    /* ── Aperture stop ── */
-    { label: "STO", R: 1e15, d: 6.5, nd: 1.0, elemId: 0, sd: 10.2 }, // stop → rear doublet
-
-    /* ── Rear cemented doublet (D2: b′ + a′) ── */
-    { label: "6", R: 583.8, d: 3.6, nd: 1.608, elemId: 4, sd: 12.5 }, // b′ front
-    { label: "7", R: -25.76, d: 1.6, nd: 1.5638, elemId: 5, sd: 12.5 }, // b′|a′ cement junction
-    { label: "8", R: -41.0, d: 85.52, nd: 1.0, elemId: 0, sd: 13.5 }, // a′ rear → air (BFD)
-  ],
-
-  /* ── Aspherical coefficients ──
+  /* (moved from asph) ── Aspherical coefficients ──
    *  All-spherical design — no aspherical surfaces.
    */
-  asph: {},
+  surfaces: [
+    /* ── Front cemented doublet (D1: a + b) ── */
+    { label: "1", R: 41.0, d: 1.6, sd: 13.5, medium: 1 }, // a front
+    { label: "2", R: 25.76, d: 3.6, sd: 12.5, medium: 2 }, // a|b cement junction
+    { label: "3", R: -583.8, d: 8.1, sd: 12.5 }, // b rear → air
 
-  /* ── Variable air spacings (focus mechanism) ──
+    /* ── Central biconcave (c) ── */
+    { label: "4", R: -44.76, d: 1.6, sd: 11.5, medium: 3 }, // c front
+    { label: "5", R: 44.76, d: 1.6, sd: 11.5 }, // c rear → stop
+
+    /* ── Aperture stop ── */
+    { label: "STO", R: "flat", d: 6.5 }, // stop → rear doublet
+
+    /* ── Rear cemented doublet (D2: b′ + a′) ── */
+    { label: "6", R: 583.8, d: 3.6, sd: 12.5, medium: 4 }, // b′ front
+    { label: "7", R: -25.76, d: 1.6, sd: 12.5, medium: 5 }, // b′|a′ cement junction
+    { label: "8", R: -41.0, sd: 13.5 }, // a′ rear → air (BFD)
+  ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 1.0,
+    description:
+      "Inferred unit focus — all groups and the stop move together by 12.72 mm. The modeled 1.0 m endpoint is object-to-image distance at 100 mm scale; no focus schedule is published. Intermediate distance labels are approximate.",
+  },
+
+  /* (moved from var) ── Variable air spacings (focus mechanism) ──
    *  Unit focus: entire lens moves as a rigid body. Only the back focal
    *  distance (surface 8 → image plane) changes.
    *  Inferred close focus is solved by paraxial propagation at 1.0 m
    *  object-to-image distance, including the 28.2 mm optical assembly.
    *  The patent itself specifies neither close focus nor travel.
    */
-  var: {
-    8: [85.52, 98.23772450719136],
-  },
+  gaps: { "8": { label: "BF (modeled)", values: [[85.52, 98.23772450719136]] } },
 
-  varLabels: [["8", "BF (modeled)"]],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 4.0, fStops: [4, 4.5, 5.6, 8, 11, 16, 22, 32] },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -155,24 +163,13 @@ const LENS_DATA = {
     { text: "G2 (CENTER)", fromSurface: "4", toSurface: "5" },
     { text: "G3 (REAR)", fromSurface: "6", toSurface: "8" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "1", toSurface: "3" },
     { text: "D2", fromSurface: "6", toSurface: "8" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 1.0,
-  focusDescription:
-    "Inferred unit focus — all groups and the stop move together by 12.72 mm. The modeled 1.0 m endpoint is object-to-image distance at 100 mm scale; no focus schedule is published. Intermediate distance labels are approximate.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 4.0,
-  fstopSeries: [4, 4.5, 5.6, 8, 11, 16, 22, 32],
-
   /* ── Layout tuning ── */
-  scFill: 0.5,
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;
