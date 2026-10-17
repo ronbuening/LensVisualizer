@@ -1,6 +1,6 @@
 // Root-level LensVisualizer draft for the fixed Stage 2 job.
 // The output stem preserves the job-card "DCS-R1" token; public product metadata uses Sony's canonical "DSC-R1".
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════╗
@@ -32,9 +32,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ nominalFno stores the patent's Table 2 FNo column, 2.8501 / 3.7238 / 5.0545. The     ║
  * ║ wide-open iris is traced at each zoom station from that f-number with a real         ║
  * ║ marginal ray: 6.9318 / 6.8859 / 6.8524 mm at wide / intermediate / tele. The iris    ║
- * ║ limits the on-axis beam at all three stations. The authored STO sd = 6.5985 mm is    ║
- * ║ the mean of the three paraxial stop radii (6.6323 / 6.5872 / 6.5760 mm); the traced  ║
- * ║ iris replaces it, and none of these radii is a measured diaphragm diameter.          ║
+ * ║ limits the on-axis beam at all three stations. Prior paraxial radii were 6.6323 /    ║
+ * ║ 6.5872 / 6.5760 mm; none of these radii is a measured diaphragm diameter.            ║
  * ║                                                                                      ║
  * ║ Semi-diameters are Stage 2 modeled apertures. They were sized from exact d-line      ║
  * ║ meridional tracing of the on-axis stop bundle plus the default 0.6-field off-axis   ║
@@ -60,265 +59,361 @@ import type { LensDataInput } from "../../types/optics.js";
 // Leader lines and the G2/G10 mechanical flanges are excluded.
 
 const LENS_DATA = {
+  schema: 2,
   key: "carl-zeiss-vario-sonnar-t-143-715mm-f28-48-sony-dsc-r1",
   maker: "Sony",
   name: "SONY ZEISS VARIO-SONNAR T* 14.3-71.5mm f/2.8-4.8 (Sony Cyber-shot DSC-R1)",
   subtitle: "US 2008/0218875 A1 Example 1 — unscaled patent design; strong DSC-R1 correlation",
-  specs: [
-    "12 PHYSICAL ELEMENTS / 10 GROUPS",
-    "PATENT f = 14.71-69.8725 mm",
-    "MARKETED 14.3-71.5 mm f/2.8-4.8",
-    "PATENT MAX APERTURE f/2.8501-f/5.0545",
-    "5 ASPHERICAL SURFACES",
-    "INFINITY-FOCUS ZOOM STATES ONLY",
-  ],
 
-  focalLengthMarketing: [14.3, 71.5],
-  focalLengthDesign: [14.722970051869138, 69.85319684814056],
-  apertureMarketing: 2.8,
-  apertureDesign: 2.8501,
-  lensMounts: ["fixed-lens-camera"],
-  imageCircleMm: 26, // Figs. 2-4 plot to Y = 13.0 mm; DSC-R1 sensor 21.5 x 14.4 mm (25.9 mm diagonal)
-  imageFormat: "aps-c",
-  patentNumber: "US 2008/0218875 A1",
-  patentAuthors: ["Daisuke Kuroda", "Masafumi Sueyoshi", "Kazuya Watanabe"],
-  // A1 front page omits an organization; same-application assignment recorded 2007-08-30.
-  // Source and reel/frame 019796/0850 are documented in the companion analysis.
-  patentAssignees: ["Sony Corporation", "Tamron Co., Ltd."],
-  patentYear: 2008,
-  elementCount: 12,
-  groupCount: 10,
+  catalog: {
+    lensMounts: ["fixed-lens-camera"],
+    imageFormat: "aps-c",
+    imageCircleMm: 26, // Figs. 2-4 plot to Y = 13.0 mm; DSC-R1 sensor 21.5 x 14.4 mm (25.9 mm diagonal)
+    specs: [
+      "12 PHYSICAL ELEMENTS / 10 GROUPS",
+      "PATENT f = 14.71-69.8725 mm",
+      "MARKETED 14.3-71.5 mm f/2.8-4.8",
+      "PATENT MAX APERTURE f/2.8501-f/5.0545",
+      "5 ASPHERICAL SURFACES",
+      "INFINITY-FOCUS ZOOM STATES ONLY",
+    ],
+    elementCount: 12,
+    groupCount: 10,
+    focalLengthMm: { marketing: [14.3, 71.5], design: [14.722970051869138, 69.85319684814056] },
+    fNumber: { marketing: 2.8, design: 2.8501 },
+  },
+
+  source: {
+    patentNumber: "US 2008/0218875 A1",
+    patentYear: 2008,
+    authors: ["Daisuke Kuroda", "Masafumi Sueyoshi", "Kazuya Watanabe"],
+    // A1 front page omits an organization; same-application assignment recorded 2007-08-30.
+    // Source and reel/frame 019796/0850 are documented in the companion analysis.
+    assignees: ["Sony Corporation", "Tamron Co., Ltd."],
+  },
 
   elements: [
     {
       id: 1,
       name: "G1",
-      diagramLabel: "G1",
       label: "G1",
       type: "Positive Meniscus",
       nd: 1.5891,
       vd: 61.253,
       indexReference: "d",
-      fl: 135.53131243191189,
+      focalLengthMm: 135.53131243191189,
       glass: "M-BACD5N — coordinate-compatible spectral proxy; production supplier unconfirmed",
       role: "GR1 positive front group.",
+      diagramLabel: "G1",
     },
     {
       id: 2,
       name: "G2",
-      diagramLabel: "G2",
       label: "G2",
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
-      fl: -25.459606221044133,
+      focalLengthMm: -25.459606221044133,
       glass: "J-LASF016 — coordinate-compatible spectral proxy; production supplier unconfirmed",
       role: "Front negative member of GR2.",
+      diagramLabel: "G2",
     },
     {
       id: 3,
       name: "G3b",
-      diagramLabel: "G3",
       label: "G3 glass body",
       type: "Negative Meniscus Carrier",
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
-      fl: -47.7936997984393,
+      focalLengthMm: -47.7936997984393,
       glass: "J-LASF016 — coordinate-compatible spectral proxy; production supplier unconfirmed",
       role: "Glass body of patent lens G3 in GR2.",
+      diagramLabel: "G3",
       cemented: "H1",
     },
     {
       id: 4,
       name: "G3c",
-      diagramLabel: "G3c",
       label: "G3 composite asphere layer",
       type: "Composite Asphere Layer",
       nd: 1.5361,
       vd: 41.207,
       indexReference: "d",
-      fl: -161.87286455509124,
+      focalLengthMm: -161.87286455509124,
       glass: "Unmatched (composite asphere layer; bulk-glass supplier unresolved)",
       role: "Thin model medium carrying source surface 7A, the numerical-table composite asphere of patent lens G3; ¶0056 calls it object-side, conflicting with Tables 1/3.",
+      diagramLabel: "G3c",
       cemented: "H1",
     },
     {
       id: 5,
       name: "G4",
-      diagramLabel: "G4",
       label: "G4",
       type: "Positive Meniscus",
       nd: 1.9229,
       vd: 20.88,
       indexReference: "d",
-      fl: 60.962996646642644,
+      focalLengthMm: 60.962996646642644,
       glass: "PBH21 — coordinate-compatible spectral proxy; production supplier unconfirmed",
       role: "Rear positive member of GR2.",
+      diagramLabel: "G4",
     },
     {
       id: 6,
       name: "G5c",
-      diagramLabel: "G5c",
       label: "G5 composite asphere layer",
       type: "Composite Asphere Layer",
       nd: 1.5146,
       vd: 49.961,
       indexReference: "d",
-      fl: 319.9066115187076,
+      focalLengthMm: 319.9066115187076,
       glass: "Unmatched (composite asphere layer; bulk-glass supplier unresolved)",
       role: "Thin object-side model medium carrying the composite aspheric surface of patent lens G5.",
+      diagramLabel: "G5c",
       cemented: "H2",
     },
     {
       id: 7,
       name: "G5b",
-      diagramLabel: "G5",
       label: "G5 glass body",
       type: "Biconvex Positive Carrier",
       nd: 1.618,
       vd: 63.396,
       indexReference: "d",
-      fl: 31.372485591298627,
+      focalLengthMm: 31.372485591298627,
       glass: "S-PHM52 — coordinate-compatible spectral proxy; production supplier unconfirmed",
       role: "Glass body of patent lens G5 in GR3.",
+      diagramLabel: "G5",
       cemented: "H2",
     },
     {
       id: 8,
       name: "G6",
-      diagramLabel: "G6",
       label: "G6",
       type: "Negative Meniscus",
       nd: 1.9037,
       vd: 31.319,
       indexReference: "d",
-      fl: -19.495888164667114,
+      focalLengthMm: -19.495888164667114,
       glass: "N-LASF46B — coordinate-compatible spectral proxy; production supplier unconfirmed",
       role: "Negative front member of the GR3 cemented pair.",
+      diagramLabel: "G6",
       cemented: "D1",
     },
     {
       id: 9,
       name: "G7",
-      diagramLabel: "G7",
       label: "G7",
       type: "Biconvex Positive",
       nd: 1.623,
       vd: 58.122,
       indexReference: "d",
-      fl: 14.749870018766272,
+      focalLengthMm: 14.749870018766272,
       glass: "BACD15 — coordinate-compatible spectral proxy; production supplier unconfirmed",
       role: "Positive rear member of the GR3 cemented pair; rear surface 16A is aspheric.",
+      diagramLabel: "G7",
       cemented: "D1",
     },
     {
       id: 10,
       name: "G8",
-      diagramLabel: "G8",
       label: "G8",
       type: "Biconcave Negative",
       nd: 1.9037,
       vd: 31.319,
       indexReference: "d",
-      fl: -34.62014785582276,
+      focalLengthMm: -34.62014785582276,
       glass: "N-LASF46B — coordinate-compatible spectral proxy; production supplier unconfirmed",
       role: "Single negative GR4 focusing lens identified by the patent.",
+      diagramLabel: "G8",
     },
     {
       id: 11,
       name: "G9",
-      diagramLabel: "G9",
       label: "G9",
       type: "Biconvex Positive (2× Asph)",
       nd: 1.5831,
       vd: 59.461,
       indexReference: "d",
-      fl: 47.67264032536814,
+      focalLengthMm: 47.67264032536814,
       glass: "M-BACD12 — coordinate-compatible spectral proxy; production supplier unconfirmed",
       role: "GR5 positive compensator with aspheric surfaces on both sides.",
+      diagramLabel: "G9",
     },
     {
       id: 12,
       name: "G10",
-      diagramLabel: "G10",
       label: "G10",
       type: "Negative Meniscus",
       nd: 1.835,
       vd: 42.984,
       indexReference: "d",
-      fl: -21.802649009835672,
+      focalLengthMm: -21.802649009835672,
       glass: "TAFD5 — coordinate-compatible spectral proxy; production supplier unconfirmed",
       role: "Negative front member of the GR6 cemented pair.",
+      diagramLabel: "G10",
       cemented: "D2",
     },
     {
       id: 13,
       name: "G11",
-      diagramLabel: "G11",
       label: "G11",
       type: "Positive Meniscus",
       nd: 1.8467,
       vd: 23.785,
       indexReference: "d",
-      fl: 89.3585032012077,
+      focalLengthMm: 89.3585032012077,
       glass: "FDS90 — coordinate-compatible spectral proxy; production supplier unconfirmed",
       role: "Positive rear member of the GR6 cemented pair.",
+      diagramLabel: "G11",
       cemented: "D2",
     },
     {
       id: 14,
       name: "G12",
-      diagramLabel: "G12",
       label: "G12",
       type: "Biconvex Positive",
       nd: 1.9229,
       vd: 20.88,
       indexReference: "d",
-      fl: 47.91079222824414,
+      focalLengthMm: 47.91079222824414,
       glass: "PBH21 — coordinate-compatible spectral proxy; production supplier unconfirmed",
       role: "Rear positive lens within the net-negative GR6 relay group.",
+      diagramLabel: "G12",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 66.358, d: 5.185, nd: 1.5891, elemId: 1, sd: 23.5 },
-    { label: "2", R: 381.552, d: 1.0, nd: 1.0, elemId: 0, sd: 22.8 },
+    { label: "1", R: 66.358, d: 5.185, sd: 23.5, medium: 1 },
+    { label: "2", R: 381.552, sd: 22.8 },
 
-    { label: "3", R: 160.929, d: 1.7, nd: 1.7725, elemId: 2, sd: 18.7 },
-    { label: "4", R: 17.445, d: 6.091, nd: 1.0, elemId: 0, sd: 14.1 },
+    { label: "3", R: 160.929, d: 1.7, sd: 18.7, medium: 2 },
+    { label: "4", R: 17.445, d: 6.091, sd: 14.1 },
 
-    { label: "5", R: 60.914, d: 1.7, nd: 1.7725, elemId: 3, sd: 14 },
-    { label: "6", R: 22.708, d: 0.2, nd: 1.5361, elemId: 4, sd: 13.5 },
-    { label: "7A", R: 17.943, d: 4.984, nd: 1.0, elemId: 0, sd: 13.5 },
+    { label: "5", R: 60.914, d: 1.7, sd: 14, medium: 3 },
+    { label: "6", R: 22.708, d: 0.2, sd: 13.5, medium: 4 },
+    {
+      label: "7A",
+      R: 17.943,
+      d: 4.984,
+      sd: 13.5,
+      asphere: { K: -0.1092, A4: -2.822e-5, A6: -6.366e-8, A8: 6.44e-11, A10: -7.54e-13, A12: 0, A14: 0 },
+    },
 
-    { label: "8", R: 33.443, d: 5.0, nd: 1.9229, elemId: 5, sd: 14.5 },
-    { label: "9", R: 76.538, d: 36.851, nd: 1.0, elemId: 0, sd: 14 },
+    { label: "8", R: 33.443, d: 5.0, sd: 14.5, medium: 5 },
+    { label: "9", R: 76.538, sd: 14 },
 
-    { label: "10A", R: 20.244, d: 0.2, nd: 1.5146, elemId: 6, sd: 8.3 },
-    { label: "11", R: 23.005, d: 4.555, nd: 1.618, elemId: 7, sd: 8.3 },
-    { label: "12", R: -113.994, d: 4.441, nd: 1.0, elemId: 0, sd: 8.0 },
+    {
+      label: "10A",
+      R: 20.244,
+      d: 0.2,
+      sd: 8.3,
+      medium: 6,
+      asphere: { K: 0, A4: -2.071e-5, A6: -2.457e-8, A8: -3.06e-10, A10: 2.03e-12, A12: 0, A14: 0 },
+    },
+    { label: "11", R: 23.005, d: 4.555, sd: 8.3, medium: 7 },
+    { label: "12", R: -113.994, d: 4.441, sd: 8.0 },
 
-    { label: "STO", R: 1e15, d: 3.0, nd: 1.0, elemId: 0, sd: 6.5985 },
+    { label: "STO", R: "flat", d: 3.0 },
 
-    { label: "14", R: 28.726, d: 1.2, nd: 1.9037, elemId: 8, sd: 6.9 },
-    { label: "15", R: 10.704, d: 5.5, nd: 1.623, elemId: 9, sd: 6.6 },
-    { label: "16A", R: -52.125, d: 3.937, nd: 1.0, elemId: 0, sd: 6.3 },
+    { label: "14", R: 28.726, d: 1.2, sd: 6.9, medium: 8 },
+    { label: "15", R: 10.704, d: 5.5, sd: 6.6, medium: 9 },
+    {
+      label: "16A",
+      R: -52.125,
+      sd: 6.3,
+      asphere: { K: 0.2549, A4: 3.84e-6, A6: -2.542e-8, A8: -2.74e-9, A10: 2.67e-11, A12: 0, A14: 0 },
+    },
 
-    { label: "17", R: -1000.0, d: 1.0, nd: 1.9037, elemId: 10, sd: 7.7 },
-    { label: "18", R: 32.312, d: 6.037, nd: 1.0, elemId: 0, sd: 7.7 },
+    { label: "17", R: -1000.0, d: 1.0, sd: 7.7, medium: 10 },
+    { label: "18", R: 32.312, sd: 7.7 },
 
-    { label: "19A", R: 70.952, d: 2.525, nd: 1.5831, elemId: 11, sd: 8.3 },
-    { label: "20A", R: -45.105, d: 4.829, nd: 1.0, elemId: 0, sd: 8.4 },
+    {
+      label: "19A",
+      R: 70.952,
+      d: 2.525,
+      sd: 8.3,
+      medium: 11,
+      asphere: { K: 0, A4: 2.296e-5, A6: -4.8e-7, A8: 9.29e-9, A10: -1.23e-10, A12: 0, A14: 0 },
+    },
+    { label: "20A", R: -45.105, sd: 8.4, asphere: { K: 0, A4: 6.366e-6, A6: -6.296e-7, A8: 1.12e-8, A10: -1.35e-10, A12: 0, A14: 0 } },
 
-    { label: "21", R: -13.563, d: 1.2, nd: 1.835, elemId: 12, sd: 10.4 },
-    { label: "22", R: -55.331, d: 1.839, nd: 1.8467, elemId: 13, sd: 11.8 },
-    { label: "23", R: -32.446, d: 1.0, nd: 1.0, elemId: 0, sd: 12.2 },
+    { label: "21", R: -13.563, d: 1.2, sd: 10.4, medium: 12 },
+    { label: "22", R: -55.331, d: 1.839, sd: 11.8, medium: 13 },
+    { label: "23", R: -32.446, d: 1.0, sd: 12.2 },
 
-    { label: "24", R: 61.394, d: 2.916, nd: 1.9229, elemId: 14, sd: 13.2 },
-    { label: "25", R: -154.436, d: 2.0, nd: 1.0, elemId: 0, sd: 13.4 }, // D25 var — gap to the LPF
+    { label: "24", R: 61.394, d: 2.916, sd: 13.2, medium: 14 },
+    { label: "25", R: -154.436, sd: 13.4 }, // D25 var — gap to the LPF
   ],
+
+  zoom: {
+    stations: [
+      { focalLengthMm: 14.71, nominalFNumber: 2.8501, label: "Wide" },
+      { focalLengthMm: 32.0597, nominalFNumber: 3.7238 },
+      { focalLengthMm: 69.8725, nominalFNumber: 5.0545, label: "Tele" },
+    ],
+  },
+
+  focus: {
+    closeFocusM: 0.35,
+    description:
+      "Patent-published infinity zoom states only. GR4/G8 is the axial focusing group, but no numerical close-focus spacing is published; no internal focus reconstruction is authored, and every focus pair is identical. The 0.35 m closeFocusM value records the marketed minimum macro distance rather than a modeled close-focus state.",
+  },
+
+  gaps: {
+    "2": {
+      label: "D2",
+      values: [
+        [1.0, 1.0],
+        [21.214, 21.214],
+        [43.456, 43.456],
+      ],
+    },
+    "9": {
+      label: "D9",
+      values: [
+        [36.851, 36.851],
+        [13.343, 13.343],
+        [1.366, 1.366],
+      ],
+    },
+    "16A": {
+      label: "D16",
+      values: [
+        [3.937, 3.937],
+        [4.579, 4.579],
+        [2.544, 2.544],
+      ],
+    },
+    "18": {
+      label: "D18",
+      values: [
+        [6.037, 6.037],
+        [5.394, 5.394],
+        [7.43, 7.43],
+      ],
+    },
+    "20A": {
+      label: "D20",
+      values: [
+        [4.829, 4.829],
+        [7.977, 7.977],
+        [15.086, 15.086],
+      ],
+    },
+    "25": {
+      label: "D25",
+      values: [
+        [2.0, 2.0],
+        [9.935, 9.935],
+        [21.801, 21.801],
+      ],
+    },
+  },
+
+  aperture: { fStops: [2.8, 4, 5.6, 8, 11, 16] },
 
   /* ── LPF and rear plate (patent surfaces 26–29): traced, not drawn ── */
   rearPlates: [
@@ -341,99 +436,6 @@ const LENS_DATA = {
     },
   ],
 
-  asph: {
-    "7A": {
-      K: -0.1092,
-      A4: -2.822e-5,
-      A6: -6.366e-8,
-      A8: 6.44e-11,
-      A10: -7.54e-13,
-      A12: 0,
-      A14: 0,
-    },
-    "10A": {
-      K: 0,
-      A4: -2.071e-5,
-      A6: -2.457e-8,
-      A8: -3.06e-10,
-      A10: 2.03e-12,
-      A12: 0,
-      A14: 0,
-    },
-    "16A": {
-      K: 0.2549,
-      A4: 3.84e-6,
-      A6: -2.542e-8,
-      A8: -2.74e-9,
-      A10: 2.67e-11,
-      A12: 0,
-      A14: 0,
-    },
-    "19A": {
-      K: 0,
-      A4: 2.296e-5,
-      A6: -4.8e-7,
-      A8: 9.29e-9,
-      A10: -1.23e-10,
-      A12: 0,
-      A14: 0,
-    },
-    "20A": {
-      K: 0,
-      A4: 6.366e-6,
-      A6: -6.296e-7,
-      A8: 1.12e-8,
-      A10: -1.35e-10,
-      A12: 0,
-      A14: 0,
-    },
-  },
-
-  var: {
-    "2": [
-      [1.0, 1.0],
-      [21.214, 21.214],
-      [43.456, 43.456],
-    ],
-    "9": [
-      [36.851, 36.851],
-      [13.343, 13.343],
-      [1.366, 1.366],
-    ],
-    "16A": [
-      [3.937, 3.937],
-      [4.579, 4.579],
-      [2.544, 2.544],
-    ],
-    "18": [
-      [6.037, 6.037],
-      [5.394, 5.394],
-      [7.43, 7.43],
-    ],
-    "20A": [
-      [4.829, 4.829],
-      [7.977, 7.977],
-      [15.086, 15.086],
-    ],
-    "25": [
-      [2.0, 2.0],
-      [9.935, 9.935],
-      [21.801, 21.801],
-    ],
-  },
-
-  varLabels: [
-    ["2", "D2"],
-    ["9", "D9"],
-    ["16A", "D16"],
-    ["18", "D18"],
-    ["20A", "D20"],
-    ["25", "D25"],
-  ],
-
-  zoomPositions: [14.71, 32.0597, 69.8725],
-  zoomLabels: ["Wide", "Tele"],
-
   groups: [
     { text: "GR1", fromSurface: "1", toSurface: "2" },
     { text: "GR2", fromSurface: "3", toSurface: "9" },
@@ -442,7 +444,6 @@ const LENS_DATA = {
     { text: "GR5", fromSurface: "19A", toSurface: "20A" },
     { text: "GR6", fromSurface: "21", toSurface: "25" },
   ],
-
   doublets: [
     { text: "H1", fromSurface: "5", toSurface: "7A" },
     { text: "H2", fromSurface: "10A", toSurface: "12" },
@@ -450,14 +451,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "21", toSurface: "23" },
   ],
 
-  closeFocusM: 0.35,
-  focusDescription:
-    "Patent-published infinity zoom states only. GR4/G8 is the axial focusing group, but no numerical close-focus spacing is published; no internal focus reconstruction is authored, and every focus pair is identical. The 0.35 m closeFocusM value records the marketed minimum macro distance rather than a modeled close-focus state.",
-
-  nominalFno: [2.8501, 3.7238, 5.0545],
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
-
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

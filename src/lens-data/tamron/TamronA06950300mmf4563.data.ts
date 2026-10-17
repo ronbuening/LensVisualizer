@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -26,10 +26,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ vd 64.20) and the 1.000 mm air gap to IMG are modeled in `rearPlates`      ║
  * ║ (traced, not drawn). Surface 34 keeps the patent's D34 to the cover glass. ║
  * ║                                                                            ║
- * ║ STOP: the patent publishes the stop plane and design FNO but not a physical ║
- * ║ stop diameter. The stored wide-state STO sd=10.201416 mm is an exact-ray    ║
- * ║ seed inferred from the modeled F/4.635 entrance pupil; LensVisualizer        ║
- * ║ derives zoom-state stop geometry from nominalFno.                           ║
+ * ║ STOP: the patent publishes the stop plane and design FNO but not a         ║
+ * ║ physical stop diameter. The stop radius is derived from nominalFno         ║
+ * ║ at each zoom station; the exact-ray wide-state radius is                   ║
+ * ║ 10.201416 mm for the modeled F/4.635 entrance pupil.                       ║
  * ║                                                                            ║
  * ║ SEMI-DIAMETERS: Example 1 publishes none. Values below are inferred from    ║
  * ║ exact spherical marginal/chief-ray envelopes at all three zoom states, the  ║
@@ -51,31 +51,35 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "tamron-a069-50-300mm-f4-5-6-3-di-iii-vc-vxd",
   maker: "Tamron",
   name: "TAMRON 50-300mm f/4.5-6.3 Di III VC VXD",
   subtitle: "US 2024/0295723 A1 — Example 1 / Tamron A069 correlation",
-  specs: [
-    "19 ELEMENTS / 14 GROUPS",
-    "PATENT f = 51.509-290.867 mm",
-    "PATENT F/4.635-6.489",
-    "2ω = 45.833°-8.230°",
-    "ALL SPHERICAL",
-    "G2V VC / G4 INNER FOCUS",
-  ],
 
-  focalLengthMarketing: [50, 300],
-  focalLengthDesign: [51.5094, 290.8673],
-  apertureMarketing: 4.5,
-  apertureDesign: 4.635,
-  lensMounts: ["sony-fe"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 2024/0295723 A1",
-  patentAuthors: ["Takahiko Sakai"],
-  patentAssignees: ["Tamron Co., Ltd."],
-  patentYear: 2024,
-  elementCount: 19,
-  groupCount: 14,
+  catalog: {
+    lensMounts: ["sony-fe"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "19 ELEMENTS / 14 GROUPS",
+      "PATENT f = 51.509-290.867 mm",
+      "PATENT F/4.635-6.489",
+      "2ω = 45.833°-8.230°",
+      "ALL SPHERICAL",
+      "G2V VC / G4 INNER FOCUS",
+    ],
+    elementCount: 19,
+    groupCount: 14,
+    focalLengthMm: { marketing: [50, 300], design: [51.5094, 290.8673] },
+    fNumber: { marketing: 4.5, design: 4.635 },
+  },
+
+  source: {
+    patentNumber: "US 2024/0295723 A1",
+    patentYear: 2024,
+    authors: ["Takahiko Sakai"],
+    assignees: ["Tamron Co., Ltd."],
+  },
 
   /* ── Elements ──
    * Focal lengths are independently computed standalone in-air element powers
@@ -89,7 +93,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.804198,
       vd: 46.5,
-      fl: -151.404242,
+      focalLengthMm: -151.404242,
       glass: "804465 class (vendor unresolved)",
       role: "Negative member of the front cemented pair in positive group G1.",
       cemented: "D1",
@@ -101,7 +105,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.437001,
       vd: 95.1,
-      fl: 145.365021,
+      focalLengthMm: 145.365021,
       glass: "437951 class (vendor unresolved)",
       role: "Very-low-dispersion positive member of the front cemented pair.",
       cemented: "D1",
@@ -113,7 +117,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.437001,
       vd: 95.1,
-      fl: 140.124067,
+      focalLengthMm: 140.124067,
       glass: "437951 class (vendor unresolved)",
       role: "Very-low-dispersion positive element completing G1.",
     },
@@ -124,7 +128,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.696802,
       vd: 55.46,
-      fl: -50.816713,
+      focalLengthMm: -50.816713,
       glass: "697555 class (vendor unresolved)",
       role: "Leading negative element of zoom group G2.",
     },
@@ -135,7 +139,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.496997,
       vd: 81.61,
-      fl: -102.335294,
+      focalLengthMm: -102.335294,
       glass: "497816 class (vendor unresolved)",
       role: "Low-dispersion negative element in G2.",
     },
@@ -146,7 +150,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.64769,
       vd: 33.84,
-      fl: 66.026965,
+      focalLengthMm: 66.026965,
       glass: "648338 class (vendor unresolved)",
       role: "Positive counterpower within the net-negative G2 variator.",
     },
@@ -157,7 +161,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.72916,
       vd: 54.1,
-      fl: -26.112133,
+      focalLengthMm: -26.112133,
       glass: "S-LAL19 (OHARA catalog-equivalent; production supplier unspecified)",
       role: "Negative member of the cemented vibration-compensation subgroup G2V.",
       cemented: "G2V",
@@ -169,7 +173,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.858833,
       vd: 30.0,
-      fl: 49.341013,
+      focalLengthMm: 49.341013,
       glass: "859300 class (vendor unresolved)",
       role: "Positive member of the cemented vibration-compensation subgroup G2V.",
       cemented: "G2V",
@@ -181,7 +185,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.691002,
       vd: 54.82,
-      fl: 49.217424,
+      focalLengthMm: 49.217424,
       glass: "691548 class (vendor unresolved)",
       role: "Positive relay element at the front of G3A, immediately before the stop.",
     },
@@ -192,7 +196,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.496997,
       vd: 81.61,
-      fl: 35.215602,
+      focalLengthMm: 35.215602,
       glass: "497816 class (vendor unresolved)",
       role: "Low-dispersion positive member of the first post-stop cemented pair.",
       cemented: "D3",
@@ -204,7 +208,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.903658,
       vd: 31.31,
-      fl: -29.229289,
+      focalLengthMm: -29.229289,
       glass: "904313 class (vendor unresolved)",
       role: "Dense negative member completing the G3A post-stop cemented pair.",
       cemented: "D3",
@@ -216,7 +220,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.720467,
       vd: 34.71,
-      fl: 40.037609,
+      focalLengthMm: 40.037609,
       glass: "720347 class (vendor unresolved)",
       role: "Positive element at the front of G3B.",
     },
@@ -227,7 +231,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.54072,
       vd: 47.2,
-      fl: 29.06386,
+      focalLengthMm: 29.06386,
       glass: "541472 class (vendor unresolved)",
       role: "Positive member of the rear G3B cemented pair.",
       cemented: "D4",
@@ -239,7 +243,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.95,
       vd: 29.37,
-      fl: -25.182114,
+      focalLengthMm: -25.182114,
       glass: "950294 class (vendor unresolved)",
       role: "High-index negative member completing G3B.",
       cemented: "D4",
@@ -251,7 +255,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.921189,
       vd: 23.96,
-      fl: 36.654496,
+      focalLengthMm: 36.654496,
       glass: "921240 class (vendor unresolved)",
       role: "Positive member of the cemented negative G4 focusing group.",
       cemented: "G4",
@@ -263,7 +267,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.79952,
       vd: 42.24,
-      fl: -19.351972,
+      focalLengthMm: -19.351972,
       glass: "800422 class (vendor unresolved)",
       role: "Dominant negative member of the cemented G4 focusing group.",
       cemented: "G4",
@@ -275,7 +279,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.575006,
       vd: 41.51,
-      fl: 30.642519,
+      focalLengthMm: 30.642519,
       glass: "575415 class (vendor unresolved)",
       role: "Positive leading element of rear group G5.",
     },
@@ -286,7 +290,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.900433,
       vd: 37.37,
-      fl: -38.680412,
+      focalLengthMm: -38.680412,
       glass: "900374 class (vendor unresolved)",
       role: "High-index negative element in G5.",
     },
@@ -297,7 +301,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.870705,
       vd: 40.73,
-      fl: -57.600137,
+      focalLengthMm: -57.600137,
       glass: "871407 class (vendor unresolved)",
       role: "Final negative meniscus in G5 ahead of the image plane.",
     },
@@ -308,41 +312,102 @@ const LENS_DATA = {
    * is labeled STO. Source CG surfaces 35-36 are carried in `rearPlates`.
    */
   surfaces: [
-    { label: "1", R: 128.0, d: 1.2, nd: 1.804198, elemId: 1, sd: 28.8 },
-    { label: "2", R: 62.14, d: 6.51, nd: 1.437001, elemId: 2, sd: 27.5 },
-    { label: "3", R: 2760.0, d: 0.15, nd: 1.0, elemId: 0, sd: 25.5 },
-    { label: "4", R: 67.8, d: 6.5, nd: 1.437001, elemId: 3, sd: 25.8 },
-    { label: "5", R: -613.9, d: 5.3235, nd: 1.0, elemId: 0, sd: 25.2 },
-    { label: "6", R: 82.2, d: 1.2, nd: 1.696802, elemId: 4, sd: 17.0 },
-    { label: "7", R: 24.6, d: 9.0, nd: 1.0, elemId: 0, sd: 17.0 },
-    { label: "8", R: -72.7, d: 0.9, nd: 1.496997, elemId: 5, sd: 14.0 },
-    { label: "9", R: 170.0, d: 0.6, nd: 1.0, elemId: 0, sd: 14.0 },
-    { label: "10", R: 39.3, d: 3.1, nd: 1.64769, elemId: 6, sd: 12.7 },
-    { label: "11", R: 470.0, d: 2.2, nd: 1.0, elemId: 0, sd: 12.7 },
-    { label: "12", R: -46.45, d: 0.8, nd: 1.72916, elemId: 7, sd: 13.8 },
-    { label: "13", R: 32.5, d: 2.6, nd: 1.858833, elemId: 8, sd: 13.8 },
-    { label: "14", R: 134.3, d: 31.2606, nd: 1.0, elemId: 0, sd: 13.8 },
-    { label: "15", R: 49.6, d: 3.25, nd: 1.691002, elemId: 9, sd: 13.5 },
-    { label: "16", R: -105.3, d: 2.2, nd: 1.0, elemId: 0, sd: 13.5 },
-    { label: "STO", R: 1e15, d: 1.4, nd: 1.0, elemId: 0, sd: 10.201416 },
-    { label: "18", R: 41.46, d: 5.31, nd: 1.496997, elemId: 10, sd: 12.9 },
-    { label: "19", R: -29.0, d: 0.8, nd: 1.903658, elemId: 11, sd: 12.9 },
-    { label: "20", R: 300.0, d: 11.7, nd: 1.0, elemId: 0, sd: 12.9 },
-    { label: "21", R: 130.7, d: 3.5, nd: 1.720467, elemId: 12, sd: 13.0 },
-    { label: "22", R: -36.6, d: 1.81, nd: 1.0, elemId: 0, sd: 13.0 },
-    { label: "23", R: 35.2, d: 4.56, nd: 1.54072, elemId: 13, sd: 11.3 },
-    { label: "24", R: -27.1, d: 0.8, nd: 1.95, elemId: 14, sd: 11.3 },
-    { label: "25", R: 207.0, d: 2.6417, nd: 1.0, elemId: 0, sd: 11.3 },
-    { label: "26", R: 2217.6, d: 2.4, nd: 1.921189, elemId: 15, sd: 11.5 },
-    { label: "27", R: -34.27, d: 0.8, nd: 1.79952, elemId: 16, sd: 11.5 },
-    { label: "28", R: 28.5, d: 15.6249, nd: 1.0, elemId: 0, sd: 11.5 },
-    { label: "29", R: 35.5, d: 6.9, nd: 1.575006, elemId: 17, sd: 14.5 },
-    { label: "30", R: -32.5, d: 1.0, nd: 1.0, elemId: 0, sd: 14.5 },
-    { label: "31", R: -41.89, d: 0.8, nd: 1.900433, elemId: 18, sd: 14.5 },
-    { label: "32", R: 208.5, d: 6.44, nd: 1.0, elemId: 0, sd: 14.5 },
-    { label: "33", R: -23.4, d: 1.0, nd: 1.870705, elemId: 19, sd: 15.0 },
-    { label: "34", R: -44.74, d: 18.0, nd: 1.0, elemId: 0, sd: 15.0 },
+    { label: "1", R: 128.0, d: 1.2, sd: 28.8, medium: 1 },
+    { label: "2", R: 62.14, d: 6.51, sd: 27.5, medium: 2 },
+    { label: "3", R: 2760.0, d: 0.15, sd: 25.5 },
+    { label: "4", R: 67.8, d: 6.5, sd: 25.8, medium: 3 },
+    { label: "5", R: -613.9, sd: 25.2 },
+    { label: "6", R: 82.2, d: 1.2, sd: 17.0, medium: 4 },
+    { label: "7", R: 24.6, d: 9.0, sd: 17.0 },
+    { label: "8", R: -72.7, d: 0.9, sd: 14.0, medium: 5 },
+    { label: "9", R: 170.0, d: 0.6, sd: 14.0 },
+    { label: "10", R: 39.3, d: 3.1, sd: 12.7, medium: 6 },
+    { label: "11", R: 470.0, d: 2.2, sd: 12.7 },
+    { label: "12", R: -46.45, d: 0.8, sd: 13.8, medium: 7 },
+    { label: "13", R: 32.5, d: 2.6, sd: 13.8, medium: 8 },
+    { label: "14", R: 134.3, sd: 13.8 },
+    { label: "15", R: 49.6, d: 3.25, sd: 13.5, medium: 9 },
+    { label: "16", R: -105.3, d: 2.2, sd: 13.5 },
+    { label: "STO", R: "flat", d: 1.4 },
+    { label: "18", R: 41.46, d: 5.31, sd: 12.9, medium: 10 },
+    { label: "19", R: -29.0, d: 0.8, sd: 12.9, medium: 11 },
+    { label: "20", R: 300.0, d: 11.7, sd: 12.9 },
+    { label: "21", R: 130.7, d: 3.5, sd: 13.0, medium: 12 },
+    { label: "22", R: -36.6, d: 1.81, sd: 13.0 },
+    { label: "23", R: 35.2, d: 4.56, sd: 11.3, medium: 13 },
+    { label: "24", R: -27.1, d: 0.8, sd: 11.3, medium: 14 },
+    { label: "25", R: 207.0, sd: 11.3 },
+    { label: "26", R: 2217.6, d: 2.4, sd: 11.5, medium: 15 },
+    { label: "27", R: -34.27, d: 0.8, sd: 11.5, medium: 16 },
+    { label: "28", R: 28.5, sd: 11.5 },
+    { label: "29", R: 35.5, d: 6.9, sd: 14.5, medium: 17 },
+    { label: "30", R: -32.5, d: 1.0, sd: 14.5 },
+    { label: "31", R: -41.89, d: 0.8, sd: 14.5, medium: 18 },
+    { label: "32", R: 208.5, d: 6.44, sd: 14.5 },
+    { label: "33", R: -23.4, d: 1.0, sd: 15.0, medium: 19 },
+    { label: "34", R: -44.74, sd: 15.0 },
   ],
+
+  zoom: {
+    /* (moved from zoomPositions) ── Published infinity-focus zoom states only ── */
+    stations: [
+      { focalLengthMm: 51.5094, nominalFNumber: 4.635, label: "Wide" },
+      { focalLengthMm: 149.9986, nominalFNumber: 5.567 },
+      { focalLengthMm: 290.8673, nominalFNumber: 6.489, label: "Tele" },
+    ],
+    step: 0.004,
+  },
+
+  focus: {
+    closeFocusM: 0.22,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION. Example 1 publishes only infinity-focus zoom spacings. G4 (cemented L15+L16) is the focusing group and moves toward the image side at nearer distances, but no close-focus D25/D28 values are published; all focus pairs therefore remain identical. Tamron's production MOD is 0.22 m at wide and 0.9 m at tele and is not used to invent internal travel.",
+  },
+
+  gaps: {
+    "5": {
+      label: "D5",
+      values: [
+        [5.3235, 5.3235],
+        [48.3564, 48.3564],
+        [71.4334, 71.4334],
+      ],
+    },
+    "14": {
+      label: "D14",
+      values: [
+        [31.2606, 31.2606],
+        [5.4903, 5.4903],
+        [1.2, 1.2],
+      ],
+    },
+    "25": {
+      label: "D25",
+      values: [
+        [2.6417, 2.6417],
+        [10.5699, 10.5699],
+        [2.5627, 2.5627],
+      ],
+    },
+    "28": {
+      label: "D28",
+      values: [
+        [15.6249, 15.6249],
+        [12.6338, 12.6338],
+        [16.5133, 16.5133],
+      ],
+    },
+    "34": {
+      label: "D34",
+      values: [
+        [18.0, 18.0],
+        [22.7775, 22.7775],
+        [38.3792, 38.3792],
+      ],
+    },
+  },
+
+  aperture: { fStops: [4.5, 5.6, 6.3, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 9 },
 
   /* ── Cover glass CG (patent Example 1 surfaces 35–36): traced, not drawn ── */
   rearPlates: [
@@ -355,48 +420,6 @@ const LENS_DATA = {
       gapAfterMm: 1.0,
       source: "US 2024/0295723 A1, Example 1 surfaces 35–36",
     },
-  ],
-
-  asph: {},
-
-  /* ── Published infinity-focus zoom states only ── */
-  zoomPositions: [51.5094, 149.9986, 290.8673],
-  zoomStep: 0.004,
-  zoomLabels: ["Wide", "Tele"],
-
-  var: {
-    "5": [
-      [5.3235, 5.3235],
-      [48.3564, 48.3564],
-      [71.4334, 71.4334],
-    ],
-    "14": [
-      [31.2606, 31.2606],
-      [5.4903, 5.4903],
-      [1.2, 1.2],
-    ],
-    "25": [
-      [2.6417, 2.6417],
-      [10.5699, 10.5699],
-      [2.5627, 2.5627],
-    ],
-    "28": [
-      [15.6249, 15.6249],
-      [12.6338, 12.6338],
-      [16.5133, 16.5133],
-    ],
-    "34": [
-      [18.0, 18.0],
-      [22.7775, 22.7775],
-      [38.3792, 38.3792],
-    ],
-  },
-  varLabels: [
-    ["5", "D5"],
-    ["14", "D14"],
-    ["25", "D25"],
-    ["28", "D28"],
-    ["34", "D34"],
   ],
 
   groups: [
@@ -413,17 +436,7 @@ const LENS_DATA = {
     { text: "3B", fromSurface: "21", toSurface: "25" },
   ],
 
-  closeFocusM: 0.22,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION. Example 1 publishes only infinity-focus zoom spacings. G4 (cemented L15+L16) is the focusing group and moves toward the image side at nearer distances, but no close-focus D25/D28 values are published; all focus pairs therefore remain identical. Tamron's production MOD is 0.22 m at wide and 0.9 m at tele and is not used to invent internal travel.",
-
-  nominalFno: [4.635, 5.567, 6.489],
-  fstopSeries: [4.5, 5.6, 6.3, 8, 11, 16, 22, 32],
-  apertureBlades: 9,
-  maxFstop: 32,
-
-  scFill: 0.5,
-  yScFill: 0.46,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.46 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

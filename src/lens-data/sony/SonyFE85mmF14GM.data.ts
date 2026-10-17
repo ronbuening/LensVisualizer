@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -24,11 +24,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    plate data or back distance. No rearPlates; surface 20 d is the   ║
  * ║    computed paraxial infinity BFD in air (16.861 mm).                ║
  * ║  APERTURE: no stop diameter is published. nominalFno = patent Fno    ║
- * ║    1.45; the STO sd below is the real-ray stop height of an axis-    ║
- * ║    parallel entry ray at height EFL/(2 × 1.45) (as buildLens derives ║
- * ║    it). This is an F-number calibration, not an independent          ║
- * ║    diaphragm measurement. The real image-space marginal ray gives    ║
- * ║    1/(2 sin U′) = 1.449.                                             ║
+ * ║    1.45; the stop radius is derived from the design f-number as the  ║
+ * ║    real-ray stop height of an axis-parallel entry ray at height      ║
+ * ║    EFL/(2 × 1.45). This is an F-number calibration, not an           ║
+ * ║    independent diaphragm measurement. The real image-space marginal  ║
+ * ║    ray gives 1/(2 sin U′) = 1.449.                                   ║
  * ║  NOTE ON SEMI-DIAMETERS: modeled, not published. Surfaces 1–5, 7 and ║
  * ║    20: real-ray envelope of the f/1.45 axial bundle, the 0.6-field   ║
  * ║    ±0.75-stop fan and the full-field chief ray at five focus states, ║
@@ -68,30 +68,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "sony-fe-85mm-f14-gm",
   maker: "Sony",
   name: "SONY FE 85mm f/1.4 GM",
   subtitle: "WO 2017/130571 A1, Example 2 — inferred production correlation",
-  specs: [
-    "11 ELEMENTS / 8 GROUPS",
-    "DESIGN f = 86.85 mm",
-    "DESIGN F/1.45",
-    "1 ASPHERICAL SURFACE / 1 ELEMENT",
-    "INNER FOCUS (G2)",
-  ],
 
-  focalLengthMarketing: 85,
-  focalLengthDesign: 86.85,
-  apertureMarketing: 1.4,
-  apertureDesign: 1.45,
-  lensMounts: ["sony-fe"],
-  imageFormat: "135-full-frame",
-  patentNumber: "WO 2017/130571 A1",
-  patentAuthors: ["Masaki Maruyama", "Hiroyuki Matsumoto"],
-  patentAssignees: ["Sony Corporation"],
-  patentYear: 2017,
-  elementCount: 11,
-  groupCount: 8,
+  catalog: {
+    lensMounts: ["sony-fe"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "11 ELEMENTS / 8 GROUPS",
+      "DESIGN f = 86.85 mm",
+      "DESIGN F/1.45",
+      "1 ASPHERICAL SURFACE / 1 ELEMENT",
+      "INNER FOCUS (G2)",
+    ],
+    elementCount: 11,
+    groupCount: 8,
+    focalLengthMm: { marketing: 85, design: 86.85 },
+    fNumber: { marketing: 1.4, design: 1.45 },
+  },
+
+  source: {
+    patentNumber: "WO 2017/130571 A1",
+    patentYear: 2017,
+    authors: ["Masaki Maruyama", "Hiroyuki Matsumoto"],
+    assignees: ["Sony Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -103,7 +107,7 @@ const LENS_DATA = {
       nd: 1.618,
       vd: 63.4,
       indexReference: "d",
-      fl: 139.25,
+      focalLengthMm: 139.25,
       glass: "PCD4 (HOYA) / dense phosphate crown class (cf. H-ZPK1A, K-PSKn2, N-PSK53A; Δνd −0.008 to −0.011)",
       apd: false,
       role: "Front positive meniscus convex to the object; first of the three positive collectors of G1.",
@@ -116,12 +120,12 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       indexReference: "d",
-      fl: 172.05,
+      focalLengthMm: 172.05,
       glass: "FCD1 (HOYA) / fluorophosphate ED class (N-PK52A, H-FK61 coordinates; cf. S-FPL51)",
       apd: "inferred",
       apdNote: "dPgF ≈ +0.0323 from the HOYA FCD1 catalog formula; the patent publishes no partial dispersion",
-      dPgF: 0.0323,
       role: "Low-dispersion positive meniscus of G1; inferred ED-class collector.",
+      dPgF: 0.0323,
     },
     {
       id: 3,
@@ -131,12 +135,12 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.62,
       indexReference: "d",
-      fl: 221.31,
+      focalLengthMm: 221.31,
       glass: "FCD515 (HOYA) / ED phosphate crown class (no coordinate-exact non-HOYA match)",
       apd: "inferred",
       apdNote: "dPgF ≈ +0.0157 from the HOYA FCD515 catalog formula; the patent publishes no partial dispersion",
-      dPgF: 0.0157,
       role: "Third positive meniscus of G1, in the same low-dispersion glass as L8.",
+      dPgF: 0.0157,
     },
     {
       id: 4,
@@ -146,7 +150,7 @@ const LENS_DATA = {
       nd: 1.62004,
       vd: 36.3,
       indexReference: "d",
-      fl: -66.09,
+      focalLengthMm: -66.09,
       glass: "E-F2 (HOYA) / F2-type flint class (cf. S-TIM2)",
       apd: false,
       role: "Negative meniscus concave to the image that closes G1 ahead of the stop.",
@@ -159,7 +163,7 @@ const LENS_DATA = {
       nd: 1.62004,
       vd: 36.3,
       indexReference: "d",
-      fl: -31.0,
+      focalLengthMm: -31.0,
       glass: "E-F2 (HOYA) / F2-type flint class (cf. S-TIM2)",
       apd: false,
       role: "Biconcave front of cemented G2a; its object-side concave surface is r_2a of condition (8).",
@@ -173,7 +177,7 @@ const LENS_DATA = {
       nd: 2.001,
       vd: 29.13,
       indexReference: "d",
-      fl: 31.8,
+      focalLengthMm: 31.8,
       glass: "TAFD55 (HOYA) / nd 2.00 lanthanum dense flint class (cf. J-LASFH16, S-LAH99; Δνd −0.007, +0.009)",
       apd: false,
       role: "High-index positive of G2a; nearly cancels L5, leaving G2a weakly negative.",
@@ -187,7 +191,7 @@ const LENS_DATA = {
       nd: 1.82115,
       vd: 24.06,
       indexReference: "d",
-      fl: -96.88,
+      focalLengthMm: -96.88,
       glass: "M-FDS910 (HOYA, precision-moulding dense flint; inferred)",
       apd: false,
       role: "Negative meniscus at the front of cemented G2b; carries the only asphere (13A).",
@@ -201,13 +205,13 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.62,
       indexReference: "d",
-      fl: 43.9,
+      focalLengthMm: 43.9,
       glass: "FCD515 (HOYA) / ED phosphate crown class (no coordinate-exact non-HOYA match)",
       apd: "inferred",
       apdNote: "dPgF ≈ +0.0157 from the HOYA FCD515 catalog formula; the patent publishes no partial dispersion",
-      dPgF: 0.0157,
       role: "Thick low-dispersion biconvex positive; principal positive power of the focus group.",
       cemented: "G2b",
+      dPgF: 0.0157,
     },
     {
       id: 9,
@@ -217,7 +221,7 @@ const LENS_DATA = {
       nd: 2.001,
       vd: 29.13,
       indexReference: "d",
-      fl: 42.07,
+      focalLengthMm: 42.07,
       glass: "TAFD55 (HOYA) / nd 2.00 lanthanum dense flint class (cf. J-LASFH16, S-LAH99; Δνd −0.007, +0.009)",
       apd: false,
       role: "Thick high-index biconvex positive at the front of cemented G3a.",
@@ -231,7 +235,7 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.53,
       indexReference: "d",
-      fl: -47.04,
+      focalLengthMm: -47.04,
       glass: "E-FD4 (HOYA) / dense flint class (H-ZF6 coordinates; cf. S-TIH4)",
       apd: false,
       role: "Biconcave dense flint completing the positive cemented G3a.",
@@ -245,7 +249,7 @@ const LENS_DATA = {
       nd: 1.56883,
       vd: 56.04,
       indexReference: "d",
-      fl: -112.37,
+      focalLengthMm: -112.37,
       glass: "BAC4 (HOYA) / barium crown class (H-BaK7 coordinates; cf. N-BAK4)",
       apd: false,
       role: "Rear negative meniscus concave to the object (G3b); its shape factor is condition (2).",
@@ -253,52 +257,49 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── Table 5; z = (Y²/R)/(1+√(1−(1+K)Y²/R²)) + A4Y⁴ + A6Y⁶ + A8Y⁸ */
   surfaces: [
-    { label: "1", R: 53.409, d: 7.177, nd: 1.618, elemId: 1, sd: 31.6 },
-    { label: "2", R: 133.55, d: 0.5, nd: 1.0, elemId: 0, sd: 31.2 },
-    { label: "3", R: 55.873, d: 6.013, nd: 1.497, elemId: 2, sd: 29.2 },
-    { label: "4", R: 155.451, d: 0.3, nd: 1.0, elemId: 0, sd: 29.0 },
-    { label: "5", R: 43.037, d: 5.272, nd: 1.59282, elemId: 3, sd: 27.3 },
-    { label: "6", R: 61.127, d: 3.026, nd: 1.0, elemId: 0, sd: 24.7 },
-    { label: "7", R: 121.72, d: 2.4, nd: 1.62004, elemId: 4, sd: 24.7 },
-    { label: "8", R: 30.425, d: 10.9, nd: 1.0, elemId: 0, sd: 20.9 },
-    { label: "STO", R: 1e15, d: 17.857, nd: 1.0, elemId: 0, sd: 19.77 }, // patent surface 9; D9 variable
-    { label: "10", R: -57.485, d: 1.5, nd: 1.62004, elemId: 5, sd: 17.9 },
-    { label: "11", R: 29.166, d: 9.168, nd: 2.001, elemId: 6, sd: 17.9 }, // L5→L6 cemented junction
-    { label: "12", R: 293.577, d: 0.57, nd: 1.0, elemId: 0, sd: 17.9 },
-    { label: "13A", R: 122.73, d: 1.5, nd: 1.82115, elemId: 7, sd: 17.3 },
-    { label: "14", R: 48.001, d: 14.955, nd: 1.59282, elemId: 8, sd: 17.3 }, // L7→L8 cemented junction
-    { label: "15", R: -50.259, d: 3.0, nd: 1.0, elemId: 0, sd: 17.3 }, // D15 variable
-    { label: "16", R: 216.748, d: 15.0, nd: 2.001, elemId: 9, sd: 17.3 },
-    { label: "17", R: -50.452, d: 2.566, nd: 1.7552, elemId: 10, sd: 17.3 }, // L9→L10 cemented junction
-    { label: "18", R: 122.664, d: 4.0, nd: 1.0, elemId: 0, sd: 16.7 },
-    { label: "19", R: -51.592, d: 1.6, nd: 1.56883, elemId: 11, sd: 16.7 },
-    { label: "20", R: -270.536, d: 16.861, nd: 1.0, elemId: 0, sd: 17.5 }, // computed paraxial BFD (not published)
-  ],
-
-  /* ── Aspherical coefficients ── Table 5; z = (Y²/R)/(1+√(1−(1+K)Y²/R²)) + A4Y⁴ + A6Y⁶ + A8Y⁸ */
-  asph: {
-    "13A": {
-      K: 0,
-      A4: -4.98661e-6,
-      A6: -2.69634e-9,
-      A8: 1.87534e-12,
-      A10: 0,
-      A12: 0,
-      A14: 0,
+    { label: "1", R: 53.409, d: 7.177, sd: 31.6, medium: 1 },
+    { label: "2", R: 133.55, d: 0.5, sd: 31.2 },
+    { label: "3", R: 55.873, d: 6.013, sd: 29.2, medium: 2 },
+    { label: "4", R: 155.451, d: 0.3, sd: 29.0 },
+    { label: "5", R: 43.037, d: 5.272, sd: 27.3, medium: 3 },
+    { label: "6", R: 61.127, d: 3.026, sd: 24.7 },
+    { label: "7", R: 121.72, d: 2.4, sd: 24.7, medium: 4 },
+    { label: "8", R: 30.425, d: 10.9, sd: 20.9 },
+    { label: "STO", R: "flat" }, // patent surface 9; D9 variable
+    { label: "10", R: -57.485, d: 1.5, sd: 17.9, medium: 5 },
+    { label: "11", R: 29.166, d: 9.168, sd: 17.9, medium: 6 }, // L5→L6 cemented junction
+    { label: "12", R: 293.577, d: 0.57, sd: 17.9 },
+    {
+      label: "13A",
+      R: 122.73,
+      d: 1.5,
+      sd: 17.3,
+      medium: 7,
+      asphere: { K: 0, A4: -4.98661e-6, A6: -2.69634e-9, A8: 1.87534e-12, A10: 0, A12: 0, A14: 0 },
     },
-  },
-
-  /* ── Variable air spacings ── Table 6: [infinity, 0.85 m state] */
-  var: {
-    STO: [17.857, 5.761],
-    "15": [3.0, 15.097],
-  },
-
-  varLabels: [
-    ["STO", "D9"],
-    ["15", "D15"],
+    { label: "14", R: 48.001, d: 14.955, sd: 17.3, medium: 8 }, // L7→L8 cemented junction
+    { label: "15", R: -50.259, sd: 17.3 }, // D15 variable
+    { label: "16", R: 216.748, d: 15.0, sd: 17.3, medium: 9 },
+    { label: "17", R: -50.452, d: 2.566, sd: 17.3, medium: 10 }, // L9→L10 cemented junction
+    { label: "18", R: 122.664, d: 4.0, sd: 16.7 },
+    { label: "19", R: -51.592, d: 1.6, sd: 16.7, medium: 11 },
+    { label: "20", R: -270.536, d: 16.861, sd: 17.5 }, // computed paraxial BFD (not published)
   ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.85,
+    description:
+      "Inner focus: G2 (L5–L8, two cemented doublets) moves 12.10 mm toward the object from infinity to the patent's 0.85 m state while G1, the stop and G3 stay fixed. The published close gaps focus at about 0.858 m object-to-image in this model; Sony's 0.8 m manual-focus limit is not modeled.",
+  },
+
+  /* (moved from var) ── Variable air spacings ── Table 6: [infinity, 0.85 m state] */
+  gaps: { STO: { label: "D9", values: [[17.857, 5.761]] }, "15": { label: "D15", values: [[3.0, 15.097]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 1.45, fStops: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16], blades: 11 },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -306,27 +307,16 @@ const LENS_DATA = {
     { text: "G2 (FOCUS)", fromSurface: "10", toSurface: "15" },
     { text: "G3", fromSurface: "16", toSurface: "20" },
   ],
-
   doublets: [
     { text: "G2a", fromSurface: "10", toSurface: "12" },
     { text: "G2b", fromSurface: "13A", toSurface: "15" },
     { text: "G3a", fromSurface: "16", toSurface: "18" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.85,
-  focusDescription:
-    "Inner focus: G2 (L5–L8, two cemented doublets) moves 12.10 mm toward the object from infinity to the patent's 0.85 m state while G1, the stop and G3 stay fixed. The published close gaps focus at about 0.858 m object-to-image in this model; Sony's 0.8 m manual-focus limit is not modeled.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 1.45,
-  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16],
-  apertureBlades: 11,
-  gapSagFrac: 0.98,
-
   /* ── Layout tuning ── */
-  scFill: 0.55,
-  yScFill: 0.4,
-} satisfies LensDataInput;
+  layout: { scFill: 0.55, yScFill: 0.4 },
+
+  checks: { gapSagFrac: 0.98 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

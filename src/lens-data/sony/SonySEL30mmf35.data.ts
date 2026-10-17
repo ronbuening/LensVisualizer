@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -37,43 +37,34 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "sony-sel30mmf35",
   maker: "Sony",
   name: "SONY E 30mm f/3.5 Macro",
   subtitle: "JP 2012-159613 A Example 1 - Sony / Tamron",
-  specs: [
-    "30 mm f/3.5 APS-C E-mount",
-    "JP 2012-159613 A Example 1",
-    "7 elements / 6 groups; 9 modeled optical media",
-    "4 aspherical surfaces; 1 ED element",
-    "Internal focus; 1:1 macro",
-  ],
 
-  focalLengthMarketing: 30,
-  focalLengthDesign: 29.108,
-  apertureMarketing: 3.5,
-  apertureDesign: 3.6,
-  lensMounts: ["sony-fe"],
-  imageFormat: "aps-c",
-  patentNumber: "JP 2012-159613 A",
-  patentAuthors: ["Takahiko Sakai", "Masaharu Hosoi"],
-  patentAssignees: ["Sony Corporation","Tamron Co., Ltd."],
-  patentYear: 2012,
-  elementCount: 7,
-  groupCount: 6,
-  apertureBlades: 7,
+  catalog: {
+    lensMounts: ["sony-fe"],
+    imageFormat: "aps-c",
+    specs: [
+      "30 mm f/3.5 APS-C E-mount",
+      "JP 2012-159613 A Example 1",
+      "7 elements / 6 groups; 9 modeled optical media",
+      "4 aspherical surfaces; 1 ED element",
+      "Internal focus; 1:1 macro",
+    ],
+    elementCount: 7,
+    groupCount: 6,
+    focalLengthMm: { marketing: 30, design: 29.108 },
+    fNumber: { marketing: 3.5, design: 3.6 },
+  },
 
-  focusDescription:
-    "Internal focus by axial movement of the single negative G12/L121 hybrid focus element; G11 and G13 remain fixed. Patent Example 1 varies D11 from 1.51 to 7.57 mm and D14 from 12.43 to 6.36 mm.",
-
-  nominalFno: 3.6,
-  closeFocusM: 0.095,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  maxFstop: 22,
-  fstopSeries: [3.6, 4, 5.6, 8, 11, 16, 22],
-  scFill: 0.58,
-  yScFill: 0.72,
+  source: {
+    patentNumber: "JP 2012-159613 A",
+    patentYear: 2012,
+    authors: ["Takahiko Sakai", "Masaharu Hosoi"],
+    assignees: ["Sony Corporation", "Tamron Co., Ltd."],
+  },
 
   elements: [
     {
@@ -83,13 +74,13 @@ const LENS_DATA = {
       type: "Negative Meniscus (hybrid host)",
       nd: 1.618,
       vd: 63.4,
-      fl: -14.62,
+      focalLengthMm: -14.62,
       glass: "S-PHM52 (OHARA)",
+      role: "Front negative meniscus body for wide-angle entry and distortion control; the image-side resin cap carries the strong aspheric profile.",
+      cemented: "H1",
       nC: 1.61504,
       nF: 1.62479,
       ng: 1.6301,
-      cemented: "H1",
-      role: "Front negative meniscus body for wide-angle entry and distortion control; the image-side resin cap carries the strong aspheric profile.",
     },
     {
       id: 2,
@@ -99,8 +90,8 @@ const LENS_DATA = {
       nd: 1.5361,
       vd: 41.2,
       glass: "UV-curable optical resin (patent-listed nd/vd)",
-      cemented: "H1",
       role: "Thin resin cap carrying the surface 3A composite asphere.",
+      cemented: "H1",
     },
     {
       id: 3,
@@ -109,12 +100,12 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.64769,
       vd: 33.8,
-      fl: 20.5,
+      focalLengthMm: 20.5,
       glass: "S-TIM22 (OHARA, non-recommended dense flint)",
+      role: "Dense-flint positive collector behind L111; recovers part of the front meniscus divergence and participates in chromatic balancing.",
       nC: 1.6421,
       nF: 1.66126,
       ng: 1.67265,
-      role: "Dense-flint positive collector behind L111; recovers part of the front meniscus divergence and participates in chromatic balancing.",
     },
     {
       id: 4,
@@ -123,13 +114,13 @@ const LENS_DATA = {
       type: "Nearly Plano-Concave Negative",
       nd: 1.7552,
       vd: 27.5,
-      fl: -21.72,
+      focalLengthMm: -21.72,
       glass: "S-TIH4 (OHARA)",
+      role: "High-index dense flint negative half of the cemented achromat in G11R.",
+      cemented: "D1",
       nC: 1.7473,
       nF: 1.77475,
       ng: 1.7915,
-      cemented: "D1",
-      role: "High-index dense flint negative half of the cemented achromat in G11R.",
     },
     {
       id: 5,
@@ -138,15 +129,15 @@ const LENS_DATA = {
       type: "Biconvex Positive ED",
       nd: 1.497,
       vd: 81.6,
-      fl: 25.69,
+      focalLengthMm: 25.69,
       glass: "S-FPL51 (OHARA) / FCD1 class",
+      apd: "inferred",
+      apdNote: "Catalog ED fluorophosphate class; patent publishes nd/vd and line indices, but no dPgF.",
+      role: "Advertised ED element; high-Abbe positive partner to L113 for primary axial chromatic correction.",
+      cemented: "D1",
       nC: 1.49514,
       nF: 1.50123,
       ng: 1.50451,
-      apd: "inferred",
-      apdNote: "Catalog ED fluorophosphate class; patent publishes nd/vd and line indices, but no dPgF.",
-      cemented: "D1",
-      role: "Advertised ED element; high-Abbe positive partner to L113 for primary axial chromatic correction.",
     },
     {
       id: 6,
@@ -155,7 +146,7 @@ const LENS_DATA = {
       type: "Biconvex Positive (2x Asph)",
       nd: 1.59201,
       vd: 67,
-      fl: 14.94,
+      focalLengthMm: 14.94,
       glass: "M-PCD51 (Hoya, precision-molding phosphate crown)",
       role: "Principal positive-power element in G11R; both faces are aspherical and suitable for precision glass molding.",
     },
@@ -166,13 +157,13 @@ const LENS_DATA = {
       type: "Biconcave Negative (hybrid host)",
       nd: 1.48749,
       vd: 70.4,
-      fl: -18.39,
+      focalLengthMm: -18.39,
       glass: "S-FSL5 (OHARA) / N-FK5 class",
+      role: "Single moving negative focus element; low-dispersion crown body helps keep chromatic behavior stable through focus.",
+      cemented: "H2",
       nC: 1.48534,
       nF: 1.49228,
       ng: 1.49596,
-      cemented: "H2",
-      role: "Single moving negative focus element; low-dispersion crown body helps keep chromatic behavior stable through focus.",
     },
     {
       id: 8,
@@ -182,8 +173,8 @@ const LENS_DATA = {
       nd: 1.5361,
       vd: 41.2,
       glass: "UV-curable optical resin (patent-listed nd/vd)",
-      cemented: "H2",
       role: "Thin resin cap carrying the surface 14A focus-group asphere.",
+      cemented: "H2",
     },
     {
       id: 9,
@@ -192,81 +183,52 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.53172,
       vd: 48.8,
-      fl: 49.3,
+      focalLengthMm: 49.3,
       glass: "S-TIL6 (OHARA) / N-LLF6 class",
+      role: "Fixed rear positive relay element; converges the focus-modulated cone to the fixed image plane and helps balance lateral color.",
       nC: 1.52846,
       nF: 1.53934,
       ng: 1.54547,
-      role: "Fixed rear positive relay element; converges the focus-modulated cone to the fixed image plane and helps balance lateral color.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 49.294, d: 0.7, nd: 1.618, elemId: 1, sd: 6.0 },
-    { label: "2", R: 8.281, d: 0.2, nd: 1.5361, elemId: 2, sd: 6.0 },
-    { label: "3A", R: 7.498, d: 3.0, nd: 1.0, elemId: 0, sd: 6.0 },
-    { label: "4", R: 16.94, d: 2.68, nd: 1.64769, elemId: 3, sd: 6.5 },
-    { label: "5", R: -57.578, d: 4.9, nd: 1.0, elemId: 0, sd: 6.5 },
-    { label: "STO", R: 1e15, d: 5.8, nd: 1.0, elemId: 0, sd: 5.16785 },
-    { label: "7", R: -700.0, d: 0.7, nd: 1.7552, elemId: 4, sd: 6.9 },
-    { label: "8", R: 16.807, d: 2.9, nd: 1.497, elemId: 5, sd: 7.1 },
-    { label: "9", R: -50.056, d: 0.5, nd: 1.0, elemId: 0, sd: 7.5 },
-    { label: "10A", R: 21.061, d: 3.87, nd: 1.59201, elemId: 6, sd: 7.7 },
-    { label: "11A", R: -14.209, d: 1.51, nd: 1.0, elemId: 0, sd: 7.7 },
-    { label: "12", R: -46.085, d: 0.7, nd: 1.48749, elemId: 7, sd: 7.5 },
-    { label: "13", R: 13.045, d: 0.2, nd: 1.5361, elemId: 8, sd: 7.5 },
-    { label: "14A", R: 11.339, d: 12.43, nd: 1.0, elemId: 0, sd: 7.5 },
-    { label: "15", R: 37.899, d: 3.92, nd: 1.53172, elemId: 9, sd: 13.0 },
-    { label: "16", R: -81.945, d: 27.3, nd: 1.0, elemId: 0, sd: 13.0 },
+    { label: "1", R: 49.294, d: 0.7, sd: 6.0, medium: 1 },
+    { label: "2", R: 8.281, d: 0.2, sd: 6.0, medium: 2 },
+    { label: "3A", R: 7.498, d: 3.0, sd: 6.0, asphere: { K: 0, A4: -1.8909e-4, A6: -2.41e-6, A8: -4.47e-8, A10: -4.27e-10 } },
+    { label: "4", R: 16.94, d: 2.68, sd: 6.5, medium: 3 },
+    { label: "5", R: -57.578, d: 4.9, sd: 6.5 },
+    { label: "STO", R: "flat", d: 5.8 },
+    { label: "7", R: -700.0, d: 0.7, sd: 6.9, medium: 4 },
+    { label: "8", R: 16.807, d: 2.9, sd: 7.1, medium: 5 },
+    { label: "9", R: -50.056, d: 0.5, sd: 7.5 },
+    {
+      label: "10A",
+      R: 21.061,
+      d: 3.87,
+      sd: 7.7,
+      medium: 6,
+      asphere: { K: 0, A4: -5.7937e-5, A6: 1.0969e-6, A8: -2.7388e-8, A10: 3.8051e-10 },
+    },
+    { label: "11A", R: -14.209, sd: 7.7, asphere: { K: 0, A4: 5.1068e-5, A6: 1.2754e-6, A8: -3.1751e-8, A10: 4.214e-10 } },
+    { label: "12", R: -46.085, d: 0.7, sd: 7.5, medium: 7 },
+    { label: "13", R: 13.045, d: 0.2, sd: 7.5, medium: 8 },
+    { label: "14A", R: 11.339, sd: 7.5, asphere: { K: 0, A4: -6.9421e-5, A6: -3.4378e-7, A8: -6.9182e-9, A10: 6.8268e-11 } },
+    { label: "15", R: 37.899, d: 3.92, sd: 13.0, medium: 9 },
+    { label: "16", R: -81.945, d: 27.3, sd: 13.0 },
   ],
 
-  asph: {
-    "3A": {
-      K: 0,
-      A4: -1.8909e-4,
-      A6: -2.41e-6,
-      A8: -4.47e-8,
-      A10: -4.27e-10,
-      A12: 0,
-      A14: 0,
-    },
-    "10A": {
-      K: 0,
-      A4: -5.7937e-5,
-      A6: 1.0969e-6,
-      A8: -2.7388e-8,
-      A10: 3.8051e-10,
-      A12: 0,
-      A14: 0,
-    },
-    "11A": {
-      K: 0,
-      A4: 5.1068e-5,
-      A6: 1.2754e-6,
-      A8: -3.1751e-8,
-      A10: 4.214e-10,
-      A12: 0,
-      A14: 0,
-    },
-    "14A": {
-      K: 0,
-      A4: -6.9421e-5,
-      A6: -3.4378e-7,
-      A8: -6.9182e-9,
-      A10: 6.8268e-11,
-      A12: 0,
-      A14: 0,
-    },
+  focus: {
+    closeFocusM: 0.095,
+    description:
+      "Internal focus by axial movement of the single negative G12/L121 hybrid focus element; G11 and G13 remain fixed. Patent Example 1 varies D11 from 1.51 to 7.57 mm and D14 from 12.43 to 6.36 mm.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
   },
 
-  var: {
-    "11A": [1.51, 7.57],
-    "14A": [12.43, 6.36],
-  },
-  varLabels: [
-    ["11A", "D11"],
-    ["14A", "D14"],
-  ],
+  gaps: { "11A": { label: "D11", values: [[1.51, 7.57]] }, "14A": { label: "D14", values: [[12.43, 6.36]] } },
+
+  aperture: { nominalFNumber: 3.6, fStops: [3.6, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 7 },
 
   groups: [
     { text: "G11F", fromSurface: "1", toSurface: "5" },
@@ -279,6 +241,8 @@ const LENS_DATA = {
     { text: "D1", fromSurface: "7", toSurface: "9" },
     { text: "H2", fromSurface: "12", toSurface: "14A" },
   ],
-} satisfies LensDataInput;
+
+  layout: { scFill: 0.58, yScFill: 0.72 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

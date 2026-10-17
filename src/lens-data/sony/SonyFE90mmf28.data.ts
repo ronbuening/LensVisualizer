@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -44,25 +44,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "sony-fe-90mm-f2p8-macro",
   maker: "Sony",
   name: "SONY FE 90mm f/2.8 Macro G OSS",
   subtitle: "WO 2016/136352 A1 Example 2 — Sony / Uehara, Kanetaka, Uno",
-  specs: ["15 ELEMENTS / 11 GROUPS", "f ≈ 92.6 mm", "F/2.8", "2ω ≈ 26.3°", "1 ASPHERICAL SURFACE"],
 
-  /* ── Explicit metadata fields ── */
-  focalLengthMarketing: 90,
-  focalLengthDesign: 92.63,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.88,
-  lensMounts: ["sony-fe"],
-  imageFormat: "135-full-frame",
-  patentNumber: "WO 2016/136352 A1",
-  patentAuthors: ["Yumiko Uehara", "Fumikazu Kanetaka", "Hisashi Uno"],
-  patentAssignees: ["Sony Corporation"],
-  patentYear: 2016,
-  elementCount: 15,
-  groupCount: 11,
+  catalog: {
+    lensMounts: ["sony-fe"],
+    imageFormat: "135-full-frame",
+    specs: ["15 ELEMENTS / 11 GROUPS", "f ≈ 92.6 mm", "F/2.8", "2ω ≈ 26.3°", "1 ASPHERICAL SURFACE"],
+    elementCount: 15,
+    groupCount: 11,
+    /* ── Explicit metadata fields ── */
+    focalLengthMm: { marketing: 90, design: 92.63 },
+    fNumber: { marketing: 2.8, design: 2.88 },
+  },
+
+  source: {
+    patentNumber: "WO 2016/136352 A1",
+    patentYear: 2016,
+    authors: ["Yumiko Uehara", "Fumikazu Kanetaka", "Hisashi Uno"],
+    assignees: ["Sony Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -73,7 +77,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7292,
       vd: 54.67,
-      fl: 77.27,
+      focalLengthMm: 77.27,
       glass: "S-LAL18 (OHARA)",
       apd: false,
       role: "Front positive biconvex; carries maximum chief-ray height in GR1",
@@ -85,14 +89,14 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
-      fl: 134.1,
+      focalLengthMm: 134.1,
       glass: "S-FPL51 (OHARA)",
       apd: "inferred",
-      dPgF: 0.030928,
       apdNote:
         "ED glass. Patent prints no partial dispersion; catalog-derived: S-FPL51 catalog PgF = 0.5375 (OHARA's ΔPg,F = +0.0280 is against OHARA's own line), runtime dPgF +0.03093.",
       role: "ED anomalous-low-dispersion crown; cemented to G3 for secondary-spectrum correction in GR1",
       cemented: "Da",
+      dPgF: 0.030928,
     },
     {
       id: 3,
@@ -101,7 +105,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.8467,
       vd: 23.78,
-      fl: -61.0,
+      focalLengthMm: -61.0,
       glass: "S-TIH53 (OHARA)",
       apd: false,
       role: "Heavy titanium dense flint; achromatic partner of ED G2 in cemented doublet",
@@ -114,7 +118,7 @@ const LENS_DATA = {
       type: "Positive Meniscus (1× Asph)",
       nd: 1.768,
       vd: 49.24,
-      fl: 66.54,
+      focalLengthMm: 66.54,
       glass: "MC-TAF101-100 (HOYA)",
       apd: false,
       role: "Rear surface S7 is the only asphere; corrects high-order spherical aberration at high marginal-ray height in GR1",
@@ -126,7 +130,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.62,
-      fl: -48.01,
+      focalLengthMm: -48.01,
       glass: "S-LAH66 (OHARA)",
       apd: false,
       role: "Entry of 1st focus group GR2; gentle front (R=+235), strong rear (R=+32)",
@@ -138,7 +142,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7292,
       vd: 54.67,
-      fl: -35.15,
+      focalLengthMm: -35.15,
       glass: "S-LAL18 (OHARA)",
       apd: false,
       role: "Negative element in GR2; cemented to G7 for chromatic control of focus group",
@@ -151,7 +155,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.9229,
       vd: 20.88,
-      fl: 49.52,
+      focalLengthMm: 49.52,
       glass: "PBH21 (OHARA; historical 923209)",
       apd: false,
       role: "Very-high-index, very-high-dispersion meniscus; achromatic partner of G6 in GR2",
@@ -164,7 +168,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8061,
       vd: 33.27,
-      fl: -105.12,
+      focalLengthMm: -105.12,
       glass: "High-index Nb dense flint (806333)",
       apd: false,
       role: "OSS group GR3 negative element; cemented to G9 for achromatised lateral-shift stabilisation",
@@ -177,7 +181,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.4875,
       vd: 70.44,
-      fl: 53.31,
+      focalLengthMm: 53.31,
       glass: "S-FSL5 (OHARA)",
       apd: false,
       role: "Low-dispersion crown in OSS group GR3; achromatic partner of G8",
@@ -190,7 +194,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7292,
       vd: 54.67,
-      fl: 56.24,
+      focalLengthMm: 56.24,
       glass: "S-LAL18 (OHARA)",
       apd: false,
       role: "Entry of 2nd focus group GR4",
@@ -202,14 +206,14 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.437,
       vd: 95.1,
-      fl: 63.47,
+      focalLengthMm: 63.47,
       glass: "FCD100 (HOYA)",
       apd: "inferred",
-      dPgF: 0.049777,
       apdNote:
         "Super ED glass. Patent prints no partial dispersion; catalog-derived: FCD100 catalog PgF = 0.5336; ΔPg,F = +0.0564 by HOYA's line (PgF − 0.64833 + 0.00180·νd), runtime dPgF +0.04978.",
       role: "Super ED fluorophosphate in GR4; cemented to G12 for apochromatic correction in the 2nd focus group",
       cemented: "Dd",
+      dPgF: 0.049777,
     },
     {
       id: 12,
@@ -218,7 +222,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6727,
       vd: 32.17,
-      fl: -70.3,
+      focalLengthMm: -70.3,
       glass: "S-TIM25 (OHARA)",
       apd: false,
       role: "Titanium flint; chromatic partner of Super ED G11 in GR4",
@@ -231,7 +235,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.9037,
       vd: 31.32,
-      fl: 108.33,
+      focalLengthMm: 108.33,
       glass: "S-LAH95 (OHARA)",
       apd: false,
       role: "Positive meniscus in fixed final group GR5; concave to object",
@@ -243,7 +247,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6584,
       vd: 50.85,
-      fl: -66.98,
+      focalLengthMm: -66.98,
       glass: "N-SSK5 (Schott)",
       apd: false,
       role: "Equiconcave negative element in GR5; R_front = −R_rear (single-tooling manufacturing simplification)",
@@ -255,7 +259,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6968,
       vd: 55.46,
-      fl: -64.02,
+      focalLengthMm: -64.02,
       glass: "S-LAL14 (OHARA)",
       apd: false,
       role: "Final element of GR5; rear S27 is convex toward image to suppress ghost generation [paragraph 0050]",
@@ -263,46 +267,86 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ──
+   *  Patent formula (κ convention):
+   *  x = c·y² / [1 + √(1 − (1+κ)·c²·y²)] + A·y⁴ + B·y⁶ + C·y⁸ + D·y¹⁰
+   *  κ = 0 → K = 0 (spherical base); aspheric departure is entirely polynomial.
+   */
   surfaces: [
     // ──── GR1: Object-side group (4 elements, fixed) ────
-    { label: "1", R: 60.7452, d: 6.483, nd: 1.7292, elemId: 1, sd: 19.6 }, // G1 front
-    { label: "2", R: -742.4113, d: 0.5, nd: 1.0, elemId: 0, sd: 18.7 }, // G1 rear → air
-    { label: "3", R: 85.188, d: 4.575, nd: 1.497, elemId: 2, sd: 17.4 }, // G2 front (cemented Da)
-    { label: "4", R: -300.7794, d: 1.8, nd: 1.8467, elemId: 3, sd: 16.4 }, // G2/G3 junction → G3
-    { label: "5", R: 62.5282, d: 0.5, nd: 1.0, elemId: 0, sd: 16.1 }, // G3 rear → air
-    { label: "6", R: 46.3651, d: 4.722, nd: 1.768, elemId: 4, sd: 15.4 }, // G4 front
-    { label: "7A", R: 478.0475, d: 2.8, nd: 1.0, elemId: 0, sd: 14.5 }, // G4 rear (asph) → air [d7 variable]
+    { label: "1", R: 60.7452, d: 6.483, sd: 19.6, medium: 1 }, // G1 front
+    { label: "2", R: -742.4113, d: 0.5, sd: 18.7 }, // G1 rear → air
+    { label: "3", R: 85.188, d: 4.575, sd: 17.4, medium: 2 }, // G2 front (cemented Da)
+    { label: "4", R: -300.7794, d: 1.8, sd: 16.4, medium: 3 }, // G2/G3 junction → G3
+    { label: "5", R: 62.5282, d: 0.5, sd: 16.1 }, // G3 rear → air
+    { label: "6", R: 46.3651, d: 4.722, sd: 15.4, medium: 4 }, // G4 front
+    {
+      label: "7A",
+      R: 478.0475,
+      sd: 14.5,
+      asphere: { K: 0, A4: 1.68758e-6, A6: -2.23231e-10, A8: -6.57918e-13, A10: 1.65445e-15 },
+    }, // G4 rear (asph) → air [d7 variable]
 
     // ──── GR2: 1st focus group (3 elements, moves toward image) ────
-    { label: "8", R: 235.4026, d: 1.2, nd: 1.7725, elemId: 5, sd: 13.6 }, // G5 front
-    { label: "9", R: 31.968, d: 4.165, nd: 1.0, elemId: 0, sd: 13.1 }, // G5 rear → air
-    { label: "10", R: -120.8878, d: 1.2, nd: 1.7292, elemId: 6, sd: 13.1 }, // G6 front (cemented Db)
-    { label: "11", R: 32.6584, d: 3.067, nd: 1.9229, elemId: 7, sd: 13.1 }, // G6/G7 junction → G7
-    { label: "12", R: 109.2743, d: 22.92, nd: 1.0, elemId: 0, sd: 13.0 }, // G7 rear → air [d12 variable]
+    { label: "8", R: 235.4026, d: 1.2, sd: 13.6, medium: 5 }, // G5 front
+    { label: "9", R: 31.968, d: 4.165, sd: 13.1 }, // G5 rear → air
+    { label: "10", R: -120.8878, d: 1.2, sd: 13.1, medium: 6 }, // G6 front (cemented Db)
+    { label: "11", R: 32.6584, d: 3.067, sd: 13.1, medium: 7 }, // G6/G7 junction → G7
+    { label: "12", R: 109.2743, sd: 13.0 }, // G7 rear → air [d12 variable]
 
     // ──── GR3: Anti-vibration / OSS group (2 elements, fixed axially, lateral-shift for stabilisation) ────
-    { label: "13", R: 44.4665, d: 1.2, nd: 1.8061, elemId: 8, sd: 14.3 }, // G8 front (cemented Dc)
-    { label: "14", R: 28.8115, d: 5.8, nd: 1.4875, elemId: 9, sd: 14.2 }, // G8/G9 junction → G9
-    { label: "15", R: -247.5076, d: 3.19, nd: 1.0, elemId: 0, sd: 14.0 }, // G9 rear → air
+    { label: "13", R: 44.4665, d: 1.2, sd: 14.3, medium: 8 }, // G8 front (cemented Dc)
+    { label: "14", R: 28.8115, d: 5.8, sd: 14.2, medium: 9 }, // G8/G9 junction → G9
+    { label: "15", R: -247.5076, d: 3.19, sd: 14.0 }, // G9 rear → air
 
     // ──── Aperture stop (fixed) ────
-    { label: "STO", R: 1e15, d: 23.22, nd: 1.0, elemId: 0, sd: 13.0 }, // [d16 variable]
+    { label: "STO", R: "flat" }, // [d16 variable]
 
     // ──── GR4: 2nd focus group (3 elements, moves toward object) ────
-    { label: "17", R: 89.3718, d: 3.942, nd: 1.7292, elemId: 10, sd: 14.3 }, // G10 front
-    { label: "18", R: -74.3718, d: 0.5, nd: 1.0, elemId: 0, sd: 14.1 }, // G10 rear → air
-    { label: "19", R: 100.2759, d: 5.427, nd: 1.437, elemId: 11, sd: 14.0 }, // G11 front (cemented Dd)
-    { label: "20", R: -37.7081, d: 1.28, nd: 1.6727, elemId: 12, sd: 12.9 }, // G11/G12 junction → G12
-    { label: "21", R: -188.5814, d: 7.49, nd: 1.0, elemId: 0, sd: 12.8 }, // G12 rear → air [d21 variable]
+    { label: "17", R: 89.3718, d: 3.942, sd: 14.3, medium: 10 }, // G10 front
+    { label: "18", R: -74.3718, d: 0.5, sd: 14.1 }, // G10 rear → air
+    { label: "19", R: 100.2759, d: 5.427, sd: 14.0, medium: 11 }, // G11 front (cemented Dd)
+    { label: "20", R: -37.7081, d: 1.28, sd: 12.9, medium: 12 }, // G11/G12 junction → G12
+    { label: "21", R: -188.5814, sd: 12.8 }, // G12 rear → air [d21 variable]
 
     // ──── GR5: Final group (3 elements, fixed) ────
-    { label: "22", R: -76.0642, d: 2.432, nd: 1.9037, elemId: 13, sd: 10.9 }, // G13 front
-    { label: "23", R: -43.4556, d: 1.5, nd: 1.0, elemId: 0, sd: 10.8 }, // G13 rear → air
-    { label: "24", R: -88.4506, d: 1.3, nd: 1.6584, elemId: 14, sd: 10.3 }, // G14 front
-    { label: "25", R: 88.4506, d: 6.245, nd: 1.0, elemId: 0, sd: 10.1 }, // G14 rear → air
-    { label: "26", R: -27.8033, d: 1.3, nd: 1.6968, elemId: 15, sd: 11.2 }, // G15 front
-    { label: "27", R: -75.2165, d: 22.747, nd: 1.0, elemId: 0, sd: 12.0 }, // G15 rear → patent gap to filter FL
+    { label: "22", R: -76.0642, d: 2.432, sd: 10.9, medium: 13 }, // G13 front
+    { label: "23", R: -43.4556, d: 1.5, sd: 10.8 }, // G13 rear → air
+    { label: "24", R: -88.4506, d: 1.3, sd: 10.3, medium: 14 }, // G14 front
+    { label: "25", R: 88.4506, d: 6.245, sd: 10.1 }, // G14 rear → air
+    { label: "26", R: -27.8033, d: 1.3, sd: 11.2, medium: 15 }, // G15 front
+    { label: "27", R: -75.2165, d: 22.747, sd: 12.0 }, // G15 rear → patent gap to filter FL
   ],
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.28,
+    /* ── Variable air spacings (floating dual-group inner focus) ──
+     *  GR2 (1st focus) moves toward image: d7 grows, d12 shrinks.
+     *  GR4 (2nd focus) moves toward object: d16 shrinks, d21 grows.
+     *  Total variable-gap sum is conserved (118.76 mm optical track, ±0.01 mm rounding).
+     *  Patent Table 8: magnification 0.0 (infinity), −0.5×, −1.0× (1:1).
+     *  Close focus distance: d_close column uses the −1.0× (1:1) values.
+     */
+    keyframes: [0, 0.8075766830717322, 1],
+    description:
+      "Floating dual-group inner focus (Dual DDSSM). GR2 retreats toward image; GR4 advances toward object. 1:1 macro capable.",
+    // (moved from publishedStations) Every focus keyframe is a source row.
+    published: [1, 2],
+  },
+
+  gaps: {
+    "7A": { label: "D7", values: [[2.8, 11.89, 22.17]] }, // GR1 ↔ GR2 gap (d7)
+    "12": { label: "D12", values: [[22.92, 13.83, 3.54]] }, // GR2 ↔ GR3 gap (d12)
+    STO: { label: "D16", values: [[23.22, 13.23, 5.0]] }, // STO ↔ GR4 gap (d16)
+    "21": { label: "D21", values: [[7.49, 17.48, 25.71]] }, // GR4 ↔ GR5 gap (d21)
+  },
+
+  /* ── Aperture configuration ── */
+  aperture: {
+    nominalFNumber: 2.88,
+    fStops: [2.88, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 7.1, 8, 9, 10, 11, 13, 14, 16, 18, 20, 22],
+  },
 
   /* ── Optical filter FL (patent Table 5 surfaces 28–29): traced, not drawn ── */
   rearPlates: [
@@ -317,45 +361,6 @@ const LENS_DATA = {
     },
   ],
 
-  /* ── Aspherical coefficients ──
-   *  Patent formula (κ convention):
-   *  x = c·y² / [1 + √(1 − (1+κ)·c²·y²)] + A·y⁴ + B·y⁶ + C·y⁸ + D·y¹⁰
-   *  κ = 0 → K = 0 (spherical base); aspheric departure is entirely polynomial.
-   */
-  asph: {
-    "7A": {
-      K: 0,
-      A4: 1.68758e-6,
-      A6: -2.23231e-10,
-      A8: -6.57918e-13,
-      A10: 1.65445e-15,
-      A12: 0,
-      A14: 0,
-    },
-  },
-
-  /* ── Variable air spacings (floating dual-group inner focus) ──
-   *  GR2 (1st focus) moves toward image: d7 grows, d12 shrinks.
-   *  GR4 (2nd focus) moves toward object: d16 shrinks, d21 grows.
-   *  Total variable-gap sum is conserved (118.76 mm optical track, ±0.01 mm rounding).
-   *  Patent Table 8: magnification 0.0 (infinity), −0.5×, −1.0× (1:1).
-   *  Close focus distance: d_close column uses the −1.0× (1:1) values.
-   */
-  focusPositions: [0, 0.8075766830717322, 1],
-  var: {
-    "7A": [2.8, 11.89, 22.17], // GR1 ↔ GR2 gap (d7)
-    "12": [22.92, 13.83, 3.54], // GR2 ↔ GR3 gap (d12)
-    STO: [23.22, 13.23, 5.0], // STO ↔ GR4 gap (d16)
-    "21": [7.49, 17.48, 25.71], // GR4 ↔ GR5 gap (d21)
-  },
-
-  varLabels: [
-    ["7A", "D7"],
-    ["12", "D12"],
-    ["STO", "D16"],
-    ["21", "D21"],
-  ],
-
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "GR1 (fixed)", fromSurface: "1", toSurface: "7A" },
@@ -364,7 +369,6 @@ const LENS_DATA = {
     { text: "GR4 (focus→object)", fromSurface: "17", toSurface: "21" },
     { text: "GR5 (fixed)", fromSurface: "22", toSurface: "27" },
   ],
-
   doublets: [
     { text: "Da", fromSurface: "3", toSurface: "5" },
     { text: "Db", fromSurface: "10", toSurface: "12" },
@@ -372,20 +376,8 @@ const LENS_DATA = {
     { text: "Dd", fromSurface: "19", toSurface: "21" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.28,
-  // Every focus keyframe is a source row.
-  publishedStations: { focus: [1, 2] },
-  focusDescription:
-    "Floating dual-group inner focus (Dual DDSSM). GR2 retreats toward image; GR4 advances toward object. 1:1 macro capable.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.88,
-  fstopSeries: [2.88, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 7.1, 8, 9, 10, 11, 13, 14, 16, 18, 20, 22],
-
   /* ── Layout tuning ── */
-  scFill: 0.48,
-  yScFill: 0.28,
-} satisfies LensDataInput;
+  layout: { scFill: 0.48, yScFill: 0.28 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -29,25 +29,29 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "sonnar-e-24f18-za",
   maker: "Sony",
   name: "SONY SONNAR T* E 24mm f/1.8 ZA",
   subtitle: "US 2013/0033768 A1 Example 2 — Sony / Sunaga, Otake, Hosoi",
-  specs: ["8 ELEMENTS / 7 GROUPS", "f ≈ 23.3 mm", "F/1.8", "2ω ≈ 61.7°", "3 ASPHERICAL SURFACES"],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: 24,
-  focalLengthDesign: 23.28,
-  apertureMarketing: 1.8,
-  apertureDesign: 1.85,
-  lensMounts: ["sony-fe"],
-  imageFormat: "aps-c",
-  patentNumber: "US 2013/0033768 A1",
-  patentAuthors: ["Toshihiro Sunaga", "Motoyuki Ohtake", "Masaharu Hosoi"],
-  patentAssignees: ["Sony Corporation"],
-  patentYear: 2013,
-  elementCount: 8,
-  groupCount: 7,
+  catalog: {
+    lensMounts: ["sony-fe"],
+    imageFormat: "aps-c",
+    specs: ["8 ELEMENTS / 7 GROUPS", "f ≈ 23.3 mm", "F/1.8", "2ω ≈ 61.7°", "3 ASPHERICAL SURFACES"],
+    elementCount: 8,
+    groupCount: 7,
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: 24, design: 23.28 },
+    fNumber: { marketing: 1.8, design: 1.85 },
+  },
+
+  source: {
+    patentNumber: "US 2013/0033768 A1",
+    patentYear: 2013,
+    authors: ["Toshihiro Sunaga", "Motoyuki Ohtake", "Masaharu Hosoi"],
+    assignees: ["Sony Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -58,7 +62,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.487,
       vd: 70.44,
-      fl: -38.5,
+      focalLengthMm: -38.5,
       glass: "S-FSL5 (OHARA)",
       apd: false,
       role: "Front negative meniscus of GR1a wide-converter subgroup; low-dispersion fluorophosphate crown minimises chromatic load from the steeply curved rear surface.",
@@ -70,7 +74,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.589,
       vd: 61.25,
-      fl: -60.5,
+      focalLengthMm: -60.5,
       glass: "N-SK5 (Schott)",
       apd: false,
       role: "Second diverging element of GR1a; rear aspherical surface (S4) corrects distortion and coma from the steep G1 curvature.",
@@ -82,7 +86,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.835,
       vd: 42.72,
-      fl: 22.9,
+      focalLengthMm: 22.9,
       glass: "S-LAH55V (OHARA)",
       apd: false,
       role: "Strongest positive element; high-index lanthanum crown collimates the beam before the stop. Likely precision glass-molded (PGM).",
@@ -94,11 +98,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.755,
       vd: 27.53,
-      fl: -12.2,
+      focalLengthMm: -12.2,
       glass: "S-TIH4 (OHARA)",
       apd: false,
-      cemented: "D1",
       role: "Negative component of the achromatic cemented doublet (GR1b); high-dispersion titanium flint paired with ED-class G5 for primary chromatic correction.",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -107,13 +111,13 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.618,
       vd: 63.4,
-      fl: 20.3,
+      focalLengthMm: 20.3,
       glass: "S-PHM52 (OHARA)",
       apd: "inferred",
       apdNote:
         "ED-class phosphate crown with anomalous partial dispersion (νd = 63.4); designated as the ED element in Sony specifications.",
-      cemented: "D1",
       role: "Positive component of the achromatic doublet; phosphate crown (ED) provides secondary-spectrum reduction when paired with the dense flint G4.",
+      cemented: "D1",
     },
     {
       id: 6,
@@ -122,7 +126,7 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.801,
       vd: 45.45,
-      fl: 18.6,
+      focalLengthMm: 18.6,
       glass: "M-TAF31 (HOYA catalog-equivalent to patent 801454; production supplier unspecified)",
       apd: false,
       role: "Final element of GR1; double-aspherical biconvex carries second-strongest positive power. Front asphere corrects SA, rear asphere corrects off-axis field aberrations.",
@@ -134,7 +138,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.697,
       vd: 55.46,
-      fl: -35.0,
+      focalLengthMm: -35.0,
       glass: "N-LAK14 (Schott)",
       apd: false,
       role: "Sole element of GR2 (inner-focus group); lightweight single meniscus enables high-speed AF. Steep image-side curvature flips off-axis beam to shorten total length.",
@@ -146,7 +150,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.618,
       vd: 63.4,
-      fl: 49.7,
+      focalLengthMm: 49.7,
       glass: "S-PHM52 (OHARA)",
       apd: "inferred",
       apdNote: "Same ED-class glass as G5; provides chromatic symmetry across the focus group.",
@@ -155,74 +159,67 @@ const LENS_DATA = {
   ],
 
   /* ── Surfaces ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     // ── GR1a: before stop (G1, G2, G3) ──
-    { label: "1", R: 52.254, d: 1.0, nd: 1.487, elemId: 1, sd: 12.0 },
-    { label: "2", R: 13.715, d: 5.495, nd: 1.0, elemId: 0, sd: 11.7 },
-    { label: "3", R: 25.387, d: 1.0, nd: 1.589, elemId: 2, sd: 11.4 },
-    { label: "4A", R: 14.61, d: 3.0, nd: 1.0, elemId: 0, sd: 11.2 },
-    { label: "5", R: 18.86, d: 4.197, nd: 1.835, elemId: 3, sd: 11.6 },
-    { label: "6", R: 1119.73, d: 9.292, nd: 1.0, elemId: 0, sd: 10.7 },
+    { label: "1", R: 52.254, d: 1.0, sd: 12.0, medium: 1 },
+    { label: "2", R: 13.715, d: 5.495, sd: 11.7 },
+    { label: "3", R: 25.387, d: 1.0, sd: 11.4, medium: 2 },
+    {
+      label: "4A",
+      R: 14.61,
+      d: 3.0,
+      sd: 11.2,
+      asphere: { K: 0, A4: -3.65895e-5, A6: -2.02766e-7, A8: 1.66758e-10, A10: -6.21785e-12 },
+    },
+    { label: "5", R: 18.86, d: 4.197, sd: 11.6, medium: 3 },
+    { label: "6", R: 1119.73, d: 9.292, sd: 10.7 },
 
     // ── Aperture stop ──
-    { label: "STO", R: 1e15, d: 4.238, nd: 1.0, elemId: 0, sd: 7.3 },
+    { label: "STO", R: "flat", d: 4.238 },
 
     // ── GR1b: after stop (G4+G5 cemented doublet, G6 double-asph) ──
-    { label: "8", R: -11.656, d: 1.0, nd: 1.755, elemId: 4, sd: 8.5 },
-    { label: "9", R: 45.55, d: 4.655, nd: 1.618, elemId: 5, sd: 8.5 },
-    { label: "10", R: -16.688, d: 0.4, nd: 1.0, elemId: 0, sd: 10.5 },
-    { label: "11A", R: 31.808, d: 5.0, nd: 1.801, elemId: 6, sd: 10.8 },
-    { label: "12A", R: -26.041, d: 1.005, nd: 1.0, elemId: 0, sd: 11.0 },
+    { label: "8", R: -11.656, d: 1.0, sd: 8.5, medium: 4 },
+    { label: "9", R: 45.55, d: 4.655, sd: 8.5, medium: 5 },
+    { label: "10", R: -16.688, d: 0.4, sd: 10.5 },
+    {
+      label: "11A",
+      R: 31.808,
+      d: 5.0,
+      sd: 10.8,
+      medium: 6,
+      asphere: { K: 0, A4: -1.28119e-5, A6: 2.85341e-8, A8: 0, A10: 0, A12: 0, A14: 0 },
+    },
+    {
+      label: "12A",
+      R: -26.041,
+      sd: 11.0,
+      asphere: { K: 0, A4: 2.49503e-5, A6: -3.18958e-8, A8: 2.80615e-10, A10: -6.64956e-13 },
+    },
 
     // ── GR2: focus group (G7) ──
-    { label: "13", R: 138.976, d: 1.0, nd: 1.697, elemId: 7, sd: 10.8 },
-    { label: "14", R: 20.701, d: 7.603, nd: 1.0, elemId: 0, sd: 10.6 },
+    { label: "13", R: 138.976, d: 1.0, sd: 10.8, medium: 7 },
+    { label: "14", R: 20.701, sd: 10.6 },
 
     // ── GR3: rear relay (G8) ──
-    { label: "15", R: 344.293, d: 3.74, nd: 1.618, elemId: 8, sd: 11.3 },
-    { label: "16", R: -33.618, d: 22.374, nd: 1.0, elemId: 0, sd: 11.5 },
+    { label: "15", R: 344.293, d: 3.74, sd: 11.3, medium: 8 },
+    { label: "16", R: -33.618, d: 22.374, sd: 11.5 },
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {
-    "4A": {
-      K: 0,
-      A4: -3.65895e-5,
-      A6: -2.02766e-7,
-      A8: 1.66758e-10,
-      A10: -6.21785e-12,
-      A12: 0,
-      A14: 0,
-    },
-    "11A": {
-      K: 0,
-      A4: -1.28119e-5,
-      A6: 2.85341e-8,
-      A8: 0,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
-    "12A": {
-      K: 0,
-      A4: 2.49503e-5,
-      A6: -3.18958e-8,
-      A8: 2.80615e-10,
-      A10: -6.64956e-13,
-      A12: 0,
-      A14: 0,
-    },
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.16,
+    description: "Inner focus: single negative meniscus G7 (GR2) translates axially. Linear AF motor.",
+    // (moved from publishedStations) Patent read 2026-10-06: Close-focus gaps D12 = 5.133 and D14 = 3.474 are the patent's Table 6 short-range row
+    // for Example 2 at beta = -0.25, unscaled.
+    published: [1],
   },
 
-  /* ── Variable air spacings (inner focus) ── */
-  var: {
-    "12A": [1.005, 5.133],
-    "14": [7.603, 3.474],
-  },
-  varLabels: [
-    ["12A", "D12"],
-    ["14", "BF"],
-  ],
+  /* (moved from var) ── Variable air spacings (inner focus) ── */
+  gaps: { "12A": { label: "D12", values: [[1.005, 5.133]] }, "14": { label: "BF", values: [[7.603, 3.474]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 1.85, fStops: [1.85, 2, 2.8, 4, 5.6, 8, 11, 16, 22], blades: 7 },
 
   /* ── Group annotations ── */
   groups: [
@@ -230,24 +227,10 @@ const LENS_DATA = {
     { text: "GR2 (FOCUS)", fromSurface: "13", toSurface: "14" },
     { text: "GR3 (FIXED)", fromSurface: "15", toSurface: "16" },
   ],
-
   doublets: [{ text: "D1", fromSurface: "8", toSurface: "10" }],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.16,
-  // Patent read 2026-10-06: Close-focus gaps D12 = 5.133 and D14 = 3.474 are the patent's Table 6 short-range row
-  // for Example 2 at beta = -0.25, unscaled.
-  publishedStations: { focus: [1] },
-  focusDescription: "Inner focus: single negative meniscus G7 (GR2) translates axially. Linear AF motor.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 1.85,
-  apertureBlades: 7,
-  fstopSeries: [1.85, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
-
   /* ── Layout tuning ── */
-  scFill: 0.55,
-  yScFill: 0.35,
-} satisfies LensDataInput;
+  layout: { scFill: 0.55, yScFill: 0.35 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

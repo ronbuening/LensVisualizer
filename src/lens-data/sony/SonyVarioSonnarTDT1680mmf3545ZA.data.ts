@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════╗
@@ -28,8 +28,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  default 0.60 off-axis trace fraction, Fig. 1 proportions, and geometry limits.    ║
  * ║  7A also encloses the 13.700760 mm effective height implied by patent Table 15.     ║
  * ║  25A encloses the 8.772220 mm effective height implied by patent Table 14.          ║
- * ║  STO.sd is the paraxial wide-open stop radius at the tele anchor; per-zoom modeled   ║
- * ║  openings are governed by nominalFno and trace to 6.019 / 6.445 / 8.234 mm.          ║
+ * ║  The stop radius is derived from nominalFno at each zoom station;                    ║
+ * ║  modeled openings trace to 6.019 / 6.445 / 8.234 mm.                                 ║
  * ║                                                                                      ║
  * ║  GLASS: the patent supplies only d-line nd/νd coordinates, not vendor names or      ║
  * ║  nC/nF/ng/dPgF. Neutral coordinate codes and qualified catalog-equivalent curves    ║
@@ -42,291 +42,312 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "sony-vario-sonnar-t-dt-16-80-f3-5-4-5-za",
   maker: "Sony",
   name: "SONY VARIO-SONNAR T* DT 16-80mm f/3.5-4.5 ZA",
   subtitle: "US 2007/0229969 A1 Example 1 — SAL1680Z production correlation",
-  specs: [
-    "14 ELEMENTS / 10 GROUPS",
-    "MARKETED 16-80mm f/3.5-4.5",
-    "PATENT 16.4-78.0mm f/3.61-4.64",
-    "2 ASPHERICAL SURFACES",
-    "0.35 m MFD",
-  ],
 
-  focalLengthMarketing: [16, 80],
-  focalLengthDesign: [16.40164, 78.042607],
-  lensMounts: ["sony-a"],
-  imageFormat: "aps-c",
-  patentNumber: "US 2007/0229969 A1",
-  patentAuthors: ["Hiroyuki Matsumoto"],
-  patentAssignees: ["Sony Corporation"],
-  patentYear: 2007,
-  elementCount: 14,
-  groupCount: 10,
+  catalog: {
+    lensMounts: ["sony-a"],
+    imageFormat: "aps-c",
+    specs: [
+      "14 ELEMENTS / 10 GROUPS",
+      "MARKETED 16-80mm f/3.5-4.5",
+      "PATENT 16.4-78.0mm f/3.61-4.64",
+      "2 ASPHERICAL SURFACES",
+      "0.35 m MFD",
+    ],
+    elementCount: 14,
+    groupCount: 10,
+    focalLengthMm: { marketing: [16, 80], design: [16.40164, 78.042607] },
+  },
+
+  source: {
+    patentNumber: "US 2007/0229969 A1",
+    patentYear: 2007,
+    authors: ["Hiroyuki Matsumoto"],
+    assignees: ["Sony Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
     {
       id: 1,
       name: "L1",
-      diagramLabel: "L1",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.78,
-      fl: -92.489988,
+      focalLengthMm: -92.489988,
       glass: "847238 — dense flint coordinate class (vendor non-unique)",
-      cemented: "D1",
       role: "Front negative meniscus of GR1; convex surface faces the object.",
+      diagramLabel: "L1",
+      cemented: "D1",
     },
     {
       id: 2,
       name: "L2",
-      diagramLabel: "L2",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.835,
       vd: 42.98,
-      fl: 80.579571,
+      focalLengthMm: 80.579571,
       glass: "835430 — high-index lanthanum-flint coordinate class (exact current melt unresolved)",
-      cemented: "D1",
       role: "Positive member cemented to L1; completes the weak positive front doublet.",
+      diagramLabel: "L2",
+      cemented: "D1",
     },
     {
       id: 3,
       name: "L3",
-      diagramLabel: "L3",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.835,
       vd: 42.98,
-      fl: 112.068482,
+      focalLengthMm: 112.068482,
       glass: "835430 — high-index lanthanum-flint coordinate class (exact current melt unresolved)",
       role: "Rear positive meniscus of GR1; convex surface faces the object.",
+      diagramLabel: "L3",
     },
     {
       id: 4,
       name: "L4",
-      diagramLabel: "L4",
       label: "Element 4",
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.76743,
       vd: 49.48,
-      fl: -18.727365,
+      focalLengthMm: -18.727365,
       glass: "M-TAF101 (HOYA catalog-equivalent coefficient proxy; production supplier unspecified)",
       role: "Strong negative front element of GR2; object-side surface 7A is aspherical.",
+      diagramLabel: "L4",
     },
     {
       id: 5,
       name: "L5",
-      diagramLabel: "L5",
       label: "Element 5",
       type: "Positive Meniscus",
       nd: 1.80518,
       vd: 25.46,
-      fl: 58.2181,
+      focalLengthMm: 58.2181,
       glass: "805255 — dense flint coordinate class (vendor non-unique)",
-      cemented: "D2",
       role: "Positive meniscus in GR2; concave surface faces the object.",
+      diagramLabel: "L5",
+      cemented: "D2",
     },
     {
       id: 6,
       name: "L6",
-      diagramLabel: "L6",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.883,
       vd: 40.8,
-      fl: -17.830349,
+      focalLengthMm: -17.830349,
       glass: "883408 — lanthanum high-index coordinate class (vendor non-unique)",
-      cemented: "D2",
       role: "Strong negative member cemented to L5 in GR2.",
+      diagramLabel: "L6",
+      cemented: "D2",
     },
     {
       id: 7,
       name: "L7",
-      diagramLabel: "L7",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.76182,
       vd: 26.61,
-      fl: 23.401994,
+      focalLengthMm: 23.401994,
       glass: "762266 — dense flint coordinate class (vendor non-unique)",
       role: "Positive correction element inside the negative GR2 moving group.",
+      diagramLabel: "L7",
     },
     {
       id: 8,
       name: "L8",
-      diagramLabel: "L8",
       label: "Element 8",
       type: "Negative Meniscus",
       nd: 1.883,
       vd: 40.8,
-      fl: -44.918916,
+      focalLengthMm: -44.918916,
       glass: "883408 — lanthanum high-index coordinate class (vendor non-unique)",
       role: "Rear negative meniscus of GR2; concave surface faces the object.",
+      diagramLabel: "L8",
     },
     {
       id: 9,
       name: "L9",
-      diagramLabel: "L9",
       label: "Element 9",
       type: "Negative Meniscus",
       nd: 1.835,
       vd: 42.98,
-      fl: -49.750795,
+      focalLengthMm: -49.750795,
       glass: "835430 — high-index lanthanum-flint coordinate class (exact current melt unresolved)",
-      cemented: "D3",
       role: "Negative member of the compact positive GR3 cemented pair immediately behind the stop.",
+      diagramLabel: "L9",
+      cemented: "D3",
     },
     {
       id: 10,
       name: "L10",
-      diagramLabel: "L10",
       label: "Element 10",
       type: "Biconvex Positive",
       nd: 1.56883,
       vd: 56.04,
-      fl: 29.756179,
+      focalLengthMm: 29.756179,
       glass: "569560 — barium crown coordinate class (vendor non-unique)",
-      cemented: "D3",
       role: "Positive member cemented to L9; GR3 is net positive.",
+      diagramLabel: "L10",
+      cemented: "D3",
     },
     {
       id: 11,
       name: "L11",
-      diagramLabel: "L11",
       label: "Element 11",
       type: "Biconvex Positive",
       nd: 1.5168,
       vd: 64.2,
-      fl: 25.108276,
+      focalLengthMm: 25.108276,
       glass: "517642 — crown coordinate class (vendor non-unique)",
       role: "Front positive element of GR4.",
+      diagramLabel: "L11",
     },
     {
       id: 12,
       name: "L12",
-      diagramLabel: "L12",
       label: "Element 12",
       type: "Biconcave Negative (1× Asph)",
       nd: 1.76743,
       vd: 49.48,
-      fl: -55.061242,
+      focalLengthMm: -55.061242,
       glass: "M-TAF101 (HOYA catalog-equivalent coefficient proxy; production supplier unspecified)",
       role: "Negative GR4 corrector; image-side surface 25A is aspherical.",
+      diagramLabel: "L12",
     },
     {
       id: 13,
       name: "L13",
-      diagramLabel: "L13",
       label: "Element 13",
       type: "Biconcave Negative",
       nd: 1.90366,
       vd: 31.32,
-      fl: -23.491242,
+      focalLengthMm: -23.491242,
       glass: "904313 — high-index lanthanum coordinate class (vendor non-unique)",
-      cemented: "D4",
       role: "Negative member of the rear GR4 cemented pair.",
+      diagramLabel: "L13",
+      cemented: "D4",
     },
     {
       id: 14,
       name: "L14",
-      diagramLabel: "L14",
       label: "Element 14",
       type: "Biconvex Positive",
       nd: 1.5168,
       vd: 64.2,
-      fl: 22.31166,
+      focalLengthMm: 22.31166,
       glass: "517642 — crown coordinate class (vendor non-unique)",
-      cemented: "D4",
       role: "Final positive element; cemented to L13.",
+      diagramLabel: "L14",
+      cemented: "D4",
     },
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 800.109, d: 2, nd: 1.84666, elemId: 1, sd: 22.5 },
-    { label: "2", R: 71.245, d: 6.758, nd: 1.835, elemId: 2, sd: 22 },
-    { label: "4", R: -1157.957, d: 0.15, nd: 1, elemId: 0, sd: 21 },
-    { label: "5", R: 54.727, d: 4.937, nd: 1.835, elemId: 3, sd: 19.5 },
-    { label: "6", R: 126.408, d: 1.834, nd: 1, elemId: 0, sd: 19.5 },
-    { label: "7A", R: 110.474, d: 1.25, nd: 1.76743, elemId: 4, sd: 13.8 },
-    { label: "8", R: 12.655, d: 7.351, nd: 1, elemId: 0, sd: 11.3 },
-    { label: "9", R: -28.246, d: 2.19, nd: 1.80518, elemId: 5, sd: 8.1 },
-    { label: "10", R: -18.235, d: 1.01, nd: 1.883, elemId: 6, sd: 7.8 },
-    { label: "12", R: 118.256, d: 0.915, nd: 1, elemId: 0, sd: 7.8 },
-    { label: "13", R: 48.829, d: 3.562, nd: 1.76182, elemId: 7, sd: 7.9 },
-    { label: "14", R: -27.195, d: 1.773, nd: 1, elemId: 0, sd: 8.1 },
-    { label: "15", R: -18.148, d: 1.2, nd: 1.883, elemId: 8, sd: 9 },
-    { label: "16", R: -34.493, d: 16.744, nd: 1, elemId: 0, sd: 9 },
-    { label: "STO", R: 1e15, d: 0.852, nd: 1, elemId: 0, sd: 7.955325 },
-    { label: "18", R: 29.796, d: 1, nd: 1.835, elemId: 9, sd: 9 },
-    { label: "19", R: 17.086, d: 4.034, nd: 1.56883, elemId: 10, sd: 9 },
-    { label: "21", R: -1654.917, d: 10.106, nd: 1, elemId: 0, sd: 9 },
-    { label: "22", R: 16.419, d: 6.949, nd: 1.5168, elemId: 11, sd: 9 },
-    { label: "23", R: -52.956, d: 0.98, nd: 1, elemId: 0, sd: 9 },
-    { label: "24", R: -591.972, d: 1.685, nd: 1.76743, elemId: 12, sd: 9 },
-    { label: "25A", R: 45.56, d: 2.536, nd: 1, elemId: 0, sd: 9 },
-    { label: "26", R: -772.135, d: 1.4, nd: 1.90366, elemId: 13, sd: 9 },
-    { label: "27", R: 21.847, d: 6.758, nd: 1.5168, elemId: 14, sd: 9 },
-    { label: "29", R: -21.845, d: 37.255045, nd: 1, elemId: 0, sd: 10.6 },
+    { label: "1", R: 800.109, d: 2, sd: 22.5, medium: 1 },
+    { label: "2", R: 71.245, d: 6.758, sd: 22, medium: 2 },
+    { label: "4", R: -1157.957, d: 0.15, sd: 21 },
+    { label: "5", R: 54.727, d: 4.937, sd: 19.5, medium: 3 },
+    { label: "6", R: 126.408, sd: 19.5 },
+    {
+      label: "7A",
+      R: 110.474,
+      d: 1.25,
+      sd: 13.8,
+      medium: 4,
+      asphere: { K: 0, A4: 0.2383e-4, A6: -0.50335e-7, A8: 0.17795e-9, A10: -0.65132e-12, A12: 0.16069e-14 },
+    },
+    { label: "8", R: 12.655, d: 7.351, sd: 11.3 },
+    { label: "9", R: -28.246, d: 2.19, sd: 8.1, medium: 5 },
+    { label: "10", R: -18.235, d: 1.01, sd: 7.8, medium: 6 },
+    { label: "12", R: 118.256, d: 0.915, sd: 7.8 },
+    { label: "13", R: 48.829, d: 3.562, sd: 7.9, medium: 7 },
+    { label: "14", R: -27.195, d: 1.773, sd: 8.1 },
+    { label: "15", R: -18.148, d: 1.2, sd: 9, medium: 8 },
+    { label: "16", R: -34.493, sd: 9 },
+    { label: "STO", R: "flat", d: 0.852 },
+    { label: "18", R: 29.796, d: 1, sd: 9, medium: 9 },
+    { label: "19", R: 17.086, d: 4.034, sd: 9, medium: 10 },
+    { label: "21", R: -1654.917, sd: 9 },
+    { label: "22", R: 16.419, d: 6.949, sd: 9, medium: 11 },
+    { label: "23", R: -52.956, d: 0.98, sd: 9 },
+    { label: "24", R: -591.972, d: 1.685, sd: 9, medium: 12 },
+    {
+      label: "25A",
+      R: 45.56,
+      d: 2.536,
+      sd: 9,
+      asphere: { K: 0, A4: 0.54171e-4, A6: 0.13027e-6, A8: -0.14452e-9, A10: 0.69268e-11, A12: 0.2553e-13 },
+    },
+    { label: "26", R: -772.135, d: 1.4, sd: 9, medium: 13 },
+    { label: "27", R: 21.847, d: 6.758, sd: 9, medium: 14 },
+    { label: "29", R: -21.845, sd: 10.6 },
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {
-    "7A": {
-      K: 0,
-      A4: 0.2383e-4,
-      A6: -0.50335e-7,
-      A8: 0.17795e-9,
-      A10: -0.65132e-12,
-      A12: 0.16069e-14,
-      A14: 0,
+  zoom: {
+    /* (moved from zoomPositions) ── Zoom and constrained-focus spacings ── */
+    /* (moved from nominalFno) ── Aperture configuration ── */
+    stations: [
+      { focalLengthMm: 16.4, nominalFNumber: 3.61, label: "Wide" },
+      { focalLengthMm: 35.8, nominalFNumber: 4.5 },
+      { focalLengthMm: 78, nominalFNumber: 4.64, label: "Tele" },
+    ],
+  },
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.35,
+    description:
+      "CONSTRAINED_RECONSTRUCTION: patent ¶0350 specifies GR2-only focusing. Close-focus pairs are code-solved " +
+      "at the Sony 0.35 m MFD with d6+d16 conserved at each zoom anchor; they are not " +
+      "patent-published finite-object rows.",
+  },
+
+  gaps: {
+    "6": {
+      label: "D6 / GR1-GR2",
+      values: [
+        [1.834, 0.664708],
+        [19.221, 17.366452],
+        [37.207, 33.766439],
+      ],
     },
-    "25A": {
-      K: 0,
-      A4: 0.54171e-4,
-      A6: 0.13027e-6,
-      A8: -0.14452e-9,
-      A10: 0.69268e-11,
-      A12: 0.2553e-13,
-      A14: 0,
+    "16": {
+      label: "D16 / GR2-GR3",
+      values: [
+        [16.744, 17.913292],
+        [6.805, 8.659548],
+        [0.8, 4.240561],
+      ],
+    },
+    "21": {
+      label: "D21 / GR3-GR4",
+      values: [
+        [10.106, 10.106],
+        [2.973, 2.973],
+        [0.6, 0.6],
+      ],
+    },
+    "29": {
+      label: "BF",
+      values: [
+        [37.255045, 37.255045],
+        [53.423043, 53.423043],
+        [72.831368, 72.831368],
+      ],
     },
   },
 
-  /* ── Zoom and constrained-focus spacings ── */
-  zoomPositions: [16.4, 35.8, 78],
-  zoomLabels: ["Wide", "Tele"],
-  var: {
-    "6": [
-      [1.834, 0.664708],
-      [19.221, 17.366452],
-      [37.207, 33.766439],
-    ],
-    "16": [
-      [16.744, 17.913292],
-      [6.805, 8.659548],
-      [0.8, 4.240561],
-    ],
-    "21": [
-      [10.106, 10.106],
-      [2.973, 2.973],
-      [0.6, 0.6],
-    ],
-    "29": [
-      [37.255045, 37.255045],
-      [53.423043, 53.423043],
-      [72.831368, 72.831368],
-    ],
-  },
-  varLabels: [
-    ["6", "D6 / GR1-GR2"],
-    ["16", "D16 / GR2-GR3"],
-    ["21", "D21 / GR3-GR4"],
-    ["29", "BF"],
-  ],
+  aperture: { fStops: [3.5, 4, 4.5, 5.6, 8, 11, 16, 22, 29], maxFNumber: 29, blades: 7 },
 
   groups: [
     { text: "GR1 (+)", fromSurface: "1", toSurface: "6" },
@@ -341,21 +362,8 @@ const LENS_DATA = {
     { text: "D4", fromSurface: "26", toSurface: "29" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.35,
-  focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: patent ¶0350 specifies GR2-only focusing. Close-focus pairs are code-solved " +
-    "at the Sony 0.35 m MFD with d6+d16 conserved at each zoom anchor; they are not " +
-    "patent-published finite-object rows.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: [3.61, 4.5, 4.64],
-  fstopSeries: [3.5, 4, 4.5, 5.6, 8, 11, 16, 22, 29],
-  apertureBlades: 7,
-  maxFstop: 29,
-
   /* ── Layout tuning ── */
-  yScFill: 0.44,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.44 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

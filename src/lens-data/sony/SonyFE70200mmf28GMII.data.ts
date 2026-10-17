@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -21,7 +21,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Table 6 prints an effective diameter (φi) for every surface;    ║
- * ║    SD = φi / 2 throughout, rounded half-up to 0.01 mm. S2 and S3   ║
+ * ║    non-stop SD = φi / 2, rounded half-up to 0.01 mm. S2 and S3     ║
  * ║    are 33.08 (φ 66.15): they had been trimmed to 32.09 to pass     ║
  * ║    the default cross-gap limit, which clipped the F/2.88 axial     ║
  * ║    ray at 193.95 mm (33.06 mm at both surfaces; traced f/2.97).    ║
@@ -44,32 +44,36 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "sony-fe-70-200mm-f28-gm-ii",
   maker: "Sony",
   name: "SONY FE 70-200mm f/2.8 GM OSS II",
   subtitle: "JP 2023-039817 A EXAMPLE 2 — SONY / MIYAKAWA, TAKAHASHI",
-  specs: [
-    "17 ELEMENTS / 14 GROUPS",
-    "f = 72.1–194.0 mm",
-    "F/2.88",
-    "2ω = 33.4°–12.7°",
-    "5 ASPHERICAL SURFACES (3 ELEMENTS)",
-  ],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: [70, 200],
-  focalLengthDesign: [72.14, 193.95],
-  apertureMarketing: 2.8,
-  apertureDesign: 2.88,
-  lensMounts: ["sony-fe"],
-  acceptsTeleconverters: true, // Sony lists SEL14TC / SEL20TC teleconverter compatibility
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 2023-039817 A",
-  patentAuthors: ["Naoki Miyagawa", "Shugo Takahashi"],
-  patentAssignees: ["Sony Group Corporation"],
-  patentYear: 2023,
-  elementCount: 17,
-  groupCount: 14,
+  catalog: {
+    lensMounts: ["sony-fe"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "17 ELEMENTS / 14 GROUPS",
+      "f = 72.1–194.0 mm",
+      "F/2.88",
+      "2ω = 33.4°–12.7°",
+      "5 ASPHERICAL SURFACES (3 ELEMENTS)",
+    ],
+    elementCount: 17,
+    groupCount: 14,
+    acceptsTeleconverters: true, // Sony lists SEL14TC / SEL20TC teleconverter compatibility
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: [70, 200], design: [72.14, 193.95] },
+    fNumber: { marketing: 2.8, design: 2.88 },
+  },
+
+  source: {
+    patentNumber: "JP 2023-039817 A",
+    patentYear: 2023,
+    authors: ["Naoki Miyagawa", "Shugo Takahashi"],
+    assignees: ["Sony Group Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -83,7 +87,7 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote:
         "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
-      fl: -398.1,
+      focalLengthMm: -398.1,
       glass: "NBFD29 (HOYA; catalog ne 1.77660 as printed, vd 29.74 printed as 29.7; supplier unconfirmed)",
       apd: false,
       role: "Front negative meniscus — Petzval field-flattening contribution at largest beam diameter",
@@ -98,7 +102,7 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote:
         "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
-      fl: 197.2,
+      focalLengthMm: 197.2,
       glass: "FCD100 (HOYA; catalog ne 1.43810 as printed, vd 95.10 printed as 95.1; supplier unconfirmed)",
       apd: "inferred",
       apdNote: "Super ED fluorophosphate class; the patent prints an e-line index and a d-line Abbe number only.",
@@ -114,7 +118,7 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote:
         "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
-      fl: 191.4,
+      focalLengthMm: 191.4,
       glass: "FCD100 (HOYA; catalog ne 1.43810 as printed, vd 95.10 printed as 95.1; supplier unconfirmed)",
       apd: "inferred",
       apdNote: "Super ED fluorophosphate class; the patent prints an e-line index and a d-line Abbe number only.",
@@ -130,7 +134,7 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote:
         "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
-      fl: -61.8,
+      focalLengthMm: -61.8,
       glass: "S-LAH66 (OHARA; catalog ne 1.77621 as printed, vd 49.60 printed as 49.6; supplier unconfirmed)",
       apd: false,
       role: "First variator (GR2) — single-element negative zoom group, strongest |power| in variator",
@@ -145,12 +149,12 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote:
         "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
-      fl: -69.3,
+      focalLengthMm: -69.3,
       glass: "FCD1 (HOYA; catalog ne 1.49845 as printed, vd 81.61 printed as 81.6; supplier unconfirmed)",
       apd: "inferred",
       apdNote: "ED fluorophosphate class; the patent prints an e-line index and a d-line Abbe number only.",
-      cemented: "D1",
       role: "Second variator (GR3) negative element — ED achromatizer",
+      cemented: "D1",
     },
     {
       id: 6,
@@ -162,11 +166,11 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote:
         "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
-      fl: 100.9,
+      focalLengthMm: 100.9,
       glass: "S-NBH56 (OHARA; catalog ne 1.86290 as printed, vd 24.80 printed as 24.8; supplier unconfirmed)",
       apd: false,
-      cemented: "D1",
       role: "Second variator (GR3) positive partner — achromatizes GR3 with ED L31",
+      cemented: "D1",
     },
     {
       id: 7,
@@ -178,7 +182,7 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote:
         "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
-      fl: 192.5,
+      focalLengthMm: 192.5,
       glass: "FD110 (HOYA; catalog ne 1.79191 as printed, vd 25.72 printed as 25.7; supplier unconfirmed)",
       apd: false,
       role: "Third variator (GR4) — converges beam entering GR5 relay",
@@ -193,7 +197,7 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote:
         "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
-      fl: 65.1,
+      focalLengthMm: 65.1,
       glass: "M-FCD1 (HOYA; catalog ne 1.49856 as printed, vd 81.56 printed as 81.6; supplier unconfirmed)",
       apd: "inferred",
       apdNote: "ED fluorophosphate class; the patent prints an e-line index and a d-line Abbe number only.",
@@ -209,7 +213,7 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote:
         "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
-      fl: -47.5,
+      focalLengthMm: -47.5,
       glass: "S-NBH56 (OHARA; catalog ne 1.86290 as printed, vd 24.80 printed as 24.8; supplier unconfirmed)",
       apd: false,
       role: "Post-stop negative — achromatizes GR5 against L51 ED",
@@ -224,11 +228,11 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote:
         "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
-      fl: -145.7,
+      focalLengthMm: -145.7,
       glass: "S-NBH56 (OHARA; catalog ne 1.86290 as printed, vd 24.80 printed as 24.8; supplier unconfirmed)",
       apd: false,
-      cemented: "D2",
       role: "OIS doublet negative element — stabilization group",
+      cemented: "D2",
     },
     {
       id: 11,
@@ -240,11 +244,11 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote:
         "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
-      fl: 40.7,
+      focalLengthMm: 40.7,
       glass: "L-BAL42 (OHARA; catalog ne 1.58547 as printed, vd 59.39 printed as 59.4; supplier unconfirmed)",
       apd: false,
-      cemented: "D2",
       role: "OIS doublet positive element — aspherical rear for decentered correction",
+      cemented: "D2",
     },
     {
       id: 12,
@@ -256,7 +260,7 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote:
         "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
-      fl: 126.2,
+      focalLengthMm: 126.2,
       glass: "L-BAL42 (OHARA; catalog ne 1.58547 as printed, vd 59.39 printed as 59.4; supplier unconfirmed)",
       apd: false,
       role: "XA element — field-dependent aberration and bokeh quality control",
@@ -271,11 +275,11 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote:
         "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
-      fl: 58.6,
+      focalLengthMm: 58.6,
       glass: "E-FDS1 (HOYA; catalog ne 1.93323 as printed, vd 20.88 printed as 20.9; supplier unconfirmed)",
       apd: false,
-      cemented: "D3",
       role: "1st focus group (GR6) positive element",
+      cemented: "D3",
     },
     {
       id: 14,
@@ -287,11 +291,11 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote:
         "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
-      fl: -29.7,
+      focalLengthMm: -29.7,
       glass: "S-NBH5 (OHARA; catalog ne 1.65803 as printed, vd 39.68 printed as 39.7; supplier unconfirmed)",
       apd: false,
-      cemented: "D3",
       role: "1st focus group (GR6) negative element — net negative GR6 power",
+      cemented: "D3",
     },
     {
       id: 15,
@@ -303,7 +307,7 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote:
         "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
-      fl: 50.5,
+      focalLengthMm: 50.5,
       glass: "S-NBM51 (OHARA; catalog ne 1.61669 as printed, vd 44.27 printed as 44.3; supplier unconfirmed)",
       apd: false,
       role: "2nd focus group (GR7) — floating-focus counter-motion positive element",
@@ -318,7 +322,7 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote:
         "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
-      fl: -104.9,
+      focalLengthMm: -104.9,
       glass: "FCD1 (HOYA; catalog ne 1.49845 as printed, vd 81.61 printed as 81.6; supplier unconfirmed)",
       apd: "inferred",
       apdNote: "ED fluorophosphate class; the patent prints an e-line index and a d-line Abbe number only.",
@@ -334,7 +338,7 @@ const LENS_DATA = {
       indexReference: "e",
       indexReferenceNote:
         "Patent heads this column nd, but all 17 of its indices equal catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
-      fl: -84.5,
+      focalLengthMm: -84.5,
       glass: "TAFD55 (HOYA; catalog ne 2.00912 as printed, vd 29.13 printed as 29.1; supplier unconfirmed)",
       apd: false,
       role: "Rearmost element — telecentricity and Petzval field control",
@@ -342,164 +346,207 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     // GR1 — Fixed front collector (L11, L12, L13)
-    { label: "1", R: 116.681, d: 2.82, nd: 1.7766, elemId: 1, sd: 33.68 }, // L11 front
-    { label: "2", R: 83.814, d: 0.29, nd: 1.0, elemId: 0, sd: 33.08 }, // L11 rear → air
-    { label: "3", R: 87.118, d: 8.34, nd: 1.4381, elemId: 2, sd: 33.08 }, // L12 front
-    { label: "4", R: -9920.911, d: 0.2, nd: 1.0, elemId: 0, sd: 32.98 }, // L12 rear → air
-    { label: "5", R: 78.201, d: 8.43, nd: 1.4381, elemId: 3, sd: 32.37 }, // L13 front
-    { label: "6", R: 1122.581, d: 1.49, nd: 1.0, elemId: 0, sd: 32.01 }, // L13 rear → air (d6, zoom)
+    { label: "1", R: 116.681, d: 2.82, sd: 33.68, medium: 1 }, // L11 front
+    { label: "2", R: 83.814, d: 0.29, sd: 33.08 }, // L11 rear → air
+    { label: "3", R: 87.118, d: 8.34, sd: 33.08, medium: 2 }, // L12 front
+    { label: "4", R: -9920.911, d: 0.2, sd: 32.98 }, // L12 rear → air
+    { label: "5", R: 78.201, d: 8.43, sd: 32.37, medium: 3 }, // L13 front
+    { label: "6", R: 1122.581, sd: 32.01 }, // L13 rear → air (d6, zoom)
 
     // GR2 — 1st variator, negative (L21)
-    { label: "7", R: 481.705, d: 1.4, nd: 1.77621, elemId: 4, sd: 18.58 }, // L21 front
-    { label: "8", R: 43.542, d: 22.95, nd: 1.0, elemId: 0, sd: 17.78 }, // L21 rear → air (d8, zoom)
+    { label: "7", R: 481.705, d: 1.4, sd: 18.58, medium: 4 }, // L21 front
+    { label: "8", R: 43.542, sd: 17.78 }, // L21 rear → air (d8, zoom)
 
     // GR3 — 2nd variator, negative (L31 + L32 cemented)
-    { label: "9", R: -76.229, d: 1.4, nd: 1.49845, elemId: 5, sd: 18.21 }, // L31 front
-    { label: "10", R: 63.489, d: 4.55, nd: 1.8629, elemId: 6, sd: 18.94 }, // L31→L32 junction
-    { label: "11", R: 226.428, d: 25.12, nd: 1.0, elemId: 0, sd: 19.01 }, // L32 rear → air (d11, zoom)
+    { label: "9", R: -76.229, d: 1.4, sd: 18.21, medium: 5 }, // L31 front
+    { label: "10", R: 63.489, d: 4.55, sd: 18.94, medium: 6 }, // L31→L32 junction
+    { label: "11", R: 226.428, sd: 19.01 }, // L32 rear → air (d11, zoom)
 
     // GR4 — 3rd variator, positive (L41)
-    { label: "12", R: 66.789, d: 2.61, nd: 1.79191, elemId: 7, sd: 19.4 }, // L41 front
-    { label: "13", R: 116.801, d: 18.0, nd: 1.0, elemId: 0, sd: 19.31 }, // L41 rear → air (d13, zoom)
+    { label: "12", R: 66.789, d: 2.61, sd: 19.4, medium: 7 }, // L41 front
+    { label: "13", R: 116.801, sd: 19.31 }, // L41 rear → air (d13, zoom)
 
     // GR5 — Fixed relay, positive (L51, stop, L52, L53+L54, L55)
-    { label: "14A", R: 47.448, d: 8.26, nd: 1.49856, elemId: 8, sd: 19.37 }, // L51 front (asph)
-    { label: "15A", R: -96.798, d: 6.89, nd: 1.0, elemId: 0, sd: 18.98 }, // L51 rear (asph) → air
-    { label: "STO", R: 1e15, d: 3.3, nd: 1.0, elemId: 0, sd: 17.07 }, // Aperture stop
-    { label: "17", R: -192.404, d: 1.37, nd: 1.8629, elemId: 9, sd: 16.51 }, // L52 front
-    { label: "18", R: 52.285, d: 2.08, nd: 1.0, elemId: 0, sd: 16.17 }, // L52 rear → air
-    { label: "19", R: 45.043, d: 1.0, nd: 1.8629, elemId: 10, sd: 16.56 }, // L53 front
-    { label: "20", R: 32.823, d: 7.88, nd: 1.58547, elemId: 11, sd: 16.33 }, // L53→L54 junction
-    { label: "21A", R: -79.003, d: 0.7, nd: 1.0, elemId: 0, sd: 16.27 }, // L54 rear (asph) → air
-    { label: "22A", R: 325.773, d: 4.52, nd: 1.58547, elemId: 12, sd: 15.92 }, // L55 front (asph)
-    { label: "23A", R: -95.07, d: 6.59, nd: 1.0, elemId: 0, sd: 15.61 }, // L55 rear (asph) → air (d23, zoom+focus)
+    {
+      label: "14A",
+      R: 47.448,
+      d: 8.26,
+      sd: 19.37,
+      medium: 8,
+      asphere: { K: 0, A4: -1.54432e-7, A6: 5.58124e-10, A8: 4.63363e-13, A10: 0, A12: 0, A14: 0 },
+    }, // L51 front (asph)
+    {
+      label: "15A",
+      R: -96.798,
+      d: 6.89,
+      sd: 18.98,
+      asphere: {
+        K: 0,
+        A4: 5.42944e-6,
+        A6: -4.00709e-9,
+        A8: 1.18539e-11,
+        A10: -4.01118e-14,
+        A12: 7.61194e-17,
+        A14: -5.77873e-20,
+      },
+    }, // L51 rear (asph) → air
+    // Patent Table 6 prints a 34.14 mm effective diameter at the stop (φ16).
+    { label: "STO", R: "flat", d: 3.3 }, // Aperture stop
+    { label: "17", R: -192.404, d: 1.37, sd: 16.51, medium: 9 }, // L52 front
+    { label: "18", R: 52.285, d: 2.08, sd: 16.17 }, // L52 rear → air
+    { label: "19", R: 45.043, d: 1.0, sd: 16.56, medium: 10 }, // L53 front
+    { label: "20", R: 32.823, d: 7.88, sd: 16.33, medium: 11 }, // L53→L54 junction
+    {
+      label: "21A",
+      R: -79.003,
+      d: 0.7,
+      sd: 16.27,
+      asphere: {
+        K: 0,
+        A4: 2.77126e-6,
+        A6: 1.11872e-8,
+        A8: -1.24574e-10,
+        A10: 6.42677e-13,
+        A12: -1.62172e-15,
+        A14: 1.60781e-18,
+      },
+    }, // L54 rear (asph) → air
+    {
+      label: "22A",
+      R: 325.773,
+      d: 4.52,
+      sd: 15.92,
+      medium: 12,
+      asphere: {
+        K: 0,
+        A4: 6.52518e-6,
+        A6: 2.3838e-10,
+        A8: -4.20105e-11,
+        A10: 1.79781e-13,
+        A12: -2.30019e-16,
+        A14: 5.26712e-20,
+      },
+    }, // L55 front (asph)
+    {
+      label: "23A",
+      R: -95.07,
+      sd: 15.61,
+      asphere: {
+        K: 0,
+        A4: 3.54582e-6,
+        A6: -7.39037e-9,
+        A8: 6.16827e-11,
+        A10: -3.49819e-13,
+        A12: 1.13261e-15,
+        A14: -1.35854e-18,
+      },
+    }, // L55 rear (asph) → air (d23, zoom+focus)
 
     // GR6 — 1st focus group, negative (L61 + L62 cemented)
-    { label: "24", R: 1e15, d: 3.12, nd: 1.93323, elemId: 13, sd: 13.62 }, // L61 front (flat)
-    { label: "25", R: -54.73, d: 1.0, nd: 1.65803, elemId: 14, sd: 13.38 }, // L61→L62 junction
-    { label: "26", R: 30.625, d: 19.74, nd: 1.0, elemId: 0, sd: 12.11 }, // L62 rear → air (d26, zoom+focus)
+    { label: "24", R: "flat", d: 3.12, sd: 13.62, medium: 13 }, // L61 front (flat)
+    { label: "25", R: -54.73, d: 1.0, sd: 13.38, medium: 14 }, // L61→L62 junction
+    { label: "26", R: 30.625, sd: 12.11 }, // L62 rear → air (d26, zoom+focus)
 
     // GR7 — 2nd focus group, positive (L71)
-    { label: "27", R: 53.755, d: 6.52, nd: 1.61669, elemId: 15, sd: 16.29 }, // L71 front
-    { label: "28", R: -70.637, d: 7.95, nd: 1.0, elemId: 0, sd: 16.29 }, // L71 rear → air (d28, zoom+focus)
+    { label: "27", R: 53.755, d: 6.52, sd: 16.29, medium: 15 }, // L71 front
+    { label: "28", R: -70.637, sd: 16.29 }, // L71 rear → air (d28, zoom+focus)
 
     // GR8 — Fixed rear group, negative (L81, L82)
-    { label: "29", R: -321.338, d: 1.25, nd: 1.49845, elemId: 16, sd: 15.53 }, // L81 front
-    { label: "30", R: 62.501, d: 5.22, nd: 1.0, elemId: 0, sd: 15.25 }, // L81 rear → air
-    { label: "31", R: -44.639, d: 1.3, nd: 2.00912, elemId: 17, sd: 15.25 }, // L82 front
-    { label: "32", R: -95.059, d: 28.79, nd: 1.0, elemId: 0, sd: 15.74 }, // L82 rear → BFD
+    { label: "29", R: -321.338, d: 1.25, sd: 15.53, medium: 16 }, // L81 front
+    { label: "30", R: 62.501, d: 5.22, sd: 15.25 }, // L81 rear → air
+    { label: "31", R: -44.639, d: 1.3, sd: 15.25, medium: 17 }, // L82 front
+    { label: "32", R: -95.059, d: 28.79, sd: 15.74 }, // L82 rear → BFD
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {
-    "14A": {
-      K: 0,
-      A4: -1.54432e-7,
-      A6: 5.58124e-10,
-      A8: 4.63363e-13,
-      A10: 0,
-      A12: 0,
-      A14: 0,
-    },
-    "15A": {
-      K: 0,
-      A4: 5.42944e-6,
-      A6: -4.00709e-9,
-      A8: 1.18539e-11,
-      A10: -4.01118e-14,
-      A12: 7.61194e-17,
-      A14: -5.77873e-20,
-    },
-    "21A": {
-      K: 0,
-      A4: 2.77126e-6,
-      A6: 1.11872e-8,
-      A8: -1.24574e-10,
-      A10: 6.42677e-13,
-      A12: -1.62172e-15,
-      A14: 1.60781e-18,
-    },
-    "22A": {
-      K: 0,
-      A4: 6.52518e-6,
-      A6: 2.3838e-10,
-      A8: -4.20105e-11,
-      A10: 1.79781e-13,
-      A12: -2.30019e-16,
-      A14: 5.26712e-20,
-    },
-    "23A": {
-      K: 0,
-      A4: 3.54582e-6,
-      A6: -7.39037e-9,
-      A8: 6.16827e-11,
-      A10: -3.49819e-13,
-      A12: 1.13261e-15,
-      A14: -1.35854e-18,
-    },
+  zoom: {
+    /* (moved from zoomPositions) ── Zoom lens fields ── */
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    stations: [
+      { focalLengthMm: 72.14, label: "Wide", published: true, publishedFocus: [1] },
+      { focalLengthMm: 120.82, published: true, publishedFocus: [1] },
+      { focalLengthMm: 193.95, label: "Tele", published: true, publishedFocus: [1] },
+    ],
+    step: 0.004,
   },
 
-  /* ── Variable air spacings (zoom + focus) ──
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 1.0, // Patent model at 1000 mm; production lens achieves 0.40 m (W) / 0.82 m (T)
+    description:
+      "Floating inner focus — GR6 (neg.) moves image-ward, GR7 (pos.) moves object-ward. 4× XD Linear Motors.",
+  },
+
+  /* (moved from var) ── Variable air spacings (zoom + focus) ──
    *  Zoom positions: Wide (72.14), Mid (120.82), Tele (193.95).
    *  Each value: [[d_inf_W, d_close_W], [d_inf_M, d_close_M], [d_inf_T, d_close_T]].
    *  Close focus = 1000 mm object distance (patent model).
    *  Zoom-only gaps: d6, d8, d11, d13 — identical inf/close values.
    *  Zoom+focus gaps: d23, d26, d28 — different inf/close values.
    */
-  var: {
-    "6": [
-      [1.49, 1.49],
-      [30.13, 30.13],
-      [50.19, 50.19],
-    ], // GR1→GR2 (zoom only)
-    "8": [
-      [22.95, 22.95],
-      [12.99, 12.99],
-      [14.85, 14.85],
-    ], // GR2→GR3 (zoom only)
-    "11": [
-      [25.12, 25.12],
-      [14.91, 14.91],
-      [1.03, 1.03],
-    ], // GR3→GR4 (zoom only)
-    "13": [
-      [18.0, 18.0],
-      [9.53, 9.53],
-      [1.49, 1.49],
-    ], // GR4→GR5 (zoom only)
-    "23A": [
-      [6.59, 7.73],
-      [4.87, 9.07],
-      [2.3, 11.53],
-    ], // GR5→GR6 (zoom + focus)
-    "26": [
-      [19.74, 17.44],
-      [21.12, 14.85],
-      [28.28, 13.71],
-    ], // GR6→GR7 (zoom + focus)
-    "28": [
-      [7.95, 9.1],
-      [8.28, 10.36],
-      [3.7, 9.03],
-    ], // GR7→GR8 (zoom + focus)
+  gaps: {
+    "6": {
+      label: "D6",
+      values: [
+        [1.49, 1.49],
+        [30.13, 30.13],
+        [50.19, 50.19],
+      ],
+    }, // GR1→GR2 (zoom only)
+    "8": {
+      label: "D8",
+      values: [
+        [22.95, 22.95],
+        [12.99, 12.99],
+        [14.85, 14.85],
+      ],
+    }, // GR2→GR3 (zoom only)
+    "11": {
+      label: "D11",
+      values: [
+        [25.12, 25.12],
+        [14.91, 14.91],
+        [1.03, 1.03],
+      ],
+    }, // GR3→GR4 (zoom only)
+    "13": {
+      label: "D13",
+      values: [
+        [18.0, 18.0],
+        [9.53, 9.53],
+        [1.49, 1.49],
+      ],
+    }, // GR4→GR5 (zoom only)
+    "23A": {
+      label: "D23",
+      values: [
+        [6.59, 7.73],
+        [4.87, 9.07],
+        [2.3, 11.53],
+      ],
+    }, // GR5→GR6 (zoom + focus)
+    "26": {
+      label: "D26",
+      values: [
+        [19.74, 17.44],
+        [21.12, 14.85],
+        [28.28, 13.71],
+      ],
+    }, // GR6→GR7 (zoom + focus)
+    "28": {
+      label: "D28",
+      values: [
+        [7.95, 9.1],
+        [8.28, 10.36],
+        [3.7, 9.03],
+      ],
+    }, // GR7→GR8 (zoom + focus)
   },
 
-  varLabels: [
-    ["6", "D6"],
-    ["8", "D8"],
-    ["11", "D11"],
-    ["13", "D13"],
-    ["23A", "D23"],
-    ["26", "D26"],
-    ["28", "D28"],
-  ],
-
-  /* ── Zoom lens fields ── */
-  zoomPositions: [72.14, 120.82, 193.95],
-  zoomStep: 0.004,
-  zoomLabels: ["Wide", "Tele"],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.88, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -512,29 +559,18 @@ const LENS_DATA = {
     { text: "GR7", fromSurface: "27", toSurface: "28" },
     { text: "GR8 (FIXED)", fromSurface: "29", toSurface: "32" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "9", toSurface: "11" },
     { text: "D2", fromSurface: "19", toSurface: "21A" },
     { text: "D3", fromSurface: "24", toSurface: "26" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 1.0, // Patent model at 1000 mm; production lens achieves 0.40 m (W) / 0.82 m (T)
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  focusDescription:
-    "Floating inner focus — GR6 (neg.) moves image-ward, GR7 (pos.) moves object-ward. 4× XD Linear Motors.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.88,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
-
   /* ── Layout tuning ── */
-  scFill: 0.48,
-  yScFill: 0.32,
-  gapSagFrac: 0.97, // L11 rear / L12 front rims nearly meet (0.011 mm of air at 33.08 mm); FIG. 14 draws them meeting
-  maxFstop: 22,
-} satisfies LensDataInput;
+  layout: { scFill: 0.48, yScFill: 0.32 },
+
+  checks: {
+    gapSagFrac: 0.97, // L11 rear / L12 front rims nearly meet (0.011 mm of air at 33.08 mm); FIG. 14 draws them meeting
+  },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

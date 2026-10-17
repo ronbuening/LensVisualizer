@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -31,31 +31,34 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "sony-fe-28mm-f2",
   maker: "Sony",
   name: "SONY FE 28mm f/2",
   subtitle: "US 10,191,254 B2 Example 10 — Sony / Katou et al.",
-  specs: [
-    "9 elements / 8 groups",
-    "f = 28.23 mm patent design",
-    "F2.0 marketed / F2.06 patent",
-    "2ω = 76.54° patent diagonal",
-    "3 aspherical elements / 2 ED elements",
-  ],
 
-  focalLengthMarketing: 28,
-  focalLengthDesign: 28.233938,
-  apertureMarketing: 2,
-  apertureDesign: 2.06,
-  lensMounts: ["sony-fe"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 10,191,254 B2",
-  patentAuthors: ["Kouji Katou", "Kota Omiya", "Hiroshi Koizumi", "Naoki Miyagawa"],
-  patentAssignees: ["Sony Corporation"],
-  patentYear: 2019,
-  elementCount: 9,
-  groupCount: 8,
-  apertureBlades: 9,
+  catalog: {
+    lensMounts: ["sony-fe"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "9 elements / 8 groups",
+      "f = 28.23 mm patent design",
+      "F2.0 marketed / F2.06 patent",
+      "2ω = 76.54° patent diagonal",
+      "3 aspherical elements / 2 ED elements",
+    ],
+    elementCount: 9,
+    groupCount: 8,
+    focalLengthMm: { marketing: 28, design: 28.233938 },
+    fNumber: { marketing: 2, design: 2.06 },
+  },
+
+  source: {
+    patentNumber: "US 10,191,254 B2",
+    patentYear: 2019,
+    authors: ["Kouji Katou", "Kota Omiya", "Hiroshi Koizumi", "Naoki Miyagawa"],
+    assignees: ["Sony Corporation"],
+  },
 
   elements: [
     {
@@ -65,7 +68,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.487489,
       vd: 70.4,
-      fl: -40.0,
+      focalLengthMm: -40.0,
       glass: "N-FK5 / FC5 class (Schott/HOYA, 487/704)",
       apd: false,
       role: "Front negative meniscus / wide-converter element in G1F.",
@@ -77,7 +80,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.58144,
       vd: 40.9,
-      fl: -30.3,
+      focalLengthMm: -30.3,
       glass: "LF5 / E-FL5 class (Schott/HOYA, 581/409)",
       apd: false,
       role: "Thin negative relay element at the front of G1R.",
@@ -89,7 +92,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.846663,
       vd: 23.8,
-      fl: -119.3,
+      focalLengthMm: -119.3,
       glass: "S-TIH53 (OHARA)",
       apd: false,
       role: "Dense-flint member of the G1 cemented chromatic-correction pair; focal length is standalone in air.",
@@ -102,7 +105,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.496997,
       vd: 81.6,
-      fl: 28.0,
+      focalLengthMm: 28.0,
       glass: "S-FPL51 (OHARA) / FCD1 (HOYA)",
       apd: "inferred",
       apdNote:
@@ -117,7 +120,7 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.772502,
       vd: 49.5,
-      fl: 24.4,
+      focalLengthMm: 24.4,
       glass: "M-TAF1 / TAF1 class (HOYA, 773/495)",
       apd: false,
       role: "High-index double-aspherical pre-stop positive element; probable AA element in the production lens.",
@@ -129,7 +132,7 @@ const LENS_DATA = {
       type: "Negative Meniscus (2× Asph)",
       nd: 1.58313,
       vd: 59.5,
-      fl: -53.0,
+      focalLengthMm: -53.0,
       glass: "M-BACD12 (HOYA) / S-BAL42 (OHARA) class, 583/595",
       apd: false,
       role: "Single-element G2 inner-focus group; moves imageward for close focus.",
@@ -141,7 +144,7 @@ const LENS_DATA = {
       type: "Positive Meniscus (2× Asph)",
       nd: 1.58313,
       vd: 59.5,
-      fl: 57.7,
+      focalLengthMm: 57.7,
       glass: "M-BACD12 (HOYA) / S-BAL42 (OHARA) class, 583/595",
       apd: false,
       role: "First G3 relay element and rear-group aspherical corrector.",
@@ -153,7 +156,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.496997,
       vd: 81.6,
-      fl: 45.5,
+      focalLengthMm: 45.5,
       glass: "S-FPL51 (OHARA) / FCD1 (HOYA)",
       apd: "inferred",
       apdNote:
@@ -167,7 +170,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.846663,
       vd: 23.8,
-      fl: -34.0,
+      focalLengthMm: -34.0,
       glass: "S-TIH53 (OHARA)",
       apd: false,
       role: "Final negative dense-flint field-flattening and chromatic-correction element.",
@@ -175,26 +178,46 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 72.567, d: 1.4, nd: 1.487489, elemId: 1, sd: 13.4 },
-    { label: "2", R: 15.271, d: 10.231, nd: 1.0, elemId: 0, sd: 11.3 },
-    { label: "3", R: -17.441, d: 0.8, nd: 1.58144, elemId: 2, sd: 11.3 },
-    { label: "4", R: -1782.041, d: 0.2, nd: 1.0, elemId: 0, sd: 11.4 },
-    { label: "5", R: 36.075, d: 1.0, nd: 1.846663, elemId: 3, sd: 11.5 },
-    { label: "6", R: 26.243, d: 6.348, nd: 1.496997, elemId: 4, sd: 11.5 },
-    { label: "7", R: -27.198, d: 0.2, nd: 1.0, elemId: 0, sd: 12.0 },
-    { label: "8A", R: 33.775, d: 5.458, nd: 1.772502, elemId: 5, sd: 12.1 },
-    { label: "9A", R: -39.765, d: 2.3, nd: 1.0, elemId: 0, sd: 11.2 },
-    { label: "STO", R: 1e15, d: 2.3, nd: 1.0, elemId: 0, sd: 9.76 },
-    { label: "11A", R: 44.681, d: 1.0, nd: 1.58313, elemId: 6, sd: 9.95 },
-    { label: "12A", R: 18.127, d: 8.871, nd: 1.0, elemId: 0, sd: 9.9 },
-    { label: "13A", R: -44.784, d: 3.142, nd: 1.58313, elemId: 7, sd: 11.5 },
-    { label: "14A", R: -19.714, d: 2.428, nd: 1.0, elemId: 0, sd: 12.2 },
-    { label: "15", R: -137.164, d: 5.845, nd: 1.496997, elemId: 8, sd: 12.2 },
-    { label: "16", R: -19.682, d: 5.367, nd: 1.0, elemId: 0, sd: 12.4 },
-    { label: "17", R: -32.556, d: 1.3, nd: 1.846663, elemId: 9, sd: 10.8 },
+    { label: "1", R: 72.567, d: 1.4, sd: 13.4, medium: 1 },
+    { label: "2", R: 15.271, d: 10.231, sd: 11.3 },
+    { label: "3", R: -17.441, d: 0.8, sd: 11.3, medium: 2 },
+    { label: "4", R: -1782.041, d: 0.2, sd: 11.4 },
+    { label: "5", R: 36.075, d: 1.0, sd: 11.5, medium: 3 },
+    { label: "6", R: 26.243, d: 6.348, sd: 11.5, medium: 4 },
+    { label: "7", R: -27.198, d: 0.2, sd: 12.0 },
+    {
+      label: "8A",
+      R: 33.775,
+      d: 5.458,
+      sd: 12.1,
+      medium: 5,
+      asphere: { K: 0, A4: -4.52e-6, A6: -4.73e-8, A8: 4.64e-10, A10: -3.5e-13 },
+    },
+    { label: "9A", R: -39.765, d: 2.3, sd: 11.2, asphere: { K: 0, A4: 1.82e-5, A6: -6.29e-8, A8: 5.57e-10, A10: -6.15e-13 } },
+    { label: "STO", R: "flat" },
+    { label: "11A", R: 44.681, d: 1.0, sd: 9.95, medium: 6, asphere: { K: 0, A4: -5.29e-5, A6: 3.38e-7, A8: -1.35e-9, A10: 0 } },
+    { label: "12A", R: 18.127, sd: 9.9, asphere: { K: 0, A4: -5.19e-5, A6: 3.65e-7, A8: -1.3e-9, A10: -3.7e-12 } },
+    { label: "13A", R: -44.784, d: 3.142, sd: 11.5, medium: 7, asphere: { K: 0, A4: 0, A6: 3.09e-7, A8: -8.76e-10, A10: 1.1e-12 } },
+    { label: "14A", R: -19.714, d: 2.428, sd: 12.2, asphere: { K: 0, A4: 2.68e-5, A6: 2.47e-7, A8: 0, A10: 0 } },
+    { label: "15", R: -137.164, d: 5.845, sd: 12.2, medium: 8 },
+    { label: "16", R: -19.682, d: 5.367, sd: 12.4 },
+    { label: "17", R: -32.556, d: 1.3, sd: 10.8, medium: 9 },
     // Last surface: patent gap to the cover glass
-    { label: "18", R: 250.0, d: 15.309, nd: 1.0, elemId: 0, sd: 10.8 },
+    { label: "18", R: 250.0, d: 15.309, sd: 10.8 },
   ],
+
+  focus: {
+    closeFocusM: 0.25,
+    description:
+      "Inner focus: only L6 / G2 moves imageward. The close-focus state is paraxially solved for Sony's 0.25 m MF minimum focus distance; AF minimum focus is 0.29 m with shorter travel.",
+  },
+
+  gaps: {
+    STO: { label: "D(STO-L6)", values: [[2.3, 6.719239536941148]] },
+    "12A": { label: "D(L6-G3)", values: [[8.871, 4.451760463058853]] },
+  },
+
+  aperture: { nominalFNumber: 2.06, fStops: [2.06, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 9 },
 
   /* ── Cover glass (patent Table 28 surfaces 19–20): traced, not drawn ── */
   rearPlates: [
@@ -208,45 +231,17 @@ const LENS_DATA = {
     },
   ],
 
-  asph: {
-    "8A": { K: 0, A4: -4.52e-6, A6: -4.73e-8, A8: 4.64e-10, A10: -3.5e-13, A12: 0, A14: 0 },
-    "9A": { K: 0, A4: 1.82e-5, A6: -6.29e-8, A8: 5.57e-10, A10: -6.15e-13, A12: 0, A14: 0 },
-    "11A": { K: 0, A4: -5.29e-5, A6: 3.38e-7, A8: -1.35e-9, A10: 0, A12: 0, A14: 0 },
-    "12A": { K: 0, A4: -5.19e-5, A6: 3.65e-7, A8: -1.3e-9, A10: -3.7e-12, A12: 0, A14: 0 },
-    "13A": { K: 0, A4: 0, A6: 3.09e-7, A8: -8.76e-10, A10: 1.1e-12, A12: 0, A14: 0 },
-    "14A": { K: 0, A4: 2.68e-5, A6: 2.47e-7, A8: 0, A10: 0, A12: 0, A14: 0 },
-  },
-
-  var: {
-    STO: [2.3, 6.719239536941148],
-    "12A": [8.871, 4.451760463058853],
-  },
-
-  varLabels: [
-    ["STO", "D(STO-L6)"],
-    ["12A", "D(L6-G3)"],
-  ],
-
   groups: [
     { text: "G1F", fromSurface: "1", toSurface: "2" },
     { text: "G1R", fromSurface: "3", toSurface: "9A" },
     { text: "G2 focus", fromSurface: "11A", toSurface: "12A" },
     { text: "G3", fromSurface: "13A", toSurface: "18" },
   ],
-
   doublets: [{ text: "D1", fromSurface: "5", toSurface: "7" }],
 
-  closeFocusM: 0.25,
-  focusDescription:
-    "Inner focus: only L6 / G2 moves imageward. The close-focus state is paraxially solved for Sony's 0.25 m MF minimum focus distance; AF minimum focus is 0.29 m with shorter travel.",
+  layout: { scFill: 0.58, yScFill: 0.46 },
 
-  nominalFno: 2.06,
-  maxFstop: 22,
-  fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16, 22],
-
-  scFill: 0.58,
-  yScFill: 0.46,
-  offAxisFieldFrac: 0.55,
-} satisfies LensDataInput;
+  rays: { offAxisFieldFrac: 0.55 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

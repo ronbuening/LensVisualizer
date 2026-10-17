@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Sony FE 12-24mm f/2.8 GM (SEL1224GM)
@@ -15,212 +15,196 @@ import type { LensDataInput } from "../../types/optics.js";
  * Semi-diameters are patent effective diameters (phi/2), not inferred blank diameters,
  * except S7, which is reduced 0.055 mm from phi/2 to preserve rendered
  * clearance across the tight S6-S7 air gap.
- * The wide-open iris follows Table 9, which lists the stop's effective diameter phi15 at Wide, Mid and Tele:
- * zoomStopSemiDiameters = phi15/2 = 8.115 / 9.565 / 11.815 mm. The STO surface row keeps the largest of the three
- * (telephoto); the engine takes the station radius from the schedule. The radii that give exactly F2.91 are
- * 8.112 / 9.559 / 11.799 mm, so the published schedule traces to f/2.909 / 2.908 / 2.906.
+ * The wide-open iris follows Table 9, which lists the stop's effective diameter phi15 at Wide, Mid and
+ * Tele: stopSemiDiameter = phi15/2 = 8.115 / 9.565 / 11.815 mm. The engine takes the station radius
+ * from the schedule. The radii that give exactly F2.91 are 8.112 / 9.559 / 11.799 mm, so the published
+ * schedule traces to f/2.909 / 2.908 / 2.906.
  */
 const LENS_DATA = {
+  schema: 2,
   key: "sony-fe-1224f28-gm",
-  name: "SONY FE 12-24mm f/2.8 GM",
   maker: "Sony",
+  name: "SONY FE 12-24mm f/2.8 GM",
   subtitle: "WO 2021/200206 A1 Example 2",
-  specs: [
-    "17 elements / 14 groups",
-    "f = 12.37-23.28 mm design",
-    "F/2.91 design, f/2.8 marketed",
-    "2ω = 120.4°-85.7° design",
-    "8 aspherical surfaces",
-  ],
-  focalLengthMarketing: [12, 24],
-  focalLengthDesign: [12.367, 23.283],
-  apertureMarketing: 2.8,
-  apertureDesign: 2.91,
-  lensMounts: ["sony-fe"],
-  imageFormat: "135-full-frame",
-  patentNumber: "WO 2021/200206 A1",
-  patentAuthors: ["Takuya Kato"],
-  patentAssignees: ["Sony Group Corporation"],
-  patentYear: 2021,
-  // Table 6 prints e-line indices under its d-line heading; one entry per surface whose nd differs (see header).
-  sourceErrata: [
-    {
-      status: "corrected",
-      surface: "1A",
-      field: "nd",
-      printed: 1.58547,
-      applied: 1.58313,
-      evidence: ["source-summary", "sibling-example"],
-      note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surface 18) and Table 16 (surface 1) print the d-line value at the same νd, which isolates the value (1.58313); with this entry left as printed GP1 computes −20.25 mm against Table 7's −20.31.",
-    },
-    {
-      status: "corrected",
-      surface: "3A",
-      field: "nd",
-      printed: 1.77173,
-      applied: 1.76802,
-      evidence: ["source-summary", "sibling-example"],
-      note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surfaces 1 and 3) prints the d-line value at the same νd, which isolates the value (1.76802); with this entry left as printed GP1 computes −20.26 mm against Table 7's −20.31.",
-    },
-    {
-      status: "corrected",
-      surface: "5",
-      field: "nd",
-      printed: 1.55206,
-      applied: 1.55032,
-      evidence: ["source-summary", "sibling-example"],
-      note: "Table 6 prints the e-line index under its d-line heading. The patent prints no d-line value for this glass type: the applied value is the catalog nd of the glass whose ne and νd equal the printed pair. Table 7 isolates the entry as wrong in print (left as printed, GP1 computes −20.28 mm against −20.31; the applied value gives −20.31). Tables 1 and 16 show the slip for the block, not this value, and the block is corrected as one unit under the ruling in agent_docs/lens-patent-audit.md.",
-    },
-    {
-      status: "corrected",
-      surface: "7",
-      field: "nd",
-      printed: 1.4381,
-      applied: 1.437,
-      evidence: ["source-summary", "sibling-example"],
-      note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surfaces 5 and 27) prints the d-line value at the same νd, which isolates the value (1.43700); with this entry left as printed GP1 computes −20.29 mm against Table 7's −20.31.",
-    },
-    {
-      status: "corrected",
-      surface: "9",
-      field: "nd",
-      printed: 1.85649,
-      applied: 1.85026,
-      evidence: ["source-summary", "sibling-example"],
-      note: "Table 6 prints the e-line index under its d-line heading. The patent prints no d-line value for this glass type: the applied value is the catalog nd of the glass whose ne and νd equal the printed pair. Table 7 isolates the entry as wrong in print (left as printed, GP1 computes −20.45 mm against −20.31; the applied value gives −20.31). Tables 1 and 16 show the slip for the block, not this value, and the block is corrected as one unit under the ruling in agent_docs/lens-patent-audit.md.",
-    },
-    {
-      status: "corrected",
-      surface: "12",
-      field: "nd",
-      printed: 1.93024,
-      applied: 1.92119,
-      evidence: ["source-summary", "sibling-example"],
-      note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surface 12) prints the d-line value at the same νd, which isolates the value (1.92119), and Table 21 gives Nd2G = 1.9212 for this element of Example 2; with this entry left as printed GP2 computes 58.70 mm against Table 7's 58.02.",
-    },
-    {
-      status: "corrected",
-      surface: "13",
-      field: "nd",
-      printed: 1.67764,
-      applied: 1.6727,
-      evidence: ["source-summary", "sibling-example"],
-      note: "Table 6 prints the e-line index under its d-line heading. The patent prints no d-line value for this glass type: the applied value is the catalog nd of the glass whose ne and νd equal the printed pair. Table 7 isolates the entry as wrong in print (left as printed, GP2 computes 57.10 mm against 58.02; the applied value gives 58.02). Tables 1 and 16 show the slip for the block, not this value, and the block is corrected as one unit under the ruling in agent_docs/lens-patent-audit.md.",
-    },
-    {
-      status: "corrected",
-      surface: "16",
-      field: "nd",
-      printed: 1.96073,
-      applied: 1.95375,
-      evidence: ["source-summary", "sibling-example"],
-      note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surfaces 9 and 20) prints the d-line value at the same νd, which isolates the value (1.95375); with this entry left as printed GP3 computes 378.51 mm against Table 7's 362.10.",
-    },
-    {
-      status: "corrected",
-      surface: "18A",
-      field: "nd",
-      printed: 1.59412,
-      applied: 1.59201,
-      evidence: ["source-summary", "sibling-example"],
-      note: "Table 6 prints the e-line index under its d-line heading. Table 16 (surface 20) prints the d-line value at the same νd, which isolates the value (1.59201); with this entry left as printed GP3 computes 353.22 mm against Table 7's 362.10.",
-    },
-    {
-      status: "corrected",
-      surface: "20",
-      field: "nd",
-      printed: 1.96073,
-      applied: 1.95375,
-      evidence: ["source-summary", "sibling-example"],
-      note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surfaces 9 and 20) prints the d-line value at the same νd, which isolates the value (1.95375); with this entry left as printed GP4 computes 46.81 mm against Table 7's 46.40.",
-    },
-    {
-      status: "corrected",
-      surface: "21",
-      field: "nd",
-      printed: 1.55206,
-      applied: 1.55032,
-      evidence: ["source-summary", "sibling-example"],
-      note: "Table 6 prints the e-line index under its d-line heading. The patent prints no d-line value for this glass type: the applied value is the catalog nd of the glass whose ne and νd equal the printed pair. Table 7 isolates the entry as wrong in print (left as printed, GP4 computes 46.09 mm against 46.40; the applied value gives 46.41). Tables 1 and 16 show the slip for the block, not this value, and the block is corrected as one unit under the ruling in agent_docs/lens-patent-audit.md.",
-    },
-    {
-      status: "corrected",
-      surface: "23",
-      field: "nd",
-      printed: 1.90314,
-      applied: 1.89286,
-      evidence: ["source-summary", "sibling-example"],
-      note: "Table 6 prints the e-line index under its d-line heading. The patent prints no d-line value for this glass type: the applied value is the catalog nd of the glass whose ne and νd equal the printed pair. Table 7 isolates the entry as wrong in print (left as printed, GP5 computes −81.44 mm against −78.16; the applied value gives −78.16). Tables 1 and 16 show the slip for the block, not this value, and the block is corrected as one unit under the ruling in agent_docs/lens-patent-audit.md.",
-    },
-    {
-      status: "corrected",
-      surface: "24",
-      field: "nd",
-      printed: 1.96073,
-      applied: 1.95375,
-      evidence: ["source-summary", "sibling-example"],
-      note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surfaces 9 and 20) prints the d-line value at the same νd, which isolates the value (1.95375); with this entry left as printed GP5 computes −76.13 mm against Table 7's −78.16.",
-    },
-    {
-      status: "corrected",
-      surface: "26",
-      field: "nd",
-      printed: 1.4381,
-      applied: 1.437,
-      evidence: ["source-summary", "sibling-example"],
-      note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surfaces 5 and 27) prints the d-line value at the same νd, which isolates the value (1.43700); with this entry left as printed GP5 computes −78.65 mm against Table 7's −78.16.",
-    },
-    {
-      status: "corrected",
-      surface: "28",
-      field: "nd",
-      printed: 2.00912,
-      applied: 2.001,
-      evidence: ["source-summary", "sibling-example"],
-      note: "Table 6 prints the e-line index under its d-line heading. Table 16 (surfaces 7, 14 and 23) prints the d-line value at the same νd, which isolates the value (2.00100); with this entry left as printed GP5 computes −76.60 mm against Table 7's −78.16.",
-    },
-    {
-      status: "corrected",
-      surface: "30A",
-      field: "nd",
-      printed: 1.85639,
-      applied: 1.85135,
-      evidence: ["source-summary", "sibling-example"],
-      note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surface 31) prints the d-line value at the same νd, which isolates the value (1.85135; Table 16 prints 1.85134); with this entry left as printed GP5 computes −77.60 mm against Table 7's −78.16.",
-    },
-    {
-      status: "corrected",
-      surface: "32",
-      field: "nd",
-      printed: 1.49845,
-      applied: 1.497,
-      evidence: ["source-summary", "sibling-example"],
-      note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surfaces 7, 21 and 33) and Table 16 print the d-line value at the same νd, which isolates the value (1.49700); with this entry left as printed GP5 computes −78.28 mm against Table 7's −78.16.",
-    },
-  ],
-  elementCount: 17,
-  groupCount: 14,
-  closeFocusM: 0.28,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  // Table 9 φ15 / 2 at Wide, Mid, Tele: the open-aperture stop at the stated F2.91.
-  zoomStopSemiDiameters: [8.115, 9.565, 11.815],
-  nominalFno: 2.91,
-  fstopSeries: [2.91, 4, 5.6, 8, 11, 16, 22],
-  apertureBlades: 9,
-  zoomPositions: [12.37, 16.94, 23.29],
-  zoomLabels: ["Wide", "Tele"],
-  zoomStep: 0.004,
-  focusDescription:
-    "Floating inner focus: GP2 and GP4 move independently; d11/d14 and d19/d22 change with focus while the back focal distance remains fixed at each zoom position.",
-  svgW: 1120,
-  svgH: 520,
-  scFill: 0.72,
-  yScFill: 0.72,
-  rayLeadFrac: 0.24,
-  lensShiftFrac: 0.045,
-  offAxisFieldFrac: 0.45,
-  maxFstop: 22,
+
+  catalog: {
+    lensMounts: ["sony-fe"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "17 elements / 14 groups",
+      "f = 12.37-23.28 mm design",
+      "F/2.91 design, f/2.8 marketed",
+      "2ω = 120.4°-85.7° design",
+      "8 aspherical surfaces",
+    ],
+    elementCount: 17,
+    groupCount: 14,
+    focalLengthMm: { marketing: [12, 24], design: [12.367, 23.283] },
+    fNumber: { marketing: 2.8, design: 2.91 },
+  },
+
+  source: {
+    patentNumber: "WO 2021/200206 A1",
+    patentYear: 2021,
+    authors: ["Takuya Kato"],
+    assignees: ["Sony Group Corporation"],
+    // Table 6 prints e-line indices under its d-line heading; one entry per surface whose nd differs (see header).
+    errata: [
+      {
+        status: "corrected",
+        surface: "1A",
+        field: "nd",
+        printed: 1.58547,
+        applied: 1.58313,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surface 18) and Table 16 (surface 1) print the d-line value at the same νd, which isolates the value (1.58313); with this entry left as printed GP1 computes −20.25 mm against Table 7's −20.31.",
+      },
+      {
+        status: "corrected",
+        surface: "3A",
+        field: "nd",
+        printed: 1.77173,
+        applied: 1.76802,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surfaces 1 and 3) prints the d-line value at the same νd, which isolates the value (1.76802); with this entry left as printed GP1 computes −20.26 mm against Table 7's −20.31.",
+      },
+      {
+        status: "corrected",
+        surface: "5",
+        field: "nd",
+        printed: 1.55206,
+        applied: 1.55032,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Table 6 prints the e-line index under its d-line heading. The patent prints no d-line value for this glass type: the applied value is the catalog nd of the glass whose ne and νd equal the printed pair. Table 7 isolates the entry as wrong in print (left as printed, GP1 computes −20.28 mm against −20.31; the applied value gives −20.31). Tables 1 and 16 show the slip for the block, not this value, and the block is corrected as one unit under the ruling in agent_docs/lens-patent-audit.md.",
+      },
+      {
+        status: "corrected",
+        surface: "7",
+        field: "nd",
+        printed: 1.4381,
+        applied: 1.437,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surfaces 5 and 27) prints the d-line value at the same νd, which isolates the value (1.43700); with this entry left as printed GP1 computes −20.29 mm against Table 7's −20.31.",
+      },
+      {
+        status: "corrected",
+        surface: "9",
+        field: "nd",
+        printed: 1.85649,
+        applied: 1.85026,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Table 6 prints the e-line index under its d-line heading. The patent prints no d-line value for this glass type: the applied value is the catalog nd of the glass whose ne and νd equal the printed pair. Table 7 isolates the entry as wrong in print (left as printed, GP1 computes −20.45 mm against −20.31; the applied value gives −20.31). Tables 1 and 16 show the slip for the block, not this value, and the block is corrected as one unit under the ruling in agent_docs/lens-patent-audit.md.",
+      },
+      {
+        status: "corrected",
+        surface: "12",
+        field: "nd",
+        printed: 1.93024,
+        applied: 1.92119,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surface 12) prints the d-line value at the same νd, which isolates the value (1.92119), and Table 21 gives Nd2G = 1.9212 for this element of Example 2; with this entry left as printed GP2 computes 58.70 mm against Table 7's 58.02.",
+      },
+      {
+        status: "corrected",
+        surface: "13",
+        field: "nd",
+        printed: 1.67764,
+        applied: 1.6727,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Table 6 prints the e-line index under its d-line heading. The patent prints no d-line value for this glass type: the applied value is the catalog nd of the glass whose ne and νd equal the printed pair. Table 7 isolates the entry as wrong in print (left as printed, GP2 computes 57.10 mm against 58.02; the applied value gives 58.02). Tables 1 and 16 show the slip for the block, not this value, and the block is corrected as one unit under the ruling in agent_docs/lens-patent-audit.md.",
+      },
+      {
+        status: "corrected",
+        surface: "16",
+        field: "nd",
+        printed: 1.96073,
+        applied: 1.95375,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surfaces 9 and 20) prints the d-line value at the same νd, which isolates the value (1.95375); with this entry left as printed GP3 computes 378.51 mm against Table 7's 362.10.",
+      },
+      {
+        status: "corrected",
+        surface: "18A",
+        field: "nd",
+        printed: 1.59412,
+        applied: 1.59201,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Table 6 prints the e-line index under its d-line heading. Table 16 (surface 20) prints the d-line value at the same νd, which isolates the value (1.59201); with this entry left as printed GP3 computes 353.22 mm against Table 7's 362.10.",
+      },
+      {
+        status: "corrected",
+        surface: "20",
+        field: "nd",
+        printed: 1.96073,
+        applied: 1.95375,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surfaces 9 and 20) prints the d-line value at the same νd, which isolates the value (1.95375); with this entry left as printed GP4 computes 46.81 mm against Table 7's 46.40.",
+      },
+      {
+        status: "corrected",
+        surface: "21",
+        field: "nd",
+        printed: 1.55206,
+        applied: 1.55032,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Table 6 prints the e-line index under its d-line heading. The patent prints no d-line value for this glass type: the applied value is the catalog nd of the glass whose ne and νd equal the printed pair. Table 7 isolates the entry as wrong in print (left as printed, GP4 computes 46.09 mm against 46.40; the applied value gives 46.41). Tables 1 and 16 show the slip for the block, not this value, and the block is corrected as one unit under the ruling in agent_docs/lens-patent-audit.md.",
+      },
+      {
+        status: "corrected",
+        surface: "23",
+        field: "nd",
+        printed: 1.90314,
+        applied: 1.89286,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Table 6 prints the e-line index under its d-line heading. The patent prints no d-line value for this glass type: the applied value is the catalog nd of the glass whose ne and νd equal the printed pair. Table 7 isolates the entry as wrong in print (left as printed, GP5 computes −81.44 mm against −78.16; the applied value gives −78.16). Tables 1 and 16 show the slip for the block, not this value, and the block is corrected as one unit under the ruling in agent_docs/lens-patent-audit.md.",
+      },
+      {
+        status: "corrected",
+        surface: "24",
+        field: "nd",
+        printed: 1.96073,
+        applied: 1.95375,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surfaces 9 and 20) prints the d-line value at the same νd, which isolates the value (1.95375); with this entry left as printed GP5 computes −76.13 mm against Table 7's −78.16.",
+      },
+      {
+        status: "corrected",
+        surface: "26",
+        field: "nd",
+        printed: 1.4381,
+        applied: 1.437,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surfaces 5 and 27) prints the d-line value at the same νd, which isolates the value (1.43700); with this entry left as printed GP5 computes −78.65 mm against Table 7's −78.16.",
+      },
+      {
+        status: "corrected",
+        surface: "28",
+        field: "nd",
+        printed: 2.00912,
+        applied: 2.001,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Table 6 prints the e-line index under its d-line heading. Table 16 (surfaces 7, 14 and 23) prints the d-line value at the same νd, which isolates the value (2.00100); with this entry left as printed GP5 computes −76.60 mm against Table 7's −78.16.",
+      },
+      {
+        status: "corrected",
+        surface: "30A",
+        field: "nd",
+        printed: 1.85639,
+        applied: 1.85135,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surface 31) prints the d-line value at the same νd, which isolates the value (1.85135; Table 16 prints 1.85134); with this entry left as printed GP5 computes −77.60 mm against Table 7's −78.16.",
+      },
+      {
+        status: "corrected",
+        surface: "32",
+        field: "nd",
+        printed: 1.49845,
+        applied: 1.497,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Table 6 prints the e-line index under its d-line heading. Table 1 (surfaces 7, 21 and 33) and Table 16 print the d-line value at the same νd, which isolates the value (1.49700); with this entry left as printed GP5 computes −78.28 mm against Table 7's −78.16.",
+      },
+    ],
+  },
 
   elements: [
     {
@@ -230,7 +214,7 @@ const LENS_DATA = {
       type: "Negative Meniscus (2x Asph)",
       nd: 1.58313,
       vd: 59.5,
-      fl: -37.48,
+      focalLengthMm: -37.48,
       glass: "M-BACD12 / L-BAL42 class (PGM barium crown, 583/595)",
       role: "Large negative front meniscus; primary wide-angle divergence and distortion correction.",
     },
@@ -241,7 +225,7 @@ const LENS_DATA = {
       type: "Negative Meniscus (2x Asph)",
       nd: 1.76802,
       vd: 49.2,
-      fl: -59.03,
+      focalLengthMm: -59.03,
       glass: "M-TAF101 class (PGM lanthanum flint, 768/492)",
       role: "Second negative meniscus in GP1; high-index aspherical distortion and astigmatism corrector.",
     },
@@ -252,7 +236,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.55032,
       vd: 75.5,
-      fl: -88.93,
+      focalLengthMm: -88.93,
       glass: "FCD705 class (ED phosphate crown, 550/755)",
       role: "First ED element in the negative front group for lateral-chromatic correction.",
     },
@@ -263,7 +247,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.437,
       vd: 95.1,
-      fl: -114.47,
+      focalLengthMm: -114.47,
       glass: "FCD100 class (Super ED fluorophosphate, 437/951)",
       apd: "inferred",
       apdNote: "Super-ED-class fluorophosphate; vendor not named in patent.",
@@ -276,7 +260,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.85026,
       vd: 32.3,
-      fl: 53.39,
+      focalLengthMm: 53.39,
       glass: "S-LAH71 class (dense lanthanum flint, 850/323)",
       role: "Positive chromatic partner at the rear of the negative front group.",
     },
@@ -287,10 +271,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.92119,
       vd: 24,
-      fl: -48.75,
+      focalLengthMm: -48.75,
       glass: "FDS24 class (ultra-dense short flint, 921/240)",
-      cemented: "D1",
       role: "Negative front element of GP2 floating-focus doublet.",
+      cemented: "D1",
     },
     {
       id: 7,
@@ -299,10 +283,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6727,
       vd: 32.2,
-      fl: 26.07,
+      focalLengthMm: 26.07,
       glass: "E-FD5 / S-TIM25 class (dense flint, 673/322)",
-      cemented: "D1",
       role: "Positive rear element of GP2; supplies the net positive focus-group power.",
+      cemented: "D1",
     },
     {
       id: 8,
@@ -311,7 +295,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.95375,
       vd: 32.3,
-      fl: -62.68,
+      focalLengthMm: -62.68,
       glass: "TAFD45 / S-LAH98 class (ultra-dense lanthanum flint, 954/323)",
       role: "Negative element immediately after the aperture stop.",
     },
@@ -322,7 +306,7 @@ const LENS_DATA = {
       type: "Positive Meniscus (2x Asph)",
       nd: 1.59201,
       vd: 67,
-      fl: 51.58,
+      focalLengthMm: 51.58,
       glass: "M-PCD51 class (PGM low-dispersion phosphate crown, 592/670)",
       role: "Weak positive relay and aspherical coma/field corrector in GP3.",
     },
@@ -333,10 +317,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.95375,
       vd: 32.3,
-      fl: -37.02,
+      focalLengthMm: -37.02,
       glass: "TAFD45 / S-LAH98 class (ultra-dense lanthanum flint, 954/323)",
-      cemented: "D2",
       role: "Negative front element of GP4 floating-focus doublet.",
+      cemented: "D2",
     },
     {
       id: 11,
@@ -345,10 +329,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.55032,
       vd: 75.5,
-      fl: 20.69,
+      focalLengthMm: 20.69,
       glass: "FCD705 class (ED phosphate crown, 550/755)",
-      cemented: "D2",
       role: "ED positive rear element of GP4; achromatizes the focus doublet.",
+      cemented: "D2",
     },
     {
       id: 12,
@@ -357,10 +341,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.89286,
       vd: 20.4,
-      fl: 24.84,
+      focalLengthMm: 24.84,
       glass: "S-NPH4 class (ultra-dense short flint, 893/204)",
-      cemented: "D3",
       role: "Positive front member of the nearly afocal GP5 chromatic doublet.",
+      cemented: "D3",
     },
     {
       id: 13,
@@ -369,10 +353,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.95375,
       vd: 32.3,
-      fl: -24.84,
+      focalLengthMm: -24.84,
       glass: "TAFD45 / S-LAH98 class (ultra-dense lanthanum flint, 954/323)",
-      cemented: "D3",
       role: "Negative rear member of the L51-L52 cemented component.",
+      cemented: "D3",
     },
     {
       id: 14,
@@ -381,7 +365,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.437,
       vd: 95.1,
-      fl: 35.17,
+      focalLengthMm: 35.17,
       glass: "FCD100 class (Super ED fluorophosphate, 437/951)",
       apd: "inferred",
       apdNote: "Super-ED-class fluorophosphate; vendor not named in patent.",
@@ -394,7 +378,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 2.001,
       vd: 29.1,
-      fl: -31.84,
+      focalLengthMm: -31.84,
       glass: "TAFD55 / S-LAH99 class (ultra-high-index lanthanum flint, 001/291)",
       role: "La component: negative meniscus third from the image side in GP5.",
     },
@@ -405,7 +389,7 @@ const LENS_DATA = {
       type: "Negative Meniscus (2x Asph)",
       nd: 1.85135,
       vd: 40.1,
-      fl: -64.55,
+      focalLengthMm: -64.55,
       glass: "M-TAFD305 class (PGM lanthanum flint, 851/401)",
       role: "Lb component: rear aspherical negative meniscus for distortion correction.",
     },
@@ -416,166 +400,189 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.6,
-      fl: 155.57,
+      focalLengthMm: 155.57,
       glass: "FCD1 / S-FPL51 / N-PK52A class (ED fluorophosphate, 497/816)",
       apd: "patent",
-      dPgF: 0.0324,
-      apdNote: "Patent Table 21 prints θgF = 0.5389 and ΔθgF = +0.0376 by the patent's line (θgF − 0.6483 + 0.001802·νd); runtime dPgF +0.0324.",
+      apdNote:
+        "Patent Table 21 prints θgF = 0.5389 and ΔθgF = +0.0376 by the patent's line (θgF − 0.6483 + 0.001802·νd); runtime dPgF +0.0324.",
       role: "Lc component: positive rear element controlling exit angle and lateral color.",
+      dPgF: 0.0324,
     },
   ],
 
   surfaces: [
-    { label: "1A", R: 81.854, d: 3.2, nd: 1.58313, elemId: 1, sd: 38.98 }, // Table 6 prints 1.58547 (e line)
-    { label: "2A", R: 17, d: 16.4, nd: 1, elemId: 0, sd: 24.845 },
-    { label: "3A", R: 53.509, d: 2.1, nd: 1.76802, elemId: 2, sd: 23.775 }, // Table 6 prints 1.77173 (e line)
-    { label: "4A", R: 24.124, d: 10.41, nd: 1, elemId: 0, sd: 18.145 },
-    { label: "5", R: -378.999, d: 1.65, nd: 1.55032, elemId: 3, sd: 17.73 }, // Table 6 prints 1.55206 (e line)
-    { label: "6", R: 56.286, d: 4.12, nd: 1, elemId: 0, sd: 16.87 },
-    { label: "7", R: -123.328, d: 1.55, nd: 1.437, elemId: 4, sd: 16.77 }, // Table 6 prints 1.43810 (e line)
-    { label: "8", R: 84.487, d: 0.2, nd: 1, elemId: 0, sd: 16.66 },
-    { label: "9", R: 48.484, d: 4.58, nd: 1.85026, elemId: 5, sd: 16.71 }, // Table 6 prints 1.85649 (e line)
-    { label: "10", R: -680.725, d: 19.75, nd: 1, elemId: 0, sd: 16.5 },
-    { label: "FC1", R: 1e15, d: 10.16, nd: 1, elemId: 0, sd: 11.15 },
-    { label: "12", R: 30.971, d: 1.2, nd: 1.92119, elemId: 6, sd: 12.345 }, // Table 6 prints 1.93024 (e line)
-    { label: "13", R: 17.99, d: 6.78, nd: 1.6727, elemId: 7, sd: 11.935 }, // Table 6 prints 1.67764 (e line)
-    { label: "14", R: -587.713, d: 9.31, nd: 1, elemId: 0, sd: 11.905 },
-    { label: "STO", R: 1e15, d: 1, nd: 1, elemId: 0, sd: 11.815 },
-    { label: "16", R: 53.73, d: 1.2, nd: 1.95375, elemId: 8, sd: 11.8 }, // Table 6 prints 1.96073 (e line)
-    { label: "17", R: 27.989, d: 0.25, nd: 1, elemId: 0, sd: 11.54 },
-    { label: "18A", R: 19.431, d: 4.45, nd: 1.59201, elemId: 9, sd: 11.955 }, // Table 6 prints 1.59412 (e line)
-    { label: "19A", R: 48.888, d: 3.2, nd: 1, elemId: 0, sd: 11.765 },
-    { label: "20", R: 22.515, d: 1.3, nd: 1.95375, elemId: 10, sd: 11.63 }, // Table 6 prints 1.96073 (e line)
-    { label: "21", R: 13.361, d: 9.57, nd: 1.55032, elemId: 11, sd: 10.645 }, // Table 6 prints 1.55206 (e line)
-    { label: "22", R: -57.507, d: 2.97, nd: 1, elemId: 0, sd: 10.45 },
-    { label: "23", R: -54.963, d: 4.21, nd: 1.89286, elemId: 12, sd: 9.82 }, // Table 6 prints 1.90314 (e line)
-    { label: "24", R: -16.371, d: 1.25, nd: 1.95375, elemId: 13, sd: 10.1 }, // Table 6 prints 1.96073 (e line)
-    { label: "25", R: -54.938, d: 0.25, nd: 1, elemId: 0, sd: 10.8 },
-    { label: "26", R: 55.041, d: 6.67, nd: 1.437, elemId: 14, sd: 11.245 }, // Table 6 prints 1.43810 (e line)
-    { label: "27", R: -20.534, d: 0.26, nd: 1, elemId: 0, sd: 11.365 },
-    { label: "28", R: -28.62, d: 1.15, nd: 2.001, elemId: 15, sd: 11.03 }, // Table 6 prints 2.00912 (e line)
-    { label: "29", R: -286.252, d: 2.39, nd: 1, elemId: 0, sd: 11.35 },
-    { label: "30A", R: -42.72, d: 1.42, nd: 1.85135, elemId: 16, sd: 11.4 }, // Table 6 prints 1.85639 (e line)
-    { label: "31A", R: -194.772, d: 0.2, nd: 1, elemId: 0, sd: 12.5 },
-    { label: "32", R: 100, d: 2.5, nd: 1.497, elemId: 17, sd: 13.55 }, // Table 6 prints 1.49845 (e line)
-    { label: "33", R: -338.071, d: 15.5, nd: 1, elemId: 0, sd: 13.965 },
+    {
+      label: "1A",
+      R: 81.854,
+      d: 3.2,
+      sd: 38.98,
+      medium: 1,
+      asphere: {
+        K: -1.16003e-2,
+        A4: -1.65355e-7,
+        A6: 1.17463e-9,
+        A8: -3.83525e-13,
+        A10: 7.83751e-17,
+        A12: 3.53834e-20,
+        A14: 0,
+      },
+    }, // Table 6 prints 1.58547 (e line)
+    {
+      label: "2A",
+      R: 17,
+      d: 16.4,
+      sd: 24.845,
+      asphere: {
+        K: -6.67543e-1,
+        A4: -2.70493e-6,
+        A6: -1.00491e-8,
+        A8: 4.57727e-12,
+        A10: -1.85805e-14,
+        A12: -5.01144e-18,
+        A14: 0,
+      },
+    },
+    {
+      label: "3A",
+      R: 53.509,
+      d: 2.1,
+      sd: 23.775,
+      medium: 2,
+      asphere: { K: 6.39569e-3, A4: -1.90031e-5, A6: 3.6724e-8, A8: -3.69202e-11, A10: 1.47478e-14, A12: 2.86478e-19, A14: 0 },
+    }, // Table 6 prints 1.77173 (e line)
+    {
+      label: "4A",
+      R: 24.124,
+      d: 10.41,
+      sd: 18.145,
+      asphere: { K: 1.47359e-1, A4: -1.52241e-5, A6: 4.28831e-8, A8: 3.97935e-11, A10: -2.05537e-13, A12: 4.71911e-16, A14: 0 },
+    },
+    { label: "5", R: -378.999, d: 1.65, sd: 17.73, medium: 3 }, // Table 6 prints 1.55206 (e line)
+    { label: "6", R: 56.286, d: 4.12, sd: 16.87 },
+    { label: "7", R: -123.328, d: 1.55, sd: 16.77, medium: 4 }, // Table 6 prints 1.43810 (e line)
+    { label: "8", R: 84.487, d: 0.2, sd: 16.66 },
+    { label: "9", R: 48.484, d: 4.58, sd: 16.71, medium: 5 }, // Table 6 prints 1.85649 (e line)
+    { label: "10", R: -680.725, sd: 16.5 },
+    { label: "FC1", R: "flat", sd: 11.15 },
+    { label: "12", R: 30.971, d: 1.2, sd: 12.345, medium: 6 }, // Table 6 prints 1.93024 (e line)
+    { label: "13", R: 17.99, d: 6.78, sd: 11.935, medium: 7 }, // Table 6 prints 1.67764 (e line)
+    { label: "14", R: -587.713, sd: 11.905 },
+    // Patent Table 9 prints stop effective diameters 16.23 / 19.13 / 23.63 mm at Wide / Mid / Tele.
+    { label: "STO", R: "flat", d: 1 },
+    { label: "16", R: 53.73, d: 1.2, sd: 11.8, medium: 8 }, // Table 6 prints 1.96073 (e line)
+    { label: "17", R: 27.989, d: 0.25, sd: 11.54 },
+    {
+      label: "18A",
+      R: 19.431,
+      d: 4.45,
+      sd: 11.955,
+      medium: 9,
+      asphere: { K: 0, A4: -1.01036e-5, A6: -3.18092e-8, A8: -6.54421e-11, A10: 1.2611e-13, A12: 0, A14: 0 },
+    }, // Table 6 prints 1.59412 (e line)
+    {
+      label: "19A",
+      R: 48.888,
+      sd: 11.765,
+      asphere: { K: 0, A4: -4.54563e-6, A6: -2.7747e-8, A8: -6.43216e-11, A10: 3.71318e-13, A12: 0, A14: 0 },
+    },
+    { label: "20", R: 22.515, d: 1.3, sd: 11.63, medium: 10 }, // Table 6 prints 1.96073 (e line)
+    { label: "21", R: 13.361, d: 9.57, sd: 10.645, medium: 11 }, // Table 6 prints 1.55206 (e line)
+    { label: "22", R: -57.507, sd: 10.45 },
+    { label: "23", R: -54.963, d: 4.21, sd: 9.82, medium: 12 }, // Table 6 prints 1.90314 (e line)
+    { label: "24", R: -16.371, d: 1.25, sd: 10.1, medium: 13 }, // Table 6 prints 1.96073 (e line)
+    { label: "25", R: -54.938, d: 0.25, sd: 10.8 },
+    { label: "26", R: 55.041, d: 6.67, sd: 11.245, medium: 14 }, // Table 6 prints 1.43810 (e line)
+    { label: "27", R: -20.534, d: 0.26, sd: 11.365 },
+    { label: "28", R: -28.62, d: 1.15, sd: 11.03, medium: 15 }, // Table 6 prints 2.00912 (e line)
+    { label: "29", R: -286.252, d: 2.39, sd: 11.35 },
+    {
+      label: "30A",
+      R: -42.72,
+      d: 1.42,
+      sd: 11.4,
+      medium: 16,
+      asphere: { K: 0, A4: -5.01451e-5, A6: 7.60009e-8, A8: -1.12942e-10, A10: -1.79084e-12, A12: 0, A14: 0 },
+    }, // Table 6 prints 1.85639 (e line)
+    {
+      label: "31A",
+      R: -194.772,
+      d: 0.2,
+      sd: 12.5,
+      asphere: { K: 0, A4: -2.10249e-5, A6: 1.44746e-7, A8: -2.43205e-10, A10: -1.87381e-13, A12: 0, A14: 0 },
+    },
+    { label: "32", R: 100, d: 2.5, sd: 13.55, medium: 17 }, // Table 6 prints 1.49845 (e line)
+    { label: "33", R: -338.071, sd: 13.965 },
   ],
 
-  asph: {
-    "1A": {
-      K: -1.16003e-2,
-      A4: -1.65355e-7,
-      A6: 1.17463e-9,
-      A8: -3.83525e-13,
-      A10: 7.83751e-17,
-      A12: 3.53834e-20,
-      A14: 0,
+  zoom: {
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    // (moved from zoomStopSemiDiameters) Table 9 φ15 / 2 at Wide, Mid, Tele: the open-aperture stop at the stated F2.91.
+    stations: [
+      { focalLengthMm: 12.37, stopSemiDiameter: 8.115, label: "Wide", published: true, publishedFocus: [1] },
+      { focalLengthMm: 16.94, stopSemiDiameter: 9.565, published: true, publishedFocus: [1] },
+      { focalLengthMm: 23.29, stopSemiDiameter: 11.815, label: "Tele", published: true, publishedFocus: [1] },
+    ],
+    step: 0.004,
+  },
+
+  focus: {
+    closeFocusM: 0.28,
+    description:
+      "Floating inner focus: GP2 and GP4 move independently; d11/d14 and d19/d22 change with focus while the back focal distance remains fixed at each zoom position.",
+  },
+
+  gaps: {
+    "10": {
+      label: "d10",
+      values: [
+        [19.75, 19.75],
+        [11.56, 11.56],
+        [1.3, 1.3],
+      ],
     },
-    "2A": {
-      K: -6.67543e-1,
-      A4: -2.70493e-6,
-      A6: -1.00491e-8,
-      A8: 4.57727e-12,
-      A10: -1.85805e-14,
-      A12: -5.01144e-18,
-      A14: 0,
+    FC1: {
+      label: "d11",
+      values: [
+        [10.16, 13.26],
+        [3.28, 6.84],
+        [3, 6.4],
+      ],
     },
-    "3A": {
-      K: 6.39569e-3,
-      A4: -1.90031e-5,
-      A6: 3.6724e-8,
-      A8: -3.69202e-11,
-      A10: 1.47478e-14,
-      A12: 2.86478e-19,
-      A14: 0,
-    },
-    "4A": {
-      K: 1.47359e-1,
-      A4: -1.52241e-5,
-      A6: 4.28831e-8,
-      A8: 3.97935e-11,
-      A10: -2.05537e-13,
-      A12: 4.71911e-16,
-      A14: 0,
-    },
-    "18A": {
-      K: 0,
-      A4: -1.01036e-5,
-      A6: -3.18092e-8,
-      A8: -6.54421e-11,
-      A10: 1.2611e-13,
-      A12: 0,
-      A14: 0,
+    "14": {
+      label: "d14",
+      values: [
+        [9.31, 6.21],
+        [9.03, 5.46],
+        [7.34, 3.94],
+      ],
     },
     "19A": {
-      K: 0,
-      A4: -4.54563e-6,
-      A6: -2.7747e-8,
-      A8: -6.43216e-11,
-      A10: 3.71318e-13,
-      A12: 0,
-      A14: 0,
+      label: "d19",
+      values: [
+        [3.2, 3.17],
+        [2.34, 2.69],
+        [2, 2.52],
+      ],
     },
-    "30A": {
-      K: 0,
-      A4: -5.01451e-5,
-      A6: 7.60009e-8,
-      A8: -1.12942e-10,
-      A10: -1.79084e-12,
-      A12: 0,
-      A14: 0,
+    "22": {
+      label: "d22",
+      values: [
+        [2.97, 3],
+        [3.83, 3.48],
+        [4.17, 3.65],
+      ],
     },
-    "31A": {
-      K: 0,
-      A4: -2.10249e-5,
-      A6: 1.44746e-7,
-      A8: -2.43205e-10,
-      A10: -1.87381e-13,
-      A12: 0,
-      A14: 0,
+    "33": {
+      label: "BF",
+      values: [
+        [15.5, 15.5],
+        [21.73, 21.73],
+        [31.21, 31.21],
+      ],
     },
   },
 
-  var: {
-    "10": [
-      [19.75, 19.75],
-      [11.56, 11.56],
-      [1.3, 1.3],
-    ],
-    FC1: [
-      [10.16, 13.26],
-      [3.28, 6.84],
-      [3, 6.4],
-    ],
-    "14": [
-      [9.31, 6.21],
-      [9.03, 5.46],
-      [7.34, 3.94],
-    ],
-    "19A": [
-      [3.2, 3.17],
-      [2.34, 2.69],
-      [2, 2.52],
-    ],
-    "22": [
-      [2.97, 3],
-      [3.83, 3.48],
-      [4.17, 3.65],
-    ],
-    "33": [
-      [15.5, 15.5],
-      [21.73, 21.73],
-      [31.21, 31.21],
-    ],
-  },
-  varLabels: [
-    ["10", "d10"],
-    ["FC1", "d11"],
-    ["14", "d14"],
-    ["19A", "d19"],
-    ["22", "d22"],
-    ["33", "BF"],
-  ],
+  aperture: { nominalFNumber: 2.91, fStops: [2.91, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 9 },
 
   groups: [
     { text: "GP1", fromSurface: "1A", toSurface: "10" },
@@ -590,6 +597,10 @@ const LENS_DATA = {
     { text: "L41+L42", fromSurface: "20", toSurface: "22" },
     { text: "L51+L52", fromSurface: "23", toSurface: "25" },
   ],
-} satisfies LensDataInput;
+
+  layout: { svgW: 1120, svgH: 520, scFill: 0.72, yScFill: 0.72, lensShiftFrac: 0.045 },
+
+  rays: { rayLeadFrac: 0.24, offAxisFieldFrac: 0.45 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

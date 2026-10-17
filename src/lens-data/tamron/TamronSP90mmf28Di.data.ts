@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -19,8 +19,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  The patent's terminal dummy plane (surface 27) is omitted. Its    ║
  * ║  D(27) spacing is folded into the final surface-to-image distance. ║
  * ║  The patent does not tabulate the diaphragm diameter at each focus ║
- * ║  state. The stored stop semi-diameter is calibrated to F/2.89 at   ║
- * ║  infinity; the axial D(14) focus spacing remains variable.         ║
+ * ║  state. The stop radius is derived from nominal f/2.8;             ║
+ * ║  the original calibration targeted F/2.89 at infinity.             ║
+ * ║  The axial D(14) focus spacing remains variable.                   ║
  * ║                                                                    ║
  * ║  SEMI-DIAMETERS are inferred from combined paraxial marginal- and  ║
  * ║  chief-ray envelopes across the three patent focus states, then    ║
@@ -39,31 +40,35 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "tamron-sp-90mm-f2-8-di-macro-vc-usd-f004",
   maker: "Tamron",
   name: "TAMRON SP 90mm f/2.8 Di MACRO 1:1 VC USD (F004)",
   subtitle: "US 9,063,253 B2 — Embodiment 7 / Tamron F004",
-  specs: [
-    "14 ELEMENTS / 11 GROUPS",
-    "f = 92.556 mm (COMPUTED)",
-    "F/2.89 DESIGN / f/2.8 MARKETED",
-    "2ω = 26.24° AT INFINITY",
-    "2 XLD + 1 LD",
-    "1:1 FLOATING INNER FOCUS / VC",
-  ],
 
-  focalLengthMarketing: 90,
-  focalLengthDesign: 92.556419,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.89,
-  lensMounts: ["canon-ef", "nikon-f", "sony-a"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 9,063,253 B2",
-  patentAuthors: ["Nobuyuki Adachi"],
-  patentAssignees: ["Tamron Co., Ltd."],
-  patentYear: 2015,
-  elementCount: 14,
-  groupCount: 11,
+  catalog: {
+    lensMounts: ["canon-ef", "nikon-f", "sony-a"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "14 ELEMENTS / 11 GROUPS",
+      "f = 92.556 mm (COMPUTED)",
+      "F/2.89 DESIGN / f/2.8 MARKETED",
+      "2ω = 26.24° AT INFINITY",
+      "2 XLD + 1 LD",
+      "1:1 FLOATING INNER FOCUS / VC",
+    ],
+    elementCount: 14,
+    groupCount: 11,
+    focalLengthMm: { marketing: 90, design: 92.556419 },
+    fNumber: { marketing: 2.8, design: 2.89 },
+  },
+
+  source: {
+    patentNumber: "US 9,063,253 B2",
+    patentYear: 2015,
+    authors: ["Nobuyuki Adachi"],
+    assignees: ["Tamron Co., Ltd."],
+  },
 
   /* ── Elements ──
    * Element focal lengths are standalone in-air values. Cemented-group
@@ -77,7 +82,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 49.6,
-      fl: 111.4625,
+      focalLengthMm: 111.4625,
       glass: "773/496 lanthanum glass (OHARA S-LAH66N / HOYA TAF1 equivalent)",
       role: "High-index front collector in the fixed positive first group.",
     },
@@ -88,7 +93,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.437,
       vd: 95.1,
-      fl: 86.2046,
+      focalLengthMm: 86.2046,
       glass: "FCD100 (HOYA)",
       apd: "inferred",
       apdNote: "HOYA anomalous-dispersion fluorophosphate; patent supplies only nd and νd.",
@@ -102,7 +107,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.84666,
       vd: 23.78,
-      fl: -100.9612,
+      focalLengthMm: -100.9612,
       glass: "FDS90 (HOYA)",
       role: "Dense-flint achromatizing member of the front cemented doublet.",
       cemented: "D1",
@@ -114,7 +119,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.437,
       vd: 95.1,
-      fl: 110.139,
+      focalLengthMm: 110.139,
       glass: "FCD100 (HOYA)",
       apd: "inferred",
       apdNote: "HOYA anomalous-dispersion fluorophosphate; patent supplies only nd and νd.",
@@ -127,13 +132,13 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.816,
       vd: 46.62,
-      fl: -49.9168,
+      focalLengthMm: -49.9168,
       glass: "S-LAH59 (OHARA)",
+      role: "Leading negative element of the imageward-moving second group.",
       dPgF: -0.0092,
       nC: 1.81075,
       nF: 1.82825,
       ng: 1.838,
-      role: "Leading negative element of the imageward-moving second group.",
     },
     {
       id: 6,
@@ -142,13 +147,13 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.48749,
       vd: 70.24,
-      fl: -44.0474,
+      focalLengthMm: -44.0474,
       glass: "S-FSL5 (OHARA; catalog νd 70.23, patent 70.24)",
+      role: "Low-index, low-dispersion negative element in the second focus group.",
       dPgF: 0.0022,
       nC: 1.48534,
       nF: 1.49228,
       ng: 1.49596,
-      role: "Low-index, low-dispersion negative element in the second focus group.",
     },
     {
       id: 7,
@@ -157,7 +162,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.84666,
       vd: 23.78,
-      fl: 69.6731,
+      focalLengthMm: 69.6731,
       glass: "FDS90 (HOYA)",
       role: "Positive dense-flint counterpower in the net-negative second focus group.",
     },
@@ -168,7 +173,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59282,
       vd: 68.62,
-      fl: 116.2191,
+      focalLengthMm: 116.2191,
       glass: "FCD515 (HOYA)",
       apd: "inferred",
       apdNote: "HOYA low-dispersion phosphate crown; patent supplies only nd and νd.",
@@ -181,14 +186,14 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.72825,
       vd: 28.46,
-      fl: -58.4032,
+      focalLengthMm: -58.4032,
       glass: "S-TIH10 (OHARA)",
+      role: "Front negative member of the objectward-moving fourth-group doublet.",
+      cemented: "D2",
       dPgF: 0.0123,
       nC: 1.72086,
       nF: 1.74645,
       ng: 1.762,
-      role: "Front negative member of the objectward-moving fourth-group doublet.",
-      cemented: "D2",
     },
     {
       id: 10,
@@ -197,14 +202,14 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6779,
       vd: 55.35,
-      fl: 34.436,
+      focalLengthMm: 34.436,
       glass: "S-LAL12Q (OHARA)",
+      role: "Rear positive member that gives the fourth cemented group net positive power.",
+      cemented: "D2",
       dPgF: -0.0085,
       nC: 1.67417,
       nF: 1.68642,
       ng: 1.69307,
-      role: "Rear positive member that gives the fourth cemented group net positive power.",
-      cemented: "D2",
     },
     {
       id: 11,
@@ -213,14 +218,14 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.58913,
       vd: 61.13,
-      fl: -41.2514,
+      focalLengthMm: -41.2514,
       glass: "S-BAL35 (OHARA; catalog νd 61.14, patent 61.13)",
+      role: "Front negative member of the laterally decentered VC doublet.",
+      cemented: "D3",
       dPgF: -0.0018,
       nC: 1.58619,
       nF: 1.59582,
       ng: 1.60103,
-      role: "Front negative member of the laterally decentered VC doublet.",
-      cemented: "D3",
     },
     {
       id: 12,
@@ -229,14 +234,14 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.80518,
       vd: 25.42,
-      fl: 94.256,
+      focalLengthMm: 94.256,
       glass: "S-TIH6 (OHARA)",
+      role: "Rear positive dense-flint member of the net-negative VC doublet.",
+      cemented: "D3",
       dPgF: 0.0158,
       nC: 1.79611,
       nF: 1.82777,
       ng: 1.84729,
-      role: "Rear positive dense-flint member of the net-negative VC doublet.",
-      cemented: "D3",
     },
     {
       id: 13,
@@ -245,13 +250,13 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72,
       vd: 50.23,
-      fl: 45.1632,
+      focalLengthMm: 45.1632,
       glass: "S-LAL10 (OHARA)",
+      role: "Positive collector in the fixed sixth group.",
       dPgF: -0.0081,
       nC: 1.71567,
       nF: 1.73,
       ng: 1.73792,
-      role: "Positive collector in the fixed sixth group.",
     },
     {
       id: 14,
@@ -260,7 +265,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.84666,
       vd: 23.78,
-      fl: -52.6485,
+      focalLengthMm: -52.6485,
       glass: "FDS90 (HOYA)",
       role: "Rear negative element and field-curvature control element nearest the image plane.",
     },
@@ -268,57 +273,57 @@ const LENS_DATA = {
 
   /* ── Surfaces ── */
   surfaces: [
-    { label: "1", R: 236.1724, d: 4.7932, nd: 1.7725, elemId: 1, sd: 26.5 },
-    { label: "2", R: -134.3107, d: 0.15, nd: 1.0, elemId: 0, sd: 26.5 },
-    { label: "3", R: 63.0015, d: 7.5198, nd: 1.437, elemId: 2, sd: 24.0 },
-    { label: "4", R: -90.2962, d: 1.192, nd: 1.84666, elemId: 3, sd: 22.5 },
-    { label: "5", R: 1612.2365, d: 0.15, nd: 1.0, elemId: 0, sd: 20.5 },
-    { label: "6", R: 41.7672, d: 4.6981, nd: 1.437, elemId: 4, sd: 20.5 },
-    { label: "7", R: 305.1013, d: 1.2, nd: 1.0, elemId: 0, sd: 19.4 },
-    { label: "8", R: 192.1, d: 1.2, nd: 1.816, elemId: 5, sd: 18.2 },
-    { label: "9", R: 33.512, d: 4.912, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "10", R: -46.9417, d: 1.0, nd: 1.48749, elemId: 6, sd: 12.8 },
-    { label: "11", R: 39.8523, d: 3.3499, nd: 1.0, elemId: 0, sd: 12.8 },
-    { label: "12", R: 60.8772, d: 3.1, nd: 1.84666, elemId: 7, sd: 16.0 },
-    { label: "13", R: -1857.925, d: 20.05, nd: 1.0, elemId: 0, sd: 17.0 },
-    { label: "STO", R: 1e15, d: 14.0, nd: 1.0, elemId: 0, sd: 13.933611 },
-    { label: "15", R: 344.475, d: 3.005, nd: 1.59282, elemId: 8, sd: 17.3 },
-    { label: "16", R: -85.8423, d: 6.7201, nd: 1.0, elemId: 0, sd: 17.3 },
-    { label: "17", R: 110.2146, d: 0.9, nd: 1.72825, elemId: 9, sd: 17.8 },
-    { label: "18", R: 30.5835, d: 6.423, nd: 1.6779, elemId: 10, sd: 15.9 },
-    { label: "19", R: -90.2521, d: 1.7996, nd: 1.0, elemId: 0, sd: 15.9 },
-    { label: "20", R: 541.4261, d: 0.8952, nd: 1.58913, elemId: 11, sd: 17.2 },
-    { label: "21", R: 23.2442, d: 2.7112, nd: 1.80518, elemId: 12, sd: 16.3 },
-    { label: "22", R: 31.7632, d: 10.1125, nd: 1.0, elemId: 0, sd: 16.3 },
-    { label: "23", R: 42.0889, d: 4.9125, nd: 1.72, elemId: 13, sd: 16.5 },
-    { label: "24", R: -136.0043, d: 6.0015, nd: 1.0, elemId: 0, sd: 16.5 },
-    { label: "25", R: -67.7129, d: 1.2, nd: 1.84666, elemId: 14, sd: 14.9 },
-    { label: "26", R: 131.5116, d: 46.7393, nd: 1.0, elemId: 0, sd: 14.8 },
+    { label: "1", R: 236.1724, d: 4.7932, sd: 26.5, medium: 1 },
+    { label: "2", R: -134.3107, d: 0.15, sd: 26.5 },
+    { label: "3", R: 63.0015, d: 7.5198, sd: 24.0, medium: 2 },
+    { label: "4", R: -90.2962, d: 1.192, sd: 22.5, medium: 3 },
+    { label: "5", R: 1612.2365, d: 0.15, sd: 20.5 },
+    { label: "6", R: 41.7672, d: 4.6981, sd: 20.5, medium: 4 },
+    { label: "7", R: 305.1013, sd: 19.4 },
+    { label: "8", R: 192.1, d: 1.2, sd: 18.2, medium: 5 },
+    { label: "9", R: 33.512, d: 4.912, sd: 16.0 },
+    { label: "10", R: -46.9417, d: 1.0, sd: 12.8, medium: 6 },
+    { label: "11", R: 39.8523, d: 3.3499, sd: 12.8 },
+    { label: "12", R: 60.8772, d: 3.1, sd: 16.0, medium: 7 },
+    { label: "13", R: -1857.925, sd: 17.0 },
+    { label: "STO", R: "flat" },
+    { label: "15", R: 344.475, d: 3.005, sd: 17.3, medium: 8 },
+    { label: "16", R: -85.8423, sd: 17.3 },
+    { label: "17", R: 110.2146, d: 0.9, sd: 17.8, medium: 9 },
+    { label: "18", R: 30.5835, d: 6.423, sd: 15.9, medium: 10 },
+    { label: "19", R: -90.2521, sd: 15.9 },
+    { label: "20", R: 541.4261, d: 0.8952, sd: 17.2, medium: 11 },
+    { label: "21", R: 23.2442, d: 2.7112, sd: 16.3, medium: 12 },
+    { label: "22", R: 31.7632, d: 10.1125, sd: 16.3 },
+    { label: "23", R: 42.0889, d: 4.9125, sd: 16.5, medium: 13 },
+    { label: "24", R: -136.0043, d: 6.0015, sd: 16.5 },
+    { label: "25", R: -67.7129, d: 1.2, sd: 14.9, medium: 14 },
+    { label: "26", R: 131.5116, sd: 14.8 },
   ],
 
-  asph: {},
-
-  /* ── Three-group floating inner focus ──
-   * Values are [infinity, 1:2, 1:1].
-   * STO is the axial D(14) spacing after the fixed stop, not stop diameter.
-   */
-  focusPositions: [0, 0.7976078358456278, 1],
-  var: {
-    "7": [1.2, 9.8415, 19.2488],
-    "13": [20.05, 11.4085, 2.0012],
-    STO: [14.0, 9.2987, 1.7],
-    "16": [6.7201, 1.0992, 1.4506],
-    "19": [1.7996, 12.1217, 19.369],
-    "26": [46.7393, 46.7793, 46.7641],
+  focus: {
+    closeFocusM: 0.3,
+    /* ── Three-group floating inner focus ──
+     * Values are [infinity, 1:2, 1:1].
+     * STO is the axial D(14) spacing after the fixed stop, not stop diameter.
+     */
+    keyframes: [0, 0.7976078358456278, 1],
+    description:
+      "Three-group floating inner focus. G2 translates 18.049 mm imageward; G3 and G4 translate 12.300 mm and 17.570 mm objectward from infinity to 1:1. The infinity, 1:2, and 1:1 patent rows are exact focus keyframes.",
+    // (moved from publishedStations) Every focus keyframe is a source row.
+    published: [1, 2],
   },
-  varLabels: [
-    ["7", "D7"],
-    ["13", "D13"],
-    ["STO", "D14"],
-    ["16", "D16"],
-    ["19", "D19"],
-    ["26", "BF"],
-  ],
+
+  gaps: {
+    "7": { label: "D7", values: [[1.2, 9.8415, 19.2488]] },
+    "13": { label: "D13", values: [[20.05, 11.4085, 2.0012]] },
+    STO: { label: "D14", values: [[14.0, 9.2987, 1.7]] },
+    "16": { label: "D16", values: [[6.7201, 1.0992, 1.4506]] },
+    "19": { label: "D19", values: [[1.7996, 12.1217, 19.369]] },
+    "26": { label: "BF", values: [[46.7393, 46.7793, 46.7641]] },
+  },
+
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 9 },
 
   groups: [
     { text: "G1 (+) / FIXED", fromSurface: "1", toSurface: "7" },
@@ -334,20 +339,9 @@ const LENS_DATA = {
     { text: "D3 / VC", fromSurface: "20", toSurface: "22" },
   ],
 
-  closeFocusM: 0.3,
-  // Every focus keyframe is a source row.
-  publishedStations: { focus: [1, 2] },
-  focusDescription:
-    "Three-group floating inner focus. G2 translates 18.049 mm imageward; G3 and G4 translate 12.300 mm and 17.570 mm objectward from infinity to 1:1. The infinity, 1:2, and 1:1 patent rows are exact focus keyframes.",
+  layout: { scFill: 0.68, yScFill: 0.72 },
 
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
-  apertureBlades: 9,
-  maxFstop: 32,
-
-  offAxisFieldFrac: 0.45,
-  scFill: 0.68,
-  yScFill: 0.72,
-} satisfies LensDataInput;
+  rays: { offAxisFieldFrac: 0.45 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

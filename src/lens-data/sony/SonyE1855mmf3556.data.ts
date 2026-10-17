@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -32,44 +32,34 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "sony-e-18-55mm-f35-56-oss",
   maker: "Sony",
   name: "SONY E 18-55mm f/3.5-5.6 OSS",
   subtitle: "US 2011/0273780 A1 — Numerical Example 1",
-  specs: [
-    "11 elements / 9 groups",
-    "18-55mm f/3.5-5.6 marketed",
-    "Patent EFL 18.49 / 27.38 / 53.51mm",
-    "4 aspherical surfaces",
-    "Single-lens OSS; rear focus",
-  ],
 
-  focalLengthMarketing: [18, 55],
-  focalLengthDesign: [18.4887, 53.51],
-  apertureMarketing: 3.5,
-  apertureDesign: 3.74,
-  lensMounts: ["sony-fe"],
-  imageFormat: "aps-c",
-  patentNumber: "US 2011/0273780 A1",
-  patentAuthors: ["Masaharu Hosoi", "Hiroyuki Matsumoto", "Masafumi Sueyoshi"],
-  patentAssignees: ["Sony Corporation"],
-  patentYear: 2011,
-  elementCount: 11,
-  groupCount: 9,
+  catalog: {
+    lensMounts: ["sony-fe"],
+    imageFormat: "aps-c",
+    specs: [
+      "11 elements / 9 groups",
+      "18-55mm f/3.5-5.6 marketed",
+      "Patent EFL 18.49 / 27.38 / 53.51mm",
+      "4 aspherical surfaces",
+      "Single-lens OSS; rear focus",
+    ],
+    elementCount: 11,
+    groupCount: 9,
+    focalLengthMm: { marketing: [18, 55], design: [18.4887, 53.51] },
+    fNumber: { marketing: 3.5, design: 3.74 },
+  },
 
-  zoomPositions: [18.4887, 27.3753, 53.51],
-  zoomStep: 0.004,
-  zoomLabels: ["18mm", "55mm"],
-  nominalFno: [3.5, 4, 5.6],
-  closeFocusM: 0.25,
-  focusDescription:
-    "Rear focus by axial motion of the single negative/aspherical fourth group L10. Close-focus spacings are paraxial estimates for Sony's 0.25 m published MFD; the patent table is infinity-only.",
-
-  apertureBlades: 7,
-  maxFstop: 32,
-  fstopSeries: [3.5, 4, 4.5, 5.6, 8, 11, 16, 22, 32],
-  scFill: 0.52,
-  yScFill: 0.58,
+  source: {
+    patentNumber: "US 2011/0273780 A1",
+    patentYear: 2011,
+    authors: ["Masaharu Hosoi", "Hiroyuki Matsumoto", "Masafumi Sueyoshi"],
+    assignees: ["Sony Corporation"],
+  },
 
   elements: [
     {
@@ -79,7 +69,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.78,
-      fl: -158.88,
+      focalLengthMm: -158.88,
       glass: "S-TIH53 (OHARA)",
       role: "Negative flint half of the front cemented achromat.",
       cemented: "D1",
@@ -91,7 +81,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.72916,
       vd: 54.66,
-      fl: 40.66,
+      focalLengthMm: 40.66,
       glass: "S-LAL18 (OHARA)",
       role: "Positive crown half of the front cemented achromat; principal positive power of G1.",
       cemented: "D1",
@@ -103,7 +93,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.910823,
       vd: 35.25,
-      fl: -12.85,
+      focalLengthMm: -12.85,
       glass: "TAFD35 (HOYA catalog-equivalent; patent vendor unspecified)",
       role: "High-index diverging front element of the negative variator group G2.",
     },
@@ -114,8 +104,9 @@ const LENS_DATA = {
       type: "Biconcave Negative (1x Asph)",
       nd: 1.851348,
       vd: 40.1,
-      fl: -18.58,
-      glass: "851401 - high-index lanthanum-flint-class moldable glass (M-TAFD305 code match; L-LAH85 attribution unconfirmed)",
+      focalLengthMm: -18.58,
+      glass:
+        "851401 - high-index lanthanum-flint-class moldable glass (M-TAFD305 code match; L-LAH85 attribution unconfirmed)",
       role: "Aspherical negative variator element used for wide-angle off-axis correction.",
     },
     {
@@ -125,7 +116,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.92286,
       vd: 20.88,
-      fl: 20.84,
+      focalLengthMm: 20.84,
       glass: "PBH21 (OHARA; historical 923209)",
       role: "Strong positive, very-low-Abbe element balancing chromatic power in G2.",
     },
@@ -136,7 +127,7 @@ const LENS_DATA = {
       type: "Positive Meniscus (OSS)",
       nd: 1.618,
       vd: 63.39,
-      fl: 38.54,
+      focalLengthMm: 38.54,
       glass: "S-PHM52 (OHARA; patent νd = 63.39)",
       role: "Single positive blur-correction lens moved transverse to the optical axis for OSS.",
     },
@@ -147,7 +138,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.45,
-      fl: 17.81,
+      focalLengthMm: 17.81,
       glass: "S-FSL5 (OHARA)",
       role: "Low-dispersion positive component of the post-stop cemented achromat.",
       cemented: "D2",
@@ -159,7 +150,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.805181,
       vd: 25.46,
-      fl: -27.78,
+      focalLengthMm: -27.78,
       glass: "S-TIH6 (OHARA)",
       role: "High-index flint partner of L7 in the post-stop cemented achromat.",
       cemented: "D2",
@@ -171,7 +162,7 @@ const LENS_DATA = {
       type: "Positive Meniscus (1x Asph)",
       nd: 1.72903,
       vd: 54.04,
-      fl: 32.62,
+      focalLengthMm: 32.62,
       glass: "729540 - lanthanum-crown-class moldable glass (M-TAC80 code match)",
       role: "Aspherical positive field-correcting tail element of G3.",
     },
@@ -182,8 +173,9 @@ const LENS_DATA = {
       type: "Negative Meniscus (2x Asph)",
       nd: 1.851348,
       vd: 40.1,
-      fl: -20.75,
-      glass: "851401 - high-index lanthanum-flint-class moldable glass (M-TAFD305 code match; L-LAH85 attribution unconfirmed)",
+      focalLengthMm: -20.75,
+      glass:
+        "851401 - high-index lanthanum-flint-class moldable glass (M-TAFD305 code match; L-LAH85 attribution unconfirmed)",
       role: "Single-element rear focus group; both surfaces are aspherical.",
     },
     {
@@ -193,109 +185,121 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.58144,
       vd: 40.89,
-      fl: 53.68,
+      focalLengthMm: 53.68,
       glass: "E-FL5 (HOYA)",
       role: "Final positive relay / field-flattening element.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 31.253, d: 1.478, nd: 1.84666, elemId: 1, sd: 19.5 },
-    { label: "2", R: 25.183, d: 5.771, nd: 1.72916, elemId: 2, sd: 18.5 },
-    { label: "3", R: 151.048, d: 1.108, nd: 1.0, elemId: 0, sd: 15.0 },
-    { label: "4", R: 54.338, d: 1.0, nd: 1.910823, elemId: 3, sd: 9.5 },
-    { label: "5", R: 9.548, d: 5.665, nd: 1.0, elemId: 0, sd: 7.7 },
-    { label: "6A", R: -31.233, d: 1.1, nd: 1.851348, elemId: 4, sd: 9.6 },
-    { label: "7", R: 32.568, d: 0.4, nd: 1.0, elemId: 0, sd: 9.6 },
-    { label: "8", R: 22.165, d: 2.835, nd: 1.92286, elemId: 5, sd: 9.6 },
-    { label: "9", R: -136.224, d: 12.384, nd: 1.0, elemId: 0, sd: 9.6 },
-    { label: "10", R: 23.25, d: 1.695, nd: 1.618, elemId: 6, sd: 6.4 },
-    { label: "11", R: 949.971, d: 2.0, nd: 1.0, elemId: 0, sd: 6.2 },
-    { label: "STO", R: 1e15, d: 2.181, nd: 1.0, elemId: 0, sd: 4.862 },
-    { label: "13", R: 18.811, d: 3.365, nd: 1.48749, elemId: 7, sd: 6.8 },
-    { label: "14", R: -15.181, d: 1.0, nd: 1.805181, elemId: 8, sd: 6.8 },
-    { label: "15", R: -48.635, d: 1.736, nd: 1.0, elemId: 0, sd: 6.8 },
-    { label: "16A", R: -36.032, d: 2.222, nd: 1.72903, elemId: 9, sd: 7.8 },
-    { label: "17", R: -14.698, d: 5.51, nd: 1.0, elemId: 0, sd: 7.8 },
-    { label: "18A", R: 237.858, d: 1.0, nd: 1.851348, elemId: 10, sd: 8.1 },
-    { label: "19A", R: 16.414, d: 6.841, nd: 1.0, elemId: 0, sd: 8.1 },
-    { label: "20", R: 31.209, d: 3.06, nd: 1.58144, elemId: 11, sd: 11.8 },
-    { label: "21", R: 1e15, d: 15.537765, nd: 1.0, elemId: 0, sd: 11.8 },
+    { label: "1", R: 31.253, d: 1.478, sd: 19.5, medium: 1 },
+    { label: "2", R: 25.183, d: 5.771, sd: 18.5, medium: 2 },
+    { label: "3", R: 151.048, sd: 15.0 },
+    { label: "4", R: 54.338, d: 1.0, sd: 9.5, medium: 3 },
+    { label: "5", R: 9.548, d: 5.665, sd: 7.7 },
+    {
+      label: "6A",
+      R: -31.233,
+      d: 1.1,
+      sd: 9.6,
+      medium: 4,
+      asphere: { K: 0, A4: -7.49645e-6, A6: -7.70344e-8, A8: 6.67223e-10, A10: -1.38051e-11 },
+    },
+    { label: "7", R: 32.568, d: 0.4, sd: 9.6 },
+    { label: "8", R: 22.165, d: 2.835, sd: 9.6, medium: 5 },
+    { label: "9", R: -136.224, sd: 9.6 },
+    { label: "10", R: 23.25, d: 1.695, sd: 6.4, medium: 6 },
+    { label: "11", R: 949.971, d: 2.0, sd: 6.2 },
+    { label: "STO", R: "flat", d: 2.181 },
+    { label: "13", R: 18.811, d: 3.365, sd: 6.8, medium: 7 },
+    { label: "14", R: -15.181, d: 1.0, sd: 6.8, medium: 8 },
+    { label: "15", R: -48.635, d: 1.736, sd: 6.8 },
+    {
+      label: "16A",
+      R: -36.032,
+      d: 2.222,
+      sd: 7.8,
+      medium: 9,
+      asphere: { K: 0, A4: -1.24878e-4, A6: 1.87829e-7, A8: -1.51018e-9, A10: -1.96142e-11 },
+    },
+    { label: "17", R: -14.698, sd: 7.8 },
+    {
+      label: "18A",
+      R: 237.858,
+      d: 1.0,
+      sd: 8.1,
+      medium: 10,
+      asphere: { K: 0, A4: -5.85209e-6, A6: -8.97199e-7, A8: 1.9112e-8, A10: -1.26629e-10 },
+    },
+    {
+      label: "19A",
+      R: 16.414,
+      sd: 8.1,
+      asphere: { K: 0, A4: -3.28062e-5, A6: -6.60272e-7, A8: 1.86921e-8, A10: -1.24801e-10 },
+    },
+    { label: "20", R: 31.209, d: 3.06, sd: 11.8, medium: 11 },
+    { label: "21", R: "flat", sd: 11.8 },
   ],
 
-  asph: {
-    "6A": {
-      K: 0,
-      A4: -7.49645e-6,
-      A6: -7.70344e-8,
-      A8: 6.67223e-10,
-      A10: -1.38051e-11,
-      A12: 0,
-      A14: 0,
+  zoom: {
+    stations: [
+      { focalLengthMm: 18.4887, nominalFNumber: 3.5, label: "18mm" },
+      { focalLengthMm: 27.3753, nominalFNumber: 4 },
+      { focalLengthMm: 53.51, nominalFNumber: 5.6, label: "55mm" },
+    ],
+    step: 0.004,
+  },
+
+  focus: {
+    closeFocusM: 0.25,
+    description:
+      "Rear focus by axial motion of the single negative/aspherical fourth group L10. Close-focus spacings are paraxial estimates for Sony's 0.25 m published MFD; the patent table is infinity-only.",
+  },
+
+  gaps: {
+    "3": {
+      label: "D3",
+      values: [
+        [1.108, 1.108],
+        [6.032, 6.032],
+        [13.437, 13.437],
+      ],
     },
-    "16A": {
-      K: 0,
-      A4: -1.24878e-4,
-      A6: 1.87829e-7,
-      A8: -1.51018e-9,
-      A10: -1.96142e-11,
-      A12: 0,
-      A14: 0,
+    "9": {
+      label: "D9",
+      values: [
+        [12.384, 12.384],
+        [6.481, 6.481],
+        [1.6, 1.6],
+      ],
     },
-    "18A": {
-      K: 0,
-      A4: -5.85209e-6,
-      A6: -8.97199e-7,
-      A8: 1.9112e-8,
-      A10: -1.26629e-10,
-      A12: 0,
-      A14: 0,
+    "17": {
+      label: "D17",
+      values: [
+        [5.51, 6.221363],
+        [6.071, 7.397118],
+        [2.887, 5.847558],
+      ],
     },
     "19A": {
-      K: 0,
-      A4: -3.28062e-5,
-      A6: -6.60272e-7,
-      A8: 1.86921e-8,
-      A10: -1.24801e-10,
-      A12: 0,
-      A14: 0,
+      label: "D19",
+      values: [
+        [6.841, 6.129637],
+        [6.28, 4.953882],
+        [9.465, 6.504442],
+      ],
+    },
+    "21": {
+      label: "BF",
+      values: [
+        [15.537765, 15.537765],
+        [19.988771, 19.988771],
+        [40.343257, 40.343257],
+      ],
     },
   },
 
-  var: {
-    "3": [
-      [1.108, 1.108],
-      [6.032, 6.032],
-      [13.437, 13.437],
-    ],
-    "9": [
-      [12.384, 12.384],
-      [6.481, 6.481],
-      [1.6, 1.6],
-    ],
-    "17": [
-      [5.51, 6.221363],
-      [6.071, 7.397118],
-      [2.887, 5.847558],
-    ],
-    "19A": [
-      [6.841, 6.129637],
-      [6.28, 4.953882],
-      [9.465, 6.504442],
-    ],
-    "21": [
-      [15.537765, 15.537765],
-      [19.988771, 19.988771],
-      [40.343257, 40.343257],
-    ],
-  },
-  varLabels: [
-    ["3", "D3"],
-    ["9", "D9"],
-    ["17", "D17"],
-    ["19A", "D19"],
-    ["21", "BF"],
-  ],
+  aperture: { fStops: [3.5, 4, 4.5, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 7 },
 
   groups: [
     { text: "G1 +", fromSurface: "1", toSurface: "3" },
@@ -308,6 +312,8 @@ const LENS_DATA = {
     { text: "D1", fromSurface: "1", toSurface: "3" },
     { text: "D2", fromSurface: "13", toSurface: "15" },
   ],
-} satisfies LensDataInput;
+
+  layout: { scFill: 0.52, yScFill: 0.58 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;
