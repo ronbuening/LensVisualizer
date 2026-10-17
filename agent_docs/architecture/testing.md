@@ -247,8 +247,9 @@ and bundled there.
   catalog merge is another: each bundle merges a host as its own catalog does, by spreading its V1 defaults object at
   a ref before S2.P1.T2, and by ingest and the V1 view at a later one (`catalogLensData` in `captureEntry.ts`). A
   converter is read the same way where the ref has its view (`catalogTeleconverterData`), and as authored before.
-  One that ingest refuses is handed on as authored, which blocks only where the composed build catches its fault;
-  the rule that a refused head converter fails the run is open (`OPTICS_ENGINE_REWRITE_SPEC.md`, S2.P2.T2).
+  The driver validates every head-catalog converter through the head engine's ingest before selecting pairs. Any
+  refusal fails the run in every class, naming the converter key and refusal in stderr and the job summary. Base
+  converters that ingest refuses are still handed on as authored.
   From S2.P2.T1 ingest reads either lens-data version, and the request list reads a V2 file's stations and keyframes
   (`requestCatalog`), so a V2 set and its V1 twin give the same requests, pairs and records.
 - `requests.ts` defines a tier as a deterministic list of lens × state × request family, and cuts a list into
@@ -996,12 +997,13 @@ Three files in the tooling suite hold the harness to its contract.
   carries the differences its digest covers. A line for a record the run did not ask for is listed, a format-only
   change is excused by no line, and a lens handed over in parts gets the verdict of the lens whole.
 - `__tests__/scripts/engineDiffScript.test.ts`: the command line, and runs of the real driver against `HEAD`, on one
-  lens of Tier P and on one lens of one shard of Tier S, which are skipped where git cannot add a worktree. A third
-  run hands the driver a description with both headings and checks that its declared transitions are held to the
-  run, and a fourth that a bullet with no reason stops the driver before it adds a base worktree. Three steps of
-  the stage workflow are run as shell scripts with the workflow's variables in their environment: the step that
-  writes that file, whose output is read back by the parser; the `plan` step, which must refuse a heading among the
-  bullets; and the `result` step, on fabricated shard summaries, under C1 and under C0 (skipped where there is no
+  lens of Tier P under C0 and C3 and on one lens of one shard of Tier S, which are skipped where git cannot add a
+  worktree. Synthetic head catalogs with a refused V2 converter or a V1 `schema: 3` converter fail under C0 and C3
+  before any pair is selected, with the key and refusal in stderr and the job summary. Another run hands the driver a
+  description with both headings and checks that its declared transitions are held to the run; a bullet with no
+  reason stops the driver before it adds a base worktree. Three steps of the stage workflow are run as shell scripts
+  with the workflow's variables in their environment: the step that writes that file, whose output is read back by
+  the parser; the `plan` step, which must refuse a heading among the bullets; and the `result` step, on fabricated shard summaries, under C1 and under C0 (skipped where there is no
   `jq`). The report of `transitions.md` is rendered from a fabricated summary. No test evaluates the workflow's own
   expressions or dispatches it.
 

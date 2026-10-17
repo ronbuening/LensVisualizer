@@ -390,8 +390,10 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
   try {
     /* The head's capture is bundled first, because the reader of the declared transitions is in it. A run reads
      * them when it is made, so one is made here for that alone: a bullet that cannot be read then stops the run
-     * before a base worktree is added and anything is captured, and the job summary says which bullet. */
+     * before a base worktree is added and anything is captured, and the job summary says which bullet.
+     * Head converter ingest is checked here too, before pair selection can hide a refusal. */
     const headCapture = await clock.timeAsync("Capture bundles", () => loadCapture(ROOT, join(bundlesDir, "head")));
+    let head;
     try {
       headCapture.createDifferentialRun({
         changeClass: options.changeClass,
@@ -399,6 +401,7 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
         restricted: true,
         declaredTransitions: declaredText,
       });
+      head = clock.time("Catalogs and fingerprints", () => headCapture.exportCatalog({ validateTeleconverters: true }));
     } catch (error) {
       if (process.env.GITHUB_STEP_SUMMARY && error instanceof Error) {
         const said = `# Engine diff: could not run\n\n\`\`\`text\n${error.message}\n\`\`\`\n`;
@@ -422,7 +425,6 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
 
     /* Both catalogs are fingerprinted by the head's rules: under two sets of rules equal data could look changed. */
     const { headCatalog, baseCatalog, changes, pairs } = clock.time("Catalogs and fingerprints", () => {
-      const head = headCapture.exportCatalog();
       const baseSide = baseCapture.exportCatalog();
       const catalogChanges = headCapture.classifyCatalogChanges(
         baseSide,

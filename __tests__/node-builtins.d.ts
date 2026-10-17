@@ -14,6 +14,7 @@ declare module "node:child_process" {
 declare module "node:fs" {
   export function chmodSync(path: string, mode: number): void;
   export function copyFileSync(source: string, destination: string): void;
+  export function cpSync(source: string, destination: string, options?: { recursive?: boolean }): void;
   export function existsSync(path: string): boolean;
   export function linkSync(existingPath: string, newPath: string): void;
   export function mkdirSync(path: string, options?: { recursive?: boolean }): string | undefined;

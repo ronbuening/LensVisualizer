@@ -170,12 +170,26 @@ export function unbuiltPairs(catalog: SerializedCatalog, pairs: SerializedCatalo
  * Export this bundle's own catalog: every lens (hidden ones included), every teleconverter, and every host and
  * converter pair this engine permits.
  *
+ * @param options - require every converter to pass this engine's ingest when exporting the head catalog
  * @returns JSON-safe prescriptions sorted by key, and pairs sorted by host then converter
+ * @throws when head validation finds a converter this engine refuses, naming its key and refusal
  */
-export function exportCatalog(): SerializedCatalog {
+export function exportCatalog({ validateTeleconverters = false } = {}): SerializedCatalog {
   const files = ownCatalogFiles();
   const lenses = serializeFiles(files.lenses, "lens");
   const teleconverters = serializeFiles(files.teleconverters, "teleconverter");
+  if (validateTeleconverters) {
+    const { ingestTeleconverter } = resolveOptionalSeam();
+    if (!ingestTeleconverter) throw new Error("engineDiff: the head engine has no teleconverter ingest");
+    const refused: string[] = [];
+    for (const { key, prescription } of teleconverters) {
+      const read = outcomeOf(() => ingestTeleconverter(decodeValue(prescription) as TeleconverterData));
+      if (!read.ok) refused.push(`${key}: ${read.error.name}: ${read.error.message}`);
+    }
+    if (refused.length > 0) {
+      throw new Error(`engineDiff: head catalog teleconverter ingest refused:\n${refused.join("\n")}`);
+    }
+  }
   return { lenses, teleconverters, pairs: permittedPairs({ lenses, teleconverters }) };
 }
 
@@ -304,12 +318,9 @@ export function catalogLensData(authored: LensData): LensData {
  * A converter file as this engine's catalog hands it to the composer and the fit predicate: through canonical ingest
  * and its V1 view where the engine has them, so a V2 file reads, and as authored on an older ref.
  *
- * A file ingest refuses is handed on as authored, as it was before converters were ingested here. That fails its
- * pairs' builds, which blocks, only where the fault is in a V1-form file and the composed build catches it. A V2
- * file handed on as authored makes the fit predicate throw, so it permits no pair and the run reports only that it
- * lost every pair. A V1 file refused over a field the composer does not copy (an unknown top-level field,
- * `schema: 3`) composes and builds as before, and the run says nothing. The rule this lacks, that a converter of the
- * head catalog the head engine's ingest refuses fails the run in every class, is open (S2.P2.T2 in the plan).
+ * A file ingest refuses is handed on as authored, preserving base-engine and base-data behavior. The driver
+ * separately validates every head-catalog converter through the head's ingest at export, before selecting pairs;
+ * any refusal fails the run in every class, even when no pair uses that converter.
  *
  * @param authored - a converter file as authored
  * @returns the catalog's converter data, on this engine

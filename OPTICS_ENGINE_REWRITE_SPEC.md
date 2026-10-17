@@ -1719,13 +1719,10 @@ Merged: S2.P2.T1 (#795) and S2.P2.T2 (#796).
     - `src/optics/prescription/teleconverterCompatibility.ts` (checked; unchanged)
   - **Gate:** C0.
   - **As built:**
-    - The harness hands on a converter that ingest refuses as authored, as before this step. That fails its pairs'
-      builds, which blocks, only where the fault is in a V1-form file and the composed build catches it.
-    - A refused converter in V2 form makes the fit predicate throw, so it permits no pair, and the run passes with at
-      most the warning that it lost every pair. A V1 converter refused over a field the composer does not copy (an
-      unknown top-level field, `schema: 3`) composes and builds as before, and the run says nothing.
-  - **Open:** a converter of the head catalog that the head engine's ingest refuses fails the run in every class. The
-    local session owns it, before S2.P5.T1. It is built in a harness PR; `compare.ts` is unchanged here.
+    - A converter of the head catalog that the head engine's ingest refuses fails the run in every class, before
+      pairs are selected (`exportCatalog` in `captureEntry.ts`, called by the driver).
+    - A base converter that ingest refuses is handed on as authored, as before this step: a V1-form fault blocks only
+      where its pairs' composed builds catch it, and a V2-form one makes the fit predicate permit no pair.
 
 **Phase 2.3 — Converter**
 
@@ -2792,8 +2789,6 @@ Open, none of them needed before promotion:
 - The Stage 2 gate's items other than the anchor move, which the maintainer has seen only in outline.
 - What a glass row added on `main` after promotion does to the Stage 2 gate, whose base is the promotion merge
   commit, and to the anchor of Stages 6 to 8.
-- The harness rule S2.P2.T2 leaves open: a converter of the head catalog that the head engine's ingest refuses fails
-  the run in every class. The local session builds it in a harness PR before S2.P5.T1.
 - A sphere or conic root that the closed form leaves near tangency (`nearTangency`) goes to the 24-sample scan, which
   can miss a short chord (#779); the Samyang XP 35mm's field shows it. A C3 that solves such a root without the scan
   is needed. The harness report's solver table also samples only its first 40 failures, which hid that lens.

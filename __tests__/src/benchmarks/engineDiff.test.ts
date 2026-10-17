@@ -78,6 +78,7 @@ import {
   resolveOptionalSeam,
   resolveSeam,
 } from "../../../src/benchmarks/engineDiff/seamAdapter.js";
+import * as seamAdapter from "../../../src/benchmarks/engineDiff/seamAdapter.js";
 import { MTF_BENCHMARK_CASES, MTF_FINITE_BENCHMARK_CASE } from "../../../src/benchmarks/mtfCases.js";
 import { BENCHMARK_SCENARIOS, DEFAULT_BENCHMARK_LENS_KEYS } from "../../../src/benchmarks/opticsRenderingBenchmark.js";
 import buildLens, {
@@ -726,6 +727,36 @@ describe("engineDiff catalog export", () => {
     expect(offenders).toEqual([]);
     /* Plain JSON would turn these into null; the catalog holds at least one. */
     expect(nonFinite).toBeGreaterThan(0);
+  });
+
+  it("validates head converters even without pairs, and leaves base refusals as authored", () => {
+    /* A converter can be refused without any pair build seeing it. Keep the guard independent of pair selection. */
+    const fixture = FIXTURE_PAIRS.find((pair) => pair.kind === "teleconverter")!;
+    const files = vi.spyOn(seamAdapter, "ownCatalogFiles");
+    try {
+      for (const valid of [fixture.v1, fixture.v2]) {
+        files.mockReturnValue({ lenses: {}, teleconverters: { "fixture.teleconverter.ts": valid } });
+        expect(exportCatalog({ validateTeleconverters: true })).toEqual(exportCatalog());
+        expect(exportCatalog().pairs).toEqual([]);
+      }
+      for (const refused of [
+        { ...fixture.v2, unknownField: true },
+        { ...fixture.v1, schema: 3 },
+      ]) {
+        files.mockReturnValue({ lenses: {}, teleconverters: { "fixture.teleconverter.ts": refused } });
+        const result = outcomeOf(() => ingestTeleconverter(refused));
+        expect(result.ok).toBe(false);
+        if (result.ok) throw new Error("the fixture must be refused by ingest");
+        expect(() => exportCatalog({ validateTeleconverters: true })).toThrow(
+          `${refused.key}: ${result.error.name}: ${result.error.message}`,
+        );
+        expect(exportCatalog().teleconverters[0].prescription).toEqual(encodeValue(refused));
+        expect(catalogTeleconverterData(refused as TeleconverterData)).toBe(refused);
+      }
+    } finally {
+      files.mockRestore();
+    }
+    expect(exportCatalog({ validateTeleconverters: true })).toEqual(CATALOG);
   });
 
   it("lists exactly the pairs the fit predicate allows, as host and converter keys", () => {

@@ -7,14 +7,27 @@
  */
 
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import {
+  cpSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  symlinkSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
+import { env } from "node:process";
 import { describe, expect, it } from "vitest";
 import { USAGE, parseArgs, renderTransitionsReport } from "../../scripts/engine-diff.mjs";
 import { exportCatalog, requestCatalog } from "../../src/benchmarks/engineDiff/captureEntry.js";
 import { parseDeclaredExceptions, parseDeclaredTransitions } from "../../src/benchmarks/engineDiff/compare.js";
 import { lensId, shardRequests, tierRequests } from "../../src/benchmarks/engineDiff/requests.js";
+import { ingestTeleconverter } from "../../src/optics/buildLens.js";
+import { FIXTURE_PAIRS } from "../src/optics/prescription/ingestV2Fixtures.js";
 
 describe("engine-diff command line", () => {
   it("defaults to Tier P under C0, with nothing narrowed and nothing declared", () => {
@@ -100,13 +113,17 @@ interface DriverRun {
  * Run the real driver against HEAD.
  *
  * @param args - arguments after `--base HEAD`
+ * @param cwd - checkout whose driver and head catalog to run
+ * @param environment - environment passed to the driver
  * @returns the run, or null where git cannot add a worktree and the driver therefore cannot run at all
  */
-function runDriver(args: readonly string[]): DriverRun | null {
+function runDriver(args: readonly string[], cwd = resolve("."), environment = env): DriverRun | null {
   try {
     const stdout = execFileSync("node", ["scripts/engine-diff.mjs", "--base", "HEAD", ...args], {
       encoding: "utf8",
       stdio: ["ignore", "pipe", "pipe"],
+      cwd,
+      env: environment,
     });
     return { status: "passed", stdout, stderr: "" };
   } catch (error) {
@@ -118,23 +135,33 @@ function runDriver(args: readonly string[]): DriverRun | null {
 }
 
 describe("engine-diff run", () => {
-  it(
-    "compares HEAD with the working tree for one lens and leaves no worktree behind",
+  it.for(["c0", "c3"])(
+    "compares HEAD with the working tree under %s for one lens and leaves no worktree behind",
     { timeout: 180_000 },
-    (context) => {
+    (changeClass, context) => {
       const outDir = mkdtempSync(join(tmpdir(), "engine-diff-test-"));
       try {
-        const run = runDriver(["--tier", "p", "--class", "c0", "--lens", "canon-serenar-50f18", "--out", outDir]);
+        const run = runDriver([
+          "--tier",
+          "p",
+          "--class",
+          changeClass,
+          "--lens",
+          "canon-serenar-50f18",
+          "--out",
+          outDir,
+        ]);
         if (!run) return context.skip("git cannot create a worktree here, so the driver was not run");
         if (run.status !== "passed") throw new Error(`engine-diff.mjs failed: ${run.stderr}`);
         const output = run.stdout;
 
-        expect(output).toContain("engine-diff: passed (tier p, class c0): 1 lenses, 7 records");
+        expect(output).toContain(`engine-diff: passed (tier p, class ${changeClass}): 1 lenses, 7 records`);
         expect(readdirSync(join(outDir, "reports")).sort()).toEqual([
           "data-impact.md",
           "failing-records.ndjson.gz",
           "summary.json",
           "summary.md",
+          ...(changeClass === "c0" ? [] : ["transitions.md"]),
           "uncompared.json",
         ]);
         expect(readdirSync(join(outDir, "payloads")).sort()).toEqual([
@@ -157,7 +184,7 @@ describe("engine-diff run", () => {
         expect(summary).toMatchObject({
           passed: true,
           tier: "p",
-          changeClass: "c0",
+          changeClass,
           shard: null,
           lens: "canon-serenar-50f18",
           base: { ref: "HEAD" },
@@ -187,6 +214,49 @@ describe("engine-diff run", () => {
         rmSync(outDir, { recursive: true, force: true });
       }
       expect(existsSync(outDir)).toBe(false);
+    },
+  );
+
+  it.each(["c0", "c3"].flatMap((changeClass) => ["v2", "v1-schema"].map((form) => ({ changeClass, form }))))(
+    "fails head converter ingest under $changeClass for $form before selecting pairs",
+    { timeout: 180_000 },
+    ({ changeClass, form }) => {
+      const fixture = FIXTURE_PAIRS.find((pair) => pair.kind === "teleconverter")!;
+      const refused = form === "v2" ? { ...fixture.v2, unknownField: true } : { ...fixture.v1, schema: 3 };
+      let message = "";
+      try {
+        ingestTeleconverter(refused);
+      } catch (error) {
+        message = (error as Error).message;
+      }
+      expect(message).not.toBe("");
+      const root = mkdtempSync(join(tmpdir(), "engine-diff-refusal-test-"));
+      try {
+        /* An isolated head catalog with no hosts: no pair or narrowed request can catch this refusal. The git
+         * metadata is read only; the driver must fail before it tries to add a base worktree. */
+        for (const path of ["src", "scripts", "package.json"]) cpSync(path, join(root, path), { recursive: true });
+        for (const path of [".git", "node_modules"]) symlinkSync(resolve(path), join(root, path));
+        const dataDir = join(root, "src/lens-data");
+        rmSync(dataDir, { recursive: true });
+        mkdirSync(dataDir);
+        writeFileSync(join(dataDir, "fixture.teleconverter.ts"), `export default ${JSON.stringify(refused)};\n`);
+        const stepSummary = join(root, "step-summary.md");
+        const run = runDriver(
+          ["--class", changeClass, "--lens", "canon-serenar-50f18", "--out", join(root, "out")],
+          root,
+          { ...env, GITHUB_STEP_SUMMARY: stepSummary },
+        );
+        expect(run?.status).toBe("failed");
+        expect(run?.stderr).toContain(`head catalog teleconverter ingest refused:\n${refused.key}:`);
+        expect(run?.stderr).toContain(message);
+        expect(run?.stdout).not.toContain("engine-diff: base worktree");
+        const summary = readFileSync(stepSummary, "utf8");
+        expect(summary).toContain("# Engine diff: could not run");
+        expect(summary).toContain(refused.key);
+        expect(summary).toContain(message);
+      } finally {
+        rmSync(root, { recursive: true, force: true });
+      }
     },
   );
 
