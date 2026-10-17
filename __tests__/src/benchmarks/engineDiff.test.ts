@@ -2133,7 +2133,8 @@ describe("engineDiff capture", () => {
 
 /* ── Semantic fingerprint ── */
 
-describe("engineDiff semantic fingerprint", () => {
+/* The respelling cases capture a lens's Tier P records three times; on CI runners that exceeds the default limit. */
+describe("engineDiff semantic fingerprint", { timeout: 120_000 }, () => {
   const seam = resolveSeam();
   const projectLens: SemanticProjection = (lens) => ingestLens(lens as LensDataInput).prescription;
   const projectConverter: SemanticProjection = (converter) =>
@@ -2147,11 +2148,18 @@ describe("engineDiff semantic fingerprint", () => {
   };
   const base = fingerprint(plainTwin);
   // Respelling tests edit V1 syntax. Give an omitted derived stop radius a finite value to perturb as well.
-  const authoredOf = (key: string) =>
-    toLensDataInput(
-      ingestLens(decodeValue(CATALOG.lenses.find((lens) => lens.key === key)!.prescription) as LensDataInput),
-      { stopRadius: 1 },
-    ) as LensData;
+  const authoredViews = new Map<string, LensData>();
+  const authoredOf = (key: string): LensData => {
+    let view = authoredViews.get(key);
+    if (!view) {
+      view = toLensDataInput(
+        ingestLens(decodeValue(CATALOG.lenses.find((lens) => lens.key === key)!.prescription) as LensDataInput),
+        { stopRadius: 1 },
+      ) as LensData;
+      authoredViews.set(key, view);
+    }
+    return structuredClone(view);
+  };
 
   it("is shared by two files that differ only in comments, layout, key order and written-out defaults", () => {
     /* The twins really are different objects: other key order, explicit defaults, an `undefined` member. */
