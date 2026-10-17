@@ -34,11 +34,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    Verify A8/A10 against a clean scan or JP 54-153258.            ║
  * ║                                                                    ║
  * ║  NOTE ON APERTURE STOP:                                            ║
- * ║    Stop position not tabulated in patent. Inferred from Fig. 1    ║
- * ║    as approximately mid-gap D5. The normalised gap D5 = 30.851 mm ║
- * ║    is split at t = 15.426 mm from R5 → STO → 15.425 mm to R6.   ║
- * ║    Production split: 7.713 mm | STO | 7.713 mm.                  ║
- * ║    The stop radius is derived from the design f-number.            ║
+ * ║    Stop position not tabulated in patent. Inferred from Fig. 1 as  ║
+ * ║    approximately mid-gap D5. The normalised gap D5 = 30.851 mm is  ║
+ * ║    split at t = 15.426 mm from R5 → STO → 15.425 mm to R6.         ║
+ * ║    Production split: 7.713 mm | STO | 7.713 mm. The stop radius is ║
+ * ║    derived from the design f-number. The production-scale          ║
+ * ║    entrance-pupil semi-diameter is approximately 20.8 mm; pupil    ║
+ * ║    magnification is approximately 1.46×.                           ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Estimated from marginal ray trace (EP SD = 20.833 mm prod.)    ║

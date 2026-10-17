@@ -15,11 +15,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    Canon FD 28 mm production class. The rounded patent table       ║
  * ║    recomputes to EFL = 27.9976 mm and BFD = 35.8581 mm.            ║
  * ║                                                                    ║
- * ║  NOTE ON STOP POSITION:                                             ║
+ * ║  NOTE ON STOP POSITION:                                            ║
  * ║    The patent does not tabulate the aperture-stop position. For    ║
  * ║    visualization the stop is inferred in the large L4-L5 air gap   ║
  * ║    and d8 is split evenly about STO. The stop radius is derived    ║
- * ║    from the design f-number.                                       ║
+ * ║    from the design f-number (f/2.8); the paraxial entrance-pupil   ║
+ * ║    diameter is 10.0 mm.                                            ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent omits clear apertures. SDs are inferred from real    ║

@@ -26,10 +26,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ The Numerical Example 4 patent surface table prints 14.52 mm at s20; its 7.26 mm     ║
  * ║ half-diameter, traced with a real marginal ray, gives F/3.591, 4.879 and 5.973 at    ║
  * ║ the three stations, which round to the published F/3.59, 4.88 and 5.97. The viewer   ║
- * ║ holds one iris, sized from the wide-state F/3.59 (7.2618 mm), at every station.      ║
- * ║ One exception to the halved diameters:                                               ║
- * ║ • patent s9 is trimmed from 11.3000 to 11.2826 mm to satisfy the current 0.90        ║
- * ║   shared-gap sag criterion. This is a model trim, not a source correction.           ║
+ * ║ holds one iris, sized from the wide-state F/3.59 (7.2618 mm), at every station. One  ║
+ * ║ exception to the halved diameters:                                                   ║
+ * ║   • patent s9 is trimmed from 11.3000 to 11.2826 mm to satisfy the current 0.90      ║
+ * ║     shared-gap sag criterion. This is a model trim, not a source correction.         ║
  * ║                                                                                      ║
  * ║ Glasses remain six-digit coordinate/class labels. The patent does not identify      ║
  * ║ suppliers or publish per-element nC, nF, ng, or dPgF, so those stronger spectral    ║

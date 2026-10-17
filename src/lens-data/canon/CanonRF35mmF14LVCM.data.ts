@@ -28,9 +28,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    • Patent Φ is defined as effective diameter, not physical clear         ║
  * ║      aperture. Optical-surface sd values use Φ/2 as the source-derived     ║
  * ║      starting model, not as a claim about manufactured clear aperture.     ║
- * ║    • The stop radius is derived from the design f-number. Patent Table 3   ║
- * ║      (Numerical Example 2) prints SP Φ=27.298 mm; this is not treated as a ║
- * ║      physical diaphragm diameter.                                          ║
+ * ║    • The stop radius is derived from the patent design f-number (f/1.46).  ║
+ * ║      Patent Table 3 (Numerical Example 2) prints SP Φ=27.298 mm; this is   ║
+ * ║      not treated as a physical diaphragm diameter.                         ║
  * ║    • Source surface 26 uses sd=16.85 mm rather than Φ/2=17.0725 mm. Φ is ║
  * ║      only an effective diameter; 16.85 mm is a conservative clearance     ║
  * ║      adjustment that passes gapSagFrac=0.90 at the 26→27 air gap without  ║

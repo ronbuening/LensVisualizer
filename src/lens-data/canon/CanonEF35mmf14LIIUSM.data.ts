@@ -17,11 +17,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ It is not a patent-published close-focus row.                                                            ║
  * ║                                                                                                          ║
  * ║ STOP / SEMI-DIAMETER MODEL                                                                               ║
- * ║ The patent does not publish clear apertures or stop diameter. The stop radius is derived from the design ║
- * ║ f-number. Surface SDs are                                                                                ║
- * ║ modeling apertures inferred from the on-axis marginal ray, the patent Fig. 3 aperture progression, and  ║
- * ║ 0.6-field paraxial bundles, then constrained by the current edge-thickness, actual-rim-slope, conic,    ║
- * ║ shared-band cross-gap, and cemented-interface containment rules. They are not patent dimensions.         ║
+ * ║ The patent does not publish clear apertures or stop diameter. The stop radius is derived from the patent ║
+ * ║ design f-number (F/1.45). Surface SDs are modeling apertures inferred from the on-axis marginal ray, the ║
+ * ║ patent Fig. 3 aperture progression, and 0.6-field paraxial bundles, then constrained by the current      ║
+ * ║ edge-thickness, actual-rim-slope, conic, shared-band cross-gap, and cemented-interface containment       ║
+ * ║ rules. They are not patent dimensions.                                                                   ║
  * ║                                                                                                          ║
  * ║ GLASS / SPECTRAL MODEL                                                                                   ║
  * ║ The patent gives only nd and vd, not glass vendors or C/F/g-line indices. Glass strings therefore use   ║

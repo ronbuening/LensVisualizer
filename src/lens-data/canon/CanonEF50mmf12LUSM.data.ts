@@ -16,13 +16,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  treating MFD as object-to-image-plane distance. The solved paraxial      ║
  * ║  magnification is 0.147276x versus Canon's rounded 0.15x specification.   ║
  * ║                                                                            ║
- * ║  SEMI-DIAMETERS:                                                          ║
- * ║  The patent publishes none. The stop radius is derived from the design     ║
- * ║  f-number. Glass                                                           ║
- * ║  SDs are inferred from exact on-axis marginal rays, the Fig. 1 optical    ║
- * ║  envelope, and current edge/slope/cross-gap limits. At 60% field the      ║
- * ║  outermost ±0.75 pupil samples vignette first at S1 or S14A; no sampled   ║
- * ║  ray first clips at a cemented interface.                                 ║
+ * ║  SEMI-DIAMETERS:                                                           ║
+ * ║  The patent publishes none. The stop radius is derived from the modeled    ║
+ * ║  design f-number (F/1.25). Glass SDs are inferred from exact on-axis       ║
+ * ║  marginal rays, the Fig. 1 optical envelope, and current                   ║
+ * ║  edge/slope/cross-gap limits. At 60% field the outermost ±0.75 pupil       ║
+ * ║  samples vignette first at S1 or S14A; no sampled ray first clips at a     ║
+ * ║  cemented interface.                                                       ║
  * ║                                                                            ║
  * ║  GLASS: the patent gives d-line nd/νd only and no vendor names or line    ║
  * ║  indices. Neutral six-digit source-coordinate classes are retained;       ║

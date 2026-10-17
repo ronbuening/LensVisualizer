@@ -22,9 +22,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Patent surface 12 is the sole aperture stop and is labeled STO.           ║
  * ║                                                                            ║
  * ║ The patent gives no stop diameter. The stop radius is derived from the     ║
- * ║ design f-number; the wide-open iris radii traced from nominalFno are 9.252 ║
- * ║ / 11.394 / 12.788 mm. nominalFno carries the published design              ║
- * ║ values 4.08 / 4.08 / 4.12; marketed aperture remains f/4.                ║
+ * ║ design f-number at each zoom station; the wide-open iris radii traced from ║
+ * ║ nominalFno are 9.252 / 11.394 / 12.788 mm. nominalFno carries the          ║
+ * ║ published design values 4.08 / 4.08 / 4.12; marketed aperture remains f/4. ║
  * ║                                                                            ║
  * ║ Semi-diameters are modeled inferences because Example 1 publishes none.   ║
  * ║ They were derived from marginal/chief-ray envelopes at all three zoom     ║

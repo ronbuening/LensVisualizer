@@ -27,10 +27,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ while the fixed-image-plane numerical kinematics move L4 objectward by      ║
  * ║ about 4.86 mm. The numerical prescription is not altered to follow prose.   ║
  * ║                                                                              ║
- * ║ Maximum-aperture design states use Figure 2 values f/4.11, f/4.45, and      ║
- * ║ f/5.77. The header's rounded wide f/4.0 and the marketed f/4-5.6 range      ║
- * ║ remain metadata only. The stop radius is derived from the design f-number;   ║
- * ║ the traced wide-open iris radii are 4.637 / 5.463 / 4.877 mm.                ║
+ * ║ Maximum-aperture design states use Figure 2 values f/4.11, f/4.45, and       ║
+ * ║ f/5.77. The header's rounded wide f/4.0 and the marketed f/4-5.6 range       ║
+ * ║ remain metadata only. The stop radius is derived from the design f-number at ║
+ * ║ each zoom station; the traced wide-open iris radii are 4.637 / 5.463 /       ║
+ * ║ 4.877 mm.                                                                    ║
  * ║                                                                              ║
  * ║ Semi-diameters are inferred, not patent-published. They were derived from   ║
  * ║ full-pupil paraxial marginal/chief bundles through 0.60 x the published     ║

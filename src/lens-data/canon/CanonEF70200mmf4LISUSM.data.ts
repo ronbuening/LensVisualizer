@@ -26,7 +26,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * instead of encoding a spurious ~0.005 mm zoom motion caused by rounded source values.
  *
  * Stop: source surface 19 is SP. Its diameter is not published. The stop radius is derived from the design
- * f-number at the wide state and held at every zoom station.
+ * f-number (published Fno. 4.1) at the wide state and held at every zoom station. The earlier paraxial wide-state
+ * stop solution predicts F/4.10005 and F/4.10019 at the middle and tele states from the rounded prescription.
  *
  * Semi-diameters: not published. They were inferred from exact spherical sequential rays using the F/4.1 stop,
  * full-field chief rays for patent Y = 21.6 mm, representative 0.6-field bundles, the patent Fig. 1 optical section,

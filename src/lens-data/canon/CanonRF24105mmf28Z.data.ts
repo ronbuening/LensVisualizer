@@ -26,7 +26,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * APERTURE: patent Fno 2.90 at all stations. The stop (S16, in L3) moves with L3 and no iris diameters are
  * published, so zoomApertureModel "from-nominal-fno" infers the iris per station (traced radii ≈ 10.9 / 13.7 /
- * 15.1 mm, wide / middle / tele). The stop radius is derived from the design f-number.
+ * 15.1 mm, wide / middle / tele). The stop radius is derived from the design f-number at each zoom station.
  *
  * NOTE ON SEMI-DIAMETERS:
  *   Not published. Values were first estimated from a marginal + chief-ray envelope and refined against Canon's

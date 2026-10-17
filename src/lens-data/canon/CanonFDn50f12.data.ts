@@ -10,9 +10,8 @@
 //   (BFD 35.387 mm). All 13 radii and 12 spacings reproduce patent × s to the stored 0.001 mm.
 //
 // NOTE ON THE STOP:
-//   The patent places "a diaphragm" between L3 and L4 without a spacing. FIG. 3 draws it at
-// 0.49 ± 0.02 of the D6 air space, so D6 (15.594 mm) is split evenly. The stop radius is derived from the
-// design f-number (f/1.2).
+//   The patent places "a diaphragm" between L3 and L4 without a spacing. FIG. 3 draws it at 0.49 ± 0.02 of the
+//   D6 air space, so D6 (15.594 mm) is split evenly. The stop radius is derived from the design f-number (f/1.2).
 //
 // NOTE ON SEMI-DIAMETERS:
 //   The patent lists no clear apertures. Surfaces 1–3, 6 and 7 are retained estimates that agree with FIG. 3

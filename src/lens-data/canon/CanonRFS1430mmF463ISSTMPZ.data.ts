@@ -37,7 +37,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  NOTE ON STOP: stop diameter is not published. The iris schedule     ║
  * ║    uses zoomApertureModel "from-nominal-fno" calibrated to the       ║
  * ║    published F 4.08 / 5.18 / 6.43. The stop radius is derived from   ║
- * ║    the design f-number; this is not a published iris.                ║
+ * ║    the design f-number at each zoom station; this is not a published ║
+ * ║    iris.                                                             ║
  * ║  NOTE ON SEMI-DIAMETERS: modeled, not published. Taken from the      ║
  * ║    to-scale Fig. 9 section (scale verified against vertex positions  ║
  * ║    and surface profiles). S3 and S18 are reduced because the drawn   ║

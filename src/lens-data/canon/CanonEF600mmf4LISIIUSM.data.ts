@@ -30,8 +30,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ STOP / F-NUMBER: The stop radius is derived from the design f-number. The Third Numerical Embodiment ║
  * ║ patent surface table prints a 43.11 mm effective diameter (21.555 mm radius) at row 14. A paraxial   ║
  * ║ pupil projection alone gives f/4.036, but an exact spherical marginal-ray solve through surfaces     ║
- * ║ 1-13 gives an effective entrance beam of 141.972 mm and f/4.119, consistent with the published FNO = ║
- * ║ 4.12. The printed diameter agrees with the derived radius.                                           ║
+ * ║ 1-13 gives an effective entrance beam of 141.972 mm and f/4.119, consistent with the published       ║
+ * ║ FNO = 4.12. The printed diameter agrees with the derived radius.                                     ║
  * ║                                                                                                      ║
  * ║ SEMI-DIAMETERS: patent effective diameters are halved. The US publication's Example 3 row 1 prints ║
  * ║ 45.69 mm, but the priority Japanese publication JP2011085788A prints 145.69 mm for the same row, ║

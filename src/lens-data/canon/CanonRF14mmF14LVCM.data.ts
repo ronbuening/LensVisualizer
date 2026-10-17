@@ -21,10 +21,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  remains separate in focalLengthMarketing. K and aspheres are     ║
  * ║  transcribed without coefficient scaling.                         ║
  * ║                                                                    ║
- * ║  SEMI-DIAMETERS: the patent does not publish clear apertures.     ║
- * ║  SDs are modeling values derived from the rendered Fig. 1 optical║
- * ║  section, the f/1.46 pupil constraint, exact meridional ray       ║
- * ║  envelopes at the default 0.6 field fraction, and the current     ║
+ * ║  SEMI-DIAMETERS: the patent does not publish clear apertures. SDs  ║
+ * ║  are modeling values derived from the rendered Fig. 1 optical      ║
+ * ║  section, the f/1.46 pupil constraint, exact meridional ray        ║
+ * ║  envelopes at the default 0.6 field fraction, and the current      ║
  * ║  edge/slope/cross-gap geometry rules. The stop radius is derived   ║
  * ║  from the design f-number; it is not a patent-published aperture   ║
  * ║  diameter.                                                         ║

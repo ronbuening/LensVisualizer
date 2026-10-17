@@ -27,15 +27,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    d16=19.153060149 mm, preserving d14+d16=41.55 mm and fixed total track.         ║
  * ║    The resulting |m|=0.149215 agrees with Canon's rounded 0.15× specification.      ║
  * ║                                                                                     ║
- * ║  SEMI-DIAMETERS — MODELED, NOT PATENT-PUBLISHED:                                   ║
- * ║    The stop radius is derived from the design f-number.                             ║
- * ║    Refracting-surface SDs start from an 8% clearance over the infinity on-axis     ║
- * ║    marginal-ray height, then are adjusted only where geometry/off-axis containment ║
- * ║    requires it. S22/S23 are constrained by the 4.13 mm cross-gap; S26–S29 are      ║
- * ║    enlarged to contain the default 0.6-field / ±0.75-pupil rendered bundle.        ║
- * ║    Infinity and reconstructed-close states were independently checked for positive ║
- * ║    edge thickness, actual spherical rim slope, cross-gap intrusion, and off-axis   ║
- * ║    containment. Repository render diagnostics remain a later local integration gate.║
+ * ║  SEMI-DIAMETERS — MODELED, NOT PATENT-PUBLISHED:                                    ║
+ * ║    The stop radius is derived from the design f-number (F/4.12). Refracting-surface ║
+ * ║    SDs start from an 8% clearance over the infinity on-axis marginal-ray height,    ║
+ * ║    then are adjusted only where geometry/off-axis containment requires it. S22/S23  ║
+ * ║    are constrained by the 4.13 mm cross-gap; S26–S29 are enlarged to contain the    ║
+ * ║    default 0.6-field / ±0.75-pupil rendered bundle. Infinity and                    ║
+ * ║    reconstructed-close states were independently checked for positive edge          ║
+ * ║    thickness, actual spherical rim slope, cross-gap intrusion, and off-axis         ║
+ * ║    containment. Repository render diagnostics remain a later local integration      ║
+ * ║    gate.                                                                            ║
  * ║                                                                                     ║
  * ║  SPECTRAL FIELDS:                                                                ║
  * ║    Numerical Data 4 publishes nd, νd and θgF, but not nC/nF/ng. Patent-derived          ║

@@ -21,13 +21,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    `closeFocusM` retains Canon's marketed 0.20 m AF MFD at 18 mm as metadata only.  ║
  * ║                                                                                      ║
  * ║  APERTURE: `nominalFno` uses the patent design F/# values. The Numerical Example 2   ║
- * ║  patent surface table prints a 9.16 mm effective-diameter envelope (4.58 mm radius), ║
- * ║  not an asserted hard-iris radius.                                                   ║
+ * ║    patent surface table prints a 9.16 mm effective-diameter envelope (4.58 mm        ║
+ * ║    radius), not an asserted hard-iris radius.                                        ║
  * ║                                                                                      ║
- * ║ SEMI-DIAMETERS: refracting surfaces use patent effective diameters divided by two;   ║
- * ║ the stop radius is derived from the design f-number. SPECTRAL DATA: patent publishes ║
- * ║ nd/νd only. Vendor identity is unresolved, so nC, nF, ng, and dPgF are intentionally ║
- * ║ not fabricated.                                                                      ║
+ * ║  SEMI-DIAMETERS: refracting surfaces use patent effective diameters divided by two;  ║
+ * ║    no inferred SDs; the stop radius is derived from the design f-number at each zoom ║
+ * ║    station.                                                                          ║
+ * ║  SPECTRAL DATA: patent publishes nd/νd only. Vendor identity is unresolved, so nC,   ║
+ * ║    nF, ng, and dPgF are intentionally not fabricated.                                ║
  * ╚══════════════════════════════════════════════════════════════════════════════════════╝
  */
 

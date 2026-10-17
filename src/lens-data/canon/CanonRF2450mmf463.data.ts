@@ -29,10 +29,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    moot).                                                          ║
  * ║                                                                    ║
  * ║  NOTE ON APERTURE: FNO 4.63 / 5.66 / 6.48 with the stop in L2; no  ║
- * ║    iris diameters are published, so the station iris radii are    ║
- * ║    inferred from the FNO schedule ("from-nominal-fno": 4.58 /      ║
- * ║    4.40 / 4.58 mm). The stop radius is derived from the design     ║
- * ║    f-number. FIG. 1 draws the SP opening at about 4.4 mm.          ║
+ * ║    iris diameters are published, so the station iris radii are     ║
+ * ║    inferred from the FNO schedule ("from-nominal-fno": 4.58 / 4.40 ║
+ * ║    / 4.58 mm). The stop radius is derived from the design f-number ║
+ * ║    at each zoom station. FIG. 1 draws the SP opening at about      ║
+ * ║    4.4 mm.                                                         ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS: The patent publishes no effective         ║
  * ║    diameters. G1 front (18.8) and L2a (6.4) are measured from      ║

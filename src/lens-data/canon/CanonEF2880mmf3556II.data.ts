@@ -6,7 +6,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Patent dimensions are retained without focal-length scaling. D8 and D17 are published zoom gaps.
  * The patent omits r21-to-image distance; 37.732911 mm is an independently recovered common image plane.
  * No finite-focus spacings are published, so identical infinity/close pairs prevent an invented focus state.
- * Semi-diameters and the stop diameter are inferred rendering apertures, not manufacturer clear-aperture data.
+ * Semi-diameters are inferred rendering apertures, not manufacturer clear-aperture data. The stop radius is derived
+ * from the design f-number at each zoom station.
  * Glass names are current OHARA catalog equivalents; Canon's historical supplier is not identified.
  */
 
@@ -216,8 +217,8 @@ const LENS_DATA = {
   ],
 
   zoom: {
-    // (moved from nominalFno) Retain the patent optical states; imposing the marketed tele f/5.6 would exceed the modeled stop and
-    // rear-L2 apertures.
+    // (moved from nominalFno) Retain the patent optical states; the stop radius is derived from these f-numbers, and
+    // imposing the marketed tele f/5.6 would exceed the rear-L2 apertures.
     stations: [
       { focalLengthMm: 28.98, nominalFNumber: 3.46, label: "Wide" },
       { focalLengthMm: 50.0, nominalFNumber: 4.51 },

@@ -19,10 +19,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Semi-diameters: patent effective diameters are treated as source         ║
  * ║  ray-envelope diameters, not claimed mechanical edges. Their half-values  ║
  * ║  are retained except:                                                     ║
- * ║    • The stop radius is derived from the design f-number; the Numerical    ║
- * ║      Data 1 patent surface table prints a 20.16 mm stop-row effective      ║
- * ║      diameter.                                                             ║
- * ║    • The 2→3 air gap is physically clear but uses 91.77% of its 1.92 mm  ║
+ * ║    • The stop radius is derived from the published design f-number        ║
+ * ║      (F/1.85); the Numerical Data 1 patent surface table prints a         ║
+ * ║      20.16 mm stop-row effective diameter.                                ║
+ * ║    • The 2→3 air gap is physically clear but uses 91.77% of its 1.92 mm   ║
  * ║      axial gap at the shared published ray-envelope radius. To preserve   ║
  * ║      the patent aperture envelope without clipping full-field rays, the   ║
  * ║      validator's gapSagFrac is explicitly set to 0.92.                    ║

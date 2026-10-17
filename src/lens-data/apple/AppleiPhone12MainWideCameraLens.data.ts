@@ -17,8 +17,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * - Source Stop S3 has a contradictory -0.035 mm following spacing. The physical S2→S4 air gap is 0.050 mm. Because
  *   Fig. 7A / ¶0148 place the stop in that gap but do not dimension it reliably, the ordinary sequential model uses a
  *   neutral mid-gap inference: S2→STO = 0.025 mm and STO→S4 = 0.025 mm. This is modeled, not a published iris station.
- * - The stop radius is derived from the design f-number; it is not an independently published physical
- *   diaphragm radius.
+ * - The stop radius is derived from the published design f-number (f/1.65) and modeled EFL; it is not an independently
+ *   published physical diaphragm radius.
  * - Semi-diameters are modeled from exact meridional ray envelopes and then constrained by edge-thickness, aspheric
  *   rim-slope, conic-domain, and shared-band cross-gap clearance checks. They are not patent-listed clear apertures.
  * - The Table 7A rear IR/filter plate is represented with rearPlates rather than as a lens element/surface.

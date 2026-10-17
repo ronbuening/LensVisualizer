@@ -20,9 +20,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  All four published rows are stored as exact focus keyframes. Runtime      ║
  * ║  motion between them is piecewise-linear visualization.                    ║
  * ║                                                                              ║
- * ║  STOP / PUPIL NOTE:                                                         ║
- * ║  The patent specifies the stop plane (r18/SP) but not its diameter. The      ║
- * ║  stop radius is derived from the design f-number.                            ║
+ * ║  STOP / PUPIL NOTE:                                                          ║
+ * ║  The patent specifies the stop plane (r18/SP) but not its diameter. The stop ║
+ * ║  radius is derived from the published infinity design f-number (f/3.6).      ║
  * ║                                                                              ║
  * ║  SEMI-DIAMETER NOTE:                                                        ║
  * ║  The patent does not tabulate clear semi-diameters. Surface SDs below are   ║

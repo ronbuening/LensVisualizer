@@ -283,7 +283,7 @@ const LENS_DATA = {
     { label: "11", R: 285.171, sd: 18.0 }, // L6 rear → air [ZOOM VAR]
 
     // ── Aperture stop (STO) — positioned at front of G3 ──
-    { label: "STO", R: "flat", d: 0.5 }, // STO — radius derived from the design f-number
+    { label: "STO", R: "flat", d: 0.5 }, // STO — radius derived from the design f-number at each zoom station
 
     // ── Group G3 (L3): compensator — single UD aspherical element ──
     {

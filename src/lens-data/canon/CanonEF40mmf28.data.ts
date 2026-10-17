@@ -142,6 +142,7 @@ const LENS_DATA = {
     { label: "5", R: 28.38, d: 2.33, sd: 6.51 },
 
     /* ── Aperture stop ── */
+    // US 8,970,966 B2, Numerical Example 2 surface table, surface 6 (diaphragm): effective ray diameter 12.84 mm.
     { label: "STO", R: "flat", d: 5.12 },
 
     /* ── Rear unit L1b: cemented doublet Lp2 (L21 + L22) ── */

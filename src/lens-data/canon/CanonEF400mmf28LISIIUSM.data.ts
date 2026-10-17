@@ -18,9 +18,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ SCALE: none (s = 1.0). Patent f = 392.15 mm; the active authored arrays compute EFL ≈ 392.260742 mm.║
  * ║ Marketing 400 mm f/2.8 is kept separate from the patent/model design values.                      ║
  * ║                                                                                                    ║
- * ║ STOP: patent row 14 is STO. Its published 48.31 mm "effective diameter" is a ray-envelope value,  ║
- * ║ not the physical iris diameter. The stop radius is derived from the design f-number. The 48.31 mm  ║
- * ║ value is from the Second Numerical Embodiment patent surface table.                                ║
+ * ║ STOP: patent row 14 is STO. Its published 48.31 mm "effective diameter" is a ray-envelope value,   ║
+ * ║ not the physical iris diameter. The stop radius is derived from the patent design f-number         ║
+ * ║ (f/2.90). The 48.31 mm value is from the Second Numerical Embodiment patent surface table.         ║
  * ║                                                                                                    ║
  * ║ FOCUS — CONSTRAINED_RECONSTRUCTION: patent states cemented L16 moves imageward but gives no      ║
  * ║ finite-focus spacing table. Canon's 2.7 m MFD is referenced to the physical image plane: with Lt = ║

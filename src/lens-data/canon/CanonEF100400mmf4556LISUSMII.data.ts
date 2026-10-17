@@ -22,10 +22,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  movement reversal. L2 is fixed; L5 is fixed within 0.01 mm source rounding.       ║
  * ║                                                                                    ║
  * ║  STOP / F-NUMBER: patent surface 20 is the aperture stop. The Numerical Example 2  ║
- * ║  patent surface table prints a 28.41 mm effective diameter (14.205 mm radius),     ║
- * ║  not asserted to be the blade opening at every zoom state.                         ║
- * ║  `nominalFno` uses the Example 2 design values 4.63 / 4.94 / 5.85 so the runtime  ║
- * ║  derives the state-specific wide-open aperture.                                    ║
+ * ║  patent surface table prints a 28.41 mm effective diameter (14.205 mm radius), not ║
+ * ║  asserted to be the blade opening at every zoom state. `nominalFno` uses the       ║
+ * ║  Example 2 design values 4.63 / 4.94 / 5.85 so the runtime derives the             ║
+ * ║  state-specific wide-open aperture.                                                ║
  * ║                                                                                    ║
  * ║  SEMI-DIAMETERS: the patent publishes effective diameters for every surface;       ║
  * ║  each `sd` is exactly one-half of that source value. With those source apertures,  ║

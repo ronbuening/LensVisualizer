@@ -25,9 +25,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ residual, not a modeled image-plane movement.                                ║
  * ║                                                                              ║
  * ║ Stop: the patent gives the stop location and f/4.1 but no diameter. The stop ║
- * ║ radius is derived from the design f-number. The fixed iris is traced         ║
- * ║ from nominalFno at 14.3750 mm, the height the real f/4.1 marginal ray        ║
- * ║ reaches at the stop at 71.92 mm.                                             ║
+ * ║ radius is derived from the design f-number. The fixed iris is traced from    ║
+ * ║ nominalFno at 14.3750 mm, the height the real f/4.1 marginal ray reaches at  ║
+ * ║ the stop at 71.92 mm.                                                        ║
  * ║                                                                              ║
  * ║ Semi-diameters: not published. They are inferred from d-line marginal-ray    ║
  * ║ envelopes, the Canon/patent optical sections, and the current geometry       ║

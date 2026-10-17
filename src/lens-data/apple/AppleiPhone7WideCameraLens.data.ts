@@ -8,10 +8,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Six air-separated plastic elements; all 12 lens surfaces are aspherical.   ║
  * ║ No uniform scaling is applied. Table 11A radii are retained verbatim.      ║
  * ║                                                                              ║
- * ║ STOP NORMALIZATION: the source's +0.3553/−0.3553 stop/dummy bookkeeping    ║
- * ║ loop is replaced by one ordinary STO immediately objectward of L1. Its stop  ║
- * ║ radius is derived from the design f-number. It is inferred, not a published  ║
- * ║ physical diaphragm diameter.                                                 ║
+ * ║ STOP NORMALIZATION: the source's +0.3553/−0.3553 stop/dummy bookkeeping loop ║
+ * ║ is replaced by one ordinary STO immediately objectward of L1. Its stop       ║
+ * ║ radius is derived from the published design f-number (f/1.8) and computed    ║
+ * ║ d-line EFL. It is inferred, not a published physical diaphragm diameter.     ║
  * ║                                                                              ║
  * ║ SEMI-DIAMETERS: no clear apertures are published. The modeled SDs were      ║
  * ║ ray-sized and independently checked for edge thickness, actual aspheric     ║

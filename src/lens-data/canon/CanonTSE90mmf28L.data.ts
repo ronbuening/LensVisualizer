@@ -18,12 +18,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Numerical Example 1 does not publish effective diameters. The   ║
- * ║    stop radius is derived from the design f-number. Other          ║
- * ║    semi-diameters are renderer-safe inferred clear apertures,      ║
- * ║    cross-checked against on-axis F/2.91 ray heights, element edge  ║
- * ║    thickness, surface-sag overlap, and the effective-diameter      ║
- * ║    scale of Examples 2 and 3. They are not production-measured     ║
- * ║    mechanical clear apertures.                                     ║
+ * ║    stop radius is derived from the patent design f-number          ║
+ * ║    (F/2.91). Other semi-diameters are renderer-safe inferred clear ║
+ * ║    apertures, cross-checked against on-axis F/2.91 ray heights,    ║
+ * ║    element edge thickness, surface-sag overlap, and the            ║
+ * ║    effective-diameter scale of Examples 2 and 3. They are not      ║
+ * ║    production-measured mechanical clear apertures.                 ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERES:                                                 ║
  * ║    Canon's production specification refers to aspherical and UD    ║

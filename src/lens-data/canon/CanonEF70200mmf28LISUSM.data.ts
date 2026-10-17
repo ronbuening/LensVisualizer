@@ -35,13 +35,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  coefficients; no catalog-derived values are stored as measured line indices.   ║
  * ║                                                                                 ║
  * ║  SEMI-DIAMETERS: Example 1 publishes no clear apertures. SDs are modeling values     ║
- * ║  derived from the calibrated f/2.9 marginal bundle, full-frame chief rays,           ║
- * ║  0.6-field pupil samples, patent Fig. 1 proportions, and the production barrel       ║
- * ║  envelope. They were then constrained by edge thickness, actual spherical rim        ║
- * ║  slope, cross-gap intrusion, and cemented-interface containment.                     ║
- * ║  The stop radius is derived from the design f-number at the wide state.              ║
- * ║  gapSagFrac=0.95 is required by the tight r12-r13 and r15-r16 air gaps while         ║
- * ║  retaining positive modeled rim clearance and the f/2.9 axial marginal bundle.      ║
+ * ║  derived from the calibrated f/2.9 marginal bundle, full-frame chief rays, 0.6-field ║
+ * ║  pupil samples, patent Fig. 1 proportions, and the production barrel envelope. They  ║
+ * ║  were then constrained by edge thickness, actual spherical rim slope, cross-gap      ║
+ * ║  intrusion, and cemented-interface containment. The stop radius is derived from the  ║
+ * ║  design f-number (f/2.9) at the wide state. gapSagFrac=0.95 is required by the tight ║
+ * ║  r12-r13 and r15-r16 air gaps while retaining positive modeled rim clearance and the ║
+ * ║  f/2.9 axial marginal bundle.                                                        ║
  * ║                                                                                      ║
  * ║  Product metadata source: Canon Camera Museum, EF70-200mm f/2.8L IS USM.             ║
  * ║  https://global.canon/en/c-museum/product/ef365.html                                ║

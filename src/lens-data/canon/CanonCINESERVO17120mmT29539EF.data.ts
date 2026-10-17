@@ -438,7 +438,7 @@ const LENS_DATA = {
     { label: "29", R: -525.842, sd: 14.44 },
     // JP 2015-94867 A, Numerical Example 1 surface table, surface 30: printed effective
     // diameter 34.40 mm at the stop.
-    { label: "STO", R: "flat", d: 1.46 }, // radius derived from the design f-number
+    { label: "STO", R: "flat", d: 1.46 }, // radius derived from the design f-number at each zoom station
     { label: "31", R: 533.292, d: 5.59, sd: 17.675, medium: 17 },
     { label: "32", R: -47.782, d: 0.15, sd: 17.945 },
     { label: "33", R: 70.982, d: 7.73, sd: 17.965, medium: 18 },

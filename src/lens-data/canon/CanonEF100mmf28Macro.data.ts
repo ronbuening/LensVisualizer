@@ -21,8 +21,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ tabulate clear apertures. They were derived from full-field                ║
  * ║ marginal/chief-ray envelopes at infinity, 0.5×, and 1.0×, then rounded     ║
  * ║ outward with clearance and checked against the Example-1 optical section   ║
- * ║ (patent Fig. 1). The stop radius is derived from the design f-number (FNo  ║
- * ║ = 2.89).                                                                   ║
+ * ║ (patent Fig. 1). The stop radius is derived from the design f-number       ║
+ * ║ (FNo = 2.89).                                                              ║
  * ║                                                                            ║
  * ║ Glass identity: the patent publishes d-line nd/νd only. The six-digit     ║
  * ║ coordinate classes are retained without asserting a historical vendor.     ║

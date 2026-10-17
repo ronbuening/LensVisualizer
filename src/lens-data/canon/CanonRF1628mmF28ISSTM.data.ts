@@ -37,12 +37,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    0.213 m at the middle station is linear interpolation in focal    ║
  * ║    length, not published. Not patent data.                           ║
  * ║                                                                      ║
- * ║ NOTE ON APERTURE: printed F2.9 at all three stations (nominalFno 2.9 ║
- * ║ is the modeled design value; Canon markets f/2.8). The iris schedule ║
- * ║ is inferred with zoomApertureModel "from-nominal-fno"; no diaphragm  ║
- * ║ diameter is published, so reproducing F2.9 is a calibration, not     ║
- * ║ independent evidence. The stop radius is derived from the design     ║
- * ║ f-number at each zoom station.                                       ║
+ * ║  NOTE ON APERTURE: printed F2.9 at all three stations (nominalFno    ║
+ * ║    2.9 is the modeled design value; Canon markets f/2.8). The iris   ║
+ * ║    schedule is inferred with zoomApertureModel "from-nominal-fno";   ║
+ * ║    no diaphragm diameter is published, so reproducing F2.9 is a      ║
+ * ║    calibration, not independent evidence. The stop radius is derived ║
+ * ║    from the design f-number at each zoom station; the largest (tele) ║
+ * ║    real-trace radius is 10.97 mm.                                    ║
  * ║                                                                      ║
  * ║  NOTE ON SEMI-DIAMETERS: not published. Modeled from real-ray        ║
  * ║    floors (F2.9 axial beam and the chief ray at 1.02 × the printed   ║
@@ -346,7 +347,7 @@ const LENS_DATA = {
     { label: "10", R: -660.8048, sd: 11.2 },
     { label: "11", R: -34.0489, d: 1.2, sd: 11.2, medium: 6 },
     { label: "12", R: -526.4616, sd: 11.2 },
-    { label: "STO", R: "flat", d: 3.0 }, // aperture stop (patent surface 13); radius derived from the design f-number; see header
+    { label: "STO", R: "flat", d: 3.0 }, // aperture stop (patent surface 13); radius derived from the design f-number at each zoom station; see header
     { label: "14", R: 74.6203, d: 5.539, sd: 12.7, medium: 7 },
     { label: "15", R: -30.9554, d: 0.3, sd: 12.7 },
     { label: "16", R: 33.7448, d: 8.252, sd: 12.3, medium: 8 },

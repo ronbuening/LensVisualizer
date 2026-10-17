@@ -19,11 +19,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  and surface 19 is a co-located inactive flare cutter; both are omitted.║
  * ║  The final-surface d value is the patent BF to the image plane.         ║
  * ║                                                                          ║
- * ║  Semi-diameters are half the patent effective diameters. The stop        ║
- * ║  radius is derived from the design f-number; the Numerical Example 1     ║
- * ║  patent surface table prints a 13.11 mm effective-diameter envelope.     ║
- * ║  gapSagFrac = 0.95 preserves the source                                  ║
- * ║  s3/s4 apertures, which retain 0.418374 mm physical rim clearance.      ║
+ * ║  Semi-diameters are half the patent effective diameters. The stop radius ║
+ * ║  is derived from the published design f-number (f/2.86); the Numerical   ║
+ * ║  Example 1 patent surface table prints a 13.11 mm effective-diameter     ║
+ * ║  envelope. gapSagFrac = 0.95 preserves the source s3/s4 apertures, which ║
+ * ║  retain 0.418374 mm physical rim clearance.                              ║
  * ║                                                                          ║
  * ║  The patent publishes only nd and νd. Vendor-specific glass identities,║
  * ║  nC, nF, ng, and dPgF are unavailable and are not inferred.             ║

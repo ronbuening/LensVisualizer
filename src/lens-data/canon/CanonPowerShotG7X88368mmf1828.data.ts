@@ -24,14 +24,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  scale factor maps both endpoints, so the design prescription and marketing   ║
  * ║  specifications are recorded separately.                                      ║
  * ║                                                                                ║
- * ║ NOTE ON SEMI-DIAMETERS AND STOP DIAMETER: The patent column is labeled         ║
- * ║ "Effective diameter" and lists full clear diameters. Each surface `sd` below   ║
- * ║ is exactly one half of the patent-listed effective diameter. The OCR text      ║
- * ║ drops leading "1" digits on several rows; the values here were checked against ║
- * ║ the rendered patent table. The stop radius is derived from the design f-number ║
- * ║ at each zoom station. The Numerical Example 1 patent surface table prints a    ║
- * ║ 10.62 mm effective diameter at stop surface 10; it is not treated as a fixed   ║
- * ║ iris opening at every zoom state.                                              ║
+ * ║  NOTE ON SEMI-DIAMETERS AND STOP DIAMETER:                                     ║
+ * ║  The patent column is labeled "Effective diameter" and lists full clear        ║
+ * ║  diameters. Each surface `sd` below is exactly one half of the patent-listed   ║
+ * ║  effective diameter. The OCR text drops leading "1" digits on several rows;    ║
+ * ║  the values here were checked against the rendered patent table. The stop      ║
+ * ║  radius is derived from the design f-number at each zoom station. The          ║
+ * ║  Numerical Example 1 patent surface table prints a 10.62 mm effective diameter ║
+ * ║  at stop surface 10; it is not treated as a fixed iris opening at every zoom   ║
+ * ║  state.                                                                        ║
  * ║                                                                                ║
  * ║  IMPORTANT: This file describes only the optical prescription. It excludes    ║
  * ║  sensor cover glass, filters, stabilization mechanics, shutter/iris blade     ║

@@ -29,10 +29,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    to the plate: 15.00 / 24.22 / 29.66 mm.                           ║
  * ║                                                                      ║
  * ║  NOTE ON APERTURE:                                                   ║
- * ║    Patent FNO 2.06 at all three stations; the stop (S14) moves with ║
- * ║    G3 and no iris diameters are published, so the station iris is   ║
+ * ║    Patent FNO 2.06 at all three stations; the stop (S14) moves with  ║
+ * ║    G3 and no iris diameters are published, so the station iris is    ║
  * ║    inferred from the nominal f-number (zoomApertureModel). The stop  ║
- * ║    radius is derived from the design f-number.                       ║
+ * ║    radius is derived from the design f-number at each zoom station;  ║
+ * ║    the largest (tele) real-ray iris radius is 16.9 mm.               ║
  * ║                                                                      ║
  * ║  NOTE ON SEMI-DIAMETERS:                                             ║
  * ║    Not listed in the patent. Measured from the Fig. 1 wide-angle    ║

@@ -22,7 +22,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Refracting-surface semi-diameters are one-half of the patent's published "Effective diameter" values. The
  * stop radius is derived from the design f-number at each zoom station. The Example 5 patent surface table
  * prints a 24.44 mm effective diameter at stop surface 14; it is a source envelope, not a fixed iris
- * schedule. Surface 10 is the one SD refinement: the patent effective-diameter proxy (11.575 mm
+ * schedule. The patent f-numbers imply a slightly smaller stop, so nominalFNumber controls wide-open stop/pupil
+ * geometry. Surface 10 is the one SD refinement: the patent effective-diameter proxy (11.575 mm
  * semi-diameter) would make the 0.6-field wide-open bundle clip at the E6/E7 cemented interface. Its
  * render/trace SD is therefore 12.15 mm, derived from the verified off-axis ray envelope so clipping moves to
  * an external element/air boundary.

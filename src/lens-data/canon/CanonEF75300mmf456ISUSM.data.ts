@@ -5,9 +5,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Production correlation is inferred from element count, section, range and the G2 IS layout.
  * Source radii, glass indices/Abbe values and the five Table 3 zoom gaps are used unchanged.
  * No scaling, cover glass, aspheric coefficient, near-focus state or IS decentering is added.
- * R16 is the source stop, 3.0 mm behind R15. Its iris is calibrated to the aberration-plot
- * apertures f/4.1, f/4.7, f/5.8, not the marketed f/4-5.6. Matching a calibrated
- * aperture does not establish the unpublished physical diameter.
+ * R16 is the source stop, 3.0 mm behind R15. The stop radius is derived at each zoom station from the design
+ * f-numbers f/4.1, f/4.7, f/5.8 (the aberration-plot apertures), not the marketed f/4-5.6.
+ * A radius derived from an f-number does not establish the unpublished physical diameter.
  * Image gaps (after R26) at the three printed stations, 41.50/52.17/62.10 mm, are the
  * computed paraxial back focus rounded to 0.01 mm; the patent prints no back focus.
  * ZOOM STATIONS: 3 printed (76.12 / 135.00 / 291.49 mm, Table 3; US 2001/0030809 A1

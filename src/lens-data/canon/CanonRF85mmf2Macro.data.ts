@@ -17,15 +17,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  i.e. the production 0.35 m MFD. No cover glass or filter is      ║
  * ║  listed; the last gap is the patent BF 17.60 mm.                  ║
  * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
+ * ║  NOTE ON SEMI-DIAMETERS:                                          ║
  * ║    The patent publishes no effective diameters. Values are        ║
  * ║    ray-clearance estimates checked against FIG. 1 (profiled at    ║
  * ║    0.0983 mm/px from the S1–S24 vertex span). Stored rims sit     ║
  * ║    within ~15 % of the drawing (front menisci and L11/L12 about   ║
  * ║    7–13 % larger than drawn). The cemented L5/L6 front and        ║
  * ║    junction were raised to the drawn 14.2 mm rim because the      ║
- * ║    f/2.06 axial pencil reaches 13.7 mm at S10 at β = −0.5.        ║
- * ║    The stop radius is derived from the design f-number.            ║
+ * ║    f/2.06 axial pencil reaches 13.7 mm at S10 at β = −0.5. The    ║
+ * ║    stop radius is derived from the design f-number (f/2.06),      ║
+ * ║    giving a real-ray iris radius of approximately 13.5 mm.        ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
