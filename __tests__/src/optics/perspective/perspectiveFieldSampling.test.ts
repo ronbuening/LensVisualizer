@@ -14,6 +14,15 @@ import {
   createPerspectiveTraceContext,
   type PerspectiveTraceContext,
 } from "../../../../src/optics/perspective/trace.js";
+import {
+  createFieldPlaneFrame,
+  pointForSensorUv,
+  pointInsideSensor,
+  sensorPointForUv,
+  sensorUvForPoint,
+  sensorUvInsideFormat,
+} from "../../../../src/optics/perspective/fieldGeometry.js";
+import { IMAGE_FORMAT_BY_ID } from "../../../../src/utils/catalog/lensTaxonomy.js";
 import type { Vec3 } from "../../../../src/optics/types.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import { build, buildChromaticPositiveElementLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
@@ -52,6 +61,64 @@ function sceneDirectionsForUvs(camera: PerspectiveTraceContext, uvs: readonly Se
     return direction!;
   });
 }
+
+// Preserve shared sensor boundary and checked/unchecked contracts independently of trace tolerances.
+describe("perspective sensor geometry", () => {
+  it("keeps the inclusive normalized edge tolerance and rejects non-finite coordinates", () => {
+    const frame = {
+      plane: { label: "sensor", point: [0, 0, 0] as Vec3, normal: [0, 0, 1] as Vec3 },
+      uAxis: [1, 0, 0] as Vec3,
+      vAxis: [0, 1, 0] as Vec3,
+      halfWidthMm: 1,
+      halfHeightMm: 1,
+    };
+    for (const axis of ["u", "v"] as const) {
+      for (const sign of [-1, 1]) {
+        for (const [value, inside] of [
+          [0, true],
+          [1, true],
+          [1 + 1e-9, true],
+          [1 + 1e-9 + Number.EPSILON, false],
+          [Infinity, false],
+          [NaN, false],
+        ] as const) {
+          const uv = { u: 0, v: 0, [axis]: sign * value };
+          expect(sensorUvInsideFormat(uv)).toBe(inside);
+          expect(pointInsideSensor(frame, pointForSensorUv(frame, uv))).toBe(inside);
+        }
+      }
+    }
+    expect(pointInsideSensor(frame, null)).toBe(false);
+  });
+
+  it("uses the supplied camera basis and keeps checked and unchecked conversions distinct", () => {
+    const camera = {
+      state: { lens: { source: { imageFormat: "135-full-frame" } } },
+      sensorPlane: { point: [9, 0.1, 0.2], normal: [-1, 0, 0] },
+      sensorBasis: { u: [0, 1, 0], v: [0, 0, 1], normal: [1, 0, 0] },
+    } as unknown as PerspectiveTraceContext;
+    const frame = createFieldPlaneFrame(camera.sensorPlane, IMAGE_FORMAT_BY_ID["135-full-frame"], camera.sensorBasis);
+    expect(sensorPointForUv(camera, { u: 0.5, v: 0.5 })).toStrictEqual([9, 9.1, 6.2]);
+    expect(sensorUvForPoint(frame, [9, 9.1, 6.2])).toStrictEqual({ u: 0.5, v: 0.5 });
+    for (const uv of [
+      { u: -0, v: 0 },
+      { u: 1 + 1e-9, v: -1 - 1e-9 },
+    ]) {
+      expect(sensorPointForUv(camera, uv)).toStrictEqual(pointForSensorUv(frame, uv));
+    }
+    expect(sensorPointForUv(camera, { u: 2, v: 0 })).toBeNull();
+    expect(pointForSensorUv(frame, { u: 2, v: 0 })).toStrictEqual([9, 36.1, 0.2]);
+    expect(sensorPointForUv(camera, { u: NaN, v: 0 })).toBeNull();
+    expect(pointForSensorUv(frame, { u: NaN, v: 0 }).every(Number.isNaN)).toBe(true);
+  });
+
+  it("returns null for missing or invalid format metadata without requiring sensor geometry", () => {
+    for (const imageFormat of [undefined, "invalid-format"]) {
+      const camera = { state: { lens: { source: { imageFormat } } } } as unknown as PerspectiveTraceContext;
+      expect(sensorPointForUv(camera, { u: 0, v: 0 })).toBeNull();
+    }
+  });
+});
 
 describe("perspective field sampling", () => {
   it("preserves signed -1/0/1 input order and zero-pose ideal parity", () => {

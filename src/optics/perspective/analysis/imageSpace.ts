@@ -5,7 +5,7 @@ import { entrancePupilFromStop2, paraxialPupilGeometry2 } from "../../first-orde
 import type { Vec3 } from "../../types.js";
 import type { PerspectiveFieldStatus, PerspectivePupilRaySample, SensorUv } from "../fieldSampling.js";
 import type { PerspectiveTraceContext, PerspectiveTraceResult } from "../trace.js";
-import { sensorPointForUv } from "./shared.js";
+import { sensorPointForUv } from "../fieldGeometry.js";
 
 /** A traced pupil ray expressed as an affine function of sensor-normal displacement. */
 export interface PerspectiveAffineSensorRay {

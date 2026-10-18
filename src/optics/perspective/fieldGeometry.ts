@@ -110,6 +110,18 @@ export function pointForSensorUv(frame: FieldPlaneFrame, uv: SensorUv): Vec3 {
   );
 }
 
+/**
+ * Resolve a normalized format coordinate to the fixed camera sensor, or null
+ * for invalid metadata or out-of-bounds input. Field sampling also needs the
+ * unchecked pointForSensorUv path to retain coordinates on unavailable samples.
+ */
+export function sensorPointForUv(context: PerspectiveTraceContext, sensorUv: SensorUv): Vec3 | null {
+  const imageFormat = context.state.lens.source.imageFormat;
+  if (!isImageFormatId(imageFormat) || !sensorUvInsideFormat(sensorUv)) return null;
+  const frame = createFieldPlaneFrame(context.sensorPlane, IMAGE_FORMAT_BY_ID[imageFormat], context.sensorBasis);
+  return pointForSensorUv(frame, sensorUv);
+}
+
 export function sensorUvForPoint(frame: FieldPlaneFrame, point: Vec3): SensorUv {
   const offset = subtract(point, frame.plane.point);
   return {
@@ -122,6 +134,7 @@ export function finiteSensorUv(uv: SensorUv): boolean {
   return Number.isFinite(uv.u) && Number.isFinite(uv.v);
 }
 
+/** Shared finite format bounds; retain the normalized edge tolerance for all callers. */
 export function sensorUvInsideFormat(uv: SensorUv): boolean {
   return finiteSensorUv(uv) && Math.abs(uv.u) <= 1 + 1e-9 && Math.abs(uv.v) <= 1 + 1e-9;
 }
