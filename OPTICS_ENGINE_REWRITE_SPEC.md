@@ -5,9 +5,9 @@ verify. Adopt the tighter intersection-accuracy contract from
 [PR #774](https://github.com/ronbuening/LensVisualizer/pull/774) everywhere, and take the speed gains the restructure
 makes available.
 
-Stages 1, 3, 4 and 5 and Phases 2.1 to 2.4 have merged to `engine-next`, and Stages 1, 3, 4 and 5 have passed their
-gates (tags `optics-rewrite/s1`, `optics-rewrite/s3`, `optics-rewrite/s4` and `optics-rewrite/s5`). Promotion,
-Phases 2.5 and 2.6, and Stages 6 to 8 are future work.
+Stages 1 to 5 and Phases 2.1 to 2.5 have merged to `main`: promotion #847, tagged `optics-rewrite/promotion`, and
+catalog migration #862. Stages 1 to 5 have passed their gates (tags `optics-rewrite/s1`, `optics-rewrite/s2`,
+`optics-rewrite/s3`, `optics-rewrite/s4` and `optics-rewrite/s5`). Phase 2.6 has merged except S2.P6.T5, which is deferred; Stages 6 to 8 are future work.
 
 Priorities, in order: **maintainability**, then **accuracy** (the contract below), then **speed**. When they conflict,
 the higher priority wins and the PR description records the trade-off. Speed's gates and targets are under
@@ -121,7 +121,7 @@ Serenar 50mm f/1.8 show 5.3 and 5.0 evaluations per intersection, so the pattern
 - **R0** is its parent, `d49857ae`. R0 is measured once, in S1.P1.T1, only to size the contract's own cost. Every
   other base is set under [Anchors and comparison coverage](#anchors-and-comparison-coverage) and
   [Efficiency (secondary)](#efficiency-secondary).
-- **The anchors on `engine-next`:**
+- **The anchors:**
   - **A0** is the Stage 1 PR's merge commit, tagged `optics-rewrite/s1`; it contains #774.
   - **A1** is `6d186968`, tagged `optics-rewrite/a1`: the merge commit of #788, the first merge of `main` that changed
     what the engine computes. Its Tier S check against A0, of the head before the merge, ran after the merge and
@@ -140,6 +140,9 @@ Serenar 50mm f/1.8 show 5.3 and 5.0 evaluations per intersection, so the pattern
     #829's glass rows change the matched glass for 32 lenses and pairs). Its Tier S of `engine-next` against A4 (run
     38953367618, on `de6fc223`, whose engine is identical to `84b32453`'s) is bit-identical, and #843 carries
     `engine-diff:c3`, as #804 did.
+  - **Stage 2** is `20827483`, tagged `optics-rewrite/s2`: the merge commit of #862, which closes the catalog
+    migration. Its Tier S against `optics-rewrite/promotion` (run 39078302227, 48 shards, C0) compares 1,019 lenses
+    and pairs, 45,591 records and 308.7M numbers: 0 differ, all format-only, no declared exceptions.
 - **The intersection contract** is #774's, and its documentation owns it: `agent_docs/architecture/optics-engine.md`
   (Exact Surface Trace) and `agent_docs/decisions.md` (2026-10-08). It covers the `1e-12` mm raw residual target, the
   72-iteration cap, the residual definitions, the raw-target-first roundoff envelope, and cap selection.
@@ -435,14 +438,14 @@ read as passing; the step names those divergences.
     anchor moved this way is not a timing base ([Gates](#gates)). Each side of a paired run bundles its own catalog
     ([Method](#method)).
   - **What still spans the whole program** is the promotion's Tier F against `main`, which depends on no anchor.
-  - **This rule ends at promotion.** After it, lens batches add glass rows on `main` directly. What that does to the
-    Stage 2 gate's base and to the anchor of Stages 6 to 8 is open (the list after the
-    [Settled decisions](#settled-decisions)).
+  - **This rule ends at promotion.** After it, a PR that adds or changes a glass catalog row on `main` carries
+    `engine-diff:c3`, as #807 and #829 did. The next stage gate lists the lenses it changes as content changes, each
+    paired with that PR, as the Stage 2 gate does for content PRs. The anchor does not move.
 - **The catalog conversion moves the anchor once.** A base has to build the head's catalog, and no commit older than
   V2 ingest (S2.P2.T1) reads a V2 file. Against an older anchor, every converted lens would be a declared exception
   and a stage gate would compare no engine output.
-  - The commit of `main` on which the Stage 2 gate passes becomes the anchor and is tagged `optics-rewrite/s2`. It is
-    the merge commit that closes the migration (S2.P5.T9), or a later one if the gate needed a fix.
+  - The Stage 2 anchor is the migration's closing merge commit, listed under
+    [Baseline and accuracy contract](#baseline-and-accuracy-contract).
   - The Stage 6, 7 and 8 gates compare against the current anchor: `optics-rewrite/s2`, or a later one an engine C3
     sets. The migration therefore closes before the Stage 6 gate.
   - The comparison from the old anchor is carried in three parts. The Stage 5 gate and the promotion's Tier F run on
@@ -451,7 +454,7 @@ read as passing; the step names those divergences.
     its class and is part of the new anchor, so the Stage 6 gate covers only the steps after it.
   - No engine C3 merges between promotion and the new anchor: its cumulative comparison would need the old anchor,
     which cannot build a converted lens.
-  - The efficiency gates' timing base moves to `optics-rewrite/s2` with it ([Gates](#gates)).
+  - The efficiency gates' timing base is set under [Gates](#gates).
 
 ## Numerical contract
 
@@ -769,8 +772,8 @@ base:
 
 - A0 until the catalog conversion, whatever anchor a merge of `main` or an engine C3 sets;
 - the promotion merge commit, for the Stage 2 gate;
-- `optics-rewrite/s2` from the Stage 6 gate on, with each report also giving the product of the paired ratios back to
-  A0.
+- `optics-rewrite/s2`, now the timing base for Stages 6 to 8, with each report also giving the product of the paired
+  ratios back to A0.
 
 The Stage 8 gate reads them from S8.P2.T1's final benchmark and memory reports, made before S8.P2.T3 deletes the
 paired mode.
@@ -1893,9 +1896,16 @@ correction to the V1 spec goes to `main` separately: S2.P4.T1 fixes the spec–c
 
 **Phase 2.5 — Catalog migration**
 
+Merged: S2.P5.T1 (#852), T2 (#854), T3 (#853), T4 (#856), T5 (#855), T6 (#857), T7 (#858), T8 (#859), T9 (#861),
+and the CI limit raise (#860); closed into `main` by #862 (merge commit `20827483`).
+
 This phase runs after promotion on `lens-v2-migration`, a branch from `main` at `ee51f344`. `main` and its lens PRs
 stay V1 until the migration closes, and the converted catalog is tested in the branch's preview before it reaches
 `main`.
+
+**As built:** batches are built fresh from the migration branch with only their maker folders. T1 makes the test
+suites read either version. #862 merges without waiting for its own PR `engine-diff`, by the maintainer's call. The
+Stage 2 gate's Tier S stands in.
 
 - **The migration branch.**
   - Each step is a PR into `lens-v2-migration`, squash-merged. The branch carries only this phase's steps: an engine
@@ -1976,6 +1986,8 @@ stay V1 until the migration closes, and the converted catalog is tested in the b
 
 Each step is its own PR after S2.P5. The phase blocks only S8.P2.T3.
 
+Merged: S2.P6.T1 (#866), S2.P6.T2 (#864), S2.P6.T3 (#867, after the ten corrections of #863) and S2.P6.T4 (#868).
+
 - **S2.P6.T1 Drop the no-op aperture models.**
   - **Change:** remove every explicit `zoom.apertureModel: "from-nominal-fno"` entry (49 when settled on 2026-10-09),
     which states the default. `apd: false` and `indexReference: "d"` stay (see [Field mapping](#field-mapping)).
@@ -2015,6 +2027,8 @@ Each step is its own PR after S2.P5. The phase blocks only S8.P2.T3.
     curated text, or serve a different purpose from what they resemble.
   - **Gate:** C3 on what the UI shows, with the report as evidence and a changelog entry.
   - **Open:** what its edits do to page modified dates (the list after [Settled decisions](#settled-decisions)).
+  - **Deferred** (maintainer, 2026-10-17): the S2.P6.T4 report is first the work list for an element focal-length
+    audit of the authored values; T5 is decided after that audit. It blocks only S8.P2.T3, like the rest of the phase.
 
 **Stage 2 gate:** on `main` after promotion, on the merge commit that closes the migration (S2.P5.T9) or a later one, and
 before the Stage 6 gate. A stage run takes a branch's head, so the gate runs through a temporary ref at that commit,
@@ -2036,8 +2050,20 @@ or on a later commit of `main`. Its base is the promotion merge commit, `optics-
 - Efficiency gates 1 and 2 against the promotion merge commit, and gate 3 read from the same paired run. Each side
   bundles its own catalog, in its own format ([Method](#method)).
 
-The commit the gate passes on is then tagged `optics-rewrite/s2` and becomes the anchor
-(see [Anchors and comparison coverage](#anchors-and-comparison-coverage)).
+Passed on `20827483`, signed off under the maintainer's delegation on 2026-10-17:
+
+- Tier S against `optics-rewrite/promotion`: run 39078302227, 48 shards, C0; 1,019 lenses and pairs, 45,591 records
+  and 308.7M numbers; 0 differ, all format-only, no declared exceptions.
+- Summaries and freshness equal for all 946 lenses. No content commit touched a lens since promotion. Command:
+  `node .lens-work/audit-tools/s2p5/stage2-freshness.mjs --base optics-rewrite/promotion --head 20827483` (a local tool).
+- `schemaVersion.test.ts`, the suites and build are green in `main`'s CI.
+- Efficiency on the maintainer's Mac (M4 Pro, Node 24.15.0, 15 samples after 2 warmups): 0 of 1,652 cases and 0 of
+  167 heavy cases regressed; retained heap 0.924×; PC-Nikkor 19mm default analysis 77.4 ms against the 127.56 ms R0
+  bound. The benchmark warns that 15 case lenses' prescriptions differ between the sides. This is the V1 and V2
+  serialization; Tier S shows identical engine output.
+
+The anchor is recorded under [Baseline and accuracy contract](#baseline-and-accuracy-contract); its comparison
+coverage is set under [Anchors and comparison coverage](#anchors-and-comparison-coverage).
 
 - Phases 2.1 to 2.3 are covered before promotion by their own steps, the Stage 5 gate and the promotion's Tier F.
 - Phase 2.4 reaches `main` with promotion, before S2.P5.T9 edits a recipe that Phase 2.4 rewrites.
@@ -2427,6 +2453,12 @@ carrying Phase 2.4 ([Integration model](#integration-model)). Stages 6 to 8 and 
 
 ### Stage 6 — Fields, chief rays and solvers
 
+- **Before S6.P1.T1: near-tangency roots (engine C3).**
+  - **Change:** solve sphere and conic roots marked `nearTangency` without the 24-sample scan, which can miss a short
+    chord, as the Samyang XP 35mm's field shows. Widen the harness report's solver-failure table beyond its first 40
+    failures, which hid that lens.
+  - **Gate:** C3, with before/after evidence for the maintainer.
+  - **Issue:** #779.
 - **S6.P1.T1 Field module on prepared geometry.**
   - **Change:** `field/` functions take `PreparedGeometry` plus request options.
     - `field/chiefRay.ts` is split into `field/{fieldGeometry, chiefRaySolve, imageHeight}.ts`.
@@ -2596,7 +2628,9 @@ gone.
   - **Delete:** this plan and its `agent_docs/README.md` entry, as the documentation policy requires.
 
 **Stage 8 gate:** every outcome M1–M9 holds, and the efficiency gates pass, read from the reports [Gates](#gates)
-names. Tag `optics-rewrite/s8`.
+names. S8.P2.T1's Tier F stands in for this gate's Tier S only if nothing that changes engine output merges between
+S8.P2.T1 and S8.P2.T3. Otherwise, Tier S against the anchor runs on the commit just before S8.P2.T3 deletes the
+harness. Tag `optics-rewrite/s8`.
 
 ## Decisions to supersede or preserve
 
@@ -2783,6 +2817,9 @@ Settled on 2026-10-17, after promotion:
 | --- | --- | --- |
 | 90 | `engine-next` is kept after promotion; nothing merges into it again | [Integration model](#integration-model) |
 | 91 | Phase 2.5 runs on `lens-v2-migration`; `main` merges into it often, and it merges into `main` once, as a merge commit, on which the Stage 2 gate runs | Phase 2.5; S2.P5.T9 |
+| 92 | A PR adding or changing a glass catalog row on `main` carries `engine-diff:c3`; the next stage gate pairs each affected lens with that PR as a content change, and the anchor stays | [Anchors and comparison coverage](#anchors-and-comparison-coverage) |
+| 93 | The near-tangency root fix and wider solver-failure table go first in Stage 6 as an engine C3, with before/after evidence for the maintainer (#779) | Before S6.P1.T1 |
+| 94 | S8.P2.T1's Tier F stands in for the Stage 8 gate's Tier S only if no intervening merge changes engine output; otherwise Tier S runs against the anchor just before the harness is deleted | Stage 8 gate |
 
 The maintainer settled the Olympus Zuiko Auto-W 18mm's distortion on 2026-10-15; its engine C3 is #815, whose merge
 commit is anchor A3:
@@ -2802,20 +2839,10 @@ Left to evidence gathered during the program: the final barrel list (S8.P1.T1); 
 S6.P2.T1's harness PR adds; and whether a number with no discrete evidence (an aggregate moved by one boundary sample,
 or a bisected output moved by one quantum) may be declared, each such number going to the maintainer meanwhile.
 
-Open, none of them needed before promotion:
+Open:
 
-- Whether a Stage 6 step may merge between promotion and the new anchor. The plan allows it and states what follows
-  ([Anchors and comparison coverage](#anchors-and-comparison-coverage)); holding Stage 6 until the Stage 2 gate passes
-  would let that gate run under C0 and move the anchor on an unchanged engine.
 - S2.P6.T5 drops `focalLengthMm` from nearly every catalog file, so as written it moves nearly every page's modified
   date soon after the conversion, which is kept from doing so (S2.P2.T2).
-- The Stage 2 gate's items other than the anchor move, which the maintainer has seen only in outline.
-- What a glass row added on `main` after promotion does to the Stage 2 gate, whose base is the promotion merge
-  commit, and to the anchor of Stages 6 to 8.
-- A sphere or conic root that the closed form leaves near tangency (`nearTangency`) goes to the 24-sample scan, which
-  can miss a short chord (#779); the Samyang XP 35mm's field shows it. A C3 that solves such a root without the scan
-  is needed. The harness report's solver table also samples only its first 40 failures, which hid that lens.
-- Whether S8.P2.T1's Tier F stands in for the Stage 8 gate's Tier S, since S8.P2.T3 deletes the harness first.
 
 ## Rollback
 
