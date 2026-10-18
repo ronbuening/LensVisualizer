@@ -3,6 +3,7 @@
 import type { PerspectiveFieldStatus } from "./chiefRay.js";
 import { pointInsideSensor, type FieldPlaneFrame } from "./fieldGeometry.js";
 import type { FieldSample, FieldSampleDomain } from "./fieldTypes.js";
+import { SENSOR_LOCK_FORMAT_TOLERANCE_MM } from "./sensorTarget.js";
 import type { Vec3 } from "../types.js";
 
 export function boundedFieldStatus(
@@ -13,7 +14,8 @@ export function boundedFieldStatus(
   actualSensorIntercept: Vec3 | null,
 ): PerspectiveFieldStatus {
   if (status !== "usable") return status;
-  if (!pointInsideSensor(sensorFrame, actualSensorIntercept)) return "missed-sensor";
+  const toleranceMm = domain === "sensor-locked" ? SENSOR_LOCK_FORMAT_TOLERANCE_MM : undefined;
+  if (!pointInsideSensor(sensorFrame, actualSensorIntercept, toleranceMm)) return "missed-sensor";
   return domain === "sensor-locked" || pointInsideSensor(sensorFrame, poseIdealSensorIntercept)
     ? "usable"
     : "missed-sensor";

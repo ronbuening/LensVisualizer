@@ -17,6 +17,9 @@ import {
 import type { Vec3 } from "../../../../src/optics/types.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import { build, buildChromaticPositiveElementLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
+import { boundedFieldStatus } from "../../../../src/optics/perspective/fieldResults.js";
+import { createFieldPlaneFrame, pointInsideSensor } from "../../../../src/optics/perspective/fieldGeometry.js";
+import { IMAGE_FORMAT_BY_ID } from "../../../../src/utils/catalog/lensTaxonomy.js";
 import * as sensorTarget from "../../../../src/optics/perspective/sensorTarget.js";
 import { computePerspectiveFocusAnalysis } from "../../../../src/optics/perspective/analysis/focus.js";
 import { computePerspectiveVignettingAnalysis } from "../../../../src/optics/perspective/analysis/vignetting.js";
@@ -95,6 +98,52 @@ describe("perspective field sampling", () => {
     });
     expect(samples[0].sensorSolve?.scalarRoot?.status).toBe("converged");
     expect(samples[2].sensorSolve?.scalarRoot).toBeNull();
+  });
+
+  it.each([
+    { u: 0, v: 1 },
+    { u: 0, v: -1 },
+    { u: 1, v: 0 },
+    { u: -1, v: 0 },
+  ])("keeps a converged edge landing inside the sensor-lock band at $u/$v", (uv) => {
+    const fixture = build({ ...buildChromaticPositiveElementLens().data, imageFormat: "135-full-frame" });
+    const camera = createPerspectiveTraceContext({
+      preparedState: prepareRuntimeState(fixture, 0, 0),
+      movement: { shiftMm: 0, tiltDeg: 0 },
+    });
+    const initial = sampleSensorLockedFields(camera, [uv])[0];
+    expect(initial.sensorSolve?.status).toBe("converged");
+    // Control a valid residual's sign independently of the scalar solver's iteration choices.
+    const point: Vec3 = [uv.u * (18 + 4e-6), uv.v * (12 + 4e-6), initial.sensorPoint![2]];
+    const trace = {
+      ...initial.chiefTrace!,
+      sensorIntersection: { ...initial.chiefTrace!.sensorIntersection!, point },
+    };
+    camera.sensorChiefSolves.clear();
+    vi.spyOn(sensorTarget, "solveChiefToSensorPoint").mockReturnValue({
+      chief: { ...initial.chiefSolve!, chiefTrace: trace },
+      sensorSolve: { ...initial.sensorSolve!, residualMm: { u: uv.u * 4e-6, v: uv.v * 4e-6 } },
+    });
+    const controlled = { ...camera, traceRay: () => trace };
+    const sample = sampleSensorLockedFields(controlled, [uv], {
+      pupilBundle: { kind: "meridional", pupilSemiDiameterMm: 0.25, fractions: [0] },
+    })[0];
+    expect(sample.status).toBe("usable");
+    expect(sample.pupilBundle?.samples[0].status).toBe("usable");
+    expect(sample.pupilBundle?.samples[0].sensorIntercept).toEqual(point);
+
+    const frame = createFieldPlaneFrame(camera.sensorPlane, IMAGE_FORMAT_BY_ID["135-full-frame"], camera.sensorBasis);
+    expect(pointInsideSensor(frame, point)).toBe(false);
+    expect(boundedFieldStatus("scene-locked", "usable", frame, initial.sensorPoint, point)).toBe("missed-sensor");
+    const outside: Vec3 = [uv.u * (18 + 0.012), uv.v * (12 + 0.012), point[2]];
+    expect(boundedFieldStatus("sensor-locked", "usable", frame, initial.sensorPoint, outside)).toBe("missed-sensor");
+    expect(sampleSensorLockedFields(camera, [{ u: outside[0] / 18, v: outside[1] / 12 }])[0].status).toBe(
+      "outside-projection-domain",
+    );
+    // The landing band must not enlarge even a near-edge request.
+    expect(sampleSensorLockedFields(camera, [{ u: point[0] / 18, v: point[1] / 12 }])[0].status).toBe(
+      "outside-projection-domain",
+    );
   });
 
   it("retains unavailable requests and their exact order", () => {

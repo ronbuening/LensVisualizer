@@ -73,6 +73,8 @@ One dated bullet per decision with a source pointer; delete a bullet only when t
 
 ## Standing maintainer decisions
 
+- 2026-10-17 — Do not classify sensor-locked edge landings with the tighter requested-UV bound: use the solver-consistent physical band for chiefs and their pupil rays. Keep scene-locked and requested-UV checks unchanged. (`architecture/optics-engine.md`, Perspective-Control Movement; engine C3 before S6.P2.T1)
+
 - 2026-10-16 — Do not split the infinity cutoff again; use `FOCUS_INFINITY_CUTOFF` in `src/optics/focusDistance.ts` for every "focus is treated as infinity" predicate. (maintainer ruling; `OPTICS_ENGINE_REWRITE_SPEC.md`, S5.P2.T2)
 
 - 2026-10-07 — A value the source prints is corrected only under the source-errata standard in `agent_docs/lens-patent-audit.md` (two kinds of source-internal evidence, never an MTF chart) and is recorded in `sourceErrata`; "wide open" means the patent design f-number, not the marketed one. (MTF accuracy audit, 2026-10)

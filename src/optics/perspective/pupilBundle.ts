@@ -10,6 +10,8 @@ import {
   requirePerspectiveImageFormatMetadata,
   type SensorUv,
 } from "./fieldGeometry.js";
+import type { FieldSampleDomain } from "./fieldTypes.js";
+import { SENSOR_LOCK_FORMAT_TOLERANCE_MM } from "./sensorTarget.js";
 import type { PerspectiveTraceContext, PerspectiveTraceResult } from "./trace.js";
 
 export interface PerspectivePupilRaySample {
@@ -60,6 +62,7 @@ export function sampleMeridionalPupilBundle(
   fractions: readonly number[],
   channel?: ChromaticChannel,
   stopSemiDiameterMm?: number,
+  domain: FieldSampleDomain = "scene-locked",
 ): PerspectivePupilBundle | null {
   return samplePupilBundle(
     context,
@@ -69,6 +72,7 @@ export function sampleMeridionalPupilBundle(
     fractions.map((v) => ({ u: 0, v, weight: 1 })),
     channel,
     stopSemiDiameterMm,
+    domain,
   );
 }
 
@@ -80,14 +84,25 @@ export function sampleCircularPupilBundle(
   points: readonly PerspectivePupilPoint[],
   channel?: ChromaticChannel,
   stopSemiDiameterMm?: number,
+  domain: FieldSampleDomain = "scene-locked",
 ): PerspectivePupilBundle | null {
-  return samplePupilBundle(context, chief, "circular", pupilSemiDiameterMm, points, channel, stopSemiDiameterMm);
+  return samplePupilBundle(
+    context,
+    chief,
+    "circular",
+    pupilSemiDiameterMm,
+    points,
+    channel,
+    stopSemiDiameterMm,
+    domain,
+  );
 }
 
 export function pupilBundleForRequest(
   context: PerspectiveTraceContext,
   chief: PerspectiveChiefRayResult,
   request: PerspectivePupilBundleRequest,
+  domain: FieldSampleDomain = "scene-locked",
 ): PerspectivePupilBundle | null {
   return request.kind === "meridional"
     ? sampleMeridionalPupilBundle(
@@ -97,6 +112,7 @@ export function pupilBundleForRequest(
         request.fractions,
         request.channel,
         request.stopSemiDiameterMm,
+        domain,
       )
     : sampleCircularPupilBundle(
         context,
@@ -105,6 +121,7 @@ export function pupilBundleForRequest(
         request.points,
         request.channel,
         request.stopSemiDiameterMm,
+        domain,
       );
 }
 
@@ -116,6 +133,7 @@ function samplePupilBundle(
   pupilUvs: readonly WeightedPupilCoordinate[],
   channel?: ChromaticChannel,
   stopSemiDiameterMm?: number,
+  domain: FieldSampleDomain = "scene-locked",
 ): PerspectivePupilBundle | null {
   const activeStopSemiDiameterMm = stopSemiDiameterMm ?? context.state.lens.stop.physicalSemiDiameter;
   const sensorFrame = createFieldPlaneFrame(
@@ -138,6 +156,7 @@ function samplePupilBundle(
     return null;
   }
 
+  const toleranceMm = domain === "sensor-locked" ? SENSOR_LOCK_FORMAT_TOLERANCE_MM : undefined;
   const samples = pupilUvs.map((pupilUv): PerspectivePupilRaySample => {
     const offset = add(
       scale(chief.pupilSagittalAxisLens!, pupilUv.u * pupilSemiDiameterMm),
@@ -158,7 +177,9 @@ function samplePupilBundle(
     const rawStatus = perspectiveTraceStatus(trace);
     const sensorIntercept = trace.sensorIntersection?.point ?? null;
     const status =
-      rawStatus === "usable" && !pointInsideSensor(sensorFrame, sensorIntercept) ? "missed-sensor" : rawStatus;
+      rawStatus === "usable" && !pointInsideSensor(sensorFrame, sensorIntercept, toleranceMm)
+        ? "missed-sensor"
+        : rawStatus;
     return {
       pupilUv: { u: pupilUv.u, v: pupilUv.v },
       weight: pupilUv.weight,

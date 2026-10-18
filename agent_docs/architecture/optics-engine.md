@@ -1224,6 +1224,13 @@ Two field domains prevent analyses from accidentally changing the question while
   sensor point through the moved stop. Blur, focus, bokeh, field aberrations, chromatic field behavior, vignetting, and
   apparent pupils use this domain.
 
+Sensor-locked landings and their pupil rays use a physical format band of
+`SENSOR_LOCK_FORMAT_TOLERANCE_MM = 2 * SENSOR_LOCK_RESIDUAL_TOLERANCE_MM` (0.00002 mm) beyond each half-dimension.
+This keeps a converged exact-edge chief and its centre ray inside despite the sign of the solve residual. The band
+also applies to focus/field fans, coma/bokeh bundles, vignetting active/zero pass counts, apparent pupils, and the
+chromatic reference-channel fan. Requested UV bounds remain `1 + 1e-9`; scene-locked landings (including distortion
+and chromatic non-reference channels at the reference scene direction) retain that normalized bound.
+
 Sensor-locked chief results, including failed solves, are memoized in the trace context by exact sensor point,
 projection scale and chief options (including channel). Context identity fixes the prepared state, pose, pivot,
 sensor and frames; pupil quadrature and aperture do not enter the chief solve. Focus, vignetting, field aberrations,

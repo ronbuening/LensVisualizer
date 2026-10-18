@@ -29,7 +29,7 @@ flowchart LR
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_types["src/types"]
   n_external_src_utils_catalog["src/utils/catalog"]
-  n_src_optics_perspective_analysis_src_optics_perspective_analysis_chromatic_ts --> |3| n_external_src_optics_perspective
+  n_src_optics_perspective_analysis_src_optics_perspective_analysis_chromatic_ts --> |4| n_external_src_optics_perspective
   n_src_optics_perspective_analysis_src_optics_perspective_analysis_vignetting_ts --> |3| n_external_src_optics_perspective
   n_src_optics_perspective_analysis_src_optics_perspective_analysis_focus_ts --> |2| n_external_src_optics_aberration
   n_src_optics_perspective_analysis_src_optics_perspective_analysis_pupil_ts --> |2| n_external_src_optics_math
@@ -72,14 +72,14 @@ flowchart LR
 
 - Direct source files: 9
 - Direct subfolders: 0
-- Main outbound areas: src/optics/perspective (34), src/optics/types.ts (8), src/optics/math (6), src/optics/aberration (3), src/optics/first-order (3), src/types (3), src/optics/analysis (2), src/optics/chromatic, +2 more
+- Main outbound areas: src/optics/perspective (35), src/optics/types.ts (8), src/optics/math (6), src/optics/aberration (3), src/optics/first-order (3), src/types (3), src/optics/analysis (2), src/optics/chromatic, +2 more
 - External consumers: src/optics/analysis, src/optics/perspective
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `chromatic.ts` | Chromatic helper module | src/optics/perspective (5), src/optics/chromatic, src/optics/types.ts, src/types | src/optics/analysis, src/optics/perspective | PerspectiveChromaticOptions, PerspectiveChromaticRayFanSample, PerspectiveChromaticRayFan, PerspectiveChromaticChannelSample, PerspectiveChromaticFieldSample, PerspectiveChromaticAnalysis, computePerspectiveChromaticAnalysis |
+| `chromatic.ts` | Chromatic helper module | src/optics/perspective (6), src/optics/chromatic, src/optics/types.ts, src/types | src/optics/analysis, src/optics/perspective | PerspectiveChromaticOptions, PerspectiveChromaticRayFanSample, PerspectiveChromaticRayFan, PerspectiveChromaticChannelSample, PerspectiveChromaticFieldSample, PerspectiveChromaticAnalysis, computePerspectiveChromaticAnalysis |
 | `distortion.ts` | Distortion helper module | src/optics/perspective (3), src/optics/types.ts | src/optics/analysis, src/optics/perspective | PerspectiveDistortionOptions, PerspectiveDistortionSample, PerspectiveDistortionStatistics, PerspectiveDistortionSummary, PerspectiveDistortionGrid, PerspectiveDistortionAnalysis, perspectiveDistortionSampleFromField, summarizePerspectiveDistortionSamples, +1 more |
 | `fieldAberrations.ts` | Field Aberrations helper module | src/optics/perspective (3), src/optics/aberration, src/optics/analysis, src/optics/types.ts | src/optics/analysis, src/optics/perspective | PerspectiveFieldAberrationOptions, PerspectiveDirectionalFieldFocus, PerspectiveFieldCurvatureSample, PerspectiveFieldCurvatureAnalysis, PerspectiveComaRaySample, PerspectiveComaFieldSample, PerspectiveComaAnalysis, PerspectiveFieldAberrationAnalysis, +6 more |
 | `focus.ts` | Focus helper module | src/optics/perspective (3), src/optics/aberration (2), src/optics/analysis, src/optics/types.ts | src/optics/analysis, src/optics/perspective | PerspectiveFocusOptions, PerspectiveBokehFootprint, PerspectiveFocusFieldSample, PerspectiveFocusAnalysis, createPerspectiveBokehPupilPoints, computePerspectiveFocusAnalysis, focusSampleFromField, perspectiveBokehFootprint |

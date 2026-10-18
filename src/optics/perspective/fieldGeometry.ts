@@ -126,8 +126,19 @@ export function sensorUvInsideFormat(uv: SensorUv): boolean {
   return finiteSensorUv(uv) && Math.abs(uv.u) <= 1 + 1e-9 && Math.abs(uv.v) <= 1 + 1e-9;
 }
 
-export function pointInsideSensor(frame: FieldPlaneFrame, point: Vec3 | null): boolean {
-  return point !== null && sensorUvInsideFormat(sensorUvForPoint(frame, point));
+/** Optional physical band is reserved for sensor-locked landings; requests stay strict. */
+export function pointInsideSensor(frame: FieldPlaneFrame, point: Vec3 | null, toleranceMm?: number): boolean {
+  if (point === null) return false;
+  if (toleranceMm === undefined) return sensorUvInsideFormat(sensorUvForPoint(frame, point));
+  const offset = subtract(point, frame.plane.point);
+  const uMm = dot(offset, frame.uAxis);
+  const vMm = dot(offset, frame.vAxis);
+  return (
+    Number.isFinite(uMm) &&
+    Number.isFinite(vMm) &&
+    Math.abs(uMm) <= frame.halfWidthMm + toleranceMm &&
+    Math.abs(vMm) <= frame.halfHeightMm + toleranceMm
+  );
 }
 
 export function idealPointForDirection(
