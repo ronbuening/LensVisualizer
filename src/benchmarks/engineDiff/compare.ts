@@ -2733,9 +2733,10 @@ function shownOf(shown: number, total: number): string {
  * The failing findings whose field is a solver's output, each with its difference in quanta of that solver.
  *
  * Such a field moves by whole steps of its solver, so the quanta tell a boundary transition from drift.
+ * Read every retained failure: the general table's first forty can hide a later lens's field cutoff.
  */
 function solverOutputRows(findings: readonly Finding[]): string[][] {
-  return findings.slice(0, MARKDOWN_SAMPLES).flatMap((finding) => {
+  return findings.flatMap((finding) => {
     const quantity = finding.quantity === null ? null : (QUANTITIES[finding.quantity] as Quantity);
     if (!quantity?.solver || finding.measure === null) return [];
     const { name, quantum } = quantity.solver;

@@ -4,7 +4,7 @@
 
 import type { ChromaticChannel, TiltPivot } from "../../types/optics.js";
 import { CHANNEL_WAVELENGTH_NM_2, channelIndexResolverForState2 } from "../chromatic/indexResolver.js";
-import type { LensMovementState } from "../lensMovement.js";
+import { ZERO_LENS_MOVEMENT, type LensMovementState } from "../lensMovement.js";
 import { formatCacheNumber } from "../math/numerics.js";
 import { intersectRayPlane, type RayPlaneIntersection } from "../geometry/intersectPlane.js";
 import { directionFromMeridionalSlope, directionFromSkewSlope, dot, subtract } from "../math/vector.js";
@@ -16,6 +16,7 @@ import type { EngineTraceResult, TraceHit, TraceOptions } from "../trace/types.j
 import { directionSlopes } from "../trace/utils.js";
 import { createPerspectivePose, type PerspectivePose } from "./pose.js";
 import { createSensorBasis, type SensorBasis } from "./sensorBasis.js";
+import type { SensorChiefSolve } from "./sensorTarget.js";
 
 /** Inputs required to bind tracing to one camera/lens movement state. */
 export interface CreatePerspectiveTraceContextParams {
@@ -62,6 +63,10 @@ export interface PerspectiveTraceContext {
   readonly pose: PerspectivePose;
   /** Geometry-complete identity for controls, anchored layout, fixed sensor, pivot, and movement. */
   readonly cacheKey: string;
+  /** Solves belong to this exact state/pose/sensor, never a rounded context key. */
+  readonly sensorChiefSolves: Map<string, SensorChiefSolve>;
+  /** Retain the matched reference context so repeated analyses share its solves too. */
+  zeroMovementContext(): PerspectiveTraceContext;
   traceRay(input: Ray3, options?: PerspectiveTraceOptions): PerspectiveTraceResult;
   traceMeridional(y0: number, u0: number, options?: PerspectiveTraceOptions): PerspectiveTraceResult;
   traceSkew(
@@ -96,6 +101,7 @@ export function createPerspectiveTraceContext({
   const sensorPlane = pose.sensorPlane;
   const sensorBasis = createSensorBasis(sensorPlane);
   const cacheKey = perspectiveTraceContextCacheKey(state, pose, sensorBasis);
+  let zeroMovementContext: PerspectiveTraceContext | undefined;
 
   const context: PerspectiveTraceContext = Object.freeze({
     state,
@@ -103,6 +109,15 @@ export function createPerspectiveTraceContext({
     sensorBasis,
     pose,
     cacheKey,
+    sensorChiefSolves: new Map<string, SensorChiefSolve>(),
+    zeroMovementContext() {
+      return (zeroMovementContext ??= createPerspectiveTraceContext({
+        preparedState: state,
+        sensorPlane,
+        movement: ZERO_LENS_MOVEMENT,
+        tiltPivot: pose.tiltPivot,
+      }));
+    },
     traceRay(input: Ray3, options?: PerspectiveTraceOptions) {
       return tracePerspectiveRay(context, input, options);
     },

@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **946** lenses scanned
-- **10779** glass elements examined
-- **3228** elements have multiple coordinate-compatible candidates
-- **581** lens files are affected
+- **952** lenses scanned
+- **10813** glass elements examined
+- **3232** elements have multiple coordinate-compatible candidates
+- **582** lens files are affected
 - **317** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **210** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 1874 |
-| Evidence-source priority | 1006 |
+| Evidence-source priority | 1010 |
 | Vendor context | 334 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
@@ -895,6 +895,9 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `773496 — lanthanum high-index class (supplier unproven)` | 1.77250 / 49.62 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 2.9e-8) | TAF1 (Hoya, code, alternate code row)<br>N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 1 | [LEICA SUPER-VARIO-ELMAR-TL 11-23mm f/3.5-4.5 ASPH.](../../src/lens-data/leica/LeicaSuperVarioElmarTL1123mmf3545Asph.data.ts) L12 |
 | `618634 — phosphate crown class (supplier unproven)` | 1.61800 / 63.39 (d) | S-PHM52 — smallest d-line \|Δn\| (9.0e-8 vs 1.0e-7) | N-PSK53A (Schott, code, alternate code row)<br>PCD4 (Hoya, code, alternate code row)<br>K-PSKn2 (Sumita, code, alternate code row) | 1 | [LEICA SUPER-VARIO-ELMAR-TL 11-23mm f/3.5-4.5 ASPH.](../../src/lens-data/leica/LeicaSuperVarioElmarTL1123mmf3545Asph.data.ts) L13 |
 | `904313 — high-index lanthanum flint class (supplier unproven)` | 1.90366 / 31.31 (d) | J-LASFH13 — smallest d-line \|Δn\| (3.1e-8 vs 1.0e-7) | N-LASF46B (Schott, code, alternate code row)<br>TAFD25L (Hoya, code, alternate code row)<br>S-LAH95 (Ohara, code, preferred code row)<br>TAFD25 (Hoya, code, alternate code row) | 1 | [LEICA SUPER-VARIO-ELMAR-TL 11-23mm f/3.5-4.5 ASPH.](../../src/lens-data/leica/LeicaSuperVarioElmarTL1123mmf3545Asph.data.ts) L14 |
+| `N-SSK5 catalog equivalent (Schott; SSK5-type extra-dense barium crown, patent coordinate 658508; production melt unspecified)` | 1.65800 / 50.80 (d) | N-SSK5 — direct name evidence outranks six-digit code evidence. | J-SSK5 (Hikari, code, vendor ✗, preferred code row) | 2 | [LEITZ COLORPLAN 90mm f/2.5 (5-element)](../../src/lens-data/leica/LeicaColorplan90mmf25.data.ts) L1 |
+| `SF5 catalog equivalent (Schott; dense flint, patent coordinate 673322; production melt unspecified)` | 1.67300 / 32.20 (d) | SF5 — direct name evidence outranks six-digit code evidence. | H-ZF2 (CDGM, code, vendor ✗, alternate code row)<br>E-FD5 (Hoya, code, vendor ✗, preferred code row) | 1 | [LEITZ COLORPLAN 90mm f/2.5 (5-element)](../../src/lens-data/leica/LeicaColorplan90mmf25.data.ts) L3 |
+| `SF4 catalog equivalent (Schott; dense flint, patent coordinate 755275; production melt unspecified)` | 1.75500 / 27.50 (d) | SF4 — direct name evidence outranks six-digit code evidence. | E-FD4 (Hoya, code, vendor ✗, preferred code row)<br>H-ZF6 (CDGM, code, vendor ✗, alternate code row) | 1 | [LEITZ COLORPLAN 90mm f/2.5 (5-element)](../../src/lens-data/leica/LeicaColorplan90mmf25.data.ts) L4 |
 | `S-FPL51 class (OHARA 497816 reference)` | 1.49700 / 81.60 (d) | S-FPL51 — direct name evidence outranks six-digit code evidence. | H-FK61 (CDGM, code, vendor ✗, alternate code row)<br>FCD1 (Hoya, code, vendor ✗, alternate code row)<br>M-FCD1 (Hoya, code, vendor ✗, alternate code row) | 2 | [MAMIYA AF APO 300mm f/4.5 IF](../../src/lens-data/mamiya/MamiyaAFAPO300mmf45IF.data.ts) L2 |
 | `S-LAL 8 class (OHARA 713539 reference)` | 1.71300 / 53.90 (d) | LAC8 — smallest d-line \|Δn\| (1.8e-7 vs 3.0e-4) | MP-LAC8-30 (Hoya, code, vendor ✗, alternate code row) | 1 | [MAMIYA AF APO 300mm f/4.5 IF](../../src/lens-data/mamiya/MamiyaAFAPO300mmf45IF.data.ts) L8 |
 | `497816 low-dispersion fluorophosphate-crown class` | 1.49700 / 81.60 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row)<br>M-FCD1 (Hoya, code, alternate code row) | 1 | [MAMIYA N 210mm f/8 L](../../src/lens-data/mamiya/Mamiya7210mmf8NL.data.ts) L2 |

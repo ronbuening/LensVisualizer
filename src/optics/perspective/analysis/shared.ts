@@ -5,12 +5,11 @@
  * consistent across distortion, vignetting, and pupil calculations.
  */
 
-import { ZERO_LENS_MOVEMENT } from "../../lensMovement.js";
 import { add, dot, length, scale, subtract } from "../../math/vector.js";
 import type { Vec3 } from "../../types.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../../utils/catalog/lensTaxonomy.js";
 import type { SensorUv } from "../fieldSampling.js";
-import { createPerspectiveTraceContext, type PerspectiveTraceContext } from "../trace.js";
+import type { PerspectiveTraceContext } from "../trace.js";
 
 /** Displacement resolved in the fixed sensor's right/down/normal basis. */
 export interface SensorFrameDisplacement {
@@ -52,12 +51,7 @@ export function sensorFrameDisplacement(
  * @returns an identity-pose trace context for matched-reference calculations
  */
 export function createZeroMovementPerspectiveContext(context: PerspectiveTraceContext): PerspectiveTraceContext {
-  return createPerspectiveTraceContext({
-    preparedState: context.state,
-    sensorPlane: context.sensorPlane,
-    movement: ZERO_LENS_MOVEMENT,
-    tiltPivot: context.pose.tiltPivot,
-  });
+  return context.zeroMovementContext();
 }
 
 /**

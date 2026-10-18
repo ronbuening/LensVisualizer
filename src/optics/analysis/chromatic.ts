@@ -16,7 +16,7 @@ import {
   isOffAxisVectorFieldGeometry,
   type ProjectionAwareOffAxisFieldGeometry,
 } from "../aberration/offAxis.js";
-import { offsetVectorFieldRay2 as offsetVectorFieldRay } from "../field/fieldGeometry.js";
+import { offsetVectorFieldRay2 as offsetVectorFieldRay } from "../state/fieldAdapters.js";
 import type { FieldGeometryState } from "../optics.js";
 import { prepareRayTrace, type PreparedRayTrace } from "../trace/rayAdapters.js";
 import { thick } from "../layout.js";

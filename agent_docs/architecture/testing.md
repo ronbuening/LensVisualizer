@@ -291,8 +291,8 @@ The traces record holds, beside its production fans, two near-axis probe rays: a
 axis and a chief ray through the first vertex at a slope of 1e-4. A failed basis ray can switch the engine to a
 fallback pupil constant within rounding of the real one, so the probe records its status as well as its height.
 
-- The probes are the prepared tracer's own rays. The launch is copied from `computeFieldGeometryAtState2`
-  (`src/optics/field/chiefRay.ts`): the same origin, direction and `stopAt`. Each records its status, failure reason
+- The probes are the prepared tracer's own rays. The launch is copied from `computeFieldGeometry`
+  (`src/optics/field/fieldGeometry.ts`): the same origin, direction and `stopAt`. Each records its status, failure reason
   and height at the stop as the engine reads it, which is not a number once the trace has failed. That height over
   1e-4 is the state geometry's `yRatio` or `b` bit for bit.
 - The two probes have their own outcome, `{ ok, value }` or `{ ok, error }`. Reading a changed prepared state may
@@ -961,7 +961,7 @@ Three files in the tooling suite hold the harness to its contract.
   order, one ulp under C0, twice a budget under C1 where half passes). A scalar below 1 that is no length fails at 1e-10
   relative, a solve's residual is held to its solve's tolerance and not differenced, a stop residual 1000 times larger
   on one side of a converged solve fails, a record that throws alike on both engines fails in every class, and a failing
-  solver output is reported in quanta. An effective tolerance passes a last-bits change above C0 and fails at 1e-10
+  solver output is reported in quanta, including outputs past the general table's first forty failures. An effective tolerance passes a last-bits change above C0 and fails at 1e-10
   relative and when doubled, and a hit that left the raw target for a stall envelope, or came back, is a discrete
   transition with both residuals in contract. Inside a nested trace whose status and hit count stand, a flipped flag,
   a NaN, a changed surface index and the changed status of one ray of a pupil bundle each fail under C1 and C2, a

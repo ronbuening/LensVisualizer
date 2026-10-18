@@ -49,9 +49,8 @@ describe("computeDistortionCurve", () => {
     const L = buildVariableStopGapLens([1, 1], "test-distortion-jump", undefined, { imageCircleMm: 60 });
     const { z } = doLayout(0, 0, L);
     const geometry = { ...computeAnalysisFieldGeometryAtState(0, 0, L), halfFieldDeg: 20 };
-    const traceRay = rayAdapters.traceRay2;
-    const prepare = rayAdapters.prepareRayTrace;
-    const prepared = vi.spyOn(rayAdapters, "prepareRayTrace").mockImplementation((...args) => {
+    const prepare = rayAdapters.prepareRayTraceForState;
+    const prepared = vi.spyOn(rayAdapters, "prepareRayTraceForState").mockImplementation((...args) => {
       const adapter = prepare(...args);
       return {
         ...adapter,
@@ -62,15 +61,9 @@ describe("computeDistortionCurve", () => {
         },
       };
     });
-    const trace = vi.spyOn(rayAdapters, "traceRay2").mockImplementation((...args) => {
-      const result = traceRay(...args);
-      const angle = (Math.atan(-args[1]) * 180) / Math.PI;
-      return { ...result, y: -angle - (angle >= 12 ? 10 : 0), u: 0 };
-    });
     try {
       return computeDistortionCurve(L, z, 0, 0, L.EFL, L.stopPhysSD, geometry, 0, { distortionCurveSampleCount: 4 });
     } finally {
-      trace.mockRestore();
       prepared.mockRestore();
     }
   }
@@ -117,8 +110,8 @@ describe("computeDistortionCurve", () => {
     const { z } = doLayout(0, 0, L);
     let boundScalarCount = 0;
     let boundVectorCount = 0;
-    const prepare = rayAdapters.prepareRayTrace;
-    const prepared = vi.spyOn(rayAdapters, "prepareRayTrace").mockImplementation((...args) => {
+    const prepare = rayAdapters.prepareRayTraceForState;
+    const prepared = vi.spyOn(rayAdapters, "prepareRayTraceForState").mockImplementation((...args) => {
       const adapter = prepare(...args);
       return {
         ...adapter,

@@ -4,7 +4,7 @@
  * Samples pupil zones against the current image plane to describe longitudinal error, RMS blur, and edge/center bias.
  */
 
-import { computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState } from "../field/fieldGeometry.js";
+import { computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState } from "../state/fieldAdapters.js";
 import { thick } from "../layout.js";
 import { sampleCircularPupil } from "../analysis/sampling.js";
 import { prepareRayTrace, skewImagePlaneIntercept } from "../trace/rayAdapters.js";

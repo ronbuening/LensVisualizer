@@ -1,107 +1,57 @@
-/**
- * Chief-ray cache and diagnostics — memoizes solved field launches per RuntimeLens state.
- *
- * Stores both solve results and status counters so expensive field/chief-ray consumers share work
- * and audit scripts can inspect fallback behavior.
- */
+/** Chief-ray memoization — bounded solves owned by immutable prepared geometry. */
 
-import type { RuntimeLens } from "../../types/optics.js";
-import { launchSurfaceForFieldDeg2 } from "./projection.js";
-import type { ChiefRaySolveResult2 } from "./chiefRay.js";
+import type { ChromaticChannel } from "../../types/optics.js";
+import type { PreparedGeometry } from "../types.js";
+import type { ChiefRaySolveResult2 } from "./chiefRaySolve.js";
+import type { LaunchSurface2 } from "./projection.js";
 
-/** Status categories emitted by chief-ray solving. */
-export type ChiefRayStatus2 = ChiefRaySolveResult2["status"];
-
-/** Per-lens chief-ray status counters used by diagnostics and audit scripts. */
-export type ChiefRayDiagnostics2 = Record<ChiefRayStatus2, number>;
-
-const CACHE: WeakMap<RuntimeLens, Map<string, ChiefRaySolveResult2>> = new WeakMap();
-const DIAGNOSTICS = new Map<string, ChiefRayDiagnostics2>();
+const CHIEF_RAY_CACHE_LIMIT = 512;
+const CACHE = new WeakMap<PreparedGeometry, Map<string, ChiefRaySolveResult2>>();
 
 /**
- * Build the memoization key for a chief-ray solve.
- *
- * The launch surface is part of the key because fisheye/vector and scalar
- * object-plane solves can differ even when the signed field angle is the same.
- *
- * @param L - runtime lens object
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param aberrationT - normalized aberration spacing slider
+ * Distinguish signed fields, launch domains and spectral requests within one geometry.
  * @param fieldAngleDeg - signed field angle in degrees
- * @returns chief-ray cache key
+ * @param launchSurface - selected object-plane or bounding-sphere arm
+ * @param channel - spectral channel, omitted for the prescription reference indices
+ * @returns exact request key; no field quantization
  */
-export function chiefRayCacheKey2(
-  L: RuntimeLens,
-  focusT: number,
-  zoomT: number,
-  aberrationT: number,
+export function chiefRayCacheKey(
   fieldAngleDeg: number,
+  launchSurface: LaunchSurface2,
+  channel?: ChromaticChannel,
 ): string {
-  const launchSurface = launchSurfaceForFieldDeg2(fieldAngleDeg, L.projection);
-  return `${focusT}|${zoomT}|${aberrationT}|${fieldAngleDeg}|${launchSurface}`;
+  return `${fieldAngleDeg}|${launchSurface}|${channel ?? "reference"}`;
 }
 
 /**
- * Look up a cached chief-ray solve for a RuntimeLens.
- *
- * @param L - runtime lens object used as WeakMap key
- * @param key - cache key from `chiefRayCacheKey2`
- * @returns cached solve result, if present
+ * Look up and refresh a solve in the per-geometry LRU.
+ * @param state - prepared geometry owning the solve
+ * @param key - exact field, launch surface and channel key
+ * @returns cached solve, if retained
  */
-export function getCachedChiefRaySolve2(L: RuntimeLens, key: string): ChiefRaySolveResult2 | undefined {
-  return CACHE.get(L)?.get(key);
+export function getCachedChiefRaySolve(state: PreparedGeometry, key: string): ChiefRaySolveResult2 | undefined {
+  const cache = CACHE.get(state);
+  const result = cache?.get(key);
+  if (result) {
+    cache!.delete(key);
+    cache!.set(key, result);
+  }
+  return result;
 }
 
 /**
- * Store a chief-ray solve for a RuntimeLens.
- *
- * @param L - runtime lens object used as WeakMap key
- * @param key - cache key from `chiefRayCacheKey2`
+ * Retain a solve while bounding a live geometry's field history.
+ * @param state - prepared geometry owning the solve
+ * @param key - exact request key
  * @param value - solved chief-ray result
  */
-export function setCachedChiefRaySolve2(L: RuntimeLens, key: string, value: ChiefRaySolveResult2): void {
-  let perLensCache = CACHE.get(L);
-  if (!perLensCache) {
-    perLensCache = new Map();
-    CACHE.set(L, perLensCache);
+export function setCachedChiefRaySolve(state: PreparedGeometry, key: string, value: ChiefRaySolveResult2): void {
+  let cache = CACHE.get(state);
+  if (!cache) {
+    cache = new Map();
+    CACHE.set(state, cache);
   }
-  perLensCache.set(key, value);
-}
-
-/**
- * Increment a per-lens chief-ray status diagnostic counter.
- *
- * @param lensKey - stable lens catalog key
- * @param status - solve status to count
- */
-export function recordChiefRayStatus2(lensKey: string, status: ChiefRayStatus2): void {
-  const counts =
-    DIAGNOSTICS.get(lensKey) ??
-    ({
-      converged: 0,
-      "paraxial-fallback": 0,
-      "bracket-failed": 0,
-      "out-of-domain": 0,
-    } satisfies ChiefRayDiagnostics2);
-  counts[status] += 1;
-  DIAGNOSTICS.set(lensKey, counts);
-}
-
-/**
- * Return a defensive snapshot of chief-ray diagnostic counters.
- *
- * @returns map of lens key to status-count record
- */
-export function getChiefRayDiagnostics2(): Map<string, ChiefRayDiagnostics2> {
-  return new Map(Array.from(DIAGNOSTICS.entries()).map(([key, value]) => [key, { ...value }]));
-}
-
-/**
- * Clear all chief-ray diagnostic counters.
- *
- * Used by focused audit/tests so previous runs do not affect status totals.
- */
-export function resetChiefRayDiagnostics2(): void {
-  DIAGNOSTICS.clear();
+  cache.delete(key);
+  cache.set(key, value);
+  if (cache.size > CHIEF_RAY_CACHE_LIMIT) cache.delete(cache.keys().next().value!);
 }

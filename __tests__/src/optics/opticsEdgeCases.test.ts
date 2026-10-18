@@ -244,9 +244,8 @@ describe("per-target image-height inversion", () => {
     const L = buildSimplePositiveElementLens();
     const { z } = doLayout(0, 0, L);
     const geometry = { ...computeFieldGeometryAtState(0, 0, L), halfFieldDeg: 20 };
-    const traceRay = rayAdapters.traceRay2;
-    const prepare = rayAdapters.prepareRayTrace;
-    const prepared = vi.spyOn(rayAdapters, "prepareRayTrace").mockImplementation((...args) => {
+    const prepare = rayAdapters.prepareRayTraceForState;
+    const prepared = vi.spyOn(rayAdapters, "prepareRayTraceForState").mockImplementation((...args) => {
       const adapter = prepare(...args);
       return {
         ...adapter,
@@ -258,11 +257,6 @@ describe("per-target image-height inversion", () => {
       };
     });
     // Isolate target residual validation from intersection failures and aperture policy.
-    const trace = vi.spyOn(rayAdapters, "traceRay2").mockImplementation((...args) => {
-      const result = traceRay(...args);
-      const angle = (Math.atan(-args[1]) * 180) / Math.PI;
-      return { ...result, y: -angle - (angle >= 12 ? 10 : 0), u: 0 };
-    });
     try {
       expect(chiefRayImageHeightAccurate(11, z, 0, 0, L, geometry)).toBeCloseTo(-11, 10);
       expect(chiefRayImageHeightAccurate(13, z, 0, 0, L, geometry)).toBeCloseTo(-23, 10);
@@ -274,7 +268,6 @@ describe("per-target image-height inversion", () => {
       expect(beyond.status).toBe("reached");
       if (gap.status !== "unreachable") throw new Error("Expected unreachable height");
     } finally {
-      trace.mockRestore();
       prepared.mockRestore();
     }
   });

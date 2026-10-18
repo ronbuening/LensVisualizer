@@ -21,8 +21,8 @@ import {
  *
  * Three things are read off every result so that no case passes without the closed form having run:
  * `closedFormFallback` (null when the closed form answered, a reason after a fallback, absent when it was not
- * tried), the number of calls into a counting copy of the profile, and, for a fallback, equality with the same solve
- * on the iterative path. intersectionFixtures.test.ts holds the same solves to the 60-decimal roots.
+ * tried), the number of calls into a counting copy of the profile, and, except for near tangency, equality with
+ * the same solve on the sampled iterative path. intersectionFixtures.test.ts holds the same solves to the 60-decimal roots.
  */
 
 const { fixtures } = JSON.parse(readFileSync(INTERSECTION_FIXTURE_PATH, "utf-8")) as IntersectionFixtureFile;
@@ -116,14 +116,15 @@ function expectClosedFormMiss(input: Solve): void {
 
 /**
  * A fallback: the reason is on the result, and everything else is what the iterative path returns for the same
- * call, iteration count included, so the path was neither seeded nor cut short.
+ * call, iteration count included. Near tangency instead splits the bracket at the quadratic turn.
  */
 function expectFallback(input: Solve, reason: "failedValidation" | "nearTangency" | "domainEdge") {
   const result = solve(input);
   expect(result.closedFormFallback).toBe(reason);
   const iterative = solveIteratively(input);
   expect(iterative).not.toHaveProperty("closedFormFallback");
-  expect(result).toEqual({ ...iterative, closedFormFallback: reason });
+  if (reason !== "nearTangency") expect(result).toEqual({ ...iterative, closedFormFallback: reason });
+  expect(result.iterations).toBeLessThanOrEqual(INTERSECTION_MAX_ITERATIONS);
   if (result.ok) expect(Math.abs(result.residual)).toBeLessThanOrEqual(result.effectiveTolerance);
   return result;
 }
@@ -475,25 +476,58 @@ describe("closed-form fallbacks", () => {
   const tangent = (originZ: number, maxT: number): Solve =>
     sphere(50, { origin: [0, 30, originZ], direction: [0, -1, 0] }, { maxT });
 
-  it("falls back on a tangent ray, whatever the iterative path then finds", () => {
-    // The line touches the vertex at t = 30. A scan sample lands there with these bounds, and not with the next.
-    expect(expectFallback(tangent(0, 60), "nearTangency")).toMatchObject({
+  it.each([undefined, -1, -0.5, -2])("resolves a short chord and a tangent touch with K=%s", (K) => {
+    const input = (depth: number): Solve => ({
+      ...tangent(depth, 61),
+      profile: createSurfaceProfile({ R: 50 }, K === undefined ? undefined : { K, ...NO_POLYNOMIAL }),
+    });
+    // Both roots lie between scan samples. The implicit conic gives r² = 2Rz - (1+K)z².
+    for (const depth of [1e-10, 5.625003164066059e-5]) {
+      const chord = input(depth);
+      expect(solveIteratively(chord)).toMatchObject({ ok: false, failureReason: "noBracket" });
+      const hit = expectFallback(chord, "nearTangency");
+      expect(hit.ok).toBe(true);
+      if (!hit.ok) continue;
+      const radius = Math.sqrt(100 * depth - (1 + (K ?? 0)) * depth * depth);
+      const slope = radius / (50 - (1 + (K ?? 0)) * depth);
+      expect(Math.abs(hit.t - (30 - radius))).toBeLessThanOrEqual(2e-12 / slope);
+      expect(hit.t).toBeLessThan(30);
+      expect(hit.effectiveTolerance).toBe(1e-12);
+    }
+    expect(solveIteratively(input(0))).toMatchObject({ ok: false, failureReason: "noBracket" });
+    expect(expectFallback(input(0), "nearTangency")).toMatchObject({
       ok: true,
       t: 30,
+      residual: 0,
       effectiveTolerance: 1e-12,
     });
-    expect(expectFallback(tangent(0, 61), "nearTangency")).toMatchObject({ ok: false, failureReason: "noBracket" });
-  });
-
-  it("falls back on a chord too short to locate within the budget of a hit", () => {
-    // 1e-10 mm inside the vertex: the two roots are 2e-4 mm apart.
-    expect(expectFallback(tangent(1e-10, 61), "nearTangency")).toMatchObject({ ok: false });
-    /* A 0.15 mm chord with |f'| = 1.5e-3, under the 4e-3 floor: it stays with the scan, which does not resolve
-     * it. Closed form closes the grazing-chord finding only above that floor. */
-    expect(expectFallback(tangent(5.625003164066059e-5, 61), "nearTangency")).toMatchObject({
+    // Inside the closed form's doubtful band but outside the raw acceptance target: still a miss.
+    expect(expectFallback(input(-2.5e-12), "nearTangency")).toMatchObject({
       ok: false,
       failureReason: "noBracket",
     });
+  });
+
+  it("keeps cap selection and forward bounds on both halves of a grazing chord", () => {
+    // On z = y²/20, z = y - 5 + d crosses at y = 10 ± sqrt(20d).
+    const depth = 1e-6;
+    const chord = conic(10, -1, { origin: [0, 11, 6 + depth], direction: normalize([0, -1, -1])! }, { maxT: 4 });
+    const halfChord = Math.sqrt(40 * depth);
+    const first = expectFallback(chord, "nearTangency");
+    expect(first.ok && first.t).toBeCloseTo(Math.SQRT2 - halfChord, 8);
+    for (const options of [{ clearRadius: 10 }, { minT: Math.SQRT2 }]) {
+      const second = expectFallback({ ...chord, options: { ...chord.options, ...options } }, "nearTangency");
+      expect(second.ok && second.t).toBeCloseTo(Math.SQRT2 + halfChord, 8);
+      expect(second.ok && second.effectiveTolerance).toBe(1e-12);
+    }
+  });
+
+  it("finds a touch inside invalid domain endpoints and rejects the other sheet", () => {
+    const ray: Ray3 = { origin: [0, 70, 0], direction: [0, -1, 0] };
+    const input = sphere(50, ray, { maxT: 143 });
+    expect(expectFallback(input, "nearTangency")).toMatchObject({ ok: true, t: 70, residual: 0 });
+    const farSheet = sphere(50, { ...ray, origin: [0, 70, 100] }, { maxT: 143 });
+    expect(expectFallback(farSheet, "nearTangency")).toMatchObject({ ok: false, failureReason: "noBracket" });
   });
 
   it("holds the slope floor at 4e-3 per mm", () => {

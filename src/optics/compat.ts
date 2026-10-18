@@ -162,7 +162,7 @@ export {
   type FieldGeometryState2,
   type OffsetVectorFieldRay2,
   type VectorFieldRayLaunch2,
-} from "./field/fieldGeometry.js";
+} from "./state/fieldAdapters.js";
 export {
   ABSOLUTE_HALF_FIELD_CEILING,
   MAX_FIELD_LAUNCH_DEG,
@@ -193,7 +193,7 @@ export {
   resetChiefRayDiagnostics2,
   type ChiefRayDiagnostics2,
   type ChiefRayStatus2,
-} from "./field/chiefRayCache.js";
+} from "./diagnostics/chiefRay.js";
 export {
   computeCardinalElements2,
   computeCardinalElementsAtState2,

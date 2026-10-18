@@ -180,8 +180,8 @@ below:
 
 A review of #774 before it merged found five gaps in the contract, and the Stage 1 fixtures found a sixth, the grazing
 chord ([#779](https://github.com/ronbuening/LensVisualizer/issues/779)). S3.P2.T1 to S3.P2.T4 each state the gaps they
-close and what they leave. What remains of #779 is stated in S3.P2.T2 and in the open list under
-[Settled decisions](#settled-decisions).
+close and what they leave. The near-tangency C3 before S6.P1.T1 solves the grazing sphere and conic roots; the
+short chord a polynomial asphere can leave on the scan is stated in S3.P2.T2.
 
 ## Integration model
 
@@ -2637,7 +2637,7 @@ harness. Tag `optics-rewrite/s8`.
 | Decision (`agent_docs/decisions.md`) | Action | Where |
 | --- | --- | --- |
 | 2026-08-04: unifying the two tracer stacks is out of scope | Supersede | S4.P2.T4 |
-| 2026-05-20: do not consolidate chief-ray solvers; per-`RuntimeLens` cache; no structural tracer rewrite | Supersede the cache and structure parts; keep the memoization rationale | S6.P1.T1 (cache); S8.P2.T3 (Settle) |
+| 2026-05-20: do not consolidate chief-ray solvers; per-`RuntimeLens` cache; no structural tracer rewrite | Cache superseded: bounded per-`PreparedGeometry` solves keyed by field angle, launch surface and channel; preserve the memoization rationale and vector-native tracer guidance | S6.P1.T1 |
 | 2026-07-06: `prepareState` cache adequate; no further layer | Supersede: one owner replaces three paths | S5.P2.T1 |
 | 2026-08-04: single homes (`normalizeRuntimeLens` cache; `traceSurfaces` wraps `math/paraxial`) | Update the homes; keep `interactRefractiveSurface`, `normalLinePgF`, `abbeLineIndices`, `decodeCode6` | S4.P2.T4; S5.P1.T1 |
 | 2026-08-04: validation centralized in `validateLensData.ts` | Update to `prescription/validate/` | S5.P1.T3 |

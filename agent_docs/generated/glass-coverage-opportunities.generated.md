@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **946** lenses scanned (**933** visible)
-- **10023 / 10784** non-air surfaces use strict catalog Sellmeier data (92.9%)
-- **10036 / 10784** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
+- **952** lenses scanned (**939** visible)
+- **10054 / 10818** non-air surfaces use strict catalog Sellmeier data (92.9%)
+- **10067 / 10818** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **288** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **158** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -99,6 +99,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) | JP 1987-244010 A | [PDF](../../patents/JPA 1987244010-000000.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 8 [glass] (Element 5: `Unmatched (781446 high-index mid-dispersion glass; no compatible public coefficient row)`) | abbe: 1 |
 | [NIKON AI-S NIKKOR 50mm f/1.2](../../src/lens-data/nikon/NikonAISNikkor50mmf12.data.ts) | US 4,621,909 | [PDF](../../patents/US4621909.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 1 [glass] (Element 1: `Unmatched Nikon/Hikari lanthanum glass (797/455; J-LASF017 / TAF2 class)`) | abbe: 1 |
 | [NIKON W-NIKKOR 35mm f/1.8](../../src/lens-data/nikon/NikonWNikkor35mmf18.data.ts) | US 2,896,506 | [PDF](../../patents/US2896506.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 3 [glass] (Element 2: `Unmatched (vintage high-index crown, 662/577)`) | abbe: 1 |
+| [SCHNEIDER-KREUZNACH PA-CURTAGON-R 35mm f/4](../../src/lens-data/schneider-kreuznach/LeicaPACurtagonR35mmf4.data.ts) | US 3,410,632 | [PDF](../../patents/US3410632.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 7 [glass] (Element 4: `Unmatched (historical BaSF13-type e-line coordinate; no verified compatible catalog curve)`) | abbe: 1 |
 | [SIGMA 24mm f/2.8 (Sigma DP2x)](../../src/lens-data/sigma/SigmaDP2X24mmf28.data.ts) | JP 2010-101979 A | [PDF](../../patents/JP2010101979A.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 13 [glass] (Element 7: `BaCD / SK family (various)`) | abbe: 1 |
 | [VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical SL IIs](../../src/lens-data/voigtlander/VoigtlanderColorSkopar28mmf28Aspherical.data.ts) | JP 2023-032663 A | [PDF](../../patents/JPA 2023032663-000000.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 5 [glass] (Cemented biconcave member: `Unmatched (nd inferred from published FL; νd omitted by patent)`) | constant: 1 |
 | [FUJIFILM FUJINON XF 10-24mm f/4 R OIS](../../src/lens-data/fujifilm/FujifilmFujinonXf1024mmf4ROIS.data.ts) | US 2015/0131163 A1 | [PDF](../../patents/US20150131163A1.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 3A [glass] (Element 2: `Unmatched (740491 coordinate)`)<br>10A [glass] (Element 5: `Unmatched (581592 coordinate)`) | abbe: 2 |

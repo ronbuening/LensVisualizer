@@ -109,9 +109,12 @@ const ElementAnnotations = memo(function ElementAnnotations({
       return { text, x, y, fontSize: 9 };
     })
     .sort((a, b) => a.x - b.x);
+  // Physical label offsets collapse at small scales; retain a readable screen-space gap.
+  const groupLabelFloor =
+    Math.max(...packedElementLabels.map(({ y }) => y), ...packedAbbeLabels.map(({ y }) => y)) + 12;
   const packedGroupLabels = packLabelRows(groupLabels).map((item) => ({
     ...item,
-    y: item.y + lowerAnnotationShift + item.row * 11,
+    y: Math.max(item.y + lowerAnnotationShift, groupLabelFloor) + item.row * 11,
   }));
   const doubletLabels = L.doublets
     .map(({ text, fromSurface, toSurface }) => {

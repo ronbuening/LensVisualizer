@@ -7,7 +7,8 @@
  * returned only under a certificate that the iterative path returns the same root. Every other curved solve, every
  * closed-form root that cannot be accepted, and every seeded solve that is refused takes the iterative path: a
  * bracketed root search with safeguarded Newton refinement, so trace modules can distinguish aperture misses from
- * true intersection failures. That path takes nothing from the two in front of it.
+ * true intersection failures. Near-tangent conics split the bracket at the quadratic turning point; other
+ * fallbacks keep the sampled bracket search.
  */
 
 import {
@@ -113,9 +114,8 @@ export function intersectSurfaceProfile(
   // A closed form that fell back has its reason to report, and its solve is the iterative path's.
   const seeded = closedForm === null ? seedAsphereSolve(ray, profile, vertexZ, options) : null;
   if (seeded !== null && typeof seeded !== "string") return seeded;
-  // The iterative path takes the caller's inputs and nothing from the closed form or the seeded route: no seed
-  // and no bracket.
-  const result = solveIteratively(ray, profile, vertexZ, options);
+  // Near tangency needs a bracket that resolves both ends of a short chord.
+  const result = solveIteratively(ray, profile, vertexZ, options, closedForm === "nearTangency");
   return closedForm === null ? result : { ...result, closedFormFallback: closedForm };
 }
 
@@ -436,9 +436,10 @@ function solveIteratively(
   profile: SurfaceProfile,
   vertexZ: number,
   options: SurfaceIntersectionOptions,
+  nearTangency = false,
 ): SurfaceIntersectionResult {
-  const hit = intersectProfile(ray, profile, vertexZ, options);
-  if (hit.ok) return selectAsphericCapHit(ray, profile, vertexZ, options, hit);
+  const hit = intersectProfile(ray, profile, vertexZ, options, "default", nearTangency);
+  if (hit.ok) return selectAsphericCapHit(ray, profile, vertexZ, options, hit, nearTangency);
   if (hit.failureReason !== "noConvergedIntersection") return hit;
   /* The unbounded solve found a bracket and ran out of iterations on it: a numerical failure, usually on the
    * polynomial continuation outside the cap. It says nothing about the cap, so a root inside it is still looked
@@ -449,7 +450,14 @@ function solveIteratively(
       ? capInterval(ray.origin, direction, options.clearRadius, options.minT ?? 0, options.maxT ?? Infinity)
       : null;
   if (cap === null) return hit;
-  const capHit = intersectProfile(ray, profile, vertexZ, { ...options, minT: cap.minT, maxT: cap.maxT }, "ordered");
+  const capHit = intersectProfile(
+    ray,
+    profile,
+    vertexZ,
+    { ...options, minT: cap.minT, maxT: cap.maxT },
+    "ordered",
+    nearTangency,
+  );
   return capHit.ok ? capHit : hit;
 }
 
@@ -495,6 +503,7 @@ function selectAsphericCapHit(
   vertexZ: number,
   options: SurfaceIntersectionOptions,
   hit: SurfaceIntersectionSuccess,
+  nearTangency = false,
 ): SurfaceIntersectionResult {
   const radius = options.clearRadius;
   if (profile.kind !== "aspheric" || !(radius !== undefined && Number.isFinite(radius) && radius > 0)) return hit;
@@ -553,6 +562,7 @@ function selectAsphericCapHit(
     vertexZ,
     { ...options, minT, maxT },
     uniqueCapRoot ? "monotone" : "ordered",
+    nearTangency,
   );
   // A numerical failure inside the cap is unresolved, not proof that only the exterior root exists.
   if (!capHit.ok && capHit.failureReason === "noBracket") return hit;
@@ -575,6 +585,7 @@ function intersectProfile(
     directionNormalized = false,
   }: SurfaceIntersectionOptions = {},
   scan: BracketScan = "default",
+  nearTangency = false,
 ): SurfaceIntersectionResult {
   const direction = directionNormalized ? ray.direction : normalize(ray.direction);
   if (!direction) return failure("invalidDirection", null, 0);
@@ -593,7 +604,9 @@ function intersectProfile(
   const sagSlope: SagSlope = { sag: 0, slope: 0 };
   const evalAt = (t: number): SurfaceEvaluation =>
     evaluateProfile(ray.origin, direction, profile, vertexZ, t, domainRadius, sagSlope);
-  const bracket = findBracket(evalAt, minT, maxT, tolerance, bracketSamples, scan);
+  const bracket = nearTangency
+    ? findConicBracket(evalAt, ray.origin, direction, profile, vertexZ, minT, maxT, tolerance, scan)
+    : findBracket(evalAt, minT, maxT, tolerance, bracketSamples, scan);
   if (bracket.kind === "success")
     return makeSuccess(bracket.value, profile, vertexZ, tolerance, refractiveIndex, bracket.iterations);
   if (bracket.kind === "failure") return failure(bracket.failureReason, bracket.residual, bracket.iterations);
@@ -769,6 +782,73 @@ type BracketResult =
   | { kind: "success"; value: SurfaceEvaluation; iterations: number }
   | { kind: "failure"; failureReason: SurfaceIntersectionFailureReason; residual: number | null; iterations: number }
   | { kind: "bracket"; lo: number; hi: number; fLo: number };
+
+/**
+ * Split a near-tangent conic at its quadratic turning point instead of sampling.
+ *
+ * In the vertex frame F(P + τD) = aτ² + 2bτ + g, so τ = -b/a lies between
+ * any two roots, however short their chord. The sag residual need not have its
+ * extremum there, but has opposite signs there and outside a chord on its sheet.
+ * Evaluating that residual (not the cancelling discriminant) also rejects the
+ * other sheet and true misses. A touch must meet the raw target; an envelope is
+ * still available only when the ordinary Newton refinement actually stalls.
+ * The conic domain is a cylinder, hence one interval along the ray. Its nearest
+ * transverse point supplies an interior point if the quadratic turn is outside it.
+ */
+function findConicBracket(
+  evalAt: (t: number) => SurfaceEvaluation,
+  origin: Vec3,
+  direction: Vec3,
+  profile: SurfaceProfile,
+  vertexZ: number,
+  minT: number,
+  maxT: number,
+  tolerance: number,
+  scan: BracketScan,
+): BracketResult {
+  const [ox, oy] = origin;
+  const oz = origin[2] - vertexZ;
+  const [dx, dy, dz] = direction;
+  const transverse2 = dx * dx + dy * dy;
+  const t0 = -(ox * dx + oy * dy + oz * dz) / (transverse2 + dz * dz);
+  const px = ox + dx * t0;
+  const py = oy + dy * t0;
+  const pz = oz + dz * t0;
+  const c = profile.curvature;
+  const kappa = 1 + profile.conic;
+  const a = c * (transverse2 + kappa * dz * dz);
+  const b = c * (px * dx + py * dy + kappa * pz * dz) - dz;
+  const turn = t0 - b / a;
+  let middle = evalAt(Number.isFinite(turn) ? clamp(turn, minT, maxT) : minT + (maxT - minT) / 2);
+  if (!isFiniteValueEvaluation(middle)) {
+    const radialTurn = transverse2 > 0 ? -(ox * dx + oy * dy) / transverse2 : minT;
+    middle = evalAt(clamp(radialTurn, minT, maxT));
+  }
+  if (!isFiniteValueEvaluation(middle))
+    return { kind: "failure", failureReason: "noBracket", residual: null, iterations: 0 };
+
+  const lower = evalAt(minT);
+  const upper = evalAt(maxT);
+  const lo = isFiniteValueEvaluation(lower) ? lower : domainEdge(evalAt, minT, middle.t);
+  const hi = isFiniteValueEvaluation(upper) ? upper : domainEdge(evalAt, maxT, middle.t);
+  if (!lo || !hi) return { kind: "failure", failureReason: "noBracket", residual: null, iterations: 0 };
+  const hit = (value: SurfaceEvaluation): BracketResult => ({ kind: "success", value, iterations: 0 });
+  if (Math.abs(lo.value) <= tolerance) return hit(lo);
+  // Retain the default search's endpoint priority; ordered cap selection has none.
+  if (scan !== "ordered" && Math.abs(hi.value) <= tolerance) return hit(hi);
+  let previous = lo;
+  let best = lo;
+  for (const current of [middle, hi]) {
+    if (current.value === 0) return hit(current);
+    // Test the crossing before accepting a near-zero turn: a resolved chord has two roots.
+    if (!sameSign(previous.value, current.value))
+      return { kind: "bracket", lo: previous.t, hi: current.t, fLo: previous.value };
+    if (Math.abs(current.value) <= tolerance) return hit(current);
+    if (Math.abs(current.value) < Math.abs(best.value)) best = current;
+    previous = current;
+  }
+  return { kind: "failure", failureReason: "noBracket", residual: best.value, iterations: 0 };
+}
 
 function findBracket(
   evalAt: (t: number) => SurfaceEvaluation,
