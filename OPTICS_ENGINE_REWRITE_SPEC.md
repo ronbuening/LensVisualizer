@@ -6,8 +6,9 @@ verify. Adopt the tighter intersection-accuracy contract from
 makes available.
 
 Stages 1 to 5 and Phases 2.1 to 2.5 have merged to `main`: promotion #847, tagged `optics-rewrite/promotion`, and
-catalog migration #862. Stages 1 to 5 have passed their gates (tags `optics-rewrite/s1`, `optics-rewrite/s2`,
-`optics-rewrite/s3`, `optics-rewrite/s4` and `optics-rewrite/s5`). Phase 2.6 has merged except S2.P6.T5, which is deferred. Stage 6 is in progress; Stages 7 and 8 are future work.
+catalog migration #862. Stages 1 to 6 have passed their gates (tags `optics-rewrite/s1`, `optics-rewrite/s2`,
+`optics-rewrite/s3`, `optics-rewrite/s4`, `optics-rewrite/s5` and `optics-rewrite/s6`). Phase 2.6 has merged except
+S2.P6.T5, which is deferred. Stages 7 and 8 are future work and wait for the maintainer's go-ahead.
 
 Priorities, in order: **maintainability**, then **accuracy** (the contract below), then **speed**. When they conflict,
 the higher priority wins and the PR description records the trade-off. Speed's gates and targets are under
@@ -149,6 +150,10 @@ Serenar 50mm f/1.8 show 5.3 and 5.0 evaluations per intersection, so the pattern
     differ and none fail: the Samyang XP 35mm f/1.2's raw half-field at close focus (+0.0005°, the chord the scan
     missed) and the two lenses #872's glass rows now match (Minolta MD APO Tele 600mm, Schneider PA-Curtagon 35mm),
     paired with #872. S6.P1.T1 (#870, C0) merged before it and changed nothing. The timing base stays Stage 2.
+  - **A7** is `facf1888`, tagged `optics-rewrite/a7` and `optics-rewrite/s6`: the squash commit of #879, the last
+    Stage 6 step. Four engine C3s merged since A6: the sensor-edge band (#877) and S6.P2.T1 to S6.P2.T3 (#875, #878,
+    #879; decision 96). Their cumulative Tier S against A6 (run 39122970387, 48 shards, C3, no declared exception) is
+    also the Stage 6 gate's Tier S; it is recorded under that gate. The timing base stays Stage 2.
 - **The intersection contract** is #774's, and its documentation owns it: `agent_docs/architecture/optics-engine.md`
   (Exact Surface Trace) and `agent_docs/decisions.md` (2026-10-08). It covers the `1e-12` mm raw residual target, the
   72-iteration cap, the residual definitions, the raw-target-first roundoff envelope, and cap selection.
@@ -2475,6 +2480,11 @@ carrying Phase 2.4 ([Integration model](#integration-model)). Stages 6 to 8 and 
     - Status diagnostics move to `diagnostics/`, keyed by compiled identity rather than `L.data.key`.
   - **Gate:** C0. Supersede the caching half of decision 2026-05-20; its memoization rationale stands
     ([Decisions to supersede or preserve](#decisions-to-supersede-or-preserve)).
+- **Before S6.P2.T1: the sensor-edge band (engine C3).**
+  - **Change:** sensor-locked landings, and the rays traced for a sensor-locked sample, are tested against the format
+    enlarged by twice the sensor-lock tolerance (2e-5 mm), so a converged exact-edge sample is no longer in or out
+    by solver noise. Scene-locked samples and requested-UV checks are unchanged.
+  - **Gate:** C3, with evidence: every one of its 4,109 Tier S transitions is an edge sample or ray restored (#877).
 - **S6.P2.T1 `solveScalarRoot`.**
   - **Harness, before the engine change:** its separate C0 PR implements the propagated C2 criteria, because
     this is the first step whose solver output can move beyond a C1 budget. No engine file or anchor changes.
@@ -2483,15 +2493,17 @@ carrying Phase 2.4 ([Integration model](#integration-model)). Stages 6 to 8 and 
     callers affected are perspective chief solves, sensor targeting and MTF field solves; this is a solver change, not
     an MTF model change.
   - **Tests:** known-root fixtures; discontinuous domains.
-  - **Gate:** C2, including MTF in Tier S at both methods.
+  - **Gate:** C2, including MTF in Tier S at both methods. Merged as C3 (decision 96).
 - **S6.P2.T2 Object-plane and bounding-sphere chief solves.**
   - **Change:** a safeguarded secant from the paraxial seed. The scan runs only on failure, and the 1e-7 mm stop
     residual is unchanged.
-  - **Gate:** C2.
+  - **Gate:** C2. Merged as C3 (decision 96): the legacy bracket choice is kept, and Illinois regula falsi replaces
+    the bisection inside it.
 - **S6.P2.T3 Image-height inversion.**
   - **Change:** seed by inverse interpolation on the table the solver builds, then a bracketed secant with the 1e-4 mm
     criterion unchanged.
-  - **Gate:** C2.
+  - **Gate:** C2. Merged as C3 (decision 96): the legacy first midpoint is kept, and a target that does not converge
+    in 8 evaluations replays the legacy bisection.
 - **S6.P3.T1 Shared sensor-locked solves.**
   - **Change:** the perspective context memoizes sensor-locked solves by sensor point, chief options and channel. Focus,
     vignetting (active and zero pose), field aberrations, chromatic, pupils and distortion all share them.
@@ -2509,9 +2521,35 @@ carrying Phase 2.4 ([Integration model](#integration-model)). Stages 6 to 8 and 
     `perspective/fieldGeometry.ts`.
   - **Gate:** C0.
 
-Merged: the near-tangency C3 (#869, which set A6), S6.P1.T1 (#870), S6.P3.T1 (#873) and S6.P3.T3 (#876).
+Merged: the near-tangency C3 (#869, which set A6), S6.P1.T1 (#870), the C2 harness (#871), S6.P3.T1 (#873),
+S6.P3.T3 (#876), the sensor-edge C3 (#877), S6.P2.T1 (#875), S6.P2.T2 (#878) and S6.P2.T3 (#879).
 
 **Stage 6 gate:** Tier S against the anchor, under the loosest class merged since it; the Stage 6 targets are reported.
+
+Passed on `facf1888`, tagged `optics-rewrite/s6`:
+
+- **Tier S** against A6 under C3 (run 39122970387, 48 shards): 43,845 records and 185.3M numbers; none fail, no
+  data impact, no declared exception. Its 4,106 transitions, across 140 lenses and pairs, all move one way: 3,302
+  exact-edge samples to `usable`, 651 counts up, 36 `chief-unreachable` to `usable` (sensor locks bisection had
+  abandoned), 10 values that were null, and 107 digests of the rays now traced. The largest moves are those 36
+  converged locks (chief launch 2.81 mm, field angle 0.667°). Two others were traced to S6.P2.T3: Fujifilm GF 80mm,
+  where a non-injective height curve has two in-tolerance crossings in one bracket and the edge sample now takes the
+  outer, exact one (0.046°), and its MTF field 1, where a 1.35e-4 mm field move on an unconverged grid changes
+  modulation by 3.3e-3. The folded Mirotar 500mm's distortion moves up to 13.7 points; folded distortion stays
+  guarded, and the clipped-trace defect behind its height curve is a separate task.
+- **Efficiency gates** (paired, 15 samples after 2 warmups, against `optics-rewrite/s2`): no case regresses; the 25
+  cases with unequal work (the restored edge samples) are all faster, PC-Nikkor 19mm stopped-close analysis at 0.335×
+  and Canon TS-E 50mm at 0.29×; retained heap 1.0052×; PC-Nikkor 19mm default analysis 69.83 ms against the 127.56 ms
+  R0 limit. The full suites and the build pass.
+- **Targets** (throwaway instrumented build, against `optics-rewrite/s2`):
+  - `solveScalarRoot` median evaluations per call: 40 → 9 across Tier P; missed on PC-Nikkor 19mm stopped-close (93
+    → 90), where calls fell from 39,795 to 15,510.
+  - Median stop traces per centered chief solve: 22 → 6 across Tier P and 6 on warmed PC-Nikkor 19mm analyses;
+    missed on a fresh PC-Nikkor 19mm default analysis (73 → 56), whose initial bracket fails and runs the scan.
+  - Chief solves per image-height inversion target: median 11 → 2 across Tier P; three Olympus 18mm field-limit
+    targets that never converge take the legacy replay (48).
+  - Each unique sensor point is solved at most once per perspective context (at most 4 before).
+  - The three misses are items in `EFFICIENCY_IMPROVEMENT_PLAN.md`.
 
 ### Stage 7 — Analyses on request objects
 
@@ -2837,6 +2875,7 @@ Settled on 2026-10-17, after promotion:
 | 93 | The near-tangency root fix and wider solver-failure table go first in Stage 6 as an engine C3, with before/after evidence for the maintainer (#779) | Before S6.P1.T1 |
 | 94 | S8.P2.T1's Tier F stands in for the Stage 8 gate's Tier S only if no intervening merge changes engine output; otherwise Tier S runs against the anchor just before the harness is deleted | Stage 8 gate |
 | 95 | S6.P3.T2 (warm-started sensor solves) is dropped: on real calls it saved nothing or cost more, and moved results beyond C2 | S6.P3.T2 |
+| 96 | S6.P2.T1 to S6.P2.T3 merge as engine C3s with evidence, after a sensor-edge C3 (#877): the C2 table holds traced rays to their C1 budgets, so a launch that moves within its solver's tolerance cannot pass C2 | S6.P2.T1 to S6.P2.T3 |
 
 The maintainer settled the Olympus Zuiko Auto-W 18mm's distortion on 2026-10-15; its engine C3 is #815, whose merge
 commit is anchor A3:
