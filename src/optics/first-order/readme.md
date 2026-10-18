@@ -15,6 +15,7 @@ flowchart LR
     n_src_optics_first_order_src_optics_first_order_lensConstants_ts["lensConstants.ts"]
     n_src_optics_first_order_src_optics_first_order_pupils_ts["pupils.ts"]
     n_src_optics_first_order_src_optics_first_order_systemMatrix_ts["systemMatrix.ts"]
+    n_src_optics_first_order_src_optics_first_order_thickLens_ts["thickLens.ts"]
   end
   n_external_src_optics_math["src/optics/math"]
   n_external_src_optics_trace["src/optics/trace"]
@@ -36,6 +37,7 @@ flowchart LR
   n_src_optics_first_order_src_optics_first_order_lensConstants_ts --> n_external_src_optics_field
   n_src_optics_first_order_src_optics_first_order_focusBreathing_ts --> n_external_src_optics_focusDistance_ts
   n_src_optics_first_order_src_optics_first_order_lensConstants_ts --> n_external_src_optics_geometry
+  n_src_optics_first_order_src_optics_first_order_thickLens_ts --> n_external_src_optics_geometry
   n_src_optics_first_order_src_optics_first_order_cardinals_ts --> n_external_src_optics_math
   n_src_optics_first_order_src_optics_first_order_focusBreathing_ts --> n_external_src_optics_math
   n_src_optics_first_order_src_optics_first_order_pupils_ts --> n_external_src_optics_math
@@ -52,6 +54,7 @@ flowchart LR
   n_src_optics_first_order_src_optics_first_order_fNumber_ts --> n_external_src_types
   n_src_optics_first_order_src_optics_first_order_focusBreathing_ts --> n_external_src_types
   n_src_optics_first_order_src_optics_first_order_lensConstants_ts --> n_external_src_types
+  n_src_optics_first_order_src_optics_first_order_thickLens_ts --> n_external_src_types
   n_src_optics_first_order_src_optics_first_order_lensConstants_ts --> n_external_src_utils_featureFlags_ts
   n_src_optics_first_order_src_optics_first_order_fNumber_ts --> n_src_optics_first_order_src_optics_first_order_focusBreathing_ts
   n_src_optics_first_order_src_optics_first_order_cardinals_ts --> n_src_optics_first_order_src_optics_first_order_systemMatrix_ts
@@ -59,9 +62,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 6
+- Direct source files: 7
 - Direct subfolders: 0
-- Main outbound areas: src/optics/math (7), src/optics/state (6), src/optics/trace (5), src/optics/prescription (4), src/optics/types.ts (4), src/types (4), src/optics/focusDistance.ts (3), same folder (2), +3 more
+- Main outbound areas: src/optics/math (7), src/optics/state (6), src/optics/trace (5), src/types (5), src/optics/prescription (4), src/optics/types.ts (4), src/optics/focusDistance.ts (3), same folder (2), +3 more
 - External consumers: src/optics/analysis, src/optics/buildLens.ts, src/optics/compat.ts, src/optics/layout.ts, src/optics/perspective, src/optics/prescription
 
 ## Files
@@ -74,3 +77,4 @@ flowchart LR
 | `lensConstants.ts` | Lens Constants helper module | src/optics/math (3), src/optics/trace (3), src/optics/prescription (2), src/optics/state (2), src/optics/field, +4 more | src/optics/buildLens.ts, src/optics/prescription | computeLensConstants, paraxialTrace, realTraceToStop |
 | `pupils.ts` | Pupils helper module | src/optics/math, src/optics/types.ts | src/optics/perspective (3) | FirstOrderPupilState, entrancePupilFromStop2, paraxialPupilGeometry2 |
 | `systemMatrix.ts` | System Matrix helper module | src/optics/math, src/optics/types.ts | same folder | FirstOrderSystemMatrix, computeSystemMatrix2 |
+| `thickLens.ts` | Thick Lens helper module | src/optics/geometry, src/types | none | thickLensFocalLength, computeElementFocalLength |

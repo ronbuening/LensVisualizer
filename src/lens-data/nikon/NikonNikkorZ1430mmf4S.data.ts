@@ -28,8 +28,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                      ║
  * ║  NOTE ON APERTURE:                                                   ║
  * ║    FNO 4.00 at all three stations. The stop radius is derived from   ║
- * ║    the design f-number at each zoom station (zoom.apertureModel      ║
- * ║    "from-nominal-fno": 5.64 / 6.44 / 8.08 mm).                       ║
+ * ║    the design f-number at each zoom station                          ║
+ * ║    (radii: 5.64 / 6.44 / 8.08 mm).                                   ║
  * ║                                                                      ║
  * ║  NOTE ON SEMI-DIAMETERS:                                             ║
  * ║    Not listed in the patent. Measured from Fig. 1 (p. 29, 300 dpi    ║
@@ -352,7 +352,6 @@ const LENS_DATA = {
       { focalLengthMm: 20.0 },
       { focalLengthMm: 29.101, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
     step: 0.004,
   },
 

@@ -28,7 +28,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Focus: infinity only. The patent focuses with LG2 but prints no near-focus spacings; closeFocusM
  * records Tamron's 0.49 m minimum focus distance only.
  *
- * Aperture: the stop diameter is not published. zoomApertureModel "from-nominal-fno" sizes the
+ * Aperture: the stop diameter is not published. The builder sizes the
  * iris to the patent's F/3.50 / 5.24 / 6.32 at the printed stations, giving radii of 8.096 /
  * 8.092 / 8.100 mm, close to one fixed iris; the solved stations carry the f-numbers (rounded to
  * 0.01) that radius gives, so the modeled iris stays within 8.087-8.102 mm across the zoom.
@@ -446,7 +446,6 @@ const LENS_DATA = {
       { focalLengthMm: 212.295, nominalFNumber: 6.28, published: false },
       { focalLengthMm: 264.21, nominalFNumber: 6.32, label: "270 mm", published: true },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   focus: {

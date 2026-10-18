@@ -15,6 +15,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  edge thickness, element SD ratio <=1.25, and cross-gap clearance.  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  *
+ * Catalog design and zoom station labels retain Table 7's stated F = 36.2 / 60 / 103 mm.
+ * The unchanged printed prescription computes EFL = 37.391953 / 62.145237 / 106.577013 mm;
+ * this unresolved source discrepancy is not a production focal-length measurement.
+ *
  * Source image-plane contradiction: Table 7 at wide infinity gives
  * EFL 37.391953 / BFL 53.302330 mm, not stated F 36.2 / Bf 52.36 mm.
  * Every R/d/nd/vd entry matches, including the 0.8 mm stop split.
@@ -35,7 +39,7 @@ const LENS_DATA = {
     specs: ["16 elements / 12 groups", "35–105 mm", "f/3.5–4.5", "52 mm filter", "all spherical"],
     elementCount: 16,
     groupCount: 12,
-    focalLengthMm: { marketing: [35, 105], design: [37.39, 106.58] },
+    focalLengthMm: { marketing: [35, 105], design: [36.2, 103] },
   },
 
   source: {
@@ -43,6 +47,12 @@ const LENS_DATA = {
     patentYear: 1987,
     authors: ["Tomowaki Takahashi", "Yasuhiro Aono"],
     assignees: ["Nippon Kogaku K.K."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "US 4,699,475 Table 7 (PDF p. 23) states F = 36.2/60/103 mm and Bf = 52.36/65.30/78.24 mm; its printed prescription traces to EFL = 37.391953/62.145237/106.577013 mm and BFL = 53.302330/66.629909/79.917389 mm. Printed geometry and image distances are retained pending resolution.",
+      },
+    ],
   },
 
   elements: [

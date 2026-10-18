@@ -25,8 +25,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   re-read at high resolution; no unique correction exists. The printed prescription and printed image plane are
  *   retained unchanged; the residual infinity-state paraxial defocus is intentional and disclosed.
  * NOTE ON SCALING: none (s = 1). Conic: patent uses the standard (1+k) form, so K = k. A14 on surfaces 1–2 as printed.
- * NOTE ON APERTURE: stop diameter unpublished. nominalFno uses the patent's 4.08 / 4.08 / 4.12 with
- *   zoomApertureModel "from-nominal-fno"; the stop radius is derived from the design f-number at each station.
+ * NOTE ON APERTURE: stop diameter unpublished. nominalFno uses the patent's 4.08 / 4.08 / 4.12;
+ *   the stop radius is derived from the design f-number at each station.
  *   This is not independent evidence of the physical diaphragm diameter.
  * NOTE ON SEMI-DIAMETERS: unpublished; modeled from exact meridional real-ray traces (on-axis full aperture, full-field
  *   chief ray, full-field bundle to ±50% pupil, 60%-field full bundle) at 9 zoom × 3 focus samples with 8% clearance,
@@ -374,7 +374,6 @@ const LENS_DATA = {
       { focalLengthMm: 15, nominalFNumber: 4.08 },
       { focalLengthMm: 19.39, nominalFNumber: 4.12, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
     step: 0.004,
   },
 

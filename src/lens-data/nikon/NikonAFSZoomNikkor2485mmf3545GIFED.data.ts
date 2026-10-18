@@ -13,7 +13,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Stop model: the patent places S between G2 and G3, adjacent to and moving with G3, but gives no numeric offset or
  * diaphragm diameter. D13 is split with STO 0.8 mm object-side of G3 as an explicitly inferred drawing-based placement.
- * zoom.apertureModel derives the physical iris schedule from the published station f-numbers; matching those f-numbers
+ * The builder derives the physical iris schedule from the published station f-numbers; matching those f-numbers
  * is therefore a calibration result, not independent evidence of the production diaphragm diameter.
  *
  * Semi-diameters are modeled values inferred from exact sequential ray geometry and the current geometry policy; the
@@ -298,7 +298,6 @@ const LENS_DATA = {
       { focalLengthMm: 50.0, nominalFNumber: 4.5 },
       { focalLengthMm: 82.5, nominalFNumber: 4.7, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   focus: {

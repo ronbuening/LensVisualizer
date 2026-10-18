@@ -33,6 +33,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  */
 
+// Focal lengths: Table 1 states 70–205 mm; design metadata and station labels retain
+// that source range. At native scale the printed prescription traces to
+// 71.979219/203.013778 mm at infinity. The discrepancy remains unresolved;
+// no prescription value or scale is changed.
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -53,7 +57,7 @@ const LENS_DATA = {
     ],
     elementCount: 15,
     groupCount: 10,
-    focalLengthMm: { marketing: [70, 210], design: [71.979219, 203.013778] },
+    focalLengthMm: { marketing: [70, 210], design: [70, 205] },
     fNumber: { marketing: 3.5, design: 3.65 },
   },
 
@@ -62,6 +66,12 @@ const LENS_DATA = {
     patentYear: 1976,
     authors: ["Rinzo Watanabe", "Ellis I. Betensky"],
     assignees: ["Kino Seimitsu Kogyo K.K."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "JP S51-63635 A, Table 1 (PDF pp. 3–4; gazette pp. 265–266), states f = 70–205 mm; Figure 2(a,c) repeats those endpoints. The unscaled printed prescription, including r19 = 38.35 mm, traces to 71.979219/203.013778 mm at the published endpoint gaps. The cause of the discrepancy is not isolated; the printed prescription is retained.",
+      },
+    ],
   },
 
   /* ── Elements ──

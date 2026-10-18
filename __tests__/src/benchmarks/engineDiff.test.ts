@@ -2334,8 +2334,15 @@ describe("engineDiff semantic fingerprint", { timeout: 120_000 }, () => {
     ["zoomStep: 0.004 left out", firstLens((lens) => lens.zoomStep === 0.004), (lens) => delete lens.zoomStep],
     [
       'zoomApertureModel: "from-nominal-fno" left out',
-      firstLens((lens) => lens.zoomApertureModel === "from-nominal-fno"),
+      firstLens(
+        (lens) =>
+          (lens.zoomPositions?.length ?? 0) >= 2 &&
+          lens.zoomApertureModel === undefined &&
+          lens.zoomStopSemiDiameters === undefined,
+      ),
       (lens) => delete lens.zoomApertureModel,
+      // Catalog files omit this default; author it here to keep testing both spellings.
+      (lens) => (lens.zoomApertureModel = "from-nominal-fno"),
     ],
     [
       "focusPositions: [0, 1] left out",

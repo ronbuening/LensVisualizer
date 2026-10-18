@@ -30,7 +30,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                    ║
  * ║  NOTE ON APERTURE: FNO 4.63 / 5.66 / 6.48 with the stop in L2; no  ║
  * ║    iris diameters are published, so the station iris radii are    ║
- * ║    inferred from the FNO schedule ("from-nominal-fno": 4.58 /      ║
+ * ║    inferred from the FNO schedule (radii: 4.58 /                   ║
  * ║    4.40 / 4.58 mm). The stop radius is derived from the design     ║
  * ║    f-number at each zoom station. FIG. 1 draws the SP opening at   ║
  * ║    about 4.4 mm.                                                   ║
@@ -246,7 +246,6 @@ const LENS_DATA = {
       { focalLengthMm: 35.01, nominalFNumber: 5.66, closeFocusM: 0.32 },
       { focalLengthMm: 48.53, nominalFNumber: 6.48, closeFocusM: 0.35, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   /* ── Focus configuration ── */

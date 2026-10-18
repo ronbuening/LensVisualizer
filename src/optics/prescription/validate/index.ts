@@ -13,6 +13,7 @@ import { validateStop, validatePairedInnerSdConsistency } from "./aperture.js";
 import { validateTiltedMirrorBackingNormals, validateFoldedImagePlaneReachability } from "./folded.js";
 import { authoredMessages } from "./paths.js";
 import { validateGeometry } from "./geometry.js";
+import { validatePatentMetadata } from "./patent.js";
 
 /** A diagnostic projection only: never compile, expand plates or resolve materials during validation. */
 function canonicalRecords(data: UntrustedLensData): LensData | UntrustedLensData {
@@ -34,6 +35,7 @@ function validate(
 ): string[] {
   const errors: string[] = [];
   validateTopLevel(data, errors, catalogDefaults);
+  validatePatentMetadata(data, errors);
   if (!Array.isArray(data.surfaces) || !Array.isArray(data.elements)) return errors;
   const surfaceLabels = validateSurfaces(data, errors);
   const elemIds = validateElements(data, errors);

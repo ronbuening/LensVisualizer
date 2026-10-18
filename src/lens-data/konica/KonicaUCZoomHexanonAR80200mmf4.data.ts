@@ -17,11 +17,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ - The patent's raw surface table computes EFL = 80.879304 / 199.749083 mm  ║
  * ║   and BFD = 49.502094 / 49.487008 mm, rather than the printed              ║
  * ║   f = 79.925 / 196.158 mm and fB = 48.523 mm. No refracting surface is     ║
- * ║   altered. `zoomPositions` retains the printed patent endpoint values,     ║
- * ║   while `focalLengthDesign` stores the independently traced EFLs. The      ║
- * ║   model uses the traced paraxial BFDs for r24->IMG.                         ║
+ * ║ altered. `zoom.stations[].focalLengthMm` and `catalog.focalLengthMm.design`  ║
+ * ║ retain the patent's printed endpoints, 79.925 / 196.158 mm. The unchanged    ║
+ * ║ prescription traces to 80.879304 / 199.749083 mm; its traced BFDs remain the ║
+ * ║ model's r24→IMG distances.                                                   ║
  * ║                                                                            ║
- * ║ SOURCE CONTRADICTION — UNRESOLVED (`sourceErrata`)                         ║
+ * ║ SOURCE CONTRADICTION — UNRESOLVED (`source.errata`)                         ║
  * ║ - Every row of the p.303 table (24 radii, 23 spacings, 14 nd/vd pairs,     ║
  * ║   both gap states) matches this file, and the printed spacings sum to the  ║
  * ║   printed Σd = 142.822 at both ends. The mismatch with the printed f and   ║
@@ -87,7 +88,7 @@ const LENS_DATA = {
     specs: ["14 ELEMENTS / 10 GROUPS", "80–200mm f/4", "0.7 m MFD", "ALL SPHERICAL"],
     elementCount: 14,
     groupCount: 10,
-    focalLengthMm: { marketing: [80, 200], design: [80.87930415610688, 199.74908322312632] },
+    focalLengthMm: { marketing: [80, 200], design: [79.925, 196.158] },
     fNumber: { marketing: 4 },
   },
 

@@ -127,6 +127,11 @@ const SEAM_LEGACY: readonly string[] = [
   "src/optics/vignetteAnalysis.ts",
 ];
 
+/** Report-only formulas stay internal; permission is for this importer/target pair, not the app. */
+const REPORT_INTERNAL_IMPORTS = [
+  { importer: "reports/elementFocalLengths.report.ts", module: "src/optics/first-order/thickLens.ts" },
+] as const;
+
 /* ── Cache guard lists ── */
 
 type CacheRecord =
@@ -792,8 +797,17 @@ describe("optics architecture guards", () => {
     it("finds no outside import of an unlisted optics module, and no stale legacy entry", () => {
       const registered = new Set(SEAM_REGISTRY.map((entry) => entry.module));
       const problems: string[] = [];
-      for (const [module, files] of outsideImporters()) {
-        if (registered.has(module) || SEAM_LEGACY.includes(module)) continue;
+      for (const entry of REPORT_INTERNAL_IMPORTS) {
+        if (!outsideImporters().get(entry.module)?.includes(entry.importer)) {
+          problems.push(`Remove stale report-only import: ${entry.importer} -> ${entry.module}.`);
+        }
+      }
+      for (const [module, importers] of outsideImporters()) {
+        const files = importers.filter(
+          (importer) =>
+            !REPORT_INTERNAL_IMPORTS.some((entry) => entry.module === module && entry.importer === importer),
+        );
+        if (files.length === 0 || registered.has(module) || SEAM_LEGACY.includes(module)) continue;
         const failure = seamAdmissionFailure(module);
         problems.push(
           failure === null

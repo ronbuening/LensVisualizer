@@ -38,8 +38,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    Inferred in d12 (L6–L7), mid-gap: best fit of ray-derived         ║
  * ║    element heights to Fig. 1 proportions, and d12 is Example 1's one ║
  * ║    enlarged air space in the L5–L8 region.                           ║
- * ║  NOTE ON APERTURE: constant f/3.5 via zoomApertureModel              ║
- * ║    "from-nominal-fno". The stop radius is derived from the design    ║
+ * ║  NOTE ON APERTURE: constant f/3.5.                                   ║
+ * ║    The stop radius is derived from the design                        ║
  * ║    f-number at each station; the engine's real-ray solve draws       ║
  * ║    6.52 → 7.80 mm wide → tele. The patent FNO is the calibration     ║
  * ║    target, not a published stop diameter.                            ║
@@ -232,7 +232,6 @@ const LENS_DATA = {
       { focalLengthMm: 31.5, published: false },
       { focalLengthMm: 34.14, label: "Tele", published: true },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   /* ── Focus configuration ── */

@@ -23,9 +23,7 @@ describes the production optical system as a negative-positive two-group zoom wi
 and a five-element positive rear group. [2]
 
 The production and patent focal-length labels are not numerically identical. The production lens is marketed as
-36-72mm, while Example 1 prints 37-69 mm. The data file therefore keeps `focalLengthMarketing: [36, 72]` separate from
-the computed design focal lengths. The patent's printed 37 and 69 mm values remain the zoom-position labels because they
-are the source's endpoint labels; they are not substituted for the independently traced Gaussian EFLs.
+36-72mm, while Example 1 prints 37-69 mm. `catalog.focalLengthMm.marketing` retains [36, 72], while `catalog.focalLengthMm.design` and the zoom-station focal lengths retain the patent's stated [37, 69]. Independently traced Gaussian EFLs are 39.353836 and 69.653851 mm.
 
 ## Optical Architecture
 
@@ -234,7 +232,7 @@ differs from the patent's 105.3 mm prose value by only 0.035707 mm. The wide end
 contradiction. With every Example 1 radius, thickness, and index retained as printed and `l = 41.4 mm`, the Gaussian EFL
 is 39.353836 mm rather than the printed 37 mm. An exact 37.000 mm EFL would require an inter-group gap of approximately
 47.439859 mm, not 41.4 mm. The data file therefore does not "correct" the patent: it keeps the raw 41.4 mm spacing and
-37 mm source label while storing 39.353836 mm as the independently traced design EFL. [1, p. 4] [4]
+37 mm source label while reporting 39.353836 mm as the independently traced Gaussian EFL; the catalog design field records the source's stated 37 mm. [1, p. 4] [4]
 
 The surface-by-surface Petzval sum, computed as $\phi/(n n')$ at each refracting surface, is
 `+0.002232471675 mm^-1`. Geometry checks on the authored semi-diameters found positive element edge thickness at every

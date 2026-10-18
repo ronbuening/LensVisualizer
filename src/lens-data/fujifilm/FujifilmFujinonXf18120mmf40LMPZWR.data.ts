@@ -431,7 +431,6 @@ const LENS_DATA = {
       { focalLengthMm: 116.83, nominalFNumber: 4.11, label: "Tele", published: true, publishedFocus: [1] },
     ],
     // Physical iris schedule inferred by tracing each source-station modeled entrance pupil to STO.
-    apertureModel: "from-nominal-fno",
     step: 0.004,
   },
 

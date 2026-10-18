@@ -31,7 +31,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  NOTE ON APERTURE:                                                   ║
  * ║    Patent FNO 2.06 at all three stations; the stop (S14) moves with ║
  * ║    G3 and no iris diameters are published, so the station iris is   ║
- * ║    inferred from the nominal f-number (zoomApertureModel). The      ║
+ * ║    inferred from the nominal f-number. The                          ║
  * ║    largest (tele) real-ray iris radius is 16.9 mm.                  ║
  * ║                                                                      ║
  * ║  NOTE ON SEMI-DIAMETERS:                                             ║
@@ -426,7 +426,6 @@ const LENS_DATA = {
   zoom: {
     /* (moved from zoomPositions) ── Zoom configuration ── */
     stations: [{ focalLengthMm: 28.9, label: "Wide" }, { focalLengthMm: 50.0 }, { focalLengthMm: 67.9, label: "Tele" }],
-    apertureModel: "from-nominal-fno",
     step: 0.004,
   },
 

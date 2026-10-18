@@ -22,7 +22,7 @@ thick at its rim. Surface 36, not 37, now bounds the engine half-fields: 18.3348
 18.3256 / 11.2159 / 7.6308). L6's nearly flat front face 10 = 15.5 mm equals its rear (was 14.95 mm); the 9-10
 shared band stays 14.95 mm. The renderer joins unequal rims with a straight edge, so the drawn seats of L5, L8, L10
 and L20 appear as chamfers.
-The from-nominal-fno iris schedule is inferred from published F-numbers, not published diaphragm radii.
+The iris schedule is inferred from published F-numbers, not published diaphragm radii.
 Glass labels are coordinate-equivalent catalog classes (HOYA; HIKARI for 1.61266/44.46 and 1.85108/40.12),
 not manufacturer/melt identity; the resin stays unmatched and no nC/nF/ng/dPgF is inferred.
 This is a research construction correlation, not a manufacturer-confirmed production prescription.
@@ -416,7 +416,6 @@ const LENS_DATA = {
       { focalLengthMm: 120.0114, nominalFNumber: 2.9109 },
       { focalLengthMm: 174.6514, nominalFNumber: 2.9103 },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   focus: {

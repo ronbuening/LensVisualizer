@@ -342,7 +342,6 @@ const LENS_DATA = {
 
   zoom: {
     stations: [{ focalLengthMm: 17.5, label: "Wide" }, { focalLengthMm: 24 }, { focalLengthMm: 34, label: "Tele" }],
-    apertureModel: "from-nominal-fno",
   },
 
   focus: {

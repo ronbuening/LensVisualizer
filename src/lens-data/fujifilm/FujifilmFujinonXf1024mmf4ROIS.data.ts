@@ -438,7 +438,6 @@ const LENS_DATA = {
       { focalLengthMm: 23.36, label: "Tele" },
     ],
     // Inferred iris schedule from the published infinity f-numbers; no source diameters.
-    apertureModel: "from-nominal-fno",
   },
 
   focus: {

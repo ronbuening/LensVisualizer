@@ -21,7 +21,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The close-focus aberration figures are labelled F2.92, 3.01 and 3.00; the model does not vary the iris with focus.
  * The sliders interpolate the printed gaps linearly. That is not the production zoom or focus cam, and positions
  * between the printed stations can be out of focus (about 4 mm at zoomT 0.75); no spacing is invented to fix it.
- * NOTE ON APERTURE: zoomApertureModel sets the iris radius at each station from the printed infinity f-number.
+ * NOTE ON APERTURE: the builder sets the iris radius at each station from the printed infinity f-number.
  * It is a calibration, not independent evidence of the unpublished stop diameter.
  * NOTE ON SEMI-DIAMETERS: not published. Estimated from the FIG. 1 cross-section (wide end, infinity), measured on
  * the 420 dpi page raster at 0.1275 mm/px, and floor-checked by exact real-ray trace at all six published states
@@ -442,7 +442,6 @@ const LENS_DATA = {
       { focalLengthMm: 118.0, nominalFNumber: 2.89 },
       { focalLengthMm: 194.0, nominalFNumber: 2.92, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   focus: {

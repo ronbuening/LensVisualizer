@@ -9,6 +9,7 @@ export function authoredMessages(
 ): string[] {
   if (provenance.format === 1) return errors;
   const names: Record<string, string> = {
+    focalLengthDesign: "catalog.focalLengthMm.design",
     zoomPositions: "zoom.stations[].focalLengthMm",
     zoomLabels: "zoom.stations[].label",
     zoomCloseFocusM: "zoom.stations[].closeFocusM",
@@ -23,6 +24,9 @@ export function authoredMessages(
     acceptsTeleconverters: "catalog.acceptsTeleconverters",
     opticalConfiguration: "catalog.opticalConfiguration",
     sourceErrata: "source.errata",
+    patentNumber: "source.patentNumber",
+    patentAuthors: "source.authors",
+    patentAssignees: "source.assignees",
   };
   for (const row of LENS_SCHEMA_DEFAULTS) {
     if (!row.spread) names[row.v1Field] = row.path;

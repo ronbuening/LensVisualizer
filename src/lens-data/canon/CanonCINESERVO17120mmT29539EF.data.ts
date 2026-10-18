@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Focus: the patent identifies U12 (surfaces 7-8) as the internal focusing unit, but publishes no close-focus
  * numerical spacings. This file therefore uses NO_INTERNAL_RECONSTRUCTION: no U12 travel is invented.
  * closeFocusM = 0.85 is production MOD metadata from Canon, not an authored finite-conjugate prescription.
- * Aperture: nominalFno [2.8, 2.8, 3.4] is the patent/design schedule. zoomApertureModel infers the physical
+ * Aperture: nominalFno [2.8, 2.8, 3.4] is the patent/design schedule. The builder infers the physical
  * iris radius required at each published zoom station; the patent's surface-30 effective diameter is not
  * treated as a published physical iris schedule.
  * Semi-diameters: source effective radii are retained except 20/21 -> 14.38 mm, 38 -> 10.87 mm,
@@ -467,7 +467,6 @@ const LENS_DATA = {
       { focalLengthMm: 51, nominalFNumber: 2.8 },
       { focalLengthMm: 119, nominalFNumber: 3.4, label: "Tele 119mm" },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   focus: {

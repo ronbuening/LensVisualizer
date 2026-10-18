@@ -68,7 +68,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    Patent Table 1 labels surface 15 as the aperture stop, 3.440 mm ║
  * ║    behind L31 and ahead of L32A; ¶[0088] calls it a variable stop. ║
  * ║    The patent gives FNO 2.88 / 2.74 / 2.89 but no iris diameters,  ║
- * ║    so zoom.apertureModel "from-nominal-fno" infers the per-station ║
+ * ║    so the builder infers the per-station                           ║
  * ║    iris (≈ 7.2 / 9.0 / 9.7 mm from the engine).  Production is     ║
  * ║    marketed as f/2.8.                                              ║
  * ╚══════════════════════════════════════════════════════════════════════╝
@@ -516,7 +516,6 @@ const LENS_DATA = {
       { focalLengthMm: 31.059, nominalFNumber: 2.74, closeFocusM: 0.3 },
       { focalLengthMm: 53.436, nominalFNumber: 2.89, closeFocusM: 0.4, label: "Tele (55mm)" },
     ],
-    apertureModel: "from-nominal-fno",
     step: 0.004,
   },
 

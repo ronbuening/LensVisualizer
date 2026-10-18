@@ -386,7 +386,6 @@ const LENS_DATA = {
       { focalLengthMm: 67.9, closeFocusM: 2.095597522564697, label: "Tele", published: true, publishedFocus: [1] },
     ],
     // Physical iris schedule inferred by tracing the source f/2.92 entrance pupil at each zoom station.
-    apertureModel: "from-nominal-fno",
     step: 0.004,
   },
 

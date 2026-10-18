@@ -227,3 +227,17 @@ Left open:
 - L41 (19.4 / 19.2 mm) and L42a (19.0 / 18.2 mm) are also drawn with both faces at one height. Neither carried one value before any raise (19.2 / 19.0 and 19.0 / 18.1 mm), and both differences predate the raises. L41's 0.2 mm is under one scan pixel of the figure.
 - `gapSagFrac: 0.98` applies to every air gap in the file. Only the two named pairs use more than 90 % of their gap.
 - 図1's flat cap over G1R is at the published 28.0 mm. The file's L14 rims (27.0 / 26.5 mm) are 4–5 % under it. No rim rule reaches this, and it is not changed.
+
+## 2026-10-17 — V2 source-stated design focal length
+
+Source: JP 2000-19398 A, Example 1, Table 1, PDF pp. 6–7. Applied the approved focal-length metadata proposal.
+
+| Field | Before | After |
+|---|---|---|
+| `catalog.focalLengthMm.design` | `[81.549920824, 195.999955682]` | `[81.55, 194]` |
+
+Retained all station labels, marketing values, prescription geometry and image distances. The former design values were rounded or full-precision computed EFLs; the catalog field now records the source-stated endpoints.
+
+The approved proposal independently reproduced infinity EFLs of 81.549920824 / 134.999788354 / 195.999955682 mm; those traced results remain documented separately. Both S2.P6.T3 endpoint comparisons now have zero difference. This is a metadata correction, not a source-prescription correction.
+
+Added an `unresolved` `source.errata` entry, a header disclosure, and a Section G queue row. JP 2000-19398 A Example 1, Table 1 (PDF pp. 6–7), states F = 81.55–194.00 mm and labels the tele infinity column 194.0000 mm. Its published prescription calculates to 195.999955682 mm at that column. The printed range and station labels are retained; no erroneous prescription cell or corrected source focal length has been isolated.

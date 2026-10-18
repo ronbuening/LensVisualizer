@@ -244,3 +244,17 @@ before or after.
   stated ray, so the rule leaves them stepped by 0.5 mm.
 - The inferred rims that stand well above the drawing (collector, variator, L11, L17, final doublet), listed in the
   section above, are not touched.
+
+## 2026-10-17 — V2 source-stated design focal length
+
+Source: US 4,110,006, Example 4, PDF pp. 18–19. Applied the approved focal-length metadata proposal.
+
+| Field | Before | After |
+|---|---|---|
+| `catalog.focalLengthMm.design` | `[151.759, 595.465]` | `[150, 600]` |
+
+Retained all station labels, marketing values, prescription geometry and image distances. The former design values were rounded or full-precision computed EFLs; the catalog field now records the source-stated endpoints.
+
+The approved proposal independently reproduced infinity EFLs of 151.7585 / 300.1933 / 595.4652 mm; those traced results remain documented separately. Both S2.P6.T3 endpoint comparisons now have zero difference. This is a metadata correction, not a source-prescription correction.
+
+The wide traced EFL remains 1.172% above the printed 150 mm station; its cause is not established by this metadata change.

@@ -16,6 +16,7 @@ flowchart LR
     n_src_optics_prescription_validate_src_optics_prescription_validate_folded_ts["folded.ts"]
     n_src_optics_prescription_validate_src_optics_prescription_validate_geometry_ts["geometry.ts"]
     n_src_optics_prescription_validate_src_optics_prescription_validate_index_ts["index.ts"]
+    n_src_optics_prescription_validate_src_optics_prescription_validate_patent_ts["patent.ts"]
     n_src_optics_prescription_validate_src_optics_prescription_validate_paths_ts["paths.ts"]
     n_src_optics_prescription_validate_src_optics_prescription_validate_references_ts["references.ts"]
     n_src_optics_prescription_validate_src_optics_prescription_validate_schema_ts["schema.ts"]
@@ -49,6 +50,7 @@ flowchart LR
   n_src_optics_prescription_validate_src_optics_prescription_validate_geometry_ts --> n_external_src_types
   n_src_optics_prescription_validate_src_optics_prescription_validate_index_ts --> n_external_src_types
   n_src_optics_prescription_validate_src_optics_prescription_validate_schema_ts --> n_external_src_types
+  n_src_optics_prescription_validate_src_optics_prescription_validate_patent_ts --> n_external_src_utils_catalog
   n_src_optics_prescription_validate_src_optics_prescription_validate_schema_ts --> n_external_src_utils_catalog
   n_src_optics_prescription_validate_src_optics_prescription_validate_index_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_aperture_ts
   n_src_optics_prescription_validate_src_optics_prescription_validate_references_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_aperture_ts
@@ -57,21 +59,20 @@ flowchart LR
   n_src_optics_prescription_validate_src_optics_prescription_validate_folded_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_context_ts
   n_src_optics_prescription_validate_src_optics_prescription_validate_geometry_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_context_ts
   n_src_optics_prescription_validate_src_optics_prescription_validate_index_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_context_ts
+  n_src_optics_prescription_validate_src_optics_prescription_validate_patent_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_context_ts
   n_src_optics_prescription_validate_src_optics_prescription_validate_references_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_context_ts
   n_src_optics_prescription_validate_src_optics_prescription_validate_schema_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_context_ts
   n_src_optics_prescription_validate_src_optics_prescription_validate_index_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_controls_ts
   n_src_optics_prescription_validate_src_optics_prescription_validate_schema_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_diffractive_ts
   n_src_optics_prescription_validate_src_optics_prescription_validate_index_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_folded_ts
-  n_src_optics_prescription_validate_src_optics_prescription_validate_schema_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_folded_ts
-  n_src_optics_prescription_validate_src_optics_prescription_validate_index_ts --> n_src_optics_prescription_validate_src_optics_prescription_validate_geometry_ts
   n_src_optics_prescription_validate_truncated["additional relationships omitted"]
 ```
 
 ## Directory Overview
 
-- Direct source files: 11
+- Direct source files: 12
 - Direct subfolders: 0
-- Main outbound areas: src/optics/prescription (41), src/types (8), src/optics/geometry (6), src/optics/math, src/optics/state, src/optics/trace, src/utils/catalog
+- Main outbound areas: src/optics/prescription (43), src/types (8), src/optics/geometry (6), src/utils/catalog (2), src/optics/math, src/optics/state, src/optics/trace
 - External consumers: src/optics/prescription, src/optics/validateLensData.ts, src/optics/validateTeleconverterData.ts
 
 ## Files
@@ -79,12 +80,13 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `aperture.ts` | Aperture helper module | src/optics/geometry (2), src/optics/prescription | src/optics/prescription (2) | annularNestedOpeningForSpan, isEmbeddedStop, isAllowedAnnularNestedSurface, isAllowedFoldedRadialSplitSurface, isAllowedFoldedSpanInternalSurface, validatePairedInnerSdConsistency, validateStop |
-| `context.ts` | Context helper module | none | src/optics/prescription (7) | UntrustedLensData, ExplicitElementSpan |
+| `context.ts` | Context helper module | none | src/optics/prescription (8) | UntrustedLensData, ExplicitElementSpan |
 | `controls.ts` | Controls helper module | src/optics/prescription (2) | src/optics/prescription | isStationIndexList, validatePublishedStations, validateStations, validateControls |
 | `diffractive.ts` | Diffractive helper module | none | src/optics/prescription | validateDiffractivePhase |
 | `folded.ts` | Folded helper module | src/optics/prescription (4), src/optics/geometry, src/optics/state, src/optics/trace, src/types | src/optics/prescription (2) | validateImagePlane, validateOpticalPath, validateYzNormal, normalizedNormal, samePlaneNormal, validateTiltedMirrorBackingNormals, validateFoldedImagePlaneReachability |
 | `geometry.ts` | Geometry helper module | src/optics/geometry (2), src/optics/prescription (2), src/types | src/optics/prescription | validateGeometry |
-| `index.ts` | Barrel/registry module | src/optics/prescription (13), src/types | src/optics/prescription (3), src/optics/validateLensData.ts | default, validateLensData, validateLensInput, validateCanonicalLens |
+| `index.ts` | Barrel/registry module | src/optics/prescription (14), src/types | src/optics/prescription (3), src/optics/validateLensData.ts | default, validateLensData, validateLensInput, validateCanonicalLens |
+| `patent.ts` | Patent helper module | src/optics/prescription, src/utils/catalog | src/optics/prescription | validatePatentMetadata |
 | `paths.ts` | Paths helper module | src/optics/prescription (2) | src/optics/prescription | authoredMessages |
 | `references.ts` | References helper module | src/optics/prescription (3), src/types (2), src/optics/geometry | src/optics/prescription (2) | validateSourceErrata, validateAttachedTeleconverter, validateReferences, validateSpans, validateAnnotations |
 | `schema.ts` | Schema helper module | src/optics/prescription (8), src/types, src/utils/catalog | src/optics/prescription (2), src/optics/validateLensData.ts | validateNumberRange, isEnabledMovementRange, validatePerspectiveControlTiltPivot, validatePerspectiveControl, validateOpticalConfiguration, validateProjection, validateRearPlates, validateLensMounts, +6 more |

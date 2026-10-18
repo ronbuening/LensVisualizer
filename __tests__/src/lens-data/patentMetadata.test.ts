@@ -13,26 +13,15 @@ const modules = Object.fromEntries(
     import.meta.glob<{ default: LensDataInput }>("../../../src/lens-data/**/*.data.ts", { eager: true }),
   ).map(([path, module]) => [path, { default: toLensData(ingestLens(module.default)) }]),
 );
-/* Lens and converter files of either version, read through their V1 views for the patent number. */
-const patentModules: Record<string, { default: { key: string; patentNumber?: string } }> = {
-  ...modules,
-  ...Object.fromEntries(
-    Object.entries(
-      import.meta.glob<{ default: Parameters<typeof ingestTeleconverter>[0] }>(
-        "../../../src/lens-data/**/*.teleconverter.ts",
-        { eager: true },
-      ),
-    ).map(([path, module]) => [path, { default: toTeleconverterData(ingestTeleconverter(module.default)) }]),
-  ),
-};
-
-function expectCleanNames(path: string, field: "patentAuthors" | "patentAssignees", values: string[]): void {
-  expect(new Set(values).size, `${path}: ${field} entries must be unique`).toBe(values.length);
-  for (const value of values) {
-    expect(value.trim(), `${path}: ${field} entries must be non-empty and trimmed`).toBe(value);
-    expect(value, `${path}: ${field} must list every named party explicitly`).not.toMatch(/\bet al\.?\b/i);
-  }
-}
+/* Converter publication formatting remains here; lens publication rules live in the validator. */
+const patentModules = Object.fromEntries(
+  Object.entries(
+    import.meta.glob<{ default: Parameters<typeof ingestTeleconverter>[0] }>(
+      "../../../src/lens-data/**/*.teleconverter.ts",
+      { eager: true },
+    ),
+  ).map(([path, module]) => [path, { default: toTeleconverterData(ingestTeleconverter(module.default)) }]),
+);
 
 function normalizedNameKey(value: string): string {
   return value
@@ -97,7 +86,7 @@ const NOMINAL_FASTER_THAN_DESIGN: readonly string[] = [
 ];
 
 describe("lens patent metadata", () => {
-  it("links every authored lens and converter patent with consistent country and kind-code spacing", () => {
+  it("links every authored converter patent with consistent country and kind-code spacing", () => {
     const offenders = Object.entries(patentModules).flatMap(([path, { default: data }]) => {
       const number = data.patentNumber;
       if (!number) return [];
@@ -124,19 +113,7 @@ describe("lens patent metadata", () => {
     expect(offenders.sort()).toEqual([...NOMINAL_FASTER_THAN_DESIGN].sort());
   });
 
-  it("does not repeat inventors as organizational assignees", () => {
-    // Inventor-applicants belong in patentAuthors; duplicating them creates false assignee nodes.
-    const offenders = Object.entries(modules).flatMap(([path, { default: data }]) => {
-      const authorKeys = new Set((data.patentAuthors ?? []).map(normalizedNameKey));
-      return (data.patentAssignees ?? [])
-        .filter((assignee) => authorKeys.has(normalizedNameKey(assignee)))
-        .map((assignee) => `${path}: ${assignee}`);
-    });
-
-    expect(offenders, "patentAssignees must contain organizations, not inventor-applicants").toEqual([]);
-  });
-
-  it("declares complete structured metadata on every patent-backed lens", () => {
+  it("uses consistent author spelling, name order and assignee spelling across lenses", () => {
     const normalizedSpellings = new Map<string, string>();
     const normalizedWordOrders = new Map<string, string>();
     const normalizedAssigneeSpellings = new Map<string, string>();
@@ -144,23 +121,7 @@ describe("lens patent metadata", () => {
     for (const [path, { default: data }] of Object.entries(modules)) {
       if (path.includes("/reference/")) continue;
 
-      expect(data.patentNumber?.trim(), `${path}: patentNumber is required`).toBe(data.patentNumber);
-      expect(Array.isArray(data.patentAuthors), `${path}: patentAuthors must be an array`).toBe(true);
-      expect(Array.isArray(data.patentAssignees), `${path}: patentAssignees must be an array`).toBe(true);
-
-      expectCleanNames(path, "patentAuthors", data.patentAuthors ?? []);
-      expectCleanNames(path, "patentAssignees", data.patentAssignees ?? []);
-
       for (const author of data.patentAuthors ?? []) {
-        const nonLatinLetters = [...author].filter(
-          (character) => /\p{Letter}/u.test(character) && !/\p{Script=Latin}/u.test(character),
-        );
-        expect(nonLatinLetters, `${path}: patentAuthors must be romanized`).toEqual([]);
-        expect(author.normalize("NFKC"), `${path}: patentAuthors must use normalized Unicode`).toBe(author);
-        expect(author, `${path}: patentAuthors must omit honorifics`).not.toMatch(/\b(?:Dr|Prof)\.?\b/i);
-        expect(author, `${path}: patentAuthors must use conventional capitalization`).not.toMatch(/\b\p{Lu}{2,}\b/u);
-        expect(author, `${path}: patentAuthors must omit parenthetical source annotations`).not.toMatch(/[()]/);
-
         const spellingKey = normalizedNameKey(author);
         expect(normalizedSpellings.get(spellingKey) ?? author, `${path}: inconsistent author spelling`).toBe(author);
         normalizedSpellings.set(spellingKey, author);
@@ -173,15 +134,6 @@ describe("lens patent metadata", () => {
       }
 
       for (const assignee of data.patentAssignees ?? []) {
-        expect(assignee.normalize("NFKC"), `${path}: patentAssignees must use normalized Unicode`).toBe(assignee);
-        expect(assignee, `${path}: patentAssignees must use conventional capitalization`).not.toMatch(
-          /^[^\p{Ll}]*\p{Lu}[^\p{Ll}]*$/u,
-        );
-        expect(assignee, `${path}: patentAssignees must omit parenthetical source annotations`).not.toMatch(/[()]/);
-        expect(assignee, `${path}: patentAssignees must use canonical corporate suffixes`).not.toMatch(
-          /\b(?:Co|Corp|Inc|Ltd|KK)\b(?!\.)/,
-        );
-
         const assigneeKey = normalizedAssigneeKey(assignee);
         expect(
           normalizedAssigneeSpellings.get(assigneeKey) ?? assignee,

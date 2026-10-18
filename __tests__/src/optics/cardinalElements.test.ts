@@ -2,6 +2,7 @@ import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
 import { computeCardinalElementsAtState } from "../../../src/optics/cardinalElements.js";
+import { thickLensFocalLength } from "../../../src/optics/first-order/thickLens.js";
 import { doLayout } from "../../../src/optics/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import type { RuntimeLens, SurfaceData } from "../../../src/types/optics.js";
@@ -205,5 +206,26 @@ describe("computeCardinalElementsAtState", () => {
     const L = minimalCardinalLens([{ label: "1", R: 1e15, d: 0, nd: 1, elemId: 0, sd: 10 }]);
 
     expect(computeCardinalElementsAtState(L, 0, 0, [0], 10)).toBeNull();
+  });
+
+  describe("thickLensFocalLength", () => {
+    it("computes the focal length of a known thick biconvex lens in air", () => {
+      // Known symmetric biconvex lens: R1 = 100 mm, R2 = -100 mm, d = 10 mm, n = 1.5 in air.
+      // phi1 = (1.5 - 1) / 100 = 0.005 mm^-1
+      // phi2 = (1 - 1.5) / -100 = 0.005 mm^-1
+      // phi = 0.005 + 0.005 - (10 / 1.5) * 0.005 * 0.005 = 0.01 - 1/6000 = 59 / 6000 mm^-1
+      // f = 6000 / 59 = 101.694915... mm (vs thin-lens f = 100 mm)
+      const f = thickLensFocalLength(100, -100, 10, 1.5);
+      expect(f).toBeCloseTo(6000 / 59, 10);
+    });
+
+    it("evaluates plano-convex lenses and flat plates", () => {
+      // Plano-convex with flat rear: R1 = 100, R2 = "flat", d = 10, n = 1.5 -> f = 100 / (1.5 - 1) = 200 mm
+      expect(thickLensFocalLength(100, "flat", 10, 1.5)).toBeCloseTo(200, 10);
+      // Plano-convex with flat front: R1 = "flat", R2 = -100, d = 10, n = 1.5 -> f = 200 mm
+      expect(thickLensFocalLength("flat", -100, 10, 1.5)).toBeCloseTo(200, 10);
+      // Plane-parallel plate: R1 = "flat", R2 = "flat" -> f = Infinity
+      expect(thickLensFocalLength("flat", "flat", 10, 1.5)).toBe(Infinity);
+    });
   });
 });

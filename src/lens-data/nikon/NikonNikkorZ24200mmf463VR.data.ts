@@ -28,7 +28,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    (W→T, toward object): G1 62.0, G2 9.0, S/G3/G6 26.7, G4 37.5,    ║
  * ║    G5 41.0 mm — matches conditions (1), (2), (10), (11).            ║
  * ║    No iris diameters are published: the working iris per station    ║
- * ║    is derived from nominalFNumber (zoom.apertureModel), W ≈ 6.36 mm ║
+ * ║    is derived from nominalFNumber, W ≈ 6.36 mm                      ║
  * ║    → T ≈ 7.41 mm radius; Fig. 1 draws the W iris at ≈ 6.3 mm.       ║
  * ║                                                                      ║
  * ║  NOTE ON SEMI-DIAMETERS:                                             ║
@@ -441,7 +441,6 @@ const LENS_DATA = {
       },
     ],
     // No iris diameters are published; the station iris is derived from the Table 1 FNO schedule.
-    apertureModel: "from-nominal-fno",
     step: 0.004,
   },
 

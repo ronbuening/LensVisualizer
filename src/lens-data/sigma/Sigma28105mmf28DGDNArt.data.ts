@@ -11,8 +11,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * estimated from Figure 1; rear-group rims (14A–27) are the least values that pass the F2.91
  * axial beam at every zoom station. Surfaces 28–32A follow Figure 1's optical rims.
  * The last singlet and cemented pair use 18.3/17.4 mm, excluding brackets and flanges. The stop
- * radius is derived from the design f-number F2.91 at each zoom station through
- * zoomApertureModel.
+ * radius is derived from the design f-number F2.91 at each zoom station.
  * Zoom: only the three source infinity stations are published. Linear interpolation
  * between them leaves up to 0.98 mm of defocus at intermediate focal lengths; accepted
  * by the owner (2026-10-16). No finite-focus law or camera stack is invented.
@@ -494,7 +493,6 @@ const LENS_DATA = {
       { focalLengthMm: 50 },
       { focalLengthMm: 102.37, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   focus: {

@@ -183,3 +183,17 @@ No prescription value changed; the file already matches the print.
   row of `agent_docs/sd-audit-queue.md` and the Section F row marked "needs a corrected Table I" stay open on that.
 - The tele rim limit is as before: f/2.8 stated, f/3.01 traced at 83 mm (surface 10 rim) and f/2.84 at 36 mm (surface
   14 rim), with the fixed iris at 11.583 mm limiting at neither station. No semi-diameter was touched.
+
+## 2026-10-17 — V2 source-stated design focal length
+
+Source: US 3,975,089, Table I / Fig. 1, PDF pp. 4–5. Applied the approved focal-length metadata proposal.
+
+| Field | Before | After |
+|---|---|---|
+| `catalog.focalLengthMm.design` | `[38.5, 89.1]` | `[36, 83]` |
+
+Retained all station labels, marketing values, prescription geometry and image distances. The former design values were rounded or full-precision computed EFLs; the catalog field now records the source-stated endpoints.
+
+The approved proposal independently reproduced infinity EFLs of 38.4609 / 89.0770 mm; those traced results remain documented separately. Both S2.P6.T3 endpoint comparisons now have zero difference. This is a metadata correction, not a source-prescription correction.
+
+The existing unresolved `source.errata` entry and Section G investigation are retained unchanged; metadata agreement does not resolve the source contradiction.

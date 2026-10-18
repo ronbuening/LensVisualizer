@@ -88,6 +88,7 @@ except the MTF chart regression, which takes minutes and runs only with `MTF_CHA
 
 - [generated] [`generated/unresolved-glass.generated.md`](generated/unresolved-glass.generated.md) — `npm run generate:reports -- unresolvedGlassScan`
 - [generated] [`generated/catalog-mismatches.generated.md`](generated/catalog-mismatches.generated.md) — `npm run generate:reports -- catalogMismatchScan`
+- [generated] [`generated/element-focal-lengths.generated.md`](generated/element-focal-lengths.generated.md) — `npm run generate:reports -- elementFocalLengths`
 - [generated] [`generated/glass-relabel-candidates.generated.md`](generated/glass-relabel-candidates.generated.md) — `npm run generate:reports -- glassRelabelCandidatesScan`
 - [generated] [`generated/glass-relabel-by-lens.generated.md`](generated/glass-relabel-by-lens.generated.md) — `npm run generate:reports -- glassRelabelByLensScan`
 - [generated] [`generated/glass-ambiguities.generated.md`](generated/glass-ambiguities.generated.md) — `npm run generate:reports -- glassAmbiguityScan`; one rollup row per distinct ambiguity, per-candidate residuals come from `explainCompatibleGlassResolution`

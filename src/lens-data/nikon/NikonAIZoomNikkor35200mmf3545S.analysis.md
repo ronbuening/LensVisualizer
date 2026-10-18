@@ -186,8 +186,8 @@ Independent paraxial traces of the corrected Table 2 prescription produced the f
 |---|---:|---:|---|
 | Wide EFL | 36.16 mm | 36.23 mm | +0.19% |
 | Tele EFL | 193.96 mm | 194.85 mm | +0.46% |
-| Wide BFD | not separately listed | 54.37 mm | Data file d30 at 35 mm |
-| Tele BFD | not separately listed | 95.91 mm | Data file d30 at 200 mm |
+| Wide BFD | not separately listed | 54.37 mm | Data file d30 at the 36.16 mm wide station |
+| Tele BFD | not separately listed | 95.91 mm | Data file d30 at the 193.96 mm tele station |
 | Macro object distance | 0.244 m | 0.2449 m | With tele image distance retained |
 | Macro magnification | -0.25 | -0.2509 | Verified finite-conjugate trace |
 | $d_5+d_{13}+d_{19}$, wide | — | 38.677 mm | Constant zoom track |
@@ -195,7 +195,7 @@ Independent paraxial traces of the corrected Table 2 prescription produced the f
 | $X_3/X_2$ | 0.391 | 0.39118 | Satisfies condition |
 | Petzval sum | — | +0.002333 mm^-1 | Signed Petzval radius -428.6 mm |
 
-The Petzval computation used the surface-by-surface expression $\sum \Phi/(n n')$, not an element-level thin-lens approximation. The positive Petzval sum corresponds to a signed Petzval radius of approximately -428.6 mm under the usual image-space sign convention; the magnitude is 428.6 mm. The data file uses patent Table 2 focal-length column labels, $f=36.16$ and $f=193.96$ mm, as the two zoom positions; the separately listed design focal lengths are the recomputed paraxial EFLs.
+The Petzval computation used the surface-by-surface expression $\sum \Phi/(n n')$, not an element-level thin-lens approximation. The positive Petzval sum corresponds to a signed Petzval radius of approximately -428.6 mm under the usual image-space sign convention; the magnitude is 428.6 mm. The zoom stations and catalog design range use Table 2's printed f = 36.16 and 193.96 mm; the separately reported computed EFLs are 36.2278 and 194.8533 mm, while 35–200 mm remains the nominal marketing range.
 
 The data file uses conservative inferred semi-diameters because the patent does not publish clear apertures. The selected semi-diameters satisfy the renderer's rim and cross-gap clearance rules and preserve element edge thicknesses above the adopted minimum.
 

@@ -120,3 +120,17 @@ Header: f = 79.925~196.158, F 4. Footer: fB = 48.523, Σd = 142.822, telephoto r
 - The subtitle and the analysis note's embodiment line keep the label "Example 1" for the unnumbered example.
 - The analysis note's stop paragraph quotes 4.000299 / 3.999701 for the authored 15.628207 mm stop radius. Those
   are paraxial values; the runtime iris is sized by a real marginal ray. Not part of this row.
+
+## 2026-10-17 — V2 source-stated design focal length
+
+Source: JP S51-37247 A, p.303, sole numerical example. Applied the approved focal-length metadata proposal.
+
+| Field | Before | After |
+|---|---|---|
+| `catalog.focalLengthMm.design` | `[80.87930415610688, 199.74908322312632]` | `[79.925, 196.158]` |
+
+Retained all station labels, marketing values, prescription geometry and image distances. The former design values were rounded or full-precision computed EFLs; the catalog field now records the source-stated endpoints.
+
+The approved proposal independently reproduced infinity EFLs of 80.87930415610688 / 199.74908322312632 mm; those traced results remain documented separately. Both S2.P6.T3 endpoint comparisons now have zero difference. This is a metadata correction, not a source-prescription correction.
+
+The existing unresolved `source.errata` entry and Section G investigation are retained unchanged; metadata agreement does not resolve the source contradiction.
