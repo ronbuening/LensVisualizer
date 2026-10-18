@@ -1860,6 +1860,22 @@ describe("engineDiff drift detection", () => {
     expect(renderSummaryMarkdown(moved, REPORT_CONTEXT)).not.toContain("### Solver outputs");
   });
 
+  it("reports solver outputs beyond the first forty failures", () => {
+    const stepped = compare(
+      "c1",
+      withChange("fieldGeometry", ["raw", "halfFieldDeg"], (value) => Number(value) + 90 / 2 ** 20),
+    );
+    const failure = stepped.engine.failures[0];
+    stepped.engine.failures = Array.from({ length: 45 }, (_, index) => ({
+      ...failure,
+      lens: `solver-lens-${index}`,
+    }));
+    stepped.engine.failing = 45;
+    const markdown = renderSummaryMarkdown(stepped, REPORT_CONTEXT);
+    expect(markdown).toContain("### Failing differences (first 40 of 45)");
+    expect(markdown).toContain("| solver-lens-44 | fieldGeometry | `raw.halfFieldDeg` |");
+  });
+
   it("compares a slope as direction cosines", () => {
     const steep = (uField: number): ComparableRecord => ({
       lens: "synthetic",

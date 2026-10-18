@@ -961,7 +961,7 @@ Three files in the tooling suite hold the harness to its contract.
   order, one ulp under C0, twice a budget under C1 where half passes). A scalar below 1 that is no length fails at 1e-10
   relative, a solve's residual is held to its solve's tolerance and not differenced, a stop residual 1000 times larger
   on one side of a converged solve fails, a record that throws alike on both engines fails in every class, and a failing
-  solver output is reported in quanta. An effective tolerance passes a last-bits change above C0 and fails at 1e-10
+  solver output is reported in quanta, including outputs past the general table's first forty failures. An effective tolerance passes a last-bits change above C0 and fails at 1e-10
   relative and when doubled, and a hit that left the raw target for a stall envelope, or came back, is a discrete
   transition with both residuals in contract. Inside a nested trace whose status and hit count stand, a flipped flag,
   a NaN, a changed surface index and the changed status of one ray of a pupil bundle each fail under C1 and C2, a

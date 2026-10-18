@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-17",
+    type: "fix",
+    summary: "Fixed missed grazing rays that could cut off a lens’s traced field",
+  },
+  {
+    date: "2026-10-17",
     type: "lens",
     summary: "Added the Leitz Colorplan 90mm f/2.5 and Visoflex Telyt 200mm f/4",
   },

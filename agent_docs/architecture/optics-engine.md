@@ -724,7 +724,8 @@ The closed form does not change the contract. It proposes a root, and the root i
   validated there, so the residual reported is that of the point returned.
 - **Fallback.** Wherever the answer rests on rounding, or on one of the iterative path's own rules for the points it
   tests, the closed form decides nothing and the iterative path runs with the caller's inputs and its full budget,
-  taking no seed or bracket from the closed form. The result is then exactly that path's. The reasons are:
+  taking no seed or bracket from the closed form. Near tangency uses the bracket split below; other reasons
+  retain the sampled search. The reasons are:
   - `nearTangency`, where the ray grazes the surface:
     - the sign of the discriminant is inside its rounding;
     - the line misses the quadric by less than the scan could accept as a touch. That is twice the tolerance plus
@@ -765,8 +766,9 @@ discrete transition:
 
 - **Roots the scan does not resolve.** The closed form finds a chord, or a short span inside the conic's domain,
   that falls between two samples whose residuals share a sign
-  ([#779](https://github.com/ronbuening/LensVisualizer/issues/779)). It does so only above the slope floors. A
-  shallower chord, and any such root on a polynomial asphere, still depends on the scan: the conic-seeded route
+  ([#779](https://github.com/ronbuening/LensVisualizer/issues/779)). Below the slope floors, `nearTangency` now
+  splits the bracket at the quadratic turning point instead of scanning. Polynomial aspheres still depend on the
+  scan: the conic-seeded route
   certifies one scan step past its root, so it never returns a root the scan does not resolve.
 - **The raw target where the iterative path stalls.** Where the rounding of the residual is close to the target,
   from an operand sum of a few hundred mm, the iterative path can stop on a float that evaluates just above the
@@ -886,6 +888,17 @@ point. The fourth is narrowed, not excluded. Two surfaces that share a vertex ca
 where the iterative path returned one, wherever the hit is more than twice the target of sag from the vertex plane.
 That matters only where the generalized tracer's candidate search chooses between the two surfaces; in a
 sequential trace, or under an explicit `surfaceOrder`, the order is fixed.
+
+For a sphere or polynomial-free conic marked `nearTangency`, `findConicBracket` evaluates the sag residual at the
+quadratic turning point `t0 - b/a`. That point lies between both roots even when their chord is shorter than one
+scan step. It partitions the in-domain ray interval into two candidate brackets, searched in ray order. Invalid
+endpoints are moved to the conic domain edge without evaluating outside it; the nearest transverse point supplies
+an interior point when the quadratic turn is outside the domain. The sag residual, not the discriminant, decides
+whether a root is bracketed or a touch meets the raw target. A nonzero crossing is bracketed before accepting its
+near-zero interior point, so a resolved short chord returns its entry. The existing Newton refinement and stall
+rules below then apply unchanged, as does authored-cap selection (including its own split bracket search).
+`domainEdge` and `failedValidation` fallbacks, polynomial aspheres, and calls with explicit iteration or sampling
+budgets retain the scan. A touch outside the raw target is not granted an envelope merely for being near tangency.
 
 The kernel's iterative path uses a safeguarded Newton step (rtsafe). A step is accepted only inside the
 sign-changing bracket and when it moves at most half the step before last; otherwise the solver bisects, so grazing
