@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-17",
+    type: "fix",
+    summary: "Fixed missed grazing rays that could cut off a lens’s traced field",
+  },
+  {
     date: "2026-10-16",
     type: "improvement",
     summary: "Rebuilt the optics engine: a lens opens in about a third of the time, and its analyses in about 60%",
