@@ -78,6 +78,25 @@ describe("ElementInspector", () => {
     expect(screen.getByText("\u03bde =")).toBeTruthy();
   });
 
+  it("marks missing Abbe data without inventing spectral line indices", () => {
+    const info: ElementData = { ...basicElement, nd: 1.6, vd: undefined, indexReference: "e" };
+    const L = {
+      ...mockLens,
+      S: [
+        { label: "1", elemId: 1 },
+        { label: "2", elemId: 0 },
+      ],
+      indexByIdx: { 0: { quality: "constant", fn: () => 1.6 } },
+    } as unknown as RuntimeLens;
+    render(<ElementInspector info={info} L={L} t={mockTheme} showChromatic={true} />);
+
+    expect(screen.getByText("not supplied")).toBeTruthy();
+    expect(screen.getByText("No dispersion data")).toBeTruthy();
+    expect(screen.queryByText("nF′−nC′ =")).toBeNull();
+    expect(screen.queryByText("ng")).toBeNull();
+    expect(screen.queryByText("0.00000")).toBeNull();
+  });
+
   it("renders glass type", () => {
     render(<ElementInspector info={basicElement} L={mockLens} t={mockTheme} showChromatic={false} />);
     expect(screen.getByText("S-BSL7")).toBeTruthy();

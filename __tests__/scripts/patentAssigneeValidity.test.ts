@@ -49,6 +49,8 @@ describe("patent assignee validity", () => {
     ["Voigtländer A.G.", "Voigtländer AG"],
     ["Firma Ernst Leitz GmbH", "Ernst Leitz GmbH"],
     ["FUJIFILM Corporation", "Fujifilm Corporation"],
+    ["FUJINON CORPORATION", "Fujinon Corporation"],
+    ["FUJI PHOTO OPTICAL CO., LTD.", "Fuji Photo Optical Co., Ltd."],
     ["Minolta Camera Kabushiki Kaisha", "Minolta Camera Co., Ltd."],
   ])("rejects the spelling-only duplicate %s", (alias, canonical) => {
     expect(() => assertPatentAssigneeValidity([{ key: "alias", patentYear: 1953, patentAssignees: [alias] }])).toThrow(
@@ -79,6 +81,20 @@ describe("patent assignee validity", () => {
         { key: "delayed", patentYear: 1995, patentAssignees: ["Minolta Camera Co., Ltd."] },
       ]),
     ).not.toThrow();
+  });
+
+  it("preserves the Fuji Photo Optical rename and the separate Fuji Photo Film lineage", () => {
+    expect(() =>
+      assertPatentAssigneeValidity([
+        { key: "optical", patentYear: 2004, patentAssignees: ["Fuji Photo Optical Co., Ltd."] },
+        { key: "fujinon", patentYear: 2006, patentAssignees: ["Fujinon Corporation"] },
+        { key: "film", patentYear: 2004, patentAssignees: ["Fuji Photo Film Co., Ltd."] },
+        { key: "modern", patentYear: 2006, patentAssignees: ["Fujifilm Corporation"] },
+      ]),
+    ).not.toThrow();
+    expect(() =>
+      assertPatentAssigneeValidity([{ key: "early", patentYear: 2003, patentAssignees: ["Fujinon Corporation"] }]),
+    ).toThrow("Fujinon Corporation did not exist until 2004");
   });
 
   it("rejects entity names that postdate the source publication", () => {

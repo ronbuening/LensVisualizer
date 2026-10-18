@@ -60,6 +60,10 @@ stations that are not source rows).
 
 ## Display And Content Components
 
+Diagram color readouts are unavailable when any material has only a constant index: overlapping spectral rays do
+not establish zero chromatic error. The inspector marks missing Abbe data explicitly and omits spectral-index rows
+for that constant-index fallback.
+
 `ElementInspector` renders its "Compare to sphere" link for aspheric elements only when the optional
 `onOpenAsphericCompare` prop is supplied. `DescriptionPanel` renders lens notes through `ThemedMarkdown`'s `description`
 variant. `ArticleTOC` (in `src/components/content/`) is opt-in per article via `toc: true` frontmatter.

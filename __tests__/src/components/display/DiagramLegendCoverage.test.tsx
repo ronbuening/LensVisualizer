@@ -115,6 +115,20 @@ describe("DiagramLegend", () => {
     expect(screen.getByText("0.4 µm")).toBeTruthy();
   });
 
+  it("does not describe missing dispersion as a zero chromatic spread", () => {
+    const constantLens = {
+      ...lens(false),
+      N: 2,
+      indexByIdx: { 0: { quality: "constant" }, 1: { quality: "air" } },
+    } as unknown as RuntimeLens;
+    renderLegend({ L: constantLens });
+
+    expect(screen.getByText("Chromatic (R/B) · No dispersion data")).toBeTruthy();
+    expect(screen.queryByText("LoCA / Axial color")).toBeNull();
+    expect(screen.queryByText("Off-axis fan spread")).toBeNull();
+    expect(screen.queryByText(/µm/)).toBeNull();
+  });
+
   it("keeps LoCA and off-axis fan-spread readouts on their own axis spreads", () => {
     renderLegend({
       chromaticRayFanSpread: {

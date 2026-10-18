@@ -337,6 +337,48 @@ describe("useChromaticRays", () => {
     expect(result.current.chromaticRayFanSpread!.fraction).toBe(expected.fraction);
   });
 
+  it("keeps fixed-index rays visible without reporting artificial zero color error", () => {
+    const data = catalogLensData({
+      schema: 2,
+      key: "constant-dispersion-fixture",
+      name: "Constant-index singlet",
+      elements: [{ id: 1, name: "L1", nd: 1.5, glass: "Unmatched" }],
+      surfaces: [
+        { label: "STO", R: "flat", d: 1 },
+        { label: "1", R: 30, d: 3, sd: 5, medium: 1 },
+        { label: "2", R: -30, d: 30, sd: 5 },
+      ],
+      focus: { closeFocusM: 1e15 },
+      aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8] },
+      projection: { kind: "rectilinear", fullFieldDeg: 10, maxTraceFieldDeg: 5 },
+      layout: { yScFill: 0.3 },
+    });
+    const fixture = buildTestFixture(0, 0, data);
+    const { result } = renderHook(() =>
+      useChromaticRays({
+        ...fixture,
+        focusT: 0,
+        zoomT: 0,
+        rayDensity: "normal",
+        rayTracksF: false,
+        focusK: 0,
+        showChromatic: true,
+        showOnAxis: true,
+        showOffAxis: "trueAngle",
+        chromR: true,
+        chromG: true,
+        chromB: true,
+        chromV: false,
+        lensKey: "constant-dispersion-fixture",
+      }),
+    );
+
+    expect(result.current.error).toBeNull();
+    expect(result.current.chromaticRays.length).toBeGreaterThan(0);
+    expect(result.current.chromaticRayFanSpreads).toEqual({ onAxis: null, offAxis: null });
+    expect(result.current.chromaticRayFanSpread).toBeNull();
+  });
+
   it("does not report a larger LoCA spread when a selected RGB channel is hidden", () => {
     const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
     const getLoca = (channels: { chromR: boolean; chromG: boolean; chromB: boolean }) => {

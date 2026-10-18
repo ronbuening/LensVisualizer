@@ -44,6 +44,10 @@ const ASSIGNEE_ALIASES = [
   // JP 2021-15312 A / US 2014/0368925 A1 and US 4,214,816 / US 4,444,473:
   // capitalization and translated corporate style, not separate legal entities.
   { alias: "FUJIFILM Corporation", canonical: "Fujifilm Corporation" },
+  // Corporate reports capitalize these source-era names; case does not create a new party.
+  // Retain the October 2004 Fuji Photo Optical → Fujinon rename as a historical boundary.
+  { alias: "FUJINON CORPORATION", canonical: "Fujinon Corporation" },
+  { alias: "FUJI PHOTO OPTICAL CO., LTD.", canonical: "Fuji Photo Optical Co., Ltd." },
   { alias: "Minolta Camera Kabushiki Kaisha", canonical: "Minolta Camera Co., Ltd." },
   // US 2024/0134166 A1 and US 3,536,379: translated corporate style / "Firma"
   // prefix, not new entities. Keep Canon Camera and later Leica entities distinct.

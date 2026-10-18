@@ -33,43 +33,43 @@ The stop is specified 0.90 mm before L4. It is inserted into the 2.06 mm source 
 
 ### L1 — Biconcave Negative
 
-nd = 1.64769, νd = 33.8. Glass: E-FD2 (HOYA spectral proxy; production glass unconfirmed) (supplier unconfirmed). f = -28.352905 mm.
+nd = 1.64769, νd = 33.8. Glass: E-FD2 (HOYA spectral proxy; production glass unconfirmed). f = -28.352905 mm.
 
 L1 supplies the negative first functional group. Its object-side radius has greater curvature magnitude than its rear radius, as described in ¶0053. The relatively high dispersion satisfies the patent condition ν1d < 45. Its standalone power is also the group-I power.
 
 ### L2 — Biconvex Positive
 
-nd = 1.88300, νd = 40.8. Glass: S-LAH58 (OHARA spectral proxy; production glass unconfirmed) (supplier unconfirmed). f = +9.588638 mm.
+nd = 1.88300, νd = 40.8. Glass: S-LAH58 (OHARA spectral proxy; production glass unconfirmed). f = +9.588638 mm.
 
 L2 is the positive component of the cemented front doublet. Its strong isolated positive power must not be confused with the net cemented-group power: the neighboring negative L3 and their shared refracting interface materially change the assembled behavior.
 
 ### L3 — Negative Meniscus
 
-nd = 1.84666, νd = 23.8. Glass: J-SF03 (HIKARI spectral proxy; production glass unconfirmed) (supplier unconfirmed). f = -26.612133 mm.
+nd = 1.84666, νd = 23.8. Glass: J-SF03 (HIKARI spectral proxy; production glass unconfirmed). f = -26.612133 mm.
 
 L3 is cemented to L2 at surface 4. The interface changes from n = 1.88300 to 1.84666 rather than passing through an invented air or cement layer. The assembled L2/L3 group is positive with EFL +13.577789 mm; the quoted element focal length is the isolated-in-air thick-element value.
 
 ### L4 — Negative Meniscus, Two Aspheric Surfaces
 
-nd = 1.68893, νd = 31.1. Glass: S-TIM28 (OHARA spectral proxy; production glass unconfirmed) (supplier unconfirmed). f = -109.848199 mm.
+nd = 1.68893, νd = 31.1. Glass: S-TIM28 (OHARA spectral proxy; production glass unconfirmed). f = -109.848199 mm.
 
 L4 is weakly negative paraxially, with both faces aspheric. It is immediately behind the stop and belongs to the net-positive third group. The patent describes radial redistribution of power on this element in ¶0051; the full high-order profiles are retained rather than inferring peripheral behavior from one coefficient.
 
 ### L5 — Positive Meniscus
 
-nd = 1.72916, νd = 54.7. Glass: TAC8 (HOYA spectral proxy; production glass unconfirmed) (supplier unconfirmed). f = +22.529780 mm.
+nd = 1.72916, νd = 54.7. Glass: TAC8 (HOYA spectral proxy; production glass unconfirmed). f = +22.529780 mm.
 
 L5 supplies positive power in group III. Its image-side surface is more strongly curved, and its Nd and νd satisfy the patent’s lower bounds for the positive third-group element. Group III’s combined power is computed separately from the isolated L5 power.
 
 ### L6 — Negative Meniscus, Two Aspheric Surfaces
 
-nd = 1.49023, νd = 57.5. Glass: Unmatched rear aspheric material (supplier unconfirmed). f = -196.711076 mm.
+nd = 1.49023, νd = 57.5. Glass: Unmatched rear aspheric material. f = -196.711076 mm.
 
 L6 has weak negative paraxial power and two high-order aspheric faces. It precedes the strongly negative L7 within group IV. The patent recommends plastic for a rear-group aspheric component in ¶0029, but does not identify the material used in this numerical example; no specific polymer or commercial glass is assigned.
 
 ### L7 — Biconcave Negative
 
-nd = 1.57135, νd = 53.0. Glass: S-BAL3 (OHARA spectral proxy; production glass unconfirmed) (supplier unconfirmed). f = -24.355041 mm.
+nd = 1.57135, νd = 53.0. Glass: S-BAL3 (OHARA spectral proxy; production glass unconfirmed). f = -24.355041 mm.
 
 L7 forms the rear negative component. Its strongly concave object-side surface contrasts with its much flatter rear face. The patent’s group-IV focal-ratio condition concerns the combined L6/L7 group, not L7 alone. No aberration contribution is assigned solely from this sign or shape.
 
@@ -87,7 +87,7 @@ The patent publishes Nd and νd, not named commercial melts. Authoritative OHARA
 | L6 | 1.49023 / 57.5 | Unmatched rear aspheric material | Abbe fallback; no material established among checked catalogs |
 | L7 | 1.57135 / 53.0 | S-BAL3 (OHARA spectral proxy; production glass unconfirmed) | S-BAL3 (Ohara), coordinate-compatible proxy |
 
-Catalog resolution is computational support, not evidence of production material, manufacturing date or supplier. L6 has no tight catalog match and uses the source Nd/νd through an approximate Abbe model. No unsupported C/F/g line values or anomalous-dispersion markers are authored. Consequently, chromatic simulation mixes catalog proxies with an Abbe approximation and does not establish production chromatic performance or an apochromatic designation.
+Catalog resolution is computational support, not evidence of production material, manufacturing date or supplier. L6 has no tight catalog match and uses the source Nd/νd through an approximate Abbe model. No unsupported C/F/g line values or anomalous-dispersion markers are authored. The unidentified rear material remains on Abbe fallback: a generic PMMA curve would identify neither its resin grade nor its secondary spectrum. Consequently, chromatic simulation mixes catalog proxies with an Abbe approximation and does not establish production chromatic performance or an apochromatic designation.
 
 The d-line surface-by-surface Petzval sum is +0.005772596489 mm⁻¹, using φ/(n·n′) at every refracting boundary, including the cemented interface. It is a first-order curvature quantity, not a direct measurement of the complete astigmatic field surface or image quality.
 
@@ -129,12 +129,12 @@ The application uses 1 + Kmodel in the radicand; therefore Kmodel = Kpatent − 
 |---|---:|---:|---:|---:|
 | 6A | -1.0867768 | 5.900 | -0.715657 | -0.218462 |
 | 7A | -1.1761418 | 6.200 | -0.174170 | +0.385951 |
-| 10A | -1.7463096 | 9.800 | -2.337403 | -0.603783 |
+| 10A | -1.7463096 | 10.100 | -2.451110 | -0.458915 |
 | 11A | 0.1897725 | 10.100 | -3.492159 | -1.823193 |
 
 These departures are evaluated at inferred model apertures, not published clear diameters. At the chosen rim, surface6’s complete polynomial almost cancels its positive spherical-base sag. Its radial slope reverses smoothly before the modeled rim; finite slope and positive lens thickness distinguish this annular turn from an invalid surface intersection. Surface7 retains a positive rim sag smaller than the same-radius sphere. Surface10’s negative departure deepens its negative profile, while surface11’s stronger negative departure steepens the rear profile at its modeled edge. These statements concern the evaluated full profiles; an isolated coefficient sign does not identify a unique aberration correction.
 
-The inferred lens semi-diameters satisfy the current rim-slope, conic-domain, positive-thickness and shared-band air-gap checks; an independent interval-arithmetic pass also encloses the complete radial profiles. They are supported by exact ray calculations and qualitative section geometry. Neither the patent drawing nor the low-resolution manufacturer bitmap supplies measured production clear apertures.
+The inferred lens semi-diameters pass the current rim-slope, conic-domain, positive-thickness and shared-band air-gap checks. They are supported by exact ray calculations and qualitative section geometry. Neither the patent drawing nor the low-resolution manufacturer bitmap supplies measured production clear apertures.
 
 ## Field Coverage and Modeling Limits
 
@@ -155,4 +155,4 @@ The last source image plane is preserved, and the data file’s physical apertur
 
 ## Optical Rim Review
 
-The inferred semi-diameters follow the optical edges of Fig. 1 rather than its leader lines or brackets. L1 now has a common 8.3 mm rim; the L2/L3 cemented pair uses 8.0 mm on surfaces 3–5; L5 uses 8.3 mm on both surfaces; and L7 uses 12.6 mm on both surfaces. These refinements remove unsupported tapered ends while preserving all source radii, spacings and asphere coefficients. The four aspheric clear apertures remain unchanged. Surface validation, the exact format-corner chief and the default ray fans pass. The conservative image-circle proxy warning remains a documented limitation of that heuristic for this short-back-focus design.
+The inferred semi-diameters follow the optical edges of Fig. 1 rather than its leader lines or brackets. L1 now has a common 8.3 mm rim; the L2/L3 cemented pair uses 7.6 mm on surfaces 3–5; L5 uses 8.3 mm on both surfaces; and L7 uses 12.6 mm on both surfaces. These refinements remove unsupported tapered ends while preserving all source radii, spacings and asphere coefficients. L6 now has a common 10.1 mm rim on its two aspheric faces; the aspheric departure and slope above are recomputed at this height. Surface validation, the exact format-corner chief and the default ray fans pass. The conservative image-circle proxy warning remains a documented limitation of that heuristic for this short-back-focus design.

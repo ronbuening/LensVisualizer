@@ -174,3 +174,42 @@ and five off-axis default rays complete the physical prescription without clippi
 render diagnostics report zero hidden trim. Exact field coverage passes independently
 of the retained heuristic/aperture limitations above. Changelog entries use 2026-10-18
 UTC. Source PDFs/JPG and scratch renders are excluded from the commit.
+
+## Second live-site review — 2026-10-18 UTC
+
+Compared the final local-site section with the exact Fig. 1 at 600 dpi. The 8.0 mm
+L2/L3 common rim was slightly too tall relative to L1 and the rear group. Refined
+surfaces 3/4/5 to a common 7.6 mm inferred SD; a 7.4 mm candidate clips one actual
+default ray and was rejected. Surface 10A grows from 9.8 to 10.1 mm to share L6's
+square optical rim with 11A. This remains an inference, not a published effective diameter.
+
+Surface 10A at 10.1 mm has same-radius-sphere departure −2.451109819 mm and slope
+−0.458914898. The public analysis table was recomputed, redundant “supplier unconfirmed”
+phrases were removed, and the old interval-arithmetic claim was not extended to the new
+rim. Runtime surface checks pass; exact format-chief coverage and the native aperture
+census still pass. All six axial and five off-axis default rays transmit; there is zero
+hidden trim. The image-circle proxy's previously documented warning is retained.
+
+In the actual color view, checked element numbers, groups I–IV, D1 on L2/L3 only,
+the four aspheric markers, both ASPH ×2 inspector badges, native nd/νd and catalog versus
+Abbe provenance. All six named proxies resolve to their intended existing curves. L6's
+1.49023/57.5 pair still has no catalog match. Exact-coordinate and PMMA source research
+found generic resin models, not a sourceable identity or complete measured spectrum for
+this element. No nominal resin was added merely to complete the catalog; L6 remains
+explicitly Unmatched and its inspector says Abbe estimate.
+
+This is a prime, so no zoom order applies. Production autofocus reaches 0.4 m, but the
+patent provides no finite-focus spacings or established group travel. The disabled focus
+control and fixed layout at normalized focus/zoom 0, 0.5 and 1 remain correct.
+Fujinon Corporation is the canonical 2006 assignee; its October 2004 predecessor rename
+is preserved in the corporate-history registry, separately from Fuji Photo Film.
+No additional changelog entry was added.
+
+The final 7.6 mm candidate also passes the actual default fan in each R/G/B/V channel
+(44 physical rays total), matching the absence of clips at the former 8.0 mm rim.
+This is a default-fan containment check, not a full-pupil illumination certificate.
+
+Second-pass final local gates: typecheck, format check, lint, 5,131 tests across 301 files,
+eight glass-report suites (9 checks), and production build (1,687 prerendered routes)
+passed. Source limitations above remain qualified; no heuristic failure was relabeled
+as a pass. Existing UTC changelog entries are unchanged. No patent or scratch file is staged.

@@ -244,3 +244,34 @@ and five off-axis default rays complete the physical prescription without clippi
 render diagnostics report zero hidden trim. Exact field coverage passes independently
 of the retained heuristic/aperture limitations above. Changelog entries use 2026-10-18
 UTC. Source PDFs/JPG and scratch renders are excluded from the commit.
+
+## Second live-site review — 2026-10-18 UTC
+
+Recompared the local site's normal/color section with the actual manufacturer sheet.
+All twelve source clear apertures remain exact and the two stepped cemented pairs
+remain faithful to the printed construction. L4's inspector identifies native ne,
+historical SF10, and D2; no Abbe badge or APD tag was invented. The near-zero color
+readout was misleading: the model applies its source index to every spectral channel.
+The shared diagram now suppresses quantitative color metrics when any medium has no
+dispersion data, and says “No dispersion data” instead. The inspector labels an absent
+Abbe number “not supplied” and does not present fixed fallback values as spectral indices.
+The source-only monochromatic model and the visible overlapping rays remain intact.
+
+A fresh e-line catalog candidate scan using the clearly printed coordinates finds
+BACD2/N-SK2 near L1 and SF10/J-SF10/S-TIH10 near L4. No compatible entry exists for
+L2 or L6 at their printed ne/ve pairs; L3/L5/L7 retain overwritten/uncertain ve readings.
+These isolated modern analogues do not establish a coherent seven-element historical
+spectrum. No reference-line conversion, unverified historical coefficients or partial
+broadband reconstruction was introduced to improve a coverage percentage.
+
+This is a prime, with no zoom travel. The source provides an infinity state only.
+The focus slider is disabled, and current layout is identical at normalized focus and
+zoom values 0, 0.5 and 1. No unproved near-focus direction is drawn. All eleven default
+rays traverse the physical prescription without clipping; exact corner coverage passes
+and render diagnostics have zero hidden trim. No patent assignee was inferred from the
+manufacturer sheet. No additional changelog entry was added.
+
+Second-pass final local gates: typecheck, format check, lint, 5,131 tests across 301 files,
+eight glass-report suites (9 checks), and production build (1,687 prerendered routes)
+passed. Source limitations above remain qualified; no heuristic failure was relabeled
+as a pass. Existing UTC changelog entries are unchanged. No patent or scratch file is staged.

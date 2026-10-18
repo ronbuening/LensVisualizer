@@ -291,3 +291,36 @@ and five off-axis default rays complete the physical prescription without clippi
 render diagnostics report zero hidden trim. Exact field coverage passes independently
 of the retained heuristic/aperture limitations above. Changelog entries use 2026-10-18
 UTC. Source PDFs/JPG and scratch renders are excluded from the commit.
+
+## Second live-site review — 2026-10-18 UTC
+
+Recompared the actual normal/color diagram against local Fig. 1, confirming L1–L11,
+G1/G2A/G2B, the D1 doublet boundary on L8/L9 only, and L9's explicitly inferred APD
+badge. L10 has no doublet or APD badge. Native indices and Abbe numbers remain distinct
+from qualified spectral proxies, and the legend/inspectors distinguish Sellmeier from
+catalog-polynomial curves. All eleven elements retain trusted catalog curves, with no
+remaining spectrum backfill justified for this model. No additional SD change is needed:
+source S17=16.182 mm and the source-chief-supported S3=21.5 mm remain, as do the
+geometry-limited S10/S11 rims. Full-aperture f/3.6 transmission remains unresolved.
+
+All eleven default rays transmit with zero hidden trim; exact corner coverage passes.
+The infinity-only model is a prime. Source ¶0015 and Fig. 1 identify rear group G2B
+(L8–L11) as movable, with a double-headed arrow, but provide no close-focus prescription
+or a near/infinity endpoint ordering. No travel vector or enabled focus control was
+invented. Layout is identical at normalized focus and zoom values 0, 0.5 and 1.
+
+Reviewed the complete 76-name assignee inventory. There is no active spelling duplicate
+requiring a source-party rewrite. Fuji Photo Optical Co., Ltd. is the historical entity
+for this 2004 source attribution; Fujinon Corporation and Fujifilm Corporation remain
+separate source-era names linked by the existing dated corporate lineage. Added guards
+against uppercase-only FUJINON CORPORATION / FUJI PHOTO OPTICAL CO., LTD. splits, and a
+shared regression retaining Fuji Photo Film as its own historical party. Manufacturer
+annual-report text corroborates the October 2004 rename; direct PDF retrieval currently
+returns 404, so no newly downloaded report is claimed. The original source attribution
+and its primary/secondary-evidence qualification remain unchanged. No additional
+changelog entry was added.
+
+Second-pass final local gates: typecheck, format check, lint, 5,131 tests across 301 files,
+eight glass-report suites (9 checks), and production build (1,687 prerendered routes)
+passed. Source limitations above remain qualified; no heuristic failure was relabeled
+as a pass. Existing UTC changelog entries are unchanged. No patent or scratch file is staged.

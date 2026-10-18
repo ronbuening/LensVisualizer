@@ -8,6 +8,7 @@
  * field geometry as the monochrome off-axis fan.
  */
 import { useMemo } from "react";
+import { summarizeDispersionQuality } from "../../optics/dispersion.js";
 import {
   computeChromaticRayFanSpread,
   computeLongitudinalChromaticFocus,
@@ -388,6 +389,8 @@ export default function useChromaticRays({
 
   const onAxisChromSpread = useMemo((): ChromaticRayFanSpread | null => {
     if (!L || !showChromatic || !showOnAxis || chromaticResult.error) return null;
+    // Fixed indices make every color identical; that is missing data, not zero color error.
+    if (summarizeDispersionQuality(L) === "constant") return null;
     const channels = filterChannels(chromR, chromG, chromB, chromV);
     if (channels.length < 2) return null;
     return (
@@ -415,6 +418,7 @@ export default function useChromaticRays({
 
   const offAxisChromSpread = useMemo((): ChromaticRayFanSpread | null => {
     if (!L || !showChromatic || chromaticResult.error) return null;
+    if (summarizeDispersionQuality(L) === "constant") return null;
     const channels = filterChannels(chromR, chromG, chromB, chromV);
     if (channels.length < 2) return null;
     return spreadForAxis(chromaticRays, "offAxis", IMG_MM, zPos[L.N - 1]);

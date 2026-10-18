@@ -8,6 +8,7 @@
 
 import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic/channels.js";
 import { halfFieldAtZoom } from "../../optics/optics.js";
+import { summarizeDispersionQuality } from "../../optics/dispersion.js";
 import { ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { collapseBtn } from "../../utils/style/styles.js";
 import CollapseButton from "../controls/CollapseButton.js";
@@ -56,6 +57,7 @@ export default function DiagramLegend({
   onLegendExpandedChange,
   onOpenAbbeDiagram,
 }: DiagramLegendProps) {
+  const missingDispersion = summarizeDispersionQuality(L) === "constant";
   const hasAbbeData = L.elements.some((e) => e.vd != null);
   const mirrorKinds = new Set(
     L.S?.filter((surface) => surface.interaction?.type === "reflect").map(
@@ -225,15 +227,19 @@ export default function DiagramLegend({
               const activeCh = CHROMATIC_CHANNEL_ORDER.filter((channel) => active[channel]);
               const chromLabel = activeCh.length > 0 ? `Chromatic (${activeCh.join("/")})` : "Chromatic (none)";
               const summaryParts: string[] = [];
-              if (showOnAxis && axisSpreads.onAxis) {
+              if (!missingDispersion && showOnAxis && axisSpreads.onAxis) {
                 summaryParts.push(`LoCA ${formatSpreadUmFromMm(axisSpreads.onAxis.axialInterceptSpreadMm)}`);
               }
-              if (showOffAxis !== "off" && axisSpreads.offAxis) {
+              if (!missingDispersion && showOffAxis !== "off" && axisSpreads.offAxis) {
                 summaryParts.push(
                   `off-axis fan spread ${formatSpreadUmFromMm(axisSpreads.offAxis.imagePlaneHeightSpreadMm)}`,
                 );
               }
-              const spreadSummary = summaryParts.length > 0 ? ` · ${summaryParts.join(" / ")}` : "";
+              const spreadSummary = missingDispersion
+                ? " · No dispersion data"
+                : summaryParts.length > 0
+                  ? ` · ${summaryParts.join(" / ")}`
+                  : "";
               return (
                 <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
                   <svg width="22" height="17" viewBox="0 0 22 17">
@@ -258,7 +264,7 @@ export default function DiagramLegend({
               Abbe ↗
             </button>
           )}
-          {showChromatic && hasMetricAxis && (
+          {showChromatic && hasMetricAxis && !missingDispersion && (
             <div
               style={{
                 display: "flex",

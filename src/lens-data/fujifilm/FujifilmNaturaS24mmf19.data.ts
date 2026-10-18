@@ -8,7 +8,8 @@
  * Lens clear semi-diameters are inferred from exact ray geometry, constrained by
  * sag/rim/gap rules. Source drawings establish topology, not measured production SDs.
  * Fig. 1 rim review (2026-10-18): square the L1, L2/L3, L5 and L7 rims;
- * all adjusted radii remain inferred and pass unchanged geometry checks.
+ * Follow-up live review: L2/L3 share a 7.6 mm rim; L6 shares a 10.1 mm rim.
+ * All adjusted radii remain inferred and pass unchanged geometry checks.
  * Finite default-field fan and full-field chief containment are tested; this does
  * not certify full-pupil edge illumination at f/1.96 or production vignetting.
  * NO_INTERNAL_RECONSTRUCTION: infinity-only, var empty, closeFocusM=1e15.
@@ -138,9 +139,9 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: -22.46, d: 0.9, sd: 8.3, medium: 1 },
     { label: "2", R: 102.28, d: 0.1, sd: 8.3 },
-    { label: "3", R: 12.57, d: 5.02, sd: 8.0, medium: 2 },
-    { label: "4", R: -21.08, d: 0.7, sd: 8.0, medium: 3 },
-    { label: "5", R: -332.22, d: 1.16, sd: 8.0 },
+    { label: "3", R: 12.57, d: 5.02, sd: 7.6, medium: 2 },
+    { label: "4", R: -21.08, d: 0.7, sd: 7.6, medium: 3 },
+    { label: "5", R: -332.22, d: 1.16, sd: 7.6 },
     { label: "STO", R: "flat", d: 0.9 },
     {
       label: "6A",
@@ -203,7 +204,7 @@ const LENS_DATA = {
       label: "10A",
       R: -65.91,
       d: 2.8,
-      sd: 9.8,
+      sd: 10.1,
       medium: 6,
       asphere: {
         K: -1.7463096,

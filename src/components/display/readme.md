@@ -34,6 +34,7 @@ flowchart LR
   n_src_components_display_src_components_display_DiagramLegend_tsx --> n_external_src_components_controls
   n_src_components_display_src_components_display_DiagramLegend_tsx --> n_external_src_optics_chromatic
   n_src_components_display_src_components_display_ElementInspector_tsx --> n_external_src_optics_chromatic
+  n_src_components_display_src_components_display_DiagramLegend_tsx --> n_external_src_optics_dispersion_ts
   n_src_components_display_src_components_display_ElementInspector_tsx --> n_external_src_optics_dispersion_ts
   n_src_components_display_src_components_display_DiagramLegend_tsx --> n_external_src_optics_optics_ts
   n_src_components_display_src_components_display_AboutButtonRow_tsx --> n_external_src_types
@@ -54,7 +55,7 @@ flowchart LR
 
 - Direct source files: 6
 - Direct subfolders: 2
-- Main outbound areas: src/types (10), src/utils/style (5), same folder (3), package:react (2), src/optics/chromatic (2), src/components/controls, src/optics/dispersion.ts, src/optics/optics.ts, +1 more
+- Main outbound areas: src/types (10), src/utils/style (5), same folder (3), package:react (2), src/optics/chromatic (2), src/optics/dispersion.ts (2), src/components/controls, src/optics/optics.ts, +1 more
 - External consumers: src/components/layout
 
 ## Subfolders
@@ -72,5 +73,5 @@ flowchart LR
 | `AboutButtonRow.tsx` | React component module | src/types, src/utils/style | same folder, src/components/layout | default, AboutButtonRow |
 | `AboutFooter.tsx` | React component module | same folder, src/types, src/utils/style | src/components/layout | default, AboutFooter |
 | `asphericElementUtils.ts` | Aspheric Element Utils helper module | src/types | same folder, src/components/layout | ElementAsphereEntry, getAsphericEntriesForElement, elementHasAsphericSurface |
-| `DiagramLegend.tsx` | React component module | src/types (3), package:react, same folder, src/components/controls, src/optics/chromatic, +3 more | src/components/layout | default, DiagramLegend |
+| `DiagramLegend.tsx` | React component module | src/types (3), package:react, same folder, src/components/controls, src/optics/chromatic, +4 more | src/components/layout | default, DiagramLegend |
 | `ElementInspector.tsx` | React component module | src/types (2), package:react, same folder, src/optics/chromatic, src/optics/dispersion.ts, +1 more | src/components/layout | default, ElementInspector |

@@ -5,7 +5,7 @@ export const CHROMATIC_QUALITY_BADGE_LABEL: Record<DispersionQuality, string> = 
   sellmeier: "Catalog curves",
   lineIndices: "Line indices",
   abbe: "Abbe approx",
-  constant: "No dispersion",
+  constant: "No dispersion data",
   air: "",
 };
 
