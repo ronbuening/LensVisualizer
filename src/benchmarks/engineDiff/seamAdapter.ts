@@ -1,7 +1,8 @@
 /**
  * Engine seam adapter for the differential harness.
  *
- * This file is the only one in the folder that names anything outside it. The folder is made to be copied into a
+ * This file resolves the engine exports used by captures; `probePlugin.mjs` separately names the solver sites
+ * instrumented only in temporary C2 bundles. The folder is made to be copied into a
  * checkout of an older ref and bundled there, where a static import of an engine file that ref lacks would fail the
  * build. Every engine module is therefore reached through an eager `import.meta.glob` with a literal pattern, which
  * yields nothing for a missing file, and every capability the capture needs is resolved by name from an ordered list

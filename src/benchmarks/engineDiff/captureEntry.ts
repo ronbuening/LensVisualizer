@@ -63,12 +63,15 @@ import {
   type TeleconverterData,
 } from "./seamAdapter.js";
 
+import { capturePropagation, type PropagatedEvidenceMap } from "./propagation.js";
+
 /* A driver sees only the built bundle, so everything it calls is exported from here. */
 export {
   classifyCatalogChanges,
   comparePermittedPairs,
   createDifferentialRun,
   dataChangeOf,
+  needsPropagation,
   parseDeclaredExceptions,
   renderDataImpactMarkdown,
   renderSummaryMarkdown,
@@ -297,6 +300,7 @@ export function requestCatalog(catalog: SerializedCatalog): RequestCatalog {
 
 /** One NDJSON-able payload record: what one request family returned for one lens state, or how it failed. */
 export interface PayloadRecord {
+  c2?: PropagatedEvidenceMap;
   /** `lensId` of the request's lens. */
   lens: string;
   state: CaptureState | null;
@@ -354,10 +358,15 @@ export function catalogTeleconverterData(authored: TeleconverterData): Teleconve
  *
  * @param catalog - serialized prescriptions; every lens and converter a request names must be in it
  * @param requests - what to capture, in the order to return it
+ * @param propagate - collect solver sensitivity in an instrumented C2 capture
  * @returns one record per request, in request order
  * @throws when a request names a lens or converter the catalog does not hold
  */
-export function captureRecords(catalog: SerializedCatalog, requests: readonly CaptureRequest[]): PayloadRecord[] {
+export function captureRecords(
+  catalog: SerializedCatalog,
+  requests: readonly CaptureRequest[],
+  propagate = false,
+): PayloadRecord[] {
   const seam = resolveSeam();
   const lenses = new Map(catalog.lenses.map((entry) => [entry.key, entry.prescription]));
   const teleconverters = new Map(catalog.teleconverters.map((entry) => [entry.key, entry.prescription]));
@@ -417,12 +426,14 @@ export function captureRecords(catalog: SerializedCatalog, requests: readonly Ca
     /* Prescription data is encoded without loss. Engine results go through the result encoder, which is made per
      * record so the trace digests of one record's jobs are computed once and then dropped. */
     const encode = family === "composition" || family === "build" ? encodeValue : createResultEncoder();
+    const payload = outcome.ok ? { ok: true as const, value: encode(outcome.value) } : outcome;
     return {
+      ...(propagate && payload.ok ? { c2: capturePropagation(work[index], family, payload.value) } : {}),
       lens: lensId(lens),
       state,
       request: family,
       ...(variant === undefined ? {} : { variant }),
-      payload: outcome.ok ? { ok: true, value: encode(outcome.value) } : outcome,
+      payload,
     };
   });
 }

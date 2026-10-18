@@ -21,6 +21,8 @@ import {
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { env } from "node:process";
+import { build } from "vite";
+import { instrumentSolvers, solverProbePlugin } from "../../src/benchmarks/engineDiff/probePlugin.mjs";
 import { describe, expect, it } from "vitest";
 import { USAGE, parseArgs, renderTransitionsReport } from "../../scripts/engine-diff.mjs";
 import { exportCatalog, requestCatalog } from "../../src/benchmarks/engineDiff/captureEntry.js";
@@ -682,4 +684,67 @@ describe("engine-diff declared transitions", () => {
       rmSync(outDir, { recursive: true, force: true });
     }
   });
+});
+
+/* ── Temporary C2 bundle probes ── */
+
+describe("C2 capture instrumentation", () => {
+  it("recognizes the anchor's scalar, chief and inversion sites and refuses a changed layout", () => {
+    const root = resolve(".");
+    for (const relative of ["src/optics/math/rootSolve.ts", "src/optics/field/chiefRay.ts"]) {
+      const id = join(root, relative);
+      const source = readFileSync(id, "utf8");
+      const transformed = instrumentSolvers(source, id, join(root, "src/benchmarks/engineDiff/propagation.ts"));
+      expect(transformed).toContain("__engineDiffProbe");
+      expect(readFileSync(id, "utf8")).toBe(source);
+      expect(() => instrumentSolvers("export function renamed() {}", id, "helper")).toThrow("update solver probes");
+    }
+  });
+
+  it("keeps ordinary scalar results exact and captures an actual solver's downstream derivative", async () => {
+    const root = resolve(".");
+    const temp = mkdtempSync(join(tmpdir(), "engine-diff-propagation-"));
+    try {
+      const entry = join(temp, "entry.ts");
+      writeFileSync(
+        entry,
+        `
+        import { solveScalarRoot } from ${JSON.stringify(join(root, "src/optics/math/rootSolve.ts"))};
+        import { capturePropagation } from ${JSON.stringify(join(root, "src/benchmarks/engineDiff/propagation.ts"))};
+        export const solve = () => solveScalarRoot(x => 2 * (x - 1), { initialGuess: 1, initialHalfWidth: 1 });
+        export const work = () => ({ jobs: { computeBestFocusZ: { value: 100 * solve().root } } });
+        export const evidence = () => capturePropagation(work, "analysis", work());
+      `,
+      );
+      const load = async (probes: boolean) => {
+        const outDir = join(temp, probes ? "probed" : "plain");
+        await build({
+          configFile: false,
+          root,
+          plugins: probes ? [solverProbePlugin(root)] : [],
+          build: {
+            ssr: entry,
+            outDir,
+            emptyOutDir: true,
+            copyPublicDir: false,
+            rollupOptions: { output: { format: "es", entryFileNames: "entry.mjs" } },
+          },
+          ssr: { noExternal: true },
+          logLevel: "silent",
+        });
+        return import(/* @vite-ignore */ join(outDir, "entry.mjs"));
+      };
+      const plain = await load(false);
+      const probed = await load(true);
+      expect(probed.solve()).toEqual(plain.solve());
+      expect(probed.work()).toEqual(plain.work());
+      expect(plain.evidence()).toEqual({});
+      const evidence = probed.evidence()["jobs.computeBestFocusZ.value"];
+      expect(evidence.value).toBe(100);
+      expect(evidence.error).toBeCloseTo(5e-6, 12);
+      expect(probed.solve()).toEqual(plain.solve());
+    } finally {
+      rmSync(temp, { recursive: true, force: true });
+    }
+  }, 120_000);
 });
