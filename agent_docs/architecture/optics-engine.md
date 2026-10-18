@@ -1213,6 +1213,10 @@ The shared `FieldSample` contract keeps every requested point in input order and
 sensor coordinate/point, camera- and lens-frame scene directions, zero-pose ideal, posed ideal, actual chief intercept,
 solve diagnostics, and optional pupil bundle. Normalized sensor `(u, v)` uses `[-1, +1]` at the declared image-format
 edges; authored `catalog.imageFormat` metadata is therefore required for perspective field sampling.
+`perspective/fieldGeometry.ts` owns sensor UV conversion and the shared finite bounds check (normalized edge
+allowance `1e-9`). Analyses use `sensorPointForUv`, which returns null for invalid metadata or UVs and delegates
+coordinate arithmetic to `pointForSensorUv` with the context's fixed sensor basis. Field sampling keeps the
+unchecked conversion so unavailable samples retain their requested coordinates.
 
 Two field domains prevent analyses from accidentally changing the question while the lens moves:
 
