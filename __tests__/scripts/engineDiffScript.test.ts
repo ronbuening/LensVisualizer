@@ -689,9 +689,33 @@ describe("engine-diff declared transitions", () => {
 /* ── Temporary C2 bundle probes ── */
 
 describe("C2 capture instrumentation", () => {
+  const load = async (entry: string, temp: string, probes: boolean) => {
+    const root = resolve(".");
+    const outDir = join(temp, probes ? "probed" : "plain");
+    await build({
+      configFile: false,
+      root,
+      plugins: probes ? [solverProbePlugin(root)] : [],
+      build: {
+        ssr: entry,
+        outDir,
+        emptyOutDir: true,
+        copyPublicDir: false,
+        rollupOptions: { output: { format: "es", entryFileNames: "entry.mjs" } },
+      },
+      ssr: { noExternal: true },
+      logLevel: "silent",
+    });
+    return import(/* @vite-ignore */ join(outDir, "entry.mjs"));
+  };
+
   it("recognizes the anchor's scalar, chief and inversion sites and refuses a changed layout", () => {
     const root = resolve(".");
-    for (const relative of ["src/optics/math/rootSolve.ts", "src/optics/field/chiefRay.ts"]) {
+    for (const relative of [
+      "src/optics/math/rootSolve.ts",
+      "src/optics/field/chiefRaySolve.ts",
+      "src/optics/field/imageHeight.ts",
+    ]) {
       const id = join(root, relative);
       const source = readFileSync(id, "utf8");
       const transformed = instrumentSolvers(source, id, join(root, "src/benchmarks/engineDiff/propagation.ts"));
@@ -716,26 +740,8 @@ describe("C2 capture instrumentation", () => {
         export const evidence = () => capturePropagation(work, "analysis", work());
       `,
       );
-      const load = async (probes: boolean) => {
-        const outDir = join(temp, probes ? "probed" : "plain");
-        await build({
-          configFile: false,
-          root,
-          plugins: probes ? [solverProbePlugin(root)] : [],
-          build: {
-            ssr: entry,
-            outDir,
-            emptyOutDir: true,
-            copyPublicDir: false,
-            rollupOptions: { output: { format: "es", entryFileNames: "entry.mjs" } },
-          },
-          ssr: { noExternal: true },
-          logLevel: "silent",
-        });
-        return import(/* @vite-ignore */ join(outDir, "entry.mjs"));
-      };
-      const plain = await load(false);
-      const probed = await load(true);
+      const plain = await load(entry, temp, false);
+      const probed = await load(entry, temp, true);
       expect(probed.solve()).toEqual(plain.solve());
       expect(probed.work()).toEqual(plain.work());
       expect(plain.evidence()).toEqual({});
@@ -743,6 +749,86 @@ describe("C2 capture instrumentation", () => {
       expect(evidence.value).toBe(100);
       expect(evidence.error).toBeCloseTo(5e-6, 12);
       expect(probed.solve()).toEqual(plain.solve());
+    } finally {
+      rmSync(temp, { recursive: true, force: true });
+    }
+  }, 120_000);
+
+  it("captures real chief launches and both image-height inversions through the split modules", async () => {
+    const root = resolve(".");
+    const temp = mkdtempSync(join(tmpdir(), "engine-diff-field-propagation-"));
+    try {
+      const entry = join(temp, "entry.ts");
+      writeFileSync(
+        entry,
+        `
+        import { buildSimplePositiveElementLens } from ${JSON.stringify(join(root, "__tests__/src/optics/testLensFixtures.ts"))};
+        import { prepareRuntimeState } from ${JSON.stringify(join(root, "src/optics/compat.ts"))};
+        import { computeChiefRaySolve, solveChiefRayFromSeed, solveChiefRayBoundingSphere } from ${JSON.stringify(join(root, "src/optics/field/chiefRaySolve.ts"))};
+        import { invertChiefRayImageHeights, solveFieldAngleForImageHeight, chiefRayImageHeight, chiefRayImageHeightAccurate } from ${JSON.stringify(join(root, "src/optics/field/imageHeight.ts"))};
+        import { capturePropagation } from ${JSON.stringify(join(root, "src/benchmarks/engineDiff/propagation.ts"))};
+        import { createResultEncoder } from ${JSON.stringify(join(root, "src/benchmarks/engineDiff/payload.ts"))};
+        const encode = createResultEncoder();
+        const state = () => prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
+        const seed = computeChiefRaySolve(state(), { fieldAngleDeg: 4 });
+        export const chief = (kind) => {
+          const s = state();
+          const request = { fieldAngleDeg: 5 };
+          return kind === "seeded" ? solveChiefRayFromSeed(s, { ...request, seed })
+            : kind === "vector" ? solveChiefRayBoundingSphere(s, request) : computeChiefRaySolve(s, request);
+        };
+        export const chiefWork = (kind) => ({ solves: [chief(kind)] });
+        export const chiefEvidence = (kind) => capturePropagation(() => chiefWork(kind), "chiefSolves", encode(chiefWork(kind)));
+        // Vector probes move yEP, then rebuild both projected height and vector origin.
+        export const vectorWork = () => {
+          const solve = chief("vector");
+          return { jobs: { computeBestFocusZ: { value: solve.yLaunch + solve.vectorLaunch.origin[1] } } };
+        };
+        export const vectorEvidence = () => capturePropagation(vectorWork, "analysis", encode(vectorWork()));
+        export const inversion = (accurate) => {
+          const s = state();
+          const request = { zPos: s.z, targetImageHeight: 2 };
+          return accurate
+            ? invertChiefRayImageHeights(s, { zPos: s.z, targetImageHeights: [2] })[0].fieldAngleDeg
+            : solveFieldAngleForImageHeight(s, request);
+        };
+        export const forwardResidual = (accurate, fieldAngleDeg) => {
+          const s = state();
+          return (accurate ? chiefRayImageHeightAccurate : chiefRayImageHeight)(s, { zPos: s.z, fieldAngleDeg }) + 2;
+        };
+        export const inversionWork = (accurate) => ({ result: { fields: [{ fieldAngleDeg: inversion(accurate) }] } });
+        export const inversionEvidence = (accurate) => capturePropagation(() => inversionWork(accurate), "mtf", encode(inversionWork(accurate)));
+      `,
+      );
+      const plain = await load(entry, temp, false);
+      const probed = await load(entry, temp, true);
+      for (const kind of ["ordinary", "seeded", "vector"]) {
+        expect(probed.chief(kind)).toEqual(plain.chief(kind));
+        expect(probed.chief(kind).status).toBe("converged");
+        expect(plain.chiefEvidence(kind)).toEqual({});
+        if (kind !== "vector") {
+          const evidence = probed.chiefEvidence(kind)["solves[0].yLaunch"];
+          expect(evidence.value).toBe(probed.chief(kind).yLaunch);
+          // The fixture's stop is the first surface, so stop height equals launch height.
+          expect(evidence.error).toBeCloseTo(1e-7, 12);
+        }
+      }
+      expect(probed.vectorWork()).toEqual(plain.vectorWork());
+      expect(plain.vectorEvidence()).toEqual({});
+      expect(probed.vectorEvidence()["jobs.computeBestFocusZ.value"].error).toBeGreaterThan(0);
+      for (const accurate of [false, true]) {
+        const angle = probed.inversion(accurate);
+        expect(angle).toBe(plain.inversion(accurate));
+        expect(angle).toBeGreaterThan(1);
+        expect(plain.inversionEvidence(accurate)).toEqual({});
+        const evidence = probed.inversionEvidence(accurate)["result.fields[0].fieldAngleDeg"];
+        expect(evidence.value).toBe(angle);
+        expect(evidence.error).toBeGreaterThan(0);
+        expect(evidence.imageTolerance).toBe(1e-4);
+        expect(evidence.imageResidual).toBe(probed.forwardResidual(accurate, angle));
+        expect(Math.abs(evidence.imageResidual)).toBeLessThan(1e-4);
+        expect(probed.inversion(accurate)).toBe(angle);
+      }
     } finally {
       rmSync(temp, { recursive: true, force: true });
     }

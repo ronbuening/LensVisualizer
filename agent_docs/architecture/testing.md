@@ -504,8 +504,9 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
 
 S6.P2.T1's harness PR adds the C2 column without changing an engine file or a C0/C1 verdict. The driver instruments
 only its temporary C2 bundles, using `probePlugin.mjs` to observe scalar, object-plane and bounding-sphere chief
-solves and image-height inversions. A changed solver layout must update those probes: a recognized module with
-missing sites fails bundling. C0/C1 bundles are uninstrumented.
+solves in `math/rootSolve.ts` and `field/chiefRaySolve.ts`, and image-height inversions in `field/imageHeight.ts`.
+These are the split field modules of the Stage 6 anchor, `optics-rewrite/a6`. A changed solver layout must update
+those probes: a recognized module with missing sites fails bundling. C0/C1 bundles are uninstrumented.
 
 `propagation.ts` replays a changed record on fresh lens objects, moving one solved coordinate at a time. It measures
 both the residual derivative and each downstream quantity's derivative with central differences at a step and half

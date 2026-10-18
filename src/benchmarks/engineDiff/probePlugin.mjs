@@ -7,7 +7,7 @@
 import ts from "typescript";
 
 /**
- * Instrument the solver sites used by the Stage 6 anchor.
+ * Instrument the solver sites used by the Stage 6 anchor (optics-rewrite/a6, after the field split).
  * @param {string} source - untransformed engine TypeScript
  * @param {string} id - absolute module path
  * @param {string} helper - absolute path to the copied harness's propagation module
@@ -15,8 +15,9 @@ import ts from "typescript";
  */
 export function instrumentSolvers(source, id, helper) {
   const scalar = id.endsWith("/optics/math/rootSolve.ts");
-  const chief = id.endsWith("/optics/field/chiefRay.ts");
-  if (!scalar && !chief) return null;
+  const chief = id.endsWith("/optics/field/chiefRaySolve.ts");
+  const imageHeight = id.endsWith("/optics/field/imageHeight.ts");
+  if (!scalar && !chief && !imageHeight) return null;
   const file = ts.createSourceFile(id, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
   const edits = [];
   const seen = new Set();
@@ -31,11 +32,11 @@ export function instrumentSolvers(source, id, helper) {
       replace(fn.body, `{ return __engineDiffProbeScalar(() => ${text(fn.body)}, evaluate, options); }`);
       seen.add(name);
     }
-    const ordinaryChief = ["computeChiefRaySolve2", "solveChiefRayFromSeed2"].includes(name);
-    const vectorChief = name === "solveChiefRayBoundingSphere2";
-    const inversion = name === "invertChiefRayImageHeights";
-    const legacyInversion = name === "solveFieldAngleForImageHeight2";
-    if (!chief || !(ordinaryChief || vectorChief || inversion || legacyInversion)) continue;
+    const ordinaryChief = chief && ["computeChiefRaySolve", "solveChiefRayFromSeed"].includes(name);
+    const vectorChief = chief && name === "solveChiefRayBoundingSphere";
+    const inversion = imageHeight && name === "invertChiefRayImageHeights";
+    const legacyInversion = imageHeight && name === "solveFieldAngleForImageHeight";
+    if (!(ordinaryChief || vectorChief || inversion || legacyInversion)) continue;
     const stopDeclaration = fn.body.statements.find(
       (statement) =>
         ts.isVariableStatement(statement) &&
@@ -93,7 +94,7 @@ export function instrumentSolvers(source, id, helper) {
           node.expression,
           probe(
             text(node.expression),
-            "(angle) => chiefRayImageHeight2(angle, zPos, focusT, zoomT, L, geom, 0, prepared) - target",
+            "(angle) => chiefRayImageHeight(state, { fieldAngleDeg: angle, zPos, geometry: geom, prepared }) - target",
             "1e-4",
             true,
           ),
@@ -115,13 +116,9 @@ export function instrumentSolvers(source, id, helper) {
   }
   const expected = scalar
     ? ["solveScalarRoot"]
-    : [
-        "computeChiefRaySolve2",
-        "solveChiefRayFromSeed2",
-        "solveChiefRayBoundingSphere2",
-        "invertChiefRayImageHeights",
-        "solveFieldAngleForImageHeight2",
-      ];
+    : chief
+      ? ["computeChiefRaySolve", "solveChiefRayFromSeed", "solveChiefRayBoundingSphere"]
+      : ["invertChiefRayImageHeights", "solveFieldAngleForImageHeight"];
   if (expected.some((name) => !seen.has(name)))
     throw new Error(
       `engine-diff: update solver probes for ${id}: ${expected.filter((name) => !seen.has(name)).join(", ")}`,
