@@ -135,9 +135,16 @@ describe("validateLensData", () => {
     const pair = FIXTURE_PAIRS.find((pair) => pair.family === "zoom");
     if (!pair || pair.kind !== "lens") throw new Error("missing zoom fixture");
 
-    const fixtures = (design: [number, number]) => [
-      { ...pair.v1, focalLengthDesign: design },
-      { ...pair.v2, catalog: { ...pair.v2.catalog, focalLengthMm: { design } } },
+    const fixtures = (design: [number, number], stations = [24, 50, 100]) => [
+      { ...pair.v1, focalLengthDesign: design, zoomPositions: stations },
+      {
+        ...pair.v2,
+        catalog: { ...pair.v2.catalog, focalLengthMm: { design } },
+        zoom: {
+          ...pair.v2.zoom,
+          stations: stations.map((focalLengthMm, index) => ({ ...pair.v2.zoom!.stations[index], focalLengthMm })),
+        },
+      },
     ];
 
     it.each([
@@ -157,6 +164,33 @@ describe("validateLensData", () => {
       // Both differences are 0.999%, with opposite signs; the middle station is not a design endpoint.
       for (const file of fixtures([24.23976, 99.001])) {
         expect(validateCanonicalLens(ingestLens(file))).toEqual([]);
+      }
+    });
+
+    it.each([
+      { design: [35.35, 70] as [number, number], endpoint: 0, percentage: "+1%" },
+      { design: [34.65, 70] as [number, number], endpoint: 0, percentage: "-1%" },
+      { design: [35, 70.7] as [number, number], endpoint: 1, percentage: "+1%" },
+      { design: [35, 69.3] as [number, number], endpoint: 1, percentage: "-1%" },
+    ])("accepts exact $percentage at endpoint $endpoint despite decimal roundoff", ({ design }) => {
+      // These decimal differences round above 0.01 in binary floating point.
+      for (const file of fixtures(design, [35, 50, 70])) {
+        expect(validateCanonicalLens(ingestLens(file))).toEqual([]);
+      }
+    });
+
+    it.each([
+      { design: [35.35000035, 70] as [number, number], endpoint: 0, station: 0, focalLength: 35 },
+      { design: [34.64999965, 70] as [number, number], endpoint: 0, station: 0, focalLength: 35 },
+      { design: [35, 70.7000007] as [number, number], endpoint: 1, station: 2, focalLength: 70 },
+      { design: [35, 69.2999993] as [number, number], endpoint: 1, station: 2, focalLength: 70 },
+    ])("rejects a 1.000001% miss with design $design", ({ design, endpoint, station, focalLength }) => {
+      for (const file of fixtures(design, [35, 50, 70])) {
+        const ingested = ingestLens(file);
+        const path = ingested.provenance.format === 1 ? "focalLengthDesign" : "catalog.focalLengthMm.design";
+        expect(validateCanonicalLens(ingested)).toEqual([
+          `"${path}[${endpoint}]": ${design[endpoint]} mm differs from zoom station ${station} focal length ${focalLength} mm by 1.00% (maximum 1%)`,
+        ]);
       }
     });
   });

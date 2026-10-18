@@ -146,7 +146,8 @@ export function validateStations(
       const designFocalLength = design[endpoint];
       if (!Number.isFinite(focalLength) || focalLength <= 0 || !Number.isFinite(designFocalLength)) continue;
       const difference = Math.abs(designFocalLength - focalLength) / focalLength;
-      if (difference > 0.01) {
+      // Decimal endpoints exactly 1% away can round slightly above the inclusive boundary.
+      if (difference > 0.01 + 4 * Number.EPSILON) {
         errors.push(
           `"focalLengthDesign[${endpoint}]": ${designFocalLength} mm differs from zoom station ${stationIndex} focal length ${focalLength} mm by ${(difference * 100).toFixed(2)}% (maximum 1%)`,
         );
