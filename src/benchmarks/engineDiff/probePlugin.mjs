@@ -43,6 +43,19 @@ export function instrumentSolvers(source, id, helper) {
         statement.declarationList.declarations.some((declaration) => declaration.name.getText(file) === "heightAtStop"),
     );
     const visit = (node) => {
+      // The shared refinement returns the scalar launch, or yEP before the vector caller projects it.
+      if (
+        (ordinaryChief || vectorChief) &&
+        ts.isCallExpression(node) &&
+        text(node.expression) === "refineChiefRayBracket"
+      ) {
+        replace(
+          node,
+          `(() => { const result = ${text(node)}; return result.status === "converged" ? { ...result, yLaunch: ${probe("result.yLaunch", "heightAtStop", "CHIEF_RAY_RESIDUAL_TOLERANCE")} } : result; })()`,
+        );
+        seen.add(name);
+        return;
+      }
       if (ts.isObjectLiteralExpression(node)) {
         const members = new Map(
           node.properties.filter(ts.isPropertyAssignment).map((p) => [text(p.name), p.initializer]),

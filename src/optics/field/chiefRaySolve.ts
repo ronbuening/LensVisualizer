@@ -44,6 +44,57 @@ export interface ChiefRaySolveResult2 {
   vectorLaunch?: VectorFieldRayLaunch2;
 }
 
+interface ChiefRayBracket {
+  lo: number;
+  hi: number;
+  yLo: number;
+  yHi: number;
+}
+
+/**
+ * Refine the legacy bracket, retaining its first midpoint and selected half.
+ * Illinois weighting prevents a secant endpoint from sticking. A failed secant
+ * trace replays bisection from the original bracket to retain its fallback result.
+ */
+function refineChiefRayBracket(
+  heightAtStop: (launch: number) => number | null,
+  bracket: ChiefRayBracket,
+  paraxialLaunch: number,
+): Pick<ChiefRaySolveResult2, "yLaunch" | "status" | "iterations"> {
+  const refine = (secant: boolean): Pick<ChiefRaySolveResult2, "yLaunch" | "status" | "iterations"> => {
+    let { lo, hi, yLo: fLo, yHi: fHi } = bracket;
+    let side = 0;
+    for (let i = 0; i < CHIEF_RAY_MAX_ITERATIONS; i++) {
+      const candidate = secant && i > 0 ? hi - (fHi * (hi - lo)) / (fHi - fLo) : NaN;
+      const mid = candidate > lo && candidate < hi ? candidate : (lo + hi) / 2;
+      const yMid = heightAtStop(mid);
+      if (yMid === null) {
+        if (secant && i > 0) return refine(false);
+        return { yLaunch: paraxialLaunch, status: "paraxial-fallback", iterations: i + 1 };
+      }
+      if (Math.abs(yMid) < CHIEF_RAY_RESIDUAL_TOLERANCE) {
+        return { yLaunch: mid, status: "converged", iterations: i + 1 };
+      }
+      if (yMid < 0 === fLo < 0) {
+        lo = mid;
+        fLo = yMid;
+        if (secant && side === -1) fHi /= 2;
+        side = -1;
+      } else {
+        hi = mid;
+        fHi = yMid;
+        if (secant && side === 1) fLo /= 2;
+        side = 1;
+      }
+      if (Math.abs(hi - lo) < CHIEF_RAY_BRACKET_EPSILON) {
+        return { yLaunch: (lo + hi) / 2, status: "converged", iterations: i + 1 };
+      }
+    }
+    return { yLaunch: (lo + hi) / 2, status: "converged", iterations: CHIEF_RAY_MAX_ITERATIONS };
+  };
+  return refine(true);
+}
+
 /**
  * Solve the launch height that makes a chief ray pass through the stop center.
  *
@@ -156,7 +207,7 @@ export function solveChiefRayBoundingSphere(
   /* The solve variable yEP moves the launch origin along the field-radial pupil
    * axis. A sign change in stop height brackets the true chief ray. */
   const bracketHalf = Math.max(0.5 * Math.abs(geom.epRatio * sinTheta), 0.5);
-  let bracket: { lo: number; hi: number; yLo: number } | null = null;
+  let bracket: ChiefRayBracket | null = null;
   let nearestYEP = paraxialYEP;
   let nearestAbsHeight = Infinity;
 
@@ -190,7 +241,7 @@ export function solveChiefRayBoundingSphere(
         };
       }
       if (prev !== null && prev.height * height <= 0) {
-        bracket = { lo: prev.yEP, hi: yEP, yLo: prev.height };
+        bracket = { lo: prev.yEP, hi: yEP, yLo: prev.height, yHi: height };
         break;
       }
       prev = { yEP, height };
@@ -208,57 +259,13 @@ export function solveChiefRayBoundingSphere(
     };
   }
 
-  let { lo, hi } = bracket;
-  let fLo = bracket.yLo;
-  for (let i = 0; i < CHIEF_RAY_MAX_ITERATIONS; i++) {
-    const mid = (lo + hi) / 2;
-    const yMid = heightAtStop(mid);
-    if (yMid === null) {
-      return {
-        yLaunch: projectYLaunchToZ0(paraxialYEP),
-        uField: uFieldEquivalent,
-        status: "paraxial-fallback",
-        iterations: i + 1,
-        launchSurface,
-        vectorLaunch: launchAtYEP(paraxialYEP),
-      };
-    }
-    if (Math.abs(yMid) < CHIEF_RAY_RESIDUAL_TOLERANCE) {
-      return {
-        yLaunch: projectYLaunchToZ0(mid),
-        uField: uFieldEquivalent,
-        status: "converged",
-        iterations: i + 1,
-        launchSurface,
-        vectorLaunch: launchAtYEP(mid),
-      };
-    }
-    if (yMid < 0 === fLo < 0) {
-      lo = mid;
-      fLo = yMid;
-    } else {
-      hi = mid;
-    }
-    if (Math.abs(hi - lo) < CHIEF_RAY_BRACKET_EPSILON) {
-      const solved = (lo + hi) / 2;
-      return {
-        yLaunch: projectYLaunchToZ0(solved),
-        uField: uFieldEquivalent,
-        status: "converged",
-        iterations: i + 1,
-        launchSurface,
-        vectorLaunch: launchAtYEP(solved),
-      };
-    }
-  }
-  const solvedYEP = (lo + hi) / 2;
+  const solved = refineChiefRayBracket(heightAtStop, bracket, paraxialYEP);
   return {
-    yLaunch: projectYLaunchToZ0(solvedYEP),
+    ...solved,
+    yLaunch: projectYLaunchToZ0(solved.yLaunch),
     uField: uFieldEquivalent,
-    status: "converged",
-    iterations: CHIEF_RAY_MAX_ITERATIONS,
     launchSurface,
-    vectorLaunch: launchAtYEP(solvedYEP),
+    vectorLaunch: launchAtYEP(solved.yLaunch),
   };
 }
 
@@ -303,10 +310,12 @@ export function computeChiefRaySolve(
   const yLo = heightAtStop(lo);
   const yHi = heightAtStop(hi);
   let fLo: number;
+  let fHi: number;
   if (yLo !== null && yHi !== null && yLo * yHi <= 0) {
     fLo = yLo;
+    fHi = yHi;
   } else {
-    let bracket: { lo: number; hi: number; yLo: number } | null = null;
+    let bracket: ChiefRayBracket | null = null;
     let nearestYLaunch = paraxialYChief;
     let nearestAbsHeight = Infinity;
     for (let attempt = 0; attempt < 4 && bracket === null; attempt++) {
@@ -330,7 +339,7 @@ export function computeChiefRaySolve(
           return { yLaunch, uField, status: "converged", iterations: 0, launchSurface };
         }
         if (prev !== null && prev.height * height <= 0) {
-          bracket = { lo: prev.yLaunch, hi: yLaunch, yLo: prev.height };
+          bracket = { lo: prev.yLaunch, hi: yLaunch, yLo: prev.height, yHi: height };
           break;
         }
         prev = { yLaunch, height };
@@ -342,32 +351,12 @@ export function computeChiefRaySolve(
     lo = bracket.lo;
     hi = bracket.hi;
     fLo = bracket.yLo;
+    fHi = bracket.yHi;
   }
 
-  for (let i = 0; i < CHIEF_RAY_MAX_ITERATIONS; i++) {
-    const mid = (lo + hi) / 2;
-    const yMid = heightAtStop(mid);
-    if (yMid === null) {
-      return { yLaunch: paraxialYChief, uField, status: "paraxial-fallback", iterations: i + 1, launchSurface };
-    }
-    if (Math.abs(yMid) < CHIEF_RAY_RESIDUAL_TOLERANCE) {
-      return { yLaunch: mid, uField, status: "converged", iterations: i + 1, launchSurface };
-    }
-    if (yMid < 0 === fLo < 0) {
-      lo = mid;
-      fLo = yMid;
-    } else {
-      hi = mid;
-    }
-    if (Math.abs(hi - lo) < CHIEF_RAY_BRACKET_EPSILON) {
-      return { yLaunch: (lo + hi) / 2, uField, status: "converged", iterations: i + 1, launchSurface };
-    }
-  }
   return {
-    yLaunch: (lo + hi) / 2,
+    ...refineChiefRayBracket(heightAtStop, { lo, hi, yLo: fLo, yHi: fHi }, paraxialYChief),
     uField,
-    status: "converged",
-    iterations: CHIEF_RAY_MAX_ITERATIONS,
     launchSurface,
   };
 }
