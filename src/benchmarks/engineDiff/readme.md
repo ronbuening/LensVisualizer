@@ -13,6 +13,7 @@ flowchart LR
     n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_captureEntry_ts["captureEntry.ts"]
     n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_compare_ts["compare.ts"]
     n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_payload_ts["payload.ts"]
+    n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_propagation_ts["propagation.ts"]
     n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_requests_ts["requests.ts"]
     n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_seamAdapter_ts["seamAdapter.ts"]
   end
@@ -58,25 +59,29 @@ flowchart LR
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_seamAdapter_ts --> n_external_glob_______optics_raySampling_ts
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_seamAdapter_ts --> n_external_glob_______optics_teleconverter_ts
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_compare_ts --> n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_budgets_ts
+  n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_propagation_ts --> n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_budgets_ts
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_captureEntry_ts --> n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_compare_ts
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_compare_ts --> n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_payload_ts
+  n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_propagation_ts --> n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_payload_ts
+  n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_captureEntry_ts --> n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_propagation_ts
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_compare_ts --> n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_requests_ts
 ```
 
 ## Directory Overview
 
-- Direct source files: 6
+- Direct source files: 7
 - Direct subfolders: 0
-- Main outbound areas: src/benchmarks (10), glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, glob:../../lens-data/defaults.ts, glob:../../optics/aperture.ts, glob:../../optics/apertureStop.ts, glob:../../optics/asphericComparison.ts, glob:../../optics/buildLens.ts, +12 more
+- Main outbound areas: src/benchmarks (13), glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, glob:../../lens-data/defaults.ts, glob:../../optics/aperture.ts, glob:../../optics/apertureStop.ts, glob:../../optics/asphericComparison.ts, glob:../../optics/buildLens.ts, +12 more
 - External consumers: none
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `budgets.ts` | Budgets helper module | none | src/benchmarks | ChangeClass, ComparisonKind, QuantityOrigin, Quantity, QUANTITIES, QuantityId, C2_CRITERIA, budgetOf, +7 more |
-| `captureEntry.ts` | Capture Entry helper module | src/benchmarks (7) | none | classifyCatalogChanges, comparePermittedPairs, createDifferentialRun, dataChangeOf, parseDeclaredExceptions, renderDataImpactMarkdown, renderSummaryMarkdown, decodeValue, +18 more |
-| `compare.ts` | Compare helper module | src/benchmarks (3) | src/benchmarks | ComparableRecord, DifferenceKind, ComparisonName, Finding, StatusCounts, PayloadCounts, DataChange, QuantityTally, +28 more |
-| `payload.ts` | Payload helper module | none | src/benchmarks (2) | EncodedValue, SKIPPED_BACK_POINTER_TAG, encodeValue, decodeValue, sha256Hex, maskBudgetedNumbers, columnize, projectTrace, +15 more |
+| `budgets.ts` | Budgets helper module | none | src/benchmarks (2) | ChangeClass, ComparisonKind, QuantityOrigin, Quantity, QUANTITIES, QuantityId, C2_CRITERIA, budgetOf, +9 more |
+| `captureEntry.ts` | Capture Entry helper module | src/benchmarks (8) | none | classifyCatalogChanges, comparePermittedPairs, createDifferentialRun, dataChangeOf, needsPropagation, parseDeclaredExceptions, renderDataImpactMarkdown, renderSummaryMarkdown, +19 more |
+| `compare.ts` | Compare helper module | src/benchmarks (3) | src/benchmarks | ComparableRecord, DifferenceKind, ComparisonName, Finding, needsPropagation, StatusCounts, PayloadCounts, DataChange, +29 more |
+| `payload.ts` | Payload helper module | none | src/benchmarks (3) | EncodedValue, SKIPPED_BACK_POINTER_TAG, encodeValue, decodeValue, sha256Hex, maskBudgetedNumbers, columnize, projectTrace, +15 more |
+| `propagation.ts` | Propagation helper module | src/benchmarks (2) | src/benchmarks | PropagatedEvidence, PropagatedEvidenceMap, probeRoot, probeScalarSolve, probeInversion, capturePropagation |
 | `requests.ts` | Requests helper module | none | src/benchmarks (2) | RequestFamily, CaptureState, LensRef, CaptureRequest, CatalogLens, RequestCatalog, lensId, stateId, +36 more |
 | `seamAdapter.ts` | Seam Adapter helper module | glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, glob:../../lens-data/defaults.ts, glob:../../optics/aperture.ts, glob:../../optics/apertureStop.ts, +14 more | src/benchmarks | EngineSeam, RuntimeLens, LensData, TeleconverterData, PreparedState, EngineRay, EngineTraceOptions, EngineTrace, +7 more |

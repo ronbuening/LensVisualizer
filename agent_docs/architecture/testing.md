@@ -497,10 +497,38 @@ A run takes a base ref and the working tree, which is the head. Nothing is skipp
   transition: a description that declares one fails the run.
 - **C1 and C2**: each number within its class's budget. A status, count, label, sample position, a missing member or
   a changed array length is a discrete transition. Every one is listed, and fails the run unless the pull request
-  declares its unit (see "Declared Transitions"). C2 uses the C1 budgets: the C2 criteria of the quantity table in
-  `OPTICS_ENGINE_REWRITE_SPEC.md` carry a solver tolerance through a derivative, which two payloads cannot supply.
+  declares its unit (see "Declared Transitions"). C2 uses the propagated criteria below where both captures
+  supply valid solver evidence, with C1 as the floor and the fallback when evidence is unavailable.
 - **C3**: engine drift is reported and does not fail, and declared transitions are matched and reported. Rules 2, 4
   and 5 above still fail, as does an unreadable head converter under rule 6.
+
+S6.P2.T1's harness PR adds the C2 column without changing an engine file or a C0/C1 verdict. The driver instruments
+only its temporary C2 bundles, using `probePlugin.mjs` to observe scalar, object-plane and bounding-sphere chief
+solves in `math/rootSolve.ts` and `field/chiefRaySolve.ts`, and image-height inversions in `field/imageHeight.ts`.
+These are the split field modules of the Stage 6 anchor, `optics-rewrite/a6`. A changed solver layout must update
+those probes: a recognized module with missing sites fails bundling. C0/C1 bundles are uninstrumented.
+
+`propagation.ts` replays a changed record on fresh lens objects, moving one solved coordinate at a time. It measures
+both the residual derivative and each downstream quantity's derivative with central differences at a step and half
+that step; they must agree within 10%. The step is `cbrt(epsilon) * max(1, abs(root))`. The absolute contributions
+`abs(d quantity / d root) * tolerance / abs(d residual / d root)` are summed over the governing roots for analysis
+lengths, tangential parabasal focus, percentages and MTF, and then over both engines. Chief launch height uses only
+the matching stop-residual root (tolerance `1e-7` mm, captured value equal to the root, and unit copied-launch slope),
+including trace input origins. It gets twice the stop-residual tolerance mapped through the stop-height slope when
+both sides have the same derivative; upstream image-root contributions are excluded. Trial solves inside a scalar
+residual callback or an inversion lookup are evaluated through that outer solve's criterion, rather than counted
+again as independent final coordinates. Bounds use the quantity's own units; micrometre and pixel twins are scaled
+by their existing table rows.
+MTF modulation is capped at `1e-4`. An inverted field angle instead requires each solution's forward image-height
+miss to be at most twice `1e-4` mm; no angular difference substitutes for that check.
+
+Probe evidence is a sidecar keyed by the exact indexed payload path and bound to its captured value. It is not an
+engine result and C0/C1 never compare or read it. A null domain, non-finite or singular derivative, unstable stencil,
+changed status, count, request position, trace outcome, shape or solver sequence prevents relaxation. A replay must
+first reproduce the ordinary payload exactly. Without valid evidence on both sides, the original C1 rule stands;
+statuses, counts and every quantity outside the six C2 rows retain their existing rules. Records within C1 need no
+replay. Records beyond C1 can be expensive: four fresh captures per observed solver coordinate. Independent reference
+accuracy evidence remains the engine PR's responsibility, as the numerical contract requires.
 
 The classes in `budgets.ts`:
 
@@ -955,8 +983,9 @@ Three files in the tooling suite hold the harness to its contract.
   tier are disjoint and complete at several shard counts. It also compares what `requests.ts` has to copy with its
   sources: the benchmark lens set and stopped scenario, the analysis-context job names, the MTF benchmark's lenses,
   and the MTF methods, spectra and default grid.
-- `__tests__/src/benchmarks/engineDiffCompare.test.ts`: no class is looser than the quantity table; a number with no
-  class fails under C1 and C2 when it moves, by its path, and is compared bit for bit under C0; identical captures pass
+- `__tests__/src/benchmarks/engineDiffCompare.test.ts`: synthetic inside/outside cases for all six propagated C2
+  quantities, unchanged C0/C1 verdicts, MTF's ceiling, unit scaling, invalid evidence and discontinuous probes;
+  no class is looser than the quantity table; a number with no class fails under C1 and C2 when it moves, by its path, and is compared bit for bit under C0; identical captures pass
   in every class; and each drift injected into captured records is detected (a status, an index, a unit error, a sample
   order, one ulp under C0, twice a budget under C1 where half passes). A scalar below 1 that is no length fails at 1e-10
   relative, a solve's residual is held to its solve's tolerance and not differenced, a stop residual 1000 times larger
@@ -1003,7 +1032,8 @@ Three files in the tooling suite hold the harness to its contract.
   the cap each fail. A unit that no line can declare gets no line and is listed with what it holds. A matched line
   carries the differences its digest covers. A line for a record the run did not ask for is listed, a format-only
   change is excused by no line, and a lens handed over in parts gets the verdict of the lens whole.
-- `__tests__/scripts/engineDiffScript.test.ts`: the command line, and runs of the real driver against `HEAD`, on one
+- `__tests__/scripts/engineDiffScript.test.ts`: the capture-only solver instrumentation, unchanged ordinary scalar
+  results and a downstream derivative in real Vite bundles; the command line, and real driver runs against `HEAD`, on one
   lens of Tier P under C0 and C3 and on one lens of one shard of Tier S, which are skipped where git cannot add a
   worktree. Synthetic head catalogs with a refused V2 converter, a V1 `schema: 3` converter, or malformed `lensMounts`
   that ingest accepts but whose V1 view throws fail under C0 and C3 before any pair is selected, with the key and error

@@ -13,6 +13,8 @@ import {
   C2_CRITERIA,
   QUANTITIES,
   budgetOf,
+  propagatedBudget,
+  type C2Evidence,
   hitColumnEntries,
   quantityAt,
   resolveBudgetRule,
@@ -29,6 +31,8 @@ import { lensId, stateId, type CaptureState, type LensRef, type RequestFamily } 
 
 /** A payload record as a capture returns it. */
 export interface ComparableRecord {
+  /** Capture-only solver evidence; never part of the engine payload or C0/C1 comparison. */
+  c2?: Record<string, C2Evidence>;
   lens: string;
   state: CaptureState | null;
   request: RequestFamily;
@@ -200,6 +204,23 @@ function diffRecords(
     const { kind, floor, tolerance }: Quantity = QUANTITIES[quantity];
     const budget = budgetOf(quantity, changeClass);
     const distance = Math.abs(x - y) / rule.scale;
+    if (changeClass === "c2") {
+      const propagated = propagatedBudget(quantity, [x, y], [base.c2?.[pathOf()], head.c2?.[pathOf()]], rule.scale);
+      if (propagated !== null) {
+        const c1 =
+          kind === "relative"
+            ? Math.max((budget * Math.max(Math.abs(x), Math.abs(y))) / rule.scale, floor?.bound ?? 0)
+            : budget;
+        const bound = Math.max(c1, propagated);
+        /* Keep the report's relative unit for the two relative length kinds. */
+        const magnitude =
+          kind === "relative"
+            ? Math.max(Math.abs(x) / rule.scale, Math.abs(y) / rule.scale, floor ? floor.bound / budget : 0)
+            : 1;
+        return report("number", pattern, a, b, quantity, distance / magnitude, bound / magnitude);
+      }
+    }
+
     switch (kind) {
       case "exact":
         return report("discrete", pattern, a, b, quantity, distance, 0);
@@ -328,6 +349,28 @@ function diffRecords(
    * outcome itself, where the only members are `ok` and the error's. */
   if (base.payload.ok && head.payload.ok) compareAt(base.payload.value, head.payload.value, "");
   else compareAt(base.payload, head.payload, "");
+}
+
+/**
+ * Whether a paired record needs solver evidence beyond its existing C1 budget.
+ * @param base - base-engine capture
+ * @param head - head-engine capture of the same request
+ * @returns true only for a changed quantity named by the C2 column that exceeds C1
+ */
+export function needsPropagation(base: ComparableRecord, head: ComparableRecord): boolean {
+  let needed = false;
+  diffRecords(base, head, "c1", new Map(), ({ kind, quantity, measure, budget }) => {
+    if (
+      kind === "number" &&
+      quantity &&
+      C2_CRITERIA[quantity] &&
+      measure !== null &&
+      budget !== null &&
+      measure > budget
+    )
+      needed = true;
+  });
+  return needed;
 }
 
 /* ── Counts ── */
@@ -1332,6 +1375,12 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
       headEngine: headEngine.map((record) => JSON.stringify(record)),
       baseData: needsBaseData && baseData ? baseData.map((record) => JSON.stringify(record)) : [],
     };
+    /* Evidence travels with NDJSON records, but is not an engine observable. */
+    const comparisonLines = {
+      baseEngine: baseEngine.map(({ c2: _c2, ...record }) => JSON.stringify(record)),
+      headEngine: headEngine.map(({ c2: _c2, ...record }) => JSON.stringify(record)),
+      baseData: needsBaseData && baseData ? baseData.map(({ c2: _c2, ...record }) => JSON.stringify(record)) : [],
+    };
     const failingRecords: string[] = [];
     const transitionLines: string[] = [];
     const keepPair = (comparison: ComparisonName, index: number, baseLine: string) =>
@@ -1365,7 +1414,7 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
         }
         /* A declared transition is held to the pair whether it differs or not: one that names an unchanged record
          * declares what did not happen. */
-        const differs = lines.baseEngine[index] !== lines.headEngine[index];
+        const differs = comparisonLines.baseEngine[index] !== comparisonLines.headEngine[index];
         const judged = ledger.judge(base, head, differs);
         transitionLines.push(...judged.lines);
         const failing = differs ? tallyDifferences("engine", base, head, engine, judged.fails) : 0;
@@ -1380,7 +1429,7 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
       headEngine.forEach((head, index) => {
         format.records++;
         format.numbers += numbersAt[index];
-        if (lines.baseData[index] === lines.headEngine[index]) return;
+        if (comparisonLines.baseData[index] === comparisonLines.headEngine[index]) return;
         tallyDifferences("format", baseData[index], head, format, () => true);
         keepPair("format", index, lines.baseData[index]);
       });
@@ -1391,7 +1440,7 @@ export function createDifferentialRun(options: RunOptions): DifferentialRun {
       const paths = (entry.paths ??= emptyImpactPaths());
       headEngine.forEach((head, index) => {
         tally.records++;
-        if (lines.baseData[index] === lines.headEngine[index]) return;
+        if (comparisonLines.baseData[index] === comparisonLines.headEngine[index]) return;
         const base = baseData[index];
         /* The paired walk gives the report its totals and its largest differences. What blocks is judged apart,
          * path by path, by a walk that enters what the paired one does not. */
@@ -2761,7 +2810,9 @@ function tallySection(title: string, tally: ComparisonTally, changeClass: Change
     return [
       name,
       origin,
-      `${formatMeasure(budgetOf(id, changeClass))} ${unit}`.trim(),
+      changeClass === "c2" && C2_CRITERIA[id]
+        ? `per sample; C1 floor ${formatMeasure(budgetOf(id, "c1"))} ${unit}`.trim()
+        : `${formatMeasure(budgetOf(id, changeClass))} ${unit}`.trim(),
       String(entry.differing),
       String(entry.beyondBudget),
       formatMeasure(largest?.measure ?? null),
@@ -2985,7 +3036,8 @@ export function renderSummaryMarkdown(summary: RunSummary, context: RunContext):
   const c2Notes =
     summary.changeClass === "c2"
       ? (Object.keys(C2_CRITERIA) as QuantityId[]).map(
-          (id) => `- ${QUANTITIES[id].title}: the plan's C2 criterion is ${C2_CRITERIA[id]}; held to its C1 budget.`,
+          (id) =>
+            `- ${QUANTITIES[id].title}: C2 uses ${C2_CRITERIA[id]}. Missing or invalid probe evidence keeps C1; C0/C1 never read it.`,
         )
       : [];
   return [

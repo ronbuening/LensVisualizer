@@ -64,6 +64,7 @@ import { pipeline } from "node:stream/promises";
 import { pathToFileURL } from "node:url";
 import { createGzip } from "node:zlib";
 import { build } from "vite";
+import { solverProbePlugin } from "../src/benchmarks/engineDiff/probePlugin.mjs";
 import {
   addBaseWorktree,
   cleanUpOnSignal,
@@ -173,11 +174,13 @@ function prepareBaseWorktree(commit) {
  *
  * @param {string} root - the tree to build: this checkout, or the base worktree
  * @param {string} outDir - an empty directory for the bundle
+ * @param {boolean} probes - instrument only temporary C2 bundles
  * @returns {Promise<Record<string, Function>>} the built capture module
  */
-async function loadCapture(root, outDir) {
+async function loadCapture(root, outDir, probes = false) {
   await build({
     configFile: false,
+    plugins: probes ? [solverProbePlugin(root)] : [],
     root,
     build: {
       ssr: join(root, CAPTURE_ENTRY),
@@ -308,6 +311,7 @@ const PHASES = [
   "Capture on the head engine",
   "Capture of base data on the head engine",
   "Comparison",
+  "C2 propagation",
   "Writing payloads",
 ];
 
@@ -393,7 +397,9 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
      * them when it is made, so one is made here for that alone: a bullet that cannot be read then stops the run
      * before a base worktree is added and anything is captured, and the job summary says which bullet.
      * Every head converter is read here too, by ingest and its V1 view, before pair selection can hide a failure. */
-    const headCapture = await clock.timeAsync("Capture bundles", () => loadCapture(ROOT, join(bundlesDir, "head")));
+    const headCapture = await clock.timeAsync("Capture bundles", () =>
+      loadCapture(ROOT, join(bundlesDir, "head"), options.changeClass === "c2"),
+    );
     let head;
     try {
       headCapture.createDifferentialRun({
@@ -421,7 +427,7 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
     );
     log(`engine-diff: base worktree ${base.worktree}`);
     const baseCapture = await clock.timeAsync("Capture bundles", () =>
-      loadCapture(base.worktree, join(bundlesDir, "base")),
+      loadCapture(base.worktree, join(bundlesDir, "base"), options.changeClass === "c2"),
     );
 
     /* Both catalogs are fingerprinted by the head's rules: under two sets of rules equal data could look changed. */
@@ -525,6 +531,18 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
         const headEngine = clock.time("Capture on the head engine", () =>
           headCapture.captureRecords(headCatalog, part),
         );
+        /* Records within C1 need no derivative. Replays are deliberately lazy: a Tier S
+         * analysis may contain thousands of solves, each requiring four fresh evaluations. */
+        if (options.changeClass === "c2") {
+          for (let i = 0; i < part.length; i++) {
+            /* The quantity table also admits chief-launch origins in traces. */
+            if (!headCapture.needsPropagation(baseEngine[i], headEngine[i])) continue;
+            clock.time("C2 propagation", () => {
+              baseEngine[i] = baseCapture.captureRecords(headCatalog, [part[i]], true)[0];
+              headEngine[i] = headCapture.captureRecords(headCatalog, [part[i]], true)[0];
+            });
+          }
+        }
         const baseData =
           dataChange === "format" || dataChange === "semantic"
             ? clock.time("Capture of base data on the head engine", () => headCapture.captureRecords(baseCatalog, part))

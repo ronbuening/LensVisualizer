@@ -12,6 +12,7 @@ import {
   QUANTITIES,
   RAW_INTERSECTION_TOLERANCE_MM,
   budgetOf,
+  propagatedBudget,
   resolveBudgetRule,
   type ChangeClass,
   type Quantity,
@@ -32,6 +33,7 @@ import {
   comparePermittedPairs,
   createDifferentialRun,
   dataChangeOf,
+  needsPropagation,
   parseDeclaredExceptions,
   parseDeclaredTransitions,
   renderDataImpactMarkdown,
@@ -69,6 +71,13 @@ import * as perspectiveChromatic from "../../../src/optics/perspective/analysis/
 import type { LensDataInput } from "../../../src/types/optics.js";
 import plainTwin from "./engineDiffFixtures/fingerprintTwinPlain.js";
 import restyledTwin from "./engineDiffFixtures/fingerprintTwinRestyled.js";
+
+import {
+  capturePropagation,
+  probeRoot,
+  probeInversion,
+  probeScalarSolve,
+} from "../../../src/benchmarks/engineDiff/propagation.js";
 
 const CATALOG = exportCatalog();
 const TIER_P = tierRequests("p", requestCatalog(CATALOG));
@@ -492,11 +501,11 @@ describe("engineDiff budget table", () => {
     expect(classOf("longitudinalChromaticFocus", "value", "samples", "[]", "focusZ")).toBe("analysisLength");
   });
 
-  it("holds every class to its C1 budget under C2, and says which C2 criteria it does not apply", () => {
-    /* The plan's C2 column is a propagated solver criterion wherever it is not empty. None is derived here. */
+  it("keeps C1 as the fallback for every class without propagated C2 evidence", () => {
+    /* A static table alone cannot supply a per-sample derivative. */
     for (const id of Object.keys(QUANTITIES) as QuantityId[]) expect(budgetOf(id, "c2")).toBe(budgetOf(id, "c1"));
     expect(Object.keys(C2_CRITERIA).sort()).toEqual(
-      ["analysisLength", "chiefLaunch", "fieldAngle", "mtfModulation", "percentage"].sort(),
+      ["analysisLength", "tangentialParabasalFocus", "chiefLaunch", "fieldAngle", "mtfModulation", "percentage"].sort(),
     );
   });
 
@@ -4796,12 +4805,12 @@ describe("engineDiff reports", () => {
     );
   });
 
-  it("says under C2 which of the plan's criteria it does not apply", () => {
+  it("reports the propagated C2 criteria and their C1 fallback", () => {
     const markdown = renderSummaryMarkdown(compare("c2", structuredClone(SERENAR_RECORDS)), REPORT_CONTEXT);
     expect(markdown).toContain("# Engine diff: passed");
-    expect(markdown).toContain("Chief-ray launch height: the plan's C2 criterion is");
+    expect(markdown).toContain("Chief-ray launch height: C2 uses");
     expect(renderSummaryMarkdown(compare("c1", structuredClone(SERENAR_RECORDS)), REPORT_CONTEXT)).not.toContain(
-      "C2 criterion",
+      "C2 uses",
     );
   });
 });
@@ -6177,5 +6186,233 @@ describe("engineDiff declared transitions", () => {
     const many = through(describing(through("").lines)).summary.transitions.declared[0];
     expect(many).toMatchObject({ outcome: "matched", differences: 300 });
     expect(many.covered).toHaveLength(200);
+  });
+});
+
+/* ── Propagated C2 criteria ── */
+
+describe("propagated C2 solver criteria", () => {
+  const cases = [
+    { name: "chiefLaunch", family: "chiefSolves", path: ["solves", 0, "yLaunch"], tolerance: 1e-7, gain: 1 },
+    {
+      name: "chiefLaunch",
+      family: "traces",
+      path: ["offAxis", "rays", 0, "input", "origin", 1],
+      tolerance: 1e-7,
+      gain: 1,
+    },
+    { name: "fieldAngle", family: "mtf", path: ["result", "fields", 0, "fieldAngleDeg"], tolerance: 1e-4, gain: 1 },
+    {
+      name: "analysisLength",
+      family: "analysis",
+      path: ["jobs", "computeBestFocusZ", "value"],
+      tolerance: 1e-7,
+      gain: 100,
+    },
+    {
+      name: "percentage",
+      family: "analysis",
+      path: ["jobs", "computeDistortionCurve", "value", "distortionPercent"],
+      tolerance: 1e-7,
+      gain: 20,
+    },
+    {
+      name: "tangentialParabasalFocus",
+      family: "analysis",
+      path: ["jobs", "computeFieldCurvature", "value", "fields", 0, "tangentialShiftMm"],
+      tolerance: 1e-7,
+      gain: 100,
+    },
+    { name: "mtfModulation", family: "mtf", path: ["result", "fields", 0, "sagittal", 0], tolerance: 1e-7, gain: 100 },
+  ] as const;
+
+  function nested(path: readonly (string | number)[], value: number): unknown {
+    if (!path.length) return value;
+    return typeof path[0] === "number"
+      ? Array.from({ length: path[0] + 1 }, (_, i) => (i === path[0] ? nested(path.slice(1), value) : 0))
+      : { [path[0]]: nested(path.slice(1), value) };
+  }
+
+  for (const { name, family, path, tolerance, gain } of cases) {
+    it(`${family} ${name}: passes inside its propagated criterion, fails outside, and leaves C0/C1 alone`, () => {
+      const make = (root: number, target: number): PayloadRecord => {
+        const work = () =>
+          nested(path, gain * probeRoot(root, (x) => 2 * (x - target), tolerance, name === "fieldAngle"));
+        const value = encodeValue(work());
+        return {
+          lens: "synthetic-c2",
+          state: DEFAULT_STATE,
+          request: family,
+          payload: { ok: true, value },
+          c2: capturePropagation(work, family, value),
+        };
+      };
+      const base = make(1 - tolerance / 4, 1);
+      const inside = make(1 + tolerance / 4, 1);
+      const leafPath = path.reduce<string>(
+        (text, key) => (typeof key === "number" ? `${text}[${key}]` : text ? `${text}.${key}` : key),
+        "",
+      );
+      expect(
+        propagatedBudget(
+          name,
+          [gain * (1 - tolerance / 4), gain * (1 + tolerance / 4)],
+          [base.c2![leafPath], inside.c2![leafPath]],
+          1,
+        ),
+      ).toBeCloseTo(name === "fieldAngle" ? tolerance / 2 : (2 * gain * tolerance) / 2, 12);
+      expect(needsPropagation(base, base)).toBe(false);
+      expect(needsPropagation(base, inside)).toBe(true);
+      expect(compare("c2", [inside], [base]).passed).toBe(true);
+      for (const changeClass of ["c0", "c1"] as const)
+        expect(compare(changeClass, [inside], [base]).passed).toBe(false);
+      /* Two well-converged roots of different equations can still drift beyond the
+       * propagated bound. An inversion instead fails its forward height criterion. */
+      const outside = name === "fieldAngle" ? make(1 + 2 * tolerance, 1) : make(1 + 2 * tolerance, 1 + 2 * tolerance);
+      expect(compare("c2", [outside], [base]).passed).toBe(false);
+    });
+  }
+
+  it("bounds a copied chief launch only by its stop solve while downstream quantities retain both roots", () => {
+    const launchPaths = [
+      ["jobs", "x", "value", "launchOffsetMm"],
+      ["jobs", "x", "value", "rootSolve", "root"],
+    ];
+    const leaves = [
+      ...launchPaths.map((path) => ({ name: "chiefLaunch" as const, family: "analysis", path, gain: 1 })),
+      ...cases.filter(({ name }) => name !== "chiefLaunch" && name !== "fieldAngle"),
+    ];
+    for (const { name, family, path, gain } of leaves) {
+      const work = () => {
+        const image = probeRoot(1, (x) => 2 * (x - 1), 1e-5);
+        const target = 3 * image - 2;
+        const launch = probeRoot(target, (x) => 4 * (x - target), 1e-7);
+        return nested(path, gain * launch);
+      };
+      const evidence = Object.values(capturePropagation(work, family, encodeValue(work())))[0];
+      const stopTerm = 1e-7 / 4;
+      const expected = gain * (name === "chiefLaunch" ? stopTerm : (3 * 1e-5) / 2 + stopTerm);
+      expect(evidence.error).toBeCloseTo(expected, 12);
+      expect(propagatedBudget(name, [gain, gain], [evidence, evidence], 1)).toBeCloseTo(
+        name === "mtfModulation" ? Math.min(2 * expected, 1e-4) : 2 * expected,
+        12,
+      );
+    }
+  });
+
+  it("accepts both forward image heights within twice tolerance and rejects a miss on either side", () => {
+    const side = (value: number, imageResidual: number) => ({ value, error: 1, imageTolerance: 1e-4, imageResidual });
+    expect(propagatedBudget("fieldAngle", [10, 11], [side(10, 1.9e-4), side(11, -1.9e-4)], 1)).toBe(1);
+    for (const pair of [
+      [side(10, 2.1e-4), side(11, 0)],
+      [side(10, 0), side(11, -2.1e-4)],
+    ] as const) {
+      expect(propagatedBudget("fieldAngle", [10, 11], pair, 1)).toBeNull();
+    }
+  });
+
+  it("leaves statuses, counts and unrelated quantities exact or at their original budget", () => {
+    const make = (sampleCount: number, status: string): PayloadRecord => ({
+      lens: "synthetic-c2",
+      state: DEFAULT_STATE,
+      request: "analysis",
+      payload: { ok: true, value: encodeValue({ jobs: { x: { value: { sampleCount, status } } } }) },
+      c2: { "jobs.x.value.sampleCount": { value: sampleCount, error: 100 } },
+    });
+    expect(compare("c2", [make(3, "ok")], [make(2, "ok")]).passed).toBe(false);
+    expect(compare("c2", [make(2, "clipped")], [make(2, "ok")]).passed).toBe(false);
+    for (const changeClass of CLASSES) {
+      const original = make(2, "ok");
+      const changedEvidence = structuredClone(original);
+      changedEvidence.c2 = {};
+      const summary = compare(changeClass, [changedEvidence], [original]);
+      expect(summary.passed).toBe(true);
+      expect(summary.engine.recordsDiffering).toBe(0);
+    }
+  });
+
+  it("propagates final coordinates without double-counting trial solves inside their residual callbacks", () => {
+    const work = () => {
+      const solve = probeScalarSolve(
+        () => {
+          probeRoot(20, () => null, 1e-7);
+          return { status: "converged", root: 1, residual: 0 };
+        },
+        (x) => 2 * (x - 1),
+        {},
+      );
+      return { jobs: { computeBestFocusZ: { value: 100 * solve.root! } } };
+    };
+    expect(capturePropagation(work, "analysis", encodeValue(work()))["jobs.computeBestFocusZ.value"].error).toBeCloseTo(
+      5e-6,
+      12,
+    );
+    const inversion = () =>
+      probeInversion(() => {
+        probeRoot(20, () => null, 1e-7);
+        return { result: { fields: [{ fieldAngleDeg: probeRoot(1, (x) => 2 * (x - 1), 1e-4, true) }] } };
+      });
+    expect(
+      capturePropagation(inversion, "mtf", encodeValue(inversion()))["result.fields[0].fieldAngleDeg"].imageResidual,
+    ).toBe(0);
+  });
+
+  it("caps MTF at 1e-4 even when propagation permits more", () => {
+    const side = (value: number) => ({ value, error: 1 });
+    expect(propagatedBudget("mtfModulation", [0.5, 0.50009], [side(0.5), side(0.50009)], 1)).toBe(1e-4);
+    const record = (value: number): PayloadRecord => ({
+      lens: "synthetic-c2",
+      state: DEFAULT_STATE,
+      request: "mtf",
+      payload: { ok: true, value: encodeValue({ result: { fields: [{ sagittal: [value] }] } }) },
+      c2: { "result.fields[0].sagittal[0]": side(value) },
+    });
+    expect(compare("c2", [record(0.50009)], [record(0.5)]).passed).toBe(true);
+    expect(compare("c2", [record(0.50011)], [record(0.5)]).passed).toBe(false);
+  });
+
+  it("scales absolute propagated bounds and rejects absent, stale, singular and non-finite evidence", () => {
+    expect(
+      propagatedBudget(
+        "analysisLength",
+        [1000, 1001],
+        [
+          { value: 1000, error: 1 },
+          { value: 1001, error: 2 },
+        ],
+        1000,
+      ),
+    ).toBe(0.003);
+    for (const evidence of [
+      undefined,
+      { value: 2, error: 1 },
+      { value: 1, error: Infinity },
+      { value: 1, error: -1 },
+    ]) {
+      expect(propagatedBudget("chiefLaunch", [1, 1], [evidence, { value: 1, error: 1 }], 1)).toBeNull();
+    }
+    for (const evaluate of [() => null, () => NaN, () => 0, (x: number) => (x < 1 ? null : x - 1)]) {
+      const work = () => ({ solves: [{ yLaunch: probeRoot(1, evaluate, 1e-7) }] });
+      expect(capturePropagation(work, "chiefSolves", encodeValue(work()))).toEqual({});
+    }
+  });
+
+  it("refuses a derivative across a discrete branch or a changed count", () => {
+    for (const discrete of ["status", "sampleCount"] as const) {
+      const work = () => {
+        const root = probeRoot(1, (x) => x - 1, 1e-7);
+        return {
+          jobs: {
+            x: {
+              value: {
+                spanMm: root,
+                [discrete]: discrete === "status" ? (root < 1 ? "clipped" : "ok") : root < 1 ? 2 : 3,
+              },
+            },
+          },
+        };
+      };
+      expect(capturePropagation(work, "analysis", encodeValue(work()))).toEqual({});
+    }
   });
 });

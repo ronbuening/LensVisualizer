@@ -505,7 +505,9 @@ of a stage or promotion run. S1.P2.T2 lists the settlements of what it left open
 | Ratio of two analysis lengths (coma tail skew, sagittal over tangential span of a spot) | 1e-8 relative | Same as C1 |
 | Statuses, counts, sample positions and order, labels, warnings | exact unless declared | exact unless declared |
 
-Until S6.P2.T1's harness PR adds the propagated criteria, a C2 run holds every quantity to its C1 budget (S3.P2.T4).
+S6.P2.T1's harness PR implements the propagated C2 criteria. Each capture supplies finite-difference solver
+evidence beside its payload; missing or invalid evidence retains C1. C0 and C1 ignore that evidence.
+S3.P2.T4's historical runs used the C1 table.
 
 How `budgets.ts` applies the table:
 
@@ -655,6 +657,7 @@ commits.
 | `seamAdapter.ts` | Resolves each engine capability from a list of candidate modules and exports, so one entry runs at both refs when an export is renamed or a module is missing. At `84b32453` full hit records come only through `compat.ts` and perspective jobs through `perspective/index.ts`, both seam-guard legacy entries. A PR that changes the seam updates this adapter. |
 | `requests.ts` | Defines the tiers as deterministic lens × state × request lists. |
 | `payload.ts` | Normalizes payloads: numbers unrounded, in a tagged encoding that keeps `-0`, `NaN` and the infinities; an `undefined` member as absent; arrays in authored order; statuses, counts and labels as discrete fields. It reduces a per-ray trace nested in an analysis result to the digest under [Quantity budgets](#quantity-budgets), and computes semantic fingerprints. |
+| `propagation.ts` / `probePlugin.mjs` | Capture-only solver observations in temporary C2 bundles and fresh finite-difference replays. No engine source file is written; C0/C1 bundles are not instrumented. |
 | `budgets.ts` | Holds the table in [Quantity budgets](#quantity-budgets), keyed by payload path. |
 | `compare.ts` | Reports violations, discrete transitions and the largest difference per quantity, and matches the declared transitions against what a run finds. |
 
@@ -1412,9 +1415,9 @@ Merged as `8ad91bb6` (#778), tagged `optics-rewrite/s1`.
       against the PR's merge-base with its base branch, with the class from the PR label and the exceptions from the
       PR description.
   - **Gate:** C0.
-  - **As built:** two items this step left open stay open, on the list after [Settled decisions](#settled-decisions):
-    the propagated C2 criteria (S6.P2.T1) and whether a number with no discrete evidence may be declared. The
-    maintainer settled the rest, each time in a harness PR that changes no engine and moves no anchor. The rules are
+  - **As built:** whether a number with no discrete evidence may be declared stays open, on the list after
+    [Settled decisions](#settled-decisions). S6.P2.T1's harness PR implements the propagated C2 criteria. The
+    maintainer settled the other items in harness PRs that change no engine and move no anchor. The rules are
     under [Quantity budgets](#quantity-budgets) unless named:
     - S3.P1.T1, 2026-10-12, ahead of its engine change: nested traces, `effectiveTolerance` (exact → 1e-12 relative
       above C0), the pupil constants, and declared transitions as rule 5 of
@@ -2467,8 +2470,8 @@ carrying Phase 2.4 ([Integration model](#integration-model)). Stages 6 to 8 and 
   - **Gate:** C0. Supersede the caching half of decision 2026-05-20; its memoization rationale stands
     ([Decisions to supersede or preserve](#decisions-to-supersede-or-preserve)).
 - **S6.P2.T1 `solveScalarRoot`.**
-  - **Harness, before the engine change:** its own PR adds the propagated C2 criteria, because
-    this is the first step whose solver output can move beyond a C1 budget.
+  - **Harness, before the engine change:** its separate C0 PR implements the propagated C2 criteria, because
+    this is the first step whose solver output can move beyond a C1 budget. No engine file or anchor changes.
   - **Change:** scan outward from the seed, and once bracketed use Brent's method (Brent, _Algorithms for Minimization
     without Derivatives_, 1973, ch. 4). Residual and interval criteria and null-domain splitting are unchanged. The
     callers affected are perspective chief solves, sensor targeting and MTF field solves; this is a solver change, not
@@ -2743,7 +2746,7 @@ Settled on 2026-10-14, designing S3.P2.T4:
 | # | Decision | Where |
 | --- | --- | --- |
 | 57 | `INTERSECTION_MAX_ITERATIONS` stays 72: the fixtures need 23 and Tier P's slowest solves 71 | S3.P2.T4 |
-| 58 | The propagated C2 criteria move to S6.P2.T1, the first step whose solver output can move beyond a C1 budget; S3.P2.T4 runs under `--class c2`, applying the C1 table | S3.P2.T4 |
+| 58 | S6.P2.T1's harness PR implements the propagated C2 criteria, before the first solver change that can move beyond a C1 budget; S3.P2.T4 ran under `--class c2` with the C1 table. Missing or invalid propagation evidence keeps C1; C0 and C1 verdicts are unchanged | S3.P2.T4; S6.P2.T1 |
 
 Also settled on 2026-10-13, answering the Stage 2 questions:
 
@@ -2835,9 +2838,9 @@ commit is anchor A3:
 - This C3 filters invalid samples; S6.P2.T2 (object-plane and bounding-sphere chief solves) owns the chief-solve
   bracket-failed fallback jumps. Tier F at promotion shows the earlier focus-1 change.
 
-Left to evidence gathered during the program: the final barrel list (S8.P1.T1); the propagated C2 criteria, which
-S6.P2.T1's harness PR adds; and whether a number with no discrete evidence (an aggregate moved by one boundary sample,
-or a bisected output moved by one quantum) may be declared, each such number going to the maintainer meanwhile.
+Left to evidence gathered during the program: the final barrel list (S8.P1.T1) and whether a number with no discrete
+evidence (an aggregate moved by one boundary sample, or a bisected output moved by one quantum) may be declared, each
+such number going to the maintainer meanwhile.
 
 Open:
 

@@ -64,7 +64,7 @@ export interface Quantity {
   readonly kind: ComparisonKind;
   /** C1 budget in `unit`. Zero for the kinds that carry none. */
   readonly c1: number;
-  /** C2 budget in `unit`, or null where the C1 budget stands under C2 (see `C2_CRITERIA`). */
+  /** Static C2 budget in `unit`; null keeps C1 unless per-sample `C2_CRITERIA` evidence supplies a bound. */
   readonly c2: number | null;
   /** `relative` only: the least the bound may be, as an absolute difference in the unit it names. */
   readonly floor?: { readonly bound: number; readonly unit: string };
@@ -322,17 +322,12 @@ export const QUANTITIES = {
 
 export type QuantityId = keyof typeof QUANTITIES;
 
-/**
- * The plan's C2 column, for the rows where it is a criterion rather than a number. Each is a solver criterion
- * carried through a derivative, which two payloads alone cannot supply, so no C2 budget is derived from them here:
- * under C2 these classes, like every other, are held to their C1 budget until S6.P2.T1 adds the propagation
- * before its engine change, the first whose solver output can move beyond a C1 budget. The plan gives no C2
- * budget for traces at all (a trace change is never C2).
- */
+/** The C2 rows require independently captured solver sensitivity, never a derivative of base minus head. */
 export const C2_CRITERIA: Partial<Record<QuantityId, string>> = {
   chiefLaunch: "twice the solver's stop-residual tolerance, mapped through ∂y_stop/∂y_launch",
   fieldAngle: "both solutions' image heights within twice the inversion tolerance",
   analysisLength: "the governing solver criterion, propagated by a finite-difference derivative",
+  tangentialParabasalFocus: "the governing solver criterion, propagated by a finite-difference derivative",
   percentage: "the governing solver criterion, propagated by a finite-difference derivative",
   mtfModulation: "the governing solver criterion, propagated, and never looser than 1e-4",
 };
@@ -347,6 +342,56 @@ export const C2_CRITERIA: Partial<Record<QuantityId, string>> = {
 export function budgetOf(quantity: QuantityId, changeClass: ChangeClass): number {
   const { c1, c2 } = QUANTITIES[quantity];
   return changeClass === "c2" && c2 !== null ? c2 : c1;
+}
+
+/** Per-side solver evidence, in the payload field's own units. */
+export interface C2Evidence {
+  readonly value: number;
+  readonly error: number;
+  readonly imageResidual?: number;
+  readonly imageTolerance?: number;
+}
+
+/**
+ * Turn the C2 column into an absolute bound for one paired leaf.
+ *
+ * @param quantity - the path's quantity kind
+ * @param values - base and head values, in payload units
+ * @param evidence - independently measured evidence from both captures
+ * @param scale - payload units per quantity unit (1000 for micrometre twins)
+ * @returns an absolute C2 bound, or null when C1 must stand without valid evidence
+ */
+export function propagatedBudget(
+  quantity: QuantityId,
+  values: readonly [number, number],
+  evidence: readonly [C2Evidence | undefined, C2Evidence | undefined],
+  scale: number,
+): number | null {
+  if (!C2_CRITERIA[quantity] || !(scale > 0) || !Number.isFinite(scale)) return null;
+  if (
+    !evidence.every(
+      (side, i) => side && Object.is(side.value, values[i]) && Number.isFinite(side.error) && side.error >= 0,
+    )
+  )
+    return null;
+  const [base, head] = evidence as readonly [C2Evidence, C2Evidence];
+  if (quantity === "fieldAngle") {
+    /* This is a forward check of each solution, not an angular-distance allowance. */
+    if (
+      ![base, head].every(
+        (side) =>
+          side.imageTolerance === 1e-4 &&
+          typeof side.imageResidual === "number" &&
+          Number.isFinite(side.imageResidual) &&
+          Math.abs(side.imageResidual) <= 2 * side.imageTolerance,
+      )
+    )
+      return null;
+    return Math.abs(values[0] - values[1]) / scale;
+  }
+  const bound = (base.error + head.error) / scale;
+  if (!Number.isFinite(bound)) return null;
+  return quantity === "mtfModulation" ? Math.min(bound, 1e-4) : bound;
 }
 
 /* ── Sibling flags ── */
