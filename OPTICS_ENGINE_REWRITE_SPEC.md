@@ -2036,6 +2036,8 @@ Each step is its own PR after S2.P5. The phase blocks only S8.P2.T3.
     curated text, or serve a different purpose from what they resemble.
   - **Gate:** C3 on what the UI shows, with the report as evidence and a changelog entry.
   - **Open:** what its edits do to page modified dates (the list after [Settled decisions](#settled-decisions)).
+  - **Deferred** (maintainer, 2026-10-17): the S2.P6.T4 report is first the work list for an element focal-length
+    audit of the authored values; T5 is decided after that audit. It blocks only S8.P2.T3, like the rest of the phase.
 
 **Stage 2 gate:** on `main` after promotion, on the merge commit that closes the migration (S2.P5.T9) or a later one, and
 before the Stage 6 gate. A stage run takes a branch's head, so the gate runs through a temporary ref at that commit,
