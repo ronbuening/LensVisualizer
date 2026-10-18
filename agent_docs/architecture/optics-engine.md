@@ -1222,6 +1222,10 @@ The shared `FieldSample` contract keeps every requested point in input order and
 sensor coordinate/point, camera- and lens-frame scene directions, zero-pose ideal, posed ideal, actual chief intercept,
 solve diagnostics, and optional pupil bundle. Normalized sensor `(u, v)` uses `[-1, +1]` at the declared image-format
 edges; authored `catalog.imageFormat` metadata is therefore required for perspective field sampling.
+`perspective/fieldGeometry.ts` owns sensor UV conversion and the shared finite bounds check (normalized edge
+allowance `1e-9`). Analyses use `sensorPointForUv`, which returns null for invalid metadata or UVs and delegates
+coordinate arithmetic to `pointForSensorUv` with the context's fixed sensor basis. Field sampling keeps the
+unchecked conversion so unavailable samples retain their requested coordinates.
 
 Two field domains prevent analyses from accidentally changing the question while the lens moves:
 
@@ -1232,6 +1236,13 @@ Two field domains prevent analyses from accidentally changing the question while
   seed; a two-coordinate solve adjusts the camera scene direction until the actual moved chief reaches the requested
   sensor point through the moved stop. Blur, focus, bokeh, field aberrations, chromatic field behavior, vignetting, and
   apparent pupils use this domain.
+
+Sensor-locked landings and their pupil rays use a physical format band of
+`SENSOR_LOCK_FORMAT_TOLERANCE_MM = 2 * SENSOR_LOCK_RESIDUAL_TOLERANCE_MM` (0.00002 mm) beyond each half-dimension.
+This keeps a converged exact-edge chief and its centre ray inside despite the sign of the solve residual. The band
+also applies to focus/field fans, coma/bokeh bundles, vignetting active/zero pass counts, apparent pupils, and the
+chromatic reference-channel fan. Requested UV bounds remain `1 + 1e-9`; scene-locked landings (including distortion
+and chromatic non-reference channels at the reference scene direction) retain that normalized bound.
 
 Sensor-locked chief results, including failed solves, are memoized in the trace context by exact sensor point,
 projection scale and chief options (including channel). Context identity fixes the prepared state, pose, pivot,

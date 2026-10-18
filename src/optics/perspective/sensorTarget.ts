@@ -42,6 +42,8 @@ interface SensorChiefEvaluation {
 }
 
 const SENSOR_LOCK_RESIDUAL_TOLERANCE_MM = 1e-5;
+/** Physical format band for a sensor-locked chief and its pupil rays. */
+export const SENSOR_LOCK_FORMAT_TOLERANCE_MM = 2 * SENSOR_LOCK_RESIDUAL_TOLERANCE_MM;
 const SENSOR_LOCK_MAX_ITERATIONS = 12;
 
 /**

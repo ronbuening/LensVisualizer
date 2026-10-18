@@ -197,6 +197,7 @@ export function computePerspectiveFieldAberrations(
             comaPoints,
             options.fieldSampling?.chiefRay?.channel,
             options.stopSemiDiameterMm,
+            field.domain,
           )
         : null,
     }),

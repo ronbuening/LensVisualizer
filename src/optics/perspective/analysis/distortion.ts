@@ -16,7 +16,8 @@ import {
   type SensorUv,
 } from "../fieldSampling.js";
 import type { PerspectiveTraceContext } from "../trace.js";
-import { sensorFrameDisplacement, sensorPointForUv, type SensorFrameDisplacement } from "./shared.js";
+import { sensorPointForUv } from "../fieldGeometry.js";
+import { sensorFrameDisplacement, type SensorFrameDisplacement } from "./shared.js";
 
 const DEFAULT_VERTICAL_SAMPLE_COUNT = 17;
 const DEFAULT_GRID_COORDINATES = [-1, -0.5, 0, 0.5, 1] as const;

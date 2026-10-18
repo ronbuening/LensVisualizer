@@ -5,10 +5,8 @@
  * consistent across distortion, vignetting, and pupil calculations.
  */
 
-import { add, dot, length, scale, subtract } from "../../math/vector.js";
+import { dot, length, subtract } from "../../math/vector.js";
 import type { Vec3 } from "../../types.js";
-import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../../utils/catalog/lensTaxonomy.js";
-import type { SensorUv } from "../fieldSampling.js";
 import type { PerspectiveTraceContext } from "../trace.js";
 
 /** Displacement resolved in the fixed sensor's right/down/normal basis. */
@@ -52,41 +50,6 @@ export function sensorFrameDisplacement(
  */
 export function createZeroMovementPerspectiveContext(context: PerspectiveTraceContext): PerspectiveTraceContext {
   return context.zeroMovementContext();
-}
-
-/**
- * Resolve a normalized format coordinate to the fixed sensor plane.
- *
- * @param context - trace context carrying format metadata and sensor basis
- * @param sensorUv - normalized coordinate where ±1 reaches each format edge
- * @returns camera-space sensor point, or null for invalid/out-of-bounds input
- */
-export function sensorPointForUv(context: PerspectiveTraceContext, sensorUv: SensorUv): Vec3 | null {
-  const imageFormat = context.state.lens.source.imageFormat;
-  if (!isImageFormatId(imageFormat) || !sensorUvInsideFormat(sensorUv)) return null;
-  const format = IMAGE_FORMAT_BY_ID[imageFormat];
-  return add(
-    context.sensorPlane.point,
-    add(
-      scale(context.sensorBasis.u, sensorUv.u * (format.widthMm / 2)),
-      scale(context.sensorBasis.v, sensorUv.v * (format.heightMm / 2)),
-    ),
-  );
-}
-
-/**
- * Test a finite normalized coordinate against the rectangular active format.
- *
- * @param sensorUv - normalized fixed-sensor coordinate
- * @returns true when both coordinates lie on or inside the format bounds
- */
-export function sensorUvInsideFormat(sensorUv: SensorUv): boolean {
-  return (
-    Number.isFinite(sensorUv.u) &&
-    Number.isFinite(sensorUv.v) &&
-    Math.abs(sensorUv.u) <= 1 + 1e-9 &&
-    Math.abs(sensorUv.v) <= 1 + 1e-9
-  );
 }
 
 /**

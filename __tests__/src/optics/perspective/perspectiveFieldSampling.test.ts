@@ -14,9 +14,19 @@ import {
   createPerspectiveTraceContext,
   type PerspectiveTraceContext,
 } from "../../../../src/optics/perspective/trace.js";
+import {
+  createFieldPlaneFrame,
+  pointForSensorUv,
+  pointInsideSensor,
+  sensorPointForUv,
+  sensorUvForPoint,
+  sensorUvInsideFormat,
+} from "../../../../src/optics/perspective/fieldGeometry.js";
+import { IMAGE_FORMAT_BY_ID } from "../../../../src/utils/catalog/lensTaxonomy.js";
 import type { Vec3 } from "../../../../src/optics/types.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import { build, buildChromaticPositiveElementLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
+import { boundedFieldStatus } from "../../../../src/optics/perspective/fieldResults.js";
 import * as sensorTarget from "../../../../src/optics/perspective/sensorTarget.js";
 import { computePerspectiveFocusAnalysis } from "../../../../src/optics/perspective/analysis/focus.js";
 import { computePerspectiveVignettingAnalysis } from "../../../../src/optics/perspective/analysis/vignetting.js";
@@ -52,6 +62,64 @@ function sceneDirectionsForUvs(camera: PerspectiveTraceContext, uvs: readonly Se
     return direction!;
   });
 }
+
+// Preserve shared sensor boundary and checked/unchecked contracts independently of trace tolerances.
+describe("perspective sensor geometry", () => {
+  it("keeps the inclusive normalized edge tolerance and rejects non-finite coordinates", () => {
+    const frame = {
+      plane: { label: "sensor", point: [0, 0, 0] as Vec3, normal: [0, 0, 1] as Vec3 },
+      uAxis: [1, 0, 0] as Vec3,
+      vAxis: [0, 1, 0] as Vec3,
+      halfWidthMm: 1,
+      halfHeightMm: 1,
+    };
+    for (const axis of ["u", "v"] as const) {
+      for (const sign of [-1, 1]) {
+        for (const [value, inside] of [
+          [0, true],
+          [1, true],
+          [1 + 1e-9, true],
+          [1 + 1e-9 + Number.EPSILON, false],
+          [Infinity, false],
+          [NaN, false],
+        ] as const) {
+          const uv = { u: 0, v: 0, [axis]: sign * value };
+          expect(sensorUvInsideFormat(uv)).toBe(inside);
+          expect(pointInsideSensor(frame, pointForSensorUv(frame, uv))).toBe(inside);
+        }
+      }
+    }
+    expect(pointInsideSensor(frame, null)).toBe(false);
+  });
+
+  it("uses the supplied camera basis and keeps checked and unchecked conversions distinct", () => {
+    const camera = {
+      state: { lens: { source: { imageFormat: "135-full-frame" } } },
+      sensorPlane: { point: [9, 0.1, 0.2], normal: [-1, 0, 0] },
+      sensorBasis: { u: [0, 1, 0], v: [0, 0, 1], normal: [1, 0, 0] },
+    } as unknown as PerspectiveTraceContext;
+    const frame = createFieldPlaneFrame(camera.sensorPlane, IMAGE_FORMAT_BY_ID["135-full-frame"], camera.sensorBasis);
+    expect(sensorPointForUv(camera, { u: 0.5, v: 0.5 })).toStrictEqual([9, 9.1, 6.2]);
+    expect(sensorUvForPoint(frame, [9, 9.1, 6.2])).toStrictEqual({ u: 0.5, v: 0.5 });
+    for (const uv of [
+      { u: -0, v: 0 },
+      { u: 1 + 1e-9, v: -1 - 1e-9 },
+    ]) {
+      expect(sensorPointForUv(camera, uv)).toStrictEqual(pointForSensorUv(frame, uv));
+    }
+    expect(sensorPointForUv(camera, { u: 2, v: 0 })).toBeNull();
+    expect(pointForSensorUv(frame, { u: 2, v: 0 })).toStrictEqual([9, 36.1, 0.2]);
+    expect(sensorPointForUv(camera, { u: NaN, v: 0 })).toBeNull();
+    expect(pointForSensorUv(frame, { u: NaN, v: 0 }).every(Number.isNaN)).toBe(true);
+  });
+
+  it("returns null for missing or invalid format metadata without requiring sensor geometry", () => {
+    for (const imageFormat of [undefined, "invalid-format"]) {
+      const camera = { state: { lens: { source: { imageFormat } } } } as unknown as PerspectiveTraceContext;
+      expect(sensorPointForUv(camera, { u: 0, v: 0 })).toBeNull();
+    }
+  });
+});
 
 describe("perspective field sampling", () => {
   it("preserves signed -1/0/1 input order and zero-pose ideal parity", () => {
@@ -95,6 +163,52 @@ describe("perspective field sampling", () => {
     });
     expect(samples[0].sensorSolve?.scalarRoot?.status).toBe("converged");
     expect(samples[2].sensorSolve?.scalarRoot).toBeNull();
+  });
+
+  it.each([
+    { u: 0, v: 1 },
+    { u: 0, v: -1 },
+    { u: 1, v: 0 },
+    { u: -1, v: 0 },
+  ])("keeps a converged edge landing inside the sensor-lock band at $u/$v", (uv) => {
+    const fixture = build({ ...buildChromaticPositiveElementLens().data, imageFormat: "135-full-frame" });
+    const camera = createPerspectiveTraceContext({
+      preparedState: prepareRuntimeState(fixture, 0, 0),
+      movement: { shiftMm: 0, tiltDeg: 0 },
+    });
+    const initial = sampleSensorLockedFields(camera, [uv])[0];
+    expect(initial.sensorSolve?.status).toBe("converged");
+    // Control a valid residual's sign independently of the scalar solver's iteration choices.
+    const point: Vec3 = [uv.u * (18 + 4e-6), uv.v * (12 + 4e-6), initial.sensorPoint![2]];
+    const trace = {
+      ...initial.chiefTrace!,
+      sensorIntersection: { ...initial.chiefTrace!.sensorIntersection!, point },
+    };
+    camera.sensorChiefSolves.clear();
+    vi.spyOn(sensorTarget, "solveChiefToSensorPoint").mockReturnValue({
+      chief: { ...initial.chiefSolve!, chiefTrace: trace },
+      sensorSolve: { ...initial.sensorSolve!, residualMm: { u: uv.u * 4e-6, v: uv.v * 4e-6 } },
+    });
+    const controlled = { ...camera, traceRay: () => trace };
+    const sample = sampleSensorLockedFields(controlled, [uv], {
+      pupilBundle: { kind: "meridional", pupilSemiDiameterMm: 0.25, fractions: [0] },
+    })[0];
+    expect(sample.status).toBe("usable");
+    expect(sample.pupilBundle?.samples[0].status).toBe("usable");
+    expect(sample.pupilBundle?.samples[0].sensorIntercept).toEqual(point);
+
+    const frame = createFieldPlaneFrame(camera.sensorPlane, IMAGE_FORMAT_BY_ID["135-full-frame"], camera.sensorBasis);
+    expect(pointInsideSensor(frame, point)).toBe(false);
+    expect(boundedFieldStatus("scene-locked", "usable", frame, initial.sensorPoint, point)).toBe("missed-sensor");
+    const outside: Vec3 = [uv.u * (18 + 0.012), uv.v * (12 + 0.012), point[2]];
+    expect(boundedFieldStatus("sensor-locked", "usable", frame, initial.sensorPoint, outside)).toBe("missed-sensor");
+    expect(sampleSensorLockedFields(camera, [{ u: outside[0] / 18, v: outside[1] / 12 }])[0].status).toBe(
+      "outside-projection-domain",
+    );
+    // The landing band must not enlarge even a near-edge request.
+    expect(sampleSensorLockedFields(camera, [{ u: point[0] / 18, v: point[1] / 12 }])[0].status).toBe(
+      "outside-projection-domain",
+    );
   });
 
   it("retains unavailable requests and their exact order", () => {

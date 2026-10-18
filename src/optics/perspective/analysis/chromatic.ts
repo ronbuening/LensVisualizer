@@ -12,6 +12,7 @@ import {
   type PerspectiveFieldStatus,
   type SensorUv,
 } from "../fieldSampling.js";
+import { SENSOR_LOCK_FORMAT_TOLERANCE_MM } from "../sensorTarget.js";
 import { createFieldPlaneFrame, pointInsideSensor, requirePerspectiveImageFormatMetadata } from "../fieldGeometry.js";
 import type { PerspectiveTraceContext, PerspectiveTraceResult } from "../trace.js";
 import {
@@ -166,6 +167,7 @@ export function computePerspectiveChromaticAnalysis(
               pupilFractions,
               referenceChannel,
               options.stopSemiDiameterMm,
+              field.domain,
             )
           : null,
       };
@@ -416,7 +418,8 @@ function physicalSensorStatus(context: PerspectiveTraceContext, field: FieldSamp
     requirePerspectiveImageFormatMetadata(context),
     context.sensorBasis,
   );
-  return pointInsideSensor(sensorFrame, field.actualSensorIntercept) ? "usable" : "missed-sensor";
+  const toleranceMm = field.domain === "sensor-locked" ? SENSOR_LOCK_FORMAT_TOLERANCE_MM : undefined;
+  return pointInsideSensor(sensorFrame, field.actualSensorIntercept, toleranceMm) ? "usable" : "missed-sensor";
 }
 
 function normalizeChannels(channels: readonly ChromaticChannel[] | undefined): ChromaticChannel[] {

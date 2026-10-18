@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-17",
     type: "fix",
+    summary: "Stabilized perspective analysis samples at the sensor edge",
+  },
+  {
+    date: "2026-10-17",
+    type: "fix",
     summary: "Fixed missed grazing rays that could cut off a lens’s traced field",
   },
   {

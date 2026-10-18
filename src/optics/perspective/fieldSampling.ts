@@ -323,7 +323,8 @@ function sampleFromChief({
   sensorSolve = null,
 }: SampleFromChiefParams): FieldSample {
   const sensorSolveConverged = sensorSolve === null || sensorSolve.status === "converged";
-  const pupilBundle = sensorSolveConverged && pupilRequest ? pupilBundleForRequest(context, chief, pupilRequest) : null;
+  const pupilBundle =
+    sensorSolveConverged && pupilRequest ? pupilBundleForRequest(context, chief, pupilRequest, domain) : null;
   const actualSensorIntercept = chief.chiefTrace?.sensorIntersection?.point ?? null;
   const status = sensorSolveConverged
     ? boundedFieldStatus(domain, chief.status, sensorFrame, poseIdealSensorIntercept, actualSensorIntercept)
