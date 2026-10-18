@@ -438,8 +438,9 @@ read as passing; the step names those divergences.
     anchor moved this way is not a timing base ([Gates](#gates)). Each side of a paired run bundles its own catalog
     ([Method](#method)).
   - **What still spans the whole program** is the promotion's Tier F against `main`, which depends on no anchor.
-  - **This rule ends at promotion.** After it, lens batches add glass rows on `main` directly. What that does to the
-    anchor of Stages 6 to 8 is open (the list after the [Settled decisions](#settled-decisions)).
+  - **This rule ends at promotion.** After it, a PR that adds or changes a glass catalog row on `main` carries
+    `engine-diff:c3`, as #807 and #829 did. The next stage gate lists the lenses it changes as content changes, each
+    paired with that PR, as the Stage 2 gate does for content PRs. The anchor does not move.
 - **The catalog conversion moves the anchor once.** A base has to build the head's catalog, and no commit older than
   V2 ingest (S2.P2.T1) reads a V2 file. Against an older anchor, every converted lens would be a declared exception
   and a stage gate would compare no engine output.
@@ -2462,6 +2463,12 @@ carrying Phase 2.4 ([Integration model](#integration-model)). Stages 6 to 8 and 
 
 ### Stage 6 — Fields, chief rays and solvers
 
+- **Before S6.P1.T1: near-tangency roots (engine C3).**
+  - **Change:** solve sphere and conic roots marked `nearTangency` without the 24-sample scan, which can miss a short
+    chord, as the Samyang XP 35mm's field shows. Widen the harness report's solver-failure table beyond its first 40
+    failures, which hid that lens.
+  - **Gate:** C3, with before/after evidence for the maintainer.
+  - **Issue:** #779.
 - **S6.P1.T1 Field module on prepared geometry.**
   - **Change:** `field/` functions take `PreparedGeometry` plus request options.
     - `field/chiefRay.ts` is split into `field/{fieldGeometry, chiefRaySolve, imageHeight}.ts`.
@@ -2631,7 +2638,9 @@ gone.
   - **Delete:** this plan and its `agent_docs/README.md` entry, as the documentation policy requires.
 
 **Stage 8 gate:** every outcome M1–M9 holds, and the efficiency gates pass, read from the reports [Gates](#gates)
-names. Tag `optics-rewrite/s8`.
+names. S8.P2.T1's Tier F stands in for this gate's Tier S only if nothing that changes engine output merges between
+S8.P2.T1 and S8.P2.T3. Otherwise, Tier S against the anchor runs on the commit just before S8.P2.T3 deletes the
+harness. Tag `optics-rewrite/s8`.
 
 ## Decisions to supersede or preserve
 
@@ -2818,6 +2827,9 @@ Settled on 2026-10-17, after promotion:
 | --- | --- | --- |
 | 90 | `engine-next` is kept after promotion; nothing merges into it again | [Integration model](#integration-model) |
 | 91 | Phase 2.5 runs on `lens-v2-migration`; `main` merges into it often, and it merges into `main` once, as a merge commit, on which the Stage 2 gate runs | Phase 2.5; S2.P5.T9 |
+| 92 | A PR adding or changing a glass catalog row on `main` carries `engine-diff:c3`; the next stage gate pairs each affected lens with that PR as a content change, and the anchor stays | [Anchors and comparison coverage](#anchors-and-comparison-coverage) |
+| 93 | The near-tangency root fix and wider solver-failure table go first in Stage 6 as an engine C3, with before/after evidence for the maintainer (#779) | Before S6.P1.T1 |
+| 94 | S8.P2.T1's Tier F stands in for the Stage 8 gate's Tier S only if no intervening merge changes engine output; otherwise Tier S runs against the anchor just before the harness is deleted | Stage 8 gate |
 
 The maintainer settled the Olympus Zuiko Auto-W 18mm's distortion on 2026-10-15; its engine C3 is #815, whose merge
 commit is anchor A3:
@@ -2841,11 +2853,6 @@ Open:
 
 - S2.P6.T5 drops `focalLengthMm` from nearly every catalog file, so as written it moves nearly every page's modified
   date soon after the conversion, which is kept from doing so (S2.P2.T2).
-- What a glass row added on `main` does to the anchor of Stages 6 to 8.
-- A sphere or conic root that the closed form leaves near tangency (`nearTangency`) goes to the 24-sample scan, which
-  can miss a short chord (#779); the Samyang XP 35mm's field shows it. A C3 that solves such a root without the scan
-  is needed. The harness report's solver table also samples only its first 40 failures, which hid that lens.
-- Whether S8.P2.T1's Tier F stands in for the Stage 8 gate's Tier S, since S8.P2.T3 deletes the harness first.
 
 ## Rollback
 
