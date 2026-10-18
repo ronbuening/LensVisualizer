@@ -1,0 +1,237 @@
+/* US 2004/0136095 A1, Example1, Table1 (PDFp8/printedp3).
+Original job card unpadded US2004136095A1 retained. No scaling. Source values preserved.
+Source gives phi17=32.364 diameter: surface17 SD16.182 is immutable.
+2026-10-18 Fig. 1 review: L1 rims 31→30 mm; L4 rear rim 15→13.9 mm.
+Other SDs are inferred from Fig1 envelope and exact-ray/geometry checks, not published dimensions.
+Stop position inferred: D12=8.15 split3.15 +5.00 mm. Source aperture target is f/3.6.
+Exact real-trace iris calibration fails; the runtime uses a paraxial fallback.
+The current literal model transmits about f/3.8266 entrance-equivalent (image-sine f/3.823).
+Retained f/3.6 design fields identify the source target, not verified physical full-aperture transmission.
+NO_INTERNAL_RECONSTRUCTION: infinity-only, empty var and closeFocusM1e15 sentinel; not physical MFD/UI motion.
+Glass curves are coordinate-compatible spectral proxies, not historical supplier or melt identities.
+Cover names inventor; historical assignee is same-application prepublication assignment to Fuji Photo Optical Co., Ltd.,2003-12-24.
+Source printed f35.76 differs from computed35.781520; raw mismatch and rounding-compatible witness retained in audit, no source correction.
+*/
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+const LENS_DATA = {
+  schema: 2,
+  key: "hasselblad-hc-35mm-f35-fujinon",
+  maker: "Hasselblad",
+  name: "HASSELBLAD HC 35mm f/3.5",
+  subtitle: "US 2004/0136095 A1, Example 1; probable HC 3.5/35 design; literal model transmits approximately f/3.83",
+
+  catalog: {
+    lensMounts: ["hasselblad-h"],
+    imageFormat: "645",
+    specs: [
+      "11 ELEMENTS / 10 GROUPS",
+      "SOURCE FOCAL LENGTH 35.76mm; COMPUTED 35.78mm",
+      "Design f/3.6; modeled transmission approximately f/3.83",
+      "INFINITY PRESCRIPTION; FINITE FOCUS NOT MODELED",
+    ],
+    elementCount: 11,
+    groupCount: 10,
+    focalLengthMm: { marketing: 35, design: 35.76 },
+    fNumber: { marketing: 3.5, design: 3.6 },
+  },
+
+  source: {
+    patentNumber: "US 2004/0136095 A1",
+    patentYear: 2004,
+    authors: ["Takashi Suzuki"],
+    assignees: ["Fuji Photo Optical Co., Ltd."],
+  },
+
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      nd: 1.7433,
+      vd: 49.2,
+      indexReference: "d",
+      focalLengthMm: 135.01664393085494,
+      glass: "NBF1 (HOYA spectral proxy; production glass unconfirmed)",
+      apd: false,
+      role: "Front retrofocus group G1.",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Negative Meniscus",
+      nd: 1.84666,
+      vd: 23.8,
+      indexReference: "d",
+      focalLengthMm: -45.377323981878256,
+      glass: "J-SF03 (HIKARI spectral proxy; production glass unconfirmed)",
+      apd: false,
+      role: "Front retrofocus group G1.",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Negative Meniscus",
+      nd: 1.834,
+      vd: 37.3,
+      indexReference: "d",
+      focalLengthMm: -49.13678803105466,
+      glass: "NBFD10 (HOYA spectral proxy; production glass unconfirmed)",
+      apd: false,
+      role: "Front retrofocus group G1.",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Positive Meniscus",
+      nd: 1.48749,
+      vd: 70.4,
+      indexReference: "d",
+      focalLengthMm: 259.41108459530216,
+      glass: "N-FK5 (SCHOTT spectral proxy; production glass unconfirmed)",
+      apd: false,
+      role: "Front retrofocus group G1.",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Negative Meniscus",
+      nd: 1.713,
+      vd: 53.9,
+      indexReference: "d",
+      focalLengthMm: -68.72062247557352,
+      glass: "S-LAL8 (OHARA spectral proxy; production glass unconfirmed)",
+      apd: false,
+      role: "Front retrofocus group G1.",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Positive Meniscus",
+      nd: 1.80518,
+      vd: 25.4,
+      indexReference: "d",
+      focalLengthMm: 44.39264610667836,
+      glass: "S-TIH6 (OHARA spectral proxy; production glass unconfirmed)",
+      apd: false,
+      role: "Front retrofocus group G1.",
+    },
+    {
+      id: 7,
+      name: "L7",
+      label: "Element 7",
+      type: "Positive Meniscus",
+      nd: 1.51742,
+      vd: 52.2,
+      indexReference: "d",
+      focalLengthMm: 99.55543495087959,
+      glass: "J-KF6 (HIKARI spectral proxy; production glass unconfirmed)",
+      apd: false,
+      role: "Stationary front section G2A of the rear group.",
+    },
+    {
+      id: 8,
+      name: "L8",
+      label: "Element 8",
+      type: "Negative Meniscus",
+      nd: 1.834,
+      vd: 37.3,
+      indexReference: "d",
+      focalLengthMm: -71.42818887021458,
+      glass: "NBFD10 (HOYA spectral proxy; production glass unconfirmed)",
+      apd: false,
+      role: "Rear focusing group G2B; modeled at infinity.",
+      cemented: "D1",
+    },
+    {
+      id: 9,
+      name: "L9",
+      label: "Element 9",
+      type: "Biconvex Positive",
+      nd: 1.497,
+      vd: 81.5,
+      indexReference: "d",
+      focalLengthMm: 27.898688325341,
+      glass: "S-FPL51 (OHARA spectral proxy; production glass unconfirmed)",
+      apd: "inferred",
+      apdNote: "Low-dispersion classification inferred from the coordinate-compatible S-FPL51 spectral proxy; historical glass and partial dispersion are unconfirmed.",
+      role: "Rear focusing group G2B; modeled at infinity.",
+      cemented: "D1",
+    },
+    {
+      id: 10,
+      name: "L10",
+      label: "Element 10",
+      type: "Negative Meniscus",
+      nd: 1.84666,
+      vd: 23.9,
+      indexReference: "d",
+      focalLengthMm: -59.745210594072425,
+      glass: "S-NPH53 (OHARA spectral proxy; production glass unconfirmed)",
+      apd: false,
+      role: "Rear focusing group G2B; modeled at infinity.",
+    },
+    {
+      id: 11,
+      name: "L11",
+      label: "Element 11",
+      type: "Positive Meniscus",
+      nd: 1.48749,
+      vd: 70.4,
+      indexReference: "d",
+      focalLengthMm: 314.7845061285473,
+      glass: "N-FK5 (SCHOTT spectral proxy; production glass unconfirmed)",
+      apd: false,
+      role: "Rear focusing group G2B; modeled at infinity.",
+    },
+  ],
+
+  surfaces: [
+    { label: "1", R: 60.773, d: 8.08, sd: 30, medium: 1 },
+    { label: "2", R: 145.341, d: 0.15, sd: 30 },
+    { label: "3", R: 50.635, d: 2.44, sd: 21.5, medium: 2 },
+    { label: "4", R: 21.362, d: 6.71, sd: 19 },
+    { label: "5", R: 50.584, d: 2.04, sd: 17.5, medium: 3 },
+    { label: "6", R: 22.224, d: 7.08, sd: 17.5 },
+    { label: "7", R: -71.429, d: 20.95, sd: 13.9, medium: 4 },
+    { label: "8", R: -50.034, d: 0.2, sd: 13.9 },
+    { label: "9", R: 66.905, d: 1.33, sd: 10, medium: 5 },
+    { label: "10", R: 28.05, d: 0.18, sd: 8.8 },
+    { label: "11", R: 31.476, d: 17.17, sd: 8.8, medium: 6 },
+    { label: "12", R: 199.466, d: 3.15, sd: 10 },
+    { label: "STO", R: "flat", d: 5.0 },
+    { label: "13", R: -61.313, d: 7.41, sd: 11.5, medium: 7 },
+    { label: "14", R: -29.147, d: 7.82, sd: 11.5 },
+    { label: "15", R: 67.765, d: 10.22, sd: 15.5, medium: 8 },
+    { label: "16", R: 29.528, d: 16.64, sd: 15.5, medium: 9 },
+    { label: "17", R: -21.25, d: 0.07, sd: 16.182 },
+    { label: "18", R: -21.658, d: 2.13, sd: 17.5, medium: 10 },
+    { label: "19", R: -39.582, d: 0.2, sd: 17.5 },
+    { label: "20", R: -55.071, d: 4.18, sd: 19, medium: 11 },
+    { label: "21", R: -41.535, d: 61.0, sd: 19 },
+  ],
+
+  focus: {
+    closeFocusM: 1000000000000000.0,
+    description:
+      "The source describes rear focusing by L8–L11 but gives only infinity spacings. The marketed 0.50 m minimum focus distance is not modeled.",
+  },
+
+  aperture: { nominalFNumber: 3.6, fStops: [3.6, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32 },
+
+  groups: [
+    { text: "G1", fromSurface: "1", toSurface: "12" },
+    { text: "G2A", fromSurface: "13", toSurface: "14" },
+    { text: "G2B", fromSurface: "15", toSurface: "21" },
+  ],
+  doublets: [{ text: "D1", fromSurface: "15", toSurface: "17" }],
+
+  layout: { yScFill: 0.32 },
+} satisfies LensDataV2Input;
+
+export default LENS_DATA;

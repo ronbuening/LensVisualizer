@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **952** lenses scanned
-- **1904** total code-only elements found
-- **1904** elements in this report
-- **308** distinct lens files affected
+- **955** lenses scanned
+- **1905** total code-only elements found
+- **1905** elements in this report
+- **309** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -362,6 +362,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 731405 | 1 | 1 | patents/US8422143.pdf | No review-record hit |
 | 732280 | 1 | 1 | patents/US3037426.pdf | All rows explicitly disposed |
 | 733284 | 1 | 1 | patents/US3037426.pdf | All rows explicitly disposed |
+| 735461 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 738493 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
 | 740283 | 1 | 1 | patents/JP2013054269A.pdf | No review-record hit |
 | 740375 | 1 | 1 | patents/US3589798.pdf | All rows explicitly disposed |
@@ -1183,6 +1184,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L4 (Element 4) | 6 | `Special light flint (Jena in-house, 602/352)` | 1.60156 / 35.20 | No catalog entry | abbe | patents/GB_850117_A.pdf | Reviewed sidecar hit |
 | L5 (Element 5) | 7 | `SSK / LaK (Jena in-house, 662/561)` | 1.66200 / 56.10 | No catalog entry | abbe | patents/GB_850117_A.pdf | Reviewed sidecar hit |
 | L6 (Element 6) | 9 | `SSK / LaK (Jena in-house, 662/561)` | 1.66200 / 56.10 | No catalog entry | abbe | patents/GB_850117_A.pdf | Reviewed sidecar hit |
+
+### [CARL ZEISS JENA PI-FLEKTOGON 30mm f/2.8 (1975 e-line reconstruction)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPIFlektogon30mmf28Printed1975ELine.data.ts)
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L2 (Part 002.00) | 3 | `Unmatched (Carl Zeiss Jena historical LaF 735/461; source n_e only)` | 1.73516 / ? | No catalog entry | constant | No patent number parsed from lens metadata | Explicit disposition in data |
 
 ### [FUJIFILM EBC X-FUJINON W 24mm f/2.8 DM](../../src/lens-data/fujifilm/FujifilmXFujinonSW24mmf28DMEBC.data.ts) - US 4,158,482
 

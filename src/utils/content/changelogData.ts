@@ -19,6 +19,16 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-18",
+    type: "lens",
+    summary: "Added the Carl Zeiss Jena PI-Flektogon 30mm f/2.8 e-line research reconstruction",
+  },
+  {
+    date: "2026-10-18",
+    type: "lens",
+    summary: "Added Fujifilm Natura S 24mm f/1.9 and Hasselblad HC 35mm f/3.5 research models",
+  },
+  {
     date: "2026-10-17",
     type: "fix",
     summary: "Stabilized perspective analysis samples at the sensor edge",

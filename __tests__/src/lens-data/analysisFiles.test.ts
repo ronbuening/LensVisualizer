@@ -8,7 +8,7 @@ import { describe, expect, it } from "vitest";
  *
  * The spec allows adapted section titles, so this asserts the invariants that
  * hold for every authored file rather than exact heading text: a non-empty
- * body, the bold-label patent metadata block (patent number, one
+ * body, the bold-label source metadata block (patent or non-patent source, one
  * ownership/authorship line, one date line), and enough H2/H3 sections to
  * carry the required skeleton.
  */
@@ -32,14 +32,21 @@ const TEXTS = new Map(FILES.map((path) => [path, readFileSync(path, "utf-8")]));
 
 const CHECKS: { label: string; ok: (text: string) => boolean }[] = [
   { label: "non-empty body", ok: (text) => text.trim().length > 0 },
-  { label: "**Patent:** metadata line", ok: (text) => /^\*\*Patent/m.test(text) },
   {
-    label: "ownership line (**Inventor/Applicant/Assignee/Designer**)",
-    ok: (text) => /^\*\*(Inventor|Applicant|Assignee|Designer)/m.test(text),
+    label: "**Patent:** or **Source:** metadata line",
+    ok: (text) => /^\*\*Patent/m.test(text) || /^\*\*Source:/m.test(text),
   },
   {
-    label: "date line (**Filed/Filing/Published/Granted/Priority/Issued/Registered**)",
-    ok: (text) => /^\*\*(Filed|Filing|Published|Granted|Priority|Issued|Registered)/m.test(text),
+    label: "ownership line (**Inventor/Applicant/Assignee/Designer/Manufacturer**)",
+    ok: (text) =>
+      /^\*\*(Inventor|Applicant|Assignee|Designer)/m.test(text) ||
+      (/^\*\*Source:/m.test(text) && /^\*\*Manufacturer:/m.test(text)),
+  },
+  {
+    label: "patent-event date or **Source dated:** line",
+    ok: (text) =>
+      /^\*\*(Filed|Filing|Published|Granted|Priority|Issued|Registered)/m.test(text) ||
+      (/^\*\*Source:/m.test(text) && /^\*\*Source dated:/m.test(text)),
   },
   { label: "at least 5 H2/H3 sections", ok: (text) => (text.match(/^#{2,3} /gm) ?? []).length >= 5 },
 ];
