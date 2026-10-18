@@ -492,7 +492,8 @@ boundary; the field core consumes `PreparedGeometry` and request options. `Prepa
 for analyses awaiting their request migration. Bounding-sphere launch bounds retain baseline prescription thicknesses,
 and image-height requests retain caller-supplied vertex positions; neither changes the solver's arithmetic.
 
-Every uncached solve outcome is counted through `reportChiefRayFallback()` in `diagnostics/chiefRay.ts`.
+A cache miss of `solveChiefRay()` counts its outcome through `reportChiefRayFallback()` in `diagnostics/chiefRay.ts`;
+`computeChiefRaySolve`, `solveChiefRayFromSeed` and direct `solveChiefRayBoundingSphere` calls are not counted.
 `src/optics/chiefRayDiagnostics.ts` exposes `getChiefRayDiagnostics()` / `resetChiefRayDiagnostics()` for audit scripts
 and tests. Snapshots are defensive `Map<CompiledLens, ChiefRayStatusCounts>` copies: equal catalog keys do not merge
 separate compiled prescriptions. The diagnostic store retains at most 2,048 recently used compiled identities;
