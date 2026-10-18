@@ -2493,9 +2493,14 @@ carrying Phase 2.4 ([Integration model](#integration-model)). Stages 6 to 8 and 
   - **Change:** the perspective context memoizes sensor-locked solves by sensor point, chief options and channel. Focus,
     vignetting (active and zero pose), field aberrations, chromatic, pupils and distortion all share them.
   - **Gate:** C0.
-- **S6.P3.T2 Warm-started sensor solves.**
-  - **Change:** the two-coordinate solve seeds from the neighboring converged sample.
-  - **Gate:** C2.
+- **S6.P3.T2 Warm-started sensor solves.** Dropped (decision 95).
+  - **Was:** the two-coordinate solve seeds from the neighboring converged sample, under C2.
+  - **Evidence:** every sensor-locked analysis samples nine points at `u = 0`, 3 mm apart, through the meridional
+    scalar solve, so the two-coordinate continuation never ran on a capture or benchmark call. Seeding those solves
+    with the nearest converged sample's correction (PC-Nikkor 19mm and Canon TS-E 50mm, on S6.P2.T1's solver) cost
+    more outer evaluations at zero shift (681 against 565) and saved about 2% at shift 6, tilt 4. Its 385 warm
+    solves changed 18 statuses and moved landings by up to 3 mm. A guard that the warm root is the cold solve's
+    needs the cold solve itself.
 - **S6.P3.T3 One set of sensor helpers.**
   - **Change:** merge `perspective/analysis/shared.ts` `sensorUvInsideFormat` and `sensorPointForUv` into
     `perspective/fieldGeometry.ts`.
@@ -2828,6 +2833,7 @@ Settled on 2026-10-17, after promotion:
 | 92 | A PR adding or changing a glass catalog row on `main` carries `engine-diff:c3`; the next stage gate pairs each affected lens with that PR as a content change, and the anchor stays | [Anchors and comparison coverage](#anchors-and-comparison-coverage) |
 | 93 | The near-tangency root fix and wider solver-failure table go first in Stage 6 as an engine C3, with before/after evidence for the maintainer (#779) | Before S6.P1.T1 |
 | 94 | S8.P2.T1's Tier F stands in for the Stage 8 gate's Tier S only if no intervening merge changes engine output; otherwise Tier S runs against the anchor just before the harness is deleted | Stage 8 gate |
+| 95 | S6.P3.T2 (warm-started sensor solves) is dropped: on real calls it saved nothing or cost more, and moved results beyond C2 | S6.P3.T2 |
 
 The maintainer settled the Olympus Zuiko Auto-W 18mm's distortion on 2026-10-15; its engine C3 is #815, whose merge
 commit is anchor A3:
