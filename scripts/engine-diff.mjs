@@ -535,8 +535,8 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
          * analysis may contain thousands of solves, each requiring four fresh evaluations. */
         if (options.changeClass === "c2") {
           for (let i = 0; i < part.length; i++) {
+            /* The quantity table also admits chief-launch origins in traces. */
             if (!headCapture.needsPropagation(baseEngine[i], headEngine[i])) continue;
-            if (!["chiefSolves", "analysis", "mtf"].includes(part[i].family)) continue;
             clock.time("C2 propagation", () => {
               baseEngine[i] = baseCapture.captureRecords(headCatalog, [part[i]], true)[0];
               headEngine[i] = headCapture.captureRecords(headCatalog, [part[i]], true)[0];

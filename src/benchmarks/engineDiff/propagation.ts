@@ -139,6 +139,7 @@ export function probeInversion<T>(work: () => T): T {
 interface Leaf {
   path: string;
   value: number;
+  chiefLaunch: boolean;
 }
 
 function eligibleLeaves(value: EncodedValue, family: string): Leaf[] {
@@ -146,7 +147,8 @@ function eligibleLeaves(value: EncodedValue, family: string): Leaf[] {
   const visit = (node: EncodedValue, path: string, segments: string[]) => {
     if (typeof node === "number" && Number.isFinite(node)) {
       const rule = resolveBudgetRule(family, segments);
-      if (rule && typeof rule.quantity === "string" && C2_CRITERIA[rule.quantity]) leaves.push({ path, value: node });
+      if (rule && typeof rule.quantity === "string" && C2_CRITERIA[rule.quantity])
+        leaves.push({ path, value: node, chiefLaunch: rule.quantity === "chiefLaunch" });
     } else if (Array.isArray(node)) {
       node.forEach((item, index) => visit(item, `${path}[${index}]`, [...segments, "[]"]));
     } else if (node && typeof node === "object") {
@@ -217,9 +219,12 @@ export function capturePropagation(work: () => unknown, family: string, nominal:
         if (replay.index !== baseline.index || !sameBranch(nominal, value, family)) return {};
         samples.push(new Map(eligibleLeaves(value, family).map(({ path, value: v }) => [path, v])));
       }
-      for (const { path, value } of leaves) {
+      for (const { path, value, chiefLaunch } of leaves) {
         const entry = evidence[path];
         if (!entry) continue;
+        /* A copied launch is governed by its own stop solve, not by an upstream
+         * sensor lock or another root that happens to move it during replay. */
+        if (chiefLaunch && (probe.tolerance !== 1e-7 || !Object.is(value, probe.root))) continue;
         const [lo, hi, halfLo, halfHi] = samples.map((sample) => sample.get(path) ?? NaN);
         const slope = (hi - lo) / (2 * probe.step);
         const halfSlope = (halfHi - halfLo) / probe.step;
@@ -227,6 +232,7 @@ export function capturePropagation(work: () => unknown, family: string, nominal:
           delete evidence[path];
           continue;
         }
+        if (chiefLaunch && Math.abs(halfSlope - 1) >= 1e-6) continue;
         entry.error += Math.max(Math.abs(slope), Math.abs(halfSlope)) * probe.error;
         if (probe.imageHeight && Object.is(value, probe.root) && Math.abs(halfSlope - 1) < 1e-6) {
           entry.imageResidual = probe.residual;

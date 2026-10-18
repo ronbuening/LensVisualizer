@@ -6173,6 +6173,13 @@ describe("engineDiff declared transitions", () => {
 describe("propagated C2 solver criteria", () => {
   const cases = [
     { name: "chiefLaunch", family: "chiefSolves", path: ["solves", 0, "yLaunch"], tolerance: 1e-7, gain: 1 },
+    {
+      name: "chiefLaunch",
+      family: "traces",
+      path: ["offAxis", "rays", 0, "input", "origin", 1],
+      tolerance: 1e-7,
+      gain: 1,
+    },
     { name: "fieldAngle", family: "mtf", path: ["result", "fields", 0, "fieldAngleDeg"], tolerance: 1e-4, gain: 1 },
     {
       name: "analysisLength",
@@ -6200,11 +6207,13 @@ describe("propagated C2 solver criteria", () => {
 
   function nested(path: readonly (string | number)[], value: number): unknown {
     if (!path.length) return value;
-    return typeof path[0] === "number" ? [nested(path.slice(1), value)] : { [path[0]]: nested(path.slice(1), value) };
+    return typeof path[0] === "number"
+      ? Array.from({ length: path[0] + 1 }, (_, i) => (i === path[0] ? nested(path.slice(1), value) : 0))
+      : { [path[0]]: nested(path.slice(1), value) };
   }
 
   for (const { name, family, path, tolerance, gain } of cases) {
-    it(`${name}: passes inside its propagated criterion, fails outside, and leaves C0/C1 alone`, () => {
+    it(`${family} ${name}: passes inside its propagated criterion, fails outside, and leaves C0/C1 alone`, () => {
       const make = (root: number, target: number): PayloadRecord => {
         const work = () =>
           nested(path, gain * probeRoot(root, (x) => 2 * (x - target), tolerance, name === "fieldAngle"));
@@ -6219,7 +6228,18 @@ describe("propagated C2 solver criteria", () => {
       };
       const base = make(1 - tolerance / 4, 1);
       const inside = make(1 + tolerance / 4, 1);
-      expect(Object.keys(base.c2 ?? {})).toHaveLength(1);
+      const leafPath = path.reduce<string>(
+        (text, key) => (typeof key === "number" ? `${text}[${key}]` : text ? `${text}.${key}` : key),
+        "",
+      );
+      expect(
+        propagatedBudget(
+          name,
+          [gain * (1 - tolerance / 4), gain * (1 + tolerance / 4)],
+          [base.c2![leafPath], inside.c2![leafPath]],
+          1,
+        ),
+      ).toBeCloseTo(name === "fieldAngle" ? tolerance / 2 : (2 * gain * tolerance) / 2, 12);
       expect(needsPropagation(base, base)).toBe(false);
       expect(needsPropagation(base, inside)).toBe(true);
       expect(compare("c2", [inside], [base]).passed).toBe(true);
@@ -6231,6 +6251,33 @@ describe("propagated C2 solver criteria", () => {
       expect(compare("c2", [outside], [base]).passed).toBe(false);
     });
   }
+
+  it("bounds a copied chief launch only by its stop solve while downstream quantities retain both roots", () => {
+    const launchPaths = [
+      ["jobs", "x", "value", "launchOffsetMm"],
+      ["jobs", "x", "value", "rootSolve", "root"],
+    ];
+    const leaves = [
+      ...launchPaths.map((path) => ({ name: "chiefLaunch" as const, family: "analysis", path, gain: 1 })),
+      ...cases.filter(({ name }) => name !== "chiefLaunch" && name !== "fieldAngle"),
+    ];
+    for (const { name, family, path, gain } of leaves) {
+      const work = () => {
+        const image = probeRoot(1, (x) => 2 * (x - 1), 1e-5);
+        const target = 3 * image - 2;
+        const launch = probeRoot(target, (x) => 4 * (x - target), 1e-7);
+        return nested(path, gain * launch);
+      };
+      const evidence = Object.values(capturePropagation(work, family, encodeValue(work())))[0];
+      const stopTerm = 1e-7 / 4;
+      const expected = gain * (name === "chiefLaunch" ? stopTerm : (3 * 1e-5) / 2 + stopTerm);
+      expect(evidence.error).toBeCloseTo(expected, 12);
+      expect(propagatedBudget(name, [gain, gain], [evidence, evidence], 1)).toBeCloseTo(
+        name === "mtfModulation" ? Math.min(2 * expected, 1e-4) : 2 * expected,
+        12,
+      );
+    }
+  });
 
   it("accepts both forward image heights within twice tolerance and rejects a miss on either side", () => {
     const side = (value: number, imageResidual: number) => ({ value, error: 1, imageTolerance: 1e-4, imageResidual });

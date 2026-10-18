@@ -510,11 +510,14 @@ missing sites fails bundling. C0/C1 bundles are uninstrumented.
 `propagation.ts` replays a changed record on fresh lens objects, moving one solved coordinate at a time. It measures
 both the residual derivative and each downstream quantity's derivative with central differences at a step and half
 that step; they must agree within 10%. The step is `cbrt(epsilon) * max(1, abs(root))`. The absolute contributions
-`abs(d quantity / d root) * tolerance / abs(d residual / d root)` are summed over the governing roots and then over
-both engines. Trial solves inside a scalar residual callback or an inversion lookup are evaluated through that
-outer solve's criterion, rather than counted again as independent final coordinates. Chief launch height therefore
-gets twice the stop-residual tolerance mapped through the stop-height slope when both sides have the same derivative. Analysis lengths, tangential parabasal focus and percentages
-use the propagated bound in their own units; micrometre and pixel twins are scaled by their existing table rows.
+`abs(d quantity / d root) * tolerance / abs(d residual / d root)` are summed over the governing roots for analysis
+lengths, tangential parabasal focus, percentages and MTF, and then over both engines. Chief launch height uses only
+the matching stop-residual root (tolerance `1e-7` mm, captured value equal to the root, and unit copied-launch slope),
+including trace input origins. It gets twice the stop-residual tolerance mapped through the stop-height slope when
+both sides have the same derivative; upstream image-root contributions are excluded. Trial solves inside a scalar
+residual callback or an inversion lookup are evaluated through that outer solve's criterion, rather than counted
+again as independent final coordinates. Bounds use the quantity's own units; micrometre and pixel twins are scaled
+by their existing table rows.
 MTF modulation is capped at `1e-4`. An inverted field angle instead requires each solution's forward image-height
 miss to be at most twice `1e-4` mm; no angular difference substitutes for that check.
 
