@@ -339,7 +339,6 @@ const LENS_DATA = {
       { focalLengthMm: 390.84, nominalFNumber: 7.3 },
       { focalLengthMm: 776.0, nominalFNumber: 9.18, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   focus: {

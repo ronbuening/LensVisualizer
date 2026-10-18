@@ -13,7 +13,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * zoomCloseFocusM field is omitted because no object-to-image near distances are established.
  * Semi-diameters: patent effective diameters / 2 on lens surfaces. The STO is the exception: patent phi = 6.70 mm is
  * retained as a source effective diameter; the stop radius is derived from the published endpoint f-numbers at
- * each zoom station with zoom.apertureModel: "from-nominal-fno".
+ * each zoom station.
  * The source flat stop radius 0.0000 is encoded as R: "flat", and source surface 10 is labeled 10A for its asphere.
  * No scaling, rear plate, dummy plane, filter plate, or mechanical component is included.
  * imageFormat records the production camera’s 1/1.8-inch-type CCD; nominal dimensions are not patent image heights.
@@ -212,7 +212,6 @@ const LENS_DATA = {
       { focalLengthMm: 8.24, nominalFNumber: 2.89, label: "Wide" },
       { focalLengthMm: 23.3, nominalFNumber: 5.2, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   // Nikon manual p.144: 4 cm measured from the lens; descriptive only, not an object-to-image conjugate.

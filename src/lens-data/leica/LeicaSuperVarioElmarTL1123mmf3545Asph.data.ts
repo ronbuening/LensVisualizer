@@ -22,7 +22,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * at infinity/close-focus coordinates.
  *
  * Aperture: the patent publishes F-numbers 3.600 / 4.183 / 4.610 (W/M/T) but no diaphragm diameter.
- * nominalFno stores those printed values, and zoomApertureModel "from-nominal-fno" lets the builder derive
+ * nominalFno stores those printed values, and the builder derives
  * the stop radius from the design f-number at each station (calculated, about 5.54 / 5.41 / 5.40 mm
  * radius); a fixed iris would give only f/4.07 and f/4.47 at M/T.
  *
@@ -325,7 +325,6 @@ const LENS_DATA = {
       { focalLengthMm: 16.822, nominalFNumber: 4.183 },
       { focalLengthMm: 22.347, nominalFNumber: 4.61, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   focus: {

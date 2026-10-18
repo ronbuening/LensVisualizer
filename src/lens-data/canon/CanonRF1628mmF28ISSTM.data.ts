@@ -39,7 +39,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                      ║
  * ║  NOTE ON APERTURE: printed F2.9 at all three stations (nominalFno    ║
  * ║    2.9 is the modeled design value; Canon markets f/2.8). The iris   ║
- * ║    schedule is inferred with zoomApertureModel "from-nominal-fno";   ║
+ * ║    schedule is inferred;                                             ║
  * ║    no diaphragm diameter is published, so reproducing F2.9 is a      ║
  * ║    calibration, not independent evidence. The stop radius is derived ║
  * ║    from the design f-number at each zoom station; the largest (tele) ║
@@ -387,7 +387,6 @@ const LENS_DATA = {
       { focalLengthMm: 24.114, closeFocusM: 0.213 },
       { focalLengthMm: 27.16, closeFocusM: 0.2, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   /* ── Focus configuration ── */

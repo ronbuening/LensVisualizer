@@ -23,7 +23,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  spacings only, so focus travel is not modelled (zoom-only gaps).    ║
  * ║                                                                      ║
  * ║  APERTURE: patent FNO 2.88 / 2.88 / 2.92 with a moving stop and no   ║
- * ║  published iris diameters; zoomApertureModel "from-nominal-fno"      ║
+ * ║  published iris diameters; the builder                               ║
  * ║  infers iris radii 9.04 / 10.68 / 11.94 mm (calculated). The stop    ║
  * ║  radius is derived from the design f-number at each station.         ║
  * ║                                                                      ║
@@ -358,7 +358,6 @@ const LENS_DATA = {
       { focalLengthMm: 49.0, nominalFNumber: 2.88 },
       { focalLengthMm: 67.9, nominalFNumber: 2.92, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
     step: 0.004,
   },
 

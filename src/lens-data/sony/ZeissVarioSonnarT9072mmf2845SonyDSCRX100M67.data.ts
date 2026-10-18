@@ -37,7 +37,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  NOTE ON APERTURE: patent gives FNo 2.97 / 4.16 / 4.72 but no stop   ║
  * ║    diameter. The stop radius is derived from the design f-number at  ║
  * ║    each zoom station; the prior paraxial solve gave 4.04 / 3.92 /    ║
- * ║    4.16 mm. zoomApertureModel "from-nominal-fno" reproduces the      ║
+ * ║    4.16 mm. The builder reproduces the                               ║
  * ║    published f-number schedule (iris openings inferred, not          ║
  * ║    published).                                                       ║
  * ║  NOTE ON SEMI-DIAMETERS: not published. Modeled from real-ray        ║
@@ -497,7 +497,6 @@ const LENS_DATA = {
       { focalLengthMm: 23.6, nominalFNumber: 4.16 },
       { focalLengthMm: 66.27, nominalFNumber: 4.72, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   focus: {

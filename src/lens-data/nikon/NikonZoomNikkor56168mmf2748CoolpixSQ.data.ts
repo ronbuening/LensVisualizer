@@ -25,8 +25,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                                ║
  * ║  Aperture: the source publishes FNO but no physical diaphragm diameter. The    ║
  * ║  stop radius is derived from the design f-number at each zoom station from     ║
- * ║  modeled EFL and the three source FNO stations                                 ║
- * ║  (`zoom.apertureModel: "from-nominal-fno"`); the derived radii are not         ║
+ * ║  modeled EFL and the three source FNO stations;                                ║
+ * ║  the derived radii are not                                                     ║
  * ║  patent-published dimensions.                                                  ║
  * ║                                                                                ║
  * ║  Semi-diameters: modeled from exact meridional ray geometry at the patent's     ║
@@ -214,7 +214,6 @@ const LENS_DATA = {
       { focalLengthMm: 10.0, nominalFNumber: 3.73 },
       { focalLengthMm: 16.88, nominalFNumber: 5.22, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   /* ── Focus configuration ── */

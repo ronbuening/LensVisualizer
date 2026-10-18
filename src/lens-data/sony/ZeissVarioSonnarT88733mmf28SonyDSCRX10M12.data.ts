@@ -419,7 +419,6 @@ const LENS_DATA = {
       { focalLengthMm: 24.376 },
       { focalLengthMm: 64.678, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   /* -- Focus configuration --
@@ -477,7 +476,7 @@ const LENS_DATA = {
 
   /* -- Aperture configuration --
    *    nominalFno is the patent's modelled open f-number, constant across the zoom range.
-   *    zoomApertureModel derives a per-station iris radius from it at the three published states;
+   *    The builder derives a per-station iris radius from it at the three published states;
    *    the original estimates were about 4.75 / 6.30 / 7.59 mm. This is
    *    a calculated model, not a published diameter schedule. The f-stop series ends at the RX10's
    *    marketed F16 minimum aperture. */

@@ -43,7 +43,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                              ║
  * ║  NOTE ON APERTURE:                                                           ║
  * ║    Patent FNO 4.080 / 5.115 / 6.337; no iris diameters are published.        ║
- * ║    zoom.apertureModel "from-nominal-fno" infers the iris per station.        ║
+ * ║    The builder infers the iris per station.                                  ║
  * ║                                                                              ║
  * ║  NOTE ON SEMI-DIAMETERS:                                                     ║
  * ║    Not listed in the patent. G1/G2 are ray-envelope estimates (52 mm         ║
@@ -367,7 +367,6 @@ const LENS_DATA = {
       { focalLengthMm: 34.711, nominalFNumber: 5.115 },
       { focalLengthMm: 48.503, nominalFNumber: 6.337, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
     step: 0.004,
   },
 

@@ -24,7 +24,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * interpolated on x = a·u / (1 − b·u) through that station's two published finite states.
  *
  * NOTE ON APERTURE: FNO is 2.88 at every station while the stop rides in G2, so the physical iris must
- * open toward tele. The patent lists no iris diameters; zoom.apertureModel infers the station radii
+ * open toward tele. The patent lists no iris diameters; the builder infers the station radii
  * (about 9.16 / 9.89 / 11.15 mm) from f/2.88. The Fig. 1 stop ticks start at the neighbouring lens
  * rims (about 12.8 mm); they are a drawing symbol, not an iris radius.
  *
@@ -371,7 +371,6 @@ const LENS_DATA = {
       { focalLengthMm: 23.8, label: "Tele", published: true, publishedFocus: [1, 4] },
     ],
     // Physical iris schedule inferred by tracing the source f/2.88 entrance pupil at each zoom station.
-    apertureModel: "from-nominal-fno",
     step: 0.004,
   },
 

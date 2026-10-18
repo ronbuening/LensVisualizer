@@ -35,7 +35,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    Aspheres: (1+k) conic form, K = 0, A4–A12 as printed, A14 = 0.    ║
  * ║    No cover glass or filter is listed; last d = BF 14.20 mm.         ║
  * ║  NOTE ON STOP: stop diameter is not published. The iris schedule     ║
- * ║    uses zoomApertureModel "from-nominal-fno" calibrated to the       ║
+ * ║    is calibrated to the                                              ║
  * ║    published F 4.08 / 5.18 / 6.43. The stop radius is derived from   ║
  * ║    the design f-number at each zoom station; this is not a published ║
  * ║    iris.                                                             ║
@@ -284,7 +284,6 @@ const LENS_DATA = {
       { focalLengthMm: 20.03, nominalFNumber: 5.18 },
       { focalLengthMm: 29.35, nominalFNumber: 6.43, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   /* ── Focus configuration ── */

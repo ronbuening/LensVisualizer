@@ -34,7 +34,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * is Fujifilm's published minimum focus distance, not a patent value.
  *
  * APERTURE: FNo 4.12 / 4.12 / 4.13 and the stop moves with G3. No iris diameters are published, so
- * zoom.apertureModel "from-nominal-fno" calculates each station's iris radius from FNo 4.12. The traced
+ * the builder calculates each station's iris radius from FNo 4.12. The traced
  * radii are 4.90 / 6.41 / 7.97 mm.
  *
  * NOTE ON SEMI-DIAMETERS: No effective diameters are published. The values come from the FIG. 11 wide-angle
@@ -512,7 +512,7 @@ const LENS_DATA = {
       { focalLengthMm: 36.533 },
       { focalLengthMm: 77.751, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno", // iris radii inferred per station; no diameters published
+    // iris radii inferred per station; no diameters published
     step: 0.004,
   },
 

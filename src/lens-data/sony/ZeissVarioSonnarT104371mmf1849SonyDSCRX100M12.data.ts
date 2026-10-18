@@ -25,7 +25,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Aperture:
  * The physical stop diameter is unpublished. nominalFno carries the three published design f-numbers,
- * beginning at patent Fno=1.860. zoomApertureModel derives a physical iris schedule from those source
+ * beginning at patent Fno=1.860. The builder derives a physical iris schedule from those source
  * stations; agreement to those values is calibration, not an independent measurement of the manufactured
  * iris diameter. The original wide-state calibration used the modeled entrance-pupil magnification.
  *
@@ -251,7 +251,6 @@ const LENS_DATA = {
     ],
     // Infer a physical iris at each source zoom station; a fixed wide iris
     // over-opens the middle/tele states relative to their published FNo.
-    apertureModel: "from-nominal-fno",
   },
 
   focus: {

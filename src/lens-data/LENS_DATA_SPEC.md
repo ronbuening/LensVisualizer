@@ -723,7 +723,6 @@ zoom: {
     { focalLengthMm: 34.711, nominalFNumber: 5.115 },
     { focalLengthMm: 48.503, nominalFNumber: 6.337, label: "Tele" },
   ],
-  apertureModel: "from-nominal-fno",
   step: 0.004,
 },
 ```

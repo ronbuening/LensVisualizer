@@ -38,7 +38,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  NOTE ON STOP POSITION: not published. STO is inferred at the middle ║
  * ║    of d17 (2.25 mm behind r17), between components II-1 and II-2.    ║
  * ║    No fixed iris holds the published constant FNo. 4, so            ║
- * ║    zoomApertureModel "from-nominal-fno" calibrates the iris radius   ║
+ * ║    the builder calibrates the iris radius                            ║
  * ║    to f/4 at each station (5.65 mm wide to 8.52 mm tele). That       ║
  * ║    schedule is calibrated, not a published diaphragm diameter.       ║
  * ║  NOTE ON SEMI-DIAMETERS: not published; modeled from exact           ║
@@ -287,7 +287,6 @@ const LENS_DATA = {
       { focalLengthMm: 44, published: false },
       { focalLengthMm: 48.593, label: "Tele", published: true },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   focus: {

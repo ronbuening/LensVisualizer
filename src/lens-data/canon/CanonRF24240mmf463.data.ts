@@ -30,7 +30,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                    ║
  * ║  Aperture: nominal F4.12 / 5.66 / 6.41. No iris diameters are     ║
  * ║  published, so the iris schedule is inferred from the FNO values  ║
- * ║  (zoomApertureModel "from-nominal-fno": 6.63 / 7.64 / 8.16 mm).   ║
+ * ║  (radii: 6.63 / 7.64 / 8.16 mm).                                  ║
  * ║  The Numerical Data 1 patent surface table prints a stop          ║
  * ║  effective diameter of 16.32 mm (8.16 mm radius), equal to the    ║
  * ║  inferred tele iris radius.                                       ║
@@ -431,7 +431,6 @@ const LENS_DATA = {
       { focalLengthMm: 85.0, nominalFNumber: 5.66 },
       { focalLengthMm: 232.8, nominalFNumber: 6.41, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
     step: 0.004,
   },
 

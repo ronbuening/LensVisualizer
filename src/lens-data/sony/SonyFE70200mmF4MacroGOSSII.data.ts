@@ -459,7 +459,6 @@ const LENS_DATA = {
         publishedFocus: [1],
       },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   focus: {

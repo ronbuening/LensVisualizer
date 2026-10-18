@@ -25,7 +25,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * within 0.015 mm paraxially at every station).
  *
  * APERTURE: patent Fno 2.90 at all stations. The stop (S16, in L3) moves with L3 and no iris diameters are
- * published, so zoomApertureModel "from-nominal-fno" infers the iris per station (traced radii ≈ 10.9 / 13.7 /
+ * published, so the builder infers the iris per station (traced radii ≈ 10.9 / 13.7 /
  * 15.1 mm, wide / middle / tele). The stop radius is derived from the design f-number at each zoom station.
  *
  * NOTE ON SEMI-DIAMETERS:
@@ -458,7 +458,6 @@ const LENS_DATA = {
       { focalLengthMm: 102.06, label: "Tele" },
     ],
     // Physical iris schedule inferred by tracing the patent's f/2.90 entrance pupil at each zoom station.
-    apertureModel: "from-nominal-fno",
     step: 0.004,
   },
 

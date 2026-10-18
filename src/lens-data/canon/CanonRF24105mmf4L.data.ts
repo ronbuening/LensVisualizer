@@ -17,7 +17,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Focus: L4 (single element) moves toward the image [0069]. Close-focus spacings are
  *   not published; the stored close values are calculated for 0.45 m object-to-image.
  * Aperture: FNO 4.12 at all stations; the stop moves with L3. The stop radius is derived
- *   from the design f-number at each station (zoom.apertureModel "from-nominal-fno"). The
+ *   from the design f-number at each station. The
  *   Numerical Example 2 surface table [0097] prints one stop ED of 19.35 mm, agreeing
  *   with the derived tele iris.
  *
@@ -402,7 +402,6 @@ const LENS_DATA = {
       { focalLengthMm: 50.92 },
       { focalLengthMm: 101.84, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
     step: 0.004,
   },
 

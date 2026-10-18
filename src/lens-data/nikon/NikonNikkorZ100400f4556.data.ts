@@ -404,7 +404,6 @@ const LENS_DATA = {
       { focalLengthMm: 103.09, nominalFNumber: 4.58, label: "103.09 mm", published: true, publishedFocus: [1] },
       { focalLengthMm: 388.17, nominalFNumber: 5.76, label: "388.17 mm", published: true, publishedFocus: [1] },
     ],
-    apertureModel: "from-nominal-fno",
     step: 0.004,
   },
 

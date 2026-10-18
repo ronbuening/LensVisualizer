@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Repeated focus endpoints invent no near motion; production 0.28 m is metadata.
  * Stop position is source s19. The stop radius is derived from the design
  * f-number at each zoom station by exact axial Snell tracing from nominal
- * EFL/(2*2.93), with zoomApertureModel enabled. Agreement with f/2.93 is
+ * EFL/(2*2.93). Agreement with f/2.93 is
  * calibration, not independent diaphragm evidence.
  * SEMI-DIAMETERS ARE ESTIMATED from JP 2020-042221 A Figure 1 (PDF p. 27, wide
  * end); the patent publishes none. The figure is to scale but not isotropic:
@@ -482,7 +482,6 @@ const LENS_DATA = {
       { focalLengthMm: 17.97 },
       { focalLengthMm: 23.15, label: "23.15 mm native" },
     ],
-    apertureModel: "from-nominal-fno",
   },
 
   focus: {

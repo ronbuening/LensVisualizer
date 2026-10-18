@@ -32,7 +32,7 @@
  * ║  NOTE ON APERTURE:                                                 ║
  * ║    Source FNO is 2.91 at both zoom ends while the stop rides in    ║
  * ║    G3, so the physical iris must open toward tele. The patent      ║
- * ║    lists no iris diameters; zoom.apertureModel infers the station  ║
+ * ║    lists no iris diameters; the builder infers the station         ║
  * ║    radii (about 7.97 / 9.00 / 9.58 / 10.58 mm) from f/2.91.        ║
  * ║                                                                    ║
  * ║  NOTE ON FOCUS KEYFRAMES:                                          ║
@@ -391,7 +391,6 @@ const LENS_DATA = {
       { focalLengthMm: 23.29, label: "Tele", published: true, publishedFocus: [1, 5] },
     ],
     // Physical iris schedule inferred by tracing the source f/2.91 entrance pupil at each zoom station.
-    apertureModel: "from-nominal-fno",
     step: 0.004,
   },
 

@@ -32,7 +32,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  NOTE ON APERTURE:                                                   ║
  * ║    FNO 4.1 at W/M/T with the stop riding in G3. No iris diameters    ║
  * ║    are published; the stop radius is derived from the design         ║
- * ║    f-number at each zoom station (zoom.apertureModel), reaching      ║
+ * ║    f-number at each zoom station, reaching                           ║
  * ║    ≈ 9.0 mm at tele.                                                 ║
  * ║                                                                      ║
  * ║  NOTE ON SEMI-DIAMETERS:                                             ║
@@ -394,7 +394,6 @@ const LENS_DATA = {
       { focalLengthMm: 24.0 },
       { focalLengthMm: 33.94, label: "Tele" },
     ],
-    apertureModel: "from-nominal-fno",
     step: 0.004,
   },
 
