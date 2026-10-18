@@ -725,17 +725,17 @@ describe("C2 capture instrumentation", () => {
     }
   });
 
-  it("recognizes both bisection and secant inversion returns with the same expected solver set", () => {
+  it("recognizes midpoint, bisection and secant inversion returns with the same expected solver set", () => {
     const id = resolve("src/optics/field/imageHeight.ts");
     const secant = readFileSync(id, "utf8");
-    // Both the fast path and replay retain the return forms recognized by the probes.
+    // The legacy midpoint, secant fast path and replay all retain recognized return forms.
     const bisection = secant
       .replace("imageHeightSecant(loAngle, hiAngle, fLo, fHi)", "(loAngle + hiAngle) / 2")
       .replace("imageHeightSecant(lo, hi, fLo, fHi)", "(lo + hi) / 2");
     expect(bisection).not.toBe(secant);
     for (const source of [bisection, secant]) {
       const transformed = instrumentSolvers(source, id, "helper")!;
-      expect(transformed.match(/__engineDiffProbeRoot\(/g)).toHaveLength(5);
+      expect(transformed.match(/__engineDiffProbeRoot\(/g)).toHaveLength(6);
       expect(transformed).toContain("(angle) => lookup.imageHeightAt(angle) + Math.abs(target), 1e-4, true");
       expect(transformed).toContain(
         "(angle) => chiefRayImageHeight(state, { fieldAngleDeg: angle, zPos, geometry: geom, prepared }) - target, 1e-4, true",
@@ -808,19 +808,27 @@ describe("C2 capture instrumentation", () => {
           return { jobs: { computeBestFocusZ: { value: solve.yLaunch + solve.vectorLaunch.origin[1] } } };
         };
         export const vectorEvidence = () => capturePropagation(vectorWork, "analysis", encode(vectorWork()));
-        export const inversion = (accurate) => {
+        const inversionRequest = (s, accurate, firstMidpoint) => {
+          if (!firstMidpoint) return { zPos: s.z, targetImageHeight: 2 };
+          const geometry = { halfFieldDeg: 20, epRatio: 0 };
+          const fieldAngleDeg = accurate ? 5.5 : 10;
+          const targetImageHeight = Math.abs((accurate ? chiefRayImageHeightAccurate : chiefRayImageHeight)(s, { zPos: s.z, geometry, fieldAngleDeg }));
+          return { zPos: s.z, geometry, targetImageHeight };
+        };
+        export const inversion = (accurate, firstMidpoint = false) => {
           const s = state();
-          const request = { zPos: s.z, targetImageHeight: 2 };
+          const request = inversionRequest(s, accurate, firstMidpoint);
           return accurate
-            ? invertChiefRayImageHeights(s, { zPos: s.z, targetImageHeights: [2] })[0].fieldAngleDeg
+            ? invertChiefRayImageHeights(s, { ...request, targetImageHeights: [request.targetImageHeight] })[0].fieldAngleDeg
             : solveFieldAngleForImageHeight(s, request);
         };
-        export const forwardResidual = (accurate, fieldAngleDeg) => {
+        export const forwardResidual = (accurate, fieldAngleDeg, firstMidpoint = false) => {
           const s = state();
-          return (accurate ? chiefRayImageHeightAccurate : chiefRayImageHeight)(s, { zPos: s.z, fieldAngleDeg }) + 2;
+          const request = inversionRequest(s, accurate, firstMidpoint);
+          return (accurate ? chiefRayImageHeightAccurate : chiefRayImageHeight)(s, { ...request, fieldAngleDeg }) + request.targetImageHeight;
         };
-        export const inversionWork = (accurate) => ({ result: { fields: [{ fieldAngleDeg: inversion(accurate) }] } });
-        export const inversionEvidence = (accurate) => capturePropagation(() => inversionWork(accurate), "mtf", encode(inversionWork(accurate)));
+        export const inversionWork = (accurate, firstMidpoint = false) => ({ result: { fields: [{ fieldAngleDeg: inversion(accurate, firstMidpoint) }] } });
+        export const inversionEvidence = (accurate, firstMidpoint = false) => capturePropagation(() => inversionWork(accurate, firstMidpoint), "mtf", encode(inversionWork(accurate, firstMidpoint)));
       `,
       );
       const plain = await load(entry, temp, false);
@@ -839,18 +847,24 @@ describe("C2 capture instrumentation", () => {
       expect(probed.vectorWork()).toEqual(plain.vectorWork());
       expect(plain.vectorEvidence()).toEqual({});
       expect(probed.vectorEvidence()["jobs.computeBestFocusZ.value"].error).toBeGreaterThan(0);
-      for (const accurate of [false, true]) {
-        const angle = probed.inversion(accurate);
-        expect(angle).toBe(plain.inversion(accurate));
+      for (const [accurate, firstMidpoint] of [
+        [false, false],
+        [true, false],
+        [false, true],
+        [true, true],
+      ]) {
+        const angle = probed.inversion(accurate, firstMidpoint);
+        expect(angle).toBe(plain.inversion(accurate, firstMidpoint));
         expect(angle).toBeGreaterThan(1);
-        expect(plain.inversionEvidence(accurate)).toEqual({});
-        const evidence = probed.inversionEvidence(accurate)["result.fields[0].fieldAngleDeg"];
+        if (firstMidpoint) expect(angle).toBe(accurate ? 5.5 : 10);
+        expect(plain.inversionEvidence(accurate, firstMidpoint)).toEqual({});
+        const evidence = probed.inversionEvidence(accurate, firstMidpoint)["result.fields[0].fieldAngleDeg"];
         expect(evidence.value).toBe(angle);
         expect(evidence.error).toBeGreaterThan(0);
         expect(evidence.imageTolerance).toBe(1e-4);
-        expect(evidence.imageResidual).toBe(probed.forwardResidual(accurate, angle));
+        expect(evidence.imageResidual).toBe(probed.forwardResidual(accurate, angle, firstMidpoint));
         expect(Math.abs(evidence.imageResidual)).toBeLessThan(1e-4);
-        expect(probed.inversion(accurate)).toBe(angle);
+        expect(probed.inversion(accurate, firstMidpoint)).toBe(angle);
       }
     } finally {
       rmSync(temp, { recursive: true, force: true });

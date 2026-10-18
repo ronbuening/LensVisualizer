@@ -514,6 +514,32 @@ describe("image-height inversion", () => {
     expect(scalar(5.25)).toBeNull();
   });
 
+  it.each([false, true])("keeps a hole at the legacy first midpoint (trace failure: %s)", (failed) => {
+    const hole = (angle: number) => Math.abs(angle - 5.5) < 0.1;
+    const height = (angle: number) => (hole(angle) ? NaN : -angle);
+    const { accurate } = syntheticHeight(height, (angle) => failed && hole(angle));
+    expect(bisectHeight(height, 5.25, 5, 6)).toBeNull();
+    expect(accurate([5.25, 21])).toEqual([
+      { status: "unreachable", reason: failed ? "trace-failure" : "field-limit" },
+      { status: "unreachable", reason: failed ? "trace-failure" : "field-limit" },
+    ]);
+    vi.restoreAllMocks();
+    const scalarHeight = (angle: number) => (Math.abs(angle - 10) < 0.1 ? NaN : -angle);
+    const { scalar } = syntheticHeight(scalarHeight);
+    expect(bisectHeight(scalarHeight, 5.25, 0, 20)).toBeNull();
+    expect(scalar(5.25)).toBeNull();
+  });
+
+  it("keeps the legacy first midpoint when the entire height scale is below tolerance", () => {
+    const height = (angle: number) => -angle * 1e-6;
+    const { accurate, scalar } = syntheticHeight(height);
+    const target = 5.25e-6;
+    expect(bisectHeight(height, target, 5, 6)).toBe(5.5);
+    expect(bisectHeight(height, target, 0, 20)).toBe(10);
+    expect(accurate([target])).toEqual([{ status: "reached", fieldAngleDeg: 5.5 }]);
+    expect(scalar(target)).toBe(10);
+  });
+
   it("retains non-finite target, zero and invalid-field returns", () => {
     const { accurate, scalar, state, geometry } = syntheticHeight((angle) => -angle);
     for (const target of [0, 1e-13, NaN, Infinity]) {
@@ -557,7 +583,7 @@ describe("image-height inversion", () => {
   it("replays bisection after a non-finite secant height even when bisection succeeds", () => {
     // The first inverse-linear estimates differ for the table and full-field brackets.
     const height = (angle: number) =>
-      Math.abs(angle - (5 + 3 / 11)) < 1e-10 || Math.abs(angle - 1.4) < 1e-10 ? NaN : -angle * angle;
+      Math.abs(angle - (5 + 2 / 7)) < 1e-10 || Math.abs(angle - 2.8) < 1e-10 ? NaN : -angle * angle;
     const { accurate, scalar, state, geometry } = syntheticHeight(height);
     const tracedHeight = (fieldAngleDeg: number) =>
       chiefRayImageHeight(state, { fieldAngleDeg, zPos: state.z, geometry });
@@ -569,9 +595,9 @@ describe("image-height inversion", () => {
   });
 
   it("discards speculative trace failures when replay returns null", () => {
-    const secantFailure = (angle: number) => Math.abs(angle - (5 + 3 / 11)) < 1e-10;
+    const secantFailure = (angle: number) => Math.abs(angle - (5 + 2 / 7)) < 1e-10;
     const { accurate } = syntheticHeight(
-      (angle) => (secantFailure(angle) || Math.abs(angle - 5.5) < 1e-10 ? NaN : -angle * angle),
+      (angle) => (secantFailure(angle) || Math.abs(angle - 5.25) < 1e-10 ? NaN : -angle * angle),
       secantFailure,
     );
     expect(accurate([28])[0]).toEqual({ status: "unreachable", reason: "field-limit" });
@@ -582,7 +608,7 @@ describe("image-height inversion", () => {
     const { accurate } = syntheticHeight(
       (angle) => -angle * angle,
       (angle) => {
-        const failed = Math.abs(angle - (5 + 3 / 11)) < 1e-10;
+        const failed = Math.abs(angle - (5 + 2 / 7)) < 1e-10;
         if (failed) partialProbes.push(angle);
         return failed;
       },
@@ -599,6 +625,7 @@ describe("image-height inversion", () => {
 
   it.each([
     ["table", 0, "reached"],
+    ["legacy first midpoint", 5.5, "reached"],
     ["committed ray", 5.25, "unreachable"],
   ] as const)("retains a %s trace failure after secant convergence", (_source, failedAngle, status) => {
     const { accurate } = syntheticHeight(

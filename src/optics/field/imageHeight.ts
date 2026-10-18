@@ -42,7 +42,7 @@ const ANALYSIS_FIELD_CORNER_TOLERANCE_MM = 1e-4;
 /** Margin under the proportional estimate when stepping down to bracket the corner from a field past it. */
 const CORNER_BRACKET_STEP_DOWN = 0.98;
 
-/** Ordinary targets settle in a few evaluations; replay bisection for failures and discontinuities. */
+/** Includes the legacy first midpoint; replay bisection for failures and discontinuities. */
 const IMAGE_HEIGHT_SECANT_ITERATIONS = 8;
 
 interface RealChiefRayProbe2 {
@@ -540,12 +540,28 @@ function solveFieldAngleForImageHeightLookup2(
 
   let loAngle = lookup.segmentAngles[lo];
   let hiAngle = lookup.segmentAngles[hi];
-  const hadTraceFailure = lookup.hasTraceFailure();
   let fLo = lookup.segmentHeights[lo] - target;
   let fHi = lookup.segmentHeights[hi] - target;
+  // Preserve the legacy first-step rejection/acceptance before refining the half it selects.
+  const mid = (loAngle + hiAngle) / 2;
+  const yMid = lookup.imageHeightAt(mid);
+  if (!Number.isFinite(yMid)) return null;
+  if (Math.abs(yMid - target) < 1e-4) return mid;
+  if (
+    (lookup.segmentHeights[lo] >= target && yMid <= target) ||
+    (lookup.segmentHeights[lo] <= target && yMid >= target)
+  ) {
+    hiAngle = mid;
+    fHi = yMid - target;
+  } else {
+    loAngle = mid;
+    fLo = yMid - target;
+  }
+  // The midpoint belongs to the legacy path; only later secant failures are speculative.
+  const hadTraceFailure = lookup.hasTraceFailure();
   let side = 0;
-  for (let i = 0; i < IMAGE_HEIGHT_SECANT_ITERATIONS; i++) {
-    // First step is inverse linear interpolation of the neighboring table nodes.
+  for (let i = 1; i < IMAGE_HEIGHT_SECANT_ITERATIONS; i++) {
+    // Interpolate within the half selected by the legacy midpoint.
     const mid = imageHeightSecant(loAngle, hiAngle, fLo, fHi);
     const yMid = lookup.imageHeightAt(mid);
     if (!Number.isFinite(yMid)) break;
@@ -631,8 +647,20 @@ export function solveFieldAngleForImageHeight(
   if (target > yLo || target < yHi) return null;
   let fLo = yLo - target;
   let fHi = yHi - target;
+  // Preserve the legacy first-step rejection/acceptance before refining the half it selects.
+  const mid = (lo + hi) / 2;
+  const yMid = chiefRayImageHeight(state, { fieldAngleDeg: mid, zPos, geometry: geom, prepared });
+  if (!Number.isFinite(yMid)) return null;
+  if (Math.abs(yMid - target) < 1e-4) return mid;
+  if (yMid > target) {
+    lo = mid;
+    fLo = yMid - target;
+  } else {
+    hi = mid;
+    fHi = yMid - target;
+  }
   let side = 0;
-  for (let i = 0; i < IMAGE_HEIGHT_SECANT_ITERATIONS; i++) {
+  for (let i = 1; i < IMAGE_HEIGHT_SECANT_ITERATIONS; i++) {
     const mid = imageHeightSecant(lo, hi, fLo, fHi);
     const yMid = chiefRayImageHeight(state, { fieldAngleDeg: mid, zPos, geometry: geom, prepared });
     if (!Number.isFinite(yMid)) break;
