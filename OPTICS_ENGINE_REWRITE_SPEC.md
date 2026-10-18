@@ -7,7 +7,7 @@ makes available.
 
 Stages 1 to 5 and Phases 2.1 to 2.5 have merged to `main`: promotion #847, tagged `optics-rewrite/promotion`, and
 catalog migration #862. Stages 1 to 5 have passed their gates (tags `optics-rewrite/s1`, `optics-rewrite/s2`,
-`optics-rewrite/s3`, `optics-rewrite/s4` and `optics-rewrite/s5`). Phase 2.6 and Stages 6 to 8 are future work.
+`optics-rewrite/s3`, `optics-rewrite/s4` and `optics-rewrite/s5`). Phase 2.6 has merged except S2.P6.T5, which is deferred; Stages 6 to 8 are future work.
 
 Priorities, in order: **maintainability**, then **accuracy** (the contract below), then **speed**. When they conflict,
 the higher priority wins and the PR description records the trade-off. Speed's gates and targets are under
@@ -1985,6 +1985,8 @@ Stage 2 gate's Tier S stands in.
 **Phase 2.6 — Settled follow-ups**
 
 Each step is its own PR after S2.P5. The phase blocks only S8.P2.T3.
+
+Merged: S2.P6.T1 (#866), S2.P6.T2 (#864), S2.P6.T3 (#867, after the ten corrections of #863) and S2.P6.T4 (#868).
 
 - **S2.P6.T1 Drop the no-op aperture models.**
   - **Change:** remove every explicit `zoom.apertureModel: "from-nominal-fno"` entry (49 when settled on 2026-10-09),
