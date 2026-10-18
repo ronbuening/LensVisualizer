@@ -27,10 +27,10 @@
  * A root is only proposed here. It is accepted by evaluating the profile at it, under the residual the iterative
  * solver uses and at the raw target alone: the roundoff envelope is granted only at a stall, and one evaluation
  * cannot stall. Every doubtful case is handed back with a reason, and `intersect.ts` then runs the iterative path
- * unchanged. A miss is decided from the profile's data alone, so `curvature` and `conic` have to describe the
- * profile's evaluators, as a factory profile's do (`SurfaceProfile`). At the edge of an ellipsoid's domain they do
- * not, because an aspheric profile floors the conic root it evaluates (`surfaceProfile.ts`), and nothing is
- * decided there.
+ * with a turning-point bracket for near tangency and a sampled bracket otherwise. A miss is decided from the
+ * profile's data alone, so `curvature` and `conic` have to describe its evaluators, as a factory profile's do
+ * (`SurfaceProfile`). At the edge of an ellipsoid's domain they do not, because an aspheric profile floors the
+ * conic root it evaluates (`surfaceProfile.ts`), and nothing is decided there.
  *
  * `baseConicRoot` gives the same quadratic's root with none of that: it is where the solve of a polynomial asphere
  * starts (`seedAsphereSolve` in `intersect.ts`), and that solve has an acceptance of its own.

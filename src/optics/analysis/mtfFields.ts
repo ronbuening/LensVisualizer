@@ -13,7 +13,7 @@
 import { runtimeView } from "../prescription/runtimeView.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTaxonomy.js";
 import type { MtfFieldGeometry, MtfOptions, MtfSupport } from "../../types/mtf.js";
-import { computeFieldGeometryAtState2, solveFieldAnglesForImageHeightsAccurate2 } from "../field/chiefRay.js";
+import { computeFieldGeometryAtState2, solveFieldAnglesForImageHeightsAccurate2 } from "../state/fieldAdapters.js";
 import { MAX_FIELD_LAUNCH_DEG } from "../field/projection.js";
 import { halfFieldAtZoom } from "../layout.js";
 import { solveScalarRoot } from "../math/rootSolve.js";

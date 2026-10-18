@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../../src/optics/buildLens.js";
 import { prepareRuntimeState } from "../../../../src/optics/compat.js";
-import { chiefRayImageHeightAccurate2 } from "../../../../src/optics/field/chiefRay.js";
+import { chiefRayImageHeightAccurate2 } from "../../../../src/optics/state/fieldAdapters.js";
 import { solvePerspectiveChiefRay } from "../../../../src/optics/perspective/chiefRay.js";
 import {
   createPerspectiveTraceContext,

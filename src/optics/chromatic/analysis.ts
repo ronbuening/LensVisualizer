@@ -12,7 +12,7 @@ import { computeProjectionAwareOffAxisFieldGeometry, traceOffAxisChiefRay } from
 import {
   computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
   type FieldGeometryState2 as FieldGeometryState,
-} from "../field/fieldGeometry.js";
+} from "../state/fieldAdapters.js";
 import { thick } from "../layout.js";
 import { computeChromaticRayFanSpread2 } from "./chromaticTrace.js";
 import { CHROMATIC_CHANNEL_ORDER } from "./channels.js";

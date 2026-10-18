@@ -4,7 +4,7 @@ import { runtimeView } from "../prescription/runtimeView.js";
 import type { MtfOptions, MtfSpectralLine, MtfSupport } from "../../types/mtf.js";
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import type { EngineTraceResult, TraceOptions } from "../trace/types.js";
-import { solveChiefRay2 } from "../field/chiefRay.js";
+import { solveChiefRay2 } from "../state/fieldAdapters.js";
 import { solveScalarRoot } from "../math/rootSolve.js";
 import { prepareEngineTrace, traceEngineRay2 } from "../trace/rayAdapters.js";
 import { bulkTransmissionForTrace } from "../trace/bulkAbsorption.js";

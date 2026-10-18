@@ -14,7 +14,8 @@ validation, and diagram geometry.
 JSDoc; this document covers the conventions that span modules.
 
 Pure optics modules have no React dependencies. Helpers accept the runtime lens object `L` or a
-`PreparedOpticalState` plus slider-derived state explicitly. Do not introduce hidden module-level optical state.
+`PreparedGeometry` (also aliased as `PreparedOpticalState`) plus request options explicitly. Do not introduce hidden
+module-level optical state.
 
 State-dependent analysis must remain outside `buildLens()`. `buildLens()` constructs build-time/runtime constants from
 lens data; analysis tabs use current focus, zoom, and aperture state.
@@ -472,8 +473,9 @@ other `*AtZoom()` interpolators), and current-state pupil/field geometry (`entra
 ### Chief-Ray Solving
 
 `solveChiefRay()` returns a typed `ChiefRaySolveResult` (`converged` / `paraxial-fallback` / `bracket-failed` /
-`out-of-domain`, iteration count, and `launchSurface: "object-plane" | "bounding-sphere"`), memoized per lens via a
-`WeakMap` keyed on focusT / zoomT / aberrationT / fieldAngleDeg / launchSurface. The solver dispatches on
+`out-of-domain`, iteration count, and `launchSurface: "object-plane" | "bounding-sphere"`), memoized in a `WeakMap`
+owned by `PreparedGeometry`, with an LRU of at most 512 solves per geometry keyed on
+field angle, launch surface and channel. Controls are already fixed by the geometry identity. The solver dispatches on
 `launchSurfaceForFieldDeg(fieldDeg, projection)`: **fisheye projections always route through
 `solveChiefRayBoundingSphere`** regardless of angle, so every fisheye solve in the catalog exercises the bounding-sphere
 code. Rectilinear projections keep cap-based dispatch: object-plane below `MAX_FIELD_LAUNCH_DEG` (89°), bounding-sphere
@@ -482,9 +484,20 @@ the prepared geometry traversal; both paths return `yLaunch` projected to z=0 fo
 need a scalar launch height should read `solve.yLaunch`; new analysis code should still inspect `solve.status` and
 `solve.vectorLaunch` instead of assuming every field has a finite slope.
 
-Every solve outcome is counted through `recordChiefRayStatus2()` in `src/optics/field/chiefRayCache.ts`;
-`src/optics/chiefRayDiagnostics.ts` is a re-export barrel that exposes the per-lens status-count snapshot as
-`getChiefRayDiagnostics()` / `resetChiefRayDiagnostics()` for audit scripts and tests.
+The prepared implementation is split into `field/fieldGeometry.ts` (raw field, pupil and conjugate geometry),
+`field/chiefRaySolve.ts` (object-plane and bounding-sphere solves), and `field/imageHeight.ts` (traced image heights,
+inversion and the analysis field walk). Exact stop/image trace helpers live below the solves in `fieldGeometry.ts`,
+keeping those dependencies acyclic. `state/fieldAdapters.ts` preserves the positional RuntimeLens APIs at the compatibility
+boundary; the field core consumes `PreparedGeometry` and request options. `PreparedOpticalState` remains a type alias
+for analyses awaiting their request migration. Bounding-sphere launch bounds retain baseline prescription thicknesses,
+and image-height requests retain caller-supplied vertex positions; neither changes the solver's arithmetic.
+
+A cache miss of `solveChiefRay()` counts its outcome through `reportChiefRayFallback()` in `diagnostics/chiefRay.ts`;
+`computeChiefRaySolve`, `solveChiefRayFromSeed` and direct `solveChiefRayBoundingSphere` calls are not counted.
+`src/optics/chiefRayDiagnostics.ts` exposes `getChiefRayDiagnostics()` / `resetChiefRayDiagnostics()` for audit scripts
+and tests. Snapshots are defensive `Map<CompiledLens, ChiefRayStatusCounts>` copies: equal catalog keys do not merge
+separate compiled prescriptions. The diagnostic store retains at most 2,048 recently used compiled identities;
+reset clears counters without clearing chief solves.
 
 ## Surface Geometry
 
@@ -711,7 +724,8 @@ The closed form does not change the contract. It proposes a root, and the root i
   validated there, so the residual reported is that of the point returned.
 - **Fallback.** Wherever the answer rests on rounding, or on one of the iterative path's own rules for the points it
   tests, the closed form decides nothing and the iterative path runs with the caller's inputs and its full budget,
-  taking no seed or bracket from the closed form. The result is then exactly that path's. The reasons are:
+  taking no seed or bracket from the closed form. Near tangency uses the bracket split below; other reasons
+  retain the sampled search. The reasons are:
   - `nearTangency`, where the ray grazes the surface:
     - the sign of the discriminant is inside its rounding;
     - the line misses the quadric by less than the scan could accept as a touch. That is twice the tolerance plus
@@ -752,8 +766,9 @@ discrete transition:
 
 - **Roots the scan does not resolve.** The closed form finds a chord, or a short span inside the conic's domain,
   that falls between two samples whose residuals share a sign
-  ([#779](https://github.com/ronbuening/LensVisualizer/issues/779)). It does so only above the slope floors. A
-  shallower chord, and any such root on a polynomial asphere, still depends on the scan: the conic-seeded route
+  ([#779](https://github.com/ronbuening/LensVisualizer/issues/779)). Below the slope floors, `nearTangency` now
+  splits the bracket at the quadratic turning point instead of scanning. Polynomial aspheres still depend on the
+  scan: the conic-seeded route
   certifies one scan step past its root, so it never returns a root the scan does not resolve.
 - **The raw target where the iterative path stalls.** Where the rounding of the residual is close to the target,
   from an operand sum of a few hundred mm, the iterative path can stop on a float that evaluates just above the
@@ -873,6 +888,17 @@ point. The fourth is narrowed, not excluded. Two surfaces that share a vertex ca
 where the iterative path returned one, wherever the hit is more than twice the target of sag from the vertex plane.
 That matters only where the generalized tracer's candidate search chooses between the two surfaces; in a
 sequential trace, or under an explicit `surfaceOrder`, the order is fixed.
+
+For a sphere or polynomial-free conic marked `nearTangency`, `findConicBracket` evaluates the sag residual at the
+quadratic turning point `t0 - b/a`. That point lies between both roots even when their chord is shorter than one
+scan step. It partitions the in-domain ray interval into two candidate brackets, searched in ray order. Invalid
+endpoints are moved to the conic domain edge without evaluating outside it; the nearest transverse point supplies
+an interior point when the quadratic turn is outside the domain. The sag residual, not the discriminant, decides
+whether a root is bracketed or a touch meets the raw target. A nonzero crossing is bracketed before accepting its
+near-zero interior point, so a resolved short chord returns its entry. The existing Newton refinement and stall
+rules below then apply unchanged, as does authored-cap selection (including its own split bracket search).
+`domainEdge` and `failedValidation` fallbacks, polynomial aspheres, and calls with explicit iteration or sampling
+budgets retain the scan. A touch outside the raw target is not granted an envelope merely for being near tangency.
 
 The kernel's iterative path uses a safeguarded Newton step (rtsafe). A step is accepted only inside the
 sign-changing bracket and when it moves at most half the step before last; otherwise the solver bisects, so grazing

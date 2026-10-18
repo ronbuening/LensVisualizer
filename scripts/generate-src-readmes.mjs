@@ -87,6 +87,7 @@ const folderRoleOverrides = new Map([
   ["src/optics/analysis", "prepared-state analysis adapters and grouped analysis facades"],
   ["src/optics/chromatic", "chromatic channel, trace, dispersion, and quality helpers"],
   ["src/optics/diagram", "pure SVG-ready diagram geometry helpers used by React diagram layers"],
+  ["src/optics/diagnostics", "bounded diagnostic snapshots keyed by compiled prescription identity"],
   ["src/optics/field", "engine-native field geometry, chief-ray solving, projection, and launch helpers"],
   [
     "src/optics/first-order",

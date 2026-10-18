@@ -47,8 +47,11 @@ const LENS_DIR = join(ROOT, "src", "lens-data");
 const load = async (path) => import(pathToFileURL(join(ROOT, path)).href);
 
 const { default: buildLens, ingestLens, toLensData, prepareRuntimeState } = await load("src/optics/buildLens.ts");
-const { computeAnalysisFieldGeometryAtState2, computeFieldGeometryAtState2, solveChiefRay2 } =
-  await load("src/optics/field/chiefRay.ts");
+const {
+  computeAnalysisFieldGeometryAtState: computeAnalysisFieldGeometryAtState2,
+  computeFieldGeometryAtState: computeFieldGeometryAtState2,
+  solveChiefRay: solveChiefRay2,
+} = await load("src/optics/fieldGeometry.ts");
 const { isFisheyeProjection2, rectilinearProjectionMaxTraceField2 } = await load("src/optics/field/projection.ts");
 const { traceEngineRay2 } = await load("src/optics/trace/rayAdapters.ts");
 const { IMAGE_FORMAT_BY_ID } = await load("src/utils/catalog/lensTaxonomy.ts");

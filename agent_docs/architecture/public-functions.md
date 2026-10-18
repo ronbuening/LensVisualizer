@@ -37,6 +37,16 @@ this document only records where to import from and the contracts that are not v
 | `src/optics/lensMovement.ts` | Perspective-control clamping and diagram transform adapters | Keep movement here unless explicitly upgrading full moved-optics analysis. |
 | `src/optics/publishedStations.ts` | `publishedZoomStations`, `publishedFocusStations`, `nearestPublishedStation`, `isOnPublishedStation`, `publishedStationAvailability`, and the data-level `publishedStationGrid` | The only reader of station provenance. Returned `zoomT` / `focusT` are canonical station coordinates; `distanceM` is a slider-convention label, and only `conjugate` is a source claim. |
 
+## Prepared Field Internals
+
+The public `fieldGeometry.ts` and `optics.ts` signatures remain positional compatibility APIs, implemented by
+`state/fieldAdapters.ts`. Engine-native callers use `field/fieldGeometry.ts` for raw field/pupil/conjugate geometry,
+`field/chiefRaySolve.ts` for chief solves, and `field/imageHeight.ts` for image heights, inversion and the analysis
+field walk. These take `PreparedGeometry` plus request options; they do not rebuild a RuntimeLens view.
+
+`chiefRayDiagnostics.ts` returns defensive status snapshots keyed by `CompiledLens` identity, not catalog-key text.
+Use the compiled owner of the state to look up its counters; snapshots retain at most 2,048 recently used owners.
+
 ## Runtime Lens Contracts
 
 Call `buildLens()` once per lens/session state boundary, then pass the returned `RuntimeLens` (`L`) explicitly into

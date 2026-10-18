@@ -20,7 +20,7 @@ import {
   solveChiefRay2 as solveChiefRay,
   type FieldGeometryState2 as FieldGeometryState,
   type VectorFieldRayLaunch2 as VectorFieldRayLaunch,
-} from "../field/fieldGeometry.js";
+} from "../state/fieldAdapters.js";
 import { prepareRayTrace, type PreparedRayTrace } from "../trace/rayAdapters.js";
 import {
   isFisheyeProjection2 as isFisheyeProjection,
