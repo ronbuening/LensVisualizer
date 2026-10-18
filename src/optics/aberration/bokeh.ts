@@ -17,7 +17,7 @@ import { prepareRayTrace, skewImagePlaneIntercept, type SkewImagePlaneIntercept 
 import {
   computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
   type FieldGeometryState2 as FieldGeometryState,
-} from "../field/fieldGeometry.js";
+} from "../state/fieldAdapters.js";
 import { doLayout } from "../layout.js";
 import type { LayoutResult, RuntimeLens } from "../../types/optics.js";
 import { computeProjectionAwareOffAxisFieldGeometry, traceOffAxisBundleFromSamples } from "./offAxis.js";

@@ -1,7 +1,7 @@
 /**
  * Chief-ray diagnostics public barrel — exposes solve-status counters for audit scripts.
  *
- * Keeps diagnostic consumers on the legacy import path while the cache lives in optics/field.
+ * Keeps diagnostic consumers on the legacy import path while counters live in optics/diagnostics and solves are cached in optics/field.
  */
 
 export {

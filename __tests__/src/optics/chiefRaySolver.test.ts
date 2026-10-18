@@ -1,4 +1,11 @@
+import { chiefRayCacheKey } from "../../../src/optics/field/chiefRayCache.js";
+import { solveChiefRay as solvePreparedChiefRay } from "../../../src/optics/field/chiefRaySolve.js";
+import { computeFieldGeometry as computePreparedFieldGeometry } from "../../../src/optics/field/fieldGeometry.js";
+import { reportChiefRayFallback } from "../../../src/optics/diagnostics/chiefRay.js";
+import { prepareStateUncached } from "../../../src/optics/state/preparedGeometry.js";
+import { buildSimplePositiveElementLens } from "./testLensFixtures.js";
 import { afterEach, describe, expect, it } from "vitest";
+import { compiledLensFromRuntime } from "../../../src/optics/prescription/compile.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import { computeFieldGeometryAtState, solveChiefRay } from "../../../src/optics/fieldGeometry.js";
 import {
@@ -124,12 +131,12 @@ describe("chiefRayDiagnostics", () => {
     resetChiefRayDiagnostics();
   });
 
-  it("counts converged solves under the lens key", () => {
+  it("counts converged solves under the compiled identity", () => {
     resetChiefRayDiagnostics();
     const L = buildLens(structuredClone(LENS_CATALOG[RECTILINEAR_FIXTURE]));
     solveChiefRay(10, 0, 0, L);
     solveChiefRay(20, 0, 0, L);
-    const counts = getChiefRayDiagnostics().get(L.data?.key ?? "<unknown-lens>");
+    const counts = getChiefRayDiagnostics().get(compiledLensFromRuntime(L));
     expect(counts).toBeDefined();
     expect((counts?.converged ?? 0) + (counts?.["paraxial-fallback"] ?? 0)).toBeGreaterThanOrEqual(2);
   });
@@ -141,8 +148,74 @@ describe("chiefRayDiagnostics", () => {
     // out-of-domain branch regardless of lens geometry — unlike a past-cap
     // numeric angle which may now converge or bracket-fail via Step 3.
     solveChiefRay(Number.NaN, 0, 0, L);
-    const counts = getChiefRayDiagnostics().get(L.data?.key ?? "<unknown-lens>");
+    const counts = getChiefRayDiagnostics().get(compiledLensFromRuntime(L));
     expect(counts?.["out-of-domain"]).toBe(1);
     expect(counts?.converged ?? 0).toBe(0);
+  });
+});
+
+// These synthetic cases hold cache ownership across slider histories and equal catalog keys.
+describe("prepared chief-ray ownership", () => {
+  afterEach(resetChiefRayDiagnostics);
+
+  it("shares only the same prepared geometry, field, launch surface and channel", () => {
+    const lens = compiledLensFromRuntime(buildSimplePositiveElementLens());
+    const state = prepareStateUncached(lens, 0, 0);
+    const sameControls = prepareStateUncached(lens, 0, 0);
+    const request = { fieldAngleDeg: 0.5, geometry: computePreparedFieldGeometry(state) };
+    const first = solvePreparedChiefRay(state, request);
+    expect(solvePreparedChiefRay(state, request)).toBe(first);
+    expect(solvePreparedChiefRay(sameControls, request)).not.toBe(first);
+    expect(solvePreparedChiefRay(sameControls, request)).toEqual(first);
+    const red = solvePreparedChiefRay(state, { ...request, channel: "R" });
+    expect(red).not.toBe(first);
+    expect(solvePreparedChiefRay(state, { ...request, channel: "R" })).toBe(red);
+    expect(solvePreparedChiefRay(state, { ...request, channel: "B" })).not.toBe(red);
+    expect(chiefRayCacheKey(0.5, "object-plane", "R")).not.toBe(chiefRayCacheKey(0.5, "bounding-sphere", "R"));
+  });
+
+  it("evicts the least recently used solve at the per-geometry limit without changing its numbers", () => {
+    const state = prepareStateUncached(compiledLensFromRuntime(buildSimplePositiveElementLens()), 0, 0);
+    const geometry = computePreparedFieldGeometry(state);
+    const solve = (i: number) => solvePreparedChiefRay(state, { fieldAngleDeg: i / 10000, geometry });
+    const first = solve(1);
+    const second = solve(2);
+    for (let i = 3; i <= 512; i++) solve(i);
+    expect(solve(2)).toBe(second);
+    solve(513);
+    expect(solve(2)).toBe(second);
+    const recomputed = solve(1);
+    expect(recomputed).not.toBe(first);
+    expect(recomputed).toEqual(first);
+  });
+
+  it("keeps equal catalog keys separate and snapshots defensive", () => {
+    resetChiefRayDiagnostics();
+    const left = compiledLensFromRuntime(buildSimplePositiveElementLens("same-key"));
+    const right = compiledLensFromRuntime(buildSimplePositiveElementLens("same-key"));
+    expect(left).not.toBe(right);
+    solvePreparedChiefRay(prepareStateUncached(left, 0, 0), { fieldAngleDeg: 0.25 });
+    solvePreparedChiefRay(prepareStateUncached(right, 0, 0), { fieldAngleDeg: 0.25 });
+    const snapshot = getChiefRayDiagnostics();
+    expect(snapshot.size).toBe(2);
+    expect(snapshot.get(left)?.converged).toBe(1);
+    expect(snapshot.get(right)?.converged).toBe(1);
+    snapshot.get(left)!.converged = 99;
+    snapshot.clear();
+    expect(getChiefRayDiagnostics().get(left)?.converged).toBe(1);
+    resetChiefRayDiagnostics();
+    expect(getChiefRayDiagnostics().size).toBe(0);
+  });
+
+  it("bounds retained diagnostic identities", () => {
+    resetChiefRayDiagnostics();
+    const base = prepareStateUncached(compiledLensFromRuntime(buildSimplePositiveElementLens()), 0, 0);
+    reportChiefRayFallback(base, 0, "converged");
+    for (let i = 0; i < 2048; i++) {
+      reportChiefRayFallback({ ...base, lens: { ...base.lens } }, 0, "converged");
+    }
+    const snapshot = getChiefRayDiagnostics();
+    expect(snapshot.size).toBe(2048);
+    expect(snapshot.has(base.lens)).toBe(false);
   });
 });

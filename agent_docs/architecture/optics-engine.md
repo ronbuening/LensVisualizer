@@ -14,7 +14,8 @@ validation, and diagram geometry.
 JSDoc; this document covers the conventions that span modules.
 
 Pure optics modules have no React dependencies. Helpers accept the runtime lens object `L` or a
-`PreparedOpticalState` plus slider-derived state explicitly. Do not introduce hidden module-level optical state.
+`PreparedGeometry` (also aliased as `PreparedOpticalState`) plus request options explicitly. Do not introduce hidden
+module-level optical state.
 
 State-dependent analysis must remain outside `buildLens()`. `buildLens()` constructs build-time/runtime constants from
 lens data; analysis tabs use current focus, zoom, and aperture state.
@@ -472,8 +473,9 @@ other `*AtZoom()` interpolators), and current-state pupil/field geometry (`entra
 ### Chief-Ray Solving
 
 `solveChiefRay()` returns a typed `ChiefRaySolveResult` (`converged` / `paraxial-fallback` / `bracket-failed` /
-`out-of-domain`, iteration count, and `launchSurface: "object-plane" | "bounding-sphere"`), memoized per lens via a
-`WeakMap` keyed on focusT / zoomT / aberrationT / fieldAngleDeg / launchSurface. The solver dispatches on
+`out-of-domain`, iteration count, and `launchSurface: "object-plane" | "bounding-sphere"`), memoized in a `WeakMap`
+owned by `PreparedGeometry`, with an LRU of at most 512 solves per geometry keyed on
+field angle, launch surface and channel. Controls are already fixed by the geometry identity. The solver dispatches on
 `launchSurfaceForFieldDeg(fieldDeg, projection)`: **fisheye projections always route through
 `solveChiefRayBoundingSphere`** regardless of angle, so every fisheye solve in the catalog exercises the bounding-sphere
 code. Rectilinear projections keep cap-based dispatch: object-plane below `MAX_FIELD_LAUNCH_DEG` (89°), bounding-sphere
@@ -482,9 +484,20 @@ the prepared geometry traversal; both paths return `yLaunch` projected to z=0 fo
 need a scalar launch height should read `solve.yLaunch`; new analysis code should still inspect `solve.status` and
 `solve.vectorLaunch` instead of assuming every field has a finite slope.
 
-Every solve outcome is counted through `recordChiefRayStatus2()` in `src/optics/field/chiefRayCache.ts`;
-`src/optics/chiefRayDiagnostics.ts` is a re-export barrel that exposes the per-lens status-count snapshot as
-`getChiefRayDiagnostics()` / `resetChiefRayDiagnostics()` for audit scripts and tests.
+The prepared implementation is split into `field/fieldGeometry.ts` (raw field, pupil and conjugate geometry),
+`field/chiefRaySolve.ts` (object-plane and bounding-sphere solves), and `field/imageHeight.ts` (traced image heights,
+inversion and the analysis field walk). Exact stop/image trace helpers live below the solves in `fieldGeometry.ts`,
+keeping those dependencies acyclic. `state/fieldAdapters.ts` preserves the positional RuntimeLens APIs at the compatibility
+boundary; the field core consumes `PreparedGeometry` and request options. `PreparedOpticalState` remains a type alias
+for analyses awaiting their request migration. Bounding-sphere launch bounds retain baseline prescription thicknesses,
+and image-height requests retain caller-supplied vertex positions; neither changes the solver's arithmetic.
+
+A cache miss of `solveChiefRay()` counts its outcome through `reportChiefRayFallback()` in `diagnostics/chiefRay.ts`;
+`computeChiefRaySolve`, `solveChiefRayFromSeed` and direct `solveChiefRayBoundingSphere` calls are not counted.
+`src/optics/chiefRayDiagnostics.ts` exposes `getChiefRayDiagnostics()` / `resetChiefRayDiagnostics()` for audit scripts
+and tests. Snapshots are defensive `Map<CompiledLens, ChiefRayStatusCounts>` copies: equal catalog keys do not merge
+separate compiled prescriptions. The diagnostic store retains at most 2,048 recently used compiled identities;
+reset clears counters without clearing chief solves.
 
 ## Surface Geometry
 

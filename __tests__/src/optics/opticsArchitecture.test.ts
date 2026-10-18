@@ -107,7 +107,6 @@ const SEAM_LEGACY: readonly string[] = [
   "src/optics/compat.ts",
   "src/optics/constants.ts",
   "src/optics/distortionAnalysis.ts",
-  "src/optics/field/chiefRay.ts",
   "src/optics/field/projection.ts",
   "src/optics/focusDistance.ts",
   "src/optics/foldedPathDisplay.ts",
@@ -173,6 +172,21 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     owner: "CompiledLens",
     key: "owner identity",
     perOwner: "one read-only map with a row per element, built once",
+  },
+  "src/optics/diagnostics/chiefRay.ts#DIAGNOSTICS": {
+    kind: "bounded",
+    owner: "module",
+    key: "compiled identity",
+    capacity: 2048,
+    limit: "DIAGNOSTIC_LENS_LIMIT",
+  },
+  "src/optics/field/chiefRayCache.ts#CACHE": {
+    kind: "weak-owner",
+    owner: "PreparedGeometry",
+    key: "owner identity, then exact field angle, launch surface and channel",
+    perOwner: "an LRU of at most 512 chief solves",
+    capacity: 512,
+    limit: "CHIEF_RAY_CACHE_LIMIT",
   },
   "src/optics/geometry/surfaceProfile.ts#COMPILED_ASPHERES": {
     kind: "weak-owner",
@@ -265,15 +279,15 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
 };
 
 /**
- * Legacy: caches that grow without bound — one strong Map with no cap, and WeakMaps whose
+ * Legacy: caches that grow without bound — WeakMaps whose
  * per-owner Map has no cap. A WeakMap frees an owner's entries with the owner, but a live lens
  * or state still accumulates one entry per distinct key.
  * Rule: every module-level Map, WeakMap, Set or WeakSet in src/optics/ is registered.
  * Staleness is read from declarations: an entry is stale once its container is gone or is never
  * written, and a WeakMap once it no longer shows a Map or Set per owner, in its own declaration
- * or in the module type its record names as `storeType`. Two things stay review-only. A cap
+ * or in the module type its record names as `storeType`. A cap stays review-only: it
  * shows in no declaration, so an entry retired by capping has to be moved to the registry by
- * hand, with its capacity. And DIAGNOSTICS is a strong Map, with no per-owner store to check.
+ * hand, with its capacity.
  */
 const CACHE_LEGACY: Readonly<Record<string, CacheLegacyRecord>> = {
   "src/optics/analysis/mtfRayClassification.ts#boundsBySurface": {
@@ -283,14 +297,6 @@ const CACHE_LEGACY: Readonly<Record<string, CacheLegacyRecord>> = {
   "src/optics/analysis/mtfTracing.ts#indexTablesByState": {
     grows: "per prepared state, one index table per distinct wavelength",
     retire: "cap the per-state map of index tables",
-  },
-  "src/optics/field/chiefRayCache.ts#CACHE": {
-    grows: "per lens, one solve per distinct focus, zoom, aberration, field angle and launch surface",
-    retire: "cache chief-ray solves per prepared state under a capacity",
-  },
-  "src/optics/field/chiefRayCache.ts#DIAGNOSTICS": {
-    grows: "a strong Map with one counter record per lens key, cleared only by resetChiefRayDiagnostics2()",
-    retire: "key the counters by lens object in a WeakMap, or cap the map",
   },
   "src/optics/perspective/analysis/vignetting.ts#ZERO_CENTER_REFERENCE_BY_STATE": {
     grows: "per prepared state, one center reference per distinct sampling, pupil and channel key",

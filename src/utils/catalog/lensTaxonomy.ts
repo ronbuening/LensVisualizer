@@ -47,6 +47,7 @@ export const LENS_MOUNTS = [
   { id: "konica-f", label: "Konica F", sortOrder: 290 },
   { id: "leica-ltm", label: "Leica LTM / M39", sortOrder: 300 },
   { id: "leica-m", label: "Leica M", sortOrder: 310 },
+  { id: "leica-visoflex", label: "Leica Visoflex", sortOrder: 315 },
   { id: "leica-r", label: "Leica R", sortOrder: 320 },
   { id: "leica-s", label: "Leica S", sortOrder: 330 },
   { id: "l-mount", label: "L-Mount", sortOrder: 340 },
@@ -93,6 +94,7 @@ export const LENS_MOUNTS = [
   { id: "bronica-sq", label: "Zenza Bronica SQ", sortOrder: 870 },
   { id: "contax-yashica", label: "Contax / Yashica", sortOrder: 880 },
   { id: "large-format-lens-board", label: "Large-format Lens Board", sortOrder: 895 },
+  { id: "projection-lens", label: "Projection", sortOrder: 896 },
   { id: "enlarging-lens", label: "Enlarging Lens", sortOrder: 897 },
   { id: "fixed-lens-camera", label: "Fixed-lens Camera", sortOrder: 900 },
 ] as const;
