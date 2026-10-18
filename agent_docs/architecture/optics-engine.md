@@ -1338,12 +1338,20 @@ primers aligned to that convention.
 `distortionAnalysis.ts` computes:
 
 - `computeDistortionCurve()` - historical center-to-edge samples with independent ray validation.
-  The shared inversion keeps the original coarse brackets, 40-step bisection and 1e-4 mm success tolerance.
+  The shared inversion selects the first neighboring table nodes straddling the target, seeds by inverse linear
+  interpolation, then refines with safeguarded Illinois secants. The scalar inversion uses its existing field
+  endpoints in the same way. Both use a strict 1e-4 mm success tolerance. After eight secant evaluations without
+  convergence, or a non-finite secant height, they discard that progress and replay the original pure bisection from
+  the original bracket, with its 40-step cap and return values. Out-of-range targets retain their existing failure
+  paths. No global monotonicity rejection is added: a later valid bracket remains usable after an earlier height jump.
   Each returned ray must complete and reach its own target within that tolerance; invalid samples are dropped,
   and later valid samples remain. An earlier failure or height jump does not exclude a later field. The corner
-  is unavailable only when its own inversion has no valid ray. Retained samples keep their original target heights,
-  floats and normalization; stations with all samples valid keep the exact Edge figure and label. Trace diagnostics
-  are observed on rays already traced; only a 40-step fallback needs a final height check. A distinct format-corner
+  is unavailable only when its own inversion has no valid ray. Retained samples keep their requested target heights
+  and normalization; solved angles are judged by their forward image-height residual, so derived distortion values
+  can move within the inversion criterion.
+  The analysis field limit also uses this lookup and retains its exhausted-iteration fallback. Replaying pure
+  bisection keeps the legacy field limit and target grid at trace discontinuities where no root exists. Trace
+  diagnostics are observed on rays already traced; only a 40-step fallback needs a final height check. A distinct format-corner
   target for rectilinear curves is checked independently when needed, including the raw field if the analysis field
   stops short. Fisheye Edge reporting keeps the historic last bracketed target. Ordinary
   design/aperture limits retain Edge reporting; no earlier failure vetoes a corner ray that reaches its target. No continuity scan or

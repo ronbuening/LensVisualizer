@@ -725,6 +725,29 @@ describe("C2 capture instrumentation", () => {
     }
   });
 
+  it("recognizes both bisection and secant inversion returns with the same expected solver set", () => {
+    const id = resolve("src/optics/field/imageHeight.ts");
+    const secant = readFileSync(id, "utf8");
+    // Both the fast path and replay retain the return forms recognized by the probes.
+    const bisection = secant
+      .replace("imageHeightSecant(loAngle, hiAngle, fLo, fHi)", "(loAngle + hiAngle) / 2")
+      .replace("imageHeightSecant(lo, hi, fLo, fHi)", "(lo + hi) / 2");
+    expect(bisection).not.toBe(secant);
+    for (const source of [bisection, secant]) {
+      const transformed = instrumentSolvers(source, id, "helper")!;
+      expect(transformed.match(/__engineDiffProbeRoot\(/g)).toHaveLength(5);
+      expect(transformed).toContain("(angle) => lookup.imageHeightAt(angle) + Math.abs(target), 1e-4, true");
+      expect(transformed).toContain(
+        "(angle) => chiefRayImageHeight(state, { fieldAngleDeg: angle, zPos, geometry: geom, prepared }) - target, 1e-4, true",
+      );
+      for (const name of ["invertChiefRayImageHeights", "solveFieldAngleForImageHeight"]) {
+        expect(() => instrumentSolvers(source.replace(`function ${name}(`, `function renamed(`), id, "helper")).toThrow(
+          `update solver probes for ${id}: ${name}`,
+        );
+      }
+    }
+  });
+
   it("keeps ordinary scalar results exact and captures an actual solver's downstream derivative", async () => {
     const root = resolve(".");
     const temp = mkdtempSync(join(tmpdir(), "engine-diff-propagation-"));

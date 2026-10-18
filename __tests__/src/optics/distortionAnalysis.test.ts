@@ -37,7 +37,7 @@ describe("computeDistortionCurve", () => {
     expect(result.corner.status).toBe("unreachable");
     expect(result.cornerImageHeight).toBe(21.65);
     expect(result.samples.length).toBeGreaterThan(1);
-    if (focusT === 0) expect(result.samples.length).toBeLessThan(21);
+    if (focusT === 0) expect(result.samples.length).toBe(10);
     for (const sample of result.samples) {
       expect(
         Math.abs(chiefRayImageHeightAccurate(sample.fieldAngleDeg, z, focusT, 0, L) - sample.realHeight),
@@ -81,31 +81,12 @@ describe("computeDistortionCurve", () => {
     expect(result.samples.map((sample) => sample.normalizedImageHeight)).toEqual([0, 1 / 3, 1]);
   });
 
-  // Captured after S6.P2.T2's chief refinement: every sample float and the scalar height-trace count across both adapter forms.
-  // Call arguments are not pinned: a launch height from V8's math functions can differ by an ulp between platforms.
-  // The field-limited Canon keeps its -2.58% Edge at 21.08 mm, short of the 21.65 mm corner.
+  // C2 changes solved angles and work, so hold forward residuals instead of the former C0 digest.
+  // The baseline counts include table construction and final distortion-reference rays.
   it.each([
-    {
-      data: ApoLantharRaw,
-      samples: "5cf1da2e7822ac7383e38b7fa548608f6d70a667bd2b090b569a9135cc29d57f",
-      count: 242,
-    },
-    {
-      data: Canon14Raw,
-      samples: "f76c1756e1d3c7a334ff4805cf6bb09763e5d55aa40fb5507c6bf9981603fde7",
-      count: 272,
-    },
-  ])("preserves sample bits and ray count for $data.key", async ({ data, samples, count }) => {
-    const digest = async (value: unknown) => {
-      const text = JSON.stringify(value, (_key, entry) => {
-        if (typeof entry !== "number") return entry;
-        const bytes = new Uint8Array(8);
-        new DataView(bytes.buffer).setFloat64(0, entry);
-        return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
-      });
-      const hash = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
-      return Array.from(new Uint8Array(hash), (byte) => byte.toString(16).padStart(2, "0")).join("");
-    };
+    { data: ApoLantharRaw, baselineCount: 242 },
+    { data: Canon14Raw, baselineCount: 272 },
+  ])("validates every sample with fewer rays than bisection for $data.key", ({ data, baselineCount }) => {
     const L = build(data);
     const { z } = doLayout(0, 0, L);
     let boundScalarCount = 0;
@@ -130,8 +111,13 @@ describe("computeDistortionCurve", () => {
     try {
       const result = computeDistortionCurve(L, z, 0, 0, L.EFL, L.stopPhysSD);
       expect(result.corner.status).toBe("reached");
-      expect(await digest(result.samples)).toBe(samples);
-      expect(scalar.mock.calls.length + boundScalarCount).toBe(count);
+      expect(result.samples).toHaveLength(21);
+      expect(scalar.mock.calls.length + boundScalarCount).toBeLessThan(baselineCount);
+      for (const sample of result.samples) {
+        expect(
+          Math.abs(chiefRayImageHeightAccurate(sample.fieldAngleDeg, z, 0, 0, L) - sample.realHeight),
+        ).toBeLessThan(1e-4);
+      }
       expect(boundVectorCount).toBe(0);
       expect(vector).not.toHaveBeenCalled();
     } finally {

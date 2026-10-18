@@ -1,7 +1,7 @@
 /**
  * Image heights — traced chief heights, inversion and the format-bounded analysis field.
  *
- * Builds on raw field geometry and chief solves without changing their sampling or solve order.
+ * Builds on raw field geometry and chief solves, with bracketed image-height inversion.
  */
 
 import type { RayTraceResult } from "../../types/optics.js";
@@ -42,6 +42,9 @@ const ANALYSIS_FIELD_CORNER_TOLERANCE_MM = 1e-4;
 /** Margin under the proportional estimate when stepping down to bracket the corner from a field past it. */
 const CORNER_BRACKET_STEP_DOWN = 0.98;
 
+/** Ordinary targets settle in a few evaluations; replay bisection for failures and discontinuities. */
+const IMAGE_HEIGHT_SECANT_ITERATIONS = 8;
+
 interface RealChiefRayProbe2 {
   clears: boolean;
   height: number;
@@ -58,6 +61,7 @@ interface AccurateFieldHeightLookup2 {
   imageHeightAt: (fieldAngleDeg: number) => number;
   lastRay: () => { fieldAngleDeg: number; imageHeight: number; failed: boolean };
   hasTraceFailure: () => boolean;
+  restoreTraceFailure: (failed: boolean) => void;
 }
 
 /**
@@ -103,8 +107,8 @@ export function computeAnalysisFieldGeometry(state: PreparedGeometry): FieldGeom
   });
   if (!Number.isFinite(edgeImageHeight) || Math.abs(edgeImageHeight) <= maxImageHeight + 1e-9) return bounded;
 
-  // Field geometry retains its historic inversion; distortion validates individual
-  // rays later without changing the geometry or target heights of other analyses.
+  // Field geometry retains the lookup's exhausted-iteration fallback. Distortion
+  // separately validates each target ray; the field limit itself is not a reached-height claim.
   const formatHalfFieldDeg = solveFieldAngleForImageHeightLookup2(
     maxImageHeight,
     buildAccurateFieldHeightLookup(state, { zPos, geometry: bounded }),
@@ -400,8 +404,8 @@ export function solveFieldAngleForImageHeightAccurate(
 /**
  * Invert several traced image heights against one shared accurate chief-ray field table.
  *
- * This preserves the `solveFieldAngleForImageHeightAccurate` bisection path
- * but avoids rebuilding the same bracket scan for every target height.
+ * This shares the `solveFieldAngleForImageHeightAccurate` interpolation and refinement path
+ * without rebuilding the same bracket scan for every target height.
  *
  * @param state - prepared geometry for the current controls
  * @param options - target heights in mm, trace vertices and optional raw field geometry
@@ -421,7 +425,7 @@ export function solveFieldAnglesForImageHeightsAccurate(
 }
 
 /**
- * Preserve the original inversion path, then check its own ray against the existing height tolerance.
+ * Invert within the original table brackets, then check the returned ray against the height tolerance.
  * @param state - prepared geometry for the current controls
  * @param options - target heights in mm, trace vertices and optional raw field geometry
  * @returns one reached angle or explicit unreachable result per target
@@ -450,8 +454,8 @@ export function invertChiefRayImageHeights(
       return { status: "unreachable", reason: lookup.hasTraceFailure() ? "trace-failure" : "field-limit" };
     // Folded distortion stays guarded in the UI; retain its existing inversion fallback.
     if (state.lens.flags.isFoldedOptics) return { status: "reached", fieldAngleDeg: angle };
-    // Successful bisections already traced this exact angle. Only the exhausted 40-step
-    // fallback needs another ray, so ordinary samples keep their exact floats and ray work.
+    // Successful refinements already traced this exact angle. Only the exhausted 40-step
+    // fallback needs another ray.
     const ray = lookup.lastRay();
     const height = ray.fieldAngleDeg === angle ? ray.imageHeight : lookup.imageHeightAt(angle);
     if (lookup.lastRay().failed) return { status: "unreachable", reason: "trace-failure", fieldAngleDeg: angle };
@@ -493,7 +497,7 @@ function buildAccurateFieldHeightLookup(
   const segmentAngles: number[] = [];
   const segmentHeights: number[] = [];
   // Keep even finite partial-trace heights in the historic bracket table. Removing
-  // them would change the bisection path (and floats) of otherwise valid targets.
+  // them would change which bracket is selected for otherwise valid targets.
   for (let i = 0; i <= bracketSegments; i++) {
     const angleDeg = (i / bracketSegments) * geometry.halfFieldDeg;
     const height = imageHeightAt(angleDeg);
@@ -507,6 +511,9 @@ function buildAccurateFieldHeightLookup(
     imageHeightAt,
     lastRay: () => lastRay,
     hasTraceFailure: () => hasTraceFailure,
+    restoreTraceFailure: (failed) => {
+      hasTraceFailure = failed;
+    },
   };
 }
 
@@ -533,6 +540,34 @@ function solveFieldAngleForImageHeightLookup2(
 
   let loAngle = lookup.segmentAngles[lo];
   let hiAngle = lookup.segmentAngles[hi];
+  const hadTraceFailure = lookup.hasTraceFailure();
+  let fLo = lookup.segmentHeights[lo] - target;
+  let fHi = lookup.segmentHeights[hi] - target;
+  let side = 0;
+  for (let i = 0; i < IMAGE_HEIGHT_SECANT_ITERATIONS; i++) {
+    // First step is inverse linear interpolation of the neighboring table nodes.
+    const mid = imageHeightSecant(loAngle, hiAngle, fLo, fHi);
+    const yMid = lookup.imageHeightAt(mid);
+    if (!Number.isFinite(yMid)) break;
+    if (Math.abs(yMid - target) < 1e-4) return mid;
+    const fMid = yMid - target;
+    if ((fLo >= 0 && fMid <= 0) || (fLo <= 0 && fMid >= 0)) {
+      hiAngle = mid;
+      fHi = fMid;
+      if (side === 1) fLo /= 2;
+      side = 1;
+    } else {
+      loAngle = mid;
+      fLo = fMid;
+      if (side === -1) fHi /= 2;
+      side = -1;
+    }
+  }
+  // Restart from the original bracket: an exhausted secant can straddle a jump with no root.
+  // Speculative failed rays must not change the legacy null-result classification.
+  lookup.restoreTraceFailure(hadTraceFailure);
+  loAngle = lookup.segmentAngles[lo];
+  hiAngle = lookup.segmentAngles[hi];
   let loHeight = lookup.segmentHeights[lo];
   for (let i = 0; i < 40; i++) {
     const mid = (loAngle + hiAngle) / 2;
@@ -547,6 +582,15 @@ function solveFieldAngleForImageHeightLookup2(
     }
   }
   return (loAngle + hiAngle) / 2;
+}
+
+/** Illinois endpoint weights prevent stagnation; a degenerate secant falls back to bisection. */
+function imageHeightSecant(lo: number, hi: number, fLo: number, fHi: number): number {
+  // Re-evaluate exact endpoint roots so the caller retains its ray validation and failure checks.
+  if (fLo === 0) return lo;
+  if (fHi === 0) return hi;
+  const angle = lo + (hi - lo) * (fLo / (fLo - fHi));
+  return Number.isFinite(angle) && angle > lo && angle < hi ? angle : (lo + hi) / 2;
 }
 
 function solveTrivialImageHeightTarget2(targetImageHeight: number): number | null {
@@ -581,6 +625,29 @@ export function solveFieldAngleForImageHeight(
   const yHi = chiefRayImageHeight(state, { fieldAngleDeg: hi, zPos, geometry: geom, prepared });
   if (!Number.isFinite(yLo) || !Number.isFinite(yHi)) return null;
   if (target > yLo || target < yHi) return null;
+  let fLo = yLo - target;
+  let fHi = yHi - target;
+  let side = 0;
+  for (let i = 0; i < IMAGE_HEIGHT_SECANT_ITERATIONS; i++) {
+    const mid = imageHeightSecant(lo, hi, fLo, fHi);
+    const yMid = chiefRayImageHeight(state, { fieldAngleDeg: mid, zPos, geometry: geom, prepared });
+    if (!Number.isFinite(yMid)) break;
+    if (Math.abs(yMid - target) < 1e-4) return mid;
+    if (yMid > target) {
+      lo = mid;
+      fLo = yMid - target;
+      if (side === -1) fHi /= 2;
+      side = -1;
+    } else {
+      hi = mid;
+      fHi = yMid - target;
+      if (side === 1) fLo /= 2;
+      side = 1;
+    }
+  }
+  // Restart from the original bracket: an exhausted secant can straddle a jump with no root.
+  lo = 0;
+  hi = geom.halfFieldDeg;
   for (let i = 0; i < 40; i++) {
     const mid = (lo + hi) / 2;
     const yMid = chiefRayImageHeight(state, { fieldAngleDeg: mid, zPos, geometry: geom, prepared });
