@@ -19,7 +19,22 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
-    date: "2026-10-16",
+    date: "2026-10-17",
+    type: "lens",
+    summary: "Added the Leitz Colorplan 90mm f/2.5 and Visoflex Telyt 200mm f/4",
+  },
+  {
+    date: "2026-10-17",
+    type: "lens",
+    summary: "Added Minolta MD Tele Rokkor 135mm f/2.8, RF 250mm f/5.6 and MD APO Tele 600mm f/6.3",
+  },
+  {
+    date: "2026-10-17",
+    type: "lens",
+    summary: "Added the Schneider-Kreuznach PA-Curtagon-R 35mm f/4 shift lens",
+  },
+  {
+    date: "2026-10-17",
     type: "improvement",
     summary: "Rebuilt the optics engine: a lens opens in about a third of the time, and its analyses in about 60%",
   },

@@ -56,7 +56,8 @@ export default defineConfig(({ isSsrBuild }) => ({
     testTimeout: 30000,
     /* Report generators live in reports/*.report.ts, outside the default *.test.* pattern;
      * `npm run generate:reports` (vitest.reports.config.js) runs them. */
-    exclude: [...configDefaults.exclude, "**/.claude/**", ...TOOLING_TESTS],
+    // Local patent-audit scratch files are not part of the maintained test suite.
+    exclude: [...configDefaults.exclude, "**/.claude/**", "tmp/**", ...TOOLING_TESTS],
     coverage: {
       provider: "v8",
       /* Source files only: a bare `**` also pulled in each folder's readme.md, which the

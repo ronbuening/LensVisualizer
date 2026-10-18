@@ -233,6 +233,13 @@ export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
     description:
       "Large-format lenses usually do not belong to a single proprietary camera mount. A lens cell or shutter assembly is fitted to a removable lens board, and the camera supplies the bellows draw, front-standard movements, ground-glass focusing, and film holder or digital back. The practical interface is therefore a board and shutter opening rather than a bayonet with a fixed flange distance.\n\nThat changes the optical problem. Designers can assume unit focusing by moving the whole lens, generous back-focus variation from bellows extension, and image circles larger than the nominal film gate so rise, fall, shift, tilt, and swing can be used without immediately clipping the field. Coverage, usable image circle, and behavior at stopped-down working apertures often matter as much as full-aperture speed.\n\nIn this catalog, the large-format lens-board category groups view-camera and technical-camera taking lenses from makers such as Rodenstock, Schneider-Kreuznach, and Carl Zeiss Jena. Enlarging lenses and fixed-camera lenses remain in their own metadata categories unless the data file represents a view-camera taking lens.",
   },
+  "projection-lens": {
+    era: "Slide and image projection lenses",
+    formatNotes: "Projection formats specified by each lens, including 24 × 36 mm slides",
+    summary: "Projection objectives carried in a projector barrel, sleeve, or lens carrier.",
+    description:
+      "Projection lenses form an enlarged image of a slide or other source on a screen. The projector supplies the lens carrier and focusing travel. This catalog category identifies that application; it does not imply one interchangeable mechanical standard.\n\nBarrel diameter, carrier engagement, and focusing arrangements vary between projectors and lens generations. The original five-element Leitz Colorplan belongs here without implying compatibility with later Leica P2 carriers or a camera bayonet. The associated image-format metadata describes the slide gate.",
+  },
   "enlarging-lens": {
     era: "Darkroom and process enlarging lenses",
     formatNotes: "Negative and print projection formats, commonly from 35 mm through medium format",
@@ -343,6 +350,13 @@ export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
       "Leica's long-running rangefinder bayonet, known for compact manual-focus lenses and precise mechanical coupling.",
     description:
       "Leica M replaced the earlier thread mount with a faster bayonet interface and frame-line coupling, beginning with the M3 in 1954. It kept the short rangefinder register that makes compact wide and normal lenses possible, while improving handling for professional reportage, documentary work, and street photography.\n\nThe mount's constraints are as defining as its freedoms. Lenses must work with rangefinder coupling, viewfinder frame lines, and limited close-focus travel, but they can avoid SLR mirror clearance and do not need autofocus motors or electronic aperture mechanisms.\n\nThat combination produced many famously compact Summicron, Summilux, Elmarit, Noctilux, and APO-Summicron designs. In the catalog, M-mount formulas are especially useful for studying how high correction, small size, and mechanical rangefinder usability compete within a long-lived 35 mm system.",
+  },
+  "leica-visoflex": {
+    era: "Leitz Visoflex reflex-housing lenses",
+    formatNotes: "35 mm Leica photography through a reflex housing",
+    summary: "Lenses used with a Leitz Visoflex mirror housing and the appropriate focusing mount or adapter.",
+    description:
+      "The Visoflex placed a reflex mirror housing between a Leica body and the lens, supporting through-the-lens viewing with long-focus and close-up optics. Lenses such as the Telyt 200mm f/4 were intended for this extended optical register.\n\nThis category records the Visoflex system association. It does not imply direct rangefinder coupling or direct infinity-focus mounting on a Leica M or LTM body. Compatibility depends on the housing generation, lens focusing mount, and adapter. Leica R versions belong to the separate R category.",
   },
   "leica-r": {
     era: "Leica manual-focus SLR mount, 1960s-2000s",
