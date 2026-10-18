@@ -231,15 +231,34 @@ function sampleSensorLocked(
     });
   }
 
-  const solved = solveChiefToSensorPoint(
-    context,
-    sensorPoint,
-    sensorFrame,
-    intrinsicFrame,
-    projection,
-    seedDirectionLens,
-    chiefOptionsForSampling(options),
+  const chiefOptions = chiefOptionsForSampling(options);
+  // The context fixes both frames and the pose inversion. Keep the focal scale
+  // and every chief option exact: a rounded key can violate bitwise parity.
+  const solveKey = JSON.stringify(
+    [
+      sensorPoint,
+      projection.kind,
+      projection.focalScaleMm,
+      Object.entries(chiefOptions ?? {})
+        .filter(([, value]) => value !== undefined)
+        .sort(([a], [b]) => a.localeCompare(b)),
+    ],
+    (_key, value: unknown) =>
+      Object.is(value, -0) ? "-0" : typeof value === "number" && !Number.isFinite(value) ? String(value) : value,
   );
+  let solved = context.sensorChiefSolves.get(solveKey);
+  if (!solved) {
+    solved = solveChiefToSensorPoint(
+      context,
+      sensorPoint,
+      sensorFrame,
+      intrinsicFrame,
+      projection,
+      seedDirectionLens,
+      chiefOptions,
+    );
+    context.sensorChiefSolves.set(solveKey, solved);
+  }
   if (!solved.chief) {
     return unavailableFieldSample({
       domain: "sensor-locked",

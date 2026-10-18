@@ -1211,6 +1211,13 @@ Two field domains prevent analyses from accidentally changing the question while
   sensor point through the moved stop. Blur, focus, bokeh, field aberrations, chromatic field behavior, vignetting, and
   apparent pupils use this domain.
 
+Sensor-locked chief results, including failed solves, are memoized in the trace context by exact sensor point,
+projection scale and chief options (including channel). Context identity fixes the prepared state, pose, pivot,
+sensor and frames; pupil quadrature and aperture do not enter the chief solve. Focus, vignetting, field aberrations,
+chromatic reference locks and apparent pupils share these results, while retaining their own pupil bundles. Each
+context also retains its zero-movement reference context, so vignetting's center and matched-field requests share
+solves across calls. Distortion remains scene-locked and does not substitute a sensor-targeted chief.
+
 The **posed ideal** is not taken from a real trace. It maps the intrinsic ideal image point and paraxial exit-pupil
 center into the camera frame, joins them, and intersects that line with the fixed sensor. This supplies a stable
 composition baseline between the zero-pose ideal and the exact traced intercept.

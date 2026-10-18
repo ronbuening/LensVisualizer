@@ -26,7 +26,6 @@ flowchart LR
   n_external_src_optics_chromatic["src/optics/chromatic"]
   n_external_src_optics_first_order["src/optics/first-order"]
   n_external_src_optics_geometry["src/optics/geometry"]
-  n_external_src_optics_lensMovement_ts["src/optics/lensMovement.ts"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_types["src/types"]
   n_external_src_utils_catalog["src/utils/catalog"]
@@ -49,7 +48,6 @@ flowchart LR
   n_src_optics_perspective_analysis_src_optics_perspective_analysis_pupil_ts --> n_external_src_optics_first_order
   n_src_optics_perspective_analysis_src_optics_perspective_analysis_vignetting_ts --> n_external_src_optics_first_order
   n_src_optics_perspective_analysis_src_optics_perspective_analysis_vignetting_ts --> n_external_src_optics_geometry
-  n_src_optics_perspective_analysis_src_optics_perspective_analysis_shared_ts --> n_external_src_optics_lensMovement_ts
   n_src_optics_perspective_analysis_src_optics_perspective_analysis_imageSpace_ts --> n_external_src_optics_math
   n_src_optics_perspective_analysis_src_optics_perspective_analysis_shared_ts --> n_external_src_optics_math
   n_src_optics_perspective_analysis_src_optics_perspective_analysis_chromatic_ts --> n_external_src_optics_types_ts
@@ -66,6 +64,7 @@ flowchart LR
   n_src_optics_perspective_analysis_src_optics_perspective_analysis_shared_ts --> n_external_src_utils_catalog
   n_src_optics_perspective_analysis_src_optics_perspective_analysis_index_ts --> n_src_optics_perspective_analysis_src_optics_perspective_analysis_chromatic_ts
   n_src_optics_perspective_analysis_src_optics_perspective_analysis_index_ts --> n_src_optics_perspective_analysis_src_optics_perspective_analysis_distortion_ts
+  n_src_optics_perspective_analysis_src_optics_perspective_analysis_index_ts --> n_src_optics_perspective_analysis_src_optics_perspective_analysis_fieldAberrations_ts
   n_src_optics_perspective_analysis_truncated["additional relationships omitted"]
 ```
 
@@ -73,7 +72,7 @@ flowchart LR
 
 - Direct source files: 9
 - Direct subfolders: 0
-- Main outbound areas: src/optics/perspective (34), src/optics/types.ts (8), src/optics/math (6), src/optics/aberration (3), src/optics/first-order (3), src/types (3), src/optics/analysis (2), src/optics/chromatic, +3 more
+- Main outbound areas: src/optics/perspective (34), src/optics/types.ts (8), src/optics/math (6), src/optics/aberration (3), src/optics/first-order (3), src/types (3), src/optics/analysis (2), src/optics/chromatic, +2 more
 - External consumers: src/optics/analysis, src/optics/perspective
 
 ## Files
@@ -87,5 +86,5 @@ flowchart LR
 | `imageSpace.ts` | Image Space helper module | src/optics/perspective (3), src/optics/first-order, src/optics/math, src/optics/types.ts | src/optics/perspective (4) | PerspectiveAffineSensorRay, SensorPlaneAxis, PerspectiveFieldSensorAxes, PerspectiveSensorSpotSummary, PerspectiveSensorBestFocus, resolvePerspectivePupilSemiDiameter, affineSensorRayFromPupilSample, affineSensorRaysFromField, +5 more |
 | `index.ts` | Barrel/registry module | src/optics/perspective (8) | src/optics/perspective | re-export * |
 | `pupil.ts` | Pupil helper module | src/optics/perspective (3), src/optics/math (2), src/optics/first-order, src/optics/types.ts, src/types | src/optics/analysis, src/optics/perspective | PerspectivePupilOptions, IntrinsicEntrancePupil, IntrinsicExitPupil, IntrinsicPerspectivePupils, WeightedPupilRayLine, ApparentPupilLineEstimate, ApparentPerspectivePupil, PerspectivePupilSample, +4 more |
-| `shared.ts` | Shared helper module | src/optics/perspective (2), src/optics/lensMovement.ts, src/optics/math, src/optics/types.ts, src/utils/catalog | src/optics/perspective (6) | SensorFrameDisplacement, sensorFrameDisplacement, createZeroMovementPerspectiveContext, sensorPointForUv, sensorUvInsideFormat, finiteRatio |
+| `shared.ts` | Shared helper module | src/optics/perspective (2), src/optics/math, src/optics/types.ts, src/utils/catalog | src/optics/perspective (6) | SensorFrameDisplacement, sensorFrameDisplacement, createZeroMovementPerspectiveContext, sensorPointForUv, sensorUvInsideFormat, finiteRatio |
 | `vignetting.ts` | Vignetting helper module | src/optics/perspective (4), src/optics/math (2), src/optics/first-order, src/optics/geometry, src/optics/types.ts, +1 more | src/optics/analysis, src/optics/perspective | PerspectiveVignettingOptions, PerspectiveVignettingRayContribution, PerspectiveVignettingThroughput, PerspectiveVignettingRatios, PerspectiveVignettingReference, PerspectiveVignettingSample, PerspectiveVignettingAnalysis, createAreaWeightedCircularPupilPoints, +5 more |
