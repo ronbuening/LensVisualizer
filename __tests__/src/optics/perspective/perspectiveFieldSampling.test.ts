@@ -27,8 +27,6 @@ import type { Vec3 } from "../../../../src/optics/types.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import { build, buildChromaticPositiveElementLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 import { boundedFieldStatus } from "../../../../src/optics/perspective/fieldResults.js";
-import { createFieldPlaneFrame, pointInsideSensor } from "../../../../src/optics/perspective/fieldGeometry.js";
-import { IMAGE_FORMAT_BY_ID } from "../../../../src/utils/catalog/lensTaxonomy.js";
 import * as sensorTarget from "../../../../src/optics/perspective/sensorTarget.js";
 import { computePerspectiveFocusAnalysis } from "../../../../src/optics/perspective/analysis/focus.js";
 import { computePerspectiveVignettingAnalysis } from "../../../../src/optics/perspective/analysis/vignetting.js";
