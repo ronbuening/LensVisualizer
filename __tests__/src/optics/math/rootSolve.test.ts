@@ -106,6 +106,44 @@ describe("solveScalarRoot", () => {
   });
 
   it.each([null, undefined, Number.NaN, Number.POSITIVE_INFINITY])(
+    "preserves the grid pair straddling an unavailable off-grid seed (%s)",
+    (unavailable) => {
+      const lo = 5;
+      const hi = -38 + (86 * 7) / 12;
+      const root = (lo + hi) / 2;
+      const result = solveScalarRoot((x) => (x === 10 ? unavailable : x - root), {
+        initialGuess: 10,
+        initialHalfWidth: 48,
+        min: -48,
+        max: 48,
+        scanSamples: 12,
+      });
+
+      expect(result.status).toBe("converged");
+      expect(result.bracket).toEqual([lo, hi]);
+      expect(result.root).toBeGreaterThan(lo);
+      expect(result.root).toBeLessThan(hi);
+      expect(result.root).toBeCloseTo(root, 12);
+      expect(result.residual).toBe(0);
+    },
+  );
+
+  it.each([null, undefined, Number.NaN, Number.POSITIVE_INFINITY])(
+    "keeps an unavailable on-grid seed as an adjacency split (%s)",
+    (unavailable) => {
+      const result = solveScalarRoot((x) => (x === 0 ? unavailable : x - 0.1), {
+        initialGuess: 0,
+        initialHalfWidth: 1,
+        scanSamples: 8,
+        maxExpansions: 0,
+      });
+
+      expect(result.status).toBe("unbracketed");
+      expect(result.bracket).toBeNull();
+    },
+  );
+
+  it.each([null, undefined, Number.NaN, Number.POSITIVE_INFINITY])(
     "splits each scan side at an unavailable sample (%s)",
     (unavailable) => {
       for (const direction of [-1, 1]) {

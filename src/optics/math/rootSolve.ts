@@ -2,8 +2,8 @@
  * Callback-driven scalar root solving with expanding bracket scans.
  *
  * Optical callers often have discontinuous valid domains because a trial ray
- * can clip or miss a surface. Null callback values split the scan so a bracket
- * never crosses an unavailable interval.
+ * can clip or miss a surface. Unavailable grid samples split the scan so a
+ * bracket never crosses a sampled gap in the valid domain.
  */
 
 export type ScalarRootEvaluation = number | null | undefined;
@@ -119,30 +119,38 @@ export function solveScalarRoot(
     const hi = Math.min(max, initialGuess + halfWidth);
     if (!Number.isFinite(lo) || !Number.isFinite(hi) || lo >= hi) continue;
 
-    const sampleX = (index: number) =>
-      index === 0 ? lo : index === scanSamples ? hi : lo + ((hi - lo) * index) / scanSamples;
-    let leftIndex = Math.min(scanSamples, Math.max(-1, Math.floor(((initialGuess - lo) / (hi - lo)) * scanSamples)));
+    const samples = Array.from({ length: scanSamples + 1 }, (_, index) =>
+      index === 0 ? lo : index === scanSamples ? hi : lo + ((hi - lo) * index) / scanSamples,
+    );
+    // Only a finite off-grid seed joins the grid. An unavailable off-grid probe
+    // must not split the original grid pair that straddles it.
+    if (seed !== null && initialGuess >= lo && initialGuess <= hi && !samples.includes(initialGuess)) {
+      samples.splice(
+        samples.findIndex((x) => x > initialGuess),
+        0,
+        initialGuess,
+      );
+    }
+    const firstRight = samples.findIndex((x) => x > initialGuess);
+    let leftIndex = (firstRight === -1 ? samples.length : firstRight) - 1;
     let rightIndex = leftIndex + 1;
-    // Keep the original grid, but visit the nearest side first. Separate neighbors
-    // prevent a missing ray on either side from being bridged by the other side.
-    const inRangeSeed = initialGuess >= lo && initialGuess <= hi ? seed : null;
-    let left = inRangeSeed;
-    let right = inRangeSeed;
-    while (leftIndex >= 0 || rightIndex <= scanSamples) {
+    const points: (EvaluatedPoint | null | undefined)[] = new Array(samples.length);
+    // Visit outward, checking only adjacent grid entries as each pair completes.
+    // Null grid samples (including an on-grid seed) still end adjacency.
+    while (leftIndex >= 0 || rightIndex < samples.length) {
       const goLeft =
         leftIndex >= 0 &&
-        (rightIndex > scanSamples || initialGuess - sampleX(leftIndex) <= sampleX(rightIndex) - initialGuess);
-      const x = sampleX(goLeft ? leftIndex-- : rightIndex++);
-      if (x === initialGuess) continue;
-      const previous = goLeft ? left : right;
-      const current = evaluateAt(x);
-      if (goLeft) left = current;
-      else right = current;
+        (rightIndex >= samples.length || initialGuess - samples[leftIndex] <= samples[rightIndex] - initialGuess);
+      const index = goLeft ? leftIndex-- : rightIndex++;
+      const x = samples[index];
+      const previous = points[goLeft ? index + 1 : index - 1];
+      const current = x === initialGuess ? seed : evaluateAt(x);
+      points[index] = current;
       if (current === null) continue;
       if (Math.abs(current.value) <= residualTolerance) {
         return success(current, 0, evaluations, [current.x, current.x]);
       }
-      if (previous !== null && oppositeSignsOrZero(previous.value, current.value)) {
+      if (previous != null && oppositeSignsOrZero(previous.value, current.value)) {
         bracket = goLeft ? { lo: current, hi: previous } : { lo: previous, hi: current };
         break;
       }

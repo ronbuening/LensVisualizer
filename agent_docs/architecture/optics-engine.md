@@ -501,7 +501,8 @@ reset clears counters without clearing chief solves.
 
 `math/rootSolve.ts` supplies the scalar solves for perspective chief aiming, meridional sensor targeting,
 finite-conjugate MTF aiming and MTF field-height inversion. It scans each expanding interval's sample grid outward
-from the seed, keeping separate neighbors on either side; null, undefined and non-finite samples split the scan.
+from the seed, checking adjacent grid entries; null, undefined and non-finite grid samples split the scan.
+A finite off-grid seed joins that ordered grid; an unavailable off-grid seed leaves the straddling pair intact.
 Once bracketed, Brent's method combines secant and inverse quadratic interpolation with safeguarded bisection
 (Brent, _Algorithms for Minimization without Derivatives_, 1973, ch. 4). A refinement sample that is unavailable
 returns `evaluation-failed`. Convergence still accepts either the caller's residual tolerance or the bracket-width
