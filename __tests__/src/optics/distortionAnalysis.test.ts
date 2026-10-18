@@ -81,18 +81,18 @@ describe("computeDistortionCurve", () => {
     expect(result.samples.map((sample) => sample.normalizedImageHeight)).toEqual([0, 1 / 3, 1]);
   });
 
-  // Captured from engine-next 98355c00: every sample float and the scalar height-trace count across both adapter forms.
+  // Captured after S6.P2.T2's chief refinement: every sample float and the scalar height-trace count across both adapter forms.
   // Call arguments are not pinned: a launch height from V8's math functions can differ by an ulp between platforms.
   // The field-limited Canon keeps its -2.58% Edge at 21.08 mm, short of the 21.65 mm corner.
   it.each([
     {
       data: ApoLantharRaw,
-      samples: "a45d10a73ff20b965f1d9390339b67a9c9a725343a84364f3b04fb89f5402e77",
+      samples: "5cf1da2e7822ac7383e38b7fa548608f6d70a667bd2b090b569a9135cc29d57f",
       count: 242,
     },
     {
       data: Canon14Raw,
-      samples: "444b8d9fa2e8446e85052afd3eb6f47bcbf4629bdbf5cc86b82d1da464ce2649",
+      samples: "f76c1756e1d3c7a334ff4805cf6bb09763e5d55aa40fb5507c6bf9981603fde7",
       count: 272,
     },
   ])("preserves sample bits and ray count for $data.key", async ({ data, samples, count }) => {

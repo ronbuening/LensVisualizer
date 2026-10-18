@@ -479,10 +479,20 @@ field angle, launch surface and channel. Controls are already fixed by the geome
 `launchSurfaceForFieldDeg(fieldDeg, projection)`: **fisheye projections always route through
 `solveChiefRayBoundingSphere`** regardless of angle, so every fisheye solve in the catalog exercises the bounding-sphere
 code. Rectilinear projections keep cap-based dispatch: object-plane below `MAX_FIELD_LAUNCH_DEG` (89°), bounding-sphere
-at/above. The bounding-sphere bisection varies the EP-crossing height `yEP` and traces directly via
+at/above. The bounding-sphere solve varies the EP-crossing height `yEP` and traces directly via
 the prepared geometry traversal; both paths return `yLaunch` projected to z=0 for semantic consistency. Callers that only
 need a scalar launch height should read `solve.yLaunch`; new analysis code should still inspect `solve.status` and
 `solve.vectorLaunch` instead of assuming every field has a finite slope.
+
+Both paths preserve their legacy bracket selection: the object-plane solve first tries the interval around the
+paraxial seed; if it fails, it uses the expanding 96-sample scans. The bounding-sphere path starts with those scans.
+Scans retain the first adjacent sign change, in-scan convergence, and nearest valid sample on bracket failure.
+Within the chosen bracket, a shared refinement takes the legacy first midpoint and keeps its half, then uses
+Illinois regula falsi with a midpoint safeguard for an interpolation outside the open bracket. Acceptance remains
+`|stop height| < 1e-7 mm` or bracket width `< 1e-9 mm`, with the legacy 30-iteration cap. A null first midpoint returns
+`paraxial-fallback`; a later null replays legacy bisection from the original bracket and returns its result. Iterations
+count the returned refinement (the replay on fallback), excluding bracket scans and discarded secant work. The
+neighbour-seeded field-walk solver keeps its existing refinement.
 
 The prepared implementation is split into `field/fieldGeometry.ts` (raw field, pupil and conjugate geometry),
 `field/chiefRaySolve.ts` (object-plane and bounding-sphere solves), and `field/imageHeight.ts` (traced image heights,
