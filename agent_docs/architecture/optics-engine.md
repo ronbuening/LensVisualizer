@@ -486,6 +486,15 @@ Every solve outcome is counted through `recordChiefRayStatus2()` in `src/optics/
 `src/optics/chiefRayDiagnostics.ts` is a re-export barrel that exposes the per-lens status-count snapshot as
 `getChiefRayDiagnostics()` / `resetChiefRayDiagnostics()` for audit scripts and tests.
 
+`math/rootSolve.ts` supplies the scalar solves for perspective chief aiming, meridional sensor targeting,
+finite-conjugate MTF aiming and MTF field-height inversion. It scans each expanding interval's sample grid outward
+from the seed, keeping separate neighbors on either side; null, undefined and non-finite samples split the scan.
+Once bracketed, Brent's method combines secant and inverse quadratic interpolation with safeguarded bisection
+(Brent, _Algorithms for Minimization without Derivatives_, 1973, ch. 4). A refinement sample that is unavailable
+returns `evaluation-failed`. Convergence still accepts either the caller's residual tolerance or the bracket-width
+tolerance; diagnostics retain the original bracket and count callback evaluations. Multiple roots can select a
+different bracket because scanning starts near the seed.
+
 ## Surface Geometry
 
 `src/optics/geometry/surfaceProfile.ts` is the one implementation of surface sag, slope, and profiles. Both exact

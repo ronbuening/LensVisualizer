@@ -6,7 +6,7 @@
  * each test names the drift it must detect. Real catalog lenses appear only as sources of realistic records.
  */
 
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   C2_CRITERIA,
   QUANTITIES,
@@ -65,6 +65,7 @@ import {
 import { ingestLens, ingestTeleconverter, toTeleconverterData } from "../../../src/optics/buildLens.js";
 import { toLensDataInput } from "../../../src/optics/prescription/toLensData.js";
 import { INTERSECTION_TOLERANCE } from "../../../src/optics/constants.js";
+import * as perspectiveChromatic from "../../../src/optics/perspective/analysis/chromatic.js";
 import type { LensDataInput } from "../../../src/types/optics.js";
 import plainTwin from "./engineDiffFixtures/fingerprintTwinPlain.js";
 import restyledTwin from "./engineDiffFixtures/fingerprintTwinRestyled.js";
@@ -3046,28 +3047,32 @@ describe("engineDiff cross-evaluation", () => {
     );
   });
 
-  it("passes the catalog case that a count of failed statuses blocked, on records of the real engine", () => {
-    /* One glass of a catalog lens resolves on the head data and not on the base data. Its chromatic perspective
-     * analysis then has channels that reach the sensor where they missed it, and the rays traced for them for the
-     * first time hold some that fail. The lens is a source of real records here, and what is asserted is the shape
-     * of the change, not its numbers. */
+  it("passes newly traced failures when chromatic samples move inside the sensor, on records of the real engine", () => {
+    /* Request points clearly outside and then inside the sensor. The newly available channels retain real ray
+     * failures, exercising the path-based data comparison without relying on a solver's exact-edge landing. */
     const id = "panasonic-lumix-s-pro-50-f14";
     const asked = tierRequests("p", { ...requestCatalog(CATALOG), changedLensKeys: [id] }).filter(
       (request) => lensId(request.lens) === id,
     );
     expect(asked.map((request) => request.family)).toContain("analysis");
-    const unresolved: SerializedCatalog = {
-      ...CATALOG,
-      lenses: CATALOG.lenses.map((entry) => {
-        if (entry.key !== id) return entry;
-        const data = toLensDataInput(ingestLens(decodeValue(entry.prescription) as LensDataInput));
-        const elements = data.elements.map((element, index) =>
-          index === data.elements.length - 1 ? { ...element, glass: "A glass no catalog holds" } : element,
+    const computeChromatic = perspectiveChromatic.computePerspectiveChromaticAnalysis;
+    const captureAtEdge = (edge: number): PayloadRecord[] => {
+      // Only the two endpoint requests move; 0.012 mm clearance is 1,200 times the lock tolerance.
+      const chromatic = vi
+        .spyOn(perspectiveChromatic, "computePerspectiveChromaticAnalysis")
+        .mockImplementation((context, options) =>
+          computeChromatic(context, {
+            ...options,
+            sensorUvs: options.sensorUvs?.map(({ u, v }) => ({ u, v: Math.abs(v) === 1 ? v * edge : v })),
+          }),
         );
-        return { ...entry, prescription: encodeValue({ ...data, elements }) };
-      }),
+      try {
+        return captureRecords(CATALOG, asked);
+      } finally {
+        chromatic.mockRestore();
+      }
     };
-    const [base, head] = [captureRecords(unresolved, asked), captureRecords(CATALOG, asked)];
+    const [base, head] = [captureAtEdge(1.001), captureAtEdge(0.999)];
     /* What the count compared: the head data's records hold more failed statuses than the base data's. */
     const gained = failedStatusCount(head) - failedStatusCount(base);
     expect(gained).toBeGreaterThan(0);
@@ -3091,7 +3096,7 @@ describe("engineDiff cross-evaluation", () => {
       resized: { arrays: 0 },
     });
     expect(paths.headOnly.statuses).toBeGreaterThan(gained);
-    expect(paths.statusChanges["missed-sensor -> usable"]).toBeGreaterThan(0);
+    expect(paths.statusChanges["outside-projection-domain -> usable"]).toBeGreaterThan(0);
     expect(paths.statusChanges["absent -> failed"]).toBe(gained);
     /* The other way round the same statuses are work no longer done, and that passes as well. */
     expect(evaluate("semantic", base, head)).toMatchObject({
