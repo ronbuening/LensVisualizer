@@ -1074,7 +1074,7 @@ and position.
 | *(none)* | `schema: 2` | Discriminator; ingest dispatches on it |
 | `key`, `maker`, `name`, `subtitle`, `visible`, `publishedAt` | unchanged, first in the file | Identity readers move from regex to the AST (S2.P2.T2) |
 | `lensMounts`, `imageFormat`, `imageCircleMm`, `specs`, `elementCount`, `groupCount`, `acceptsTeleconverters`, `opticalConfiguration` | `catalog.*` | Same names |
-| `focalLengthMarketing`, `focalLengthDesign` | `catalog.focalLengthMm.{marketing, design}` | Kept as authored, scalar or `[wide, tele]`. The design value stays authored: it is the source's stated range, and it feeds the EFL sanity check and the MTF scale check. S2.P6.T3 adds its consistency check. |
+| `focalLengthMarketing`, `focalLengthDesign` | `catalog.focalLengthMm.{marketing, design}` | Kept as authored, scalar or `[wide, tele]`. The design value stays authored: it is the source's stated range, and it feeds the EFL sanity check and the MTF scale check. S2.P6.T3 enforces its station-endpoint consistency check. |
 | `apertureMarketing`, `apertureDesign` | `catalog.fNumber.{marketing, design}` | Value kept |
 | `patentNumber`, `patentYear`, `patentAuthors`, `patentAssignees`, `sourceErrata` | `source.{patentNumber, patentYear, authors, assignees, errata}` | `errata[].surface` keeps the surface label; a teleconverter's source has no `errata`, which V1 holds for a lens alone |
 | `surfaces[].nd`, `surfaces[].elemId` | `surfaces[].medium` | An element id, an id in `media`, or omitted for air. Indices come from the medium only. |
@@ -1999,19 +1999,7 @@ Each step is its own PR after S2.P5. The phase blocks only S8.P2.T3.
     assertion leaves its corpus test, so every rule lives in one place.
   - **Gate:** C0; no catalog verdict changes.
 - **S2.P6.T3 Design focal-length check.**
-  - **Precondition:** each zoom that misses the check is settled under `agent_docs/lens-patent-audit.md`, so the check
-    lands with no exception list. On 2026-10-09, 10 zooms missed it at 15 endpoints, by 1.03% to 7.35%. Some pair a
-    traced design value with nominal station labels; others may be slips:
-    - `canon-fd-150-600mm-f56-l`
-    - `konica-uc-zoom-hexanon-ar-80-200-f4`
-    - `nikon-afs-zoom-nikkor-80-200mm-f28d-if-ed`
-    - `nikon-ai-zoom-nikkor-35-105mm-f3-5-4-5s`
-    - `nikon-ai-zoom-nikkor-35-200mm-f3-5-4-5s`
-    - `nikon-series-e-zoom-36-72mm-f35`
-    - `nikon-tv-nikkor-115-69-f12-s100`
-    - `schneider-tv-variogon-20-600-f21-66`
-    - `vivitar-s1-35-85-f28`
-    - `vivitar-series-1-70-210-f35`
+  - **Precondition met:** #863 settled the ten zooms; the check has no exception list.
   - **Change:** the validator requires `catalog.focalLengthMm.design` to match the first and last stations'
     `focalLengthMm` within 1%, to catch transcription errors.
   - **Gate:** C0 for the check; the corrections before it are C3 data.
@@ -2649,7 +2637,7 @@ Settled on 2026-10-09:
 | 7–9 | The XF18mm f/2 element indices, the Minolta AF 35mm f/1.4 stop gap and the Nikon Ai 35mm f/1.4 S back-focus gap take their surface or focus-row values; fixed with this plan | Each lens's `*.audit.md` |
 | 10 | `apd: false` and `indexReference: "d"` stay; the 49 no-op aperture models go | [Field mapping](#field-mapping); S2.P6.T1 |
 | 11 | Element focal lengths are derived after a comparison report; other display text stays authored | S2.P6.T4–T5 |
-| 12 | The design focal length stays authored, with a 1% station-endpoint check once 10 zooms that miss it are settled | [Field mapping](#field-mapping); S2.P6.T3 |
+| 12 | The design focal length stays authored, with a 1% station-endpoint check and no exceptions; #863 settled the ten zooms | [Field mapping](#field-mapping); S2.P6.T3 |
 | 13 | Single-lens corpus rules move into the validator, two of them once their exception lists are empty; rules that compare files stay tests | S2.P6.T2 |
 | 14 | The app reads only V2 after S8; the converter is permanent and runs on arrival and on demand | [Ingest, conversion and comments](#ingest-conversion-and-comments); S2.P5.T9; S8.P2.T2 |
 

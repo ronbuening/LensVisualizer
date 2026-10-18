@@ -131,6 +131,36 @@ describe("validateLensData", () => {
     expect(errors[0].filter((error) => error.includes("rim slope"))).toHaveLength(2);
   });
 
+  describe("zoom design focal-length endpoints", () => {
+    const pair = FIXTURE_PAIRS.find((pair) => pair.family === "zoom");
+    if (!pair || pair.kind !== "lens") throw new Error("missing zoom fixture");
+
+    const fixtures = (design: [number, number]) => [
+      { ...pair.v1, focalLengthDesign: design },
+      { ...pair.v2, catalog: { ...pair.v2.catalog, focalLengthMm: { design } } },
+    ];
+
+    it.each([
+      { design: [24.25, 100] as [number, number], endpoint: 0, station: 0, focalLength: 24, percentage: "1.04" },
+      { design: [24, 98.99] as [number, number], endpoint: 1, station: 2, focalLength: 100, percentage: "1.01" },
+    ])("rejects a miss at endpoint $endpoint", ({ design, endpoint, station, focalLength, percentage }) => {
+      for (const file of fixtures(design)) {
+        const ingested = ingestLens(file);
+        const path = ingested.provenance.format === 1 ? "focalLengthDesign" : "catalog.focalLengthMm.design";
+        expect(validateCanonicalLens(ingested)).toEqual([
+          `"${path}[${endpoint}]": ${design[endpoint]} mm differs from zoom station ${station} focal length ${focalLength} mm by ${percentage}% (maximum 1%)`,
+        ]);
+      }
+    });
+
+    it("accepts both endpoints just under 1% from their station values", () => {
+      // Both differences are 0.999%, with opposite signs; the middle station is not a design endpoint.
+      for (const file of fixtures([24.23976, 99.001])) {
+        expect(validateCanonicalLens(ingestLens(file))).toEqual([]);
+      }
+    });
+  });
+
   it("names a V2 zoom's own station fields in unpublished-station diagnostics", () => {
     const pair = FIXTURE_PAIRS.find((pair) => pair.family === "published stations");
     if (!pair || pair.kind !== "lens") throw new Error("missing published stations fixture");

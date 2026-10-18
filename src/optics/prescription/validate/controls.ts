@@ -139,6 +139,21 @@ export function validateStations(
     }
   }
 
+  const design = data.focalLengthDesign;
+  if (isZoom && Array.isArray(design) && design.length === 2) {
+    for (const [endpoint, stationIndex] of [0, data.zoomPositions.length - 1].entries()) {
+      const focalLength = data.zoomPositions[stationIndex];
+      const designFocalLength = design[endpoint];
+      if (!Number.isFinite(focalLength) || focalLength <= 0 || !Number.isFinite(designFocalLength)) continue;
+      const difference = Math.abs(designFocalLength - focalLength) / focalLength;
+      if (difference > 0.01) {
+        errors.push(
+          `"focalLengthDesign[${endpoint}]": ${designFocalLength} mm differs from zoom station ${stationIndex} focal length ${focalLength} mm by ${(difference * 100).toFixed(2)}% (maximum 1%)`,
+        );
+      }
+    }
+  }
+
   /* ── Focus interpolation positions ── */
   const focusPositionCount =
     Array.isArray(data.focusPositions) && data.focusPositions.length >= 2 ? data.focusPositions.length : 2;

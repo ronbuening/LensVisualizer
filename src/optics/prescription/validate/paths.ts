@@ -9,6 +9,7 @@ export function authoredMessages(
 ): string[] {
   if (provenance.format === 1) return errors;
   const names: Record<string, string> = {
+    focalLengthDesign: "catalog.focalLengthMm.design",
     zoomPositions: "zoom.stations[].focalLengthMm",
     zoomLabels: "zoom.stations[].label",
     zoomCloseFocusM: "zoom.stations[].closeFocusM",

@@ -1439,6 +1439,7 @@ Code: `src/optics/prescription/validate/`.
 | Element spans: both ends, in order; internal surfaces only an embedded stop or the folded exceptions | `validateSpans` (`references.ts`) |
 | `groups` and `doublets` name existing surfaces | `validateAnnotations` (`references.ts`) |
 | Stations increasing; keyframes begin at 0, end at 1, strictly increasing; conjugates name distinct authored states | `validateStations` (`controls.ts`) |
+| A zoom's authored `catalog.focalLengthMm.design` pair matches the first and last stations' `focalLengthMm` within 1% of each station value (absolute difference divided by station focal length) | `validateStations` (`controls.ts`) |
 | Gap rows and thicknesses; aberration-control ranges and their base thickness | `validateControls` (`controls.ts`) |
 | Published stations and keyframes, and their focus travel | `validatePublishedStations` (`controls.ts`) |
 | An embedded stop is flat, opens into its containing element and needs `stopPlacement`; a glass-side stop needs the flag | `validateStop` (`aperture.ts`) |
