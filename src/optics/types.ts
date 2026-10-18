@@ -308,7 +308,7 @@ export interface CompiledStateSurface extends Omit<CompiledSurface, "d"> {
  * All distances are millimeters. `z` and `imgZ` use the global optical-axis
  * coordinate; folded systems may have an image plane whose normal is not +z.
  */
-export interface PreparedOpticalState {
+export interface PreparedGeometry {
   readonly traceGeometry: TraceGeometry;
   lens: CompiledLens;
   focusT: number;
@@ -321,6 +321,9 @@ export interface PreparedOpticalState {
   totalTrack: number;
   cacheKey: string;
 }
+
+/** Compatibility name for analyses awaiting their prepared-geometry request migration. */
+export type PreparedOpticalState = PreparedGeometry;
 
 /** Reason a prepared state could not be constructed. */
 export type PreparationFailureReason = "invalid-control" | "invalid-thickness";
