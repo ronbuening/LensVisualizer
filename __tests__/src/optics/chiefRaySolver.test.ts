@@ -577,6 +577,43 @@ describe("image-height inversion", () => {
     expect(accurate([28])[0]).toEqual({ status: "unreachable", reason: "field-limit" });
   });
 
+  it("discards finite partial secant probes after convergence before classifying the next target", () => {
+    const partialProbes: number[] = [];
+    const { accurate } = syntheticHeight(
+      (angle) => -angle * angle,
+      (angle) => {
+        const failed = Math.abs(angle - (5 + 3 / 11)) < 1e-10;
+        if (failed) partialProbes.push(angle);
+        return failed;
+      },
+    );
+    const spy = vi.spyOn(chiefSolves, "solveChiefRay");
+    const [converged, outside] = accurate([28, 401]);
+    expect(partialProbes).toHaveLength(1);
+    expect(converged.status).toBe("reached");
+    expect(Math.abs(converged.fieldAngleDeg! ** 2 - 28)).toBeLessThan(1e-4);
+    // Twenty-one clean table nodes, then secant convergence without a bisection replay.
+    expect(spy.mock.calls.length - 21).toBeLessThanOrEqual(6);
+    expect(outside).toEqual({ status: "unreachable", reason: "field-limit" });
+  });
+
+  it.each([
+    ["table", 0, "reached"],
+    ["committed ray", 5.25, "unreachable"],
+  ] as const)("retains a %s trace failure after secant convergence", (_source, failedAngle, status) => {
+    const { accurate } = syntheticHeight(
+      (angle) => -angle,
+      (angle) => Math.abs(angle - failedAngle) < 1e-10,
+    );
+    const [converged, outside] = accurate([5.25, 21]);
+    expect(converged).toEqual({
+      status,
+      fieldAngleDeg: 5.25,
+      ...(status === "unreachable" ? { reason: "trace-failure" } : {}),
+    });
+    expect(outside).toEqual({ status: "unreachable", reason: "trace-failure" });
+  });
+
   it("replays legacy bisection at a rootless jump and allows later valid targets", () => {
     const failed = syntheticHeight((angle) => -angle, true);
     expect(failed.accurate([5.25])[0]).toMatchObject({ status: "unreachable", reason: "trace-failure" });

@@ -549,7 +549,11 @@ function solveFieldAngleForImageHeightLookup2(
     const mid = imageHeightSecant(loAngle, hiAngle, fLo, fHi);
     const yMid = lookup.imageHeightAt(mid);
     if (!Number.isFinite(yMid)) break;
-    if (Math.abs(yMid - target) < 1e-4) return mid;
+    if (Math.abs(yMid - target) < 1e-4) {
+      // Keep the committed ray's failure, not failures from discarded secant probes.
+      lookup.restoreTraceFailure(hadTraceFailure || lookup.lastRay().failed);
+      return mid;
+    }
     const fMid = yMid - target;
     if ((fLo >= 0 && fMid <= 0) || (fLo <= 0 && fMid >= 0)) {
       hiAngle = mid;
