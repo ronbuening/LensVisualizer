@@ -180,8 +180,8 @@ below:
 
 A review of #774 before it merged found five gaps in the contract, and the Stage 1 fixtures found a sixth, the grazing
 chord ([#779](https://github.com/ronbuening/LensVisualizer/issues/779)). S3.P2.T1 to S3.P2.T4 each state the gaps they
-close and what they leave. What remains of #779 is stated in S3.P2.T2 and in the open list under
-[Settled decisions](#settled-decisions).
+close and what they leave. The near-tangency C3 before S6.P1.T1 solves the grazing sphere and conic roots; the
+short chord a polynomial asphere can leave on the scan is stated in S3.P2.T2.
 
 ## Integration model
 
