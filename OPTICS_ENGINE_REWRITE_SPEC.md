@@ -2506,7 +2506,7 @@ carrying Phase 2.4 ([Integration model](#integration-model)). Stages 6 to 8 and 
     `perspective/fieldGeometry.ts`.
   - **Gate:** C0.
 
-Merged: the near-tangency C3 (#869, which set A6), S6.P1.T1 (#870) and S6.P3.T1 (#873).
+Merged: the near-tangency C3 (#869, which set A6), S6.P1.T1 (#870), S6.P3.T1 (#873) and S6.P3.T3 (#876).
 
 **Stage 6 gate:** Tier S against the anchor, under the loosest class merged since it; the Stage 6 targets are reported.
 
