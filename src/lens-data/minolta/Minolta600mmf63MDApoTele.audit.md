@@ -1,5 +1,9 @@
 # Minolta 600mm F6.3 MD Apo-Tele — consolidated audit
 
+## Follow-up diagram and movement review
+
+FIG. 7 and the live section retain the small rear groups. From infinity to the interpreted 12 m endpoint, groups I/II move objectward by 9.120/14.592 mm; the front assembly and group III remain fixed. No zoom travel exists. Source-line and fluorite-proxy qualifications remain visible. All eight glass records retain qualified catalog curves.
+
 ## Catalog integration — 2026-10-17
 
 This section records the current catalog decisions. Earlier stages below retain the extraction history and may describe superseded rim or glass choices.

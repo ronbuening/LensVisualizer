@@ -1,5 +1,9 @@
 # LeicaColorplan90mmf25 — Consolidated Audit Record (Stages 1–4)
 
+## Follow-up diagram and movement review
+
+FIG. 1 rims agree with the revised silhouette. Near focus extends the image gap by 9.788 mm, moving the whole unit objectward relative to the fixed image plane; the endpoint remains reconstructed. All five glass records retain qualified catalog curves.
+
 ## Catalog integration — 2026-10-17
 
 This section records the current catalog decisions. Earlier stages below retain the extraction history and may describe superseded rim or glass choices.

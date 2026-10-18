@@ -6,13 +6,15 @@ The catalog preserves the source index and Abbe coordinates. The following names
 
 | Element record | Current spectral annotation |
 |---|---|
-| 1 | PSK2 (legacy Schott/OHARA dense phosphate crown; current equivalent H-ZK1, CDGM) |
+| 1 | PCD2 spectral proxy (HOYA; native e-line PSK2-type coordinates; historical supplier unconfirmed) |
 | 2 | SF10 (Schott) |
 | 3 | Unmatched (LaF8-class lanthanum flint; historical OHARA LAF8 / Schott LaFN8 coordinates, no current catalog match) |
 | 4 | K10 (Schott) |
 
 Three of four element records have compatible spectral proxies. L3 remains unresolved: historical LaFN8/LAF8 coordinates do not supply a verified compatible vendor dispersion curve in the catalog.
 
+
+The follow-up native-e-line comparison selects HOYA PCD2 for L1: n_e ≈ 1.570880 and ν_e ≈ 62.900 against source 1.5709/63.0, closer than the earlier H-ZK1 proxy (1.571036/62.733). These are compatible curves, not historical supplier identifications.
 
 ## Patent Reference and Design Identification
 
@@ -60,7 +62,7 @@ The patent publishes e-line data only. The data file carries the native ne and �
 
 ### L1 — Biconvex Positive
 
-ne = 1.5709, νe = 63.0. Glass: PSK2 (legacy Schott/OHARA dense phosphate crown; current equivalent H-ZK1, CDGM). f = +90.59 mm.
+ne = 1.5709, νe = 63.0. Glass: PCD2 spectral proxy (HOYA; native e-line PSK2-type coordinates; historical supplier unconfirmed). f = +90.59 mm.
 
 L1 is the positive element of the front member and the strongest element of the design: its in-situ contribution is 2.21 times the system power. Its bending is strongly asymmetric (R1 = +62.54 mm, R2 = −281.5 mm), placing most of the refraction at the front surface. As the high-Abbe partner of the front member's achromatizing pair it is set against the dense flint L2, and it is the largest element, with a modeled clear semi-diameter of 26.2 mm.
 
@@ -88,7 +90,7 @@ The patent names no glasses. The table gives the nearest coordinates found by an
 
 | Element | ne / νe (patent) | Nearest coordinate (Δne, Δνe)                               | Data-file label                           | Role                            |
 | ------- | ---------------- | ----------------------------------------------------------- | ----------------------------------------- | ------------------------------- |
-| L1      | 1.5709 / 63.0    | legacy OHARA PSK2 (−0.00002, −0.08)                         | PSK2 class; current equivalent CDGM H-ZK1 | Dense phosphate crown, positive |
+| L1      | 1.5709 / 63.0    | legacy OHARA PSK2 (−0.00002, −0.08)                         | PSK2 class; qualified HOYA PCD2 proxy | Dense phosphate crown, positive |
 | L2      | 1.7343 / 28.1    | HOYA E-FD10 (+0.00002, −0.00); Schott SF10 (0.00000, +0.09) | SF10 (Schott)                             | Dense flint, negative           |
 | L3      | 1.7394 / 40.8    | legacy OHARA LAF8 (+0.00004, +0.08)                         | Unmatched (LaF8 class)                    | Lanthanum flint, positive       |
 | L4      | 1.5035 / 56.3    | Schott K10 (−0.00001, −0.15)                                | K10 (Schott)                              | Crown, negative                 |

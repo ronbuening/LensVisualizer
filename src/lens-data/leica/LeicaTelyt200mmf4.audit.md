@@ -1,5 +1,9 @@
 # LeicaTelyt200mmf4 — Audit Record
 
+## Follow-up diagram and movement review
+
+Local figure and live infinity/near states agree within figure uncertainty; retained SDs. Unit-focus extension is +15.699 mm. L1 now selects the closer native-e-line PCD2 proxy; SF10 and K10 labels explicitly disclose proxy status. L3 remains unresolved; the repeat search found no verified compatible additional vendor curve.
+
 ## Catalog integration — 2026-10-17
 
 This section records the current catalog decisions. Earlier stages below retain the extraction history and may describe superseded rim or glass choices.

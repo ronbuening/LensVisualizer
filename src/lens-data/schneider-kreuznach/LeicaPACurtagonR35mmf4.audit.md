@@ -1,5 +1,9 @@
 # LeicaPACurtagonR35mmf4 — Construction and Audit Record (Stages 1–4)
 
+## Follow-up diagram and movement review
+
+FIG. 2 and the live section retain the 6.2 mm cemented rim. The reconstructed 0.30 m endpoint increases back focus by 6.1501 mm, moving the whole unit objectward relative to the image. Shift is ±7 mm; there is no zoom or tilt schedule. L4 remains unresolved; no verified compatible BaSF13 dispersion row was found. The historical Schneider legal styles remain distinct in the assignee registry.
+
 ## Catalog integration — 2026-10-17
 
 This section records the current catalog decisions. Earlier stages below retain the extraction history and may describe superseded rim or glass choices.

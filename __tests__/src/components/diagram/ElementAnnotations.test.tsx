@@ -155,6 +155,30 @@ describe("ElementAnnotations", () => {
     expect(rows.size).toBe(3);
   });
 
+  it("keeps group captions below packed badges at compact diagram scales", () => {
+    const { container } = render(
+      <svg>
+        <ElementAnnotations
+          L={mockLens}
+          t={mockTheme}
+          shapes={mockShapes}
+          sx={identity}
+          sy={(y) => -y * 0.2}
+          zPos={[0, 5, 6, 11, 12, 17]}
+          act={null}
+          showChromatic={true}
+        />
+      </svg>,
+    );
+    const labels = [...container.querySelectorAll("text")];
+    const group = labels.find((label) => label.textContent === "FRONT")!;
+    const badges = labels.filter((label) => label.textContent?.startsWith("ν"));
+    expect(badges.length).toBeGreaterThan(0);
+    expect(Number(group.getAttribute("y"))).toBeGreaterThanOrEqual(
+      Math.max(...badges.map((label) => Number(label.getAttribute("y")))) + 12,
+    );
+  });
+
   it("highlights the active element", () => {
     const { container } = render(
       <svg>
@@ -226,7 +250,11 @@ describe("ElementAnnotations", () => {
     const group = texts.find((node) => node.textContent === "FRONT")!;
     const doublet = texts.find((node) => node.textContent === "DOUBLET")!;
     expect(firstBadge.getAttribute("y")).not.toBe(secondBadge.getAttribute("y"));
-    expect(group.getAttribute("y")).toBe("-5");
+    expect(Number(group.getAttribute("y"))).toBeGreaterThanOrEqual(
+      Math.max(
+        ...texts.filter((node) => node.textContent?.startsWith("ν")).map((node) => Number(node.getAttribute("y"))),
+      ) + 12,
+    );
     expect(doublet.getAttribute("y")).toBe("-30");
   });
 

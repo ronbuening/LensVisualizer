@@ -78,7 +78,7 @@ const LENS_DATA = {
       vd: 63.0,
       indexReference: "e",
       focalLengthMm: 90.59,
-      glass: "PSK2 (legacy Schott/OHARA dense phosphate crown; current equivalent H-ZK1, CDGM)",
+      glass: "PCD2 spectral proxy (HOYA; native e-line PSK2-type coordinates; historical supplier unconfirmed)",
       apd: false,
       role: "Positive crown of the telephoto front member (Vorderglied)",
     },
@@ -91,7 +91,7 @@ const LENS_DATA = {
       vd: 28.1,
       indexReference: "e",
       focalLengthMm: -144.9,
-      glass: "SF10 (Schott)",
+      glass: "SF10 spectral proxy (Schott; native e-line coordinates; historical supplier unconfirmed)",
       apd: false,
       role: "Negative dense flint completing the telephoto front member",
     },
@@ -118,7 +118,7 @@ const LENS_DATA = {
       vd: 56.3,
       indexReference: "e",
       focalLengthMm: -145.61,
-      glass: "K10 (Schott)",
+      glass: "K10 spectral proxy (Schott; native e-line coordinates; historical supplier unconfirmed)",
       apd: false,
       role: "Negative meniscus of the correction member, concave toward the stop",
     },
@@ -130,7 +130,7 @@ const LENS_DATA = {
     { label: "2", R: -281.5, d: 5.5, sd: 26.2 },
     { label: "3", R: -140.0, d: 4.0, sd: 24.0, medium: 2 },
     { label: "4", R: 448.7, d: 32.72, sd: 24.0 }, // a4 = 36.80 mm; STO position inferred from the patent figure
-    { label: "STO", R: "flat", d: 4.08 }, // SD calibrated to paraxial f/4.0
+    { label: "STO", R: "flat", d: 4.08 }, // SD calibrated to the exact axial f/4.0 beam
     { label: "5", R: -117.0, d: 5.0, sd: 18.7, medium: 3 },
     { label: "6", R: -62.6, d: 18.2, sd: 18.7 },
     { label: "7", R: -37.3, d: 4.0, sd: 14.2, medium: 4 },

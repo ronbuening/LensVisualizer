@@ -63,6 +63,7 @@ const LENS_DATA = {
     {
       id: 1.0,
       name: "L1",
+      diagramLabel: "L1",
       label: "L1",
       type: "Positive Meniscus",
       nd: 1.5176,
@@ -78,6 +79,7 @@ const LENS_DATA = {
     {
       id: 2.0,
       name: "M2",
+      diagramLabel: "M2",
       label: "M2",
       type: "Positive Meniscus Second-Surface Mirror",
       nd: 1.5168,
@@ -93,6 +95,7 @@ const LENS_DATA = {
     {
       id: 3.0,
       name: "M1",
+      diagramLabel: "M1",
       label: "M1",
       type: "Negative Meniscus Second-Surface Mirror",
       nd: 1.5168,
@@ -108,6 +111,7 @@ const LENS_DATA = {
     {
       id: 4.0,
       name: "L3",
+      diagramLabel: "L3",
       label: "L3",
       type: "Clear Central Primary Plug",
       nd: 1.5168,
@@ -123,6 +127,7 @@ const LENS_DATA = {
     {
       id: 5.0,
       name: "L4",
+      diagramLabel: "L4",
       label: "L4",
       type: "Biconcave Negative",
       nd: 1.5168,
@@ -139,6 +144,7 @@ const LENS_DATA = {
     {
       id: 6.0,
       name: "L5",
+      diagramLabel: "L5",
       label: "L5",
       type: "Biconvex Positive",
       nd: 1.74,

@@ -1,5 +1,9 @@
 # Minolta 135mm F2.8 MD Tele Rokkor — consolidated technical audit
 
+## Follow-up diagram and movement review
+
+Example 1 silhouette retains the small rear singlet. No further SD change is justified. Focus is disabled because the source has no spacing schedule; the 1.5 m production MFD remains metadata. L4 remains unresolved; nearby catalog flints do not meet the coordinate guard.
+
 ## Catalog integration — 2026-10-17
 
 This section records the current catalog decisions. Earlier stages below retain the extraction history and may describe superseded rim or glass choices.

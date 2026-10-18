@@ -1,5 +1,9 @@
 # Stage 4 independent audit — final corrected revision
 
+## Follow-up diagram and movement review
+
+FIG. 3 and the folded live diagram retain the front/primary/secondary proportions. Source identifiers L1, M2, M1, L3, L4, L5 now label the rendered records. Coatings, inactive-side blocking and shared primary blank were rechecked. No finite-focus schedule is supplied. All six rendered glass records retain qualified catalog curves.
+
 ## Catalog integration — 2026-10-17
 
 This section records the current catalog decisions. Earlier stages below retain the extraction history and may describe superseded rim or glass choices.
