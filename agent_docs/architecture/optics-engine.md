@@ -1316,9 +1316,11 @@ primers aligned to that convention.
 `distortionAnalysis.ts` computes:
 
 - `computeDistortionCurve()` - historical center-to-edge samples with independent ray validation.
-  The shared inversion selects the first neighboring table nodes straddling the target, seeds by inverse linear
-  interpolation, then refines with safeguarded Illinois secants. The scalar inversion uses its existing field
-  endpoints in the same way. Both use a strict 1e-4 mm success tolerance. After eight secant evaluations without
+  The shared inversion selects the first neighboring table nodes straddling the target and evaluates the legacy first
+  midpoint, retaining its non-finite rejection or in-tolerance acceptance. Otherwise it seeds by inverse linear
+  interpolation inside the half selected by that midpoint, then refines with safeguarded Illinois secants. The scalar
+  inversion uses its existing field endpoints in the same way.
+  Both use a strict 1e-4 mm success tolerance. After eight evaluations (including the first midpoint) without
   convergence, or a non-finite secant height, they discard that progress and replay the original pure bisection from
   the original bracket, with its 40-step cap and return values. Out-of-range targets retain their existing failure
   paths. No global monotonicity rejection is added: a later valid bracket remains usable after an earlier height jump.
@@ -1328,7 +1330,8 @@ primers aligned to that convention.
   and normalization; solved angles are judged by their forward image-height residual, so derived distortion values
   can move within the inversion criterion.
   The analysis field limit also uses this lookup and retains its exhausted-iteration fallback. Replaying pure
-  bisection keeps the legacy field limit and target grid at trace discontinuities where no root exists. Trace
+  bisection keeps the legacy field limit and target grid at trace discontinuities where no root exists. The first
+  midpoint retains its legacy trace-failure flag; discarded secant probes do not leave sticky failures. Trace
   diagnostics are observed on rays already traced; only a 40-step fallback needs a final height check. A distinct format-corner
   target for rectilinear curves is checked independently when needed, including the raw field if the analysis field
   stops short. Fisheye Edge reporting keeps the historic last bracketed target. Ordinary
