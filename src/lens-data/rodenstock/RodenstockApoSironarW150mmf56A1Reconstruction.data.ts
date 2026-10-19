@@ -1,0 +1,224 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * Rodenstock Apo-Sironar-W 150mm f/5.6 — archived A1 reconstruction (hidden)
+ *
+ * Superseded on 2026-10-19 by RodenstockApoSironarW150mmf56.data.ts, the seven-element
+ * DE 3907928 C2 Table 5 model, which now holds the key rodenstock-apo-sironar-w-150f56.
+ * Kept hidden for comparison only.
+ *
+ * Data source: DE 3907928 A1, Table 5, Optische Werke G. Rodenstock.
+ * The patent table is internally inconsistent: the production literature and
+ * patent claim/figure indicate a 7-element, 5-group lens, but the printed
+ * Table 5 cannot reproduce f = 148.7 mm under that reading. This prescription
+ * is therefore an EFL-reconciled reconstruction of Table 5 using the patent's
+ * stated surface-medium convention, an inferred CaF2-class medium after
+ * surface 8, and an implicit flat rear surface for the final printed glass
+ * thickness. The added surface 13 is not a patent-numbered surface; it is a
+ * data-model closure for the EFL-reconciled convention.
+ *
+ * Reconstructed table: 8 elements / 5 groups, all spherical.
+ * Production product line: 7 elements / 5 groups, 80 degrees published field,
+ * 252 mm image circle at f/22 for the 150 mm lens.
+ *
+ * Stop placement: Table 5 gives d7 = 8.60 and a separate Blende distance of
+ * 7.45. Fig. 1 places the stop close to the first rear surface, so the data
+ * file splits the surface 7 -> 8 air space into 7.45 mm from surface 7 to STO
+ * and 1.15 mm from STO to surface 8.
+ *
+ * Semi-diameters: The patent omits clear-aperture semi-diameters. The values
+ * below are conservative renderer semi-diameters sized from paraxial f/5.6
+ * rays and reduced where necessary to satisfy edge-thickness and cross-gap sag
+ * constraints. They should not be read as measured production clear apertures
+ * or as proof of full f/5.6 coverage at the 80 degree published field.
+ *
+ * Focus: Unit focus on the view-camera bellows. The close-focus endpoint is an
+ * illustrative 3.5 m object distance used only to expose the unit-focus BF
+ * slider in LensVisualizer; the original lens has no fixed minimum focus
+ * distance independent of the camera.
+ */
+
+const LENS_DATA = {
+  schema: 2,
+  key: "rodenstock-apo-sironar-w-150f56-a1-reconstruction",
+  maker: "Rodenstock",
+  name: "RODENSTOCK APO-SIRONAR-W 150mm f/5.6 (archived A1 reconstruction)",
+  subtitle: "DE 3907928 A1 Table 5 - archived eight-element EFL-reconciled reconstruction",
+  visible: false,
+
+  catalog: {
+    lensMounts: ["large-format-lens-board"],
+    imageFormat: "5x7",
+    specs: [
+      "150mm marketed / 148.7mm design",
+      "f/5.6",
+      "8 elements / 5 groups in reconstructed table",
+      "80° published field",
+      "all-spherical",
+    ],
+    elementCount: 8,
+    groupCount: 5,
+    focalLengthMm: { marketing: 150, design: 148.7 },
+    fNumber: { marketing: 5.6, design: 5.6 },
+  },
+
+  source: {
+    patentNumber: "DE 3,907,928 A1",
+    patentYear: 1990,
+    authors: ["Ernst Rothe", "Josef Weiß"],
+    assignees: ["Optische Werke G. Rodenstock"],
+  },
+
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      nd: 1.52,
+      vd: 64.2,
+      focalLengthMm: 297.3,
+      glass: "Unmatched (520642 patent-rounded crown; no unique catalog identity)",
+      apd: false,
+      role: "Weak positive front collector in the object-side wide-angle meniscus set.",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Positive Meniscus",
+      nd: 1.62,
+      vd: 63.5,
+      focalLengthMm: 64.2,
+      glass: "N-PSK53A class (Schott equivalent; patent-rounded nd/vd)",
+      apd: "inferred",
+      apdNote: "Phosphate-crown / ED-class assignment inferred from rounded nd/vd only.",
+      role: "Positive component of the front cemented chromatic-correction doublet.",
+      cemented: "D1",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Negative Meniscus",
+      nd: 1.69,
+      vd: 49.6,
+      focalLengthMm: -33.0,
+      glass: "Unmatched (dense lanthanum/barium flint class; patent-rounded nd=1.69, vd=49.6)",
+      apd: false,
+      role: "High-index negative partner that overcorrects L2 and makes the front cemented group net negative.",
+      cemented: "D1",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Positive Meniscus",
+      nd: 1.5,
+      vd: 56.4,
+      focalLengthMm: 220.6,
+      glass: "K10 class (Schott equivalent; patent-rounded nd/vd)",
+      apd: false,
+      role: "Fourth front-group meniscus required by the patent to redistribute power and field curvature.",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Positive Meniscus",
+      nd: 1.43384,
+      vd: 95.23,
+      focalLengthMm: 177.9,
+      glass: "CaF2 class (inferred; EFL-reconciled Table 5 model)",
+      apd: "inferred",
+      apdNote:
+        "CaF2-class medium inferred because Table 5 omits the surface-8 glass data; no patent line-index data published.",
+      role: "Inferred ultra-low-dispersion first component of the reconstructed rear doublet.",
+      cemented: "D2",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Positive Meniscus",
+      nd: 1.46,
+      vd: 65.8,
+      focalLengthMm: 109.6,
+      glass: "Unmatched (460658 patent-rounded fluor-crown; no unique catalog identity)",
+      apd: "inferred",
+      apdNote: "Legacy fluor-crown class assignment inferred from rounded nd/vd only.",
+      role: "Rear component of the first reconstructed rear cemented doublet.",
+      cemented: "D2",
+    },
+    {
+      id: 7,
+      name: "L7",
+      label: "Element 7",
+      type: "Positive Meniscus",
+      nd: 1.65,
+      vd: 39.6,
+      focalLengthMm: 54.2,
+      glass: "Unmatched (650396 patent-rounded short flint; no unique catalog identity)",
+      apd: "inferred",
+      apdNote: "KZFS-class negative anomalous-partial-dispersion role inferred from rounded nd/vd and design position.",
+      role: "High-dispersion positive component of the final cemented field-corrector doublet.",
+      cemented: "D3",
+    },
+    {
+      id: 8,
+      name: "L8",
+      label: "Element 8",
+      type: "Plano-Concave Negative",
+      nd: 1.62,
+      vd: 53.2,
+      focalLengthMm: -45.5,
+      glass: "Unmatched (dense crown / short-flint class; patent-rounded nd=1.62, vd=53.2)",
+      apd: false,
+      role: "Negative rear field-flattener; the flat rear face is implicit in the printed table and explicit here as surface 13.",
+      cemented: "D3",
+    },
+  ],
+
+  surfaces: [
+    { label: "1", R: 32.66, d: 5.0, sd: 15.0, medium: 1 },
+    { label: "2", R: 39.24, d: 0.1, sd: 15.0 },
+    { label: "3", R: 32.9, d: 9.2, sd: 15.0, medium: 2 },
+    { label: "4", R: 169.09, d: 2.1, sd: 15.0, medium: 3 },
+    { label: "5", R: 19.95, d: 2.91, sd: 13.2 },
+    { label: "6", R: 36.13, d: 2.45, sd: 13.2, medium: 4 },
+    { label: "7", R: 52.52, d: 7.45, sd: 12.0 },
+    { label: "STO", R: "flat", d: 1.15 },
+    { label: "8", R: -163.71, d: 2.6408840731727103, sd: 12.0, medium: 5 },
+    { label: "9", R: -52.71, d: 2.35, sd: 12.5, medium: 6 },
+    { label: "10", R: -26.13, d: 1.92, sd: 12.5 },
+    { label: "11", R: -136.26, d: 2.4, sd: 11.8, medium: 7 },
+    { label: "12", R: -28.18, d: 9.55, sd: 11.8, medium: 8 },
+    { label: "13", R: "flat", sd: 14.0 },
+  ],
+
+  focus: {
+    closeFocusM: 3.5,
+    description:
+      "Unit focus on a view-camera bellows; close endpoint is an illustrative 3.5 m object distance, not a manufacturer minimum-focus specification.",
+  },
+
+  gaps: { "13": { label: "BF", values: [[116.09130644532162, 122.67034675574259]] } },
+
+  aperture: { nominalFNumber: 5.6, fStops: [5.6, 8, 11, 16, 22, 32, 45], maxFNumber: 45 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 80, maxTraceFieldDeg: 40 },
+
+  groups: [
+    { text: "FRONT", fromSurface: "1", toSurface: "7" },
+    { text: "REAR", fromSurface: "8", toSurface: "13" },
+  ],
+  doublets: [
+    { text: "D1", fromSurface: "3", toSurface: "5" },
+    { text: "D2", fromSurface: "8", toSurface: "10" },
+    { text: "D3", fromSurface: "11", toSurface: "13" },
+  ],
+
+  layout: { scFill: 0.62, yScFill: 0.55 },
+} satisfies LensDataV2Input;
+
+export default LENS_DATA;

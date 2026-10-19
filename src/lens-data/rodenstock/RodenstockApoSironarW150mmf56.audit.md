@@ -1,6 +1,10 @@
 # Audit Log - Rodenstock Apo-Sironar-W 150mm f/5.6
 
-Patent: DE 3907928 A1, Table 5
+Patent: DE 3907928 C2, Table 5 (seven-element model; same values as A1 Table 5)
+
+The 2026-07-04, 2026-07-29 and 2026-08-07 sections below were written for the earlier eight-element reconstruction of
+A1 Table 5, which is now archived (hidden). Their glass-label decisions for L1, L2, L4, L5, L6 and L7 carry over to the
+seven-element model because those elements keep the same rounded nd/νd; the semi-diameter notes do not.
 
 ## 2026-07-04 - Semi-diameter patent-diagram review
 
@@ -26,3 +30,38 @@ Patent: DE 3907928 A1, Table 5
 - The official Schott K10 datasheet supplies Sellmeier coefficients for `nd=1.50137`, `νd=56.41`, code 501564.
 - The Table 5 L4 annotation already identifies K10 as a patent-rounded Schott equivalent, so it now resolves through the vendor curve without strengthening the claim on the other coarsely rounded rows.
 - The local `patents/DE_3907928_A1.pdf` review recorded above remains the prescription source. No geometry changed.
+
+## 2026-10-19 - Replacement: DE 3907928 C2 Table 5 seven-element model
+
+- Transcription: R, d, nd and νd for all 12 surfaces, both stop spacings and the printed f = 148.7 mm were read from the
+  Table 5 page images of the C2 grant (p. 5) and the A1 publication (p. 4); the two tables agree. C2 prints each
+  d/n/ν between its radius rows, giving 7 elements / 5 groups (L1 | L2+L3 | L4 | stop | L5 | L6+L7), 12 curved
+  surfaces and a stop 8.60 mm after surface 7 and 7.45 mm before surface 8. Claim 1 (three rear lenses, the rear
+  second and third cemented) confirms this. The data file matches the table except for the L3 index below.
+- Literal table: f = 300.93 mm (8.60 mm total stop spacing instead: 312.00 mm). At that focal length the example fails
+  claim 3 (f < R4 < 2f, R4 = 169.09 mm) and claim 1's condition that L4's focal length (220.6 mm) be about f or longer.
+  With the same reading, the sibling Tables 1–4 compute 201.1–202.8 mm against a printed 207.3 mm, so roughly 2–3 % of
+  rounding or convention noise is normal for this patent.
+- Correction: L3 nd 1.69 -> 1.55 (the value in all four sibling tables), Abbe 49.6 kept; f = 148.04 mm, back focus
+  120.54 mm, track 54.03 mm. A search over 1,350 single changes (indices 1.40–1.95; radius sign flips, digit changes,
+  transpositions, dropped digits and x10 or /10; the same for thicknesses and the stop spacing; both stop splits)
+  found this the only change within 0.5 % of 148.7 mm, against 13 within 3 %. Third-order sums at f/5.6 and 40°,
+  scaled to the same focal length, put this correction alone in the siblings' range: SI 0.017, SII 0.005, SIII
+  -0.024, SIV 0.118, SV -0.20, against the siblings' 0.018–0.022, 0.005–0.014, -0.018–0.013, 0.118–0.128 and
+  -0.27–0.06. Every other candidate has SV about 2.4–9.7 or an SIII that is far too large, and most need nonexistent
+  glasses. C2 still prints 1.69, so the correction stays an inference (recorded in `source.errata`).
+- Production checks: the Rodenstock 6/95 brochure gives 7 elements / 5 groups and an 80° field; its p. 7 section shows
+  the same 1 + 2 + 1 | stop | 1 + 2 layout, mirrored. Pages 4/5 list the 150 mm lens at 252 mm circle (infinity, f/22),
+  141 mm register and 56 mm overall length; the Horseman/Kenko list repeats 252 mm and 141 mm. The stop sits 144.2 mm
+  from the image, so the flange falls about 3 mm behind the stop, inside the 54.03 mm track. The literal table would
+  need a flange about 156 mm behind the last vertex. The archived eight-element model reaches only 36.2° (218 mm
+  circle) before its chief ray is blocked at surfaces 1–3.
+- Audits on this file: `audit:surface` OK; `audit:image-circle` 0 undersized; `audit:field-coverage` 98 %, limited
+  by the declared 40° projection, corner (40.5°) clear; `clearap` at 126 mm image height and f/22 passes the chief
+  ray, with 15–56 % side vignetting at surfaces 9–11 only. Chief-ray distortion is about -0.4 % at 126 mm.
+- Glass labels carried over from the archived model where nd/νd match: L1 520642 unmatched, L2 N-PSK53A class
+  (apd inferred), L4 K10 class (vendor Sellmeier per the 2026-08-07 entry), L5 460658 fluor-crown (apd inferred),
+  L6 650396 short flint, L7 dense crown / short flint. L3 stays unmatched.
+- Open items: no manufacturer MTF or distortion data for the 150 mm lens; glass identities and partial dispersions
+  unresolved; semi-diameters are Photons to Photos estimates reduced at S5/6 and S9/10, not measured apertures; the
+  3.5 m close-focus endpoint is illustrative.
