@@ -169,12 +169,8 @@ export function computePerspectiveFieldAberrations(
 ): PerspectiveFieldAberrationAnalysis {
   const context = request.perspectiveTraceContext;
   if (!context) throw new Error("Movement-aware analysis requires a PerspectiveTraceContext");
-  const { stopSemiDiameterMm, entrancePupilSemiDiameterMm } = request.aperture;
-  const pupilSemiDiameterMm = resolvePerspectivePupilSemiDiameter(
-    context,
-    stopSemiDiameterMm,
-    entrancePupilSemiDiameterMm,
-  );
+  const { stopSemiDiameterMm } = request.aperture;
+  const pupilSemiDiameterMm = resolvePerspectivePupilSemiDiameter(request);
   const sensorUvs = options.sensorUvs ?? DEFAULT_FIELD_SENSOR_UVS;
   const focusFractions =
     options.focusPupilFractions ??

@@ -1,7 +1,7 @@
 /** Fixed-sensor image-space ray reductions shared by perspective analyses. */
 
 import { dot, subtract } from "../../math/vector.js";
-import { entrancePupilFromStop2, paraxialPupilGeometry2 } from "../../first-order/pupils.js";
+import type { AnalysisRequest } from "../../analysis/request.js";
 import type { Vec3 } from "../../types.js";
 import type { PerspectiveFieldStatus, PerspectivePupilRaySample, SensorUv } from "../fieldSampling.js";
 import type { PerspectiveTraceContext, PerspectiveTraceResult } from "../trace.js";
@@ -62,15 +62,14 @@ export interface PerspectiveSensorBestFocus {
   maxRadiusMm: number;
 }
 
-/** Resolve the current entrance-pupil radius shared by sensor-locked bundle analyses. */
-export function resolvePerspectivePupilSemiDiameter(
-  context: PerspectiveTraceContext,
-  stopSemiDiameterMm: number,
-  override?: number,
-): number {
+/**
+ * Resolve the current entrance-pupil radius shared by sensor-locked bundle analyses.
+ * @param request - shared physical stop and entrance-pupil semi-diameters in mm
+ * @returns validated entrance-pupil semi-diameter in mm
+ */
+export function resolvePerspectivePupilSemiDiameter(request: AnalysisRequest): number {
+  const { stopSemiDiameterMm, entrancePupilSemiDiameterMm: pupilSemiDiameterMm } = request.aperture;
   assertPositiveFinite(stopSemiDiameterMm, "stopSemiDiameterMm");
-  const pupilSemiDiameterMm =
-    override ?? entrancePupilFromStop2(stopSemiDiameterMm, paraxialPupilGeometry2(context.state)).epSD;
   assertPositiveFinite(pupilSemiDiameterMm, "pupilSemiDiameterMm");
   return pupilSemiDiameterMm;
 }

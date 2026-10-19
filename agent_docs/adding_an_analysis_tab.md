@@ -49,8 +49,8 @@ the prepared state / slider inputs you actually use.
   profile/blur character/best focus, field curvature/astigmatism/chromatic field-focus summary, coma,
   distortion, vignetting, pupil aberration, bokeh and chromatic LoCA/lateral color/fans use this path.
   The historical job-table names now dispatch centered requests. Perspective focus/bokeh/best focus and
-  field curvature/astigmatism/coma, chromatic and distortion stay under `src/optics/perspective/analysis/` and also
-  take `AnalysisRequest`.
+  field curvature/astigmatism/coma, chromatic, distortion, vignetting and pupils stay under
+  `src/optics/perspective/analysis/` and also take `AnalysisRequest`.
 - Reuse `analysisContext.request`, or memoize `createAnalysisRequest` from the supplied prepared
   state and every used control/aperture/EFL/field input. Memoize the context/result on that identity.
   Do not mix deferred geometry with live controls. The breathing series intentionally omits
@@ -71,8 +71,8 @@ the prepared state / slider inputs you actually use.
   in request memo dependencies; only lateral color forwards the field geometry, while fans recompute it.
   Diagram LoCA preserves supplied surface z and obstruction-aware marginal fractions through an explicit options
   override. Keep intrinsic LoCA available in the moved frame without routing perspective chromatic through centered jobs.
-- Moved Bokeh, Coma, Aberrations, Summary, Chromatic and Distortion reuse the deferred request/context for
-  perspective focus, field aberrations, chromatic and distortion. Their lazy job entries take that request directly;
+- Moved Bokeh, Coma, Aberrations, Summary, Chromatic, Distortion, Vignetting and Pupil reuse the deferred request/context
+  for all perspective families. Their lazy job entries take that request directly;
   optional family options override only field/channel/pupil sampling, with aperture and pose supplied by the request.
   Moved Chromatic uses the same request for its separately labelled intrinsic LoCA. Keep the request in memo dependencies:
   its identity includes shift, tilt, pivot, focus and both aperture radii. Reuse its perspective trace context
@@ -81,8 +81,13 @@ the prepared state / slider inputs you actually use.
   settled fields. Explicit standalone sampling keeps its own defaults. Preserve movement/folded guards;
   an unavailable fixed-sensor result must never fall back to centered analysis. Distortion stays scene-locked:
   its sensor solves are deliberately null. Chromatic locks only its reference channel to the sensor; other channels
-  trace that shared scene direction. Preserve the physical format band for sensor-locked reference fields/fans only,
-  and strict format bounds for scene-locked non-reference channels.
+  trace that shared scene direction. Vignetting must use the request's original perspective context and its
+  separate `zeroMovementContext()` reference: zero-center and matched-field samples share the zero context's memo,
+  while active fields share the active memo with other families. Keep absolute survivor counts, absorbed flux and
+  zero-center normalization separate. Pupils use request aperture for both intrinsic references and apparent bundles.
+  Explicit family options override sampling only; passing `{}` preserves standalone sweep/quadrature defaults.
+  Preserve the physical format band for sensor-locked fields/fans and strict format bounds for scene-locked
+  non-reference channels.
 - Aspheric comparison is an element overlay, with no job/context accessor. Its request-facing element
   resolution lives in `analysis/asphericComparison/`; scalar/surface helpers stay request-free. Keep its
   `[L, info.id]`, `[surfaces, mode]` and `[departureBySurf]` dependencies and element-local construction

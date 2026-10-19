@@ -6,7 +6,6 @@ import { computePerspectiveFieldAberrations } from "../perspective/analysis/fiel
 import { computePerspectiveFocusAnalysis } from "../perspective/analysis/focus.js";
 import { computePerspectivePupilAnalysis } from "../perspective/analysis/pupil.js";
 import { computePerspectiveVignettingAnalysis } from "../perspective/analysis/vignetting.js";
-import type { PerspectiveTraceContext } from "../perspective/trace.js";
 import type { AnalysisRequest } from "./request.js";
 import { perspectiveAnalysisSamplingPlan } from "./perspectiveAnalysisSampling.js";
 
@@ -27,7 +26,6 @@ export interface PerspectiveAnalysisJobs {
  */
 export function createPerspectiveAnalysisJobs(request: AnalysisRequest): PerspectiveAnalysisJobs {
   const plan = perspectiveAnalysisSamplingPlan(request);
-  const context = () => requirePerspectiveTraceContext(request.perspectiveTraceContext);
 
   return {
     computePerspectiveFocusAnalysis: memoize(() => computePerspectiveFocusAnalysis(request, plan.focus)),
@@ -36,18 +34,9 @@ export function createPerspectiveAnalysisJobs(request: AnalysisRequest): Perspec
     ),
     computePerspectiveChromaticAnalysis: memoize(() => computePerspectiveChromaticAnalysis(request, plan.chromatic)),
     computePerspectiveDistortionAnalysis: memoize(() => computePerspectiveDistortionAnalysis(request, plan.distortion)),
-    computePerspectiveVignettingAnalysis: memoize(() =>
-      computePerspectiveVignettingAnalysis(context(), plan.vignetting),
-    ),
-    computePerspectivePupilAnalysis: memoize(() => computePerspectivePupilAnalysis(context(), plan.pupils)),
+    computePerspectiveVignettingAnalysis: memoize(() => computePerspectiveVignettingAnalysis(request, plan.vignetting)),
+    computePerspectivePupilAnalysis: memoize(() => computePerspectivePupilAnalysis(request, plan.pupils)),
   };
-}
-
-function requirePerspectiveTraceContext(context: PerspectiveTraceContext | null): PerspectiveTraceContext {
-  if (!context) {
-    throw new Error("Movement-aware analysis requires a PerspectiveTraceContext");
-  }
-  return context;
 }
 
 function memoize<Result>(compute: () => Result): () => Result {

@@ -1259,8 +1259,9 @@ Sensor-locked chief results, including failed solves, are memoized in the trace 
 projection scale and chief options (including channel). Context identity fixes the prepared state, pose, pivot,
 sensor and frames; pupil quadrature and aperture do not enter the chief solve. Focus, vignetting, field aberrations,
 chromatic reference locks and apparent pupils share these results, while retaining their own pupil bundles. Each
-context also retains its zero-movement reference context, so vignetting's center and matched-field requests share
-solves across calls. Distortion remains scene-locked and does not substitute a sensor-targeted chief.
+context also retains its separate zero-movement reference context with its own solve memo, so vignetting's center
+and matched-field requests share zero-pose solves across calls without mixing them with active-pose solves. Distortion
+remains scene-locked and does not substitute a sensor-targeted chief.
 
 The **posed ideal** is not taken from a real trace. It maps the intrinsic ideal image point and paraxial exit-pupil
 center into the camera frame, joins them, and intersects that line with the fixed sensor. This supplies a stable
@@ -1351,17 +1352,22 @@ keys. Field curvature, its chromatic bundle, coma, distortion, vignetting and pu
 including field geometry and sampling. Bokeh and chromatic LoCA/lateral color/fans also take requests. The historical
 job-table names remain during the public-seam migration, but no centered job takes a prepared-state or RuntimeLens
 signature.
-Perspective focus/bokeh/best focus, field curvature/astigmatism/coma, chromatic and distortion remain under
-`perspective/analysis/` and consume `AnalysisRequest`. Their options override field/channel/pupil sampling only;
+Perspective focus/bokeh/best focus, field curvature/astigmatism/coma, chromatic, distortion, vignetting and pupils
+remain under `perspective/analysis/` and consume `AnalysisRequest`. Their options override field/channel/pupil sampling only;
 both aperture radii and the shared perspective trace context come from the request. `perspectiveAnalysisJobs.ts`
-binds the same request directly to these four lazy jobs; vignetting and pupils retain context/options entries until
-migration. Distortion keeps scene-locked vertical/grid sampling with deliberately null sensor solves. Chromatic
+binds the same request directly to all six lazy jobs; no perspective family options duplicate aperture or pose.
+Intrinsic pupil references also take the request. Image-space ray reductions still accept their physical context
+or ray inputs; only the aperture resolver takes a request. Vignetting uses the original trace context and its
+`zeroMovementContext()` for active/zero matched fields and the zero-center reference, preserving both solve memos.
+Distortion keeps scene-locked vertical/grid sampling with deliberately null sensor solves. Chromatic
 locks the reference channel to the sensor and traces other channels at that shared scene direction: only the
 sensor-locked reference uses the physical format band, while scene-locked channels retain strict format bounds.
 `perspectiveAnalysisSampling.ts` owns the unchanged signed drag/settled policy separately from job dispatch, so
-request-facing leaves can use it without a cycle. Explicit standalone quadrature retains its existing defaults.
-The moved Bokeh, Coma, Aberrations, Chromatic and Distortion panels memoize on the deferred request, including
-pose/pivot, focus and aperture; Summary uses the same request/context for fixed-sensor focus. Moved Chromatic also
+request-facing leaves can use it without a cycle. The unchanged equal-area disk quadrature lives in
+`perspective/analysis/shared.ts`, re-exported by vignetting for existing callers. Explicit standalone quadrature
+retains its existing defaults.
+The moved Bokeh, Coma, Aberrations, Chromatic, Distortion, Vignetting and Pupil panels memoize on the deferred request,
+including pose/pivot, focus and aperture; Summary uses the same request/context for fixed-sensor focus. Moved Chromatic also
 uses that request for the separately labelled intrinsic lens-axis LoCA. No moved section falls back to centered results.
 The sensor-solve cache remains owned by the original perspective context and shared across families.
 

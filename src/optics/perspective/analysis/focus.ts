@@ -122,12 +122,8 @@ export function computePerspectiveFocusAnalysis(
 ): PerspectiveFocusAnalysis {
   const context = request.perspectiveTraceContext;
   if (!context) throw new Error("Movement-aware analysis requires a PerspectiveTraceContext");
-  const { stopSemiDiameterMm, entrancePupilSemiDiameterMm } = request.aperture;
-  const pupilSemiDiameterMm = resolvePerspectivePupilSemiDiameter(
-    context,
-    stopSemiDiameterMm,
-    entrancePupilSemiDiameterMm,
-  );
+  const { stopSemiDiameterMm } = request.aperture;
+  const pupilSemiDiameterMm = resolvePerspectivePupilSemiDiameter(request);
   const sensorUvs = options.sensorUvs ?? DEFAULT_BOKEH_SENSOR_UVS;
   const pupilPoints = options.pupilPoints
     ? options.pupilPoints.map((point) => ({ ...point }))

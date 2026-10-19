@@ -7,7 +7,11 @@
  */
 
 import { useMemo } from "react";
-import { createAnalysisRequest, createAnalysisComputationContext } from "../../../optics/analysis.js";
+import {
+  createAnalysisRequest,
+  createAnalysisComputationContext,
+  type AnalysisRequest,
+} from "../../../optics/analysis.js";
 import { probe } from "../../../utils/perfProbe.js";
 import VignettingChart from "./VignettingChart.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
@@ -45,8 +49,9 @@ export default function VignettingTab({
   analysisContext,
 }: VignettingTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
-  if (analysisContext?.movementActive) {
-    return <MovedVignettingContent analysisContext={analysisContext} t={t} />;
+  const perspectiveRequest = analysisContext?.request;
+  if (perspectiveRequest?.pose?.active) {
+    return <MovedVignettingContent request={perspectiveRequest} t={t} />;
   }
   return (
     <CenteredVignettingContent
@@ -60,8 +65,11 @@ export default function VignettingTab({
   );
 }
 
-function MovedVignettingContent({ analysisContext, t }: { analysisContext: AnalysisComputationContext; t: Theme }) {
-  const analysis = useMemo(() => analysisContext.computePerspectiveVignettingAnalysis(), [analysisContext]);
+function MovedVignettingContent({ request, t }: { request: AnalysisRequest; t: Theme }) {
+  const analysis = useMemo(
+    () => createAnalysisComputationContext(request).computePerspectiveVignettingAnalysis(),
+    [request],
+  );
   return <PerspectiveVignettingView analysis={analysis} t={t} />;
 }
 

@@ -1,3 +1,4 @@
+import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../../../src/optics/buildLens.js";
 import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
@@ -28,6 +29,16 @@ function context(shiftMm = 0, tiltDeg = 0): PerspectiveTraceContext {
   });
 }
 
+function request(camera: PerspectiveTraceContext, stopSemiDiameterMm = L.stopPhysSD) {
+  return createAnalysisRequest({
+    preparedState: camera.state,
+    dynamicEFL: 0,
+    currentEPSD: 0.25,
+    currentPhysStopSD: stopSemiDiameterMm,
+    perspectiveTraceContext: camera,
+  });
+}
+
 function axialContribution(
   weight: number,
   transmission: number,
@@ -44,6 +55,41 @@ function axialContribution(
 }
 
 describe("perspective vignetting analysis", () => {
+  it.each(["settled", "interactive"] as const)(
+    "reads aperture and %s sampling from the shared request",
+    (analysisQuality) => {
+      const camera = context(3, 2);
+      const input = createAnalysisRequest({
+        preparedState: camera.state,
+        perspectiveTraceContext: camera,
+        dynamicEFL: L.EFL,
+        currentEPSD: 0.25,
+        currentPhysStopSD: L.stopPhysSD / 2,
+        analysisQuality,
+        sampling: { vignettingFieldSampleCount: 5, vignettingPupilSampleCount: 4, pupilAberrationSampleCount: 5 },
+      });
+      const result = computePerspectiveVignettingAnalysis(input);
+      expect(result.contextCacheKey).toBe(camera.cacheKey);
+      expect(result.samples.map((sample) => sample.requestedSensorUv.v)).toEqual(
+        analysisQuality === "interactive" ? [-1, 0, 1] : [-1, -0.5, 0, 0.5, 1],
+      );
+      expect(result.stopSemiDiameterMm).toBe(input.aperture.stopSemiDiameterMm);
+      expect(result.pupilSemiDiameterMm).toBe(input.aperture.entrancePupilSemiDiameterMm);
+      expect(result.pupilPoints).toHaveLength(4);
+      expect(result.samples.every((sample) => sample.activeToZeroRatio !== null)).toBe(true);
+    },
+  );
+
+  it("requires the request's perspective trace context", () => {
+    const input = createAnalysisRequest({
+      preparedState: STATE,
+      dynamicEFL: 0,
+      currentEPSD: 0.25,
+      currentPhysStopSD: L.stopPhysSD,
+    });
+    expect(() => computePerspectiveVignettingAnalysis(input)).toThrow(/PerspectiveTraceContext/);
+  });
+
   it("generates deterministic equal-area points inside the circular pupil", () => {
     const points = createAreaWeightedCircularPupilPoints(3, 8);
 
@@ -64,9 +110,7 @@ describe("perspective vignetting analysis", () => {
 
   it("projects traced rays onto the posed exit-pupil plane instead of using the final surface normal", () => {
     const moved = context(1, 2);
-    const result = computePerspectiveVignettingAnalysis(moved, {
-      stopSemiDiameterMm: L.stopPhysSD,
-      pupilSemiDiameterMm: 0.25,
+    const result = computePerspectiveVignettingAnalysis(request(moved), {
       sensorUvs: [{ u: 0, v: 0 }],
       pupilPoints: createAreaWeightedCircularPupilPoints(1, 4),
     });
@@ -119,14 +163,12 @@ describe("perspective vignetting analysis", () => {
   it("uses the cached zero-movement center and returns identity ratios", () => {
     const camera = context();
     const options = {
-      stopSemiDiameterMm: L.stopPhysSD,
-      pupilSemiDiameterMm: 0.25,
       sensorUvs: [{ u: 0, v: 0 }],
       pupilPoints: createAreaWeightedCircularPupilPoints(1, 4),
       includeActiveToZeroRatio: true,
     } as const;
-    const first = computePerspectiveVignettingAnalysis(camera, options);
-    const second = computePerspectiveVignettingAnalysis(camera, options);
+    const first = computePerspectiveVignettingAnalysis(request(camera), options);
+    const second = computePerspectiveVignettingAnalysis(request(camera), options);
     const sample = first.samples[0];
 
     expect(first.zeroMovementCenterReference).toBe(second.zeroMovementCenterReference);
@@ -140,18 +182,13 @@ describe("perspective vignetting analysis", () => {
 
   it("reuses the zero-movement center across poses of the same prepared aperture state", () => {
     const options = {
-      stopSemiDiameterMm: L.stopPhysSD,
-      pupilSemiDiameterMm: 0.25,
       sensorUvs: [{ u: 0, v: 0 }],
       pupilPoints: createAreaWeightedCircularPupilPoints(1, 4),
     } as const;
-    const shifted = computePerspectiveVignettingAnalysis(context(2, 0), options);
-    const tilted = computePerspectiveVignettingAnalysis(context(0, 2), options);
-    const changedAperture = computePerspectiveVignettingAnalysis(context(2, 0), {
-      ...options,
-      stopSemiDiameterMm: L.stopPhysSD * 0.9,
-    });
-    const changedQuadrature = computePerspectiveVignettingAnalysis(context(2, 0), {
+    const shifted = computePerspectiveVignettingAnalysis(request(context(2, 0)), options);
+    const tilted = computePerspectiveVignettingAnalysis(request(context(0, 2)), options);
+    const changedAperture = computePerspectiveVignettingAnalysis(request(context(2, 0), L.stopPhysSD * 0.9), options);
+    const changedQuadrature = computePerspectiveVignettingAnalysis(request(context(2, 0)), {
       ...options,
       pupilPoints: createAreaWeightedCircularPupilPoints(1, 8),
     });
@@ -164,9 +201,7 @@ describe("perspective vignetting analysis", () => {
   });
 
   it("retains out-of-format signed requests instead of filtering them", () => {
-    const result = computePerspectiveVignettingAnalysis(context(), {
-      stopSemiDiameterMm: L.stopPhysSD,
-      pupilSemiDiameterMm: 0.25,
+    const result = computePerspectiveVignettingAnalysis(request(context()), {
       sensorUvs: [
         { u: 0, v: -1.2 },
         { u: 0, v: 0 },
@@ -187,15 +222,13 @@ describe("perspective vignetting analysis", () => {
 
   it("mirrors fixed-sensor throughput under opposite movement and field signs", () => {
     const common = {
-      stopSemiDiameterMm: L.stopPhysSD,
-      pupilSemiDiameterMm: 0.25,
       pupilPoints: createAreaWeightedCircularPupilPoints(2, 8),
     } as const;
-    const positive = computePerspectiveVignettingAnalysis(context(3, 2), {
+    const positive = computePerspectiveVignettingAnalysis(request(context(3, 2)), {
       ...common,
       sensorUvs: [{ u: 0, v: 0.35 }],
     }).samples[0];
-    const negative = computePerspectiveVignettingAnalysis(context(-3, -2), {
+    const negative = computePerspectiveVignettingAnalysis(request(context(-3, -2)), {
       ...common,
       sensorUvs: [{ u: 0, v: -0.35 }],
     }).samples[0];
@@ -210,9 +243,7 @@ describe("perspective vignetting analysis", () => {
   });
 
   it("exposes top-to-bottom illumination asymmetry within one active pose", () => {
-    const samples = computePerspectiveVignettingAnalysis(context(3, 2), {
-      stopSemiDiameterMm: L.stopPhysSD,
-      pupilSemiDiameterMm: 0.25,
+    const samples = computePerspectiveVignettingAnalysis(request(context(3, 2)), {
       sensorUvs: [
         { u: 0, v: -0.6 },
         { u: 0, v: 0.6 },

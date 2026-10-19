@@ -73,6 +73,6 @@ flowchart LR
 | `fNumber.ts` | F Number helper module | src/optics/focusDistance.ts (2), same folder, src/optics/state, src/types | src/optics/compat.ts, src/optics/layout.ts | effectiveFNumber2 |
 | `focusBreathing.ts` | Focus Breathing helper module | src/optics/prescription (2), src/optics/state (2), src/optics/focusDistance.ts, src/optics/math, src/optics/types.ts, +1 more | same folder, src/optics/analysis, src/optics/compat.ts, src/optics/layout.ts, src/optics/perspective | eflAtFocus2, eflAtPreparedState |
 | `lensConstants.ts` | Lens Constants helper module | src/optics/math (3), src/optics/trace (3), src/optics/prescription (2), src/optics/state (2), src/optics/field, +4 more | src/optics/buildLens.ts, src/optics/prescription | computeLensConstants, paraxialTrace, realTraceToStop |
-| `pupils.ts` | Pupils helper module | src/optics/math, src/optics/types.ts | src/optics/perspective (3) | FirstOrderPupilState, entrancePupilFromStop2, paraxialPupilGeometry2 |
+| `pupils.ts` | Pupils helper module | src/optics/math, src/optics/types.ts | src/optics/perspective | FirstOrderPupilState, entrancePupilFromStop2, paraxialPupilGeometry2 |
 | `systemMatrix.ts` | System Matrix helper module | src/optics/math, src/optics/types.ts | same folder | FirstOrderSystemMatrix, computeSystemMatrix2 |
 | `thickLens.ts` | Thick Lens helper module | src/optics/geometry, src/types | none | thickLensFocalLength, computeElementFocalLength |

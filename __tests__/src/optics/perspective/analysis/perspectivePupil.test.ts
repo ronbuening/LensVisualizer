@@ -1,3 +1,4 @@
+import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../../../src/optics/buildLens.js";
 import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
@@ -25,6 +26,16 @@ function context(shiftMm = 0, tiltDeg = 0): PerspectiveTraceContext {
   });
 }
 
+function request(camera: PerspectiveTraceContext, stopSemiDiameterMm = L.stopPhysSD) {
+  return createAnalysisRequest({
+    preparedState: camera.state,
+    dynamicEFL: 0,
+    currentEPSD: 0.25,
+    currentPhysStopSD: stopSemiDiameterMm,
+    perspectiveTraceContext: camera,
+  });
+}
+
 const CHIEF: Ray3 = { origin: [0, 1, 0], direction: [0, -0.1, 1] };
 
 function pupilLines(included: readonly boolean[]): WeightedPupilRayLine[] {
@@ -40,9 +51,46 @@ function expectVecClose(actual: Vec3, expected: Vec3, precision = 8): void {
 }
 
 describe("perspective pupil analysis", () => {
+  it.each(["settled", "interactive"] as const)(
+    "reads aperture and %s sampling from the shared request",
+    (analysisQuality) => {
+      const camera = context(3, 2);
+      const input = createAnalysisRequest({
+        preparedState: camera.state,
+        perspectiveTraceContext: camera,
+        dynamicEFL: L.EFL,
+        currentEPSD: 0.25,
+        currentPhysStopSD: L.stopPhysSD / 2,
+        analysisQuality,
+        sampling: { vignettingFieldSampleCount: 5, vignettingPupilSampleCount: 4, pupilAberrationSampleCount: 5 },
+      });
+      const result = computePerspectivePupilAnalysis(input);
+      expect(result.contextCacheKey).toBe(camera.cacheKey);
+      expect(result.samples.map((sample) => sample.requestedSensorUv.v)).toEqual(
+        analysisQuality === "interactive" ? [-1, 0, 1] : [-1, -0.5, 0, 0.5, 1],
+      );
+      expect(result.intrinsic.stopSemiDiameterMm).toBe(input.aperture.stopSemiDiameterMm);
+      expect(result.samples[1].fieldSample.pupilBundle?.samples).toHaveLength(
+        analysisQuality === "interactive" ? 7 : 17,
+      );
+      expect(computePerspectivePupilAnalysis(input, {}).samples).toHaveLength(9);
+    },
+  );
+
+  it("requires the request's perspective trace context", () => {
+    const input = createAnalysisRequest({
+      preparedState: STATE,
+      dynamicEFL: 0,
+      currentEPSD: 0.25,
+      currentPhysStopSD: L.stopPhysSD,
+    });
+    expect(() => computePerspectivePupilAnalysis(input)).toThrow(/PerspectiveTraceContext/);
+    expect(() => computeIntrinsicPerspectivePupils(input)).toThrow(/PerspectiveTraceContext/);
+  });
+
   it("keeps intrinsic EP/XP values in the lens frame at identity", () => {
     const camera = context();
-    const intrinsic = computeIntrinsicPerspectivePupils(camera, L.stopPhysSD);
+    const intrinsic = computeIntrinsicPerspectivePupils(request(camera));
 
     expectVecClose(intrinsic.entrance.posedCenterCamera, intrinsic.entrance.centerLens, 12);
     expect(intrinsic.entrance.semiDiameterMm).toBeGreaterThan(0);
@@ -89,9 +137,7 @@ describe("perspective pupil analysis", () => {
   });
 
   it("retains signed field order and exposes camera-frame apparent displacement", () => {
-    const result = computePerspectivePupilAnalysis(context(3, 2), {
-      stopSemiDiameterMm: L.stopPhysSD,
-      pupilSemiDiameterMm: 0.25,
+    const result = computePerspectivePupilAnalysis(request(context(3, 2)), {
       sensorUvs: [
         { u: 0, v: -0.25 },
         { u: 0, v: 0.25 },
@@ -112,15 +158,13 @@ describe("perspective pupil analysis", () => {
 
   it("mirrors apparent centers under opposite movement and field signs", () => {
     const common = {
-      stopSemiDiameterMm: L.stopPhysSD,
-      pupilSemiDiameterMm: 0.25,
       pupilFractions: [-1, 0, 1],
     } as const;
-    const positive = computePerspectivePupilAnalysis(context(3, 2), {
+    const positive = computePerspectivePupilAnalysis(request(context(3, 2)), {
       ...common,
       sensorUvs: [{ u: 0, v: 0.25 }],
     }).samples[0];
-    const negative = computePerspectivePupilAnalysis(context(-3, -2), {
+    const negative = computePerspectivePupilAnalysis(request(context(-3, -2)), {
       ...common,
       sensorUvs: [{ u: 0, v: -0.25 }],
     }).samples[0];
@@ -133,9 +177,7 @@ describe("perspective pupil analysis", () => {
   });
 
   it("retains unavailable sensor samples and their requested coordinates", () => {
-    const result = computePerspectivePupilAnalysis(context(), {
-      stopSemiDiameterMm: L.stopPhysSD,
-      pupilSemiDiameterMm: 0.25,
+    const result = computePerspectivePupilAnalysis(request(context()), {
       sensorUvs: [
         { u: 0, v: -1.2 },
         { u: 0, v: 0 },

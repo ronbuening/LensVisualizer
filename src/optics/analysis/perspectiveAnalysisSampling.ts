@@ -7,10 +7,8 @@ import type { PerspectiveDistortionOptions } from "../perspective/analysis/disto
 import type { PerspectiveFieldAberrationOptions } from "../perspective/analysis/fieldAberrations.js";
 import type { PerspectiveFocusOptions } from "../perspective/analysis/focus.js";
 import type { PerspectivePupilOptions } from "../perspective/analysis/pupil.js";
-import {
-  createAreaWeightedCircularPupilPoints,
-  type PerspectiveVignettingOptions,
-} from "../perspective/analysis/vignetting.js";
+import type { PerspectiveVignettingOptions } from "../perspective/analysis/vignetting.js";
+import { createAreaWeightedCircularPupilPoints } from "../perspective/analysis/shared.js";
 import type { AnalysisSamplingOptions } from "./analysisQuality.js";
 import type { AnalysisRequest } from "./request.js";
 
@@ -51,7 +49,6 @@ export interface PerspectiveAnalysisSamplingPlan {
  */
 export function perspectiveAnalysisSamplingPlan({
   dynamicEFL,
-  aperture: { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD },
   analysisQuality = "settled",
   sampling,
 }: AnalysisRequest): PerspectiveAnalysisSamplingPlan {
@@ -118,8 +115,6 @@ export function perspectiveAnalysisSamplingPlan({
       fieldSampling,
     },
     vignetting: {
-      stopSemiDiameterMm: currentPhysStopSD,
-      pupilSemiDiameterMm: currentEPSD,
       sensorUvs: interactive
         ? copySensorUvs(INTERACTIVE_SENSOR_UVS)
         : sensorUvsForCount(qualitySampling.vignettingFieldSampleCount ?? SETTLED_VIGNETTING_FIELD_SAMPLE_COUNT),
@@ -128,8 +123,6 @@ export function perspectiveAnalysisSamplingPlan({
       includeActiveToZeroRatio: true,
     },
     pupils: {
-      stopSemiDiameterMm: currentPhysStopSD,
-      pupilSemiDiameterMm: currentEPSD,
       sensorUvs: interactive
         ? copySensorUvs(INTERACTIVE_SENSOR_UVS)
         : sensorUvsForCount(qualitySampling.pupilAberrationSampleCount ?? SETTLED_PUPIL_FIELD_SAMPLE_COUNT),

@@ -137,15 +137,11 @@ export function computePerspectiveChromaticAnalysis(
 ): PerspectiveChromaticAnalysis {
   const context = request.perspectiveTraceContext;
   if (!context) throw new Error("Movement-aware analysis requires a PerspectiveTraceContext");
-  const { stopSemiDiameterMm, entrancePupilSemiDiameterMm } = request.aperture;
+  const { stopSemiDiameterMm } = request.aperture;
   const channels = normalizeChannels(options.channels);
   const referenceChannel = resolveReferenceChannel(channels, options.referenceChannel);
   const pupilFractions = normalizePupilFractions(options.pupilFractions);
-  const pupilSemiDiameterMm = resolvePerspectivePupilSemiDiameter(
-    context,
-    stopSemiDiameterMm,
-    entrancePupilSemiDiameterMm,
-  );
+  const pupilSemiDiameterMm = resolvePerspectivePupilSemiDiameter(request);
   const sensorUvs = options.sensorUvs ?? DEFAULT_CHROMATIC_SENSOR_UVS;
   const referenceLocks = sampleSensorLockedFields(context, sensorUvs, {
     ...options.fieldSampling,

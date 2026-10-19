@@ -8,7 +8,11 @@
  */
 
 import { useMemo } from "react";
-import { createAnalysisRequest, createAnalysisComputationContext } from "../../../optics/analysis.js";
+import {
+  createAnalysisRequest,
+  createAnalysisComputationContext,
+  type AnalysisRequest,
+} from "../../../optics/analysis.js";
 import PupilAberrationChart from "./PupilAberrationChart.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
@@ -41,8 +45,9 @@ export default function PupilAberrationTab({
   analysisContext,
 }: PupilAberrationTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
-  if (analysisContext?.movementActive) {
-    return <MovedPupilContent analysisContext={analysisContext} t={t} />;
+  const perspectiveRequest = analysisContext?.request;
+  if (perspectiveRequest?.pose?.active) {
+    return <MovedPupilContent request={perspectiveRequest} t={t} />;
   }
   return (
     <CenteredPupilContent
@@ -54,8 +59,11 @@ export default function PupilAberrationTab({
   );
 }
 
-function MovedPupilContent({ analysisContext, t }: { analysisContext: AnalysisComputationContext; t: Theme }) {
-  const analysis = useMemo(() => analysisContext.computePerspectivePupilAnalysis(), [analysisContext]);
+function MovedPupilContent({ request, t }: { request: AnalysisRequest; t: Theme }) {
+  const analysis = useMemo(
+    () => createAnalysisComputationContext(request).computePerspectivePupilAnalysis(),
+    [request],
+  );
   return <PerspectivePupilView analysis={analysis} t={t} />;
 }
 

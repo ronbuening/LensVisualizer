@@ -329,8 +329,6 @@ const MEMO_SENSOR_UVS = [
 
 function sensorMemoAnalyses(camera: PerspectiveTraceContext, channel?: "G") {
   const common = {
-    stopSemiDiameterMm: 1,
-    pupilSemiDiameterMm: 0.25,
     sensorUvs: MEMO_SENSOR_UVS,
     fieldSampling: { chiefRay: { channel } },
   };
@@ -343,13 +341,13 @@ function sensorMemoAnalyses(camera: PerspectiveTraceContext, channel?: "G") {
   const request = createAnalysisRequest({
     preparedState: camera.state,
     dynamicEFL: 0,
-    currentEPSD: common.pupilSemiDiameterMm,
-    currentPhysStopSD: common.stopSemiDiameterMm,
+    currentEPSD: 0.25,
+    currentPhysStopSD: 1,
     perspectiveTraceContext: camera,
   });
   return {
     focus: computePerspectiveFocusAnalysis(request, { ...common, pupilPoints }),
-    vignetting: computePerspectiveVignettingAnalysis(camera, {
+    vignetting: computePerspectiveVignettingAnalysis(request, {
       ...common,
       pupilPoints,
       includeActiveToZeroRatio: true,
@@ -360,7 +358,7 @@ function sensorMemoAnalyses(camera: PerspectiveTraceContext, channel?: "G") {
       comaPupilPoints: pupilPoints,
     }),
     chromatic: computePerspectiveChromaticAnalysis(request, { ...common, pupilFractions, channels: ["R", "G", "B"] }),
-    pupils: computePerspectivePupilAnalysis(camera, { ...common, pupilFractions }),
+    pupils: computePerspectivePupilAnalysis(request, { ...common, pupilFractions }),
     distortion: computePerspectiveDistortionAnalysis(request, {
       fieldSampling: common.fieldSampling,
       verticalSensorV: [-0.25, 0, 0.3],
@@ -388,6 +386,8 @@ describe("context-owned sensor chief memo", () => {
 
       const camera = sensorMemoContext();
       const zero = createZeroMovementPerspectiveContext(camera);
+      expect(zero).not.toBe(camera);
+      expect(zero.sensorChiefSolves).not.toBe(camera.sensorChiefSolves);
       expect(createZeroMovementPerspectiveContext(camera)).toBe(zero);
       const after = [sensorMemoAnalyses(camera, channel), sensorMemoAnalyses(camera, channel)];
       expect(after).toStrictEqual(before);

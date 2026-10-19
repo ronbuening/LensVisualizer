@@ -7,6 +7,8 @@ import AberrationsPanel from "../../../../../src/components/display/analysis/Abe
 import BokehTab from "../../../../../src/components/display/analysis/BokehTab.js";
 import ChromaticTab from "../../../../../src/components/display/analysis/ChromaticTab.js";
 import DistortionTab from "../../../../../src/components/display/analysis/DistortionTab.js";
+import VignettingTab from "../../../../../src/components/display/analysis/VignettingTab.js";
+import PupilAberrationTab from "../../../../../src/components/display/analysis/PupilAberrationTab.js";
 import ComaTab from "../../../../../src/components/display/analysis/ComaTab.js";
 import buildLens from "../../../../../src/optics/buildLens.js";
 import { createAnalysisComputationContext, prepareRuntimeState } from "../../../../../src/optics/compat.js";
@@ -52,6 +54,23 @@ const common = {
 };
 
 describe("movement-aware perspective analysis tabs", () => {
+  it.each([
+    { Tab: VignettingTab, title: "Perspective vignetting — absolute fixed-sensor flux" },
+    { Tab: PupilAberrationTab, title: "Perspective pupil analysis — lens and camera frames" },
+  ])("renders $title from the deferred request", ({ Tab, title }) => {
+    const html = renderToStaticMarkup(React.createElement(Tab, common));
+    expect(html).toContain(title);
+    const liveProps = { ...common, focusT: 1, currentEPSD: currentEPSD / 2, currentPhysStopSD: currentPhysStopSD / 2 };
+    expect(renderToStaticMarkup(React.createElement(Tab, liveProps))).toBe(html);
+    const changedContext = createAnalysisComputationContext({
+      ...analysisContext.request,
+      aperture: { entrancePupilSemiDiameterMm: currentEPSD / 2, stopSemiDiameterMm: currentPhysStopSD / 2 },
+    });
+    expect(renderToStaticMarkup(React.createElement(Tab, { ...common, analysisContext: changedContext }))).not.toBe(
+      html,
+    );
+  });
+
   it("renders scene-locked distortion decomposition from the deferred request", () => {
     const html = renderToStaticMarkup(React.createElement(DistortionTab, { ...common, dynamicEFL: L.EFL }));
     expect(html).toContain("Perspective distortion — fixed sensor");

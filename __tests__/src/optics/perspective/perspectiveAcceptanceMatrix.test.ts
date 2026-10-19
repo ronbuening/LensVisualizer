@@ -192,24 +192,38 @@ describe("perspective-control final acceptance matrix", () => {
     );
 
     const pupilPoints = createAreaWeightedCircularPupilPoints(2, 8);
-    const wideIllumination = computePerspectiveVignettingAnalysis(combined.context, {
-      stopSemiDiameterMm: combined.currentStopSemiDiameterMm,
-      pupilSemiDiameterMm: combined.currentPupilSemiDiameterMm,
-      sensorUvs: [
-        { u: 0, v: -0.6 },
-        { u: 0, v: 0.6 },
-      ],
-      pupilPoints,
-    });
-    const stoppedIllumination = computePerspectiveVignettingAnalysis(stopped.context, {
-      stopSemiDiameterMm: stopped.currentStopSemiDiameterMm,
-      pupilSemiDiameterMm: stopped.currentPupilSemiDiameterMm,
-      sensorUvs: [
-        { u: 0, v: -0.6 },
-        { u: 0, v: 0.6 },
-      ],
-      pupilPoints,
-    });
+    const wideIllumination = computePerspectiveVignettingAnalysis(
+      createAnalysisRequest({
+        preparedState: combined.context.state,
+        perspectiveTraceContext: combined.context,
+        dynamicEFL: 0,
+        currentPhysStopSD: combined.currentStopSemiDiameterMm,
+        currentEPSD: combined.currentPupilSemiDiameterMm,
+      }),
+      {
+        sensorUvs: [
+          { u: 0, v: -0.6 },
+          { u: 0, v: 0.6 },
+        ],
+        pupilPoints,
+      },
+    );
+    const stoppedIllumination = computePerspectiveVignettingAnalysis(
+      createAnalysisRequest({
+        preparedState: stopped.context.state,
+        perspectiveTraceContext: stopped.context,
+        dynamicEFL: 0,
+        currentPhysStopSD: stopped.currentStopSemiDiameterMm,
+        currentEPSD: stopped.currentPupilSemiDiameterMm,
+      }),
+      {
+        sensorUvs: [
+          { u: 0, v: -0.6 },
+          { u: 0, v: 0.6 },
+        ],
+        pupilPoints,
+      },
+    );
 
     for (const analysis of [wideIllumination, stoppedIllumination]) {
       expect(analysis.samples.map(({ status }) => status)).toEqual(["usable", "usable"]);
