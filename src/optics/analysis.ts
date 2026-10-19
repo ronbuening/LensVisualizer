@@ -75,3 +75,11 @@ export {
   type ExitPupilAberrationProfile,
   type BothPupilAberrationProfiles,
 } from "./analysis/pupils/pupilAberration.js";
+
+export {
+  computeBokehPreview,
+  computeBokehPreviewPair,
+  computeBokehFieldFootprint,
+  buildBokehDensityGrid,
+  describeBokehDefocusSide,
+} from "./analysis/bokeh/bokeh.js";

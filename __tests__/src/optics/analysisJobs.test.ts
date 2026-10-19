@@ -119,8 +119,14 @@ describe("analysis job facade", () => {
     expect(statePupilProfiles.ep.samples).toHaveLength(5);
     expect(statePupilProfiles.xp.samples).toHaveLength(5);
 
-    const bokehPair = analysisJobsForState2.computeBokehPreviewPair(state, currentEPSD, currentPhysStopSD);
-    expect(bokehPair).toEqual(analysisJobs2.computeBokehPreviewPair(L, focusT, zoomT, currentEPSD, currentPhysStopSD));
+    const bokehRequest = createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: L.EFL,
+      currentEPSD,
+      currentPhysStopSD,
+    });
+    const bokehPair = analysisJobsForState2.computeBokehPreviewPair(bokehRequest);
+    expect(bokehPair).toEqual(analysisJobs2.computeBokehPreviewPair(bokehRequest));
     expect(bokehPair.infinity || bokehPair.nearFocus).toBeTruthy();
 
     const summary = analysisJobsForState2.computeOpticalSummary(

@@ -14,6 +14,8 @@ type EngineModule = Readonly<Record<string, unknown>>;
 
 /* One glob per module, so a candidate below can only name a module that is listed here. */
 const ENGINE_MODULES = {
+  bokehAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/bokeh/bokeh.ts", { eager: true }),
+  legacyBokeh: import.meta.glob<EngineModule>("../../optics/aberration/bokeh.ts", { eager: true }),
   pupilAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/pupils/pupilAberration.ts", { eager: true }),
   vignettingAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/vignetting/vignetting.ts", { eager: true }),
   distortionAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/distortion/distortion.ts", { eager: true }),
@@ -50,6 +52,8 @@ const ENGINE_MODULES = {
 /* The same modules as types. A type query is erased before bundling, so it types a capability at the head and loads
  * nothing at any ref. */
 interface EngineModuleTypes {
+  bokehAnalysis: typeof import("../../optics/analysis.js");
+  legacyBokeh: typeof import("../../optics/analysis.js");
   pupilAnalysis: typeof import("../../optics/analysis.js");
   vignettingAnalysis: typeof import("../../optics/analysis.js");
   distortionAnalysis: typeof import("../../optics/analysis.js");
@@ -93,6 +97,27 @@ type SeamCandidate = readonly [module: EngineModuleId, exportName: string];
  * overlay's departure and best-fit helpers and the LoCA inset's bar scaling), so a payload notices when either copy drifts.
  */
 const SEAM_CANDIDATES = {
+  computeBokehPreviewPair: [
+    ["bokehAnalysis", "computeBokehPreviewPair"],
+    ["compat", "computeBokehPreviewPairForState2"],
+    ["compat", "computeBokehPreviewPair2"],
+  ],
+  computeBokehPreview: [
+    ["bokehAnalysis", "computeBokehPreview"],
+    ["compat", "computeBokehPreview2"],
+  ],
+  computeBokehFieldFootprint: [
+    ["bokehAnalysis", "computeBokehFieldFootprint"],
+    ["legacyBokeh", "computeBokehFieldFootprint"],
+  ],
+  buildBokehDensityGrid: [
+    ["bokehAnalysis", "buildBokehDensityGrid"],
+    ["compat", "buildBokehDensityGrid2"],
+  ],
+  describeBokehDefocusSide: [
+    ["bokehAnalysis", "describeBokehDefocusSide"],
+    ["compat", "describeBokehDefocusSide2"],
+  ],
   // Captures dispatch these through the context at both refs; retain the old prepared exports.
   computeBothPupilAberrationProfiles: [
     ["pupilAnalysis", "computeBothPupilAberrationProfiles"],

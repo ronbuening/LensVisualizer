@@ -24,7 +24,7 @@ export {
   computeStateAwareOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
 } from "./analysis/aberration/offAxis.js";
-export { buildBokehDensityGrid, computeBokehPreviewPair, describeBokehDefocusSide } from "./aberration/bokeh.js";
+export { buildBokehDensityGrid, computeBokehPreviewPair, describeBokehDefocusSide } from "./analysis/bokeh/bokeh.js";
 
 export { computeBestFocusZ } from "./analysis/aberration/bestFocus.js";
 export { buildBokehRadialProfile, classifyBokehBrightnessCharacter } from "./analysis/aberration/radialProfile.js";

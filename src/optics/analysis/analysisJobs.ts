@@ -11,7 +11,7 @@ import type { PreparedOpticalState } from "../types.js";
 import type { AnalysisSamplingOptions } from "./analysisQuality.js";
 import { computeComaAnalysis } from "./aberration/coma.js";
 import { computeFieldCurvature, computeFieldCurvatureBundle } from "./aberration/fieldCurvature.js";
-import { computeBokehPreviewPair2, computeBokehPreviewPairForState2 } from "./bokeh.js";
+import { computeBokehPreviewPair } from "./bokeh/bokeh.js";
 import {
   computeChromaticAnalysis2,
   computeChromaticAnalysisForState2,
@@ -111,16 +111,8 @@ export const analysisJobs2 = {
     return computeBestFocusZ(request);
   },
 
-  computeBokehPreviewPair(
-    L: RuntimeLens,
-    focusT: number,
-    zoomT: number,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    aberrationT = 0,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeBokehPreviewPair2(L, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT, sampling);
+  computeBokehPreviewPair(request: AnalysisRequest) {
+    return computeBokehPreviewPair(request);
   },
 
   computeBothPupilAberrationProfiles(request: AnalysisRequest) {
@@ -192,13 +184,8 @@ export const analysisJobsForState2 = {
     return computeBestFocusZ(request);
   },
 
-  computeBokehPreviewPair(
-    state: PreparedOpticalState,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeBokehPreviewPairForState2(state, currentEPSD, currentPhysStopSD, sampling);
+  computeBokehPreviewPair(request: AnalysisRequest) {
+    return computeBokehPreviewPair(request);
   },
 
   computeOpticalSummary(request: AnalysisRequest) {

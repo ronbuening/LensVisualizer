@@ -1,50 +1,65 @@
 // @vitest-environment jsdom
-
+/** Bokeh hook request identity follows prepared controls and both aperture radii. */
 import { renderHook } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import type { PreparedOpticalState } from "../../../../../src/optics/types.js";
-
-const mocks = vi.hoisted(() => ({
-  pairFromJob: { infinity: null, nearFocus: null },
-  pairFromContext: { infinity: { marker: "context" }, nearFocus: null },
-  computeBokehPreviewPair: vi.fn(),
-  probe: vi.fn((_name: string, run: () => unknown) => run()),
-}));
-
-vi.mock("../../../../../src/optics/compat.js", () => ({
-  analysisJobsForState2: {
-    computeBokehPreviewPair: mocks.computeBokehPreviewPair,
-  },
-}));
-
-vi.mock("../../../../../src/utils/perfProbe.js", () => ({
-  probe: mocks.probe,
-}));
-
+import { createAnalysisComputationContext, createAnalysisRequest } from "../../../../../src/optics/analysis.js";
+import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
+import { buildSimplePositiveElementLens } from "../../../optics/testLensFixtures.js";
 import useBokehPreviewData from "../../../../../src/components/display/analysis/useBokehPreviewData.js";
 
+const mocks = vi.hoisted(() => ({ probe: vi.fn((_name: string, run: () => unknown) => run()) }));
+vi.mock("../../../../../src/utils/perfProbe.js", () => ({ probe: mocks.probe }));
+
 describe("useBokehPreviewData", () => {
-  it("uses the analysis context when supplied", () => {
-    const preparedState = { focusT: 0 } as PreparedOpticalState;
-    const analysisContext = {
-      computeBokehPreviewPair: vi.fn(() => mocks.pairFromContext),
-    };
-
-    const { result } = renderHook(() => useBokehPreviewData(preparedState, 5, 4, analysisContext as never));
-
-    expect(result.current).toBe(mocks.pairFromContext);
-    expect(analysisContext.computeBokehPreviewPair).toHaveBeenCalledTimes(1);
-    expect(mocks.computeBokehPreviewPair).not.toHaveBeenCalled();
+  it("uses the supplied context and keeps its cached empty result", () => {
+    const lens = buildSimplePositiveElementLens();
+    const preparedState = prepareRuntimeState(lens, 0, 0);
+    const context = createAnalysisComputationContext(
+      createAnalysisRequest({
+        preparedState,
+        dynamicEFL: 0,
+        currentEPSD: 0,
+        currentPhysStopSD: 0,
+      }),
+    );
+    const compute = vi.spyOn(context, "computeBokehPreviewPair");
+    const { result, rerender } = renderHook(() => useBokehPreviewData(preparedState, 5, 4, context));
+    const first = result.current;
+    expect(first).toEqual({ infinity: null, nearFocus: null });
+    rerender();
+    expect(result.current).toBe(first);
+    expect(compute).toHaveBeenCalledTimes(1);
     expect(mocks.probe).toHaveBeenCalledWith("computeBokehPreviewPair", expect.any(Function));
   });
 
-  it("falls back to the prepared-state analysis job", () => {
-    const preparedState = { focusT: 0 } as PreparedOpticalState;
-    mocks.computeBokehPreviewPair.mockReturnValueOnce(mocks.pairFromJob);
-
-    const { result } = renderHook(() => useBokehPreviewData(preparedState, 5, 4));
-
-    expect(result.current).toBe(mocks.pairFromJob);
-    expect(mocks.computeBokehPreviewPair).toHaveBeenCalledWith(preparedState, 5, 4);
+  it("reuses a standalone request and refreshes for either aperture or any prepared control", () => {
+    const lens = buildSimplePositiveElementLens();
+    const initial = { preparedState: prepareRuntimeState(lens, 0, 0), epSD: 5, stopSD: 4 };
+    const { result, rerender } = renderHook(
+      ({ preparedState, epSD, stopSD }) => useBokehPreviewData(preparedState, epSD, stopSD),
+      { initialProps: initial },
+    );
+    let previous = result.current;
+    rerender(initial);
+    expect(result.current).toBe(previous);
+    for (const next of [
+      { ...initial, epSD: 3 },
+      { ...initial, epSD: 3, stopSD: 2 },
+      { ...initial, preparedState: prepareRuntimeState(lens, 0.4, 0) },
+      { ...initial, preparedState: prepareRuntimeState(lens, 0.4, 0.5) },
+      { ...initial, preparedState: prepareRuntimeState(lens, 0.4, 0.5, 0.3) },
+      { ...initial, preparedState: prepareRuntimeState(buildSimplePositiveElementLens("other-bokeh"), 0, 0) },
+    ]) {
+      rerender(next);
+      const request = createAnalysisRequest({
+        preparedState: next.preparedState,
+        dynamicEFL: 0,
+        currentEPSD: next.epSD,
+        currentPhysStopSD: next.stopSD,
+      });
+      expect(result.current).toBe(createAnalysisComputationContext(request).computeBokehPreviewPair());
+      expect(result.current).not.toBe(previous);
+      previous = result.current;
+    }
   });
 });

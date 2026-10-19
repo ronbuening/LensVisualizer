@@ -1561,10 +1561,13 @@ function computeAnalysisPupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutput 
 /** Measures paired infinity/near-focus bokeh preview data generation. */
 function computeAnalysisBokehPairWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const bokehPair = analysisJobsForState2.computeBokehPreviewPair(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-    snapshot.analysisSampling,
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      sampling: snapshot.analysisSampling,
+    }),
   );
   completed("bokehPair", bokehPair);
   return {

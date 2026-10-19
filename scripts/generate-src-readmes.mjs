@@ -83,7 +83,7 @@ const folderRoleOverrides = new Map([
     "src/optics",
     "pure optical engine, runtime-lens construction, tracing, analysis, projection, glass, mount rendering, and diagram geometry",
   ],
-  ["src/optics/aberration", "coma, field-curvature and bokeh orchestration awaiting request migration"],
+  ["src/optics/analysis/bokeh", "request-based bokeh previews, field footprints and density reductions"],
   ["src/optics/analysis/aberration", "request-based spherical and best-focus analysis with shared aberration leaves"],
   ["src/optics/analysis", "prepared-state analysis adapters and grouped analysis facades"],
   ["src/optics/chromatic", "chromatic channel, trace, dispersion, and quality helpers"],

@@ -262,14 +262,13 @@ export {
   type LongitudinalChromaticFocusSample,
 } from "./analysis/chromatic.js";
 export {
-  buildBokehDensityGrid2,
-  buildBokehRadialProfile2,
-  classifyBokehBrightnessCharacter2,
-  computeBokehPreview2,
-  computeBokehPreviewPair2,
-  computeBokehPreviewPairForState2,
-  describeBokehDefocusSide2,
-} from "./analysis/bokeh.js";
+  buildBokehDensityGrid as buildBokehDensityGrid2,
+  describeBokehDefocusSide as describeBokehDefocusSide2,
+} from "./analysis/bokeh/bokeh.js";
+export {
+  buildBokehRadialProfile as buildBokehRadialProfile2,
+  classifyBokehBrightnessCharacter as classifyBokehBrightnessCharacter2,
+} from "./analysis/aberration/radialProfile.js";
 export { PUPIL_ABERRATION_SAMPLE_COUNT_2 } from "./analysis/pupils/pupilAberration.js";
 export { computeOpticalSummary, type OpticalSummaryMetrics2 } from "./analysis/summary/summary.js";
 export {

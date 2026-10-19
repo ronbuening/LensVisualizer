@@ -1,6 +1,6 @@
 import { analysisRequestAt } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
-import { computeBokehPreviewPair } from "../../../src/optics/aberration/bokeh.js";
+import { computeBokehPreviewPair } from "../../../src/optics/analysis/bokeh/bokeh.js";
 import {
   computeComaAnalysis,
   computeFieldCurvature,
@@ -283,8 +283,22 @@ describe("aberrationControl analysis plumbing", () => {
     const sharp = analysisState(L, 0.5, 0);
     const soft = analysisState(L, 0.5, 1);
 
-    const sharpBokeh = computeBokehPreviewPair(L, 0.5, 0, sharp.currentEPSD, sharp.currentPhysStopSD, 0);
-    const softBokeh = computeBokehPreviewPair(L, 0.5, 0, soft.currentEPSD, soft.currentPhysStopSD, 1);
+    const sharpBokeh = computeBokehPreviewPair(
+      analysisRequestAt(L, {
+        focusT: 0.5,
+        currentEPSD: sharp.currentEPSD,
+        currentPhysStopSD: sharp.currentPhysStopSD,
+        aberrationT: 0,
+      }),
+    );
+    const softBokeh = computeBokehPreviewPair(
+      analysisRequestAt(L, {
+        focusT: 0.5,
+        currentEPSD: soft.currentEPSD,
+        currentPhysStopSD: soft.currentPhysStopSD,
+        aberrationT: 1,
+      }),
+    );
     expect(sharpBokeh.infinity).not.toBeNull();
     expect(softBokeh.infinity).not.toBeNull();
 

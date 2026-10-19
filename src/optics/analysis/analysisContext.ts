@@ -160,7 +160,7 @@ export function createAnalysisComputationContext(
       )),
     computeBokehPreviewPair: () =>
       (bokehPreviewPair ??= computeCenteredSection("bokeh", () =>
-        analysisJobsForState2.computeBokehPreviewPair(preparedState, currentEPSD, currentPhysStopSD, sampling),
+        analysisJobsForState2.computeBokehPreviewPair(request),
       )),
     computeBestFocusZ: () =>
       (bestFocusZ ??= computeSection("spherical-aberration", () => analysisJobsForState2.computeBestFocusZ(request))),

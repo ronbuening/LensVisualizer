@@ -43,9 +43,7 @@ describe("analysis computation context", () => {
     expect(context.computeBothPupilAberrationProfiles()).toEqual(
       analysisJobsForState2.computeBothPupilAberrationProfiles(context.request),
     );
-    expect(context.computeBokehPreviewPair()).toEqual(
-      analysisJobsForState2.computeBokehPreviewPair(state, currentEPSD, currentPhysStopSD),
-    );
+    expect(context.computeBokehPreviewPair()).toEqual(analysisJobsForState2.computeBokehPreviewPair(context.request));
     expect(context.computeChromaticAnalysis()).toEqual(
       analysisJobsForState2.computeChromaticAnalysis(state, currentEPSD, currentPhysStopSD, fieldGeometry),
     );

@@ -1348,8 +1348,8 @@ breathing series and group-movement profiles take `AnalysisRequest`. The summary
 takes the request directly; `OpticalSummaryTab` creates/reuses a request and lazy context without a prepared-job
 fallback. Spherical aberration, SA profile, blur character and best focus also take requests through the unchanged job
 keys. Field curvature, its chromatic bundle, coma, distortion, vignetting and pupil aberration also take requests,
-including field geometry and sampling; other families still dispatch through their existing `*ForState2` adapters
-until their request migration.
+including field geometry and sampling. Bokeh also takes requests; other families still dispatch through their
+existing `*ForState2` adapters until their request migration.
 Centered and movement-aware jobs retain their numerical kernels, sampling defaults and section-availability guards.
 
 Canonical cardinal and EFL math remains in `first-order/`. Request-facing cardinals accept optional camera surface
@@ -1371,8 +1371,7 @@ result. Null-result cache behavior, ghost/clipping rules and ordered profile fra
 
 Best focus deliberately recomputes its own full layout from the request's controls, rather than using camera-anchored
 request coordinates. It preserves the transmission-weighted least-squares reduction and nominal-layout image-plane
-fallback for insufficient hits. Bokeh reuses that solver with each preview state's own layout until its orchestration
-moves to requests.
+fallback for insufficient hits. Bokeh reuses that solver with each preview state's own layout.
 
 Shared coordinate, real-ray and focus reductions, off-axis bundle helpers and result types live in
 `analysis/aberration/{shared,offAxis,types}.ts`. These lower-level leaves still accept explicit ray/runtime inputs for
@@ -1493,10 +1492,18 @@ guards unchanged.
 
 ## Bokeh
 
-`aberration/bokeh.ts` traces circular pupil bundles at infinity and near focus. `computeBokehPreviewPair()` is the
-paired infinity/near-focus entry point over `computeBokehPreview()`; `computeBokehFieldFootprint()` returns the
-per-field point cloud, surviving pupil footprint, and radial blur profile; `buildBokehDensityGrid()` derives a grid
-from that cloud. Radial profiles and brightness classification are shared pure reductions in `analysis/aberration/radialProfile.ts`; best focus is owned by `analysis/aberration/bestFocus.ts`.
+`analysis/bokeh/bokeh.ts` takes `AnalysisRequest` and traces circular pupil bundles at infinity and near focus.
+`computeBokehPreviewPair()` shares the single-preview kernel with `computeBokehPreview()`.
+`computeBokehFieldFootprint()` returns the per-field point cloud, surviving pupil footprint and radial blur profile;
+`buildBokehDensityGrid()` derives a grid from that cloud. Radial profiles and brightness classification are shared
+pure reductions in `analysis/aberration/radialProfile.ts`; best focus is owned by `analysis/aberration/bestFocus.ts`.
+
+The job table and context retain the `computeBokehPreviewPair` key. `useBokehPreviewData` reuses the supplied
+context request or builds a request from prepared controls and both aperture radii, then memoizes its context/result.
+Each pair recomputes separate infinity, near, view and complementary-focus layouts, sharing identical focus states
+within the pair; it never traces the current request geometry twice. Field geometry is recomputed at each focus state,
+and the standalone field-footprint entry keeps its default sampling independently of request sampling.
+The moved Bokeh tab continues using perspective focus until the perspective-family migration.
 
 The traced image-plane point cloud is the source of truth; radial profiles are derived summaries. Off-axis bokeh
 footprints use projection-aware field geometry and vector launches for fisheye/past-cap fields when available.

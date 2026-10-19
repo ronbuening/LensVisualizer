@@ -40,14 +40,15 @@ flowchart LR
   n_src_components_display_analysis_React_components --> |9| n_src_components_display_analysis_src_components_display_analysis_aberrations
   n_src_components_display_analysis_React_components --> |7| n_src_components_display_analysis_src_components_display_analysis_perspective
   n_src_components_display_analysis_React_components --> |3| n_external_src_components_hooks
-  n_src_components_display_analysis_TypeScript_modules --> |3| n_external_src_optics_compat_ts
   n_src_components_display_analysis_TypeScript_modules --> |3| n_external_src_types
   n_src_components_display_analysis_React_components --> |3| n_external_src_utils_perfProbe_ts
   n_src_components_display_analysis_React_components --> |3| n_src_components_display_analysis_src_components_display_analysis_mtf
   n_src_components_display_analysis_TypeScript_modules --> |2| n_external_pkg_react
   n_src_components_display_analysis_React_components --> |2| n_external_src_optics_chromatic
   n_src_components_display_analysis_TypeScript_modules --> |2| n_external_src_optics_types_ts
+  n_src_components_display_analysis_TypeScript_modules --> n_external_src_optics_analysis_ts
   n_src_components_display_analysis_TypeScript_modules --> n_external_src_optics_chromatic
+  n_src_components_display_analysis_TypeScript_modules --> n_external_src_optics_compat_ts
   n_src_components_display_analysis_React_components --> n_external_src_optics_mtf_ts
   n_src_components_display_analysis_TypeScript_modules --> n_external_src_utils_perfProbe_ts
   n_src_components_display_analysis_React_components --> n_external_src_utils_state
@@ -57,7 +58,7 @@ flowchart LR
 
 - Direct source files: 31
 - Direct subfolders: 4
-- Main outbound areas: src/components/display (71), src/types (46), package:react (16), src/optics/compat.ts (13), src/optics/aberrationAnalysis.ts (11), src/optics/analysis.ts (11), src/optics/types.ts (11), src/optics/optics.ts (10), +5 more
+- Main outbound areas: src/components/display (71), src/types (46), package:react (16), src/optics/analysis.ts (12), src/optics/aberrationAnalysis.ts (11), src/optics/compat.ts (11), src/optics/types.ts (11), src/optics/optics.ts (10), +5 more
 - External consumers: src/benchmarks, src/components/diagram, src/components/display, src/components/layout
 
 ## Subfolders
@@ -100,7 +101,7 @@ flowchart LR
 | `PupilAberrationTab.tsx` | React component module | src/components/display (4), src/types (2), package:react, src/optics/analysis.ts, src/optics/compat.ts, +2 more | src/components/layout | default, PupilAberrationTab |
 | `SagittalComaPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, SagittalComaPlot |
 | `StandardFieldCurvaturePlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, StandardFieldCurvaturePlot |
-| `useBokehPreviewData.ts` | React hook module | src/optics/compat.ts (2), package:react, src/optics/types.ts, src/utils/perfProbe.ts | src/components/display | default, useBokehPreviewData |
+| `useBokehPreviewData.ts` | React hook module | package:react, src/optics/analysis.ts, src/optics/types.ts, src/utils/perfProbe.ts | src/components/display | default, useBokehPreviewData |
 | `usePreparedAnalysisState.ts` | React hook module | package:react, src/optics/compat.ts, src/optics/types.ts, src/types | src/components/display (11), src/components/layout | default, usePreparedAnalysisState |
 | `VignettingChart.tsx` | React component module | src/components/display (3), src/optics/analysis.ts, src/types | src/components/display | default, VignettingChart |
 | `VignettingTab.tsx` | React component module | src/components/display (4), src/types (2), package:react, src/optics/analysis.ts, src/optics/compat.ts, +3 more | src/components/layout | default, VignettingTab |

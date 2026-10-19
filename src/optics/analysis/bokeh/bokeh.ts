@@ -1,5 +1,5 @@
 /**
- * Bokeh preview computation — pure functions, no React dependencies.
+ * Request-based bokeh preview computation — pure functions, no React dependencies.
  *
  * Computes defocused point-source images (bokeh balls) at multiple field positions
  * for both infinity-source and near-source scenarios. The bokeh shape emerges naturally
@@ -12,27 +12,24 @@
  * future aperture-blade-shape masking (polygonal bokeh).
  */
 
-import { sampleCircularPupil, type CircularPupilSample } from "../analysis/sampling.js";
-import { skewImagePlaneIntercept, type SkewImagePlaneIntercept } from "../trace/rayAdapters.js";
+import { sampleCircularPupil, type CircularPupilSample } from "../sampling.js";
+import { skewImagePlaneIntercept, type SkewImagePlaneIntercept } from "../../trace/rayAdapters.js";
 import {
   computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
   type FieldGeometryState2 as FieldGeometryState,
-} from "../state/fieldAdapters.js";
-import { doLayout } from "../layout.js";
-import type { LayoutResult, RuntimeLens } from "../../types/optics.js";
-import {
-  computeProjectionAwareOffAxisFieldGeometry,
-  traceOffAxisBundleFromSamples,
-} from "../analysis/aberration/offAxis.js";
-import { computeBestFocusZFromLayout } from "../analysis/aberration/bestFocus.js";
+} from "../../state/fieldAdapters.js";
+import { doLayout } from "../../layout.js";
+import type { LayoutResult, RuntimeLens } from "../../../types/optics.js";
+import { computeProjectionAwareOffAxisFieldGeometry, traceOffAxisBundleFromSamples } from "../aberration/offAxis.js";
+import { computeBestFocusZFromLayout } from "../aberration/bestFocus.js";
 import {
   buildBokehRadialProfile,
   classifyBokehBrightnessCharacter,
   emptyRadialProfile,
-} from "../analysis/aberration/radialProfile.js";
-import { createAnalysisRequest } from "../analysis/request.js";
-import { prepareState } from "../state/preparedGeometry.js";
-import { compiledLensFromRuntime } from "../prescription/compile.js";
+} from "../aberration/radialProfile.js";
+import { createAnalysisRequest, type AnalysisRequest } from "../request.js";
+import { prepareState } from "../../state/preparedGeometry.js";
+import { runtimeView } from "../../prescription/runtimeView.js";
 import {
   BOKEH_CIRCULAR_PUPIL_RING_SAMPLES,
   BOKEH_PREVIEW_FIELD_FRACTIONS,
@@ -43,8 +40,8 @@ import {
   type BokehPreviewResult,
   type BokehPupilFootprint,
   type BokehPupilSample,
-} from "../analysis/aberration/types.js";
-import type { AnalysisSamplingOptions } from "../analysis/analysisQuality.js";
+} from "../aberration/types.js";
+import type { AnalysisSamplingOptions } from "../analysisQuality.js";
 
 /* ── Constants ── */
 
@@ -74,14 +71,13 @@ interface BokehTraceContext {
 /* ── Best-focus helpers ── */
 
 function buildBokehTraceContext(
-  L: RuntimeLens,
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-  sampling: AnalysisSamplingOptions = {},
+  request: AnalysisRequest,
+  focusT = request.preparedGeometry.focusT,
+  sampling: AnalysisSamplingOptions = request.sampling,
 ): BokehTraceContext {
+  const { zoomT, aberrationT } = request.preparedGeometry;
+  const L = runtimeView(request.preparedGeometry.lens);
+  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
   const layout = doLayout(focusT, zoomT, L, aberrationT);
   return {
     focusT,
@@ -90,7 +86,7 @@ function buildBokehTraceContext(
     layout,
     bestFocusZ: computeBestFocusZFromLayout(
       createAnalysisRequest({
-        preparedState: prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT),
+        preparedState: prepareState(request.preparedGeometry.lens, focusT, zoomT, aberrationT),
         dynamicEFL: L.EFL,
         currentEPSD,
         currentPhysStopSD,
@@ -314,33 +310,24 @@ function computeBokehFieldFootprintFromContext(
 /**
  * Compute one field tile of a defocused bokeh footprint.
  *
- * Rays are traced at `traceFocusT` and intercepted at `sensorZ`. The returned
+ * Rays are traced at the request focus and intercepted at `sensorZ`. The returned
  * offsets are chief-ray centered in sagittal/tangential millimeters, with pupil
  * footprint data preserving transmission/clipping shape.
  *
- * @param L - runtime lens object
- * @param _zPos - compatibility layout argument; context recomputes state internally
- * @param traceFocusT - normalized focus state used for tracing
- * @param zoomT - normalized zoom slider
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
+ * @param request - trace focus/zoom/aberration and aperture snapshot; field geometry
+ *   is recomputed at that focus, with default pupil sampling as before
  * @param fieldFraction - fraction of half field in `[0, 1]`
  * @param sensorZ - defocused intercept plane z coordinate in mm
- * @param aberrationT - normalized aberration spacing slider
  * @returns bokeh footprint for the field, or null when tracing is unusable
  */
 export function computeBokehFieldFootprint(
-  L: RuntimeLens,
-  _zPos: number[],
-  traceFocusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
+  request: AnalysisRequest,
   fieldFraction: number,
   sensorZ: number,
-  aberrationT = 0,
 ): BokehFieldResult | null {
-  const context = buildBokehTraceContext(L, traceFocusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
+  const L = runtimeView(request.preparedGeometry.lens);
+  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
+  const context = buildBokehTraceContext(request, request.preparedGeometry.focusT, {});
   return computeBokehFieldFootprintFromContext(L, context, currentEPSD, currentPhysStopSD, fieldFraction, sensorZ);
 }
 
@@ -356,6 +343,7 @@ export function computeBokehFieldFootprint(
  * @param points    Array of points with sagittalOffset, tangentialOffset, weight.
  * @param halfRange Extent of the grid in each direction (mm). Grid covers ±halfRange.
  * @param gridSize  Number of bins per axis (e.g., 64 → 64×64 grid).
+ * @returns non-empty cells in row/column order, normalized to peak density
  */
 export function buildBokehDensityGrid(
   points: readonly BokehPoint[],
@@ -452,34 +440,31 @@ export function describeBokehDefocusSide(defocusDeltaMm: number): string {
 /**
  * Compute one bokeh preview grid (e.g., infinity-source or near-source).
  *
- * Rays are traced through the lens at `traceFocusT` and intercepted at the
+ * Rays are traced through the lens at the request focus and intercepted at the
  * supplied `sensorZ` — the absolute Z position of the intercept plane. The
  * caller is responsible for computing a sensorZ that produces the correct
  * defocus for both unit-focus and internal-focus lens types.
  *
- * @param traceFocusT Focus state used for tracing (defines variable gaps and SA character).
- * @param sensorZ     Absolute Z position of the intercept plane.
- * @param label       Display label for the grid ("Infinity" or "Near Focus").
+ * @param request - trace focus/zoom/aberration, apertures and preview sampling
+ * @param sensorZ - absolute Z position of the intercept plane in mm
+ * @param label - display label for the grid ("Infinity" or "Near Focus")
+ * @returns preview grid, or null when no fields are usable
  */
 export function computeBokehPreview(
-  L: RuntimeLens,
-  traceFocusT: number,
+  request: AnalysisRequest,
   sensorZ: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
   label: string,
-  aberrationT = 0,
-  sampling: AnalysisSamplingOptions = {},
 ): BokehPreviewResult | null {
+  const L = runtimeView(request.preparedGeometry.lens);
+  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
   return computeBokehPreviewFromContext(
     L,
-    buildBokehTraceContext(L, traceFocusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT, sampling),
+    buildBokehTraceContext(request),
     sensorZ,
     currentEPSD,
     currentPhysStopSD,
     label,
-    sampling,
+    request.sampling,
   );
 }
 
@@ -501,23 +486,22 @@ export function computeBokehPreview(
  * position (1 − viewFocusT), applied around the near-focus convergence:
  *   `sensorZ = conv(1) + imgZ(1−view) − conv(1−view)`
  *
+ * @param request - view controls, apertures and preview sampling; each source gets its own layout
+ * @returns infinity and near-focus previews, each null when no fields are usable
+ *
  * This ensures: at viewFocusT=0 the infinity grid shows an in-focus spot
  * and the near grid shows maximum defocus; at viewFocusT=1 they swap.
  */
-export function computeBokehPreviewPair(
-  L: RuntimeLens,
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-  sampling: AnalysisSamplingOptions = {},
-): BokehPreviewPair {
+export function computeBokehPreviewPair(request: AnalysisRequest): BokehPreviewPair {
+  const { focusT } = request.preparedGeometry;
+  const L = runtimeView(request.preparedGeometry.lens);
+  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
+  const sampling = request.sampling;
   const contextCache = new Map<number, BokehTraceContext>();
   const getContext = (contextFocusT: number): BokehTraceContext => {
     const cached = contextCache.get(contextFocusT);
     if (cached) return cached;
-    const next = buildBokehTraceContext(L, contextFocusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT, sampling);
+    const next = buildBokehTraceContext(request, contextFocusT);
     contextCache.set(contextFocusT, next);
     return next;
   };
