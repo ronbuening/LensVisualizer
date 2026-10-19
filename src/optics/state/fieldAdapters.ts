@@ -9,7 +9,13 @@ import type { PreparedRayTrace } from "../trace/rayAdapters.js";
 import type { ChiefRaySolveResult2 } from "../field/chiefRaySolve.js";
 import { solveChiefRay, solveChiefRayBoundingSphere } from "../field/chiefRaySolve.js";
 import type { EntrancePupilState2 } from "../field/fieldGeometry.js";
-import { computeFieldGeometry, conjugateK, entrancePupil, traceParaxialRay } from "../field/fieldGeometry.js";
+import {
+  computeFieldGeometry,
+  conjugateK,
+  entrancePupil,
+  paraxialObjectVergence,
+  traceParaxialRay,
+} from "../field/fieldGeometry.js";
 import type { ImageHeightInversionResult } from "../field/imageHeight.js";
 import {
   chiefRayImageHeight,
@@ -362,6 +368,20 @@ export function conjugateK2(focusT: number, zoomT: number, L: RuntimeLens, aberr
   // Infinity never inspected the runtime lens; keep that short circuit before preparation.
   if (focusT < FOCUS_INFINITY_CUTOFF) return 0;
   return conjugateK(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT));
+}
+
+/**
+ * Reciprocal distance from the first vertex to the paraxial object plane imaged onto the current image plane.
+ *
+ * @param focusT - normalized focus position
+ * @param zoomT - normalized zoom position
+ * @param L - runtime lens prescription
+ * @param aberrationT - normalized aberration control position
+ * @returns 1/s in 1/mm, positive for a real object; 0 at infinity focus and for folded paths
+ */
+export function paraxialObjectVergence2(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
+  if (focusT < FOCUS_INFINITY_CUTOFF) return 0;
+  return paraxialObjectVergence(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT));
 }
 
 export { type ChiefRaySolveResult2 } from "../field/chiefRaySolve.js";

@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-19",
+    type: "fix",
+    summary: "Fixed close-focus distortion readings, which were measured against an infinity reference",
+  },
+  {
+    date: "2026-10-19",
     type: "lens",
     summary: "Added Leica Noctilux-M 35mm, Olympus Zuiko 180mm, two Sigma and two Viltrox primes",
   },

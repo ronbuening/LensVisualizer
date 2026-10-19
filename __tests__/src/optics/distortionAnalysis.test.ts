@@ -8,9 +8,11 @@ import {
   chiefRayImageHeightAccurate,
   doLayout,
   eflAtFocus,
+  paraxialObjectVergence,
   skewImagePlaneIntercept,
   solveChiefRay,
   thick,
+  traceParaxialRay,
   traceSkewRay,
 } from "../../../src/optics/optics.js";
 import SigmaMacro180Raw from "../../../src/lens-data/sigma/SigmaAPOMacro180mmf28.data.js";
@@ -315,6 +317,59 @@ describe("computeDistortionCurve", () => {
     const thetaRad = (outerSample.fieldAngleDeg * Math.PI) / 180;
     expect(outerSample.idealHeight).toBeCloseTo(-6.3 * thetaRad, 5);
   });
+
+  describe("finite-conjugate reference", () => {
+    // A positive element ahead of the stop images it with strong pupil aberration, so the real chief ray misses the
+    // paraxial entrance-pupil centre and F-tan(theta) of its object-space angle is not its object point's image.
+    const L = build({
+      key: "test-distortion-front-element-rear-stop",
+      name: "Front element, rear stop",
+      closeFocusM: 0.5,
+      yScFill: 0.55,
+      nominalFno: 4,
+      fstopSeries: [4, 5.6, 8],
+      elements: [{ id: 1, name: "Front element", label: "L1", type: "positive", nd: 1.5168, vd: 64.17 }],
+      surfaces: [
+        { label: "1", R: 30, nd: 1.5168, sd: 20, d: 10, elemId: 1 },
+        { label: "2", R: 1e15, nd: 1.0, sd: 20, d: 25, elemId: 0 },
+        { label: "STO", R: 1e15, nd: 1.0, sd: 4, d: 26.5, elemId: 0 },
+      ],
+      var: { STO: [26.5, 46.5] },
+    });
+    const curveAt = (focusT: number) => {
+      const { z } = doLayout(focusT, 0, L);
+      const geometry = computeAnalysisFieldGeometryAtState(focusT, 0, L);
+      return { geometry, samples: computeDistortionCurve(L, z, focusT, 0, L.EFL, L.stopPhysSD, geometry).samples };
+    };
+    const tanDeg = (deg: number) => Math.tan((deg * Math.PI) / 180);
+
+    it("keeps the F-tan(theta) reference at infinity", () => {
+      const samples = curveAt(0).samples.slice(1);
+      const scale = samples[0].idealHeight / tanDeg(samples[0].fieldAngleDeg);
+      for (const sample of samples) expect(sample.idealHeight).toBeCloseTo(scale * tanDeg(sample.fieldAngleDeg), 9);
+    });
+
+    it("measures finite focus against the paraxial image of the chief ray's object point", () => {
+      const focusT = 1;
+      const { geometry, samples } = curveAt(focusT);
+      const edge = samples.at(-1)!;
+      // An axial object at s in front of the first vertex launches y = s·u; the parallel ray's height is the magnification.
+      const imageGap = thick(L.N - 1, focusT, 0, L);
+      const imageHeight = (y0: number, u0: number) => {
+        const ray = traceParaxialRay(y0, u0, focusT, 0, L);
+        return ray.y + imageGap * ray.u;
+      };
+      const objectDistance = -imageHeight(0, 1) / imageHeight(1, 0);
+      const chief = solveChiefRay(edge.fieldAngleDeg, focusT, 0, L, geometry);
+      const paraxialImage = imageHeight(1, 0) * (chief.yLaunch - chief.uField * objectDistance);
+      const infinityConjugateIdeal =
+        (samples[1].idealHeight / tanDeg(samples[1].fieldAngleDeg)) * tanDeg(edge.fieldAngleDeg);
+
+      expect(objectDistance).toBeGreaterThan(0);
+      expect(Math.abs(edge.idealHeight / paraxialImage - 1)).toBeLessThan(1e-4);
+      expect(Math.abs(infinityConjugateIdeal / paraxialImage - 1)).toBeGreaterThan(1e-2);
+    });
+  });
 });
 
 describe("computeDistortionFieldGrid", () => {
@@ -424,12 +479,26 @@ describe("computeDistortionFieldGrid", () => {
     expect(grid.idealFieldRadius).toBeGreaterThan(0);
 
     const rectilinearScale = grid.idealFieldRadius / Math.tan((geometry.halfFieldDeg * Math.PI) / 180);
-    const fieldSlopeX = edgePoint.idealX / rectilinearScale;
-    const fieldSlopeY = -edgePoint.idealY / rectilinearScale;
-    const equivalentAngleDeg = (Math.atan(Math.hypot(fieldSlopeX, fieldSlopeY)) * 180) / Math.PI;
-    const paraxialYChief = geometry.epRatio * Math.tan((equivalentAngleDeg * Math.PI) / 180);
-    const solvedYChief = solveChiefRay(equivalentAngleDeg, focusT, zoomT, L, geometry).yLaunch;
-    const correction = Math.abs(paraxialYChief) > 1e-12 ? solvedYChief / paraxialYChief : 1;
+    const paraxialSlopeX = edgePoint.idealX / rectilinearScale;
+    const paraxialSlopeY = -edgePoint.idealY / rectilinearScale;
+    const paraxialSlope = Math.hypot(paraxialSlopeX, paraxialSlopeY);
+    const pupilCorrection = (angleDeg: number) => {
+      const paraxialYChief = geometry.epRatio * Math.tan((angleDeg * Math.PI) / 180);
+      const solvedYChief = solveChiefRay(angleDeg, focusT, zoomT, L, geometry).yLaunch;
+      return Math.abs(paraxialYChief) > 1e-12 ? solvedYChief / paraxialYChief : 1;
+    };
+    // Aim the chief ray at the object point whose paraxial image is the ideal grid point.
+    const pupilVergence = geometry.epRatio * paraxialObjectVergence(focusT, zoomT, L);
+    let correction = pupilCorrection(Math.min((Math.atan(paraxialSlope) * 180) / Math.PI, geometry.halfFieldDeg));
+    let slopeScale = 1;
+    for (let pass = 0; pass < 4; pass++) {
+      slopeScale = (1 + pupilVergence) / (1 + pupilVergence * correction);
+      correction = pupilCorrection(
+        Math.min((Math.atan(slopeScale * paraxialSlope) * 180) / Math.PI, geometry.halfFieldDeg),
+      );
+    }
+    const fieldSlopeX = paraxialSlopeX * slopeScale;
+    const fieldSlopeY = paraxialSlopeY * slopeScale;
     const correctedEpRatio = geometry.epRatio * correction;
     const trace = traceSkewRay(
       -correctedEpRatio * fieldSlopeX,
@@ -463,8 +532,9 @@ describe("computeDistortionFieldGrid", () => {
 
     expect(currentImage).not.toBeNull();
     expect(staleImage).not.toBeNull();
-    expect(edgePoint.tracedX).toBeCloseTo(currentImage!.x, 8);
-    expect(edgePoint.tracedY).toBeCloseTo(-currentImage!.y, 8);
+    // The grid interpolates the pupil correction between solved fields; this check solves it exactly.
+    expect(edgePoint.tracedX).toBeCloseTo(currentImage!.x, 5);
+    expect(edgePoint.tracedY).toBeCloseTo(-currentImage!.y, 5);
     expect(Math.abs(edgePoint.tracedX! - staleImage!.x)).toBeGreaterThan(1);
   });
 

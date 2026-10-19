@@ -4,7 +4,9 @@
  *
  * Samples fixed image heights from center to the current field edge,
  * solves the object-space field angle that lands at each height, and
- * compares the traced image height to the current projection ideal.
+ * compares the traced image height to the current projection ideal. At finite
+ * rectilinear focus the ideal is the paraxial image of the chief ray's object
+ * point, not the infinity-conjugate F-tan(theta) of its object-space angle.
  *
  * No React dependencies — fully testable in isolation. Memoize from
  * current state in a hook rather than embedding in a component.
@@ -17,6 +19,7 @@ import {
   computeAnalysisFieldGeometryAtState,
   computeBoundingSphereVectorFieldLaunch,
   computeFieldGeometryAtState,
+  paraxialObjectVergence,
   skewImagePlaneIntercept,
   solveChiefRay,
   invertChiefRayImageHeights,
@@ -52,7 +55,7 @@ export interface DistortionSample {
   distortionPercent: number;
   /** Traced chief-ray image height (mm, signed). */
   realHeight: number;
-  /** Ideal projection image height (mm, signed). */
+  /** Ideal projection image height (mm, signed); the paraxial object-point image at finite rectilinear focus. */
   idealHeight: number;
   /** Ideal-reference object angle for this image height at current scale. */
   idealFieldAngleDeg: number;
@@ -110,6 +113,8 @@ interface DistortionReference {
   projectionReference: ProjectionReference;
   edgeImageHeight: number;
   idealFieldRadius: number;
+  /** Reciprocal first-vertex distance of the paraxial object plane (1/mm); 0 at infinity and for fisheyes. */
+  objectVergence: number;
   zPos: number[];
   lastSurfZ: number;
   imagePlaneZ: number;
@@ -150,6 +155,7 @@ function computeDistortionReference(
       projectionReference,
       edgeImageHeight: -idealFieldRadius,
       idealFieldRadius,
+      objectVergence: 0,
       zPos,
       lastSurfZ,
       imagePlaneZ,
@@ -188,10 +194,25 @@ function computeDistortionReference(
     projectionReference,
     edgeImageHeight,
     idealFieldRadius,
+    objectVergence: paraxialObjectVergence(focusT, zoomT, L, aberrationT),
     zPos,
     lastSurfZ,
     imagePlaneZ,
   };
+}
+
+/**
+ * Tangent of the paraxial field angle of a chief ray's object point.
+ *
+ * The point lies where the chief ray (height `yLaunch` at the first vertex, slope `uField`) crosses the paraxial object
+ * plane at 1/`objectVergence` in front of the vertex. Its tangent is that height over the plane's distance from the
+ * paraxial entrance pupil, so the rectilinear scale times this tangent is the point's paraxial image height. Pupil
+ * aberration moves the real chief ray off the paraxial pupil centre, which is why this differs from tan(theta) at
+ * finite focus; at infinity (vergence 0) the two agree.
+ */
+function paraxialObjectTangent(reference: DistortionReference, yLaunch: number, uField: number): number {
+  const vergence = reference.objectVergence;
+  return (yLaunch * vergence - uField) / (1 + reference.geometry.epRatio * vergence);
 }
 
 /**
@@ -201,8 +222,10 @@ function computeDistortionReference(
  * SAMPLE_COUNT evenly-spaced image heights. At each height, solves the
  * object-space field angle that reaches that point, then compares the
  * actual image height to an ideal projection mapping. Rectilinear lenses use
- * the current near-axis F-tan(theta) scale; fisheyes use their declared
- * projection model.
+ * the current near-axis F-tan(theta) scale, applied at finite focus to the
+ * paraxial field angle of the chief ray's object point (the paraxial image of
+ * that point); fisheyes use their declared projection model at the
+ * object-space field angle.
  *
  * @param L               — runtime lens object
  * @param zPos            — surface z-positions for current focus/zoom
@@ -299,7 +322,11 @@ export function computeDistortionCurve(
     if (inversion.status === "unreachable") continue;
     const fieldAngleDeg = inversion.fieldAngleDeg;
 
-    const thetaRad = (fieldAngleDeg * Math.PI) / 180;
+    let thetaRad = (fieldAngleDeg * Math.PI) / 180;
+    if (reference.objectVergence !== 0) {
+      const chief = solveChiefRay(fieldAngleDeg, focusT, zoomT, L, reference.geometry, aberrationT);
+      thetaRad = Math.atan(paraxialObjectTangent(reference, chief.yLaunch, chief.uField));
+    }
     const idealHeight = -projectionImageHeightForAngle(reference.projectionReference, thetaRad);
     if (!isFinite(idealHeight) || idealHeight === 0) continue;
 
@@ -465,17 +492,30 @@ function traceDistortionGridPointVector(
 // post-hoc by scaling `epRatio` with the interpolated correction at the
 // equivalent field angle. The vector branch doesn't need this — the
 // bounding-sphere chief-ray bisection lands on the real stop center directly.
+// At finite focus the ideal grid point is the paraxial image of an object
+// point, so the slope is rescaled until the corrected chief ray starts from
+// that point; three passes settle the slowly varying correction.
 function traceDistortionGridPointSlope(
   launch: DistortionGridLaunchSlope,
   reference: DistortionReference,
   pupilCorrection: PupilCorrectionEntry[],
   adapter: PreparedRayTrace,
 ): SkewRayTraceResult {
-  const correction = interpolatePupilCorrection(pupilCorrection, launch.equivalentAngleDeg);
+  let correction = interpolatePupilCorrection(pupilCorrection, launch.equivalentAngleDeg);
+  let slopeScale = 1;
+  if (reference.objectVergence !== 0) {
+    const pupilVergence = reference.geometry.epRatio * reference.objectVergence;
+    const paraxialSlope = Math.hypot(launch.fieldSlopeX, launch.fieldSlopeY);
+    for (let pass = 0; pass < 3; pass++) {
+      slopeScale = (1 + pupilVergence) / (1 + pupilVergence * correction);
+      correction = interpolatePupilCorrection(pupilCorrection, (Math.atan(slopeScale * paraxialSlope) * 180) / Math.PI);
+    }
+    slopeScale = (1 + pupilVergence) / (1 + pupilVergence * correction);
+  }
+  const fieldSlopeX = launch.fieldSlopeX * slopeScale;
+  const fieldSlopeY = launch.fieldSlopeY * slopeScale;
   const correctedEpRatio = reference.geometry.epRatio * correction;
-  const chiefLaunchX = -correctedEpRatio * launch.fieldSlopeX;
-  const chiefLaunchY = -correctedEpRatio * launch.fieldSlopeY;
-  return adapter.skew(chiefLaunchX, chiefLaunchY, launch.fieldSlopeX, launch.fieldSlopeY);
+  return adapter.skew(-correctedEpRatio * fieldSlopeX, -correctedEpRatio * fieldSlopeY, fieldSlopeX, fieldSlopeY);
 }
 
 function traceDistortionGridPoint(
