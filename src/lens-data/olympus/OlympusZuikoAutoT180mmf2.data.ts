@@ -1,0 +1,313 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+// JP H05-042643 B2 (Olympus; family US 4,558,928), Example 1: f = 100, F/2.0, 2ω = 13.7°. The patent text names
+// 180 mm F/1.8–F/2.0 telephotos; all radii and spacings are scaled by 1.8, nd/νd unchanged. The stop sits 5.22
+// (patent units) behind r13 and moves with IIb. The patent prints no back focus; the last gap is the Gaussian value.
+// Semi-diameters are inferred; the stop radius follows from F/2. The printed xa/xb movement table holds the
+// gap-derived movements transposed; the near-row d13 is taken as 14.12 (printed 14.13) to keep the rear group fixed.
+const LENS_DATA = {
+  schema: 2,
+  key: "olympus-zuiko-auto-t-180mm-f2",
+  maker: "Olympus",
+  name: "OLYMPUS ZUIKO AUTO-T 180mm f/2",
+  subtitle: "JP H05-042643 B2, Example 1 \u2014 scaled to 180 mm; production correlation",
+  visible: true,
+  catalog: {
+    lensMounts: ["olympus-om"],
+    imageFormat: "135-full-frame",
+    elementCount: 10,
+    groupCount: 8,
+    specs: [
+      "10 ELEMENTS / 8 GROUPS",
+      "DESIGN f = 100 (NORMALIZED; SCALED 1.8\u00d7 TO 180 mm)",
+      "DESIGN F/2.0",
+      "ALL SPHERICAL",
+      "INTERNAL FOCUS",
+    ],
+    focalLengthMm: {
+      marketing: 180,
+      design: 179.99822894364044,
+    },
+    fNumber: {
+      marketing: 2,
+      design: 2,
+    },
+  },
+  source: {
+    patentNumber: "JP H05-042643 B2",
+    patentYear: 1993,
+    authors: ["Masaki Imaizumi"],
+    assignees: ["Olympus Optical Co., Ltd."],
+  },
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Spherical element",
+      nd: 1.497,
+      vd: 81.61,
+      glass: "Patent nd/vd; production glass unspecified",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Spherical element",
+      nd: 1.617,
+      vd: 62.79,
+      glass: "Patent nd/vd; production glass unspecified",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Spherical element",
+      nd: 1.65412,
+      vd: 39.7,
+      glass: "Patent nd/vd; production glass unspecified",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Spherical element",
+      nd: 1.497,
+      vd: 81.61,
+      glass: "Patent nd/vd; production glass unspecified",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Spherical element",
+      nd: 1.50378,
+      vd: 66.81,
+      glass: "Patent nd/vd; production glass unspecified",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Spherical element",
+      nd: 1.68893,
+      vd: 31.08,
+      glass: "Patent nd/vd; production glass unspecified",
+    },
+    {
+      id: 7,
+      name: "L7",
+      label: "Element 7",
+      type: "Spherical element",
+      nd: 1.52682,
+      vd: 51.12,
+      glass: "Patent nd/vd; production glass unspecified",
+    },
+    {
+      id: 8,
+      name: "L8",
+      label: "Element 8",
+      type: "Spherical element",
+      nd: 1.788,
+      vd: 47.43,
+      glass: "Patent nd/vd; production glass unspecified",
+    },
+    {
+      id: 9,
+      name: "L9",
+      label: "Element 9",
+      type: "Spherical element",
+      nd: 1.60342,
+      vd: 38.01,
+      glass: "Patent nd/vd; production glass unspecified",
+    },
+    {
+      id: 10,
+      name: "L10",
+      label: "Element 10",
+      type: "Spherical element",
+      nd: 1.6779,
+      vd: 55.33,
+      glass: "Patent nd/vd; production glass unspecified",
+    },
+  ],
+  surfaces: [
+    {
+      label: "1",
+      R: 89.5014,
+      sd: 50.97850356274598,
+      medium: 1,
+      d: 18.486,
+    },
+    {
+      label: "2",
+      R: -531.8514,
+      sd: 50.97850356274598,
+      d: 0.36000000000000004,
+    },
+    {
+      label: "3",
+      R: 83.709,
+      sd: 48.937587424232014,
+      medium: 2,
+      d: 11.988000000000001,
+    },
+    {
+      label: "4",
+      R: 308.43899999999996,
+      sd: 48.937587424232014,
+      d: 5.4,
+    },
+    {
+      label: "5",
+      R: -1037.8763999999999,
+      sd: 47.25405,
+      medium: 3,
+      d: 4.914,
+    },
+    {
+      label: "6",
+      R: 55.593,
+      sd: 39.132336664108465,
+      d: 5.004,
+    },
+    {
+      label: "7",
+      R: 71.79480000000001,
+      sd: 39.132336664108465,
+      medium: 4,
+      d: 10.962,
+    },
+    {
+      label: "8",
+      R: 606.1014,
+      sd: 40.0134279237406,
+    },
+    {
+      label: "9",
+      R: -294.1524,
+      sd: 30.0,
+      medium: 5,
+      d: 5.58,
+    },
+    {
+      label: "10",
+      R: 179.0298,
+      sd: 30.0,
+    },
+    {
+      label: "11",
+      R: 577.3788000000001,
+      sd: 30.0,
+      medium: 6,
+      d: 7.002000000000001,
+    },
+    {
+      label: "12",
+      R: -89.1216,
+      sd: 30.0,
+      medium: 7,
+      d: 3.006,
+    },
+    {
+      label: "13",
+      R: 55.7586,
+      sd: 30.0,
+      d: 9.395999999999999,
+    },
+    {
+      label: "STO",
+      R: "flat",
+    },
+    {
+      label: "14",
+      R: 129.5244,
+      sd: 24.695974296438017,
+      medium: 8,
+      d: 6.606,
+    },
+    {
+      label: "15",
+      R: -75.9042,
+      sd: 24.695974296438017,
+      d: 2.52,
+    },
+    {
+      label: "16",
+      R: -70.3494,
+      sd: 24.914353124356587,
+      medium: 9,
+      d: 2.484,
+    },
+    {
+      label: "17",
+      R: 47.1096,
+      sd: 24.914353124356587,
+      medium: 10,
+      d: 7.434,
+    },
+    {
+      label: "18",
+      R: -1501.1514,
+      sd: 24.914353124356587,
+      d: 57.72009562276684,
+    },
+  ],
+  focus: {
+    closeFocusM: 1.6,
+    keyframes: [
+      0.0, 0.041666666666666664, 0.08333333333333333, 0.125, 0.16666666666666666, 0.20833333333333331, 0.25,
+      0.29166666666666663, 0.3333333333333333, 0.375, 0.41666666666666663, 0.4583333333333333, 0.5, 0.5416666666666666,
+      0.5833333333333333, 0.625, 0.6666666666666666, 0.7083333333333333, 0.75, 0.7916666666666666, 0.8333333333333333,
+      0.875, 0.9166666666666666, 0.9583333333333333, 1.0,
+    ],
+    description:
+      "Internal focus: the negative singlet IIa and the cemented pair IIb (with the stop) both move toward the image, IIb slightly farther, while the front and rear groups stay fixed. The patent prints the gaps at infinity and at object points 3056 and 1031 (patent units, about 5.5 m and 1.86 m from the front vertex at 180 mm). Intermediate states follow a quadratic IIa/IIb travel law through those rows; the 1.6 m minimum focus distance extrapolates past the last printed state.",
+  },
+  gaps: {
+    "8": {
+      label: "Front group–IIa",
+      values: [
+        [
+          17.64, 18.201479510948968, 18.772651012473712, 19.35377419610924, 19.945118418052804, 20.546963168529345,
+          21.159598569666233, 21.783325903975587, 22.418458175724385, 23.065320707673603, 23.724251775888686,
+          24.395603285568015, 25.079741491107118, 25.777047763912687, 26.487919411813724, 27.21277055428303,
+          27.952033058089867, 28.706157538459763, 29.47561443132113, 30.26089514278478, 31.062513282632043,
+          31.8810059892937, 32.71693535459532, 33.5708899574343, 34.443486516556646,
+        ],
+      ],
+    },
+    "10": {
+      label: "IIa\u2013IIb",
+      values: [
+        [
+          8.244, 8.293732996753008, 8.348115813727821, 8.407370468142341, 8.4717305605089, 8.541441978389729,
+          8.616763650169279, 8.697968352970598, 8.785343579234272, 8.879192466912043, 8.979834798708039,
+          9.087608076334668, 9.202868676344222, 9.325993094758074, 9.457379288452934, 9.597448122086341,
+          9.746644930263704, 9.905441205679436, 10.07433642511962, 10.253860026511092, 10.444573551660588,
+          10.647072970971532, 10.861991208281255, 11.090000886058457, 11.331817313576,
+        ],
+      ],
+    },
+    STO: {
+      label: "Stop\u2013rear group",
+      values: [
+        [
+          30.204, 29.59278749229803, 28.967233173798476, 28.326855335748427, 27.6711510214383, 26.99959485308093,
+          26.31163778016449, 25.606705743053816, 24.884198245041347, 24.143486825414357, 23.38391342540328,
+          22.604788638097318, 21.805389832548663, 20.98495914132924, 20.142701299733346, 19.277781323630627,
+          18.389322011646428, 17.476401255860807, 16.53804914355925, 15.573244830704132, 14.580913165707374,
+          13.55992103973477, 12.509073437123432, 11.427109156507251, 10.31269616986736,
+        ],
+      ],
+    },
+  },
+  aperture: {
+    nominalFNumber: 2,
+    fStops: [2, 2.8, 4, 5.6, 8, 11, 16],
+  },
+  layout: {
+    yScFill: 0.4,
+  },
+} satisfies LensDataV2Input;
+export default LENS_DATA;
