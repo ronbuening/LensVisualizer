@@ -5,7 +5,7 @@
  */
 
 import type { Theme } from "../../../types/theme.js";
-import type { DistortionSample } from "../../../optics/distortionAnalysis.js";
+import type { DistortionSample } from "../../../optics/analysis.js";
 import { SvgChartFrame } from "./charts/SvgChartFrame.js";
 import {
   createPlotArea,

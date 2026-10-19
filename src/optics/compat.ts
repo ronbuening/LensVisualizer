@@ -270,12 +270,6 @@ export {
   computeBokehPreviewPairForState2,
   describeBokehDefocusSide2,
 } from "./analysis/bokeh.js";
-export {
-  computeDistortionCurve2,
-  computeDistortionCurveForState2,
-  computeDistortionFieldGrid2,
-  computeDistortionFieldGridForState2,
-} from "./analysis/distortion.js";
 export { computeVignettingCurve2, computeVignettingCurveForState2 } from "./analysis/vignetting.js";
 export {
   computeBothPupilAberrationProfiles2,

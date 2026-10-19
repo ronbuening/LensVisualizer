@@ -6,7 +6,7 @@
  */
 
 import { useMemo } from "react";
-import { analysisJobsForState2 } from "../../../optics/compat.js";
+import { createAnalysisRequest, createAnalysisComputationContext } from "../../../optics/analysis.js";
 import { probe } from "../../../utils/perfProbe.js";
 import { eflAtZoom } from "../../../optics/optics.js";
 import DistortionChart from "./DistortionChart.js";
@@ -14,7 +14,7 @@ import DistortionFieldGrid from "./DistortionFieldGrid.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
-import type { AnalysisComputationContext } from "../../../optics/compat.js";
+import type { AnalysisComputationContext } from "../../../optics/analysis.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
@@ -93,34 +93,23 @@ function CenteredDistortionContent({
   preparedState,
   analysisContext,
 }: CenteredDistortionContentProps) {
-  const result = useMemo(
+  const request = useMemo(
     () =>
-      probe(
-        "computeDistortionCurve",
-        () =>
-          analysisContext?.computeDistortionCurve() ??
-          analysisJobsForState2.computeDistortionCurve(
-            preparedState,
-            dynamicEFL,
-            currentPhysStopSD,
-            fieldGeometry ?? undefined,
-          ),
-      ),
-    [analysisContext, preparedState, dynamicEFL, currentPhysStopSD, fieldGeometry],
+      analysisContext?.request ??
+      createAnalysisRequest({
+        preparedState,
+        dynamicEFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD,
+        fieldGeometry,
+      }),
+    [analysisContext, preparedState, dynamicEFL, L, currentPhysStopSD, fieldGeometry],
   );
+  const context = useMemo(() => createAnalysisComputationContext(request), [request]);
+  const result = useMemo(() => probe("computeDistortionCurve", () => context.computeDistortionCurve()), [context]);
   const fieldGrid = useMemo(
-    () =>
-      probe(
-        "computeDistortionFieldGrid",
-        () =>
-          analysisContext?.computeDistortionFieldGrid() ??
-          analysisJobsForState2.computeDistortionFieldGrid(
-            preparedState,
-            currentPhysStopSD,
-            fieldGeometry ?? undefined,
-          ),
-      ),
-    [analysisContext, preparedState, currentPhysStopSD, fieldGeometry],
+    () => probe("computeDistortionFieldGrid", () => context.computeDistortionFieldGrid()),
+    [context],
   );
 
   const { samples, corner } = result;

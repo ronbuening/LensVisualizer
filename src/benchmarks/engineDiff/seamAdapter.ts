@@ -14,6 +14,7 @@ type EngineModule = Readonly<Record<string, unknown>>;
 
 /* One glob per module, so a candidate below can only name a module that is listed here. */
 const ENGINE_MODULES = {
+  distortionAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/distortion/distortion.ts", { eager: true }),
   comaAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/coma.ts", { eager: true }),
   fieldCurvatureAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/fieldCurvature.ts", {
     eager: true,
@@ -47,6 +48,7 @@ const ENGINE_MODULES = {
 /* The same modules as types. A type query is erased before bundling, so it types a capability at the head and loads
  * nothing at any ref. */
 interface EngineModuleTypes {
+  distortionAnalysis: typeof import("../../optics/analysis.js");
   comaAnalysis: typeof import("../../optics/analysis.js");
   fieldCurvatureAnalysis: typeof import("../../optics/analysis.js");
   sphericalAnalysis: typeof import("../../optics/analysis.js");
@@ -87,6 +89,15 @@ type SeamCandidate = readonly [module: EngineModuleId, exportName: string];
  * overlay's departure and best-fit helpers and the LoCA inset's bar scaling), so a payload notices when either copy drifts.
  */
 const SEAM_CANDIDATES = {
+  // Captures dispatch these through the context at both refs; retain the old prepared exports.
+  computeDistortionCurve: [
+    ["distortionAnalysis", "computeDistortionCurve"],
+    ["compat", "computeDistortionCurveForState2"],
+  ],
+  computeDistortionFieldGrid: [
+    ["distortionAnalysis", "computeDistortionFieldGrid"],
+    ["compat", "computeDistortionFieldGridForState2"],
+  ],
   computeComaAnalysis: [
     ["comaAnalysis", "computeComaAnalysis"],
     ["compat", "computeComaAnalysisForState2"],

@@ -1347,7 +1347,7 @@ The summary family lives in `analysis/summary/`, exposed through `analysis.ts`. 
 breathing series and group-movement profiles take `AnalysisRequest`. The summary job table key is unchanged but now
 takes the request directly; `OpticalSummaryTab` creates/reuses a request and lazy context without a prepared-job
 fallback. Spherical aberration, SA profile, blur character and best focus also take requests through the unchanged job
-keys. Field curvature, its chromatic bundle and coma also take requests, including field geometry and sampling;
+keys. Field curvature, its chromatic bundle, coma and distortion also take requests, including field geometry and sampling;
 other families still dispatch through their existing `*ForState2` adapters until their request migration.
 Centered and movement-aware jobs retain their numerical kernels, sampling defaults and section-availability guards.
 
@@ -1402,7 +1402,7 @@ primers aligned to that convention.
 
 ## Distortion
 
-`distortionAnalysis.ts` computes:
+`analysis/distortion/distortion.ts`, exposed through `analysis.ts`, takes `AnalysisRequest` and computes:
 
 - `computeDistortionCurve()` - historical center-to-edge samples with independent ray validation.
   The shared inversion selects the first neighboring table nodes straddling the target and evaluates the legacy first
@@ -1446,8 +1446,13 @@ chief ray off the paraxial pupil centre, so `scale × tan(theta)` is an infinity
 close-focus distortion by several percent on wide-angles. Fisheyes keep their declared mapping at the object-space angle
 and folded paths keep the infinity reference.
 
-The per-field pupil correction sample count halves on heavy lenses via `isHeavyLensForRayWork`. All three functions
-accept an optional precomputed `FieldGeometryState`.
+The per-field pupil correction sample count halves on heavy lenses via `isHeavyLensForRayWork`. Both public jobs
+read optional precomputed field geometry from the request; the reference helper is private. The job-table keys and
+context accessors remain unchanged. The context forwards request sampling to the curve, but deliberately uses default
+grid sampling even when quality or custom sampling overrides are present. Direct grid requests retain their sampling
+overrides. `DistortionTab` reuses the deferred context request or memoizes a request from its prepared state and all
+used controls, then reads both results through the lazy context. Its separate moved-content component continues to
+use perspective analysis.
 
 ## Vignetting
 

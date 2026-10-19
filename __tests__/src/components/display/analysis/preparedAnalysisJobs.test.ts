@@ -43,8 +43,6 @@ vi.mock("../../../../../src/optics/compat.js", async () => {
       computeBothPupilAberrationProfiles: mockComputeBothPupilAberrationProfiles,
       computeChromaticAnalysis: mockComputeChromaticAnalysis,
       computeChromaticRayFanAnalysis: mockComputeChromaticRayFanAnalysis,
-      computeDistortionCurve: mockComputeDistortionCurve,
-      computeDistortionFieldGrid: mockComputeDistortionFieldGrid,
       computeVignettingCurve: mockComputeVignettingCurve,
     },
     prepareRuntimeState: mockPrepareRuntimeState,
@@ -61,8 +59,17 @@ vi.mock("../../../../../src/optics/analysis/aberration/fieldCurvature.js", async
   return { ...actual, computeFieldCurvatureBundle: mockComputeFieldCurvatureBundle };
 });
 
+vi.mock("../../../../../src/optics/analysis/distortion/distortion.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../../src/optics/analysis/distortion/distortion.js")>();
+  return {
+    ...actual,
+    computeDistortionCurve: mockComputeDistortionCurve,
+    computeDistortionFieldGrid: mockComputeDistortionFieldGrid,
+  };
+});
+
 const preparedState = mockPreparedState as PreparedOpticalState;
-const lens = { N: 2, EFL: 50, isZoom: false, elements: [] } as unknown as RuntimeLens;
+const lens = { N: 2, EFL: 50, EP: { epSD: 5 }, isZoom: false, elements: [] } as unknown as RuntimeLens;
 const fieldGeometry = { halfFieldDeg: 12, yRatio: 1, b: 1, epRatio: 1 };
 
 const distortionSamples = [
@@ -307,6 +314,7 @@ const opticalSummary = {
 
 describe("prepared-state analysis tabs", () => {
   beforeEach(() => {
+    mockPreparedState.lens = {};
     mockComputeBothPupilAberrationProfiles.mockReset();
     mockComputeBothPupilAberrationProfiles.mockReturnValue(pupilProfiles);
     mockComputeChromaticAnalysis.mockReset();
@@ -330,7 +338,7 @@ describe("prepared-state analysis tabs", () => {
     mockPrepareRuntimeState.mockReset();
   });
 
-  it("routes distortion work through the prepared-state job facade", () => {
+  it("routes distortion work through one request and lazy context", () => {
     const html = renderToStaticMarkup(
       React.createElement(DistortionTab, {
         L: lens,
@@ -351,8 +359,21 @@ describe("prepared-state analysis tabs", () => {
     expect(html).toContain("100%");
     expect(html).not.toContain("Field angle (°)");
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
-    expect(mockComputeDistortionCurve).toHaveBeenCalledWith(preparedState, 51, 5, fieldGeometry);
-    expect(mockComputeDistortionFieldGrid).toHaveBeenCalledWith(preparedState, 5, fieldGeometry);
+    expect(mockComputeDistortionCurve).toHaveBeenCalledWith(
+      expect.objectContaining({
+        preparedGeometry: preparedState,
+        dynamicEFL: 51,
+        aperture: { entrancePupilSemiDiameterMm: 5, stopSemiDiameterMm: 5 },
+        fieldGeometry,
+      }),
+    );
+    expect(mockComputeDistortionFieldGrid).toHaveBeenCalledWith(
+      expect.objectContaining({
+        preparedGeometry: preparedState,
+        fieldGeometry,
+        sampling: {},
+      }),
+    );
   });
 
   it("keeps an unavailable corner separate from the last traced height", () => {
@@ -404,7 +425,7 @@ describe("prepared-state analysis tabs", () => {
           dynamicEFL: 50,
           currentPhysStopSD: 5,
           fieldGeometry,
-          preparedState,
+          preparedState: { ...preparedState },
         }),
       );
     };

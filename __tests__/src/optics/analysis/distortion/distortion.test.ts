@@ -1,8 +1,14 @@
+import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
+import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
+import { stateWithZ } from "../../../../../src/optics/state/preparedGeometry.js";
 import { describe, it, expect, vi } from "vitest";
-import * as rayAdapters from "../../../src/optics/trace/rayAdapters.js";
-import Canon14Raw from "../../../src/lens-data/canon/CanonEF14mmf28L.data.js";
-import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
-import { computeDistortionCurve, computeDistortionFieldGrid } from "../../../src/optics/distortionAnalysis.js";
+import * as rayAdapters from "../../../../../src/optics/trace/rayAdapters.js";
+import Canon14Raw from "../../../../../src/lens-data/canon/CanonEF14mmf28L.data.js";
+import ApoLantharRaw from "../../../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
+import {
+  computeDistortionCurve,
+  computeDistortionFieldGrid,
+} from "../../../../../src/optics/analysis/distortion/distortion.js";
 import {
   computeAnalysisFieldGeometryAtState,
   chiefRayImageHeightAccurate,
@@ -14,13 +20,13 @@ import {
   thick,
   traceParaxialRay,
   traceSkewRay,
-} from "../../../src/optics/optics.js";
-import SigmaMacro180Raw from "../../../src/lens-data/sigma/SigmaAPOMacro180mmf28.data.js";
-import Olympus18Raw from "../../../src/lens-data/olympus/OlympusZuikoAutoW18mmf35.data.js";
-import NikonZ135Raw from "../../../src/lens-data/nikon/NikonZ135f18.data.js";
-import NikonZ100400Raw from "../../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.js";
-import NikonFisheye6mmf28Raw from "../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.js";
-import MinoltaAF100MacroRaw from "../../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.js";
+} from "../../../../../src/optics/optics.js";
+import SigmaMacro180Raw from "../../../../../src/lens-data/sigma/SigmaAPOMacro180mmf28.data.js";
+import Olympus18Raw from "../../../../../src/lens-data/olympus/OlympusZuikoAutoW18mmf35.data.js";
+import NikonZ135Raw from "../../../../../src/lens-data/nikon/NikonZ135f18.data.js";
+import NikonZ100400Raw from "../../../../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.js";
+import NikonFisheye6mmf28Raw from "../../../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.js";
+import MinoltaAF100MacroRaw from "../../../../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.js";
 import {
   apertureAt,
   build,
@@ -28,14 +34,23 @@ import {
   sharedApoLanthar50f2,
   sharedNikkorZ70200,
   sharedSonnar50f15,
-} from "./testLensFixtures.js";
-import type { RuntimeLens } from "../../../src/types/optics.js";
+} from "../../testLensFixtures.js";
+import type { RuntimeLens } from "../../../../../src/types/optics.js";
 
 describe("computeDistortionCurve", () => {
   it.each([0, 1])("drops failed samples and reports the Olympus corner unavailable at focus %s", (focusT) => {
     const L = build(Olympus18Raw);
     const { z } = doLayout(focusT, 0, L);
-    const result = computeDistortionCurve(L, z, focusT, 0, L.EFL, L.stopPhysSD);
+    const result = computeDistortionCurve(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, focusT, 0, 0), z),
+        dynamicEFL: L.EFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: L.stopPhysSD,
+        fieldGeometry: undefined,
+        sampling: undefined,
+      }),
+    );
     expect(result.corner.status).toBe("unreachable");
     expect(result.cornerImageHeight).toBe(21.65);
     expect(result.samples.length).toBeGreaterThan(1);
@@ -64,7 +79,16 @@ describe("computeDistortionCurve", () => {
       };
     });
     try {
-      return computeDistortionCurve(L, z, 0, 0, L.EFL, L.stopPhysSD, geometry, 0, { distortionCurveSampleCount: 4 });
+      return computeDistortionCurve(
+        createAnalysisRequest({
+          preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), z),
+          dynamicEFL: L.EFL,
+          currentEPSD: L.EP.epSD,
+          currentPhysStopSD: L.stopPhysSD,
+          fieldGeometry: geometry,
+          sampling: { distortionCurveSampleCount: 4 },
+        }),
+      );
     } finally {
       prepared.mockRestore();
     }
@@ -111,7 +135,16 @@ describe("computeDistortionCurve", () => {
     const scalar = vi.spyOn(rayAdapters, "traceRay2");
     const vector = vi.spyOn(rayAdapters, "traceRayVector2");
     try {
-      const result = computeDistortionCurve(L, z, 0, 0, L.EFL, L.stopPhysSD);
+      const result = computeDistortionCurve(
+        createAnalysisRequest({
+          preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), z),
+          dynamicEFL: L.EFL,
+          currentEPSD: L.EP.epSD,
+          currentPhysStopSD: L.stopPhysSD,
+          fieldGeometry: undefined,
+          sampling: undefined,
+        }),
+      );
       expect(result.corner.status).toBe("reached");
       expect(result.samples).toHaveLength(21);
       expect(scalar.mock.calls.length + boundScalarCount).toBeLessThan(baselineCount);
@@ -132,7 +165,16 @@ describe("computeDistortionCurve", () => {
   it("keeps the axis finite when the projection inverse cannot supply an angle", () => {
     const L = build(SigmaMacro180Raw);
     const { z } = doLayout(1, 0, L);
-    const { samples } = computeDistortionCurve(L, z, 1, 0, L.EFL, L.stopPhysSD);
+    const { samples } = computeDistortionCurve(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, 1, 0, 0), z),
+        dynamicEFL: L.EFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: L.stopPhysSD,
+        fieldGeometry: undefined,
+        sampling: undefined,
+      }),
+    );
     expect(samples.length).toBeGreaterThan(0);
     expect(samples[0].idealFieldAngleDeg).toBe(0);
   });
@@ -145,7 +187,16 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const { samples } = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), zPos),
+        dynamicEFL: dynamicEFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: undefined,
+        sampling: undefined,
+      }),
+    );
     expect(samples.length).toBeGreaterThanOrEqual(9);
   });
 
@@ -155,7 +206,16 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const { samples } = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), zPos),
+        dynamicEFL: dynamicEFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: undefined,
+        sampling: undefined,
+      }),
+    );
     expect(samples[0].fieldAngleDeg).toBe(0);
     expect(samples[0].distortionPercent).toBe(0);
   });
@@ -166,7 +226,16 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const { samples } = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), zPos),
+        dynamicEFL: dynamicEFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: undefined,
+        sampling: undefined,
+      }),
+    );
     expect(samples.length).toBeGreaterThan(1);
 
     const halfField = computeAnalysisFieldGeometryAtState(0, 0, L).halfFieldDeg;
@@ -182,7 +251,16 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const { samples } = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), zPos),
+        dynamicEFL: dynamicEFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: undefined,
+        sampling: undefined,
+      }),
+    );
     for (const s of samples) {
       expect(isFinite(s.fieldAngleDeg)).toBe(true);
       expect(isFinite(s.distortionPercent)).toBe(true);
@@ -201,7 +279,16 @@ describe("computeDistortionCurve", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const { samples } = computeDistortionCurve(L, zPos, 0, 0, 0, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), zPos),
+        dynamicEFL: 0,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: undefined,
+        sampling: undefined,
+      }),
+    );
     expect(samples.length).toBeGreaterThanOrEqual(9);
   });
 
@@ -212,11 +299,51 @@ describe("computeDistortionCurve", () => {
     const { currentPhysStopSD } = apertureAt(L, 0, 0.2);
     const geometry = computeAnalysisFieldGeometryAtState(0.25, 0, L);
 
-    expect(computeDistortionCurve(L, zPos, 0.25, 0, dynamicEFL, currentPhysStopSD, geometry)).toEqual(
-      computeDistortionCurve(L, zPos, 0.25, 0, dynamicEFL, currentPhysStopSD),
+    expect(
+      computeDistortionCurve(
+        createAnalysisRequest({
+          preparedState: stateWithZ(prepareRuntimeState(L, 0.25, 0, 0), zPos),
+          dynamicEFL: dynamicEFL,
+          currentEPSD: L.EP.epSD,
+          currentPhysStopSD: currentPhysStopSD,
+          fieldGeometry: geometry,
+          sampling: undefined,
+        }),
+      ),
+    ).toEqual(
+      computeDistortionCurve(
+        createAnalysisRequest({
+          preparedState: stateWithZ(prepareRuntimeState(L, 0.25, 0, 0), zPos),
+          dynamicEFL: dynamicEFL,
+          currentEPSD: L.EP.epSD,
+          currentPhysStopSD: currentPhysStopSD,
+          fieldGeometry: undefined,
+          sampling: undefined,
+        }),
+      ),
     );
-    expect(computeDistortionFieldGrid(L, zPos, 0.25, 0, currentPhysStopSD, geometry)).toEqual(
-      computeDistortionFieldGrid(L, zPos, 0.25, 0, currentPhysStopSD),
+    expect(
+      computeDistortionFieldGrid(
+        createAnalysisRequest({
+          preparedState: stateWithZ(prepareRuntimeState(L, 0.25, 0, 0), zPos),
+          dynamicEFL: L.EFL,
+          currentEPSD: L.EP.epSD,
+          currentPhysStopSD: currentPhysStopSD,
+          fieldGeometry: geometry,
+          sampling: undefined,
+        }),
+      ),
+    ).toEqual(
+      computeDistortionFieldGrid(
+        createAnalysisRequest({
+          preparedState: stateWithZ(prepareRuntimeState(L, 0.25, 0, 0), zPos),
+          dynamicEFL: L.EFL,
+          currentEPSD: L.EP.epSD,
+          currentPhysStopSD: currentPhysStopSD,
+          fieldGeometry: undefined,
+          sampling: undefined,
+        }),
+      ),
     );
   });
 
@@ -229,7 +356,16 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(0, 1, L);
     const { currentPhysStopSD } = apertureAt(L, 1, 0);
 
-    const { samples } = computeDistortionCurve(L, zPos, 0, 1, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, 0, 1, 0), zPos),
+        dynamicEFL: dynamicEFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: undefined,
+        sampling: undefined,
+      }),
+    );
     expect(samples.length).toBeGreaterThanOrEqual(9);
     expect(samples[0].distortionPercent).toBe(0);
   });
@@ -242,7 +378,16 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const { samples } = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), zPos),
+        dynamicEFL: dynamicEFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: undefined,
+        sampling: undefined,
+      }),
+    );
     const edgeSample = samples[samples.length - 1];
     /* Just verify it's non-zero — specific direction depends on lens design */
     expect(edgeSample.distortionPercent).not.toBe(0);
@@ -254,7 +399,16 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const { samples } = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), zPos),
+        dynamicEFL: dynamicEFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: undefined,
+        sampling: undefined,
+      }),
+    );
     for (let i = 1; i < samples.length; i++) {
       expect(samples[i].fieldAngleDeg).toBeGreaterThan(samples[i - 1].fieldAngleDeg);
     }
@@ -266,7 +420,16 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const { samples } = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), zPos),
+        dynamicEFL: dynamicEFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: undefined,
+        sampling: undefined,
+      }),
+    );
     for (let i = 1; i < samples.length; i++) {
       expect(Math.abs(samples[i].imageHeight)).toBeGreaterThan(Math.abs(samples[i - 1].imageHeight));
       expect(samples[i].normalizedImageHeight).toBeGreaterThan(samples[i - 1].normalizedImageHeight);
@@ -279,7 +442,16 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(1, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const { samples } = computeDistortionCurve(L, zPos, 1, 0, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, 1, 0, 0), zPos),
+        dynamicEFL: dynamicEFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: undefined,
+        sampling: undefined,
+      }),
+    );
     const maxAbs = samples.reduce((m, s) => Math.max(m, Math.abs(s.distortionPercent)), 0);
     expect(maxAbs).toBeLessThan(10);
   });
@@ -290,7 +462,16 @@ describe("computeDistortionCurve", () => {
     const dynamicEFL = eflAtFocus(1, 1, L);
     const { currentPhysStopSD } = apertureAt(L, 1, 0);
 
-    const { samples } = computeDistortionCurve(L, zPos, 1, 1, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, 1, 1, 0), zPos),
+        dynamicEFL: dynamicEFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: undefined,
+        sampling: undefined,
+      }),
+    );
     const maxAbs = samples.reduce((m, s) => Math.max(m, Math.abs(s.distortionPercent)), 0);
     expect(maxAbs).toBeLessThan(15);
   });
@@ -306,7 +487,16 @@ describe("computeDistortionCurve", () => {
     // skip the paraxial-chief-ray bisection that would narrow it).
     expect(geometry.halfFieldDeg).toBeCloseTo(110, 6);
 
-    const { samples } = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD, geometry);
+    const { samples } = computeDistortionCurve(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), zPos),
+        dynamicEFL: dynamicEFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: geometry,
+        sampling: undefined,
+      }),
+    );
     // Samples that can't be solved past the slope-launch cap (~89°) drop out
     // naturally; the curve covers the slope-launchable range and labels
     // everything against the fisheye-equidistant reference.
@@ -339,7 +529,19 @@ describe("computeDistortionCurve", () => {
     const curveAt = (focusT: number) => {
       const { z } = doLayout(focusT, 0, L);
       const geometry = computeAnalysisFieldGeometryAtState(focusT, 0, L);
-      return { geometry, samples: computeDistortionCurve(L, z, focusT, 0, L.EFL, L.stopPhysSD, geometry).samples };
+      return {
+        geometry,
+        samples: computeDistortionCurve(
+          createAnalysisRequest({
+            preparedState: stateWithZ(prepareRuntimeState(L, focusT, 0, 0), z),
+            dynamicEFL: L.EFL,
+            currentEPSD: L.EP.epSD,
+            currentPhysStopSD: L.stopPhysSD,
+            fieldGeometry: geometry,
+            sampling: undefined,
+          }),
+        ).samples,
+      };
     };
     const tanDeg = (deg: number) => Math.tan((deg * Math.PI) / 180);
 
@@ -376,7 +578,16 @@ describe("computeDistortionFieldGrid", () => {
   function tracedGridAtState(L: RuntimeLens, focusT: number, zoomT: number) {
     const { z: zPos } = doLayout(focusT, zoomT, L);
     const { currentPhysStopSD } = apertureAt(L, zoomT, 0);
-    return computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD);
+    return computeDistortionFieldGrid(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, focusT, zoomT, 0), zPos),
+        dynamicEFL: L.EFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: undefined,
+        sampling: undefined,
+      }),
+    );
   }
 
   it("returns a paired horizontal and vertical grid set", () => {
@@ -423,9 +634,27 @@ describe("computeDistortionFieldGrid", () => {
     const dynamicEFL = eflAtFocus(focusT, zoomT, L);
     const { currentPhysStopSD } = apertureAt(L, zoomT, 0);
 
-    const { samples } = computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD);
+    const { samples } = computeDistortionCurve(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, focusT, zoomT, 0), zPos),
+        dynamicEFL: dynamicEFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: undefined,
+        sampling: undefined,
+      }),
+    );
     const edgeSample = samples[samples.length - 1];
-    const grid = computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD);
+    const grid = computeDistortionFieldGrid(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, focusT, zoomT, 0), zPos),
+        dynamicEFL: L.EFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: undefined,
+        sampling: undefined,
+      }),
+    );
     const centerLine = grid.lines.find((line) => line.orientation === "horizontal" && line.idealCoordinate === 0);
 
     expect(centerLine).toBeDefined();
@@ -469,7 +698,16 @@ describe("computeDistortionFieldGrid", () => {
     const { z: zPos } = doLayout(focusT, zoomT, L);
     const { currentPhysStopSD } = apertureAt(L, zoomT, 0);
     const geometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
-    const grid = computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD, geometry);
+    const grid = computeDistortionFieldGrid(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, focusT, zoomT, 0), zPos),
+        dynamicEFL: L.EFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: geometry,
+        sampling: undefined,
+      }),
+    );
     const centerLine = grid.lines.find((line) => line.orientation === "horizontal" && line.idealCoordinate === 0);
 
     expect(centerLine).toBeDefined();
@@ -545,7 +783,16 @@ describe("computeDistortionFieldGrid", () => {
     const { z: zPos } = doLayout(focusT, zoomT, L);
     const { currentPhysStopSD } = apertureAt(L, zoomT, 0);
     const geometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
-    const grid = computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD, geometry);
+    const grid = computeDistortionFieldGrid(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, focusT, zoomT, 0), zPos),
+        dynamicEFL: L.EFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: geometry,
+        sampling: undefined,
+      }),
+    );
 
     expect(grid.referenceKind).toBe("fisheye-equidistant");
     expect(grid.idealFieldRadius).toBeCloseTo(6.3 * ((geometry.halfFieldDeg * Math.PI) / 180), 5);
@@ -565,7 +812,16 @@ describe("computeDistortionFieldGrid", () => {
     const { z: zPos } = doLayout(focusT, zoomT, L);
     const { currentPhysStopSD } = apertureAt(L, zoomT, 0);
     const geometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
-    const grid = computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD, geometry);
+    const grid = computeDistortionFieldGrid(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, focusT, zoomT, 0), zPos),
+        dynamicEFL: L.EFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: currentPhysStopSD,
+        fieldGeometry: geometry,
+        sampling: undefined,
+      }),
+    );
 
     expect(grid.referenceKind).toBe("fisheye-equidistant");
     expect(grid.lines.length).toBeGreaterThan(0);

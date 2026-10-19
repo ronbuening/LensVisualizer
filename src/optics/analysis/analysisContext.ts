@@ -143,17 +143,12 @@ export function createAnalysisComputationContext(
       (opticalSummary ??= computeSection("summary", () => analysisJobsForState2.computeOpticalSummary(request))),
     computeDistortionCurve: () =>
       (distortionCurve ??= computeCenteredSection("distortion", () =>
-        analysisJobsForState2.computeDistortionCurve(
-          preparedState,
-          dynamicEFL,
-          currentPhysStopSD,
-          resolvedFieldGeometry,
-          sampling,
-        ),
+        analysisJobsForState2.computeDistortionCurve(request),
       )),
     computeDistortionFieldGrid: () =>
       (distortionFieldGrid ??= computeCenteredSection("distortion", () =>
-        analysisJobsForState2.computeDistortionFieldGrid(preparedState, currentPhysStopSD, resolvedFieldGeometry),
+        // The context has always kept grid defaults independent of curve/quality sampling.
+        analysisJobsForState2.computeDistortionFieldGrid({ ...request, sampling: {} }),
       )),
     computeVignettingCurve: () =>
       (vignettingCurve ??= computeCenteredSection("vignetting", () =>

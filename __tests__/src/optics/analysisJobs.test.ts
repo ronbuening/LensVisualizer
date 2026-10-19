@@ -1,4 +1,8 @@
-import { computeFieldCurvatureBundle } from "../../../src/optics/analysis.js";
+import {
+  computeDistortionCurve,
+  computeDistortionFieldGrid,
+  computeFieldCurvatureBundle,
+} from "../../../src/optics/analysis.js";
 import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
 import { analysisJobs2, analysisJobsForState2, prepareRuntimeState } from "../../../src/optics/compat.js";
@@ -19,11 +23,21 @@ describe("analysis job facade", () => {
     expect(zPos).toBe(state.z);
     expect(Object.isFrozen(state.z)).toBe(true);
 
-    expect(analysisJobsForState2.computeDistortionCurve(state, dynamicEFL, currentPhysStopSD)).toEqual(
-      analysisJobs2.computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD),
+    const distortionRequest = createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL,
+      currentEPSD,
+      currentPhysStopSD,
+    });
+    expect(analysisJobsForState2.computeDistortionCurve(distortionRequest)).toEqual(
+      computeDistortionCurve(distortionRequest),
     );
-    expect(analysisJobsForState2.computeDistortionFieldGrid(state, currentPhysStopSD)).toEqual(
-      analysisJobs2.computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD),
+    expect(analysisJobs2.computeDistortionCurve(distortionRequest)).toEqual(computeDistortionCurve(distortionRequest));
+    expect(analysisJobs2.computeDistortionFieldGrid(distortionRequest)).toEqual(
+      computeDistortionFieldGrid(distortionRequest),
+    );
+    expect(analysisJobsForState2.computeDistortionFieldGrid(distortionRequest)).toEqual(
+      computeDistortionFieldGrid(distortionRequest),
     );
     expect(analysisJobsForState2.computeVignettingCurve(state, currentEPSD, currentPhysStopSD)).toEqual(
       analysisJobs2.computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),

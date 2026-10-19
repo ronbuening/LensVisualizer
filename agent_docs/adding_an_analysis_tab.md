@@ -46,7 +46,7 @@ the prepared state / slider inputs you actually use.
   `src/optics/analysis/<family>/`, taking `AnalysisRequest`. Expose migrated helpers through
   `src/optics/analysis.ts`; implementation leaves import lower-level sources directly.
   The component formats and renders. Summary/cardinals/breathing/group movement and spherical aberration/SA
-  profile/blur character/best focus and field curvature/astigmatism/chromatic field-focus summary and coma use this path;
+  profile/blur character/best focus, field curvature/astigmatism/chromatic field-focus summary, coma and distortion use this path;
   other existing families retain their adapters until migrated.
 - Reuse `analysisContext.request`, or memoize `createAnalysisRequest` from the supplied prepared
   state and every used control/aperture/EFL/field input. Memoize the context/result on that identity.
@@ -54,6 +54,8 @@ the prepared state / slider inputs you actually use.
   aberration control; preserve that input contract when reusing its chart pattern.
   Coma detail-field overrides use a distinct request with `sampling.comaDetailFieldFraction`;
   retain that fraction in memo dependencies so changing it updates the previews.
+  Distortion's context forwards sampling to its curve while retaining separate grid defaults;
+  preserve that distinction when reusing its two-result context pattern.
 - Slider-dependent values come from `preparedState`/`inputs` at render time — never bake them into
   `buildLens()`.
 - Folded/mirror lenses: check how existing tabs guard folded systems before computing (several

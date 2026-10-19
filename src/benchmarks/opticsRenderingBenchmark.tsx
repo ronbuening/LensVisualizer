@@ -1483,11 +1483,14 @@ function computeAnalysisSummaryWork(snapshot: ScenarioSnapshot): BenchmarkOutput
 /** Measures distortion-curve sampling for non-folded systems. */
 function computeAnalysisDistortionCurveWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const samples = analysisJobsForState2.computeDistortionCurve(
-    snapshot.preparedState,
-    snapshot.dynamicEFL,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
-    snapshot.analysisSampling,
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      fieldGeometry: snapshot.fieldGeometry,
+      sampling: snapshot.analysisSampling,
+    }),
   );
   const curve = distortionSamplesOf(samples);
   completed("distortionCurve", curve);
@@ -1510,10 +1513,14 @@ function distortionSamplesOf<Sample>(
 /** Measures the distortion field-grid helper used by the analysis drawer. */
 function computeAnalysisDistortionGridWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const grid = analysisJobsForState2.computeDistortionFieldGrid(
-    snapshot.preparedState,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
-    snapshot.analysisSampling,
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      fieldGeometry: snapshot.fieldGeometry,
+      sampling: snapshot.analysisSampling,
+    }),
   );
   completed("distortionGrid", grid);
   return { distortionGridLines: grid.lines.length };

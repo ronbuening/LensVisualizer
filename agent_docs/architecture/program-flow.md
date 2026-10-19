@@ -122,7 +122,7 @@ flowchart TD
   Projection --> AnalysisJobs
   Field --> AnalysisJobs
   AnalysisJobs --> Aberrations[src/optics/aberration and aberrationAnalysis.ts]
-  AnalysisJobs --> Distortion[src/optics/distortionAnalysis.ts]
+  AnalysisJobs --> Distortion[src/optics/analysis/distortion/distortion.ts]
   AnalysisJobs --> Vignetting[src/optics/vignetteAnalysis.ts]
   AnalysisJobs --> Pupils[src/optics/pupilAberration.ts]
   AnalysisJobs --> Bokeh[src/optics/aberration/bokeh.ts]

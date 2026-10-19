@@ -29,16 +29,14 @@ describe("analysis computation context", () => {
       fieldGeometry,
     });
 
-    expect(context.computeDistortionCurve()).toEqual(
-      analysisJobsForState2.computeDistortionCurve(state, dynamicEFL, currentPhysStopSD, fieldGeometry),
-    );
+    expect(context.computeDistortionCurve()).toEqual(analysisJobsForState2.computeDistortionCurve(context.request));
     expect(context.computeOpticalSummary()).toEqual(
       analysisJobsForState2.computeOpticalSummary(
         createAnalysisRequest({ preparedState: state, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry }),
       ),
     );
     expect(context.computeDistortionFieldGrid()).toEqual(
-      analysisJobsForState2.computeDistortionFieldGrid(state, currentPhysStopSD, fieldGeometry),
+      analysisJobsForState2.computeDistortionFieldGrid(context.request),
     );
     expect(context.computeVignettingCurve()).toEqual(
       analysisJobsForState2.computeVignettingCurve(state, currentEPSD, currentPhysStopSD, fieldGeometry),
@@ -83,6 +81,35 @@ describe("analysis computation context", () => {
     expect(context.computeFieldCurvatureBundle()).toBe(context.computeFieldCurvatureBundle());
   });
 
+  it("forwards curve sampling while keeping independent grid defaults", () => {
+    const L = sharedSonnar50f15();
+    const state = prepareRuntimeState(L, 0.25, 0);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0);
+    const request = createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: L.EFL,
+      currentEPSD,
+      currentPhysStopSD,
+      sampling: {
+        distortionCurveSampleCount: 5,
+        distortionGridSegmentCount: 3,
+        distortionGridLineCoordinates: [-1, 0, 1],
+        distortionPupilCorrectionSampleCount: 2,
+      },
+    });
+    const context = createAnalysisComputationContext(request);
+    expect(context.computeDistortionCurve().samples).toHaveLength(5);
+    expect(context.computeDistortionCurve()).toEqual(analysisJobsForState2.computeDistortionCurve(request));
+    const grid = context.computeDistortionFieldGrid();
+    expect(grid).toEqual(analysisJobsForState2.computeDistortionFieldGrid({ ...request, sampling: {} }));
+    expect(grid.lines).toHaveLength(10);
+    expect(grid.lines.every((line) => line.points.length === 17)).toBe(true);
+    const directGrid = analysisJobsForState2.computeDistortionFieldGrid(request);
+    expect(directGrid.lines).toHaveLength(6);
+    expect(directGrid.lines.every((line) => line.points.length === 3)).toBe(true);
+    expect(context.computeDistortionFieldGrid()).toBe(grid);
+  });
+
   it("applies interactive chromatic sampling through the cached context", () => {
     const L = buildChromaticPositiveElementLens("analysis-context-chromatic-sampling");
     const focusT = 0;
@@ -125,9 +152,7 @@ describe("analysis computation context", () => {
     });
 
     expect(context.fieldGeometry).toBeNull();
-    expect(context.computeDistortionCurve()).toEqual(
-      analysisJobsForState2.computeDistortionCurve(state, dynamicEFL, currentPhysStopSD, undefined),
-    );
+    expect(context.computeDistortionCurve()).toEqual(analysisJobsForState2.computeDistortionCurve(context.request));
   });
 
   it("keys shift/tilt-only changes and blocks legacy centered jobs for migrated sections", () => {

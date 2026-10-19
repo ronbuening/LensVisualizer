@@ -12,36 +12,37 @@
  * current state in a hook rather than embedding in a component.
  */
 
-import { prepareRayTrace, type PreparedRayTrace } from "./trace/rayAdapters.js";
+import { prepareRayTrace, type PreparedRayTrace } from "../../trace/rayAdapters.js";
 import {
-  chiefRayImageHeight,
-  chiefRayImageHeightAccurate,
-  computeAnalysisFieldGeometryAtState,
-  computeBoundingSphereVectorFieldLaunch,
-  computeFieldGeometryAtState,
-  paraxialObjectVergence,
-  skewImagePlaneIntercept,
-  solveChiefRay,
+  chiefRayImageHeight2 as chiefRayImageHeight,
+  chiefRayImageHeightAccurate2 as chiefRayImageHeightAccurate,
+  computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
+  computeBoundingSphereVectorFieldLaunch2 as computeBoundingSphereVectorFieldLaunch,
+  computeFieldGeometryAtState2 as computeFieldGeometryAtState,
+  paraxialObjectVergence2 as paraxialObjectVergence,
+  solveChiefRay2 as solveChiefRay,
   invertChiefRayImageHeights,
   type ImageHeightInversionResult,
-  thick,
-} from "./optics.js";
+} from "../../state/fieldAdapters.js";
 import {
-  distortionProjectionReferenceForLens,
-  isFisheyeProjection,
-  projectionFieldAngleForImageHeight,
-  projectionFieldSlopesForImagePoint,
-  projectionImageHeightForAngle,
-  projectionLaunchSlopeForField,
-  projectionLaunchVectorForFieldAngles,
-  type ProjectionReference,
+  distortionProjectionReferenceForLens2 as distortionProjectionReferenceForLens,
+  isFisheyeProjection2 as isFisheyeProjection,
+  projectionFieldAngleForImageHeight2 as projectionFieldAngleForImageHeight,
+  projectionFieldSlopesForImagePoint2 as projectionFieldSlopesForImagePoint,
+  projectionImageHeightForAngle2 as projectionImageHeightForAngle,
+  projectionLaunchSlopeForField2 as projectionLaunchSlopeForField,
+  projectionLaunchVectorForFieldAngles2 as projectionLaunchVectorForFieldAngles,
+  type ProjectionReference2 as ProjectionReference,
   type ProjectionReferenceKind,
-} from "./projection.js";
-import type { FieldGeometryState, SkewRayTraceResult } from "./optics.js";
-import { isHeavyLensForRayWork } from "./raySampling.js";
-import type { AnalysisSamplingOptions } from "./analysis/analysisQuality.js";
-import { resolveImageFormatMetadata } from "../utils/catalog/lensTaxonomy.js";
-import type { RuntimeLens } from "../types/optics.js";
+} from "../../field/projection.js";
+import type { RuntimeSkewRayTraceResult as SkewRayTraceResult } from "../../trace/runtimeRayResult.js";
+import { skewImagePlaneIntercept } from "../../trace/rayAdapters.js";
+import { prepareState } from "../../state/preparedGeometry.js";
+import { runtimeView } from "../../prescription/runtimeView.js";
+import type { AnalysisRequest } from "../request.js";
+import { isHeavyLensForRayWork } from "../../raySampling.js";
+import { resolveImageFormatMetadata } from "../../../utils/catalog/lensTaxonomy.js";
+import type { RuntimeLens } from "../../../types/optics.js";
 
 /** A single sample point on the distortion curve. */
 export interface DistortionSample {
@@ -120,15 +121,12 @@ interface DistortionReference {
   imagePlaneZ: number;
 }
 
-function computeDistortionReference(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  fieldGeometry?: FieldGeometryState,
-  aberrationT = 0,
-  allowFailedEdge = false,
-): DistortionReference | null {
+function computeDistortionReference(request: AnalysisRequest, allowFailedEdge = false): DistortionReference | null {
+  const { preparedGeometry: state } = request;
+  const { focusT, zoomT, aberrationT } = state;
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const fieldGeometry = request.fieldGeometry ?? undefined;
   if (L.N < 1) return null;
 
   const geometry = fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
@@ -136,7 +134,8 @@ function computeDistortionReference(
 
   const halfFieldRad = (geometry.halfFieldDeg * Math.PI) / 180;
   const lastSurfZ = zPos[L.N - 1];
-  const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
+  // Retain the control-derived rear gap even when the request overrides drawing vertices.
+  const imagePlaneZ = lastSurfZ + (prepareState(state.lens, focusT, zoomT, aberrationT).surfaces[L.N - 1]?.d ?? 0);
   if (!isFinite(imagePlaneZ)) return null;
 
   /* Fisheye projections don't need the rectilinear scale-probe path — the
@@ -227,27 +226,16 @@ function paraxialObjectTangent(reference: DistortionReference, yLaunch: number, 
  * that point); fisheyes use their declared projection model at the
  * object-space field angle.
  *
- * @param L               — runtime lens object
- * @param zPos            — surface z-positions for current focus/zoom
- * @param focusT          — focus slider [0..1]
- * @param zoomT           — zoom slider [0..1]
- * @param dynamicEFL      — retained for compatibility with existing callers
- * @param currentPhysStopSD — retained for compatibility with existing callers
- * @returns                  valid historical edge samples and independent corner status
+ * @param request - prepared geometry, current field and curve sampling controls
+ * @returns valid historical edge samples and independent corner status
  */
-export function computeDistortionCurve(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  _dynamicEFL: number,
-  _currentPhysStopSD: number,
-  fieldGeometry?: FieldGeometryState,
-  aberrationT = 0,
-  sampling: AnalysisSamplingOptions = {},
-): DistortionCurveResult {
+export function computeDistortionCurve(request: AnalysisRequest): DistortionCurveResult {
+  const { preparedGeometry: state, sampling } = request;
+  const { focusT, zoomT, aberrationT } = state;
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
   const cornerImageHeight = (L.data?.imageCircleMm ?? resolveImageFormatMetadata(L.data?.imageFormat).diagonalMm) / 2;
-  const reference = computeDistortionReference(L, zPos, focusT, zoomT, fieldGeometry, aberrationT, !L.isFoldedOptics);
+  const reference = computeDistortionReference(request, !L.isFoldedOptics);
   if (reference === null)
     return {
       samples: [],
@@ -616,26 +604,16 @@ function traceDistortionGridPoint(
  * to field launches. Rectilinear cells use scalar slopes; fisheye/out-of-domain
  * cells use vector launches when available so past-cap fields can still trace.
  *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @param fieldGeometry - optional precomputed field geometry for the same state
- * @param aberrationT - normalized aberration spacing slider
+ * @param request - prepared geometry, physical stop, field and grid sampling controls
  * @returns traced horizontal/vertical distortion grid lines
  */
-export function computeDistortionFieldGrid(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentPhysStopSD: number,
-  fieldGeometry?: FieldGeometryState,
-  aberrationT = 0,
-  sampling: AnalysisSamplingOptions = {},
-): DistortionFieldGridResult {
-  const reference = computeDistortionReference(L, zPos, focusT, zoomT, fieldGeometry, aberrationT);
+export function computeDistortionFieldGrid(request: AnalysisRequest): DistortionFieldGridResult {
+  const { preparedGeometry: state, sampling } = request;
+  const { focusT, zoomT, aberrationT } = state;
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const currentPhysStopSD = request.aperture.stopSemiDiameterMm;
+  const reference = computeDistortionReference(request);
   if (reference === null) {
     return {
       lines: [],
@@ -656,12 +634,12 @@ export function computeDistortionFieldGrid(
     aberrationT,
     sampling.distortionPupilCorrectionSampleCount,
   );
-  const request = { focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT };
-  const adapter = prepareRayTrace(L, request);
+  const traceOptions = { focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT };
+  const adapter = prepareRayTrace(L, traceOptions);
   // Bounding-sphere launch bounds are constant across this field grid.
   let vectorTrace: PreparedRayTrace | undefined;
   const vectorAdapter = (launchBoundT: number): PreparedRayTrace =>
-    (vectorTrace ??= prepareRayTrace(L, { ...request, zPos, launchBoundT }));
+    (vectorTrace ??= prepareRayTrace(L, { ...traceOptions, zPos, launchBoundT }));
   const gridLineCoordinates = sampling.distortionGridLineCoordinates ?? DISTORTION_GRID_LINE_COORDINATES;
 
   return {

@@ -22,11 +22,10 @@ flowchart LR
   n_external_src_optics_aberrationAnalysis_ts["src/optics/aberrationAnalysis.ts"]
   n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
-  n_external_src_components_hooks["src/components/hooks"]
   n_external_src_optics_analysis_ts["src/optics/analysis.ts"]
+  n_external_src_components_hooks["src/components/hooks"]
   n_external_src_utils_perfProbe_ts["src/utils/perfProbe.ts"]
   n_external_src_optics_chromatic["src/optics/chromatic"]
-  n_external_src_optics_distortionAnalysis_ts["src/optics/distortionAnalysis.ts"]
   n_external_src_optics_mtf_ts["src/optics/mtf.ts"]
   n_external_src_optics_pupilAberration_ts["src/optics/pupilAberration.ts"]
   n_external_src_optics_vignetteAnalysis_ts["src/optics/vignetteAnalysis.ts"]
@@ -34,22 +33,21 @@ flowchart LR
   n_src_components_display_analysis_React_components --> |43| n_external_src_types
   n_src_components_display_analysis_React_components --> |18| n_src_components_display_analysis_src_components_display_analysis_charts
   n_src_components_display_analysis_React_components --> |14| n_external_pkg_react
-  n_src_components_display_analysis_React_components --> |14| n_external_src_optics_compat_ts
+  n_src_components_display_analysis_React_components --> |12| n_external_src_optics_compat_ts
   n_src_components_display_analysis_React_components --> |12| n_src_components_display_analysis_TypeScript_modules
   n_src_components_display_analysis_React_components --> |11| n_external_src_optics_aberrationAnalysis_ts
   n_src_components_display_analysis_React_components --> |10| n_external_src_optics_optics_ts
   n_src_components_display_analysis_React_components --> |9| n_external_src_optics_types_ts
   n_src_components_display_analysis_React_components --> |9| n_src_components_display_analysis_src_components_display_analysis_aberrations
+  n_src_components_display_analysis_React_components --> |7| n_external_src_optics_analysis_ts
   n_src_components_display_analysis_React_components --> |7| n_src_components_display_analysis_src_components_display_analysis_perspective
   n_src_components_display_analysis_React_components --> |3| n_external_src_components_hooks
-  n_src_components_display_analysis_React_components --> |3| n_external_src_optics_analysis_ts
   n_src_components_display_analysis_TypeScript_modules --> |3| n_external_src_optics_compat_ts
   n_src_components_display_analysis_TypeScript_modules --> |3| n_external_src_types
   n_src_components_display_analysis_React_components --> |3| n_external_src_utils_perfProbe_ts
   n_src_components_display_analysis_React_components --> |3| n_src_components_display_analysis_src_components_display_analysis_mtf
   n_src_components_display_analysis_TypeScript_modules --> |2| n_external_pkg_react
   n_src_components_display_analysis_React_components --> |2| n_external_src_optics_chromatic
-  n_src_components_display_analysis_React_components --> |2| n_external_src_optics_distortionAnalysis_ts
   n_src_components_display_analysis_TypeScript_modules --> |2| n_external_src_optics_types_ts
   n_src_components_display_analysis_TypeScript_modules --> n_external_src_optics_chromatic
   n_src_components_display_analysis_React_components --> n_external_src_optics_mtf_ts
@@ -63,7 +61,7 @@ flowchart LR
 
 - Direct source files: 31
 - Direct subfolders: 4
-- Main outbound areas: src/components/display (71), src/types (46), src/optics/compat.ts (17), package:react (16), src/optics/aberrationAnalysis.ts (11), src/optics/types.ts (11), src/optics/optics.ts (10), src/utils/perfProbe.ts (4), +8 more
+- Main outbound areas: src/components/display (71), src/types (46), package:react (16), src/optics/compat.ts (15), src/optics/aberrationAnalysis.ts (11), src/optics/types.ts (11), src/optics/optics.ts (10), src/optics/analysis.ts (7), +7 more
 - External consumers: src/benchmarks, src/components/diagram, src/components/display, src/components/layout
 
 ## Subfolders
@@ -90,9 +88,9 @@ flowchart LR
 | `ChromaticTab.tsx` | React component module | src/components/display (7), src/optics/compat.ts (2), src/types (2), package:react, src/optics/analysis.ts, +4 more | src/components/layout | default, ChromaticTab |
 | `ComaPreviewGrid.tsx` | React component module | package:react, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, ComaPreviewGrid |
 | `ComaTab.tsx` | React component module | src/components/display (5), src/types (2), package:react, src/optics/compat.ts, src/optics/optics.ts, +1 more | src/benchmarks, src/components/layout | default, ComaTab |
-| `DistortionChart.tsx` | React component module | src/components/display (3), src/optics/distortionAnalysis.ts, src/types | src/components/display | default, DistortionChart |
-| `DistortionFieldGrid.tsx` | React component module | src/optics/distortionAnalysis.ts, src/types | src/components/display | default, DistortionFieldGrid |
-| `DistortionTab.tsx` | React component module | src/components/display (5), src/optics/compat.ts (2), src/optics/optics.ts (2), src/types (2), package:react, +2 more | src/components/layout | default, DistortionTab |
+| `DistortionChart.tsx` | React component module | src/components/display (3), src/optics/analysis.ts, src/types | src/components/display | default, DistortionChart |
+| `DistortionFieldGrid.tsx` | React component module | src/optics/analysis.ts, src/types | src/components/display | default, DistortionFieldGrid |
+| `DistortionTab.tsx` | React component module | src/components/display (5), src/optics/analysis.ts (2), src/optics/optics.ts (2), src/types (2), package:react, +2 more | src/components/layout | default, DistortionTab |
 | `FieldCurvatureMeanPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | none | default, FieldCurvatureMeanPlot |
 | `FieldCurvaturePlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display (2) | default, FieldCurvaturePlot |
 | `FocusBreathingTab.tsx` | React component module | src/types (2), package:react, src/components/display, src/optics/analysis.ts, src/optics/optics.ts | src/components/layout | default, FocusBreathingTab |

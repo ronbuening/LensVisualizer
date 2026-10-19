@@ -51,3 +51,13 @@ export {
   computeMeridionalComa,
   computeSagittalComa,
 } from "./analysis/aberration/coma.js";
+
+export {
+  computeDistortionCurve,
+  computeDistortionFieldGrid,
+  type DistortionSample,
+  type DistortionCurveResult,
+  type DistortionGridPoint,
+  type DistortionGridLine,
+  type DistortionFieldGridResult,
+} from "./analysis/distortion/distortion.js";

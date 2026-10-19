@@ -20,12 +20,7 @@ import {
   type ChromaticRayFanAnalysisOptions2,
 } from "./chromatic.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
-import {
-  computeDistortionCurve2,
-  computeDistortionCurveForState2,
-  computeDistortionFieldGrid2,
-  computeDistortionFieldGridForState2,
-} from "./distortion.js";
+import { computeDistortionCurve, computeDistortionFieldGrid } from "./distortion/distortion.js";
 import {
   computeBothPupilAberrationProfiles2,
   computeBothPupilAberrationProfilesForState2,
@@ -50,41 +45,12 @@ import { computeVignettingCurve2, computeVignettingCurveForState2 } from "./vign
  * @returns grouped synchronous functions for RuntimeLens analysis work
  */
 export const analysisJobs2 = {
-  computeDistortionCurve(
-    L: RuntimeLens,
-    zPos: number[],
-    focusT: number,
-    zoomT: number,
-    dynamicEFL: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    aberrationT = 0,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeDistortionCurve2(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      dynamicEFL,
-      currentPhysStopSD,
-      fieldGeometry,
-      aberrationT,
-      sampling,
-    );
+  computeDistortionCurve(request: AnalysisRequest) {
+    return computeDistortionCurve(request);
   },
 
-  computeDistortionFieldGrid(
-    L: RuntimeLens,
-    zPos: number[],
-    focusT: number,
-    zoomT: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    aberrationT = 0,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeDistortionFieldGrid2(L, zPos, focusT, zoomT, currentPhysStopSD, fieldGeometry, aberrationT, sampling);
+  computeDistortionFieldGrid(request: AnalysisRequest) {
+    return computeDistortionFieldGrid(request);
   },
 
   computeVignettingCurve(
@@ -270,23 +236,12 @@ export const analysisJobsForState2 = {
     return computeOpticalSummary(request);
   },
 
-  computeDistortionCurve(
-    state: PreparedOpticalState,
-    dynamicEFL: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeDistortionCurveForState2(state, dynamicEFL, currentPhysStopSD, fieldGeometry, sampling);
+  computeDistortionCurve(request: AnalysisRequest) {
+    return computeDistortionCurve(request);
   },
 
-  computeDistortionFieldGrid(
-    state: PreparedOpticalState,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeDistortionFieldGridForState2(state, currentPhysStopSD, fieldGeometry, sampling);
+  computeDistortionFieldGrid(request: AnalysisRequest) {
+    return computeDistortionFieldGrid(request);
   },
 
   computeVignettingCurve(
