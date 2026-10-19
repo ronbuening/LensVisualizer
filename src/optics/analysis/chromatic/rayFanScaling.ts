@@ -9,8 +9,8 @@
  * Extracted as a pure function so the same logic can drive both the small
  * LoCA inset widget and the detailed chromatic overlay.
  */
-import { CHROMATIC_CHANNEL_ORDER } from "./chromatic/channels.js";
-import type { ChromaticChannel } from "../types/optics.js";
+import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
+import type { ChromaticChannel } from "../../../types/optics.js";
 
 /** Typical moderate LoCA in mm — sets the "full width" reference point. */
 export const REFERENCE_LOCA_MM = 0.15;
@@ -77,6 +77,15 @@ export function computeChromaticBarOffsets(
   return { barOffsets, mag, clamped };
 }
 
+/**
+ * Scale axial intercepts using the fixed 0.15-mm LoCA reference.
+ *
+ * @param axialIntercepts - channel crossings in mm
+ * @param referenceIntercept - zero-offset crossing in mm
+ * @param viewWidthPx - available width in pixels
+ * @param effectiveSC - pixels per optical mm
+ * @returns bar offsets, magnification and clamp flag
+ */
 export function computeLocaBarOffsets(
   axialIntercepts: Partial<Record<ChromaticChannel, number>>,
   referenceIntercept: number,

@@ -8,10 +8,11 @@
  * field geometry as the monochrome off-axis fan.
  */
 import { useMemo } from "react";
+import { createAnalysisRequest, computeLongitudinalChromaticFocus, stateWithZ } from "../../optics/analysis.js";
+import { prepareRuntimeState } from "../../optics/compat.js";
 import { summarizeDispersionQuality } from "../../optics/dispersion.js";
 import {
   computeChromaticRayFanSpread,
-  computeLongitudinalChromaticFocus,
   offsetVectorFieldRay,
   traceRayChromatic,
   traceRayVectorChromatic,
@@ -394,10 +395,18 @@ export default function useChromaticRays({
     const channels = filterChannels(chromR, chromG, chromB, chromV);
     if (channels.length < 2) return null;
     return (
-      computeLongitudinalChromaticFocus(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT, {
-        channels,
-        longitudinalFractions: longitudinalFractionsForDisplay(L, currentEPSD),
-      })?.spread ?? null
+      computeLongitudinalChromaticFocus(
+        createAnalysisRequest({
+          preparedState: stateWithZ(prepareRuntimeState(L, focusT, zoomT, aberrationT), zPos),
+          dynamicEFL: 0,
+          currentEPSD,
+          currentPhysStopSD,
+        }),
+        {
+          channels,
+          longitudinalFractions: longitudinalFractionsForDisplay(L, currentEPSD),
+        },
+      )?.spread ?? null
     );
   }, [
     showChromatic,

@@ -56,7 +56,7 @@ flowchart LR
 - Direct source files: 13
 - Direct subfolders: 0
 - Main outbound areas: same folder (18), src/utils/catalog (5), src/comparison (2), src/optics/glassCatalog.ts
-- External consumers: src/benchmarks, src/comparison, src/components/content, src/components/controls, src/components/diagram, src/components/display, src/components/homepage, src/components/hooks, +40 more
+- External consumers: src/benchmarks, src/comparison, src/components/content, src/components/controls, src/components/diagram, src/components/display, src/components/homepage, src/components/hooks, +39 more
 
 ## Files
 
@@ -71,7 +71,7 @@ flowchart LR
 | `lensDataV2.ts` | Shared TypeScript types | same folder (2), src/utils/catalog | src/optics/prescription (4), src/utils/catalog (2) | MediumV2Input, SurfaceV2Input, ElementV2Input, ZoomStationV2Input, ZoomV2Input, ConjugateV2Input, FocusV2Input, GapV2Input, +12 more |
 | `mount.ts` | Shared TypeScript types | src/utils/catalog | src/optics/mount (9), same folder, src/components/mount | MOUNT_SCHEMA_VERSION, MountSchemaVersion, MountProfileId, ResearchStatus, MvpStatus, DiagramStatus, MountMechanism, MountLockType, +40 more |
 | `mtf.ts` | Shared TypeScript types | same folder | src/optics/analysis (8), src/components/display (7), src/components/hooks (4), src/utils/state (2) | MtfMethod, MtfSpectrum, MtfFocusMode, MtfGridCap, MtfUnavailableReason, MtfOptions, MtfSpectralLine, MtfSupport, +8 more |
-| `optics.ts` | Shared TypeScript types | same folder (4), src/utils/catalog | src/optics/prescription (29), src/components/display (26), src/optics/analysis (16), src/components/diagram (14), src/components/hooks (10), +31 more | RadialPhaseTerm, DiffractivePhaseSurface, SurfaceData, SyntheticOpticsKind, RearPlateData, SurfaceIncidentSide, SurfaceInactiveSideBehavior, SurfaceInteractionType, +59 more |
+| `optics.ts` | Shared TypeScript types | same folder (4), src/utils/catalog | src/optics/prescription (29), src/components/display (26), src/optics/analysis (16), src/components/diagram (14), src/components/hooks (10), +30 more | RadialPhaseTerm, DiffractivePhaseSurface, SurfaceData, SyntheticOpticsKind, RearPlateData, SurfaceIncidentSide, SurfaceInactiveSideBehavior, SurfaceInteractionType, +59 more |
 | `state.ts` | Shared TypeScript types | src/comparison (2), same folder | src/components/layout (12), src/utils/state (8), src/components/hooks (7), src/comparison (4), src/components/controls (2), +6 more | SharedSlidersSlice, ComparisonAction, OFF_AXIS_MODES, RAY_DENSITIES, MOBILE_VIEWS, DESKTOP_VIEWS, ANALYSIS_TAB_IDS, OffAxisMode, +27 more |
 | `teleconverter.ts` | Shared TypeScript types | same folder (2), src/utils/catalog | src/optics/prescription (8), same folder, src/utils/catalog | TeleconverterData, TeleconverterDataInput, AttachedTeleconverterInfo, TeleconverterIncompatibility, TeleconverterGeometry, TeleconverterCompatibility |
 | `theme.ts` | Shared TypeScript types | same folder | src/components/display (60), src/components/layout (22), src/components/diagram (16), src/components/controls (14), src/components/content (8), +13 more | ThemeInternalTokens, ThemeColorTokens, Theme, ThemeVariant |

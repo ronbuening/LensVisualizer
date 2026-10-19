@@ -6,16 +6,19 @@
  * diagram rays, but return compact data contracts for analysis tabs.
  */
 
-import { prepareRayTrace } from "../trace/rayAdapters.js";
-import type { ChromaticChannel, ChromaticRayFanSpread, RuntimeLens } from "../../types/optics.js";
-import { computeProjectionAwareOffAxisFieldGeometry, traceOffAxisChiefRay } from "../analysis/aberration/offAxis.js";
+import { prepareRayTrace } from "../../trace/rayAdapters.js";
+import type { ChromaticChannel, ChromaticRayFanSpread, RuntimeLens } from "../../../types/optics.js";
+import { computeProjectionAwareOffAxisFieldGeometry, traceOffAxisChiefRay } from "../aberration/offAxis.js";
 import {
   computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
   type FieldGeometryState2 as FieldGeometryState,
-} from "../state/fieldAdapters.js";
-import { thick } from "../layout.js";
-import { computeChromaticRayFanSpread2 } from "./chromaticTrace.js";
-import { CHROMATIC_CHANNEL_ORDER } from "./channels.js";
+} from "../../state/fieldAdapters.js";
+import { thick } from "../../layout.js";
+import { computeChromaticRayFanSpread2 } from "../../chromatic/chromaticTrace.js";
+import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
+
+import { runtimeView } from "../../prescription/runtimeView.js";
+import type { AnalysisRequest } from "../request.js";
 
 export const DEFAULT_CHROMATIC_ANALYSIS_CHANNELS = CHROMATIC_CHANNEL_ORDER;
 export const DEFAULT_LONGITUDINAL_CHROMATIC_FRACTIONS = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
@@ -141,17 +144,23 @@ function currentImagePlaneZ(
  * The result is a LoCA-style focus summary by spectral channel. It searches
  * inward through marginal fractions so clipped wide-open rays do not make the
  * analysis unusable.
+ *
+ * @param request - current geometry, controls and both aperture radii in mm
+ * @param options - optional ordered channels and marginal fractions
+ * @returns first usable marginal focus summary, or null
  */
 export function computeLongitudinalChromaticFocus(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-  options: ChromaticAnalysisOptions = {},
+  request: AnalysisRequest,
+  options: ChromaticAnalysisOptions = {
+    channels: request.channels,
+    longitudinalFractions: request.sampling.chromaticLongitudinalFractions,
+  },
 ): LongitudinalChromaticFocusResult | null {
+  const { preparedGeometry: state } = request;
+  const { focusT, zoomT, aberrationT } = state;
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
   const channels = normalizeChannels(options.channels);
   if (channels.length < 2 || currentEPSD <= 0 || L.N < 1) return null;
 
@@ -336,18 +345,24 @@ function computeLateralColorField(
  *
  * Lateral color is evaluated independently from the axial LoCA ray. It measures
  * chromatic magnification change at the image plane rather than focus shift.
+ *
+ * @param request - current geometry, apertures and optional solved field geometry
+ * @param options - optional channels and field fractions
+ * @returns chief-ray color curve, or null when no field is usable
  */
 export function computeLateralColorCurve(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-  fieldGeometry?: FieldGeometryState,
-  options: ChromaticAnalysisOptions = {},
+  request: AnalysisRequest,
+  options: ChromaticAnalysisOptions = {
+    channels: request.channels,
+    fieldFractions: request.sampling.chromaticLateralFieldFractions ?? request.sampling.fieldCurvatureFieldFractions,
+  },
 ): LateralColorCurveResult | null {
+  const { preparedGeometry: state } = request;
+  const { focusT, zoomT, aberrationT } = state;
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
+  const fieldGeometry = request.fieldGeometry ?? undefined;
   const channels = normalizeChannels(options.channels);
   if (channels.length < 2 || currentEPSD <= 0 || L.N < 1) return null;
 
@@ -392,39 +407,23 @@ export function computeLateralColorCurve(
   };
 }
 
-/** Compute both first-class chromatic analysis summaries for one optical state. */
+/**
+ * Compute both chromatic summaries using the same request and channel sampling.
+ *
+ * @param request - geometry, apertures, field geometry and ordered chromatic sampling
+ * @param options - optional explicit channels and marginal/field fractions
+ * @returns longitudinal focus and lateral color, independently nullable
+ */
 export function computeChromaticAnalysis(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-  fieldGeometry?: FieldGeometryState,
-  options: ChromaticAnalysisOptions = {},
+  request: AnalysisRequest,
+  options: ChromaticAnalysisOptions = {
+    channels: request.channels,
+    longitudinalFractions: request.sampling.chromaticLongitudinalFractions,
+    fieldFractions: request.sampling.chromaticLateralFieldFractions ?? request.sampling.fieldCurvatureFieldFractions,
+  },
 ): ChromaticAnalysisResult {
   return {
-    longitudinalFocus: computeLongitudinalChromaticFocus(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      aberrationT,
-      options,
-    ),
-    lateralColor: computeLateralColorCurve(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      aberrationT,
-      fieldGeometry,
-      options,
-    ),
+    longitudinalFocus: computeLongitudinalChromaticFocus(request, options),
+    lateralColor: computeLateralColorCurve(request, options),
   };
 }

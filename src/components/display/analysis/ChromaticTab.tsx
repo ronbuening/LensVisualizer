@@ -4,7 +4,6 @@ import {
   createAnalysisComputationContext,
   summarizeChromaticFieldFocus,
 } from "../../../optics/analysis.js";
-import { analysisJobsForState2 } from "../../../optics/compat.js";
 import {
   CHROMATIC_CHANNEL_ORDER,
   chromaticChannelLineList,
@@ -154,19 +153,8 @@ function CenteredChromaticTab({
   );
   const channelReference = lensChromaticReference(L.elements);
   const analysis = useMemo(
-    () =>
-      probe(
-        "computeChromaticAnalysis",
-        () =>
-          analysisContext?.computeChromaticAnalysis() ??
-          analysisJobsForState2.computeChromaticAnalysis(
-            preparedState,
-            currentEPSD,
-            currentPhysStopSD,
-            fieldGeometry ?? undefined,
-          ),
-      ),
-    [analysisContext, preparedState, currentEPSD, currentPhysStopSD, fieldGeometry],
+    () => probe("computeChromaticAnalysis", () => fieldContext.computeChromaticAnalysis()),
+    [fieldContext],
   );
   const fieldFocus = useMemo(
     () =>
@@ -178,20 +166,8 @@ function CenteredChromaticTab({
     [fieldContext],
   );
   const rayTraceAnalysis = useMemo(
-    () =>
-      probe(
-        "computeChromaticRayFanAnalysis",
-        () =>
-          analysisContext?.computeChromaticRayFanAnalysis() ??
-          analysisJobsForState2.computeChromaticRayFanAnalysis(
-            preparedState,
-            currentEPSD,
-            currentPhysStopSD,
-            fieldGeometry ?? undefined,
-            { channels: CHROMATIC_CHANNEL_ORDER },
-          ),
-      ),
-    [analysisContext, preparedState, currentEPSD, currentPhysStopSD, fieldGeometry],
+    () => probe("computeChromaticRayFanAnalysis", () => fieldContext.computeChromaticRayFanAnalysis()),
+    [fieldContext],
   );
 
   const longitudinal = analysis.longitudinalFocus;

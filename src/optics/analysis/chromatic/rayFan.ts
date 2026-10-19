@@ -1,45 +1,27 @@
 /**
- * Chromatic analysis adapter — prepared-state wrappers and ray-trace summaries.
+ * Chromatic ray fans — request-facing first-usable-fraction ray-trace summaries.
  */
 
-import { runtimeView } from "../prescription/runtimeView.js";
-import {
-  computeChromaticAnalysis,
-  computeLateralColorCurve,
-  computeLongitudinalChromaticFocus,
-  type ChromaticAnalysisOptions,
-} from "../chromatic/analysis.js";
-import { computeChromaticRayFanSpread2 } from "../chromatic/chromaticTrace.js";
-import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
+import { runtimeView } from "../../prescription/runtimeView.js";
+import { computeChromaticRayFanSpread2 } from "../../chromatic/chromaticTrace.js";
+import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
 import {
   computeProjectionAwareOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
   type ProjectionAwareOffAxisFieldGeometry,
-} from "./aberration/offAxis.js";
-import { offsetVectorFieldRay2 as offsetVectorFieldRay } from "../state/fieldAdapters.js";
-import type { FieldGeometryState } from "../optics.js";
-import { prepareRayTrace, type PreparedRayTrace } from "../trace/rayAdapters.js";
-import { thick } from "../layout.js";
-import { compiledLensFromRuntime } from "../prescription/compile.js";
-import { prepareState } from "../state/preparedGeometry.js";
+} from "../aberration/offAxis.js";
+import { offsetVectorFieldRay2 as offsetVectorFieldRay } from "../../state/fieldAdapters.js";
+import { prepareRayTrace, type PreparedRayTrace } from "../../trace/rayAdapters.js";
+import { thick } from "../../layout.js";
+import { compiledLensFromRuntime } from "../../prescription/compile.js";
+import { prepareState } from "../../state/preparedGeometry.js";
 import type {
   ChromaticChannel,
   ChromaticRayFanSpread,
   ChromaticRayFanSpreadByAxis,
   RuntimeLens,
-} from "../../types/optics.js";
-import type { PreparedOpticalState } from "../types.js";
-import { zPosForPreparedAnalysis2 } from "./preparedStateAdapters.js";
-
-export type {
-  ChromaticAnalysisOptions,
-  ChromaticAnalysisResult,
-  LateralColorChannelSample,
-  LateralColorCurveResult,
-  LateralColorFieldSample,
-  LongitudinalChromaticFocusResult,
-  LongitudinalChromaticFocusSample,
-} from "../chromatic/analysis.js";
+} from "../../../types/optics.js";
+import type { AnalysisRequest } from "../request.js";
 
 const DEFAULT_ON_AXIS_FRACTIONS = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
 const DEFAULT_OFF_AXIS_FRACTIONS = [0.75, 0.5, 0.25, -0.75, -0.5, -0.25] as const;
@@ -57,10 +39,6 @@ export interface ChromaticRayFanAnalysis2 {
   offAxisFieldAngleDeg: number;
   onAxisAttemptedRayCount: number;
   offAxisAttemptedRayCount: number;
-}
-
-function zPosFromState(state: PreparedOpticalState): number[] {
-  return zPosForPreparedAnalysis2(state);
 }
 
 function normalizeChannels(channels: readonly ChromaticChannel[] | undefined): ChromaticChannel[] {
@@ -147,16 +125,26 @@ function computeSpreadFromFractions(
   return { spread: null, attemptedRayCount };
 }
 
-export function computeChromaticRayFanAnalysis2(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-  options: ChromaticRayFanAnalysisOptions2 = {},
+/**
+ * Trace axis-split chromatic fans at the first usable marginal fraction.
+ *
+ * @param request - current geometry, apertures and fan sampling; fieldGeometry is intentionally ignored
+ * @param options - optional explicit channel, fraction and field-angle controls
+ * @returns spreads with ordered channels and counts of every attempted ray
+ */
+export function computeChromaticRayFanAnalysis(
+  request: AnalysisRequest,
+  options: ChromaticRayFanAnalysisOptions2 = {
+    channels: request.channels,
+    onAxisFractions: request.sampling.chromaticRayTraceOnAxisFractions,
+    offAxisFractions: request.sampling.chromaticRayTraceOffAxisFractions,
+  },
 ): ChromaticRayFanAnalysis2 {
+  const { preparedGeometry: state } = request;
+  const { focusT, zoomT, aberrationT } = state;
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
   const channels = normalizeChannels(options.channels);
   const empty = {
     channels,
@@ -252,72 +240,4 @@ export function computeChromaticRayFanAnalysis2(
     onAxisAttemptedRayCount: onAxis.attemptedRayCount,
     offAxisAttemptedRayCount: offAxis.attemptedRayCount,
   };
-}
-
-export function computeChromaticRayFanAnalysisForState2(
-  state: PreparedOpticalState,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  options?: ChromaticRayFanAnalysisOptions2,
-): ChromaticRayFanAnalysis2 {
-  return computeChromaticRayFanAnalysis2(
-    runtimeView(state.lens),
-    zPosFromState(state),
-    state.focusT,
-    state.zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-    state.aberrationT,
-    options,
-  );
-}
-
-/**
- * Compatibility wrapper for combined chromatic analysis.
- *
- * @param args - same arguments as `computeChromaticAnalysis`
- * @returns longitudinal focus plus lateral color summaries
- */
-export function computeChromaticAnalysis2(...args: Parameters<typeof computeChromaticAnalysis>) {
-  return computeChromaticAnalysis(...args);
-}
-
-/** Compatibility wrapper for on-axis longitudinal chromatic focus. */
-export function computeLongitudinalChromaticFocus2(...args: Parameters<typeof computeLongitudinalChromaticFocus>) {
-  return computeLongitudinalChromaticFocus(...args);
-}
-
-/** Compatibility wrapper for off-axis lateral color curves. */
-export function computeLateralColorCurve2(...args: Parameters<typeof computeLateralColorCurve>) {
-  return computeLateralColorCurve(...args);
-}
-
-/**
- * Compute combined chromatic analysis for a prepared state.
- *
- * @param state - prepared optical state for the current sliders
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @param fieldGeometry - optional solved-chief-ray field geometry for the same state
- * @param options - optional channel and field/fraction sampling controls
- * @returns longitudinal focus plus lateral color summaries
- */
-export function computeChromaticAnalysisForState2(
-  state: PreparedOpticalState,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  fieldGeometry?: FieldGeometryState,
-  options?: ChromaticAnalysisOptions,
-) {
-  return computeChromaticAnalysis(
-    runtimeView(state.lens),
-    zPosFromState(state),
-    state.focusT,
-    state.zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-    state.aberrationT,
-    fieldGeometry,
-    options,
-  );
 }

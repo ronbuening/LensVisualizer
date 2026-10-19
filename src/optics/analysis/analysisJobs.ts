@@ -1,25 +1,15 @@
 /**
  * Engine analysis job registry — grouped synchronous analysis entry points for UI dispatch.
  *
- * Collects RuntimeLens and PreparedOpticalState helpers under stable keys so the
+ * Collects request-facing helpers under stable historical keys so the
  * call surface can later move to workers.
  */
 
-import type { FieldGeometryState } from "../optics.js";
-import type { RuntimeLens } from "../../types/optics.js";
-import type { PreparedOpticalState } from "../types.js";
-import type { AnalysisSamplingOptions } from "./analysisQuality.js";
 import { computeComaAnalysis } from "./aberration/coma.js";
 import { computeFieldCurvature, computeFieldCurvatureBundle } from "./aberration/fieldCurvature.js";
 import { computeBokehPreviewPair } from "./bokeh/bokeh.js";
-import {
-  computeChromaticAnalysis2,
-  computeChromaticAnalysisForState2,
-  computeChromaticRayFanAnalysis2,
-  computeChromaticRayFanAnalysisForState2,
-  type ChromaticRayFanAnalysisOptions2,
-} from "./chromatic.js";
-import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
+import { computeChromaticAnalysis } from "./chromatic/analysis.js";
+import { computeChromaticRayFanAnalysis } from "./chromatic/rayFan.js";
 import { computeDistortionCurve, computeDistortionFieldGrid } from "./distortion/distortion.js";
 import { computeBothPupilAberrationProfiles } from "./pupils/pupilAberration.js";
 import { computeOpticalSummary } from "./summary/summary.js";
@@ -33,12 +23,11 @@ import type { AnalysisRequest } from "./request.js";
 import { computeVignettingCurve } from "./vignetting/vignetting.js";
 
 /**
- * RuntimeLens analysis job registry for compatibility callers.
+ * Historical analysis job registry for compatibility callers.
  *
- * Each method forwards all state explicitly: `zPos` is in mm, `focusT`/`zoomT`
- * are normalized sliders, and aperture values are semi-diameters in mm.
+ * Each method forwards one request with geometry, controls and aperture radii in mm.
  *
- * @returns grouped synchronous functions for RuntimeLens analysis work
+ * @returns grouped synchronous functions for request-facing analysis work
  */
 export const analysisJobs2 = {
   computeDistortionCurve(request: AnalysisRequest) {
@@ -57,54 +46,12 @@ export const analysisJobs2 = {
     return computeFieldCurvatureBundle(request);
   },
 
-  computeChromaticAnalysis(
-    L: RuntimeLens,
-    zPos: number[],
-    focusT: number,
-    zoomT: number,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    aberrationT = 0,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeChromaticAnalysis2(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      aberrationT,
-      fieldGeometry,
-      {
-        channels: CHROMATIC_CHANNEL_ORDER,
-        longitudinalFractions: sampling?.chromaticLongitudinalFractions,
-        fieldFractions: sampling?.chromaticLateralFieldFractions ?? sampling?.fieldCurvatureFieldFractions,
-      },
-    );
+  computeChromaticAnalysis(request: AnalysisRequest) {
+    return computeChromaticAnalysis(request);
   },
 
-  computeChromaticRayFanAnalysis(
-    L: RuntimeLens,
-    zPos: number[],
-    focusT: number,
-    zoomT: number,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    aberrationT = 0,
-    options?: ChromaticRayFanAnalysisOptions2,
-  ) {
-    return computeChromaticRayFanAnalysis2(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      aberrationT,
-      options,
-    );
+  computeChromaticRayFanAnalysis(request: AnalysisRequest) {
+    return computeChromaticRayFanAnalysis(request);
   },
 
   computeBestFocusZ(request: AnalysisRequest) {
@@ -121,12 +68,11 @@ export const analysisJobs2 = {
 };
 
 /**
- * Incremental analysis registry: summary and spherical families take requests; other families still take prepared state.
+ * Analysis job registry: every centered family takes an explicit request.
  *
- * Prepared-state jobs recover RuntimeLens-compatible z positions only at the boundary,
- * keeping all analysis state tied to the same compiled focus/zoom/aberration snapshot.
+ * Request geometry and aperture inputs stay tied to the same control snapshot.
  *
- * @returns grouped synchronous functions bound by explicit PreparedOpticalState inputs
+ * @returns grouped synchronous functions bound by explicit request inputs
  */
 export const analysisJobsForState2 = {
   computeSphericalAberration(request: AnalysisRequest) {
@@ -152,28 +98,12 @@ export const analysisJobsForState2 = {
     return computeFieldCurvatureBundle(request);
   },
 
-  computeChromaticAnalysis(
-    state: PreparedOpticalState,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeChromaticAnalysisForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry, {
-      channels: CHROMATIC_CHANNEL_ORDER,
-      longitudinalFractions: sampling?.chromaticLongitudinalFractions,
-      fieldFractions: sampling?.chromaticLateralFieldFractions ?? sampling?.fieldCurvatureFieldFractions,
-    });
+  computeChromaticAnalysis(request: AnalysisRequest) {
+    return computeChromaticAnalysis(request);
   },
 
-  computeChromaticRayFanAnalysis(
-    state: PreparedOpticalState,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    _fieldGeometry?: FieldGeometryState,
-    options?: ChromaticRayFanAnalysisOptions2,
-  ) {
-    return computeChromaticRayFanAnalysisForState2(state, currentEPSD, currentPhysStopSD, options);
+  computeChromaticRayFanAnalysis(request: AnalysisRequest) {
+    return computeChromaticRayFanAnalysis(request);
   },
 
   computeComaAnalysis(request: AnalysisRequest) {

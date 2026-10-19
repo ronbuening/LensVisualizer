@@ -44,13 +44,9 @@ describe("analysis computation context", () => {
       analysisJobsForState2.computeBothPupilAberrationProfiles(context.request),
     );
     expect(context.computeBokehPreviewPair()).toEqual(analysisJobsForState2.computeBokehPreviewPair(context.request));
-    expect(context.computeChromaticAnalysis()).toEqual(
-      analysisJobsForState2.computeChromaticAnalysis(state, currentEPSD, currentPhysStopSD, fieldGeometry),
-    );
+    expect(context.computeChromaticAnalysis()).toEqual(analysisJobsForState2.computeChromaticAnalysis(context.request));
     expect(context.computeChromaticRayFanAnalysis()).toEqual(
-      analysisJobsForState2.computeChromaticRayFanAnalysis(state, currentEPSD, currentPhysStopSD, fieldGeometry, {
-        channels: ["R", "G", "B", "V"],
-      }),
+      analysisJobsForState2.computeChromaticRayFanAnalysis(context.request),
     );
     expect(context.computeBestFocusZ()).toEqual(analysisJobsForState2.computeBestFocusZ(context.request));
     expect(context.computeSphericalAberration()).toEqual(

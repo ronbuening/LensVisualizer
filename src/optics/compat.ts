@@ -245,22 +245,15 @@ export {
   type AnalysisSectionMode,
 } from "./analysis/analysisMovementSupport.js";
 export {
-  computeChromaticAnalysis2,
-  computeChromaticAnalysisForState2,
-  computeChromaticRayFanAnalysis2,
-  computeChromaticRayFanAnalysisForState2,
-  computeLateralColorCurve2,
-  computeLongitudinalChromaticFocus2,
   type ChromaticAnalysisOptions,
   type ChromaticAnalysisResult,
-  type ChromaticRayFanAnalysis2,
-  type ChromaticRayFanAnalysisOptions2,
   type LateralColorChannelSample,
   type LateralColorCurveResult,
   type LateralColorFieldSample,
   type LongitudinalChromaticFocusResult,
   type LongitudinalChromaticFocusSample,
-} from "./analysis/chromatic.js";
+} from "./analysis/chromatic/analysis.js";
+export type { ChromaticRayFanAnalysis2, ChromaticRayFanAnalysisOptions2 } from "./analysis/chromatic/rayFan.js";
 export {
   buildBokehDensityGrid as buildBokehDensityGrid2,
   describeBokehDefocusSide as describeBokehDefocusSide2,
@@ -288,9 +281,9 @@ export {
   type DepartureSample2,
 } from "./analysis/asphericComparison.js";
 export {
-  computeLocaBarOffsets2,
-  REFERENCE_LOCA_MM_2,
-  type ChromaticBarResult2,
-} from "./analysis/chromaticRayFanScaling.js";
+  computeLocaBarOffsets as computeLocaBarOffsets2,
+  REFERENCE_LOCA_MM as REFERENCE_LOCA_MM_2,
+  type ChromaticBarResult as ChromaticBarResult2,
+} from "./analysis/chromatic/rayFanScaling.js";
 
 export { createAnalysisRequest, type AnalysisRequest } from "./analysis/request.js";

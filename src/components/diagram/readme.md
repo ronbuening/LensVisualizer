@@ -20,7 +20,7 @@ flowchart LR
   n_external_src_optics_chromatic["src/optics/chromatic"]
   n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_components_display["src/components/display"]
-  n_external_src_optics_chromaticRayFanScaling_ts["src/optics/chromaticRayFanScaling.ts"]
+  n_external_src_optics_analysis_ts["src/optics/analysis.ts"]
   n_external_src_utils_featureFlags_ts["src/utils/featureFlags.ts"]
   n_external_src_utils_usePrefersReducedMotion_ts["src/utils/usePrefersReducedMotion.ts"]
   n_external_src_optics_apertureStop_ts["src/optics/apertureStop.ts"]
@@ -35,7 +35,7 @@ flowchart LR
   n_src_components_diagram_React_components --> |3| n_external_src_optics_optics_ts
   n_src_components_diagram_React_components --> |3| n_src_components_diagram_TypeScript_modules
   n_src_components_diagram_React_components --> |2| n_external_src_components_display
-  n_src_components_diagram_React_components --> |2| n_external_src_optics_chromaticRayFanScaling_ts
+  n_src_components_diagram_React_components --> |2| n_external_src_optics_analysis_ts
   n_src_components_diagram_React_components --> |2| n_external_src_utils_featureFlags_ts
   n_src_components_diagram_React_components --> |2| n_external_src_utils_usePrefersReducedMotion_ts
   n_src_components_diagram_React_components --> n_external_src_optics_apertureStop_ts
@@ -64,7 +64,7 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `ApertureStop.tsx` | React component module | package:react, src/types | same folder | default |
 | `CardinalElementsOverlay.tsx` | React component module | src/types (2), package:react, src/optics/cardinalElements.ts | same folder | default |
-| `ChromaticFanSpreadWidget.tsx` | React component module | src/types (2), package:react, same folder, src/components/display, src/optics/chromatic, +2 more | same folder | default |
+| `ChromaticFanSpreadWidget.tsx` | React component module | src/types (2), package:react, same folder, src/components/display, src/optics/analysis.ts, +2 more | same folder | default |
 | `ChromaticOverlayContent.tsx` | React component module | package:react (2), same folder (2), src/types (2), src/components/display, src/optics/chromatic, +1 more | src/components/layout | default |
 | `ChromaticQualityBadge.tsx` | React component module | src/optics/dispersion.ts, src/types | same folder (2) | CHROMATIC_QUALITY_BADGE_LABEL, chromaticQualityBadgeLabel, ChromaticQualityBadge |
 | `DiagramDefs.tsx` | React component module | package:react, src/types, src/utils/featureFlags.ts | same folder | default |
@@ -79,7 +79,7 @@ flowchart LR
 | `ExitPupilDiagram.tsx` | React component module | package:react | src/components/markdown | default |
 | `ImagePlaneOverlay.tsx` | React component module | src/types (2), package:react | same folder | default |
 | `LocaDiagram.tsx` | React component module | package:react | src/components/markdown | default |
-| `LocaInsetWidget.tsx` | React component module | src/types (2), package:react, same folder, src/optics/chromatic, src/optics/chromaticRayFanScaling.ts, +1 more | same folder (2) | default |
+| `LocaInsetWidget.tsx` | React component module | src/types (2), package:react, same folder, src/optics/analysis.ts, src/optics/chromatic, +1 more | same folder (2) | default |
 | `MTFDiagram.tsx` | React component module | package:react | src/components/markdown | default |
 | `PetzvalOverlayContent.tsx` | React component module | src/types (2), package:react, src/optics/optics.ts | src/components/layout | default |
 | `PetzvalSumBadge.tsx` | React component module | src/types (2), package:react, src/optics/optics.ts | same folder | default |

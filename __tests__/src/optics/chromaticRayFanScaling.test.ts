@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeLocaBarOffsets, REFERENCE_LOCA_MM } from "../../../src/optics/chromaticRayFanScaling.js";
+import { computeLocaBarOffsets, REFERENCE_LOCA_MM } from "../../../src/optics/analysis/chromatic/rayFanScaling.js";
 
 describe("computeLocaBarOffsets", () => {
   const SC = 100; // 100 px/mm

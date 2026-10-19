@@ -6,10 +6,8 @@
  * memoizes each analysis result on first read so sibling panels do not repeat ray sweeps.
  */
 
-import { runtimeView } from "../prescription/runtimeView.js";
 import { analysisJobsForState2 } from "./analysisJobs.js";
-import { computeLongitudinalChromaticFocus } from "../chromatic/analysis.js";
-import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
+import { computeLongitudinalChromaticFocus } from "./chromatic/analysis.js";
 import { createAnalysisRequest, type AnalysisRequest, type AnalysisRequestParams } from "./request.js";
 import {
   analysisSectionAvailability,
@@ -18,7 +16,6 @@ import {
   type AnalysisSectionAvailability,
   type AnalysisSectionId,
 } from "./analysisMovementSupport.js";
-import { zPosForPreparedAnalysis2 } from "./preparedStateAdapters.js";
 import { createPerspectiveAnalysisJobs, type PerspectiveAnalysisJobs } from "./perspectiveAnalysisJobs.js";
 
 export type AnalysisComputationContextParams = AnalysisRequestParams;
@@ -84,7 +81,6 @@ export function createAnalysisComputationContext(
     sampling,
     perspectiveTraceContext,
   } = request;
-  const resolvedFieldGeometry = fieldGeometry ?? undefined;
   const perspectiveCacheKey = perspectiveTraceContext?.cacheKey ?? "centered";
   let diagnosticKey: string | undefined;
   const computeSection = <Result>(section: AnalysisSectionId, compute: () => Result): Result => {
@@ -187,43 +183,15 @@ export function createAnalysisComputationContext(
       )),
     computeChromaticAnalysis: () =>
       (chromaticAnalysis ??= computeCenteredSection("chromatic", () =>
-        analysisJobsForState2.computeChromaticAnalysis(
-          preparedState,
-          currentEPSD,
-          currentPhysStopSD,
-          resolvedFieldGeometry,
-          sampling,
-        ),
+        analysisJobsForState2.computeChromaticAnalysis(request),
       )),
     computeChromaticRayFanAnalysis: () =>
       (chromaticRayFanAnalysis ??= computeCenteredSection("chromatic", () =>
-        analysisJobsForState2.computeChromaticRayFanAnalysis(
-          preparedState,
-          currentEPSD,
-          currentPhysStopSD,
-          resolvedFieldGeometry,
-          {
-            channels: CHROMATIC_CHANNEL_ORDER,
-            onAxisFractions: sampling.chromaticRayTraceOnAxisFractions,
-            offAxisFractions: sampling.chromaticRayTraceOffAxisFractions,
-          },
-        ),
+        analysisJobsForState2.computeChromaticRayFanAnalysis(request),
       )),
     computeIntrinsicLongitudinalChromaticFocus: () => {
       intrinsicLongitudinalChromaticFocus ??= {
-        value: computeLongitudinalChromaticFocus(
-          runtimeView(preparedState.lens),
-          zPosForPreparedAnalysis2(preparedState),
-          preparedState.focusT,
-          preparedState.zoomT,
-          currentEPSD,
-          currentPhysStopSD,
-          preparedState.aberrationT,
-          {
-            channels: CHROMATIC_CHANNEL_ORDER,
-            longitudinalFractions: sampling.chromaticLongitudinalFractions,
-          },
-        ),
+        value: computeLongitudinalChromaticFocus(request),
       };
       return intrinsicLongitudinalChromaticFocus.value;
     },

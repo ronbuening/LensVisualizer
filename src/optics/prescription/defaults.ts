@@ -146,7 +146,7 @@ export const LENS_SCHEMA_DEFAULTS: readonly SchemaDefault[] = [
     v1Field: "offAxisFieldFrac",
     value: 0.6,
     v1Applied: "catalog",
-    reader: `${BUILD_LENS}: data.offAxisFieldFrac; src/optics/analysis/chromatic.ts: L.offAxisFieldFrac`,
+    reader: `${BUILD_LENS}: data.offAxisFieldFrac; src/optics/analysis/chromatic/rayFan.ts: L.offAxisFieldFrac`,
   },
   {
     path: "rays.offAxisFractions",

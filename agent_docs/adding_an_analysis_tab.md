@@ -47,8 +47,8 @@ the prepared state / slider inputs you actually use.
   `src/optics/analysis.ts`; implementation leaves import lower-level sources directly.
   The component formats and renders. Summary/cardinals/breathing/group movement and spherical aberration/SA
   profile/blur character/best focus, field curvature/astigmatism/chromatic field-focus summary, coma,
-  distortion, vignetting, pupil aberration and bokeh use this path; other existing families retain their adapters until
-  migrated.
+  distortion, vignetting, pupil aberration, bokeh and chromatic LoCA/lateral color/fans use this path.
+  The historical job-table names now dispatch centered requests.
 - Reuse `analysisContext.request`, or memoize `createAnalysisRequest` from the supplied prepared
   state and every used control/aperture/EFL/field input. Memoize the context/result on that identity.
   Do not mix deferred geometry with live controls. The breathing series intentionally omits
@@ -65,6 +65,10 @@ the prepared state / slider inputs you actually use.
   Bokeh reuses the context request or snapshots prepared controls and both aperture radii (zero unused EFL).
   Keep both aperture values in memo dependencies. Pair previews trace their own infinity/near layouts with
   request sampling and recomputed field geometry, retaining T2 best focus; moved bokeh still uses perspective focus.
+  Chromatic summary, fans and field-focus bundle share one request/context. Retain field geometry and both apertures
+  in request memo dependencies; only lateral color forwards the field geometry, while fans recompute it.
+  Diagram LoCA preserves supplied surface z and obstruction-aware marginal fractions through an explicit options
+  override. Keep intrinsic LoCA available in the moved frame without routing perspective chromatic through centered jobs.
 - Slider-dependent values come from `preparedState`/`inputs` at render time — never bake them into
   `buildLens()`.
 - Folded/mirror lenses: check how existing tabs guard folded systems before computing (several

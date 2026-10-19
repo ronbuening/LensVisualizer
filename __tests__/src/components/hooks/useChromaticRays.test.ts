@@ -1,3 +1,6 @@
+import { prepareRuntimeState } from "../../../../src/optics/compat.js";
+import { stateWithZ } from "../../../../src/optics/state/preparedGeometry.js";
+import { createAnalysisRequest } from "../../../../src/optics/analysis.js";
 // @vitest-environment jsdom
 
 import { describe, it, expect, vi } from "vitest";
@@ -326,10 +329,18 @@ describe("useChromaticRays", () => {
     expect(result.current.chromaticRayFanSpread!.channels).toEqual(["R", "G", "B"]);
     expect(typeof result.current.chromaticRayFanSpread!.fraction).toBe("number");
 
-    const expected = computeLongitudinalChromaticFocus(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, 0, {
-      channels: ["R", "G", "B"],
-      longitudinalFractions: expectedDisplayLocaFractions(L),
-    })!.spread;
+    const expected = computeLongitudinalChromaticFocus(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), zPos),
+        dynamicEFL: L.EFL,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+      {
+        channels: ["R", "G", "B"],
+        longitudinalFractions: expectedDisplayLocaFractions(L),
+      },
+    )!.spread;
     expect(result.current.chromaticRayFanSpread!.axialInterceptSpreadMm).toBeCloseTo(
       expected.axialInterceptSpreadMm,
       12,

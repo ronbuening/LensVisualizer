@@ -1,9 +1,12 @@
+import { prepareRuntimeState } from "../../../../src/optics/compat.js";
+import { stateWithZ } from "../../../../src/optics/state/preparedGeometry.js";
+import { createAnalysisRequest } from "../../../../src/optics/analysis.js";
 import { describe, expect, it } from "vitest";
 import {
   computeChromaticAnalysis,
   computeLateralColorCurve,
   computeLongitudinalChromaticFocus,
-} from "../../../../src/optics/chromatic/analysis.js";
+} from "../../../../src/optics/analysis/chromatic/analysis.js";
 import { doLayout } from "../../../../src/optics/optics.js";
 import {
   apertureAt,
@@ -25,10 +28,18 @@ describe("chromatic analysis helpers", () => {
     const focusByChannel = (L: typeof plated) => {
       const { z: zPos } = doLayout(0, 0, L);
       const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0);
-      const result = computeLongitudinalChromaticFocus(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, 0, {
-        channels: ["R", "G", "B"],
-        longitudinalFractions: [0.02],
-      })!;
+      const result = computeLongitudinalChromaticFocus(
+        createAnalysisRequest({
+          preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), zPos),
+          dynamicEFL: L.EFL,
+          currentEPSD: currentEPSD,
+          currentPhysStopSD: currentPhysStopSD,
+        }),
+        {
+          channels: ["R", "G", "B"],
+          longitudinalFractions: [0.02],
+        },
+      )!;
       return Object.fromEntries(result.samples.map((sample) => [sample.channel, sample.focusZ!]));
     };
     const withPlate = focusByChannel(plated);
@@ -49,9 +60,17 @@ describe("chromatic analysis helpers", () => {
     const { z: zPos } = doLayout(focusT, zoomT, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, zoomT);
 
-    const result = computeLongitudinalChromaticFocus(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, 0, {
-      channels: ["R", "G", "B", "V"],
-    });
+    const result = computeLongitudinalChromaticFocus(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, focusT, zoomT, 0), zPos),
+        dynamicEFL: L.EFL,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+      {
+        channels: ["R", "G", "B", "V"],
+      },
+    );
 
     expect(result).not.toBeNull();
     expect(result!.referenceChannel).toBe("G");
@@ -78,10 +97,18 @@ describe("chromatic analysis helpers", () => {
     const { z: zPos } = doLayout(focusT, zoomT, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, zoomT, 0.25);
 
-    const result = computeLateralColorCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, 0, undefined, {
-      channels: ["R", "G", "B"],
-      fieldFractions: [0, 0.5, 1],
-    });
+    const result = computeLateralColorCurve(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, focusT, zoomT, 0), zPos),
+        dynamicEFL: L.EFL,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+      {
+        channels: ["R", "G", "B"],
+        fieldFractions: [0, 0.5, 1],
+      },
+    );
 
     expect(result).not.toBeNull();
     expect(result!.channels).toEqual(["R", "G", "B"]);
@@ -105,16 +132,32 @@ describe("chromatic analysis helpers", () => {
     const { z: zPos } = doLayout(focusT, zoomT, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, zoomT, 0.25);
 
-    const full = computeChromaticAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, 0, undefined, {
-      channels: ["R", "G", "B"],
-      fieldFractions: [0, 1],
-    });
+    const full = computeChromaticAnalysis(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, focusT, zoomT, 0), zPos),
+        dynamicEFL: L.EFL,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+      {
+        channels: ["R", "G", "B"],
+        fieldFractions: [0, 1],
+      },
+    );
     expect(full.longitudinalFocus).not.toBeNull();
     expect(full.lateralColor).not.toBeNull();
 
-    const oneChannel = computeChromaticAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, 0, undefined, {
-      channels: ["G"],
-    });
+    const oneChannel = computeChromaticAnalysis(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, focusT, zoomT, 0), zPos),
+        dynamicEFL: L.EFL,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+      {
+        channels: ["G"],
+      },
+    );
     expect(oneChannel.longitudinalFocus).toBeNull();
     expect(oneChannel.lateralColor).toBeNull();
   });

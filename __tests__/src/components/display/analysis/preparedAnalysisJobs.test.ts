@@ -39,13 +39,17 @@ vi.mock("../../../../../src/optics/compat.js", async () => {
   const actual = await vi.importActual("../../../../../src/optics/compat.js");
   return {
     ...actual,
-    analysisJobsForState2: {
-      ...(actual as { analysisJobsForState2: Record<string, unknown> }).analysisJobsForState2,
-      computeChromaticAnalysis: mockComputeChromaticAnalysis,
-      computeChromaticRayFanAnalysis: mockComputeChromaticRayFanAnalysis,
-    },
     prepareRuntimeState: mockPrepareRuntimeState,
   };
+});
+
+vi.mock("../../../../../src/optics/analysis/chromatic/analysis.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../../src/optics/analysis/chromatic/analysis.js")>();
+  return { ...actual, computeChromaticAnalysis: mockComputeChromaticAnalysis };
+});
+vi.mock("../../../../../src/optics/analysis/chromatic/rayFan.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../../src/optics/analysis/chromatic/rayFan.js")>();
+  return { ...actual, computeChromaticRayFanAnalysis: mockComputeChromaticRayFanAnalysis };
 });
 
 vi.mock("../../../../../src/optics/analysis/summary/summary.js", () => ({
@@ -487,7 +491,7 @@ describe("prepared-state analysis tabs", () => {
     );
   });
 
-  it("routes chromatic work through the prepared-state job facade", () => {
+  it("routes chromatic work through one request and lazy context", () => {
     const html = renderToStaticMarkup(
       React.createElement(ChromaticTab, {
         L: lens,
@@ -505,10 +509,15 @@ describe("prepared-state analysis tabs", () => {
     expect(html).toContain("Axial Color (LoCA)");
     expect(html).toContain("V ng");
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
-    expect(mockComputeChromaticAnalysis).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry);
-    expect(mockComputeChromaticRayFanAnalysis).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry, {
+    const request = expect.objectContaining({
+      preparedGeometry: preparedState,
+      aperture: { entrancePupilSemiDiameterMm: 10, stopSemiDiameterMm: 5 },
+      fieldGeometry,
       channels: ["R", "G", "B", "V"],
     });
+    expect(mockComputeChromaticAnalysis).toHaveBeenCalledWith(request);
+    expect(mockComputeChromaticRayFanAnalysis).toHaveBeenCalledWith(request);
+    expect(mockComputeChromaticRayFanAnalysis.mock.calls[0][0]).toBe(mockComputeChromaticAnalysis.mock.calls[0][0]);
     expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledWith(
       expect.objectContaining({
         preparedGeometry: preparedState,

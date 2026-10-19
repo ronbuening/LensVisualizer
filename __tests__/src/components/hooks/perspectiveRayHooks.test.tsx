@@ -24,9 +24,14 @@ vi.mock("../../../../src/components/hooks/offAxisRayUtils.js", () => ({
   computeOffAxisTraceGeometry: mocks.offAxisGeometry,
 }));
 
-vi.mock("../../../../src/optics/optics.js", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("../../../../src/optics/optics.js")>();
-  return { ...actual, computeLongitudinalChromaticFocus: () => null };
+vi.mock("../../../../src/optics/analysis.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../src/optics/analysis.js")>();
+  return { ...actual, computeLongitudinalChromaticFocus: () => null, stateWithZ: (state: unknown) => state };
+});
+
+vi.mock("../../../../src/optics/compat.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../src/optics/compat.js")>();
+  return { ...actual, prepareRuntimeState: () => ({ z: [0], lens: {} }) };
 });
 
 const lens = {

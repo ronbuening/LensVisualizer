@@ -14,6 +14,9 @@ type EngineModule = Readonly<Record<string, unknown>>;
 
 /* One glob per module, so a candidate below can only name a module that is listed here. */
 const ENGINE_MODULES = {
+  chromaticAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/chromatic/analysis.ts", { eager: true }),
+  chromaticScaling: import.meta.glob<EngineModule>("../../optics/analysis/chromatic/rayFanScaling.ts", { eager: true }),
+  analysisState: import.meta.glob<EngineModule>("../../optics/analysis.ts", { eager: true }),
   bokehAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/bokeh/bokeh.ts", { eager: true }),
   legacyBokeh: import.meta.glob<EngineModule>("../../optics/aberration/bokeh.ts", { eager: true }),
   pupilAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/pupils/pupilAberration.ts", { eager: true }),
@@ -52,6 +55,9 @@ const ENGINE_MODULES = {
 /* The same modules as types. A type query is erased before bundling, so it types a capability at the head and loads
  * nothing at any ref. */
 interface EngineModuleTypes {
+  chromaticAnalysis: typeof import("../../optics/analysis.js");
+  chromaticScaling: typeof import("../../optics/analysis.js");
+  analysisState: typeof import("../../optics/analysis.js");
   bokehAnalysis: typeof import("../../optics/analysis.js");
   legacyBokeh: typeof import("../../optics/analysis.js");
   pupilAnalysis: typeof import("../../optics/analysis.js");
@@ -69,7 +75,7 @@ interface EngineModuleTypes {
   asphericComparison: typeof import("../../optics/asphericComparison.js");
   buildLens: typeof import("../../optics/buildLens.js");
   cardinalElements: typeof import("../../optics/cardinalElements.js");
-  chromaticRayFanScaling: typeof import("../../optics/chromaticRayFanScaling.js");
+  chromaticRayFanScaling: typeof import("../../optics/analysis.js");
   compat: typeof import("../../optics/compat.js");
   constants: typeof import("../../optics/constants.js");
   geometry: typeof import("../../optics/geometry.js");
@@ -220,10 +226,19 @@ const SEAM_CANDIDATES = {
     ["fieldCurvatureAnalysis", "summarizeChromaticFieldFocus"],
     ["compat", "summarizeChromaticFieldFocus2"],
   ],
-  computeLongitudinalChromaticFocus: [["optics", "computeLongitudinalChromaticFocus"]],
+  computeLongitudinalChromaticFocus: [
+    ["chromaticAnalysis", "computeLongitudinalChromaticFocus"],
+    ["optics", "computeLongitudinalChromaticFocus"],
+  ],
   obstructionAwareRayFractionsForDensity: [["raySampling", "obstructionAwareRayFractionsForDensity"]],
-  computeLocaBarOffsets: [["compat", "computeLocaBarOffsets2"]],
-  legacyComputeLocaBarOffsets: [["chromaticRayFanScaling", "computeLocaBarOffsets"]],
+  computeLocaBarOffsets: [
+    ["chromaticScaling", "computeLocaBarOffsets"],
+    ["compat", "computeLocaBarOffsets2"],
+  ],
+  legacyComputeLocaBarOffsets: [
+    ["chromaticScaling", "computeLocaBarOffsets"],
+    ["chromaticRayFanScaling", "computeLocaBarOffsets"],
+  ],
   computeAsphericDeparture: [["compat", "computeAsphericDeparture2"]],
   legacyComputeAsphericDeparture: [["asphericComparison", "computeAsphericDeparture"]],
   computeMtf: [["mtf", "computeMtf"]],
@@ -243,12 +258,23 @@ type ResolvedEngineSeam = {
 /** The capture vocabulary stays stable while resolution bridges request and historical signatures. */
 export type EngineSeam = Omit<
   ResolvedEngineSeam,
+  | "computeLongitudinalChromaticFocus"
   | "computeGroupMovementProfileForState"
   | "computeCardinalElementsAtState"
   | "computeComaAnalysis"
   | "computeFieldCurvature"
   | "computeFieldCurvatureBundle"
 > & {
+  computeLongitudinalChromaticFocus: (
+    lens: ReturnType<ResolvedEngineSeam["buildLens"]>,
+    zPos: number[],
+    focusT: number,
+    zoomT: number,
+    currentEPSD: number,
+    currentPhysStopSD: number,
+    aberrationT?: number,
+    options?: Parameters<ResolvedEngineSeam["computeLongitudinalChromaticFocus"]>[1],
+  ) => ReturnType<ResolvedEngineSeam["computeLongitudinalChromaticFocus"]>;
   computeComaAnalysis: (
     state: ReturnType<ResolvedEngineSeam["prepareState"]>,
     currentEPSD: number,
@@ -374,6 +400,33 @@ function resolveOnce(): { seam: EngineSeam; sources: Record<keyof EngineSeam, st
         fieldGeometry,
       });
     };
+    if (sources.computeLongitudinalChromaticFocus.startsWith("chromaticAnalysis.")) {
+      const compute =
+        exports.computeLongitudinalChromaticFocus as ResolvedEngineSeam["computeLongitudinalChromaticFocus"];
+      const prepare = exports.prepareState as EngineSeam["prepareState"];
+      const stateWithZ = modules.analysisState!.stateWithZ as EngineModuleTypes["analysisState"]["stateWithZ"];
+      const createRequest = modules.analysisRequest!
+        .createAnalysisRequest as EngineModuleTypes["analysisRequest"]["createAnalysisRequest"];
+      exports.computeLongitudinalChromaticFocus = ((
+        lens,
+        zPos,
+        focusT,
+        zoomT,
+        currentEPSD,
+        currentPhysStopSD,
+        aberrationT = 0,
+        options,
+      ) =>
+        compute(
+          createRequest({
+            preparedState: stateWithZ(prepare(lens, focusT, zoomT, aberrationT), zPos),
+            dynamicEFL: 0,
+            currentEPSD,
+            currentPhysStopSD,
+          }),
+          options,
+        )) satisfies EngineSeam["computeLongitudinalChromaticFocus"];
+    }
     if (sources.computeComaAnalysis.startsWith("comaAnalysis.")) {
       const compute = exports.computeComaAnalysis as ResolvedEngineSeam["computeComaAnalysis"];
       exports.computeComaAnalysis = ((state, currentEPSD, currentPhysStopSD, fieldGeometry, sampling) => {

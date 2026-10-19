@@ -11,42 +11,44 @@ flowchart LR
   subgraph n_src_optics_analysis["src/optics/analysis"]
     n_src_optics_analysis_src_optics_analysis_aberration["aberration/"]
     n_src_optics_analysis_src_optics_analysis_bokeh["bokeh/"]
+    n_src_optics_analysis_src_optics_analysis_chromatic["chromatic/"]
     n_src_optics_analysis_src_optics_analysis_distortion["distortion/"]
     n_src_optics_analysis_src_optics_analysis_pupils["pupils/"]
     n_src_optics_analysis_src_optics_analysis_summary["summary/"]
     n_src_optics_analysis_src_optics_analysis_vignetting["vignetting/"]
-    n_src_optics_analysis_TypeScript_modules["TypeScript modules (25)"]
+    n_src_optics_analysis_TypeScript_modules["TypeScript modules (22)"]
   end
+  n_external_src_optics_perspective["src/optics/perspective"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_types["src/types"]
-  n_external_src_optics_chromatic["src/optics/chromatic"]
-  n_external_src_optics_perspective["src/optics/perspective"]
   n_external_src_optics_trace["src/optics/trace"]
   n_external_src_optics_prescription["src/optics/prescription"]
-  n_external_src_optics_state["src/optics/state"]
-  n_external_src_optics_layout_ts["src/optics/layout.ts"]
-  n_external_src_optics_optics_ts["src/optics/optics.ts"]
+  n_external_src_optics_chromatic["src/optics/chromatic"]
   n_external_src_optics_field["src/optics/field"]
+  n_external_src_optics_layout_ts["src/optics/layout.ts"]
   n_external_src_optics_math["src/optics/math"]
   n_external_src_optics_spectralLines_ts["src/optics/spectralLines.ts"]
+  n_external_src_optics_state["src/optics/state"]
   n_external_src_optics_first_order["src/optics/first-order"]
   n_external_src_optics_geometry["src/optics/geometry"]
+  n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_utils_catalog["src/utils/catalog"]
-  n_src_optics_analysis_TypeScript_modules --> |14| n_external_src_optics_types_ts
-  n_src_optics_analysis_TypeScript_modules --> |14| n_external_src_types
-  n_src_optics_analysis_TypeScript_modules --> |11| n_external_src_optics_chromatic
   n_src_optics_analysis_TypeScript_modules --> |11| n_external_src_optics_perspective
-  n_src_optics_analysis_TypeScript_modules --> |9| n_external_src_optics_trace
-  n_src_optics_analysis_TypeScript_modules --> |7| n_external_src_optics_prescription
-  n_src_optics_analysis_TypeScript_modules --> |5| n_src_optics_analysis_src_optics_analysis_aberration
-  n_src_optics_analysis_TypeScript_modules --> |4| n_external_src_optics_state
-  n_src_optics_analysis_TypeScript_modules --> |3| n_external_src_optics_layout_ts
-  n_src_optics_analysis_TypeScript_modules --> |3| n_external_src_optics_optics_ts
+  n_src_optics_analysis_TypeScript_modules --> |11| n_external_src_optics_types_ts
+  n_src_optics_analysis_TypeScript_modules --> |11| n_external_src_types
+  n_src_optics_analysis_TypeScript_modules --> |8| n_external_src_optics_trace
+  n_src_optics_analysis_TypeScript_modules --> |4| n_external_src_optics_prescription
+  n_src_optics_analysis_TypeScript_modules --> |4| n_src_optics_analysis_src_optics_analysis_aberration
+  n_src_optics_analysis_TypeScript_modules --> |3| n_external_src_optics_chromatic
+  n_src_optics_analysis_TypeScript_modules --> |3| n_src_optics_analysis_src_optics_analysis_chromatic
   n_src_optics_analysis_TypeScript_modules --> |2| n_external_src_optics_field
+  n_src_optics_analysis_TypeScript_modules --> |2| n_external_src_optics_layout_ts
   n_src_optics_analysis_TypeScript_modules --> |2| n_external_src_optics_math
   n_src_optics_analysis_TypeScript_modules --> |2| n_external_src_optics_spectralLines_ts
+  n_src_optics_analysis_TypeScript_modules --> |2| n_external_src_optics_state
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_first_order
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_geometry
+  n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_optics_ts
   n_src_optics_analysis_TypeScript_modules --> n_external_src_utils_catalog
   n_src_optics_analysis_TypeScript_modules --> n_src_optics_analysis_src_optics_analysis_bokeh
   n_src_optics_analysis_TypeScript_modules --> n_src_optics_analysis_src_optics_analysis_distortion
@@ -57,9 +59,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 25
-- Direct subfolders: 6
-- Main outbound areas: same folder (50), src/optics/types.ts (14), src/types (14), src/optics/chromatic (11), src/optics/perspective (11), src/optics/trace (9), src/optics/prescription (7), src/optics/state (4), +8 more
+- Direct source files: 22
+- Direct subfolders: 7
+- Main outbound areas: same folder (48), src/optics/perspective (11), src/optics/types.ts (11), src/types (11), src/optics/trace (8), src/optics/prescription (4), src/optics/chromatic (3), src/optics/field (2), +8 more
 - External consumers: src/benchmarks, src/components/layout, src/optics/analysis, src/optics/analysis.ts, src/optics/compat.ts, src/optics/mtf.ts, src/optics/optics.ts, src/optics/perspective
 
 ## Subfolders
@@ -68,6 +70,7 @@ flowchart LR
 | --- | --- |
 | [aberration/](aberration/readme.md) | request-based spherical and best-focus analysis with shared aberration leaves |
 | [bokeh/](bokeh/readme.md) | request-based bokeh previews, field footprints and density reductions |
+| [chromatic/](chromatic/readme.md) | src/optics/analysis/chromatic source folder |
 | [distortion/](distortion/readme.md) | src/optics/analysis/distortion source folder |
 | [pupils/](pupils/readme.md) | src/optics/analysis/pupils source folder |
 | [summary/](summary/readme.md) | src/optics/analysis/summary source folder |
@@ -77,13 +80,11 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `analysisContext.ts` | Analysis Context helper module | same folder (5), src/optics/chromatic (2), src/optics/prescription | src/optics/analysis.ts, src/optics/compat.ts | AnalysisComputationContextParams, AnalysisComputationContext, createAnalysisComputationContext |
-| `analysisJobs.ts` | Analysis Jobs helper module | same folder (12), src/optics/chromatic, src/optics/optics.ts, src/optics/types.ts, src/types | same folder, src/optics/compat.ts | analysisJobs2, analysisJobsForState2 |
+| `analysisContext.ts` | Analysis Context helper module | same folder (5) | src/optics/analysis.ts, src/optics/compat.ts | AnalysisComputationContextParams, AnalysisComputationContext, createAnalysisComputationContext |
+| `analysisJobs.ts` | Analysis Jobs helper module | same folder (12) | same folder, src/optics/compat.ts | analysisJobs2, analysisJobsForState2 |
 | `analysisMovementSupport.ts` | Analysis Movement Support helper module | src/optics/perspective | same folder, src/optics/compat.ts | AnalysisSectionId, AnalysisSectionMode, AnalysisSectionAvailability, AnalysisSectionUnavailableError, analysisSectionAvailability, assertAnalysisSectionAvailable, assertCenteredAnalysisSectionAvailable |
-| `analysisQuality.ts` | Analysis Quality helper module | none | same folder (6), src/benchmarks, src/components/layout | AnalysisQuality, AnalysisSamplingOptions, INTERACTIVE_ANALYSIS_SAMPLING, analysisSamplingForQuality |
+| `analysisQuality.ts` | Analysis Quality helper module | none | same folder (5), src/benchmarks, src/components/layout | AnalysisQuality, AnalysisSamplingOptions, INTERACTIVE_ANALYSIS_SAMPLING, analysisSamplingForQuality |
 | `asphericComparison.ts` | Aspheric Comparison helper module | src/optics/geometry, src/types | src/optics/compat.ts | DepartureSample2, computeAsphericDeparture2, computeDepartureProfile2, computeBestFitSphereR2, peakAbsDeparture2, rmsDeparture2, nearestSurfaceForClick2 |
-| `chromatic.ts` | Chromatic helper module | src/optics/chromatic (4), same folder (2), src/optics/prescription (2), src/optics/state (2), src/optics/layout.ts, +4 more | same folder, src/optics/compat.ts | ChromaticAnalysisOptions, ChromaticAnalysisResult, LateralColorChannelSample, LateralColorCurveResult, LateralColorFieldSample, LongitudinalChromaticFocusResult, LongitudinalChromaticFocusSample, ChromaticRayFanAnalysisOptions2, +7 more |
-| `chromaticRayFanScaling.ts` | Chromatic Ray Fan Scaling helper module | src/optics/chromatic, src/types | src/optics/compat.ts | REFERENCE_LOCA_MM_2, ChromaticBarResult2, computeLocaBarOffsets2 |
 | `mtf.ts` | Mtf helper module | same folder (9), src/optics/types.ts, src/types | src/optics/mtf.ts | MtfJobCache, emptyMtfField, MtfUnresolvedFlux, assessUnresolvedFlux, MtfGridOutcome, refineMtfField, resolveMtfGeometry, computeMtfSteps, +1 more |
 | `mtfAperture.ts` | Mtf Aperture helper module | same folder (2), src/optics/trace, src/optics/types.ts, src/types | same folder | resolveMtfAperture |
 | `mtfConjugates.ts` | Mtf Conjugates helper module | src/optics/field, src/optics/prescription, src/optics/types.ts, src/types | same folder (2) | mtfFiniteConjugate, mtfFiniteObjectPoint |
@@ -99,6 +100,5 @@ flowchart LR
 | `mtfTracing.ts` | Mtf Tracing helper module | same folder (5), src/optics/trace (3), src/optics/chromatic, src/optics/math, src/optics/prescription, +3 more | same folder (6) | mtfTraceClassification, MtfPupilRay, MtfOpenBorders, MtfBundle, MtfFieldLaunch, mtfImagePoint, mtfIndexResolver, mtfTraceOptions, +8 more |
 | `mtfWavefront.ts` | Mtf Wavefront helper module | same folder (2), src/optics/types.ts | none | launchPhaseMm, rayOpticalPathToImageMm, MtfWaveLattice, mtfWaveLattice, waveLatticePhaseStep, waveLatticeOtf |
 | `perspectiveAnalysisJobs.ts` | Perspective Analysis Jobs helper module | src/optics/perspective (8), same folder, src/optics/chromatic | same folder | PerspectiveAnalysisJobParams, PerspectiveAnalysisSamplingPlan, PerspectiveAnalysisJobs, perspectiveAnalysisSamplingPlan, createPerspectiveAnalysisJobs |
-| `preparedStateAdapters.ts` | Prepared State Adapters helper module | src/optics/types.ts | same folder (2) | zPosForPreparedAnalysis2 |
-| `request.ts` | Request helper module | src/optics/perspective (2), same folder, src/optics/chromatic, src/optics/optics.ts, src/optics/trace, +2 more | same folder (14), src/optics/analysis.ts, src/optics/compat.ts | AnalysisRequestParams, AnalysisRequest, createAnalysisRequest |
+| `request.ts` | Request helper module | src/optics/perspective (2), same folder, src/optics/chromatic, src/optics/optics.ts, src/optics/trace, +2 more | same folder (16), src/optics/analysis.ts, src/optics/compat.ts | AnalysisRequestParams, AnalysisRequest, createAnalysisRequest |
 | `sampling.ts` | Sampling helper module | none | same folder (6), src/optics/perspective (2), src/optics/optics.ts | OrthogonalPupilSample, CircularPupilSample, DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT, DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES, sampleOrthogonalPupilFan, sampleCircularPupil |

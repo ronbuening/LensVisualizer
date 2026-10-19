@@ -10,10 +10,7 @@ import { memo } from "react";
 import type { ChromaticRayFanSpread, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
-import {
-  computeChromaticBarOffsets,
-  REFERENCE_FAN_IMAGE_HEIGHT_SPREAD_MM,
-} from "../../optics/chromaticRayFanScaling.js";
+import { computeChromaticBarOffsets, REFERENCE_FAN_IMAGE_HEIGHT_SPREAD_MM } from "../../optics/analysis.js";
 import { chromaticChannelColor, formatSpreadUmFromMm } from "../display/analysis/chromaticChartUtils.js";
 import { ChromaticQualityBadge, chromaticQualityBadgeLabel } from "./ChromaticQualityBadge.js";
 

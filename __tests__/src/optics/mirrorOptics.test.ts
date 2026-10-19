@@ -1,3 +1,5 @@
+import { stateWithZ } from "../../../src/optics/state/preparedGeometry.js";
+import { createAnalysisRequest } from "../../../src/optics/analysis.js";
 import { analysisRequestAt } from "./testLensFixtures.js";
 import { analysisRequestForLens } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
@@ -391,9 +393,17 @@ describe("mirror optics support", () => {
     const ep = entrancePupilAtState(L.stopPhysSD, 0, 0, L).epSD;
     const fraction = 0.83;
     const green = traceRayChromatic(fraction * ep, 0, layout.z, 0, 0, L.stopPhysSD, true, L, "G");
-    const result = computeLongitudinalChromaticFocus(L, layout.z, 0, 0, ep, L.stopPhysSD, 0, {
-      longitudinalFractions: [fraction],
-    });
+    const result = computeLongitudinalChromaticFocus(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), layout.z),
+        dynamicEFL: L.EFL,
+        currentEPSD: ep,
+        currentPhysStopSD: L.stopPhysSD,
+      }),
+      {
+        longitudinalFractions: [fraction],
+      },
+    );
 
     expect(result).not.toBeNull();
     expect(result!.spread.imagePlaneHeights.G).toBeCloseTo(green.y, 12);

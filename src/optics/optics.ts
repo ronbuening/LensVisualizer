@@ -71,11 +71,7 @@ export {
 export {
   CHANNEL_WAVELENGTH_NM_2 as CHANNEL_WAVELENGTH_NM,
   CHROMATIC_CHANNELS_2 as CHROMATIC_CHANNELS,
-  computeChromaticAnalysis2 as computeChromaticAnalysis,
-  computeChromaticRayFanAnalysis2 as computeChromaticRayFanAnalysis,
   computeChromaticRayFanSpread2 as computeChromaticRayFanSpread,
-  computeLateralColorCurve2 as computeLateralColorCurve,
-  computeLongitudinalChromaticFocus2 as computeLongitudinalChromaticFocus,
   wavelengthNd2 as wavelengthNd,
   type SurfaceIndexResolver2 as SurfaceIndexResolver,
 } from "./compat.js";
@@ -94,3 +90,10 @@ export { formatDist, formatFNumber, formatPetzvalRadius, marketedApertureNote } 
 export type { RuntimeSkewRayTraceResult as SkewRayTraceResult } from "./trace/runtimeRayResult.js";
 
 export { summarizeChromaticFieldFocus } from "./analysis/aberration/fieldCurvature.js";
+
+export {
+  computeChromaticAnalysis,
+  computeLongitudinalChromaticFocus,
+  computeLateralColorCurve,
+} from "./analysis/chromatic/analysis.js";
+export { computeChromaticRayFanAnalysis } from "./analysis/chromatic/rayFan.js";

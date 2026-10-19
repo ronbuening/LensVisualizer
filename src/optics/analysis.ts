@@ -83,3 +83,7 @@ export {
   buildBokehDensityGrid,
   describeBokehDefocusSide,
 } from "./analysis/bokeh/bokeh.js";
+
+export * from "./analysis/chromatic/analysis.js";
+export * from "./analysis/chromatic/rayFan.js";
+export * from "./analysis/chromatic/rayFanScaling.js";

@@ -11,7 +11,7 @@ import { memo } from "react";
 import type { ChromaticRayFanSpread, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
-import { computeLocaBarOffsets } from "../../optics/chromaticRayFanScaling.js";
+import { computeLocaBarOffsets } from "../../optics/analysis.js";
 import { ChromaticQualityBadge } from "./ChromaticQualityBadge.js";
 
 function referenceIntercept(axialIntercepts: Partial<Record<ChromaticChannel, number>>, fallback: number): number {

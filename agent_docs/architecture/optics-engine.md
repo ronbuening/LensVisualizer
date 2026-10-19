@@ -1348,8 +1348,9 @@ breathing series and group-movement profiles take `AnalysisRequest`. The summary
 takes the request directly; `OpticalSummaryTab` creates/reuses a request and lazy context without a prepared-job
 fallback. Spherical aberration, SA profile, blur character and best focus also take requests through the unchanged job
 keys. Field curvature, its chromatic bundle, coma, distortion, vignetting and pupil aberration also take requests,
-including field geometry and sampling. Bokeh also takes requests; other families still dispatch through their
-existing `*ForState2` adapters until their request migration.
+including field geometry and sampling. Bokeh and chromatic LoCA/lateral color/fans also take requests. The historical
+job-table names remain during the public-seam migration, but no centered job takes a prepared-state or RuntimeLens
+signature.
 Centered and movement-aware jobs retain their numerical kernels, sampling defaults and section-availability guards.
 
 Canonical cardinal and EFL math remains in `first-order/`. Request-facing cardinals accept optional camera surface
@@ -1393,7 +1394,7 @@ and pupil samples across its diagnostics. The Coma tab reuses the context's requ
 sampling. A custom detail field creates a distinct request using the supplied apertures and field,
 with the detail fraction retained in the memo dependencies. Standalone calls preserve supplied
 surface positions with `stateWithZ`. The mixed `analysis/aberrations.ts` adapter is gone;
-`zPosForPreparedAnalysis2` remains for unmigrated families, including chromatic.
+`analysis/preparedStateAdapters.ts` is gone now that every centered family consumes requests.
 Implementation leaves import lower-level engine sources directly, never cycle-sensitive public barrels such as
 `compat.ts`, `optics.ts` or `aberrationAnalysis.ts`.
 
@@ -1513,6 +1514,26 @@ transmission weights in their least-squares best-focus solve. The pupil-footprin
 equal-area weights so its centroid and shift radius remain mechanical diagnostics; absorption changes photometric
 density, not the reported pupil position. Point and pupil reductions guard zero total weight and return empty results
 rather than usable structures containing non-finite metrics.
+
+## Chromatic Analysis
+
+`analysis/chromatic/analysis.ts` owns longitudinal chromatic focus (LoCA), lateral color and the combined summary;
+`analysis/chromatic/rayFan.ts` owns first-usable-fraction on/off-axis fans. All take `AnalysisRequest`, exposed through
+`analysis.ts`. Channels normalize into R/G/B/V order, with G as reference when requested and the first channel otherwise.
+The combined summary forwards request field geometry to lateral color; the fan intentionally recomputes its own field
+geometry. Marginal search order, attempted counts, clipping and transmission semantics remain unchanged. LoCA retains
+its authored folded image plane, while the fan uses the current folded focus plane.
+
+`ChromaticTab` reuses one request/context for its centered summary, fans and the chromatic field-focus bundle owned by
+`analysis/aberration/fieldCurvature.ts`. The context's intrinsic LoCA also takes that request and caches null explicitly.
+The diagram's `useChromaticRays` builds a request from supplied z positions and the current controls/apertures, keeping
+its obstruction-aware marginal fractions. Perspective chromatic and the tab's moved intrinsic LoCA retain their existing
+movement wiring.
+
+`analysis/chromatic/rayFanScaling.ts` is the sole bar-scaling implementation. The LoCA inset uses the fixed 0.15-mm
+reference; the off-axis fan widget uses the generic helper with its 0.01-mm image-height reference. The compatibility
+scaling exports alias this implementation, preserving multiplication and clamp order. Channel/index/dispersion
+infrastructure stays in `chromatic/`.
 
 ## Aspheric Comparison
 
