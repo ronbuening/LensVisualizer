@@ -1,14 +1,21 @@
 /**
- * Aspheric comparison analysis adapter — v2-named departure, best-fit sphere, and click helpers.
+ * Aspheric comparison kernels — departure, best-fit sphere and click reductions.
  *
- * Mirrors the public asphericComparison utilities for callers that import through the engine analysis namespace.
+ * Sampling and minimization are shared. The overlay and profile callers retain distinct
+ * sag evaluators: without coefficients, their spherical-rim clamps differ.
  */
 
-import type { AsphericCoefficients } from "../../types/optics.js";
-import { FLAT_R_THRESHOLD, createAsphericProfile, createSphericalProfile } from "../geometry/surfaceProfile.js";
+import type { AsphericCoefficients } from "../../../types/optics.js";
+import {
+  FLAT_R_THRESHOLD,
+  conicPolySag,
+  sag,
+  createAsphericProfile,
+  createSphericalProfile,
+} from "../../geometry/surfaceProfile.js";
 
 /** One sampled asphere-vs-sphere sag difference at radial height `h` in mm. */
-export interface DepartureSample2 {
+export interface DepartureSample {
   h: number;
   delta: number;
 }
@@ -25,7 +32,7 @@ export interface DepartureSample2 {
  * @param asph - optional conic/polynomial coefficients for the aspheric surface
  * @returns sag departure in mm, aspheric minus comparison sphere
  */
-export function computeAsphericDeparture2(
+export function computeAsphericDepartureFromProfiles(
   h: number,
   R_sphere: number,
   R_aspheric: number,
@@ -33,6 +40,61 @@ export function computeAsphericDeparture2(
 ): number {
   const asphericProfile = asph ? createAsphericProfile(R_aspheric, asph) : createSphericalProfile(R_aspheric);
   return asphericProfile.sag(h) - createSphericalProfile(R_sphere).sag(h);
+}
+
+/**
+ * Compute the overlay's conic-polynomial sag minus its comparison sphere.
+ * @param h - radial aperture height in mm
+ * @param R_sphere - signed comparison radius in mm
+ * @param R_aspheric - signed aspheric base radius in mm
+ * @param asph - optional conic/polynomial coefficients
+ * @returns signed departure in mm, preserving the overlay's conic-root clamp
+ */
+export function computeAsphericDeparture(
+  h: number,
+  R_sphere: number,
+  R_aspheric: number,
+  asph: AsphericCoefficients | undefined,
+): number {
+  return conicPolySag(h, R_aspheric, asph) - sag(h, R_sphere);
+}
+
+/**
+ * Sample the overlay's departure, including both h=0 and h=sd.
+ * @param R_sphere - signed comparison radius in mm
+ * @param R_aspheric - signed aspheric base radius in mm
+ * @param asph - optional conic/polynomial coefficients
+ * @param sd - clear semi-diameter in mm
+ * @param samples - radial sample count (at least two)
+ * @returns inclusive radial departure profile in mm
+ */
+export function computeDepartureProfile(
+  R_sphere: number,
+  R_aspheric: number,
+  asph: AsphericCoefficients | undefined,
+  sd: number,
+  samples = 96,
+): DepartureSample[] {
+  return departureProfile(sd, samples, (h) => computeAsphericDeparture(h, R_sphere, R_aspheric, asph));
+}
+
+/**
+ * Fit the overlay's comparison sphere with its original sag arithmetic.
+ * @param R_base - signed base radius in mm
+ * @param asph - optional conic/polynomial coefficients
+ * @param sd - clear semi-diameter in mm
+ * @param samples - radial samples in the least-squares objective
+ * @returns signed fitted radius, or the base radius for flat/degenerate inputs
+ */
+export function computeBestFitSphereR(
+  R_base: number,
+  asph: AsphericCoefficients | undefined,
+  sd: number,
+  samples = 64,
+): number {
+  return bestFitSphereR(R_base, sd, (R_sphere) =>
+    sumSquaredResiduals(sd, samples, (h) => computeAsphericDeparture(h, R_sphere, R_base, asph)),
+  );
 }
 
 /**
@@ -45,35 +107,31 @@ export function computeAsphericDeparture2(
  * @param samples - number of evenly spaced radial samples
  * @returns departure profile in mm over `h ∈ [0, sd]`
  */
-export function computeDepartureProfile2(
+export function computeDepartureProfileFromProfiles(
   R_sphere: number,
   R_aspheric: number,
   asph: AsphericCoefficients | undefined,
   sd: number,
   samples = 96,
-): DepartureSample2[] {
+): DepartureSample[] {
+  return departureProfile(sd, samples, (h) => computeAsphericDepartureFromProfiles(h, R_sphere, R_aspheric, asph));
+}
+
+function departureProfile(sd: number, samples: number, departureAt: (h: number) => number): DepartureSample[] {
   const n = Math.max(2, samples);
-  const out: DepartureSample2[] = new Array(n);
+  const out: DepartureSample[] = new Array(n);
   for (let i = 0; i < n; i++) {
     const h = (sd * i) / (n - 1);
-    out[i] = { h, delta: computeAsphericDeparture2(h, R_sphere, R_aspheric, asph) };
+    out[i] = { h, delta: departureAt(h) };
   }
   return out;
 }
 
-function sumSquaredResiduals2(
-  R_sphere: number,
-  R_aspheric: number,
-  asph: AsphericCoefficients | undefined,
-  sd: number,
-  samples: number,
-): number {
+function sumSquaredResiduals(sd: number, samples: number, departureAt: (h: number) => number): number {
   let sum = 0;
-  const sphere = createSphericalProfile(R_sphere);
-  const aspheric = asph ? createAsphericProfile(R_aspheric, asph) : createSphericalProfile(R_aspheric);
   for (let i = 0; i < samples; i++) {
     const h = (sd * i) / (samples - 1);
-    const d = aspheric.sag(h) - sphere.sag(h);
+    const d = departureAt(h);
     sum += d * d;
   }
   return sum;
@@ -91,12 +149,20 @@ function sumSquaredResiduals2(
  * @param samples - number of radial samples in the least-squares objective
  * @returns signed best-fit sphere radius in mm
  */
-export function computeBestFitSphereR2(
+export function computeBestFitSphereRFromProfiles(
   R_base: number,
   asph: AsphericCoefficients | undefined,
   sd: number,
   samples = 64,
 ): number {
+  return bestFitSphereR(R_base, sd, (R_sphere) => {
+    const sphere = createSphericalProfile(R_sphere);
+    const aspheric = asph ? createAsphericProfile(R_base, asph) : createSphericalProfile(R_base);
+    return sumSquaredResiduals(sd, samples, (h) => aspheric.sag(h) - sphere.sag(h));
+  });
+}
+
+function bestFitSphereR(R_base: number, sd: number, costAt: (R_sphere: number) => number): number {
   if (Math.abs(R_base) > FLAT_R_THRESHOLD || sd <= 0) return R_base;
   const sign = R_base < 0 ? -1 : 1;
   const absR = Math.abs(R_base);
@@ -105,7 +171,7 @@ export function computeBestFitSphereR2(
   const minSafe = sd * 1.001;
   if (lo < minSafe) lo = Math.min(minSafe, hi);
 
-  const cost = (R_abs: number) => sumSquaredResiduals2(sign * R_abs, R_base, asph, sd, samples);
+  const cost = (R_abs: number) => costAt(sign * R_abs);
   const phi = (Math.sqrt(5) - 1) / 2;
   let a = lo;
   let b = hi;
@@ -138,7 +204,7 @@ export function computeBestFitSphereR2(
  * @param profile - departure samples in mm
  * @returns peak absolute sag difference in mm
  */
-export function peakAbsDeparture2(profile: DepartureSample2[]): number {
+export function peakAbsDeparture(profile: DepartureSample[]): number {
   let peak = 0;
   for (const s of profile) {
     const a = Math.abs(s.delta);
@@ -153,7 +219,7 @@ export function peakAbsDeparture2(profile: DepartureSample2[]): number {
  * @param profile - departure samples in mm
  * @returns root-mean-square sag difference in mm
  */
-export function rmsDeparture2(profile: DepartureSample2[]): number {
+export function rmsDeparture(profile: DepartureSample[]): number {
   if (profile.length === 0) return 0;
   let sum = 0;
   for (const s of profile) sum += s.delta * s.delta;
@@ -167,7 +233,7 @@ export function rmsDeparture2(profile: DepartureSample2[]): number {
  * @param surfaces - candidate surface indices and current vertex positions in mm
  * @returns selected surface index, or null when no candidates are provided
  */
-export function nearestSurfaceForClick2(clickZ: number, surfaces: { surfIdx: number; z: number }[]): number | null {
+export function nearestSurfaceForClick(clickZ: number, surfaces: { surfIdx: number; z: number }[]): number | null {
   if (surfaces.length === 0) return null;
   let bestIdx = surfaces[0].surfIdx;
   let bestDist = Math.abs(clickZ - surfaces[0].z);

@@ -6,8 +6,8 @@ import {
   peakAbsDeparture,
   rmsDeparture,
   nearestSurfaceForClick,
-} from "../../../src/optics/asphericComparison.js";
-import type { AsphericCoefficients } from "../../../src/types/optics.js";
+} from "../../../../src/optics/analysis/asphericComparison/comparison.js";
+import type { AsphericCoefficients } from "../../../../src/types/optics.js";
 
 const ZERO_ASPH: AsphericCoefficients = {
   K: 0,

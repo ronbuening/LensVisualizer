@@ -35,6 +35,9 @@ const ENGINE_MODULES = {
   analysisRequest: import.meta.glob<EngineModule>("../../optics/analysis/request.ts", { eager: true }),
   aperture: import.meta.glob<EngineModule>("../../optics/aperture.ts", { eager: true }),
   apertureStop: import.meta.glob<EngineModule>("../../optics/apertureStop.ts", { eager: true }),
+  asphericFamily: import.meta.glob<EngineModule>("../../optics/analysis/asphericComparison/comparison.ts", {
+    eager: true,
+  }),
   asphericComparison: import.meta.glob<EngineModule>("../../optics/asphericComparison.ts", { eager: true }),
   buildLens: import.meta.glob<EngineModule>("../../optics/buildLens.ts", { eager: true }),
   cardinalElements: import.meta.glob<EngineModule>("../../optics/cardinalElements.ts", { eager: true }),
@@ -72,7 +75,8 @@ interface EngineModuleTypes {
   analysisRequest: typeof import("../../optics/analysis.js");
   aperture: typeof import("../../optics/aperture.js");
   apertureStop: typeof import("../../optics/apertureStop.js");
-  asphericComparison: typeof import("../../optics/asphericComparison.js");
+  asphericFamily: typeof import("../../optics/analysis.js");
+  asphericComparison: typeof import("../../optics/analysis.js");
   buildLens: typeof import("../../optics/buildLens.js");
   cardinalElements: typeof import("../../optics/cardinalElements.js");
   chromaticRayFanScaling: typeof import("../../optics/analysis.js");
@@ -215,10 +219,22 @@ const SEAM_CANDIDATES = {
     ["summaryCardinals", "computeCardinalElements"],
     ["cardinalElements", "computeCardinalElementsAtState"],
   ],
-  computeBestFitSphereR: [["compat", "computeBestFitSphereR2"]],
-  computeDepartureProfile: [["compat", "computeDepartureProfile2"]],
-  legacyComputeBestFitSphereR: [["asphericComparison", "computeBestFitSphereR"]],
-  legacyComputeDepartureProfile: [["asphericComparison", "computeDepartureProfile"]],
+  computeBestFitSphereR: [
+    ["asphericFamily", "computeBestFitSphereRFromProfiles"],
+    ["compat", "computeBestFitSphereR2"],
+  ],
+  computeDepartureProfile: [
+    ["asphericFamily", "computeDepartureProfileFromProfiles"],
+    ["compat", "computeDepartureProfile2"],
+  ],
+  legacyComputeBestFitSphereR: [
+    ["asphericFamily", "computeBestFitSphereR"],
+    ["asphericComparison", "computeBestFitSphereR"],
+  ],
+  legacyComputeDepartureProfile: [
+    ["asphericFamily", "computeDepartureProfile"],
+    ["asphericComparison", "computeDepartureProfile"],
+  ],
   /* Readouts the viewer computes beside the analysis context: the working f-number, the chromatic tab's field-focus
    * summary, the diagram's LoCA readout with its inset bars, and the aspheric overlay's departure at a click. */
   effectiveFNumber: [["optics", "effectiveFNumber"]],
@@ -239,8 +255,14 @@ const SEAM_CANDIDATES = {
     ["chromaticScaling", "computeLocaBarOffsets"],
     ["chromaticRayFanScaling", "computeLocaBarOffsets"],
   ],
-  computeAsphericDeparture: [["compat", "computeAsphericDeparture2"]],
-  legacyComputeAsphericDeparture: [["asphericComparison", "computeAsphericDeparture"]],
+  computeAsphericDeparture: [
+    ["asphericFamily", "computeAsphericDepartureFromProfiles"],
+    ["compat", "computeAsphericDeparture2"],
+  ],
+  legacyComputeAsphericDeparture: [
+    ["asphericFamily", "computeAsphericDeparture"],
+    ["asphericComparison", "computeAsphericDeparture"],
+  ],
   computeMtf: [["mtf", "computeMtf"]],
 } as const satisfies Readonly<Record<string, readonly SeamCandidate[]>>;
 

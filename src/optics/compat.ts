@@ -272,14 +272,14 @@ export {
   isGroupMovementModeAvailable as isGroupMovementModeAvailable2,
 } from "./analysis/summary/groupMovement.js";
 export {
-  computeAsphericDeparture2,
-  computeBestFitSphereR2,
-  computeDepartureProfile2,
-  nearestSurfaceForClick2,
-  peakAbsDeparture2,
-  rmsDeparture2,
-  type DepartureSample2,
-} from "./analysis/asphericComparison.js";
+  computeAsphericDepartureFromProfiles as computeAsphericDeparture2,
+  computeBestFitSphereRFromProfiles as computeBestFitSphereR2,
+  computeDepartureProfileFromProfiles as computeDepartureProfile2,
+  nearestSurfaceForClick as nearestSurfaceForClick2,
+  peakAbsDeparture as peakAbsDeparture2,
+  rmsDeparture as rmsDeparture2,
+  type DepartureSample as DepartureSample2,
+} from "./analysis/asphericComparison/comparison.js";
 export {
   computeLocaBarOffsets as computeLocaBarOffsets2,
   REFERENCE_LOCA_MM as REFERENCE_LOCA_MM_2,

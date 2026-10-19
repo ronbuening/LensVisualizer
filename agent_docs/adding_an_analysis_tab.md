@@ -69,6 +69,11 @@ the prepared state / slider inputs you actually use.
   in request memo dependencies; only lateral color forwards the field geometry, while fans recompute it.
   Diagram LoCA preserves supplied surface z and obstruction-aware marginal fractions through an explicit options
   override. Keep intrinsic LoCA available in the moved frame without routing perspective chromatic through centered jobs.
+- Aspheric comparison is an element overlay, with no job/context accessor. Its request-facing element
+  resolution lives in `analysis/asphericComparison/`; scalar/surface helpers stay request-free. Keep its
+  `[L, info.id]`, `[surfaces, mode]` and `[departureBySurf]` dependencies and element-local construction
+  vertices. Mode resets use `lastModeRef`, never request identity. Preserve its explicit `SAMPLES + 1`
+  profile override and the separate overlay/profile sag arithmetic at coefficient-free spherical rims.
 - Slider-dependent values come from `preparedState`/`inputs` at render time — never bake them into
   `buildLens()`.
 - Folded/mirror lenses: check how existing tabs guard folded systems before computing (several

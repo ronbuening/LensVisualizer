@@ -1537,11 +1537,22 @@ infrastructure stays in `chromatic/`.
 
 ## Aspheric Comparison
 
-`asphericComparison.ts` provides pure helpers for how far an aspheric surface departs from its best-fit sphere:
-`computeBestFitSphereR()` (golden-section RMS-sag minimiser that falls back to the base radius for flat surfaces),
-`computeAsphericDeparture()`, `computeDepartureProfile()`, `peakAbsDeparture()` / `rmsDeparture()`, and
-`nearestSurfaceForClick()` for click-to-measure routing. They feed `AsphericComparisonOverlay.tsx` exclusively and must
-not be called from `buildLens()`.
+`analysis/asphericComparison/`, exposed through `analysis.ts`, owns departure, best-fit sphere and click helpers.
+`computeAsphericElementComparison(request, elementId)` resolves the selected element through the request's compiled
+lens identity. It intentionally reads construction radii, coefficients and thickness: vertices remain local to the
+element (front = 0, rear = front-surface thickness), independent of focus/zoom layout or camera anchoring. The overlay
+creates this request inside its existing `[L, info.id]` memo with unused EFL/apertures set to zero. It has no analysis
+job, context accessor or fallback. Mode-change resets remain guarded by `lastModeRef`, never request identity.
+
+The scalar/surface helpers need no request. `computeAsphericDeparture`, `computeDepartureProfile` and
+`computeBestFitSphereR` retain the overlay's `conicPolySag`/`sag` arithmetic. Their `FromProfiles` counterparts retain
+the engine callers' profile-factory arithmetic, also exported under historical `2` names through `compat.ts`.
+The two paths agree bit for bit on every catalog aspheric surface, but with absent coefficients at a spherical rim,
+the conic evaluator floors the root while the spherical profile clamps it to zero; preserve both behaviors.
+They share the inclusive 96-sample profile, 64-sample fit, golden-section bracket, 60-step cap, relative tolerance
+and flat/degenerate fallback. `peakAbsDeparture`, `rmsDeparture` and `nearestSurfaceForClick` share one implementation;
+click ties keep the first surface. The overlay retains its explicit 97-sample (`SAMPLES + 1`) profile. The engine-diff
+`asphericComparison` job still records both arithmetic paths in the same payload shape. None belong in `buildLens()`.
 
 ## Validation And Rendering Geometry
 

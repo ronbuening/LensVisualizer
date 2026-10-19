@@ -23,29 +23,29 @@ flowchart LR
     n_src_optics_src_optics_prescription["prescription/"]
     n_src_optics_src_optics_state["state/"]
     n_src_optics_src_optics_trace["trace/"]
-    n_src_optics_TypeScript_modules["TypeScript modules (36)"]
+    n_src_optics_TypeScript_modules["TypeScript modules (35)"]
   end
   n_external_src_types["src/types"]
-  n_src_optics_TypeScript_modules --> |49| n_src_optics_src_optics_analysis
+  n_src_optics_TypeScript_modules --> |51| n_src_optics_src_optics_analysis
   n_src_optics_TypeScript_modules --> |22| n_src_optics_src_optics_prescription
-  n_src_optics_TypeScript_modules --> |17| n_external_src_types
+  n_src_optics_TypeScript_modules --> |16| n_external_src_types
   n_src_optics_TypeScript_modules --> |12| n_src_optics_src_optics_state
   n_src_optics_TypeScript_modules --> |9| n_src_optics_src_optics_chromatic
   n_src_optics_TypeScript_modules --> |8| n_src_optics_src_optics_glassCatalogEntries
   n_src_optics_TypeScript_modules --> |7| n_src_optics_src_optics_trace
   n_src_optics_TypeScript_modules --> |6| n_src_optics_src_optics_first_order
   n_src_optics_TypeScript_modules --> |4| n_src_optics_src_optics_diagram
-  n_src_optics_TypeScript_modules --> |3| n_src_optics_src_optics_geometry
   n_src_optics_TypeScript_modules --> |2| n_src_optics_src_optics_field
+  n_src_optics_TypeScript_modules --> |2| n_src_optics_src_optics_geometry
   n_src_optics_TypeScript_modules --> n_src_optics_src_optics_diagnostics
   n_src_optics_TypeScript_modules --> n_src_optics_src_optics_perspective
 ```
 
 ## Directory Overview
 
-- Direct source files: 36
+- Direct source files: 35
 - Direct subfolders: 14
-- Main outbound areas: src/optics/analysis (49), src/optics/prescription (22), src/types (17), src/optics/state (12), src/optics/compat.ts (11), src/optics/chromatic (9), src/optics/glassCatalogEntries (8), src/optics/trace (7), +19 more
+- Main outbound areas: src/optics/analysis (51), src/optics/prescription (22), src/types (16), src/optics/state (12), src/optics/compat.ts (11), src/optics/chromatic (9), src/optics/glassCatalogEntries (8), src/optics/trace (7), +19 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/optics/analysis, +15 more
 
 ## Subfolders
@@ -72,11 +72,10 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `aberrationAnalysis.ts` | Aberration Analysis helper module | src/optics/analysis (8) | src/components/display (17) | re-export *, computeSAProfile, computeSphericalAberration, computeSphericalAberrationBlurCharacter, computeComaAnalysis, computeComaPointCloudPreview, computeComaPreview, computeMeridionalComa, +12 more |
-| `analysis.ts` | Analysis helper module | src/optics/analysis (20), src/optics/state | src/components/display (15), src/comparison (3), src/components/diagram (2), src/components/hooks (2), src/benchmarks, +1 more | createAnalysisRequest, AnalysisRequest, AnalysisRequestParams, createAnalysisComputationContext, AnalysisComputationContext, computeOpticalSummary, OpticalSummaryMetrics2, computeCardinalElements, +59 more |
+| `analysis.ts` | Analysis helper module | src/optics/analysis (22), src/optics/state | src/components/display (16), src/comparison (3), src/components/diagram (2), src/components/hooks (2), src/benchmarks, +1 more | createAnalysisRequest, AnalysisRequest, AnalysisRequestParams, createAnalysisComputationContext, AnalysisComputationContext, computeOpticalSummary, OpticalSummaryMetrics2, computeCardinalElements, +61 more |
 | `aperture.ts` | Aperture helper module | src/optics/compat.ts, src/types | src/comparison, src/components/hooks | fNumberAtStopdown |
 | `apertureStop.ts` | Aperture Stop helper module | src/optics/state | src/benchmarks, src/components/diagram, src/components/hooks, src/optics/field, src/optics/state | wideOpenStopAtZoom |
-| `asphericComparison.ts` | Aspheric Comparison helper module | src/optics/geometry, src/types | src/components/display | DepartureSample, computeAsphericDeparture, computeDepartureProfile, computeBestFitSphereR, peakAbsDeparture, rmsDeparture, nearestSurfaceForClick |
-| `buildLens.ts` | Build Lens module with default export | src/optics/prescription (7), src/optics/compat.ts (2), src/optics/chromatic, src/optics/first-order | src/components/hooks (3), src/utils/catalog (2), src/benchmarks, src/comparison | paraxialTrace, realTraceToStop, ingestLensV1, ingestTeleconverterV1, ingestLens, ingestTeleconverter, isV1File, toLensData, +11 more |
+| `buildLens.ts` | Build Lens module with default export | src/optics/prescription (7), src/optics/compat.ts (2), src/optics/chromatic, src/optics/first-order | src/components/hooks (3), src/utils/catalog (2), src/benchmarks, src/comparison, src/components/display | paraxialTrace, realTraceToStop, ingestLensV1, ingestTeleconverterV1, ingestLens, ingestTeleconverter, isV1File, toLensData, +11 more |
 | `cameraLayout.ts` | Camera Layout helper module | src/types | src/optics/analysis, src/optics/optics.ts | CameraAnchoredLayout, anchorLayoutToCamera |
 | `cardinalElements.ts` | Cardinal Elements helper module | src/optics/compat.ts | src/components/diagram (3), src/components/hooks, src/components/layout | computeCardinalElements, CardinalDistance, CardinalElements, CardinalPoint |
 | `chiefRayDiagnostics.ts` | Chief Ray Diagnostics helper module | src/optics/compat.ts | none | getChiefRayDiagnostics, resetChiefRayDiagnostics, ChiefRayStatusCounts, ChiefRayStatus |

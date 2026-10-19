@@ -89,7 +89,6 @@ const SEAM_LEGACY: readonly string[] = [
   "src/optics/analysis/mtfTracing.ts",
   "src/optics/analysis/mtfWavefront.ts",
   "src/optics/aperture.ts",
-  "src/optics/asphericComparison.ts",
   "src/optics/chromatic/channels.ts",
   "src/optics/compat.ts",
   "src/optics/constants.ts",

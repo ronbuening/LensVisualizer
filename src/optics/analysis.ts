@@ -87,3 +87,6 @@ export {
 export * from "./analysis/chromatic/analysis.js";
 export * from "./analysis/chromatic/rayFan.js";
 export * from "./analysis/chromatic/rayFanScaling.js";
+
+export * from "./analysis/asphericComparison/comparison.js";
+export { computeAsphericElementComparison, type SurfaceComparison } from "./analysis/asphericComparison/element.js";
