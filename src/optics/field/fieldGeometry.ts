@@ -164,6 +164,25 @@ export function conjugateK(state: PreparedGeometry): number {
   return kt - k0;
 }
 
+/**
+ * Reciprocal distance from the first vertex to the paraxial object plane imaged onto the current image plane.
+ *
+ * An axial object point at distance s in front of the first vertex launches y = s·u, so the image-plane heights of a
+ * parallel (y=1, u=0) and an axial (y=0, u=1) paraxial ray give s = -axial / parallel. The reciprocal stays finite
+ * through infinity, where the parallel ray's image height crosses zero.
+ *
+ * @param state - prepared geometry for the current controls
+ * @returns 1/s in 1/mm, positive for a real object; 0 at infinity focus and for folded paths
+ */
+export function paraxialObjectVergence(state: PreparedGeometry): number {
+  if (state.focusT < FOCUS_INFINITY_CUTOFF || state.lens.flags.isFoldedOptics) return 0;
+  const imagePlaneTransfer = state.surfaces[state.surfaces.length - 1]?.d ?? 0;
+  const parallel = traceParaxialSurfaces2(state.surfaces, 1, 0);
+  const axial = traceParaxialSurfaces2(state.surfaces, 0, 1);
+  const vergence = -(parallel.y + imagePlaneTransfer * parallel.u) / (axial.y + imagePlaneTransfer * axial.u);
+  return Number.isFinite(vergence) ? vergence : 0;
+}
+
 function conjugateReferencePupilFraction(
   state: PreparedGeometry,
   { entrancePupilSemiDiameter }: { entrancePupilSemiDiameter: number },

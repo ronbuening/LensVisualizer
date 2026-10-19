@@ -44,6 +44,7 @@ export {
   conjugateK2 as conjugateK,
   entrancePupilAtState2 as entrancePupilAtState,
   offsetVectorFieldRay2 as offsetVectorFieldRay,
+  paraxialObjectVergence2 as paraxialObjectVergence,
   solveChiefRay2 as solveChiefRay,
   solveFieldAngleForImageHeight2 as solveFieldAngleForImageHeight,
   solveFieldAngleForImageHeightAccurate2 as solveFieldAngleForImageHeightAccurate,

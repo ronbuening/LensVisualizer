@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-19",
+    type: "fix",
+    summary: "Fixed close-focus distortion readings, which were measured against an infinity reference",
+  },
+  {
     date: "2026-10-18",
     type: "lens",
     summary: "Added the Carl Zeiss Jena PI-Flektogon 30mm f/2.8 e-line research reconstruction",

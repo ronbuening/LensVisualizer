@@ -1370,6 +1370,15 @@ primers aligned to that convention.
 - `computeDistortionReference()` - near-axis reference setup; picks the projection reference from
   `L.projection.kind` via `distortionProjectionReferenceForLens()`.
 
+Rectilinear ideals are `scale × tan`, with the scale from a near-axis real chief-ray probe. At infinity (below
+`FOCUS_INFINITY_CUTOFF`) the tangent is that of the object-space chief-ray angle. At finite focus it is the paraxial
+entrance-pupil tangent of the chief ray's object point, taken on the paraxial object plane conjugate to the current image
+plane (`paraxialObjectVergence`), so the ideal is that point's paraxial image, magnification × object height; the field
+grid rescales each cell's slope launch so its chief ray starts from that object point. Pupil aberration moves the real
+chief ray off the paraxial pupil centre, so `scale × tan(theta)` is an infinity-conjugate reference that misreads
+close-focus distortion by several percent on wide-angles. Fisheyes keep their declared mapping at the object-space angle
+and folded paths keep the infinity reference.
+
 The per-field pupil correction sample count halves on heavy lenses via `isHeavyLensForRayWork`. All three functions
 accept an optional precomputed `FieldGeometryState`.
 

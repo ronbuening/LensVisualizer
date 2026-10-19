@@ -163,7 +163,7 @@ function CenteredDistortionContent({
         <span style={{ fontSize: 9, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
           {isProjectionResidual
             ? "Computed against the declared equidistant fisheye projection at fixed image height. The curve reports residual mapping error rather than treating the intended fisheye projection as rectilinear barrel distortion."
-            : "Computed against a near-axis rectilinear reference at fixed image height. The curve stays 1D, while the field grid below now traces real chief-ray image positions across the current image circle against that same rectilinear reference. Focus breathing is reported separately from distortion."}
+            : "Computed against a near-axis rectilinear reference at fixed image height; at finite focus that reference is the paraxial image of each chief ray's object point. The curve stays 1D, while the field grid below now traces real chief-ray image positions across the current image circle against that same rectilinear reference. Focus breathing is reported separately from distortion."}
         </span>
       </div>
       <DistortionChart partial={!cornerAvailable} samples={samples} t={t} />

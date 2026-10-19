@@ -150,6 +150,7 @@ export {
   conjugateK2,
   entrancePupilAtState2,
   offsetVectorFieldRay2,
+  paraxialObjectVergence2,
   solveChiefRay2,
   solveChiefRayBoundingSphere2,
   solveFieldAngleForImageHeight2,
