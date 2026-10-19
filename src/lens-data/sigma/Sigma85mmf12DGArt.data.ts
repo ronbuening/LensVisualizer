@@ -8,13 +8,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Focus is published at two states (infinity and 832 mm); intermediate gaps are linear interpolations.
  * closeFocusM is d0 + total track = 831.7394 mm (patent label 832 mm); Sigma's marketed minimum focus is 840 mm.
  * The stop position is published. Its radius is set so the infinity f-number is F/1.24; it is not a measured iris.
- * All semi-diameters are inferred from Figure 6 with ray-clearance and edge-geometry checks.
- * Cemented S14 uses 23.6 mm, wider than the 21.3 mm outer faces of L7 and L8, so traced rays do not
- * first clip at the junction.
+ * Semi-diameters are estimated from Figure 6 (isotropic, 13.89 px/mm at 397 dpi), floor-checked by real-ray
+ * trace at F/1.24 in both focus states. Concave faces S4, S6, S11 and S28 follow where the figure's curve ends
+ * before its flat annulus, raised to the axial F/1.24 ray where that is higher; cemented junctions S14, S17 and
+ * S20 match their outer faces, as drawn.
  * Glass names are catalog equivalents by nd/νd only. L5's printed PgF is converted to the engine's normal line.
  * Fixed iris: the infinity F/1.24 setting is kept through focus, so the patent's near-focus F/1.31 is not
- * reproduced. At near focus the outer drawn on-axis rays are cut by the stop and the outer off-axis rays are
- * vignetted; no focus-dependent iris is modeled.
+ * reproduced. At near focus the outer drawn on-axis rays, outside the fixed iris, end at L6's rear rim just
+ * ahead of the stop, and the outer off-axis rays are vignetted; no focus-dependent iris is modeled.
  */
 const LENS_DATA = {
   schema: 2,
@@ -262,9 +263,9 @@ const LENS_DATA = {
     { label: "1", R: 81.14, d: 4.7, sd: 36, medium: 1 },
     { label: "2", R: 129.44, d: 0.15, sd: 36 },
     { label: "3", R: 46.08, d: 10.4, sd: 33, medium: 2 },
-    { label: "4", R: 115.6, d: 7.6, sd: 33 },
+    { label: "4", R: 115.6, d: 7.6, sd: 31.1 },
     { label: "5", R: 109.65, d: 1.5, sd: 29, medium: 3 },
-    { label: "6", R: 42.26, sd: 29 },
+    { label: "6", R: 42.26, sd: 25.5 },
     {
       label: "7A",
       R: 61.11,
@@ -276,16 +277,16 @@ const LENS_DATA = {
     { label: "8", R: 169.69, sd: 25.5 },
     { label: "9", R: 1369.2, d: 4.92, sd: 23, medium: 5 },
     { label: "10", R: -90.06, d: 1.0, sd: 23, medium: 6 },
-    { label: "11", R: 52.95, d: 6.59, sd: 23 },
+    { label: "11", R: 52.95, d: 6.59, sd: 20.3 },
     { label: "STO", R: "flat", d: 1.93 },
     { label: "13", R: -597.34, d: 1.0, sd: 21.3, medium: 7 },
-    { label: "14", R: 35.95, d: 7.31, sd: 23.6, medium: 8 },
+    { label: "14", R: 35.95, d: 7.31, sd: 21.3, medium: 8 },
     { label: "15", R: 261.65, d: 0.15, sd: 21.3 },
     { label: "16", R: 96.4, d: 7.36, sd: 21.7, medium: 9 },
-    { label: "17", R: -73.65, d: 1.0, sd: 22.1, medium: 10 },
+    { label: "17", R: -73.65, d: 1.0, sd: 21.7, medium: 10 },
     { label: "18", R: 100.9, d: 0.68, sd: 21.7 },
     { label: "19", R: 74.8, d: 6.8, sd: 21.7, medium: 11 },
-    { label: "20", R: -98.0, d: 1.0, sd: 21.9, medium: 12 },
+    { label: "20", R: -98.0, d: 1.0, sd: 21.7, medium: 12 },
     { label: "21", R: -263.81, sd: 21.7 },
     { label: "22", R: 841.31, d: 1.0, sd: 20, medium: 13 },
     { label: "23", R: 64.92, d: 0.27, sd: 20 },
@@ -300,7 +301,7 @@ const LENS_DATA = {
     { label: "25", R: -86.04, sd: 19.5 },
     { label: "26", R: 102.17, d: 5.0, sd: 17.3, medium: 15 },
     { label: "27", R: -191.13, d: 1.0, sd: 17.3, medium: 16 },
-    { label: "28", R: 32.64, d: 5.61, sd: 17.3 },
+    { label: "28", R: 32.64, d: 5.61, sd: 15.1 },
     {
       label: "29A",
       R: -149.49,
@@ -321,7 +322,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.8317394,
     description:
-      "PUBLISHED double floating focus: from infinity to the patent's 832 mm state, G2 (L4) moves 6.22 mm and G4 (L13–L14) moves 6.40 mm toward the object, while G1, G3, G5 and the stop stay fixed. Both end states are printed in the patent; intermediate positions are linear interpolations, not Sigma's focus law. The near state (831.74 mm object to image) is the patent's, not the marketed 840 mm minimum focus distance. The iris is held at its infinity F/1.24 setting, so the patent's near-focus F/1.31 is not reproduced; near close focus the outermost drawn on-axis rays are cut by the stop and the outer off-axis rays are vignetted.",
+      "PUBLISHED double floating focus: from infinity to the patent's 832 mm state, G2 (L4) moves 6.22 mm and G4 (L13–L14) moves 6.40 mm toward the object, while G1, G3, G5 and the stop stay fixed. Both end states are printed in the patent; intermediate positions are linear interpolations, not Sigma's focus law. The near state (831.74 mm object to image) is the patent's, not the marketed 840 mm minimum focus distance. The iris is held at its infinity F/1.24 setting, so the patent's near-focus F/1.31 is not reproduced; near close focus the outermost drawn on-axis rays fall outside the iris and end at the rear rim of L6, just ahead of the stop, and the outer off-axis rays are vignetted.",
     conjugates: [
       {
         zoomStation: 0,

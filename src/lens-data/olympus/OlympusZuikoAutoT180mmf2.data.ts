@@ -1,9 +1,13 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 // JP H05-042643 B2 (Olympus; family US 4,558,928), Example 1: f = 100, F/2.0, 2ω = 13.7°. The patent text names
-// 180 mm F/1.8–F/2.0 telephotos; all radii and spacings are scaled by 1.8, nd/νd unchanged. The stop sits 5.22
+// 180 mm F/1.8–F/2.0 telephotos; all radii and spacings are scaled by 1.8, nd/νd unchanged. Glass labels are catalog
+// equivalents matched on the printed nd/νd (L7 has none and keeps the patent pair); L1/L4 (FCD1-class) carry an
+// inferred APD tag because Olympus names ED glass without positions. The stop sits 5.22
 // (patent units) behind r13 and moves with IIb. The patent prints no back focus; the last gap is the Gaussian value.
-// Semi-diameters are inferred; the stop radius follows from F/2. The printed xa/xb movement table holds the
+// Semi-diameters are estimated from Fig. 1 (scaled 1.8x, square-cut rims kept square, L3's rear flange stepped) and
+// floor-checked by real-ray trace: L1, L2, r5, r6 and L4, which Fig. 1 draws up to 3% under the F/2 axial marginal
+// ray at infinity, sit just above it. The stop radius follows from F/2. The printed xa/xb movement table holds the
 // gap-derived movements transposed; the near-row d13 is taken as 14.12 (printed 14.13) to keep the rear group fixed.
 const LENS_DATA = {
   schema: 2,
@@ -47,7 +51,10 @@ const LENS_DATA = {
       type: "Spherical element",
       nd: 1.497,
       vd: 81.61,
-      glass: "Patent nd/vd; production glass unspecified",
+      glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      apd: "inferred",
+      apdNote:
+        "Olympus markets ED glass for this lens without naming positions; L1 and L4 are the only FCD1-class (nd 1.497, νd 81.6) elements. The patent gives only nd/νd; the catalog row's P_g,F (0.5389) is used.",
     },
     {
       id: 2,
@@ -56,7 +63,7 @@ const LENS_DATA = {
       type: "Spherical element",
       nd: 1.617,
       vd: 62.79,
-      glass: "Patent nd/vd; production glass unspecified",
+      glass: "S-PHM51 (OHARA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 3,
@@ -65,7 +72,7 @@ const LENS_DATA = {
       type: "Spherical element",
       nd: 1.65412,
       vd: 39.7,
-      glass: "Patent nd/vd; production glass unspecified",
+      glass: "BPH5 (OHARA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 4,
@@ -74,7 +81,10 @@ const LENS_DATA = {
       type: "Spherical element",
       nd: 1.497,
       vd: 81.61,
-      glass: "Patent nd/vd; production glass unspecified",
+      glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      apd: "inferred",
+      apdNote:
+        "Olympus markets ED glass for this lens without naming positions; L1 and L4 are the only FCD1-class (nd 1.497, νd 81.6) elements. The patent gives only nd/νd; the catalog row's P_g,F (0.5389) is used.",
     },
     {
       id: 5,
@@ -83,7 +93,7 @@ const LENS_DATA = {
       type: "Spherical element",
       nd: 1.50378,
       vd: 66.81,
-      glass: "Patent nd/vd; production glass unspecified",
+      glass: "BSL21 (OHARA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 6,
@@ -92,7 +102,7 @@ const LENS_DATA = {
       type: "Spherical element",
       nd: 1.68893,
       vd: 31.08,
-      glass: "Patent nd/vd; production glass unspecified",
+      glass: "S-TIM28 (OHARA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 7,
@@ -110,7 +120,7 @@ const LENS_DATA = {
       type: "Spherical element",
       nd: 1.788,
       vd: 47.43,
-      glass: "Patent nd/vd; production glass unspecified",
+      glass: "S-LAH64 (OHARA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 9,
@@ -119,7 +129,7 @@ const LENS_DATA = {
       type: "Spherical element",
       nd: 1.60342,
       vd: 38.01,
-      glass: "Patent nd/vd; production glass unspecified",
+      glass: "E-F5 (HOYA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 10,
@@ -128,91 +138,91 @@ const LENS_DATA = {
       type: "Spherical element",
       nd: 1.6779,
       vd: 55.33,
-      glass: "Patent nd/vd; production glass unspecified",
+      glass: "S-LAL12 (OHARA catalog equivalent; production supplier unspecified)",
     },
   ],
   surfaces: [
     {
       label: "1",
       R: 89.5014,
-      sd: 50.97850356274598,
+      sd: 45.0,
       medium: 1,
       d: 18.486,
     },
     {
       label: "2",
       R: -531.8514,
-      sd: 50.97850356274598,
+      sd: 45.0,
       d: 0.36000000000000004,
     },
     {
       label: "3",
       R: 83.709,
-      sd: 48.937587424232014,
+      sd: 40.1,
       medium: 2,
       d: 11.988000000000001,
     },
     {
       label: "4",
       R: 308.43899999999996,
-      sd: 48.937587424232014,
+      sd: 40.1,
       d: 5.4,
     },
     {
       label: "5",
       R: -1037.8763999999999,
-      sd: 47.25405,
+      sd: 36.8,
       medium: 3,
       d: 4.914,
     },
     {
       label: "6",
       R: 55.593,
-      sd: 39.132336664108465,
+      sd: 31.8,
       d: 5.004,
     },
     {
       label: "7",
       R: 71.79480000000001,
-      sd: 39.132336664108465,
+      sd: 31.6,
       medium: 4,
       d: 10.962,
     },
     {
       label: "8",
       R: 606.1014,
-      sd: 40.0134279237406,
+      sd: 31.6,
     },
     {
       label: "9",
       R: -294.1524,
-      sd: 30.0,
+      sd: 26.2,
       medium: 5,
       d: 5.58,
     },
     {
       label: "10",
       R: 179.0298,
-      sd: 30.0,
+      sd: 26.2,
     },
     {
       label: "11",
       R: 577.3788000000001,
-      sd: 30.0,
+      sd: 22.6,
       medium: 6,
       d: 7.002000000000001,
     },
     {
       label: "12",
       R: -89.1216,
-      sd: 30.0,
+      sd: 22.6,
       medium: 7,
       d: 3.006,
     },
     {
       label: "13",
       R: 55.7586,
-      sd: 30.0,
+      sd: 22.6,
       d: 9.395999999999999,
     },
     {
@@ -222,34 +232,34 @@ const LENS_DATA = {
     {
       label: "14",
       R: 129.5244,
-      sd: 24.695974296438017,
+      sd: 19.8,
       medium: 8,
       d: 6.606,
     },
     {
       label: "15",
       R: -75.9042,
-      sd: 24.695974296438017,
+      sd: 19.8,
       d: 2.52,
     },
     {
       label: "16",
       R: -70.3494,
-      sd: 24.914353124356587,
+      sd: 19.9,
       medium: 9,
       d: 2.484,
     },
     {
       label: "17",
       R: 47.1096,
-      sd: 24.914353124356587,
+      sd: 19.9,
       medium: 10,
       d: 7.434,
     },
     {
       label: "18",
       R: -1501.1514,
-      sd: 24.914353124356587,
+      sd: 19.9,
       d: 57.72009562276684,
     },
   ],

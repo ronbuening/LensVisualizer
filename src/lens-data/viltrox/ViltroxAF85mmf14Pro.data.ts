@@ -2,9 +2,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * CN 120686438 A, Example 1 (Tables 1–4, publication pp. 11–13). All 27
- * radii, thicknesses and nd/Vd values are as printed. Production correlation
- * is construction-level (15/11, 3 ED, 9 high-index, 1 aspherical element), not
- * a factory prescription.
+ * radii, thicknesses and nd/Vd values are as printed. Viltrox sells this
+ * design as the AF 85mm F1.4 Pro FE (Sony E) and Pro Z (Nikon Z); one model
+ * covers both. Production correlation is construction-level (15/11, 3 ED,
+ * 9 high-index, 1 aspherical element), not a factory prescription.
  *
  * Aspheres: the printed S16/S17 coefficients are unusable (S16 A10 =
  * 2.818e-2 alone gives a sag of order 1e10 mm at h = 16 mm; the S17 table is
@@ -21,8 +22,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * within 0.011 mm of the image plane (0.52 mm with the literal row). The
  * physical 16.545 mm gap to the plate is kept.
  *
- * SDs are inferred from Figure 1. S25/S26 are reduced to keep the L14/L15
- * air gap clear at its rim. No production mask is modelled.
+ * SDs are estimated from Figure 1 (isotropic, 0.0730 mm/px at 300 dpi) and
+ * floor-checked by real-ray trace at F/1.47. S9 and S11 stop where Figure 1
+ * ends the curved faces; the flat annuli beyond are mounting flanges. Both
+ * sit just above the axial marginal ray (20.35 and 18.16 mm). S25/S26 are
+ * reduced to keep the L14/L15 air gap clear at its rim; Figure 1 draws the
+ * two faces meeting at about 17.3 mm. No production mask is modelled.
  *
  * nominalFNumber = 1.47 x (model EFL / 86.5), so the entrance-pupil radius
  * equals the patent's 86.5/(2 x 1.47) mm; the design F-number stays 1.47.
@@ -30,19 +35,23 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Focus is infinity only. The patent's 0.79 m state prints D1 = 5.96 mm and
  * D2 = 14.994 mm (travel 11.496 / 11.493 mm, within D1's printed rounding),
  * but the fitted aspheres do not reproduce the patent's near-focus curves,
- * so no close-focus state is modelled. nd/Vd are retained; no glass identity
- * or nC/nF/ng/dPgF is assigned.
+ * so no close-focus state is modelled.
+ *
+ * Glass: nd/Vd are as printed. Each element names the nearest catalog glass
+ * as a catalog-equivalent spectral proxy (nd within 0.0001, Vd within 0.05),
+ * and the trace uses that glass's catalog dispersion. No dPgF is authored,
+ * and the supplier is unresolved.
  */
 
 const LENS_DATA = {
   schema: 2,
-  key: "viltrox-af-85mm-f14-pro-z",
+  key: "viltrox-af-85mm-f14-pro",
   maker: "Viltrox",
-  name: "VILTROX AF 85mm f/1.4 PRO Z",
+  name: "VILTROX AF 85mm f/1.4 PRO",
   subtitle: "CN 120686438 A, Example 1 — printed aspheric coefficients unusable; fitted; production correlation",
   visible: true,
   catalog: {
-    lensMounts: ["nikon-z"],
+    lensMounts: ["sony-fe", "nikon-z"],
     imageFormat: "135-full-frame",
     specs: [
       "15 ELEMENTS / 11 GROUPS",
@@ -77,7 +86,7 @@ const LENS_DATA = {
       nd: 1.946,
       vd: 17.984,
       focalLengthMm: 243.07725744196725,
-      glass: "Unmatched (patent nd=1.946, Vd=17.984; supplier unresolved)",
+      glass: "FDS18 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "High-index positive meniscus at the front of the fixed first group.",
     },
     {
@@ -88,7 +97,7 @@ const LENS_DATA = {
       nd: 1.5691,
       vd: 71.304,
       focalLengthMm: 217.79549085726327,
-      glass: "Unmatched (patent nd=1.5691, Vd=71.304; supplier unresolved)",
+      glass: "K-GFK70 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Low-dispersion positive meniscus of the front collector.",
     },
     {
@@ -99,7 +108,7 @@ const LENS_DATA = {
       nd: 1.5928,
       vd: 68.342,
       focalLengthMm: 155.66578237276775,
-      glass: "Unmatched (patent nd=1.5928, Vd=68.342; supplier unresolved)",
+      glass: "H-ZPK5 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Second low-dispersion positive meniscus of the front collector.",
     },
     {
@@ -110,7 +119,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.605,
       focalLengthMm: 117.05936760619599,
-      glass: "Unmatched (patent nd=1.497, Vd=81.605; supplier unresolved)",
+      glass: "H-FK61 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Low-dispersion positive half of the first-group cemented doublet.",
       cemented: "L4+L5",
     },
@@ -122,7 +131,7 @@ const LENS_DATA = {
       nd: 1.8545,
       vd: 25.155,
       focalLengthMm: -113.05991093778847,
-      glass: "Unmatched (patent nd=1.8545, Vd=25.155; supplier unresolved)",
+      glass: "NBFD25 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "High-index flint negative half of the first-group cemented doublet.",
       cemented: "L4+L5",
     },
@@ -134,7 +143,7 @@ const LENS_DATA = {
       nd: 1.8545,
       vd: 25.155,
       focalLengthMm: -58.58061729351058,
-      glass: "Unmatched (patent nd=1.8545, Vd=25.155; supplier unresolved)",
+      glass: "NBFD25 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Negative meniscus closing the first group just ahead of the stop.",
     },
     {
@@ -145,7 +154,7 @@ const LENS_DATA = {
       nd: 1.6201,
       vd: 36.346,
       focalLengthMm: -28.620999788307586,
-      glass: "Unmatched (patent nd=1.6201, Vd=36.346; supplier unresolved)",
+      glass: "E-F2 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Negative half of the cemented doublet leading the focusing group.",
       cemented: "L7+L8",
     },
@@ -157,7 +166,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.847,
       focalLengthMm: 33.4253475790936,
-      glass: "Unmatched (patent nd=1.883, Vd=40.847; supplier unresolved)",
+      glass: "H-ZLaF68C (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "High-index positive half of the focusing-group cemented doublet.",
       cemented: "L7+L8",
     },
@@ -169,7 +178,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.503,
       focalLengthMm: 55.118027315668776,
-      glass: "Unmatched (patent nd=1.7725, Vd=49.503; supplier unresolved)",
+      glass: "M-TAF105 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Double-sided aspherical positive element ending the focusing group; aspheric terms fitted.",
     },
     {
@@ -180,7 +189,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.574,
       focalLengthMm: 102.87818151374437,
-      glass: "Unmatched (patent nd=1.804, Vd=46.574; supplier unresolved)",
+      glass: "H-ZLaF50E (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Positive meniscus half of the first rear-group cemented doublet.",
       cemented: "L10+L11",
     },
@@ -192,7 +201,7 @@ const LENS_DATA = {
       nd: 1.74,
       vd: 28.296,
       focalLengthMm: -38.89651178547541,
-      glass: "Unmatched (patent nd=1.74, Vd=28.296; supplier unresolved)",
+      glass: "S-TIH3 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Biconcave negative half of the first rear-group cemented doublet.",
       cemented: "L10+L11",
     },
@@ -204,7 +213,7 @@ const LENS_DATA = {
       nd: 1.946,
       vd: 17.942,
       focalLengthMm: 43.88708464632522,
-      glass: "Unmatched (patent nd=1.946, Vd=17.942; supplier unresolved)",
+      glass: "H-ZF88 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "High-index biconvex positive singlet in the fixed rear group.",
     },
     {
@@ -215,7 +224,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.847,
       focalLengthMm: 52.99533155446867,
-      glass: "Unmatched (patent nd=1.883, Vd=40.847; supplier unresolved)",
+      glass: "H-ZLaF68C (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Biconvex positive half of the last cemented doublet.",
       cemented: "L13+L14",
     },
@@ -227,7 +236,7 @@ const LENS_DATA = {
       nd: 1.8467,
       vd: 23.791,
       focalLengthMm: -42.54401117156575,
-      glass: "Unmatched (patent nd=1.8467, Vd=23.791; supplier unresolved)",
+      glass: "H-ZF52 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Biconcave negative half of the last cemented doublet.",
       cemented: "L13+L14",
     },
@@ -239,7 +248,7 @@ const LENS_DATA = {
       nd: 1.8501,
       vd: 30.012,
       focalLengthMm: -145.61117639693472,
-      glass: "Unmatched (patent nd=1.8501, Vd=30.012; supplier unresolved)",
+      glass: "H-ZLaF76 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Negative meniscus at the rear of the fixed rear group.",
     },
   ],
@@ -301,7 +310,7 @@ const LENS_DATA = {
       label: "9",
       R: 56.136,
       d: 1.119,
-      sd: 23.48953137089427,
+      sd: 20.4,
     },
     {
       label: "10",
@@ -314,7 +323,7 @@ const LENS_DATA = {
       label: "11",
       R: 28.856,
       d: 8.586,
-      sd: 20.390024153836812,
+      sd: 18.2,
     },
     {
       label: "STO",

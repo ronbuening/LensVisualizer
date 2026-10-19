@@ -12,9 +12,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **955** lenses scanned
-- **10838** glass elements examined
-- **3232** elements have multiple coordinate-compatible candidates
+- **961** lenses scanned
+- **10924** glass elements examined
+- **3235** elements have multiple coordinate-compatible candidates
 - **582** lens files are affected
 - **317** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **210** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
@@ -22,7 +22,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 1874 |
-| Evidence-source priority | 1010 |
+| Evidence-source priority | 1013 |
 | Vendor context | 334 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
@@ -1578,6 +1578,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-NPH53 (OHARA, 847239) / SF57 class` | 1.84666 / 23.90 (d) | S-NPH53 — direct name evidence outranks alias evidence. | S-TIH53 (Ohara, alias, vendor ✓)<br>S-TIH53WN (Ohara, code, vendor ✓, alternate code row)<br>PBH53 (Ohara, code, vendor ✓, alternate code row) | 1 | [OLYMPUS ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) L8 |
 | `713539 — LaK21 / LAC11-class lanthanum crown (no exact public catalog match)` | 1.71300 / 53.90 (d) | LAC8 — smallest d-line \|Δn\| (1.8e-7 vs 3.0e-4) | MP-LAC8-30 (Hoya, code, alternate code row) | 1 | [OLYMPUS ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) L9 |
 | `LACL60 class (HOYA reference 640/602; patent pair 640/603)` | 1.64000 / 60.30 (d) | LACL60 — direct name evidence outranks six-digit code evidence. | J-LAK01 (Hikari, code, vendor ✗, alternate code row) | 1 | [OLYMPUS ZUIKO AUTO-W 28mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoW28mmf2.data.ts) L1 |
+| `PC1 (HOYA catalog equivalent; production supplier unspecified; patent 504668)` | 1.50378 / 66.80 (d) | PC1 — direct name evidence outranks six-digit code evidence. | BSL21 (Ohara, code, vendor ✗, preferred code row) | 3 | [OLYMPUS ZUIKO AUTO-W 28mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoW28mmf2.data.ts) L2 |
 | `K-LaFn11 (SUMITA; 720/460 class)` | 1.72000 / 46.00 (d) | K-LaFn11 — direct name evidence outranks six-digit code evidence. | S-LAM61 (Ohara, code, vendor ✗, preferred code row) | 1 | [OLYMPUS ZUIKO AUTO-W 28mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoW28mmf2.data.ts) L4b |
 | `TAF4 class (HOYA reference; 788/475)` | 1.78800 / 47.50 (d) | TAF4 — direct name evidence outranks six-digit code evidence. | N-LAF21 (Schott, code, vendor ✗, preferred code row) | 1 | [OLYMPUS ZUIKO AUTO-W 28mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoW28mmf2.data.ts) L5a |
 | `FD140 (HOYA; 762/266 class)` | 1.76182 / 26.60 (d) | FD140 — direct name evidence outranks six-digit code evidence. | J-SF14 (Hikari, code, vendor ✗, preferred code row) | 1 | [OLYMPUS ZUIKO AUTO-W 28mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoW28mmf2.data.ts) L5b |

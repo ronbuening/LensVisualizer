@@ -39,11 +39,11 @@ The first-vertex-to-image track divided by infinity EFL is approximately 1.091. 
 
 ## Element-by-Element Analysis
 
-The focal lengths below are standalone thick-element focal lengths in air, computed from each element's two radii, thickness and index. In cemented pairs they are descriptive isolated-element powers, not the power of the actual shared interface or a uniquely separable in-situ aberration contribution. Glass descriptions are coordinate classes. No supplier or melt identity is established.
+The focal lengths below are standalone thick-element focal lengths in air, computed from each element's two radii, thickness and index. In cemented pairs they are descriptive isolated-element powers, not the power of the actual shared interface or a uniquely separable in-situ aberration contribution. Glass names are the catalog rows whose nd, νd and PgF match the source values. They are coordinate equivalents; no supplier or melt identity is established.
 
 ### L1 — Biconvex Positive
 
-nd = 1.48749, νd = 70.44. Glass: low-dispersion crown class (supplier unverified). f = +413.31 mm.
+nd = 1.48749, νd = 70.44. Glass: FC5 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = +413.31 mm.
 
 L1 is the first positive element of group 1a. Its weakly curved image-side surface has a radius much larger in magnitude than the front radius, so the source prescription gives a biconvex form with a shallow rear surface. Together with L2 it provides the positive front section described in ¶0056.
 
@@ -51,7 +51,7 @@ The relatively large Abbe number is a source material property. The patent's gro
 
 ### L2 — Positive Meniscus
 
-nd = 1.43700, νd = 95.10. Glass: fluorophosphate crown class (supplier unverified). f = +279.71 mm.
+nd = 1.43700, νd = 95.10. Glass: FCD100 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = +279.71 mm.
 
 L2 is a positive meniscus, convex toward the object, and the second element of 1a. Its 95.10 Abbe number and low index form one of the two conspicuous very-low-dispersion coordinates in the example.
 
@@ -59,7 +59,7 @@ The 32 mm air interval follows L2. This spatial separation belongs to the patent
 
 ### L3 — Negative Meniscus
 
-nd = 1.72916, νd = 54.67. Glass: crown class (supplier unverified). f = -171.81 mm.
+nd = 1.72916, νd = 54.67. Glass: TAC8 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = -171.81 mm.
 
 L3 is the object-side negative meniscus of the L3–L4 cemented pair. It is the patent's L1na: the first negative element in G1 and the first element of subgroup 1b. The source specifically constrains its index, Abbe number and front-radius-to-entrance-pupil ratio. [1, ¶0012–0015, ¶0027, ¶0034–0038]
 
@@ -67,7 +67,7 @@ The actual L3→L4 boundary refracts from the L3 material into L4, not into air.
 
 ### L4 — Positive Meniscus
 
-nd = 1.43700, νd = 95.10. Glass: fluorophosphate crown class (supplier unverified). f = +106.31 mm.
+nd = 1.43700, νd = 95.10. Glass: FCD100 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = +106.31 mm.
 
 L4 is the positive meniscus cemented to L3. It uses the same native 1.43700/95.10 coordinate as L2, supplying the second very-low-dispersion positive element in G1.
 
@@ -75,7 +75,7 @@ The patent discusses pairing positive and negative glass with controlled partial
 
 ### L5 — Biconcave Negative
 
-nd = 1.85451, νd = 25.15. Glass: flint class (supplier unverified). f = -145.51 mm.
+nd = 1.85451, νd = 25.15. Glass: NBFD25 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = -145.51 mm.
 
 L5 is the separate biconcave negative element identified as L1nb. Its high index, low Abbe number and bounded source-defined anomalous partial dispersion are the principal material conditions of the patent. It is not the same element as the earlier meniscus L1na. [1, ¶0012, ¶0015–0021]
 
@@ -83,7 +83,7 @@ The S7→S8 air interval immediately before L5 is consequential for the inferred
 
 ### L6 — Negative Meniscus
 
-nd = 1.75500, νd = 52.32. Glass: crown class (supplier unverified). f = -118.96 mm.
+nd = 1.75500, νd = 52.32. Glass: TAC6 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = -118.96 mm.
 
 L6 is the negative object-side meniscus of the L6–L7 cemented pair. It follows the separate negative L5 within subgroup 1b and precedes the positive partner L7. [1, ¶0056]
 
@@ -91,7 +91,7 @@ Its crown-class numerical coordinate differs substantially from L5's higher-disp
 
 ### L7 — Biconvex Positive
 
-nd = 1.59410, νd = 60.47. Glass: low-dispersion crown class (supplier unverified). f = +67.87 mm.
+nd = 1.59410, νd = 60.47. Glass: FCD600 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = +67.87 mm.
 
 L7 is the biconvex positive partner of L6 and the final element of G1. Sigma's construction diagram marks this position as one of the two SLD elements. Its low-dispersion coordinate and the source absolute PgF 0.5552 are preserved; the data file converts the latter to dPgF against the Schott-style normal line.
 
@@ -99,7 +99,7 @@ The variable interval after L7 is d12. Its growth during close focusing is the o
 
 ### L8 — Negative Meniscus
 
-nd = 1.51823, νd = 58.96. Glass: crown class (supplier unverified). f = -108.97 mm.
+nd = 1.51823, νd = 58.96. Glass: E-C3 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = -108.97 mm.
 
 L8 is the single negative meniscus constituting G2. The patent states that only this group moves axially during focusing from infinity toward a nearby object. Its positive front and smaller positive rear radii produce negative net element power. [1, ¶0057]
 
@@ -107,7 +107,7 @@ The source specifies the two bounding air gaps, d12 and d14, at both endpoints. 
 
 ### L9 — Biconvex Positive
 
-nd = 1.85883, νd = 30.00. Glass: flint class (supplier unverified). f = +37.51 mm.
+nd = 1.85883, νd = 30.00. Glass: NBFD30 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = +37.51 mm.
 
 L9 is the biconvex positive front member of the L9–L10 cemented pair, beginning G3. The aperture follows that pair after the source air interval. [1, ¶0058]
 
@@ -115,15 +115,15 @@ The pair's location before the iris makes it part of the front optics that deter
 
 ### L10 — Biconcave Negative
 
-nd = 1.80440, νd = 39.58. Glass: flint class (supplier unverified). f = -41.56 mm.
+nd = 1.80440, νd = 39.58. Glass: S-LAH63Q (OHARA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = -41.56 mm.
 
-L10 is the biconcave negative rear member of the pre-stop cemented pair. Its source coordinate is preserved exactly. The closest checked HOYA catalog coordinate is near, rather than identical. OHARA S-LAH63Q matches the nd/νd pair exactly. Neither comparison proves the supplier or melt, so the data file retains a generic class label. [3, 4]
+L10 is the biconcave negative rear member of the pre-stop cemented pair. Its source coordinate is preserved exactly. The closest checked HOYA catalog coordinate (NBFD3) is near, rather than identical, and differs in PgF. OHARA S-LAH63Q matches the nd/νd pair exactly, and its catalog PgF 0.5762 equals the source value. The data file therefore names S-LAH63Q as the coordinate equivalent. This does not identify the production supplier or melt. [3, 4]
 
 The shared L9→L10 boundary is represented once with the downstream medium. No synthetic cement layer or artificial air spacing is inserted. L10 is not part of the transversely moving Gos group.
 
 ### L11 — Biconvex Positive
 
-nd = 1.98612, νd = 16.48. Glass: flint class (supplier unverified). f = +72.83 mm.
+nd = 1.98612, νd = 16.48. Glass: FDS16-W (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = +72.83 mm.
 
 L11 is the positive front member of the L11–L12 cemented pair and the first element of Gos. Its index is high and its Abbe number low, as directly tabulated. This glass coordinate also occurs at L19.
 
@@ -131,7 +131,7 @@ Despite the isolated positive power of L11, Gos as a complete three-element asse
 
 ### L12 — Biconcave Negative
 
-nd = 1.71300, νd = 53.94. Glass: crown class (supplier unverified). f = -52.55 mm.
+nd = 1.71300, νd = 53.94. Glass: LAC8 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = -52.55 mm.
 
 L12 is the biconcave negative partner of L11. Its higher Abbe number contrasts with the strongly dispersive L11 material, but no separate numerical aberration allocation is inferred solely from that contrast.
 
@@ -139,7 +139,7 @@ The model retains the cemented interface and source thickness. Gos includes this
 
 ### L13 — Biconcave Negative
 
-nd = 1.85451, νd = 25.15. Glass: flint class (supplier unverified). f = -71.69 mm.
+nd = 1.85451, νd = 25.15. Glass: NBFD25 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = -71.69 mm.
 
 L13 is the separate biconcave negative element completing Gos. It repeats L5's native glass coordinate while occupying a different optical position. [1, ¶0058]
 
@@ -147,7 +147,7 @@ Its inferred front clear radius was constrained by the S21→S22 air-gap geometr
 
 ### L14 — Biconvex Positive
 
-nd = 1.77250, νd = 49.63. Glass: flint class (supplier unverified). f = +25.94 mm.
+nd = 1.77250, νd = 49.63. Glass: TAF1 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = +25.94 mm.
 
 L14 is the positive biconvex front member of the L14–L15 cemented pair and the first element of Gr. The source describes the rear assembly as the pair followed by L16–L19. [1, ¶0058]
 
@@ -155,15 +155,15 @@ Its positive standalone power must be distinguished from the net positive power 
 
 ### L15 — Negative Meniscus
 
-nd = 2.00069, νd = 25.46. Glass: flint class (supplier unverified). f = -35.93 mm.
+nd = 2.00069, νd = 25.46. Glass: TAFD40 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = -35.93 mm.
 
 L15 is the negative meniscus cemented to L14, with its concave side toward the object. It has the highest refractive index in this selected example.
 
-Several checked catalog variants share its coordinate. A numeric match does not decide which was used, so no unique manufacturer identity is assigned. The actual cemented-boundary calculation uses the transition from L14's index to L15's index.
+Several HOYA variants share its nd/νd coordinate. The data file names TAFD40 because its catalog PgF 0.6136 equals the source value. That is a coordinate equivalent and does not identify the production supplier. The actual cemented-boundary calculation uses the transition from L14's index to L15's index.
 
 ### L16 — Biconvex Positive
 
-nd = 1.77047, νd = 29.74. Glass: flint class (supplier unverified). f = +50.79 mm.
+nd = 1.77047, νd = 29.74. Glass: NBFD29 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = +50.79 mm.
 
 L16 is a separate biconvex positive element in Gr. It follows the L14–L15 pair across an air interval and precedes the thin air interval before L17.
 
@@ -171,7 +171,7 @@ The centered prescription and calculated isolated focal length establish its con
 
 ### L17 — Positive Meniscus
 
-nd = 1.56732, νd = 42.84. Glass: flint class (supplier unverified). f = +110.66 mm.
+nd = 1.56732, νd = 42.84. Glass: E-FL6 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = +110.66 mm.
 
 L17 is a positive meniscus, concave toward the object. Its two negative radii have unequal magnitude, giving positive standalone power. It is separated from both neighbors by air. [1, ¶0058]
 
@@ -179,7 +179,7 @@ The model retains the two thin 0.15 mm adjacent air intervals exactly; no spacin
 
 ### L18 — Biconcave Negative
 
-nd = 1.57144, νd = 71.61. Glass: low-dispersion crown class (supplier unverified). f = -60.03 mm.
+nd = 1.57144, νd = 71.61. Glass: FCD615 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = -60.03 mm.
 
 L18 is the biconcave low-dispersion negative element before the final lens. Its high Abbe number is a source fact and its positive absolute PgF departure is retained numerically.
 
@@ -187,7 +187,7 @@ Sigma's construction diagram marks this position as the second SLD element. The 
 
 ### L19 — Negative Meniscus
 
-nd = 1.98612, νd = 16.48. Glass: flint class (supplier unverified). f = -73.70 mm.
+nd = 1.98612, νd = 16.48. Glass: FDS16-W (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed). f = -73.70 mm.
 
 L19 is the final negative meniscus, concave toward the object, using the same tabulated coordinate as L11. It terminates the refracting prescription before the physical image interval. [1, ¶0058]
 
@@ -195,30 +195,30 @@ Its inferred radius is constrained by the S32→S33 gap. No rear cover plate or 
 
 ## Glass Identification and Selection
 
-The patent reports d-line index and Abbe number, with d at 587.56 nm, together with absolute partial-dispersion ratio PgF. All 19 element entries retain these native coordinates. The 16 distinct pairs were compared with the complete checked HOYA optical-glass catalog dated 2026-07-07, including obsolete entries. The following closest candidates are equivalence evidence only. The table below is specifically the HOYA coordinate comparison. An independent OHARA coordinate check supplements it; Schott, HIKARI, CDGM and Sumita were not independently checked. [1, ¶0081; 3, 4]
+The patent reports d-line index and Abbe number, with d at 587.56 nm, together with absolute partial-dispersion ratio PgF. All 19 element entries retain these native coordinates. The 16 distinct pairs were compared with the complete HOYA optical-glass catalog dated 2026-07-07, including obsolete entries. An independent OHARA coordinate check supplements it; Schott, HIKARI, CDGM and Sumita were not independently checked. Each element is labelled with the catalog row whose nd, νd and PgF all match the printed values. Where several processing variants share one nd/νd pair, the printed PgF selects the row. [1, ¶0081; 3, 4]
 
-| Source nd / νd | Elements | Closest checked HOYA candidate | Catalog minus source nd / νd |
-|---|---|---|---|
-| 1.43700 / 95.10 | L2, L4 | FCD100 | +0.00000 / +0.00 |
-| 1.48749 / 70.44 | L1 | FC5 | +0.00000 / +0.00 |
-| 1.51823 / 58.96 | L8 | E-C3 | +0.00000 / +0.00 |
-| 1.56732 / 42.84 | L17 | E-FL6 | +0.00000 / +0.00 |
-| 1.57144 / 71.61 | L18 | FCD615 | +0.00000 / +0.00 |
-| 1.59410 / 60.47 | L7 | FCD600 | +0.00000 / +0.00 |
-| 1.71300 / 53.94 | L12 | LAC8 | +0.00000 / +0.00 |
-| 1.72916 / 54.67 | L3 | TAC8 | +0.00000 / +0.00 |
-| 1.75500 / 52.32 | L6 | TAC6L | +0.00000 / +0.00 |
-| 1.77047 / 29.74 | L16 | NBFD29 | +0.00000 / +0.00 |
-| 1.77250 / 49.63 | L14 | TAF1 | +0.00000 / +0.00 |
-| 1.80440 / 39.58 | L10 | NBFD3 | +0.00010 / +0.06 |
-| 1.85451 / 25.15 | L5, L13 | NBFD25 | +0.00000 / +0.00 |
-| 1.85883 / 30.00 | L9 | NBFD30 | +0.00000 / +0.00 |
-| 1.98612 / 16.48 | L11, L19 | FDS16-W | +0.00000 / +0.00 |
-| 2.00069 / 25.46 | L15 | TAFD40L-W | +0.00000 / +0.00 |
+| Source nd / νd | Source PgF | Elements | Labelled catalog row | Catalog PgF |
+|---|---|---|---|---|
+| 1.43700 / 95.10 | 0.5336 | L2, L4 | HOYA FCD100 | 0.5336 |
+| 1.48749 / 70.44 | 0.5306 | L1 | HOYA FC5 | 0.5306 |
+| 1.51823 / 58.96 | 0.5442 | L8 | HOYA E-C3 | 0.5442 |
+| 1.56732 / 42.84 | 0.5744 | L17 | HOYA E-FL6 | 0.5744 |
+| 1.57144 / 71.61 | 0.5419 | L18 | HOYA FCD615 | 0.5419 |
+| 1.59410 / 60.47 | 0.5552 | L7 | HOYA FCD600 | 0.5552 |
+| 1.71300 / 53.94 | 0.5442 | L12 | HOYA LAC8 | 0.5442 |
+| 1.72916 / 54.67 | 0.5453 | L3 | HOYA TAC8 | 0.5453 |
+| 1.75500 / 52.32 | 0.5473 | L6 | HOYA TAC6 | 0.5474 |
+| 1.77047 / 29.74 | 0.5951 | L16 | HOYA NBFD29 | 0.5951 |
+| 1.77250 / 49.63 | 0.5504 | L14 | HOYA TAF1 | 0.5504 |
+| 1.80440 / 39.58 | 0.5762 | L10 | OHARA S-LAH63Q | 0.5762 |
+| 1.85451 / 25.15 | 0.6103 | L5, L13 | HOYA NBFD25 | 0.6103 |
+| 1.85883 / 30.00 | 0.5979 | L9 | HOYA NBFD30 | 0.5979 |
+| 1.98612 / 16.48 | 0.6656 | L11, L19 | HOYA FDS16-W | 0.6656 |
+| 2.00069 / 25.46 | 0.6136 | L15 | HOYA TAFD40 | 0.6136 |
 
-Fifteen distinct pairs have exact-coordinate candidates within that catalog. The 1.80440/39.58 source pair at L10 differs from NBFD3 by +0.00010 in index and +0.06 in Abbe number. Some coordinates match multiple catalog or processing variants; the table does not imply uniqueness. The data file deliberately uses descriptive classes rather than declaring any of these names as the supplier.
+Catalog PgF values are computed from each row's dispersion formula at the g, F and C lines. All 16 rows reproduce the printed nd, νd and PgF within the source's rounding. The model therefore traces every element on these catalog dispersion curves, while the authored nd, νd and dPgF stay at the source values. For L10, HOYA's nearest row, NBFD3, differs by +0.00010 in index, +0.06 in Abbe number and about −0.0048 in PgF, so the OHARA row is used instead.
 
-Coordinate proximity does not establish spectral equivalence. For L10, the checked HOYA NBFD3 coefficients give PgF approximately 0.571440 against the source 0.5762; OHARA S-LAH63Q matches the native nd/νd pair exactly, but no supplier identity follows. Other same-coordinate processing variants can also differ spectrally. The final model keeps the original nd, νd and source-derived dPgF instead of replacing them with any catalog curve. [3, 4]
+These are coordinate equivalents, not supplier identifications. A three-coordinate match narrows the material class but does not show which manufacturer or melt Sigma used. Same-coordinate glasses from other makers were not exhaustively checked. [3, 4]
 
 The patent defines its own deviation as PgF + 0.0018νd − 0.64833. The data file's dPgF field instead uses the normal line 0.6438 − 0.001682νd. Each dPgF value is therefore PgF minus the latter baseline. The original absolute ratios and patent-specific deviations remain distinct. No nC, nF or ng line indices are fabricated from the ratio. Partial-dispersion support improves the model's available material information, but it is not a complete measured spectral prescription and does not establish APO performance.
 

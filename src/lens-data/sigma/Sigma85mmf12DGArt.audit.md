@@ -308,5 +308,72 @@ removed. No optical value changed; engine EFL, f-number, half-field, stop radius
 identical before and after.
 
 Open: the patent's near-focus F/1.31 is not reproduced by the fixed iris (exact image-space value about 1.257); this
-is the accepted limited-model scope. Open: the S14 junction semi-diameter (23.6 mm) exceeds the 21.3 mm outer faces of
-L7 and L8; it has no effect on transmission because S15 limits the bundle, and it is noted only for drawing fidelity.
+is the accepted limited-model scope. The S14 junction semi-diameter (23.6 mm) exceeded the 21.3 mm outer faces of
+L7 and L8; closed in the semi-diameter pass below (S14 now 21.3 mm, transmission unchanged).
+
+## 2026-10-19 — Semi-diameter pass against the patent figure
+
+Source: JP 2025-124346 A, Figure 6 (PDF p.28), the infinity-focus section of Numerical Example 2 (its aberration sheet,
+Figure 7, prints Fno 1.24 and ω 14.49°). The sheet is a 397 ppi CCITT raster; it was measured at native resolution on
+the lower side of the axis (clean except the two focus-travel brackets, which were excluded), with the upper side used
+for L4, L13 and L14.
+
+Scale: the vertex crossings match the infinity prescription surface by surface. S1 to the image plane is 1901 px for
+136.908 mm and S1 to S30A is 1663 px for 119.72 mm, both 13.89 px/mm (0.0720 mm/px). Vertical against axial scale was
+checked by arc fits: S1 (R 81.14) at 22.1 and 29.3 mm predicts 42.6 and 76.1 px of sag against 43 and 77 px measured;
+S3 (R 46.08) at 29.3 mm predicts 146 px against 149 px; S6, S11, S23 and S28 arcs also land within 3 px. The figure
+is isotropic to about 1%, so no anamorphic factor was applied.
+
+The draftsman ends every concave face with a flat annulus (a vertical step in the section) where its curve stops.
+That end is taken as the face's optical extent; the outer flat is mount, not glass.
+
+| Surface | Before (mm) | After (mm) | Figure 6 (mm) | Evidence |
+|---|---|---|---|---|
+| 1 / 2 | 36 / 36 | kept | 36.0 | L1 rim agrees |
+| 3 | 33 | kept | 33.05 | L2 front reaches the rim |
+| 4 | 33 | 31.1 | curve ends 30.0, flat to 33.05 | figure step; axial F/1.24 ray 31.07 mm is higher, so the floor sets it |
+| 5 | 29 | kept | 29.1 | L3 front reaches the flat top |
+| 6 | 29 | 25.5 | curve ends 25.05, flat to 29.1 | figure step; axial ray 25.45 mm sets it |
+| 7A / 8 | 25.5 / 25.5 | kept | 25.35 | square rim, both sides |
+| 9 / 10 | 23 / 23 | kept | 23.3 (L5) / 22.9 (L6 top) | within 2% |
+| 11 | 23 | 20.3 | curve ends 19.8, flat to 22.9 | figure step; axial ray 20.23 mm sets it |
+| 13 / 15 | 21.3 / 21.3 | kept | 21.1 | square rim |
+| 14 | 23.6 | 21.3 | junction meets the rim at 21.1 | no step drawn; matched to the outer faces |
+| 16 / 18 | 21.7 / 21.7 | kept | 21.45 rim; S18 curve ends near 19.9 | S18 needs 20.64 mm for the near-focus axial ray; 21.7 is within 5% of that, kept |
+| 17 | 22.1 | 21.7 | junction meets the rim | no step drawn; matched to the outer faces |
+| 19 / 21 | 21.7 / 21.7 | kept | 21.75 | square rim |
+| 20 | 21.9 | 21.7 | junction meets the rim | matched to the outer faces |
+| 22 / 23 | 20 / 20 | kept | 19.75 rim; S23 curve ends near 18.2 | S23 needs 19.05 mm for the near-focus axial ray; 20 is within 5% of that, kept |
+| 24A / 25 | 19.5 / 19.5 | kept | 19.2 | square rim |
+| 26 / 27 | 17.3 / 17.3 | kept | 17.2 / 17.0 | within 2% |
+| 28 | 17.3 | 15.1 | curve ends 15.05, flat to 17.0 | figure step; axial ray 9.9 mm and corner chief ray 12.4 mm clear it |
+| 29A / 30A | 16.4 / 16.4 | kept | 16.9 square rim | 3%, noise; 16.9 also passes the validator and the asphere scan, but was not needed |
+
+Seven surfaces changed; none is aspheric, so no departure figure in the analysis moved. The STO radius was not touched.
+An overlay of the model's surface profiles on the figure at the same scale shows every arc ending where the figure's
+does after the change.
+
+Clearance after the change: the exact meridional trace at the printed 21.63 mm image height (ω 14.49° at infinity,
+13.45° at the near state) shows no axial clip and no blocked chief ray. Margins over the infinity axial F/1.24 ray are
+0.03 mm at S4, 0.05 mm at S6 and 0.07 mm at S11. A finite-object trace at the near state (d0 694.8314 mm, iris fixed at
+20.068 mm) needs 29.66, 24.87 and 20.07 mm at those faces, 20.18 mm at S14 and 9.74 mm at S28. The surface validator
+reports no errors, the image-circle floor finds nothing undersized, traced field coverage stays 100% at 14.5°, and the
+aperture census traces F/1.24 within 3%. The engine half-field (16.29°), F/1.24 and stop radius (20.068 mm) are
+unchanged.
+
+Transmission, from an engine skew-ray grid over a 38 mm disc at 0, 0.5, 0.7, 0.85 and 1.0 of 14.49°: on-axis counts
+are unchanged at infinity and at the finite near state. The three junction changes alone change no count at any field
+or focus state, so the earlier 23.6 mm junction bought no transmission. S4, S6 and S11 cut 3–5% of off-axis rays. S28
+at its drawn extent adds real corner vignetting: full-field transmission falls 20% at infinity and 16% at the near
+state, and 11% at 0.85 field. That vignetting is kept as drawn.
+
+In the live view (infinity and close focus) the silhouettes match Figure 6. The renderer joins faces of unequal height
+with a slanted edge where the figure draws a flat annulus (L2, L3, L6, L16); that is the renderer's convention. At close
+focus the outermost drawn on-axis rays, which fall outside the fixed iris, now end at the rear rim of L6 just ahead of
+the stop instead of at the stop; transmission is the same.
+
+Sigma's construction diagram was not viewed in this pass. The deployment-validation section above records 17 elements in
+12 groups, SLD glass at L2 and L8, and aspherical elements at L4, L14 and L17, matching Figure 6.
+
+Limitations: the figure is the patent's schematic, not a mechanical drawing; values are rounded to 0.1 mm and three of
+them sit at the axial-ray floor rather than at the slightly smaller drawn extent.

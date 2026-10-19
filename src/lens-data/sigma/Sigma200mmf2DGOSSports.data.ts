@@ -5,9 +5,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * PUBLISHED focus states: infinity and 1700 mm object-to-image (d0 = 1488 mm at near focus).
  * The aperture stop is the patent's surface 18. Its diameter is not printed; the radius is set by
  * tracing an exact infinity ray to f/2.07.
- * Semi-diameters are inferred from Figure 1 within the repository's edge-thickness and gap rules.
+ * Semi-diameters are estimated from Figure 1 (drawn at the infinity state, vertical scale within 1 % of
+ * axial), floor-checked by exact real-ray trace and kept within the repository's edge-thickness and gap
+ * rules. Surface 14 ends at the drawn annulus (22.3 mm); L19's rear (34) follows the drawn 17.2 mm rim.
+ * Figure 1 draws L13 (22/23) square-cut, meeting L12's rear at ~16.7 mm, but the printed faces cross at
+ * ~15.9 mm. L13 is therefore set to 15.7 mm (about 0.07 mm of air at the rim), which needs
+ * checks.gapSagFrac 0.98 on the S21→S22 gap.
  * Partial dispersion: dPgF = PgF − (0.6438 − 0.001682·νd), not the patent's own ΔPgF normal line.
- * Glass labels describe coordinate classes, not a confirmed supplier or melt.
+ * Glass labels name the catalog row (HOYA, or OHARA for L10) whose nd, νd and PgF match the patent's
+ * printed values. They are coordinate equivalents; the production supplier and melt are unconfirmed.
  * The production match is a construction correlation, not a confirmed factory prescription.
  * The iris stays at its infinity size at every focus distance, so the patent's near-focus f/2.25 is
  * not reproduced. At near focus the inferred rims vignette the outer axial and off-axis rays.
@@ -52,7 +58,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.44,
       focalLengthMm: 413.31121232462675,
-      glass: "low-dispersion crown class (supplier unverified)",
+      glass: "FC5 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       dPgF: 0.005280079999999909,
     },
     {
@@ -63,11 +69,11 @@ const LENS_DATA = {
       nd: 1.437,
       vd: 95.1,
       focalLengthMm: 279.7115264485802,
-      glass: "fluorophosphate crown class (supplier unverified)",
+      glass: "FCD100 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       dPgF: 0.04975819999999992,
       apd: "inferred",
       apdNote:
-        "FCD100-class coordinate (νd 95.10, patent PgF 0.5336); Sigma's construction diagram marks this position as one of its two FLD elements.",
+        "HOYA FCD100 coordinate match (νd 95.10, patent PgF 0.5336); Sigma's construction diagram marks this position as one of its two FLD elements.",
     },
     {
       id: 3,
@@ -77,7 +83,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.67,
       focalLengthMm: -171.80942857892995,
-      glass: "crown class (supplier unverified)",
+      glass: "TAC8 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       cemented: "L3–L4",
       dPgF: -0.0065450599999999914,
     },
@@ -89,12 +95,12 @@ const LENS_DATA = {
       nd: 1.437,
       vd: 95.1,
       focalLengthMm: 106.31090586854708,
-      glass: "fluorophosphate crown class (supplier unverified)",
+      glass: "FCD100 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       cemented: "L3–L4",
       dPgF: 0.04975819999999992,
       apd: "inferred",
       apdNote:
-        "FCD100-class coordinate (νd 95.10, patent PgF 0.5336); Sigma's construction diagram marks this position as its second FLD element.",
+        "HOYA FCD100 coordinate match (νd 95.10, patent PgF 0.5336); Sigma's construction diagram marks this position as its second FLD element.",
     },
     {
       id: 5,
@@ -104,7 +110,7 @@ const LENS_DATA = {
       nd: 1.85451,
       vd: 25.15,
       focalLengthMm: -145.51288254653394,
-      glass: "flint class (supplier unverified)",
+      glass: "NBFD25 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       dPgF: 0.00880229999999993,
     },
     {
@@ -115,7 +121,7 @@ const LENS_DATA = {
       nd: 1.755,
       vd: 52.32,
       focalLengthMm: -118.95771177126356,
-      glass: "crown class (supplier unverified)",
+      glass: "TAC6 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       cemented: "L6–L7",
       dPgF: -0.00849776000000002,
     },
@@ -127,12 +133,12 @@ const LENS_DATA = {
       nd: 1.5941,
       vd: 60.47,
       focalLengthMm: 67.87099014138626,
-      glass: "low-dispersion crown class (supplier unverified)",
+      glass: "FCD600 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       cemented: "L6–L7",
       dPgF: 0.013110540000000004,
       apd: "inferred",
       apdNote:
-        "FCD600-class coordinate (νd 60.47, patent PgF 0.5552); Sigma's construction diagram marks this position as one of its two SLD elements.",
+        "HOYA FCD600 coordinate match (νd 60.47, patent PgF 0.5552); Sigma's construction diagram marks this position as one of its two SLD elements.",
     },
     {
       id: 8,
@@ -142,7 +148,7 @@ const LENS_DATA = {
       nd: 1.51823,
       vd: 58.96,
       focalLengthMm: -108.96608040743605,
-      glass: "crown class (supplier unverified)",
+      glass: "E-C3 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       dPgF: -0.00042928000000008737,
     },
     {
@@ -153,7 +159,7 @@ const LENS_DATA = {
       nd: 1.85883,
       vd: 30.0,
       focalLengthMm: 37.513586403574735,
-      glass: "flint class (supplier unverified)",
+      glass: "NBFD30 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       cemented: "L9–L10",
       dPgF: 0.0045599999999998975,
     },
@@ -165,7 +171,7 @@ const LENS_DATA = {
       nd: 1.8044,
       vd: 39.58,
       focalLengthMm: -41.56320852996595,
-      glass: "flint class (supplier unverified)",
+      glass: "S-LAH63Q (OHARA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       cemented: "L9–L10",
       dPgF: -0.0010264399999999618,
     },
@@ -177,7 +183,7 @@ const LENS_DATA = {
       nd: 1.98612,
       vd: 16.48,
       focalLengthMm: 72.83125382832996,
-      glass: "flint class (supplier unverified)",
+      glass: "FDS16-W (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       cemented: "L11–L12",
       dPgF: 0.0495193599999999,
     },
@@ -189,7 +195,7 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.94,
       focalLengthMm: -52.55026822965174,
-      glass: "crown class (supplier unverified)",
+      glass: "LAC8 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       cemented: "L11–L12",
       dPgF: -0.008872920000000062,
     },
@@ -201,7 +207,7 @@ const LENS_DATA = {
       nd: 1.85451,
       vd: 25.15,
       focalLengthMm: -71.68909848008217,
-      glass: "flint class (supplier unverified)",
+      glass: "NBFD25 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       dPgF: 0.00880229999999993,
     },
     {
@@ -212,7 +218,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.63,
       focalLengthMm: 25.935635157382706,
-      glass: "flint class (supplier unverified)",
+      glass: "TAF1 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       cemented: "L14–L15",
       dPgF: -0.00992234000000003,
     },
@@ -224,7 +230,7 @@ const LENS_DATA = {
       nd: 2.00069,
       vd: 25.46,
       focalLengthMm: -35.92654700463784,
-      glass: "flint class (supplier unverified)",
+      glass: "TAFD40 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       cemented: "L14–L15",
       dPgF: 0.012623720000000005,
     },
@@ -236,7 +242,7 @@ const LENS_DATA = {
       nd: 1.77047,
       vd: 29.74,
       focalLengthMm: 50.79196278135583,
-      glass: "flint class (supplier unverified)",
+      glass: "NBFD29 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       dPgF: 0.0013226799999999095,
     },
     {
@@ -247,7 +253,7 @@ const LENS_DATA = {
       nd: 1.56732,
       vd: 42.84,
       focalLengthMm: 110.6605545770423,
-      glass: "flint class (supplier unverified)",
+      glass: "E-FL6 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       dPgF: 0.0026568799999999726,
     },
     {
@@ -258,11 +264,11 @@ const LENS_DATA = {
       nd: 1.57144,
       vd: 71.61,
       focalLengthMm: -60.03387422593476,
-      glass: "low-dispersion crown class (supplier unverified)",
+      glass: "FCD615 (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       dPgF: 0.01854802,
       apd: "inferred",
       apdNote:
-        "FCD615-class coordinate (νd 71.61, patent PgF 0.5419); Sigma's construction diagram marks this position as its second SLD element.",
+        "HOYA FCD615 coordinate match (νd 71.61, patent PgF 0.5419); Sigma's construction diagram marks this position as its second SLD element.",
     },
     {
       id: 19,
@@ -272,7 +278,7 @@ const LENS_DATA = {
       nd: 1.98612,
       vd: 16.48,
       focalLengthMm: -73.70239307423856,
-      glass: "flint class (supplier unverified)",
+      glass: "FDS16-W (HOYA; nd/νd/PgF coordinate match; production supplier unconfirmed)",
       dPgF: 0.0495193599999999,
     },
   ],
@@ -291,7 +297,7 @@ const LENS_DATA = {
     { label: "11", R: 47.0478, d: 11.2712, sd: 27.5, medium: 7 },
     { label: "12", R: -256.881, sd: 27.5 },
     { label: "13", R: 424.4891, d: 1.2, sd: 24, medium: 8 },
-    { label: "14", R: 49.7913, sd: 24 },
+    { label: "14", R: 49.7913, sd: 22.3 },
     { label: "15", R: 119.8435, d: 8.0834, sd: 19.5, medium: 9 },
     { label: "16", R: -42.6903, d: 1.0, sd: 19.5, medium: 10 },
     { label: "17", R: 155.7968, d: 2.9331, sd: 19.5 },
@@ -299,8 +305,8 @@ const LENS_DATA = {
     { label: "19", R: 126.1592, d: 3.1081, sd: 17, medium: 11 },
     { label: "20", R: -164.7066, d: 0.9, sd: 17, medium: 12 },
     { label: "21", R: 48.6121, d: 2.8437, sd: 17 },
-    { label: "22", R: -750.1799, d: 0.9, sd: 15.0, medium: 13 },
-    { label: "23", R: 66.7431, d: 1.8897, sd: 15.0 },
+    { label: "22", R: -750.1799, d: 0.9, sd: 15.7, medium: 13 },
+    { label: "23", R: 66.7431, d: 1.8897, sd: 15.7 },
     { label: "24", R: 45.255, d: 9.5268, sd: 16.8, medium: 14 },
     { label: "25", R: -32.6534, d: 0.9, sd: 16.8, medium: 15 },
     { label: "26", R: -360.8672, d: 6.8814, sd: 16.8 },
@@ -311,7 +317,7 @@ const LENS_DATA = {
     { label: "31", R: -60.9006, d: 0.9, sd: 17, medium: 18 },
     { label: "32", R: 78.9803, d: 7.3037, sd: 17 },
     { label: "33", R: -26.3842, d: 0.9, sd: 15.4, medium: 19 },
-    { label: "34", R: -42.1224, sd: 15.4 },
+    { label: "34", R: -42.1224, sd: 17.2 },
   ],
 
   focus: {
@@ -351,6 +357,7 @@ const LENS_DATA = {
   ],
 
   layout: { yScFill: 0.3 },
+  checks: { gapSagFrac: 0.98 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -40,3 +40,49 @@ renders; printed page 5 supplied the summary table (f, fVG, fMG, fHG, SO', F/#).
 Open: glass identities and full dispersion are unknown (e-line only); no close-focus spacings or cam are published;
 the rear-asphere clear aperture beyond the sag extremum is unsourced; full-precision data would be needed to close
 the 0.30 mm back-focus residual.
+
+## 2026-10-19 — Semi-diameter pass against the patent figure
+
+Source: US 2025/0271647 A1, sheet 2 of 3 (PDF page 3), Fig. 2, the Example 2 section (plane L5 front face, three
+starred aspheres on L3, L7 and L10). The page is a 2560 × 3300 px CCITT raster; it was measured at native
+resolution (72 dpi render), upper silhouette, with the lower silhouette as a symmetry check (agreement within 2 px).
+
+Scale: vertex crossings at x = 728 px (surface 1) and 1813 px (surface 16) span the prescription's 55.30 mm, giving
+19.63 px/mm (0.0509 mm/px). Surfaces 2, 5, 9, 13 and 15 fall within 3 px of their predicted positions. The drawing
+is isotropic: the surface-1 sag at the 17.0 mm rim predicts 35 px against 33 px drawn, the L2 front sag at 15.05 mm
+predicts 102 px against 100 px, and an overlay of the model outlines traced from the prescription on the figure
+lies on every drawn curve. No anamorphic factor applies.
+
+| Surface | Stored sd | Figure sd | Ratio | New sd | Evidence |
+|---|---:|---:|---:|---:|---|
+| 1 | 17.0 | 17.05 | 1.00 | 17.0 | kept; front-face rim of L1 |
+| 2 (L1/L2 cement) | 17.0 | 15.05 | 0.89 | 15.1 | the cement curve ends at L2's rim; L1 continues outward as a flat rear flange to 17.05 mm |
+| 3 | 15.4 | 15.05 | 0.98 | 15.1 | L2 drawn square-cut, so both faces take one value |
+| 4A | 14.0 | 14.0 | 1.00 | 14.0 | kept; axial floor 13.82 mm |
+| 5 (L3/L4 cement) | 14.0 | 14.0 / 13.4 | 0.96–1.00 | 14.0 | kept; the curve runs to L3's rim and L4's flat top sits at 13.4 mm, inside noise |
+| 6 | 13.5 | 12.28 | 0.91 | 12.3 | the rear curve ends at 12.28 mm, where its sag lands on the drawn corner within 1 px, then a vertical step rises to L4's 13.4 mm outer rim |
+| 8, 9, 10, 11A | 12.6 | 12.63 | 1.00 | 12.6 | kept; the cemented triplet is drawn square at one height; axial floor 12.29–12.39 mm |
+| 12 | 12.0 | 12.0 | 1.00 | 12.0 | kept; the drawn corner matches the surface-12 sag at 12.0 mm |
+| 13 (L8/L9 cement) | 12.0 | 12.0 / 11.7 | 0.97–1.00 | 12.0 | kept; the curve runs to L8's rim, L9's top is 11.7 mm |
+| 14 | 12.0 | 11.2–11.7 | 0.93–0.98 | 12.0 | kept; the drawn corner sits between the surface sag (11.2 mm) and L9's top (11.7 mm), inside noise |
+| 15, 16A | 11.35 | 11.8 | 1.04 | 11.35 | kept; inside noise |
+
+Three surfaces changed (2, 3, 6); no aspheric `sd` changed, so the analysis's surface-16 sag-extremum and rim-angle
+statements stand. Fig. 2 draws L10 square to about 11.8 mm, so the stored 11.35 mm rim beyond the 9.33 mm sag
+extremum is consistent with the drawing. L9 and L10 are drawn at the same height (11.7 and 11.8 mm) while the
+model keeps L9 0.65 mm above L10; both stay inside noise, and the order is not reversed, so neither moved.
+
+Clearance at f/1.24, image height 21.63 mm (ω 31.85°): axial marginal heights 14.51 mm at surface 2, 14.28 mm at
+surface 3 and 11.99 mm at surface 6, all below the new rims; no on-axis clip and no chief-ray block. The surface
+validator reports no errors, the image-circle check 0 undersized, the aperture check within 3 % of f/1.24, and
+field coverage reaches 21.65 mm at 31.9° with the corner clear. Engine EFL 34.746 mm, f/1.24, half-field 28.96° and
+stop radius 12.14 mm are unchanged; the derived stop-housing radius follows surface 6 from 12.6 to 12.3 mm. Geometric
+transmission at full aperture drops by at most 2.6 points in mid-field (71.9 % to 69.8 % at 17.4°, 65.1 % to 62.5 %
+at 20.3°) and is unchanged at the 31.9° corner (28.1 %). The renderer joins L1's 17.0 mm front rim to its 15.1 mm
+rear rim with a slanted edge where the figure draws a flat flange; that is a drawing convention, not a value
+choice.
+
+Maker diagram: the deployment pass above records Leica's lens cut as 10 lenses in 5 assemblies, with the same
+element shapes, aspheres on L3 front, L7 rear and L10 rear, and the plane L5 front face. No maker image was viewed in
+this pass. The live page at infinity matches the figure's silhouette; the lens is infinity-only, so there is no
+close-focus state to check.

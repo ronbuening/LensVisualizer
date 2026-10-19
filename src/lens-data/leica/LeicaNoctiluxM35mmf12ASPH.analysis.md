@@ -213,8 +213,11 @@ small (−0.10 mm at full aperture), so no sign misprint is indicated. The
 printed gap is kept as published. A rounding adjustment consistent with the
 patent's first-order summary is possible but is not used here.
 
-Semi-diameters are estimates informed by Figure 2 and constrained by physical
-geometry; no clear apertures are printed. With these estimates the full axial
+Semi-diameters are estimates measured from Figure 2, which is drawn to the
+prescription's proportions, and checked against a real-ray trace; no clear
+apertures are printed. The figure draws L2 square-cut inside a flat flange on
+L1 and ends the rear face of L4 below a stepped outer rim, and the model
+follows both. With these estimates the full axial
 f/1.24 pupil passes, and the chief ray reaches the full-frame corner at an
 image height of 21.65 mm.
 

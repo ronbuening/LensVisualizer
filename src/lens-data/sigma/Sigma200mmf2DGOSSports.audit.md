@@ -179,4 +179,49 @@ Near-focus rays: with the viewer's near-focus entrance pupil (62.02 mm radius), 
 
 Fields changed in this pass: data-file header comment, `subtitle`, `specs`, `focus.description`, and `apd: "inferred"` with `apdNote` on L2, L4, L7 and L18 (`name` was changed separately to "SIGMA 200mm f/2 DG OS | Sports"). In the analysis, the SLD positions were added, workflow wording was removed, and the former verification section became "Model Scope and Limitations". In this file, workflow status tokens and archive hashes were removed and stale pending lines were closed. No optical value changed; EFL, f-number, half-field, stop radius, BFD and both focus layouts are identical before and after.
 
-Open: the `focus.conjugates[0].source` string still reads in run-together shorthand ("JP2025162727A Example1, PDFp14 …"); it was outside this pass's allowed fields.
+Formerly open: the `focus.conjugates[0].source` string still read in run-together shorthand ("JP2025162727A Example1, PDFp14 …"); it was outside this pass's allowed fields. (Closed: the string now reads "JP 2025-162727 A, Example 1 spacing table: object distance 1488 mm, total track 212 mm".)
+
+## 2026-10-19 — Semi-diameter pass against the patent figure
+
+Source: `patents/JP2025162727A.pdf`, PDF page 22, Figure 1 (Example 1), a clean line drawing without ray bundles, measured from its native 425 ppi raster. The figure is drawn at the infinity state: every one of the 33 surface vertex crossings lies within 2 px of the prescription positions at d12 = 3.4 and d14 = 20.92. Axial scale from S1 to S34 (189.55 mm) and S1 to the image line (212.00 mm): 9.116 px/mm, both spans agreeing to 0.1 %.
+
+Vertical scale: least-squares sphere fits of 16 strongly curved surfaces (S1, S3, S5, S6, S11, S14, S16, S24, S25, S33 and others) give a vertical/axial factor of 0.98 to 1.00, median 0.99 on the upper side and 0.993 on the lower side. The stop tick's inner end sits at 148 px, i.e. 16.4 mm at that factor against the calibrated 16.54 mm iris radius. Figure 1 is therefore not anamorphic (at most about 1 % short vertically). Rim heights below use 0.111 mm/px, averaged over the upper and lower halves, which agree within 1 px.
+
+| Surface | Stored sd | Figure (mm) | Ratio | Decision |
+|---|---|---|---|---|
+| 1 / 2 (L1) | 50 / 50 | 50.0 / 50.0 (pointed rim) | 1.00 | kept |
+| 3 / 4 (L2) | 47 / 47 | 47.6 / 47.1 | 1.01 | kept |
+| 5 (L3) | 35 | 34.8 | 0.99 | kept |
+| 6 (L3/L4 cement) | 32 | L4 side 32.3; L3's flat annulus starts at 31.0 | 1.01 | kept |
+| 7 (L4) | 32 | 32.1 | 1.00 | kept |
+| 8 / 9 (L5) | 30.3 / 30.3 | 30.9 / 30.4 | 1.02 / 1.00 | kept |
+| 10 (L6) | 28.5 | 28.4 | 1.00 | kept |
+| 11 / 12 (L6/L7, L7) | 27.5 / 27.5 | L7 rim 27.1; L6's annulus starts at 26.4 / 27.0 | 0.98 | kept (noise) |
+| 13 (L8) | 24 | 24.3 | 1.01 | kept |
+| 14 (L8) | 24 | 22.3 (curve ends at a flat annulus) | 0.93 | **22.3** |
+| 15–17 (L9/L10) | 19.5 | 19.7 / 19.3 / 19.3 | 0.99–1.01 | kept |
+| 19–21 (L11/L12) | 17 | 16.9 / 16.8 / 16.8–17.0 | 0.99 | kept |
+| 22 / 23 (L13) | 15.0 / 15.0 | 16.7 / 16.7 (square-cut) | 1.11 | **15.7 / 15.7** (faces cross at 15.9) |
+| 24–26 (L14/L15) | 16.8 | 16.5 / 16.5 / 16.7 | 0.98–0.99 | kept |
+| 27 / 28 (L16) | 18 | 18.1 | 1.01 | kept |
+| 29 / 30 (L17) | 17.5 | 17.9–18.1 / 17.8 | 1.02 | kept |
+| 31 / 32 (L18) | 17 | 17.1 / 16.8 | 1.00 | kept |
+| 33 (L19) | 15.4 | curve ends 15.2–15.8, then a flat annulus | 1.00 | kept |
+| 34 (L19) | 15.4 | 17.2 | 1.12 | **17.2** |
+
+Changes and evidence:
+
+- S34 15.4 → 17.2 mm: the figure draws L19's convex rear running to a 17.2–17.3 mm flat top, 12 % above the stored value, with the front S33 stepping out from its 15.4 mm curve end through a flat annulus. S33 stays at 15.4 because the S32→S33 gap rule limits it and the figure agrees with it. Rays: S34 was the largest vignetting surface (40 % of the corner bundle side) and the leading engine field limiter; it now trims about 10 %.
+- S14 24 → 22.3 mm: the figure draws L8's concave rear ending at 22.3 mm and a flat annulus out to the 24.3 mm front rim. The change is 7 %, inside the usual noise band, but the reading is good to about 0.15 mm, and an overlay showed the old value pushing the rear face about 1 mm axially past the drawn element outline. It is treated as a comparative-step fix. The infinity axial marginal ray needs 21.49 mm at S14, and the near-focus beam needs less because L8 moves rearward.
+- S22/S23 (L13) 15.0 → 15.7 mm, both faces: Figure 1 draws L13 square-cut, with L12's rear and L13's front merging from about 14.8 mm up to 16.7 mm. With the printed prescription the two faces cross at about 15.9 mm, so the drawn 16.7 mm is not physically reachable. The default 0.9 gap rule capped L13 at 15.0 mm. At 15.7 mm the S21→S22 sags take 2.77 of the 2.844 mm gap, leaving about 0.07 mm of air at the rim: the elements meet at the rim, as drawn, without crossing. The coordinator therefore set `checks.gapSagFrac` to 0.98, the smallest two-decimal value that admits this rim, under the standing rule for facing surfaces that the figure draws meeting. A value of 0.97 is refused (2.758 mm allowed). The corner-bundle trim at S22/S23 falls from 10–12 % to 5–8 % per side. Every other gap still passes at the default 0.9.
+- Other surfaces agree within 1–2 %, apart from S11/S12 at 2 %. No comparative step order is reversed.
+
+Clearance after the edits (S14, S22, S23, S34), by exact meridional trace: no surface clips the f/2.07 infinity axial beam or the 21.63 mm corner chief ray, at infinity or at the 1.7 m state. The near-focus transmitted on-axis boundary is unchanged at about f/2.14 (96.6 % of the iris, still stopped at S8). Engine values: EFL 194.304 mm, f/2.07 and the 16.539 mm iris are unchanged. The engine half-field estimate rose from 7.87° to 8.08°. Field coverage is 100 % at 6.2°. The image-circle, aperture-census and surface validators report no findings. Longitudinal spherical aberration at full aperture is 0.02 mm, so no prescription misprint is indicated.
+
+Live view: the local page was checked at infinity and at 1.7 m. L19 now carries the drawn rear rim, and L13 renders square-cut, meeting L12 at the rim without overlap. L8's rear corner is drawn as a short chamfer rather than the figure's flat annulus, because the renderer joins the two face rims with a straight edge. At near focus the outer pair of the default axial fan is still clipped in the first group, as recorded above.
+
+Maker diagram: per the deployment-validation section above, Sigma's S025 construction diagram shows 19 elements in 14 groups, with FLD at L2 and L4 and SLD at L7 and L18; no aspherical element. No maker image was viewed in this pass.
+
+## 2026-10-19 — Glass relabel to catalog rows
+
+All 19 glass labels changed from descriptive coordinate classes to the catalog rows that the patent's printed nd, νd and PgF pin: HOYA FC5, FCD100, TAC8, NBFD25, TAC6, FCD600, E-C3, NBFD30, FDS16-W, LAC8, TAF1, TAFD40, NBFD29, E-FL6 and FCD615, and OHARA S-LAH63Q for L10. Each label carries the note "nd/νd/PgF coordinate match; production supplier unconfirmed". The printed PgF selects the row where processing variants share one nd/νd pair: TAC6 rather than TAC6L, TAFD40 rather than TAFD40L-W, and S-LAH63Q rather than HOYA NBFD3. The FCD615 row was added to the repository catalog from the local HOYA 2026-07-07 AGF. Every element now resolves to its row. The catalog PgF, computed from each row's dispersion formula, matches the source PgF within 0.0001, and catalog nd/νd match within the source rounding. The authored nd, νd and dPgF are unchanged, and EFL, f-number and half-field are identical before and after. The caution in "Final glass and prose corrections" still applies: these are coordinate equivalents, not supplier or melt identifications. The data header, the four apdNote strings, the analysis element lines and the analysis glass section were updated to match. The analysis quotes no engine-computed chromatic values, so none needed re-checking. Only the patent's own ΔPgF condition values appear, and they are unchanged.

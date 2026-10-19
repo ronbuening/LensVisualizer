@@ -14,23 +14,32 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * K = 0, R7 = -150.275 and R19 = +367.935 are unchanged. Final air 0.996 mm (printed 1.000).
  * Asphere form assumed: standard dimensional even sag, mm units; no scaling.
  * GL is the printed 2.5 mm camera-side plate (S28/S29), traced via rearPlates.
- * Semi-diameters are inferred within the default 0.90 gap-sag limit, not factory values.
+ * Semi-diameters are estimated from the patent's Fig. 1 (isotropic, 12.67 px/mm at 300 dpi),
+ * floor-checked by real-ray trace (axial f/1.48 marginal, 23.2 deg chief), not factory values.
+ * L04 sits on the axial-ray floor (23.4 mm; figure 23.2). S12 keeps 15.17 mm (axial floor
+ * 14.83; figure 14.7). L01 is drawn square-cut and meeting L02 at the rim, so S1-S3 share
+ * 22.0 mm, which needs gapSagFrac 0.98 (S2/S3 gap sag 0.979; the fitted faces cross at
+ * 22.25 mm). S25/S26 share 16.6 mm, where the figure draws them meeting (gap sag 0.968; the
+ * fitted faces cross near 16.8 mm), also within that 0.98 limit.
  * The engine's exact-marginal f/1.48 keeps the fitted iris radius (14.52 mm); the patent's
  * f/1.47 stays as the design label. Only the wide-open stop is modelled.
  * Infinity focus only: the printed near gaps (G2 moves 7.859 mm) do not give a usable near
  * state on the fitted radii. The marketed 0.45 m minimum focus is metadata only.
- * Glass suppliers and partial dispersions are unknown.
+ * Glass: 13 elements carry catalog-equivalent spectral proxies (nd within 5e-5, vd within
+ * 0.02 of the patent), so chromatic traces use those catalog dispersion curves; L04 (1.949/17.942)
+ * and L12 (1.7292/56.685) have no catalog match and use the Abbe surrogate. Viltrox's actual
+ * glass suppliers and partial dispersions are unpublished.
  */
 
 const LENS_DATA = {
   schema: 2,
-  key: "viltrox-af-50mm-f14-pro-fe",
+  key: "viltrox-af-50mm-f14-pro",
   maker: "Viltrox",
-  name: "VILTROX AF 50mm f/1.4 PRO FE",
+  name: "VILTROX AF 50mm f/1.4 PRO",
   subtitle: "CN 120871380 A, Example 1 — printed tables inconsistent; radii fitted to the patent's aberration curves",
   visible: true,
   catalog: {
-    lensMounts: ["sony-fe"],
+    lensMounts: ["sony-fe", "nikon-z"],
     imageFormat: "135-full-frame",
     specs: [
       "15 ELEMENTS / 11 GROUPS",
@@ -65,7 +74,7 @@ const LENS_DATA = {
       nd: 1.5481,
       vd: 45.82,
       focalLengthMm: -112.43397573898298,
-      glass: "Unmatched (patent nd=1.5481, νd=45.82; supplier unresolved)",
+      glass: "E-FEL1 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Weak negative front meniscus of the fixed first group.",
       diagramLabel: "L01",
     },
@@ -77,7 +86,7 @@ const LENS_DATA = {
       nd: 1.9229,
       vd: 20.88,
       focalLengthMm: -27.86022935554913,
-      glass: "Unmatched (patent nd=1.9229, νd=20.88; supplier unresolved)",
+      glass: "N-SF66 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "High-index negative member of the first cemented doublet.",
       diagramLabel: "L02",
       cemented: "D1",
@@ -90,7 +99,7 @@ const LENS_DATA = {
       nd: 1.8348,
       vd: 42.725,
       focalLengthMm: 38.88465072817527,
-      glass: "Unmatched (patent nd=1.8348, νd=42.725; supplier unresolved)",
+      glass: "S-LAH55V (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "High-index positive member of the first cemented doublet.",
       diagramLabel: "L03",
       cemented: "D1",
@@ -115,7 +124,7 @@ const LENS_DATA = {
       nd: 1.9229,
       vd: 20.88,
       focalLengthMm: 76.27651771344135,
-      glass: "Unmatched (patent nd=1.9229, νd=20.88; supplier unresolved)",
+      glass: "N-SF66 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "High-index positive meniscus of the fixed first group.",
       diagramLabel: "L05",
     },
@@ -127,9 +136,9 @@ const LENS_DATA = {
       nd: 1.5928,
       vd: 68.342,
       focalLengthMm: 50.91964125474715,
-      glass: "Unmatched (patent nd=1.5928, νd=68.342; supplier unresolved)",
+      glass: "H-ZPK5 (catalog-equivalent spectral proxy; supplier unresolved)",
       apd: "inferred",
-      apdNote: "Viltrox's construction diagram marks this position as ED; nd 1.5928 / νd 68.3 is consistent with a low-dispersion crown of that kind, but no partial-dispersion data is published.",
+      apdNote: "Viltrox's construction diagram marks this position as ED. The H-ZPK5 proxy matches nd/νd only; the production glass and its partial dispersion are unpublished.",
       role: "Low-dispersion positive member of the cemented doublet ahead of the stop.",
       diagramLabel: "L06",
       cemented: "D2",
@@ -142,7 +151,7 @@ const LENS_DATA = {
       nd: 1.8467,
       vd: 23.791,
       focalLengthMm: -26.31840181313406,
-      glass: "Unmatched (patent nd=1.8467, νd=23.791; supplier unresolved)",
+      glass: "H-ZF52 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Dense-flint negative partner of the doublet ahead of the stop.",
       diagramLabel: "L07",
       cemented: "D2",
@@ -155,9 +164,9 @@ const LENS_DATA = {
       nd: 1.603,
       vd: 65.46,
       focalLengthMm: 55.606566555667804,
-      glass: "Unmatched (patent nd=1.603, νd=65.46; supplier unresolved)",
+      glass: "S-PHM53 (catalog-equivalent spectral proxy; supplier unresolved)",
       apd: "inferred",
-      apdNote: "Viltrox's construction diagram marks this position as ED; nd 1.603 / νd 65.5 is consistent with a low-dispersion crown of that kind, but no partial-dispersion data is published.",
+      apdNote: "Viltrox's construction diagram marks this position as ED. The S-PHM53 proxy matches nd/νd only; the production glass and its partial dispersion are unpublished.",
       role: "Low-dispersion positive member of the focusing group's cemented doublet.",
       diagramLabel: "L08",
       cemented: "D3",
@@ -170,7 +179,7 @@ const LENS_DATA = {
       nd: 1.6477,
       vd: 33.84,
       focalLengthMm: -26.527454437397367,
-      glass: "Unmatched (patent nd=1.6477, νd=33.84; supplier unresolved)",
+      glass: "H-ZF1 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Negative partner in the focusing group's cemented doublet.",
       diagramLabel: "L09",
       cemented: "D3",
@@ -183,7 +192,7 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 40.731,
       focalLengthMm: 46.36674939953418,
-      glass: "Unmatched (patent nd=1.8061, νd=40.731; supplier unresolved)",
+      glass: "M-NBFD130 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Double-aspherical positive corrector in the focusing group (G2).",
       diagramLabel: "L10",
     },
@@ -195,9 +204,9 @@ const LENS_DATA = {
       nd: 1.5928,
       vd: 68.342,
       focalLengthMm: 67.3093903533099,
-      glass: "Unmatched (patent nd=1.5928, νd=68.342; supplier unresolved)",
+      glass: "H-ZPK5 (catalog-equivalent spectral proxy; supplier unresolved)",
       apd: "inferred",
-      apdNote: "Viltrox's construction diagram marks this position as ED; nd 1.5928 / νd 68.3 is consistent with a low-dispersion crown of that kind, but no partial-dispersion data is published.",
+      apdNote: "Viltrox's construction diagram marks this position as ED. The H-ZPK5 proxy matches nd/νd only; the production glass and its partial dispersion are unpublished.",
       role: "Low-dispersion positive element at the rear of the focusing group.",
       diagramLabel: "L11",
     },
@@ -221,7 +230,7 @@ const LENS_DATA = {
       nd: 1.946,
       vd: 17.942,
       focalLengthMm: 69.11679995976132,
-      glass: "Unmatched (patent nd=1.946, νd=17.942; supplier unresolved)",
+      glass: "H-ZF88 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "High-index positive member of the rear cemented doublet.",
       diagramLabel: "L13",
       cemented: "D4",
@@ -234,7 +243,7 @@ const LENS_DATA = {
       nd: 1.8052,
       vd: 25.456,
       focalLengthMm: -57.0342220548927,
-      glass: "Unmatched (patent nd=1.8052, νd=25.456; supplier unresolved)",
+      glass: "H-ZF7LA (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Dense-flint negative member of the rear cemented doublet.",
       diagramLabel: "L14",
       cemented: "D4",
@@ -247,7 +256,7 @@ const LENS_DATA = {
       nd: 1.946,
       vd: 17.942,
       focalLengthMm: -98.29681150563619,
-      glass: "Unmatched (patent nd=1.946, νd=17.942; supplier unresolved)",
+      glass: "H-ZF88 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Final negative meniscus of the fixed rear group.",
       diagramLabel: "L15",
     },
@@ -257,66 +266,66 @@ const LENS_DATA = {
       label: "1",
       R: 2334.7599537721417,
       d: 1.5,
-      sd: 22.678631624599593,
+      sd: 22,
       medium: 1,
     },
     {
       label: "2",
       R: 60.026664726190404,
       d: 9.580995764494606,
-      sd: 21.137844778385,
+      sd: 22,
     },
     {
       label: "3",
       R: -49.14578761251317,
       d: 1.5,
-      sd: 21.137844778385,
+      sd: 22,
       medium: 2,
     },
     {
       label: "4",
       R: 54.714535109957595,
       d: 10.518,
-      sd: 24.540406574403168,
+      sd: 23.2,
       medium: 3,
     },
     {
       label: "5",
       R: -72.83045471457032,
       d: 0.2,
-      sd: 24.681190677973113,
+      sd: 23.2,
     },
     {
       label: "6",
       R: 95.75878730416889,
       d: 6.685,
-      sd: 26.853798810084538,
+      sd: 23.4,
       medium: 4,
     },
     {
       label: "7",
       R: -150.275,
       d: 0.258,
-      sd: 26.84623891549498,
+      sd: 23.4,
     },
     {
       label: "8",
       R: 52.57251947784323,
       d: 6.279,
-      sd: 24.973192613424008,
+      sd: 23.1,
       medium: 5,
     },
     {
       label: "9",
       R: 195.74218679091464,
       d: 0.6,
-      sd: 24.486213975936657,
+      sd: 23.1,
     },
     {
       label: "10",
       R: 30.185163335814106,
       d: 8.854,
-      sd: 20.2819388279629,
+      sd: 19.6,
       medium: 6,
     },
     {
@@ -341,27 +350,27 @@ const LENS_DATA = {
       label: "14",
       R: -29.342173148965383,
       d: 5.590276992273434,
-      sd: 14.930617832930253,
+      sd: 14.1,
       medium: 8,
     },
     {
       label: "15",
       R: -16.769966002280672,
       d: 1.3,
-      sd: 15.092952561119835,
+      sd: 14.1,
       medium: 9,
     },
     {
       label: "16",
       R: -720.9113064774322,
       d: 0.2,
-      sd: 18.117363668803055,
+      sd: 14.1,
     },
     {
       label: "17",
       R: 112.40949541336538,
       d: 6,
-      sd: 19.135024903613985,
+      sd: 15,
       medium: 10,
       asphere: {
         K: 0,
@@ -375,7 +384,7 @@ const LENS_DATA = {
       label: "18",
       R: -54.66046957260283,
       d: 1.188,
-      sd: 19.442113105037024,
+      sd: 15,
       asphere: {
         K: 0,
         A4: 2.7285451880151244e-6,
@@ -388,53 +397,53 @@ const LENS_DATA = {
       label: "19",
       R: 367.935,
       d: 6.237933449666309,
-      sd: 20.473390314128213,
+      sd: 16.6,
       medium: 11,
     },
     {
       label: "20",
       R: -44.47204533281826,
       d: 2.3467895580602565,
-      sd: 20.474784394312284,
+      sd: 16.6,
     },
     {
       label: "21",
       R: -113.05521358999474,
       d: 3.432,
-      sd: 19.482731580726874,
+      sd: 17.4,
       medium: 12,
     },
     {
       label: "22",
       R: -55.03452185949188,
       d: 0.2,
-      sd: 19.461341050228786,
+      sd: 17.4,
     },
     {
       label: "23",
       R: 196.35346053680632,
       d: 4.353,
-      sd: 18.003807205504167,
+      sd: 17.1,
       medium: 13,
     },
     {
       label: "24",
       R: -96.97038360499995,
       d: 1.3,
-      sd: 17.627518682025404,
+      sd: 17.1,
       medium: 14,
     },
     {
       label: "25",
       R: 87.76114505304491,
       d: 6.882064832772898,
-      sd: 16.04885220180654,
+      sd: 16.6,
     },
     {
       label: "26",
       R: -29.676460275997563,
       d: 1.3,
-      sd: 16.04885220180654,
+      sd: 16.6,
       medium: 15,
     },
     {
@@ -507,6 +516,7 @@ const LENS_DATA = {
   layout: {
     yScFill: 0.65,
   },
+  checks: { gapSagFrac: 0.98 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

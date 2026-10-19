@@ -7,8 +7,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The printed table gives EFL 34.746 mm and Gaussian back focus 15.10 mm, against the printed 15.4 mm final gap: a
  * 0.30 mm residual defocus from the two-decimal spacing rounding, retained as printed. On-axis spherical
  * aberration is small (−0.10 mm at full pupil), so no sign misprint is indicated.
- * Semi-diameters are estimated from Fig. 2 and edge geometry; the patent prints none. The rear-asphere rim
- * (11.35 mm) lies beyond that surface's sag extremum at 9.33 mm.
+ * Semi-diameters are estimated from Fig. 2 (measured at 19.63 px/mm, drawn isotropic) and floor-checked by real-ray
+ * trace; the patent prints none. L2 is square-cut at 15.1 mm inside L1's flat flange, and the L4 rear face ends at
+ * 12.3 mm below its 13.4 mm outer step. The rear-asphere rim (11.35 mm) lies beyond that surface's sag extremum at
+ * 9.33 mm.
  * Infinity focus only: the patent prints no close-focus spacings.
  */
 const LENS_DATA = {
@@ -194,14 +196,14 @@ const LENS_DATA = {
       label: "2",
       R: 24.465,
       d: 7.35,
-      sd: 17.0,
+      sd: 15.1,
       medium: 2,
     },
     {
       label: "3",
       R: -1577.3799999999999,
       d: 0.35000000000000003,
-      sd: 15.4,
+      sd: 15.1,
     },
     {
       label: "4A",
@@ -226,7 +228,7 @@ const LENS_DATA = {
       label: "6",
       R: 24.5,
       d: 4.9,
-      sd: 13.5,
+      sd: 12.3,
     },
     {
       label: "STO",

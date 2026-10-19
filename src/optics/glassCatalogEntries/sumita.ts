@@ -434,6 +434,15 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
       "Sumita AGF (sumita_2017-02-02.agf) form-1 polynomial; Sellmeier-1 fit, max abs index error 6.7e-6 across 365–1014 nm. APO-relevant.",
   },
   {
+    name: "K-GFK70",
+    vendor: "Sumita",
+    polynomial: [2.4293935, -0.0057591097, 0.011512013, 0.0001324924, 0.0000073250033, -0.00000057195445],
+    nd: 1.56907,
+    vd: 71.3,
+    code6: "569713",
+    source: "Sumita AGF (sumita-2025-11-07-all.agf), vendor formula-1 polynomial for K-GFK70.",
+  },
+  {
     name: "K-SK7",
     vendor: "Sumita",
     polynomial: [2.5429277, -0.01031719, 0.014356944, 0.00031433872, -0.000010824341, 0.00000068100892],

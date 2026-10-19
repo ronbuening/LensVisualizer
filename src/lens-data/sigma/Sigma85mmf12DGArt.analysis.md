@@ -129,8 +129,8 @@ The following air space leads to the published stop. The pair's combined power i
 nd = 1.77047, νd = 29.74. Glass: NBFD29 (HOYA coordinate-compatible class; supplier unconfirmed). f = -43.981 mm.
 
 L7 is the biconcave negative element immediately behind the stop and the front member of D2.
-Its shared junction with L8 is surface 14. The inferred junction semi-diameter is 23.6 mm, while the exterior faces remain 21.3 mm.
-That internal-aperture estimate is supported by bounded ray containment; it is not a patent-specified rim dimension. [1, ¶0060, Fig. 6]
+Its shared junction with L8 is surface 14. Figure 6 draws the junction meeting the pair's square rim, so all three
+faces of D2 carry the same inferred 21.3 mm semi-diameter; it is not a patent-specified rim dimension. [1, ¶0060, Fig. 6]
 
 ### L8 — Positive Meniscus
 
@@ -217,7 +217,7 @@ nd = 1.68948, νd = 31.02. Glass: L-TIM28 (OHARA coordinate-compatible class; su
 
 L17 is the final negative biconcave element, with aspherical faces 29A and 30A.
 It completes the net-negative G5 and follows the designated air lens AL.
-Both modeled semi-diameters are 16.4 mm, limited by the aspherical profile and the air gap shared with L16.
+Both modeled semi-diameters are 16.4 mm, within about 3% of the square rim Figure 6 draws for this element.
 The matching L-TIM28 catalog class is not proof of the production supplier or manufacturing process. [1, ¶0062]
 
 ## Glass Identification and Selection
@@ -353,9 +353,10 @@ source image semi-height 21.63 mm in its respective configuration. [1, ¶0040]
 ## Model Scope and Limitations
 
 The model keeps the patent's surface data and both published focus states unchanged; the example lists no cover glass or filter plates.
-All clear semi-diameters, including the iris radius, are inferred from Figure 6 with ray-clearance and edge-geometry checks.
-The cemented junction S14 is given 23.6 mm, wider than the 21.3 mm outer faces of L7 and L8,
-so that traced rays do not first clip at the junction.
+All clear semi-diameters are estimated from Figure 6 and checked against the axial F/1.24 ray in both focus states.
+Where the figure ends a concave face's curve before a flat annulus (the rear faces of L2, L3, L6 and L16), the modeled
+semi-diameter follows the end of the curve, or the axial ray where that is higher. Cemented junctions take the height
+of their outer faces, as the figure draws them.
 
 The iris radius, 20.068 mm, is set so that the exact infinity-focus image-space f-number equals the printed F/1.24;
 it is not a measured production diaphragm. The iris stays fixed through focus.
@@ -363,7 +364,8 @@ At the near state the exact image-space f-number is about 1.257 against the prin
 so the patent's near-focus aperture is not reproduced.
 The viewer's close-focus f-number readouts use first-order pupil and magnification estimates and differ from this exact value.
 
-At close focus the outermost drawn on-axis rays are cut by the stop; at every focus position the outer off-axis rays
+At close focus the outermost drawn on-axis rays fall outside the fixed iris and are blocked at the rear rim of L6, just
+ahead of the stop; at every focus position the outer off-axis rays
 are vignetted by the element rims. These rays are drawn as blocked rather than hidden.
 
 The model does not establish production MTF, production glass identities or Sigma's continuous focus law.

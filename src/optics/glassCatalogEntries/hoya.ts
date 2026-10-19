@@ -247,6 +247,15 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "HOYA Zemax catalog 2026-07-07; vendor formula-3 polynomial for FCD600.",
   },
   {
+    name: "FCD615",
+    vendor: "Hoya",
+    polynomial: [2.437899, -0.0070862375, 0.011069238, 0.00026372834, -0.000014860741, 0.00000077817112],
+    nd: 1.57144,
+    vd: 71.61,
+    code6: "571716",
+    source: "HOYA Zemax catalog 2026-07-07; vendor formula-1 polynomial for FCD615.",
+  },
+  {
     name: "NBFD26",
     vendor: "Hoya",
     polynomial: [3.2218201, -0.015366364, 0.043038744, 0.0030180924, -0.00019606389, 0.000026446283],

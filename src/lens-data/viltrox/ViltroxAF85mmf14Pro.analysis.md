@@ -1,4 +1,4 @@
-# Viltrox AF 85mm f/1.4 Pro Z: patent Example 1 with fitted aspheres
+# Viltrox AF 85mm f/1.4 Pro (FE and Z): patent Example 1 with fitted aspheres
 
 ## Patent reference and design identification
 
@@ -13,13 +13,13 @@
 
 The 28-page publication is available through the [DPMA document viewer](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=CN120686438A). The original filing description (CN 202410294011.9) prints the same Example 1 tables, including the anomalous aspheric coefficients and the rear-plate row discussed below.
 
-The [manufacturer’s Z-mount product page](https://viltrox.com/products/af-85mm-f1-4-z), checked 2026-10-19, supports a construction-level correlation:
+Viltrox sells this optical design for two mounts: the AF 85mm F1.4 Pro FE (Sony E, June 2025) and the AF 85mm F1.4 Pro Z (Nikon Z, November 2025). The model covers both. The manufacturer's [Sony E](https://viltrox.com/products/af-85mm-f1-4-fe) and [Nikon Z](https://viltrox.com/products/af-85mm-f1-4-z) product pages, checked 2026-10-19, list the same construction and support a construction-level correlation:
 
 1. 15 elements in 11 groups. Example 1 has the same count; Example 3 of the same patent has 12 groups.
 2. "3 ED, 9 HR, 1 UA". Example 1 has three low-dispersion positive elements (L2–L4, νd 68.3–81.6), nine elements with nd ≥ 1.80, and one double-sided aspherical element (L9).
 3. 85 mm, f/1.4, 28° angle of view, internal focusing, 0.79 m minimum distance and 0.13× maximum magnification. Example 1 gives f = 86.5 mm, F/1.47, a 14.02° half-field and a 0.79 m close-focus state; the model's paraxial close-focus magnification with the printed gaps is about 0.127×.
 
-The lens appeared first for Sony E (June 2025) and later for Nikon Z with the same optical construction. This convergence does not establish exact production radii, coefficients or apertures.
+The two versions differ in mount and housing, not in optical construction. Agreement at this level does not establish the exact production radii, coefficients or apertures.
 
 ## Optical architecture
 
@@ -27,117 +27,119 @@ The patent describes positive G1, positive movable G2 and negative G3, with G1/G
 
 ## Element-by-element analysis
 
-The following powers are isolated thick-element paraxial calculations in air, not patent-tabulated in-system powers. Optical roles are conservative interpretations of shape, glass coordinates and group position; no exact dispersion or proprietary glass identity is asserted.
+The following powers are isolated thick-element paraxial calculations in air, not patent-tabulated in-system powers. Optical roles are conservative interpretations of shape, glass coordinates and group position. The glass names are catalog-equivalent proxies; no supplier identity is asserted.
 
 ### L1 — Positive Meniscus
 
-nd = 1.946, νd = 17.984. Glass: unmatched. Isolated f = +243.077 mm.
+nd = 1.946, νd = 17.984. Glass: FDS18 (HOYA) as catalog-equivalent proxy. Isolated f = +243.077 mm.
 
 Front positive collector with high-index, strongly dispersive glass.
 
 ### L2 — Positive Meniscus
 
-nd = 1.5691, νd = 71.304. Glass: unmatched. Isolated f = +217.795 mm.
+nd = 1.5691, νd = 71.304. Glass: K-GFK70 (SUMITA) as catalog-equivalent proxy. Isolated f = +217.795 mm.
 
 Low-dispersion positive meniscus in the front collector.
 
 ### L3 — Positive Meniscus
 
-nd = 1.5928, νd = 68.342. Glass: unmatched. Isolated f = +155.666 mm.
+nd = 1.5928, νd = 68.342. Glass: H-ZPK5 (CDGM) as catalog-equivalent proxy. Isolated f = +155.666 mm.
 
 Second low-dispersion positive meniscus in G1.
 
 ### L4 — Positive Meniscus
 
-nd = 1.497, νd = 81.605. Glass: unmatched. Isolated f = +117.059 mm.
+nd = 1.497, νd = 81.605. Glass: H-FK61 (CDGM) as catalog-equivalent proxy. Isolated f = +117.059 mm.
 
 Low-dispersion positive member of the L4/L5 cemented pair.
 
 ### L5 — Negative Meniscus
 
-nd = 1.8545, νd = 25.155. Glass: unmatched. Isolated f = -113.060 mm.
+nd = 1.8545, νd = 25.155. Glass: NBFD25 (HOYA) as catalog-equivalent proxy. Isolated f = -113.060 mm.
 
 Dispersive negative member of the L4/L5 cemented pair.
 
 ### L6 — Negative Meniscus
 
-nd = 1.8545, νd = 25.155. Glass: unmatched. Isolated f = -58.581 mm.
+nd = 1.8545, νd = 25.155. Glass: NBFD25 (HOYA) as catalog-equivalent proxy. Isolated f = -58.581 mm.
 
 Negative meniscus immediately before the stop.
 
 ### L7 — Biconcave Negative
 
-nd = 1.6201, νd = 36.346. Glass: unmatched. Isolated f = -28.621 mm.
+nd = 1.6201, νd = 36.346. Glass: E-F2 (HOYA) as catalog-equivalent proxy. Isolated f = -28.621 mm.
 
 Negative member of the focusing-group L7/L8 cemented pair.
 
 ### L8 — Biconvex Positive
 
-nd = 1.883, νd = 40.847. Glass: unmatched. Isolated f = +33.425 mm.
+nd = 1.883, νd = 40.847. Glass: H-ZLaF68C (CDGM) as catalog-equivalent proxy. Isolated f = +33.425 mm.
 
 Positive member of the focusing-group L7/L8 cemented pair.
 
 ### L9 — Biconvex Aspherical
 
-nd = 1.7725, νd = 49.503. Glass: unmatched. Isolated f = +55.118 mm.
+nd = 1.7725, νd = 49.503. Glass: M-TAF105 (HOYA) as catalog-equivalent proxy. Isolated f = +55.118 mm.
 
 Positive, double-sided aspherical member of G2; its eight aspheric terms are fitted (see Aspherical surfaces).
 
 ### L10 — Positive Meniscus
 
-nd = 1.804, νd = 46.574. Glass: unmatched. Isolated f = +102.878 mm.
+nd = 1.804, νd = 46.574. Glass: H-ZLaF50E (CDGM) as catalog-equivalent proxy. Isolated f = +102.878 mm.
 
 Positive meniscus member of the rear L10/L11 cemented pair.
 
 ### L11 — Biconcave Negative
 
-nd = 1.74, νd = 28.296. Glass: unmatched. Isolated f = -38.897 mm.
+nd = 1.74, νd = 28.296. Glass: S-TIH3 (OHARA) as catalog-equivalent proxy. Isolated f = -38.897 mm.
 
 Negative member of the L10/L11 cemented pair.
 
 ### L12 — Biconvex Positive
 
-nd = 1.946, νd = 17.942. Glass: unmatched. Isolated f = +43.887 mm.
+nd = 1.946, νd = 17.942. Glass: H-ZF88 (CDGM) as catalog-equivalent proxy. Isolated f = +43.887 mm.
 
 Positive high-index element between the rear cemented pairs.
 
 ### L13 — Biconvex Positive
 
-nd = 1.883, νd = 40.847. Glass: unmatched. Isolated f = +52.995 mm.
+nd = 1.883, νd = 40.847. Glass: H-ZLaF68C (CDGM) as catalog-equivalent proxy. Isolated f = +52.995 mm.
 
 Positive member of the L13/L14 cemented pair.
 
 ### L14 — Biconcave Negative
 
-nd = 1.8467, νd = 23.791. Glass: unmatched. Isolated f = -42.544 mm.
+nd = 1.8467, νd = 23.791. Glass: H-ZF52 (CDGM) as catalog-equivalent proxy. Isolated f = -42.544 mm.
 
 Negative member of the L13/L14 cemented pair. Its rear (S25) clear radius is reduced so that the air gap to L15 stays open at the rim.
 
 ### L15 — Negative Meniscus
 
-nd = 1.8501, νd = 30.012. Glass: unmatched. Isolated f = -145.611 mm.
+nd = 1.8501, νd = 30.012. Glass: H-ZLaF76 (CDGM) as catalog-equivalent proxy. Isolated f = -145.611 mm.
 
 Final negative meniscus. Its front (S26) clear radius shares the same reduction; the rear (S27) radius follows Figure 1.
 
 ## Glass identification and selection
 
-All 15 elements carry the patent's nd/νd. None is matched to a catalog glass, and no nC, nF, ng or ΔPgF is assigned, so the model's chromatic behavior rests on Abbe numbers alone. The three low-dispersion front elements (L2–L4) are consistent with Viltrox's count of three ED elements, but Viltrox publishes only the count, not their positions, so they are not tagged as ED in the data file.
+All 15 elements keep the patent's nd/νd. Each is assigned the closest catalog glass as a catalog-equivalent spectral proxy, and the trace uses that glass's catalog dispersion curve for the C, F and g lines. No ΔPgF is authored. The proxies match the printed nd within 0.0001 and νd within 0.05. The patent does not name a supplier, so the actual melts and their partial dispersions are unresolved.
 
-| Patent nd | Patent νd | Elements | Identification |
-|---:|---:|---|---|
-| 1.946 | 17.984 | L1 | Unmatched; supplier and exact dispersion unresolved |
-| 1.5691 | 71.304 | L2 | Unmatched; supplier and exact dispersion unresolved |
-| 1.5928 | 68.342 | L3 | Unmatched; supplier and exact dispersion unresolved |
-| 1.497 | 81.605 | L4 | Unmatched; supplier and exact dispersion unresolved |
-| 1.8545 | 25.155 | L5, L6 | Unmatched; supplier and exact dispersion unresolved |
-| 1.6201 | 36.346 | L7 | Unmatched; supplier and exact dispersion unresolved |
-| 1.883 | 40.847 | L8, L13 | Unmatched; supplier and exact dispersion unresolved |
-| 1.7725 | 49.503 | L9 | Unmatched; supplier and exact dispersion unresolved |
-| 1.804 | 46.574 | L10 | Unmatched; supplier and exact dispersion unresolved |
-| 1.74 | 28.296 | L11 | Unmatched; supplier and exact dispersion unresolved |
-| 1.946 | 17.942 | L12 | Unmatched; supplier and exact dispersion unresolved |
-| 1.8467 | 23.791 | L14 | Unmatched; supplier and exact dispersion unresolved |
-| 1.8501 | 30.012 | L15 | Unmatched; supplier and exact dispersion unresolved |
+L9 takes HOYA M-TAF105, a precision-moulding glass, which suits a double-sided asphere. L2 takes SUMITA K-GFK70, which matches the printed 1.5691/71.30. The three low-dispersion front elements (L2–L4) are consistent with Viltrox's count of three ED elements. Viltrox publishes only the count, not the positions, so they are not tagged as ED in the data file.
+
+| Patent nd / νd | Elements | Catalog-equivalent proxy | Catalog nd / νd |
+|---|---|---|---|
+| 1.946 / 17.984 | L1 | HOYA FDS18 | 1.94595 / 17.98 |
+| 1.5691 / 71.304 | L2 | SUMITA K-GFK70 | 1.56907 / 71.30 |
+| 1.5928 / 68.342 | L3 | CDGM H-ZPK5 | 1.5928 / 68.34 |
+| 1.497 / 81.605 | L4 | CDGM H-FK61 | 1.497 / 81.61 |
+| 1.8545 / 25.155 | L5, L6 | HOYA NBFD25 | 1.85451 / 25.15 |
+| 1.6201 / 36.346 | L7 | HOYA E-F2 | 1.62004 / 36.30 |
+| 1.883 / 40.847 | L8, L13 | CDGM H-ZLaF68C | 1.883 / 40.85 |
+| 1.7725 / 49.503 | L9 | HOYA M-TAF105 | 1.7725 / 49.50 |
+| 1.804 / 46.574 | L10 | CDGM H-ZLaF50E | 1.804 / 46.57 |
+| 1.74 / 28.296 | L11 | OHARA S-TIH3 | 1.74 / 28.30 |
+| 1.946 / 17.942 | L12 | CDGM H-ZF88 | 1.94595 / 17.94 |
+| 1.8467 / 23.791 | L14 | CDGM H-ZF52 | 1.84666 / 23.78 |
+| 1.8501 / 30.012 | L15 | CDGM H-ZLaF76 | 1.85013 / 30.06 |
 
 ## Focus mechanism
 
@@ -172,13 +174,14 @@ The patent prints the cover plate's nd = 1.5168 / νd = 64.198 on the 1 mm S29 r
 
 ## Model scope and limitations
 
-- Clear apertures are inferred from Figure 1; the patent gives no clear-aperture table. S25 and S26 are reduced from 16.84 to 16.08 mm so that the L14/L15 air gap stays open at the rim. No production masks are modelled.
+- Clear apertures are inferred from Figure 1; the patent gives no clear-aperture table. The L05 rear face (S9) and the L06 rear face (S11) end where the figure ends their curves, at 20.4 and 18.2 mm, just above the F/1.47 marginal ray. The flat annuli the figure draws beyond them are treated as mounting flanges. S25 and S26 are reduced from 16.84 to 16.08 mm so that the L14/L15 air gap stays open at the rim. No production masks are modelled.
 - The stop radius (17.84 mm) gives the entrance-pupil radius implied by the patent's 86.5 mm and F/1.47. Because the model's focal length is 86.51 mm, the nominal F-number is 1.4702.
 - The chief ray reaches the full-frame 21.65 mm half-diagonal at about 13.94°, with no rim clipping; the patent states a 14.02° half-field.
-- The model holds focus at infinity only. Production apertures, mechanical masks, MTF, relative illumination, true glass dispersion and close-focus performance are not established by the source.
+- The model holds focus at infinity only. Production apertures, mechanical masks, MTF, relative illumination, the production glasses and their partial dispersions, and close-focus performance are not established by the source.
 
 ## Sources
 
 - [CN 120686438 A, DPMA document viewer](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=CN120686438A): Tables 1–4 (pp. 11–13), Figure 1 and the aberration figures; Examples 2 and 3 (pp. 14–20).
 - Original filing description, CN 202410294011.9, filed 2024-03-14.
+- [Viltrox AF 85mm F1.4 Pro FE product page](https://viltrox.com/products/af-85mm-f1-4-fe), checked 2026-10-19.
 - [Viltrox AF 85mm F1.4 Pro Z product page](https://viltrox.com/products/af-85mm-f1-4-z), checked 2026-10-19.
