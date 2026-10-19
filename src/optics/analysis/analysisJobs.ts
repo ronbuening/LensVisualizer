@@ -9,12 +9,8 @@ import type { FieldGeometryState } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
 import type { AnalysisSamplingOptions } from "./analysisQuality.js";
-import {
-  computeComaAnalysisForState2,
-  computeFieldCurvatureBundle2,
-  computeFieldCurvatureBundleForState2,
-  computeFieldCurvatureForState2,
-} from "./aberrations.js";
+import { computeComaAnalysisForState2 } from "./aberrations.js";
+import { computeFieldCurvature, computeFieldCurvatureBundle } from "./aberration/fieldCurvature.js";
 import { computeBokehPreviewPair2, computeBokehPreviewPairForState2 } from "./bokeh.js";
 import {
   computeChromaticAnalysis2,
@@ -115,28 +111,8 @@ export const analysisJobs2 = {
     );
   },
 
-  computeFieldCurvatureBundle(
-    L: RuntimeLens,
-    zPos: number[],
-    focusT: number,
-    zoomT: number,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    aberrationT = 0,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeFieldCurvatureBundle2(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      aberrationT,
-      fieldGeometry,
-      sampling,
-    );
+  computeFieldCurvatureBundle(request: AnalysisRequest) {
+    return computeFieldCurvatureBundle(request);
   },
 
   computeChromaticAnalysis(
@@ -241,25 +217,12 @@ export const analysisJobsForState2 = {
     return computeSphericalAberrationBlurCharacter(request, baseResult);
   },
 
-  computeFieldCurvature(
-    state: PreparedOpticalState,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    chromatic = false,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeFieldCurvatureForState2(state, currentEPSD, currentPhysStopSD, chromatic, fieldGeometry, sampling);
+  computeFieldCurvature(request: AnalysisRequest, chromatic = false) {
+    return computeFieldCurvature(request, chromatic);
   },
 
-  computeFieldCurvatureBundle(
-    state: PreparedOpticalState,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeFieldCurvatureBundleForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry, sampling);
+  computeFieldCurvatureBundle(request: AnalysisRequest) {
+    return computeFieldCurvatureBundle(request);
   },
 
   computeChromaticAnalysis(

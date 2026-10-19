@@ -1,5 +1,10 @@
 import { useMemo } from "react";
-import { analysisJobsForState2, summarizeChromaticFieldFocus2 } from "../../../optics/compat.js";
+import {
+  createAnalysisRequest,
+  createAnalysisComputationContext,
+  summarizeChromaticFieldFocus,
+} from "../../../optics/analysis.js";
+import { analysisJobsForState2 } from "../../../optics/compat.js";
 import {
   CHROMATIC_CHANNEL_ORDER,
   chromaticChannelLineList,
@@ -131,6 +136,22 @@ function CenteredChromaticTab({
   analysisContext,
 }: ChromaticTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
+  const fieldRequest = useMemo(
+    () =>
+      analysisContext?.request ??
+      createAnalysisRequest({
+        preparedState,
+        dynamicEFL: L.EFL,
+        currentEPSD,
+        currentPhysStopSD,
+        fieldGeometry,
+      }),
+    [analysisContext, preparedState, L, currentEPSD, currentPhysStopSD, fieldGeometry],
+  );
+  const fieldContext = useMemo(
+    () => analysisContext ?? createAnalysisComputationContext(fieldRequest),
+    [analysisContext, fieldRequest],
+  );
   const channelReference = lensChromaticReference(L.elements);
   const analysis = useMemo(
     () =>
@@ -150,18 +171,11 @@ function CenteredChromaticTab({
   const fieldFocus = useMemo(
     () =>
       probe("computeChromaticFieldFocusSummary", () => {
-        const bundle =
-          analysisContext?.computeFieldCurvatureBundle() ??
-          analysisJobsForState2.computeFieldCurvatureBundle(
-            preparedState,
-            currentEPSD,
-            currentPhysStopSD,
-            fieldGeometry ?? undefined,
-          );
+        const bundle = fieldContext.computeFieldCurvatureBundle();
         const result = bundle.chromaticFieldCurvature;
-        return { result, summary: summarizeChromaticFieldFocus2(result) };
+        return { result, summary: summarizeChromaticFieldFocus(result) };
       }),
-    [analysisContext, preparedState, currentEPSD, currentPhysStopSD, fieldGeometry],
+    [fieldContext],
   );
   const rayTraceAnalysis = useMemo(
     () =>

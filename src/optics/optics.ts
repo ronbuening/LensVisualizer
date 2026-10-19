@@ -76,7 +76,6 @@ export {
   computeChromaticRayFanSpread2 as computeChromaticRayFanSpread,
   computeLateralColorCurve2 as computeLateralColorCurve,
   computeLongitudinalChromaticFocus2 as computeLongitudinalChromaticFocus,
-  summarizeChromaticFieldFocus2 as summarizeChromaticFieldFocus,
   wavelengthNd2 as wavelengthNd,
   type SurfaceIndexResolver2 as SurfaceIndexResolver,
 } from "./compat.js";
@@ -93,3 +92,5 @@ export { stopInnerBlockedSemiDiameter } from "./stopObstruction.js";
 export { formatDist, formatFNumber, formatPetzvalRadius, marketedApertureNote } from "./opticsFormat.js";
 
 export type { RuntimeSkewRayTraceResult as SkewRayTraceResult } from "./trace/runtimeRayResult.js";
+
+export { summarizeChromaticFieldFocus } from "./analysis/aberration/fieldCurvature.js";

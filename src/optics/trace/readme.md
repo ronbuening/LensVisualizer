@@ -85,7 +85,7 @@ flowchart LR
 | `aperture.ts` | Aperture helper module | same folder, src/optics/types.ts | same folder (4), src/optics/analysis | ApertureState, ApertureEvaluation, evaluateAperture, isInsideActiveAperture |
 | `bulkAbsorption.ts` | Bulk Absorption helper module | same folder, src/optics/types.ts | same folder (2), src/optics/analysis, src/optics/perspective | transmissionTraceCapture, bulkTransmissionForTrace |
 | `capture.ts` | Capture helper module | same folder (2), src/optics/geometry, src/optics/types.ts, src/types | same folder (3) | TraceRecorder, createTraceRecorder |
-| `chiefRelative.ts` | Chief Relative helper module | same folder (2), src/types | src/optics/aberration, src/optics/optics.ts | traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic |
+| `chiefRelative.ts` | Chief Relative helper module | same folder (2), src/types | src/optics/analysis, src/optics/optics.ts | traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic |
 | `foldedDiagnostics.ts` | Folded Diagnostics helper module | same folder, src/types | same folder (2) | surfaceLabel, pushClipEvent, buildTraceDiagnostics |
 | `generalizedTrace.ts` | Generalized Trace helper module | same folder (6), src/optics/math, src/optics/types.ts, src/types | same folder (2) | traceGeneralized |
 | `geometry.ts` | Geometry helper module | same folder (3) | src/optics/first-order (2), src/optics/prescription, src/optics/state | createTraceGeometry |

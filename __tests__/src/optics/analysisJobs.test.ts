@@ -1,3 +1,4 @@
+import { computeFieldCurvatureBundle } from "../../../src/optics/analysis.js";
 import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
 import { analysisJobs2, analysisJobsForState2, prepareRuntimeState } from "../../../src/optics/compat.js";
@@ -27,9 +28,11 @@ describe("analysis job facade", () => {
     expect(analysisJobsForState2.computeVignettingCurve(state, currentEPSD, currentPhysStopSD)).toEqual(
       analysisJobs2.computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
     );
-    expect(analysisJobsForState2.computeFieldCurvatureBundle(state, currentEPSD, currentPhysStopSD)).toEqual(
-      analysisJobs2.computeFieldCurvatureBundle(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    const fieldRequest = createAnalysisRequest({ preparedState: state, dynamicEFL, currentEPSD, currentPhysStopSD });
+    expect(analysisJobsForState2.computeFieldCurvatureBundle(fieldRequest)).toEqual(
+      computeFieldCurvatureBundle(fieldRequest),
     );
+    expect(analysisJobs2.computeFieldCurvatureBundle(fieldRequest)).toEqual(computeFieldCurvatureBundle(fieldRequest));
     expect(analysisJobsForState2.computeChromaticRayFanAnalysis(state, currentEPSD, currentPhysStopSD)).toEqual(
       analysisJobs2.computeChromaticRayFanAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
     );

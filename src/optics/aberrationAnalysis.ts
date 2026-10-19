@@ -18,7 +18,7 @@ export {
   computeMeridionalComa,
   computeSagittalComa,
 } from "./aberration/coma.js";
-export { computeFieldCurvature, computeFieldCurvatureBundle } from "./aberration/fieldCurvature.js";
+export { computeFieldCurvature, computeFieldCurvatureBundle } from "./analysis/aberration/fieldCurvature.js";
 export {
   computeProjectionAwareOffAxisFieldGeometry,
   computeStateAwareOffAxisFieldGeometry,

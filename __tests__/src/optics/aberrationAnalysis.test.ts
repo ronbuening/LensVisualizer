@@ -144,11 +144,11 @@ describe("computeSphericalAberration", () => {
 
     const result = computeSphericalAberration(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
       }),
     );
     expect(result).not.toBeNull();
@@ -169,11 +169,11 @@ describe("computeSphericalAberration", () => {
 
     const result = computeSphericalAberration(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
       }),
     );
     expect(result).not.toBeNull();
@@ -187,11 +187,11 @@ describe("computeSphericalAberration", () => {
 
     const result = computeSphericalAberration(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
         aberrationT: 0,
       }),
     );
@@ -210,11 +210,11 @@ describe("computeSphericalAberration", () => {
 
     const result = computeSphericalAberration(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
       }),
     );
     expect(result).not.toBeNull();
@@ -236,11 +236,11 @@ describe("computeSphericalAberration", () => {
 
     const result = computeSphericalAberration(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
       }),
     );
     expect(result).not.toBeNull();
@@ -253,7 +253,7 @@ describe("computeSphericalAberration", () => {
     const { z: zPos } = doLayout(0, 0, L);
 
     const result = computeSphericalAberration(
-      analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 15 }),
+      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 15 }),
     );
     expect(result).not.toBeNull();
     expect(result!.longitudinalSaMm).toBeLessThan(0);
@@ -270,11 +270,11 @@ describe("computeSphericalAberration", () => {
     const nearAxisIntercept = axialIntercept(nearAxisRay.y, nearAxisRay.u, lastSurfZ);
     const result = computeSphericalAberration(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
       }),
     );
     expect(result).not.toBeNull();
@@ -291,7 +291,7 @@ describe("computeSphericalAberration", () => {
     const wideOpen = apertureAt(L, 0, 0);
     const saWide = computeSphericalAberration(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
         currentEPSD: wideOpen.currentEPSD,
@@ -303,7 +303,7 @@ describe("computeSphericalAberration", () => {
     const stoppedDown = apertureAt(L, 0, 0.7);
     const saStopped = computeSphericalAberration(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
         currentEPSD: stoppedDown.currentEPSD,
@@ -329,11 +329,11 @@ describe("computeSphericalAberration", () => {
 
     const result = computeSphericalAberration(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0.5,
         zoomT: 0,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
       }),
     );
     expect(result).not.toBeNull();
@@ -380,11 +380,11 @@ describe("computeSphericalAberration", () => {
 
     const result = computeSphericalAberration(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 1,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
       }),
     );
     expect(result).not.toBeNull();
@@ -400,11 +400,11 @@ describe("computeSphericalAberration", () => {
 
     const result = computeSphericalAberration(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
       }),
     );
     expect(result).not.toBeNull();
@@ -420,11 +420,11 @@ describe("computeSphericalAberration", () => {
       const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
       const result = computeSphericalAberration(
         analysisRequestAt(L, {
-          zPos: zPos,
+          zPos,
           focusT: 0,
           zoomT: 0,
-          currentEPSD: currentEPSD,
-          currentPhysStopSD: currentPhysStopSD,
+          currentEPSD,
+          currentPhysStopSD,
         }),
       );
       if (result === null) continue;
@@ -443,11 +443,11 @@ describe("computeSphericalAberration", () => {
       const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
       const result = computeSphericalAberration(
         analysisRequestAt(L, {
-          zPos: zPos,
+          zPos,
           focusT: 0,
           zoomT: 0,
-          currentEPSD: currentEPSD,
-          currentPhysStopSD: currentPhysStopSD,
+          currentEPSD,
+          currentPhysStopSD,
         }),
       );
       if (result === null) continue;
@@ -467,10 +467,10 @@ describe("computeSphericalAberration", () => {
     const tinyStopSD = currentEPSD * 0.01;
     const result = computeSphericalAberration(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
-        currentEPSD: currentEPSD,
+        currentEPSD,
         currentPhysStopSD: tinyStopSD,
       }),
     );
@@ -488,11 +488,11 @@ describe("computeSAProfile", () => {
 
     const profile = computeSAProfile(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
       }),
     );
     expect(profile.length).toBeGreaterThanOrEqual(2);
@@ -505,11 +505,11 @@ describe("computeSAProfile", () => {
 
     const profile = computeSAProfile(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
       }),
     );
     for (const { fraction } of profile) {
@@ -525,11 +525,11 @@ describe("computeSAProfile", () => {
 
     const profile = computeSAProfile(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
       }),
     );
     for (const { transverseSaMm } of profile) {
@@ -544,11 +544,11 @@ describe("computeSAProfile", () => {
 
     const profile = computeSAProfile(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
         aberrationT: 0,
       }),
     );
@@ -569,20 +569,20 @@ describe("computeSAProfile", () => {
 
     const result = computeSphericalAberration(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
       }),
     );
     const profile = computeSAProfile(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
       }),
     );
 
@@ -599,11 +599,11 @@ describe("computeSAProfile", () => {
 
     const profile = computeSAProfile(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
       }),
     );
     expect(profile.length).toBeGreaterThan(0);
@@ -617,7 +617,7 @@ describe("computeSAProfile", () => {
     const { z: zPos } = doLayout(0, 0, L);
 
     const profile = computeSAProfile(
-      analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 15 }),
+      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 15 }),
     );
     expect(profile.length).toBeGreaterThan(1);
     const nearAxisSample = profile.find((p) => p.fraction === NEAR_AXIS_REAL_FRAC);
@@ -633,20 +633,20 @@ describe("computeSAProfile", () => {
 
     const result = computeSphericalAberration(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
       }),
     );
     const profile = computeSAProfile(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
       }),
     );
 
@@ -663,7 +663,7 @@ describe("computeSAProfile", () => {
     const { z: zPos } = doLayout(0, 0, L);
 
     const profile = computeSAProfile(
-      analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 0.5 }),
+      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 0.5 }),
     );
     expect(profile).toEqual([]);
   });
@@ -679,7 +679,7 @@ describe("computeSAProfile", () => {
 
     const stoppedProfile = computeSAProfile(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 0,
         currentEPSD: stoppedDown.currentEPSD,
@@ -705,11 +705,11 @@ describe("computeSAProfile", () => {
 
     const profile = computeSAProfile(
       analysisRequestAt(L, {
-        zPos: zPos,
+        zPos,
         focusT: 0,
         zoomT: 1,
-        currentEPSD: currentEPSD,
-        currentPhysStopSD: currentPhysStopSD,
+        currentEPSD,
+        currentPhysStopSD,
       }),
     );
     expect(profile.length).toBeGreaterThanOrEqual(2);
@@ -721,10 +721,10 @@ describe("computeSphericalAberrationBlurCharacter", () => {
     const L = mkSingleElement();
     const { z: zPos } = doLayout(0, 0, L);
     const baseResult = computeSphericalAberration(
-      analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 15 }),
+      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 15 }),
     );
     const blurCharacter = computeSphericalAberrationBlurCharacter(
-      analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 15, aberrationT: 0 }),
+      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 15, aberrationT: 0 }),
       baseResult,
     );
 
@@ -752,16 +752,14 @@ describe("aperture-closed and degenerate-lens guards", () => {
       "computeSphericalAberration",
       (epSD: number) =>
         computeSphericalAberration(
-          analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, currentEPSD: epSD, currentPhysStopSD: 1 }),
+          analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: epSD, currentPhysStopSD: 1 }),
         ),
       null,
     ],
     [
       "computeSAProfile",
       (epSD: number) =>
-        computeSAProfile(
-          analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, currentEPSD: epSD, currentPhysStopSD: 1 }),
-        ),
+        computeSAProfile(analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: epSD, currentPhysStopSD: 1 })),
       [],
     ],
     [
@@ -769,7 +767,7 @@ describe("aperture-closed and degenerate-lens guards", () => {
       (epSD: number) =>
         computeSphericalAberrationBlurCharacter(
           analysisRequestAt(L, {
-            zPos: zPos,
+            zPos,
             focusT: 0,
             zoomT: 0,
             currentEPSD: epSD,
@@ -1398,7 +1396,15 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.fieldFractions).toEqual(FIELD_CURVATURE_FIELD_FRACTIONS);
     expect(result!.curveFieldFractions).toEqual(FIELD_CURVATURE_CURVE_FIELD_FRACTIONS);
@@ -1419,11 +1425,54 @@ describe("computeFieldCurvature", () => {
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, zoomT, 0);
     const geometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
 
-    expect(computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, false, 0, geometry)).toEqual(
-      computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    expect(
+      computeFieldCurvature(
+        analysisRequestAt(L, {
+          zPos,
+          focusT,
+          zoomT,
+          currentEPSD,
+          currentPhysStopSD,
+          aberrationT: 0,
+          fieldGeometry: geometry,
+        }),
+        false,
+      ),
+    ).toEqual(
+      computeFieldCurvature(
+        analysisRequestAt(L, {
+          zPos,
+          focusT,
+          zoomT,
+          currentEPSD,
+          currentPhysStopSD,
+        }),
+      ),
     );
-    expect(computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, true, 0, geometry)).toEqual(
-      computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, true),
+    expect(
+      computeFieldCurvature(
+        analysisRequestAt(L, {
+          zPos,
+          focusT,
+          zoomT,
+          currentEPSD,
+          currentPhysStopSD,
+          aberrationT: 0,
+          fieldGeometry: geometry,
+        }),
+        true,
+      ),
+    ).toEqual(
+      computeFieldCurvature(
+        analysisRequestAt(L, {
+          zPos,
+          focusT,
+          zoomT,
+          currentEPSD,
+          currentPhysStopSD,
+        }),
+        true,
+      ),
     );
   });
 
@@ -1435,13 +1484,45 @@ describe("computeFieldCurvature", () => {
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, zoomT, 0);
     const geometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
 
-    const bundle = computeFieldCurvatureBundle(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, 0, geometry);
+    const bundle = computeFieldCurvatureBundle(
+      analysisRequestAt(L, {
+        zPos,
+        focusT,
+        zoomT,
+        currentEPSD,
+        currentPhysStopSD,
+        aberrationT: 0,
+        fieldGeometry: geometry,
+      }),
+    );
 
     expect(bundle.fieldCurvature).toEqual(
-      computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, false, 0, geometry),
+      computeFieldCurvature(
+        analysisRequestAt(L, {
+          zPos,
+          focusT,
+          zoomT,
+          currentEPSD,
+          currentPhysStopSD,
+          aberrationT: 0,
+          fieldGeometry: geometry,
+        }),
+        false,
+      ),
     );
     expect(bundle.chromaticFieldCurvature).toEqual(
-      computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, true, 0, geometry),
+      computeFieldCurvature(
+        analysisRequestAt(L, {
+          zPos,
+          focusT,
+          zoomT,
+          currentEPSD,
+          currentPhysStopSD,
+          aberrationT: 0,
+          fieldGeometry: geometry,
+        }),
+        true,
+      ),
     );
   });
 
@@ -1451,7 +1532,15 @@ describe("computeFieldCurvature", () => {
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const geometry = computeAnalysisFieldGeometryAtState(0, 0, L);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     const edgeField = result!.fields.find((field) => field.fieldFraction === 1);
     expect(edgeField).toBeDefined();
@@ -1464,7 +1553,15 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.curveFields.length).toBeGreaterThan(result!.fields.length);
 
@@ -1486,7 +1583,15 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 1, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 1, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 1, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 1,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(isFinite(result!.maxAstigmaticDifferenceUm)).toBe(true);
     expect(isFinite(result!.edgeTangentialShiftMm)).toBe(true);
@@ -1498,7 +1603,15 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
 
     const field = result!.fields.find((sample) => sample.fieldFraction === 0.75);
@@ -1549,7 +1662,15 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.fields[0].fieldFraction).toBe(0);
     expect(result!.fields[0].astigmaticDifferenceUm).toBeCloseTo(0, 8);
@@ -1560,7 +1681,15 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
 
     const centerField = result!.fields[0];
@@ -1576,7 +1705,15 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
 
     const offAxisField = result!.fields.find((field) => field.usable && field.fieldFraction === 0.75);
@@ -1592,7 +1729,15 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
 
     const offAxisFields = result!.fields.filter((field) => field.usable && field.fieldFraction > 0);
@@ -1605,7 +1750,15 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
 
     const offAxisField = [...result!.fields].reverse().find((field) => field.usable && field.fieldFraction > 0);
@@ -1622,8 +1775,24 @@ describe("computeFieldCurvature", () => {
     const { z: zInfinity } = doLayout(0, 0, L);
     const { z: zClose } = doLayout(0.8, 0, L);
 
-    const atInfinity = computeFieldCurvature(L, zInfinity, 0, 0, infinity.currentEPSD, infinity.currentPhysStopSD);
-    const atClose = computeFieldCurvature(L, zClose, 0.8, 0, close.currentEPSD, close.currentPhysStopSD);
+    const atInfinity = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos: zInfinity,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: infinity.currentEPSD,
+        currentPhysStopSD: infinity.currentPhysStopSD,
+      }),
+    );
+    const atClose = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos: zClose,
+        focusT: 0.8,
+        zoomT: 0,
+        currentEPSD: close.currentEPSD,
+        currentPhysStopSD: close.currentPhysStopSD,
+      }),
+    );
 
     expect(atInfinity).not.toBeNull();
     expect(atClose).not.toBeNull();
@@ -1637,8 +1806,24 @@ describe("computeFieldCurvature", () => {
     const { z: zWide } = doLayout(0, 0, L);
     const { z: zTele } = doLayout(0, 1, L);
 
-    const atWide = computeFieldCurvature(L, zWide, 0, 0, wide.currentEPSD, wide.currentPhysStopSD);
-    const atTele = computeFieldCurvature(L, zTele, 0, 1, tele.currentEPSD, tele.currentPhysStopSD);
+    const atWide = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos: zWide,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: wide.currentEPSD,
+        currentPhysStopSD: wide.currentPhysStopSD,
+      }),
+    );
+    const atTele = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos: zTele,
+        focusT: 0,
+        zoomT: 1,
+        currentEPSD: tele.currentEPSD,
+        currentPhysStopSD: tele.currentPhysStopSD,
+      }),
+    );
 
     expect(atWide).not.toBeNull();
     expect(atTele).not.toBeNull();
@@ -1649,8 +1834,15 @@ describe("computeFieldCurvature", () => {
     const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
 
-    expect(computeFieldCurvature(L, zPos, 0, 0, 0, 0)).toBeNull();
-    expect(computeFieldCurvature({ N: 0, S: [] } as unknown as RuntimeLens, [], 0, 0, 10, 5)).toBeNull();
+    expect(
+      computeFieldCurvature(analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 0, currentPhysStopSD: 0 })),
+    ).toBeNull();
+    const request = analysisRequestForLens(L);
+    const emptyLens = { ...request.preparedGeometry.lens };
+    associateRuntimeView(emptyLens, { N: 0, S: [] } as unknown as RuntimeLens);
+    expect(
+      computeFieldCurvature({ ...request, preparedGeometry: { ...request.preparedGeometry, lens: emptyLens } }),
+    ).toBeNull();
   });
 
   it("returns zero astigmatism at center for a second lens (Sonnar 50/1.5)", () => {
@@ -1658,7 +1850,15 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.fields[0].astigmaticDifferenceMm).toBeCloseTo(0, 8);
     expect(result!.fields[0].astigmaticDifferenceUm).toBeCloseTo(0, 8);
@@ -1669,7 +1869,15 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
 
     const offAxisFields = result!.fields.filter((field) => field.usable && field.fieldFraction > 0);
@@ -1683,7 +1891,15 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
 
     // Compare 25% and 50% fields: at small angles, Petzval shift ~ h^2
@@ -1706,7 +1922,15 @@ describe("computeFieldCurvature", () => {
     // Converging system should have positive petzvalSum
     expect(L.petzvalSum).toBeGreaterThan(0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
 
     // Check the 50% field — all three curves should shift in the same direction
@@ -1728,7 +1952,15 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
 
     const offAxisFields = result!.fields.filter((f) => f.usable && f.fieldFraction > 0);
@@ -1744,7 +1976,15 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
 
     // The shared range should cover all diagnostic shifts
@@ -1762,7 +2002,15 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
 
     // Off-axis fields should have both parabasal and diagnostic values
@@ -1784,7 +2032,16 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, true);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+      true,
+    );
     expect(result).not.toBeNull();
     expect(result!.chromaticFocusSpreadMm).not.toBeNull();
     expect(result!.chromaticFocusSpreadMm).toBeGreaterThan(0);
@@ -1810,7 +2067,15 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.chromaticFocusSpreadMm).toBeNull();
     for (const field of result!.fields) {
@@ -1823,7 +2088,16 @@ describe("computeFieldCurvature", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, true);
+    const result = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+      true,
+    );
     expect(result).not.toBeNull();
 
     const usableFields = result!.fields.filter((f) => f.usable && f.chromaticFieldShifts !== null);
@@ -1871,16 +2145,17 @@ describe("analytic chief-relative parabasal focus", () => {
     });
     const { z } = doLayout(0, 0, L);
     const result = computeFieldCurvature(
-      L,
-      z,
-      0,
-      0,
-      1,
-      15,
+      analysisRequestAt(L, {
+        zPos: z,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: 1,
+        currentPhysStopSD: 15,
+        aberrationT: 0,
+        fieldGeometry: { halfFieldDeg: 0.001, yRatio: 1, b: 1, epRatio: 1 },
+        sampling: { fieldCurvatureFieldFractions: [0, 0.001], fieldCurvatureCurveFieldFractions: [0, 0.001] },
+      }),
       true,
-      0,
-      { halfFieldDeg: 0.001, yRatio: 1, b: 1, epRatio: 1 },
-      { fieldCurvatureFieldFractions: [0, 0.001], fieldCurvatureCurveFieldFractions: [0, 0.001] },
     );
     expect(result).not.toBeNull();
     const center = result!.fields[0];
@@ -1904,16 +2179,17 @@ describe("analytic chief-relative parabasal focus", () => {
     expect(center.sagittalBestFocusZ).toBe(center.tangentialBestFocusZ);
     expect(center.chromaticFieldShifts?.map(({ channel }) => channel)).toEqual(["R", "G", "B", "V"]);
     const clipped = computeFieldCurvature(
-      L,
-      z,
-      0,
-      0,
-      1,
-      0.005,
+      analysisRequestAt(L, {
+        zPos: z,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: 1,
+        currentPhysStopSD: 0.005,
+        aberrationT: 0,
+        fieldGeometry: { halfFieldDeg: 0.001, yRatio: 1, b: 1, epRatio: 1 },
+        sampling: { fieldCurvatureFieldFractions: [0, 0.001], fieldCurvatureCurveFieldFractions: [0, 0.001] },
+      }),
       false,
-      0,
-      { halfFieldDeg: 0.001, yRatio: 1, b: 1, epRatio: 1 },
-      { fieldCurvatureFieldFractions: [0, 0.001], fieldCurvatureCurveFieldFractions: [0, 0.001] },
     );
     expect(clipped).toBeNull();
   });

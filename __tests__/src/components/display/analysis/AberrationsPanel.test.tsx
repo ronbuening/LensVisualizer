@@ -44,8 +44,6 @@ vi.mock("../../../../../src/optics/aberrationAnalysis.js", () => ({
   computeMeridionalComa: mockComputeMeridionalComa,
   computeSagittalComa: mockComputeSagittalComa,
   computeComaPointCloudPreview: mockComputeComaPreview,
-  computeFieldCurvature: mockComputeFieldCurvature,
-  computeFieldCurvatureBundle: mockComputeFieldCurvatureBundle,
 }));
 
 vi.mock("../../../../../src/optics/analysis/aberration/spherical.js", () => ({
@@ -53,6 +51,16 @@ vi.mock("../../../../../src/optics/analysis/aberration/spherical.js", () => ({
   computeSphericalAberrationBlurCharacter: mockComputeSphericalAberrationBlurCharacter,
   computeSAProfile: mockComputeSAProfile,
 }));
+
+vi.mock("../../../../../src/optics/analysis/aberration/fieldCurvature.js", async (importOriginal) => {
+  const actual =
+    await importOriginal<typeof import("../../../../../src/optics/analysis/aberration/fieldCurvature.js")>();
+  return {
+    ...actual,
+    computeFieldCurvature: mockComputeFieldCurvature,
+    computeFieldCurvatureBundle: mockComputeFieldCurvatureBundle,
+  };
+});
 
 const theme = {
   panelBg: "#111",
@@ -587,14 +595,19 @@ describe("AberrationsPanel", () => {
     );
     expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledTimes(1);
     expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledWith(
-      baseProps.L,
-      baseProps.zPos,
-      baseProps.focusT,
-      baseProps.zoomT,
-      baseProps.currentEPSD,
-      baseProps.currentPhysStopSD,
-      0.42,
-      undefined,
+      expect.objectContaining({
+        preparedGeometry: expect.objectContaining({
+          focusT: baseProps.focusT,
+          zoomT: baseProps.zoomT,
+          aberrationT: 0.42,
+          z: baseProps.zPos,
+        }),
+        aperture: {
+          entrancePupilSemiDiameterMm: baseProps.currentEPSD,
+          stopSemiDiameterMm: baseProps.currentPhysStopSD,
+        },
+        fieldGeometry: null,
+      }),
     );
     expect(mockComputeFieldCurvature).not.toHaveBeenCalled();
   });
@@ -602,8 +615,6 @@ describe("AberrationsPanel", () => {
   it("uses the prepared analysis state when supplied to aberration sections", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
     const preparedState = makePreparedState();
-    const preparedRuntime = runtimeView(preparedState.lens);
-    const preparedZ = [...preparedState.z];
 
     render(<AberrationsPanel {...baseProps} aberrationT={0.42} preparedState={preparedState} />);
 
@@ -636,24 +647,24 @@ describe("AberrationsPanel", () => {
       }),
     );
     expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledWith(
-      preparedRuntime,
-      preparedZ,
-      preparedState.focusT,
-      preparedState.zoomT,
-      baseProps.currentEPSD,
-      baseProps.currentPhysStopSD,
-      preparedState.aberrationT,
-      undefined,
-      undefined,
+      expect.objectContaining({
+        preparedGeometry: preparedState,
+        aperture: {
+          entrancePupilSemiDiameterMm: baseProps.currentEPSD,
+          stopSemiDiameterMm: baseProps.currentPhysStopSD,
+        },
+      }),
     );
   });
 
-  it("refreshes the request for every SA control and reuses unchanged renders", () => {
+  it("refreshes spherical and field requests for every control and reuses unchanged renders", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
     const { rerender } = render(<AberrationsPanel {...baseProps} />);
     const first = mockComputeSphericalAberration.mock.calls[0][0];
+    const firstField = mockComputeFieldCurvatureBundle.mock.calls[0][0];
     rerender(<AberrationsPanel {...baseProps} />);
     expect(mockComputeSphericalAberration).toHaveBeenCalledTimes(1);
+    expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledTimes(1);
 
     let props = { ...baseProps, aberrationT: 0 };
     for (const change of [
@@ -669,7 +680,11 @@ describe("AberrationsPanel", () => {
       props = { ...props, ...change };
       rerender(<AberrationsPanel {...props} />);
       expect(mockComputeSphericalAberration).toHaveBeenCalledTimes(count + 1);
+      expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledTimes(count + 1);
+      const fieldRequest = mockComputeFieldCurvatureBundle.mock.lastCall![0];
+      expect(fieldRequest).not.toBe(firstField);
       const request = mockComputeSphericalAberration.mock.lastCall![0];
+      expect(fieldRequest).toBe(request);
       expect(request).not.toBe(first);
       expect(request.preparedGeometry).toMatchObject({
         focusT: props.focusT,
@@ -683,7 +698,15 @@ describe("AberrationsPanel", () => {
       });
       rerender(<AberrationsPanel {...props} />);
       expect(mockComputeSphericalAberration).toHaveBeenCalledTimes(count + 1);
+      expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledTimes(count + 1);
     }
+    const count = mockComputeFieldCurvatureBundle.mock.calls.length;
+    const fieldGeometry = { halfFieldDeg: 12, yRatio: 0.8, b: 4, epRatio: 5 };
+    rerender(<AberrationsPanel {...props} fieldGeometry={fieldGeometry} />);
+    expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledTimes(count + 1);
+    expect(mockComputeFieldCurvatureBundle.mock.lastCall![0].fieldGeometry).toEqual(fieldGeometry);
+    rerender(<AberrationsPanel {...props} fieldGeometry={{ ...fieldGeometry }} />);
+    expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledTimes(count + 1);
   });
 
   it("forwards aberration-control state into coma calculations", () => {
@@ -749,14 +772,19 @@ describe("AberrationsPanel", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
     render(<AberrationsPanel {...baseProps} fieldGeometry={fieldGeometry} />);
     expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledWith(
-      baseProps.L,
-      baseProps.zPos,
-      baseProps.focusT,
-      baseProps.zoomT,
-      baseProps.currentEPSD,
-      baseProps.currentPhysStopSD,
-      0,
-      fieldGeometry,
+      expect.objectContaining({
+        preparedGeometry: expect.objectContaining({
+          focusT: baseProps.focusT,
+          zoomT: baseProps.zoomT,
+          aberrationT: 0,
+          z: baseProps.zPos,
+        }),
+        aperture: {
+          entrancePupilSemiDiameterMm: baseProps.currentEPSD,
+          stopSemiDiameterMm: baseProps.currentPhysStopSD,
+        },
+        fieldGeometry: fieldGeometry,
+      }),
     );
 
     cleanup();

@@ -1653,39 +1653,13 @@ function measureAberrationPanels(
     }
   } else {
     data.fieldCurvature = measure("data", "fieldCurvature", () =>
-      describeComputationOutput(
-        analysisJobsForState2.computeFieldCurvature(
-          snapshot.preparedState,
-          snapshot.currentEPSD,
-          snapshot.currentPhysStopSD,
-          false,
-          snapshot.fieldGeometry ?? undefined,
-          snapshot.analysisSampling,
-        ),
-      ),
+      describeComputationOutput(analysisJobsForState2.computeFieldCurvature(fieldCurvatureRequest(snapshot), false)),
     );
     data.chromaticFieldCurvature = measure("data", "chromaticFieldCurvature", () =>
-      describeComputationOutput(
-        analysisJobsForState2.computeFieldCurvature(
-          snapshot.preparedState,
-          snapshot.currentEPSD,
-          snapshot.currentPhysStopSD,
-          true,
-          snapshot.fieldGeometry ?? undefined,
-          snapshot.analysisSampling,
-        ),
-      ),
+      describeComputationOutput(analysisJobsForState2.computeFieldCurvature(fieldCurvatureRequest(snapshot), true)),
     );
     data.fieldCurvatureBundle = measure("data", "fieldCurvatureBundle", () =>
-      describeComputationOutput(
-        analysisJobsForState2.computeFieldCurvatureBundle(
-          snapshot.preparedState,
-          snapshot.currentEPSD,
-          snapshot.currentPhysStopSD,
-          snapshot.fieldGeometry ?? undefined,
-          snapshot.analysisSampling,
-        ),
-      ),
+      describeComputationOutput(analysisJobsForState2.computeFieldCurvatureBundle(fieldCurvatureRequest(snapshot))),
     );
     data.coma = measure("data", "coma", () =>
       describeComputationOutput(
@@ -1763,13 +1737,7 @@ function computeAberrationDataValues(snapshot: ScenarioSnapshot): AberrationData
   if (snapshot.L.isFoldedOptics || snapshot.movement.active) {
     return { sphericalAberration, saProfile, saBlurCharacter };
   }
-  const fieldCurvatureBundle = analysisJobsForState2.computeFieldCurvatureBundle(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
-    snapshot.analysisSampling,
-  );
+  const fieldCurvatureBundle = analysisJobsForState2.computeFieldCurvatureBundle(fieldCurvatureRequest(snapshot));
   const fieldCurvature = fieldCurvatureBundle.fieldCurvature;
   const chromaticFieldCurvature = fieldCurvatureBundle.chromaticFieldCurvature;
   const coma = analysisJobsForState2.computeComaAnalysis(
@@ -2325,6 +2293,18 @@ function describeComputationOutput(value: unknown): BenchmarkOutput {
 
 /** Stable no-op callback used for server-rendered interactive components. */
 const noop = () => {};
+
+/** Preserve the field-geometry override alongside the shared aperture and sampling snapshot. */
+function fieldCurvatureRequest(snapshot: ScenarioSnapshot) {
+  return createAnalysisRequest({
+    preparedState: snapshot.preparedState,
+    dynamicEFL: snapshot.dynamicEFL,
+    currentEPSD: snapshot.currentEPSD,
+    currentPhysStopSD: snapshot.currentPhysStopSD,
+    fieldGeometry: snapshot.fieldGeometry,
+    sampling: snapshot.analysisSampling,
+  });
+}
 
 /** Keep benchmark dispatch on the same current-state request as the drawer. */
 function sphericalRequest(snapshot: ScenarioSnapshot) {

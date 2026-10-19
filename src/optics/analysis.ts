@@ -32,3 +32,14 @@ export type {
 } from "./analysis/aberration/types.js";
 
 export { stateWithZ } from "./state/preparedGeometry.js";
+
+export {
+  computeFieldCurvature,
+  computeFieldCurvatureBundle,
+  summarizeChromaticFieldFocus,
+  type FieldCurvatureBundleResult,
+  type ChromaticChannelSpan,
+  type ChromaticFieldFocusFieldSummary,
+  type ChromaticFieldFocusSummary,
+} from "./analysis/aberration/fieldCurvature.js";
+export type { FieldCurvatureResult, FieldCurvatureFieldResult } from "./analysis/aberration/types.js";

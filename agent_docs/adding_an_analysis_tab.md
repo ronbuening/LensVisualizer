@@ -46,7 +46,7 @@ the prepared state / slider inputs you actually use.
   `src/optics/analysis/<family>/`, taking `AnalysisRequest`. Expose migrated helpers through
   `src/optics/analysis.ts`; implementation leaves import lower-level sources directly.
   The component formats and renders. Summary/cardinals/breathing/group movement and spherical aberration/SA
-  profile/blur character/best focus use this path;
+  profile/blur character/best focus and field curvature/astigmatism/chromatic field-focus summary use this path;
   other existing families retain their adapters until migrated.
 - Reuse `analysisContext.request`, or memoize `createAnalysisRequest` from the supplied prepared
   state and every used control/aperture/EFL/field input. Memoize the context/result on that identity.

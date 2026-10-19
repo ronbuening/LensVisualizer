@@ -29,7 +29,6 @@ import type {
   RuntimeLens,
 } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
-import type { FieldCurvatureFieldResult, FieldCurvatureResult } from "./aberration/types.js";
 import { zPosForPreparedAnalysis2 } from "./preparedStateAdapters.js";
 
 export type {
@@ -58,36 +57,6 @@ export interface ChromaticRayFanAnalysis2 {
   offAxisFieldAngleDeg: number;
   onAxisAttemptedRayCount: number;
   offAxisAttemptedRayCount: number;
-}
-
-export interface ChromaticChannelSpan2 {
-  minChannel: ChromaticChannel;
-  maxChannel: ChromaticChannel;
-  minShiftMm: number;
-  maxShiftMm: number;
-  spreadMm: number;
-  spreadUm: number;
-}
-
-export interface ChromaticFieldFocusFieldSummary2 {
-  fieldFraction: number;
-  label: string;
-  fieldAngleDeg: number;
-  tangential: ChromaticChannelSpan2;
-  sagittal: ChromaticChannelSpan2;
-  maxFocusSpreadMm: number;
-  maxFocusSpreadUm: number;
-}
-
-export interface ChromaticFieldFocusSummary2 {
-  source: "curve" | "fields";
-  fields: ChromaticFieldFocusFieldSummary2[];
-  usableFieldCount: number;
-  maxTangentialSpreadMm: number;
-  maxSagittalSpreadMm: number;
-  maxFocusSpreadMm: number;
-  maxFocusFieldFraction: number;
-  edgeFocusSpreadMm: number | null;
 }
 
 function zPosFromState(state: PreparedOpticalState): number[] {
@@ -301,72 +270,6 @@ export function computeChromaticRayFanAnalysisForState2(
     state.aberrationT,
     options,
   );
-}
-
-function channelSpan(
-  shifts: NonNullable<FieldCurvatureFieldResult["chromaticFieldShifts"]>,
-  direction: "tangentialShiftMm" | "sagittalShiftMm",
-): ChromaticChannelSpan2 {
-  const sorted = [...shifts].sort((a, b) => a[direction] - b[direction]);
-  const min = sorted[0];
-  const max = sorted[sorted.length - 1];
-  const spreadMm = max[direction] - min[direction];
-  return {
-    minChannel: min.channel,
-    maxChannel: max.channel,
-    minShiftMm: min[direction],
-    maxShiftMm: max[direction],
-    spreadMm,
-    spreadUm: spreadMm * 1000,
-  };
-}
-
-function chromaticFieldSummary(field: FieldCurvatureFieldResult): ChromaticFieldFocusFieldSummary2 | null {
-  const shifts = field.chromaticFieldShifts?.filter(
-    (shift) => isFinite(shift.tangentialShiftMm) && isFinite(shift.sagittalShiftMm),
-  );
-  if (!field.usable || !shifts || shifts.length < 2) return null;
-  const tangential = channelSpan(shifts, "tangentialShiftMm");
-  const sagittal = channelSpan(shifts, "sagittalShiftMm");
-  const maxFocusSpreadMm = Math.max(tangential.spreadMm, sagittal.spreadMm);
-  return {
-    fieldFraction: field.fieldFraction,
-    label: field.label,
-    fieldAngleDeg: field.fieldAngleDeg,
-    tangential,
-    sagittal,
-    maxFocusSpreadMm,
-    maxFocusSpreadUm: maxFocusSpreadMm * 1000,
-  };
-}
-
-export function summarizeChromaticFieldFocus2(result: FieldCurvatureResult | null): ChromaticFieldFocusSummary2 | null {
-  if (result === null) return null;
-
-  const curveSummaries = result.curveFields
-    .map(chromaticFieldSummary)
-    .filter((field): field is ChromaticFieldFocusFieldSummary2 => field !== null);
-  const fieldSummaries = result.fields
-    .map(chromaticFieldSummary)
-    .filter((field): field is ChromaticFieldFocusFieldSummary2 => field !== null);
-  const source: ChromaticFieldFocusSummary2["source"] = curveSummaries.length > 0 ? "curve" : "fields";
-  const fields = source === "curve" ? curveSummaries : fieldSummaries;
-  if (fields.length === 0) return null;
-
-  const maxFocusField = fields.reduce((best, field) => (field.maxFocusSpreadMm > best.maxFocusSpreadMm ? field : best));
-  const edgeFocusSpreadMm =
-    fieldSummaries.length > 0 ? fieldSummaries[fieldSummaries.length - 1].maxFocusSpreadMm : null;
-
-  return {
-    source,
-    fields,
-    usableFieldCount: fields.length,
-    maxTangentialSpreadMm: Math.max(...fields.map((field) => field.tangential.spreadMm)),
-    maxSagittalSpreadMm: Math.max(...fields.map((field) => field.sagittal.spreadMm)),
-    maxFocusSpreadMm: maxFocusField.maxFocusSpreadMm,
-    maxFocusFieldFraction: maxFocusField.fieldFraction,
-    edgeFocusSpreadMm,
-  };
 }
 
 /**

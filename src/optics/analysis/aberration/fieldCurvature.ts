@@ -1,37 +1,35 @@
 /**
  * Field-curvature analysis — computes sagittal/tangential best-focus surfaces across field height.
  *
- * Uses state-aware off-axis bundles and chromatic field shifts to summarize Petzval-like focus bend for display tabs.
+ * Keeps parabasal focus, real-ray diagnostics and the Petzval reference distinct, with chromatic focus reductions.
  */
 
-import { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "../trace/chiefRelative.js";
-import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
-import type {
-  ChromaticFieldShift,
-  FieldCurvatureFieldResult,
-  FieldCurvatureResult,
-} from "../analysis/aberration/types.js";
+import { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "../../trace/chiefRelative.js";
+import type { ChromaticChannel, RuntimeLens } from "../../../types/optics.js";
+import type { ChromaticFieldShift, FieldCurvatureFieldResult, FieldCurvatureResult } from "./types.js";
 import {
   FIELD_CURVATURE_CURVE_FIELD_FRACTIONS,
   FIELD_CURVATURE_FIELD_FRACTIONS,
   MERIDIONAL_COMA_SAMPLE_COUNT,
-} from "../analysis/aberration/types.js";
-import { sampleOrthogonalPupilFan } from "../analysis/sampling.js";
+} from "./types.js";
+import { sampleOrthogonalPupilFan } from "../sampling.js";
 import {
   computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
   type FieldGeometryState2 as FieldGeometryState,
-} from "../state/fieldAdapters.js";
-import { thick } from "../layout.js";
+} from "../../state/fieldAdapters.js";
+import { thick } from "../../layout.js";
 import {
   bestFocusPlaneForDirection,
   computeStateAwareOffAxisFieldGeometry,
   traceOffAxisChiefRay,
   traceOffAxisBundleFromSamples,
   type OffAxisFieldGeometry,
-} from "../analysis/aberration/offAxis.js";
-import { bestRelativeFocusPlane, type TransverseFocusHit } from "../analysis/aberration/shared.js";
-import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
-import type { AnalysisSamplingOptions } from "../analysis/analysisQuality.js";
+} from "./offAxis.js";
+import { bestRelativeFocusPlane, type TransverseFocusHit } from "./shared.js";
+import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
+import { runtimeView } from "../../prescription/runtimeView.js";
+import type { AnalysisRequest } from "../request.js";
+import type { AnalysisSamplingOptions } from "../analysisQuality.js";
 
 const FIELD_CURVATURE_MIN_SHARED_HALF_RANGE_MM = 0.1;
 const FIELD_CURVATURE_PARABASAL_RAY_HEIGHT_MM = 0.01;
@@ -634,29 +632,20 @@ function buildChromaticFieldCurvatureFromBase(
  * Compute monochrome and chromatic field-curvature results together.
  *
  * The monochrome result uses d-line tracing. The chromatic result reuses the
- * same base fields and adds R/G/B tangential and sagittal focus shifts.
+ * same base fields and adds R/G/B/V tangential and sagittal focus shifts.
  *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @param aberrationT - normalized aberration spacing slider
- * @param fieldGeometry - optional precomputed field geometry for the same state
+ * @param request - prepared geometry, current apertures, optional field geometry and sampling
  * @returns paired field-curvature results, each nullable when tracing is unusable
  */
-export function computeFieldCurvatureBundle(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-  fieldGeometry?: FieldGeometryState,
-  sampling: AnalysisSamplingOptions = {},
-): FieldCurvatureBundleResult {
+export function computeFieldCurvatureBundle(request: AnalysisRequest): FieldCurvatureBundleResult {
+  const state = request.preparedGeometry;
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const { focusT, zoomT, aberrationT } = state;
+  const currentEPSD = request.aperture.entrancePupilSemiDiameterMm;
+  const currentPhysStopSD = request.aperture.stopSemiDiameterMm;
+  const fieldGeometry = request.fieldGeometry ?? undefined;
+  const sampling = request.sampling;
   const base = computeFieldCurvatureBase(
     L,
     zPos,
@@ -690,29 +679,19 @@ export function computeFieldCurvatureBundle(
  * Positive shift is aft/toward the sensor; negative shift is fore/toward the lens.
  * Petzval shift is signed to match the tangential/sagittal longitudinal convention.
  *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @param chromatic - when true, return the chromatic R/G/B variant
- * @param aberrationT - normalized aberration spacing slider
- * @param fieldGeometry - optional precomputed field geometry for the same state
+ * @param request - prepared geometry, current apertures, optional field geometry and sampling
+ * @param chromatic - when true, return the chromatic R/G/B/V variant
  * @returns field-curvature result, or null when off-axis tracing is unusable
  */
-export function computeFieldCurvature(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  chromatic = false,
-  aberrationT = 0,
-  fieldGeometry?: FieldGeometryState,
-  sampling: AnalysisSamplingOptions = {},
-): FieldCurvatureResult | null {
+export function computeFieldCurvature(request: AnalysisRequest, chromatic = false): FieldCurvatureResult | null {
+  const state = request.preparedGeometry;
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const { focusT, zoomT, aberrationT } = state;
+  const currentEPSD = request.aperture.entrancePupilSemiDiameterMm;
+  const currentPhysStopSD = request.aperture.stopSemiDiameterMm;
+  const fieldGeometry = request.fieldGeometry ?? undefined;
+  const sampling = request.sampling;
   const base = computeFieldCurvatureBase(
     L,
     zPos,
@@ -736,4 +715,106 @@ export function computeFieldCurvature(
     base.stateGeometry,
     aberrationT,
   );
+}
+
+export interface ChromaticChannelSpan {
+  minChannel: ChromaticChannel;
+  maxChannel: ChromaticChannel;
+  minShiftMm: number;
+  maxShiftMm: number;
+  spreadMm: number;
+  spreadUm: number;
+}
+
+export interface ChromaticFieldFocusFieldSummary {
+  fieldFraction: number;
+  label: string;
+  fieldAngleDeg: number;
+  tangential: ChromaticChannelSpan;
+  sagittal: ChromaticChannelSpan;
+  maxFocusSpreadMm: number;
+  maxFocusSpreadUm: number;
+}
+
+export interface ChromaticFieldFocusSummary {
+  source: "curve" | "fields";
+  fields: ChromaticFieldFocusFieldSummary[];
+  usableFieldCount: number;
+  maxTangentialSpreadMm: number;
+  maxSagittalSpreadMm: number;
+  maxFocusSpreadMm: number;
+  maxFocusFieldFraction: number;
+  edgeFocusSpreadMm: number | null;
+}
+
+function channelSpan(
+  shifts: NonNullable<FieldCurvatureFieldResult["chromaticFieldShifts"]>,
+  direction: "tangentialShiftMm" | "sagittalShiftMm",
+): ChromaticChannelSpan {
+  const sorted = [...shifts].sort((a, b) => a[direction] - b[direction]);
+  const min = sorted[0];
+  const max = sorted[sorted.length - 1];
+  const spreadMm = max[direction] - min[direction];
+  return {
+    minChannel: min.channel,
+    maxChannel: max.channel,
+    minShiftMm: min[direction],
+    maxShiftMm: max[direction],
+    spreadMm,
+    spreadUm: spreadMm * 1000,
+  };
+}
+
+function chromaticFieldSummary(field: FieldCurvatureFieldResult): ChromaticFieldFocusFieldSummary | null {
+  const shifts = field.chromaticFieldShifts?.filter(
+    (shift) => isFinite(shift.tangentialShiftMm) && isFinite(shift.sagittalShiftMm),
+  );
+  if (!field.usable || !shifts || shifts.length < 2) return null;
+  const tangential = channelSpan(shifts, "tangentialShiftMm");
+  const sagittal = channelSpan(shifts, "sagittalShiftMm");
+  const maxFocusSpreadMm = Math.max(tangential.spreadMm, sagittal.spreadMm);
+  return {
+    fieldFraction: field.fieldFraction,
+    label: field.label,
+    fieldAngleDeg: field.fieldAngleDeg,
+    tangential,
+    sagittal,
+    maxFocusSpreadMm,
+    maxFocusSpreadUm: maxFocusSpreadMm * 1000,
+  };
+}
+
+/**
+ * Summarize chromatic focus spreads, preferring usable curve samples over named fields.
+ *
+ * @param result - chromatic field-curvature result in mm, or an unavailable result
+ * @returns ordered field spreads and their maximum, or null without usable channels
+ */
+export function summarizeChromaticFieldFocus(result: FieldCurvatureResult | null): ChromaticFieldFocusSummary | null {
+  if (result === null) return null;
+
+  const curveSummaries = result.curveFields
+    .map(chromaticFieldSummary)
+    .filter((field): field is ChromaticFieldFocusFieldSummary => field !== null);
+  const fieldSummaries = result.fields
+    .map(chromaticFieldSummary)
+    .filter((field): field is ChromaticFieldFocusFieldSummary => field !== null);
+  const source: ChromaticFieldFocusSummary["source"] = curveSummaries.length > 0 ? "curve" : "fields";
+  const fields = source === "curve" ? curveSummaries : fieldSummaries;
+  if (fields.length === 0) return null;
+
+  const maxFocusField = fields.reduce((best, field) => (field.maxFocusSpreadMm > best.maxFocusSpreadMm ? field : best));
+  const edgeFocusSpreadMm =
+    fieldSummaries.length > 0 ? fieldSummaries[fieldSummaries.length - 1].maxFocusSpreadMm : null;
+
+  return {
+    source,
+    fields,
+    usableFieldCount: fields.length,
+    maxTangentialSpreadMm: Math.max(...fields.map((field) => field.tangential.spreadMm)),
+    maxSagittalSpreadMm: Math.max(...fields.map((field) => field.sagittal.spreadMm)),
+    maxFocusSpreadMm: maxFocusField.maxFocusSpreadMm,
+    maxFocusFieldFraction: maxFocusField.fieldFraction,
+    edgeFocusSpreadMm,
+  };
 }

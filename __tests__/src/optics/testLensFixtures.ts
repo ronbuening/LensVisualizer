@@ -532,6 +532,8 @@ export function analysisRequestAt(
     aberrationT?: number;
     currentEPSD?: number;
     currentPhysStopSD?: number;
+    fieldGeometry?: import("../../../src/optics/optics.js").FieldGeometryState;
+    sampling?: import("../../../src/optics/analysis/analysisQuality.js").AnalysisSamplingOptions;
   },
 ) {
   const state = prepareRuntimeState(L, options.focusT ?? 0, options.zoomT ?? 0, options.aberrationT ?? 0);
@@ -540,5 +542,7 @@ export function analysisRequestAt(
     dynamicEFL: L.EFL,
     currentEPSD: options.currentEPSD ?? L.EP.epSD,
     currentPhysStopSD: options.currentPhysStopSD ?? L.stopPhysSD,
+    fieldGeometry: options.fieldGeometry,
+    sampling: options.sampling,
   });
 }

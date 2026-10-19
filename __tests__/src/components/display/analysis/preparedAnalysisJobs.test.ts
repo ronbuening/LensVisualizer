@@ -45,7 +45,6 @@ vi.mock("../../../../../src/optics/compat.js", async () => {
       computeChromaticRayFanAnalysis: mockComputeChromaticRayFanAnalysis,
       computeDistortionCurve: mockComputeDistortionCurve,
       computeDistortionFieldGrid: mockComputeDistortionFieldGrid,
-      computeFieldCurvatureBundle: mockComputeFieldCurvatureBundle,
       computeVignettingCurve: mockComputeVignettingCurve,
     },
     prepareRuntimeState: mockPrepareRuntimeState,
@@ -55,6 +54,12 @@ vi.mock("../../../../../src/optics/compat.js", async () => {
 vi.mock("../../../../../src/optics/analysis/summary/summary.js", () => ({
   computeOpticalSummary: mockComputeOpticalSummary,
 }));
+
+vi.mock("../../../../../src/optics/analysis/aberration/fieldCurvature.js", async (importOriginal) => {
+  const actual =
+    await importOriginal<typeof import("../../../../../src/optics/analysis/aberration/fieldCurvature.js")>();
+  return { ...actual, computeFieldCurvatureBundle: mockComputeFieldCurvatureBundle };
+});
 
 const preparedState = mockPreparedState as PreparedOpticalState;
 const lens = { N: 2, EFL: 50, isZoom: false, elements: [] } as unknown as RuntimeLens;
@@ -475,7 +480,13 @@ describe("prepared-state analysis tabs", () => {
     expect(mockComputeChromaticRayFanAnalysis).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry, {
       channels: ["R", "G", "B", "V"],
     });
-    expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry);
+    expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledWith(
+      expect.objectContaining({
+        preparedGeometry: preparedState,
+        aperture: { entrancePupilSemiDiameterMm: 10, stopSemiDiameterMm: 5 },
+        fieldGeometry,
+      }),
+    );
   });
 
   it("routes vignetting work through the prepared-state job facade", () => {

@@ -23,8 +23,8 @@ flowchart LR
   n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_components_hooks["src/components/hooks"]
-  n_external_src_utils_perfProbe_ts["src/utils/perfProbe.ts"]
   n_external_src_optics_analysis_ts["src/optics/analysis.ts"]
+  n_external_src_utils_perfProbe_ts["src/utils/perfProbe.ts"]
   n_external_src_optics_chromatic["src/optics/chromatic"]
   n_external_src_optics_distortionAnalysis_ts["src/optics/distortionAnalysis.ts"]
   n_external_src_optics_mtf_ts["src/optics/mtf.ts"]
@@ -42,12 +42,12 @@ flowchart LR
   n_src_components_display_analysis_React_components --> |9| n_src_components_display_analysis_src_components_display_analysis_aberrations
   n_src_components_display_analysis_React_components --> |7| n_src_components_display_analysis_src_components_display_analysis_perspective
   n_src_components_display_analysis_React_components --> |3| n_external_src_components_hooks
+  n_src_components_display_analysis_React_components --> |3| n_external_src_optics_analysis_ts
   n_src_components_display_analysis_TypeScript_modules --> |3| n_external_src_optics_compat_ts
   n_src_components_display_analysis_TypeScript_modules --> |3| n_external_src_types
   n_src_components_display_analysis_React_components --> |3| n_external_src_utils_perfProbe_ts
   n_src_components_display_analysis_React_components --> |3| n_src_components_display_analysis_src_components_display_analysis_mtf
   n_src_components_display_analysis_TypeScript_modules --> |2| n_external_pkg_react
-  n_src_components_display_analysis_React_components --> |2| n_external_src_optics_analysis_ts
   n_src_components_display_analysis_React_components --> |2| n_external_src_optics_chromatic
   n_src_components_display_analysis_React_components --> |2| n_external_src_optics_distortionAnalysis_ts
   n_src_components_display_analysis_TypeScript_modules --> |2| n_external_src_optics_types_ts
@@ -87,7 +87,7 @@ flowchart LR
 | `BokehTab.tsx` | React component module | src/components/display (4), src/types (2), package:react, src/optics/compat.ts, src/optics/types.ts | src/components/layout | default, BokehTab |
 | `chromaticChartUtils.ts` | Chromatic Chart Utils helper module | src/types (2), src/optics/chromatic | src/components/display (5), src/components/diagram (2) | chromaticChannelColor, chromaticChannelLegendLabel, formatSignedUm, formatUmMagnitude, formatSpreadUmFromMm |
 | `ChromaticFieldCurvaturePlot.tsx` | React component module | src/components/display (2), src/types (2), src/optics/aberrationAnalysis.ts, src/optics/chromatic | src/components/display (2) | default, ChromaticFieldCurvaturePlot |
-| `ChromaticTab.tsx` | React component module | src/components/display (7), src/optics/compat.ts (2), src/types (2), package:react, src/optics/chromatic, +3 more | src/components/layout | default, ChromaticTab |
+| `ChromaticTab.tsx` | React component module | src/components/display (7), src/optics/compat.ts (2), src/types (2), package:react, src/optics/analysis.ts, +4 more | src/components/layout | default, ChromaticTab |
 | `ComaPreviewGrid.tsx` | React component module | package:react, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, ComaPreviewGrid |
 | `ComaTab.tsx` | React component module | src/components/display (5), src/types (2), package:react, src/optics/compat.ts, src/optics/optics.ts, +1 more | src/benchmarks, src/components/layout | default, ComaTab |
 | `DistortionChart.tsx` | React component module | src/components/display (3), src/optics/distortionAnalysis.ts, src/types | src/components/display | default, DistortionChart |
@@ -107,6 +107,6 @@ flowchart LR
 | `SagittalComaPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, SagittalComaPlot |
 | `StandardFieldCurvaturePlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, StandardFieldCurvaturePlot |
 | `useBokehPreviewData.ts` | React hook module | src/optics/compat.ts (2), package:react, src/optics/types.ts, src/utils/perfProbe.ts | src/components/display | default, useBokehPreviewData |
-| `usePreparedAnalysisState.ts` | React hook module | package:react, src/optics/compat.ts, src/optics/types.ts, src/types | src/components/display (9), src/components/layout | default, usePreparedAnalysisState |
+| `usePreparedAnalysisState.ts` | React hook module | package:react, src/optics/compat.ts, src/optics/types.ts, src/types | src/components/display (10), src/components/layout | default, usePreparedAnalysisState |
 | `VignettingChart.tsx` | React component module | src/components/display (3), src/optics/vignetteAnalysis.ts, src/types | src/components/display | default, VignettingChart |
 | `VignettingTab.tsx` | React component module | src/components/display (4), src/optics/compat.ts (2), src/types (2), package:react, src/optics/optics.ts, +2 more | src/components/layout | default, VignettingTab |

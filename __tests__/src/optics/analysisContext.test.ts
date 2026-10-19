@@ -72,7 +72,7 @@ describe("analysis computation context", () => {
       analysisJobsForState2.computeComaAnalysis(state, currentEPSD, currentPhysStopSD, fieldGeometry),
     );
     expect(context.computeFieldCurvatureBundle()).toEqual(
-      analysisJobsForState2.computeFieldCurvatureBundle(state, currentEPSD, currentPhysStopSD, fieldGeometry),
+      analysisJobsForState2.computeFieldCurvatureBundle(context.request),
     );
 
     expect(context.computeDistortionCurve()).toBe(context.computeDistortionCurve());

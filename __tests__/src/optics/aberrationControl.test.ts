@@ -193,8 +193,28 @@ describe("aberrationControl analysis plumbing", () => {
     const sharp = analysisState(L, 0, 0);
     const soft = analysisState(L, 0, 1);
 
-    const sharpField = computeFieldCurvature(L, sharp.zPos, 0, 0, sharp.currentEPSD, sharp.currentPhysStopSD, false, 0);
-    const softField = computeFieldCurvature(L, soft.zPos, 0, 0, soft.currentEPSD, soft.currentPhysStopSD, false, 1);
+    const sharpField = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos: sharp.zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: sharp.currentEPSD,
+        currentPhysStopSD: sharp.currentPhysStopSD,
+        aberrationT: 0,
+      }),
+      false,
+    );
+    const softField = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos: soft.zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: soft.currentEPSD,
+        currentPhysStopSD: soft.currentPhysStopSD,
+        aberrationT: 1,
+      }),
+      false,
+    );
     expect(sharpField).not.toBeNull();
     expect(softField).not.toBeNull();
 

@@ -198,13 +198,7 @@ export function createAnalysisComputationContext(
     },
     computeFieldCurvatureBundle: () =>
       (fieldCurvatureBundle ??= computeCenteredSection("field-curvature", () =>
-        analysisJobsForState2.computeFieldCurvatureBundle(
-          preparedState,
-          currentEPSD,
-          currentPhysStopSD,
-          resolvedFieldGeometry,
-          sampling,
-        ),
+        analysisJobsForState2.computeFieldCurvatureBundle(request),
       )),
     computeChromaticAnalysis: () =>
       (chromaticAnalysis ??= computeCenteredSection("chromatic", () =>

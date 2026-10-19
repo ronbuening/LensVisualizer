@@ -1347,7 +1347,8 @@ The summary family lives in `analysis/summary/`, exposed through `analysis.ts`. 
 breathing series and group-movement profiles take `AnalysisRequest`. The summary job table key is unchanged but now
 takes the request directly; `OpticalSummaryTab` creates/reuses a request and lazy context without a prepared-job
 fallback. Spherical aberration, SA profile, blur character and best focus also take requests through the unchanged job
-keys; other families still dispatch through their existing `*ForState2` adapters until their request migration.
+keys. Field curvature and its chromatic bundle also take requests, including field geometry and sampling;
+other families still dispatch through their existing `*ForState2` adapters until their request migration.
 Centered and movement-aware jobs retain their numerical kernels, sampling defaults and section-availability guards.
 
 Canonical cardinal and EFL math remains in `first-order/`. Request-facing cardinals accept optional camera surface
@@ -1377,9 +1378,14 @@ Shared coordinate, real-ray and focus reductions, off-axis bundle helpers and re
 families migrating later. Pure radial-profile and brightness-classifier reductions live in
 `analysis/aberration/radialProfile.ts`, shared by spherical, bokeh and perspective focus.
 
-Field curvature and coma remain in `aberration/` behind their existing adapters. `aberrationAnalysis.ts` re-exports
-`computeComaAnalysis()`, `computeComaPointCloudPreview()`, `computeSagittalComa()` and `computeFieldCurvature()` for
-parabasal and real-ray tangential/sagittal curves plus the Petzval reference, including optional chromatic curves.
+Field curvature and astigmatism live in `analysis/aberration/fieldCurvature.ts`, exposed through `analysis.ts`
+and temporarily `aberrationAnalysis.ts`. `computeFieldCurvature(request, chromatic)` retains its single-result
+boolean contract; `computeFieldCurvatureBundle(request)` shares the monochrome base before adding ordered
+R/G/B/V focus shifts. The family owns `summarizeChromaticFieldFocus` and its types, preferring usable curve
+samples over named fields. Parabasal tangential/sagittal focus, real-ray diagnostic focus and the Petzval
+reference remain distinct. Both the aberration hook and Chromatic tab reuse the context request or construct
+one from their supplied geometry, apertures and field inputs. Folded guards and moved field-aberration
+replacement remain in the UI. Coma remains in `aberration/` behind its existing adapter.
 Implementation leaves import lower-level engine sources directly, never cycle-sensitive public barrels such as
 `compat.ts`, `optics.ts` or `aberrationAnalysis.ts`.
 

@@ -10,7 +10,6 @@ import {
   computeLateralColorCurve2,
   computeLongitudinalChromaticFocus2,
   prepareRuntimeState,
-  summarizeChromaticFieldFocus2,
   traceRayChromatic2,
 } from "../../../../src/optics/compat.js";
 import {
@@ -23,11 +22,7 @@ import {
   computeProjectionAwareOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
 } from "../../../../src/optics/analysis/aberration/offAxis.js";
-import type { FieldCurvatureFieldResult, FieldCurvatureResult } from "../../../../src/optics/aberrationAnalysis.js";
 
-/* The single-field variants of these fixtures leave the max-field reduction
- * in summarizeChromaticFieldFocus2 unexecuted — keep at least two curve
- * fields in the summary test. */
 function chromaticFixture() {
   const L = buildChromaticPositiveElementLens();
   const { z } = doLayout(0, 0, L);
@@ -171,50 +166,5 @@ describe("chromatic analysis helpers", () => {
     expect(computeChromaticAnalysisForState2(state, currentEPSD, currentPhysStopSD)).toEqual(
       computeChromaticAnalysis2(L, z, 0, 0, currentEPSD, currentPhysStopSD),
     );
-  });
-
-  it("summarizes chromatic field-focus spread from existing field-curvature data", () => {
-    const field = (
-      fieldFraction: number,
-      shifts: FieldCurvatureFieldResult["chromaticFieldShifts"],
-    ): FieldCurvatureFieldResult =>
-      ({
-        fieldFraction,
-        label: `${fieldFraction * 100}%`,
-        fieldAngleDeg: fieldFraction * 20,
-        chromaticFieldShifts: shifts,
-        usable: true,
-      }) as FieldCurvatureFieldResult;
-    const result = {
-      fields: [
-        field(0, null),
-        field(1, [
-          { channel: "R", tangentialShiftMm: -0.05, sagittalShiftMm: -0.05 },
-          { channel: "G", tangentialShiftMm: 0, sagittalShiftMm: 0 },
-          { channel: "B", tangentialShiftMm: 0.1, sagittalShiftMm: 0.15 },
-        ]),
-      ],
-      curveFields: [
-        field(0.5, [
-          { channel: "R", tangentialShiftMm: -0.1, sagittalShiftMm: -0.05 },
-          { channel: "G", tangentialShiftMm: 0, sagittalShiftMm: 0.05 },
-          { channel: "B", tangentialShiftMm: 0.2, sagittalShiftMm: 0.4 },
-        ]),
-        // Second field with a smaller spread so the max-field reduction has to compare.
-        field(1, [
-          { channel: "R", tangentialShiftMm: -0.02, sagittalShiftMm: -0.02 },
-          { channel: "G", tangentialShiftMm: 0, sagittalShiftMm: 0 },
-          { channel: "B", tangentialShiftMm: 0.05, sagittalShiftMm: 0.08 },
-        ]),
-      ],
-    } as FieldCurvatureResult;
-
-    const summary = summarizeChromaticFieldFocus2(result);
-
-    expect(summary?.source).toBe("curve");
-    expect(summary?.maxTangentialSpreadMm).toBeCloseTo(0.3);
-    expect(summary?.maxSagittalSpreadMm).toBeCloseTo(0.45);
-    expect(summary?.maxFocusFieldFraction).toBe(0.5);
-    expect(summary?.edgeFocusSpreadMm).toBeCloseTo(0.2); // from the outermost `fields` entry, not curveFields
   });
 });

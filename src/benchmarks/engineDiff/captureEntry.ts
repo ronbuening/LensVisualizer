@@ -738,15 +738,9 @@ const captureAnalysis: StateCapture = (seam, lens, state) => {
       job,
       outcomeOf(() => context[job]()),
     );
-  /* The single field-curvature job has no context accessor; the state registry is its only entry. */
+  /* The single field-curvature job has no context accessor; the seam bridges its request and historical entries. */
   jobs.computeFieldCurvature = outcomeOf(() =>
-    seam.analysisJobsForState.computeFieldCurvature(
-      prepared,
-      pupilSemiDiameterMm,
-      stopSemiDiameterMm,
-      false,
-      fieldGeometry,
-    ),
+    seam.computeFieldCurvature(prepared, pupilSemiDiameterMm, stopSemiDiameterMm, false, fieldGeometry),
   );
   for (const mode of GROUP_MOVEMENT_MODES) {
     jobs[`groupMovement.${mode}`] = outcomeOf(() => seam.computeGroupMovementProfileForState(prepared, mode));

@@ -14,6 +14,9 @@ type EngineModule = Readonly<Record<string, unknown>>;
 
 /* One glob per module, so a candidate below can only name a module that is listed here. */
 const ENGINE_MODULES = {
+  fieldCurvatureAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/fieldCurvature.ts", {
+    eager: true,
+  }),
   sphericalAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/spherical.ts", { eager: true }),
   bestFocusAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/bestFocus.ts", { eager: true }),
   summaryGroupMovement: import.meta.glob<EngineModule>("../../optics/analysis/summary/groupMovement.ts", {
@@ -43,6 +46,7 @@ const ENGINE_MODULES = {
 /* The same modules as types. A type query is erased before bundling, so it types a capability at the head and loads
  * nothing at any ref. */
 interface EngineModuleTypes {
+  fieldCurvatureAnalysis: typeof import("../../optics/analysis.js");
   sphericalAnalysis: typeof import("../../optics/analysis.js");
   bestFocusAnalysis: typeof import("../../optics/analysis.js");
   summaryGroupMovement: typeof import("../../optics/analysis.js");
@@ -81,6 +85,14 @@ type SeamCandidate = readonly [module: EngineModuleId, exportName: string];
  * overlay's departure and best-fit helpers and the LoCA inset's bar scaling), so a payload notices when either copy drifts.
  */
 const SEAM_CANDIDATES = {
+  computeFieldCurvature: [
+    ["fieldCurvatureAnalysis", "computeFieldCurvature"],
+    ["compat", "computeFieldCurvatureForState2"],
+  ],
+  computeFieldCurvatureBundle: [
+    ["fieldCurvatureAnalysis", "computeFieldCurvatureBundle"],
+    ["compat", "computeFieldCurvatureBundleForState2"],
+  ],
   computeSphericalAberration: [
     ["sphericalAnalysis", "computeSphericalAberration"],
     ["compat", "computeSphericalAberrationForState2"],
@@ -140,7 +152,10 @@ const SEAM_CANDIDATES = {
   /* Readouts the viewer computes beside the analysis context: the working f-number, the chromatic tab's field-focus
    * summary, the diagram's LoCA readout with its inset bars, and the aspheric overlay's departure at a click. */
   effectiveFNumber: [["optics", "effectiveFNumber"]],
-  summarizeChromaticFieldFocus: [["compat", "summarizeChromaticFieldFocus2"]],
+  summarizeChromaticFieldFocus: [
+    ["fieldCurvatureAnalysis", "summarizeChromaticFieldFocus"],
+    ["compat", "summarizeChromaticFieldFocus2"],
+  ],
   computeLongitudinalChromaticFocus: [["optics", "computeLongitudinalChromaticFocus"]],
   obstructionAwareRayFractionsForDensity: [["raySampling", "obstructionAwareRayFractionsForDensity"]],
   computeLocaBarOffsets: [["compat", "computeLocaBarOffsets2"]],
@@ -164,8 +179,28 @@ type ResolvedEngineSeam = {
 /** The capture vocabulary stays stable while resolution bridges request and historical signatures. */
 export type EngineSeam = Omit<
   ResolvedEngineSeam,
-  "computeGroupMovementProfileForState" | "computeCardinalElementsAtState"
+  | "computeGroupMovementProfileForState"
+  | "computeCardinalElementsAtState"
+  | "computeFieldCurvature"
+  | "computeFieldCurvatureBundle"
 > & {
+  computeFieldCurvature: (
+    state: ReturnType<ResolvedEngineSeam["prepareState"]>,
+    currentEPSD: number,
+    currentPhysStopSD: number,
+    chromatic?: boolean,
+    fieldGeometry?: NonNullable<
+      Parameters<EngineModuleTypes["analysisRequest"]["createAnalysisRequest"]>[0]["fieldGeometry"]
+    >,
+  ) => ReturnType<ResolvedEngineSeam["computeFieldCurvature"]>;
+  computeFieldCurvatureBundle: (
+    state: ReturnType<ResolvedEngineSeam["prepareState"]>,
+    currentEPSD: number,
+    currentPhysStopSD: number,
+    fieldGeometry?: NonNullable<
+      Parameters<EngineModuleTypes["analysisRequest"]["createAnalysisRequest"]>[0]["fieldGeometry"]
+    >,
+  ) => ReturnType<ResolvedEngineSeam["computeFieldCurvatureBundle"]>;
   computeGroupMovementProfileForState: (
     state: ReturnType<ResolvedEngineSeam["prepareState"]>,
     mode: Parameters<ResolvedEngineSeam["computeGroupMovementProfileForState"]>[1],
@@ -249,6 +284,37 @@ function resolveOnce(): { seam: EngineSeam; sources: Record<keyof EngineSeam, st
         currentPhysStopSD: lens.stopPhysSD,
       });
     };
+    const fieldRequest = (
+      state: PreparedState,
+      currentEPSD: number,
+      currentPhysStopSD: number,
+      fieldGeometry: Parameters<EngineSeam["computeFieldCurvature"]>[4],
+    ) => {
+      const createRequest = modules.analysisRequest!
+        .createAnalysisRequest as EngineModuleTypes["analysisRequest"]["createAnalysisRequest"];
+      return createRequest({
+        preparedState: state,
+        dynamicEFL: state.lens.constants.EFL,
+        currentEPSD,
+        currentPhysStopSD,
+        fieldGeometry,
+      });
+    };
+    if (sources.computeFieldCurvature.startsWith("fieldCurvatureAnalysis.")) {
+      const compute = exports.computeFieldCurvature as ResolvedEngineSeam["computeFieldCurvature"];
+      exports.computeFieldCurvature = ((state, currentEPSD, currentPhysStopSD, chromatic = false, fieldGeometry) =>
+        compute(
+          fieldRequest(state, currentEPSD, currentPhysStopSD, fieldGeometry),
+          chromatic,
+        )) satisfies EngineSeam["computeFieldCurvature"];
+    }
+    if (sources.computeFieldCurvatureBundle.startsWith("fieldCurvatureAnalysis.")) {
+      const compute = exports.computeFieldCurvatureBundle as ResolvedEngineSeam["computeFieldCurvatureBundle"];
+      exports.computeFieldCurvatureBundle = ((state, currentEPSD, currentPhysStopSD, fieldGeometry) =>
+        compute(
+          fieldRequest(state, currentEPSD, currentPhysStopSD, fieldGeometry),
+        )) satisfies EngineSeam["computeFieldCurvatureBundle"];
+    }
     if (sources.computeGroupMovementProfileForState.startsWith("summaryGroupMovement.")) {
       const compute =
         exports.computeGroupMovementProfileForState as ResolvedEngineSeam["computeGroupMovementProfileForState"];
