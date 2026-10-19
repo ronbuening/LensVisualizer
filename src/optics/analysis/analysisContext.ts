@@ -10,10 +10,7 @@ import { runtimeView } from "../prescription/runtimeView.js";
 import { analysisJobsForState2 } from "./analysisJobs.js";
 import { computeLongitudinalChromaticFocus } from "../chromatic/analysis.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
-import type { FieldGeometryState } from "../optics.js";
-import type { PreparedOpticalState } from "../types.js";
-import type { AnalysisQuality, AnalysisSamplingOptions } from "./analysisQuality.js";
-import type { PerspectiveTraceContext } from "../perspective/trace.js";
+import { createAnalysisRequest, type AnalysisRequest, type AnalysisRequestParams } from "./request.js";
 import {
   analysisSectionAvailability,
   assertAnalysisSectionAvailable,
@@ -24,26 +21,9 @@ import {
 import { zPosForPreparedAnalysis2 } from "./preparedStateAdapters.js";
 import { createPerspectiveAnalysisJobs, type PerspectiveAnalysisJobs } from "./perspectiveAnalysisJobs.js";
 
-/**
- * Shared inputs for a set of analysis computations at one focus/zoom/aperture state.
- *
- * @param preparedState - compiled optical state for the current RuntimeLens and sliders
- * @param dynamicEFL - current effective focal length in mm, including focus/zoom state
- * @param currentEPSD - entrance-pupil semi-diameter in mm after stopdown
- * @param currentPhysStopSD - physical stop semi-diameter in mm after stopdown
- * @param fieldGeometry - optional solved-chief-ray field geometry for the same state
- */
-export interface AnalysisComputationContextParams {
-  preparedState: PreparedOpticalState;
-  dynamicEFL: number;
-  currentEPSD: number;
-  currentPhysStopSD: number;
-  fieldGeometry?: FieldGeometryState | null;
-  /** Whether this context should use drag-time or settled perspective sampling. */
-  analysisQuality?: AnalysisQuality;
-  sampling?: AnalysisSamplingOptions;
-  perspectiveTraceContext?: PerspectiveTraceContext | null;
-}
+export type AnalysisComputationContextParams = AnalysisRequestParams;
+
+const CONTEXT_BY_REQUEST = new WeakMap<AnalysisRequest, AnalysisComputationContext>();
 
 /**
  * Lazy analysis facade for one immutable prepared state.
@@ -52,7 +32,8 @@ export interface AnalysisComputationContextParams {
  * the closure, but the retained results intentionally share the exact same optical inputs.
  */
 export interface AnalysisComputationContext extends AnalysisComputationContextParams, PerspectiveAnalysisJobs {
-  /** Complete identity for all scalar inputs plus fixed-camera lens pose. */
+  readonly request: AnalysisRequest;
+  /** Diagnostic description only; memoization uses request identity. */
   cacheKey: string;
   /** Perspective-only identity, or `centered` when no trace context was supplied. */
   perspectiveCacheKey: string;
@@ -88,30 +69,24 @@ export interface AnalysisComputationContext extends AnalysisComputationContextPa
  * @param params - prepared state plus aperture, EFL, and optional field geometry inputs
  * @returns memoizing analysis accessors bound to the provided state
  */
-export function createAnalysisComputationContext({
-  preparedState,
-  dynamicEFL,
-  currentEPSD,
-  currentPhysStopSD,
-  fieldGeometry = null,
-  analysisQuality = "settled",
-  sampling: requestedSampling,
-  perspectiveTraceContext = null,
-}: AnalysisComputationContextParams): AnalysisComputationContext {
-  const sampling = snapshotAnalysisSamplingOptions(requestedSampling);
-  assertPerspectiveContextMatchesPreparedState(preparedState, perspectiveTraceContext);
-  const resolvedFieldGeometry = fieldGeometry ?? undefined;
-  const perspectiveCacheKey = perspectiveTraceContext?.cacheKey ?? "centered";
-  const cacheKey = analysisComputationCacheKey({
-    preparedState,
+export function createAnalysisComputationContext(
+  params: AnalysisComputationContextParams | AnalysisRequest,
+): AnalysisComputationContext {
+  const request = "preparedGeometry" in params ? params : createAnalysisRequest(params);
+  const cached = CONTEXT_BY_REQUEST.get(request);
+  if (cached) return cached;
+  const {
+    preparedGeometry: preparedState,
     dynamicEFL,
-    currentEPSD,
-    currentPhysStopSD,
+    aperture: { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD },
     fieldGeometry,
     analysisQuality,
     sampling,
     perspectiveTraceContext,
-  });
+  } = request;
+  const resolvedFieldGeometry = fieldGeometry ?? undefined;
+  const perspectiveCacheKey = perspectiveTraceContext?.cacheKey ?? "centered";
+  let diagnosticKey: string | undefined;
   const computeSection = <Result>(section: AnalysisSectionId, compute: () => Result): Result => {
     assertAnalysisSectionAvailable(section, perspectiveTraceContext);
     return compute();
@@ -126,7 +101,7 @@ export function createAnalysisComputationContext({
     currentEPSD,
     currentPhysStopSD,
     analysisQuality,
-    sampling: requestedSampling === undefined ? undefined : sampling,
+    sampling,
   });
   let opticalSummary: ReturnType<typeof analysisJobsForState2.computeOpticalSummary> | undefined;
   let distortionCurve: ReturnType<typeof analysisJobsForState2.computeDistortionCurve> | undefined;
@@ -146,7 +121,8 @@ export function createAnalysisComputationContext({
   let intrinsicLongitudinalChromaticFocus: { value: ReturnType<typeof computeLongitudinalChromaticFocus> } | undefined;
   let comaAnalysis: ReturnType<typeof analysisJobsForState2.computeComaAnalysis> | undefined;
 
-  return {
+  const context: AnalysisComputationContext = {
+    request,
     preparedState,
     dynamicEFL,
     currentEPSD,
@@ -155,7 +131,10 @@ export function createAnalysisComputationContext({
     analysisQuality,
     sampling,
     perspectiveTraceContext,
-    cacheKey,
+    // Existing diagnostics retain their serialized description, off the memoization path.
+    get cacheKey() {
+      return (diagnosticKey ??= analysisContextDiagnosticKey(request));
+    },
     perspectiveCacheKey,
     movementActive: perspectiveTraceContext?.pose.active ?? false,
     sectionAvailability: (section) => analysisSectionAvailability(section, perspectiveTraceContext),
@@ -299,43 +278,19 @@ export function createAnalysisComputationContext({
         ),
       )),
   };
+  CONTEXT_BY_REQUEST.set(request, context);
+  return context;
 }
 
-function assertPerspectiveContextMatchesPreparedState(
-  preparedState: PreparedOpticalState,
-  perspectiveTraceContext: PerspectiveTraceContext | null,
-): void {
-  if (!perspectiveTraceContext) return;
-  const perspectiveState = perspectiveTraceContext.state;
-  if (
-    perspectiveState.cacheKey !== preparedState.cacheKey ||
-    perspectiveState.lens.key !== preparedState.lens.key ||
-    perspectiveState.focusT !== preparedState.focusT ||
-    perspectiveState.zoomT !== preparedState.zoomT ||
-    perspectiveState.aberrationT !== preparedState.aberrationT
-  ) {
-    throw new Error(
-      "PerspectiveTraceContext must describe the same prepared lens and slider state as the analysis context",
-    );
-  }
-}
-
-function snapshotAnalysisSamplingOptions(sampling: AnalysisSamplingOptions | undefined): AnalysisSamplingOptions {
-  if (!sampling) return {};
-  return Object.fromEntries(
-    Object.entries(sampling).map(([key, value]) => [key, Array.isArray(value) ? [...value] : value]),
-  ) as AnalysisSamplingOptions;
-}
-
-function analysisComputationCacheKey(params: AnalysisComputationContextParams): string {
+function analysisContextDiagnosticKey(request: AnalysisRequest): string {
   return JSON.stringify({
-    state: params.preparedState.cacheKey,
-    perspective: params.perspectiveTraceContext?.cacheKey ?? "centered",
-    dynamicEFL: params.dynamicEFL,
-    currentEPSD: params.currentEPSD,
-    currentPhysStopSD: params.currentPhysStopSD,
-    fieldGeometry: params.fieldGeometry ?? null,
-    analysisQuality: params.analysisQuality ?? "settled",
-    sampling: params.sampling ?? {},
+    state: request.preparedGeometry.cacheKey,
+    perspective: request.perspectiveTraceContext?.cacheKey ?? "centered",
+    dynamicEFL: request.dynamicEFL,
+    currentEPSD: request.aperture.entrancePupilSemiDiameterMm,
+    currentPhysStopSD: request.aperture.stopSemiDiameterMm,
+    fieldGeometry: request.fieldGeometry,
+    analysisQuality: request.analysisQuality,
+    sampling: request.sampling,
   });
 }

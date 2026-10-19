@@ -332,3 +332,5 @@ export {
   REFERENCE_LOCA_MM_2,
   type ChromaticBarResult2,
 } from "./analysis/chromaticRayFanScaling.js";
+
+export { createAnalysisRequest, type AnalysisRequest } from "./analysis/request.js";

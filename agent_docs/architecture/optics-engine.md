@@ -1316,6 +1316,37 @@ distance labels, snapping (`nearestPublishedStation`) and the reasons a lens off
 tracing. `buildLens()` does not normalize the field onto `RuntimeLens`, and aberration-control keyframes are not
 stations: any non-neutral setting is off-station.
 
+## Analysis Requests, Context and Jobs
+
+`analysis/request.ts` builds one frozen `AnalysisRequest` from current controls outside `buildLens()`. It carries
+`preparedGeometry`, dynamic EFL, entrance-pupil and physical-stop semi-diameters (mm), chromatic channels, optional
+field geometry, optional perspective trace context and its pose, quality, sampling and trace capture. Geometry and
+perspective tracing share their existing immutable owners and solve caches; field geometry, aperture, sampling and
+sampling arrays are frozen snapshots. Channels and capture currently describe the adapters' defaults (R/G/B/V and
+`diagnostics`); family migration will make those choices direct job inputs.
+
+Request interning compares prepared geometry and perspective trace context by object identity, then aperture, EFL,
+field values, quality and sampling by exact value (`Object.is` for numbers, including array entries). A fresh params
+object or equivalent field/sampling arrays therefore reuse the request. The history is an LRU of 96 requests per
+compiled lens for two recent compiled identities, matching prepared geometry's bounds. No rounded or serialized
+control key participates in request lookup.
+
+`analysis/analysisContext.ts` weakly memoizes one lazy context per request identity. Sibling tabs and subsequent
+renders share the same computed results; request-history eviction releases the cache's ownership, while a live caller
+can continue using its request/context. `cacheKey` remains a lazy diagnostic description for existing consumers and
+is never read by the memo. Benchmark jobs explicitly copy the frozen request to obtain a fresh context, so they
+continue timing actual work rather than cached answers.
+
+`AnalysisDrawerContent` memoizes the request from its deferred optical snapshot, then memoizes the context on that
+request. `usePreparedAnalysisState` gets stable geometry from the prepared-state cache; `useLensComputation` keeps
+field and perspective objects stable with `useMemo`. The small request history also absorbs equivalent scalar or
+field snapshots when React rebuilds the drawer's inputs. A new perspective trace identity intentionally creates a
+new request, since its trace functions and solve cache belong to that object even if its diagnostic key matches.
+
+Families still dispatch through `analysisJobsForState2` and their existing `*ForState2` adapters. Tab hooks retain
+their context/prepared/legacy fallbacks until each family migrates to `AnalysisRequest`. Centered and movement-aware
+jobs retain their numerical kernels, sampling defaults and section-availability guards.
+
 ## Aberration Analysis
 
 `aberrationAnalysis.ts` re-exports helpers from `src/optics/aberration/`.

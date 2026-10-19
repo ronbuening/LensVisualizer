@@ -1,10 +1,12 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   AnalysisSectionUnavailableError,
   analysisJobsForState2,
   createAnalysisComputationContext,
   prepareRuntimeState,
 } from "../../../src/optics/compat.js";
+import { runtimeView } from "../../../src/optics/prescription/runtimeView.js";
+import { createAnalysisRequest, type AnalysisRequestParams } from "../../../src/optics/analysis/request.js";
 import { createPerspectiveTraceContext } from "../../../src/optics/perspective/index.js";
 import type { TiltPivot } from "../../../src/types/optics.js";
 import { computeAnalysisFieldGeometryAtState, eflAtFocus } from "../../../src/optics/optics.js";
@@ -187,5 +189,155 @@ describe("analysis computation context", () => {
     expect(shifted.computeIntrinsicLongitudinalChromaticFocus()).toBe(
       shifted.computeIntrinsicLongitudinalChromaticFocus(),
     );
+  });
+});
+
+describe("analysis request identity", () => {
+  function inputs(key: string): AnalysisRequestParams {
+    const L = buildChromaticPositiveElementLens(key);
+    return { preparedState: prepareRuntimeState(L, 0, 0), dynamicEFL: L.EFL, ...apertureAt(L, 0) };
+  }
+
+  it("reuses the request and context for equal scalar, field and sampling values", () => {
+    const params = inputs("request-values");
+    const fieldGeometry = { halfFieldDeg: 10, yRatio: 1, b: 2, epRatio: 3 };
+    const first = createAnalysisRequest({ ...params, fieldGeometry, sampling: { bokehRingSamples: [1, 4] } });
+    const second = createAnalysisRequest({
+      ...params,
+      preparedState: prepareRuntimeState(buildChromaticPositiveElementLens("different-owner"), 0, 0),
+    });
+    expect(second).not.toBe(first);
+    const repeated = createAnalysisRequest({
+      ...params,
+      fieldGeometry: { ...fieldGeometry },
+      sampling: { bokehRingSamples: [1, 4], comaFanSampleCount: undefined },
+    });
+    expect(repeated).toBe(first);
+    expect(createAnalysisComputationContext(repeated)).toBe(createAnalysisComputationContext(first));
+    expect(createAnalysisComputationContext({ ...params, fieldGeometry, sampling: { bokehRingSamples: [1, 4] } })).toBe(
+      createAnalysisComputationContext(first),
+    );
+  });
+
+  it("freezes owned snapshots without freezing or retaining caller arrays and fields", () => {
+    const params = inputs("request-snapshot");
+    const fieldGeometry = { halfFieldDeg: 10, yRatio: 1, b: 2, epRatio: 3 };
+    const rings = [1, 4];
+    const sampling = { bokehRingSamples: rings, comaFanSampleCount: 3 };
+    const request = createAnalysisRequest({ ...params, fieldGeometry, sampling });
+    fieldGeometry.b = 7;
+    rings.push(8);
+    sampling.comaFanSampleCount = 9;
+    expect(request.preparedGeometry).toBe(params.preparedState);
+    expect(request.aperture).toEqual({
+      entrancePupilSemiDiameterMm: params.currentEPSD,
+      stopSemiDiameterMm: params.currentPhysStopSD,
+    });
+    expect(request.fieldGeometry?.b).toBe(2);
+    expect(request.sampling).toEqual({ bokehRingSamples: [1, 4], comaFanSampleCount: 3 });
+    expect(request.channels).toEqual(["R", "G", "B", "V"]);
+    expect(request.capture).toBe("diagnostics");
+    for (const value of [
+      request,
+      request.aperture,
+      request.fieldGeometry,
+      request.sampling,
+      request.sampling.bokehRingSamples,
+      request.channels,
+    ]) {
+      expect(Object.isFrozen(value)).toBe(true);
+    }
+    expect(Object.isFrozen(fieldGeometry)).toBe(false);
+    expect(Object.isFrozen(rings)).toBe(false);
+  });
+
+  it("invalidates each control independently, retaining exact numeric distinctions", () => {
+    const params = inputs("request-controls");
+    const first = createAnalysisRequest(params);
+    const changed: AnalysisRequestParams[] = [
+      { ...params, dynamicEFL: params.dynamicEFL + 1 },
+      { ...params, currentEPSD: params.currentEPSD / 2 },
+      { ...params, currentPhysStopSD: params.currentPhysStopSD / 2 },
+      { ...params, analysisQuality: "interactive" },
+      { ...params, fieldGeometry: { halfFieldDeg: 10, yRatio: 1, b: 2, epRatio: 3 } },
+      { ...params, sampling: { bokehRingSamples: [1, 4] } },
+      ...[
+        [0.25, 0, 0],
+        [0, 0.25, 0],
+        [0, 0, 0.25],
+      ].map(([focus, zoom, aberration]) => ({
+        ...params,
+        preparedState: prepareRuntimeState(runtimeView(params.preparedState.lens), focus, zoom, aberration),
+      })),
+    ];
+    for (const input of changed) expect(createAnalysisRequest(input)).not.toBe(first);
+    const zero = createAnalysisRequest({ ...params, currentEPSD: 0 });
+    expect(createAnalysisRequest({ ...params, currentEPSD: -0 })).not.toBe(zero);
+    expect(createAnalysisRequest({ ...params, currentEPSD: NaN })).toBe(
+      createAnalysisRequest({ ...params, currentEPSD: NaN }),
+    );
+    expect(createAnalysisRequest({ ...params, currentEPSD: Infinity })).not.toBe(
+      createAnalysisRequest({ ...params, currentEPSD: -Infinity }),
+    );
+  });
+
+  it("keys geometry and tracing by object identity even when diagnostic strings match", () => {
+    const params = inputs("request-identity");
+    const first = createAnalysisComputationContext(params);
+    const other = createAnalysisComputationContext({
+      ...params,
+      preparedState: Object.freeze({ ...params.preparedState }),
+    });
+    expect(other.cacheKey).toBe(first.cacheKey);
+    expect(other.request).not.toBe(first.request);
+    expect(other).not.toBe(first);
+    const trace = createPerspectiveTraceContext({
+      preparedState: params.preparedState,
+      movement: { shiftMm: 0, tiltDeg: 0 },
+    });
+    const a = createAnalysisRequest({ ...params, perspectiveTraceContext: trace });
+    const b = createAnalysisRequest({ ...params, perspectiveTraceContext: { ...trace } });
+    expect(a.pose).toBe(trace.pose);
+    expect(a.perspectiveTraceContext).toBe(trace);
+    expect(b).not.toBe(a);
+    expect(createAnalysisRequest({ ...params, perspectiveTraceContext: trace })).toBe(a);
+  });
+
+  it("does not serialize inputs on request/context cache hits or misses", () => {
+    const params = inputs("request-no-serialization");
+    const stringify = vi.spyOn(JSON, "stringify");
+    try {
+      const context = createAnalysisComputationContext(params);
+      expect(createAnalysisComputationContext({ ...params })).toBe(context);
+      expect(stringify).not.toHaveBeenCalled();
+    } finally {
+      stringify.mockRestore();
+    }
+  });
+
+  it("evicts the least recently used request at 96 entries, preserving touched jobs", () => {
+    const params = inputs("request-eviction");
+    const context = (currentPhysStopSD: number) => createAnalysisComputationContext({ ...params, currentPhysStopSD });
+    const first = context(0);
+    const evicted = context(1);
+    for (let i = 2; i < 96; i++) context(i);
+    expect(context(0)).toBe(first);
+    context(96);
+    expect(context(0)).toBe(first);
+    expect(context(1)).not.toBe(evicted);
+    // A caller holding the old request still owns its lazy results after LRU eviction.
+    expect(createAnalysisComputationContext(evicted.request)).toBe(evicted);
+  });
+
+  it("bounds lens ownership to the two most recently used compiled identities", () => {
+    const a = inputs("request-lens-a");
+    const b = inputs("request-lens-b");
+    const c = inputs("request-lens-c");
+    const firstA = createAnalysisComputationContext(a);
+    const firstB = createAnalysisComputationContext(b);
+    expect(createAnalysisComputationContext(a)).toBe(firstA);
+    createAnalysisComputationContext(c);
+    expect(createAnalysisComputationContext(a)).toBe(firstA);
+    expect(createAnalysisComputationContext(b)).not.toBe(firstB);
   });
 });

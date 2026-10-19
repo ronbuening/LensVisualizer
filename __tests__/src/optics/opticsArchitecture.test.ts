@@ -158,9 +158,22 @@ interface CacheLegacyRecord {
  *   and its `limit` constant.
  */
 const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
+  "src/optics/analysis/analysisContext.ts#CONTEXT_BY_REQUEST": {
+    kind: "weak-owner",
+    owner: "AnalysisRequest",
+    key: "request identity",
+    perOwner: "one lazy context; results die with the request after bounded request-history eviction",
+  },
   "src/optics/analysis/analysisMovementSupport.ts#MOVEMENT_AWARE_SECTIONS": { kind: "constant" },
   "src/optics/analysis/analysisMovementSupport.ts#MOVEMENT_INVARIANT_SECTIONS": { kind: "constant" },
   "src/optics/analysis/mtfTracing.ts#X_SYMMETRIC_PROFILES": { kind: "constant" },
+  "src/optics/analysis/request.ts#REQUESTS_BY_LENS": {
+    kind: "bounded",
+    owner: "module",
+    key: "compiled identity; each lens LRU holds at most 96 requests keyed by geometry and exact controls",
+    capacity: 2,
+    limit: "REQUEST_LENS_CACHE_LIMIT",
+  },
   "src/optics/chromatic/indexResolver.ts#cauchyCoefficientsByDispersion": {
     kind: "weak-owner",
     owner: "CompiledSurfaceDispersion",

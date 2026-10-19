@@ -1402,16 +1402,7 @@ function measureAnalysisBreakdown(
 
 /** Creates an uncached facade so each fine-grained benchmark times real job work. */
 function createFreshAnalysisContext(snapshot: ScenarioSnapshot): AnalysisComputationContext {
-  return createAnalysisComputationContext({
-    preparedState: snapshot.preparedState,
-    dynamicEFL: snapshot.dynamicEFL,
-    currentEPSD: snapshot.currentEPSD,
-    currentPhysStopSD: snapshot.currentPhysStopSD,
-    fieldGeometry: snapshot.fieldGeometry,
-    analysisQuality: snapshot.scenario.analysisQuality ?? "settled",
-    sampling: snapshot.analysisSampling,
-    perspectiveTraceContext: snapshot.perspectiveTraceContext,
-  });
+  return createAnalysisComputationContext(Object.freeze({ ...snapshot.analysisContext.request }));
 }
 
 function computePerspectiveFocusWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
