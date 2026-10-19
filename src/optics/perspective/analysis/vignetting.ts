@@ -6,6 +6,8 @@
  * separate so no active-pose center normalization can hide real losses.
  */
 
+import { signedVerticalSensorUvs } from "../../analysis/sampling.js";
+
 import type { AnalysisRequest } from "../../analysis/request.js";
 import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
 import type { ChromaticChannel } from "../../../types/optics.js";
@@ -405,10 +407,6 @@ function vignettingReferenceCacheKey(
       .map((point) => `${number(point.u)},${number(point.v)},${number(point.weight)}`)
       .join(";")}`,
   ].join("|");
-}
-
-function signedVerticalSensorUvs(count: number): SensorUv[] {
-  return Array.from({ length: count }, (_, index) => ({ u: 0, v: -1 + (2 * index) / (count - 1) }));
 }
 
 function assertPositiveFinite(value: number, label: string): void {

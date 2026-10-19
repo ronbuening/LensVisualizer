@@ -5,12 +5,13 @@
  */
 
 import { prepareRayTrace, type PreparedRayTrace } from "../../trace/rayAdapters.js";
+import { MARGINAL_PUPIL_FRACTIONS } from "../sampling.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 
 /** Candidate fractions of the entrance pupil for the marginal ray sample. */
-export const MARGINAL_FRACS = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
+export const MARGINAL_FRACS = MARGINAL_PUPIL_FRACTIONS;
 
-/** Pupil zone fractions sampled for the SA profile curve. */
+/** Unlike the orthogonal fan, SA profile zones are positive, rim-dense and omit both endpoints. */
 export const PROFILE_FRACS = [
   0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.88, 0.91, 0.93, 0.95,
   0.97,
@@ -221,6 +222,7 @@ export function computeRealRayHit(
  * @param aberrationT - normalized aberration spacing slider
  * @returns averaged real-ray sample, or null when either side fails
  */
+// Unlike sampleOrthogonalPupilFan, trace only the requested +/- pair and average its axial/spherical readouts.
 export function computeSymmetricRealSample(
   L: RuntimeLens,
   zPos: number[],

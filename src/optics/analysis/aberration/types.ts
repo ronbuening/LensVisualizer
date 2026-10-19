@@ -4,7 +4,12 @@
  * Defines the stable data contract between pure aberration calculations and React analysis components.
  */
 
-import { DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT } from "../sampling.js";
+import {
+  DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT,
+  FULL_FIELD_FRACTIONS,
+  PREVIEW_FIELD_FRACTIONS,
+  uniformFieldFraction,
+} from "../sampling.js";
 import type { ChromaticChannel } from "../../../types/optics.js";
 
 /** One sample point on the real-ray transverse SA profile curve. */
@@ -265,17 +270,19 @@ export const COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT = COMA_PREVIEW_CIRCULAR_PUPIL
 );
 
 /** Fixed field positions shown in the representative coma preview grid. */
-export const COMA_PREVIEW_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75] as const;
+export const COMA_PREVIEW_FIELD_FRACTIONS = PREVIEW_FIELD_FRACTIONS;
 
 /** Fixed field positions shown in the field-curvature / astigmatism chart. */
-export const FIELD_CURVATURE_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75, 1] as const;
+export const FIELD_CURVATURE_FIELD_FRACTIONS = FULL_FIELD_FRACTIONS;
 /** Dense field fractions used for smooth field-curvature curve rendering. */
-export const FIELD_CURVATURE_CURVE_FIELD_FRACTIONS = Array.from({ length: 17 }, (_, index) => index / 16);
+export const FIELD_CURVATURE_CURVE_FIELD_FRACTIONS = Array.from({ length: 17 }, (_, index) =>
+  uniformFieldFraction(index, 17),
+);
 
 /* ── Bokeh preview constants & types ── */
 
 /** Fixed field positions shown in the bokeh preview grids. */
-export const BOKEH_PREVIEW_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75] as const;
+export const BOKEH_PREVIEW_FIELD_FRACTIONS = PREVIEW_FIELD_FRACTIONS;
 
 /** Dense circular pupil ring pattern for bokeh tracing (~3× denser than coma). */
 export const BOKEH_CIRCULAR_PUPIL_RING_SAMPLES = [1, 12, 24, 36, 48, 60, 72, 84] as const;

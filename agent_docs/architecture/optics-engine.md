@@ -639,9 +639,27 @@ sharing the refract-or-fail step in `trace/interactions.ts`:
   exists, preserving the five conservative zero-lead axial probes, aperture checks and explicit-plane requirement.
   It still skips auto paths and repeated surface orders; malformed probe-surface compilation returns validation
   errors alongside the schema errors rather than throwing.
-- **Analysis helpers** — deterministic pupil patterns, constants and sample types live in `analysis/sampling.ts`;
-  the skew image-plane intercept lives in `trace/rayAdapters.ts`. Public callers use the `optics.ts` barrel.
-  Paraxial references use `math/paraxial.ts` over current state surfaces and apply the final image gap explicitly.
+- **Analysis sampling** — `analysis/sampling.ts` owns the identical pupil/field laws: `uniformFieldFraction`
+  (`index / (count - 1)`), `evenlySpacedSigned` (`-1 + (2 * index) / (count - 1)`), the fixed-sensor vertical
+  adapter, orthogonal fans, population-defined circular rings and their weighted u/v adapter. It also owns the
+  shared marginal-search and quarter-field sequences. Distortion, vignetting, EP/XP profiles and the field-curvature
+  curve reuse these laws without changing their count policy, loop bounds, ordering or weighting. Keeping the
+  unsigned law indexed preserves the existing fractional-count difference between loops and `Array.from`.
+  `analysisQuality.ts` selects counts/fractions; `perspectiveAnalysisSampling.ts` retains signed plan normalization
+  (finite odd counts of at least three, mirrored magnitudes, required center/bounds). Orthogonal fans instead allow
+  a singleton chief ray; raw signed spacing retains even counts and its singleton NaN. Bokeh/coma perspective
+  adapters share circular point generation while retaining their different default ring populations.
+  Deliberately different samplers remain beside their consumers, with comments naming the distinction:
+  `raySampling.ts` preserves authored display extents/parity, step-first rounding, zero snapping and obstruction
+  fallback; perspective `analysis/shared.ts` uses equal-population radial strata with no central point and different
+  radius arithmetic; focus crosses append a perpendicular arm with unit weights; chromatic normalizers retain
+  their family-specific clipping, ordering, duplicates and zero rules; SA profiles keep their rim-dense zones.
+  Perspective field requests retain explicit scene/sensor coordinates and failures in caller order. Distortion
+  curves space image-height targets rather than angles. These policies do not replace the independent MTF lattice
+  in `analysis/mtf/`.
+- **Analysis helpers** — the skew image-plane intercept lives in `trace/rayAdapters.ts`. Public callers use the
+  `optics.ts` barrel. Paraxial references use `math/paraxial.ts` over current state surfaces and apply the final
+  image gap explicitly.
 
 Each `PreparedOpticalState` owns a frozen `TraceGeometry` view (`trace/types.ts`), built by `trace/geometry.ts`.
 It shares the state's surface, z and image-plane references and the lens's path metadata, with the stop index and

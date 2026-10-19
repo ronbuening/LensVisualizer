@@ -21,9 +21,11 @@ import type {
   ChromaticRayFanSpreadByAxis,
   RuntimeLens,
 } from "../../../types/optics.js";
+import { MARGINAL_PUPIL_FRACTIONS } from "../sampling.js";
 import type { AnalysisRequest } from "../request.js";
 
-const DEFAULT_ON_AXIS_FRACTIONS = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
+const DEFAULT_ON_AXIS_FRACTIONS = MARGINAL_PUPIL_FRACTIONS;
+// Unlike the endpoint-inclusive orthogonal fan, this sparse fan omits the chief and pupil rims.
 const DEFAULT_OFF_AXIS_FRACTIONS = [0.75, 0.5, 0.25, -0.75, -0.5, -0.25] as const;
 
 export interface ChromaticRayFanAnalysisOptions2 {
@@ -46,6 +48,7 @@ function normalizeChannels(channels: readonly ChromaticChannel[] | undefined): C
   return CHROMATIC_CHANNEL_ORDER.filter((channel) => requested.has(channel));
 }
 
+// Unlike chromatic/analysis.normalizeFractions, omit near-zero rays and sort by magnitude, positive side first.
 function normalizeSignedFractions(fractions: readonly number[] | undefined, fallback: readonly number[]): number[] {
   const values = (fractions ?? fallback)
     .filter((fraction) => isFinite(fraction) && Math.abs(fraction) > 1e-9)

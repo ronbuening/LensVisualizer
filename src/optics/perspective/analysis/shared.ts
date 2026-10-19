@@ -80,6 +80,7 @@ const DEFAULT_AZIMUTHAL_SAMPLES = 12;
  * @param azimuthalSamples - samples around every annulus
  * @returns normalized pupil coordinates whose weights sum to one
  */
+// Unlike sampleCircularPupil, equal-population strata omit the center and compute radius directly as sqrt((ring + 0.5) / rings).
 export function createAreaWeightedCircularPupilPoints(
   radialStrata = DEFAULT_RADIAL_STRATA,
   azimuthalSamples = DEFAULT_AZIMUTHAL_SAMPLES,

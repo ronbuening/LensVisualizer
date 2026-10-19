@@ -61,6 +61,7 @@ export type {
 } from "./fieldTypes.js";
 
 /** Sample one or more scene- or sensor-locked requests without reordering failures. */
+// Unlike centered uniformFieldFraction sweeps, these explicit scene/sensor targets retain caller order and failures.
 export function samplePerspectiveFields(
   context: PerspectiveTraceContext,
   requests: readonly PerspectiveFieldRequest[],

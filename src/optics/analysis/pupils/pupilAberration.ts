@@ -27,6 +27,8 @@
  *   Δz_XP(θ) = xpZ_real(θ) − xpZRelLastSurf_paraxial
  */
 
+import { uniformFieldFraction } from "../sampling.js";
+
 import { prepareRayTrace } from "../../trace/rayAdapters.js";
 import {
   computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
@@ -216,7 +218,7 @@ export function computePupilAberrationProfile(request: AnalysisRequest): PupilAb
   const samples: PupilAberrationSample[] = [];
 
   for (let i = 0; i < n; i++) {
-    const fieldFrac = i / (n - 1);
+    const fieldFrac = uniformFieldFraction(i, n);
     const fieldDeg = fieldFrac * halfFieldDeg;
     const launch = projectionLaunchSlopeForField(L, fieldDeg);
     const solve = solveChiefRay(fieldDeg, focusT, zoomT, L, geom, aberrationT);
@@ -276,8 +278,8 @@ export function computeExitPupilAberrationProfile(request: AnalysisRequest): Exi
   // Guard: telecentric exit (XP at infinity) — shifts are undefined, return zero-shift profile.
   if (!isFinite(paraxialXpZRelLastSurf)) {
     const samples: ExitPupilAberrationSample[] = Array.from({ length: n }, (_, i) => ({
-      fieldFrac: i / (n - 1),
-      fieldDeg: (i / (n - 1)) * halfFieldDeg,
+      fieldFrac: uniformFieldFraction(i, n),
+      fieldDeg: uniformFieldFraction(i, n) * halfFieldDeg,
       xpZRelLastSurf: Infinity,
       xpShiftMm: 0,
     }));
@@ -291,7 +293,7 @@ export function computeExitPupilAberrationProfile(request: AnalysisRequest): Exi
   const samples: ExitPupilAberrationSample[] = [];
 
   for (let i = 0; i < n; i++) {
-    const fieldFrac = i / (n - 1);
+    const fieldFrac = uniformFieldFraction(i, n);
     const fieldDeg = fieldFrac * halfFieldDeg;
     const launch = projectionLaunchSlopeForField(L, fieldDeg);
     const solve = solveChiefRay(fieldDeg, focusT, zoomT, L, geom, aberrationT);
@@ -381,7 +383,7 @@ export function computeBothPupilAberrationProfiles(request: AnalysisRequest): Bo
     const epOnlyLoop = (): PupilAberrationProfile => {
       const samples: PupilAberrationSample[] = [];
       for (let i = 0; i < n; i++) {
-        const fieldFrac = i / (n - 1);
+        const fieldFrac = uniformFieldFraction(i, n);
         const fieldDeg = fieldFrac * halfFieldDeg;
         const launch = projectionLaunchSlopeForField(L, fieldDeg);
         if (launch.status === "out-of-domain") {
@@ -404,8 +406,8 @@ export function computeBothPupilAberrationProfiles(request: AnalysisRequest): Bo
 
     const ep = epOnlyLoop();
     const xpSamples: ExitPupilAberrationSample[] = Array.from({ length: n }, (_, i) => ({
-      fieldFrac: i / (n - 1),
-      fieldDeg: (i / (n - 1)) * halfFieldDeg,
+      fieldFrac: uniformFieldFraction(i, n),
+      fieldDeg: uniformFieldFraction(i, n) * halfFieldDeg,
       xpZRelLastSurf: Infinity,
       xpShiftMm: 0,
     }));
@@ -425,7 +427,7 @@ export function computeBothPupilAberrationProfiles(request: AnalysisRequest): Bo
   const xpSamples: ExitPupilAberrationSample[] = [];
 
   for (let i = 0; i < n; i++) {
-    const fieldFrac = i / (n - 1);
+    const fieldFrac = uniformFieldFraction(i, n);
     const fieldDeg = fieldFrac * halfFieldDeg;
     const launch = projectionLaunchSlopeForField(L, fieldDeg);
     const solve = solveChiefRay(fieldDeg, focusT, zoomT, L, geom, aberrationT);

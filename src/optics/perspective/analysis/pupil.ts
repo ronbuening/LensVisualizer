@@ -6,6 +6,8 @@
  * pupil-bundle lines, then compared with the rigidly posed intrinsic pupils.
  */
 
+import { evenlySpacedSigned, signedVerticalSensorUvs } from "../../analysis/sampling.js";
+
 import type { AnalysisRequest } from "../../analysis/request.js";
 import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
 import type { ChromaticChannel } from "../../../types/optics.js";
@@ -330,14 +332,6 @@ function rayPointAtZ(ray: Ray3, z: number): Vec3 | null {
   const t = (z - ray.origin[2]) / ray.direction[2];
   const point = add(ray.origin, scale(ray.direction, t));
   return point.every(Number.isFinite) ? point : null;
-}
-
-function signedVerticalSensorUvs(count: number): SensorUv[] {
-  return evenlySpacedSigned(count).map((v) => ({ u: 0, v }));
-}
-
-function evenlySpacedSigned(count: number): number[] {
-  return Array.from({ length: count }, (_, index) => -1 + (2 * index) / (count - 1));
 }
 
 function assertPositiveFinite(value: number, label: string): void {

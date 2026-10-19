@@ -1,4 +1,45 @@
-/** Deterministic pupil patterns shared by optical analyses. */
+/** Deterministic pupil and field patterns shared by optical analyses. */
+
+/** Unlike the orthogonal fan, marginal fallbacks descend through positive candidates for focus searches. */
+export const MARGINAL_PUPIL_FRACTIONS = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
+/** Representative preview fields omit the outer edge, unlike FULL_FIELD_FRACTIONS. */
+export const PREVIEW_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75] as const;
+/** Endpoint-inclusive quarter-field plan shared by field curvature and lateral color. */
+export const FULL_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75, 1] as const;
+/** Sparse signed chromatic fan; unlike the orthogonal fan, its outer samples stay inside the rim. */
+export const CHROMATIC_PUPIL_FRACTIONS = [-0.9, -0.6, -0.3, 0, 0.3, 0.6, 0.9] as const;
+
+/**
+ * One endpoint-inclusive field fraction; callers retain their count and iteration policy.
+ *
+ * @param index - sample index in the caller's original order
+ * @param sampleCount - unmodified denominator count
+ * @returns normalized field fraction, without rounding or singleton repair
+ */
+export function uniformFieldFraction(index: number, sampleCount: number): number {
+  return index / (sampleCount - 1);
+}
+
+/**
+ * Endpoint-inclusive signed fractions, with the caller's count unchanged.
+ *
+ * @param count - array length and denominator count
+ * @returns fractions in increasing order; a singleton retains its raw NaN
+ */
+export function evenlySpacedSigned(count: number): number[] {
+  // Unlike uniformFieldFraction, multiply before dividing to preserve signed-fan rounding.
+  return Array.from({ length: count }, (_, index) => -1 + (2 * index) / (count - 1));
+}
+
+/**
+ * Map signed fractions onto the fixed sensor's vertical axis.
+ *
+ * @param count - unchanged signed-axis sample count
+ * @returns ordered normalized sensor coordinates
+ */
+export function signedVerticalSensorUvs(count: number): { u: number; v: number }[] {
+  return evenlySpacedSigned(count).map((v) => ({ u: 0, v }));
+}
 
 /** One sample in a tangential or sagittal orthogonal pupil fan. */
 export interface OrthogonalPupilSample {
@@ -37,8 +78,9 @@ export function sampleOrthogonalPupilFan(
   const roundedCount = Math.max(1, Math.round(sampleCount));
   const oddCount = roundedCount % 2 === 0 ? roundedCount + 1 : roundedCount;
 
-  return Array.from({ length: oddCount }, (_, index) => {
-    const pupilFraction = oddCount === 1 ? 0 : -1 + (2 * index) / (oddCount - 1);
+  // Unlike raw evenlySpacedSigned, pupil fans force odd counts and repair the singleton to the chief ray.
+  const fractions = oddCount === 1 ? [0] : evenlySpacedSigned(oddCount);
+  return fractions.map((pupilFraction, index) => {
     return {
       index,
       pupilFraction,
@@ -60,6 +102,7 @@ export function sampleOrthogonalPupilFan(
 export function sampleCircularPupil(
   ringSamples: readonly number[] = DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES,
 ): CircularPupilSample[] {
+  // Unlike createAreaWeightedCircularPupilPoints, populations set radii and the first singleton is central.
   const normalizedRingSamples = ringSamples
     .map((count) => Math.max(1, Math.round(count)))
     .filter((count) => Number.isFinite(count) && count > 0);
@@ -92,4 +135,18 @@ export function sampleCircularPupil(
   });
 
   return samples;
+}
+
+/**
+ * Express the circular pupil pattern as weighted normalized u/v points.
+ *
+ * @param ringSamples - family-owned ring populations
+ * @returns identical ordered pupil points for perspective bokeh and coma
+ */
+export function circularPupilPoints(ringSamples: readonly number[]): { u: number; v: number; weight: number }[] {
+  return sampleCircularPupil(ringSamples).map((sample) => ({
+    u: sample.xFraction,
+    v: sample.yFraction,
+    weight: sample.weight,
+  }));
 }

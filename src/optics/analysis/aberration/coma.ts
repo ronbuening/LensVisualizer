@@ -6,6 +6,7 @@
  */
 
 import {
+  evenlySpacedSigned,
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
   type CircularPupilSample,
@@ -448,6 +449,7 @@ function buildComaPointCloudFieldFootprintFromBundle(
   };
 }
 
+// Unlike sampleOrthogonalPupilFan, unavailable previews retain the requested count, including even counts.
 function emptyComaPreviewFieldResult(
   { fieldFraction, label }: ComaPreviewFieldMeta,
   sampleCount = MERIDIONAL_COMA_SAMPLE_COUNT,
@@ -462,9 +464,9 @@ function emptyComaPreviewFieldResult(
     chiefIntercept: 0,
     minRelativeIntercept: 0,
     maxRelativeIntercept: 0,
-    samples: Array.from({ length: sampleCount }, (_, index) => ({
+    samples: evenlySpacedSigned(sampleCount).map((pupilFraction, index) => ({
       index,
-      pupilFraction: sampleCount > 1 ? -1 + (2 * index) / (sampleCount - 1) : 0,
+      pupilFraction: sampleCount > 1 ? pupilFraction : 0,
       launchHeight: 0,
       imageHeight: null,
       relativeImageHeight: null,

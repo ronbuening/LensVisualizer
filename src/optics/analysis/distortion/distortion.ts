@@ -12,6 +12,8 @@
  * current state in a hook rather than embedding in a component.
  */
 
+import { evenlySpacedSigned, uniformFieldFraction } from "../sampling.js";
+
 import { prepareRayTrace, type PreparedRayTrace } from "../../trace/rayAdapters.js";
 import {
   chiefRayImageHeight2 as chiefRayImageHeight,
@@ -248,9 +250,10 @@ export function computeDistortionCurve(request: AnalysisRequest): DistortionCurv
   const edgeAbsHeight = Number.isFinite(reference.edgeImageHeight)
     ? Math.abs(reference.edgeImageHeight)
     : cornerImageHeight;
+  // Unlike the angular pupil-correction sweep, curve targets are uniform in image height and omit the axial inversion.
   const targetImageHeights = Array.from(
     { length: sampleCount - 1 },
-    (_, index) => -edgeAbsHeight * ((index + 1) / (sampleCount - 1)),
+    (_, index) => -edgeAbsHeight * uniformFieldFraction(index + 1, sampleCount),
   );
   const separateCorner = !isFisheyeProjection(L.projection) && Math.abs(edgeAbsHeight - cornerImageHeight) >= 1e-4;
   const inversions = invertChiefRayImageHeights(
@@ -288,7 +291,7 @@ export function computeDistortionCurve(request: AnalysisRequest): DistortionCurv
   // only suppresses the corner when the corner's own inversion has no valid ray.
   const corner = formatCorner.status === "unreachable" && formatCorner.reason === "field-limit" ? edge : formatCorner;
   for (let i = 0; i < sampleCount; i++) {
-    const normalizedImageHeight = i / (sampleCount - 1);
+    const normalizedImageHeight = uniformFieldFraction(i, sampleCount);
     if (i === 0) {
       samples.push({
         fieldAngleDeg: 0,
@@ -367,7 +370,7 @@ function buildPupilCorrectionTable(
     2,
   );
   for (let i = 0; i < sampleCount; i++) {
-    const angleDeg = (i / (sampleCount - 1)) * reference.geometry.halfFieldDeg;
+    const angleDeg = uniformFieldFraction(i, sampleCount) * reference.geometry.halfFieldDeg;
     const launch = projectionLaunchSlopeForField(L, angleDeg);
     if (launch.status === "out-of-domain") {
       table.push({ angleDeg, ratio: 1 });
@@ -624,7 +627,7 @@ export function computeDistortionFieldGrid(request: AnalysisRequest): Distortion
   }
 
   const segmentCount = clampedSampleCount(sampling.distortionGridSegmentCount, DISTORTION_GRID_SEGMENT_COUNT, 3);
-  const axisSamples = Array.from({ length: segmentCount }, (_, index) => -1 + (2 * index) / (segmentCount - 1));
+  const axisSamples = evenlySpacedSigned(segmentCount);
 
   const pupilCorrection = buildPupilCorrectionTable(
     reference,

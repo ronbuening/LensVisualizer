@@ -11,7 +11,7 @@ import {
   type BokehPupilSample,
   type BokehRadialProfile,
 } from "../../analysis/aberration/types.js";
-import { sampleCircularPupil } from "../../analysis/sampling.js";
+import { circularPupilPoints, signedVerticalSensorUvs } from "../../analysis/sampling.js";
 import type { Vec3 } from "../../types.js";
 import {
   sampleSensorLockedFields,
@@ -34,13 +34,7 @@ import {
   type PerspectiveSensorSpotSummary,
 } from "./imageSpace.js";
 
-const DEFAULT_BOKEH_SENSOR_UVS: readonly SensorUv[] = [
-  { u: 0, v: -1 },
-  { u: 0, v: -0.5 },
-  { u: 0, v: 0 },
-  { u: 0, v: 0.5 },
-  { u: 0, v: 1 },
-];
+const DEFAULT_BOKEH_SENSOR_UVS: readonly SensorUv[] = signedVerticalSensorUvs(5);
 const MIN_BOKEH_RAYS = 3;
 
 /** Controls for fixed-sensor blur and point-spread sampling. */
@@ -102,11 +96,7 @@ export interface PerspectiveFocusAnalysis {
 export function createPerspectiveBokehPupilPoints(
   ringSamples: readonly number[] = BOKEH_CIRCULAR_PUPIL_RING_SAMPLES,
 ): PerspectivePupilPoint[] {
-  return sampleCircularPupil(ringSamples).map((sample) => ({
-    u: sample.xFraction,
-    v: sample.yFraction,
-    weight: sample.weight,
-  }));
+  return circularPupilPoints(ringSamples);
 }
 
 /**

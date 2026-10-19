@@ -6,6 +6,8 @@
  * by the real optical prescription after movement.
  */
 
+import { evenlySpacedSigned } from "../../analysis/sampling.js";
+
 import type { AnalysisRequest } from "../../analysis/request.js";
 import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
 import type { Vec3 } from "../../types.js";
@@ -233,8 +235,4 @@ function sampleSceneLockedCoordinates(
 
 function sensorUvKey({ u, v }: SensorUv): string {
   return `${u === 0 ? 0 : u}|${v === 0 ? 0 : v}`;
-}
-
-function evenlySpacedSigned(count: number): number[] {
-  return Array.from({ length: count }, (_, index) => -1 + (2 * index) / (count - 1));
 }

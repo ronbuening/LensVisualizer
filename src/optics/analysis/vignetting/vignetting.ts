@@ -22,6 +22,8 @@
  * state in a React hook rather than embedding in a component.
  */
 
+import { evenlySpacedSigned, uniformFieldFraction } from "../sampling.js";
+
 import { prepareRayTrace } from "../../trace/rayAdapters.js";
 import {
   computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
@@ -107,6 +109,8 @@ export function computeVignettingCurve(request: AnalysisRequest): VignettingSamp
     3,
   );
 
+  // Unlike sampleOrthogonalPupilFan, retain even counts and equal ray-count weights for transmission.
+  const pupilFractions = evenlySpacedSigned(nPupil);
   const prepared = prepareRayTrace(L, { zPos, focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT });
 
   /* ── Raw geometric transmission per field sample ── */
@@ -114,7 +118,7 @@ export function computeVignettingCurve(request: AnalysisRequest): VignettingSamp
   const rawIntensity: number[] = [];
 
   for (let i = 0; i < fieldSamples; i++) {
-    const fieldAngleDeg = (i / (fieldSamples - 1)) * halfFieldDeg;
+    const fieldAngleDeg = uniformFieldFraction(i, fieldSamples) * halfFieldDeg;
     const solve = solveChiefRay(fieldAngleDeg, focusT, zoomT, L, geom, aberrationT);
     const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
     if (launch.status === "out-of-domain" && !solve.vectorLaunch) {
@@ -142,7 +146,7 @@ export function computeVignettingCurve(request: AnalysisRequest): VignettingSamp
     let surviving = 0;
     let transmittedIntensity = 0;
     for (let j = 0; j < nPupil; j++) {
-      const pupilFrac = -1 + (2 * j) / (nPupil - 1);
+      const pupilFrac = pupilFractions[j];
       const pupilOffset = pupilFrac * currentEPSD;
       const trace = solve.vectorLaunch
         ? vectorTrace!.vector(offsetVectorFieldRay(solve.vectorLaunch, 0, pupilOffset))
@@ -164,7 +168,7 @@ export function computeVignettingCurve(request: AnalysisRequest): VignettingSamp
 
   const samples: VignettingSample[] = [];
   for (let i = 0; i < fieldSamples; i++) {
-    const fieldAngleDeg = (i / (fieldSamples - 1)) * halfFieldDeg;
+    const fieldAngleDeg = uniformFieldFraction(i, fieldSamples) * halfFieldDeg;
     const thetaRad = (fieldAngleDeg * Math.PI) / 180;
     const cos4 = Math.pow(Math.cos(thetaRad), 4);
 

@@ -9,10 +9,16 @@ import type { PerspectiveFocusOptions } from "../perspective/analysis/focus.js";
 import type { PerspectivePupilOptions } from "../perspective/analysis/pupil.js";
 import type { PerspectiveVignettingOptions } from "../perspective/analysis/vignetting.js";
 import { createAreaWeightedCircularPupilPoints } from "../perspective/analysis/shared.js";
+import {
+  CHROMATIC_PUPIL_FRACTIONS,
+  evenlySpacedSigned,
+  FULL_FIELD_FRACTIONS,
+  signedVerticalSensorUvs,
+} from "./sampling.js";
 import type { AnalysisSamplingOptions } from "./analysisQuality.js";
 import type { AnalysisRequest } from "./request.js";
 
-const SETTLED_SENSOR_MAGNITUDES = [0, 0.25, 0.5, 0.75, 1] as const;
+const SETTLED_SENSOR_MAGNITUDES = FULL_FIELD_FRACTIONS;
 const SETTLED_DISTORTION_CURVE_SAMPLE_COUNT = 17;
 const SETTLED_DISTORTION_GRID_MAGNITUDES = [0, 0.5, 1] as const;
 const SETTLED_VIGNETTING_FIELD_SAMPLE_COUNT = 9;
@@ -20,12 +26,8 @@ const SETTLED_VIGNETTING_PUPIL_SAMPLE_COUNT = 60;
 const SETTLED_PUPIL_FIELD_SAMPLE_COUNT = 9;
 const SETTLED_PUPIL_FRACTION_SAMPLE_COUNT = 17;
 const INTERACTIVE_PUPIL_FRACTION_SAMPLE_COUNT = 7;
-const INTERACTIVE_SENSOR_UVS: readonly SensorUv[] = [
-  { u: 0, v: -1 },
-  { u: 0, v: 0 },
-  { u: 0, v: 1 },
-];
-const DEFAULT_CHROMATIC_PUPIL_FRACTIONS = [-0.9, -0.6, -0.3, 0, 0.3, 0.6, 0.9] as const;
+const INTERACTIVE_SENSOR_UVS: readonly SensorUv[] = signedVerticalSensorUvs(3);
+const DEFAULT_CHROMATIC_PUPIL_FRACTIONS = CHROMATIC_PUPIL_FRACTIONS;
 
 /** Concrete engine options derived once for one analysis-context identity. */
 export interface PerspectiveAnalysisSamplingPlan {
@@ -109,7 +111,7 @@ export function perspectiveAnalysisSamplingPlan({
     distortion: {
       verticalSensorV: interactive
         ? [-1, 0, 1]
-        : evenlySpacedSigned(qualitySampling.distortionCurveSampleCount ?? SETTLED_DISTORTION_CURVE_SAMPLE_COUNT),
+        : oddSignedFractions(qualitySampling.distortionCurveSampleCount ?? SETTLED_DISTORTION_CURVE_SAMPLE_COUNT),
       gridSensorU: distortionGridCoordinates,
       gridSensorV: distortionGridCoordinates,
       fieldSampling,
@@ -126,12 +128,13 @@ export function perspectiveAnalysisSamplingPlan({
       sensorUvs: interactive
         ? copySensorUvs(INTERACTIVE_SENSOR_UVS)
         : sensorUvsForCount(qualitySampling.pupilAberrationSampleCount ?? SETTLED_PUPIL_FIELD_SAMPLE_COUNT),
-      pupilFractions: evenlySpacedSigned(pupilFractionSampleCount),
+      pupilFractions: oddSignedFractions(pupilFractionSampleCount),
       fieldSampling,
     },
   };
 }
 
+// Unlike signedVerticalSensorUvs, reflect explicit magnitudes and require the center and both rims.
 function signedSensorUvs(magnitudes: readonly number[]): SensorUv[] {
   return signedValues(magnitudes, { includeBounds: true }).map((v) => ({ u: 0, v }));
 }
@@ -149,11 +152,12 @@ function combineFieldFractions(...collections: (readonly number[] | undefined)[]
   return combined.length > 0 ? combined : undefined;
 }
 
+// Unlike signedValues, merge axis samples with explicit grid lines and discard coordinates outside [-1, 1].
 function distortionGridCoordinatesForSampling(sampling: AnalysisSamplingOptions): number[] {
   if (sampling.distortionGridSegmentCount === undefined && sampling.distortionGridLineCoordinates === undefined) {
     return signedValues(SETTLED_DISTORTION_GRID_MAGNITUDES, { includeBounds: true });
   }
-  const axisCoordinates = evenlySpacedSigned(
+  const axisCoordinates = oddSignedFractions(
     sampling.distortionGridSegmentCount ?? SETTLED_DISTORTION_GRID_MAGNITUDES.length,
   );
   const requestedLines = sampling.distortionGridLineCoordinates ?? [];
@@ -166,6 +170,7 @@ function distortionGridCoordinatesForSampling(sampling: AnalysisSamplingOptions)
     .sort((a, b) => a - b);
 }
 
+// Unlike chromatic/analysis.normalizeFractions, mirror magnitudes, add the center/bounds, deduplicate and sort signed.
 function signedValues(values: readonly number[], { includeBounds }: { includeBounds: boolean }): number[] {
   const magnitudes = values.filter(Number.isFinite).map(Math.abs);
   magnitudes.push(0);
@@ -185,15 +190,17 @@ function copyNumbers(values: readonly number[] | undefined): number[] | undefine
 }
 
 function sensorUvsForCount(count: number): SensorUv[] {
-  return evenlySpacedSigned(count).map((v) => ({ u: 0, v }));
+  return oddSignedFractions(count).map((v) => ({ u: 0, v }));
 }
 
-function evenlySpacedSigned(requestedCount: number): number[] {
+// Unlike sampleOrthogonalPupilFan, plan counts are finite and at least three; singleton requests become three.
+function oddSignedFractions(requestedCount: number): number[] {
   const rounded = Number.isFinite(requestedCount) ? Math.max(3, Math.round(requestedCount)) : 3;
   const count = rounded % 2 === 0 ? rounded + 1 : rounded;
-  return Array.from({ length: count }, (_, index) => -1 + (2 * index) / (count - 1));
+  return evenlySpacedSigned(count);
 }
 
+// Unlike sampleCircularPupil ring populations, factor the requested count into equal-population radial strata.
 function circularPupilPointsForCount(requestedCount: number) {
   const count = Number.isFinite(requestedCount) ? Math.max(1, Math.round(requestedCount)) : 1;
   let radialStrata = Math.max(1, Math.floor(Math.sqrt(count / 2)));
@@ -201,6 +208,7 @@ function circularPupilPointsForCount(requestedCount: number) {
   return createAreaWeightedCircularPupilPoints(radialStrata, count / radialStrata);
 }
 
+// Unlike signedSensorUvs, combine chromatic fan overrides without forcing rim samples.
 function chromaticPupilFractions(sampling: AnalysisSamplingOptions): number[] {
   const requested = [
     ...(sampling.chromaticLongitudinalFractions ?? []),
