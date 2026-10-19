@@ -152,13 +152,7 @@ export function createAnalysisComputationContext(
       )),
     computeVignettingCurve: () =>
       (vignettingCurve ??= computeCenteredSection("vignetting", () =>
-        analysisJobsForState2.computeVignettingCurve(
-          preparedState,
-          currentEPSD,
-          currentPhysStopSD,
-          resolvedFieldGeometry,
-          sampling,
-        ),
+        analysisJobsForState2.computeVignettingCurve(request),
       )),
     computeBothPupilAberrationProfiles: () =>
       (pupilProfiles ??= computeCenteredSection("pupils", () =>

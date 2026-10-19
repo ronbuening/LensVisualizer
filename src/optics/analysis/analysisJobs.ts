@@ -34,7 +34,7 @@ import {
 } from "./aberration/spherical.js";
 import { computeBestFocusZ } from "./aberration/bestFocus.js";
 import type { AnalysisRequest } from "./request.js";
-import { computeVignettingCurve2, computeVignettingCurveForState2 } from "./vignetting.js";
+import { computeVignettingCurve } from "./vignetting/vignetting.js";
 
 /**
  * RuntimeLens analysis job registry for compatibility callers.
@@ -53,28 +53,8 @@ export const analysisJobs2 = {
     return computeDistortionFieldGrid(request);
   },
 
-  computeVignettingCurve(
-    L: RuntimeLens,
-    zPos: number[],
-    focusT: number,
-    zoomT: number,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    aberrationT = 0,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeVignettingCurve2(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      fieldGeometry,
-      aberrationT,
-      sampling,
-    );
+  computeVignettingCurve(request: AnalysisRequest) {
+    return computeVignettingCurve(request);
   },
 
   computeFieldCurvatureBundle(request: AnalysisRequest) {
@@ -244,14 +224,8 @@ export const analysisJobsForState2 = {
     return computeDistortionFieldGrid(request);
   },
 
-  computeVignettingCurve(
-    state: PreparedOpticalState,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeVignettingCurveForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry, sampling);
+  computeVignettingCurve(request: AnalysisRequest) {
+    return computeVignettingCurve(request);
   },
 
   computeBothPupilAberrationProfiles(

@@ -1347,8 +1347,8 @@ The summary family lives in `analysis/summary/`, exposed through `analysis.ts`. 
 breathing series and group-movement profiles take `AnalysisRequest`. The summary job table key is unchanged but now
 takes the request directly; `OpticalSummaryTab` creates/reuses a request and lazy context without a prepared-job
 fallback. Spherical aberration, SA profile, blur character and best focus also take requests through the unchanged job
-keys. Field curvature, its chromatic bundle, coma and distortion also take requests, including field geometry and sampling;
-other families still dispatch through their existing `*ForState2` adapters until their request migration.
+keys. Field curvature, its chromatic bundle, coma, distortion and vignetting also take requests, including field geometry
+and sampling; other families still dispatch through their existing `*ForState2` adapters until their request migration.
 Centered and movement-aware jobs retain their numerical kernels, sampling defaults and section-availability guards.
 
 Canonical cardinal and EFL math remains in `first-order/`. Request-facing cardinals accept optional camera surface
@@ -1456,14 +1456,20 @@ use perspective analysis.
 
 ## Vignetting
 
-`vignetteAnalysis.ts` computes relative illumination using solved chief rays, adaptive field spacing, and dense
-meridional pupil sweeps whose per-field ray count halves for `isHeavyLensForRayWork` lenses.
+`analysis/vignetting/vignetting.ts`, exposed through `analysis.ts`, takes `AnalysisRequest` and computes relative
+illumination using solved chief rays, adaptive field spacing, and dense meridional pupil sweeps whose per-field ray
+count halves for `isHeavyLensForRayWork` lenses.
 `computeVignettingCurve()` accepts optional precomputed field geometry and traces `solve.vectorLaunch` for
 fisheye/past-cap fields when the scalar slope helper reports `out-of-domain`.
 
 `geometricTransmission` remains the normalized fraction of rays that survive clipping. `relativeIllumination` sums the
 surviving rays' bulk-transmission weights, applies `cos⁴(θ)`, and normalizes by the on-axis intensity. This separation is
 required for apodizers: absorption changes brightness without pretending that the mechanical aperture rejected a ray.
+
+The unchanged job-table key and lazy context accessor now dispatch the request directly; the prepared-state adapter
+and RuntimeLens entry are removed. `VignettingTab` reuses the deferred context request or memoizes one from the
+prepared geometry, both aperture radii and field geometry, then reads the lazy context. Dynamic EFL is unused by
+this family. The separate moved-content component still uses perspective analysis; movement/folded guards remain.
 
 ## Pupil Aberration
 

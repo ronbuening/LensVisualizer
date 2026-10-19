@@ -1,10 +1,14 @@
-import { registerRuntimeFixture } from "./testLensFixtures.js";
+import { registerRuntimeFixture } from "../../testLensFixtures.js";
 import { describe, it, expect } from "vitest";
-import { computeVignettingCurve as computeVignettingCurveBase } from "../../../src/optics/vignetteAnalysis.js";
-import { computeAnalysisFieldGeometryAtState, doLayout, type FieldGeometryState } from "../../../src/optics/optics.js";
-import MinoltaSTFRaw from "../../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.js";
-import { apertureAt, build, sharedNikkorZ70200, sharedSonnar50f15 } from "./testLensFixtures.js";
-import type { RuntimeLens, LensData } from "../../../src/types/optics.js";
+import { computeVignettingCurve as computeVignettingCurveBase } from "../../../../../src/optics/analysis/vignetting/vignetting.js";
+import {
+  computeAnalysisFieldGeometryAtState,
+  doLayout,
+  type FieldGeometryState,
+} from "../../../../../src/optics/optics.js";
+import MinoltaSTFRaw from "../../../../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.js";
+import { analysisRequestAt, apertureAt, build, sharedNikkorZ70200, sharedSonnar50f15 } from "../../testLensFixtures.js";
+import type { RuntimeLens, LensData } from "../../../../../src/types/optics.js";
 
 /* ── Helpers ── */
 
@@ -28,7 +32,9 @@ function computeVignettingCurve(
   fieldGeometry?: FieldGeometryState,
   aberrationT = 0,
 ) {
-  return computeVignettingCurveBase(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, fieldGeometry, aberrationT);
+  return computeVignettingCurveBase(
+    analysisRequestAt(L, { zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, fieldGeometry, aberrationT }),
+  );
 }
 
 describe("computeVignettingCurve", () => {
@@ -137,7 +143,7 @@ describe("computeVignettingCurve", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
 
-    const samples = computeVignettingCurveBase(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, undefined, 0);
+    const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, undefined, 0);
 
     for (const sample of samples) {
       expect(isFinite(sample.fieldAngleDeg)).toBe(true);
@@ -174,7 +180,7 @@ describe("computeVignettingCurve", () => {
     ],
     [
       "computeVignettingCurve (degenerate lens, L.N < 1)",
-      () => [computeVignettingCurve({ N: 0 } as unknown as RuntimeLens, [], 0, 0, 1, 1)],
+      () => [computeVignettingCurve(registerRuntimeFixture({ ...sharedSonnar50f15(), N: 0 }), [], 0, 0, 1, 1)],
     ],
   ])("%s returns an empty array", (_name, run) => {
     for (const samples of run()) {

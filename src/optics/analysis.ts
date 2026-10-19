@@ -61,3 +61,5 @@ export {
   type DistortionGridLine,
   type DistortionFieldGridResult,
 } from "./analysis/distortion/distortion.js";
+
+export { computeVignettingCurve, type VignettingSample } from "./analysis/vignetting/vignetting.js";

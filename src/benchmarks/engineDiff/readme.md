@@ -28,6 +28,7 @@ flowchart LR
   n_external_glob_______optics_analysis_request_ts["glob:../../optics/analysis/request.ts"]
   n_external_glob_______optics_analysis_summary_cardinals_ts["glob:../../optics/analysis/summary/cardinals.ts"]
   n_external_glob_______optics_analysis_summary_groupMovement_ts["glob:../../optics/analysis/summary/groupMovement.ts"]
+  n_external_glob_______optics_analysis_vignetting_vignetting_ts["glob:../../optics/analysis/vignetting/vignetting.ts"]
   n_external_glob_______optics_aperture_ts["glob:../../optics/aperture.ts"]
   n_external_glob_______optics_apertureStop_ts["glob:../../optics/apertureStop.ts"]
   n_external_glob_______optics_asphericComparison_ts["glob:../../optics/asphericComparison.ts"]
@@ -58,6 +59,7 @@ flowchart LR
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_seamAdapter_ts --> n_external_glob_______optics_analysis_request_ts
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_seamAdapter_ts --> n_external_glob_______optics_analysis_summary_cardinals_ts
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_seamAdapter_ts --> n_external_glob_______optics_analysis_summary_groupMovement_ts
+  n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_seamAdapter_ts --> n_external_glob_______optics_analysis_vignetting_vignetting_ts
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_seamAdapter_ts --> n_external_glob_______optics_aperture_ts
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_seamAdapter_ts --> n_external_glob_______optics_apertureStop_ts
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_seamAdapter_ts --> n_external_glob_______optics_asphericComparison_ts
@@ -79,7 +81,6 @@ flowchart LR
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_captureEntry_ts --> n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_compare_ts
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_compare_ts --> n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_payload_ts
   n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_propagation_ts --> n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_payload_ts
-  n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_captureEntry_ts --> n_src_benchmarks_engineDiff_src_benchmarks_engineDiff_propagation_ts
   n_src_benchmarks_engineDiff_truncated["additional relationships omitted"]
 ```
 
@@ -87,7 +88,7 @@ flowchart LR
 
 - Direct source files: 7
 - Direct subfolders: 0
-- Main outbound areas: src/benchmarks (13), glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, glob:../../lens-data/defaults.ts, glob:../../optics/analysis/aberration/bestFocus.ts, glob:../../optics/analysis/aberration/coma.ts, glob:../../optics/analysis/aberration/fieldCurvature.ts, glob:../../optics/analysis/aberration/spherical.ts, +20 more
+- Main outbound areas: src/benchmarks (13), glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, glob:../../lens-data/defaults.ts, glob:../../optics/analysis/aberration/bestFocus.ts, glob:../../optics/analysis/aberration/coma.ts, glob:../../optics/analysis/aberration/fieldCurvature.ts, glob:../../optics/analysis/aberration/spherical.ts, +21 more
 - External consumers: none
 
 ## Files
@@ -100,4 +101,4 @@ flowchart LR
 | `payload.ts` | Payload helper module | none | src/benchmarks (3) | EncodedValue, SKIPPED_BACK_POINTER_TAG, encodeValue, decodeValue, sha256Hex, maskBudgetedNumbers, columnize, projectTrace, +15 more |
 | `propagation.ts` | Propagation helper module | src/benchmarks (2) | src/benchmarks | PropagatedEvidence, PropagatedEvidenceMap, probeRoot, probeScalarSolve, probeInversion, capturePropagation |
 | `requests.ts` | Requests helper module | none | src/benchmarks (2) | RequestFamily, CaptureState, LensRef, CaptureRequest, CatalogLens, RequestCatalog, lensId, stateId, +36 more |
-| `seamAdapter.ts` | Seam Adapter helper module | glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, glob:../../lens-data/defaults.ts, glob:../../optics/analysis/aberration/bestFocus.ts, glob:../../optics/analysis/aberration/coma.ts, +22 more | src/benchmarks | EngineSeam, RuntimeLens, LensData, TeleconverterData, PreparedState, EngineRay, EngineTraceOptions, EngineTrace, +7 more |
+| `seamAdapter.ts` | Seam Adapter helper module | glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, glob:../../lens-data/defaults.ts, glob:../../optics/analysis/aberration/bestFocus.ts, glob:../../optics/analysis/aberration/coma.ts, +23 more | src/benchmarks | EngineSeam, RuntimeLens, LensData, TeleconverterData, PreparedState, EngineRay, EngineTraceOptions, EngineTrace, +7 more |

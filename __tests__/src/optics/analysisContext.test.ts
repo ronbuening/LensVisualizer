@@ -38,9 +38,7 @@ describe("analysis computation context", () => {
     expect(context.computeDistortionFieldGrid()).toEqual(
       analysisJobsForState2.computeDistortionFieldGrid(context.request),
     );
-    expect(context.computeVignettingCurve()).toEqual(
-      analysisJobsForState2.computeVignettingCurve(state, currentEPSD, currentPhysStopSD, fieldGeometry),
-    );
+    expect(context.computeVignettingCurve()).toEqual(analysisJobsForState2.computeVignettingCurve(context.request));
     expect(context.computeBothPupilAberrationProfiles()).toEqual(
       analysisJobsForState2.computeBothPupilAberrationProfiles(state, undefined, fieldGeometry),
     );
@@ -108,6 +106,24 @@ describe("analysis computation context", () => {
     expect(directGrid.lines).toHaveLength(6);
     expect(directGrid.lines.every((line) => line.points.length === 3)).toBe(true);
     expect(context.computeDistortionFieldGrid()).toBe(grid);
+  });
+
+  it("forwards vignetting sampling and caches the request result", () => {
+    const L = sharedSonnar50f15();
+    const state = prepareRuntimeState(L, 0.25, 0);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0.3);
+    const request = createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: L.EFL,
+      currentEPSD,
+      currentPhysStopSD,
+      sampling: { vignettingFieldSampleCount: 5, vignettingPupilSampleCount: 17 },
+    });
+    const context = createAnalysisComputationContext(request);
+    const samples = context.computeVignettingCurve();
+    expect(samples).toHaveLength(5);
+    expect(samples).toEqual(analysisJobsForState2.computeVignettingCurve(request));
+    expect(context.computeVignettingCurve()).toBe(samples);
   });
 
   it("applies interactive chromatic sampling through the cached context", () => {

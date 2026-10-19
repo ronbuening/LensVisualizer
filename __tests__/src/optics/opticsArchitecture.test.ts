@@ -29,11 +29,9 @@ const CYCLE_LEGACY: readonly string[] = [
   "src/optics/analysis/analysisContext.ts",
   "src/optics/analysis/analysisJobs.ts",
   "src/optics/analysis/pupilAberration.ts",
-  "src/optics/analysis/vignetting.ts",
   "src/optics/compat.ts",
   "src/optics/optics.ts",
   "src/optics/pupilAberration.ts",
-  "src/optics/vignetteAnalysis.ts",
 ];
 
 /* ── Seam guard lists ── */
@@ -118,7 +116,6 @@ const SEAM_LEGACY: readonly string[] = [
   "src/optics/spectralLines.ts",
   "src/optics/trace/rayAdapters.ts",
   "src/optics/types.ts",
-  "src/optics/vignetteAnalysis.ts",
 ];
 
 /** Report-only formulas stay internal; permission is for this importer/target pair, not the app. */

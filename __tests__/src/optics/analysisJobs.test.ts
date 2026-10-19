@@ -1,4 +1,5 @@
 import {
+  computeVignettingCurve,
   computeDistortionCurve,
   computeDistortionFieldGrid,
   computeFieldCurvatureBundle,
@@ -39,9 +40,10 @@ describe("analysis job facade", () => {
     expect(analysisJobsForState2.computeDistortionFieldGrid(distortionRequest)).toEqual(
       computeDistortionFieldGrid(distortionRequest),
     );
-    expect(analysisJobsForState2.computeVignettingCurve(state, currentEPSD, currentPhysStopSD)).toEqual(
-      analysisJobs2.computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    expect(analysisJobsForState2.computeVignettingCurve(distortionRequest)).toEqual(
+      computeVignettingCurve(distortionRequest),
     );
+    expect(analysisJobs2.computeVignettingCurve(distortionRequest)).toEqual(computeVignettingCurve(distortionRequest));
     const fieldRequest = createAnalysisRequest({ preparedState: state, dynamicEFL, currentEPSD, currentPhysStopSD });
     expect(analysisJobsForState2.computeFieldCurvatureBundle(fieldRequest)).toEqual(
       computeFieldCurvatureBundle(fieldRequest),

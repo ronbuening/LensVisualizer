@@ -22,13 +22,16 @@
  * state in a React hook rather than embedding in a component.
  */
 
-import { prepareRayTrace } from "./trace/rayAdapters.js";
-import { computeAnalysisFieldGeometryAtState, offsetVectorFieldRay, solveChiefRay } from "./optics.js";
-import { projectionLaunchSlopeForField } from "./projection.js";
-import type { FieldGeometryState } from "./optics.js";
-import { isHeavyLensForRayWork } from "./raySampling.js";
-import type { AnalysisSamplingOptions } from "./analysis/analysisQuality.js";
-import type { RuntimeLens } from "../types/optics.js";
+import { prepareRayTrace } from "../../trace/rayAdapters.js";
+import {
+  computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
+  offsetVectorFieldRay2 as offsetVectorFieldRay,
+  solveChiefRay2 as solveChiefRay,
+} from "../../state/fieldAdapters.js";
+import { projectionLaunchSlopeForField2 as projectionLaunchSlopeForField } from "../../field/projection.js";
+import { isHeavyLensForRayWork } from "../../raySampling.js";
+import { runtimeView } from "../../prescription/runtimeView.js";
+import type { AnalysisRequest } from "../request.js";
 
 /** A single sample on the vignetting / relative-illumination curve. */
 export interface VignettingSample {
@@ -65,29 +68,20 @@ const N_PUPIL_HEAVY = 96;
  * Compute the vignetting / relative illumination curve for the current lens state.
  *
  * Samples the field from center (0°) to the current half-field edge at
- * FIELD_SAMPLES evenly-spaced angles.  At each angle N_PUPIL meridional rays
+ * adaptively spaced angles.  At each angle N_PUPIL meridional rays
  * are traced across the entrance-pupil diameter and the surviving fraction is
  * recorded.
  *
- * @param L                  — runtime lens object (frozen, from buildLens)
- * @param zPos               — surface z-positions for current focus/zoom state
- * @param focusT             — focus slider [0..1]
- * @param zoomT              — zoom slider [0..1]
- * @param currentEPSD        — current entrance-pupil semi-diameter (mm)
- * @param currentPhysStopSD  — current physical stop semi-diameter (mm)
- * @returns                    array of VignettingSample, or empty if invalid
+ * @param request - prepared geometry, entrance-pupil/stop radii in mm, field and sampling
+ * @returns array of VignettingSample, or empty if invalid
  */
-export function computeVignettingCurve(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  fieldGeometry?: FieldGeometryState,
-  aberrationT = 0,
-  sampling: AnalysisSamplingOptions = {},
-): VignettingSample[] {
+export function computeVignettingCurve(request: AnalysisRequest): VignettingSample[] {
+  const { preparedGeometry: state, sampling } = request;
+  const { focusT, zoomT, aberrationT } = state;
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
+  const fieldGeometry = request.fieldGeometry ?? undefined;
   if (currentEPSD <= 0 || L.N < 1) return [];
 
   /* Pre-compute field geometry for the solved chief ray — accounts for

@@ -43,7 +43,6 @@ vi.mock("../../../../../src/optics/compat.js", async () => {
       computeBothPupilAberrationProfiles: mockComputeBothPupilAberrationProfiles,
       computeChromaticAnalysis: mockComputeChromaticAnalysis,
       computeChromaticRayFanAnalysis: mockComputeChromaticRayFanAnalysis,
-      computeVignettingCurve: mockComputeVignettingCurve,
     },
     prepareRuntimeState: mockPrepareRuntimeState,
   };
@@ -67,6 +66,10 @@ vi.mock("../../../../../src/optics/analysis/distortion/distortion.js", async (im
     computeDistortionFieldGrid: mockComputeDistortionFieldGrid,
   };
 });
+
+vi.mock("../../../../../src/optics/analysis/vignetting/vignetting.js", () => ({
+  computeVignettingCurve: mockComputeVignettingCurve,
+}));
 
 const preparedState = mockPreparedState as PreparedOpticalState;
 const lens = { N: 2, EFL: 50, EP: { epSD: 5 }, isZoom: false, elements: [] } as unknown as RuntimeLens;
@@ -510,7 +513,7 @@ describe("prepared-state analysis tabs", () => {
     );
   });
 
-  it("routes vignetting work through the prepared-state job facade", () => {
+  it("routes vignetting work through one request and lazy context", () => {
     const html = renderToStaticMarkup(
       React.createElement(VignettingTab, {
         L: lens,
@@ -527,7 +530,13 @@ describe("prepared-state analysis tabs", () => {
 
     expect(html).toContain("Vignetting / Relative Illumination");
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
-    expect(mockComputeVignettingCurve).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry);
+    expect(mockComputeVignettingCurve).toHaveBeenCalledWith(
+      expect.objectContaining({
+        preparedGeometry: preparedState,
+        aperture: { entrancePupilSemiDiameterMm: 10, stopSemiDiameterMm: 5 },
+        fieldGeometry,
+      }),
+    );
   });
 
   it("routes pupil work through the prepared-state job facade", () => {

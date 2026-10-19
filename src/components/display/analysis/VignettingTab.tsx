@@ -7,7 +7,7 @@
  */
 
 import { useMemo } from "react";
-import { analysisJobsForState2 } from "../../../optics/compat.js";
+import { createAnalysisRequest, createAnalysisComputationContext } from "../../../optics/analysis.js";
 import { probe } from "../../../utils/perfProbe.js";
 import VignettingChart from "./VignettingChart.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
@@ -82,21 +82,20 @@ function CenteredVignettingContent({
   preparedState,
   analysisContext,
 }: CenteredVignettingContentProps) {
-  const samples = useMemo(
+  const request = useMemo(
     () =>
-      probe(
-        "computeVignettingCurve",
-        () =>
-          analysisContext?.computeVignettingCurve() ??
-          analysisJobsForState2.computeVignettingCurve(
-            preparedState,
-            currentEPSD,
-            currentPhysStopSD,
-            fieldGeometry ?? undefined,
-          ),
-      ),
+      analysisContext?.request ??
+      createAnalysisRequest({
+        preparedState,
+        dynamicEFL: 0,
+        currentEPSD,
+        currentPhysStopSD,
+        fieldGeometry,
+      }),
     [analysisContext, preparedState, currentEPSD, currentPhysStopSD, fieldGeometry],
   );
+  const context = useMemo(() => createAnalysisComputationContext(request), [request]);
+  const samples = useMemo(() => probe("computeVignettingCurve", () => context.computeVignettingCurve()), [context]);
 
   if (samples.length < 2) {
     return (

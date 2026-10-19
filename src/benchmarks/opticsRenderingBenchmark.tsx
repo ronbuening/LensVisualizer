@@ -1529,11 +1529,14 @@ function computeAnalysisDistortionGridWork(snapshot: ScenarioSnapshot): Benchmar
 /** Measures vignetting sampling for non-folded sequential systems. */
 function computeAnalysisVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const samples = analysisJobsForState2.computeVignettingCurve(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
-    snapshot.analysisSampling,
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      fieldGeometry: snapshot.fieldGeometry,
+      sampling: snapshot.analysisSampling,
+    }),
   );
   completed("vignetting", samples);
   return { vignettingSamples: samples.length };
