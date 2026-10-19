@@ -69,7 +69,7 @@ import {
   traceRayVector,
   traceRayVectorChromatic,
 } from "../optics/optics.js";
-import { computeCardinalElementsAtState } from "../optics/cardinalElements.js";
+import { computeCardinalElements, createAnalysisRequest } from "../optics/analysis.js";
 import { computeElementShapes, createCoordinateTransforms } from "../optics/diagramGeometry.js";
 import {
   clampLensMovement,
@@ -1001,9 +1001,12 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
   const currentEPSD = (baseEPSD * currentFOPEN) / fNumber;
   const dynamicEFL = eflAtFocus(focusT, zoomT, L, aberrationT);
   effectiveFNumber(fNumber, focusT, zoomT, L, aberrationT);
-  computeCardinalElementsAtState(L, focusT, zoomT, zPos, IMG_MM, aberrationT);
 
   const preparedState = prepareRuntimeState(L, focusT, zoomT, aberrationT);
+  computeCardinalElements(
+    createAnalysisRequest({ preparedState, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry }),
+    { zPos, imagePlaneZ: IMG_MM },
+  );
   const perspectiveTraceContext = createPerspectiveTraceContext({
     preparedState,
     cameraZPos: zPos,
@@ -1462,14 +1465,16 @@ function computePerspectivePupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutp
   };
 }
 
-/** Measures the optical summary path through the prepared-state analysis API. */
+/** Measures the optical summary path through its request-facing analysis job. */
 function computeAnalysisSummaryWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const summary = analysisJobsForState2.computeOpticalSummary(
-    snapshot.preparedState,
-    snapshot.dynamicEFL,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      fieldGeometry: snapshot.fieldGeometry,
+    }),
   );
   completed("summary", summary);
   return { summarySurfaceCount: summary.surfaceCount };

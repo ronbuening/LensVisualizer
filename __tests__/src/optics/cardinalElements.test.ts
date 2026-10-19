@@ -1,7 +1,8 @@
 import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
-import { computeCardinalElementsAtState } from "../../../src/optics/cardinalElements.js";
+import { computeCardinalElements } from "../../../src/optics/analysis/summary/cardinals.js";
+import { analysisRequestForLens } from "./testLensFixtures.js";
 import { thickLensFocalLength } from "../../../src/optics/first-order/thickLens.js";
 import { doLayout } from "../../../src/optics/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
@@ -9,7 +10,10 @@ import type { RuntimeLens, SurfaceData } from "../../../src/types/optics.js";
 
 function cardinalsFor(L: RuntimeLens, focusT = 0, zoomT = 0) {
   const layout = doLayout(focusT, zoomT, L);
-  return computeCardinalElementsAtState(L, focusT, zoomT, layout.z, layout.imgZ);
+  return computeCardinalElements(analysisRequestForLens(L, focusT, zoomT, 0), {
+    zPos: layout.z,
+    imagePlaneZ: layout.imgZ,
+  });
 }
 
 function minimalCardinalLens(surfaces: SurfaceData[]): RuntimeLens {
@@ -68,7 +72,7 @@ function minimalCardinalLens(surfaces: SurfaceData[]): RuntimeLens {
   } as unknown as RuntimeLens);
 }
 
-describe("computeCardinalElementsAtState", () => {
+describe("request cardinals", () => {
   it("computes the full same-index cardinal set and marks H/N coincidence", () => {
     const L = buildLens(LENS_CATALOG["nokton-50f1"]);
     const result = cardinalsFor(L);
@@ -82,10 +86,29 @@ describe("computeCardinalElementsAtState", () => {
     expect(result!.distances.efl.valueMm).toBeCloseTo(L.EFL, 8);
   });
 
+  it("preserves camera surface and image-plane overrides independently", () => {
+    const L = minimalCardinalLens([
+      { label: "1", R: 50, d: 5, nd: 1.5, elemId: 1, sd: 10 },
+      { label: "2", R: -50, d: 80, nd: 1, elemId: 0, sd: 10 },
+    ]);
+    const request = analysisRequestForLens(L);
+    const intrinsic = computeCardinalElements(request)!;
+    const camera = computeCardinalElements(request, {
+      zPos: request.preparedGeometry.z.map((z) => z - 7),
+      imagePlaneZ: 123,
+    })!;
+    expect(camera.imagePlaneZ).toBe(123);
+    expect(camera.frontVertexZ).toBe(intrinsic.frontVertexZ - 7);
+    expect(camera.rearVertexZ).toBe(intrinsic.rearVertexZ - 7);
+    expect(camera.points.rearFocal.z).toBe(intrinsic.points.rearFocal.z - 7);
+    expect(camera.distances.totalTrack.valueMm).toBe(123 - camera.frontVertexZ);
+    expect(request.preparedGeometry.imgZ).toBe(intrinsic.imagePlaneZ);
+  });
+
   it("computes nodal points independently when image-side index differs", () => {
     const L = minimalCardinalLens([{ label: "1", R: 100, d: 0, nd: 1.5, elemId: 1, sd: 10 }]);
 
-    const result = computeCardinalElementsAtState(L, 0, 0, [0], 20);
+    const result = computeCardinalElements(analysisRequestForLens(L, 0, 0, 0), { zPos: [0], imagePlaneZ: 20 });
 
     expect(result).not.toBeNull();
     expect(result!.imageIndex).toBeCloseTo(1.5, 12);
@@ -205,7 +228,7 @@ describe("computeCardinalElementsAtState", () => {
   it("returns null for afocal or zero-power systems", () => {
     const L = minimalCardinalLens([{ label: "1", R: 1e15, d: 0, nd: 1, elemId: 0, sd: 10 }]);
 
-    expect(computeCardinalElementsAtState(L, 0, 0, [0], 10)).toBeNull();
+    expect(computeCardinalElements(analysisRequestForLens(L, 0, 0, 0), { zPos: [0], imagePlaneZ: 10 })).toBeNull();
   });
 
   describe("thickLensFocalLength", () => {

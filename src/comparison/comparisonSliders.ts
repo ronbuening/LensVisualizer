@@ -7,7 +7,7 @@
  */
 
 import { closeFocusAtZoom, remapFocusDistance } from "../optics/focusDistance.js";
-import { getGroupMovementAvailability } from "../optics/groupMovement.js";
+import { getGroupMovementAvailability } from "../optics/analysis.js";
 import type { RuntimeLens } from "../types/optics.js";
 import { FOCUS_INFINITY_CUTOFF, fopenAtZoom } from "../optics/optics.js";
 import { fNumberAtStopdown } from "../optics/aperture.js";

@@ -4,11 +4,8 @@
  * Uses the prepared system matrix and current image-plane geometry to feed the diagram's axial first-order overlays.
  */
 
-import type { RuntimeLens } from "../../types/optics.js";
 import { traceParaxialSurfaces2, transferParaxialRay2, type ParaxialState } from "../math/paraxial.js";
-import { compiledLensFromRuntime } from "../prescription/compile.js";
 import { createTraceGeometry } from "../trace/geometry.js";
-import { prepareState } from "../state/preparedGeometry.js";
 import type { PreparedOpticalState } from "../types.js";
 import { prepareEngineTrace } from "../trace/rayAdapters.js";
 import { computeSystemMatrix2 } from "./systemMatrix.js";
@@ -166,28 +163,18 @@ export function buildCardinalElementsFromMatrix2({
 }
 
 /**
- * Compute cardinal elements through the RuntimeLens compatibility path.
+ * Compute cardinal elements with camera/display coordinate overrides.
  *
- * `zPos` and `imagePlaneZ` let diagram callers pass their current layout positions,
- * including focused/zoomed or display-adjusted image planes, without rebuilding the lens.
- *
- * @param L - runtime lens object
- * @param focusT - normalized focus slider, 0=infinity and 1=close focus
- * @param zoomT - normalized zoom slider, ignored by prime lenses
+ * @param state - prepared optical state for current controls
  * @param zPos - current surface vertex positions in mm
  * @param imagePlaneZ - current image-plane z coordinate in mm
- * @param aberrationT - normalized aberration spacing slider
  * @returns cardinal-element result in millimeters, or null when unsupported
  */
-export function computeCardinalElementsAtState2(
-  L: RuntimeLens,
-  focusT: number,
-  zoomT: number,
-  zPos: number[],
+export function computeCardinalElementsWithLayout(
+  state: PreparedOpticalState,
+  zPos: readonly number[],
   imagePlaneZ: number,
-  aberrationT = 0,
 ): CardinalElements2 | null {
-  const state = prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT);
   const z = Object.freeze([...zPos]);
   const surfaces = Object.freeze(
     state.surfaces.map((surface, index) => Object.freeze({ ...surface, z: zPos[index] ?? surface.z })),

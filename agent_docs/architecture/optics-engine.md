@@ -1343,9 +1343,19 @@ field and perspective objects stable with `useMemo`. The small request history a
 field snapshots when React rebuilds the drawer's inputs. A new perspective trace identity intentionally creates a
 new request, since its trace functions and solve cache belong to that object even if its diagnostic key matches.
 
-Families still dispatch through `analysisJobsForState2` and their existing `*ForState2` adapters. Tab hooks retain
-their context/prepared/legacy fallbacks until each family migrates to `AnalysisRequest`. Centered and movement-aware
-jobs retain their numerical kernels, sampling defaults and section-availability guards.
+The summary family lives in `analysis/summary/`, exposed through `analysis.ts`. Summary, cardinals, current EFL,
+breathing series and group-movement profiles take `AnalysisRequest`. The summary job table key is unchanged but now
+takes the request directly; `OpticalSummaryTab` creates/reuses a request and lazy context without a prepared-job
+fallback. Other families still dispatch through their existing `*ForState2` adapters until their request migration.
+Centered and movement-aware jobs retain their numerical kernels, sampling defaults and section-availability guards.
+
+Canonical cardinal and EFL math remains in `first-order/`. Request-facing cardinals accept optional camera surface
+z and image-plane overrides, including the folded reflective path. The breathing series preserves its 21 regular
+samples plus endpoints/current-focus insertion and intentionally uses zero aberration, matching the original chart.
+Current EFL retains the cached infinity value and zoom-station interpolation. `eflAtFocus2` remains as the compatibility
+entry for the working f-number, perspective field geometry and public layout/optics consumers; these lower-level
+owners must not depend on requests. Group availability/inference still accept runtime lenses for diagram controls,
+comparison sliders and published-station eligibility; only profile computation takes a request.
 
 ## Aberration Analysis
 

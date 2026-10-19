@@ -5,11 +5,16 @@
  * image plane for comparison overlays and analysis displays.
  */
 
-import { interpolateStationTable, zoomIndexToT } from "./state/stationTables.js";
-import { GROUP_MOVEMENT_MODES, type GroupMovementMode } from "../types/groupMovement.js";
-import type { RuntimeLens, ResolvedAnnotation, VarRange, ZoomVarRange } from "../types/optics.js";
-import { anchorLayoutToCamera } from "./cameraLayout.js";
-import { doLayout } from "./optics.js";
+import { interpolateStationTable, zoomIndexToT } from "../../state/stationTables.js";
+import { GROUP_MOVEMENT_MODES, type GroupMovementMode } from "../../../types/groupMovement.js";
+import type { RuntimeLens, ResolvedAnnotation, VarRange, ZoomVarRange } from "../../../types/optics.js";
+import { anchorLayoutToCamera } from "../../cameraLayout.js";
+import { layoutFromPrepared } from "../../state/layout.js";
+import { prepareState } from "../../state/preparedGeometry.js";
+import { compiledLensFromRuntime } from "../../prescription/identity.js";
+
+import { runtimeView } from "../../prescription/runtimeView.js";
+import type { AnalysisRequest } from "../request.js";
 
 const MOVEMENT_EPSILON_MM = 1e-6;
 const FOCUS_SAMPLE_COUNT = 21;
@@ -57,12 +62,6 @@ export interface GroupMovementProfile {
   xDomain: [number, number];
   positionDomain: [number, number];
   maxAbsShiftMm: number;
-}
-
-interface GroupMovementOptions {
-  focusT: number;
-  zoomT: number;
-  aberrationT?: number;
 }
 
 function isZoomRange(range: VarRange): range is ZoomVarRange {
@@ -213,8 +212,9 @@ function anchoredSurfacePositions(
   zoomT: number,
   aberrationT: number,
 ): AnchoredSurfacePositions {
-  const ref = doLayout(0, 0, L);
-  const cur = doLayout(focusT, zoomT, L, aberrationT);
+  const lens = compiledLensFromRuntime(L);
+  const ref = layoutFromPrepared(prepareState(lens, 0, 0));
+  const cur = layoutFromPrepared(prepareState(lens, focusT, zoomT, aberrationT));
   const cameraLayout = anchorLayoutToCamera(ref, cur);
   return {
     z: cameraLayout.z,
@@ -306,16 +306,14 @@ function profilePositionDomain(series: readonly GroupMovementSeries[]): [number,
  * and zoom samples include the current slider position so the display can mark it
  * exactly even when it falls between regular sample ticks.
  *
- * @param L - runtime lens object
+ * @param request - prepared geometry supplying current focus/zoom/aberration controls
  * @param mode - focus, zoom, or combined profile mode
- * @param options - current focus/zoom/aberration controls
  * @returns sampled group movement series and axis domains
  */
-export function computeGroupMovementProfile(
-  L: RuntimeLens,
-  mode: GroupMovementMode,
-  { focusT, zoomT, aberrationT = 0 }: GroupMovementOptions,
-): GroupMovementProfile {
+export function computeGroupMovementProfile(request: AnalysisRequest, mode: GroupMovementMode): GroupMovementProfile {
+  const state = request.preparedGeometry;
+  const L = runtimeView(state.lens);
+  const { focusT, zoomT, aberrationT } = state;
   const availability = getGroupMovementAvailability(L);
   const groups = inferLensMovementGroups(L);
   const safeFocusT = Math.max(0, Math.min(1, focusT));

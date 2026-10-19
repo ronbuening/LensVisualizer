@@ -14,7 +14,8 @@ import { attachTeleconverter } from "../../../src/optics/teleconverter.js";
 import validateLensData from "../../../src/optics/validateLensData.js";
 import { wideOpenStopAtZoom } from "../../../src/optics/apertureStop.js";
 import { doLayout, traceRay } from "../../../src/optics/optics.js";
-import { computeCardinalElementsAtState } from "../../../src/optics/cardinalElements.js";
+import { computeCardinalElements } from "../../../src/optics/analysis/summary/cardinals.js";
+import { analysisRequestForLens } from "./testLensFixtures.js";
 import { computeFieldGeometryAtState } from "../../../src/optics/fieldGeometry.js";
 import {
   REAR_PLATE_FIXTURE,
@@ -714,7 +715,10 @@ describe("compiled first-order constants", () => {
     );
     expect(L.EFL).toBeCloseTo(efl, 12);
     const layout = doLayout(0, 0, L);
-    expect(computeCardinalElementsAtState(L, 0, 0, layout.z, layout.imgZ)!.distances.bfd.valueMm).toBeCloseTo(bfd, 12);
+    expect(
+      computeCardinalElements(analysisRequestForLens(L, 0, 0, 0), { zPos: layout.z, imagePlaneZ: layout.imgZ })!
+        .distances.bfd.valueMm,
+    ).toBeCloseTo(bfd, 12);
     expect(L.stopPhysSD).toBe(efl / 8);
     expect(L.EP.epSD).toBe(efl / 8);
     expect(L.EP.yRatio).toBe(1);
@@ -769,7 +773,10 @@ describe("buildLens — rear plates", () => {
 
   function paraxialDefocus(L: ReturnType<typeof buildRearPlateLens>, focusT = 0) {
     const layout = doLayout(focusT, 0, L);
-    const cardinals = computeCardinalElementsAtState(L, focusT, 0, layout.z, layout.imgZ)!;
+    const cardinals = computeCardinalElements(analysisRequestForLens(L, focusT, 0, 0), {
+      zPos: layout.z,
+      imagePlaneZ: layout.imgZ,
+    })!;
     return { imgZ: layout.imgZ, defocus: layout.imgZ - cardinals.points.rearFocal.z, cardinals };
   }
 

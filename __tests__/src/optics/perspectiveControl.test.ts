@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
 import { anchorLayoutToCamera } from "../../../src/optics/cameraLayout.js";
-import { computeCardinalElementsAtState } from "../../../src/optics/cardinalElements.js";
+import { computeCardinalElements } from "../../../src/optics/analysis/summary/cardinals.js";
+import { analysisRequestForLens } from "./testLensFixtures.js";
 import { doLayout } from "../../../src/optics/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
@@ -38,7 +39,10 @@ describe("perspectiveControl lens data", () => {
   it("places the Fujifilm patent-guided tilt center at the reference image-side principal point", () => {
     const L = buildLens(LENS_CATALOG["fujifilm-gf-30mm-f56-ts"]);
     const reference = doLayout(0, 0, L);
-    const cardinals = computeCardinalElementsAtState(L, 0, 0, reference.z, reference.imgZ, 0);
+    const cardinals = computeCardinalElements(analysisRequestForLens(L, 0, 0, 0), {
+      zPos: reference.z,
+      imagePlaneZ: reference.imgZ,
+    });
     const pivot = L.perspectiveControl!.tiltPivot!;
 
     expect(pivot.basis).toBe("patent-principal-point-guidance");

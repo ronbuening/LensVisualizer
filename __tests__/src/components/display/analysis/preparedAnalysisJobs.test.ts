@@ -30,7 +30,7 @@ const {
   mockComputeFieldCurvatureBundle: vi.fn(),
   mockComputeOpticalSummary: vi.fn(),
   mockComputeVignettingCurve: vi.fn(),
-  mockPreparedState: { cacheKey: "prepared-analysis-test" },
+  mockPreparedState: { cacheKey: "prepared-analysis-test", lens: {} },
   mockPrepareRuntimeState: vi.fn(),
 }));
 
@@ -46,12 +46,15 @@ vi.mock("../../../../../src/optics/compat.js", async () => {
       computeDistortionCurve: mockComputeDistortionCurve,
       computeDistortionFieldGrid: mockComputeDistortionFieldGrid,
       computeFieldCurvatureBundle: mockComputeFieldCurvatureBundle,
-      computeOpticalSummary: mockComputeOpticalSummary,
       computeVignettingCurve: mockComputeVignettingCurve,
     },
     prepareRuntimeState: mockPrepareRuntimeState,
   };
 });
+
+vi.mock("../../../../../src/optics/analysis/summary/summary.js", () => ({
+  computeOpticalSummary: mockComputeOpticalSummary,
+}));
 
 const preparedState = mockPreparedState as PreparedOpticalState;
 const lens = { N: 2, EFL: 50, isZoom: false, elements: [] } as unknown as RuntimeLens;
@@ -422,7 +425,7 @@ describe("prepared-state analysis tabs", () => {
     expect(inward).toContain("(inward residual)");
   });
 
-  it("routes optical summary work through the prepared-state job facade", () => {
+  it("routes optical summary work through an analysis request", () => {
     const html = renderToStaticMarkup(
       React.createElement(OpticalSummaryTab, {
         L: lens,
@@ -440,7 +443,14 @@ describe("prepared-state analysis tabs", () => {
 
     expect(html).toContain("Optical State");
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
-    expect(mockComputeOpticalSummary).toHaveBeenCalledWith(preparedState, 51, 10, 5, fieldGeometry);
+    expect(mockComputeOpticalSummary).toHaveBeenCalledWith(
+      expect.objectContaining({
+        preparedGeometry: preparedState,
+        dynamicEFL: 51,
+        aperture: { entrancePupilSemiDiameterMm: 10, stopSemiDiameterMm: 5 },
+        fieldGeometry,
+      }),
+    );
   });
 
   it("routes chromatic work through the prepared-state job facade", () => {

@@ -1,3 +1,4 @@
+import { analysisRequestForLens } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import {
   computeBestFocusZ,
@@ -14,7 +15,7 @@ import {
   type GeometryFixture,
 } from "./traceGeometryFixtures.js";
 import type { Ray3 as VectorRayInput } from "../../../src/optics/types.js";
-import { computeGroupMovementProfile } from "../../../src/optics/groupMovement.js";
+import { computeGroupMovementProfile } from "../../../src/optics/analysis/summary/groupMovement.js";
 import {
   computeLongitudinalChromaticFocus,
   conjugateK,
@@ -336,7 +337,7 @@ describe("mirror optics support", () => {
 
   it("moves the Nikon 500mm New L1/M2 focus unit toward the object at close focus", () => {
     const L = buildLens(nikonReflex500NewData);
-    const profile = computeGroupMovementProfile(L, "focus", { focusT: 1, zoomT: 0 });
+    const profile = computeGroupMovementProfile(analysisRequestForLens(L, 1, 0), "focus");
     const shiftByGroup = new Map(profile.series.map((series) => [series.group.label, series.currentPoint.shiftMm]));
 
     // L1 and M2 travel together toward the object; L2 and the primary stay put.

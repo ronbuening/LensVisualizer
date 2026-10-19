@@ -1,14 +1,13 @@
 /**
- * Current-state optical summary derived from a prepared engine state.
+ * Current-state optical summary derived from an immutable analysis request.
  */
 
-import { runtimeView } from "../prescription/runtimeView.js";
-import { focusDistanceAt } from "../focusDistance.js";
+import { runtimeView } from "../../prescription/runtimeView.js";
+import { focusDistanceAt } from "../../focusDistance.js";
 
-import type { FieldGeometryState } from "../optics.js";
-import { eflAtZoom } from "../layout.js";
-import { computeCardinalElements2 } from "../first-order/cardinals.js";
-import type { PreparedOpticalState } from "../types.js";
+import { eflAtZoom } from "../../state/stationTables.js";
+import { computeCardinalElements } from "./cardinals.js";
+import type { AnalysisRequest } from "../request.js";
 
 /**
  * Scalar metrics shown by the Summary analysis tab for one current optical state.
@@ -50,20 +49,12 @@ export interface OpticalSummaryMetrics2 {
  * change any trace state. `dynamicEFL` and aperture values are supplied by the caller
  * because they depend on UI state that lives outside the prepared lens prescription.
  *
- * @param state - prepared optical state for current focus/zoom/aberration sliders
- * @param dynamicEFL - current effective focal length in mm
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @param fieldGeometry - optional solved field geometry for current half-field reporting
+ * @param request - prepared geometry, current EFL, aperture and optional solved field
  * @returns finite/null summary metrics for the analysis drawer
  */
-export function computeOpticalSummaryForState2(
-  state: PreparedOpticalState,
-  dynamicEFL: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  fieldGeometry?: FieldGeometryState,
-): OpticalSummaryMetrics2 {
+export function computeOpticalSummary(request: AnalysisRequest): OpticalSummaryMetrics2 {
+  const { preparedGeometry: state, dynamicEFL, fieldGeometry } = request;
+  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
   const L = runtimeView(state.lens);
   const currentEFLMm = finiteOrNull(dynamicEFL);
   const infinityEFLMm = finiteOrNull(eflAtZoom(state.zoomT, L));
@@ -78,7 +69,7 @@ export function computeOpticalSummaryForState2(
       ? Math.abs(currentEFLMm) / entrancePupilDiameterMm
       : null;
   const halfFieldDeg = finiteOrNull(fieldGeometry?.halfFieldDeg);
-  const cardinals = computeCardinalElements2(state);
+  const cardinals = computeCardinalElements(request);
 
   return {
     currentEFLMm,

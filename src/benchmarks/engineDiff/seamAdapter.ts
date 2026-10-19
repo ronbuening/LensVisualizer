@@ -14,6 +14,11 @@ type EngineModule = Readonly<Record<string, unknown>>;
 
 /* One glob per module, so a candidate below can only name a module that is listed here. */
 const ENGINE_MODULES = {
+  summaryGroupMovement: import.meta.glob<EngineModule>("../../optics/analysis/summary/groupMovement.ts", {
+    eager: true,
+  }),
+  summaryCardinals: import.meta.glob<EngineModule>("../../optics/analysis/summary/cardinals.ts", { eager: true }),
+  analysisRequest: import.meta.glob<EngineModule>("../../optics/analysis/request.ts", { eager: true }),
   aperture: import.meta.glob<EngineModule>("../../optics/aperture.ts", { eager: true }),
   apertureStop: import.meta.glob<EngineModule>("../../optics/apertureStop.ts", { eager: true }),
   asphericComparison: import.meta.glob<EngineModule>("../../optics/asphericComparison.ts", { eager: true }),
@@ -36,6 +41,9 @@ const ENGINE_MODULES = {
 /* The same modules as types. A type query is erased before bundling, so it types a capability at the head and loads
  * nothing at any ref. */
 interface EngineModuleTypes {
+  summaryGroupMovement: typeof import("../../optics/analysis.js");
+  summaryCardinals: typeof import("../../optics/analysis.js");
+  analysisRequest: typeof import("../../optics/analysis.js");
   aperture: typeof import("../../optics/aperture.js");
   apertureStop: typeof import("../../optics/apertureStop.js");
   asphericComparison: typeof import("../../optics/asphericComparison.js");
@@ -97,8 +105,14 @@ const SEAM_CANDIDATES = {
   createPerspectiveTraceContext: [["perspective", "createPerspectiveTraceContext"]],
   createAnalysisContext: [["compat", "createAnalysisComputationContext"]],
   analysisJobsForState: [["compat", "analysisJobsForState2"]],
-  computeGroupMovementProfileForState: [["compat", "computeGroupMovementProfileForState2"]],
-  computeCardinalElementsAtState: [["cardinalElements", "computeCardinalElementsAtState"]],
+  computeGroupMovementProfileForState: [
+    ["summaryGroupMovement", "computeGroupMovementProfile"],
+    ["compat", "computeGroupMovementProfileForState2"],
+  ],
+  computeCardinalElementsAtState: [
+    ["summaryCardinals", "computeCardinalElements"],
+    ["cardinalElements", "computeCardinalElementsAtState"],
+  ],
   computeBestFitSphereR: [["compat", "computeBestFitSphereR2"]],
   computeDepartureProfile: [["compat", "computeDepartureProfile2"]],
   legacyComputeBestFitSphereR: [["asphericComparison", "computeBestFitSphereR"]],
@@ -123,8 +137,27 @@ type ExportOf<Candidate> = Candidate extends readonly [infer Module extends keyo
   : never;
 
 /** Every engine capability the capture calls, typed by the export its first candidate names. */
-export type EngineSeam = {
+type ResolvedEngineSeam = {
   readonly [Capability in keyof typeof SEAM_CANDIDATES]: ExportOf<(typeof SEAM_CANDIDATES)[Capability][0]>;
+};
+
+/** The capture vocabulary stays stable while resolution bridges request and historical signatures. */
+export type EngineSeam = Omit<
+  ResolvedEngineSeam,
+  "computeGroupMovementProfileForState" | "computeCardinalElementsAtState"
+> & {
+  computeGroupMovementProfileForState: (
+    state: ReturnType<ResolvedEngineSeam["prepareState"]>,
+    mode: Parameters<ResolvedEngineSeam["computeGroupMovementProfileForState"]>[1],
+  ) => ReturnType<ResolvedEngineSeam["computeGroupMovementProfileForState"]>;
+  computeCardinalElementsAtState: (
+    lens: ReturnType<ResolvedEngineSeam["buildLens"]>,
+    focusT: number,
+    zoomT: number,
+    zPos: number[],
+    imagePlaneZ: number,
+    aberrationT?: number,
+  ) => ReturnType<ResolvedEngineSeam["computeCardinalElementsAtState"]>;
 };
 
 /* Engine value types the capture handles, taken from the seam so no other file names an engine module. */
@@ -182,7 +215,35 @@ function loadedModules(): Record<string, EngineModule | undefined> {
 
 function resolveOnce(): { seam: EngineSeam; sources: Record<keyof EngineSeam, string> } {
   if (!resolved) {
-    const { exports, sources } = resolveCapabilities(loadedModules(), SEAM_CANDIDATES);
+    const modules = loadedModules();
+    const { exports, sources } = resolveCapabilities(modules, SEAM_CANDIDATES);
+    // Only the harness bridges old signatures: payload jobs and their order stay unchanged.
+    const makeRequest = (state: PreparedState) => {
+      const lens = state.lens.constants;
+      const createRequest = modules.analysisRequest!
+        .createAnalysisRequest as EngineModuleTypes["analysisRequest"]["createAnalysisRequest"];
+      return createRequest({
+        preparedState: state,
+        dynamicEFL: lens.EFL,
+        currentEPSD: lens.EP.epSD,
+        currentPhysStopSD: lens.stopPhysSD,
+      });
+    };
+    if (sources.computeGroupMovementProfileForState.startsWith("summaryGroupMovement.")) {
+      const compute =
+        exports.computeGroupMovementProfileForState as ResolvedEngineSeam["computeGroupMovementProfileForState"];
+      exports.computeGroupMovementProfileForState = ((state, mode) =>
+        compute(makeRequest(state), mode)) satisfies EngineSeam["computeGroupMovementProfileForState"];
+    }
+    if (sources.computeCardinalElementsAtState.startsWith("summaryCardinals.")) {
+      const compute = exports.computeCardinalElementsAtState as ResolvedEngineSeam["computeCardinalElementsAtState"];
+      const prepare = exports.prepareState as EngineSeam["prepareState"];
+      exports.computeCardinalElementsAtState = ((lens, focusT, zoomT, zPos, imagePlaneZ, aberrationT = 0) =>
+        compute(makeRequest(prepare(lens, focusT, zoomT, aberrationT)), {
+          zPos,
+          imagePlaneZ,
+        })) satisfies EngineSeam["computeCardinalElementsAtState"];
+    }
     resolved = { seam: exports as EngineSeam, sources };
   }
   return resolved;

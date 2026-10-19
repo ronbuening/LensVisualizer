@@ -197,7 +197,6 @@ export {
 } from "./diagnostics/chiefRay.js";
 export {
   computeCardinalElements2,
-  computeCardinalElementsAtState2,
   type CardinalDistance2,
   type CardinalElements2,
   type CardinalPoint2,
@@ -309,15 +308,14 @@ export {
   computePupilAberrationProfile2,
   PUPIL_ABERRATION_SAMPLE_COUNT_2,
 } from "./analysis/pupilAberration.js";
-export { computeOpticalSummaryForState2, type OpticalSummaryMetrics2 } from "./analysis/summary.js";
+export { computeOpticalSummary, type OpticalSummaryMetrics2 } from "./analysis/summary/summary.js";
 export {
-  computeGroupMovementProfile2,
-  computeGroupMovementProfileForState2,
-  firstAvailableGroupMovementMode2,
-  getGroupMovementAvailability2,
-  inferLensMovementGroups2,
-  isGroupMovementModeAvailable2,
-} from "./analysis/groupMovement.js";
+  computeGroupMovementProfile,
+  firstAvailableGroupMovementMode as firstAvailableGroupMovementMode2,
+  getGroupMovementAvailability as getGroupMovementAvailability2,
+  inferLensMovementGroups as inferLensMovementGroups2,
+  isGroupMovementModeAvailable as isGroupMovementModeAvailable2,
+} from "./analysis/summary/groupMovement.js";
 export {
   computeAsphericDeparture2,
   computeBestFitSphereR2,

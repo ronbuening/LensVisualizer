@@ -1,11 +1,15 @@
+/** Lens-group movement presentation samples the current request in a fixed camera frame. */
+
+import usePreparedAnalysisState from "../analysis/usePreparedAnalysisState.js";
 import { useMemo } from "react";
 import {
+  createAnalysisRequest,
   computeGroupMovementProfile,
   firstAvailableGroupMovementMode,
   isGroupMovementModeAvailable,
   type GroupMovementPoint,
   type GroupMovementProfile,
-} from "../../../optics/groupMovement.js";
+} from "../../../optics/analysis.js";
 import { GROUP_MOVEMENT_MODES, type GroupMovementMode } from "../../../types/groupMovement.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
@@ -235,16 +239,24 @@ export default function LensGroupMovementOverlay({
   mode,
   onModeChange,
 }: LensGroupMovementOverlayProps) {
-  const initialProfile = useMemo(
-    () => computeGroupMovementProfile(L, mode, { focusT, zoomT, aberrationT }),
-    [L, mode, focusT, zoomT, aberrationT],
+  const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT });
+  const request = useMemo(
+    () =>
+      createAnalysisRequest({
+        preparedState,
+        dynamicEFL: L.EFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: L.stopPhysSD,
+      }),
+    [preparedState, L],
   );
+  const initialProfile = useMemo(() => computeGroupMovementProfile(request, mode), [request, mode]);
   const activeMode = isGroupMovementModeAvailable(initialProfile.availability, mode)
     ? mode
     : firstAvailableGroupMovementMode(initialProfile.availability);
   const profile = useMemo(
-    () => (activeMode ? computeGroupMovementProfile(L, activeMode, { focusT, zoomT, aberrationT }) : initialProfile),
-    [L, activeMode, focusT, zoomT, aberrationT, initialProfile],
+    () => (activeMode ? computeGroupMovementProfile(request, activeMode) : initialProfile),
+    [request, activeMode, initialProfile],
   );
 
   return (

@@ -11,7 +11,7 @@
  */
 import type { FiniteConjugate, PublishedStations, RuntimeLens } from "../types/optics.js";
 import { focusDistanceAt } from "./focusDistance.js";
-import { getGroupMovementAvailability } from "./groupMovement.js";
+import { getGroupMovementAvailability } from "./analysis/summary/groupMovement.js";
 import { DEFAULT_FOCUS_POSITIONS, zoomIndexToT } from "./state/stationTables.js";
 
 /** Slider-coordinate tolerance for "on a station"; matches the finite-conjugate station match in MTF. */

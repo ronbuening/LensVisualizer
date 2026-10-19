@@ -32,8 +32,8 @@ enforced by the type system — if `npm run typecheck` passes, the wiring is com
 - `L: RuntimeLens` — the runtime lens; pass it explicitly to any optics helper.
 - `t: Theme` — theme tokens; never hardcode colors.
 - `zPos: number[]` — current surface z positions.
-- `preparedState: PreparedOpticalState` — pass to `*ForState2()` analysis helpers.
-- `analysisContext` — optional `AnalysisComputationContext`; forward it if your helper accepts it.
+- `preparedState: PreparedOpticalState` — the geometry snapshot for request construction.
+- `analysisContext` — optional `AnalysisComputationContext`; its `request` owns the deferred snapshot. Reuse it for migrated helpers.
 - `inputs` — `{ focusT, zoomT, aberrationT, currentEPSD, currentPhysStopSD, dynamicEFL, fieldGeometry }`.
 
 Only the ACTIVE tab renders (`ANALYSIS_TAB_RENDERERS[activeTab]` in `AnalysisDrawerContent.tsx`),
@@ -42,9 +42,15 @@ the prepared state / slider inputs you actually use.
 
 ## Rules
 
-- Optics math lives in a pure helper under `src/optics/analysis/` (named
-  `computeYourThingForState2(state, ...)` by convention), NOT in the component. The component
-  formats and renders.
+- Optics math and sampled-series orchestration live in a pure helper under
+  `src/optics/analysis/<family>/`, taking `AnalysisRequest`. Expose migrated helpers through
+  `src/optics/analysis.ts`; implementation leaves import lower-level sources directly.
+  The component formats and renders. Summary/cardinals/breathing/group movement use this path;
+  other existing families retain their adapters until migrated.
+- Reuse `analysisContext.request`, or memoize `createAnalysisRequest` from the supplied prepared
+  state and every used control/aperture/EFL/field input. Memoize the context/result on that identity.
+  Do not mix deferred geometry with live controls. The breathing series intentionally omits
+  aberration control; preserve that input contract when reusing its chart pattern.
 - Slider-dependent values come from `preparedState`/`inputs` at render time — never bake them into
   `buildLens()`.
 - Folded/mirror lenses: check how existing tabs guard folded systems before computing (several

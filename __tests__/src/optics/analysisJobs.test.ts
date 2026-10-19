@@ -1,3 +1,4 @@
+import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
 import { analysisJobs2, analysisJobsForState2, prepareRuntimeState } from "../../../src/optics/compat.js";
 import { eflAtFocus } from "../../../src/optics/optics.js";
@@ -94,7 +95,9 @@ describe("analysis job facade", () => {
     expect(bokehPair).toEqual(analysisJobs2.computeBokehPreviewPair(L, focusT, zoomT, currentEPSD, currentPhysStopSD));
     expect(bokehPair.infinity || bokehPair.nearFocus).toBeTruthy();
 
-    const summary = analysisJobsForState2.computeOpticalSummary(state, L.EFL, currentEPSD, currentPhysStopSD);
+    const summary = analysisJobsForState2.computeOpticalSummary(
+      createAnalysisRequest({ preparedState: state, dynamicEFL: L.EFL, currentEPSD, currentPhysStopSD }),
+    );
     expect(summary.currentEFLMm).toBeCloseTo(L.EFL, 6);
     expect(summary.entrancePupilDiameterMm).toBeCloseTo(currentEPSD * 2, 6);
   });

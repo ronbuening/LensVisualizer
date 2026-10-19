@@ -33,7 +33,9 @@ describe("analysis computation context", () => {
       analysisJobsForState2.computeDistortionCurve(state, dynamicEFL, currentPhysStopSD, fieldGeometry),
     );
     expect(context.computeOpticalSummary()).toEqual(
-      analysisJobsForState2.computeOpticalSummary(state, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry),
+      analysisJobsForState2.computeOpticalSummary(
+        createAnalysisRequest({ preparedState: state, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry }),
+      ),
     );
     expect(context.computeDistortionFieldGrid()).toEqual(
       analysisJobsForState2.computeDistortionFieldGrid(state, currentPhysStopSD, fieldGeometry),

@@ -1,3 +1,5 @@
+import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
+import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { associateRuntimeView } from "../../../src/optics/prescription/runtimeView.js";
 import { compilePrescription, completeCompilation } from "../../../src/optics/prescription/compileCanonical.js";
 import { compileConstruction } from "../../../src/optics/prescription/compileConstruction.js";
@@ -500,4 +502,21 @@ export function registerRuntimeFixture(runtime: RuntimeLens): RuntimeLens {
   );
   associateRuntimeView(compiled, runtime);
   return runtime;
+}
+
+/**
+ * Build request fixtures from the existing runtime fixture builders.
+ * @param L - registered synthetic or catalog runtime fixture
+ * @param focusT - normalized focus control
+ * @param zoomT - normalized zoom control
+ * @param aberrationT - normalized aberration control
+ * @returns request using fixture aperture/EFL defaults
+ */
+export function analysisRequestForLens(L: RuntimeLens, focusT = 0, zoomT = 0, aberrationT = 0) {
+  return createAnalysisRequest({
+    preparedState: prepareRuntimeState(L, focusT, zoomT, aberrationT),
+    dynamicEFL: L.EFL,
+    currentEPSD: L.EP?.epSD ?? 0,
+    currentPhysStopSD: L.stopPhysSD,
+  });
 }

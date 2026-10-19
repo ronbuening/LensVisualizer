@@ -43,7 +43,8 @@ import {
   computeBothPupilAberrationProfilesForState2,
   PUPIL_ABERRATION_SAMPLE_COUNT_2,
 } from "./pupilAberration.js";
-import { computeOpticalSummaryForState2 } from "./summary.js";
+import { computeOpticalSummary } from "./summary/summary.js";
+import type { AnalysisRequest } from "./request.js";
 import { computeVignettingCurve2, computeVignettingCurveForState2 } from "./vignetting.js";
 
 /**
@@ -226,7 +227,7 @@ export const analysisJobs2 = {
 };
 
 /**
- * Prepared-state analysis job registry for engine-native callers.
+ * Incremental analysis registry: summary takes a request; other families still take prepared state.
  *
  * Prepared-state jobs recover RuntimeLens-compatible z positions only at the boundary,
  * keeping all analysis state tied to the same compiled focus/zoom/aberration snapshot.
@@ -326,14 +327,8 @@ export const analysisJobsForState2 = {
     return computeBokehPreviewPairForState2(state, currentEPSD, currentPhysStopSD, sampling);
   },
 
-  computeOpticalSummary(
-    state: PreparedOpticalState,
-    dynamicEFL: number,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-  ) {
-    return computeOpticalSummaryForState2(state, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry);
+  computeOpticalSummary(request: AnalysisRequest) {
+    return computeOpticalSummary(request);
   },
 
   computeDistortionCurve(

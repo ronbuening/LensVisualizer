@@ -1,32 +1,49 @@
 import { describe, expect, it } from "vitest";
 import {
-  computeGroupMovementProfile2,
-  computeGroupMovementProfileForState2,
-  firstAvailableGroupMovementMode2,
-  getGroupMovementAvailability2,
-  inferLensMovementGroups2,
-  isGroupMovementModeAvailable2,
-} from "../../../../src/optics/analysis/groupMovement.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
-import { buildSimplePositiveElementLens } from "../testLensFixtures.js";
+  computeGroupMovementProfile,
+  firstAvailableGroupMovementMode,
+  getGroupMovementAvailability,
+  inferLensMovementGroups,
+  isGroupMovementModeAvailable,
+} from "../../../../src/optics/analysis/summary/groupMovement.js";
+import { analysisRequestForLens } from "../testLensFixtures.js";
+import { build, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 
-describe("group movement analysis adapter", () => {
-  it("delegates prepared-state profile computation to the runtime helper", () => {
-    const lens = buildSimplePositiveElementLens("test-group-movement-adapter");
-    const state = prepareRuntimeState(lens, 0.25, 0, 0.1);
-
-    expect(computeGroupMovementProfileForState2(state, "focus")).toEqual(
-      computeGroupMovementProfile2(lens, "focus", { focusT: 0.25, zoomT: 0, aberrationT: 0.1 }),
-    );
+describe("group movement request analysis", () => {
+  it("marks the exact request control point without dropping aberration controls", () => {
+    const base = buildSimplePositiveElementLens("test-group-movement-request");
+    const lens = build({
+      ...base.data,
+      aberrationControl: {
+        label: "Soft focus",
+        minLabel: "Sharp",
+        maxLabel: "Soft",
+        step: 0.01,
+        var: { "1": [5, 12] },
+        varLabels: [["1", "Gap"]],
+      },
+    });
+    const request = analysisRequestForLens(lens, 0.25317, 0, 0.1);
+    const profile = computeGroupMovementProfile(request, "focus");
+    expect(profile.series.length).toBeGreaterThan(0);
+    for (const series of profile.series) {
+      expect(series.currentPoint.focusT).toBe(0.25317);
+      expect(series.samples.map((point) => point.x)).toEqual(
+        [...series.samples.map((point) => point.x)].sort((a, b) => a - b),
+      );
+      expect(series.samples.some((point) => point.focusT === 0.25317)).toBe(true);
+    }
+    const corrected = computeGroupMovementProfile(analysisRequestForLens(lens, 0.25317, 0, 0), "focus");
+    expect(profile.series[0].currentPoint.positionMm).not.toBe(corrected.series[0].currentPoint.positionMm);
   });
 
   it("re-exports movement availability helpers", () => {
     const lens = buildSimplePositiveElementLens("test-group-movement-adapter-helpers");
     const availability = { focus: true, zoom: false, combined: false };
 
-    expect(inferLensMovementGroups2(lens).length).toBeGreaterThan(0);
-    expect(firstAvailableGroupMovementMode2(availability)).toBe("focus");
-    expect(isGroupMovementModeAvailable2(availability, "focus")).toBe(true);
-    expect(getGroupMovementAvailability2(lens)).toEqual({ focus: false, zoom: false, combined: false });
+    expect(inferLensMovementGroups(lens).length).toBeGreaterThan(0);
+    expect(firstAvailableGroupMovementMode(availability)).toBe("focus");
+    expect(isGroupMovementModeAvailable(availability, "focus")).toBe(true);
+    expect(getGroupMovementAvailability(lens)).toEqual({ focus: false, zoom: false, combined: false });
   });
 });

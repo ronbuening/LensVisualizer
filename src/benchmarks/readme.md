@@ -23,9 +23,9 @@ flowchart LR
   n_external_pkg_react_dom["pkg:react-dom"]
   n_external_src_components_diagram["src/components/diagram"]
   n_external_src_optics_analysis["src/optics/analysis"]
+  n_external_src_optics_analysis_ts["src/optics/analysis.ts"]
   n_external_src_optics_apertureStop_ts["src/optics/apertureStop.ts"]
   n_external_src_optics_buildLens_ts["src/optics/buildLens.ts"]
-  n_external_src_optics_cardinalElements_ts["src/optics/cardinalElements.ts"]
   n_external_src_optics_diagramGeometry_ts["src/optics/diagramGeometry.ts"]
   n_external_src_optics_lensMovement_ts["src/optics/lensMovement.ts"]
   n_external_src_optics_perspective["src/optics/perspective"]
@@ -44,9 +44,9 @@ flowchart LR
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_pkg_react_dom
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_components_diagram
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_analysis
+  n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_analysis_ts
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_apertureStop_ts
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_buildLens_ts
-  n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_cardinalElements_ts
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_diagramGeometry_ts
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_lensMovement_ts
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_perspective

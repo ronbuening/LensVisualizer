@@ -140,15 +140,7 @@ export function createAnalysisComputationContext(
     sectionAvailability: (section) => analysisSectionAvailability(section, perspectiveTraceContext),
     ...perspectiveJobs,
     computeOpticalSummary: () =>
-      (opticalSummary ??= computeSection("summary", () =>
-        analysisJobsForState2.computeOpticalSummary(
-          preparedState,
-          dynamicEFL,
-          currentEPSD,
-          currentPhysStopSD,
-          resolvedFieldGeometry,
-        ),
-      )),
+      (opticalSummary ??= computeSection("summary", () => analysisJobsForState2.computeOpticalSummary(request))),
     computeDistortionCurve: () =>
       (distortionCurve ??= computeCenteredSection("distortion", () =>
         analysisJobsForState2.computeDistortionCurve(

@@ -29,12 +29,10 @@ const CYCLE_LEGACY: readonly string[] = [
   "src/optics/analysis/analysisContext.ts",
   "src/optics/analysis/analysisJobs.ts",
   "src/optics/analysis/distortion.ts",
-  "src/optics/analysis/groupMovement.ts",
   "src/optics/analysis/pupilAberration.ts",
   "src/optics/analysis/vignetting.ts",
   "src/optics/compat.ts",
   "src/optics/distortionAnalysis.ts",
-  "src/optics/groupMovement.ts",
   "src/optics/optics.ts",
   "src/optics/pupilAberration.ts",
   "src/optics/vignetteAnalysis.ts",
@@ -59,6 +57,7 @@ interface SeamRegistryEntry {
  */
 const SEAM_REGISTRY: readonly SeamRegistryEntry[] = [
   { module: "src/optics/aberrationAnalysis.ts" },
+  { module: "src/optics/analysis.ts" },
   { module: "src/optics/apertureStop.ts" },
   { module: "src/optics/buildLens.ts" },
   { module: "src/optics/cardinalElements.ts" },
@@ -111,7 +110,6 @@ const SEAM_LEGACY: readonly string[] = [
   "src/optics/focusDistance.ts",
   "src/optics/foldedPathDisplay.ts",
   "src/optics/glassCatalog.ts",
-  "src/optics/groupMovement.ts",
   "src/optics/layout.ts",
   "src/optics/lensMovement.ts",
   "src/optics/math/vector.ts",
