@@ -17,7 +17,7 @@ flowchart LR
     n_src_optics_analysis_src_optics_analysis_pupils["pupils/"]
     n_src_optics_analysis_src_optics_analysis_summary["summary/"]
     n_src_optics_analysis_src_optics_analysis_vignetting["vignetting/"]
-    n_src_optics_analysis_TypeScript_modules["TypeScript modules (21)"]
+    n_src_optics_analysis_TypeScript_modules["TypeScript modules (22)"]
   end
   n_external_src_optics_perspective["src/optics/perspective"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
@@ -33,7 +33,7 @@ flowchart LR
   n_external_src_optics_first_order["src/optics/first-order"]
   n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_utils_catalog["src/utils/catalog"]
-  n_src_optics_analysis_TypeScript_modules --> |11| n_external_src_optics_perspective
+  n_src_optics_analysis_TypeScript_modules --> |17| n_external_src_optics_perspective
   n_src_optics_analysis_TypeScript_modules --> |11| n_external_src_optics_types_ts
   n_src_optics_analysis_TypeScript_modules --> |10| n_external_src_types
   n_src_optics_analysis_TypeScript_modules --> |8| n_external_src_optics_trace
@@ -58,9 +58,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 21
+- Direct source files: 22
 - Direct subfolders: 8
-- Main outbound areas: same folder (48), src/optics/perspective (11), src/optics/types.ts (11), src/types (10), src/optics/trace (8), src/optics/prescription (4), src/optics/chromatic (3), src/optics/field (2), +7 more
+- Main outbound areas: same folder (51), src/optics/perspective (17), src/optics/types.ts (11), src/types (10), src/optics/trace (8), src/optics/prescription (4), src/optics/chromatic (3), src/optics/field (2), +7 more
 - External consumers: src/benchmarks, src/components/layout, src/optics/analysis, src/optics/analysis.ts, src/optics/compat.ts, src/optics/mtf.ts, src/optics/optics.ts, src/optics/perspective
 
 ## Subfolders
@@ -98,6 +98,7 @@ flowchart LR
 | `mtfSupport.ts` | Mtf Support helper module | same folder (3), src/optics/spectralLines.ts, src/optics/types.ts, src/types | same folder (2), src/optics/mtf.ts | MTF_FIELDS, MTF_FREQUENCIES, MTF_CDF_LINES, MTF_PHOTOPIC_LINES, MTF_SPECTRUM_LABELS, MtfScaleDifference, mtfPrescriptionScale, mtfScaleNeedsNote, +5 more |
 | `mtfTracing.ts` | Mtf Tracing helper module | same folder (5), src/optics/trace (3), src/optics/chromatic, src/optics/math, src/optics/prescription, +3 more | same folder (6) | mtfTraceClassification, MtfPupilRay, MtfOpenBorders, MtfBundle, MtfFieldLaunch, mtfImagePoint, mtfIndexResolver, mtfTraceOptions, +8 more |
 | `mtfWavefront.ts` | Mtf Wavefront helper module | same folder (2), src/optics/types.ts | none | launchPhaseMm, rayOpticalPathToImageMm, MtfWaveLattice, mtfWaveLattice, waveLatticePhaseStep, waveLatticeOtf |
-| `perspectiveAnalysisJobs.ts` | Perspective Analysis Jobs helper module | src/optics/perspective (8), same folder, src/optics/chromatic | same folder | PerspectiveAnalysisJobParams, PerspectiveAnalysisSamplingPlan, PerspectiveAnalysisJobs, perspectiveAnalysisSamplingPlan, createPerspectiveAnalysisJobs |
-| `request.ts` | Request helper module | src/optics/perspective (2), same folder, src/optics/chromatic, src/optics/optics.ts, src/optics/trace, +2 more | same folder (17), src/optics/analysis.ts, src/optics/compat.ts | AnalysisRequestParams, AnalysisRequest, createAnalysisRequest |
+| `perspectiveAnalysisJobs.ts` | Perspective Analysis Jobs helper module | src/optics/perspective (7), same folder (2) | same folder | PerspectiveAnalysisJobs, createPerspectiveAnalysisJobs |
+| `perspectiveAnalysisSampling.ts` | Perspective Analysis Sampling helper module | src/optics/perspective (7), same folder (2), src/optics/chromatic | src/optics/perspective (2), same folder | PerspectiveAnalysisSamplingPlan, perspectiveAnalysisSamplingPlan |
+| `request.ts` | Request helper module | src/optics/perspective (2), same folder, src/optics/chromatic, src/optics/optics.ts, src/optics/trace, +2 more | same folder (19), src/optics/perspective (2), src/optics/analysis.ts, src/optics/compat.ts | AnalysisRequestParams, AnalysisRequest, createAnalysisRequest |
 | `sampling.ts` | Sampling helper module | none | same folder (6), src/optics/perspective (2), src/optics/optics.ts | OrthogonalPupilSample, CircularPupilSample, DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT, DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES, sampleOrthogonalPupilFan, sampleCircularPupil |

@@ -1,3 +1,4 @@
+import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
 import { computeMovementPair } from "../../../../src/comparison/comparisonSliders.js";
 import buildLens from "../../../../src/optics/buildLens.js";
@@ -147,24 +148,38 @@ describe("perspective-control final acceptance matrix", () => {
     expect(identity.localTrace).toEqual(direct);
     expectPointOnFixedSensor(centered.context, identity.sensorIntersection?.point ?? null);
 
-    const centeredFocus = computePerspectiveFocusAnalysis(centered.context, {
-      stopSemiDiameterMm: centered.currentStopSemiDiameterMm,
-      pupilSemiDiameterMm: centered.currentPupilSemiDiameterMm,
-      sensorUvs: [
-        { u: 0, v: -0.45 },
-        { u: 0, v: 0.45 },
-      ],
-      pupilPoints: FOCUS_PUPIL_POINTS,
-    });
-    const movedFocus = computePerspectiveFocusAnalysis(combined.context, {
-      stopSemiDiameterMm: combined.currentStopSemiDiameterMm,
-      pupilSemiDiameterMm: combined.currentPupilSemiDiameterMm,
-      sensorUvs: [
-        { u: 0, v: -0.45 },
-        { u: 0, v: 0.45 },
-      ],
-      pupilPoints: FOCUS_PUPIL_POINTS,
-    });
+    const centeredFocus = computePerspectiveFocusAnalysis(
+      createAnalysisRequest({
+        preparedState: centered.context.state,
+        dynamicEFL: 0,
+        currentPhysStopSD: centered.currentStopSemiDiameterMm,
+        currentEPSD: centered.currentPupilSemiDiameterMm,
+        perspectiveTraceContext: centered.context,
+      }),
+      {
+        sensorUvs: [
+          { u: 0, v: -0.45 },
+          { u: 0, v: 0.45 },
+        ],
+        pupilPoints: FOCUS_PUPIL_POINTS,
+      },
+    );
+    const movedFocus = computePerspectiveFocusAnalysis(
+      createAnalysisRequest({
+        preparedState: combined.context.state,
+        dynamicEFL: 0,
+        currentPhysStopSD: combined.currentStopSemiDiameterMm,
+        currentEPSD: combined.currentPupilSemiDiameterMm,
+        perspectiveTraceContext: combined.context,
+      }),
+      {
+        sensorUvs: [
+          { u: 0, v: -0.45 },
+          { u: 0, v: 0.45 },
+        ],
+        pupilPoints: FOCUS_PUPIL_POINTS,
+      },
+    );
 
     expect(centeredFocus.samples.map(({ status }) => status)).toEqual(["usable", "usable"]);
     expect(movedFocus.samples.map(({ status }) => status)).toEqual(["usable", "usable"]);

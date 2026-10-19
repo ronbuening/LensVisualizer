@@ -1,3 +1,4 @@
+import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import buildLens from "../../../../src/optics/buildLens.js";
 import { prepareRuntimeState } from "../../../../src/optics/compat.js";
@@ -339,14 +340,21 @@ function sensorMemoAnalyses(camera: PerspectiveTraceContext, channel?: "G") {
     { u: 0, v: 0.5, weight: 0.25 },
   ];
   const pupilFractions = [-0.5, 0, 0.5];
+  const request = createAnalysisRequest({
+    preparedState: camera.state,
+    dynamicEFL: 0,
+    currentEPSD: common.pupilSemiDiameterMm,
+    currentPhysStopSD: common.stopSemiDiameterMm,
+    perspectiveTraceContext: camera,
+  });
   return {
-    focus: computePerspectiveFocusAnalysis(camera, { ...common, pupilPoints }),
+    focus: computePerspectiveFocusAnalysis(request, { ...common, pupilPoints }),
     vignetting: computePerspectiveVignettingAnalysis(camera, {
       ...common,
       pupilPoints,
       includeActiveToZeroRatio: true,
     }),
-    field: computePerspectiveFieldAberrations(camera, {
+    field: computePerspectiveFieldAberrations(request, {
       ...common,
       focusPupilFractions: pupilFractions,
       comaPupilPoints: pupilPoints,

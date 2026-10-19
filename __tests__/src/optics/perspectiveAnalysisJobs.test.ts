@@ -1,15 +1,25 @@
+/** Request quality maps to the established signed perspective sampling plans. */
 import { describe, expect, it } from "vitest";
 import {
   perspectiveAnalysisSamplingPlan,
   type PerspectiveAnalysisSamplingPlan,
-} from "../../../src/optics/analysis/perspectiveAnalysisJobs.js";
+} from "../../../src/optics/analysis/perspectiveAnalysisSampling.js";
+import { createAnalysisRequest, type AnalysisRequestParams } from "../../../src/optics/analysis/request.js";
+import buildLens from "../../../src/optics/buildLens.js";
+import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import { INTERACTIVE_ANALYSIS_SAMPLING } from "../../../src/optics/analysis/analysisQuality.js";
 
 const COMMON = {
+  preparedState: prepareRuntimeState(buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]), 0, 0),
   dynamicEFL: 50,
   currentEPSD: 12.5,
   currentPhysStopSD: 5,
 } as const;
+
+function planFor(params: AnalysisRequestParams) {
+  return perspectiveAnalysisSamplingPlan(createAnalysisRequest(params));
+}
 
 function sensorVs(plan: PerspectiveAnalysisSamplingPlan) {
   return {
@@ -23,7 +33,7 @@ function sensorVs(plan: PerspectiveAnalysisSamplingPlan) {
 
 describe("perspective analysis sampling jobs", () => {
   it("uses denser explicitly signed sampling for settled analysis", () => {
-    const plan = perspectiveAnalysisSamplingPlan(COMMON);
+    const plan = planFor(COMMON);
     const signedNine = [-1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1];
 
     expect(sensorVs(plan)).toEqual({
@@ -52,7 +62,7 @@ describe("perspective analysis sampling jobs", () => {
   });
 
   it("uses exactly top, center, and bottom fields for every interactive family", () => {
-    const plan = perspectiveAnalysisSamplingPlan({
+    const plan = planFor({
       ...COMMON,
       analysisQuality: "interactive",
       sampling: INTERACTIVE_ANALYSIS_SAMPLING,
@@ -75,7 +85,7 @@ describe("perspective analysis sampling jobs", () => {
   });
 
   it("maps custom settled quality knobs without treating them as an active slider drag", () => {
-    const plan = perspectiveAnalysisSamplingPlan({
+    const plan = planFor({
       ...COMMON,
       analysisQuality: "settled",
       sampling: INTERACTIVE_ANALYSIS_SAMPLING,
@@ -98,7 +108,7 @@ describe("perspective analysis sampling jobs", () => {
   });
 
   it("uses the legacy pupil sample count for signed sensor fields, not bundle density", () => {
-    const plan = perspectiveAnalysisSamplingPlan({
+    const plan = planFor({
       ...COMMON,
       analysisQuality: "settled",
       sampling: { pupilAberrationSampleCount: 5 },

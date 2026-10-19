@@ -91,14 +91,7 @@ export function createAnalysisComputationContext(
     assertCenteredAnalysisSectionAvailable(section, perspectiveTraceContext);
     return compute();
   };
-  const perspectiveJobs = createPerspectiveAnalysisJobs({
-    perspectiveTraceContext,
-    dynamicEFL,
-    currentEPSD,
-    currentPhysStopSD,
-    analysisQuality,
-    sampling,
-  });
+  const perspectiveJobs = createPerspectiveAnalysisJobs(request);
   let opticalSummary: ReturnType<typeof analysisJobsForState2.computeOpticalSummary> | undefined;
   let distortionCurve: ReturnType<typeof analysisJobsForState2.computeDistortionCurve> | undefined;
   let distortionFieldGrid: ReturnType<typeof analysisJobsForState2.computeDistortionFieldGrid> | undefined;

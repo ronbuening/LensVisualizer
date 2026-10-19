@@ -1,5 +1,7 @@
 /** Sensor-locked field curvature, astigmatism, and coma for moved lenses. */
 
+import type { AnalysisRequest } from "../../analysis/request.js";
+import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
 import { COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES, type ComaTailDirection } from "../../analysis/aberration/types.js";
 import { sampleCircularPupil, sampleOrthogonalPupilFan } from "../../analysis/sampling.js";
 import type { Vec3 } from "../../types.js";
@@ -35,8 +37,6 @@ const COMA_TAIL_RATIO_THRESHOLD = 1.15;
 
 /** Shared controls for fixed-sensor field-aberration analysis. */
 export interface PerspectiveFieldAberrationOptions {
-  stopSemiDiameterMm: number;
-  pupilSemiDiameterMm?: number;
   /** Ordered fixed-sensor coordinates; failures are retained at their requested positions. */
   sensorUvs?: readonly SensorUv[];
   /** Fractions used by both field-radial and perpendicular best-focus fans. */
@@ -156,15 +156,24 @@ export function createPerspectiveComaPupilPoints(
   }));
 }
 
-/** Compute sensor-normal tangential/sagittal focus and fixed-sensor coma. */
+/**
+ * Compute sensor-normal tangential/sagittal focus and fixed-sensor coma.
+ *
+ * @param request - shared prepared geometry, aperture, physical pose and sensor-solve cache
+ * @param options - explicit field/pupil quadrature; omitted uses request quality and sampling
+ * @returns ordered fixed-sensor metrics, including unavailable fields and trace diagnostics
+ */
 export function computePerspectiveFieldAberrations(
-  context: PerspectiveTraceContext,
-  options: PerspectiveFieldAberrationOptions,
+  request: AnalysisRequest,
+  options: PerspectiveFieldAberrationOptions = perspectiveAnalysisSamplingPlan(request).fieldAberrations,
 ): PerspectiveFieldAberrationAnalysis {
+  const context = request.perspectiveTraceContext;
+  if (!context) throw new Error("Movement-aware analysis requires a PerspectiveTraceContext");
+  const { stopSemiDiameterMm, entrancePupilSemiDiameterMm } = request.aperture;
   const pupilSemiDiameterMm = resolvePerspectivePupilSemiDiameter(
     context,
-    options.stopSemiDiameterMm,
-    options.pupilSemiDiameterMm,
+    stopSemiDiameterMm,
+    entrancePupilSemiDiameterMm,
   );
   const sensorUvs = options.sensorUvs ?? DEFAULT_FIELD_SENSOR_UVS;
   const focusFractions =
@@ -181,7 +190,7 @@ export function computePerspectiveFieldAberrations(
     pupilBundle: {
       kind: "circular",
       pupilSemiDiameterMm,
-      stopSemiDiameterMm: options.stopSemiDiameterMm,
+      stopSemiDiameterMm,
       points: focusPoints,
       channel: options.fieldSampling?.chiefRay?.channel,
     },
@@ -196,7 +205,7 @@ export function computePerspectiveFieldAberrations(
             pupilSemiDiameterMm,
             comaPoints,
             options.fieldSampling?.chiefRay?.channel,
-            options.stopSemiDiameterMm,
+            stopSemiDiameterMm,
             field.domain,
           )
         : null,

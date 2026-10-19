@@ -47,10 +47,10 @@ export default function OpticalSummaryTab({
   const context = useMemo(() => createAnalysisComputationContext(request), [request]);
   const summary = useMemo(() => context.computeOpticalSummary(), [context]);
   const perspectiveFocus = useMemo(
-    () => (analysisContext?.movementActive ? analysisContext.computePerspectiveFocusAnalysis() : null),
-    [analysisContext],
+    () => (request.pose?.active ? context.computePerspectiveFocusAnalysis() : null),
+    [request, context],
   );
-  const perspectiveContext = analysisContext?.movementActive ? analysisContext.perspectiveTraceContext : null;
+  const perspectiveContext = request.pose?.active ? request.perspectiveTraceContext : null;
   const sensorCenterFocus = perspectiveFocus?.samples.find(
     (sample) => Math.abs(sample.requestedSensorUv.u) <= 1e-9 && Math.abs(sample.requestedSensorUv.v) <= 1e-9,
   );
