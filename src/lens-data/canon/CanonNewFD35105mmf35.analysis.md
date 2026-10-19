@@ -13,7 +13,7 @@ The patent's focal lengths of 36.2, 70 and 102 mm and its f/3.5 are kept. The pr
 
 ## Optical Architecture
 
-Four optical units have positive, negative, negative and positive power. G1 is the focusing group; it stays fixed here because only infinity focus is modelled. G2 varies magnification, G3 compensates image position, and G4 is the stationary relay. At infinity the patent places the iris 0.87 mm ahead of R18, which leaves a positive air space after R17 at all three printed zoom positions. The model's stop surface splits the printed gap after R17 without changing its total.
+Figure 5 labels the four groups I, II, III and IV, and the diagram uses the same labels. They have positive, negative, negative and positive power. Group I is the focusing group and stays fixed during zooming; here it is fixed throughout because only infinity focus is modelled. Group II varies magnification, group III compensates image position, and group IV is the stationary relay. At infinity the patent places the iris 0.87 mm ahead of R18, which leaves a positive air space after R17 at all three printed zoom positions. The model's stop surface splits the printed gap after R17 without changing its total.
 
 ## Element-by-Element Analysis
 
@@ -21,91 +21,91 @@ Four optical units have positive, negative, negative and positive power. G1 is t
 
 nd = 1.80518, νd = 25.40. Glass: FD60 (Hoya equivalent). Isolated-in-air focal length ≈ -96.333 mm.
 
-Front element of the focusing group G1, cemented to L2 as doublet D1.
+Front element of the focusing group I, cemented to L2 as doublet C1.
 
 ### L2 — Positive Meniscus
 
 nd = 1.65844, νd = 50.90. Glass: BACED5 (Hoya equivalent). Isolated-in-air focal length ≈ 107.350 mm.
 
-Positive rear half of the D1 cemented doublet in G1.
+Positive rear half of the C1 cemented doublet in group I.
 
 ### L3 — Positive Meniscus
 
 nd = 1.69680, νd = 55.50. Glass: LAC14 (Hoya equivalent). Isolated-in-air focal length ≈ 162.543 mm.
 
-Weak positive meniscus in the middle of G1.
+Weak positive meniscus in the middle of group I.
 
 ### L4 — Positive Meniscus
 
 nd = 1.69680, νd = 55.50. Glass: LAC14 (Hoya equivalent). Isolated-in-air focal length ≈ 89.105 mm.
 
-Rear positive meniscus of G1.
+Rear positive meniscus of group I.
 
 ### L5 — Negative Meniscus
 
 nd = 1.83481, νd = 42.70. Glass: TAFD5F (Hoya equivalent). Isolated-in-air focal length ≈ -32.236 mm.
 
-Front element of the negative variator G2.
+Front element of the negative variator, group II.
 
 ### L6 — Negative Meniscus
 
 nd = 1.80400, νd = 46.60. Glass: S-LAH65 (Ohara equivalent). Isolated-in-air focal length ≈ -44.603 mm.
 
-Second negative meniscus of G2. Its front rim nearly meets the deep rear face of L5.
+Second negative meniscus of group II. Its front rim nearly meets the deep rear face of L5.
 
 ### L7 — Biconcave Negative
 
 nd = 1.69680, νd = 55.50. Glass: LAC14 (Hoya equivalent). Isolated-in-air focal length ≈ -52.674 mm.
 
-Biconcave negative element of G2.
+Biconcave negative element of group II. Its rim sits inside the deep rear bowl of L6 and is drawn level with L8, as in Figure 5.
 
 ### L8 — Biconvex Positive
 
-nd = 1.84666, νd = 23.90. Glass: S-NPH53 (Ohara equivalent). Isolated-in-air focal length ≈ 33.405 mm.
+nd = 1.84666, νd = 23.90. Glass: PBH53 (Ohara equivalent; dense flint of the period). Isolated-in-air focal length ≈ 33.405 mm.
 
-High-dispersion positive element closing the negative variator G2.
+High-dispersion positive element closing the negative variator, group II.
 
 ### L9 — Negative Meniscus
 
 nd = 1.69680, νd = 55.50. Glass: LAC14 (Hoya equivalent). Isolated-in-air focal length ≈ -80.010 mm.
 
-The single element of the negative compensator G3.
+The single element of the negative compensator, group III.
 
 ### L10 — Biconvex Positive
 
 nd = 1.69680, νd = 55.50. Glass: LAC14 (Hoya equivalent). Isolated-in-air focal length ≈ 45.821 mm.
 
-Front positive element of the fixed relay G4, just behind the stop.
+Front positive element of the fixed relay, group IV, just behind the stop.
 
 ### L11 — Biconvex Positive
 
 nd = 1.54072, νd = 47.20. Glass: E-FEL2 (Hoya equivalent). Isolated-in-air focal length ≈ 30.236 mm.
 
-Positive front half of the D2 cemented doublet in G4.
+Positive front half of the C2 cemented doublet in group IV.
 
 ### L12 — Plano-Concave Negative
 
 nd = 1.80400, νd = 46.60. Glass: S-LAH65 (Ohara equivalent). Isolated-in-air focal length ≈ -44.619 mm.
 
-Negative rear half of D2; its rear face (R22) is plane.
+Negative rear half of C2; its rear face (R22) is plane.
 
 ### L13 — Biconcave Negative
 
-nd = 1.84666, νd = 23.90. Glass: S-NPH53 (Ohara equivalent). Isolated-in-air focal length ≈ -31.721 mm.
+nd = 1.84666, νd = 23.90. Glass: PBH53 (Ohara equivalent; dense flint of the period). Isolated-in-air focal length ≈ -31.721 mm.
 
-High-dispersion biconcave negative element of G4.
+High-dispersion biconcave negative element of group IV. Its rear face is kept at 9.9 mm because it would touch the front face of L14 at about 10.5 mm, so its rim narrows from 11.6 mm at the front face to 9.9 mm at the rear. Figure 5 draws L13 square-cut and the two facing surfaces crossing, which the prescription cannot do.
 
 ### L14 — Positive Meniscus
 
 nd = 1.60311, νd = 60.70. Glass: BACD14 (Hoya equivalent). Isolated-in-air focal length ≈ 61.915 mm.
 
-Positive meniscus of G4, concave toward the object.
+Positive meniscus of group IV, concave toward the object.
 
 ### L15 — Positive Meniscus
 
 nd = 1.60311, νd = 60.70. Glass: BACD14 (Hoya equivalent). Isolated-in-air focal length ≈ 70.917 mm.
 
-Rear positive element of G4 and the largest element of that group.
+Rear positive element of group IV and the largest element of that group.
 
 ## Glass Identification and Selection
 
@@ -113,11 +113,11 @@ All indices and Abbe numbers are as printed. Catalogue glasses with closely matc
 
 ## Zoom and Focus
 
-The three printed infinity zoom positions are unchanged. The model has 41 zoom positions; between the printed ones, G2 and G3 follow a computed cam that holds each position's paraxial focal length and the image plane, with G1 and G4 fixed and the total track kept. Compared with straight-line interpolation of the gaps, G2 departs by up to about 2.018 mm and G3 by up to about 1.041 mm. The intermediate positions are not printed in the patent.
+The three printed infinity zoom positions are unchanged. The model has 41 zoom positions; between the printed ones, groups II and III follow a computed cam that holds each position's paraxial focal length and the image plane, with groups I and IV fixed and the total track kept. Compared with straight-line interpolation of the gaps, group II departs by up to about 2.018 mm and group III by up to about 1.041 mm. The intermediate positions are not printed in the patent. From 36.2 to 102 mm, group II moves 22.0 mm toward the image. Group III first moves about 0.36 mm toward the object, to about 44.6 mm, then 8.69 mm toward the image. That matches the curved arrow under III in Figure 5 and the patent's statement that the third group reverses during zooming. The printed middle row's three variable gaps total 0.004 mm more than the end rows, so group IV sits 0.004 mm further back there.
 
 The patent prints no back focal distance. The image plane is fixed at about 56.5620 mm, the mean paraxial back focal distance of the three printed zoom positions; each position's own value is within 0.0048 mm of it. This is not Canon's mechanical flange distance.
 
-Finite focus and the macro setting are not modelled. The patent describes G1 advancing 3.3 mm, and the iris moving toward R17, for an object 1.5 m from the first surface, with mechanical limits that depend on zoom. That does not define a continuous focus cam, so the focus control has no effect. Canon lists 1.5 m as the production minimum focus distance.
+Finite focus and the macro setting are not modelled. The patent describes group I advancing 3.3 mm, and the iris moving toward R17, for an object 1.5 m from the first surface, with mechanical limits that depend on zoom. That does not define a continuous focus cam, so the focus control has no effect. Canon lists 1.5 m as the production minimum focus distance.
 
 ## Aperture and Clear Apertures
 

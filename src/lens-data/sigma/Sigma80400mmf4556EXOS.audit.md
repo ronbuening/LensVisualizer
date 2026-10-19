@@ -106,3 +106,68 @@ private Drive link in Sources replaced by the public DPReview announcement. Engi
 stop radius, back focus, focus keyframes) is identical before and after, and the surface validator reports no errors.
 
 Open: focus stops at the patent's 3 m state; the product focuses to 1.8 m (1:5).
+
+## 2026-10-19 — Second review: diagram, labels and movement
+
+Compared: the local page at 81.24 mm (infinity and 3 m), 180.52 mm and 389.46 mm (3 m), the zoom and focus movement
+overlays and the inspector for L2, L5, L6, L9 and L13, against Fig. 1 on the front page (native 300 ppi), the printed
+tables on p. 6 (infinity and 3000 mm spacings, OS shift), the text of claim 1 and paragraphs 0005 and 0014, and the
+aberration plots Figs. 2–4 on p. 14. No maker construction diagram exists (see the Deployment validation section);
+the figure governs.
+
+Silhouette, re-measured independently: each rim is half the full left-to-right ink width per row, at 0.1829 mm/px
+(S1 to S35 vertex crossings, 975.5 px for 178.42 mm; S15 lands within 0.1 px of its predicted row). Figure / stored:
+L1–L2 36.6–36.8 / 37; L3 34.5 / 35; G3A edge 19.0 / 18.5, S9 chamfer corner 16.3–16.6 / 16.4; L6/L7 16.1 / 16;
+L8 14.8 / 14.0; L9 16.8 / 17.5; L10/L11 16.65 / 17.5; G5 11.7 / 12; L14 12.35, L15/L16 12.6, L17 12.8 / 13;
+L18 12.7 / 12.7; L19/L20 13.3 / 13.2. Every rim is within 5.4 %, the drawn height order is kept (G3A over G4 over
+G3B; G5 below G6 and G7; G7 rear doublet the widest of the rear groups), the G3A rear chamfer and the square L8 and
+G7 boxes render as drawn, and no element overlaps. The first pass is right; no `sd` was changed. G4 stays 4–5 %
+over the drawing because the telephoto axial marginal ray needs 16.63 / 16.66 / 16.46 mm at S15 / S16 / S17. L8 stays
+at 14.0: the figure's 14.8 mm needs `checks.gapSagFrac` 0.98 (S12 + S13 sag 4.59 mm in the 4.72 mm gap at 14.7 mm,
+validator limit 4.25 mm at the default 0.9), and the largest value the default admits is 14.1 mm. Its axial marginal
+floor at S14 is 13.99 mm, so the rim sits on the telephoto axial beam; with 14.7 mm the near-axis telephoto transmission
+at 0.5° would rise from 94.8 % to 95.8 %, and the wide end at 9.9° from 88.5 % to 92.7 %. Left for the coordinator.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `doublets` texts | D1–D6 | C1–C6 | D4 and D6 were also the slider's gap labels (d4 G1–G2, d6 G2–G3) |
+| element `cemented` names (L4/L5 … L19/L20) | D1–D6 | C1–C6 | inspector badge now matches the bracket |
+| `groups` G3 (S7–S14) | one bracket "G3" | "G3A" (S7–S9) and "G3B (OS)" (S10–S14) | Fig. 1 brackets G3A and G3B; the reference-sign list names G3B the anti-shake group; condition (4) uses S10 as Rs (fT/Rs 3.01) |
+| analysis, movement sentence | "G1 and G3–G7 move toward the object (claim 1)" | directions and amounts from the printed spacings, with the claim discrepancy noted | spacings on p. 6 and the Fig. 1 arrows |
+| analysis, architecture sentence | G3 described as one group | notes the G3A / G3B split | Fig. 1 |
+
+Movement, from the printed spacings with the image plane fixed (wide → tele, infinity): G1 +92.51 mm, G2 +76.52,
+G3 −13.21, G4 +27.24, G5 +19.25, G6 +26.43, G7 +35.04 (positive toward the object), every group monotonic over the 41
+stations except G6, whose solved cam turns back by 0.096 mm between 368.6 and 389.5 mm. The Fig. 1 arrows point
+toward the object for G1, G2 and G4–G7 and toward the image for G3, so the model agrees with the figure and tables.
+Claim 1 and paragraph 0005 instead name G1 and G3–G7 as moving toward the object, which contradicts the patent's own
+table and figure for G2 and G3 (most likely a 2/3 slip in the claim). Stations ascend 81.24 → 389.46 mm. Focus: G7
+alone moves, toward the image, by 1.020 / 3.910 / 12.320 mm at the three printed focal lengths (d30 9.6020 → 10.6216,
+13.4965 → 17.4055, 0.9942 → 13.3101), keyframe 0 is infinity and the last is the 3000 mm row; the other groups shift
+by at most 0.004 mm, the rounding of the printed Bf. The slider's far end reads 3.00 m.
+
+Checked and found correct: element names L1–L20 sequential (the patent gives no element signs and uses G for
+groups), and every `type` against the signs of R; no aspheres in the patent or the file; the stop between S19 and S21,
+3.228 mm ahead of S21, where Fig. 1 marks it; the three `apd: "inferred"` tags on the three 1.497 / 81.6 elements
+(the patent names no glass and no anomalous dispersion); `focus.description` and the gap labels. All 20 glass labels
+resolve to HOYA catalog glasses within 0.06 of the printed νd. Glass recurrence: 1.80610 / 33.3, 1.49700 / 81.6,
+1.77250 / 49.6, 1.69680 / 55.5, 1.80518 / 25.5 and 1.48749 / 70.4 recur in Examples 2 and 3, 1.75500 / 52.3 and
+1.51680 / 64.2 in Example 3; 1.72342 / 38.0, 1.62299 / 58.1, 1.83400 / 37.3 and 1.64769 / 33.8 occur in Example 1
+only, all exact catalog coordinates. The patent prints no glass names, no other line indices and no partial
+dispersions.
+
+Aberrations against Figs. 2–4: distortion +0.15 / +1.61 / +1.66 % at full field on the site against about +0.1, +1.6
+and +1.7 % read from the patent curves; spherical aberration and astigmatism are within a few hundredths of a
+millimetre in both at the three focal lengths. They agree.
+
+Unchanged: engine half-field 14.76°, f/4.46, the `built.mjs` output (identical to the first pass), the surface
+validator (no errors), image circle (0 undersized) and traced field coverage (41 of 41 stations at 100 %); no
+axial clip or blocked chief ray.
+
+Open: the 1.8 m close focus is not modelled. (The L8 rim item is closed by the follow-up below.)
+
+Coordinator follow-up, same day: L8 (S13/S14) 14.0 → 14.7 mm with `checks.gapSagFrac` 0.98. Both figure readings
+(first pass 14.7, second review 14.8) agree, and 14.0 sat on the telephoto axial-ray floor (13.99 mm at S14). With
+0.98 the S12 + S13 sag (4.59 mm) fits the 4.72 mm gap. Surface validator OK, no axial clip or blocked chief ray,
+half-field 14.76° and f/4.46 unchanged; meridional transmission rises from 94.8 to 95.8 % at 0.5° (tele) and from
+88.5 to 92.7 % at 9.9° (wide), per the second review's trial trace.

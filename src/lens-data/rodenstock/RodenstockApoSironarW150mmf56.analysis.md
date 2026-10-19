@@ -43,6 +43,11 @@ Seven spherical elements form five groups. Group powers are positive, negative, 
 The cemented groups occupy surfaces 3–5 and 10–12. The stop is central: 8.60 mm after surface 7, followed by 7.45 mm to
 surface 8. The first-to-last-vertex track is 54.03 mm.
 
+Surfaces and elements are numbered from the object side, as in the patent. Claim 1 calls surface 2 the image-side face
+of the first lens and surface 3 the object-side face of the second, and Figure 1 draws the parallel entrance bundles
+arriving at surface 1. The four-lens group therefore faces the object. The brochure's mirrored drawing does not change
+this order.
+
 The C2 grant prints each thickness, index and Abbe number between the two radius rows it belongs to. The rear singlet
 is therefore surfaces 8–9, the rear doublet is surfaces 10–12, and surface 12 is a curved glass-to-air exit. The claims
 agree: the rear group consists of three lenses, and its second and third lenses are cemented.
@@ -78,7 +83,7 @@ The weak positive object-side meniscus is followed by a 0.10 mm air space.
 
 ### L2 — Positive meniscus, front cemented doublet
 
-nd = 1.62, νd = 63.5. Glass: N-PSK53A class (Schott equivalent from the rounded values). f = +64.2 mm.
+nd = 1.62, νd = 63.5. Glass: N-PSK53 class (Schott equivalent from the rounded values; N-PSK53 at 1.62014 / 63.48 is closer than N-PSK53A at 1.618 / 63.39). f = +64.2 mm.
 
 The stronger positive member shares surface 4 with L3. A phosphate-crown class fits the rounded values and the
 brochure's mention of ED glass, but the exact glass is not established.
@@ -171,14 +176,17 @@ grant; apart from the L3 index, every radius, thickness, index and Abbe number m
 calculation agrees with the application on focal length and back focus. Independent exact ray tracing agrees with the
 application's ray tracer on every ray tested, across both focus states, three apertures and three field angles.
 
-No manufacturer MTF or distortion curve for the 150 mm lens was found, and none was used to tune the model. Because the
+No manufacturer MTF or distortion curve for the 150 mm lens was found, and none was used to tune the model. The
+patent's own Figure 2 plots MTF against relative field angle for Table 5, but it gives neither the test frequencies nor
+the aperture. The model's monochromatic curves fall with field in the same way and drop below about 10 % at the 40°
+edge, as the patent's do. That is a qualitative check only. Because the
 glass dispersions are unresolved, the model cannot confirm the production lens's colour correction or peripheral
 performance.
 
 ## Sources and References
 
 - [DE 3907928 C2, DPMA](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=DE000003907928C2), Table 5,
-  claims and Figure 1.
+  claims and Figures 1–2.
 - DE 3907928 A1, Table 5 and Figure 1, the earlier publication of the same application.
 - [Rodenstock film-lens brochure, code 6/95, shared by Rod Klukas](https://www.dropbox.com/scl/fi/d9mrkoyo2wv2rrrn2ym87/Rodenstock-Film-lns-inc-W-1995.pdf?rlkey=2l000hdgq9nbz05py656tw40q&dl=0),
   PDF pages 4–5 (technical data) and 7 (Apo-Sironar-W section).

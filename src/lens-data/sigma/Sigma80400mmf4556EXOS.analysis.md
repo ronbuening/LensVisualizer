@@ -13,9 +13,9 @@ The patent labels the focal lengths 81.24, 180.52 and 389.46 mm; the prescriptio
 
 ## Optical Architecture
 
-Seven groups follow positive, positive, negative, positive, negative, positive, negative power order. G1 has two singlets, G2 one singlet, G3 two cemented doublets plus a negative singlet, G4 a positive singlet plus a cemented doublet, G5 a doublet, G6 a singlet/doublet/singlet, and G7 a singlet plus doublet. The stop (row 20) sits 3.228 mm ahead of surface 21.
+Seven groups follow positive, positive, negative, positive, negative, positive, negative power order. G1 has two singlets, G2 one singlet, G3 two cemented doublets plus a negative singlet (split, as in Figure 1, into G3A, the front doublet, and G3B, the rest), G4 a positive singlet plus a cemented doublet, G5 a doublet, G6 a singlet/doublet/singlet, and G7 a singlet plus doublet. The stop (row 20) sits 3.228 mm ahead of surface 21.
 
-From wide to telephoto, G1 and G3–G7 move toward the object (claim 1). The rear part of G3, G3B (L6–L8), is the stabilizing group: it shifts across the axis to correct image shake. The patent also tabulates a 0.5 mm shifted state, but the model is centered and does not simulate the shift. G7 moves along the axis for rear focusing.
+From wide to telephoto, the printed spacings move G1 by 92.5 mm, G2 by 76.5 mm, G4 by 27.2 mm, G5 by 19.3 mm, G6 by 26.4 mm and G7 by 35.0 mm toward the object, while G3 moves 13.2 mm toward the image; the arrows in Figure 1 show the same directions. Claim 1 and paragraph 0005 list G1 and G3–G7 as the groups that move toward the object, which the printed spacings and the figure contradict for G2 and G3. In the model's solved intermediate stations G6 turns back toward the image by about 0.1 mm above about 370 mm. The rear part of G3, G3B (L6–L8), is the stabilizing group: it shifts across the axis to correct image shake. The patent also tabulates a 0.5 mm shifted state, but the model is centered and does not simulate the shift. G7 moves along the axis for rear focusing.
 
 ## Element-by-Element Analysis
 

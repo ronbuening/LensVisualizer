@@ -1,11 +1,12 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** JP 2011-186095 A Example 2 (Sigma; Ogasawara and Koyama), probable source of the original Olympus 75-300.
  * Native radii, nd/vd and the three published infinity stations are unchanged; the LPF is a rear plate.
- * The 78 intermediate zoom stations are a derived cam: G2 fixed (patent para. 0069), G1, G3 and G5 on
- * monotone splines through the printed positions, G4 solved paraxially to hold the image plane.
- * The 17-keyframe G5a focus law to 1.5 m is paraxially derived; the marketed 0.9 m wide-end limit is not modelled.
+ * Groups use the patent's reference signs L1-L5 (L5a/L5b); elements are E1-E18, cemented pairs C1-C5.
+ * The 78 intermediate zoom stations are a derived cam: L2 fixed (patent para. 0069), L1, L3 and L5 on
+ * monotone splines through the printed positions, L4 solved paraxially to hold the image plane.
+ * The 17-keyframe L5a focus law to 1.5 m is paraxially derived; the marketed 0.9 m wide-end limit is not modelled.
  * Clear rims estimated from FIG. 8 (wide end; isotropic, 0.1128 mm/px at 600 dpi), floor-checked by real-ray
- * trace at all stations; G1 and the rear G4 elements kept within figure noise. Default gap-sag.
+ * trace at all stations; every element, L1 included, within 2 % of its drawn edge. Default gap-sag.
  * Native F4.95-6.92, marketed F4.8-6.7.
  */
 const LENS_DATA = {
@@ -57,18 +58,18 @@ const LENS_DATA = {
   "elements": [
     {
       "id": 1,
-      "name": "L1",
+      "name": "E1",
       "label": "Element 1",
       "type": "Negative Meniscus",
       "nd": 1.8061,
       "vd": 40.73,
       "glass": "NBFD13 (Hoya equivalent)",
       "focalLengthMm": -147.375018,
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 2,
-      "name": "L2",
+      "name": "E2",
       "label": "Element 2",
       "type": "Biconvex Positive",
       "nd": 1.497,
@@ -77,11 +78,11 @@ const LENS_DATA = {
       "apd": "inferred",
       "apdNote": "HOYA FCD1 coordinate match (νd 81.61), a fluorophosphate ED glass; Olympus lists two ED elements, and this is the clearest of them.",
       "focalLengthMm": 109.936684,
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 3,
-      "name": "L3",
+      "name": "E3",
       "label": "Element 3",
       "type": "Positive Meniscus",
       "nd": 1.4586,
@@ -93,7 +94,7 @@ const LENS_DATA = {
     },
     {
       "id": 4,
-      "name": "L4",
+      "name": "E4",
       "label": "Element 4",
       "type": "Biconcave Negative",
       "nd": 1.91082,
@@ -103,7 +104,7 @@ const LENS_DATA = {
     },
     {
       "id": 5,
-      "name": "L5",
+      "name": "E5",
       "label": "Element 5",
       "type": "Biconvex Positive",
       "nd": 1.54814,
@@ -113,7 +114,7 @@ const LENS_DATA = {
     },
     {
       "id": 6,
-      "name": "L6",
+      "name": "E6",
       "label": "Element 6",
       "type": "Biconcave Negative",
       "nd": 1.8042,
@@ -123,7 +124,7 @@ const LENS_DATA = {
     },
     {
       "id": 7,
-      "name": "L7",
+      "name": "E7",
       "label": "Element 7",
       "type": "Biconcave Negative",
       "nd": 1.8042,
@@ -133,7 +134,7 @@ const LENS_DATA = {
     },
     {
       "id": 8,
-      "name": "L8",
+      "name": "E8",
       "label": "Element 8",
       "type": "Biconvex Positive",
       "nd": 1.84666,
@@ -143,63 +144,63 @@ const LENS_DATA = {
     },
     {
       "id": 9,
-      "name": "L9",
+      "name": "E9",
       "label": "Element 9",
       "type": "Biconvex Positive",
       "nd": 1.59282,
       "vd": 68.62,
       "glass": "FCD505 (Hoya equivalent)",
       "apd": "inferred",
-      "apdNote": "HOYA FCD505 coordinate match (νd 68.62), an anomalous-dispersion phosphate crown; taken as Olympus's second ED element. L10 (νd 70.44) is an ordinary FK5-class crown and stays untagged.",
+      "apdNote": "HOYA FCD505 coordinate match (νd 68.62), an anomalous-dispersion phosphate crown; taken as Olympus's second ED element. E10 (νd 70.44) is an ordinary FK5-class crown and stays untagged.",
       "focalLengthMm": 106.301624
     },
     {
       "id": 10,
-      "name": "L10",
+      "name": "E10",
       "label": "Element 10",
       "type": "Biconvex Positive",
       "nd": 1.48749,
       "vd": 70.44,
       "glass": "H-QK3L (CDGM equivalent)",
       "focalLengthMm": 49.882546,
-      "cemented": "D2"
+      "cemented": "C2"
     },
     {
       "id": 11,
-      "name": "L11",
+      "name": "E11",
       "label": "Element 11",
       "type": "Negative Meniscus",
       "nd": 1.91082,
       "vd": 35.25,
       "glass": "TAFD35 (Hoya equivalent)",
       "focalLengthMm": -39.568558,
-      "cemented": "D2"
+      "cemented": "C2"
     },
     {
       "id": 12,
-      "name": "L12",
+      "name": "E12",
       "label": "Element 12",
       "type": "Biconcave Negative",
       "nd": 1.91082,
       "vd": 35.25,
       "glass": "TAFD35 (Hoya equivalent)",
       "focalLengthMm": -37.073407,
-      "cemented": "D3"
+      "cemented": "C3"
     },
     {
       "id": 13,
-      "name": "L13",
+      "name": "E13",
       "label": "Element 13",
       "type": "Biconvex Positive",
       "nd": 1.5168,
       "vd": 64.2,
       "glass": "H-K9L (CDGM equivalent)",
       "focalLengthMm": 37.618693,
-      "cemented": "D3"
+      "cemented": "C3"
     },
     {
       "id": 14,
-      "name": "L14",
+      "name": "E14",
       "label": "Element 14",
       "type": "Biconvex Positive",
       "nd": 1.72916,
@@ -209,81 +210,81 @@ const LENS_DATA = {
     },
     {
       "id": 15,
-      "name": "L15",
+      "name": "E15",
       "label": "Element 15",
       "type": "Biconvex Positive",
       "nd": 1.80518,
       "vd": 25.46,
       "glass": "FD60 (Hoya equivalent)",
       "focalLengthMm": 46.492151,
-      "cemented": "D4"
+      "cemented": "C4"
     },
     {
       "id": 16,
-      "name": "L16",
+      "name": "E16",
       "label": "Element 16",
       "type": "Biconcave Negative",
       "nd": 1.7725,
       "vd": 49.62,
       "glass": "N-LAF34 (Schott equivalent)",
       "focalLengthMm": -23.182394,
-      "cemented": "D4"
+      "cemented": "C4"
     },
     {
       "id": 17,
-      "name": "L17",
+      "name": "E17",
       "label": "Element 17",
       "type": "Positive Meniscus",
       "nd": 1.54072,
       "vd": 47.2,
       "glass": "E-FEL2 (Hoya equivalent)",
       "focalLengthMm": 46.115476,
-      "cemented": "D5"
+      "cemented": "C5"
     },
     {
       "id": 18,
-      "name": "L18",
+      "name": "E18",
       "label": "Element 18",
       "type": "Negative Meniscus",
       "nd": 1.72916,
       "vd": 54.67,
       "glass": "TAC8 (Hoya equivalent)",
       "focalLengthMm": -26.023926,
-      "cemented": "D5"
+      "cemented": "C5"
     }
   ],
   "surfaces": [
     {
       "label": "1",
       "R": 152.486,
-      "sd": 23.5,
+      "sd": 22.5,
       "d": 1.5,
       "medium": 1
     },
     {
       "label": "2",
       "R": 66.4823,
-      "sd": 23.5,
+      "sd": 22.5,
       "d": 5.7835,
       "medium": 2
     },
     {
       "label": "3",
       "R": -297.843,
-      "sd": 23.5,
+      "sd": 22.5,
       "d": 0.15
     },
     {
       "label": "4",
       "R": 53.3189,
-      "sd": 23.5,
+      "sd": 22,
       "d": 5.0467,
       "medium": 3
     },
     {
       "label": "5",
       "R": 277.033,
-      "sd": 23.5
+      "sd": 22
     },
     {
       "label": "6",
@@ -887,7 +888,7 @@ const LENS_DATA = {
       0.9375,
       1
     ],
-    "description": "The G5a doublet (L15/L16) moves toward the image to focus closer, by up to 8.30 mm at a 1.5 m object-to-image distance. The patent publishes infinity data only, so this travel is derived paraxially. The 0.9 m minimum focus Olympus gives for the wide end is not modelled. Intermediate zoom stations follow a derived cam with G2 fixed, not the factory cam."
+    "description": "The L5a doublet (E15/E16) moves toward the image to focus closer, by 1.35 mm at the wide end and up to 8.30 mm at the tele end for a 1.5 m object-to-image distance. The patent publishes infinity data only, so this travel is derived paraxially. The 0.9 m minimum focus Olympus gives for the wide end is not modelled. Intermediate zoom stations follow a derived cam with L2 fixed, not the factory cam."
   },
   "gaps": {
     "5": {
@@ -10180,59 +10181,59 @@ const LENS_DATA = {
   },
   "groups": [
     {
-      "text": "G1",
+      "text": "L1",
       "fromSurface": "1",
       "toSurface": "5"
     },
     {
-      "text": "G2",
+      "text": "L2",
       "fromSurface": "6",
       "toSurface": "9"
     },
     {
-      "text": "G3",
+      "text": "L3",
       "fromSurface": "10",
       "toSurface": "15"
     },
     {
-      "text": "G4",
+      "text": "L4",
       "fromSurface": "STO",
       "toSurface": "26"
     },
     {
-      "text": "G5a focus",
+      "text": "L5a focus",
       "fromSurface": "27",
       "toSurface": "29"
     },
     {
-      "text": "G5b",
+      "text": "L5b",
       "fromSurface": "30",
       "toSurface": "32"
     }
   ],
   "doublets": [
     {
-      "text": "D1",
+      "text": "C1",
       "fromSurface": "1",
       "toSurface": "3"
     },
     {
-      "text": "D2",
+      "text": "C2",
       "fromSurface": "19",
       "toSurface": "21"
     },
     {
-      "text": "D3",
+      "text": "C3",
       "fromSurface": "22",
       "toSurface": "24"
     },
     {
-      "text": "D4",
+      "text": "C4",
       "fromSurface": "27",
       "toSurface": "29"
     },
     {
-      "text": "D5",
+      "text": "C5",
       "fromSurface": "30",
       "toSurface": "32"
     }

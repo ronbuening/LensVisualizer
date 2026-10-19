@@ -94,7 +94,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62,
       vd: 63.5,
-      glass: "N-PSK53A class (Schott equivalent; patent-rounded nd/vd)",
+      glass: "N-PSK53 class (Schott equivalent; patent-rounded nd/vd)",
       apd: "inferred",
       apdNote: "Phosphate-crown / ED-class assignment inferred from rounded nd/vd only.",
       cemented: "D1",

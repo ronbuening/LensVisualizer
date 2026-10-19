@@ -110,3 +110,59 @@ seven-element model because those elements keep the same rounded nd/νd; the sem
 - Live render at infinity and at the 3.5 m endpoint matches Fig. 1's proportions: chamfered L3 and L6, small L4/L5
   pair around the stop, L7 smaller than L1.
 - Limitation: no figure of Example 5 exists, so these rims stay estimates checked against a sibling drawing.
+
+## 2026-10-19 — Second review: diagram, labels and movement
+
+- Compared: the local page at infinity and at the 3.5 m endpoint, rendered at 3× scale, against a 300 dpi crop of
+  Fig. 1 on C2 p. 6 (axis at page row 852.5, 11.88 px per Table 2 mm, mapped to Table 5 with the 0.72 radius ratio).
+  The element inspector was opened for L2, L3, L5 and L6, and the focus-movement overlay was checked.
+- Silhouette: re-measured independently at five rims. L1 tip 407 px gives 24.7 mm; L2 tip 365.5 px gives 22.2 mm; the
+  L3 flat top and the end of the cement face 336.5 px give 20.4 mm; the L6 flat top 300.5 px gives 18.2 mm; the L7
+  top 339.5 px gives 20.6 mm. These agree with the first pass within 1 %. The height order matches the figure:
+  L1 > L2 > L3 top ≈ L7 > L6 top > L4 ≈ L5. The visible differences are renderer limits. The figure draws L3 and L6
+  with a flat land plus chamfer and L7 with a front step above L6, and the site joins each element's two rim points
+  with one straight edge. One shared `sd` at surface 11 cannot draw the L7 step. No element is drawn square-cut with
+  two equal faces, so no face pair was levelled.
+- Trial rims, none applied. Surface 4 at the figure's 20.4 mm (+6 %) passes the validator but is inside the noise of
+  a sibling-example figure. Surfaces 9/10 at the figure's 13.2/12.8 mm (+6 %/+2 %) fail the cross-gap rule: the
+  combined sag of 1.77 mm exceeds the 1.728 mm allowed in the 1.92 mm gap. The model keeps 12.5/12.5 mm. No `sd`
+  changed. Engine half-field stays 40°, f/5.6, stop radius 10.03 mm. The meridional f/5.6 transmission curve is
+  unchanged: 82.3 % at 20°, 49.0 % at 31.4°, 11.5 % at 40°.
+- Labels: the patent gives reference signs only to surfaces (1–12) and the stop (BL); it names lenses by position
+  ("erste Linse der vorderen Linsengruppe"). Sequential L1–L7 are kept. The FRONT bracket covers surfaces 1–7 and
+  REAR covers 8–12, exactly the patent's "Flächen 1 bis 7 / 8 bis 12". D1 (3–5) and D2 (10–12) bracket the two
+  cemented pairs. The only gap label is BF, so the doublet labels clash with nothing. The STO sits between surfaces 7
+  and 8 with 8.60/7.45 mm, as printed. Element types agree with the radius signs. L5 and L7 are menisci convex to the
+  image; L1, L2 and L4 are convex to the object; L3 and L6 are negative menisci. There are no aspheres, as in the
+  patent. The inspector shows the stored name, glass, focal length and role for each element opened.
+- Direction: claim 1 calls surface 2 the image-side face of the first lens and surface 3 the object-side face of the
+  second. Fig. 1 draws the parallel entrance bundles arriving at surface 1. Object-side numbering, with the four-lens
+  group in front, is therefore the patent's own. The model follows it. The 141 mm register cannot tell the two
+  orientations apart: the reversed lens has the same 148.04 mm focal length with the stop 146.0 mm from the image,
+  against 144.2 mm. A sentence on numbering direction was added to the analysis.
+- Focus: unit focus moves both groups together toward the object by 6.84 mm (back focus 120.54 → 127.38 mm). The
+  far-end slider label reads 3.50 m, and the probe confirms 3500.0 mm object to image at magnification −0.046.
+- Patent Fig. 2 (C2 p. 6) is an MTF-over-field plot for Table 5. The text on p. 5 says so; frequencies, aperture and
+  spectrum are not stated. Its six curves read about 64/47/29 % on axis on its log axis and converge near 8 % at
+  relative angle 1.0. The model's monochromatic diffraction MTF at f/5.6, at 10/20/40 lp/mm, gives 94/86/66 % on axis
+  and 6/1/0 % sagittal at 40.5°. At f/22 it gives 83/67/37 % and 33/1/1 %. The fall with field and the collapse at the
+  edge agree only qualitatively. The plot neither confirms nor contradicts the L3 index correction. The analysis now
+  cites Fig. 2.
+- Glass recurrence across Tables 1–5 (nd/νd), with the closest entries in the repo catalog. L1: 1.49/70.4 in T1–T4,
+  1.52/64.2 only in T5, which equals N-BK7 / BSC7 / H-K9L (1.5168/64.17–64.20). L2: 1.60/65.4 in T1–T4, 1.62/63.5
+  only in T5, which equals N-PSK53 (1.62014/63.48); the labelled N-PSK53A is 1.618/63.39. L3: 1.55/44.3 in T1–T4. The
+  printed T5 1.69/49.6 is near Hoya LAFL23 (1.689/49.48), and the applied 1.55/49.6 matches no catalog entry within
+  0.6 in νd. L4: 1.46/65.8, 1.49/70.4, 1.49/70.2, 1.52/69.7, then 1.50/56.4 in T5 only, which equals K10. L5:
+  1.46/65.8 in T1, T2 and T5 and 1.46/65.4 in T3/T4, a recurring material; 1.46/65.8 equals FK3 / FC3
+  (1.4645/65.77). L6: 1.65/39.6 in all five tables; the 654/397 short flints N-KZFS5, S-NBH5, BPH5 and H-TF5 lie
+  within 0.06–0.10. L7: 1.64/55.4 (T1), 1.62/53.2 (T2, T5) and 1.62/53.9 (T3, T4); 1.62/53.2 equals S-BSM22 / SSK2
+  (1.6223/53.14–53.17), with N-SSK2 at 53.27. The patent prints only d-line nd/νd, with no glass names, other line
+  indices or partial dispersions. Glass labels were not edited.
+- Open limitations: the patent draws no section of Example 5. Flat-land chamfers and the L7 step cannot be drawn
+  with one `sd` per surface. Fig. 2 cannot be compared quantitatively.
+
+Coordinator follow-up, same day: L2 relabelled "N-PSK53A class" → "N-PSK53 class". N-PSK53 (1.62014 / 63.48) sits
+1.4e-4 in nd and 0.02 in νd from the printed 1.62 / 63.5; N-PSK53A (1.618 / 63.39) sat 2.0e-3 and 0.11 away. L1, L5,
+L6 and L7 keep the 2026-07-29 unmatched disposition: their nearest classes (N-BK7, FK3, N-KZFS5, N-SSK2) lie 2.3e-3 to
+4.5e-3 from the two-decimal indices, so a catalog curve would trace the colour channels at an index the reference
+trace does not use.

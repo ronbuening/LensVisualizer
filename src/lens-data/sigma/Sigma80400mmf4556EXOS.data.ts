@@ -11,7 +11,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * printed rows close at that distance. No finite-distance MTF reference is given.
  * SDs estimated from the wide-end Fig. 1 (front page, 0.183 mm/px, isotropic), floor-
  * checked by real-ray trace; S9 / S12 stop at the drawn chamfer / flange step.
- * No gap-sag override. Glass names are catalog equivalents.
+ * L8 (S13/S14) is 14.7 mm as drawn, which needs gapSagFrac 0.98 against S12 (the faces
+ * still clear). Glass names are catalog equivalents.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -104,7 +105,7 @@ const LENS_DATA = {
       "vd": 38,
       "glass": "BAFD8 (Hoya equivalent)",
       "focalLengthMm": 72.186377,
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 5,
@@ -115,7 +116,7 @@ const LENS_DATA = {
       "vd": 49.6,
       "glass": "TAF1 (Hoya equivalent)",
       "focalLengthMm": -51.999637,
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 6,
@@ -126,7 +127,7 @@ const LENS_DATA = {
       "vd": 55.5,
       "glass": "LAC14 (Hoya equivalent)",
       "focalLengthMm": -56.932218,
-      "cemented": "D2"
+      "cemented": "C2"
     },
     {
       "id": 7,
@@ -137,7 +138,7 @@ const LENS_DATA = {
       "vd": 25.5,
       "glass": "FD60 (Hoya equivalent)",
       "focalLengthMm": 106.79138,
-      "cemented": "D2"
+      "cemented": "C2"
     },
     {
       "id": 8,
@@ -170,7 +171,7 @@ const LENS_DATA = {
       "vd": 70.4,
       "glass": "FC5 (Hoya equivalent)",
       "focalLengthMm": 58.30405,
-      "cemented": "D3"
+      "cemented": "C3"
     },
     {
       "id": 11,
@@ -181,7 +182,7 @@ const LENS_DATA = {
       "vd": 25.5,
       "glass": "FD60 (Hoya equivalent)",
       "focalLengthMm": -87.253635,
-      "cemented": "D3"
+      "cemented": "C3"
     },
     {
       "id": 12,
@@ -192,7 +193,7 @@ const LENS_DATA = {
       "vd": 33.3,
       "glass": "NBFD15 (Hoya equivalent)",
       "focalLengthMm": 47.073365,
-      "cemented": "D4"
+      "cemented": "C4"
     },
     {
       "id": 13,
@@ -203,7 +204,7 @@ const LENS_DATA = {
       "vd": 58.1,
       "glass": "BACD15 (Hoya equivalent)",
       "focalLengthMm": -27.4377,
-      "cemented": "D4"
+      "cemented": "C4"
     },
     {
       "id": 14,
@@ -224,7 +225,7 @@ const LENS_DATA = {
       "vd": 70.4,
       "glass": "FC5 (Hoya equivalent)",
       "focalLengthMm": 39.491559,
-      "cemented": "D5"
+      "cemented": "C5"
     },
     {
       "id": 16,
@@ -235,7 +236,7 @@ const LENS_DATA = {
       "vd": 37.3,
       "glass": "NBFD10 (Hoya equivalent)",
       "focalLengthMm": -38.453356,
-      "cemented": "D5"
+      "cemented": "C5"
     },
     {
       "id": 17,
@@ -266,7 +267,7 @@ const LENS_DATA = {
       "vd": 33.8,
       "glass": "E-FD2 (Hoya equivalent)",
       "focalLengthMm": 41.573636,
-      "cemented": "D6"
+      "cemented": "C6"
     },
     {
       "id": 20,
@@ -277,7 +278,7 @@ const LENS_DATA = {
       "vd": 49.6,
       "glass": "TAF1 (Hoya equivalent)",
       "focalLengthMm": -62.972559,
-      "cemented": "D6"
+      "cemented": "C6"
     }
   ],
   "surfaces": [
@@ -362,13 +363,13 @@ const LENS_DATA = {
       "label": "13",
       "R": -52.3323,
       "d": 1,
-      "sd": 14,
+      "sd": 14.7,
       "medium": 8
     },
     {
       "label": "14",
       "R": 1514.6027,
-      "sd": 14
+      "sd": 14.7
     },
     {
       "label": "15",
@@ -3946,6 +3947,9 @@ const LENS_DATA = {
   "layout": {
     "yScFill": 0.3
   },
+  "checks": {
+    "gapSagFrac": 0.98
+  },
   "rays": {
     "offAxisFieldFrac": 0.3
   },
@@ -3961,8 +3965,13 @@ const LENS_DATA = {
       "toSurface": "6"
     },
     {
-      "text": "G3",
+      "text": "G3A",
       "fromSurface": "7",
+      "toSurface": "9"
+    },
+    {
+      "text": "G3B (OS)",
+      "fromSurface": "10",
       "toSurface": "14"
     },
     {
@@ -3988,32 +3997,32 @@ const LENS_DATA = {
   ],
   "doublets": [
     {
-      "text": "D1",
+      "text": "C1",
       "fromSurface": "7",
       "toSurface": "9"
     },
     {
-      "text": "D2",
+      "text": "C2",
       "fromSurface": "10",
       "toSurface": "12"
     },
     {
-      "text": "D3",
+      "text": "C3",
       "fromSurface": "17",
       "toSurface": "19"
     },
     {
-      "text": "D4",
+      "text": "C4",
       "fromSurface": "21",
       "toSurface": "23"
     },
     {
-      "text": "D5",
+      "text": "C5",
       "fromSurface": "26",
       "toSurface": "28"
     },
     {
-      "text": "D6",
+      "text": "C6",
       "fromSurface": "33",
       "toSurface": "35"
     }

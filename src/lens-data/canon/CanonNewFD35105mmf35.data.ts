@@ -2,15 +2,18 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 4,432,615 A, Numerical Example 2 (FIG. 5), Keiji Ikemori / Canon.
  * Probably the Canon New FD 35-105mm f/3.5. All 28 radii and the fixed gaps are as printed.
+ * Group brackets use the patent's FIG. 5 notation I-IV; the cemented pairs are C1 (R1-R3) and
+ * C2 (R20-R22), because the patent's D1, D2 ... name axial thicknesses.
  * At infinity the patent places the stop 0.87 mm ahead of R18. The patent prints no back
  * focal distance; the model uses 56.56200155 mm, the mean paraxial BFD of the three printed
- * zoom positions. Those three positions are unchanged; the intermediate G2/G3 positions are
- * computed to keep the total track and are not Canon's cam.
+ * zoom positions. Those three positions are unchanged; the intermediate group II/III positions
+ * are computed to keep the total track and are not Canon's cam.
  * Infinity focus only: the stop shift for finite focus and the macro setting are not modelled.
  * Semi-diameters are estimated from FIG. 5 (wide position, about 0.094 mm/px from the R1-R28
  * vertex span) and checked by real-ray trace. FIG. 5 draws L6's front rim meeting L5's R9;
  * at 12.9 mm the two faces are 0.07 mm apart, which needs checks.gapSagFrac 0.97.
- * R11/R12 and R24/R25 are held at the cross-gap limit.
+ * L7 is 11.7 mm, level with L8 as FIG. 5 draws them; there R11 and R12 are 0.21 mm apart.
+ * R24/R25 stay at 9.9 mm: those faces would touch at about 10.5 mm, and FIG. 5 draws them crossing.
  * Glass names are catalogue equivalents chosen from nd/vd, not Canon's melt identities.
  */
 const LENS_DATA = {
@@ -67,7 +70,7 @@ const LENS_DATA = {
       "vd": 25.4,
       "glass": "FD60 (Hoya equivalent)",
       "focalLengthMm": -96.332802,
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 2,
@@ -78,7 +81,7 @@ const LENS_DATA = {
       "vd": 50.9,
       "glass": "BACED5 (Hoya equivalent)",
       "focalLengthMm": 107.350319,
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 3,
@@ -137,7 +140,7 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.84666,
       "vd": 23.9,
-      "glass": "S-NPH53 (Ohara equivalent)",
+      "glass": "PBH53 (Ohara equivalent)",
       "focalLengthMm": 33.404655
     },
     {
@@ -169,7 +172,7 @@ const LENS_DATA = {
       "vd": 47.2,
       "glass": "E-FEL2 (Hoya equivalent)",
       "focalLengthMm": 30.235963,
-      "cemented": "D2"
+      "cemented": "C2"
     },
     {
       "id": 12,
@@ -180,7 +183,7 @@ const LENS_DATA = {
       "vd": 46.6,
       "glass": "S-LAH65 (Ohara equivalent)",
       "focalLengthMm": -44.619403,
-      "cemented": "D2"
+      "cemented": "C2"
     },
     {
       "id": 13,
@@ -189,7 +192,7 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.84666,
       "vd": 23.9,
-      "glass": "S-NPH53 (Ohara equivalent)",
+      "glass": "PBH53 (Ohara equivalent)",
       "focalLengthMm": -31.720912
     },
     {
@@ -288,14 +291,14 @@ const LENS_DATA = {
     {
       "label": "12",
       "R": -189.831,
-      "sd": 11.3,
+      "sd": 11.7,
       "d": 1.3,
       "medium": 7
     },
     {
       "label": "13",
       "R": 45.629,
-      "sd": 11.3,
+      "sd": 11.7,
       "d": 0.39
     },
     {
@@ -1102,34 +1105,34 @@ const LENS_DATA = {
   },
   "groups": [
     {
-      "text": "G1",
+      "text": "I",
       "fromSurface": "1",
       "toSurface": "7"
     },
     {
-      "text": "G2",
+      "text": "II",
       "fromSurface": "8",
       "toSurface": "15"
     },
     {
-      "text": "G3",
+      "text": "III",
       "fromSurface": "16",
       "toSurface": "17"
     },
     {
-      "text": "G4",
+      "text": "IV",
       "fromSurface": "18",
       "toSurface": "28"
     }
   ],
   "doublets": [
     {
-      "text": "D1",
+      "text": "C1",
       "fromSurface": "1",
       "toSurface": "3"
     },
     {
-      "text": "D2",
+      "text": "C2",
       "fromSurface": "20",
       "toSurface": "22"
     }

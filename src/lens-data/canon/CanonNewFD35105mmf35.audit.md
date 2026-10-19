@@ -161,3 +161,93 @@ Analysis changes:
 - **Sources.** The private Google Drive link was removed.
 
 Open: Macro mode is not in the patent.
+
+## 2026-10-19 — Second review: diagram, labels and movement
+
+Compared: the local page at 36.2, 70 and 102 mm, the zoom-movement overlay and the element inspector (L1, L12),
+against FIG. 5 (page 7) at 2×, 4× and 8× renders of the 72 ppi scan. Patent text read on pages 9–12: col. 5 for the
+group roles, col. 7–8 for the stop and focus and the FIG. 5 legend, and page 8 for the FIG. 6 aberration plots.
+
+Changes:
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `groups` text | G1, G2, G3, G4 | I, II, III, IV | Col. 8 says "In FIG. 5, I, II, III and IV denote" the four groups. FIG. 5 prints the Roman numerals under its brackets. Surface ranges were already right. |
+| `doublets` text and element `cemented` (L1/L2, L11/L12) | D1, D2 | C1, C2 | The patent's D1, D2 … are axial thicknesses. FIG. 5 prints D1 and D2 on the axis, and the slider shows the patent's D7/D15/D17. The inspector now reads "DOUBLET C1". |
+| S12, S13 (L7) `sd` | 11.3 | 11.7 | FIG. 5 draws L7 and L8 the same height: 131/131 px on the upper side and 128/127 px on the lower. That is 11.5–11.8 mm at the group II local scale (0.0902 mm/px) and 12.0–12.3 mm at the overall scale. The site drew L7 0.7 mm shorter than L8. The first pass limited L7 by the R11/R12 cross-gap rule at 0.90. The 0.97 fraction already set for L6 admits 11.7 (combined sag 4.39 mm of the 4.60 mm gap, so the rim gap is 0.21 mm); 11.8 fails at the long-end stations. Both faces move together, so the rim stays square. |
+
+Header comment and analysis prose now use the I–IV and C1/C2 labels. The L7 and L13 rim statements and the group
+III reversal are added.
+
+Clearance after the change: the surface validator reports no errors, and the image-circle check finds nothing
+undersized. Field coverage is 41/41 at 100 %. The meridional trace to Y = 21.63 mm shows no CLIPS-AXIAL or
+BLOCKS-CHIEF. At S12/S13 the axial ray is 7.80/8.10 mm and the chief ray 10.89/10.54 mm. The `--omega 30.9` run flags
+front rims only because it applies 30.9° at every station, including 102 mm, so it was disregarded. The engine values
+are unchanged: f/3.5, stop radius 9.352 mm, half-field 31.30° / 18.62° / 14.06° at wide / middle / long. The
+meridional transmission at wide open and infinity rises only at the wide end, through 23.4° (92.7 → 95.8 %),
+26.3° (79.7 → 84.9 %), 29.3° (64.6 → 67.2 %) and 32.2° (47.9 → 48.4 %). The middle and long-end curves are unchanged.
+These numbers are meridional only and are not a full vignetting statement.
+
+R24/R25 rechecked. The 8× render shows the following:
+
+- L13 is drawn square-cut. Its flat top is at 11.5 mm and R24 runs up into its rear corner.
+- R25 runs up to L14's top cap at about 11.9–12.0 mm.
+- The two lines cross at about h = 9 mm on both sides of the axis.
+- Neither face stops short, so the figure gives no basis for raising one face to full height.
+- By the prescription the faces touch at h ≈ 10.5 mm. At 0.97 the validator would admit 10.3 mm; the gain is 0.4 mm and
+  within noise, so both stay at 9.9 mm.
+- With R24 at 11.6 and R25 at 9.9, the validator would pass, but L13's rear corner would sit only 0.15 mm inside L14's
+  straight rim edge, a wrap the drawing does not settle. It was not adopted.
+
+Silhouette differences that remain and are accepted:
+
+- The flange and chamfer of the L1/L2 block are mechanical.
+- L4 is 5–7 % above the figure.
+- L5 and L6 read 4 % under at the local scale.
+- L13 and L14 have sloped rims, for the reason above.
+
+Checked and found correct:
+
+- Element types against the signs of R. L8 is nearly plano-convex (R15 −6974) and L15 nearly plano-convex (R28 +4212);
+  their labels are acceptable.
+- All surfaces are spherical, and no `asph` entries or A suffixes are present.
+- No `apd` tags, which is right, since the patent names no special glass.
+- The stop sits between R17 and R18, 0.87 mm ahead of R18 (col. 7).
+- Element `name` (L1–L15) and `label` agree, and there is no `diagramLabel`.
+
+Movement, from the printed table (D7 1.444 / 17.051 / 23.459, D15 16.612 / 3.009 / 2.924, D17 10.4 / 8.4 / 2.073):
+
+- Stations ascend 36.2 → 102 mm and every gap row follows that order.
+- Group I does not move (col. 5: stationary during zooming).
+- Group II moves monotonically 22.02 mm toward the image, matching the straight arrow under II.
+- Group III moves 0.36 mm toward the object to about 44.6 mm, then 8.69 mm toward the image. This matches the curved
+  arrow under III and col. 7, which says the third group "moves at least reciprocatingly".
+- Group IV is fixed to within 0.004 mm. The printed middle row's gaps sum 0.004 mm more than the end rows.
+- Focus has one infinity keyframe, and the slider reads "Not modeled".
+
+Aberrations against FIG. 6, from a scratch real-ray and Coddington trace:
+
+- Distortion is −4.55 % at 30.9° (patent about −4.5 %), +2.00 % at 17.2° (about +1.8 %) and +3.85 % at 12°
+  (about +4.1 %).
+- Wide spherical aberration at the half-aperture zone is −0.19 mm (patent about −0.17).
+- Sagittal field agrees within about 0.1 mm at all three stations.
+- The meridional field does not agree at full field. At the field edge the model's meridional focus is 0.3–0.6 mm more
+  positive than the patent's M curve: +0.35 against −0.26 at 30.9°, +0.19 against −0.02 at 17.2°, and +0.15 against
+  −0.30 at 12°. The site's field-curve chart shows the same rise. With the radii re-read and the distortion matching,
+  this stays an open discrepancy and is not treated as a transcription error.
+
+Glass:
+
+- All eight labels resolve, and the catalogue νd is within 0.06 of the printed values.
+- 1.80518/25.4, 1.65844/50.9, 1.6968/55.5 and 1.60311/60.7 recur in Example 1.
+- The other four (1.83481/42.7, 1.804/46.6, 1.84666/23.9 and 1.54072/47.2) are standard catalogue codes, so real
+  materials.
+- S-NPH53 is a later niobophosphate equivalent of the 847/239 code. A 1981 Canon melt would more likely be a dense
+  titanium flint of the same code; no change is made.
+
+Open: the meridional field mismatch at full field, and the R24/R25 drawing conflict.
+
+Coordinator follow-up, same day: L8 and L13 relabelled "S-NPH53 (Ohara equivalent)" → "PBH53 (Ohara equivalent)".
+Both rows sit on the printed 1.84666 / 23.9 (νd 23.886 vs 23.884); PBH53 is the dense flint of the 1981 period, while
+S-NPH53 is a later niobophosphate glass. R24/R25 stay at 9.9 mm (a 10.3 mm rim would pass but is within reading
+noise).

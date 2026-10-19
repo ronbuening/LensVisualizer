@@ -5,7 +5,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The printed 159.5 + 5 mm split of the long air gap around the diaphragm is kept. The iris radius is derived from f/8.
  * Back focus is the Gaussian 171.363385 mm, not the printed 171.4 mm (−0.037 mm).
  * Focus is a derived unit extension to the maker's 8.5 m object-to-image distance, not a recovered factory cam.
- * Semi-diameters estimated from the patent figure (p. 1, 0.250 mm/px at 300 dpi): L1 39.4, front doublet 37.3,
+ * Semi-diameters estimated from the patent figure (p. 1, 0.250 mm/px at 300 dpi): LI 39.4, front doublet 37.3,
  * rear doublet 12.0 mm; floor-checked by real-ray trace (f/8 axial beam clears); no gap-sag override.
  * Probable production lens: the historical Hasselblad C version, Cat. No. 10 46 03, not every later 500 mm revision.
  */
@@ -50,8 +50,9 @@ const LENS_DATA = {
   "elements": [
     {
       "id": 1,
-      "name": "L1",
+      "name": "LI",
       "label": "Element 1",
+      "diagramLabel": "LI",
       "type": "Biconvex Positive",
       "nd": 1.51009,
       "vd": 63.37,
@@ -60,8 +61,9 @@ const LENS_DATA = {
     },
     {
       "id": 2,
-      "name": "L2",
+      "name": "LII",
       "label": "Element 2",
+      "diagramLabel": "LII",
       "type": "Biconvex Positive",
       "nd": 1.51821,
       "vd": 65.18,
@@ -71,8 +73,9 @@ const LENS_DATA = {
     },
     {
       "id": 3,
-      "name": "L3",
+      "name": "LIII",
       "label": "Element 3",
+      "diagramLabel": "LIII",
       "type": "Biconcave Negative",
       "nd": 1.7552,
       "vd": 27.53,
@@ -82,8 +85,9 @@ const LENS_DATA = {
     },
     {
       "id": 4,
-      "name": "L4",
+      "name": "LIV",
       "label": "Element 4",
+      "diagramLabel": "LIV",
       "type": "Biconvex Positive",
       "nd": 1.62004,
       "vd": 36.34,
@@ -93,8 +97,9 @@ const LENS_DATA = {
     },
     {
       "id": 5,
-      "name": "L5",
+      "name": "LV",
       "label": "Element 5",
+      "diagramLabel": "LV",
       "type": "Biconcave Negative",
       "nd": 1.62041,
       "vd": 60.29,

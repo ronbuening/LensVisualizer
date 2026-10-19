@@ -5,7 +5,7 @@
 **Filed:** 11 September 1961  
 **Granted:** 26 May 1964  
 **Inventor:** Helmut Knutti  
-**Assignee:** Carl-Zeiss-Stiftung (catalog normalization of the printed Carl Zeiss, Heidenheim)  
+**Assignee:** Carl-Zeiss-Stiftung (printed as Carl Zeiss, Heidenheim (Brenz))  
 **Embodiment analyzed:** Sole numerical table, description column 2; normalized to f = 1 and scaled ×500 to the stated 500 mm focal length.
 
 The probable production lens is the historical Hasselblad C Tele-Tessar f/8 500 mm, Cat. No. 10 46 03, shown on the Zeiss technical data sheet. The identification does not extend to the later Tele-Apotessar lenses or to every barrel and coating revision. The sheet and the scaled prescription agree as follows:
@@ -25,11 +25,13 @@ The patent splits its long air gap into 159.5 mm before the diaphragm and 5 mm a
 
 ## Element-by-Element Analysis
 
-- L1 is the positive biconvex front singlet, nd 1.51009 / νd 63.37, 12 mm thick.
-- L2 is the positive member of the front doublet, nd 1.51821 / νd 65.18, 12 mm thick.
-- L3 is its negative biconcave member, nd 1.75520 / νd 27.53, 8 mm thick. The two are cemented on one shared surface.
-- L4 is the positive member of the rear doublet, nd 1.62004 / νd 36.34, 3.5 mm thick.
-- L5 is the negative biconcave final member, nd 1.62041 / νd 60.29, 3 mm thick. The rear doublet's net power is negative.
+The element names LI to LV are the patent's own designations from its table and drawing.
+
+- LI is the positive biconvex front singlet, nd 1.51009 / νd 63.37, 12 mm thick.
+- LII is the positive member of the front doublet, nd 1.51821 / νd 65.18, 12 mm thick.
+- LIII is its negative biconcave member, nd 1.75520 / νd 27.53, 8 mm thick. The two are cemented on one shared surface.
+- LIV is the positive member of the rear doublet, nd 1.62004 / νd 36.34, 3.5 mm thick. As the patent requires, this positive member faces the diaphragm and is the more dispersive of the pair.
+- LV is the negative biconcave final member, nd 1.62041 / νd 60.29, 3 mm thick. The rear doublet's net power is negative.
 
 ## Glass and Dispersion
 
@@ -47,7 +49,7 @@ All eight refracting surfaces are spherical. No aspheric coefficients are suppli
 
 ## Apertures, Field and Model Limits
 
-Clear semi-diameters are not printed. The model's radii are measured from the patent's drawing, which is to scale (0.250 mm per pixel at 300 dpi, checked on the first-vertex-to-image-plane and front-to-rear-group spans): 39.4 mm for the front singlet, 37.3 mm for the front cemented doublet, which the drawing shows slightly narrower than the singlet, and 12.0 mm for the rear cemented doublet. All three are drawn square-cut, so each element carries one value on every face. The f/8 axial beam clears every rim. The 86 mm filter size and 90 mm barrel diameter are outer bounds, not measured clear apertures. The rims set the off-axis vignetting: the front-group rims cut the outer part of the oblique beams.
+Clear semi-diameters are not printed. The model's radii are measured from the patent's drawing, which is to scale (0.250 mm per pixel at 300 dpi, checked on the first-vertex-to-image-plane and front-to-rear-group spans): 39.4 mm for the front singlet, 37.3 mm for the front cemented doublet, which the drawing shows slightly narrower than the singlet, and 12.0 mm for the rear cemented doublet. All three are drawn square-cut, so each element carries one value on every face. The f/8 axial beam clears every rim. The drawing's diaphragm, at the printed stop position, has an opening of about 19 mm. That is schematic: the model's f/8 stop is 23.9 mm across, which matches the 24 mm shutter passage named in the text. The 86 mm filter size and 90 mm barrel diameter are outer bounds, not measured clear apertures. The rims set the off-axis vignetting: the front-group rims cut the outer part of the oblique beams.
 
 The 6×6 format is 56 × 56 mm; the historical sheet gives 56.5 × 56.5 mm, a semi-diagonal of about 39.95 mm. The chief ray reaches that corner, but the beam there is partly vignetted.
 

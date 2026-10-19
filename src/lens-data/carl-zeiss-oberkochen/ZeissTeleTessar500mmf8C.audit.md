@@ -103,3 +103,59 @@ Engine EFL, f-number, half-field, stop radius, back focus and all 17 focus keyfr
 Open: exit-pupil diameter 22.47 mm vs the sheet's 22.7 mm (not affected by rims). Element labels 4 and 5 stack in
 two rows in the full-lens render because the rear doublet is only 6.5 mm thick at this scale; that comes from the
 shared label packer, not a lens field.
+
+## 2026-10-19 — Second review: diagram, labels and movement
+
+Compared: the live page at infinity, at 8.5 m and with the focus-movement overlay, against the sole section drawing on
+patent p. 1 (300 dpi native raster) and the table and text in columns 1–2.
+
+Silhouette. Rims were re-measured from per-row ink runs on the native raster, independently of the first pass. LI is
+319 px across at the outer ink and 313 px at the stroke centres (39.9 / 39.1 mm radius). The front doublet is 302 / 296 px
+(37.75 / 37.0 mm). The rear doublet is 99 / 94 px (12.4 / 11.75 mm). All three have straight cylindrical edges in the
+drawing; LI's drawn edge is about 36 px (9 mm) long, against a model edge thickness of 8.2 mm. The stored 39.4 / 37.3 /
+12.0 mm sit inside each reading, the singlet renders taller than the doublet and the rear doublet about a third of the
+front height, as drawn. No rim was changed.
+
+Diaphragm. The drawing has two diaphragm strokes 4.4 mm in front of r6, which is the printed 5 mm d5″ split. They run
+from about 9.5 mm to 20.2 mm radius (inner ends 39 and 37 px from the axis at x = 1113, outer ends 80.5 and 81 px). The
+19 mm opening is schematic. The text gives f:8 and a 24 mm shutter passage, and the engine's f/8 stop is 23.9 mm across.
+On the site the stop is drawn as short ticks at that radius, level with the 12 mm rear rim. The patent draws a plate
+reaching out past the rear group. That difference is in the renderer's stop marker, not in any lens field. The STO
+`sd` stays derived.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| element `name` 1–5 | L1, L2, L3, L4, L5 | LI, LII, LIII, LIV, LV | Patent table "Lenses" column and drawing labels L_I to L_V |
+| element `diagramLabel` 1–5 | (none; ids 1–5 drawn) | LI, LII, LIII, LIV, LV | Same; name and diagram label now agree |
+| analysis, element section | L1–L5 | LI–LV, with a note that the names are the patent's | Same |
+| analysis, apertures | — | sentence on the schematic 19 mm diaphragm opening | Measured above |
+| header comment | "L1 39.4" | "LI 39.4" | Same naming |
+
+The diagram now packs the front labels in two rows (LI LII below, LIII above) and the rear labels as LIV below LV, from
+the shared label packer.
+
+Found correct. Types: LI and LII biconvex (r1 +, r2 −; r3 +, r4 −), LIII and LV biconcave (r4 −, r5 +; r7 −, r8 +), LIV
+biconvex (r6 +, r7 −). The rear doublet has the positive, more dispersive member (νd 36.34 against 60.29) on the
+diaphragm side, as the text requires. Group brackets FRONT (r1–r5) and REAR (r6–r8) bracket the patent's object-side
+collective and image-side dispersive partial systems. The doublet brackets D1 (r3–r5) and D2 (r6–r8) match the two
+cemented components. The only gap label is BF, so they cannot be mistaken for a slider label. The patent marks no
+asphere and no special glass, and the file has no `asph` entry and no `apd` tag. The stop sits in the d5′/d5″ gap
+between LIII and LIV. The inspector for LIII and LIV shows the right type, glass, focal length (−377.01 and +140.39 mm)
+and doublet tag.
+
+Movement. Focus key 0 is infinity (back gap 171.363 mm) and key 16 is 8.5 m object to image (206.210 mm), rising
+monotonically. The overlay shows both groups moving 34.85 mm toward the object together, and nothing else moves. A
+thin-lens check with the 288.0 mm principal-plane separation gives the same 34.85 mm extension. The slider's far end
+reads 8.50 m.
+
+Aberrations and glass. The patent prints no aberration curves. On-axis longitudinal spherical aberration of the
+prescription is −0.153 / −0.116 / −0.082 / −0.043 mm at pupil 1 / 0.85 / 0.7 / 0.5 at f/8. That is a well-corrected
+lens, in line with the text's claims, and gives no sign of a misprinted radius. With one example, no nd/νd pair recurs
+in the patent. All five glass labels resolve, and the catalog νd is within 0.03 of the printed value for every one.
+
+After the edits, the engine values are unchanged: EFL 500.094 mm, f/8, stop radius 11.95 mm and half-field 4.62°. The
+surface validator, image circle (100 %) and field coverage (100 %) pass. Real-ray clearance at f/8 with ω 4.45° shows no
+axial clip or chief-ray block. Vignetting is unchanged at 50.5 % at 4.4°, since no rim moved.
+
+Open: the stop marker is drawn shorter than the patent's diaphragm plate (renderer); exit-pupil diameter 22.47 against
+the sheet's 22.7 mm, as before.

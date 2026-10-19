@@ -116,3 +116,91 @@ brackets removed. Engine output (built and probe) is identical before and after,
 Open: the 0.9 m wide-end close focus is not modelled. (Closed: the element 2 and 9 `apdNote` texts now identify the
 ED positions by glass class — FCD1 fluorophosphate and FCD505 anomalous-dispersion crown — and say that L10, an
 FK5-class crown at νd 70.44, stays untagged.)
+
+## 2026-10-19 — Second review: diagram, labels and movement
+
+Compared: the live local page (wide, 140 mm and tele, at infinity and 1.5 m; both movement overlays; the inspectors
+of elements 1, 3, 9, 11 and 15) against FIG. 8 of `patents/JP2011186095A.pdf` (page 17, wide-end panel, measured
+afresh from a 600 dpi render), the Example 2 table (pages 11–12), claims 1–4, paragraphs 0040–0047 and 0069, the
+reference-sign list (paragraph 0076) and the aberration plots FIG. 9–11.
+
+Scale, measured independently: 27 ink crossings on the axis column of the wide panel (29 surfaces; S3/S4 and
+S24/S25 merge, S5 and S6 are not inked on the axis) fit the wide-infinity prescription; S1 to S32 is 978 px for 110.35 mm (8.863 px/mm), and every crossing lies within 1.5 px of its predicted
+row. Arc sags of S1 (R 152.5) and S2 (R 66.5) at 7.8–20.4 mm from the axis agree with the same scale across the
+axis, so the figure is isotropic. Rims were read as the centres of the drawn edge lines on both sides of the axis.
+
+| Element | Stored | Figure half-width | Figure / stored |
+|---|---|---|---|
+| C1 doublet (E1/E2, S1–S3) | 23.5 | 199.0 px = 22.45 mm | 0.955 |
+| E3 (S4–S5) | 23.5 | 194.8 px = 21.97 mm | 0.935 |
+| E4 / E5 | 11.4 / 11.2 | 101 / 99 px = 11.40 / 11.17 mm | 1.00 / 1.00 |
+| E6 / E7 / E8 | 8.1 / 8.0 / 8.5 | 73 (one side) / 71 / 75 px = 8.24 / 8.01 / 8.46 mm | 1.02 / 1.00 / 1.00 |
+| E9 / C2 / C3 / E14 | 10.3 / 10.5 / 11 / 11 | 91 / 93 / 97 / 99 px = 10.27 / 10.49 / 10.94 / 11.17 mm | 1.00 / 1.00 / 0.99 / 1.02 |
+| C4 (L5a) / C5 (L5b) | 7.1 / 7.7 | 63 / 69 px = 7.11 / 7.79 mm | 1.00 / 1.01 |
+
+Every rim from L2 back is within 2 % of the drawing, so the first pass had those right. L1 was the one outlier: the
+front doublet is drawn 4.5 % and E3 6.5 % smaller than stored, and the figure draws E3 slightly smaller than the
+doublet where the file had them equal. With a scale that holds to 0.1 % over the whole lens and an edge reading good to
+about 1 px (0.1 mm), these are real differences rather than measurement noise, and they were the only two elements not
+at their drawn height.
+
+| Change | Before | After | Evidence |
+|---|---|---|---|
+| `sd` S1, S2, S3 (C1) | 23.5 | 22.5 | FIG. 8 edge lines at 199 px; square-cut block, both faces at one height |
+| `sd` S4, S5 (E3) | 23.5 | 22.0 | FIG. 8 edge lines at 195 px; square-cut, drawn just inside C1 |
+| Element `name` | L1 … L18 | E1 … E18 | Paragraph 0076 and FIG. 8 use L1–L5, L5a, L5b for the groups; the patent names no element |
+| Group brackets | G1, G2, G3, G4, G5a focus, G5b | L1, L2, L3, L4, L5a focus, L5b | The patent's reference signs |
+| Doublet brackets and `cemented` | D1 … D5 | C1 … C5 | D5 was also the label of the first variable gap beside the slider |
+| `focus.description` | G5a (L15/L16), G2 fixed | L5a (E15/E16), L2 fixed, travel 1.35 mm wide and 8.30 mm tele | Group notation and the keyframe travel |
+| Element 9 `apdNote` | names L10 | names E10 | Element rename |
+
+Clearance with the new L1 rims: the axial marginal ray at the nominal f-number peaks at 21.02 mm on S1, 20.81 on S2,
+20.80 on S3, 20.57 on S4 and 20.30 on S5 (tele end; unchanged with focus), so the rims keep 1.5–1.7 mm of margin; the
+corner chief ray peaks at 10.53 mm on S1. No surface clips the axial beam or blocks the chief ray at infinity or at
+1.5 m. The surface validator passes with the default gap-sag, the image-circle floor reports nothing undersized,
+field coverage is 81/81 stations at 100 %, and the aperture check keeps 81/81 stations within 3 % of the stated
+f-number with none rim-limited. Engine half-field 10.76° at the wide end and F4.95 with an 8.75 mm stop radius,
+before and after; only the drawing scale constants changed (largest rim 23.5 → 22.5 mm).
+
+Engine vignetting curve (meridional, wide open, infinity), before → after: wide end 79.2 → 79.2 % at 8.0°; zoom
+slider 0.25 84.4 → 84.4 % at 5.9°; 140 mm 82.3 → 82.3 % at 4.4°; slider 0.75 85.4 → 84.4 % at 3.0°; tele end 76.0 →
+74.0 % at 2.1°, and 100 → 99 % at 0.4°. The exact trace's clipped share of the full-field meridional bundle at S1 rises
+from 37 % to 42 %. This is front-group vignetting the drawing implies and was kept; neither curve covers the
+sagittal bundle.
+
+Found correct, not changed:
+- Element `type` strings agree with the signs of R for all 18 elements; there are no aspheres and no `A` labels; the
+  stop sits between S15 and S17, 7.35 mm ahead of S17, where FIG. 8 draws SP.
+- The L4 bracket starts at the stop. FIG. 8's labelled L4 bracket starts at S17, but the inner bracket on the other
+  side encloses SP with L4, and the stop moves with L4 because D15 precedes it. FIG. 8's overall L5 bracket is not
+  drawn; L5a and L5b carry their own.
+- Tags: the patent text never mentions anomalous dispersion or a glass name, so no `apd: "patent"` tag applies. The
+  `"inferred"` tags on E2, E3 and E9 match the Olympus construction recorded in the deployment validation above (one
+  Super ED, two ED, three HR, no aspheres); the three nd 1.91082 HR elements E4, E11 and E12 carry no `apd` tag. The
+  inspectors show "APD (INFERRED)" on elements 3 and 9 and "DOUBLET C1" / "DOUBLET C4" on elements 1 and 15.
+- Glass: all 18 labels resolve and match the printed nd/νd within 0.04 in νd (E9 FCD505 νd 68.66 against 68.62).
+  Every pair except E5 (1.54814 / 45.82) and E17 (1.54072 / 47.20) recurs in Examples 1, 3 or 4; those two are exact
+  HOYA E-FEL1 and E-FEL2 coordinates, so they are catalog glasses, not floated values. Nothing is `Unmatched`.
+- Zoom: stations ascend 76.91 → 290.98 mm and every gap table follows that order. L2 is fixed to 0.001 mm at all 81
+  stations (paragraph 0069; FIG. 8 draws L2's arrows horizontal). From wide to tele L1 moves 47.97 mm and L5 22.61 mm
+  toward the object, monotonically, as FIG. 8's arrows show. L3 moves 8.10 mm toward the image to the middle station
+  and 0.23 mm back by the tele end; L4 moves 2.01 mm toward the image to a turning point at about 120.5 mm, then
+  5.22 mm toward the object. Both reversals are forced by the printed spacings (D9 3.89 / 11.99 / 11.76;
+  D9 + D15 17.62 / 18.97 / 14.41 mm), and FIG. 8's L4 arrows run slightly imageward to the middle panel and then
+  objectward. The deployment section's statement that L4 (then "G4") moves monotonically is therefore not right; the
+  analysis now describes the reversal.
+- Focus: keyframe 0 is infinity and keyframe 16 is 1.5 m; only L5a moves, toward the image as claim 1 and FIG. 8's
+  focus arrow state, by 1.35 mm at the wide end, 3.56 mm at 140 mm and 8.30 mm at the tele end. The slider's far end
+  reads 1.50 m.
+- Aberrations against FIG. 9–11 (read from a 300 dpi render, about ±0.02 mm and ±0.3 %): model d-line longitudinal
+  spherical aberration at pupil 1.0 / 0.85 / 0.7 / 0.5 is +0.047 / −0.067 / −0.101 / −0.079 mm at the wide end,
+  −0.034 / −0.047 / −0.048 / −0.034 at 140 mm and −0.032 / −0.008 / −0.003 / −0.003 at the tele end, against plots that
+  show a slightly undercorrected middle zone turning positive at the margin at the wide end and near-zero curves at
+  the other two stations. Tangential / sagittal field shifts at the 10.82 mm corner are +0.064 / +0.048 mm (wide)
+  and −0.072 / −0.014 mm (tele), against near-zero astigmatism plots leaning slightly positive at the wide end and
+  with ΔM slightly negative at the tele end. Distortion at the corner is +0.51 / +1.47 / +1.37 %, against about
+  +0.3, +1.5 and +1.4 % on the plots. The model agrees with the patent's plots.
+- `gapSagFrac` is not needed; the validator accepts the new rims at the default.
+
+Open: the 0.9 m wide-end close focus is still not modelled. The earlier sections of this log use G-notation and
+L1–L18 element names; they refer to the same groups and elements as L1–L5 and E1–E18 here.
