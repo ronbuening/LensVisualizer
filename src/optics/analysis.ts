@@ -43,3 +43,11 @@ export {
   type ChromaticFieldFocusSummary,
 } from "./analysis/aberration/fieldCurvature.js";
 export type { FieldCurvatureResult, FieldCurvatureFieldResult } from "./analysis/aberration/types.js";
+
+export {
+  computeComaAnalysis,
+  computeComaPointCloudPreview,
+  computeComaPreview,
+  computeMeridionalComa,
+  computeSagittalComa,
+} from "./analysis/aberration/coma.js";

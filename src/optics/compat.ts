@@ -245,14 +245,6 @@ export {
   type AnalysisSectionMode,
 } from "./analysis/analysisMovementSupport.js";
 export {
-  computeComaAnalysis2,
-  computeComaAnalysisForState2,
-  computeComaPointCloudPreview2,
-  computeComaPreview2,
-  computeMeridionalComa2,
-  computeSagittalComa2,
-} from "./analysis/aberrations.js";
-export {
   computeChromaticAnalysis2,
   computeChromaticAnalysisForState2,
   computeChromaticRayFanAnalysis2,

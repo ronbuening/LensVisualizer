@@ -10,12 +10,14 @@ import {
   sampleOrthogonalPupilFan,
   type CircularPupilSample,
   type OrthogonalPupilSample,
-} from "../analysis/sampling.js";
+} from "../sampling.js";
 import {
   computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
   type FieldGeometryState2 as FieldGeometryState,
-} from "../state/fieldAdapters.js";
-import type { RuntimeLens } from "../../types/optics.js";
+} from "../../state/fieldAdapters.js";
+import { runtimeView } from "../../prescription/runtimeView.js";
+import type { AnalysisRequest } from "../request.js";
+import type { RuntimeLens } from "../../../types/optics.js";
 import type {
   ComaAnalysisResult,
   ComaPointCloudPoint,
@@ -28,21 +30,21 @@ import type {
   MeridionalComaSample,
   SagittalComaResult,
   SagittalComaSample,
-} from "../analysis/aberration/types.js";
+} from "./types.js";
 import {
   COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES,
   COMA_PREVIEW_FIELD_FRACTIONS,
   COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT,
   MERIDIONAL_COMA_SAMPLE_COUNT,
-} from "../analysis/aberration/types.js";
+} from "./types.js";
 import {
   computeProjectionAwareOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
   traceOffAxisBundleFromSamples,
   type OffAxisBundle,
   type ProjectionAwareOffAxisFieldGeometry,
-} from "../analysis/aberration/offAxis.js";
-import type { AnalysisSamplingOptions } from "../analysis/analysisQuality.js";
+} from "./offAxis.js";
+import type { AnalysisSamplingOptions } from "../analysisQuality.js";
 
 const COMA_PREVIEW_MIN_SHARED_HALF_RANGE_MM = 0.01;
 const COMA_POINT_CLOUD_MIN_VALID_SAMPLES = 5;
@@ -796,27 +798,18 @@ function computeComaPointCloudPreviewFromContext(
  * The fan samples across the meridional pupil and reports image-height spread
  * relative to the chief ray for the current focus, zoom, and aperture state.
  *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @param aberrationT - normalized aberration spacing slider
- * @param fieldGeometry - optional precomputed field geometry for the same state
+ * @param request - current geometry, controls, apertures, field and sampling
  * @returns meridional coma fan metrics, or null when off-axis field is unusable
  */
-export function computeMeridionalComa(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-  fieldGeometry?: FieldGeometryState,
-  sampling: AnalysisSamplingOptions = {},
-): MeridionalComaResult | null {
+export function computeMeridionalComa(request: AnalysisRequest): MeridionalComaResult | null {
+  const { preparedGeometry: state } = request;
+  const { focusT, zoomT, aberrationT } = state;
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
+  const fieldGeometry = request.fieldGeometry ?? undefined;
+  const sampling = request.sampling;
+
   const traceContext = buildComaTraceContext(L, focusT, zoomT, aberrationT, fieldGeometry, sampling);
   const footprint = computeMeridionalComaFieldFootprint(
     L,
@@ -856,27 +849,18 @@ export function computeMeridionalComa(
 /**
  * Compute compact multi-field meridional coma preview data.
  *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @param aberrationT - normalized aberration spacing slider
- * @param fieldGeometry - optional precomputed field geometry for the same state
+ * @param request - current geometry, controls, apertures, field and sampling
  * @returns coma preview fields, or null when insufficient fields trace
  */
-export function computeComaPreview(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-  fieldGeometry?: FieldGeometryState,
-  sampling: AnalysisSamplingOptions = {},
-): ComaPreviewResult | null {
+export function computeComaPreview(request: AnalysisRequest): ComaPreviewResult | null {
+  const { preparedGeometry: state } = request;
+  const { focusT, zoomT, aberrationT } = state;
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
+  const fieldGeometry = request.fieldGeometry ?? undefined;
+  const sampling = request.sampling;
+
   return computeComaPreviewFromContext(
     L,
     zPos,
@@ -891,27 +875,18 @@ export function computeComaPreview(
 /**
  * Compute sagittal coma at the lens-authored representative off-axis field.
  *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @param aberrationT - normalized aberration spacing slider
- * @param fieldGeometry - optional precomputed field geometry for the same state
+ * @param request - current geometry, controls, apertures, field and sampling
  * @returns sagittal coma fan metrics, or null when off-axis field is unusable
  */
-export function computeSagittalComa(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-  fieldGeometry?: FieldGeometryState,
-  sampling: AnalysisSamplingOptions = {},
-): SagittalComaResult | null {
+export function computeSagittalComa(request: AnalysisRequest): SagittalComaResult | null {
+  const { preparedGeometry: state } = request;
+  const { focusT, zoomT, aberrationT } = state;
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
+  const fieldGeometry = request.fieldGeometry ?? undefined;
+  const sampling = request.sampling;
+
   return computeSagittalComaResultAtField(
     L,
     zPos,
@@ -930,27 +905,18 @@ export function computeSagittalComa(
  * Points are chief-ray centered with sagittal on x and tangential on y, matching
  * the display convention for industry coma spot diagrams.
  *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @param aberrationT - normalized aberration spacing slider
- * @param fieldGeometry - optional precomputed field geometry for the same state
+ * @param request - current geometry, controls, apertures, field and sampling
  * @returns point-cloud preview, or null when insufficient fields trace
  */
-export function computeComaPointCloudPreview(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-  fieldGeometry?: FieldGeometryState,
-  sampling: AnalysisSamplingOptions = {},
-): ComaPointCloudPreviewResult | null {
+export function computeComaPointCloudPreview(request: AnalysisRequest): ComaPointCloudPreviewResult | null {
+  const { preparedGeometry: state } = request;
+  const { focusT, zoomT, aberrationT } = state;
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
+  const fieldGeometry = request.fieldGeometry ?? undefined;
+  const sampling = request.sampling;
+
   return computeComaPointCloudPreviewFromContext(
     L,
     zPos,
@@ -968,27 +934,18 @@ export function computeComaPointCloudPreview(
  * Shares field geometry and trace context across meridional, sagittal, and
  * point-cloud outputs so the diagnostics agree on chief-ray centering.
  *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @param aberrationT - normalized aberration spacing slider
- * @param fieldGeometry - optional precomputed field geometry for the same state
+ * @param request - current geometry, controls, apertures, field and sampling
  * @returns combined coma analysis result with nullable subdiagnostics
  */
-export function computeComaAnalysis(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-  fieldGeometry?: FieldGeometryState,
-  sampling: AnalysisSamplingOptions = {},
-): ComaAnalysisResult {
+export function computeComaAnalysis(request: AnalysisRequest): ComaAnalysisResult {
+  const { preparedGeometry: state } = request;
+  const { focusT, zoomT, aberrationT } = state;
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
+  const fieldGeometry = request.fieldGeometry ?? undefined;
+  const sampling = request.sampling;
+
   const traceContext = buildComaTraceContext(L, focusT, zoomT, aberrationT, fieldGeometry, sampling);
   const detailedFieldFraction = comaDetailFieldFraction(L, sampling);
   const meridionalFootprint = computeMeridionalComaFieldFootprint(

@@ -68,9 +68,7 @@ describe("analysis computation context", () => {
         context.computeSphericalAberration(),
       ),
     );
-    expect(context.computeComaAnalysis()).toEqual(
-      analysisJobsForState2.computeComaAnalysis(state, currentEPSD, currentPhysStopSD, fieldGeometry),
-    );
+    expect(context.computeComaAnalysis()).toEqual(analysisJobsForState2.computeComaAnalysis(context.request));
     expect(context.computeFieldCurvatureBundle()).toEqual(
       analysisJobsForState2.computeFieldCurvatureBundle(context.request),
     );

@@ -243,15 +243,7 @@ export function createAnalysisComputationContext(
       return intrinsicLongitudinalChromaticFocus.value;
     },
     computeComaAnalysis: () =>
-      (comaAnalysis ??= computeCenteredSection("coma", () =>
-        analysisJobsForState2.computeComaAnalysis(
-          preparedState,
-          currentEPSD,
-          currentPhysStopSD,
-          resolvedFieldGeometry,
-          sampling,
-        ),
-      )),
+      (comaAnalysis ??= computeCenteredSection("coma", () => analysisJobsForState2.computeComaAnalysis(request))),
   };
   CONTEXT_BY_REQUEST.set(request, context);
   return context;

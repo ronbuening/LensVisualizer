@@ -777,7 +777,14 @@ describe("aperture-closed and degenerate-lens guards", () => {
         ),
       null,
     ],
-    ["computeSagittalComa", (epSD: number) => computeSagittalComa(L, zPos, 0, 0, epSD, 0), null],
+    [
+      "computeSagittalComa",
+      (epSD: number) =>
+        computeSagittalComa(
+          analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: epSD, currentPhysStopSD: 0 }),
+        ),
+      null,
+    ],
   ])("%s returns null/empty when currentEPSD is zero or negative", (_name, run, expectedEmpty) => {
     expect(run(0)).toEqual(expectedEmpty);
     expect(run(-1)).toEqual(expectedEmpty);
@@ -797,7 +804,15 @@ describe("computeMeridionalComa", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeMeridionalComa(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.sampleCount).toBe(MERIDIONAL_COMA_SAMPLE_COUNT);
     expect(result!.samples.length).toBe(MERIDIONAL_COMA_SAMPLE_COUNT);
@@ -815,7 +830,15 @@ describe("computeMeridionalComa", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeMeridionalComa(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.sampleCount).toBeGreaterThan(L.offAxisFractions.length);
   });
@@ -824,7 +847,15 @@ describe("computeMeridionalComa", () => {
     const L = sharedApoLanthar50f2();
     const layout = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const result = computeMeridionalComa(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeMeridionalComa(
+      analysisRequestAt(L, {
+        zPos: layout.z,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.validSampleCount).toBeGreaterThanOrEqual(3);
     expect(isFinite(result!.spanMm)).toBe(true);
@@ -836,7 +867,15 @@ describe("computeMeridionalComa", () => {
     const { currentEPSD } = apertureAt(L, 0, 0);
     const clippedStop = currentEPSD * 0.85;
 
-    const result = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, clippedStop);
+    const result = computeMeridionalComa(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD: clippedStop,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.clippedSampleCount).toBeGreaterThan(0);
     expect(result!.samples[0].clipped).toBe(true);
@@ -851,7 +890,9 @@ describe("computeMeridionalComa", () => {
     const L = mkSingleElement();
     const { z: zPos } = doLayout(0, 0, L);
 
-    const result = computeMeridionalComa(L, zPos, 0, 0, 12, 0.05);
+    const result = computeMeridionalComa(
+      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 0.05 }),
+    );
     expect(result).toBeNull();
   });
 
@@ -862,8 +903,24 @@ describe("computeMeridionalComa", () => {
     const wideOpen = apertureAt(L, 0, 0);
     const stoppedDown = apertureAt(L, 0, 0.7);
 
-    const wide = computeMeridionalComa(L, zPos, 0, 0, wideOpen.currentEPSD, wideOpen.currentPhysStopSD);
-    const stopped = computeMeridionalComa(L, zPos, 0, 0, stoppedDown.currentEPSD, stoppedDown.currentPhysStopSD);
+    const wide = computeMeridionalComa(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: wideOpen.currentEPSD,
+        currentPhysStopSD: wideOpen.currentPhysStopSD,
+      }),
+    );
+    const stopped = computeMeridionalComa(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: stoppedDown.currentEPSD,
+        currentPhysStopSD: stoppedDown.currentPhysStopSD,
+      }),
+    );
 
     expect(wide).not.toBeNull();
     expect(stopped).not.toBeNull();
@@ -877,8 +934,24 @@ describe("computeMeridionalComa", () => {
     const { z: zInfinity } = doLayout(0, 0, L);
     const { z: zClose } = doLayout(0.8, 0, L);
 
-    const atInfinity = computeMeridionalComa(L, zInfinity, 0, 0, infinity.currentEPSD, infinity.currentPhysStopSD);
-    const atClose = computeMeridionalComa(L, zClose, 0.8, 0, close.currentEPSD, close.currentPhysStopSD);
+    const atInfinity = computeMeridionalComa(
+      analysisRequestAt(L, {
+        zPos: zInfinity,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: infinity.currentEPSD,
+        currentPhysStopSD: infinity.currentPhysStopSD,
+      }),
+    );
+    const atClose = computeMeridionalComa(
+      analysisRequestAt(L, {
+        zPos: zClose,
+        focusT: 0.8,
+        zoomT: 0,
+        currentEPSD: close.currentEPSD,
+        currentPhysStopSD: close.currentPhysStopSD,
+      }),
+    );
 
     expect(atInfinity).not.toBeNull();
     expect(atClose).not.toBeNull();
@@ -890,7 +963,15 @@ describe("computeMeridionalComa", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeMeridionalComa(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     const fieldGeometry = computeAnalysisFieldGeometryAtState(0, 0, L);
     const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, L.offAxisFieldFrac, fieldGeometry);
@@ -905,9 +986,20 @@ describe("computeMeridionalComa", () => {
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const fieldGeometry = computeAnalysisFieldGeometryAtState(0, 0, L);
 
-    const result = computeComaAnalysis(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, 0, fieldGeometry, {
-      comaDetailFieldFraction: 1,
-    });
+    const result = computeComaAnalysis(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+        aberrationT: 0,
+        fieldGeometry,
+        sampling: {
+          comaDetailFieldFraction: 1,
+        },
+      }),
+    );
 
     expect(result.meridionalComa).not.toBeNull();
     expect(result.sagittalComa).not.toBeNull();
@@ -921,7 +1013,15 @@ describe("computeMeridionalComa", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeMeridionalComa(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
 
     const fieldGeometry = computeAnalysisFieldGeometryAtState(0, 0, L);
@@ -960,7 +1060,15 @@ describe("computeComaPreview", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeComaPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeComaPreview(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.fieldFractions).toEqual(COMA_PREVIEW_FIELD_FRACTIONS);
     expect(result!.fields.map((field) => field.fieldFraction)).toEqual([0, 0.25, 0.5, 0.75]);
@@ -974,7 +1082,15 @@ describe("computeComaPreview", () => {
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const geometry = computeAnalysisFieldGeometryAtState(0, 0, L);
 
-    const result = computeComaPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeComaPreview(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     const field = result!.fields.find((sample) => sample.fieldFraction === 0.75);
     expect(field).toBeDefined();
@@ -987,7 +1103,15 @@ describe("computeComaPreview", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeComaPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeComaPreview(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.usableFieldCount).toBeGreaterThanOrEqual(2);
 
@@ -1003,7 +1127,15 @@ describe("computeComaPreview", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeComaPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeComaPreview(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
 
     const centerField = result!.fields[0];
@@ -1022,7 +1154,15 @@ describe("computeComaPreview", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeComaPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeComaPreview(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.sharedRelativeHalfRangeMm).toBeGreaterThan(0);
 
@@ -1036,7 +1176,9 @@ describe("computeComaPreview", () => {
     const L = mkSingleElement();
     const { z: zPos } = doLayout(0, 0, L);
 
-    const result = computeComaPreview(L, zPos, 0, 0, 12, 0.2);
+    const result = computeComaPreview(
+      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 0.2 }),
+    );
     expect(result).toBeNull();
   });
 });
@@ -1047,7 +1189,15 @@ describe("computeComaPointCloudPreview", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeComaPointCloudPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeComaPointCloudPreview(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.fieldFractions).toEqual(COMA_PREVIEW_FIELD_FRACTIONS);
     expect(result!.fields.map((field) => field.fieldFraction)).toEqual([0, 0.25, 0.5, 0.75]);
@@ -1061,7 +1211,15 @@ describe("computeComaPointCloudPreview", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeComaPointCloudPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeComaPointCloudPreview(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
 
     const field = result!.fields.find((sample) => sample.fieldFraction === 0.5);
@@ -1099,7 +1257,15 @@ describe("computeComaPointCloudPreview", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeComaPointCloudPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeComaPointCloudPreview(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
 
     const centerField = result!.fields[0];
@@ -1136,7 +1302,15 @@ describe("computeComaPointCloudPreview", () => {
     const { currentEPSD } = apertureAt(L, 0, 0);
     const clippedStop = currentEPSD * 0.85;
 
-    const result = computeComaPointCloudPreview(L, zPos, 0, 0, currentEPSD, clippedStop);
+    const result = computeComaPointCloudPreview(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD: clippedStop,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.usableFieldCount).toBeGreaterThanOrEqual(2);
     expect(result!.fields.some((field) => field.clippedSampleCount > 0 && field.points.length > 0)).toBe(true);
@@ -1146,7 +1320,9 @@ describe("computeComaPointCloudPreview", () => {
     const L = mkSingleElement();
     const { z: zPos } = doLayout(0, 0, L);
 
-    const result = computeComaPointCloudPreview(L, zPos, 0, 0, 12, 0.2);
+    const result = computeComaPointCloudPreview(
+      analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 0.2 }),
+    );
     expect(result).toBeNull();
   });
 
@@ -1157,23 +1333,41 @@ describe("computeComaPointCloudPreview", () => {
     const wideOpen = apertureAt(L, 0, 0);
     const stoppedDown = apertureAt(L, 0, 0.7);
 
-    const wideMeridional = computeComaPreview(L, zPos, 0, 0, wideOpen.currentEPSD, wideOpen.currentPhysStopSD);
-    const stoppedMeridional = computeComaPreview(L, zPos, 0, 0, stoppedDown.currentEPSD, stoppedDown.currentPhysStopSD);
+    const wideMeridional = computeComaPreview(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: wideOpen.currentEPSD,
+        currentPhysStopSD: wideOpen.currentPhysStopSD,
+      }),
+    );
+    const stoppedMeridional = computeComaPreview(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: stoppedDown.currentEPSD,
+        currentPhysStopSD: stoppedDown.currentPhysStopSD,
+      }),
+    );
     const widePointCloud = computeComaPointCloudPreview(
-      L,
-      zPos,
-      0,
-      0,
-      wideOpen.currentEPSD,
-      wideOpen.currentPhysStopSD,
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: wideOpen.currentEPSD,
+        currentPhysStopSD: wideOpen.currentPhysStopSD,
+      }),
     );
     const stoppedPointCloud = computeComaPointCloudPreview(
-      L,
-      zPos,
-      0,
-      0,
-      stoppedDown.currentEPSD,
-      stoppedDown.currentPhysStopSD,
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: stoppedDown.currentEPSD,
+        currentPhysStopSD: stoppedDown.currentPhysStopSD,
+      }),
     );
 
     expect(wideMeridional).not.toBeNull();
@@ -1198,14 +1392,23 @@ describe("computeComaPointCloudPreview", () => {
     const { z: zClose } = doLayout(0.8, 0, L);
 
     const atInfinity = computeComaPointCloudPreview(
-      L,
-      zInfinity,
-      0,
-      0,
-      infinity.currentEPSD,
-      infinity.currentPhysStopSD,
+      analysisRequestAt(L, {
+        zPos: zInfinity,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: infinity.currentEPSD,
+        currentPhysStopSD: infinity.currentPhysStopSD,
+      }),
     );
-    const atClose = computeComaPointCloudPreview(L, zClose, 0.8, 0, close.currentEPSD, close.currentPhysStopSD);
+    const atClose = computeComaPointCloudPreview(
+      analysisRequestAt(L, {
+        zPos: zClose,
+        focusT: 0.8,
+        zoomT: 0,
+        currentEPSD: close.currentEPSD,
+        currentPhysStopSD: close.currentPhysStopSD,
+      }),
+    );
 
     expect(atInfinity).not.toBeNull();
     expect(atClose).not.toBeNull();
@@ -1217,7 +1420,15 @@ describe("computeComaPointCloudPreview", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeComaPointCloudPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeComaPointCloudPreview(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.fields.every((field) => field.sampleCount === COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT)).toBe(true);
   });
@@ -1227,7 +1438,15 @@ describe("computeComaPointCloudPreview", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeComaPointCloudPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeComaPointCloudPreview(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.sharedTangentialHalfRangeMm).toBeGreaterThan(0);
     expect(result!.sharedSagittalHalfRangeMm).toBeGreaterThan(0);
@@ -1244,7 +1463,15 @@ describe("computeComaPointCloudPreview", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeComaPointCloudPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeComaPointCloudPreview(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
 
     const centerField = result!.fields[0];
@@ -1277,7 +1504,15 @@ describe("computeComaAnalysis", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeComaAnalysis(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeComaAnalysis(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
 
     expect(result.meridionalComa).not.toBeNull();
     expect(result.sagittalComa).not.toBeNull();
@@ -1300,8 +1535,28 @@ describe("computeComaAnalysis", () => {
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, zoomT, 0);
     const geometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
 
-    expect(computeComaAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, 0, geometry)).toEqual(
-      computeComaAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    expect(
+      computeComaAnalysis(
+        analysisRequestAt(L, {
+          zPos,
+          focusT,
+          zoomT,
+          currentEPSD,
+          currentPhysStopSD,
+          aberrationT: 0,
+          fieldGeometry: geometry,
+        }),
+      ),
+    ).toEqual(
+      computeComaAnalysis(
+        analysisRequestAt(L, {
+          zPos,
+          focusT,
+          zoomT,
+          currentEPSD,
+          currentPhysStopSD,
+        }),
+      ),
     );
   });
 });
@@ -1312,7 +1567,15 @@ describe("computeSagittalComa", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeSagittalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeSagittalComa(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.fieldAngleDeg).toBeGreaterThan(0);
     expect(result!.validSampleCount).toBeGreaterThanOrEqual(3);
@@ -1326,8 +1589,24 @@ describe("computeSagittalComa", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const sagittal = computeSagittalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
-    const meridional = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const sagittal = computeSagittalComa(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
+    const meridional = computeMeridionalComa(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
 
     expect(sagittal).not.toBeNull();
     expect(meridional).not.toBeNull();
@@ -1343,7 +1622,15 @@ describe("computeSagittalComa", () => {
     // ApoLanthar has offAxisFieldFrac that should give a non-zero field angle,
     // but a lens with zero field angle should return null
     const emptyLens = registerRuntimeFixture({ ...L, offAxisFieldFrac: 0 } as RuntimeLens);
-    const result = computeSagittalComa(emptyLens, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeSagittalComa(
+      analysisRequestAt(emptyLens, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     // At field fraction 0, fieldAngleDeg is 0, so it should return null
     expect(result).toBeNull();
   });
@@ -1352,7 +1639,15 @@ describe("computeSagittalComa", () => {
     const L = sharedApoLanthar50f2();
     const layout = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const result = computeSagittalComa(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeSagittalComa(
+      analysisRequestAt(L, {
+        zPos: layout.z,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.validSampleCount).toBeGreaterThanOrEqual(3);
     expect(isFinite(result!.spanMm)).toBe(true);
@@ -1363,12 +1658,28 @@ describe("computeSagittalComa", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeSagittalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeSagittalComa(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
 
     // The center intercept should be near zero for x (sagittal direction on-axis in x)
     // while meridional center intercept is the chief ray image height (non-zero)
-    const meridional = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const meridional = computeMeridionalComa(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
     expect(meridional).not.toBeNull();
     expect(Math.abs(result!.centerIntercept)).toBeLessThan(Math.abs(meridional!.centerIntercept));
   });
@@ -1380,8 +1691,24 @@ describe("computeSagittalComa", () => {
     const wideOpen = apertureAt(L, 0, 0);
     const stoppedDown = apertureAt(L, 0, 0.7);
 
-    const wide = computeSagittalComa(L, zPos, 0, 0, wideOpen.currentEPSD, wideOpen.currentPhysStopSD);
-    const stopped = computeSagittalComa(L, zPos, 0, 0, stoppedDown.currentEPSD, stoppedDown.currentPhysStopSD);
+    const wide = computeSagittalComa(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: wideOpen.currentEPSD,
+        currentPhysStopSD: wideOpen.currentPhysStopSD,
+      }),
+    );
+    const stopped = computeSagittalComa(
+      analysisRequestAt(L, {
+        zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: stoppedDown.currentEPSD,
+        currentPhysStopSD: stoppedDown.currentPhysStopSD,
+      }),
+    );
 
     expect(wide).not.toBeNull();
     expect(stopped).not.toBeNull();

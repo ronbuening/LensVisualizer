@@ -14,6 +14,7 @@ type EngineModule = Readonly<Record<string, unknown>>;
 
 /* One glob per module, so a candidate below can only name a module that is listed here. */
 const ENGINE_MODULES = {
+  comaAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/coma.ts", { eager: true }),
   fieldCurvatureAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/fieldCurvature.ts", {
     eager: true,
   }),
@@ -46,6 +47,7 @@ const ENGINE_MODULES = {
 /* The same modules as types. A type query is erased before bundling, so it types a capability at the head and loads
  * nothing at any ref. */
 interface EngineModuleTypes {
+  comaAnalysis: typeof import("../../optics/analysis.js");
   fieldCurvatureAnalysis: typeof import("../../optics/analysis.js");
   sphericalAnalysis: typeof import("../../optics/analysis.js");
   bestFocusAnalysis: typeof import("../../optics/analysis.js");
@@ -85,6 +87,10 @@ type SeamCandidate = readonly [module: EngineModuleId, exportName: string];
  * overlay's departure and best-fit helpers and the LoCA inset's bar scaling), so a payload notices when either copy drifts.
  */
 const SEAM_CANDIDATES = {
+  computeComaAnalysis: [
+    ["comaAnalysis", "computeComaAnalysis"],
+    ["compat", "computeComaAnalysisForState2"],
+  ],
   computeFieldCurvature: [
     ["fieldCurvatureAnalysis", "computeFieldCurvature"],
     ["compat", "computeFieldCurvatureForState2"],
@@ -181,9 +187,19 @@ export type EngineSeam = Omit<
   ResolvedEngineSeam,
   | "computeGroupMovementProfileForState"
   | "computeCardinalElementsAtState"
+  | "computeComaAnalysis"
   | "computeFieldCurvature"
   | "computeFieldCurvatureBundle"
 > & {
+  computeComaAnalysis: (
+    state: ReturnType<ResolvedEngineSeam["prepareState"]>,
+    currentEPSD: number,
+    currentPhysStopSD: number,
+    fieldGeometry?: NonNullable<
+      Parameters<EngineModuleTypes["analysisRequest"]["createAnalysisRequest"]>[0]["fieldGeometry"]
+    >,
+    sampling?: Parameters<EngineModuleTypes["analysisRequest"]["createAnalysisRequest"]>[0]["sampling"],
+  ) => ReturnType<ResolvedEngineSeam["computeComaAnalysis"]>;
   computeFieldCurvature: (
     state: ReturnType<ResolvedEngineSeam["prepareState"]>,
     currentEPSD: number,
@@ -300,6 +316,23 @@ function resolveOnce(): { seam: EngineSeam; sources: Record<keyof EngineSeam, st
         fieldGeometry,
       });
     };
+    if (sources.computeComaAnalysis.startsWith("comaAnalysis.")) {
+      const compute = exports.computeComaAnalysis as ResolvedEngineSeam["computeComaAnalysis"];
+      exports.computeComaAnalysis = ((state, currentEPSD, currentPhysStopSD, fieldGeometry, sampling) => {
+        const createRequest = modules.analysisRequest!
+          .createAnalysisRequest as EngineModuleTypes["analysisRequest"]["createAnalysisRequest"];
+        return compute(
+          createRequest({
+            preparedState: state,
+            dynamicEFL: state.lens.constants.EFL,
+            currentEPSD,
+            currentPhysStopSD,
+            fieldGeometry,
+            sampling,
+          }),
+        );
+      }) satisfies EngineSeam["computeComaAnalysis"];
+    }
     if (sources.computeFieldCurvature.startsWith("fieldCurvatureAnalysis.")) {
       const compute = exports.computeFieldCurvature as ResolvedEngineSeam["computeFieldCurvature"];
       exports.computeFieldCurvature = ((state, currentEPSD, currentPhysStopSD, chromatic = false, fieldGeometry) =>

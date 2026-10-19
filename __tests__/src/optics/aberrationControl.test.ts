@@ -244,8 +244,26 @@ describe("aberrationControl analysis plumbing", () => {
     const sharp = analysisState(L, 0, 0);
     const soft = analysisState(L, 0, 1);
 
-    const sharpComa = computeComaAnalysis(L, sharp.zPos, 0, 0, sharp.currentEPSD, sharp.currentPhysStopSD, 0);
-    const softComa = computeComaAnalysis(L, soft.zPos, 0, 0, soft.currentEPSD, soft.currentPhysStopSD, 1);
+    const sharpComa = computeComaAnalysis(
+      analysisRequestAt(L, {
+        zPos: sharp.zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: sharp.currentEPSD,
+        currentPhysStopSD: sharp.currentPhysStopSD,
+        aberrationT: 0,
+      }),
+    );
+    const softComa = computeComaAnalysis(
+      analysisRequestAt(L, {
+        zPos: soft.zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: soft.currentEPSD,
+        currentPhysStopSD: soft.currentPhysStopSD,
+        aberrationT: 1,
+      }),
+    );
     expect(sharpComa.pointCloudPreview).not.toBeNull();
     expect(softComa.pointCloudPreview).not.toBeNull();
 

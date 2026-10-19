@@ -1662,15 +1662,7 @@ function measureAberrationPanels(
       describeComputationOutput(analysisJobsForState2.computeFieldCurvatureBundle(fieldCurvatureRequest(snapshot))),
     );
     data.coma = measure("data", "coma", () =>
-      describeComputationOutput(
-        analysisJobsForState2.computeComaAnalysis(
-          snapshot.preparedState,
-          snapshot.currentEPSD,
-          snapshot.currentPhysStopSD,
-          snapshot.fieldGeometry ?? undefined,
-          snapshot.analysisSampling,
-        ),
-      ),
+      describeComputationOutput(analysisJobsForState2.computeComaAnalysis(fieldCurvatureRequest(snapshot))),
     );
   }
 
@@ -1740,13 +1732,7 @@ function computeAberrationDataValues(snapshot: ScenarioSnapshot): AberrationData
   const fieldCurvatureBundle = analysisJobsForState2.computeFieldCurvatureBundle(fieldCurvatureRequest(snapshot));
   const fieldCurvature = fieldCurvatureBundle.fieldCurvature;
   const chromaticFieldCurvature = fieldCurvatureBundle.chromaticFieldCurvature;
-  const coma = analysisJobsForState2.computeComaAnalysis(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
-    snapshot.analysisSampling,
-  );
+  const coma = analysisJobsForState2.computeComaAnalysis(fieldCurvatureRequest(snapshot));
   return { sphericalAberration, saProfile, saBlurCharacter, fieldCurvature, chromaticFieldCurvature, coma };
 }
 

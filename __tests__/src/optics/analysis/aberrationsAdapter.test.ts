@@ -6,19 +6,21 @@ import {
   computeFieldCurvature,
   computeFieldCurvatureBundle,
   createAnalysisRequest,
+  computeComaAnalysis,
+  computeMeridionalComa,
+  computeSagittalComa,
+  computeComaPointCloudPreview,
   computeSAProfile,
   computeSphericalAberration,
   computeSphericalAberrationBlurCharacter,
 } from "../../../../src/optics/analysis.js";
 import { analysisRequestForLens } from "../testLensFixtures.js";
 import { describe, expect, it } from "vitest";
-import { computeComaAnalysis2, computeComaAnalysisForState2 } from "../../../../src/optics/analysis/aberrations.js";
-import { zPosForPreparedAnalysis2 } from "../../../../src/optics/analysis/preparedStateAdapters.js";
 import { prepareRuntimeState } from "../../../../src/optics/compat.js";
 import { computeAnalysisFieldGeometryAtState } from "../../../../src/optics/optics.js";
 import { apertureAt, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 
-describe("aberration requests and remaining coma adapter", () => {
+describe("aberration request contracts", () => {
   it("reuses a supplied SA result and preserves profile fraction order", () => {
     const lens = buildSimplePositiveElementLens("test-aberration-request-sa");
     const request = analysisRequestForLens(lens, 0.2);
@@ -39,7 +41,6 @@ describe("aberration requests and remaining coma adapter", () => {
     const focusT = 0;
     const zoomT = 0;
     const state = prepareRuntimeState(lens, focusT, zoomT);
-    const zPos = zPosForPreparedAnalysis2(state);
     const { currentEPSD, currentPhysStopSD } = apertureAt(lens, zoomT);
     const fieldGeometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, lens);
 
@@ -53,9 +54,13 @@ describe("aberration requests and remaining coma adapter", () => {
     const bundle = computeFieldCurvatureBundle(request);
     expect(bundle.fieldCurvature).toEqual(computeFieldCurvature(request));
     expect(bundle.chromaticFieldCurvature).toEqual(computeFieldCurvature(request, true));
-    expect(computeComaAnalysisForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry)).toEqual(
-      computeComaAnalysis2(lens, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, 0, fieldGeometry),
-    );
+    const coma = computeComaAnalysis(request);
+    expect(coma.meridionalComa).toEqual(computeMeridionalComa(request));
+    expect(coma.sagittalComa).toEqual(computeSagittalComa(request));
+    expect(coma.pointCloudPreview).toEqual(computeComaPointCloudPreview(request));
+    const context = createAnalysisComputationContext(request);
+    expect(context.computeComaAnalysis()).toEqual(coma);
+    expect(context.computeComaAnalysis()).toBe(context.computeComaAnalysis());
   });
   it("summarizes chromatic field-focus spread from existing field-curvature data", () => {
     const field = (

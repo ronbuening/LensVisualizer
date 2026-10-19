@@ -671,6 +671,7 @@ describe("engineDiff seam adapter", () => {
     );
     expect(Object.keys(sources).sort()).toEqual([...Object.keys(seam), ...Object.keys(optional), ...absent].sort());
     expect(sources.traceRay).toBe("compat.traceEngineRay2");
+    expect(sources.computeComaAnalysis).toBe("comaAnalysis.computeComaAnalysis");
     expect(sources.computeFieldCurvature).toBe("fieldCurvatureAnalysis.computeFieldCurvature");
     expect(sources.computeFieldCurvatureBundle).toBe("fieldCurvatureAnalysis.computeFieldCurvatureBundle");
     expect(sources.summarizeChromaticFieldFocus).toBe("fieldCurvatureAnalysis.summarizeChromaticFieldFocus");

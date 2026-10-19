@@ -9,7 +9,7 @@ import type { FieldGeometryState } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
 import type { AnalysisSamplingOptions } from "./analysisQuality.js";
-import { computeComaAnalysisForState2 } from "./aberrations.js";
+import { computeComaAnalysis } from "./aberration/coma.js";
 import { computeFieldCurvature, computeFieldCurvatureBundle } from "./aberration/fieldCurvature.js";
 import { computeBokehPreviewPair2, computeBokehPreviewPairForState2 } from "./bokeh.js";
 import {
@@ -249,14 +249,8 @@ export const analysisJobsForState2 = {
     return computeChromaticRayFanAnalysisForState2(state, currentEPSD, currentPhysStopSD, options);
   },
 
-  computeComaAnalysis(
-    state: PreparedOpticalState,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeComaAnalysisForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry, sampling);
+  computeComaAnalysis(request: AnalysisRequest) {
+    return computeComaAnalysis(request);
   },
 
   computeBestFocusZ(request: AnalysisRequest) {

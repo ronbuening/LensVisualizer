@@ -1347,7 +1347,7 @@ The summary family lives in `analysis/summary/`, exposed through `analysis.ts`. 
 breathing series and group-movement profiles take `AnalysisRequest`. The summary job table key is unchanged but now
 takes the request directly; `OpticalSummaryTab` creates/reuses a request and lazy context without a prepared-job
 fallback. Spherical aberration, SA profile, blur character and best focus also take requests through the unchanged job
-keys. Field curvature and its chromatic bundle also take requests, including field geometry and sampling;
+keys. Field curvature, its chromatic bundle and coma also take requests, including field geometry and sampling;
 other families still dispatch through their existing `*ForState2` adapters until their request migration.
 Centered and movement-aware jobs retain their numerical kernels, sampling defaults and section-availability guards.
 
@@ -1385,7 +1385,15 @@ R/G/B/V focus shifts. The family owns `summarizeChromaticFieldFocus` and its typ
 samples over named fields. Parabasal tangential/sagittal focus, real-ray diagnostic focus and the Petzval
 reference remain distinct. Both the aberration hook and Chromatic tab reuse the context request or construct
 one from their supplied geometry, apertures and field inputs. Folded guards and moved field-aberration
-replacement remain in the UI. Coma remains in `aberration/` behind its existing adapter.
+replacement remain in the UI.
+
+Coma lives in `analysis/aberration/coma.ts`; its meridional, sagittal, compact-preview,
+point-cloud and aggregate entries take requests. The aggregate shares chief-relative field geometry
+and pupil samples across its diagnostics. The Coma tab reuses the context's request for default
+sampling. A custom detail field creates a distinct request using the supplied apertures and field,
+with the detail fraction retained in the memo dependencies. Standalone calls preserve supplied
+surface positions with `stateWithZ`. The mixed `analysis/aberrations.ts` adapter is gone;
+`zPosForPreparedAnalysis2` remains for unmigrated families, including chromatic.
 Implementation leaves import lower-level engine sources directly, never cycle-sensitive public barrels such as
 `compat.ts`, `optics.ts` or `aberrationAnalysis.ts`.
 
