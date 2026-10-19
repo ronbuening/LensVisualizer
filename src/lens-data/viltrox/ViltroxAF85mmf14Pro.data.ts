@@ -25,9 +25,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * SDs are estimated from Figure 1 (isotropic, 0.0730 mm/px at 300 dpi) and
  * floor-checked by real-ray trace at F/1.47. S9 and S11 stop where Figure 1
  * ends the curved faces; the flat annuli beyond are mounting flanges. Both
- * sit just above the axial marginal ray (20.35 and 18.16 mm). S25/S26 are
- * reduced to keep the L14/L15 air gap clear at its rim; Figure 1 draws the
- * two faces meeting at about 17.3 mm. No production mask is modelled.
+ * sit just above the axial marginal ray (20.35 and 18.16 mm). Figure 1 draws
+ * L13-L15 under one flat top at about 17.3 mm, with S25/S26 meeting there; the
+ * prescription faces cross at 16.93 mm. S24 = S27 = 17.27 mm (as S23) and
+ * S25 = S26 = 16.7 mm, the most checks.gapSagFrac 0.98 admits (gap sag
+ * 0.973). No production mask is modelled.
  *
  * nominalFNumber = 1.47 x (model EFL / 86.5), so the entrance-pupil radius
  * equals the patent's 86.5/(2 x 1.47) mm; the design F-number stays 1.47.
@@ -40,7 +42,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Glass: nd/Vd are as printed. Each element names the nearest catalog glass
  * as a catalog-equivalent spectral proxy (nd within 0.0001, Vd within 0.05),
  * and the trace uses that glass's catalog dispersion. No dPgF is authored,
- * and the supplier is unresolved.
+ * and the supplier is unresolved. L02–L04 carry inferred ED tags: Viltrox
+ * lists 3 ED elements without positions, and these are the only elements
+ * above νd 50 (the patent requires νd ≥ 60 for them, p. 10 [0096]).
+ *
+ * Element names and diagram labels follow the patent's L01–L15; S16/S17 are
+ * the patent's two aspherical rows (labelled 16A/17A here).
  */
 
 const LENS_DATA = {
@@ -80,7 +87,8 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L01",
+      diagramLabel: "L01",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.946,
@@ -91,41 +99,54 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L02",
+      diagramLabel: "L02",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.5691,
       vd: 71.304,
       focalLengthMm: 217.79549085726327,
       glass: "K-GFK70 (catalog-equivalent spectral proxy; supplier unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Viltrox lists 3 ED elements without positions; L02–L04 are the only Example 1 elements above νd 50, and the patent requires νd ≥ 60 for them. The K-GFK70 proxy matches nd/νd only; the production glass and its partial dispersion are unpublished.",
       role: "Low-dispersion positive meniscus of the front collector.",
     },
     {
       id: 3,
-      name: "L3",
+      name: "L03",
+      diagramLabel: "L03",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.5928,
       vd: 68.342,
       focalLengthMm: 155.66578237276775,
       glass: "H-ZPK5 (catalog-equivalent spectral proxy; supplier unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Viltrox lists 3 ED elements without positions; L02–L04 are the only Example 1 elements above νd 50, and the patent requires νd ≥ 60 for them. The H-ZPK5 proxy matches nd/νd only; the production glass and its partial dispersion are unpublished.",
       role: "Second low-dispersion positive meniscus of the front collector.",
     },
     {
       id: 4,
-      name: "L4",
+      name: "L04",
+      diagramLabel: "L04",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.605,
       focalLengthMm: 117.05936760619599,
       glass: "H-FK61 (catalog-equivalent spectral proxy; supplier unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Viltrox lists 3 ED elements without positions; L02–L04 are the only Example 1 elements above νd 50, and the patent requires νd ≥ 60 for them. The H-FK61 proxy matches nd/νd only; the production glass and its partial dispersion are unpublished.",
       role: "Low-dispersion positive half of the first-group cemented doublet.",
-      cemented: "L4+L5",
+      cemented: "L04+L05",
     },
     {
       id: 5,
-      name: "L5",
+      name: "L05",
+      diagramLabel: "L05",
       label: "Element 5",
       type: "Negative Meniscus",
       nd: 1.8545,
@@ -133,11 +154,12 @@ const LENS_DATA = {
       focalLengthMm: -113.05991093778847,
       glass: "NBFD25 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "High-index flint negative half of the first-group cemented doublet.",
-      cemented: "L4+L5",
+      cemented: "L04+L05",
     },
     {
       id: 6,
-      name: "L6",
+      name: "L06",
+      diagramLabel: "L06",
       label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.8545,
@@ -148,19 +170,21 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L07",
+      diagramLabel: "L07",
       label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.6201,
       vd: 36.346,
       focalLengthMm: -28.620999788307586,
-      glass: "E-F2 (catalog-equivalent spectral proxy; supplier unresolved)",
+      glass: "F2 (Schott; catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Negative half of the cemented doublet leading the focusing group.",
-      cemented: "L7+L8",
+      cemented: "L07+L08",
     },
     {
       id: 8,
-      name: "L8",
+      name: "L08",
+      diagramLabel: "L08",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.883,
@@ -168,13 +192,14 @@ const LENS_DATA = {
       focalLengthMm: 33.4253475790936,
       glass: "H-ZLaF68C (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "High-index positive half of the focusing-group cemented doublet.",
-      cemented: "L7+L8",
+      cemented: "L07+L08",
     },
     {
       id: 9,
-      name: "L9",
+      name: "L09",
+      diagramLabel: "L09",
       label: "Element 9",
-      type: "Biconvex Aspherical",
+      type: "Biconvex Positive (2× Asph)",
       nd: 1.7725,
       vd: 49.503,
       focalLengthMm: 55.118027315668776,
@@ -184,6 +209,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L10",
+      diagramLabel: "L10",
       label: "Element 10",
       type: "Positive Meniscus",
       nd: 1.804,
@@ -196,6 +222,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L11",
+      diagramLabel: "L11",
       label: "Element 11",
       type: "Biconcave Negative",
       nd: 1.74,
@@ -208,6 +235,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L12",
+      diagramLabel: "L12",
       label: "Element 12",
       type: "Biconvex Positive",
       nd: 1.946,
@@ -219,6 +247,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L13",
+      diagramLabel: "L13",
       label: "Element 13",
       type: "Biconvex Positive",
       nd: 1.883,
@@ -231,6 +260,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L14",
+      diagramLabel: "L14",
       label: "Element 14",
       type: "Biconcave Negative",
       nd: 1.8467,
@@ -243,6 +273,7 @@ const LENS_DATA = {
     {
       id: 15,
       name: "L15",
+      diagramLabel: "L15",
       label: "Element 15",
       type: "Negative Meniscus",
       nd: 1.8501,
@@ -351,7 +382,7 @@ const LENS_DATA = {
       sd: 16.716001753915567,
     },
     {
-      label: "16",
+      label: "16A",
       R: 99.058,
       d: 7,
       sd: 16.284044020617067,
@@ -365,7 +396,7 @@ const LENS_DATA = {
       },
     },
     {
-      label: "17",
+      label: "17A",
       R: -72.378,
       d: 3.501,
       sd: 16.284044020617067,
@@ -421,33 +452,33 @@ const LENS_DATA = {
       label: "24",
       R: -71.323,
       d: 1.3,
-      sd: 16.844482734269043,
+      sd: 17.27,
       medium: 14,
     },
     {
       label: "25",
       R: 73.388,
       d: 5.453,
-      sd: 16.083387936060173,
+      sd: 16.7,
     },
     {
       label: "26",
       R: -42.968,
       d: 1.3,
-      sd: 16.083387936060173,
+      sd: 16.7,
       medium: 15,
     },
     {
       label: "27",
       R: -66.728,
       d: 16.545,
-      sd: 16.844482734269043,
+      sd: 17.27,
     },
   ],
   focus: {
     closeFocusM: 0.79,
     description:
-      "Infinity focus only. In the patent the second group (L7–L9) moves about 11.5 mm toward the object for close focus: D1 17.456 → 5.96 mm and D2 3.501 → 14.994 mm at 0.79 m. That state is not modelled because the fitted aspheric coefficients do not reproduce the patent's close-focus aberration curves.",
+      "Infinity focus only. In the patent the second group (L07–L09) moves about 11.5 mm toward the object for close focus: D1 17.456 → 5.96 mm and D2 3.501 → 14.994 mm at 0.79 m. That state is not modelled because the fitted aspheric coefficients do not reproduce the patent's close-focus aberration curves.",
   },
   aperture: {
     nominalFNumber: 1.4701742630695116,
@@ -473,7 +504,7 @@ const LENS_DATA = {
     {
       text: "G2 · focus",
       fromSurface: "13",
-      toSurface: "17",
+      toSurface: "17A",
     },
     {
       text: "G3 · fixed rear group",
@@ -483,12 +514,12 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "L4+L5",
+      text: "L04+L05",
       fromSurface: "7",
       toSurface: "9",
     },
     {
-      text: "L7+L8",
+      text: "L07+L08",
       fromSurface: "13",
       toSurface: "15",
     },
@@ -506,6 +537,7 @@ const LENS_DATA = {
   layout: {
     yScFill: 0.85,
   },
+  checks: { gapSagFrac: 0.98 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1833,7 +1833,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 12 | Element 7 | abbe | `Patent nd/vd; production glass unspecified` | No catalog match |
+| 12 | Element 7 | abbe | `Unmatched (patent nd=1.52682, νd=51.12; recurs in Example 2; nearest catalog CF2/KF2 at nd 1.52630 is outside source precision)` | Explicit unmatched/proprietary annotation |
 
 ### [FUJIFILM FUJINON XF 8-16mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf816mmf28RLMWR.data.ts) - 90.0% trusted (18/20); 90.0% Sellmeier (18/20) - US 2019/0302431 A1
 
@@ -2046,7 +2046,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 6 | Element 4 | abbe | `Unmatched (patent nd=1.949, νd=17.942; supplier unresolved)` | Explicit unmatched/proprietary annotation |
+| 6 | Element 4 | abbe | `Unmatched (patent nd=1.949, νd=17.942; νd equals H-ZF88, so nd is probably a misprint of 1.946, unconfirmed; supplier unresolved)` | Explicit unmatched/proprietary annotation |
 | 21 | Element 12 | abbe | `Unmatched (patent nd=1.7292, νd=56.685; supplier unresolved)` | Explicit unmatched/proprietary annotation |
 
 ### [FUJIFILM SUPER EBC FUJINON 24mm f/1.9 (Fujifilm Natura S)](../../src/lens-data/fujifilm/FujifilmNaturaS24mmf19.data.ts) - 85.7% trusted (6/7); 85.7% Sellmeier (6/7) - US 2006/0007561 A1

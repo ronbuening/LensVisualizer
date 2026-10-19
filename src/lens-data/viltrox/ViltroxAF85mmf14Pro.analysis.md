@@ -16,68 +16,68 @@ The 28-page publication is available through the [DPMA document viewer](https://
 Viltrox sells this optical design for two mounts: the AF 85mm F1.4 Pro FE (Sony E, June 2025) and the AF 85mm F1.4 Pro Z (Nikon Z, November 2025). The model covers both. The manufacturer's [Sony E](https://viltrox.com/products/af-85mm-f1-4-fe) and [Nikon Z](https://viltrox.com/products/af-85mm-f1-4-z) product pages, checked 2026-10-19, list the same construction and support a construction-level correlation:
 
 1. 15 elements in 11 groups. Example 1 has the same count; Example 3 of the same patent has 12 groups.
-2. "3 ED, 9 HR, 1 UA". Example 1 has three low-dispersion positive elements (L2–L4, νd 68.3–81.6), nine elements with nd ≥ 1.80, and one double-sided aspherical element (L9).
+2. "3 ED, 9 HR, 1 UA". Example 1 has three low-dispersion positive elements (L02–L04, νd 68.3–81.6), nine elements with nd ≥ 1.80, and one double-sided aspherical element (L09).
 3. 85 mm, f/1.4, 28° angle of view, internal focusing, 0.79 m minimum distance and 0.13× maximum magnification. Example 1 gives f = 86.5 mm, F/1.47, a 14.02° half-field and a 0.79 m close-focus state; the model's paraxial close-focus magnification with the printed gaps is about 0.127×.
 
 The two versions differ in mount and housing, not in optical construction. Agreement at this level does not establish the exact production radii, coefficients or apertures.
 
 ## Optical architecture
 
-The patent describes positive G1, positive movable G2 and negative G3, with G1/G3 fixed relative to the image. G1 comprises L1–L6, followed by the stop at patent S12. G2 comprises L7–L9; G3 comprises L10–L15. Cemented pairs are L4/L5, L7/L8, L10/L11 and L13/L14. All radii, thicknesses and glass nd/νd values are as printed. The camera-side cover plate is traced but not drawn or counted among the 15 lens elements. The group focal lengths are F1 = +197.1 mm, F2 = +65.7 mm and F3 = −449.8 mm, so F1/F = 2.28, F2/F = 0.76 and F3/F = −5.20, inside the patent's conditions 1 ≤ F1/F ≤ 3, 0.5 ≤ F2/F ≤ 2 and −6 ≤ F3/F ≤ −3.
+The patent describes positive G1, positive movable G2 and negative G3, with G1/G3 fixed relative to the image. G1 comprises L01–L06, followed by the stop at patent S12. G2 comprises L07–L09; G3 comprises L10–L15. Cemented pairs are L04/L05, L07/L08, L10/L11 and L13/L14. Element names follow the patent's own L01–L15 designations. All radii, thicknesses and glass nd/νd values are as printed. The camera-side cover plate is traced but not drawn or counted among the 15 lens elements. The group focal lengths are F1 = +197.1 mm, F2 = +65.7 mm and F3 = −449.8 mm, so F1/F = 2.28, F2/F = 0.76 and F3/F = −5.20, inside the patent's conditions 1 ≤ F1/F ≤ 3, 0.5 ≤ F2/F ≤ 2 and −6 ≤ F3/F ≤ −3.
 
 ## Element-by-element analysis
 
 The following powers are isolated thick-element paraxial calculations in air, not patent-tabulated in-system powers. Optical roles are conservative interpretations of shape, glass coordinates and group position. The glass names are catalog-equivalent proxies; no supplier identity is asserted.
 
-### L1 — Positive Meniscus
+### L01 — Positive Meniscus
 
 nd = 1.946, νd = 17.984. Glass: FDS18 (HOYA) as catalog-equivalent proxy. Isolated f = +243.077 mm.
 
 Front positive collector with high-index, strongly dispersive glass.
 
-### L2 — Positive Meniscus
+### L02 — Positive Meniscus
 
 nd = 1.5691, νd = 71.304. Glass: K-GFK70 (SUMITA) as catalog-equivalent proxy. Isolated f = +217.795 mm.
 
 Low-dispersion positive meniscus in the front collector.
 
-### L3 — Positive Meniscus
+### L03 — Positive Meniscus
 
 nd = 1.5928, νd = 68.342. Glass: H-ZPK5 (CDGM) as catalog-equivalent proxy. Isolated f = +155.666 mm.
 
 Second low-dispersion positive meniscus in G1.
 
-### L4 — Positive Meniscus
+### L04 — Positive Meniscus
 
 nd = 1.497, νd = 81.605. Glass: H-FK61 (CDGM) as catalog-equivalent proxy. Isolated f = +117.059 mm.
 
-Low-dispersion positive member of the L4/L5 cemented pair.
+Low-dispersion positive member of the L04/L05 cemented pair.
 
-### L5 — Negative Meniscus
+### L05 — Negative Meniscus
 
 nd = 1.8545, νd = 25.155. Glass: NBFD25 (HOYA) as catalog-equivalent proxy. Isolated f = -113.060 mm.
 
-Dispersive negative member of the L4/L5 cemented pair.
+Dispersive negative member of the L04/L05 cemented pair.
 
-### L6 — Negative Meniscus
+### L06 — Negative Meniscus
 
 nd = 1.8545, νd = 25.155. Glass: NBFD25 (HOYA) as catalog-equivalent proxy. Isolated f = -58.581 mm.
 
 Negative meniscus immediately before the stop.
 
-### L7 — Biconcave Negative
+### L07 — Biconcave Negative
 
-nd = 1.6201, νd = 36.346. Glass: E-F2 (HOYA) as catalog-equivalent proxy. Isolated f = -28.621 mm.
+nd = 1.6201, νd = 36.346. Glass: F2 (Schott) as catalog-equivalent proxy. Isolated f = -28.621 mm.
 
-Negative member of the focusing-group L7/L8 cemented pair.
+Negative member of the focusing-group L07/L08 cemented pair.
 
-### L8 — Biconvex Positive
+### L08 — Biconvex Positive
 
 nd = 1.883, νd = 40.847. Glass: H-ZLaF68C (CDGM) as catalog-equivalent proxy. Isolated f = +33.425 mm.
 
-Positive member of the focusing-group L7/L8 cemented pair.
+Positive member of the focusing-group L07/L08 cemented pair.
 
-### L9 — Biconvex Aspherical
+### L09 — Biconvex Positive (2× Asph)
 
 nd = 1.7725, νd = 49.503. Glass: M-TAF105 (HOYA) as catalog-equivalent proxy. Isolated f = +55.118 mm.
 
@@ -111,30 +111,30 @@ Positive member of the L13/L14 cemented pair.
 
 nd = 1.8467, νd = 23.791. Glass: H-ZF52 (CDGM) as catalog-equivalent proxy. Isolated f = -42.544 mm.
 
-Negative member of the L13/L14 cemented pair. Its rear (S25) clear radius is reduced so that the air gap to L15 stays open at the rim.
+Negative member of the L13/L14 cemented pair. Figure 1 draws its rear face (S25) meeting L15 at the rim. The model stops S25 at 16.7 mm, just short of where the two faces cross.
 
 ### L15 — Negative Meniscus
 
 nd = 1.8501, νd = 30.012. Glass: H-ZLaF76 (CDGM) as catalog-equivalent proxy. Isolated f = -145.611 mm.
 
-Final negative meniscus. Its front (S26) clear radius shares the same reduction; the rear (S27) radius follows Figure 1.
+Final negative meniscus. Its front (S26) clear radius matches S25 at 16.7 mm, and its rear (S27) radius follows Figure 1's flat top edge at 17.27 mm.
 
 ## Glass identification and selection
 
 All 15 elements keep the patent's nd/νd. Each is assigned the closest catalog glass as a catalog-equivalent spectral proxy, and the trace uses that glass's catalog dispersion curve for the C, F and g lines. No ΔPgF is authored. The proxies match the printed nd within 0.0001 and νd within 0.05. The patent does not name a supplier, so the actual melts and their partial dispersions are unresolved.
 
-L9 takes HOYA M-TAF105, a precision-moulding glass, which suits a double-sided asphere. L2 takes SUMITA K-GFK70, which matches the printed 1.5691/71.30. The three low-dispersion front elements (L2–L4) are consistent with Viltrox's count of three ED elements. Viltrox publishes only the count, not the positions, so they are not tagged as ED in the data file.
+L09 takes HOYA M-TAF105, a precision-moulding glass, which suits a double-sided asphere. L02 takes SUMITA K-GFK70, which matches the printed 1.5691/71.30. The three low-dispersion front elements (L02–L04) are consistent with Viltrox's count of three ED elements. Viltrox publishes only the count, not the positions. L02–L04 are the only Example 1 elements above νd 50 (the next is L09 at 49.5), and the patent's Example 1 text requires νd ≥ 60 for exactly these three, so the data file tags them as inferred ED positions. The patent itself does not call them anomalous-dispersion glasses.
 
 | Patent nd / νd | Elements | Catalog-equivalent proxy | Catalog nd / νd |
 |---|---|---|---|
-| 1.946 / 17.984 | L1 | HOYA FDS18 | 1.94595 / 17.98 |
-| 1.5691 / 71.304 | L2 | SUMITA K-GFK70 | 1.56907 / 71.30 |
-| 1.5928 / 68.342 | L3 | CDGM H-ZPK5 | 1.5928 / 68.34 |
-| 1.497 / 81.605 | L4 | CDGM H-FK61 | 1.497 / 81.61 |
-| 1.8545 / 25.155 | L5, L6 | HOYA NBFD25 | 1.85451 / 25.15 |
-| 1.6201 / 36.346 | L7 | HOYA E-F2 | 1.62004 / 36.30 |
-| 1.883 / 40.847 | L8, L13 | CDGM H-ZLaF68C | 1.883 / 40.85 |
-| 1.7725 / 49.503 | L9 | HOYA M-TAF105 | 1.7725 / 49.50 |
+| 1.946 / 17.984 | L01 | HOYA FDS18 | 1.94595 / 17.98 |
+| 1.5691 / 71.304 | L02 | SUMITA K-GFK70 | 1.56907 / 71.30 |
+| 1.5928 / 68.342 | L03 | CDGM H-ZPK5 | 1.5928 / 68.34 |
+| 1.497 / 81.605 | L04 | CDGM H-FK61 | 1.497 / 81.61 |
+| 1.8545 / 25.155 | L05, L06 | HOYA NBFD25 | 1.85451 / 25.15 |
+| 1.6201 / 36.346 | L07 | Schott F2 | 1.62004 / 36.37 |
+| 1.883 / 40.847 | L08, L13 | CDGM H-ZLaF68C | 1.883 / 40.85 |
+| 1.7725 / 49.503 | L09 | HOYA M-TAF105 | 1.7725 / 49.50 |
 | 1.804 / 46.574 | L10 | CDGM H-ZLaF50E | 1.804 / 46.57 |
 | 1.74 / 28.296 | L11 | OHARA S-TIH3 | 1.74 / 28.30 |
 | 1.946 / 17.942 | L12 | CDGM H-ZF88 | 1.94595 / 17.94 |
@@ -143,7 +143,7 @@ L9 takes HOYA M-TAF105, a precision-moulding glass, which suits a double-sided a
 
 ## Focus mechanism
 
-Focusing is internal: G2 (L7–L9) moves toward the object while G1 and G3 stay fixed. The patent's 0.79 m state prints D1 = 5.96 mm and D2 = 14.994 mm, against 17.456 / 3.501 mm at infinity, and a focal length of 78.8 mm. The travels are 11.496 and 11.493 mm. D1 is printed to two decimals, so the 0.003 mm difference is within its rounding; a rigid move gives D1 = 5.963 mm.
+Focusing is internal: G2 (L07–L09) moves toward the object while G1 and G3 stay fixed. The patent's 0.79 m state prints D1 = 5.96 mm and D2 = 14.994 mm, against 17.456 / 3.501 mm at infinity, and a focal length of 78.8 mm. The travels are 11.496 and 11.493 mm. D1 is printed to two decimals, so the 0.003 mm difference is within its rounding; a rigid move gives D1 = 5.963 mm.
 
 With the printed gaps the paraxial focal length is 78.79 mm, and the object lies about 802 mm from the image plane at a magnification of about 0.127×.
 
@@ -151,7 +151,7 @@ The model is held at infinity. With the fitted aspheres, neither the printed clo
 
 ## Aspherical surfaces and rear plate
 
-S16/S17 are the two faces of L9. The patent gives K = 0 and A4–A10 for each face but no sag equation. The printed values cannot be used: S16 A10 = 2.818e-2 alone would give a sag of order 10¹⁰ mm at h = 16 mm, and several other terms are similarly out of scale. The S17 table is also headed "Example 3". The original filing prints the same values.
+S16/S17 are the two faces of L09. The patent gives K = 0 and A4–A10 for each face but no sag equation. The printed values cannot be used: S16 A10 = 2.818e-2 alone would give a sag of order 10¹⁰ mm at h = 16 mm, and several other terms are similarly out of scale. The S17 table is also headed "Example 3". The original filing prints the same values.
 
 The model replaces all eight terms with values fitted to the patent's infinity d-line spherical-aberration, field-curvature and distortion curves. The radii and spacings are held fixed, K = 0 and the printed signs are kept. These are fitted values, not corrected misprints. The fit is not unique: many nearby coefficient sets match the same curves equally well. The fitted terms lie within 2–22% of Example 3's printed S16/S17 coefficients, which are of normal magnitude.
 
@@ -174,9 +174,9 @@ The patent prints the cover plate's nd = 1.5168 / νd = 64.198 on the 1 mm S29 r
 
 ## Model scope and limitations
 
-- Clear apertures are inferred from Figure 1; the patent gives no clear-aperture table. The L05 rear face (S9) and the L06 rear face (S11) end where the figure ends their curves, at 20.4 and 18.2 mm, just above the F/1.47 marginal ray. The flat annuli the figure draws beyond them are treated as mounting flanges. S25 and S26 are reduced from 16.84 to 16.08 mm so that the L14/L15 air gap stays open at the rim. No production masks are modelled.
+- Clear apertures are inferred from Figure 1; the patent gives no clear-aperture table. The L05 rear face (S9) and the L06 rear face (S11) end where the figure ends their curves, at 20.4 and 18.2 mm, just above the F/1.47 marginal ray. The flat annuli the figure draws beyond them are treated as mounting flanges. Figure 1 draws L13–L15 under one flat top edge at about 17.3 mm, with the L14 rear face (S25) and the L15 front face (S26) meeting at that edge. In the prescription these two faces cross at 16.93 mm, so the drawing cannot be matched exactly. S24 and S27 take 17.27 mm, the L13 front value, and S25/S26 take 16.7 mm, which leaves about 0.15 mm of air at the rim. No production masks are modelled.
 - The stop radius (17.84 mm) gives the entrance-pupil radius implied by the patent's 86.5 mm and F/1.47. Because the model's focal length is 86.51 mm, the nominal F-number is 1.4702.
-- The chief ray reaches the full-frame 21.65 mm half-diagonal at about 13.94°, with no rim clipping; the patent states a 14.02° half-field.
+- The chief ray reaches the full-frame 21.65 mm half-diagonal at about 13.93°, with no rim clipping; the patent states a 14.02° half-field. The rims now let the engine's field estimate run to 14.45°, which S26 limits. Geometric transmission in the meridional section is about 37% at the frame corner, falling from 66% at 9.3°.
 - The model holds focus at infinity only. Production apertures, mechanical masks, MTF, relative illumination, the production glasses and their partial dispersions, and close-focus performance are not established by the source.
 
 ## Sources

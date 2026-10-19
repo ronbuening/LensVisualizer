@@ -137,3 +137,54 @@ infinity, the C, F and g foci now fall 41, 54 and 283 µm behind d (C–F 14 µm
 10–14 µm (it was 7–11 µm with the surrogate). The analysis glass section, element lines and limitations were updated
 to match, and the header now states which elements use proxies.
 
+
+## 2026-10-19 — Second review: diagram, labels and movement
+
+Compared the local page (infinity, `focus=1`, `mv=focus`, inspector for L04, L06, L10, L12 and L13) with Fig. 1 on
+PDF p. 24, re-measured at 300 dpi on both sides of the axis (axis row 884, 12.67 px/mm, line centres). Fig. 1 draws
+L01 and the L02–L03 doublet as one flat-topped block at 22.9 mm, with L01 meeting L02 at the corner; L04 stands
+above it at about 23.6 mm and L05 sits level with it (22.6–22.85 mm). In G3 the doublet and L15 share one flat top at
+17.1 mm, and S25/S26 meet at that corner. The first pass's "L04 figure 23.2" reading is corrected to about 23.6 mm;
+the stored 23.4 mm (the axial floor is 23.35) is within noise and stays.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| S4, S5 `sd` | 23.2 / 23.2 | 22.0 / 22.0 | L02 and L03 are drawn square-cut and level with L01. S3 cannot exceed 22.25 mm (fitted S2/S3 cross), so L02 rendered as a 22.0→23.2 mm slant and L01 sat 1.2 mm below the doublet. Squaring the doublet at L01's height gives the drawn flat block. Axial floor 21.32 mm (S5) |
+| S17, S18 `label` | "17" / "18" | "17A" / "18A" | Patent marks only S17/S18 非球面 (Table 1, p. 14); corpus aspheric-label convention |
+| `doublets` text and element `cemented` | D1–D4 | L02–L03, L06–L07, L08–L09, L13–L14 | D1/D2 are the patent's variable-gap labels (Table 2, p. 15) and the analysis focus table uses them |
+| `apdNote` on L06, L08, L11 | maker diagram only | adds that the patent text requires νd ≥ 60 here but names no special glass | ¶0107–0112 (p. 11) and ¶0133 (p. 13) |
+
+With S4/S5 at 22.0 mm the validator reports no errors, the image circle is not undersized, field coverage is 100 %,
+and the meridional exact trace shows no axial clip or chief-ray block (S4 axial 20.25 mm, S5 21.32 mm, chief 11.7 mm).
+EFL 51.10 mm, engine f-number 1.4797 and engine half-field 23.77° are unchanged. Meridional geometric transmission
+was 89.1 / 82.8 / 75.5 / 67.7 / 59.4 / 47.9 / 35.4 % at 5.8 / 8.7 / 11.6 / 14.5 / 17.4 / 20.3 / 23.2° and is now
+89.1 / 82.3 / 74.5 / 66.1 / 57.3 / 46.9 / 35.4 %; the corner is unchanged because L01 still limits it. These are
+meridional figures only.
+
+Considered and not changed: squaring L13–L14 at the 16.6 mm S25 height would cost corner transmission (35.4 to
+32.3 %), and squaring L15 as well (S27 16.6 mm) would cut the engine half-field to 23.19°, below the patent's 23.3°.
+So the G3 top keeps a shallow notch at the S25/S26 junction; S27 (17.65 mm against a drawn 17.1 mm) and L05 (23.1 mm
+against 22.6–22.85 mm) are within measurement noise.
+
+Labels and tags checked as correct: element names and diagram labels L01–L15 match Fig. 1; G1 (S1–S12), G2
+(S14–S20) and G3 (S21–S27) match the figure brackets and ¶0133; the stop sits between L07 and L08; every element
+type agrees with its radii signs; L10 is the only aspheric element. Paraxial group focal lengths are +94.4, +52.4
+and −186.6 mm (positive, positive, negative), and all four cemented pairs are negative, as ¶0133 states for the
+first three. The `apd: "inferred"` tags stay: the patent gives an Abbe condition, not an ED or anomalous-dispersion
+designation.
+
+Movement: Table 2 (p. 15) changes D1 13.125 to 5.266 mm and D2 3.000 to 10.859 mm, and the Fig. 1 arrow under G2
+points to the object side, so G2 moves 7.859 mm toward the object while G1 and G3 stay fixed. The focus description
+and the analysis say the same. No movement is modelled, the overlay reports no group movement, and the slider reads
+"Not modeled".
+
+Aberration plots against the model at infinity: Fig. 3 (p. 25) shows about −1.1 % barrel distortion at 23.3°; the
+engine gives −1.19 % at 23.2°. Fig. 3 draws T and S almost on the zero line; the engine has T within +0.03 mm and
+S down to −0.06 mm at 75 % field (astigmatic difference 0.09 mm), a small departure that the fit leaves.
+
+Glass across the three examples (Tables 1, 5 and 9; pp. 13–14, 17–18 and 21–22): 1.949/17.942 is printed for L04
+in Examples 1 and 3; Example 2's L04 is 2.0033/28.316. 1.946/17.942 is printed for L13 and L15 in all three examples
+and for L05 in Example 2. νd 17.942 is H-ZF88's catalog value (17.94196), so 1.949 is probably a 6-for-9 misprint of
+1.946 carried into Example 3. 1.7292/56.685 is printed for L12 in Examples 1 and 3 (Example 2: 1.8707/40.729); the
+nearest catalog glasses have nd 1.72916 and νd 54.1–54.7, so it stays unmatched. The patent gives no glass names,
+partial dispersions or other line indices.

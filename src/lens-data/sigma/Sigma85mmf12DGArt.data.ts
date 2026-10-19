@@ -9,13 +9,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * closeFocusM is d0 + total track = 831.7394 mm (patent label 832 mm); Sigma's marketed minimum focus is 840 mm.
  * The stop position is published. Its radius is set so the infinity f-number is F/1.24; it is not a measured iris.
  * Semi-diameters are estimated from Figure 6 (isotropic, 13.89 px/mm at 397 dpi), floor-checked by real-ray
- * trace at F/1.24 in both focus states. Concave faces S4, S6, S11 and S28 follow where the figure's curve ends
- * before its flat annulus, raised to the axial F/1.24 ray where that is higher; cemented junctions S14, S17 and
- * S20 match their outer faces, as drawn.
+ * trace at F/1.24 in both focus states. Concave faces S4, S6 and S28 follow where the figure's curve ends
+ * before its flat annulus, raised to the axial F/1.24 ray where that is higher; S11 is carried to L6's drawn
+ * 23 mm outer rim so the element renders square-cut as drawn (no traced ray changes); cemented junctions S14,
+ * S17 and S20 match their outer faces, as drawn.
  * Glass names are catalog equivalents by nd/νd only. L5's printed PgF is converted to the engine's normal line.
  * Fixed iris: the infinity F/1.24 setting is kept through focus, so the patent's near-focus F/1.31 is not
- * reproduced. At near focus the outer drawn on-axis rays, outside the fixed iris, end at L6's rear rim just
- * ahead of the stop, and the outer off-axis rays are vignetted; no focus-dependent iris is modeled.
+ * reproduced. At near focus the outer drawn on-axis rays fall outside the fixed iris and are stopped there (the
+ * diagram ends them at L6's rear face, just ahead of the stop), and the outer off-axis rays are vignetted; no
+ * focus-dependent iris is modeled.
  */
 const LENS_DATA = {
   schema: 2,
@@ -110,7 +112,7 @@ const LENS_DATA = {
       apdNote:
         "The patent designates this element Lp, its anomalous-dispersion positive lens (¶0020, ¶0024); printed PgF 0.6546 gives ΔPgF 0.0386 on the patent's normal line and dPgF 0.0410 on the engine's.",
       role: "Anomalous-dispersion positive lens Lp, front of the cemented pair ahead of the stop in fixed G3.",
-      cemented: "D1",
+      cemented: "L5–L6",
       dPgF: 0.041042359999999944,
     },
     {
@@ -123,7 +125,7 @@ const LENS_DATA = {
       focalLengthMm: -43.147557829,
       glass: "NBFD29 (HOYA coordinate-compatible class; supplier unconfirmed)",
       role: "Negative partner of L5; the pair ahead of the stop is net negative.",
-      cemented: "D1",
+      cemented: "L5–L6",
     },
     {
       id: 7,
@@ -135,7 +137,7 @@ const LENS_DATA = {
       focalLengthMm: -43.980868071,
       glass: "NBFD29 (HOYA coordinate-compatible class; supplier unconfirmed)",
       role: "Biconcave negative just behind the stop, front of the second G3 cemented pair.",
-      cemented: "D2",
+      cemented: "L7–L8",
     },
     {
       id: 8,
@@ -150,7 +152,7 @@ const LENS_DATA = {
       apdNote:
         "Sigma's A026 construction diagram marks this position as SLD; the patent's nd 1.59282 / νd 68.62 is consistent with such a glass.",
       role: "Low-dispersion positive meniscus completing the second G3 cemented pair.",
-      cemented: "D2",
+      cemented: "L7–L8",
     },
     {
       id: 9,
@@ -162,7 +164,7 @@ const LENS_DATA = {
       focalLengthMm: 50.096908082,
       glass: "TAFD34 (HOYA coordinate-compatible class; supplier unconfirmed)",
       role: "Positive front member of the third G3 cemented pair.",
-      cemented: "D3",
+      cemented: "L9–L10",
     },
     {
       id: 10,
@@ -174,7 +176,7 @@ const LENS_DATA = {
       focalLengthMm: -55.119709507,
       glass: "NBFD29 (HOYA coordinate-compatible class; supplier unconfirmed)",
       role: "Negative partner of L9; the third G3 pair is weakly positive.",
-      cemented: "D3",
+      cemented: "L9–L10",
     },
     {
       id: 11,
@@ -186,7 +188,7 @@ const LENS_DATA = {
       focalLengthMm: 43.229931389,
       glass: "TAFD55-W (HOYA coordinate-compatible class; supplier unconfirmed)",
       role: "Strong high-index positive member of the last G3 cemented pair.",
-      cemented: "D4",
+      cemented: "L11–L12",
     },
     {
       id: 12,
@@ -198,7 +200,7 @@ const LENS_DATA = {
       focalLengthMm: -202.904746889,
       glass: "NBFD29 (HOYA coordinate-compatible class; supplier unconfirmed)",
       role: "Weak negative meniscus closing fixed G3.",
-      cemented: "D4",
+      cemented: "L11–L12",
     },
     {
       id: 13,
@@ -232,7 +234,7 @@ const LENS_DATA = {
       focalLengthMm: 67.10572593,
       glass: "TAFD40L-W (HOYA coordinate-compatible class; supplier unconfirmed)",
       role: "Positive front member of the cemented pair in the fixed rear group G5.",
-      cemented: "D5",
+      cemented: "L15–L16",
     },
     {
       id: 16,
@@ -244,7 +246,7 @@ const LENS_DATA = {
       focalLengthMm: -45.33142827,
       glass: "LAF45 (HOYA coordinate-compatible class; supplier unconfirmed)",
       role: "Negative partner of L15; its rear face is the front boundary of the patent's air lens AL.",
-      cemented: "D5",
+      cemented: "L15–L16",
     },
     {
       id: 17,
@@ -277,7 +279,7 @@ const LENS_DATA = {
     { label: "8", R: 169.69, sd: 25.5 },
     { label: "9", R: 1369.2, d: 4.92, sd: 23, medium: 5 },
     { label: "10", R: -90.06, d: 1.0, sd: 23, medium: 6 },
-    { label: "11", R: 52.95, d: 6.59, sd: 20.3 },
+    { label: "11", R: 52.95, d: 6.59, sd: 23 },
     { label: "STO", R: "flat", d: 1.93 },
     { label: "13", R: -597.34, d: 1.0, sd: 21.3, medium: 7 },
     { label: "14", R: 35.95, d: 7.31, sd: 21.3, medium: 8 },
@@ -322,7 +324,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.8317394,
     description:
-      "PUBLISHED double floating focus: from infinity to the patent's 832 mm state, G2 (L4) moves 6.22 mm and G4 (L13–L14) moves 6.40 mm toward the object, while G1, G3, G5 and the stop stay fixed. Both end states are printed in the patent; intermediate positions are linear interpolations, not Sigma's focus law. The near state (831.74 mm object to image) is the patent's, not the marketed 840 mm minimum focus distance. The iris is held at its infinity F/1.24 setting, so the patent's near-focus F/1.31 is not reproduced; near close focus the outermost drawn on-axis rays fall outside the iris and end at the rear rim of L6, just ahead of the stop, and the outer off-axis rays are vignetted.",
+      "PUBLISHED double floating focus: from infinity to the patent's 832 mm state, G2 (L4) moves 6.22 mm and G4 (L13–L14) moves 6.40 mm toward the object, while G1, G3, G5 and the stop stay fixed. Both end states are printed in the patent; intermediate positions are linear interpolations, not Sigma's focus law. The near state (831.74 mm object to image) is the patent's, not the marketed 840 mm minimum focus distance. The iris is held at its infinity F/1.24 setting, so the patent's near-focus F/1.31 is not reproduced; near close focus the outermost drawn on-axis rays fall outside the iris and are stopped there, drawn ending at the rear face of L6 just ahead of the stop, and the outer off-axis rays are vignetted.",
     conjugates: [
       {
         zoomStation: 0,
@@ -352,11 +354,11 @@ const LENS_DATA = {
     { text: "G5", fromSurface: "26", toSurface: "30A" },
   ],
   doublets: [
-    { text: "D1", fromSurface: "9", toSurface: "11" },
-    { text: "D2", fromSurface: "13", toSurface: "15" },
-    { text: "D3", fromSurface: "16", toSurface: "18" },
-    { text: "D4", fromSurface: "19", toSurface: "21" },
-    { text: "D5", fromSurface: "26", toSurface: "28" },
+    { text: "L5–L6", fromSurface: "9", toSurface: "11" },
+    { text: "L7–L8", fromSurface: "13", toSurface: "15" },
+    { text: "L9–L10", fromSurface: "16", toSurface: "18" },
+    { text: "L11–L12", fromSurface: "19", toSurface: "21" },
+    { text: "L15–L16", fromSurface: "26", toSurface: "28" },
   ],
 
   layout: { scFill: 0.55, yScFill: 0.35 },

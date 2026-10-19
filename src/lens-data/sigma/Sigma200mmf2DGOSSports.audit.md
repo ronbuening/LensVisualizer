@@ -225,3 +225,30 @@ Maker diagram: per the deployment-validation section above, Sigma's S025 constru
 ## 2026-10-19 — Glass relabel to catalog rows
 
 All 19 glass labels changed from descriptive coordinate classes to the catalog rows that the patent's printed nd, νd and PgF pin: HOYA FC5, FCD100, TAC8, NBFD25, TAC6, FCD600, E-C3, NBFD30, FDS16-W, LAC8, TAF1, TAFD40, NBFD29, E-FL6 and FCD615, and OHARA S-LAH63Q for L10. Each label carries the note "nd/νd/PgF coordinate match; production supplier unconfirmed". The printed PgF selects the row where processing variants share one nd/νd pair: TAC6 rather than TAC6L, TAFD40 rather than TAFD40L-W, and S-LAH63Q rather than HOYA NBFD3. The FCD615 row was added to the repository catalog from the local HOYA 2026-07-07 AGF. Every element now resolves to its row. The catalog PgF, computed from each row's dispersion formula, matches the source PgF within 0.0001, and catalog nd/νd match within the source rounding. The authored nd, νd and dPgF are unchanged, and EFL, f-number and half-field are identical before and after. The caution in "Final glass and prose corrections" still applies: these are coordinate equivalents, not supplier or melt identifications. The data header, the four apdNote strings, the analysis element lines and the analysis glass section were updated to match. The analysis quotes no engine-computed chromatic values, so none needed re-checking. Only the patent's own ΔPgF condition values appear, and they are unchanged.
+
+## 2026-10-19 — Second review: diagram, labels and movement
+
+Compared the local page (infinity, 1.7 m, the focus movement overlay, the Distortion and Aberrations tabs, and the inspector for L3, L5, L7, L10, L13 and L18) with Figure 1 (PDF p.22), the Example 1 tables (PDF pp.13–14) and the patent text (claim 1, ¶0014–0015, ¶0056–0058).
+
+Silhouette: the rims were re-measured independently from the native 425 ppi raster on the upper side (axis at row 1239, 0.111 mm/px). L3 34.7–35.1, L4 32.0–32.4, L5 30.8–31.2, L6 28.3–28.6, L7 27.0–27.3, L8 24.2–24.5, L9/L10 19.3–19.7, Gos 16.8–17.1, L14/L15 16.6–17.0, L16 18.2–18.4, L17 17.9–18.1, L18 17.0–17.2 and L19's rear flat 17.2–17.4 mm. Every stored value is within 3 % of these readings, and the height order between neighbours matches the figure. No rim was changed. Figure 1 draws L3, L8 and L19 with a flat land and a vertical step, from the taller face's rim down to where the shorter face's curve ends. The renderer draws this as a straight bevel. Setting both faces to the taller rim would cross the neighbouring face (S33 at 17.2 mm would cross S32 by about 1.0 mm) or push L4 and L8 past the drawn outline, so the bevels stay. The stop sits between L10 and L11, as drawn. The exact meridional trace at infinity shows no axial clip and no blocked corner chief ray. The meridional vignetting curve (100 % on axis, 83 % at 3.1°, 51 % at 6.2°) comes from the drawn rear-group rims and is retained. It is meridional only.
+
+Labels and tags:
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `groups[1].text` | G2 | G2 focus | ¶0057: G2 alone moves from object side to image side during focusing; Figure 1 arrow |
+| `groups[2].text` | G3 | G3 incl. Gos (OS) | ¶0058: G3 = L9–L10 pair, stop S, stabilizing group Gos and rear group Gr; Figure 1 Gos bracket and double-headed arrow |
+| L3 `role` | none | patent's L1na, front of subgroup 1b | Figure 1 leader "L1na"; claim 1, ¶0014 |
+| L5 `role` | none | patent's L1nb; claim 1 caps its positive anomalous partial dispersion | Figure 1 leader "L1nb"; claim 1 conditions (1)–(3) |
+| L8 `role` | none | G2, sole focusing element, 14.57 mm imageward | spacing table |
+| L11–L13 `role` | none | members of the stabilizing group Gos | ¶0058; Gos f = −52.92 mm (group data table) |
+
+Group surface ranges (G1 1–12, G2 13–14, G3 15–34) bracket the right elements. The five cemented-pair labels (L3–L4, L6–L7, L9–L10, L11–L12, L14–L15) match Figure 1, have no cement-layer entries, and do not clash with the D12/D14/BF gap labels. All 19 element types agree with the signs of R and with the shapes in ¶0056–0058. There are no aspheres and no `A` labels. Sequential L1–L19 names are kept. The patent names only L1na (L3) and L1nb (L5), and those designations are now in the roles. The analysis already names Gos as L11–L13 (L11–L12 cemented pair plus biconcave L13), which matches ¶0058.
+
+The patent text does not designate any element as anomalous-dispersion, ED or fluorite glass. Its only anomalous-dispersion wording (異常分散性) is condition (3), which caps the positive anomalous dispersion of the flint L1nb (L5). ¶0015 asks for a small partial-dispersion difference inside G1's cemented pair. The `apd: "inferred"` tags on L2, L4, L7 and L18 therefore stay, based on the maker-diagram record in the deployment-validation section above. In the inspector, L7 (FCD600) and L18 (FCD615) show "APD (INFERRED)" with their notes, and L10 shows S-LAH63Q (OHARA). The repository catalog rows for FCD615, FCD600, FCD100, TAFD40 and E-C3 carry the patent's nd/νd. Every element resolves, so no element is unmatched.
+
+Focus movement: the patent's variable spacings go from d12 3.4000 → 17.9678 and d14 20.9224 → 6.3545 (Δ +14.5678 / −14.5679), with BF 22.4456 → 22.4457. L8 therefore moves 14.57 mm toward the image, and G1, G3 and the image plane stay fixed. Index 0 is infinity and index 1 is the 1.7 m state. The overlay shows G2 travelling 14.57 mm toward the focus plane, with G1 and G3 stationary. The slider's far end reads 1.70 m and EFL 153.36 mm.
+
+Against the patent's own plots (Figure 2, infinity): the engine's rectilinear distortion is +2.10 % pincushion at the image edge, against about +2.1 % read from the patent curve at ω = 6.22°. The engine's sagittal and tangential field curves stay within about 0.01 mm of the image plane. The patent's ΔS/ΔM curves are indistinguishable from zero on their ±0.5 mm scale. Both agree.
+
+Engine values before and after: EFL 194.304 mm, f/2.07, iris radius 16.539 mm and half-field 8.08° are unchanged. The surface, image-circle and field-coverage audits report no findings (100 % coverage).

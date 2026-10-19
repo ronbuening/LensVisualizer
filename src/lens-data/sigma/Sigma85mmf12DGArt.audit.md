@@ -377,3 +377,47 @@ Sigma's construction diagram was not viewed in this pass. The deployment-validat
 
 Limitations: the figure is the patent's schematic, not a mechanical drawing; values are rounded to 0.1 mm and three of
 them sit at the axial-ray floor rather than at the slightly smaller drawn extent.
+
+## 2026-10-19 — Second review: diagram, labels and movement
+
+Compared the local page (infinity, close focus, both focus-movement overlays, seven element inspectors) with Figure 6
+(PDF p.28), the Example 2 tables (printed pp.16–17), ¶0057–0062 and the aberration sheets Figures 7 and 8.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| S11 `sd` (L6 rear) | 20.3 | 23 | Figure 6 draws L6 as a square-cut block: flat top at 22.9 mm out to a vertical annulus, then the concave face. At 20.3 the site drew a slanted bevel from 23 to 20.3 mm. At 23 the curve ends 1.33 mm ahead of the stop plane, the validator passes, and a skew-ray grid (38 mm disc, 0 to 1.0 field) gives identical counts at infinity and at the finite 694.83 mm near state; the meridional curve is unchanged (33.9% at 14.5°). With the stop opened to 25 mm, S11 at 20.3 would have cut 80 more on-axis rays, so the fixed iris, not this face, is the limit. |
+| `doublets` text and element `cemented` | D1 to D5 | L5–L6, L7–L8, L9–L10, L11–L12, L15–L16 | D1 to D5 read as the patent's air-gap labels D6, D8, D21 and D25 that sit beside the focus slider. The patent names no cemented components. |
+| Header, `focusDescription`, analysis | near-focus outer on-axis rays "end at L6's rear rim" | stopped by the iris, drawn ending at L6's rear face | follows from the S11 change |
+| Analysis | "cemented pair D1" etc. | pair names by element | follows from the rename |
+
+Kept, with reasons: L3 (S6) and L2 (S4) also have a flat annulus in the figure. At S6 = 29 L3 would square, but its curve
+would run 3 mm past the drawn step and, at close focus, end about 1 mm from L4's rim. At S4 = 33 the near-state skew grid
+gains rays at 0.5 to 1.0 field, so S4 stays. S28 at 17.0 would square L16 but raises full-field transmission by 21% at
+infinity, so it stays at the drawn curve end. L17 at 16.4 mm against 16.9 drawn is 3%, within noise.
+
+Checked and correct: groups G1 (S1–6), G2 (7A–8), G3 (9–21, stop at surface 12 between the first two cemented pairs),
+G4 (22–25) and G5 (26–30A) match the [レンズ群データ] start surfaces 1, 7, 9, 22 and 26. All 17 element types agree with the
+radius signs and ¶0058–0062. Aspherical surfaces 7, 24, 29 and 30 are the four starred rows, carried by L4, L14 and L17,
+the only `A` labels. `apd: "patent"` on L5 is the patent's Lp (¶0024, ¶0027; printed PgF 0.6546; condition (2) value
+0.039). `apd: "inferred"` on L2 and L8 rests on the deployment record of Sigma's construction diagram (SLD at L2 and L8);
+the patent text does not name them, and only mentions FCD1 as a general example. The inspector shows the expected
+type, glass, focal length and tags for L2, L4, L5, L6, L8, L14 and L17.
+
+Focus movement: index 0 of each gap pair is the infinity column. From infinity to the 832 mm state d6 goes 13.93 to 7.71 and
+d8 4.19 to 10.41 (G2 moves 6.22 mm toward the object), and d21 goes 8.65 to 2.25 and d25 2.15 to 8.55 (G4 moves
+6.40 mm toward the object). G1, G3, G5, the stop and BF 17.188 stay fixed. This matches ¶0057 and Figure 6's two
+leftward arrows. The movement overlay shows G2 and G4 moving left by about 6 mm, and the slider's far end reads 83 cm.
+
+Glass: Example 2 prints PgF only for L5. 0.6546 pins HOYA FDS18 (PgF 0.6546), not CDGM H-ZF88 (0.6552) at the same
+nd/νd, so the FDS18-W label names the right row. The other 16 elements have no printed PgF to discriminate same-coordinate
+rows.
+
+Aberration sheets: at infinity the model's sagittal and tangential best-focus shifts at 14.49° are −0.085 and +0.016 mm.
+Figure 7 reads about −0.09 and +0.02 mm. Distortion is +1.30% at full field against roughly +1.4% plotted, with the same
+slight negative dip near mid-field. Near focus, the engine's field-curvature and distortion paths trace infinity-conjugate
+rays at the close-focus spacings, so they are not comparable with Figure 8's 832 mm curves. Distortion still has the
+same shape (+0.85% at 13.45° against about +0.6% plotted; minimum −0.24% near 0.6 field).
+
+Engine half-field 16.29°, f-number 1.24 and stop radius 20.068 mm are unchanged. The surface validator, image-circle
+floor and field coverage (100% at 14.5°) pass. The real-ray trace at 21.63 mm shows no axial clip and no blocked chief
+ray. On the live page L6 now renders square-cut and clear of the stop in both focus states.

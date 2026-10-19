@@ -16,10 +16,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * GL is the printed 2.5 mm camera-side plate (S28/S29), traced via rearPlates.
  * Semi-diameters are estimated from the patent's Fig. 1 (isotropic, 12.67 px/mm at 300 dpi),
  * floor-checked by real-ray trace (axial f/1.48 marginal, 23.2 deg chief), not factory values.
- * L04 sits on the axial-ray floor (23.4 mm; figure 23.2). S12 keeps 15.17 mm (axial floor
- * 14.83; figure 14.7). L01 is drawn square-cut and meeting L02 at the rim, so S1-S3 share
- * 22.0 mm, which needs gapSagFrac 0.98 (S2/S3 gap sag 0.979; the fitted faces cross at
- * 22.25 mm). S25/S26 share 16.6 mm, where the figure draws them meeting (gap sag 0.968; the
+ * L04 sits on the axial-ray floor (23.4 mm; figure about 23.6). S12 keeps 15.17 mm (axial floor
+ * 14.83; figure 14.7). L01 and the L02-L03 doublet are drawn as one square-cut block, with L01
+ * meeting L02 at the rim, so S1-S5 share 22.0 mm (figure 22.9; the fitted S2 and S3 cross at
+ * 22.25 mm). That needs gapSagFrac 0.98 (S2/S3 gap sag 0.979). S25/S26 share 16.6 mm, where the figure draws them meeting (gap sag 0.968; the
  * fitted faces cross near 16.8 mm), also within that 0.98 limit.
  * The engine's exact-marginal f/1.48 keeps the fitted iris radius (14.52 mm); the patent's
  * f/1.47 stays as the design label. Only the wide-open stop is modelled.
@@ -89,7 +89,7 @@ const LENS_DATA = {
       glass: "N-SF66 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "High-index negative member of the first cemented doublet.",
       diagramLabel: "L02",
-      cemented: "D1",
+      cemented: "L02–L03",
     },
     {
       id: 3,
@@ -102,7 +102,7 @@ const LENS_DATA = {
       glass: "S-LAH55V (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "High-index positive member of the first cemented doublet.",
       diagramLabel: "L03",
-      cemented: "D1",
+      cemented: "L02–L03",
     },
     {
       id: 4,
@@ -112,7 +112,7 @@ const LENS_DATA = {
       nd: 1.949,
       vd: 17.942,
       focalLengthMm: 62.45805966173741,
-      glass: "Unmatched (patent nd=1.949, νd=17.942; supplier unresolved)",
+      glass: "Unmatched (patent nd=1.949, νd=17.942; νd equals H-ZF88, so nd is probably a misprint of 1.946, unconfirmed; supplier unresolved)",
       role: "High-index biconvex positive element of the first group.",
       diagramLabel: "L04",
     },
@@ -138,10 +138,10 @@ const LENS_DATA = {
       focalLengthMm: 50.91964125474715,
       glass: "H-ZPK5 (catalog-equivalent spectral proxy; supplier unresolved)",
       apd: "inferred",
-      apdNote: "Viltrox's construction diagram marks this position as ED. The H-ZPK5 proxy matches nd/νd only; the production glass and its partial dispersion are unpublished.",
+      apdNote: "Viltrox's construction diagram marks this position as ED. The patent text requires νd ≥ 60 here but names no special glass. The H-ZPK5 proxy matches nd/νd only; the production glass and its partial dispersion are unpublished.",
       role: "Low-dispersion positive member of the cemented doublet ahead of the stop.",
       diagramLabel: "L06",
-      cemented: "D2",
+      cemented: "L06–L07",
     },
     {
       id: 7,
@@ -154,7 +154,7 @@ const LENS_DATA = {
       glass: "H-ZF52 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Dense-flint negative partner of the doublet ahead of the stop.",
       diagramLabel: "L07",
-      cemented: "D2",
+      cemented: "L06–L07",
     },
     {
       id: 8,
@@ -166,10 +166,10 @@ const LENS_DATA = {
       focalLengthMm: 55.606566555667804,
       glass: "S-PHM53 (catalog-equivalent spectral proxy; supplier unresolved)",
       apd: "inferred",
-      apdNote: "Viltrox's construction diagram marks this position as ED. The S-PHM53 proxy matches nd/νd only; the production glass and its partial dispersion are unpublished.",
+      apdNote: "Viltrox's construction diagram marks this position as ED. The patent text requires νd ≥ 60 here but names no special glass. The S-PHM53 proxy matches nd/νd only; the production glass and its partial dispersion are unpublished.",
       role: "Low-dispersion positive member of the focusing group's cemented doublet.",
       diagramLabel: "L08",
-      cemented: "D3",
+      cemented: "L08–L09",
     },
     {
       id: 9,
@@ -182,7 +182,7 @@ const LENS_DATA = {
       glass: "H-ZF1 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Negative partner in the focusing group's cemented doublet.",
       diagramLabel: "L09",
-      cemented: "D3",
+      cemented: "L08–L09",
     },
     {
       id: 10,
@@ -206,7 +206,7 @@ const LENS_DATA = {
       focalLengthMm: 67.3093903533099,
       glass: "H-ZPK5 (catalog-equivalent spectral proxy; supplier unresolved)",
       apd: "inferred",
-      apdNote: "Viltrox's construction diagram marks this position as ED. The H-ZPK5 proxy matches nd/νd only; the production glass and its partial dispersion are unpublished.",
+      apdNote: "Viltrox's construction diagram marks this position as ED. The patent text requires νd ≥ 60 here but names no special glass. The H-ZPK5 proxy matches nd/νd only; the production glass and its partial dispersion are unpublished.",
       role: "Low-dispersion positive element at the rear of the focusing group.",
       diagramLabel: "L11",
     },
@@ -233,7 +233,7 @@ const LENS_DATA = {
       glass: "H-ZF88 (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "High-index positive member of the rear cemented doublet.",
       diagramLabel: "L13",
-      cemented: "D4",
+      cemented: "L13–L14",
     },
     {
       id: 14,
@@ -246,7 +246,7 @@ const LENS_DATA = {
       glass: "H-ZF7LA (catalog-equivalent spectral proxy; supplier unresolved)",
       role: "Dense-flint negative member of the rear cemented doublet.",
       diagramLabel: "L14",
-      cemented: "D4",
+      cemented: "L13–L14",
     },
     {
       id: 15,
@@ -286,14 +286,14 @@ const LENS_DATA = {
       label: "4",
       R: 54.714535109957595,
       d: 10.518,
-      sd: 23.2,
+      sd: 22,
       medium: 3,
     },
     {
       label: "5",
       R: -72.83045471457032,
       d: 0.2,
-      sd: 23.2,
+      sd: 22,
     },
     {
       label: "6",
@@ -367,7 +367,7 @@ const LENS_DATA = {
       sd: 14.1,
     },
     {
-      label: "17",
+      label: "17A",
       R: 112.40949541336538,
       d: 6,
       sd: 15,
@@ -381,7 +381,7 @@ const LENS_DATA = {
       },
     },
     {
-      label: "18",
+      label: "18A",
       R: -54.66046957260283,
       d: 1.188,
       sd: 15,
@@ -493,22 +493,22 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "L02–L03",
       fromSurface: "3",
       toSurface: "5",
     },
     {
-      text: "D2",
+      text: "L06–L07",
       fromSurface: "10",
       toSurface: "12",
     },
     {
-      text: "D3",
+      text: "L08–L09",
       fromSurface: "14",
       toSurface: "16",
     },
     {
-      text: "D4",
+      text: "L13–L14",
       fromSurface: "23",
       toSurface: "25",
     },

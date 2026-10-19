@@ -86,3 +86,55 @@ Maker diagram: the deployment pass above records Leica's lens cut as 10 lenses i
 element shapes, aspheres on L3 front, L7 rear and L10 rear, and the plane L5 front face. No maker image was viewed in
 this pass. The live page at infinity matches the figure's silhouette; the lens is infinity-only, so there is no
 close-focus state to check.
+
+## 2026-10-19 — Second review: diagram, labels and movement
+
+Compared: the live local page at infinity (the only modeled state) and its focus-movement overlay against Fig. 2
+(PDF page 3), the Example 2 tables (PDF page 8, printed page 4), ¶0039–0049 (printed page 3), ¶0016–0024
+(printed pages 1–2) and the summary table and ¶0052–0063 (printed page 5). Rims were re-measured independently on
+the native 72 dpi raster (axis at row 1510–1511, 19.63 px/mm), upper and lower silhouettes.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `groups` | none | VG (FRONT) 1–6, MG (MIDDLE) 8–11A, HG (REAR, FLOATING) 12–16A | Fig. 2 brackets VG, MG and HG; ¶0039 assigns L1–L4, L5–L7 and L8–L10; ¶0044 makes HG the floating element |
+| `doublets` | none | G1 1–3, G2 4A–6, G3 8–11A, G4 12–14 | ¶0040–0042 and the table's Subgroup column name the cemented G1–G4; G5 is the singlet L10 |
+| `focus.description` | "the whole objective moves toward the object while the rear group (L8–L10) floats" | names VG, the stop and MG moving together and HG (L8–L10) floating | ¶0044 wording; matches the new brackets and the analysis focus section |
+
+No `sd` changed. Re-measured rims: L1 17.05 mm, L2 15.1, L3 14.0, L4 flat top 13.4 with the rear curve ending lower,
+triplet 12.63, L8 12.02 (lower side 11.97), L9 flat top 11.69 (11.72), L10 11.82 (11.77). Stored values agree within
+noise except L10, drawn about 0.45 mm (4 %) taller than its stored 11.35 mm and level with L9, where the model keeps L9
+0.65 mm above L10. Raising L10 is refused by the cross-gap rule: with surface 14 at 11.7 and surfaces 15/16A at 11.8
+the combined rim sag is 4.32 mm against the allowed 4.095 mm of the 4.55 mm gap (a gap-sag fraction of 0.96 would
+admit it). The same trial lifts the engine half-field from 28.96° to 29.91° and the 31.9° transmission from 28.1 % to
+31.8 %, so the L10 rim sets real off-axis vignetting and was not widened for a 4 % drawing difference.
+
+The site draws L1 with a slanted edge from its 17.0 mm front rim to the 15.1 mm cement rim, and L4 with a slanted edge
+from the 14.0 mm cement rim to the 12.3 mm rear rim. Fig. 2 draws a flat L1 flange and a flat 13.4 mm L4 top with a
+short step down to the rear curve. Squaring either element would carry the cemented partner (L2) or the optical rear
+face of L4 beyond where the figure ends the curve, so both are renderer conventions and were left.
+
+Checked and correct: element names L1–L10 are the patent's own designations; every `type` agrees with the radius
+signs (L5 plane front, L10 meniscus with both radii negative); aspheric labels sit on surfaces 4, 11 and 16 only,
+the surfaces Fig. 2 stars and ¶0049 lists; the stop is surface 7 (BL) between L4 and L5. No `apd` tag is set, and none
+is warranted: ¶0018 states a ΔPgF window for negative lenses but names no anomalous glass. The inspector shows L3 as
+"DOUBLET G2", L5 as "TRIPLET G3" (a real triplet) and L10 as an aspheric negative meniscus with f = −656.59 mm.
+Movement: the lens is infinity-only; the overlay reports three groups and no modeled movement. Fig. 2's two arrows
+both point toward the object, the long one for the whole objective and the short one for HG, as ¶0044 states and the
+focus description says. The patent prints no aberration plots, so astigmatism, field curvature and distortion have
+no source curve to compare with.
+
+Glass evidence: the patent prints only ne (3 decimals), νe (integer) and ΔPgF per lens; there are no nd, νd, line
+indices or glass names anywhere in the text or tables. The stored `dPgF` values are the Example 2 ΔPgF column on
+PDF page 8, measured from the Schott normal line 0.6438 − 0.001682·νd (¶0019–0021), the same baseline the engine uses.
+The ΔPgF column is identical position by position in all three examples (L1 +0.002, L2 +0.005, L3/L7 −0.005, L4 and
+L6 +0.0003, L5 −0.009, L8 +0.001, L9 +0.009, L10 +0.007) while ne/νe change, and L6 of Example 3 (1.644/34) carries
++0.0003 where L9 of Example 2 (1.644/34) carries +0.009; the column is therefore a per-position design value, not a
+measured glass property. Only L3/L7 (1.743/48 in all three examples) recurs exactly; L5 is 1.886/41 in Examples 1 and
+3 and 1.890/40 here; every other position varies between examples and is optimizer-floated. No catalog glass is
+pinned by the source, so all ten stay Unmatched.
+
+Clearance and engine values are unchanged: surface validator no errors, image-circle 0 undersized, field coverage
+100 %, EFL 34.746 mm, f/1.24, half-field 28.96°, stop radius 12.14 mm, transmission at 31.9° 28.1 %.
+
+Open: the L10/L9 height difference (drawing 4 %) remains while the cross-gap rule holds; the rear-asphere rim beyond
+its 9.33 mm sag extremum stays unsourced.

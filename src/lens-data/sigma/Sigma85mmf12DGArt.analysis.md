@@ -111,7 +111,7 @@ but the modeled apertures and published endpoint spacings do not establish the m
 
 nd = 1.94594, νd = 17.98. Glass: FDS18-W (HOYA coordinate-compatible class; supplier unconfirmed). f = +89.478 mm.
 
-L5 is the designated Lp, the positive member of cemented pair D1 before the stop.
+L5 is the designated Lp, the positive member of cemented pair L5–L6 before the stop.
 Its unusually high index and low Abbe number are accompanied by explicitly published partial-dispersion information.
 The patent's conditions constrain this positive element's anomalous dispersion and standalone focal length;
 they do not identify it as an ordinary low-index ED crown. [1, ¶0024–0029, ¶0060]
@@ -120,24 +120,24 @@ they do not identify it as an ordinary low-index ED crown. [1, ¶0024–0029, ¶
 
 nd = 1.77047, νd = 29.74. Glass: NBFD29 (HOYA coordinate-compatible class; supplier unconfirmed). f = -43.148 mm.
 
-L6 is the negative member of D1, sharing surface 10 with L5.
-D1 is net negative despite the positive L5; its calculated cemented-pair focal length is −84.260322 mm.
+L6 is the negative member of L5–L6, sharing surface 10 with L5.
+The L5–L6 pair is net negative despite the positive L5; its calculated cemented-pair focal length is −84.260322 mm.
 The following air space leads to the published stop. The pair's combined power includes the real glass-to-glass interface. [1, ¶0060]
 
 ### L7 — Biconcave Negative
 
 nd = 1.77047, νd = 29.74. Glass: NBFD29 (HOYA coordinate-compatible class; supplier unconfirmed). f = -43.981 mm.
 
-L7 is the biconcave negative element immediately behind the stop and the front member of D2.
+L7 is the biconcave negative element immediately behind the stop and the front member of L7–L8.
 Its shared junction with L8 is surface 14. Figure 6 draws the junction meeting the pair's square rim, so all three
-faces of D2 carry the same inferred 21.3 mm semi-diameter; it is not a patent-specified rim dimension. [1, ¶0060, Fig. 6]
+faces of L7–L8 carry the same inferred 21.3 mm semi-diameter; it is not a patent-specified rim dimension. [1, ¶0060, Fig. 6]
 
 ### L8 — Positive Meniscus
 
 nd = 1.59282, νd = 68.62. Glass: FCD515 (HOYA coordinate-compatible class; supplier unconfirmed). f = +69.464 mm.
 
-L8 is D2's positive meniscus, convex toward the object, with a higher Abbe number than L7.
-D2 remains net negative, with calculated focal length −116.724226 mm.
+L8 is the positive meniscus of L7–L8, convex toward the object, with a higher Abbe number than L7.
+The L7–L8 pair remains net negative, with calculated focal length −116.724226 mm.
 The production construction diagram marks the corresponding element as SLD, supporting the broad position/class correlation;
 FCD505 and FCD515 share the relevant catalog coordinates, so the prescription does not establish a unique grade. [1, ¶0060; 3]
 
@@ -145,7 +145,7 @@ FCD505 and FCD515 share the relevant catalog coordinates, so the prescription do
 
 nd = 1.85033, νd = 42.70. Glass: TAFD34 (HOYA coordinate-compatible class; supplier unconfirmed). f = +50.097 mm.
 
-L9 is the positive front member of D3.
+L9 is the positive front member of L9–L10.
 It is followed by a negative partner of substantially lower Abbe number.
 The complete cemented pair has weak positive net power, with calculated focal length +393.449390 mm,
 showing why the isolated element focal lengths must not be substituted for the pair's in-situ action. [1, ¶0060]
@@ -154,7 +154,7 @@ showing why the isolated element focal lengths must not be substituted for the p
 
 nd = 1.77047, νd = 29.74. Glass: NBFD29 (HOYA coordinate-compatible class; supplier unconfirmed). f = -55.120 mm.
 
-L10 is the biconcave negative partner of D3.
+L10 is the biconcave negative partner of L9–L10.
 It uses the same published nd/νd coordinates as L6, L7 and L12.
 The repeated coordinate does not by itself prove a common production melt, nor does it assign identical aberration roles
 at these different locations in G3. [1, ¶0060]
@@ -163,16 +163,16 @@ at these different locations in G3. [1, ¶0060]
 
 nd = 2.00100, νd = 29.13. Glass: TAFD55-W (HOYA coordinate-compatible class; supplier unconfirmed). f = +43.230 mm.
 
-L11 is the strong positive member of D4, the final cemented pair in G3.
+L11 is the strong positive member of L11–L12, the final cemented pair in G3.
 Its index is the highest in this example, while its isolated power is considerably stronger than G3's overall net power.
-D4 has calculated net focal length +54.378347 mm; the spatially separated preceding negative pairs remain essential
+The L11–L12 pair has calculated net focal length +54.378347 mm; the spatially separated preceding negative pairs remain essential
 to the complete G3 matrix. [1, ¶0060]
 
 ### L12 — Negative Meniscus
 
 nd = 1.77047, νd = 29.74. Glass: NBFD29 (HOYA coordinate-compatible class; supplier unconfirmed). f = -202.905 mm.
 
-L12 is a negative meniscus with its concave face toward the object, completing D4 and G3.
+L12 is a negative meniscus with its concave face toward the object, completing L11–L12 and G3.
 Its negative isolated power is weaker than that of the other NBFD29-coordinate negative elements in the group.
 The variable spacing after surface 21 separates stationary G3 from moving G4. [1, ¶0060–0061]
 
@@ -197,7 +197,7 @@ L4 and L14 share the same source glass coordinates, although their curvature, po
 
 nd = 2.00069, νd = 25.46. Glass: TAFD40L-W (HOYA coordinate-compatible class; supplier unconfirmed). f = +67.106 mm.
 
-L15 is the positive member of D5 at the front of stationary G5.
+L15 is the positive member of L15–L16 at the front of stationary G5.
 It is cemented to L16 at surface 27.
 The complete pair is net negative, with calculated focal length −155.177078 mm, so the positive sign of L15 alone
 does not describe the rear group's relay action. [1, ¶0062]
@@ -206,7 +206,7 @@ does not describe the rear group's relay action. [1, ¶0062]
 
 nd = 1.61396, νd = 44.29. Glass: LAF45 (HOYA coordinate-compatible class; supplier unconfirmed). f = -45.331 mm.
 
-L16 is D5's negative biconcave member.
+L16 is the negative biconcave member of L15–L16.
 Its rear face, surface 28, is the object-side boundary of the patent's designated air lens AL.
 The adjacent negative element L17 supplies AL's image-side boundary; the patent discusses this curved air space
 in connection with Petzval/field-curvature control. [1, ¶0036–0039, ¶0062]
@@ -354,9 +354,10 @@ source image semi-height 21.63 mm in its respective configuration. [1, ¶0040]
 
 The model keeps the patent's surface data and both published focus states unchanged; the example lists no cover glass or filter plates.
 All clear semi-diameters are estimated from Figure 6 and checked against the axial F/1.24 ray in both focus states.
-Where the figure ends a concave face's curve before a flat annulus (the rear faces of L2, L3, L6 and L16), the modeled
-semi-diameter follows the end of the curve, or the axial ray where that is higher. Cemented junctions take the height
-of their outer faces, as the figure draws them.
+Where the figure ends a concave face's curve before a flat annulus (the rear faces of L2, L3 and L16), the modeled
+semi-diameter follows the end of the curve, or the axial ray where that is higher. L6's rear face is instead carried
+to the element's drawn 23 mm outer rim, so L6 renders square-cut as Figure 6 draws it; the stop, not that face, limits
+every traced ray there. Cemented junctions take the height of their outer faces, as the figure draws them.
 
 The iris radius, 20.068 mm, is set so that the exact infinity-focus image-space f-number equals the printed F/1.24;
 it is not a measured production diaphragm. The iris stays fixed through focus.
@@ -364,8 +365,8 @@ At the near state the exact image-space f-number is about 1.257 against the prin
 so the patent's near-focus aperture is not reproduced.
 The viewer's close-focus f-number readouts use first-order pupil and magnification estimates and differ from this exact value.
 
-At close focus the outermost drawn on-axis rays fall outside the fixed iris and are blocked at the rear rim of L6, just
-ahead of the stop; at every focus position the outer off-axis rays
+At close focus the outermost drawn on-axis rays fall outside the fixed iris and are blocked by it; the diagram ends them
+at the rear face of L6, just ahead of the stop. At every focus position the outer off-axis rays
 are vignetted by the element rims. These rays are drawn as blocked rather than hidden.
 
 The model does not establish production MTF, production glass identities or Sigma's continuous focus law.

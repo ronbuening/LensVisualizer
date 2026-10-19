@@ -58,7 +58,7 @@ The positive high-index, higher-Abbe member completes the front cemented doublet
 
 nd = 1.94900, νd = 17.942. Glass: unmatched (no catalog glass within source precision); Abbe surrogate; supplier unresolved. f = +62.458 mm.
 
-The high index supports substantial positive power with less curvature than a lower-index material would require. The distinct source nd = 1.949 is retained; it is not silently changed to the repeated 1.946 elsewhere.
+The high index supports substantial positive power with less curvature than a lower-index material would require. The distinct source nd = 1.949 is retained; it is not silently changed to the repeated 1.946 elsewhere. Example 3 prints the same 1.949/17.942 for its L04, while every 1.946 element in the three examples carries the same νd = 17.942, which is CDGM H-ZF88's catalog value (nd 1.94595). That makes a 6-for-9 misprint of 1.946 likely, but the patent does not confirm it.
 
 ### L05 — Meniscus Positive
 
@@ -106,7 +106,7 @@ The manufacturer diagram marks this position as ED; like L06 it uses the H-ZPK5 
 
 nd = 1.72920, νd = 56.685. Glass: unmatched (no catalog glass within source precision); Abbe surrogate; supplier unresolved. f = +143.482 mm.
 
-The positive meniscus begins the fixed rear unit. Its position contributes to off-axis correction and pupil mapping, although the complete group is negative.
+Example 3 prints the same 1.7292/56.685 for its L12, so the pair is a consistent design material rather than a one-off value; the nearest catalog glasses (nd 1.72916) have νd about 54.7. The positive meniscus begins the fixed rear unit. Its position contributes to off-axis correction and pupil mapping, although the complete group is negative.
 
 ### L13 — Biconvex Positive
 
@@ -145,7 +145,7 @@ The source supplies refractive indices and Abbe numbers rather than verified sup
 | L13, L15 | 1.94600 | 17.942 | CDGM H-ZF88 | +0.042 |
 | L14 | 1.80520 | 25.456 | CDGM H-ZF7LA | +0.014 |
 
-The ED-marked L06, L08 and L11 share correction duties with more dispersive partners. Their proxies are phosphate crowns with only moderate positive ΔPgF, while the dense flints (N-SF66, H-ZF88) carry large positive ΔPgF, so the proxy set leaves an ordinary secondary spectrum. In a paraxial trace at infinity, the C and F foci fall 41 µm and 54 µm behind the d focus, 14 µm apart, and the g focus falls 0.28 mm behind it. With an Abbe-only surrogate for all fifteen elements, the same prescription gives 17, 30 and 114 µm. These figures describe the proxies; the production glasses and their partial dispersions are unpublished, and no apochromatic or factory polychromatic-performance claim is made.
+The patent text requires νd ≥ 60 for L06, L08 and L11 but names no special or anomalous-dispersion glass; the ED marking comes from the manufacturer's diagram. The ED-marked L06, L08 and L11 share correction duties with more dispersive partners. Their proxies are phosphate crowns with only moderate positive ΔPgF, while the dense flints (N-SF66, H-ZF88) carry large positive ΔPgF, so the proxy set leaves an ordinary secondary spectrum. In a paraxial trace at infinity, the C and F foci fall 41 µm and 54 µm behind the d focus, 14 µm apart, and the g focus falls 0.28 mm behind it. With an Abbe-only surrogate for all fifteen elements, the same prescription gives 17, 30 and 114 µm. These figures describe the proxies; the production glasses and their partial dispersions are unpublished, and no apochromatic or factory polychromatic-performance claim is made.
 
 ## Focus Mechanism
 
@@ -187,7 +187,7 @@ The eight fitted terms retain the printed signs but not their magnitudes. Each w
 
 The fit varied 23 of the 25 finite radii (each within ±10 % of its printed value), the eight aspheric coefficients and four spacings, against the patent's stated 51.1 mm and 45.9 mm focal lengths and readings of its spherical-aberration and field-curvature plots (Figs. 2–3). The largest radius changes are R12 +10.0 % (20.258 → 22.284 mm), R24 +8.5 %, R18 +8.4 %, R27 −8.0 % and R2 +7.4 %; most others move by less than 4 %. The spacing changes alter seven printed intervals, including the L08 and L11 centre thicknesses (+0.09 and +0.56 mm); the 125.3 mm track is kept. Printed nd/νd, topology, the flat surfaces, K = 0, R7 = −150.275 mm and R19 = +367.935 mm are unchanged. The fitted system has EFL 51.10 mm, and its four spot-checked spherical-aberration readings fall within 9 µm of the patent plot.
 
-Clear semi-diameters are estimated from the patent's Figure 1, not measured. The figure draws flat-topped rims. L01–L05 sit near 23 mm and the elements behind the stop between 14 and 17.4 mm. Every rim clears the axial f/1.48 marginal ray, and L04's rim sits on it. The figure draws L01 square-cut and meeting L02 at the rim. S1–S3 therefore share 22.0 mm, which takes a 98 % cross-gap sag allowance; the fitted S2 and S3 would cross at 22.25 mm. S25/S26 share 16.6 mm, where the figure draws them meeting, at 97 % of their gap; the fitted faces would cross near 16.8 mm. Straight tapered edges are drawn, not barrel dimensions.
+Clear semi-diameters are estimated from the patent's Figure 1, not measured. The figure draws flat-topped rims. L01–L05 sit near 23 mm and the elements behind the stop between 14 and 17.4 mm. Every rim clears the axial f/1.48 marginal ray, and L04's rim sits on it. The figure draws L01 and the L02–L03 doublet as one square-cut block, with L01 meeting L02 at the rim. S1–S5 therefore share 22.0 mm, about 0.9 mm below the drawn block, which takes a 98 % cross-gap sag allowance; the fitted S2 and S3 would cross at 22.25 mm. S25/S26 share 16.6 mm, where the figure draws them meeting, at 97 % of their gap; the fitted faces would cross near 16.8 mm. Straight tapered edges are drawn, not barrel dimensions.
 
 The patent's f/1.47 is a paraxial entrance-pupil value. The model's iris radius of 14.52 mm gives f/1.48 by exact marginal-ray tracing; the catalog keeps the f/1.47 design and f/1.4 marketed labels. Only the wide-open aperture is modelled.
 

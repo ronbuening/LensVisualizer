@@ -313,13 +313,24 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.5,
     description:
-      "Infinity focus only. To focus closer, the whole objective moves toward the object while the rear group (L8–L10) floats, moving the same way by a smaller amount (¶0044); the gaps after surfaces 11 and 16 vary. The patent prints only the infinity spacings, so no close-focus state is modeled. Leica specifies 0.5 m minimum focus and 1:11.6 maximum magnification.",
+      "Infinity focus only. To focus closer, the front group VG, the stop and the middle group MG move together toward the object while the rear group HG (L8–L10) floats, moving the same way by a smaller amount (¶0044); the gaps after surfaces 11 and 16 vary. The patent prints only the infinity spacings, so no close-focus state is modeled. Leica specifies 0.5 m minimum focus and 1:11.6 maximum magnification.",
   },
   aperture: {
     nominalFNumber: 1.24,
     fStops: [1.24, 2, 2.8, 4, 5.6, 8, 11, 16],
     blades: 11,
   },
+  groups: [
+    { text: "VG (FRONT)", fromSurface: "1", toSurface: "6" },
+    { text: "MG (MIDDLE)", fromSurface: "8", toSurface: "11A" },
+    { text: "HG (REAR, FLOATING)", fromSurface: "12", toSurface: "16A" },
+  ],
+  doublets: [
+    { text: "G1", fromSurface: "1", toSurface: "3" },
+    { text: "G2", fromSurface: "4A", toSurface: "6" },
+    { text: "G3", fromSurface: "8", toSurface: "11A" },
+    { text: "G4", fromSurface: "12", toSurface: "14" },
+  ],
   layout: {
     yScFill: 0.46,
   },
