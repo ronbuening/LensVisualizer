@@ -81,13 +81,12 @@ const SEAM_REGISTRY: readonly SeamRegistryEntry[] = [
 const SEAM_LEGACY: readonly string[] = [
   "src/optics/analysis/aberration/offAxis.ts",
   "src/optics/analysis/analysisQuality.ts",
-  "src/optics/analysis/mtfConstants.ts",
-  "src/optics/analysis/mtfFocus.ts",
-  "src/optics/analysis/mtfMath.ts",
-  "src/optics/analysis/mtfShearedOtf.ts",
-  "src/optics/analysis/mtfSupport.ts",
-  "src/optics/analysis/mtfTracing.ts",
-  "src/optics/analysis/mtfWavefront.ts",
+  "src/optics/analysis/mtf/mtfConstants.ts",
+  "src/optics/analysis/mtf/mtfFocus.ts",
+  "src/optics/analysis/mtf/mtfMath.ts",
+  "src/optics/analysis/mtf/mtfShearedOtf.ts",
+  "src/optics/analysis/mtf/mtfTracing.ts",
+  "src/optics/analysis/mtf/mtfWavefront.ts",
   "src/optics/aperture.ts",
   "src/optics/chromatic/channels.ts",
   "src/optics/compat.ts",
@@ -148,7 +147,7 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
   },
   "src/optics/analysis/analysisMovementSupport.ts#MOVEMENT_AWARE_SECTIONS": { kind: "constant" },
   "src/optics/analysis/analysisMovementSupport.ts#MOVEMENT_INVARIANT_SECTIONS": { kind: "constant" },
-  "src/optics/analysis/mtfTracing.ts#X_SYMMETRIC_PROFILES": { kind: "constant" },
+  "src/optics/analysis/mtf/mtfTracing.ts#X_SYMMETRIC_PROFILES": { kind: "constant" },
   "src/optics/analysis/request.ts#REQUESTS_BY_LENS": {
     kind: "bounded",
     owner: "module",
@@ -285,11 +284,11 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
  * hand, with its capacity.
  */
 const CACHE_LEGACY: Readonly<Record<string, CacheLegacyRecord>> = {
-  "src/optics/analysis/mtfRayClassification.ts#boundsBySurface": {
+  "src/optics/analysis/mtf/mtfRayClassification.ts#boundsBySurface": {
     grows: "per compiled surface, one bounds record per distinct evaluated semi-diameter",
     retire: "keep one bounds record per surface, or cap the per-surface map",
   },
-  "src/optics/analysis/mtfTracing.ts#indexTablesByState": {
+  "src/optics/analysis/mtf/mtfTracing.ts#indexTablesByState": {
     grows: "per prepared state, one index table per distinct wavelength",
     retire: "cap the per-state map of index tables",
   },

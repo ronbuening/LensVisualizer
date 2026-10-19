@@ -8,7 +8,7 @@
  * lattice cell to the next (`waveLatticePhaseStep`), which fast or strongly aberrated beams
  * exceed at any practical grid.
  */
-import type { Vec3 } from "../types.js";
+import type { Vec3 } from "../../types.js";
 import type { ComplexOtf, MtfSpot } from "./mtfMath.js";
 import type { MtfBundle, MtfPupilRay } from "./mtfTracing.js";
 

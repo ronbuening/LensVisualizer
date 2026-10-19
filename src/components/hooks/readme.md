@@ -83,14 +83,14 @@ flowchart LR
 
 - Direct source files: 24
 - Direct subfolders: 0
-- Main outbound areas: package:react (22), src/types (22), same folder (15), src/optics/perspective (8), src/optics/optics.ts (7), src/utils/state (5), src/optics/buildLens.ts (3), src/optics/compat.ts (3), +16 more
+- Main outbound areas: package:react (22), src/types (22), same folder (15), src/optics/perspective (8), src/optics/optics.ts (7), src/utils/state (5), src/optics/analysis.ts (4), src/optics/buildLens.ts (3), +16 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/display, src/components/layout, src/components/relationshipMap, src/components/search
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `mtf.worker.ts` | Mtf helper module | src/types (2), same folder, src/optics/buildLens.ts, src/optics/compat.ts, src/optics/mtf.ts | none | none |
+| `mtf.worker.ts` | Mtf helper module | src/types (2), same folder, src/optics/analysis.ts, src/optics/buildLens.ts, src/optics/compat.ts, +1 more | none | none |
 | `mtfWorkerClient.ts` | Mtf Worker Client helper module | src/types (2), src/optics/buildLens.ts | same folder (2) | MtfJob, MtfWorkerRequest, MtfWorkerReply, MtfWorkerPort, MtfWorkerClient |
 | `offAxisRayUtils.ts` | Off Axis Ray Utils helper module | src/types (2), src/optics/analysis, src/optics/optics.ts, src/optics/projection.ts, src/utils/featureFlags.ts | same folder (2), src/benchmarks | OffAxisTraceGeometry, computeOffAxisTraceGeometry |
 | `raySegmentUtils.ts` | Ray Segment Utils helper module | same folder, src/optics/chromatic, src/types | same folder (3), src/benchmarks | compileRaySegment, filterChannels |
@@ -103,7 +103,7 @@ flowchart LR
 | `useLensAnalysisMarkdown.ts` | React hook module | package:react, src/utils/catalog, src/utils/featureFlags.ts | src/components/layout | default, useLensAnalysisMarkdown |
 | `useLensComputation.ts` | React hook module | src/optics/lensMovement.ts (2), src/optics/optics.ts (2), package:react, src/optics/analysis.ts, src/optics/aperture.ts, +9 more | src/components/layout | default, useLensComputation |
 | `useModalDialog.ts` | React hook module | package:react | src/components/layout (2) | default, useModalDialog |
-| `useMtfComputation.ts` | React hook module | src/types (2), package:react, same folder | src/components/display | MtfComputation, useMtfComputation |
+| `useMtfComputation.ts` | React hook module | src/types (2), package:react, same folder, src/optics/analysis.ts | src/components/display | MtfComputation, useMtfComputation |
 | `useMtfDataWarning.ts` | React hook module | package:react, src/types, src/utils/state | src/components/display | useMtfDataWarning |
 | `useMtfPreferences.ts` | React hook module | package:react, src/utils/state | src/components/display | useMtfPreferences |
 | `useOffAxisRays.ts` | React hook module | same folder (3), src/optics/perspective (2), src/types (2), package:react, src/optics/optics.ts, +1 more | same folder | default, useOffAxisRays |

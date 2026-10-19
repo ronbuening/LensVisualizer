@@ -46,8 +46,10 @@ contract in `src/lens-data/LENS_DATA_SPEC.md`; do not add an analysis-specific s
 
 ## Simulated MTF
 
-`src/optics/mtf.ts` accepts a prepared state and explicit physical aperture, method, spectrum, focus, field and
-frequency options. Every request names its focus mode: the engine has no default plane, and a request without one is
+`src/optics/mtf.ts` exposes `analysis/mtf/` entry points taking `AnalysisRequest` plus method, spectrum, focus,
+field and frequency settings (`MtfRequestOptions`). The request supplies prepared geometry and both physical aperture
+radii; geometry-only helpers take `PreparedGeometry`. Resolved `MtfOptions` remain internal to the unchanged sampling
+and OTF code, and serve as the serializable worker controls. Every request names its focus mode: the engine has no default plane, and a request without one is
 `invalid-input`. This estimates the authored prescription; numerical convergence and source-data confidence are
 separate. Sagittal frequencies run along image X, tangential along Y; the field lies in the Y/Z meridian. Both chart
 views share the same computed fields, one image plane and physical lp/mm units.
@@ -194,9 +196,15 @@ accurate. It is a report, never a test threshold: maker focus and spectrum are u
 example is not proven to be the production lens. The kernels are checked against exact Hopkins integrals; no real
 lens has been compared with another tool.
 
-The MTF tab lazily creates a worker from the runtime's unexpanded canonical prescription, provenance and optional
+The MTF tab reuses `analysisContext.request`, or memoizes a standalone request from prepared geometry, aperture and
+EFL. Its f/8 comparison creates a separate request with scaled aperture radii. The hook serializes only slider and
+aperture controls plus MTF settings, so chart-only changes retain the same computation key. MTF is worker-driven and
+has no lazy analysis-context accessor or job-table entry. Single-lens and comparison drawers share this renderer.
+The tab lazily creates a worker from the runtime's unexpanded canonical prescription, provenance and optional
 composition descriptor. `buildCanonicalLens()` compiles that input once; rear plates expand in the compiler with the
-same physical gaps and dispersion as on the main thread. The typed protocol
+same physical gaps and dispersion as on the main thread. The worker reconstructs prepared geometry and an
+`AnalysisRequest` for `computeMtfSteps`; compiled geometry and its solve caches never cross the worker boundary.
+The typed protocol
 (`init | compute | cancel` → `progress | result | error`) runs
 `computeMtfSteps` in ~30 ms slices and posts partial results at most every 100 ms. Cancellation is cooperative, so the
 built lens stays warm, and request ids reject stale replies. The worker caches finished fields and the focus search
@@ -558,7 +566,7 @@ and is their only outside door.
   - the base conic as a quadric, with its conic root `w = 1 − κcz`, its domain radius and the turning rate of its
     normal, in `geometry/intersectConic.ts`. The kernel's closed-form roots are built on the profile's `curvature`
     and `conic` and checked against `evaluate` ([Exact Surface Trace](#exact-surface-trace));
-  - a second set of closed-form sphere roots, and the sampled slope bound, in `analysis/mtfRayClassification.ts`,
+  - a second set of closed-form sphere roots, and the sampled slope bound, in `analysis/mtf/mtfRayClassification.ts`,
     which proves misses for the MTF sampler and does not call the kernel's.
 
 ## Prepared Geometry

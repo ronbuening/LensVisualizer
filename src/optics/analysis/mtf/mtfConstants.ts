@@ -5,7 +5,7 @@
  * behavior cannot drift apart.
  */
 
-import type { MtfFocusMode, MtfGridCap } from "../../types/mtf.js";
+import type { MtfFocusMode, MtfGridCap } from "../../../types/mtf.js";
 
 /** Pupil-grid refinement ladder. */
 export const MTF_GRID_LADDER = Object.freeze([16, 32, 64, 128, 256] as const);

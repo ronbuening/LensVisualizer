@@ -202,7 +202,7 @@ export const GROUP_MOVEMENT_MODES = ["focus", "zoom", "combined"] as const;
 export const MTF_METHODS = ["geometric", "diffraction"] as const;
 export const MTF_SPECTRA = ["reference", "cdf", "photopic"] as const;
 
-/** What an MTF request fixes. The capture adds the state's aperture and movement. */
+/** Stable capture settings. The seam supplies aperture through AnalysisRequest on migrated engines. */
 export interface MtfRequest {
   method: (typeof MTF_METHODS)[number];
   spectrum: (typeof MTF_SPECTRA)[number];

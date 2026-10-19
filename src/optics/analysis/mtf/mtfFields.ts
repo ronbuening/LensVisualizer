@@ -10,15 +10,15 @@
  * chief ray to place them by, are reported as outside the model rather than traced.
  */
 
-import { runtimeView } from "../prescription/runtimeView.js";
-import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTaxonomy.js";
-import type { MtfFieldGeometry, MtfOptions, MtfSupport } from "../../types/mtf.js";
-import { computeFieldGeometryAtState2, solveFieldAnglesForImageHeightsAccurate2 } from "../state/fieldAdapters.js";
-import { MAX_FIELD_LAUNCH_DEG } from "../field/projection.js";
-import { halfFieldAtZoom } from "../layout.js";
-import { solveScalarRoot } from "../math/rootSolve.js";
-import { traceEngineRay2 } from "../trace/rayAdapters.js";
-import type { PreparedOpticalState } from "../types.js";
+import { runtimeView } from "../../prescription/runtimeView.js";
+import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../../utils/catalog/lensTaxonomy.js";
+import type { MtfFieldGeometry, MtfOptions, MtfSupport } from "../../../types/mtf.js";
+import { computeFieldGeometryAtState2, solveFieldAnglesForImageHeightsAccurate2 } from "../../state/fieldAdapters.js";
+import { MAX_FIELD_LAUNCH_DEG } from "../../field/projection.js";
+import { halfFieldAtZoom } from "../../layout.js";
+import { solveScalarRoot } from "../../math/rootSolve.js";
+import { traceEngineRay2 } from "../../trace/rayAdapters.js";
+import type { PreparedGeometry } from "../../types.js";
 import {
   findMtfFieldFootprint,
   mtfImagePoint,
@@ -72,7 +72,7 @@ const FINITE_TABLE_STEPS = 16;
  * @param state - prepared optical state
  * @returns half field in degrees, before any image-format cap
  */
-export function mtfModeledHalfField(state: PreparedOpticalState): number {
+export function mtfModeledHalfField(state: PreparedGeometry): number {
   return state.focusT === 0
     ? computeFieldGeometryAtState2(0, state.zoomT, runtimeView(state.lens), state.aberrationT).halfFieldDeg
     : halfFieldAtZoom(state.zoomT, runtimeView(state.lens));
@@ -84,7 +84,7 @@ export function mtfModeledHalfField(state: PreparedOpticalState): number {
  * @param state - prepared optical state
  * @returns image-circle or format-diagonal radius, or null when the lens declares neither
  */
-export function declaredFormatRadiusMm(state: PreparedOpticalState): number | null {
+export function declaredFormatRadiusMm(state: PreparedGeometry): number | null {
   const { imageCircleMm, imageFormat } = state.lens.source;
   const diameter = imageCircleMm ?? (isImageFormatId(imageFormat) ? IMAGE_FORMAT_BY_ID[imageFormat].diagonalMm : null);
   return diameter !== null && Number.isFinite(diameter) && diameter > 0 ? diameter / 2 : null;
@@ -108,7 +108,7 @@ export function declaredFormatRadiusMm(state: PreparedOpticalState): number | nu
  * @returns reference and edge heights, or null when no chief ray reaches the image
  */
 export function resolveMtfFieldGeometry(
-  state: PreparedOpticalState,
+  state: PreparedGeometry,
   startDeg: number,
   chiefHeight: MtfChiefHeight,
   beyond?: MtfBeyondChiefClip,
@@ -262,7 +262,7 @@ function solveStopHeightCrossing(
  * @returns one target per requested fraction, in request order
  */
 export function resolveMtfFieldTargets(
-  state: PreparedOpticalState,
+  state: PreparedGeometry,
   geometry: MtfFieldGeometry,
   fractions: readonly number[],
   chiefHeight: MtfChiefHeight,
@@ -370,7 +370,7 @@ export function resolveMtfFieldTargets(
  * @returns radial chief height in mm, or NaN when the chief cannot be established or clips
  */
 export function mtfChiefHeight(
-  state: PreparedOpticalState,
+  state: PreparedGeometry,
   options: MtfOptions,
   support: MtfSupport,
   checkApertures = true,
@@ -399,7 +399,7 @@ export function mtfChiefHeight(
  * @returns radial chief height in mm, or NaN when no light reaches the image at that field or the unchecked chief
  *   cannot be traced
  */
-export function mtfBeamHeight(state: PreparedOpticalState, options: MtfOptions, support: MtfSupport): MtfChiefHeight {
+export function mtfBeamHeight(state: PreparedGeometry, options: MtfOptions, support: MtfSupport): MtfChiefHeight {
   const transmitted = mtfChiefHeight(state, options, support);
   const reference = mtfChiefHeight(state, options, support, false);
   return (fieldAngleDeg) => {

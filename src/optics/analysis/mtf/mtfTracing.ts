@@ -1,14 +1,14 @@
 /** Shared pupil sampling for MTF. Exact hits stay in physical millimeters. */
 
-import { runtimeView } from "../prescription/runtimeView.js";
-import type { MtfOptions, MtfSpectralLine, MtfSupport } from "../../types/mtf.js";
-import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
-import type { EngineTraceResult, TraceOptions } from "../trace/types.js";
-import { solveChiefRay2 } from "../state/fieldAdapters.js";
-import { solveScalarRoot } from "../math/rootSolve.js";
-import { prepareEngineTrace, traceEngineRay2 } from "../trace/rayAdapters.js";
-import { bulkTransmissionForTrace } from "../trace/bulkAbsorption.js";
-import { anchoredIndexTable } from "../chromatic/indexResolver.js";
+import { runtimeView } from "../../prescription/runtimeView.js";
+import type { MtfOptions, MtfSpectralLine, MtfSupport } from "../../../types/mtf.js";
+import type { PreparedGeometry, Ray3, Vec3 } from "../../types.js";
+import type { EngineTraceResult, TraceOptions } from "../../trace/types.js";
+import { solveChiefRay2 } from "../../state/fieldAdapters.js";
+import { solveScalarRoot } from "../../math/rootSolve.js";
+import { prepareEngineTrace, traceEngineRay2 } from "../../trace/rayAdapters.js";
+import { bulkTransmissionForTrace } from "../../trace/bulkAbsorption.js";
+import { anchoredIndexTable } from "../../chromatic/indexResolver.js";
 import type { MtfSpot } from "./mtfMath.js";
 import { mtfFiniteObjectPoint } from "./mtfConjugates.js";
 import { findMtfFootprint, type MtfFootprint } from "./mtfFootprint.js";
@@ -77,7 +77,7 @@ const X_SYMMETRIC_PROFILES = new Set(["flat", "spherical", "aspheric", "tilted-p
  * @returns landing point with bulk-transmission weight, or null when the plane is not ahead
  */
 export function mtfImagePoint(
-  state: PreparedOpticalState,
+  state: PreparedGeometry,
   trace: EngineTraceResult,
   imagePlaneZ = state.imgZ,
 ): MtfSpot | null {
@@ -92,7 +92,7 @@ export function mtfImagePoint(
   };
 }
 
-const indexTablesByState = new WeakMap<PreparedOpticalState, Map<number, Float64Array>>();
+const indexTablesByState = new WeakMap<PreparedGeometry, Map<number, Float64Array>>();
 
 /**
  * Surface-index callback for one MTF wavelength.
@@ -107,7 +107,7 @@ const indexTablesByState = new WeakMap<PreparedOpticalState, Map<number, Float64
  * @returns trace callback, or undefined for authored reference indices
  */
 export function mtfIndexResolver(
-  state: PreparedOpticalState,
+  state: PreparedGeometry,
   support: MtfSupport,
   wavelengthNm: number,
 ): TraceOptions["indexAtSurface"] {
@@ -137,7 +137,7 @@ export function mtfIndexResolver(
  * @returns aperture-checked options that stop at the first clip
  */
 export function mtfTraceOptions(
-  state: PreparedOpticalState,
+  state: PreparedGeometry,
   options: MtfOptions,
   support: MtfSupport,
   line: MtfSpectralLine,
@@ -187,7 +187,7 @@ export function mtfLaunchRay(launch: MtfFieldLaunch, x: number, y: number): Ray3
  * @returns launch, or null when no chief ray can be established
  */
 export function prepareMtfFieldLaunch(
-  state: PreparedOpticalState,
+  state: PreparedGeometry,
   options: MtfOptions,
   support: MtfSupport,
   fieldAngleDeg: number,
@@ -250,7 +250,7 @@ export function prepareMtfFieldLaunch(
  * @returns footprint box relative to the chief launch point, or null when the field is vignetted
  */
 export function findMtfFieldFootprint(
-  state: PreparedOpticalState,
+  state: PreparedGeometry,
   options: MtfOptions,
   support: MtfSupport,
   launch: MtfFieldLaunch,
@@ -309,7 +309,7 @@ export function mtfLaunchGrid(footprint: MtfFootprint, gridSize: number): MtfLau
  * @param state - prepared optical state
  * @returns whether mirrored half-pupil tracing is exact
  */
-export function mtfMirrorSymmetric(state: PreparedOpticalState): boolean {
+export function mtfMirrorSymmetric(state: PreparedGeometry): boolean {
   return state.surfaces.every((surface) => X_SYMMETRIC_PROFILES.has(surface.profile.kind));
 }
 
@@ -329,7 +329,7 @@ export function mtfMirrorSymmetric(state: PreparedOpticalState): boolean {
  * @returns traced bundle, or null when no reference chief point exists
  */
 export function traceMtfBundle(
-  state: PreparedOpticalState,
+  state: PreparedGeometry,
   options: MtfOptions,
   support: MtfSupport,
   launch: MtfFieldLaunch,
@@ -440,7 +440,7 @@ function mirrorPupilRay(ray: MtfPupilRay, columns: number): MtfPupilRay {
  * @returns traced bundle, or null when the field has no chief ray or no transmitted beam
  */
 export function traceMtfFieldPupil(
-  state: PreparedOpticalState,
+  state: PreparedGeometry,
   options: MtfOptions,
   support: MtfSupport,
   fieldAngleDeg: number,

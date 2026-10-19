@@ -88,6 +88,14 @@ the prepared state / slider inputs you actually use.
   Explicit family options override sampling only; passing `{}` preserves standalone sweep/quadrature defaults.
   Preserve the physical format band for sensor-locked fields/fans and strict format bounds for scene-locked
   non-reference channels.
+- MTF entry points live in `analysis/mtf/` and are exposed through `optics/mtf.ts`. They take
+  `AnalysisRequest` plus `MtfRequestOptions`; geometry-only helpers take `PreparedGeometry`. Reuse
+  `analysisContext.request`, or memoize a standalone request with prepared geometry and both aperture radii.
+  Keep every request input and MTF setting in memo dependencies. The f/8 comparison uses a separate request
+  with scaled radii. `useMtfComputation` serializes controls for the worker, which reconstructs the request;
+  do not serialize prepared geometry or its caches. Preserve the worker's debounce, cancellation, progress,
+  field-cache and chart-only reuse behavior. MTF has no context accessor or job-table entry, and comparison
+  mode uses the shared renderer. Preserve its movement/folded guards and verified kernels.
 - Aspheric comparison is an element overlay, with no job/context accessor. Its request-facing element
   resolution lives in `analysis/asphericComparison/`; scalar/surface helpers stay request-free. Keep its
   `[L, info.id]`, `[surfaces, mode]` and `[departureBySurf]` dependencies and element-local construction

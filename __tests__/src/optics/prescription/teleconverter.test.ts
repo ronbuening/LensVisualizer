@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { mtfFiniteConjugate, mtfFiniteObjectPoint } from "../../../../src/optics/analysis/mtfConjugates.js";
+import { mtfFiniteConjugate, mtfFiniteObjectPoint } from "../../../../src/optics/analysis/mtf/mtfConjugates.js";
 import { paraxialTrace } from "../../../../src/optics/buildLens.js";
 import { prepareRuntimeState } from "../../../../src/optics/compat.js";
 import {

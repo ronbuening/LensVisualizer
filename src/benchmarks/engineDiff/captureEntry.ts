@@ -798,7 +798,9 @@ const captureMtf: StateCapture = (seam, lens, state, variant) => {
     /* MTF takes no pose. The viewer passes this flag, and a moved lens is reported unavailable instead. */
     movementActive: movement.active,
   };
-  const result = seam.computeMtf(seam.prepareState(lens, focusT, zoomT, aberrationT), options);
+  const prepared = seam.prepareState(lens, focusT, zoomT, aberrationT);
+  // The seam bridges request inputs while retaining these historical payload options and their order.
+  const result = seam.computeMtf(prepared, options);
   /* The support record hands the authored conjugate back; its coordinates are recorded as the station it names. */
   const { support } = result as { support?: { conjugate?: unknown } };
   if (!support?.conjugate) return { options, result };

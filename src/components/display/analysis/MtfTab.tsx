@@ -1,7 +1,8 @@
 /** MTF stays outside render-time optics; requests execute only in the mounted tab's worker. */
 import { useMemo } from "react";
 import type { RuntimeLens } from "../../../types/optics.js";
-import type { MtfAperture, MtfMethod, MtfOptions, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
+import type { MtfAperture, MtfMethod, MtfRequestOptions, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
+import { createAnalysisRequest, type AnalysisComputationContext } from "../../../optics/analysis.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { Theme } from "../../../types/theme.js";
 import { assessMtfDataLimitations, assessMtfSupport, resolveMtfSpectrum } from "../../../optics/mtf.js";
@@ -19,6 +20,7 @@ interface MtfTabProps {
   L: RuntimeLens;
   t: Theme;
   preparedState: PreparedOpticalState;
+  analysisContext?: AnalysisComputationContext;
   currentEPSD: number;
   currentPhysStopSD: number;
   /** Selected working f-number and current focal length, for the chart header. */
@@ -59,35 +61,41 @@ export default function MtfTab({
   preparedState,
   currentEPSD,
   currentPhysStopSD,
+  analysisContext,
   fNumber,
   focalLengthMm,
   movementActive = false,
 }: MtfTabProps) {
   const [preferences, updatePreferences] = useMtfPreferences();
+  const request = useMemo(
+    () =>
+      analysisContext?.request ??
+      createAnalysisRequest({
+        preparedState,
+        dynamicEFL: focalLengthMm ?? 0,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    [analysisContext, preparedState, focalLengthMm, currentEPSD, currentPhysStopSD],
+  );
   const spectrum = useMemo(
     () => resolveMtfSpectrum(preparedState, preferences.spectrum),
     [preparedState, preferences.spectrum],
   );
-  const options: MtfOptions = useMemo(
+  const options: MtfRequestOptions = useMemo(
     () => ({
       method: preferences.method,
       spectrum: spectrum.spectrum,
       focus: preferences.focus,
       maxGridSize: preferences.maxGridSize,
       fieldFractions: mtfFieldFractions(preferences.fieldStepPercent),
-      pupilSemiDiameterMm: currentEPSD,
-      stopSemiDiameterMm: currentPhysStopSD,
       movementActive,
     }),
-    [preferences, spectrum.spectrum, currentEPSD, currentPhysStopSD, movementActive],
+    [preferences, spectrum.spectrum, movementActive],
   );
-  const support = useMemo(() => assessMtfSupport(preparedState, options), [preparedState, options]);
-  const { focusT, zoomT, aberrationT } = preparedState;
-  const job = useMemo(
-    () => (support.available ? { focusT, zoomT, aberrationT, options } : null),
-    [support.available, focusT, zoomT, aberrationT, options],
-  );
-  const { result, stale, running, error } = useMtfComputation(L, job);
+  const support = useMemo(() => assessMtfSupport(request, options), [request, options]);
+  const job = support.available ? request : null;
+  const { result, stale, running, error } = useMtfComputation(L, job, options);
   const shown = support.available ? result : null;
   const dataLimitations = useMemo(
     () =>
@@ -105,14 +113,15 @@ export default function MtfTab({
   const comparisonJob = useMemo(() => {
     if (!job || !compareF8Available || !preferences.compareF8 || !fNumber) return null;
     const scale = fNumber / COMPARISON_F_NUMBER;
-    const stopped = {
-      ...job.options,
-      pupilSemiDiameterMm: job.options.pupilSemiDiameterMm * scale,
-      stopSemiDiameterMm: job.options.stopSemiDiameterMm * scale,
-    };
-    return { ...job, options: stopped };
+    return createAnalysisRequest({
+      preparedState: job.preparedGeometry,
+      dynamicEFL: job.dynamicEFL,
+      currentEPSD: job.aperture.entrancePupilSemiDiameterMm * scale,
+      currentPhysStopSD: job.aperture.stopSemiDiameterMm * scale,
+      perspectiveTraceContext: job.perspectiveTraceContext,
+    });
   }, [job, compareF8Available, preferences.compareF8, fNumber]);
-  const comparison = useMtfComputation(L, comparisonJob);
+  const comparison = useMtfComputation(L, comparisonJob, options);
   const comparisonShown = comparisonJob && !comparison.stale ? comparison.result : null;
   // A result kept from an earlier request, or one at a finite conjugate, says nothing about the label on screen.
   const apertureOf = (result: MtfResult | null, superseded: boolean) =>
@@ -203,7 +212,7 @@ export default function MtfTab({
 }
 
 function headerLine(
-  options: MtfOptions,
+  options: MtfRequestOptions,
   referenceWavelengthNm: number,
   fNumber: number | undefined,
   focalLengthMm: number | undefined,

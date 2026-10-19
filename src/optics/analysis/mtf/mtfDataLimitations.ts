@@ -7,8 +7,8 @@
  * asked for carries no dispersion gap, and an inconsistent image plane is no gap at best axial focus. Gaps hold the
  * chart behind a warning (`blocking`); authored source errata are notes that leave it readable.
  */
-import type { MtfDataLimitation, MtfResult, MtfSpectrum } from "../../types/mtf.js";
-import type { PreparedOpticalState } from "../types.js";
+import type { MtfDataLimitation, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
+import type { PreparedGeometry } from "../../types.js";
 import { assessMtfSpectralData, MTF_SPECTRUM_LABELS, mtfPrescriptionScale, mtfScaleNeedsNote } from "./mtfSupport.js";
 
 export interface MtfDataLimitationInput {
@@ -43,10 +43,7 @@ function formatHeights(gapMm: number): (heightMm: number) => string {
  * @param input - spectrum requested and charted, and the result on screen
  * @returns gaps in reading order; empty when the data supports the display in full
  */
-export function assessMtfDataLimitations(
-  state: PreparedOpticalState,
-  input: MtfDataLimitationInput,
-): MtfDataLimitation[] {
+export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfDataLimitationInput): MtfDataLimitation[] {
   const { source } = state.lens;
   const limitations: MtfDataLimitation[] = [];
 

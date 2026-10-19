@@ -546,3 +546,22 @@ export function analysisRequestAt(
     sampling: options.sampling,
   });
 }
+
+/** Preserve synthetic MTF fixtures while moving their entry-call inputs onto a request. */
+export function mtfInputs(
+  state: import("../../../src/optics/types.js").PreparedGeometry,
+  options: import("../../../src/types/mtf.js").MtfOptions,
+): [
+  import("../../../src/optics/analysis/request.js").AnalysisRequest,
+  import("../../../src/types/mtf.js").MtfRequestOptions,
+] {
+  return [
+    createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: 0,
+      currentEPSD: options.pupilSemiDiameterMm,
+      currentPhysStopSD: options.stopSemiDiameterMm,
+    }),
+    options,
+  ];
+}

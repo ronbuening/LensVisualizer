@@ -180,7 +180,7 @@ export const ELEMENT_SCHEMA_DEFAULTS: readonly SchemaDefault[] = [
     v1Applied: "engine",
     reader:
       'src/optics/chromatic/materialResolver.ts makeSurfaceDispersion and src/optics/chromatic/*: indexReference === "e"; ' +
-      'src/components/display/ElementInspector.tsx and src/optics/analysis/mtfSupport.ts: indexReference ?? "d"',
+      'src/components/display/ElementInspector.tsx and src/optics/analysis/mtf/mtfSupport.ts: indexReference ?? "d"',
   },
   {
     path: "apd",

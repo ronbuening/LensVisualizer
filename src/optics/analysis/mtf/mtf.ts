@@ -5,12 +5,14 @@ import type {
   MtfFieldResult,
   MtfFocus,
   MtfOptions,
+  MtfRequestOptions,
   MtfResult,
   MtfSupport,
   MtfUnavailableReason,
-} from "../../types/mtf.js";
-import type { PreparedOpticalState } from "../types.js";
-import { assessMtfSupport, MTF_FIELDS, MTF_FREQUENCIES } from "./mtfSupport.js";
+} from "../../../types/mtf.js";
+import type { AnalysisRequest } from "../request.js";
+import type { PreparedGeometry } from "../../types.js";
+import { assessMtfSupport, resolveMtfOptions, MTF_FIELDS, MTF_FREQUENCIES } from "./mtfSupport.js";
 import {
   formatMtfTolerance,
   MTF_CONVERGENCE_BAND_LPMM,
@@ -62,7 +64,7 @@ export interface MtfJobCache {
 
 /** Everything one request shares across its fields. */
 interface MtfJobContext {
-  state: PreparedOpticalState;
+  state: PreparedGeometry;
   options: MtfOptions;
   support: MtfSupport;
   frequencies: readonly number[];
@@ -417,12 +419,14 @@ function outsideModelMessage(geometry: MtfFieldGeometry): string {
  * Field axis of a request without tracing its pupils, for charts and audits. Past the chief ray's own clip each probe
  * of the edge runs the coarse footprint scan.
  *
- * @param state - prepared optical state
- * @param options - MTF request
+ * @param request - prepared geometry and current physical aperture
+ * @param settings - method, spectrum, focus and sampling
  * @returns image-height axis, or null when the request is unsupported or no chief ray reaches the image
  */
-export function resolveMtfGeometry(state: PreparedOpticalState, options: MtfOptions): MtfFieldGeometry | null {
-  const support = assessMtfSupport(state, options);
+export function resolveMtfGeometry(request: AnalysisRequest, settings: MtfRequestOptions): MtfFieldGeometry | null {
+  const state = request.preparedGeometry;
+  const options = resolveMtfOptions(request, settings);
+  const support = assessMtfSupport(request, settings);
   if (!support.available) return null;
   return resolveMtfFieldGeometry(state, mtfModeledHalfField(state), mtfChiefHeight(state, options, support), {
     reference: mtfChiefHeight(state, options, support, false),
@@ -433,16 +437,18 @@ export function resolveMtfGeometry(state: PreparedOpticalState, options: MtfOpti
 /**
  * Yields after the field axis is known and after every refinement, so a worker can publish progress.
  *
- * @param state - prepared optical state
- * @param options - MTF request
+ * @param request - prepared geometry and current physical aperture
+ * @param settings - method, spectrum, focus and sampling
  * @param cache - optional reuse of an identical request's focus and finished fields
  */
 export function* computeMtfSteps(
-  state: PreparedOpticalState,
-  options: MtfOptions,
+  request: AnalysisRequest,
+  settings: MtfRequestOptions,
   cache?: MtfJobCache,
 ): Generator<MtfResult, MtfResult> {
-  const support = assessMtfSupport(state, options);
+  const state = request.preparedGeometry;
+  const options = resolveMtfOptions(request, settings);
+  const support = assessMtfSupport(request, settings);
   const frequencies = [...(options.frequenciesPerMm ?? MTF_FREQUENCIES)];
   const fractions = options.fieldFractions ?? MTF_FIELDS;
   const result: MtfResult = {
@@ -536,8 +542,8 @@ function copyField(field: MtfFieldResult): MtfFieldResult {
   };
 }
 
-export function computeMtf(state: PreparedOpticalState, options: MtfOptions): MtfResult {
-  const steps = computeMtfSteps(state, options);
+export function computeMtf(request: AnalysisRequest, options: MtfRequestOptions): MtfResult {
+  const steps = computeMtfSteps(request, options);
   let next = steps.next();
   while (!next.done) next = steps.next();
   return next.value;

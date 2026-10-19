@@ -7,12 +7,12 @@
  * as an optional single refocus for all fields, like a camera focused at the image center.
  */
 
-import { runtimeView } from "../prescription/runtimeView.js";
-import type { MtfSupport } from "../../types/mtf.js";
-import { computeCardinalElements2 } from "../first-order/cardinals.js";
-import { fopenAtZoom } from "../layout.js";
-import { LINE_NM } from "../spectralLines.js";
-import type { PreparedOpticalState } from "../types.js";
+import { runtimeView } from "../../prescription/runtimeView.js";
+import type { MtfSupport } from "../../../types/mtf.js";
+import { computeCardinalElements2 } from "../../first-order/cardinals.js";
+import { fopenAtZoom } from "../../layout.js";
+import { LINE_NM } from "../../spectralLines.js";
+import type { PreparedGeometry } from "../../types.js";
 import { MTF_IMAGE_PLANE_DEPTHS } from "./mtfConstants.js";
 import { combineOtfs, geometricOtf, otfMagnitude, type MtfSpot } from "./mtfMath.js";
 import type { MtfBundle } from "./mtfTracing.js";
@@ -51,7 +51,7 @@ export interface MtfImagePlaneOffset {
  * @param support - support record; finite conjugates are not checked
  * @returns offset and verdict, or null when there is no infinity focus to compare
  */
-export function mtfImagePlaneOffset(state: PreparedOpticalState, support: MtfSupport): MtfImagePlaneOffset | null {
+export function mtfImagePlaneOffset(state: PreparedGeometry, support: MtfSupport): MtfImagePlaneOffset | null {
   if (support.conjugate) return null;
   const rearFocalZ = computeCardinalElements2(state)?.points.rearFocal.z;
   const fNumber = fopenAtZoom(state.zoomT, runtimeView(state.lens));
@@ -83,7 +83,7 @@ const REACH_SAMPLES = 32;
  * @param state - prepared optical state
  * @returns nearest usable image-plane position in mm, never behind the authored plane
  */
-export function mtfNearestImagePlaneZ(state: PreparedOpticalState): number {
+export function mtfNearestImagePlaneZ(state: PreparedGeometry): number {
   const last = state.surfaces.at(-1);
   if (!last) return -Infinity;
   let sag = 0;

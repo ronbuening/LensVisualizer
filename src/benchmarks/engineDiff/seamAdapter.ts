@@ -48,6 +48,7 @@ const ENGINE_MODULES = {
   layout: import.meta.glob<EngineModule>("../../optics/layout.ts", { eager: true }),
   lensDefaults: import.meta.glob<EngineModule>("../../lens-data/defaults.ts", { eager: true }),
   lensMovement: import.meta.glob<EngineModule>("../../optics/lensMovement.ts", { eager: true }),
+  mtfFamily: import.meta.glob<EngineModule>("../../optics/analysis/mtf/mtf.ts", { eager: true }),
   mtf: import.meta.glob<EngineModule>("../../optics/mtf.ts", { eager: true }),
   optics: import.meta.glob<EngineModule>("../../optics/optics.ts", { eager: true }),
   perspective: import.meta.glob<EngineModule>("../../optics/perspective/index.ts", { eager: true }),
@@ -87,6 +88,7 @@ interface EngineModuleTypes {
   /* Deleted in S2.P1.T2, so it has no type to query at the head; older refs still export the V1 defaults object. */
   lensDefaults: { readonly default: Readonly<Record<string, unknown>> };
   lensMovement: typeof import("../../optics/lensMovement.js");
+  mtfFamily: typeof import("../../optics/mtf.js");
   mtf: typeof import("../../optics/mtf.js");
   optics: typeof import("../../optics/optics.js");
   perspective: typeof import("../../optics/perspective/index.js");
@@ -263,7 +265,10 @@ const SEAM_CANDIDATES = {
     ["asphericFamily", "computeAsphericDeparture"],
     ["asphericComparison", "computeAsphericDeparture"],
   ],
-  computeMtf: [["mtf", "computeMtf"]],
+  computeMtf: [
+    ["mtfFamily", "computeMtf"],
+    ["mtf", "computeMtf"],
+  ],
 } as const satisfies Readonly<Record<string, readonly SeamCandidate[]>>;
 
 type ExportOf<Candidate> = Candidate extends readonly [infer Module extends keyof EngineModuleTypes, infer Name]
@@ -280,6 +285,7 @@ type ResolvedEngineSeam = {
 /** The capture vocabulary stays stable while resolution bridges request and historical signatures. */
 export type EngineSeam = Omit<
   ResolvedEngineSeam,
+  | "computeMtf"
   | "computeLongitudinalChromaticFocus"
   | "computeGroupMovementProfileForState"
   | "computeCardinalElementsAtState"
@@ -287,6 +293,13 @@ export type EngineSeam = Omit<
   | "computeFieldCurvature"
   | "computeFieldCurvatureBundle"
 > & {
+  computeMtf: (
+    state: ReturnType<ResolvedEngineSeam["prepareState"]>,
+    options: Parameters<ResolvedEngineSeam["computeMtf"]>[1] & {
+      pupilSemiDiameterMm: number;
+      stopSemiDiameterMm: number;
+    },
+  ) => ReturnType<ResolvedEngineSeam["computeMtf"]>;
   computeLongitudinalChromaticFocus: (
     lens: ReturnType<ResolvedEngineSeam["buildLens"]>,
     zPos: number[],
@@ -422,6 +435,14 @@ function resolveOnce(): { seam: EngineSeam; sources: Record<keyof EngineSeam, st
         fieldGeometry,
       });
     };
+    if (sources.computeMtf.startsWith("mtfFamily.")) {
+      const compute = exports.computeMtf as ResolvedEngineSeam["computeMtf"];
+      exports.computeMtf = ((state, options) =>
+        compute(
+          fieldRequest(state, options.pupilSemiDiameterMm, options.stopSemiDiameterMm, undefined),
+          options,
+        )) satisfies EngineSeam["computeMtf"];
+    }
     if (sources.computeLongitudinalChromaticFocus.startsWith("chromaticAnalysis.")) {
       const compute =
         exports.computeLongitudinalChromaticFocus as ResolvedEngineSeam["computeLongitudinalChromaticFocus"];

@@ -1,10 +1,11 @@
+import { mtfInputs } from "../optics/testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import { wideOpenStopAtZoom } from "../../../src/optics/apertureStop.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { computeElementRenderDiagnostics } from "../../../src/optics/diagramGeometry.js";
-import { mtfModeledHalfField, resolveMtfFieldGeometry } from "../../../src/optics/analysis/mtfFields.js";
-import { mtfImagePoint } from "../../../src/optics/analysis/mtfTracing.js";
+import { mtfModeledHalfField, resolveMtfFieldGeometry } from "../../../src/optics/analysis/mtf/mtfFields.js";
+import { mtfImagePoint } from "../../../src/optics/analysis/mtf/mtfTracing.js";
 import { solveChiefRay } from "../../../src/optics/fieldGeometry.js";
 import { assessMtfSupport } from "../../../src/optics/mtf.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
@@ -95,7 +96,7 @@ describe("teleconverter catalog", () => {
       pupilSemiDiameterMm: epAtZoom(0, mixed),
       stopSemiDiameterMm: wideOpenStopAtZoom(0, mixed),
     };
-    expect(assessMtfSupport(state, options).reason).toBe("mixed-reference");
+    expect(assessMtfSupport(...mtfInputs(state, options)).reason).toBe("mixed-reference");
     const clear = cornerCoverage(mixed, 0);
     expect(clear).toBeGreaterThan(0.9);
     expect(clear).toBeCloseTo(cornerCoverage(native, 0), 8);

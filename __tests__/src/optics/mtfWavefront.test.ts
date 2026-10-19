@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { build, buildSimplePositiveElementLens } from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
-import { launchPhaseMm, rayOpticalPathToImageMm } from "../../../src/optics/analysis/mtfWavefront.js";
+import { launchPhaseMm, rayOpticalPathToImageMm } from "../../../src/optics/analysis/mtf/mtfWavefront.js";
 import type { Ray3 } from "../../../src/optics/types.js";
 
 describe("sequential optical path capture", () => {

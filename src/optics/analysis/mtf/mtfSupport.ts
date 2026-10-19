@@ -1,7 +1,15 @@
 /** MTF capability checks are per optical state, not per-lens rollout flags. */
-import type { MtfOptions, MtfSpectralLine, MtfSpectrum, MtfSupport, MtfUnavailableReason } from "../../types/mtf.js";
-import { LINE_NM } from "../spectralLines.js";
-import type { PreparedOpticalState } from "../types.js";
+import type {
+  MtfOptions,
+  MtfRequestOptions,
+  MtfSpectralLine,
+  MtfSpectrum,
+  MtfSupport,
+  MtfUnavailableReason,
+} from "../../../types/mtf.js";
+import type { AnalysisRequest } from "../request.js";
+import { LINE_NM } from "../../spectralLines.js";
+import type { PreparedGeometry } from "../../types.js";
 import { mtfFiniteConjugate, mtfFiniteObjectPoint } from "./mtfConjugates.js";
 import {
   MTF_DEFAULT_GRID_CAP,
@@ -106,7 +114,7 @@ export interface MtfSpectralData {
  * @param state - prepared optical state
  * @returns the first blocker, and the number of estimated glasses
  */
-export function assessMtfSpectralData(state: PreparedOpticalState): MtfSpectralData {
+export function assessMtfSpectralData(state: PreparedGeometry): MtfSpectralData {
   const { lens } = state;
   const estimated = new Set<number>();
   const blocked = (blocker: string): MtfSpectralData => ({ blocker, estimatedGlasses: 0, estimatedElementIds: [] });
@@ -136,7 +144,7 @@ export function assessMtfSpectralData(state: PreparedOpticalState): MtfSpectralD
  * @param preferred - requested spectrum
  * @returns spectrum to request, with a user-facing note when it differs or estimates dispersion
  */
-export function resolveMtfSpectrum(state: PreparedOpticalState, preferred: MtfSpectrum): MtfSpectrumChoice {
+export function resolveMtfSpectrum(state: PreparedGeometry, preferred: MtfSpectrum): MtfSpectrumChoice {
   if (preferred === "reference") return { spectrum: preferred, note: null };
   const { blocker, estimatedGlasses } = assessMtfSpectralData(state);
   if (!blocker)
@@ -153,7 +161,19 @@ export function resolveMtfSpectrum(state: PreparedOpticalState, preferred: MtfSp
   };
 }
 
-export function assessMtfSupport(state: PreparedOpticalState, options: MtfOptions): MtfSupport {
+/** Snapshot request aperture without changing the kernel options or their validation. */
+export function resolveMtfOptions(request: AnalysisRequest, options: MtfRequestOptions): MtfOptions {
+  return {
+    ...options,
+    pupilSemiDiameterMm: request.aperture.entrancePupilSemiDiameterMm,
+    stopSemiDiameterMm: request.aperture.stopSemiDiameterMm,
+    movementActive: request.pose?.active ?? options.movementActive,
+  };
+}
+
+export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestOptions): MtfSupport {
+  const state = request.preparedGeometry;
+  const options = resolveMtfOptions(request, settings);
   const { lens } = state;
   const media = lens.source.elements.filter((e) => state.surfaces.some((s) => s.nd !== 1 && s.elemId === e.id));
   const references = new Set(media.map((e) => e.indexReference ?? "d"));

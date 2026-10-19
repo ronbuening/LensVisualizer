@@ -51,6 +51,7 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       currentPhysStopSD={inputs.currentPhysStopSD}
       fNumber={inputs.fNumber}
       focalLengthMm={inputs.dynamicEFL}
+      analysisContext={analysisContext}
       movementActive={analysisContext?.movementActive}
     />
   ),

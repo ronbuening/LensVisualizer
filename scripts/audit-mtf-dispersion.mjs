@@ -1,3 +1,4 @@
+import { createAnalysisRequest } from "../src/optics/analysis.ts";
 /**
  * Read-only audit of the nd/vd dispersion estimate behind spectral MTF. Run with the project's TS specifier hook:
  *
@@ -25,12 +26,12 @@ import { allEntries, evaluateSellmeier } from "../src/optics/glassCatalog.ts";
 import {
   assessMtfDataLimitations,
   assessMtfSupport,
+  assessMtfSpectralData,
   computeMtf,
   computeMtfSteps,
   resolveMtfSpectrum,
 } from "../src/optics/mtf.ts";
-import { MTF_ESTIMATED_DISPERSION_MAX_VD } from "../src/optics/analysis/mtfConstants.ts";
-import { assessMtfSpectralData } from "../src/optics/analysis/mtfSupport.ts";
+import { MTF_ESTIMATED_DISPERSION_MAX_VD } from "../src/optics/analysis/mtf/mtfConstants.ts";
 import { computeAnalysisFieldGeometryAtState, entrancePupilAtState, fopenAtZoom } from "../src/optics/optics.ts";
 import { LINE_NM } from "../src/optics/spectralLines.ts";
 
@@ -214,10 +215,26 @@ async function census() {
     } catch {
       continue; // no sequential pupil to size the request from; such lenses have no chart either
     }
-    const support = assessMtfSupport(state, options);
+    const support = assessMtfSupport(
+      createAnalysisRequest({
+        preparedState: state,
+        dynamicEFL: 0,
+        currentEPSD: options.pupilSemiDiameterMm,
+        currentPhysStopSD: options.stopSemiDiameterMm,
+      }),
+      options,
+    );
     if (!support.available) continue;
     // The first step carries the field axis and the focus, which is all the data gaps need.
-    const result = computeMtfSteps(state, options).next().value;
+    const result = computeMtfSteps(
+      createAnalysisRequest({
+        preparedState: state,
+        dynamicEFL: 0,
+        currentEPSD: options.pupilSemiDiameterMm,
+        currentPhysStopSD: options.stopSemiDiameterMm,
+      }),
+      options,
+    ).next().value;
     const gaps = assessMtfDataLimitations(state, {
       preferredSpectrum: "photopic",
       spectrum,
@@ -428,7 +445,18 @@ async function degradeShard(shard, shards, outDir, limit) {
     for (const zoomT of L.isZoom ? [0, 1] : [0]) {
       const state = prepareRuntimeState(L, 0, zoomT);
       const options = chartOptions(L, zoomT, { fieldFractions: CHART_FIELDS, frequenciesPerMm: CHART_FREQUENCIES });
-      if (!assessMtfSupport(state, options).available) continue;
+      if (
+        !assessMtfSupport(
+          createAnalysisRequest({
+            preparedState: state,
+            dynamicEFL: 0,
+            currentEPSD: options.pupilSemiDiameterMm,
+            currentPhysStopSD: options.stopSemiDiameterMm,
+          }),
+          options,
+        ).available
+      )
+        continue;
       const spectral = assessMtfSpectralData(state);
       // Only lenses with catalog data for every glass have a ground truth to compare against.
       if (spectral.blocker || spectral.estimatedGlasses > 0) continue;
@@ -444,7 +472,17 @@ async function degradeShard(shard, shards, outDir, limit) {
       );
       const eligible = glasses.filter((element) => vds.get(element.id) <= MTF_ESTIMATED_DISPERSION_MAX_VD);
       if (!eligible.length) continue;
-      const base = chartValues(computeMtf(state, options));
+      const base = chartValues(
+        computeMtf(
+          createAnalysisRequest({
+            preparedState: state,
+            dynamicEFL: 0,
+            currentEPSD: options.pupilSemiDiameterMm,
+            currentPhysStopSD: options.stopSemiDiameterMm,
+          }),
+          options,
+        ),
+      );
       if (!base[0]) continue;
       const { focalLengthMm, perGlass } = partialDispersionSensitivity(state, (id) => vds.get(id));
       const fNumber = fopenAtZoom(zoomT, L);
@@ -464,7 +502,20 @@ async function degradeShard(shard, shards, outDir, limit) {
           );
           const degraded = prepareRuntimeState(buildLens({ ...data, elements }), 0, zoomT);
           if (assessMtfSpectralData(degraded).blocker) return null;
-          return chartChange(base, chartValues(computeMtf(degraded, options)));
+          return chartChange(
+            base,
+            chartValues(
+              computeMtf(
+                createAnalysisRequest({
+                  preparedState: degraded,
+                  dynamicEFL: 0,
+                  currentEPSD: options.pupilSemiDiameterMm,
+                  currentPhysStopSD: options.stopSemiDiameterMm,
+                }),
+                options,
+              ),
+            ),
+          );
         };
         const shifts = members.map((element) => perGlass.get(element.id) ?? 0);
         const common = {

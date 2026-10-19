@@ -1,4 +1,6 @@
 // @vitest-environment jsdom
+import { createAnalysisComputationContext } from "../../../../../src/optics/analysis.js";
+import { mtfInputs } from "../../../optics/testLensFixtures.js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import MtfTab from "../../../../../src/components/display/analysis/MtfTab.js";
@@ -11,7 +13,7 @@ import {
 } from "../../../optics/testLensFixtures.js";
 import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
 import { assessMtfSupport, computeMtf } from "../../../../../src/optics/mtf.js";
-import { mtfImagePlaneOffset } from "../../../../../src/optics/analysis/mtfFocus.js";
+import { mtfImagePlaneOffset } from "../../../../../src/optics/analysis/mtf/mtfFocus.js";
 import type { MtfResult } from "../../../../../src/types/mtf.js";
 import type { MtfJob, MtfWorkerReply, MtfWorkerRequest } from "../../../../../src/components/hooks/mtfWorkerClient.js";
 import { MTF_PREFERENCES_KEY, resetMtfPreferencesCache } from "../../../../../src/utils/state/mtfPreferences.js";
@@ -27,7 +29,7 @@ const referenceOptions = {
   pupilSemiDiameterMm: 1,
   stopSemiDiameterMm: 1,
 } as const;
-const offsetMm = mtfImagePlaneOffset(state, assessMtfSupport(state, referenceOptions))!.offsetMm;
+const offsetMm = mtfImagePlaneOffset(state, assessMtfSupport(...mtfInputs(state, referenceOptions)))!.offsetMm;
 const focusedL = build({
   ...L.data,
   surfaces: L.data.surfaces.map((s, i, all) => (i === all.length - 1 ? { ...s, d: s.d + offsetMm } : s)),
@@ -43,7 +45,7 @@ function memoizedMtf(target: typeof state, options: MtfJob["options"]): MtfResul
   const key = JSON.stringify(options);
   const cached = byOptions.get(key);
   if (cached) return cached;
-  const result = computeMtf(target, { ...options, maxGridSize: 32 });
+  const result = computeMtf(...mtfInputs(target, { ...options, maxGridSize: 32 }));
   byOptions.set(key, result);
   return result;
 }
@@ -99,6 +101,27 @@ describe("MTF tab", () => {
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} movementActive />);
     expect(screen.getByRole("status").textContent).toContain("tilt or shift");
     expect(worker).not.toHaveBeenCalled();
+  });
+  it("reuses the deferred request and recomputes only when its aperture changes", async () => {
+    const { calls } = stubWorker();
+    const context = (aperture: number) =>
+      createAnalysisComputationContext({
+        preparedState: state,
+        dynamicEFL: 0,
+        currentEPSD: aperture,
+        currentPhysStopSD: aperture,
+      });
+    const initial = context(1);
+    const props = { L, t: mockTheme, preparedState: state, currentEPSD: 9, currentPhysStopSD: 9 };
+    const { rerender } = render(<MtfTab {...props} analysisContext={initial} />);
+    await screen.findByRole("figure", { name: /image height/ });
+    expect(calls.jobs[0].options.pupilSemiDiameterMm).toBe(1);
+    rerender(<MtfTab {...props} analysisContext={initial} focalLengthMm={50} />);
+    expect(calls.compute).toBe(1);
+    rerender(<MtfTab {...props} analysisContext={context(0.5)} focalLengthMm={50} />);
+    await vi.waitFor(() => expect(calls.compute).toBe(2));
+    expect(calls.jobs[1].options.pupilSemiDiameterMm).toBe(0.5);
+    expect(calls.jobs[1].options.stopSemiDiameterMm).toBe(0.5);
   });
   it("defaults to the diffraction-corrected photopic model at best axial focus and notes estimated dispersion", async () => {
     stubWorker({ target: focusedState });
@@ -294,15 +317,17 @@ describe("MTF tab", () => {
 });
 
 describe("MTF chart", () => {
-  const result = computeMtf(state, {
-    method: "geometric",
-    spectrum: "reference",
-    focus: "design",
-    pupilSemiDiameterMm: 1,
-    stopSemiDiameterMm: 1,
-    fieldFractions: [0, 0.5, 1],
-    maxGridSize: 32,
-  });
+  const result = computeMtf(
+    ...mtfInputs(state, {
+      method: "geometric",
+      spectrum: "reference",
+      focus: "design",
+      pupilSemiDiameterMm: 1,
+      stopSemiDiameterMm: 1,
+      fieldFractions: [0, 0.5, 1],
+      maxGridSize: 32,
+    }),
+  );
   it("breaks curves at unavailable fields without NaN coordinates", () => {
     const gapped: MtfResult = {
       ...result,

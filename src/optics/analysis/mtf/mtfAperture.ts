@@ -5,9 +5,9 @@
  * marginal ray before the iris does, and a stopped-down iris is scaled linearly from the wide-open radius. The rim of
  * the transmitted axial beam gives the pupil the curves were computed with, as an f-number comparable to the label.
  */
-import type { MtfAperture, MtfOptions, MtfSupport } from "../../types/mtf.js";
-import type { PreparedOpticalState } from "../types.js";
-import { prepareEngineTrace } from "../trace/rayAdapters.js";
+import type { MtfAperture, MtfOptions, MtfSupport } from "../../../types/mtf.js";
+import type { PreparedGeometry } from "../../types.js";
+import { prepareEngineTrace } from "../../trace/rayAdapters.js";
 import type { MtfFootprint } from "./mtfFootprint.js";
 import { mtfLaunchRay, mtfTraceClassification, mtfTraceOptions, type MtfFieldLaunch } from "./mtfTracing.js";
 
@@ -36,7 +36,7 @@ const NEAR_AXIS_FRACTION = 1e-3;
  * @returns traced aperture, or null when the chief ray is blocked or no rim can be bracketed
  */
 export function resolveMtfAperture(
-  state: PreparedOpticalState,
+  state: PreparedGeometry,
   options: MtfOptions,
   support: MtfSupport,
   launch: MtfFieldLaunch,
