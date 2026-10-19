@@ -153,6 +153,8 @@ noticeable loss at infinity; the illustrative endpoint does not try to reproduce
 The patent gives no clear semi-diameters. The values used here follow the Photons to Photos aperture estimates for this
 example, which look broadly consistent with the brochure section, reduced at surfaces 5/6 to 13.2 mm and at 9/10 to
 12.5 mm so that facing sags stay inside the air gaps. They are modeling estimates, not measured 150 mm apertures.
+The patent's only lens section, Figure 1, draws Example 2 rather than Example 5; scaled to Example 5's radii, its
+rims agree with every value used here to within about 8 %.
 
 The stop radius is derived from the f/5.6 marginal ray (about 10.03 mm). All glass and air clearances stay positive.
 The chief ray reaches the 252 mm production image circle (about 40.5° half-field) without being blocked. Marginal

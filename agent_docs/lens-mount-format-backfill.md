@@ -7,8 +7,8 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files: **961**
-- Files with both `lensMounts` and `imageFormat`: **919**
+- Total lens data files: **968**
+- Files with both `lensMounts` and `imageFormat`: **926**
 - Files missing `lensMounts`: **33** (24 public lenses and 9 hidden reference fixtures)
 - Files missing `imageFormat`: **32** (23 public lenses and 9 hidden reference fixtures)
 - Files missing both fields: **23**
@@ -16,7 +16,7 @@ the fields unset and add a note here until a source check resolves it.
   `1-2.7-inch-type`, `1-inch-type`, `1.25-inch-tube`, `1.5-inch-type`, `110`, `135-full-frame`,
   `16mm-cinema`, `2-3-inch-type`, `35mm-cinema`, `44x33`, `4x5`, `5x7`, `645`, `6x6`, `6x7`, `6x9`, `8x10`,
   `aps-c`, `aps-film`, `four-thirds`, `normal-8`, `super-35-1.9`, `super-35-cinema`, `super-8`
-- Mounts currently in use: `agfa-ambi-silette`, `alpa`, `arri-pl`, `arri-standard`, `c-mount`, `canon-ef`, `canon-ef-m`, `canon-ef-s`, `canon-fd`, `canon-fl`, `canon-r`, `canon-rf`, `contax-rf`, `contax-yashica`, `d-mount`, `dkl`, `enlarging-lens`, `exakta`, `fixed-lens-camera`, `four-thirds`, `fujica-x`, `fujifilm-g`, `fujifilm-x`, `graflex-xl`, `hasselblad-h`, `hasselblad-xcd`, `konica-ar`, `konica-f`, `l-mount`, `large-format-lens-board`, `leica-ltm`, `leica-m`, `leica-r`, `leica-visoflex`, `m42`, `mamiya-645`, `mamiya-7`, `mamiya-nc`, `mamiya-rb67`, `mamiya-ze`, `micro-four-thirds`, `minolta-sr`, `miranda-bayonet`, `nikon-1`, `nikon-f`, `nikon-ix`, `nikon-s`, `nikon-z`, `nikonos`, `nikonos-rs`, `olympus-om`, `pentacon-six`, `pentax-110`, `pentax-645`, `pentax-67`, `pentax-k`, `pentax-q`, `praktica-b`, `praktina`, `projection-lens`, `samsung-nx`, `sigma-sa`, `sony-a`, `sony-fe`, `voigtlander-prominent`, `zeiss-contaflex`, `zeiss-contarex`
+- Mounts currently in use: `agfa-ambi-silette`, `alpa`, `arri-pl`, `arri-standard`, `c-mount`, `canon-ef`, `canon-ef-m`, `canon-ef-s`, `canon-fd`, `canon-fl`, `canon-r`, `canon-rf`, `contax-rf`, `contax-yashica`, `d-mount`, `dkl`, `enlarging-lens`, `exakta`, `fixed-lens-camera`, `four-thirds`, `fujica-x`, `fujifilm-g`, `fujifilm-x`, `graflex-xl`, `hasselblad-h`, `hasselblad-v`, `hasselblad-xcd`, `konica-ar`, `konica-f`, `l-mount`, `large-format-lens-board`, `leica-ltm`, `leica-m`, `leica-r`, `leica-visoflex`, `m42`, `mamiya-645`, `mamiya-7`, `mamiya-nc`, `mamiya-rb67`, `mamiya-ze`, `micro-four-thirds`, `minolta-sr`, `miranda-bayonet`, `nikon-1`, `nikon-f`, `nikon-ix`, `nikon-s`, `nikon-z`, `nikonos`, `nikonos-rs`, `olympus-om`, `pentacon-six`, `pentax-110`, `pentax-645`, `pentax-67`, `pentax-k`, `pentax-q`, `praktica-b`, `praktina`, `projection-lens`, `samsung-nx`, `sigma-sa`, `sony-a`, `sony-fe`, `voigtlander-prominent`, `zeiss-contaflex`, `zeiss-contarex`
 
 ## Source-Review Queue
 

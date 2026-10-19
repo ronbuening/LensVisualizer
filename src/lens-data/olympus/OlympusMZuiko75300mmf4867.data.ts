@@ -4,14 +4,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The 78 intermediate zoom stations are a derived cam: G2 fixed (patent para. 0069), G1, G3 and G5 on
  * monotone splines through the printed positions, G4 solved paraxially to hold the image plane.
  * The 17-keyframe G5a focus law to 1.5 m is paraxially derived; the marketed 0.9 m wide-end limit is not modelled.
- * Clear rims inferred, default gap-sag. Native F4.95-6.92, marketed F4.8-6.7.
+ * Clear rims estimated from FIG. 8 (wide end; isotropic, 0.1128 mm/px at 600 dpi), floor-checked by real-ray
+ * trace at all stations; G1 and the rear G4 elements kept within figure noise. Default gap-sag.
+ * Native F4.95-6.92, marketed F4.8-6.7.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "olympus-mzuiko-75-300mm-f48-67-original",
   "maker": "Olympus",
-  "name": "OLYMPUS M.Zuiko Digital ED 75\u2013300mm f/4.8\u20136.7",
-  "subtitle": "JP 2011-186095 A \u2014 Sigma Example 2; probable original Olympus production association",
+  "name": "OLYMPUS M.ZUIKO DIGITAL ED 75-300mm f/4.8-6.7",
+  "subtitle": "JP 2011-186095 A (Sigma) \u2014 Example 2; probable design of the original 2010 lens",
   "catalog": {
     "lensMounts": [
       "micro-four-thirds"
@@ -35,8 +37,10 @@ const LENS_DATA = {
     },
     "specs": [
       "18 ELEMENTS / 13 GROUPS",
-      "EXAMPLE 2",
-      "DERIVED CONTINUOUS CAM"
+      "DESIGN f = 76.91-290.98 mm",
+      "DESIGN F/4.95-6.92",
+      "ALL SPHERICAL",
+      "1 SUPER ED / 2 ED / 3 HR ELEMENTS"
     ]
   },
   "source": {
@@ -70,6 +74,8 @@ const LENS_DATA = {
       "nd": 1.497,
       "vd": 81.61,
       "glass": "FCD1 (Hoya equivalent)",
+      "apd": "inferred",
+      "apdNote": "HOYA FCD1 coordinate match (νd 81.61), a fluorophosphate ED glass; Olympus lists two ED elements, and this is the clearest of them.",
       "focalLengthMm": 109.936684,
       "cemented": "D1"
     },
@@ -81,6 +87,8 @@ const LENS_DATA = {
       "nd": 1.4586,
       "vd": 90.19,
       "glass": "FCD10A (Hoya equivalent)",
+      "apd": "inferred",
+      "apdNote": "HOYA FCD10A coordinate match (νd 90.19); Olympus lists one Super ED element, and this is the only νd > 90 position.",
       "focalLengthMm": 142.960424
     },
     {
@@ -141,6 +149,8 @@ const LENS_DATA = {
       "nd": 1.59282,
       "vd": 68.62,
       "glass": "FCD505 (Hoya equivalent)",
+      "apd": "inferred",
+      "apdNote": "HOYA FCD505 coordinate match (νd 68.62), an anomalous-dispersion phosphate crown; taken as Olympus's second ED element. L10 (νd 70.44) is an ordinary FK5-class crown and stays untagged.",
       "focalLengthMm": 106.301624
     },
     {
@@ -278,27 +288,27 @@ const LENS_DATA = {
     {
       "label": "6",
       "R": -158.736,
-      "sd": 13,
+      "sd": 11.4,
       "d": 1,
       "medium": 4
     },
     {
       "label": "7",
       "R": 105.508,
-      "sd": 13,
+      "sd": 11.4,
       "d": 0.6988
     },
     {
       "label": "8",
       "R": 49.2056,
-      "sd": 13,
+      "sd": 11.2,
       "d": 3.3506,
       "medium": 5
     },
     {
       "label": "9",
       "R": -78.7386,
-      "sd": 13
+      "sd": 11.2
     },
     {
       "label": "10",
@@ -316,27 +326,27 @@ const LENS_DATA = {
     {
       "label": "12",
       "R": -1000,
-      "sd": 10,
+      "sd": 8,
       "d": 0.85,
       "medium": 7
     },
     {
       "label": "13",
       "R": 45.5732,
-      "sd": 10,
+      "sd": 8,
       "d": 1.129
     },
     {
       "label": "14",
       "R": 39.0525,
-      "sd": 11,
+      "sd": 8.5,
       "d": 2.6308,
       "medium": 8
     },
     {
       "label": "15",
       "R": -104.861,
-      "sd": 11
+      "sd": 8.5
     },
     {
       "label": "STO",
@@ -346,34 +356,34 @@ const LENS_DATA = {
     {
       "label": "17",
       "R": 523.93,
-      "sd": 11,
+      "sd": 10.3,
       "d": 2.1707,
       "medium": 9
     },
     {
       "label": "18",
       "R": -71.5233,
-      "sd": 11,
+      "sd": 10.3,
       "d": 0.2964
     },
     {
       "label": "19",
       "R": 252.397,
-      "sd": 11,
+      "sd": 10.5,
       "d": 3.8373,
       "medium": 10
     },
     {
       "label": "20",
       "R": -26.7758,
-      "sd": 11,
+      "sd": 10.5,
       "d": 0.85,
       "medium": 11
     },
     {
       "label": "21",
       "R": -105.742,
-      "sd": 11,
+      "sd": 10.5,
       "d": 1.8962
     },
     {
@@ -411,40 +421,40 @@ const LENS_DATA = {
     {
       "label": "27",
       "R": 85.6222,
-      "sd": 9,
+      "sd": 7.1,
       "d": 1.8824,
       "medium": 15
     },
     {
       "label": "28",
       "R": -65.8633,
-      "sd": 9,
+      "sd": 7.1,
       "d": 0.85,
       "medium": 16
     },
     {
       "label": "29",
       "R": 24.7345,
-      "sd": 9
+      "sd": 7.1
     },
     {
       "label": "30",
       "R": -55.0189,
-      "sd": 9.5,
+      "sd": 7.7,
       "d": 2.5659,
       "medium": 17
     },
     {
       "label": "31",
       "R": -17.4397,
-      "sd": 9.5,
+      "sd": 7.7,
       "d": 0.85,
       "medium": 18
     },
     {
       "label": "32",
       "R": -219.89,
-      "sd": 9.5
+      "sd": 7.7
     }
   ],
   "zoom": {
@@ -877,7 +887,7 @@ const LENS_DATA = {
       0.9375,
       1
     ],
-    "description": "Derived G5a focus-doublet translation to 1.5 m object-to-image distance; the patent publishes infinity only. The manufacturer's 0.9 m wide-end minimum is not reconstructed. Intermediate zoom stations follow a derived cam with G2 fixed, not the factory cam."
+    "description": "The G5a doublet (L15/L16) moves toward the image to focus closer, by up to 8.30 mm at a 1.5 m object-to-image distance. The patent publishes infinity data only, so this travel is derived paraxially. The 0.9 m minimum focus Olympus gives for the wide end is not modelled. Intermediate zoom stations follow a derived cam with G2 fixed, not the factory cam."
   },
   "gaps": {
     "5": {
@@ -10153,7 +10163,7 @@ const LENS_DATA = {
       "vd": 64.2,
       "glass": "N-BK7 equivalent",
       "gapAfterMm": 1,
-      "source": "JP2011186095A Example2 rows33\u201334"
+      "source": "JP 2011-186095 A, Example 2, surfaces 33\u201334"
     }
   ],
   "aperture": {

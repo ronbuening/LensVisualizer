@@ -20,7 +20,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Semi-diameters: the patent gives none. Values follow the Photons to Photos aperture estimates for this example,
  * reduced at surfaces 5/6 and 9/10 so that facing sags stay inside the air gaps. The stop radius is derived at f/5.6.
- * They are not measured production clear apertures.
+ * They are not measured production clear apertures. The patent's only section, Fig. 1, draws Table 2 (f = 207.3 mm);
+ * scaled by the 0.72 radius ratio to Table 5, its rims agree with every stored value within about 8 %, so none were
+ * changed. Floor-checked by real-ray trace: the 126 mm corner chief ray clears every rim.
  *
  * Glasses: Table 5 rounds nd to two decimals, so catalog identities stay unresolved apart from the class labels
  * noted per element. Focus is unit focus on the view-camera bellows; the 3.5 m close endpoint is illustrative.

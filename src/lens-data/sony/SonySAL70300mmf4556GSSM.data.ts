@@ -1,16 +1,17 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
- * JP 2009-168934 A, Example 3, Tables 3 and 3-1; probable original Sony SAL70300G.
- * Native millimetres, radii, thicknesses and nd/vd retained. 16 elements / 11 components.
- * Patent rows 1-28 include row11 stop; image label34 is a source numbering anomaly.
- * All three published infinity and 1.6m rows are unchanged. No added rear plates.
- * Zoom: intermediate G2 and G4 positions are a calculated paraxial cam reconstruction,
- * preserving linearly interpolated G1/G3/G5 positions and total track. This avoids
- * the 13.3mm defocus of naive three-station interpolation; not recovered factory cams.
- * Focus: G5 movement between infinity and1.6m is reconstructed paraxially; source endpoints
- * retained exactly. The marketed1.2m MFD is not modeled or certified.
- * Aperture uses source F4.59/5.60/5.79, not faster marketing endpoints.
- * Clear semi-diameters inferred from Figure3 and reduced where needed for real geometry.
+ * JP 2009-168934 A (Tamron), Example 3, Tables 3 and 3-1; probably the original Sony SAL70300G.
+ * Patent millimetres, radii, thicknesses and nd/vd used as printed. 16 elements / 11 groups.
+ * Patent rows 1-28 include the stop at row 11; the image plane is labelled 34, a source numbering slip.
+ * The three printed infinity and 1.6 m states are used unchanged. No rear plates listed or added.
+ * Zoom: intermediate G2 and G4 positions are a calculated paraxial cam that keeps linearly
+ * interpolated G1/G3/G5 positions and total track. This avoids the 13.3 mm defocus of plain
+ * three-station gap interpolation; it is not the factory cam.
+ * Focus: G5 positions between infinity and 1.6 m are calculated paraxially; the printed endpoints
+ * are kept. Sony's marketed 1.2 m minimum focus is not modeled.
+ * Aperture uses the patent's F4.59 / 5.60 / 5.79, not the faster marketed f/4.5-5.6.
+ * Semi-diameters estimated from Fig. 3 (wide, infinity; 0.196 mm/px at 400 dpi) and
+ * floor-checked by real-ray trace; s7 and s25 stop where their curves meet the drawn flange.
  * Glass names are close Hoya catalog equivalents, not identified production melts.
  */
 const LENS_DATA = {
@@ -18,7 +19,7 @@ const LENS_DATA = {
   "key": "sony-sal-70-300mm-f45-56-g-ssm",
   "maker": "Sony",
   "name": "SONY 70-300mm f/4.5-5.6 G SSM",
-  "subtitle": "JP 2009-168934 A \u2014 Example 3; probable original SAL70300G correlation",
+  "subtitle": "JP 2009-168934 A (Tamron) \u2014 Example 3; probable SAL70300G design",
   "catalog": {
     "lensMounts": [
       "sony-a"
@@ -42,8 +43,10 @@ const LENS_DATA = {
     },
     "specs": [
       "16 ELEMENTS / 11 GROUPS",
-      "PATENT EXAMPLE 3",
-      "1.6 m SOURCE FOCUS STATE"
+      "DESIGN f = 71.77-291.96 mm",
+      "DESIGN F/4.59-5.79",
+      "ALL SPHERICAL",
+      "1 ED ELEMENT"
     ]
   },
   "source": {
@@ -87,6 +90,8 @@ const LENS_DATA = {
       "nd": 1.497,
       "vd": 81.61,
       "glass": "FCD1 (Hoya equivalent)",
+      "apd": "inferred",
+      "apdNote": "HOYA FCD1 coordinate match (νd 81.61); Sony's construction diagram marks this position, third in G1, as the lens's one ED element.",
       "focalLengthMm": 96.131253,
       "cemented": "D1"
     },
@@ -233,33 +238,33 @@ const LENS_DATA = {
       "label": "1",
       "R": 75.0392,
       "d": 5.6833,
-      "sd": 29,
+      "sd": 25.9,
       "medium": 1
     },
     {
       "label": "2",
       "R": 617.3294,
       "d": 0.2,
-      "sd": 29
+      "sd": 25.9
     },
     {
       "label": "3",
       "R": 88.8879,
       "d": 1.4,
-      "sd": 26,
+      "sd": 25,
       "medium": 2
     },
     {
       "label": "4",
       "R": 44.0278,
       "d": 8.0931,
-      "sd": 26,
+      "sd": 25,
       "medium": 3
     },
     {
       "label": "5",
       "R": 526.7875,
-      "sd": 26
+      "sd": 25
     },
     {
       "label": "6",
@@ -302,110 +307,110 @@ const LENS_DATA = {
       "label": "12",
       "R": 29.8854,
       "d": 5.0241,
-      "sd": 11.5,
+      "sd": 11.6,
       "medium": 7
     },
     {
       "label": "13",
       "R": -268.4437,
       "d": 2.0014,
-      "sd": 11.5
+      "sd": 11.6
     },
     {
       "label": "14",
       "R": -34.6079,
       "d": 1,
-      "sd": 11.5,
+      "sd": 11.6,
       "medium": 8
     },
     {
       "label": "15",
       "R": -94.7884,
-      "sd": 11.5
+      "sd": 11.6
     },
     {
       "label": "16",
       "R": -29.8468,
       "d": 2.7103,
-      "sd": 15,
+      "sd": 12.4,
       "medium": 9
     },
     {
       "label": "17",
       "R": -23.8487,
       "d": 0.1,
-      "sd": 15
+      "sd": 12.4
     },
     {
       "label": "18",
       "R": 70.8448,
       "d": 1,
-      "sd": 13,
+      "sd": 12.4,
       "medium": 10
     },
     {
       "label": "19",
       "R": 28.8852,
       "d": 8.2977,
-      "sd": 13,
+      "sd": 12.4,
       "medium": 11
     },
     {
       "label": "20",
       "R": -20.2504,
       "d": 1,
-      "sd": 13,
+      "sd": 12.4,
       "medium": 12
     },
     {
       "label": "21",
       "R": -42.2605,
       "d": 0.1,
-      "sd": 13
+      "sd": 12.4
     },
     {
       "label": "22",
       "R": 37.757,
       "d": 3.5,
-      "sd": 14,
+      "sd": 12.4,
       "medium": 13
     },
     {
       "label": "23",
       "R": 199.3442,
-      "sd": 14
+      "sd": 12.4
     },
     {
       "label": "24",
       "R": 97.6915,
       "d": 1,
-      "sd": 10.5,
+      "sd": 11.5,
       "medium": 14
     },
     {
       "label": "25",
       "R": 26.3176,
       "d": 2.9258,
-      "sd": 10.5
+      "sd": 10.6
     },
     {
       "label": "26",
       "R": -153.4459,
       "d": 2.5953,
-      "sd": 10.5,
+      "sd": 11.5,
       "medium": 15
     },
     {
       "label": "27",
       "R": -40.0547,
       "d": 1.2,
-      "sd": 10.5,
+      "sd": 11.5,
       "medium": 16
     },
     {
       "label": "28",
       "R": 200,
-      "sd": 10.5
+      "sd": 11.5
     }
   ],
   "zoom": {
@@ -628,28 +633,28 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 1.6,
-    "description": "Published infinity and 1.6 m endpoints retained. Intermediate zoom cam is a paraxial G2/G4 compensation reconstruction; G5 focus travel is reconstructed between endpoints. Not factory mechanics or marketed 1.2 m minimum.",
+    "description": "PUBLISHED infinity and 1.6 m states at the wide, middle and tele positions. The rear group G5 moves toward the image to focus closer: 0.73 mm at wide, 1.62 mm at middle and 4.82 mm at tele for 1.6 m. Intermediate focus positions and intermediate zoom positions are calculated, not factory data. Sony's marketed minimum focus is 1.2 m; the model stops at the patent's 1.6 m.",
     "conjugates": [
       {
         "zoomStation": 0,
         "keyframe": 8,
         "objectDistanceMm": 1424.07,
         "distanceReference": "first-surface",
-        "source": "JP2009168934A Example 3, Table 3-1 d0"
+        "source": "JP 2009-168934 A, Example 3, Table 3-1 d0"
       },
       {
         "zoomStation": 20,
         "keyframe": 8,
         "objectDistanceMm": 1393.16,
         "distanceReference": "first-surface",
-        "source": "JP2009168934A Example 3, Table 3-1 d0"
+        "source": "JP 2009-168934 A, Example 3, Table 3-1 d0"
       },
       {
         "zoomStation": 40,
         "keyframe": 8,
         "objectDistanceMm": 1364.12,
         "distanceReference": "first-surface",
-        "source": "JP2009168934A Example 3, Table 3-1 d0"
+        "source": "JP 2009-168934 A, Example 3, Table 3-1 d0"
       }
     ],
     "keyframes": [

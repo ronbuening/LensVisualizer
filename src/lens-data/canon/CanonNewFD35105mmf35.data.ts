@@ -1,21 +1,24 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
- * US 4,432,615 A, Numerical Example 2 (Figure 5), Keiji Ikemori / Canon.
- * Probable Canon New FD 35-105mm f/3.5. All 28 native radii and fixed gaps retained.
- * Source stop 0.87mm ahead of R18 at infinity. Source supplies no back focal distance:
- * authored BF is the mean Gaussian BFD of the three literal source rows, 56.56200155mm.
- * Intermediate G2/G3 zoom positions are a calculated cam preserving total track,
- * not manufacturer mechanics. All three printed zoom rows remain unchanged.
- * Infinity-only: the moving finite-focus stop and macro mechanism are not reconstructed.
- * Clear apertures estimated from Fig.5 and geometric constraints; no gap-sag override.
- * Glass labels are catalog equivalents, not recovered factory melt identities.
+ * US 4,432,615 A, Numerical Example 2 (FIG. 5), Keiji Ikemori / Canon.
+ * Probably the Canon New FD 35-105mm f/3.5. All 28 radii and the fixed gaps are as printed.
+ * At infinity the patent places the stop 0.87 mm ahead of R18. The patent prints no back
+ * focal distance; the model uses 56.56200155 mm, the mean paraxial BFD of the three printed
+ * zoom positions. Those three positions are unchanged; the intermediate G2/G3 positions are
+ * computed to keep the total track and are not Canon's cam.
+ * Infinity focus only: the stop shift for finite focus and the macro setting are not modelled.
+ * Semi-diameters are estimated from FIG. 5 (wide position, about 0.094 mm/px from the R1-R28
+ * vertex span) and checked by real-ray trace. FIG. 5 draws L6's front rim meeting L5's R9;
+ * at 12.9 mm the two faces are 0.07 mm apart, which needs checks.gapSagFrac 0.97.
+ * R11/R12 and R24/R25 are held at the cross-gap limit.
+ * Glass names are catalogue equivalents chosen from nd/vd, not Canon's melt identities.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "canon-new-fd-35-105mm-f35",
   "maker": "Canon",
-  "name": "CANON New FD 35-105mm f/3.5",
-  "subtitle": "US 4,432,615 A \u2014 Numerical Example 2; infinity-only reconstruction",
+  "name": "CANON NEW FD 35-105mm f/3.5",
+  "subtitle": "US 4,432,615 A \u2014 Numerical Example 2; infinity focus only",
   "catalog": {
     "lensMounts": [
       "canon-fd"
@@ -39,8 +42,9 @@ const LENS_DATA = {
     },
     "specs": [
       "15 ELEMENTS / 13 GROUPS",
-      "EXAMPLE 2",
-      "INFINITY-ONLY"
+      "DESIGN f = 36.2-102 mm",
+      "DESIGN F/3.5",
+      "ALL SPHERICAL"
     ]
   },
   "source": {
@@ -171,7 +175,7 @@ const LENS_DATA = {
       "id": 12,
       "name": "L12",
       "label": "Element 12",
-      "type": "Biconcave Negative",
+      "type": "Plano-Concave Negative",
       "nd": 1.804,
       "vd": 46.6,
       "glass": "S-LAH65 (Ohara equivalent)",
@@ -271,14 +275,14 @@ const LENS_DATA = {
     {
       "label": "10",
       "R": 41.883,
-      "sd": 12.5,
+      "sd": 12.9,
       "d": 1.5,
       "medium": 6
     },
     {
       "label": "11",
       "R": 19.011,
-      "sd": 12.5,
+      "sd": 12.9,
       "d": 4.6
     },
     {
@@ -309,14 +313,14 @@ const LENS_DATA = {
     {
       "label": "16",
       "R": -34.387,
-      "sd": 11,
+      "sd": 9.9,
       "d": 1.4,
       "medium": 9
     },
     {
       "label": "17",
       "R": -91.235,
-      "sd": 11
+      "sd": 9.9
     },
     {
       "label": "STO",
@@ -326,40 +330,40 @@ const LENS_DATA = {
     {
       "label": "18",
       "R": 63.15,
-      "sd": 12,
+      "sd": 10.6,
       "d": 2.92,
       "medium": 10
     },
     {
       "label": "19",
       "R": -63.352,
-      "sd": 12,
+      "sd": 10.6,
       "d": 0.1
     },
     {
       "label": "20",
       "R": 28.661,
-      "sd": 11.8,
+      "sd": 10.4,
       "d": 4.69,
       "medium": 11
     },
     {
       "label": "21",
       "R": -35.874,
-      "sd": 11.8,
+      "sd": 10.4,
       "d": 1.2,
       "medium": 12
     },
     {
       "label": "22",
       "R": "flat",
-      "sd": 11.8,
+      "sd": 10.4,
       "d": 6.68
     },
     {
       "label": "23",
       "R": -159.879,
-      "sd": 9.9,
+      "sd": 11.6,
       "d": 1.5,
       "medium": 13
     },
@@ -379,20 +383,20 @@ const LENS_DATA = {
     {
       "label": "26",
       "R": -27.265,
-      "sd": 9.9,
+      "sd": 12.2,
       "d": 0.16
     },
     {
       "label": "27",
       "R": 42.353,
-      "sd": 9.9,
+      "sd": 14.2,
       "d": 3.3,
       "medium": 15
     },
     {
       "label": "28",
       "R": 4211.79,
-      "sd": 9.9,
+      "sd": 14.2,
       "d": 56.562001547735385
     }
   ],
@@ -566,7 +570,7 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 1000000000000000,
-    "description": "Infinity-only model. No finite-focus or macro cam reconstructed. 1e15 is an infinity sentinel, not physical minimum focus."
+    "description": "Only the infinity focus state is modelled. The patent's front-group focusing movement and the macro setting are not reproduced. Canon lists 1.5 m as the production minimum focus distance."
   },
   "gaps": {
     "7": {
@@ -1092,6 +1096,9 @@ const LENS_DATA = {
   },
   "layout": {
     "yScFill": 0.3
+  },
+  "checks": {
+    "gapSagFrac": 0.97
   },
   "groups": [
     {

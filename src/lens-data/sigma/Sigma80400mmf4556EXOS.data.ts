@@ -1,21 +1,24 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
- * JP 2004-061605 A, Numerical Example 1, Tomoki Kono / Sigma.
- * Probable original non-DG 80-400mm EX OS. Centered stabilization only.
- * Native radii, nd/vd, glass thicknesses and infinity/3000mm rows retained exactly.
- * Source F4.46/5.83 endpoints; middle F5.3 from published Fig.3 graph annotation.
- * Intermediate G4/G6 zoom cam and G7 focus trajectories are paraxial reconstructions,
- * not factory mechanics. 41 zoom stations; only3 published, each with its near row.
- * The 3000mm shooting-distance reference is interpreted as image-plane-based using
- * native first-order conjugate closure. No source-certified finite MTF rows authored.
- * SDs inferred from Fig.1 and geometry. No gap-sag override. Glasses are equivalents.
+ * JP 2004-061605 A, Numerical Example 1; inventor Tomoki Kono, applicant Sigma Corporation.
+ * Probably the original 2002 non-DG APO 80-400mm EX OS. The stabilizing group G3B is
+ * modeled centered only. Radii, thicknesses, nd/vd and the infinity and 3000 mm gap rows
+ * are as printed. F/4.46 and F/5.83 are printed; the middle F/5.3 is read from the Fig. 3
+ * aberration-graph label. 41 zoom stations, of which the 3 printed ones carry their
+ * 3000 mm rows; intermediate G4/G6 positions are solved paraxially, the other gaps and the
+ * intermediate G7 focus positions are interpolated or derived, not factory cam data.
+ * The printed 3000 mm shooting distance is read as object-to-image distance, because the
+ * printed rows close at that distance. No finite-distance MTF reference is given.
+ * SDs estimated from the wide-end Fig. 1 (front page, 0.183 mm/px, isotropic), floor-
+ * checked by real-ray trace; S9 / S12 stop at the drawn chamfer / flange step.
+ * No gap-sag override. Glass names are catalog equivalents.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "sigma-80-400mm-f45-56-ex-os",
   "maker": "Sigma",
-  "name": "SIGMA 80-400mm f/4.5-5.6 EX OS",
-  "subtitle": "JP 2004-061605 A \u2014 Example 1; original non-DG reconstruction",
+  "name": "SIGMA APO 80-400mm f/4.5-5.6 EX OS",
+  "subtitle": "JP 2004-061605 A \u2014 Example 1; original 2002 non-DG version",
   "catalog": {
     "lensMounts": [
       "canon-ef",
@@ -41,8 +44,10 @@ const LENS_DATA = {
     },
     "specs": [
       "20 ELEMENTS / 14 GROUPS",
-      "CENTERED OS",
-      "EXAMPLE 1"
+      "DESIGN f = 81.24-389.46 mm",
+      "DESIGN F/4.46-5.83",
+      "ALL SPHERICAL",
+      "3 SLD ELEMENTS"
     ]
   },
   "source": {
@@ -74,6 +79,8 @@ const LENS_DATA = {
       "nd": 1.497,
       "vd": 81.6,
       "glass": "FCD1 (Hoya equivalent)",
+      "apd": "inferred",
+      "apdNote": "HOYA FCD1 coordinate match (νd 81.6); published reviews list three SLD elements (two front, one rear), and this is one of the two front 1.497 / 81.6 positions.",
       "focalLengthMm": 212.318575
     },
     {
@@ -84,6 +91,8 @@ const LENS_DATA = {
       "nd": 1.497,
       "vd": 81.6,
       "glass": "FCD1 (Hoya equivalent)",
+      "apd": "inferred",
+      "apdNote": "HOYA FCD1 coordinate match (νd 81.6); published reviews list three SLD elements (two front, one rear), and this is one of the two front 1.497 / 81.6 positions.",
       "focalLengthMm": 300.890241
     },
     {
@@ -148,6 +157,8 @@ const LENS_DATA = {
       "nd": 1.497,
       "vd": 81.6,
       "glass": "FCD1 (Hoya equivalent)",
+      "apd": "inferred",
+      "apdNote": "HOYA FCD1 coordinate match (νd 81.6); published reviews list three SLD elements (two front, one rear), and this is the rear 1.497 / 81.6 position.",
       "focalLengthMm": 79.853785
     },
     {
@@ -325,7 +336,7 @@ const LENS_DATA = {
       "label": "9",
       "R": 31.6911,
       "d": 6.0012,
-      "sd": 18.5
+      "sd": 16.4
     },
     {
       "label": "10",
@@ -345,7 +356,7 @@ const LENS_DATA = {
       "label": "12",
       "R": 44.6853,
       "d": 4.7228,
-      "sd": 16
+      "sd": 14.9
     },
     {
       "label": "13",
@@ -464,33 +475,33 @@ const LENS_DATA = {
       "label": "31",
       "R": 693.3088,
       "d": 1.1834,
-      "sd": 12,
+      "sd": 12.7,
       "medium": 18
     },
     {
       "label": "32",
       "R": 31.3556,
       "d": 1.2868,
-      "sd": 12
+      "sd": 12.7
     },
     {
       "label": "33",
       "R": 31.4903,
       "d": 4.5774,
-      "sd": 12,
+      "sd": 13.2,
       "medium": 19
     },
     {
       "label": "34",
       "R": -175.192,
       "d": 1,
-      "sd": 12,
+      "sd": 13.2,
       "medium": 20
     },
     {
       "label": "35",
       "R": 67.5143,
-      "sd": 12
+      "sd": 13.2
     }
   ],
   "zoom": {
@@ -724,7 +735,7 @@ const LENS_DATA = {
       0.875,
       1
     ],
-    "description": "Source finite rows retain the printed 3000 mm object-distance condition; interpretation and derived intermediate focus documented in analysis."
+    "description": "PUBLISHED rear focus: G7 moves imageward by 1.02, 3.91 and 12.32 mm from infinity to the printed 3000 mm state at 81.24, 180.52 and 389.46 mm. Intermediate focus positions are derived, not printed. The 3 m patent state is not the lens's 1.8 m minimum focus distance."
   },
   "gaps": {
     "4": {

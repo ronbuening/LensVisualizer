@@ -19,6 +19,16 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-20",
+    type: "lens",
+    summary: "Added Canon New FD 35-105mm, Zeiss Tele-Tessar 500mm, Olympus, Sigma and Sony tele zooms",
+  },
+  {
+    date: "2026-10-20",
+    type: "improvement",
+    summary: "Rebuilt the Rodenstock Apo-Sironar-W 150mm from the patent's seven-element example",
+  },
+  {
     date: "2026-10-19",
     type: "fix",
     summary: "Fixed close-focus distortion readings, which were measured against an infinity reference",

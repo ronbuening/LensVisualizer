@@ -1,18 +1,20 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** US3134841A sole table, Helmut Knutti / Carl Zeiss.
- * Literal normalized source scaled by source-stated500mm. No radius/material fitting.
- * Numerical source stop split159.5+5mm preserved. Iris derived from f/8.
- * Gaussian infinity BF171.363385mm used instead of printed171.4mm; difference documented.
- * Unit-focus cam to8.5m image-plane distance is derived, not recovered factory motion.
- * Clear semi-diameters43mm front/16mm rear are inferred; no gap-sag override.
- * Probable historical Hasselblad C Cat.10 46 03, not all later500mm revisions.
+/** US 3,134,841 A sole numerical table (Helmut Knutti, Carl Zeiss).
+ * The table is normalized to f = 1 and is scaled ×500 to the 500 mm focal length the patent states. No radius or
+ * glass is fitted.
+ * The printed 159.5 + 5 mm split of the long air gap around the diaphragm is kept. The iris radius is derived from f/8.
+ * Back focus is the Gaussian 171.363385 mm, not the printed 171.4 mm (−0.037 mm).
+ * Focus is a derived unit extension to the maker's 8.5 m object-to-image distance, not a recovered factory cam.
+ * Semi-diameters estimated from the patent figure (p. 1, 0.250 mm/px at 300 dpi): L1 39.4, front doublet 37.3,
+ * rear doublet 12.0 mm; floor-checked by real-ray trace (f/8 axial beam clears); no gap-sag override.
+ * Probable production lens: the historical Hasselblad C version, Cat. No. 10 46 03, not every later 500 mm revision.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "carl-zeiss-tele-tessar-500mm-f8-c",
   "maker": "Carl Zeiss Oberkochen",
-  "name": "CARL ZEISS Tele-Tessar 500mm f/8 C",
-  "subtitle": "US 3,134,841 A \u2014 sole table; probable Cat.10 46 03 historical Hasselblad C",
+  "name": "CARL ZEISS TELE-TESSAR 500mm f/8 C",
+  "subtitle": "US 3,134,841 A \u2014 sole example; probable Hasselblad C version (Cat. No. 10 46 03)",
   "catalog": {
     "lensMounts": [
       "hasselblad-v"
@@ -30,8 +32,9 @@ const LENS_DATA = {
     },
     "specs": [
       "5 ELEMENTS / 3 GROUPS",
-      "PRINTED STOP POSITION",
-      "SPHERICAL TELEPHOTO"
+      "DESIGN f = 500.09 mm",
+      "DESIGN F/8",
+      "ALL SPHERICAL"
     ]
   },
   "source": {
@@ -52,7 +55,7 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.51009,
       "vd": 63.37,
-      "glass": "BK1 (Sumita equivalent)",
+      "glass": "BK1 (Schott legacy type; SUMITA catalog curve)",
       "focalLengthMm": 406.344974
     },
     {
@@ -104,34 +107,34 @@ const LENS_DATA = {
     {
       "label": "1",
       "R": 258.52000000000004,
-      "sd": 43,
+      "sd": 39.4,
       "d": 12,
       "medium": 1
     },
     {
       "label": "2",
       "R": -1029.1999999999998,
-      "sd": 43,
+      "sd": 39.4,
       "d": 0.2
     },
     {
       "label": "3",
       "R": 185.67000000000002,
-      "sd": 43,
+      "sd": 37.3,
       "d": 12,
       "medium": 2
     },
     {
       "label": "4",
       "R": -771.79,
-      "sd": 43,
+      "sd": 37.3,
       "d": 8,
       "medium": 3
     },
     {
       "label": "5",
       "R": 453.16,
-      "sd": 43,
+      "sd": 37.3,
       "d": 159.5
     },
     {
@@ -142,21 +145,21 @@ const LENS_DATA = {
     {
       "label": "6",
       "R": 122.32,
-      "sd": 16,
+      "sd": 12,
       "d": 3.5,
       "medium": 4
     },
     {
       "label": "7",
       "R": -298.54,
-      "sd": 16,
+      "sd": 12,
       "d": 3,
       "medium": 5
     },
     {
       "label": "8",
       "R": 65.88,
-      "sd": 16
+      "sd": 12
     }
   ],
   "focus": {
@@ -180,7 +183,7 @@ const LENS_DATA = {
       0.9375,
       1
     ],
-    "description": "Derived unit-focus extension to manufacturer8.5m image-plane distance. No factory motion law or published finite prescription. Gaussian infinity BF171.363385mm used, printed171.4mm retained in evidence."
+    "description": "The whole lens moves forward as a unit. The back gap grows from 171.36 mm at infinity to 206.21 mm at the maker's 8.5 m minimum distance, measured from object to image. This extension is derived: the patent prints no finite-distance state, and the factory focusing mechanism is not modelled. The infinity back focus is the Gaussian value; the patent prints 171.4 mm."
   },
   "gaps": {
     "8": {

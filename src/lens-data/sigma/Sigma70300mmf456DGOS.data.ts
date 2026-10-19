@@ -1,16 +1,21 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** JP2010217838A Example1, Sigma / Tomoki Kono.
- * Native spherical table, stop11 and all3infinity/3finite test rows retained.
- * Derived81-station zoom compensation and G1 focus interpolation to manufacturer1.5m.
- * Native finite Obj distances referenced to first surface, mapped to shared reciprocal-distance keyframes.
- * No factory cam or off-axis OS simulation. Inferred clear rims; default gap-sag retained.
+/** JP 2010-217838 A, Example 1 (Sigma Corporation; inventor Tomoki Kono).
+ * All-spherical table as printed, stop at row 11; the three printed infinity states and three finite-object states
+ * are kept. 81 zoom stations: intermediate air gaps interpolated, back focus solved paraxially. G1 focus travel is
+ * derived down to Sigma's 1.5 m minimum focus. The printed finite object distances are measured from the first
+ * surface and are mapped onto shared reciprocal-distance focus positions. No factory cam data; the OS group (G2) is
+ * modelled centred, without stabilizing shift.
+ * NOTE ON SEMI-DIAMETERS: estimated from Fig. 1 (wide end, isotropic, 7.10 px/mm at 300 dpi), floor-checked by
+ * real-ray trace at every zoom station and at 1.5 m. S8/S9 (L5 rear, L6 front) nearly meet at the rim: 11.3 carries
+ * the on-axis f/5.84 beam with 0.16 mm between the faces and needs checks.gapSagFrac 0.95. S26 follows the drawn
+ * optical extent inside L15's flange.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "sigma-70-300mm-f4-56-dg-os",
   "maker": "Sigma",
-  "name": "SIGMA 70\u2013300mm f/4\u20135.6 DG OS",
-  "subtitle": "JP 2010-217838 A \u2014 Example1; centered OS, published finite states retained",
+  "name": "SIGMA 70-300mm f/4-5.6 DG OS",
+  "subtitle": "JP 2010-217838 A \u2014 Example 1; OS group modelled centred",
   "catalog": {
     "lensMounts": [
       "canon-ef",
@@ -38,8 +43,10 @@ const LENS_DATA = {
     },
     "specs": [
       "16 ELEMENTS / 11 GROUPS",
-      "EXAMPLE 1",
-      "CENTERED OS"
+      "DESIGN f = 70.33-290.5 mm",
+      "DESIGN F/4.15-5.84",
+      "ALL SPHERICAL",
+      "1 SLD ELEMENT"
     ]
   },
   "source": {
@@ -82,6 +89,8 @@ const LENS_DATA = {
       "nd": 1.497,
       "vd": 81.6,
       "glass": "FCD1 (Hoya equivalent)",
+      "apd": "inferred",
+      "apdNote": "HOYA FCD1 coordinate match (νd 81.6); Sigma's construction diagram shades this position as the lens's one SLD element.",
       "focalLengthMm": 96.229251,
       "cemented": "D1"
     },
@@ -260,34 +269,34 @@ const LENS_DATA = {
     {
       "label": "6",
       "R": -231.4665,
-      "sd": 11,
+      "sd": 12.9,
       "d": 1,
       "medium": 4
     },
     {
       "label": "7",
       "R": 20.2932,
-      "sd": 11,
+      "sd": 12.9,
       "d": 3.7666,
       "medium": 5
     },
     {
       "label": "8",
       "R": 43.8137,
-      "sd": 11,
+      "sd": 11.3,
       "d": 2.9572
     },
     {
       "label": "9",
       "R": -49.1641,
-      "sd": 11,
+      "sd": 11.3,
       "d": 1,
       "medium": 6
     },
     {
       "label": "10",
       "R": 242.8808,
-      "sd": 11
+      "sd": 12.6
     },
     {
       "label": "STO",
@@ -329,27 +338,27 @@ const LENS_DATA = {
     {
       "label": "17",
       "R": 32.8852,
-      "sd": 15,
+      "sd": 13.8,
       "d": 4.3054,
       "medium": 10
     },
     {
       "label": "18",
       "R": 721.8645,
-      "sd": 15,
+      "sd": 13.8,
       "d": 2.6291
     },
     {
       "label": "19",
       "R": 84.3278,
-      "sd": 15,
+      "sd": 13.1,
       "d": 3.8529,
       "medium": 11
     },
     {
       "label": "20",
       "R": -127.3455,
-      "sd": 15,
+      "sd": 13.1,
       "d": 0.8206
     },
     {
@@ -375,14 +384,14 @@ const LENS_DATA = {
     {
       "label": "24",
       "R": 110.3244,
-      "sd": 13,
+      "sd": 11.7,
       "d": 2.7086,
       "medium": 14
     },
     {
       "label": "25",
       "R": -72.6753,
-      "sd": 13,
+      "sd": 11.7,
       "d": 2.2357
     },
     {
@@ -395,14 +404,14 @@ const LENS_DATA = {
     {
       "label": "27",
       "R": -17.3303,
-      "sd": 10.5,
+      "sd": 12.8,
       "d": 0.8,
       "medium": 16
     },
     {
       "label": "28",
       "R": -80.3992,
-      "sd": 10.5
+      "sd": 12.8
     }
   ],
   "zoom": {
@@ -852,24 +861,24 @@ const LENS_DATA = {
         "keyframe": 9,
         "objectDistanceMm": 2945.7,
         "distanceReference": "first-surface",
-        "source": "JP2010217838A Example1 finite-object table; Obj defined at paragraph0040"
+        "source": "JP 2010-217838 A, Example 1 finite-object table; object distance defined in ¶0040"
       },
       {
         "zoomStation": 40,
         "keyframe": 4,
         "objectDistanceMm": 5998.33,
         "distanceReference": "first-surface",
-        "source": "JP2010217838A Example1 finite-object table; Obj defined at paragraph0040"
+        "source": "JP 2010-217838 A, Example 1 finite-object table; object distance defined in ¶0040"
       },
       {
         "zoomStation": 80,
         "keyframe": 2,
         "objectDistanceMm": 11779.36,
         "distanceReference": "first-surface",
-        "source": "JP2010217838A Example1 finite-object table; Obj defined at paragraph0040"
+        "source": "JP 2010-217838 A, Example 1 finite-object table; object distance defined in ¶0040"
       }
     ],
-    "description": "Published finite states retain source first-surface Obj values. Intermediate zoom BF and G1 focus travel to manufacturer1.5m image-plane distance are derived, not factory cams. Source BF rounding differences retained. OS centered only."
+    "description": "PUBLISHED front-group focus: G1 moves objectward, D5 widening to the printed 13.9067, 41.2722 and 60.2419 mm at 70.33, 147.08 and 290.5 mm for object distances of 2945.7, 5998.33 and 11779.36 mm from the first surface. Travel to Sigma's 1.5 m minimum focus (up to 16.6 mm) and the intermediate-zoom back focus are derived paraxially, not factory cam data; the printed states are not the minimum focus. The patent's small finite/infinity back-focus rounding differences are kept. The OS group is modelled centred."
   },
   "gaps": {
     "5": {
@@ -7760,6 +7769,9 @@ const LENS_DATA = {
   ],
   "layout": {
     "yScFill": 0.3
+  },
+  "checks": {
+    "gapSagFrac": 0.95
   }
 } satisfies LensDataV2Input;
 export default LENS_DATA;

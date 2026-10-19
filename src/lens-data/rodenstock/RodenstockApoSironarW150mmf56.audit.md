@@ -65,3 +65,48 @@ seven-element model because those elements keep the same rounded nd/νd; the sem
 - Open items: no manufacturer MTF or distortion data for the 150 mm lens; glass identities and partial dispersions
   unresolved; semi-diameters are Photons to Photos estimates reduced at S5/6 and S9/10, not measured apertures; the
   3.5 m close-focus endpoint is illustrative.
+
+## 2026-10-19 — Semi-diameter pass against the patent figure
+
+- Source: `patents/DE3907928C2.pdf`, p. 6 (Zeichnungen Seite 1), Fig. 1, native 300 dpi raster. The text (p. 2)
+  describes Fig. 1 only as a section through a lens according to the invention; it is the patent's only section.
+- Which example it draws: the twelve vertex crossings on the axis fit Table 2 at 11.88 px/mm with an rms spacing error
+  of 1.8 %, against 9.7–14.3 % for Tables 1, 3, 4 and 5 (Table 5 alone: 10.9 %, with L6 at 1.23× and L3 at 0.80×).
+  Fig. 1 is therefore Example 2 (f = 207.3 mm), not the modeled Example 5, and was used with care.
+- Scale: Table 5's radii are 0.70–0.76× Table 2's (median 0.72), its thicknesses about 0.65×. Rims were mapped with
+  the radius ratio, 11.88 / 0.72 = 16.5 px per Table 5 mm; the focal-length ratio (0.73) or track ratio (0.69) would
+  move every figure value by +2 % or −5 %.
+- Rims were read on the side without leader lines (front group below the axis, rear group above) and checked on the
+  other side; the two sides agree within 2 %. The figure draws L1, L2 and L4 with a bevel from the front-face tip down
+  to a lower rear face, L3 and L6 as thick-edged negative menisci with a long chamfer from the concave face to a flat
+  top, and L5 with a knife edge meeting L6's front rim. Bevels, chamfers and flat tops were excluded.
+
+| Surface | Stored sd (mm) | Fig. 1 rim (px) | Fig. 1 scaled (mm) | Figure / stored |
+|---|---:|---:|---:|---:|
+| 1 | 25.555 | 410 | 24.8 | 0.97 |
+| 2 | 24.23 | 390 | 23.6 | 0.97 |
+| 3 | 22.8 | 367 | 22.2 | 0.98 |
+| 4 | 19.325 | 338 | 20.5 | 1.06 |
+| 5 | 13.2 | 222 | 13.5 | 1.02 |
+| 6 | 13.2 | 220 | 13.3 | 1.01 |
+| 7 | 12.67 | 195 | 11.8 | 0.93 |
+| 8 | 13.17 | 219 | 13.3 | 1.01 |
+| 9 | 12.5 | 217 | 13.2 | 1.05 |
+| 10 | 12.5 | 211 | 12.8 | 1.02 |
+| 11 | 17.345 | 299 (L6 top) | 18.1 | 1.04 |
+| 12 | 20.255 | 339 | 20.5 | 1.01 |
+
+- Result: median figure/stored 1.01, every row within 0.93–1.06, and the step order between neighbours matches the
+  figure throughout. No `sd` was changed. The largest departures are s4 (+6 %, the figure's L2 rear and L3 flat top
+  sit slightly higher) and s7 (−7 %, the figure bevels L4's rear face lower); both are inside the noise of a figure
+  that draws a different example at an uncertain ±4 % scale. Fig. 1 draws L7's front face above L6's top (about
+  20.4 mm against 18.1 mm); one shared `sd` at surface 11 cannot show that step, so it keeps the junction value.
+- Clearance (unchanged): at f/5.6 the axial marginal ray reaches 13.22 mm at s1 and 9.76–11.23 mm behind it, all
+  inside the rims; the 126 mm corner chief ray (40.52°) clears every rim, the tightest margins being s7 (10.85 of
+  12.67 mm), s10 (11.79 of 12.5) and s5 (12.64 of 13.2). At f/22 the full corner bundle is vignetted 46 % at s9,
+  56 % at s10 and 15 % at s11. The engine keeps a 40° half-field, f/5.6 and a 10.03 mm stop radius; its f/5.6
+  transmission falls to 82 % at 20° and 11.5 % at 40°. The surface validator, image-circle floor and field-coverage
+  (98 %, limited by the declared 40° projection, corner clear) pass as before.
+- Live render at infinity and at the 3.5 m endpoint matches Fig. 1's proportions: chamfered L3 and L6, small L4/L5
+  pair around the stop, L7 smaller than L1.
+- Limitation: no figure of Example 5 exists, so these rims stay estimates checked against a sibling drawing.

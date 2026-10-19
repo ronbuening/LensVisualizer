@@ -11,18 +11,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **961** lenses scanned
-- **948** visible lenses scanned
-- **642** lenses fully covered by trusted chromatic data
-- **640** visible lenses fully covered by trusted chromatic data
-- **635** lenses fully covered by strict Sellmeier data
-- **633** visible lenses fully covered by strict Sellmeier data
+- **968** lenses scanned
+- **954** visible lenses scanned
+- **648** lenses fully covered by trusted chromatic data
+- **646** visible lenses fully covered by trusted chromatic data
+- **641** lenses fully covered by strict Sellmeier data
+- **639** visible lenses fully covered by strict Sellmeier data
 - **7** lenses fully covered only after measured line-index data
 - **7** visible lenses fully covered only after measured line-index data
-- **10144 / 10929** non-air surfaces use strict catalog Sellmeier data
+- **10236 / 11026** non-air surfaces use strict catalog Sellmeier data
 - **92.8%** strict Sellmeier surface coverage overall
-- **10157 / 10929** non-air surfaces use trusted chromatic data
-- **92.9%** trusted chromatic coverage overall
+- **10249 / 11026** non-air surfaces use trusted chromatic data
+- **93.0%** trusted chromatic coverage overall
 - **261 / 331** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -334,6 +334,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) | 20/20 | 20 | 20/20 |
 | [NIKON ZOOM-NIKKOR AUTO 50-300mm f/4.5](../../src/lens-data/nikon/NikonZoomNikkorAuto50300mmf45.data.ts) | 20/20 | 20 | 20/20 |
 | [SIGMA 70-200mm f/2.8 DG DN OS | Sports](../../src/lens-data/sigma/Sigma70200mmf28DGDNOS.data.ts) | 20/20 | 20 | 20/20 |
+| [SIGMA APO 80-400mm f/4.5-5.6 EX OS](../../src/lens-data/sigma/Sigma80400mmf4556EXOS.data.ts) | 20/20 | 20 | 20/20 |
 | [SONY FE 24-70mm f/2.8 GM II](../../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) | 20/20 | 20 | 20/20 |
 | [TAMRON SP 150-600mm f/5-6.3 Di VC USD (A011)](../../src/lens-data/tamron/TamronSPA011150600mmf563VC.data.ts) | 20/20 | 20 | 20/20 |
 | [CANON EF 70-300mm f/4-5.6 L IS USM](../../src/lens-data/canon/CanonEF70300mmf4556L.data.ts) | 19/19 | 19 | 19/19 |
@@ -361,6 +362,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON AF-S NIKKOR 600mm f/4 E FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor600mmf4EFLEDVR.data.ts) | 18/18 | 18 | 18/18 |
 | [NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor80200mmf28DIFED.data.ts) | 18/18 | 18 | 18/18 |
 | [NIKON NIKKOR Z 70-200mm f/2.8 VR S II](../../src/lens-data/nikon/NikonNikkorZ70200mmf28VRSII.data.ts) | 18/18 | 18 | 18/18 |
+| [OLYMPUS M.ZUIKO DIGITAL ED 75-300mm f/4.8-6.7](../../src/lens-data/olympus/OlympusMZuiko75300mmf4867.data.ts) | 18/18 | 18 | 18/18 |
 | [OM SYSTEM M.ZUIKO DIGITAL ED 90mm f/3.5 MACRO IS PRO](../../src/lens-data/olympus/OMSystem90mmF35MacroISPRO.data.ts) | 18/18 | 18 | 18/18 |
 | [PANASONIC LUMIX S PRO 24-70mm f/2.8](../../src/lens-data/panasonic/PanasonicLumixSPro2470mmf28.data.ts) | 18/18 | 18 | 18/18 |
 | [PENTAX DA* 50-135mm f/2.8 ED [IF] SDM](../../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) | 18/18 | 18 | 18/18 |
@@ -445,7 +447,9 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [PANASONIC LEICA DC VARIO-ELMARIT 8.8-176mm f/2.8-4.5 ASPH. (Panasonic Lumix FZ2500 / FZ2000 / FZH1)](../../src/lens-data/panasonic/LeicaDCVarioElmarit88176mmf2845ASPHPanasonicFZ2500FZ2000FZH1.data.ts) | 16/16 | 16 | 16/16 |
 | [SIGMA 16mm f/1.4 DC DN | Contemporary](../../src/lens-data/sigma/Sigma16mmf14DCDN.data.ts) | 16/16 | 16 | 16/16 |
 | [SIGMA 40mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/SigmaArt40mmf14.data.ts) | 16/16 | 16 | 16/16 |
+| [SIGMA 70-300mm f/4-5.6 DG OS](../../src/lens-data/sigma/Sigma70300mmf456DGOS.data.ts) | 16/16 | 16 | 16/16 |
 | [SIGMA MACRO 105mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro105mmf28OSHSM.data.ts) | 16/16 | 16 | 16/16 |
+| [SONY 70-300mm f/4.5-5.6 G SSM](../../src/lens-data/sony/SonySAL70300mmf4556GSSM.data.ts) | 16/16 | 16 | 16/16 |
 | [SONY FE 20-70mm f/4 G](../../src/lens-data/sony/SonyFE2070mmf4G.data.ts) | 16/16 | 16 | 16/16 |
 | [SONY FE 8-14mm f/3.5 Fisheye G](../../src/lens-data/sony/SonyFE814mmf35FisheyeG.data.ts) | 16/16 | 16 | 16/16 |
 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) | 16/16 | 16 | 16/16 |
@@ -455,6 +459,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [CANON EF 28-105mm f/3.5-4.5 II USM](../../src/lens-data/canon/CanonEF28105mmf3545II.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON EF 70-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF70300mmf456ISUSM.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON EF-S 55-250mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFS55250mmf456ISSTM.data.ts) | 15/15 | 15 | 15/15 |
+| [CANON NEW FD 35-105mm f/3.5](../../src/lens-data/canon/CanonNewFD35105mmf35.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON RF 24mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF24mmF14LVCM.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON RF 28-70mm f/2.8 IS STM](../../src/lens-data/canon/CanonRF2870mmf28.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) | 15/15 | 15 | 15/15 |
@@ -880,6 +885,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [CARL ZEISS JENA BIOMETAR 80mm f/2.8](../../src/lens-data/carl-zeiss-jena/ZeissBiometar80mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [CARL ZEISS PLANAR 80mm f/2.8 (6×6)](../../src/lens-data/carl-zeiss-oberkochen/ZeissPlanar2880.data.ts) | 5/5 | 5 | 5/5 |
 | [CARL ZEISS PLANAR 80mm f/2.8 (Graflex XL)](../../src/lens-data/carl-zeiss-oberkochen/ZeissPlanar80mmf28GraflexXL.data.ts) | 5/5 | 5 | 5/5 |
+| [CARL ZEISS TELE-TESSAR 500mm f/8 C](../../src/lens-data/carl-zeiss-oberkochen/ZeissTeleTessar500mmf8C.data.ts) | 5/5 | 5 | 5/5 |
 | [KONICA HEXANON AR 35mm f/2.8](../../src/lens-data/konica/KonicaHexanonAR35mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [LEITZ COLORPLAN 90mm f/2.5 (5-element)](../../src/lens-data/leica/LeicaColorplan90mmf25.data.ts) | 5/5 | 5 | 5/5 |
@@ -1244,7 +1250,7 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 276 | [VOIGTLÄNDER APO-LANTHAR 50mm f/2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | 40.0% | 40.0% | 4/10 | 4/10 | 6 | abbe: 6 |
 |  | **35-39.9% coverage** |  |  |  |  |  |  |
 | 277 | [LAOWA 100mm f/2.8 Tilt-Shift 1× Macro](../../src/lens-data/laowa/Laowa100mmf28TiltShift1xMacro.data.ts) | 38.5% | 38.5% | 5/13 | 5/13 | 8 | abbe: 8 |
-| 278 | [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) | 37.5% | 37.5% | 3/8 | 3/8 | 5 | abbe: 5 |
+| 278 | [RODENSTOCK APO-SIRONAR-W 150mm f/5.6 (archived A1 reconstruction)](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56A1Reconstruction.data.ts) *(hidden)* | 37.5% | 37.5% | 3/8 | 3/8 | 5 | abbe: 5 |
 |  | **30-34.9% coverage** |  |  |  |  |  |  |
 | 279 | [LEICA TELYT-S 800mm f/6.3](../../src/lens-data/leica/LeicaTelytS800mmf63.data.ts) | 33.3% | 33.3% | 1/3 | 1/3 | 2 | abbe: 2 |
 | 280 | [CARL ZEISS JENA SONNAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50f2.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
@@ -1254,37 +1260,38 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 |  | **25-29.9% coverage** |  |  |  |  |  |  |
 | 284 | [CARL ZEISS JENA SONNAR 50mm f/1.5](../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.ts) | 28.6% | 28.6% | 2/7 | 2/7 | 5 | abbe: 5 |
 | 285 | [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) | 28.6% | 28.6% | 2/7 | 2/7 | 5 | abbe: 5 |
+| 286 | [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) | 28.6% | 28.6% | 2/7 | 2/7 | 5 | abbe: 5 |
 |  | **20-24.9% coverage** |  |  |  |  |  |  |
-| 286 | [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) | 22.2% | 22.2% | 2/9 | 2/9 | 7 | abbe: 7 |
-| 287 | [LEICA ELMARIT-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) | 20.0% | 20.0% | 1/5 | 1/5 | 4 | abbe: 4 |
-| 288 | [LEICA SUMMICRON-SL 50mm f/2 ASPH.](../../src/lens-data/leica/LeicaSummicronSl50mmF2Asph.data.ts) | 20.0% | 20.0% | 2/10 | 2/10 | 8 | abbe: 8 |
+| 287 | [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) | 22.2% | 22.2% | 2/9 | 2/9 | 7 | abbe: 7 |
+| 288 | [LEICA ELMARIT-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) | 20.0% | 20.0% | 1/5 | 1/5 | 4 | abbe: 4 |
+| 289 | [LEICA SUMMICRON-SL 50mm f/2 ASPH.](../../src/lens-data/leica/LeicaSummicronSl50mmF2Asph.data.ts) | 20.0% | 20.0% | 2/10 | 2/10 | 8 | abbe: 8 |
 |  | **15-19.9% coverage** |  |  |  |  |  |  |
-| 289 | [KODAK AERO EKTAR 6 in f/3.5](../../src/lens-data/kodak/KodakAeroEktar6inf35.data.ts) | 16.7% | 16.7% | 1/6 | 1/6 | 5 | abbe: 5 |
-| 290 | [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) | 16.7% | 16.7% | 1/6 | 1/6 | 5 | abbe: 5 |
+| 290 | [KODAK AERO EKTAR 6 in f/3.5](../../src/lens-data/kodak/KodakAeroEktar6inf35.data.ts) | 16.7% | 16.7% | 1/6 | 1/6 | 5 | abbe: 5 |
+| 291 | [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) | 16.7% | 16.7% | 1/6 | 1/6 | 5 | abbe: 5 |
 |  | **10-14.9% coverage** |  |  |  |  |  |  |
-| 291 | [APPLE WIDE 4.36mm f/1.6 (Apple iPhone 12)](../../src/lens-data/apple/AppleiPhone12MainWideCameraLens.data.ts) | 14.3% | 14.3% | 1/7 | 1/7 | 6 | abbe: 6 |
+| 292 | [APPLE WIDE 4.36mm f/1.6 (Apple iPhone 12)](../../src/lens-data/apple/AppleiPhone12MainWideCameraLens.data.ts) | 14.3% | 14.3% | 1/7 | 1/7 | 6 | abbe: 6 |
 |  | **0-4.9% coverage** |  |  |  |  |  |  |
-| 292 | [REFERENCE Mangin Second-Surface Mirror](../../src/lens-data/reference/ReferenceManginSecondSurfaceMirror.data.ts) *(hidden)* | 0.0% | 0.0% | 0/1 | 0/1 | 1 | abbe: 1 |
-| 293 | [NIKON UV-NIKKOR AUTO 55mm f/4](../../src/lens-data/nikon/NikonUvNikkor55mmf4.data.ts) | 0.0% | 0.0% | 0/3 | 0/3 | 3 | abbe: 3 |
-| 294 | [CARL ZEISS JENA TESSAR 144mm f/5.5](../../src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
-| 295 | [FUJIFILM FUJINAR 210mm f/4.5](../../src/lens-data/fujifilm/FujifilmFujinar210mmf45.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
-| 296 | [VOIGTLÄNDER CINE-TELE-ANASTIGMAT 100mm f/4.5 (patent model)](../../src/lens-data/voigtlander/VoigtlanderCineTeleAnastigmat100mmf45.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
-| 297 | [SCHNEIDER-KREUZNACH TELE-XENAR 180mm f/4.5](../../src/lens-data/schneider-kreuznach/SchneiderTeleXenar180mmf45.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
-| 298 | [VOIGTLÄNDER DYNAR 100mm f/6](../../src/lens-data/voigtlander/VoigtlanderDynarF6.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | constant: 5 |
-| 299 | [VOIGTLÄNDER HELIAR (Symmetric) f/4](../../src/lens-data/voigtlander/VoigtlanderHeliar.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
-| 300 | [VOIGTLÄNDER HELIAR 100mm f/4.5 (Second Asymmetric Form)](../../src/lens-data/voigtlander/VoigtlanderHeliarF45SecondAsymmetric.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | constant: 5 |
-| 301 | [VOIGTLÄNDER TELE-DYNAR 100mm f/6.3 (patent-normalized)](../../src/lens-data/voigtlander/VoigtlanderTeleDynar100mmf63.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
-| 302 | [APPLE WIDE 4.10mm f/1.8 (Apple iPhone 7)](../../src/lens-data/apple/AppleiPhone7WideCameraLens.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 303 | [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 304 | [MEYER OPTIK GÖRLITZ KINO-PLASMAT 100mm f/2](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz100mmf2KinoPlasmat.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | constant: 6 |
-| 305 | [MINOLTA AUTO TELE ROKKOR-PF 100mm f/2](../../src/lens-data/minolta/Minolta100mmf2AutoTeleRokkor.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 306 | [CARL ZEISS JENA PI-FLEKTOGON 30mm f/2.8 (1975 e-line reconstruction)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPIFlektogon30mmf28Printed1975ELine.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | constant: 7 |
-| 307 | [SAMSUNG 4.3mm f/1.5 (Samsung Galaxy S9)](../../src/lens-data/samsung/SamsungGalaxyS9MainWideCameraLens.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 308 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 309 | [THYPOCH KSANA 21mm f/3.5 ASPH.](../../src/lens-data/thypoch/ThypochKsana21mmf35.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
-| 310 | [THYPOCH SIMERA 50mm f/1.4 ASPH.](../../src/lens-data/thypoch/ThypochSimera50mmf14.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
-| 311 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
-| 312 | [CANON EF 75-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF75300mmf456ISUSM.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
+| 293 | [REFERENCE Mangin Second-Surface Mirror](../../src/lens-data/reference/ReferenceManginSecondSurfaceMirror.data.ts) *(hidden)* | 0.0% | 0.0% | 0/1 | 0/1 | 1 | abbe: 1 |
+| 294 | [NIKON UV-NIKKOR AUTO 55mm f/4](../../src/lens-data/nikon/NikonUvNikkor55mmf4.data.ts) | 0.0% | 0.0% | 0/3 | 0/3 | 3 | abbe: 3 |
+| 295 | [CARL ZEISS JENA TESSAR 144mm f/5.5](../../src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
+| 296 | [FUJIFILM FUJINAR 210mm f/4.5](../../src/lens-data/fujifilm/FujifilmFujinar210mmf45.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
+| 297 | [VOIGTLÄNDER CINE-TELE-ANASTIGMAT 100mm f/4.5 (patent model)](../../src/lens-data/voigtlander/VoigtlanderCineTeleAnastigmat100mmf45.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
+| 298 | [SCHNEIDER-KREUZNACH TELE-XENAR 180mm f/4.5](../../src/lens-data/schneider-kreuznach/SchneiderTeleXenar180mmf45.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
+| 299 | [VOIGTLÄNDER DYNAR 100mm f/6](../../src/lens-data/voigtlander/VoigtlanderDynarF6.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | constant: 5 |
+| 300 | [VOIGTLÄNDER HELIAR (Symmetric) f/4](../../src/lens-data/voigtlander/VoigtlanderHeliar.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
+| 301 | [VOIGTLÄNDER HELIAR 100mm f/4.5 (Second Asymmetric Form)](../../src/lens-data/voigtlander/VoigtlanderHeliarF45SecondAsymmetric.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | constant: 5 |
+| 302 | [VOIGTLÄNDER TELE-DYNAR 100mm f/6.3 (patent-normalized)](../../src/lens-data/voigtlander/VoigtlanderTeleDynar100mmf63.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
+| 303 | [APPLE WIDE 4.10mm f/1.8 (Apple iPhone 7)](../../src/lens-data/apple/AppleiPhone7WideCameraLens.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 304 | [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 305 | [MEYER OPTIK GÖRLITZ KINO-PLASMAT 100mm f/2](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz100mmf2KinoPlasmat.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | constant: 6 |
+| 306 | [MINOLTA AUTO TELE ROKKOR-PF 100mm f/2](../../src/lens-data/minolta/Minolta100mmf2AutoTeleRokkor.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 307 | [CARL ZEISS JENA PI-FLEKTOGON 30mm f/2.8 (1975 e-line reconstruction)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPIFlektogon30mmf28Printed1975ELine.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | constant: 7 |
+| 308 | [SAMSUNG 4.3mm f/1.5 (Samsung Galaxy S9)](../../src/lens-data/samsung/SamsungGalaxyS9MainWideCameraLens.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 309 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 310 | [THYPOCH KSANA 21mm f/3.5 ASPH.](../../src/lens-data/thypoch/ThypochKsana21mmf35.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
+| 311 | [THYPOCH SIMERA 50mm f/1.4 ASPH.](../../src/lens-data/thypoch/ThypochSimera50mmf14.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
+| 312 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
+| 313 | [CANON EF 75-300mm f/4-5.6 IS USM](../../src/lens-data/canon/CanonEF75300mmf456ISUSM.data.ts) | 0.0% | 0.0% | 0/15 | 0/15 | 15 | abbe: 15 |
 
 ## Missing Surface Details
 
@@ -3215,16 +3222,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 19 | Element 11 | abbe | `Unmatched (native nd=1.90326, vd=27.29; supplier unconfirmed)` | Explicit unmatched/proprietary annotation |
 | 23 | Element 13 | abbe | `Unmatched (native nd=1.87156, vd=41.46; supplier unconfirmed)` | Explicit unmatched/proprietary annotation |
 
-### [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) - 37.5% trusted (3/8); 37.5% Sellmeier (3/8) - DE 3,907,928 A1
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (520642 patent-rounded crown; no unique catalog identity)` | Explicit unmatched/proprietary annotation |
-| 4 | Element 3 | abbe | `Unmatched (dense lanthanum/barium flint class; patent-rounded nd=1.69, vd=49.6)` | Explicit unmatched/proprietary annotation |
-| 9 | Element 6 | abbe | `Unmatched (460658 patent-rounded fluor-crown; no unique catalog identity)` | Explicit unmatched/proprietary annotation |
-| 11 | Element 7 | abbe | `Unmatched (650396 patent-rounded short flint; no unique catalog identity)` | Explicit unmatched/proprietary annotation |
-| 12 | Element 8 | abbe | `Unmatched (dense crown / short-flint class; patent-rounded nd=1.62, vd=53.2)` | Explicit unmatched/proprietary annotation |
-
 ### [LEICA TELYT-S 800mm f/6.3](../../src/lens-data/leica/LeicaTelytS800mmf63.data.ts) - 33.3% trusted (1/3); 33.3% Sellmeier (1/3) - US 3,536,379
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -3287,6 +3284,16 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 8 | Element 5 | abbe | `Unmatched (dense flint; no confident public catalog match; patent n_e)` | Explicit unmatched/proprietary annotation |
 | 10 | Element 6 | abbe | `Unmatched (BaF13-class patent e-line value; no verified d-line catalog identity)` | Explicit unmatched/proprietary annotation |
 | 11 | Element 7 | abbe | `Unmatched (LAK9-class lanthanum crown; patent e-line value stored)` | Explicit unmatched/proprietary annotation |
+
+### [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) - 28.6% trusted (2/7); 28.6% Sellmeier (2/7) - DE 3,907,928 C2
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (520642 patent-rounded crown; no unique catalog identity)` | Explicit unmatched/proprietary annotation |
+| 4 | Element 3 | abbe | `Unmatched (nd=1.55 corrected from printed 1.69, vd=49.6 as printed; no unique catalog identity)` | Explicit unmatched/proprietary annotation |
+| 8 | Element 5 | abbe | `Unmatched (460658 patent-rounded fluor-crown; no unique catalog identity)` | Explicit unmatched/proprietary annotation |
+| 10 | Element 6 | abbe | `Unmatched (650396 patent-rounded short flint; no unique catalog identity)` | Explicit unmatched/proprietary annotation |
+| 11 | Element 7 | abbe | `Unmatched (dense crown / short-flint class; patent-rounded nd=1.62, vd=53.2)` | Explicit unmatched/proprietary annotation |
 
 ### [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) - 22.2% trusted (2/9); 22.2% Sellmeier (2/9) - US 2015/0268449 A1
 

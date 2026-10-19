@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **961** lenses scanned
-- **1905** total code-only elements found
-- **1905** elements in this report
-- **309** distinct lens files affected
+- **968** lenses scanned
+- **1908** total code-only elements found
+- **1908** elements in this report
+- **310** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -165,9 +165,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 001254 | 2 | 2 | patents/US20220011542A1.pdf<br>patents/CN_121091494_A.pdf | No review-record hit |
 | 003193 | 2 | 2 | patents/US20220011542A1.pdf<br>patents/WO2024166548A1.pdf | No review-record hit |
 | 439950 | 2 | 2 | patents/US20180164556A1.pdf<br>patents/US8228605.pdf | No review-record hit |
+| 460658 | 2 | 2 | patents/DE3907928C2.pdf<br>patents/DE_3907928_A1.pdf | All rows explicitly disposed |
 | 465658 | 2 | 1 | patents/US3481666.pdf | No review-record hit |
 | 510634 | 2 | 1 | patents/DE_927540_C.pdf | No review-record hit |
 | 514428 | 2 | 1 | patents/JP2016021011A.pdf | All rows have review records |
+| 520642 | 2 | 2 | patents/DE3907928C2.pdf<br>patents/DE_3907928_A1.pdf | All rows explicitly disposed |
 | 531557 | 2 | 2 | patents/WO2022071249A1.pdf<br>patents/US8994842.pdf | All rows explicitly disposed |
 | 532488 | 2 | 2 | patents/US20140098253A1.pdf<br>patents/JPA 1988201614-000000.pdf | No review-record hit |
 | 532489 | 2 | 2 | patents/JP2023033114A.pdf<br>patents/US6437923.pdf | No review-record hit |
@@ -185,6 +187,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 627376 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 633315 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 639554 | 2 | 2 | patents/JP2021086024A.pdf<br>patents/WO2023181666A1.pdf | No review-record hit |
+| 650396 | 2 | 2 | patents/DE3907928C2.pdf<br>patents/DE_3907928_A1.pdf | All rows explicitly disposed |
 | 658508 | 2 | 2 | patents/US2968221.pdf<br>patents/US3482900.pdf | No review-record hit |
 | 661204 | 2 | 1 | patents/US20210149156A1.pdf | All rows explicitly disposed |
 | 668419 | 2 | 2 | patents/US2968221.pdf<br>patents/JPA 1994082698-000000.pdf | No review-record hit |
@@ -235,7 +238,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 448672 | 1 | 1 | patents/JP_S4871634_A.pdf | All rows explicitly disposed |
 | 449670 | 1 | 1 | patents/GB_1050055_A.pdf | All rows explicitly disposed |
 | 457903 | 1 | 1 | patents/JP2023001878A.pdf | No review-record hit |
-| 460658 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
 | 479587 | 1 | 1 | patents/US4773745.pdf | All rows explicitly disposed |
 | 507589 | 1 | 1 | patents/JPA 1999231209-000000.pdf | All rows have review records |
 | 510619 | 1 | 1 | patents/DE_1980417_U.pdf | All rows explicitly disposed |
@@ -244,7 +246,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 516499 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 516506 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 518523 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
-| 520642 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
 | 520701 | 1 | 1 | patents/JP_S5357028_A.pdf | All rows have review records |
 | 523584 | 1 | 1 | patents/US2165328.pdf | All rows have review records |
 | 523701 | 1 | 1 | patents/US20100194930A1.pdf | All rows explicitly disposed |
@@ -310,7 +311,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 646287 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 648339 | 1 | 1 | patents/CN211955966U.pdf | No review-record hit |
 | 649530 | 1 | 1 | patents/JPWO2017221949A1.pdf | No review-record hit |
-| 650396 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
 | 652586 | 1 | 1 | patents/JP_2003241093_A.pdf | No review-record hit |
 | 656277 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 656337 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
@@ -3076,7 +3076,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L10 (Element 10) | 18A | `589612 class` | 1.58913 / 61.15 | J-SK5 (trusted Sellmeier) | sellmeier | patents/US20120307375A1.pdf | No review-record hit |
 | L11 (Element 11) | 20 | `904313 class` | 1.90366 / 31.32 | J-LASFH13 (trusted Sellmeier) | sellmeier | patents/US20120307375A1.pdf | No review-record hit |
 
-### [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) - DE 3,907,928 A1
+### [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) - DE 3,907,928 C2
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched (520642 patent-rounded crown; no unique catalog identity)` | 1.52000 / 64.20 | No catalog entry | abbe | patents/DE3907928C2.pdf | Explicit disposition in data |
+| L5 (Element 5) | 8 | `Unmatched (460658 patent-rounded fluor-crown; no unique catalog identity)` | 1.46000 / 65.80 | No catalog entry | abbe | patents/DE3907928C2.pdf | Explicit disposition in data |
+| L6 (Element 6) | 10 | `Unmatched (650396 patent-rounded short flint; no unique catalog identity)` | 1.65000 / 39.60 | No catalog entry | abbe | patents/DE3907928C2.pdf | Explicit disposition in data |
+
+### [RODENSTOCK APO-SIRONAR-W 150mm f/5.6 (archived A1 reconstruction)](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56A1Reconstruction.data.ts) - DE 3,907,928 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|

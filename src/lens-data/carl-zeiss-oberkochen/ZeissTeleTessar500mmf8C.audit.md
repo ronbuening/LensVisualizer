@@ -25,4 +25,81 @@ Departures from the literal example:
 Open: exit-pupil diameter 22.47 mm vs the sheet's 22.7 mm. Wording items (name casing against the corpus's all-caps
 form, missing spaces between numbers and words in the header and analysis, the "PRINTED STOP POSITION" spec chip, the
 "Sumita equivalent" label on BK1, and a hasselbladhistorical.eu link that fails its TLS check) were reported and not
-changed in this pass.
+changed in this pass. Wording items closed in the 2026-10-19 wording pass below; the TLS link is kept as the sheet's
+only citation.
+
+## 2026-10-19 — Semi-diameter pass against the patent figure
+
+Source: `patents/US3134841A.pdf`, page 1, the sole section drawing (axis vertical, object at the bottom, image plane
+drawn as a bar at the top). This is the drawing of the tabulated example. The page is a 300 dpi CCITT raster, measured
+at that native resolution with figprofile and per-row ink runs. The scanned axis leans about 0.6° (x ≈ 1119 px at the
+image bar, ≈ 1105 px at the front group), so rims were taken as half the full drawn width, not from the axis.
+
+Scale: first vertex (r1, row 2552.5) to the image bar (row 1057) is 1495.5 px against 374.56 mm (203.2 vertex span plus
+171.36 back focus), giving 0.2505 mm/px. Check spans: r1 to r8, 818.5 px against 203.2 mm (0.248), and r5 to r6,
+652.5 px against 164.5 mm (0.252). Element thicknesses at the axis agree: L1 49 px (12 mm), LII 47 px (12 mm), LIII
+32 px (8 mm). The drawing is to scale apart from the 0.2 mm L1–LII air gap, which is drawn about 9 px wide. Adopted
+scale: 0.250 mm/px. The outlines are drawn with 5–6 px strokes. Rims are the mean of the stroke-centre and outer-ink
+readings, with ±0.35 mm stroke uncertainty.
+
+| Surface | Before | Figure reading (centre / outer) | After | Note |
+|---|---|---|---|---|
+| 1, 2 (L1) | 43 | 313 / 318 px full width → 39.1 / 39.75 mm | 39.4 | square-cut rim; drawn wider than the doublet |
+| 3, 4, 5 (LII + LIII) | 43 | 296 / 301 px → 37.0 / 37.6 mm | 37.3 | both members drawn at one height |
+| 6, 7, 8 (LIV + LV) | 16 | 93.5 / 99 px → 11.7 / 12.4 mm | 12.0 | square-cut; matches the text's 24 mm shutter passage |
+
+All eight values changed (−8 % L1, −13 % front doublet, −25 % rear doublet). The old values were one blanket 43 mm
+for the whole front group, so the figure's step between L1 and the doublet (about 2 mm larger on L1) was missing.
+STO is unchanged; the engine derives it from f/8 (11.95 mm). The drawing also shows two short diaphragm strokes at
+191.75 mm from r1, the printed stop position, with an opening of about 76 px (≈ 9.5 mm radius). That is smaller than
+the f/8 radius and reads as schematic, so it was not used.
+
+Clearance after the edit, real-ray trace at f/8 with the 39.9 mm sheet half-diagonal (ω 4.45°): the axial marginal
+ray reaches 31.26 / 30.86 mm on L1, 30.61 to 28.82 mm on the front doublet and 11.37 / 11.09 / 10.67 mm on the rear
+doublet, so every rim clears. The corner chief ray reaches 37.56 mm on r1 and 35.94 mm on r3, and also clears. There is
+no axial clip and no chief-ray block at infinity or at 8.5 m. The surface validator, the image-circle floor and field
+coverage (100 %, 4.4° corner clear) all pass. f/8 is unchanged (audit:aperture within 3 %).
+
+The engine's derived half-field fell from 5.15° to 4.62° and is now limited by r3 instead of r1. That is still past
+the 4.45° the 39.9 mm corner needs. The exit pupil is unchanged (22.47 mm diameter, 8.42 mm ahead of r8), because it
+is the paraxial image of the stop through the rear doublet. These rims do not affect the open item against the sheet's
+22.7 mm.
+
+Vignetting, geometric transmission wide open at infinity, before → after: 89.1 → 82.3 % at 2.2°, 79.2 → 72.4 % at
+2.9°, 69.3 → 61.5 % at 3.7° and 59.4 → 50.5 % at 4.4°. The front rims account for most of the drop (the rear doublet
+alone costs about 2 points at the corner). Interpolated to 20 / 30 / 40 mm image height, the same tool gives about
+0.81 / 0.65 / 0.48 (before 0.88 / 0.73 / 0.57). The Zeiss sheet's curve reads about 0.9 / 0.71 / 0.5. The new rims fit
+it better at the corner and less well in mid-field. The rims follow the patent figure and were not tuned to the sheet.
+
+Live render compared at infinity and at 8.5 m: the singlet now stands slightly taller than the front doublet, and the
+rear doublet is about a third of the front height, as drawn. A red model outline over the patent crop at the same scale
+matched the L1, doublet and rear-group widths to within a stroke width, and the image-plane bar to within 4 px.
+
+Limitations: the rims come from a single drawing at about 4 px per millimetre. The production lens's rims may differ.
+The data sheet's section thumbnail was not measured.
+
+## 2026-10-19 — Deployment validation and wording pass
+
+Source re-read and patent-versus-model first-order values are as recorded in the deployment validation section
+above: all 8 radii, 9 spacings, 5 nd/νd pairs and s′ match at ×500. EFL is 500.094 mm against the patent's 500 mm
+(sheet 500.1 mm), at f/8, with the 203.2 mm vertex span exact. The data sheet's section thumbnail shows the same
+5-element / 3-component singlet + doublet … doublet layout. The design has no special-dispersion and no aspheric
+elements. The section drawing on patent p. 1 was measured for the semi-diameter pass above.
+
+Fields changed in this pass. The coordinator set the name, subtitle, spec chips and L1 glass label. In the data file,
+the header comment was rewritten in plain sentences with every fact kept: normalisation and ×500 scale, the printed
+stop split, the f/8 iris, the Gaussian versus printed back focus, the derived 8.5 m focus, the rim basis and the
+probable Cat. No. 10 46 03 identification. `focus.description` now says the whole lens moves as a unit from a 171.36
+to a 206.21 mm back gap, and that the extension is derived, not published.
+
+In the analysis, run-together numbers were spaced and the Cat. No. form normalised. The glass sentence names BK1 as
+a legacy Schott type matched with the SUMITA curve. The 24 mm figure is described as the shutter's clear passage.
+Package and checking vocabulary was removed: preserved originals, recorded checks, certification, "successful rays"
+and the gap-sag note. The heading "Apertures, Field and Validation Limits" became "Apertures, Field and Model Limits",
+and the catalog citation was given readable page numbers. The hasselbladhistorical.eu link stays, because it is the
+only citation for the Zeiss sheet's data (pupils, cardinal points, 8.5 m, 56.5 mm format, relative illuminance).
+Engine EFL, f-number, half-field, stop radius, back focus and all 17 focus keyframes are identical before and after.
+
+Open: exit-pupil diameter 22.47 mm vs the sheet's 22.7 mm (not affected by rims). Element labels 4 and 5 stack in
+two rows in the full-lens render because the rear doublet is only 6.5 mm thick at this scale; that comes from the
+shared label packer, not a lens field.
