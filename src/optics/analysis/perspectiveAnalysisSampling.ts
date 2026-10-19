@@ -104,8 +104,6 @@ export function perspectiveAnalysisSamplingPlan({
       fieldSampling,
     },
     chromatic: {
-      stopSemiDiameterMm: currentPhysStopSD,
-      pupilSemiDiameterMm: currentEPSD,
       sensorUvs: copySensorUvs(chromaticSensorUvs),
       channels: CHROMATIC_CHANNEL_ORDER,
       pupilFractions: chromaticPupilFractions(qualitySampling),

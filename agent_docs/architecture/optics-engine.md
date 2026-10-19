@@ -1351,14 +1351,18 @@ keys. Field curvature, its chromatic bundle, coma, distortion, vignetting and pu
 including field geometry and sampling. Bokeh and chromatic LoCA/lateral color/fans also take requests. The historical
 job-table names remain during the public-seam migration, but no centered job takes a prepared-state or RuntimeLens
 signature.
-Perspective focus/bokeh/best focus and field curvature/astigmatism/coma remain under `perspective/analysis/` and
-consume `AnalysisRequest`. Their options override field/pupil sampling only; both aperture radii and the shared
-perspective trace context come from the request. `perspectiveAnalysisJobs.ts` binds the same request directly to
-these two lazy jobs; the remaining perspective families retain their context/options entries until migration.
+Perspective focus/bokeh/best focus, field curvature/astigmatism/coma, chromatic and distortion remain under
+`perspective/analysis/` and consume `AnalysisRequest`. Their options override field/channel/pupil sampling only;
+both aperture radii and the shared perspective trace context come from the request. `perspectiveAnalysisJobs.ts`
+binds the same request directly to these four lazy jobs; vignetting and pupils retain context/options entries until
+migration. Distortion keeps scene-locked vertical/grid sampling with deliberately null sensor solves. Chromatic
+locks the reference channel to the sensor and traces other channels at that shared scene direction: only the
+sensor-locked reference uses the physical format band, while scene-locked channels retain strict format bounds.
 `perspectiveAnalysisSampling.ts` owns the unchanged signed drag/settled policy separately from job dispatch, so
 request-facing leaves can use it without a cycle. Explicit standalone quadrature retains its existing defaults.
-The moved Bokeh, Coma and Aberrations panels memoize on the deferred request, including pose/pivot, focus and aperture;
-Summary uses the same request/context for fixed-sensor focus. No moved section falls back to centered results.
+The moved Bokeh, Coma, Aberrations, Chromatic and Distortion panels memoize on the deferred request, including
+pose/pivot, focus and aperture; Summary uses the same request/context for fixed-sensor focus. Moved Chromatic also
+uses that request for the separately labelled intrinsic lens-axis LoCA. No moved section falls back to centered results.
 The sensor-solve cache remains owned by the original perspective context and shared across families.
 
 Centered and movement-aware jobs retain their numerical kernels, sampling defaults and section-availability guards.

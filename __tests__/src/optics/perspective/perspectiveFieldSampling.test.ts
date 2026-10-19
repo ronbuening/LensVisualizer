@@ -359,9 +359,9 @@ function sensorMemoAnalyses(camera: PerspectiveTraceContext, channel?: "G") {
       focusPupilFractions: pupilFractions,
       comaPupilPoints: pupilPoints,
     }),
-    chromatic: computePerspectiveChromaticAnalysis(camera, { ...common, pupilFractions, channels: ["R", "G", "B"] }),
+    chromatic: computePerspectiveChromaticAnalysis(request, { ...common, pupilFractions, channels: ["R", "G", "B"] }),
     pupils: computePerspectivePupilAnalysis(camera, { ...common, pupilFractions }),
-    distortion: computePerspectiveDistortionAnalysis(camera, {
+    distortion: computePerspectiveDistortionAnalysis(request, {
       fieldSampling: common.fieldSampling,
       verticalSensorV: [-0.25, 0, 0.3],
       gridSensorU: [0, 0.2],

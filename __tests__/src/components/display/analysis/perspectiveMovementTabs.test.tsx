@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 import AberrationsPanel from "../../../../../src/components/display/analysis/AberrationsPanel.js";
 import BokehTab from "../../../../../src/components/display/analysis/BokehTab.js";
 import ChromaticTab from "../../../../../src/components/display/analysis/ChromaticTab.js";
+import DistortionTab from "../../../../../src/components/display/analysis/DistortionTab.js";
 import ComaTab from "../../../../../src/components/display/analysis/ComaTab.js";
 import buildLens from "../../../../../src/optics/buildLens.js";
 import { createAnalysisComputationContext, prepareRuntimeState } from "../../../../../src/optics/compat.js";
@@ -51,6 +52,25 @@ const common = {
 };
 
 describe("movement-aware perspective analysis tabs", () => {
+  it("renders scene-locked distortion decomposition from the deferred request", () => {
+    const html = renderToStaticMarkup(React.createElement(DistortionTab, { ...common, dynamicEFL: L.EFL }));
+    expect(html).toContain("Perspective distortion — fixed sensor");
+    expect(html).toContain("Composition");
+    expect(html).toContain("Optical residual");
+    expect(html).toContain("TOP RESIDUAL");
+    expect(html).toContain("BOTTOM RESIDUAL");
+    expect(html).not.toContain("Rectilinear distortion (F-Tan(theta))");
+
+    // Live slider props must not replace the context's deferred focus or aperture snapshot.
+    const liveProps = { ...common, focusT: 1, currentEPSD: currentEPSD / 2, currentPhysStopSD: currentPhysStopSD / 2 };
+    expect(renderToStaticMarkup(React.createElement(DistortionTab, { ...liveProps, dynamicEFL: L.EFL * 2 }))).toBe(
+      html,
+    );
+    expect(renderToStaticMarkup(React.createElement(ChromaticTab, liveProps))).toBe(
+      renderToStaticMarkup(React.createElement(ChromaticTab, common)),
+    );
+  });
+
   it("renders intrinsic SA separately from signed fixed-sensor field focus", () => {
     expect(analysisContext.movementActive).toBe(true);
     const html = renderToStaticMarkup(

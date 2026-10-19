@@ -14,7 +14,7 @@ import DistortionFieldGrid from "./DistortionFieldGrid.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
-import type { AnalysisComputationContext } from "../../../optics/analysis.js";
+import type { AnalysisComputationContext, AnalysisRequest } from "../../../optics/analysis.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
@@ -46,8 +46,9 @@ export default function DistortionTab({
   analysisContext,
 }: DistortionTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
-  if (analysisContext?.movementActive) {
-    return <MovedDistortionContent analysisContext={analysisContext} t={t} />;
+  const perspectiveRequest = analysisContext?.request;
+  if (perspectiveRequest?.pose?.active) {
+    return <MovedDistortionContent request={perspectiveRequest} t={t} />;
   }
   return (
     <CenteredDistortionContent
@@ -63,9 +64,12 @@ export default function DistortionTab({
   );
 }
 
-function MovedDistortionContent({ analysisContext, t }: { analysisContext: AnalysisComputationContext; t: Theme }) {
-  const analysis = useMemo(() => analysisContext.computePerspectiveDistortionAnalysis(), [analysisContext]);
-  const context = analysisContext.perspectiveTraceContext;
+function MovedDistortionContent({ request, t }: { request: AnalysisRequest; t: Theme }) {
+  const analysis = useMemo(
+    () => createAnalysisComputationContext(request).computePerspectiveDistortionAnalysis(),
+    [request],
+  );
+  const context = request.perspectiveTraceContext;
   if (!context) {
     return <div style={{ color: t.muted, fontSize: 10, padding: "8px 0" }}>Perspective trace context unavailable.</div>;
   }

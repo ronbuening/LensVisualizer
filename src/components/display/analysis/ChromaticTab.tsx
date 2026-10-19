@@ -1,3 +1,4 @@
+/** Chromatic tab shares request identity for intrinsic LoCA and moved sensor metrics. */
 import { useMemo } from "react";
 import {
   createAnalysisRequest,
@@ -70,16 +71,23 @@ const metricsStyle = {
 
 export default function ChromaticTab(props: ChromaticTabProps) {
   const { analysisContext, t } = props;
+  const perspectiveRequest = analysisContext?.request;
   const perspectiveAnalysis = useMemo(
-    () => (analysisContext?.movementActive ? analysisContext.computePerspectiveChromaticAnalysis() : null),
-    [analysisContext],
+    () =>
+      perspectiveRequest?.pose?.active
+        ? createAnalysisComputationContext(perspectiveRequest).computePerspectiveChromaticAnalysis()
+        : null,
+    [perspectiveRequest],
   );
   const intrinsicLongitudinal = useMemo(
-    () => (analysisContext?.movementActive ? analysisContext.computeIntrinsicLongitudinalChromaticFocus() : null),
-    [analysisContext],
+    () =>
+      perspectiveRequest?.pose?.active
+        ? createAnalysisComputationContext(perspectiveRequest).computeIntrinsicLongitudinalChromaticFocus()
+        : null,
+    [perspectiveRequest],
   );
 
-  if (analysisContext?.movementActive) {
+  if (perspectiveRequest?.pose?.active) {
     return (
       <div style={{ padding: "8px 0" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: 16, fontSize: 9.5 }}>

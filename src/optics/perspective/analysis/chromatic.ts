@@ -1,5 +1,7 @@
 /** Fixed-sensor chromatic focus, transverse color, and retained ray fans. */
 
+import type { AnalysisRequest } from "../../analysis/request.js";
+import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
 import type { ChromaticChannel } from "../../../types/optics.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
 import type { Vec3 } from "../../types.js";
@@ -36,8 +38,6 @@ const DEFAULT_CHROMATIC_PUPIL_FRACTIONS = [-0.9, -0.6, -0.3, 0, 0.3, 0.6, 0.9] a
 
 /** Controls for scene-matched chromatic measurements at fixed-sensor coordinates. */
 export interface PerspectiveChromaticOptions {
-  stopSemiDiameterMm: number;
-  pupilSemiDiameterMm?: number;
   /** Caller order is retained, including unavailable coordinates. */
   sensorUvs?: readonly SensorUv[];
   /** Caller order is retained; duplicate channels are rejected. */
@@ -126,18 +126,25 @@ export interface PerspectiveChromaticAnalysis {
  * The reference wavelength first solves each requested fixed-sensor point. All
  * channels then reuse that camera-space scene direction, so their physical
  * sensor intercept differences remain visible instead of being solved away.
+ *
+ * @param request - shared prepared geometry, aperture, pose and sensor-solve cache
+ * @param options - explicit field/channel/fan sampling; omitted uses request sampling
+ * @returns ordered reference locks, channel metrics and retained ray fans
  */
 export function computePerspectiveChromaticAnalysis(
-  context: PerspectiveTraceContext,
-  options: PerspectiveChromaticOptions,
+  request: AnalysisRequest,
+  options: PerspectiveChromaticOptions = perspectiveAnalysisSamplingPlan(request).chromatic,
 ): PerspectiveChromaticAnalysis {
+  const context = request.perspectiveTraceContext;
+  if (!context) throw new Error("Movement-aware analysis requires a PerspectiveTraceContext");
+  const { stopSemiDiameterMm, entrancePupilSemiDiameterMm } = request.aperture;
   const channels = normalizeChannels(options.channels);
   const referenceChannel = resolveReferenceChannel(channels, options.referenceChannel);
   const pupilFractions = normalizePupilFractions(options.pupilFractions);
   const pupilSemiDiameterMm = resolvePerspectivePupilSemiDiameter(
     context,
-    options.stopSemiDiameterMm,
-    options.pupilSemiDiameterMm,
+    stopSemiDiameterMm,
+    entrancePupilSemiDiameterMm,
   );
   const sensorUvs = options.sensorUvs ?? DEFAULT_CHROMATIC_SENSOR_UVS;
   const referenceLocks = sampleSensorLockedFields(context, sensorUvs, {
@@ -166,7 +173,7 @@ export function computePerspectiveChromaticAnalysis(
               pupilSemiDiameterMm,
               pupilFractions,
               referenceChannel,
-              options.stopSemiDiameterMm,
+              stopSemiDiameterMm,
               field.domain,
             )
           : null,
@@ -187,7 +194,7 @@ export function computePerspectiveChromaticAnalysis(
         pupilBundle: {
           kind: "meridional",
           pupilSemiDiameterMm,
-          stopSemiDiameterMm: options.stopSemiDiameterMm,
+          stopSemiDiameterMm,
           fractions: pupilFractions,
           channel,
         },
@@ -215,7 +222,7 @@ export function computePerspectiveChromaticAnalysis(
 
   return {
     contextCacheKey: context.cacheKey,
-    stopSemiDiameterMm: options.stopSemiDiameterMm,
+    stopSemiDiameterMm,
     pupilSemiDiameterMm,
     referenceChannel,
     channels,

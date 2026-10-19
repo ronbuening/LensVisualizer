@@ -6,6 +6,8 @@
  * by the real optical prescription after movement.
  */
 
+import type { AnalysisRequest } from "../../analysis/request.js";
+import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
 import type { Vec3 } from "../../types.js";
 import {
   sampleSceneLockedFields,
@@ -148,14 +150,16 @@ export function summarizePerspectiveDistortionSamples(
  * analytic camera-space directions are then traced unchanged through the
  * active pose, so `actual - poseIdeal` remains a true moved-optics residual.
  *
- * @param context - physical moved-lens trace context with a fixed sensor
- * @param options - signed curve/grid coordinates and chief-solve controls
+ * @param request - shared prepared geometry, physical pose and fixed-sensor trace context
+ * @param options - explicit scene-locked sampling; omitted uses request quality and sampling
  * @returns ordered samples, retained failures, grid, and summary statistics
  */
 export function computePerspectiveDistortionAnalysis(
-  context: PerspectiveTraceContext,
-  options: PerspectiveDistortionOptions = {},
+  request: AnalysisRequest,
+  options: PerspectiveDistortionOptions = perspectiveAnalysisSamplingPlan(request).distortion,
 ): PerspectiveDistortionAnalysis {
+  const context = request.perspectiveTraceContext;
+  if (!context) throw new Error("Movement-aware analysis requires a PerspectiveTraceContext");
   const verticalSensorV = options.verticalSensorV ?? evenlySpacedSigned(DEFAULT_VERTICAL_SAMPLE_COUNT);
   const gridSensorU = options.gridSensorU ?? DEFAULT_GRID_COORDINATES;
   const gridSensorV = options.gridSensorV ?? DEFAULT_GRID_COORDINATES;

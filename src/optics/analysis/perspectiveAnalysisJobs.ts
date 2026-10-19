@@ -34,10 +34,8 @@ export function createPerspectiveAnalysisJobs(request: AnalysisRequest): Perspec
     computePerspectiveFieldAberrations: memoize(() =>
       computePerspectiveFieldAberrations(request, plan.fieldAberrations),
     ),
-    computePerspectiveChromaticAnalysis: memoize(() => computePerspectiveChromaticAnalysis(context(), plan.chromatic)),
-    computePerspectiveDistortionAnalysis: memoize(() =>
-      computePerspectiveDistortionAnalysis(context(), plan.distortion),
-    ),
+    computePerspectiveChromaticAnalysis: memoize(() => computePerspectiveChromaticAnalysis(request, plan.chromatic)),
+    computePerspectiveDistortionAnalysis: memoize(() => computePerspectiveDistortionAnalysis(request, plan.distortion)),
     computePerspectiveVignettingAnalysis: memoize(() =>
       computePerspectiveVignettingAnalysis(context(), plan.vignetting),
     ),
