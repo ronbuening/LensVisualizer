@@ -25,14 +25,7 @@ import { describe, expect, it } from "vitest";
  * Rule: the runtime import graph of src/optics/ has no strongly connected component larger
  * than one module and no self-import. There is no registry, because no cycle is approved.
  */
-const CYCLE_LEGACY: readonly string[] = [
-  "src/optics/analysis/analysisContext.ts",
-  "src/optics/analysis/analysisJobs.ts",
-  "src/optics/analysis/pupilAberration.ts",
-  "src/optics/compat.ts",
-  "src/optics/optics.ts",
-  "src/optics/pupilAberration.ts",
-];
+const CYCLE_LEGACY: readonly string[] = [];
 
 /* ── Seam guard lists ── */
 
@@ -111,7 +104,6 @@ const SEAM_LEGACY: readonly string[] = [
   "src/optics/perspective/diagramFan.ts",
   "src/optics/perspective/index.ts",
   "src/optics/publishedStations.ts",
-  "src/optics/pupilAberration.ts",
   "src/optics/raySampling.ts",
   "src/optics/spectralLines.ts",
   "src/optics/trace/rayAdapters.ts",

@@ -27,24 +27,25 @@
  *   Δz_XP(θ) = xpZ_real(θ) − xpZRelLastSurf_paraxial
  */
 
-import { prepareRayTrace } from "./trace/rayAdapters.js";
+import { prepareRayTrace } from "../../trace/rayAdapters.js";
 import {
-  computeAnalysisFieldGeometryAtState,
-  FOCUS_INFINITY_CUTOFF,
-  epZRelStopAtZoom,
-  xpZRelLastSurfAtZoom,
-  doLayout,
-  solveChiefRay,
-} from "./optics.js";
-import type { FieldGeometryState } from "./optics.js";
-import { compiledLensFromRuntime } from "./prescription/compile.js";
-import { prepareState } from "./state/preparedGeometry.js";
-import { directionFromMeridionalSlope } from "./math/vector.js";
-import { traceGeometryToStop } from "./trace/stopTrace.js";
-import type { TraceGeometry, TraceOptions } from "./trace/types.js";
-import type { Ray3 } from "./types.js";
-import { projectionLaunchSlopeForField } from "./projection.js";
-import type { RuntimeLens } from "../types/optics.js";
+  computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
+  solveChiefRay2 as solveChiefRay,
+} from "../../state/fieldAdapters.js";
+import type { FieldGeometryState2 as FieldGeometryState } from "../../state/fieldAdapters.js";
+import { FOCUS_INFINITY_CUTOFF } from "../../focusDistance.js";
+import { epZRelStopAtZoom, xpZRelLastSurfAtZoom } from "../../state/stationTables.js";
+import { compiledLensFromRuntime } from "../../prescription/compile.js";
+import { runtimeView } from "../../prescription/runtimeView.js";
+import { prepareState } from "../../state/preparedGeometry.js";
+import { layoutFromPrepared } from "../../state/layout.js";
+import { directionFromMeridionalSlope } from "../../math/vector.js";
+import { traceGeometryToStop } from "../../trace/stopTrace.js";
+import type { TraceGeometry, TraceOptions } from "../../trace/types.js";
+import type { Ray3 } from "../../types.js";
+import { projectionLaunchSlopeForField2 as projectionLaunchSlopeForField } from "../../field/projection.js";
+import type { RuntimeLens } from "../../../types/optics.js";
+import type { AnalysisRequest } from "../request.js";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -144,6 +145,9 @@ export interface ExitPupilAberrationProfile {
 /** Default number of field samples (0° through halfField). */
 export const PUPIL_ABERRATION_SAMPLE_COUNT = 17;
 
+/** Historical default alias retained for compatibility consumers during the seam migration. */
+export const PUPIL_ABERRATION_SAMPLE_COUNT_2 = PUPIL_ABERRATION_SAMPLE_COUNT;
+
 function computeStatePupilBaselines(
   focusT: number,
   zoomT: number,
@@ -159,7 +163,7 @@ function computeStatePupilBaselines(
   }
 
   const traceGeometry = prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT).traceGeometry;
-  const layout = doLayout(focusT, zoomT, L, aberrationT);
+  const layout = layoutFromPrepared(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT));
   const delta = 1e-4;
   const marginalStop = traceStateSurfacesReal(traceGeometry, delta, 0, { stopAt: L.stopIdx });
   const chiefStop = traceStateSurfacesReal(traceGeometry, 0, delta, { stopAt: L.stopIdx });
@@ -195,15 +199,15 @@ function computeStatePupilBaselines(
  * EP z-shift in mm.
  *
  * All values are state-aware: focus and zoom shifts are accounted for.
+ *
+ * @param request - prepared focus/zoom/aberration controls, optional field geometry and field sample count
+ * @returns field-ordered pupil positions and shifts in mm
  */
-export function computePupilAberrationProfile(
-  focusT: number,
-  zoomT: number,
-  L: RuntimeLens,
-  sampleCount = PUPIL_ABERRATION_SAMPLE_COUNT,
-  geometry?: FieldGeometryState,
-  aberrationT = 0,
-): PupilAberrationProfile {
+export function computePupilAberrationProfile(request: AnalysisRequest): PupilAberrationProfile {
+  const { focusT, zoomT, aberrationT } = request.preparedGeometry;
+  const L = runtimeView(request.preparedGeometry.lens);
+  const sampleCount = request.sampling.pupilAberrationSampleCount ?? PUPIL_ABERRATION_SAMPLE_COUNT;
+  const geometry = request.fieldGeometry ?? undefined;
   const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const { halfFieldDeg, epRatio } = geom;
   const { paraxialEpZRelStop } = computeStatePupilBaselines(focusT, zoomT, L, geom, aberrationT);
@@ -254,15 +258,15 @@ export function computePupilAberrationProfile(
  * directly.
  *
  * All values are state-aware: focus and zoom shifts are accounted for.
+ *
+ * @param request - prepared focus/zoom/aberration controls, optional field geometry and field sample count
+ * @returns field-ordered pupil positions and shifts in mm
  */
-export function computeExitPupilAberrationProfile(
-  focusT: number,
-  zoomT: number,
-  L: RuntimeLens,
-  sampleCount = PUPIL_ABERRATION_SAMPLE_COUNT,
-  geometry?: FieldGeometryState,
-  aberrationT = 0,
-): ExitPupilAberrationProfile {
+export function computeExitPupilAberrationProfile(request: AnalysisRequest): ExitPupilAberrationProfile {
+  const { focusT, zoomT, aberrationT } = request.preparedGeometry;
+  const L = runtimeView(request.preparedGeometry.lens);
+  const sampleCount = request.sampling.pupilAberrationSampleCount ?? PUPIL_ABERRATION_SAMPLE_COUNT;
+  const geometry = request.fieldGeometry ?? undefined;
   const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const { halfFieldDeg } = geom;
   const { paraxialXpZRelLastSurf } = computeStatePupilBaselines(focusT, zoomT, L, geom, aberrationT);
@@ -281,7 +285,7 @@ export function computeExitPupilAberrationProfile(
   }
 
   // zPos is required by traceRay for building visualization paths; compute once.
-  const { z: zPos } = doLayout(focusT, zoomT, L, aberrationT);
+  const { z: zPos } = layoutFromPrepared(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT));
   const prepared = prepareRayTrace(L, { zPos, focusT, zoomT, ghost: true, aberrationT });
 
   const samples: ExitPupilAberrationSample[] = [];
@@ -351,15 +355,15 @@ export interface BothPupilAberrationProfiles {
  * Equivalent to calling computePupilAberrationProfile and computeExitPupilAberrationProfile
  * separately, but shares the per-angle solveChiefRay bisection call and the
  * doLayout call, halving the bisection work when both profiles are needed.
+ *
+ * @param request - prepared focus/zoom/aberration controls, optional field geometry and field sample count
+ * @returns field-ordered pupil positions and shifts in mm
  */
-export function computeBothPupilAberrationProfiles(
-  focusT: number,
-  zoomT: number,
-  L: RuntimeLens,
-  sampleCount = PUPIL_ABERRATION_SAMPLE_COUNT,
-  geometry?: FieldGeometryState,
-  aberrationT = 0,
-): BothPupilAberrationProfiles {
+export function computeBothPupilAberrationProfiles(request: AnalysisRequest): BothPupilAberrationProfiles {
+  const { focusT, zoomT, aberrationT } = request.preparedGeometry;
+  const L = runtimeView(request.preparedGeometry.lens);
+  const sampleCount = request.sampling.pupilAberrationSampleCount ?? PUPIL_ABERRATION_SAMPLE_COUNT;
+  const geometry = request.fieldGeometry ?? undefined;
   const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const { halfFieldDeg, epRatio } = geom;
   const { paraxialEpZRelStop, paraxialXpZRelLastSurf } = computeStatePupilBaselines(
@@ -414,7 +418,7 @@ export function computeBothPupilAberrationProfiles(
     return { ep, xp, halfFieldDeg, maxAbsEpShiftMm: ep.maxAbsShiftMm, maxAbsXpShiftMm: 0 };
   }
 
-  const { z: zPos } = doLayout(focusT, zoomT, L, aberrationT);
+  const { z: zPos } = layoutFromPrepared(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT));
   const prepared = prepareRayTrace(L, { zPos, focusT, zoomT, ghost: true, aberrationT });
 
   const epSamples: PupilAberrationSample[] = [];

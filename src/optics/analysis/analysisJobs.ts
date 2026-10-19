@@ -21,11 +21,7 @@ import {
 } from "./chromatic.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
 import { computeDistortionCurve, computeDistortionFieldGrid } from "./distortion/distortion.js";
-import {
-  computeBothPupilAberrationProfiles2,
-  computeBothPupilAberrationProfilesForState2,
-  PUPIL_ABERRATION_SAMPLE_COUNT_2,
-} from "./pupilAberration.js";
+import { computeBothPupilAberrationProfiles } from "./pupils/pupilAberration.js";
 import { computeOpticalSummary } from "./summary/summary.js";
 import {
   computeSphericalAberration,
@@ -127,15 +123,8 @@ export const analysisJobs2 = {
     return computeBokehPreviewPair2(L, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT, sampling);
   },
 
-  computeBothPupilAberrationProfiles(
-    focusT: number,
-    zoomT: number,
-    L: RuntimeLens,
-    sampleCount = PUPIL_ABERRATION_SAMPLE_COUNT_2,
-    geometry?: FieldGeometryState,
-    aberrationT = 0,
-  ) {
-    return computeBothPupilAberrationProfiles2(focusT, zoomT, L, sampleCount, geometry, aberrationT);
+  computeBothPupilAberrationProfiles(request: AnalysisRequest) {
+    return computeBothPupilAberrationProfiles(request);
   },
 };
 
@@ -228,11 +217,7 @@ export const analysisJobsForState2 = {
     return computeVignettingCurve(request);
   },
 
-  computeBothPupilAberrationProfiles(
-    state: PreparedOpticalState,
-    sampleCount = PUPIL_ABERRATION_SAMPLE_COUNT_2,
-    geometry?: FieldGeometryState,
-  ) {
-    return computeBothPupilAberrationProfilesForState2(state, sampleCount, geometry);
+  computeBothPupilAberrationProfiles(request: AnalysisRequest) {
+    return computeBothPupilAberrationProfiles(request);
   },
 };

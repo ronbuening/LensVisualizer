@@ -16,15 +16,15 @@ import {
   computeExitPupilAberrationProfile,
   computeBothPupilAberrationProfiles,
   PUPIL_ABERRATION_SAMPLE_COUNT,
-} from "../../../src/optics/pupilAberration.js";
-import { computeAnalysisFieldGeometryAtState } from "../../../src/optics/optics.js";
-import MinoltaAF100MacroRaw from "../../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.js";
-import ReferenceAnnularObscuredMirrorRaw from "../../../src/lens-data/reference/ReferenceAnnularObscuredMirror.data.js";
-import ReferenceCassegrainBackFocusRaw from "../../../src/lens-data/reference/ReferenceCassegrainBackFocus.data.js";
-import ReferenceGregorianSecondaryRaw from "../../../src/lens-data/reference/ReferenceGregorianSecondary.data.js";
-import ReferenceMaksutovCassegrainMeniscusRaw from "../../../src/lens-data/reference/ReferenceMaksutovCassegrainMeniscus.data.js";
-import ReferenceNewtonianSideFocusRaw from "../../../src/lens-data/reference/ReferenceNewtonianSideFocus.data.js";
-import { build, sharedNikkorZ70200, sharedSonnar50f15 } from "./testLensFixtures.js";
+} from "../../../../../src/optics/analysis/pupils/pupilAberration.js";
+import { computeAnalysisFieldGeometryAtState } from "../../../../../src/optics/optics.js";
+import MinoltaAF100MacroRaw from "../../../../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.js";
+import ReferenceAnnularObscuredMirrorRaw from "../../../../../src/lens-data/reference/ReferenceAnnularObscuredMirror.data.js";
+import ReferenceCassegrainBackFocusRaw from "../../../../../src/lens-data/reference/ReferenceCassegrainBackFocus.data.js";
+import ReferenceGregorianSecondaryRaw from "../../../../../src/lens-data/reference/ReferenceGregorianSecondary.data.js";
+import ReferenceMaksutovCassegrainMeniscusRaw from "../../../../../src/lens-data/reference/ReferenceMaksutovCassegrainMeniscus.data.js";
+import ReferenceNewtonianSideFocusRaw from "../../../../../src/lens-data/reference/ReferenceNewtonianSideFocus.data.js";
+import { analysisRequestAt, build, sharedNikkorZ70200, sharedSonnar50f15 } from "../../testLensFixtures.js";
 
 type Lens = ReturnType<typeof sharedSonnar50f15>;
 
@@ -35,16 +35,26 @@ describe("pupil aberration profiles — sampleCount handling", () => {
   const sampleCountCases = [
     [
       "computePupilAberrationProfile",
-      (L: Lens, sampleCount?: number) => [computePupilAberrationProfile(0, 0, L, sampleCount).samples],
+      (L: Lens, sampleCount?: number) => [
+        computePupilAberrationProfile(
+          analysisRequestAt(L, { focusT: 0, zoomT: 0, sampling: { pupilAberrationSampleCount: sampleCount } }),
+        ).samples,
+      ],
     ],
     [
       "computeExitPupilAberrationProfile",
-      (L: Lens, sampleCount?: number) => [computeExitPupilAberrationProfile(0, 0, L, sampleCount).samples],
+      (L: Lens, sampleCount?: number) => [
+        computeExitPupilAberrationProfile(
+          analysisRequestAt(L, { focusT: 0, zoomT: 0, sampling: { pupilAberrationSampleCount: sampleCount } }),
+        ).samples,
+      ],
     ],
     [
       "computeBothPupilAberrationProfiles",
       (L: Lens, sampleCount?: number) => {
-        const both = computeBothPupilAberrationProfiles(0, 0, L, sampleCount);
+        const both = computeBothPupilAberrationProfiles(
+          analysisRequestAt(L, { focusT: 0, zoomT: 0, sampling: { pupilAberrationSampleCount: sampleCount } }),
+        );
         return [both.ep.samples, both.xp.samples];
       },
     ],
@@ -65,7 +75,7 @@ describe("pupil aberration profiles — sampleCount handling", () => {
 describe("computePupilAberrationProfile — structure", () => {
   it("field samples run monotonically from 0 to 1 (fieldFrac) and 0 to halfFieldDeg (fieldDeg)", () => {
     const L = sharedSonnar50f15();
-    const { samples, halfFieldDeg } = computePupilAberrationProfile(0, 0, L);
+    const { samples, halfFieldDeg } = computePupilAberrationProfile(analysisRequestAt(L, { focusT: 0, zoomT: 0 }));
     expect(samples[0].fieldFrac).toBe(0);
     expect(samples[0].fieldDeg).toBe(0);
     expect(samples[samples.length - 1].fieldFrac).toBe(1);
@@ -78,7 +88,7 @@ describe("computePupilAberrationProfile — structure", () => {
 
   it("all chiefRayCorrection values are finite and positive and all epShiftMm values are finite", () => {
     const L = sharedSonnar50f15();
-    const { samples } = computePupilAberrationProfile(0, 0, L);
+    const { samples } = computePupilAberrationProfile(analysisRequestAt(L, { focusT: 0, zoomT: 0 }));
     for (const s of samples) {
       expect(isFinite(s.chiefRayCorrection)).toBe(true);
       expect(s.chiefRayCorrection).toBeGreaterThan(0);
@@ -90,7 +100,7 @@ describe("computePupilAberrationProfile — structure", () => {
 describe("computePupilAberrationProfile — on-axis sample", () => {
   it("has chiefRayCorrection = 1 (paraxial regime) and epShiftMm = 0", () => {
     const L = sharedSonnar50f15();
-    const { samples } = computePupilAberrationProfile(0, 0, L);
+    const { samples } = computePupilAberrationProfile(analysisRequestAt(L, { focusT: 0, zoomT: 0 }));
     expect(samples[0].fieldDeg).toBe(0);
     expect(samples[0].chiefRayCorrection).toBe(1);
     expect(samples[0].epShiftMm).toBe(0);
@@ -100,7 +110,7 @@ describe("computePupilAberrationProfile — on-axis sample", () => {
 describe("computePupilAberrationProfile — profile metadata", () => {
   it("reports the paraxial EP baseline, a positive half-field, and maxAbsShiftMm = max |epShiftMm|", () => {
     const L = sharedSonnar50f15();
-    const profile = computePupilAberrationProfile(0, 0, L);
+    const profile = computePupilAberrationProfile(analysisRequestAt(L, { focusT: 0, zoomT: 0 }));
     expect(profile.paraxialEpZRelStop).toBeCloseTo(L.epZRelStop, 10);
     expect(profile.halfFieldDeg).toBeGreaterThan(0);
     const expected = Math.max(...profile.samples.map((s) => Math.abs(s.epShiftMm)));
@@ -113,8 +123,15 @@ describe("computePupilAberrationProfile — pre-computed geometry shortcut", () 
   it("produces the same result when geometry is pre-computed vs derived internally", () => {
     const L = sharedSonnar50f15();
     const geom = computeAnalysisFieldGeometryAtState(0, 0, L);
-    const withGeom = computePupilAberrationProfile(0, 0, L, PUPIL_ABERRATION_SAMPLE_COUNT, geom);
-    const withoutGeom = computePupilAberrationProfile(0, 0, L);
+    const withGeom = computePupilAberrationProfile(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        sampling: { pupilAberrationSampleCount: PUPIL_ABERRATION_SAMPLE_COUNT },
+        fieldGeometry: geom,
+      }),
+    );
+    const withoutGeom = computePupilAberrationProfile(analysisRequestAt(L, { focusT: 0, zoomT: 0 }));
     expect(withGeom.halfFieldDeg).toBeCloseTo(withoutGeom.halfFieldDeg, 10);
     expect(withGeom.paraxialEpZRelStop).toBeCloseTo(withoutGeom.paraxialEpZRelStop, 10);
     expect(withGeom.maxAbsShiftMm).toBeCloseTo(withoutGeom.maxAbsShiftMm, 10);
@@ -128,8 +145,8 @@ describe("computePupilAberrationProfile — pre-computed geometry shortcut", () 
 describe("computePupilAberrationProfile — zoom lens", () => {
   it("returns valid profiles at both zoom ends, with a narrower half-field at the tele end", () => {
     const L = sharedNikkorZ70200();
-    const wide = computePupilAberrationProfile(0, 0, L);
-    const tele = computePupilAberrationProfile(0, 1, L);
+    const wide = computePupilAberrationProfile(analysisRequestAt(L, { focusT: 0, zoomT: 0 }));
+    const tele = computePupilAberrationProfile(analysisRequestAt(L, { focusT: 0, zoomT: 1 }));
     for (const profile of [wide, tele]) {
       expect(profile.samples).toHaveLength(PUPIL_ABERRATION_SAMPLE_COUNT);
       expect(profile.halfFieldDeg).toBeGreaterThan(0);
@@ -141,7 +158,7 @@ describe("computePupilAberrationProfile — zoom lens", () => {
   it("on-axis sample always has correction=1 and shift=0 regardless of zoom", () => {
     const L = sharedNikkorZ70200();
     for (const zoomT of [0, 0.5, 1]) {
-      const { samples } = computePupilAberrationProfile(0, zoomT, L);
+      const { samples } = computePupilAberrationProfile(analysisRequestAt(L, { focusT: 0, zoomT: zoomT }));
       expect(samples[0].chiefRayCorrection).toBe(1);
       expect(samples[0].epShiftMm).toBe(0);
     }
@@ -153,7 +170,7 @@ describe("computePupilAberrationProfile — zoom lens", () => {
 describe("computeExitPupilAberrationProfile — structure", () => {
   it("field samples run monotonically from 0 to 1 (fieldFrac) and 0 to halfFieldDeg (fieldDeg)", () => {
     const L = sharedSonnar50f15();
-    const { samples, halfFieldDeg } = computeExitPupilAberrationProfile(0, 0, L);
+    const { samples, halfFieldDeg } = computeExitPupilAberrationProfile(analysisRequestAt(L, { focusT: 0, zoomT: 0 }));
     expect(samples[0].fieldFrac).toBe(0);
     expect(samples[0].fieldDeg).toBe(0);
     expect(samples[samples.length - 1].fieldFrac).toBe(1);
@@ -166,7 +183,7 @@ describe("computeExitPupilAberrationProfile — structure", () => {
 
   it("all xpZRelLastSurf and xpShiftMm values are finite", () => {
     const L = sharedSonnar50f15();
-    const { samples } = computeExitPupilAberrationProfile(0, 0, L);
+    const { samples } = computeExitPupilAberrationProfile(analysisRequestAt(L, { focusT: 0, zoomT: 0 }));
     for (const s of samples) {
       expect(isFinite(s.xpZRelLastSurf)).toBe(true);
       expect(isFinite(s.xpShiftMm)).toBe(true);
@@ -177,7 +194,7 @@ describe("computeExitPupilAberrationProfile — structure", () => {
 describe("computeExitPupilAberrationProfile — on-axis sample", () => {
   it("has xpShiftMm = 0 and xpZRelLastSurf equal to the paraxial baseline", () => {
     const L = sharedSonnar50f15();
-    const profile = computeExitPupilAberrationProfile(0, 0, L);
+    const profile = computeExitPupilAberrationProfile(analysisRequestAt(L, { focusT: 0, zoomT: 0 }));
     expect(profile.samples[0].fieldDeg).toBe(0);
     expect(profile.samples[0].xpShiftMm).toBe(0);
     expect(profile.samples[0].xpZRelLastSurf).toBe(profile.paraxialXpZRelLastSurf);
@@ -187,7 +204,7 @@ describe("computeExitPupilAberrationProfile — on-axis sample", () => {
 describe("computeExitPupilAberrationProfile — profile metadata", () => {
   it("reports the paraxial XP baseline, a positive half-field, and maxAbsShiftMm = max |xpShiftMm|", () => {
     const L = sharedSonnar50f15();
-    const profile = computeExitPupilAberrationProfile(0, 0, L);
+    const profile = computeExitPupilAberrationProfile(analysisRequestAt(L, { focusT: 0, zoomT: 0 }));
     expect(profile.paraxialXpZRelLastSurf).toBeCloseTo(L.xpZRelLastSurf, 10);
     expect(profile.halfFieldDeg).toBeGreaterThan(0);
     const expected = Math.max(...profile.samples.map((s) => Math.abs(s.xpShiftMm)));
@@ -200,8 +217,15 @@ describe("computeExitPupilAberrationProfile — pre-computed geometry shortcut",
   it("produces the same result when geometry is pre-computed vs derived internally", () => {
     const L = sharedSonnar50f15();
     const geom = computeAnalysisFieldGeometryAtState(0, 0, L);
-    const withGeom = computeExitPupilAberrationProfile(0, 0, L, PUPIL_ABERRATION_SAMPLE_COUNT, geom);
-    const withoutGeom = computeExitPupilAberrationProfile(0, 0, L);
+    const withGeom = computeExitPupilAberrationProfile(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        sampling: { pupilAberrationSampleCount: PUPIL_ABERRATION_SAMPLE_COUNT },
+        fieldGeometry: geom,
+      }),
+    );
+    const withoutGeom = computeExitPupilAberrationProfile(analysisRequestAt(L, { focusT: 0, zoomT: 0 }));
     expect(withGeom.halfFieldDeg).toBeCloseTo(withoutGeom.halfFieldDeg, 10);
     expect(withGeom.paraxialXpZRelLastSurf).toBeCloseTo(withoutGeom.paraxialXpZRelLastSurf, 10);
     expect(withGeom.maxAbsShiftMm).toBeCloseTo(withoutGeom.maxAbsShiftMm, 10);
@@ -216,7 +240,7 @@ describe("computeExitPupilAberrationProfile — zoom lens", () => {
   it("returns valid profiles at both zoom ends", () => {
     const L = sharedNikkorZ70200();
     for (const zoomT of [0, 1]) {
-      const profile = computeExitPupilAberrationProfile(0, zoomT, L);
+      const profile = computeExitPupilAberrationProfile(analysisRequestAt(L, { focusT: 0, zoomT: zoomT }));
       expect(profile.samples).toHaveLength(PUPIL_ABERRATION_SAMPLE_COUNT);
       expect(profile.halfFieldDeg).toBeGreaterThan(0);
       expect(isFinite(profile.paraxialXpZRelLastSurf)).toBe(true);
@@ -226,7 +250,7 @@ describe("computeExitPupilAberrationProfile — zoom lens", () => {
   it("on-axis sample always has xpShiftMm = 0 regardless of zoom", () => {
     const L = sharedNikkorZ70200();
     for (const zoomT of [0, 0.5, 1]) {
-      const { samples } = computeExitPupilAberrationProfile(0, zoomT, L);
+      const { samples } = computeExitPupilAberrationProfile(analysisRequestAt(L, { focusT: 0, zoomT: zoomT }));
       expect(samples[0].xpShiftMm).toBe(0);
     }
   });
@@ -246,9 +270,15 @@ describe("computeBothPupilAberrationProfiles — agreement with separate functio
     "matches the standalone EP/XP profiles field-by-field for the %s",
     (_label, makeLens, zoomT) => {
       const L = makeLens();
-      const both = computeBothPupilAberrationProfiles(0, zoomT, L, sampleCount);
-      const ep = computePupilAberrationProfile(0, zoomT, L, sampleCount);
-      const xp = computeExitPupilAberrationProfile(0, zoomT, L, sampleCount);
+      const both = computeBothPupilAberrationProfiles(
+        analysisRequestAt(L, { focusT: 0, zoomT: zoomT, sampling: { pupilAberrationSampleCount: sampleCount } }),
+      );
+      const ep = computePupilAberrationProfile(
+        analysisRequestAt(L, { focusT: 0, zoomT: zoomT, sampling: { pupilAberrationSampleCount: sampleCount } }),
+      );
+      const xp = computeExitPupilAberrationProfile(
+        analysisRequestAt(L, { focusT: 0, zoomT: zoomT, sampling: { pupilAberrationSampleCount: sampleCount } }),
+      );
 
       // Top-level convenience fields are exact mirrors of the nested profile fields.
       expect(both.halfFieldDeg).toBe(both.ep.halfFieldDeg);
@@ -293,17 +323,24 @@ describe("computeBothPupilAberrationProfiles — pre-computed geometry shortcut"
   it("keeps the combined EP/XP profile identical with precomputed geometry", () => {
     const L = sharedSonnar50f15();
     const geom = computeAnalysisFieldGeometryAtState(0.25, 0, L);
-    expect(computeBothPupilAberrationProfiles(0.25, 0, L, PUPIL_ABERRATION_SAMPLE_COUNT, geom)).toEqual(
-      computeBothPupilAberrationProfiles(0.25, 0, L),
-    );
+    expect(
+      computeBothPupilAberrationProfiles(
+        analysisRequestAt(L, {
+          focusT: 0.25,
+          zoomT: 0,
+          sampling: { pupilAberrationSampleCount: PUPIL_ABERRATION_SAMPLE_COUNT },
+          fieldGeometry: geom,
+        }),
+      ),
+    ).toEqual(computeBothPupilAberrationProfiles(analysisRequestAt(L, { focusT: 0.25, zoomT: 0 })));
   });
 });
 
 describe("computeBothPupilAberrationProfiles — current-state pupil baselines", () => {
   it("updates pupil baselines at close focus for a floating-focus macro lens", () => {
     const L = build(MinoltaAF100MacroRaw);
-    const infinity = computeBothPupilAberrationProfiles(0, 0, L);
-    const close = computeBothPupilAberrationProfiles(1, 0, L);
+    const infinity = computeBothPupilAberrationProfiles(analysisRequestAt(L, { focusT: 0, zoomT: 0 }));
+    const close = computeBothPupilAberrationProfiles(analysisRequestAt(L, { focusT: 1, zoomT: 0 }));
 
     expect(infinity.ep.paraxialEpZRelStop).toBeCloseTo(L.epZRelStop, 10);
     expect(infinity.xp.paraxialXpZRelLastSurf).toBeCloseTo(L.xpZRelLastSurf, 10);
@@ -325,7 +362,9 @@ describe("computeBothPupilAberrationProfiles — folded fixtures", () => {
     const L = build(raw);
     expect(L.isFoldedOptics).toBe(true);
 
-    const profiles = computeBothPupilAberrationProfiles(0, 0, L, 5);
+    const profiles = computeBothPupilAberrationProfiles(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, sampling: { pupilAberrationSampleCount: 5 } }),
+    );
 
     expect(profiles.ep.samples).toHaveLength(5);
     expect(profiles.xp.samples).toHaveLength(5);

@@ -1347,8 +1347,9 @@ The summary family lives in `analysis/summary/`, exposed through `analysis.ts`. 
 breathing series and group-movement profiles take `AnalysisRequest`. The summary job table key is unchanged but now
 takes the request directly; `OpticalSummaryTab` creates/reuses a request and lazy context without a prepared-job
 fallback. Spherical aberration, SA profile, blur character and best focus also take requests through the unchanged job
-keys. Field curvature, its chromatic bundle, coma, distortion and vignetting also take requests, including field geometry
-and sampling; other families still dispatch through their existing `*ForState2` adapters until their request migration.
+keys. Field curvature, its chromatic bundle, coma, distortion, vignetting and pupil aberration also take requests,
+including field geometry and sampling; other families still dispatch through their existing `*ForState2` adapters
+until their request migration.
 Centered and movement-aware jobs retain their numerical kernels, sampling defaults and section-availability guards.
 
 Canonical cardinal and EFL math remains in `first-order/`. Request-facing cardinals accept optional camera surface
@@ -1473,12 +1474,22 @@ this family. The separate moved-content component still uses perspective analysi
 
 ## Pupil Aberration
 
-`pupilAberration.ts` provides `computePupilAberrationProfile()` (entrance pupil z-shift per field angle from the
+`analysis/pupils/pupilAberration.ts`, exposed through `analysis.ts`, takes `AnalysisRequest` and provides
+`computePupilAberrationProfile()` (entrance pupil z-shift per field angle from the
 solved/paraxial chief-ray launch ratio), `computeExitPupilAberrationProfile()` (exit pupil z from full-system chief-ray
 back-projection), and `computeBothPupilAberrationProfiles()`, which shares one per-angle bisection across both. Prefer
-the combined helper in UI code. All accept optional precomputed field geometry.
+the combined helper in UI code. All read optional precomputed field geometry and the pupil field-sample count
+from the request, retaining the 17-sample default.
 Exit-pupil back-projection uses vector chief rays when available; entrance-pupil correction ratios remain tied
 to finite slope launches and fall back to neutral correction when no scalar reference exists.
+
+The job-table key and lazy context accessor are unchanged; the prepared-state adapter and RuntimeLens entries
+are removed. `PupilAberrationTab` reuses the deferred context request or memoizes a request from prepared geometry
+and field geometry, then reads the paired result through the lazy context. Its standalone request leaves sampling
+unset and uses zero for the unused dynamic EFL and aperture radii; context requests retain supplied quality sampling.
+The kernels still reconstruct their own full layout, preserving pupil baselines independently of camera-anchored
+request coordinates. The separate moved-content component stays on perspective analysis, with movement/folded
+guards unchanged.
 
 ## Bokeh
 

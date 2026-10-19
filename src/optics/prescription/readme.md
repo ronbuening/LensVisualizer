@@ -38,7 +38,7 @@ flowchart LR
 - Direct source files: 25
 - Direct subfolders: 1
 - Main outbound areas: same folder (68), src/types (39), src/optics/types.ts (9), src/optics/geometry (4), src/optics/math (3), src/optics/state (3), src/utils/catalog (3), src/optics/chromatic, +2 more
-- External consumers: src/optics/aberration, src/optics/analysis, src/optics/buildLens.ts, src/optics/chromatic, src/optics/compat.ts, src/optics/diagram, src/optics/first-order, src/optics/lensDataConversion.ts, +6 more
+- External consumers: src/optics/aberration, src/optics/analysis, src/optics/buildLens.ts, src/optics/chromatic, src/optics/compat.ts, src/optics/diagram, src/optics/first-order, src/optics/lensDataConversion.ts, +5 more
 
 ## Subfolders
 
@@ -52,7 +52,7 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `canonical.ts` | Canonical helper module | src/types (2), same folder, src/utils/catalog | same folder (15), src/optics/buildLens.ts, src/optics/compat.ts, src/optics/lensDataConversion.ts | FLAT_RADIUS, CanonicalRadius, CanonicalAsphere, CanonicalMediumRef, CanonicalMedium, CanonicalSurface, CanonicalElement, CanonicalRearPlate, +30 more |
 | `canonicalInput.ts` | Canonical Input helper module | same folder (4), src/types (2) | same folder (2) | assertValidLensData, canonicalInput |
-| `compile.ts` | Compile helper module | same folder (7), src/types (2), src/optics/types.ts | src/optics/aberration, src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/diagram, +4 more | compiledLensFromRuntime, withLensDefaults, compileLens, compileLensData |
+| `compile.ts` | Compile helper module | same folder (7), src/types (2), src/optics/types.ts | src/optics/analysis (2), src/optics/aberration, src/optics/chromatic, src/optics/compat.ts, src/optics/diagram, +3 more | compiledLensFromRuntime, withLensDefaults, compileLens, compileLensData |
 | `compileAspheres.ts` | Compile Aspheres helper module | same folder, src/types | same folder (3) | compileAspheres, buildAsphereIndex |
 | `compileCanonical.ts` | Compile Canonical helper module | same folder (4), src/optics/first-order, src/optics/types.ts, src/types | same folder | compileCanonicalUncached, compilePrescription, completeCompilation |
 | `compileConstruction.ts` | Compile Construction helper module | same folder (6), src/types (2), src/optics/chromatic, src/optics/types.ts | same folder | compileConstruction, LensConstruction |

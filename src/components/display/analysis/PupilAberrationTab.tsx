@@ -8,7 +8,7 @@
  */
 
 import { useMemo } from "react";
-import { analysisJobsForState2 } from "../../../optics/compat.js";
+import { createAnalysisRequest, createAnalysisComputationContext } from "../../../optics/analysis.js";
 import PupilAberrationChart from "./PupilAberrationChart.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
@@ -67,12 +67,20 @@ interface CenteredPupilContentProps {
 }
 
 function CenteredPupilContent({ t, fieldGeometry, preparedState, analysisContext }: CenteredPupilContentProps) {
-  const profiles = useMemo(
+  const request = useMemo(
     () =>
-      analysisContext?.computeBothPupilAberrationProfiles() ??
-      analysisJobsForState2.computeBothPupilAberrationProfiles(preparedState, undefined, fieldGeometry ?? undefined),
+      analysisContext?.request ??
+      createAnalysisRequest({
+        preparedState,
+        dynamicEFL: 0,
+        currentEPSD: 0,
+        currentPhysStopSD: 0,
+        fieldGeometry,
+      }),
     [analysisContext, preparedState, fieldGeometry],
   );
+  const context = useMemo(() => createAnalysisComputationContext(request), [request]);
+  const profiles = useMemo(() => context.computeBothPupilAberrationProfiles(), [context]);
 
   if (profiles.ep.samples.length < 2) {
     return (

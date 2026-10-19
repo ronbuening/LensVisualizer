@@ -1545,9 +1545,14 @@ function computeAnalysisVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOut
 /** Measures entrance/exit pupil aberration profile generation. */
 function computeAnalysisPupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const pupilProfiles = analysisJobsForState2.computeBothPupilAberrationProfiles(
-    snapshot.preparedState,
-    snapshot.analysisSampling?.pupilAberrationSampleCount ?? undefined,
-    snapshot.fieldGeometry ?? undefined,
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      fieldGeometry: snapshot.fieldGeometry,
+      sampling: snapshot.analysisSampling,
+    }),
   );
   completed("pupils", pupilProfiles);
   return { pupilSamples: pupilProfiles.ep.samples.length + pupilProfiles.xp.samples.length };

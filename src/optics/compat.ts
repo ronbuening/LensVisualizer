@@ -270,13 +270,7 @@ export {
   computeBokehPreviewPairForState2,
   describeBokehDefocusSide2,
 } from "./analysis/bokeh.js";
-export {
-  computeBothPupilAberrationProfiles2,
-  computeBothPupilAberrationProfilesForState2,
-  computeExitPupilAberrationProfile2,
-  computePupilAberrationProfile2,
-  PUPIL_ABERRATION_SAMPLE_COUNT_2,
-} from "./analysis/pupilAberration.js";
+export { PUPIL_ABERRATION_SAMPLE_COUNT_2 } from "./analysis/pupils/pupilAberration.js";
 export { computeOpticalSummary, type OpticalSummaryMetrics2 } from "./analysis/summary/summary.js";
 export {
   computeGroupMovementProfile,

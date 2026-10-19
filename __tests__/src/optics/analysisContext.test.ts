@@ -5,6 +5,7 @@ import {
   createAnalysisComputationContext,
   prepareRuntimeState,
 } from "../../../src/optics/compat.js";
+import { analysisSamplingForQuality } from "../../../src/optics/analysis/analysisQuality.js";
 import { runtimeView } from "../../../src/optics/prescription/runtimeView.js";
 import { createAnalysisRequest, type AnalysisRequestParams } from "../../../src/optics/analysis/request.js";
 import { createPerspectiveTraceContext } from "../../../src/optics/perspective/index.js";
@@ -40,7 +41,7 @@ describe("analysis computation context", () => {
     );
     expect(context.computeVignettingCurve()).toEqual(analysisJobsForState2.computeVignettingCurve(context.request));
     expect(context.computeBothPupilAberrationProfiles()).toEqual(
-      analysisJobsForState2.computeBothPupilAberrationProfiles(state, undefined, fieldGeometry),
+      analysisJobsForState2.computeBothPupilAberrationProfiles(context.request),
     );
     expect(context.computeBokehPreviewPair()).toEqual(
       analysisJobsForState2.computeBokehPreviewPair(state, currentEPSD, currentPhysStopSD),
@@ -124,6 +125,31 @@ describe("analysis computation context", () => {
     expect(samples).toHaveLength(5);
     expect(samples).toEqual(analysisJobsForState2.computeVignettingCurve(request));
     expect(context.computeVignettingCurve()).toBe(samples);
+  });
+
+  it("forwards pupil field geometry and quality sampling while caching one combined result", () => {
+    const L = sharedSonnar50f15();
+    const preparedState = prepareRuntimeState(L, 0.25, 0);
+    const fieldGeometry = computeAnalysisFieldGeometryAtState(0.25, 0, L);
+    const params = {
+      preparedState,
+      dynamicEFL: 0,
+      currentEPSD: 0,
+      currentPhysStopSD: 0,
+      fieldGeometry: { ...fieldGeometry, halfFieldDeg: fieldGeometry.halfFieldDeg * 0.75 },
+    };
+    const defaults = createAnalysisComputationContext(params);
+    expect(defaults.computeBothPupilAberrationProfiles().ep.samples).toHaveLength(17);
+    for (const sampling of [analysisSamplingForQuality("interactive")!, { pupilAberrationSampleCount: 5 }]) {
+      const request = createAnalysisRequest({ ...params, analysisQuality: "interactive", sampling });
+      const context = createAnalysisComputationContext(request);
+      const profiles = context.computeBothPupilAberrationProfiles();
+      expect(profiles.ep.samples).toHaveLength(sampling.pupilAberrationSampleCount!);
+      expect(profiles.xp.samples).toHaveLength(sampling.pupilAberrationSampleCount!);
+      expect(profiles.halfFieldDeg).toBe(params.fieldGeometry.halfFieldDeg);
+      expect(profiles).toEqual(analysisJobsForState2.computeBothPupilAberrationProfiles(request));
+      expect(context.computeBothPupilAberrationProfiles()).toBe(profiles);
+    }
   });
 
   it("applies interactive chromatic sampling through the cached context", () => {

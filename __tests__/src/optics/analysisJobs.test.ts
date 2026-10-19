@@ -1,4 +1,5 @@
 import {
+  computeBothPupilAberrationProfiles,
   computeVignettingCurve,
   computeDistortionCurve,
   computeDistortionFieldGrid,
@@ -105,8 +106,16 @@ describe("analysis job facade", () => {
     const state = prepareRuntimeState(L, focusT, zoomT);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, zoomT);
 
-    const statePupilProfiles = analysisJobsForState2.computeBothPupilAberrationProfiles(state, 5);
-    expect(statePupilProfiles).toEqual(analysisJobs2.computeBothPupilAberrationProfiles(focusT, zoomT, L, 5));
+    const pupilRequest = createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: 0,
+      currentEPSD,
+      currentPhysStopSD,
+      sampling: { pupilAberrationSampleCount: 5 },
+    });
+    const statePupilProfiles = analysisJobsForState2.computeBothPupilAberrationProfiles(pupilRequest);
+    expect(statePupilProfiles).toEqual(analysisJobs2.computeBothPupilAberrationProfiles(pupilRequest));
+    expect(statePupilProfiles).toEqual(computeBothPupilAberrationProfiles(pupilRequest));
     expect(statePupilProfiles.ep.samples).toHaveLength(5);
     expect(statePupilProfiles.xp.samples).toHaveLength(5);
 

@@ -37,7 +37,7 @@ flowchart LR
 - Direct source files: 5
 - Direct subfolders: 0
 - Main outbound areas: src/optics/types.ts (3), same folder (2), src/types (2), src/optics/constants.ts, src/optics/geometry, src/optics/spectralLines.ts
-- External consumers: src/components/display, src/optics/analysis, src/optics/field, src/optics/first-order, src/optics/geometry, src/optics/perspective, src/optics/prescription, src/optics/pupilAberration.ts, +2 more
+- External consumers: src/components/display, src/optics/analysis, src/optics/field, src/optics/first-order, src/optics/geometry, src/optics/perspective, src/optics/prescription, src/optics/state, +1 more
 
 ## Files
 

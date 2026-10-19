@@ -6,6 +6,7 @@ import DistortionTab from "../../../../../src/components/display/analysis/Distor
 import OpticalSummaryTab from "../../../../../src/components/display/analysis/OpticalSummaryTab.js";
 import PupilAberrationTab from "../../../../../src/components/display/analysis/PupilAberrationTab.js";
 import VignettingTab from "../../../../../src/components/display/analysis/VignettingTab.js";
+import { createAnalysisComputationContext } from "../../../../../src/optics/analysis.js";
 import themes from "../../../../../src/utils/theme/themes.js";
 import type { PreparedOpticalState } from "../../../../../src/optics/types.js";
 import type { RuntimeLens } from "../../../../../src/types/optics.js";
@@ -40,7 +41,6 @@ vi.mock("../../../../../src/optics/compat.js", async () => {
     ...actual,
     analysisJobsForState2: {
       ...(actual as { analysisJobsForState2: Record<string, unknown> }).analysisJobsForState2,
-      computeBothPupilAberrationProfiles: mockComputeBothPupilAberrationProfiles,
       computeChromaticAnalysis: mockComputeChromaticAnalysis,
       computeChromaticRayFanAnalysis: mockComputeChromaticRayFanAnalysis,
     },
@@ -70,6 +70,11 @@ vi.mock("../../../../../src/optics/analysis/distortion/distortion.js", async (im
 vi.mock("../../../../../src/optics/analysis/vignetting/vignetting.js", () => ({
   computeVignettingCurve: mockComputeVignettingCurve,
 }));
+
+vi.mock("../../../../../src/optics/analysis/pupils/pupilAberration.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../../src/optics/analysis/pupils/pupilAberration.js")>();
+  return { ...actual, computeBothPupilAberrationProfiles: mockComputeBothPupilAberrationProfiles };
+});
 
 const preparedState = mockPreparedState as PreparedOpticalState;
 const lens = { N: 2, EFL: 50, EP: { epSD: 5 }, isZoom: false, elements: [] } as unknown as RuntimeLens;
@@ -539,7 +544,7 @@ describe("prepared-state analysis tabs", () => {
     );
   });
 
-  it("routes pupil work through the prepared-state job facade", () => {
+  it("routes pupil work through one request and lazy context", () => {
     const html = renderToStaticMarkup(
       React.createElement(PupilAberrationTab, {
         L: lens,
@@ -554,6 +559,38 @@ describe("prepared-state analysis tabs", () => {
 
     expect(html).toContain("Pupil aberration");
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
-    expect(mockComputeBothPupilAberrationProfiles).toHaveBeenCalledWith(preparedState, undefined, fieldGeometry);
+    expect(mockComputeBothPupilAberrationProfiles).toHaveBeenCalledWith(
+      expect.objectContaining({
+        preparedGeometry: preparedState,
+        dynamicEFL: 0,
+        aperture: { entrancePupilSemiDiameterMm: 0, stopSemiDiameterMm: 0 },
+        fieldGeometry,
+        sampling: {},
+      }),
+    );
+  });
+
+  it("reuses the supplied pupil request and its combined cached result", () => {
+    const analysisContext = createAnalysisComputationContext({
+      preparedState,
+      dynamicEFL: 50,
+      currentEPSD: 10,
+      currentPhysStopSD: 5,
+      fieldGeometry: { ...fieldGeometry, halfFieldDeg: 8 },
+      sampling: { pupilAberrationSampleCount: 7 },
+    });
+    const tab = React.createElement(PupilAberrationTab, {
+      L: lens,
+      t: themes.dark,
+      focusT: 0.2,
+      zoomT: 0.3,
+      aberrationT: 0.4,
+      fieldGeometry,
+      preparedState,
+      analysisContext,
+    });
+    expect(renderToStaticMarkup(tab)).toContain("Pupil aberration");
+    expect(renderToStaticMarkup(tab)).toContain("Pupil aberration");
+    expect(mockComputeBothPupilAberrationProfiles).toHaveBeenCalledExactlyOnceWith(analysisContext.request);
   });
 });

@@ -156,11 +156,7 @@ export function createAnalysisComputationContext(
       )),
     computeBothPupilAberrationProfiles: () =>
       (pupilProfiles ??= computeCenteredSection("pupils", () =>
-        analysisJobsForState2.computeBothPupilAberrationProfiles(
-          preparedState,
-          sampling.pupilAberrationSampleCount ?? undefined,
-          resolvedFieldGeometry,
-        ),
+        analysisJobsForState2.computeBothPupilAberrationProfiles(request),
       )),
     computeBokehPreviewPair: () =>
       (bokehPreviewPair ??= computeCenteredSection("bokeh", () =>

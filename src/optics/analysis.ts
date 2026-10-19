@@ -63,3 +63,15 @@ export {
 } from "./analysis/distortion/distortion.js";
 
 export { computeVignettingCurve, type VignettingSample } from "./analysis/vignetting/vignetting.js";
+
+export {
+  computePupilAberrationProfile,
+  computeExitPupilAberrationProfile,
+  computeBothPupilAberrationProfiles,
+  PUPIL_ABERRATION_SAMPLE_COUNT,
+  type PupilAberrationSample,
+  type PupilAberrationProfile,
+  type ExitPupilAberrationSample,
+  type ExitPupilAberrationProfile,
+  type BothPupilAberrationProfiles,
+} from "./analysis/pupils/pupilAberration.js";

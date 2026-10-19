@@ -14,6 +14,7 @@ type EngineModule = Readonly<Record<string, unknown>>;
 
 /* One glob per module, so a candidate below can only name a module that is listed here. */
 const ENGINE_MODULES = {
+  pupilAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/pupils/pupilAberration.ts", { eager: true }),
   vignettingAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/vignetting/vignetting.ts", { eager: true }),
   distortionAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/distortion/distortion.ts", { eager: true }),
   comaAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/coma.ts", { eager: true }),
@@ -49,6 +50,7 @@ const ENGINE_MODULES = {
 /* The same modules as types. A type query is erased before bundling, so it types a capability at the head and loads
  * nothing at any ref. */
 interface EngineModuleTypes {
+  pupilAnalysis: typeof import("../../optics/analysis.js");
   vignettingAnalysis: typeof import("../../optics/analysis.js");
   distortionAnalysis: typeof import("../../optics/analysis.js");
   comaAnalysis: typeof import("../../optics/analysis.js");
@@ -92,6 +94,19 @@ type SeamCandidate = readonly [module: EngineModuleId, exportName: string];
  */
 const SEAM_CANDIDATES = {
   // Captures dispatch these through the context at both refs; retain the old prepared exports.
+  computeBothPupilAberrationProfiles: [
+    ["pupilAnalysis", "computeBothPupilAberrationProfiles"],
+    ["compat", "computeBothPupilAberrationProfilesForState2"],
+    ["compat", "computeBothPupilAberrationProfiles2"],
+  ],
+  computePupilAberrationProfile: [
+    ["pupilAnalysis", "computePupilAberrationProfile"],
+    ["compat", "computePupilAberrationProfile2"],
+  ],
+  computeExitPupilAberrationProfile: [
+    ["pupilAnalysis", "computeExitPupilAberrationProfile"],
+    ["compat", "computeExitPupilAberrationProfile2"],
+  ],
   computeVignettingCurve: [
     ["vignettingAnalysis", "computeVignettingCurve"],
     ["compat", "computeVignettingCurveForState2"],

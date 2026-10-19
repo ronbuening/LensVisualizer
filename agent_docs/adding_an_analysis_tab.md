@@ -47,7 +47,8 @@ the prepared state / slider inputs you actually use.
   `src/optics/analysis.ts`; implementation leaves import lower-level sources directly.
   The component formats and renders. Summary/cardinals/breathing/group movement and spherical aberration/SA
   profile/blur character/best focus, field curvature/astigmatism/chromatic field-focus summary, coma,
-  distortion and vignetting use this path; other existing families retain their adapters until migrated.
+  distortion, vignetting and pupil aberration use this path; other existing families retain their adapters until
+  migrated.
 - Reuse `analysisContext.request`, or memoize `createAnalysisRequest` from the supplied prepared
   state and every used control/aperture/EFL/field input. Memoize the context/result on that identity.
   Do not mix deferred geometry with live controls. The breathing series intentionally omits
@@ -58,6 +59,9 @@ the prepared state / slider inputs you actually use.
   preserve that distinction when reusing its two-result context pattern.
   Vignetting uses both aperture radii, field geometry and request sampling; its standalone request
   uses zero for the unused dynamic EFL. Keep survivor counts separate from absorption-weighted illumination.
+  Pupils share one combined per-angle solve for entrance and exit profiles. Reuse the context request's sampling;
+  standalone pupil requests leave sampling unset (17 samples) and use zero for unused EFL/aperture values.
+  Keep field geometry in the memo dependencies and preserve scalar-domain entrance fallback and vector exit tracing.
 - Slider-dependent values come from `preparedState`/`inputs` at render time — never bake them into
   `buildLens()`.
 - Folded/mirror lenses: check how existing tabs guard folded systems before computing (several

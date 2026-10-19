@@ -15,7 +15,7 @@ import {
   thick,
   traceRayChromatic,
 } from "../../../src/optics/optics.js";
-import { computeBothPupilAberrationProfiles } from "../../../src/optics/pupilAberration.js";
+import { computeBothPupilAberrationProfiles } from "../../../src/optics/analysis.js";
 import MinoltaVarisoftRaw from "../../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.js";
 import type { ChromaticChannel, RuntimeLens } from "../../../src/types/optics.js";
 import { ingestLens } from "../../../src/optics/buildLens.js";
@@ -300,8 +300,12 @@ describe("aberrationControl analysis plumbing", () => {
     const sharp = analysisState(L, 0, 0);
     const soft = analysisState(L, 0, 1);
 
-    const sharpPupils = computeBothPupilAberrationProfiles(0, 0, L, undefined, sharp.fieldGeometry, 0);
-    const softPupils = computeBothPupilAberrationProfiles(0, 0, L, undefined, soft.fieldGeometry, 1);
+    const sharpPupils = computeBothPupilAberrationProfiles(
+      analysisRequestAt(L, { fieldGeometry: sharp.fieldGeometry, aberrationT: 0 }),
+    );
+    const softPupils = computeBothPupilAberrationProfiles(
+      analysisRequestAt(L, { fieldGeometry: soft.fieldGeometry, aberrationT: 1 }),
+    );
     expectMeaningfulDifference(
       softPupils.maxAbsEpShiftMm,
       sharpPupils.maxAbsEpShiftMm,
