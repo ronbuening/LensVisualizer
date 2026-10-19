@@ -5,28 +5,28 @@
  * field-curvature, distortion, and vignetting analysis.
  */
 
-import type { RuntimeSkewRayTraceResult as SkewRayTraceResult } from "../trace/runtimeRayResult.js";
+import type { RuntimeSkewRayTraceResult as SkewRayTraceResult } from "../../trace/runtimeRayResult.js";
 import {
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
   type CircularPupilSample,
   type OrthogonalPupilSample,
-} from "../analysis/sampling.js";
-import { skewImagePlaneIntercept, type SkewImagePlaneIntercept } from "../trace/rayAdapters.js";
-import { bAtZoom, halfFieldAtZoom, thick, tracingHalfFieldAtZoom, yRatioAtZoom } from "../layout.js";
+} from "../sampling.js";
+import { skewImagePlaneIntercept, type SkewImagePlaneIntercept } from "../../trace/rayAdapters.js";
+import { bAtZoom, halfFieldAtZoom, thick, tracingHalfFieldAtZoom, yRatioAtZoom } from "../../layout.js";
 import {
   computeFieldGeometryAtState2 as computeFieldGeometryAtState,
   offsetVectorFieldRay2 as offsetVectorFieldRay,
   solveChiefRay2 as solveChiefRay,
   type FieldGeometryState2 as FieldGeometryState,
   type VectorFieldRayLaunch2 as VectorFieldRayLaunch,
-} from "../state/fieldAdapters.js";
-import { prepareRayTrace, type PreparedRayTrace } from "../trace/rayAdapters.js";
+} from "../../state/fieldAdapters.js";
+import { prepareRayTrace, type PreparedRayTrace } from "../../trace/rayAdapters.js";
 import {
   isFisheyeProjection2 as isFisheyeProjection,
   projectionLaunchSlopeForField2 as projectionLaunchSlopeForField,
-} from "../field/projection.js";
-import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
+} from "../../field/projection.js";
+import type { ChromaticChannel, RuntimeLens } from "../../../types/optics.js";
 import { bestRelativeFocusPlane, type TransverseFocusHit } from "./shared.js";
 
 /** Orientation of an orthogonal off-axis pupil fan. */

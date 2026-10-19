@@ -92,7 +92,7 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `mtf.worker.ts` | Mtf helper module | src/types (2), same folder, src/optics/buildLens.ts, src/optics/compat.ts, src/optics/mtf.ts | none | none |
 | `mtfWorkerClient.ts` | Mtf Worker Client helper module | src/types (2), src/optics/buildLens.ts | same folder (2) | MtfJob, MtfWorkerRequest, MtfWorkerReply, MtfWorkerPort, MtfWorkerClient |
-| `offAxisRayUtils.ts` | Off Axis Ray Utils helper module | src/types (2), src/optics/aberration, src/optics/optics.ts, src/optics/projection.ts, src/utils/featureFlags.ts | same folder (2), src/benchmarks | OffAxisTraceGeometry, computeOffAxisTraceGeometry |
+| `offAxisRayUtils.ts` | Off Axis Ray Utils helper module | src/types (2), src/optics/analysis, src/optics/optics.ts, src/optics/projection.ts, src/utils/featureFlags.ts | same folder (2), src/benchmarks | OffAxisTraceGeometry, computeOffAxisTraceGeometry |
 | `raySegmentUtils.ts` | Ray Segment Utils helper module | same folder, src/optics/chromatic, src/types | same folder (3), src/benchmarks | compileRaySegment, filterChannels |
 | `useChromaticRays.ts` | React hook module | same folder (3), src/optics/perspective (2), src/types (2), package:react, src/optics/dispersion.ts, +2 more | same folder, src/benchmarks, src/components/layout | ChromaticRaySegment, default, useChromaticRays |
 | `useDismissableDropdown.ts` | React hook module | package:react | src/components/layout, src/components/relationshipMap, src/components/search | default, useDismissableDropdown |

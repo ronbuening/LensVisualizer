@@ -4,8 +4,8 @@
  * Centralizes the coordinate and best-focus conventions reused by spherical, coma, field-curvature, and bokeh modules.
  */
 
-import { prepareRayTrace, type PreparedRayTrace } from "../trace/rayAdapters.js";
-import type { RuntimeLens } from "../../types/optics.js";
+import { prepareRayTrace, type PreparedRayTrace } from "../../trace/rayAdapters.js";
+import type { RuntimeLens } from "../../../types/optics.js";
 
 /** Candidate fractions of the entrance pupil for the marginal ray sample. */
 export const MARGINAL_FRACS = [0.97, 0.95, 0.9, 0.85, 0.8] as const;

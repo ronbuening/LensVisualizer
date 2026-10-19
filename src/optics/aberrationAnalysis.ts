@@ -5,12 +5,12 @@
  * internal modules under ./aberration/.
  */
 
-export * from "./aberration/types.js";
+export * from "./analysis/aberration/types.js";
 export {
   computeSAProfile,
   computeSphericalAberration,
   computeSphericalAberrationBlurCharacter,
-} from "./aberration/spherical.js";
+} from "./analysis/aberration/spherical.js";
 export {
   computeComaAnalysis,
   computeComaPointCloudPreview,
@@ -23,12 +23,8 @@ export {
   computeProjectionAwareOffAxisFieldGeometry,
   computeStateAwareOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
-} from "./aberration/offAxis.js";
-export {
-  buildBokehDensityGrid,
-  buildBokehRadialProfile,
-  classifyBokehBrightnessCharacter,
-  computeBestFocusZ,
-  computeBokehPreviewPair,
-  describeBokehDefocusSide,
-} from "./aberration/bokeh.js";
+} from "./analysis/aberration/offAxis.js";
+export { buildBokehDensityGrid, computeBokehPreviewPair, describeBokehDefocusSide } from "./aberration/bokeh.js";
+
+export { computeBestFocusZ } from "./analysis/aberration/bestFocus.js";
+export { buildBokehRadialProfile, classifyBokehBrightnessCharacter } from "./analysis/aberration/radialProfile.js";

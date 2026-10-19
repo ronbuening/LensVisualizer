@@ -18,7 +18,7 @@ import {
 } from "../../../../../src/components/display/analysis/charts/chartMath.js";
 import themes from "../../../../../src/utils/theme/themes.js";
 import type { FieldCurvatureResult } from "../../../../../src/optics/aberrationAnalysis.js";
-import type { FieldCurvatureFieldResult } from "../../../../../src/optics/aberration/types.js";
+import type { FieldCurvatureFieldResult } from "../../../../../src/optics/analysis/aberration/types.js";
 import type { VignettingSample } from "../../../../../src/optics/vignetteAnalysis.js";
 
 function field(

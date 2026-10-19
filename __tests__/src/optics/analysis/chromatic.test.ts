@@ -22,7 +22,7 @@ import { doLayout, traceChiefRelativeSkewRayChromatic } from "../../../../src/op
 import {
   computeProjectionAwareOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
-} from "../../../../src/optics/aberration/offAxis.js";
+} from "../../../../src/optics/analysis/aberration/offAxis.js";
 import type { FieldCurvatureFieldResult, FieldCurvatureResult } from "../../../../src/optics/aberrationAnalysis.js";
 
 /* The single-field variants of these fixtures leave the max-field reduction

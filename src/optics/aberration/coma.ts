@@ -28,20 +28,20 @@ import type {
   MeridionalComaSample,
   SagittalComaResult,
   SagittalComaSample,
-} from "./types.js";
+} from "../analysis/aberration/types.js";
 import {
   COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES,
   COMA_PREVIEW_FIELD_FRACTIONS,
   COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT,
   MERIDIONAL_COMA_SAMPLE_COUNT,
-} from "./types.js";
+} from "../analysis/aberration/types.js";
 import {
   computeProjectionAwareOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
   traceOffAxisBundleFromSamples,
   type OffAxisBundle,
   type ProjectionAwareOffAxisFieldGeometry,
-} from "./offAxis.js";
+} from "../analysis/aberration/offAxis.js";
 import type { AnalysisSamplingOptions } from "../analysis/analysisQuality.js";
 
 const COMA_PREVIEW_MIN_SHARED_HALF_RANGE_MM = 0.01;

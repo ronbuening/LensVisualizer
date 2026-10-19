@@ -14,16 +14,8 @@ import {
   computeFieldCurvatureBundle2,
   computeFieldCurvatureBundleForState2,
   computeFieldCurvatureForState2,
-  computeSAProfileForState2,
-  computeSphericalAberrationBlurCharacterForState2,
-  computeSphericalAberrationForState2,
 } from "./aberrations.js";
-import {
-  computeBestFocusZ2,
-  computeBestFocusZForState2,
-  computeBokehPreviewPair2,
-  computeBokehPreviewPairForState2,
-} from "./bokeh.js";
+import { computeBokehPreviewPair2, computeBokehPreviewPairForState2 } from "./bokeh.js";
 import {
   computeChromaticAnalysis2,
   computeChromaticAnalysisForState2,
@@ -44,6 +36,12 @@ import {
   PUPIL_ABERRATION_SAMPLE_COUNT_2,
 } from "./pupilAberration.js";
 import { computeOpticalSummary } from "./summary/summary.js";
+import {
+  computeSphericalAberration,
+  computeSAProfile,
+  computeSphericalAberrationBlurCharacter,
+} from "./aberration/spherical.js";
+import { computeBestFocusZ } from "./aberration/bestFocus.js";
 import type { AnalysisRequest } from "./request.js";
 import { computeVignettingCurve2, computeVignettingCurveForState2 } from "./vignetting.js";
 
@@ -191,15 +189,8 @@ export const analysisJobs2 = {
     );
   },
 
-  computeBestFocusZ(
-    L: RuntimeLens,
-    focusT: number,
-    zoomT: number,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    aberrationT = 0,
-  ) {
-    return computeBestFocusZ2(L, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
+  computeBestFocusZ(request: AnalysisRequest) {
+    return computeBestFocusZ(request);
   },
 
   computeBokehPreviewPair(
@@ -227,7 +218,7 @@ export const analysisJobs2 = {
 };
 
 /**
- * Incremental analysis registry: summary takes a request; other families still take prepared state.
+ * Incremental analysis registry: summary and spherical families take requests; other families still take prepared state.
  *
  * Prepared-state jobs recover RuntimeLens-compatible z positions only at the boundary,
  * keeping all analysis state tied to the same compiled focus/zoom/aberration snapshot.
@@ -235,28 +226,19 @@ export const analysisJobs2 = {
  * @returns grouped synchronous functions bound by explicit PreparedOpticalState inputs
  */
 export const analysisJobsForState2 = {
-  computeSphericalAberration(state: PreparedOpticalState, currentEPSD: number, currentPhysStopSD: number) {
-    return computeSphericalAberrationForState2(state, currentEPSD, currentPhysStopSD);
+  computeSphericalAberration(request: AnalysisRequest) {
+    return computeSphericalAberration(request);
   },
 
-  computeSAProfile(state: PreparedOpticalState, currentEPSD: number, currentPhysStopSD: number) {
-    return computeSAProfileForState2(state, currentEPSD, currentPhysStopSD);
+  computeSAProfile(request: AnalysisRequest) {
+    return computeSAProfile(request);
   },
 
   computeSphericalAberrationBlurCharacter(
-    state: PreparedOpticalState,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    baseResult: Parameters<typeof computeSphericalAberrationBlurCharacterForState2>[3] = null,
-    sampling?: AnalysisSamplingOptions,
+    request: AnalysisRequest,
+    baseResult: Parameters<typeof computeSphericalAberrationBlurCharacter>[1] = null,
   ) {
-    return computeSphericalAberrationBlurCharacterForState2(
-      state,
-      currentEPSD,
-      currentPhysStopSD,
-      baseResult,
-      sampling,
-    );
+    return computeSphericalAberrationBlurCharacter(request, baseResult);
   },
 
   computeFieldCurvature(
@@ -314,8 +296,8 @@ export const analysisJobsForState2 = {
     return computeComaAnalysisForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry, sampling);
   },
 
-  computeBestFocusZ(state: PreparedOpticalState, currentEPSD: number, currentPhysStopSD: number) {
-    return computeBestFocusZForState2(state, currentEPSD, currentPhysStopSD);
+  computeBestFocusZ(request: AnalysisRequest) {
+    return computeBestFocusZ(request);
   },
 
   computeBokehPreviewPair(

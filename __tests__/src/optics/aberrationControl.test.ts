@@ -1,3 +1,4 @@
+import { analysisRequestAt } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import { computeBokehPreviewPair } from "../../../src/optics/aberration/bokeh.js";
 import {
@@ -130,8 +131,26 @@ describe("aberrationControl analysis plumbing", () => {
     const sharp = analysisState(L, 0, 0);
     const soft = analysisState(L, 0, 1);
 
-    const sharpSA = computeSphericalAberration(L, sharp.zPos, 0, 0, sharp.currentEPSD, sharp.currentPhysStopSD, 0);
-    const softSA = computeSphericalAberration(L, soft.zPos, 0, 0, soft.currentEPSD, soft.currentPhysStopSD, 1);
+    const sharpSA = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: sharp.zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: sharp.currentEPSD,
+        currentPhysStopSD: sharp.currentPhysStopSD,
+        aberrationT: 0,
+      }),
+    );
+    const softSA = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: soft.zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: soft.currentEPSD,
+        currentPhysStopSD: soft.currentPhysStopSD,
+        aberrationT: 1,
+      }),
+    );
     expect(sharpSA).not.toBeNull();
     expect(softSA).not.toBeNull();
     expectMeaningfulDifference(
@@ -140,8 +159,26 @@ describe("aberrationControl analysis plumbing", () => {
       "ring should change longitudinal spherical aberration",
     );
 
-    const sharpProfile = computeSAProfile(L, sharp.zPos, 0, 0, sharp.currentEPSD, sharp.currentPhysStopSD, 0);
-    const softProfile = computeSAProfile(L, soft.zPos, 0, 0, soft.currentEPSD, soft.currentPhysStopSD, 1);
+    const sharpProfile = computeSAProfile(
+      analysisRequestAt(L, {
+        zPos: sharp.zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: sharp.currentEPSD,
+        currentPhysStopSD: sharp.currentPhysStopSD,
+        aberrationT: 0,
+      }),
+    );
+    const softProfile = computeSAProfile(
+      analysisRequestAt(L, {
+        zPos: soft.zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: soft.currentEPSD,
+        currentPhysStopSD: soft.currentPhysStopSD,
+        aberrationT: 1,
+      }),
+    );
     expect(sharpProfile.length).toBeGreaterThan(0);
     expect(softProfile.length).toBeGreaterThan(0);
     expectMeaningfulDifference(

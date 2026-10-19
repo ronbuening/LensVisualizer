@@ -1,13 +1,9 @@
 import { useMemo } from "react";
-import { analysisJobsForState2 } from "../../../../optics/compat.js";
-import {
-  computeSphericalAberration,
-  computeSphericalAberrationBlurCharacter,
-  computeSAProfile,
-} from "../../../../optics/aberrationAnalysis.js";
+import { createAnalysisRequest, createAnalysisComputationContext, stateWithZ } from "../../../../optics/analysis.js";
+import usePreparedAnalysisState from "../usePreparedAnalysisState.js";
 import { probe } from "../../../../utils/perfProbe.js";
 import type { PreparedOpticalState } from "../../../../optics/types.js";
-import type { AnalysisComputationContext } from "../../../../optics/compat.js";
+import type { AnalysisComputationContext } from "../../../../optics/analysis.js";
 import type { RuntimeLens } from "../../../../types/optics.js";
 
 interface Params {
@@ -33,40 +29,32 @@ export default function useSphericalAberrationData({
   preparedState,
   analysisContext,
 }: Params) {
+  const state = usePreparedAnalysisState({
+    L,
+    focusT,
+    zoomT,
+    aberrationT,
+    preparedState: analysisContext?.preparedState ?? preparedState,
+  });
+  const request = useMemo(
+    () =>
+      analysisContext?.request ??
+      createAnalysisRequest({
+        preparedState: preparedState ? state : stateWithZ(state, zPos),
+        dynamicEFL: L.EFL,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    [analysisContext, preparedState, state, zPos, L, currentEPSD, currentPhysStopSD],
+  );
+  const context = useMemo(
+    () => analysisContext ?? createAnalysisComputationContext(request),
+    [analysisContext, request],
+  );
   return useMemo(() => {
-    const saResult = analysisContext
-      ? probe("computeSphericalAberration", () => analysisContext.computeSphericalAberration())
-      : preparedState
-        ? probe("computeSphericalAberration", () =>
-            analysisJobsForState2.computeSphericalAberration(preparedState, currentEPSD, currentPhysStopSD),
-          )
-        : probe("computeSphericalAberration", () =>
-            computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT),
-          );
-    const saProfile = analysisContext
-      ? analysisContext.computeSAProfile()
-      : preparedState
-        ? analysisJobsForState2.computeSAProfile(preparedState, currentEPSD, currentPhysStopSD)
-        : computeSAProfile(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
-    const saBlurCharacter = analysisContext
-      ? analysisContext.computeSphericalAberrationBlurCharacter()
-      : preparedState
-        ? analysisJobsForState2.computeSphericalAberrationBlurCharacter(
-            preparedState,
-            currentEPSD,
-            currentPhysStopSD,
-            saResult,
-          )
-        : computeSphericalAberrationBlurCharacter(
-            L,
-            zPos,
-            focusT,
-            zoomT,
-            currentEPSD,
-            currentPhysStopSD,
-            saResult,
-            aberrationT,
-          );
+    const saResult = probe("computeSphericalAberration", () => context.computeSphericalAberration());
+    const saProfile = context.computeSAProfile();
+    const saBlurCharacter = context.computeSphericalAberrationBlurCharacter();
     return { saResult, saProfile, saBlurCharacter };
-  }, [L, zPos, focusT, zoomT, aberrationT, currentEPSD, currentPhysStopSD, preparedState, analysisContext]);
+  }, [context]);
 }

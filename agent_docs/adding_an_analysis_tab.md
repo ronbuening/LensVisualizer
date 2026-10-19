@@ -45,7 +45,8 @@ the prepared state / slider inputs you actually use.
 - Optics math and sampled-series orchestration live in a pure helper under
   `src/optics/analysis/<family>/`, taking `AnalysisRequest`. Expose migrated helpers through
   `src/optics/analysis.ts`; implementation leaves import lower-level sources directly.
-  The component formats and renders. Summary/cardinals/breathing/group movement use this path;
+  The component formats and renders. Summary/cardinals/breathing/group movement and spherical aberration/SA
+  profile/blur character/best focus use this path;
   other existing families retain their adapters until migrated.
 - Reuse `analysisContext.request`, or memoize `createAnalysisRequest` from the supplied prepared
   state and every used control/aperture/EFL/field input. Memoize the context/result on that identity.

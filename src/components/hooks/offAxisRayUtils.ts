@@ -1,7 +1,7 @@
 import {
   computeProjectionAwareOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
-} from "../../optics/aberration/offAxis.js";
+} from "../../optics/analysis/aberration/offAxis.js";
 import {
   eflAtZoom,
   halfFieldAtZoom,

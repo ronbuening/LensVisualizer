@@ -178,31 +178,20 @@ export function createAnalysisComputationContext(
         analysisJobsForState2.computeBokehPreviewPair(preparedState, currentEPSD, currentPhysStopSD, sampling),
       )),
     computeBestFocusZ: () =>
-      (bestFocusZ ??= computeSection("spherical-aberration", () =>
-        analysisJobsForState2.computeBestFocusZ(preparedState, currentEPSD, currentPhysStopSD),
-      )),
+      (bestFocusZ ??= computeSection("spherical-aberration", () => analysisJobsForState2.computeBestFocusZ(request))),
     computeSphericalAberration: () =>
       (sphericalAberration ??= computeSection("spherical-aberration", () =>
-        analysisJobsForState2.computeSphericalAberration(preparedState, currentEPSD, currentPhysStopSD),
+        analysisJobsForState2.computeSphericalAberration(request),
       )),
     computeSAProfile: () =>
-      (saProfile ??= computeSection("spherical-aberration", () =>
-        analysisJobsForState2.computeSAProfile(preparedState, currentEPSD, currentPhysStopSD),
-      )),
+      (saProfile ??= computeSection("spherical-aberration", () => analysisJobsForState2.computeSAProfile(request))),
     computeSphericalAberrationBlurCharacter: () => {
       assertAnalysisSectionAvailable("spherical-aberration", perspectiveTraceContext);
       if (sphericalAberrationBlurCharacter === undefined) {
-        sphericalAberration ??= analysisJobsForState2.computeSphericalAberration(
-          preparedState,
-          currentEPSD,
-          currentPhysStopSD,
-        );
+        sphericalAberration ??= analysisJobsForState2.computeSphericalAberration(request);
         sphericalAberrationBlurCharacter = analysisJobsForState2.computeSphericalAberrationBlurCharacter(
-          preparedState,
-          currentEPSD,
-          currentPhysStopSD,
+          request,
           sphericalAberration,
-          sampling,
         );
       }
       return sphericalAberrationBlurCharacter;

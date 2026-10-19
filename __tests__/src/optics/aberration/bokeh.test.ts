@@ -1,3 +1,5 @@
+import { analysisRequestAt } from "../testLensFixtures.js";
+import { computeBestFocusZ, computeImagePlaneZAtFocus } from "../../../../src/optics/analysis.js";
 import { registerRuntimeFixture } from "../testLensFixtures.js";
 import { describe, it, expect } from "vitest";
 import {
@@ -13,12 +15,7 @@ import {
   computeStateAwareOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
 } from "../../../../src/optics/aberrationAnalysis.js";
-import {
-  computeBokehPreview,
-  computeBokehFieldFootprint,
-  computeImagePlaneZAtFocus,
-  computeBestFocusZ,
-} from "../../../../src/optics/aberration/bokeh.js";
+import { computeBokehPreview, computeBokehFieldFootprint } from "../../../../src/optics/aberration/bokeh.js";
 import {
   computeAnalysisFieldGeometryAtState,
   computeFieldGeometryAtState,
@@ -26,7 +23,7 @@ import {
   solveChiefRay,
   traceRay,
 } from "../../../../src/optics/optics.js";
-import { computeOffAxisFieldGeometry } from "../../../../src/optics/aberration/offAxis.js";
+import { computeOffAxisFieldGeometry } from "../../../../src/optics/analysis/aberration/offAxis.js";
 import buildLens from "../../../../src/optics/buildLens.js";
 import NikonZ135Raw from "../../../../src/lens-data/nikon/NikonZ135f18.data.js";
 import NikonAF28f14DRaw from "../../../../src/lens-data/nikon/NikonAF28f14D.data.js";
@@ -40,7 +37,7 @@ import {
   sharedNikkorZ70200,
 } from "../testLensFixtures.js";
 import type { RuntimeLens, LensData } from "../../../../src/types/optics.js";
-import type { BokehPoint } from "../../../../src/optics/aberration/types.js";
+import type { BokehPoint } from "../../../../src/optics/analysis/aberration/types.js";
 
 /* ── Helpers ── */
 
@@ -133,12 +130,12 @@ describe("computeImagePlaneZAtFocus", () => {
 
   it("returns the image plane Z from doLayout", () => {
     const layout = doLayout(0, 0, L);
-    expect(computeImagePlaneZAtFocus(L, 0, 0)).toBeCloseTo(layout.imgZ, 10);
+    expect(computeImagePlaneZAtFocus(analysisRequestAt(L, { focusT: 0, zoomT: 0 }))).toBeCloseTo(layout.imgZ, 10);
   });
 
   it("near-focus image plane differs from infinity", () => {
-    const zInf = computeImagePlaneZAtFocus(L, 0, 0);
-    const zNear = computeImagePlaneZAtFocus(L, 1, 0);
+    const zInf = computeImagePlaneZAtFocus(analysisRequestAt(L, { focusT: 0, zoomT: 0 }));
+    const zNear = computeImagePlaneZAtFocus(analysisRequestAt(L, { focusT: 1, zoomT: 0 }));
     expect(zNear).not.toBeCloseTo(zInf, 2);
   });
 });
@@ -452,13 +449,21 @@ describe("STF photometric best focus", () => {
     });
     const stfAperture = apertureAt(stf, 0, 0);
     const transparentAperture = apertureAt(transparent, 0, 0);
-    const stfBestFocus = computeBestFocusZ(stf, 1, 0, stfAperture.currentEPSD, stfAperture.currentPhysStopSD);
+    const stfBestFocus = computeBestFocusZ(
+      analysisRequestAt(stf, {
+        focusT: 1,
+        zoomT: 0,
+        currentEPSD: stfAperture.currentEPSD,
+        currentPhysStopSD: stfAperture.currentPhysStopSD,
+      }),
+    );
     const transparentBestFocus = computeBestFocusZ(
-      transparent,
-      1,
-      0,
-      transparentAperture.currentEPSD,
-      transparentAperture.currentPhysStopSD,
+      analysisRequestAt(transparent, {
+        focusT: 1,
+        zoomT: 0,
+        currentEPSD: transparentAperture.currentEPSD,
+        currentPhysStopSD: transparentAperture.currentPhysStopSD,
+      }),
     );
 
     expect(Math.abs(stfBestFocus - transparentBestFocus)).toBeGreaterThan(0.05);
@@ -468,7 +473,9 @@ describe("STF photometric best focus", () => {
 describe("computeBokehPreview", () => {
   const L = sharedApoLanthar50f2();
   const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-  const bf0 = computeBestFocusZ(L, 0, 0, currentEPSD, currentPhysStopSD);
+  const bf0 = computeBestFocusZ(
+    analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+  );
 
   it("returns result with 4 fields when sensorZ is shifted from best focus", () => {
     const sensorZ = bf0 + 5; // 5mm past best focus
@@ -550,7 +557,9 @@ describe("computeBokehPreviewPair brightness character", () => {
   const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
   it("flips the visible blur character across opposite sides of best focus", () => {
-    const bestFocus = computeBestFocusZ(L, 0, 0, currentEPSD, currentPhysStopSD);
+    const bestFocus = computeBestFocusZ(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+    );
     const frontDefocus = computeBokehPreview(L, 0, bestFocus - 0.35, 0, currentEPSD, currentPhysStopSD, "Front");
     const rearDefocus = computeBokehPreview(L, 0, bestFocus + 0.35, 0, currentEPSD, currentPhysStopSD, "Rear");
 
@@ -653,15 +662,21 @@ describe("computeBestFocusZ", () => {
   it("returns finite value for standard lens at infinity", () => {
     const L = sharedApoLanthar50f2();
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const bf = computeBestFocusZ(L, 0, 0, currentEPSD, currentPhysStopSD);
+    const bf = computeBestFocusZ(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+    );
     expect(isFinite(bf)).toBe(true);
   });
 
   it("varies significantly for internal-focus lens (Nikon Z 135)", () => {
     const L = build(NikonZ135Raw);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const bf0 = computeBestFocusZ(L, 0, 0, currentEPSD, currentPhysStopSD);
-    const bf1 = computeBestFocusZ(L, 1, 0, currentEPSD, currentPhysStopSD);
+    const bf0 = computeBestFocusZ(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+    );
+    const bf1 = computeBestFocusZ(
+      analysisRequestAt(L, { focusT: 1, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+    );
     // Layout imgZ is constant for internal focus, but best-focus must differ
     const layoutDelta = doLayout(1, 0, L).imgZ - doLayout(0, 0, L).imgZ;
     expect(Math.abs(layoutDelta)).toBeLessThan(0.01);

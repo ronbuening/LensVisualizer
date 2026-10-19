@@ -15,7 +15,7 @@ import {
   computeProjectionAwareOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
   type ProjectionAwareOffAxisFieldGeometry,
-} from "../aberration/offAxis.js";
+} from "./aberration/offAxis.js";
 import { offsetVectorFieldRay2 as offsetVectorFieldRay } from "../state/fieldAdapters.js";
 import type { FieldGeometryState } from "../optics.js";
 import { prepareRayTrace, type PreparedRayTrace } from "../trace/rayAdapters.js";
@@ -29,7 +29,7 @@ import type {
   RuntimeLens,
 } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
-import type { FieldCurvatureFieldResult, FieldCurvatureResult } from "../aberration/types.js";
+import type { FieldCurvatureFieldResult, FieldCurvatureResult } from "./aberration/types.js";
 import { zPosForPreparedAnalysis2 } from "./preparedStateAdapters.js";
 
 export type {

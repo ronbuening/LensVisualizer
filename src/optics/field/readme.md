@@ -70,7 +70,7 @@ flowchart LR
 - Direct source files: 6
 - Direct subfolders: 0
 - Main outbound areas: same folder (13), src/optics/trace (7), src/optics/types.ts (5), src/types (5), src/optics/state (3), src/optics/apertureStop.ts, src/optics/constants.ts, src/optics/diagnostics, +4 more
-- External consumers: src/optics/aberration, src/optics/analysis, src/optics/compat.ts, src/optics/diagnostics, src/optics/first-order, src/optics/perspective, src/optics/prescription, src/optics/projection.ts, +1 more
+- External consumers: src/optics/analysis, src/optics/compat.ts, src/optics/diagnostics, src/optics/first-order, src/optics/perspective, src/optics/prescription, src/optics/projection.ts, src/optics/state
 
 ## Files
 
@@ -81,4 +81,4 @@ flowchart LR
 | `fieldGeometry.ts` | Field Geometry helper module | src/optics/trace (3), same folder (2), src/optics/apertureStop.ts, src/optics/focusDistance.ts, src/optics/math, +4 more | same folder (2), src/optics/state | EntrancePupilState2, computeFieldGeometry, traceParaxialRay, entrancePupil, conjugateK, paraxialObjectVergence, prepareStateSurfacesReal |
 | `imageHeight.ts` | Image Height helper module | same folder (4), src/optics/state, src/optics/trace, src/optics/types.ts, src/types, +1 more | src/optics/state | ImageHeightInversionResult, computeAnalysisFieldGeometry, traceChiefRayAtAngle, chiefRayImageHeight, chiefRayImageHeightAccurate, solveFieldAngleForImageHeightAccurate, solveFieldAnglesForImageHeightsAccurate, invertChiefRayImageHeights, +1 more |
 | `launch.ts` | Launch helper module | same folder, src/optics/types.ts | same folder (3), src/optics/state | FieldGeometryState2, VectorFieldRayLaunch2, OffsetVectorFieldRay2, computeBoundingSphereLaunchRadiusMm, computeBoundingSphereVectorFieldLaunch, offsetVectorFieldRay2 |
-| `projection.ts` | Projection helper module | src/optics/state, src/types | same folder (5), src/optics/analysis (2), src/optics/perspective (2), src/optics/aberration, src/optics/compat.ts, +3 more | ProjectionReferenceKind, ProjectionReference2, ProjectionFieldSlopes2, ProjectionLaunchSlope2, ProjectionAngularLaunch2, BoundingSphereLaunch2, MAX_FIELD_LAUNCH_DEG, ABSOLUTE_HALF_FIELD_CEILING, +17 more |
+| `projection.ts` | Projection helper module | src/optics/state, src/types | same folder (5), src/optics/analysis (3), src/optics/perspective (2), src/optics/compat.ts, src/optics/first-order, +2 more | ProjectionReferenceKind, ProjectionReference2, ProjectionFieldSlopes2, ProjectionLaunchSlope2, ProjectionAngularLaunch2, BoundingSphereLaunch2, MAX_FIELD_LAUNCH_DEG, ABSOLUTE_HALF_FIELD_CEILING, +17 more |

@@ -1346,7 +1346,8 @@ new request, since its trace functions and solve cache belong to that object eve
 The summary family lives in `analysis/summary/`, exposed through `analysis.ts`. Summary, cardinals, current EFL,
 breathing series and group-movement profiles take `AnalysisRequest`. The summary job table key is unchanged but now
 takes the request directly; `OpticalSummaryTab` creates/reuses a request and lazy context without a prepared-job
-fallback. Other families still dispatch through their existing `*ForState2` adapters until their request migration.
+fallback. Spherical aberration, SA profile, blur character and best focus also take requests through the unchanged job
+keys; other families still dispatch through their existing `*ForState2` adapters until their request migration.
 Centered and movement-aware jobs retain their numerical kernels, sampling defaults and section-availability guards.
 
 Canonical cardinal and EFL math remains in `first-order/`. Request-facing cardinals accept optional camera surface
@@ -1359,17 +1360,28 @@ comparison sliders and published-station eligibility; only profile computation t
 
 ## Aberration Analysis
 
-`aberrationAnalysis.ts` re-exports helpers from `src/optics/aberration/`.
-Because that barrel is consumed by prepared-state analysis adapters, implementation modules under
-`src/optics/aberration/` should import lower-level engine sources directly (`field/`, `layout.ts`, `analysis/sampling.ts`, `trace/`,
-`trace/`, and `field/projection.ts`) instead of routing through public barrels such as `optics.ts` or `projection.ts`.
-Keep those public barrels stable for app/test callers, but avoid using them inside the re-exported aberration modules so
-`compat.ts` and `aberrationAnalysis.ts` do not form an initialization cycle.
+The request-facing spherical family lives in `analysis/aberration/spherical.ts`, with weighted best focus in
+`analysis/aberration/bestFocus.ts`. Public entries are exposed through `analysis.ts`; `aberrationAnalysis.ts` also
+re-exports them during the seam migration. The SA tab hook creates/reuses one request and lazy context from the
+supplied deferred state and both apertures. Its standalone path preserves supplied surface coordinates with
+`stateWithZ`; a supplied prepared state or context remains authoritative. Blur character reuses the context's SA
+result. Null-result cache behavior, ghost/clipping rules and ordered profile fractions are unchanged.
 
-Entry points: `computeSphericalAberration()`, `computeSAProfile()`, and `computeSphericalAberrationBlurCharacter()` for
-axial behaviour; `computeComaAnalysis()`, `computeComaPointCloudPreview()`, and `computeSagittalComa()` for
-chief-ray-referenced coma; and `computeFieldCurvature()` for parabasal and real-ray tangential/sagittal curves plus the
-Petzval reference, with an optional chromatic mode that adds per-channel field curves and focus spread.
+Best focus deliberately recomputes its own full layout from the request's controls, rather than using camera-anchored
+request coordinates. It preserves the transmission-weighted least-squares reduction and nominal-layout image-plane
+fallback for insufficient hits. Bokeh reuses that solver with each preview state's own layout until its orchestration
+moves to requests.
+
+Shared coordinate, real-ray and focus reductions, off-axis bundle helpers and result types live in
+`analysis/aberration/{shared,offAxis,types}.ts`. These lower-level leaves still accept explicit ray/runtime inputs for
+families migrating later. Pure radial-profile and brightness-classifier reductions live in
+`analysis/aberration/radialProfile.ts`, shared by spherical, bokeh and perspective focus.
+
+Field curvature and coma remain in `aberration/` behind their existing adapters. `aberrationAnalysis.ts` re-exports
+`computeComaAnalysis()`, `computeComaPointCloudPreview()`, `computeSagittalComa()` and `computeFieldCurvature()` for
+parabasal and real-ray tangential/sagittal curves plus the Petzval reference, including optional chromatic curves.
+Implementation leaves import lower-level engine sources directly, never cycle-sensitive public barrels such as
+`compat.ts`, `optics.ts` or `aberrationAnalysis.ts`.
 
 Sign convention: negative spherical aberration means undercorrected; positive means overcorrected. Keep copy, tests, and
 primers aligned to that convention.
@@ -1447,8 +1459,8 @@ to finite slope launches and fall back to neutral correction when no scalar refe
 
 `aberration/bokeh.ts` traces circular pupil bundles at infinity and near focus. `computeBokehPreviewPair()` is the
 paired infinity/near-focus entry point over `computeBokehPreview()`; `computeBokehFieldFootprint()` returns the
-per-field point cloud, surviving pupil footprint, and radial blur profile; `buildBokehRadialProfile()` and
-`buildBokehDensityGrid()` derive summaries from that cloud.
+per-field point cloud, surviving pupil footprint, and radial blur profile; `buildBokehDensityGrid()` derives a grid
+from that cloud. Radial profiles and brightness classification are shared pure reductions in `analysis/aberration/radialProfile.ts`; best focus is owned by `analysis/aberration/bestFocus.ts`.
 
 The traced image-plane point cloud is the source of truth; radial profiles are derived summaries. Off-axis bokeh
 footprints use projection-aware field geometry and vector launches for fisheye/past-cap fields when available.

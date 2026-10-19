@@ -38,7 +38,7 @@ flowchart LR
 - Direct source files: 25
 - Direct subfolders: 1
 - Main outbound areas: same folder (68), src/types (39), src/optics/types.ts (9), src/optics/geometry (4), src/optics/math (3), src/optics/state (3), src/utils/catalog (3), src/optics/chromatic, +2 more
-- External consumers: src/optics/analysis, src/optics/buildLens.ts, src/optics/chromatic, src/optics/compat.ts, src/optics/diagram, src/optics/first-order, src/optics/lensDataConversion.ts, src/optics/perspective, +5 more
+- External consumers: src/optics/aberration, src/optics/analysis, src/optics/buildLens.ts, src/optics/chromatic, src/optics/compat.ts, src/optics/diagram, src/optics/first-order, src/optics/lensDataConversion.ts, +6 more
 
 ## Subfolders
 
@@ -52,7 +52,7 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `canonical.ts` | Canonical helper module | src/types (2), same folder, src/utils/catalog | same folder (15), src/optics/buildLens.ts, src/optics/compat.ts, src/optics/lensDataConversion.ts | FLAT_RADIUS, CanonicalRadius, CanonicalAsphere, CanonicalMediumRef, CanonicalMedium, CanonicalSurface, CanonicalElement, CanonicalRearPlate, +30 more |
 | `canonicalInput.ts` | Canonical Input helper module | same folder (4), src/types (2) | same folder (2) | assertValidLensData, canonicalInput |
-| `compile.ts` | Compile helper module | same folder (7), src/types (2), src/optics/types.ts | src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/diagram, src/optics/first-order, +3 more | compiledLensFromRuntime, withLensDefaults, compileLens, compileLensData |
+| `compile.ts` | Compile helper module | same folder (7), src/types (2), src/optics/types.ts | src/optics/aberration, src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/diagram, +4 more | compiledLensFromRuntime, withLensDefaults, compileLens, compileLensData |
 | `compileAspheres.ts` | Compile Aspheres helper module | same folder, src/types | same folder (3) | compileAspheres, buildAsphereIndex |
 | `compileCanonical.ts` | Compile Canonical helper module | same folder (4), src/optics/first-order, src/optics/types.ts, src/types | same folder | compileCanonicalUncached, compilePrescription, completeCompilation |
 | `compileConstruction.ts` | Compile Construction helper module | same folder (6), src/types (2), src/optics/chromatic, src/optics/types.ts | same folder | compileConstruction, LensConstruction |
@@ -67,7 +67,7 @@ flowchart LR
 | `ingestV2.ts` | Ingest V2 helper module | same folder (5), src/types (3), src/optics/geometry | same folder (3), src/optics/buildLens.ts, src/optics/lensDataConversion.ts | LENS_DATA_V2_SCHEMA, ingestLensV2, ingestTeleconverterV2, isV1File, lensDataVersion, ingestLens, ingestTeleconverter |
 | `interactions.ts` | Interactions helper module | src/optics/math, src/optics/types.ts, src/types | same folder (3), src/optics/first-order | yzNormalToVec3, compileSurfaceInteraction, resolvedImagePlaneToPlane3, imagePlaneDataToPlane3 |
 | `rearPlates.ts` | Rear Plates helper module | same folder (5), src/types, src/utils/catalog | same folder (4), src/optics/buildLens.ts | REAR_PLATE_LABEL_PATTERN, rearPlateSurfaceLabels, rearPlateAirEquivalentMm, ExpandedCanonicalLens, expandCanonicalRearPlates, expandedConstruction, expandRearPlates, lastLensSurfaceIndex |
-| `runtimeView.ts` | Runtime View helper module | same folder, src/optics/types.ts, src/types | src/optics/analysis (14), src/optics/compat.ts, src/optics/first-order, src/optics/perspective | associateRuntimeView, runtimeView |
+| `runtimeView.ts` | Runtime View helper module | same folder, src/optics/types.ts, src/types | src/optics/analysis (16), src/optics/compat.ts, src/optics/first-order, src/optics/perspective | associateRuntimeView, runtimeView |
 | `sourcePaths.ts` | Source Paths helper module | none | same folder (6), src/optics/lensDataConversion.ts | memberPath, itemPath, labelPath, childPath, parentPath, pathBelow, extendPath, inverse, +1 more |
 | `surfaces.ts` | Surfaces helper module | same folder, src/optics/geometry, src/optics/math, src/optics/types.ts, src/types | same folder (2), src/optics/first-order | compileSurfaces |
 | `teleconverter.ts` | Teleconverter helper module | same folder (9), src/optics/state (2), src/types (2), src/optics/field, src/optics/math, +1 more | same folder, src/optics/teleconverter.ts | TeleconverterAttachError, teleconverterSurfaceLabel, teleconverterGroupLabel, mergeTeleconverterPrescription, attachTeleconverter |

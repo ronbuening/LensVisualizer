@@ -1,6 +1,6 @@
 /** Sensor-locked signed blur, best-focus, and bokeh footprints for moved lenses. */
 
-import { buildBokehRadialProfile, classifyBokehBrightnessCharacter } from "../../aberration/bokeh.js";
+import { buildBokehRadialProfile, classifyBokehBrightnessCharacter } from "../../analysis/aberration/radialProfile.js";
 import {
   BOKEH_CIRCULAR_PUPIL_RING_SAMPLES,
   type BokehBrightnessCharacter,
@@ -8,7 +8,7 @@ import {
   type BokehPupilFootprint,
   type BokehPupilSample,
   type BokehRadialProfile,
-} from "../../aberration/types.js";
+} from "../../analysis/aberration/types.js";
 import { sampleCircularPupil } from "../../analysis/sampling.js";
 import type { Vec3 } from "../../types.js";
 import {

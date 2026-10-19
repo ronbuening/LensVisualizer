@@ -13,20 +13,29 @@
  */
 
 import { sampleCircularPupil, type CircularPupilSample } from "../analysis/sampling.js";
-import { prepareRayTrace, skewImagePlaneIntercept, type SkewImagePlaneIntercept } from "../trace/rayAdapters.js";
+import { skewImagePlaneIntercept, type SkewImagePlaneIntercept } from "../trace/rayAdapters.js";
 import {
   computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
   type FieldGeometryState2 as FieldGeometryState,
 } from "../state/fieldAdapters.js";
 import { doLayout } from "../layout.js";
 import type { LayoutResult, RuntimeLens } from "../../types/optics.js";
-import { computeProjectionAwareOffAxisFieldGeometry, traceOffAxisBundleFromSamples } from "./offAxis.js";
-import { computeRealRayHit, PROFILE_FRACS, type RealRayHit } from "./shared.js";
+import {
+  computeProjectionAwareOffAxisFieldGeometry,
+  traceOffAxisBundleFromSamples,
+} from "../analysis/aberration/offAxis.js";
+import { computeBestFocusZFromLayout } from "../analysis/aberration/bestFocus.js";
+import {
+  buildBokehRadialProfile,
+  classifyBokehBrightnessCharacter,
+  emptyRadialProfile,
+} from "../analysis/aberration/radialProfile.js";
+import { createAnalysisRequest } from "../analysis/request.js";
+import { prepareState } from "../state/preparedGeometry.js";
+import { compiledLensFromRuntime } from "../prescription/compile.js";
 import {
   BOKEH_CIRCULAR_PUPIL_RING_SAMPLES,
-  BOKEH_RADIAL_PROFILE_BIN_COUNT,
   BOKEH_PREVIEW_FIELD_FRACTIONS,
-  type BokehBrightnessCharacter,
   type BokehDensityCell,
   type BokehFieldResult,
   type BokehPoint,
@@ -34,9 +43,7 @@ import {
   type BokehPreviewResult,
   type BokehPupilFootprint,
   type BokehPupilSample,
-  type BokehRadialProfile,
-  type BokehRadialProfileBin,
-} from "./types.js";
+} from "../analysis/aberration/types.js";
 import type { AnalysisSamplingOptions } from "../analysis/analysisQuality.js";
 
 /* ── Constants ── */
@@ -53,7 +60,6 @@ const BOKEH_MIN_VALID_SAMPLES = 5;
 
 /** Minimum shared half-range (mm) to prevent degenerate scaling on tiny spots. */
 const BOKEH_MIN_SHARED_HALF_RANGE_MM = 0.001;
-const BOKEH_BRIGHTNESS_RATIO_THRESHOLD = 1.15;
 
 interface BokehTraceContext {
   focusT: number;
@@ -66,104 +72,6 @@ interface BokehTraceContext {
 }
 
 /* ── Best-focus helpers ── */
-
-/** Bokeh-only least-squares focus, weighted by each ray's surviving optical intensity. */
-function photometricBestFocusPlane(hits: readonly RealRayHit[], lastSurfZ: number): number {
-  const denom = hits.reduce((sum, hit) => sum + (hit.transmission ?? 1) * hit.slope * hit.slope, 0);
-  if (!Number.isFinite(denom) || denom <= 1e-12) return lastSurfZ;
-
-  const numer = hits.reduce((sum, hit) => {
-    const referenceZ = hit.referenceZ ?? lastSurfZ;
-    return sum + (hit.transmission ?? 1) * (hit.slope * hit.slope * referenceZ - hit.coordinate * hit.slope);
-  }, 0);
-  return Number.isFinite(numer) ? numer / denom : lastSurfZ;
-}
-
-/**
- * Compute the absolute image-plane Z position for a given focusT by performing
- * a full layout pass. This is the Z at which a perfectly focused image forms.
- */
-export function computeImagePlaneZAtFocus(L: RuntimeLens, focusT: number, zoomT: number): number {
-  return doLayout(focusT, zoomT, L).imgZ;
-}
-
-function computeBestFocusZFromLayout(
-  L: RuntimeLens,
-  layout: LayoutResult,
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-): number {
-  const lastSurfZ = layout.z[L.N - 1];
-  const imagePlaneZ = layout.imgZ;
-
-  const prepared = prepareRayTrace(L, {
-    zPos: layout.z,
-    focusT,
-    zoomT,
-    stopSD: currentPhysStopSD,
-    ghost: true,
-    aberrationT,
-  });
-  const hits = PROFILE_FRACS.flatMap((fraction) => {
-    const plusHit = computeRealRayHit(
-      L,
-      layout.z,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      lastSurfZ,
-      imagePlaneZ,
-      fraction,
-      aberrationT,
-      prepared,
-    );
-    const minusHit = computeRealRayHit(
-      L,
-      layout.z,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      lastSurfZ,
-      imagePlaneZ,
-      -fraction,
-      aberrationT,
-      prepared,
-    );
-    return [plusHit, minusHit].filter((h): h is NonNullable<typeof h> => h !== null);
-  });
-
-  if (hits.length < 4) return imagePlaneZ;
-  return photometricBestFocusPlane(hits, lastSurfZ);
-}
-
-/**
- * Find the RMS-best-focus Z for on-axis infinity light traced through the lens
- * at a given focus setting. This is the Z plane that minimises the weighted
- * ray-intercept spread across the full aperture — the circle of least confusion.
- *
- * Using the best-focus plane (instead of the paraxial convergence) ensures that
- * the bokeh defocus grows monotonically with the focus slider, even for fast
- * lenses with significant spherical aberration whose paraxial and marginal foci
- * differ substantially.
- *
- * Falls back to the layout imgZ if insufficient rays survive.
- */
-export function computeBestFocusZ(
-  L: RuntimeLens,
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-): number {
-  const layout = doLayout(focusT, zoomT, L, aberrationT);
-  return computeBestFocusZFromLayout(L, layout, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
-}
 
 function buildBokehTraceContext(
   L: RuntimeLens,
@@ -180,7 +88,15 @@ function buildBokehTraceContext(
     zoomT,
     aberrationT,
     layout,
-    bestFocusZ: computeBestFocusZFromLayout(L, layout, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT),
+    bestFocusZ: computeBestFocusZFromLayout(
+      createAnalysisRequest({
+        preparedState: prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT),
+        dynamicEFL: L.EFL,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+      layout,
+    ),
     fieldGeometryState: computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT),
     circularPupilSamples: sampleCircularPupil(sampling.bokehRingSamples ?? BOKEH_CIRCULAR_PUPIL_RING_SAMPLES),
   };
@@ -196,14 +112,6 @@ function emptyPupilFootprint(transmission = 0): BokehPupilFootprint {
     spanTangential: 0,
     shiftRadius: 0,
     catEyeAspect: 0,
-  };
-}
-
-function emptyRadialProfile(): BokehRadialProfile {
-  return {
-    bins: [],
-    centerDensity: 0,
-    rimDensity: 0,
   };
 }
 
@@ -255,126 +163,6 @@ function buildPupilFootprint(samples: readonly BokehPupilSample[], totalRays: nu
     spanTangential,
     shiftRadius: Math.sqrt(centroidSagittal * centroidSagittal + centroidTangential * centroidTangential),
     catEyeAspect: maxSpan > 1e-9 ? Math.min(spanSagittal, spanTangential) / maxSpan : 0,
-  };
-}
-
-/**
- * Build an annular radial density profile for a bokeh point cloud.
- *
- * Densities are normalized to the densest annulus so center/rim comparison is
- * independent of absolute transmission. Offsets are measured relative to the
- * supplied footprint centroid.
- *
- * @param points - bokeh points with sagittal/tangential offsets in mm
- * @param centroidSagittal - sagittal centroid in mm
- * @param centroidTangential - tangential centroid in mm
- * @param binCount - number of radial bins
- * @returns normalized radial profile with center/rim density summaries
- */
-export function buildBokehRadialProfile(
-  points: readonly BokehPoint[],
-  centroidSagittal: number,
-  centroidTangential: number,
-  binCount = BOKEH_RADIAL_PROFILE_BIN_COUNT,
-): BokehRadialProfile {
-  if (points.length === 0 || binCount < 1) return emptyRadialProfile();
-
-  const clampedBinCount = Math.max(1, Math.round(binCount));
-  const radii = points.map((point) => {
-    const dx = point.sagittalOffset - centroidSagittal;
-    const dy = point.tangentialOffset - centroidTangential;
-    return Math.sqrt(dx * dx + dy * dy);
-  });
-  const maxRadius = Math.max(...radii);
-  if (maxRadius <= 1e-12) {
-    const bins: BokehRadialProfileBin[] = Array.from({ length: clampedBinCount }, (_, index) => ({
-      innerRadiusFraction: index / clampedBinCount,
-      outerRadiusFraction: (index + 1) / clampedBinCount,
-      radiusFraction: (index + 0.5) / clampedBinCount,
-      density: index === 0 ? 1 : 0,
-      energyFraction: index === 0 ? 1 : 0,
-    }));
-    return {
-      bins,
-      centerDensity: 1,
-      rimDensity: 0,
-    };
-  }
-
-  const annularEnergy = new Float64Array(clampedBinCount);
-  let totalWeight = 0;
-
-  for (let index = 0; index < points.length; index++) {
-    const normalizedRadius = Math.min(radii[index] / maxRadius, 0.999999);
-    const binIndex = Math.min(clampedBinCount - 1, Math.floor(normalizedRadius * clampedBinCount));
-    annularEnergy[binIndex] += points[index].weight;
-    totalWeight += points[index].weight;
-  }
-
-  let maxDensity = 0;
-  const rawDensities = new Float64Array(clampedBinCount);
-  for (let index = 0; index < clampedBinCount; index++) {
-    const innerRadiusFraction = index / clampedBinCount;
-    const outerRadiusFraction = (index + 1) / clampedBinCount;
-    const annulusArea =
-      Math.PI * (outerRadiusFraction * outerRadiusFraction - innerRadiusFraction * innerRadiusFraction);
-    const density = annulusArea > 1e-12 ? annularEnergy[index] / annulusArea : 0;
-    rawDensities[index] = density;
-    if (density > maxDensity) maxDensity = density;
-  }
-
-  if (maxDensity <= 1e-12 || totalWeight <= 1e-12) return emptyRadialProfile();
-
-  const bins: BokehRadialProfileBin[] = Array.from({ length: clampedBinCount }, (_, index) => ({
-    innerRadiusFraction: index / clampedBinCount,
-    outerRadiusFraction: (index + 1) / clampedBinCount,
-    radiusFraction: (index + 0.5) / clampedBinCount,
-    density: rawDensities[index] / maxDensity,
-    energyFraction: annularEnergy[index] / totalWeight,
-  }));
-
-  const centerBinCount = Math.max(1, Math.round(clampedBinCount * 0.25));
-  const rimStart = Math.max(0, clampedBinCount - centerBinCount);
-  const centerDensity = bins.slice(0, centerBinCount).reduce((sum, bin) => sum + bin.density, 0) / centerBinCount;
-  const rimDensity =
-    bins.slice(rimStart).reduce((sum, bin) => sum + bin.density, 0) / Math.max(1, clampedBinCount - rimStart);
-
-  return {
-    bins,
-    centerDensity,
-    rimDensity,
-  };
-}
-
-/**
- * Classify bokeh brightness from the center-to-rim radial density ratio.
- *
- * @param radialProfile - normalized annular density profile
- * @returns brightness class and numeric center/rim density ratio
- */
-export function classifyBokehBrightnessCharacter(radialProfile: BokehRadialProfile): {
-  brightnessCharacter: BokehBrightnessCharacter;
-  centerToRimRatio: number;
-} {
-  const rimDensity = radialProfile.rimDensity;
-  const centerDensity = radialProfile.centerDensity;
-  const centerToRimRatio = rimDensity > 1e-9 ? centerDensity / rimDensity : centerDensity > 1e-9 ? 999 : 1;
-
-  if (centerToRimRatio > BOKEH_BRIGHTNESS_RATIO_THRESHOLD) {
-    return {
-      brightnessCharacter: "center-bright",
-      centerToRimRatio,
-    };
-  }
-  if (centerToRimRatio < 1 / BOKEH_BRIGHTNESS_RATIO_THRESHOLD) {
-    return {
-      brightnessCharacter: "edge-bright",
-      centerToRimRatio,
-    };
-  }
-  return {
-    brightnessCharacter: "neutral",
-    centerToRimRatio,
   };
 }
 

@@ -1561,11 +1561,7 @@ function computeAnalysisBokehPairWork(snapshot: ScenarioSnapshot): BenchmarkOutp
 /** Measures best-focus solve cost for the current stop and entrance-pupil scale. */
 function computeAnalysisBestFocusWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   return {
-    bestFocusZ: analysisJobsForState2.computeBestFocusZ(
-      snapshot.preparedState,
-      snapshot.currentEPSD,
-      snapshot.currentPhysStopSD,
-    ),
+    bestFocusZ: analysisJobsForState2.computeBestFocusZ(sphericalRequest(snapshot)),
   };
 }
 
@@ -1603,7 +1599,7 @@ function bestFocusInspection(snapshot: ScenarioSnapshot): (() => void) | undefin
         completed("bestFocusRay", ray);
       }
     }
-    const z = analysisJobsForState2.computeBestFocusZ(snapshot.preparedState, currentEPSD, currentPhysStopSD);
+    const z = analysisJobsForState2.computeBestFocusZ(sphericalRequest(snapshot));
     completed("bestFocus", { z, isLayoutImagePlane: Object.is(z, layout.imgZ) });
   };
 }
@@ -1628,35 +1624,17 @@ function measureAberrationPanels(
     plan.measure(`${lensKey}:${scenario.id}:aberrationPanels:${group}.${category}`, fn);
 
   data.sphericalAberration = measure("data", "sphericalAberration", () => {
-    const result = analysisJobsForState2.computeSphericalAberration(
-      snapshot.preparedState,
-      snapshot.currentEPSD,
-      snapshot.currentPhysStopSD,
-    );
+    const result = analysisJobsForState2.computeSphericalAberration(sphericalRequest(snapshot));
     return describeComputationOutput(result);
   });
   data.saProfile = measure("data", "saProfile", () => {
-    const result = analysisJobsForState2.computeSAProfile(
-      snapshot.preparedState,
-      snapshot.currentEPSD,
-      snapshot.currentPhysStopSD,
-    );
+    const result = analysisJobsForState2.computeSAProfile(sphericalRequest(snapshot));
     completed("result", result);
     return { points: Array.isArray(result) ? result.length : 0 };
   });
   data.saBlurCharacter = measure("data", "saBlurCharacter", () => {
-    const base = analysisJobsForState2.computeSphericalAberration(
-      snapshot.preparedState,
-      snapshot.currentEPSD,
-      snapshot.currentPhysStopSD,
-    );
-    const result = analysisJobsForState2.computeSphericalAberrationBlurCharacter(
-      snapshot.preparedState,
-      snapshot.currentEPSD,
-      snapshot.currentPhysStopSD,
-      base,
-      snapshot.analysisSampling,
-    );
+    const base = analysisJobsForState2.computeSphericalAberration(sphericalRequest(snapshot));
+    const result = analysisJobsForState2.computeSphericalAberrationBlurCharacter(sphericalRequest(snapshot), base);
     return describeComputationOutput(result);
   });
 
@@ -1776,22 +1754,11 @@ function measureAberrationPanels(
  * guarded until fixture-backed validation says they are mirror-safe.
  */
 function computeAberrationDataValues(snapshot: ScenarioSnapshot): AberrationDataValues {
-  const sphericalAberration = analysisJobsForState2.computeSphericalAberration(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-  );
-  const saProfile = analysisJobsForState2.computeSAProfile(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-  );
+  const sphericalAberration = analysisJobsForState2.computeSphericalAberration(sphericalRequest(snapshot));
+  const saProfile = analysisJobsForState2.computeSAProfile(sphericalRequest(snapshot));
   const saBlurCharacter = analysisJobsForState2.computeSphericalAberrationBlurCharacter(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
+    sphericalRequest(snapshot),
     sphericalAberration,
-    snapshot.analysisSampling,
   );
   if (snapshot.L.isFoldedOptics || snapshot.movement.active) {
     return { sphericalAberration, saProfile, saBlurCharacter };
@@ -2358,3 +2325,14 @@ function describeComputationOutput(value: unknown): BenchmarkOutput {
 
 /** Stable no-op callback used for server-rendered interactive components. */
 const noop = () => {};
+
+/** Keep benchmark dispatch on the same current-state request as the drawer. */
+function sphericalRequest(snapshot: ScenarioSnapshot) {
+  return createAnalysisRequest({
+    preparedState: snapshot.preparedState,
+    dynamicEFL: snapshot.dynamicEFL,
+    currentEPSD: snapshot.currentEPSD,
+    currentPhysStopSD: snapshot.currentPhysStopSD,
+    sampling: snapshot.analysisSampling,
+  });
+}

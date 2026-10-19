@@ -29,7 +29,7 @@ import {
   type PairedBenchmarkBase,
   type PreparedBenchmarkCell,
 } from "../../../src/benchmarks/opticsRenderingBenchmark.js";
-import { PROFILE_FRACS } from "../../../src/optics/aberration/shared.js";
+import { PROFILE_FRACS } from "../../../src/optics/analysis/aberration/shared.js";
 
 /* Tallies of three engine calls the benchmark makes itself, each passed through unchanged: a lens build, a prepared
  * state and a spherical-aberration job. The head side of a paired run is the benchmark's own and takes no stand-in,

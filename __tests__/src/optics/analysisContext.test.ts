@@ -57,20 +57,14 @@ describe("analysis computation context", () => {
         channels: ["R", "G", "B", "V"],
       }),
     );
-    expect(context.computeBestFocusZ()).toEqual(
-      analysisJobsForState2.computeBestFocusZ(state, currentEPSD, currentPhysStopSD),
-    );
+    expect(context.computeBestFocusZ()).toEqual(analysisJobsForState2.computeBestFocusZ(context.request));
     expect(context.computeSphericalAberration()).toEqual(
-      analysisJobsForState2.computeSphericalAberration(state, currentEPSD, currentPhysStopSD),
+      analysisJobsForState2.computeSphericalAberration(context.request),
     );
-    expect(context.computeSAProfile()).toEqual(
-      analysisJobsForState2.computeSAProfile(state, currentEPSD, currentPhysStopSD),
-    );
+    expect(context.computeSAProfile()).toEqual(analysisJobsForState2.computeSAProfile(context.request));
     expect(context.computeSphericalAberrationBlurCharacter()).toEqual(
       analysisJobsForState2.computeSphericalAberrationBlurCharacter(
-        state,
-        currentEPSD,
-        currentPhysStopSD,
+        context.request,
         context.computeSphericalAberration(),
       ),
     );

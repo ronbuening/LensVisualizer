@@ -1,3 +1,6 @@
+import { associateRuntimeView } from "../../../src/optics/prescription/runtimeView.js";
+import { analysisRequestForLens } from "./testLensFixtures.js";
+import { analysisRequestAt } from "./testLensFixtures.js";
 import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, it, expect } from "vitest";
 import {
@@ -15,9 +18,9 @@ import {
   computeFieldCurvatureBundle,
   computeMeridionalComa,
   computeSagittalComa,
-  computeSphericalAberration as computeSphericalAberrationBase,
+  computeSphericalAberration,
   computeSphericalAberrationBlurCharacter,
-  computeSAProfile as computeSAProfileBase,
+  computeSAProfile,
 } from "../../../src/optics/aberrationAnalysis.js";
 import {
   bestFocusPlaneForDirection,
@@ -25,7 +28,7 @@ import {
   traceOffAxisChiefRay,
   traceCircularOffAxisBundle,
   traceOrthogonalOffAxisBundle,
-} from "../../../src/optics/aberration/offAxis.js";
+} from "../../../src/optics/analysis/aberration/offAxis.js";
 import {
   computeAnalysisFieldGeometryAtState,
   doLayout,
@@ -38,8 +41,8 @@ import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLant
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import NikonAF28f14DRaw from "../../../src/lens-data/nikon/NikonAF28f14D.data.js";
 import type { RuntimeLens, LensData } from "../../../src/types/optics.js";
-import type { OffAxisFieldGeometry } from "../../../src/optics/aberration/offAxis.js";
-import { bestRelativeFocusPlane } from "../../../src/optics/aberration/shared.js";
+import type { OffAxisFieldGeometry } from "../../../src/optics/analysis/aberration/offAxis.js";
+import { bestRelativeFocusPlane } from "../../../src/optics/analysis/aberration/shared.js";
 import {
   apertureAt,
   build,
@@ -67,30 +70,6 @@ function axialIntercept(y: number, u: number, lastSurfZ: number): number {
 
 function standardizedParabasalFraction(currentEPSD: number): number {
   return Math.min(0.02, Math.max(1e-4, 0.01 / currentEPSD));
-}
-
-function computeSphericalAberration(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-) {
-  return computeSphericalAberrationBase(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
-}
-
-function computeSAProfile(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-) {
-  return computeSAProfileBase(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
 }
 
 function standardizedFieldFocusAt(
@@ -163,7 +142,15 @@ describe("computeSphericalAberration", () => {
     // The exact tracer needs the Sonnar slightly stopped down for marginal-ray survival.
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0.3);
 
-    const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(isFinite(result!.longitudinalSaUm)).toBe(true);
     expect(isFinite(result!.longitudinalSaMm)).toBe(true);
@@ -180,7 +167,15 @@ describe("computeSphericalAberration", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(isFinite(result!.longitudinalSaUm)).toBe(true);
   });
@@ -190,7 +185,16 @@ describe("computeSphericalAberration", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeSphericalAberrationBase(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, 0);
+    const result = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+        aberrationT: 0,
+      }),
+    );
     if (result === null) return;
 
     expect(isFinite(result.longitudinalSaUm)).toBe(true);
@@ -204,7 +208,15 @@ describe("computeSphericalAberration", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.longitudinalSaUm).toBeCloseTo(result!.longitudinalSaMm * 1000, 6);
     expect(result!.currentPlaneRmsUm).toBeCloseTo(result!.currentPlaneRmsMm * 1000, 6);
@@ -222,7 +234,15 @@ describe("computeSphericalAberration", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0.3);
 
-    const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     /* Fast lens should still have measurable SA at this stopdown */
     expect(Math.abs(result!.longitudinalSaUm)).toBeGreaterThan(1);
@@ -232,7 +252,9 @@ describe("computeSphericalAberration", () => {
     const L = mkSingleElement();
     const { z: zPos } = doLayout(0, 0, L);
 
-    const result = computeSphericalAberration(L, zPos, 0, 0, 12, 15);
+    const result = computeSphericalAberration(
+      analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 15 }),
+    );
     expect(result).not.toBeNull();
     expect(result!.longitudinalSaMm).toBeLessThan(0);
   });
@@ -246,7 +268,15 @@ describe("computeSphericalAberration", () => {
     const nearAxisRay = traceRay(NEAR_AXIS_REAL_FRAC * currentEPSD, 0, zPos, 0, 0, undefined, true, L, 0);
     expect(nearAxisRay.clipped).toBe(false);
     const nearAxisIntercept = axialIntercept(nearAxisRay.y, nearAxisRay.u, lastSurfZ);
-    const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(result!.nearAxisFraction).toBe(NEAR_AXIS_REAL_FRAC);
     expect(result!.nearAxisRealIntercept).toBeCloseTo(nearAxisIntercept, 6);
@@ -259,11 +289,27 @@ describe("computeSphericalAberration", () => {
     const { z: zPos } = doLayout(0, 0, L);
 
     const wideOpen = apertureAt(L, 0, 0);
-    const saWide = computeSphericalAberration(L, zPos, 0, 0, wideOpen.currentEPSD, wideOpen.currentPhysStopSD);
+    const saWide = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: wideOpen.currentEPSD,
+        currentPhysStopSD: wideOpen.currentPhysStopSD,
+      }),
+    );
 
     /* stopdownT = 0.7 → well stopped down, smaller pupil → less SA */
     const stoppedDown = apertureAt(L, 0, 0.7);
-    const saStopped = computeSphericalAberration(L, zPos, 0, 0, stoppedDown.currentEPSD, stoppedDown.currentPhysStopSD);
+    const saStopped = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: stoppedDown.currentEPSD,
+        currentPhysStopSD: stoppedDown.currentPhysStopSD,
+      }),
+    );
 
     expect(saWide).not.toBeNull();
     expect(saStopped).not.toBeNull();
@@ -281,7 +327,15 @@ describe("computeSphericalAberration", () => {
     const { z: zPos } = doLayout(0.5, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0.3);
 
-    const result = computeSphericalAberration(L, zPos, 0.5, 0, currentEPSD, currentPhysStopSD);
+    const result = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0.5,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(isFinite(result!.longitudinalSaUm)).toBe(true);
   });
@@ -293,8 +347,24 @@ describe("computeSphericalAberration", () => {
     const { z: zInfinity } = doLayout(0, 0, L);
     const { z: zClose } = doLayout(0.8, 0, L);
 
-    const atInfinity = computeSphericalAberration(L, zInfinity, 0, 0, infinity.currentEPSD, infinity.currentPhysStopSD);
-    const atClose = computeSphericalAberration(L, zClose, 0.8, 0, close.currentEPSD, close.currentPhysStopSD);
+    const atInfinity = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: zInfinity,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: infinity.currentEPSD,
+        currentPhysStopSD: infinity.currentPhysStopSD,
+      }),
+    );
+    const atClose = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: zClose,
+        focusT: 0.8,
+        zoomT: 0,
+        currentEPSD: close.currentEPSD,
+        currentPhysStopSD: close.currentPhysStopSD,
+      }),
+    );
 
     expect(atInfinity).not.toBeNull();
     expect(atClose).not.toBeNull();
@@ -308,7 +378,15 @@ describe("computeSphericalAberration", () => {
     const { z: zPos } = doLayout(0, 1, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 1, 0);
 
-    const result = computeSphericalAberration(L, zPos, 0, 1, currentEPSD, currentPhysStopSD);
+    const result = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 1,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(isFinite(result!.longitudinalSaUm)).toBe(true);
   });
@@ -320,7 +398,15 @@ describe("computeSphericalAberration", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+    );
     expect(result).not.toBeNull();
     expect(Math.abs(result!.marginalRealIntercept - result!.nearAxisRealIntercept)).toBeGreaterThan(1e-6);
   });
@@ -332,7 +418,15 @@ describe("computeSphericalAberration", () => {
       const L = build(raw);
       const { z: zPos } = doLayout(0, 0, L);
       const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-      const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+      const result = computeSphericalAberration(
+        analysisRequestAt(L, {
+          zPos: zPos,
+          focusT: 0,
+          zoomT: 0,
+          currentEPSD: currentEPSD,
+          currentPhysStopSD: currentPhysStopSD,
+        }),
+      );
       if (result === null) continue;
       expect(isFinite(result.currentPlaneRmsUm)).toBe(true);
       expect(isFinite(result.currentPlanePeakUm)).toBe(true);
@@ -347,7 +441,15 @@ describe("computeSphericalAberration", () => {
       const L = build(raw);
       const { z: zPos } = doLayout(0, 0, L);
       const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-      const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+      const result = computeSphericalAberration(
+        analysisRequestAt(L, {
+          zPos: zPos,
+          focusT: 0,
+          zoomT: 0,
+          currentEPSD: currentEPSD,
+          currentPhysStopSD: currentPhysStopSD,
+        }),
+      );
       if (result === null) continue;
       expect(result.bestFocusRmsUm).toBeLessThanOrEqual(result.currentPlaneRmsUm + 1e-6);
       expect(result.bestFocusPeakUm).toBeLessThanOrEqual(result.currentPlanePeakUm + 1e-6);
@@ -363,7 +465,15 @@ describe("computeSphericalAberration", () => {
 
     /* Use a tiny stop that will clip the 0.95× marginal ray */
     const tinyStopSD = currentEPSD * 0.01;
-    const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, tinyStopSD);
+    const result = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: tinyStopSD,
+      }),
+    );
     expect(result).toBeNull();
   });
 });
@@ -376,7 +486,15 @@ describe("computeSAProfile", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const profile = computeSAProfile(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const profile = computeSAProfile(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+    );
     expect(profile.length).toBeGreaterThanOrEqual(2);
   });
 
@@ -385,7 +503,15 @@ describe("computeSAProfile", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const profile = computeSAProfile(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const profile = computeSAProfile(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+    );
     for (const { fraction } of profile) {
       expect(fraction).toBeGreaterThan(0);
       expect(fraction).toBeLessThanOrEqual(1);
@@ -397,7 +523,15 @@ describe("computeSAProfile", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const profile = computeSAProfile(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const profile = computeSAProfile(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+    );
     for (const { transverseSaMm } of profile) {
       expect(isFinite(transverseSaMm)).toBe(true);
     }
@@ -408,7 +542,16 @@ describe("computeSAProfile", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const profile = computeSAProfileBase(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, 0);
+    const profile = computeSAProfile(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+        aberrationT: 0,
+      }),
+    );
 
     for (const { fraction, transverseSaMm } of profile) {
       expect(fraction).toBeGreaterThan(0);
@@ -424,8 +567,24 @@ describe("computeSAProfile", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
-    const profile = computeSAProfile(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+    );
+    const profile = computeSAProfile(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+    );
 
     expect(result).not.toBeNull();
     expect(profile.length).toBeGreaterThan(0);
@@ -438,7 +597,15 @@ describe("computeSAProfile", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const profile = computeSAProfile(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const profile = computeSAProfile(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+    );
     expect(profile.length).toBeGreaterThan(0);
     const nearAxisSample = profile.find((p) => p.fraction === NEAR_AXIS_REAL_FRAC);
     expect(nearAxisSample).toBeDefined();
@@ -449,7 +616,9 @@ describe("computeSAProfile", () => {
     const L = mkSingleElement();
     const { z: zPos } = doLayout(0, 0, L);
 
-    const profile = computeSAProfile(L, zPos, 0, 0, 12, 15);
+    const profile = computeSAProfile(
+      analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 15 }),
+    );
     expect(profile.length).toBeGreaterThan(1);
     const nearAxisSample = profile.find((p) => p.fraction === NEAR_AXIS_REAL_FRAC);
     expect(nearAxisSample).toBeDefined();
@@ -462,8 +631,24 @@ describe("computeSAProfile", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
-    const profile = computeSAProfile(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+    );
+    const profile = computeSAProfile(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+    );
 
     expect(result).not.toBeNull();
     expect(profile.length).toBeGreaterThan(0);
@@ -477,7 +662,9 @@ describe("computeSAProfile", () => {
     const L = mkSingleElement();
     const { z: zPos } = doLayout(0, 0, L);
 
-    const profile = computeSAProfile(L, zPos, 0, 0, 12, 0.5);
+    const profile = computeSAProfile(
+      analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 0.5 }),
+    );
     expect(profile).toEqual([]);
   });
 
@@ -490,7 +677,15 @@ describe("computeSAProfile", () => {
     const wideOpen = apertureAt(L, 0, 0);
     const stoppedDown = apertureAt(L, 0, 0.8);
 
-    const stoppedProfile = computeSAProfile(L, zPos, 0, 0, stoppedDown.currentEPSD, stoppedDown.currentPhysStopSD);
+    const stoppedProfile = computeSAProfile(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: stoppedDown.currentEPSD,
+        currentPhysStopSD: stoppedDown.currentPhysStopSD,
+      }),
+    );
 
     expect(stoppedDown.currentEPSD).toBeLessThan(wideOpen.currentEPSD);
     expect(stoppedProfile.length).toBeGreaterThan(0);
@@ -508,7 +703,15 @@ describe("computeSAProfile", () => {
     const { z: zPos } = doLayout(0, 1, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 1, 0);
 
-    const profile = computeSAProfile(L, zPos, 0, 1, currentEPSD, currentPhysStopSD);
+    const profile = computeSAProfile(
+      analysisRequestAt(L, {
+        zPos: zPos,
+        focusT: 0,
+        zoomT: 1,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+    );
     expect(profile.length).toBeGreaterThanOrEqual(2);
   });
 });
@@ -517,8 +720,13 @@ describe("computeSphericalAberrationBlurCharacter", () => {
   it("derives opposite front/rear blur bias for an undercorrected simple positive element", () => {
     const L = mkSingleElement();
     const { z: zPos } = doLayout(0, 0, L);
-    const baseResult = computeSphericalAberration(L, zPos, 0, 0, 12, 15);
-    const blurCharacter = computeSphericalAberrationBlurCharacter(L, zPos, 0, 0, 12, 15, baseResult, 0);
+    const baseResult = computeSphericalAberration(
+      analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 15 }),
+    );
+    const blurCharacter = computeSphericalAberrationBlurCharacter(
+      analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, currentEPSD: 12, currentPhysStopSD: 15, aberrationT: 0 }),
+      baseResult,
+    );
 
     expect(baseResult).not.toBeNull();
     expect(blurCharacter).not.toBeNull();
@@ -534,13 +742,41 @@ describe("aperture-closed and degenerate-lens guards", () => {
   const L = sharedSonnar50f15();
   const { z: zPos } = doLayout(0, 0, L);
   const degenerate = { N: 0, S: [] } as unknown as RuntimeLens;
+  const baseRequest = analysisRequestForLens(L);
+  const emptyLens = { ...baseRequest.preparedGeometry.lens };
+  associateRuntimeView(emptyLens, degenerate);
+  const emptyRequest = { ...baseRequest, preparedGeometry: { ...baseRequest.preparedGeometry, lens: emptyLens } };
 
   it.each([
-    ["computeSphericalAberration", (epSD: number) => computeSphericalAberration(L, zPos, 0, 0, epSD, 1), null],
-    ["computeSAProfile", (epSD: number) => computeSAProfile(L, zPos, 0, 0, epSD, 1), []],
+    [
+      "computeSphericalAberration",
+      (epSD: number) =>
+        computeSphericalAberration(
+          analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, currentEPSD: epSD, currentPhysStopSD: 1 }),
+        ),
+      null,
+    ],
+    [
+      "computeSAProfile",
+      (epSD: number) =>
+        computeSAProfile(
+          analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, currentEPSD: epSD, currentPhysStopSD: 1 }),
+        ),
+      [],
+    ],
     [
       "computeSphericalAberrationBlurCharacter",
-      (epSD: number) => computeSphericalAberrationBlurCharacter(L, zPos, 0, 0, epSD, 0),
+      (epSD: number) =>
+        computeSphericalAberrationBlurCharacter(
+          analysisRequestAt(L, {
+            zPos: zPos,
+            focusT: 0,
+            zoomT: 0,
+            currentEPSD: epSD,
+            currentPhysStopSD: 0,
+            aberrationT: 0,
+          }),
+        ),
       null,
     ],
     ["computeSagittalComa", (epSD: number) => computeSagittalComa(L, zPos, 0, 0, epSD, 0), null],
@@ -550,8 +786,8 @@ describe("aperture-closed and degenerate-lens guards", () => {
   });
 
   it.each([
-    ["computeSphericalAberration", () => computeSphericalAberration(degenerate, [], 0, 0, 10, 5), null],
-    ["computeSAProfile", () => computeSAProfile(degenerate, [], 0, 0, 10, 5), []],
+    ["computeSphericalAberration", () => computeSphericalAberration(emptyRequest), null],
+    ["computeSAProfile", () => computeSAProfile(emptyRequest), []],
   ])("%s returns null/empty for a degenerate lens with no surfaces", (_name, run, expectedEmpty) => {
     expect(run()).toEqual(expectedEmpty);
   });

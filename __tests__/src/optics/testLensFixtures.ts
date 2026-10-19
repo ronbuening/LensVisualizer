@@ -1,3 +1,4 @@
+import { stateWithZ } from "../../../src/optics/state/preparedGeometry.js";
 import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { associateRuntimeView } from "../../../src/optics/prescription/runtimeView.js";
@@ -518,5 +519,26 @@ export function analysisRequestForLens(L: RuntimeLens, focusT = 0, zoomT = 0, ab
     dynamicEFL: L.EFL,
     currentEPSD: L.EP?.epSD ?? 0,
     currentPhysStopSD: L.stopPhysSD,
+  });
+}
+
+/** Build requests from the explicit fixture coordinates used by ray-reference assertions. */
+export function analysisRequestAt(
+  L: RuntimeLens,
+  options: {
+    zPos?: readonly number[];
+    focusT?: number;
+    zoomT?: number;
+    aberrationT?: number;
+    currentEPSD?: number;
+    currentPhysStopSD?: number;
+  },
+) {
+  const state = prepareRuntimeState(L, options.focusT ?? 0, options.zoomT ?? 0, options.aberrationT ?? 0);
+  return createAnalysisRequest({
+    preparedState: options.zPos ? stateWithZ(state, options.zPos) : state,
+    dynamicEFL: L.EFL,
+    currentEPSD: options.currentEPSD ?? L.EP.epSD,
+    currentPhysStopSD: options.currentPhysStopSD ?? L.stopPhysSD,
   });
 }

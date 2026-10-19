@@ -8,7 +8,7 @@
 
 import { prepareRayTrace } from "../trace/rayAdapters.js";
 import type { ChromaticChannel, ChromaticRayFanSpread, RuntimeLens } from "../../types/optics.js";
-import { computeProjectionAwareOffAxisFieldGeometry, traceOffAxisChiefRay } from "../aberration/offAxis.js";
+import { computeProjectionAwareOffAxisFieldGeometry, traceOffAxisChiefRay } from "../analysis/aberration/offAxis.js";
 import {
   computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
   type FieldGeometryState2 as FieldGeometryState,

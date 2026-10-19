@@ -1,5 +1,5 @@
 /**
- * Public analysis entry for request construction and the migrated summary family.
+ * Public analysis entry for request construction and migrated analysis families.
  * Implementation leaves import their lower-level owners directly to avoid barrel cycles.
  */
 
@@ -17,3 +17,18 @@ export {
   type GroupMovementPoint,
   type GroupMovementProfile,
 } from "./analysis/summary/groupMovement.js";
+
+export {
+  computeSphericalAberration,
+  computeSAProfile,
+  computeSphericalAberrationBlurCharacter,
+} from "./analysis/aberration/spherical.js";
+export { computeBestFocusZ, computeImagePlaneZAtFocus } from "./analysis/aberration/bestFocus.js";
+export { buildBokehRadialProfile, classifyBokehBrightnessCharacter } from "./analysis/aberration/radialProfile.js";
+export type {
+  SphericalAberrationResult,
+  SphericalAberrationBlurCharacterResult,
+  SAProfilePoint,
+} from "./analysis/aberration/types.js";
+
+export { stateWithZ } from "./state/preparedGeometry.js";

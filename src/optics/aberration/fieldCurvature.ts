@@ -6,12 +6,16 @@
 
 import { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "../trace/chiefRelative.js";
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
-import type { ChromaticFieldShift, FieldCurvatureFieldResult, FieldCurvatureResult } from "./types.js";
+import type {
+  ChromaticFieldShift,
+  FieldCurvatureFieldResult,
+  FieldCurvatureResult,
+} from "../analysis/aberration/types.js";
 import {
   FIELD_CURVATURE_CURVE_FIELD_FRACTIONS,
   FIELD_CURVATURE_FIELD_FRACTIONS,
   MERIDIONAL_COMA_SAMPLE_COUNT,
-} from "./types.js";
+} from "../analysis/aberration/types.js";
 import { sampleOrthogonalPupilFan } from "../analysis/sampling.js";
 import {
   computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
@@ -24,8 +28,8 @@ import {
   traceOffAxisChiefRay,
   traceOffAxisBundleFromSamples,
   type OffAxisFieldGeometry,
-} from "./offAxis.js";
-import { bestRelativeFocusPlane, type TransverseFocusHit } from "./shared.js";
+} from "../analysis/aberration/offAxis.js";
+import { bestRelativeFocusPlane, type TransverseFocusHit } from "../analysis/aberration/shared.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
 import type { AnalysisSamplingOptions } from "../analysis/analysisQuality.js";
 

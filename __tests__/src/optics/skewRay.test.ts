@@ -24,7 +24,10 @@ import {
   traceSkewRayVector2 as traceSkewRayVectorAdapter,
   traceSkewRayVectorChromatic2 as traceSkewRayVectorChromaticAdapter,
 } from "../../../src/optics/trace/rayAdapters.js";
-import { computeOffAxisFieldGeometry, traceOrthogonalOffAxisBundle } from "../../../src/optics/aberration/offAxis.js";
+import {
+  computeOffAxisFieldGeometry,
+  traceOrthogonalOffAxisBundle,
+} from "../../../src/optics/analysis/aberration/offAxis.js";
 import {
   buildChromaticPositiveElementLens,
   buildVariableStopGapLens,

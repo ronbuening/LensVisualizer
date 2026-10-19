@@ -8,7 +8,7 @@ import {
   traceOffAxisBundleFromSamples,
   traceOrthogonalOffAxisBundle,
   transverseFocusHitsForDirection,
-} from "../../../../src/optics/aberration/offAxis.js";
+} from "../../../../src/optics/analysis/aberration/offAxis.js";
 import { DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES, doLayout } from "../../../../src/optics/optics.js";
 import buildLens from "../../../../src/optics/buildLens.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";

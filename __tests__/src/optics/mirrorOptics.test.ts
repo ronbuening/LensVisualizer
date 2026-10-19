@@ -1,3 +1,4 @@
+import { analysisRequestAt } from "./testLensFixtures.js";
 import { analysisRequestForLens } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import {
@@ -927,9 +928,27 @@ describe("mirror optics support", () => {
   it("computes mirror-safe on-axis spherical aberration against the explicit image plane", () => {
     const L = buildLens(mirrorData);
     const layout = doLayout(0, 0, L);
-    const result = computeSphericalAberration(L, layout.z, 0, 0, L.EP.epSD, L.stopPhysSD);
-    const profile = computeSAProfile(L, layout.z, 0, 0, L.EP.epSD, L.stopPhysSD);
-    const bestFocusZ = computeBestFocusZ(L, 0, 0, L.EP.epSD, L.stopPhysSD);
+    const result = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: layout.z,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: L.stopPhysSD,
+      }),
+    );
+    const profile = computeSAProfile(
+      analysisRequestAt(L, {
+        zPos: layout.z,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: L.stopPhysSD,
+      }),
+    );
+    const bestFocusZ = computeBestFocusZ(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: L.EP.epSD, currentPhysStopSD: L.stopPhysSD }),
+    );
 
     expect(result).not.toBeNull();
     expect(result!.imagePlaneZ).toBeCloseTo(L.imagePlane.z, 10);

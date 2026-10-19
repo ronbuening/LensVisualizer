@@ -1,6 +1,6 @@
 # src/optics/aberration
 
-This folder engine-native aberration analysis primitives and shared aberration types.
+This folder coma, field-curvature and bokeh orchestration awaiting request migration.
 
 Generated `readme.md` and `improvementsuggestions.md` files are intentionally omitted from the per-file inventory so this document stays focused on source relationships.
 
@@ -12,72 +12,42 @@ flowchart LR
     n_src_optics_aberration_src_optics_aberration_bokeh_ts["bokeh.ts"]
     n_src_optics_aberration_src_optics_aberration_coma_ts["coma.ts"]
     n_src_optics_aberration_src_optics_aberration_fieldCurvature_ts["fieldCurvature.ts"]
-    n_src_optics_aberration_src_optics_aberration_offAxis_ts["offAxis.ts"]
-    n_src_optics_aberration_src_optics_aberration_shared_ts["shared.ts"]
-    n_src_optics_aberration_src_optics_aberration_spherical_ts["spherical.ts"]
-    n_src_optics_aberration_src_optics_aberration_types_ts["types.ts"]
   end
-  n_external_src_optics_trace["src/optics/trace"]
   n_external_src_optics_analysis["src/optics/analysis"]
-  n_external_src_optics_chromatic["src/optics/chromatic"]
-  n_external_src_optics_field["src/optics/field"]
-  n_external_src_optics_layout_ts["src/optics/layout.ts"]
   n_external_src_optics_state["src/optics/state"]
+  n_external_src_optics_chromatic["src/optics/chromatic"]
+  n_external_src_optics_layout_ts["src/optics/layout.ts"]
+  n_external_src_optics_prescription["src/optics/prescription"]
+  n_external_src_optics_trace["src/optics/trace"]
   n_external_src_types["src/types"]
-  n_src_optics_aberration_src_optics_aberration_offAxis_ts --> |3| n_external_src_optics_trace
-  n_src_optics_aberration_src_optics_aberration_spherical_ts --> |3| n_src_optics_aberration_src_optics_aberration_types_ts
-  n_src_optics_aberration_src_optics_aberration_bokeh_ts --> |2| n_external_src_optics_analysis
-  n_src_optics_aberration_src_optics_aberration_coma_ts --> |2| n_external_src_optics_analysis
-  n_src_optics_aberration_src_optics_aberration_fieldCurvature_ts --> |2| n_external_src_optics_analysis
-  n_src_optics_aberration_src_optics_aberration_spherical_ts --> |2| n_external_src_optics_analysis
-  n_src_optics_aberration_src_optics_aberration_coma_ts --> |2| n_src_optics_aberration_src_optics_aberration_types_ts
-  n_src_optics_aberration_src_optics_aberration_fieldCurvature_ts --> |2| n_src_optics_aberration_src_optics_aberration_types_ts
-  n_src_optics_aberration_src_optics_aberration_offAxis_ts --> n_external_src_optics_analysis
-  n_src_optics_aberration_src_optics_aberration_types_ts --> n_external_src_optics_analysis
+  n_src_optics_aberration_src_optics_aberration_bokeh_ts --> |7| n_external_src_optics_analysis
+  n_src_optics_aberration_src_optics_aberration_fieldCurvature_ts --> |6| n_external_src_optics_analysis
+  n_src_optics_aberration_src_optics_aberration_coma_ts --> |5| n_external_src_optics_analysis
+  n_src_optics_aberration_src_optics_aberration_bokeh_ts --> |2| n_external_src_optics_state
   n_src_optics_aberration_src_optics_aberration_fieldCurvature_ts --> n_external_src_optics_chromatic
-  n_src_optics_aberration_src_optics_aberration_offAxis_ts --> n_external_src_optics_field
   n_src_optics_aberration_src_optics_aberration_bokeh_ts --> n_external_src_optics_layout_ts
   n_src_optics_aberration_src_optics_aberration_fieldCurvature_ts --> n_external_src_optics_layout_ts
-  n_src_optics_aberration_src_optics_aberration_offAxis_ts --> n_external_src_optics_layout_ts
-  n_src_optics_aberration_src_optics_aberration_spherical_ts --> n_external_src_optics_layout_ts
-  n_src_optics_aberration_src_optics_aberration_bokeh_ts --> n_external_src_optics_state
+  n_src_optics_aberration_src_optics_aberration_bokeh_ts --> n_external_src_optics_prescription
   n_src_optics_aberration_src_optics_aberration_coma_ts --> n_external_src_optics_state
   n_src_optics_aberration_src_optics_aberration_fieldCurvature_ts --> n_external_src_optics_state
-  n_src_optics_aberration_src_optics_aberration_offAxis_ts --> n_external_src_optics_state
-  n_src_optics_aberration_src_optics_aberration_spherical_ts --> n_external_src_optics_state
   n_src_optics_aberration_src_optics_aberration_bokeh_ts --> n_external_src_optics_trace
   n_src_optics_aberration_src_optics_aberration_fieldCurvature_ts --> n_external_src_optics_trace
-  n_src_optics_aberration_src_optics_aberration_shared_ts --> n_external_src_optics_trace
-  n_src_optics_aberration_src_optics_aberration_spherical_ts --> n_external_src_optics_trace
   n_src_optics_aberration_src_optics_aberration_bokeh_ts --> n_external_src_types
   n_src_optics_aberration_src_optics_aberration_coma_ts --> n_external_src_types
   n_src_optics_aberration_src_optics_aberration_fieldCurvature_ts --> n_external_src_types
-  n_src_optics_aberration_src_optics_aberration_offAxis_ts --> n_external_src_types
-  n_src_optics_aberration_src_optics_aberration_shared_ts --> n_external_src_types
-  n_src_optics_aberration_src_optics_aberration_spherical_ts --> n_external_src_types
-  n_src_optics_aberration_src_optics_aberration_types_ts --> n_external_src_types
-  n_src_optics_aberration_src_optics_aberration_spherical_ts --> n_src_optics_aberration_src_optics_aberration_bokeh_ts
-  n_src_optics_aberration_src_optics_aberration_bokeh_ts --> n_src_optics_aberration_src_optics_aberration_offAxis_ts
-  n_src_optics_aberration_src_optics_aberration_coma_ts --> n_src_optics_aberration_src_optics_aberration_offAxis_ts
-  n_src_optics_aberration_src_optics_aberration_fieldCurvature_ts --> n_src_optics_aberration_src_optics_aberration_offAxis_ts
-  n_src_optics_aberration_truncated["additional relationships omitted"]
 ```
 
 ## Directory Overview
 
-- Direct source files: 7
+- Direct source files: 3
 - Direct subfolders: 0
-- Main outbound areas: same folder (17), src/optics/analysis (10), src/optics/trace (7), src/types (7), src/optics/state (5), src/optics/layout.ts (4), src/optics/chromatic, src/optics/field
-- External consumers: src/components/hooks, src/optics/aberrationAnalysis.ts, src/optics/analysis, src/optics/chromatic, src/optics/perspective
+- Main outbound areas: src/optics/analysis (18), src/optics/state (4), src/types (3), src/optics/layout.ts (2), src/optics/trace (2), src/optics/chromatic, src/optics/prescription
+- External consumers: src/optics/aberrationAnalysis.ts, src/optics/analysis
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `bokeh.ts` | Bokeh helper module | same folder (3), src/optics/analysis (2), src/optics/layout.ts, src/optics/state, src/optics/trace, +1 more | same folder, src/optics/aberrationAnalysis.ts, src/optics/analysis, src/optics/perspective | computeImagePlaneZAtFocus, computeBestFocusZ, buildBokehRadialProfile, classifyBokehBrightnessCharacter, computeBokehFieldFootprint, buildBokehDensityGrid, describeBokehDefocusSide, computeBokehPreview, +1 more |
-| `coma.ts` | Coma helper module | same folder (3), src/optics/analysis (2), src/optics/state, src/types | src/optics/aberrationAnalysis.ts | computeMeridionalComa, computeComaPreview, computeSagittalComa, computeComaPointCloudPreview, computeComaAnalysis |
-| `fieldCurvature.ts` | Field Curvature helper module | same folder (4), src/optics/analysis (2), src/optics/chromatic, src/optics/layout.ts, src/optics/state, +2 more | src/optics/aberrationAnalysis.ts | FieldCurvatureBundleResult, computeFieldCurvatureBundle, computeFieldCurvature |
-| `offAxis.ts` | Off Axis helper module | src/optics/trace (3), same folder, src/optics/analysis, src/optics/field, src/optics/layout.ts, +2 more | same folder (4), src/components/hooks, src/optics/aberrationAnalysis.ts, src/optics/analysis, src/optics/chromatic | OffAxisFanOrientation, OffAxisDirection, OffAxisFieldGeometry, OffAxisVectorFieldGeometry, ProjectionAwareOffAxisFieldGeometry, OffAxisChiefRaySample, OffAxisTracedSample, OffAxisBundle, +11 more |
-| `shared.ts` | Shared helper module | src/optics/trace, src/types | same folder (4) | MARGINAL_FRACS, PROFILE_FRACS, SymmetricRealSample, TransverseFocusHit, RealRayHit, axialIntercept, imagePlaneIntercept, meridionalImagePlaneCoordinate, +9 more |
-| `spherical.ts` | Spherical helper module | same folder (6), src/optics/analysis (2), src/optics/layout.ts, src/optics/state, src/optics/trace, +1 more | src/optics/aberrationAnalysis.ts | computeSphericalAberration, computeSAProfile, computeSphericalAberrationBlurCharacter |
-| `types.ts` | Shared TypeScript types | src/optics/analysis, src/types | same folder (4), src/optics/perspective (2), src/optics/aberrationAnalysis.ts, src/optics/analysis | SAProfilePoint, SphericalAberrationBlurCharacterSample, SphericalAberrationBlurCharacterResult, SphericalAberrationResult, MeridionalComaSample, MeridionalComaResult, SagittalComaSample, SagittalComaResult, +34 more |
+| `bokeh.ts` | Bokeh helper module | src/optics/analysis (7), src/optics/state (2), src/optics/layout.ts, src/optics/prescription, src/optics/trace, +1 more | src/optics/aberrationAnalysis.ts, src/optics/analysis | computeBokehFieldFootprint, buildBokehDensityGrid, describeBokehDefocusSide, computeBokehPreview, computeBokehPreviewPair |
+| `coma.ts` | Coma helper module | src/optics/analysis (5), src/optics/state, src/types | src/optics/aberrationAnalysis.ts | computeMeridionalComa, computeComaPreview, computeSagittalComa, computeComaPointCloudPreview, computeComaAnalysis |
+| `fieldCurvature.ts` | Field Curvature helper module | src/optics/analysis (6), src/optics/chromatic, src/optics/layout.ts, src/optics/state, src/optics/trace, +1 more | src/optics/aberrationAnalysis.ts | FieldCurvatureBundleResult, computeFieldCurvatureBundle, computeFieldCurvature |

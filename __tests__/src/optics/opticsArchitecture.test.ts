@@ -90,7 +90,7 @@ const SEAM_REGISTRY: readonly SeamRegistryEntry[] = [
  * folder but is not part of the optical engine, and mount specs import it directly.
  */
 const SEAM_LEGACY: readonly string[] = [
-  "src/optics/aberration/offAxis.ts",
+  "src/optics/analysis/aberration/offAxis.ts",
   "src/optics/analysis/analysisQuality.ts",
   "src/optics/analysis/mtfConstants.ts",
   "src/optics/analysis/mtfFocus.ts",

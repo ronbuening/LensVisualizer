@@ -1,10 +1,7 @@
+import { computeBestFocusZ, createAnalysisRequest } from "../../../../src/optics/analysis.js";
+import { doLayout } from "../../../../src/optics/layout.js";
 import { describe, expect, it } from "vitest";
-import {
-  computeBestFocusZ2,
-  computeBestFocusZForState2,
-  computeBokehPreviewPair2,
-  computeBokehPreviewPairForState2,
-} from "../../../../src/optics/analysis/bokeh.js";
+import { computeBokehPreviewPair2, computeBokehPreviewPairForState2 } from "../../../../src/optics/analysis/bokeh.js";
 import { prepareRuntimeState } from "../../../../src/optics/compat.js";
 import { apertureAt, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 
@@ -16,9 +13,20 @@ describe("bokeh analysis adapter", () => {
     const state = prepareRuntimeState(lens, focusT, zoomT);
     const { currentEPSD, currentPhysStopSD } = apertureAt(lens, zoomT);
 
-    expect(computeBestFocusZForState2(state, currentEPSD, currentPhysStopSD)).toEqual(
-      computeBestFocusZ2(lens, focusT, zoomT, currentEPSD, currentPhysStopSD),
-    );
+    const request = createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: lens.EFL,
+      currentEPSD,
+      currentPhysStopSD,
+    });
+    expect(Number.isFinite(computeBestFocusZ(request))).toBe(true);
+    const closed = createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: lens.EFL,
+      currentEPSD: 0,
+      currentPhysStopSD: 0,
+    });
+    expect(computeBestFocusZ(closed)).toBe(doLayout(focusT, zoomT, lens).imgZ);
     expect(computeBokehPreviewPairForState2(state, currentEPSD, currentPhysStopSD)).toEqual(
       computeBokehPreviewPair2(lens, focusT, zoomT, currentEPSD, currentPhysStopSD),
     );

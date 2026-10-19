@@ -254,13 +254,7 @@ export {
   computeFieldCurvatureBundleForState2,
   computeFieldCurvatureForState2,
   computeMeridionalComa2,
-  computeSAProfile2,
-  computeSAProfileForState2,
   computeSagittalComa2,
-  computeSphericalAberration2,
-  computeSphericalAberrationBlurCharacter2,
-  computeSphericalAberrationBlurCharacterForState2,
-  computeSphericalAberrationForState2,
 } from "./analysis/aberrations.js";
 export {
   computeChromaticAnalysis2,
@@ -287,8 +281,6 @@ export {
   buildBokehDensityGrid2,
   buildBokehRadialProfile2,
   classifyBokehBrightnessCharacter2,
-  computeBestFocusZ2,
-  computeBestFocusZForState2,
   computeBokehPreview2,
   computeBokehPreviewPair2,
   computeBokehPreviewPairForState2,

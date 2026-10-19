@@ -24,6 +24,7 @@ flowchart LR
   end
   n_external_src_components_display["src/components/display"]
   n_external_src_components_controls["src/components/controls"]
+  n_external_src_optics_analysis_ts["src/optics/analysis.ts"]
   n_external_src_optics_compat_ts["src/optics/compat.ts"]
   n_external_pkg_react["pkg:react"]
   n_external_src_optics_aberrationAnalysis_ts["src/optics/aberrationAnalysis.ts"]
@@ -36,12 +37,13 @@ flowchart LR
   n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_ComaPreviewSection_tsx --> |2| n_external_src_components_display
   n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_MeridionalComaSection_tsx --> |2| n_external_src_components_display
   n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_SagittalComaSection_tsx --> |2| n_external_src_components_display
+  n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_useSphericalAberrationData_ts --> |2| n_external_src_optics_analysis_ts
   n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_useComaData_ts --> |2| n_external_src_optics_compat_ts
   n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_useFieldCurvatureData_ts --> |2| n_external_src_optics_compat_ts
-  n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_useSphericalAberrationData_ts --> |2| n_external_src_optics_compat_ts
   n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_useComaData_ts --> n_external_pkg_react
   n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_useFieldCurvatureData_ts --> n_external_pkg_react
   n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_useSphericalAberrationData_ts --> n_external_pkg_react
+  n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_useSphericalAberrationData_ts --> n_external_src_components_display
   n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_AstigmatismSection_tsx --> n_external_src_optics_aberrationAnalysis_ts
   n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_ComaPreviewSection_tsx --> n_external_src_optics_aberrationAnalysis_ts
   n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_FieldCurvatureSection_tsx --> n_external_src_optics_aberrationAnalysis_ts
@@ -51,7 +53,6 @@ flowchart LR
   n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_SphericalAberrationSection_tsx --> n_external_src_optics_aberrationAnalysis_ts
   n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_useComaData_ts --> n_external_src_optics_aberrationAnalysis_ts
   n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_useFieldCurvatureData_ts --> n_external_src_optics_aberrationAnalysis_ts
-  n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_useSphericalAberrationData_ts --> n_external_src_optics_aberrationAnalysis_ts
   n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_useComaData_ts --> n_external_src_optics_optics_ts
   n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_useFieldCurvatureData_ts --> n_external_src_optics_optics_ts
   n_src_components_display_analysis_aberrations_src_components_display_analysis_aberrations_useComaData_ts --> n_external_src_optics_types_ts
@@ -73,7 +74,7 @@ flowchart LR
 
 - Direct source files: 12
 - Direct subfolders: 0
-- Main outbound areas: src/components/display (26), src/types (11), src/optics/aberrationAnalysis.ts (10), src/optics/compat.ts (6), package:react (3), src/optics/types.ts (3), src/components/controls (2), src/optics/optics.ts (2), +2 more
+- Main outbound areas: src/components/display (27), src/types (11), src/optics/aberrationAnalysis.ts (9), src/optics/compat.ts (4), package:react (3), src/optics/types.ts (3), src/components/controls (2), src/optics/analysis.ts (2), +3 more
 - External consumers: src/benchmarks, src/components/display
 
 ## Files
@@ -91,4 +92,4 @@ flowchart LR
 | `SphericalAberrationSection.tsx` | React component module | src/components/display (3), src/optics/aberrationAnalysis.ts, src/types, src/utils/featureFlags.ts | src/benchmarks, src/components/display | default, SphericalAberrationSection |
 | `useComaData.ts` | React hook module | src/optics/compat.ts (2), package:react, src/optics/aberrationAnalysis.ts, src/optics/optics.ts, src/optics/types.ts, +2 more | src/components/display | default, useComaData |
 | `useFieldCurvatureData.ts` | React hook module | src/optics/compat.ts (2), package:react, src/optics/aberrationAnalysis.ts, src/optics/optics.ts, src/optics/types.ts, +1 more | src/components/display | default, useFieldCurvatureData |
-| `useSphericalAberrationData.ts` | React hook module | src/optics/compat.ts (2), package:react, src/optics/aberrationAnalysis.ts, src/optics/types.ts, src/types, +1 more | src/components/display | default, useSphericalAberrationData |
+| `useSphericalAberrationData.ts` | React hook module | src/optics/analysis.ts (2), package:react, src/components/display, src/optics/types.ts, src/types, +1 more | src/components/display | default, useSphericalAberrationData |

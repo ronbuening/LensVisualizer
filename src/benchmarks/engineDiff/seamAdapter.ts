@@ -14,6 +14,8 @@ type EngineModule = Readonly<Record<string, unknown>>;
 
 /* One glob per module, so a candidate below can only name a module that is listed here. */
 const ENGINE_MODULES = {
+  sphericalAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/spherical.ts", { eager: true }),
+  bestFocusAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/bestFocus.ts", { eager: true }),
   summaryGroupMovement: import.meta.glob<EngineModule>("../../optics/analysis/summary/groupMovement.ts", {
     eager: true,
   }),
@@ -41,6 +43,8 @@ const ENGINE_MODULES = {
 /* The same modules as types. A type query is erased before bundling, so it types a capability at the head and loads
  * nothing at any ref. */
 interface EngineModuleTypes {
+  sphericalAnalysis: typeof import("../../optics/analysis.js");
+  bestFocusAnalysis: typeof import("../../optics/analysis.js");
   summaryGroupMovement: typeof import("../../optics/analysis.js");
   summaryCardinals: typeof import("../../optics/analysis.js");
   analysisRequest: typeof import("../../optics/analysis.js");
@@ -77,6 +81,22 @@ type SeamCandidate = readonly [module: EngineModuleId, exportName: string];
  * overlay's departure and best-fit helpers and the LoCA inset's bar scaling), so a payload notices when either copy drifts.
  */
 const SEAM_CANDIDATES = {
+  computeSphericalAberration: [
+    ["sphericalAnalysis", "computeSphericalAberration"],
+    ["compat", "computeSphericalAberrationForState2"],
+  ],
+  computeSAProfile: [
+    ["sphericalAnalysis", "computeSAProfile"],
+    ["compat", "computeSAProfileForState2"],
+  ],
+  computeSphericalAberrationBlurCharacter: [
+    ["sphericalAnalysis", "computeSphericalAberrationBlurCharacter"],
+    ["compat", "computeSphericalAberrationBlurCharacterForState2"],
+  ],
+  computeBestFocusZ: [
+    ["bestFocusAnalysis", "computeBestFocusZ"],
+    ["compat", "computeBestFocusZForState2"],
+  ],
   flatRadiusThreshold: [
     ["geometry", "FLAT_R_THRESHOLD"],
     ["constants", "FLAT_R_THRESHOLD"],

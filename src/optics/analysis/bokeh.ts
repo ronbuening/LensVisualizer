@@ -7,38 +7,13 @@
 import { runtimeView } from "../prescription/runtimeView.js";
 import {
   buildBokehDensityGrid,
-  buildBokehRadialProfile,
-  classifyBokehBrightnessCharacter,
-  computeBestFocusZ,
   computeBokehPreview,
   computeBokehPreviewPair,
   describeBokehDefocusSide,
 } from "../aberration/bokeh.js";
+import { buildBokehRadialProfile, classifyBokehBrightnessCharacter } from "./aberration/radialProfile.js";
 import type { PreparedOpticalState } from "../types.js";
 import type { AnalysisSamplingOptions } from "./analysisQuality.js";
-
-/**
- * Compute the best-focus image plane for bokeh sampling from a prepared state.
- *
- * @param state - prepared optical state for current focus/zoom/aberration sliders
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @returns best-focus z coordinate in mm, or the nominal image plane when solving is unavailable
- */
-export function computeBestFocusZForState2(
-  state: PreparedOpticalState,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-) {
-  return computeBestFocusZ(
-    runtimeView(state.lens),
-    state.focusT,
-    state.zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-    state.aberrationT,
-  );
-}
 
 /**
  * Compute paired foreground/background bokeh previews for a prepared state.
@@ -63,16 +38,6 @@ export function computeBokehPreviewPairForState2(
     state.aberrationT,
     sampling,
   );
-}
-
-/**
- * Compatibility wrapper for best-focus solving.
- *
- * @param args - same arguments as `computeBestFocusZ`
- * @returns best-focus z coordinate in mm
- */
-export function computeBestFocusZ2(...args: Parameters<typeof computeBestFocusZ>) {
-  return computeBestFocusZ(...args);
 }
 
 /**

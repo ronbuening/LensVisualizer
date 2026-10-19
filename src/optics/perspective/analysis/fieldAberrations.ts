@@ -1,6 +1,6 @@
 /** Sensor-locked field curvature, astigmatism, and coma for moved lenses. */
 
-import { COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES, type ComaTailDirection } from "../../aberration/types.js";
+import { COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES, type ComaTailDirection } from "../../analysis/aberration/types.js";
 import { sampleCircularPupil, sampleOrthogonalPupilFan } from "../../analysis/sampling.js";
 import type { Vec3 } from "../../types.js";
 import {

@@ -1,5 +1,5 @@
 /**
- * Aberration analysis adapter — prepared-state wrappers for spherical, field-curvature, and coma helpers.
+ * Aberration analysis adapter — prepared-state wrappers for field-curvature and coma helpers.
  *
  * Bridges engine-native PreparedOpticalState calls to the existing RuntimeLens analysis implementations.
  */
@@ -12,99 +12,15 @@ import {
   computeFieldCurvature,
   computeFieldCurvatureBundle,
   computeMeridionalComa,
-  computeSAProfile,
   computeSagittalComa,
-  computeSphericalAberration,
-  computeSphericalAberrationBlurCharacter,
 } from "../aberrationAnalysis.js";
 import type { FieldGeometryState } from "../optics.js";
-import type { RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
 import type { AnalysisSamplingOptions } from "./analysisQuality.js";
 import { zPosForPreparedAnalysis2 } from "./preparedStateAdapters.js";
 
 function zPosFromState(state: PreparedOpticalState): number[] {
   return zPosForPreparedAnalysis2(state);
-}
-
-/**
- * Compute current-state spherical aberration from a prepared optical state.
- *
- * The prepared state supplies focus, zoom, aberration spacing, and current vertex
- * positions; aperture inputs stay explicit because the analysis drawer derives them
- * from stopdown state rather than from build-time lens constants.
- *
- * @param state - prepared optical state for the current sliders
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @returns longitudinal/transverse spherical-aberration summary
- */
-export function computeSphericalAberrationForState2(
-  state: PreparedOpticalState,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-) {
-  return computeSphericalAberration(
-    runtimeView(state.lens),
-    zPosFromState(state),
-    state.focusT,
-    state.zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-    state.aberrationT,
-  );
-}
-
-/**
- * Build the sampled real-ray spherical-aberration profile for a prepared state.
- *
- * @param state - prepared optical state for the current sliders
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @returns sampled marginal-to-paraxial focus offsets used by the SA chart
- */
-export function computeSAProfileForState2(state: PreparedOpticalState, currentEPSD: number, currentPhysStopSD: number) {
-  return computeSAProfile(
-    runtimeView(state.lens),
-    zPosFromState(state),
-    state.focusT,
-    state.zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-    state.aberrationT,
-  );
-}
-
-/**
- * Classify blur behavior around the current image plane for prepared-state SA.
- *
- * Passing an existing spherical-aberration result avoids repeating the same on-axis
- * real-ray sweep when the summary and blur character are rendered together.
- *
- * @param state - prepared optical state for the current sliders
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @param baseResult - optional precomputed SA result for the same state/aperture
- * @returns foreground/background blur character and confidence metrics
- */
-export function computeSphericalAberrationBlurCharacterForState2(
-  state: PreparedOpticalState,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  baseResult: Parameters<typeof computeSphericalAberrationBlurCharacter>[6] = null,
-  sampling?: AnalysisSamplingOptions,
-) {
-  return computeSphericalAberrationBlurCharacter(
-    runtimeView(state.lens),
-    zPosFromState(state),
-    state.focusT,
-    state.zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-    baseResult,
-    state.aberrationT,
-    sampling,
-  );
 }
 
 /**
@@ -204,66 +120,6 @@ export function computeComaAnalysisForState2(
     fieldGeometry,
     sampling,
   );
-}
-
-/**
- * Compatibility wrapper for the RuntimeLens spherical-aberration profile helper.
- *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param focusT - normalized focus slider, 0=infinity and 1=close focus
- * @param zoomT - normalized zoom slider, ignored by prime lenses
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @param aberrationT - normalized aberration spacing slider
- * @returns sampled spherical-aberration profile
- */
-export function computeSAProfile2(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-) {
-  return computeSAProfile(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
-}
-
-/**
- * Compatibility wrapper for the RuntimeLens spherical-aberration summary helper.
- *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param focusT - normalized focus slider, 0=infinity and 1=close focus
- * @param zoomT - normalized zoom slider, ignored by prime lenses
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @param aberrationT - normalized aberration spacing slider
- * @returns longitudinal/transverse spherical-aberration summary
- */
-export function computeSphericalAberration2(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-) {
-  return computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
-}
-
-/**
- * Compatibility wrapper for spherical-aberration blur-character classification.
- *
- * @param args - same arguments as `computeSphericalAberrationBlurCharacter`
- * @returns blur character for near/far defocus sides
- */
-export function computeSphericalAberrationBlurCharacter2(
-  ...args: Parameters<typeof computeSphericalAberrationBlurCharacter>
-): ReturnType<typeof computeSphericalAberrationBlurCharacter> {
-  return computeSphericalAberrationBlurCharacter(...args);
 }
 
 /**

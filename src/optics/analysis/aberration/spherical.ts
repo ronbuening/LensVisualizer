@@ -4,11 +4,12 @@
  * Samples pupil zones against the current image plane to describe longitudinal error, RMS blur, and edge/center bias.
  */
 
-import { computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState } from "../state/fieldAdapters.js";
-import { thick } from "../layout.js";
-import { sampleCircularPupil } from "../analysis/sampling.js";
-import { prepareRayTrace, skewImagePlaneIntercept } from "../trace/rayAdapters.js";
-import type { RuntimeLens } from "../../types/optics.js";
+import { computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.js";
+import { thick } from "../../layout.js";
+import { sampleCircularPupil } from "../sampling.js";
+import { prepareRayTrace, skewImagePlaneIntercept } from "../../trace/rayAdapters.js";
+import { runtimeView } from "../../prescription/runtimeView.js";
+import type { AnalysisRequest } from "../request.js";
 import type {
   BokehPoint,
   SAProfilePoint,
@@ -17,8 +18,7 @@ import type {
   SphericalAberrationResult,
 } from "./types.js";
 import { BOKEH_CIRCULAR_PUPIL_RING_SAMPLES } from "./types.js";
-import type { AnalysisSamplingOptions } from "../analysis/analysisQuality.js";
-import { buildBokehRadialProfile, classifyBokehBrightnessCharacter } from "./bokeh.js";
+import { buildBokehRadialProfile, classifyBokehBrightnessCharacter } from "./radialProfile.js";
 import { computeStateAwareOffAxisFieldGeometry, traceOffAxisBundleFromSamples, type OffAxisBundle } from "./offAxis.js";
 import { NEAR_AXIS_REAL_FRAC } from "./types.js";
 import {
@@ -43,24 +43,15 @@ const SA_BLUR_CHARACTER_DEFOCUS_SCALE = 0.5;
  * headline longitudinal SA is marginal intercept minus near-axis intercept; the
  * blur metrics are measured at the current and least-squares best-focus planes.
  *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @param aberrationT - normalized aberration spacing slider
+ * @param request - current geometry, controls and aperture
  * @returns spherical-aberration metrics, or null when rays clip/degenerate
  */
-export function computeSphericalAberration(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-): SphericalAberrationResult | null {
+export function computeSphericalAberration(request: AnalysisRequest): SphericalAberrationResult | null {
+  const { preparedGeometry: state } = request;
+  const { focusT, zoomT, aberrationT } = state;
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
   if (currentEPSD <= 0 || L.N < 1) return null;
 
   const lastSurfZ = zPos[L.N - 1];
@@ -171,24 +162,15 @@ export function computeSphericalAberration(
  * Points are evaluated at the real-ray best-focus plane and expressed relative
  * to the near-axis ray height at that same plane.
  *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
- * @param aberrationT - normalized aberration spacing slider
+ * @param request - current geometry, controls and aperture
  * @returns sampled pupil fraction versus transverse SA in mm
  */
-export function computeSAProfile(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-): SAProfilePoint[] {
+export function computeSAProfile(request: AnalysisRequest): SAProfilePoint[] {
+  const { preparedGeometry: state } = request;
+  const { focusT, zoomT, aberrationT } = state;
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
   if (currentEPSD <= 0 || L.N < 1) return [];
 
   const lastSurfZ = zPos[L.N - 1];
@@ -312,31 +294,23 @@ function computeOnAxisBlurCharacterAtPlane(
  * absolute longitudinal SA. On-axis circular pupil samples are traced as a bokeh
  * footprint and reduced to center/rim brightness character.
  *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
+ * @param request - current geometry, controls, aperture and sampling
  * @param baseResult - optional matching spherical-aberration result
- * @param aberrationT - normalized aberration spacing slider
  * @returns front/rear blur character, or null when the SA signal is too small
  */
 export function computeSphericalAberrationBlurCharacter(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
+  request: AnalysisRequest,
   baseResult: Pick<SphericalAberrationResult, "bestFocusZ" | "longitudinalSaMm"> | null = null,
-  aberrationT = 0,
-  sampling: AnalysisSamplingOptions = {},
 ): SphericalAberrationBlurCharacterResult | null {
+  const { preparedGeometry: state } = request;
+  const { focusT, zoomT, aberrationT } = state;
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
+  const sampling = request.sampling;
   if (currentEPSD <= 0 || L.N < 1) return null;
 
-  const resolvedBase =
-    baseResult ?? computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
+  const resolvedBase = baseResult ?? computeSphericalAberration(request);
   if (resolvedBase === null) return null;
 
   const defocusOffsetMm = Math.abs(resolvedBase.longitudinalSaMm) * SA_BLUR_CHARACTER_DEFOCUS_SCALE;

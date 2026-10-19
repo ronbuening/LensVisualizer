@@ -107,6 +107,6 @@ flowchart LR
 | `SagittalComaPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, SagittalComaPlot |
 | `StandardFieldCurvaturePlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, StandardFieldCurvaturePlot |
 | `useBokehPreviewData.ts` | React hook module | src/optics/compat.ts (2), package:react, src/optics/types.ts, src/utils/perfProbe.ts | src/components/display | default, useBokehPreviewData |
-| `usePreparedAnalysisState.ts` | React hook module | package:react, src/optics/compat.ts, src/optics/types.ts, src/types | src/components/display (8), src/components/layout | default, usePreparedAnalysisState |
+| `usePreparedAnalysisState.ts` | React hook module | package:react, src/optics/compat.ts, src/optics/types.ts, src/types | src/components/display (9), src/components/layout | default, usePreparedAnalysisState |
 | `VignettingChart.tsx` | React component module | src/components/display (3), src/optics/vignetteAnalysis.ts, src/types | src/components/display | default, VignettingChart |
 | `VignettingTab.tsx` | React component module | src/components/display (4), src/optics/compat.ts (2), src/types (2), package:react, src/optics/optics.ts, +2 more | src/components/layout | default, VignettingTab |
