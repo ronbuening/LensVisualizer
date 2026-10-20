@@ -58,7 +58,8 @@ optics, which keeps the rear elements small.
 
 ### L12 — Biconvex Positive
 
-nd = 1.83000, νd = 42.72. Glass: Unmatched (nd 1.85, νd 42.72; coarse patent coordinates). f = +39.16 mm.
+nd = 1.83000, νd = 42.72. Glass: Unmatched (printed nd 1.85 corrected to 1.83, νd 42.72; coarse patent
+coordinates). f = +39.16 mm.
 
 L12 follows the large front air gap and supplies positive power within G1. Its material is one of the two negative
 terms in the patent's front-group Abbe-number difference. Its index is the one corrected value in this model:
@@ -156,6 +157,11 @@ exactly onto the printed image plane at β = −0.10. The model therefore carrie
 | 1.93 / 20.88 | L23      | No unique catalog identity is established.                                                         |
 | 1.75 / 28.30 | L31      | No unique catalog identity is established.                                                         |
 
+Across the patent's four examples (Tables 1, 3, 5 and 7, PDF pp. 7–14), 1.85/23.78 and 1.93/20.88 appear in every
+example, 1.83/42.72 returns in Example 3, and the L14 glass returns as 1.51/81.60 in Examples 2–4. L11's
+1.88/40.79, L13's 1.85/36.59, L15's 1.48/70.44 and the 1.73/54.67 pair appear only in Example 1. L31 keeps nd 1.75
+in every example while its Abbe number changes (28.30, 27.55, 25.46, 26.20).
+
 OHARA S- and L-prefix families are not interchanged. The patent's low-dispersion description and Abbe-number
 condition explain its material-selection strategy, but neither establishes anomalous partial dispersion or
 apochromatic correction.[1,5–9]
@@ -192,11 +198,14 @@ The remaining small differences from Table 9 are consistent with the two-decimal
 
 ## Model Scope and Limitations
 
-The patent publishes no clear apertures. All element semi-diameters are inferred from Fig. 1 proportions and
-real-ray clearance, and the stop radius is derived from the design f/1.4; neither is a measurement of the
-production lens. The model is all-spherical, as the patent is, and traces at the d-line with Abbe-number dispersion
-because no vendor glass is identified. At full aperture the off-axis bundles vignette at the front elements, which
-is expected for a compact f/1.4 design but is set here by inferred rather than published apertures.
+The patent publishes no clear apertures. Element semi-diameters follow Fig. 1, which is drawn to scale, and are
+checked against real rays at infinity and 0.3 m; the stop radius is derived from the design f/1.4. Neither is a
+measurement of the production lens. Fig. 1 draws several elements, including L11, L15 and L21, with a flat
+mounting land outside a smaller curved face. The model cannot draw that step: it carries L11's concave face out to
+the full rim, and joins the two face rims of L15 and L21 with a straight edge. The model is all-spherical, as the
+patent is, and traces at the d-line with Abbe-number dispersion because no vendor glass is identified. At full
+aperture the off-axis bundles vignette at the front elements, which is expected for a compact f/1.4 design but is
+set here by figure-measured rather than published apertures.
 
 ## Sources
 

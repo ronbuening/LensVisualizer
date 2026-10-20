@@ -315,3 +315,82 @@ assignee names were applied.
 
 Closed the same day: L12's glass string now says the printed 1.85 was corrected to 1.83, the doublet carries `cemented: "C1"`,
 and the D1 + D2 entry is queued in Section G of `agent_docs/sd-audit-queue.md`. Open: glass labels remain `Unmatched` (two-decimal indices).
+
+## 2026-10-20 — Second review: diagram, labels and movement
+
+Compared: the local page (infinity, 0.3 m, the focus movement overlay and the inspector for elements 2, 4, 6, 7 and
+9) against Fig. 1 on PDF p. 16 and the text of ¶0026–0028, ¶0060–0076 and Tables 1–2 (pp. 7–8). This was the first
+figure-measured semi-diameter pass; the earlier values came from the package author.
+
+Fig. 1 is drawn to scale. At 300 dpi the vertex crossings give 18.42 px/mm from surface 1 to the image plane
+(1580 px for 85.78 mm); surface 1 to 22 gives 18.43 and the GL plate 18.0 px/mm. Rim sags check the scale: surface
+3 at 12.92 mm measures 1.22 mm against 1.23 computed, and the L11 and L15 sags fit to within one pixel. Rims were read
+on the lower side, which has no labels; the G3 arrow hides only the lower edge of L31, and its upper edge was used.
+
+| Element (surfaces) | Stored sd   | Fig. 1 rim                                | f/1.4 marginal floor, ∞ / 0.3 m | Result      |
+| ------------------ | ----------- | ----------------------------------------- | ------------------------------- | ----------- |
+| L11 (1, 2)         | 15.7 / 15.7 | 15.6 block; concave face ends at 14.0     | 8.34 / 7.64                     | kept        |
+| L12 (3, 4)         | 14.4 / 14.4 | 13.5 / 13.5                               | 13.01 / 12.58                   | kept (+7%)  |
+| L13 (5, 6)         | 13.95 / 13.5 | 12.9 / 12.9                              | 12.73 / 12.41                   | kept (+5–8%) |
+| L14 (7, 8)         | 13.2 / 13.0 | 12.2 / 12.2                               | 12.07 / 11.74                   | kept (+7–9%) |
+| L15 (9, 10)        | 11.2 / 10.1 | 10.1 block; concave face ends at 9.1      | 10.24 / 10.12                   | 9: 11.2 → 10.4 |
+| L21 (12, 13)       | 8.9 / 11.5  | front face ends at 8.3; block 10.4        | 8.43, 9.91 / 8.51, 10.14        | 13: 11.5 → 10.7 |
+| L22 (13, 14)       | 11.5 / 11.5 | 10.4 / 10.4                               | 9.91, 10.40 / 10.14, 10.59      | 14: 11.5 → 10.7 |
+| L23 (15, 16)       | 11.3 / 11.3 | 11.2 / 11.2                               | 10.61 / 10.94                   | kept        |
+| L31 (17, 18)       | 10.0 / 10.0 | 9.9 / 9.9                                 | 9.51 / 8.97                     | kept        |
+| L41, L42 (19–22)   | 12.8        | 12.7                                      | 8.54 / 8.34                     | kept        |
+
+The 0.3 m floors come from a scratch exact trace from an axial object 227.0 mm ahead of surface 1, with the stop at
+its engine radius of 8.84 mm. That trace reproduces the infinity floors from the clearance probe to 0.01 mm.
+
+Reasons. L15's front face was 11% above the figure; it now sits 0.16 mm above the infinity marginal ray, and with the
+rear face kept at 10.1 the element is nearly square-cut, as drawn. The cemented pair was 10% above the figure and
+rendered taller than L23, while Fig. 1 draws L23 taller. Its rear faces now sit at 10.7, where the 0.3 m marginal ray
+needs 10.59 at surface 14, so L23 is the taller element again. Surface 12 stays at 8.9: Fig. 1 ends L21's concave
+face at about 8.3 and adds a flat land out to the block, and a full-height concave face would swing back toward the
+stop. L12–L14 are 5–9% above the figure, within the change threshold, and stay. L11 keeps both faces at the outer
+block height, so it renders square-cut as Fig. 1 draws it.
+
+Results after the change: the surface validator reports no errors; the image-circle check passes; field coverage is
+100% at 14.18 mm (31.6°). The clearance probe shows no on-axis clip or chief-ray block at either focus state. Engine
+half-field (33.43°), f-number (1.400), EFL (23.350 mm) and stop radius (8.839 mm) are unchanged. The meridional
+geometric-transmission curve at infinity is unchanged except at 5.7°, where it falls from 96.9% to 96.4%; at 0.3 m
+it falls only at 5.6°, from 99.0% to 98.4%. These are meridional numbers only.
+
+Labels. The `doublets` bracket read "L21/L22" while both elements carry `cemented: "C1"`; the bracket now reads "C1",
+which matches the cemented id. A "D1" label would clash with the patent's D1/D2 focus gaps beside the slider. The
+group brackets G1 (1–10), G2 (12–16), G3 (17–18) and G4 (19–22) match Fig. 1's brackets and ¶0060–0073. The stop
+lies between L15 and L21, as the STP row of Table 1 places it. Element names are the patent's L11–L42 and agree with
+the inspector. Every element type agrees with the signs of R, and there are no aspheric surfaces or markers. The
+inspector shows "DOUBLET C1" on elements 6 and 7, with no bonded-layer entry.
+
+Tags. L14 and L15 carry `apd: "inferred"`. ¶0028 states that the fourth and fifth lenses of G1 use ultra-low-dispersion
+material, and ¶0026/¶0065 call both low-dispersion lenses with νd above 50. That is patent-text designation; the tags
+were left as placed today and the point is reported to the coordinator.
+
+Movement. Table 2 index 0 is infinity and index 1 is 0.3 m, and the slider's far end reads 30 cm. G3 moves toward the
+image, as Fig. 1's arrow and ¶0007/¶0060 state: D1 1.00 → 3.76 mm and D2 4.43 → 1.88 mm. The overlay shows G3
+travelling 2.55 mm toward the image plane. Because D1 + D2 grows by 0.21 mm, G1 and G2 sit 0.21 mm farther from the
+image at 0.3 m, against ¶0060's statement that G1, G2 and G4 are fixed. That follows from the recorded unresolved
+erratum, and the printed spacings stay. The lens has no zoom.
+
+Aberration plots. Distortion agrees with Fig. 4: the model reaches −1.55% barrel near 85% of the field, and Fig. 4
+shows about −1.5%. The spherical-aberration shape agrees with Fig. 2: the d-line curve swings one way in the zone
+and back at the rim, within a few hundredths of a millimetre. Sagittal field curvature follows Fig. 3's shape but
+runs deeper: about −0.22 mm relative to the axis at 27.7° against about −0.10 mm. Tangential field curvature does
+not agree: the model falls to −0.74 mm at 31.6°, while Fig. 3 keeps T within about ±0.03 mm. Six-digit catalog
+indices for the identified glass classes improve it only to about −0.5 mm, so the two-decimal indices do not explain
+the gap. The cause is open.
+
+Glass recurrence across Examples 1–4 (Tables 1, 3, 5, 7):
+
+- Real materials that recur: 1.85/23.78 and 1.93/20.88 in all four examples, 1.83/42.72 in Example 3, and the L14 glass
+  as 1.51/81.60 in Examples 2–4.
+- Example 1 only: 1.88/40.79, 1.85/36.59, 1.48/70.44 and 1.73/54.67.
+- L31 keeps nd 1.75 while νd changes in every example (28.30, 27.55, 25.46, 26.20), which looks optimizer-floated.
+- The patent prints no glass names, extra line indices or partial dispersions, so all labels stay `Unmatched`.
+
+Coordinator follow-up, same day: L14 and L15 `apd` "inferred" → "patent". ¶0028 specifies ultra-low-dispersion
+material (超低色散材料) for the fourth and fifth lenses of G1, and ¶0026/¶0065 call both low-dispersion lenses. Open:
+the model's tangential field at the edge (−0.74 mm) does not match Fig. 3 (within about ±0.03 mm); six-digit catalog
+indices reduce it only to about −0.5 mm, so another source inconsistency may remain.

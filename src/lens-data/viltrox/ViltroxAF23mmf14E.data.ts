@@ -20,8 +20,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * D2 4.43 → 1.88 mm. D1 + D2 is 5.43 mm at infinity and 5.64 mm at 0.3 m, although G2 and G4 are fixed; the
  * printed spacings are kept and the 0.21 mm difference is recorded as an unresolved erratum.
  *
- * SEMI-DIAMETERS / STOP: the patent prints no clear apertures. Element semi-diameters are inferred from Fig. 1
- * proportions and real-ray clearance; the stop radius is derived from the design f/1.4.
+ * SEMI-DIAMETERS / STOP: the patent prints no clear apertures. Element semi-diameters follow Fig. 1, which is
+ * drawn to scale (18.42 px/mm at 300 dpi; surface sags fit the printed radii), and are floor-checked by real-ray
+ * trace at infinity and at 0.3 m. L15's front face (10.4) and the C1 doublet's rear faces (10.7) sit just above
+ * the f/1.4 marginal ray; the other rims keep the earlier values, within 9% of the figure. The stop radius is
+ * derived from the design f/1.4.
  * The source GL plate (2.00 mm, nd 1.52, νd 64.2) is traced in rearPlates at its printed gaps.
  * Glass labels stay Unmatched: the patent gives two-decimal nd and νd only, and no nC, nF, ng or dPgF.
  */
@@ -115,9 +118,9 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 157.75827511396315,
       glass: "Unmatched (nd 1.51, νd 81.59; coarse patent coordinates)",
-      apd: "inferred",
+      apd: "patent",
       apdNote:
-        "Viltrox lists two ED elements; the patent names L14 and L15 as its low-dispersion pair, and νd 81.59 fits a fluorophosphate ED glass. Partial dispersion is unpublished.",
+        "The patent (¶0028) specifies ultra-low-dispersion material for the fourth and fifth lenses of G1; Viltrox lists two ED elements. νd 81.59 fits a fluorophosphate ED glass; partial dispersion is unpublished.",
       role: "Weak low-dispersion positive meniscus that offsets the first group's longitudinal color.",
     },
     {
@@ -130,9 +133,9 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -70.02853752813387,
       glass: "Unmatched (nd 1.48, νd 70.44; coarse patent coordinates)",
-      apd: "inferred",
+      apd: "patent",
       apdNote:
-        "Viltrox lists two ED elements; the patent names L14 and L15 as its low-dispersion pair, and νd 70.44 fits a low-dispersion crown. Partial dispersion is unpublished.",
+        "The patent (¶0028) specifies ultra-low-dispersion material for the fourth and fifth lenses of G1; Viltrox lists two ED elements. νd 70.44 fits a low-dispersion crown; partial dispersion is unpublished.",
       role: "Low-dispersion negative meniscus ending the first group just ahead of the stop.",
     },
     {
@@ -226,12 +229,12 @@ const LENS_DATA = {
     { label: "6", R: 37.66, d: 3.54, sd: 13.5 },
     { label: "7", R: -126.69, d: 2.31, sd: 13.2, medium: 4 },
     { label: "8", R: -49.51, d: 0.11, sd: 13 },
-    { label: "9", R: 21.54, d: 1, sd: 11.2, medium: 5 },
+    { label: "9", R: 21.54, d: 1, sd: 10.4, medium: 5 },
     { label: "10", R: 12.93, d: 5.74, sd: 10.1 },
     { label: "STO", R: "flat", d: 4.99 },
     { label: "12", R: -13.17, d: 1, sd: 8.9, medium: 6 },
-    { label: "13", R: 30.84, d: 6.55, sd: 11.5, medium: 7 },
-    { label: "14", R: -17.84, d: 0.1, sd: 11.5 },
+    { label: "13", R: 30.84, d: 6.55, sd: 10.7, medium: 7 },
+    { label: "14", R: -17.84, d: 0.1, sd: 10.7 },
     { label: "15", R: 51.8, d: 3.58, sd: 11.3, medium: 8 },
     { label: "16", R: -54.36, sd: 11.3 },
     { label: "17", R: 65.81, d: 0.7, sd: 10, medium: 9 },
@@ -274,7 +277,7 @@ const LENS_DATA = {
     { text: "G3", fromSurface: "17", toSurface: "18" },
     { text: "G4", fromSurface: "19", toSurface: "22" },
   ],
-  doublets: [{ text: "L21/L22", fromSurface: "12", toSurface: "14" }],
+  doublets: [{ text: "C1", fromSurface: "12", toSurface: "14" }],
 
   layout: { yScFill: 0.3 },
 } satisfies LensDataV2Input;
