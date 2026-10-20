@@ -44,8 +44,10 @@ export interface AnalysisRequest {
   readonly capture: TraceCapture;
 }
 
-// Match the prepared-geometry history: 96 entries for each of two recent lenses.
-const REQUEST_CACHE_LIMIT = 96;
+// Requests keep lazy contexts and their results alive through CONTEXT_BY_REQUEST.
+// Keep only a short render history, rather than the much larger geometry history:
+// two entries preserve adjacent interactive/settled rerenders without retaining a control sweep.
+const REQUEST_CACHE_LIMIT = 2;
 const REQUEST_LENS_CACHE_LIMIT = 2;
 const REQUESTS_BY_LENS = new Map<CompiledLens, AnalysisRequest[]>();
 
