@@ -184,16 +184,14 @@ three guards over `src/optics/`:
 - **Seam.** An import into `src/optics/` from the rest of `src/`, from `scripts/` or from `reports/` targets a
   registered module. Type-only imports count, and so do the path strings that scripts load. Tests are not importers,
   because they follow the internals they test, and targets under `src/optics/mount/` are skipped.
-  `REPORT_INTERNAL_IMPORTS` permits only the element-focal-length report to import the internal thick-lens formula;
-  the guard rejects other importers and stale pairs. Report-only formulas do not expand the public optics API.
+  `REPORT_INTERNAL_IMPORTS` is empty; reports use the public seam too.
 - **Caches.** Every module-level `Map`, `WeakMap`, `Set` or `WeakSet` is registered as a constant lookup table, a
   bounded cache, or a `WeakMap` keyed by its owner whose per-owner value cannot grow without bound.
 
 Each guard's lists are data at the top of the test, and come in two kinds:
 
-- A **legacy list** holds the violations that exist today, and only shrinks. The guard fails for a violation that is
-  not listed and for a listed entry that no longer violates, so a fix and the removal of its entry land together.
-  Never add an entry; fix the code. The cycle guard has only this list.
+- The **legacy lists** and report-import exception list are empty, and a guard locks them empty. Fix violations in
+  the code. The cycle guard has no registry because cycles are never admitted.
 - A **registry** holds the modules and containers that meet the rule by design. Add an entry only when it passes the
   guard's admission rule, which the guard checks:
   - Seam: a top-level `src/optics/*.ts` file that holds only imports, re-exports, type declarations and aliases of
@@ -204,11 +202,9 @@ Each guard's lists are data at the top of the test, and come in two kinds:
     names the module constant that holds the capacity; an owner-keyed `WeakMap` records its owner, its key and what
     one owner holds.
 
-Moving an entry from a legacy list to its registry counts as a removal. The cache scan reads declarations: a legacy
-entry is stale once its container is gone or is never written, and a legacy `WeakMap` once it no longer shows a `Map`
-or `Set` per owner, in its own declaration or in the module type its record names as `storeType`. A cap shows in no
-declaration, so bounding a legacy cache means moving its entry to the registry by hand, where the recorded capacity
-is checked against the code. Each failure message names the entry and the list to change.
+The cache scan reads declarations. A per-owner `Map` or `Set` needs a registry capacity and limit constant; the
+recorded capacity is checked against the code. Stores behind type aliases and the eviction logic itself need review.
+Each failure message names the entry and the rule it violates.
 
 The guards read source text, not a syntax tree. The comment on each scan function in the test lists the forms it does
 not see, such as an `import.meta.glob` pattern for the seam or a container nested in another value for caches.

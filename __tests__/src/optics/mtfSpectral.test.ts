@@ -17,7 +17,7 @@ import {
 } from "../../../src/optics/analysis/mtf/mtfSupport.js";
 import { combineOtfs, geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtf/mtfMath.js";
 import { shearedOtf } from "../../../src/optics/analysis/mtf/mtfShearedOtf.js";
-import { traceMtfFieldPupil } from "../../../src/optics/analysis/mtf/mtfTracing.js";
+import { mtfIndexResolver, traceMtfFieldPupil } from "../../../src/optics/analysis/mtf/mtfTracing.js";
 import { computeMtf } from "../../../src/optics/analysis/mtf/mtf.js";
 import {
   evaluateCatalogAbbeNumber,
@@ -55,6 +55,18 @@ const options: MtfOptions = {
 };
 
 describe("qualified spectral MTF", () => {
+  it("recomputes identical index bytes after a long wavelength sweep without invalidating a live resolver", () => {
+    const state = prepareRuntimeState(buildChromaticPositiveElementLens(), 0, 0);
+    const support = assessMtfSupport(...mtfInputs(state, options));
+    const retained = mtfIndexResolver(state, support, LINE_NM.d)!;
+    const bytes = (resolve: typeof retained) =>
+      new Uint8Array(new Float64Array(state.surfaces.map((surface, i) => resolve(i, surface.nd))).buffer);
+    const expected = bytes(retained);
+    for (let wavelength = 400; wavelength < 480; wavelength++) mtfIndexResolver(state, support, wavelength);
+    expect(bytes(mtfIndexResolver(state, support, LINE_NM.d)!)).toEqual(expected);
+    expect(bytes(retained)).toEqual(expected);
+  });
+
   it("anchors catalog dispersion to the authored index so spectral runs keep the design's focus", () => {
     const base = buildChromaticPositiveElementLens();
     // N-BK7 stays a compatible catalog proxy for an authored index 1e-3 above its catalog nd.

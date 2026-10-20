@@ -93,6 +93,8 @@ export function mtfImagePoint(
   };
 }
 
+// Keep several complete spectral grids warm without retaining an arbitrary wavelength history.
+const MTF_INDEX_TABLE_CACHE_LIMIT = 64;
 const indexTablesByState = new WeakMap<PreparedGeometry, Map<number, Float64Array>>();
 
 /**
@@ -121,6 +123,10 @@ export function mtfIndexResolver(
   let table = tables.get(wavelengthNm);
   if (!table) {
     table = anchoredIndexTable(state, wavelengthNm);
+    if (tables.size >= MTF_INDEX_TABLE_CACHE_LIMIT) {
+      const oldest = tables.keys().next().value;
+      if (oldest !== undefined) tables.delete(oldest);
+    }
     tables.set(wavelengthNm, table);
   }
   const resolved = table;

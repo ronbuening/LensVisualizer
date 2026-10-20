@@ -21,12 +21,14 @@ const SLOPE_SAFETY = 2;
 const MAX_SUBDIVISION_DEPTH = 14;
 
 interface ProfileBounds {
+  aperture: number;
   minSag: number;
   maxSag: number;
   maxSlope: number;
 }
 
-const boundsBySurface = new WeakMap<CompiledStateSurface, Map<number, ProfileBounds>>();
+// One record per surface: the latest aperture's bounds replace the previous record.
+const boundsBySurface = new WeakMap<CompiledStateSurface, ProfileBounds>();
 
 /**
  * Classify one exact trace for MTF sampling.
@@ -169,13 +171,8 @@ function asphereMisses(origin: Vec3, direction: Vec3, surface: CompiledStateSurf
 }
 
 function profileBounds(surface: CompiledStateSurface, aperture: number): ProfileBounds | null {
-  let byAperture = boundsBySurface.get(surface);
-  if (!byAperture) {
-    byAperture = new Map();
-    boundsBySurface.set(surface, byAperture);
-  }
-  const cached = byAperture.get(aperture);
-  if (cached) return cached;
+  const cached = boundsBySurface.get(surface);
+  if (cached?.aperture === aperture) return cached;
   let minSag = Infinity;
   let maxSag = -Infinity;
   let maxSlope = 0;
@@ -190,7 +187,7 @@ function profileBounds(surface: CompiledStateSurface, aperture: number): Profile
   }
   // Extrema between samples can exceed the sampled range by at most slope·Δr/2.
   const margin = (maxSlope * SLOPE_SAFETY * aperture) / PROFILE_SAMPLES + 1e-9;
-  const bounds = { minSag: minSag - margin, maxSag: maxSag + margin, maxSlope: maxSlope * SLOPE_SAFETY };
-  byAperture.set(aperture, bounds);
+  const bounds = { aperture, minSag: minSag - margin, maxSag: maxSag + margin, maxSlope: maxSlope * SLOPE_SAFETY };
+  boundsBySurface.set(surface, bounds);
   return bounds;
 }

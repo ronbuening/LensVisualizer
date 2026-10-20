@@ -190,6 +190,16 @@ describe("geometric MTF", () => {
     // Aspheric caps use the Lipschitz interval proof: outside the aperture cylinder is a miss, a real rim hit is not.
     expect(mtfTraceClassification(miss, aspheric)).toBe("blocked");
     expect(mtfTraceClassification({ ...miss, terminalPoint: [2.5, 0, -10] }, aspheric)).toBe("failed");
+    const apertureState = {
+      ...aspheric,
+      traceGeometry: { ...aspheric.traceGeometry, stopSurfaceIndex: 0 },
+    };
+    // Revisit the same surface after replacing its one bounds record with smaller caps.
+    for (const aperture of [3, 1, 2, 3]) {
+      expect(mtfTraceClassification({ ...miss, terminalPoint: [2.5, 0, -10] }, apertureState, aperture)).toBe(
+        aperture < 2.5 ? "blocked" : "failed",
+      );
+    }
     const result = computeMtf(
       ...mtfInputs(state, { ...mtfTestOptions, pupilSemiDiameterMm: 8, stopSemiDiameterMm: 3 }),
     );

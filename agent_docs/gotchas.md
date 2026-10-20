@@ -6,11 +6,13 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
   `innerSd`), and field-launch (`projectionLaunchSlopeForField`, `solveChiefRay`) conventions are defined in
   `agent_docs/architecture/optics-engine.md`; lens-file authoring rules are in `src/lens-data/LENS_DATA_SPEC.md`. Do not
   reintroduce a legacy trace selector, per-lens rollout state, or a `traceMode` option.
-- `solveChiefRay` is memoized per `RuntimeLens` in a `WeakMap` keyed on `(focusT, zoomT, aberrationT, fieldAngleDeg,
-  launchSurface)`. Invalidation relies on every `buildLens()` call returning a fresh object — never mutate `L` in place.
-- Runtime trace adapters cache prepared state by `RuntimeLens` + `focusT` + `zoomT` + `aberrationT`, and cache shifted
-  diagram `zPos` states by array identity. A new state-dependent optical input must join the cache key, or the focused
-  test must bypass the cache.
+- Prepared geometry is cached by compiled identity and exact control values; chief solves belong to that geometry.
+  Coordinate overrides use array identity. Keep runtime lenses and supplied vertex arrays immutable so memoized
+  geometry stays valid; ownership and limits are in `agent_docs/architecture/optics-engine.md` (Prepared Geometry).
+- A `WeakMap` only limits owner lifetime: a live owner's memoization still needs a finite working set. Trace options,
+  MTF index tables and perspective center references use named per-owner caps; profile bounds reuse one record.
+  Add every result-dependent input to the key, and preserve pure recomputation on eviction; see the trace memoization
+  section in `agent_docs/architecture/optics-engine.md`.
 - `solveChiefRay` skips iteration below 1° field angle, yet retrofocus designs can show pupil aberration at 2–3°. Above
   1° it uses bounded bisection/scanning and returns a typed status plus `vectorLaunch` when applicable.
 - Centrally obstructed reflex lenses need annular stop/field reasoning through the shared `stopInnerBlockedSemiDiameter()`

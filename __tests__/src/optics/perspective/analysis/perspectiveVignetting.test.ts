@@ -199,6 +199,20 @@ describe("perspective vignetting analysis", () => {
     expect(changedQuadrature.zeroMovementCenterReference).not.toBe(shifted.zeroMovementCenterReference);
   });
 
+  it("recomputes an identical center reference after aperture-history eviction", () => {
+    const camera = context();
+    const options = { sensorUvs: [], pupilPoints: createAreaWeightedCircularPupilPoints(1, 4) } as const;
+    const first = computePerspectiveVignettingAnalysis(request(camera), options).zeroMovementCenterReference;
+    const snapshot = structuredClone(first);
+    for (let step = 1; step <= 80; step++) {
+      computePerspectiveVignettingAnalysis(request(camera, L.stopPhysSD * (1 - step / 100)), options);
+    }
+    const recomputed = computePerspectiveVignettingAnalysis(request(camera), options).zeroMovementCenterReference;
+    expect(recomputed).not.toBe(first);
+    expect(recomputed).toStrictEqual(snapshot);
+    expect(first).toStrictEqual(snapshot);
+  });
+
   it("retains out-of-format signed requests instead of filtering them", () => {
     const result = computePerspectiveVignettingAnalysis(request(context()), {
       sensorUvs: [

@@ -33,6 +33,8 @@ interface TraceOptionsCache {
 }
 
 const DIRECTION_CACHE_LIMIT = 4096;
+// Bound aperture history while retaining the shared options used by per-call adapters and bound fans.
+const TRACE_OPTIONS_CACHE_LIMIT = 256;
 const TRACE_OPTIONS_BY_STATE = new WeakMap<PreparedOpticalState, TraceOptionsCache>();
 const MERIDIONAL_DIRECTION_BY_SLOPE = new Map<number, Vec3>([[0, [0, 0, 1]]]);
 const SKEW_DIRECTION_BY_UX = new Map<number, Map<number, Vec3>>();
@@ -524,6 +526,10 @@ function traceOptions<C extends TraceCapture = "diagnostics">(
     indexAtSurface: channel ? (i, nd) => state.lens.dispersion[i]?.indexAt(channel) ?? nd : undefined,
     wavelengthNm: channel ? CHROMATIC_CHANNEL_WAVELENGTH_NM[channel] : undefined,
   };
+  if (optionsCache.byKey.size >= TRACE_OPTIONS_CACHE_LIMIT) {
+    const oldest = optionsCache.byKey.keys().next().value;
+    if (oldest !== undefined) optionsCache.byKey.delete(oldest);
+  }
   optionsCache.byKey.set(key, options);
   optionsCache.lastStopSD = stopSD;
   optionsCache.lastGhost = ghost;

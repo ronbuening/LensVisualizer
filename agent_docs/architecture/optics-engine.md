@@ -701,6 +701,18 @@ needs intermediate distances; their public intercept/transmission result is unch
 adapters, folded stop occurrence searches, folded pupil hit consumers and the differential harness keep full capture.
 The options cache keys include capture, so alternating diagram and analysis requests cannot reuse a reduced policy.
 
+Trace memoization has explicit weak owners and bounded per-owner storage. `trace/rayAdapters.ts` retains at most
+256 options records per `PreparedOpticalState` (`TRACE_OPTIONS_CACHE_LIMIT`), keyed by exact stop radius, ghost flag,
+channel, normalization and capture policy; the last-hit shortcut avoids constructing a key for repeated rays.
+`analysis/mtf/mtfTracing.ts` retains at most 64 index tables per `PreparedGeometry`
+(`MTF_INDEX_TABLE_CACHE_LIMIT`), keyed by exact wavelength. `perspective/analysis/vignetting.ts` retains at most
+64 zero-movement center references per state (`MAX_REFERENCE_CACHE_ENTRIES_PER_STATE`), keyed by zero context,
+aperture, pupil quadrature, spectral channel and chief sampling options. These maps evict the oldest insertion;
+eviction only recomputes pure results and does not invalidate records already held by a request.
+`analysis/mtf/mtfRayClassification.ts` instead holds one reusable bounds record per `CompiledStateSurface`, with the
+last evaluated aperture; changing aperture recomputes the same sampled bounds into that record without allocating
+another map or bounds record. The cache registry in `opticsArchitecture.test.ts` checks owners and named limits.
+
 `prepareRayTrace` binds runtime controls, optional supplied vertices, channel, aperture and vector launch bound once
 per request. Its scalar/vector ray and skew methods reuse options and the geometry's full traversal directly;
 `prepareRayTraceForState` accepts an existing prepared state. Analysis bundles, SA/profile and best-focus fans,

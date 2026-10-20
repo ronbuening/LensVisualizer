@@ -418,6 +418,25 @@ function expectBitIdentical(actual: unknown, expected: unknown): void {
 }
 
 describe("request-bound runtime ray adapters", () => {
+  it("preserves a live fan and recomputes identical rays after evicting its aperture options", () => {
+    const state = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
+    const request = { stopSD: 0.5, ghost: true, channel: "B" } as const;
+    const retained = prepareRayTraceForState(state, request);
+    const input = { origin: [0.1, 0.2, -10], direction: [0, -0.01, 1] } as const;
+    const trace = (fan: typeof retained) => [
+      fan.ray(0.2, -0.01),
+      fan.skew(0.1, 0.2, 0, -0.01),
+      fan.vector(input),
+      fan.skewVector(input),
+    ];
+    const expected = trace(retained);
+    for (let step = 1; step <= 100; step++) {
+      prepareRayTraceForState(state, { ...request, stopSD: 0.5 + step / 100 });
+    }
+    expect(trace(prepareRayTraceForState(state, request))).toStrictEqual(expected);
+    expect(trace(retained)).toStrictEqual(expected);
+  });
+
   it("matches all per-call forms bit for bit for ordinary, folded, chromatic and absorbing fans", () => {
     const base = buildSimplePositiveElementLens();
     const absorbing = build({

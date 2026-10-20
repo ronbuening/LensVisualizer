@@ -4,9 +4,8 @@
  * Each guard scans source text and compares what it finds with the lists below. The lists
  * come in two kinds:
  *
- * - A LEGACY list holds today's violations and only shrinks. A guard fails for a violation
- *   that is not listed, and for a listed entry that no longer violates. Fix the code rather
- *   than add an entry; moving an entry to the registry counts as removing it.
+ * - The LEGACY lists are empty and must stay empty. Every violation fails the guard;
+ *   fix the code rather than add an exception.
  * - A REGISTRY holds entries that meet the rule by design. Each guard checks its own
  *   admission rule, so an entry that stops qualifying fails here.
  *
@@ -21,7 +20,7 @@ import { describe, expect, it } from "vitest";
 /* ── Cycle guard lists ── */
 
 /**
- * Legacy: modules that sit in a runtime import cycle.
+ * Retired cycle exceptions: this list must stay empty.
  * Rule: the runtime import graph of src/optics/ has no strongly connected component larger
  * than one module and no self-import. There is no registry, because no cycle is approved.
  */
@@ -68,8 +67,7 @@ const SEAM_REGISTRY: readonly SeamRegistryEntry[] = [
 ];
 
 /**
- * Legacy: outside-imported modules that fail admission — top-level implementation files and
- * modules below the top level.
+ * Retired seam exceptions: this list must stay empty.
  * Rule: an import into src/optics/ from the rest of src/, from scripts/ or from reports/
  * targets a registered module. Type-only imports count, because a type import still depends
  * on that module's surface, and so do the path strings that scripts load.
@@ -79,7 +77,7 @@ const SEAM_REGISTRY: readonly SeamRegistryEntry[] = [
  */
 const SEAM_LEGACY: readonly string[] = [];
 
-/** Report-only formulas stay internal; permission is for this importer/target pair, not the app. */
+/** Retired report-import exceptions: reports now use the public seam. */
 const REPORT_INTERNAL_IMPORTS: readonly { importer: string; module: string }[] = [];
 
 /* ── Cache guard lists ── */
@@ -117,7 +115,21 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
   },
   "src/optics/analysis/analysisMovementSupport.ts#MOVEMENT_AWARE_SECTIONS": { kind: "constant" },
   "src/optics/analysis/analysisMovementSupport.ts#MOVEMENT_INVARIANT_SECTIONS": { kind: "constant" },
+  "src/optics/analysis/mtf/mtfRayClassification.ts#boundsBySurface": {
+    kind: "weak-owner",
+    owner: "CompiledStateSurface",
+    key: "owner identity, with the last evaluated semi-diameter stored in its bounds record",
+    perOwner: "one reusable profile-bounds record, recomputed when the aperture changes",
+  },
   "src/optics/analysis/mtf/mtfTracing.ts#X_SYMMETRIC_PROFILES": { kind: "constant" },
+  "src/optics/analysis/mtf/mtfTracing.ts#indexTablesByState": {
+    kind: "weak-owner",
+    owner: "PreparedGeometry",
+    key: "owner identity, then exact wavelength in nanometres",
+    perOwner: "at most 64 immutable surface-index tables, evicting the oldest insertion",
+    capacity: 64,
+    limit: "MTF_INDEX_TABLE_CACHE_LIMIT",
+  },
   "src/optics/analysis/request.ts#REQUESTS_BY_LENS": {
     kind: "bounded",
     owner: "module",
@@ -179,6 +191,14 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
   "src/optics/mount/renderMount.ts#OPENING_TYPES": { kind: "constant" },
   "src/optics/mount/renderMount.ts#RING_TYPES": { kind: "constant" },
   "src/optics/mount/validateMountSpec.ts#PROVENANCE_STATUSES": { kind: "constant" },
+  "src/optics/perspective/analysis/vignetting.ts#ZERO_CENTER_REFERENCE_BY_STATE": {
+    kind: "weak-owner",
+    owner: "PreparedOpticalState",
+    key: "owner identity, then zero context, aperture, pupil quadrature, channel and chief sampling",
+    perOwner: "at most 64 center references, evicting the oldest insertion",
+    capacity: 64,
+    limit: "MAX_REFERENCE_CACHE_ENTRIES_PER_STATE",
+  },
   "src/optics/prescription/compile.ts#COMPILED_BY_CANONICAL": {
     kind: "weak-owner",
     owner: "CanonicalLens",
@@ -240,39 +260,18 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     capacity: 4096,
     limit: "DIRECTION_CACHE_LIMIT",
   },
+  "src/optics/trace/rayAdapters.ts#TRACE_OPTIONS_BY_STATE": {
+    kind: "weak-owner",
+    owner: "PreparedOpticalState",
+    key: "owner identity, then stop radius, ghost flag, channel, normalization and capture policy",
+    perOwner: "at most 256 options records plus a last-hit shortcut, evicting the oldest insertion",
+    capacity: 256,
+    limit: "TRACE_OPTIONS_CACHE_LIMIT",
+  },
 };
 
-/**
- * Legacy: caches that grow without bound — WeakMaps whose
- * per-owner Map has no cap. A WeakMap frees an owner's entries with the owner, but a live lens
- * or state still accumulates one entry per distinct key.
- * Rule: every module-level Map, WeakMap, Set or WeakSet in src/optics/ is registered.
- * Staleness is read from declarations: an entry is stale once its container is gone or is never
- * written, and a WeakMap once it no longer shows a Map or Set per owner, in its own declaration
- * or in the module type its record names as `storeType`. A cap stays review-only: it
- * shows in no declaration, so an entry retired by capping has to be moved to the registry by
- * hand, with its capacity.
- */
-const CACHE_LEGACY: Readonly<Record<string, CacheLegacyRecord>> = {
-  "src/optics/analysis/mtf/mtfRayClassification.ts#boundsBySurface": {
-    grows: "per compiled surface, one bounds record per distinct evaluated semi-diameter",
-    retire: "keep one bounds record per surface, or cap the per-surface map",
-  },
-  "src/optics/analysis/mtf/mtfTracing.ts#indexTablesByState": {
-    grows: "per prepared state, one index table per distinct wavelength",
-    retire: "cap the per-state map of index tables",
-  },
-  "src/optics/perspective/analysis/vignetting.ts#ZERO_CENTER_REFERENCE_BY_STATE": {
-    grows: "per prepared state, one center reference per distinct sampling, pupil and channel key",
-    retire: "cap the per-state map of center references",
-  },
-  "src/optics/trace/rayAdapters.ts#TRACE_OPTIONS_BY_STATE": {
-    grows:
-      "per prepared state, one options object per distinct stop radius, ghost flag, channel, normalization and capture policy",
-    retire: "build trace options once per request instead of caching them per ray, or cap the per-state map",
-    storeType: "TraceOptionsCache",
-  },
-};
+/** All module-level containers are registered; no unbounded-cache exceptions remain. */
+const CACHE_LEGACY: Readonly<Record<string, CacheLegacyRecord>> = {};
 
 /* ── Source scanning ── */
 
@@ -706,6 +705,13 @@ function summarize(files: readonly string[]): string {
 /* ── Guards ── */
 
 describe("optics architecture guards", () => {
+  it("keeps every retired exception list empty", () => {
+    expect(CYCLE_LEGACY).toEqual([]);
+    expect(SEAM_LEGACY).toEqual([]);
+    expect(REPORT_INTERNAL_IMPORTS).toEqual([]);
+    expect(CACHE_LEGACY).toEqual({});
+  });
+
   it("keeps every list sorted", () => {
     const lists = {
       CYCLE_LEGACY,
