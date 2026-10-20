@@ -213,6 +213,13 @@ is checked against the code. Each failure message names the entry and the list t
 The guards read source text, not a syntax tree. The comment on each scan function in the test lists the forms it does
 not see, such as an `import.meta.glob` pattern for the seam or a container nested in another value for caches.
 
+`__tests__/scripts/scriptImports.test.ts` additionally parses scripts, reports and benchmarks to resolve module
+paths on disk, including loader helper call sites, computed URL constants, bundle entries and eager globs. It reads
+the seam registry above and rejects missing paths, internal optics targets and unknown computed inputs. Catalog
+walks expand to current files; generated bundles are checked at their source entries. Historical candidates marked
+`/* historical base */` are allowed only in the two cross-revision adapters and the MTF benchmark's `compat.ts`
+fallback. Broken-path and internal-import self-tests hold the scanner's failure behavior.
+
 ## Reports and Tooling Tests
 
 `npm run test` runs only product, data-contract, and build-pipeline tests. Two kinds of Vitest files stay out of it:

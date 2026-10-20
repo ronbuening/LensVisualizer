@@ -46,11 +46,11 @@ const ROOT = join(import.meta.dirname, "..");
 const LENS_DIR = join(ROOT, "src", "lens-data");
 const load = async (path) => import(pathToFileURL(join(ROOT, path)).href);
 
-const { default: buildLens, ingestLens, prepareRuntimeState } = await load("src/optics/buildLens.ts");
+const { default: buildLens, ingestLens } = await load("src/optics/buildLens.ts");
 const { computeAnalysisFieldGeometryAtState, computeFieldGeometryAtState, solveChiefRayForRuntimeLens } =
   await load("src/optics/fieldGeometry.ts");
 const { isFisheyeProjection, rectilinearProjectionMaxTraceField } = await load("src/optics/projection.ts");
-const { traceEngineRay } = await load("src/optics/optics.ts");
+const { traceEngineRay, prepareRuntimeState } = await load("src/optics/optics.ts");
 const { IMAGE_FORMAT_BY_ID } = await load("src/utils/catalog/lensTaxonomy.ts");
 
 const OK_COVERAGE = 0.99;

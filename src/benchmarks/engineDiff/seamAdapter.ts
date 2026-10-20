@@ -17,45 +17,94 @@ const ENGINE_MODULES = {
   fieldPublic: import.meta.glob<EngineModule>("../../optics/fieldGeometry.ts", { eager: true }),
   chromaticPublic: import.meta.glob<EngineModule>("../../optics/chromatic.ts", { eager: true }),
   perspectivePublic: import.meta.glob<EngineModule>("../../optics/perspective.ts", { eager: true }),
-  chromaticAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/chromatic/analysis.ts", { eager: true }),
-  chromaticScaling: import.meta.glob<EngineModule>("../../optics/analysis/chromatic/rayFanScaling.ts", { eager: true }),
+  chromaticAnalysis: import.meta.glob<EngineModule>(
+    /* historical base */ "../../optics/analysis/chromatic/analysis.ts",
+    { eager: true },
+  ),
+  chromaticScaling: import.meta.glob<EngineModule>(
+    /* historical base */ "../../optics/analysis/chromatic/rayFanScaling.ts",
+    { eager: true },
+  ),
   analysisState: import.meta.glob<EngineModule>("../../optics/analysis.ts", { eager: true }),
-  bokehAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/bokeh/bokeh.ts", { eager: true }),
-  legacyBokeh: import.meta.glob<EngineModule>("../../optics/aberration/bokeh.ts", { eager: true }),
-  pupilAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/pupils/pupilAberration.ts", { eager: true }),
-  vignettingAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/vignetting/vignetting.ts", { eager: true }),
-  distortionAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/distortion/distortion.ts", { eager: true }),
-  comaAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/coma.ts", { eager: true }),
-  fieldCurvatureAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/fieldCurvature.ts", {
+  bokehAnalysis: import.meta.glob<EngineModule>(/* historical base */ "../../optics/analysis/bokeh/bokeh.ts", {
     eager: true,
   }),
-  sphericalAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/spherical.ts", { eager: true }),
-  bestFocusAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/bestFocus.ts", { eager: true }),
-  summaryGroupMovement: import.meta.glob<EngineModule>("../../optics/analysis/summary/groupMovement.ts", {
+  legacyBokeh: import.meta.glob<EngineModule>(/* historical base */ "../../optics/aberration/bokeh.ts", {
     eager: true,
   }),
-  summaryCardinals: import.meta.glob<EngineModule>("../../optics/analysis/summary/cardinals.ts", { eager: true }),
-  analysisRequest: import.meta.glob<EngineModule>("../../optics/analysis/request.ts", { eager: true }),
-  aperture: import.meta.glob<EngineModule>("../../optics/aperture.ts", { eager: true }),
-  apertureStop: import.meta.glob<EngineModule>("../../optics/apertureStop.ts", { eager: true }),
-  asphericFamily: import.meta.glob<EngineModule>("../../optics/analysis/asphericComparison/comparison.ts", {
+  pupilAnalysis: import.meta.glob<EngineModule>(
+    /* historical base */ "../../optics/analysis/pupils/pupilAberration.ts",
+    { eager: true },
+  ),
+  vignettingAnalysis: import.meta.glob<EngineModule>(
+    /* historical base */ "../../optics/analysis/vignetting/vignetting.ts",
+    { eager: true },
+  ),
+  distortionAnalysis: import.meta.glob<EngineModule>(
+    /* historical base */ "../../optics/analysis/distortion/distortion.ts",
+    { eager: true },
+  ),
+  comaAnalysis: import.meta.glob<EngineModule>(/* historical base */ "../../optics/analysis/aberration/coma.ts", {
     eager: true,
   }),
-  asphericComparison: import.meta.glob<EngineModule>("../../optics/asphericComparison.ts", { eager: true }),
+  fieldCurvatureAnalysis: import.meta.glob<EngineModule>(
+    /* historical base */ "../../optics/analysis/aberration/fieldCurvature.ts",
+    {
+      eager: true,
+    },
+  ),
+  sphericalAnalysis: import.meta.glob<EngineModule>(
+    /* historical base */ "../../optics/analysis/aberration/spherical.ts",
+    { eager: true },
+  ),
+  bestFocusAnalysis: import.meta.glob<EngineModule>(
+    /* historical base */ "../../optics/analysis/aberration/bestFocus.ts",
+    { eager: true },
+  ),
+  summaryGroupMovement: import.meta.glob<EngineModule>(
+    /* historical base */ "../../optics/analysis/summary/groupMovement.ts",
+    {
+      eager: true,
+    },
+  ),
+  summaryCardinals: import.meta.glob<EngineModule>(/* historical base */ "../../optics/analysis/summary/cardinals.ts", {
+    eager: true,
+  }),
+  analysisRequest: import.meta.glob<EngineModule>(/* historical base */ "../../optics/analysis/request.ts", {
+    eager: true,
+  }),
+  aperture: import.meta.glob<EngineModule>(/* historical base */ "../../optics/aperture.ts", { eager: true }),
+  apertureStop: import.meta.glob<EngineModule>(/* historical base */ "../../optics/apertureStop.ts", { eager: true }),
+  asphericFamily: import.meta.glob<EngineModule>(
+    /* historical base */ "../../optics/analysis/asphericComparison/comparison.ts",
+    {
+      eager: true,
+    },
+  ),
+  asphericComparison: import.meta.glob<EngineModule>(/* historical base */ "../../optics/asphericComparison.ts", {
+    eager: true,
+  }),
   buildLens: import.meta.glob<EngineModule>("../../optics/buildLens.ts", { eager: true }),
-  cardinalElements: import.meta.glob<EngineModule>("../../optics/cardinalElements.ts", { eager: true }),
-  chromaticRayFanScaling: import.meta.glob<EngineModule>("../../optics/chromaticRayFanScaling.ts", { eager: true }),
-  compat: import.meta.glob<EngineModule>("../../optics/compat.ts", { eager: true }),
-  constants: import.meta.glob<EngineModule>("../../optics/constants.ts", { eager: true }),
+  cardinalElements: import.meta.glob<EngineModule>(/* historical base */ "../../optics/cardinalElements.ts", {
+    eager: true,
+  }),
+  chromaticRayFanScaling: import.meta.glob<EngineModule>(
+    /* historical base */ "../../optics/chromaticRayFanScaling.ts",
+    { eager: true },
+  ),
+  compat: import.meta.glob<EngineModule>(/* historical base */ "../../optics/compat.ts", { eager: true }),
+  constants: import.meta.glob<EngineModule>(/* historical base */ "../../optics/constants.ts", { eager: true }),
   geometry: import.meta.glob<EngineModule>("../../optics/geometry.ts", { eager: true }),
-  layout: import.meta.glob<EngineModule>("../../optics/layout.ts", { eager: true }),
-  lensDefaults: import.meta.glob<EngineModule>("../../lens-data/defaults.ts", { eager: true }),
-  lensMovement: import.meta.glob<EngineModule>("../../optics/lensMovement.ts", { eager: true }),
-  mtfFamily: import.meta.glob<EngineModule>("../../optics/analysis/mtf/mtf.ts", { eager: true }),
+  layout: import.meta.glob<EngineModule>(/* historical base */ "../../optics/layout.ts", { eager: true }),
+  lensDefaults: import.meta.glob<EngineModule>(/* historical base */ "../../lens-data/defaults.ts", { eager: true }),
+  lensMovement: import.meta.glob<EngineModule>(/* historical base */ "../../optics/lensMovement.ts", { eager: true }),
+  mtfFamily: import.meta.glob<EngineModule>(/* historical base */ "../../optics/analysis/mtf/mtf.ts", { eager: true }),
   mtf: import.meta.glob<EngineModule>("../../optics/mtf.ts", { eager: true }),
   optics: import.meta.glob<EngineModule>("../../optics/optics.ts", { eager: true }),
-  perspective: import.meta.glob<EngineModule>("../../optics/perspective/index.ts", { eager: true }),
-  raySampling: import.meta.glob<EngineModule>("../../optics/raySampling.ts", { eager: true }),
+  perspective: import.meta.glob<EngineModule>(/* historical base */ "../../optics/perspective/index.ts", {
+    eager: true,
+  }),
+  raySampling: import.meta.glob<EngineModule>(/* historical base */ "../../optics/raySampling.ts", { eager: true }),
   teleconverter: import.meta.glob<EngineModule>("../../optics/teleconverter.ts", { eager: true }),
 };
 
