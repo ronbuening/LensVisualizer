@@ -63,7 +63,7 @@ L4 is the negative member of the cemented rear component. In the source table it
 
 L5 is the positive member of the rear doublet. Together L4 and L5 have a net power of about +29.76 D (f ≈ +33.6 mm), which supplies most of the system's convergence behind the stop. The cemented interface is collecting (the index rises from 1.639 to 1.744 across a surface convex to the object), as the patent requires for the rear member.
 
-The clear aperture of L5 is limited by its edge thickness: at the modeled 8.9 mm semi-diameter the edge is about 0.15 mm thick. This semi-diameter is a modeling result, not a published mechanical dimension.
+L5 is modeled as a square-cut element with both faces at a 7.6 mm semi-diameter, which leaves an edge about 1.5 mm thick. The value follows the patent figure, where the rear member is drawn clearly smaller than L2. It is not a published mechanical dimension.
 
 ## Glass Identification / Selection
 
@@ -101,11 +101,11 @@ The Petzval sum of the complete scaled model is **+0.00651 mm⁻¹** (`φ/(n·n�
 
 ## Aperture, Pupil, and Geometry Model
 
-The patent states that the diaphragm lies in the central air space between L3 and L4 but does not publish its axial split. Its drawing is expressly schematic rather than dimensionally authoritative. The model therefore places the single `STO` at the midpoint of that air space, splitting the scaled gap into **2.0117 mm + 2.0117 mm**. This is a modeling choice, not a patent dimension.
+The patent states that the diaphragm lies in the central air space between L3 and L4 but does not publish its axial split. Its drawing is expressly schematic rather than dimensionally authoritative; it shows the diaphragm about three-quarters of the way across that space, nearer L4. The model therefore places the single `STO` at the midpoint of that air space, splitting the scaled gap into **2.0117 mm + 2.0117 mm**. This is a modeling choice, not a patent dimension.
 
 The patent also does not publish a diaphragm diameter. The stop semi-diameter (about 4.80 mm) is set so that the paraxial entrance pupil, 6.90 mm in semi-diameter, gives the printed f/2.9. This reproduces the published f-number; it is not evidence of the manufactured diaphragm's size or position.
 
-No surface semi-diameters are given in the patent. The modeled values contain the real-ray bundles over the patent field, keep the front elements larger than the rear group as the patent figure shows, and leave every element a positive edge thickness. L5 is the limiting element; at the 26.9° corner of the patent field it clips about 4% of the full-aperture bundle. The clear apertures of the manufactured Rollei lens are not known.
+No surface semi-diameters are given in the patent, and its single figure is a schematic for all examples, "not necessarily drawn to scale". The rim heights it draws for L1–L3 agree, at one common scale, with modeled values that contain the real-ray bundles over the patent field. The rear member is drawn smaller: L4's front face ends at about the diaphragm's height before a chamfer, and the L4/L5 rims sit well below L2. The model follows the figure there, with a 5.5 mm semi-diameter on L4's front face and 7.6 mm on the cemented interface and L5's rear face. These rims cut into oblique bundles. At full aperture the meridional geometric transmission falls to about 78% at the 26.9° patent field edge and 75% at the 28.1° corner of the 24 × 36 mm format. The clear apertures of the manufactured Rollei lens are not known.
 
 ## Model Scope and Limitations
 

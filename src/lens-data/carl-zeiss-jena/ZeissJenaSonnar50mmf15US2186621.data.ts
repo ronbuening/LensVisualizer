@@ -14,7 +14,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ the postwar Zeiss-Opton 50/1.5 is unconfirmed.                      ║
  * ║                                                                      ║
  * ║ 7 elements / 3 air-spaced groups; all spherical.                    ║
- * ║ Focus: one fixed infinity state (the patent prints no focus data).  ║
+ * ║ Focus: modeled unit focus (Contax helicoid); the patent prints no    ║
+ * ║ focus data. BF grows 3.138 mm at a 0.9 m object-to-image endpoint.  ║
  * ║                                                                      ║
  * ║ R5: the PDF text layer reads −846.31; the page image prints −646.31 ║
  * ║ (−323.155 here), which gives f = 99.99 at patent scale.             ║
@@ -28,10 +29,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ air gap measured from R6. Its radius is set by the engine from the  ║
  * ║ nominal f/1.5, not from a published diaphragm diameter.             ║
  * ║                                                                      ║
- * ║ SEMI-DIAMETERS: unpublished. They are modeled from exact spherical  ║
- * ║ ray containment (axial stop-edge rays; a 0.6-field / ±0.75          ║
- * ║ pupil off-axis bundle; full-format chief ray), then constrained by   ║
- * ║ edge thickness, rim slope, and shared-gap intrusion checks.          ║
+ * ║ SEMI-DIAMETERS: unpublished. Estimated from Fig. 1 (axially to      ║
+ * ║ scale, 0.062 mm/px at 300 dpi after ×0.5) and floor-checked by      ║
+ * ║ real-ray trace. L1 is drawn at 16.5 mm, below the f/1.5 axial       ║
+ * ║ marginal ray (16.66 mm), so it sits at 17.0 mm. The cemented        ║
+ * ║ triplets are drawn square-cut (14.5 mm; 9.9 mm, capped by the R9    ║
+ * ║ rim-slope limit); L4 and L7 carry the drawn chamfers to R6 and R10. ║
  * ║                                                                      ║
  * ║ IMAGE PLANE: the final d is the independently calculated infinity   ║
  * ║ paraxial BFD, not a patent-published image distance.                 ║
@@ -141,7 +144,7 @@ const LENS_DATA = {
       vd: 51.2,
       indexReference: "d",
       focalLengthMm: 13.14481308000608,
-      glass: "658512 — dense-crown class (supplier unconfirmed)",
+      glass: "Unmatched (658512 — SSK-class dense crown, near N-SSK5; supplier unconfirmed)",
       role: "Strong positive core of the rear cemented triplet.",
       diagramLabel: "L6",
       cemented: "T2",
@@ -155,7 +158,7 @@ const LENS_DATA = {
       vd: 61.2,
       indexReference: "d",
       focalLengthMm: -24.399057372977705,
-      glass: "589612 — crown class (supplier unconfirmed)",
+      glass: "Unmatched (589612 — crown class, near SK5; supplier unconfirmed)",
       role: "Rear negative meniscus completing the rear cemented triplet.",
       diagramLabel: "L7",
       cemented: "T2",
@@ -163,29 +166,34 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 34.605, d: 4.665, sd: 18.5, medium: 1 },
-    { label: "2", R: 216.92, d: 0.19, sd: 18.3 },
-    { label: "3", R: 17.93, d: 5.905, sd: 14.7, medium: 2 },
-    { label: "4", R: 42.89, d: 3.525, sd: 13.75, medium: 3 },
-    { label: "5", R: -323.155, d: 0.95, sd: 13.0, medium: 4 },
+    { label: "1", R: 34.605, d: 4.665, sd: 17.0, medium: 1 },
+    { label: "2", R: 216.92, d: 0.19, sd: 17.0 },
+    { label: "3", R: 17.93, d: 5.905, sd: 14.5, medium: 2 },
+    { label: "4", R: 42.89, d: 3.525, sd: 14.5, medium: 3 },
+    { label: "5", R: -323.155, d: 0.95, sd: 14.5, medium: 4 },
     { label: "6", R: 11.755, d: 6.2484, sd: 9.8 },
     // Iris coordinate inferred from Fig. 1: 82% of the scaled l2 = 7.62 mm gap from R6 toward R7.
     // No sd: the engine sizes the stop for the nominal f/1.5.
     { label: "STO", R: "flat", d: 1.3716 },
-    { label: "7", R: "flat", d: 1.24, sd: 9.6, medium: 5 },
-    { label: "8", R: 25.545, d: 9.905, sd: 9.5, medium: 6 },
-    { label: "9", R: -11.06, d: 2.285, sd: 9.35, medium: 7 },
-    // Infinity image distance computed from this same scaled prescription; the patent does not publish it.
-    { label: "10", R: -51.565, d: 22.457601191379936, sd: 10.25 },
+    { label: "7", R: "flat", d: 1.24, sd: 9.9, medium: 5 },
+    { label: "8", R: 25.545, d: 9.905, sd: 9.9, medium: 6 },
+    { label: "9", R: -11.06, d: 2.285, sd: 9.9, medium: 7 },
+    // Image distance from gaps: infinity value computed from this same scaled prescription; the patent does not publish it.
+    { label: "10", R: -51.565, sd: 11.6 },
   ],
 
-  // Product metadata only; no finite-focus optical state is modeled in this data file.
-  // Carl Zeiss Contax literature gives 3 ft (0.9144 m) for the 50mm f/1.5; 0.9 m is the rounded value.
+  // Carl Zeiss Contax literature gives 3 ft (0.9144 m) for the 50mm f/1.5; 0.9 m is the rounded value, used here as
+  // the object-to-image endpoint, as in sonnar-50f15.
   focus: {
     closeFocusM: 0.9,
     description:
-      "The patent prints one fixed infinity prescription and no focus data. The Contax Sonnar focuses as a unit through the camera's helicoid, so no internal spacing changes; the 0.9 m close-focus distance is the catalog figure, not a traced state.",
+      "Modeled unit focus: the patent prints only the infinity prescription. The Contax Sonnar focuses as a unit through the camera's helicoid, so the whole lens and stop move objectward 3.14 mm at the modeled 0.9 m object-to-image endpoint; this extension is calculated, not a patent value.",
   },
+
+  /* Unit focus through the Contax helicoid: only the back focal distance changes.
+   * Infinity: paraxial BFD of this scaled prescription. Close: exact paraxial image distance for a 0.9 m
+   * object-to-image endpoint (unit extension 3.13793 mm). Modeled, not published by the patent. */
+  gaps: { "10": { label: "BF (modeled)", values: [[22.457601191379936, 25.595534]] } },
 
   // Nominal f-number; the engine sizes the stop for it. The patent gives no diaphragm diameter.
   aperture: { nominalFNumber: 1.5, fStops: [1.5, 2, 2.8, 4, 5.6, 8, 11, 16] },
@@ -195,7 +203,10 @@ const LENS_DATA = {
     { text: "G2", fromSurface: "3", toSurface: "6" },
     { text: "G3", fromSurface: "7", toSurface: "10" },
   ],
-  doublets: [],
+  doublets: [
+    { text: "T1", fromSurface: "3", toSurface: "6" },
+    { text: "T2", fromSurface: "7", toSurface: "10" },
+  ],
 
   layout: { yScFill: 0.52 },
 } satisfies LensDataV2Input;

@@ -596,3 +596,80 @@ Fields changed in this pass:
   section renamed "Model Scope and Limitations".
 
 Open: none.
+
+## 2026-10-20 — Second review: diagram, labels and movement
+
+What was compared. The local page (infinity; the file has no zoom and no traced focus state) was set beside Fig. 1 of
+patents/US2186621.pdf (drawing sheet, PDF p. 1), rendered at 300 and 600 dpi. The figure is drawn to axial scale: vertex
+crossings on the axis give R1→R10 = 582 px at 300 dpi for 36.285 mm at ×0.5, i.e. 0.0623 mm/px. R4→R9 gives 0.0620 mm/px,
+and every intermediate vertex lands within 2 % of the prescription. The R1 sag at the drawn rim (136 px at 600 dpi, about 4.2 mm)
+also implies a 16.6 mm rim, matching the drawn height. Heights were read on both sides of the axis and averaged. The leader
+lines spoil the automatic profile in places, so those rims were read by eye at 600 dpi. No maker construction diagram was
+viewed. The stage records give 7 elements in 3 groups, all spherical, which agrees with Fig. 1.
+
+Silhouette differences found. On the site L1 was much taller than the front triplet: 18.5 against 14.7, a ratio of 1.26.
+Fig. 1 draws 16.5 against 14.5, a ratio of 1.14. The front triplet is drawn as one square-cut block with a flat land at
+14.5 mm across L2, L3 and L4, and L4 then chamfers down to the R6 rim. The site stepped it down instead: 14.7, 13.75, 13.0.
+The rear triplet is drawn with L5 and L6 square-cut at about 10.1 mm and L7 bevelled up to a flat land at about 11.7 mm.
+The site had 9.6, 9.5, 9.35 and 10.25. In addition, clearap showed the f/1.5 axial marginal ray at 13.04 mm on R5, against
+the stored 13.0 (CLIPS-AXIAL). The R5 correction made earlier today raised that ray height.
+
+| Surface | Before | Fig. 1 (mm) | After | Evidence and reason |
+|---|---:|---:|---:|---|
+| 1 | 18.5 | 16.5 (top 16.7, bottom 16.2) | 17.0 | Figure 11 % smaller; held above the f/1.5 axial marginal ray (16.66) |
+| 2 | 18.3 | 16.5 | 17.0 | Square-cut with R1 as drawn; axial ray 16.45 |
+| 3 | 14.7 | 14.45 | 14.5 | Square-cut block |
+| 4 | 13.75 | 14.45 | 14.5 | Square-cut block; axial ray 13.72 |
+| 5 | 13.0 | 14.45 | 14.5 | Fixes the axial clip (ray 13.04); square-cut block |
+| 6 | 9.8 | 10.1–10.3 drawn; drawn R6 sag implies 9.7 | 9.8 (kept) | Within noise |
+| 7 | 9.6 | 10.1 | 9.9 | Square-cut L5/L6 block |
+| 8 | 9.5 | 10.1 | 9.9 | Square-cut L5/L6 block |
+| 9 | 9.35 | 10.1 | 9.9 | Square-cut; 10.0 would exceed the rim-slope limit (sin 0.904 > 0.90) |
+| 10 | 10.25 | 11.6–11.8 | 11.6 | Figure 13 % larger; L7 drawn rising above L5/L6 |
+| STO | engine 9.57 | iris blade tip at about 9.8 | unchanged | Not edited |
+
+Results after the edit. audit:surface reports no validation errors, and the image circle is 100 % (21.65 mm). Field
+coverage is clear to the 22.8° corner. audit:aperture is within 3 % of f/1.5, and the clearap CLIPS-AXIAL flag is gone. As
+recorded earlier, clearap's ray columns stay empty behind R6 for this layout. EFL is 49.993 mm and FOPEN 1.500 before and
+after; the engine stop radius stays 9.569 mm. The engine half-field rose from 26.54° to 27.78° because of the wider rear rims.
+The engine's meridional transmission curve at infinity was 97.9 / 89.5 / 76.3 / 63.7 / 36.3 % at 2.8 / 8.5 / 14.2 / 17.1 /
+22.8°. After the edit it reads 96.4 / 88.0 / 75.0 / 66.1 / 40.1 %. The smaller L1 adds a little vignetting near the axis, and
+the wider rear rims remove some at the corner. The curve is meridional only. The batch vig tool calls an engine function that
+no longer exists, so these numbers came from a scratch copy that calls computeVignettingCurve through createAnalysisRequest.
+
+Labels and brackets. The elements already carry cemented T1 (L2–L4) and T2 (L5–L7), and the analysis prose uses those
+names. `doublets` was empty, so the site drew no cemented brackets. T1 (3–6) and T2 (7–10) were added. No gap labels exist,
+so nothing collides with them. The patent names its lenses L1–L7 and its air spaces l1, l2. It calls the groups the
+"first", "second" and "third lens unit" and has no G notation, so the G1–G3 brackets were kept. Element names and diagram
+labels are L1–L7, matching the patent. Types agree with the radius signs: L1 and L2 are positive menisci, L3 is biconvex,
+L4 biconcave, L5 plano-concave, L6 biconvex, and L7 a negative meniscus, which the patent calls "concavo-convex". Roles
+match the text: L3 is lower in index than L2 and L4, L5 lower than L6, and G2 is net negative (−65.4 mm). There are no
+aspheres and no `apd` tags, and the patent names no special glass. The stop is drawn in l2 between L4 and L5, as in Fig. 1.
+The inspector for L4, L6 and L7 shows the stored type, glass and role, and the "TRIPLET T1/T2" badges are correct.
+
+Movement. There is no zoom. The file models no focus state, so the slider reads "Not modeled" and nothing moves. The
+description of unit focus through the Contax helicoid is correct. For the coordinator, a paraxial unit extension for this
+prescription is 3.138 mm at a 0.9 m object-to-image distance and 3.082 mm at 3 ft, with infinity BFD 22.4576 mm. The patent
+prints no aberration plots, so the model's aberrations could not be compared with the source.
+
+Glass. The patent names no glass types; the text only stresses the indices of L3 (1.4892) and L5 (1.5232). It prints no
+line indices other than nd and ν. None of the Fig. 1 pairs recurs in the patent's Fig. 2 example (1.6689/48.8, 1.4645/65.7,
+1.7219/28.7, 1.5325/46.2, 1.6043/56.3; PDF p. 3). L6, 1.6578/51.2, is identical to L6 of the US 1,975,678 Sonnar, so it is a
+real stock glass. That file labels it `Unmatched` too, so neither label resolves. The labels for L1/L2, L3, L4, L5 and L6 do
+not resolve. L7's "589612 — crown class" resolves through its code to Sumita SK5 (1.58913/61.2, Δnd −0.00027). That does
+not reproduce the printed 1.5894. The nearest row for L5 is Sumita KF5 (1.5231/50.9, Δnd −0.0001).
+
+Coordinator follow-up, applied the same day. L7's glass changed from "589612 — crown class (supplier unconfirmed)" to
+"Unmatched (589612 — crown class, near SK5; supplier unconfirmed)", so it no longer resolves to Sumita SK5 by code. L6 changed
+from "658512 — dense-crown class (supplier unconfirmed)" to "Unmatched (658512 — SSK-class dense crown, near N-SSK5; supplier
+unconfirmed)", matching the US 1,975,678 Sonnar's disposition. Focus now follows that sibling file. It is a modeled unit focus
+through the Contax helicoid: `gaps["10"]` is labelled "BF (modeled)" and runs from 22.457601 at infinity (keyframe 0) to
+25.595534. The close value is the exact paraxial image distance for a 0.9 m object-to-image endpoint (object 838.12 mm from
+R1, magnification −0.0628), a 3.13793 mm extension. closeFocusM stays 0.9, and surface 10 now takes its d from `gaps`. The
+probe tool gives 900.00 mm object-to-image at t = 1, and EFL, f/1.5, the half-field (27.78°) and the stop are unchanged.
+audit:surface is OK, the image circle is 100 %, field coverage is clear, and clearap at focus 1 shows no axial clip or chief
+block. On the site's focus movement overlay, G1, G2 and G3 move together 3.14 mm toward the object, and the slider's far end
+reads 90 cm. The header, focus description and analysis call the extension a modeled helicoid extension, not a patent value.
+
+Open: the figure's L4 flat land followed by a chamfer cannot be drawn by the renderer's single rim edge, so the site shows
+one bevel from R5 to R6.

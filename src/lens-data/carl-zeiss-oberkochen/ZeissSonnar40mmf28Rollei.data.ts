@@ -17,9 +17,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  STOP: the patent places the diaphragm in the central space s34      ║
  * ║    without an axial split; the model puts it at the midpoint         ║
  * ║    (0.0502925 F on each side). Its radius follows f/2.9.             ║
- * ║  SEMI-DIAMETERS: not printed. Set from real-ray envelopes over the   ║
- * ║    patent field. The rear positive element is limited by its edge    ║
- * ║    thickness, which leaves slight vignetting at the field corner.    ║
+ * ║  SEMI-DIAMETERS: not printed. Front three elements follow real-ray   ║
+ * ║    envelopes over the patent field, which agree with the rim         ║
+ * ║    heights of the schematic FIGURE. The rear doublet (L4 front face, ║
+ * ║    L4/L5 rims) follows the FIGURE's smaller rear member, so the      ║
+ * ║    model vignettes towards the field corner.                         ║
  * ║  GLASSES: catalog equivalents matching the printed nd/νd.            ║
  * ║  FOCUS: the patent gives no close-focus spacing; the 0.9 m minimum   ║
  * ║    focus distance is the camera's published value only.              ║
@@ -129,10 +131,10 @@ const LENS_DATA = {
     { label: "6", R: 9.9292, d: 2.0117, sd: 5.6 },
     // Stop at the midpoint of the central space s34; the patent gives no axial split and its figure is not to scale.
     { label: "STO", R: "flat", d: 2.0117 },
-    { label: "7", R: 110.624, d: 0.81424, sd: 7.42, medium: 4 },
+    { label: "7", R: 110.624, d: 0.81424, sd: 5.5, medium: 4 },
     // Cemented L4→L5 junction: medium and elemId belong to the downstream element L5.
-    { label: "8", R: 12.7744, d: 4.64604, sd: 8.9, medium: 5 },
-    { label: "9", R: -45.3236, d: 25.364, sd: 8.9 },
+    { label: "8", R: 12.7744, d: 4.64604, sd: 7.6, medium: 5 },
+    { label: "9", R: -45.3236, d: 25.364, sd: 7.6 },
   ],
 
   focus: {

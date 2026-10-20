@@ -33,7 +33,7 @@ ZEISS identifies the Sonnar as a design developed in the early 1930s for the Zei
 lists a Sonnar f/1.5 of 2 in / 50 mm, and a later Carl Zeiss Contax specification lists the 50 mm f/1.5 as a seven-element lens.
 These sources confirm the product family but do not identify which calculation any production batch used. Whether the postwar
 Zeiss-Opton 50/1.5 from Oberkochen followed this prescription is unconfirmed; one secondary history describes the 1950
-Zeiss-Opton version as having a “new optical design.” [ZEISS, “Lenses Make History”](https://lenspire.zeiss.com/photo/en/article/lenses-make-history) · [Zeiss Ikon, *The Interchangeable Contax Lenses*](https://www.pacificrimcamera.com/rl/02363/02363.pdf) · [Carl Zeiss, Inc., *Contax 35mm Cameras and Accessories Price List*, 1956](https://www.pacificrimcamera.com/rl/02153/02153.pdf) · [Pacific Rim Camera, “50/1.5 Zeiss Sonnar for Contax”](https://www.pacificrimcamera.com/pp/zicontax50f15.htm) [ZEISS, “Lenses Make History”](https://lenspire.zeiss.com/photo/en/article/lenses-make-history) · [Zeiss Ikon, *The Interchangeable Contax Lenses*](https://www.pacificrimcamera.com/rl/02363/02363.pdf) · [Carl Zeiss, Inc., *Contax 35mm Cameras and Accessories Price List*, 1956](https://www.pacificrimcamera.com/rl/02153/02153.pdf) · [Pacific Rim Camera, “50/1.5 Zeiss Sonnar for Contax”](https://www.pacificrimcamera.com/pp/zicontax50f15.htm)
+Zeiss-Opton version as having a “new optical design.” [ZEISS, “Lenses Make History”](https://lenspire.zeiss.com/photo/en/article/lenses-make-history) · [Zeiss Ikon, *The Interchangeable Contax Lenses*](https://www.pacificrimcamera.com/rl/02363/02363.pdf) · [Carl Zeiss, Inc., *Contax 35mm Cameras and Accessories Price List*, 1956](https://www.pacificrimcamera.com/rl/02153/02153.pdf) · [Pacific Rim Camera, “50/1.5 Zeiss Sonnar for Contax”](https://www.pacificrimcamera.com/pp/zicontax50f15.htm)
 
 ## Optical Architecture
 
@@ -98,7 +98,7 @@ it is cemented. As with L4, no defensible exact modern catalog identity was esta
 
 ### L6 — Biconvex Positive, central component of cemented triplet T2
 
-`nd = 1.6578, νd = 51.2. Glass: 658512 — dense-crown class (supplier unconfirmed). f = +13.144813 mm.`
+`nd = 1.6578, νd = 51.2. Glass: Unmatched (658512 — SSK-class dense crown, near N-SSK5; supplier unconfirmed). f = +13.144813 mm.`
 
 L6 is the strongest positive standalone element in the prescription. Cemented between L5 and L7, it is the positive core of the
 rear collective unit. The three-element T2 assembly is net positive when evaluated as an isolated cemented group in air, with a
@@ -106,11 +106,11 @@ standalone group EFL of +45.158435 mm.
 
 ### L7 — Negative Meniscus, rear component of cemented triplet T2
 
-`nd = 1.5894, νd = 61.2. Glass: 589612 — crown class (supplier unconfirmed). f = −24.399057 mm.`
+`nd = 1.5894, νd = 61.2. Glass: Unmatched (589612 — crown class, near SK5; supplier unconfirmed). f = −24.399057 mm.`
 
 L7 completes the rear triplet and the optical train. The source describes this final component as concavo-convex and notes the
-relative curvature of its two faces. In the final model its rear surface is followed by the computed infinity image distance,
-not by a patent-published back-focus value.
+relative curvature of its two faces. In the final model its rear surface is followed by the computed image distance, not by a
+patent-published back-focus value.
 
 ## Glass Identification and Selection
 
@@ -124,8 +124,8 @@ does not promote coordinate-compatible modern catalog rows to historical supplie
 | 1.4892 / 70.1 | L3 | 489701 — fluor-crown class, supplier unconfirmed |
 | 1.7394 / 28.2 | L4 | Unmatched (739282 — dense-flint class) |
 | 1.5232 / 50.9 | L5 | Unmatched (523509 — supplier unconfirmed) |
-| 1.6578 / 51.2 | L6 | 658512 — dense-crown class, supplier unconfirmed |
-| 1.5894 / 61.2 | L7 | 589612 — crown class, supplier unconfirmed |
+| 1.6578 / 51.2 | L6 | Unmatched (658512 — SSK-class dense crown, near N-SSK5) |
+| 1.5894 / 61.2 | L7 | Unmatched (589612 — crown class, near SK5) |
 
 Modern SCHOTT, OHARA, HIKARI/Nikon, CDGM, HOYA, and SUMITA catalogs were consulted. Several coordinates
 have close present-day catalog neighbors, but the historical patent does not identify the supplier, and a coordinate-compatible
@@ -140,13 +140,14 @@ partial-dispersion evidence is absent.
 ## Focus Mechanism
 
 US 2,186,621 supplies one fixed optical state for the Figure 1 example and gives no variable internal spacings or finite
-object-distance table. The model therefore has no internally moving group; the Contax 50 mm lenses focus as a unit through the
-camera's helicoid.
+object-distance table. No group moves inside the lens: the Contax 50 mm lenses focus as a unit through the camera's helicoid.
 
-The 0.9 m close-focus value is product metadata only. Carl Zeiss Contax literature gives a closest distance of 3 ft (0.9144 m)
-for the 50 mm f/1.5, so 0.9 m is a rounded catalog value rather than a traced conjugate. Secondary records for the postwar
-version also report approximately 0.9 m and focusing through the Contax camera mechanism. Neither source supplies a
-finite-focus prescription, so the model represents the infinity state only. [Carl Zeiss, Inc., *Contax 35mm Cameras and Accessories Price List*, 1956](https://www.pacificrimcamera.com/rl/02153/02153.pdf) · [Leica Lens List, “Carl Zeiss Opton Sonnar 50mm f/1.5”](https://leicalenslist.com/lenses/carl-zeiss-opton-sonnar-50mm-f15)
+Carl Zeiss Contax literature gives a closest distance of 3 ft (0.9144 m) for the 50 mm f/1.5, and secondary records for the
+postwar version also report about 0.9 m and focusing through the Contax camera mechanism. The model therefore represents
+helicoid focus as a modeled unit extension: the whole lens and the stop move objectward together and only the back focal
+distance changes. At a 0.9 m object-to-image endpoint, the convention used for the US 1,975,678 Sonnar, the paraxial
+extension is 3.138 mm. The back focal distance grows from 22.458 mm to 25.596 mm, at a magnification of about −0.063. The
+extension is calculated from the prescription; neither the patent nor the product sources print it. [Carl Zeiss, Inc., *Contax 35mm Cameras and Accessories Price List*, 1956](https://www.pacificrimcamera.com/rl/02153/02153.pdf) · [Leica Lens List, “Carl Zeiss Opton Sonnar 50mm f/1.5”](https://leicalenslist.com/lenses/carl-zeiss-opton-sonnar-50mm-f15)
 
 ## Model Scope and Limitations
 
@@ -163,9 +164,11 @@ At the 50 mm scale the model's paraxial quantities are:
 The front-vertex-to-image track is 58.743 mm, giving `TL/EFL = 1.175` and `BFD/EFL = 0.449`; the design is neither
 telephoto (`TL/EFL < 1`) nor retrofocus (`BFD > EFL`).
 
-The image-plane spacing after surface 10 is the calculated BFD, not a source-published distance. Every surface semi-diameter is
-modeled because the patent gives none; the values follow exact ray containment at f/1.5, limited by edge
-thickness and rim slope.
+The image-plane spacing after surface 10 is the calculated BFD, not a source-published distance. The patent prints no semi-diameters.
+The rims are read from Figure 1, which is drawn to axial scale, and checked against the f/1.5 axial marginal ray and the
+edge-thickness and rim-slope limits. The figure draws L1 slightly inside that ray, so L1 is held at 17.0 mm rather than the
+drawn 16.5 mm. Both cemented triplets are drawn square-cut, at about 14.5 mm and 10 mm; the rear one is set to 9.9 mm,
+the most the steep R9 junction allows. L7 rises to 11.6 mm at R10, as drawn.
 
 No aspherical or diffractive surfaces occur in the Figure 1 example, so no conic convention or coefficient transformation is
 applicable. The only scale transformation is the uniform 0.5 scaling of dimensional quantities; refractive indices and Abbe

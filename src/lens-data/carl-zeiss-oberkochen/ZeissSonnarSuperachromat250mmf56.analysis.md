@@ -76,31 +76,31 @@ A 1.70 mm air meniscus separates L1 from L2; the two facing radii are 41.76 mm a
 
 ### L2 — Biconvex Positive (T1)
 
-nd = 1.43388, νd = 95.23. Glass: calcium fluoride crystal (patent "Fluorspar"); catalog-derived ΔPgF = +0.0552. f = +66.7 mm.
+nd = 1.43388, νd = 95.0. Glass: calcium fluoride crystal (patent "Fluorspar"); catalog-derived ΔPgF = +0.0552. f = +66.7 mm.
 
 L2 is the principal converging element. Its share of system power is +3.640/f, the largest in the lens. The back-solved index of 1.43388 differs from the catalog CaF₂ Sellmeier value by only 3 × 10⁻⁵. A search of current fluorophosphate glasses found none within the back-solve precision; S-FPL53 and FCD100, for example, miss by 3–5 × 10⁻³. This supports a crystal, not a fluorite-like glass, as the medium. The patent places fluorspar in glass range 2, with $P^{**} = -1.7237$ and $P^{*} = 1.7873$, and assigns it power characteristic B. Its published value of 3.317877 lies inside B = +3.08 ± 0.57.
 
-L2 is 11.02 mm thick at the center. At the modeled semi-diameter of 23.1 mm its edge thickness is only 0.95 mm, the thinnest edge in the model. The semi-diameter is modeled, not published, so the edge value describes the model rather than the production part. Because of its low index, L2 is also the largest positive term in the Petzval sum (+2.68/f).
+L2 is 11.02 mm thick at the center. At the modeled semi-diameter of 22.2 mm its edge thickness is 1.76 mm, the thinnest edge in the model; Fig. 2 draws it with a narrow flat edge, no taller than L3. The semi-diameter is modeled, not published, so the edge value describes the model rather than the production part. Because of its low index, L2 is also the largest positive term in the Petzval sum (+2.68/f).
 
 ### L3 — Biconcave Negative (T2)
 
-nd = 1.68247, νd = 48.20. Glass: LaF20 class (Schott, obsolete, 682482; patent "LaF 20"). f = −89.8 mm.
+nd = 1.68247, νd = 48.20. Glass: LaF20 class (Schott, obsolete, 682482; patent "LaF 20"), traced on its coordinate equivalent HOYA LAFL20 (1.68248 / 48.20). f = −89.8 mm.
 
 L3 alone forms part T2. It stands 2.00 mm behind L2, has a strongly curved front surface (−73.73 mm), and a nearly flat rear surface (+369.6 mm). Its published power, −2.46295, falls within characteristic C = −2.35 ± 0.59. Because it sits so close to T1, the first three elements form a compact block 22.6 mm long. Within it, the strong positive power of the crystal is largely cancelled by L3 and L1, so the block as a whole is only weakly positive (f = +450.3 mm). The large air space d6 (34.51 mm) then separates this block from T3, as the patent's description of the four parts requires. L3 provides the second-largest negative Petzval term (−1.64/f).
 
 ### L4 — Positive Meniscus, concave to object (T3)
 
-nd = 1.62097, νd = 36.18. Glass: FN11 class (Schott, obsolete, 621362; patent "F 11"). f = +148.3 mm.
+nd = 1.62097, νd = 35.88. Glass: FN11 class (Schott, obsolete, 621362; patent "F 11"), traced on its coordinate equivalent OHARA TIM11 (1.62096 / 35.88). f = +148.3 mm.
 
 L4 is the first member of T3 and carries power D1 = 1.491605 from glass range 4. Both of its radii are concave toward the object (−452.0 mm and −77.0 mm). Its power comes from the strongly curved rear surface (+2.01/f); the front surface is weakly negative (−0.34/f).
 
-No catalog entry named "F 11" was found. Schott FN11 matches the back-solved index to 1 × 10⁻⁵. However, its catalog $P^{**}$ (−2.0645) differs from the patent's −2.0746 by 0.010. The label is therefore class-level, and the catalog dispersion assigned to L4 is less certain than for L1, L3, L5 and L6.
+No catalog entry named "F 11" was found. Schott FN11 matches the back-solved index to 1 × 10⁻⁵. However, its catalog $P^{**}$ (−2.0645) differs from the patent's −2.0746 by 0.010. The label is therefore class-level. The model traces L4 on OHARA TIM11, which matches the back-solved index to 1.5 × 10⁻⁵ and the patent's $P^{**}$ and $P^{*}$ to 0.0006 and 0.0003.
 
 A positive element made of a flint glass (νd ≈ 36) is unusual in a conventional achromatic pairing, where the flint normally carries negative power. The patent's selection criterion is partial dispersion, not Abbe number: range 4 is defined by $P^{**} = -2.091 \pm 0.021$ and $P^{*} = 1.727 \pm 0.010$.
 
 ### L5 — Positive Meniscus, convex to object (T3)
 
-nd = 1.68248, νd = 48.20. Glass: LaF20 class (Schott, obsolete, 682482; patent "LaF 20"). f = +245.2 mm.
+nd = 1.68248, νd = 48.20. Glass: LaF20 class (Schott, obsolete, 682482; patent "LaF 20"), traced on HOYA LAFL20. f = +245.2 mm.
 
 L5 is the second member of T3 and is made of the same glass as L3. The two back-solved indices differ by only 1 × 10⁻⁵. The patent describes this arrangement explicitly: for a larger angle of view and a larger aperture, T3 may be split into a range-4 lens with power D1 followed by a range-3 lens with power D2. The sum D1 + D2 must then satisfy the D characteristic (col. 3, ll. 21–30; claim 3). Example II prints D2 = .901938 and D1 + D2 = 2.393543. This is within D = 2.63 ± 0.56.
 
@@ -116,8 +116,8 @@ L6 is the only element behind the iris and the telephoto's rear negative group. 
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | LaFN 8 | LaFN8 class (735416) | 1.73499 | 41.59 | −0.0029 | 1 | −1.9321 / 1.7489 | L1 |
 | Fluorspar | CaF₂ crystal | 1.43388 | 95.23 | +0.0552 | 2 | −1.7237 / 1.7873 | L2 |
-| LaF 20 | LaF20 class (682482) | 1.68247 / 1.68248 | 48.20 | −0.0021 | 3 | −1.8623 / 1.7634 | L3, L5 |
-| F 11 | FN11 class (621362) | 1.62097 | 36.18 | +0.0060 | 4 | −2.0746 / 1.7289 | L4 |
+| LaF 20 | LaF20 class (682482) ≈ HOYA LAFL20 | 1.68247 / 1.68248 | 48.20 | −0.0021 | 3 | −1.8623 / 1.7634 | L3, L5 |
+| F 11 | FN11 class (621362) ≈ OHARA TIM11 | 1.62097 | 35.88 | +0.0060 | 4 | −2.0746 / 1.7289 | L4 |
 | LF 8 | LF8 class (564438) | 1.56445 | 43.75 | −0.0006 | 5 | −1.9217 / 1.7519 | L6 |
 
 The patent's partial dispersions are measured against the F–C interval at the outer mercury lines: $P^{**} = (n_F - n_i)/(n_F - n_C)$ with i at 365.0 nm, and $P^{*} = (n_F - n_t)/(n_F - n_C)$ with t at 1014.0 nm (col. 1, ll. 36–42; claim 1). Only the glass name and these two ratios are printed, so the identifications combine three tests:
@@ -229,7 +229,7 @@ The following quantities in the data file are modeling choices, not source facts
 
 - **Stop position.** The patent gives no stop position or diameter. The stop is placed 0.81 of the way across the L5–L6 gap from L5's rear surface, measured from the iris drawn in Fig. 2 (about ±0.05). Matching the data sheet's entrance pupil would require 0.90, and matching its exit pupil would require 0.63. The two requirements conflict, a further sign that production differs from Example II.
 - **Stop diameter.** The stop semi-diameter (11.95 mm) is calibrated so that the entrance pupil equals the data sheet's 44.6 mm diameter. Its agreement with that figure is therefore calibration, not independent confirmation.
-- **Semi-diameters.** These are not published. They are modeled from exact-ray envelopes of the axial pupil and the corner chief ray, with clearance added. With them, the geometric transmission at infinity is about 73% at 60% field and 51% at full field, clipped first at the front surface. These figures describe the model, not the production barrel.
+- **Semi-diameters.** These are not published. They are modeled from exact-ray envelopes of the axial pupil and the corner chief ray, with clearance added, and L2 is set to its proportion in Fig. 2. With them, the geometric transmission at infinity is about 71% at 60% field and 50% at full field, clipped mainly at the front surface. These figures describe the model, not the production barrel.
 - **Excluded elements.** No cover glass, filter or dummy plane appears in the source, and none was added.
 
 ## Design Heritage and Context

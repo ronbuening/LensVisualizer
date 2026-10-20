@@ -501,3 +501,42 @@ Maker comparison. No manufacturer cross-section image was available. The Zeiss d
 Fields changed in this pass: `name` (now "CARL ZEISS SONNAR SUPERACHROMAT 250mm f/5.6 (Hasselblad V)", without a single version letter, since no source compares the C, CF and CFE optics), `subtitle`, `specs`, the focus description, the L2 `apdNote`, the L3 `role`, and the header comment (draft-import lines removed, process wording replaced). In the analysis, the title follows the new name, the "Verification Summary" heading is now "Model Scope and Limitations", process wording was removed from the focus section, and one sentence on the version history was added. No optical value changed.
 
 Open: L2 carries νd 95.23 from the 2008 Schott file, while the repository CaF₂ catalog entry gives 95.1; left for the glass pass. Open: no source states that the 1972 C version uses the same optics as the CF and CFE.
+
+## 2026-10-20 — Second review: diagram, labels and movement
+
+Compared: the local page (infinity, 3.0 m, focus-movement overlay, element inspectors for L1, L2, L4 and L6) against Fig. 2 of US 3,883,229 (PDF p. 2, rendered at the native 281 dpi and at 562 dpi) and the Example II table (PDF p. 6).
+
+Figure scale. Vertex crossings on the axis give 9.30 px/mm from the R1 vertex to the R11 vertex (896 px for 96.36 mm); single spans run 9.07–9.65 px/mm, so the figure is close to scale but not exact. Rim heights were read on both sides of the axis and averaged.
+
+| Element | Fig. 2 rim (mm) | Stored sd | Ratio stored/figure | Axial marginal floor (f/5.59, infinity) |
+|---|---|---|---|---|
+| L1 | 22.5 | 24.1 | 1.07 | 22.29 (S1) |
+| L2 | 21.5 (21.0 at 562 dpi) | 23.1 → 22.2 | 1.07 → 1.03 | 21.37 (S3) |
+| L3 | 21.8 | 22.2 | 1.02 | 20.49 (S5) |
+| L4 | 18.8 | 20.1 | 1.07 | 18.58 (S7) |
+| L5 | 17.7 | 18.7 | 1.06 | 17.31 (S9) |
+| L6 | 12.5 | 12.9 | 1.03 | 11.27 (S11); transmitted off-axis bundle 12.54 (S12) |
+
+The figure is drawn at, or just above, the axial-beam envelope, and the model's rims run a fairly uniform 2–7 % above it. The one visible silhouette difference was L2. Fig. 2 draws the fluorspar element no taller than L3 and shorter than L1, with a flat edge land about 1.9 mm wide. The site drew it taller than L3, with a near knife edge (0.95 mm at sd 23.1). L2 (surfaces 3 and 4) was changed from 23.1 to 22.2 mm. This equals L3, gives a 1.76 mm edge and leaves 3.9 % over the S3 axial marginal ray. At 3.0 m the marginal ray at S3 is lower (20.52 mm). The other rims agree within the figure's scale noise and were kept. L1 cannot follow the figure lower without nearly touching the entrance-pupil ray, and it is the vignetting aperture.
+
+Change effects. The surface validator passes. The image-circle check and field coverage (100 %) pass. The nearest-pupil real-ray trace at the 6×6 corner (9.03°, chief ray at 40.16 mm) shows no axial clip or chief-ray block. The engine half-field goes from 10.45° to 10.32°, limited at S3; this is still above the patent's 8.5° and the 9.03° corner. The f-number stays 5.59 and the EFL stays 249.21 mm. A full two-dimensional pupil-grid trace at infinity gives these geometric transmissions before and after: 1.5° 97.6 → 94.9 %, 3° 88.8 → 86.1 %, 5.42° (60 %) 73.7 → 71.4 %, 8.5° 54.3 → 52.9 %, 9.03° 51.1 → 49.9 %. The engine's meridional curve gives 96.4 → 94.8 % at 1.5° and 59.9 → 59.4 % at 8.9°. L2 now trims the upper rim of near-axis oblique bundles. This vignetting is figure-derived and is kept.
+
+Checked and found correct. Element names L1–L6 and part brackets T1 (S1–S4), T2 (S5–S6), T3 (S7–S10) and T4 (S11–S12) follow the patent's own notation in Fig. 2 and the text. No cemented groups and no doublet brackets are needed. Element types agree with the signs of R. The stop sits in d10 between L5 and L6, where Fig. 2 draws the iris. There are no aspheres or asphere markers. The inspectors show the stored types, indices, focal lengths, glass labels and roles. Focus: keyframe 0 is infinity (BF 122.758 mm). The close keyframe moves the whole unit 25.91 mm toward the object (BF 148.665 mm); all four parts move by the same amount in the overlay, and the slider's far end reads 3.00 m. There are no zoom stations. The patent prints no aberration plots, so there is nothing to compare with the model's aberration tabs.
+
+Glass. The five glass names and their P**/P* values in Example II (PDF p. 6) are the same as in Example I. They are real catalog glasses, not optimizer-floated values. CaF₂ resolves to the repository CaF2 row. The four Schott names do not resolve. Using vendor AGF Sellmeier data, P** = (nF − ni)/(nF − nC) and P* = (nF − nt)/(nF − nC), the nearest current-catalog equivalents are:
+- L4 "F 11": Ohara TIM11 (in the repository catalog) gives nd −1.5×10⁻⁵, P** +0.0006 and P* −0.0003 against the patent, with νd 35.88 against the stored 36.18. Hoya's obsolete F11 (621360, not in the catalog) gives −0.8×10⁻⁵, −0.0001 and −0.0009.
+- L3/L5 "LaF 20": Hoya's obsolete LAFL20 (682482, not in the catalog) gives nd +1×10⁻⁵, νd 48.20, P** +0.006 and P* −0.004.
+- L1 "LaFN 8": no row lies within the resolver's ±0.003 window. The nearest is 731/405 (Hoya M-LAF81, Ohara L-LAM69), at Δnd −4.2×10⁻³.
+- L6 "LF 8": only the 567/428 LF6 family (Sumita LF6, Hoya FL6, Ohara PBL26) lies within ±0.003. At Δnd +2.9×10⁻³ and Δνd −0.9 it is a different glass, not an equivalent.
+
+These glass findings are reported for the coordinator. No glass field was changed.
+
+Open. The L2 `apd` stays "inferred". The patent names the material ("Fluorspar") and chooses all its glasses by partial dispersion (col. 1), which would support "patent". L2's νd 95.23 against the CaF2 row (95.1 listed, 95.00 evaluated) is still open.
+
+Coordinator follow-up, same day (glass backfill from this review): added HOYA LAFL20 (obsolete; AGF 2026-07-07 NM/CD
+row, code 682482) to the catalog; L3 and L5 now read `LaF20 class (Schott, obsolete, 682482; patent "LaF 20") ≈ LAFL20
+(Hoya)` and resolve to it (Δnd +1 × 10⁻⁵). L4 now reads `… ≈ TIM11 (OHARA)` and resolves to OHARA TIM11 (Δnd
+−1.5 × 10⁻⁵); its vd field moved 36.18 → 35.88 to the resolved row. L2 vd 95.23 → 95.0 (the repository CaF₂ curve
+evaluates to 95.00), and L2 `apd` "inferred" → "patent" (the table names "Fluorspar" and the text selects glasses by
+partial dispersion). A corpus-wide resolution dump before and after changed only these four elements. L1 (LaFN8) and
+L6 (LF8) stay unresolved: no catalog row lies within the index window.

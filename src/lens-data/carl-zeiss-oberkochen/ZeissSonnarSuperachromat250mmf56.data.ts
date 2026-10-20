@@ -32,7 +32,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * NOTE ON SEMI-DIAMETERS: none published. Modeled from exact ray envelopes at infinity and 3.0 m:
  *   full on-axis pupil and the full-field (9.03°, 6×6 diagonal) chief ray, +8% clearance, rounded up
  *   to 0.1 mm, one SD per element. L6 (behind the stop) also covers, +3%, every sampled 60%/100% field ray
- *   transmitted by the front apertures and the stop. Off-axis bundles are vignetted at R1.
+ *   transmitted by the front apertures and the stop. Off-axis bundles are vignetted at R1. L2 (22.2) is
+ *   lowered to its Fig. 2 proportion: the figure draws it no taller than L3, with a flat ~1.9 mm edge land
+ *   (model edge 1.76 mm; 4% over its axial marginal ray).
  * NOTE ON FOCUS: the patent publishes only the infinity state. The close state moves the whole unit:
  *   only the back focus changes, solved paraxially for the manufacturer's 3.0 m object-to-film minimum
  *   (model scale 1:9.62 vs 1:9.6 published). Beyond-infinity helicoid travel is not modeled.
@@ -85,13 +87,13 @@ const LENS_DATA = {
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.43388,
-      vd: 95.23,
+      vd: 95.0,
       indexReference: "d",
       focalLengthMm: 66.7,
       glass: 'CaF2 (calcium fluoride crystal; patent "Fluorspar")',
-      apd: "inferred",
+      apd: "patent",
       apdNote:
-        "Calcium fluoride crystal with catalog ΔPgF = +0.0552; the patent characterizes it only by its i- and t-line partial dispersions (P** = −1.7237, P* = 1.7873).",
+        "The patent names the material \"Fluorspar\" and selects its glasses by partial dispersion; catalog ΔPgF = +0.0552, printed i- and t-line partial dispersions P** = −1.7237, P* = 1.7873.",
       role: "Strong positive crystal element of part T1 (glass range 2, characteristic B); main converging power of the front group.",
       dPgF: 0.0552,
     },
@@ -104,7 +106,7 @@ const LENS_DATA = {
       vd: 48.2,
       indexReference: "d",
       focalLengthMm: -89.8,
-      glass: 'LaF20 class (Schott, obsolete, 682482; patent "LaF 20")',
+      glass: 'LaF20 class (Schott, obsolete, 682482; patent "LaF 20") ≈ LAFL20 (Hoya)',
       apd: false,
       role: "Diverging element that forms part T2 on its own (patent glass range 3, characteristic C).",
       dPgF: -0.0021,
@@ -115,10 +117,10 @@ const LENS_DATA = {
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.62097,
-      vd: 36.18,
+      vd: 35.88,
       indexReference: "d",
       focalLengthMm: 148.3,
-      glass: 'FN11 class (Schott, obsolete, 621362; patent "F 11")',
+      glass: 'FN11 class (Schott, obsolete, 621362; patent "F 11") ≈ TIM11 (OHARA)',
       apd: false,
       role: "First positive member of part T3 (glass range 4, power D1), concave to the object.",
       dPgF: 0.006,
@@ -132,7 +134,7 @@ const LENS_DATA = {
       vd: 48.2,
       indexReference: "d",
       focalLengthMm: 245.2,
-      glass: 'LaF20 class (Schott, obsolete, 682482; patent "LaF 20")',
+      glass: 'LaF20 class (Schott, obsolete, 682482; patent "LaF 20") ≈ LAFL20 (Hoya)',
       apd: false,
       role: "Second positive member of part T3 (glass range 3, power D2), convex to the object.",
       dPgF: -0.0021,
@@ -156,8 +158,8 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 51.086, d: 4.5386796, sd: 24.1, medium: 1 }, // L1 front
     { label: "2", R: 41.763428, d: 1.695806, sd: 24.1 }, // L1 rear
-    { label: "3", R: 42.984508, d: 11.0226144, sd: 23.1, medium: 2 }, // L2 front (description R3 .17249)
-    { label: "4", R: -81.545716, d: 1.9950952, sd: 23.1 }, // L2 rear
+    { label: "3", R: 42.984508, d: 11.0226144, sd: 22.2, medium: 2 }, // L2 front (description R3 .17249)
+    { label: "4", R: -81.545716, d: 1.9950952, sd: 22.2 }, // L2 rear
     { label: "5", R: -73.733296, d: 3.341772, sd: 22.2, medium: 3 }, // L3 front
     { label: "6", R: 369.633376, d: 34.5144492, sd: 22.2 }, // L3 rear
     { label: "7", R: -452.018896, d: 7.6808424, sd: 20.1, medium: 4 }, // L4 front

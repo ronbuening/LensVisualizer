@@ -21,6 +21,7 @@ export type { GlassEntry } from "./glassCatalogTypes.js";
 const GLASS_CATALOG_SOURCE_ORDER = [
   "BAFD14",
   "LAFL23",
+  "LAFL20",
   "H-ZK1",
   "S-BAL35R",
   "NBFD265",
