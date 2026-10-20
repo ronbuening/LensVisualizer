@@ -1252,8 +1252,8 @@ passes outside of, so lifting that guard needs real-ray hit discovery for explic
 
 Use explicit naming:
 
-- `computeParaxialOffAxisFieldGeometry()` - first-order/paraxial geometry for compatibility and comparisons.
-- `computeStateAwareOffAxisFieldGeometry()` - current focus/zoom-aware geometry using solved chief-ray behavior.
+- `computeOffAxisFieldGeometryParaxial()` - first-order/paraxial geometry for compatibility and comparisons.
+- `computeOffAxisFieldGeometryScalar()` - current focus/zoom-aware geometry using solved chief-ray behavior.
 
 Visible off-axis rays, chromatic off-axis rays, distortion, vignetting, pupil aberration, coma, and bokeh use the
 state-aware solved-chief-ray path where current focus/zoom can move pupil geometry. Folded callers that need the stop
@@ -1406,6 +1406,21 @@ field values, quality and sampling by exact value (`Object.is` for numbers, incl
 object or equivalent field/sampling arrays therefore reuse the request. The history is an LRU of two requests per compiled lens for two recent compiled identities. This short history
 retains adjacent interactive/settled renders without retaining an analysis control sweep. No rounded or serialized
 control key participates in request lookup.
+
+Internal analysis kernels pass the same request through their call chains, including shared real-ray, coma,
+field-curvature, chromatic, distortion and pupil helpers. Calls between analysis helpers do not reconstruct positional
+`RuntimeLens`/surface-position/control lists. Derived field geometry, prepared ray adapters, channels, pupil samples
+and independent intercept planes may accompany the request; pure numeric reductions remain state-free.
+Geometry-only off-axis, chromatic image-plane and pupil-baseline helpers take `PreparedGeometry`.
+`computeOffAxisFieldGeometry` is the projection-aware implementation; its `Scalar` and `Paraxial` variants retain
+their narrower launch/reference contracts. The AST guard in `opticsArchitecture.test.ts` rejects runtime-lens
+parameters paired with separate state controls throughout centered and perspective analysis implementations.
+
+Group movement's `buildPoint` and `anchoredSurfacePositions` accept the request plus the focus/zoom coordinates
+being swept, preparing those states through the existing bounded geometry cache. Bokeh's `buildBokehTraceContext`
+similarly varies focus and retains its already-created varied request for all fields. Neither allocates requests
+inside field/ray loops. `focalLengthAtZoomT` and `zoomSamples` use only numeric station tables. Existing cache
+owners, exact keys, bounds and memoized context identities remain unchanged.
 
 `analysis/analysisContext.ts` weakly memoizes one lazy context per request identity. Sibling tabs and subsequent
 renders share the same computed results; request-history eviction releases the cache's ownership, while a live caller

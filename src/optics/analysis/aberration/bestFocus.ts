@@ -34,7 +34,7 @@ export function computeImagePlaneZAtFocus(request: AnalysisRequest): number {
 export function computeBestFocusZFromLayout(request: AnalysisRequest, layout: LayoutResult): number {
   const { focusT, zoomT, aberrationT } = request.preparedGeometry;
   const L = runtimeView(request.preparedGeometry.lens);
-  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
+  const { stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
   const lastSurfZ = layout.z[L.N - 1];
   const imagePlaneZ = layout.imgZ;
 
@@ -47,32 +47,8 @@ export function computeBestFocusZFromLayout(request: AnalysisRequest, layout: La
     aberrationT,
   });
   const hits = PROFILE_FRACS.flatMap((fraction) => {
-    const plusHit = computeRealRayHit(
-      L,
-      layout.z,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      lastSurfZ,
-      imagePlaneZ,
-      fraction,
-      aberrationT,
-      prepared,
-    );
-    const minusHit = computeRealRayHit(
-      L,
-      layout.z,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      lastSurfZ,
-      imagePlaneZ,
-      -fraction,
-      aberrationT,
-      prepared,
-    );
+    const plusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, fraction, prepared);
+    const minusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, -fraction, prepared);
     return [plusHit, minusHit].filter((h): h is NonNullable<typeof h> => h !== null);
   });
 

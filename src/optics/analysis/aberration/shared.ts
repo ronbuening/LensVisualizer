@@ -4,6 +4,9 @@
  * Centralizes the coordinate and best-focus conventions reused by spherical, coma, field-curvature, and bokeh modules.
  */
 
+import { runtimeView } from "../../prescription/runtimeView.js";
+import type { AnalysisRequest } from "../request.js";
+
 import { prepareRayTrace } from "../../trace/rayAdapters.js";
 import type { PreparedRayTrace } from "../../trace/rayAdapters.js";
 import { MARGINAL_PUPIL_FRACTIONS } from "../sampling.js";
@@ -153,31 +156,27 @@ export function generalizedImagePlaneIntercept(
 /**
  * Trace one real on-axis ray and derive intercept/focus metrics.
  *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
+ * @param request - prepared geometry and aperture snapshot
  * @param lastSurfZ - last surface vertex z coordinate in mm
  * @param imagePlaneZ - image-plane z coordinate in mm
  * @param signedFraction - signed entrance-pupil fraction
- * @param aberrationT - normalized aberration spacing slider
  * @returns real-ray hit metrics, or null when clipped/degenerate
  */
 export function computeRealRayHit(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
+  request: AnalysisRequest,
   lastSurfZ: number,
   imagePlaneZ: number,
   signedFraction: number,
-  aberrationT = 0,
   prepared?: PreparedRayTrace,
 ): RealRayHit | null {
+  const L = runtimeView(request.preparedGeometry.lens);
+  const zPos = request.preparedGeometry.z as number[];
+  const focusT = request.preparedGeometry.focusT;
+  const zoomT = request.preparedGeometry.zoomT;
+  const currentEPSD = request.aperture.entrancePupilSemiDiameterMm;
+  const currentPhysStopSD = request.aperture.stopSemiDiameterMm;
+  const aberrationT = request.preparedGeometry.aberrationT;
+
   const h = signedFraction * currentEPSD;
   const adapter =
     prepared ?? prepareRayTrace(L, { zPos, focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT });
@@ -211,58 +210,31 @@ export function computeRealRayHit(
  * Symmetric pairing prevents one-sided clipping or decentering from biasing the
  * on-axis spherical-aberration reference.
  *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param currentEPSD - entrance-pupil semi-diameter in mm
- * @param currentPhysStopSD - physical stop semi-diameter in mm
+ * @param request - prepared geometry and aperture snapshot
  * @param lastSurfZ - last surface vertex z coordinate in mm
  * @param imagePlaneZ - image-plane z coordinate in mm
  * @param fraction - positive entrance-pupil fraction
- * @param aberrationT - normalized aberration spacing slider
  * @returns averaged real-ray sample, or null when either side fails
  */
 // Unlike sampleOrthogonalPupilFan, trace only the requested +/- pair and average its axial/spherical readouts.
 export function computeSymmetricRealSample(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
+  request: AnalysisRequest,
   lastSurfZ: number,
   imagePlaneZ: number,
   fraction: number,
-  aberrationT = 0,
-  prepared = prepareRayTrace(L, { zPos, focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT }),
+  preparedInput: PreparedRayTrace | undefined = undefined,
 ): SymmetricRealSample | null {
-  const plusHit = computeRealRayHit(
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-    lastSurfZ,
-    imagePlaneZ,
-    fraction,
-    aberrationT,
-    prepared,
-  );
-  const minusHit = computeRealRayHit(
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-    lastSurfZ,
-    imagePlaneZ,
-    -fraction,
-    aberrationT,
-    prepared,
-  );
+  const L = runtimeView(request.preparedGeometry.lens);
+  const zPos = request.preparedGeometry.z as number[];
+  const focusT = request.preparedGeometry.focusT;
+  const zoomT = request.preparedGeometry.zoomT;
+  const currentPhysStopSD = request.aperture.stopSemiDiameterMm;
+  const aberrationT = request.preparedGeometry.aberrationT;
+  const prepared =
+    preparedInput ?? prepareRayTrace(L, { zPos, focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT });
+
+  const plusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, fraction, prepared);
+  const minusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, -fraction, prepared);
   if (plusHit === null || minusHit === null) return null;
 
   return {

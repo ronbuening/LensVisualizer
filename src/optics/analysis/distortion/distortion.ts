@@ -44,7 +44,6 @@ import { runtimeView } from "../../prescription/runtimeView.js";
 import type { AnalysisRequest } from "../request.js";
 import { isHeavyLensForRayWork } from "../../trace/raySampling.js";
 import { resolveImageFormatMetadata } from "../../../utils/catalog/lensTaxonomy.js";
-import type { RuntimeLens } from "../../../types/optics.js";
 
 /** A single sample point on the distortion curve. */
 export interface DistortionSample {
@@ -357,13 +356,15 @@ const PUPIL_CORRECTION_SAMPLE_COUNT_FULL = 17;
 const PUPIL_CORRECTION_SAMPLE_COUNT_HEAVY = 9;
 
 function buildPupilCorrectionTable(
+  request: AnalysisRequest,
   reference: DistortionReference,
-  focusT: number,
-  zoomT: number,
-  L: RuntimeLens,
-  aberrationT = 0,
   sampleCountOverride?: number,
 ): PupilCorrectionEntry[] {
+  const L = runtimeView(request.preparedGeometry.lens);
+  const focusT = request.preparedGeometry.focusT;
+  const zoomT = request.preparedGeometry.zoomT;
+  const aberrationT = request.preparedGeometry.aberrationT;
+
   const table: PupilCorrectionEntry[] = [];
   const sampleCount = clampedSampleCount(
     sampleCountOverride,
@@ -463,12 +464,14 @@ type DistortionGridLaunchVector = Extract<DistortionGridLaunch, { kind: "vector"
 type DistortionGridLaunchSlope = Extract<DistortionGridLaunch, { kind: "slope" }>;
 
 function traceDistortionGridPointVector(
+  request: AnalysisRequest,
   launch: DistortionGridLaunchVector,
   reference: DistortionReference,
-  L: RuntimeLens,
-  aberrationT: number,
   vectorAdapter: (bound: number) => PreparedRayTrace,
 ): SkewRayTraceResult | null {
+  const L = runtimeView(request.preparedGeometry.lens);
+  const aberrationT = request.preparedGeometry.aberrationT;
+
   const vectorLaunch = computeBoundingSphereVectorFieldLaunch(
     L,
     reference.geometry,
@@ -511,12 +514,11 @@ function traceDistortionGridPointSlope(
 }
 
 function traceDistortionGridPoint(
+  request: AnalysisRequest,
   xNormalized: number,
   yNormalized: number,
   reference: DistortionReference,
-  L: RuntimeLens,
   pupilCorrection: PupilCorrectionEntry[],
-  aberrationT: number,
   adapter: PreparedRayTrace,
   vectorAdapter: (bound: number) => PreparedRayTrace,
 ): DistortionGridPoint {
@@ -554,7 +556,7 @@ function traceDistortionGridPoint(
 
   const trace =
     launch.kind === "vector"
-      ? traceDistortionGridPointVector(launch, reference, L, aberrationT, vectorAdapter)
+      ? traceDistortionGridPointVector(request, launch, reference, vectorAdapter)
       : traceDistortionGridPointSlope(launch, reference, pupilCorrection, adapter);
 
   if (trace === null) {
@@ -630,14 +632,7 @@ export function computeDistortionFieldGrid(request: AnalysisRequest): Distortion
   const segmentCount = clampedSampleCount(sampling.distortionGridSegmentCount, DISTORTION_GRID_SEGMENT_COUNT, 3);
   const axisSamples = evenlySpacedSigned(segmentCount);
 
-  const pupilCorrection = buildPupilCorrectionTable(
-    reference,
-    focusT,
-    zoomT,
-    L,
-    aberrationT,
-    sampling.distortionPupilCorrectionSampleCount,
-  );
+  const pupilCorrection = buildPupilCorrectionTable(request, reference, sampling.distortionPupilCorrectionSampleCount);
   const traceOptions = { focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT };
   const adapter = prepareRayTrace(L, traceOptions);
   // Bounding-sphere launch bounds are constant across this field grid.
@@ -655,14 +650,14 @@ export function computeDistortionFieldGrid(request: AnalysisRequest): Distortion
         orientation: "vertical",
         idealCoordinate: coordinate,
         points: axisSamples.map((y) =>
-          traceDistortionGridPoint(coordinate, y, reference, L, pupilCorrection, aberrationT, adapter, vectorAdapter),
+          traceDistortionGridPoint(request, coordinate, y, reference, pupilCorrection, adapter, vectorAdapter),
         ),
       };
       const horizontal: DistortionGridLine = {
         orientation: "horizontal",
         idealCoordinate: coordinate,
         points: axisSamples.map((x) =>
-          traceDistortionGridPoint(x, coordinate, reference, L, pupilCorrection, aberrationT, adapter, vectorAdapter),
+          traceDistortionGridPoint(request, x, coordinate, reference, pupilCorrection, adapter, vectorAdapter),
         ),
       };
       return [vertical, horizontal];

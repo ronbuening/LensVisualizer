@@ -58,6 +58,13 @@ inversion in `field/imageHeight.ts`. Outside callers use `fieldGeometry.ts`; ana
 `computeCardinalElements` takes an analysis request. `analysisJobs` is the full request-facing registry;
 `analysisPreviewJobs` retains the smaller historical job subset with its distinct key set.
 
+The shared off-axis geometry helpers take `PreparedGeometry`. `computeOffAxisFieldGeometry(state, fieldFraction,
+stateGeometry?)` is the canonical projection-aware entry; `computeOffAxisFieldGeometryScalar` and
+`computeOffAxisFieldGeometryParaxial` preserve their scalar/current-state and first-order reference contracts.
+Bundle/chief tracing takes the request plus derived launch geometry, samples and an optional channel/adapter.
+Control sweeps explicitly add only their varied coordinates and reuse prepared geometry, as described in
+[Optics Engine](optics-engine.md#analysis-requests-context-and-jobs).
+
 `getChiefRayDiagnostics` returns defensive snapshots keyed by compiled identity and retains at most 2,048 owners.
 Published stations return canonical `zoomT` / `focusT`; `distanceM` is a slider label and only `conjugate` is a source
 claim. Channel/index helpers expose qualified dispersion data, not historical production-glass identity.
@@ -76,7 +83,7 @@ prescription; provenance and the optional composition descriptor travel separate
 The engine never reconstructs a prescription from UI fields, and `RuntimeLens.data` does not exist.
 
 Use `prepareRuntimeState` to translate UI controls to cached `PreparedGeometry`, then `createAnalysisRequest` for
-current aperture, field, sampling and optional pose. Analysis families take that request; a lazy context memoizes its
+current aperture, field, sampling and optional pose. Analysis families and their internal state-dependent helpers pass that same request through; a lazy context memoizes its
 jobs by request identity. Low-level traversal takes `TraceGeometry`, independent of RuntimeLens ownership. Cache
 lifetimes and bounds are in [Optics Engine](optics-engine.md#cache-ownership-and-architecture-guards).
 

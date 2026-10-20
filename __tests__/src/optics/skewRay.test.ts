@@ -1,3 +1,4 @@
+import { analysisRequestAt } from "./testLensFixtures.js";
 import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { describe, expect, it } from "vitest";
@@ -26,7 +27,7 @@ import {
   traceSkewRayVectorChromatic as traceSkewRayVectorChromaticAdapter,
 } from "../../../src/optics/trace/rayAdapters.js";
 import {
-  computeParaxialOffAxisFieldGeometry,
+  computeOffAxisFieldGeometryParaxial,
   traceOrthogonalOffAxisBundle,
 } from "../../../src/optics/analysis/aberration/offAxis.js";
 import {
@@ -431,10 +432,24 @@ describe("skew-meridional cross-validation", () => {
     const currentEPSD = L.EP.epSD * 0.6;
     const currentPhysStopSD = L.stopPhysSD * 0.6;
 
-    const geometry = computeParaxialOffAxisFieldGeometry(L, zPos, 0, 0);
+    const geometry = computeOffAxisFieldGeometryParaxial(
+      analysisRequestAt(L, { zPos: zPos, zoomT: 0 }).preparedGeometry,
+      0,
+    );
     expect(geometry).not.toBeNull();
 
-    const bundle = traceOrthogonalOffAxisBundle("sagittal", 11, geometry!, L, 0, 0, currentEPSD, currentPhysStopSD);
+    const bundle = traceOrthogonalOffAxisBundle(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+        aberrationT: undefined,
+      }),
+      "sagittal",
+      11,
+      geometry!,
+    );
     expect(bundle).not.toBeNull();
 
     // At center field, sagittal rays should have symmetric x-displacement

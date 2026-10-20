@@ -6,9 +6,11 @@
  * diagram rays, but return compact data contracts for analysis tabs.
  */
 
+import type { PreparedGeometry } from "../../types.js";
+
 import { prepareRayTrace } from "../../trace/rayAdapters.js";
-import type { ChromaticChannel, ChromaticRayFanSpread, RuntimeLens } from "../../../types/optics.js";
-import { computeProjectionAwareOffAxisFieldGeometry, traceOffAxisChiefRay } from "../aberration/offAxis.js";
+import type { ChromaticChannel, ChromaticRayFanSpread } from "../../../types/optics.js";
+import { computeOffAxisFieldGeometry, traceOffAxisChiefRay } from "../aberration/offAxis.js";
 import { computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.js";
 import type { FieldGeometryState } from "../../field/launch.js";
 import { thick } from "../../state/layout.js";
@@ -124,13 +126,13 @@ function span(values: number[]): number | null {
   return Math.max(...values) - Math.min(...values);
 }
 
-function currentImagePlaneZ(
-  L: RuntimeLens,
-  zPos: readonly number[],
-  focusT: number,
-  zoomT: number,
-  aberrationT: number,
-): number | null {
+function currentImagePlaneZ(state: PreparedGeometry): number | null {
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const focusT = state.focusT;
+  const zoomT = state.zoomT;
+  const aberrationT = state.aberrationT;
+
   if (L.N < 1) return null;
   const lastSurfaceZ = zPos[L.N - 1];
   if (L.isFoldedOptics) return isFinite(L.imagePlane.z) ? L.imagePlane.z : null;
@@ -164,7 +166,7 @@ export function computeLongitudinalChromaticFocus(
   const channels = normalizeChannels(options.channels);
   if (channels.length < 2 || currentEPSD <= 0 || L.N < 1) return null;
 
-  const imagePlaneZ = currentImagePlaneZ(L, zPos, focusT, zoomT, aberrationT);
+  const imagePlaneZ = currentImagePlaneZ(request.preparedGeometry);
   if (imagePlaneZ === null) return null;
   const lastSurfaceZ = zPos[L.N - 1];
   const fractions = normalizeFractions(options.longitudinalFractions, DEFAULT_LONGITUDINAL_CHROMATIC_FRACTIONS, {
@@ -270,40 +272,17 @@ function emptyLateralField(
 }
 
 function computeLateralColorField(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
+  request: AnalysisRequest,
   fieldFraction: number,
   referenceChannel: ChromaticChannel,
   channels: readonly ChromaticChannel[],
   stateGeometry: FieldGeometryState,
-  aberrationT: number,
 ): LateralColorFieldSample {
-  const geometry = computeProjectionAwareOffAxisFieldGeometry(
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    fieldFraction,
-    stateGeometry,
-    aberrationT,
-  );
+  const geometry = computeOffAxisFieldGeometry(request.preparedGeometry, fieldFraction, stateGeometry);
   if (geometry === null) return emptyLateralField(fieldFraction, referenceChannel, channels);
 
   const rawSamples = channels.map((channel) => {
-    const chiefRay = traceOffAxisChiefRay(
-      geometry,
-      L,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      channel,
-      aberrationT,
-    );
+    const chiefRay = traceOffAxisChiefRay(request, geometry, channel);
     return {
       channel,
       imageHeightMm: chiefRay?.imagePoint.y ?? null,
@@ -360,13 +339,13 @@ export function computeLateralColorCurve(
   const { preparedGeometry: state } = request;
   const { focusT, zoomT, aberrationT } = state;
   const L = runtimeView(state.lens);
-  const zPos = state.z as number[];
-  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
+
+  const { entrancePupilSemiDiameterMm: currentEPSD } = request.aperture;
   const fieldGeometry = request.fieldGeometry ?? undefined;
   const channels = normalizeChannels(options.channels);
   if (channels.length < 2 || currentEPSD <= 0 || L.N < 1) return null;
 
-  const imagePlaneZ = currentImagePlaneZ(L, zPos, focusT, zoomT, aberrationT);
+  const imagePlaneZ = currentImagePlaneZ(request.preparedGeometry);
   if (imagePlaneZ === null) return null;
 
   const stateGeometry = fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
@@ -375,19 +354,7 @@ export function computeLateralColorCurve(
     allowZero: true,
   });
   const fields = fieldFractions.map((fieldFraction) =>
-    computeLateralColorField(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      fieldFraction,
-      referenceChannel,
-      channels,
-      stateGeometry,
-      aberrationT,
-    ),
+    computeLateralColorField(request, fieldFraction, referenceChannel, channels, stateGeometry),
   );
   const usableFields = fields.filter((field) => field.usable && field.lateralSpreadMm !== null);
   if (usableFields.length === 0) return null;
