@@ -10,7 +10,7 @@ import { createTraceGeometry } from "../trace/geometry.js";
 import type { AberrationVarRange, VarRange } from "../../types/optics.js";
 import { clamp, normalizeControlT } from "../math/numerics.js";
 import type { CompiledStateSurface, CompiledLens, Plane3, PreparedOpticalState } from "../types.js";
-import { Optics2PreparationError } from "../types.js";
+import { OpticsPreparationError } from "../types.js";
 import { resolveControlledThickness, buildZPositions } from "./layout.js";
 
 const PREPARED_STATE_CACHE_LIMIT = 96;
@@ -167,13 +167,13 @@ function normalizePreparedControl(value: number, label: string): number {
   try {
     return normalizeControlT(value, label) || 0;
   } catch (_error) {
-    throw new Optics2PreparationError("invalid-control", `${label} must be finite`);
+    throw new OpticsPreparationError("invalid-control", `${label} must be finite`);
   }
 }
 
 function normalizePreparedAberrationControl(value: number, centered: boolean): number {
   if (!Number.isFinite(value)) {
-    throw new Optics2PreparationError("invalid-control", "aberrationT must be finite");
+    throw new OpticsPreparationError("invalid-control", "aberrationT must be finite");
   }
   return clamp(value, centered ? -1 : 0, 1) || 0;
 }
@@ -201,7 +201,7 @@ function resolvePreparedThickness(
     focusPositions,
   );
   if (!Number.isFinite(thickness) || (!allowNegativeThickness && thickness < 0)) {
-    throw new Optics2PreparationError(
+    throw new OpticsPreparationError(
       "invalid-thickness",
       `Resolved thickness for surface ${surfaceIndex} must be finite and non-negative`,
     );

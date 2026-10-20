@@ -15,7 +15,8 @@ import { traceRay } from "../../../src/optics/trace/rayAdapters.js";
 import { buildVariableStopGapLens, teleconverterHostData, teleconverterZoomHostData } from "./testLensFixtures.js";
 import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import { doLayoutForRuntimeLens as doLayout, thickOrZero as thick } from "../../../src/optics/state/runtimeAdapters.js";
-import { engineLensFromRuntime, prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
+import { compiledLensFromRuntime } from "../../../src/optics/prescription/compile.js";
 import { compileSurfaceDispersions } from "../../../src/optics/chromatic/dispersionTable.js";
 import { compileLensData } from "../../../src/optics/prescription/compile.js";
 import { prepareState, prepareStateUncached, stateWithZ } from "../../../src/optics/state/preparedGeometry.js";
@@ -74,7 +75,7 @@ describe("Optics engine LensData normalization and compatibility", () => {
   it("builds every visible and hidden catalog lens through buildLens", () => {
     for (const key of ALL_CATALOG_KEYS) {
       const runtime = buildLens(CATALOG_CONSTRUCTION_FIXTURES[key]);
-      const engine = engineLensFromRuntime(runtime);
+      const engine = compiledLensFromRuntime(runtime);
       expect(constructionFixtureData(runtime).key).toBe(key);
       expect(engine.key).toBe(key);
       expect(engine.surfaces).toHaveLength(runtime.N);
@@ -91,12 +92,12 @@ describe("Optics engine LensData normalization and compatibility", () => {
   it("builds hidden folded reference fixtures and preserves repeated surface-order labels", () => {
     for (const key of REQUIRED_FOLDED_REFERENCE_KEYS) {
       const runtime = buildLens(CATALOG_CONSTRUCTION_FIXTURES[key]);
-      const engine = engineLensFromRuntime(runtime);
+      const engine = compiledLensFromRuntime(runtime);
       expect(engine.flags.isFoldedOptics, key).toBe(true);
       expect(engine.imagePlane.label, key).toBe(runtime.imagePlane.label);
     }
 
-    const mangin = engineLensFromRuntime(
+    const mangin = compiledLensFromRuntime(
       buildLens(CATALOG_CONSTRUCTION_FIXTURES["reference-mangin-second-surface-mirror"]),
     );
     expect(mangin.opticalPath.surfaceLabels).toEqual(["STO", "MG1", "MG2", "MG1"]);
@@ -110,7 +111,7 @@ describe("Optics engine LensData normalization and compatibility", () => {
 
   it("defaults projection and image-plane metadata to the current runtime behavior", () => {
     const runtime = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikkor-z-50f18s"]);
-    const engine = engineLensFromRuntime(runtime);
+    const engine = compiledLensFromRuntime(runtime);
     expect(engine.projection.kind).toBe("rectilinear");
     expect(engine.imagePlane.label).toBe("IMG");
     expect(engine.imagePlane.normal).toEqual([0, 0, 1]);
@@ -182,7 +183,7 @@ describe("Optics engine prepared state", () => {
 
   it("shares immutable cached geometry and matches uncached preparation", () => {
     const runtime = buildVariableStopGapLens([1, 5]);
-    const engine = engineLensFromRuntime(runtime);
+    const engine = compiledLensFromRuntime(runtime);
     const first = prepareState(engine, 0.25, 0.5, 0);
     const bypassed = prepareStateUncached(engine, 0.25, 0.5, 0);
 
@@ -193,7 +194,7 @@ describe("Optics engine prepared state", () => {
     expect(Object.isFrozen(first.surfaces)).toBe(true);
     expect(Object.isFrozen(first.z)).toBe(true);
     expect(first.cacheKey).toContain(engine.key);
-    const independent = engineLensFromRuntime(buildVariableStopGapLens([1, 8]));
+    const independent = compiledLensFromRuntime(buildVariableStopGapLens([1, 8]));
     expect(independent.key).toBe(engine.key);
     const other = prepareState(independent, 0.25, 0.5, 0);
     expect(other).not.toBe(first);
@@ -201,7 +202,7 @@ describe("Optics engine prepared state", () => {
   });
 
   it("compares controls exactly after clamping and normalizes signed zero", () => {
-    const engine = engineLensFromRuntime(buildVariableStopGapLens([1, 5]));
+    const engine = compiledLensFromRuntime(buildVariableStopGapLens([1, 5]));
     const zero = prepareState(engine, -0, -0, -0);
     expect([zero.focusT, zero.zoomT, zero.aberrationT]).toEqual([0, 0, 0]);
     expect(prepareState(engine, -1, -1, -1)).toBe(zero);
@@ -230,10 +231,10 @@ describe("Optics engine prepared state", () => {
   });
 
   it("evicts the least recently used geometry above 96 states per compiled lens", () => {
-    const engine = engineLensFromRuntime(buildVariableStopGapLens([1, 5]));
+    const engine = compiledLensFromRuntime(buildVariableStopGapLens([1, 5]));
     const states = Array.from({ length: 96 }, (_, i) => prepareState(engine, i / 100, 0));
     expect(prepareState(engine, 0, 0)).toBe(states[0]);
-    const other = engineLensFromRuntime(buildVariableStopGapLens([1, 5]));
+    const other = compiledLensFromRuntime(buildVariableStopGapLens([1, 5]));
     for (let i = 0; i < 100; i++) prepareState(other, i / 100, 0);
     prepareStateUncached(engine, 0.96, 0);
     expect(prepareState(engine, 0.01, 0)).toBe(states[1]);
@@ -246,9 +247,9 @@ describe("Optics engine prepared state", () => {
   });
 
   it("releases the least recently used lens cache while keeping 96 states for each active lens", () => {
-    const first = engineLensFromRuntime(buildVariableStopGapLens([1, 5]));
-    const second = engineLensFromRuntime(buildVariableStopGapLens([1, 5]));
-    const third = engineLensFromRuntime(buildVariableStopGapLens([1, 5]));
+    const first = compiledLensFromRuntime(buildVariableStopGapLens([1, 5]));
+    const second = compiledLensFromRuntime(buildVariableStopGapLens([1, 5]));
+    const third = compiledLensFromRuntime(buildVariableStopGapLens([1, 5]));
     const firstStates = Array.from({ length: 96 }, (_, i) => prepareState(first, i / 100, 0));
     const secondState = prepareState(second, 0, 0);
     // A hit refreshes lens recency, so the third lens evicts the second, not the first.
@@ -266,7 +267,7 @@ describe("Optics engine prepared state", () => {
   });
 
   it("keeps diagram metadata and translated camera planes distinct in the shared z helper", () => {
-    const engine = engineLensFromRuntime(buildVariableStopGapLens([1, 5]));
+    const engine = compiledLensFromRuntime(buildVariableStopGapLens([1, 5]));
     const base = prepareState(engine, 0, 0);
     for (const z of [base.z.map((v) => v + 12), base.z.map((v, i) => v + 12 + i), [12]]) {
       const diagram = stateWithZ(base, z, "preserve");
@@ -289,7 +290,7 @@ describe("Optics engine prepared state", () => {
 
   it("owns one frozen trace geometry per prepared state without copying optical records", () => {
     const runtime = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-z-24-70f4s"]);
-    const engine = engineLensFromRuntime(runtime);
+    const engine = compiledLensFromRuntime(runtime);
     const first = prepareState(engine, 0, 0, 0);
     const geometry = first.traceGeometry;
     expect(geometry).toBeDefined();
@@ -320,7 +321,7 @@ describe("Optics engine prepared state", () => {
 
   it("keeps CompiledLens parity-recoverable from ordinary buildLens runtimes", () => {
     const runtime = buildLens(CATALOG_CONSTRUCTION_FIXTURES["varisoft-rokkor-85f28"]);
-    const engine = engineLensFromRuntime(runtime);
+    const engine = compiledLensFromRuntime(runtime);
     expect(engine.aberrationControl?.label).toBe(runtime.aberrationControl?.label);
     expect(engine.surfaces.map((surface) => surface.label)).toEqual(runtime.S.map((surface) => surface.label));
   });
@@ -355,7 +356,7 @@ describe("canonical compiler ownership", () => {
       const runtime = runtimeView(compiled);
       expect(Object.isFrozen(runtime)).toBe(true);
       expect(runtimeView(compiled)).toBe(runtime);
-      expect(engineLensFromRuntime(runtime)).toBe(compiled);
+      expect(compiledLensFromRuntime(runtime)).toBe(compiled);
       expect(compileLensData(data)).toBe(compiled);
       expect(compute).toHaveBeenCalledTimes(1);
       expect(resolve).toHaveBeenCalledTimes(calls);
@@ -409,7 +410,7 @@ describe("canonical compiler ownership", () => {
 
   it("never compiles an unregistered RuntimeLens view", () => {
     const runtime = buildLens(teleconverterHostData());
-    expect(() => engineLensFromRuntime({ ...runtime })).toThrow(
+    expect(() => compiledLensFromRuntime({ ...runtime })).toThrow(
       "RuntimeLens was not constructed by the canonical compiler",
     );
   });
@@ -431,7 +432,7 @@ describe("canonical compiler ownership", () => {
     const lookup = vi.spyOn(glassCatalog, "resolveCompatibleGlass");
     try {
       const runtime = buildLens(view);
-      const compiled = engineLensFromRuntime(runtime);
+      const compiled = compiledLensFromRuntime(runtime);
       const mediumCount = new Set(runtime.S.filter((s) => s.nd !== 1).map((s) => s.elemId || `index:${s.nd}`)).size;
       const nonAirCalls = () => resolve.mock.calls.filter(([surface]) => surface.nd !== 1).length;
       expect(compile).toHaveBeenCalledTimes(1);

@@ -1,22 +1,9 @@
 import type { LayoutResult, RuntimeLens } from "../../types/optics.js";
-import type { CompiledLens, PreparedOpticalState } from "../types.js";
+import type { PreparedOpticalState } from "../types.js";
 import { compiledLensFromRuntime } from "../prescription/compile.js";
 import { layoutFromPrepared } from "./layout.js";
 import { eflAtZoom, epAtZoom, fopenAtZoom, clampStationControl } from "./stationTables.js";
 import { prepareState } from "./preparedGeometry.js";
-
-/**
- * Retrieve the compiled owner of a RuntimeLens.
- *
- * The association is lookup-only; callers must not mutate a RuntimeLens in
- * place because prepared-state caches assume a fresh object for changed optics.
- *
- * @param L - runtime lens object returned by buildLens
- * @returns normalized engine lens used by prepared-state modules
- */
-export function engineLensFromRuntime(L: RuntimeLens): CompiledLens {
-  return compiledLensFromRuntime(L);
-}
 
 /**
  * Compile current focus/zoom/aberration state for a RuntimeLens.
@@ -33,7 +20,7 @@ export function prepareRuntimeState(
   zoomT: number,
   aberrationT = 0,
 ): PreparedOpticalState {
-  return prepareState(engineLensFromRuntime(L), focusT, zoomT, aberrationT);
+  return prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT);
 }
 
 /**

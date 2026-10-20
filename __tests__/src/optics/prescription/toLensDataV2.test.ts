@@ -1,7 +1,7 @@
 /**
  * The V2 view and source paths: where ingest records it read each value when asked, how the V2 view writes a
  * canonical prescription and records what it wrote, how the two compose into the relations the converter carries
- * comments and literal text by, and how two prescriptions compare under the semantic fingerprint's rules.
+ * comments and literal text by, and how two prescriptions compare under canonical semantic equality.
  */
 
 import { describe, expect, it } from "vitest";

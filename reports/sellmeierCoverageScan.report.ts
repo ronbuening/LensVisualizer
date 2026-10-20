@@ -3,7 +3,7 @@
  *
  * Walks every lens in the catalog and reports how completely each lens is
  * backed by strict catalog Sellmeier data. This uses the same safety net as
- * src/optics/dispersion.ts: a glass annotation must resolve to a catalog entry
+ * src/optics/chromatic/materialResolver.ts: a glass annotation must resolve to a catalog entry
  * and the catalog coordinates must agree with the authored d- or e-line pair.
  *
  * Runs only via `npm run generate:reports`, never in `npm test`; its job is to emit an authoring report.

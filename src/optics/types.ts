@@ -324,12 +324,12 @@ export interface PreparedGeometry {
   cacheKey: string;
 }
 
-/** Compatibility name for analyses awaiting their prepared-geometry request migration. */
+/** Optical state is the immutable prepared geometry for one control tuple. */
 export type PreparedOpticalState = PreparedGeometry;
 
 /** Reason a prepared state could not be constructed. */
 export type PreparationFailureReason = "invalid-control" | "invalid-thickness";
 
-export { Optics2PreparationError } from "./state/preparationError.js";
+export { OpticsPreparationError } from "./state/preparationError.js";
 
 export type { CanonicalLens, CanonicalTeleconverter, IngestedPrescription } from "./prescription/canonical.js";

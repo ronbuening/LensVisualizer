@@ -255,7 +255,7 @@ not independent spectrometric measurements.
 11. [CDGM official downloads](https://www.cdgmgd.com/go.htm?k=ge_lei_xia_zai&url=downList), AGF header updated September 2026.
 
 12. [Pinned application aperture convention](https://github.com/ronbuening/LensVisualizer/blob/53470da5a5cbda1807d1e523fbc71963e5a1adc7/src/optics/runtimeLens.ts#L617-L671), read as implementation reference; not executed runtime validation.
-13. [Pinned application normal-line definition](https://github.com/ronbuening/LensVisualizer/blob/53470da5a5cbda1807d1e523fbc71963e5a1adc7/src/optics/dispersion.ts#L63-L65).
+13. [Pinned application normal-line definition](https://github.com/ronbuening/LensVisualizer/blob/53470da5a5cbda1807d1e523fbc71963e5a1adc7/src/optics/chromatic/materialResolver.ts#L63-L65).
 
 Catalog access and comparison date: 2026-10-04. None of these catalog matches establishes a
 production supplier or melt identity.

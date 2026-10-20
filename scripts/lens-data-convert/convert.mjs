@@ -14,7 +14,7 @@
  * 5. checks the bytes it would write: every number token where the printer put it; every comment of the source once,
  *    header included, as written or with its moved-from note; every comment on the node and in the placement the
  *    placer gave it, as the printed text reads and as formatting leaves it, so a second conversion carries it nowhere
- *    else; and an ingest of the result equal to the source's prescription under the fingerprint's rules.
+ *    else; and an ingest of the result equal to the source's prescription under canonical semantic equality.
  *
  * The file around the object keeps its shape: everything before the statement that declares the exported const is
  * kept byte for byte, except the type import, which names the target version's type (`types/lensDataV2.js`; going

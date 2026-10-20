@@ -173,8 +173,7 @@ describe("accessor guards", () => {
   });
 
   it("fopenAtZoom handles single-entry zoom arrays and non-finite zoomT defensively", () => {
-    // fopenAtZoom routes through the prepared-state interpolator in compat.ts
-    // (interpolateZoomArray2), so its defensive branches are pinned here.
+    // Pin station interpolation for single-entry tables and non-finite controls.
     const single = makeZoomLens({ zoomFOPENs: [4] });
     expect(fopenAtZoom(0, single)).toBe(4);
     expect(fopenAtZoom(0.7, single)).toBe(4);

@@ -73,8 +73,6 @@ export interface BenchmarkStats extends NumericSummary {
   heapDeltaBytes?: NumericSummary;
   /** Every measured duration in run order, warmups excluded; retained for session records. */
   samplesMs?: number[];
-  /** Every measured heap delta, in the same order as the durations. */
-  heapDeltaSamplesBytes?: number[];
 }
 
 /** Small serializable facts about what one call of a case completed. */
@@ -93,7 +91,7 @@ export interface BenchmarkEntry {
   output?: BenchmarkFacts;
   /**
    * What the case completed, from the untimed pass: for each result the case marked, the place of that result's
-   * tallies in the record's `workTallies`. `completedWorkOf` reads them. Written to records under `sessions/` only.
+   * tallies in the record's `workTallies`. Written to records under `sessions/` only.
    */
   work?: number[];
 }
@@ -162,12 +160,12 @@ export interface MemorySessionReport {
   retainedGrowthBytes: number;
 }
 
-/** Memory sessions of a `--memory` run, each from its own process. */
+/** The memory session of a `--memory` run, measured in a fresh child process. */
 export interface BenchmarkMemoryReport {
   head: MemorySessionReport;
 }
 
-/** What one side's untimed pass found for one case. */
+/** What the run's untimed pass found for one case. */
 export interface UntimedCaseResult {
   /** The tallies of each result the case marked, one set per label. Absent when the case threw. */
   work?: Record<string, number>[];
@@ -175,7 +173,7 @@ export interface UntimedCaseResult {
   message?: string;
 }
 
-/** One side's untimed pass: every case called once, for its completed work. */
+/** The run's untimed pass: every case called once, for its completed work. */
 export interface UntimedBenchmarkPass {
   cases: Record<string, UntimedCaseResult>;
 }
@@ -263,8 +261,8 @@ export interface BenchmarkCaseRef {
   entry: BenchmarkEntry;
 }
 
-/** The measured entries of one side: a whole record, or a subset record. */
-type BenchmarkSideResults = Pick<BenchmarkRunRecord, "results" | "aberrationPanels">;
+/** The measured entries of one run: a whole record, or a subset record. */
+type BenchmarkResults = Pick<BenchmarkRunRecord, "results" | "aberrationPanels">;
 
 /** Flattened successful category timing used to find per-category slowest cases. */
 interface CategoryPoint {
@@ -539,33 +537,17 @@ function bump(into: Record<string, number>, fact: string, by: number): void {
   into[fact] = (into[fact] ?? 0) + by;
 }
 
-/**
- * The tallies of everything one case completed: those of each result it marked, read from the record's
- * `workTallies` and put together.
- *
- * @param record - the record the entry belongs to, on either side
- * @param entry - a case's entry
- * @returns the case's tallies by fact; undefined for an entry the untimed pass tallied nothing for
- */
-export function completedWorkOf(
-  record: Pick<BenchmarkRunRecord, "workTallies">,
-  entry: BenchmarkEntry,
-): Record<string, number> | undefined {
-  if (!entry.work) return undefined;
-  return Object.assign({}, ...entry.work.map((place) => record.workTallies?.[place]));
-}
-
 /* ── Records ── */
 
 /**
- * List the cases of one side in the order the benchmark runs them, each with the id its entry is labelled with.
+ * List the cases of one run in the order the benchmark runs them, each with the id its entry is labelled with.
  *
- * @param side - a record, or a subset record
+ * @param record - a record, or a subset record
  * @returns every entry, skipped and failed ones included
  */
-export function listBenchmarkCases(side: BenchmarkSideResults): BenchmarkCaseRef[] {
+export function listBenchmarkCases(record: BenchmarkResults): BenchmarkCaseRef[] {
   const cases: BenchmarkCaseRef[] = [];
-  for (const [lensKey, byScenario] of Object.entries(side.results)) {
+  for (const [lensKey, byScenario] of Object.entries(record.results)) {
     for (const [scenarioId, scenario] of Object.entries(byScenario)) {
       const add = (category: string, label: string, entry: BenchmarkEntry | undefined): void => {
         if (entry) cases.push({ id: `${lensKey}:${scenarioId}:${label}`, lensKey, scenarioId, category, entry });
@@ -577,7 +559,7 @@ export function listBenchmarkCases(side: BenchmarkSideResults): BenchmarkCaseRef
           add(`analysis.${job}`, `analysis.${job}`, scenario.analysisBreakdown?.[job]);
         }
       }
-      const panels = side.aberrationPanels[lensKey]?.[scenarioId];
+      const panels = record.aberrationPanels[lensKey]?.[scenarioId];
       for (const group of ["data", "render"] as const) {
         for (const [name, entry] of Object.entries(panels?.[group] ?? {})) {
           add(`${group}.${name}`, `aberrationPanels:${group}.${name}`, entry);
@@ -589,20 +571,20 @@ export function listBenchmarkCases(side: BenchmarkSideResults): BenchmarkCaseRef
 }
 
 /**
- * Put one side's untimed pass on that side's entries.
+ * Put the run's untimed pass on the record's entries.
  *
- * @param side - the measured record
+ * @param record - the measured record
  * @param pass - what the untimed pass found, by case id
  * @param place - puts a result's tallies in the record's `workTallies` and returns where
  * @returns a warning for each case that threw in the untimed pass
  */
 function attachUntimedPass(
-  side: BenchmarkSideResults,
+  record: BenchmarkResults,
   pass: UntimedBenchmarkPass,
   place: (tallies: Record<string, number>) => number,
 ): string[] {
   const thrown: string[] = [];
-  for (const { id, entry } of listBenchmarkCases(side)) {
+  for (const { id, entry } of listBenchmarkCases(record)) {
     const found = pass.cases[id];
     if (!found) continue;
     if (found.work) entry.work = found.work.map(place);
@@ -631,7 +613,7 @@ export function finishBenchmarkRecord(record: BenchmarkRunRecord, pass: UntimedB
     return workTallies.push(tallies) - 1;
   };
   for (const message of attachUntimedPass(record, pass, place)) {
-    record.warnings.push(`Untimed pass threw on the head: ${message}`);
+    record.warnings.push(`Untimed pass threw: ${message}`);
   }
   record.workTallies = workTallies;
 }
@@ -810,7 +792,7 @@ function appendSkipAndWarningSummary(lines: string[], latest: BenchmarkRunRecord
 }
 
 /** Collects successful main-category medians from all lens/scenario cells in one record. */
-function collectMainCategoryPoints(record: BenchmarkSideResults, category: MainBenchmarkCategory): CategoryPoint[] {
+function collectMainCategoryPoints(record: BenchmarkResults, category: MainBenchmarkCategory): CategoryPoint[] {
   const points: CategoryPoint[] = [];
   for (const [lensKey, byScenario] of Object.entries(record.results)) {
     for (const [scenarioId, scenario] of Object.entries(byScenario)) {
@@ -824,10 +806,7 @@ function collectMainCategoryPoints(record: BenchmarkSideResults, category: MainB
 }
 
 /** Collects successful analysis-breakdown medians from all lens/scenario cells in one record. */
-function collectAnalysisCategoryPoints(
-  record: BenchmarkSideResults,
-  category: AnalysisBenchmarkCategory,
-): CategoryPoint[] {
+function collectAnalysisCategoryPoints(record: BenchmarkResults, category: AnalysisBenchmarkCategory): CategoryPoint[] {
   const points: CategoryPoint[] = [];
   for (const [lensKey, byScenario] of Object.entries(record.results)) {
     for (const [scenarioId, scenario] of Object.entries(byScenario)) {
@@ -862,7 +841,7 @@ function mainSummaryMedian(record: BenchmarkRunRecord, category: MainBenchmarkCa
 }
 
 /** Collects successful aberration data/render medians for a `data.*` or `render.*` category name. */
-function collectAberrationCategoryPoints(record: BenchmarkSideResults, category: string): CategoryPoint[] {
+function collectAberrationCategoryPoints(record: BenchmarkResults, category: string): CategoryPoint[] {
   const points: CategoryPoint[] = [];
   const [group, id] = splitAberrationCategory(category);
   if (!group || !id) return points;
@@ -879,7 +858,7 @@ function collectAberrationCategoryPoints(record: BenchmarkSideResults, category:
 }
 
 /** Returns all aberration data/render category names observed in one record. */
-function collectAberrationCategoryNames(record: BenchmarkSideResults): string[] {
+function collectAberrationCategoryNames(record: BenchmarkResults): string[] {
   const names = new Set<string>();
   for (const byScenario of Object.values(record.aberrationPanels)) {
     for (const scenario of Object.values(byScenario)) {

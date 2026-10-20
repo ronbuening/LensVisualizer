@@ -4,7 +4,7 @@
  * Each row names the canonical field, the V1 field it comes from, the value, how V1 applies it, and the code that
  * reads the field, so the row can be checked against its reader. Ingest fills an omitted field from its row and
  * records the canonical path in `CanonicalProvenance.defaulted`; a default written out and a default left out
- * therefore ingest to the same prescription and share a semantic fingerprint.
+ * therefore ingest to the same prescription and compare equal canonically.
  *
  * V1 applies defaults two ways, and the V1 view (`toLensData.ts`) reproduces both:
  * - `catalog`: the V1 catalog spread them under every lens file, so the engine always sees a value. The view's merged

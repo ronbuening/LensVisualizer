@@ -155,7 +155,9 @@ describe("doc drift guards", () => {
     const excludedBasenames = [
       "changelogData.ts",
       "glassCatalogData.ts",
-      ...readdirSync(join(repoRoot, "src", "optics", "glassCatalogEntries")).filter((name) => name.endsWith(".ts")),
+      ...readdirSync(join(repoRoot, "src", "optics", "chromatic", "glassCatalogEntries")).filter((name) =>
+        name.endsWith(".ts"),
+      ),
     ];
 
     for (const basename of excludedBasenames) {

@@ -14,7 +14,6 @@ export { stateWithZ } from "./state/preparedGeometry.js";
 export {
   doLayoutForRuntimeLens,
   eflAtZoomClamped,
-  engineLensFromRuntime,
   epAtZoomClamped,
   fopenAtZoomClamped,
   prepareRuntimeState,

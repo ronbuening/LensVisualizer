@@ -1,7 +1,15 @@
 import { describe, expect, it, vi } from "vitest";
-import { BENCHMARK_SCHEMA_VERSION, listBenchmarkCases } from "../../../src/benchmarks/benchmarkReport.js";
+import {
+  BENCHMARK_SCHEMA_VERSION,
+  listBenchmarkCases,
+  finishBenchmarkRecord,
+  serializeBenchmarkRecord,
+  formatSessionRunFileName,
+  buildSessionSummary,
+} from "../../../src/benchmarks/benchmarkReport.js";
 import {
   BENCHMARK_SCENARIOS,
+  BEST_FOCUS_PROFILE_FRACTIONS,
   DEFAULT_BENCHMARK_LENS_KEYS,
   HEAVY_BENCHMARK_CELLS,
   computeBenchmarkScenarioAnalysisWork,
@@ -10,6 +18,7 @@ import {
   createMemoryBenchmarkRecord,
   prepareBenchmarkLens,
   runMemorySession,
+  sampleCell,
   runOpticsRenderingBenchmark,
   runUntimedBenchmarkPass,
   validateBenchmarkCells,
@@ -52,6 +61,8 @@ vi.mock("../../../src/optics/analysis/analysisJobs.js", async (importOriginal) =
     },
   };
 });
+
+import { PROFILE_FRACS } from "../../../src/optics/analysis/aberration/shared.js";
 
 const NIKON_PC_19 = "nikon-pc-nikkor-19mm-f4e-ed";
 const CANON_TSE_50 = "canon-tse-50f28l-macro";
@@ -220,6 +231,56 @@ describe("optics rendering benchmark heavy set", () => {
 });
 
 describe("optics rendering benchmark records", () => {
+  it("continues sampling after a case throws", () => {
+    const cell = prepareBenchmarkLens(SERENAR).prepareCell("default");
+    const later = vi.fn(() => ({ fixtureCount: 1 }));
+    cell.cases = cell.cases.slice(0, 2);
+    cell.cases[0].run = () => {
+      throw new Error("fixture failure");
+    };
+    cell.cases[1].run = later;
+    sampleCell(cell, { warmups: 0, iterations: 2, keepSamples: true });
+    expect(cell.cases[0].entry).toEqual({ status: "error", message: "fixture failure" });
+    expect(later).toHaveBeenCalledTimes(2);
+    expect(cell.cases[1].entry.stats?.samplesMs).toHaveLength(2);
+  });
+  it("retains single-commit session samples, deduplicated work and serialization", async () => {
+    const cells = [{ lensKey: SERENAR, scenarioId: "default" }];
+    const record = await runOpticsRenderingBenchmark({
+      ...METADATA,
+      cells,
+      iterations: 2,
+      warmups: 0,
+      keepSamples: true,
+    });
+    const pass = await runUntimedBenchmarkPass({ cells });
+    finishBenchmarkRecord(record, pass);
+    expect(BEST_FOCUS_PROFILE_FRACTIONS).toEqual(PROFILE_FRACS);
+    const entries = listBenchmarkCases(record).filter(({ entry }) => entry.status === "ok");
+    expect(entries.length).toBeGreaterThan(0);
+    for (const { entry } of entries) {
+      expect(entry.stats?.samplesMs).toHaveLength(2);
+      expect(entry.stats).not.toHaveProperty("heapDeltaSamplesBytes");
+      if (entry.work) for (const ref of entry.work) expect(record.workTallies?.[ref]).toBeDefined();
+    }
+    const focus = record.results[SERENAR].default.analysisBreakdown!.bestFocus!;
+    expect(focus.work?.length).toBeGreaterThan(0);
+    const tallies = Object.assign({}, ...focus.work!.map((ref) => record.workTallies![ref]));
+    expect((tallies["bestFocusRay.clipped=true"] ?? 0) + (tallies["bestFocusRay.clipped=false"] ?? 0)).toBe(
+      2 * BEST_FOCUS_PROFILE_FRACTIONS.length,
+    );
+    const encoded = record.workTallies!.map((tally) => JSON.stringify(tally));
+    expect(new Set(encoded).size).toBe(encoded.length);
+    expect(JSON.parse(serializeBenchmarkRecord(record))).toEqual(record);
+    expect(formatSessionRunFileName(record)).toBe("2026-10-12T08-00-00Z-ffffffff-custom.json");
+    expect(buildSessionSummary(record)).toContain("2 measured after 0 warmups");
+    expect(buildSessionSummary(record)).toContain(`${SERENAR}:default:analysis`);
+
+    const failedId = entries[0].id;
+    finishBenchmarkRecord(record, { cases: { ...pass.cases, [failedId]: { message: "fixture failure" } } });
+    expect(record.warnings).toContain(`Untimed pass threw: ${failedId}: fixture failure`);
+    expect(record.results[SERENAR].default.analysisBreakdown!.bestFocus!.work?.length).toBeGreaterThan(0);
+  });
   it("keeps a plain run's record in its shape, apart from the schema version", { timeout: 120_000 }, async () => {
     const record = await runOpticsRenderingBenchmark({ ...METADATA, lensKeys: [SERENAR], iterations: 1, warmups: 0 });
 
@@ -373,5 +434,9 @@ describe("optics rendering benchmark records", () => {
     });
     expect(record.memory).not.toHaveProperty("base");
     expect(record.memory?.head.retainedGrowthBytes).toBe(21 * megabyte);
+    expect(JSON.parse(serializeBenchmarkRecord(record))).toEqual(record);
+    expect(formatSessionRunFileName(record)).toBe("2026-10-12T08-00-00Z-ffffffff-heavy-memory.json");
+    expect(buildSessionSummary(record)).toContain("1 lenses, 3 cycles of 9 lens states");
+    expect(buildSessionSummary(record)).toContain("Growth: 21.00 MB");
   });
 });

@@ -24,7 +24,7 @@ proprietary glass lives in [proprietary-glass-backfill.md](proprietary-glass-bac
 - Pending — actionable relabels (single catalog candidate, νd matches): **none remain.**
 - Pending — patent verification needed (no candidate within tolerance): **none remain.**
 - Read live counts (catalog size, mismatch rows, Sellmeier coverage) from the generated reports and `catalogSize()`
-  in `src/optics/glassCatalogData.ts`; figures hand-copied into this file went stale before.
+  in `src/optics/chromatic/glassCatalogData.ts`; figures hand-copied into this file went stale before.
 
 ## Open items
 
@@ -69,7 +69,7 @@ Relabeled to catalog equivalents (production supplier unspecified unless the pat
 - Six-digit families (2026-07 to 2026-08): `797454` → J-LASF017; `773497` → N-LAF34; `672472` → N-BAF10; `670571` / `670576` → S-LAL52; `796409` → NBFD2; `834373` / `834374` → NBFD10 and 1.83441 / 37.28 → M-NBFD10; `515546` → KF3; `518603` → BALK3; `561453` → LLF4; `586609` → K-SKLD5(M); `547460` → E-FEL1; `569632` → BAL22; `498650` → BSL3; `519573` → J-K3; `805255` → J-SF6; `757316` → E-LAF11.
 - Single-lens relabels (2026-07 to 2026-08): Laowa 15 L7b → N-LASF44; Canon RF 20 G4 → N-LAK33B; Laowa 58 L4 → TAC8; Laowa 24 Probe L1/L25 → TAFD5F; Serenar 28 L3, Zeiss Tessar 50, Olympus 85-250 F8-class → E-F8; Serenar SK18 → K-SK18; Canon EF 11-24 E2/E3 → S-BAL42 / M-TAFD305; Sony FE 24-70 GM II `770494` → MC-TAF101-100; Olympus Macro 90 `744447` → S-LAM2; Canon EF-M 32 L5 → FCD515; Panasonic S Pro 50 L1 → E-FDS1; Sigma APO Macro 180 L11 → N-BK7; Panasonic S PRO 16-35 L12 → K-LaSFn23.
 - Canon RF 50mm `666356` uses CDGM H-ZBaF4 as the baseline curve with the patent `dPgF` authoritative at g; Fujifilm GF 20-35 carries patent `dPgF` on all 14 rows (2026-08).
-- Vendor rows added 2026-07 to 2026-08 from first-party sources (Hikari J-*, HOYA legacy/obsolete, OHARA L-LAH* and discontinued AGF rows, SUMITA discontinued-inclusive, CDGM, Schott K10 / P-LASF47) live in `src/optics/glassCatalogEntries/`; check there before re-transcribing.
+- Vendor rows added 2026-07 to 2026-08 from first-party sources (Hikari J-*, HOYA legacy/obsolete, OHARA L-LAH* and discontinued AGF rows, SUMITA discontinued-inclusive, CDGM, Schott K10 / P-LASF47) live in `src/optics/chromatic/glassCatalogEntries/`; check there before re-transcribing.
 
 Explicitly unmatched after source review (a new source is needed, not another catalog pass):
 

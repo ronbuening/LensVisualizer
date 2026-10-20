@@ -37,7 +37,7 @@ import {
   teleconverterCompatibility as fitTeleconverter,
 } from "./teleconverterCompatibility.js";
 
-/** Composition descriptors live beside canonical prescriptions, outside their semantic fingerprint. */
+/** Composition descriptors live beside canonical prescriptions, outside their semantic content. */
 export function teleconverterCompatibility(
   host: Parameters<typeof fitTeleconverter>[0],
   tc: Parameters<typeof fitTeleconverter>[1],

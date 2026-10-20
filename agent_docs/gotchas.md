@@ -9,8 +9,9 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
 - Rebuilding the same canonical identity reuses its compiled/runtime owners. Mutating a runtime or a supplied z array
   invalidates identity-based assumptions; create new inputs instead. Prepared geometry and request cache keys and
   bounds are in `architecture/optics-engine.md` (Prepared Geometry; Cache Ownership And Architecture Guards).
-- App ingest accepts only V2. Archived V1 files must go through the permanent converter; the organizer converts on
-  arrival, while metadata generation refuses them without writing (`workflow.md`, lens-data conversion).
+- Archived V1 files are refused by app ingest; use [`workflow.md`, Adding Archived V1 Files](workflow.md#adding-archived-v1-files).
+- Weak ownership alone does not bound a live owner's cache. Register a finite working set and preserve pure
+  recomputation on eviction (`architecture/optics-engine.md`, Cache Ownership And Architecture Guards).
 - A prepared geometry does not include stop-down. Build a new analysis request when physical aperture or sampling
   changes; otherwise a lazy context may legitimately return the previous result (`architecture/optics-engine.md`,
   Analysis Requests, Context and Jobs).
@@ -71,7 +72,8 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
   analysis never shows for a new lens.
 - The drawer stays open across `SET_OPTICAL_CONFIGURATION` and `SET_TELECONVERTER`, which replace `L` without a
   remount. `AnalysisDrawerContent` defers `L` in the same snapshot as its slider inputs and perspective context; a
-  live `L` beside deferred inputs throws in `createAnalysisComputationContext` for one render.
+  prepared-state/perspective-context mismatch throws in `createAnalysisRequest`; see `architecture/optics-engine.md`
+  (Analysis Requests, Context and Jobs).
 - `AsphericComparisonOverlay` is an `OverlayModal` opened from `ElementInspector`, not a drawer tab; its open state in
   `useOverlayState.ts` is the only overlay outside the URL-shareable `panels` slice
   (`agent_docs/architecture/viewer-and-diagram.md`).

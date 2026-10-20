@@ -373,21 +373,46 @@ model is intentionally the scope until exhausted.
 
 ---
 
+## Open Source And Validation Work
+
+### Promote source-consistency validators after exceptions are resolved
+
+- [ ] Move the nominal f-number and fixed-iris rules only after their exception lists are empty.
+- **Files to touch** — **modified**: `__tests__/src/lens-data/patentMetadata.test.ts`,
+  `__tests__/src/lens-data/zoomApertureModel.test.ts`, `src/optics/prescription/validate/`,
+  `src/optics/first-order/lensConstants.ts`, `agent_docs/sd-audit-queue.md`.
+- **Reference to mimic** — the nominal-versus-design check in `patentMetadata.test.ts` and
+  `FIXED_IRIS_OFF_STATED` in `zoomApertureModel.test.ts`.
+- **Data-type contract** — canonical validation reads `CanonicalLens`; traced station constants are built in
+  `first-order/lensConstants.ts`. Preserve the existing rules' numeric thresholds and diagnostic meaning.
+- **Steps** — (1) Resolve the exception queues in `sd-audit-queue.md` Sections H/I from source evidence;
+  (2) move the nominal rule into canonical validation and the fixed-iris rule into station construction;
+  (3) replace corpus rule copies with focused synthetic regressions.
+- **Gotchas** — `agent_docs/gotchas.md`, "Station nominalFNumber": scalar and station authority must stay distinct.
+- **Verification** — exception lists are empty, existing catalog verdicts do not change, and the standard
+  typecheck/format/lint/test gate plus `npm run build` passes.
+- **Out of scope** — moving cross-file spelling, source-path or configuration-parity rules out of corpus tests.
+- **Rollback** — revert the rule move; retain independently reviewed source corrections.
+
+### Audit authored element focal lengths
+
+- [ ] Review the authored values before deciding whether the inspector should derive in-air thick-lens values.
+- **Files to touch** — **modified**, only after review: `src/lens-data/**/*.data.ts`,
+  `src/components/display/ElementInspector.tsx`, `reports/elementFocalLengths.report.ts`.
+- **Reference to mimic** — `agent_docs/generated/element-focal-lengths.generated.md` is the source-review work list;
+  `reports/elementFocalLengths.report.ts` computes the comparison values.
+- **Data-type contract** — authored `elements[].focalLengthMm` in `LensDataV2Input` is source metadata;
+  an in-air thick-lens value is a derived estimate, not a production measurement.
+- **Steps** — (1) Audit the report against sources; (2) decide display authority and whether a later bulk edit
+  changes page modified dates; (3) implement only the approved display/data change.
+- **Gotchas** — `agent_docs/gotchas.md`, "report generators": regenerate the report instead of hand-editing it.
+- **Verification** — `npm run generate:reports -- elementFocalLengths`, reviewed source evidence per changed value,
+  standard typecheck/format/lint/test gate and `npm run build`; visible changes include a changelog entry.
+- **Out of scope** — changing curated `specs`, element `type`, cemented tags or `subtitle`. The report does not
+  authorize display or source-data changes.
+- **Rollback** — revert the approved implementation; retain source audit evidence in existing lens sidecars.
+
 ## Blocked On New Data — Do Not Attempt Without Schema/Data Work
-
-### Other data and validation boundaries
-
-- [ ] Once their shrink-only exception lists are empty, promote the single-lens nominal-versus-design f-number rule
-  from `patentMetadata.test.ts` into canonical validation, and the fixed-iris station consistency rule from
-  `zoomApertureModel.test.ts` into construction where traced station constants exist. Keep cross-file spelling,
-  source-path and configuration-parity rules in corpus tests. Do not change catalog verdicts while moving a rule.
-
-- [ ] Audit authored element focal lengths using `agent_docs/generated/element-focal-lengths.generated.md` as the
-  work list. Only after source review decide whether the inspector should derive thick-lens in-air values and remove
-  authored `elements[].focalLengthMm`. Resolve whether that later bulk edit changes page modified dates before
-  implementing it. Keep curated `specs`, element `type`, cemented tags and `subtitle` authored. The report is evidence,
-  not approval to change display values or source data; any visible change needs a changelog entry.
-
 
 Carried from the analysis roadmap so nobody re-proposes them as "quick":
 

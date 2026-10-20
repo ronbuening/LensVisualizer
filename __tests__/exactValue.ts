@@ -1,4 +1,9 @@
-/** Stable test projection that retains non-finite numbers, signed zero and maps. */
+/**
+ * JSON test projection with insertion-ordered keys and tagged special values.
+ *
+ * @param value - value to encode; ordinary JSON omission rules apply to undefined
+ * @returns JSON text retaining signed zero, non-finite numbers, Maps and Sets
+ */
 export function exactValue(value: unknown): string {
   return JSON.stringify(value, (_key, member: unknown) => {
     if (typeof member === "number") {

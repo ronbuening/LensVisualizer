@@ -61,6 +61,6 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `benchmarkReport.ts` | Benchmark Report helper module | none | same folder | BENCHMARK_SCHEMA_VERSION, DEFAULT_BENCHMARK_ITERATIONS, BenchmarkStatus, MainBenchmarkCategory, LegacyMainBenchmarkCategory, AnalysisBenchmarkCategory, BenchmarkScenarioConfigSnapshot, NumericSummary, +31 more |
+| `benchmarkReport.ts` | Benchmark Report helper module | none | same folder | BENCHMARK_SCHEMA_VERSION, DEFAULT_BENCHMARK_ITERATIONS, BenchmarkStatus, MainBenchmarkCategory, LegacyMainBenchmarkCategory, AnalysisBenchmarkCategory, BenchmarkScenarioConfigSnapshot, NumericSummary, +30 more |
 | `mtfCases.ts` | Mtf Cases helper module | none | none | MTF_BENCHMARK_CASES, MTF_BENCHMARK_GRIDS, MTF_FINITE_BENCHMARK_CASE |
 | `opticsRenderingBenchmark.tsx` | React component module | src/components/display (8), src/optics/analysis.ts (5), src/components/hooks (4), src/optics/perspective.ts (4), src/optics/optics.ts (3), +13 more | none | buildBenchmarkReport, buildSessionSummary, finishBenchmarkRecord, formatSessionRunFileName, formatRunFileName, serializeBenchmarkRecord, DEFAULT_BENCHMARK_LENS_KEYS, BENCHMARK_SCENARIOS, +20 more |

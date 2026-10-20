@@ -133,7 +133,7 @@ function scan(file: string, text?: string): { references: Reference[]; problems:
             const body = node.initializer!;
             if (
               (ts.isArrowFunction(body) || ts.isFunctionExpression(body)) &&
-              /^import\(pathToFileURL\(join\((ROOT|root), \w+\)\)\.href\)$/.test(body.body.getText(source))
+              /^import\(pathToFileURL\(join\(ROOT, \w+\)\)\.href\)$/.test(body.body.getText(source))
             )
               loaderBodies.add(body.body);
             else problems.push(`${file}: unsupported loader helper ${node.name.getText(source)}`);
@@ -150,8 +150,6 @@ function scan(file: string, text?: string): { references: Reference[]; problems:
     if (node.getText(source) === "import.meta.url") return join(ROOT, file);
     if (node.getText(source) === "process.cwd()") return ROOT;
     if (ts.isIdentifier(node)) {
-      // Paired tools receive a checkout root; validate the head's entry, not an unavailable old worktree.
-      if (node.text === "root") return ROOT;
       if (seen.has(node.text)) return undefined;
       const initializer = initializers.get(node.text);
       return initializer ? value(initializer, new Set([...seen, node.text])) : undefined;

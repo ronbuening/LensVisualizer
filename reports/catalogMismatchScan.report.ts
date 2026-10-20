@@ -5,7 +5,7 @@
  * `glass` string resolves to a known catalog entry but its published (nd, νd)
  * or (ne, νe)
  * coordinates disagree with the authored prescription beyond the safety-net
- * tolerances used in src/optics/dispersion.ts. These mismatches
+ * tolerances used in src/optics/chromatic/materialResolver.ts. These mismatches
  * indicate either:
  *
  *   (a) a speculative glass identification in the lens data that turned out to
@@ -147,7 +147,7 @@ describe("catalog-mismatch scan", () => {
     lines.push("D-line rows compare C/d/F coordinates; native e-line rows compare C′/e/F′ coordinates.");
     lines.push("");
     lines.push(
-      "These are rejected by the safety net in [src/optics/dispersion.ts](../../src/optics/dispersion.ts) — the",
+      "These are rejected by the safety net in [src/optics/chromatic/materialResolver.ts](../../src/optics/chromatic/materialResolver.ts) — the",
     );
     lines.push("dispersion cascade falls through to Abbe rather than trust a misidentified glass label. This");
     lines.push("report exists so the team can decide per-case whether to relabel the glass, update the stored `nd`,");

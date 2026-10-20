@@ -112,7 +112,7 @@ host's stop, so a clipped beam would otherwise report an f-number the system can
 
 ## Validation
 
-`validateTeleconverterData()` in `src/optics/validateTeleconverterData.ts` checks:
+`validateTeleconverterData()` in `src/optics/prescription/validate/teleconverter.ts` checks:
 
 1. Identity and fit fields: `key` pattern, `magnification` > 1, known unique `catalog.lensMounts`, the optional fit
    fields, and a positive `masterImageDistanceMm`.

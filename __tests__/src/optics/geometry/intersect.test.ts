@@ -492,8 +492,8 @@ describe("conic-seeded asphere solve", () => {
   };
 
   /**
-   * A seeded hit: the route's own point, at the raw target, within half a hit's budget and half a direction
-   * cosine's of the iterative path's point, for the evaluations given.
+   * A seeded hit: the route's own point, at the raw target, within half the hit and unit-normal reference
+   * tolerances of the iterative path's point (optics-engine.md, Exact Surface Trace), for the evaluations given.
    */
   const expectSeeded = (input: Solve, cost: { seeded: number; iterative: number }) => {
     const { route, result, evaluations, iterative, iterativeEvaluations } = solveBothWays(input);
@@ -953,7 +953,7 @@ describe("conic-seeded asphere solve", () => {
        * iterative path's 4e-16 mm outside, where the normal of a 1 µm sphere leans by 1e-9. */
       const result = expectIterative(onAxisStep(0.001), "axisNormal", { iterative: 2, spent: 1 });
       expect(result.ok && result.normal[0]).toBeCloseTo(-1.0004e-9, 13);
-      // On a base radius of 5 µm the step is 2e-10, still over half a direction cosine's budget.
+      // On a base radius of 5 µm the step is 2e-10, still over half the unit-normal reference tolerance.
       expectIterative(onAxisStep(0.005), "axisNormal", { spent: 1 });
     });
 
@@ -1143,7 +1143,7 @@ describe("conic-seeded asphere solve", () => {
       // A sphere of R = 2.5 with a small quartic term: the normal turns by up to 0.4 per mm at the vertex.
       const strong = asphereOn(2.5, { A4: 1e-3 });
 
-      it("is held to half a direction cosine's budget through the turn of the normal", () => {
+      it("is held to half the unit-normal reference tolerance through the turn of the normal", () => {
         const options = { maxT: 2, clearRadius: 1.4 };
         /* 56 degrees off the axis the slope bound leaves |f'| no less than 0.17: the two points lie within
          * 1.2e-11 mm, a fortieth of what a hit may move, over which the normal can turn by 9e-11. That is known
@@ -1473,10 +1473,9 @@ describe("a plane at zero gap behind a curved surface", () => {
     expect(plane.effectiveTolerance).toBe(1e-12);
   });
 
-  /* A boundary transition from the iterative path, declared in the step's pull request. It is held here so that a
-   * change to it is seen, not as a rule to keep. It needs a plane at zero gap behind a surface that is convex
+  /* A boundary transition from the iterative path, held so changes are noticed. It needs a plane at zero gap behind a surface that is convex
    * toward the ray, which overlaps it everywhere off the axis, and an oblique ray that meets them within 1e-4 mm
-   * of the axis; the differential tiers show no lens with it. */
+   * of the axis; no catalog lens has this geometry. */
   it("boundary transition: loses the plane where the iterative path had stopped on the vertex plane", () => {
     /* At this height the sag is 8.1e-13 mm, within the residual target but 1.01e-12 mm back along the ray. The
      * closed-form hit is on the surface, so the plane is behind it by more than its parametric slack and the

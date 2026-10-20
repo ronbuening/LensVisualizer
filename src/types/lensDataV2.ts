@@ -3,8 +3,8 @@
  *
  * V2 groups a file by consumer and authors every value the engine reads once. See
  * `src/lens-data/LENS_DATA_SPEC.md`: a surface names its medium instead of carrying `elemId`
- * and `nd`, a flat surface is `R: "flat"`, aspheres
- * are sparse and sit on their surface, every per-station fact lives on its zoom station, and variable gaps are keyed
+ * and `nd`. Flat surfaces use `R: "flat"`; sparse aspheres sit on their surface.
+ * Every per-station fact lives on its zoom station, and variable gaps are keyed
  * by surface label with one row of thicknesses per station. A field the schema defaults may be left out; ingest
  * (`src/optics/prescription/ingestV2.ts`) applies the default (`src/optics/prescription/defaults.ts`) and records it
  * in provenance.

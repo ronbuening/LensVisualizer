@@ -26,8 +26,8 @@ Coverage configuration lives in `vite.config.js` and includes:
 Most tests mirror the files they cover:
 
 - `src/components/display/analysis/AberrationsPanel.tsx` -> `__tests__/src/components/display/analysis/AberrationsPanel.test.tsx`
-- `src/optics/trace/geometry.ts` and traversal -> `__tests__/src/optics/trace/geometryTraversal.test.ts`, `productionTraceVector.test.ts`, `mirrorOptics.test.ts`
-- `src/optics/geometry/intersect.ts` -> `__tests__/src/optics/geometry/traversalIntersection.test.ts`, `intersectionContract.test.ts`, `intersectionFixtures.test.ts`
+- `src/optics/trace/geometry.ts` and traversal -> `__tests__/src/optics/trace/geometryTraversal.test.ts`, `__tests__/src/optics/productionTraceVector.test.ts`, `__tests__/src/optics/mirrorOptics.test.ts`
+- `src/optics/geometry/intersect.ts` -> `__tests__/src/optics/geometry/traversalIntersection.test.ts`, `__tests__/src/optics/intersectionContract.test.ts`, `__tests__/src/optics/intersectionFixtures.test.ts`
 - `src/pages/lensIndex/catalog.ts` -> `__tests__/src/pages/lensIndex/lensIndexCatalog.test.ts`
 
 Keep tests that cover generated metadata, build scripts, or public assets in the matching top-level test area:
@@ -78,7 +78,8 @@ Shared browser/router helpers remain at `__tests__/testUtils.tsx`. They cover:
 - localStorage seeding.
 - `history.replaceState` mocking.
 
-Optics tests share `__tests__/src/optics/testLensFixtures.ts`: the canonical `build()` wrapper, `apertureAt()`, six
+Optics tests share `__tests__/src/optics/testLensFixtures.ts`: the canonical `build()` wrapper, `apertureAt()`,
+request helpers `analysisRequestForLens`, `analysisRequestAt` and `mtfInputs`, six
 lazily memoized production lenses, and synthetic single-element fixtures for layout, keyframe, TIR, ghost, and miss cases.
 
 ## What Tests Cover
@@ -178,18 +179,19 @@ three guards over `src/optics/`:
 - **Seam.** An import into `src/optics/` from the rest of `src/`, from `scripts/` or from `reports/` targets a
   registered module. Type-only imports count, and so do the path strings that scripts load. Tests are not importers,
   because they follow the internals they test, and targets under `src/optics/mount/` are skipped.
-  `REPORT_INTERNAL_IMPORTS` is empty; reports use the same barrels as the app. The conversion seam has a per-importer
-  allowlist and runtime reachability checks that exclude V1 mappings and both source-preserving printers.
+  `REPORT_INTERNAL_IMPORTS` is empty; reports use the public seam too. A registry entry's `importers` is an exact
+  file list: unlisted importers and stale entries both fail. `lensDataConversion.ts` admits only
+  `scripts/lens-data-convert/load.mjs`; that loader admits only the converter's `cli.mjs` and `convert.mjs`.
+  The organizer reaches it through the converter runner; build metadata uses V2 ingest. No optics module outside
+  `prescription/v1/` and `lensDataConversion.ts` may reference `/v1/`, and no runtime seam may reach it.
+  Synthetic self-tests require a forbidden importer, stale entry and direct `/v1/` import to fail.
 - **Caches.** Every module-level `Map`, `WeakMap`, `Set` or `WeakSet` is registered as a constant lookup table, a
   bounded cache, or a `WeakMap` keyed by its owner whose per-owner value cannot grow without bound.
 
-Cycle and seam legacy lists are empty. The cache legacy list still contains four unbounded per-owner stores, listed
-in [Cache Ownership](optics-engine.md#cache-ownership-and-architecture-guards) and queued in the efficiency plan.
+All legacy lists and the report-import exception list are empty and locked empty by a guard.
 Each guard's lists are data at the top of the test, and come in two kinds:
 
-- A **legacy list** holds the violations that exist today, and only shrinks. The guard fails for a violation that is
-  not listed and for a listed entry that no longer violates, so a fix and the removal of its entry land together.
-  Never add an entry; fix the code. The cycle guard has only this list.
+- The **legacy lists** admit no violations. Fix violations in code; the cycle guard has no registry.
 - A **registry** holds the modules and containers that meet the rule by design. Add an entry only when it passes the
   guard's admission rule, which the guard checks:
   - Seam: a top-level `src/optics/*.ts` file that holds only imports, re-exports, type declarations and aliases of
@@ -200,11 +202,9 @@ Each guard's lists are data at the top of the test, and come in two kinds:
     names the module constant that holds the capacity; an owner-keyed `WeakMap` records its owner, its key and what
     one owner holds.
 
-Moving an entry from a legacy list to its registry counts as a removal. The cache scan reads declarations: a legacy
-entry is stale once its container is gone or is never written, and a legacy `WeakMap` once it no longer shows a `Map`
-or `Set` per owner, in its own declaration or in the module type its record names as `storeType`. A cap shows in no
-declaration, so bounding a legacy cache means moving its entry to the registry by hand, where the recorded capacity
-is checked against the code. Each failure message names the entry and the list to change.
+The cache scan reads declarations. A per-owner `Map` or `Set` needs a registry capacity and limit constant; the
+recorded capacity is checked against the code. Stores behind type aliases and eviction logic itself need review.
+Each failure message names the entry and the rule it violates.
 
 The guards read source text, not a syntax tree. The comment on each scan function in the test lists the forms it does
 not see, such as an `import.meta.glob` pattern for the seam or a container nested in another value for caches.

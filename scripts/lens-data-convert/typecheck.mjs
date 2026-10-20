@@ -1,6 +1,6 @@
 /**
  * Converter type-check — checks converted lens-data files against their types where they will be written, without
- * writing them (see agent_docs/architecture/optics-engine.md).
+ * writing them.
  *
  * One TypeScript program per run: its roots are the converted files, each served in memory at the path it will be
  * written to (in place, its input's own path), so its type import resolves from there; every other file comes from

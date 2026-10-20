@@ -442,7 +442,7 @@ integration checks are not asserted by the optical account.
   and [2026-07-07 AGF including obsolete glasses](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf).
 - [S5] LensVisualizer current-main spectral convention and runtime helpers,
   commit 53470da5a5cbda1807d1e523fbc71963e5a1adc7,
-  [dispersion.ts](https://github.com/ronbuening/LensVisualizer/blob/53470da5a5cbda1807d1e523fbc71963e5a1adc7/src/optics/dispersion.ts).
+  [dispersion.ts](https://github.com/ronbuening/LensVisualizer/blob/53470da5a5cbda1807d1e523fbc71963e5a1adc7/src/optics/chromatic/materialResolver.ts).
 
 
 - [S6] OHARA, [S-NBH58 datasheet, OHARA 25-04](https://www.ohara-inc.co.jp/assets/en/product/pdf/esnbh58.pdf), page 1; checked October 4, 2026.

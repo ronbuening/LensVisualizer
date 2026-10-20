@@ -13,7 +13,7 @@ import { canonicalInput } from "../../../../src/optics/prescription/canonicalInp
 import { compileLensData } from "../../../../src/optics/prescription/compile.js";
 import { attachTeleconverter } from "../../../../src/optics/teleconverter.js";
 import { buildCanonicalLens, buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
-import { PrescriptionIngestError } from "../../../../src/optics/prescription/canonical.js";
+import { prescriptionDifference, PrescriptionIngestError } from "../../../../src/optics/prescription/canonical.js";
 import { ELEMENT_SCHEMA_DEFAULTS, LENS_SCHEMA_DEFAULTS } from "../../../../src/optics/prescription/defaults.js";
 import { ingestLensV1, ingestTeleconverterV1 } from "../../../../src/optics/prescription/v1/ingestV1.js";
 import {
@@ -24,7 +24,7 @@ import {
 } from "../../../../src/optics/prescription/ingestV2.js";
 import { toLensData, toTeleconverterData } from "../../../../src/optics/prescription/v1/toLensData.js";
 import type { LensDataV2Input, TeleconverterDataV2Input } from "../../../../src/types/lensDataV2.js";
-import type { LensData, LensDataInput, RuntimeLens } from "../../../../src/types/optics.js";
+import type { LensDataInput, RuntimeLens } from "../../../../src/types/optics.js";
 import type { TeleconverterData } from "../../../../src/types/teleconverter.js";
 import {
   ingestLens as convertLens,
@@ -32,8 +32,8 @@ import {
 } from "../../../../src/optics/lensDataConversion.js";
 import { FIXTURE_PAIRS, type FixturePair } from "./ingestV2Fixtures.js";
 
-const lensFingerprint = (file: object) => exactValue(convertLens(file as LensDataInput).prescription);
-const converterFingerprint = (file: object) => exactValue(convertTeleconverter(file as TeleconverterData).prescription);
+const lensPrescription = (file: object) => convertLens(file as LensDataInput).prescription;
+const converterPrescription = (file: object) => convertTeleconverter(file as TeleconverterData).prescription;
 
 function pairOf(family: string): Extract<FixturePair, { kind: "lens" }> {
   const pair = FIXTURE_PAIRS.find((candidate) => candidate.family === family);
@@ -110,10 +110,10 @@ describe("V1/V2 fixture pairs", () => {
     it("ingests both versions to identical canonical semantics", () => {
       if (pair.kind === "lens") {
         expect(ingestLensV2(pair.v2).prescription).toEqual(ingestLensV1(pair.v1).prescription);
-        expect(lensFingerprint(pair.v2)).toBe(lensFingerprint(pair.v1));
+        expect(prescriptionDifference(lensPrescription(pair.v2), lensPrescription(pair.v1))).toBeUndefined();
       } else {
         expect(ingestTeleconverterV2(pair.v2).prescription).toEqual(ingestTeleconverterV1(pair.v1).prescription);
-        expect(converterFingerprint(pair.v2)).toBe(converterFingerprint(pair.v1));
+        expect(prescriptionDifference(converterPrescription(pair.v2), converterPrescription(pair.v1))).toBeUndefined();
       }
     });
 
@@ -264,7 +264,9 @@ describe("V2 schema defaults", () => {
     const left = ingestLensV2(pairOf("stop schedule").v2);
     const written = ingestLensV2(withEveryDefault());
     expect(written.prescription).toEqual(left.prescription);
-    expect(lensFingerprint(withEveryDefault())).toBe(lensFingerprint(pairOf("stop schedule").v2));
+    expect(
+      prescriptionDifference(lensPrescription(withEveryDefault()), lensPrescription(pairOf("stop schedule").v2)),
+    ).toBeUndefined();
     expect(written.provenance.defaulted).toEqual([]);
     expect([...left.provenance.defaulted].sort()).toEqual(
       [
@@ -292,7 +294,7 @@ describe("a numeric flat radius in a V2 file", () => {
     const read = ingestLensV2(numeric);
     expect(read.prescription.surfaces[index].R).toBe("flat");
     expect(read.prescription).toEqual(ingestLensV2(flat).prescription);
-    expect(lensFingerprint(numeric)).toBe(lensFingerprint(flat));
+    expect(prescriptionDifference(lensPrescription(numeric), lensPrescription(flat))).toBeUndefined();
     expect(buildRecord(buildLens(numeric))).toEqual(buildRecord(buildLens(flat)));
     expect(read.provenance.ignored[`surfaces[${index}].R`]).toBe(2e15);
     expect(toLensData(read).surfaces[index].R).toBe(2e15);

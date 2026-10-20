@@ -384,4 +384,4 @@ The model does not establish production MTF, production glass identities or Sigm
 7. SUMITA, [optical-glass downloads](https://www.sumita-opt.co.jp/en/download/), August 2026 catalog.
 8. CDGM, [manufacturer download directory](https://www.cdgmgd.com/go.htm?k=ge_lei_xia_zai&url=downList), September 2026 AGF header.
 9. HIKARI, [optical-glass catalog](https://www.hikari-g.co.jp/optical_glass/catalog/), Data worksheet revision beginning 1 June 2025.
-10. LensVisualizer, [current dispersion implementation](https://github.com/ronbuening/LensVisualizer/blob/709dda72a0ddead8ee77b8306347429031f8b379/src/optics/dispersion.ts), normal-line conversion convention.
+10. LensVisualizer, [current dispersion implementation](https://github.com/ronbuening/LensVisualizer/blob/709dda72a0ddead8ee77b8306347429031f8b379/src/optics/chromatic/materialResolver.ts), normal-line conversion convention.

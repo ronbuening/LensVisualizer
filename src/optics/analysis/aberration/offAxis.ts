@@ -173,9 +173,6 @@ export function computeParaxialOffAxisFieldGeometry(
   };
 }
 
-/** Backward-compatible alias for the paraxial off-axis geometry helper. */
-export const computeOffAxisFieldGeometry = computeParaxialOffAxisFieldGeometry;
-
 /**
  * Compute current-state scalar off-axis field geometry.
  *

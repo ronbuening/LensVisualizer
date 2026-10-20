@@ -48,8 +48,8 @@ import { normalFromSlope } from "./surfaceProfile.js";
 
 /**
  * Farthest, in mm along the ray, that the point the iterative path stops on may lie from a point that is returned
- * in its place, a closed-form root or the point of the conic-seeded route (`intersect.ts`): half the 1e-9 mm
- * root-selection move bound, independent of residual acceptance.
+ * in its place, a closed-form root or the point of the conic-seeded route (`intersect.ts`): half the hit reference tolerance
+ * defined in agent_docs/architecture/optics-engine.md (Exact Surface Trace), independent of residual acceptance.
  *
  * Two points whose evaluated residuals both meet the shipped target lie up to twice that target, plus the rounding
  * of an evaluation, over |f'| apart, so a root that path would also find can move by that much. At the coordinates
@@ -59,7 +59,8 @@ import { normalFromSlope } from "./surfaceProfile.js";
 export const MAX_ROOT_MOVE = 5e-10;
 
 /**
- * Most that the unit normal may differ between those two points: half the 1e-10 budget of a direction cosine.
+ * Most that the unit normal may differ between those two points: half the unit-normal reference tolerance
+ * defined in agent_docs/architecture/optics-engine.md (Exact Surface Trace).
  *
  * The normal turns along the ray at the rate the surface curves, so this limit binds before the one above where
  * the surface is strongly curved: on a sphere, once |R| is under 10 mm. There it is a floor of 4e-2 mm times

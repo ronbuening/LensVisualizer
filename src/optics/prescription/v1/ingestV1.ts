@@ -1,7 +1,8 @@
 /**
  * V1 ingest — maps an authored V1 lens or teleconverter file onto the canonical prescription.
  *
- * This is the V1 half of the object-level mapping in `src/optics/prescription/` (see agent_docs/architecture/optics-engine.md): only the permanent converter reads V1 files. Ingest applies the schema defaults
+ * Only the permanent converter reads V1 files. This mapping follows Canonical Prescription
+ * in agent_docs/architecture/optics-engine.md. Ingest applies the schema defaults
  * (`defaults.ts`) and the engine's authority rules, and records in provenance whatever the V1 view needs to give
  * the file back as written: which values were defaulted, the authored values the engine ignores, and the V1
  * spellings the canonical form holds once.
@@ -726,7 +727,6 @@ function keyframeIndex(keyframes: readonly number[], focusT: number): number {
 /**
  * Index of the zoom station a coordinate names, or -1. Like the validator, it measures the distance in station index
  * (`zoomT × (n − 1)`), not in zoomT, takes nothing but 0 on a prime, and names station 0 as 0 for a `zoomT` of -0.
- * Measure the match in station-index coordinates, as validation does.
  */
 function zoomStationIndex(stationCount: number, zoomT: number): number {
   if (stationCount <= 1) return zoomT === 0 ? 0 : -1;

@@ -1,5 +1,5 @@
 /**
- * The corpus conversion sweep (see agent_docs/architecture/optics-engine.md), in the tooling suite. Every catalog file
+ * The corpus conversion sweep (see agent_docs/architecture/testing.md), in the tooling suite. Every catalog file
  * goes through the command line, into a temp directory, to the other lens-data version and back to its own, and a
  * second round trip follows from the first one's output:
  * - each leg's output ingests to the source's canonical prescription;

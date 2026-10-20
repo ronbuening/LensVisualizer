@@ -26,7 +26,7 @@ import {
   traceSkewRayVectorChromatic as traceSkewRayVectorChromaticAdapter,
 } from "../../../src/optics/trace/rayAdapters.js";
 import {
-  computeOffAxisFieldGeometry,
+  computeParaxialOffAxisFieldGeometry,
   traceOrthogonalOffAxisBundle,
 } from "../../../src/optics/analysis/aberration/offAxis.js";
 import {
@@ -431,7 +431,7 @@ describe("skew-meridional cross-validation", () => {
     const currentEPSD = L.EP.epSD * 0.6;
     const currentPhysStopSD = L.stopPhysSD * 0.6;
 
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0);
+    const geometry = computeParaxialOffAxisFieldGeometry(L, zPos, 0, 0);
     expect(geometry).not.toBeNull();
 
     const bundle = traceOrthogonalOffAxisBundle("sagittal", 11, geometry!, L, 0, 0, currentEPSD, currentPhysStopSD);

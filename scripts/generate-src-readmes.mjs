@@ -33,9 +33,6 @@ const folderRoleOverrides = new Map([
     "src/benchmarks",
     "optics/rendering benchmark helpers that exercise runtime viewer paths outside normal app rendering",
   ],
-  [
-    "engine differential harness: the capture entry, seam adapter, request tiers, payload normalization, quantity budgets, and comparison of two engine revisions",
-  ],
   ["src/comparison", "comparison-mode state, shared sliders, URL metadata, and two-lens layout composition"],
   [
     "src/components",

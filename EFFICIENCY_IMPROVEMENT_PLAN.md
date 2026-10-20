@@ -63,19 +63,21 @@ Verification: probe counts recorded in the PR for all three interactions; if sim
 `npm run benchmark:optics-rendering` before/after shows no regression; gate passes.
 Out of scope: changing `doLayout` or `anchorLayoutToCamera`. Rollback: revert the branch.
 
-P8–P10 record the Stage 6 target misses measured with a throwaway instrumented build at
-`facf1888` against `optics-rewrite/s2` (`20827483`); arrows below are anchor → head.
-For each item, repeat work counts with temporary instrumentation (never commit counters), then run the single-commit
-benchmark with unchanged workloads and the common gate in "How To Use This Plan". Keep machine and Node version
-fixed, record status/grid/convergence beside timing, and retain raw samples in a heavy run. Numerical refactors follow
-the golden/full-suite/report-diff gate in `agent_docs/decisions.md`; reduced sampling or a changed physical model does
-not establish a speedup.
+P8–P10 investigate measured solver costs. Historical counts below compare `20827483` → `facf1888`;
+they are context, not a runnable benchmark gate. Reproduce counts on the current catalog with temporary
+instrumentation, covering every lens at default, close-focus and stopped-close states, plus the named PC-Nikkor
+and Olympus cases. Never commit counters. Compare before/after counts with identical states, target lists and sampling.
+For timing, run `npm run benchmark:optics-rendering -- --heavy` separately on the before and after revisions on the
+same maintainer machine, with the same Node version, warmups and iterations. Record CPU/OS and raw samples, statuses,
+grids, convergence and completed work; pass only if no completed heavy case's median regresses. Interpretation and
+output policy live in `agent_docs/benchmarks/README.md`. Accuracy follows the 2026-08-04 refactor gate and the
+2026-10-20 engine-result-change decision in `agent_docs/decisions.md`.
 
 ### P8. Investigate scalar-root evaluation cost on PC-Nikkor stopped-close
 
 - [ ] Effort: investigate first · Risk: high (root selection) · Expected impact: profile-dependent
 
-Target: median `solveScalarRoot` evaluations per call ≤ 12. Tier P met it (40 → 9), but the
+Target: median `solveScalarRoot` evaluations per call ≤ 12. The historical catalog capture met it (40 → 9), but the
 PC-Nikkor 19mm stopped-close profile missed (93 → 90). Calls fell 39,795 → 15,510 and total
 evaluations 3,440,310 → 1,377,345; the remaining per-call cost needs attribution before any change.
 
@@ -90,23 +92,22 @@ evaluations 3,440,310 → 1,377,345; the remaining per-call cost needs attributi
 - **Steps** — (1) attribute evaluations by caller and phase (outward scan versus Brent iterations),
   including nested solves; inspect meridional sensor lock (`scanSamples: 12`, `maxExpansions: 5`)
   and posed chief stop solve (`bracketScanSamples: 32`); (2) propose only an evidence-backed change
-  under the declared class; (3) verify counts, accuracy and paired timing, then remove probes.
-- **Gotchas** — `agent_docs/gotchas.md:5–8`, "field-launch … conventions": retain the shared
-  projection/trace path. Neighbor-based warm starts were rejected (`agent_docs/decisions.md`): seeding moved
-  results beyond C2. Do not reintroduce them as an equivalent optimization.
-- **Constraints** — use the shared P8–P10 timing method; algorithm replacements must meet C2,
-  including independent error evidence, or take C3 with approval and evidence for changed behavior.
+  using the accuracy decision above; (3) verify counts, accuracy and before/after timing, then remove probes.
+- **Gotchas** — `agent_docs/gotchas.md`, "field-launch … conventions": retain the shared
+  projection/trace path. Neighbor-based warm starts were rejected (`agent_docs/decisions.md`): seeding changed
+  statuses and landings. Do not reintroduce them as an equivalent optimization.
+- **Constraints** — use the shared P8–P10 timing method; algorithm replacements follow the accuracy decisions above.
 - **Verification / done when** — shared commands and accuracy gates pass; the stopped-close median
-  is ≤ 12 and Tier P stays ≤ 12, with caller/phase counts and unchanged sampling reported. If the
+  is ≤ 12 and the current catalog sweep stays ≤ 12, with caller/phase counts and unchanged sampling reported. If the
   target cannot be reached within the contract, document the evidence and remaining miss explicitly.
-- **Out of scope** — fewer analysis samples, looser tolerances, or reviving decision 95 without
-  new evidence. **Rollback** — revert the implementation branch; discard temporary probes.
+- **Out of scope** — fewer analysis samples, looser tolerances, or neighbor warm starts without
+  new evidence (see the 2026-10-20 warm-start decision in `agent_docs/decisions.md`). **Rollback** — revert the implementation branch; discard temporary probes.
 
 ### P9. Reduce fresh centered-chief bracket-scan cost on PC-Nikkor
 
 - [ ] Effort: investigate first · Risk: high (multi-root selection) · Expected impact: fresh analyses
 
-Target: median stop traces per centered chief solve ≤ 8. Tier P met it (22 → 6), as did warmed
+Target: median stop traces per centered chief solve ≤ 8. The historical catalog capture met it (22 → 6), as did warmed
 PC-Nikkor analyses (6); a fresh PC-Nikkor 19mm default analysis missed (73 → 56). Its initial
 `[seed - half, seed + half]` bracket fails, so the legacy 96-sample expanding scan runs before
 Illinois refinement. The centered chief solver retains that bracket choice to preserve roots.
@@ -121,14 +122,14 @@ Illinois refinement. The centered chief solver retains that bracket choice to pr
 - **Steps** — (1) reproduce the fresh bracket failure and separate scan/refinement traces;
   (2) evaluate bracket-search alternatives against multi-root fixtures and the corpus;
   (3) implement only with the required accuracy evidence, then measure fresh and warmed runs.
-- **Gotchas** — `agent_docs/gotchas.md:5–8`, "field-launch … conventions": preserve object-plane
+- **Gotchas** — `agent_docs/gotchas.md`, "field-launch … conventions": preserve object-plane
   and bounding-sphere dispatch. Use fresh prepared geometry for cold counts; resetting diagnostics
   does not clear chief-solve caches (see `agent_docs/architecture/optics-engine.md`).
 - **Constraints** — any scan change can select a different root in multi-root cases: treat it as
-  engine C3 with independent evidence, maintainer approval and the required cumulative comparison.
-  Use the shared P8–P10 timing method; reducing scan sampling alone is not a speedup claim.
-- **Verification / done when** — shared commands and C3 gates pass; the fresh default median is
-  ≤ 8, with Tier P and warmed PC-Nikkor still ≤ 8; report selected-root/status differences and
+  a result change under the accuracy decision above.
+  Use the shared P8–P10 measurement method and benchmark evidence policy.
+- **Verification / done when** — shared commands and accuracy gates pass; the fresh default median is
+  ≤ 8, with the current catalog sweep and warmed PC-Nikkor still ≤ 8; report selected-root/status differences and
   completed work alongside timing. An unresolved miss stays explicit.
 - **Out of scope** — changing optical sampling, projection policy or stop tolerance.
   **Rollback** — revert the implementation branch; discard temporary probes.
@@ -137,7 +138,7 @@ Illinois refinement. The centered chief solver retains that bracket choice to pr
 
 - [ ] Effort: investigate first · Risk: high (fallback behavior) · Expected impact: failed targets
 
-Target: ≤ 6 chief solves per image-height inversion target. Medians met it (Tier P 11 → 2;
+Target: ≤ 6 chief solves per image-height inversion target. Medians met it (historical catalog capture 11 → 2;
 PC-Nikkor default 10 → 3), but three non-converging Olympus Zuiko 18mm f/3.5 targets at 21.65 mm
 each take 48 calls: eight secant evaluations followed by the exact legacy 40-step bisection replay.
 Image-height inversion keeps that replay so their fallback results remain bit-identical.
@@ -152,30 +153,19 @@ Image-height inversion keeps that replay so their fallback results remain bit-id
   Example target: `21.65` mm; success still requires image-height error `< 1e-4 mm`.
 - **Steps** — (1) reproduce the three 48-call cases and identify the unbracketable jump;
   (2) evaluate detecting it earlier without excluding later valid brackets; (3) verify fallback
-  values/statuses and per-target counts, then measure paired timing with unchanged target lists.
-- **Gotchas** — `agent_docs/gotchas.md:16–18`, "Never treat the blocked central chief ray as a
+  values/statuses and per-target counts, then measure before/after timing with unchanged target lists.
+- **Gotchas** — `agent_docs/gotchas.md`, "Never treat the blocked central chief ray as a
   valid off-axis field solve": preserve failure semantics. The architecture's Distortion section
   also requires independent target validation; an earlier height jump cannot reject a later field.
-- **Constraints** — use the shared P8–P10 timing method and change classes. Any changed fallback
-  value is C3, requiring independent evidence and approval; an equivalent solver change must meet
-  C2. Faster failure or dropping targets is not completed work or a speedup.
+- **Constraints** — use the shared P8–P10 measurement method and accuracy decisions above.
 - **Verification / done when** — shared commands and accuracy gates pass; each of the three
-  targets uses ≤ 6 chief solves, Tier P and PC-Nikkor medians remain ≤ 6, and later valid targets
+  targets uses ≤ 6 chief solves, the current catalog sweep and PC-Nikkor medians remain ≤ 6, and later valid targets
   still converge. Report per-target failures/fallbacks, not just medians; retain any unresolved miss.
 - **Out of scope** — fewer targets, relaxed success tolerance or a changed physical model.
   **Rollback** — revert the implementation branch; discard temporary probes.
 
-### P11. Bound the remaining owner-local optical caches
+### P11. Interactive latency measurement
 
-- [ ] Cap or remove the four entries still in `CACHE_LEGACY` in `__tests__/src/optics/opticsArchitecture.test.ts`:
-  `analysis/mtf/mtfRayClassification.ts#boundsBySurface` (distinct semi-diameters per surface),
-  `analysis/mtf/mtfTracing.ts#indexTablesByState` (wavelengths per state),
-  `perspective/analysis/vignetting.ts#ZERO_CENTER_REFERENCE_BY_STATE` (sampling/pupil/channel keys per state), and
-  `trace/rayAdapters.ts#TRACE_OPTIONS_BY_STATE` (aperture/ghost/channel/normalization/capture keys per state).
-  Weak ownership does not bound the maps of a live owner. Preserve results and trace policy, add explicit capacities
-  or request-local ownership, then move each entry into the registry with its owner, key and bound. Verify architecture
-  guards, the full suite and single-commit memory sessions. This is an engine task; documentation close cannot certify
-  the final-verification requirement that all legacy lists are empty while these entries remain.
 - [ ] Add a browser drag/settle benchmark only if interactive feel regresses; Node timings do not cover that latency.
   Keep it report-only and retain identical ray/sampling workloads.
 

@@ -56,7 +56,7 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   return validate(data);
 }
 
-/** Canonical entry: provenance keeps ignored values and source spellings in diagnostics, outside the fingerprint. */
+/** Canonical entry: provenance keeps ignored values and source spellings in diagnostics, outside prescription semantics. */
 export function validateCanonicalLens(
   ingested: IngestedPrescription<CanonicalLens>,
   descriptor = ingested.attachedTeleconverter,

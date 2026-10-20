@@ -177,16 +177,15 @@ function readRunRecords() {
 /**
  * Bundle a tree's benchmark entry.
  *
- * @param {string} root - current checkout
  * @param {string} outDir - an empty directory for the bundle
  * @returns {Promise<string>} the URL to import the bundle from
  */
-async function buildBundle(root, outDir) {
+async function buildBundle(outDir) {
   await build({
     configFile: join(ROOT, "vite.config.js"),
-    root,
+    root: ROOT,
     build: {
-      ssr: join(root, ENTRY),
+      ssr: join(ROOT, ENTRY),
       outDir,
       emptyOutDir: true,
       copyPublicDir: false,
@@ -253,7 +252,7 @@ async function runChildPass(pass, request, resultPath, running) {
  * @param {{ current: import("node:child_process").ChildProcess | null }} running - the child pass under way
  */
 async function runPlain(args, createdAt, tempDir, running) {
-  const bundleUrl = await buildBundle(ROOT, join(tempDir, "head"));
+  const bundleUrl = await buildBundle(join(tempDir, "bundle"));
   /* This process measures nothing, so it may load the bundle: to validate a dry run, and for the functions that
    * name a record and build the report. */
   const benchmarkModule = await import(bundleUrl);
@@ -304,7 +303,7 @@ async function runPlain(args, createdAt, tempDir, running) {
 
 /** Run one subset or memory session without adding it to the full-matrix trend. */
 async function runSession(args, createdAt, tempDir, running) {
-  const bundleUrl = await buildBundle(ROOT, join(tempDir, "bundle"));
+  const bundleUrl = await buildBundle(join(tempDir, "bundle"));
   const benchmark = await import(bundleUrl);
   const metadata = { createdAt, git: gitInfo(), environment: sessionEnvironmentInfo(args.memory) };
   const cells = args.heavy ? benchmark.HEAVY_BENCHMARK_CELLS : undefined;
@@ -339,18 +338,21 @@ async function main() {
     rmSync(tempDir, { recursive: true, force: true });
   };
   /* Signals stop the measured child and release temporary bundles. */
-  const stop = () => {
+  const stop = (signal) => {
+    console.error(`Optics benchmark: ${signal} received; stopping child and removing temporary bundles.`);
     cleanUp();
-    process.exit(130);
+    process.exit(128 + os.constants.signals[signal]);
   };
-  process.once("SIGINT", stop);
-  process.once("SIGTERM", stop);
+  const onInterrupt = () => stop("SIGINT");
+  const onTerminate = () => stop("SIGTERM");
+  process.once("SIGINT", onInterrupt);
+  process.once("SIGTERM", onTerminate);
   try {
     if (!args.heavy && !args.memory) await runPlain(args, createdAt, tempDir, running);
     else await runSession(args, createdAt, tempDir, running);
   } finally {
-    process.removeListener("SIGINT", stop);
-    process.removeListener("SIGTERM", stop);
+    process.removeListener("SIGINT", onInterrupt);
+    process.removeListener("SIGTERM", onTerminate);
     cleanUp();
   }
 }

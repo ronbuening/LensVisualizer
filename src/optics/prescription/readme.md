@@ -61,7 +61,7 @@ flowchart LR
 | `compileConstruction.ts` | Compile Construction helper module | same folder (6), src/types (2), src/optics/chromatic, src/optics/types.ts | same folder | compileConstruction, LensConstruction |
 | `compileControls.ts` | Compile Controls helper module | same folder, src/types | same folder (3) | compileVariableGaps, compileVariableLabels, buildVarIndex, firstInfinityThickness |
 | `compileGroups.ts` | Compile Groups helper module | same folder, src/optics/types.ts, src/types | same folder | compileElements, compileAnnotations |
-| `compileLabels.ts` | Compile Labels helper module | src/types | same folder (6) | Optics2LensNormalizationError, buildSurfaceLabelMap, resolveLabel, buildLabelIndex |
+| `compileLabels.ts` | Compile Labels helper module | src/types | same folder (6) | LensNormalizationError, buildSurfaceLabelMap, resolveLabel, buildLabelIndex |
 | `composeTeleconverter.ts` | Compose Teleconverter helper module | same folder (2), src/types (2) | same folder | composeTeleconverter |
 | `constructionData.ts` | Construction Data helper module | src/types (2), same folder, src/optics/types.ts | same folder (4) | elementDisplayData, canonicalConstructionData |
 | `defaults.ts` | Defaults helper module | src/optics/geometry, src/types | same folder (5) | SchemaDefault, LENS_SCHEMA_DEFAULTS, ELEMENT_SCHEMA_DEFAULTS, REAR_PLATE_SCHEMA_DEFAULTS, takesDefault, defaultValue, v1CatalogDefaults |

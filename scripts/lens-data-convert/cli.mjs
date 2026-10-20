@@ -1,6 +1,6 @@
 /**
  * Lens-data converter command line — converts lens and teleconverter files between versions, checking every output
- * before it writes any (see agent_docs/architecture/optics-engine.md). `scripts/convert-lens-data.mjs` runs it.
+ * before it writes any (src/lens-data/LENS_DATA_SPEC.md, Quick Start). `scripts/convert-lens-data.mjs` runs it.
  *
  * A run:
  * 1. collects the inputs (a file, or every `*.data.ts` and `*.teleconverter.ts` under a directory, in path order) and

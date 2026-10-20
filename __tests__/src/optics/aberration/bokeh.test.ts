@@ -29,7 +29,7 @@ import {
 } from "../../../../src/optics/state/fieldAdapters.js";
 import { doLayoutForRuntimeLens as doLayout } from "../../../../src/optics/state/runtimeAdapters.js";
 import { traceRay } from "../../../../src/optics/trace/rayAdapters.js";
-import { computeOffAxisFieldGeometry } from "../../../../src/optics/analysis/aberration/offAxis.js";
+import { computeParaxialOffAxisFieldGeometry } from "../../../../src/optics/analysis/aberration/offAxis.js";
 import { buildFixtureLens as buildLens } from "../constructionFixtures.js";
 import NikonZ135Raw from "../../../../src/lens-data/nikon/NikonZ135f18.data.js";
 import NikonAF28f14DRaw from "../../../../src/lens-data/nikon/NikonAF28f14D.data.js";
@@ -160,7 +160,7 @@ describe("state-aware off-axis geometry", () => {
   });
 
   it("differs from the paraxial chief-ray launch on a vignetted wide-angle field", () => {
-    const paraxial = computeOffAxisFieldGeometry(L, layout.z, 0, 0.75);
+    const paraxial = computeParaxialOffAxisFieldGeometry(L, layout.z, 0, 0.75);
     const solved = computeStateAwareOffAxisFieldGeometry(L, layout.z, focusT, 0, 0.75);
 
     expect(paraxial).not.toBeNull();

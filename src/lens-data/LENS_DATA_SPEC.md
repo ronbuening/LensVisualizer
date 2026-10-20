@@ -1339,7 +1339,7 @@ doublets: [
 - `fromSurface` and `toSurface` are existing surface labels.
 - `doublets` are drawn only.
 - `groups` are drawn, and the group-movement analysis also reads them: authored groups are the moving groups it
-  tracks (`inferLensMovementGroups` in `src/optics/groupMovement.ts`), and only a lens without them falls back to
+  tracks (`inferLensMovementGroups` in `src/optics/analysis/summary/groupMovement.ts`), and only a lens without them falls back to
   contiguous element runs. Author them as the source's mechanical groups.
 
 ## Layout, Rays and Checks

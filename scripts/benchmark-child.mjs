@@ -1,15 +1,10 @@
 /**
  * One measured pass of a benchmark run, in a process of its own.
  *
- * `scripts/benchmark-optics-rendering.mjs` builds the bundles and starts this script once per pass. The process
- * that ran the builds is no place to measure in. V8 keeps one root map for every object literal of a given property
- * count, and that map holds at most 1,536 transitions. The bundler leaves about a thousand on the root that
- * four-property literals share, one per lazily imported chunk, and a second build of a tree at another path fills
- * it. The engine's own four-property results, first created after that, become dictionary-mode objects and
- * `evaluateAperture` deoptimizes in a loop, which slows the heavy cases on both sides. One build alone leaves that
- * map three quarters full, and each lazily imported `*.analysis.md` in the catalog adds one transition, so a plain
- * run that measured beside its build would reach the same loop as the catalog grows. A process that only imports
- * the prebuilt bundles starts with that map nearly empty, and has none of the build's heap.
+ * `scripts/benchmark-optics-rendering.mjs` builds the bundle and starts this script
+ * once per pass. Build allocations and V8 object-shape transitions can affect
+ * timing and heap readings, so measurement imports a prebuilt bundle in a fresh
+ * process. That process holds none of the bundler's heap.
  *
  * Usage:
  *   node [--expose-gc] scripts/benchmark-child.mjs <plain|timed|untimed|memory> <request JSON> <result file>

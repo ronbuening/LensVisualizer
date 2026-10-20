@@ -18,10 +18,10 @@ count; do not hard-code it here.
 
 ## How the Catalog and Resolver Work
 
-- Entries live in vendor shards under `src/optics/glassCatalogEntries/` (`ohara.ts`, `schott.ts`, `hoya.ts`,
+- Entries live in vendor shards under `src/optics/chromatic/glassCatalogEntries/` (`ohara.ts`, `schott.ts`, `hoya.ts`,
   `hikari.ts`, `sumita.ts`, `cdgm.ts`, `nhg.ts`, `special.ts`).
-  [src/optics/glassCatalogData.ts](../src/optics/glassCatalogData.ts) fixes their source order into the stable
-  `RAW_CATALOG` aggregate, and [src/optics/glassCatalogAliases.ts](../src/optics/glassCatalogAliases.ts) holds the
+  [src/optics/chromatic/glassCatalogData.ts](../src/optics/chromatic/glassCatalogData.ts) fixes their source order into the stable
+  `RAW_CATALOG` aggregate, and [src/optics/chromatic/glassCatalogAliases.ts](../src/optics/chromatic/glassCatalogAliases.ts) holds the
   structured `ALIAS_RECORDS` from which `ALIASES` is derived.
 - `resolveCompatibleGlass` in [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) considers every name, alias,
   and duplicate six-digit-code candidate in an element's `glass` annotation and accepts only a row whose coordinates
@@ -37,7 +37,7 @@ count; do not hard-code it here.
 - A catalog-equivalent label names the curve that reproduces the patent coordinate; it never asserts the production
   supplier. Explicit `Unmatched`, `Unknown`, `Proprietary`, and `Unidentified` annotations are self-recording review
   dispositions: they keep the element on the patent-derived fallback and out of the active work queues.
-- `summarizeDispersionQuality(L)` in `src/optics/dispersion.ts` reports whether a lens traces on catalog Sellmeier
+- `summarizeDispersionQuality(L)` in `src/optics/chromatic/materialResolver.ts` reports whether a lens traces on catalog Sellmeier
   data, measured line indices, or the Abbe approximation; the coverage reports below aggregate it.
 
 ## Generated Reports
@@ -135,9 +135,9 @@ The 1e-4 round-trip test will catch any transcription error — never relax the 
    $$n^2(\lambda) = 1 + \frac{B_1 \lambda^2}{\lambda^2 - C_1} + \frac{B_2 \lambda^2}{\lambda^2 - C_2} + \frac{B_3 \lambda^2}{\lambda^2 - C_3}$$
    with λ in **micrometres** and C in **micrometres²**, or Zemax formula 3 polynomial as described above. Reject any other formula until you have explicitly converted it.
 
-2. **Transcribe** the coefficients verbatim into the appropriate vendor shard under `src/optics/glassCatalogEntries/`
+2. **Transcribe** the coefficients verbatim into the appropriate vendor shard under `src/optics/chromatic/glassCatalogEntries/`
    (`ohara.ts`, `schott.ts`, `hoya.ts`, etc.). Keep all digits the source publishes — typically 8–10 significant
-   figures. Then add the glass name to the source-order list in [src/optics/glassCatalogData.ts](../src/optics/glassCatalogData.ts)
+   figures. Then add the glass name to the source-order list in [src/optics/chromatic/glassCatalogData.ts](../src/optics/chromatic/glassCatalogData.ts)
    at the intended catalog position so `RAW_CATALOG` remains the stable aggregate.
 
 3. **Fill in `nd` and `vd`** from the same vendor's published table (not from the lens data file). Provide `PgF` if listed and `code6` if it's a Schott-style 6-digit code.
@@ -153,7 +153,7 @@ The 1e-4 round-trip test will catch any transcription error — never relax the 
    tolerance to admit a bad row.
 
 6. **If the glass has a common informal alias** (`BK7` for `N-BK7`, `SK16` for `N-SK16`) add a structured entry to
-   `ALIAS_RECORDS` in [src/optics/glassCatalogAliases.ts](../src/optics/glassCatalogAliases.ts), including the alias
+   `ALIAS_RECORDS` in [src/optics/chromatic/glassCatalogAliases.ts](../src/optics/chromatic/glassCatalogAliases.ts), including the alias
    `kind` and a short note explaining why the alias is safe. `ALIASES` is derived from those records.
 
 7. **If you've added enough entries** that the LCA readout for the target lens has visibly changed, regenerate the glass

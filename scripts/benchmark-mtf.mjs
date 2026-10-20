@@ -132,13 +132,21 @@ for (const file of focusT ? [MTF_FINITE_BENCHMARK_CASE] : MTF_BENCHMARK_CASES) {
         break;
       }
     }
-    rows.push({
-      key: data.key,
-      maxGridSize,
-      ...(error === undefined
-        ? { ...describeResult(result), medianMs: +summarizeNumbers(samplesMs).median.toFixed(2), samplesMs }
-        : { error }),
-    });
+    if (error !== undefined) {
+      rows.push({ key: data.key, maxGridSize, error });
+    } else {
+      const { support, conjugate, geometry, fields } = describeResult(result);
+      rows.push({
+        key: data.key,
+        maxGridSize,
+        support,
+        ...(conjugate ? { conjugate } : {}),
+        medianMs: +summarizeNumbers(samplesMs).median.toFixed(2),
+        samplesMs,
+        geometry,
+        fields,
+      });
+    }
   }
 }
 console.log(

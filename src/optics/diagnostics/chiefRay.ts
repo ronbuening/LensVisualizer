@@ -35,7 +35,7 @@ export function reportChiefRayFallback(state: PreparedGeometry, fieldAngleDeg: n
   const env = (import.meta as { env?: { DEV?: boolean } }).env;
   if (!env?.DEV) return;
   console.warn(
-    `[chiefRaySolver2] ${status} key=${lens.key} field=${fieldAngleDeg.toFixed(3)} focus=${state.focusT.toFixed(4)} zoom=${state.zoomT.toFixed(4)}`,
+    `[chiefRaySolver] ${status} key=${lens.key} field=${fieldAngleDeg.toFixed(3)} focus=${state.focusT.toFixed(4)} zoom=${state.zoomT.toFixed(4)}`,
   );
 }
 

@@ -497,4 +497,4 @@ bounded, executable reference-host geometry assessment.
 
 [TC-RUNTIME]: https://github.com/ronbuening/LensVisualizer/blob/d8b406ce112931ab0b2988b87acbd13b0b663c7e/src/optics/prescription/teleconverter.ts
 
-[DISPERSION]: https://github.com/ronbuening/LensVisualizer/blob/d8b406ce112931ab0b2988b87acbd13b0b663c7e/src/optics/dispersion.ts
+[DISPERSION]: https://github.com/ronbuening/LensVisualizer/blob/d8b406ce112931ab0b2988b87acbd13b0b663c7e/src/optics/chromatic/materialResolver.ts

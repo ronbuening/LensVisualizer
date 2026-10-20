@@ -403,17 +403,17 @@ export async function runOpticsRenderingBenchmark(
   for (const lensKey of selection.lensKeys) {
     record.results[lensKey] = {};
     record.aberrationPanels[lensKey] = {};
-    const headLens = prepareBenchmarkLens(lensKey);
+    const lens = prepareBenchmarkLens(lensKey);
 
     for (const scenario of selection.scenariosByLens[lensKey]) {
       if (options.onCell) {
         await options.onCell({ lensKey, scenarioId: scenario.id, index: cellIndex, count: selection.cellCount });
       }
       cellIndex++;
-      const headCell = headLens.prepareCell(scenario.id);
-      sampleCell(headCell, sampling);
-      record.results[lensKey][scenario.id] = headCell.results;
-      record.aberrationPanels[lensKey][scenario.id] = headCell.aberrationPanels;
+      const cell = lens.prepareCell(scenario.id);
+      sampleCell(cell, sampling);
+      record.results[lensKey][scenario.id] = cell.results;
+      record.aberrationPanels[lensKey][scenario.id] = cell.aberrationPanels;
     }
   }
 
@@ -585,7 +585,7 @@ async function settledHeap(): Promise<HeapReading> {
 }
 
 /**
- * Builds the record of a `--memory` run from the sessions its driver ran, one process per side.
+ * Builds the record of a `--memory` run from the sessions its driver ran, a fresh child process.
  *
  * No scenario of the matrix runs in a session, so the record's config names none. It holds the lenses and the
  * session itself: the state each lens is set to first and what each control is swept through.
@@ -1219,10 +1219,7 @@ function computeAnalysisWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   output.perspectiveAnalysisJobs = 0;
 
   if (!L.isFoldedOptics) {
-    output.distortionSamples = completed(
-      "distortionCurve",
-      distortionSamplesOf(analysisContext.computeDistortionCurve()),
-    ).length;
+    output.distortionSamples = completed("distortionCurve", analysisContext.computeDistortionCurve().samples).length;
     output.distortionGridLines = completed("distortionGrid", analysisContext.computeDistortionFieldGrid()).lines.length;
     output.vignettingSamples = completed("vignetting", analysisContext.computeVignettingCurve()).length;
   } else {
@@ -1384,22 +1381,9 @@ function computeAnalysisDistortionCurveWork(snapshot: ScenarioSnapshot): Benchma
       sampling: snapshot.analysisSampling,
     }),
   );
-  const curve = distortionSamplesOf(samples);
+  const curve = samples.samples;
   completed("distortionCurve", curve);
   return { distortionSamples: curve.length };
-}
-
-/**
- * The distortion curve's samples, from an engine that returns them alone or inside `{ samples, corner }` (from
- * the public result wrapper.
- *
- * @param curve - the value the engine's distortion job returned
- * @returns its samples
- */
-function distortionSamplesOf<Sample>(
-  curve: readonly Sample[] | { readonly samples: readonly Sample[] },
-): readonly Sample[] {
-  return Array.isArray(curve) ? curve : (curve as { readonly samples: readonly Sample[] }).samples;
 }
 
 /** Measures the distortion field-grid helper used by the analysis drawer. */
@@ -1990,7 +1974,7 @@ function completed<T>(label: string, result: T): T {
 }
 
 /**
- * Renders a tree to static markup. In the untimed pass it also tallies the elements of the markup, so a side that
+ * Renders a tree to static markup. In the untimed pass it also tallies the elements of the markup, so a run that
  * draws less differs by a count and not only by a length that follows every printed coordinate.
  */
 function renderedMarkup(tree: React.ReactElement): string {
@@ -2045,7 +2029,12 @@ function createCasePlan(): CasePlan {
   };
 }
 
-/** Sample each callback after its unmeasured setup, keeping optional raw samples. */
+/**
+ * Sample callbacks after unmeasured setup, retaining failures per case.
+ *
+ * @param cell - prepared callbacks and their result entries, updated in place
+ * @param sampling - warmup and measured call counts, with optional duration samples
+ */
 export function sampleCell(cell: PreparedBenchmarkCell, sampling: SamplingOptions): void {
   for (const item of cell.cases) {
     item.setup?.();
@@ -2093,7 +2082,7 @@ function entryFromSamples(
     iterations,
     warmups,
     ...(heapStats ? { heapDeltaBytes: heapStats } : {}),
-    ...(keepSamples ? { samplesMs: sampled.durations, heapDeltaSamplesBytes: sampled.heapDeltas } : {}),
+    ...(keepSamples ? { samplesMs: sampled.durations } : {}),
   };
   return { status: "ok", stats, output: sampled.output };
 }

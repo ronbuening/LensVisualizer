@@ -108,7 +108,7 @@ describe("computeDistortionCurve", () => {
     expect(result.samples.map((sample) => sample.normalizedImageHeight)).toEqual([0, 1 / 3, 1]);
   });
 
-  // C2 changes solved angles and work, so hold forward residuals instead of the former C0 digest.
+  // Hold forward residuals so solver changes are checked against physical target accuracy.
   // The baseline counts include table construction and final distortion-reference rays.
   it.each([
     { data: ApoLantharRaw, baselineCount: 242 },

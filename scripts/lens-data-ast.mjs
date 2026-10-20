@@ -2,7 +2,7 @@
  * Lens-data AST reader — evaluates a lens or teleconverter file's default export from its source, never running it.
  *
  * The source is read with the TypeScript compiler API, and the literal forms the catalog uses are evaluated
- * (see agent_docs/architecture/optics-engine.md):
+ * (see agent_docs/architecture/routing-and-content.md):
  * - object and array literals, and spreads of them, which no catalog file has but a hand-written one may;
  * - numbers, with a leading sign, and `+ - * /` between numbers, which the catalog uses for a few derived values;
  * - strings and templates without substitutions, and `+` between strings, which long notes use;

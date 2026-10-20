@@ -378,7 +378,7 @@ describe("context-owned sensor chief memo", () => {
     { channel: undefined, activeCount: 6, totalCount: 9 },
     { channel: "G" as const, activeCount: 3, totalCount: 6 },
   ])(
-    "shares sensor solves across analyses with channel $channel and C0 payloads",
+    "shares sensor solves across analyses with channel $channel and identical results",
     ({ channel, activeCount, totalCount }) => {
       const solve = vi.spyOn(sensorTarget, "solveChiefToSensorPoint");
       const uncached = sensorMemoContext();

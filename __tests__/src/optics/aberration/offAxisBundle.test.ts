@@ -2,7 +2,7 @@ import { CATALOG_CONSTRUCTION_FIXTURES } from "../constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import {
   bestFocusPlaneForDirection,
-  computeOffAxisFieldGeometry,
+  computeParaxialOffAxisFieldGeometry,
   computeProjectionAwareOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
   traceCircularOffAxisBundle,
@@ -22,7 +22,7 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
 
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0);
+    const geometry = computeParaxialOffAxisFieldGeometry(L, zPos, 0, 0);
     expect(geometry).not.toBeNull();
     expect(geometry!.fieldFraction).toBe(0);
     expect(geometry!.fieldAngleDeg).toBe(0);
@@ -35,7 +35,7 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeParaxialOffAxisFieldGeometry(L, zPos, 0, 0.5);
 
     const bundle = traceOrthogonalOffAxisBundle(
       "tangential",
@@ -60,7 +60,7 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0);
+    const geometry = computeParaxialOffAxisFieldGeometry(L, zPos, 0, 0);
 
     const bundle = traceCircularOffAxisBundle(
       DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES,
@@ -92,7 +92,7 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0);
+    const geometry = computeParaxialOffAxisFieldGeometry(L, zPos, 0, 0);
 
     const bundle = traceCircularOffAxisBundle(
       DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES,
@@ -115,7 +115,7 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
 
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeParaxialOffAxisFieldGeometry(L, zPos, 0, 0.5);
     expect(geometry).not.toBeNull();
     expect(geometry!.fieldFraction).toBe(0.5);
     expect(geometry!.fieldAngleDeg).toBeGreaterThan(0);
@@ -128,7 +128,7 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
 
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 1.0);
+    const geometry = computeParaxialOffAxisFieldGeometry(L, zPos, 0, 1.0);
     expect(geometry).not.toBeNull();
     expect(geometry!.fieldFraction).toBe(1.0);
     expect(geometry!.fieldAngleDeg).toBeGreaterThan(0);
@@ -156,16 +156,16 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
 
-    expect(computeOffAxisFieldGeometry(L, zPos, 0, -0.1)).toBeNull();
-    expect(computeOffAxisFieldGeometry(L, zPos, 0, 1.5)).toBeNull();
-    expect(computeOffAxisFieldGeometry(L, zPos, 0, NaN)).toBeNull();
+    expect(computeParaxialOffAxisFieldGeometry(L, zPos, 0, -0.1)).toBeNull();
+    expect(computeParaxialOffAxisFieldGeometry(L, zPos, 0, 1.5)).toBeNull();
+    expect(computeParaxialOffAxisFieldGeometry(L, zPos, 0, NaN)).toBeNull();
   });
 
   it("extracts tangential y/uy from transverseFocusHitsForDirection", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeParaxialOffAxisFieldGeometry(L, zPos, 0, 0.5);
 
     const bundle = traceOrthogonalOffAxisBundle(
       "tangential",
@@ -192,7 +192,7 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeParaxialOffAxisFieldGeometry(L, zPos, 0, 0.5);
 
     const bundle = traceOrthogonalOffAxisBundle(
       "sagittal",
@@ -217,7 +217,7 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeParaxialOffAxisFieldGeometry(L, zPos, 0, 0.5);
 
     const bundle = traceOrthogonalOffAxisBundle(
       "sagittal",
@@ -241,7 +241,7 @@ describe("off-axis aberration helpers", () => {
   it("returns null from traceOffAxisBundleFromSamples for zero EPSD", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeParaxialOffAxisFieldGeometry(L, zPos, 0, 0.5);
 
     const result = traceOffAxisBundleFromSamples(
       [{ index: 0, pupilFraction: 0, xFraction: 0, yFraction: 0 }],
@@ -259,7 +259,7 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeParaxialOffAxisFieldGeometry(L, zPos, 0, 0.5);
 
     const redBundle = traceOrthogonalOffAxisBundle(
       "tangential",
@@ -299,7 +299,7 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeParaxialOffAxisFieldGeometry(L, zPos, 0, 0.5);
 
     const redBundle = traceCircularOffAxisBundle(
       [1, 6],

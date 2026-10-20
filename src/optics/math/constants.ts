@@ -10,7 +10,7 @@ export const VECTOR_EPSILON = 1e-12;
 /** Intersection root tolerance in millimeters along the surface equation. */
 export const INTERSECTION_TOLERANCE = 1e-12;
 /**
- * Cap for one solve. The fixtures need 23; the slowest Tier P solves, four Zeiss ZX1 analysis solves making slow
+ * Cap for one solve. The fixtures need 23; the slowest measured catalog solves, four Zeiss ZX1 analysis solves making slow
  * progress on an asphere's polynomial continuation, need 71. A measured margin, not a convergence guarantee.
  */
 export const INTERSECTION_MAX_ITERATIONS = 72;
