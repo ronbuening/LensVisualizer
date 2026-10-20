@@ -1,5 +1,3 @@
-// Root-level draft import. When authoring directly in a maker folder use "../../types/optics.js";
-// generate:metadata rewrites it when it organizes a root-level draft. See LENS_DATA_SPEC.md § Quick Start.
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
@@ -14,9 +12,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  7 aspherical surfaces on 5 elements (L1 ×2, L2 resin, L7 ×2, L10,   ║
  * ║    L16).                                                             ║
  * ║  Focus: patent floating inner focus — G2 (L5) and G4 (L8–L10) move   ║
- * ║    image-ward ([0021]). NO INTERNAL RECONSTRUCTION: the patent       ║
- * ║    publishes infinity states only, so close vectors repeat the       ║
- * ║    infinity spacings at every zoom station.                          ║
+ * ║    image-ward ([0021]). The patent publishes infinity states only,   ║
+ * ║    so the close-focus spacings repeat the infinity spacings at       ║
+ * ║    every zoom station and no focus travel is modeled.                ║
  * ║                                                                      ║
  * ║  Zoom variable gaps: D9 = D(1), D11 = D(2), DSTO = D(3),             ║
  * ║    D21A = D(4), D31 = D(5) (zoom only in this model).                ║
@@ -25,9 +23,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  G1 ends 14.44 mm further image-ward at tele than at wide.           ║
  * ║                                                                      ║
  * ║  NOTE ON SOURCE CORRECTION: Table 13 prints s25 Nd 1.969970 (νd      ║
- * ║    81.6), which matches no glass and gives G5 = +48.5 mm. The model  ║
- * ║    uses 1.496997, the value of the same ED element in Examples 2     ║
- * ║    and 5; it reproduces Table 22 5G = −80.40 mm.                     ║
+ * ║    81.6), which matches no glass, gives f = 7.91 mm at wide against  ║
+ * ║    the stated 16.5 mm, and makes G5 positive (+48.5 mm) against the  ║
+ * ║    negative fifth group of claim 1. The model uses 1.496997, the     ║
+ * ║    value of the same ED element in Examples 2 and 5; it reproduces   ║
+ * ║    the stated f and Table 22 5G = −80.40 mm (source.errata).         ║
  * ║  NOTE ON EFL: the printed prescription computes 16.52 / 22.96 /      ║
  * ║    34.02 mm (+0.22 to +0.24% vs Table 16) with paraxial image        ║
  * ║    residuals of +0.11 / +0.09 / +0.01 mm. Values are not edited.     ║
@@ -38,8 +38,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    from the to-scale Fig. 13 section (13.13 px/mm fit, ±0.15 mm)     ║
  * ║    and checked against real f/2.88 axial and field rays.             ║
  * ║  NOTE ON STOP: s16 (IRIS) position is published; its diameter is     ║
- * ║    not. The iris schedule is inferred from f/2.88 at each station    ║
- * ║    (zoomApertureModel); STO sd is the wide-station value.            ║
+ * ║    not. The iris is sized for f/2.88 at each zoom station            ║
+ * ║    (semi-diameter 9.165 / 11.410 / 14.965 mm, wide to tele).         ║
  * ║  Rear plate: cover glass s32–s33 in rearPlates; s31 d is D(5).       ║
  * ║                                                                      ║
  * ║  Optical design only: glass surfaces, stop, variable gaps.           ║
@@ -51,17 +51,15 @@ const LENS_DATA = {
   key: "sony-fe-16-35mm-f28-gm",
   maker: "Sony",
   name: "SONY FE 16-35mm f/2.8 GM",
-  subtitle: "WO 2018/139160 A1 Example 4 — Sony Corporation",
+  subtitle: "WO 2018/139160 A1, Example 4 — production correlation",
 
   catalog: {
     lensMounts: ["sony-fe"],
     imageFormat: "135-full-frame",
     specs: [
       "16 ELEMENTS / 13 GROUPS",
-      "5 ZOOM GROUPS: − + + + −",
-      "f ≈ 16.5–33.95 mm (design)",
-      "F/2.88 (design)",
-      "2ω ≈ 107.9°–63.4°",
+      "DESIGN f = 16.5–33.95 mm",
+      "DESIGN F/2.88",
       "7 ASPHERICAL SURFACES / 5 ELEMENTS",
     ],
     elementCount: 16,
@@ -75,6 +73,17 @@ const LENS_DATA = {
     patentYear: 2018,
     authors: ["Kouji Katou", "Hiromichi Nose"],
     assignees: ["Sony Corporation"],
+    errata: [
+      {
+        status: "corrected",
+        surface: "25",
+        field: "nd",
+        printed: 1.96997,
+        applied: 1.496997,
+        evidence: ["sibling-example", "source-summary", "claims"],
+        note: "Table 13 prints 1.969970 at νd 81.6; Examples 2 (surfaces 20, 23) and 5 (surface 24) print 1.496997 / 81.6 for the same ED element. The printed value gives f = 7.91 / 9.61 / 12.17 mm against the stated 16.5 / 22.91 / 33.95 mm and a positive fifth group (+48.5 mm) against claim 1's negative one; 1.496997 gives 16.52 / 22.96 / 34.02 mm and G5 = −80.40 mm (Table 22).",
+      },
+    ],
   },
 
   elements: [
@@ -235,7 +244,7 @@ const LENS_DATA = {
       focalLengthMm: 39.4,
       glass: "FCD705 (HOYA) class, ED fluorophosphate",
       apd: "inferred",
-      apdNote: "Catalog FCD705-class fluorophosphate coordinate; the patent gives nd/νd only and no ΔPgF.",
+      apdNote: "FCD705-class fluorophosphate coordinate at one of the two rear-group ED positions in Sony's diagram; the patent gives nd/νd only.",
       role: "ED positive front component of the first G5 doublet; lateral-color correction.",
       diagramLabel: "L11",
       cemented: "D2",
@@ -265,7 +274,7 @@ const LENS_DATA = {
       glass: "S-FPL51 (OHARA) / FCD1 (HOYA), ED fluorophosphate",
       apd: "inferred",
       apdNote:
-        "Index corrected from printed 1.969970 (MD-01). Catalog S-FPL51/FCD1-class coordinate; the patent gives nd/νd only.",
+        "S-FPL51/FCD1-class coordinate at the second rear-group ED position in Sony's diagram (index corrected from the printed 1.969970, see source errata).",
       role: "ED biconvex singlet of G5; principal positive low-dispersion element of the rear group.",
       diagramLabel: "L13",
     },
@@ -356,7 +365,7 @@ const LENS_DATA = {
     { label: "22", R: 131.01, d: 5.174, sd: 13.0, medium: 12 },
     { label: "23", R: -25.597, d: 1.5, sd: 13.0, medium: 13 }, // L11 / L12 junction
     { label: "24", R: 90.717, d: 0.4, sd: 13.0 },
-    { label: "25", R: 29.497, d: 6.118, sd: 13.5, medium: 14 }, // printed Nd 1.969970 (MD-01)
+    { label: "25", R: 29.497, d: 6.118, sd: 13.5, medium: 14 }, // Table 13 prints nd 1.969970; corrected to 1.496997 (source.errata)
     { label: "26", R: -36.964, d: 0.4, sd: 13.5 },
     { label: "27", R: 156.819, d: 4.72, sd: 13.0, medium: 15 },
     { label: "28", R: -26.738, d: 1.0, sd: 13.0, medium: 16 }, // L14 / L15 junction
@@ -385,11 +394,10 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.28,
     description:
-      "Floating inner focus: the patent moves G2 (L5) and G4 (L8–L10) toward the image when focusing close, matching Sony's two-motor floating system. Only infinity states are published and the split between the two groups is undetermined at the wide and middle settings, so this model has no internal focus travel; 0.28 m is Sony's minimum focus distance.",
+      "Floating inner focus: the patent moves G2 (L5) and G4 (L8–L10) toward the image when focusing close, matching Sony's two-motor floating system. The patent tabulates infinity focus only and does not give the travel of either group, so the model has no focus travel; 0.28 m is Sony's marketed minimum focus distance.",
   },
 
-  // (moved from var) Zoom-only spacings (Table 14). No close-focus spacings are published; close vectors repeat infinity
-  // (NO_INTERNAL_RECONSTRUCTION).
+  // Zoom spacings from Table 14. No close-focus spacings are published, so the close values repeat infinity.
   gaps: {
     "9": {
       label: "D(1) G1–G2",

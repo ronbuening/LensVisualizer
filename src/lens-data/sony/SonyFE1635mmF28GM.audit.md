@@ -305,7 +305,7 @@ Gate earned: **READY_FOR_DATA**.
 
 ## A.10. Pending integration
 
-`integrationStatus: INTEGRATION_PENDING`. The LENSVISUALIZER checks (`buildLens`, `validateLensData`, type check, render
+Closed 2026-10-20: integrated into `src/lens-data/sony/` (see the final section). `integrationStatus: INTEGRATION_PENDING`. The LENSVISUALIZER checks (`buildLens`, `validateLensData`, type check, render
 diagnostics) are NOT_RUN and required at integration.
 
 
@@ -552,7 +552,7 @@ manifest checkpoint.
 
 ## B.9 Pending integration
 
-`integrationStatus: INTEGRATION_PENDING`. Still required at integration:
+Closed 2026-10-20: integrated. `integrationStatus: INTEGRATION_PENDING`. Still required at integration:
 
 - corpus validation and render sweeps;
 - patent-metadata and analysis-file policy tests;
@@ -729,7 +729,7 @@ Gate earned: **READY_FOR_AUDIT**, bound to the hashes in the Stage 3 manifest ch
 
 ## C.7 Pending integration
 
-`integrationStatus: INTEGRATION_PENDING`. Still required at integration: corpus validation/render sweeps, the corpus analysis-file and patent-metadata policy tests, `generate:metadata`, full typecheck and build under Node 24. Stage 4 (fresh source-first audit) has not begun.
+Closed 2026-10-20: integrated. `integrationStatus: INTEGRATION_PENDING`. Still required at integration: corpus validation/render sweeps, the corpus analysis-file and patent-metadata policy tests, `generate:metadata`, full typecheck and build under Node 24. Stage 4 (fresh source-first audit) has not begun.
 
 # Part D — Stage 4 source-first independent audit (stage4-r1)
 
@@ -876,5 +876,39 @@ Disposition: READY_FOR_BATCH (pre-integration readiness only); integrationStatus
 
 Unchanged from Stages 1–3: EFL residual; inferred semi-diameters (Fig. 13 scale) and f/2.88-calibrated stop schedule;
 NO_INTERNAL_RECONSTRUCTION focus (no published close-focus data); nd/νd-only spectral data; meridional-only containment;
-LensVisualizer runtime half-field limited by SDs (OI-09). Pending at integration: organizer move to the sony maker
+LensVisualizer runtime half-field limited by SDs (OI-09). Pending at integration (closed 2026-10-20): organizer move to the sony maker
 folder, metadata generation, corpus validation and tests on Node 24, and visual review of the lens page.
+
+## 2026-10-20 — Deployment validation and wording pass
+
+Source re-read from the WO 2018/139160 A1 page images (Table 13 p30, Tables 14–16 p31, Tables 21–22 p36, asphere
+equation p15, Fig. 13 p58, claims p42): all 33 rows (R, d, Nd, νd), the iris at s16, the three cemented interfaces and
+the L2 resin layer, all 7 aspheres (K and A4–A12, 37 non-zero coefficients), 5 variable gaps at 3 zoom stations, the
+cover glass and BF 1.00 mm. The only mismatch is the s25 index (printed 1.969970, file 1.496997). The (1+K) conic form
+maps K directly; the y²c² numerator is read as y²c.
+
+The s25 correction meets the two-kind standard and is now recorded as a `corrected` `source.errata` entry with three
+kinds: sibling-example (Example 2 surfaces 20 and 23, Example 5 surface 24 print 1.496997 / 81.6), source-summary
+(printed value: f = 7.906 / 9.613 / 12.170 mm and paraxial BF −12.94 / −19.17 / −28.22 mm against the stated
+16.5 / 22.91 / 33.95 mm and 1.00 mm; corrected value: 16.519 / 22.963 / 34.025 mm, BF 1.108 / 1.086 / 1.005 mm) and
+claims (claim 1 requires a negative fifth group; printed G5 = +48.49 mm, corrected −80.40 mm, Table 22 −80.40).
+
+First-order, patent → model: EFL 16.5 (16.48 in Table 22) / 22.91 / 33.95 → 16.519 / 22.963 / 34.025 mm; F/2.88 at
+every station with iris semi-diameters 9.165 / 11.410 / 14.965 mm; BF 1.00 → paraxial 1.108 / 1.086 / 1.005 mm;
+total length 154.52 / 146.01 / 140.08 mm; real-ray field at 21.65 mm 54.0° / 43.1° / 31.7° against ω 53.95° /
+43.14° / 31.71°. The surface audit reports no errors, the image-circle audit no undersized station and field coverage
+100 % at all three stations. No close-focus states are published.
+
+Maker diagram (sony.jp `y_SEL1635GM_lenscomposition.jpg`): XA at the front element and at a thin element just ahead
+of the stop, three further aspherical elements at the second, post-stop and last positions, and two ED elements in
+the rear group. These match L1 and L7 (XA), L2, L10 and L16 (aspherical) and L11 and L13 (fluorophosphate-class) of
+Example 4, and Sony's 16 elements / 13 groups.
+
+Fields changed in this pass, optics unchanged (engine EFL, F-number, half-field, stop radius, BFD and focus keyframes
+identical before and after): `subtitle`; `catalog.specs` reduced to the four standard lines; `source.errata` added;
+L11 and L13 `apdNote` reworded to cite the maker diagram; s25 comment, gap-table comment, `focus.description` and the
+header (template import lines removed, process tokens replaced, stop note restated as the per-station iris sizes)
+reworded. In the analysis, the second XA element is assigned to L7 from Sony's diagram, the "Verification Summary"
+heading became "Model Scope and Limitations" without its method paragraph, and catalog-search wording was simplified.
+
+Open: none.

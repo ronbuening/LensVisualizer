@@ -24,11 +24,12 @@ does not publish the patent number, so it is an identification by the author, no
 2. **Aspherical elements.** Sony's release states five aspherical elements, two of them XA (extreme aspherical), and
    identifies the front element as an XA element. Example 4 has seven aspherical surfaces on exactly five elements: L1
    (both faces), the L2 hybrid (resin face), L7 (both faces), L10 and L16 ([0113]). L1 is the front element, so the
-   release's front XA element is consistent with L1. The patent does not use the XA designation, and no source consulted
-   identifies the second XA element; this analysis does not assign it.
+   release's front XA element is consistent with L1. The patent does not use the XA designation; Sony's optical
+   construction diagram marks the front element and a thin element just ahead of the stop as XA, positions that
+   correspond to L1 and L7, and shows the other three aspherical elements where Example 4 places L2, L10 and L16.
 3. **Low-dispersion elements.** Sony states two ED elements. Example 4 contains two elements with fluorophosphate-class
-   coordinates, L11 (νd 75.5) and L13 (νd 81.6). L9 (νd 70.4) is a fluor-crown coordinate that is conventionally not
-   marketed as ED; this reading is an inference.
+   coordinates, L11 (νd 75.5) and L13 (νd 81.6), and Sony's diagram places both ED elements in the rear group. L9
+   (νd 70.4) is a fluor-crown coordinate that is conventionally not marketed as ED; this reading is an inference.
 4. **Focus.** Sony describes a floating focus system with two independently driven groups and two DDSSM motors. The
    patent moves G2 and G4 toward the image for close focus ([0021], [0060]).
 5. **Focal length, aperture and field.** Table 16 gives f = 16.5 / 22.91 / 33.95 mm, Fno = 2.88 at every station, and
@@ -126,7 +127,7 @@ nd = 1.912366, νd = 21.9. Glass: Unmatched (dense titanium flint class). f = +7
 
 L4 is the only positive element of G1 and its only high-dispersion one. In the primary-chromatic decomposition at wide
 it contributes +311 µm of lateral colour (F−C at Y = 21.63 mm), against a combined −539 µm from L1, the L2 hybrid and
-L3. It is therefore the chromatic partner of the front negative elements. No catalog row lies within the matching window for this coordinate.
+L3. It is therefore the chromatic partner of the front negative elements. No catalog glass closely matches this coordinate.
 
 ### L5 — Biconvex Positive (Focus Group G2)
 
@@ -141,7 +142,7 @@ focus unit ([0025]). It contributes +169 µm of primary lateral colour at wide, 
 nd = 1.834287, νd = 39.1. Glass: Unmatched (lanthanum flint class). f = −82.3 mm.
 
 L6 leads G3. Paired with the positive L7 it produces the nearly afocal group (+360.4 mm) that moves with the stop. No
-catalog row matches the coordinate within the adopted window.
+catalog glass closely matches the coordinate.
 
 ### L7 — Biconvex Positive, Two Aspherical Surfaces
 
@@ -151,7 +152,7 @@ L7 sits immediately ahead of the stop, where the axial and off-axis beams nearly
 are modest (−0.425 mm on 14A and −0.222 mm on 15A at the modeled rim), but their effect on the axial beam is large:
 replacing both faces by their vertex spheres changes the f/2.88 marginal-ray transverse aberration at tele from +20 µm
 to −3145 µm. Among the aspherical surfaces, L7's pair has the largest effect on spherical aberration and almost none on
-distortion.
+distortion. Sony's diagram marks this position as the second XA element.
 
 ### L8–L9 — Cemented Doublet in G4
 
@@ -190,7 +191,7 @@ patent recommends for chromatic correction ([0040]–[0041]).
 nd = 1.496997, νd = 81.6. Glass: S-FPL51 (OHARA) / FCD1 (HOYA) class, fluorophosphate. f = +34.1 mm.
 
 L13 is the strongest positive singlet of G5. Table 13 prints its index as 1.969970; the model uses 1.496997, the value
-of the same position in Examples 2 and 5 (see Verification Summary). The low index and low dispersion matter in
+of the same position in Examples 2 and 5 (see Model Scope and Limitations). The low index and low dispersion matter in
 different ways. The low index gives L13 the largest single positive Petzval term in the design (+20.2 × 10⁻³ mm⁻¹),
 and the low dispersion keeps its chromatic contribution small for its power (−135 µm of lateral colour at wide).
 
@@ -217,8 +218,8 @@ aspheres work as a balanced pair rather than as independent correctors.
 
 ## Glass Identification and Selection
 
-The patent gives nd and νd only. Glass names below are coordinate-compatible catalog rows found by an unseeded search of
-OHARA, HOYA, Schott, HIKARI, CDGM and Sumita data; a name does not establish supplier or melt identity.
+The patent gives nd and νd only. Glass names below are coordinate-compatible catalog glasses from OHARA, HOYA, Schott,
+HIKARI, CDGM and Sumita data; a name does not establish supplier or melt identity.
 
 | Element | nd | νd | Catalog identification | Role |
 |---|---:|---:|---|---|
@@ -396,14 +397,12 @@ correction during focus difficult and lengthens its travel, while too strong a G
 strong a G2 shortens the wide-end back focus and forces a stronger G1, worsening distortion ([0033]). Condition (4)
 balances G4 against G5; too strong a G5 makes coma correction difficult ([0036]).
 
-## Verification Summary
-
-The prescription was traced with two independently written paraxial engines (a sequential y–ν trace and ABCD matrices,
-agreeing to better than 10⁻⁹) and a real meridional ray tracer using the patent's asphere equation.
+## Model Scope and Limitations
 
 - **Source correction, surface 25.** Table 13 prints Nd = 1.969970 with νd = 81.6 for L13. No catalog glass lies near
-  that coordinate, and with the printed value G5 computes to +48.5 mm instead of the −80.40 mm of Table 22. The same
-  position in Examples 2 and 5 holds 1.496997 / 81.6, and that value reproduces Table 22. The model uses 1.496997; the
+  that coordinate. With the printed value the system computes f = 7.91 mm at wide instead of 16.5 mm, and G5 becomes
+  positive (+48.5 mm) although claim 1 requires a negative fifth group and Table 22 gives −80.40 mm. The same position
+  in Examples 2 and 5 holds 1.496997 / 81.6, and that value reproduces Tables 16 and 22. The model uses 1.496997; the
   printed value is retained in the source record.
 - **Focal length.** The computed EFL is 16.52 / 22.96 / 34.02 mm, which is +0.23 %, +0.23 % and +0.22 % above the
   published 16.48 (Table 22 fw) / 22.91 / 33.95 mm. The paraxial image falls +0.108 / +0.086 / +0.005 mm beyond the
@@ -416,8 +415,6 @@ agreeing to better than 10⁻⁹) and a real meridional ray tracer using the pat
   24.70 mm conic-domain limit, and reaches Y = 21.63 mm at 54.00°, within 0.05° of Table 16.
 - **Distortion.** Real-ray distortion is −5.05 % at wide (49.56°), +0.73 % at intermediate (43.14°) and +3.03 % at tele
   (31.71°), relative to the computed focal length. This matches the barrel-to-pincushion progression of Figs. 14–16.
-- **Third-order and chromatic coefficients.** Each coefficient family used above was checked against an independent
-  real-ray or finite-difference measurement, extrapolated to zero aperture or field, at all three stations.
 - **Modeled quantities.** The patent publishes neither semi-diameters nor a stop diameter. Semi-diameters are scaled
   from the to-scale Fig. 13 section (13.13 px/mm, about ±0.15 mm reading uncertainty); L3 and L16 are reduced slightly
   for clearance. The stop semi-diameter is calibrated to f/2.88 at each station by real-ray trace (9.165 / 11.410 /
@@ -458,4 +455,5 @@ therefore a different optical design rather than a revision of Example 4.
 5. Sony, SEL1635GM2 specifications, https://www.sony-asia.com/electronics/support/lenses-e-mount-lenses/sel1635gm2/specifications
    (accessed 2 October 2026).
 6. Optical glass catalog data: OHARA (2025-03-12), HOYA (2026-04-01), Schott (2025-01-13), HIKARI, CDGM (2024-09) and
-   Sumita (v14.01.03), as bundled with the opticalglass 2.0.2 Python package.
+   Sumita (v14.01.03).
+7. Sony Japan, SEL1635GM optical construction diagram, https://www.sony.jp/products/picture/y_SEL1635GM_lenscomposition.jpg.
