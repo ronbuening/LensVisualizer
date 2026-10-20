@@ -234,3 +234,63 @@ checks and integration status. No optical value changed.
 
 Closed the same day: `name` is now "VILTROX MF 20mm f/1.8" and `lensMounts` adds `nikon-z`; Viltrox sells the same
 optics in Sony E and Nikon Z mounts. Open: glass strings remain "Unmatched"; the patent prints two-decimal indices.
+
+## 2026-10-20 — Second review: diagram, labels and movement
+
+Compared: the local page at infinity against the patent's structure drawings, which are drawn to scale. FIG. 1
+(p15, 150 dpi native) measures 7.92 px/mm: first vertex to IMA 915 px for 115.26 mm, with M3 and M5 agreeing within
+1 %. The enlarged group drawings FIG. 2 (G1, p16) and FIG. 4 (G3, p18) measure 15.3 px/mm on every vertex span
+(s1 to s7 at 15.29; s13 to s22A at 15.31). FIG. 3 (G2, p17) measures 15.2 px/mm. Rims were read on the side without
+leader lines. A red model outline drawn over FIG. 1 was used before and after the changes.
+
+Floors from an independent exact trace (analytic sphere intersections): F1.8 axial marginal at s13 10.75 mm and at
+s11 11.37 mm; the corner chief ray reaches 21.635 mm at 47.1°, with heights 22.76 (s1), 18.88 (s2), 12.94 (s6),
+8.51 (s16), 9.83 (s19) and 10.56 mm (21A). clearap's Newton intersection does not converge past about 45° on the
+steep L11/L12 faces, so it was used only at 44.8°.
+
+| Surface | Before | After | Figure reading | Evidence and reason |
+|---|---|---|---|---|
+| 6 (L13 rear / L14 front) | 17.0 | 18.1 | 18.8 land | FIG. 2 draws L13 square, with L14's land at the same height. Surface 5 is held at 18.1 by the 0.9 gap rule against L12's concave rear, which touches L13's rim in the figure, so both faces of L13 sit at 18.1 |
+| 15 (L32/L33) | 13.8 | 13.3 | 12.45 face, 13.07 land | FIG. 4 draws the triplet as one flat 13.07 mm land. 13.3 is the lowest value that keeps the outer F1.8 ray at 24.7° clear (13.12 mm) |
+| 16 (L33 rear) | 14.3 | 13.5 | 13.07 | The same land. The outer ray at 24.7° reaches 13.36 mm here, so 13.5 rather than 13.1 |
+| 19 (L35 front) | 15.5 | 13.5 | 13.5 | FIG. 4 draws L35 square at 13.5 mm on both faces. The rear stays at 13.2: 13.5 fails the 20→21A gap check (4.46 against 4.383 mm) |
+| 21A (L36 front) | 16.0 | 14.0 | 13.9 face, 15.46 edge | At 16 mm the front asphere sits at z = 91.6 mm, 1.2 mm ahead of L35's rear rim, so L36 wrapped L35 on the page. FIG. 4's front face leaves the asphere profile at 13.9 mm, and its edge is drawn just behind L35 |
+
+Retained, all within about 6 % of the drawing: s1 28 (FIG. 2 land 27.2; §0078 gives an effective diameter over
+54 mm), s2 22 (21.8), s3 20.5 (21.9 drawn touching L11's back edge; the gap rule caps it near 21.2), s4 19.5 (18.5),
+s5 18.1 (18.7, capped by the gap rule), s7 15 (14.4), G2 14/13.5/13.5/14.2 (FIG. 3: 14.3/13.2/14.0/14.0), L34 15/15
+(14.5), s20 13.2 (13.5), 22A 16 (15.46 edge). L31 (s13/s14 12.8) is drawn with its faces stepping in to 11.0 and 11.3 mm
+inside the triplet's 13.07 mm land. The renderer cannot draw a step. The faces at 11.0 mm would sit 0.25 mm outside
+the F1.8 axial ray and stop much of the mid-field bundle, so 12.8 is kept. The site then shows the drawn land to
+within 2 %.
+
+Clearance after the change: audit:surface reports no errors, audit:image-circle 0 undersized, field coverage 100 % and
+no clearap CLIPS-AXIAL or BLOCKS-CHIEF. Engine half-field stays at 41.21° (limited by surface 2) and f-number at 1.800,
+with stop SD 11.110 mm. The engine curve (meridional) reads 100 % to 44.2° before and after, and 96.9 → 91.7 % at
+47.1°; the drop comes from surface 19. A 3D sample (fields 0/12.4/24.7/14.1/28.2°, F1.8 to F16, pupil fractions
+0/0.5/1, azimuths every 30°) keeps every ray clear through 24.7°. The minimum clearance falls from 0.197 mm (s13) to
+0.138 mm (s16). At 28.2° and F1.8 the clipped samples rise from 1 to 3 of 36: the two new ones are the outer rays at
+±30° azimuth, at surface 16.
+
+Labels and tags checked against §§0063–0089 and FIG. 1: the element names L11–L36 and the groups G1 (1–7),
+G2 (8–11) and G3 (13–22A) are the patent's. C1 (5–7) brackets the cemented L13/L14 and C2 (13–16) the L31–L33 triplet.
+No gap labels exist to collide with them. Every `type` agrees with the R signs and with the shapes in §§0078–0089.
+Only 21A and 22A carry the asphere marker (§0089, L36). The stop sits 3.54 mm behind L22 (§0077). The four
+`apd: "inferred"` tags fall on the four 1.50/81.6 positions. §0057 says only that low-dispersion elements are used and
+designates none, so `"inferred"` stays. The inspector for elements 4, 7 and 12 shows the expected type, glass, focal
+length and role, and TRIPLET C2 for L31.
+
+Movement: none is modeled. §0070 fixes G1 and G2 and moves G3 to focus, but gives no direction or travel. The focus
+overlay reports no modeled movement and the slider's far end reads "Not modeled". The patent's four figure pages are
+structure drawings only and print no aberration curves, so no aberration comparison is possible.
+
+Glass: every element prints its nd/νd once, in the claims and in §§0078–0089, and that pair is shared by both
+examples. The three pairs that recur inside the design (1.50/81.6 four times, 1.90/31.4 three times) and the
+others all match real catalog glass to within rounding. Exact candidates in the repo catalog are 1.75/52.3: TAC6,
+S-LAH97, N-LAK33B. 1.85/23.8: FDS90, S-TIH53, H-ZF52, J-SF03. 1.90/31.4: H-ZLaF75B. 1.50/81.6: FCD1, H-FK61.
+1.65/33.8: S-TIM22, E-FD2, H-ZF1. 1.72/29.5: SF1, S-TIH1, E-FD1L. 1.52/63.5: D-K59 (CDGM's mouldable glass; the
+element is the double-sided asphere). The patent prints no glass names, θgF or extra line indices. The labels stay
+Unmatched under the two-decimal convention.
+
+Open: L31's stepped faces and the stepped backs of L11, L12 and L14 cannot be drawn; the site shows bevels. The
+patent prints no near-focus spacings.

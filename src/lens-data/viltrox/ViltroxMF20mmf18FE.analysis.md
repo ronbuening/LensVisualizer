@@ -271,7 +271,11 @@ conditions do not independently identify a corrected radius.
 ## Model Geometry and Approximation Limits
 
 The stop position is published; its semi-diameter is not (see below).
-The clear apertures of the refracting surfaces are also inferred.
+The clear apertures of the refracting surfaces are also inferred: they are read from the
+to-scale structure drawings (FIGs. 1, 2 and 4) and held above the F1.8 axial marginal ray and
+the corner chief ray. The figures draw L31's faces stopping at about 11 mm inside a 13.1 mm
+edge land; the model keeps 12.8 mm for both faces of L31 and the drawn land height for the
+rest of the triplet.
 The modeled front diameter is 56 mm; the source provides only a lower bound of 54 mm.
 The modeled shapes keep positive edge thickness, stay inside each asphere's conic
 domain and do not intrude into neighbouring air gaps. They do not establish production
@@ -292,12 +296,13 @@ semi-diameter of 11.11 mm rather than the paraxial value of 10.72 mm.
 Neither value measures the production iris.
 
 With this iris, rays at 0°, 12.4° and 24.7° pass every modeled aperture at F1.8 to F16
-with either interface radius, with at least 0.197 mm clearance; image intercepts for
-the two radii differ by at most 0.003 mm.
+with either interface radius, with at least 0.13 mm clearance (the outer F1.8 ray at
+24.7°, at surface 16); image intercepts for the two radii differ by at most 0.003 mm.
 
 At 28.2° and F1.8, the outer meridional ray reaches surface 13 at 12.91 mm, just
 beyond its modeled 12.8 mm aperture, and is clipped there with either interface
-radius. The chief ray itself reaches the 21.63 mm full-frame corner at a half-field
+radius. At the same field the triplet's rear rim (surface 16, 13.5 mm) also stops two
+outer F1.8 rays sampled 30° either side of the meridian. The chief ray itself reaches the 21.63 mm full-frame corner at a half-field
 of about 47.1° (2ω ≈ 94.2°, against the patent's "greater than 94°").
 
 The model is a static geometric approximation; it does not establish full-field

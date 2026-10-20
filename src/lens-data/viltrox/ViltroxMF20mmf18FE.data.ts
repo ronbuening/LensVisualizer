@@ -5,8 +5,10 @@
  * Using -70.15 mm instead changes EFL by 0.0005 mm and BFD by 0.005 mm.
  * Rounded patent Nd/Vd are unchanged. No supplier or borrowed spectral values are assigned.
  * No scaling or conic conversion. Source equation uses (1+K); A4 through A12 copied, A14 unused.
- * Stop location is published; the stop radius is set from F1.8. Surface SDs are inferred and checked
- * against exact rays, edge thickness, rim slope, conic domain and gaps between adjacent surfaces.
+ * Stop location is published; the stop radius is set from F1.8. Surface SDs are estimated from the to-scale
+ * FIGs. 1, 2 and 4 and checked against exact rays, edge thickness, rim slope, conic domain and gaps
+ * between adjacent surfaces. L31's faces are drawn stepped at about 11 mm inside the triplet's 13.1 mm
+ * land; 12.8 mm is kept for both. L33 sits 0.2-0.4 mm above the land so the F1.8 24.7-degree bundle clears.
  * Wide open, an outer meridional ray at 28.2 degrees clips at surface 13 with either interface radius.
  * Image plane is at the computed paraxial infinity BFD; the patent prints no back focus.
  * Focus: G1/G2 fixed and G3 moving is published, but no travel or near-focus spacings are, so only
@@ -213,7 +215,7 @@ const LENS_DATA = {
     { label: "3", R: 45.65, d: 2.0, sd: 20.5, medium: 2 },
     { label: "4", R: 23.95, d: 6.27, sd: 19.5 },
     { label: "5", R: 63.0, d: 7.3, sd: 18.1, medium: 3 },
-    { label: "6", R: -70.25, d: 1.5, sd: 17, medium: 4 },
+    { label: "6", R: -70.25, d: 1.5, sd: 18.1, medium: 4 },
     { label: "7", R: 19.75, d: 13.74, sd: 15 },
     { label: "8", R: 43.13, d: 3.93, sd: 14, medium: 5 },
     { label: "9", R: 156.5, d: 3.16, sd: 13.5 },
@@ -222,17 +224,17 @@ const LENS_DATA = {
     { label: "STO", R: "flat", d: 6.590000000000001 },
     { label: "13", R: 31.8, d: 7.93, sd: 12.8, medium: 7 },
     { label: "14", R: -18.6, d: 1.5, sd: 12.8, medium: 8 },
-    { label: "15", R: 19.33, d: 7.83, sd: 13.8, medium: 9 },
-    { label: "16", R: -78.0, d: 0.1, sd: 14.3 },
+    { label: "15", R: 19.33, d: 7.83, sd: 13.3, medium: 9 },
+    { label: "16", R: -78.0, d: 0.1, sd: 13.5 },
     { label: "17", R: 37.25, d: 7.15, sd: 15, medium: 10 },
     { label: "18", R: -46.25, d: 1.21, sd: 15 },
-    { label: "19", R: -118.75, d: 1.5, sd: 15.5, medium: 11 },
+    { label: "19", R: -118.75, d: 1.5, sd: 13.5, medium: 11 },
     { label: "20", R: 41.0, d: 4.87, sd: 13.2 },
     {
       label: "21A",
       R: -115.0,
       d: 2.0,
-      sd: 16,
+      sd: 14,
       medium: 12,
       asphere: { K: -20.195, A4: -4.508e-5, A6: 6.657e-8, A8: -4.035e-10, A10: 2.981e-13, A12: 1.456e-15 },
     },
