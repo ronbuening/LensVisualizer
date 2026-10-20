@@ -57,4 +57,4 @@ Source: US 4,770,511, Table 2, PDF p. 12. Applied the approved focal-length meta
 
 Retained marketing 35–200 mm, all prescription geometry and derived BFDs. The station values and display labels now match Table 2. Interior millimetre-valued zoom links can select a different normalized zoom state; geometry at a fixed normalized state is unchanged.
 
-The approved proposal independently reproduced infinity EFLs of 36.227839 / 194.853344 mm; those traced results remain documented separately. Both S2.P6.T3 endpoint comparisons now have zero difference. This is a metadata correction, not a source-prescription correction.
+The approved proposal independently reproduced infinity EFLs of 36.227839 / 194.853344 mm; those traced results remain documented separately. Both endpoint comparisons in the historical zoom-metadata check now have zero difference. This is a metadata correction, not a source-prescription correction.

@@ -37,6 +37,6 @@ Source: US 4,437,733, First Embodiment, PDF p. 13. Applied the approved focal-le
 
 Retained all station labels, marketing values, prescription geometry and image distances. The former design values were rounded or full-precision computed EFLs; the catalog field now records the source-stated endpoints.
 
-The approved proposal independently reproduced infinity EFLs of 11.735474477 / 28.031359056 / 66.962358248 mm; those traced results remain documented separately. Both S2.P6.T3 endpoint comparisons now have zero difference. This is a metadata correction, not a source-prescription correction.
+The approved proposal independently reproduced infinity EFLs of 11.735474477 / 28.031359056 / 66.962358248 mm; those traced results remain documented separately. Both endpoint comparisons in the historical zoom-metadata check now have zero difference. This is a metadata correction, not a source-prescription correction.
 
 Added an `unresolved` `source.errata` entry, a header disclosure, and a Section G queue row. US 4,437,733, First Embodiment, PDF p. 13, states FW/FM/FT = 11.5/28.0/69.0 mm. The modeled prescription traces to 11.735474/28.031359/66.962358 mm with the separately documented middle D12 = 5.99 mm correction. The endpoint discrepancy is unaffected by that correction; its cause is unresolved. Printed focal-length metadata is retained.

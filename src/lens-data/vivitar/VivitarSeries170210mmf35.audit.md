@@ -75,6 +75,6 @@ Source: JP S51-63635 A, Table 1, PDF pp. 3–4. Applied the approved focal-lengt
 
 Retained all station labels, marketing values, prescription geometry and image distances. The former design values were rounded or full-precision computed EFLs; the catalog field now records the source-stated endpoints.
 
-The approved proposal independently reproduced infinity EFLs of 71.979219 / 203.013778 mm; those traced results remain documented separately. Both S2.P6.T3 endpoint comparisons now have zero difference. This is a metadata correction, not a source-prescription correction.
+The approved proposal independently reproduced infinity EFLs of 71.979219 / 203.013778 mm; those traced results remain documented separately. Both endpoint comparisons in the historical zoom-metadata check now have zero difference. This is a metadata correction, not a source-prescription correction.
 
 Added an `unresolved` `source.errata` entry, a header disclosure, and a Section G queue row. JP S51-63635 A, Table 1 (PDF pp. 3–4; gazette pp. 265–266), states f = 70–205 mm; Figure 2(a,c) repeats those endpoints. The unscaled printed prescription, including r19 = 38.35 mm, traces to 71.979219/203.013778 mm at the published endpoint gaps. The cause of the discrepancy is not isolated; the printed prescription is retained.

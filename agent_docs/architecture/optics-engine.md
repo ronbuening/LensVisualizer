@@ -14,8 +14,10 @@ The 16 top-level barrels are `buildLens`, `teleconverter`, `optics`, `fieldGeome
 subdirectories. The seam guard admits these and the permanent plain-Node entry
 `prescription/teleconverterCompatibility.ts`. `mount/` is outside the seam. Tests follow their internal subjects.
 
-The public contracts and descriptive adapter names are listed in [Public Functions](public-functions.md). The engine has no rollout-suffixed helper names or compatibility/alias barrels. The conversion barrel is restricted
-to `scripts/lens-data-convert/`, `scripts/lens-data-lib.mjs` and `scripts/lens-summaries.mjs`.
+The public contracts and descriptive adapter names are listed in [Public Functions](public-functions.md). The engine
+has no rollout-suffixed helper names or compatibility/alias barrels. See the exact conversion-import boundary under
+[Canonical Prescription](#canonical-prescription), enforced by `SEAM_REGISTRY` in
+`__tests__/src/optics/opticsArchitecture.test.ts`.
 
 ## Core Rule
 

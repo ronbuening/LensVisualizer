@@ -255,6 +255,6 @@ Source: US 4,110,006, Example 4, PDF pp. 18–19. Applied the approved focal-len
 
 Retained all station labels, marketing values, prescription geometry and image distances. The former design values were rounded or full-precision computed EFLs; the catalog field now records the source-stated endpoints.
 
-The approved proposal independently reproduced infinity EFLs of 151.7585 / 300.1933 / 595.4652 mm; those traced results remain documented separately. Both S2.P6.T3 endpoint comparisons now have zero difference. This is a metadata correction, not a source-prescription correction.
+The approved proposal independently reproduced infinity EFLs of 151.7585 / 300.1933 / 595.4652 mm; those traced results remain documented separately. Both endpoint comparisons in the historical zoom-metadata check now have zero difference. This is a metadata correction, not a source-prescription correction.
 
 The wide traced EFL remains 1.172% above the printed 150 mm station; its cause is not established by this metadata change.

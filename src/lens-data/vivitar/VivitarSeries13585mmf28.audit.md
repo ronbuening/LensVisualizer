@@ -194,6 +194,6 @@ Source: US 3,975,089, Table I / Fig. 1, PDF pp. 4–5. Applied the approved foca
 
 Retained all station labels, marketing values, prescription geometry and image distances. The former design values were rounded or full-precision computed EFLs; the catalog field now records the source-stated endpoints.
 
-The approved proposal independently reproduced infinity EFLs of 38.4609 / 89.0770 mm; those traced results remain documented separately. Both S2.P6.T3 endpoint comparisons now have zero difference. This is a metadata correction, not a source-prescription correction.
+The approved proposal independently reproduced infinity EFLs of 38.4609 / 89.0770 mm; those traced results remain documented separately. Both endpoint comparisons in the historical zoom-metadata check now have zero difference. This is a metadata correction, not a source-prescription correction.
 
 The existing unresolved `source.errata` entry and Section G investigation are retained unchanged; metadata agreement does not resolve the source contradiction.

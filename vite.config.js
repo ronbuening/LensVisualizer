@@ -80,7 +80,6 @@ export default defineConfig(({ isSsrBuild }) => ({
         "src/**/styles.ts",
         "src/components/layout/lensDiagram/panelModel.ts",
         "src/optics/buildLens.ts",
-        "src/optics/cardinalElements.ts",
         "src/optics/diagramGeometry.ts",
         "src/optics/optics.ts",
         "src/optics/projection.ts",

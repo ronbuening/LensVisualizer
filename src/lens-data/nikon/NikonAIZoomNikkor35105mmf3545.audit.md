@@ -95,7 +95,7 @@ Source: US 4,699,475, Table 7, PDF p. 23. Applied the approved focal-length meta
 
 Retained all station labels, marketing values, prescription geometry and image distances. The former design values were rounded or full-precision computed EFLs; the catalog field now records the source-stated endpoints.
 
-The approved proposal independently reproduced infinity EFLs of 37.391953 / 62.145237 / 106.577013 mm; those traced results remain documented separately. Both S2.P6.T3 endpoint comparisons now have zero difference. This is a metadata correction, not a source-prescription correction.
+The approved proposal independently reproduced infinity EFLs of 37.391953 / 62.145237 / 106.577013 mm; those traced results remain documented separately. Both endpoint comparisons in the historical zoom-metadata check now have zero difference. This is a metadata correction, not a source-prescription correction.
 
 Added an `unresolved` `source.errata` entry, a header disclosure, and a Section G queue row. US 4,699,475 Table 7 (PDF p. 23) states F = 36.2/60/103 mm and Bf = 52.36/65.30/78.24 mm; its printed prescription traces to EFL = 37.391953/62.145237/106.577013 mm and BFL = 53.302330/66.629909/79.917389 mm. Printed geometry and image distances are retained pending resolution.
 The Section F d9 hypothesis remains open pending a source-errata decision; this change does not validate that candidate correction.
