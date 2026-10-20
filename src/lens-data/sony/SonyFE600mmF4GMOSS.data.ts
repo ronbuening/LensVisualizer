@@ -25,7 +25,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    meridional envelopes (axial f/4.12 and 0.6-field bundles at ∞ and ║
  * ║    4.5 m, L11 = 76.0 mm as the off-axis vignetting aperture,         ║
  * ║    consistent with patent Fig. 13), then capped by edge-thickness    ║
- * ║    and gap rules.                                                    ║
+ * ║    and gap rules. GR3c rims L36–L39 and L42–L44 re-measured from     ║
+ * ║    Fig. 13 (200 dpi, 0.343 mm/px), floor-checked by real-ray trace:  ║
+ * ║    the figure draws L36–L39 near 12.8 mm and the rims rising to L44  ║
+ * ║    at 15.0 mm. L35 stays at 12.8 mm: its front face meets L34's rear ║
+ * ║    face at h = 13.55 mm (the figure draws them touching).            ║
  * ║  PRINTED GEOMETRY CONFLICT, kept as printed (the printed f, BF and   ║
  * ║    every printed condition value confirm these radii; no misprint    ║
  * ║    fits):                                                            ║
@@ -438,21 +442,21 @@ const LENS_DATA = {
     { label: "24", R: 40.01, d: 2.86, sd: 15.2 },
     { label: "25", R: -184.93, d: 1.8, sd: 12.8, medium: 14 },
     { label: "26", R: 57.71, d: 2.0, sd: 12.8 },
-    { label: "27", R: 28.3, d: 5.94, sd: 15.6, medium: 15 },
-    { label: "28", R: 113.58, d: 3.38, sd: 15.6 },
-    { label: "29", R: 48.18, d: 5.08, sd: 14.8, medium: 16 },
-    { label: "30", R: -100.0, d: 0.9, sd: 14.8 },
-    { label: "31", R: -104.03, d: 1.58, sd: 14, medium: 17 },
-    { label: "32", R: 21.0, d: 7.75, sd: 14, medium: 18 },
-    { label: "33", R: -79.89, d: 1.0, sd: 14 },
+    { label: "27", R: 28.3, d: 5.94, sd: 12.8, medium: 15 },
+    { label: "28", R: 113.58, d: 3.38, sd: 12.8 },
+    { label: "29", R: 48.18, d: 5.08, sd: 12.9, medium: 16 },
+    { label: "30", R: -100.0, d: 0.9, sd: 12.9 },
+    { label: "31", R: -104.03, d: 1.58, sd: 12.9, medium: 17 },
+    { label: "32", R: 21.0, d: 7.75, sd: 12.9, medium: 18 },
+    { label: "33", R: -79.89, d: 1.0, sd: 12.9 },
     { label: "34", R: -74.06, d: 1.4, sd: 13.3, medium: 19 },
     { label: "35", R: 18.33, d: 6.19, sd: 13.3, medium: 20 },
     { label: "36", R: 60.09, d: 0.85, sd: 13.3 },
-    { label: "37", R: 41.72, d: 10.0, sd: 13.3, medium: 21 },
-    { label: "38", R: -20.97, d: 1.8, sd: 13.3, medium: 22 },
-    { label: "39", R: -145.65, d: 3.71, sd: 13.3 },
-    { label: "40", R: -38.6, d: 1.2, sd: 13.2, medium: 23 },
-    { label: "41", R: -72.09, d: 39.18, sd: 13.2 }, // Last gap = printed BF 39.18 mm (Table 11)
+    { label: "37", R: 41.72, d: 10.0, sd: 14.2, medium: 21 },
+    { label: "38", R: -20.97, d: 1.8, sd: 14.2, medium: 22 },
+    { label: "39", R: -145.65, d: 3.71, sd: 14.2 },
+    { label: "40", R: -38.6, d: 1.2, sd: 15.0, medium: 23 },
+    { label: "41", R: -72.09, d: 39.18, sd: 15.0 }, // Last gap = printed BF 39.18 mm (Table 11)
   ],
 
   focus: {

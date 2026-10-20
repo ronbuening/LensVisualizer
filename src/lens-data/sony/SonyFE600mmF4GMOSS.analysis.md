@@ -45,7 +45,7 @@ The telephoto action can be read as a chain of magnifications. GR1 alone forms a
 
 The patent publishes neither a stop diameter nor any semi-diameters. The data file's stop semi-diameter of 16.506 mm is a calibration: it is the paraxial value that reproduces the printed Fno 4.12 at the transcribed focal length, and it is not independent evidence of the diaphragm size. A real ray at the f/4.12 entrance-pupil radius crosses the stop plane at 16.75 mm.
 
-All other semi-diameters are modeled from exact meridional ray envelopes and then limited by edge-thickness and gap rules. L11's semi-diameter of 76.0 mm acts as the off-axis vignetting aperture and agrees with the proportions of Fig. 13 (lower rim ≈ 76.1 mm).
+All other semi-diameters are modeled from exact meridional ray envelopes and then limited by edge-thickness and gap rules. L11's semi-diameter of 76.0 mm acts as the off-axis vignetting aperture and agrees with the proportions of Fig. 13 (lower rim ≈ 76.1 mm). The rear-group rims follow Fig. 13 as well: the figure draws L36 through L39 at about 12.8 mm and the rims rising again to 15.0 mm at L44, and the model uses those heights. The figure also draws L35 taller than L36, touching L34 at the rim. The model cannot show that, because L35's front face meets L34's rear face at a height of 13.55 mm, so L35 stays at 12.8 mm.
 
 **A limitation of the printed geometry, retained as a documented exception.** As printed, Example 4 cannot pass its own f/4.12 axial beam through physically realizable elements:
 
