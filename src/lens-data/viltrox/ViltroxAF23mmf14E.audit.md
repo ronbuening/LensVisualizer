@@ -394,3 +394,72 @@ Coordinator follow-up, same day: L14 and L15 `apd` "inferred" → "patent". ¶00
 material (超低色散材料) for the fourth and fifth lenses of G1, and ¶0026/¶0065 call both low-dispersion lenses. Open:
 the model's tangential field at the edge (−0.74 mm) does not match Fig. 3 (within about ±0.03 mm); six-digit catalog
 indices reduce it only to about −0.5 mm, so another source inconsistency may remain.
+
+## 2026-10-20 — Tangential field-curve source check
+
+Question: why the model's tangential field curve departs from Fig. 3 (PDF p. 17), when distortion (Fig. 4) and
+spherical aberration (Fig. 2) agree. Outcome: no single source value is isolated. The printed table is kept, and an
+`unresolved` entry is added to `source.errata`.
+
+Method. A scratch exact chief-ray trace with Coddington tangential and sagittal foci reproduces the engine to 0.01
+mm. Fig. 3 was digitised at 300 dpi: 0.1 mm is 161.5 px, and the field axis runs linearly from 0° to 31.7°. Fig. 6,
+the 0.3 m state on p. 20, was digitised the same way. Values below are focus minus axial focus in mm; the axial
+focus itself is given against the printed image plane.
+
+| Field fraction           | 0.5    | 0.7    | 0.8    | 0.9    | 1.0    | Axial focus |
+| ------------------------ | ------ | ------ | ------ | ------ | ------ | ----------- |
+| Fig. 3, T                | −0.01  | −0.02  | −0.03  | −0.04  | −0.10  | +0.027      |
+| Fig. 3, S                | −0.08  | −0.12  | −0.12  | −0.08  | +0.03  |             |
+| Printed table, L12 1.85, T | −0.18 | −0.42 | −0.63 | −0.98 | −1.63  | −0.873      |
+| Model, L12 1.83, T       | −0.09  | −0.21  | −0.31  | −0.47  | −0.75  | −0.125      |
+| Model, L12 1.83, S       | −0.11  | −0.19  | −0.22  | −0.21  | −0.14  |             |
+
+At 0.3 m, Fig. 6 reaches −0.29 at 0.78 of the field in T; the model reaches −0.51.
+
+Single-value search. Every printed R, d and nd of Table 1 and the four Table 2 spacings were tried with:
+- a sign flip, a swap of adjacent digits, and every single-digit change;
+- multiplication or division by 10;
+- a swap with the same column of the next row.
+
+That makes 1,646 traced variants. Each was scored on the Fig. 3 shape, the axial focus against Fig. 3's +0.027 mm,
+EFL against 23.44 mm, F1/F, F2/F and F4/F against Table 9, and the 0.3 m state (object-to-image 300 mm, EFL 22.95 mm).
+νd variants were not traced, because they cannot move d-line field curves. The best single changes, with L12 at 1.83:
+
+| Change                 | Fig. 3 rms | T at edge | Axial focus | EFL    | 0.3 m conjugate | Fig. 6 rms | Examples 2/3/4 print |
+| ---------------------- | ---------: | --------: | ----------: | -----: | --------------: | ---------: | -------------------- |
+| none                   | 273 µm     | −0.755    | −0.125      | 23.350 | 300.2 mm        | 100 µm     |                      |
+| d4 0.10 → 0.70         | 36 µm      | −0.069    | −0.144      | 23.423 | 300.1 mm        | 7 µm       | 0.10 / 0.22 / 2.00   |
+| d7 2.31 → 2.71         | 35 µm      | −0.160    | −0.221      | 23.464 | 293.9 mm        | 6 µm       | 2.35 / 3.67 / 2.18   |
+| R20 −27.00 → −27.60    | 32 µm      | −0.093    | +0.073      | 23.608 | 321.0 mm        | 33 µm      | −26.01 / −25.23 / −24.51 |
+| R21 −25.97 → −25.37    | 29 µm      | −0.026    | +0.100      | 23.660 | 324.1 mm        | 22 µm      | −24.58 / −23.59 / −23.40 |
+| R2 22.41 → 22.11       | 23 µm      | −0.029    | +0.161      | 23.206 | 327.7 mm        | 4 µm       | 23.51 / 23.43 / 25.34 |
+| d6 3.54 → 3.84         | 39 µm      | −0.144    | −0.282      | 23.502 | 289.3 mm        | 5 µm       | 3.62 / 3.52 / 3.47   |
+
+Two-change combinations among the top 37 single changes did not beat d4 0.70 alone; the best pair was R4 −61.07 with
+d6 3.74, with 53 µm rms.
+
+Why no change qualifies:
+- Several unrelated cells repair the curve about equally. Only d4 0.70 also keeps the 0.3 m conjugate at 300 mm, but
+  it leaves the axial focus 0.17 mm from Fig. 3's.
+- No sibling example prints a replacement value or a consistent form for any candidate cell.
+- Table 9 cannot arbitrate. Its F1/F differs from every example's own trace by +0.04 to +0.18 even with catalog
+  indices, so it is looser than the effects being tested.
+- The ranking moves with the unprinted index decimals. With six-digit catalog indices for the identified glass
+  classes, the best single change becomes d7 2.31 → 2.61, and d4's best value becomes 0.50.
+- Index changes alone can reproduce Fig. 3. With every printed R and d kept and each nd allowed to move by 0.01 or
+  less, a fit reaches 16 µm rms, an axial focus of +0.037 mm and an EFL of 23.438 mm. The patent's printed indices
+  are known to be off by that much: L14 prints 1.51 for a νd 81.6 glass that is 1.497 in every catalog, L23 prints
+  1.93 for the 1.92286 class, and L15 prints 1.48 for 1.48749. A 0.01 change in any single index moves the
+  tangential edge focus by 0.1–0.4 mm.
+- Examples 2 and 4, traced as printed, miss their own printed EFLs (23.59 and 23.88 against 23.45) and focus
+  1.8 mm and 1.6 mm behind the image plane, so the tables are imprecise throughout.
+
+Evidence kinds. Fig. 3 and Fig. 6 are one kind (aberration-figure). No second kind exists for any candidate. The
+same-filing invention application CN 111474691 A and grant CN 111474691 B are the only related publications on
+Google Patents. Their text there carries the tables only as images, and the earlier dossier records that their
+Tables 1–2 repeat the utility model's values.
+
+Changed: a second `unresolved` entry in `source.errata`, a FIELD CURVES header note, and an analysis paragraph in
+Model Scope and Limitations. No optical value changed. The `/* ── Published internal-focus spacings ── */` comment
+above `gaps` was removed: the lens-data round-trip converter drops comments in that position, and the header's FOCUS
+note already cites Table 2. The L12 correction stands; its claims and sibling-example evidence are not affected.

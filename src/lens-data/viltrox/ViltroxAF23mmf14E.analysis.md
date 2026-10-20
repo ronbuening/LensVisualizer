@@ -207,6 +207,15 @@ patent is, and traces at the d-line with Abbe-number dispersion because no vendo
 aperture the off-axis bundles vignette at the front elements, which is expected for a compact f/1.4 design but is
 set here by figure-measured rather than published apertures.
 
+The model's distortion (about −1.5% barrel) and spherical aberration follow the patent's Figs. 2 and 4, but its
+tangential field curve does not follow Fig. 3. The patent keeps the tangential focus within about 0.1 mm of the
+axial focus out to 31.7°, while the printed table, traced with L12 at 1.83, puts it 0.75 mm in front of the axial
+focus at the field edge; Fig. 6 shows the same gap at 0.3 m. Single changes to one of several G1 or G4 spacings or radii flatten the curve,
+but the best one depends on index decimals the patent does not print, and index shifts of 0.01 or less reproduce
+Fig. 3 on their own. No single printed value is isolated, so the table is kept as printed and the mismatch is
+recorded as an unresolved source erratum. The sagittal curve has the patent's shape but dips about 1.7 times as
+deep.
+
 ## Sources
 
 1. **CN 211826700 U**, _内合焦式成像镜头_: front page; ¶0028 and ¶0060–0076 on PDF pp.4–6; Example 1 Tables 1–2

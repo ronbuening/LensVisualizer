@@ -401,7 +401,6 @@ const LENS_DATA = {
       "Floating inner focus: the patent moves G2 (L5) and G4 (L8–L10) toward the image when focusing close, matching Sony's two-motor floating system. The patent tabulates infinity focus only and does not give the travel of either group, so the model has no focus travel; 0.28 m is Sony's marketed minimum focus distance.",
   },
 
-  // Zoom spacings from Table 14. No close-focus spacings are published, so the close values repeat infinity.
   gaps: {
     "9": {
       label: "D(1) G1–G2",

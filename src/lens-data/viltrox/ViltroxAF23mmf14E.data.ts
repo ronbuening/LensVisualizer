@@ -20,6 +20,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * D2 4.43 → 1.88 mm. D1 + D2 is 5.43 mm at infinity and 5.64 mm at 0.3 m, although G2 and G4 are fixed; the
  * printed spacings are kept and the 0.21 mm difference is recorded as an unresolved erratum.
  *
+ * FIELD CURVES (unresolved erratum): Fig. 3 keeps the tangential field within about 0.1 mm of the axial focus to
+ * 31.7°; the printed table traces to −0.75 mm at the edge (−0.88 mm against the image plane), and Fig. 6 shows
+ * the same gap at 0.3 m. Single-value changes to d4, d6, d7, R2, R20 or R21 each flatten it, but which one wins
+ * depends on the unprinted index decimals, and index shifts of 0.01 or less reproduce Fig. 3 without any R or d
+ * change. No value is isolated, so the printed table is kept.
+ *
  * SEMI-DIAMETERS / STOP: the patent prints no clear apertures. Element semi-diameters follow Fig. 1, which is
  * drawn to scale (18.42 px/mm at 300 dpi; surface sags fit the printed radii), and are floor-checked by real-ray
  * trace at infinity and at 0.3 m. L15's front face (10.4) and the C1 doublet's rear faces (10.7) sit just above
@@ -64,6 +70,10 @@ const LENS_DATA = {
       {
         status: "unresolved",
         note: "Table 2 moves only G3, yet D1 + D2 is 5.43 mm at infinity and 5.64 mm at 0.3 m. The printed spacings are kept.",
+      },
+      {
+        status: "unresolved",
+        note: "Fig. 3 keeps the tangential field within about 0.1 mm of the axial focus out to 31.7°, but the printed table traces to −0.75 mm at the field edge; Fig. 6 (0.3 m) shows the same gap. Several single R or d changes in G1 or G4 flatten the curve, the best one depends on the unprinted index decimals, and index shifts of 0.01 or less alone reproduce Fig. 3. No single value is isolated; the printed values are kept.",
       },
     ],
   },
@@ -255,7 +265,6 @@ const LENS_DATA = {
     published: [1],
   },
 
-  /* ── Published internal-focus spacings (Table 2) ── */
   gaps: { "16": { label: "D1", values: [[1.0, 3.76]] }, "18": { label: "D2", values: [[4.43, 1.88]] } },
 
   aperture: { nominalFNumber: 1.4, fStops: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16], blades: 9 },

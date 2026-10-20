@@ -190,9 +190,6 @@ const LENS_DATA = {
       "Modeled unit focus: the patent prints only the infinity prescription. The Contax Sonnar focuses as a unit through the camera's helicoid, so the whole lens and stop move objectward 3.14 mm at the modeled 0.9 m object-to-image endpoint; this extension is calculated, not a patent value.",
   },
 
-  /* Unit focus through the Contax helicoid: only the back focal distance changes.
-   * Infinity: paraxial BFD of this scaled prescription. Close: exact paraxial image distance for a 0.9 m
-   * object-to-image endpoint (unit extension 3.13793 mm). Modeled, not published by the patent. */
   gaps: { "10": { label: "BF (modeled)", values: [[22.457601191379936, 25.595534]] } },
 
   // Nominal f-number; the engine sizes the stop for it. The patent gives no diaphragm diameter.
