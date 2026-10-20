@@ -2,7 +2,7 @@
 
 ## Current disposition
 
-**AUDITED_DIAGNOSTIC_ONLY. Ordinary readiness gate: null.** The user-authorized literal diagnostic model has been independently audited within the stated limits. It remains **not a verified production-lens model**. The six literal printed EFL/BF comparisons and the unresolved Stage1 source-discrepancy check remain FAIL. The explicit diagnostic exception does not make those comparisons pass, establish a patent correction, prove a production defect or earn READY_FOR_BATCH. Integration remains INTEGRATION_PENDING.
+**AUDITED_DIAGNOSTIC_ONLY. Ordinary readiness gate: null.** The user-authorized literal diagnostic model has been independently audited within the stated limits. It remains **not a verified production-lens model**. The six literal printed EFL/BF comparisons and the unresolved Stage1 source-discrepancy check remain FAIL. The explicit diagnostic exception does not make those comparisons pass, establish a patent correction, prove a production defect or earn READY_FOR_BATCH. Integration remains INTEGRATION_PENDING. _(Closed 2026-10-20: superseded by the deployment validation at the end of this file; the BF difference is explained there.)_
 
 The exact original candidate archive SHA-256 is `3b80ab2fd612443c447e1f4868596c6ce30760bc3d4675084c930bb0b2a0d1c0`. All manifest member hashes were verified. Final data bytes remain unchanged at `ddeb0a0ac413f84d74b0b4c6f792ed7cb774acdd0a48ede7efeb787bbfbc2209`. Analysis, evidence, verifier, results, audit and manifest were consolidated for this diagnostic audit.
 
@@ -437,7 +437,7 @@ The archive contains seven canonical files, including both unchanged
 originals. Clean extraction/hash/replay checks establish integrity and
 reproducibility of this **blocked** dossier, not package approval or readiness.
 
-Integration remains **INTEGRATION_PENDING**. Final candidate type checking,
+Integration remains **INTEGRATION_PENDING** _(closed 2026-10-20: integrated as a visible lens)_. Final candidate type checking,
 project validation, exact off-axis containment, production render trim,
 runtime glass resolution, corpus checks and full build remain unperformed.
 
@@ -496,3 +496,44 @@ Current disposition: DIAGNOSTIC_AUTHORING_COMPLETE_AWAITING_INDEPENDENT_AUDIT.
 The normal production-readiness gate is null. The next reviewer must conduct a
 fresh source-first audit of the diagnostic candidate; the earlier two-source
 block review was not such an audit. Integration remains INTEGRATION_PENDING.
+_(Closed 2026-10-20: the independent audit and integration are recorded below.)_
+
+## 2026-10-20 — Deployment validation and wording pass
+
+Source re-read from the US 2015/0085165 A1 page images (the PDF has no text layer):
+Table 7 (23 surfaces, R/d/nd/νd), Table 8 (9 aspheres, κ and C4–C10) and Table 9
+(d3, d9, d19, d21 and Bf at wide/middle/tele) agree with the data file with no
+mismatches. Numerical Expression 1 uses (1 + κ), so K = κ. Fig. 13 confirms 12
+elements, the L1/L2 and L8/L9 cemented pairs and the stop between G2 and G3.
+
+First order, patent vs model: f 24.72 / 47.00 / 67.90 vs EFL 24.712 / 46.988 /
+67.858 mm; Bf 21.95 / 35.79 / 45.74 vs paraxial BFD 22.066 / 35.912 / 45.747 mm;
+F/4.10 at all three states through the inferred iris schedule. A single-slip search
+(sign, any single digit, adjacent transposition and ×10 / ×0.1 on every R, d, n and
+zoom gap) finds no misprint that removes the BF differences; the best candidate
+(d22 2.00 → 2.10) halves them. A real-ray on-axis d-line trace at F/4.10 places the
+minimum-RMS focus −0.121 / −0.112 / −0.075 mm from paraxial, which matches the
+printed Bf at wide and middle. Example 1 of the same patent shows the same pattern
+(BF differences +0.053 / −0.007 / −0.107 mm; tele EFL 67.858 vs printed 67.90), so
+the printed Bf is read as the patent's best-focus plane and kept. The traced
+spherical aberration (−0.17 / −0.20 / −0.10 mm at full aperture) and distortion
+(−7.7 / +5.5 / +6.2 % at the printed half-fields) agree with Figs. 14–16. Google
+Patents lists the granted US9042030B2 as the only family publication.
+
+Maker comparison: Sony lists 12 elements / 10 groups, five aspherical elements, one
+ED element, 0.4 m MFD and 0.20× magnification. Example 3 has 12 / 10, aspheres on
+L3, L6, L7, L10 and L11, and L9 (1.497 / 81.61) as the ED-class element. Sony's
+construction diagram (https://www.sony.jp/products/picture/y_SEL2470Z_comosition.jpg)
+is consistent.
+
+Changed in this pass: key (diagnostic suffix dropped), name, subtitle, specs,
+`visible: true`; close focus reconstructed by moving G4 imageward 0.943 / 1.860 /
+2.793 mm with d19 + d21 conserved and BF fixed, reaching 0.4 m from the printed
+image plane (magnification 0.078 / 0.144 / 0.205×); 4A semi-diameter 15.3 → 15.65 mm,
+the smallest value passing the full-frame corner chief ray at wide at both focus
+ends (Fig. 13 draws L3 taller than this); L9 tagged `apd: "inferred"`; header,
+element roles, focus description and analysis prose rewritten in plain language.
+The surface audit, image-circle audit and field coverage (all three stations ≥ 99 %)
+pass.
+
+Open: the close-focus travel is a paraxial reconstruction, not Sony's focus cam.

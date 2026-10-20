@@ -1,37 +1,40 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * DIAGNOSTIC_ONLY. User-authorized literal-source exploration; no production-readiness gate.
- * Sony Vario-Tessar T* FE 24-70mm F4 ZA OSS correlation; not a manufacturer-confirmed prescription.
+ * Sony Vario-Tessar T* FE 24-70mm F4 ZA OSS (SEL2470Z) correlation; the patent does not name the product.
  * Source: US 2015/0085165 A1, Example 3, Tables 7-9; 12 elements / 10 groups.
- * 9 aspheres on 5 elements; K maps directly to published kappa. Scale = 1.
- * NO_INTERNAL_RECONSTRUCTION: only infinity zoom rows are published. Marketing MFD is 0.4 m.
- * Zoom gaps: d3,d9,d19,d21,BF; repeated focus slots invent no internal motion.
- * Semidiameters are modeled ray/section estimates, not published clear apertures.
- * Physical iris radii are inferred from nominal F/4.10 at each source zoom station.
- * Published source radii and image gaps retained. Computed d-line BFD differs from Table9
- * by +0.115575/+0.121967/+0.006766 mm at wide/middle/tele. No refocusing correction applied.
- * Glass coordinate classes do not identify supplier/melt; catalog spectra are proxies.
- * No source-listed cover/filter plate; optional generic patent prose does not authorize inventing one.
+ * 9 aspheres on 5 elements; K maps directly to the published kappa. Scale = 1.
+ * Zoom: the three published infinity rows (wide/middle/tele). Zoom gaps: d3, d9, d19, d21, BF.
+ * Focus: reconstructed. The patent names G4 (L11) as the focusing group but prints no close-focus rows.
+ * G4 moves imageward 0.943 / 1.860 / 2.793 mm (wide/middle/tele), conserving d19 + d21, to reach
+ * Sony's 0.4 m MFD measured from the printed image plane; BF stays fixed.
+ * Semi-diameters are modeled ray/section estimates, not published clear apertures; 4A is set to
+ * pass the full-frame corner chief ray at wide at both focus ends.
+ * Iris radii are inferred from the patent's F/4.10 at each zoom station.
+ * Printed radii and image gaps are retained. Computed d-line paraxial BFD exceeds the printed Bf
+ * by +0.116 / +0.122 / +0.007 mm at wide/middle/tele. The printed Bf matches the on-axis
+ * best-focus plane at wide and middle (paraxial offsets -0.121 / -0.112 mm), and Example 1 of the
+ * same patent shows the same pattern, so the printed plane is kept as the patent's best-focus plane.
+ * Glass coordinate classes do not identify supplier or melt; catalog spectra are proxies.
+ * The patent lists no cover glass or filter plate, and none is added.
  */
 
 const LENS_DATA = {
   schema: 2,
-  key: "sony-vario-tessar-t-fe-24-70mm-f4-za-oss-diagnostic",
+  key: "sony-vario-tessar-t-fe-24-70-f4-za-oss",
   maker: "Sony",
-  name: "SONY VARIO-TESSAR T* FE 24–70mm f/4 ZA OSS [DIAGNOSTIC ONLY]",
-  subtitle: "DIAGNOSTIC_ONLY — LITERAL US 2015/0085165 A1 EXAMPLE 3 — SOURCE RESIDUALS UNRESOLVED",
-  visible: false,
+  name: "SONY VARIO-TESSAR T* FE 24-70mm f/4 ZA OSS",
+  subtitle: "US 2015/0085165 A1, Example 3 — inferred production correlation",
+  visible: true,
 
   catalog: {
     lensMounts: ["sony-fe"],
     imageFormat: "135-full-frame",
     specs: [
-      "DIAGNOSTIC ONLY — NOT A VERIFIED PRODUCTION MODEL",
       "12 ELEMENTS / 10 GROUPS",
-      "5 FUNCTIONAL ZOOM GROUPS",
-      "9 ASPHERICAL SURFACES",
-      "INFINITY-ONLY PATENT MODEL",
+      "DESIGN f = 24.72-67.90 mm",
+      "DESIGN F/4.10",
+      "9 ASPHERICAL SURFACES / 5 ELEMENTS",
     ],
     elementCount: 12,
     groupCount: 10,
@@ -57,7 +60,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -252.60140359793738,
       glass: "847238 — high-index dense flint class",
-      role: "G1 negative member",
+      role: "Negative front member of the cemented G1 doublet",
       cemented: "D1",
     },
     {
@@ -70,7 +73,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 75.64356324441908,
       glass: "618634 — low-dispersion crown class",
-      role: "G1 positive member",
+      role: "Positive rear member of the cemented G1 doublet",
       cemented: "D1",
     },
     {
@@ -83,7 +86,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -19.564338074455932,
       glass: "882372 — high-index glass class",
-      role: "G2 negative variator",
+      role: "Strongest negative element of the G2 variator",
     },
     {
       id: 4,
@@ -95,7 +98,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -89.93471560163486,
       glass: "773496 — lanthanum glass class",
-      role: "G2 negative member",
+      role: "Second negative element of the G2 variator",
     },
     {
       id: 5,
@@ -107,7 +110,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 47.47552022841267,
       glass: "946180 — high-dispersion flint class",
-      role: "G2 positive member",
+      role: "Positive high-dispersion rear element of G2",
     },
     {
       id: 6,
@@ -119,7 +122,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 44.92774619637569,
       glass: "882372 — high-index glass class",
-      role: "G3 positive lead",
+      role: "Positive front element of G3, just behind the stop",
     },
     {
       id: 7,
@@ -131,7 +134,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 81.57823027495685,
       glass: "773495 — lanthanum glass class",
-      role: "G3 positive blur-correction element",
+      role: "Optical SteadyShot element; shifts perpendicular to the axis for blur correction",
     },
     {
       id: 8,
@@ -143,7 +146,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -14.378593631052217,
       glass: "755275 — dense flint class",
-      role: "G3 negative cemented member",
+      role: "Negative front member of the cemented L8/L9 doublet in G3",
       cemented: "D2",
     },
     {
@@ -156,7 +159,10 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 23.93044258769817,
       glass: "497816 — low-dispersion crown class",
-      role: "G3 positive low-dispersion cemented member",
+      apd: "inferred",
+      apdNote:
+        "Sony's single production ED position; the patent nd/vd row maps to an ED fluorophosphate class, but publishes no partial-dispersion value.",
+      role: "Positive ED member of the cemented L8/L9 doublet in G3",
       cemented: "D2",
     },
     {
@@ -169,7 +175,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 22.94916945374652,
       glass: "731405 — lanthanum glass class",
-      role: "G3 positive rear",
+      role: "Positive rear element of G3",
     },
     {
       id: 11,
@@ -181,7 +187,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -38.9181244438494,
       glass: "773495 — lanthanum glass class",
-      role: "G4 negative axial focus element; motion unmodeled",
+      role: "Focusing group G4; moves toward the image for close focus",
     },
     {
       id: 12,
@@ -193,7 +199,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -1232.0662987951318,
       glass: "487704 — low-dispersion crown class",
-      role: "G5 weak negative rear",
+      role: "Weak negative rear group G5; moves with G3 during zooming",
     },
   ],
 
@@ -205,7 +211,7 @@ const LENS_DATA = {
       label: "4A",
       R: 373.87,
       d: 1.2,
-      sd: 15.3,
+      sd: 15.65,
       medium: 3,
       asphere: { K: 9.399, A4: 5.0545e-6, A6: -1.9085e-8, A8: 1.4671e-11, A10: 1.2449e-14 },
     },
@@ -277,7 +283,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.4,
     description:
-      "DIAGNOSTIC_ONLY. NO_INTERNAL_RECONSTRUCTION: the patent identifies G4/L11 axial focusing but publishes only infinity zoom spacings. Focus slots repeat infinity values; 0.4 m is marketed MFD only. Zoom interpolation and F/4.10-derived iris schedule are modeled, not published motions or diameters.",
+      "Inner focus by G4 (L11), the group the patent names for focusing. The patent prints infinity spacings only, so the close-focus state is reconstructed: G4 moves toward the image by 0.94 mm at wide, 1.86 mm at middle and 2.79 mm at tele, keeping d19 + d21 constant, to reach Sony's 0.4 m minimum focus distance. The back focus does not change. Computed magnification at 0.4 m is 0.08× / 0.14× / 0.20×.",
   },
 
   gaps: {
@@ -297,20 +303,22 @@ const LENS_DATA = {
         [2.16, 2.16],
       ],
     },
+    // G3 → G4: zoom + reconstructed focus; d19 + d21 is conserved at each zoom state.
     "19A": {
       label: "d19",
       values: [
-        [5.86, 5.86],
-        [3.59, 3.59],
-        [2, 2],
+        [5.86, 6.803],
+        [3.59, 5.4498],
+        [2, 4.7932],
       ],
     },
+    // G4 → G5: zoom + reconstructed focus.
     "21A": {
       label: "d21",
       values: [
-        [5.58, 5.58],
-        [7.84, 7.84],
-        [9.44, 9.44],
+        [5.58, 4.637],
+        [7.84, 5.9802],
+        [9.44, 6.6468],
       ],
     },
     "23": {
