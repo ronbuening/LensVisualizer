@@ -20,7 +20,7 @@
  * This needs no patent and has no measurement error, which makes it the entry
  * point for the semi-diameter audit — see agent_docs/patent-figure-sd-audit-procedure.md.
  *
- * A file of either version is read through canonical ingest's V1 view.
+ * A file of either version is read through canonical ingest.
  *
  * Usage (`npm run audit:image-circle -- ...` passes the hook):
  *   node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-image-circle.mjs [data.ts ...] [--markdown]
@@ -39,7 +39,7 @@ const ROOT = join(import.meta.dirname, "..");
 const LENS_DIR = join(ROOT, "src", "lens-data");
 
 const { IMAGE_FORMAT_BY_ID } = await import(pathToFileURL(join(ROOT, "src/utils/catalog/lensTaxonomy.ts")).href);
-const { ingestLens, toLensData } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
+const { ingestLens } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
 
 /** Collect every `*.data.ts` under src/lens-data. */
 function allLensFiles() {
@@ -67,8 +67,8 @@ function firstFocalLength(value) {
  * @returns multiplier to apply to real-world millimetres
  */
 function prescriptionScale(lens) {
-  const design = firstFocalLength(lens.focalLengthDesign);
-  const marketing = firstFocalLength(lens.focalLengthMarketing);
+  const design = firstFocalLength(lens.catalog.focalLengthMm?.design);
+  const marketing = firstFocalLength(lens.catalog.focalLengthMm?.marketing);
   if (!design || !marketing) return 1;
   const ratio = design / marketing;
   return ratio < 0.5 || ratio > 2 ? ratio : 1;
@@ -81,21 +81,21 @@ function prescriptionScale(lens) {
  * @returns per-lens verdict, or a skip reason when the check does not apply
  */
 async function auditLens(file) {
-  /* Canonical ingest's V1 view reads a file of either version in V1 field names; an authored V1 file reads as
-   * written, with the schema defaults. */
-  const lens = toLensData(ingestLens((await import(pathToFileURL(file).href)).default));
+  /* Read canonical facts, with schema defaults already applied. */
+  const lens = ingestLens((await import(pathToFileURL(file).href)).default).prescription;
   const rel = relative(ROOT, file);
-  const format = IMAGE_FORMAT_BY_ID[lens.imageFormat];
-  const diameterMm = lens.imageCircleMm ?? format?.diagonalMm;
+  const format = IMAGE_FORMAT_BY_ID[lens.catalog.imageFormat];
+  const diameterMm = lens.catalog.imageCircleMm ?? format?.diagonalMm;
   if (!(Number.isFinite(diameterMm) && diameterMm > 0))
-    return { rel, name: lens.name, skipped: `no usable imageFormat (${String(lens.imageFormat)})` };
+    return { rel, name: lens.name, skipped: `no usable imageFormat (${String(lens.catalog.imageFormat)})` };
   /* Folded systems route the beam through mirrors, so the axial gap between a
    * surface vertex and the image plane is not the distance the ray travels. */
   if (lens.opticalPath) return { rel, name: lens.name, skipped: "folded optical path" };
 
   const scale = prescriptionScale(lens);
   const semiDiagonal = (diameterMm / 2) * scale;
-  const focalLength = firstFocalLength(lens.focalLengthDesign) ?? firstFocalLength(lens.focalLengthMarketing);
+  const focalLength =
+    firstFocalLength(lens.catalog.focalLengthMm?.design) ?? firstFocalLength(lens.catalog.focalLengthMm?.marketing);
   if (!focalLength) return { rel, name: lens.name, skipped: "no usable focal length" };
 
   const fieldSlope = Math.max(1, semiDiagonal / focalLength);
@@ -122,7 +122,7 @@ async function auditLens(file) {
   return {
     rel,
     name: lens.name,
-    format: lens.imageCircleMm ? `${diameterMm} mm circle` : lens.imageFormat,
+    format: lens.catalog.imageCircleMm ? `${diameterMm} mm circle` : lens.catalog.imageFormat,
     semiDiagonal,
     scale,
     wide,

@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import { build, buildSimplePositiveElementLens } from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
@@ -8,7 +9,7 @@ import type { Ray3 } from "../../../src/optics/types.js";
 describe("sequential optical path capture", () => {
   const base = buildSimplePositiveElementLens();
   const plate = build({
-    ...base.data,
+    ...constructionFixtureData(base),
     elements: [...base.elements, { ...base.elements[0], id: 2 }],
     surfaces: [
       { label: "STO", R: 1e15, d: 2, nd: 1, sd: 10, elemId: 0 },

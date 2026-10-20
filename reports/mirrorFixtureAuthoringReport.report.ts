@@ -10,10 +10,10 @@
  */
 import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
-import { buildLens } from "../src/optics/buildLens.js";
+import { canonicalInput, buildLens } from "../src/optics/buildLens.js";
 import { foldedHitOrderLabelsForDisplay } from "../src/optics/diagramGeometry.js";
 import { doLayoutForRuntimeLens as doLayout } from "../src/optics/optics.js";
-import { validateLensData } from "../src/optics/validation.js";
+import { validateCanonicalLens } from "../src/optics/validation.js";
 import type { LensData, RuntimeLens, SurfaceData } from "../src/types/optics.js";
 import { LENS_CATALOG, isDebugLensKey } from "../src/utils/catalog/lensCatalog.js";
 
@@ -50,7 +50,10 @@ function buildLensFilePathByKey(): Map<string, string> {
   return paths;
 }
 
-function hasMirrorFixtureMetadata(data: LensData): boolean {
+function hasMirrorFixtureMetadata(data: {
+  opticalPath?: unknown;
+  surfaces: readonly { innerSd?: number; interaction?: import("../src/types/optics.js").SurfaceInteraction }[];
+}): boolean {
   return (
     Boolean(data.opticalPath) ||
     data.surfaces.some(
@@ -96,7 +99,7 @@ function fixtureRows(): FixtureRow[] {
   return Object.entries(LENS_CATALOG)
     .filter(([key, data]) => data.visible === false && isDebugLensKey(key) && hasMirrorFixtureMetadata(data))
     .map(([key, data]) => {
-      const validationErrors = validateLensData(data as unknown as Record<string, unknown>);
+      const validationErrors = validateCanonicalLens(canonicalInput(data));
       const L = buildLens(data);
       const layout = doLayout(0, 0, L);
       const hitOrder = foldedHitOrderLabelsForDisplay({

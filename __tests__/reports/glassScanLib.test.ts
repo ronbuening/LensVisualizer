@@ -3,8 +3,12 @@
  * `npm run generate:reports`; these helper checks stay in `npm test` so the patent matcher and
  * review-disposition rules cannot rot between report regenerations.
  */
+import { canonicalInput, compileLens } from "../../src/optics/buildLens.js";
+import { constructionFixtureData } from "../src/optics/constructionFixtures.js";
+import { buildSimplePositiveElementLens } from "../src/optics/testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import {
+  walkLensSurfaces,
   classifyMissingMaterial,
   activeGlassAnnotation,
   extractSixDigitCodes,
@@ -105,5 +109,37 @@ describe("opportunity classification", () => {
     const row = { explicitlyUnmatched: true, reviewedStatus: "No reviewed-sidecar hit", auditReviewed: false };
     expect(hasReviewRecord(row)).toBe(true);
     expect(reviewRecordStatus(row)).toBe("Explicit disposition in data");
+  });
+});
+
+describe("canonical report view", () => {
+  it("keeps canonical metadata and reuses compiled materials with and without rear plates", () => {
+    const raw = {
+      ...constructionFixtureData(buildSimplePositiveElementLens()),
+      rearPlates: [{ thicknessMm: 1, nd: 1.5, vd: 60, gapAfterMm: 0 }],
+    };
+    const input = canonicalInput(raw);
+    const compiled = compileLens(input);
+    for (const includeRearPlates of [false, true]) {
+      let visited = false;
+      expect(
+        walkLensSurfaces(
+          { "fixture.data.ts": { default: raw } },
+          ({ data, L }) => {
+            visited = true;
+            expect(data).toBe(input.prescription);
+            expect(L.elements.some((element) => element.synthetic === "rearPlate")).toBe(includeRearPlates);
+            expect(L.S.some((surface) => surface.synthetic === "rearPlate")).toBe(includeRearPlates);
+            for (const [index, dispersion] of Object.entries(L.indexByIdx)) {
+              expect(dispersion).toBe(
+                compiled.indices.indexByIdx[compiled.labelToSurfaceIndex[L.S[Number(index)].label]],
+              );
+            }
+          },
+          { includeRearPlates },
+        ),
+      ).toBe(1);
+      expect(visited).toBe(true);
+    }
   });
 });

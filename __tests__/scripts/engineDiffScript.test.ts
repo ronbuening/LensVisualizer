@@ -226,7 +226,7 @@ describe("engine-diff run", () => {
           : form === "v1-schema"
             ? { ...fixture.v1, schema: 3 }
             : { ...fixture.v2, catalog: { ...fixture.v2.catalog, lensMounts: null as never } };
-      if (form === "v2-view") expect(() => ingestTeleconverter(refused)).not.toThrow();
+      if (form === "v2-view") expect(() => ingestTeleconverter(refused)).toThrow(/catalog.lensMounts/);
       let message = "";
       try {
         toTeleconverterData(ingestTeleconverter(refused));

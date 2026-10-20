@@ -751,6 +751,20 @@ describe("optics architecture guards", () => {
   });
 
   describe("seam", () => {
+    it("keeps the source-preserving V1 view reachable only through the conversion seam", () => {
+      const graph = opticsRuntimeGraph();
+      const reachable = new Set<string>();
+      const visit = (module: string): void => {
+        if (reachable.has(module)) return;
+        reachable.add(module);
+        for (const target of graph.get(module) ?? []) visit(target);
+      };
+      for (const { module } of SEAM_REGISTRY) {
+        if (!module.endsWith("lensDataConversion.ts")) visit(module);
+      }
+      expect([...reachable].filter((module) => /\/toLensData(?:V2)?\.ts$/.test(module))).toEqual([]);
+    });
+
     it("registers only modules that meet the admission rule", () => {
       const problems = SEAM_REGISTRY.flatMap(({ module, plainNodeLoader }) => {
         if (!opticsModules().has(module)) return [`${module} does not exist. Remove it from SEAM_REGISTRY.`];

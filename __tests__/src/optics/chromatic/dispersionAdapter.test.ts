@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "../constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import { compileSurfaceDispersions } from "../../../../src/optics/chromatic/dispersionTable.js";
 import {
@@ -23,7 +24,9 @@ describe("chromatic dispersion adapter", () => {
     const fromRuntime = dispersionTableFromRuntime(lens);
 
     expect(fromRuntime.map((entry) => entry.quality)).toEqual(
-      compileSurfaceDispersions(lens.S, lens.data.elements, lens.spectralByIdx).map((entry) => entry.quality),
+      compileSurfaceDispersions(lens.S, constructionFixtureData(lens).elements, lens.spectralByIdx).map(
+        (entry) => entry.quality,
+      ),
     );
     expect(fromRuntime).toHaveLength(lens.S.length);
     expect(fromRuntime.some((entry) => entry.quality === "sellmeier")).toBe(true);

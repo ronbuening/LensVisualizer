@@ -3,7 +3,7 @@ import type { LensData, LensDataInput, SurfaceData } from "../../../types/optics
 import type { CanonicalLens, IngestedPrescription } from "../canonical.js";
 import { canonicalForView } from "../identity.js";
 import { ingestLensV1 } from "../ingestV1.js";
-import { toLensData } from "../toLensData.js";
+import { canonicalConstructionData } from "../constructionData.js";
 import { buildLabelIndex } from "../compileLabels.js";
 import type { UntrustedLensData } from "./context.js";
 import { catalogField, validateTopLevel, validateSurfaces, validateElements } from "./schema.js";
@@ -15,13 +15,28 @@ import { authoredMessages } from "./paths.js";
 import { validateGeometry } from "./geometry.js";
 import { validatePatentMetadata } from "./patent.js";
 
+/** Restore ignored source facts only for diagnostics; optical construction always uses canonical values. */
+function diagnosticRecords(ingested: IngestedPrescription<CanonicalLens>): LensData {
+  const data = canonicalConstructionData(ingested.prescription);
+  data.surfaces.forEach((surface, i) => {
+    const ignored = ingested.provenance.ignored;
+    for (const field of ["sd", "R"] as const) {
+      const value = ignored[`surfaces[${i}].${field}`];
+      if (typeof value === "number") surface[field] = value;
+    }
+  });
+  if (typeof ingested.provenance.ignored["zoom.step"] === "number")
+    data.zoomStep = ingested.provenance.ignored["zoom.step"];
+  return data;
+}
+
 /** A diagnostic projection only: never compile, expand plates or resolve materials during validation. */
 function canonicalRecords(data: UntrustedLensData): LensData | UntrustedLensData {
   if (canonicalForView(data)) return data;
   // The converter validator's reference merge is generated data, not an authored file.
   if (data.attachedTeleconverter !== undefined) return data;
   try {
-    return toLensData(ingestLensV1(data as LensDataInput));
+    return diagnosticRecords(ingestLensV1(data as LensDataInput));
   } catch {
     // Ingest refuses ambiguity independently of validation. It must not add a new validator refusal or hide errors.
     return data;
@@ -80,7 +95,7 @@ export function validateCanonicalLens(
   ingested: IngestedPrescription<CanonicalLens>,
   descriptor = ingested.attachedTeleconverter,
 ): string[] {
-  const data = toLensData(ingested);
+  const data = diagnosticRecords(ingested);
   if (descriptor) data.attachedTeleconverter = descriptor;
   return authoredMessages(validate(data, false, ingested), ingested);
 }

@@ -1,3 +1,4 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../optics/constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
 import { ingestLens, isV1File } from "../../../src/optics/prescription/ingestV2.js";
@@ -9,7 +10,6 @@ import {
   publishedFocusStations,
   publishedZoomStations,
 } from "../../../src/optics/state/publishedStations.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import type { LensDataInput } from "../../../src/types/optics.js";
 
 /* Every lens file as authored, either version. */
@@ -53,7 +53,7 @@ describe("published stations", () => {
   });
 
   it("lands every declared station on its authored gap row", () => {
-    const declared = Object.values(LENS_CATALOG).filter(
+    const declared = Object.values(CATALOG_CONSTRUCTION_FIXTURES).filter(
       (data) => data.publishedStations !== undefined || data.finiteConjugates !== undefined,
     );
     expect(declared.length).toBeGreaterThan(0);

@@ -533,7 +533,7 @@ export default function DiagramControls({
           label="APERTURE"
           labelMinWidth={85}
           displayValue={`f/${formatFNumber(fNumber)}${showEffectiveAperture && effApertureDiffers ? ` (eff. f/${formatFNumber(effectiveFNum)})` : ""}`}
-          displayNote={marketedApertureNote(L.data, fNumber, currentFOPEN)}
+          displayNote={marketedApertureNote(L.source, fNumber, currentFOPEN)}
           displayValueStyle={{ minWidth: "3.5em" }}
           value={patentPositions ? 0 : stopdownT}
           step={L.apertureStep}

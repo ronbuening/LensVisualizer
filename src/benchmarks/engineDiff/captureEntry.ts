@@ -13,7 +13,7 @@ import {
   createResultEncoder,
   decodeValue,
   encodeValue,
-  normalizeAuthoredData,
+  projectCanonicalSource,
   outcomeOf,
   projectBuildConstants,
   projectTrace,
@@ -319,7 +319,8 @@ export interface PayloadRecord {
  * @returns the catalog's lens data, on this engine
  */
 export function catalogLensData(authored: LensData): LensData {
-  const { lensDefaults, ingestLens, lensView } = resolveOptionalSeam();
+  const { canonicalInput, lensDefaults, ingestLens, lensView } = resolveOptionalSeam();
+  if (canonicalInput && ingestLens) return ingestLens(authored).prescription as unknown as LensData;
   if (lensDefaults) return { ...lensDefaults, ...authored } as LensData;
   if (ingestLens && lensView) return lensView(ingestLens(authored as Parameters<typeof ingestLens>[0]));
   throw new Error("engine-diff: this engine has neither the V1 lens defaults nor canonical ingest with its V1 view");
@@ -338,7 +339,11 @@ export function catalogLensData(authored: LensData): LensData {
  */
 export function catalogTeleconverterData(authored: TeleconverterData): TeleconverterData {
   const { ingestTeleconverter, teleconverterView } = resolveOptionalSeam();
-  if (!ingestTeleconverter || !teleconverterView) return authored;
+  if (!ingestTeleconverter) return authored;
+  if (!teleconverterView) {
+    const read = outcomeOf(() => ingestTeleconverter(authored).prescription);
+    return (read.ok ? read.value : authored) as TeleconverterData;
+  }
   const read = outcomeOf(() =>
     teleconverterView(ingestTeleconverter(authored as Parameters<typeof ingestTeleconverter>[0])),
   );
@@ -406,14 +411,35 @@ export function captureRecords(
         const converter = converterOf(converterKey);
         return {
           compatibility: seam.teleconverterCompatibility(host, converter),
-          /* The composer copies most of the host and the converter through. Normalized as the fingerprint reads a
-           * file, the copy cannot move on a spelling the fingerprint treats as the same prescription. */
-          prescription: normalizeAuthoredData(seam.attachTeleconverter(host, converter), seam.flatRadiusThreshold),
+          ...(() => {
+            const composed = seam.attachTeleconverter(host, converter);
+            const { canonicalInput, ingestLens } = resolveOptionalSeam();
+            return {
+              prescription: projectCanonicalSource(
+                composed,
+                ingestLens ? (data) => ingestLens(data as Parameters<typeof ingestLens>[0]).prescription : undefined,
+              ),
+              attachedTeleconverter: canonicalInput
+                ? canonicalInput(composed).attachedTeleconverter
+                : (composed as unknown as { attachedTeleconverter?: unknown }).attachedTeleconverter,
+            };
+          })(),
         };
       };
     }
     if (family === "build") {
-      return () => projectBuildConstants(buildFresh(lens), CHROMATIC_CHANNELS, seam.flatRadiusThreshold);
+      return () =>
+        projectBuildConstants(
+          buildFresh(lens),
+          CHROMATIC_CHANNELS,
+          seam.flatRadiusThreshold,
+          resolveOptionalSeam().ingestLens
+            ? (data) =>
+                resolveOptionalSeam().ingestLens!(
+                  data as Parameters<NonNullable<ReturnType<typeof resolveOptionalSeam>["ingestLens"]>>[0],
+                ).prescription
+            : undefined,
+        );
     }
     if (!state) throw new Error(`engineDiff: ${family} was requested of ${lensId(lens)} without a lens state`);
     const capture = STATE_FAMILIES[family];
@@ -804,7 +830,7 @@ const captureMtf: StateCapture = (seam, lens, state, variant) => {
   /* The support record hands the authored conjugate back; its coordinates are recorded as the station it names. */
   const { support } = result as { support?: { conjugate?: unknown } };
   if (!support?.conjugate) return { options, result };
-  const conjugate = snapConjugate(support.conjugate, lens.focusPositions, lens.data.zoomPositions?.length ?? 1);
+  const conjugate = snapConjugate(support.conjugate, lens.focusPositions, lens.zoomPositions?.length ?? 1);
   return { options, result: { ...result, support: { ...support, conjugate } } };
 };
 

@@ -10,9 +10,8 @@
  * `UNRESOLVED_MARKER`, `glassTokens`, `normalLinePgF`) come from the engine.
  */
 import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { validateLensData } from "../src/optics/validation.js";
-import { buildSpectralIndex } from "../src/optics/chromatic.js";
-import { expandRearPlates } from "../src/optics/buildLens.js";
+import { validateCanonicalLens } from "../src/optics/validation.js";
+import { compileLens, canonicalInput } from "../src/optics/buildLens.js";
 import {
   assessCatalogGlassCompatibility,
   evaluateCatalogAbbeNumber,
@@ -21,9 +20,9 @@ import {
   UNRESOLVED_MARKER,
 } from "../src/optics/glassCatalog.js";
 import type { GlassEntry } from "../src/optics/glassCatalog.js";
-import { resolveMaterialTable as buildSurfaceDispersionIndex, normalLinePgF } from "../src/optics/chromatic.js";
+import { normalLinePgF } from "../src/optics/chromatic.js";
 import type { SurfaceDispersion } from "../src/optics/chromatic.js";
-import { ingestLens, toLensData } from "../src/optics/buildLens.js";
+import type { CanonicalLens } from "../src/optics/buildLens.js";
 import type { ElementData, LensData, RefractiveIndexReferenceLine, SurfaceData } from "../src/types/optics.js";
 
 /** ΔPgF spread that's plausible across melt variants. */
@@ -35,13 +34,8 @@ const MAX_RELEVANT_PATENTS = 4;
 /* ── Lens-module walk ─────────────────────────────────────────────────── */
 
 /**
- * Glass-relevant subset of `RuntimeLens`, built without the full `buildLens`
- * pipeline. The scans only read surfaces, element metadata, and per-surface
- * dispersion, so the walk skips the expensive first-order/pupil/layout
- * derivation — a full build per catalog lens per scan file dominated suite
- * time. Each field uses the same source `buildLens` does: `S` is the cloned
- * authored surface list, `elements` is the authored array `RuntimeLens.elements`
- * exposes, and `indexByIdx` comes from `buildSurfaceDispersionIndex`.
+ * Glass-relevant view of a compiled prescription. Canonical metadata stays separate from the numeric surface and
+ * element rows; dispersion callbacks come from the compiler's shared material table and are never resolved again.
  */
 export interface ScanLens {
   S: SurfaceData[];
@@ -56,14 +50,14 @@ export interface LensWalkContext {
   /** Repo-relative lens file path for report links. */
   filePath: string;
   /** Defaults-merged authored lens data. */
-  data: LensData;
+  data: CanonicalLens;
   /** Glass-relevant lens view (see {@link ScanLens}). */
   L: ScanLens;
 }
 
 /**
  * Walk every registered lens data module: read it through canonical ingest,
- * whose V1 view applies the schema defaults, normalize the glass-relevant
+ * which applies the schema defaults, normalize the glass-relevant
  * fields, and visit. Lenses that ingest refuses or that fail validation are
  * skipped, matching the previous behavior where a throwing `buildLens`
  * skipped the lens (build correctness is tested elsewhere). Returns the
@@ -79,23 +73,35 @@ export function walkLensSurfaces(
     const raw = mod.default;
     if (!raw?.key) continue;
     totalLenses++;
-    let data: LensData;
+    let data: CanonicalLens;
+    let input;
     try {
-      data = toLensData(ingestLens(raw));
+      input = canonicalInput(raw);
+      data = input.prescription;
     } catch {
       continue;
     }
 
-    if (validateLensData(data).length > 0) continue;
+    if (validateCanonicalLens(input).length > 0) continue;
     /* Rear plates are opt-in so element coverage shares stay lens-only; label-compatibility scans include them. */
-    const traced = includeRearPlates ? expandRearPlates(data) : data;
-    const S: SurfaceData[] = traced.surfaces.map((s) => ({ ...s }));
-    const indexByIdx = buildSurfaceDispersionIndex(S, traced.elements, buildSpectralIndex(S, traced.elements));
+    const compiled = compileLens(input);
+    const S = compiled.constructionSurfaces
+      .filter((surface) => includeRearPlates || !surface.synthetic)
+      .map((surface) => ({ ...surface }));
+    const elements = compiled.elements
+      .map((element) => element.source)
+      .filter((element) => includeRearPlates || !element.synthetic);
+    const indexByIdx = Object.fromEntries(
+      S.flatMap((surface, index) => {
+        const dispersion = compiled.indices.indexByIdx[compiled.labelToSurfaceIndex[surface.label]];
+        return dispersion ? [[index, dispersion]] : [];
+      }),
+    );
     visitor({
       modulePath,
       filePath: toRepoRelativeLensPath(modulePath),
       data,
-      L: { S, elements: traced.elements, indexByIdx },
+      L: { S, elements, indexByIdx },
     });
   }
   return totalLenses;

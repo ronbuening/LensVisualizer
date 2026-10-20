@@ -77,8 +77,8 @@ export function computeAnalysisFieldGeometry(state: PreparedGeometry): FieldGeom
   if (!Number.isFinite(geometry.halfFieldDeg) || geometry.halfFieldDeg <= 0 || state.surfaces.length < 1)
     return geometry;
 
-  const format = resolveImageFormatMetadata(state.lens.source?.imageFormat);
-  const maxImageHeight = (state.lens.source?.imageCircleMm ?? format.diagonalMm) / 2;
+  const format = resolveImageFormatMetadata(state.lens.source?.catalog.imageFormat);
+  const maxImageHeight = (state.lens.source?.catalog.imageCircleMm ?? format.diagonalMm) / 2;
   if (!Number.isFinite(maxImageHeight) || maxImageHeight <= 0) return geometry;
 
   const followsRealChiefRay =

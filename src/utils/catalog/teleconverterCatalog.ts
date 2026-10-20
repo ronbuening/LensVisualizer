@@ -10,10 +10,10 @@
  * resolves, so a hand-typed URL mounts it.
  */
 
-import { ingestTeleconverter, toTeleconverterData } from "../../optics/buildLens.js";
+import { ingestTeleconverter } from "../../optics/buildLens.js";
 import { attachTeleconverter, teleconverterCompatibility } from "../../optics/teleconverter.js";
 import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
-import type { LensData } from "../../types/optics.js";
+import type { CanonicalLens, CanonicalTeleconverter } from "../../optics/buildLens.js";
 import type { TeleconverterData } from "../../types/teleconverter.js";
 import { catalogCollator } from "./collation.js";
 import { LENS_CATALOG } from "./lensCatalog.js";
@@ -35,7 +35,7 @@ const _modules = import.meta.glob<{ default: TeleconverterData | TeleconverterDa
   { eager: true },
 );
 const AUTHORED: Record<string, TeleconverterData | TeleconverterDataV2Input> = {};
-const TELECONVERTER_CATALOG: Record<string, TeleconverterData> = {};
+const TELECONVERTER_CATALOG: Record<string, CanonicalTeleconverter> = {};
 const PATH_BY_KEY: Record<string, string> = {};
 for (const [path, mod] of Object.entries(_modules)) {
   const data = mod.default;
@@ -45,10 +45,10 @@ for (const [path, mod] of Object.entries(_modules)) {
     }
     PATH_BY_KEY[data.key] = path;
     AUTHORED[data.key] = data;
-    let entry: TeleconverterData | undefined;
+    let entry: CanonicalTeleconverter | undefined;
     Object.defineProperty(TELECONVERTER_CATALOG, data.key, {
       enumerable: true,
-      get: () => (entry ??= toTeleconverterData(ingestTeleconverter(data))),
+      get: () => (entry ??= ingestTeleconverter(data).prescription),
     });
   } else {
     console.warn(`[LensVisualizer] Skipped ${path}: no "key" field in default export`);
@@ -146,7 +146,7 @@ function resolveTeleconverterKey(lensKey: string, requestedKey: string | null | 
  * @param teleconverterKey - converter key, or null/undefined for the bare lens
  * @returns catalog lens data, or the composed host + converter data
  */
-function resolveLensSystemData(lensKey: string, teleconverterKey: string | null | undefined): LensData {
+function resolveLensSystemData(lensKey: string, teleconverterKey: string | null | undefined): CanonicalLens {
   const host = LENS_CATALOG[lensKey];
   const resolvedKey = resolveTeleconverterKey(lensKey, teleconverterKey);
   return resolvedKey ? attachTeleconverter(host, TELECONVERTER_CATALOG[resolvedKey]) : host;

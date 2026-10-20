@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "./constructionFixtures.js";
 import { stateWithZ } from "../../../src/optics/state/preparedGeometry.js";
 import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
@@ -7,7 +8,7 @@ import { compileConstruction } from "../../../src/optics/prescription/compileCon
 import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
 import { ingestLens } from "../../../src/optics/prescription/ingestV2.js";
 import { paraxialTrace } from "../../../src/optics/first-order/lensConstants.js";
-import { toLensData } from "../../../src/optics/prescription/toLensData.js";
+import { canonicalConstructionData } from "../../../src/optics/prescription/constructionData.js";
 import {
   epAtZoomClamped as epAtZoom,
   fopenAtZoomClamped as fopenAtZoom,
@@ -34,7 +35,9 @@ import type { TeleconverterData } from "../../../src/types/teleconverter.js";
  * schema defaults. Test helpers take merged lens data from here, never by spreading a defaults table.
  */
 export function catalogLensData(raw: object): LensData {
-  return toLensData(ingestLens(raw as LensDataInput));
+  const data = canonicalConstructionData(ingestLens(raw as LensDataInput).prescription);
+  for (const surface of data.surfaces) if (surface.label === "STO" && surface.sd === undefined) surface.sd = 1;
+  return data;
 }
 
 /**
@@ -468,15 +471,16 @@ export function teleconverterZoomHostData(overrides: Partial<LensData> = {}): Le
 /** Explicit compiler records for synthetic probes that intentionally bypass full-lens validation/constants. */
 export function registerRuntimeFixture(runtime: RuntimeLens): RuntimeLens {
   const input = compileConstruction(
-    { ...runtime.data, lensShiftFrac: runtime.lensShiftFrac, surfaces: runtime.S },
-    runtime.data,
+    { ...constructionFixtureData(runtime), lensShiftFrac: runtime.lensShiftFrac, surfaces: runtime.S },
+    constructionFixtureData(runtime),
   );
   input.stopIdx = runtime.stopIdx;
   input.projection = runtime.projection;
   input.opticalPath = runtime.opticalPath;
   input.isFoldedOptics = runtime.isFoldedOptics;
   const {
-    data: _data,
+    source: _source,
+    attachedTeleconverter: _attachedTeleconverter,
     S: _S,
     N: _N,
     ES: _ES,
@@ -498,7 +502,7 @@ export function registerRuntimeFixture(runtime: RuntimeLens): RuntimeLens {
     labelIdx: _labelIdx,
     ...constants
   } = runtime;
-  const prescription = compilePrescription(input);
+  const prescription = compilePrescription(input, runtime.source, runtime.attachedTeleconverter);
   const compiled = completeCompilation(
     {
       ...prescription,

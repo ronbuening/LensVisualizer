@@ -7,9 +7,21 @@ import { projectionLaunchSlopeForField } from "../../field/projection.js";
 
 export function mtfFiniteConjugate(state: PreparedGeometry): FiniteConjugate | undefined {
   if (state.aberrationT !== 0) return undefined;
-  return state.lens.source.finiteConjugates?.find(
-    (c) => Math.abs(c.focusT - state.focusT) < 1e-8 && Math.abs(c.zoomT - state.zoomT) < 1e-8,
+  const source = state.lens.source;
+  const count = source.zoom?.stations.length ?? 1;
+  const conjugate = source.focus.conjugates?.find(
+    (c) =>
+      Math.abs(source.focus.keyframes[c.keyframe] - state.focusT) < 1e-8 &&
+      Math.abs((count > 1 ? c.zoomStation / (count - 1) : 0) - state.zoomT) < 1e-8,
   );
+  if (!conjugate) return undefined;
+  return {
+    objectDistanceMm: conjugate.objectDistanceMm,
+    distanceReference: conjugate.distanceReference,
+    source: conjugate.source,
+    focusT: source.focus.keyframes[conjugate.keyframe],
+    zoomT: count > 1 ? conjugate.zoomStation / (count - 1) : 0,
+  };
 }
 
 export function mtfFiniteObjectPoint(

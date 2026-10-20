@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "../optics/constructionFixtures.js";
 /**
  * Engine differential harness: the payload encoding and digests, the seam adapter, the request lists of the three
  * tiers and their shards, capture determinism, and the semantic fingerprint.
@@ -82,6 +83,7 @@ import * as seamAdapter from "../../../src/benchmarks/engineDiff/seamAdapter.js"
 import { MTF_BENCHMARK_CASES, MTF_FINITE_BENCHMARK_CASE } from "../../../src/benchmarks/mtfCases.js";
 import { BENCHMARK_SCENARIOS, DEFAULT_BENCHMARK_LENS_KEYS } from "../../../src/benchmarks/opticsRenderingBenchmark.js";
 import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { canonicalInput, expandRearPlates } from "../../../src/optics/buildLens.js";
 import { ingestLens, ingestTeleconverter } from "../../../src/optics/prescription/ingestV2.js";
 import { ingestLensV1 } from "../../../src/optics/prescription/ingestV1.js";
 import { toLensData, toTeleconverterData } from "../../../src/optics/prescription/toLensData.js";
@@ -95,7 +97,7 @@ import { toLensDataInput } from "../../../src/optics/prescription/toLensData.js"
 import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
 import { traceRay } from "../../../src/optics/trace/rayAdapters.js";
 import type { MtfMethod, MtfSpectrum } from "../../../src/types/mtf.js";
-import type { LensData, LensDataInput } from "../../../src/types/optics.js";
+import type { AsphericCoefficients, LensData, LensDataInput } from "../../../src/types/optics.js";
 import type { TeleconverterData } from "../../../src/types/teleconverter.js";
 import { DEFAULT_MTF_PREFERENCES } from "../../../src/utils/state/mtfPreferences.js";
 import { FIXTURE_PAIRS } from "../optics/prescription/ingestV2Fixtures.js";
@@ -688,13 +690,12 @@ describe("engineDiff seam adapter", () => {
     expect(optional).toEqual({
       ingestLens,
       ingestTeleconverter,
-      lensView: toLensData,
-      teleconverterView: toTeleconverterData,
+      canonicalInput,
     });
     expect(sources.ingestLens).toBe("buildLens.ingestLens");
     expect(sources.ingestTeleconverter).toBe("buildLens.ingestTeleconverter");
     /* S2.P1.T2 deleted the V1 defaults object; the catalog merge at this checkout is ingest and the V1 view. */
-    expect(absent).toEqual(["lensDefaults"]);
+    expect(absent).toEqual(["lensView", "teleconverterView", "lensDefaults"]);
   });
 
   it("leaves out an optional capability a ref lacks, without failing the rest", () => {
@@ -745,7 +746,7 @@ describe("engineDiff catalog export", () => {
     /* A converter can be refused without any pair build seeing it. Keep the guard independent of pair selection. */
     const fixture = FIXTURE_PAIRS.find((pair) => pair.kind === "teleconverter")!;
     const malformed = { ...fixture.v2, catalog: { ...fixture.v2.catalog, lensMounts: null as never } };
-    expect(() => ingestTeleconverter(malformed)).not.toThrow();
+    expect(() => ingestTeleconverter(malformed)).toThrow(/catalog.lensMounts/);
     const files = vi.spyOn(seamAdapter, "ownCatalogFiles");
     try {
       for (const valid of [fixture.v1, fixture.v2]) {
@@ -1794,6 +1795,33 @@ describe("engineDiff capture", () => {
     expect(surfaces.find((surface) => surface.label === "STO")).not.toHaveProperty("sd");
   });
 
+  it("compares historical expanded V1 runtime echoes with canonical sources under C0", () => {
+    const seam = resolveSeam();
+    const inputs = ["canon-serenar-50f18", "fuji-xf-16-55-f28", "reference-newtonian-side-focus"].map((key) =>
+      catalogLensData(decodeValue(CATALOG.lenses.find((entry) => entry.key === key)!.prescription) as LensData),
+    );
+    inputs.push(
+      seam.attachTeleconverter(
+        catalogLensData(decodeValue(CATALOG.lenses.find((entry) => entry.key === PAIR.key)!.prescription) as LensData),
+        catalogTeleconverterData(
+          decodeValue(
+            CATALOG.teleconverters.find((entry) => entry.key === PAIR.teleconverter)!.prescription,
+          ) as TeleconverterData,
+        ),
+      ) as unknown as LensData,
+    );
+    for (const input of inputs) {
+      const lens = seam.buildLens(input);
+      const { source, attachedTeleconverter: _descriptor, ...view } = lens;
+      const historical = { ...view, data: expandRearPlates(toLensData(canonicalInput(source))) };
+      const project = (data: object) => ingestLens(data as LensDataInput).prescription;
+      expect(
+        encodeValue(projectBuildConstants(historical, CHROMATIC_CHANNELS, seam.flatRadiusThreshold, project)),
+        source.key,
+      ).toEqual(encodeValue(projectBuildConstants(lens, CHROMATIC_CHANNELS, seam.flatRadiusThreshold, project)));
+    }
+  });
+
   it("keeps every field of a built lens in its build record, the copied and defaulted ones included", () => {
     const seam = resolveSeam();
     /* A zoom with a close-focus distance per station, an f-stop series of its own, and rear plates. */
@@ -1806,7 +1834,7 @@ describe("engineDiff capture", () => {
 
     /* Each of these is a field the engine fills from the prescription or a lens default, or filters. A lens that
      * differs in one of them alone must give another record. */
-    expect(lens.data.elements.length).toBeGreaterThan(lens.elements.length);
+    expect(constructionFixtureData(lens).elements.length).toBeGreaterThan(lens.elements.length);
     const changed: Record<string, unknown> = {
       maxFstop: lens.maxFstop * 2,
       fstopSeries: undefined,
@@ -1820,9 +1848,9 @@ describe("engineDiff capture", () => {
       svgW: lens.svgW + 1,
       gapSagFrac: lens.gapSagFrac / 2,
       /* The synthetic rear plates no longer filtered out of the drawn elements. */
-      elements: lens.data.elements,
+      elements: constructionFixtureData(lens).elements,
       focusDescription: `${lens.focusDescription ?? ""}~`,
-      data: { ...lens.data, scFill: lens.data.scFill / 2 },
+      source: { ...lens.source, layout: { ...lens.source.layout, scFill: lens.source.layout.scFill / 2 } },
     };
     expect(Object.keys(changed).filter((field) => !(field in lens))).toEqual([]);
     expect(Object.keys(changed).filter((field) => recordOf({ ...lens, [field]: changed[field] }) === record)).toEqual(
@@ -1836,14 +1864,14 @@ describe("engineDiff capture", () => {
     expect(written).toEqual(expected.sort());
 
     /* `data` is written as the fingerprint reads a file: a flat radius as its marker, a derived stop radius left out. */
-    const { surfaces } = (JSON.parse(record) as { data: { surfaces: { label: string; R: unknown; sd?: number }[] } })
-      .data;
-    expect(surfaces).toHaveLength(lens.S.length);
+    const { surfaces } = (JSON.parse(record) as { source: { surfaces: { label: string; R: unknown; sd?: number }[] } })
+      .source;
+    expect(surfaces).toHaveLength(lens.source.surfaces.length);
     expect(surfaces.filter((surface) => surface.R === FLAT_RADIUS_MARKER).length).toBeGreaterThan(0);
     expect(
       surfaces.filter((surface) => typeof surface.R === "number" && Math.abs(surface.R) > seam.flatRadiusThreshold),
     ).toEqual([]);
-    expect(stopRadiusAuthority(lens.data)).not.toBe("authored");
+    expect(stopRadiusAuthority(constructionFixtureData(lens))).not.toBe("authored");
     expect(surfaces.find((surface) => surface.label === "STO")).not.toHaveProperty("sd");
 
     /* A surface of `S` is the engine's own copy of its prescription surface, and `data` holds the prescription's.
@@ -2564,7 +2592,7 @@ describe("engineDiff semantic fingerprint", { timeout: 120_000 }, () => {
     expect(echoed.surfaces.find((surface) => surface.label === "STO")!.sd).toBeUndefined();
     const builtPlated = seam.buildLens(plated) as unknown as { elements: Record<string, unknown>[] };
     const projectedPlated = projectBuildConstants(builtPlated, CHROMATIC_CHANNELS, seam.flatRadiusThreshold);
-    const builtData = projectedPlated.data as LensData;
+    const builtData = projectedPlated.source as unknown as import("../../../src/optics/buildLens.js").CanonicalLens;
     /* Every element of the build record keeps every member but a default its echo row holds. */
     const elementDefaults = new Map(ECHO_DEFAULTS.element.map((row) => [row.v1Field, JSON.stringify(row.value)]));
     builtPlated.elements.forEach((element, index) => {
@@ -2573,7 +2601,12 @@ describe("engineDiff semantic fingerprint", { timeout: 120_000 }, () => {
       );
       expect((projectedPlated.elements as unknown[])[index], String(element.name)).toEqual(kept);
     });
-    const syntheticSurfaces = builtData.surfaces.filter((surface) => surface.synthetic === "rearPlate");
+    expect(builtData.rearPlates).toEqual(
+      plated.rearPlates?.map((plate) => ({ ...plate, indexReference: plate.indexReference ?? "d" })),
+    );
+    const syntheticSurfaces = (projectedPlated.S as import("../../../src/types/optics.js").SurfaceData[]).filter(
+      (surface) => surface.synthetic === "rearPlate",
+    );
     expect(syntheticSurfaces.length).toBeGreaterThan(0);
     for (const surface of syntheticSurfaces) expect(surface.sd, surface.label).toBeGreaterThan(0);
     const readStop = authoredOf(firstLens((lens) => stopRadiusAuthority(lens) === "authored"));
@@ -2613,9 +2646,9 @@ describe("engineDiff semantic fingerprint", { timeout: 120_000 }, () => {
       },
       CHROMATIC_CHANNELS,
       seam.flatRadiusThreshold,
-    ) as { data: typeof reordered; varLabels: unknown; aberrationControl: { varLabels: unknown } };
-    expect(reorderedBuild.data.varLabels).toEqual(outOfOrder);
-    expect(reorderedBuild.data.aberrationControl.varLabels).toEqual(outOfOrder);
+    ) as { source: typeof reordered; varLabels: unknown; aberrationControl: { varLabels: unknown } };
+    expect(reorderedBuild.source.varLabels).toEqual(outOfOrder);
+    expect(reorderedBuild.source.aberrationControl.varLabels).toEqual(outOfOrder);
     expect(reorderedBuild.varLabels).toEqual(indexedOutOfOrder);
     expect(reorderedBuild.aberrationControl.varLabels).toEqual(indexedOutOfOrder);
 
@@ -2624,28 +2657,40 @@ describe("engineDiff semantic fingerprint", { timeout: 120_000 }, () => {
     const authored = authoredOf(key);
     const [build] = captureRecords(CATALOG, [{ lens: { key }, state: null, family: "build" }]);
     const record = valueOf(build) as {
-      data: { asph: Record<string, Record<string, number>>; varLabels: [string, string][] };
+      source: import("../../../src/optics/buildLens.js").CanonicalLens;
       varLabels: [number, string][];
     };
     for (const [label, entry] of Object.entries(authored.asph!)) {
       for (const [term, value] of Object.entries(entry)) {
-        if (value !== 0) expect(record.data.asph[label][term], `${label}.${term}`).toBe(value);
+        if (value !== 0)
+          expect(
+            record.source.surfaces.find((surface) => surface.label === label)!.asphere![
+              term as keyof AsphericCoefficients
+            ],
+            `${label}.${term}`,
+          ).toBe(value);
       }
     }
     const indexed = (lens: LensData, pairs: [string, string][]) =>
       pairs.map(([label, text]) => [lens.surfaces.findIndex((surface) => surface.label === label), text]);
-    expect(record.data.varLabels).toEqual(authored.varLabels);
+    expect(record.source.gaps.filter((gap) => gap.label !== undefined).map((gap) => [gap.surface, gap.label])).toEqual(
+      authored.varLabels,
+    );
     expect(record.varLabels).toEqual(indexed(authored, authored.varLabels!));
 
     const ringKey = firstLens((lens) => (lens.aberrationControl?.varLabels?.length ?? 0) >= 2);
     const ringAuthored = authoredOf(ringKey);
     const [ringBuild] = captureRecords(CATALOG, [{ lens: { key: ringKey }, state: null, family: "build" }]);
     const ringRecord = valueOf(ringBuild) as {
-      data: { aberrationControl: { varLabels: [string, string][] } };
+      source: import("../../../src/optics/buildLens.js").CanonicalLens;
       aberrationControl: { varLabels: [number, string][] };
     };
     const ringLabels = ringAuthored.aberrationControl!.varLabels!;
-    expect(ringRecord.data.aberrationControl.varLabels).toEqual(ringLabels);
+    expect(
+      ringRecord.source
+        .aberrationControl!.gaps.filter((gap) => gap.label !== undefined)
+        .map((gap) => [gap.surface, gap.label]),
+    ).toEqual(ringLabels);
     expect(ringRecord.aberrationControl.varLabels).toEqual(indexed(ringAuthored, ringLabels));
   });
 

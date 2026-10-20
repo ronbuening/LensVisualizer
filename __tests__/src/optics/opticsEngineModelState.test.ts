@@ -1,3 +1,5 @@
+import { constructionFixtureData } from "./constructionFixtures.js";
+import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import * as constantsModule from "../../../src/optics/first-order/lensConstants.js";
 import * as views from "../../../src/optics/prescription/runtimeView.js";
 import { runtimeView } from "../../../src/optics/prescription/runtimeView.js";
@@ -20,7 +22,7 @@ import { prepareState, prepareStateUncached, stateWithZ } from "../../../src/opt
 import { evaluateSellmeier, resolveGlass } from "../../../src/optics/chromatic/glassCatalog.js";
 import { LINE_NM } from "../../../src/optics/chromatic/spectralLines.js";
 import type { ElementData, SurfaceData, SurfaceSpectral } from "../../../src/types/optics.js";
-import { ALL_CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import { ALL_CATALOG_KEYS } from "../../../src/utils/catalog/lensCatalog.js";
 
 interface EngineSliderState {
   focusT: number;
@@ -71,29 +73,32 @@ function expectClose(actual: number, expected: number, tolerance = 1e-10): void 
 describe("Optics engine LensData normalization and compatibility", () => {
   it("builds every visible and hidden catalog lens through buildLens", () => {
     for (const key of ALL_CATALOG_KEYS) {
-      const runtime = buildLens(LENS_CATALOG[key]);
+      const runtime = buildLens(CATALOG_CONSTRUCTION_FIXTURES[key]);
       const engine = engineLensFromRuntime(runtime);
-      expect(runtime.data.key).toBe(key);
+      expect(constructionFixtureData(runtime).key).toBe(key);
       expect(engine.key).toBe(key);
       expect(engine.surfaces).toHaveLength(runtime.N);
       /* Engine elements are every traced medium; runtime.elements drops synthetic rear plates for display. */
-      expect(engine.elements).toHaveLength(runtime.data.elements.length);
+      expect(engine.elements).toHaveLength(constructionFixtureData(runtime).elements.length);
       expect(engine).not.toHaveProperty("runtime");
       expect(runtimeView(engine)).toBe(runtime);
       // Perspective control is opt-in: lenses without the data block build with movement disabled.
-      if (runtime.data.perspectiveControl == null) expect(runtime.perspectiveControl, key).toBeNull();
+      if (constructionFixtureData(runtime).perspectiveControl == null)
+        expect(runtime.perspectiveControl, key).toBeNull();
     }
   });
 
   it("builds hidden folded reference fixtures and preserves repeated surface-order labels", () => {
     for (const key of REQUIRED_FOLDED_REFERENCE_KEYS) {
-      const runtime = buildLens(LENS_CATALOG[key]);
+      const runtime = buildLens(CATALOG_CONSTRUCTION_FIXTURES[key]);
       const engine = engineLensFromRuntime(runtime);
       expect(engine.flags.isFoldedOptics, key).toBe(true);
       expect(engine.imagePlane.label, key).toBe(runtime.imagePlane.label);
     }
 
-    const mangin = engineLensFromRuntime(buildLens(LENS_CATALOG["reference-mangin-second-surface-mirror"]));
+    const mangin = engineLensFromRuntime(
+      buildLens(CATALOG_CONSTRUCTION_FIXTURES["reference-mangin-second-surface-mirror"]),
+    );
     expect(mangin.opticalPath.surfaceLabels).toEqual(["STO", "MG1", "MG2", "MG1"]);
     expect(mangin.opticalPath.surfaceOrder).toEqual([
       mangin.labelToSurfaceIndex.STO,
@@ -104,7 +109,7 @@ describe("Optics engine LensData normalization and compatibility", () => {
   });
 
   it("defaults projection and image-plane metadata to the current runtime behavior", () => {
-    const runtime = buildLens(LENS_CATALOG["nikkor-z-50f18s"]);
+    const runtime = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikkor-z-50f18s"]);
     const engine = engineLensFromRuntime(runtime);
     expect(engine.projection.kind).toBe("rectilinear");
     expect(engine.imagePlane.label).toBe("IMG");
@@ -114,10 +119,10 @@ describe("Optics engine LensData normalization and compatibility", () => {
   });
 
   it("can normalize directly from LensData without mutating lens data surfaces", () => {
-    const original = structuredClone(LENS_CATALOG["nikkor-z-50f18s"]);
+    const original = structuredClone(CATALOG_CONSTRUCTION_FIXTURES["nikkor-z-50f18s"]);
     const engine = compileLensData(original);
     expect(engine.key).toBe(original.key);
-    expect(original.surfaces).toEqual(LENS_CATALOG["nikkor-z-50f18s"].surfaces);
+    expect(original.surfaces).toEqual(CATALOG_CONSTRUCTION_FIXTURES["nikkor-z-50f18s"].surfaces);
   });
 });
 
@@ -159,7 +164,7 @@ describe("Optics engine dispersion descriptors", () => {
 describe("Optics engine prepared state", () => {
   it("matches doLayout, thick, z positions, and image plane through compatibility wrappers", () => {
     for (const fixture of ENGINE_STATE_FIXTURES) {
-      const runtime = buildLens(LENS_CATALOG[fixture.key]);
+      const runtime = buildLens(CATALOG_CONSTRUCTION_FIXTURES[fixture.key]);
       for (const sliderState of fixture.states) {
         const aberrationT = sliderState.aberrationT ?? 0;
         const layout = doLayout(sliderState.focusT, sliderState.zoomT, runtime, aberrationT);
@@ -283,7 +288,7 @@ describe("Optics engine prepared state", () => {
   });
 
   it("owns one frozen trace geometry per prepared state without copying optical records", () => {
-    const runtime = buildLens(LENS_CATALOG["nikon-z-24-70f4s"]);
+    const runtime = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-z-24-70f4s"]);
     const engine = engineLensFromRuntime(runtime);
     const first = prepareState(engine, 0, 0, 0);
     const geometry = first.traceGeometry;
@@ -304,17 +309,17 @@ describe("Optics engine prepared state", () => {
       expect(prepareState(engine, controls[0], controls[1], controls[2]).traceGeometry).not.toBe(geometry);
     }
     expect(prepareStateUncached(engine, 0, 0).traceGeometry).not.toBe(geometry);
-    const other = buildLens(LENS_CATALOG["nikon-z-24-70f4s"]);
+    const other = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-z-24-70f4s"]);
     expect(prepareRuntimeState(other, 0, 0).traceGeometry).toBe(prepareRuntimeState(runtime, 0, 0).traceGeometry);
-    const independent = buildLens(toLensData(ingestLensV1(LENS_CATALOG["nikon-z-24-70f4s"])));
-    expect(independent.data.key).toBe(runtime.data.key);
+    const independent = buildLens(toLensData(ingestLensV1(CATALOG_CONSTRUCTION_FIXTURES["nikon-z-24-70f4s"])));
+    expect(constructionFixtureData(independent).key).toBe(constructionFixtureData(runtime).key);
     expect(prepareRuntimeState(independent, 0, 0).traceGeometry).not.toBe(
       prepareRuntimeState(runtime, 0, 0).traceGeometry,
     );
   });
 
   it("keeps CompiledLens parity-recoverable from ordinary buildLens runtimes", () => {
-    const runtime = buildLens(LENS_CATALOG["varisoft-rokkor-85f28"]);
+    const runtime = buildLens(CATALOG_CONSTRUCTION_FIXTURES["varisoft-rokkor-85f28"]);
     const engine = engineLensFromRuntime(runtime);
     expect(engine.aberrationControl?.label).toBe(runtime.aberrationControl?.label);
     expect(engine.surfaces.map((surface) => surface.label)).toEqual(runtime.S.map((surface) => surface.label));
@@ -387,7 +392,7 @@ describe("canonical compiler ownership", () => {
 
   it("prepares folded image planes from compiled authority without consulting source echoes", () => {
     for (const key of ["reference-newtonian-side-focus", "reference-spherical-primary-mirror"]) {
-      const compiled = compileLensData(LENS_CATALOG[key]);
+      const compiled = compileLensData(CATALOG_CONSTRUCTION_FIXTURES[key]);
       expect(compiled.hasExplicitImagePlane).toBe(true);
       const source = new Proxy(compiled.source, {
         get() {

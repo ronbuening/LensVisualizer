@@ -589,7 +589,7 @@ const TABLE: readonly TableRow[] = [
   /* ── Build constants ── */
   /* The prescription the lens was built from, after defaults and rear plates. It is authored data for a catalog
    * lens and the composer's arithmetic for a converter pair, so it is classed as the composed prescription is. */
-  ["prescription", ["build:data.**"], { authored: true }],
+  ["prescription", ["build:data.**", "build:source.**", "build:attachedTeleconverter.**"], { authored: true }],
   ["count", ["build:elements[].id"], { authored: true }],
   ["requested", ["build:elements[].**"], { authored: true }],
   [
@@ -665,7 +665,7 @@ const TABLE: readonly TableRow[] = [
   ["layoutLength", ["composition:compatibility.geometry.*"]],
   /* The composed prescription is authored data moved and scaled by the composer: sums of thicknesses, focal
    * lengths and f-numbers times the magnification. */
-  ["prescription", ["composition:prescription.**"], { authored: true }],
+  ["prescription", ["composition:prescription.**", "composition:attachedTeleconverter.**"], { authored: true }],
 
   /* ── Layout ── */
   ["directionCosine", ["layout:imagePlane.normal[]"]],

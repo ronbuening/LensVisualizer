@@ -252,7 +252,7 @@ describe("glass coverage opportunities scan", () => {
 
     totalLenses = walkLensSurfaces(modules, ({ filePath, data, L }) => {
       const visible = data.visible !== false;
-      const patentNumber = extractPatentNumber(data.patentNumber, data.subtitle);
+      const patentNumber = extractPatentNumber(data.source.patentNumber, data.subtitle);
       const localPatent = findLocalPatent(patentNumber, patentFiles);
       if (visible) visibleLenses++;
 

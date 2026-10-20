@@ -13,7 +13,7 @@ import { ALL_CATALOG_KEYS, LENS_CATALOG } from "../../../../src/utils/catalog/le
 const CONFIGURATION_GROUPS = (() => {
   const groups = new Map<string, string[]>();
   for (const key of ALL_CATALOG_KEYS) {
-    const groupKey = LENS_CATALOG[key].opticalConfiguration?.groupKey;
+    const groupKey = LENS_CATALOG[key].catalog.opticalConfiguration?.groupKey;
     if (!groupKey) continue;
     groups.set(groupKey, [...(groups.get(groupKey) ?? []), key]);
   }
@@ -36,7 +36,7 @@ describe("optical configuration groups", () => {
   it("gives every member of a group a unique toggle order", () => {
     const collisions = [...CONFIGURATION_GROUPS.entries()]
       .map(([groupKey, keys]) => {
-        const orders = keys.map((key) => LENS_CATALOG[key].opticalConfiguration!.order);
+        const orders = keys.map((key) => LENS_CATALOG[key].catalog.opticalConfiguration!.order);
         return { groupKey, orders };
       })
       .filter(({ orders }) => new Set(orders).size !== orders.length)
@@ -60,7 +60,7 @@ describe("optical configuration groups", () => {
   it("gives every member a non-empty toggle label", () => {
     for (const [groupKey, keys] of CONFIGURATION_GROUPS) {
       for (const key of keys) {
-        expect(LENS_CATALOG[key].opticalConfiguration!.label.trim(), `${groupKey}/${key}`).not.toBe("");
+        expect(LENS_CATALOG[key].catalog.opticalConfiguration!.label.trim(), `${groupKey}/${key}`).not.toBe("");
       }
     }
   });

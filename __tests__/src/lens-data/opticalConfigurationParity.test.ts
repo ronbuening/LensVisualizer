@@ -1,6 +1,6 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../optics/constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import type { LensData, SurfaceData, VarRange } from "../../../src/types/optics.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 /**
  * Shared-prescription parity for switchable `opticalConfiguration` groups.
@@ -68,7 +68,7 @@ interface ConfigurationGroup {
 }
 
 const GROUPS = new Map<string, ConfigurationGroup>();
-for (const data of Object.values(LENS_CATALOG)) {
+for (const data of Object.values(CATALOG_CONSTRUCTION_FIXTURES)) {
   const groupKey = data.opticalConfiguration?.groupKey;
   if (groupKey === undefined) continue;
   const group = GROUPS.get(groupKey) ?? { base: undefined as unknown as LensData, variants: [] };

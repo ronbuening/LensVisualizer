@@ -148,7 +148,7 @@ describe("ElementInspector", () => {
     [4, "CEMENTED"],
   ])("labels a %i-element cemented component as %s", (count, label) => {
     const elements = Array.from({ length: count }, (_, id) => ({ ...basicElement, id: id + 1, cemented: "C1" }));
-    const L = { ...mockLens, data: { elements } } as unknown as RuntimeLens;
+    const L = { ...mockLens, elements } as unknown as RuntimeLens;
     render(<ElementInspector info={elements[0]} L={L} t={mockTheme} showChromatic={false} />);
     expect(screen.getByText(`${label} C1`)).toBeTruthy();
   });

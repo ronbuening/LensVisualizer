@@ -1,7 +1,7 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../optics/constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import { normalLinePgF } from "../../../src/optics/chromatic/materialResolver.js";
 import { evaluateSellmeier, resolveCompatibleGlass } from "../../../src/optics/chromatic/glassCatalog.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import { TELECONVERTER_CATALOG } from "../../../src/utils/catalog/teleconverterCatalog.js";
 
 /**
@@ -47,7 +47,7 @@ describe("partial-dispersion normal line", () => {
   it("stores dPgF against the engine's line, not a source's", () => {
     let read = 0;
     const offenders = new Set<string>();
-    for (const data of [...Object.values(LENS_CATALOG), ...Object.values(TELECONVERTER_CATALOG)]) {
+    for (const data of [...Object.values(CATALOG_CONSTRUCTION_FIXTURES), ...Object.values(TELECONVERTER_CATALOG)]) {
       for (const element of data.elements) {
         const { glass, nd, vd, dPgF, indexReference } = element;
         if (dPgF === undefined || vd === undefined || !glass || indexReference === "e") continue;

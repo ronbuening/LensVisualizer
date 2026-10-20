@@ -3,7 +3,7 @@ import type { LensData, SurfaceData, RearPlateData } from "../../types/optics.js
 import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTaxonomy.js";
 import { FLAT_RADIUS } from "./canonical.js";
 import type { CanonicalLens, CanonicalSurface, CanonicalElement, IngestedPrescription } from "./canonical.js";
-import { canonicalConstructionData, toLensData } from "./toLensData.js";
+import { canonicalConstructionData, elementDisplayData } from "./constructionData.js";
 import { canonicalForView } from "./identity.js";
 import { ingestLens } from "./ingestV2.js";
 
@@ -94,20 +94,19 @@ export function expandedConstruction(
   data.elements.forEach((element, i) => {
     if (expanded.elements[i].synthetic) element.synthetic = expanded.elements[i].synthetic;
   });
-  const authored = sourceOverride ?? toLensData(ingested);
-  const byLabel = new Map(authored.surfaces.map((s) => [s.label, s]));
-  const byId = new Map(authored.elements.map((e) => [e.id, e]));
-  const source = {
-    ...authored,
-    ...(descriptor ? { attachedTeleconverter: descriptor } : {}),
-    surfaces: data.surfaces.map((s) => byLabel.get(s.label) ?? s),
-    elements: data.elements.map(
-      (e) =>
-        byId.get(e.id) ??
-        generatedElementEcho(
-          e,
-          authored.rearPlates?.[e.id - Math.max(0, ...ingested.prescription.elements.map((element) => element.id)) - 1],
-        ),
+  const source = sourceOverride ?? {
+    surfaces: data.surfaces.map((surface, i) => ({
+      ...surface,
+      R: (ingested.provenance.ignored[`surfaces[${i}].R`] as number) ?? surface.R,
+      sd: (ingested.provenance.ignored[`surfaces[${i}].sd`] as number) ?? surface.sd,
+    })),
+    elements: expanded.elements.map((element, i) =>
+      element.synthetic
+        ? generatedElementEcho(
+            data.elements[i],
+            ingested.prescription.rearPlates?.[i - ingested.prescription.elements.length],
+          )
+        : elementDisplayData(element, i, ingested.provenance),
     ),
   };
   return { expanded, data, source };
@@ -124,7 +123,8 @@ function generatedElementEcho(element: LensData["elements"][number], plate?: Rea
 export function expandRearPlates(data: LensData): LensData {
   if (!data.rearPlates?.length) return data;
   const ingested = canonicalForView(data) ?? ingestLens(data);
-  return expandedConstruction(ingested, data.attachedTeleconverter, data).source;
+  const expanded = expandedConstruction(ingested, data.attachedTeleconverter, data);
+  return { ...data, surfaces: expanded.data.surfaces, elements: expanded.data.elements };
 }
 
 /**

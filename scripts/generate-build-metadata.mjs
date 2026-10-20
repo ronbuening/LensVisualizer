@@ -35,7 +35,7 @@ import {
   getGitFileFreshnessAsync,
 } from "./build-metadata-lib.mjs";
 import { assertV2Catalog, collectLensDataAsync } from "./lens-data-lib.mjs";
-import { lensSummary, teleconverterSummary, v1Prescription } from "./lens-summaries.mjs";
+import { lensSummary, teleconverterSummary, canonicalPrescription } from "./lens-summaries.mjs";
 import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
 import { buildAuthorMetadata, buildAssigneeMetadata } from "./author-metadata.mjs";
 import { assertPatentAssigneeValidity } from "./patent-assignee-validity.mjs";
@@ -59,8 +59,8 @@ const GIT_FRESHNESS_CONCURRENCY = 8;
 /* ── Lens summaries ───────────────────────────────────────────────────── */
 
 /**
- * Evaluate every default-exported data module under src/lens-data whose file name ends with `suffix`, in V1 field
- * names: a V2 file is read through its V1 view.
+ * Evaluate every default-exported data module under src/lens-data whose file name ends with `suffix`, as canonical
+ * prescriptions.
  */
 async function importDataModules(suffix) {
   const dataFiles = readdirSync(LENS_DATA_DIR, { recursive: true })
@@ -74,7 +74,7 @@ async function importDataModules(suffix) {
     const file = (await import(pathToFileURL(filePath).href))?.default;
     if (!file?.key) continue;
     const kind = suffix === ".data.ts" ? "lens" : "teleconverter";
-    modules.push({ data: await v1Prescription(file, kind), filePath });
+    modules.push({ data: await canonicalPrescription(file, kind), filePath });
   }
   return modules;
 }
@@ -85,7 +85,7 @@ async function importDataModules(suffix) {
  * Lens `*.data.ts` files only have type-only imports, so Node's native type
  * stripping can import them directly — no bundler needed. The resulting JSON
  * lets index-style pages render without shipping full prescriptions. The
- * modules are returned too, in V1 field names, because teleconverter fit needs
+ * modules are returned too, as canonical prescriptions, because teleconverter fit needs
  * full prescriptions.
  */
 async function collectLensSummaries() {

@@ -1,3 +1,4 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import { catalogLensData } from "./testLensFixtures.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
@@ -16,7 +17,7 @@ import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/trac
  */
 const EXACT_TRACE_FIXTURE_KEYS = ["apo-lanthar-50f2", "nokton-50f1", "sonnar-50f15"] as const;
 import type { RuntimeLens } from "../../../src/types/optics.js";
-import { ALL_CATALOG_KEYS, CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import { ALL_CATALOG_KEYS, CATALOG_KEYS } from "../../../src/utils/catalog/lensCatalog.js";
 
 const HIDDEN_FOLDED_TRACE_CASES = [
   {
@@ -69,7 +70,7 @@ const HIDDEN_FOLDED_TRACE_CASES = [
 ] as const;
 
 function buildCatalogLens(key: string): RuntimeLens {
-  return buildLens(LENS_CATALOG[key]);
+  return buildLens(CATALOG_CONSTRUCTION_FIXTURES[key]);
 }
 
 function zoomSamples(L: RuntimeLens): number[] {
@@ -139,7 +140,9 @@ describe("exact surface trace catalog smoke coverage", () => {
      * it — the 59-surface converter path had no CI coverage at all.
      */
     const hiddenConfigurationKeys = ALL_CATALOG_KEYS.filter(
-      (key) => LENS_CATALOG[key].visible === false && LENS_CATALOG[key].opticalConfiguration !== undefined,
+      (key) =>
+        CATALOG_CONSTRUCTION_FIXTURES[key].visible === false &&
+        CATALOG_CONSTRUCTION_FIXTURES[key].opticalConfiguration !== undefined,
     );
     expect(hiddenConfigurationKeys.length, "expected at least one hidden configuration variant").toBeGreaterThan(0);
 
@@ -163,7 +166,7 @@ describe("exact surface trace catalog smoke coverage", () => {
 
   it("keeps hidden folded reference fixtures covered outside the public catalog smoke test", () => {
     for (const { key, y0, expectedHitLabels } of HIDDEN_FOLDED_TRACE_CASES) {
-      expect(LENS_CATALOG[key]?.visible, key).toBe(false);
+      expect(CATALOG_CONSTRUCTION_FIXTURES[key]?.visible, key).toBe(false);
       expect(CATALOG_KEYS, key).not.toContain(key);
 
       const L = buildCatalogLens(key);

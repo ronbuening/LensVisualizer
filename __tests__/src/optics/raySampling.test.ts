@@ -1,3 +1,4 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import {
   isHeavyLensForRayWork,
@@ -5,7 +6,6 @@ import {
   raySampleCountForDensity,
 } from "../../../src/optics/trace/raySampling.js";
 import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 function expectSymmetric(fractions: number[]) {
   for (let i = 0; i < fractions.length; i++) {
@@ -58,12 +58,12 @@ describe("raySampling", () => {
 
 describe("isHeavyLensForRayWork", () => {
   it("returns false for an ordinary rectilinear 50mm prime", () => {
-    const L = buildLens(LENS_CATALOG["nokton-50f1"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nokton-50f1"]);
     expect(isHeavyLensForRayWork(L)).toBe(false);
   });
 
   it("returns true for a fisheye lens regardless of size", () => {
-    const L = buildLens(LENS_CATALOG["nikon-fisheye-nikkor-6mm-f28"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-fisheye-nikkor-6mm-f28"]);
     expect(isHeavyLensForRayWork(L)).toBe(true);
   });
 

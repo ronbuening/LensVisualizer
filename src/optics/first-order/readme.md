@@ -43,6 +43,7 @@ flowchart LR
   n_src_optics_first_order_src_optics_first_order_focusBreathing_ts --> n_external_src_optics_math
   n_src_optics_first_order_src_optics_first_order_pupils_ts --> n_external_src_optics_math
   n_src_optics_first_order_src_optics_first_order_systemMatrix_ts --> n_external_src_optics_math
+  n_src_optics_first_order_src_optics_first_order_format_ts --> n_external_src_optics_prescription
   n_src_optics_first_order_src_optics_first_order_cardinals_ts --> n_external_src_optics_types_ts
   n_src_optics_first_order_src_optics_first_order_focusBreathing_ts --> n_external_src_optics_types_ts
   n_src_optics_first_order_src_optics_first_order_lensConstants_ts --> n_external_src_optics_types_ts
@@ -62,7 +63,7 @@ flowchart LR
 
 - Direct source files: 8
 - Direct subfolders: 0
-- Main outbound areas: src/optics/state (10), src/optics/math (9), src/optics/trace (5), src/optics/types.ts (5), src/types (5), src/optics/prescription (4), same folder (2), src/optics/geometry (2), +2 more
+- Main outbound areas: src/optics/state (10), src/optics/math (9), src/optics/prescription (5), src/optics/trace (5), src/optics/types.ts (5), src/types (5), same folder (2), src/optics/geometry (2), +2 more
 - External consumers: src/optics/analysis, src/optics/analysis.ts, src/optics/optics.ts, src/optics/perspective, src/optics/prescription
 
 ## Files
@@ -72,7 +73,7 @@ flowchart LR
 | `cardinals.ts` | Cardinals helper module | src/optics/math (2), src/optics/trace (2), same folder, src/optics/types.ts | src/optics/analysis (2), src/optics/analysis.ts | CardinalPoint, CardinalDistance, CardinalElements, computeCardinalElementsFromState, buildCardinalElementsFromMatrix, computeCardinalElementsWithLayout |
 | `fNumber.ts` | F Number helper module | src/optics/state (3), same folder, src/types | src/optics/optics.ts | effectiveFNumber |
 | `focusBreathing.ts` | Focus Breathing helper module | src/optics/state (3), src/optics/prescription (2), src/optics/math, src/optics/types.ts, src/types | same folder, src/optics/analysis, src/optics/optics.ts, src/optics/perspective | eflAtFocus, eflAtPreparedState |
-| `format.ts` | Format helper module | src/optics/state (2), src/types | src/optics/analysis, src/optics/optics.ts | formatFNumber, marketedApertureNote, formatDist, formatPetzvalRadius |
+| `format.ts` | Format helper module | src/optics/state (2), src/optics/prescription, src/types | src/optics/analysis, src/optics/optics.ts | formatFNumber, marketedApertureNote, formatDist, formatPetzvalRadius |
 | `lensConstants.ts` | Lens Constants helper module | src/optics/math (4), src/optics/trace (3), src/optics/prescription (2), src/optics/state (2), src/optics/field, +4 more | src/optics/optics.ts, src/optics/prescription | computeLensConstants, paraxialTrace, realTraceToStop |
 | `pupils.ts` | Pupils helper module | src/optics/math, src/optics/types.ts | src/optics/perspective | FirstOrderPupilState, entrancePupilFromStop, paraxialPupilGeometry |
 | `systemMatrix.ts` | System Matrix helper module | src/optics/math, src/optics/types.ts | same folder | FirstOrderSystemMatrix, computeSystemMatrix |

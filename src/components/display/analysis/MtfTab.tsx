@@ -108,7 +108,7 @@ export default function MtfTab({
       }),
     [preparedState, preferences.spectrum, spectrum.spectrum, support.referenceWavelengthNm, shown],
   );
-  const [warningAcknowledged, acknowledgeWarning] = useMtfDataWarning(L.data.key, dataLimitations);
+  const [warningAcknowledged, acknowledgeWarning] = useMtfDataWarning(L.source.key, dataLimitations);
   // Stop-down scales the pupil and stop radii by N/8, as the aperture control does.
   const compareF8Available = !!fNumber && fNumber < COMPARISON_F_NUMBER - 0.05 && L.maxFstop >= COMPARISON_F_NUMBER;
   const comparisonJob = useMemo(() => {

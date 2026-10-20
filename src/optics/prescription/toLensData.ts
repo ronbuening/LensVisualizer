@@ -1,8 +1,8 @@
 /**
  * V1 view — rebuilds V1 lens and teleconverter data from a canonical prescription and its provenance.
  *
- * The catalog and UI consume this source-preserving V1 `LensData` view. The compiler uses the shared field
- * projection with canonical values alone; it never restores ignored provenance into optical construction. For a file of either version the defaulted fields stay omitted, and the authored
+ * Only the permanent converter and its regression tests consume this source-preserving V1 view. The app uses
+ * canonical prescriptions and explicit runtime fields. For a file of either version the defaulted fields stay omitted, and the authored
  * values the engine ignores come back from `provenance.ignored`: a V2 `zoom.step: 0` gives `zoomStep: 0`, a zero
  * aspheric term returns, a numeric flat radius keeps its number. Only the V1 spellings the canonical form holds once
  * need V1 provenance (`provenance.v1`: the containers written empty, and how `publishedStations` was written). Given a
@@ -11,11 +11,10 @@
  * the end stations are labelled.
  *
  * Two forms:
- * - `toLensData` is what the engine consumes, the catalog defaults merged in, as the V1 catalog spread them;
+ * - `toLensData` reconstructs the historical defaults-merged V1 view for conversion regression tests;
  * - `toLensDataInput` is the file as authored, which the converter writes back for `--to-version 1`.
  */
 
-import type { LensConstructionData } from "../types.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../types/asphericSchema.js";
 import type {
   AberrationControlConfig,
@@ -560,7 +559,7 @@ function buildLensView(
 }
 
 /**
- * The V1 lens data the engine consumes: the file as written, with the catalog defaults merged in.
+ * The historical defaults-merged V1 view, retained for converter regression tests.
  *
  * @param ingested - a canonical lens with its provenance
  * @returns fresh V1 `LensData`, sharing nothing with the prescription
@@ -570,14 +569,6 @@ export function toLensData(ingested: IngestedPrescription<CanonicalLens>): LensD
   if (ingested.attachedTeleconverter) view.attachedTeleconverter = structuredClone(ingested.attachedTeleconverter);
   associateCanonical(view, ingested);
   return view;
-}
-
-/** Compiler construction projection: canonical values only, with no provenance restoration. */
-export function canonicalConstructionData(prescription: CanonicalLens): LensConstructionData {
-  return buildLensView(
-    { prescription, provenance: { format: 2, defaulted: [], ignored: {} } },
-    true,
-  ) as unknown as LensConstructionData;
 }
 
 /**

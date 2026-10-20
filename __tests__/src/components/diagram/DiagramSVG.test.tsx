@@ -1,4 +1,6 @@
 // @vitest-environment jsdom
+import { runtimeFixtureView } from "../../optics/constructionFixtures.js";
+import { constructionFixtureData } from "../../optics/constructionFixtures.js";
 import { registerRuntimeFixture } from "../../optics/testLensFixtures.js";
 
 /**
@@ -104,7 +106,7 @@ function imagePlaneCoordinates(container: HTMLElement, labelText = "IMG") {
 }
 
 const baseLens = {
-  data: { name: "Test Lens 50mm f/2", maker: "Testco" },
+  ...runtimeFixtureView({ name: "Test Lens 50mm f/2", maker: "Testco" }),
   svgW: 1200,
   svgH: 600,
   maxSD: 20,
@@ -217,7 +219,11 @@ describe("DiagramSVG", () => {
   it("does not repeat the maker when the display name already begins with it", () => {
     const namedLens = {
       ...baseLens,
-      data: { ...baseLens.data, maker: "Nikon", name: "NIKON AF DC-NIKKOR 135mm f/2 D" },
+      ...runtimeFixtureView({
+        ...constructionFixtureData(baseLens),
+        maker: "Nikon",
+        name: "NIKON AF DC-NIKKOR 135mm f/2 D",
+      }),
     } as RuntimeLens;
     const { container } = render(
       <DiagramSVG {...baseDiagramSvgProps({ L: namedLens, shapes: [baseShape], onHover, onSelect })} />,
@@ -231,7 +237,7 @@ describe("DiagramSVG", () => {
   it("uses the marketed physical element count in the accessible description", () => {
     const physicalCountLens = {
       ...baseLens,
-      data: { ...baseLens.data, elementCount: 19 },
+      ...runtimeFixtureView({ ...constructionFixtureData(baseLens), elementCount: 19 }),
     } as RuntimeLens;
     const { container } = render(
       <DiagramSVG {...baseDiagramSvgProps({ L: physicalCountLens, shapes: [baseShape], onHover, onSelect })} />,

@@ -132,11 +132,9 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
   const foldedSurfaceRows = surfaceIndexesForElement(info, L)
     .map((idx) => ({ surface: L.S[idx], summary: surfaceSummary(L.S[idx]) }))
     .filter((row): row is { surface: SurfaceData; summary: string } => Boolean(row.summary));
-  const imagePlane = L.isFoldedOptics && L.data.opticalPath?.imagePlane ? L.imagePlane : null;
+  const imagePlane = L.isFoldedOptics && L.source.opticalPath?.imagePlane ? L.imagePlane : null;
   const dispersionRows = showChromatic ? elementDispersionRows(info, L) : [];
-  const cementedCount = info.cemented
-    ? (L.data?.elements ?? []).filter((element) => element.cemented === info.cemented).length
-    : 0;
+  const cementedCount = info.cemented ? L.elements.filter((element) => element.cemented === info.cemented).length : 0;
   const cementedLabel = cementedCount === 2 ? "DOUBLET" : cementedCount === 3 ? "TRIPLET" : "CEMENTED";
 
   return (

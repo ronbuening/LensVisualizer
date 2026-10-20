@@ -1,4 +1,5 @@
 // @vitest-environment jsdom
+import { constructionFixtureData } from "../../optics/constructionFixtures.js";
 
 import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
@@ -135,14 +136,14 @@ describe("useLensComputation", () => {
     const bare = compute(hostKey, null);
     const mounted = compute(hostKey, teleconverterKey);
     expect(mounted.buildError).toBeUndefined();
-    expect(mounted.L!.data.attachedTeleconverter?.key).toBe(teleconverterKey);
+    expect(constructionFixtureData(mounted.L!).attachedTeleconverter?.key).toBe(teleconverterKey);
     expect(mounted.L!.N).toBeGreaterThan(bare.L!.N);
     expect(mounted.L!.stopPhysSD).toBeCloseTo(bare.L!.stopPhysSD, 9);
     expect(mounted.dynamicEFL).toBeGreaterThan(bare.dynamicEFL);
 
     const unfit = compute(baseLensKey, teleconverterKey);
     expect(unfit.buildError).toBeUndefined();
-    expect(unfit.L!.data.attachedTeleconverter).toBeUndefined();
+    expect(constructionFixtureData(unfit.L!).attachedTeleconverter).toBeUndefined();
   });
 
   it("returns element shapes", () => {

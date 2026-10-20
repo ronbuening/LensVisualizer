@@ -88,7 +88,7 @@ export function mtfModeledHalfField(state: PreparedGeometry): number {
  * @returns image-circle or format-diagonal radius, or null when the lens declares neither
  */
 export function declaredFormatRadiusMm(state: PreparedGeometry): number | null {
-  const { imageCircleMm, imageFormat } = state.lens.source;
+  const { imageCircleMm, imageFormat } = state.lens.source.catalog;
   const diameter = imageCircleMm ?? (isImageFormatId(imageFormat) ? IMAGE_FORMAT_BY_ID[imageFormat].diagonalMm : null);
   return diameter !== null && Number.isFinite(diameter) && diameter > 0 ? diameter / 2 : null;
 }

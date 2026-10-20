@@ -1,3 +1,5 @@
+import { ingestLens } from "../../../src/optics/buildLens.js";
+import { constructionFixtureData } from "./constructionFixtures.js";
 import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
@@ -47,8 +49,11 @@ describe("bulkTransmissionForTrace", () => {
   it("uses compiled media without consulting the RuntimeLens bridge or source records", () => {
     const base = buildSimplePositiveElementLens();
     const runtime = build({
-      ...base.data,
-      elements: base.data.elements.map((element) => ({ ...element, absorptionCoefficientPerMm: 0.5 })),
+      ...constructionFixtureData(base),
+      elements: constructionFixtureData(base).elements.map((element) => ({
+        ...element,
+        absorptionCoefficientPerMm: 0.5,
+      })),
     });
     const compiled = compiledLensFromRuntime(runtime);
     const lens = {
@@ -82,8 +87,11 @@ describe("bulkTransmissionForTrace", () => {
     const base = buildSimplePositiveElementLens("test-absorbing-positive-element");
     const alpha = 0.2;
     const L = build({
-      ...base.data,
-      elements: base.data.elements.map((element) => ({ ...element, absorptionCoefficientPerMm: alpha })),
+      ...constructionFixtureData(base),
+      elements: constructionFixtureData(base).elements.map((element) => ({
+        ...element,
+        absorptionCoefficientPerMm: alpha,
+      })),
     });
     const layout = doLayout(0, 0, L);
     const front = L.labelIdx["1"];
@@ -113,13 +121,18 @@ describe("chief-relative plate transmission", () => {
     const alpha = 0.2;
     const n = 1.5;
     // The builder rejects afocal plates; retain its complete runtime shape for this transfer-only fixture.
-    const elements = [{ ...base.data.elements[0], nd: n, absorptionCoefficientPerMm: alpha }];
+    const elements = [{ ...constructionFixtureData(base).elements[0], nd: n, absorptionCoefficientPerMm: alpha }];
     const surfaces = [
       { label: "STO", R: 1e15, nd: 1, sd: 15, d: 1, elemId: 0 },
       { label: "1", R: 1e15, nd: n, sd: 15, d: 5, elemId: 1 },
       { label: "2", R: 1e15, nd: 1, sd: 15, d: 20, elemId: 0 },
     ];
-    const L = registerRuntimeFixture({ ...base, S: surfaces, elements, data: { ...base.data, surfaces, elements } });
+    const L = registerRuntimeFixture({
+      ...base,
+      S: surfaces,
+      elements,
+      source: ingestLens({ ...constructionFixtureData(base), surfaces, elements }).prescription,
+    });
     const slope = -0.1;
     const sinGlass = slope / Math.hypot(slope, 1) / n;
     const glassSlope = sinGlass / Math.sqrt(1 - sinGlass * sinGlass);

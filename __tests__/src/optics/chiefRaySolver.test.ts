@@ -1,3 +1,4 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import * as fieldGeometryModule from "../../../src/optics/field/geometry.js";
 import * as rayAdapters from "../../../src/optics/trace/rayAdapters.js";
 import { computeChiefRaySolve, solveChiefRayBoundingSphere } from "../../../src/optics/field/chiefRaySolve.js";
@@ -29,7 +30,6 @@ import {
   projectionLaunchSlopeForField,
 } from "../../../src/optics/field/projection.js";
 import { getChiefRayDiagnostics, resetChiefRayDiagnostics } from "../../../src/optics/diagnostics/chiefRay.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 const RECTILINEAR_FIXTURE = "nokton-50f1";
 const FISHEYE_FIXTURE = "nikon-fisheye-nikkor-6mm-f28";
@@ -37,7 +37,7 @@ const HOLOGON_FIXTURE = "zeiss-hologon-15f8";
 
 describe("projectionLaunchSlopeForField", () => {
   it("returns -tan(theta) for rectilinear lenses at moderate fields", () => {
-    const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[RECTILINEAR_FIXTURE]);
     for (const deg of [0, 5, 15, 30, 45, 60, 85]) {
       const result = projectionLaunchSlopeForField(L, deg);
       expect(result.status).toBe("ok");
@@ -46,7 +46,7 @@ describe("projectionLaunchSlopeForField", () => {
   });
 
   it("returns out-of-domain at or beyond MAX_FIELD_LAUNCH_DEG", () => {
-    const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[FISHEYE_FIXTURE]);
     const oob = projectionLaunchSlopeForField(L, MAX_FIELD_LAUNCH_DEG);
     expect(oob.status).toBe("out-of-domain");
     expect(Number.isNaN(oob.uField)).toBe(true);
@@ -56,7 +56,7 @@ describe("projectionLaunchSlopeForField", () => {
   });
 
   it("rejects non-finite inputs", () => {
-    const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[RECTILINEAR_FIXTURE]);
     expect(projectionLaunchSlopeForField(L, Number.NaN).status).toBe("out-of-domain");
     expect(projectionLaunchSlopeForField(L, Number.POSITIVE_INFINITY).status).toBe("out-of-domain");
   });
@@ -64,21 +64,21 @@ describe("projectionLaunchSlopeForField", () => {
 
 describe("solveChiefRay", () => {
   it("memoizes repeat solves on the same lens/state/field", () => {
-    const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[RECTILINEAR_FIXTURE]);
     const first = solveChiefRay(20, 0, 0, L);
     const second = solveChiefRay(20, 0, 0, L);
     expect(second).toBe(first);
   });
 
   it("returns paraxial fallback (iterations=0) for near-axis fields", () => {
-    const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[RECTILINEAR_FIXTURE]);
     const result = solveChiefRay(0.5, 0, 0, L);
     expect(result.status).toBe("converged");
     expect(result.iterations).toBe(0);
   });
 
   it("converges within the iteration cap for moderate fisheye fields", () => {
-    const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[FISHEYE_FIXTURE]);
     for (const deg of [10, 30, 60, 80]) {
       const result = solveChiefRay(deg, 0, 0, L);
       expect(result.status).not.toBe("out-of-domain");
@@ -88,7 +88,7 @@ describe("solveChiefRay", () => {
   });
 
   it("converges for representative wide Hologon object-plane chief rays", () => {
-    const L = buildLens(LENS_CATALOG[HOLOGON_FIXTURE]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[HOLOGON_FIXTURE]);
 
     for (const deg of [30, 35]) {
       const result = solveChiefRay(deg, 0, 0, L);
@@ -107,21 +107,21 @@ describe("computeFieldGeometryAtState halfField clamp", () => {
     // `maxTraceFieldDeg: 110°` and `halfFieldDeg` matches it. This is well
     // past MAX_FIELD_LAUNCH_DEG (89°); per-ray dispatch to bounding-sphere or
     // graceful clipping handles the past-cap angles.
-    const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[FISHEYE_FIXTURE]);
     const geom = computeFieldGeometryAtState(0, 0, L);
     expect(geom.halfFieldDeg).toBeCloseTo(110, 6);
     expect(geom.halfFieldDeg).toBeGreaterThan(MAX_FIELD_LAUNCH_DEG);
   });
 
   it("rectilinear halfFieldDeg never exits projectionLaunchSlopeForField's in-domain region", () => {
-    const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[RECTILINEAR_FIXTURE]);
     const geom = computeFieldGeometryAtState(0, 0, L);
     const edge = projectionLaunchSlopeForField(L, geom.halfFieldDeg);
     expect(edge.status).toBe("ok");
   });
 
   it("uses declared rectilinear Hologon coverage without fisheye dispatch", () => {
-    const L = buildLens(LENS_CATALOG[HOLOGON_FIXTURE]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[HOLOGON_FIXTURE]);
     const geom = computeFieldGeometryAtState(0, 0, L);
     const edge = projectionLaunchSlopeForField(L, geom.halfFieldDeg);
 
@@ -135,7 +135,7 @@ describe("computeFieldGeometryAtState halfField clamp", () => {
     // ceiling is `ABSOLUTE_HALF_FIELD_CEILING` (175°), not the slope-launch
     // cap. The Nikon 6mm comes nowhere near either bound; this test asserts
     // the clamp ARM is correct rather than the actual numeric outcome.
-    const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[FISHEYE_FIXTURE]);
     const geom = computeFieldGeometryAtState(0, 0, L);
     expect(geom.halfFieldDeg).toBeLessThanOrEqual(ABSOLUTE_HALF_FIELD_CEILING);
   });
@@ -148,7 +148,7 @@ describe("chiefRayDiagnostics", () => {
 
   it("counts converged solves under the compiled identity", () => {
     resetChiefRayDiagnostics();
-    const L = buildLens(structuredClone(LENS_CATALOG[RECTILINEAR_FIXTURE]));
+    const L = buildLens(structuredClone(CATALOG_CONSTRUCTION_FIXTURES[RECTILINEAR_FIXTURE]));
     solveChiefRay(10, 0, 0, L);
     solveChiefRay(20, 0, 0, L);
     const counts = getChiefRayDiagnostics().get(compiledLensFromRuntime(L));
@@ -158,7 +158,7 @@ describe("chiefRayDiagnostics", () => {
 
   it("counts out-of-domain solves separately from converged ones", () => {
     resetChiefRayDiagnostics();
-    const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[FISHEYE_FIXTURE]);
     // NaN input deterministically triggers the boundingSphereLaunchVector
     // out-of-domain branch regardless of lens geometry — unlike a past-cap
     // numeric angle which may now converge or bracket-fail via Step 3.
@@ -414,7 +414,11 @@ describe("image-height inversion", () => {
   ] as const)(
     "refines table targets in at most six chief calls with the bisection forward criterion: %s",
     (key, zoomT, fractions) => {
-      const state = prepareStateUncached(compiledLensFromRuntime(buildLens(LENS_CATALOG[key])), 0, zoomT);
+      const state = prepareStateUncached(
+        compiledLensFromRuntime(buildLens(CATALOG_CONSTRUCTION_FIXTURES[key])),
+        0,
+        zoomT,
+      );
       const geometry = computePreparedFieldGeometry(state);
       const height = (fieldAngleDeg: number) =>
         chiefRayImageHeightAccurate(state, { fieldAngleDeg, zPos: state.z, geometry });

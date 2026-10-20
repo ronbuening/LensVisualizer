@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "./constructionFixtures.js";
 import { describe, it, expect, vi } from "vitest";
 import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
 import { ingestLens } from "../../../src/optics/prescription/ingestV2.js";
@@ -7,7 +8,7 @@ import { toLensData } from "../../../src/optics/prescription/toLensData.js";
 import { toLensDataInput } from "../../../src/optics/prescription/toLensData.js";
 import { PrescriptionIngestError } from "../../../src/optics/prescription/canonical.js";
 import { v1CatalogDefaults } from "../../../src/optics/prescription/defaults.js";
-import { withLensDefaults } from "../../../src/optics/prescription/compile.js";
+import { canonicalInput } from "../../../src/optics/prescription/canonicalInput.js";
 import { attachTeleconverter } from "../../../src/optics/prescription/teleconverter.js";
 import validateLensData from "../../../src/optics/prescription/validate/index.js";
 import { wideOpenStopAtZoom } from "../../../src/optics/state/stationTables.js";
@@ -297,20 +298,19 @@ describe("buildLens — RuntimeLens property shape", () => {
 });
 
 describe("buildLens — canonical ingest", () => {
-  it("reads an authored file through ingest and its V1 view", () => {
-    expect(withLensDefaults(ApoLantharRaw as unknown as LensData)).toEqual(toLensData(ingestLens(ApoLantharRaw)));
+  it("reads an authored file through canonical ingest", () => {
+    const runtime = buildLens(ApoLantharRaw);
+    expect(runtime.source).toEqual(ingestLens(ApoLantharRaw).prescription);
+    expect(runtime).not.toHaveProperty("data");
   });
 
   it("builds a composed pair through its canonical association", () => {
     const composed = attachTeleconverter(teleconverterHostData(), teleconverterFixture());
-    expect(composed.attachedTeleconverter).toBeDefined();
-    /* A copy loses the canonical association and cannot author the composer-only marker. */
-    expect(() => ingestLensV1(composed as unknown as LensDataInput)).toThrow(/attachedTeleconverter is written only/);
-    expect(() => buildLens({ ...composed })).toThrow(/attachedTeleconverter is written only/);
-    const forBuild = withLensDefaults(composed);
-    expect(forBuild).toEqual(composed);
-    expect(forBuild).not.toBe(composed);
-    expect(buildLens(composed).EFL).toBeGreaterThan(buildLens(teleconverterHostData()).EFL);
+    const runtime = buildLens(composed);
+    expect(runtime.source).toBe(composed);
+    expect(runtime.attachedTeleconverter).toBeDefined();
+    expect(canonicalInput(composed).attachedTeleconverter).toEqual(runtime.attachedTeleconverter);
+    expect(runtime.EFL).toBeGreaterThan(buildLens(teleconverterHostData()).EFL);
   });
 
   it("composes and builds a raw host that omits catalog defaults", () => {
@@ -852,7 +852,7 @@ describe("buildLens — rear plates", () => {
     expect(plated.ES).toEqual(folded.ES);
     expect(plated.elements).toEqual(folded.elements);
     expect(plated.maxSD).toBe(folded.maxSD);
-    expect(plated.data.elements.some((element) => element.synthetic === "rearPlate")).toBe(true);
+    expect(constructionFixtureData(plated).elements.some((element) => element.synthetic === "rearPlate")).toBe(true);
   });
 
   it("resolves plate dispersion through its catalog glass", () => {

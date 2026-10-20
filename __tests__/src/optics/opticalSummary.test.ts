@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "./constructionFixtures.js";
 import { computeFocusEFL, computeFocusBreathingSeries } from "../../../src/optics/analysis/summary/breathing.js";
 import {
   analysisRequestForLens,
@@ -84,7 +85,7 @@ describe("request breathing", () => {
   it("keeps the chart series independent of aberration while current EFL follows it", () => {
     const base = buildSimplePositiveElementLens();
     const L = build({
-      ...base.data,
+      ...constructionFixtureData(base),
       var: { "1": [5, 8] },
       aberrationControl: {
         label: "Soft focus",

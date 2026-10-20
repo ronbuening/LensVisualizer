@@ -175,9 +175,9 @@ function partialDispersionSensitivity(state, vdOf) {
 
 /** Elements with a refracting medium that are drawn (rear plates are left out, as the data warning does). */
 const drawnGlasses = (L, state) =>
-  L.data.elements.filter(
-    (element) => !element.synthetic && state.surfaces.some((s) => s.nd !== 1 && s.elemId === element.id),
-  );
+  state.lens.elements
+    .map((element) => element.source)
+    .filter((element) => !element.synthetic && state.surfaces.some((s) => s.nd !== 1 && s.elemId === element.id));
 
 /* ── census ── */
 
@@ -202,7 +202,9 @@ async function census() {
     const onEstimate = new Set(
       state.lens.dispersion.flatMap((d, i) => (d.quality === "abbe" ? [state.surfaces[i].elemId] : [])),
     );
-    const estimatedAnywhere = L.data.elements.filter((element) => onEstimate.has(element.id));
+    const estimatedAnywhere = state.lens.elements
+      .map((element) => element.source)
+      .filter((element) => onEstimate.has(element.id));
     if (estimatedAnywhere.length) reach.lenses++;
     if (estimatedAnywhere.some((element) => element.dPgF === undefined)) reach.lensesWithoutDPgF++;
     reach.glasses += estimatedAnywhere.length;
@@ -250,7 +252,9 @@ async function census() {
     const estimated = glasses.filter((element) => estimatedIds.has(element.id));
     let longestFocalMm = 0;
     let sensitivity = 0;
-    const authoredVd = new Map(L.data.elements.map((element) => [element.id, element.vd]));
+    const authoredVd = new Map(
+      state.lens.elements.map((element) => element.source).map((element) => [element.id, element.vd]),
+    );
     for (const zoomT of L.isZoom ? [0, 1] : [0]) {
       const zoomState = zoomT === 0 ? state : prepareRuntimeState(L, 0, zoomT);
       const { focalLengthMm, perGlass } = partialDispersionSensitivity(zoomState, (id) => authoredVd.get(id));

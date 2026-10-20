@@ -248,6 +248,8 @@ view until their Stage 7 request migration. View assembly never compiles, resolv
 
 The constructor validates lens data and constructs a frozen `RuntimeLens` with:
 
+- `source`: the original canonical prescription, before generated rear-plate expansion, and a separate optional
+  `attachedTeleconverter` descriptor. There is no `data` field or source-preserving V1 runtime view.
 - Effective focal length, entrance pupil, field angle, total track, Petzval sum, and scale constants.
 - Zoom metadata: positions, EFLs, EPs, half-fields, tracing half-fields, y-ratios, and back focal distances.
 - Stop data: physical stop SD, blade stub fraction, stop housing SD, and f-stop series.
@@ -361,7 +363,7 @@ so an ingest that was not asked builds no path. `sourcePaths.ts` spells every pa
   design f-number, or taken from the station schedule) leaves it out, and V2 ingest refuses one written there.
   `validateLensData` accepts it absent, generated rear-plate rims skip it (below), and `lensDataStopRadiusAuthority`
   in `canonical.ts` reads that authority from V1 data for both.
-- `toLensData` (`toLensData.ts`) is the V1 view: it gives a V1 file back exactly, with the catalog defaults merged,
+- `toLensData` (`toLensData.ts`) is the converter-only V1 view: it gives a V1 file back exactly, with the catalog defaults merged,
   and `toLensDataInput` gives it back as authored. A V2 file records no V1 spelling, so its view writes each field in
   the plain V1 form.
 - `toLensDataV2Input` and `toTeleconverterDataV2Input` (`toLensDataV2.ts`) are the V2 view the converter prints, in
@@ -380,22 +382,23 @@ so an ingest that was not asked builds no path. `sourcePaths.ts` spells every pa
   holds it (`zoomPositions` first), or to its nearest ancestor's V1 node. `v1StopRadius` names the stop whose `sd`
   V1's type requires and the prescription does not hold; the converter supplies the engine's radius through
   `toLensDataInput`'s `stopRadius` option, and V1 ingest sets it aside again.
-- Lens data gets its defaults from ingest and the V1 view alone (S2.P1.T2); nothing outside tests spreads the
-  defaults table. `buildLens.ts` re-exports `ingestLens`, `ingestTeleconverter`,
-  their V1 forms (`ingestLensV1`, `ingestTeleconverterV1`), `isV1File` and the two V1 views (`toLensData`,
-  `toTeleconverterData`), the way code outside the engine reaches them until S8.P1.T2.
-  - `buildLens` reads authored files through `prescription/compile.ts`. The validator is asked about every V1 file
-    first through `validateLensInput`, which reads individual omitted catalog defaults from the schema table without
-    merging it. Canonical validation then runs once per successful compiled identity, before compiler publication.
-  - `attachTeleconverter()` reads unassociated hosts through the compiler's input boundary (V1 validation before
-    ingest) and ingests the converter before composing canonical records. Its returned V1 view
-    retains that canonical identity, so `buildLens` compiles the pair through the same entry as any other prescription.
-    The descriptor stays beside the prescription for labels and plate placement; composed and generated records never
-    enter authored ingest. The worker receives this same canonical input through `canonicalLensFromRuntime()`.
-  - The lens and converter catalogs ingest an entry on its first read and keep it, so every read of a key returns
-    the same object. Their key lists read only identity fields, from the files as authored.
-  - The glass scan, the field-coverage and surface-probe audits, and the converter validator's reference host read
-    lens data the same way.
+- Lens data gets its defaults from canonical ingest; nothing outside tests spreads the defaults table.
+  `buildLens.ts` exposes ingest, `canonicalInput`, `compileLens`, and the runtime/worker identity helpers. The
+  source-preserving V1 printers are exported only by `lensDataConversion.ts`, for the permanent converter and its
+  tests. An architecture guard keeps both conversion printers out of the runtime seam's dependency graph.
+  - `buildLens` accepts authored files or a canonical prescription. V1 authored inputs retain validation before
+    ingest until the final V1-ingest retirement; canonical validation runs before successful compiler publication.
+    Construction and diagnostics use numeric columns derived from canonical facts, without the converter's V1 view.
+  - `attachTeleconverter()` returns a canonical prescription associated with its provenance and composition descriptor.
+    The descriptor stays outside prescription semantics and is exposed on `RuntimeLens.attachedTeleconverter` for
+    labels. The public compatibility adapter checks that association to reject stacking; the import-free fit leaf
+    remains shared by metadata generation and runtime fit checks. Worker transport uses `canonicalLensFromRuntime()`.
+  - `LENS_CATALOG` and `TELECONVERTER_CATALOG` expose canonical prescriptions, ingested lazily once per key. Name and
+    configuration lists still read authored identity fields without ingesting every lens. SEO, comparison, search,
+    lens-index and maker-page metadata retain their display DTOs; the generator picks those fields from canonical
+    records directly, without constructing a V1 file view.
+  - Audits read canonical prescriptions; glass reports read canonical metadata and compiled surface/element records.
+    The validator's diagnostic columns preserve ignored source values only where diagnostics need them.
 
 ### Rear Plates
 
@@ -404,8 +407,8 @@ representation by `expandCanonicalRearPlates()` in `prescription/rearPlates.ts`,
 per plate (reserved labels `RP<n>a` / `RP<n>b`) and one element per plate, all marked `synthetic: "rearPlate"`.
 Because the expansion runs before `S`, `N`, `labelIdx` and every derived constant, EFL, pupils, field limits, prepared
 states, the exact tracer, chromatic dispersion and all analyses see the plate, with no per-analysis correction.
-`RuntimeLens.data` retains expanded source echoes, aligned with the compiled surfaces. The original canonical
-prescription and its fingerprint stay unchanged. Each medium resolves once, including each generated plate; runtime
+`RuntimeLens.source` retains the unexpanded canonical prescription; `CompiledLens.elements` includes generated
+media, while runtime `elements` exposes drawable metadata only. The canonical prescription and its fingerprint stay unchanged. Each medium resolves once, including each generated plate; runtime
 and compiled dispersion tables share those resolvers. Quality summaries and table access perform no resolution.
 
 A plate without a published `sd` gets a generated rim marked `clips: false`. The aperture checks (`activeSemiDiameter`
@@ -419,7 +422,7 @@ What is hidden, and where:
 
 - `RuntimeLens.ES` and `RuntimeLens.elements` exclude synthetic elements. That covers diagram shapes, render
   diagnostics, element numbering, the inspector, the Abbe diagram and fallback construction groups.
-  `RuntimeLens.data.elements` and `CompiledLens.elements` keep every traced medium for dispersion lookup.
+  `CompiledLens.elements` keeps every traced medium for dispersion lookup, including generated plates.
 - `maxSD` ignores synthetic surfaces, whose generated rims are deliberately non-clipping.
 - `RuntimeLens.lastLensSurfaceIdx` is the last authored surface. Cardinal BFD is measured from it, while the matrix
   vertex (`rearVertexZ`) stays at the plate's rear face. The Summary tab counts authored surfaces and lists plates
@@ -1347,8 +1350,8 @@ React components or `buildLens()`.
 
 `publishedStations.ts` answers which authored stations the source tabulates. V2 authors `zoom.stations[].published`,
 `.publishedFocus`, `focus.published` and `focus.conjugates`; see
-[Published Stations](../../src/lens-data/LENS_DATA_SPEC.md#published-stations). The helpers read the compatibility
-view's `L.data.publishedStations` and `L.data.finiteConjugates` and return slider coordinates: zoom station `i` of `n`
+[Published Stations](../../src/lens-data/LENS_DATA_SPEC.md#published-stations). The helpers read these canonical
+records from `L.source` and return slider coordinates: zoom station `i` of `n`
 at `zoomT = i / (n - 1)`, focus keyframe `j` at the authored `focus.keyframes[j]` coordinate.
 `publishedStationGrid()` works on lens data alone; the `L`-taking helpers add focal lengths, wide-open f-numbers,
 distance labels, snapping (`nearestPublishedStation`) and the reasons a lens offers few stations. Nothing here feeds

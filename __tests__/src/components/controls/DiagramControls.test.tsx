@@ -1,4 +1,5 @@
 // @vitest-environment jsdom
+import { constructionFixtureData } from "../../optics/constructionFixtures.js";
 
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
@@ -90,11 +91,13 @@ describe("DiagramControls", () => {
     [0, 0],
   ])("preserves focus distance or clamps on zoom from focus %s", (focusT, expected) => {
     const L = build({
-      ...buildVariableStopGapLens([
-        [1, 2],
-        [2, 3],
-        [3, 4],
-      ]).data,
+      ...constructionFixtureData(
+        buildVariableStopGapLens([
+          [1, 2],
+          [2, 3],
+          [3, 4],
+        ]),
+      ),
       closeFocusM: 0.3,
       zoomCloseFocusM: [0.3, 0.3, 0.4],
     });
@@ -105,14 +108,14 @@ describe("DiagramControls", () => {
     expect(callbacks.onZoomChange.mock.calls[0][1]).toBeCloseTo(expected, 12);
   });
   it.each([1.03, 1.45, 1.85])("preserves patent aperture precision for f/%s", (nominalFno) => {
-    const L = buildLens({ ...LENS_CATALOG["sonnar-50f15"], nominalFno });
+    const L = buildLens({ ...constructionFixtureData(LENS_CATALOG["sonnar-50f15"]), nominalFno });
     renderControls(L);
     expect(screen.getAllByText(`f/${nominalFno}`)).not.toHaveLength(0);
     expect(screen.queryByText(`f/${nominalFno.toFixed(1)}`)).toBeNull();
   });
 
   it("names the marketed f-number beside a wide-open design value that differs from it", () => {
-    const base = LENS_CATALOG["sonnar-50f15"];
+    const base = constructionFixtureData(LENS_CATALOG["sonnar-50f15"]);
     renderControls(buildLens({ ...base, nominalFno: 1.46, apertureDesign: 1.46, apertureMarketing: 1.4 }));
     expect(screen.getByText("marketed f/1.4")).toBeTruthy();
     cleanup();
@@ -130,7 +133,7 @@ describe("DiagramControls", () => {
   });
 
   it("rounds a precise patent shortcut label while retaining its numeric endpoint", () => {
-    const L = buildLens({ ...LENS_CATALOG["sonnar-50f15"], nominalFno: 2.88277 });
+    const L = buildLens({ ...constructionFixtureData(LENS_CATALOG["sonnar-50f15"]), nominalFno: 2.88277 });
     const { callbacks } = renderControls(L, { apertureExpanded: true });
     fireEvent.click(screen.getByRole("button", { name: "Set aperture to f/2.88" }));
     expect(callbacks.onStopdownChange).toHaveBeenCalledWith(0);
@@ -195,7 +198,7 @@ describe("DiagramControls", () => {
   });
 
   it("shows signed travel and a center label for centered aberration controls", () => {
-    const source = LENS_CATALOG["varisoft-rokkor-85f28"];
+    const source = constructionFixtureData(LENS_CATALOG["varisoft-rokkor-85f28"]);
     const L = buildLens({
       ...source,
       aberrationControl: {
@@ -246,7 +249,11 @@ describe("DiagramControls", () => {
 
   it("disables the focus slider while keeping focus details visible when focus travel data is absent", () => {
     const { callbacks } = renderControls(
-      buildLens({ ...LENS_CATALOG["canon-rf-28-70-f2"], closeFocusM: 1, zoomCloseFocusM: undefined }),
+      buildLens({
+        ...constructionFixtureData(LENS_CATALOG["canon-rf-28-70-f2"]),
+        closeFocusM: 1,
+        zoomCloseFocusM: undefined,
+      }),
       { focusExpanded: true, focusT: 1 },
     );
     const focusSlider = screen.getByRole("slider", { name: "FOCUS" }) as HTMLInputElement;

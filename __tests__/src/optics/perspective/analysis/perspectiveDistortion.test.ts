@@ -1,3 +1,4 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../../constructionFixtures.js";
 /** Request-based perspective distortion diagnostics and ordered field samples. */
 import { describe, expect, it } from "vitest";
 import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
@@ -13,9 +14,9 @@ import type { PerspectiveFieldStatus } from "../../../../../src/optics/perspecti
 import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
 import type { PerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
 import type { Vec3 } from "../../../../../src/optics/types.js";
-import { LENS_CATALOG } from "../../../../../src/utils/catalog/lensCatalog.js";
+import {} from "../../../../../src/utils/catalog/lensCatalog.js";
 
-const L = buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]);
+const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-pc-nikkor-19mm-f4e-ed"]);
 const STATE = prepareRuntimeState(L, 0, 0);
 
 function context(shiftMm = 0, tiltDeg = 0): PerspectiveTraceContext {

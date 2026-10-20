@@ -55,7 +55,7 @@ import { pathToFileURL } from "node:url";
 
 const ROOT = join(import.meta.dirname, "..");
 const { conicPolySag } = await import(pathToFileURL(join(ROOT, "src/optics/geometry.ts")).href);
-const { ingestLens, toLensData } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
+const { ingestLens } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
 
 const [dataFile, pdf, pageArg, cropArg, ...flags] = process.argv.slice(2);
 if (!dataFile || !pdf || !pageArg || !cropArg) {
@@ -219,13 +219,19 @@ const rightX = inked[inked.length - 1].x;
 const truncated = leftX <= cropX0 + 1 || rightX >= cropX1 - 2;
 
 /* ── the data file's own silhouette ── */
-/* Canonical ingest's V1 view reads a file of either version in V1 field names; an authored V1 file reads as written,
- * with the schema defaults. */
-const lens = toLensData(ingestLens((await import(pathToFileURL(resolve(dataFile)).href)).default));
-const aspheres = lens.asph ?? {};
+/* Read canonical facts, with schema defaults already applied. */
+const lens = ingestLens((await import(pathToFileURL(resolve(dataFile)).href)).default).prescription;
+const aspheres = Object.fromEntries(
+  lens.surfaces.filter((surface) => surface.asphere).map((surface) => [surface.label, surface.asphere]),
+);
 let vertexZ = 0;
 const surfaces = lens.surfaces.map((surface) => {
-  const row = { ...surface, z: vertexZ };
+  const row = {
+    ...surface,
+    R: surface.R === "flat" ? 1e15 : surface.R,
+    elemId: typeof surface.medium === "number" ? surface.medium : 0,
+    z: vertexZ,
+  };
   vertexZ += surface.d;
   return row;
 });

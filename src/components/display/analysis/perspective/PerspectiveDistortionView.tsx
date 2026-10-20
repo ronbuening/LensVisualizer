@@ -72,7 +72,7 @@ export default function PerspectiveDistortionView({ analysis, context, t }: Pers
 
 function PerspectiveDistortionGrid({ analysis, context, t }: PerspectiveDistortionViewProps) {
   const clipId = `perspective-distortion-${useId().replace(/:/g, "")}`;
-  const imageFormat = context.state.lens.source.imageFormat;
+  const imageFormat = context.state.lens.source.catalog.imageFormat;
   if (!isImageFormatId(imageFormat)) return null;
   const format = IMAGE_FORMAT_BY_ID[imageFormat];
   const width = 320;

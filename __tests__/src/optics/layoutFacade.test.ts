@@ -34,7 +34,7 @@ describe("layout facade edge cases", () => {
     const base = buildFoldedTirLens("test-layout-default-image-plane");
     const folded = registerRuntimeFixture({
       ...base,
-      data: { ...base.data, opticalPath: undefined },
+      source: { ...base.source, opticalPath: undefined },
     });
     const layout = doLayout(0, 0, folded);
     expect(layout.imgZ).toBe(layout.z.at(-1)! + layout.th.at(-1)!);

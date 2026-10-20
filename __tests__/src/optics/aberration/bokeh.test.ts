@@ -1,3 +1,6 @@
+import { runtimeFixtureView } from "../constructionFixtures.js";
+import { constructionFixtureData } from "../constructionFixtures.js";
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../constructionFixtures.js";
 import { analysisRequestAt } from "../testLensFixtures.js";
 import { computeBestFocusZ, computeImagePlaneZAtFocus } from "../../../../src/optics/analysis/aberration/bestFocus.js";
 import { registerRuntimeFixture } from "../testLensFixtures.js";
@@ -31,7 +34,7 @@ import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.
 import NikonZ135Raw from "../../../../src/lens-data/nikon/NikonZ135f18.data.js";
 import NikonAF28f14DRaw from "../../../../src/lens-data/nikon/NikonAF28f14D.data.js";
 import MinoltaSTFRaw from "../../../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.js";
-import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
+import {} from "../../../../src/utils/catalog/lensCatalog.js";
 import {
   apertureAt,
   build,
@@ -47,10 +50,10 @@ import type { BokehPoint } from "../../../../src/optics/analysis/aberration/type
 function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): RuntimeLens {
   return registerRuntimeFixture({
     ...L,
-    data: {
-      ...L.data,
+    ...runtimeFixtureView({
+      ...constructionFixtureData(L),
       imageFormat,
-    },
+    }),
   } as RuntimeLens);
 }
 
@@ -166,7 +169,7 @@ describe("state-aware off-axis geometry", () => {
   });
 
   it("promotes a Nikon 6mm fisheye off-axis field to vector bokeh geometry", () => {
-    const fisheye = buildLens(LENS_CATALOG["nikon-fisheye-nikkor-6mm-f28"]);
+    const fisheye = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-fisheye-nikkor-6mm-f28"]);
     const fisheyeLayout = doLayout(0, 0, fisheye);
     const geometry = computeProjectionAwareOffAxisFieldGeometry(fisheye, fisheyeLayout.z, 0, 0, 0.4);
 
@@ -190,12 +193,18 @@ describe("analysis field geometry", () => {
   });
 
   it("caps the analysis field to an explicit circular image without requiring a projection law", () => {
-    const circle = registerRuntimeFixture({ ...L, data: { ...L.data, imageFormat: undefined, imageCircleMm: 8.7 } });
+    const circle = registerRuntimeFixture({
+      ...L,
+      source: { ...L.source, catalog: { ...L.source.catalog, imageFormat: undefined, imageCircleMm: 8.7 } },
+    });
     const geometry = computeAnalysisFieldGeometryAtState(0, 0, circle);
     const fullFrame = computeAnalysisFieldGeometryAtState(0, 0, L);
     expect(geometry.halfFieldDeg).toBeGreaterThan(0);
     expect(geometry.halfFieldDeg).toBeLessThan(fullFrame.halfFieldDeg);
-    const sameDiameter = registerRuntimeFixture({ ...circle, data: { ...circle.data, imageCircleMm: 43.3 } });
+    const sameDiameter = registerRuntimeFixture({
+      ...circle,
+      source: { ...circle.source, catalog: { ...circle.source.catalog, imageCircleMm: 43.3 } },
+    });
     expect(computeAnalysisFieldGeometryAtState(0, 0, sameDiameter).halfFieldDeg).toBeCloseTo(fullFrame.halfFieldDeg, 8);
   });
 
@@ -253,7 +262,7 @@ describe("computeBokehFieldFootprint", () => {
   });
 
   it("traces fisheye bokeh footprints through vector off-axis launch", () => {
-    const fisheye = buildLens(LENS_CATALOG["nikon-fisheye-nikkor-6mm-f28"]);
+    const fisheye = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-fisheye-nikkor-6mm-f28"]);
     const fisheyeLayout = doLayout(0, 0, fisheye);
     const fisheyeAperture = apertureAt(fisheye, 0, 0);
     const result = computeBokehFieldFootprint(
@@ -794,7 +803,7 @@ describe("focus tracking for internal-focus lens (Nikon Z 135)", () => {
 
 it("keeps mechanical pupil weights separate from chief-relative bulk transmission", () => {
   const base = buildSimplePositiveElementLens();
-  const plateData = base.data;
+  const plateData = constructionFixtureData(base);
   const transparent = build(plateData);
   const alpha = 0.2;
   const absorbing = build({

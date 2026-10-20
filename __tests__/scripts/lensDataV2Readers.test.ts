@@ -21,7 +21,7 @@ import {
 } from "../../scripts/build-metadata-lib.mjs";
 import { evaluateLensDataSource, readLensIdentity } from "../../scripts/lens-data-ast.mjs";
 import { collectLensData, organizeRootLensFiles } from "../../scripts/lens-data-lib.mjs";
-import { lensSummary, teleconverterSummary, v1Prescription } from "../../scripts/lens-summaries.mjs";
+import { lensSummary, teleconverterSummary, canonicalPrescription } from "../../scripts/lens-summaries.mjs";
 import { ingestLens, ingestTeleconverter } from "../../src/optics/prescription/ingestV2.js";
 import { teleconverterCompatibility } from "../../src/optics/prescription/teleconverterCompatibility.js";
 import { toLensDataInput, toTeleconverterData } from "../../src/optics/prescription/toLensData.js";
@@ -161,17 +161,23 @@ describe("a V2 file and its V1 twin", () => {
 
   it("give byte-identical lens summaries", async () => {
     for (const pair of LENS_PAIRS) {
-      const fromV2 = lensSummary(await v1Prescription(pair.v2, "lens", loadViews));
-      expect(JSON.stringify(fromV2), pair.family).toBe(JSON.stringify(lensSummary(pair.v1)));
+      const fromV2 = lensSummary(await canonicalPrescription(pair.v2, "lens", loadViews));
+      expect(JSON.stringify(fromV2), pair.family).toBe(
+        JSON.stringify(lensSummary(await canonicalPrescription(pair.v1, "lens", loadViews))),
+      );
     }
   });
 
   it("give a byte-identical converter summary, its hosts read in either version", async () => {
     const hosts = async (version: "v1" | "v2") =>
-      Promise.all(LENS_PAIRS.map((pair) => v1Prescription(pair[version], "lens", loadViews)));
-    const v1Summary = teleconverterSummary(CONVERTER_PAIR.v1, await hosts("v1"), teleconverterCompatibility);
+      Promise.all(LENS_PAIRS.map((pair) => canonicalPrescription(pair[version], "lens", loadViews)));
+    const v1Summary = teleconverterSummary(
+      await canonicalPrescription(CONVERTER_PAIR.v1, "teleconverter", loadViews),
+      await hosts("v1"),
+      teleconverterCompatibility,
+    );
     const v2Summary = teleconverterSummary(
-      await v1Prescription(CONVERTER_PAIR.v2, "teleconverter", loadViews),
+      await canonicalPrescription(CONVERTER_PAIR.v2, "teleconverter", loadViews),
       await hosts("v2"),
       teleconverterCompatibility,
     );
@@ -180,7 +186,7 @@ describe("a V2 file and its V1 twin", () => {
   });
 
   it("reach the engine through the script's own loader, under plain Node", async () => {
-    /* Build metadata passes no loader: `v1Prescription` loads the conversion seam by its path, through the specifier
+    /* Build metadata passes no loader: `canonicalPrescription` loads the conversion seam by its path, through the specifier
      * hook. Run that where build metadata runs, in plain Node, on every V2 fixture. */
     const { rootDir } = tempLensDataDir();
     const files = FIXTURE_PAIRS.map((pair) => ({ kind: pair.kind, file: pair.v2 }));
@@ -193,15 +199,15 @@ describe("a V2 file and its V1 twin", () => {
       script,
       [
         'import { readFileSync } from "node:fs";',
-        `import { v1Prescription } from ${JSON.stringify(summaries)};`,
+        `import { canonicalPrescription } from ${JSON.stringify(summaries)};`,
         `const files = JSON.parse(readFileSync(${JSON.stringify(input)}, "utf8"));`,
         "const views = [];",
-        "for (const { kind, file } of files) views.push(await v1Prescription(file, kind));",
+        "for (const { kind, file } of files) views.push(await canonicalPrescription(file, kind));",
         "console.log(JSON.stringify(views));",
       ].join("\n"),
     );
     const output = execFileSync("node", [script], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
-    const inProcess = await Promise.all(files.map(({ kind, file }) => v1Prescription(file, kind, loadViews)));
+    const inProcess = await Promise.all(files.map(({ kind, file }) => canonicalPrescription(file, kind, loadViews)));
     expect(JSON.parse(output)).toEqual(JSON.parse(JSON.stringify(inProcess)));
   });
 

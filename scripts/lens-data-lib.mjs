@@ -9,7 +9,7 @@ import {
 } from "./build-metadata-lib.mjs";
 import { evaluateLensDataSource, readLensIdentity } from "./lens-data-ast.mjs";
 import { runConversion } from "./lens-data-convert/cli.mjs";
-import { loadLensDataConversion } from "./lens-summaries.mjs";
+import { loadPrescriptionIngest } from "./lens-summaries.mjs";
 import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
 
 /** Derive a URL-safe maker slug from a maker field or lens display name. */
@@ -245,7 +245,7 @@ async function collectLensDataAsync({
 
 /** Reject an unconverted catalog before metadata creates or writes any output. */
 async function assertV2Catalog(lensDataDir) {
-  const { lensDataVersion } = await loadLensDataConversion();
+  const { lensDataVersion } = await loadPrescriptionIngest();
   const files = readdirSync(lensDataDir, { recursive: true })
     .filter((file) => typeof file === "string" && /\.(data|teleconverter)\.ts$/.test(file))
     .sort();

@@ -1,3 +1,5 @@
+import { constructionFixtureData } from "../constructionFixtures.js";
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../constructionFixtures.js";
 import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
@@ -23,7 +25,7 @@ import {
 } from "../../../../src/optics/perspective/fieldGeometry.js";
 import { IMAGE_FORMAT_BY_ID } from "../../../../src/utils/catalog/lensTaxonomy.js";
 import type { Vec3 } from "../../../../src/optics/types.js";
-import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
+import {} from "../../../../src/utils/catalog/lensCatalog.js";
 import { build, buildChromaticPositiveElementLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 import { boundedFieldStatus } from "../../../../src/optics/perspective/fieldResults.js";
 import * as sensorTarget from "../../../../src/optics/perspective/sensorTarget.js";
@@ -37,7 +39,7 @@ import { createZeroMovementPerspectiveContext } from "../../../../src/optics/per
 
 afterEach(() => vi.restoreAllMocks());
 
-const L = buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]);
+const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-pc-nikkor-19mm-f4e-ed"]);
 const STATE = prepareRuntimeState(L, 0, 0);
 
 function context(shiftMm = 0, tiltDeg = 0): PerspectiveTraceContext {
@@ -93,7 +95,7 @@ describe("perspective sensor geometry", () => {
 
   it("uses the supplied camera basis and keeps checked and unchecked conversions distinct", () => {
     const camera = {
-      state: { lens: { source: { imageFormat: "135-full-frame" } } },
+      state: { lens: { source: { catalog: { imageFormat: "135-full-frame" } } } },
       sensorPlane: { point: [9, 0.1, 0.2], normal: [-1, 0, 0] },
       sensorBasis: { u: [0, 1, 0], v: [0, 0, 1], normal: [1, 0, 0] },
     } as unknown as PerspectiveTraceContext;
@@ -114,7 +116,9 @@ describe("perspective sensor geometry", () => {
 
   it("returns null for missing or invalid format metadata without requiring sensor geometry", () => {
     for (const imageFormat of [undefined, "invalid-format"]) {
-      const camera = { state: { lens: { source: { imageFormat } } } } as unknown as PerspectiveTraceContext;
+      const camera = {
+        state: { lens: { source: { catalog: { imageFormat } } } },
+      } as unknown as PerspectiveTraceContext;
       expect(sensorPointForUv(camera, { u: 0, v: 0 })).toBeNull();
     }
   });
@@ -170,7 +174,10 @@ describe("perspective field sampling", () => {
     { u: 1, v: 0 },
     { u: -1, v: 0 },
   ])("keeps a converged edge landing inside the sensor-lock band at $u/$v", (uv) => {
-    const fixture = build({ ...buildChromaticPositiveElementLens().data, imageFormat: "135-full-frame" });
+    const fixture = build({
+      ...constructionFixtureData(buildChromaticPositiveElementLens()),
+      imageFormat: "135-full-frame",
+    });
     const camera = createPerspectiveTraceContext({
       preparedState: prepareRuntimeState(fixture, 0, 0),
       movement: { shiftMm: 0, tiltDeg: 0 },
@@ -309,7 +316,7 @@ describe("perspective field sampling", () => {
 /* A small dispersive element exercises both sensor-target paths without a catalog-specific count. */
 function sensorMemoContext(focusT = 0): PerspectiveTraceContext {
   const fixture = build({
-    ...buildChromaticPositiveElementLens().data,
+    ...constructionFixtureData(buildChromaticPositiveElementLens()),
     imageFormat: "135-full-frame",
   });
   return createPerspectiveTraceContext({

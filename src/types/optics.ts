@@ -530,13 +530,15 @@ export interface SurfaceSpectral {
 
 /** Frozen runtime lens object returned by buildLens() */
 export interface RuntimeLens {
-  /** Lens data after defaults and `expandRearPlates()`; `surfaces`/`elements` include synthetic plates. */
-  readonly data: LensData;
+  /** Original canonical prescription, before synthetic rear-plate expansion. */
+  readonly source: import("../optics/types.js").CanonicalLens;
+  /** Composition metadata is outside authored prescription semantics. */
+  readonly attachedTeleconverter?: LensData["attachedTeleconverter"];
   readonly S: SurfaceData[];
   readonly N: number;
   /** Drawable element spans; synthetic rear plates are excluded. */
   readonly ES: ElementSpan[];
-  /** Displayable elements; synthetic rear plates are excluded (they remain in `data.elements`). */
+  /** Displayable elements; synthetic rear plates are excluded (they remain in the compiled elements). */
   readonly elements: ElementData[];
   /** Index of the last authored (non-synthetic) surface — the rear lens vertex for back-focus readouts. */
   readonly lastLensSurfaceIdx: number;

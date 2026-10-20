@@ -40,7 +40,7 @@ export class PerspectiveFieldSamplingError extends Error {
 }
 
 export function requirePerspectiveImageFormatMetadata(context: PerspectiveTraceContext): ImageFormatMetadata {
-  const imageFormat = context.state.lens.source.imageFormat;
+  const imageFormat = context.state.lens.source.catalog.imageFormat;
   if (!isImageFormatId(imageFormat)) {
     throw new PerspectiveFieldSamplingError(
       `Lens "${context.state.lens.key}" requires validated imageFormat metadata for perspective field sampling`,
@@ -114,7 +114,7 @@ export function pointForSensorUv(frame: FieldPlaneFrame, uv: SensorUv): Vec3 {
  * unchecked pointForSensorUv path to retain coordinates on unavailable samples.
  */
 export function sensorPointForUv(context: PerspectiveTraceContext, sensorUv: SensorUv): Vec3 | null {
-  const imageFormat = context.state.lens.source.imageFormat;
+  const imageFormat = context.state.lens.source.catalog.imageFormat;
   if (!isImageFormatId(imageFormat) || !sensorUvInsideFormat(sensorUv)) return null;
   const frame = createFieldPlaneFrame(context.sensorPlane, IMAGE_FORMAT_BY_ID[imageFormat], context.sensorBasis);
   return pointForSensorUv(frame, sensorUv);

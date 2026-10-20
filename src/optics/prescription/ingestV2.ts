@@ -7,9 +7,9 @@
  * ids V1 ingest gives them (`m1`, `m2`, … by first use, so a medium's own id and name stay out of the semantic
  * fingerprint), takes a variable gap's first thickness as its surface's `d`, and decides the stop's radius authority.
  *
- * Like V1 ingest it does not validate the prescription, which `validateLensData` still does on the V1 view. A V2 file
+ * Like V1 ingest it does not validate the prescription, which canonical validation does on diagnostic columns. A V2 file
  * has no validator-first pass, though, so V2 ingest refuses every shape it cannot read itself, along with what the
- * canonical form or the V1 view cannot hold and the rules V2 adds, each at its authored path. The one list of them is
+ * canonical form cannot hold and the rules V2 adds, each at its authored path. The one list of them is
  * the S2.P2.T1 As built of OPTICS_ENGINE_REWRITE_SPEC.md. Every reason found is reported at once, in a
  * `PrescriptionIngestError`, but for `elements` or `surfaces` that is not a list of objects, which stops ingest at
  * once. The input is never modified, and the result shares no object with it. Asked for source paths, ingest records
@@ -40,6 +40,7 @@ import type {
 } from "../../types/lensDataV2.js";
 import type { LensDataInput } from "../../types/optics.js";
 import type { TeleconverterData } from "../../types/teleconverter.js";
+import { associateCanonical } from "./identity.js";
 import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
 import { FLAT_RADIUS, PrescriptionIngestError, stopRadiusAuthority } from "./canonical.js";
 import type {
@@ -1118,6 +1119,7 @@ export function ingestTeleconverterV2(
 
   const catalogRecord = nested(data, "catalog", "", TELECONVERTER_CATALOG_FIELDS, context) ?? {};
   requireFields(catalogRecord, ["lensMounts"], "catalog", context);
+  if (!Array.isArray(catalogRecord.lensMounts)) context.issues.push("catalog.lensMounts must be an array");
   const catalog: Untyped = { lensMounts: copy(catalogRecord.lensMounts) };
   for (const field of ["specs", "elementCount", "groupCount"]) put(catalog, field, catalogRecord[field]);
   if (context.sources) recordReads(context.sources, "catalog", "catalog", catalog, Object.keys(catalog));
@@ -1198,9 +1200,13 @@ export function ingestLens(
   input: LensDataInput | LensDataV2Input,
   request?: IngestRequest,
 ): IngestedPrescription<CanonicalLens> {
-  if (isV1File(input)) return ingestLensV1(input, request);
-  if (lensDataVersion(input) === 2) return ingestLensV2(input, request);
-  return refuseSchema(input, schemaOf(input));
+  const ingested = isV1File(input)
+    ? ingestLensV1(input, request)
+    : lensDataVersion(input) === 2
+      ? ingestLensV2(input, request)
+      : refuseSchema(input, schemaOf(input));
+  associateCanonical(ingested.prescription, ingested);
+  return ingested;
 }
 
 /**

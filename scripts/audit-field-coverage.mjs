@@ -46,7 +46,7 @@ const ROOT = join(import.meta.dirname, "..");
 const LENS_DIR = join(ROOT, "src", "lens-data");
 const load = async (path) => import(pathToFileURL(join(ROOT, path)).href);
 
-const { default: buildLens, ingestLens, toLensData, prepareRuntimeState } = await load("src/optics/buildLens.ts");
+const { default: buildLens, ingestLens, prepareRuntimeState } = await load("src/optics/buildLens.ts");
 const { computeAnalysisFieldGeometryAtState, computeFieldGeometryAtState, solveChiefRayForRuntimeLens } =
   await load("src/optics/fieldGeometry.ts");
 const { isFisheyeProjection, rectilinearProjectionMaxTraceField } = await load("src/optics/projection.ts");
@@ -211,7 +211,7 @@ function fieldStop(L, tracer, modeledDeg, edgeHeight) {
 }
 
 function auditStation(lens, L, zoomT, stationLabel) {
-  const corner = (lens.imageCircleMm ?? IMAGE_FORMAT_BY_ID[lens.imageFormat].diagonalMm) / 2;
+  const corner = (lens.catalog.imageCircleMm ?? IMAGE_FORMAT_BY_ID[lens.catalog.imageFormat].diagonalMm) / 2;
   const state = prepareRuntimeState(L, 0, zoomT);
   const raw = computeFieldGeometryAtState(0, zoomT, L, 0);
   const modeledDeg = computeAnalysisFieldGeometryAtState(0, zoomT, L, 0).halfFieldDeg;
@@ -265,15 +265,14 @@ async function auditLens(file, includeHidden) {
   if (authored.visible === false && !includeHidden) return { ...base, skipped: "hidden" };
   let lens;
   try {
-    /* Canonical ingest's V1 view applies the schema defaults, as the catalog does, and reads a file of either
-     * version in V1 field names. */
-    lens = toLensData(ingestLens(authored));
+    /* Ingest once into canonical records, as the catalog does. */
+    lens = ingestLens(authored).prescription;
   } catch (error) {
     return { ...base, skipped: `buildLens failed: ${error.message}` };
   }
   if (lens.opticalPath) return { ...base, skipped: "folded optical path" };
-  if (!(IMAGE_FORMAT_BY_ID[lens.imageFormat] || lens.imageCircleMm))
-    return { ...base, skipped: `no usable imageFormat (${String(lens.imageFormat)})` };
+  if (!(IMAGE_FORMAT_BY_ID[lens.catalog.imageFormat] || lens.catalog.imageCircleMm))
+    return { ...base, skipped: `no usable imageFormat (${String(lens.catalog.imageFormat)})` };
   let L;
   try {
     L = buildLens(lens);
@@ -288,7 +287,11 @@ async function auditLens(file, includeHidden) {
     const zoomT = count === 1 ? 0 : i / (count - 1);
     stations.push(auditStation(lens, L, zoomT, L.isZoom ? stationLabel(L, i) : ""));
   }
-  return { ...base, format: lens.imageCircleMm ? `${lens.imageCircleMm} mm circle` : lens.imageFormat, stations };
+  return {
+    ...base,
+    format: lens.catalog.imageCircleMm ? `${lens.catalog.imageCircleMm} mm circle` : lens.catalog.imageFormat,
+    stations,
+  };
 }
 
 function allLensFiles() {

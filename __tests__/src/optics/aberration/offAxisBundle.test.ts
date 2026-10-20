@@ -1,3 +1,4 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import {
   bestFocusPlaneForDirection,
@@ -12,7 +13,7 @@ import {
 import { DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES } from "../../../../src/optics/analysis/sampling.js";
 import { doLayoutForRuntimeLens as doLayout } from "../../../../src/optics/state/runtimeAdapters.js";
 import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
-import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
+import {} from "../../../../src/utils/catalog/lensCatalog.js";
 import { apertureAt, sharedApoLanthar50f2 } from "../testLensFixtures.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";
 
@@ -134,7 +135,7 @@ describe("off-axis aberration helpers", () => {
   });
 
   it("promotes representative fisheye fields beyond the slope-safe cone to vector geometry", () => {
-    const L = buildLens(LENS_CATALOG["nikon-fisheye-nikkor-6mm-f28"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-fisheye-nikkor-6mm-f28"]);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const geometry = computeProjectionAwareOffAxisFieldGeometry(L, zPos, 0, 0, 0.4);

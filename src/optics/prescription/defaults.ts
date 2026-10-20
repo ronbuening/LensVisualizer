@@ -8,10 +8,10 @@
  *
  * V1 applies defaults two ways, and the V1 view (`toLensData.ts`) reproduces both:
  * - `catalog`: the V1 catalog spread them under every lens file, so the engine always sees a value. The view's merged
- *   form writes them in, and it is how the catalogs, `buildLens` and the tools apply them.
+ *   form writes them in, for conversion regression tests.
  * - `engine`: the engine falls back to them where the field is absent, so the merged data keeps the omission.
  *
- * Nothing outside tests spreads this table: lens data gets its defaults through ingest and the V1 view. Authored
+ * Nothing outside tests spreads this table: lens data gets its defaults through canonical ingest. Authored
  * validation reads individual omitted catalog fields from their rows before ingest, without building a merged object.
  *
  * The compiler and chromatic ray-fan summary read `lensShiftFrac` and `offAxisFieldFrac` directly: ingest

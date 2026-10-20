@@ -1,3 +1,4 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../constructionFixtures.js";
 import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
 import { computeMovementPair } from "../../../../src/comparison/comparisonSliders.js";
@@ -17,7 +18,7 @@ import { traceEngineRay } from "../../../../src/optics/trace/rayAdapters.js";
 import type { Vec3 } from "../../../../src/optics/types.js";
 import type { LensMovementState } from "../../../../src/optics/perspective/lensMovement.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";
-import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
+import {} from "../../../../src/utils/catalog/lensCatalog.js";
 
 const DUAL_AXIS_KEY = "nikon-pc-nikkor-19mm-f4e-ed";
 const SHIFT_ONLY_KEY = "nikon-pc-nikkor-35mm-f28";
@@ -59,7 +60,7 @@ const FOCUS_PUPIL_POINTS = [
 ] as const;
 
 function acceptanceState(lensKey: string, scenario: AcceptanceScenario): AcceptanceState {
-  const L = buildLens(LENS_CATALOG[lensKey]);
+  const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[lensKey]);
   const reference = doLayout(0, 0, L);
   const current = doLayout(scenario.focusT, 0, L);
   const cameraLayout = anchorLayoutToCamera(reference, current);
@@ -234,7 +235,7 @@ describe("perspective-control final acceptance matrix", () => {
   });
 
   it("honors the real Nikon shift-only contract and omits unsupported tilt", () => {
-    const L = buildLens(LENS_CATALOG[SHIFT_ONLY_KEY]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[SHIFT_ONLY_KEY]);
     const clampedExtreme = clampLensMovement(L, { shiftMm: 99, tiltDeg: 8 });
     const shifted = acceptanceState(SHIFT_ONLY_KEY, {
       label: "shift only",
@@ -254,8 +255,8 @@ describe("perspective-control final acceptance matrix", () => {
   });
 
   it("builds independent physical contexts for a PC/ordinary comparison", () => {
-    const pc = buildLens(LENS_CATALOG[DUAL_AXIS_KEY]);
-    const ordinary = buildLens(LENS_CATALOG[ORDINARY_KEY]);
+    const pc = buildLens(CATALOG_CONSTRUCTION_FIXTURES[DUAL_AXIS_KEY]);
+    const ordinary = buildLens(CATALOG_CONSTRUCTION_FIXTURES[ORDINARY_KEY]);
     const pair = computeMovementPair(6, 4, pc, ordinary);
     const pcState = acceptanceState(DUAL_AXIS_KEY, {
       label: "comparison PC",

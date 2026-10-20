@@ -1,14 +1,7 @@
 /**
- * Lens-data conversion seam — how code outside the engine reads a lens or teleconverter file of either version:
- * canonical ingest, the version rule, the V1 views that give the file back in V1 field names, and the V2 views the
- * converter prints.
- *
- * Build metadata loads it by path under plain Node, through the `.js` specifier hook, to summarize a V2 file as its
- * V1 twin is summarized (`scripts/lens-summaries.mjs`). The converter (`scripts/lens-data-convert/`) loads it the same
- * way: it asks a file's version, ingests the file with its source paths, writes the view of the version it converts
- * to, composes the two to carry comments and literal text across, spells the paths it reads as ingest spells them,
- * and compares the prescription the output ingests to with the source's. It holds re-exports only, as the seam guard
- * requires of a top-level module.
+ * Permanent file-conversion seam: version detection, canonical ingest, V1/V2 printers and source-path mapping.
+ * The converter and its regression tests use these exports; runtime and metadata readers use canonical ingest
+ * through buildLens.ts and never construct the source-preserving V1 view.
  */
 
 export { ingestLens, ingestTeleconverter, lensDataVersion } from "./prescription/ingestV2.js";
@@ -17,6 +10,7 @@ export {
   V1_GROUP_STARTS,
   V1_PRINT_ORDER,
   V1_ROW_LISTS,
+  toLensData,
   toLensDataInput,
   toTeleconverterData,
 } from "./prescription/toLensData.js";

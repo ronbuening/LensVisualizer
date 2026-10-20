@@ -121,7 +121,7 @@ export function assessMtfSpectralData(state: PreparedGeometry): MtfSpectralData 
   for (const [i, dispersion] of lens.dispersion.entries()) {
     if (dispersion.quality === "air" || dispersion.quality === "sellmeier") continue;
     const surface = state.surfaces[i];
-    const element = lens.source.elements.find((e) => e.id === surface.elemId);
+    const element = lens.elements.find((e) => e.id === surface.elemId)?.source;
     if (dispersion.quality === "constant") return blocked("a glass has no Abbe number");
     if (element?.indexReference === "e") return blocked("an e-line glass has no catalog dispersion data");
     if (dispersion.quality !== "abbe") continue;
@@ -175,7 +175,9 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
   const state = request.preparedGeometry;
   const options = resolveMtfOptions(request, settings);
   const { lens } = state;
-  const media = lens.source.elements.filter((e) => state.surfaces.some((s) => s.nd !== 1 && s.elemId === e.id));
+  const media = lens.elements
+    .map((e) => e.source)
+    .filter((e) => state.surfaces.some((s) => s.nd !== 1 && s.elemId === e.id));
   const references = new Set(media.map((e) => e.indexReference ?? "d"));
   const mixed = references.size > 1;
   const referenceWavelengthNm = references.size === 1 && references.has("e") ? LINE_NM.e : LINE_NM.d;
@@ -250,7 +252,10 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
   // Untyped callers can still pass a retired method name, which would otherwise compute as geometric.
   if (options.method !== "geometric" && options.method !== "diffraction")
     return reject("invalid-input", "MTF method must be geometric or diffraction.");
-  const scale = mtfPrescriptionScale(lens.source);
+  const scale = mtfPrescriptionScale({
+    focalLengthDesign: lens.source.catalog.focalLengthMm?.design,
+    focalLengthMarketing: lens.source.catalog.focalLengthMm?.marketing,
+  });
   if (scale && (scale.designMm / scale.marketingMm < 0.5 || scale.designMm / scale.marketingMm > 2)) {
     return reject("unverified-scale", "Prescription scale needs verification before reporting lp/mm.");
   }

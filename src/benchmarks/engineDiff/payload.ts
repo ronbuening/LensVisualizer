@@ -620,6 +620,23 @@ export function outcomeOf<Value>(compute: () => Value): Outcome<Value> {
 
 /* ── Build constants ── */
 
+/** Normalize a historical expanded V1 echo to the canonical, unexpanded source now exposed by the view. */
+export function projectCanonicalSource(
+  prescription: object,
+  project?: SemanticProjection,
+  flatRadiusThreshold = Infinity,
+): object {
+  const data = prescription as Record<string, unknown>;
+  if (data.kind === "lens") return data;
+  if (!project) return normalizeAuthoredData(data, flatRadiusThreshold);
+  const { attachedTeleconverter: _descriptor, ...authored } = data;
+  for (const field of ["surfaces", "elements"] as const) {
+    if (Array.isArray(authored[field]))
+      authored[field] = authored[field].filter((row) => !isRecord(row) || !row.synthetic);
+  }
+  return project(authored);
+}
+
 /**
  * Project a runtime lens to its build-constants payload.
  *
@@ -644,11 +661,15 @@ export function projectBuildConstants(
   lens: object,
   channels: readonly string[],
   flatRadiusThreshold: number,
+  canonicalSource?: SemanticProjection,
 ): Record<string, unknown> {
   const out: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(lens)) {
     if (key === "data" && isRecord(value)) {
-      out.data = normalizeAuthoredData(value, flatRadiusThreshold);
+      out.source = projectCanonicalSource(value, canonicalSource, flatRadiusThreshold);
+      if (value.attachedTeleconverter !== undefined) out.attachedTeleconverter = value.attachedTeleconverter;
+    } else if (key === "source" && isRecord(value)) {
+      out.source = value;
     } else if (key === "elements" && Array.isArray(value)) {
       out.elements = value.map(withoutElementDefaults);
     } else if (key === "S" && Array.isArray(value)) {
@@ -708,6 +729,8 @@ export function stopRadiusAuthority(prescription: object): StopRadiusAuthority {
     zoomStopSemiDiameters?: unknown;
     surfaces?: readonly { label?: unknown; stopPlacement?: unknown; interaction?: { type?: unknown } }[];
   };
+  if ("aperture" in data)
+    return (data as unknown as { aperture: { stopRadius: StopRadiusAuthority } }).aperture.stopRadius;
   const surfaces = data.surfaces ?? [];
   const folded = Boolean(
     data.opticalPath || surfaces.some((surface) => surface.interaction && surface.interaction.type !== "refract"),
@@ -889,6 +912,7 @@ function normalizePublishedStations(
  * @returns a rewritten copy; the input is not changed
  */
 export function normalizeAuthoredData(prescription: object, flatRadiusThreshold: number): Record<string, unknown> {
+  if ((prescription as { kind?: string }).kind === "lens") return prescription as Record<string, unknown>;
   const data = withoutDefaults({ ...prescription }, ECHO_DEFAULTS.lens);
   const stopRadiusIsRead = stopRadiusAuthority(data) === "authored";
 

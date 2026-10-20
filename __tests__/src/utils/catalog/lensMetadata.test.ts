@@ -22,13 +22,18 @@ import type { LensData } from "../../../../src/types/optics.js";
 
 /* ── helpers ── */
 
-function makeLens(overrides: Partial<LensData> = {}): LensData {
-  return {
+function makeLens(overrides: Partial<LensData> = {}): import("../../../../src/optics/buildLens.js").CanonicalLens {
+  const fields = {
     name: "NIKON NIKKOR Z 50mm f/1.8 S",
     specs: ["50mm", "f/1.8", "9 elements"],
     subtitle: "US Patent 2019/0234567",
     ...overrides,
-  } as unknown as LensData;
+  };
+  return {
+    ...fields,
+    catalog: { specs: fields.specs },
+    source: { patentNumber: fields.patentNumber, authors: fields.patentAuthors },
+  } as unknown as import("../../../../src/optics/buildLens.js").CanonicalLens;
 }
 
 /* ── deriveMaker ── */

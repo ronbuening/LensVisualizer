@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "../../optics/constructionFixtures.js";
 import { mtfInputs } from "../../optics/testLensFixtures.js";
 import { afterEach, expect, it, vi } from "vitest";
 import {
@@ -51,7 +52,7 @@ it("compiles canonical prescriptions in the worker and matches the pure engine f
   const L = buildChromaticPositiveElementLens();
   // Transport the unexpanded prescription even when the runtime already contains hidden plates.
   const plated = build({
-    ...L.data,
+    ...constructionFixtureData(L),
     rearPlates: [REAR_PLATE_FIXTURE, { ...REAR_PLATE_FIXTURE, gapAfterMm: 20 }],
   });
   // A composed pair retains its descriptor so plates expand on the correct side of the converter.

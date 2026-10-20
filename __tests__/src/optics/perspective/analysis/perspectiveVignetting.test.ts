@@ -1,3 +1,4 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../../constructionFixtures.js";
 import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
 import { buildLens } from "../../../../../src/optics/prescription/buildRuntimeLens.js";
@@ -14,9 +15,9 @@ import type { PerspectiveVignettingRayContribution } from "../../../../../src/op
 import { dot, subtract } from "../../../../../src/optics/math/vector.js";
 import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
 import type { PerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
-import { LENS_CATALOG } from "../../../../../src/utils/catalog/lensCatalog.js";
+import {} from "../../../../../src/utils/catalog/lensCatalog.js";
 
-const L = buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]);
+const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-pc-nikkor-19mm-f4e-ed"]);
 const STATE = prepareRuntimeState(L, 0, 0);
 
 function context(shiftMm = 0, tiltDeg = 0): PerspectiveTraceContext {

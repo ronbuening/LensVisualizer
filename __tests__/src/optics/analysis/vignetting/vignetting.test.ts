@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "../../constructionFixtures.js";
 import { registerRuntimeFixture } from "../../testLensFixtures.js";
 import { describe, it, expect } from "vitest";
 import { computeVignettingCurve as computeVignettingCurveBase } from "../../../../../src/optics/analysis/vignetting/vignetting.js";
@@ -14,7 +15,7 @@ function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): 
   return registerRuntimeFixture({
     ...L,
     data: {
-      ...L.data,
+      ...constructionFixtureData(L),
       imageFormat,
     },
   } as RuntimeLens);

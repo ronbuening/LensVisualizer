@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "./constructionFixtures.js";
 import { mtfInputs } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import { shearedOtf } from "../../../src/optics/analysis/mtf/mtfShearedOtf.js";
@@ -335,8 +336,10 @@ describe("diffraction MTF of a traced lens", () => {
   u = 1.5168 * u - (y * (1 - 1.5168)) / -50;
   const base = buildSimplePositiveElementLens();
   const focused = build({
-    ...base.data,
-    surfaces: base.data.surfaces.map((surface, i) => (i === 2 ? { ...surface, d: -y / u } : surface)),
+    ...constructionFixtureData(base),
+    surfaces: constructionFixtureData(base).surfaces.map((surface, i) =>
+      i === 2 ? { ...surface, d: -y / u } : surface,
+    ),
   });
   const state = prepareRuntimeState(focused, 0, 0);
   const options: MtfOptions = {

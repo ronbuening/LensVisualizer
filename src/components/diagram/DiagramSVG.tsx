@@ -167,8 +167,8 @@ const DiagramSVG = memo(function DiagramSVG({
   const reducedMotion = usePrefersReducedMotion();
 
   /* ── Accessible name/description for the primary diagram ── */
-  const maker = L.data.maker?.trim();
-  const name = L.data.name?.trim();
+  const maker = L.source.maker?.trim();
+  const name = L.source.name?.trim();
   const nameIncludesMaker = maker && name?.toLocaleLowerCase().startsWith(maker.toLocaleLowerCase());
   const lensDisplayName = nameIncludesMaker ? name : [maker, name].filter(Boolean).join(" ");
   const ariaLabel = `Lens cross-section diagram of ${lensDisplayName}`;
@@ -180,7 +180,7 @@ const DiagramSVG = memo(function DiagramSVG({
     showCardinals ? "cardinal element markers" : null,
   ].filter((layer): layer is string => layer !== null);
   const description =
-    `Cross-section of the ${L.data.elementCount ?? L.elements.length}-element ${lensDisplayName} with ray tracing` +
+    `Cross-section of the ${L.source.catalog.elementCount ?? L.elements.length}-element ${lensDisplayName} with ray tracing` +
     (shownLayers.length > 0 ? `, showing ${shownLayers.join(", ")}.` : "; all ray layers hidden.") +
     (lensAxis
       ? " The horizontal reference is the fixed camera axis; the secondary dashed line is the moved lens optical axis."

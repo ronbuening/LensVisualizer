@@ -27,7 +27,7 @@ is `prescription/teleconverterCompatibility.ts`; `mount/` is outside this bounda
 
 | Module in `src/optics/` | Public surface |
 | --- | --- |
-| `buildLens.ts` | `buildLens` (named/default), canonical ingest and runtime views, `buildCanonicalLens`, `canonicalLensFromRuntime`, `prepareRuntimeState` |
+| `buildLens.ts` | `buildLens` (named/default), canonical ingest, `canonicalInput`, `compileLens`, `buildCanonicalLens`, `canonicalLensFromRuntime`, `prepareRuntimeState` |
 | `teleconverter.ts` | Converter composition, compatibility, labels and validation |
 | `optics.ts` | Layout and station values, RuntimeLens state adapters, exact ray adapters, focus/aperture controls, pupil-ray density and display formatting |
 | `fieldGeometry.ts` | Field and pupil geometry, image-height inversion, RuntimeLens chief-ray adapters and bounded chief-ray diagnostic snapshots |
@@ -42,7 +42,7 @@ is `prescription/teleconverterCompatibility.ts`; `mount/` is outside this bounda
 | `validation.ts` | Named `validateLensData`, `validateLensInput`, `validateCanonicalLens`, `validateTeleconverterData` and schema helpers |
 | `geometry.ts` | Surface profiles/sag, numerical geometry constants and shared vector helpers |
 | `types.ts` | Engine types and preparation errors |
-| `lensDataConversion.ts` | Canonical/V1/V2 mapping, source paths and printers for the converter, organizer and build metadata |
+| `lensDataConversion.ts` | Canonical/V1/V2 mapping, source paths and printers for the converter and organizer |
 
 ## Names And Runtime Adapters
 

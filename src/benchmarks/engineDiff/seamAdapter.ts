@@ -470,8 +470,8 @@ export type EngineSeam = Omit<
 
 /* Engine value types the capture handles, taken from the seam so no other file names an engine module. */
 export type RuntimeLens = ReturnType<EngineSeam["buildLens"]>;
-export type LensData = Parameters<EngineSeam["buildLens"]>[0];
-export type TeleconverterData = Parameters<EngineSeam["attachTeleconverter"]>[1];
+export type LensData = import("../../types/optics.js").LensData;
+export type TeleconverterData = import("../../types/teleconverter.js").TeleconverterData;
 export type PreparedState = ReturnType<EngineSeam["prepareState"]>;
 export type EngineRay = Parameters<EngineSeam["traceRay"]>[1];
 export type EngineTraceOptions = NonNullable<Parameters<EngineSeam["traceRay"]>[2]> & { capture?: "diagnostics" };
@@ -697,6 +697,7 @@ const OPTIONAL_SEAM_CANDIDATES = {
     ["buildLens", "ingestTeleconverter"],
     ["buildLens", "ingestTeleconverterV1"],
   ],
+  canonicalInput: [["buildLens", "canonicalInput"]],
   lensView: [["buildLens", "toLensData"]],
   teleconverterView: [["buildLens", "toTeleconverterData"]],
   lensDefaults: [["lensDefaults", "default"]],
@@ -704,9 +705,14 @@ const OPTIONAL_SEAM_CANDIDATES = {
 
 /** Capabilities a ref may lack, typed by the export their first candidate names. */
 export type OptionalEngineSeam = {
-  readonly [Capability in keyof typeof OPTIONAL_SEAM_CANDIDATES]?: ExportOf<
-    (typeof OPTIONAL_SEAM_CANDIDATES)[Capability][0]
-  >;
+  readonly ingestLens?: typeof import("../../optics/buildLens.js").ingestLens;
+  readonly ingestTeleconverter?: typeof import("../../optics/buildLens.js").ingestTeleconverter;
+  readonly canonicalInput?: typeof import("../../optics/buildLens.js").canonicalInput;
+  readonly lensView?: (input: ReturnType<NonNullable<OptionalEngineSeam["ingestLens"]>>) => LensData;
+  readonly teleconverterView?: (
+    input: ReturnType<NonNullable<OptionalEngineSeam["ingestTeleconverter"]>>,
+  ) => TeleconverterData;
+  readonly lensDefaults?: Partial<LensData>;
 };
 
 /**

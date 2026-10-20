@@ -1,3 +1,5 @@
+import { constructionFixtureData } from "./constructionFixtures.js";
+import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { describe, it, expect, vi } from "vitest";
 import validateLensData, {
   validateCanonicalLens,
@@ -581,7 +583,7 @@ describe("validateLensData", () => {
       has(validateLensData(makeValid({ acceptsTeleconverters: "yes" })), '"acceptsTeleconverters" must be a boolean'),
     ).toBe(true);
 
-    const composed = attachTeleconverter(teleconverterHostData(), teleconverterFixture());
+    const composed = constructionFixtureData(attachTeleconverter(teleconverterHostData(), teleconverterFixture()));
     const descriptor = composed.attachedTeleconverter!;
     expect(validateLensData(composed)).toEqual([]);
     expect(
@@ -1464,7 +1466,8 @@ describe("validateLensData", () => {
    * Newtonian reference (auto mode, so no probe trace runs). Branches already exercised by
    * mirrorOptics.test.ts (unknown surfaceOrder label, innerSd >= sd, backing normals, maxInteractions floor,
    * paired innerSd, unreachable image plane) are not repeated. */
-  const foldedBase = (): Record<string, any> => structuredClone(LENS_CATALOG["reference-newtonian-side-focus"]);
+  const foldedBase = (): Record<string, any> =>
+    structuredClone(CATALOG_CONSTRUCTION_FIXTURES["reference-newtonian-side-focus"]);
   const surf = (d: Record<string, any>, label: string) => d.surfaces.find((s: { label: string }) => s.label === label);
   const zoomControl = (range: unknown) => (d: Record<string, any>) =>
     Object.assign(d, { zoomPositions: [100, 200], aberrationControl: { label: "SA", var: { STO: range } } });
@@ -1849,11 +1852,10 @@ describe("validateLensData", () => {
  * One offender-collecting sweep over the full catalog (visible and hidden
  * entries alike) subsumes any hand-picked per-lens "passes validation"
  * list — every registered lens, including every zoom, is covered. */
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 describe("validateLensData — production lenses", () => {
   it("every catalog lens passes validation with no errors", () => {
-    const offenders = Object.entries(LENS_CATALOG).flatMap(([key, data]) =>
+    const offenders = Object.entries(CATALOG_CONSTRUCTION_FIXTURES).flatMap(([key, data]) =>
       validateLensData(data).map((error) => `${key}: ${error}`),
     );
 
@@ -2309,7 +2311,9 @@ describe("source errata", () => {
     const last = host.surfaces.at(-1)!;
     const sourceErrata = [{ ...corrected, surface: last.label, field: "d", printed: last.d + 1, applied: last.d }];
     expect(validateLensData({ ...host, sourceErrata }).filter((e) => e.includes("sourceErrata"))).toEqual([]);
-    const composed = attachTeleconverter({ ...host, sourceErrata } as typeof host, teleconverterFixture());
+    const composed = constructionFixtureData(
+      attachTeleconverter({ ...host, sourceErrata } as typeof host, teleconverterFixture()),
+    );
     expect(composed.surfaces.find((surface) => surface.label === last.label)!.d).not.toBe(last.d);
     expect(validateLensData(composed).filter((e) => e.includes("sourceErrata"))).toEqual([]);
     // Any other value of the host must still match on the composed system.

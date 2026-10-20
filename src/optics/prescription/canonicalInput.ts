@@ -22,14 +22,20 @@ export function assertValidLensData(data: Pick<LensData, "key">, validationError
 /**
  * Resolve a canonical association or read an authored file with V1 validation first.
  *
- * @param data - authored lens file or associated compatibility view
+ * @param data - authored lens file or associated canonical prescription
  * @returns unexpanded canonical prescription and provenance
  */
-export function canonicalInput(data: LensData | LensDataV2Input): IngestedPrescription<CanonicalLens> {
-  if (data === null || typeof data !== "object" || isV1File(data)) assertValidLensData(data, validateLensInput(data));
-  const cached = canonicalForView(data);
+export function canonicalInput(
+  data: LensDataInput | LensDataV2Input | CanonicalLens,
+): IngestedPrescription<CanonicalLens> {
+  if (data && "kind" in data && data.kind === "lens") {
+    return canonicalForView(data) ?? { prescription: data, provenance: { format: 2, defaulted: [], ignored: {} } };
+  }
+  const cached = data && typeof data === "object" ? canonicalForView(data) : undefined;
   if (cached) return cached;
+  if (data === null || typeof data !== "object" || isV1File(data)) assertValidLensData(data, validateLensInput(data));
   const ingested = ingestLens(data as LensDataInput | LensDataV2Input);
   associateCanonical(data, ingested);
+  associateCanonical(ingested.prescription, ingested);
   return ingested;
 }

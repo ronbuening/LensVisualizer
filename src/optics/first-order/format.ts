@@ -5,6 +5,7 @@
  */
 
 import { focusDistanceAt } from "../state/focusDistance.js";
+import type { CanonicalLens } from "../prescription/canonical.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import { FOCUS_INFINITY_CUTOFF } from "../state/focusDistance.js";
 
@@ -34,12 +35,12 @@ const MARKETED_APERTURE_NOTE_FRACTION = 0.005;
  * @returns secondary label, empty when stopped down or when the two agree
  */
 export function marketedApertureNote(
-  data: { apertureMarketing?: number; nominalFno?: number | number[] },
+  data: Pick<CanonicalLens, "catalog" | "aperture" | "zoom">,
   fNumber: number,
   wideOpen: number,
 ): string {
-  const marketed = data.apertureMarketing;
-  if (marketed === undefined || Array.isArray(data.nominalFno)) return "";
+  const marketed = data.catalog.fNumber?.marketing;
+  if (marketed === undefined || (data.aperture.nominalFNumber === undefined && data.zoom !== undefined)) return "";
   if (Math.abs(fNumber - wideOpen) > 1e-6 * wideOpen) return "";
   if (Math.abs(wideOpen / marketed - 1) <= MARKETED_APERTURE_NOTE_FRACTION) return "";
   return `marketed f/${formatFNumber(marketed)}`;

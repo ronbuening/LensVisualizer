@@ -10,6 +10,7 @@
  * that fold it into their back focus resolve to the same junction.
  */
 
+import type { CanonicalLens, CanonicalTeleconverter } from "./canonical.js";
 import type { LensData, RearPlateData } from "../../types/optics.js";
 import type {
   TeleconverterCompatibility,
@@ -39,6 +40,51 @@ export type TeleconverterHost = Pick<
   | "var"
   | "aberrationControl"
 >;
+
+/** Only fit facts cross this boundary; no source-preserving file view is constructed. */
+function hostFacts(host: TeleconverterHost | CanonicalLens): TeleconverterHost {
+  if (!("kind" in host)) return host;
+  return {
+    key: host.key,
+    lensMounts: host.catalog.lensMounts,
+    acceptsTeleconverters: host.catalog.acceptsTeleconverters,
+    opticalPath: host.opticalPath,
+    projection: host.projection,
+    perspectiveControl: host.perspectiveControl,
+    nominalFno: host.aperture.nominalFNumber ?? host.zoom?.stations.map((station) => station.nominalFNumber!),
+    surfaces: host.surfaces as unknown as TeleconverterHost["surfaces"],
+    rearPlates: host.rearPlates,
+    var: Object.fromEntries(host.gaps.map((gap) => [gap.surface, gap.values])) as TeleconverterHost["var"],
+    aberrationControl: host.aberrationControl
+      ? {
+          label: host.aberrationControl.label,
+          var: Object.fromEntries(host.aberrationControl.gaps.map((gap) => [gap.surface, gap.values])),
+        }
+      : undefined,
+  };
+}
+function converterFacts(
+  tc: TeleconverterData | CanonicalTeleconverter,
+): Pick<
+  TeleconverterData,
+  | "key"
+  | "lensMounts"
+  | "universal"
+  | "minHostFno"
+  | "incompatibleLensKeys"
+  | "masterImageDistanceMm"
+  | "surfaces"
+  | "rearPlates"
+> {
+  return "kind" in tc
+    ? {
+        ...tc,
+        lensMounts: tc.catalog.lensMounts,
+        minHostFno: tc.minHostFNumber,
+        surfaces: tc.surfaces as unknown as TeleconverterData["surfaces"],
+      }
+    : tc;
+}
 
 /**
  * Sum of the air-equivalent distances of a plate stack: Σ(t/n + gapAfter).
@@ -124,7 +170,12 @@ function splitRearPlates(
  * @param tc - teleconverter data
  * @returns plate split, junction spacing, final gap and image-plane extension in mm
  */
-export function teleconverterGeometry(host: TeleconverterHost, tc: TeleconverterData): TeleconverterGeometry {
+export function teleconverterGeometry(
+  input: TeleconverterHost | CanonicalLens,
+  converter: TeleconverterData | CanonicalTeleconverter,
+): TeleconverterGeometry {
+  const host = hostFacts(input);
+  const tc = converterFacts(converter);
   const hostPlates = host.rearPlates ?? [];
   const split = splitRearPlates(hostPlates, tc.masterImageDistanceMm);
   const lastGaps = hostLastGapThicknesses(host);
@@ -167,7 +218,12 @@ export function teleconverterGeometry(host: TeleconverterHost, tc: Teleconverter
  * @param tc - teleconverter data
  * @returns the composed spacing when compatible, otherwise the first failing rule
  */
-export function teleconverterCompatibility(host: TeleconverterHost, tc: TeleconverterData): TeleconverterCompatibility {
+export function teleconverterCompatibility(
+  input: TeleconverterHost | CanonicalLens,
+  converter: TeleconverterData | CanonicalTeleconverter,
+): TeleconverterCompatibility {
+  const host = hostFacts(input);
+  const tc = converterFacts(converter);
   const hostMounts: readonly string[] = host.lensMounts ?? [];
   if (!tc.lensMounts.some((mount) => hostMounts.includes(mount))) return { ok: false, reason: "mount" };
   if (host.attachedTeleconverter) return { ok: false, reason: "stacked" };
@@ -189,7 +245,7 @@ export function teleconverterCompatibility(host: TeleconverterHost, tc: Teleconv
     if (typeof fastest === "number" && fastest < tc.minHostFno - 1e-9) return { ok: false, reason: "host-too-fast" };
   }
 
-  const geometry = teleconverterGeometry(host, tc);
+  const geometry = teleconverterGeometry(input, converter);
   if (!(geometry.minJunctionGapMm >= MIN_TELECONVERTER_GAP_MM) || !(geometry.finalGapMm >= MIN_TELECONVERTER_GAP_MM)) {
     return { ok: false, reason: "clearance" };
   }

@@ -1,3 +1,4 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
@@ -11,12 +12,12 @@ import {
   perspectiveVectorLeadPoint,
 } from "../../../../src/optics/perspective/diagramTrace.js";
 import { createPerspectiveTraceContext } from "../../../../src/optics/perspective/trace.js";
-import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
+import {} from "../../../../src/utils/catalog/lensCatalog.js";
 
 /* The ray hooks mock these adapters, so this is their only direct coverage: the moved-optics
  * diagram rays drawn whenever shift or tilt is active. A real PC lens is the fixture because the
  * adapters need a perspective-control pose; the assertions describe the adapter contract only. */
-const L = buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]);
+const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-pc-nikkor-19mm-f4e-ed"]);
 const context = createPerspectiveTraceContext({
   preparedState: prepareRuntimeState(L, 0, 0),
   movement: { shiftMm: 6, tiltDeg: 2 },

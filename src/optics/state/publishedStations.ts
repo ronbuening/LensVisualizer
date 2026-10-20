@@ -9,6 +9,7 @@
  * Coordinates follow the variable-gap interpolator: zoom station `i` of `n` sits at `zoomT = i / (n - 1)` and focus
  * keyframe `j` at `focusPositions[j]`, so a station reproduces its authored gap row.
  */
+import type { CanonicalLens } from "../prescription/canonical.js";
 import type { FiniteConjugate, PublishedStations, RuntimeLens } from "../../types/optics.js";
 import { focusDistanceAt } from "./focusDistance.js";
 import { getGroupMovementAvailability } from "../analysis/summary/groupMovement.js";
@@ -111,7 +112,27 @@ function isIndexInRange(value: unknown, min: number, max: number): value is numb
  * @param data - lens data (or the subset of fields that decide provenance)
  * @returns published zoom stations and, per authored zoom station, its published focus keyframes
  */
-export function publishedStationGrid(data: PublishedStationSource): PublishedStationGrid {
+export function publishedStationGrid(data: PublishedStationSource | CanonicalLens): PublishedStationGrid {
+  if ("kind" in data) {
+    const stations = data.zoom?.stations;
+    const zoomCount = stations?.length ?? 1;
+    const indices = stations ? stations.flatMap((station, i) => (station.published ? [i] : [])) : [0];
+    const focus = Array.from(
+      { length: zoomCount },
+      (_, i) =>
+        new Set(indices.includes(i) ? [0, ...(stations?.[i].publishedFocus ?? data.focus.published ?? [])] : []),
+    );
+    for (const conjugate of data.focus.conjugates ?? []) {
+      if (indices.includes(conjugate.zoomStation)) focus[conjugate.zoomStation].add(conjugate.keyframe);
+    }
+    return {
+      zoomCount,
+      zoom: indices.map((index) => ({ index, zoomT: zoomIndexToT(index, zoomCount) })),
+      focusByZoomIndex: focus.map((set) =>
+        [...set].sort((a, b) => a - b).map((index) => ({ index, focusT: data.focus.keyframes[index] })),
+      ),
+    };
+  }
   const zoomCount = data.zoomPositions && data.zoomPositions.length >= 2 ? data.zoomPositions.length : 1;
   const focusPositions =
     data.focusPositions && data.focusPositions.length >= 2 ? data.focusPositions : DEFAULT_FOCUS_POSITIONS;
@@ -204,7 +225,7 @@ export function nearestStationInGrid(
  * @returns published zoom stations in ascending order; one pseudo station at index 0 for a prime
  */
 export function publishedZoomStations(L: RuntimeLens): PublishedZoomStation[] {
-  return publishedStationGrid(L.data).zoom.map(({ index, zoomT }) => ({
+  return publishedStationGrid(L.source).zoom.map(({ index, zoomT }) => ({
     index,
     zoomT,
     focalLengthMm: L.zoomPositions?.[index] ?? L.EFL,
@@ -221,19 +242,27 @@ export function publishedZoomStations(L: RuntimeLens): PublishedZoomStation[] {
  * @returns published focus keyframes at that zoom station; empty when the zoom station is not published
  */
 export function publishedFocusStations(L: RuntimeLens, zoomStationIndex = 0): PublishedFocusStation[] {
-  const grid = publishedStationGrid(L.data);
+  const grid = publishedStationGrid(L.source);
   const zoomT = zoomIndexToT(zoomStationIndex, grid.zoomCount);
   return (grid.focusByZoomIndex[zoomStationIndex] ?? []).map(({ index, focusT }) => ({
     index,
     focusT,
     isInfinity: index === 0,
     distanceM: index === 0 ? null : focusDistanceAt(focusT, L, zoomT),
-    conjugate:
-      L.data.finiteConjugates?.find(
-        (conjugate) =>
-          Math.abs(conjugate.focusT - focusT) < STATION_COORDINATE_TOLERANCE &&
-          Math.abs(conjugate.zoomT - zoomT) < STATION_COORDINATE_TOLERANCE,
-      ) ?? null,
+    conjugate: (() => {
+      const conjugate = L.source.focus.conjugates?.find(
+        (c) => c.keyframe === index && c.zoomStation === zoomStationIndex,
+      );
+      return conjugate
+        ? {
+            focusT,
+            zoomT,
+            objectDistanceMm: conjugate.objectDistanceMm,
+            distanceReference: conjugate.distanceReference,
+            source: conjugate.source,
+          }
+        : null;
+    })(),
   }));
 }
 
@@ -246,7 +275,7 @@ export function publishedFocusStations(L: RuntimeLens, zoomStationIndex = 0): Pu
  * @returns the station in index and canonical slider coordinates; (0, infinity) for a single-prescription prime
  */
 export function nearestPublishedStation(L: RuntimeLens, zoomT: number, focusT: number): PublishedStationCoordinate {
-  return nearestStationInGrid(publishedStationGrid(L.data), zoomT, focusT);
+  return nearestStationInGrid(publishedStationGrid(L.source), zoomT, focusT);
 }
 
 /**
@@ -274,7 +303,7 @@ export function isOnPublishedStation(L: RuntimeLens, zoomT: number, focusT: numb
  * @returns station counts, the limits that apply, and the converter pairing for a composed system
  */
 export function publishedStationAvailability(L: RuntimeLens): PublishedStationAvailability {
-  const grid = publishedStationGrid(L.data);
+  const grid = publishedStationGrid(L.source);
   const focusCounts = grid.zoom.map(({ index }) => grid.focusByZoomIndex[index].length);
   const stationCount = focusCounts.reduce((total, count) => total + count, 0);
   const maxFocusStationCount = Math.max(...focusCounts);
@@ -295,7 +324,7 @@ export function publishedStationAvailability(L: RuntimeLens): PublishedStationAv
     limits.push({ kind: "single-zoom-station", text: "The source tabulates one zoom position" });
   }
 
-  const converter = L.data.attachedTeleconverter;
+  const converter = L.attachedTeleconverter;
   return {
     available: stationCount > 1,
     zoomStationCount: grid.zoom.length,

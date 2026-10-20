@@ -37,18 +37,20 @@ describe("lensSummaries parity with lensCatalog", () => {
       expect(summary, `${key}: missing summary`).toBeDefined();
       expect(summary.name).toBe(data.name);
       expect(summary.maker).toBe(data.maker);
-      expect(summary.specs).toEqual(data.specs);
-      expect(summary.focalLengthMarketing).toEqual(data.focalLengthMarketing);
-      expect(summary.apertureMarketing).toBe(data.apertureMarketing);
-      expect(summary.apertureDesign).toBe(data.apertureDesign);
-      expect(summary.nominalFno).toEqual(data.nominalFno);
-      expect(summary.patentNumber).toBe(data.patentNumber);
-      expect(summary.patentAuthors).toEqual(data.patentAuthors);
-      expect(summary.patentAssignees).toEqual(data.patentAssignees);
-      expect(summary.patentYear).toBe(data.patentYear);
-      expect(summary.lensMounts).toEqual(data.lensMounts);
-      expect(summary.imageFormat).toBe(data.imageFormat);
-      expect(summary.opticalConfiguration).toEqual(data.opticalConfiguration);
+      expect(summary.specs).toEqual(data.catalog.specs);
+      expect(summary.focalLengthMarketing).toEqual(data.catalog.focalLengthMm?.marketing);
+      expect(summary.apertureMarketing).toBe(data.catalog.fNumber?.marketing);
+      expect(summary.apertureDesign).toBe(data.catalog.fNumber?.design);
+      expect(summary.nominalFno).toEqual(
+        data.aperture.nominalFNumber ?? data.zoom?.stations.map((station) => station.nominalFNumber),
+      );
+      expect(summary.patentNumber).toBe(data.source.patentNumber);
+      expect(summary.patentAuthors).toEqual(data.source.authors);
+      expect(summary.patentAssignees).toEqual(data.source.assignees);
+      expect(summary.patentYear).toBe(data.source.patentYear);
+      expect(summary.lensMounts).toEqual(data.catalog.lensMounts);
+      expect(summary.imageFormat).toBe(data.catalog.imageFormat);
+      expect(summary.opticalConfiguration).toEqual(data.catalog.opticalConfiguration);
       expect(summary.visible).toBe(data.visible !== false);
     }
   });

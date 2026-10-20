@@ -1,4 +1,5 @@
 // @vitest-environment jsdom
+import { constructionFixtureData } from "../optics/constructionFixtures.js";
 
 import { describe, it, expect } from "vitest";
 import { renderHook, act } from "@testing-library/react";
@@ -36,10 +37,15 @@ describe("useComparisonMode", () => {
       [1.2, 1.2],
       [1.4, 1.4],
     ]);
-    const data = { ...base.data, key: "test-comparison-aperture-zoom", nominalFno: [2, 4, 8], maxFstop: 16 };
-    const prime = buildSimplePositiveElementLens("test-comparison-aperture-prime").data;
-    LENS_CATALOG[data.key] = build(data).data;
-    LENS_CATALOG[prime.key] = prime;
+    const data = {
+      ...constructionFixtureData(base),
+      key: "test-comparison-aperture-zoom",
+      nominalFno: [2, 4, 8],
+      maxFstop: 16,
+    };
+    const prime = constructionFixtureData(buildSimplePositiveElementLens("test-comparison-aperture-prime"));
+    LENS_CATALOG[data.key] = build(data).source;
+    LENS_CATALOG[prime.key] = build(prime).source;
     try {
       const { result, rerender, unmount } = renderHook(
         ({ zoom }) =>
@@ -71,8 +77,8 @@ describe("useComparisonMode", () => {
     const lenses = result.current.comparisonLenses;
     expect(isComparisonOk(lenses)).toBe(true);
     if (!isComparisonOk(lenses)) return;
-    expect(lenses.LA.data.attachedTeleconverter?.key).toBe(teleconverterKey);
-    expect(lenses.LB.data.attachedTeleconverter).toBeUndefined();
+    expect(constructionFixtureData(lenses.LA).attachedTeleconverter?.key).toBe(teleconverterKey);
+    expect(constructionFixtureData(lenses.LB).attachedTeleconverter).toBeUndefined();
     expect(lenses.LA.stopPhysSD).toBeCloseTo(lenses.LB.stopPhysSD, 9);
     expect(lenses.LA.EFL).toBeGreaterThan(lenses.LB.EFL);
   });

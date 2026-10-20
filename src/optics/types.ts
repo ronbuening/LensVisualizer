@@ -232,7 +232,8 @@ export interface CompiledLensFlags {
 /** Constants own derived numbers and station tables, never the RuntimeLens read model. */
 export type LensConstants = Omit<
   RuntimeLens,
-  | "data"
+  | "source"
+  | "attachedTeleconverter"
   | "S"
   | "N"
   | "ES"
@@ -263,8 +264,9 @@ export type LensConstructionData = LensData & { lensShiftFrac: number };
 /** Immutable prescription primitives available before constants are calculated. */
 export interface CompiledPrescription {
   key: string;
-  source: LensData;
-  /** Canonical optical projection, separate from the provenance-preserving source echo. */
+  source: import("./prescription/canonical.js").CanonicalLens;
+  attachedTeleconverter?: LensData["attachedTeleconverter"];
+  /** Numeric construction columns, discarded once constants are complete. */
   data: LensConstructionData;
   indices: CompiledIndices;
   lastLensSurfaceIndex: number;
@@ -329,3 +331,5 @@ export type PreparedOpticalState = PreparedGeometry;
 export type PreparationFailureReason = "invalid-control" | "invalid-thickness";
 
 export { Optics2PreparationError } from "./state/preparationError.js";
+
+export type { CanonicalLens, CanonicalTeleconverter, IngestedPrescription } from "./prescription/canonical.js";

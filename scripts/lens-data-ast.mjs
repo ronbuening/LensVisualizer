@@ -16,9 +16,9 @@
  */
 
 import ts from "typescript";
-import { loadLensDataConversion } from "./lens-summaries.mjs";
+import { loadPrescriptionIngest } from "./lens-summaries.mjs";
 
-const { lensDataVersion } = await loadLensDataConversion();
+const { lensDataVersion } = await loadPrescriptionIngest();
 
 /**
  * Parse a lens-data source file.

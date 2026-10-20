@@ -37,13 +37,15 @@ export interface LensDataConversion extends PrescriptionViews {
 export const SUMMARY_FIELDS: readonly string[];
 export const TELECONVERTER_SUMMARY_FIELDS: readonly string[];
 
+export function loadPrescriptionIngest(): Promise<Pick<LensDataConversion, "ingestLens" | "ingestTeleconverter" | "lensDataVersion">>;
+
 export function loadLensDataConversion(): Promise<LensDataConversion>;
 
 
-export function v1Prescription(
+export function canonicalPrescription(
   file: object,
   kind: "lens" | "teleconverter",
-  loadViews?: () => Promise<PrescriptionViews>,
+  loadIngest?: () => Promise<Pick<PrescriptionViews, "ingestLens" | "ingestTeleconverter">>,
 ): Promise<Prescription>;
 
 export function lensSummary(data: object): Prescription;

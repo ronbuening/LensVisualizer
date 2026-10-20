@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "./constructionFixtures.js";
 import { mtfInputs } from "./testLensFixtures.js";
 import { createTraceGeometry } from "../../../src/optics/trace/geometry.js";
 import { describe, expect, it } from "vitest";
@@ -49,8 +50,8 @@ describe("documented finite MTF", () => {
   const axial = atRear(1, 1 / conjugate.objectDistanceMm);
   const imageGap = -axial.y / axial.u;
   const L = build({
-    ...base.data,
-    surfaces: base.data.surfaces.map((s, i) => (i === 2 ? { ...s, d: imageGap } : s)),
+    ...constructionFixtureData(base),
+    surfaces: constructionFixtureData(base).surfaces.map((s, i) => (i === 2 ? { ...s, d: imageGap } : s)),
     finiteConjugates: [conjugate],
   });
   const state = prepareRuntimeState(L, 1, 0);
@@ -109,7 +110,10 @@ describe("documented finite MTF", () => {
     expect(assessMtfSupport(...mtfInputs(tilted, options)).reason).toBe("unsupported-path");
   });
   it("approaches the infinity bundle at large object distance", () => {
-    const far = build({ ...base.data, finiteConjugates: [{ ...conjugate, objectDistanceMm: 1e9 }] });
+    const far = build({
+      ...constructionFixtureData(base),
+      finiteConjugates: [{ ...conjugate, objectDistanceMm: 1e9 }],
+    });
     const finiteState = prepareRuntimeState(far, 1, 0),
       infiniteState = prepareRuntimeState(far, 0, 0);
     const angle = 0.01 * far.halfField;
@@ -139,7 +143,7 @@ describe("documented finite MTF", () => {
       [1.5, 2.5],
       [2, 3],
     ]);
-    const lens = build({ ...zoom.data, finiteConjugates: [{ ...conjugate, zoomT: 0.5 }] });
+    const lens = build({ ...constructionFixtureData(zoom), finiteConjugates: [{ ...conjugate, zoomT: 0.5 }] });
     const documented = prepareRuntimeState(lens, 1, 0.5);
     expect(documented.surfaces[0].d).toBe(2.5);
     expect(assessMtfSupport(...mtfInputs(documented, options)).available).toBe(true);

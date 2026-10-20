@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "./constructionFixtures.js";
 import { mtfInputs } from "./testLensFixtures.js";
 import { runtimeView } from "../../../src/optics/prescription/runtimeView.js";
 import { describe, expect, it } from "vitest";
@@ -33,9 +34,9 @@ function withGlass(patch: { nd?: number; vd?: number; dPgF?: number }) {
   const nd = patch.nd ?? L.elements[0].nd;
   return prepareRuntimeState(
     build({
-      ...L.data,
+      ...constructionFixtureData(L),
       elements: L.elements.map((e) => ({ ...e, ...patch, nd })),
-      surfaces: L.data.surfaces.map((s) => ({ ...s, nd: s.nd === 1 ? 1 : nd })),
+      surfaces: constructionFixtureData(L).surfaces.map((s) => ({ ...s, nd: s.nd === 1 ? 1 : nd })),
     }),
     0,
     0,
@@ -59,9 +60,9 @@ describe("qualified spectral MTF", () => {
     // N-BK7 stays a compatible catalog proxy for an authored index 1e-3 above its catalog nd.
     const authored = 1.5178;
     const L = build({
-      ...base.data,
+      ...constructionFixtureData(base),
       elements: base.elements.map((e) => ({ ...e, nd: authored })),
-      surfaces: base.data.surfaces.map((s) => ({ ...s, nd: s.nd === 1 ? 1 : authored })),
+      surfaces: constructionFixtureData(base).surfaces.map((s) => ({ ...s, nd: s.nd === 1 ? 1 : authored })),
     });
     const state = prepareRuntimeState(L, 0, 0);
     expect(state.lens.dispersion[1].quality).toBe("sellmeier");
@@ -86,7 +87,7 @@ describe("qualified spectral MTF", () => {
   it("interpolates line-index glass exactly through its measured C/d/F/g channels", () => {
     const state = prepareRuntimeState(buildChromaticPositiveElementLens(), 0, 0);
     const lineLens = build({
-      ...runtimeView(state.lens).data,
+      ...constructionFixtureData(runtimeView(state.lens)),
       elements: runtimeView(state.lens).elements.map((e) => ({
         ...e,
         glass: undefined,
@@ -157,12 +158,12 @@ describe("qualified spectral MTF", () => {
   it("checks hidden rear plates as well as visible elements", () => {
     const base = buildChromaticPositiveElementLens();
     const unknownPlate = { ...REAR_PLATE_FIXTURE, glass: undefined, nd: 1.497, vd: 81.6 };
-    const unresolved = build({ ...base.data, rearPlates: [unknownPlate] });
+    const unresolved = build({ ...constructionFixtureData(base), rearPlates: [unknownPlate] });
     const state = prepareRuntimeState(unresolved, 0, 0);
     expect(unresolved.elements).toHaveLength(base.elements.length);
     expect(assessMtfSupport(...mtfInputs(state, options)).reason).toBe("spectral-data-unavailable");
     expect(assessMtfSupport(...mtfInputs(state, { ...options, spectrum: "reference" })).available).toBe(true);
-    const resolved = build({ ...base.data, rearPlates: [REAR_PLATE_FIXTURE] });
+    const resolved = build({ ...constructionFixtureData(base), rearPlates: [REAR_PLATE_FIXTURE] });
     expect(assessMtfSupport(...mtfInputs(prepareRuntimeState(resolved, 0, 0), options)).available).toBe(true);
   });
   it("does not label a native e reference as a physical d index", () => {
@@ -170,7 +171,7 @@ describe("qualified spectral MTF", () => {
     const glass = resolveGlass("N-BK7")!;
     const ne = evaluateSellmeier(glass, LINE_NM.e);
     const native = build({
-      ...L.data,
+      ...constructionFixtureData(L),
       elements: L.elements.map((e) => ({
         ...e,
         nd: ne,
@@ -178,14 +179,17 @@ describe("qualified spectral MTF", () => {
         indexReference: "e",
         glass: undefined,
       })),
-      surfaces: L.data.surfaces.map((s) => ({ ...s, nd: s.nd === 1 ? 1 : ne })),
+      surfaces: constructionFixtureData(L).surfaces.map((s) => ({ ...s, nd: s.nd === 1 ? 1 : ne })),
     });
     const state = prepareRuntimeState(native, 0, 0);
     expect(assessMtfSupport(...mtfInputs(state, { ...options, spectrum: "reference" })).referenceWavelengthNm).toBe(
       LINE_NM.e,
     );
     expect(assessMtfSupport(...mtfInputs(state, options)).available).toBe(false);
-    const resolved = build({ ...native.data, elements: native.elements.map((e) => ({ ...e, glass: "N-BK7" })) });
+    const resolved = build({
+      ...constructionFixtureData(native),
+      elements: native.elements.map((e) => ({ ...e, glass: "N-BK7" })),
+    });
     expect(assessMtfSupport(...mtfInputs(prepareRuntimeState(resolved, 0, 0), options))).toMatchObject({
       available: true,
       referenceWavelengthNm: LINE_NM.d,

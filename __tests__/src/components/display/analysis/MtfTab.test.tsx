@@ -1,4 +1,5 @@
 // @vitest-environment jsdom
+import { constructionFixtureData } from "../../../optics/constructionFixtures.js";
 import { createAnalysisComputationContext } from "../../../../../src/optics/analysis/analysisContext.js";
 import { mtfInputs } from "../../../optics/testLensFixtures.js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -32,8 +33,10 @@ const referenceOptions = {
 } as const;
 const offsetMm = mtfImagePlaneOffset(state, assessMtfSupport(...mtfInputs(state, referenceOptions)))!.offsetMm;
 const focusedL = build({
-  ...L.data,
-  surfaces: L.data.surfaces.map((s, i, all) => (i === all.length - 1 ? { ...s, d: s.d + offsetMm } : s)),
+  ...constructionFixtureData(L),
+  surfaces: constructionFixtureData(L).surfaces.map((s, i, all) =>
+    i === all.length - 1 ? { ...s, d: s.d + offsetMm } : s,
+  ),
 });
 const focusedState = prepareRuntimeState(focusedL, 0, 0);
 
@@ -258,7 +261,7 @@ describe("MTF tab", () => {
   it("lists a source erratum beside the chart without holding the chart back", async () => {
     // Catalog glass leaves no dispersion gap, so the unresolved source contradiction is the only item.
     const noted = build({
-      ...buildChromaticPositiveElementLens("test-source-erratum").data,
+      ...constructionFixtureData(buildChromaticPositiveElementLens("test-source-erratum")),
       sourceErrata: [{ status: "unresolved", note: "The table traces to a shorter focal length than stated." }],
     });
     const notedState = prepareRuntimeState(noted, 0, 0);

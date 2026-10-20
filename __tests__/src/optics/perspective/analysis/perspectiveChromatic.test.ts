@@ -1,3 +1,4 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../../constructionFixtures.js";
 /** Request-based perspective chromatic diagnostics and ordered field samples. */
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
@@ -7,9 +8,9 @@ import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdap
 import { computePerspectiveChromaticAnalysis } from "../../../../../src/optics/perspective/analysis/chromatic.js";
 import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
 import type { PerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
-import { LENS_CATALOG } from "../../../../../src/utils/catalog/lensCatalog.js";
+import {} from "../../../../../src/utils/catalog/lensCatalog.js";
 
-const L = buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]);
+const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-pc-nikkor-19mm-f4e-ed"]);
 const STATE = prepareRuntimeState(L, 0, 0);
 
 function context(shiftMm = 0, tiltDeg = 0): PerspectiveTraceContext {

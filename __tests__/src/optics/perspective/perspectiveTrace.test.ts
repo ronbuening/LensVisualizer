@@ -1,3 +1,4 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
@@ -8,7 +9,7 @@ import { traceEngineRay } from "../../../../src/optics/trace/rayAdapters.js";
 import { stateWithZ } from "../../../../src/optics/state/preparedGeometry.js";
 import type { Plane3, Ray3, Vec3 } from "../../../../src/optics/types.js";
 import type { TiltPivot } from "../../../../src/types/optics.js";
-import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
+import {} from "../../../../src/utils/catalog/lensCatalog.js";
 import { buildChromaticPositiveElementLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 
 const ZERO_MOVEMENT = { shiftMm: 0, tiltDeg: 0 } as const;
@@ -75,7 +76,10 @@ describe("perspective trace foundation", () => {
   });
 
   it("refreshes trace geometry for translated, nonuniform and partial camera vertices", () => {
-    for (const L of [buildSimplePositiveElementLens(), buildLens(LENS_CATALOG["reference-newtonian-side-focus"])]) {
+    for (const L of [
+      buildSimplePositiveElementLens(),
+      buildLens(CATALOG_CONSTRUCTION_FIXTURES["reference-newtonian-side-focus"]),
+    ]) {
       const base = prepareRuntimeState(L, 0, 0);
       const original = base.traceGeometry;
       expect(original).toBeDefined();
@@ -216,8 +220,8 @@ describe("perspective trace foundation", () => {
   });
 
   it("handles real Nikon dual-axis combined extrema and shift-only movement", () => {
-    const dualAxis = buildLens(LENS_CATALOG["nikon-pc-e-nikkor-24-f35d-ed"]);
-    const shiftOnly = buildLens(LENS_CATALOG["nikon-pc-nikkor-35mm-f28"]);
+    const dualAxis = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-pc-e-nikkor-24-f35d-ed"]);
+    const shiftOnly = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-pc-nikkor-35mm-f28"]);
 
     for (const L of [dualAxis, shiftOnly]) {
       const state = prepareRuntimeState(L, 0, 0);

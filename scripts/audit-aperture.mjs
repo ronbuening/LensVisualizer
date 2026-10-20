@@ -44,7 +44,7 @@ const ROOT = join(import.meta.dirname, "..");
 const LENS_DIR = join(ROOT, "src", "lens-data");
 const load = async (path) => import(pathToFileURL(join(ROOT, path)).href);
 
-const { default: buildLens, ingestLens, toLensData } = await load("src/optics/buildLens.ts");
+const { default: buildLens, ingestLens } = await load("src/optics/buildLens.ts");
 const { prepareRuntimeState } = await load("src/optics/optics.ts");
 const { traceEngineRay } = await load("src/optics/optics.ts");
 
@@ -146,9 +146,8 @@ const raises = [];
 let lenses = 0;
 let folded = 0;
 for (const path of files) {
-  /* Canonical ingest's V1 view reads a file of either version in V1 field names; an authored V1 file reads as
-   * written, with the schema defaults. */
-  const data = toLensData(ingestLens((await import(pathToFileURL(path).href)).default));
+  /* Read canonical facts, with schema defaults already applied. */
+  const data = ingestLens((await import(pathToFileURL(path).href)).default).prescription;
   if (data.visible === false && !ALL && requested.length === 0) continue;
   const L = buildLens(data);
   if (L.isFoldedOptics) {
@@ -156,14 +155,14 @@ for (const path of files) {
     continue;
   }
   lenses++;
-  const stations = L.isZoom ? data.zoomPositions.length : 1;
+  const stations = L.isZoom ? data.zoom.stations.length : 1;
   const stopLabel = L.S[L.stopIdx].label;
   const needs = new Map();
   let untraceable = false;
   for (let zi = 0; zi < stations; zi++) {
     const zoomT = stations > 1 ? zi / (stations - 1) : 0;
     const state = prepareRuntimeState(L, 0, zoomT);
-    const stated = Array.isArray(data.nominalFno) ? data.nominalFno[zi] : data.nominalFno;
+    const stated = data.aperture.nominalFNumber ?? data.zoom?.stations[zi].nominalFNumber;
     const statedRadius = L.zoomEPs?.[zi] ?? L.EP.epSD;
     if (RAISE) {
       const heights = statedRayHeights(state, statedRadius);
@@ -187,16 +186,16 @@ for (const path of files) {
       key: data.key,
       name: data.name,
       file: relative(LENS_DIR, path),
-      station: stations > 1 ? `${Number(data.zoomPositions[zi].toFixed(2))} mm` : "",
+      station: stations > 1 ? `${Number(data.zoom.stations[zi].focalLengthMm.toFixed(2))} mm` : "",
       stated,
       traced,
       ratio: traced === null ? null : traced / stated,
       limiter: limiter?.label ?? "none",
       diagnosis,
       stopLabel,
-      stopModel: data.zoomStopSemiDiameters
+      stopModel: data.zoom?.stations.some((station) => station.stopSemiDiameter !== undefined)
         ? "published schedule"
-        : data.zoomApertureModel === "fixed-iris"
+        : data.zoom?.apertureModel === "fixed-iris"
           ? "fixed iris"
           : state.surfaces[L.stopIdx].stopPlacement === "inside-element"
             ? "embedded stop"
@@ -209,12 +208,14 @@ for (const path of files) {
       .map((surface) => ({ label: surface.label, from: surface.sd, need: needs.get(surface.label) ?? 0 }))
       .filter((change) => change.need > change.from * (1 + 1e-9))
       .map((change) => ({ ...change, to: roundUpLike(change.from, change.need) }));
-    const wideOpen = Array.isArray(data.nominalFno) ? data.nominalFno[0] : data.nominalFno;
+    const wideOpen = data.aperture.nominalFNumber ?? data.zoom?.stations[0].nominalFNumber;
     const flags = [
       untraceable && "stated ray cannot be traced at some station",
-      data.apertureDesign === undefined && "no apertureDesign recorded",
-      data.apertureDesign !== undefined && wideOpen / data.apertureDesign < 0.995 && "nominalFno faster than design",
-      data.sourceErrata?.some((entry) => entry.status === "unresolved") && "unresolved source contradiction",
+      data.catalog.fNumber?.design === undefined && "no apertureDesign recorded",
+      data.catalog.fNumber?.design !== undefined &&
+        wideOpen / data.catalog.fNumber?.design < 0.995 &&
+        "nominalFno faster than design",
+      data.source.errata?.some((entry) => entry.status === "unresolved") && "unresolved source contradiction",
       changes.some((change) => change.to / change.from - 1 > RAISE_REVIEW) && "raise over 15 %: read the figure",
     ].filter(Boolean);
     /* Per element whose two faces share one value now and would end apart: the height a square-cut rim would carry. */
@@ -225,7 +226,8 @@ for (const path of files) {
     for (let i = 0; i < data.surfaces.length - 1; i++) {
       const front = data.surfaces[i];
       const rear = data.surfaces[i + 1];
-      if (!(front.elemId > 0) || front.label === "STO" || rear.label === "STO") continue;
+      if (!(typeof front.medium === "number" && front.medium > 0) || front.label === "STO" || rear.label === "STO")
+        continue;
       if (!raised.has(front.label) && !raised.has(rear.label)) continue;
       if (front.sd !== rear.sd) continue;
       const a = after.get(front.label);

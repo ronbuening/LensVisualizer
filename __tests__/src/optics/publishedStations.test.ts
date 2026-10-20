@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import { thickOrZero as thick } from "../../../src/optics/state/runtimeAdapters.js";
 import { attachTeleconverter } from "../../../src/optics/prescription/teleconverter.js";
@@ -187,7 +188,7 @@ describe("published stations from lens data alone", () => {
 describe("published stations of a converter-mounted system", () => {
   it("keeps the host's stations and reports the pairing", () => {
     const hostData = teleconverterZoomHostData({ publishedStations: { zoom: [0, 2] } });
-    const composedData = attachTeleconverter(hostData, teleconverterFixture());
+    const composedData = constructionFixtureData(attachTeleconverter(hostData, teleconverterFixture()));
     const host = build(hostData);
     const composed = build(composedData);
 

@@ -531,7 +531,7 @@ describe("engineDiff budget table", () => {
     expect(resolveBudgetRule("build", ["labelIdx", "3/5"])?.quantity).toBe("count");
     expect(resolveBudgetRule("build", ["labelIdx", "[]"])).toBeNull();
     /* Rows that hand prescription data back say so: the lens's `data` and elements, and a composed prescription. */
-    expect(resolveBudgetRule("build", ["data", "surfaces", "[]", "d"])).toMatchObject({ authored: true });
+    expect(resolveBudgetRule("build", ["source", "surfaces", "[]", "d"])).toMatchObject({ authored: true });
     expect(resolveBudgetRule("build", ["elements", "[]", "fl"])).toMatchObject({
       quantity: "requested",
       authored: true,
@@ -870,7 +870,7 @@ describe("engineDiff drift detection", () => {
     ["analysis", ["jobs", "effectiveFNumber", "value"], "nonLength", 1],
     ["build", ["petzvalSum"], "nonLength", 1],
     ["build", ["EP", "yRatio"], "nonLength", 1],
-    ["build", ["data", "surfaces", 0, "R"], "prescription", 1],
+    ["build", ["source", "surfaces", 0, "R"], "prescription", 1],
     /* A bar of the LoCA inset is a focus shift drawn at about 201 px per mm. */
     ["analysis", LOCA_BAR, "analysisLength", LOCA_PX_PER_MM],
     ["analysis", ["jobs", "locaBarOffsets", "value", "legacy", "mag"], "ratio", 1],
@@ -1567,9 +1567,10 @@ describe("engineDiff drift detection", () => {
     ).toBe(true);
 
     /* Nor has a prescription the engine hands back a floor: an asphere coefficient is held to its own share. */
-    const coefficient = (value: number) => withChange("build", ["data", "asph"], () => ({ "1": { A10: value } }));
+    const coefficient = (value: number) =>
+      withChange("build", ["source", "surfaces", 0, "asphere"], () => ({ A10: value }));
     expect(compare("c1", coefficient(3e-19 * (1 + 1e-10)), coefficient(3e-19)).engine.failures).toEqual([
-      expect.objectContaining({ path: "data.asph.1.A10", kind: "number", quantity: "prescription" }),
+      expect.objectContaining({ path: "source.surfaces[0].asphere.A10", kind: "number", quantity: "prescription" }),
     ]);
     expect(compare("c1", coefficient(3e-19 * (1 + 4 * Number.EPSILON)), coefficient(3e-19)).passed).toBe(true);
 
@@ -3522,8 +3523,8 @@ describe("engineDiff cross-evaluation", () => {
     /* A source erratum carries a status of its own, `corrected` or `unresolved`, and the build record hands the
      * prescription back under `data`. Such a status is authored: it says nothing of what the engine did. */
     const erratum = (status: string) => ({ status, note: "The source prints two values for one gap." });
-    const errata = (...list: object[]) => withChange("build", ["data", "sourceErrata"], () => list, plainRecords);
-    expect(at(plainRecords, "build", ["data", "sourceErrata"])).toBeUndefined();
+    const errata = (...list: object[]) => withChange("build", ["source", "source", "errata"], () => list, plainRecords);
+    expect(at(plainRecords, "build", ["source", "source", "errata"])).toBeUndefined();
 
     /* An erratum the head data added is no work the base data never did, in a new list or in one that grew. */
     for (const base of [plainRecords, errata(erratum("corrected"))]) {
@@ -5567,7 +5568,7 @@ describe("engineDiff declared transitions", () => {
     const cases: [RequestFamily, Path, (value: unknown) => unknown, readonly PayloadRecord[]][] = [
       ["build", ["N"], (count) => Number(count) + 1, LIGHT],
       ["build", ["S", 2, "elemId"], (id) => Number(id) + 1, LIGHT],
-      ["build", ["data", "surfaces"], (surfaces) => (surfaces as unknown[]).slice(1), LIGHT],
+      ["build", ["source", "surfaces"], (surfaces) => (surfaces as unknown[]).slice(1), LIGHT],
       ["layout", ["z"], (z) => [...(z as number[]), 0], LIGHT],
       ["composition", ["compatibility", "geometry", "platesAhead"], (count) => Number(count) + 1, pair],
     ];

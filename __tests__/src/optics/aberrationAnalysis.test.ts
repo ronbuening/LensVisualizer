@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "./constructionFixtures.js";
 import { associateRuntimeView } from "../../../src/optics/prescription/runtimeView.js";
 import { analysisRequestForLens } from "./testLensFixtures.js";
 import { analysisRequestAt } from "./testLensFixtures.js";
@@ -63,7 +64,7 @@ function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): 
   return registerRuntimeFixture({
     ...L,
     data: {
-      ...L.data,
+      ...constructionFixtureData(L),
       imageFormat,
     },
   } as RuntimeLens);
@@ -2466,9 +2467,9 @@ describe("analytic chief-relative parabasal focus", () => {
     const base = buildSimplePositiveElementLens();
     const n = 1.5;
     const L = build({
-      ...base.data,
+      ...constructionFixtureData(base),
       focalLengthDesign: 2 * radius,
-      elements: [{ ...base.data.elements[0], nd: n }],
+      elements: [{ ...constructionFixtureData(base).elements[0], nd: n }],
       surfaces: [
         { label: "STO", R: 1e15, nd: 1, sd: 15, d: 1, elemId: 0 },
         { label: "1", R: radius, nd: n, sd: 15, d: 5, elemId: 1 },
