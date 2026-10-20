@@ -14,14 +14,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **977** lenses scanned
 - **11132** glass elements examined
-- **3264** elements have multiple coordinate-compatible candidates
-- **587** lens files are affected
+- **3263** elements have multiple coordinate-compatible candidates
+- **586** lens files are affected
 - **317** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **210** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1902 |
+| Smallest reference-index residual | 1901 |
 | Evidence-source priority | 1013 |
 | Vendor context | 335 |
 | Stable canonical-name order | 12 |
@@ -489,7 +489,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `728283 — dense-flint class (supplier unresolved)` | 1.72830 / 28.30 (d) | H-ZF4A — smallest d-line \|Δn\| (5.0e-5 vs 5.0e-5) | E-FD10 (Hoya, code, alternate code row) | 1 | [CARL ZEISS JENA BIOMETAR 80mm f/2.8](../../src/lens-data/carl-zeiss-jena/ZeissBiometar80mmf28.data.ts) L4 |
 | `620603 — crown class (supplier unresolved)` | 1.62040 / 60.30 (d) | N-SK16 — smallest d-line \|Δn\| (1.0e-5 vs 1.0e-5) | J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [CARL ZEISS JENA BIOMETAR 80mm f/2.8](../../src/lens-data/carl-zeiss-jena/ZeissBiometar80mmf28.data.ts) L5 |
 | `673322 — SF5-class dense flint (supplier unproven)` | 1.67270 / 32.20 (d) | SF5 — direct name evidence outranks six-digit code evidence. | H-ZF2 (CDGM, code, alternate code row)<br>E-FD5 (Hoya, code, preferred code row) | 1 | [CARL ZEISS JENA BIOTAR 50mm f/1.4](../../src/lens-data/carl-zeiss-jena/ZeissBiotar50mmf14.data.ts) L4 |
-| `589612 — crown class (supplier unconfirmed)` | 1.58940 / 61.20 (d) | SK5 — smallest d-line \|Δn\| (2.7e-4 vs 2.7e-4) | J-SK5 (Hikari, code, alternate code row)<br>S-BAL35 (Ohara, code, preferred code row) | 1 | [CARL ZEISS JENA SONNAR 50mm f/1.5 (US 2,186,621 Design)](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50mmf15US2186621.data.ts) L7 |
 | `678555 LaK (≈ Schott N-LaK12)` | 1.67786 / 55.50 (d) | LAC12 — smallest d-line \|Δn\| (4.2e-5 vs 4.5e-5) | K-LaK12 (Sumita, code, vendor ✗, alternate code row) | 1 | [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) L1 |
 | `SF56A / SF11 (Schott, 785261)` | 1.78470 / 26.10 (d) | SF56A — smallest d-line \|Δn\| (1.1e-6 vs 2.0e-5) | SF11 (Schott, name, vendor ✓) | 1 | [CARL ZEISS OLYMPIA-SONNAR 180mm f/2.8](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissOlympiaSonnar180mmf28.data.ts) L3 |
 | `LaF2 class; N-LAF2 catalog spectral proxy (production supplier unspecified)` | 1.74400 / 44.90 (d) | LAF2 — smallest d-line \|Δn\| (1.4e-6 vs 2.8e-5) | N-LAF2 (Schott, name) | 2 | [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) L2 |
@@ -2180,7 +2179,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `904313 — very-high-index flint class` | 1.90366 / 31.31 (d) | J-LASFH13 — smallest d-line \|Δn\| (3.1e-8 vs 1.0e-7) | N-LASF46B (Schott, code, alternate code row)<br>TAFD25L (Hoya, code, alternate code row)<br>S-LAH95 (Ohara, code, preferred code row)<br>TAFD25 (Hoya, code, alternate code row) | 1 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) L31 |
 | `694532 — lanthanum crown class` | 1.69350 / 53.20 (d) | M-LAC130 — smallest d-line \|Δn\| (1.2e-7 vs 3.8e-7) | L-LAL13 (Ohara, code, alternate code row)<br>S-LAL13 (Ohara, code, preferred code row) | 2 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) L41 |
 | `911353 — very-high-index low-dispersion class` | 1.91082 / 35.25 (d) | H-ZLaF4LA — smallest d-line \|Δn\| (4.2e-8 vs 2.4e-6) | TAFD35 (Hoya, code, preferred code row) | 1 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) L42 |
-| `497816 — ED fluorophosphate class` | 1.49700 / 81.61 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row)<br>M-FCD1 (Hoya, code, alternate code row) | 1 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) L43 |
+| `497816 — ED fluorophosphate class` | 1.49700 / 81.61 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row)<br>M-FCD1 (Hoya, code, alternate code row) | 2 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) L43 +1 files |
 | `618634 — phosphate crown class` | 1.61800 / 63.40 (d) | S-PHM52 — smallest d-line \|Δn\| (9.0e-8 vs 1.0e-7) | N-PSK53A (Schott, code, alternate code row)<br>PCD4 (Hoya, code, alternate code row)<br>K-PSKn2 (Sumita, code, alternate code row) | 1 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) L44 |
 | `517522 — crown-flint class` | 1.51742 / 52.15 (d) | J-KF6 — smallest d-line \|Δn\| (9.7e-9 vs 9.9e-8) | E-CF6 (Hoya, code, preferred code row) | 1 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) L61 |
 | `847238 — high-index dense flint class` | 1.84666 / 23.78 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 1 | [SONY VARIO-TESSAR T* FE 24-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTFE2470mmF4ZAOSS.data.ts) L1 |
@@ -2188,7 +2187,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `773496 — lanthanum glass class` | 1.77250 / 49.62 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 2.9e-8) | TAF1 (Hoya, code, alternate code row)<br>N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 1 | [SONY VARIO-TESSAR T* FE 24-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTFE2470mmF4ZAOSS.data.ts) L4 |
 | `773495 — lanthanum glass class` | 1.77250 / 49.47 (d) | M-TAF105 — smallest d-line \|Δn\| (1.6e-6 vs 2.5e-6) | M-TAF1 (Hoya, code, alternate code row) | 2 | [SONY VARIO-TESSAR T* FE 24-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTFE2470mmF4ZAOSS.data.ts) L7 |
 | `755275 — dense flint class` | 1.75520 / 27.53 (d) | E-FD4 — smallest d-line \|Δn\| (2.6e-7 vs 3.8e-7) | H-ZF6 (CDGM, code, alternate code row) | 1 | [SONY VARIO-TESSAR T* FE 24-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTFE2470mmF4ZAOSS.data.ts) L8 |
-| `497816 — low-dispersion crown class` | 1.49700 / 81.61 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row)<br>M-FCD1 (Hoya, code, alternate code row) | 1 | [SONY VARIO-TESSAR T* FE 24-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTFE2470mmF4ZAOSS.data.ts) L9 |
 | `731405 — lanthanum glass class` | 1.73077 / 40.50 (d) | L-LAM69 — smallest d-line \|Δn\| (4.9e-7 vs 4.3e-6) | M-LAF81 (Hoya, code, preferred code row) | 1 | [SONY VARIO-TESSAR T* FE 24-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTFE2470mmF4ZAOSS.data.ts) L10 |
 | `487704 — low-dispersion crown class` | 1.48749 / 70.44 (d) | N-FK5 — smallest d-line \|Δn\| (3.7e-9 vs 4.1e-8) | H-QK3L (CDGM, code, alternate code row)<br>FK5 (Sumita, code, alternate code row)<br>FC5 (Hoya, code, alternate code row) | 1 | [SONY VARIO-TESSAR T* FE 24-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTFE2470mmF4ZAOSS.data.ts) L12 |
 | `517-642 / BSC7 class (supplier unconfirmed)` | 1.51680 / 64.20 (d) | BSC7 — direct name evidence outranks six-digit code evidence. | H-K9L (CDGM, code, alternate code row)<br>H-K9LGT (CDGM, code, alternate code row)<br>N-BK7 (Schott, code, preferred code row) | 1 | [SONY ZEISS SONNAR T* 35mm f/2 (Sony DSC-RX1 family)](../../src/lens-data/sony/ZeissSonnar35mmf2SonyDSCRX1.data.ts) G1 |

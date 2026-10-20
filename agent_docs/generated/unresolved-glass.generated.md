@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **977** lenses scanned
 - **11137** non-air surfaces examined
 - **11147** element glass declarations examined
-- **227** non-explicit-unmatched annotations did not resolve
-- **121** distinct unresolved glass-like tokens found
+- **223** non-explicit-unmatched annotations did not resolve
+- **116** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -29,7 +29,6 @@ or per-lens patent backfills.
 | 671472 | 2 | 1 | |
 | 680557 | 2 | 1 | |
 | 682419 | 2 | 1 | |
-| 682482 | 2 | 1 | |
 | 683315 | 2 | 2 | |
 | 690570 | 2 | 2 | |
 | 691530 | 2 | 1 | |
@@ -46,7 +45,6 @@ or per-lens patent backfills.
 | 819287 | 2 | 2 | |
 | G2 | 2 | 1 | |
 | LAF10 | 2 | 1 | |
-| LAF20 | 2 | 1 | |
 | 489701 | 1 | 1 | |
 | 499801 | 1 | 1 | |
 | 507589 | 1 | 1 | |
@@ -67,7 +65,6 @@ or per-lens patent backfills.
 | 603564 | 1 | 1 | |
 | 612313 | 1 | 1 | |
 | 617308 | 1 | 1 | |
-| 621362 | 1 | 1 | |
 | 624584 | 1 | 1 | |
 | 625533 | 1 | 1 | |
 | 630346 | 1 | 1 | |
@@ -75,7 +72,6 @@ or per-lens patent backfills.
 | 640353 | 1 | 1 | |
 | 646287 | 1 | 1 | |
 | 656277 | 1 | 1 | |
-| 658512 | 1 | 1 | |
 | 667311 | 1 | 1 | |
 | 668358 | 1 | 1 | |
 | 670266 | 1 | 1 | |
@@ -132,7 +128,6 @@ or per-lens patent backfills.
 | 908334 | 1 | 1 | |
 | 916364 | 1 | 1 | |
 | 958300 | 1 | 1 | |
-| FN11 | 1 | 1 | |
 | FPL51 | 1 | 1 | |
 | KZF4 | 1 | 1 | |
 | LAFN8 | 1 | 1 | |
@@ -203,11 +198,6 @@ or per-lens patent backfills.
 
 - [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) 4: `682419 class (supplier unresolved)`
 - [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) 6: `682419 class (supplier unresolved)`
-
-### 682482 — 2 occurrences
-
-- [CARL ZEISS SONNAR SUPERACHROMAT 250mm f/5.6 (Hasselblad V)](../../src/lens-data/carl-zeiss-oberkochen/ZeissSonnarSuperachromat250mmf56.data.ts) 5: `LaF20 class (Schott, obsolete, 682482; patent "LaF 20")`
-- [CARL ZEISS SONNAR SUPERACHROMAT 250mm f/5.6 (Hasselblad V)](../../src/lens-data/carl-zeiss-oberkochen/ZeissSonnarSuperachromat250mmf56.data.ts) 9: `LaF20 class (Schott, obsolete, 682482; patent "LaF 20")`
 
 ### 683315 — 2 occurrences
 
@@ -289,11 +279,6 @@ or per-lens patent backfills.
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 7: `LaF10 (Schott 784438)`
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 9: `LaF10 (Schott 784438)`
 
-### LAF20 — 2 occurrences
-
-- [CARL ZEISS SONNAR SUPERACHROMAT 250mm f/5.6 (Hasselblad V)](../../src/lens-data/carl-zeiss-oberkochen/ZeissSonnarSuperachromat250mmf56.data.ts) 5: `LaF20 class (Schott, obsolete, 682482; patent "LaF 20")`
-- [CARL ZEISS SONNAR SUPERACHROMAT 250mm f/5.6 (Hasselblad V)](../../src/lens-data/carl-zeiss-oberkochen/ZeissSonnarSuperachromat250mmf56.data.ts) 9: `LaF20 class (Schott, obsolete, 682482; patent "LaF 20")`
-
 ### 489701 — 1 occurrence
 
 - [CARL ZEISS JENA SONNAR 50mm f/1.5 (US 2,186,621 Design)](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50mmf15US2186621.data.ts) 4: `489701 — fluor-crown class (supplier unconfirmed)`
@@ -374,10 +359,6 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 7: `617308 - high-dispersion flint (catalog unresolved; patent nd=1.61750, vd=30.8)`
 
-### 621362 — 1 occurrence
-
-- [CARL ZEISS SONNAR SUPERACHROMAT 250mm f/5.6 (Hasselblad V)](../../src/lens-data/carl-zeiss-oberkochen/ZeissSonnarSuperachromat250mmf56.data.ts) 7: `FN11 class (Schott, obsolete, 621362; patent "F 11")`
-
 ### 624584 — 1 occurrence
 
 - [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 32A: `Barium crown / LaK family (624584, no exact catalog match)`
@@ -405,10 +386,6 @@ or per-lens patent backfills.
 ### 656277 — 1 occurrence
 
 - [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 41: `656277 — catalog unresolved (supplier unconfirmed)`
-
-### 658512 — 1 occurrence
-
-- [CARL ZEISS JENA SONNAR 50mm f/1.5 (US 2,186,621 Design)](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50mmf15US2186621.data.ts) 8: `658512 — dense-crown class (supplier unconfirmed)`
 
 ### 667311 — 1 occurrence
 
@@ -633,10 +610,6 @@ or per-lens patent backfills.
 ### 958300 — 1 occurrence
 
 - [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 21: `958300 — catalog unresolved (supplier unconfirmed)`
-
-### FN11 — 1 occurrence
-
-- [CARL ZEISS SONNAR SUPERACHROMAT 250mm f/5.6 (Hasselblad V)](../../src/lens-data/carl-zeiss-oberkochen/ZeissSonnarSuperachromat250mmf56.data.ts) 7: `FN11 class (Schott, obsolete, 621362; patent "F 11")`
 
 ### FPL51 — 1 occurrence
 

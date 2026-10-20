@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **977** lenses scanned
-- **1943** total code-only elements found
-- **298** elements in this report
+- **1941** total code-only elements found
+- **297** elements in this report
 - **126** distinct lens files affected
 - **23** active unreviewed elements have no review-record hit or explicit disposition
 - **164** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
@@ -163,7 +163,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 646287 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 656277 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 656337 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
-| 658512 | 1 | 1 | patents/US2186621.pdf | All rows have review records |
 | 662331 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 662577 | 1 | 1 | patents/US2896506.pdf | All rows explicitly disposed |
 | 666552 | 1 | 1 | patents/US9651761.pdf | All rows explicitly disposed |
@@ -399,7 +398,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L3 (Element 3) | 4 | `489701 — fluor-crown class (supplier unconfirmed)` | 1.48920 / 70.10 | No catalog entry | abbe | patents/US2186621.pdf | Audit-log hit |
 | L4 (Element 4) | 5 | `Unmatched (739282 — dense-flint class; supplier unconfirmed)` | 1.73940 / 28.20 | No catalog entry | abbe | patents/US2186621.pdf | Explicit disposition in data |
 | L5 (Element 5) | 7 | `Unmatched (523509 — supplier unconfirmed)` | 1.52320 / 50.90 | No catalog entry | abbe | patents/US2186621.pdf | Explicit disposition in data |
-| L6 (Element 6) | 8 | `658512 — dense-crown class (supplier unconfirmed)` | 1.65780 / 51.20 | No catalog entry | abbe | patents/US2186621.pdf | Audit-log hit |
 
 ### [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100)](../../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) - US 2012/0069456 A1
 

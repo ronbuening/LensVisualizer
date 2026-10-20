@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **977** lenses scanned
-- **1943** total code-only elements found
-- **1943** elements in this report
+- **1941** total code-only elements found
+- **1941** elements in this report
 - **313** distinct lens files affected
 
 ## Codes by Frequency
@@ -51,8 +51,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 648338 | 13 | 13 | patents/US20110090576A1.pdf<br>patents/US2968221.pdf<br>patents/US20200166730A1.pdf<br>patents/US3635546.pdf | 1/13 rows have review records |
 | 001291 | 12 | 11 | patents/JP2016148731A.pdf<br>patents/US20190113711A1.pdf<br>patents/US20200166730A1.pdf<br>patents/US20160282590A1.pdf | 1/12 rows have review records |
 | 437951 | 11 | 7 | patents/WO2025013477A1.pdf<br>patents/JP2020118738A.pdf<br>patents/US20210132345A1.pdf<br>patents/JP2020086133A.pdf | No review-record hit |
-| 589612 | 11 | 11 | patents/US2186621.pdf<br>patents/JP_2003241093_A.pdf<br>patents/US4452513.pdf<br>patents/US4223981.pdf | 1/11 rows have review records |
 | 720502 | 11 | 8 | patents/JP2018049102A.pdf<br>patents/US6115188.pdf<br>patents/US20110090576A1.pdf<br>patents/US20060023317A1.pdf | 1/11 rows have review records |
+| 589612 | 10 | 10 | patents/JP_2003241093_A.pdf<br>patents/US4452513.pdf<br>patents/US4223981.pdf<br>patents/US20160327774A1.pdf | No review-record hit |
 | 593686 | 10 | 9 | patents/JP2016148731A.pdf<br>patents/US20130308041A1.pdf<br>patents/JP2023033114A.pdf<br>patents/JP2020086133A.pdf | No review-record hit |
 | 603655 | 10 | 6 | patents/US20220011542A1.pdf<br>patents/JP2023001878A.pdf<br>patents/JP2011221421A.pdf<br>patents/US20050157403A1.pdf | No review-record hit |
 | 851401 | 10 | 8 | patents/JP2016148731A.pdf<br>patents/US20130335830A1.pdf<br>patents/JP2022140076A.pdf<br>patents/JP2023044106A.pdf | No review-record hit |
@@ -319,7 +319,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 652586 | 1 | 1 | patents/JP_2003241093_A.pdf | No review-record hit |
 | 656277 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 656337 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
-| 658512 | 1 | 1 | patents/US2186621.pdf | All rows have review records |
 | 658573 | 1 | 1 | patents/JPA 1975110330-000000.pdf | No review-record hit |
 | 662331 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 662577 | 1 | 1 | patents/US2896506.pdf | All rows explicitly disposed |
@@ -1206,8 +1205,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L3 (Element 3) | 4 | `489701 — fluor-crown class (supplier unconfirmed)` | 1.48920 / 70.10 | No catalog entry | abbe | patents/US2186621.pdf | Audit-log hit |
 | L4 (Element 4) | 5 | `Unmatched (739282 — dense-flint class; supplier unconfirmed)` | 1.73940 / 28.20 | No catalog entry | abbe | patents/US2186621.pdf | Explicit disposition in data |
 | L5 (Element 5) | 7 | `Unmatched (523509 — supplier unconfirmed)` | 1.52320 / 50.90 | No catalog entry | abbe | patents/US2186621.pdf | Explicit disposition in data |
-| L6 (Element 6) | 8 | `658512 — dense-crown class (supplier unconfirmed)` | 1.65780 / 51.20 | No catalog entry | abbe | patents/US2186621.pdf | Audit-log hit |
-| L7 (Element 7) | 9 | `589612 — crown class (supplier unconfirmed)` | 1.58940 / 61.20 | SK5 (trusted Sellmeier) | sellmeier | patents/US2186621.pdf | Audit-log hit |
 
 ### [FUJIFILM EBC X-FUJINON W 24mm f/2.8 DM](../../src/lens-data/fujifilm/FujifilmXFujinonSW24mmf28DMEBC.data.ts) - US 4,158,482
 
@@ -3489,7 +3486,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L6 (Element 6) | 11A | `882372 — high-index glass class` | 1.88202 / 37.22 | M-TAFD307 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (US20150085165A1, US20150085165, 20150085165) | No review-record hit |
 | L7 (Element 7) | 13 | `773495 — lanthanum glass class` | 1.77250 / 49.47 | M-TAF105 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (US20150085165A1, US20150085165, 20150085165) | No review-record hit |
 | L8 (Element 8) | 15 | `755275 — dense flint class` | 1.75520 / 27.53 | E-FD4 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (US20150085165A1, US20150085165, 20150085165) | No review-record hit |
-| L9 (Element 9) | 16 | `497816 — low-dispersion crown class` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (US20150085165A1, US20150085165, 20150085165) | No review-record hit |
+| L9 (Element 9) | 16 | `497816 — ED fluorophosphate class` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (US20150085165A1, US20150085165, 20150085165) | No review-record hit |
 | L10 (Element 10) | 18A | `731405 — lanthanum glass class` | 1.73077 / 40.50 | L-LAM69 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (US20150085165A1, US20150085165, 20150085165) | No review-record hit |
 | L11 (Element 11) | 20A | `773495 — lanthanum glass class` | 1.77250 / 49.47 | M-TAF105 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (US20150085165A1, US20150085165, 20150085165) | No review-record hit |
 | L12 (Element 12) | 22 | `487704 — low-dispersion crown class` | 1.48749 / 70.44 | N-FK5 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (US20150085165A1, US20150085165, 20150085165) | No review-record hit |
