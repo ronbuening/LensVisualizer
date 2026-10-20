@@ -479,8 +479,9 @@ function resolveOnce(): { seam: EngineSeam; sources: Record<keyof EngineSeam, st
         fieldGeometry,
       });
     };
-    // Request-based MTF is public at A8 and later; S2's public export still takes prepared state.
-    if (modules.analysisState?.createAnalysisRequest !== undefined) {
+    // computeMtf takes a request from the commit that published assessMtfSpectralData beside it (A8 and later);
+    // S2 and earlier Stage 7 bases export createAnalysisRequest while computeMtf still takes prepared state.
+    if (modules.mtf?.assessMtfSpectralData !== undefined) {
       const compute = exports.computeMtf as ResolvedEngineSeam["computeMtf"];
       exports.computeMtf = ((state, options) =>
         compute(
