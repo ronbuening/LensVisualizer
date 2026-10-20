@@ -1,7 +1,6 @@
 /**
  * Lens-data converter library — converts the text of a lens or teleconverter file to V2 text, or to V1 text, with a
- * report of what moved or dropped, or refuses it with the reason (OPTICS_ENGINE_REWRITE_SPEC.md, Ingest, conversion
- * and comments; S2.P3.T2 for the V1 direction).
+ * report of what moved or dropped, or refuses it with the reason (see agent_docs/architecture/optics-engine.md).
  *
  * One conversion:
  * 1. reads the file without running it (`read.mjs`) and ingests its value with source paths, through the engine's

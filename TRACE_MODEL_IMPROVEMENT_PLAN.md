@@ -82,6 +82,14 @@ The enforced rules are listed in `agent_docs/gotchas.md`; this section records t
 
 ## Deferred
 
+- **Short chords on polynomial aspheres.** The certified conic-seeded route deliberately returns only roots the
+  ordered scan also resolves; a chord shorter than a scan step can still be missed. Sphere and polynomial-free conic
+  near tangencies have an analytic turning-point bracket split. Extend polynomial root isolation only with independent
+  high-precision fixtures and explicit cap/root-order evidence (`geometry/intersect.ts`; issue #779).
+- **Folded distortion height curves.** Keep the UI guard until clipped-chief tracing and discontinuous image-height
+  curves have a validated interpretation; a fast or converged inversion alone does not make the resulting percentage
+  meaningful (`architecture/optics-engine.md`, Mirror And Folded Optical Paths).
+
 - **Stereographic, orthographic, polynomial projections.** Add when a real catalog lens demands them.
 - **`buildRayBundleForField()` shared bundle builder.** Vector-launch policy is still module-specific (bokeh,
   vignetting, pupil aberration, distortion grid, image height, visible and chromatic off-axis). Pupil-sampling

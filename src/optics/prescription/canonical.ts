@@ -2,7 +2,7 @@
  * Canonical prescription — the version-independent semantic content of a lens or teleconverter file.
  *
  * App-authored V2 is ingested through `ingestV2.ts`; the permanent converter reads V1 through `v1/ingestV1.ts`. The shape
- * follows the V2 lens-data model of `OPTICS_ENGINE_REWRITE_SPEC.md` (Lens data V2): records grouped by consumer,
+ * follows the V2 lens-data model of `src/lens-data/LENS_DATA_SPEC.md`: records grouped by consumer,
  * one value per fact, indices carried by a surface's medium, sparse aspheres, a flat radius as a marker, and the
  * stop's radius authority stated once. Schema defaults are applied, so a default written out and a default left
  * out ingest to the same prescription, and the engine's authority rules are applied, so a value the engine never

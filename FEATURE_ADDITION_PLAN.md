@@ -377,6 +377,18 @@ model is intentionally the scope until exhausted.
 
 ### Other data and validation boundaries
 
+- [ ] Once their shrink-only exception lists are empty, promote the single-lens nominal-versus-design f-number rule
+  from `patentMetadata.test.ts` into canonical validation, and the fixed-iris station consistency rule from
+  `zoomApertureModel.test.ts` into construction where traced station constants exist. Keep cross-file spelling,
+  source-path and configuration-parity rules in corpus tests. Do not change catalog verdicts while moving a rule.
+
+- [ ] Audit authored element focal lengths using `agent_docs/generated/element-focal-lengths.generated.md` as the
+  work list. Only after source review decide whether the inspector should derive thick-lens in-air values and remove
+  authored `elements[].focalLengthMm`. Resolve whether that later bulk edit changes page modified dates before
+  implementing it. Keep curated `specs`, element `type`, cemented tags and `subtitle` authored. The report is evidence,
+  not approval to change display values or source data; any visible change needs a changelog entry.
+
+
 Carried from the analysis roadmap so nobody re-proposes them as "quick":
 
 - **Production-lens MTF / Strehl / wavefront error** — manufactured-lens claims require measured

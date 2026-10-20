@@ -1,7 +1,7 @@
 /**
  * `npm run convert:lens-data -- --input <file|dir> [--to-version 1|2] [--dry-run | --check | --write]
  * [--output <dir>]` — converts lens and teleconverter files between versions of the lens-data format
- * (OPTICS_ENGINE_REWRITE_SPEC.md, S2.P3.T2). The command line lives in `lens-data-convert/cli.mjs`; the exit codes
+ * (see agent_docs/architecture/optics-engine.md). The command line lives in `lens-data-convert/cli.mjs`; the exit codes
  * are listed in its usage text.
  */
 

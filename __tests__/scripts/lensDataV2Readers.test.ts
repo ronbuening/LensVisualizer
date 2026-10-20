@@ -1,5 +1,5 @@
 /**
- * Lens-data tooling reads both versions (S2.P2.T2): the shared AST reader, identity and summaries from a V2 file and
+ * The AST reader accepts both versions; metadata consumes V2: the shared AST reader, identity and summaries from a V2 file and
  * its V1 twin, the organizer's import rewrite, and page dates that skip the format-only conversion commits.
  *
  * It stays in `npm test`, beside `lensDataScripts.test.ts` and `buildMetadataHelpers.test.ts`: `TOOLING_TESTS` takes
@@ -12,7 +12,7 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { encodeValue } from "../../src/benchmarks/engineDiff/payload.js";
+import { exactValue } from "../exactValue.js";
 import {
   combineFreshnessEntries,
   getGitFileFreshness,
@@ -65,7 +65,7 @@ function sourceOf(data: object, typeName: string, typesModule: string): string {
 }
 
 /** A value's exact encoding: sorted keys, and -0, NaN, the infinities and `undefined` told apart. */
-const exact = (value: unknown) => JSON.stringify(encodeValue(value));
+const exact = (value: unknown) => exactValue(value);
 
 describe("lens-data AST reader", () => {
   it("evaluates every catalog file to the value its module exports", () => {

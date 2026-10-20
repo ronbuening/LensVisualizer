@@ -138,7 +138,7 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
   "src/optics/analysis/request.ts#REQUESTS_BY_LENS": {
     kind: "bounded",
     owner: "module",
-    key: "compiled identity; each lens LRU holds at most 96 requests keyed by geometry and exact controls",
+    key: "compiled identity; each lens LRU holds at most 2 requests keyed by geometry and exact controls",
     capacity: 2,
     limit: "REQUEST_LENS_CACHE_LIMIT",
   },

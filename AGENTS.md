@@ -27,7 +27,7 @@ src/generated/        - Build-generated metadata and maker-prefix JSON (gitignor
 src/pages/            - Route-level page components (lensIndex/ holds the lens library module)
 src/components/       - React UI: controls, diagram layers, display/analysis, layout, hooks, markdown, mount, search
 src/comparison/       - Comparison mode feature module
-src/optics/           - Pure optical engine and analysis helpers (geometry, math, trace, field, prescription, state, analysis, mount)
+src/optics/           - Pure optical engine and analysis helpers (public barrels; geometry, trace, field, prescription, state, first-order, analysis, mount)
 src/types/            - Shared TypeScript types
 src/utils/            - State, URL sync, themes, catalog, SEO, metadata utilities
 src/lens-data/        - Auto-registered *.data.ts prescriptions, *.teleconverter.ts converters, *.analysis.md notes,
@@ -80,7 +80,8 @@ Read the smallest relevant doc before changing an area. `agent_docs/README.md` i
 
 ## Core Working Rules
 
-- Keep optics helpers pure and pass the runtime lens object `L` explicitly; avoid module-level optical state.
+- Keep optics helpers pure; analyses take `AnalysisRequest`, field/trace helpers take prepared geometry, and UI adapters
+  take `RuntimeLens`. Use the public barrels in `agent_docs/architecture/public-functions.md`.
 - Exact surface tracing is the only trace path. Do not add per-lens trace rollout state or thread `mode` / `traceMode`
   options through new helpers.
 - Fisheye and ultra-wide field launch go through `src/optics/projection.ts` and `solveChiefRayForRuntimeLens`; do not inline

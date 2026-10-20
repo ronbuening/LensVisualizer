@@ -2,7 +2,7 @@
  * V2 ingest — maps an authored `schema: 2` lens or teleconverter file onto the canonical prescription, and
  * refuses retired V1 files at the app boundary (`ingestLens`, `ingestTeleconverter`).
  *
- * V2 is the canonical prescription as an author writes it (OPTICS_ENGINE_REWRITE_SPEC.md, Lens data V2), so most of
+ * V2 is the canonical prescription as an author writes it (see agent_docs/architecture/optics-engine.md), so most of
  * the mapping is a copy. Ingest applies the schema defaults to the fields a file leaves out, gives undrawn media the
  * ids V1 ingest gives them (`m1`, `m2`, … by first use, so a medium's own id and name stay out of the semantic
  * fingerprint), takes a variable gap's first thickness as its surface's `d`, and decides the stop's radius authority.
@@ -10,7 +10,7 @@
  * Like V1 ingest it does not validate the prescription, which canonical validation does on diagnostic columns. A V2 file
  * has no validator-first pass, though, so V2 ingest refuses every shape it cannot read itself, along with what the
  * canonical form cannot hold and the rules V2 adds, each at its authored path. The one list of them is
- * the S2.P2.T1 As built of OPTICS_ENGINE_REWRITE_SPEC.md. Every reason found is reported at once, in a
+ * `src/lens-data/LENS_DATA_SPEC.md`, Validation Rules. Every reason found is reported at once, in a
  * `PrescriptionIngestError`, but for `elements` or `surfaces` that is not a list of objects, which stops ingest at
  * once. The input is never modified, and the result shares no object with it. Asked for source paths, ingest records
  * where it read each value (`SourcePaths`); in V2 a value sits at its canonical path, except a medium's, which ingest

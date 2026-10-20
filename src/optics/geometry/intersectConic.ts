@@ -49,7 +49,7 @@ import { normalFromSlope } from "./surfaceProfile.js";
 /**
  * Farthest, in mm along the ray, that the point the iterative path stops on may lie from a point that is returned
  * in its place, a closed-form root or the point of the conic-seeded route (`intersect.ts`): half the 1e-9 mm
- * budget of an unclipped hit (`OPTICS_ENGINE_REWRITE_SPEC.md`, Quantity budgets).
+ * root-selection move bound, independent of residual acceptance.
  *
  * Two points whose evaluated residuals both meet the shipped target lie up to twice that target, plus the rounding
  * of an evaluation, over |f'| apart, so a root that path would also find can move by that much. At the coordinates

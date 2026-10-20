@@ -210,8 +210,8 @@ a generated `publicationOrder` shared by page lists and RSS feeds. Keep generate
 unless a content change intentionally updates them.
 
 The modified date skips format-only lens-data conversion commits (`isFormatOnlyCommit` in `build-metadata-lib.mjs`),
-so converting a file to V2 moves no page date. The rules are in `OPTICS_ENGINE_REWRITE_SPEC.md`, S2.P2.T2 ("Page dates
-do not move with the conversion").
+so converting a file to V2 moves no page date. Recognition and fallback rules are recorded in
+[Decisions](../decisions.md) (format-only page freshness).
 
 ## Route Change Checklist
 

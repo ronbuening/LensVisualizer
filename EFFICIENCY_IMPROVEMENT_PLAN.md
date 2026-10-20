@@ -65,13 +65,11 @@ Out of scope: changing `doLayout` or `anchorLayoutToCamera`. Rollback: revert th
 
 P8–P10 record the Stage 6 target misses measured with a throwaway instrumented build at
 `facf1888` against `optics-rewrite/s2` (`20827483`); arrows below are anchor → head.
-For each item, repeat work counts with temporary instrumentation (never commit counters), then run
-`npm run benchmark:optics-rendering -- --base optics-rewrite/s2 --iterations=15 --warmups=2`
-and the common gate in "How To Use This Plan". Follow the rewrite spec's
-[timing method](OPTICS_ENGINE_REWRITE_SPEC.md#method): paired runs on the maintainer's machine,
-same Node version, raw samples and completed-work counts. Reduced sampling never counts as a speedup.
-Use its [change classes](OPTICS_ENGINE_REWRITE_SPEC.md#numerical-contract) and accuracy gates;
-the count targets remain non-blocking stage targets, not permission to relax accuracy.
+For each item, repeat work counts with temporary instrumentation (never commit counters), then run the single-commit
+benchmark with unchanged workloads and the common gate in "How To Use This Plan". Keep machine and Node version
+fixed, record status/grid/convergence beside timing, and retain raw samples in a heavy run. Numerical refactors follow
+the golden/full-suite/report-diff gate in `agent_docs/decisions.md`; reduced sampling or a changed physical model does
+not establish a speedup.
 
 ### P8. Investigate scalar-root evaluation cost on PC-Nikkor stopped-close
 
@@ -94,7 +92,7 @@ evaluations 3,440,310 → 1,377,345; the remaining per-call cost needs attributi
   and posed chief stop solve (`bracketScanSamples: 32`); (2) propose only an evidence-backed change
   under the declared class; (3) verify counts, accuracy and paired timing, then remove probes.
 - **Gotchas** — `agent_docs/gotchas.md:5–8`, "field-launch … conventions": retain the shared
-  projection/trace path. S6.P3.T2 warm starts were dropped (rewrite decision 95): seeding moved
+  projection/trace path. Neighbor-based warm starts were rejected (`agent_docs/decisions.md`): seeding moved
   results beyond C2. Do not reintroduce them as an equivalent optimization.
 - **Constraints** — use the shared P8–P10 timing method; algorithm replacements must meet C2,
   including independent error evidence, or take C3 with approval and evidence for changed behavior.
@@ -111,7 +109,7 @@ evaluations 3,440,310 → 1,377,345; the remaining per-call cost needs attributi
 Target: median stop traces per centered chief solve ≤ 8. Tier P met it (22 → 6), as did warmed
 PC-Nikkor analyses (6); a fresh PC-Nikkor 19mm default analysis missed (73 → 56). Its initial
 `[seed - half, seed + half]` bracket fails, so the legacy 96-sample expanding scan runs before
-Illinois refinement. S6.P2.T2 deliberately retained that bracket choice to preserve roots.
+Illinois refinement. The centered chief solver retains that bracket choice to preserve roots.
 
 - **Files to touch** — **modified**: `src/optics/field/chiefRaySolve.ts`,
   `__tests__/src/optics/chiefRaySolver.test.ts`.
@@ -142,7 +140,7 @@ Illinois refinement. S6.P2.T2 deliberately retained that bracket choice to prese
 Target: ≤ 6 chief solves per image-height inversion target. Medians met it (Tier P 11 → 2;
 PC-Nikkor default 10 → 3), but three non-converging Olympus Zuiko 18mm f/3.5 targets at 21.65 mm
 each take 48 calls: eight secant evaluations followed by the exact legacy 40-step bisection replay.
-S6.P2.T3 keeps that replay so their fallback results remain bit-identical.
+Image-height inversion keeps that replay so their fallback results remain bit-identical.
 
 - **Files to touch** — **modified**: `src/optics/field/imageHeight.ts`,
   `__tests__/src/optics/chiefRaySolver.test.ts`.
@@ -166,6 +164,20 @@ S6.P2.T3 keeps that replay so their fallback results remain bit-identical.
   still converge. Report per-target failures/fallbacks, not just medians; retain any unresolved miss.
 - **Out of scope** — fewer targets, relaxed success tolerance or a changed physical model.
   **Rollback** — revert the implementation branch; discard temporary probes.
+
+### P11. Bound the remaining owner-local optical caches
+
+- [ ] Cap or remove the four entries still in `CACHE_LEGACY` in `__tests__/src/optics/opticsArchitecture.test.ts`:
+  `analysis/mtf/mtfRayClassification.ts#boundsBySurface` (distinct semi-diameters per surface),
+  `analysis/mtf/mtfTracing.ts#indexTablesByState` (wavelengths per state),
+  `perspective/analysis/vignetting.ts#ZERO_CENTER_REFERENCE_BY_STATE` (sampling/pupil/channel keys per state), and
+  `trace/rayAdapters.ts#TRACE_OPTIONS_BY_STATE` (aperture/ghost/channel/normalization/capture keys per state).
+  Weak ownership does not bound the maps of a live owner. Preserve results and trace policy, add explicit capacities
+  or request-local ownership, then move each entry into the registry with its owner, key and bound. Verify architecture
+  guards, the full suite and single-commit memory sessions. This is an engine task; documentation close cannot certify
+  the final-verification requirement that all legacy lists are empty while these entries remain.
+- [ ] Add a browser drag/settle benchmark only if interactive feel regresses; Node timings do not cover that latency.
+  Keep it report-only and retain identical ray/sampling workloads.
 
 ### B2. Bundle & load follow-ups
 

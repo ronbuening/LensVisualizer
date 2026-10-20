@@ -14,23 +14,56 @@ The 16 top-level barrels are `buildLens`, `teleconverter`, `optics`, `fieldGeome
 subdirectories. The seam guard admits these and the permanent plain-Node entry
 `prescription/teleconverterCompatibility.ts`. `mount/` is outside the seam. Tests follow their internal subjects.
 
-The public contracts and descriptive adapter names are listed in [Public Functions](public-functions.md). The engine
-has no rollout-suffixed helper names or compatibility/alias barrels. Cross-ref capture and benchmark adapters retain
-historical candidate strings so the head harness can still bundle against older engines.
+The public contracts and descriptive adapter names are listed in [Public Functions](public-functions.md). The engine has no rollout-suffixed helper names or compatibility/alias barrels. The conversion barrel is restricted
+to `scripts/lens-data-convert/`, `scripts/lens-data-lib.mjs` and `scripts/lens-summaries.mjs`.
 
 ## Core Rule
 
-`src/optics/` is the authoritative optics engine. Stable app and test imports should use the public files in
-`src/optics/*` where practical, while engine-native work can import focused submodules such as `src/optics/trace/`,
-`src/optics/field/`, and `src/optics/state/`. Per-module purposes live in `src/optics/readme.md` and each file's header
-JSDoc; this document covers the conventions that span modules.
+The engine has one canonical input, one compiler and one exact trace stack. Optical helpers are pure and take
+explicit geometry or requests; React and slider orchestration stay outside the engine.
 
-Pure optics modules have no React dependencies. Helpers accept the runtime lens object `L` or a
-`PreparedGeometry` (also aliased as `PreparedOpticalState`) plus request options explicitly. Do not introduce hidden
-module-level optical state.
+| Contract | Owner and contents | Lifetime |
+| --- | --- | --- |
+| `CanonicalPrescription` (`CanonicalLens` / `CanonicalTeleconverter`) | `prescription/canonical.ts`: semantic records with defaults and authority applied; provenance is separate | One immutable identity per ingested file; worker-serializable |
+| `CompiledLens` | `prescription/compile.ts`: indexed profiles, resolved media, path plan, controls, aperture tables, annotations and construction constants | One successful compile per canonical identity; no RuntimeLens back-pointer |
+| `RuntimeLens` | `prescription/runtimeView.ts`: frozen display/read model with constants, explicit view fields and unexpanded canonical `source` | Shared while live, weakly referenced by compiled owner; no `data` field |
+| `PreparedGeometry` | `state/preparedGeometry.ts`: current vertices, gaps, surfaces, iris and image plane for exact focus/zoom/aberration controls | Bounded compiled-owner LRU; `PreparedOpticalState` is its type alias |
+| `TraceGeometry` | `trace/types.ts`: indexed surfaces and media, z positions, stop index, image plane, path plan and selected traversal | Shared prepared-state view, or constructed directly for build/validation probes |
+| `AnalysisRequest` | `analysis/request.ts`: prepared geometry, physical aperture, EFL, channels, field, pose/context, quality, sampling and capture | Frozen current-control snapshot; lazy context keyed by its identity |
 
-State-dependent analysis must remain outside `buildLens()`. `buildLens()` constructs build-time/runtime constants from
-lens data; analysis tabs use current focus, zoom, and aperture state.
+```mermaid
+flowchart LR
+  V2[V2 file] --> I[Ingest and provenance]
+  I --> C[Canonical prescription]
+  C --> K[Compose and compile]
+  K --> R[RuntimeLens UI view]
+  K --> G[PreparedGeometry]
+  G --> T[TraceGeometry and exact traversal]
+  G --> Q[AnalysisRequest]
+  T --> Q
+  Q --> A[Analyses and MTF]
+  G --> D[SVG geometry]
+```
+
+| Directory under `src/optics/` | Responsibility |
+| --- | --- |
+| `prescription/` | V2 ingest, defaults, canonical identity, composition, compilation, runtime view and `validate/`; converter-only V1 mapping in `v1/` |
+| `geometry/` | Surface profiles, fused sag/slope, aperture bands, intersection kernel and operand envelopes |
+| `trace/` | Sequential/generalized traversal, path selection, interactions, apertures, capture and absorption |
+| `state/` | Layout, exact control interpolation, prepared geometry, iris and camera anchoring |
+| `first-order/` | Build constants, cardinals, breathing and f-numbers |
+| `field/` | Projection-aware launch, chief solves, field geometry and image-height inversion |
+| `math/` | Vectors, paraxial propagation, phase and numerical root helpers |
+| `chromatic/`, `glassCatalogEntries/` | Channel metadata, material resolution, dispersion tables and qualified glass catalog |
+| `analysis/` | Requests, lazy contexts, jobs, sampling and per-family modules, including `mtf/` |
+| `perspective/` | Pose, sensor frames, targeting, shared solve contexts, diagram fans and moved analyses |
+| `diagram/` | SVG transforms, surface outlines, shapes, trim diagnostics and labels |
+| `diagnostics/` | Bounded chief-ray status snapshots |
+| `mount/` | Independent mount diagrams; outside the lens-engine seam |
+
+State-dependent analyses consume `AnalysisRequest`; lower-level geometry/trace/field helpers consume prepared or
+trace geometry. RuntimeLens adapters translate UI controls into those contracts. Construction never runs
+slider-dependent analysis or reconstructs the engine from a runtime display view.
 
 ## Omitted Sensor Optics
 
@@ -242,9 +275,8 @@ The canonical construction projection requires the defaulted `lensShiftFrac`; co
 without another fallback. The chromatic ray-fan summary likewise reads the defaulted `offAxisFieldFrac` directly
 (0.08 and 0.6 respectively when omitted).
 Compiled lenses contain no runtime back-pointer. Preparation reads compiled aperture schedules and explicit-plane
-authority; tracing and diagram consumers read compiled facts directly. Legacy analysis adapters obtain the derived
-view until their Stage 7 request migration. View assembly never compiles, resolves materials or prepares geometry.
-`engineLensFromRuntime()` and `prepareRuntimeState()` expose the compiled owner and prepared state for tracing and analysis.
+authority; tracing and diagram consumers read compiled facts directly. Analyses consume explicit requests. View assembly never compiles, resolves materials or prepares geometry.
+`compiledLensFromRuntime()` and `prepareRuntimeState()` expose the compiled owner and prepared state for tracing and analysis.
 
 The constructor validates lens data and constructs a frozen `RuntimeLens` with:
 
@@ -268,7 +300,7 @@ The constructor validates lens data and constructs a frozen `RuntimeLens` with:
   against wavelength wherever estimated glasses sit beside real ones. Anomalous-dispersion glasses without `dPgF`
   remain uncertain at g.
 - `chromatic/channels.ts` owns channel metadata and order for engine and UI, including native e-line text and
-  wavelengths. The wavelength exports in `constants.ts` and `chromatic/indexResolver.ts` alias its d-line lookup;
+  wavelengths. The wavelength exports in `chromatic/indexResolver.ts` alias its d-line lookup;
   Cauchy interpolation nodes and full-channel traversals derive from the same metadata and order.
 - Channel lines are set per element by `indexReference`, and every tier must return them. A d-line element traces
   R/G/B/V at C/d/F/g. A native e-line element traces C′/e/F′/g with G equal to its authored `ne`: its Sellmeier tier
@@ -310,10 +342,10 @@ projections (fisheye, rectilinear `fullFieldDeg`/`maxTraceFieldDeg`) and folded 
 the format. `npm run audit:field-coverage` reports each lens's modeled edge against its corner and names the stopping
 rim.
 
-**Wide-open iris.** `nominalFno` sizes the iris: the builder real-traces the marginal ray at the entrance-pupil radius
+**Wide-open iris.** `aperture.nominalFNumber` or station `nominalFNumber` sizes the iris: the builder real-traces the marginal ray at the entrance-pupil radius
 that f-number names and takes its height at the stop. A zoom does this at every source station (`zoomStopSDs`, read
 through `wideOpenStopAtZoom()` in `src/optics/optics.ts`), so each station traces at its stated f-number;
-`zoomStopSemiDiameters` substitutes a published schedule and `zoomApertureModel: "fixed-iris"` keeps the first
+station `stopSemiDiameter` substitutes a published schedule and `zoom.apertureModel: "fixed-iris"` keeps the first
 station's radius. A stop that is a surface of drawn glass keeps its authored radius. Every other semi-diameter is a
 hard clip with no margin, so a rim smaller than the stated beam makes the lens trace slower than its label;
 `npm run audit:aperture` lists those stations and what limits each. The data rules are in
@@ -323,8 +355,7 @@ hard clip with no margin, so a rim smaller than the stated beam makes the lens t
 
 ### Canonical Prescription
 
-`src/optics/prescription/canonical.ts` defines the version-independent prescription the rewrite builds on
-(`OPTICS_ENGINE_REWRITE_SPEC.md`, Lens data V2). Its shape is the V2 model: records by consumer, a surface's index
+`src/optics/prescription/canonical.ts` defines the version-independent prescription. Its shape is the V2 model: records by consumer, a surface's index
 from its `medium` (an element, an undrawn medium in `media`, or air), sparse `asphere` terms, `R: "flat"`, zoom station
 records, focus keyframes, conjugates by station index, gaps by label as `[zoom][focus]`, and the stop's radius
 authority (`authored`, `schedule` or `derived`, by the rule `buildLens` applies). Provenance sits beside it: the
@@ -342,7 +373,7 @@ so an ingest that was not asked builds no path. `sourcePaths.ts` spells every pa
   lens data. `buildLens` also accepts an optional `{ path }` request for diagnostics.
   V2 ingest applies defaults at canonical paths, numbers undrawn media by first use (authored ids and names stay in
   provenance), and takes each variable gap's first value as its surface's `d`. It refuses unreadable shapes and V2
-  rules at authored paths before canonical validation; the plan's S2.P2.T1 As built lists them. Shared rules for
+  rules at authored paths before canonical validation; [Validation Rules](../../src/lens-data/LENS_DATA_SPEC.md#validation-rules) lists them. Shared rules for
   unknown fields, defaults, aspheres and rear plates live in `ingestCommon.ts`.
 - The permanent converter alone dispatches between V1 and V2. `prescription/v1/` holds `ingestV1.ts`, its
   two-version dispatcher `ingest.ts`, `toLensData.ts` and `v1SourceMap.ts`, reachable only through
@@ -354,8 +385,7 @@ so an ingest that was not asked builds no path. `sourcePaths.ts` spells every pa
   modules from every runtime seam dependency graph. Tests may follow their internal subjects.
 - A stop carries `sd` in V2 only where its radius is authored. A stop whose radius is not authored (traced from the
   design f-number, or taken from the station schedule) leaves it out, and V2 ingest refuses one written there.
-  `validateLensData` accepts it absent, generated rear-plate rims skip it (below), and `lensDataStopRadiusAuthority`
-  in `canonical.ts` reads that authority from V1 data for both.
+  `validateLensData` accepts it absent, generated rear-plate rims skip it (below), and canonical `stopRadiusAuthority` records that authority. The legacy-data authority helper belongs to converter diagnostics.
 - `toLensData` (`v1/toLensData.ts`) is the converter-only V1 view: it gives a V1 file back exactly, with the catalog defaults merged,
   and `toLensDataInput` gives it back as authored. A V2 file records no V1 spelling, so its view writes each field in
   the plain V1 form.
@@ -478,13 +508,10 @@ the whole prescription while a converter is camera-fixed).
 stable path in app code unless working inside the engine itself. Import from deeper `src/optics/**` engine modules only
 for engine-native work or focused tests that need prepared-state APIs.
 
-It groups display-sag and layout helpers (`renderSag()`, `sagSlope()`, `doLayout()`, `gapTrimHeight()`, `thick()`), the
-exact trace adapters (`traceRay()`, `traceSkewRay()`, `traceToImage()`, `traceRayChromatic()`, `traceParaxialRay()`),
-zoom interpolation (`eflAtZoom()`, `epAtZoom()`, `halfFieldAtZoom()`, `tracingHalfFieldAtZoom()`, `bAtZoom()`, and the
-other `*AtZoom()` interpolators), and current-state pupil/field geometry (`entrancePupilAtState()`,
-`computeFieldGeometryAtState()`). All trace/layout functions accept `zoomT`; prime lenses ignore it. It does not export
-`sag()`, `conicPolySag()`, `sagSlopeRaw()`, or `FLAT_R_THRESHOLD`: outside code takes those from `src/optics/geometry.ts`
-([Surface Geometry](#surface-geometry)).
+It exports runtime layout/station adapters, physical iris controls, exact ray adapters and first-order exposure
+readouts. Drawing sag and trimming come from `diagramGeometry.ts`; positional surface math from `geometry.ts`;
+field, pupil and chief-ray adapters from `fieldGeometry.ts`. The import table in
+[Public Functions](public-functions.md) is the entrypoint inventory.
 
 ### Chief-Ray Solving
 
@@ -513,9 +540,8 @@ neighbour-seeded field-walk solver keeps its existing refinement.
 The prepared implementation is split into `field/geometry.ts` (raw field, pupil and conjugate geometry),
 `field/chiefRaySolve.ts` (object-plane and bounding-sphere solves), and `field/imageHeight.ts` (traced image heights,
 inversion and the analysis field walk). Exact stop/image trace helpers live below the solves in `field/geometry.ts`,
-keeping those dependencies acyclic. `state/fieldAdapters.ts` preserves the positional RuntimeLens APIs at the compatibility
-boundary; the field core consumes `PreparedGeometry` and request options. `PreparedOpticalState` remains a type alias
-for analyses awaiting their request migration. Bounding-sphere launch bounds retain baseline prescription thicknesses,
+keeping those dependencies acyclic. `state/fieldAdapters.ts` preserves the positional RuntimeLens APIs at the UI
+boundary; the field core consumes `PreparedGeometry` and request options. `PreparedOpticalState` remains a type alias for prepared geometry. Bounding-sphere launch bounds retain baseline prescription thicknesses,
 and image-height requests retain caller-supplied vertex positions; neither changes the solver's arithmetic.
 
 A cache miss of `solveChiefRay()` counts its outcome through `reportChiefRayFallback()` in `diagnostics/chiefRay.ts`;
@@ -596,7 +622,7 @@ whole-table non-finite guard; first-order exposure readers retain their local in
 
 `first-order/focusBreathing.ts` and `first-order/fNumber.ts` each expose one prepared-state adapter for paraxial
 EFL and exposure-correction math, retaining existing control and fallback contracts. `FOCUS_INFINITY_CUTOFF`
-(0.003, in `focusDistance.ts`) defines when focus is treated as infinity: it gates distance labels and remapping,
+(0.003, in `state/focusDistance.ts`) defines when focus is treated as infinity: it gates distance labels and remapping,
 EFL (including perspective field scale), f-number and magnification summaries, pupil-aberration paraxial baselines,
 and the real-ray sensitivity difference `kt - k0` used for conjugate correction. Below the cutoff `conjugateK` is
 zero, matching the pre-optics-2 behavior. The cutoff does not snap interpolated surface gaps.
@@ -610,8 +636,7 @@ aberration retains [0, 1] or [-1, 1] for a centered control. All three normalize
 exactly, without formatted keys. A same-key prescription with a different compiled identity has an independent cache.
 Within a lens, hits move to most recent and misses evict the least recent state. `prepareStateUncached()` uses the
 same builder without touching the cache.
-The state's string `cacheKey` remains a compatibility label for analysis contexts, using unrounded control values;
-it does not select prepared geometry. The field-coverage script uses `buildLens.ts`'s `prepareRuntimeState` export.
+The state's string `cacheKey` is diagnostic, using unrounded control values; it does not select prepared geometry or requests. The field-coverage script uses `buildLens.ts`'s `prepareRuntimeState` export.
 
 `stateWithZ()` is the shared coordinate override. Camera traces translate a refractive image plane and recompute
 its final gap and track; diagram callers select `"preserve"` to keep image-plane metadata and the final gap unchanged.
@@ -683,7 +708,7 @@ ownership.
 `TraceOptions.capture` selects `terminal`, `hits`, or `diagnostics` (the default) before traversal through
 `trace/capture.ts`. The terminal recorder is shared and stateless: it allocates no hit history, direction snapshots,
 clip events, auto-candidate diagnostics or final diagnostics. Hit capture records the same encounters without diagnostic
-storage; full capture retains existing UI and harness outputs. Requested heights and sequential OPL are independent of
+storage; full capture retains UI diagnostic outputs. Requested heights and sequential OPL are independent of
 capture. Status, failure reason, terminal surface/point/direction, medium and image-plane state remain available in all
 three modes. MTF's clear-cap miss proof uses that terminal state and prepared geometry: an unproved intersection failure
 stays numerical/unresolved rather than becoming physical vignetting.
@@ -691,7 +716,7 @@ stays numerical/unresolved rather than becoming physical vignetting.
 Scalar construction, chief-ray and pupil-basis projections and MTF aiming/footprint classification request terminal
 capture. Skew adapters choose terminal capture for nonabsorbing lenses and hit capture when Beer-Lambert weighting
 needs intermediate distances; their public intercept/transmission result is unchanged. Meridional diagram and perspective
-adapters, folded stop occurrence searches, folded pupil hit consumers and the differential harness keep full capture.
+adapters, folded stop occurrence searches, folded pupil hit consumers keep full capture.
 The options cache keys include capture, so alternating diagram and analysis requests cannot reuse a reduced policy.
 
 Trace memoization has explicit weak owners and bounded per-owner storage. `trace/rayAdapters.ts` retains at most
@@ -827,8 +852,7 @@ The closed form does not change the contract. It proposes a root, and the root i
   they do on a factory profile (see [Surface Geometry](#surface-geometry) for spread copies over mutable
   coefficients) everywhere but at the edge of the domain, where nothing is decided.
 
-Three outcomes differ from the iterative path's for production traversal, and the differential harness reads each as a
-discrete transition:
+Closed-form and iterative root selection can differ at numerical boundaries:
 
 - **Roots the scan does not resolve.** The closed form finds a chord, or a short span inside the conic's domain,
   that falls between two samples whose residuals share a sign
@@ -856,8 +880,7 @@ nearest hit and keeps the lower surface index on a tie (`findNearestGeneralizedS
 apart at `5.6e-5` mm from the axis. The closed form puts the mirror's blocked side first there, as the prescription
 has it, where the iterative path had let the ray through; the state's raw half-field, a bisection that ends on such a
 ray, moves by one of its steps. At the lens's analysis samples, below about `4e-5` mm of vertex radius, the two
-surfaces' `t` are closer than one ulp on every route, so rounding decides which one a ray meets. Both tracers now
-decide it alike; neither resolves the prescription's order at those radii.
+surfaces' `t` are closer than one ulp on every route, so rounding decides which one a ray meets. Neither numerical route resolves the prescription's order at those radii.
 
 The conic-seeded route (`seedAsphereSolve` in `geometry/intersect.ts`) does not change the contract either. It serves
 a polynomial asphere with an authored cap, on a call that sets no budget, and it decides one thing: a hit that the
@@ -973,8 +996,7 @@ sag and slope of each point it evaluates from one `SurfaceProfile.evaluate()` ca
 roundoff envelope. The seeded iteration is separate from it: no bracket, no envelope, and a limit of six evaluations.
 
 The iterative path has one 72-iteration cap (`INTERSECTION_MAX_ITERATIONS`). The fixtures need 23: the
-hemisphere-rim root stalls at its 24th evaluation, which the pending step after the cap still judges. The slowest
-Tier P solves, four Zeiss ZX1 analysis solves making slow progress on an asphere's polynomial continuation, need 71.
+hemisphere-rim root stalls at its 24th evaluation, which the pending step after the cap still judges. Measured Zeiss ZX1 analysis solves making slow progress on an asphere's polynomial continuation need 71.
 Explicit caller budgets remain supported. The cap is a measured margin, not a convergence guarantee for arbitrary
 profiles or bounds.
 
@@ -1194,15 +1216,15 @@ plain run writes one JSON record under `agent_docs/benchmarks/runs/`, and `agent
 summarizes the latest records. The benchmark covers lens building, current-state layout, ray tracing, generic analysis
 work, static SVG rendering, and aberration-panel data/rendering.
 
-`--base <ref>` compares the working tree with a base ref in one run: the same benchmark entry is bundled against both
-engines, every case is sampled on both in alternating order, and the record carries each case's raw samples, the ratio
-of medians with a bootstrap interval, and what each side completed. `--heavy` runs a seven-cell subset and `--memory`
-a scripted session that reports retained heap. These records go to a `paired/` folder beside `runs/`, which the trend
-report does not read. `agent_docs/benchmarks/README.md` has the commands, the statistics and the output policy.
+`--heavy` runs the seven-cell subset; `--memory` runs a scripted retained-heap session in a fresh child with
+forced collections. They write single-commit records under `sessions/`, outside the full-matrix trend.
+[Benchmarks](../benchmarks/README.md) owns commands and output policy. Timing runs on the maintainer's machine;
+reduced sampling, early unsupported returns and model changes do not establish speedups.
 
-The engine-migration baseline is kept in `agent_docs/records/optics-2-stage-05-performance.md`. There is no in-tree
-old-vs-new engine selector or `*Legacy.ts` fallback: performance work profiles the current `src/optics` engine
-directly, and rollback is an ordinary git revert or a focused fix with regression coverage.
+The earlier baseline is retained in [Optics performance](../records/optics-2-stage-05-performance.md).
+
+There is no old-engine selector or fallback stack. Rollback is an ordinary git revert or a focused fix with regression
+coverage. The engine refactor gate is recorded in [Decisions](../decisions.md).
 
 ## Cardinal Elements
 
@@ -1369,13 +1391,12 @@ stations: any non-neutral setting is off-station.
 `preparedGeometry`, dynamic EFL, entrance-pupil and physical-stop semi-diameters (mm), chromatic channels, optional
 field geometry, optional perspective trace context and its pose, quality, sampling and trace capture. Geometry and
 perspective tracing share their existing immutable owners and solve caches; field geometry, aperture, sampling and
-sampling arrays are frozen snapshots. Channels and capture currently describe the adapters' defaults (R/G/B/V and
-`diagnostics`); family migration will make those choices direct job inputs.
+sampling arrays are frozen snapshots. Channels and capture describe the shared defaults (R/G/B/V and `diagnostics`); families retain their physical trace policies.
 
 Request interning compares prepared geometry and perspective trace context by object identity, then aperture, EFL,
 field values, quality and sampling by exact value (`Object.is` for numbers, including array entries). A fresh params
-object or equivalent field/sampling arrays therefore reuse the request. The history is an LRU of 96 requests per
-compiled lens for two recent compiled identities, matching prepared geometry's bounds. No rounded or serialized
+object or equivalent field/sampling arrays therefore reuse the request. The history is an LRU of two requests per compiled lens for two recent compiled identities. This short history
+retains adjacent interactive/settled renders without retaining an analysis control sweep. No rounded or serialized
 control key participates in request lookup.
 
 `analysis/analysisContext.ts` weakly memoizes one lazy context per request identity. Sibling tabs and subsequent
@@ -1395,9 +1416,7 @@ breathing series and group-movement profiles take `AnalysisRequest`. The summary
 takes the request directly; `OpticalSummaryTab` creates/reuses a request and lazy context without a prepared-job
 fallback. Spherical aberration, SA profile, blur character and best focus also take requests through the unchanged job
 keys. Field curvature, its chromatic bundle, coma, distortion, vignetting and pupil aberration also take requests,
-including field geometry and sampling. Bokeh and chromatic LoCA/lateral color/fans also take requests. The historical
-job-table names remain during the public-seam migration, but no centered job takes a prepared-state or RuntimeLens
-signature.
+including field geometry and sampling. Bokeh and chromatic LoCA/lateral color/fans also take requests. The job registries bind requests directly; no centered job takes a prepared-state or RuntimeLens signature.
 Perspective focus/bokeh/best focus, field curvature/astigmatism/coma, chromatic, distortion, vignetting and pupils
 remain under `perspective/analysis/` and consume `AnalysisRequest`. Their options override field/channel/pupil sampling only;
 both aperture radii and the shared perspective trace context come from the request. `perspectiveAnalysisJobs.ts`
@@ -1490,8 +1509,7 @@ primers aligned to that convention.
   target for rectilinear curves is checked independently when needed, including the raw field if the analysis field
   stops short. Fisheye Edge reporting keeps the historic last bracketed target. Ordinary
   design/aperture limits retain Edge reporting; no earlier failure vetoes a corner ray that reaches its target. No continuity scan or
-  synthetic last-valid endpoint is used. The chief-solve fallback discontinuities belong to S6.P2.T2 (object-plane
-  and bounding-sphere chief solves); this guard only excludes invalid distortion samples. Scalar rim continuation,
+  synthetic last-valid endpoint is used. Chief-solve fallback discontinuities remain independent of this per-sample validity guard. Scalar rim continuation,
   vector aperture clipping and the Distortion-tab folded-system guard are retained. Residuals use the declared
   rectilinear/equidistant/equisolid projection; vector chief launches remain supported.
 - `computeDistortionFieldGrid()` - traced 2D chief-ray field grid. The internal `resolveDistortionGridLaunch`
@@ -1568,7 +1586,7 @@ context request or builds a request from prepared controls and both aperture rad
 Each pair recomputes separate infinity, near, view and complementary-focus layouts, sharing identical focus states
 within the pair; it never traces the current request geometry twice. Field geometry is recomputed at each focus state,
 and the standalone field-footprint entry keeps its default sampling independently of request sampling.
-The moved Bokeh tab continues using perspective focus until the perspective-family migration.
+Moved Bokeh uses the request-facing perspective focus analysis.
 
 The traced image-plane point cloud is the source of truth; radial profiles are derived summaries. Off-axis bokeh
 footprints use projection-aware field geometry and vector launches for fisheye/past-cap fields when available.
@@ -1595,8 +1613,7 @@ its obstruction-aware marginal fractions. Perspective chromatic and the tab's mo
 movement wiring.
 
 `analysis/chromatic/rayFanScaling.ts` is the sole bar-scaling implementation. The LoCA inset uses the fixed 0.15-mm
-reference; the off-axis fan widget uses the generic helper with its 0.01-mm image-height reference. The compatibility
-scaling exports alias this implementation, preserving multiplication and clamp order. Channel/index/dispersion
+reference; the off-axis fan widget uses the generic helper with its 0.01-mm image-height reference. The public scaling exports preserve multiplication and clamp order. Channel/index/dispersion
 infrastructure stays in `chromatic/`.
 
 ## Aspheric Comparison
@@ -1615,8 +1632,7 @@ The two paths agree bit for bit on every catalog aspheric surface, but with abse
 the conic evaluator floors the root while the spherical profile clamps it to zero; preserve both behaviors.
 They share the inclusive 96-sample profile, 64-sample fit, golden-section bracket, 60-step cap, relative tolerance
 and flat/degenerate fallback. `peakAbsDeparture`, `rmsDeparture` and `nearestSurfaceForClick` share one implementation;
-click ties keep the first surface. The overlay retains its explicit 97-sample (`SAMPLES + 1`) profile. The engine-diff
-`asphericComparison` job still records both arithmetic paths in the same payload shape. None belong in `buildLens()`.
+click ties keep the first surface. The overlay retains its explicit 97-sample (`SAMPLES + 1`) profile. None belong in `buildLens()`.
 
 ## Validation And Rendering Geometry
 
@@ -1644,3 +1660,31 @@ terminology use the [Reading V1 Audits](../../src/lens-data/LENS_DATA_SPEC.md#re
   optional point transform for perspective-control movement.
 
 Production tests treat excessive hidden render trim as a data-quality failure.
+
+## Cache Ownership And Architecture Guards
+
+The source-scanning guard in `__tests__/src/optics/opticsArchitecture.test.ts` owns the approved registry. It rejects
+runtime import cycles, outside imports through unregistered optics modules, and unlisted module-level containers.
+Admission rules, exclusions and scanner limits live in [Testing Architecture](testing.md#architecture-guards).
+
+| Cache owner | Key and retained bound |
+| --- | --- |
+| `prescription/identity.ts` | Weak authored/view → ingest and runtime → compiled associations; one value per owner |
+| `prescription/compile.ts` | Weak canonical identity → one successful immutable compilation |
+| `prescription/runtimeView.ts` | Compiled identity → one weak reference to its frozen UI view |
+| `state/preparedGeometry.ts` | Two recent compiled identities, 96 exact clamped control tuples each; z overrides weakly keyed by immutable array identity, at most two plane modes per array |
+| `analysis/request.ts` / `analysisContext.ts` | Two recent compiled identities, two exact requests each; one weak lazy context per request |
+| `field/chiefRayCache.ts` | Weak prepared-geometry owner; 512 exact field/launch-domain/channel solves per owner |
+| `diagnostics/chiefRay.ts` | 2,048 compiled owners; defensive status snapshots |
+| `trace/rayAdapters.ts` | Meridional and skew direction caches, each bounded by `DIRECTION_CACHE_LIMIT` (4,096) |
+| `geometry/surfaceProfile.ts` | Frozen coefficients weakly own one Horner compilation and the last-radius profile |
+| `chromatic/indexResolver.ts`, `trace/bulkAbsorption.ts` | Weak descriptor/lens identities; one coefficient vector or fixed per-element table per owner |
+
+Lookup tables in the registry are immutable after construction. Request-local stores live with their context:
+perspective `sensorChiefSolves` shares exact sensor-point/chief-option/channel solves across families, and MTF's
+job cache shares the focus search and requested fields. They are not global control histories.
+
+Four module-level owner stores still appear in `CACHE_LEGACY`: MTF per-surface radius bounds, MTF per-state wavelength
+indices, perspective per-state zero-center references, and per-state ray-adapter trace options. Weak ownership frees
+a dead owner but does not bound a live owner's inner map. Their retirement is open in
+`EFFICIENCY_IMPROVEMENT_PLAN.md`; the guard must keep reporting their status until engine changes cap or remove them.

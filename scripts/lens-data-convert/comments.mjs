@@ -1,6 +1,6 @@
 /**
  * Converter comment mapping — carries each comment of a source file to the node it annotates in the converted file
- * (OPTICS_ENGINE_REWRITE_SPEC.md, Ingest, conversion and comments).
+ * (see agent_docs/architecture/optics-engine.md).
  *
  * Where a comment goes is the engine's answer (`commentTarget` of `V2SourceMap`, or of `V1SourceMap` going to V1),
  * composed from where ingest read each value and where the view wrote it; this module never infers a node's place

@@ -11,7 +11,7 @@ const GIT_LOG_FORMAT = "--format=%cI%x09%H%x09%s";
 
 /**
  * The subject of a format-only lens-data conversion commit begins with a conversion step's ID and a space
- * (OPTICS_ENGINE_REWRITE_SPEC.md, S2.P2.T2). A squash merge keeps the PR title, which begins with the step ID, and
+ * (see agent_docs/decisions.md, page freshness). A squash merge keeps the PR title, which begins with the step ID, and
  * appends ` (#NNN)`; every commit on such a PR's branch begins with the ID too.
  */
 const FORMAT_ONLY_SUBJECT = /^(?:S2\.P5\.T[1-9]|S2\.P6\.T1) /;

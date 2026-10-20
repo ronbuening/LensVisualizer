@@ -1394,13 +1394,13 @@ names it at its V2 path (`surfaces[5].medium: unknown element 13`).
 whose traced Gaussian EFL, at the first zoom station and infinity focus, lies outside 0.8 to 1.25 times
 `catalog.focalLengthMm.design` (its first value on a zoom; no check without one): `assertRectilinearFocalReference`
 in `src/optics/first-order/lensConstants.ts`. A fisheye whose projection constant departs from the EFL declares
-`projection` instead. The guard is the exception to V2 paths: it reads the lens's V1 view, so its message names
+`projection` instead. The guard is the exception to V2 paths: it reads the canonical construction columns, so its message names
 `focalLengthDesign`, which is `catalog.focalLengthMm.design` ([Reading V1 audits](#reading-v1-audits)).
 
 ### Ingest
 
-Code: `src/optics/prescription/ingestV2.ts` unless noted. The full list, with a test case for each, is in the S2.P2.T1
-As built of `OPTICS_ENGINE_REWRITE_SPEC.md`.
+Code: `src/optics/prescription/ingestV2.ts` unless noted. Each refusal has a synthetic case in
+`__tests__/src/optics/prescription/ingestV2.test.ts`.
 
 | Rule | Function |
 | --- | --- |

@@ -249,7 +249,7 @@ describe("canonical prescription: catalog round trip", () => {
 /* ── Schema defaults ── */
 
 describe("canonical prescription: schema defaults", () => {
-  it("keeps the catalog defaults the V1 file src/lens-data/defaults.ts held before S2.P1.T2 deleted it", () => {
+  it("keeps schema defaults stable for archived V1 conversions", () => {
     expect(v1CatalogDefaults()).toEqual({
       visible: true,
       rayFractions: [-0.83, -0.5, -0.17, 0.17, 0.5, 0.83],

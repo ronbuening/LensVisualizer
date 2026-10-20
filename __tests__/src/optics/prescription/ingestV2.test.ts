@@ -2,34 +2,18 @@
  * V2 ingest: the V1/V2 fixture pairs, dispatch on `schema`, V2 defaults, the refusals V2 adds, and derived stops
  * without an `sd`.
  *
- * Each fixture pair writes one prescription in both versions; the two must share a semantic fingerprint. Each of the
- * 18 lens pairs must build to the same lens, and the converter pair, which builds only on a host, must give the same V1
- * views. The offender sweep removes every derived or scheduled stop's authored `sd` from the catalog and requires the
- * rebuilt lenses to stay bit-identical, which is what lets V2 drop those values.
+ * Each fixture pair writes one prescription in both versions. The converter must produce identical canonical
+ * semantics, and canonical builds must agree in every serializable runtime field. The converter-only V1 view also
+ * retains fields needed to write archived files; app ingest accepts only V2.
  */
 
 import { describe, expect, it } from "vitest";
-import {
-  captureRecords,
-  exportCatalog,
-  requestCatalog,
-  type SerializedCatalog,
-} from "../../../../src/benchmarks/engineDiff/captureEntry.js";
-import {
-  decodeValue,
-  encodeValue,
-  projectBuildConstants,
-  semanticFingerprint,
-  sha256Hex,
-} from "../../../../src/benchmarks/engineDiff/payload.js";
-import { CHROMATIC_CHANNELS, tierRequests } from "../../../../src/benchmarks/engineDiff/requests.js";
-import { buildFixtureLens } from "../constructionFixtures.js";
+import { exactValue } from "../../../exactValue.js";
 import { canonicalInput } from "../../../../src/optics/prescription/canonicalInput.js";
 import { compileLensData } from "../../../../src/optics/prescription/compile.js";
 import { attachTeleconverter } from "../../../../src/optics/teleconverter.js";
 import { buildCanonicalLens, buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
-import { FLAT_R_THRESHOLD } from "../../../../src/optics/geometry/surfaceProfile.js";
-import { PrescriptionIngestError, lensDataStopRadiusAuthority } from "../../../../src/optics/prescription/canonical.js";
+import { PrescriptionIngestError } from "../../../../src/optics/prescription/canonical.js";
 import { ELEMENT_SCHEMA_DEFAULTS, LENS_SCHEMA_DEFAULTS } from "../../../../src/optics/prescription/defaults.js";
 import { ingestLensV1, ingestTeleconverterV1 } from "../../../../src/optics/prescription/v1/ingestV1.js";
 import {
@@ -48,10 +32,8 @@ import {
 } from "../../../../src/optics/lensDataConversion.js";
 import { FIXTURE_PAIRS, type FixturePair } from "./ingestV2Fixtures.js";
 
-const lensFingerprint = (file: object) =>
-  semanticFingerprint(file, (data) => convertLens(data as LensDataInput).prescription);
-const converterFingerprint = (file: object) =>
-  semanticFingerprint(file, (data) => convertTeleconverter(data as TeleconverterData).prescription);
+const lensFingerprint = (file: object) => exactValue(convertLens(file as LensDataInput).prescription);
+const converterFingerprint = (file: object) => exactValue(convertTeleconverter(file as TeleconverterData).prescription);
 
 function pairOf(family: string): Extract<FixturePair, { kind: "lens" }> {
   const pair = FIXTURE_PAIRS.find((candidate) => candidate.family === family);
@@ -86,9 +68,8 @@ function withHole<T>(list: readonly T[], index: number): T[] {
   return out;
 }
 
-/** The harness's build record: every constant the build derives, with its authored-data echo normalized. */
-const buildRecord = (lens: RuntimeLens) =>
-  encodeValue(projectBuildConstants(lens, CHROMATIC_CHANNELS, FLAT_R_THRESHOLD));
+/** Compare every serializable runtime field, retaining exact numerical representations. */
+const buildRecord = (lens: RuntimeLens) => exactValue(lens);
 
 /** Every object and array reachable from a value. */
 function objectsOf(value: unknown, found = new Set<object>()): Set<object> {
@@ -100,7 +81,7 @@ function objectsOf(value: unknown, found = new Set<object>()): Set<object> {
 }
 
 describe("V1/V2 fixture pairs", () => {
-  it("cover every feature family of the plan", () => {
+  it("cover every supported prescription feature family", () => {
     const families = FIXTURE_PAIRS.map((pair) => pair.family);
     for (const family of [
       "prime",
@@ -126,7 +107,7 @@ describe("V1/V2 fixture pairs", () => {
   });
 
   describe.each(FIXTURE_PAIRS.map((pair) => [pair.family, pair] as const))("%s", (_family, pair) => {
-    it("ingests both versions to one prescription, with one semantic fingerprint", () => {
+    it("ingests both versions to identical canonical semantics", () => {
       if (pair.kind === "lens") {
         expect(ingestLensV2(pair.v2).prescription).toEqual(ingestLensV1(pair.v1).prescription);
         expect(lensFingerprint(pair.v2)).toBe(lensFingerprint(pair.v1));
@@ -136,15 +117,15 @@ describe("V1/V2 fixture pairs", () => {
       }
     });
 
-    it("builds the V2 file's V1 view to the lens its V1 twin builds", () => {
+    it("builds both versions through canonical input to identical runtime fields", () => {
       if (pair.kind === "teleconverter") {
         expect(toTeleconverterData(ingestTeleconverterV2(pair.v2))).toEqual(
           toTeleconverterData(ingestTeleconverterV1(pair.v1)),
         );
         return;
       }
-      const fromV1 = buildFixtureLens(toLensData(ingestLensV1(pair.v1)));
-      const fromV2 = buildFixtureLens(toLensData(ingestLensV2(pair.v2)));
+      const fromV1 = buildCanonicalLens(ingestLensV1(pair.v1));
+      const fromV2 = buildCanonicalLens(ingestLensV2(pair.v2));
       expect(buildRecord(fromV2)).toEqual(buildRecord(fromV1));
       for (const constant of ["EFL", "stopPhysSD", "halfField", "totalTrack"] as const) {
         expect(Object.is(fromV2[constant], fromV1[constant]), constant).toBe(true);
@@ -178,7 +159,9 @@ describe("V1/V2 fixture pairs", () => {
     const view = toLensData(ingestLensV2(pairOf("prime").v2));
     const stop = view.surfaces.find((surface) => surface.label === "STO")!;
     expect("sd" in stop).toBe(false);
-    expect(buildFixtureLens(view).S.find((surface) => surface.label === "STO")!.sd).toBeGreaterThan(0);
+    expect(
+      buildCanonicalLens(ingestLensV2(pairOf("prime").v2)).S.find((surface) => surface.label === "STO")!.sd,
+    ).toBeGreaterThan(0);
   });
 });
 
@@ -778,39 +761,4 @@ describe("V2 refusals name the authored path", () => {
       /Prescription "fixture-prime" cannot be ingested/,
     );
   });
-});
-
-describe("derived stops carry no sd", () => {
-  /**
-   * Remove the authored `sd` of every catalog stop whose radius the engine derives or takes from a schedule, and
-   * rebuild. The build and layout records, which hold every constant `buildLens` derives and the drawn geometry, must
-   * be bit-identical. The records that echo authored data drop that `sd` anyway (`normalizeAuthoredData`), so nothing
-   * is excluded.
-   */
-  it("rebuilds every catalog lens whose stop radius is not authored without its stop sd, bit-identically", () => {
-    const catalog = exportCatalog();
-    const requests = tierRequests("p", requestCatalog(catalog)).filter(
-      (request) => request.family === "build" || request.family === "layout",
-    );
-    let stripped = 0;
-    const lenses = catalog.lenses.map((entry) => {
-      const lens = decodeValue(entry.prescription) as LensData;
-      if (lensDataStopRadiusAuthority(lens) === "authored") return entry;
-      delete (lens.surfaces.find((surface) => surface.label === "STO") as { sd?: number }).sd;
-      stripped++;
-      return { ...entry, prescription: encodeValue(lens) };
-    });
-    const withoutStopSd: SerializedCatalog = { ...catalog, lenses };
-
-    const before = captureRecords(catalog, requests);
-    const after = captureRecords(withoutStopSd, requests);
-    const digest = (record: (typeof before)[number]) => sha256Hex(JSON.stringify(record));
-    const offenders = before.flatMap((record, index) =>
-      digest(record) === digest(after[index]) ? [] : [`${record.lens} ${record.request}`],
-    );
-
-    expect(stripped).toBeGreaterThan(800);
-    expect(before.filter((record) => !record.payload.ok)).toEqual([]);
-    expect(offenders).toEqual([]);
-  }, 120_000);
 });

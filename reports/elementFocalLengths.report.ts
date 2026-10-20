@@ -5,7 +5,7 @@
  * the thick-lens formula in air. Mirrors, flat plates, and elements without
  * authored values are listed separately.
  *
- * S2.P6.T4 / C0 gate: report only.
+ * Report only: authored values are retained until source review decides their display authority.
  *
  * Runs only via `npm run generate:reports`, never in `npm test`.
  *

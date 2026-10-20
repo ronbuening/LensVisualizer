@@ -51,7 +51,6 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 
 ## Queues (open work only)
 
-- [queue] [`../OPTICS_ENGINE_REWRITE_SPEC.md`](../OPTICS_ENGINE_REWRITE_SPEC.md) — staged restructure of the optics engine and the V2 lens-data format, integrated on `engine-next` through Stage 5: maintainability first, the #774 accuracy contract, merge-base differential gates, and a step-level plan
 - [queue] [`../FEATURE_ADDITION_PLAN.md`](../FEATURE_ADDITION_PLAN.md) — planned features; owns the per-item template and the "already shipped" list
 - [queue] [`../EFFICIENCY_IMPROVEMENT_PLAN.md`](../EFFICIENCY_IMPROVEMENT_PLAN.md) — open cleanup and performance items with verification gates
 - [queue] [`../TRACE_MODEL_IMPROVEMENT_PLAN.md`](../TRACE_MODEL_IMPROVEMENT_PLAN.md) — trace-model status, deferred items, suggested next work
@@ -100,7 +99,7 @@ except the MTF chart regression, which takes minutes and runs only with `MTF_CHA
 - [generated] [`generated/mirror-fixtures.generated.md`](generated/mirror-fixtures.generated.md) — `npm run generate:reports -- mirrorFixtureAuthoringReport`
 - [generated] [`generated/mtf-chart-regression.generated.md`](generated/mtf-chart-regression.generated.md) — `MTF_CHART_REPORT=1 npm run generate:reports -- mtfChartRegression`; simulated MTF against digitized manufacturer chart values (`reports/data/`), with diffraction for every maker and under each maker's chart convention, plus the estimator's cross-check against optical path. A report, never a test threshold
 - [generated] [`generated/lens-mount-svg-specifications.md`](generated/lens-mount-svg-specifications.md) — `npm run generate:reports -- mountSvgSpecificationsReport`; figure counts and content hashes, with full SVG markup in [`generated/mounts/`](generated/mounts/) and diffable geometry in `src/mounts/`
-- [generated] [`benchmarks/README.md`](benchmarks/README.md) — on-demand `npm run benchmark:optics-rendering`; one JSON per plain run in [`benchmarks/runs/`](benchmarks/runs/), latest report in [`benchmarks/benchmark-report.md`](benchmarks/benchmark-report.md); paired (`--base <ref>`), heavy and memory records in `benchmarks/paired/`, which the report does not read
+- [generated] [`benchmarks/README.md`](benchmarks/README.md) — on-demand `npm run benchmark:optics-rendering`; one JSON per plain run in [`benchmarks/runs/`](benchmarks/runs/), latest report in [`benchmarks/benchmark-report.md`](benchmarks/benchmark-report.md); single-commit heavy and memory records in `benchmarks/sessions/`, which the report does not read
 
 The six-digit and glass-coverage-opportunities scans embed match statuses against the untracked local `patents/` PDF
 inventory and skip their rewrite when it is empty (fresh worktrees, CI); regenerate those three report files only from a

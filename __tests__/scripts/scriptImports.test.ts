@@ -40,11 +40,7 @@ interface Reference {
   file: string;
   expression: string;
   path: string;
-  historical?: boolean;
 }
-
-/** Only these two cross-revision adapters may mark glob candidates as historical. */
-const historicalAdapters = new Set(["src/benchmarks/benchmarkSeam.ts", "src/benchmarks/engineDiff/seamAdapter.ts"]);
 
 /**
  * Paths supplied at runtime cannot be evaluated as constants. Keep their precise expressions explicit and
@@ -76,18 +72,12 @@ const runtimeInputs: Record<string, Record<string, { pattern?: string; generated
   "scripts/generate-build-metadata.mjs": {
     filePath: { pattern: "src/lens-data/**/*.*ts", reason: "lens and teleconverter catalog walk" },
   },
-  "scripts/engine-diff.mjs": {
-    "join(outDir, bundles[0])": { reason: "loadCapture builds CAPTURE_ENTRY and verifies exactly one JS bundle" },
-  },
   "scripts/benchmark-optics-rendering.mjs": {
     'join(outDir, "opticsRenderingBenchmark.js")': { reason: "buildBundle builds ENTRY" },
     bundleUrl: { reason: "buildBundle result" },
-    headUrl: { reason: "buildBundle result" },
-    baseUrl: { reason: "buildBundle result for old base" },
   },
   "scripts/benchmark-child.mjs": {
     bundleUrl: { reason: "driver passes buildBundle result in request JSON" },
-    baseBundleUrl: { reason: "driver passes old-base buildBundle result in request JSON" },
   },
   "scripts/prerender.mjs": {
     'join(ROOT, "dist-server", "entry-server.js")': {
@@ -117,7 +107,7 @@ function resolveModule(path: string): string | undefined {
 
 function problemsFor(ref: Reference): string[] {
   const found = resolveModule(ref.path);
-  if (!found) return ref.historical ? [] : [`${ref.file}: ${ref.expression} -> missing module ${ref.path}`];
+  if (!found) return [`${ref.file}: ${ref.expression} -> missing module ${ref.path}`];
   const target = relative(ROOT, found);
   if (target.startsWith("src/optics/") && !target.startsWith("src/optics/mount/") && !registered.has(target)) {
     return [`${ref.file}: ${ref.expression} -> non-barrel optics module ${target}`];
@@ -184,7 +174,7 @@ function scan(file: string, text?: string): { references: Reference[]; problems:
     return undefined;
   }
 
-  function add(node: ts.Expression, relativeToFile = false, historical = false): void {
+  function add(node: ts.Expression, relativeToFile = false): void {
     const expression = node.getText(source);
     const input = runtimeInputs[file]?.[expression];
     const path = value(node);
@@ -202,7 +192,7 @@ function scan(file: string, text?: string): { references: Reference[]; problems:
       return;
     }
     if (relativeToFile && !path.startsWith(".") && !isAbsolute(path)) return; // Package or node: import.
-    references.push({ file, expression, path: relativeToFile ? resolve(ROOT, dirname(file), path) : path, historical });
+    references.push({ file, expression, path: relativeToFile ? resolve(ROOT, dirname(file), path) : path });
   }
 
   function addPattern(pattern: string, expression: string): void {
@@ -235,23 +225,14 @@ function scan(file: string, text?: string): { references: Reference[]; problems:
       const name = node.expression.getText(source);
       if (node.expression.kind === ts.SyntaxKind.ImportKeyword || loaderNames.has(name) || name === "register") {
         if (node.arguments[0])
-          add(
-            node.arguments[0],
-            node.expression.kind === ts.SyntaxKind.ImportKeyword || name === "register",
-            file === "scripts/benchmark-mtf.mjs" &&
-              value(node.arguments[0]) === "src/optics/compat.ts" &&
-              source.text.slice(node.arguments[0].pos, node.arguments[0].getStart(source)).includes("historical base"),
-          );
+          add(node.arguments[0], node.expression.kind === ts.SyntaxKind.ImportKeyword || name === "register");
       } else if (name === "import.meta.glob") {
         const argument = node.arguments[0];
         if (!argument || !ts.isStringLiteral(argument)) problems.push(`${file}: non-literal module glob`);
         else if (argument.text.includes("*"))
           addPattern(relative(ROOT, resolve(ROOT, dirname(file), argument.text)), argument.text);
         else {
-          const historical =
-            historicalAdapters.has(file) &&
-            source.text.slice(argument.pos, argument.getStart(source)).includes("historical base");
-          add(argument, true, historical);
+          add(argument, true);
         }
       } else if (name === "pathToFileURL") {
         // Imports are covered above; URL comparisons for direct execution and the resolver hook do not load modules.
@@ -296,7 +277,7 @@ describe("script module paths through the optics seam", () => {
     expect(results.flatMap((result) => result.problems)).toEqual([]);
     const references = results.flatMap((result) => result.references);
     console.info(
-      `Module inventory: ${results.length} files, ${new Set(references.filter((ref) => !ref.historical).map((ref) => relative(ROOT, resolve(ROOT, ref.path)))).size} resolved targets, ${references.filter((ref) => ref.historical).length} historical candidates, ${new Set(results.flatMap((result) => result.runtime)).size} runtime input expressions.`,
+      `Module inventory: ${results.length} files, ${new Set(references.map((ref) => relative(ROOT, resolve(ROOT, ref.path)))).size} resolved targets, ${new Set(results.flatMap((result) => result.runtime)).size} runtime input expressions.`,
     );
     // Every documented runtime input must still be used; removed loaders must remove their exception too.
     expect(new Set(results.flatMap((result) => result.runtime))).toEqual(
@@ -341,7 +322,7 @@ describe("script module paths through the optics seam", () => {
     ).toContain("missing module src/optics/missing.ts");
   });
 
-  it("rejects existing internals, type-only imports, unknown computed paths and unmarked historical candidates", () => {
+  it("rejects existing internals, type-only imports, unknown computed paths and deleted modules", () => {
     for (const text of [
       'load("src/optics/state/runtimeAdapters.ts")',
       'import type { PreparedOpticalState } from "../src/optics/state/runtimeAdapters.js"',
@@ -349,21 +330,6 @@ describe("script module paths through the optics seam", () => {
       'import.meta.glob("../src/optics/deleted.ts", { eager: true })',
     ])
       expect(scan("scripts/self-test.mjs", text).problems.length).toBeGreaterThan(0);
-  });
-
-  it("allows historical markers to excuse only missing files", () => {
-    expect(
-      scan(
-        "src/benchmarks/benchmarkSeam.ts",
-        'import.meta.glob(/* historical base */ "../optics/analysis/analysisQuality.ts", { eager: true })',
-      ).problems.join("\n"),
-    ).toContain("non-barrel optics module src/optics/analysis/analysisQuality.ts");
-    expect(
-      scan(
-        "src/benchmarks/benchmarkSeam.ts",
-        'import.meta.glob(/* historical base */ "../optics/compat.ts", { eager: true })',
-      ).problems,
-    ).toEqual([]);
   });
 
   it("resolves .js source specifiers, extensionless TS and actual .mjs modules", () => {

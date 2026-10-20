@@ -6,15 +6,16 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
   `innerSd`), and field-launch (`projectionLaunchSlopeForField`, `solveChiefRay`) conventions are defined in
   `agent_docs/architecture/optics-engine.md`; lens-file authoring rules are in `src/lens-data/LENS_DATA_SPEC.md`. Do not
   reintroduce a legacy trace selector, per-lens rollout state, or a `traceMode` option.
-- Prepared geometry is cached by compiled identity and exact control values; chief solves belong to that geometry.
-  Coordinate overrides use array identity. Keep runtime lenses and supplied vertex arrays immutable so memoized
-  geometry stays valid; ownership and limits are in `agent_docs/architecture/optics-engine.md` (Prepared Geometry).
-- A `WeakMap` only limits owner lifetime: a live owner's memoization still needs a finite working set. Trace options,
-  MTF index tables and perspective center references use named per-owner caps; profile bounds reuse one record.
-  Add every result-dependent input to the key, and preserve pure recomputation on eviction; see the trace memoization
-  section in `agent_docs/architecture/optics-engine.md`.
+- Rebuilding the same canonical identity reuses its compiled/runtime owners. Mutating a runtime or a supplied z array
+  invalidates identity-based assumptions; create new inputs instead. Prepared geometry and request cache keys and
+  bounds are in `architecture/optics-engine.md` (Prepared Geometry; Cache Ownership And Architecture Guards).
+- App ingest accepts only V2. Archived V1 files must go through the permanent converter; the organizer converts on
+  arrival, while metadata generation refuses them without writing (`workflow.md`, lens-data conversion).
+- A prepared geometry does not include stop-down. Build a new analysis request when physical aperture or sampling
+  changes; otherwise a lazy context may legitimately return the previous result (`architecture/optics-engine.md`,
+  Analysis Requests, Context and Jobs).
 - `solveChiefRay` skips iteration below 1° field angle, yet retrofocus designs can show pupil aberration at 2–3°. Above
-  1° it uses bounded bisection/scanning and returns a typed status plus `vectorLaunch` when applicable.
+  1° it uses safeguarded Illinois refinement with scan fallback and returns a typed status plus `vectorLaunch` when applicable.
 - Centrally obstructed reflex lenses need annular stop/field reasoning through the shared `stopInnerBlockedSemiDiameter()`
   helper. Never treat the blocked central chief ray as a valid off-axis field solve; on the Nikon Reflex-Nikkor 1000mm
   f/11 that collapses field geometry to zero.
@@ -26,10 +27,10 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
 - SD validation is slope-based (`sagSlopeRaw`, rim threshold ~64.2°), not the old `sd/|R| ≤ 0.90` proxy — aspheres with
   K near −1 legitimately exceed 0.9. Front/rear SD ratio ≤ 3.0; cross-gap sag intrusion ≤ `gapSagFrac × gap` (default
   0.90); production tests fail if `computeElementRenderDiagnostics()` would hide more than 0.25 mm of a surface.
-- `nominalFno` may be an array only on zoom lenses, with one entry per `zoomPositions` element; an array on a prime fails
-  validation.
-- `buildLens()` derives the physical stop from `nominalFno` and whole-system EFL, so appending surfaces behind the stop
-  resizes the iris unless `nominalFno` is rescaled by the same focal ratio. `attachTeleconverter()` does this per zoom
+- Station `nominalFNumber` must appear on every zoom station or none; a scalar design f-number lives at
+  `aperture.nominalFNumber`, never both (`src/lens-data/LENS_DATA_SPEC.md`, Stop and Aperture).
+- `buildLens()` derives the physical stop from the design f-number and whole-system EFL, so appending surfaces behind the stop
+  resizes the iris unless the design f-number is rescaled by the same focal ratio. `attachTeleconverter()` does this per zoom
   station, measuring on the plate-expanded prescription; see `agent_docs/architecture/optics-engine.md`.
 - Entering or leaving compare mode changes route and mounts a fresh viewer initialized from the URL, before the debounced
   URL writer runs. State that must survive goes in the navigation's own query (`agent_docs/adding_url_state.md`).
@@ -39,10 +40,10 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
 - Some zoom patents publish only infinity-focus spacing tables; copying them unchanged into the close-focus slot leaves
   the focus slider visually static. Infer close-focus pairs only for the true focusing gaps, preserve the mechanism
   constraint (a single rigid translator keeps the adjacent-gap sum constant), and document the approximation in the
-  file header and `focusDescription`.
-- A zoom with more than three authored stations must declare `publishedStations.zoom`, even when every station is a
+  file header and `focus.description`.
+- A zoom with more than three authored stations must mark its published zoom stations, even when every station is a
   source row; `__tests__/src/lens-data/publishedStations.test.ts` fails otherwise. A flagged focus keyframe that moves
-  no `var` gap fails validation (`src/lens-data/LENS_DATA_SPEC.md` § Published Stations).
+  no `gaps` value fails validation (`src/lens-data/LENS_DATA_SPEC.md` § Published Stations).
 - The `import.meta.glob` patterns in `src/utils/catalog/lensCatalog.ts` are relative to that file (`../../lens-data/`),
   and analysis files match by relative stem path — naming and placement matter for auto-registration.
 - `scripts/prerender.mjs` validates that every route pattern in `src/routes/routeManifest.tsx` is covered by

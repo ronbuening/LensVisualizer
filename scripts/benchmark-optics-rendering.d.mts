@@ -5,7 +5,6 @@ export interface BenchmarkRunnerOptions {
   reportOnly: boolean;
   iterations: number | undefined;
   warmups: number | undefined;
-  base: string | null;
   heavy: boolean;
   memory: boolean;
 }

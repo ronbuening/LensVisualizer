@@ -1,6 +1,6 @@
 /**
  * V1 source map — where each part of a V1 file the converter writes (`--to-version 1`) came from in its source, and
- * where each comment of the source goes in it (OPTICS_ENGINE_REWRITE_SPEC.md, Ingest, conversion and comments).
+ * where each comment of the source goes in it (see agent_docs/architecture/optics-engine.md).
  *
  * The V1 object is the one the V1 view writes (`toLensDataInput`, `toTeleconverterData`). `v1SourceMap` ingests it
  * with source paths, as V1 ingest records them, and composes those with the source paths the source's own ingest

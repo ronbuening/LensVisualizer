@@ -1,6 +1,6 @@
 /**
  * The lens-data converter library (`scripts/lens-data-convert/`): V1 text to V2 text, and V2 text to V1, with its
- * report, on synthetic fixtures only. The S2.P2.T1 fixture pairs check the converted prescription in each direction;
+ * report, on synthetic fixtures only. The feature fixture pairs check the converted prescription in each direction;
  * the source-text fixtures check the printed file: literal forms, number tokens, comments and their moves, blank
  * lines, the file's frame, a V2 source, the stop-radius report, the V1 print order and the stop radius V1's type
  * requires, and one refusal of each kind. One test runs the library under plain Node, as the organizer will.
@@ -112,7 +112,7 @@ function v1Text(pair: FixturePair): string {
   ].join("\n");
 }
 
-describe("the S2.P2.T1 fixture pairs", () => {
+describe("the V1/V2 feature fixture pairs", () => {
   it.each(FIXTURE_PAIRS.map((pair) => [pair.family, pair] as const))(
     "%s: the V1 side converts to V2 text that ingests to the pair's prescription",
     async (_family, pair) => {
@@ -532,7 +532,7 @@ describe("under plain Node", () => {
   });
 });
 
-describe("the V1 direction (S2.P3.T2)", () => {
+describe("the V1 conversion direction", () => {
   /** The hand-written V2 prime without its published keyframe, which has no focus travel to build. */
   it.each(FIXTURE_PAIRS.map((pair) => [pair.family, pair] as const))(
     "%s: the V2 side converts to V1 text that ingests to the pair's prescription, and back to V2",

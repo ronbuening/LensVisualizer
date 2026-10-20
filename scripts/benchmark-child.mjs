@@ -15,26 +15,17 @@
  *   node [--expose-gc] scripts/benchmark-child.mjs <plain|timed|untimed|memory> <request JSON> <result file>
  *
  * `plain` is the timed pass of a plain run: the whole matrix on one bundle, returning the record that run writes
- * under `runs/`, which keeps no samples. `timed` is the timed pass of a paired or heavy run, and keeps them.
+ * under `runs/`, which keeps no samples. `timed` is the timed pass of a heavy run, and keeps them.
  *
- * The request names the bundle to import as `bundleUrl`, a timed pass's base bundle as `baseBundleUrl`, the side
- * whose bundle a paired timed pass loads and prepares first as `firstSide`, the heavy set as `heavy`, and the
- * options of the entry function as `options`. The result file receives that function's return value as JSON.
+ * The request names the prebuilt bundle, heavy-set selection and entry options.
  * Progress goes to stderr.
  */
 
 import { writeFileSync } from "node:fs";
 
 const [pass, requestJson, resultPath] = process.argv.slice(2);
-const { bundleUrl, baseBundleUrl = null, firstSide = "base", heavy = false, options = {} } = JSON.parse(requestJson);
-/* The label names the pass in the progress lines and is no option of an entry function. */
+const { bundleUrl, heavy = false, options = {} } = JSON.parse(requestJson);
 const { label = pass, ...entryOptions } = options;
-
-/* Which bundle a process loads first leans most cases toward one side for the whole process, and the alternation
- * of pairs cannot cancel that. A paired run therefore times once in each order, and this process is one of the
- * two. The head's bundle drives the run in both, whichever is loaded first. */
-const baseFirst = pass === "timed" && baseBundleUrl !== null && firstSide === "base";
-const baseLoadedFirst = baseFirst ? await import(baseBundleUrl) : null;
 const bundle = await import(bundleUrl);
 const cells = heavy ? bundle.HEAVY_BENCHMARK_CELLS : undefined;
 const reportCell = ({ lensKey, scenarioId, index, count }) => {
@@ -45,14 +36,7 @@ let result;
 if (pass === "plain") {
   result = await bundle.runOpticsRenderingBenchmark({ ...entryOptions, onCell: reportCell });
 } else if (pass === "timed") {
-  const base = baseLoadedFirst ?? (baseBundleUrl ? await import(baseBundleUrl) : null);
-  result = await bundle.runOpticsRenderingBenchmark({
-    ...entryOptions,
-    cells,
-    keepSamples: true,
-    onCell: reportCell,
-    ...(base ? { base: { ...entryOptions.base, prepareBenchmarkLens: base.prepareBenchmarkLens, firstSide } } : {}),
-  });
+  result = await bundle.runOpticsRenderingBenchmark({ ...entryOptions, cells, keepSamples: true, onCell: reportCell });
 } else if (pass === "untimed") {
   result = await bundle.runUntimedBenchmarkPass({ cells, onCell: reportCell });
 } else if (pass === "memory") {

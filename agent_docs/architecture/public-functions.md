@@ -39,10 +39,10 @@ is `prescription/teleconverterCompatibility.ts`; `mount/` is outside this bounda
 | `chromatic.ts` | Channel metadata, spectral lines, dispersion compilation/resolution/quality and chromatic ray tracing |
 | `glassCatalog.ts` | Glass entries, catalog resolution, tolerances and index evaluation |
 | `publishedStations.ts` | Published station grids, coordinates, labels and availability |
-| `validation.ts` | Named `validateLensData`, `validateCanonicalLens`, `validateTeleconverterData` and schema helpers |
+| `validation.ts` | Named `validateLensData`, `validateLensInput`, `validateCanonicalLens`, `validateTeleconverterData` and schema helpers |
 | `geometry.ts` | Surface profiles/sag, numerical geometry constants and shared vector helpers |
 | `types.ts` | Engine types and preparation errors |
-| `lensDataConversion.ts` | Canonical/V1/V2 mapping, source paths and printers, loaded only by `scripts/lens-data-convert/load.mjs` outside focused tests |
+| `lensDataConversion.ts` | Converter-only V1/V2 mapping, source paths and printers; restricted to conversion, organizer and metadata importers |
 
 ## Names And Runtime Adapters
 
@@ -64,15 +64,15 @@ claim. Channel/index helpers expose qualified dispersion data, not historical pr
 
 ## Runtime Lens Contracts
 
-`ingestLens` and `ingestTeleconverter` accept authored V2 inputs only. `buildLens`, `canonicalInput`, and the internal
-`compileLensData` accept a `LensDataV2Input` or `CanonicalLens`; `attachTeleconverter` accepts those host types and a
-`TeleconverterDataV2Input` or `CanonicalTeleconverter`. Archived V1 files go through the permanent converter.
-`isV1File` remains internal; the `buildLens.ts` barrel exposes `lensDataVersion` for version detection.
+`buildLens()` ingests V2 or accepts canonical input and returns the shared frozen read model for that canonical
+identity. A new same-key canonical object has a separate compilation. `L.source` is the unexpanded canonical
+prescription; provenance and the optional composition descriptor travel separately through `canonicalLensFromRuntime`.
+The engine never reconstructs a prescription from UI fields, and `RuntimeLens.data` does not exist.
 
-Call `buildLens()` once per lens/session state boundary, then pass the returned `RuntimeLens` (`L`) explicitly into
-pure optics helpers. Do not store runtime lens state in module globals, and keep slider-state-dependent analysis out
-of `buildLens()`; analysis helpers are pure and are called from memoized hooks or analysis components with the current
-slider state.
+Use `prepareRuntimeState` to translate UI controls to cached `PreparedGeometry`, then `createAnalysisRequest` for
+current aperture, field, sampling and optional pose. Analysis families take that request; a lazy context memoizes its
+jobs by request identity. Low-level traversal takes `TraceGeometry`, independent of RuntimeLens ownership. Cache
+lifetimes and bounds are in [Optics Engine](optics-engine.md#cache-ownership-and-architecture-guards).
 
 For mirror or telescope data, inspect `L.opticalPath`, `L.imagePlane`, and `L.isFoldedOptics` instead of inferring
 behavior from surface order. Public `traceRay*` helpers report folded termination through `reachedImagePlane`; targeted
@@ -110,5 +110,5 @@ sequential partial tracing.
 - Add or update focused tests for the behavior, especially for optics math, URL parsing, and build scripts.
 - Export from the stable module or barrel expected by callers; keep callers on the public seam.
 - Update this document only when an import boundary or a non-obvious contract changes, not for every new symbol.
-- For lens data shape changes, update `src/types/optics.ts`, `src/lens-data/LENS_DATA_SPEC.md`, templates, validation,
+- For lens data shape changes, update `src/types/lensDataV2.ts`, canonical ingest, `src/lens-data/LENS_DATA_SPEC.md`, templates, validation,
   and any generated-report scripts that inspect lens files.

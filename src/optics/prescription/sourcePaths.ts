@@ -1,6 +1,6 @@
 /**
  * Source paths — how ingest, the V2 writer and the converter spell a path into an authored file or a canonical
- * prescription (OPTICS_ENGINE_REWRITE_SPEC.md, Ingest, conversion and comments).
+ * prescription (see agent_docs/architecture/optics-engine.md).
  *
  * A path names a node from the file's root, which is the empty path:
  * - a member of a record is `.name` after the record, or the bare name at the root: `surfaces[3].R`, `key`;

@@ -1,11 +1,11 @@
 {
   "schemaVersion": 3,
-  "createdAt": "2026-10-12T16:50:10.886Z",
+  "createdAt": "2026-10-20T15:11:35.647Z",
   "git": {
-    "branch": "optics-rewrite/s1",
-    "commit": "459e6d01890892c21721ad9cba3667882ef77f22",
-    "shortCommit": "459e6d01",
-    "dirty": false
+    "branch": "optics-rewrite/s8p2t3-docs-close",
+    "commit": "3e4eed13d9c2eafa0cbab8cdd074e324c826585b",
+    "shortCommit": "3e4eed13",
+    "dirty": true
   },
   "environment": {
     "node": "v24.15.0",
@@ -78,68 +78,19 @@
     "aberrationPanels": {}
   },
   "warnings": [],
-  "base": {
-    "ref": "d49857ae",
-    "commit": "d49857aeebac93c75a26abd0ec5ead3196fcc2dd",
-    "shortCommit": "d49857ae",
-    "results": {},
-    "aberrationPanels": {},
-    "summary": {
-      "main": {
-        "build": null,
-        "layout": null,
-        "rays": null,
-        "analysis": null,
-        "svgRender": null,
-        "totalCold": null,
-        "totalWarm": null
-      },
-      "analysis": {
-        "summary": null,
-        "distortionCurve": null,
-        "distortionGrid": null,
-        "vignetting": null,
-        "pupils": null,
-        "bokehPair": null,
-        "bestFocus": null,
-        "perspectiveFocus": null,
-        "perspectiveFieldAberrations": null,
-        "perspectiveChromatic": null,
-        "perspectiveDistortion": null,
-        "perspectiveVignetting": null,
-        "perspectivePupils": null
-      },
-      "aberrationPanels": {}
-    }
-  },
   "memory": {
     "head": {
       "lensKeys": ["canon-serenar-50f18","apo-lanthar-50f2","ricoh-gr3-28f28","canon-rf-85f12l","sony-fe-24-70mm-f28-gm-ii","sony-fe-70-200mm-f28-gm-ii","canon-rf100f28-macro","nikon-pc-nikkor-19mm-f4e-ed","canon-tse-50f28l-macro","canon-ef-8-15mm-f4l-fisheye-usm","fujifilm-gf-20-35mm-f4-r-wr","leica-apo-vario-elmarit-sl-90-280-f28-4","sigma-apo-macro-180mm-f28-os-hsm","sigma-apo-macro-150mm-f28-os-hsm","reference-maksutov-cassegrain-meniscus"],
       "cycles": 3,
       "statesPerCycle": 93,
-      "heapBefore": {"heapUsedBytes":30063288,"arrayBuffersBytes":33395,"totalBytes":30096683},
+      "heapBefore": {"heapUsedBytes":27943752,"arrayBuffersBytes":32963,"totalBytes":27976715},
       "heapAfterCycle": [
-        {"heapUsedBytes":34106240,"arrayBuffersBytes":33395,"totalBytes":34139635},
-        {"heapUsedBytes":34329432,"arrayBuffersBytes":33395,"totalBytes":34362827},
-        {"heapUsedBytes":34775768,"arrayBuffersBytes":33395,"totalBytes":34809163}
+        {"heapUsedBytes":34371784,"arrayBuffersBytes":49067,"totalBytes":34420851},
+        {"heapUsedBytes":33279608,"arrayBuffersBytes":49067,"totalBytes":33328675},
+        {"heapUsedBytes":33179496,"arrayBuffersBytes":49067,"totalBytes":33228563}
       ],
-      "heapAtEnd": {"heapUsedBytes":34046784,"arrayBuffersBytes":33395,"totalBytes":34080179},
-      "retainedGrowthBytes": 3983496
-    },
-    "base": {
-      "lensKeys": ["canon-serenar-50f18","apo-lanthar-50f2","ricoh-gr3-28f28","canon-rf-85f12l","sony-fe-24-70mm-f28-gm-ii","sony-fe-70-200mm-f28-gm-ii","canon-rf100f28-macro","nikon-pc-nikkor-19mm-f4e-ed","canon-tse-50f28l-macro","canon-ef-8-15mm-f4l-fisheye-usm","fujifilm-gf-20-35mm-f4-r-wr","leica-apo-vario-elmarit-sl-90-280-f28-4","sigma-apo-macro-180mm-f28-os-hsm","sigma-apo-macro-150mm-f28-os-hsm","reference-maksutov-cassegrain-meniscus"],
-      "cycles": 3,
-      "statesPerCycle": 93,
-      "heapBefore": {"heapUsedBytes":29672192,"arrayBuffersBytes":33395,"totalBytes":29705587},
-      "heapAfterCycle": [
-        {"heapUsedBytes":33612032,"arrayBuffersBytes":33395,"totalBytes":33645427},
-        {"heapUsedBytes":34109120,"arrayBuffersBytes":33395,"totalBytes":34142515},
-        {"heapUsedBytes":34286152,"arrayBuffersBytes":33395,"totalBytes":34319547}
-      ],
-      "heapAtEnd": {"heapUsedBytes":33634784,"arrayBuffersBytes":33395,"totalBytes":33668179},
-      "retainedGrowthBytes": 3962592
-    },
-    "retainedHeapRatio": 1.0122370740633166,
-    "withinLimit": true
+      "heapAtEnd": {"heapUsedBytes":33179696,"arrayBuffersBytes":49067,"totalBytes":33228763},
+      "retainedGrowthBytes": 5252048
+    }
   }
 }
