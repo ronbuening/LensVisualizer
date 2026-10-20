@@ -537,3 +537,64 @@ The surface audit, image-circle audit and field coverage (all three stations ≥
 pass.
 
 Open: the close-focus travel is a paraxial reconstruction, not Sony's focus cam.
+
+## 2026-10-20 — Second review: diagram, labels and movement
+
+Compared the local page (infinity, close focus, 24.72 / 47 / 67.9 mm, both movement
+overlays, inspectors for L1, L3, L8, L9 and L11) with Fig. 13 (PDF p. 14, wide end) and
+the Example 3 text (¶0184–0199, PDF pp. 30–31). Figure scale from the vertex crossings:
+S1 to the image plane is 1359 px for 111.21 mm at 310 dpi (12.22 px/mm); S1–S9 gives
+12.18 and S11–S23 12.14 px/mm. A model outline drawn over the figure crop was used to
+read each rim; the clean top side was cross-checked at 620 dpi.
+
+| Surfaces | Before | After | Fig. 13 | Evidence |
+| --- | ---: | ---: | ---: | --- |
+| 11A / 12A (L6) | 9.7 | 10.5 | 10.9 | L6 drawn taller than L7 (10.5 drawn, 10.2 modeled); the model had the order reversed. Held at 10.5 because the 12A polynomial slope peaks near 10.3 mm and its departure accelerates beyond (−147 µm at 10.9 mm). Edge 0.7 mm. |
+| 15 (L8 front) | 8.5 | 9.6 | 10.2 | Fig. 13 draws L8/L9 as one square-cut block; the stepped front showed as a bevel. 9.6 matches 16/17, which L9's edge thickness caps near 9.8 mm. |
+| 22 / 23 (L12) | 13.0 | 14.6 | 14.6 | L12 drawn as a plate clearly taller than L11 (12.2 drawn); 12 % under before. |
+
+Kept, with reasons. L1/L2 (28.0; drawn 29.9, 6.5 %, within reading noise). L3 4A 15.65
+(decided today; the 19.6 mm outer block in the figure is a flat land on the nearly flat
+front face). L7, L10, L11 agree within 5 %. L4 and L5 are drawn 15.1 and 14.6 mm tall
+against 12.8 modeled, but cannot rise: with the true 5A asphere, L3's concave rear face
+crosses L4's front near 13.6 mm (the figure draws that concave shallower than the
+prescription), the cross-gap rule caps L4 at 12.9 while 5A stays at 15.3, and the
+figure-faithful set (5A 12.9, L4 15.1, L5 14.6) passed the validator and the ray checks
+but cut the engine half-field from 41.37 to 37.7 degrees through the paraxial height
+model at 5A (the real full-frame corner chief ray there is only 12.0 mm). L3's rear rim
+therefore still wraps around L4 on the page, as before.
+
+Clearance after the change: surface audit clean, image circle 0 undersized, field
+coverage at least 99 % at all three stations, no axial clip or chief-ray block at either
+focus end (Y = 21.63 mm). Engine half-field 41.37 → 41.75 degrees (now limited by 4A
+instead of L12); F/4.10 unchanged at all stations. Engine meridional transmission at
+wide is unchanged through 40.8 degrees (81.3 %); at 43.7 degrees it rises from 35.4 to
+42.7 % because the L12 rim was the limiting surface there. Middle and tele curves change
+by under 1.5 points. These are meridional figures only.
+
+Found correct. Groups G1–G5 bracket L1–L2, L3–L5, L6–L10, L11 and L12 as Fig. 13
+labels them; the stop sits between G2 and G3 (¶0196). Cemented brackets D1 (1–3) and D2
+(15–17) do not collide with the gap labels d3, d9, d19, d21, BF. Element names follow the
+patent's L1–L12; element types match the signs of R; the nine aspheric surfaces carry
+the A suffix exactly as Table 7 stars them. L7 as the blur-correction element (¶0197)
+and L12 moving with G3 (¶0188) are right. L9's inferred ED tag stands: the patent names
+no special glass, and 1.497 / 81.61 is the FCD1 / S-FPL51 coordinate. Table 7 indices
+are d-line (¶0133 defines ni at 587.6 nm; S-TIH53 and FCD1 match nd exactly, not ne).
+Every element resolves to a catalog glass, so diagram colors are complete.
+
+Movement. Zoom stations ascend 24.72 → 47 → 67.9 mm. Measured from the image plane,
+G1 moves objectward 111.21 → 124.84 → 140.08; G2 (surface 4) goes 98.68 → 97.42 →
+102.19, imageward then objectward, matching the curved Fig. 13 arrow; G3 and G5 move
+together objectward by 13.83 / 23.79 mm (¶0188); G4 moves objectward 30.33 → 46.43 →
+57.98. All match the Fig. 13 arrows and ¶0187. Focus keyframe 0 is infinity; only G4
+moves, imageward by 0.94 / 1.86 / 2.79 mm (reconstruction, see above); the slider's far
+end reads 40 cm.
+
+Aberrations against Figs. 14–16 (engine field-curvature trace, referred to the on-axis
+paraxial focus): sagittal / tangential at the field edge −0.28 / −0.14 mm at wide
+(figure −0.27 / −0.13), −0.27 / −0.49 at middle (−0.26 / −0.44), −0.08 / −0.27 at tele
+(−0.07 / −0.25), including the positive tangential bulge near half field at tele
+(+0.10 vs +0.11). The engine samples the wide edge at 43.7 degrees, the full-frame
+corner, against the patent's 42.42.
+
+Open: L4/L5 stay about 15 % shorter than drawn and L3 still wraps L4 (see above).

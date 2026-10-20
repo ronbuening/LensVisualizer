@@ -8,8 +8,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Focus: reconstructed. The patent names G4 (L11) as the focusing group but prints no close-focus rows.
  * G4 moves imageward 0.943 / 1.860 / 2.793 mm (wide/middle/tele), conserving d19 + d21, to reach
  * Sony's 0.4 m MFD measured from the printed image plane; BF stays fixed.
- * Semi-diameters are modeled ray/section estimates, not published clear apertures; 4A is set to
- * pass the full-frame corner chief ray at wide at both focus ends.
+ * Semi-diameters are estimates, not published clear apertures: read from Fig. 13 (wide, 12.2 px/mm
+ * at 310 dpi) and checked by real-ray trace. 4A is set to pass the full-frame corner chief ray at
+ * wide at both focus ends. L4 and L5 are drawn about 15 mm tall but stay at 12.8: L3's rear face
+ * would cross L4's front near 13.6 mm, and lowering 5A below 14.7 mm cuts the engine's paraxial
+ * half-field below 41.4 degrees (patent: 42.42). The outer L3 block in the figure is a flat land.
  * Iris radii are inferred from the patent's F/4.10 at each zoom station.
  * Printed radii and image gaps are retained. Computed d-line paraxial BFD exceeds the printed Bf
  * by +0.116 / +0.122 / +0.007 mm at wide/middle/tele. The printed Bf matches the on-axis
@@ -158,7 +161,7 @@ const LENS_DATA = {
       vd: 81.61,
       indexReference: "d",
       focalLengthMm: 23.93044258769817,
-      glass: "497816 — low-dispersion crown class",
+      glass: "497816 — ED fluorophosphate class",
       apd: "inferred",
       apdNote:
         "Sony's single production ED position; the patent nd/vd row maps to an ED fluorophosphate class, but publishes no partial-dispersion value.",
@@ -231,7 +234,7 @@ const LENS_DATA = {
       label: "11A",
       R: 24.33,
       d: 2.18,
-      sd: 9.7,
+      sd: 10.5,
       medium: 6,
       asphere: { A4: -1.7333e-6, A6: -4.3031e-7, A8: 5.3145e-9, A10: -1.9092e-11 },
     },
@@ -239,7 +242,7 @@ const LENS_DATA = {
       label: "12A",
       R: 60.38,
       d: 2.84,
-      sd: 9.7,
+      sd: 10.5,
       asphere: { A4: 1.3809e-6, A6: -5.7456e-7, A8: 7.7232e-9, A10: -3.1256e-11 },
     },
     { label: "13", R: 286.45, d: 1.74, sd: 10.2, medium: 7 },
@@ -250,7 +253,7 @@ const LENS_DATA = {
       sd: 10.2,
       asphere: { A4: -6.4561e-7, A6: 1.9499e-7, A8: -3.0532e-9, A10: 1.6155e-11 },
     },
-    { label: "15", R: -38.17, d: 0.9, sd: 8.5, medium: 8 },
+    { label: "15", R: -38.17, d: 0.9, sd: 9.6, medium: 8 },
     { label: "16", R: 15.33, d: 4.73, sd: 9.6, medium: 9 },
     { label: "17", R: -47.62, d: 3.36, sd: 9.6 },
     {
@@ -271,8 +274,8 @@ const LENS_DATA = {
       asphere: { A4: -2.7694e-6, A6: 1.7991e-7, A8: -3.24e-9, A10: 1.305e-11 },
     },
     { label: "21A", R: 24.5, sd: 11.8, asphere: { A4: -3.7192e-6, A6: 1.0869e-7, A8: -2.4497e-9, A10: 1.009e-11 } },
-    { label: "22", R: -600.62, d: 2, sd: 13, medium: 12 },
-    { label: "23", R: "flat", sd: 13 },
+    { label: "22", R: -600.62, d: 2, sd: 14.6, medium: 12 },
+    { label: "23", R: "flat", sd: 14.6 },
   ],
 
   zoom: {

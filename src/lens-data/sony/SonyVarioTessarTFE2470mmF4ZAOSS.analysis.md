@@ -161,12 +161,11 @@ retained as part of G3. [1, ¶0192, ¶0197]
 
 nd = 1.75520, νd = 27.53. Glass: 755275 — dense flint class. f = -14.379 mm.
 
-L8 is the negative member of the L8/L9 cemented pair. Its thin center and
-strongly curved shared interface make the distinction between outer material entry
-and internal cemented clearance important. The modeled outer entrance aperture
-is narrower than the shared interface so sampled peripheral rays are intercepted
-at a material boundary instead of first clipping inside the doublet. Those
-semi-diameters are modeled limits, not published dimensions. [1, ¶0192]
+L8 is the negative member of the L8/L9 cemented pair. Its thin center sits
+against a strongly curved shared interface. Fig. 13 draws the pair as one
+square-cut block, so all three faces share one modeled semi-diameter (9.6 mm),
+the height at which the biconvex L9 still keeps a positive edge. That value is
+a modeled limit, not a published dimension. [1, ¶0192]
 
 ### L9 — Biconvex Positive
 
@@ -314,8 +313,8 @@ not at source-published clear apertures:
 | ------- | ------------------: | ------------------------: | --------------------------------------: |
 | 4A      |              15.650 |                 +0.086569 |                               +0.087931 |
 | 5A      |              15.300 |                 -1.202541 |                               -1.202541 |
-| 11A     |               9.700 |                 -0.098050 |                               -0.098050 |
-| 12A     |               9.700 |                 -0.091556 |                               -0.091556 |
+| 11A     |              10.500 |                 -0.123520 |                               -0.123520 |
+| 12A     |              10.500 |                 -0.121239 |                               -0.121239 |
 | 14A     |              10.200 |                 +0.051800 |                               +0.051800 |
 | 18A     |              12.500 |                 -0.631144 |                               -0.631144 |
 | 19A     |              12.500 |                 -0.246246 |                               -0.246246 |
