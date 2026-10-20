@@ -1,7 +1,8 @@
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { basename, join } from "node:path";
+import { basename, join, resolve } from "node:path";
+import { build } from "vite";
 import { describe, expect, it } from "vitest";
 import {
   BENCHMARK_RUN_RETENTION_TRIGGER,
@@ -154,4 +155,176 @@ describe("benchmark child pass", () => {
   it("refuses a pass it does not know", () => {
     expect(() => childResult("profile")).toThrow("Unknown benchmark pass: profile");
   });
+});
+
+/* Fixed pre-Stage-7 module surface. Adding a head-only runtime import to the copied
+ * entry must fail this bundle even in CI checkouts that lack the timing-base objects. */
+const BASE_EXPORTS: Readonly<Record<string, readonly string[]>> = {
+  "optics/apertureStop.ts": ["wideOpenStopAtZoom"],
+  "optics/buildLens.ts": ["default"],
+  "optics/compat.ts": ["prepareRuntimeState", "createAnalysisComputationContext"],
+  "optics/cardinalElements.ts": ["computeCardinalElementsAtState"],
+  "optics/optics.ts": [
+    "anchorLayoutToCamera",
+    "computeAnalysisFieldGeometryAtState",
+    "computeChromaticRayFanSpread",
+    "conjugateK",
+    "doLayout",
+    "effectiveFNumber",
+    "eflAtFocus",
+    "entrancePupilAtState",
+    "fopenAtZoom",
+    "offsetVectorFieldRay",
+    "traceRay",
+    "traceRayChromatic",
+    "traceRayVector",
+    "traceRayVectorChromatic",
+  ],
+  "optics/diagramGeometry.ts": ["computeElementShapes", "createCoordinateTransforms"],
+  "optics/lensMovement.ts": ["clampLensMovement", "createLensMovementTransform"],
+  "optics/perspective/index.ts": [
+    "cameraDirectionForDiagramField",
+    "computePerspectiveMovementViewportExtent",
+    "createPerspectiveTraceContext",
+    "tracePerspectiveDiagramFan",
+  ],
+  "optics/raySampling.ts": ["obstructionAwareRayFractionsForDensity"],
+  "optics/analysis/analysisQuality.ts": ["analysisSamplingForQuality"],
+  "utils/perfProbe.ts": ["resetPerfProbe"],
+  "utils/catalog/lensCatalog.ts": ["LENS_CATALOG"],
+  "utils/theme/themes.ts": ["default"],
+  "components/diagram/DiagramSVG.tsx": ["default"],
+  "components/display/analysis/AberrationsPanel.tsx": ["default"],
+  "components/display/analysis/ComaTab.tsx": ["default"],
+  ...Object.fromEntries(
+    [
+      "AstigmatismSection",
+      "ComaPreviewSection",
+      "FieldCurvatureSection",
+      "MeridionalComaSection",
+      "SagittalComaSection",
+      "SphericalAberrationSection",
+    ].map((name) => [`components/display/analysis/aberrations/${name}.tsx`, ["default"]]),
+  ),
+  "components/hooks/offAxisRayUtils.ts": ["computeOffAxisTraceGeometry"],
+  "components/hooks/raySegmentUtils.ts": ["compileRaySegment", "filterChannels"],
+};
+
+describe("benchmark base compatibility", () => {
+  it(
+    "bundles the head entry against a pre-request engine and forwards its original arguments",
+    { timeout: 120_000 },
+    async () => {
+      const root = mkdtempSync(join(tmpdir(), "benchmark-base-fixture-"));
+      const src = join(root, "src");
+      const put = (file: string, text: string) => {
+        const path = join(src, file);
+        mkdirSync(join(path, ".."), { recursive: true });
+        writeFileSync(path, text);
+      };
+      try {
+        cpSync(resolve("src/benchmarks"), join(src, "benchmarks"), { recursive: true });
+        symlinkSync(resolve("node_modules"), join(root, "node_modules"));
+        for (const [file, names] of Object.entries(BASE_EXPORTS)) {
+          put(
+            file,
+            names
+              .map((name) =>
+                name === "default" ? "export default (...args) => args;" : `export const ${name} = (...args) => args;`,
+              )
+              .join("\n"),
+          );
+        }
+        const jobNames = [
+          "computeSphericalAberration",
+          "computeSAProfile",
+          "computeSphericalAberrationBlurCharacter",
+          "computeBestFocusZ",
+          "computeFieldCurvature",
+          "computeFieldCurvatureBundle",
+          "computeComaAnalysis",
+          "computeOpticalSummary",
+          "computeDistortionCurve",
+          "computeDistortionFieldGrid",
+          "computeVignettingCurve",
+          "computeBothPupilAberrationProfiles",
+          "computeBokehPreviewPair",
+        ];
+        put(
+          "optics/analysis/analysisJobs.ts",
+          `export const analysisJobsForState2 = {${jobNames.map((name) => `${name}: (...args) => args`).join(",")}};`,
+        );
+        put(
+          "benchmarks/baseFixture.ts",
+          `
+        export * from "./opticsRenderingBenchmark.tsx";
+        export { analysisJobsForState2, computeCardinalElements, createFreshAnalysisContext } from "./benchmarkSeam.ts";
+      `,
+        );
+        const outDir = join(root, "out");
+        await build({
+          configFile: false,
+          root,
+          logLevel: "silent",
+          build: {
+            ssr: join(src, "benchmarks/baseFixture.ts"),
+            outDir,
+            copyPublicDir: false,
+            rollupOptions: { output: { format: "es", entryFileNames: "baseFixture.mjs" } },
+          },
+          ssr: { noExternal: true },
+        });
+        const output = execFileSync(
+          "node",
+          [
+            "--input-type=module",
+            "-e",
+            `
+        const seam = await import(${JSON.stringify(join(outDir, "baseFixture.mjs"))});
+        const p = { preparedState: { focusT: .2, zoomT: .3, aberrationT: .4 }, dynamicEFL: 50,
+          currentEPSD: 10, currentPhysStopSD: 8, fieldGeometry: { halfFieldDeg: 12 },
+          sampling: { pupilAberrationSampleCount: 7, sphericalBlurRingSamples: [1, 8] } };
+        console.log(JSON.stringify({
+          jobs: Object.fromEntries(Object.keys(seam.analysisJobsForState2).map((name) =>
+            [name, seam.analysisJobsForState2[name](p, name === "computeFieldCurvature" ? true : "base-result")])),
+          cardinals: seam.computeCardinalElements(p, { zPos: [0, 20], imagePlaneZ: 40 }, "lens"),
+          fresh: seam.createFreshAnalysisContext(p),
+        }));
+      `,
+          ],
+          { encoding: "utf8" },
+        );
+        const { jobs, cardinals, fresh } = JSON.parse(output);
+        const state = { focusT: 0.2, zoomT: 0.3, aberrationT: 0.4 };
+        const field = { halfFieldDeg: 12 };
+        const sampling = { pupilAberrationSampleCount: 7, sphericalBlurRingSamples: [1, 8] };
+        for (const name of ["computeSphericalAberration", "computeSAProfile", "computeBestFocusZ"]) {
+          expect(jobs[name]).toEqual([state, 10, 8]);
+        }
+        expect(jobs.computeSphericalAberrationBlurCharacter).toEqual([state, 10, 8, "base-result", sampling]);
+        expect(jobs.computeFieldCurvature).toEqual([state, 10, 8, true, field, sampling]);
+        for (const name of ["computeFieldCurvatureBundle", "computeComaAnalysis", "computeVignettingCurve"]) {
+          expect(jobs[name]).toEqual([state, 10, 8, field, sampling]);
+        }
+        expect(jobs.computeOpticalSummary).toEqual([state, 50, 10, 8, field]);
+        expect(jobs.computeDistortionCurve).toEqual([state, 50, 8, field, sampling]);
+        expect(jobs.computeDistortionFieldGrid).toEqual([state, 8, field, sampling]);
+        expect(jobs.computeBothPupilAberrationProfiles).toEqual([state, 7, field]);
+        expect(jobs.computeBokehPreviewPair).toEqual([state, 10, 8, sampling]);
+        expect(cardinals).toEqual(["lens", 0.2, 0.3, [0, 20], 40, 0.4]);
+        expect(fresh).toEqual([
+          {
+            preparedState: state,
+            dynamicEFL: 50,
+            currentEPSD: 10,
+            currentPhysStopSD: 8,
+            fieldGeometry: field,
+            sampling,
+          },
+        ]);
+      } finally {
+        rmSync(root, { recursive: true, force: true });
+      }
+    },
+  );
 });

@@ -57,9 +57,12 @@ describe("useBokehPreviewData", () => {
         currentEPSD: next.epSD,
         currentPhysStopSD: next.stopSD,
       });
-      expect(result.current).toBe(createAnalysisComputationContext(request).computeBokehPreviewPair());
+      // Near-focus jobs may evict the input from the short intern history; values stay equal.
+      expect(result.current).toEqual(createAnalysisComputationContext(request).computeBokehPreviewPair());
       expect(result.current).not.toBe(previous);
       previous = result.current;
+      rerender(next);
+      expect(result.current).toBe(previous);
     }
   });
 });

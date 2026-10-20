@@ -62,6 +62,7 @@ function sampleCountForDensity(fractions: readonly number[], density: RayDensity
  * @param density - requested viewport ray density
  * @returns normalized pupil fractions for rendering
  */
+// Unlike sampleOrthogonalPupilFan, preserve authored extents/parity and step-first rounding, then snap near-zero rays.
 export function rayFractionsForDensity(fractions: readonly number[], density: RayDensity): number[] {
   if (density === "normal") return [...fractions];
   if (fractions.length === 0) return [];
@@ -88,6 +89,7 @@ export function rayFractionsForDensity(fractions: readonly number[], density: Ra
  * @param entrancePupilSemiDiameter - current entrance-pupil semi-diameter in mm
  * @returns normalized pupil fractions that should survive obstruction clipping
  */
+// Unlike unmasked analysis/sampling patterns, remove central blockers and retain an outer-ray fallback for display.
 export function obstructionAwareRayFractionsForDensity(
   L: Pick<RuntimeLens, "isFoldedOptics" | "S" | "stopIdx">,
   fractions: readonly number[],

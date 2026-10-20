@@ -6,9 +6,9 @@ verify. Adopt the tighter intersection-accuracy contract from
 makes available.
 
 Stages 1 to 5 and Phases 2.1 to 2.5 have merged to `main`: promotion #847, tagged `optics-rewrite/promotion`, and
-catalog migration #862. Stages 1 to 6 have passed their gates (tags `optics-rewrite/s1`, `optics-rewrite/s2`,
-`optics-rewrite/s3`, `optics-rewrite/s4`, `optics-rewrite/s5` and `optics-rewrite/s6`). Phase 2.6 has merged except
-S2.P6.T5, which is deferred. Stages 7 and 8 are future work and wait for the maintainer's go-ahead.
+catalog migration #862. Stages 1 to 7 have passed their gates (tags `optics-rewrite/s1` to `optics-rewrite/s7`).
+Phase 2.6 has merged except S2.P6.T5, which is deferred. Stage 8 runs on its own integration branch and merges to
+`main` only once the maintainer has seen it fully tested.
 
 Priorities, in order: **maintainability**, then **accuracy** (the contract below), then **speed**. When they conflict,
 the higher priority wins and the PR description records the trade-off. Speed's gates and targets are under
@@ -154,6 +154,10 @@ Serenar 50mm f/1.8 show 5.3 and 5.0 evaluations per intersection, so the pattern
     Stage 6 step. Four engine C3s merged since A6: the sensor-edge band (#877) and S6.P2.T1 to S6.P2.T3 (#875, #878,
     #879; decision 96). Their cumulative Tier S against A6 (run 39122970387, 48 shards, C3, no declared exception) is
     also the Stage 6 gate's Tier S; it is recorded under that gate. The timing base stays Stage 2.
+  - **A8** is `00e43ae0`, tagged `optics-rewrite/a8` and `optics-rewrite/s7`: the squash commit of #902, after Stage 7.
+    The engine C3 merged since A7 is the maintainer's finite-focus distortion change (#882). Its cumulative Tier S
+    against A7 (run 39419216755, 48 shards, C3) is also the Stage 7 gate's Tier S, recorded under that gate. The
+    timing base stays Stage 2.
 - **The intersection contract** is #774's, and its documentation owns it: `agent_docs/architecture/optics-engine.md`
   (Exact Surface Trace) and `agent_docs/decisions.md` (2026-10-08). It covers the `1e-12` mm raw residual target, the
   72-iteration cap, the residual definitions, the raw-target-first roundoff envelope, and cap selection.
@@ -2598,6 +2602,29 @@ Passed on `facf1888`, tagged `optics-rewrite/s6`:
 **Stage 7 gate:** Tier S against the anchor; `analysis/preparedStateAdapters.ts` and every `*ForState2` adapter are
 gone.
 
+Merged: S7.P1.T1 (#885), S7.P2.T1 to S7.P2.T10 (#886 to #895), S7.P3.T1 to S7.P3.T3 (#896 to #898), S7.P4.T1 (#899)
+and S7.P5.T1 (#900), all C0; then a benchmark seam so paired runs bundle against older bases (#901) and a fix for
+S7.P1.T1's request retention (#902).
+
+Passed on `00e43ae0`, tagged `optics-rewrite/s7`:
+
+- **Tier S** against A7 under C3 (run 39419216755, 48 shards, on `1661da2a`; decision 97): 44,200 records, none fail,
+  no data impact, no declared exception. Every difference is #882's distortion change (finite focus against the
+  paraxial image of the object point, in about 46 lenses' distortion curves and grids) or the glass rows #883 added
+  for its new lenses (Viltrox 85mm PRO, Sigma 200mm f/2, Zuiko 180mm f/2), paired with #883.
+- **Stage 7 alone** is bit-identical: a C0 Tier S from `4130a945` (just before S7.P1.T1, with #882 and #883) to
+  `1661da2a` (run 39421609283) compares 44,182 records and 186.0M numbers with no difference. #901 and #902 are C0 on
+  Tier P.
+- **Adapters:** `analysis/preparedStateAdapters.ts` is gone and every analysis family takes `AnalysisRequest`. The
+  names left are not adapters: the request-facing job registry is still called `analysisJobsForState2`, the
+  engine-diff seam keeps old names as candidates for older bases, and diagram and chromatic helpers outside the
+  analysis families keep `*ForState2` names. S8.P1.T1's codemod removes the `*2` names.
+- **Efficiency gates** (paired, 15 samples after 2 warmups, against `optics-rewrite/s2`, run with other applications
+  open): no case regresses; the 25 cases with unequal work are #877's restored edge samples, PC-Nikkor 19mm
+  stopped-close analysis at 0.338×; retained heap 1.0069×; PC-Nikkor 19mm default analysis 71.0 ms against the
+  127.56 ms R0 limit. The first gate run found S7.P1.T1's request table retaining up to 96 analysis contexts per lens
+  (retained heap 1.129×, and an out-of-memory timed pass); #902 keeps two.
+
 ### Stage 8 — Public seam, consumers and close
 
 - **S8.P1.T1 Final barrels.**
@@ -2876,6 +2903,7 @@ Settled on 2026-10-17, after promotion:
 | 94 | S8.P2.T1's Tier F stands in for the Stage 8 gate's Tier S only if no intervening merge changes engine output; otherwise Tier S runs against the anchor just before the harness is deleted | Stage 8 gate |
 | 95 | S6.P3.T2 (warm-started sensor solves) is dropped: on real calls it saved nothing or cost more, and moved results beyond C2 | S6.P3.T2 |
 | 96 | S6.P2.T1 to S6.P2.T3 merge as engine C3s with evidence, after a sensor-edge C3 (#877): the C2 table holds traced rays to their C1 budgets, so a launch that moves within its solver's tolerance cannot pass C2 | S6.P2.T1 to S6.P2.T3 |
+| 97 | The Stage 7 gate's Tier S runs against A7 under C3, which covers the maintainer's #882 distortion C3 merged after A7; the anchor then moves to A8 | Stage 7 gate |
 
 The maintainer settled the Olympus Zuiko Auto-W 18mm's distortion on 2026-10-15; its engine C3 is #815, whose merge
 commit is anchor A3:

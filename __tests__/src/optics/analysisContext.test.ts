@@ -370,18 +370,33 @@ describe("analysis request identity", () => {
     }
   });
 
-  it("evicts the least recently used request at 96 entries, preserving touched jobs", () => {
+  it("bounds retained analysis jobs to two recent requests, preserving touched and caller-owned jobs", () => {
     const params = inputs("request-eviction");
     const context = (currentPhysStopSD: number) => createAnalysisComputationContext({ ...params, currentPhysStopSD });
     const first = context(0);
     const evicted = context(1);
-    for (let i = 2; i < 96; i++) context(i);
+    const result = evicted.computeOpticalSummary();
     expect(context(0)).toBe(first);
-    context(96);
+    context(2);
     expect(context(0)).toBe(first);
-    expect(context(1)).not.toBe(evicted);
+    const recomputed = context(1);
+    expect(recomputed).not.toBe(evicted);
+    expect(recomputed.computeOpticalSummary()).toEqual(result);
     // A caller holding the old request still owns its lazy results after LRU eviction.
     expect(createAnalysisComputationContext(evicted.request)).toBe(evicted);
+    expect(evicted.computeOpticalSummary()).toBe(result);
+  });
+
+  it("reuses adjacent tab renders while alternating interactive and settled quality", () => {
+    const params = inputs("request-adjacent-quality");
+    const interactive = createAnalysisComputationContext({ ...params, analysisQuality: "interactive" });
+    const settled = createAnalysisComputationContext({ ...params, analysisQuality: "settled" });
+    const result = settled.computeOpticalSummary();
+    for (let render = 0; render < 3; render++) {
+      expect(createAnalysisComputationContext({ ...params, analysisQuality: "interactive" })).toBe(interactive);
+      expect(createAnalysisComputationContext({ ...params, analysisQuality: "settled" })).toBe(settled);
+      expect(settled.computeOpticalSummary()).toBe(result);
+    }
   });
 
   it("bounds lens ownership to the two most recently used compiled identities", () => {

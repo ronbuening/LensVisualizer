@@ -1,5 +1,7 @@
 /** Fixed-sensor chromatic focus, transverse color, and retained ray fans. */
 
+import { CHROMATIC_PUPIL_FRACTIONS, signedVerticalSensorUvs } from "../../analysis/sampling.js";
+
 import type { AnalysisRequest } from "../../analysis/request.js";
 import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
 import type { ChromaticChannel } from "../../../types/optics.js";
@@ -27,14 +29,8 @@ import {
 } from "./imageSpace.js";
 import { sensorFrameDisplacement, type SensorFrameDisplacement } from "./shared.js";
 
-const DEFAULT_CHROMATIC_SENSOR_UVS: readonly SensorUv[] = [
-  { u: 0, v: -1 },
-  { u: 0, v: -0.5 },
-  { u: 0, v: 0 },
-  { u: 0, v: 0.5 },
-  { u: 0, v: 1 },
-];
-const DEFAULT_CHROMATIC_PUPIL_FRACTIONS = [-0.9, -0.6, -0.3, 0, 0.3, 0.6, 0.9] as const;
+const DEFAULT_CHROMATIC_SENSOR_UVS: readonly SensorUv[] = signedVerticalSensorUvs(5);
+const DEFAULT_CHROMATIC_PUPIL_FRACTIONS = CHROMATIC_PUPIL_FRACTIONS;
 
 /** Controls for scene-matched chromatic measurements at fixed-sensor coordinates. */
 export interface PerspectiveChromaticOptions {
@@ -441,6 +437,7 @@ function resolveReferenceChannel(
   return reference;
 }
 
+// Unlike centered chromatic fan normalization, preserve supplied signs, zeros, duplicates and order after validation.
 function normalizePupilFractions(fractions: readonly number[] | undefined): number[] {
   const normalized = [...(fractions ?? DEFAULT_CHROMATIC_PUPIL_FRACTIONS)];
   if (normalized.length === 0) throw new RangeError("pupilFractions must contain at least one sample");

@@ -52,7 +52,7 @@ export {
 } from "./benchmarkReport.js";
 import { wideOpenStopAtZoom } from "../optics/apertureStop.js";
 import buildLens from "../optics/buildLens.js";
-import { analysisJobsForState2, createAnalysisComputationContext, prepareRuntimeState } from "../optics/compat.js";
+import { createAnalysisComputationContext, prepareRuntimeState } from "../optics/compat.js";
 import {
   anchorLayoutToCamera,
   computeAnalysisFieldGeometryAtState,
@@ -69,7 +69,7 @@ import {
   traceRayVector,
   traceRayVectorChromatic,
 } from "../optics/optics.js";
-import { computeCardinalElements, createAnalysisRequest } from "../optics/analysis.js";
+import { analysisJobsForState2, computeCardinalElements, createFreshAnalysisContext } from "./benchmarkSeam.js";
 import { computeElementShapes, createCoordinateTransforms } from "../optics/diagramGeometry.js";
 import {
   clampLensMovement,
@@ -548,6 +548,8 @@ export async function runUntimedBenchmarkPass(
         } catch (error) {
           pass.cases[benchmarkCase.id] = { message: error instanceof Error ? error.message : String(error) };
         } finally {
+          for (const restore of observedContextRestorers.values()) restore();
+          observedContextRestorers.clear();
           workLog = null;
         }
       }
@@ -1004,8 +1006,9 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
 
   const preparedState = prepareRuntimeState(L, focusT, zoomT, aberrationT);
   computeCardinalElements(
-    createAnalysisRequest({ preparedState, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry }),
+    { preparedState, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry },
     { zPos, imagePlaneZ: IMG_MM },
+    L,
   );
   const perspectiveTraceContext = createPerspectiveTraceContext({
     preparedState,
@@ -1403,20 +1406,18 @@ function measureAnalysisBreakdown(
   };
 }
 
-/** Creates an uncached facade so each fine-grained benchmark times real job work. */
-function createFreshAnalysisContext(snapshot: ScenarioSnapshot): AnalysisComputationContext {
-  return createAnalysisComputationContext(Object.freeze({ ...snapshot.analysisContext.request }));
-}
-
 function computePerspectiveFocusWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const result = completed("perspectiveFocus", createFreshAnalysisContext(snapshot).computePerspectiveFocusAnalysis());
+  const result = completed(
+    "perspectiveFocus",
+    createFreshAnalysisContext(snapshot.analysisContext).computePerspectiveFocusAnalysis(),
+  );
   return { samples: result.samples.length, usableSamples: result.usableSampleCount };
 }
 
 function computePerspectiveFieldAberrationsWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const result = completed(
     "perspectiveFieldAberrations",
-    createFreshAnalysisContext(snapshot).computePerspectiveFieldAberrations(),
+    createFreshAnalysisContext(snapshot.analysisContext).computePerspectiveFieldAberrations(),
   );
   return {
     fieldCurvatureSamples: result.fieldCurvature.samples.length,
@@ -1429,7 +1430,7 @@ function computePerspectiveFieldAberrationsWork(snapshot: ScenarioSnapshot): Ben
 function computePerspectiveChromaticWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const result = completed(
     "perspectiveChromatic",
-    createFreshAnalysisContext(snapshot).computePerspectiveChromaticAnalysis(),
+    createFreshAnalysisContext(snapshot.analysisContext).computePerspectiveChromaticAnalysis(),
   );
   return { samples: result.samples.length, usableSamples: result.usableSampleCount };
 }
@@ -1437,7 +1438,7 @@ function computePerspectiveChromaticWork(snapshot: ScenarioSnapshot): BenchmarkO
 function computePerspectiveDistortionWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const result = completed(
     "perspectiveDistortion",
-    createFreshAnalysisContext(snapshot).computePerspectiveDistortionAnalysis(),
+    createFreshAnalysisContext(snapshot.analysisContext).computePerspectiveDistortionAnalysis(),
   );
   return {
     verticalSamples: result.vertical.length,
@@ -1449,7 +1450,7 @@ function computePerspectiveDistortionWork(snapshot: ScenarioSnapshot): Benchmark
 function computePerspectiveVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const result = completed(
     "perspectiveVignetting",
-    createFreshAnalysisContext(snapshot).computePerspectiveVignettingAnalysis(),
+    createFreshAnalysisContext(snapshot.analysisContext).computePerspectiveVignettingAnalysis(),
   );
   return {
     samples: result.samples.length,
@@ -1458,7 +1459,10 @@ function computePerspectiveVignettingWork(snapshot: ScenarioSnapshot): Benchmark
 }
 
 function computePerspectivePupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const result = completed("perspectivePupils", createFreshAnalysisContext(snapshot).computePerspectivePupilAnalysis());
+  const result = completed(
+    "perspectivePupils",
+    createFreshAnalysisContext(snapshot.analysisContext).computePerspectivePupilAnalysis(),
+  );
   return {
     samples: result.samples.length,
     usableSamples: result.samples.filter((sample) => sample.status === "usable").length,
@@ -1467,31 +1471,27 @@ function computePerspectivePupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutp
 
 /** Measures the optical summary path through its request-facing analysis job. */
 function computeAnalysisSummaryWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const summary = analysisJobsForState2.computeOpticalSummary(
-    createAnalysisRequest({
-      preparedState: snapshot.preparedState,
-      dynamicEFL: snapshot.dynamicEFL,
-      currentEPSD: snapshot.currentEPSD,
-      currentPhysStopSD: snapshot.currentPhysStopSD,
-      fieldGeometry: snapshot.fieldGeometry,
-    }),
-  );
+  const summary = analysisJobsForState2.computeOpticalSummary({
+    preparedState: snapshot.preparedState,
+    dynamicEFL: snapshot.dynamicEFL,
+    currentEPSD: snapshot.currentEPSD,
+    currentPhysStopSD: snapshot.currentPhysStopSD,
+    fieldGeometry: snapshot.fieldGeometry,
+  });
   completed("summary", summary);
   return { summarySurfaceCount: summary.surfaceCount };
 }
 
 /** Measures distortion-curve sampling for non-folded systems. */
 function computeAnalysisDistortionCurveWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const samples = analysisJobsForState2.computeDistortionCurve(
-    createAnalysisRequest({
-      preparedState: snapshot.preparedState,
-      dynamicEFL: snapshot.dynamicEFL,
-      currentEPSD: snapshot.currentEPSD,
-      currentPhysStopSD: snapshot.currentPhysStopSD,
-      fieldGeometry: snapshot.fieldGeometry,
-      sampling: snapshot.analysisSampling,
-    }),
-  );
+  const samples = analysisJobsForState2.computeDistortionCurve({
+    preparedState: snapshot.preparedState,
+    dynamicEFL: snapshot.dynamicEFL,
+    currentEPSD: snapshot.currentEPSD,
+    currentPhysStopSD: snapshot.currentPhysStopSD,
+    fieldGeometry: snapshot.fieldGeometry,
+    sampling: snapshot.analysisSampling,
+  });
   const curve = distortionSamplesOf(samples);
   completed("distortionCurve", curve);
   return { distortionSamples: curve.length };
@@ -1512,63 +1512,55 @@ function distortionSamplesOf<Sample>(
 
 /** Measures the distortion field-grid helper used by the analysis drawer. */
 function computeAnalysisDistortionGridWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const grid = analysisJobsForState2.computeDistortionFieldGrid(
-    createAnalysisRequest({
-      preparedState: snapshot.preparedState,
-      dynamicEFL: snapshot.dynamicEFL,
-      currentEPSD: snapshot.currentEPSD,
-      currentPhysStopSD: snapshot.currentPhysStopSD,
-      fieldGeometry: snapshot.fieldGeometry,
-      sampling: snapshot.analysisSampling,
-    }),
-  );
+  const grid = analysisJobsForState2.computeDistortionFieldGrid({
+    preparedState: snapshot.preparedState,
+    dynamicEFL: snapshot.dynamicEFL,
+    currentEPSD: snapshot.currentEPSD,
+    currentPhysStopSD: snapshot.currentPhysStopSD,
+    fieldGeometry: snapshot.fieldGeometry,
+    sampling: snapshot.analysisSampling,
+  });
   completed("distortionGrid", grid);
   return { distortionGridLines: grid.lines.length };
 }
 
 /** Measures vignetting sampling for non-folded sequential systems. */
 function computeAnalysisVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const samples = analysisJobsForState2.computeVignettingCurve(
-    createAnalysisRequest({
-      preparedState: snapshot.preparedState,
-      dynamicEFL: snapshot.dynamicEFL,
-      currentEPSD: snapshot.currentEPSD,
-      currentPhysStopSD: snapshot.currentPhysStopSD,
-      fieldGeometry: snapshot.fieldGeometry,
-      sampling: snapshot.analysisSampling,
-    }),
-  );
+  const samples = analysisJobsForState2.computeVignettingCurve({
+    preparedState: snapshot.preparedState,
+    dynamicEFL: snapshot.dynamicEFL,
+    currentEPSD: snapshot.currentEPSD,
+    currentPhysStopSD: snapshot.currentPhysStopSD,
+    fieldGeometry: snapshot.fieldGeometry,
+    sampling: snapshot.analysisSampling,
+  });
   completed("vignetting", samples);
   return { vignettingSamples: samples.length };
 }
 
 /** Measures entrance/exit pupil aberration profile generation. */
 function computeAnalysisPupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const pupilProfiles = analysisJobsForState2.computeBothPupilAberrationProfiles(
-    createAnalysisRequest({
-      preparedState: snapshot.preparedState,
-      dynamicEFL: snapshot.dynamicEFL,
-      currentEPSD: snapshot.currentEPSD,
-      currentPhysStopSD: snapshot.currentPhysStopSD,
-      fieldGeometry: snapshot.fieldGeometry,
-      sampling: snapshot.analysisSampling,
-    }),
-  );
+  const pupilProfiles = analysisJobsForState2.computeBothPupilAberrationProfiles({
+    preparedState: snapshot.preparedState,
+    dynamicEFL: snapshot.dynamicEFL,
+    currentEPSD: snapshot.currentEPSD,
+    currentPhysStopSD: snapshot.currentPhysStopSD,
+    fieldGeometry: snapshot.fieldGeometry,
+    sampling: snapshot.analysisSampling,
+  });
   completed("pupils", pupilProfiles);
   return { pupilSamples: pupilProfiles.ep.samples.length + pupilProfiles.xp.samples.length };
 }
 
 /** Measures paired infinity/near-focus bokeh preview data generation. */
 function computeAnalysisBokehPairWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const bokehPair = analysisJobsForState2.computeBokehPreviewPair(
-    createAnalysisRequest({
-      preparedState: snapshot.preparedState,
-      dynamicEFL: snapshot.dynamicEFL,
-      currentEPSD: snapshot.currentEPSD,
-      currentPhysStopSD: snapshot.currentPhysStopSD,
-      sampling: snapshot.analysisSampling,
-    }),
-  );
+  const bokehPair = analysisJobsForState2.computeBokehPreviewPair({
+    preparedState: snapshot.preparedState,
+    dynamicEFL: snapshot.dynamicEFL,
+    currentEPSD: snapshot.currentEPSD,
+    currentPhysStopSD: snapshot.currentPhysStopSD,
+    sampling: snapshot.analysisSampling,
+  });
   completed("bokehPair", bokehPair);
   return {
     bokehInfinityFields: bokehPair.infinity?.fields.length ?? 0,
@@ -2062,6 +2054,7 @@ function spreadForAxis(
  * marked, by the result's label. Null in a timed pass, where `completed` costs one comparison and a case reports
  * its `output` alone. */
 let workLog: Map<string, Record<string, number>> | null = null;
+const observedContextRestorers = new Map<AnalysisComputationContext, () => void>();
 
 /** The tallies kept under one label in the running case's log, started when the label is first met. */
 function talliesUnder(log: Map<string, Record<string, number>>, label: string): Record<string, number> {
@@ -2097,14 +2090,25 @@ function renderedMarkup(tree: React.ReactElement): string {
  * pass hands the context over as it is.
  */
 function observedAnalysisContext(context: AnalysisComputationContext): AnalysisComputationContext {
-  if (!workLog) return context;
-  return new Proxy(context, {
-    get(target, name) {
-      const member: unknown = Reflect.get(target, name);
-      if (typeof member !== "function" || typeof name !== "string" || !name.startsWith("compute")) return member;
-      return (...args: unknown[]): unknown => completed(name, Reflect.apply(member, target, args));
-    },
+  if (!workLog || observedContextRestorers.has(context)) return context;
+  /* Request-era panels retrieve this same cached object through the engine factory.
+   * Observe its methods in place during the untimed case, then restore every descriptor;
+   * a proxy alone sees only the older panels that call their context prop directly. */
+  const descriptors = new Map<string, PropertyDescriptor>();
+  for (const name of Object.keys(context)) {
+    const member: unknown = Reflect.get(context, name);
+    if (typeof member !== "function" || !name.startsWith("compute")) continue;
+    const descriptor = Object.getOwnPropertyDescriptor(context, name)!;
+    descriptors.set(name, descriptor);
+    Object.defineProperty(context, name, {
+      ...descriptor,
+      value: (...args: unknown[]): unknown => completed(name, Reflect.apply(member, context, args)),
+    });
+  }
+  observedContextRestorers.set(context, () => {
+    for (const [name, descriptor] of descriptors) Object.defineProperty(context, name, descriptor);
   });
+  return context;
 }
 
 /** Start the case list of one cell. */
@@ -2300,23 +2304,23 @@ const noop = () => {};
 
 /** Preserve the field-geometry override alongside the shared aperture and sampling snapshot. */
 function fieldCurvatureRequest(snapshot: ScenarioSnapshot) {
-  return createAnalysisRequest({
+  return {
     preparedState: snapshot.preparedState,
     dynamicEFL: snapshot.dynamicEFL,
     currentEPSD: snapshot.currentEPSD,
     currentPhysStopSD: snapshot.currentPhysStopSD,
     fieldGeometry: snapshot.fieldGeometry,
     sampling: snapshot.analysisSampling,
-  });
+  };
 }
 
 /** Keep benchmark dispatch on the same current-state request as the drawer. */
 function sphericalRequest(snapshot: ScenarioSnapshot) {
-  return createAnalysisRequest({
+  return {
     preparedState: snapshot.preparedState,
     dynamicEFL: snapshot.dynamicEFL,
     currentEPSD: snapshot.currentEPSD,
     currentPhysStopSD: snapshot.currentPhysStopSD,
     sampling: snapshot.analysisSampling,
-  });
+  };
 }

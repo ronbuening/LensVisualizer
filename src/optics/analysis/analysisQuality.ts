@@ -24,6 +24,7 @@ export interface AnalysisSamplingOptions {
   sphericalBlurRingSamples?: readonly number[];
 }
 
+// Unlike the settled family defaults, this plan selects coarser counts and explicit fractions; it generates no points.
 export const INTERACTIVE_ANALYSIS_SAMPLING: AnalysisSamplingOptions = {
   distortionCurveSampleCount: 9,
   distortionGridSegmentCount: 9,

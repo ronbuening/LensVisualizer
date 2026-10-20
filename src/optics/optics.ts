@@ -78,6 +78,7 @@ export {
 export {
   DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES,
   DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT,
+  MARGINAL_PUPIL_FRACTIONS,
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
   type CircularPupilSample,

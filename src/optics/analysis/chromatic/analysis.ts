@@ -18,11 +18,12 @@ import { computeChromaticRayFanSpread2 } from "../../chromatic/chromaticTrace.js
 import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
 
 import { runtimeView } from "../../prescription/runtimeView.js";
+import { FULL_FIELD_FRACTIONS, MARGINAL_PUPIL_FRACTIONS } from "../sampling.js";
 import type { AnalysisRequest } from "../request.js";
 
 export const DEFAULT_CHROMATIC_ANALYSIS_CHANNELS = CHROMATIC_CHANNEL_ORDER;
-export const DEFAULT_LONGITUDINAL_CHROMATIC_FRACTIONS = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
-export const DEFAULT_LATERAL_COLOR_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75, 1] as const;
+export const DEFAULT_LONGITUDINAL_CHROMATIC_FRACTIONS = MARGINAL_PUPIL_FRACTIONS;
+export const DEFAULT_LATERAL_COLOR_FIELD_FRACTIONS = FULL_FIELD_FRACTIONS;
 
 export interface ChromaticAnalysisOptions {
   channels?: readonly ChromaticChannel[];
@@ -99,6 +100,7 @@ function normalizeChannels(channels: readonly ChromaticChannel[] | undefined): C
   return CHROMATIC_CHANNEL_ORDER.filter((channel) => requested.has(channel));
 }
 
+// Unlike rayFan.normalizeSignedFractions, keep positive insertion order (and optional zero) for fallback searches.
 function normalizeFractions(
   fractions: readonly number[] | undefined,
   fallback: readonly number[],

@@ -141,6 +141,7 @@ function petzvalShiftAtImageHeight(imageHeight: number, petzvalSum: number): num
 
 const CHROMATIC_FIELD_CHANNELS: readonly ChromaticChannel[] = CHROMATIC_CHANNEL_ORDER;
 
+// Unlike the full orthogonal fan, directional focus uses four near-chief probes at a bounded physical height.
 function parabasalPupilFraction(entrancePupilSemiDiameter: number): number {
   if (!isFinite(entrancePupilSemiDiameter) || entrancePupilSemiDiameter <= 0) {
     return FIELD_CURVATURE_PARABASAL_FRACTION_MIN;

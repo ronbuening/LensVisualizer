@@ -55,6 +55,7 @@ interface WeightedPupilCoordinate extends SensorUv {
 }
 
 /** Trace a meridional pupil fan around an already-solved chief launch. */
+// Unlike sampleCircularPupil, this traces caller-ordered meridional fractions with unit rather than area weights.
 export function sampleMeridionalPupilBundle(
   context: PerspectiveTraceContext,
   chief: PerspectiveChiefRayResult,

@@ -3,7 +3,7 @@
 import type { AnalysisRequest } from "../../analysis/request.js";
 import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
 import { COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES, type ComaTailDirection } from "../../analysis/aberration/types.js";
-import { sampleCircularPupil, sampleOrthogonalPupilFan } from "../../analysis/sampling.js";
+import { circularPupilPoints, sampleOrthogonalPupilFan, signedVerticalSensorUvs } from "../../analysis/sampling.js";
 import type { Vec3 } from "../../types.js";
 import {
   sampleCircularPupilBundle,
@@ -25,13 +25,7 @@ import {
   type PerspectiveSensorBestFocus,
 } from "./imageSpace.js";
 
-const DEFAULT_FIELD_SENSOR_UVS: readonly SensorUv[] = [
-  { u: 0, v: -1 },
-  { u: 0, v: -0.5 },
-  { u: 0, v: 0 },
-  { u: 0, v: 0.5 },
-  { u: 0, v: 1 },
-];
+const DEFAULT_FIELD_SENSOR_UVS: readonly SensorUv[] = signedVerticalSensorUvs(5);
 const DEFAULT_FOCUS_FAN_SAMPLE_COUNT = 17;
 const COMA_TAIL_RATIO_THRESHOLD = 1.15;
 
@@ -129,6 +123,7 @@ export interface PerspectiveFieldAberrationAnalysis {
 }
 
 /** Build one deterministic cross-shaped pupil request for directional focus. */
+// Unlike the single-axis orthogonal fan, append a perpendicular arm with one shared center and unit weights.
 export function createPerspectiveFocusCrossPoints(
   fractions: readonly number[] = sampleOrthogonalPupilFan(DEFAULT_FOCUS_FAN_SAMPLE_COUNT, "tangential").map(
     (sample) => sample.pupilFraction,
@@ -149,11 +144,7 @@ export function createPerspectiveFocusCrossPoints(
 export function createPerspectiveComaPupilPoints(
   ringSamples: readonly number[] = COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES,
 ): PerspectivePupilPoint[] {
-  return sampleCircularPupil(ringSamples).map((sample) => ({
-    u: sample.xFraction,
-    v: sample.yFraction,
-    weight: sample.weight,
-  }));
+  return circularPupilPoints(ringSamples);
 }
 
 /**

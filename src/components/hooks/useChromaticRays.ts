@@ -12,6 +12,7 @@ import { createAnalysisRequest, computeLongitudinalChromaticFocus, stateWithZ } 
 import { prepareRuntimeState } from "../../optics/compat.js";
 import { summarizeDispersionQuality } from "../../optics/dispersion.js";
 import {
+  MARGINAL_PUPIL_FRACTIONS,
   computeChromaticRayFanSpread,
   offsetVectorFieldRay,
   traceRayChromatic,
@@ -79,8 +80,9 @@ interface UseChromaticRaysResult {
   error: unknown;
 }
 
-const DISPLAY_LOCA_FALLBACK_FRACTIONS = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
+const DISPLAY_LOCA_FALLBACK_FRACTIONS = MARGINAL_PUPIL_FRACTIONS;
 
+// Unlike the fixed analysis fallback, append authored obstruction-aware magnitudes, deduplicate by tolerance and sort.
 function longitudinalFractionsForDisplay(L: RuntimeLens, currentEPSD: number): number[] {
   const fractions: number[] = [...DISPLAY_LOCA_FALLBACK_FRACTIONS];
   for (const fraction of obstructionAwareRayFractionsForDensity(L, L.rayFractions, "normal", currentEPSD)) {

@@ -17,7 +17,7 @@ flowchart LR
   n_external_src_optics_raySampling_ts["src/optics/raySampling.ts"]
   n_external_src_optics_state["src/optics/state"]
   n_external_src_optics_trace["src/optics/trace"]
-  n_src_optics_analysis_vignetting_src_optics_analysis_vignetting_vignetting_ts --> n_external_src_optics_analysis
+  n_src_optics_analysis_vignetting_src_optics_analysis_vignetting_vignetting_ts --> |2| n_external_src_optics_analysis
   n_src_optics_analysis_vignetting_src_optics_analysis_vignetting_vignetting_ts --> n_external_src_optics_field
   n_src_optics_analysis_vignetting_src_optics_analysis_vignetting_vignetting_ts --> n_external_src_optics_prescription
   n_src_optics_analysis_vignetting_src_optics_analysis_vignetting_vignetting_ts --> n_external_src_optics_raySampling_ts
@@ -29,11 +29,11 @@ flowchart LR
 
 - Direct source files: 1
 - Direct subfolders: 0
-- Main outbound areas: src/optics/analysis, src/optics/field, src/optics/prescription, src/optics/raySampling.ts, src/optics/state, src/optics/trace
+- Main outbound areas: src/optics/analysis (2), src/optics/field, src/optics/prescription, src/optics/raySampling.ts, src/optics/state, src/optics/trace
 - External consumers: src/optics/analysis, src/optics/analysis.ts
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `vignetting.ts` | Vignetting helper module | src/optics/analysis, src/optics/field, src/optics/prescription, src/optics/raySampling.ts, src/optics/state, +1 more | src/optics/analysis, src/optics/analysis.ts | VignettingSample, computeVignettingCurve |
+| `vignetting.ts` | Vignetting helper module | src/optics/analysis (2), src/optics/field, src/optics/prescription, src/optics/raySampling.ts, src/optics/state, +1 more | src/optics/analysis, src/optics/analysis.ts | VignettingSample, computeVignettingCurve |
