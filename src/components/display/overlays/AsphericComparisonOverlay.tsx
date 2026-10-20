@@ -11,12 +11,14 @@ import type { CSSProperties } from "react";
 import useViewBoxZoom from "../../hooks/useViewBoxZoom.js";
 import {
   computeAsphericDeparture,
-  computeBestFitSphereR,
+  computeAsphericElementComparison,
+  createAnalysisRequest,
   computeDepartureProfile,
   nearestSurfaceForClick,
   peakAbsDeparture,
   rmsDeparture,
-} from "../../../optics/asphericComparison.js";
+} from "../../../optics/analysis.js";
+import { prepareRuntimeState } from "../../../optics/buildLens.js";
 import { sag, conicPolySag } from "../../../optics/geometry.js";
 import type { AsphericCoefficients, ElementData, RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
@@ -25,18 +27,6 @@ interface AsphericComparisonOverlayProps {
   L: RuntimeLens;
   info: ElementData;
   theme: Theme;
-}
-
-interface SurfaceComparison {
-  surfIdx: number;
-  label: string;
-  R_aspheric: number;
-  asph: AsphericCoefficients;
-  sd: number;
-  /** Vertex z position in the local (element-relative) frame — front = 0. */
-  vertexZ: number;
-  R_base: number;
-  R_bestFit: number;
 }
 
 interface ClickReadout {
@@ -122,42 +112,13 @@ export default function AsphericComparisonOverlay({ L, info, theme: t }: Aspheri
 
   /* ── Resolve aspheric surfaces of this element ── */
   const { surfaces, elemThickness, sdMax } = useMemo(() => {
-    const es = L.ES.find(([id]) => id === info.id);
-    if (!es) return { surfaces: [] as SurfaceComparison[], elemThickness: 0, sdMax: 0 };
-    const [, s1, s2] = es;
-    const surf1 = L.S[s1];
-    const surf2 = L.S[s2];
-    const thickness = surf1.d;
-    const list: SurfaceComparison[] = [];
-    if (L.asphByIdx[s1]) {
-      list.push({
-        surfIdx: s1,
-        label: surf1.label,
-        R_aspheric: surf1.R,
-        asph: L.asphByIdx[s1],
-        sd: surf1.sd,
-        vertexZ: 0,
-        R_base: surf1.R,
-        R_bestFit: computeBestFitSphereR(surf1.R, L.asphByIdx[s1], surf1.sd),
-      });
-    }
-    if (L.asphByIdx[s2]) {
-      list.push({
-        surfIdx: s2,
-        label: surf2.label,
-        R_aspheric: surf2.R,
-        asph: L.asphByIdx[s2],
-        sd: surf2.sd,
-        vertexZ: thickness,
-        R_base: surf2.R,
-        R_bestFit: computeBestFitSphereR(surf2.R, L.asphByIdx[s2], surf2.sd),
-      });
-    }
-    return {
-      surfaces: list,
-      elemThickness: thickness,
-      sdMax: Math.max(surf1.sd, surf2.sd),
-    };
+    const request = createAnalysisRequest({
+      preparedState: prepareRuntimeState(L, 0, 0),
+      dynamicEFL: 0,
+      currentEPSD: 0,
+      currentPhysStopSD: 0,
+    });
+    return computeAsphericElementComparison(request, info.id);
   }, [L, info.id]);
 
   /* Plain (non-aspheric) surfaces of the element, for visual completeness. */

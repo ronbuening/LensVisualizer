@@ -6,8 +6,9 @@
  * separate so no active-pose center normalization can hide real losses.
  */
 
+import type { AnalysisRequest } from "../../analysis/request.js";
+import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
 import type { ChromaticChannel } from "../../../types/optics.js";
-import { entrancePupilFromStop2, paraxialPupilGeometry2 } from "../../first-order/pupils.js";
 import { formatCacheNumber } from "../../math/numerics.js";
 import { intersectRayPlane } from "../../geometry/intersectPlane.js";
 import { dot, normalize, scale, subtract } from "../../math/vector.js";
@@ -23,19 +24,15 @@ import {
 } from "../fieldSampling.js";
 import { paraxialExitPupilCenterLens } from "../fieldGeometry.js";
 import type { PerspectiveTraceContext } from "../trace.js";
-import { createZeroMovementPerspectiveContext, finiteRatio } from "./shared.js";
+import { createAreaWeightedCircularPupilPoints, createZeroMovementPerspectiveContext, finiteRatio } from "./shared.js";
+
+export { createAreaWeightedCircularPupilPoints } from "./shared.js";
 
 const DEFAULT_SENSOR_SAMPLE_COUNT = 9;
-const DEFAULT_RADIAL_STRATA = 5;
-const DEFAULT_AZIMUTHAL_SAMPLES = 12;
 const MAX_REFERENCE_CACHE_ENTRIES_PER_STATE = 64;
 
 /** Options for fixed-sensor vignetting and radiometric pupil integration. */
 export interface PerspectiveVignettingOptions {
-  /** Physical active stop semi-diameter in mm for the current aperture. */
-  stopSemiDiameterMm: number;
-  /** Entrance-pupil semi-diameter in mm; derived paraxially when omitted. */
-  pupilSemiDiameterMm?: number;
   /** Ordered signed fixed-sensor samples; defaults to a vertical -1..+1 sweep. */
   sensorUvs?: readonly SensorUv[];
   /** Explicit circular quadrature; generated from radial/azimuthal counts when omitted. */
@@ -116,35 +113,6 @@ export interface PerspectiveVignettingAnalysis {
 const ZERO_CENTER_REFERENCE_BY_STATE = new WeakMap<PreparedOpticalState, Map<string, PerspectiveVignettingReference>>();
 
 /**
- * Build a deterministic equal-area midpoint quadrature over the unit disk.
- *
- * Equal increments of r² represent equal annular area. Alternating each
- * ring's azimuthal phase avoids lining up every radial stratum.
- *
- * @param radialStrata - number of equal-area radial annuli
- * @param azimuthalSamples - samples around every annulus
- * @returns normalized pupil coordinates whose weights sum to one
- */
-export function createAreaWeightedCircularPupilPoints(
-  radialStrata = DEFAULT_RADIAL_STRATA,
-  azimuthalSamples = DEFAULT_AZIMUTHAL_SAMPLES,
-): PerspectivePupilPoint[] {
-  const rings = positiveSampleCount(radialStrata, "radialStrata");
-  const azimuths = positiveSampleCount(azimuthalSamples, "azimuthalSamples");
-  const weight = 1 / (rings * azimuths);
-  const points: PerspectivePupilPoint[] = [];
-  for (let ring = 0; ring < rings; ring++) {
-    const radius = Math.sqrt((ring + 0.5) / rings);
-    const phase = (ring % 2) * (Math.PI / azimuths);
-    for (let azimuth = 0; azimuth < azimuths; azimuth++) {
-      const angle = phase + (2 * Math.PI * azimuth) / azimuths;
-      points.push({ u: radius * Math.cos(angle), v: radius * Math.sin(angle), weight });
-    }
-  }
-  return points;
-}
-
-/**
  * Evaluate the exit-to-sensor differential geometric factor for one ray.
  *
  * Uses `G = |nExit dot rHat| |nSensor dot -rHat| / r^2`; both cosine
@@ -223,18 +191,18 @@ export function integratePerspectiveVignettingRays(
 /**
  * Compute fixed-sensor vignetting without active-center normalization.
  *
- * @param context - physical moved-lens trace context
- * @param options - current aperture, signed sensor samples, and quadrature
+ * @param request - shared aperture, physical pose and per-context sensor-solve memo
+ * @param options - explicit field/quadrature overrides; omitted uses request sampling
  * @returns absolute samples plus a matched zero-movement center reference
  */
 export function computePerspectiveVignettingAnalysis(
-  context: PerspectiveTraceContext,
-  options: PerspectiveVignettingOptions,
+  request: AnalysisRequest,
+  options: PerspectiveVignettingOptions = perspectiveAnalysisSamplingPlan(request).vignetting,
 ): PerspectiveVignettingAnalysis {
-  assertPositiveFinite(options.stopSemiDiameterMm, "stopSemiDiameterMm");
-  const pupilSemiDiameterMm =
-    options.pupilSemiDiameterMm ??
-    entrancePupilFromStop2(options.stopSemiDiameterMm, paraxialPupilGeometry2(context.state)).epSD;
+  const context = request.perspectiveTraceContext;
+  if (!context) throw new Error("Movement-aware analysis requires a PerspectiveTraceContext");
+  const { stopSemiDiameterMm, entrancePupilSemiDiameterMm: pupilSemiDiameterMm } = request.aperture;
+  assertPositiveFinite(stopSemiDiameterMm, "stopSemiDiameterMm");
   assertPositiveFinite(pupilSemiDiameterMm, "pupilSemiDiameterMm");
 
   const sensorUvs = options.sensorUvs ?? signedVerticalSensorUvs(DEFAULT_SENSOR_SAMPLE_COUNT);
@@ -246,7 +214,7 @@ export function computePerspectiveVignettingAnalysis(
       kind: "circular",
       pupilSemiDiameterMm,
       points: pupilPoints,
-      stopSemiDiameterMm: options.stopSemiDiameterMm,
+      stopSemiDiameterMm,
       channel: options.channel,
     },
   };
@@ -258,7 +226,7 @@ export function computePerspectiveVignettingAnalysis(
     context,
     zeroContext,
     samplingOptions,
-    options.stopSemiDiameterMm,
+    stopSemiDiameterMm,
     pupilSemiDiameterMm,
     pupilPoints,
     options.channel,
@@ -272,7 +240,7 @@ export function computePerspectiveVignettingAnalysis(
 
   return {
     contextCacheKey: context.cacheKey,
-    stopSemiDiameterMm: options.stopSemiDiameterMm,
+    stopSemiDiameterMm,
     pupilSemiDiameterMm,
     pupilPoints,
     zeroMovementCenterReference: reference,
@@ -445,9 +413,4 @@ function signedVerticalSensorUvs(count: number): SensorUv[] {
 
 function assertPositiveFinite(value: number, label: string): void {
   if (!Number.isFinite(value) || value <= 0) throw new RangeError(`${label} must be finite and greater than zero`);
-}
-
-function positiveSampleCount(value: number, label: string): number {
-  assertPositiveFinite(value, label);
-  return Math.max(1, Math.round(value));
 }

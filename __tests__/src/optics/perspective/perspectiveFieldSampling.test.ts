@@ -1,3 +1,4 @@
+import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import buildLens from "../../../../src/optics/buildLens.js";
 import { prepareRuntimeState } from "../../../../src/optics/compat.js";
@@ -328,8 +329,6 @@ const MEMO_SENSOR_UVS = [
 
 function sensorMemoAnalyses(camera: PerspectiveTraceContext, channel?: "G") {
   const common = {
-    stopSemiDiameterMm: 1,
-    pupilSemiDiameterMm: 0.25,
     sensorUvs: MEMO_SENSOR_UVS,
     fieldSampling: { chiefRay: { channel } },
   };
@@ -339,21 +338,28 @@ function sensorMemoAnalyses(camera: PerspectiveTraceContext, channel?: "G") {
     { u: 0, v: 0.5, weight: 0.25 },
   ];
   const pupilFractions = [-0.5, 0, 0.5];
+  const request = createAnalysisRequest({
+    preparedState: camera.state,
+    dynamicEFL: 0,
+    currentEPSD: 0.25,
+    currentPhysStopSD: 1,
+    perspectiveTraceContext: camera,
+  });
   return {
-    focus: computePerspectiveFocusAnalysis(camera, { ...common, pupilPoints }),
-    vignetting: computePerspectiveVignettingAnalysis(camera, {
+    focus: computePerspectiveFocusAnalysis(request, { ...common, pupilPoints }),
+    vignetting: computePerspectiveVignettingAnalysis(request, {
       ...common,
       pupilPoints,
       includeActiveToZeroRatio: true,
     }),
-    field: computePerspectiveFieldAberrations(camera, {
+    field: computePerspectiveFieldAberrations(request, {
       ...common,
       focusPupilFractions: pupilFractions,
       comaPupilPoints: pupilPoints,
     }),
-    chromatic: computePerspectiveChromaticAnalysis(camera, { ...common, pupilFractions, channels: ["R", "G", "B"] }),
-    pupils: computePerspectivePupilAnalysis(camera, { ...common, pupilFractions }),
-    distortion: computePerspectiveDistortionAnalysis(camera, {
+    chromatic: computePerspectiveChromaticAnalysis(request, { ...common, pupilFractions, channels: ["R", "G", "B"] }),
+    pupils: computePerspectivePupilAnalysis(request, { ...common, pupilFractions }),
+    distortion: computePerspectiveDistortionAnalysis(request, {
       fieldSampling: common.fieldSampling,
       verticalSensorV: [-0.25, 0, 0.3],
       gridSensorU: [0, 0.2],
@@ -380,6 +386,8 @@ describe("context-owned sensor chief memo", () => {
 
       const camera = sensorMemoContext();
       const zero = createZeroMovementPerspectiveContext(camera);
+      expect(zero).not.toBe(camera);
+      expect(zero.sensorChiefSolves).not.toBe(camera.sensorChiefSolves);
       expect(createZeroMovementPerspectiveContext(camera)).toBe(zero);
       const after = [sensorMemoAnalyses(camera, channel), sensorMemoAnalyses(camera, channel)];
       expect(after).toStrictEqual(before);

@@ -1,6 +1,6 @@
 import { prepareRuntimeState } from "../../../../src/optics/compat.js";
 import { build, buildSimplePositiveElementLens } from "../testLensFixtures.js";
-import { mtfTraceClassification } from "../../../../src/optics/analysis/mtfRayClassification.js";
+import { mtfTraceClassification } from "../../../../src/optics/analysis/mtf/mtfRayClassification.js";
 import * as pathPlanner from "../../../../src/optics/trace/pathPlanner.js";
 import * as foldedDiagnostics from "../../../../src/optics/trace/foldedDiagnostics.js";
 import type { Ray3 } from "../../../../src/optics/types.js";

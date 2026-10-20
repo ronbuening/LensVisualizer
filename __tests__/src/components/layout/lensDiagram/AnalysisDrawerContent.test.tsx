@@ -279,6 +279,24 @@ describe("AnalysisDrawerContent", () => {
     expect(second).toBe(first);
   });
 
+  it("retains request identity when equal optical inputs arrive in new render objects", async () => {
+    const fieldGeometry = { halfFieldDeg: 10, yRatio: 1, b: 2, epRatio: 3 };
+    const { rerender } = render(
+      <AnalysisDrawerContent {...baseProps} activeTab="summary" fieldGeometry={fieldGeometry} />,
+    );
+    const first = mockOpticalSummaryTab.mock.calls.at(-1)?.[0].analysisContext as AnalysisComputationContext;
+    const nextField = { ...fieldGeometry };
+    rerender(
+      <AnalysisDrawerContent {...baseProps} activeTab="summary" fieldGeometry={nextField} zPos={[...baseProps.zPos]} />,
+    );
+    await waitFor(() => {
+      expect(mockOpticalSummaryTab.mock.calls.at(-1)?.[0].fieldGeometry).toBe(nextField);
+    });
+    const repeated = mockOpticalSummaryTab.mock.calls.at(-1)?.[0].analysisContext as AnalysisComputationContext;
+    expect(repeated.request).toBe(first.request);
+    expect(repeated).toBe(first);
+  });
+
   it("keeps intrinsic summary available and invalidates its context on shift/tilt-only changes", async () => {
     const shifted = perspectiveContext("perspective:shift=2:tilt=0", true);
     const tilted = perspectiveContext("perspective:shift=0:tilt=2", true);

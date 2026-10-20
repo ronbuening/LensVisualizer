@@ -25,20 +25,7 @@ import { describe, expect, it } from "vitest";
  * Rule: the runtime import graph of src/optics/ has no strongly connected component larger
  * than one module and no self-import. There is no registry, because no cycle is approved.
  */
-const CYCLE_LEGACY: readonly string[] = [
-  "src/optics/analysis/analysisContext.ts",
-  "src/optics/analysis/analysisJobs.ts",
-  "src/optics/analysis/distortion.ts",
-  "src/optics/analysis/groupMovement.ts",
-  "src/optics/analysis/pupilAberration.ts",
-  "src/optics/analysis/vignetting.ts",
-  "src/optics/compat.ts",
-  "src/optics/distortionAnalysis.ts",
-  "src/optics/groupMovement.ts",
-  "src/optics/optics.ts",
-  "src/optics/pupilAberration.ts",
-  "src/optics/vignetteAnalysis.ts",
-];
+const CYCLE_LEGACY: readonly string[] = [];
 
 /* ── Seam guard lists ── */
 
@@ -59,6 +46,7 @@ interface SeamRegistryEntry {
  */
 const SEAM_REGISTRY: readonly SeamRegistryEntry[] = [
   { module: "src/optics/aberrationAnalysis.ts" },
+  { module: "src/optics/analysis.ts" },
   { module: "src/optics/apertureStop.ts" },
   { module: "src/optics/buildLens.ts" },
   { module: "src/optics/cardinalElements.ts" },
@@ -91,39 +79,32 @@ const SEAM_REGISTRY: readonly SeamRegistryEntry[] = [
  * folder but is not part of the optical engine, and mount specs import it directly.
  */
 const SEAM_LEGACY: readonly string[] = [
-  "src/optics/aberration/offAxis.ts",
+  "src/optics/analysis/aberration/offAxis.ts",
   "src/optics/analysis/analysisQuality.ts",
-  "src/optics/analysis/mtfConstants.ts",
-  "src/optics/analysis/mtfFocus.ts",
-  "src/optics/analysis/mtfMath.ts",
-  "src/optics/analysis/mtfShearedOtf.ts",
-  "src/optics/analysis/mtfSupport.ts",
-  "src/optics/analysis/mtfTracing.ts",
-  "src/optics/analysis/mtfWavefront.ts",
+  "src/optics/analysis/mtf/mtfConstants.ts",
+  "src/optics/analysis/mtf/mtfFocus.ts",
+  "src/optics/analysis/mtf/mtfMath.ts",
+  "src/optics/analysis/mtf/mtfShearedOtf.ts",
+  "src/optics/analysis/mtf/mtfTracing.ts",
+  "src/optics/analysis/mtf/mtfWavefront.ts",
   "src/optics/aperture.ts",
-  "src/optics/asphericComparison.ts",
   "src/optics/chromatic/channels.ts",
-  "src/optics/chromaticRayFanScaling.ts",
   "src/optics/compat.ts",
   "src/optics/constants.ts",
-  "src/optics/distortionAnalysis.ts",
   "src/optics/field/projection.ts",
   "src/optics/focusDistance.ts",
   "src/optics/foldedPathDisplay.ts",
   "src/optics/glassCatalog.ts",
-  "src/optics/groupMovement.ts",
   "src/optics/layout.ts",
   "src/optics/lensMovement.ts",
   "src/optics/math/vector.ts",
   "src/optics/perspective/diagramFan.ts",
   "src/optics/perspective/index.ts",
   "src/optics/publishedStations.ts",
-  "src/optics/pupilAberration.ts",
   "src/optics/raySampling.ts",
   "src/optics/spectralLines.ts",
   "src/optics/trace/rayAdapters.ts",
   "src/optics/types.ts",
-  "src/optics/vignetteAnalysis.ts",
 ];
 
 /** Report-only formulas stay internal; permission is for this importer/target pair, not the app. */
@@ -158,9 +139,22 @@ interface CacheLegacyRecord {
  *   and its `limit` constant.
  */
 const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
+  "src/optics/analysis/analysisContext.ts#CONTEXT_BY_REQUEST": {
+    kind: "weak-owner",
+    owner: "AnalysisRequest",
+    key: "request identity",
+    perOwner: "one lazy context; results die with the request after bounded request-history eviction",
+  },
   "src/optics/analysis/analysisMovementSupport.ts#MOVEMENT_AWARE_SECTIONS": { kind: "constant" },
   "src/optics/analysis/analysisMovementSupport.ts#MOVEMENT_INVARIANT_SECTIONS": { kind: "constant" },
-  "src/optics/analysis/mtfTracing.ts#X_SYMMETRIC_PROFILES": { kind: "constant" },
+  "src/optics/analysis/mtf/mtfTracing.ts#X_SYMMETRIC_PROFILES": { kind: "constant" },
+  "src/optics/analysis/request.ts#REQUESTS_BY_LENS": {
+    kind: "bounded",
+    owner: "module",
+    key: "compiled identity; each lens LRU holds at most 96 requests keyed by geometry and exact controls",
+    capacity: 2,
+    limit: "REQUEST_LENS_CACHE_LIMIT",
+  },
   "src/optics/chromatic/indexResolver.ts#cauchyCoefficientsByDispersion": {
     kind: "weak-owner",
     owner: "CompiledSurfaceDispersion",
@@ -290,11 +284,11 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
  * hand, with its capacity.
  */
 const CACHE_LEGACY: Readonly<Record<string, CacheLegacyRecord>> = {
-  "src/optics/analysis/mtfRayClassification.ts#boundsBySurface": {
+  "src/optics/analysis/mtf/mtfRayClassification.ts#boundsBySurface": {
     grows: "per compiled surface, one bounds record per distinct evaluated semi-diameter",
     retire: "keep one bounds record per surface, or cap the per-surface map",
   },
-  "src/optics/analysis/mtfTracing.ts#indexTablesByState": {
+  "src/optics/analysis/mtf/mtfTracing.ts#indexTablesByState": {
     grows: "per prepared state, one index table per distinct wavelength",
     retire: "cap the per-state map of index tables",
   },

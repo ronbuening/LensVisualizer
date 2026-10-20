@@ -197,7 +197,6 @@ export {
 } from "./diagnostics/chiefRay.js";
 export {
   computeCardinalElements2,
-  computeCardinalElementsAtState2,
   type CardinalDistance2,
   type CardinalElements2,
   type CardinalPoint2,
@@ -246,89 +245,45 @@ export {
   type AnalysisSectionMode,
 } from "./analysis/analysisMovementSupport.js";
 export {
-  computeComaAnalysis2,
-  computeComaAnalysisForState2,
-  computeComaPointCloudPreview2,
-  computeComaPreview2,
-  computeFieldCurvature2,
-  computeFieldCurvatureBundle2,
-  computeFieldCurvatureBundleForState2,
-  computeFieldCurvatureForState2,
-  computeMeridionalComa2,
-  computeSAProfile2,
-  computeSAProfileForState2,
-  computeSagittalComa2,
-  computeSphericalAberration2,
-  computeSphericalAberrationBlurCharacter2,
-  computeSphericalAberrationBlurCharacterForState2,
-  computeSphericalAberrationForState2,
-} from "./analysis/aberrations.js";
-export {
-  computeChromaticAnalysis2,
-  computeChromaticAnalysisForState2,
-  computeChromaticRayFanAnalysis2,
-  computeChromaticRayFanAnalysisForState2,
-  computeLateralColorCurve2,
-  computeLongitudinalChromaticFocus2,
-  summarizeChromaticFieldFocus2,
   type ChromaticAnalysisOptions,
   type ChromaticAnalysisResult,
-  type ChromaticChannelSpan2,
-  type ChromaticFieldFocusFieldSummary2,
-  type ChromaticFieldFocusSummary2,
-  type ChromaticRayFanAnalysis2,
-  type ChromaticRayFanAnalysisOptions2,
   type LateralColorChannelSample,
   type LateralColorCurveResult,
   type LateralColorFieldSample,
   type LongitudinalChromaticFocusResult,
   type LongitudinalChromaticFocusSample,
-} from "./analysis/chromatic.js";
+} from "./analysis/chromatic/analysis.js";
+export type { ChromaticRayFanAnalysis2, ChromaticRayFanAnalysisOptions2 } from "./analysis/chromatic/rayFan.js";
 export {
-  buildBokehDensityGrid2,
-  buildBokehRadialProfile2,
-  classifyBokehBrightnessCharacter2,
-  computeBestFocusZ2,
-  computeBestFocusZForState2,
-  computeBokehPreview2,
-  computeBokehPreviewPair2,
-  computeBokehPreviewPairForState2,
-  describeBokehDefocusSide2,
-} from "./analysis/bokeh.js";
+  buildBokehDensityGrid as buildBokehDensityGrid2,
+  describeBokehDefocusSide as describeBokehDefocusSide2,
+} from "./analysis/bokeh/bokeh.js";
 export {
-  computeDistortionCurve2,
-  computeDistortionCurveForState2,
-  computeDistortionFieldGrid2,
-  computeDistortionFieldGridForState2,
-} from "./analysis/distortion.js";
-export { computeVignettingCurve2, computeVignettingCurveForState2 } from "./analysis/vignetting.js";
+  buildBokehRadialProfile as buildBokehRadialProfile2,
+  classifyBokehBrightnessCharacter as classifyBokehBrightnessCharacter2,
+} from "./analysis/aberration/radialProfile.js";
+export { PUPIL_ABERRATION_SAMPLE_COUNT_2 } from "./analysis/pupils/pupilAberration.js";
+export { computeOpticalSummary, type OpticalSummaryMetrics2 } from "./analysis/summary/summary.js";
 export {
-  computeBothPupilAberrationProfiles2,
-  computeBothPupilAberrationProfilesForState2,
-  computeExitPupilAberrationProfile2,
-  computePupilAberrationProfile2,
-  PUPIL_ABERRATION_SAMPLE_COUNT_2,
-} from "./analysis/pupilAberration.js";
-export { computeOpticalSummaryForState2, type OpticalSummaryMetrics2 } from "./analysis/summary.js";
+  computeGroupMovementProfile,
+  firstAvailableGroupMovementMode as firstAvailableGroupMovementMode2,
+  getGroupMovementAvailability as getGroupMovementAvailability2,
+  inferLensMovementGroups as inferLensMovementGroups2,
+  isGroupMovementModeAvailable as isGroupMovementModeAvailable2,
+} from "./analysis/summary/groupMovement.js";
 export {
-  computeGroupMovementProfile2,
-  computeGroupMovementProfileForState2,
-  firstAvailableGroupMovementMode2,
-  getGroupMovementAvailability2,
-  inferLensMovementGroups2,
-  isGroupMovementModeAvailable2,
-} from "./analysis/groupMovement.js";
+  computeAsphericDepartureFromProfiles as computeAsphericDeparture2,
+  computeBestFitSphereRFromProfiles as computeBestFitSphereR2,
+  computeDepartureProfileFromProfiles as computeDepartureProfile2,
+  nearestSurfaceForClick as nearestSurfaceForClick2,
+  peakAbsDeparture as peakAbsDeparture2,
+  rmsDeparture as rmsDeparture2,
+  type DepartureSample as DepartureSample2,
+} from "./analysis/asphericComparison/comparison.js";
 export {
-  computeAsphericDeparture2,
-  computeBestFitSphereR2,
-  computeDepartureProfile2,
-  nearestSurfaceForClick2,
-  peakAbsDeparture2,
-  rmsDeparture2,
-  type DepartureSample2,
-} from "./analysis/asphericComparison.js";
-export {
-  computeLocaBarOffsets2,
-  REFERENCE_LOCA_MM_2,
-  type ChromaticBarResult2,
-} from "./analysis/chromaticRayFanScaling.js";
+  computeLocaBarOffsets as computeLocaBarOffsets2,
+  REFERENCE_LOCA_MM as REFERENCE_LOCA_MM_2,
+  type ChromaticBarResult as ChromaticBarResult2,
+} from "./analysis/chromatic/rayFanScaling.js";
+
+export { createAnalysisRequest, type AnalysisRequest } from "./analysis/request.js";

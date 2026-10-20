@@ -1,7 +1,14 @@
+import {
+  computeBothPupilAberrationProfiles,
+  computeVignettingCurve,
+  computeDistortionCurve,
+  computeDistortionFieldGrid,
+  computeFieldCurvatureBundle,
+} from "../../../src/optics/analysis.js";
+import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
 import { analysisJobs2, analysisJobsForState2, prepareRuntimeState } from "../../../src/optics/compat.js";
 import { eflAtFocus } from "../../../src/optics/optics.js";
-import { zPosForPreparedAnalysis2 } from "../../../src/optics/analysis/preparedStateAdapters.js";
 import { apertureAt, buildChromaticPositiveElementLens, sharedSonnar50f15 } from "./testLensFixtures.js";
 
 describe("analysis job facade", () => {
@@ -12,28 +19,38 @@ describe("analysis job facade", () => {
     const state = prepareRuntimeState(L, focusT, zoomT);
     const dynamicEFL = eflAtFocus(focusT, zoomT, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, zoomT);
-    const zPos = zPosForPreparedAnalysis2(state);
-
-    expect(zPos).toBe(state.z);
     expect(Object.isFrozen(state.z)).toBe(true);
 
-    expect(analysisJobsForState2.computeDistortionCurve(state, dynamicEFL, currentPhysStopSD)).toEqual(
-      analysisJobs2.computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD),
+    const distortionRequest = createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL,
+      currentEPSD,
+      currentPhysStopSD,
+    });
+    expect(analysisJobsForState2.computeDistortionCurve(distortionRequest)).toEqual(
+      computeDistortionCurve(distortionRequest),
     );
-    expect(analysisJobsForState2.computeDistortionFieldGrid(state, currentPhysStopSD)).toEqual(
-      analysisJobs2.computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD),
+    expect(analysisJobs2.computeDistortionCurve(distortionRequest)).toEqual(computeDistortionCurve(distortionRequest));
+    expect(analysisJobs2.computeDistortionFieldGrid(distortionRequest)).toEqual(
+      computeDistortionFieldGrid(distortionRequest),
     );
-    expect(analysisJobsForState2.computeVignettingCurve(state, currentEPSD, currentPhysStopSD)).toEqual(
-      analysisJobs2.computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    expect(analysisJobsForState2.computeDistortionFieldGrid(distortionRequest)).toEqual(
+      computeDistortionFieldGrid(distortionRequest),
     );
-    expect(analysisJobsForState2.computeFieldCurvatureBundle(state, currentEPSD, currentPhysStopSD)).toEqual(
-      analysisJobs2.computeFieldCurvatureBundle(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    expect(analysisJobsForState2.computeVignettingCurve(distortionRequest)).toEqual(
+      computeVignettingCurve(distortionRequest),
     );
-    expect(analysisJobsForState2.computeChromaticRayFanAnalysis(state, currentEPSD, currentPhysStopSD)).toEqual(
-      analysisJobs2.computeChromaticRayFanAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    expect(analysisJobs2.computeVignettingCurve(distortionRequest)).toEqual(computeVignettingCurve(distortionRequest));
+    const fieldRequest = createAnalysisRequest({ preparedState: state, dynamicEFL, currentEPSD, currentPhysStopSD });
+    expect(analysisJobsForState2.computeFieldCurvatureBundle(fieldRequest)).toEqual(
+      computeFieldCurvatureBundle(fieldRequest),
     );
-    expect(analysisJobsForState2.computeChromaticAnalysis(state, currentEPSD, currentPhysStopSD)).toEqual(
-      analysisJobs2.computeChromaticAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    expect(analysisJobs2.computeFieldCurvatureBundle(fieldRequest)).toEqual(computeFieldCurvatureBundle(fieldRequest));
+    expect(analysisJobsForState2.computeChromaticRayFanAnalysis(distortionRequest)).toEqual(
+      analysisJobs2.computeChromaticRayFanAnalysis(distortionRequest),
+    );
+    expect(analysisJobsForState2.computeChromaticAnalysis(distortionRequest)).toEqual(
+      analysisJobs2.computeChromaticAnalysis(distortionRequest),
     );
   });
 
@@ -50,24 +67,15 @@ describe("analysis job facade", () => {
       chromaticRayTraceOffAxisFractions: [0.5],
     };
 
-    const analysis = analysisJobsForState2.computeChromaticAnalysis(
-      state,
+    const request = createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: L.EFL,
       currentEPSD,
       currentPhysStopSD,
-      undefined,
       sampling,
-    );
-    const rayTrace = analysisJobsForState2.computeChromaticRayFanAnalysis(
-      state,
-      currentEPSD,
-      currentPhysStopSD,
-      undefined,
-      {
-        channels: ["R", "G", "B", "V"],
-        onAxisFractions: sampling.chromaticRayTraceOnAxisFractions,
-        offAxisFractions: sampling.chromaticRayTraceOffAxisFractions,
-      },
-    );
+    });
+    const analysis = analysisJobsForState2.computeChromaticAnalysis(request);
+    const rayTrace = analysisJobsForState2.computeChromaticRayFanAnalysis(request);
 
     expect(analysis.longitudinalFocus?.marginalFraction).toBe(0.5);
     expect(analysis.longitudinalFocus?.channels).toEqual(["R", "G", "B", "V"]);
@@ -85,16 +93,32 @@ describe("analysis job facade", () => {
     const state = prepareRuntimeState(L, focusT, zoomT);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, zoomT);
 
-    const statePupilProfiles = analysisJobsForState2.computeBothPupilAberrationProfiles(state, 5);
-    expect(statePupilProfiles).toEqual(analysisJobs2.computeBothPupilAberrationProfiles(focusT, zoomT, L, 5));
+    const pupilRequest = createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: 0,
+      currentEPSD,
+      currentPhysStopSD,
+      sampling: { pupilAberrationSampleCount: 5 },
+    });
+    const statePupilProfiles = analysisJobsForState2.computeBothPupilAberrationProfiles(pupilRequest);
+    expect(statePupilProfiles).toEqual(analysisJobs2.computeBothPupilAberrationProfiles(pupilRequest));
+    expect(statePupilProfiles).toEqual(computeBothPupilAberrationProfiles(pupilRequest));
     expect(statePupilProfiles.ep.samples).toHaveLength(5);
     expect(statePupilProfiles.xp.samples).toHaveLength(5);
 
-    const bokehPair = analysisJobsForState2.computeBokehPreviewPair(state, currentEPSD, currentPhysStopSD);
-    expect(bokehPair).toEqual(analysisJobs2.computeBokehPreviewPair(L, focusT, zoomT, currentEPSD, currentPhysStopSD));
+    const bokehRequest = createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: L.EFL,
+      currentEPSD,
+      currentPhysStopSD,
+    });
+    const bokehPair = analysisJobsForState2.computeBokehPreviewPair(bokehRequest);
+    expect(bokehPair).toEqual(analysisJobs2.computeBokehPreviewPair(bokehRequest));
     expect(bokehPair.infinity || bokehPair.nearFocus).toBeTruthy();
 
-    const summary = analysisJobsForState2.computeOpticalSummary(state, L.EFL, currentEPSD, currentPhysStopSD);
+    const summary = analysisJobsForState2.computeOpticalSummary(
+      createAnalysisRequest({ preparedState: state, dynamicEFL: L.EFL, currentEPSD, currentPhysStopSD }),
+    );
     expect(summary.currentEFLMm).toBeCloseTo(L.EFL, 6);
     expect(summary.entrancePupilDiameterMm).toBeCloseTo(currentEPSD * 2, 6);
   });

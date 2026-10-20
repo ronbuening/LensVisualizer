@@ -1,7 +1,7 @@
 /**
  * Focus-breathing helper — current-state effective focal length for focus/zoom positions.
  *
- * Exposes the first-order EFL calculation through a RuntimeLens-friendly signature.
+ * Shares the first-order EFL calculation between prepared requests and compatibility callers.
  */
 
 import { interpolateStationTable, clampStationControl } from "../state/stationTables.js";
@@ -9,6 +9,8 @@ import type { RuntimeLens } from "../../types/optics.js";
 import { FOCUS_INFINITY_CUTOFF } from "../focusDistance.js";
 import { compiledLensFromRuntime } from "../prescription/compile.js";
 import { prepareState } from "../state/preparedGeometry.js";
+import type { PreparedGeometry } from "../types.js";
+import { runtimeView } from "../prescription/runtimeView.js";
 import { traceParaxialSurfaces2 } from "../math/paraxial.js";
 
 /**
@@ -29,6 +31,25 @@ export function eflAtFocus2(focusT: number, zoomT: number, L: RuntimeLens, aberr
     return L.isZoom && L.zoomEFLs ? interpolateStationTable(clampStationControl(zoomT), L.zoomEFLs) : L.EFL;
   }
   const state = prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT);
+  return eflFromPreparedSurfaces(state, L);
+}
+
+/**
+ * Compute current EFL from prepared geometry while retaining cached infinity values.
+ * @param state - prepared focus/zoom/aberration geometry
+ * @returns effective focal length in mm
+ */
+export function eflAtPreparedState(state: PreparedGeometry): number {
+  const L = runtimeView(state.lens);
+  const { focusT, zoomT, aberrationT } = state;
+  if (focusT < FOCUS_INFINITY_CUTOFF && aberrationT === 0) {
+    return L.isZoom && L.zoomEFLs ? interpolateStationTable(clampStationControl(zoomT), L.zoomEFLs) : L.EFL;
+  }
+  return eflFromPreparedSurfaces(state, L);
+}
+
+function eflFromPreparedSurfaces(state: PreparedGeometry, L: RuntimeLens): number {
+  const { zoomT } = state;
   const efl = eflFromSurfaces(state.surfaces);
   if (efl === null)
     return L.isZoom && L.zoomEFLs ? interpolateStationTable(clampStationControl(zoomT), L.zoomEFLs) : L.EFL;

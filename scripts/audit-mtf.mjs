@@ -1,3 +1,4 @@
+import { createAnalysisRequest } from "../src/optics/analysis.ts";
 /**
  * Read-only MTF census. Run with the project's TS specifier hook.
  *
@@ -13,7 +14,7 @@ import { pathToFileURL } from "node:url";
 import buildLens from "../src/optics/buildLens.ts";
 import { prepareRuntimeState } from "../src/optics/compat.ts";
 import { assessMtfSupport, computeMtf, resolveMtfGeometry } from "../src/optics/mtf.ts";
-import { mtfImagePlaneOffset } from "../src/optics/analysis/mtfFocus.ts";
+import { mtfImagePlaneOffset } from "../src/optics/analysis/mtf/mtfFocus.ts";
 
 const spectrum = process.argv.includes("--cdf")
   ? "cdf"
@@ -50,7 +51,15 @@ for (const file of files) {
     pupilSemiDiameterMm: L.EP.epSD,
     stopSemiDiameterMm: L.stopPhysSD,
   };
-  const assessed = assessMtfSupport(state, options);
+  const assessed = assessMtfSupport(
+    createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: 0,
+      currentEPSD: options.pupilSemiDiameterMm,
+      currentPhysStopSD: options.stopSemiDiameterMm,
+    }),
+    options,
+  );
   const reason = assessed.reason ?? "candidate";
   tally(support, reason);
   if (focusCensus) {
@@ -65,13 +74,29 @@ for (const file of files) {
     continue;
   }
   if (!perField || reason !== "candidate") continue;
-  const geometry = resolveMtfGeometry(state, options);
+  const geometry = resolveMtfGeometry(
+    createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: 0,
+      currentEPSD: options.pupilSemiDiameterMm,
+      currentPhysStopSD: options.stopSemiDiameterMm,
+    }),
+    options,
+  );
   if (!geometry) {
     for (const position of Object.keys(fields)) tally(fields[position], "no-field-axis");
     continue;
   }
   const edge = geometry.modeledEdgeHeightMm / geometry.referenceHeightMm;
-  const result = computeMtf(state, { ...options, fieldFractions: [0, 0.5, edge] });
+  const result = computeMtf(
+    createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: 0,
+      currentEPSD: { ...options, fieldFractions: [0, 0.5, edge] }.pupilSemiDiameterMm,
+      currentPhysStopSD: { ...options, fieldFractions: [0, 0.5, edge] }.stopSemiDiameterMm,
+    }),
+    { ...options, fieldFractions: [0, 0.5, edge] },
+  );
   const status = (field) => (field.status === "unavailable" ? field.reason : "available");
   ["center", "half", "edge"].forEach((position, i) => {
     const value = status(result.fields[i]);

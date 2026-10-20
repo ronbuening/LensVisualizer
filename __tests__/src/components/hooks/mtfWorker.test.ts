@@ -1,3 +1,4 @@
+import { mtfInputs } from "../../optics/testLensFixtures.js";
 import { afterEach, expect, it, vi } from "vitest";
 import {
   build,
@@ -128,7 +129,7 @@ it("compiles canonical prescriptions in the worker and matches the pure engine f
           maxGridSize: 32,
         };
         send({ type: "compute", id: ++id, job: { focusT: 0, zoomT: 0, aberrationT: 0, options } });
-        const expected = computeMtf(prepareRuntimeState(lens, 0, 0), options);
+        const expected = computeMtf(...mtfInputs(prepareRuntimeState(lens, 0, 0), options));
         expect(expected.support.available).toBe(true);
         expect(expected.fields[0].reason).toBeNull();
         expect(await finished(id)).toEqual({ type: "result", id, result: expected });

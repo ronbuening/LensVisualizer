@@ -3,6 +3,7 @@
  * worker time-slices its generator so progress and cancellation are serviced between slices.
  */
 import { buildCanonicalLens } from "../../optics/buildLens.js";
+import { createAnalysisRequest } from "../../optics/analysis.js";
 import { prepareRuntimeState } from "../../optics/compat.js";
 import { computeMtfSteps, type MtfJobCache } from "../../optics/mtf.js";
 import type { MtfResult } from "../../types/mtf.js";
@@ -89,7 +90,16 @@ self.onmessage = (event: MessageEvent<MtfWorkerRequest>) => {
     // A newer request supersedes the running one; its generator is dropped mid-field.
     active = {
       id: message.id,
-      steps: computeMtfSteps(state, options, jobCache(message.job)),
+      steps: computeMtfSteps(
+        createAnalysisRequest({
+          preparedState: state,
+          dynamicEFL: 0,
+          currentEPSD: options.pupilSemiDiameterMm,
+          currentPhysStopSD: options.stopSemiDiameterMm,
+        }),
+        options,
+        jobCache(message.job),
+      ),
       postedAt: performance.now(),
     };
     pump();

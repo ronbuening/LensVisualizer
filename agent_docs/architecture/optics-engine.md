@@ -46,8 +46,10 @@ contract in `src/lens-data/LENS_DATA_SPEC.md`; do not add an analysis-specific s
 
 ## Simulated MTF
 
-`src/optics/mtf.ts` accepts a prepared state and explicit physical aperture, method, spectrum, focus, field and
-frequency options. Every request names its focus mode: the engine has no default plane, and a request without one is
+`src/optics/mtf.ts` exposes `analysis/mtf/` entry points taking `AnalysisRequest` plus method, spectrum, focus,
+field and frequency settings (`MtfRequestOptions`). The request supplies prepared geometry and both physical aperture
+radii; geometry-only helpers take `PreparedGeometry`. Resolved `MtfOptions` remain internal to the unchanged sampling
+and OTF code, and serve as the serializable worker controls. Every request names its focus mode: the engine has no default plane, and a request without one is
 `invalid-input`. This estimates the authored prescription; numerical convergence and source-data confidence are
 separate. Sagittal frequencies run along image X, tangential along Y; the field lies in the Y/Z meridian. Both chart
 views share the same computed fields, one image plane and physical lp/mm units.
@@ -194,9 +196,15 @@ accurate. It is a report, never a test threshold: maker focus and spectrum are u
 example is not proven to be the production lens. The kernels are checked against exact Hopkins integrals; no real
 lens has been compared with another tool.
 
-The MTF tab lazily creates a worker from the runtime's unexpanded canonical prescription, provenance and optional
+The MTF tab reuses `analysisContext.request`, or memoizes a standalone request from prepared geometry, aperture and
+EFL. Its f/8 comparison creates a separate request with scaled aperture radii. The hook serializes only slider and
+aperture controls plus MTF settings, so chart-only changes retain the same computation key. MTF is worker-driven and
+has no lazy analysis-context accessor or job-table entry. Single-lens and comparison drawers share this renderer.
+The tab lazily creates a worker from the runtime's unexpanded canonical prescription, provenance and optional
 composition descriptor. `buildCanonicalLens()` compiles that input once; rear plates expand in the compiler with the
-same physical gaps and dispersion as on the main thread. The typed protocol
+same physical gaps and dispersion as on the main thread. The worker reconstructs prepared geometry and an
+`AnalysisRequest` for `computeMtfSteps`; compiled geometry and its solve caches never cross the worker boundary.
+The typed protocol
 (`init | compute | cancel` → `progress | result | error`) runs
 `computeMtfSteps` in ~30 ms slices and posts partial results at most every 100 ms. Cancellation is cooperative, so the
 built lens stays warm, and request ids reject stale replies. The worker caches finished fields and the focus search
@@ -558,7 +566,7 @@ and is their only outside door.
   - the base conic as a quadric, with its conic root `w = 1 − κcz`, its domain radius and the turning rate of its
     normal, in `geometry/intersectConic.ts`. The kernel's closed-form roots are built on the profile's `curvature`
     and `conic` and checked against `evaluate` ([Exact Surface Trace](#exact-surface-trace));
-  - a second set of closed-form sphere roots, and the sampled slope bound, in `analysis/mtfRayClassification.ts`,
+  - a second set of closed-form sphere roots, and the sampled slope bound, in `analysis/mtf/mtfRayClassification.ts`,
     which proves misses for the MTF sampler and does not call the kernel's.
 
 ## Prepared Geometry
@@ -1259,8 +1267,9 @@ Sensor-locked chief results, including failed solves, are memoized in the trace 
 projection scale and chief options (including channel). Context identity fixes the prepared state, pose, pivot,
 sensor and frames; pupil quadrature and aperture do not enter the chief solve. Focus, vignetting, field aberrations,
 chromatic reference locks and apparent pupils share these results, while retaining their own pupil bundles. Each
-context also retains its zero-movement reference context, so vignetting's center and matched-field requests share
-solves across calls. Distortion remains scene-locked and does not substitute a sensor-targeted chief.
+context also retains its separate zero-movement reference context with its own solve memo, so vignetting's center
+and matched-field requests share zero-pose solves across calls without mixing them with active-pose solves. Distortion
+remains scene-locked and does not substitute a sensor-targeted chief.
 
 The **posed ideal** is not taken from a real trace. It maps the intrinsic ideal image point and paraxial exit-pupil
 center into the camera frame, joins them, and intersects that line with the fixed sensor. This supplies a stable
@@ -1316,26 +1325,113 @@ distance labels, snapping (`nearestPublishedStation`) and the reasons a lens off
 tracing. `buildLens()` does not normalize the field onto `RuntimeLens`, and aberration-control keyframes are not
 stations: any non-neutral setting is off-station.
 
+## Analysis Requests, Context and Jobs
+
+`analysis/request.ts` builds one frozen `AnalysisRequest` from current controls outside `buildLens()`. It carries
+`preparedGeometry`, dynamic EFL, entrance-pupil and physical-stop semi-diameters (mm), chromatic channels, optional
+field geometry, optional perspective trace context and its pose, quality, sampling and trace capture. Geometry and
+perspective tracing share their existing immutable owners and solve caches; field geometry, aperture, sampling and
+sampling arrays are frozen snapshots. Channels and capture currently describe the adapters' defaults (R/G/B/V and
+`diagnostics`); family migration will make those choices direct job inputs.
+
+Request interning compares prepared geometry and perspective trace context by object identity, then aperture, EFL,
+field values, quality and sampling by exact value (`Object.is` for numbers, including array entries). A fresh params
+object or equivalent field/sampling arrays therefore reuse the request. The history is an LRU of 96 requests per
+compiled lens for two recent compiled identities, matching prepared geometry's bounds. No rounded or serialized
+control key participates in request lookup.
+
+`analysis/analysisContext.ts` weakly memoizes one lazy context per request identity. Sibling tabs and subsequent
+renders share the same computed results; request-history eviction releases the cache's ownership, while a live caller
+can continue using its request/context. `cacheKey` remains a lazy diagnostic description for existing consumers and
+is never read by the memo. Benchmark jobs explicitly copy the frozen request to obtain a fresh context, so they
+continue timing actual work rather than cached answers.
+
+`AnalysisDrawerContent` memoizes the request from its deferred optical snapshot, then memoizes the context on that
+request. `usePreparedAnalysisState` gets stable geometry from the prepared-state cache; `useLensComputation` keeps
+field and perspective objects stable with `useMemo`. The small request history also absorbs equivalent scalar or
+field snapshots when React rebuilds the drawer's inputs. A new perspective trace identity intentionally creates a
+new request, since its trace functions and solve cache belong to that object even if its diagnostic key matches.
+
+The summary family lives in `analysis/summary/`, exposed through `analysis.ts`. Summary, cardinals, current EFL,
+breathing series and group-movement profiles take `AnalysisRequest`. The summary job table key is unchanged but now
+takes the request directly; `OpticalSummaryTab` creates/reuses a request and lazy context without a prepared-job
+fallback. Spherical aberration, SA profile, blur character and best focus also take requests through the unchanged job
+keys. Field curvature, its chromatic bundle, coma, distortion, vignetting and pupil aberration also take requests,
+including field geometry and sampling. Bokeh and chromatic LoCA/lateral color/fans also take requests. The historical
+job-table names remain during the public-seam migration, but no centered job takes a prepared-state or RuntimeLens
+signature.
+Perspective focus/bokeh/best focus, field curvature/astigmatism/coma, chromatic, distortion, vignetting and pupils
+remain under `perspective/analysis/` and consume `AnalysisRequest`. Their options override field/channel/pupil sampling only;
+both aperture radii and the shared perspective trace context come from the request. `perspectiveAnalysisJobs.ts`
+binds the same request directly to all six lazy jobs; no perspective family options duplicate aperture or pose.
+Intrinsic pupil references also take the request. Image-space ray reductions still accept their physical context
+or ray inputs; only the aperture resolver takes a request. Vignetting uses the original trace context and its
+`zeroMovementContext()` for active/zero matched fields and the zero-center reference, preserving both solve memos.
+Distortion keeps scene-locked vertical/grid sampling with deliberately null sensor solves. Chromatic
+locks the reference channel to the sensor and traces other channels at that shared scene direction: only the
+sensor-locked reference uses the physical format band, while scene-locked channels retain strict format bounds.
+`perspectiveAnalysisSampling.ts` owns the unchanged signed drag/settled policy separately from job dispatch, so
+request-facing leaves can use it without a cycle. The unchanged equal-area disk quadrature lives in
+`perspective/analysis/shared.ts`, re-exported by vignetting for existing callers. Explicit standalone quadrature
+retains its existing defaults.
+The moved Bokeh, Coma, Aberrations, Chromatic, Distortion, Vignetting and Pupil panels memoize on the deferred request,
+including pose/pivot, focus and aperture; Summary uses the same request/context for fixed-sensor focus. Moved Chromatic also
+uses that request for the separately labelled intrinsic lens-axis LoCA. No moved section falls back to centered results.
+The sensor-solve cache remains owned by the original perspective context and shared across families.
+
+Centered and movement-aware jobs retain their numerical kernels, sampling defaults and section-availability guards.
+
+Canonical cardinal and EFL math remains in `first-order/`. Request-facing cardinals accept optional camera surface
+z and image-plane overrides, including the folded reflective path. The breathing series preserves its 21 regular
+samples plus endpoints/current-focus insertion and intentionally uses zero aberration, matching the original chart.
+Current EFL retains the cached infinity value and zoom-station interpolation. `eflAtFocus2` remains as the compatibility
+entry for the working f-number, perspective field geometry and public layout/optics consumers; these lower-level
+owners must not depend on requests. Group availability/inference still accept runtime lenses for diagram controls,
+comparison sliders and published-station eligibility; only profile computation takes a request.
+
 ## Aberration Analysis
 
-`aberrationAnalysis.ts` re-exports helpers from `src/optics/aberration/`.
-Because that barrel is consumed by prepared-state analysis adapters, implementation modules under
-`src/optics/aberration/` should import lower-level engine sources directly (`field/`, `layout.ts`, `analysis/sampling.ts`, `trace/`,
-`trace/`, and `field/projection.ts`) instead of routing through public barrels such as `optics.ts` or `projection.ts`.
-Keep those public barrels stable for app/test callers, but avoid using them inside the re-exported aberration modules so
-`compat.ts` and `aberrationAnalysis.ts` do not form an initialization cycle.
+The request-facing spherical family lives in `analysis/aberration/spherical.ts`, with weighted best focus in
+`analysis/aberration/bestFocus.ts`. Public entries are exposed through `analysis.ts`; `aberrationAnalysis.ts` also
+re-exports them during the seam migration. The SA tab hook creates/reuses one request and lazy context from the
+supplied deferred state and both apertures. Its standalone path preserves supplied surface coordinates with
+`stateWithZ`; a supplied prepared state or context remains authoritative. Blur character reuses the context's SA
+result. Null-result cache behavior, ghost/clipping rules and ordered profile fractions are unchanged.
 
-Entry points: `computeSphericalAberration()`, `computeSAProfile()`, and `computeSphericalAberrationBlurCharacter()` for
-axial behaviour; `computeComaAnalysis()`, `computeComaPointCloudPreview()`, and `computeSagittalComa()` for
-chief-ray-referenced coma; and `computeFieldCurvature()` for parabasal and real-ray tangential/sagittal curves plus the
-Petzval reference, with an optional chromatic mode that adds per-channel field curves and focus spread.
+Best focus deliberately recomputes its own full layout from the request's controls, rather than using camera-anchored
+request coordinates. It preserves the transmission-weighted least-squares reduction and nominal-layout image-plane
+fallback for insufficient hits. Bokeh reuses that solver with each preview state's own layout.
+
+Shared coordinate, real-ray and focus reductions, off-axis bundle helpers and result types live in
+`analysis/aberration/{shared,offAxis,types}.ts`. These lower-level leaves still accept explicit ray/runtime inputs for
+families migrating later. Pure radial-profile and brightness-classifier reductions live in
+`analysis/aberration/radialProfile.ts`, shared by spherical, bokeh and perspective focus.
+
+Field curvature and astigmatism live in `analysis/aberration/fieldCurvature.ts`, exposed through `analysis.ts`
+and temporarily `aberrationAnalysis.ts`. `computeFieldCurvature(request, chromatic)` retains its single-result
+boolean contract; `computeFieldCurvatureBundle(request)` shares the monochrome base before adding ordered
+R/G/B/V focus shifts. The family owns `summarizeChromaticFieldFocus` and its types, preferring usable curve
+samples over named fields. Parabasal tangential/sagittal focus, real-ray diagnostic focus and the Petzval
+reference remain distinct. Both the aberration hook and Chromatic tab reuse the context request or construct
+one from their supplied geometry, apertures and field inputs. Folded guards and moved field-aberration
+replacement remain in the UI.
+
+Coma lives in `analysis/aberration/coma.ts`; its meridional, sagittal, compact-preview,
+point-cloud and aggregate entries take requests. The aggregate shares chief-relative field geometry
+and pupil samples across its diagnostics. The Coma tab reuses the context's request for default
+sampling. A custom detail field creates a distinct request using the supplied apertures and field,
+with the detail fraction retained in the memo dependencies. Standalone calls preserve supplied
+surface positions with `stateWithZ`. The mixed `analysis/aberrations.ts` adapter is gone;
+`analysis/preparedStateAdapters.ts` is gone now that every centered family consumes requests.
+Implementation leaves import lower-level engine sources directly, never cycle-sensitive public barrels such as
+`compat.ts`, `optics.ts` or `aberrationAnalysis.ts`.
 
 Sign convention: negative spherical aberration means undercorrected; positive means overcorrected. Keep copy, tests, and
 primers aligned to that convention.
 
 ## Distortion
 
-`distortionAnalysis.ts` computes:
+`analysis/distortion/distortion.ts`, exposed through `analysis.ts`, takes `AnalysisRequest` and computes:
 
 - `computeDistortionCurve()` - historical center-to-edge samples with independent ray validation.
   The shared inversion selects the first neighboring table nodes straddling the target and evaluates the legacy first
@@ -1379,13 +1475,19 @@ chief ray off the paraxial pupil centre, so `scale × tan(theta)` is an infinity
 close-focus distortion by several percent on wide-angles. Fisheyes keep their declared mapping at the object-space angle
 and folded paths keep the infinity reference.
 
-The per-field pupil correction sample count halves on heavy lenses via `isHeavyLensForRayWork`. All three functions
-accept an optional precomputed `FieldGeometryState`.
+The per-field pupil correction sample count halves on heavy lenses via `isHeavyLensForRayWork`. Both public jobs
+read optional precomputed field geometry from the request; the reference helper is private. The job-table keys and
+context accessors remain unchanged. The context forwards request sampling to the curve, but deliberately uses default
+grid sampling even when quality or custom sampling overrides are present. Direct grid requests retain their sampling
+overrides. `DistortionTab` reuses the deferred context request or memoizes a request from its prepared state and all
+used controls, then reads both results through the lazy context. Its separate moved-content component continues to
+use perspective analysis.
 
 ## Vignetting
 
-`vignetteAnalysis.ts` computes relative illumination using solved chief rays, adaptive field spacing, and dense
-meridional pupil sweeps whose per-field ray count halves for `isHeavyLensForRayWork` lenses.
+`analysis/vignetting/vignetting.ts`, exposed through `analysis.ts`, takes `AnalysisRequest` and computes relative
+illumination using solved chief rays, adaptive field spacing, and dense meridional pupil sweeps whose per-field ray
+count halves for `isHeavyLensForRayWork` lenses.
 `computeVignettingCurve()` accepts optional precomputed field geometry and traces `solve.vectorLaunch` for
 fisheye/past-cap fields when the scalar slope helper reports `out-of-domain`.
 
@@ -1393,21 +1495,44 @@ fisheye/past-cap fields when the scalar slope helper reports `out-of-domain`.
 surviving rays' bulk-transmission weights, applies `cos⁴(θ)`, and normalizes by the on-axis intensity. This separation is
 required for apodizers: absorption changes brightness without pretending that the mechanical aperture rejected a ray.
 
+The unchanged job-table key and lazy context accessor now dispatch the request directly; the prepared-state adapter
+and RuntimeLens entry are removed. `VignettingTab` reuses the deferred context request or memoizes one from the
+prepared geometry, both aperture radii and field geometry, then reads the lazy context. Dynamic EFL is unused by
+this family. The separate moved-content component still uses perspective analysis; movement/folded guards remain.
+
 ## Pupil Aberration
 
-`pupilAberration.ts` provides `computePupilAberrationProfile()` (entrance pupil z-shift per field angle from the
+`analysis/pupils/pupilAberration.ts`, exposed through `analysis.ts`, takes `AnalysisRequest` and provides
+`computePupilAberrationProfile()` (entrance pupil z-shift per field angle from the
 solved/paraxial chief-ray launch ratio), `computeExitPupilAberrationProfile()` (exit pupil z from full-system chief-ray
 back-projection), and `computeBothPupilAberrationProfiles()`, which shares one per-angle bisection across both. Prefer
-the combined helper in UI code. All accept optional precomputed field geometry.
+the combined helper in UI code. All read optional precomputed field geometry and the pupil field-sample count
+from the request, retaining the 17-sample default.
 Exit-pupil back-projection uses vector chief rays when available; entrance-pupil correction ratios remain tied
 to finite slope launches and fall back to neutral correction when no scalar reference exists.
 
+The job-table key and lazy context accessor are unchanged; the prepared-state adapter and RuntimeLens entries
+are removed. `PupilAberrationTab` reuses the deferred context request or memoizes a request from prepared geometry
+and field geometry, then reads the paired result through the lazy context. Its standalone request leaves sampling
+unset and uses zero for the unused dynamic EFL and aperture radii; context requests retain supplied quality sampling.
+The kernels still reconstruct their own full layout, preserving pupil baselines independently of camera-anchored
+request coordinates. The separate moved-content component stays on perspective analysis, with movement/folded
+guards unchanged.
+
 ## Bokeh
 
-`aberration/bokeh.ts` traces circular pupil bundles at infinity and near focus. `computeBokehPreviewPair()` is the
-paired infinity/near-focus entry point over `computeBokehPreview()`; `computeBokehFieldFootprint()` returns the
-per-field point cloud, surviving pupil footprint, and radial blur profile; `buildBokehRadialProfile()` and
-`buildBokehDensityGrid()` derive summaries from that cloud.
+`analysis/bokeh/bokeh.ts` takes `AnalysisRequest` and traces circular pupil bundles at infinity and near focus.
+`computeBokehPreviewPair()` shares the single-preview kernel with `computeBokehPreview()`.
+`computeBokehFieldFootprint()` returns the per-field point cloud, surviving pupil footprint and radial blur profile;
+`buildBokehDensityGrid()` derives a grid from that cloud. Radial profiles and brightness classification are shared
+pure reductions in `analysis/aberration/radialProfile.ts`; best focus is owned by `analysis/aberration/bestFocus.ts`.
+
+The job table and context retain the `computeBokehPreviewPair` key. `useBokehPreviewData` reuses the supplied
+context request or builds a request from prepared controls and both aperture radii, then memoizes its context/result.
+Each pair recomputes separate infinity, near, view and complementary-focus layouts, sharing identical focus states
+within the pair; it never traces the current request geometry twice. Field geometry is recomputed at each focus state,
+and the standalone field-footprint entry keeps its default sampling independently of request sampling.
+The moved Bokeh tab continues using perspective focus until the perspective-family migration.
 
 The traced image-plane point cloud is the source of truth; radial profiles are derived summaries. Off-axis bokeh
 footprints use projection-aware field geometry and vector launches for fisheye/past-cap fields when available.
@@ -1418,13 +1543,44 @@ equal-area weights so its centroid and shift radius remain mechanical diagnostic
 density, not the reported pupil position. Point and pupil reductions guard zero total weight and return empty results
 rather than usable structures containing non-finite metrics.
 
+## Chromatic Analysis
+
+`analysis/chromatic/analysis.ts` owns longitudinal chromatic focus (LoCA), lateral color and the combined summary;
+`analysis/chromatic/rayFan.ts` owns first-usable-fraction on/off-axis fans. All take `AnalysisRequest`, exposed through
+`analysis.ts`. Channels normalize into R/G/B/V order, with G as reference when requested and the first channel otherwise.
+The combined summary forwards request field geometry to lateral color; the fan intentionally recomputes its own field
+geometry. Marginal search order, attempted counts, clipping and transmission semantics remain unchanged. LoCA retains
+its authored folded image plane, while the fan uses the current folded focus plane.
+
+`ChromaticTab` reuses one request/context for its centered summary, fans and the chromatic field-focus bundle owned by
+`analysis/aberration/fieldCurvature.ts`. The context's intrinsic LoCA also takes that request and caches null explicitly.
+The diagram's `useChromaticRays` builds a request from supplied z positions and the current controls/apertures, keeping
+its obstruction-aware marginal fractions. Perspective chromatic and the tab's moved intrinsic LoCA retain their existing
+movement wiring.
+
+`analysis/chromatic/rayFanScaling.ts` is the sole bar-scaling implementation. The LoCA inset uses the fixed 0.15-mm
+reference; the off-axis fan widget uses the generic helper with its 0.01-mm image-height reference. The compatibility
+scaling exports alias this implementation, preserving multiplication and clamp order. Channel/index/dispersion
+infrastructure stays in `chromatic/`.
+
 ## Aspheric Comparison
 
-`asphericComparison.ts` provides pure helpers for how far an aspheric surface departs from its best-fit sphere:
-`computeBestFitSphereR()` (golden-section RMS-sag minimiser that falls back to the base radius for flat surfaces),
-`computeAsphericDeparture()`, `computeDepartureProfile()`, `peakAbsDeparture()` / `rmsDeparture()`, and
-`nearestSurfaceForClick()` for click-to-measure routing. They feed `AsphericComparisonOverlay.tsx` exclusively and must
-not be called from `buildLens()`.
+`analysis/asphericComparison/`, exposed through `analysis.ts`, owns departure, best-fit sphere and click helpers.
+`computeAsphericElementComparison(request, elementId)` resolves the selected element through the request's compiled
+lens identity. It intentionally reads construction radii, coefficients and thickness: vertices remain local to the
+element (front = 0, rear = front-surface thickness), independent of focus/zoom layout or camera anchoring. The overlay
+creates this request inside its existing `[L, info.id]` memo with unused EFL/apertures set to zero. It has no analysis
+job, context accessor or fallback. Mode-change resets remain guarded by `lastModeRef`, never request identity.
+
+The scalar/surface helpers need no request. `computeAsphericDeparture`, `computeDepartureProfile` and
+`computeBestFitSphereR` retain the overlay's `conicPolySag`/`sag` arithmetic. Their `FromProfiles` counterparts retain
+the engine callers' profile-factory arithmetic, also exported under historical `2` names through `compat.ts`.
+The two paths agree bit for bit on every catalog aspheric surface, but with absent coefficients at a spherical rim,
+the conic evaluator floors the root while the spherical profile clamps it to zero; preserve both behaviors.
+They share the inclusive 96-sample profile, 64-sample fit, golden-section bracket, 60-step cap, relative tolerance
+and flat/degenerate fallback. `peakAbsDeparture`, `rmsDeparture` and `nearestSurfaceForClick` share one implementation;
+click ties keep the first surface. The overlay retains its explicit 97-sample (`SAMPLES + 1`) profile. The engine-diff
+`asphericComparison` job still records both arithmetic paths in the same payload shape. None belong in `buildLens()`.
 
 ## Validation And Rendering Geometry
 

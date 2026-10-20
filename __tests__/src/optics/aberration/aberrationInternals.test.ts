@@ -8,7 +8,7 @@ import {
   type RealRayHit,
   type TransverseFocusHit,
   transverseCoordinateAtPlane,
-} from "../../../../src/optics/aberration/shared.js";
+} from "../../../../src/optics/analysis/aberration/shared.js";
 
 describe("aberration shared helpers", () => {
   it("returns null for axial intercepts when the slope is too small", () => {

@@ -3085,10 +3085,10 @@ describe("engineDiff cross-evaluation", () => {
       // Only the two endpoint requests move; 0.012 mm clearance is 1,200 times the lock tolerance.
       const chromatic = vi
         .spyOn(perspectiveChromatic, "computePerspectiveChromaticAnalysis")
-        .mockImplementation((context, options) =>
-          computeChromatic(context, {
+        .mockImplementation((request, options) =>
+          computeChromatic(request, {
             ...options,
-            sensorUvs: options.sensorUvs?.map(({ u, v }) => ({ u, v: Math.abs(v) === 1 ? v * edge : v })),
+            sensorUvs: options?.sensorUvs?.map(({ u, v }) => ({ u, v: Math.abs(v) === 1 ? v * edge : v })),
           }),
         );
       try {

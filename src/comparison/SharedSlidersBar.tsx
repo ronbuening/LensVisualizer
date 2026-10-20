@@ -31,7 +31,7 @@
 import { formatSharedFocusDist, sharedFNumber } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import { formatDist, formatFNumber, eflAtZoom, FOCUS_INFINITY_CUTOFF } from "../optics/optics.js";
-import { getGroupMovementAvailability } from "../optics/groupMovement.js";
+import { getGroupMovementAvailability } from "../optics/analysis.js";
 import { isMovementAxisEnabled } from "../optics/lensMovement.js";
 import { snapToZeroStop } from "../utils/style/sliderStops.js";
 import type { RuntimeLens } from "../types/optics.js";

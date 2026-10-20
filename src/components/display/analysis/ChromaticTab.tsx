@@ -1,5 +1,10 @@
+/** Chromatic tab shares request identity for intrinsic LoCA and moved sensor metrics. */
 import { useMemo } from "react";
-import { analysisJobsForState2, summarizeChromaticFieldFocus2 } from "../../../optics/compat.js";
+import {
+  createAnalysisRequest,
+  createAnalysisComputationContext,
+  summarizeChromaticFieldFocus,
+} from "../../../optics/analysis.js";
 import {
   CHROMATIC_CHANNEL_ORDER,
   chromaticChannelLineList,
@@ -66,16 +71,23 @@ const metricsStyle = {
 
 export default function ChromaticTab(props: ChromaticTabProps) {
   const { analysisContext, t } = props;
+  const perspectiveRequest = analysisContext?.request;
   const perspectiveAnalysis = useMemo(
-    () => (analysisContext?.movementActive ? analysisContext.computePerspectiveChromaticAnalysis() : null),
-    [analysisContext],
+    () =>
+      perspectiveRequest?.pose?.active
+        ? createAnalysisComputationContext(perspectiveRequest).computePerspectiveChromaticAnalysis()
+        : null,
+    [perspectiveRequest],
   );
   const intrinsicLongitudinal = useMemo(
-    () => (analysisContext?.movementActive ? analysisContext.computeIntrinsicLongitudinalChromaticFocus() : null),
-    [analysisContext],
+    () =>
+      perspectiveRequest?.pose?.active
+        ? createAnalysisComputationContext(perspectiveRequest).computeIntrinsicLongitudinalChromaticFocus()
+        : null,
+    [perspectiveRequest],
   );
 
-  if (analysisContext?.movementActive) {
+  if (perspectiveRequest?.pose?.active) {
     return (
       <div style={{ padding: "8px 0" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: 16, fontSize: 9.5 }}>
@@ -131,53 +143,39 @@ function CenteredChromaticTab({
   analysisContext,
 }: ChromaticTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
+  const fieldRequest = useMemo(
+    () =>
+      analysisContext?.request ??
+      createAnalysisRequest({
+        preparedState,
+        dynamicEFL: L.EFL,
+        currentEPSD,
+        currentPhysStopSD,
+        fieldGeometry,
+      }),
+    [analysisContext, preparedState, L, currentEPSD, currentPhysStopSD, fieldGeometry],
+  );
+  const fieldContext = useMemo(
+    () => analysisContext ?? createAnalysisComputationContext(fieldRequest),
+    [analysisContext, fieldRequest],
+  );
   const channelReference = lensChromaticReference(L.elements);
   const analysis = useMemo(
-    () =>
-      probe(
-        "computeChromaticAnalysis",
-        () =>
-          analysisContext?.computeChromaticAnalysis() ??
-          analysisJobsForState2.computeChromaticAnalysis(
-            preparedState,
-            currentEPSD,
-            currentPhysStopSD,
-            fieldGeometry ?? undefined,
-          ),
-      ),
-    [analysisContext, preparedState, currentEPSD, currentPhysStopSD, fieldGeometry],
+    () => probe("computeChromaticAnalysis", () => fieldContext.computeChromaticAnalysis()),
+    [fieldContext],
   );
   const fieldFocus = useMemo(
     () =>
       probe("computeChromaticFieldFocusSummary", () => {
-        const bundle =
-          analysisContext?.computeFieldCurvatureBundle() ??
-          analysisJobsForState2.computeFieldCurvatureBundle(
-            preparedState,
-            currentEPSD,
-            currentPhysStopSD,
-            fieldGeometry ?? undefined,
-          );
+        const bundle = fieldContext.computeFieldCurvatureBundle();
         const result = bundle.chromaticFieldCurvature;
-        return { result, summary: summarizeChromaticFieldFocus2(result) };
+        return { result, summary: summarizeChromaticFieldFocus(result) };
       }),
-    [analysisContext, preparedState, currentEPSD, currentPhysStopSD, fieldGeometry],
+    [fieldContext],
   );
   const rayTraceAnalysis = useMemo(
-    () =>
-      probe(
-        "computeChromaticRayFanAnalysis",
-        () =>
-          analysisContext?.computeChromaticRayFanAnalysis() ??
-          analysisJobsForState2.computeChromaticRayFanAnalysis(
-            preparedState,
-            currentEPSD,
-            currentPhysStopSD,
-            fieldGeometry ?? undefined,
-            { channels: CHROMATIC_CHANNEL_ORDER },
-          ),
-      ),
-    [analysisContext, preparedState, currentEPSD, currentPhysStopSD, fieldGeometry],
+    () => probe("computeChromaticRayFanAnalysis", () => fieldContext.computeChromaticRayFanAnalysis()),
+    [fieldContext],
   );
 
   const longitudinal = analysis.longitudinalFocus;

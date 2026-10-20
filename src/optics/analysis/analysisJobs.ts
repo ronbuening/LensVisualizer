@@ -1,375 +1,140 @@
 /**
  * Engine analysis job registry — grouped synchronous analysis entry points for UI dispatch.
  *
- * Collects RuntimeLens and PreparedOpticalState helpers under stable keys so the
+ * Collects request-facing helpers under stable historical keys so the
  * call surface can later move to workers.
  */
 
-import type { FieldGeometryState } from "../optics.js";
-import type { RuntimeLens } from "../../types/optics.js";
-import type { PreparedOpticalState } from "../types.js";
-import type { AnalysisSamplingOptions } from "./analysisQuality.js";
+import { computeComaAnalysis } from "./aberration/coma.js";
+import { computeFieldCurvature, computeFieldCurvatureBundle } from "./aberration/fieldCurvature.js";
+import { computeBokehPreviewPair } from "./bokeh/bokeh.js";
+import { computeChromaticAnalysis } from "./chromatic/analysis.js";
+import { computeChromaticRayFanAnalysis } from "./chromatic/rayFan.js";
+import { computeDistortionCurve, computeDistortionFieldGrid } from "./distortion/distortion.js";
+import { computeBothPupilAberrationProfiles } from "./pupils/pupilAberration.js";
+import { computeOpticalSummary } from "./summary/summary.js";
 import {
-  computeComaAnalysisForState2,
-  computeFieldCurvatureBundle2,
-  computeFieldCurvatureBundleForState2,
-  computeFieldCurvatureForState2,
-  computeSAProfileForState2,
-  computeSphericalAberrationBlurCharacterForState2,
-  computeSphericalAberrationForState2,
-} from "./aberrations.js";
-import {
-  computeBestFocusZ2,
-  computeBestFocusZForState2,
-  computeBokehPreviewPair2,
-  computeBokehPreviewPairForState2,
-} from "./bokeh.js";
-import {
-  computeChromaticAnalysis2,
-  computeChromaticAnalysisForState2,
-  computeChromaticRayFanAnalysis2,
-  computeChromaticRayFanAnalysisForState2,
-  type ChromaticRayFanAnalysisOptions2,
-} from "./chromatic.js";
-import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
-import {
-  computeDistortionCurve2,
-  computeDistortionCurveForState2,
-  computeDistortionFieldGrid2,
-  computeDistortionFieldGridForState2,
-} from "./distortion.js";
-import {
-  computeBothPupilAberrationProfiles2,
-  computeBothPupilAberrationProfilesForState2,
-  PUPIL_ABERRATION_SAMPLE_COUNT_2,
-} from "./pupilAberration.js";
-import { computeOpticalSummaryForState2 } from "./summary.js";
-import { computeVignettingCurve2, computeVignettingCurveForState2 } from "./vignetting.js";
+  computeSphericalAberration,
+  computeSAProfile,
+  computeSphericalAberrationBlurCharacter,
+} from "./aberration/spherical.js";
+import { computeBestFocusZ } from "./aberration/bestFocus.js";
+import type { AnalysisRequest } from "./request.js";
+import { computeVignettingCurve } from "./vignetting/vignetting.js";
 
 /**
- * RuntimeLens analysis job registry for compatibility callers.
+ * Historical analysis job registry for compatibility callers.
  *
- * Each method forwards all state explicitly: `zPos` is in mm, `focusT`/`zoomT`
- * are normalized sliders, and aperture values are semi-diameters in mm.
+ * Each method forwards one request with geometry, controls and aperture radii in mm.
  *
- * @returns grouped synchronous functions for RuntimeLens analysis work
+ * @returns grouped synchronous functions for request-facing analysis work
  */
 export const analysisJobs2 = {
-  computeDistortionCurve(
-    L: RuntimeLens,
-    zPos: number[],
-    focusT: number,
-    zoomT: number,
-    dynamicEFL: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    aberrationT = 0,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeDistortionCurve2(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      dynamicEFL,
-      currentPhysStopSD,
-      fieldGeometry,
-      aberrationT,
-      sampling,
-    );
+  computeDistortionCurve(request: AnalysisRequest) {
+    return computeDistortionCurve(request);
   },
 
-  computeDistortionFieldGrid(
-    L: RuntimeLens,
-    zPos: number[],
-    focusT: number,
-    zoomT: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    aberrationT = 0,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeDistortionFieldGrid2(L, zPos, focusT, zoomT, currentPhysStopSD, fieldGeometry, aberrationT, sampling);
+  computeDistortionFieldGrid(request: AnalysisRequest) {
+    return computeDistortionFieldGrid(request);
   },
 
-  computeVignettingCurve(
-    L: RuntimeLens,
-    zPos: number[],
-    focusT: number,
-    zoomT: number,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    aberrationT = 0,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeVignettingCurve2(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      fieldGeometry,
-      aberrationT,
-      sampling,
-    );
+  computeVignettingCurve(request: AnalysisRequest) {
+    return computeVignettingCurve(request);
   },
 
-  computeFieldCurvatureBundle(
-    L: RuntimeLens,
-    zPos: number[],
-    focusT: number,
-    zoomT: number,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    aberrationT = 0,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeFieldCurvatureBundle2(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      aberrationT,
-      fieldGeometry,
-      sampling,
-    );
+  computeFieldCurvatureBundle(request: AnalysisRequest) {
+    return computeFieldCurvatureBundle(request);
   },
 
-  computeChromaticAnalysis(
-    L: RuntimeLens,
-    zPos: number[],
-    focusT: number,
-    zoomT: number,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    aberrationT = 0,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeChromaticAnalysis2(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      aberrationT,
-      fieldGeometry,
-      {
-        channels: CHROMATIC_CHANNEL_ORDER,
-        longitudinalFractions: sampling?.chromaticLongitudinalFractions,
-        fieldFractions: sampling?.chromaticLateralFieldFractions ?? sampling?.fieldCurvatureFieldFractions,
-      },
-    );
+  computeChromaticAnalysis(request: AnalysisRequest) {
+    return computeChromaticAnalysis(request);
   },
 
-  computeChromaticRayFanAnalysis(
-    L: RuntimeLens,
-    zPos: number[],
-    focusT: number,
-    zoomT: number,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    aberrationT = 0,
-    options?: ChromaticRayFanAnalysisOptions2,
-  ) {
-    return computeChromaticRayFanAnalysis2(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      aberrationT,
-      options,
-    );
+  computeChromaticRayFanAnalysis(request: AnalysisRequest) {
+    return computeChromaticRayFanAnalysis(request);
   },
 
-  computeBestFocusZ(
-    L: RuntimeLens,
-    focusT: number,
-    zoomT: number,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    aberrationT = 0,
-  ) {
-    return computeBestFocusZ2(L, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
+  computeBestFocusZ(request: AnalysisRequest) {
+    return computeBestFocusZ(request);
   },
 
-  computeBokehPreviewPair(
-    L: RuntimeLens,
-    focusT: number,
-    zoomT: number,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    aberrationT = 0,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeBokehPreviewPair2(L, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT, sampling);
+  computeBokehPreviewPair(request: AnalysisRequest) {
+    return computeBokehPreviewPair(request);
   },
 
-  computeBothPupilAberrationProfiles(
-    focusT: number,
-    zoomT: number,
-    L: RuntimeLens,
-    sampleCount = PUPIL_ABERRATION_SAMPLE_COUNT_2,
-    geometry?: FieldGeometryState,
-    aberrationT = 0,
-  ) {
-    return computeBothPupilAberrationProfiles2(focusT, zoomT, L, sampleCount, geometry, aberrationT);
+  computeBothPupilAberrationProfiles(request: AnalysisRequest) {
+    return computeBothPupilAberrationProfiles(request);
   },
 };
 
 /**
- * Prepared-state analysis job registry for engine-native callers.
+ * Analysis job registry: every centered family takes an explicit request.
  *
- * Prepared-state jobs recover RuntimeLens-compatible z positions only at the boundary,
- * keeping all analysis state tied to the same compiled focus/zoom/aberration snapshot.
+ * Request geometry and aperture inputs stay tied to the same control snapshot.
  *
- * @returns grouped synchronous functions bound by explicit PreparedOpticalState inputs
+ * @returns grouped synchronous functions bound by explicit request inputs
  */
 export const analysisJobsForState2 = {
-  computeSphericalAberration(state: PreparedOpticalState, currentEPSD: number, currentPhysStopSD: number) {
-    return computeSphericalAberrationForState2(state, currentEPSD, currentPhysStopSD);
+  computeSphericalAberration(request: AnalysisRequest) {
+    return computeSphericalAberration(request);
   },
 
-  computeSAProfile(state: PreparedOpticalState, currentEPSD: number, currentPhysStopSD: number) {
-    return computeSAProfileForState2(state, currentEPSD, currentPhysStopSD);
+  computeSAProfile(request: AnalysisRequest) {
+    return computeSAProfile(request);
   },
 
   computeSphericalAberrationBlurCharacter(
-    state: PreparedOpticalState,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    baseResult: Parameters<typeof computeSphericalAberrationBlurCharacterForState2>[3] = null,
-    sampling?: AnalysisSamplingOptions,
+    request: AnalysisRequest,
+    baseResult: Parameters<typeof computeSphericalAberrationBlurCharacter>[1] = null,
   ) {
-    return computeSphericalAberrationBlurCharacterForState2(
-      state,
-      currentEPSD,
-      currentPhysStopSD,
-      baseResult,
-      sampling,
-    );
+    return computeSphericalAberrationBlurCharacter(request, baseResult);
   },
 
-  computeFieldCurvature(
-    state: PreparedOpticalState,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    chromatic = false,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeFieldCurvatureForState2(state, currentEPSD, currentPhysStopSD, chromatic, fieldGeometry, sampling);
+  computeFieldCurvature(request: AnalysisRequest, chromatic = false) {
+    return computeFieldCurvature(request, chromatic);
   },
 
-  computeFieldCurvatureBundle(
-    state: PreparedOpticalState,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeFieldCurvatureBundleForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry, sampling);
+  computeFieldCurvatureBundle(request: AnalysisRequest) {
+    return computeFieldCurvatureBundle(request);
   },
 
-  computeChromaticAnalysis(
-    state: PreparedOpticalState,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeChromaticAnalysisForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry, {
-      channels: CHROMATIC_CHANNEL_ORDER,
-      longitudinalFractions: sampling?.chromaticLongitudinalFractions,
-      fieldFractions: sampling?.chromaticLateralFieldFractions ?? sampling?.fieldCurvatureFieldFractions,
-    });
+  computeChromaticAnalysis(request: AnalysisRequest) {
+    return computeChromaticAnalysis(request);
   },
 
-  computeChromaticRayFanAnalysis(
-    state: PreparedOpticalState,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    _fieldGeometry?: FieldGeometryState,
-    options?: ChromaticRayFanAnalysisOptions2,
-  ) {
-    return computeChromaticRayFanAnalysisForState2(state, currentEPSD, currentPhysStopSD, options);
+  computeChromaticRayFanAnalysis(request: AnalysisRequest) {
+    return computeChromaticRayFanAnalysis(request);
   },
 
-  computeComaAnalysis(
-    state: PreparedOpticalState,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeComaAnalysisForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry, sampling);
+  computeComaAnalysis(request: AnalysisRequest) {
+    return computeComaAnalysis(request);
   },
 
-  computeBestFocusZ(state: PreparedOpticalState, currentEPSD: number, currentPhysStopSD: number) {
-    return computeBestFocusZForState2(state, currentEPSD, currentPhysStopSD);
+  computeBestFocusZ(request: AnalysisRequest) {
+    return computeBestFocusZ(request);
   },
 
-  computeBokehPreviewPair(
-    state: PreparedOpticalState,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeBokehPreviewPairForState2(state, currentEPSD, currentPhysStopSD, sampling);
+  computeBokehPreviewPair(request: AnalysisRequest) {
+    return computeBokehPreviewPair(request);
   },
 
-  computeOpticalSummary(
-    state: PreparedOpticalState,
-    dynamicEFL: number,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-  ) {
-    return computeOpticalSummaryForState2(state, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry);
+  computeOpticalSummary(request: AnalysisRequest) {
+    return computeOpticalSummary(request);
   },
 
-  computeDistortionCurve(
-    state: PreparedOpticalState,
-    dynamicEFL: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeDistortionCurveForState2(state, dynamicEFL, currentPhysStopSD, fieldGeometry, sampling);
+  computeDistortionCurve(request: AnalysisRequest) {
+    return computeDistortionCurve(request);
   },
 
-  computeDistortionFieldGrid(
-    state: PreparedOpticalState,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeDistortionFieldGridForState2(state, currentPhysStopSD, fieldGeometry, sampling);
+  computeDistortionFieldGrid(request: AnalysisRequest) {
+    return computeDistortionFieldGrid(request);
   },
 
-  computeVignettingCurve(
-    state: PreparedOpticalState,
-    currentEPSD: number,
-    currentPhysStopSD: number,
-    fieldGeometry?: FieldGeometryState,
-    sampling?: AnalysisSamplingOptions,
-  ) {
-    return computeVignettingCurveForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry, sampling);
+  computeVignettingCurve(request: AnalysisRequest) {
+    return computeVignettingCurve(request);
   },
 
-  computeBothPupilAberrationProfiles(
-    state: PreparedOpticalState,
-    sampleCount = PUPIL_ABERRATION_SAMPLE_COUNT_2,
-    geometry?: FieldGeometryState,
-  ) {
-    return computeBothPupilAberrationProfilesForState2(state, sampleCount, geometry);
+  computeBothPupilAberrationProfiles(request: AnalysisRequest) {
+    return computeBothPupilAberrationProfiles(request);
   },
 };

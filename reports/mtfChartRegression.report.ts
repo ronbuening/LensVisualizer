@@ -1,3 +1,4 @@
+import { createAnalysisRequest } from "../src/optics/analysis.js";
 /**
  * Manufacturer-chart regression report.
  *
@@ -16,10 +17,10 @@
 import { describe, expect, it } from "vitest";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { env } from "node:process";
-import { combineOtfs, otfMagnitude, type ComplexOtf, type MtfSpot } from "../src/optics/analysis/mtfMath.js";
-import { shearedOtf } from "../src/optics/analysis/mtfShearedOtf.js";
-import { findMtfFieldFootprint, prepareMtfFieldLaunch, traceMtfBundle } from "../src/optics/analysis/mtfTracing.js";
-import { mtfWaveLattice, waveLatticeOtf, waveLatticePhaseStep } from "../src/optics/analysis/mtfWavefront.js";
+import { combineOtfs, otfMagnitude, type ComplexOtf, type MtfSpot } from "../src/optics/analysis/mtf/mtfMath.js";
+import { shearedOtf } from "../src/optics/analysis/mtf/mtfShearedOtf.js";
+import { findMtfFieldFootprint, prepareMtfFieldLaunch, traceMtfBundle } from "../src/optics/analysis/mtf/mtfTracing.js";
+import { mtfWaveLattice, waveLatticeOtf, waveLatticePhaseStep } from "../src/optics/analysis/mtf/mtfWavefront.js";
 import { wideOpenStopAtZoom } from "../src/optics/apertureStop.js";
 import buildLens from "../src/optics/buildLens.js";
 import { prepareRuntimeState } from "../src/optics/compat.js";
@@ -223,7 +224,15 @@ function curvesAt(result: MtfResult, fieldIndex: number, frequency: number): Cur
 function crossCheckConfiguration(state: PreparedOpticalState, options: MtfOptions, result: MtfResult): CrossCheck {
   const charted = result.fields.filter((field) => field.status === "converged" || field.status === "unconverged");
   const check: CrossCheck = { compared: 0, undersampled: 0, untraced: charted.length, gaps: [], largestStep: 0 };
-  const support = assessMtfSupport(state, options);
+  const support = assessMtfSupport(
+    createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: 0,
+      currentEPSD: options.pupilSemiDiameterMm,
+      currentPhysStopSD: options.stopSemiDiameterMm,
+    }),
+    options,
+  );
   if (!support.available || !result.focus) return check;
   const planeZ = state.imgZ + result.focus.appliedShiftMm;
   for (const field of charted) {
@@ -299,9 +308,27 @@ function runConfiguration(lens: LensData, zoomT: number, anchors: Anchor[]): Con
   const maker = lens.maker ?? "Unknown";
   const convention = mtfChartConvention(lens.maker);
   const conventionMethod = ENGINE_METHOD[convention.method];
-  const result = computeMtf(state, options(DIFFRACTION_METHOD));
+  const result = computeMtf(
+    createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: 0,
+      currentEPSD: options(DIFFRACTION_METHOD).pupilSemiDiameterMm,
+      currentPhysStopSD: options(DIFFRACTION_METHOD).stopSemiDiameterMm,
+    }),
+    options(DIFFRACTION_METHOD),
+  );
   const conventionResult =
-    conventionMethod === DIFFRACTION_METHOD ? result : computeMtf(state, options(conventionMethod));
+    conventionMethod === DIFFRACTION_METHOD
+      ? result
+      : computeMtf(
+          createAnalysisRequest({
+            preparedState: state,
+            dynamicEFL: 0,
+            currentEPSD: options(conventionMethod).pupilSemiDiameterMm,
+            currentPhysStopSD: options(conventionMethod).stopSemiDiameterMm,
+          }),
+          options(conventionMethod),
+        );
   return {
     key: lens.key,
     zoomT,

@@ -1,5 +1,7 @@
+/** Summary presentation shares the drawer request, including its movement guards and lazy results. */
+
 import { useMemo, type ReactNode } from "react";
-import { analysisJobsForState2 } from "../../../optics/compat.js";
+import { createAnalysisRequest, createAnalysisComputationContext } from "../../../optics/analysis.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
@@ -36,23 +38,19 @@ export default function OpticalSummaryTab({
   analysisContext,
 }: OpticalSummaryTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
-  const summary = useMemo(
+  const request = useMemo(
     () =>
-      analysisContext?.computeOpticalSummary() ??
-      analysisJobsForState2.computeOpticalSummary(
-        preparedState,
-        dynamicEFL,
-        currentEPSD,
-        currentPhysStopSD,
-        fieldGeometry ?? undefined,
-      ),
+      analysisContext?.request ??
+      createAnalysisRequest({ preparedState, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry }),
     [analysisContext, preparedState, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry],
   );
+  const context = useMemo(() => createAnalysisComputationContext(request), [request]);
+  const summary = useMemo(() => context.computeOpticalSummary(), [context]);
   const perspectiveFocus = useMemo(
-    () => (analysisContext?.movementActive ? analysisContext.computePerspectiveFocusAnalysis() : null),
-    [analysisContext],
+    () => (request.pose?.active ? context.computePerspectiveFocusAnalysis() : null),
+    [request, context],
   );
-  const perspectiveContext = analysisContext?.movementActive ? analysisContext.perspectiveTraceContext : null;
+  const perspectiveContext = request.pose?.active ? request.perspectiveTraceContext : null;
   const sensorCenterFocus = perspectiveFocus?.samples.find(
     (sample) => Math.abs(sample.requestedSensorUv.u) <= 1e-9 && Math.abs(sample.requestedSensorUv.v) <= 1e-9,
   );

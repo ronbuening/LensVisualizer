@@ -1,3 +1,6 @@
+import { stateWithZ } from "../../../src/optics/state/preparedGeometry.js";
+import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
+import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { associateRuntimeView } from "../../../src/optics/prescription/runtimeView.js";
 import { compilePrescription, completeCompilation } from "../../../src/optics/prescription/compileCanonical.js";
 import { compileConstruction } from "../../../src/optics/prescription/compileConstruction.js";
@@ -500,4 +503,65 @@ export function registerRuntimeFixture(runtime: RuntimeLens): RuntimeLens {
   );
   associateRuntimeView(compiled, runtime);
   return runtime;
+}
+
+/**
+ * Build request fixtures from the existing runtime fixture builders.
+ * @param L - registered synthetic or catalog runtime fixture
+ * @param focusT - normalized focus control
+ * @param zoomT - normalized zoom control
+ * @param aberrationT - normalized aberration control
+ * @returns request using fixture aperture/EFL defaults
+ */
+export function analysisRequestForLens(L: RuntimeLens, focusT = 0, zoomT = 0, aberrationT = 0) {
+  return createAnalysisRequest({
+    preparedState: prepareRuntimeState(L, focusT, zoomT, aberrationT),
+    dynamicEFL: L.EFL,
+    currentEPSD: L.EP?.epSD ?? 0,
+    currentPhysStopSD: L.stopPhysSD,
+  });
+}
+
+/** Build requests from the explicit fixture coordinates used by ray-reference assertions. */
+export function analysisRequestAt(
+  L: RuntimeLens,
+  options: {
+    zPos?: readonly number[];
+    focusT?: number;
+    zoomT?: number;
+    aberrationT?: number;
+    currentEPSD?: number;
+    currentPhysStopSD?: number;
+    fieldGeometry?: import("../../../src/optics/optics.js").FieldGeometryState;
+    sampling?: import("../../../src/optics/analysis/analysisQuality.js").AnalysisSamplingOptions;
+  },
+) {
+  const state = prepareRuntimeState(L, options.focusT ?? 0, options.zoomT ?? 0, options.aberrationT ?? 0);
+  return createAnalysisRequest({
+    preparedState: options.zPos ? stateWithZ(state, options.zPos) : state,
+    dynamicEFL: L.EFL,
+    currentEPSD: options.currentEPSD ?? L.EP.epSD,
+    currentPhysStopSD: options.currentPhysStopSD ?? L.stopPhysSD,
+    fieldGeometry: options.fieldGeometry,
+    sampling: options.sampling,
+  });
+}
+
+/** Preserve synthetic MTF fixtures while moving their entry-call inputs onto a request. */
+export function mtfInputs(
+  state: import("../../../src/optics/types.js").PreparedGeometry,
+  options: import("../../../src/types/mtf.js").MtfOptions,
+): [
+  import("../../../src/optics/analysis/request.js").AnalysisRequest,
+  import("../../../src/types/mtf.js").MtfRequestOptions,
+] {
+  return [
+    createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: 0,
+      currentEPSD: options.pupilSemiDiameterMm,
+      currentPhysStopSD: options.stopSemiDiameterMm,
+    }),
+    options,
+  ];
 }

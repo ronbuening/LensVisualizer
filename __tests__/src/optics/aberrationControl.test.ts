@@ -1,5 +1,6 @@
+import { analysisRequestAt } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
-import { computeBokehPreviewPair } from "../../../src/optics/aberration/bokeh.js";
+import { computeBokehPreviewPair } from "../../../src/optics/analysis/bokeh/bokeh.js";
 import {
   computeComaAnalysis,
   computeFieldCurvature,
@@ -14,7 +15,7 @@ import {
   thick,
   traceRayChromatic,
 } from "../../../src/optics/optics.js";
-import { computeBothPupilAberrationProfiles } from "../../../src/optics/pupilAberration.js";
+import { computeBothPupilAberrationProfiles } from "../../../src/optics/analysis.js";
 import MinoltaVarisoftRaw from "../../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.js";
 import type { ChromaticChannel, RuntimeLens } from "../../../src/types/optics.js";
 import { ingestLens } from "../../../src/optics/buildLens.js";
@@ -130,8 +131,26 @@ describe("aberrationControl analysis plumbing", () => {
     const sharp = analysisState(L, 0, 0);
     const soft = analysisState(L, 0, 1);
 
-    const sharpSA = computeSphericalAberration(L, sharp.zPos, 0, 0, sharp.currentEPSD, sharp.currentPhysStopSD, 0);
-    const softSA = computeSphericalAberration(L, soft.zPos, 0, 0, soft.currentEPSD, soft.currentPhysStopSD, 1);
+    const sharpSA = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: sharp.zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: sharp.currentEPSD,
+        currentPhysStopSD: sharp.currentPhysStopSD,
+        aberrationT: 0,
+      }),
+    );
+    const softSA = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: soft.zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: soft.currentEPSD,
+        currentPhysStopSD: soft.currentPhysStopSD,
+        aberrationT: 1,
+      }),
+    );
     expect(sharpSA).not.toBeNull();
     expect(softSA).not.toBeNull();
     expectMeaningfulDifference(
@@ -140,8 +159,26 @@ describe("aberrationControl analysis plumbing", () => {
       "ring should change longitudinal spherical aberration",
     );
 
-    const sharpProfile = computeSAProfile(L, sharp.zPos, 0, 0, sharp.currentEPSD, sharp.currentPhysStopSD, 0);
-    const softProfile = computeSAProfile(L, soft.zPos, 0, 0, soft.currentEPSD, soft.currentPhysStopSD, 1);
+    const sharpProfile = computeSAProfile(
+      analysisRequestAt(L, {
+        zPos: sharp.zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: sharp.currentEPSD,
+        currentPhysStopSD: sharp.currentPhysStopSD,
+        aberrationT: 0,
+      }),
+    );
+    const softProfile = computeSAProfile(
+      analysisRequestAt(L, {
+        zPos: soft.zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: soft.currentEPSD,
+        currentPhysStopSD: soft.currentPhysStopSD,
+        aberrationT: 1,
+      }),
+    );
     expect(sharpProfile.length).toBeGreaterThan(0);
     expect(softProfile.length).toBeGreaterThan(0);
     expectMeaningfulDifference(
@@ -156,8 +193,28 @@ describe("aberrationControl analysis plumbing", () => {
     const sharp = analysisState(L, 0, 0);
     const soft = analysisState(L, 0, 1);
 
-    const sharpField = computeFieldCurvature(L, sharp.zPos, 0, 0, sharp.currentEPSD, sharp.currentPhysStopSD, false, 0);
-    const softField = computeFieldCurvature(L, soft.zPos, 0, 0, soft.currentEPSD, soft.currentPhysStopSD, false, 1);
+    const sharpField = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos: sharp.zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: sharp.currentEPSD,
+        currentPhysStopSD: sharp.currentPhysStopSD,
+        aberrationT: 0,
+      }),
+      false,
+    );
+    const softField = computeFieldCurvature(
+      analysisRequestAt(L, {
+        zPos: soft.zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: soft.currentEPSD,
+        currentPhysStopSD: soft.currentPhysStopSD,
+        aberrationT: 1,
+      }),
+      false,
+    );
     expect(sharpField).not.toBeNull();
     expect(softField).not.toBeNull();
 
@@ -187,8 +244,26 @@ describe("aberrationControl analysis plumbing", () => {
     const sharp = analysisState(L, 0, 0);
     const soft = analysisState(L, 0, 1);
 
-    const sharpComa = computeComaAnalysis(L, sharp.zPos, 0, 0, sharp.currentEPSD, sharp.currentPhysStopSD, 0);
-    const softComa = computeComaAnalysis(L, soft.zPos, 0, 0, soft.currentEPSD, soft.currentPhysStopSD, 1);
+    const sharpComa = computeComaAnalysis(
+      analysisRequestAt(L, {
+        zPos: sharp.zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: sharp.currentEPSD,
+        currentPhysStopSD: sharp.currentPhysStopSD,
+        aberrationT: 0,
+      }),
+    );
+    const softComa = computeComaAnalysis(
+      analysisRequestAt(L, {
+        zPos: soft.zPos,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: soft.currentEPSD,
+        currentPhysStopSD: soft.currentPhysStopSD,
+        aberrationT: 1,
+      }),
+    );
     expect(sharpComa.pointCloudPreview).not.toBeNull();
     expect(softComa.pointCloudPreview).not.toBeNull();
 
@@ -208,8 +283,22 @@ describe("aberrationControl analysis plumbing", () => {
     const sharp = analysisState(L, 0.5, 0);
     const soft = analysisState(L, 0.5, 1);
 
-    const sharpBokeh = computeBokehPreviewPair(L, 0.5, 0, sharp.currentEPSD, sharp.currentPhysStopSD, 0);
-    const softBokeh = computeBokehPreviewPair(L, 0.5, 0, soft.currentEPSD, soft.currentPhysStopSD, 1);
+    const sharpBokeh = computeBokehPreviewPair(
+      analysisRequestAt(L, {
+        focusT: 0.5,
+        currentEPSD: sharp.currentEPSD,
+        currentPhysStopSD: sharp.currentPhysStopSD,
+        aberrationT: 0,
+      }),
+    );
+    const softBokeh = computeBokehPreviewPair(
+      analysisRequestAt(L, {
+        focusT: 0.5,
+        currentEPSD: soft.currentEPSD,
+        currentPhysStopSD: soft.currentPhysStopSD,
+        aberrationT: 1,
+      }),
+    );
     expect(sharpBokeh.infinity).not.toBeNull();
     expect(softBokeh.infinity).not.toBeNull();
 
@@ -225,8 +314,12 @@ describe("aberrationControl analysis plumbing", () => {
     const sharp = analysisState(L, 0, 0);
     const soft = analysisState(L, 0, 1);
 
-    const sharpPupils = computeBothPupilAberrationProfiles(0, 0, L, undefined, sharp.fieldGeometry, 0);
-    const softPupils = computeBothPupilAberrationProfiles(0, 0, L, undefined, soft.fieldGeometry, 1);
+    const sharpPupils = computeBothPupilAberrationProfiles(
+      analysisRequestAt(L, { fieldGeometry: sharp.fieldGeometry, aberrationT: 0 }),
+    );
+    const softPupils = computeBothPupilAberrationProfiles(
+      analysisRequestAt(L, { fieldGeometry: soft.fieldGeometry, aberrationT: 1 }),
+    );
     expectMeaningfulDifference(
       softPupils.maxAbsEpShiftMm,
       sharpPupils.maxAbsEpShiftMm,

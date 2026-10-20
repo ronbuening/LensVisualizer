@@ -1,3 +1,4 @@
+import { mtfInputs } from "../../optics/testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import {
   MtfWorkerClient,
@@ -44,7 +45,7 @@ const job: MtfJob = {
     maxGridSize: 32,
   },
 };
-const result = computeMtf(prepareRuntimeState(L, 0, 0), job.options);
+const result = computeMtf(...mtfInputs(prepareRuntimeState(L, 0, 0), job.options));
 
 describe("MTF worker lifecycle", () => {
   it("retains completed curves across chart requests and invalidates changed apertures", async () => {

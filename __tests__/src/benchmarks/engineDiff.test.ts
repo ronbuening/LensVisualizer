@@ -671,6 +671,20 @@ describe("engineDiff seam adapter", () => {
     );
     expect(Object.keys(sources).sort()).toEqual([...Object.keys(seam), ...Object.keys(optional), ...absent].sort());
     expect(sources.traceRay).toBe("compat.traceEngineRay2");
+    expect(sources.computeBokehPreviewPair).toBe("bokehAnalysis.computeBokehPreviewPair");
+    expect(sources.computeBokehPreview).toBe("bokehAnalysis.computeBokehPreview");
+    expect(sources.computeBokehFieldFootprint).toBe("bokehAnalysis.computeBokehFieldFootprint");
+    expect(sources.buildBokehDensityGrid).toBe("bokehAnalysis.buildBokehDensityGrid");
+    expect(sources.describeBokehDefocusSide).toBe("bokehAnalysis.describeBokehDefocusSide");
+    expect(sources.computeBothPupilAberrationProfiles).toBe("pupilAnalysis.computeBothPupilAberrationProfiles");
+    expect(sources.computePupilAberrationProfile).toBe("pupilAnalysis.computePupilAberrationProfile");
+    expect(sources.computeExitPupilAberrationProfile).toBe("pupilAnalysis.computeExitPupilAberrationProfile");
+    expect(sources.computeDistortionCurve).toBe("distortionAnalysis.computeDistortionCurve");
+    expect(sources.computeDistortionFieldGrid).toBe("distortionAnalysis.computeDistortionFieldGrid");
+    expect(sources.computeComaAnalysis).toBe("comaAnalysis.computeComaAnalysis");
+    expect(sources.computeFieldCurvature).toBe("fieldCurvatureAnalysis.computeFieldCurvature");
+    expect(sources.computeFieldCurvatureBundle).toBe("fieldCurvatureAnalysis.computeFieldCurvatureBundle");
+    expect(sources.summarizeChromaticFieldFocus).toBe("fieldCurvatureAnalysis.summarizeChromaticFieldFocus");
     expect(seam.buildLens).toBe(buildLens);
     /* From S2.P2.T1 canonical ingest reads a file of either version by its schema. */
     expect(optional).toEqual({

@@ -2,6 +2,7 @@
 
 import { describe, it, expect, afterEach } from "vitest";
 import { render, screen, cleanup, fireEvent } from "@testing-library/react";
+import { build } from "../../../optics/testLensFixtures.js";
 import AsphericComparisonOverlay from "../../../../../src/components/display/overlays/AsphericComparisonOverlay.js";
 import type { RuntimeLens, ElementData, SurfaceData, AsphericCoefficients } from "../../../../../src/types/optics.js";
 import type { Theme } from "../../../../../src/types/theme.js";
@@ -34,15 +35,23 @@ const surf1: SurfaceData = { label: "3A", R: 50, d: 5.0, nd: 1.5, sd: 12, elemId
 const surf2: SurfaceData = { label: "4", R: -30, d: 2.0, nd: 1.0, sd: 12, elemId: 0 };
 const surf3: SurfaceData = { label: "5A", R: -50, d: 2.0, nd: 1.0, sd: 10, elemId: 0 };
 
-const elementInfo: ElementData = { id: 1, name: "Crown glass", label: "E1", type: "biconvex", nd: 1.518 };
+const elementInfo: ElementData = { id: 1, name: "Crown glass", label: "E1", type: "biconvex", nd: 1.5 };
 
 function makeLens(surfaces: SurfaceData[], asphByIdx: Record<number, AsphericCoefficients>): RuntimeLens {
-  return {
-    ES: [[1, 0, surfaces.length - 1]] as unknown as RuntimeLens["ES"],
-    S: surfaces,
-    asphByIdx,
+  return build({
+    key: "aspheric-overlay-fixture",
+    name: "Aspheric overlay fixture",
+    nominalFno: 2,
+    focalLengthDesign: 45,
+    closeFocusM: 1,
+    yScFill: 0.5,
+    fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
+    surfaces: [{ label: "STO", R: 1e15, d: 1, nd: 1, sd: 12, elemId: 0 }, ...surfaces],
+    asph: Object.fromEntries(
+      Object.entries(asphByIdx).map(([index, coefficients]) => [surfaces[Number(index)].label, coefficients]),
+    ),
     elements: [elementInfo],
-  } as unknown as RuntimeLens;
+  });
 }
 
 describe("AsphericComparisonOverlay — single aspheric surface", () => {
@@ -108,6 +117,20 @@ describe("AsphericComparisonOverlay — single aspheric surface", () => {
     fireEvent.change(slider, { target: { value: "1" } });
 
     expect(screen.getAllByText("1000×").length).toBeGreaterThan(0);
+  });
+
+  it("keeps user exaggeration on rerender and resets only when the sphere mode changes", () => {
+    const { rerender } = render(<AsphericComparisonOverlay L={L} info={elementInfo} theme={mockTheme} />);
+    const initial = (screen.getByRole("slider") as HTMLInputElement).value;
+    fireEvent.change(screen.getByRole("slider"), { target: { value: "1" } });
+    rerender(
+      <AsphericComparisonOverlay L={makeLens([surf1, surf2], { 0: asph })} info={elementInfo} theme={mockTheme} />,
+    );
+    expect((screen.getByRole("slider") as HTMLInputElement).value).toBe("1");
+    fireEvent.click(screen.getByText("Best-fit sphere"));
+    expect((screen.getByRole("slider") as HTMLInputElement).value).not.toBe("1");
+    fireEvent.click(screen.getByText("Base sphere (R)"));
+    expect((screen.getByRole("slider") as HTMLInputElement).value).toBe(initial);
   });
 
   it("shows a true sag readout after clicking the SVG", () => {

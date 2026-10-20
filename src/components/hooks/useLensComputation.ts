@@ -17,7 +17,8 @@ import { resolveLensSystemData } from "../../utils/catalog/teleconverterCatalog.
 import { wideOpenStopAtZoom } from "../../optics/apertureStop.js";
 import { fNumberAtStopdown } from "../../optics/aperture.js";
 import buildLens from "../../optics/buildLens.js";
-import { computeCardinalElementsAtState, type CardinalElements } from "../../optics/cardinalElements.js";
+import type { CardinalElements } from "../../optics/cardinalElements.js";
+import { computeCardinalElements, computeFocusEFL, createAnalysisRequest } from "../../optics/analysis.js";
 import { computeElementShapes, createCoordinateTransforms } from "../../optics/diagramGeometry.js";
 import { clampLensMovement, createLensMovementTransform } from "../../optics/lensMovement.js";
 import { prepareRuntimeState } from "../../optics/compat.js";
@@ -32,7 +33,6 @@ import {
   computeAnalysisFieldGeometryAtState,
   doLayout,
   effectiveFNumber,
-  eflAtFocus,
   entrancePupilAtState,
   fopenAtZoom,
   thick,
@@ -165,6 +165,19 @@ export default function useLensComputation({
     () => (L ? prepareRuntimeState(L, focusT, zoomT, aberrationT) : null),
     [L, focusT, zoomT, aberrationT],
   );
+  // First-order jobs read geometry; constants fill the unused aperture/EFL request fields.
+  const firstOrderRequest = useMemo(
+    () =>
+      preparedState && L
+        ? createAnalysisRequest({
+            preparedState,
+            dynamicEFL: L.EFL,
+            currentEPSD: L.EP.epSD,
+            currentPhysStopSD: L.stopPhysSD,
+          })
+        : null,
+    [preparedState, L],
+  );
   const perspectiveTraceContext = useMemo(
     () =>
       preparedState
@@ -188,8 +201,8 @@ export default function useLensComputation({
   );
 
   const cardinalElements = useMemo(
-    () => (L ? computeCardinalElementsAtState(L, focusT, zoomT, zPos, IMG_MM, aberrationT) : null),
-    [L, focusT, zoomT, zPos, IMG_MM, aberrationT],
+    () => (firstOrderRequest ? computeCardinalElements(firstOrderRequest, { zPos, imagePlaneZ: IMG_MM }) : null),
+    [firstOrderRequest, zPos, IMG_MM],
   );
 
   const cardinalZExtent = useMemo(() => {
@@ -303,10 +316,7 @@ export default function useLensComputation({
     : [];
 
   /* ── Dynamic EFL (changes with focus for internal-focusing lenses) ── */
-  const dynamicEFL = useMemo(
-    () => (L ? eflAtFocus(focusT, zoomT, L, aberrationT) : 0),
-    [L, focusT, zoomT, aberrationT],
-  );
+  const dynamicEFL = useMemo(() => (firstOrderRequest ? computeFocusEFL(firstOrderRequest) : 0), [firstOrderRequest]);
 
   /* ── Effective f-number (bellows factor correction at close focus) ── */
   const effectiveFNum = useMemo(

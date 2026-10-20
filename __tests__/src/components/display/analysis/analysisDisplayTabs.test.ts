@@ -33,7 +33,7 @@ import VignettingTab from "../../../../../src/components/display/analysis/Vignet
 import themes from "../../../../../src/utils/theme/themes.js";
 import Sonnar50f15Raw from "../../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import NikonFisheye6mmf28Raw from "../../../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.js";
-import type { DistortionSample } from "../../../../../src/optics/distortionAnalysis.js";
+import type { DistortionSample } from "../../../../../src/optics/analysis.js";
 import type { RuntimeLens } from "../../../../../src/types/optics.js";
 import { createAnalysisComputationContext, prepareRuntimeState } from "../../../../../src/optics/compat.js";
 import { INTERACTIVE_ANALYSIS_SAMPLING } from "../../../../../src/optics/analysis/analysisQuality.js";

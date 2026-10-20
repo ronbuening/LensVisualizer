@@ -5,7 +5,7 @@
  */
 
 import type { Theme } from "../../../types/theme.js";
-import type { VignettingSample } from "../../../optics/vignetteAnalysis.js";
+import type { VignettingSample } from "../../../optics/analysis.js";
 import { ChartLegend, SvgChartFrame } from "./charts/SvgChartFrame.js";
 import {
   angleTicks,

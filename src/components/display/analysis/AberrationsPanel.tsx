@@ -7,6 +7,7 @@
  */
 
 import { useEffect, useMemo, useState } from "react";
+import { createAnalysisComputationContext } from "../../../optics/analysis.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
@@ -61,9 +62,13 @@ export default function AberrationsPanel({
     preparedState,
     analysisContext,
   });
+  const perspectiveRequest = analysisContext?.request;
   const perspectiveFieldResult = useMemo(
-    () => (analysisContext?.movementActive ? analysisContext.computePerspectiveFieldAberrations() : null),
-    [analysisContext],
+    () =>
+      perspectiveRequest?.pose?.active
+        ? createAnalysisComputationContext(perspectiveRequest).computePerspectiveFieldAberrations()
+        : null,
+    [perspectiveRequest],
   );
 
   const [saChartExpanded, setSaChartExpanded] = useState(expanded);
@@ -77,7 +82,7 @@ export default function AberrationsPanel({
   return (
     <div style={{ padding: "8px 0" }}>
       <div style={{ display: "flex", flexDirection: "column", gap: 16, fontSize: 9.5 }}>
-        {analysisContext?.movementActive ? (
+        {perspectiveRequest?.pose?.active ? (
           <div
             style={{
               padding: "7px 9px",
@@ -110,7 +115,7 @@ export default function AberrationsPanel({
           theme={t}
         />
 
-        {analysisContext?.movementActive ? (
+        {perspectiveRequest?.pose?.active ? (
           perspectiveFieldResult ? (
             <PerspectiveFieldCurves result={perspectiveFieldResult} t={t} />
           ) : (

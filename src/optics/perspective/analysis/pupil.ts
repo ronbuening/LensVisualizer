@@ -6,6 +6,8 @@
  * pupil-bundle lines, then compared with the rigidly posed intrinsic pupils.
  */
 
+import type { AnalysisRequest } from "../../analysis/request.js";
+import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
 import type { ChromaticChannel } from "../../../types/optics.js";
 import { entrancePupilFromStop2, paraxialPupilGeometry2 } from "../../first-order/pupils.js";
 import { traceParaxialSurfaces2 } from "../../math/paraxial.js";
@@ -27,10 +29,6 @@ const DEFAULT_PUPIL_SAMPLE_COUNT = 17;
 
 /** Options for signed sensor-locked apparent-pupil sampling. */
 export interface PerspectivePupilOptions {
-  /** Physical active stop semi-diameter in mm for the current aperture. */
-  stopSemiDiameterMm: number;
-  /** Entrance-pupil semi-diameter in mm; derived paraxially when omitted. */
-  pupilSemiDiameterMm?: number;
   /** Ordered signed sensor samples; defaults to a vertical -1..+1 sweep. */
   sensorUvs?: readonly SensorUv[];
   /** Meridional pupil fractions, normally spanning -1..+1. */
@@ -109,14 +107,13 @@ export interface PerspectivePupilAnalysis {
 /**
  * Compute the current-aperture intrinsic EP/XP geometry in the lens frame.
  *
- * @param context - camera-anchored prepared state and physical lens pose
- * @param stopSemiDiameterMm - current physical stop semi-diameter in mm
+ * @param request - camera-anchored geometry, physical lens pose and current aperture
  * @returns first-order pupil centers/sizes plus their rigid camera positions
  */
-export function computeIntrinsicPerspectivePupils(
-  context: PerspectiveTraceContext,
-  stopSemiDiameterMm: number,
-): IntrinsicPerspectivePupils {
+export function computeIntrinsicPerspectivePupils(request: AnalysisRequest): IntrinsicPerspectivePupils {
+  const context = request.perspectiveTraceContext;
+  if (!context) throw new Error("Movement-aware analysis requires a PerspectiveTraceContext");
+  const { stopSemiDiameterMm } = request.aperture;
   assertPositiveFinite(stopSemiDiameterMm, "stopSemiDiameterMm");
   const geometry = paraxialPupilGeometry2(context.state);
   const entrance = entrancePupilFromStop2(stopSemiDiameterMm, geometry);
@@ -211,16 +208,18 @@ export function estimateApparentPupilFromLines(
 /**
  * Compute intrinsic and apparent entrance/exit pupils across signed sensor fields.
  *
- * @param context - physical moved-lens trace context with a fixed sensor
- * @param options - current aperture, signed sensor fields, and bundle density
+ * @param request - shared aperture, physical pose and per-context sensor-solve memo
+ * @param options - explicit field/channel/bundle overrides; omitted uses request sampling
  * @returns intrinsic lens-frame references plus retained camera-frame samples
  */
 export function computePerspectivePupilAnalysis(
-  context: PerspectiveTraceContext,
-  options: PerspectivePupilOptions,
+  request: AnalysisRequest,
+  options: PerspectivePupilOptions = perspectiveAnalysisSamplingPlan(request).pupils,
 ): PerspectivePupilAnalysis {
-  const intrinsic = computeIntrinsicPerspectivePupils(context, options.stopSemiDiameterMm);
-  const pupilSemiDiameterMm = options.pupilSemiDiameterMm ?? intrinsic.entrance.semiDiameterMm;
+  const context = request.perspectiveTraceContext;
+  if (!context) throw new Error("Movement-aware analysis requires a PerspectiveTraceContext");
+  const { stopSemiDiameterMm, entrancePupilSemiDiameterMm: pupilSemiDiameterMm } = request.aperture;
+  const intrinsic = computeIntrinsicPerspectivePupils(request);
   assertPositiveFinite(pupilSemiDiameterMm, "pupilSemiDiameterMm");
   const sensorUvs = options.sensorUvs ?? signedVerticalSensorUvs(DEFAULT_SENSOR_SAMPLE_COUNT);
   const pupilFractions = options.pupilFractions ?? evenlySpacedSigned(DEFAULT_PUPIL_SAMPLE_COUNT);
@@ -230,7 +229,7 @@ export function computePerspectivePupilAnalysis(
       kind: "meridional",
       pupilSemiDiameterMm,
       fractions: pupilFractions,
-      stopSemiDiameterMm: options.stopSemiDiameterMm,
+      stopSemiDiameterMm,
       channel: options.channel,
     },
   });

@@ -20,6 +20,7 @@
  */
 import { execFileSync } from "node:child_process";
 import os from "node:os";
+import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import {
@@ -87,7 +88,22 @@ async function loadEngine(root) {
     load("src/optics/compat.ts"),
     load("src/optics/mtf.ts"),
   ]);
-  return { buildLens, prepareRuntimeState, computeMtf };
+  if (!existsSync(join(root, "src/optics/analysis/mtf"))) return { buildLens, prepareRuntimeState, computeMtf };
+  const { createAnalysisRequest } = await load("src/optics/analysis.ts");
+  return {
+    buildLens,
+    prepareRuntimeState,
+    computeMtf: (state, options) =>
+      computeMtf(
+        createAnalysisRequest({
+          preparedState: state,
+          dynamicEFL: 0,
+          currentEPSD: options.pupilSemiDiameterMm,
+          currentPhysStopSD: options.stopSemiDiameterMm,
+        }),
+        options,
+      ),
+  };
 }
 
 /** What a row reports of one result: the support verdict and, per field, the status, grid and convergence. */

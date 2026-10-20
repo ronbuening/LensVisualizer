@@ -1,14 +1,15 @@
+import { mtfInputs } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
-import { shearedOtf } from "../../../src/optics/analysis/mtfShearedOtf.js";
-import { geometricOtf, otfMagnitude, type ComplexOtf } from "../../../src/optics/analysis/mtfMath.js";
+import { shearedOtf } from "../../../src/optics/analysis/mtf/mtfShearedOtf.js";
+import { geometricOtf, otfMagnitude, type ComplexOtf } from "../../../src/optics/analysis/mtf/mtfMath.js";
 import {
   mtfWaveLattice,
   waveLatticeOtf,
   waveLatticePhaseStep,
   type MtfWaveLattice,
-} from "../../../src/optics/analysis/mtfWavefront.js";
-import { traceMtfFieldPupil, type MtfBundle } from "../../../src/optics/analysis/mtfTracing.js";
-import { assessMtfSupport } from "../../../src/optics/analysis/mtfSupport.js";
+} from "../../../src/optics/analysis/mtf/mtfWavefront.js";
+import { traceMtfFieldPupil, type MtfBundle } from "../../../src/optics/analysis/mtf/mtfTracing.js";
+import { assessMtfSupport } from "../../../src/optics/analysis/mtf/mtfSupport.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { build, buildSimplePositiveElementLens } from "./testLensFixtures.js";
 import { computeMtf, computeMtfSteps, type MtfJobCache } from "../../../src/optics/mtf.js";
@@ -350,7 +351,7 @@ describe("diffraction MTF of a traced lens", () => {
     maxGridSize: 64,
   };
   it("returns the aberration-free response of the pupil beside the curves, and only for the diffraction method", () => {
-    const field = computeMtf(state, options).fields[0];
+    const field = computeMtf(...mtfInputs(state, options)).fields[0];
     expect(field.reason).toBeNull();
     // A 0.1 mm stop at this focus is diffraction limited: about f/240, cutoff 2 NA / λ near 7 lp/mm at 587.6 nm.
     const limitCutoff = (2 * 0.1) / (0.0005876 * focused.EFL);
@@ -359,15 +360,15 @@ describe("diffraction MTF of a traced lens", () => {
       expect(Math.abs(field.sagittal[i] - field.diffractionLimit!.sagittal[i])).toBeLessThan(0.005);
       expect(field.tangential[i]).toBeCloseTo(field.sagittal[i], 6);
     });
-    expect(computeMtf(state, { ...options, method: "geometric" }).fields[0].diffractionLimit).toBeNull();
+    expect(computeMtf(...mtfInputs(state, { ...options, method: "geometric" })).fields[0].diffractionLimit).toBeNull();
     // Refinement starts at the 16 grid like geometric MTF: capped at 32, the 32 grid has a coarser one to compare with.
-    const capped = computeMtf(state, { ...options, maxGridSize: 32 }).fields[0];
+    const capped = computeMtf(...mtfInputs(state, { ...options, maxGridSize: 32 })).fields[0];
     expect(capped.gridSize).toBe(32);
     expect(capped.maxDelta).not.toBeNull();
     // A request that only changes its field list reuses finished fields, the limit included.
     const cache: MtfJobCache = { fields: new Map() };
     const drain = (request: MtfOptions) => {
-      const steps = computeMtfSteps(state, request, cache);
+      const steps = computeMtfSteps(...mtfInputs(state, request), cache);
       let step = steps.next();
       while (!step.done) step = steps.next();
       return step.value;
@@ -380,8 +381,8 @@ describe("diffraction MTF of a traced lens", () => {
   it("agrees with the optical-path autocorrelation of the same rays under real spherical aberration", () => {
     // The singlet at f/8 and its best focus carries spherical aberration, and coma and astigmatism off axis.
     const request: MtfOptions = { ...options, pupilSemiDiameterMm: 3, stopSemiDiameterMm: 3, focus: "best-axial" };
-    const support = assessMtfSupport(state, request);
-    const planeZ = state.imgZ + computeMtf(state, request).focus!.appliedShiftMm;
+    const support = assessMtfSupport(...mtfInputs(state, request));
+    const planeZ = state.imgZ + computeMtf(...mtfInputs(state, request)).focus!.appliedShiftMm;
     const line = support.spectralLines[0];
     const lambda = line.wavelengthNm * 1e-6;
     const frequencies = [10, 30, 60, 100];

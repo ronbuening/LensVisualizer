@@ -1,6 +1,8 @@
 /** Sensor-locked signed blur, best-focus, and bokeh footprints for moved lenses. */
 
-import { buildBokehRadialProfile, classifyBokehBrightnessCharacter } from "../../aberration/bokeh.js";
+import type { AnalysisRequest } from "../../analysis/request.js";
+import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
+import { buildBokehRadialProfile, classifyBokehBrightnessCharacter } from "../../analysis/aberration/radialProfile.js";
 import {
   BOKEH_CIRCULAR_PUPIL_RING_SAMPLES,
   type BokehBrightnessCharacter,
@@ -8,7 +10,7 @@ import {
   type BokehPupilFootprint,
   type BokehPupilSample,
   type BokehRadialProfile,
-} from "../../aberration/types.js";
+} from "../../analysis/aberration/types.js";
 import { sampleCircularPupil } from "../../analysis/sampling.js";
 import type { Vec3 } from "../../types.js";
 import {
@@ -43,10 +45,6 @@ const MIN_BOKEH_RAYS = 3;
 
 /** Controls for fixed-sensor blur and point-spread sampling. */
 export interface PerspectiveFocusOptions {
-  /** Current physical aperture-stop semi-diameter in millimeters. */
-  stopSemiDiameterMm: number;
-  /** Current entrance-pupil semi-diameter; derived from the stop when omitted. */
-  pupilSemiDiameterMm?: number;
   /** Ordered sensor coordinates. Signed and unavailable coordinates are retained. */
   sensorUvs?: readonly SensorUv[];
   /** Explicit area-weighted circular pupil quadrature. */
@@ -111,16 +109,21 @@ export function createPerspectiveBokehPupilPoints(
   }));
 }
 
-/** Compute movement-aware blur and bokeh directly on the fixed camera sensor. */
+/**
+ * Compute movement-aware blur and bokeh directly on the fixed camera sensor.
+ *
+ * @param request - shared prepared geometry, aperture, physical pose and sensor-solve cache
+ * @param options - explicit field/pupil quadrature; omitted uses request quality and sampling
+ * @returns ordered fixed-sensor metrics, including unavailable fields and trace diagnostics
+ */
 export function computePerspectiveFocusAnalysis(
-  context: PerspectiveTraceContext,
-  options: PerspectiveFocusOptions,
+  request: AnalysisRequest,
+  options: PerspectiveFocusOptions = perspectiveAnalysisSamplingPlan(request).focus,
 ): PerspectiveFocusAnalysis {
-  const pupilSemiDiameterMm = resolvePerspectivePupilSemiDiameter(
-    context,
-    options.stopSemiDiameterMm,
-    options.pupilSemiDiameterMm,
-  );
+  const context = request.perspectiveTraceContext;
+  if (!context) throw new Error("Movement-aware analysis requires a PerspectiveTraceContext");
+  const { stopSemiDiameterMm } = request.aperture;
+  const pupilSemiDiameterMm = resolvePerspectivePupilSemiDiameter(request);
   const sensorUvs = options.sensorUvs ?? DEFAULT_BOKEH_SENSOR_UVS;
   const pupilPoints = options.pupilPoints
     ? options.pupilPoints.map((point) => ({ ...point }))
@@ -130,7 +133,7 @@ export function computePerspectiveFocusAnalysis(
     pupilBundle: {
       kind: "circular",
       pupilSemiDiameterMm,
-      stopSemiDiameterMm: options.stopSemiDiameterMm,
+      stopSemiDiameterMm,
       points: pupilPoints,
       channel: options.fieldSampling?.chiefRay?.channel,
     },
@@ -141,7 +144,7 @@ export function computePerspectiveFocusAnalysis(
 
   return {
     contextCacheKey: context.cacheKey,
-    stopSemiDiameterMm: options.stopSemiDiameterMm,
+    stopSemiDiameterMm,
     pupilSemiDiameterMm,
     pupilPoints,
     samples,

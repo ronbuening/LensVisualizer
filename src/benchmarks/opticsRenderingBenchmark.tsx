@@ -69,7 +69,7 @@ import {
   traceRayVector,
   traceRayVectorChromatic,
 } from "../optics/optics.js";
-import { computeCardinalElementsAtState } from "../optics/cardinalElements.js";
+import { computeCardinalElements, createAnalysisRequest } from "../optics/analysis.js";
 import { computeElementShapes, createCoordinateTransforms } from "../optics/diagramGeometry.js";
 import {
   clampLensMovement,
@@ -1001,9 +1001,12 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
   const currentEPSD = (baseEPSD * currentFOPEN) / fNumber;
   const dynamicEFL = eflAtFocus(focusT, zoomT, L, aberrationT);
   effectiveFNumber(fNumber, focusT, zoomT, L, aberrationT);
-  computeCardinalElementsAtState(L, focusT, zoomT, zPos, IMG_MM, aberrationT);
 
   const preparedState = prepareRuntimeState(L, focusT, zoomT, aberrationT);
+  computeCardinalElements(
+    createAnalysisRequest({ preparedState, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry }),
+    { zPos, imagePlaneZ: IMG_MM },
+  );
   const perspectiveTraceContext = createPerspectiveTraceContext({
     preparedState,
     cameraZPos: zPos,
@@ -1402,16 +1405,7 @@ function measureAnalysisBreakdown(
 
 /** Creates an uncached facade so each fine-grained benchmark times real job work. */
 function createFreshAnalysisContext(snapshot: ScenarioSnapshot): AnalysisComputationContext {
-  return createAnalysisComputationContext({
-    preparedState: snapshot.preparedState,
-    dynamicEFL: snapshot.dynamicEFL,
-    currentEPSD: snapshot.currentEPSD,
-    currentPhysStopSD: snapshot.currentPhysStopSD,
-    fieldGeometry: snapshot.fieldGeometry,
-    analysisQuality: snapshot.scenario.analysisQuality ?? "settled",
-    sampling: snapshot.analysisSampling,
-    perspectiveTraceContext: snapshot.perspectiveTraceContext,
-  });
+  return createAnalysisComputationContext(Object.freeze({ ...snapshot.analysisContext.request }));
 }
 
 function computePerspectiveFocusWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
@@ -1471,14 +1465,16 @@ function computePerspectivePupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutp
   };
 }
 
-/** Measures the optical summary path through the prepared-state analysis API. */
+/** Measures the optical summary path through its request-facing analysis job. */
 function computeAnalysisSummaryWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const summary = analysisJobsForState2.computeOpticalSummary(
-    snapshot.preparedState,
-    snapshot.dynamicEFL,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      fieldGeometry: snapshot.fieldGeometry,
+    }),
   );
   completed("summary", summary);
   return { summarySurfaceCount: summary.surfaceCount };
@@ -1487,11 +1483,14 @@ function computeAnalysisSummaryWork(snapshot: ScenarioSnapshot): BenchmarkOutput
 /** Measures distortion-curve sampling for non-folded systems. */
 function computeAnalysisDistortionCurveWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const samples = analysisJobsForState2.computeDistortionCurve(
-    snapshot.preparedState,
-    snapshot.dynamicEFL,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
-    snapshot.analysisSampling,
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      fieldGeometry: snapshot.fieldGeometry,
+      sampling: snapshot.analysisSampling,
+    }),
   );
   const curve = distortionSamplesOf(samples);
   completed("distortionCurve", curve);
@@ -1514,10 +1513,14 @@ function distortionSamplesOf<Sample>(
 /** Measures the distortion field-grid helper used by the analysis drawer. */
 function computeAnalysisDistortionGridWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const grid = analysisJobsForState2.computeDistortionFieldGrid(
-    snapshot.preparedState,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
-    snapshot.analysisSampling,
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      fieldGeometry: snapshot.fieldGeometry,
+      sampling: snapshot.analysisSampling,
+    }),
   );
   completed("distortionGrid", grid);
   return { distortionGridLines: grid.lines.length };
@@ -1526,11 +1529,14 @@ function computeAnalysisDistortionGridWork(snapshot: ScenarioSnapshot): Benchmar
 /** Measures vignetting sampling for non-folded sequential systems. */
 function computeAnalysisVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const samples = analysisJobsForState2.computeVignettingCurve(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
-    snapshot.analysisSampling,
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      fieldGeometry: snapshot.fieldGeometry,
+      sampling: snapshot.analysisSampling,
+    }),
   );
   completed("vignetting", samples);
   return { vignettingSamples: samples.length };
@@ -1539,9 +1545,14 @@ function computeAnalysisVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOut
 /** Measures entrance/exit pupil aberration profile generation. */
 function computeAnalysisPupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const pupilProfiles = analysisJobsForState2.computeBothPupilAberrationProfiles(
-    snapshot.preparedState,
-    snapshot.analysisSampling?.pupilAberrationSampleCount ?? undefined,
-    snapshot.fieldGeometry ?? undefined,
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      fieldGeometry: snapshot.fieldGeometry,
+      sampling: snapshot.analysisSampling,
+    }),
   );
   completed("pupils", pupilProfiles);
   return { pupilSamples: pupilProfiles.ep.samples.length + pupilProfiles.xp.samples.length };
@@ -1550,10 +1561,13 @@ function computeAnalysisPupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutput 
 /** Measures paired infinity/near-focus bokeh preview data generation. */
 function computeAnalysisBokehPairWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const bokehPair = analysisJobsForState2.computeBokehPreviewPair(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-    snapshot.analysisSampling,
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      sampling: snapshot.analysisSampling,
+    }),
   );
   completed("bokehPair", bokehPair);
   return {
@@ -1565,11 +1579,7 @@ function computeAnalysisBokehPairWork(snapshot: ScenarioSnapshot): BenchmarkOutp
 /** Measures best-focus solve cost for the current stop and entrance-pupil scale. */
 function computeAnalysisBestFocusWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   return {
-    bestFocusZ: analysisJobsForState2.computeBestFocusZ(
-      snapshot.preparedState,
-      snapshot.currentEPSD,
-      snapshot.currentPhysStopSD,
-    ),
+    bestFocusZ: analysisJobsForState2.computeBestFocusZ(sphericalRequest(snapshot)),
   };
 }
 
@@ -1607,7 +1617,7 @@ function bestFocusInspection(snapshot: ScenarioSnapshot): (() => void) | undefin
         completed("bestFocusRay", ray);
       }
     }
-    const z = analysisJobsForState2.computeBestFocusZ(snapshot.preparedState, currentEPSD, currentPhysStopSD);
+    const z = analysisJobsForState2.computeBestFocusZ(sphericalRequest(snapshot));
     completed("bestFocus", { z, isLayoutImagePlane: Object.is(z, layout.imgZ) });
   };
 }
@@ -1632,35 +1642,17 @@ function measureAberrationPanels(
     plan.measure(`${lensKey}:${scenario.id}:aberrationPanels:${group}.${category}`, fn);
 
   data.sphericalAberration = measure("data", "sphericalAberration", () => {
-    const result = analysisJobsForState2.computeSphericalAberration(
-      snapshot.preparedState,
-      snapshot.currentEPSD,
-      snapshot.currentPhysStopSD,
-    );
+    const result = analysisJobsForState2.computeSphericalAberration(sphericalRequest(snapshot));
     return describeComputationOutput(result);
   });
   data.saProfile = measure("data", "saProfile", () => {
-    const result = analysisJobsForState2.computeSAProfile(
-      snapshot.preparedState,
-      snapshot.currentEPSD,
-      snapshot.currentPhysStopSD,
-    );
+    const result = analysisJobsForState2.computeSAProfile(sphericalRequest(snapshot));
     completed("result", result);
     return { points: Array.isArray(result) ? result.length : 0 };
   });
   data.saBlurCharacter = measure("data", "saBlurCharacter", () => {
-    const base = analysisJobsForState2.computeSphericalAberration(
-      snapshot.preparedState,
-      snapshot.currentEPSD,
-      snapshot.currentPhysStopSD,
-    );
-    const result = analysisJobsForState2.computeSphericalAberrationBlurCharacter(
-      snapshot.preparedState,
-      snapshot.currentEPSD,
-      snapshot.currentPhysStopSD,
-      base,
-      snapshot.analysisSampling,
-    );
+    const base = analysisJobsForState2.computeSphericalAberration(sphericalRequest(snapshot));
+    const result = analysisJobsForState2.computeSphericalAberrationBlurCharacter(sphericalRequest(snapshot), base);
     return describeComputationOutput(result);
   });
 
@@ -1679,50 +1671,16 @@ function measureAberrationPanels(
     }
   } else {
     data.fieldCurvature = measure("data", "fieldCurvature", () =>
-      describeComputationOutput(
-        analysisJobsForState2.computeFieldCurvature(
-          snapshot.preparedState,
-          snapshot.currentEPSD,
-          snapshot.currentPhysStopSD,
-          false,
-          snapshot.fieldGeometry ?? undefined,
-          snapshot.analysisSampling,
-        ),
-      ),
+      describeComputationOutput(analysisJobsForState2.computeFieldCurvature(fieldCurvatureRequest(snapshot), false)),
     );
     data.chromaticFieldCurvature = measure("data", "chromaticFieldCurvature", () =>
-      describeComputationOutput(
-        analysisJobsForState2.computeFieldCurvature(
-          snapshot.preparedState,
-          snapshot.currentEPSD,
-          snapshot.currentPhysStopSD,
-          true,
-          snapshot.fieldGeometry ?? undefined,
-          snapshot.analysisSampling,
-        ),
-      ),
+      describeComputationOutput(analysisJobsForState2.computeFieldCurvature(fieldCurvatureRequest(snapshot), true)),
     );
     data.fieldCurvatureBundle = measure("data", "fieldCurvatureBundle", () =>
-      describeComputationOutput(
-        analysisJobsForState2.computeFieldCurvatureBundle(
-          snapshot.preparedState,
-          snapshot.currentEPSD,
-          snapshot.currentPhysStopSD,
-          snapshot.fieldGeometry ?? undefined,
-          snapshot.analysisSampling,
-        ),
-      ),
+      describeComputationOutput(analysisJobsForState2.computeFieldCurvatureBundle(fieldCurvatureRequest(snapshot))),
     );
     data.coma = measure("data", "coma", () =>
-      describeComputationOutput(
-        analysisJobsForState2.computeComaAnalysis(
-          snapshot.preparedState,
-          snapshot.currentEPSD,
-          snapshot.currentPhysStopSD,
-          snapshot.fieldGeometry ?? undefined,
-          snapshot.analysisSampling,
-        ),
-      ),
+      describeComputationOutput(analysisJobsForState2.computeComaAnalysis(fieldCurvatureRequest(snapshot))),
     );
   }
 
@@ -1780,42 +1738,19 @@ function measureAberrationPanels(
  * guarded until fixture-backed validation says they are mirror-safe.
  */
 function computeAberrationDataValues(snapshot: ScenarioSnapshot): AberrationDataValues {
-  const sphericalAberration = analysisJobsForState2.computeSphericalAberration(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-  );
-  const saProfile = analysisJobsForState2.computeSAProfile(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-  );
+  const sphericalAberration = analysisJobsForState2.computeSphericalAberration(sphericalRequest(snapshot));
+  const saProfile = analysisJobsForState2.computeSAProfile(sphericalRequest(snapshot));
   const saBlurCharacter = analysisJobsForState2.computeSphericalAberrationBlurCharacter(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
+    sphericalRequest(snapshot),
     sphericalAberration,
-    snapshot.analysisSampling,
   );
   if (snapshot.L.isFoldedOptics || snapshot.movement.active) {
     return { sphericalAberration, saProfile, saBlurCharacter };
   }
-  const fieldCurvatureBundle = analysisJobsForState2.computeFieldCurvatureBundle(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
-    snapshot.analysisSampling,
-  );
+  const fieldCurvatureBundle = analysisJobsForState2.computeFieldCurvatureBundle(fieldCurvatureRequest(snapshot));
   const fieldCurvature = fieldCurvatureBundle.fieldCurvature;
   const chromaticFieldCurvature = fieldCurvatureBundle.chromaticFieldCurvature;
-  const coma = analysisJobsForState2.computeComaAnalysis(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
-    snapshot.analysisSampling,
-  );
+  const coma = analysisJobsForState2.computeComaAnalysis(fieldCurvatureRequest(snapshot));
   return { sphericalAberration, saProfile, saBlurCharacter, fieldCurvature, chromaticFieldCurvature, coma };
 }
 
@@ -2362,3 +2297,26 @@ function describeComputationOutput(value: unknown): BenchmarkOutput {
 
 /** Stable no-op callback used for server-rendered interactive components. */
 const noop = () => {};
+
+/** Preserve the field-geometry override alongside the shared aperture and sampling snapshot. */
+function fieldCurvatureRequest(snapshot: ScenarioSnapshot) {
+  return createAnalysisRequest({
+    preparedState: snapshot.preparedState,
+    dynamicEFL: snapshot.dynamicEFL,
+    currentEPSD: snapshot.currentEPSD,
+    currentPhysStopSD: snapshot.currentPhysStopSD,
+    fieldGeometry: snapshot.fieldGeometry,
+    sampling: snapshot.analysisSampling,
+  });
+}
+
+/** Keep benchmark dispatch on the same current-state request as the drawer. */
+function sphericalRequest(snapshot: ScenarioSnapshot) {
+  return createAnalysisRequest({
+    preparedState: snapshot.preparedState,
+    dynamicEFL: snapshot.dynamicEFL,
+    currentEPSD: snapshot.currentEPSD,
+    currentPhysStopSD: snapshot.currentPhysStopSD,
+    sampling: snapshot.analysisSampling,
+  });
+}

@@ -28,6 +28,10 @@ export type MtfUnavailableReason =
   | "vignetted"
   | "outside-modeled-field";
 
+/** Method-specific settings; physical aperture comes from AnalysisRequest. */
+export type MtfRequestOptions = Omit<MtfOptions, "pupilSemiDiameterMm" | "stopSemiDiameterMm">;
+
+/** Resolved inputs used by the MTF kernels and the serializable worker protocol. */
 export interface MtfOptions {
   method: MtfMethod;
   spectrum: MtfSpectrum;

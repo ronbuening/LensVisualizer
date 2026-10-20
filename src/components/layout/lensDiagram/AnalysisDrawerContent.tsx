@@ -1,7 +1,7 @@
 import { useDeferredValue, useMemo, type ReactNode } from "react";
 import { ANALYSIS_TAB_RENDERERS } from "./analysisTabRenderers.js";
 import usePreparedAnalysisState from "../../display/analysis/usePreparedAnalysisState.js";
-import { createAnalysisComputationContext } from "../../../optics/compat.js";
+import { createAnalysisComputationContext, createAnalysisRequest } from "../../../optics/compat.js";
 import { analysisSamplingForQuality, type AnalysisQuality } from "../../../optics/analysis/analysisQuality.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
@@ -112,9 +112,9 @@ export default function AnalysisDrawerContent({
     zoomT: analysisInputs.zoomT,
     aberrationT: analysisInputs.aberrationT,
   });
-  const analysisContext = useMemo(
+  const analysisRequest = useMemo(
     () =>
-      createAnalysisComputationContext({
+      createAnalysisRequest({
         preparedState,
         dynamicEFL: analysisInputs.dynamicEFL,
         currentEPSD: analysisInputs.currentEPSD,
@@ -126,6 +126,7 @@ export default function AnalysisDrawerContent({
       }),
     [preparedState, analysisInputs, analysisQuality, analysisSampling, deferredPerspectiveTraceContext],
   );
+  const analysisContext = useMemo(() => createAnalysisComputationContext(analysisRequest), [analysisRequest]);
   const projection = L.projection ?? { kind: "rectilinear" };
   const noticeStyle = {
     margin: "0 0 12px",

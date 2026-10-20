@@ -6,6 +6,7 @@
  */
 
 import { useMemo, useState } from "react";
+import { createAnalysisComputationContext } from "../../../optics/analysis.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
@@ -43,12 +44,16 @@ interface ComaTabProps {
 
 export default function ComaTab(props: ComaTabProps) {
   const { analysisContext, t } = props;
+  const perspectiveRequest = analysisContext?.request;
   const perspectiveResult = useMemo(
-    () => (analysisContext?.movementActive ? analysisContext.computePerspectiveFieldAberrations() : null),
-    [analysisContext],
+    () =>
+      perspectiveRequest?.pose?.active
+        ? createAnalysisComputationContext(perspectiveRequest).computePerspectiveFieldAberrations()
+        : null,
+    [perspectiveRequest],
   );
 
-  if (analysisContext?.movementActive) {
+  if (perspectiveRequest?.pose?.active) {
     return (
       <div style={{ padding: "8px 0" }}>
         {perspectiveResult ? (

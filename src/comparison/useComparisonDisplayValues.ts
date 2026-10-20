@@ -7,7 +7,9 @@
  */
 
 import { useMemo } from "react";
-import { eflAtFocus, effectiveFNumber } from "../optics/optics.js";
+import { effectiveFNumber } from "../optics/optics.js";
+import { createAnalysisRequest, computeFocusEFL } from "../optics/analysis.js";
+import { prepareRuntimeState } from "../optics/compat.js";
 import { sharedFNumber } from "./comparisonSliders.js";
 import { isComparisonOk, type ComparisonLensesResult } from "./useComparisonMode.js";
 import type { AperturePairResult, FocusPairResult, ZoomPairResult } from "./comparisonSliders.js";
@@ -42,8 +44,34 @@ export default function useComparisonDisplayValues({
   const zoomA = zoomPair?.zoomA ?? 0;
   const zoomB = zoomPair?.zoomB ?? 0;
 
-  const dynamicEflA = useMemo(() => (LA ? eflAtFocus(focusA, zoomA, LA) : 0), [LA, focusA, zoomA]);
-  const dynamicEflB = useMemo(() => (LB ? eflAtFocus(focusB, zoomB, LB) : 0), [LB, focusB, zoomB]);
+  const dynamicEflA = useMemo(
+    () =>
+      LA
+        ? computeFocusEFL(
+            createAnalysisRequest({
+              preparedState: prepareRuntimeState(LA, focusA, zoomA),
+              dynamicEFL: LA.EFL,
+              currentEPSD: LA.EP.epSD,
+              currentPhysStopSD: LA.stopPhysSD,
+            }),
+          )
+        : 0,
+    [LA, focusA, zoomA],
+  );
+  const dynamicEflB = useMemo(
+    () =>
+      LB
+        ? computeFocusEFL(
+            createAnalysisRequest({
+              preparedState: prepareRuntimeState(LB, focusB, zoomB),
+              dynamicEFL: LB.EFL,
+              currentEPSD: LB.EP.epSD,
+              currentPhysStopSD: LB.stopPhysSD,
+            }),
+          )
+        : 0,
+    [LB, focusB, zoomB],
+  );
 
   const sharedDisplayFNumber = aperturePair
     ? sharedFNumber(sharedStopdownT, aperturePair.widerFOPEN, aperturePair.sharedMaxFstop)

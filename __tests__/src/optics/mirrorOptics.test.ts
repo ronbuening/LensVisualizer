@@ -1,3 +1,7 @@
+import { stateWithZ } from "../../../src/optics/state/preparedGeometry.js";
+import { createAnalysisRequest } from "../../../src/optics/analysis.js";
+import { analysisRequestAt } from "./testLensFixtures.js";
+import { analysisRequestForLens } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import {
   computeBestFocusZ,
@@ -14,7 +18,7 @@ import {
   type GeometryFixture,
 } from "./traceGeometryFixtures.js";
 import type { Ray3 as VectorRayInput } from "../../../src/optics/types.js";
-import { computeGroupMovementProfile } from "../../../src/optics/groupMovement.js";
+import { computeGroupMovementProfile } from "../../../src/optics/analysis/summary/groupMovement.js";
 import {
   computeLongitudinalChromaticFocus,
   conjugateK,
@@ -336,7 +340,7 @@ describe("mirror optics support", () => {
 
   it("moves the Nikon 500mm New L1/M2 focus unit toward the object at close focus", () => {
     const L = buildLens(nikonReflex500NewData);
-    const profile = computeGroupMovementProfile(L, "focus", { focusT: 1, zoomT: 0 });
+    const profile = computeGroupMovementProfile(analysisRequestForLens(L, 1, 0), "focus");
     const shiftByGroup = new Map(profile.series.map((series) => [series.group.label, series.currentPoint.shiftMm]));
 
     // L1 and M2 travel together toward the object; L2 and the primary stay put.
@@ -389,9 +393,17 @@ describe("mirror optics support", () => {
     const ep = entrancePupilAtState(L.stopPhysSD, 0, 0, L).epSD;
     const fraction = 0.83;
     const green = traceRayChromatic(fraction * ep, 0, layout.z, 0, 0, L.stopPhysSD, true, L, "G");
-    const result = computeLongitudinalChromaticFocus(L, layout.z, 0, 0, ep, L.stopPhysSD, 0, {
-      longitudinalFractions: [fraction],
-    });
+    const result = computeLongitudinalChromaticFocus(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), layout.z),
+        dynamicEFL: L.EFL,
+        currentEPSD: ep,
+        currentPhysStopSD: L.stopPhysSD,
+      }),
+      {
+        longitudinalFractions: [fraction],
+      },
+    );
 
     expect(result).not.toBeNull();
     expect(result!.spread.imagePlaneHeights.G).toBeCloseTo(green.y, 12);
@@ -926,9 +938,27 @@ describe("mirror optics support", () => {
   it("computes mirror-safe on-axis spherical aberration against the explicit image plane", () => {
     const L = buildLens(mirrorData);
     const layout = doLayout(0, 0, L);
-    const result = computeSphericalAberration(L, layout.z, 0, 0, L.EP.epSD, L.stopPhysSD);
-    const profile = computeSAProfile(L, layout.z, 0, 0, L.EP.epSD, L.stopPhysSD);
-    const bestFocusZ = computeBestFocusZ(L, 0, 0, L.EP.epSD, L.stopPhysSD);
+    const result = computeSphericalAberration(
+      analysisRequestAt(L, {
+        zPos: layout.z,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: L.stopPhysSD,
+      }),
+    );
+    const profile = computeSAProfile(
+      analysisRequestAt(L, {
+        zPos: layout.z,
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: L.stopPhysSD,
+      }),
+    );
+    const bestFocusZ = computeBestFocusZ(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: L.EP.epSD, currentPhysStopSD: L.stopPhysSD }),
+    );
 
     expect(result).not.toBeNull();
     expect(result!.imagePlaneZ).toBeCloseTo(L.imagePlane.z, 10);

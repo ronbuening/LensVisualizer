@@ -1,9 +1,12 @@
 // @vitest-environment jsdom
 
+import { buildSimplePositiveElementLens, registerRuntimeFixture } from "../../../optics/testLensFixtures.js";
+
 import { associateRuntimeView, runtimeView } from "../../../../../src/optics/prescription/runtimeView.js";
 
 import { afterEach, describe, it, expect, beforeEach, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { createAnalysisRequest, createAnalysisComputationContext } from "../../../../../src/optics/analysis.js";
 import AberrationsPanel from "../../../../../src/components/display/analysis/AberrationsPanel.js";
 import ComaTab from "../../../../../src/components/display/analysis/ComaTab.js";
 import type { CompiledLens, PreparedOpticalState } from "../../../../../src/optics/types.js";
@@ -37,17 +40,28 @@ const {
   mockComputeFieldCurvatureBundle: vi.fn(),
 }));
 
-vi.mock("../../../../../src/optics/aberrationAnalysis.js", () => ({
-  computeSphericalAberration: mockComputeSphericalAberration,
-  computeSphericalAberrationBlurCharacter: mockComputeSphericalAberrationBlurCharacter,
-  computeSAProfile: mockComputeSAProfile,
+vi.mock("../../../../../src/optics/analysis/aberration/coma.js", () => ({
   computeComaAnalysis: mockComputeComaAnalysis,
   computeMeridionalComa: mockComputeMeridionalComa,
   computeSagittalComa: mockComputeSagittalComa,
   computeComaPointCloudPreview: mockComputeComaPreview,
-  computeFieldCurvature: mockComputeFieldCurvature,
-  computeFieldCurvatureBundle: mockComputeFieldCurvatureBundle,
 }));
+
+vi.mock("../../../../../src/optics/analysis/aberration/spherical.js", () => ({
+  computeSphericalAberration: mockComputeSphericalAberration,
+  computeSphericalAberrationBlurCharacter: mockComputeSphericalAberrationBlurCharacter,
+  computeSAProfile: mockComputeSAProfile,
+}));
+
+vi.mock("../../../../../src/optics/analysis/aberration/fieldCurvature.js", async (importOriginal) => {
+  const actual =
+    await importOriginal<typeof import("../../../../../src/optics/analysis/aberration/fieldCurvature.js")>();
+  return {
+    ...actual,
+    computeFieldCurvature: mockComputeFieldCurvature,
+    computeFieldCurvatureBundle: mockComputeFieldCurvatureBundle,
+  };
+});
 
 const theme = {
   panelBg: "#111",
@@ -69,7 +83,7 @@ const theme = {
 } as unknown as Theme;
 
 const baseProps = {
-  L: { N: 2, offAxisFieldFrac: 0.6 } as RuntimeLens,
+  L: buildSimplePositiveElementLens("sa-panel-request"),
   t: theme,
   zPos: [0, 5],
   focusT: 0,
@@ -108,6 +122,7 @@ describe("AberrationsPanel", () => {
   });
 
   beforeEach(() => {
+    baseProps.L = buildSimplePositiveElementLens("sa-panel-request");
     mockComputeSphericalAberration.mockReset();
     mockComputeSphericalAberrationBlurCharacter.mockReset();
     mockComputeSAProfile.mockReset();
@@ -523,7 +538,7 @@ describe("AberrationsPanel", () => {
   it("keeps folded optics on spherical aberration and hides field-model sections", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
 
-    render(<AberrationsPanel {...baseProps} L={{ ...baseProps.L, isFoldedOptics: true }} />);
+    render(<AberrationsPanel {...baseProps} L={registerRuntimeFixture({ ...baseProps.L, isFoldedOptics: true })} />);
 
     expect(screen.getAllByText("BEST-FOCUS SPREAD").length).toBeGreaterThan(0);
     expect(screen.getByText(/Field curvature and astigmatism remain hidden for folded mirror systems/i)).toBeTruthy();
@@ -537,43 +552,63 @@ describe("AberrationsPanel", () => {
     render(<AberrationsPanel {...baseProps} aberrationT={0.42} />);
 
     expect(mockComputeSphericalAberration).toHaveBeenCalledWith(
-      baseProps.L,
-      baseProps.zPos,
-      baseProps.focusT,
-      baseProps.zoomT,
-      baseProps.currentEPSD,
-      baseProps.currentPhysStopSD,
-      0.42,
+      expect.objectContaining({
+        preparedGeometry: expect.objectContaining({
+          focusT: baseProps.focusT,
+          zoomT: baseProps.zoomT,
+          aberrationT: 0.42,
+          z: baseProps.zPos,
+        }),
+        aperture: {
+          entrancePupilSemiDiameterMm: baseProps.currentEPSD,
+          stopSemiDiameterMm: baseProps.currentPhysStopSD,
+        },
+      }),
     );
     expect(mockComputeSAProfile).toHaveBeenCalledWith(
-      baseProps.L,
-      baseProps.zPos,
-      baseProps.focusT,
-      baseProps.zoomT,
-      baseProps.currentEPSD,
-      baseProps.currentPhysStopSD,
-      0.42,
+      expect.objectContaining({
+        preparedGeometry: expect.objectContaining({
+          focusT: baseProps.focusT,
+          zoomT: baseProps.zoomT,
+          aberrationT: 0.42,
+          z: baseProps.zPos,
+        }),
+        aperture: {
+          entrancePupilSemiDiameterMm: baseProps.currentEPSD,
+          stopSemiDiameterMm: baseProps.currentPhysStopSD,
+        },
+      }),
     );
     expect(mockComputeSphericalAberrationBlurCharacter).toHaveBeenCalledWith(
-      baseProps.L,
-      baseProps.zPos,
-      baseProps.focusT,
-      baseProps.zoomT,
-      baseProps.currentEPSD,
-      baseProps.currentPhysStopSD,
+      expect.objectContaining({
+        preparedGeometry: expect.objectContaining({
+          focusT: baseProps.focusT,
+          zoomT: baseProps.zoomT,
+          aberrationT: 0.42,
+          z: baseProps.zPos,
+        }),
+        aperture: {
+          entrancePupilSemiDiameterMm: baseProps.currentEPSD,
+          stopSemiDiameterMm: baseProps.currentPhysStopSD,
+        },
+      }),
       expect.anything(),
-      0.42,
     );
     expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledTimes(1);
     expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledWith(
-      baseProps.L,
-      baseProps.zPos,
-      baseProps.focusT,
-      baseProps.zoomT,
-      baseProps.currentEPSD,
-      baseProps.currentPhysStopSD,
-      0.42,
-      undefined,
+      expect.objectContaining({
+        preparedGeometry: expect.objectContaining({
+          focusT: baseProps.focusT,
+          zoomT: baseProps.zoomT,
+          aberrationT: 0.42,
+          z: baseProps.zPos,
+        }),
+        aperture: {
+          entrancePupilSemiDiameterMm: baseProps.currentEPSD,
+          stopSemiDiameterMm: baseProps.currentPhysStopSD,
+        },
+        fieldGeometry: null,
+      }),
     );
     expect(mockComputeFieldCurvature).not.toHaveBeenCalled();
   });
@@ -581,40 +616,98 @@ describe("AberrationsPanel", () => {
   it("uses the prepared analysis state when supplied to aberration sections", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
     const preparedState = makePreparedState();
-    const preparedRuntime = runtimeView(preparedState.lens);
-    const preparedZ = [...preparedState.z];
 
     render(<AberrationsPanel {...baseProps} aberrationT={0.42} preparedState={preparedState} />);
 
     expect(mockComputeSphericalAberration).toHaveBeenCalledWith(
-      preparedRuntime,
-      preparedZ,
-      preparedState.focusT,
-      preparedState.zoomT,
-      baseProps.currentEPSD,
-      baseProps.currentPhysStopSD,
-      preparedState.aberrationT,
+      expect.objectContaining({
+        preparedGeometry: expect.objectContaining({
+          focusT: preparedState.focusT,
+          zoomT: preparedState.zoomT,
+          aberrationT: preparedState.aberrationT,
+          z: preparedState.z,
+        }),
+        aperture: {
+          entrancePupilSemiDiameterMm: baseProps.currentEPSD,
+          stopSemiDiameterMm: baseProps.currentPhysStopSD,
+        },
+      }),
     );
     expect(mockComputeSAProfile).toHaveBeenCalledWith(
-      preparedRuntime,
-      preparedZ,
-      preparedState.focusT,
-      preparedState.zoomT,
-      baseProps.currentEPSD,
-      baseProps.currentPhysStopSD,
-      preparedState.aberrationT,
+      expect.objectContaining({
+        preparedGeometry: expect.objectContaining({
+          focusT: preparedState.focusT,
+          zoomT: preparedState.zoomT,
+          aberrationT: preparedState.aberrationT,
+          z: preparedState.z,
+        }),
+        aperture: {
+          entrancePupilSemiDiameterMm: baseProps.currentEPSD,
+          stopSemiDiameterMm: baseProps.currentPhysStopSD,
+        },
+      }),
     );
     expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledWith(
-      preparedRuntime,
-      preparedZ,
-      preparedState.focusT,
-      preparedState.zoomT,
-      baseProps.currentEPSD,
-      baseProps.currentPhysStopSD,
-      preparedState.aberrationT,
-      undefined,
-      undefined,
+      expect.objectContaining({
+        preparedGeometry: preparedState,
+        aperture: {
+          entrancePupilSemiDiameterMm: baseProps.currentEPSD,
+          stopSemiDiameterMm: baseProps.currentPhysStopSD,
+        },
+      }),
     );
+  });
+
+  it("refreshes spherical and field requests for every control and reuses unchanged renders", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+    const { rerender } = render(<AberrationsPanel {...baseProps} />);
+    const first = mockComputeSphericalAberration.mock.calls[0][0];
+    const firstField = mockComputeFieldCurvatureBundle.mock.calls[0][0];
+    rerender(<AberrationsPanel {...baseProps} />);
+    expect(mockComputeSphericalAberration).toHaveBeenCalledTimes(1);
+    expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledTimes(1);
+
+    let props = { ...baseProps, aberrationT: 0 };
+    for (const change of [
+      { focusT: 0.2 },
+      { zoomT: 0.3 },
+      { aberrationT: 0.4 },
+      { currentEPSD: 8 },
+      { currentPhysStopSD: 4 },
+      { zPos: [1, 6] },
+      { L: buildSimplePositiveElementLens("sa-panel-replacement") },
+    ]) {
+      const count = mockComputeSphericalAberration.mock.calls.length;
+      props = { ...props, ...change };
+      rerender(<AberrationsPanel {...props} />);
+      expect(mockComputeSphericalAberration).toHaveBeenCalledTimes(count + 1);
+      expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledTimes(count + 1);
+      const fieldRequest = mockComputeFieldCurvatureBundle.mock.lastCall![0];
+      expect(fieldRequest).not.toBe(firstField);
+      const request = mockComputeSphericalAberration.mock.lastCall![0];
+      expect(fieldRequest).toBe(request);
+      expect(request).not.toBe(first);
+      expect(request.preparedGeometry).toMatchObject({
+        focusT: props.focusT,
+        zoomT: props.zoomT,
+        aberrationT: props.aberrationT,
+        z: props.zPos,
+      });
+      expect(request.aperture).toEqual({
+        entrancePupilSemiDiameterMm: props.currentEPSD,
+        stopSemiDiameterMm: props.currentPhysStopSD,
+      });
+      rerender(<AberrationsPanel {...props} />);
+      expect(mockComputeSphericalAberration).toHaveBeenCalledTimes(count + 1);
+      expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledTimes(count + 1);
+    }
+    const count = mockComputeFieldCurvatureBundle.mock.calls.length;
+    const fieldGeometry = { halfFieldDeg: 12, yRatio: 0.8, b: 4, epRatio: 5 };
+    rerender(<AberrationsPanel {...props} fieldGeometry={fieldGeometry} />);
+    expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledTimes(count + 1);
+    expect(mockComputeFieldCurvatureBundle.mock.lastCall![0].fieldGeometry).toEqual(fieldGeometry);
+    rerender(<AberrationsPanel {...props} fieldGeometry={{ ...fieldGeometry }} />);
+    expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledTimes(count + 1);
   });
 
   it("forwards aberration-control state into coma calculations", () => {
@@ -632,20 +725,25 @@ describe("AberrationsPanel", () => {
     );
 
     expect(mockComputeComaAnalysis).toHaveBeenCalledWith(
-      baseProps.L,
-      baseProps.zPos,
-      baseProps.focusT,
-      baseProps.zoomT,
-      baseProps.currentEPSD,
-      baseProps.currentPhysStopSD,
-      0.42,
-      undefined,
+      expect.objectContaining({
+        preparedGeometry: expect.objectContaining({
+          z: baseProps.zPos,
+          focusT: baseProps.focusT,
+          zoomT: baseProps.zoomT,
+          aberrationT: 0.42,
+        }),
+        aperture: {
+          entrancePupilSemiDiameterMm: baseProps.currentEPSD,
+          stopSemiDiameterMm: baseProps.currentPhysStopSD,
+        },
+        fieldGeometry: null,
+        sampling: {},
+      }),
     );
   });
 
   it("uses the prepared analysis state when supplied to coma sections", () => {
     const preparedState = makePreparedState();
-    const preparedRuntime = runtimeView(preparedState.lens);
 
     render(
       <ComaTab
@@ -662,15 +760,15 @@ describe("AberrationsPanel", () => {
     );
 
     expect(mockComputeComaAnalysis).toHaveBeenCalledWith(
-      preparedRuntime,
-      [...preparedState.z],
-      preparedState.focusT,
-      preparedState.zoomT,
-      baseProps.currentEPSD,
-      baseProps.currentPhysStopSD,
-      preparedState.aberrationT,
-      undefined,
-      undefined,
+      expect.objectContaining({
+        preparedGeometry: preparedState,
+        aperture: {
+          entrancePupilSemiDiameterMm: baseProps.currentEPSD,
+          stopSemiDiameterMm: baseProps.currentPhysStopSD,
+        },
+        fieldGeometry: null,
+        sampling: {},
+      }),
     );
   });
 
@@ -680,14 +778,19 @@ describe("AberrationsPanel", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
     render(<AberrationsPanel {...baseProps} fieldGeometry={fieldGeometry} />);
     expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledWith(
-      baseProps.L,
-      baseProps.zPos,
-      baseProps.focusT,
-      baseProps.zoomT,
-      baseProps.currentEPSD,
-      baseProps.currentPhysStopSD,
-      0,
-      fieldGeometry,
+      expect.objectContaining({
+        preparedGeometry: expect.objectContaining({
+          focusT: baseProps.focusT,
+          zoomT: baseProps.zoomT,
+          aberrationT: 0,
+          z: baseProps.zPos,
+        }),
+        aperture: {
+          entrancePupilSemiDiameterMm: baseProps.currentEPSD,
+          stopSemiDiameterMm: baseProps.currentPhysStopSD,
+        },
+        fieldGeometry,
+      }),
     );
 
     cleanup();
@@ -706,14 +809,20 @@ describe("AberrationsPanel", () => {
     );
 
     expect(mockComputeComaAnalysis).toHaveBeenCalledWith(
-      baseProps.L,
-      baseProps.zPos,
-      baseProps.focusT,
-      baseProps.zoomT,
-      baseProps.currentEPSD,
-      baseProps.currentPhysStopSD,
-      0,
-      fieldGeometry,
+      expect.objectContaining({
+        preparedGeometry: expect.objectContaining({
+          z: baseProps.zPos,
+          focusT: baseProps.focusT,
+          zoomT: baseProps.zoomT,
+          aberrationT: 0,
+        }),
+        aperture: {
+          entrancePupilSemiDiameterMm: baseProps.currentEPSD,
+          stopSemiDiameterMm: baseProps.currentPhysStopSD,
+        },
+        fieldGeometry,
+        sampling: {},
+      }),
     );
   });
 
@@ -734,16 +843,65 @@ describe("AberrationsPanel", () => {
     fireEvent.click(screen.getByRole("button", { name: "100%" }));
 
     expect(mockComputeComaAnalysis).toHaveBeenLastCalledWith(
-      baseProps.L,
-      baseProps.zPos,
-      baseProps.focusT,
-      baseProps.zoomT,
-      baseProps.currentEPSD,
-      baseProps.currentPhysStopSD,
-      0,
-      undefined,
-      { comaDetailFieldFraction: 1 },
+      expect.objectContaining({
+        preparedGeometry: expect.objectContaining({
+          z: baseProps.zPos,
+          focusT: baseProps.focusT,
+          zoomT: baseProps.zoomT,
+          aberrationT: 0,
+        }),
+        aperture: {
+          entrancePupilSemiDiameterMm: baseProps.currentEPSD,
+          stopSemiDiameterMm: baseProps.currentPhysStopSD,
+        },
+        fieldGeometry: null,
+        sampling: { comaDetailFieldFraction: 1 },
+      }),
     );
+  });
+
+  it("keeps detail fields separate from the supplied cached coma and reuses the default on return", () => {
+    const preparedState = makePreparedState();
+    const request = createAnalysisRequest({
+      preparedState,
+      dynamicEFL: 50,
+      currentEPSD: 8,
+      currentPhysStopSD: 4,
+      fieldGeometry: { halfFieldDeg: 10, yRatio: 1, b: 2, epRatio: 3 },
+      sampling: { comaFanSampleCount: 9 },
+    });
+    const context = createAnalysisComputationContext(request);
+    const props = { ...baseProps, analysisContext: context };
+    const { rerender } = render(<ComaTab {...props} />);
+    expect(mockComputeComaAnalysis).toHaveBeenLastCalledWith(request);
+    const defaultResult = context.computeComaAnalysis();
+    expect(mockComputeComaAnalysis).toHaveBeenCalledTimes(1);
+
+    fireEvent.click(screen.getByRole("button", { name: "100%" }));
+    const detailRequest = mockComputeComaAnalysis.mock.lastCall![0];
+    expect(detailRequest).not.toBe(request);
+    expect(detailRequest.preparedGeometry).toBe(preparedState);
+    expect(detailRequest.aperture).toEqual({ entrancePupilSemiDiameterMm: 10, stopSemiDiameterMm: 5 });
+    expect(detailRequest.fieldGeometry).toBeNull();
+    expect(detailRequest.sampling).toEqual({ comaDetailFieldFraction: 1 });
+
+    fireEvent.click(screen.getByRole("button", { name: "25%" }));
+    expect(mockComputeComaAnalysis).toHaveBeenCalledTimes(3);
+    expect(mockComputeComaAnalysis.mock.lastCall![0].sampling).toEqual({ comaDetailFieldFraction: 0.25 });
+    rerender(<ComaTab {...props} />);
+    expect(mockComputeComaAnalysis).toHaveBeenCalledTimes(3);
+
+    const fieldGeometry = { halfFieldDeg: 12, yRatio: 0.8, b: 4, epRatio: 5 };
+    rerender(<ComaTab {...props} currentEPSD={6} currentPhysStopSD={3} fieldGeometry={fieldGeometry} />);
+    expect(mockComputeComaAnalysis).toHaveBeenCalledTimes(4);
+    expect(mockComputeComaAnalysis.mock.lastCall![0]).toMatchObject({
+      aperture: { entrancePupilSemiDiameterMm: 6, stopSemiDiameterMm: 3 },
+      fieldGeometry,
+      sampling: { comaDetailFieldFraction: 0.25 },
+    });
+    fireEvent.click(screen.getByRole("button", { name: /^Default/ }));
+    expect(mockComputeComaAnalysis).toHaveBeenCalledTimes(4);
+    expect(context.computeComaAnalysis()).toBe(defaultResult);
   });
 
   it("labels field curve direction correctly: positive shift toward sensor, negative toward lens", () => {

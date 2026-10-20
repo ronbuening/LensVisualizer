@@ -146,7 +146,7 @@ export const LENS_SCHEMA_DEFAULTS: readonly SchemaDefault[] = [
     v1Field: "offAxisFieldFrac",
     value: 0.6,
     v1Applied: "catalog",
-    reader: `${BUILD_LENS}: data.offAxisFieldFrac; src/optics/analysis/chromatic.ts: L.offAxisFieldFrac`,
+    reader: `${BUILD_LENS}: data.offAxisFieldFrac; src/optics/analysis/chromatic/rayFan.ts: L.offAxisFieldFrac`,
   },
   {
     path: "rays.offAxisFractions",
@@ -180,7 +180,7 @@ export const ELEMENT_SCHEMA_DEFAULTS: readonly SchemaDefault[] = [
     v1Applied: "engine",
     reader:
       'src/optics/chromatic/materialResolver.ts makeSurfaceDispersion and src/optics/chromatic/*: indexReference === "e"; ' +
-      'src/components/display/ElementInspector.tsx and src/optics/analysis/mtfSupport.ts: indexReference ?? "d"',
+      'src/components/display/ElementInspector.tsx and src/optics/analysis/mtf/mtfSupport.ts: indexReference ?? "d"',
   },
   {
     path: "apd",

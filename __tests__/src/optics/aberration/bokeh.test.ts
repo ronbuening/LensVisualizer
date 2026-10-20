@@ -1,3 +1,5 @@
+import { analysisRequestAt } from "../testLensFixtures.js";
+import { computeBestFocusZ, computeImagePlaneZAtFocus } from "../../../../src/optics/analysis.js";
 import { registerRuntimeFixture } from "../testLensFixtures.js";
 import { describe, it, expect } from "vitest";
 import {
@@ -13,12 +15,7 @@ import {
   computeStateAwareOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
 } from "../../../../src/optics/aberrationAnalysis.js";
-import {
-  computeBokehPreview,
-  computeBokehFieldFootprint,
-  computeImagePlaneZAtFocus,
-  computeBestFocusZ,
-} from "../../../../src/optics/aberration/bokeh.js";
+import { computeBokehPreview, computeBokehFieldFootprint } from "../../../../src/optics/analysis/bokeh/bokeh.js";
 import {
   computeAnalysisFieldGeometryAtState,
   computeFieldGeometryAtState,
@@ -26,7 +23,7 @@ import {
   solveChiefRay,
   traceRay,
 } from "../../../../src/optics/optics.js";
-import { computeOffAxisFieldGeometry } from "../../../../src/optics/aberration/offAxis.js";
+import { computeOffAxisFieldGeometry } from "../../../../src/optics/analysis/aberration/offAxis.js";
 import buildLens from "../../../../src/optics/buildLens.js";
 import NikonZ135Raw from "../../../../src/lens-data/nikon/NikonZ135f18.data.js";
 import NikonAF28f14DRaw from "../../../../src/lens-data/nikon/NikonAF28f14D.data.js";
@@ -40,7 +37,7 @@ import {
   sharedNikkorZ70200,
 } from "../testLensFixtures.js";
 import type { RuntimeLens, LensData } from "../../../../src/types/optics.js";
-import type { BokehPoint } from "../../../../src/optics/aberration/types.js";
+import type { BokehPoint } from "../../../../src/optics/analysis/aberration/types.js";
 
 /* ── Helpers ── */
 
@@ -133,12 +130,12 @@ describe("computeImagePlaneZAtFocus", () => {
 
   it("returns the image plane Z from doLayout", () => {
     const layout = doLayout(0, 0, L);
-    expect(computeImagePlaneZAtFocus(L, 0, 0)).toBeCloseTo(layout.imgZ, 10);
+    expect(computeImagePlaneZAtFocus(analysisRequestAt(L, { focusT: 0, zoomT: 0 }))).toBeCloseTo(layout.imgZ, 10);
   });
 
   it("near-focus image plane differs from infinity", () => {
-    const zInf = computeImagePlaneZAtFocus(L, 0, 0);
-    const zNear = computeImagePlaneZAtFocus(L, 1, 0);
+    const zInf = computeImagePlaneZAtFocus(analysisRequestAt(L, { focusT: 0, zoomT: 0 }));
+    const zNear = computeImagePlaneZAtFocus(analysisRequestAt(L, { focusT: 1, zoomT: 0 }));
     expect(zNear).not.toBeCloseTo(zInf, 2);
   });
 });
@@ -232,7 +229,11 @@ describe("computeBokehFieldFootprint", () => {
 
   it("on-axis (0%) has high transmission and roughly circular shape", () => {
     const sensorZ = layout.imgZ + 0.5; // sensor 0.5mm past image plane
-    const result = computeBokehFieldFootprint(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD, 0, sensorZ);
+    const result = computeBokehFieldFootprint(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+      0,
+      sensorZ,
+    );
 
     expect(result).not.toBeNull();
     expect(result!.usable).toBe(true);
@@ -253,12 +254,12 @@ describe("computeBokehFieldFootprint", () => {
     const fisheyeLayout = doLayout(0, 0, fisheye);
     const fisheyeAperture = apertureAt(fisheye, 0, 0);
     const result = computeBokehFieldFootprint(
-      fisheye,
-      fisheyeLayout.z,
-      0,
-      0,
-      fisheyeAperture.currentEPSD * 0.05,
-      fisheyeAperture.currentPhysStopSD,
+      analysisRequestAt(fisheye, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: fisheyeAperture.currentEPSD * 0.05,
+        currentPhysStopSD: fisheyeAperture.currentPhysStopSD,
+      }),
       0.4,
       fisheyeLayout.imgZ + 0.5,
     );
@@ -271,8 +272,16 @@ describe("computeBokehFieldFootprint", () => {
 
   it("off-axis (75%) has lower transmission (cat's eye vignetting)", () => {
     const sensorZ = layout.imgZ + 0.5;
-    const onAxis = computeBokehFieldFootprint(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD, 0, sensorZ);
-    const offAxis = computeBokehFieldFootprint(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD, 0.75, sensorZ);
+    const onAxis = computeBokehFieldFootprint(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+      0,
+      sensorZ,
+    );
+    const offAxis = computeBokehFieldFootprint(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+      0.75,
+      sensorZ,
+    );
 
     expect(onAxis).not.toBeNull();
     expect(offAxis).not.toBeNull();
@@ -283,8 +292,16 @@ describe("computeBokehFieldFootprint", () => {
 
   it("reports a separate mechanical pupil footprint off-axis", () => {
     const sensorZ = layout.imgZ + 0.5;
-    const onAxis = computeBokehFieldFootprint(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD, 0, sensorZ);
-    const offAxis = computeBokehFieldFootprint(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD, 0.75, sensorZ);
+    const onAxis = computeBokehFieldFootprint(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+      0,
+      sensorZ,
+    );
+    const offAxis = computeBokehFieldFootprint(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+      0.75,
+      sensorZ,
+    );
 
     expect(onAxis).not.toBeNull();
     expect(offAxis).not.toBeNull();
@@ -302,12 +319,7 @@ describe("computeBokehFieldFootprint", () => {
     const apsCLayout = doLayout(0, 0, apsC);
     const geometry = computeAnalysisFieldGeometryAtState(0, 0, apsC);
     const result = computeBokehFieldFootprint(
-      apsC,
-      apsCLayout.z,
-      0,
-      0,
-      currentEPSD,
-      currentPhysStopSD,
+      analysisRequestAt(apsC, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
       0.75,
       apsCLayout.imgZ + 0.5,
     );
@@ -317,7 +329,11 @@ describe("computeBokehFieldFootprint", () => {
   });
 
   it("preserves pupil coordinates for future blade masking", () => {
-    const result = computeBokehFieldFootprint(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD, 0, layout.imgZ + 0.5);
+    const result = computeBokehFieldFootprint(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+      0,
+      layout.imgZ + 0.5,
+    );
     expect(result).not.toBeNull();
     expect(result!.points.length).toBeGreaterThan(0);
 
@@ -333,12 +349,12 @@ describe("computeBokehFieldFootprint", () => {
     const stfLayout = doLayout(0, 0, stf);
     const stfAperture = apertureAt(stf, 0, 0);
     const result = computeBokehFieldFootprint(
-      stf,
-      stfLayout.z,
-      0,
-      0,
-      stfAperture.currentEPSD,
-      stfAperture.currentPhysStopSD,
+      analysisRequestAt(stf, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: stfAperture.currentEPSD,
+        currentPhysStopSD: stfAperture.currentPhysStopSD,
+      }),
       0,
       stfLayout.imgZ + 0.5,
     );
@@ -363,22 +379,22 @@ describe("computeBokehFieldFootprint", () => {
     const stfAperture = apertureAt(stf, 0, 0);
     const transparentAperture = apertureAt(transparent, 0, 0);
     const stfResult = computeBokehFieldFootprint(
-      stf,
-      stfLayout.z,
-      0,
-      0,
-      stfAperture.currentEPSD,
-      stfAperture.currentPhysStopSD,
+      analysisRequestAt(stf, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: stfAperture.currentEPSD,
+        currentPhysStopSD: stfAperture.currentPhysStopSD,
+      }),
       0.75,
       stfLayout.imgZ + 0.5,
     );
     const transparentResult = computeBokehFieldFootprint(
-      transparent,
-      transparentLayout.z,
-      0,
-      0,
-      transparentAperture.currentEPSD,
-      transparentAperture.currentPhysStopSD,
+      analysisRequestAt(transparent, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: transparentAperture.currentEPSD,
+        currentPhysStopSD: transparentAperture.currentPhysStopSD,
+      }),
       0.75,
       transparentLayout.imgZ + 0.5,
     );
@@ -412,12 +428,12 @@ describe("computeBokehFieldFootprint", () => {
     const opaqueLayout = doLayout(0, 0, opaqueStf);
     const opaqueAperture = apertureAt(opaqueStf, 0, 0);
     const result = computeBokehFieldFootprint(
-      opaqueStf,
-      opaqueLayout.z,
-      0,
-      0,
-      opaqueAperture.currentEPSD,
-      opaqueAperture.currentPhysStopSD,
+      analysisRequestAt(opaqueStf, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: opaqueAperture.currentEPSD,
+        currentPhysStopSD: opaqueAperture.currentPhysStopSD,
+      }),
       0,
       opaqueLayout.imgZ + 0.5,
     );
@@ -452,13 +468,21 @@ describe("STF photometric best focus", () => {
     });
     const stfAperture = apertureAt(stf, 0, 0);
     const transparentAperture = apertureAt(transparent, 0, 0);
-    const stfBestFocus = computeBestFocusZ(stf, 1, 0, stfAperture.currentEPSD, stfAperture.currentPhysStopSD);
+    const stfBestFocus = computeBestFocusZ(
+      analysisRequestAt(stf, {
+        focusT: 1,
+        zoomT: 0,
+        currentEPSD: stfAperture.currentEPSD,
+        currentPhysStopSD: stfAperture.currentPhysStopSD,
+      }),
+    );
     const transparentBestFocus = computeBestFocusZ(
-      transparent,
-      1,
-      0,
-      transparentAperture.currentEPSD,
-      transparentAperture.currentPhysStopSD,
+      analysisRequestAt(transparent, {
+        focusT: 1,
+        zoomT: 0,
+        currentEPSD: transparentAperture.currentEPSD,
+        currentPhysStopSD: transparentAperture.currentPhysStopSD,
+      }),
     );
 
     expect(Math.abs(stfBestFocus - transparentBestFocus)).toBeGreaterThan(0.05);
@@ -468,18 +492,28 @@ describe("STF photometric best focus", () => {
 describe("computeBokehPreview", () => {
   const L = sharedApoLanthar50f2();
   const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-  const bf0 = computeBestFocusZ(L, 0, 0, currentEPSD, currentPhysStopSD);
+  const bf0 = computeBestFocusZ(
+    analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+  );
 
   it("returns result with 4 fields when sensorZ is shifted from best focus", () => {
     const sensorZ = bf0 + 5; // 5mm past best focus
-    const result = computeBokehPreview(L, 0, sensorZ, 0, currentEPSD, currentPhysStopSD, "Infinity");
+    const result = computeBokehPreview(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+      sensorZ,
+      "Infinity",
+    );
     expect(result).not.toBeNull();
     expect(result!.fields.length).toBe(4);
     expect(result!.usableFieldCount).toBeGreaterThanOrEqual(1);
   });
 
   it("produces non-null result with sensorZ at best focus (minimum blur)", () => {
-    const result = computeBokehPreview(L, 0, bf0, 0, currentEPSD, currentPhysStopSD, "Infinity");
+    const result = computeBokehPreview(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+      bf0,
+      "Infinity",
+    );
     if (result !== null) {
       const centerField = result.fields.find((f) => f.fieldFraction === 0 && f.usable);
       if (centerField) {
@@ -497,11 +531,21 @@ describe("aperture-closed guards", () => {
   it.each([
     [
       "computeBokehFieldFootprint",
-      (epSD: number) => computeBokehFieldFootprint(L, layout.z, 0, 0, epSD, currentPhysStopSD, 0, layout.imgZ + 0.5),
+      (epSD: number) =>
+        computeBokehFieldFootprint(
+          analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: epSD, currentPhysStopSD: currentPhysStopSD }),
+          0,
+          layout.imgZ + 0.5,
+        ),
     ],
     [
       "computeBokehPreview",
-      (epSD: number) => computeBokehPreview(L, 0, layout.imgZ + 0.5, 0, epSD, currentPhysStopSD, "Guard"),
+      (epSD: number) =>
+        computeBokehPreview(
+          analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: epSD, currentPhysStopSD: currentPhysStopSD }),
+          layout.imgZ + 0.5,
+          "Guard",
+        ),
     ],
   ])("%s returns null when currentEPSD is zero or negative", (_name, run) => {
     expect(run(0)).toBeNull();
@@ -514,14 +558,20 @@ describe("computeBokehPreviewPair", () => {
   const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
   it("returns both grids at mid-focus", () => {
-    const pair = computeBokehPreviewPair(L, 0.5, 0, currentEPSD, currentPhysStopSD);
+    const pair = computeBokehPreviewPair(
+      analysisRequestAt(L, { focusT: 0.5, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+    );
     expect(pair.infinity).not.toBeNull();
     expect(pair.nearFocus).not.toBeNull();
   });
 
   it("infinity defocus grows and near defocus shrinks as focus moves to near", () => {
-    const pairA = computeBokehPreviewPair(L, 0.25, 0, currentEPSD, currentPhysStopSD);
-    const pairB = computeBokehPreviewPair(L, 0.75, 0, currentEPSD, currentPhysStopSD);
+    const pairA = computeBokehPreviewPair(
+      analysisRequestAt(L, { focusT: 0.25, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+    );
+    const pairB = computeBokehPreviewPair(
+      analysisRequestAt(L, { focusT: 0.75, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+    );
     if (pairA.infinity && pairB.infinity) {
       expect(Math.abs(pairA.infinity.defocusDeltaMm)).toBeLessThan(Math.abs(pairB.infinity.defocusDeltaMm));
     }
@@ -531,8 +581,22 @@ describe("computeBokehPreviewPair", () => {
     const wide = apertureAt(L, 0, 0);
     const stopped = apertureAt(L, 0, 0.5);
 
-    const pairWide = computeBokehPreviewPair(L, 0.5, 0, wide.currentEPSD, wide.currentPhysStopSD);
-    const pairStopped = computeBokehPreviewPair(L, 0.5, 0, stopped.currentEPSD, stopped.currentPhysStopSD);
+    const pairWide = computeBokehPreviewPair(
+      analysisRequestAt(L, {
+        focusT: 0.5,
+        zoomT: 0,
+        currentEPSD: wide.currentEPSD,
+        currentPhysStopSD: wide.currentPhysStopSD,
+      }),
+    );
+    const pairStopped = computeBokehPreviewPair(
+      analysisRequestAt(L, {
+        focusT: 0.5,
+        zoomT: 0,
+        currentEPSD: stopped.currentEPSD,
+        currentPhysStopSD: stopped.currentPhysStopSD,
+      }),
+    );
 
     if (pairWide.infinity && pairStopped.infinity) {
       const wideCenterRms = pairWide.infinity.fields.find((f) => f.fieldFraction === 0 && f.usable)?.rmsRadiusMm ?? 0;
@@ -550,9 +614,19 @@ describe("computeBokehPreviewPair brightness character", () => {
   const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
   it("flips the visible blur character across opposite sides of best focus", () => {
-    const bestFocus = computeBestFocusZ(L, 0, 0, currentEPSD, currentPhysStopSD);
-    const frontDefocus = computeBokehPreview(L, 0, bestFocus - 0.35, 0, currentEPSD, currentPhysStopSD, "Front");
-    const rearDefocus = computeBokehPreview(L, 0, bestFocus + 0.35, 0, currentEPSD, currentPhysStopSD, "Rear");
+    const bestFocus = computeBestFocusZ(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+    );
+    const frontDefocus = computeBokehPreview(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+      bestFocus - 0.35,
+      "Front",
+    );
+    const rearDefocus = computeBokehPreview(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+      bestFocus + 0.35,
+      "Rear",
+    );
 
     expect(frontDefocus).not.toBeNull();
     expect(rearDefocus).not.toBeNull();
@@ -566,7 +640,9 @@ describe("computeBokehPreviewPair brightness character", () => {
   });
 
   it("keeps the main radial profile usable while off-axis pupil transmission drops", () => {
-    const pair = computeBokehPreviewPair(L, 0.5, 0, currentEPSD, currentPhysStopSD);
+    const pair = computeBokehPreviewPair(
+      analysisRequestAt(L, { focusT: 0.5, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+    );
     const onAxis = pair.infinity?.fields.find((field) => field.fieldFraction === 0 && field.usable) ?? null;
     const offAxis = pair.infinity?.fields.find((field) => field.fieldFraction === 0.75 && field.usable) ?? null;
 
@@ -584,14 +660,23 @@ describe("computeBokehPreviewPair with zoom lens", () => {
   const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
   it("produces valid results for zoom lens at wide", () => {
-    const pair = computeBokehPreviewPair(L, 0.5, 0, currentEPSD, currentPhysStopSD);
+    const pair = computeBokehPreviewPair(
+      analysisRequestAt(L, { focusT: 0.5, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+    );
     expect(pair.infinity).not.toBeNull();
     expect(pair.nearFocus).not.toBeNull();
   });
 
   it("produces valid results at tele end", () => {
     const teleAperture = apertureAt(L, 1, 0);
-    const pair = computeBokehPreviewPair(L, 0.5, 1, teleAperture.currentEPSD, teleAperture.currentPhysStopSD);
+    const pair = computeBokehPreviewPair(
+      analysisRequestAt(L, {
+        focusT: 0.5,
+        zoomT: 1,
+        currentEPSD: teleAperture.currentEPSD,
+        currentPhysStopSD: teleAperture.currentPhysStopSD,
+      }),
+    );
     expect(pair.infinity).not.toBeNull();
     expect(pair.nearFocus).not.toBeNull();
   });
@@ -632,7 +717,9 @@ describe("buildBokehDensityGrid", () => {
   it("works with real bokeh data", () => {
     const L = sharedApoLanthar50f2();
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const pair = computeBokehPreviewPair(L, 0.5, 0, currentEPSD, currentPhysStopSD);
+    const pair = computeBokehPreviewPair(
+      analysisRequestAt(L, { focusT: 0.5, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+    );
 
     if (pair.infinity) {
       const centerField = pair.infinity.fields.find((f) => f.usable);
@@ -653,15 +740,21 @@ describe("computeBestFocusZ", () => {
   it("returns finite value for standard lens at infinity", () => {
     const L = sharedApoLanthar50f2();
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const bf = computeBestFocusZ(L, 0, 0, currentEPSD, currentPhysStopSD);
+    const bf = computeBestFocusZ(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+    );
     expect(isFinite(bf)).toBe(true);
   });
 
   it("varies significantly for internal-focus lens (Nikon Z 135)", () => {
     const L = build(NikonZ135Raw);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const bf0 = computeBestFocusZ(L, 0, 0, currentEPSD, currentPhysStopSD);
-    const bf1 = computeBestFocusZ(L, 1, 0, currentEPSD, currentPhysStopSD);
+    const bf0 = computeBestFocusZ(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+    );
+    const bf1 = computeBestFocusZ(
+      analysisRequestAt(L, { focusT: 1, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+    );
     // Layout imgZ is constant for internal focus, but best-focus must differ
     const layoutDelta = doLayout(1, 0, L).imgZ - doLayout(0, 0, L).imgZ;
     expect(Math.abs(layoutDelta)).toBeLessThan(0.01);
@@ -675,7 +768,9 @@ describe("focus tracking for internal-focus lens (Nikon Z 135)", () => {
 
   it("infinity RMS grows monotonically from infinity to near focus", () => {
     const rmsValues = [0, 0.5, 1].map((fT) => {
-      const pair = computeBokehPreviewPair(L, fT, 0, currentEPSD, currentPhysStopSD);
+      const pair = computeBokehPreviewPair(
+        analysisRequestAt(L, { focusT: fT, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+      );
       return pair.infinity!.fields.find((f) => f.fieldFraction === 0 && f.usable)?.rmsRadiusMm ?? 0;
     });
     expect(rmsValues[0]).toBeLessThan(rmsValues[1]);
@@ -684,7 +779,9 @@ describe("focus tracking for internal-focus lens (Nikon Z 135)", () => {
 
   it("near-focus RMS shrinks monotonically from infinity to near focus", () => {
     const rmsValues = [0, 0.5, 1].map((fT) => {
-      const pair = computeBokehPreviewPair(L, fT, 0, currentEPSD, currentPhysStopSD);
+      const pair = computeBokehPreviewPair(
+        analysisRequestAt(L, { focusT: fT, zoomT: 0, currentEPSD: currentEPSD, currentPhysStopSD: currentPhysStopSD }),
+      );
       return pair.nearFocus!.fields.find((f) => f.fieldFraction === 0 && f.usable)?.rmsRadiusMm ?? 0;
     });
     expect(rmsValues[0]).toBeGreaterThan(rmsValues[1]);
@@ -702,8 +799,12 @@ it("keeps mechanical pupil weights separate from chief-relative bulk transmissio
     elements: plateData.elements.map((element) => ({ ...element, absorptionCoefficientPerMm: alpha })),
   });
   const trace = (L: RuntimeLens) => {
-    const { z, imgZ } = doLayout(0, 0, L);
-    return computeBokehFieldFootprint(L, z, 0, 0, 2, 1, 0, imgZ + 10)!;
+    const { imgZ } = doLayout(0, 0, L);
+    return computeBokehFieldFootprint(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: 2, currentPhysStopSD: 1 }),
+      0,
+      imgZ + 10,
+    )!;
   };
   const clear = trace(transparent);
   const attenuated = trace(absorbing);

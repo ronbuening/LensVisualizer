@@ -1,4 +1,6 @@
+/** Request-based perspective distortion diagnostics and ordered field samples. */
 import { describe, expect, it } from "vitest";
+import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
 import buildLens from "../../../../../src/optics/buildLens.js";
 import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
 import {
@@ -48,7 +50,50 @@ function fieldSample(
   };
 }
 
+function request(camera: PerspectiveTraceContext) {
+  return createAnalysisRequest({
+    preparedState: camera.state,
+    dynamicEFL: L.EFL,
+    currentEPSD: 0.25,
+    currentPhysStopSD: L.stopPhysSD,
+    perspectiveTraceContext: camera,
+  });
+}
+
 describe("perspective distortion analysis", () => {
+  it.each(["settled", "interactive"] as const)(
+    "reads %s sampling while keeping every field scene-locked",
+    (analysisQuality) => {
+      const camera = context(3, 2);
+      const input = createAnalysisRequest({
+        preparedState: camera.state,
+        dynamicEFL: L.EFL,
+        currentEPSD: 0.25,
+        currentPhysStopSD: L.stopPhysSD,
+        perspectiveTraceContext: camera,
+        analysisQuality,
+        sampling: { distortionCurveSampleCount: 5, distortionGridSegmentCount: 3 },
+      });
+      const result = computePerspectiveDistortionAnalysis(input);
+      expect(result.vertical.map((sample) => sample.requestedSensorUv.v)).toEqual(
+        analysisQuality === "interactive" ? [-1, 0, 1] : [-1, -0.5, 0, 0.5, 1],
+      );
+      expect(result.grid.uCoordinates).toEqual([-1, 0, 1]);
+      expect(result.contextCacheKey).toBe(camera.cacheKey);
+      for (const sample of [...result.vertical, ...result.grid.rows.flat()]) {
+        expect(sample.fieldSample?.domain).toBe("scene-locked");
+        expect(sample.fieldSample?.sensorSolve).toBeNull();
+      }
+      expect(camera.sensorChiefSolves.size).toBe(0);
+    },
+  );
+
+  it("requires the request's shared perspective context", () => {
+    expect(() =>
+      computePerspectiveDistortionAnalysis({ ...request(context()), perspectiveTraceContext: null, pose: null }),
+    ).toThrow("Movement-aware analysis requires a PerspectiveTraceContext");
+  });
+
   it("separates identity composition from the real optical residual", () => {
     const camera = context();
     const z = camera.sensorPlane.point[2];
@@ -129,7 +174,7 @@ describe("perspective distortion analysis", () => {
   });
 
   it("keeps requested bounds failures in order", () => {
-    const result = computePerspectiveDistortionAnalysis(context(), {
+    const result = computePerspectiveDistortionAnalysis(request(context()), {
       verticalSensorV: [-1.25, 0, 1.25],
       gridSensorU: [],
       gridSensorV: [],
@@ -147,8 +192,8 @@ describe("perspective distortion analysis", () => {
 
   it("preserves opposite composition for +/- physical movement", () => {
     const options = { verticalSensorV: [0], gridSensorU: [], gridSensorV: [] } as const;
-    const positive = computePerspectiveDistortionAnalysis(context(3, 2), options).vertical[0];
-    const negative = computePerspectiveDistortionAnalysis(context(-3, -2), options).vertical[0];
+    const positive = computePerspectiveDistortionAnalysis(request(context(3, 2)), options).vertical[0];
+    const negative = computePerspectiveDistortionAnalysis(request(context(-3, -2)), options).vertical[0];
 
     expect(positive.status).toBe("usable");
     expect(negative.status).toBe("usable");
