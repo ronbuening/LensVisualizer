@@ -9,7 +9,7 @@
 **Title:** 数码相机超广角大光圈全画幅镜头 (Ultra-wide-angle, large-aperture full-frame lens for digital cameras)  
 **Embodiment analyzed:** Example 1, §0090 and the aspherical table §0092.
 
-The modeled prescription is correlated with the VILTROX MF 20mm f/1.8 FE.
+The modeled prescription is correlated with the VILTROX MF 20mm f/1.8 (Sony E and Nikon Z mounts).
 The correlation is convergent and not manufacturer-confirmed. The manufacturer
 product page and the patent agree on the following architectural features:
 

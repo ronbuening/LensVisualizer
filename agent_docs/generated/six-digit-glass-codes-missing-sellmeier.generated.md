@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **968** lenses scanned
-- **1908** total code-only elements found
-- **292** elements in this report
-- **125** distinct lens files affected
+- **977** lenses scanned
+- **1943** total code-only elements found
+- **298** elements in this report
+- **126** distinct lens files affected
 - **23** active unreviewed elements have no review-record hit or explicit disposition
-- **162** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **164** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -74,6 +74,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 650396 | 2 | 2 | patents/DE3907928C2.pdf<br>patents/DE_3907928_A1.pdf | All rows explicitly disposed |
 | 661204 | 2 | 1 | patents/US20210149156A1.pdf | All rows explicitly disposed |
 | 671195 | 2 | 1 | patents/US20180364457A1.pdf | All rows explicitly disposed |
+| 671472 | 2 | 1 | patents/US2186621.pdf | All rows have review records |
 | 680557 | 2 | 1 | patents/JPB 1963011590-000000.pdf | No review-record hit |
 | 681320 | 2 | 2 | patents/US3037426.pdf | All rows explicitly disposed |
 | 682419 | 2 | 1 | patents/DE_1157000_B.pdf | No review-record hit |
@@ -103,6 +104,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 448672 | 1 | 1 | patents/JP_S4871634_A.pdf | All rows explicitly disposed |
 | 449670 | 1 | 1 | patents/GB_1050055_A.pdf | All rows explicitly disposed |
 | 479587 | 1 | 1 | patents/US4773745.pdf | All rows explicitly disposed |
+| 489701 | 1 | 1 | patents/US2186621.pdf | All rows have review records |
 | 497816 | 1 | 1 | patents/CN211955963U.pdf | All rows explicitly disposed |
 | 507589 | 1 | 1 | patents/JPA 1999231209-000000.pdf | All rows have review records |
 | 510619 | 1 | 1 | patents/DE_1980417_U.pdf | All rows explicitly disposed |
@@ -113,6 +115,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 517642 | 1 | 1 | patents/CN114755806A.pdf | All rows explicitly disposed |
 | 518523 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
 | 520701 | 1 | 1 | patents/JP_S5357028_A.pdf | All rows have review records |
+| 523509 | 1 | 1 | patents/US2186621.pdf | All rows explicitly disposed |
 | 523701 | 1 | 1 | patents/US20100194930A1.pdf | All rows explicitly disposed |
 | 525558 | 1 | 1 | patents/US8994842.pdf | All rows explicitly disposed |
 | 525563 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
@@ -160,6 +163,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 646287 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 656277 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 656337 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
+| 658512 | 1 | 1 | patents/US2186621.pdf | All rows have review records |
 | 662331 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 662577 | 1 | 1 | patents/US2896506.pdf | All rows explicitly disposed |
 | 666552 | 1 | 1 | patents/US9651761.pdf | All rows explicitly disposed |
@@ -202,6 +206,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 733284 | 1 | 1 | patents/US3037426.pdf | All rows explicitly disposed |
 | 735461 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 738493 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
+| 739282 | 1 | 1 | patents/US2186621.pdf | All rows explicitly disposed |
 | 740375 | 1 | 1 | patents/US3589798.pdf | All rows explicitly disposed |
 | 740439 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
 | 740449 | 1 | 1 | patents/US_4437733_A.pdf | All rows explicitly disposed |
@@ -384,6 +389,17 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L2 (Part 002.00) | 3 | `Unmatched (Carl Zeiss Jena historical LaF 735/461; source n_e only)` | 1.73516 / ? | No catalog entry | constant | No patent number parsed from lens metadata | Explicit disposition in data |
+
+### [CARL ZEISS JENA SONNAR 50mm f/1.5 (US 2,186,621 Design)](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50mmf15US2186621.data.ts) - US 2,186,621
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `671472 — catalog coordinate (supplier unconfirmed)` | 1.67100 / 47.20 | No catalog entry | abbe | patents/US2186621.pdf | Audit-log hit |
+| L2 (Element 2) | 3 | `671472 — catalog coordinate (supplier unconfirmed)` | 1.67100 / 47.20 | No catalog entry | abbe | patents/US2186621.pdf | Audit-log hit |
+| L3 (Element 3) | 4 | `489701 — fluor-crown class (supplier unconfirmed)` | 1.48920 / 70.10 | No catalog entry | abbe | patents/US2186621.pdf | Audit-log hit |
+| L4 (Element 4) | 5 | `Unmatched (739282 — dense-flint class; supplier unconfirmed)` | 1.73940 / 28.20 | No catalog entry | abbe | patents/US2186621.pdf | Explicit disposition in data |
+| L5 (Element 5) | 7 | `Unmatched (523509 — supplier unconfirmed)` | 1.52320 / 50.90 | No catalog entry | abbe | patents/US2186621.pdf | Explicit disposition in data |
+| L6 (Element 6) | 8 | `658512 — dense-crown class (supplier unconfirmed)` | 1.65780 / 51.20 | No catalog entry | abbe | patents/US2186621.pdf | Audit-log hit |
 
 ### [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100)](../../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) - US 2012/0069456 A1
 

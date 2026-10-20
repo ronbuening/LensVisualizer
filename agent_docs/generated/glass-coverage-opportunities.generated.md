@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **968** lenses scanned (**954** visible)
-- **10236 / 11026** non-air surfaces use strict catalog Sellmeier data (92.8%)
-- **10249 / 11026** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.0%)
+- **977** lenses scanned (**963** visible)
+- **10307 / 11137** non-air surfaces use strict catalog Sellmeier data (92.5%)
+- **10320 / 11137** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.7%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **292** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **162** self-recording explicit dispositions, **0** dispositions missing any review record
+- **298** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **164** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **21** Tier A proprietary backfill rows in Sweep 3
 
@@ -187,6 +187,7 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [NIKON AF-S DX VR ZOOM-NIKKOR 18-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFSDXVRZoomNikkor18200mmf3556GIFED.data.ts) | US 2006/0072213 A1 | [PDF](../../patents/US20060072213A1.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 6A [resin] (L21r — Bonded Aspheric Resin Layer: `Unmatched (optical resin layer; patent nd=1.553890, νd=38.09)`)<br>21A [resin] (L34r — Bonded Aspheric Resin Layer: `Unmatched (optical resin layer; patent nd=1.553890, νd=38.09)`) | abbe: 2 |
 | [NIKON AF-S NIKKOR 300mm f/4 E PF ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR300mmf4EPFEDVR.data.ts) | JP 2015-102852 A | [PDF](../../patents/JP2015102852A.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 7 [resin] (DOE resin 1: `Unmatched (UV-curing DOE resin; patent nd=1.5278, vd=33.4)`)<br>8 [resin] (DOE resin 2: `Unmatched (UV-curing DOE resin; patent nd=1.5572, vd=50.0)`) | abbe: 2 |
 | [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) | US 2014/0347522 A1 | [PDF](../../patents/US20140347522A1.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 7A [resin] (L4 Hybrid Resin Layer: `Unmatched (hybrid-asphere resin, nd=1.51460, vd=49.96)`)<br>22 [glass] (Element 11: `908334 class (catalog unresolved)`) | abbe: 2 |
+| [TAMRON SP AF 17-50mm f/2.8 XR Di II LD Aspherical [IF] (A16)](../../src/lens-data/tamron/TamronSPA161750mmf28.data.ts) | JP 2007-133138 A | [PDF](../../patents/JP_2007133138_A.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 6A [resin] (Element 4 resin layer: `Unmatched (bonded asphere layer; no verified catalog identity)`)<br>23A [resin] (Element 12 resin layer: `Unmatched (bonded asphere layer; no verified catalog identity)`) | abbe: 2 |
 | [NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6 G ED II](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1855mmf3556GEDII.data.ts) | US 2006/0007559 A1 | [PDF](../../patents/US20060007559A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 2 [resin] (L1 bonded resin layer: `Unmatched (aspheric resin; trade name unpublished; patent nd=1.553890, vd=38.09)`) | abbe: 1 |
 | [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) | US 7,359,125 B2 | [PDF](../../patents/US7359125.pdf) | 86.7% (13/15) | 86.7% (13/15) | 2 | 6 [resin] (Element 3 resin layer: `554381 — hybrid-asphere resin layer (inferred; patent nd=1.55389, νd=38.09; not catalog glass)`)<br>22 [glass] (Element 12: `Unmatched (lanthanum crown; patent nd=1.772789, νd=49.45; no catalog glass at this index)`) | abbe: 2 |
 | [NIKON PC-E NIKKOR 24mm f/3.5 D ED](../../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) | JP 2008-151949 A | [PDF](../../patents/JP2008151949A.pdf) | 86.7% (13/15) | 86.7% (13/15) | 2 | 2 [resin] (Element 1 (resin layer): `UV-cure resin`)<br>7 [resin] (Element 3 (resin layer): `UV-cure resin`) | abbe: 2 |

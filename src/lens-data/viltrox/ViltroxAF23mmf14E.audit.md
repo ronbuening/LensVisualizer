@@ -38,7 +38,7 @@ The physical GL values are mapped into `rearPlates`: last-lens gap 14.29 mm, pla
 rear-plate omission language. The separate source `t/n` calculation is diagnostic only; no plate is replaced in the model.
 
 The candidate is static at the source-labeled infinity/base spacing. Its `var` and `varLabels` are empty and
-`closeFocusM` is `1e15`, explicitly an infinity-only UI sentinel rather than a measured or marketed MFD.
+`closeFocusM` is `1e15`, explicitly an infinity-only placeholder rather than a measured or marketed MFD.
 No finite-conjugate certification or operational focus law is authored. The raw closest row and its calculations are
 retained in evidence/results and discussed separately in analysis.
 
@@ -162,8 +162,8 @@ results outside the archive; byte-identical diagnostics and the expected exit 1 
 
 ## Pending integration
 
-`INTEGRATION_PENDING`. No repository changes, Git writes, metadata generation, full build, corpus sweep,
-integration or publication was performed. The Stage 3 authoring checkpoint stopped before the independent candidate audit recorded below.
+Closed 2026-10-20: integrated into the repository (see the final section). No repository changes, Git writes,
+metadata generation, full build, corpus sweep, integration or publication was performed. The Stage 3 authoring checkpoint stopped before the independent candidate audit recorded below.
 
 ## Independent source-first audit: diagnostic scope only
 
@@ -270,5 +270,48 @@ coordinate is promoted to a source material identity. SUMITA's exact-row limitat
 portable, source-literal static diagnostic. The source focus-conservation, numerical/conjugate and first-group
 condition checks remain FAIL; the canonical verifier deliberately exits 1. Successful clean replay means those
 same results were reproduced, not that the source contradictions were fixed. No ordinary READY_FOR_BATCH or verified
-production-lens claim is made. `INTEGRATION_PENDING` remains in force. Full build, corpus tests, integration,
+production-lens claim is made. Integration remained pending (closed 2026-10-20; see below). Full build, corpus tests, integration,
 metadata generation, Git writes, publication and uploads were not performed.
+
+## 2026-10-20 — Deployment validation and wording pass
+
+Source re-read: all 24 rows of Example 1 Table 1 (R, d, nd, νd, the STP row and the GL plate) and both Table 2
+states (D1, D2, printed EFL) were checked against 200 dpi renders of PDF pp. 7–8. The design is all-spherical, so
+there are no coefficients. The previous file matched the print on every row.
+
+Source erratum, corrected: L12 nd (surface 3) 1.85 → 1.83, evidence sibling-example, claims and aberration-figure.
+νd 42.72 is the 1.83481 class (HOYA TAFD5G 1.83481/42.72; OHARA S-LAH55V 1.83481/42.73), and Example 3 Table 5
+prints that pair as 1.83/42.72. The values below are before → after.
+
+- Infinity EFL: 23.378 → 23.350 mm (printed 23.44).
+- Infinity paraxial focus in front of the printed image plane: 0.873 → 0.125 mm. Fig. 2 plots d-line spherical
+  aberration within about ±0.1 mm of the plane on a ±0.2 mm scale.
+- F1/F: 1.879 → 1.968 (claim 1 range 1.9–2.2; Table 9 prints 1.93). F2/F 1.445 → 1.447 (1.44); F4/F 1.637 → 1.639 (1.63).
+- 0.3 m state, object measured from the image plane: image 0.72 mm → 0.00 mm from the printed plane;
+  β −0.1015; EFL 22.906 → 22.907 mm (printed 22.95).
+
+A single-value search over every R, d and nd of Example 1 found several R or d digit changes that also null the
+infinity defocus. None has a second kind of source evidence; L12's index is the only change supported by more than
+one kind. The remaining −0.38% EFL and 0.125 mm offsets fit the two-decimal indices: plausible catalog indices for
+the identified glass classes give 23.416 mm and 0.044 mm.
+
+Source erratum, unresolved: D1 + D2 is 5.43 mm at infinity and 5.64 mm at 0.3 m, although only G3 moves. Examples 2
+and 3 keep the sum within 0.01 mm. Neither D1 nor D2 can be isolated, so the printed values are kept.
+
+First order (model / patent): EFL 23.350 / 23.44 mm; f/1.4 / 1.4; half-field at a 14.2 mm image height 31.6° / 31.7°;
+first vertex to image 85.78 mm (printed chain); close state 22.907 / 22.95 mm. audit:surface, audit:image-circle,
+audit:field-coverage (100% at 14.18 mm) and real-ray clearance at both focus states report no defects.
+
+Maker comparison: Viltrox lists 11 elements / 10 groups, 2 ED and 2 high-index elements, internal focus, 0.3 m and
+0.1× for the E, X, M and Z versions. The example matches the count, the single cemented pair, the two low-dispersion
+elements of ¶0028 (L14, L15) and the 0.3 m state. Viltrox publishes no construction diagram.
+
+Fields changed in this pass: L12 nd and its element focal length; Table 2 focus restored (D1/D2 gaps, closeFocusM
+0.3, published close state, focus description); key `viltrox-af-23mm-f14`, name "VILTROX AF 23mm f/1.4", subtitle,
+specs, lensMounts (sony-fe, fujifilm-x, canon-ef-m, nikon-z), design focal length 23.44, catalog visibility; source
+errata; element labels and roles; apd `inferred` with notes on L14 and L15; group names; rear-plate source line; the
+header comment. The analysis was rewritten to describe the corrected model, and the romanized inventor and
+assignee names were applied.
+
+Closed the same day: L12's glass string now says the printed 1.85 was corrected to 1.83, the doublet carries `cemented: "C1"`,
+and the D1 + D2 entry is queued in Section G of `agent_docs/sd-audit-queue.md`. Open: glass labels remain `Unmatched` (two-decimal indices).

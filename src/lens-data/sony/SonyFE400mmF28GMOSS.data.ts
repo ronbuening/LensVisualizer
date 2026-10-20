@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — SONY FE 400mm f/2.8 GM OSS                                  ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: JP 2025-63175 A, Example 2 (Sony Group Corporation).             ║
+ * ║ Source: JP 2025-063175 A, Example 2 (Sony Group Corporation).            ║
  * ║ Patent prescription retained unscaled: published f=388.00 mm, F/2.91.    ║
  * ║ Production metadata remains separate: 400 mm, f/2.8, Sony E full frame.  ║
  * ║ 22 physical lens elements / 16 air-separated groups; all spherical.      ║
@@ -39,7 +39,7 @@ const LENS_DATA = {
   key: "sony-fe-400mm-f28-gm-oss",
   maker: "Sony",
   name: "SONY FE 400mm f/2.8 GM OSS",
-  subtitle: "JP 2025-63175 A Example 2 — strong research correlation; not manufacturer-confirmed",
+  subtitle: "JP 2025-063175 A, Example 2 — strong research correlation; not manufacturer-confirmed",
 
   catalog: {
     lensMounts: ["sony-fe"],
@@ -53,7 +53,7 @@ const LENS_DATA = {
   },
 
   source: {
-    patentNumber: "JP 2025-63175 A",
+    patentNumber: "JP 2025-063175 A",
     patentYear: 2025,
     authors: ["Riki Maruyama"],
     assignees: ["Sony Group Corporation"],

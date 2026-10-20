@@ -86,7 +86,7 @@ Subsequent stages require their own parsed-data and analysis checks before advan
 
 ## Pending integration
 Real TypeScript, Prettier, buildLens/validateLensData, runtime glass resolution and render-trim diagnostics are NOT_RUN.
-Full build and batch-wide gates remain user-controlled integration work. INTEGRATION_PENDING.
+Full build and batch-wide checks remained open at packaging. Closed 2026-10-20: integrated and checked in the repository.
 
 ## Stage 2 checkpoint and Stage 3 reconciliation
 The data revision is unchanged during analysis authoring:
@@ -204,7 +204,7 @@ separate from integration/publication. Stable replay output is compared without 
 
 Clean extraction/replay completed successfully. All nine root members, original bytes and manifest hashes were verified.
 The extracted verifier returned zero; regenerated JSON matched packaged results exactly, including preserved FAIL observations.
-The packaged results were not overwritten during replay. Final gate: READY_FOR_BATCH; INTEGRATION_PENDING.
+The packaged results were not overwritten during replay. Closed 2026-10-20: integrated into the repository.
 
 ## 2026-10-20 — Deployment validation and wording pass
 
@@ -232,5 +232,5 @@ L33 and L36, `apd: "inferred"` with `apdNote` on L14, L22, L31 and L33, `focus.d
 analysis gained romanized inventor and applicant names and lost references to the production pipeline, runtime
 checks and integration status. No optical value changed.
 
-Open: `name` still carries the "FE" suffix and `lensMounts` lacks `nikon-z`, although Viltrox sells the same optics in
-Sony E and Nikon Z mounts. Open: glass strings remain generic "Unmatched" labels.
+Closed the same day: `name` is now "VILTROX MF 20mm f/1.8" and `lensMounts` adds `nikon-z`; Viltrox sells the same
+optics in Sony E and Nikon Z mounts. Open: glass strings remain "Unmatched"; the patent prints two-decimal indices.
