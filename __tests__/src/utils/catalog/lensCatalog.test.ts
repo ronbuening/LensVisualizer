@@ -9,9 +9,9 @@ import {
   loadMdForKey,
   resolveOpticalConfigurationKey,
 } from "../../../../src/utils/catalog/lensCatalog.js";
-import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../../optics/constructionFixtures.js";
 import { ingestLens, ingestTeleconverter } from "../../../../src/optics/buildLens.js";
-import { attachTeleconverter } from "../../../../src/optics/prescription/teleconverter.js";
+import { attachFixtureTeleconverter as attachTeleconverter } from "../../optics/constructionFixtures.js";
 import { catalogCollator } from "../../../../src/utils/catalog/collation.js";
 import {
   ALL_TELECONVERTER_KEYS,

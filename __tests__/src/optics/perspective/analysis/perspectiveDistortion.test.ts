@@ -2,7 +2,7 @@ import { CATALOG_CONSTRUCTION_FIXTURES } from "../../constructionFixtures.js";
 /** Request-based perspective distortion diagnostics and ordered field samples. */
 import { describe, expect, it } from "vitest";
 import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
-import { buildLens } from "../../../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../../constructionFixtures.js";
 import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
 import {
   computePerspectiveDistortionAnalysis,

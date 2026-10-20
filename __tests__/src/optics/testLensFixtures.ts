@@ -1,12 +1,12 @@
-import { constructionFixtureData } from "./constructionFixtures.js";
+import { buildFixtureLens, constructionFixtureData } from "./constructionFixtures.js";
 import { stateWithZ } from "../../../src/optics/state/preparedGeometry.js";
 import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { associateRuntimeView } from "../../../src/optics/prescription/runtimeView.js";
 import { compilePrescription, completeCompilation } from "../../../src/optics/prescription/compileCanonical.js";
 import { compileConstruction } from "../../../src/optics/prescription/compileConstruction.js";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
-import { ingestLens } from "../../../src/optics/prescription/ingestV2.js";
+
+import { ingestLens } from "../../../src/optics/lensDataConversion.js";
 import { paraxialTrace } from "../../../src/optics/first-order/lensConstants.js";
 import { canonicalConstructionData } from "../../../src/optics/prescription/constructionData.js";
 import {
@@ -45,7 +45,7 @@ export function catalogLensData(raw: object): LensData {
  * defaults through canonical ingest, and builds a composed pair through its canonical association.
  */
 export function build(raw: object): RuntimeLens {
-  return buildLens(raw as LensData);
+  return buildFixtureLens(raw);
 }
 
 /**
@@ -109,7 +109,7 @@ function buildFixture(overrides: Partial<LensData>): RuntimeLens {
     surfaces: simplePositiveSurfaces(),
     ...overrides,
   });
-  return buildLens(data);
+  return buildFixtureLens(data);
 }
 
 function simplePositiveSurfaces(stopGap = 1, frontGap = 5, imageGap = 80): SurfaceData[] {

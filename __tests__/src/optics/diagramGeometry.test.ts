@@ -8,7 +8,7 @@ import {
   computeElementShapes,
   computeStandaloneMirrorPaths,
 } from "../../../src/optics/diagram/runtimeDiagramAdapter.js";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import nikonPf500Data from "../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
 import { catalogLensData } from "./testLensFixtures.js";
 import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";

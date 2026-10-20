@@ -5,11 +5,11 @@
  * calls are not duplicated.
  */
 
-import { ingestLens, isV1File } from "../../optics/buildLens.js";
+import { ingestLens } from "../../optics/buildLens.js";
 import { loadChunkWithReload } from "../chunkLoadRetry.js";
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 import type { CanonicalLens } from "../../optics/buildLens.js";
-import type { LensData, LensDataInput } from "../../types/optics.js";
+import type { LensData } from "../../types/optics.js";
 import { catalogCollator } from "./collation.js";
 
 export interface OpticalConfigurationOption {
@@ -22,16 +22,16 @@ export interface OpticalConfigurationOption {
  * Each module's default export is a file as authored. A catalog entry is that file read through canonical ingest,
  * with schema defaults applied to its canonical prescription. Ingest runs the first time an entry is read and the entry is kept, so a
  * page pays only for the lenses it shows and every read of a key returns the same object, which caches key on. The
- * key lists below read only identity fields, from the files as authored, in either version. */
-const _modules = import.meta.glob<{ default: LensDataInput | LensDataV2Input }>("../../lens-data/**/*.data.ts", {
+ * key lists below read only identity fields, from the files as authored, in V2. */
+const _modules = import.meta.glob<{ default: LensDataV2Input }>("../../lens-data/**/*.data.ts", {
   eager: true,
 });
 
 /** The fields the key lists read. V2 files keep them where V1 does, but for `catalog.opticalConfiguration`. */
 type LensIdentity = Pick<LensData, "key" | "name" | "visible" | "maker" | "opticalConfiguration">;
 
-function identityOfFile(data: LensDataInput | LensDataV2Input): LensIdentity {
-  const opticalConfiguration = isV1File(data) ? data.opticalConfiguration : data.catalog?.opticalConfiguration;
+function identityOfFile(data: LensDataV2Input): LensIdentity {
+  const opticalConfiguration = data.catalog?.opticalConfiguration;
   return { key: data.key, name: data.name, visible: data.visible, maker: data.maker, opticalConfiguration };
 }
 
@@ -49,7 +49,7 @@ for (const [path, mod] of Object.entries(_modules)) {
     let entry: CanonicalLens | undefined;
     Object.defineProperty(LENS_CATALOG, data.key, {
       enumerable: true,
-      get: () => (entry ??= ingestLens(data).prescription),
+      get: () => (entry ??= ingestLens(data, { path }).prescription),
     });
   } else {
     console.warn(`[LensVisualizer] Skipped ${path}: no "key" field in default export`);

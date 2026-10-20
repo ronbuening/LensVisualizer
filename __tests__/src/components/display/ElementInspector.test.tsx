@@ -3,7 +3,7 @@
 import { describe, it, expect, afterEach, vi } from "vitest";
 import { render, screen, cleanup } from "@testing-library/react";
 import ElementInspector from "../../../../src/components/display/ElementInspector.js";
-import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../../optics/constructionFixtures.js";
 import nikonPf500Data from "../../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
 import { catalogLensData } from "../../optics/testLensFixtures.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";

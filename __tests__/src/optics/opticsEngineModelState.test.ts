@@ -7,13 +7,13 @@ import { describe, expect, it, vi } from "vitest";
 import * as compiler from "../../../src/optics/prescription/compileCanonical.js";
 import * as glassCatalog from "../../../src/optics/chromatic/glassCatalog.js";
 import * as materials from "../../../src/optics/chromatic/materialResolver.js";
-import { ingestLensV1 } from "../../../src/optics/prescription/ingestV1.js";
-import { toLensData } from "../../../src/optics/prescription/toLensData.js";
+import { ingestLensV1 } from "../../../src/optics/prescription/v1/ingestV1.js";
+import { toLensData } from "../../../src/optics/prescription/v1/toLensData.js";
 import { dispersionTableFromRuntime } from "../../../src/optics/chromatic/dispersionAdapter.js";
 import { summarizeDispersionQuality } from "../../../src/optics/chromatic/dispersionQuality.js";
 import { traceRay } from "../../../src/optics/trace/rayAdapters.js";
 import { buildVariableStopGapLens, teleconverterHostData, teleconverterZoomHostData } from "./testLensFixtures.js";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import { doLayoutForRuntimeLens as doLayout, thickOrZero as thick } from "../../../src/optics/state/runtimeAdapters.js";
 import { engineLensFromRuntime, prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { compileSurfaceDispersions } from "../../../src/optics/chromatic/dispersionTable.js";
@@ -120,7 +120,7 @@ describe("Optics engine LensData normalization and compatibility", () => {
 
   it("can normalize directly from LensData without mutating lens data surfaces", () => {
     const original = structuredClone(CATALOG_CONSTRUCTION_FIXTURES["nikkor-z-50f18s"]);
-    const engine = compileLensData(original);
+    const engine = compileLensData(ingestLensV1(original).prescription);
     expect(engine.key).toBe(original.key);
     expect(original.surfaces).toEqual(CATALOG_CONSTRUCTION_FIXTURES["nikkor-z-50f18s"].surfaces);
   });
@@ -328,7 +328,7 @@ describe("Optics engine prepared state", () => {
 
 describe("canonical compiler ownership", () => {
   it("finishes constants before publication and prepares without requesting a runtime view", () => {
-    const data = teleconverterHostData();
+    const data = ingestLensV1(teleconverterHostData()).prescription;
     const compute = vi.spyOn(constantsModule, "computeLensConstants");
     const view = vi.spyOn(views, "runtimeView");
     const resolve = vi.spyOn(materials, "makeSurfaceDispersion");
@@ -367,7 +367,7 @@ describe("canonical compiler ownership", () => {
   });
 
   it("prepares a published iris schedule directly from compiled station constants", () => {
-    const data = teleconverterZoomHostData({ zoomStopSemiDiameters: [8, 10, 12] });
+    const data = ingestLensV1(teleconverterZoomHostData({ zoomStopSemiDiameters: [8, 10, 12] })).prescription;
     const source = structuredClone(data);
     const compiled = compileLensData(data);
     const view = vi.spyOn(views, "runtimeView");

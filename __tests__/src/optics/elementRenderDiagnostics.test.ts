@@ -1,7 +1,7 @@
 import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import { computeElementRenderDiagnostics } from "../../../src/optics/diagram/runtimeDiagramAdapter.js";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import { sharedMaterialBand } from "../../../src/optics/geometry/apertureBands.js";
 import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
 import { renderSag } from "../../../src/optics/diagram/runtimeSurface.js";

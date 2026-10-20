@@ -2,7 +2,7 @@ import { CATALOG_CONSTRUCTION_FIXTURES } from "../constructionFixtures.js";
 import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
 import { computeMovementPair } from "../../../../src/comparison/comparisonSliders.js";
-import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../constructionFixtures.js";
 import { anchorLayoutToCamera } from "../../../../src/optics/state/cameraLayout.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import { clampLensMovement, isMovementAxisEnabled } from "../../../../src/optics/perspective/lensMovement.js";

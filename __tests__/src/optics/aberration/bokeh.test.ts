@@ -30,7 +30,7 @@ import {
 import { doLayoutForRuntimeLens as doLayout } from "../../../../src/optics/state/runtimeAdapters.js";
 import { traceRay } from "../../../../src/optics/trace/rayAdapters.js";
 import { computeOffAxisFieldGeometry } from "../../../../src/optics/analysis/aberration/offAxis.js";
-import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../constructionFixtures.js";
 import NikonZ135Raw from "../../../../src/lens-data/nikon/NikonZ135f18.data.js";
 import NikonAF28f14DRaw from "../../../../src/lens-data/nikon/NikonAF28f14D.data.js";
 import MinoltaSTFRaw from "../../../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.js";

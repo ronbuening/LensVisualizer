@@ -12,7 +12,7 @@ import {
 } from "../../../../src/optics/analysis/aberration/offAxis.js";
 import { DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES } from "../../../../src/optics/analysis/sampling.js";
 import { doLayoutForRuntimeLens as doLayout } from "../../../../src/optics/state/runtimeAdapters.js";
-import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../constructionFixtures.js";
 import {} from "../../../../src/utils/catalog/lensCatalog.js";
 import { apertureAt, sharedApoLanthar50f2 } from "../testLensFixtures.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";

@@ -398,7 +398,7 @@ export async function runEngineDiff(options, log = console.log, warn = console.e
     /* The head's capture is bundled first, because the reader of the declared transitions is in it. A run reads
      * them when it is made, so one is made here for that alone: a bullet that cannot be read then stops the run
      * before a base worktree is added and anything is captured, and the job summary says which bullet.
-     * Every head converter is read here too, by ingest and its V1 view, before pair selection can hide a failure. */
+     * Every head converter is read here too, through V2 ingest, before pair selection can hide a failure. */
     const headCapture = await clock.timeAsync("Capture bundles", () =>
       loadCapture(ROOT, join(bundlesDir, "head"), options.changeClass === "c2"),
     );

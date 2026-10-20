@@ -10,7 +10,7 @@ import DistortionTab from "../../../../../src/components/display/analysis/Distor
 import VignettingTab from "../../../../../src/components/display/analysis/VignettingTab.js";
 import PupilAberrationTab from "../../../../../src/components/display/analysis/PupilAberrationTab.js";
 import ComaTab from "../../../../../src/components/display/analysis/ComaTab.js";
-import { buildLens } from "../../../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../../../optics/constructionFixtures.js";
 import { createAnalysisComputationContext } from "../../../../../src/optics/analysis/analysisContext.js";
 import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
 import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";

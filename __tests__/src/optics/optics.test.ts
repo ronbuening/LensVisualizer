@@ -407,7 +407,7 @@ describe("computeChromaticRayFanSpread", () => {
 });
 
 /* ── Production lens ray tracing ── */
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import { catalogLensData } from "./testLensFixtures.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import NoktonRaw from "../../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.js";

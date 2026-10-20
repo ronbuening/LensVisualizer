@@ -19,7 +19,7 @@ import { prepareStateUncached } from "../../../src/optics/state/preparedGeometry
 import { buildSimplePositiveElementLens } from "./testLensFixtures.js";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { compiledLensFromRuntime } from "../../../src/optics/prescription/identity.js";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import {
   computeFieldGeometryAtState,
   solveChiefRayForRuntimeLens as solveChiefRay,

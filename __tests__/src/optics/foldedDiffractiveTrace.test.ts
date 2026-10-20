@@ -14,7 +14,7 @@
 import { describe, expect, it } from "vitest";
 import { catalogLensData } from "./testLensFixtures.js";
 import FoldedDiffractiveRaw from "../../../src/lens-data/reference/ReferenceFoldedDiffractivePlate.data.js";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import validateLensData from "../../../src/optics/prescription/validate/index.js";
 import {
   DEFAULT_PHASE_WAVELENGTH_NM,

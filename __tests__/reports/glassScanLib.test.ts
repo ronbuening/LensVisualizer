@@ -4,6 +4,7 @@
  * review-disposition rules cannot rot between report regenerations.
  */
 import { canonicalInput, compileLens } from "../../src/optics/buildLens.js";
+import { ingestLens, toLensDataV2Input } from "../../src/optics/lensDataConversion.js";
 import { constructionFixtureData } from "../src/optics/constructionFixtures.js";
 import { buildSimplePositiveElementLens } from "../src/optics/testLensFixtures.js";
 import { describe, expect, it } from "vitest";
@@ -118,13 +119,14 @@ describe("canonical report view", () => {
       ...constructionFixtureData(buildSimplePositiveElementLens()),
       rearPlates: [{ thicknessMm: 1, nd: 1.5, vd: 60, gapAfterMm: 0 }],
     };
-    const input = canonicalInput(raw);
+    const file = toLensDataV2Input(ingestLens(raw));
+    const input = canonicalInput(file);
     const compiled = compileLens(input);
     for (const includeRearPlates of [false, true]) {
       let visited = false;
       expect(
         walkLensSurfaces(
-          { "fixture.data.ts": { default: raw } },
+          { "fixture.data.ts": { default: file } },
           ({ data, L }) => {
             visited = true;
             expect(data).toBe(input.prescription);

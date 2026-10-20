@@ -1,6 +1,6 @@
 import { CATALOG_CONSTRUCTION_FIXTURES } from "../optics/constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../optics/constructionFixtures.js";
 import { zoomIndexToT } from "../../../src/optics/state/stationTables.js";
 import { thick } from "../../../src/optics/state/layout.js";
 

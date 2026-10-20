@@ -2,7 +2,7 @@ import { runtimeFixtureView } from "./constructionFixtures.js";
 import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import { computeCardinalElements } from "../../../src/optics/analysis/summary/cardinals.js";
 import { analysisRequestForLens } from "./testLensFixtures.js";
 import { thickLensFocalLength } from "../../../src/optics/first-order/thickLens.js";

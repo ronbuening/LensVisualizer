@@ -32,6 +32,8 @@ interface SeamRegistryEntry {
   module: string;
   /** Set on a permanent entry: the script that loads this module by path under plain Node. */
   plainNodeLoader?: string;
+  /** Restricted seams are admitted separately for each importing file. */
+  importers?: readonly string[];
 }
 
 /**
@@ -51,7 +53,10 @@ const SEAM_REGISTRY: readonly SeamRegistryEntry[] = [
   { module: "src/optics/fieldGeometry.ts" },
   { module: "src/optics/geometry.ts" },
   { module: "src/optics/glassCatalog.ts" },
-  { module: "src/optics/lensDataConversion.ts" },
+  {
+    module: "src/optics/lensDataConversion.ts",
+    importers: ["scripts/lens-data-convert/", "scripts/lens-data-lib.mjs", "scripts/lens-summaries.mjs"],
+  },
   { module: "src/optics/mtf.ts" },
   { module: "src/optics/optics.ts" },
   { module: "src/optics/perspective.ts" },
@@ -768,7 +773,30 @@ describe("optics architecture guards", () => {
       for (const { module } of SEAM_REGISTRY) {
         if (!module.endsWith("lensDataConversion.ts")) visit(module);
       }
-      expect([...reachable].filter((module) => /\/toLensData(?:V2)?\.ts$/.test(module))).toEqual([]);
+      expect([...reachable].filter((module) => module.includes("/v1/") || /\/toLensDataV2\.ts$/.test(module))).toEqual(
+        [],
+      );
+    });
+
+    it("restricts the conversion seam per importer and isolates the V1 mapping", () => {
+      const problems: string[] = [];
+      for (const { module, importers: allowed } of SEAM_REGISTRY) {
+        if (!allowed) continue;
+        for (const importer of outsideImporters().get(module) ?? []) {
+          if (!allowed.some((entry) => (entry.endsWith("/") ? importer.startsWith(entry) : importer === entry)))
+            problems.push(
+              `${importer} may not import ${module}; only the converter, organizer and build metadata may.`,
+            );
+        }
+      }
+      for (const module of opticsModules()) {
+        if (module.includes("/v1/") || module === "src/optics/lensDataConversion.ts") continue;
+        for (const reference of moduleReferences(readSource(module))) {
+          const target = resolveOpticsModule(module, reference.specifier);
+          if (target?.includes("/v1/")) problems.push(`${module} imports converter-only ${target}.`);
+        }
+      }
+      expect(problems).toEqual([]);
     });
 
     it("registers only modules that meet the admission rule", () => {

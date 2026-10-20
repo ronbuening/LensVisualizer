@@ -8,7 +8,7 @@ import {
   teleconverterFixture,
   teleconverterHostData,
 } from "../../optics/testLensFixtures.js";
-import { attachTeleconverter } from "../../../../src/optics/prescription/teleconverter.js";
+import { attachFixtureTeleconverter as attachTeleconverter } from "../../optics/constructionFixtures.js";
 import { computeMtf } from "../../../../src/optics/analysis/mtf/mtf.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import type { MtfOptions } from "../../../../src/types/mtf.js";

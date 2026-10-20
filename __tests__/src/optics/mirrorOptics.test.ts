@@ -7,7 +7,7 @@ import { analysisRequestForLens } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import { computeBestFocusZ } from "../../../src/optics/analysis/aberration/bestFocus.js";
 import { computeSAProfile, computeSphericalAberration } from "../../../src/optics/analysis/aberration/spherical.js";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import { computeElementShapes } from "../../../src/optics/diagram/runtimeDiagramAdapter.js";
 import { foldedHitOrderLabelsForDisplay } from "../../../src/optics/diagram/foldedPathDisplay.js";
 import {

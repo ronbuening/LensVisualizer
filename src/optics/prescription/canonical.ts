@@ -1,7 +1,7 @@
 /**
  * Canonical prescription — the version-independent semantic content of a lens or teleconverter file.
  *
- * Every authored format is ingested into these types: V1 through `ingestV1.ts`, V2 through `ingestV2.ts`. The shape
+ * App-authored V2 is ingested through `ingestV2.ts`; the permanent converter reads V1 through `v1/ingestV1.ts`. The shape
  * follows the V2 lens-data model of `OPTICS_ENGINE_REWRITE_SPEC.md` (Lens data V2): records grouped by consumer,
  * one value per fact, indices carried by a surface's medium, sparse aspheres, a flat radius as a marker, and the
  * stop's radius authority stated once. Schema defaults are applied, so a default written out and a default left
@@ -458,6 +458,8 @@ export interface SourcePaths {
 export interface IngestRequest {
   /** Record where each value was read from, in `CanonicalProvenance.sources`. */
   sources?: boolean;
+  /** Authored file path for format refusals; catalog loaders supply their glob path. */
+  path?: string;
 }
 
 export interface CanonicalProvenance {

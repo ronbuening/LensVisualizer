@@ -20,7 +20,7 @@
  * This needs no patent and has no measurement error, which makes it the entry
  * point for the semi-diameter audit — see agent_docs/patent-figure-sd-audit-procedure.md.
  *
- * A file of either version is read through canonical ingest.
+ * A V2 file is read through canonical ingest.
  *
  * Usage (`npm run audit:image-circle -- ...` passes the hook):
  *   node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-image-circle.mjs [data.ts ...] [--markdown]
@@ -82,7 +82,7 @@ function prescriptionScale(lens) {
  */
 async function auditLens(file) {
   /* Read canonical facts, with schema defaults already applied. */
-  const lens = ingestLens((await import(pathToFileURL(file).href)).default).prescription;
+  const lens = ingestLens((await import(pathToFileURL(file).href)).default, { path: file }).prescription;
   const rel = relative(ROOT, file);
   const format = IMAGE_FORMAT_BY_ID[lens.catalog.imageFormat];
   const diameterMm = lens.catalog.imageCircleMm ?? format?.diagonalMm;

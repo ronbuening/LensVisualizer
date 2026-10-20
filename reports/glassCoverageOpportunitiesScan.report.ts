@@ -15,6 +15,7 @@
  * inventory is empty (fresh worktrees, CI); the checked-in report stays
  * authoritative there.
  */
+import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import type { DispersionQuality } from "../src/optics/chromatic.js";
@@ -38,9 +39,9 @@ import {
   reviewedSidecarStatus,
   type MissingMaterialKind,
 } from "./glassScanLib.js";
-import type { LensData, RefractiveIndexReferenceLine } from "../src/types/optics.js";
+import type { RefractiveIndexReferenceLine } from "../src/types/optics.js";
 
-const modules = import.meta.glob<{ default: LensData }>("../src/lens-data/**/*.data.ts", { eager: true });
+const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 
 const REPORT_DIR = "agent_docs/generated";
 const REVIEWED_SIDECAR = "agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md";

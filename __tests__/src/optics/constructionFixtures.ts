@@ -1,8 +1,15 @@
 /** Numeric construction fixtures for tests that perturb individual columns before rebuilding a lens. */
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
 import type { CanonicalLens } from "../../../src/optics/buildLens.js";
-import { ingestLensV1 } from "../../../src/optics/prescription/ingestV1.js";
-import { canonicalInput } from "../../../src/optics/buildLens.js";
+import { ingestTeleconverter } from "../../../src/optics/lensDataConversion.js";
+import { attachTeleconverter } from "../../../src/optics/teleconverter.js";
+import type { TeleconverterData } from "../../../src/types/teleconverter.js";
+import { ingestLensV1 } from "../../../src/optics/prescription/v1/ingestV1.js";
+import { buildCanonicalLens, buildLens, canonicalInput } from "../../../src/optics/buildLens.js";
+import { assertValidLensData } from "../../../src/optics/prescription/canonicalInput.js";
+import { canonicalForView } from "../../../src/optics/prescription/identity.js";
+import { validateLensInput } from "../../../src/optics/prescription/validate/index.js";
+import type { LensDataInput } from "../../../src/types/optics.js";
 import { canonicalConstructionData } from "../../../src/optics/prescription/constructionData.js";
 import { expandedConstruction } from "../../../src/optics/prescription/rearPlates.js";
 import { associateCanonical } from "../../../src/optics/prescription/identity.js";
@@ -70,4 +77,26 @@ export function runtimeFixtureView(data: Partial<LensData>): Pick<RuntimeLens, "
     ...fields,
   } as import("../../../src/types/optics.js").LensDataInput).prescription;
   return { source, ...(attachedTeleconverter ? { attachedTeleconverter } : {}) };
+}
+
+/** Convert legacy numeric test fixtures explicitly; app construction itself never accepts a V1 file. */
+export function buildFixtureLens(data: object): RuntimeLens {
+  if (!data || (!("schema" in data) && !("kind" in data) && !canonicalForView(data))) {
+    assertValidLensData(data as LensData, validateLensInput(data));
+    return buildCanonicalLens(ingestLensV1(data as LensDataInput));
+  }
+  return buildLens(data as CanonicalLens);
+}
+
+/** Numeric fit fixtures are converted before exercising production canonical composition. */
+export function attachFixtureTeleconverter(
+  host: LensData | CanonicalLens,
+  tc: TeleconverterData | import("../../../src/optics/buildLens.js").CanonicalTeleconverter,
+): CanonicalLens {
+  const fields = { ...host } as LensData;
+  delete fields.zoomLabels;
+  if (!("kind" in host) && !canonicalForView(host)) assertValidLensData(host, validateLensInput(fields));
+  const hostInput = "kind" in host ? host : (canonicalForView(host) ?? ingestLensV1(fields)).prescription;
+  const converter = "kind" in tc ? tc : ingestTeleconverter(tc).prescription;
+  return attachTeleconverter(hostInput, converter);
 }

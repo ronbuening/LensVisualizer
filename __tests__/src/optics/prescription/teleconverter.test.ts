@@ -5,10 +5,10 @@ import { mtfFiniteConjugate, mtfFiniteObjectPoint } from "../../../../src/optics
 import { paraxialTrace } from "../../../../src/optics/first-order/lensConstants.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import {
-  attachTeleconverter,
   TeleconverterAttachError,
   teleconverterGroupLabel,
 } from "../../../../src/optics/prescription/teleconverter.js";
+import { attachFixtureTeleconverter as attachTeleconverter } from "../constructionFixtures.js";
 import {
   MIN_TELECONVERTER_GAP_MM,
   rearPlateAirEquivalentMm,

@@ -28,8 +28,8 @@ import { USAGE, parseArgs, renderTransitionsReport } from "../../scripts/engine-
 import { exportCatalog, requestCatalog } from "../../src/benchmarks/engineDiff/captureEntry.js";
 import { parseDeclaredExceptions, parseDeclaredTransitions } from "../../src/benchmarks/engineDiff/compare.js";
 import { lensId, shardRequests, tierRequests } from "../../src/benchmarks/engineDiff/requests.js";
-import { ingestTeleconverter } from "../../src/optics/prescription/ingestV2.js";
-import { toTeleconverterData } from "../../src/optics/prescription/toLensData.js";
+import { ingestTeleconverter } from "../../src/optics/lensDataConversion.js";
+import { toTeleconverterData } from "../../src/optics/prescription/v1/toLensData.js";
 import { FIXTURE_PAIRS } from "../src/optics/prescription/ingestV2Fixtures.js";
 
 describe("engine-diff command line", () => {

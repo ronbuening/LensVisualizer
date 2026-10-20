@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { ingestLens, ingestTeleconverter } from "../../../src/optics/prescription/ingestV2.js";
-import { toLensData, toTeleconverterData } from "../../../src/optics/prescription/toLensData.js";
+import { ingestLens, ingestTeleconverter } from "../../../src/optics/lensDataConversion.js";
+import { toLensData, toTeleconverterData } from "../../../src/optics/prescription/v1/toLensData.js";
 import type { LensDataInput } from "../../../src/types/optics.js";
 import {
   docdbPublicationNumber,

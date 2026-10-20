@@ -3,7 +3,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useOnAxisRays from "../../../../src/components/hooks/useOnAxisRays.js";
-import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../../optics/constructionFixtures.js";
 import {
   doLayoutForRuntimeLens as doLayout,
   fopenAtZoomClamped as fopenAtZoom,

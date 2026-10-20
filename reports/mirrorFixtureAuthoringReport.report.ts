@@ -8,16 +8,17 @@
  *
  * Regenerate: `npm run generate:reports -- mirrorFixtureAuthoringReport`
  */
+import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { canonicalInput, buildLens } from "../src/optics/buildLens.js";
 import { foldedHitOrderLabelsForDisplay } from "../src/optics/diagramGeometry.js";
 import { doLayoutForRuntimeLens as doLayout } from "../src/optics/optics.js";
 import { validateCanonicalLens } from "../src/optics/validation.js";
-import type { LensData, RuntimeLens, SurfaceData } from "../src/types/optics.js";
+import type { RuntimeLens, SurfaceData } from "../src/types/optics.js";
 import { LENS_CATALOG, isDebugLensKey } from "../src/utils/catalog/lensCatalog.js";
 
-const modules = import.meta.glob<{ default: LensData }>("../src/lens-data/**/*.data.ts", { eager: true });
+const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 
 const REPORT_DIR = "agent_docs/generated";
 const REPORT_PATH = `${REPORT_DIR}/mirror-fixtures.generated.md`;

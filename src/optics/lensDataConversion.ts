@@ -1,11 +1,12 @@
 /**
  * Permanent file-conversion seam: version detection, canonical ingest, V1/V2 printers and source-path mapping.
- * The converter and its regression tests use these exports; runtime and metadata readers use canonical ingest
+ * Only the converter, organizer and build metadata may import this seam (tests follow internals). Runtime readers use V2 ingest
  * through buildLens.ts and never construct the source-preserving V1 view.
  */
 
-export { ingestLens, ingestTeleconverter, lensDataVersion } from "./prescription/ingestV2.js";
-export { V1_FLAT_RADIUS } from "./prescription/ingestV1.js";
+export { lensDataVersion } from "./prescription/ingestV2.js";
+export { ingestLens, ingestTeleconverter } from "./prescription/v1/ingest.js";
+export { V1_FLAT_RADIUS } from "./prescription/v1/ingestV1.js";
 export {
   V1_GROUP_STARTS,
   V1_PRINT_ORDER,
@@ -13,8 +14,8 @@ export {
   toLensData,
   toLensDataInput,
   toTeleconverterData,
-} from "./prescription/toLensData.js";
-export { v1SourceMap, v1StopRadius } from "./prescription/v1SourceMap.js";
+} from "./prescription/v1/toLensData.js";
+export { v1SourceMap, v1StopRadius } from "./prescription/v1/v1SourceMap.js";
 export {
   V2_GROUP_STARTS,
   V2_ROW_LISTS,

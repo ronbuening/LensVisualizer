@@ -1,6 +1,6 @@
 import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import { foldedHitOrderLabelsForDisplay } from "../../../src/optics/diagram/foldedPathDisplay.js";
 import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";

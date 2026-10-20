@@ -19,8 +19,8 @@ import {
 import { commentMisplaced, movedCommentText, movedNote } from "../../scripts/lens-data-convert/comments.mjs";
 import { formatConversionReport } from "../../scripts/lens-data-convert/report.mjs";
 import { evaluateLensDataSource } from "../../scripts/lens-data-ast.mjs";
-import { ingestLens, ingestTeleconverter } from "../../src/optics/prescription/ingestV2.js";
-import { V1_GROUP_STARTS, V1_PRINT_ORDER } from "../../src/optics/prescription/toLensData.js";
+import { ingestLens, ingestTeleconverter } from "../../src/optics/lensDataConversion.js";
+import { V1_GROUP_STARTS, V1_PRINT_ORDER } from "../../src/optics/prescription/v1/toLensData.js";
 import type { LensDataInput } from "../../src/types/optics.js";
 import { FIXTURE_PAIRS, MAXIMAL_ZOOM, type FixturePair } from "../src/optics/prescription/ingestV2Fixtures.js";
 import {

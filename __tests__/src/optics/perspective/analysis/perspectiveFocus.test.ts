@@ -2,7 +2,7 @@ import { CATALOG_CONSTRUCTION_FIXTURES } from "../../constructionFixtures.js";
 /** Fixed-sensor request contract and ordered perspective diagnostics. */
 import { describe, expect, it } from "vitest";
 import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
-import { buildLens } from "../../../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../../constructionFixtures.js";
 import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
 import { computePerspectiveFocusAnalysis } from "../../../../../src/optics/perspective/analysis/focus.js";
 import type { PerspectiveFocusOptions } from "../../../../../src/optics/perspective/analysis/focus.js";

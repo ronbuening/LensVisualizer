@@ -7,7 +7,7 @@
 import { describe, expect, it } from "vitest";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../../src/types/asphericSchema.js";
 import { prescriptionDifference } from "../../../../src/optics/prescription/canonical.js";
-import { ingestLens, ingestTeleconverter } from "../../../../src/optics/prescription/ingestV2.js";
+import { ingestLens, ingestTeleconverter } from "../../../../src/optics/lensDataConversion.js";
 import { childPath, extendPath, parentPath, pathBelow } from "../../../../src/optics/prescription/sourcePaths.js";
 import {
   toLensDataV2Input,

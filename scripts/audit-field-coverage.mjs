@@ -266,7 +266,7 @@ async function auditLens(file, includeHidden) {
   let lens;
   try {
     /* Ingest once into canonical records, as the catalog does. */
-    lens = ingestLens(authored).prescription;
+    lens = ingestLens(authored, { path: file }).prescription;
   } catch (error) {
     return { ...base, skipped: `buildLens failed: ${error.message}` };
   }

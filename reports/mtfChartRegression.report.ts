@@ -1,3 +1,4 @@
+import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { createAnalysisRequest } from "../src/optics/analysis.js";
 /**
  * Manufacturer-chart regression report.
@@ -29,11 +30,10 @@ import { assessMtfSupport, computeMtf } from "../src/optics/mtf.js";
 import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../src/optics/fieldGeometry.js";
 import type { PreparedOpticalState } from "../src/optics/types.js";
 import type { MtfMethod, MtfOptions, MtfResult } from "../src/types/mtf.js";
-import type { LensData } from "../src/types/optics.js";
 import { mtfChartConvention, type MtfChartConvention, type MtfChartMethod } from "./data/mtfChartConventions.js";
 import { correctedSinceAudit } from "./mtfChartLib.js";
 
-const modules = import.meta.glob<{ default: LensData }>("../src/lens-data/**/*.data.ts", { eager: true });
+const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 const ANCHORS_PATH = "reports/data/mtfChartAnchors.csv";
 const REPORT_DIR = "agent_docs/generated";
 const REPORT_PATH = `${REPORT_DIR}/mtf-chart-regression.generated.md`;
@@ -289,7 +289,7 @@ interface Weighted {
 }
 
 /** Trace one chart's configuration with diffraction and, when it differs, under the maker's convention. */
-function runConfiguration(lens: LensData, zoomT: number, anchors: Anchor[]): Configuration {
+function runConfiguration(lens: LensDataV2Input, zoomT: number, anchors: Anchor[]): Configuration {
   const L = buildLens(lens);
   const state = prepareRuntimeState(L, 0, zoomT);
   // Sized as the audit sized it: the wide-open iris of this zoom position and the entrance pupil it projects.

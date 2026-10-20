@@ -2,7 +2,7 @@ import { constructionFixtureData } from "../constructionFixtures.js";
 import { CATALOG_CONSTRUCTION_FIXTURES } from "../constructionFixtures.js";
 import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../constructionFixtures.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import { PerspectiveFieldSamplingError } from "../../../../src/optics/perspective/fieldGeometry.js";
 import {

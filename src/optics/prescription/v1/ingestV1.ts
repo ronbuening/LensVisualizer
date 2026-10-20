@@ -2,7 +2,7 @@
  * V1 ingest — maps an authored V1 lens or teleconverter file onto the canonical prescription.
  *
  * This is the V1 half of the object-level mapping in `src/optics/prescription/` (OPTICS_ENGINE_REWRITE_SPEC.md,
- * Lens data V2, Field mapping): the runtime and the converter share it. Ingest applies the schema defaults
+ * Lens data V2, Field mapping): only the permanent converter reads V1 files. Ingest applies the schema defaults
  * (`defaults.ts`) and the engine's authority rules, and records in provenance whatever the V1 view needs to give
  * the file back as written: which values were defaulted, the authored values the engine ignores, and the V1
  * spellings the canonical form holds once.
@@ -17,8 +17,7 @@
  *   as `[label, text]` pairs, an `asph` or `var` that is not an object of entries keyed by surface label;
  * - a field V1 does not define, or one only the engine writes.
  * Every reason found is reported at once, in a `PrescriptionIngestError` that names each field and its authored path.
- * Ingest does not otherwise check types, and may fail on wrong-typed input with a plain `TypeError`; `buildLens` asks
- * the validator about every V1 file first. The validator reads `asph: null` and `var: null` as absent, which is why
+ * Ingest does not otherwise check types, and may fail on wrong-typed input with a plain `TypeError`. The validator reads `asph: null` and `var: null` as absent, which is why
  * ingest refuses those two by name. The input is never modified, and the result shares no object with it.
  *
  * Asked for source paths, ingest records where it read each value as it reads it (`SourcePaths`): the converter
@@ -32,10 +31,10 @@ import type {
   LensDataInput,
   PublishedStations,
   SurfaceData,
-} from "../../types/optics.js";
-import type { TeleconverterData } from "../../types/teleconverter.js";
-import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
-import { FLAT_RADIUS, lensDataStopRadiusAuthority } from "./canonical.js";
+} from "../../../types/optics.js";
+import type { TeleconverterData } from "../../../types/teleconverter.js";
+import { FLAT_R_THRESHOLD } from "../../geometry/surfaceProfile.js";
+import { FLAT_RADIUS, lensDataStopRadiusAuthority } from "../canonical.js";
 import type {
   CanonicalAberrationControl,
   CanonicalAberrationGap,
@@ -55,9 +54,9 @@ import type {
   StopRadiusAuthority,
   V1PublishedStationsSpelling,
   V1Spelling,
-} from "./canonical.js";
-import { ELEMENT_SCHEMA_DEFAULTS, LENS_SCHEMA_DEFAULTS, defaultValue } from "./defaults.js";
-import type { SchemaDefault } from "./defaults.js";
+} from "../canonical.js";
+import { ELEMENT_SCHEMA_DEFAULTS, LENS_SCHEMA_DEFAULTS, defaultValue } from "../defaults.js";
+import type { SchemaDefault } from "../defaults.js";
 import {
   copy,
   finish,
@@ -73,9 +72,9 @@ import {
   requireRecords,
   sourcePathsFor,
   takeDefault,
-} from "./ingestCommon.js";
-import type { IngestContext as SharedIngestContext, Untyped } from "./ingestCommon.js";
-import { itemPath, labelPath } from "./sourcePaths.js";
+} from "../ingestCommon.js";
+import type { IngestContext as SharedIngestContext, Untyped } from "../ingestCommon.js";
+import { itemPath, labelPath } from "../sourcePaths.js";
 
 /** Radius the V1 format writes for a flat surface; any other flat radius is kept in provenance. */
 export const V1_FLAT_RADIUS = 1e15;

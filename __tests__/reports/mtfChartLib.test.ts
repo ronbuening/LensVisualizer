@@ -4,7 +4,7 @@
  */
 import { describe, expect, it } from "vitest";
 import { correctedSinceAudit } from "../../reports/mtfChartLib.js";
-import { buildLens } from "../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../src/optics/constructionFixtures.js";
 import type { LensData, SourceErratum } from "../../src/types/optics.js";
 import { FIXTURE_PAIRS } from "../src/optics/prescription/ingestV2Fixtures.js";
 
@@ -23,7 +23,7 @@ describe("MTF chart report helpers", () => {
   it("reads a corrected source erratum from a V2 file as from its V1 twin", () => {
     const prime = FIXTURE_PAIRS.find((pair) => pair.family === "prime");
     if (prime?.kind !== "lens") throw new Error("the prime fixture pair is missing");
-    /* `buildLens` reads a file of either version; its type names the V1 shape. */
+    /* The test fixture adapter converts V1 explicitly before invoking app construction. */
     const built = (file: object) => buildLens(file as LensData);
     expect(correctedSinceAudit(built(prime.v1))).toBe(false);
     expect(correctedSinceAudit(built(prime.v2))).toBe(false);

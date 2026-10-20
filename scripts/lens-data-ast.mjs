@@ -11,14 +11,11 @@
  * - identifiers bound by a top-level `const` in the same file.
  *
  * Any other form is an error naming the file, line and form, so a file outside the subset is reported rather than
- * misread. The metadata scripts read identity fields through `readLensIdentity`, from a file of either version, and
+ * misread. The metadata scripts read identity fields through `readLensIdentity`, from a V2 file, and
  * the converter reads the syntax behind each value through `walkLensDataSource`.
  */
 
 import ts from "typescript";
-import { loadPrescriptionIngest } from "./lens-summaries.mjs";
-
-const { lensDataVersion } = await loadPrescriptionIngest();
 
 /**
  * Parse a lens-data source file.
@@ -254,8 +251,7 @@ export function walkLensDataSource(content, fileName, visit) {
 }
 
 /**
- * The identity fields of a lens or teleconverter file of either version. A V2 file keeps its mounts and format in
- * `catalog`; the other fields sit where V1 has them.
+ * The identity fields of a V2 lens or teleconverter file. Mounts and format live in `catalog`.
  *
  * @param {unknown} data - an evaluated default export
  * @returns {{ key: string | null, publishedAt: string | null, name: string | null, maker: string | null | undefined,
@@ -264,7 +260,7 @@ export function walkLensDataSource(content, fileName, visit) {
  */
 export function readLensIdentity(data) {
   const file = data !== null && typeof data === "object" ? data : {};
-  const catalog = lensDataVersion(file) === 1 ? file : (file.catalog ?? {});
+  const catalog = file.catalog ?? {};
   const text = (value) => (typeof value === "string" ? value : null);
   return {
     key: text(file.key),

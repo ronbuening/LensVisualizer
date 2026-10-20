@@ -9,6 +9,7 @@
  * their report-specific logic. Runtime primitives (`decodeCode6`,
  * `UNRESOLVED_MARKER`, `glassTokens`, `normalLinePgF`) come from the engine.
  */
+import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { validateCanonicalLens } from "../src/optics/validation.js";
 import { compileLens, canonicalInput } from "../src/optics/buildLens.js";
@@ -23,7 +24,7 @@ import type { GlassEntry } from "../src/optics/glassCatalog.js";
 import { normalLinePgF } from "../src/optics/chromatic.js";
 import type { SurfaceDispersion } from "../src/optics/chromatic.js";
 import type { CanonicalLens } from "../src/optics/buildLens.js";
-import type { ElementData, LensData, RefractiveIndexReferenceLine, SurfaceData } from "../src/types/optics.js";
+import type { ElementData, RefractiveIndexReferenceLine, SurfaceData } from "../src/types/optics.js";
 
 /** ΔPgF spread that's plausible across melt variants. */
 export const PGF_TOLERANCE = 0.02;
@@ -64,7 +65,7 @@ export interface LensWalkContext {
  * number of lenses visited.
  */
 export function walkLensSurfaces(
-  modules: Record<string, { default: LensData }>,
+  modules: Record<string, { default: LensDataV2Input }>,
   visitor: (context: LensWalkContext) => void,
   { includeRearPlates = false }: { includeRearPlates?: boolean } = {},
 ): number {
@@ -76,7 +77,7 @@ export function walkLensSurfaces(
     let data: CanonicalLens;
     let input;
     try {
-      input = canonicalInput(raw);
+      input = canonicalInput(raw, { path: modulePath });
       data = input.prescription;
     } catch {
       continue;

@@ -3,7 +3,7 @@ import { CATALOG_CONSTRUCTION_FIXTURES } from "../../constructionFixtures.js";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
 import * as fieldSampling from "../../../../../src/optics/perspective/fieldSampling.js";
-import { buildLens } from "../../../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../../constructionFixtures.js";
 import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
 import { computePerspectiveChromaticAnalysis } from "../../../../../src/optics/perspective/analysis/chromatic.js";
 import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";

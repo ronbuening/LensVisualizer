@@ -11,8 +11,8 @@ import { traceRayChromatic } from "../../../src/optics/trace/rayAdapters.js";
 import { computeBothPupilAberrationProfiles } from "../../../src/optics/analysis/pupils/pupilAberration.js";
 import MinoltaVarisoftRaw from "../../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.js";
 import type { ChromaticChannel, RuntimeLens } from "../../../src/types/optics.js";
-import { ingestLens } from "../../../src/optics/prescription/ingestV2.js";
-import { toLensDataInput } from "../../../src/optics/prescription/toLensData.js";
+import { ingestLens } from "../../../src/optics/lensDataConversion.js";
+import { toLensDataInput } from "../../../src/optics/prescription/v1/toLensData.js";
 import { build } from "./testLensFixtures.js";
 
 /**

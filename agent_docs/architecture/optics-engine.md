@@ -230,7 +230,7 @@ confused with a completed curve.
 
 `buildLens(data)` is the stable public constructor and re-exports `buildLens` from `src/optics/prescription/buildRuntimeLens.ts`.
 `prescription/compile.ts` validates and ingests authored data, then caches one successful `CompiledLens` per canonical
-prescription identity. `prescription/identity.ts` associates each catalog V1 view with its original ingest and each
+prescription identity. `prescription/identity.ts` associates each canonical catalog prescription with its original ingest and each
 runtime with its compiled owner, using weak keys with one value per owner. Repeated builds of one catalog object
 share runtime and compiled geometry; a freshly ingested same-key object stays independent. The runtime association
 is lookup-only. Provenance supplies source echoes and diagnostics; optical construction uses canonical values.
@@ -335,35 +335,25 @@ it set each ignored value aside, and the home of each V1 container V2 dissolves.
 so an ingest that was not asked builds no path. `sourcePaths.ts` spells every path, `surfaces[3].R` and
 `asph["3A"]`, for ingest, the V2 view and the converter alike.
 
-- `ingestLensV1` and `ingestTeleconverterV1` (`ingestV1.ts`) map a V1 file onto it, applying the schema defaults of
-  `defaults.ts`. Each default row names its reader. A default written out and one left out ingest alike. A missing
-  `publishedStations`, or `{}`, is one: every zoom station published at infinity alone, as `publishedStationGrid`
-  reads it, and ingest spreads it over the stations as it spreads a declaration. Ingest does not validate; it refuses
-  only what the canonical form cannot hold, naming the field and its authored path: two V1 copies that disagree (a
-  surface `nd` and its medium's, a surface `d` and its gap's first value, exactly; a conjugate and its station, within
-  the validator's 1e-8, in station index for `zoomT`), a zoom field on a prime, `zoomLabels` that are neither
-  `[wide, tele]` nor one per station, `varLabels` (or the ring's) that name no gap, are not `[label, text]` pairs or
-  are out of surface order, an `asph` or `var` that is not an object keyed by surface label, and fields V1 does not
-  define or only the engine writes. Ingest does not otherwise check types, so other wrong-typed input can fail with a
-  plain `TypeError`, and `buildLens` asks the validator about every V1 file first. The validator reads `asph: null` and
-  `var: null` as absent, which is why ingest names those itself. Some refusals are stricter than the validator; the
-  plan's S2.P1.T1 lists them. A field added to `LensDataInput` fails the typecheck at `LENS_FIELDS` in `ingestV1.ts`
-  until ingest and the view carry it.
-- `ingestLensV2` and `ingestTeleconverterV2` (`ingestV2.ts`) map a `schema: 2` file (`src/types/lensDataV2.ts`) onto
-  it, and `ingestLens` / `ingestTeleconverter` send a file of either version to its ingest by `schema`; `isV1File`
-  is the one rule that tells the versions apart, for them and for `buildLens` and the lens catalog, and
-  `lensDataVersion` states it as a version (1, 2, or none for another `schema`) for the converter's command line. V2 ingest applies
-  the same defaults at their canonical paths, numbers undrawn media by first use as V1 ingest does (their authored
-  ids and names go to provenance, so they never reach the fingerprint), and takes a variable gap's first value as its
-  surface's `d`. A V2 file has no validator-first pass, so V2 ingest refuses every shape it cannot read itself, at
-  the authored path, along with V2's own rules, such as a medium no surface uses, a gap out of step with the station
-  and keyframe counts, or a stop `sd` the engine would not read; the plan's S2.P2.T1 As built lists them all. The
-  rules both versions share (unknown fields, defaults, aspheres, rear plates) are in `ingestCommon.ts`.
+- App `ingestLens` / `ingestTeleconverter` (`ingestV2.ts`) accept only `schema: 2`. An archived V1 file is
+  refused with its file path and `npm run convert:lens-data -- --input <file> --write`; catalog loaders supply
+  their glob paths via the ingest request. `buildLens` also accepts an optional `{ path }` request for diagnostics.
+  V2 ingest applies defaults at canonical paths, numbers undrawn media by first use (authored ids and names stay in
+  provenance), and takes each variable gap's first value as its surface's `d`. It refuses unreadable shapes and V2
+  rules at authored paths before canonical validation; the plan's S2.P2.T1 As built lists them. Shared rules for
+  unknown fields, defaults, aspheres and rear plates live in `ingestCommon.ts`.
+- The permanent converter alone dispatches between V1 and V2. `prescription/v1/` holds `ingestV1.ts`, its
+  two-version dispatcher `ingest.ts`, `toLensData.ts` and `v1SourceMap.ts`, reachable only through
+  `lensDataConversion.ts`. V1 ingest preserves defaults, ignored values, source spellings and paths for round trips,
+  and refuses contradictory copies of a value or shapes the canonical form cannot hold. The organizer converts V1
+  arrivals, including files in maker folders; metadata stops on V1 and never converts it. The seam guard restricts
+  the conversion barrel per importer to the converter, organizer and build metadata, and excludes all V1 mapping
+  modules from every runtime seam dependency graph. Tests may follow their internal subjects.
 - A stop carries `sd` in V2 only where its radius is authored. A stop whose radius is not authored (traced from the
   design f-number, or taken from the station schedule) leaves it out, and V2 ingest refuses one written there.
   `validateLensData` accepts it absent, generated rear-plate rims skip it (below), and `lensDataStopRadiusAuthority`
   in `canonical.ts` reads that authority from V1 data for both.
-- `toLensData` (`toLensData.ts`) is the converter-only V1 view: it gives a V1 file back exactly, with the catalog defaults merged,
+- `toLensData` (`v1/toLensData.ts`) is the converter-only V1 view: it gives a V1 file back exactly, with the catalog defaults merged,
   and `toLensDataInput` gives it back as authored. A V2 file records no V1 spelling, so its view writes each field in
   the plain V1 form.
 - `toLensDataV2Input` and `toTeleconverterDataV2Input` (`toLensDataV2.ts`) are the V2 view the converter prints, in
@@ -374,7 +364,7 @@ so an ingest that was not asked builds no path. `sourcePaths.ts` spells every pa
   semantic fingerprint's rules. The converter reaches all of these through `src/optics/lensDataConversion.ts`.
 - Going to V1 (`--to-version 1`), the converter prints `toLensDataInput` or `toTeleconverterData` in
   `V1_PRINT_ORDER` with blank lines before `V1_GROUP_STARTS`, and keeps the source's blank rows in the lists
-  `V1_ROW_LISTS` names (`toLensData.ts`). `v1SourceMap` (`v1SourceMap.ts`)
+  `V1_ROW_LISTS` names (`v1/toLensData.ts`). `v1SourceMap` (`v1/v1SourceMap.ts`)
   ingests that V1 object with source paths and composes them with the source's, as `v2SourceMap` does for V2. A
   comment that opens with the converter's own `(moved from X)` returns to X when the V1 file writes X from inside its
   node; a banner on a member V1 has no counterpart for leads the first V1 member written from inside it; any other
@@ -386,8 +376,8 @@ so an ingest that was not asked builds no path. `sourcePaths.ts` spells every pa
   `buildLens.ts` exposes ingest, `canonicalInput`, `compileLens`, and the runtime/worker identity helpers. The
   source-preserving V1 printers are exported only by `lensDataConversion.ts`, for the permanent converter and its
   tests. An architecture guard keeps both conversion printers out of the runtime seam's dependency graph.
-  - `buildLens` accepts authored files or a canonical prescription. V1 authored inputs retain validation before
-    ingest until the final V1-ingest retirement; canonical validation runs before successful compiler publication.
+  - `buildLens` accepts authored V2 files or a canonical prescription. Canonical validation runs before successful
+    compiler publication.
     Construction and diagnostics use numeric columns derived from canonical facts, without the converter's V1 view.
   - `attachTeleconverter()` returns a canonical prescription associated with its provenance and composition descriptor.
     The descriptor stays outside prescription semantics and is exposed on `RuntimeLens.attachedTeleconverter` for
@@ -1627,8 +1617,9 @@ click ties keep the first surface. The overlay retains its explicit 97-sample (`
 
 ## Validation And Rendering Geometry
 
-`prescription/validate/` owns validation; `validation.ts` exposes the named lens and teleconverter validators. The authored pass retains declarations ingest would erase, such as empty published-station declarations,
-and explicitly authored invalid defaults. The canonical entry uses a diagnostic projection with provenance;
+`prescription/validate/` owns validation; `validation.ts` exposes the named lens and teleconverter validators.
+App ingest reads only V2; canonical validation uses a diagnostic projection with provenance to retain ignored values.
+Raw numeric-column validators remain available for structural probes, without any V1-to-canonical mapping;
 `paths.ts` keeps V1 messages unchanged and maps V2 nested fields and gap indices back to their authored paths.
 Malformed inputs retain guarded raw checks so ingest cannot hide their aggregate diagnostics. Folded reachability
 compiles only lower-level probe surfaces, never a full lens or material table. The concern modules check required

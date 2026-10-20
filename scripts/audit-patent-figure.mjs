@@ -34,7 +34,7 @@
  *     scripts/audit-patent-figure.mjs <data.ts> <patent.pdf> <page> <x0,y0,x1,y1> [flags]
  *
  * The `--import` hook is required: canonical ingest, which reads the data file of
- * either version, reaches value imports written with a ".js" specifier.
+ * V2, reaches value imports written with a ".js" specifier.
  *
  * The crop is given as fractions of the page (after rotation), and must bracket
  * the glass and nothing else — no image plane, no cover-glass plate, no
@@ -220,7 +220,9 @@ const truncated = leftX <= cropX0 + 1 || rightX >= cropX1 - 2;
 
 /* ── the data file's own silhouette ── */
 /* Read canonical facts, with schema defaults already applied. */
-const lens = ingestLens((await import(pathToFileURL(resolve(dataFile)).href)).default).prescription;
+const lens = ingestLens((await import(pathToFileURL(resolve(dataFile)).href)).default, {
+  path: resolve(dataFile),
+}).prescription;
 const aspheres = Object.fromEntries(
   lens.surfaces.filter((surface) => surface.asphere).map((surface) => [surface.label, surface.asphere]),
 );

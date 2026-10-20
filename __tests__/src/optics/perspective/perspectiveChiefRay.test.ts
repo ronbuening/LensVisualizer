@@ -1,6 +1,6 @@
 import { CATALOG_CONSTRUCTION_FIXTURES } from "../constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../constructionFixtures.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import { chiefRayImageHeightAccurateForRuntimeLens } from "../../../../src/optics/state/fieldAdapters.js";
 import { solvePerspectiveChiefRay } from "../../../../src/optics/perspective/chiefRay.js";

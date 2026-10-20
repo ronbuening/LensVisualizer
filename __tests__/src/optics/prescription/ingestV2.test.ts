@@ -23,27 +23,31 @@ import {
   sha256Hex,
 } from "../../../../src/benchmarks/engineDiff/payload.js";
 import { CHROMATIC_CHANNELS, tierRequests } from "../../../../src/benchmarks/engineDiff/requests.js";
-import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildCanonicalLens, buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
 import { FLAT_R_THRESHOLD } from "../../../../src/optics/geometry/surfaceProfile.js";
 import { PrescriptionIngestError, lensDataStopRadiusAuthority } from "../../../../src/optics/prescription/canonical.js";
 import { ELEMENT_SCHEMA_DEFAULTS, LENS_SCHEMA_DEFAULTS } from "../../../../src/optics/prescription/defaults.js";
-import { ingestLensV1, ingestTeleconverterV1 } from "../../../../src/optics/prescription/ingestV1.js";
+import { ingestLensV1, ingestTeleconverterV1 } from "../../../../src/optics/prescription/v1/ingestV1.js";
 import {
   ingestLens,
   ingestLensV2,
   ingestTeleconverter,
   ingestTeleconverterV2,
 } from "../../../../src/optics/prescription/ingestV2.js";
-import { toLensData, toTeleconverterData } from "../../../../src/optics/prescription/toLensData.js";
+import { toLensData, toTeleconverterData } from "../../../../src/optics/prescription/v1/toLensData.js";
 import type { LensDataV2Input } from "../../../../src/types/lensDataV2.js";
 import type { LensData, LensDataInput, RuntimeLens } from "../../../../src/types/optics.js";
 import type { TeleconverterData } from "../../../../src/types/teleconverter.js";
+import {
+  ingestLens as convertLens,
+  ingestTeleconverter as convertTeleconverter,
+} from "../../../../src/optics/lensDataConversion.js";
 import { FIXTURE_PAIRS, type FixturePair } from "./ingestV2Fixtures.js";
 
 const lensFingerprint = (file: object) =>
-  semanticFingerprint(file, (data) => ingestLens(data as LensDataInput).prescription);
+  semanticFingerprint(file, (data) => convertLens(data as LensDataInput).prescription);
 const converterFingerprint = (file: object) =>
-  semanticFingerprint(file, (data) => ingestTeleconverter(data as TeleconverterData).prescription);
+  semanticFingerprint(file, (data) => convertTeleconverter(data as TeleconverterData).prescription);
 
 function pairOf(family: string): Extract<FixturePair, { kind: "lens" }> {
   const pair = FIXTURE_PAIRS.find((candidate) => candidate.family === family);
@@ -175,22 +179,31 @@ describe("V1/V2 fixture pairs", () => {
 });
 
 describe("dispatch on schema", () => {
-  it("sends a file without schema to V1 ingest and a schema: 2 file to V2 ingest", () => {
+  it("refuses V1 at app ingest and sends schema: 2 to V2 ingest", () => {
     const { v1, v2 } = pairOf("zoom");
-    expect(ingestLens(v1)).toEqual(ingestLensV1(v1));
+    expect(() => ingestLens(v1, { path: "archive/zoom.data.ts" })).toThrow(
+      'npm run convert:lens-data -- --input "archive/zoom.data.ts" --write',
+    );
+    expect(() => buildLens(v1, { path: "archive/zoom.data.ts" })).toThrow(
+      'V1 file "archive/zoom.data.ts" is no longer accepted by the app',
+    );
     expect(ingestLens(v2)).toEqual(ingestLensV2(v2));
     expect(ingestLens(v2).provenance.format).toBe(2);
     const converter = FIXTURE_PAIRS.find(
       (pair): pair is Extract<FixturePair, { kind: "teleconverter" }> => pair.kind === "teleconverter",
     )!;
-    expect(ingestTeleconverter(converter.v1)).toEqual(ingestTeleconverterV1(converter.v1));
+    expect(() => ingestTeleconverter(converter.v1, { path: "archive/test.teleconverter.ts" })).toThrow(
+      'npm run convert:lens-data -- --input "archive/test.teleconverter.ts" --write',
+    );
     expect(ingestTeleconverter(converter.v2)).toEqual(ingestTeleconverterV2(converter.v2));
     expect(ingestTeleconverter(converter.v2).provenance.format).toBe(2);
   });
 
   it("lets buildLens read a V2 file, and throws V2 ingest's refusal at the file's own path", () => {
     const { v1, v2 } = pairOf("zoom");
-    expect(buildRecord(buildLens(v2 as unknown as LensData))).toEqual(buildRecord(buildLens(v1 as LensData)));
+    expect(buildRecord(buildLens(v2 as unknown as LensData))).toEqual(
+      buildRecord(buildCanonicalLens(ingestLensV1(v1))),
+    );
     const refused = editedV2("prime", (file) => (file.surfaces[1].medium = 13));
     expect(() => buildLens(refused as unknown as LensData)).toThrow("surfaces[1].medium: unknown element 13");
   });

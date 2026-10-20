@@ -19,7 +19,7 @@ import {
   unbuiltPairs,
   type PayloadRecord,
   type SerializedCatalog,
-} from "../../../src/benchmarks/engineDiff/captureEntry.js";
+} from "./engineDiffFixtures/conversion.js";
 import { comparePermittedPairs, createDifferentialRun } from "../../../src/benchmarks/engineDiff/compare.js";
 import {
   ECHO_DEFAULTS,
@@ -82,18 +82,23 @@ import {
 import * as seamAdapter from "../../../src/benchmarks/engineDiff/seamAdapter.js";
 import { MTF_BENCHMARK_CASES, MTF_FINITE_BENCHMARK_CASE } from "../../../src/benchmarks/mtfCases.js";
 import { BENCHMARK_SCENARIOS, DEFAULT_BENCHMARK_LENS_KEYS } from "../../../src/benchmarks/opticsRenderingBenchmark.js";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import {
+  buildLens as appBuildLens,
+  ingestLens as appIngestLens,
+  ingestTeleconverter as appIngestTeleconverter,
+} from "../../../src/optics/buildLens.js";
+import { buildFixtureLens as buildLens } from "../optics/constructionFixtures.js";
 import { canonicalInput, expandRearPlates } from "../../../src/optics/buildLens.js";
-import { ingestLens, ingestTeleconverter } from "../../../src/optics/prescription/ingestV2.js";
-import { ingestLensV1 } from "../../../src/optics/prescription/ingestV1.js";
-import { toLensData, toTeleconverterData } from "../../../src/optics/prescription/toLensData.js";
+import { ingestLens, ingestTeleconverter } from "../../../src/optics/lensDataConversion.js";
+import { ingestLensV1 } from "../../../src/optics/prescription/v1/ingestV1.js";
+import { toLensData, toTeleconverterData } from "../../../src/optics/prescription/v1/toLensData.js";
 import {
   ELEMENT_SCHEMA_DEFAULTS,
   LENS_SCHEMA_DEFAULTS,
   REAR_PLATE_SCHEMA_DEFAULTS,
 } from "../../../src/optics/prescription/defaults.js";
 import type { SchemaDefault } from "../../../src/optics/prescription/defaults.js";
-import { toLensDataInput } from "../../../src/optics/prescription/toLensData.js";
+import { toLensDataInput } from "../../../src/optics/prescription/v1/toLensData.js";
 import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
 import { traceRay } from "../../../src/optics/trace/rayAdapters.js";
 import type { MtfMethod, MtfSpectrum } from "../../../src/types/mtf.js";
@@ -685,16 +690,16 @@ describe("engineDiff seam adapter", () => {
     expect(sources.computeFieldCurvature).toBe("analysisState.computeFieldCurvature");
     expect(sources.computeFieldCurvatureBundle).toBe("analysisState.computeFieldCurvatureBundle");
     expect(sources.summarizeChromaticFieldFocus).toBe("analysisState.summarizeChromaticFieldFocus");
-    expect(seam.buildLens).toBe(buildLens);
-    /* From S2.P2.T1 canonical ingest reads a file of either version by its schema. */
+    expect(seam.buildLens).toBe(appBuildLens);
+    /* The head seam reads only V2; legacy fixture conversion is explicit in this test suite. */
     expect(optional).toEqual({
-      ingestLens,
-      ingestTeleconverter,
+      ingestLens: appIngestLens,
+      ingestTeleconverter: appIngestTeleconverter,
       canonicalInput,
     });
     expect(sources.ingestLens).toBe("buildLens.ingestLens");
     expect(sources.ingestTeleconverter).toBe("buildLens.ingestTeleconverter");
-    /* S2.P1.T2 deleted the V1 defaults object; the catalog merge at this checkout is ingest and the V1 view. */
+    /* Runtime catalogs use canonical ingest; source-preserving views belong to the converter. */
     expect(absent).toEqual(["lensView", "teleconverterView", "lensDefaults"]);
   });
 
@@ -749,11 +754,14 @@ describe("engineDiff catalog export", () => {
     expect(() => ingestTeleconverter(malformed)).toThrow(/catalog.lensMounts/);
     const files = vi.spyOn(seamAdapter, "ownCatalogFiles");
     try {
-      for (const valid of [fixture.v1, fixture.v2]) {
+      for (const valid of [fixture.v2]) {
         files.mockReturnValue({ lenses: {}, teleconverters: { "fixture.teleconverter.ts": valid } });
         expect(exportCatalog({ validateTeleconverters: true })).toEqual(exportCatalog());
         expect(exportCatalog().pairs).toEqual([]);
       }
+      files.mockReturnValue({ lenses: {}, teleconverters: { "fixture.teleconverter.ts": fixture.v1 } });
+      expect(() => exportCatalog({ validateTeleconverters: true })).toThrow("npm run convert:lens-data");
+      expect(exportCatalog().teleconverters[0].prescription).toEqual(encodeValue(fixture.v1));
       for (const refused of [{ ...fixture.v2, unknownField: true }, { ...fixture.v1, schema: 3 }, malformed]) {
         files.mockReturnValue({ lenses: {}, teleconverters: { "fixture.teleconverter.ts": refused } });
         const result = outcomeOf(() => toTeleconverterData(ingestTeleconverter(refused)));
@@ -2590,7 +2598,7 @@ describe("engineDiff semantic fingerprint", { timeout: 120_000 }, () => {
     });
     expect(stopRadiusAuthority(plated)).not.toBe("authored");
     expect(echoed.surfaces.find((surface) => surface.label === "STO")!.sd).toBeUndefined();
-    const builtPlated = seam.buildLens(plated) as unknown as { elements: Record<string, unknown>[] };
+    const builtPlated = buildLens(plated) as unknown as { elements: Record<string, unknown>[] };
     const projectedPlated = projectBuildConstants(builtPlated, CHROMATIC_CHANNELS, seam.flatRadiusThreshold);
     const builtData = projectedPlated.source as unknown as import("../../../src/optics/buildLens.js").CanonicalLens;
     /* Every element of the build record keeps every member but a default its echo row holds. */
@@ -2838,7 +2846,7 @@ describe("engineDiff semantic fingerprint", { timeout: 120_000 }, () => {
     const built = (data: LensData) =>
       JSON.stringify(
         outcomeOf(() =>
-          encodeValue(projectBuildConstants(seam.buildLens(data), CHROMATIC_CHANNELS, seam.flatRadiusThreshold)),
+          encodeValue(projectBuildConstants(buildLens(data), CHROMATIC_CHANNELS, seam.flatRadiusThreshold)),
         ),
       );
     const offenders: string[] = [];

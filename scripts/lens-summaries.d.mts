@@ -7,7 +7,7 @@ export interface PrescriptionViews {
   toTeleconverterData: (ingested: never) => object;
 }
 
-/** Every export of the lens-data conversion seam, `src/optics/lensDataConversion.ts`. */
+/** Every export of the lens-data conversion seam, the conversion barrel. */
 export interface LensDataConversion extends PrescriptionViews {
   ingestLens: (file: never, request?: { sources?: boolean }) => unknown;
   ingestTeleconverter: (file: never, request?: { sources?: boolean }) => unknown;

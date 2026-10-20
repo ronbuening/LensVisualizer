@@ -5,7 +5,7 @@ import {
   rayFractionsForDensity,
   raySampleCountForDensity,
 } from "../../../src/optics/trace/raySampling.js";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 
 function expectSymmetric(fractions: number[]) {
   for (let i = 0; i < fractions.length; i++) {

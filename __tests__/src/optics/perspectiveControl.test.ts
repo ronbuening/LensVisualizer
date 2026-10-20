@@ -1,6 +1,6 @@
 import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import { anchorLayoutToCamera } from "../../../src/optics/state/cameraLayout.js";
 import { computeCardinalElements } from "../../../src/optics/analysis/summary/cardinals.js";
 import { analysisRequestForLens } from "./testLensFixtures.js";

@@ -24,7 +24,7 @@ function deriveMakerSlug(nameOrMaker, makerField) {
 }
 
 /**
- * Read the identity fields of a lens data file of either version from its source, without running it.
+ * Read the identity fields of a V2 lens data file from its source, without running it.
  *
  * @param {string} content - the file's text
  * @param {string} [fileName] - its path, for messages
@@ -68,8 +68,7 @@ function analysisRelativePathForDataPath(relativeDataPath) {
 }
 
 /**
- * Rewrite a lens file's type imports to match its location under src/lens-data: `types/optics.js` for a V1 file,
- * `types/lensDataV2.js` for a V2 one.
+ * Normalize type imports for organizer arrivals, including archived V1 files before conversion.
  */
 function normalizeLensDataTypesImport(content, filePath) {
   const relativeDepth = filePath.split("/src/lens-data/")[1]?.split("/").length ?? 1;

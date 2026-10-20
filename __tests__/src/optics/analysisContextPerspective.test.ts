@@ -1,6 +1,6 @@
 import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import { AnalysisSectionUnavailableError } from "../../../src/optics/analysis/analysisMovementSupport.js";
 import { createAnalysisComputationContext } from "../../../src/optics/analysis/analysisContext.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";

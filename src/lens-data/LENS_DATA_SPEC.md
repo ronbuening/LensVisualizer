@@ -13,8 +13,10 @@ The code behind each rule:
 - the schema defaults: `src/optics/prescription/defaults.ts`;
 - the validator: `src/optics/prescription/validate/`.
 
-Files written in the older V1 format still ingest until the catalog migration finishes. New files are V2. A catalog
-file still in V1 is read through [Reading V1 audits](#reading-v1-audits), which maps each V1 field name, as audit logs
+The app reads only `schema: 2` files. V1 ingest is confined to the permanent converter behind
+`src/optics/lensDataConversion.ts`; app ingest refuses V1 with its file path and the
+`npm run convert:lens-data -- --input <file> --write` command.
+[Reading V1 audits](#reading-v1-audits) maps each V1 field name, as audit logs
 and analyses use them, to its V2 path.
 
 ## Quick Start
@@ -157,7 +159,7 @@ export default LENS_DATA;
 
 | Field | Type | Default | Description |
 | --- | --- | --- | --- |
-| `schema` | `2` | required | Format discriminator; ingest dispatches on it. |
+| `schema` | `2` | required | Required format discriminator; app ingest accepts only 2. |
 | `key` | `string` | required | Unique identifier and catalog key, e.g. `"nokton-50f1"`. Lowercase `a-z`/`0-9` words separated by single hyphens, with no periods or other punctuation: the key becomes the `/lens/` URL and the `cfg` query value, so write f-numbers like `f14` or `f35-56`. |
 | `maker` | `string \| null` | inferred | Canonical maker-page name (`"Nikon"`, `"Voigtländer"`), used for maker pages and SEO. Left out, it is inferred from `name` by prefix matching. `null` records an unconfirmed maker: the lens goes to the Unattributed category and the SEO manufacturer claim is omitted. |
 | `name` | `string` | required | Display name, following the convention below. |
@@ -1453,7 +1455,7 @@ Code: `src/optics/prescription/validate/`.
 A patent declaration (a number or named parties) requires a non-empty, trimmed publication number and both party
 arrays. Empty arrays retain their source meaning above. A year alone or empty party lists without a patent number
 can describe a non-patent source and do not require patent metadata. These rules run through canonical validation
-for both V1 and V2 files.
+for V2 files.
 
 ### Corpus sweeps
 
@@ -1900,9 +1902,9 @@ export default LENS_DATA;
 ## Reading V1 Audits
 
 Audit logs (`*.audit.md`), analyses (`*.analysis.md`) and older agent records were written against lens-data V1. They
-are historical records and are not rewritten, so they keep V1's field names; files not yet converted are V1 too. V1
-still ingests until the catalog migration closes, and `npm run convert:lens-data -- --input <file> --write` converts a
-V1 file to V2 (and `--to-version 1` back). A catalog file still in V1 stays V1 until its migration batch converts it;
+are historical records and are not rewritten, so they keep V1's field names. The app accepts only V2.
+`npm run convert:lens-data -- --input <file> --write` permanently supports conversion of archived V1 files to V2
+(and `--to-version 1` back). The organizer converts V1 files on arrival, including files inside maker folders;
 the map below gives each of its fields' V2 paths.
 
 ### Field map

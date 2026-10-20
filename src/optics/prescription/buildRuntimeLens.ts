@@ -1,17 +1,17 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 import type { LensDataInput, RuntimeLens } from "../../types/optics.js";
-import type { CanonicalLens, IngestedPrescription } from "./canonical.js";
+import type { CanonicalLens, IngestedPrescription, IngestRequest } from "./canonical.js";
 import { runtimeView } from "./runtimeView.js";
 import { compileLensData, compileLens } from "./compile.js";
 
 /**
  * Build and register a RuntimeLens from an authored file or canonical prescription.
  *
- * @param data - authored V1/V2 file or canonical prescription
+ * @param data - authored V2 file or canonical prescription
  * @returns the shared frozen RuntimeLens for the canonical identity
  */
-export function buildLens(data: LensDataInput | LensDataV2Input | CanonicalLens): RuntimeLens {
-  return runtimeView(compileLensData(data));
+export function buildLens(data: LensDataInput | LensDataV2Input | CanonicalLens, request?: IngestRequest): RuntimeLens {
+  return runtimeView(compileLensData(data, request));
 }
 
 /**

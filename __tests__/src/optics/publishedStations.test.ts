@@ -1,7 +1,7 @@
 import { constructionFixtureData } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import { thickOrZero as thick } from "../../../src/optics/state/runtimeAdapters.js";
-import { attachTeleconverter } from "../../../src/optics/prescription/teleconverter.js";
+import { attachFixtureTeleconverter as attachTeleconverter } from "./constructionFixtures.js";
 import {
   isOnPublishedStation,
   nearestPublishedStation,

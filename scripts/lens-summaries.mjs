@@ -98,7 +98,7 @@ function pick(data, fields) {
 /**
  * The summary of one lens.
  *
- * @param {Record<string, unknown>} data - the lens in V1 field names
+ * @param {Record<string, unknown>} data - the canonical lens
  * @returns {Record<string, unknown>} its summary fields
  */
 export function lensSummary(data) {
@@ -127,8 +127,8 @@ export function lensSummary(data) {
 /**
  * The summary of one teleconverter, with the visible lenses it fits.
  *
- * @param {Record<string, unknown>} data - the converter in V1 field names
- * @param {readonly Record<string, unknown>[]} visibleLenses - every visible lens in V1 field names
+ * @param {Record<string, unknown>} data - the canonical converter
+ * @param {readonly Record<string, unknown>[]} visibleLenses - every visible canonical lens
  * @param {(host: unknown, converter: unknown) => { ok: boolean }} teleconverterCompatibility - the fit predicate
  * @returns {Record<string, unknown>} its summary fields and `compatibleLensKeys`
  */

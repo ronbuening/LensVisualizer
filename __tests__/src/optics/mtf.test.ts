@@ -19,7 +19,7 @@ import { LINE_NM } from "../../../src/optics/chromatic/spectralLines.js";
 import { geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtf/mtfMath.js";
 import { assessMtfDataLimitations } from "../../../src/optics/analysis/mtf/mtfDataLimitations.js";
 import { computeMtf } from "../../../src/optics/analysis/mtf/mtf.js";
-import { attachTeleconverter } from "../../../src/optics/prescription/teleconverter.js";
+import { attachFixtureTeleconverter as attachTeleconverter } from "./constructionFixtures.js";
 import {
   findMtfFieldFootprint,
   mtfLaunchGrid,

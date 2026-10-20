@@ -1,6 +1,6 @@
 import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import { solveChiefRayForRuntimeLens as solveChiefRay } from "../../../src/optics/state/fieldAdapters.js";
 import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
 import { traceRay, traceRayChromatic, traceRayVector, traceSkewRay } from "../../../src/optics/trace/rayAdapters.js";

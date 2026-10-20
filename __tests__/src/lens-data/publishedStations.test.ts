@@ -1,8 +1,9 @@
 import { CATALOG_CONSTRUCTION_FIXTURES } from "../optics/constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
-import { ingestLens, isV1File } from "../../../src/optics/prescription/ingestV2.js";
-import { toLensData } from "../../../src/optics/prescription/toLensData.js";
+import { buildFixtureLens as buildLens } from "../optics/constructionFixtures.js";
+import { isV1File } from "../../../src/optics/prescription/ingestV2.js";
+import { ingestLens } from "../../../src/optics/lensDataConversion.js";
+import { toLensData } from "../../../src/optics/prescription/v1/toLensData.js";
 import { thick } from "../../../src/optics/state/layout.js";
 import {
   isOnPublishedStation,

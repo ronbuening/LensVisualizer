@@ -23,6 +23,7 @@
  *
  * Runs only via `npm run generate:reports`, never in `npm test`; its job is to surface the data.
  */
+import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { describe, it, expect } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
 import {
@@ -34,7 +35,6 @@ import {
   resolveGlass,
 } from "../src/optics/glassCatalog.js";
 import { extractPatentNumber, walkLensSurfaces } from "./glassScanLib.js";
-import type { LensData } from "../src/types/optics.js";
 
 const REPORT_DIR = "agent_docs/generated";
 
@@ -56,7 +56,7 @@ interface Mismatch {
   vdDiff: number | null;
 }
 
-const modules = import.meta.glob<{ default: LensData }>("../src/lens-data/**/*.data.ts", { eager: true });
+const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 
 describe("catalog-mismatch scan", () => {
   it("emits a report of catalog mismatches across the entire lens library", () => {

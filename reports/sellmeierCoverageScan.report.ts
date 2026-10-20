@@ -10,6 +10,7 @@
  *
  * Regenerate: `npm run generate:reports -- sellmeierCoverageScan`
  */
+import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
 import {
@@ -21,9 +22,9 @@ import {
 } from "../src/optics/glassCatalog.js";
 import type { DispersionQuality } from "../src/optics/chromatic.js";
 import { extractPatentNumber, isExplicitlyUnmatched, walkLensSurfaces } from "./glassScanLib.js";
-import type { ElementData, LensData } from "../src/types/optics.js";
+import type { ElementData } from "../src/types/optics.js";
 
-const modules = import.meta.glob<{ default: LensData }>("../src/lens-data/**/*.data.ts", { eager: true });
+const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 
 const REPORT_DIR = "agent_docs/generated";
 const MAX_MISSING_DETAILS = 8;

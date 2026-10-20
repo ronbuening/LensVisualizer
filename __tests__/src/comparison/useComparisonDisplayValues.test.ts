@@ -4,7 +4,7 @@ import { constructionFixtureData } from "../optics/constructionFixtures.js";
 import { describe, it, expect } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useComparisonDisplayValues from "../../../src/comparison/useComparisonDisplayValues.js";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../optics/constructionFixtures.js";
 import { catalogLensData } from "../optics/testLensFixtures.js";
 import type { ComparisonLensesResult } from "../../../src/comparison/useComparisonMode.js";
 import { computeFocusPair, computeAperturePair, computeZoomPair } from "../../../src/comparison/comparisonSliders.js";

@@ -23,7 +23,7 @@ import { buildStateSurfaces } from "../state/layout.js";
 import { buildVarIndex } from "./compileControls.js";
 import { zoomIndexToT } from "../state/stationTables.js";
 import { traceParaxialSurfaces as traceSurfacesParaxial } from "../math/paraxial.js";
-import { isV1File, ingestTeleconverter } from "./ingestV2.js";
+import { ingestTeleconverter } from "./ingestV2.js";
 import { canonicalForView } from "./identity.js";
 import { canonicalInput } from "./canonicalInput.js";
 import type { CanonicalLens, CanonicalTeleconverter, IngestedPrescription } from "./canonical.js";
@@ -348,10 +348,7 @@ export function attachTeleconverter(
   const fit = teleconverterCompatibility(host, tc);
   if (!fit.ok) throw new TeleconverterAttachError(host.key, tc.key, fit.reason);
 
-  /* Composition replaces host focal labels, including unused labels on a prime. */
-  const hostFile = { ...host };
-  if (isV1File(host) && "zoomLabels" in hostFile) delete hostFile.zoomLabels;
-  const hostInput = canonicalForView(host) ?? canonicalInput(hostFile);
+  const hostInput = canonicalForView(host) ?? canonicalInput(host);
   const converterInput =
     "kind" in tc
       ? { prescription: tc, provenance: { format: 2 as const, defaulted: [], ignored: {} } }

@@ -4,7 +4,7 @@ import { CATALOG_CONSTRUCTION_FIXTURES } from "../optics/constructionFixtures.js
 import { mtfInputs } from "../optics/testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import { wideOpenStopAtZoom } from "../../../src/optics/state/stationTables.js";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../optics/constructionFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { computeElementRenderDiagnostics } from "../../../src/optics/diagram/runtimeDiagramAdapter.js";
 import { mtfModeledHalfField, resolveMtfFieldGeometry } from "../../../src/optics/analysis/mtf/mtfFields.js";
@@ -18,7 +18,7 @@ import {
 } from "../../../src/optics/state/runtimeAdapters.js";
 import { traceRay, traceSkewRay } from "../../../src/optics/trace/rayAdapters.js";
 import { traceEngineRay } from "../../../src/optics/trace/rayAdapters.js";
-import { attachTeleconverter } from "../../../src/optics/prescription/teleconverter.js";
+import { attachFixtureTeleconverter as attachTeleconverter } from "../optics/constructionFixtures.js";
 import { teleconverterCompatibility } from "../../../src/optics/prescription/teleconverterCompatibility.js";
 import validateTeleconverterData from "../../../src/optics/prescription/validate/teleconverter.js";
 import { ALL_CATALOG_KEYS } from "../../../src/utils/catalog/lensCatalog.js";

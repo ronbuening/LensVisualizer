@@ -7,7 +7,7 @@ import useLensComputation from "../../../../src/components/hooks/useLensComputat
 import { wideOpenStopAtZoom } from "../../../../src/optics/state/stationTables.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import { traceEngineRay } from "../../../../src/optics/trace/rayAdapters.js";
-import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../../optics/constructionFixtures.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import { buildVariableStopGapLens } from "../../optics/testLensFixtures.js";
 import { ALL_TELECONVERTER_KEYS, resolveTeleconverterKey } from "../../../../src/utils/catalog/teleconverterCatalog.js";

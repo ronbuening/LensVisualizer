@@ -107,6 +107,7 @@ const folderRoleOverrides = new Map([
     "src/optics/prescription",
     "canonical prescription ingest, compilation, composition, identity ownership, and control helpers",
   ],
+  ["src/optics/prescription/v1", "converter-only V1 ingest, printers, and source-path mapping"],
   [
     "src/optics/prescription/validate",
     "authored shape, canonical facts, diagnostic paths, and compiled geometry validation",

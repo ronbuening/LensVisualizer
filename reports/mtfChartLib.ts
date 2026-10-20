@@ -6,7 +6,7 @@ import type { RuntimeLens } from "../src/types/optics.js";
 
 /**
  * Whether a source erratum was corrected in the lens file, which the chart audit predates. Read from the built
- * lens's data, canonical ingest, so a V2 file's `source.errata` counts as a V1 file's `sourceErrata`.
+ * lens's V2 data through canonical ingest (`source.errata`).
  *
  * @param L - the built lens
  * @returns true when any erratum has status `corrected`

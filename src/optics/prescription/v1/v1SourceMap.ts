@@ -26,20 +26,20 @@
  * `zoomPositions`, the list that makes a lens a zoom, comes first, then the others in file order.
  */
 
-import type { LensDataInput } from "../../types/optics.js";
-import type { TeleconverterData } from "../../types/teleconverter.js";
+import type { LensDataInput } from "../../../types/optics.js";
+import type { TeleconverterData } from "../../../types/teleconverter.js";
 import type {
   CanonicalLens,
   CanonicalPrescription,
   IgnoredKind,
   IngestedPrescription,
   SourcePaths,
-} from "./canonical.js";
+} from "../canonical.js";
 import { ingestLensV1, ingestTeleconverterV1 } from "./ingestV1.js";
-import { childPath, follow, inverse, memberPath, parentPath, pathBelow } from "./sourcePaths.js";
+import { childPath, follow, inverse, memberPath, parentPath, pathBelow } from "../sourcePaths.js";
 import { V1_PRINT_ORDER } from "./toLensData.js";
-import { droppedStopRadius } from "./toLensDataV2.js";
-import type { DroppedStopRadius } from "./toLensDataV2.js";
+import { droppedStopRadius } from "../toLensDataV2.js";
+import type { DroppedStopRadius } from "../toLensDataV2.js";
 
 /** A value the source wrote that the V1 file does not hold. */
 export interface V1DroppedValue {

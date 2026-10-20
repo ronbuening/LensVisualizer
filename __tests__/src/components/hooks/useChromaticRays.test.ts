@@ -6,7 +6,7 @@ import { createAnalysisRequest } from "../../../../src/optics/analysis/request.j
 import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useChromaticRays from "../../../../src/components/hooks/useChromaticRays.js";
-import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../../optics/constructionFixtures.js";
 import { computeLongitudinalChromaticFocus } from "../../../../src/optics/analysis/chromatic/analysis.js";
 import {
   doLayoutForRuntimeLens as doLayout,

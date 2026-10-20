@@ -5,7 +5,7 @@ import { perspectiveAnalysisSamplingPlan } from "../../../src/optics/analysis/pe
 import type { PerspectiveAnalysisSamplingPlan } from "../../../src/optics/analysis/perspectiveAnalysisSampling.js";
 import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
 import type { AnalysisRequestParams } from "../../../src/optics/analysis/request.js";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { INTERACTIVE_ANALYSIS_SAMPLING } from "../../../src/optics/analysis/analysisQuality.js";
 

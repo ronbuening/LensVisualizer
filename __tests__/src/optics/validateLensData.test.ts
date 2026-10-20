@@ -5,14 +5,14 @@ import validateLensData, {
   validateCanonicalLens,
   validateLensInput,
 } from "../../../src/optics/prescription/validate/index.js";
-import { ingestLens } from "../../../src/optics/prescription/ingestV2.js";
+import { ingestLens } from "../../../src/optics/lensDataConversion.js";
 import { FIXTURE_PAIRS } from "./prescription/ingestV2Fixtures.js";
 import type { LensDataInput } from "../../../src/types/optics.js";
 import type { LensDataV2Input } from "../../../src/types/lensDataV2.js";
 import { v1CatalogDefaults } from "../../../src/optics/prescription/defaults.js";
 import { MAX_RIM_SLOPE_TAN } from "../../../src/optics/geometry/surfaceProfile.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../src/types/asphericSchema.js";
-import { attachTeleconverter } from "../../../src/optics/prescription/teleconverter.js";
+import { attachFixtureTeleconverter as attachTeleconverter } from "./constructionFixtures.js";
 import { teleconverterFixture, teleconverterHostData } from "./testLensFixtures.js";
 
 /* Passthrough mock so a single test can make buildAsphereIndex throw once.

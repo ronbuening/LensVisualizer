@@ -5,7 +5,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import AnalysisDrawerContent from "../../../../../src/components/layout/lensDiagram/AnalysisDrawerContent.js";
 import { ANALYSIS_TABS } from "../../../../../src/components/layout/lensDiagram/analysisTabs.js";
-import { buildLens } from "../../../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../../../optics/constructionFixtures.js";
 import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
 import { anchorLayoutToCamera } from "../../../../../src/optics/state/cameraLayout.js";
 import { computeAnalysisFieldGeometryAtState } from "../../../../../src/optics/state/fieldAdapters.js";

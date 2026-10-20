@@ -2,7 +2,7 @@ import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import { catalogLensData } from "./testLensFixtures.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import {
   doLayoutForRuntimeLens as doLayout,
   epAtZoomClamped as epAtZoom,

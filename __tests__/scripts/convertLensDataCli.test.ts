@@ -14,7 +14,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import { USAGE, runConversion, type ConversionRun } from "../../scripts/lens-data-convert/cli.mjs";
 import { convertLensDataSource, type ConversionOptions } from "../../scripts/lens-data-convert/convert.mjs";
 import { evaluateLensDataSource } from "../../scripts/lens-data-ast.mjs";
-import { ingestLens, ingestTeleconverter } from "../../src/optics/prescription/ingestV2.js";
+import { ingestLens, ingestTeleconverter } from "../../src/optics/lensDataConversion.js";
 import { FIXTURE_PAIRS } from "../src/optics/prescription/ingestV2Fixtures.js";
 import { PRIME_MEMBERS, V2_SOURCE_FILE, v1LensFile } from "./convertLensDataFixtures.js";
 

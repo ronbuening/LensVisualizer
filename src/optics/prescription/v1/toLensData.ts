@@ -15,7 +15,7 @@
  * - `toLensDataInput` is the file as authored, which the converter writes back for `--to-version 1`.
  */
 
-import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../types/asphericSchema.js";
+import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../types/asphericSchema.js";
 import type {
   AberrationControlConfig,
   ElementData,
@@ -25,9 +25,9 @@ import type {
   PublishedStations,
   RearPlateData,
   SurfaceData,
-} from "../../types/optics.js";
-import type { TeleconverterData } from "../../types/teleconverter.js";
-import { FLAT_RADIUS } from "./canonical.js";
+} from "../../../types/optics.js";
+import type { TeleconverterData } from "../../../types/teleconverter.js";
+import { FLAT_RADIUS } from "../canonical.js";
 import type {
   CanonicalElement,
   CanonicalLens,
@@ -39,13 +39,13 @@ import type {
   IngestedPrescription,
   V1PublishedStationsSpelling,
   V1Spelling,
-} from "./canonical.js";
-import { ELEMENT_SCHEMA_DEFAULTS, LENS_SCHEMA_DEFAULTS, REAR_PLATE_SCHEMA_DEFAULTS } from "./defaults.js";
-import type { SchemaDefault } from "./defaults.js";
+} from "../canonical.js";
+import { ELEMENT_SCHEMA_DEFAULTS, LENS_SCHEMA_DEFAULTS, REAR_PLATE_SCHEMA_DEFAULTS } from "../defaults.js";
+import type { SchemaDefault } from "../defaults.js";
 import { V1_FLAT_RADIUS } from "./ingestV1.js";
 
-import { associateCanonical } from "./identity.js";
-import { zoomIndexToT } from "../state/stationTables.js";
+import { associateCanonical } from "../identity.js";
+import { zoomIndexToT } from "../../state/stationTables.js";
 
 type Untyped = Record<string, unknown>;
 

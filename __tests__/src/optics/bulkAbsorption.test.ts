@@ -1,4 +1,4 @@
-import { ingestLens } from "../../../src/optics/buildLens.js";
+import { ingestLens } from "../../../src/optics/lensDataConversion.js";
 import { constructionFixtureData } from "./constructionFixtures.js";
 import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";

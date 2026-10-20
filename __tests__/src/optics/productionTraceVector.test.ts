@@ -16,7 +16,7 @@ import {
 import * as normalization from "../../../src/optics/prescription/identity.js";
 import { prepareState } from "../../../src/optics/state/preparedGeometry.js";
 import { createPerspectiveTraceContext } from "../../../src/optics/perspective/trace.js";
-import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import { traceFixtureSlope, traceFixtureVector } from "./traceGeometryFixtures.js";
 import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
 import { solveChiefRayForRuntimeLens as solveChiefRay } from "../../../src/optics/state/fieldAdapters.js";

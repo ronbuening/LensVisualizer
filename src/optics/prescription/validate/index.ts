@@ -1,8 +1,6 @@
 /** Validation in diagnostic order: authored declarations, canonical facts, then compiled probe geometry. */
-import type { LensData, LensDataInput, SurfaceData } from "../../../types/optics.js";
+import type { LensData, SurfaceData } from "../../../types/optics.js";
 import type { CanonicalLens, IngestedPrescription } from "../canonical.js";
-import { canonicalForView } from "../identity.js";
-import { ingestLensV1 } from "../ingestV1.js";
 import { canonicalConstructionData } from "../constructionData.js";
 import { buildLabelIndex } from "../compileLabels.js";
 import type { UntrustedLensData } from "./context.js";
@@ -30,24 +28,7 @@ function diagnosticRecords(ingested: IngestedPrescription<CanonicalLens>): LensD
   return data;
 }
 
-/** A diagnostic projection only: never compile, expand plates or resolve materials during validation. */
-function canonicalRecords(data: UntrustedLensData): LensData | UntrustedLensData {
-  if (canonicalForView(data)) return data;
-  // The converter validator's reference merge is generated data, not an authored file.
-  if (data.attachedTeleconverter !== undefined) return data;
-  try {
-    return diagnosticRecords(ingestLensV1(data as LensDataInput));
-  } catch {
-    // Ingest refuses ambiguity independently of validation. It must not add a new validator refusal or hide errors.
-    return data;
-  }
-}
-
-function validate(
-  data: UntrustedLensData,
-  catalogDefaults: boolean,
-  canonical?: IngestedPrescription<CanonicalLens>,
-): string[] {
+function validate(data: UntrustedLensData, catalogDefaults: boolean): string[] {
   const errors: string[] = [];
   validateTopLevel(data, errors, catalogDefaults);
   validatePatentMetadata(data, errors);
@@ -66,10 +47,8 @@ function validate(
   validateStop(data.surfaces, labelToIdx, explicitSpans, errors);
   validateControls(data, surfaceLabels, labelToIdx, isZoom, focusPositionCount, errors);
   validateAnnotations(data, surfaceLabels, errors);
-  // Shape refusals retain their raw geometry diagnostics. Successful mapping supplies canonical geometry facts.
-  const geometryData = errors.length === 0 && !canonical ? canonicalRecords(data) : data;
   validateGeometry(
-    geometryData,
+    data,
     labelToIdx,
     explicitSpans,
     isZoom,
@@ -97,5 +76,5 @@ export function validateCanonicalLens(
 ): string[] {
   const data = diagnosticRecords(ingested);
   if (descriptor) data.attachedTeleconverter = descriptor;
-  return authoredMessages(validate(data, false, ingested), ingested);
+  return authoredMessages(validate(data, false), ingested);
 }

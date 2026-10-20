@@ -11,7 +11,7 @@
 import { describe, it, expect } from "vitest";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { buildLens } from "../../../../../src/optics/prescription/buildRuntimeLens.js";
+import { buildFixtureLens as buildLens } from "../../../optics/constructionFixtures.js";
 import { catalogLensData } from "../../../optics/testLensFixtures.js";
 import { computeAnalysisFieldGeometryAtState } from "../../../../../src/optics/state/fieldAdapters.js";
 import { anchorLayoutToCamera } from "../../../../../src/optics/state/cameraLayout.js";

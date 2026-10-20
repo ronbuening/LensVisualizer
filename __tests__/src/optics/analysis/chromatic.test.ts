@@ -1,8 +1,8 @@
 import { stateWithZ } from "../../../../src/optics/state/preparedGeometry.js";
 import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
-import { ingestLens } from "../../../../src/optics/prescription/ingestV2.js";
-import { toLensDataInput } from "../../../../src/optics/prescription/toLensData.js";
+import { ingestLens } from "../../../../src/optics/lensDataConversion.js";
+import { toLensDataInput } from "../../../../src/optics/prescription/v1/toLensData.js";
 import { build, buildChromaticPositiveElementLens } from "../testLensFixtures.js";
 import foldedFixture from "../../../../src/lens-data/reference/ReferenceCassegrainBackFocus.data.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";

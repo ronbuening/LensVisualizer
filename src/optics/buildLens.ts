@@ -5,7 +5,6 @@ export type { CanonicalTeleconverter } from "./prescription/canonical.js";
 export { buildCanonicalLens, buildLens } from "./prescription/buildRuntimeLens.js";
 export type { CanonicalLens, IngestedPrescription } from "./prescription/canonical.js";
 export { canonicalLensFromRuntime, compiledLensFromRuntime } from "./prescription/identity.js";
-export { ingestLensV1, ingestTeleconverterV1 } from "./prescription/ingestV1.js";
 export { ingestLens, ingestTeleconverter, isV1File, lensDataVersion } from "./prescription/ingestV2.js";
 export { expandRearPlates } from "./prescription/rearPlates.js";
 export { buildLens as default } from "./prescription/buildRuntimeLens.js";
