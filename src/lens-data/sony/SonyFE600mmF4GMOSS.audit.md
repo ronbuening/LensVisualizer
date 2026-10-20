@@ -265,7 +265,7 @@ Stage 2/3 must re-bind these to the implemented `.data.ts` revision; interpretiv
 | LV-GLASS-RESOLVE | LENSVISUALIZER | NOT_RUN | integration |
 | S2-STOP-SD | CHAT_PREFLIGHT | NOT_APPLICABLE | stage2 |
 
-All 14 mandatory Stage 1 chat checks pass. Repository checks remain NOT_RUN (integration). **Gate: READY_FOR_DATA.** `integrationStatus: INTEGRATION_PENDING`.
+All 14 mandatory Stage 1 chat checks pass. Repository checks remain NOT_RUN (integration). **Gate: READY_FOR_DATA.** `integrationStatus: INTEGRATION_PENDING` (closed: integrated 2026-10-20).
 
 ### Stage 2 tasks
 
@@ -280,9 +280,9 @@ All 14 mandatory Stage 1 chat checks pass. Repository checks remain NOT_RUN (int
 - Taxonomy: `lensMounts: ["sony-fe"]`, `imageFormat: "135-full-frame"`; maker slug from the assignee (Sony).
 - Format the `.data.ts` with the project Prettier configuration.
 
-### Pending integration
+### Pending integration (closed)
 
-LensVisualizer type checking, `buildLens()`, `validateLensData()`, render diagnostics and runtime glass resolution are NOT_RUN and required at integration.
+LensVisualizer type checking, `buildLens()`, `validateLensData()`, render diagnostics and runtime glass resolution are NOT_RUN and required at integration. Closed: done at integration, 2026-10-20.
 
 
 
@@ -552,4 +552,18 @@ Negative controls (scratch copies): R5 −202.53 → −202.35 in the data file 
 
 ## 31. Gate disposition (Stage 4)
 
-All mandatory CHAT_PREFLIGHT checks pass on the final bytes; the one justified correction is recorded above with its evidence; the independent baseline is preserved and reproduces its fingerprint; targeted LensVisualizer single-file checks pass on the final data bytes. Gate: **READY_FOR_BATCH**. `integrationStatus`: **INTEGRATION_PENDING** (full test suite, `generate:metadata`, catalog-policy tests, production build/prerender and visual page check remain for the batch session).
+All mandatory CHAT_PREFLIGHT checks pass on the final bytes; the one justified correction is recorded above with its evidence; the independent baseline is preserved and reproduces its fingerprint; targeted LensVisualizer single-file checks pass on the final data bytes. Gate: **READY_FOR_BATCH**. `integrationStatus`: **INTEGRATION_PENDING** (full test suite, `generate:metadata`, catalog-policy tests, production build/prerender and visual page check remain for the batch session). Closed: integrated 2026-10-20.
+
+## 2026-10-20 — Deployment validation and wording pass
+
+Source re-read. Table 10 (PDF p. 25) and Tables 11–12 (p. 26) were re-read from 250 dpi page renders, not from the package notes: all 41 rows (R, d, nd, νd, θgF), the stop at S21, the six cemented interfaces, both variable gaps in both states and BF. No mismatches. The publication has no aspheric surfaces (no 非球面 anywhere in the text layer). Fig. 13 (p. 82) agrees with the data file's 23 elements in 17 groups, the cemented pairs, the R signs and the stop position, and draws L12 and L13 touching at the rim.
+
+First-order, patent vs model: f 581.97 vs 582.09 mm; Fno 4.12 vs 4.12 (stop calibrated); BF 39.18 vs paraxial 39.150 mm (last gap uses 39.18); L 455.32 vs 455.34 mm; ω 2.11°, chief ray reaching 21.633 mm. Close state as published (d14 31.73, d17 29.00): EFL 321.30 mm, object 4028 mm from S1 and 4484 mm object to image (printed "4.5 m"), paraxial magnification −0.1364 against the marketed 0.14×. GR2 travel 19.47 mm toward the object; d14 + d17 = 60.74 / 60.73.
+
+S4/S5 misprint test. The printed R4 −217.05, d4 0.22 and R5 −202.53 intersect at h = 36.09 mm, inside the 40.8 mm f/4.12 axial beam. Single-misprint alternatives that separate the surfaces all break the printed f and BF: R5 −205.23 (EFL −34 mm), R5 −220.53 (−163 mm), d4 1.22 (−35 mm), R4 −227.05 (+65 mm). The printed set reproduces f within 0.12 mm and every printed condition value, so the intersection belongs to the published design. clearap still reports CLIPS-AXIAL at S4/S5 (beam 40.75 mm vs sd 34.2 mm; unvignetted axial ≈ f/4.89); audit:surface, audit:image-circle and audit:field-coverage pass.
+
+Maker-diagram comparison. Sony's construction diagram (https://www.sony.jp/products/picture/y_SEL600F40GM_lenscomposition.jpg) shows three fluorite elements interleaved with other elements in the front group, one XA meniscus behind them, two elements in the focus-group position and two ED elements in the rear group. Example 4 matches the front-group layout with L12 and L14 (CaF₂ class) and L16 (FCD100 class, not fluorite), has no XA asphere, and its plausible rear ED positions are L34 (497816) and L40 (FCD515). Example 9 of the same publication (f 581.9, Fno 4.12, 4.5 m, BF 39.18, 23 elements / 17 groups) has three CaF₂-class elements but L = 470.00 mm (front vertex about 452 mm ahead of the flange, beyond the 449 mm barrel) and a single-element focus group moving 31.03 mm toward the image. Example 4 (about 437 mm ahead of the flange) is kept. Examples 6 (L 490.00) and 2 (the 400 mm design) are not candidates.
+
+Fields changed in this pass (no optical values): header comment reworded (V2 field names, audit IDs removed, XA/third-fluorite difference, rear ED positions and Example 9 stated); the template import comment removed; `subtitle`; `catalog.specs` (printed f 581.97, "ALL SPHERICAL", 2ω line dropped); `source.patentNumber` "JP 2025-63175 A" → "JP 2025-063175 A"; element labels → "Element N"; roles of L12, L14 and L16; `apdNote` on L12–L16, L40, L43 and L44; `apd: "inferred"` with a note on L34; `focus.description`; the conjugate `source` text. The analysis gained the production-difference, rear-ED and Example 9 statements, the misprint test result and the diagram source; glass wording now says "catalog match"; "Verification Summary" became "Model Scope and Limitations". Engine values are identical before and after (EFL 582.0885, FOPEN 4.12, half-field 2.5864, stop 16.5058, BFD 39.1501, close keyframe EFL 321.3036 / BFD −4.6572).
+
+Open: the glass strings still carry "(coordinate-compatible spectral proxy; supplier unconfirmed)" wording; SonyFE400mmF28GMOSS.data.ts writes the same patent as "JP 2025-63175 A" without the zero-padded serial.

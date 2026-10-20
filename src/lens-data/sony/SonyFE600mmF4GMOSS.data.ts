@@ -1,52 +1,62 @@
-// Root-level draft import. When authoring directly in a maker folder use "../../types/optics.js";
-// generate:metadata rewrites it when it organizes a root-level draft. See LENS_DATA_SPEC.md § Quick Start.
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — SONY FE 600mm f/4 GM OSS                                ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP 2025-63175 A, Example 4 (Sony Group Corporation).   ║
- * ║  Patent prescription retained unscaled: published f = 581.97 mm,     ║
- * ║  Fno 4.12, ω = 2.11°. Production metadata kept separate: 600 mm,     ║
- * ║  f/4, Sony E full frame.                                             ║
- * ║  23 elements / 17 groups, 0 aspherical surfaces (all spherical).     ║
+ * ║  Data source: JP 2025-063175 A, Example 4 (Sony Group Corporation).  ║
+ * ║    Prescription unscaled: printed f = 581.97 mm, Fno 4.12, ω =       ║
+ * ║    2.11°. Production metadata kept separate: 600 mm, f/4, Sony E     ║
+ * ║    full frame.                                                       ║
+ * ║  23 elements / 17 groups, all spherical.                             ║
  * ║  Focus: PUBLISHED inner focus. Cemented GR2 (L21+L22) moves 19.47 mm ║
  * ║    objectward; Table 12 d14/d17 = 51.20/9.54 (∞) and 31.73/29.00     ║
- * ║    (4.5 m, object-to-image). GR1, GR3 and the image plane are fixed. ║
+ * ║    (4.5 m object-to-image). GR1, GR3 and the image plane are fixed.  ║
  * ║                                                                      ║
  * ║  IMAGE PLANE: last gap is the printed BF 39.18 mm; the paraxial BFD  ║
  * ║    of the rounded table is 39.150 mm (−0.030 mm, within rounding).   ║
- * ║  NOTE ON STOP: the patent places the stop at S21 but publishes no    ║
- * ║    diameter. STO sd = 16.50583 mm is a paraxial calibration to the   ║
- * ║    published Fno 4.12 at the parsed-model EFL (the value buildLens   ║
- * ║    adopts, because its real-ray marginal is clipped at S4). A real   ║
- * ║    ray at the f/4.12 entrance-pupil radius (70.64 mm) crosses the    ║
- * ║    stop plane at 16.75 mm. Not a published diaphragm size; not       ║
+ * ║  STOP: the patent places the stop at S21 but publishes no diameter.  ║
+ * ║    The stop semi-diameter (16.506 mm) is a paraxial calibration to   ║
+ * ║    the printed Fno 4.12 (aperture.nominalFNumber) at the model EFL.  ║
+ * ║    A real ray at the f/4.12 entrance-pupil radius (70.64 mm) crosses ║
+ * ║    the stop plane at 16.75 mm. Not a published diaphragm size; not   ║
  * ║    independent f-number evidence.                                    ║
- * ║  NOTE ON SEMI-DIAMETERS: modeled, not source-published. Derived from ║
- * ║    exact meridional envelopes (axial f/4.12 and 0.6-field bundles at ║
- * ║    ∞ and 4.5 m, L11 = 76.0 mm as the off-axis vignetting aperture,   ║
- * ║    consistent with patent Fig. 13), then capped by geometry policy.  ║
- * ║  SOURCE GEOMETRY CONFLICT, retained as a documented model-of-record  ║
- * ║    exception (audit D-08/D-09; evidence MD-12):                      ║
+ * ║  SEMI-DIAMETERS: modeled, not published. Derived from exact          ║
+ * ║    meridional envelopes (axial f/4.12 and 0.6-field bundles at ∞ and ║
+ * ║    4.5 m, L11 = 76.0 mm as the off-axis vignetting aperture,         ║
+ * ║    consistent with patent Fig. 13), then capped by edge-thickness    ║
+ * ║    and gap rules.                                                    ║
+ * ║  PRINTED GEOMETRY CONFLICT, kept as printed (the printed f, BF and   ║
+ * ║    every printed condition value confirm these radii; no misprint    ║
+ * ║    fits):                                                            ║
  * ║    (1) Tabulated S4 (R −217.05) and S5 (R −202.53), 0.22 mm apart,   ║
- * ║        intersect at h = 36.09 mm. At ∞ the f/4.12 axial beam meets   ║
- * ║        them at 40.8 mm (real ray at the f/4.12 pupil radius; 40.2 mm ║
- * ║        when filling the modeled stop). S4/S5 sd = 34.2 mm.           ║
+ * ║      intersect at h = 36.09 mm. At ∞ the f/4.12 axial beam meets     ║
+ * ║      them at 40.8 mm (real ray at the f/4.12 pupil radius; 40.2 mm   ║
+ * ║      when filling the modeled stop). S4/S5 sd = 34.2 mm.             ║
  * ║    (2) L21 (7.23 mm thick) reaches a knife edge at h = 28.68 mm. At  ║
- * ║        4.5 m the f/4.12 bundle needs 29.1 mm (28.68 mm when filling  ║
- * ║        the modeled stop, leaving a 0.003 mm edge). L21/L22 sd = 27.6.║
+ * ║      4.5 m the f/4.12 bundle needs 29.1 mm (28.68 mm when filling    ║
+ * ║      the modeled stop, leaving a 0.003 mm edge). L21/L22 sd = 27.6   ║
+ * ║      mm.                                                             ║
  * ║    As modeled, the unvignetted axial aperture is ≈ f/4.89 at ∞. The  ║
- * ║    published Fno 4.12 is retained as nominalFno and apertureDesign;  ║
- * ║    it is not realized on axis by these physically valid apertures.   ║
+ * ║      printed Fno 4.12 is kept as aperture.nominalFNumber and         ║
+ * ║      catalog.fNumber.design; these physically valid apertures do not ║
+ * ║      realize it on axis.                                             ║
  * ║                                                                      ║
- * ║  Production differences: the SEL600F40GM uses an XA aspherical       ║
- * ║    element and three fluorite elements; Example 4 is all-spherical   ║
- * ║    with two CaF2-coordinate elements (L12, L14) plus FCD100 (L16).   ║
- * ║    The product's slip-in filter is not in the patent table and is    ║
- * ║    omitted (Sony's 24/18 count includes it). No cover glass, dummy   ║
- * ║    plane, or mechanical part is added. Correlation is research-based,║
+ * ║  PRODUCTION DIFFERENCES: the production SEL600F40GM adds an XA       ║
+ * ║    (extreme aspherical) element and a third fluorite element that    ║
+ * ║    this all-spherical example lacks. Example 4 has two CaF2-class    ║
+ * ║    elements (L12, L14) and one FCD100-class fluorophosphate element  ║
+ * ║    (L16). Sony's construction diagram marks two ED elements in the   ║
+ * ║    rear group; L34 (497816) and L40 (FCD515) are the matching low-   ║
+ * ║    dispersion positions here (inferred). The product's slip-in       ║
+ * ║    filter is not in the patent table and is omitted (Sony's 24/18    ║
+ * ║    count includes it). No cover glass or mechanical part is added.   ║
+ * ║  OTHER EXAMPLES: Example 9 of the same patent (f = 581.9 mm, F4.12,  ║
+ * ║    4.5 m) has three CaF2-class elements, but its length L = 470.00   ║
+ * ║    mm puts the front vertex about 452 mm ahead of the E-mount        ║
+ * ║    flange, longer than the 449 mm barrel, and it focuses with a      ║
+ * ║    single element. Example 4 (about 437 mm ahead of the flange, two- ║
+ * ║    element focus group) is kept. The correlation is research-based,  ║
  * ║    not manufacturer-confirmed.                                       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
@@ -56,12 +66,12 @@ const LENS_DATA = {
   key: "sony-fe-600mm-f4-gm-oss",
   maker: "Sony",
   name: "SONY FE 600mm f/4 GM OSS",
-  subtitle: "JP 2025-63175 A Example 4 — research correlation; not manufacturer-confirmed",
+  subtitle: "JP 2025-063175 A, Example 4 — design-family correlation; not manufacturer-confirmed",
 
   catalog: {
     lensMounts: ["sony-fe"],
     imageFormat: "135-full-frame",
-    specs: ["23 ELEMENTS / 17 GROUPS", "DESIGN f ≈ 582.09 mm", "DESIGN F/4.12", "2ω = 4.22°", "ALL-SPHERICAL"],
+    specs: ["23 ELEMENTS / 17 GROUPS", "DESIGN f = 581.97 mm", "DESIGN F/4.12", "ALL SPHERICAL"],
     elementCount: 23,
     groupCount: 17,
     focalLengthMm: { marketing: 600, design: 582.08849918 },
@@ -69,7 +79,7 @@ const LENS_DATA = {
   },
 
   source: {
-    patentNumber: "JP 2025-63175 A",
+    patentNumber: "JP 2025-063175 A",
     patentYear: 2025,
     authors: ["Riki Maruyama"],
     assignees: ["Sony Group Corporation"],
@@ -79,7 +89,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
-      label: "Element 1 (L11)",
+      label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.5927,
       vd: 35.31,
@@ -91,29 +101,31 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L12",
-      label: "Element 2 (L12)",
+      label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.43385,
       vd: 95.23,
       focalLengthMm: 252.09,
       glass: "CaF2 optical fluorite crystal (supplier unconfirmed)",
       apd: "patent",
-      apdNote: "Patent θgF=0.5387; engine-baseline dPgF=+0.05507686 (0.6438 − 0.001682νd).",
-      role: "CaF2-coordinate positive element in fixed GR1; patent condition (4)/(5) anomalous low-dispersion material.",
+      apdNote:
+        "Patent prints θgF 0.5387 and names this lens under conditions (4)/(5), its anomalous low-dispersion GR1 positives (¶0033); ΔPgF +0.0551 from the 0.6438 − 0.001682νd normal line.",
+      role: "Fluorite-class (CaF2) positive element in the fixed front group GR1.",
       diagramLabel: "L12",
       dPgF: 0.05507686,
     },
     {
       id: 3,
       name: "L13",
-      label: "Element 3 (L13)",
+      label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.85478,
       vd: 24.8,
       focalLengthMm: -157.07,
       glass: "S-NBH56 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: false,
-      apdNote: "Patent θgF=0.6122; engine-baseline dPgF=+0.01011360 (0.6438 − 0.001682νd).",
+      apdNote:
+        "Patent prints θgF 0.6122; condition (11) keeps this dense flint close to the patent's normal line (ΔPgF +0.0101 from 0.6438 − 0.001682νd).",
       role: "High-index negative chromatic partner in fixed GR1 (conditions (10)/(11)).",
       diagramLabel: "L13",
       dPgF: 0.0101136,
@@ -121,29 +133,31 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L14",
-      label: "Element 4 (L14)",
+      label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.43385,
       vd: 95.23,
       focalLengthMm: 207.28,
       glass: "CaF2 optical fluorite crystal (supplier unconfirmed)",
       apd: "patent",
-      apdNote: "Patent θgF=0.5387; engine-baseline dPgF=+0.05507686 (0.6438 − 0.001682νd).",
-      role: "CaF2-coordinate positive element in fixed GR1; patent condition (4)/(5) anomalous low-dispersion material.",
+      apdNote:
+        "Patent prints θgF 0.5387 and names this lens under conditions (4)/(5), its anomalous low-dispersion GR1 positives (¶0033); ΔPgF +0.0551 from the 0.6438 − 0.001682νd normal line.",
+      role: "Fluorite-class (CaF2) positive element in the fixed front group GR1.",
       diagramLabel: "L14",
       dPgF: 0.05507686,
     },
     {
       id: 5,
       name: "L15",
-      label: "Element 5 (L15)",
+      label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.85478,
       vd: 24.8,
       focalLengthMm: -232.15,
       glass: "S-NBH56 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: false,
-      apdNote: "Patent θgF=0.6122; engine-baseline dPgF=+0.01011360 (0.6438 − 0.001682νd).",
+      apdNote:
+        "Patent prints θgF 0.6122; condition (11) keeps this dense flint close to the patent's normal line (ΔPgF +0.0101 from 0.6438 − 0.001682νd).",
       role: "High-index negative chromatic partner in fixed GR1 (conditions (10)/(11)).",
       diagramLabel: "L15",
       dPgF: 0.0101136,
@@ -151,22 +165,23 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L16",
-      label: "Element 6 (L16)",
+      label: "Element 6",
       type: "Positive Meniscus",
       nd: 1.437,
       vd: 95.1,
       focalLengthMm: 233.84,
       glass: "FCD100 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: "patent",
-      apdNote: "Patent θgF=0.5334; engine-baseline dPgF=+0.04955820 (0.6438 − 0.001682νd).",
-      role: "Fluorophosphate positive meniscus in fixed GR1 (FCD100 coordinate; conditions (4)/(5)).",
+      apdNote:
+        "Patent prints θgF 0.5334 and names this lens under conditions (4)/(5) (¶0033); nd/νd match HOYA FCD100 glass, not fluorite. ΔPgF +0.0496 from the 0.6438 − 0.001682νd normal line.",
+      role: "FCD100-class fluorophosphate positive meniscus, the third low-dispersion positive of fixed GR1.",
       diagramLabel: "L16",
       dPgF: 0.0495582,
     },
     {
       id: 7,
       name: "L17",
-      label: "Element 7 (L17)",
+      label: "Element 7",
       type: "Negative Meniscus",
       nd: 1.5168,
       vd: 64.2,
@@ -178,7 +193,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L21",
-      label: "Element 8 (L21)",
+      label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.5927,
       vd: 35.31,
@@ -191,7 +206,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L22",
-      label: "Element 9 (L22)",
+      label: "Element 9",
       type: "Biconcave Negative",
       nd: 1.5168,
       vd: 64.2,
@@ -204,7 +219,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L31",
-      label: "Element 10 (L31)",
+      label: "Element 10",
       type: "Biconvex Positive",
       nd: 1.71736,
       vd: 29.5,
@@ -217,7 +232,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L32",
-      label: "Element 11 (L32)",
+      label: "Element 11",
       type: "Biconcave Negative",
       nd: 1.48749,
       vd: 70.44,
@@ -230,7 +245,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L33",
-      label: "Element 12 (L33)",
+      label: "Element 12",
       type: "Biconvex Positive",
       nd: 1.85478,
       vd: 24.8,
@@ -243,12 +258,15 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L34",
-      label: "Element 13 (L34)",
+      label: "Element 13",
       type: "Biconcave Negative",
       nd: 1.497,
       vd: 81.61,
       focalLengthMm: -69.23,
       glass: "FCD1 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote:
+        "nd 1.49700 / νd 81.61 matches FCD1-class ED glass; plausibly one of the two rear-group ED elements in Sony's diagram. The patent prints no θgF for it.",
       role: "Negative low-dispersion member of the cemented GR3b image-stabilization pair.",
       diagramLabel: "L34",
       cemented: "D3",
@@ -256,7 +274,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L35",
-      label: "Element 14 (L35)",
+      label: "Element 14",
       type: "Biconcave Negative",
       nd: 1.7725,
       vd: 49.62,
@@ -268,7 +286,7 @@ const LENS_DATA = {
     {
       id: 15,
       name: "L36",
-      label: "Element 15 (L36)",
+      label: "Element 15",
       type: "Positive Meniscus",
       nd: 1.58144,
       vd: 40.89,
@@ -280,7 +298,7 @@ const LENS_DATA = {
     {
       id: 16,
       name: "L37",
-      label: "Element 16 (L37)",
+      label: "Element 16",
       type: "Biconvex Positive",
       nd: 1.58144,
       vd: 40.89,
@@ -292,7 +310,7 @@ const LENS_DATA = {
     {
       id: 17,
       name: "L38",
-      label: "Element 17 (L38)",
+      label: "Element 17",
       type: "Biconcave Negative",
       nd: 1.95375,
       vd: 32.32,
@@ -305,7 +323,7 @@ const LENS_DATA = {
     {
       id: 18,
       name: "L39",
-      label: "Element 18 (L39)",
+      label: "Element 18",
       type: "Biconvex Positive",
       nd: 1.5927,
       vd: 35.31,
@@ -318,14 +336,15 @@ const LENS_DATA = {
     {
       id: 19,
       name: "L40",
-      label: "Element 19 (L40)",
+      label: "Element 19",
       type: "Biconcave Negative",
       nd: 1.59282,
       vd: 68.63,
       focalLengthMm: -24.65,
       glass: "FCD515 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: "patent",
-      apdNote: "Patent θgF=0.5441; engine-baseline dPgF=+0.01573566 (0.6438 − 0.001682νd).",
+      apdNote:
+        "Patent prints θgF 0.5441 and names this lens under condition (6), anomalous-dispersion negatives in GR3c (¶0037); ΔPgF +0.0157. Plausibly one of the two rear-group ED elements in Sony's diagram.",
       role: "Anomalous-dispersion negative member of the L40+L41 cemented pair in GR3c (conditions (6), (8), (9)).",
       diagramLabel: "L40",
       cemented: "D5",
@@ -334,7 +353,7 @@ const LENS_DATA = {
     {
       id: 20,
       name: "L41",
-      label: "Element 20 (L41)",
+      label: "Element 20",
       type: "Positive Meniscus",
       nd: 1.68893,
       vd: 31.16,
@@ -347,7 +366,7 @@ const LENS_DATA = {
     {
       id: 21,
       name: "L42",
-      label: "Element 21 (L42)",
+      label: "Element 21",
       type: "Biconvex Positive",
       nd: 1.72047,
       vd: 34.71,
@@ -360,14 +379,15 @@ const LENS_DATA = {
     {
       id: 22,
       name: "L43",
-      label: "Element 22 (L43)",
+      label: "Element 22",
       type: "Negative Meniscus",
       nd: 1.92286,
       vd: 20.88,
       focalLengthMm: -26.73,
       glass: "E-FDS1 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: "patent",
-      apdNote: "Patent θgF=0.6388; engine-baseline dPgF=+0.03012016 (0.6438 − 0.001682νd).",
+      apdNote:
+        "Patent prints θgF 0.6388 and names this lens under condition (6), anomalous-dispersion negatives in GR3c (¶0037); ΔPgF +0.0301 from the 0.6438 − 0.001682νd normal line.",
       role: "High-dispersion anomalous negative member of the L42+L43 cemented pair (conditions (6)-(9)).",
       diagramLabel: "L43",
       cemented: "D6",
@@ -376,14 +396,15 @@ const LENS_DATA = {
     {
       id: 23,
       name: "L44",
-      label: "Element 23 (L44)",
+      label: "Element 23",
       type: "Negative Meniscus",
       nd: 1.92286,
       vd: 20.88,
       focalLengthMm: -91.61,
       glass: "E-FDS1 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: "patent",
-      apdNote: "Patent θgF=0.6388; engine-baseline dPgF=+0.03012016 (0.6438 − 0.001682νd).",
+      apdNote:
+        "Patent prints θgF 0.6388 and names this lens under condition (6), anomalous-dispersion negatives in GR3c (¶0037); ΔPgF +0.0301 from the 0.6438 − 0.001682νd normal line.",
       role: "Rear negative meniscus of GR3c (conditions (6), (7), (9)); anomalous-dispersion lateral-colour corrector.",
       diagramLabel: "L44",
       dPgF: 0.03012016,
@@ -437,7 +458,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 4.5,
     description:
-      "PUBLISHED GR2 inner focus: 19.47 mm objectward; d14 51.20→31.73 and d17 9.54→29.00 mm; 4.5 m object-to-image.",
+      "PUBLISHED inner focus: the cemented GR2 doublet moves 19.47 mm toward the object while GR1, GR3 and the image plane stay fixed. Table 12 prints d14 51.20 → 31.73 mm and d17 9.54 → 29.00 mm for the 4.5 m state, measured object to image, which matches the marketed 4.5 m minimum focus.",
     conjugates: [
       {
         zoomStation: 0,
@@ -445,7 +466,7 @@ const LENS_DATA = {
         objectDistanceMm: 4500,
         distanceReference: "image-plane",
         source:
-          "JP 2025-63175 A Example 4, Table 12 (4.5 m state, d14/d17); image-plane datum established by conjugate solve",
+          "JP 2025-063175 A, Example 4, Table 12 (4.5 m state, d14/d17); the conjugate solve places the object 4.48 m from the image plane",
       },
     ],
   },

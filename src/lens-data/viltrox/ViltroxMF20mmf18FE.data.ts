@@ -1,18 +1,17 @@
 /*
- * CN209606699U Example 1, §§0074–0098. Product correlation is inferred, not manufacturer-confirmed.
- * Explicitly authorized approximate geometry: source gives L13 rear R=-70.25 mm and cemented L14
- * front R=-70.15 mm. Retain -70.25 mm as one approximate shared interface, not a unique correction.
- * Both source values and first-order/exact-ray sensitivity are preserved in the dossier.
- * Native rounded Nd/Vd are unchanged. No supplier or borrowed spectral values are assigned.
+ * CN 209606699 U Example 1, §§0074–0098. Product correlation is inferred, not manufacturer-confirmed.
+ * Approximate geometry: the source gives L13 rear R=-70.25 mm and cemented L14 front R=-70.15 mm.
+ * The model uses -70.25 mm as one shared interface; this is an approximation, not a unique correction.
+ * Using -70.15 mm instead changes EFL by 0.0005 mm and BFD by 0.005 mm.
+ * Rounded patent Nd/Vd are unchanged. No supplier or borrowed spectral values are assigned.
  * No scaling or conic conversion. Source equation uses (1+K); A4 through A12 copied, A14 unused.
- * Stop location is published; stop SD is calibrated to F1.8. Surface SDs are inferred and checked
- * against sampled exact 3D rays, own-rim thickness, rim slope, conic domain and shared-band gaps.
- * Runtime exact-ray aperture calibration expands the iris; separately tested default-display rays
- * remain clear, while an outer 28.2-degree wide-open sample clips in both radius alternatives.
- * Image plane is computed paraxial infinity BFD, not a published exact spacing.
- * NO_INTERNAL_RECONSTRUCTION: G1/G2 fixed and G3 moving is published, but no focus law is invented.
- * Marketed 0.25 m is metadata only. No finite-focus state, full-field throughput or production MTF
- * is certified. Model contains no cover plates: the source lists none. INTEGRATION_PENDING.
+ * Stop location is published; the stop radius is set from F1.8. Surface SDs are inferred and checked
+ * against exact rays, edge thickness, rim slope, conic domain and gaps between adjacent surfaces.
+ * Wide open, an outer meridional ray at 28.2 degrees clips at surface 13 with either interface radius.
+ * Image plane is at the computed paraxial infinity BFD; the patent prints no back focus.
+ * Focus: G1/G2 fixed and G3 moving is published, but no travel or near-focus spacings are, so only
+ * the infinity state is modeled. Marketed 0.25 m minimum focus is catalog data only.
+ * The source lists no cover plates; none are modeled.
  */
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
@@ -20,15 +19,16 @@ const LENS_DATA = {
   key: "viltrox-mf-20mm-f18-fe",
   maker: "Viltrox",
   name: "VILTROX MF 20mm f/1.8 FE",
-  subtitle: "CN209606699U Example 1; inferred production correlation; approximate shared interface",
+  subtitle: "CN 209606699 U, Example 1 — inferred production correlation",
 
   catalog: {
     lensMounts: ["sony-fe"],
     imageFormat: "135-full-frame",
     specs: [
       "12 ELEMENTS / 9 GROUPS",
-      "INFINITY MODEL; APPROXIMATE CEMENTED INTERFACE",
-      "INFERRED IRIS DIAMETER AND CLEAR APERTURES",
+      "COMPUTED f = 20.31 mm",
+      "DESIGN F/1.8",
+      "2 ASPHERICAL SURFACES / 1 ELEMENT",
     ],
     elementCount: 12,
     groupCount: 9,
@@ -78,7 +78,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 37.8875124186452,
       glass: "Unmatched (high-index flint; rounded patent coordinates)",
-      role: "Positive member of the G1 cemented pair; shared rear boundary approximated.",
+      role: "Positive member of the G1 cemented doublet; its rear radius is the shared approximate interface.",
       cemented: "C1",
     },
     {
@@ -91,7 +91,10 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -30.661602209944753,
       glass: "Unmatched (low-dispersion crown; rounded patent coordinates)",
-      role: "Negative member of the G1 cemented pair; shared front boundary approximated.",
+      apd: "inferred",
+      apdNote:
+        "Viltrox lists four ED elements, matching the four positions with patent nd/νd 1.50/81.6; the patent names no special glass and the partial dispersion is unpublished.",
+      role: "Low-dispersion negative member of the G1 cemented doublet; its front radius is the shared approximate interface.",
       cemented: "C1",
     },
     {
@@ -116,7 +119,10 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 120.90674789128398,
       glass: "Unmatched (low-dispersion crown; rounded patent coordinates)",
-      role: "Second positive element in G2.",
+      apd: "inferred",
+      apdNote:
+        "Viltrox lists four ED elements, matching the four positions with patent nd/νd 1.50/81.6; the patent names no special glass and the partial dispersion is unpublished.",
+      role: "Low-dispersion positive meniscus closing G2, just ahead of the stop.",
     },
     {
       id: 7,
@@ -128,7 +134,10 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 24.77057304390312,
       glass: "Unmatched (low-dispersion crown; rounded patent coordinates)",
-      role: "Leading positive member of the G3 cemented triplet.",
+      apd: "inferred",
+      apdNote:
+        "Viltrox lists four ED elements, matching the four positions with patent nd/νd 1.50/81.6; the patent names no special glass and the partial dispersion is unpublished.",
+      role: "Low-dispersion leading positive member of the G3 cemented triplet.",
       cemented: "C2",
     },
     {
@@ -154,7 +163,10 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 31.83572635135135,
       glass: "Unmatched (low-dispersion crown; rounded patent coordinates)",
-      role: "Trailing positive member of the G3 cemented triplet.",
+      apd: "inferred",
+      apdNote:
+        "Viltrox lists four ED elements, matching the four positions with patent nd/νd 1.50/81.6; the patent names no special glass and the partial dispersion is unpublished.",
+      role: "Low-dispersion trailing positive member of the G3 cemented triplet.",
       cemented: "C2",
     },
     {
@@ -191,7 +203,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -137.1849130313459,
       glass: "Unmatched (crown; rounded patent coordinates)",
-      role: "Rear negative element with two published aspheres.",
+      role: "Rear negative element of G3, aspherical on both faces.",
     },
   ],
 
@@ -236,7 +248,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.25,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: static infinity approximation only. Patent G1/G2 fixed and G3 moving; no travel or finite-focus spacings published. Marketed 0.25 m does not certify a modeled near state. Shared L13/L14 interface approximated at -70.25 mm; source also prints -70.15 mm.",
+      "Infinity focus only. The patent states that G1 and G2 stay fixed while the rear group G3 moves to focus, but it prints no travel or near-focus spacings, so no near state is modeled. The marketed 0.25 m minimum focus distance is catalog data only.",
   },
 
   aperture: { nominalFNumber: 1.8, fStops: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16], blades: 14 },
@@ -247,7 +259,7 @@ const LENS_DATA = {
     { text: "G3", fromSurface: "13", toSurface: "22A" },
   ],
   doublets: [
-    { text: "C1 (approximate interface)", fromSurface: "5", toSurface: "7" },
+    { text: "C1", fromSurface: "5", toSurface: "7" },
     { text: "C2", fromSurface: "13", toSurface: "16" },
   ],
 

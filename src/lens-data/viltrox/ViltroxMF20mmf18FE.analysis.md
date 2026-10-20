@@ -4,9 +4,9 @@
 **Application Number:** 201920611862.6  
 **Filed:** 2019-04-28  
 **Published:** 2019-11-08  
-**Inventors:** 刘瑞军; 陈宝锋  
-**Applicant:** 深圳市雷影光电科技有限公司  
-**Title:** 数码相机超广角大光圈全画幅镜头  
+**Inventors:** Liu Ruijun (刘瑞军); Chen Baofeng (陈宝锋)  
+**Applicant:** Shenzhen Leiying Photoelectric Technology Co., Ltd. (深圳市雷影光电科技有限公司)  
+**Title:** 数码相机超广角大光圈全画幅镜头 (Ultra-wide-angle, large-aperture full-frame lens for digital cameras)  
 **Embodiment analyzed:** Example 1, §0090 and the aspherical table §0092.
 
 The modeled prescription is correlated with the VILTROX MF 20mm f/1.8 FE.
@@ -270,67 +270,45 @@ conditions do not independently identify a corrected radius.
 
 ## Model Geometry and Approximation Limits
 
-The physical stop position is source-backed, but its authored semi-diameter of
-10.721716 mm is inferred by calibration to F1.8 through the paraxial entrance pupil.
+The stop position is published; its semi-diameter is not (see below).
 The clear apertures of the refracting surfaces are also inferred.
-The modeled front diameter is 56 mm; the source provides only a lower bound.
-The modeled shapes were checked for actual rim slope, mathematical conic domain,
-conic-margin policy, positive own-rim thickness and cross-gap intrusion on shared
-radial material bands. These calculations do not establish production aperture sizes.
+The modeled front diameter is 56 mm; the source provides only a lower bound of 54 mm.
+The modeled shapes keep positive edge thickness, stay inside each asphere's conic
+domain and do not intrude into neighbouring air gaps. They do not establish production
+aperture sizes.
 
-Exact three-dimensional Snell tracing checks 300 sampled rays per interface choice
-at fields 0°,14.1° and28.2°, apertures F1.8/F4/F8/F16 and multiple radial/azimuthal
-stop coordinates. The largest image-intercept displacement between the alternatives
-with physical stop radius and image plane held fixed is 0.003271 mm;
-the largest corresponding surface-hit displacement is 0.003359 mm.
-The EFL change is 0.000465 mm and the BFD change is
--0.005452 mm when the alternative shared radius is used.
-Both alternatives satisfy identical sampled clearance and geometry checks.
-
-Those differences are below the adopted 0.01 mm geometric sensitivity criterion,
-chosen to match one printed length least digit. This supports a disclosed geometric
-approximation in the tested domain. It does not establish equivalence at diffraction
-resolution, exact production image quality, all pupil coordinates or all field angles.
-Larger-field exploratory rays were not all traceable; full-field throughput remains
-uncertified. No modeled clear aperture, paraxial result or absence of internal movement
+Using −70.15 mm instead of −70.25 mm for the shared L13/L14 interface changes EFL by
+0.000465 mm and BFD by −0.005452 mm. With the stop radius and image plane held fixed,
+exact-ray image intercepts at 0°, 14.1° and 28.2° and F1.8 to F16 move by at most
+0.003271 mm, below the 0.01 mm least digit of the printed lengths. The approximation
+is therefore negligible at the model's geometric scale; it is not shown to be
+equivalent at diffraction resolution. No modeled clear aperture or paraxial result
 should be mistaken for a manufacturer measurement or a complete optical prescription.
 
-### Runtime iris and sampled vignetting
+### Iris size and vignetting
 
-The actual pinned LensVisualizer implementation recalibrates the iris using an exact
-on-axis marginal ray. It produces a physical stop semi-diameter of 11.110053 mm,
-instead of the stored paraxial calibration of 10.721716 mm. The runtime reports
-F1.8 by construction; neither calibration measures the production iris.
-The authored-iris results above must not be transferred to this larger runtime iris.
+The model sets the iris from an exact on-axis marginal ray at F1.8, giving a stop
+semi-diameter of 11.11 mm rather than the paraxial value of 10.72 mm.
+Neither value measures the production iris.
 
-A separate independent exact-ray implementation tested the larger iris with a fixed
-physical stop and image plane for both interface alternatives. At the runtime’s
-actual default field envelope, 0°, 12.362580° and 24.725160°, using the same four
-apertures and 25 pupil samples, all 300 rays per alternative remain clear.
-Maximum image-intercept and surface-hit differences are 0.002996 mm and 0.003018 mm,
-respectively, and minimum non-stop clearance is 0.197413 mm.
+With this iris, rays at 0°, 12.4° and 24.7° pass every modeled aperture at F1.8 to F16
+with either interface radius, with at least 0.197 mm clearance; image intercepts for
+the two radii differ by at most 0.003 mm.
 
-The larger-iris test at 28.2° does not pass an all-rays-clear criterion. The outer
-meridional pupil sample at F1.8 reaches surface 13 at radial heights 12.910059 mm
-and 12.910001 mm for the two alternatives, beyond its modeled 12.8 mm aperture.
-Both rays are physically clipped there. Continuing either ray through extrapolated
-surfaces produces a backward intersection at surface 14; that extrapolation is not
-a valid material path. The failed expanded-envelope containment comparison remains
-in the numerical record, with matching clipping outcomes for both alternatives.
-It is not concealed by shrinking the iris or enlarging the lens aperture.
+At 28.2° and F1.8, the outer meridional ray reaches surface 13 at 12.91 mm, just
+beyond its modeled 12.8 mm aperture, and is clipped there with either interface
+radius. The chief ray itself reaches the 21.63 mm full-frame corner at a half-field
+of about 47.1° (2ω ≈ 94.2°, against the patent's "greater than 94°").
 
-The actual pinned buildLens/validateLensData execution and production element-render
-diagnostics pass, with zero hidden material trim. Targeted TypeScript checking also
-passes. This supports the disclosed static geometric approximation and the tested
-default display envelope, without certifying full-field transmission, diffraction-level
-equivalence or production performance. Batch-wide checks and integration remain pending.
+The model is a static geometric approximation; it does not establish full-field
+transmission, diffraction-level equivalence or production performance.
 
 ## Sources
 
-[1] CN209606699U, original supplied Chinese patent PDF, published 2019-11-08.
+[1] CN 209606699 U, Chinese utility-model publication, published 2019-11-08.
 PDF p1: attribution and dates; pp10–11: §§0070–0085 and spacings;
 p12: Example 1 §0090 and indices; p13: §§0092–0098 asphere table/equation;
-p14: §0108 capability claims; p15: Fig. 1. The original PDF accompanies the dossier.
+p14: §0108 capability claims; p15: Fig. 1.
 
 [2] Viltrox, [MF 20mm F1.8 Full-Frame Lens for Sony E-Mount](https://viltrox.com/products/viltrox-20mm-f-1-8-wide-angle-full-frame-manual-focus-prime-lens-for-sony-e-mount),
 Product Information and 12 Elements in 9 Groups sections, accessed 2026-10-02.
@@ -347,7 +325,6 @@ p12 §0090, published 2024-03-19; used only to check the shared-radius discrepan
 [D-K59 datasheet](https://www.cdgmgd.com/webapp/pdf/D-K59.pdf).
 
 [7] Schott, Optical Glass collection datasheets, March 2018, SF1 row.
-The precise primary publisher URL is retained with the candidate evidence.
 All catalog candidate coordinates above were checked against primary publisher text
 retrieved 2026-10-02; they are not confirmed suppliers for this lens.
 

@@ -196,12 +196,41 @@ corpus sweep or full build were run. Actual buildLens/validateLensData pass; all
 real LensDataInput type checking passes; resolveCompatibleGlass returns null for all12 intentionally Unmatched labels.
 These are targeted runtime checks, not a complete integration gate. Historical runtime results are bound to exact final
 data bytes. The standalone Python replay recomputes independent source/model/ray checks but does not impersonate a Node
-runtime re-execution. Full build/corpus/publication remain NOT_RUN and INTEGRATION_PENDING.
+runtime re-execution. Full build/corpus/publication had not run at packaging (closed 2026-10-20: integrated).
 
 Final packaging: canonical nine files only, original PDF/card unchanged, manifest hashes final bytes, fresh ZIP extraction
-and portable replay required. READY_FOR_BATCH is earned only for this disclosed bounded static approximation and remains
+and portable replay required. Batch readiness applied only to this disclosed bounded static approximation and was
 separate from integration/publication. Stable replay output is compared without overwriting the packaged results.
 
 Clean extraction/replay completed successfully. All nine root members, original bytes and manifest hashes were verified.
 The extracted verifier returned zero; regenerated JSON matched packaged results exactly, including preserved FAIL observations.
 The packaged results were not overwritten during replay. Final gate: READY_FOR_BATCH; INTEGRATION_PENDING.
+
+## 2026-10-20 — Deployment validation and wording pass
+
+Source re-read from the original PDF (text layer spot-checked against 150 dpi renders of pp.12–13): all 22 surfaces
+(R, d, nd, νd), the stop position (3.54 mm after L22, 6.59 mm to L31 from M5 = 10.13 mm), both cemented groups and
+the 12 asphere values (K, A4–A12 on both L36 faces; (1+K) convention, K used directly) match. Gaps M1–M8 come from
+§§0074–0077, whose narrow radius ranges fit Example 1 only. No variable-gap table is printed; the model is infinity-only.
+No transcription mismatches. The −70.25 / −70.15 mm cemented-interface conflict is a source inconsistency, retained as
+disclosed.
+
+First order: the patent prints no EFL, F-number or back focus for the example. Model EFL 20.3135 mm (marketed 20 mm),
+paraxial BFD 17.788 mm, first-vertex-to-image 115.258 mm against the stated L ≤ 116 mm. An independent exact
+meridional trace puts the chief ray at the 21.63 mm corner at a half-field of 47.1° (2ω ≈ 94.2°; patent "> 94°";
+LensTip 94.5°). Conditional expressions: FL12 = 164.63 mm, S = 56.79 mm, (|FL12|+S)/BFL = 12.448 (10.6–12.5) and
+12.448/tan 47.1° = 11.567 (9.9–11.6). audit:surface OK; audit:image-circle 0 undersized; audit:field-coverage 100 %.
+
+Product comparison: Viltrox, LensTip and photozone list 12 elements / 9 groups, matching the patent figure and the
+model. Viltrox lists four ED elements (the four 1.50/81.6 positions), one double-sided asphere (L36) and one
+high-transmission element (not identifiable from the patent), F1.8, 0.25 m, 14 blades and Sony E / Nikon Z versions.
+No public optical-construction diagram was found, so no element-by-element diagram comparison was possible.
+
+Fields changed in this pass: header comment (process vocabulary removed, facts kept), `subtitle`, `specs` (two
+model-scope lines replaced by computed f, design F-number and asphere count), element roles for L13, L14, L22, L31,
+L33 and L36, `apd: "inferred"` with `apdNote` on L14, L22, L31 and L33, `focus.description`, doublet label C1. The
+analysis gained romanized inventor and applicant names and lost references to the production pipeline, runtime
+checks and integration status. No optical value changed.
+
+Open: `name` still carries the "FE" suffix and `lensMounts` lacks `nikon-z`, although Viltrox sells the same optics in
+Sony E and Nikon Z mounts. Open: glass strings remain generic "Unmatched" labels.

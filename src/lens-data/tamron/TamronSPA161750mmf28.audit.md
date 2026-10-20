@@ -41,7 +41,7 @@ All ten distinct nd/νd pairs were searched against the six pinned project vendo
 
 ## Stage 1 disposition
 
-Mandatory Stage 1 source, first-order, convention, movement, glass and correlation checks pass. Construction tasks are explicitly deferred, not marked passed. READY_FOR_DATA binds only to this seven-file checkpoint. Independent Stage 4 and all integration gates remain pending.
+Mandatory Stage 1 source, first-order, convention, movement, glass and correlation checks pass. Construction tasks are explicitly deferred, not marked passed. READY_FOR_DATA binds only to this seven-file checkpoint. Independent Stage 4 and all integration gates remain pending. (Closed: Stage 4 below; integrated 2026-10-20.)
 
 ## Reproduction
 
@@ -67,7 +67,7 @@ The final data SHA-256 binds the project execution receipt in evidence. Clean re
 
 ## Stage 2 disposition
 
-READY_FOR_ANALYSIS is earned for the exact eight-file checkpoint and final data hash recorded in the manifest. Remaining limitations are unpublished finite focus/apertures, inferred SD/iris, supplier/melt identity, peripheral full-field vignetting, interpolation and pending independent audit/integration. They do not assert unverified close-focus or full-pupil performance.
+READY_FOR_ANALYSIS is earned for the exact eight-file checkpoint and final data hash recorded in the manifest. Remaining limitations are unpublished finite focus/apertures, inferred SD/iris, supplier/melt identity, peripheral full-field vignetting, interpolation and pending independent audit/integration (audit and integration since closed). They do not assert unverified close-focus or full-pupil performance.
 
 ## Rear-material narrative clarification
 
@@ -100,7 +100,7 @@ The complete rendered-string/result-path map is also generated as `facts.analysi
 
 ## Stage 3 disposition
 
-READY_FOR_AUDIT applies only after the final nine-file manifest/ZIP hash check and clean replay. Independent Stage4 has not been performed in this authoring context. Integration remains pending. No repository file, Git state, build output, corpus artifact or publication was changed by this task.
+READY_FOR_AUDIT applies only after the final nine-file manifest/ZIP hash check and clean replay. Independent Stage4 has not been performed in this authoring context. Integration remains pending (closed 2026-10-20). No repository file, Git state, build output, corpus artifact or publication was changed by this task.
 
 
 ## Stage 4 independent source-first audit
@@ -154,7 +154,7 @@ The complete claim map in results.facts.analysisClaimMap is regenerated from fin
 
 Final numerical/source/model/geometry/analysis checks:32 CHAT_PREFLIGHT PASS plus5 targeted LENSVISUALIZER PASS. The original pair's Stage 2/Stage 3 gates were invalidated by S4-C01; all inherited construction and analysis checks are recomputed on corrected bytes. Full-corpus policy tests, metadata integration and production build remain NOT_RUN with requiredAt integration. No Git writes, integration, corpus sweep, full build, upload or publication occurred.
 
-Gate: READY_FOR_BATCH, subject to the exact nine-file package hashes and successful clean extraction/replay recorded in the manifest. Integration status: INTEGRATION_PENDING. READY_FOR_BATCH does not mean integrated, published or full-application acceptance.
+Gate: READY_FOR_BATCH, subject to the exact nine-file package hashes and successful clean extraction/replay recorded in the manifest. Integration status: INTEGRATION_PENDING (closed: integrated 2026-10-20). READY_FOR_BATCH does not mean integrated, published or full-application acceptance.
 
 Final governing bytes (SHA-256):
 
@@ -163,3 +163,15 @@ Final governing bytes (SHA-256):
 - TamronSPA161750mmf28.evidence.json: `4b3c769b6b05b0715be5d725c9a847c1d66ed9b8ce8fc4c4aa4fd25aa7b95d56`
 - TamronSPA161750mmf28.verify.py: `94741b68d080b009ecdc80b4cee8dbf88f793f96deeeb46b9bc13264161baf28`
 - TamronSPA161750mmf28.results.json: `ea8a07bcad275329850f2e5971c7a742f46f214e2fe6514eb4ed03386e12d9b2`
+
+## 2026-10-20 — Deployment validation and wording pass
+
+Source re-read from the image-only PDF (pp18–19 at 200 dpi): 32 surfaces (r1–r32, stop r16) with every R, d, nd and νd; both aspheres (r6, r23; A = 1.0 → K = 0, A4–A10); and the four variable gaps d5, d15, d22 and d32 at the wide, middle and tele states. No mismatches. r23 and r24 both print −155.8357, as the data file has. Front page: 特開2007-133138, published 2007-05-31, applicant Tamron, inventors 荒川明男 (Akio Arakawa) and 村松雄一 (Yuichi Muramatsu), all as in the file.
+
+First order, patent vs model (wide / middle / tele): EFL 17.40 / 30.00 / 48.50 vs 17.4011 / 29.9986 / 48.4979 mm; printed d32 39.911 / 51.228 / 62.051 vs paraxial BFD 39.9108 / 51.2280 / 62.0515 mm; F2.88 constant, with the model's stop solved to f/2.88 at each station. At 14.5 mm image height the real chief-ray field is 40.57° / 25.31° / 16.31° (patent 2ω 81.1° / 50.6° / 32.6°). Group values match ¶0079: f2 −12.439, f3 42.731, f4 37.456, f41 116.13 and e4 12.209 mm. Image circle and field coverage reach 14.17 of 14.18 mm at all three stations. The clearance check at Y = 14.5 mm shows no axial clipping or chief-ray blocking, but at the wide end the full-field lower rim ray is cut off and the front group vignettes 67–78 % of the off-axis bundle. The surface audit reports no errors. Figure 5 matches the data file's elements, cemented pairs, surface signs and stop position.
+
+Maker comparison: Tamron's A16 page lists 16 elements / 13 groups, one LD element, two hybrid aspherical elements, 0.27 m minimum focus distance, a 67 mm filter and 2006 release. No Tamron construction diagram was found. Example 1 of the same application matches those counts and specifications as well, so the choice of Example 2 is not settled by public evidence.
+
+Fields changed: `name` (corpus Tamron style with [IF] and (A16)), `subtitle`, `specs`, the header comment and focus description (process wording removed), element `label` values (physical numbering Element 1–16, with resin layer and glass body for 4 and 12), `role` text (specific roles in place of boilerplate), resin-layer `type` set to "Hybrid Resin Layer (1× Asph)", `diagramLabel` added (1–16, 4r, 12r), and `apd: "inferred"` with an `apdNote` on L2423 (1.49700/81.61, the only element that fits Tamron's single LD element). The analysis gained the Example 1 note and the LD attribution, and its "Model Apertures and Verification Scope" section became "Model Scope and Limitations" without process content. Optics unchanged: engine and paraxial outputs are identical before and after.
+
+Open: Example 1 vs Example 2 attribution, pending a Tamron construction diagram.

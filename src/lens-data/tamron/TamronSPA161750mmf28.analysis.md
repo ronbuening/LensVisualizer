@@ -9,8 +9,8 @@
 **Title:** Zoom lens (ズームレンズ)
 **Embodiment analyzed:** Example 2, ¶0074–¶0083 and Figure 5
 
-The prescription is Example 2 of the published Japanese application. The selected production
-correlation is the TAMRON SP AF 17-50mm f/2.8 XR Di II LD ASPHERICAL IF A16. The patent
+The prescription is Example 2 of the published Japanese application. The production
+correlation is the TAMRON SP AF 17-50mm f/2.8 XR Di II LD Aspherical [IF] (A16). The patent
 provides the optical numbers; Tamron's product archive and instruction manual establish the
 production identity and marketed specifications. Neither source explicitly confirms that this
 numerical example is the final production prescription.[1–3]
@@ -19,7 +19,9 @@ The correlation rests on several independent points:
 
 1. Example 2 has sixteen physical lens bodies in thirteen air-separated components. Its two
    bonded aspherical layers add two optical media to the numerical model without increasing
-   the count of physical lens bodies. Tamron specifies sixteen elements in thirteen groups.
+   the count of physical lens bodies. Tamron specifies sixteen elements in thirteen groups,
+   with two hybrid aspherical elements and one LD element; Example 2 has two bonded
+   aspherical layers and a single high-Abbe 1.49700/81.61 element (L2423).
 2. The patent's 17.40–48.50 mm, f/2.88 zoom lies close to the marketed 17–50 mm f/2.8 range.
 3. The patent's four-group arrangement and objectward movement of G2 for close focusing
    are consistent with an inner-focus lens. Tamron markets the A16 with the [IF] designation.
@@ -34,6 +36,13 @@ non-VC lens and must not be confused with the later B005 VC model. Canon EF, Nik
 Sony A and Pentax K variants are covered by the manufacturer's documentation; the Nikon
 versions include both built-in-motor and earlier body-driven variants.[2,3]
 
+Example 1 of the same application (¶0070–¶0072, Figure 1) fits the product equally well: it
+has the same sixteen-element, thirteen-group layout, the same 17.40–48.50 mm F2.88
+specification, two bonded aspherical layers and one 1.49700/81.61 element. It differs mainly
+in placing the fourth-group hybrid asphere on the rear face of a biconvex lens. No Tamron
+construction diagram that would distinguish the two examples was found, so the choice of
+Example 2 over Example 1 is not settled by public evidence.
+
 ## Optical Architecture
 
 The design has positive, negative, positive and positive functional groups, G1–G4. The
@@ -44,14 +53,14 @@ own refractive index, thickness and two bounding surfaces.[1, ¶0074–¶0075]
 
 The stop is the patent's plane r16 between G2 and G3, one millimetre ahead of r17. Its axial
 location is published. Its diameter and the clear semi-diameters of the lens surfaces are
-not published. The implemented apertures are inferred and are discussed below.
+not published. The modeled apertures are inferred and are discussed below.
 
-The following quantities are calculated at the d line from the final prescription. EFL and
-BFD are paraxial quantities. BFD is measured from the last lens vertex; the authored image
+The following quantities are calculated at the d line from the prescription. EFL and
+BFD are paraxial quantities. BFD is measured from the last lens vertex; the image
 track is measured from the first vertex to the printed image plane. The last gap remains
 exactly as printed, rather than being moved to the computed best-focus plane.
 
-| State | Calculated EFL (mm) | Calculated BFD (mm) | Printed last gap (mm) | Authored image track (mm) |
+| State | Calculated EFL (mm) | Calculated BFD (mm) | Printed last gap (mm) | Image track (mm) |
 |---|---:|---:|---:|---:|
 | Wide | 17.401052 | 39.910759 | 39.9110 | 127.6202 |
 | Middle | 29.998596 | 51.227968 | 51.2280 | 140.1775 |
@@ -90,7 +99,9 @@ higher-order effects. No flat-field or image-quality claim is inferred from its 
 ## Element-by-Element Analysis
 
 The element names follow the patent's physical identifiers. The suffix “r” distinguishes
-a modeled bonded layer from its substrate. The focal lengths below are calculated with each
+a modeled bonded layer from its substrate. The diagram numbers the physical elements 1–16
+from the front, so L221 is Element 4 and L2411 is Element 12, with their resin layers
+marked 4r and 12r. The focal lengths below are calculated with each
 individual medium bounded by air, preserving its own front/rear radii and thickness. They
 are useful power descriptors, but they are not the in-situ power at a cemented interface.
 Compound focal lengths are separately identified where relevant. The aspherical polynomial
@@ -132,7 +143,7 @@ lengths would discard thickness and separation effects.
 The element's source prescription is in ¶0080, pp18–19; its physical grouping is shown in
 Figure 5 and described in ¶0075.[1]
 
-### L221r — Bonded aspherical layer
+### L221r — Hybrid Resin Layer (1× Asph)
 
 nd = 1.51460, νd = 49.96. Glass: Unmatched (bonded asphere layer; no verified catalog identity). f = -138.7 mm.
 
@@ -240,7 +251,7 @@ within G3 is introduced.
 The element's source prescription is in ¶0080, pp18–19; its physical grouping is shown in
 Figure 5 and described in ¶0075.[1]
 
-### L2411r — Bonded aspherical layer
+### L2411r — Hybrid Resin Layer (1× Asph)
 
 nd = 1.51460, νd = 49.96. Glass: Unmatched (bonded asphere layer; no verified catalog identity). f = +694484.1 mm.
 
@@ -293,7 +304,8 @@ Figure 5 and described in ¶0075.[1]
 nd = 1.49700, νd = 81.61. Glass: 497816 low-dispersion crown class. f = +37.6 mm.
 
 The positive partner has the highest published Abbe number in the example. This supports
-a low-dispersion crown classification. The D3 compound has calculated EFL −239.304365 mm,
+a low-dispersion crown classification, and it is the only element whose coordinates fit
+the single LD element Tamron lists for the A16; the LD identification is inferred. The D3 compound has calculated EFL −239.304365 mm,
 a weak negative result despite the strong isolated powers of its two members. Neither the
 Abbe number nor the compound power establishes apochromatic performance.
 
@@ -331,42 +343,39 @@ a known glass. The following are comparison candidates, not identified productio
 | 1.83400 / 37.17 | 834372 lanthanum-dense-flint class | J-LASF010 (Hikari), S-LAH60 (Ohara), S-LAH60V (Ohara) |
 | 1.49700 / 81.61 | 497816 low-dispersion crown class | FCD1 (Hoya), H-FK61 (CDGM), J-FK01A (Hikari) |
 
-The material narrative also requires care. Paragraph0076 proposes molding suitable rear-group
-lenses in plastic, while paragraph0089 describes G3/G4 lenses as plastic-molded. The numerical
+The material narrative also requires care. ¶0076 proposes molding suitable rear-group
+lenses in plastic, while ¶0089 describes G3/G4 lenses as plastic-molded. The numerical
 example supplies no chemical compositions or named grades. The catalog-glass comparisons
 therefore describe optical-coordinate compatibility, not proof that every physical lens body
 is glass or that any catalog material was used in production.[1]
 
-The comparison covered the pinned OHARA, HOYA, Schott, Hikari, CDGM and Sumita inventories.
-Fresh manufacturer pages or catalog material were also checked where available. SUMITA's K-FK5 datasheet was checked directly as a comparison for the 1.48749/70.21
-coordinate; its νd = 70.4 differs by +0.19. A complete current or historical SUMITA catalog
-was not reauthenticated.[10] The HOYA download index was rechecked, but its
-current binary download was not successfully retrieved through the research interface.
-These are limits to catalog coverage, not evidence of absence from those manufacturers.
+The comparison candidates come from the OHARA, HOYA, Schott, Hikari, CDGM and Sumita
+catalogs. SUMITA's K-FK5 datasheet gives νd = 70.4 for the 1.48749/70.21 coordinate, +0.19
+from the source value.[10] A candidate's absence from this table is not evidence that a
+manufacturer offered no matching glass.
 
 OHARA's S- and L-prefixes and revision suffixes must remain distinct. In particular, its
 2025 notice distinguishes S-LAH66 from S-LAH66N and S-TIH53W from S-TIH53WN by dispersion
 properties, despite matching nominal d-line indices. A name chosen only from nd would lose
 that distinction.[4–7]
 
-The runtime can resolve a six-digit class code to one coordinate-compatible dispersion proxy.
-That computation was exercised for this candidate. Its choice is a modeling convenience,
-not newly discovered supplier information. The bonded layers remain unresolved. No candidate
-nC, nF, ng or ΔPgF value is attached to an actual element, because no source establishes the
-melt-specific spectral identity. Abbe-only data and proxy catalog choices do not establish
+The viewer resolves each six-digit class code to one coordinate-compatible catalog glass for
+its dispersion. That choice is a modeling convenience, not supplier information. The bonded
+layers remain unresolved. No source nC, nF, ng or ΔPgF value exists for any element; the
+ΔPgF ≈ +0.031 noted for L2423 is the S-FPL51-class catalog value, not a melt value. Abbe-only data and proxy catalog choices do not establish
 APO correction, anomalous-dispersion performance or a measured secondary spectrum.
 
 ## Focus Mechanism and Zoom Motion
 
 The patent states that G2 moves toward the object for focusing.[1, ¶0077] It does not give
 finite-focus spacing rows, intermediate object distances, close-focus magnifications or a
-cam law. The model therefore uses NO_INTERNAL_RECONSTRUCTION. The two focus entries at each
-zoom station are identical. They encode the absence of a reconstructed motion and must not
-be read as a claim that the same prescription focuses at both infinity and 0.27 m.
+cam law. The model therefore shows infinity focus only: the two focus entries at each zoom
+station are identical, and must not be read as a claim that the same prescription focuses
+at both infinity and 0.27 m.
 
-The 0.27 m close-focus setting is the production MFD from Tamron's documentation. It is kept
-as marketed metadata only. There is no finiteConjugates certification, and no simulated
-close-focus performance is asserted. The source identifies the moving group, but a production
+The 0.27 m close-focus distance is the production minimum focus distance from Tamron's
+documentation. It is kept as marketed metadata only; no close-focus state or close-focus
+performance is modeled. The source identifies the moving group, but a production
 MFD alone cannot determine the complete optical movement law or its dependence on zoom.
 
 The source spacing schedule is preserved without smoothing away its middle station:
@@ -394,7 +403,7 @@ G2 moves slightly imageward between the first two sampled stations and then obje
 between the middle and telephoto stations in this frame. The middle station therefore
 brackets a reversal and cannot be discarded. Piecewise-linear interpolation preserves
 these stations, but does not establish the actual continuous cam trajectory between them.
-The authored focus columns add no further group motion.
+The model's focus columns add no further group motion.
 
 ## Aspherical Surfaces
 
@@ -402,7 +411,7 @@ The patent's equation (5) is
 
 X(H) = (H²/r) / [1 + √(1 − A(H/r)²)] + A4H⁴ + A6H⁶ + A8H⁸ + A10H¹⁰.
 
-The implementation writes the radical as √[1 − (1 + K)(H/r)²], so K = A − 1.
+The data file writes the radical as √[1 − (1 + K)(H/r)²], so K = A − 1.
 Both source surfaces have A = 1.0, hence K = 0. They have a spherical base with a polynomial
 departure. No scaling is applied. Each coefficient Ap has units mm^(1−p), and the source
 contains no nonzero odd-order, A12 or higher-order terms.[1, ¶0081, ¶0084–¶0086]
@@ -447,11 +456,11 @@ computed ratio f41/f4 from the printed 3.100 is consistent with the source's dis
 precision. Satisfaction of the inequalities demonstrates these first-order conditions only;
 it is not an independent reproduction of every aberration diagram or of the production lens.
 
-## Model Apertures and Verification Scope
+## Model Scope and Limitations
 
-The source provides the stop location but no physical iris diameter schedule. The implemented
-from-nominal-fno aperture model traces an on-axis ray launched at EFL/(2 × 2.88) to the stop
-at each published zoom station. The resulting inferred stop semi-diameters are 7.248015446,
+The source provides the stop location but no physical iris diameter schedule. The model
+sizes the stop by tracing an on-axis ray launched at EFL/(2 × 2.88) to the stop at each
+published zoom station. The resulting inferred stop semi-diameters are 7.248015446,
 8.182159932 and 9.289930370 mm. Agreement with f/2.88 is a calibration result. It is not an
 independent measurement of an unpublished mechanical diaphragm.
 
@@ -460,29 +469,15 @@ Most begin with approximately ten percent clearance, with tighter apertures wher
 by the actual shared-gap geometry. Cemented junction apertures preserve internal containment.
 These values are model dimensions and should not be used as manufacturing measurements.
 
-The final model passes direct source mapping, independently implemented sequential and ABCD
-first-order calculations, material-thickness checks, conic-domain checks, actual rim-slope
-checks and shared radial-band gap checks at the three published plus six intermediate zoom
-positions. At the sampled radii, the minimum material thickness is 0.083283 mm and the largest
-actual rim angle is 50.048630°. These checks are finite samples, not a mathematical proof over
-all possible rays or mechanical states.
-
-Targeted execution against the identified LensVisualizer code also passes buildLens and its
-validator, actual LensDataInput type checking and production shape-trim diagnostics. The
-latter find zero hidden material trim at the nine examined zoom positions. This scope does
-not include a full repository build, a corpus sweep or browser-interaction testing.
-
-Both independent exact tracing and the real project tracer examine stop-aimed three-dimensional
-bundles. In the actual engine's 675 sampled cases, 556 traverse the lens, 97 clip at physical
-outer edges and 22 peripheral full-field targets cannot be aimed. There are no trace failures
-among the aimed cases and no first clips inside cemented material. All tested default
-representative bundles at 0/0.6 of the published half-field through 0.75 pupil radius, and
-all sampled full-field chief rays, clear the model. This is deliberately a bounded claim:
-full-field/full-pupil transmission, vignetting accuracy and production MTF are not established.
+At the modeled apertures, the thinnest material edge is 0.083 mm (the rim of L2423) and the
+steepest rim angle is 50.0°. The model covers an APS-C image circle of 14.2 mm radius at all
+three zoom stations. At the wide end, the front group cuts much of the off-axis bundle near
+the patent's 14.5 mm image height, so corner illumination falls off substantially; this
+vignetting follows from the inferred front-group apertures and is not a measured property of
+the production lens. Full-field transmission and production MTF are not established.
 
 The unchanged source spacings describe infinity-focus designs. No finite-focus optical
-performance, stabilization system, image-circle extension or apochromatic performance is
-inferred from this verification.
+performance, stabilization system or apochromatic performance is inferred.
 
 ## Sources
 
