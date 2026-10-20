@@ -1,5 +1,5 @@
 /** Shared input boundary for compilation and composition; accepts authored V2 files and canonical prescriptions. */
-import type { LensData, LensDataInput } from "../../types/optics.js";
+import type { LensData } from "../../types/optics.js";
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 import type { CanonicalLens, IngestedPrescription, IngestRequest } from "./canonical.js";
 import { ingestLens } from "./ingestV2.js";
@@ -25,15 +25,15 @@ export function assertValidLensData(data: Pick<LensData, "key">, validationError
  * @returns unexpanded canonical prescription and provenance
  */
 export function canonicalInput(
-  data: LensDataInput | LensDataV2Input | CanonicalLens,
+  data: LensDataV2Input | CanonicalLens,
   request?: IngestRequest,
 ): IngestedPrescription<CanonicalLens> {
-  if (data && "kind" in data && data.kind === "lens") {
+  if (data && typeof data === "object" && "kind" in data && data.kind === "lens") {
     return canonicalForView(data) ?? { prescription: data, provenance: { format: 2, defaulted: [], ignored: {} } };
   }
   const cached = data && typeof data === "object" ? canonicalForView(data) : undefined;
   if (cached) return cached;
-  const ingested = ingestLens(data as LensDataInput | LensDataV2Input, request);
+  const ingested = ingestLens(data as LensDataV2Input, request);
   associateCanonical(data, ingested);
   associateCanonical(ingested.prescription, ingested);
   return ingested;

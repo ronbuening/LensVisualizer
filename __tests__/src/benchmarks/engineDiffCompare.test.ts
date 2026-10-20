@@ -4502,7 +4502,8 @@ describe("engineDiff converter pairs", () => {
     expect(unread.answers.baseEngine.map(idOf)).toEqual(permitted.map(idOf).filter((id) => !formed.includes(id)));
     expect(unread.differences.headEngineOnly).toEqual([]);
     expect(unread.differences.uncompared.map(({ lens }) => lens)).toEqual(formed);
-    expect(unread.differences.uncompared[0].reason).toMatch(/^TypeError: /);
+    expect(unread.differences.uncompared[0].reason).toMatch(/^PrescriptionIngestError: /);
+    expect(unread.differences.uncompared[0].reason).toContain("run the converter on its .data.ts file");
 
     /* A pair both engines build and only one permits is still engine drift, beside the pairs set aside: it fails
      * in every gated class, and an intended change reports it. */

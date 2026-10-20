@@ -4,7 +4,7 @@ import type { CanonicalLens, IngestedPrescription } from "../canonical.js";
 import { canonicalConstructionData } from "../constructionData.js";
 import { buildLabelIndex } from "../compileLabels.js";
 import type { UntrustedLensData } from "./context.js";
-import { catalogField, validateTopLevel, validateSurfaces, validateElements } from "./schema.js";
+import { validateTopLevel, validateSurfaces, validateElements } from "./schema.js";
 import { validateReferences, validateSpans, validateAnnotations } from "./references.js";
 import { validateStations, validateControls } from "./controls.js";
 import { validateStop, validatePairedInnerSdConsistency } from "./aperture.js";
@@ -28,9 +28,9 @@ function diagnosticRecords(ingested: IngestedPrescription<CanonicalLens>): LensD
   return data;
 }
 
-function validate(data: UntrustedLensData, catalogDefaults: boolean): string[] {
+function validate(data: UntrustedLensData): string[] {
   const errors: string[] = [];
-  validateTopLevel(data, errors, catalogDefaults);
+  validateTopLevel(data, errors);
   validatePatentMetadata(data, errors);
   if (!Array.isArray(data.surfaces) || !Array.isArray(data.elements)) return errors;
   const surfaceLabels = validateSurfaces(data, errors);
@@ -47,26 +47,13 @@ function validate(data: UntrustedLensData, catalogDefaults: boolean): string[] {
   validateStop(data.surfaces, labelToIdx, explicitSpans, errors);
   validateControls(data, surfaceLabels, labelToIdx, isZoom, focusPositionCount, errors);
   validateAnnotations(data, surfaceLabels, errors);
-  validateGeometry(
-    data,
-    labelToIdx,
-    explicitSpans,
-    isZoom,
-    errors,
-    catalogField(data, "gapSagFrac", catalogDefaults),
-    catalogField(data, "maxRimAngleDeg", catalogDefaults),
-  );
+  validateGeometry(data, labelToIdx, explicitSpans, isZoom, errors, data.gapSagFrac, data.maxRimAngleDeg);
   return errors;
 }
 
-/** Already-defaulted V1 compatibility API; missing runtime fields retain their historical diagnostics. */
+/** Raw numeric-column API; missing runtime fields retain their historical diagnostics. */
 export default function validateLensData(data: UntrustedLensData): string[] {
-  return validate(data, false);
-}
-
-/** Authored V1 file front door. Only omitted catalog fields read defaults; nothing is merged into the input. */
-export function validateLensInput(data: unknown): string[] {
-  return validate((data ?? {}) as UntrustedLensData, true);
+  return validate(data);
 }
 
 /** Canonical entry: provenance keeps ignored values and source spellings in diagnostics, outside the fingerprint. */
@@ -76,5 +63,5 @@ export function validateCanonicalLens(
 ): string[] {
   const data = diagnosticRecords(ingested);
   if (descriptor) data.attachedTeleconverter = descriptor;
-  return authoredMessages(validate(data, false), ingested);
+  return authoredMessages(validate(data), ingested);
 }

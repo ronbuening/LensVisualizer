@@ -49,7 +49,8 @@ for (const [path, mod] of Object.entries(_modules)) {
     let entry: CanonicalLens | undefined;
     Object.defineProperty(LENS_CATALOG, data.key, {
       enumerable: true,
-      get: () => (entry ??= ingestLens(data, { path }).prescription),
+      get: () =>
+        (entry ??= ingestLens(data, { path: path.replace("../../lens-data/", "src/lens-data/") }).prescription),
     });
   } else {
     console.warn(`[LensVisualizer] Skipped ${path}: no "key" field in default export`);

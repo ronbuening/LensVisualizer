@@ -337,7 +337,8 @@ so an ingest that was not asked builds no path. `sourcePaths.ts` spells every pa
 
 - App `ingestLens` / `ingestTeleconverter` (`ingestV2.ts`) accept only `schema: 2`. An archived V1 file is
   refused with its file path and `npm run convert:lens-data -- --input <file> --write`; catalog loaders supply
-  their glob paths via the ingest request. `buildLens` also accepts an optional `{ path }` request for diagnostics.
+  repo-root-relative file paths via the ingest request. Without a path, the refusal names the key and asks for
+  conversion of its `.data.ts` file. Non-object inputs fail as invalid lens data. `buildLens` also accepts an optional `{ path }` request for diagnostics.
   V2 ingest applies defaults at canonical paths, numbers undrawn media by first use (authored ids and names stay in
   provenance), and takes each variable gap's first value as its surface's `d`. It refuses unreadable shapes and V2
   rules at authored paths before canonical validation; the plan's S2.P2.T1 As built lists them. Shared rules for
@@ -347,7 +348,8 @@ so an ingest that was not asked builds no path. `sourcePaths.ts` spells every pa
   `lensDataConversion.ts`. V1 ingest preserves defaults, ignored values, source spellings and paths for round trips,
   and refuses contradictory copies of a value or shapes the canonical form cannot hold. The organizer converts V1
   arrivals, including files in maker folders; metadata stops on V1 and never converts it. The seam guard restricts
-  the conversion barrel per importer to the converter, organizer and build metadata, and excludes all V1 mapping
+  the conversion barrel to the exact importer `scripts/lens-data-convert/load.mjs`, whose only importers are
+  `cli.mjs` and `convert.mjs` in that directory. Stale importer entries fail the guard. The guard excludes all V1 mapping
   modules from every runtime seam dependency graph. Tests may follow their internal subjects.
 - A stop carries `sd` in V2 only where its radius is authored. A stop whose radius is not authored (traced from the
   design f-number, or taken from the station schedule) leaves it out, and V2 ingest refuses one written there.

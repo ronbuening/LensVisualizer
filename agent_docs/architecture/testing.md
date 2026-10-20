@@ -184,7 +184,12 @@ three guards over `src/optics/`:
 - **Seam.** An import into `src/optics/` from the rest of `src/`, from `scripts/` or from `reports/` targets a
   registered module. Type-only imports count, and so do the path strings that scripts load. Tests are not importers,
   because they follow the internals they test, and targets under `src/optics/mount/` are skipped.
-  `REPORT_INTERNAL_IMPORTS` is empty; reports use the public seam too.
+  `REPORT_INTERNAL_IMPORTS` is empty; reports use the public seam too. A registry entry's `importers` is an exact
+  file list: unlisted importers and stale entries both fail. `lensDataConversion.ts` admits only
+  `scripts/lens-data-convert/load.mjs`; that loader admits only the converter's `cli.mjs` and `convert.mjs`.
+  The organizer reaches it through the converter runner; build metadata uses V2 ingest. No optics module outside
+  `prescription/v1/` and `lensDataConversion.ts` may reference `/v1/`, and no runtime seam may reach it.
+  Synthetic self-tests require a forbidden importer, stale entry and direct `/v1/` import to fail.
 - **Caches.** Every module-level `Map`, `WeakMap`, `Set` or `WeakSet` is registered as a constant lookup table, a
   bounded cache, or a `WeakMap` keyed by its owner whose per-owner value cannot grow without bound.
 

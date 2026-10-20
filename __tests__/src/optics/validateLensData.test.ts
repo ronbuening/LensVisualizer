@@ -1,10 +1,7 @@
-import { constructionFixtureData } from "./constructionFixtures.js";
+import { validateFixtureLensInput as validateLensInput, constructionFixtureData } from "./constructionFixtures.js";
 import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { describe, it, expect, vi } from "vitest";
-import validateLensData, {
-  validateCanonicalLens,
-  validateLensInput,
-} from "../../../src/optics/prescription/validate/index.js";
+import validateLensData, { validateCanonicalLens } from "../../../src/optics/prescription/validate/index.js";
 import { ingestLens } from "../../../src/optics/lensDataConversion.js";
 import { FIXTURE_PAIRS } from "./prescription/ingestV2Fixtures.js";
 import type { LensDataInput } from "../../../src/types/optics.js";

@@ -77,7 +77,7 @@ export function walkLensSurfaces(
     let data: CanonicalLens;
     let input;
     try {
-      input = canonicalInput(raw, { path: modulePath });
+      input = canonicalInput(raw, { path: toRepoRelativeLensPath(modulePath) });
       data = input.prescription;
     } catch {
       continue;

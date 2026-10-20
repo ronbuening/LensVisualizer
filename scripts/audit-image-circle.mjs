@@ -82,7 +82,9 @@ function prescriptionScale(lens) {
  */
 async function auditLens(file) {
   /* Read canonical facts, with schema defaults already applied. */
-  const lens = ingestLens((await import(pathToFileURL(file).href)).default, { path: file }).prescription;
+  const lens = ingestLens((await import(pathToFileURL(file).href)).default, {
+    path: relative(ROOT, file).replaceAll("\\", "/"),
+  }).prescription;
   const rel = relative(ROOT, file);
   const format = IMAGE_FORMAT_BY_ID[lens.catalog.imageFormat];
   const diameterMm = lens.catalog.imageCircleMm ?? format?.diagonalMm;

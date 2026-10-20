@@ -10,9 +10,10 @@ Build the lens as one source-traceable pair: `LensName.data.ts` plus the optiona
 path is to place both drafts at the `src/lens-data/` root and run `npm run generate:metadata`, which moves the pair into
 the derived maker folder and rewrites the `LensDataV2Input` import. If working directly in a maker folder, import from
 `../../types/lensDataV2.js`. Audit logs are not moved automatically.
-For a new V1 draft, use `npm run convert:lens-data` per the spec's
-[Quick Start](../src/lens-data/LENS_DATA_SPEC.md#quick-start). When editing an existing V1 catalog file, read it through
-[Reading V1 Audits](../src/lens-data/LENS_DATA_SPEC.md#reading-v1-audits); leave its conversion to S2.P5's batches.
+Author and edit catalog files in V2. Convert archived V1 arrivals with `npm run organize:lens-data` or
+`npm run convert:lens-data -- --input <file> --write` before integration; see
+[Adding Archived V1 Files](workflow.md#adding-archived-v1-files).
+Use [Reading V1 Audits](../src/lens-data/LENS_DATA_SPEC.md#reading-v1-audits) for historical audit field names.
 
 Transcribe one identified patent embodiment, preserve its signs and precision, and record every deviation from it.
 Follow [Scope: What to Include](../src/lens-data/LENS_DATA_SPEC.md#scope-what-to-include) for filters, `rearPlates`,

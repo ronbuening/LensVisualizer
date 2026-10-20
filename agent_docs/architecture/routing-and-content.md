@@ -182,16 +182,16 @@ Metadata generation is split across:
 
 - `scripts/lens-data-lib.mjs` - lens data scanning, root-file organization helpers, maker slug derivation. Identity
   fields come from `scripts/lens-data-ast.mjs`, which evaluates a file's default export from its source with the
-  TypeScript compiler API, never running it, and reads a file of either lens-data version (a V2 file keeps its mounts
-  and format in `catalog`). Before filing root-level lenses and converters, the organizer converts V1 files anywhere
+  TypeScript compiler API, never running it, and reads V2 identity fields (mounts
+  and format live in `catalog`). Before filing root-level lenses and converters, the organizer converts V1 files anywhere
   in the catalog through the converter runner, prints its report, and stops on a refusal. It rewrites a filed V2
   file's `types/lensDataV2.js` import.
   The converter (`scripts/lens-data-convert/`) reads through the same module, which also shows it the syntax behind
   each value (`walkLensDataSource`).
-- `scripts/lens-summaries.mjs` - lens and teleconverter summary fields, in V1 names. A V2 file is read through the
-  engine's canonical ingest and its V1 view, so it and its V1 twin summarize alike. They come from the conversion
-  seam, `src/optics/lensDataConversion.ts`, loaded by path on every metadata run; the AST reader and summaries use
-  its version rule.
+- `scripts/lens-summaries.mjs` - lens and teleconverter display summaries, selected from canonical prescriptions
+  through `src/optics/buildLens.ts` ingest. Metadata stops on V1 through `assertV2Catalog` before summarizing.
+  Only `scripts/lens-data-convert/load.mjs` loads `src/optics/lensDataConversion.ts`; the organizer reaches that
+  loader through the converter runner.
 - `scripts/build-metadata-lib.mjs` - git freshness helpers, bounded concurrency, route freshness aggregation.
 - `scripts/generate-build-metadata.mjs` - top-level metadata orchestration, concrete route enumeration, generated route
   freshness, generated author index, generated maker-prefix JSON, and README lens-count refresh. Before writing, it

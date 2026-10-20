@@ -191,7 +191,7 @@ export function exportCatalog({ validateTeleconverters = false } = {}): Serializ
     const refused: string[] = [];
     for (const { key, prescription } of teleconverters) {
       const read = outcomeOf(() => {
-        const converter = ingestTeleconverter(decodeValue(prescription) as TeleconverterData);
+        const converter = ingestTeleconverter(decodeValue(prescription) as Parameters<typeof ingestTeleconverter>[0]);
         return teleconverterView ? teleconverterView(converter) : converter;
       });
       if (!read.ok) refused.push(`${key}: ${read.error.name}: ${read.error.message}`);
@@ -226,10 +226,10 @@ export function fingerprintCatalog(catalog: SerializedCatalog): {
       entries.map(({ key, prescription }) => [key, semanticFingerprint(decodeValue(prescription) as object, project)]),
     );
   return {
-    lenses: fingerprints(catalog.lenses, (lens) => ingestLens(lens as LensData).prescription),
+    lenses: fingerprints(catalog.lenses, (lens) => ingestLens(lens as Parameters<typeof ingestLens>[0]).prescription),
     teleconverters: fingerprints(
       catalog.teleconverters,
-      (converter) => ingestTeleconverter(converter as TeleconverterData).prescription,
+      (converter) => ingestTeleconverter(converter as Parameters<typeof ingestTeleconverter>[0]).prescription,
     ),
   };
 }
@@ -320,9 +320,10 @@ export interface PayloadRecord {
  */
 export function catalogLensData(authored: LensData): LensData {
   const { canonicalInput, lensDefaults, ingestLens, lensView } = resolveOptionalSeam();
-  if (canonicalInput && ingestLens) return ingestLens(authored).prescription as unknown as LensData;
+  if (canonicalInput && ingestLens)
+    return ingestLens(authored as unknown as Parameters<typeof ingestLens>[0]).prescription as unknown as LensData;
   if (lensDefaults) return { ...lensDefaults, ...authored } as LensData;
-  if (ingestLens && lensView) return lensView(ingestLens(authored as Parameters<typeof ingestLens>[0]));
+  if (ingestLens && lensView) return lensView(ingestLens(authored as unknown as Parameters<typeof ingestLens>[0]));
   throw new Error("engine-diff: this engine has neither the V1 lens defaults nor canonical ingest with its V1 view");
 }
 
@@ -341,11 +342,13 @@ export function catalogTeleconverterData(authored: TeleconverterData): Teleconve
   const { ingestTeleconverter, teleconverterView } = resolveOptionalSeam();
   if (!ingestTeleconverter) return authored;
   if (!teleconverterView) {
-    const read = outcomeOf(() => ingestTeleconverter(authored).prescription);
+    const read = outcomeOf(
+      () => ingestTeleconverter(authored as unknown as Parameters<typeof ingestTeleconverter>[0]).prescription,
+    );
     return (read.ok ? read.value : authored) as TeleconverterData;
   }
   const read = outcomeOf(() =>
-    teleconverterView(ingestTeleconverter(authored as Parameters<typeof ingestTeleconverter>[0])),
+    teleconverterView(ingestTeleconverter(authored as unknown as Parameters<typeof ingestTeleconverter>[0])),
   );
   return read.ok ? read.value : authored;
 }
@@ -388,12 +391,16 @@ export function captureRecords(
   const hostOf = (lens: LensRef) => decodeValue(lenses.get(lens.key) ?? null) as LensData;
   const converterOf = (key: string) =>
     catalogTeleconverterData(decodeValue(teleconverters.get(key) ?? null) as TeleconverterData);
-  /* A bare lens goes to `buildLens` as authored, so a change to how the engine applies defaults shows as drift. */
+  /* Cross-revision transport keeps historical record types. Assertions occur only at the dynamic engine boundary;
+   * that engine validates the serialized input. A bare lens stays authored so default drift remains visible. */
   const buildFresh = (lens: LensRef): RuntimeLens =>
     seam.buildLens(
       lens.teleconverter
-        ? seam.attachTeleconverter(catalogLensData(hostOf(lens)), converterOf(lens.teleconverter))
-        : hostOf(lens),
+        ? seam.attachTeleconverter(
+            catalogLensData(hostOf(lens)) as unknown as Parameters<typeof seam.attachTeleconverter>[0],
+            converterOf(lens.teleconverter) as unknown as Parameters<typeof seam.attachTeleconverter>[1],
+          )
+        : (hostOf(lens) as unknown as Parameters<typeof seam.buildLens>[0]),
     );
 
   /** The engine work of one request. A malformed request throws here, before anything is captured. */
@@ -412,7 +419,10 @@ export function captureRecords(
         return {
           compatibility: seam.teleconverterCompatibility(host, converter),
           ...(() => {
-            const composed = seam.attachTeleconverter(host, converter);
+            const composed = seam.attachTeleconverter(
+              host as unknown as Parameters<typeof seam.attachTeleconverter>[0],
+              converter as unknown as Parameters<typeof seam.attachTeleconverter>[1],
+            );
             const { canonicalInput, ingestLens } = resolveOptionalSeam();
             return {
               prescription: projectCanonicalSource(

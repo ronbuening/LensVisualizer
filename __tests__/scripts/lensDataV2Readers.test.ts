@@ -142,9 +142,11 @@ describe("a V2 file and its V1 twin", () => {
       const canonical = await canonicalPrescription(pair.v2, pair.kind);
       expect(canonical.key).toBe(pair.v2.key);
     }
-    const hosts = await Promise.all(LENS_PAIRS.map((pair) => canonicalPrescription(pair.v2, "lens", loadViews)));
+    const hosts = await Promise.all(
+      LENS_PAIRS.map((pair) => canonicalPrescription(pair.v2, "lens", undefined, loadViews)),
+    );
     expect(lensSummary(hosts[0]).key).toBe(LENS_PAIRS[0].v2.key);
-    const tc = await canonicalPrescription(CONVERTER_PAIR.v2, "teleconverter", loadViews);
+    const tc = await canonicalPrescription(CONVERTER_PAIR.v2, "teleconverter", undefined, loadViews);
     expect(teleconverterSummary(tc, hosts, teleconverterCompatibility).compatibleLensKeys).toEqual([
       "fixture-converter-host",
     ]);
@@ -172,7 +174,9 @@ describe("a V2 file and its V1 twin", () => {
       ].join("\n"),
     );
     const output = execFileSync("node", [script], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
-    const inProcess = await Promise.all(files.map(({ kind, file }) => canonicalPrescription(file, kind, loadViews)));
+    const inProcess = await Promise.all(
+      files.map(({ kind, file }) => canonicalPrescription(file, kind, undefined, loadViews)),
+    );
     expect(JSON.parse(output)).toEqual(JSON.parse(JSON.stringify(inProcess)));
   });
 

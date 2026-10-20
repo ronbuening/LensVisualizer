@@ -60,9 +60,9 @@ Two rules to hold throughout:
 - The patent PDF in `patents/`. If it is not there, **stop** and record that as a blocker — do not substitute a
   different publication or a web copy.
 - `pdftoppm` (poppler) on PATH: `which pdftoppm`.
-- For an existing V1 file, use the [Reading V1 Audits](../src/lens-data/LENS_DATA_SPEC.md#reading-v1-audits)
-  field map. `npm run convert:lens-data` is described in the spec's [Quick Start](../src/lens-data/LENS_DATA_SPEC.md#quick-start);
-  leave catalog conversion to S2.P5's batches while applying audit edits in the file's current format.
+- Catalog files use V2. Use [Reading V1 Audits](../src/lens-data/LENS_DATA_SPEC.md#reading-v1-audits)
+  only for historical log field names. Convert archived V1 arrivals with `npm run organize:lens-data` or
+  `npm run convert:lens-data -- --input <file> --write` before applying audit edits.
 - Know which embodiment the lens is: the `subtitle` field says e.g. `US 2014/0247506 A1 EXAMPLE 1`. Example 3 means
   you need Example 3's cross-section sheet, not Example 1's.
 - Know the scale factor. If the prescription was uniformly scaled (patent f = 100, production f = 50, …), every `sd`

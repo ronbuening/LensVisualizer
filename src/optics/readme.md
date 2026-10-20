@@ -27,7 +27,7 @@ flowchart LR
   end
   n_external_src_types["src/types"]
   n_src_optics_TypeScript_modules --> |56| n_src_optics_src_optics_analysis
-  n_src_optics_TypeScript_modules --> |24| n_src_optics_src_optics_prescription
+  n_src_optics_TypeScript_modules --> |23| n_src_optics_src_optics_prescription
   n_src_optics_TypeScript_modules --> |16| n_src_optics_src_optics_chromatic
   n_src_optics_TypeScript_modules --> |15| n_src_optics_src_optics_perspective
   n_src_optics_TypeScript_modules --> |14| n_src_optics_src_optics_state
@@ -45,7 +45,7 @@ flowchart LR
 
 - Direct source files: 16
 - Direct subfolders: 14
-- Main outbound areas: src/optics/analysis (56), src/optics/prescription (24), src/optics/chromatic (16), src/optics/perspective (15), src/optics/state (14), src/optics/diagram (8), src/optics/trace (8), src/optics/field (7), +6 more
+- Main outbound areas: src/optics/analysis (56), src/optics/prescription (23), src/optics/chromatic (16), src/optics/perspective (15), src/optics/state (14), src/optics/diagram (8), src/optics/trace (8), src/optics/field (7), +6 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/optics/analysis, +14 more
 
 ## Subfolders
@@ -72,7 +72,7 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `analysis.ts` | Analysis helper module | src/optics/analysis (44), src/optics/first-order (2), src/optics/state | src/components/display (39), src/components/diagram (5), src/components/hooks (5), src/comparison (3), src/components/layout (3), +2 more | computeBestFocusZ, computeImagePlaneZAtFocus, computeComaAnalysis, computeComaPointCloudPreview, computeComaPreview, computeMeridionalComa, computeSagittalComa, computeFieldCurvature, +155 more |
-| `buildLens.ts` | Build Lens module with default export | src/optics/prescription (9), src/optics/state | src/utils/catalog (4), src/components/hooks (3), src/comparison | compileLens, canonicalInput, CanonicalTeleconverter, buildCanonicalLens, buildLens, CanonicalLens, IngestedPrescription, canonicalLensFromRuntime, +8 more |
+| `buildLens.ts` | Build Lens module with default export | src/optics/prescription (8), src/optics/state | src/utils/catalog (4), src/components/hooks (3), src/comparison | compileLens, canonicalInput, CanonicalTeleconverter, buildCanonicalLens, buildLens, CanonicalLens, IngestedPrescription, canonicalLensFromRuntime, +6 more |
 | `chromatic.ts` | Chromatic helper module | src/optics/chromatic (9), src/types | src/components/diagram (7), src/components/display (5), src/components/controls (2), src/components/hooks (2), src/components/layout (2) | CHROMATIC_CHANNEL_METADATA, CHROMATIC_CHANNEL_ORDER, CHROMATIC_CHANNEL_WAVELENGTH_NM, chromaticChannelDescription, chromaticChannelIndexLabel, chromaticChannelLineList, chromaticChannelWavelengthLabel, lensChromaticReference, +25 more |
 | `diagramGeometry.ts` | Diagram Geometry helper module | src/optics/diagram (8) | src/components/diagram, src/components/hooks, src/components/layout | createCoordinateTransforms, computeElementShapesForState, foldedHitOrderLabelsForDisplay, computeElementRenderDiagnosticsForState, computeElementRenderDiagnostics, computeElementShapes, computeStandaloneMirrorPaths, stateForRuntimeDiagram, +7 more |
 | `fieldGeometry.ts` | Field Geometry helper module | src/optics/field (5), src/optics/diagnostics (2), src/optics/state | src/components/display (9), src/components/hooks (5), src/components/layout (2), src/benchmarks | getChiefRayDiagnostics, resetChiefRayDiagnostics, ChiefRayDiagnostics, ChiefRayStatus, ChiefRaySolveResult, EntrancePupilState, ImageHeightInversionResult, offsetVectorFieldRay, +20 more |
@@ -86,4 +86,4 @@ flowchart LR
 | `publishedStations.ts` | Published Stations helper module | src/optics/state (2) | src/components/controls (2), src/components/hooks | STATION_COORDINATE_TOLERANCE, isOnPublishedStation, nearestPublishedStation, nearestStationInGrid, publishedFocusStations, publishedStationAvailability, publishedStationGrid, publishedZoomStations, +8 more |
 | `teleconverter.ts` | Teleconverter helper module | src/optics/prescription (3) | src/components/diagram, src/utils/catalog | teleconverterCompatibility, TeleconverterAttachError, attachTeleconverter, teleconverterGroupLabel, teleconverterSurfaceLabel, MIN_TELECONVERTER_GAP_MM, TELECONVERTER_LABEL_PREFIX, teleconverterGeometry |
 | `types.ts` | Shared TypeScript types | src/types (2), src/optics/chromatic, src/optics/prescription, src/optics/state, src/optics/trace | src/optics/perspective (20), src/components/display (14), src/optics/analysis (12), src/optics/trace (12), src/optics/prescription (9), +10 more | Vec3, Ray3, Plane3, SagSlope, SurfaceProfile, CompiledSurfaceInteraction, CompiledRadialPhaseTerm, CompiledDiffractivePhase, +25 more |
-| `validation.ts` | Validation helper module | src/optics/prescription (3) | src/utils/state | validateLensData, validateCanonicalLens, validateLensInput, LENS_KEY_PATTERN, validateLensMounts, validateRearPlates, validateTeleconverterData |
+| `validation.ts` | Validation helper module | src/optics/prescription (3) | src/utils/state | validateLensData, validateCanonicalLens, LENS_KEY_PATTERN, validateLensMounts, validateRearPlates, validateTeleconverterData |

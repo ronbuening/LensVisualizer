@@ -192,7 +192,7 @@ async function census() {
     let L;
     let state;
     try {
-      L = buildLens(data);
+      L = buildLens(data, { path: `src/lens-data/${file}` });
       state = prepareRuntimeState(L, 0, 0);
     } catch {
       continue;
@@ -443,7 +443,7 @@ async function degradeShard(shard, shards, outDir, limit) {
     lenses++;
     let L;
     try {
-      L = buildLens(data);
+      L = buildLens(data, { path: `src/lens-data/${file}` });
     } catch {
       continue;
     }
@@ -505,7 +505,11 @@ async function degradeShard(shard, shards, outDir, limit) {
           const elements = data.elements.map((element) =>
             ids.has(element.id) ? estimatedElement(element, vds.get(element.id), estimator, fit) : element,
           );
-          const degraded = prepareRuntimeState(buildLens({ ...data, elements }), 0, zoomT);
+          const degraded = prepareRuntimeState(
+            buildLens({ ...data, elements }, { path: `src/lens-data/${file}` }),
+            0,
+            zoomT,
+          );
           if (assessMtfSpectralData(degraded).blocker) return null;
           return chartChange(
             base,

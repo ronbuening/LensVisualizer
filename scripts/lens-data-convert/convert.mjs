@@ -45,7 +45,7 @@ import { fileURLToPath } from "node:url";
 import * as prettier from "prettier";
 import ts from "typescript";
 import { parseLensDataSource } from "../lens-data-ast.mjs";
-import { loadLensDataConversion } from "../lens-summaries.mjs";
+import { loadLensDataConversion } from "./load.mjs";
 import { commentMisplaced, commentNotCarried, commentReplaced, movedNote, placeComments } from "./comments.mjs";
 import { printLensDataObject } from "./print.mjs";
 import { readLensDataFile } from "./read.mjs";

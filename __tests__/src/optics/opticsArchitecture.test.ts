@@ -13,7 +13,7 @@
  */
 
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
-import { join } from "node:path";
+import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
@@ -55,7 +55,7 @@ const SEAM_REGISTRY: readonly SeamRegistryEntry[] = [
   { module: "src/optics/glassCatalog.ts" },
   {
     module: "src/optics/lensDataConversion.ts",
-    importers: ["scripts/lens-data-convert/", "scripts/lens-data-lib.mjs", "scripts/lens-summaries.mjs"],
+    importers: ["scripts/lens-data-convert/load.mjs"],
   },
   { module: "src/optics/mtf.ts" },
   { module: "src/optics/optics.ts" },
@@ -498,6 +498,34 @@ const outsideImporters = once(() => {
   return new Map([...importers.keys()].sort().map((target) => [target, [...importers.get(target)!].sort()]));
 });
 
+/** Every restricted importer is an exact file, and each admitted file must still import the target. */
+function restrictedImporterProblems(
+  imports: ReadonlyMap<string, readonly string[]>,
+  registry: readonly SeamRegistryEntry[],
+): string[] {
+  return registry.flatMap(({ module, importers: allowed }) => {
+    if (!allowed) return [];
+    const actual = imports.get(module) ?? [];
+    return [
+      ...actual.filter((file) => !allowed.includes(file)).map((file) => `${file} may not import ${module}.`),
+      ...allowed
+        .filter((file) => !actual.includes(file))
+        .map((file) => `${file} no longer imports ${module}; remove the stale importer entry.`),
+    ];
+  });
+}
+
+/** Only the conversion barrel and V1 implementation modules may reference the V1 directory. */
+function v1IsolationProblems(references: ReadonlyMap<string, readonly string[]>): string[] {
+  return [...references].flatMap(([module, targets]) =>
+    module.includes("/v1/") || module === "src/optics/lensDataConversion.ts"
+      ? []
+      : targets
+          .filter((target) => target.includes("/v1/"))
+          .map((target) => `${module} imports converter-only ${target}.`),
+  );
+}
+
 /** Source with comments removed; string and template literals are kept whole. */
 function stripComments(text: string): string {
   const literalOrComment = /("(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*'|`(?:[^`\\]|\\.)*`)|\/\/[^\n]*|\/\*[\s\S]*?\*\//g;
@@ -779,24 +807,55 @@ describe("optics architecture guards", () => {
     });
 
     it("restricts the conversion seam per importer and isolates the V1 mapping", () => {
-      const problems: string[] = [];
-      for (const { module, importers: allowed } of SEAM_REGISTRY) {
-        if (!allowed) continue;
-        for (const importer of outsideImporters().get(module) ?? []) {
-          if (!allowed.some((entry) => (entry.endsWith("/") ? importer.startsWith(entry) : importer === entry)))
-            problems.push(
-              `${importer} may not import ${module}; only the converter, organizer and build metadata may.`,
-            );
-        }
-      }
-      for (const module of opticsModules()) {
-        if (module.includes("/v1/") || module === "src/optics/lensDataConversion.ts") continue;
-        for (const reference of moduleReferences(readSource(module))) {
-          const target = resolveOpticsModule(module, reference.specifier);
-          if (target?.includes("/v1/")) problems.push(`${module} imports converter-only ${target}.`);
-        }
-      }
-      expect(problems).toEqual([]);
+      const importers = new Map(outsideImporters());
+      const loader = "scripts/lens-data-convert/load.mjs";
+      const loaderImporters = IMPORTER_ROOTS.flatMap((root) => sourceFiles(root, isCodeFile)).filter((file) =>
+        moduleReferences(readSource(file)).some(
+          ({ specifier }) => specifier.startsWith(".") && join(dirname(file), specifier) === loader,
+        ),
+      );
+      importers.set(loader, loaderImporters);
+      const restrictions = [
+        ...SEAM_REGISTRY,
+        { module: loader, importers: ["scripts/lens-data-convert/cli.mjs", "scripts/lens-data-convert/convert.mjs"] },
+      ];
+      const references = new Map(
+        [...opticsModules()].map((module) => [
+          module,
+          moduleReferences(readSource(module)).flatMap(({ specifier }) => {
+            const target = resolveOpticsModule(module, specifier);
+            return target ? [target] : [];
+          }),
+        ]),
+      );
+      expect([...restrictedImporterProblems(importers, restrictions), ...v1IsolationProblems(references)]).toEqual([]);
+    });
+
+    it("rejects forbidden and stale conversion importers, including a direct V1 import", () => {
+      const seam = "src/optics/lensDataConversion.ts";
+      const loader = "scripts/lens-data-convert/load.mjs";
+      const registry = [{ module: seam, importers: [loader] }];
+      expect(restrictedImporterProblems(new Map([[seam, [loader]]]), registry)).toEqual([]);
+      expect(restrictedImporterProblems(new Map([[seam, [loader, "scripts/audit-aperture.mjs"]]]), registry)).toEqual([
+        `scripts/audit-aperture.mjs may not import ${seam}.`,
+      ]);
+      expect(restrictedImporterProblems(new Map(), registry)).toEqual([
+        `${loader} no longer imports ${seam}; remove the stale importer entry.`,
+      ]);
+      const module = "src/optics/prescription/compile.ts";
+      const target = resolveOpticsModule(module, "./v1/ingestV1.js")!;
+      expect(target).toBe("src/optics/prescription/v1/ingestV1.ts");
+      expect(v1IsolationProblems(new Map([[module, [target]]]))).toEqual([
+        `${module} imports converter-only ${target}.`,
+      ]);
+      expect(
+        v1IsolationProblems(
+          new Map([
+            [seam, [target]],
+            [target, [target]],
+          ]),
+        ),
+      ).toEqual([]);
     });
 
     it("registers only modules that meet the admission rule", () => {

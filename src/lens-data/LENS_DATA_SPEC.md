@@ -34,7 +34,7 @@ or `../../types/lensDataV2.js` in a maker folder. The root-first workflow is the
 template's import is right there. The organizer moves only a root-level `.data.ts` file and its same-stem
 `.analysis.md`; create or move an `.audit.md` separately once the maker folder is known.
 
-A new file drafted in V1 (from an archive or an older branch) is converted before it is added:
+An archived V1 file (from an archive or an older branch) is converted before it is added:
 `npm run convert:lens-data -- --input <file> --write`. Review the conversion report it prints.
 
 Ordinary photographic lenses are front-to-rear sequential prescriptions. Mirror lenses and telescope-style reference

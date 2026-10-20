@@ -1,3 +1,7 @@
+import {
+  attachFixtureTeleconverter,
+  expandFixtureRearPlates as expandRearPlates,
+} from "../optics/constructionFixtures.js";
 import { constructionFixtureData } from "../optics/constructionFixtures.js";
 /**
  * Engine differential harness: the payload encoding and digests, the seam adapter, the request lists of the three
@@ -88,7 +92,7 @@ import {
   ingestTeleconverter as appIngestTeleconverter,
 } from "../../../src/optics/buildLens.js";
 import { buildFixtureLens as buildLens } from "../optics/constructionFixtures.js";
-import { canonicalInput, expandRearPlates } from "../../../src/optics/buildLens.js";
+import { canonicalInput } from "../../../src/optics/buildLens.js";
 import { ingestLens, ingestTeleconverter } from "../../../src/optics/lensDataConversion.js";
 import { ingestLensV1 } from "../../../src/optics/prescription/v1/ingestV1.js";
 import { toLensData, toTeleconverterData } from "../../../src/optics/prescription/v1/toLensData.js";
@@ -1018,7 +1022,7 @@ describe("engineDiff Tier P requests", () => {
     expect([...BENCHMARK_LENS_KEYS]).toEqual([...DEFAULT_BENCHMARK_LENS_KEYS]);
 
     const seam = resolveSeam();
-    const lens = seam.buildLens(
+    const lens = buildLens(
       decodeValue(CATALOG.lenses.find((entry) => entry.key === SERENAR)!.prescription) as LensData,
     );
     const preparedState = seam.prepareState(lens, 0, 0);
@@ -1083,10 +1087,9 @@ describe("engineDiff Tier P requests", () => {
 
 describe("engineDiff request catalog", () => {
   it("reads each lens's stations, ring and path as the built lens has them", () => {
-    const seam = resolveSeam();
     const offenders: string[] = [];
     REQUEST_CATALOG.lenses.forEach((facts, index) => {
-      const lens = seam.buildLens(decodeValue(CATALOG.lenses[index].prescription) as LensData);
+      const lens = buildLens(decodeValue(CATALOG.lenses[index].prescription) as LensData);
       const ring = lens.aberrationControl;
       const agrees =
         facts.key === CATALOG.lenses[index].key &&
@@ -1789,7 +1792,7 @@ describe("engineDiff capture", () => {
         CATALOG.teleconverters.find((entry) => entry.key === PAIR.teleconverter)!.prescription,
       ) as TeleconverterData,
     );
-    const composed = seam.attachTeleconverter(catalogLensData(host), converter);
+    const composed = attachFixtureTeleconverter(catalogLensData(host), converter);
     expect(composition.compatibility.ok).toBe(true);
     expect(composition.prescription).toEqual(throughJson(normalizeAuthoredData(composed, seam.flatRadiusThreshold)));
     expect(composition.prescription.surfaces.length).toBeGreaterThan(host.surfaces.length);
@@ -1809,7 +1812,7 @@ describe("engineDiff capture", () => {
       catalogLensData(decodeValue(CATALOG.lenses.find((entry) => entry.key === key)!.prescription) as LensData),
     );
     inputs.push(
-      seam.attachTeleconverter(
+      attachFixtureTeleconverter(
         catalogLensData(decodeValue(CATALOG.lenses.find((entry) => entry.key === PAIR.key)!.prescription) as LensData),
         catalogTeleconverterData(
           decodeValue(
@@ -1819,7 +1822,7 @@ describe("engineDiff capture", () => {
       ) as unknown as LensData,
     );
     for (const input of inputs) {
-      const lens = seam.buildLens(input);
+      const lens = buildLens(input);
       const { source, attachedTeleconverter: _descriptor, ...view } = lens;
       const historical = { ...view, data: expandRearPlates(toLensData(canonicalInput(source))) };
       const project = (data: object) => ingestLens(data as LensDataInput).prescription;
@@ -1833,7 +1836,7 @@ describe("engineDiff capture", () => {
   it("keeps every field of a built lens in its build record, the copied and defaulted ones included", () => {
     const seam = resolveSeam();
     /* A zoom with a close-focus distance per station, an f-stop series of its own, and rear plates. */
-    const lens = seam.buildLens(
+    const lens = buildLens(
       decodeValue(CATALOG.lenses.find((entry) => entry.key === "fuji-xf-16-55-f28")!.prescription) as LensData,
     );
     const recordOf = (built: object) =>
@@ -1887,7 +1890,7 @@ describe("engineDiff capture", () => {
      * interaction, a diffractive phase, the placement of an embedded stop, a curved radius. */
     type Surface = (typeof lens.S)[number];
     const built = (key: string) =>
-      seam.buildLens(decodeValue(CATALOG.lenses.find((entry) => entry.key === key)!.prescription) as LensData);
+      buildLens(decodeValue(CATALOG.lenses.find((entry) => entry.key === key)!.prescription) as LensData);
     const surfaceChanges: [key: string, member: keyof Surface, change: (surface: Surface) => Partial<Surface>][] = [
       ["carl-zeiss-mirotar-500f45", "innerSd", (surface) => ({ innerSd: surface.innerSd! * 1.01 })],
       [

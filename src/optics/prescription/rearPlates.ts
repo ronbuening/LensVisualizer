@@ -4,8 +4,6 @@ import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTax
 import { FLAT_RADIUS } from "./canonical.js";
 import type { CanonicalLens, CanonicalSurface, CanonicalElement, IngestedPrescription } from "./canonical.js";
 import { canonicalConstructionData, elementDisplayData } from "./constructionData.js";
-import { canonicalForView } from "./identity.js";
-import { ingestLens } from "./ingestV2.js";
 
 export const REAR_PLATE_LABEL_PATTERN = /^RP\d+[ab]$/;
 export function rearPlateSurfaceLabels(index: number): [string, string] {
@@ -117,14 +115,6 @@ function generatedElementEcho(element: LensData["elements"][number], plate?: Rea
   const { apd: _apd, ...echo } = element;
   if (plate?.indexReference === undefined) delete echo.indexReference;
   return echo;
-}
-
-/** Compatibility projection for composition's paraxial pass and report scans. No second plate algorithm. */
-export function expandRearPlates(data: LensData): LensData {
-  if (!data.rearPlates?.length) return data;
-  const ingested = canonicalForView(data) ?? ingestLens(data);
-  const expanded = expandedConstruction(ingested, data.attachedTeleconverter, data);
-  return { ...data, surfaces: expanded.data.surfaces, elements: expanded.data.elements };
 }
 
 /**

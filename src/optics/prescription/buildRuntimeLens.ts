@@ -1,5 +1,5 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-import type { LensDataInput, RuntimeLens } from "../../types/optics.js";
+import type { RuntimeLens } from "../../types/optics.js";
 import type { CanonicalLens, IngestedPrescription, IngestRequest } from "./canonical.js";
 import { runtimeView } from "./runtimeView.js";
 import { compileLensData, compileLens } from "./compile.js";
@@ -10,7 +10,7 @@ import { compileLensData, compileLens } from "./compile.js";
  * @param data - authored V2 file or canonical prescription
  * @returns the shared frozen RuntimeLens for the canonical identity
  */
-export function buildLens(data: LensDataInput | LensDataV2Input | CanonicalLens, request?: IngestRequest): RuntimeLens {
+export function buildLens(data: LensDataV2Input | CanonicalLens, request?: IngestRequest): RuntimeLens {
   return runtimeView(compileLensData(data, request));
 }
 

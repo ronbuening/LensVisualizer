@@ -392,7 +392,7 @@ describe("canonical compiler ownership", () => {
 
   it("prepares folded image planes from compiled authority without consulting source echoes", () => {
     for (const key of ["reference-newtonian-side-focus", "reference-spherical-primary-mirror"]) {
-      const compiled = compileLensData(CATALOG_CONSTRUCTION_FIXTURES[key]);
+      const compiled = compileLensData(ingestLensV1(CATALOG_CONSTRUCTION_FIXTURES[key]).prescription);
       expect(compiled.hasExplicitImagePlane).toBe(true);
       const source = new Proxy(compiled.source, {
         get() {

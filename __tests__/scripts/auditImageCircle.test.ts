@@ -9,9 +9,9 @@
  * Each audit reads V2 and refuses its archived V1 twin with the conversion command.
  */
 import { execFileSync } from "node:child_process";
-import { chmodSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { dirname, join } from "node:path";
+import { dirname, join, relative, resolve } from "node:path";
 import { env } from "node:process";
 import { afterAll, describe, expect, it } from "vitest";
 import { FIXTURE_PAIRS } from "../src/optics/prescription/ingestV2Fixtures.js";
@@ -92,13 +92,16 @@ describe("audits read only V2 files", () => {
     }
     return {
       status,
-      stdout: stdout.replaceAll(dirname(file), "<dir>"),
-      stderr: stderr.replaceAll(dirname(file), "<dir>"),
+      conversionInput: /--input "([^"]+)" --write/.exec(stdout + stderr)?.[1],
+      stdout: stdout.replaceAll(relative(".", dirname(file)), "<dir>").replaceAll(dirname(file), "<dir>"),
+      stderr: stderr.replaceAll(relative(".", dirname(file)), "<dir>").replaceAll(dirname(file), "<dir>"),
     };
   }
 
   function rejectsV1(result: ReturnType<typeof audit>) {
     expect(result.status).toBe(1);
+    expect(result.conversionInput).toBeDefined();
+    expect(existsSync(resolve(result.conversionInput!))).toBe(true);
     expect(result.stdout + result.stderr).toContain(
       'npm run convert:lens-data -- --input "<dir>/Fixture.data.ts" --write',
     );

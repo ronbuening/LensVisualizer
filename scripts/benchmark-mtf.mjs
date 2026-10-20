@@ -198,7 +198,7 @@ try {
   for (const file of focusT ? [MTF_FINITE_BENCHMARK_CASE] : MTF_BENCHMARK_CASES) {
     const data = (await import(pathToFileURL(join(ROOT, "src", "lens-data", file)).href)).default;
     const prepared = sides.map(({ name, engine }) => {
-      const L = engine.buildLens(data);
+      const L = engine.buildLens(data, { path: `src/lens-data/${file}` });
       return { name, engine, L, state: engine.prepareRuntimeState(L, focusT, 0) };
     });
     for (const maxGridSize of MTF_BENCHMARK_GRIDS) {

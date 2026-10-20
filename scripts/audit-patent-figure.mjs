@@ -50,7 +50,7 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync, readdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { basename, dirname, join, resolve } from "node:path";
+import { basename, dirname, join, relative, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const ROOT = join(import.meta.dirname, "..");
@@ -221,7 +221,7 @@ const truncated = leftX <= cropX0 + 1 || rightX >= cropX1 - 2;
 /* ── the data file's own silhouette ── */
 /* Read canonical facts, with schema defaults already applied. */
 const lens = ingestLens((await import(pathToFileURL(resolve(dataFile)).href)).default, {
-  path: resolve(dataFile),
+  path: relative(ROOT, resolve(dataFile)).replaceAll("\\", "/"),
 }).prescription;
 const aspheres = Object.fromEntries(
   lens.surfaces.filter((surface) => surface.asphere).map((surface) => [surface.label, surface.asphere]),

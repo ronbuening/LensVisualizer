@@ -38,8 +38,6 @@ import type {
   ZoomStationV2Input,
   ZoomV2Input,
 } from "../../types/lensDataV2.js";
-import type { LensDataInput } from "../../types/optics.js";
-import type { TeleconverterData } from "../../types/teleconverter.js";
 import { associateCanonical } from "./identity.js";
 import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
 import { FLAT_RADIUS, PrescriptionIngestError, stopRadiusAuthority } from "./canonical.js";
@@ -1182,33 +1180,36 @@ export function lensDataVersion(input: object): 1 | 2 | undefined {
 }
 
 /** Refuse retired or unknown file formats before any authored data is mapped. */
-function requireV2(input: object, request?: IngestRequest): void {
+function requireV2(input: unknown, request?: IngestRequest): void {
+  if (input === null || typeof input !== "object" || Array.isArray(input)) {
+    throw new PrescriptionIngestError("?", ["input is not lens data: expected a lens-data object"]);
+  }
   if (lensDataVersion(input) === 2) return;
-  const path = request?.path ?? keyOf(input as Untyped);
+  const path = request?.path;
+  const key = keyOf(input as Untyped);
   const schema = schemaOf(input);
   throw new PrescriptionIngestError(keyOf(input as Untyped), [
     schema === undefined
-      ? `V1 file "${path}" is no longer accepted by the app; run npm run convert:lens-data -- --input ${JSON.stringify(path)} --write`
+      ? path
+        ? `V1 file ${JSON.stringify(path)} is no longer accepted by the app; run npm run convert:lens-data -- --input ${JSON.stringify(path)} --write`
+        : `V1 lens data (key ${JSON.stringify(key)}) is no longer accepted by the app; run the converter on its .data.ts file with npm run convert:lens-data`
       : `schema ${JSON.stringify(schema)} is no lens-data version: write ${LENS_DATA_V2_SCHEMA}`,
   ]);
 }
 
 /** Ingest an authored V2 lens; archived V1 files belong to the permanent converter. */
-export function ingestLens(
-  input: LensDataInput | LensDataV2Input,
-  request?: IngestRequest,
-): IngestedPrescription<CanonicalLens> {
+export function ingestLens(input: LensDataV2Input, request?: IngestRequest): IngestedPrescription<CanonicalLens> {
   requireV2(input, request);
-  const ingested = ingestLensV2(input as LensDataV2Input, request);
+  const ingested = ingestLensV2(input, request);
   associateCanonical(ingested.prescription, ingested);
   return ingested;
 }
 
 /** Ingest an authored V2 teleconverter. */
 export function ingestTeleconverter(
-  input: TeleconverterData | TeleconverterDataV2Input,
+  input: TeleconverterDataV2Input,
   request?: IngestRequest,
 ): IngestedPrescription<CanonicalTeleconverter> {
   requireV2(input, request);
-  return ingestTeleconverterV2(input as TeleconverterDataV2Input, request);
+  return ingestTeleconverterV2(input, request);
 }

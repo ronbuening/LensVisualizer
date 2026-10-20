@@ -23,7 +23,7 @@
  */
 
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
-import { join } from "node:path";
+import { join, relative } from "node:path";
 import { pathToFileURL } from "node:url";
 import {
   assertFreshnessDiversity,
@@ -74,7 +74,10 @@ async function importDataModules(suffix) {
     const file = (await import(pathToFileURL(filePath).href))?.default;
     if (!file?.key) continue;
     const kind = suffix === ".data.ts" ? "lens" : "teleconverter";
-    modules.push({ data: await canonicalPrescription(file, kind), filePath });
+    modules.push({
+      data: await canonicalPrescription(file, kind, relative(ROOT, filePath).replaceAll("\\", "/")),
+      filePath,
+    });
   }
   return modules;
 }

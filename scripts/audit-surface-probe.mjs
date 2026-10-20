@@ -26,7 +26,7 @@
  * with a ".js" specifier, which plain Node cannot resolve to the ".ts" source.
  */
 
-import { join, resolve } from "node:path";
+import { join, relative, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const ROOT = join(import.meta.dirname, "..");
@@ -56,7 +56,12 @@ function report(errors) {
  */
 function ingestView(file) {
   try {
-    return { view: ingestLens(file, { path: resolve(dataFile) }).prescription, errors: [] };
+    return {
+      view: ingestLens(file, {
+        path: relative(join(import.meta.dirname, ".."), resolve(dataFile)).replaceAll("\\", "/"),
+      }).prescription,
+      errors: [],
+    };
   } catch (error) {
     if (!Array.isArray(error?.issues)) throw error;
     return { view: null, errors: error.issues };
@@ -134,6 +139,12 @@ for (const label of overrides.keys()) {
 }
 
 const { view, errors: refused } = ingestView(candidate);
-const errors = view ? validateCanonicalLens(ingestLens(candidate)) : refused;
+const errors = view
+  ? validateCanonicalLens(
+      ingestLens(candidate, {
+        path: relative(join(import.meta.dirname, ".."), resolve(dataFile)).replaceAll("\\", "/"),
+      }),
+    )
+  : refused;
 if (overrides.size) console.log(`validating with ${[...overrides].map(([l, v]) => `${l}=${v}`).join(" ")}`);
 report(errors);

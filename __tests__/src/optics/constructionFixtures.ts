@@ -8,13 +8,19 @@ import { ingestLensV1 } from "../../../src/optics/prescription/v1/ingestV1.js";
 import { buildCanonicalLens, buildLens, canonicalInput } from "../../../src/optics/buildLens.js";
 import { assertValidLensData } from "../../../src/optics/prescription/canonicalInput.js";
 import { canonicalForView } from "../../../src/optics/prescription/identity.js";
-import { validateLensInput } from "../../../src/optics/prescription/validate/index.js";
+import validateLensData from "../../../src/optics/prescription/validate/index.js";
+import { v1CatalogDefaults } from "../../../src/optics/prescription/defaults.js";
+
 import type { LensDataInput } from "../../../src/types/optics.js";
 import { canonicalConstructionData } from "../../../src/optics/prescription/constructionData.js";
 import { expandedConstruction } from "../../../src/optics/prescription/rearPlates.js";
 import { associateCanonical } from "../../../src/optics/prescription/identity.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
+/** Validate legacy fixtures with the archived defaults, preserving explicit undefined fields. */
+export function validateFixtureLensInput(data: unknown): string[] {
+  return validateLensData({ ...v1CatalogDefaults(), ...(data as object) });
+}
 export function constructionFixtureData(lens: RuntimeLens | CanonicalLens): LensData {
   const input =
     "S" in lens
@@ -82,7 +88,7 @@ export function runtimeFixtureView(data: Partial<LensData>): Pick<RuntimeLens, "
 /** Convert legacy numeric test fixtures explicitly; app construction itself never accepts a V1 file. */
 export function buildFixtureLens(data: object): RuntimeLens {
   if (!data || (!("schema" in data) && !("kind" in data) && !canonicalForView(data))) {
-    assertValidLensData(data as LensData, validateLensInput(data));
+    assertValidLensData(data as LensData, validateFixtureLensInput(data));
     return buildCanonicalLens(ingestLensV1(data as LensDataInput));
   }
   return buildLens(data as CanonicalLens);
@@ -95,8 +101,16 @@ export function attachFixtureTeleconverter(
 ): CanonicalLens {
   const fields = { ...host } as LensData;
   delete fields.zoomLabels;
-  if (!("kind" in host) && !canonicalForView(host)) assertValidLensData(host, validateLensInput(fields));
+  if (!("kind" in host) && !canonicalForView(host)) assertValidLensData(host, validateFixtureLensInput(fields));
   const hostInput = "kind" in host ? host : (canonicalForView(host) ?? ingestLensV1(fields)).prescription;
   const converter = "kind" in tc ? tc : ingestTeleconverter(tc).prescription;
   return attachTeleconverter(hostInput, converter);
+}
+
+/** Historical expanded numeric echoes used only by cross-revision capture tests. */
+export function expandFixtureRearPlates(data: LensData): LensData {
+  if (!data.rearPlates?.length) return data;
+  const ingested = canonicalForView(data) ?? ingestLensV1(data);
+  const expanded = expandedConstruction(ingested, data.attachedTeleconverter, data);
+  return { ...data, surfaces: expanded.data.surfaces, elements: expanded.data.elements };
 }

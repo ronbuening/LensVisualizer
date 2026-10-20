@@ -147,7 +147,9 @@ let lenses = 0;
 let folded = 0;
 for (const path of files) {
   /* Read canonical facts, with schema defaults already applied. */
-  const data = ingestLens((await import(pathToFileURL(path).href)).default, { path }).prescription;
+  const data = ingestLens((await import(pathToFileURL(path).href)).default, {
+    path: relative(ROOT, path).replaceAll("\\", "/"),
+  }).prescription;
   if (data.visible === false && !ALL && requested.length === 0) continue;
   const L = buildLens(data);
   if (L.isFoldedOptics) {

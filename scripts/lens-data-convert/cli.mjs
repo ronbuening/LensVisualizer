@@ -28,7 +28,7 @@ import * as nodeFs from "node:fs";
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { evaluateLensDataSource } from "../lens-data-ast.mjs";
-import { loadLensDataConversion } from "../lens-summaries.mjs";
+import { loadLensDataConversion } from "./load.mjs";
 import { convertLensDataSource } from "./convert.mjs";
 import { formatConversionReport } from "./report.mjs";
 import { typeCheckConvertedFiles } from "./typecheck.mjs";

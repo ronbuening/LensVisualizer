@@ -19,8 +19,10 @@ import {
   resolveLensSystemData,
   resolveTeleconverterKey,
 } from "../../../../src/utils/catalog/teleconverterCatalog.js";
-import type { LensDataInput } from "../../../../src/types/optics.js";
-import type { TeleconverterData } from "../../../../src/types/teleconverter.js";
+import type { LensDataV2Input, TeleconverterDataV2Input } from "../../../../src/types/lensDataV2.js";
+import { fileURLToPath } from "node:url";
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
 
 /* Ingest, watched: it still runs, and a test can count the lenses it reads. */
 vi.mock("../../../../src/optics/buildLens.js", async (importOriginal) => {
@@ -31,12 +33,12 @@ vi.mock("../../../../src/optics/buildLens.js", async (importOriginal) => {
 /* Every file as authored, by key: what the catalogs read through canonical ingest. */
 const AUTHORED_LENSES = new Map(
   Object.values(
-    import.meta.glob<{ default: LensDataInput }>("../../../../src/lens-data/**/*.data.ts", { eager: true }),
+    import.meta.glob<{ default: LensDataV2Input }>("../../../../src/lens-data/**/*.data.ts", { eager: true }),
   ).map(({ default: data }) => [data.key, data] as const),
 );
 const AUTHORED_CONVERTERS = new Map(
   Object.values(
-    import.meta.glob<{ default: TeleconverterData }>("../../../../src/lens-data/**/*.teleconverter.ts", {
+    import.meta.glob<{ default: TeleconverterDataV2Input }>("../../../../src/lens-data/**/*.teleconverter.ts", {
       eager: true,
     }),
   ).map(({ default: data }) => [data.key, data] as const),
@@ -45,6 +47,34 @@ const AUTHORED_CONVERTERS = new Map(
 const INITIAL_INGEST_COUNT = vi.mocked(ingestLens).mock.calls.length;
 
 describe("lensCatalog", () => {
+  it("gives runnable repo-root paths when either catalog refuses a V1 arrival", () => {
+    const before = vi.mocked(ingestLens).mock.calls.length;
+    for (const [authored, catalog] of [
+      [AUTHORED_LENSES, LENS_CATALOG],
+      [AUTHORED_CONVERTERS, TELECONVERTER_CATALOG],
+    ] as const) {
+      const file = [...authored.values()][0];
+      Reflect.deleteProperty(file, "schema");
+      try {
+        let refusal = "";
+        try {
+          void catalog[file.key];
+        } catch (error) {
+          refusal = String(error);
+        }
+        const match = /--input "([^"]+)" --write/.exec(refusal);
+        expect(match, refusal).not.toBeNull();
+        const path = match![1];
+        expect(path).toMatch(/^src\/lens-data\//);
+        expect(existsSync(resolve(fileURLToPath(new URL("../../../../", import.meta.url)), path)), path).toBe(true);
+      } finally {
+        Reflect.set(file, "schema", 2);
+      }
+    }
+    // Only this test's deliberately refused read is removed from the lazy-ingest count.
+    vi.mocked(ingestLens).mock.calls.splice(before);
+  });
+
   it("keeps nested maker-folder lenses discoverable with matching analysis markdown", async () => {
     const key = "zeiss-hologon-15f8";
     expect(LENS_CATALOG[key]).toBeDefined();

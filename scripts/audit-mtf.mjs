@@ -41,7 +41,7 @@ for (const file of files) {
   const data = (await import(pathToFileURL(resolve("src/lens-data", file)))).default;
   if (data.visible === false) continue;
   audited++;
-  const L = buildLens(data);
+  const L = buildLens(data, { path: `src/lens-data/${file}` });
   const state = prepareRuntimeState(L, 0, 0);
   const options = {
     method: "geometric",
