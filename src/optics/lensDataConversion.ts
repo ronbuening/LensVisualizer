@@ -1,7 +1,7 @@
 /**
  * Permanent file-conversion seam: version detection, canonical ingest, V1/V2 printers and source-path mapping.
- * Only the converter, organizer and build metadata may import this seam (tests follow internals). Runtime readers use V2 ingest
- * through buildLens.ts and never construct the source-preserving V1 view.
+ * Only scripts/lens-data-convert/load.mjs may load this seam outside focused tests. The converter and organizer
+ * reach it through that loader. Runtime and build-metadata readers use V2 ingest through buildLens.ts.
  */
 
 export { lensDataVersion } from "./prescription/ingestV2.js";

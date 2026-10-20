@@ -16,7 +16,7 @@
  *   clip      an authored clear aperture clips the chief ray at the modeled edge
  *   blocked   no chief ray can be aimed through the stop centre past the modeled edge; the rim named is the one
  *             the aimed rays leave on the way (a clip that shows up as a trace failure)
- *   plate     a synthetic rear-plate rim clips the chief ray (engine sizing, see expandRearPlates)
+ *   plate     a synthetic rear-plate rim clips the chief ray (engine sizing, see expandCanonicalRearPlates)
  *   declared  the lens declares a narrower rectilinear projection field (projection.fullFieldDeg / maxTraceFieldDeg)
  *   peak      chief-ray image height stops growing before the corner (extreme distortion)
  *   bound     the chief ray still clears every rim past the modeled edge (an engine bound stops short)

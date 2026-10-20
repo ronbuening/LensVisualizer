@@ -4503,7 +4503,7 @@ describe("engineDiff converter pairs", () => {
     expect(unread.differences.headEngineOnly).toEqual([]);
     expect(unread.differences.uncompared.map(({ lens }) => lens)).toEqual(formed);
     expect(unread.differences.uncompared[0].reason).toMatch(/^PrescriptionIngestError: /);
-    expect(unread.differences.uncompared[0].reason).toContain("run the converter on its .data.ts file");
+    expect(unread.differences.uncompared[0].reason).toContain("run the converter on its .teleconverter.ts file");
 
     /* A pair both engines build and only one permits is still engine drift, beside the pairs set aside: it fails
      * in every gated class, and an intended change reports it. */

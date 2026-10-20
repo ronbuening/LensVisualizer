@@ -74,8 +74,8 @@ export function recordReads(
 /** Fields only the engine writes, with why a file may not carry them. */
 const ENGINE_WRITTEN: Readonly<Record<string, string>> = {
   attachedTeleconverter: "is written only by attachTeleconverter(), never authored",
-  synthetic: "is set only by expandRearPlates(), never authored",
-  clips: "is set only by expandRearPlates(), never authored",
+  synthetic: "is set only by expandCanonicalRearPlates(), never authored",
+  clips: "is set only by expandCanonicalRearPlates(), never authored",
 };
 
 const ASPHERIC_KEYS: readonly string[] = ASPHERIC_COEFFICIENT_SCHEMA.map((descriptor) => descriptor.key);

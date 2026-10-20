@@ -146,8 +146,9 @@ meant for publication gets its own file, key and name; it never reuses a test mo
 
 ## Composed System
 
-`attachTeleconverter(host, converter)` ingests both inputs and composes their canonical prescriptions before
-compilation. It returns a `LensData` view associated with that canonical pair for the existing `buildLens()` call.
+`attachTeleconverter(host, converter)` accepts authored V2 or canonical inputs, ingests authored inputs and composes
+their canonical prescriptions before compilation. It returns a `CanonicalLens` associated with the pair's provenance
+and composition descriptor for `buildLens()`.
 The compiler and analyses consume one lens; the descriptor supplies labels and plate placement. Worker initialization
 transports the unexpanded canonical pair, provenance and descriptor and compiles it directly.
 

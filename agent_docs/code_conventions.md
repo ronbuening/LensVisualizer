@@ -16,8 +16,8 @@
 - **Type definitions** centralized in `src/types/` — `optics.ts` (RuntimeLens, LensData, etc.), `state.ts` (LensState, LensAction), `theme.ts` (Theme, ThemeColorTokens)
 - Intentionally partial mock objects in tests use `as unknown as RuntimeLens` (or the relevant type) to satisfy strict mode while keeping fixtures minimal
 - **`satisfies`, not annotation, for authored data.** Lens prescriptions export
-  `export default { ... } satisfies LensDataInput` and mount specs use `satisfies MountSpecInput` —
-  never `const data: LensDataInput = { ... }`. `satisfies` contract-checks the object while
+  `export default { ... } satisfies LensDataV2Input` and mount specs use `satisfies MountSpecInput` —
+  never `const data: LensDataV2Input = { ... }`. `satisfies` contract-checks the object while
   preserving its narrow literal types, which downstream normalization, validation, and inference
   rely on; an annotation would widen every field to the input type and lose that information.
 

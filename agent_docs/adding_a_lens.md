@@ -18,9 +18,10 @@ Create or relocate an `.audit.md` log separately in the final maker folder. If a
 For an archived V1 lens or teleconverter, drop the file into `src/lens-data/`, run
 `npm run organize:lens-data`, review the conversion report, and commit the resulting V2 file. The organizer also
 converts V1 files already inside maker folders in place. A conversion refusal stops organization and leaves the
-source unchanged. The app accepts only `schema: 2`; a V1 ingest error names its file path and
-`npm run convert:lens-data -- --input <file> --write`. Metadata generation refuses V1 files and names the organizer
-command; it never converts them. The permanent converter also supports `--to-version 1` for archived workflows.
+source unchanged. The app accepts only `schema: 2`; catalog loaders pass repo-root-relative file paths.
+A V1 ingest error prints `npm run convert:lens-data -- --input <file> --write` only when a path is known;
+otherwise it names the key and asks for conversion of its `.data.ts` or `.teleconverter.ts` file. Metadata generation
+refuses V1 files and names the organizer command; it never converts them. The permanent converter also supports `--to-version 1` for archived workflows.
 For old audit field names, see [Reading V1 Audits](../src/lens-data/LENS_DATA_SPEC.md#reading-v1-audits).
 
 On `npm run build`, every visible lens is also eligible for `/feeds/lenses.xml` (the 50 newest by publication date, normally derived from Git; `visible: false` fixtures are excluded). See `agent_docs/architecture/routing-and-content.md`.

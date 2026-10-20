@@ -1577,8 +1577,8 @@ Merged: S2.P1.T1 (#784) and S2.P1.T2 (#792).
     `src/lens-data/defaults.ts` is deleted.
     - The catalogs ingest lazily, memoized per entry: every read of a key returns the same object, because caches key
       on it.
-    - Ingest reads authored files only. `attachTeleconverter()` composes a converter pair and `expandRearPlates()`
-      expands plates after ingest, so `attachedTeleconverter`, `synthetic` and `clips` never pass through it.
+    - Ingest reads authored files only. `attachTeleconverter()` composes a converter pair and rear-plate expansion
+      runs after ingest, so `attachedTeleconverter`, `synthetic` and `clips` never pass through it.
       `buildLens` knows a composed pair only by the `attachedTeleconverter` marker `attachTeleconverter()` writes, an
       object, never by a caller's flag, and builds it without ingest. This seam is temporary; S5.P1.T4 moves
       composition onto the canonical form.
@@ -1626,7 +1626,8 @@ Merged: S2.P2.T1 (#795) and S2.P2.T2 (#796).
     - the engine's own ingest call sites dispatch on `schema` in this step, since no commit older than S2.P2.T1 reads
       a V2 file ([Anchors and comparison coverage](#anchors-and-comparison-coverage)): `buildLens`
       (`withLensDefaults`), the two catalogs and the harness's ingest capability. One predicate beside the
-      dispatchers, `isV1File`, tells the versions apart; the catalog takes it through the `buildLens.ts` barrel;
+      dispatchers, `isV1File`, tells the versions apart; the catalog then took it through the `buildLens.ts` barrel
+      (S8.P2.T2 removes that export; app readers use `lensDataVersion`);
     - a V1 file keeps the validator-first order of S2.P1.T2. A V2 file's refusals come from V2 ingest at the file's
       own paths (As built), and the validator then reads its V1 view;
     - V2 ingest reads a numeric `R` beyond `FLAT_R_THRESHOLD` as flat, keeping the number as provenance
@@ -1755,8 +1756,9 @@ Merged: S2.P2.T1 (#795) and S2.P2.T2 (#796).
     - `scripts/lens-data-convert/{read, print, comments, report, convert}.mjs`, with `.d.mts` declarations for the
       modules tests import
     - `scripts/lens-data-ast.mjs` and its `.d.mts`: `walkLensDataSource` shows the reader the syntax behind each value
-    - `scripts/lens-summaries.mjs` and its `.d.mts`: the seam loads through `loadLensDataConversion`, whose return type
-      names every export of the seam; the converter calls it before it loads `buildLens.ts`
+    - `loadLensDataConversion` and its declarations: originally in `scripts/lens-summaries.mjs` and its `.d.mts`,
+      moved to `scripts/lens-data-convert/load.mjs` and its `.d.mts` at S8.P2.T2. Its return type names every export
+      of the seam; the converter calls it before it loads `buildLens.ts`
     - `agent_docs/architecture/{optics-engine, public-functions, routing-and-content, testing}.md`
     - the existing tests `__tests__/src/optics/opticsArchitecture.test.ts`,
       `__tests__/src/optics/prescription/ingestV2.test.ts` and `__tests__/src/optics/prescription/ingestV2Fixtures.ts`
@@ -2637,14 +2639,17 @@ gone.
 - **S8.P2.T2 Retire V1 ingest from the app.**
   - **Precondition:** S8.P2.T1's Tier F run has passed.
   - **Change:**
-    - `ingest` accepts only `schema: 2`. A V1 file fails with its path and the `npm run convert:lens-data` command.
+    - App ingest accepts only `schema: 2`. A V1 refusal prints a repo-root-relative path and the
+      `npm run convert:lens-data -- --input <file> --write` command only when a path is known; otherwise it names
+      the key and asks for conversion of the lens or teleconverter file.
     - The V1 mapping moves to `prescription/v1/`, reachable only through `lensDataConversion.ts`.
     - Lens-data readers in `scripts/` and `reports/` drop V1, except the organizer's detection, the converter, and the
       metadata generator's stop on a V1 file.
   - **Kept permanently:** the converter, its V1 reader and printer, the organizer's conversion on arrival, and the V1/V2
     fixture pairs from S2.P2.T1 as the converter's regression suite.
-  - **Tests:** the seam guard gains a rule per importer and admits only the converter, the organizer and build
-    metadata as importers of `lensDataConversion.ts`; a V1 file passed to `buildLens` fails with the convert command.
+  - **Tests:** the seam guard admits only `scripts/lens-data-convert/load.mjs` as an outside importer of
+    `lensDataConversion.ts`, and only that directory's `cli.mjs` and `convert.mjs` as loader importers. A V1 file
+    passed to `buildLens` fails with the convert command when a path is known, or names the key otherwise.
   - **Gate:** C0; by this step every catalog file is V2.
 - **S8.P2.T3 Documentation and close.**
   - **Rewrite:**

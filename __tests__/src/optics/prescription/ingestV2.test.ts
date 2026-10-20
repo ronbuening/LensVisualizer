@@ -221,6 +221,13 @@ describe("dispatch on schema", () => {
       expect(call).toThrow("run the converter on its .data.ts file");
       expect(call).not.toThrow(/--input/);
     }
+    const converter = FIXTURE_PAIRS.find(
+      (pair): pair is Extract<FixturePair, { kind: "teleconverter" }> => pair.kind === "teleconverter",
+    )!;
+    const call = () => ingestTeleconverter(converter.v1 as never);
+    expect(call).toThrow(`V1 teleconverter data (key "${converter.v1.key}")`);
+    expect(call).toThrow("run the converter on its .teleconverter.ts file");
+    expect(call).not.toThrow(/--input/);
   });
 
   it.each([null, undefined, false, 1, "bad", []])("refuses non-data input %j before version detection", (input) => {
@@ -323,7 +330,7 @@ describe("V2 refusals name the authored path", () => {
       "a field only the engine writes",
       "prime",
       (file) => (file.surfaces[1].synthetic = "rearPlate"),
-      "surfaces[1].synthetic is set only by expandRearPlates(), never authored",
+      "surfaces[1].synthetic is set only by expandCanonicalRearPlates(), never authored",
     ],
     [
       "a record that is not an object",

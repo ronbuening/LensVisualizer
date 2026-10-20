@@ -338,7 +338,8 @@ so an ingest that was not asked builds no path. `sourcePaths.ts` spells every pa
 - App `ingestLens` / `ingestTeleconverter` (`ingestV2.ts`) accept only `schema: 2`. An archived V1 file is
   refused with its file path and `npm run convert:lens-data -- --input <file> --write`; catalog loaders supply
   repo-root-relative file paths via the ingest request. Without a path, the refusal names the key and asks for
-  conversion of its `.data.ts` file. Non-object inputs fail as invalid lens data. `buildLens` also accepts an optional `{ path }` request for diagnostics.
+  conversion of its `.data.ts` lens file or `.teleconverter.ts` teleconverter file. Non-object inputs fail as invalid
+  lens data. `buildLens` also accepts an optional `{ path }` request for diagnostics.
   V2 ingest applies defaults at canonical paths, numbers undrawn media by first use (authored ids and names stay in
   provenance), and takes each variable gap's first value as its surface's `d`. It refuses unreadable shapes and V2
   rules at authored paths before canonical validation; the plan's S2.P2.T1 As built lists them. Shared rules for
@@ -426,10 +427,10 @@ lens. Lenses whose notes still fold a plate as t/n remain valid; see `src/lens-d
 
 ### Teleconverter Composition
 
-A detachable rear teleconverter is a `TeleconverterData` entity (`src/types/teleconverter.ts`), not a lens.
-`attachTeleconverter(host, tc)` in `src/optics/prescription/teleconverter.ts` ingests both inputs and composes canonical
-surfaces, media, elements, gaps and metadata in `composeTeleconverter.ts`. It returns a `LensData` view associated with
-that canonical pair, which goes through the unchanged `buildLens()`. Nothing
+A detachable rear teleconverter is authored as `TeleconverterDataV2Input` (`src/types/lensDataV2.ts`).
+`attachTeleconverter(host, tc)` in `src/optics/prescription/teleconverter.ts` accepts authored V2 or canonical inputs,
+ingests authored inputs and composes canonical surfaces, media, elements, gaps and metadata in `composeTeleconverter.ts`.
+It returns a `CanonicalLens` associated with the pair's provenance and composition descriptor for `buildLens()`. Nothing
 downstream is converter-aware: the exact tracer, prepared states and every analysis see one sequential lens whose stop
 is the host's. Built-in converters stay on `opticalConfiguration`.
 
@@ -443,8 +444,8 @@ is the host's. Built-in converters stay on `opticalConfiguration`.
 - **Host plates split around the converter.** A plate whose rear face is at least `masterImageDistanceMm` from the
   image is lens-side and stays ahead; the rest are camera-side and stay behind. Drop-in filters are authored as drawn
   elements, so the split only matters for a file that lists some other plate far ahead of the sensor. With plates ahead
-  the host's last gap is untouched and the last plate ahead trails into the converter. `expandRearPlates()` reads the
-  descriptor's `platesAhead` and emits those plates before the converter's first surface, so expansion stays the only
+  the host's last gap is untouched and the last plate ahead trails into the converter. `expandCanonicalRearPlates()`
+  reads the descriptor's `platesAhead` and emits those plates before the converter's first surface, so expansion stays the only
   place plates become surfaces, including when the worker compiles the transported canonical pair.
 - **The stop is preserved through `nominalFno`.** `buildLens()` derives the physical stop from `nominalFno` and
   whole-system EFL, so the composer rescales `nominalFno` at each zoom station by the exact paraxial ratio

@@ -103,7 +103,7 @@ function round(value: number, decimals: number): number {
  *   the junction becomes that plate's trailing gap instead.
  * - Converter labels get the reserved prefix and element ids continue after the host's, so every label- and
  *   id-keyed map (`asph`, `var`, annotations, element selection) stays unambiguous.
- * - Host `rearPlates` are kept: `expandRearPlates()` emits the `platesAhead` leading ones in front of the
+ * - Host `rearPlates` are kept: `expandCanonicalRearPlates()` emits the `platesAhead` leading ones in front of the
  *   converter and the rest behind its last surface.
  *
  * @param host - host lens data

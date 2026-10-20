@@ -3,7 +3,7 @@
  * runtime lens objects, ray-trace results, and diagram geometry.
  */
 
-/* ── Raw lens data types (as declared in .data.ts files) ── */
+/* ── Numeric construction and legacy V1 data types; authored V2 types live in lensDataV2.ts ── */
 
 import type { ImageFormatId, LensMountId } from "../utils/catalog/lensTaxonomy.js";
 import type { AsphericCoefficients } from "./asphericSchema.js";
@@ -37,10 +37,10 @@ export interface SurfaceData {
   stopPlacement?: "inside-element";
   interaction?: SurfaceInteraction;
   diffractive?: DiffractivePhaseSurface;
-  /** Set only by `expandRearPlates()`; authored data must not use it. Traced, never drawn. */
+  /** Set only by `expandCanonicalRearPlates()`; authored data must not use it. Traced, never drawn. */
   synthetic?: SyntheticOpticsKind;
   /**
-   * `false` only on a rear plate with a generated rim, set by `expandRearPlates()`; authored data must not use it.
+   * `false` only on a rear plate with a generated rim, set by `expandCanonicalRearPlates()`; never authored.
    * Such a surface never clips a ray or limits the field, and its `sd` serves only as an envelope extent.
    */
   clips?: false;
@@ -230,7 +230,9 @@ export interface ElementData {
   /** Explicit physical span for elements that contain optically neutral internal surfaces such as an embedded stop. */
   fromSurface?: string;
   toSurface?: string;
-  /** Set only by `expandRearPlates()`; synthetic elements feed dispersion lookup but are never drawn or listed. */
+  /**
+   * Set only by `expandCanonicalRearPlates()`; synthetic elements feed dispersion lookup, never drawing or lists.
+   */
   synthetic?: SyntheticOpticsKind;
 }
 
@@ -503,7 +505,7 @@ type DefaultedFields =
   | "apertureStep"
   | "maxFstop";
 
-/** Raw lens data shape before defaults merging (used in .data.ts files); composer-only fields are not authorable. */
+/** Archived V1 file shape before defaults merging; current .data.ts files use LensDataV2Input. */
 export type LensDataInput = Omit<LensData, DefaultedFields | "attachedTeleconverter"> &
   Partial<Pick<LensData, DefaultedFields>>;
 

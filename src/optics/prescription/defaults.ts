@@ -200,7 +200,7 @@ export const REAR_PLATE_SCHEMA_DEFAULTS: readonly SchemaDefault[] = [
     value: "d",
     v1Applied: "engine",
     reader:
-      "src/optics/prescription/rearPlates.ts expandRearPlates: copied onto the plate's synthetic element only when " +
+      "src/optics/prescription/rearPlates.ts expandCanonicalRearPlates: copied onto the plate's synthetic element only when " +
       "authored, then read as an element's",
   },
 ];

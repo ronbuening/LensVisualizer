@@ -1149,15 +1149,15 @@ export function ingestTeleconverterV2(
   return finish(key, converter as unknown as CanonicalTeleconverter, context, { format: 2, v2: spelling });
 }
 
-/* ── Dispatch on schema ── */
+/* ── Version detection and V2-only app ingest ── */
 
 function schemaOf(input: object): unknown {
   return (input as { schema?: unknown } | null | undefined)?.schema;
 }
 
 /**
- * Whether a lens or teleconverter file is V1: one that leaves `schema` out. The dispatchers below and every reader
- * that treats the two versions apart ask this one rule.
+ * Whether a lens or teleconverter file is V1: one that leaves `schema` out. The permanent converter dispatcher
+ * and version detection share this rule; the app barrel exposes only `lensDataVersion`.
  *
  * @param input - a file's default export, as authored
  * @returns true for a V1 file; a file with any `schema` is not one
@@ -1168,8 +1168,8 @@ export function isV1File<File extends object>(input: File): input is Exclude<Fil
 
 /**
  * The lens-data version of a file, by the same rule: 1 for a file that leaves `schema` out, 2 for `schema: 2`, and
- * none for any other `schema`, which the dispatchers below refuse. The converter asks it to leave a file already at
- * the version it converts to as it is, and to refuse a file of no version.
+ * none for any other `schema`, which app ingest and the converter refuse. The converter leaves a file already at
+ * the requested version as it is, and refuses a file of no version.
  *
  * @param input - a file's default export, as authored
  * @returns the file's version, or `undefined` when its `schema` names none
@@ -1180,7 +1180,7 @@ export function lensDataVersion(input: object): 1 | 2 | undefined {
 }
 
 /** Refuse retired or unknown file formats before any authored data is mapped. */
-function requireV2(input: unknown, request?: IngestRequest): void {
+function requireV2(input: unknown, kind: "lens" | "teleconverter", request?: IngestRequest): void {
   if (input === null || typeof input !== "object" || Array.isArray(input)) {
     throw new PrescriptionIngestError("?", ["input is not lens data: expected a lens-data object"]);
   }
@@ -1192,14 +1192,14 @@ function requireV2(input: unknown, request?: IngestRequest): void {
     schema === undefined
       ? path
         ? `V1 file ${JSON.stringify(path)} is no longer accepted by the app; run npm run convert:lens-data -- --input ${JSON.stringify(path)} --write`
-        : `V1 lens data (key ${JSON.stringify(key)}) is no longer accepted by the app; run the converter on its .data.ts file with npm run convert:lens-data`
+        : `V1 ${kind} data (key ${JSON.stringify(key)}) is no longer accepted by the app; run the converter on its .${kind === "lens" ? "data" : "teleconverter"}.ts file with npm run convert:lens-data`
       : `schema ${JSON.stringify(schema)} is no lens-data version: write ${LENS_DATA_V2_SCHEMA}`,
   ]);
 }
 
 /** Ingest an authored V2 lens; archived V1 files belong to the permanent converter. */
 export function ingestLens(input: LensDataV2Input, request?: IngestRequest): IngestedPrescription<CanonicalLens> {
-  requireV2(input, request);
+  requireV2(input, "lens", request);
   const ingested = ingestLensV2(input, request);
   associateCanonical(ingested.prescription, ingested);
   return ingested;
@@ -1210,6 +1210,6 @@ export function ingestTeleconverter(
   input: TeleconverterDataV2Input,
   request?: IngestRequest,
 ): IngestedPrescription<CanonicalTeleconverter> {
-  requireV2(input, request);
+  requireV2(input, "teleconverter", request);
   return ingestTeleconverterV2(input, request);
 }

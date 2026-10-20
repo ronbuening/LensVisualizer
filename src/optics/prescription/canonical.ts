@@ -458,7 +458,10 @@ export interface SourcePaths {
 export interface IngestRequest {
   /** Record where each value was read from, in `CanonicalProvenance.sources`. */
   sources?: boolean;
-  /** Authored file path for format refusals; catalog loaders supply their glob path. */
+  /**
+   * Repo-root-relative authored file path for format refusals, as supplied by catalog loaders.
+   * A refusal prints an --input command only when this path is known; otherwise it names the key.
+   */
   path?: string;
 }
 

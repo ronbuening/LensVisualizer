@@ -39,10 +39,10 @@ is `prescription/teleconverterCompatibility.ts`; `mount/` is outside this bounda
 | `chromatic.ts` | Channel metadata, spectral lines, dispersion compilation/resolution/quality and chromatic ray tracing |
 | `glassCatalog.ts` | Glass entries, catalog resolution, tolerances and index evaluation |
 | `publishedStations.ts` | Published station grids, coordinates, labels and availability |
-| `validation.ts` | Named `validateLensData`, `validateLensInput`, `validateCanonicalLens`, `validateTeleconverterData` and schema helpers |
+| `validation.ts` | Named `validateLensData`, `validateCanonicalLens`, `validateTeleconverterData` and schema helpers |
 | `geometry.ts` | Surface profiles/sag, numerical geometry constants and shared vector helpers |
 | `types.ts` | Engine types and preparation errors |
-| `lensDataConversion.ts` | Canonical/V1/V2 mapping, source paths and printers for the converter and organizer |
+| `lensDataConversion.ts` | Canonical/V1/V2 mapping, source paths and printers, loaded only by `scripts/lens-data-convert/load.mjs` outside focused tests |
 
 ## Names And Runtime Adapters
 
@@ -63,6 +63,11 @@ Published stations return canonical `zoomT` / `focusT`; `distanceM` is a slider 
 claim. Channel/index helpers expose qualified dispersion data, not historical production-glass identity.
 
 ## Runtime Lens Contracts
+
+`ingestLens` and `ingestTeleconverter` accept authored V2 inputs only. `buildLens`, `canonicalInput`, and the internal
+`compileLensData` accept a `LensDataV2Input` or `CanonicalLens`; `attachTeleconverter` accepts those host types and a
+`TeleconverterDataV2Input` or `CanonicalTeleconverter`. Archived V1 files go through the permanent converter.
+`isV1File` remains internal; the `buildLens.ts` barrel exposes `lensDataVersion` for version detection.
 
 Call `buildLens()` once per lens/session state boundary, then pass the returned `RuntimeLens` (`L`) explicitly into
 pure optics helpers. Do not store runtime lens state in module globals, and keep slider-state-dependent analysis out

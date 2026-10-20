@@ -796,7 +796,7 @@ describe("canonical prescription: refusals", () => {
     [
       "a field only the engine writes",
       () => edit(prime, (data) => ((data.surfaces[2] as unknown as Record<string, unknown>).synthetic = "rearPlate")),
-      /surfaces\[2\]\.synthetic is set only by expandRearPlates\(\)/,
+      /surfaces\[2\]\.synthetic is set only by expandCanonicalRearPlates\(\)/,
     ],
     [
       "half an element span",
