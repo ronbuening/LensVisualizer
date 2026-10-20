@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-21",
+    type: "lens",
+    summary:
+      "Added Sony FE 16-35mm GM, 24-70mm F4 ZA and 600mm GM, Tamron 17-50mm, two Viltrox primes and three Zeiss Sonnars",
+  },
+  {
     date: "2026-10-20",
     type: "lens",
     summary: "Added Canon New FD 35-105mm, Zeiss Tele-Tessar 500mm, Olympus, Sigma and Sony tele zooms",

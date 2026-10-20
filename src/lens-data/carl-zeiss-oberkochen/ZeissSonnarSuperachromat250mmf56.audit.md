@@ -168,7 +168,7 @@ Stage 1: READY_FOR_DATA (retained). Stage 2: all mandatory CHAT_PREFLIGHT checks
 
 ## 12. Pending integration
 
-`integrationStatus: INTEGRATION_PENDING`. Targeted LensVisualizer checks were run on this file (§17), but corpus tests, `generate:metadata` and the full build were not run, and the Node version used (22.22.2) is older than the repository's declared runtime (≥24.15).
+(Closed 2026-10-20: integrated into the repository.) `integrationStatus: INTEGRATION_PENDING`. Targeted LensVisualizer checks were run on this file (§17), but corpus tests, `generate:metadata` and the full build were not run, and the Node version used (22.22.2) is older than the repository's declared runtime (≥24.15).
 
 ## 13. Stage 2 entry gate
 
@@ -488,4 +488,16 @@ Runtime `halfField` is 10.45°, the aperture-limited traceable field of the mode
 
 ## 38. Gate disposition
 
-All mandatory CHAT_PREFLIGHT checks for Stages 1–4 pass on the final bytes; the clean-extraction replay is recorded in the manifest. **READY_FOR_BATCH**, bound to the final hashes in the manifest. `integrationStatus: INTEGRATION_PENDING`. Pending at integration: corpus tests, `generate:metadata`, full-project typecheck and build under Node ≥24.15, and organization of the root-level pair into `src/lens-data/carl-zeiss-oberkochen/`.
+All mandatory CHAT_PREFLIGHT checks for Stages 1–4 pass on the final bytes; the clean-extraction replay is recorded in the manifest. **READY_FOR_BATCH**, bound to the final hashes in the manifest. `integrationStatus: INTEGRATION_PENDING`. Pending at integration: corpus tests, `generate:metadata`, full-project typecheck and build under Node ≥24.15, and organization of the root-level pair into `src/lens-data/carl-zeiss-oberkochen/`. (Closed 2026-10-20: integrated into the repository in `src/lens-data/carl-zeiss-oberkochen/`.)
+
+## 2026-10-20 — Deployment validation and wording pass
+
+Source re-read. The scanned patent tables for Example II (description, PDF pp. 6–7, and claim 7, p. 9) were read from page images. All 12 radii, 11 thicknesses, the back focus (.4926) and the structural length (.8875) were checked after scaling by 249.2, with no mismatch. The stop split of d10 (16.402 + 3.847 mm) sums to the printed .081259. There are no aspheres. The six element indices were back-solved again from the printed "power × structural length" values with the thick-lens formula and reproduce the file's nd values to five decimals (1.73499, 1.43388, 1.68247, 1.62097, 1.68248, 1.56445). The two printed source conflicts (R3 .17249 or .17248; L1 power −.563798 or −.56798) are handled as the header states. A Malitson CaF₂ Sellmeier gives nd 1.43385, P** −1.727 and P* 1.803, against the patent's −1.7237 and 1.7873, which supports reading "Fluorspar" as CaF₂.
+
+First order, patent (× 249.2) against model: EFL 249.20 / 249.209 mm, back focus 122.756 / 122.758 mm, first vertex to image 221.165 / 221.164 mm, relative aperture 1:5.6 / F/5.59. The patent half-field is 8.5°; the model is traced to the 6×6 corner, 9.03°, where an exact chief ray lands at 40.16 mm (+1.4 % pincushion) with heights of 19.6 mm at surface 1 and 1.5 mm at L6, inside the modeled semi-diameters. The close state gives 3000 mm object to film at 1:9.62; the Hasselblad instructions give 3.00 m (2.75 m from the front of the lens) and 1:9.6. The surface, image-circle and field-coverage audits pass (coverage 100 %, corner clear).
+
+Maker comparison. No manufacturer cross-section image was available. The Zeiss data sheets and dealer listings give 6 elements in 6 groups with a crystal element for the CF and CFE; Fig. 2 of the patent shows six separate elements with the iris between L5 and L6, and its element diameters are in the same proportions as the modeled semi-diameters. Example II is the only example in the patent with six elements, f/5.6 and a field wide enough for 6×6 (Example IV covers only 5.4°).
+
+Fields changed in this pass: `name` (now "CARL ZEISS SONNAR SUPERACHROMAT 250mm f/5.6 (Hasselblad V)", without a single version letter, since no source compares the C, CF and CFE optics), `subtitle`, `specs`, the focus description, the L2 `apdNote`, the L3 `role`, and the header comment (draft-import lines removed, process wording replaced). In the analysis, the title follows the new name, the "Verification Summary" heading is now "Model Scope and Limitations", process wording was removed from the focus section, and one sentence on the version history was added. No optical value changed.
+
+Open: L2 carries νd 95.23 from the 2008 Schott file, while the repository CaF₂ catalog entry gives 95.1; left for the glass pass. Open: no source states that the 1972 C version uses the same optics as the CF and CFE.

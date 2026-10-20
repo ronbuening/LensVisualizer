@@ -1,4 +1,4 @@
-# Carl Zeiss Sonnar Superachromat CFE 250mm f/5.6 — Optical Analysis
+# Carl Zeiss Sonnar Superachromat 250mm f/5.6 (Hasselblad V) — Optical Analysis
 
 ## Patent Reference and Design Identification
 
@@ -134,7 +134,7 @@ Two points about the palette stand out. First, the five ranges span much less of
 
 ## Focus Mechanism
 
-The patent publishes only the infinity state. Focusing is modeled as unit focusing: the entire optical unit translates on the Hasselblad V helicoid, so all internal spacings stay fixed and only the back focus changes. This is a constrained reconstruction. The mechanism is inferred from the lens architecture; the Zeiss data sheet does not state it in words. The close state is solved paraxially so that the object lies 3.0 m from the film plane, which is the data sheet's minimum distance.
+The patent publishes only the infinity state. Focusing is modeled as unit focusing: the entire optical unit translates on the Hasselblad V helicoid, so all internal spacings stay fixed and only the back focus changes. The mechanism is inferred from the lens architecture; the Zeiss data sheet does not state it in words. The close state is solved paraxially so that the object lies 3.0 m from the film plane, the minimum distance given in the data sheet and the Hasselblad instructions (2.75 m from the front of the lens).
 
 | Quantity | Infinity | Close focus (reconstructed) |
 | --- | --- | --- |
@@ -209,7 +209,7 @@ The patent stresses that superachromatic correction is worthwhile only alongside
 
 **Petzval sum.** The Petzval sum is +1.859 × 10⁻⁴ mm⁻¹, giving the radius of about −21.6 f noted under L6.
 
-## Verification Summary
+## Model Scope and Limitations
 
 | Quantity | Model | Patent (× 249.2) | Zeiss data sheet |
 | --- | --- | --- | --- |
@@ -238,7 +238,7 @@ Herzberger and McClure set out the superachromat concept in 1963: a lens correct
 
 Its cited prior art consists of earlier US telephoto patents: Reymond 2,778,272, the inventor printed as "Yamji" in 3,160,699, and Tolle 3,369,853. The five examples span half-fields from 3.7° to 8.6° and relative apertures from 1:6.3 to 1:4. In all five, fluorspar is the positive member of T1. Examples III and V add a second fluorspar element in T3.
 
-According to lens-db.com, the 250 mm Superachromat appeared in the Hasselblad C series in 1972, in CF form in 1982 and in CFE form in 2001. The Zeiss CFE data sheet of 2002 describes the lens as the first photographic lens with superachromatic correction. It also states that the lens uses the T coating rather than T* to preserve infrared transmission. Both statements are attributed to the manufacturer and were not independently tested here. Because the data sheet's vertex length and back focal distance differ from Example II, the production versions should be understood as members of the same design family rather than as realizations of this exact table.
+According to lens-db.com, the 250 mm Superachromat appeared in the Hasselblad C series in 1972, in CF form in 1982 and in CFE form in 2001. The Zeiss CFE data sheet of 2002 describes the lens as the first photographic lens with superachromatic correction. It also states that the lens uses the T coating rather than T* to preserve infrared transmission. Both statements are attributed to the manufacturer and were not independently tested here. No located source compares the C, CF and CFE optics directly; the CF and CFE are both listed as 6 elements in 6 groups. Because the data sheet's vertex length and back focal distance differ from Example II, the production versions should be understood as members of the same design family rather than as realizations of this exact table.
 
 ## Sources
 

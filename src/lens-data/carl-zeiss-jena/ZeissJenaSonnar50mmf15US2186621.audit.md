@@ -8,7 +8,7 @@
 - **OUTPUT STEM:** `ZeissSonnar50mmf15OptonContax`
 - **Current stage:** 3 — analysis authoring from the verified Stage 2 data revision
 - **Current pair:** `ZeissSonnar50mmf15OptonContax.data.ts` + `ZeissSonnar50mmf15OptonContax.analysis.md`
-- **Integration status:** `INTEGRATION_PENDING`
+- **Integration status:** `INTEGRATION_PENDING` — closed 2026-10-20: integrated; see the last section.
 
 The four-field card fixes the job. `US2186621.pdf` and the job card are retained as original package inputs. The current shared workflow contract is CHAT-1.0 (2026-09-11). The manifest records SHA-256 hashes for the current chat protocol, dossier contract, data/analysis specifications, template, defaults, taxonomy options, adding-a-lens guide, integration handoff, workflow guide, Prettier configuration, and prompt-pack checker actually available for this run.
 
@@ -26,7 +26,7 @@ The rendered source was inspected rather than trusting the mangled text extracti
 | R2 | +433.84 | l1 = 0.38 | air |
 | R3 | +35.86 | d2 = 11.81 | nd 1.6710, v 47.2 |
 | R4 | +85.78 | d3 = 7.05 | nd 1.4892, v 70.1 |
-| R5 | -846.31 | d4 = 1.90 | nd 1.7394, v 28.2 |
+| R5 | -846.31 (misread; the page prints -646.31 — corrected 2026-10-20, see last section) | d4 = 1.90 | nd 1.7394, v 28.2 |
 | R6 | +23.51 | l2 = 15.24 | air |
 | R7 | infinity | d5 = 2.48 | nd 1.5232, v 50.9 |
 | R8 | +51.09 | d6 = 19.81 | nd 1.6578, v 51.2 |
@@ -207,7 +207,7 @@ No Stage 1 blocker remains.
 
 Stage 2 must: construct the same-stem `.data.ts` from the verified first block; apply uniform `s=0.5`; infer/document the iris split and physical stop radius without calling it published; infer semi-diameters and run current geometry/render checks; use cautious glass code/class/Unmatched labels; preserve the qualified production correlation; keep `NO_INTERNAL_RECONSTRUCTION` unless a mechanism-constrained unit-focus representation is explicitly justified; and run the actual candidate through available LensVisualizer checks.
 
-Repository/batch integration remains pending and is not part of this Stage 1 approval.
+Repository/batch integration remains pending and is not part of this Stage 1 approval. (Closed 2026-10-20: integrated.)
 
 ## Stage 2 data construction checkpoint
 
@@ -249,7 +249,7 @@ The selected US2186621 block remains explicitly identified by the patent as prio
 
 ### Check disposition
 
-All mandatory Stage 2 `CHAT_PREFLIGHT` checks pass. Real LensVisualizer `buildLens()/validateLensData()`, the real project `LensDataInput` typecheck, production render diagnostics, runtime glass resolution, and Prettier are `NOT_RUN` because the LensVisualizer repository/toolchain is not mounted. They remain `INTEGRATION_PENDING` and have not been renamed or approximated by the portable checks.
+All mandatory Stage 2 `CHAT_PREFLIGHT` checks pass. Real LensVisualizer `buildLens()/validateLensData()`, the real project `LensDataInput` typecheck, production render diagnostics, runtime glass resolution, and Prettier are `NOT_RUN` because the LensVisualizer repository/toolchain is not mounted. They remain `INTEGRATION_PENDING` and have not been renamed or approximated by the portable checks. (Closed 2026-10-20: repository checks run at integration; see the last section.)
 
 ### Quantitative-claim map — Stage 2 additions
 
@@ -268,7 +268,7 @@ All mandatory Stage 2 `CHAT_PREFLIGHT` checks pass. Real LensVisualizer `buildLe
 
 **Gate:** `READY_FOR_ANALYSIS`
 
-The approval binds to the exact data/evidence/verifier/results revisions recorded by the Stage 2 manifest. Repository integration remains pending.
+The approval binds to the exact data/evidence/verifier/results revisions recorded by the Stage 2 manifest. Repository integration remains pending. (Closed 2026-10-20: integrated.)
 
 
 ## Stage 3 analysis authoring checkpoint
@@ -363,7 +363,7 @@ to the same clean-extraction/hash/replay procedure at final packaging.
 **Gate:** `READY_FOR_AUDIT`
 
 LensVisualizer repository validation remains `INTEGRATION_PENDING`; no repository-only check is promoted from `NOT_RUN` by the
-portable analysis checks.
+portable analysis checks. (Closed 2026-10-20.)
 
 ## Stage 4 source-first independent audit
 
@@ -532,7 +532,7 @@ The following real LensVisualizer checks remain `NOT_RUN` because the repository
 - actual Prettier check with the supplied configuration.
 
 These are integration-scope checks, not portable substitutes. They remain `INTEGRATION_PENDING` and no corpus, renderer,
-compiler, or runtime-glass acceptance is claimed.
+compiler, or runtime-glass acceptance is claimed. (Closed 2026-10-20: see the last section.)
 
 ### Stage 4 quantitative-claim map
 
@@ -548,7 +548,7 @@ compiler, or runtime-glass acceptance is claimed.
 | Stop 82%, radius 9.311719 mm, f/1.5 | disclosed model inference/calibration; source publishes only iris interval and nominal f/1.5 |
 | L1–L7 standalone focal lengths | parsed-model `standaloneElementPowers`, independently reconciled |
 | Petzval +0.005679850 mm⁻¹ | surface-by-surface `phi/(n*nPrime)` in both independent and parsed-model paths |
-| Geometry values | final modeled SDs + portable exact/geometry checks; production render test pending |
+| Geometry values | final modeled SDs + portable exact/geometry checks; production render test pending (closed 2026-10-20) |
 | `NO_INTERNAL_RECONSTRUCTION` | source has one fixed state; final `var={}` |
 | Product correlation limitation | manufacturer family evidence + patent prior-art role + secondary “new optical design” caution |
 | L5 `Unmatched (523509)` | patent coordinate + fresh six-catalog Stage 4 re-audit |
@@ -556,7 +556,43 @@ compiler, or runtime-glass acceptance is claimed.
 ### Stage 4 gate
 
 All mandatory chat-source/model/geometry/glass/analysis/review checks pass on the corrected pair. The original patent and job
-card remain byte-identical. Repository-only checks remain pending at integration scope.
+card remain byte-identical. Repository-only checks remain pending at integration scope. (Closed 2026-10-20.)
 
 **Gate:** `READY_FOR_BATCH`  
-**Integration status:** `INTEGRATION_PENDING`
+**Integration status:** `INTEGRATION_PENDING` — closed 2026-10-20; see below.
+
+## 2026-10-20 — Deployment validation and wording pass
+
+Source re-read. The Figure 1 table on PDF page 2 was re-read from page renders at 300, 600 and 1200 dpi: 10 radii, 9
+thicknesses and air gaps, and 7 nd / νd pairs. There are no aspheres and no variable gaps. One mismatch was found: R5. The PDF
+text layer reads `-846, 31`, and the earlier stages carried −846.31, but the printed glyphs are −646.31. Both 6s in "646" match
+the 6 in "69,21" and differ from the closed 8 in "85,78". This is a misread of the text layer, not a source erratum. All
+other rows agree with the file at ×0.5. The l2 split (6.2484 + 1.3716) sums to 7.62.
+
+First-order, patent scale (stated f = 100, 1:1.5; no BF, field angle or close-focus data printed). With R5 = −846.31 the EFL
+was 99.573 (−0.43 %). The tolerance argument in the Stage 1 register is superseded. With R5 = −646.31 the EFL is 99.987 and the
+BFD 44.915. At ×0.5 the model gives EFL 49.9934 mm, BFD 22.4576 mm, TL 58.7426 mm, Petzval +0.005609 mm⁻¹, engine stop radius
+9.569 mm, f/1.5 and half-field 26.54° (from the 135 format; the patent states none). Before the fix the same model gave EFL
+49.7867, BFD 22.2681, TL 58.5531 and stop radius 9.506. audit:surface is OK and the image circle is 100 % (21.65 mm) before and
+after. In clearap, the axial-marginal and full-field rim columns are empty behind R6; the accepted US 1,975,678 Sonnar file
+shows the same, so this is a tool limitation for this layout.
+
+Product match. Fig. 1 is printed "Prior Art Lens System", and the text cites US 1,975,678 for it. The claimed invention is
+the four-unit Fig. 2 system, so this table is a 1937 calculation of the 7/3 Contax Sonnar 50/1.5. It is not a numerical
+duplicate of the US 1,975,678 example already in the catalog. L6 glass is identical and L2 nearly so, but the other five
+glasses change, and R4, R5, R8 and R10 differ materially. No maker cross-section was found that can tell the two calculations
+apart. No source ties the prescription to the postwar Zeiss-Opton lens; one secondary history says the 1950 Opton lens had a
+"new optical design", and a forum reading of the Zeiss production records says the formula was unchanged. The file was
+retitled as a Carl Zeiss Jena Sonnar (US 2,186,621 design), and the Opton claims were removed.
+
+Fields changed in this pass:
+- Surface 5 R: −423.155 → −323.155.
+- Surface 10 d: 22.268125 → 22.457601 (recomputed paraxial BFD).
+- focalLengthMm: L3 79.803 → 77.647 and L4 −15.454 → −15.322; design EFL 49.787 → 49.993.
+- Assignee: "Zeiss Ikon AG", to match the corpus.
+- Header comment, subtitle, specs, L1 role, focus description and source comments reworded; Opton attribution and process
+  vocabulary removed.
+- Analysis: identification rewritten around the prior-art status and the R5 reading; numbers updated; the verification
+  section renamed "Model Scope and Limitations".
+
+Open: none.

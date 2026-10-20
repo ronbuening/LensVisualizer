@@ -1,20 +1,20 @@
-// Root-level draft import. When authoring directly in a maker folder use "../../types/optics.js";
-// generate:metadata rewrites it when it organizes a root-level draft. See LENS_DATA_SPEC.md § Quick Start.
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * LENS DATA — CARL ZEISS SONNAR SUPERACHROMAT CFE 250mm f/5.6
+ * LENS DATA — CARL ZEISS SONNAR SUPERACHROMAT 250mm f/5.6 (Hasselblad V)
  *
  * Data source: US 3,883,229 Example II (printed "Example II"; repeated in claim 7),
  * Fritz Determann and Heinz Zajadatz / Carl-Zeiss-Stiftung; priority DE 2208163 (1972-02-22).
  * Four-part telephoto (+ − + −): T1 = L1 + L2, T2 = L3, T3 = L4 + L5, T4 = L6.
  * 6 elements / 6 groups, all air-spaced, all spherical. L2 is calcium fluoride (patent "Fluorspar").
- * Focus: unit focusing (whole optical unit on the Hasselblad V helicoid) — CONSTRAINED_RECONSTRUCTION.
+ * Focus: unit focusing (whole optical unit on the Hasselblad V helicoid), reconstructed; the patent
+ *   gives only the infinity state.
  *
- * PRODUCT CORRELATION: family-level research correlation to the Zeiss Sonnar Superachromat 5.6/250
+ * PRODUCT CORRELATION: research correlation to the Zeiss Sonnar Superachromat 5.6/250 for Hasselblad V
  *   (C 1972, CF, CFE). The 2002 Zeiss CFE data sheet matches element/group count, f-number, the crystal
  *   element and total track, but lists BFD 117.0 mm and vertex length 103.9 mm against this model's
- *   122.76 mm and 98.41 mm. No primary source states that Example II is the production prescription.
+ *   122.76 mm and 98.41 mm. No primary source states that Example II is the production prescription, and
+ *   no source compares the C, CF and CFE optics directly; CF and CFE are both listed as 6 elements / 6 groups.
  *
  * NOTE ON SCALING: the patent is normalized to f = 1.0. Every R and d is the printed value × 249.2
  *   exactly (manufacturer design focal length 249.2 mm). Modeled EFL = 249.21 mm. No aspheres.
@@ -42,16 +42,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
   schema: 2,
-  key: "zeiss-sonnar-superachromat-250f56-cfe",
+  key: "zeiss-sonnar-superachromat-250f56",
   maker: "Carl Zeiss Oberkochen",
-  name: "CARL ZEISS SONNAR SUPERACHROMAT CFE 250mm f/5.6",
-  subtitle:
-    "US 3,883,229 Example II — Determann & Zajadatz / Carl-Zeiss-Stiftung; family-level correlation to the Sonnar Superachromat 5.6/250, not manufacturer-confirmed",
+  name: "CARL ZEISS SONNAR SUPERACHROMAT 250mm f/5.6 (Hasselblad V)",
+  subtitle: "US 3,883,229, Example II — research correlation to the C, CF and CFE versions",
 
   catalog: {
     lensMounts: ["hasselblad-v"],
     imageFormat: "6x6",
-    specs: ["6 ELEMENTS / 6 GROUPS", "f ≈ 249.2 mm", "F/5.6", "2ω ≈ 18° (6×6)", "ALL-SPHERICAL", "CaF₂ ELEMENT"],
+    specs: ["6 ELEMENTS / 6 GROUPS", "DESIGN f = 249.20 mm", "DESIGN F/5.6", "ALL SPHERICAL", "1 CaF₂ CRYSTAL ELEMENT"],
     elementCount: 6,
     groupCount: 6,
     focalLengthMm: { marketing: 250, design: 249.21 },
@@ -92,7 +91,7 @@ const LENS_DATA = {
       glass: 'CaF2 (calcium fluoride crystal; patent "Fluorspar")',
       apd: "inferred",
       apdNote:
-        "Catalog-derived dPgF = +0.0552 (Schott 2008 AGF CaF2 Sellmeier). The patent publishes P** = -1.7237 and P* = 1.7873 (i- and t-line partial dispersions), not P_g,F.",
+        "Calcium fluoride crystal with catalog ΔPgF = +0.0552; the patent characterizes it only by its i- and t-line partial dispersions (P** = −1.7237, P* = 1.7873).",
       role: "Strong positive crystal element of part T1 (glass range 2, characteristic B); main converging power of the front group.",
       dPgF: 0.0552,
     },
@@ -107,7 +106,7 @@ const LENS_DATA = {
       focalLengthMm: -89.8,
       glass: 'LaF20 class (Schott, obsolete, 682482; patent "LaF 20")',
       apd: false,
-      role: "Negative part T2 (glass range 3, characteristic C).",
+      role: "Diverging element that forms part T2 on its own (patent glass range 3, characteristic C).",
       dPgF: -0.0021,
     },
     {
@@ -173,7 +172,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 3.0,
     description:
-      "Unit focusing: the whole optical unit moves on the Hasselblad V helicoid and only the back focus changes. The patent gives only the infinity state; the close state is solved for the manufacturer's 3.0 m object-to-film minimum (model 1:9.62; Zeiss 1:9.6).",
+      "Unit focusing: the whole optical unit moves forward on the Hasselblad V helicoid, so only the back focus changes. The patent gives only the infinity state. The close state is derived for the marketed 3.0 m object-to-film minimum, which needs 25.9 mm of extension and gives 1:9.62 (Zeiss: 1:9.6).",
   },
 
   gaps: {

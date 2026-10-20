@@ -3,15 +3,21 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — ZEISS-OPTON SONNAR CONTAX 50mm f/1.5                   ║
+ * ║ LENS DATA — CARL ZEISS JENA SONNAR 50mm f/1.5 (US 2,186,621)        ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║ Source: US 2,186,621, first numerical block / Figure 1.            ║
- * ║ The patent explicitly describes that block as prior art; the link   ║
- * ║ to the postwar Zeiss-Opton Contax 50/1.5 is an inferred family /    ║
- * ║ architecture correlation, not a manufacturer-confirmed exact match. ║
+ * ║ Source: US 2,186,621, Fig. 1 numerical example (the patent's first  ║
+ * ║ table). The patent labels Fig. 1 "Prior Art Lens System" and cites  ║
+ * ║ US 1,975,678 for it: this is a 1937 calculation of the 7/3 Contax   ║
+ * ║ Sonnar 50/1.5, not the four-unit design the patent claims. Its      ║
+ * ║ radii and glasses differ from the US 1,975,678 example (sonnar-     ║
+ * ║ 50f15). No source ties it to a specific production batch; a link to ║
+ * ║ the postwar Zeiss-Opton 50/1.5 is unconfirmed.                      ║
  * ║                                                                      ║
  * ║ 7 elements / 3 air-spaced groups; all spherical.                    ║
- * ║ Focus status: NO_INTERNAL_RECONSTRUCTION.                            ║
+ * ║ Focus: one fixed infinity state (the patent prints no focus data).  ║
+ * ║                                                                      ║
+ * ║ R5: the PDF text layer reads −846.31; the page image prints −646.31 ║
+ * ║ (−323.155 here), which gives f = 99.99 at patent scale.             ║
  * ║                                                                      ║
  * ║ SCALE: the patent's nominal 100 mm prescription is uniformly scaled ║
  * ║ by s = 0.5 to the 50 mm product scale. All R, d, sd, and image-plane║
@@ -19,12 +25,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                      ║
  * ║ STOP: the patent only places the iris inside l2. The stop here is    ║
  * ║ inferred from rendered Fig. 1 at approximately 82% of the R6→R7    ║
- * ║ air gap measured from R6. Its physical radius is calibrated so the  ║
- * ║ paraxial entrance pupil gives the published/model target f/1.5.      ║
- * ║ This is not independent evidence of the production diaphragm size.  ║
+ * ║ air gap measured from R6. Its radius is set by the engine from the  ║
+ * ║ nominal f/1.5, not from a published diaphragm diameter.             ║
  * ║                                                                      ║
  * ║ SEMI-DIAMETERS: unpublished. They are modeled from exact spherical  ║
- * ║ ray containment (axial stop-edge rays; default 0.6-field / ±0.75    ║
+ * ║ ray containment (axial stop-edge rays; a 0.6-field / ±0.75          ║
  * ║ pupil off-axis bundle; full-format chief ray), then constrained by   ║
  * ║ edge thickness, rim slope, and shared-gap intrusion checks.          ║
  * ║                                                                      ║
@@ -38,16 +43,15 @@ const LENS_DATA = {
   key: "zeiss-jena-sonnar-50f15-us2186621",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA SONNAR 50mm f/1.5 (US 2,186,621 Design)",
-  subtitle:
-    "US 2,186,621 first numerical block (Fig. 1) — inferred family correlation; source block is explicitly prior art",
+  subtitle: "US 2,186,621, Fig. 1 — prior-art Contax Sonnar 50/1.5 example",
 
   catalog: {
     lensMounts: ["contax-rf"],
     imageFormat: "135-full-frame",
-    specs: ["7 ELEMENTS / 3 GROUPS", "50mm f/1.5", "CONTAX RF", "ALL-SPHERICAL"],
+    specs: ["7 ELEMENTS / 3 GROUPS", "DESIGN f = 100 (NORMALIZED; SCALED 0.5× TO 50 mm)", "DESIGN F/1.50", "ALL SPHERICAL"],
     elementCount: 7,
     groupCount: 3,
-    focalLengthMm: { marketing: 50, design: 49.78667431326592 },
+    focalLengthMm: { marketing: 50, design: 49.993430512311164 },
     fNumber: { marketing: 1.5 },
   },
 
@@ -55,7 +59,7 @@ const LENS_DATA = {
     patentNumber: "US 2,186,621",
     patentYear: 1940,
     authors: ["Ludwig Bertele"],
-    assignees: ["Zeiss Ikon Aktiengesellschaft"],
+    assignees: ["Zeiss Ikon AG"],
   },
 
   elements: [
@@ -69,7 +73,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 60.73709098402312,
       glass: "671472 — catalog coordinate (supplier unconfirmed)",
-      role: "Front positive collector.",
+      role: "Positive front meniscus forming the first collective unit.",
       diagramLabel: "L1",
     },
     {
@@ -94,7 +98,7 @@ const LENS_DATA = {
       nd: 1.4892,
       vd: 70.1,
       indexReference: "d",
-      focalLengthMm: 79.80344378426521,
+      focalLengthMm: 77.64652716054326,
       glass: "489701 — fluor-crown class (supplier unconfirmed)",
       role: "Low-index, high-Abbe positive middle component of the front cemented triplet.",
       diagramLabel: "L3",
@@ -108,7 +112,7 @@ const LENS_DATA = {
       nd: 1.7394,
       vd: 28.2,
       indexReference: "d",
-      focalLengthMm: -15.453974612292921,
+      focalLengthMm: -15.32154619215802,
       glass: "Unmatched (739282 — dense-flint class; supplier unconfirmed)",
       role: "Strong negative rear component of the dispersive front cemented triplet.",
       diagramLabel: "L4",
@@ -163,27 +167,27 @@ const LENS_DATA = {
     { label: "2", R: 216.92, d: 0.19, sd: 18.3 },
     { label: "3", R: 17.93, d: 5.905, sd: 14.7, medium: 2 },
     { label: "4", R: 42.89, d: 3.525, sd: 13.75, medium: 3 },
-    { label: "5", R: -423.155, d: 0.95, sd: 13.0, medium: 4 },
+    { label: "5", R: -323.155, d: 0.95, sd: 13.0, medium: 4 },
     { label: "6", R: 11.755, d: 6.2484, sd: 9.8 },
     // Iris coordinate inferred from Fig. 1: 82% of the scaled l2 = 7.62 mm gap from R6 toward R7.
-    // Radius calibrated from the parsed model's paraxial entrance pupil to nominal f/1.5.
+    // No sd: the engine sizes the stop for the nominal f/1.5.
     { label: "STO", R: "flat", d: 1.3716 },
     { label: "7", R: "flat", d: 1.24, sd: 9.6, medium: 5 },
     { label: "8", R: 25.545, d: 9.905, sd: 9.5, medium: 6 },
     { label: "9", R: -11.06, d: 2.285, sd: 9.35, medium: 7 },
     // Infinity image distance computed from this same scaled prescription; the patent does not publish it.
-    { label: "10", R: -51.565, d: 22.268124607016322, sd: 10.25 },
+    { label: "10", R: -51.565, d: 22.457601191379936, sd: 10.25 },
   ],
 
-  // Product metadata only; no finite-focus optical state is reconstructed in this data file.
-  // Carl Zeiss postwar Contax literature gives 3 ft (0.9144 m) for the 50mm f/1.5; 0.9 m is the rounded UI value.
+  // Product metadata only; no finite-focus optical state is modeled in this data file.
+  // Carl Zeiss Contax literature gives 3 ft (0.9144 m) for the 50mm f/1.5; 0.9 m is the rounded value.
   focus: {
     closeFocusM: 0.9,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — the patent provides one fixed prescription. Contax body-helicoid unit focusing is external to this model; closeFocusM is rounded product-family metadata and does not define internal motion.",
+      "The patent prints one fixed infinity prescription and no focus data. The Contax Sonnar focuses as a unit through the camera's helicoid, so no internal spacing changes; the 0.9 m close-focus distance is the catalog figure, not a traced state.",
   },
 
-  // Modeled f-number from the calibrated inferred stop, not an independent measurement of a source diaphragm diameter.
+  // Nominal f-number; the engine sizes the stop for it. The patent gives no diaphragm diameter.
   aperture: { nominalFNumber: 1.5, fStops: [1.5, 2, 2.8, 4, 5.6, 8, 11, 16] },
 
   groups: [

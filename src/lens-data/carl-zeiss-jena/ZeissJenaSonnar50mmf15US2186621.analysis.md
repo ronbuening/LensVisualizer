@@ -5,28 +5,35 @@
 **German application:** July 13, 1937  
 **Granted:** January 9, 1940  
 **Inventor:** Ludwig Bertele  
-**Assignee:** Zeiss Ikon Aktiengesellschaft  
+**Assignee:** Zeiss Ikon AG  
 **Title:** *Lens System*  
-**Embodiment analyzed:** Example 1, mapped to the first numerical block in publication order / Figure 1
+**Embodiment analyzed:** Figure 1 numerical example (the patent's prior-art system; first table in publication order)
 
-US 2,186,621 does not label its worked prescriptions as “Example 1” and “Example 2.” The fixed Example 1 selection therefore
-corresponds to the first numerical block in publication order, the seven-element, three-group system drawn in Figure 1. The
-patent explicitly identifies Figure 1 as prior art and cites US 1,975,678; the four-unit Figure 2 system is the invention being
-advanced by US 2,186,621 and is not the prescription modeled here. [US 2,186,621, Fig. 1 and description, PDF pp. 1–2](https://patents.google.com/patent/US2186621A/en)
+US 2,186,621 prints two numerical examples without numbering them. The first belongs to Figure 1, the seven-element,
+three-group system that the drawing labels “Prior Art Lens System” and that the text attributes to US 1,975,678. The
+four-unit Figure 2 system, which adds a fourth collective lens to reduce distortion, is the invention claimed by US 2,186,621
+and is not the prescription modeled here. [US 2,186,621, Fig. 1 and description, PDF pp. 1–2](https://patents.google.com/patent/US2186621A/en)
 
-The source prescription is published at a nominal focal length of 100 mm and a relative aperture of 1:1.5. The LensVisualizer
-model applies a uniform scale of `s = 0.5` to all dimensional prescription quantities, giving the nominal 50 mm product scale
-without altering refractive indices or Abbe numbers. The parsed final model has a calculated paraxial EFL of 49.786674 mm; the
-unscaled source model calculates to 99.573349 mm, so the scale is not adjusted to force either result to an exact nominal focal
-length.
+The Figure 1 table is therefore a 1937 calculation of the same 7/3 Contax Sonnar 50mm f/1.5 described in US 1,975,678 (1934),
+which the catalog models separately as the Carl Zeiss Jena Sonnar 50mm f/1.5. The two prescriptions share the architecture but
+not the numbers. L6 keeps the same glass (nd 1.6578, νd 51.2) and L2 nearly so (1.6710 / 47.2 against 1.6727 / 47.3), but the
+other five glasses change: L1 becomes 1.6710 / 47.2 instead of 1.6375 / 56.1, and L3 a 1.4892 / 70.1 crown instead of the
+1.4075 / 65.7 material of the earlier patent. Radii R4, R8 and R10 differ by 15–18 %, R5 by more than a factor of two, and R7
+becomes plane.
 
-The connection to the Zeiss-Opton Sonnar 50mm f/1.5 Contax lens is an inferred production-family correlation rather than a
-manufacturer-confirmed prescription identity. ZEISS identifies the Sonnar as a design developed in the early 1930s for the
-Zeiss Ikon Contax; period Zeiss Ikon literature lists a Sonnar f/1.5 of 2 in / 50 mm, and a later Carl Zeiss Contax specification
-lists the 50 mm f/1.5 as a seven-element lens. Those facts converge with the selected block’s seven-element / three-group
-architecture and f/1.5 specification, but they do not show that the postwar Opton version retained this exact numerical
-prescription unchanged. A specialist secondary history describes the 1950 Zeiss-Opton 50/1.5 as having a “new optical design,”
-which is additional reason not to assert prescription continuity. [ZEISS, “Lenses Make History”](https://lenspire.zeiss.com/photo/en/article/lenses-make-history) · [Zeiss Ikon, *The Interchangeable Contax Lenses*](https://www.pacificrimcamera.com/rl/02363/02363.pdf) · [Carl Zeiss, Inc., *Contax 35mm Cameras and Accessories Price List*, 1956](https://www.pacificrimcamera.com/rl/02153/02153.pdf) · [Pacific Rim Camera, “50/1.5 Zeiss Sonnar for Contax”](https://www.pacificrimcamera.com/pp/zicontax50f15.htm)
+The source prescription is published at a nominal focal length of 100 mm and a relative aperture of 1:1.5. The model applies
+a uniform scale of `s = 0.5` to all dimensional prescription quantities without altering refractive indices or Abbe numbers.
+The scaled model has a paraxial EFL of 49.993 mm; the unscaled source calculates to 99.987 mm, in agreement with the stated
+f = 100 mm.
+
+One printed value needs care. R5 reads −846.31 in the PDF's machine-readable text layer, but the printed page shows −646.31.
+The page value is used (−323.155 mm after scaling). It reproduces f = 100 mm to 0.01 %, whereas −846.31 would give 99.57 mm.
+
+ZEISS identifies the Sonnar as a design developed in the early 1930s for the Zeiss Ikon Contax; period Zeiss Ikon literature
+lists a Sonnar f/1.5 of 2 in / 50 mm, and a later Carl Zeiss Contax specification lists the 50 mm f/1.5 as a seven-element lens.
+These sources confirm the product family but do not identify which calculation any production batch used. Whether the postwar
+Zeiss-Opton 50/1.5 from Oberkochen followed this prescription is unconfirmed; one secondary history describes the 1950
+Zeiss-Opton version as having a “new optical design.” [ZEISS, “Lenses Make History”](https://lenspire.zeiss.com/photo/en/article/lenses-make-history) · [Zeiss Ikon, *The Interchangeable Contax Lenses*](https://www.pacificrimcamera.com/rl/02363/02363.pdf) · [Carl Zeiss, Inc., *Contax 35mm Cameras and Accessories Price List*, 1956](https://www.pacificrimcamera.com/rl/02153/02153.pdf) · [Pacific Rim Camera, “50/1.5 Zeiss Sonnar for Contax”](https://www.pacificrimcamera.com/pp/zicontax50f15.htm) [ZEISS, “Lenses Make History”](https://lenspire.zeiss.com/photo/en/article/lenses-make-history) · [Zeiss Ikon, *The Interchangeable Contax Lenses*](https://www.pacificrimcamera.com/rl/02363/02363.pdf) · [Carl Zeiss, Inc., *Contax 35mm Cameras and Accessories Price List*, 1956](https://www.pacificrimcamera.com/rl/02153/02153.pdf) · [Pacific Rim Camera, “50/1.5 Zeiss Sonnar for Contax”](https://www.pacificrimcamera.com/pp/zicontax50f15.htm)
 
 ## Optical Architecture
 
@@ -35,16 +42,14 @@ consists of a positive front singlet, a cemented three-element meniscus group, a
 a rear cemented triplet. The patent describes the first and third units as collective and the middle unit as a cemented
 meniscus containing two positive components and one negative component. [US 2,186,621, Fig. 1 description, PDF p. 2](https://patents.google.com/patent/US2186621A/en)
 
-The computed standalone group powers clarify the division of power without treating the groups as independent lenses inside the
-assembled system. At the 0.5 scale, G1 has a standalone EFL in air of +60.737091 mm, G2 is net negative at −66.069398 mm, and
-G3 is net positive at +45.158435 mm. These are isolated cemented-group values; they do not add directly to the 49.786674 mm
-full-system EFL because the air separations and principal-plane locations are part of the assembled first-order behavior.
+At the 0.5 scale, G1 has an EFL in air of +60.74 mm, the cemented G2 is net negative at −65.42 mm, and the cemented G3 is net
+positive at +45.16 mm. These isolated values do not add directly to the 49.99 mm system EFL, because the air separations and
+principal-plane locations also enter the first-order result.
 
 The aperture stop is not numerically located by the patent. Figure 1 places it in the air space between L4 and L5, and US
 1,975,678 independently describes the iris as lying between those elements. The modeled stop is therefore placed 82% of the
-scaled R6-to-R7 air gap from R6 toward R7. Its semi-diameter, 9.311719 mm, is calibrated so the paraxial entrance pupil reproduces
-the published f/1.5 target. That agreement verifies the internal consistency of the modeled aperture, not a historical physical
-diaphragm diameter. [US 1,975,678 A](https://patents.google.com/patent/US1975678A/en)
+scaled R6-to-R7 air gap from R6 toward R7. Its semi-diameter, about 9.57 mm, is sized so the paraxial entrance pupil gives the
+stated f/1.5; it is not a historical diaphragm diameter. [US 1,975,678 A](https://patents.google.com/patent/US1975678A/en)
 
 ## Element-by-Element Analysis
 
@@ -67,7 +72,7 @@ negative cemented group in the isolated group calculation.
 
 ### L3 — Biconvex Positive, middle component of cemented triplet T1
 
-`nd = 1.4892, νd = 70.1. Glass: 489701 — fluor-crown class (supplier unconfirmed). f = +79.803444 mm.`
+`nd = 1.4892, νd = 70.1. Glass: 489701 — fluor-crown class (supplier unconfirmed). f = +77.646527 mm.`
 
 L3 is the low-index, high-Abbe middle positive component of T1. The patent expressly calls attention to its lower refractive
 index relative to the two lenses to which it is cemented. The data preserve that contrast rather than replacing the historical
@@ -76,7 +81,7 @@ dispersion or apochromatic interpretation.
 
 ### L4 — Biconcave Negative, rear component of cemented triplet T1
 
-`nd = 1.7394, νd = 28.2. Glass: Unmatched (739282 — dense-flint class; supplier unconfirmed). f = −15.453975 mm.`
+`nd = 1.7394, νd = 28.2. Glass: Unmatched (739282 — dense-flint class; supplier unconfirmed). f = −15.321546 mm.`
 
 L4 supplies the strongest negative standalone element power in the lens and completes the patent’s dispersive cemented meniscus
 unit. Its high refractive index and low Abbe number contrast sharply with L3, but the source does not identify a supplier or melt.
@@ -109,7 +114,7 @@ not by a patent-published back-focus value.
 
 ## Glass Identification and Selection
 
-The selected block publishes only d-line refractive indices and Abbe numbers. It names no glass manufacturer and supplies no
+The Figure 1 example publishes only d-line refractive indices and Abbe numbers. It names no glass manufacturer and supplies no
 `nC`, `nF`, `ng`, partial-dispersion ratio, or `dPgF` data. The data file therefore keeps source coordinates or broad classes and
 does not promote coordinate-compatible modern catalog rows to historical supplier identities.
 
@@ -122,7 +127,7 @@ does not promote coordinate-compatible modern catalog rows to historical supplie
 | 1.6578 / 51.2 | L6 | 658512 — dense-crown class, supplier unconfirmed |
 | 1.5894 / 61.2 | L7 | 589612 — crown class, supplier unconfirmed |
 
-Modern SCHOTT, OHARA, HIKARI/Nikon, CDGM, HOYA, and SUMITA catalogs were consulted during the source audit. Several coordinates
+Modern SCHOTT, OHARA, HIKARI/Nikon, CDGM, HOYA, and SUMITA catalogs were consulted. Several coordinates
 have close present-day catalog neighbors, but the historical patent does not identify the supplier, and a coordinate-compatible
 row is not evidence that a particular melt was used in the lens. The analysis therefore treats the glass strings as modeling
 annotations rather than provenance claims. [SCHOTT Advanced Optics](https://www.us.schott.com/shop/advanced-optics/en/search/) · [OHARA Optical Glass](https://oharacorp.com/optical-glass/) · [HIKARI / Nikon Optical Glass](https://www.nikon.com/business/components/lineup/materials/optical-glass/catalog/)
@@ -134,43 +139,35 @@ partial-dispersion evidence is absent.
 
 ## Focus Mechanism
 
-The modeled prescription has **NO_INTERNAL_RECONSTRUCTION**. US 2,186,621 supplies one fixed optical state for the selected
-block and gives no variable internal spacings or finite object-distance table. Accordingly, the data file contains no `var`
-entries and no internally moving group.
+US 2,186,621 supplies one fixed optical state for the Figure 1 example and gives no variable internal spacings or finite
+object-distance table. The model therefore has no internally moving group; the Contax 50 mm lenses focus as a unit through the
+camera's helicoid.
 
-The `closeFocusM` value of 0.9 m is product metadata only. Carl Zeiss postwar Contax literature gives a closest distance of
-3 ft (0.9144 m) for the 50 mm f/1.5, so the stored 0.9 m value is a rounded catalog/UI value rather than a traced conjugate.
-Opton-specific secondary records also report approximately 0.9 m and describe focusing through the Contax camera mechanism.
-Neither source supplies a finite-focus prescription, so no internal spacing law is inferred and the optical model represents the
-verified fixed/infinity state only. [Carl Zeiss, Inc., *Contax 35mm Cameras and Accessories Price List*, 1956](https://www.pacificrimcamera.com/rl/02153/02153.pdf) · [Leica Lens List, “Carl Zeiss Opton Sonnar 50mm f/1.5”](https://leicalenslist.com/lenses/carl-zeiss-opton-sonnar-50mm-f15)
+The 0.9 m close-focus value is product metadata only. Carl Zeiss Contax literature gives a closest distance of 3 ft (0.9144 m)
+for the 50 mm f/1.5, so 0.9 m is a rounded catalog value rather than a traced conjugate. Secondary records for the postwar
+version also report approximately 0.9 m and focusing through the Contax camera mechanism. Neither source supplies a
+finite-focus prescription, so the model represents the infinity state only. [Carl Zeiss, Inc., *Contax 35mm Cameras and Accessories Price List*, 1956](https://www.pacificrimcamera.com/rl/02153/02153.pdf) · [Leica Lens List, “Carl Zeiss Opton Sonnar 50mm f/1.5”](https://leicalenslist.com/lenses/carl-zeiss-opton-sonnar-50mm-f15)
 
-## Verification Summary
+## Model Scope and Limitations
 
-The source prescription was independently re-entered from the rendered patent before reconciliation with the final data file.
-Separate sequential height/reduced-angle and ABCD calculations agree to floating-point precision for both the source re-entry and
-the parsed implemented model; the uniformly scaled source result and the final data file agree at the reported precision.
+At the 50 mm scale the model's paraxial quantities are:
 
-At the modeled 50 mm scale, the verified paraxial quantities are:
-
-| Quantity | Verified value | Reference / qualification |
+| Quantity | Value | Note |
 |---|---:|---|
-| EFL | 49.786674 mm | Parsed final model, infinity state |
-| BFD | 22.268125 mm | Surface 10 vertex to paraxial infinity image |
-| R1-to-R10 vertex track | 36.285000 mm | First lens vertex to last lens vertex |
-| Modeled maximum aperture | f/1.5 | Calibrated inferred stop; not an independent diaphragm measurement |
-| Petzval sum | +0.005679850 mm⁻¹ | Surface-by-surface `φ/(n·n′)` |
+| EFL | 49.993 mm | Infinity state; 99.987 mm at patent scale against the stated 100 mm |
+| BFD | 22.458 mm | Surface 10 vertex to paraxial infinity image; computed, not printed |
+| R1-to-R10 vertex track | 36.285 mm | First lens vertex to last lens vertex |
+| Maximum aperture | f/1.5 | Stop sized for the stated f-number; not a measured diaphragm |
+| Petzval sum | +0.005609 mm⁻¹ | Surface-by-surface `φ/(n·n′)` |
 
-The calculated front-vertex-to-image track is 58.553125 mm, giving `TL/EFL = 1.176080`; the BFD ratio is
-`BFD/EFL = 0.447271`. Under the project definitions this model is therefore neither telephoto (`TL/EFL < 1`) nor retrofocus
-(`BFD > EFL`).
+The front-vertex-to-image track is 58.743 mm, giving `TL/EFL = 1.175` and `BFD/EFL = 0.449`; the design is neither
+telephoto (`TL/EFL < 1`) nor retrofocus (`BFD > EFL`).
 
-The image-plane spacing after surface 10 is the calculated BFD. It is not a source-published distance. Likewise, every surface
-semi-diameter is modeled because the patent gives none. The portable geometry checks found a minimum sampled element edge
-thickness of 0.203624 mm, a maximum spherical rim-slope angle of 57.713615°, and a minimum non-stop clearance of 0.172262 mm
-among the finite exact meridional ray samples used for the construction check. These values establish the stated sampled checks;
-they are not a substitute for LensVisualizer’s production renderer diagnostics, which remain an integration-stage check.
+The image-plane spacing after surface 10 is the calculated BFD, not a source-published distance. Every surface semi-diameter is
+modeled because the patent gives none; the values follow exact ray containment at f/1.5, limited by edge
+thickness and rim slope.
 
-No aspherical or diffractive surfaces occur in the selected block, so no conic convention or coefficient transformation is
+No aspherical or diffractive surfaces occur in the Figure 1 example, so no conic convention or coefficient transformation is
 applicable. The only scale transformation is the uniform 0.5 scaling of dimensional quantities; refractive indices and Abbe
 numbers remain the patent values.
 
@@ -182,14 +179,15 @@ fourth unit of the new design was introduced to reduce the remaining distortion 
 aperture and sharp definition. The modeled seven-element formula is therefore historically relevant to the Sonnar lineage, but
 it is not the novel four-unit embodiment claimed by US 2,186,621. [US 2,186,621, description of Figs. 1–2, PDF p. 2](https://patents.google.com/patent/US2186621A/en)
 
-The production label in LensVisualizer should consequently be read as a correlation target: the architecture, nominal aperture,
-and 50 mm scale align with documented Contax Sonnar production, while exact postwar Zeiss-Opton prescription continuity remains
-unconfirmed by the available manufacturer material.
+Read together with US 1,975,678, the Figure 1 example shows the Contax Sonnar 50mm f/1.5 recalculated within three years of its
+first patent, most visibly by replacing the very low-index 1.4075 crown of the 1934 example with a 1.4892 / 70.1 crown. The
+patent does not say which calculation went into production, and no available manufacturer material confirms that the postwar
+Zeiss-Opton lens continued either prescription unchanged.
 
 ## Sources
 
-- Ludwig Bertele, **US 2,186,621, “Lens System”**, granted January 9, 1940. Figure 1 and the first numerical block are the
-  prescription source. <https://patents.google.com/patent/US2186621A/en>
+- Ludwig Bertele, **US 2,186,621, “Lens System”**, granted January 9, 1940. Figure 1 and its numerical example are the
+  prescription source (R5 read from the page image as −646.31). <https://patents.google.com/patent/US2186621A/en>
 - Ludwig Bertele, **US 1,975,678 A, “Objective”**, cited by US 2,186,621 as the prior-art antecedent and used only to
   corroborate the iris interval. <https://patents.google.com/patent/US1975678A/en>
 - ZEISS, **“Lenses Make History.”** Manufacturer history for Sonnar / Contax context.
@@ -198,8 +196,8 @@ unconfirmed by the available manufacturer material.
   2 in / 50 mm. <https://www.pacificrimcamera.com/rl/02363/02363.pdf>
 - Carl Zeiss, Inc., **“Contax 35mm Cameras and Accessories Price List,”** effective February 15, 1956. Manufacturer
   literature listing the Sonnar f/1.5 50 mm as seven elements with a 3 ft closest distance. <https://www.pacificrimcamera.com/rl/02153/02153.pdf>
-- Leica Lens List, **“Carl Zeiss Opton Sonnar 50mm f/1.5.”** Secondary Opton-specific corroboration for period, mount,
-  approximate 0.9 m minimum focus, and body focusing. <https://leicalenslist.com/lenses/carl-zeiss-opton-sonnar-50mm-f15>
+- Leica Lens List, **“Carl Zeiss Opton Sonnar 50mm f/1.5.”** Secondary record of the postwar version's mount, approximate
+  0.9 m minimum focus, and body focusing. <https://leicalenslist.com/lenses/carl-zeiss-opton-sonnar-50mm-f15>
 - Pacific Rim Camera, **“50/1.5 Zeiss Sonnar for Contax.”** Secondary historical reference stating that the 1950
   Zeiss-Opton version used a new optical design; used only as a caution against assuming prescription continuity.
   <https://www.pacificrimcamera.com/pp/zicontax50f15.htm>
