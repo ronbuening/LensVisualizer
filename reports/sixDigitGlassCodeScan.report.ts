@@ -20,8 +20,9 @@
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { evaluateSellmeier, LINE_NM, resolveCompatibleGlass, resolveGlass } from "../src/optics/glassCatalog.js";
-import type { DispersionQuality } from "../src/optics/dispersion.js";
+import { evaluateSellmeier, resolveCompatibleGlass, resolveGlass } from "../src/optics/glassCatalog.js";
+import { LINE_NM } from "../src/optics/chromatic.js";
+import type { DispersionQuality } from "../src/optics/chromatic.js";
 import {
   extractPatentNumber,
   type PatentMatch,

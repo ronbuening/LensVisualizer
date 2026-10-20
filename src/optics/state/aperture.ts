@@ -1,6 +1,6 @@
 /** Shared mapping from the aperture slider to the lens's attainable marked f-number. */
-import { fopenAtZoom2 } from "./compat.js";
-import type { RuntimeLens } from "../types/optics.js";
+import { fopenAtZoomClamped } from "./runtimeAdapters.js";
+import type { RuntimeLens } from "../../types/optics.js";
 
 /**
  * Keep the requested f-number fixed across zoom, limited by the current wide-open aperture.
@@ -12,5 +12,5 @@ import type { RuntimeLens } from "../types/optics.js";
  */
 export function fNumberAtStopdown(stopdownT: number, zoomT: number, L: RuntimeLens): number {
   const requested = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
-  return Math.max(requested, fopenAtZoom2(zoomT, L));
+  return Math.max(requested, fopenAtZoomClamped(zoomT, L));
 }

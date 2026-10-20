@@ -1,15 +1,15 @@
 /** Request bokeh preserves separate source layouts, sampling and weighted best focus. */
 import { describe, expect, it } from "vitest";
+import { computeBestFocusZ } from "../../../../src/optics/analysis/aberration/bestFocus.js";
 import {
-  computeBestFocusZ,
   computeBokehPreview,
   computeBokehPreviewPair,
   computeBokehFieldFootprint,
-  createAnalysisRequest,
-  stateWithZ,
-} from "../../../../src/optics/analysis.js";
-import { doLayout } from "../../../../src/optics/layout.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
+} from "../../../../src/optics/analysis/bokeh/bokeh.js";
+import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
+import { stateWithZ } from "../../../../src/optics/state/preparedGeometry.js";
+import { doLayout } from "../../../../src/optics/state/layout.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import { analysisRequestAt, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 
 describe("bokeh analysis requests", () => {

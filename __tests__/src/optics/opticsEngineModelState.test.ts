@@ -3,20 +3,22 @@ import * as views from "../../../src/optics/prescription/runtimeView.js";
 import { runtimeView } from "../../../src/optics/prescription/runtimeView.js";
 import { describe, expect, it, vi } from "vitest";
 import * as compiler from "../../../src/optics/prescription/compileCanonical.js";
-import * as glassCatalog from "../../../src/optics/glassCatalog.js";
+import * as glassCatalog from "../../../src/optics/chromatic/glassCatalog.js";
 import * as materials from "../../../src/optics/chromatic/materialResolver.js";
-import { ingestLensV1, toLensData } from "../../../src/optics/buildLens.js";
-import { dispersionTableFromRuntime2 } from "../../../src/optics/chromatic/dispersionAdapter.js";
-import { summarizeDispersionQuality2 } from "../../../src/optics/chromatic/dispersionQuality.js";
-import { traceRay } from "../../../src/optics/optics.js";
+import { ingestLensV1 } from "../../../src/optics/prescription/ingestV1.js";
+import { toLensData } from "../../../src/optics/prescription/toLensData.js";
+import { dispersionTableFromRuntime } from "../../../src/optics/chromatic/dispersionAdapter.js";
+import { summarizeDispersionQuality } from "../../../src/optics/chromatic/dispersionQuality.js";
+import { traceRay } from "../../../src/optics/trace/rayAdapters.js";
 import { buildVariableStopGapLens, teleconverterHostData, teleconverterZoomHostData } from "./testLensFixtures.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import { doLayout, thick } from "../../../src/optics/optics.js";
-import { buildLens2, engineLensFromRuntime, prepareRuntimeState } from "../../../src/optics/compat.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { doLayoutForRuntimeLens as doLayout, thickOrZero as thick } from "../../../src/optics/state/runtimeAdapters.js";
+import { engineLensFromRuntime, prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { compileSurfaceDispersions } from "../../../src/optics/chromatic/dispersionTable.js";
 import { compileLensData } from "../../../src/optics/prescription/compile.js";
 import { prepareState, prepareStateUncached, stateWithZ } from "../../../src/optics/state/preparedGeometry.js";
-import { evaluateSellmeier, LINE_NM, resolveGlass } from "../../../src/optics/glassCatalog.js";
+import { evaluateSellmeier, resolveGlass } from "../../../src/optics/chromatic/glassCatalog.js";
+import { LINE_NM } from "../../../src/optics/chromatic/spectralLines.js";
 import type { ElementData, SurfaceData, SurfaceSpectral } from "../../../src/types/optics.js";
 import { ALL_CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
@@ -67,9 +69,9 @@ function expectClose(actual: number, expected: number, tolerance = 1e-10): void 
 }
 
 describe("Optics engine LensData normalization and compatibility", () => {
-  it("builds every visible and hidden catalog lens through buildLens2", () => {
+  it("builds every visible and hidden catalog lens through buildLens", () => {
     for (const key of ALL_CATALOG_KEYS) {
-      const runtime = buildLens2(LENS_CATALOG[key]);
+      const runtime = buildLens(LENS_CATALOG[key]);
       const engine = engineLensFromRuntime(runtime);
       expect(runtime.data.key).toBe(key);
       expect(engine.key).toBe(key);
@@ -85,13 +87,13 @@ describe("Optics engine LensData normalization and compatibility", () => {
 
   it("builds hidden folded reference fixtures and preserves repeated surface-order labels", () => {
     for (const key of REQUIRED_FOLDED_REFERENCE_KEYS) {
-      const runtime = buildLens2(LENS_CATALOG[key]);
+      const runtime = buildLens(LENS_CATALOG[key]);
       const engine = engineLensFromRuntime(runtime);
       expect(engine.flags.isFoldedOptics, key).toBe(true);
       expect(engine.imagePlane.label, key).toBe(runtime.imagePlane.label);
     }
 
-    const mangin = engineLensFromRuntime(buildLens2(LENS_CATALOG["reference-mangin-second-surface-mirror"]));
+    const mangin = engineLensFromRuntime(buildLens(LENS_CATALOG["reference-mangin-second-surface-mirror"]));
     expect(mangin.opticalPath.surfaceLabels).toEqual(["STO", "MG1", "MG2", "MG1"]);
     expect(mangin.opticalPath.surfaceOrder).toEqual([
       mangin.labelToSurfaceIndex.STO,
@@ -102,7 +104,7 @@ describe("Optics engine LensData normalization and compatibility", () => {
   });
 
   it("defaults projection and image-plane metadata to the current runtime behavior", () => {
-    const runtime = buildLens2(LENS_CATALOG["nikkor-z-50f18s"]);
+    const runtime = buildLens(LENS_CATALOG["nikkor-z-50f18s"]);
     const engine = engineLensFromRuntime(runtime);
     expect(engine.projection.kind).toBe("rectilinear");
     expect(engine.imagePlane.label).toBe("IMG");
@@ -157,7 +159,7 @@ describe("Optics engine dispersion descriptors", () => {
 describe("Optics engine prepared state", () => {
   it("matches doLayout, thick, z positions, and image plane through compatibility wrappers", () => {
     for (const fixture of ENGINE_STATE_FIXTURES) {
-      const runtime = buildLens2(LENS_CATALOG[fixture.key]);
+      const runtime = buildLens(LENS_CATALOG[fixture.key]);
       for (const sliderState of fixture.states) {
         const aberrationT = sliderState.aberrationT ?? 0;
         const layout = doLayout(sliderState.focusT, sliderState.zoomT, runtime, aberrationT);
@@ -281,7 +283,7 @@ describe("Optics engine prepared state", () => {
   });
 
   it("owns one frozen trace geometry per prepared state without copying optical records", () => {
-    const runtime = buildLens2(LENS_CATALOG["nikon-z-24-70f4s"]);
+    const runtime = buildLens(LENS_CATALOG["nikon-z-24-70f4s"]);
     const engine = engineLensFromRuntime(runtime);
     const first = prepareState(engine, 0, 0, 0);
     const geometry = first.traceGeometry;
@@ -302,9 +304,9 @@ describe("Optics engine prepared state", () => {
       expect(prepareState(engine, controls[0], controls[1], controls[2]).traceGeometry).not.toBe(geometry);
     }
     expect(prepareStateUncached(engine, 0, 0).traceGeometry).not.toBe(geometry);
-    const other = buildLens2(LENS_CATALOG["nikon-z-24-70f4s"]);
+    const other = buildLens(LENS_CATALOG["nikon-z-24-70f4s"]);
     expect(prepareRuntimeState(other, 0, 0).traceGeometry).toBe(prepareRuntimeState(runtime, 0, 0).traceGeometry);
-    const independent = buildLens2(toLensData(ingestLensV1(LENS_CATALOG["nikon-z-24-70f4s"])));
+    const independent = buildLens(toLensData(ingestLensV1(LENS_CATALOG["nikon-z-24-70f4s"])));
     expect(independent.data.key).toBe(runtime.data.key);
     expect(prepareRuntimeState(independent, 0, 0).traceGeometry).not.toBe(
       prepareRuntimeState(runtime, 0, 0).traceGeometry,
@@ -441,8 +443,8 @@ describe("canonical compiler ownership", () => {
         expect(buildLens(toLensData(ingested))).toBe(runtime);
         const state = prepareRuntimeState(runtime, 0, 0);
         traceRay(0.1, 0, [...state.z], 0, 0, runtime.stopPhysSD, false, runtime);
-        summarizeDispersionQuality2(runtime);
-        expect(dispersionTableFromRuntime2(runtime)).toBe(compiled.dispersion);
+        summarizeDispersionQuality(runtime);
+        expect(dispersionTableFromRuntime(runtime)).toBe(compiled.dispersion);
       }
       expect(compile).toHaveBeenCalledTimes(1);
       expect(resolve).toHaveBeenCalledTimes(calls);

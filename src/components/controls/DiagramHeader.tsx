@@ -13,14 +13,14 @@
 import { forwardRef, memo } from "react";
 import InventorLinks from "../content/InventorLinks.js";
 import PatentNumberLink from "../content/PatentNumberLink.js";
-import { eflAtZoom, formatDist, formatFNumber } from "../../optics/optics.js";
+import { eflAtZoomClamped as eflAtZoom, formatDist, formatFNumber } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
 import { toggleGroup, toggleBtn, headerStrip } from "../../utils/style/styles.js";
 import CollapseButton from "./CollapseButton.js";
 import CardinalControls from "./CardinalControls.js";
 import RayToggles from "./RayToggles.js";
 import ChromaticControls from "./ChromaticControls.js";
-import { lensChromaticReference } from "../../optics/chromatic/channels.js";
+import { lensChromaticReference } from "../../optics/chromatic.js";
 import { ENABLE_CARDINAL_ELEMENTS } from "../../utils/featureFlags.js";
 import { lensDisplaySubtitle, lensPatentAttribution } from "../../utils/catalog/lensPatentMetadata.js";
 import type { RuntimeLens } from "../../types/optics.js";

@@ -38,7 +38,7 @@ import {
   resolveGlass,
   decodeCode6,
 } from "../src/optics/glassCatalog.js";
-import { normalLinePgF } from "../src/optics/dispersion.js";
+import { normalLinePgF } from "../src/optics/chromatic.js";
 import { findCandidates, walkLensSurfaces } from "./glassScanLib.js";
 import type { LensData, RefractiveIndexReferenceLine } from "../src/types/optics.js";
 

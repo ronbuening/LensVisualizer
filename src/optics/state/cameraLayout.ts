@@ -5,7 +5,7 @@
  * the canonical reference-state image plane remains fixed in camera coordinates.
  */
 
-import type { LayoutResult } from "../types/optics.js";
+import type { LayoutResult } from "../../types/optics.js";
 
 /** A state-specific layout translated into the fixed camera/image-plane frame. */
 export interface CameraAnchoredLayout extends LayoutResult {

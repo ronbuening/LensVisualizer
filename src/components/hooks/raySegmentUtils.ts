@@ -5,7 +5,7 @@
  * Pure functions — no React dependencies.
  */
 
-import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic/channels.js";
+import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic.js";
 import type { RaySegment } from "./useOnAxisRays.js";
 import type { ChromaticChannel } from "../../types/optics.js";
 

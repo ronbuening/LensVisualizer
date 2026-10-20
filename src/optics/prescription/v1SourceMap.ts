@@ -38,7 +38,8 @@ import type {
 import { ingestLensV1, ingestTeleconverterV1 } from "./ingestV1.js";
 import { childPath, follow, inverse, memberPath, parentPath, pathBelow } from "./sourcePaths.js";
 import { V1_PRINT_ORDER } from "./toLensData.js";
-import { droppedStopRadius, type DroppedStopRadius } from "./toLensDataV2.js";
+import { droppedStopRadius } from "./toLensDataV2.js";
+import type { DroppedStopRadius } from "./toLensDataV2.js";
 
 /** A value the source wrote that the V1 file does not hold. */
 export interface V1DroppedValue {

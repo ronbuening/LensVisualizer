@@ -29,33 +29,33 @@ flowchart LR
   end
   n_external_src_optics_perspective["src/optics/perspective"]
   n_external_src_optics_chromatic["src/optics/chromatic"]
-  n_external_src_optics_optics_ts["src/optics/optics.ts"]
+  n_external_src_optics_field["src/optics/field"]
   n_external_src_optics_trace["src/optics/trace"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_types["src/types"]
-  n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisSampling_ts --> |8| n_external_src_optics_perspective
+  n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisSampling_ts --> |9| n_external_src_optics_perspective
   n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisJobs_ts --> |6| n_external_src_optics_perspective
   n_src_optics_analysis_src_optics_analysis_analysisJobs_ts --> |4| n_src_optics_analysis_src_optics_analysis_aberration
   n_src_optics_analysis_src_optics_analysis_request_ts --> |2| n_external_src_optics_perspective
+  n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> |2| n_src_optics_analysis_src_optics_analysis_analysisMovementSupport_ts
   n_src_optics_analysis_src_optics_analysis_analysisJobs_ts --> |2| n_src_optics_analysis_src_optics_analysis_chromatic
+  n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> |2| n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisJobs_ts
+  n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> |2| n_src_optics_analysis_src_optics_analysis_request_ts
   n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisSampling_ts --> n_external_src_optics_chromatic
   n_src_optics_analysis_src_optics_analysis_request_ts --> n_external_src_optics_chromatic
-  n_src_optics_analysis_src_optics_analysis_request_ts --> n_external_src_optics_optics_ts
+  n_src_optics_analysis_src_optics_analysis_request_ts --> n_external_src_optics_field
   n_src_optics_analysis_src_optics_analysis_analysisMovementSupport_ts --> n_external_src_optics_perspective
   n_src_optics_analysis_src_optics_analysis_request_ts --> n_external_src_optics_trace
   n_src_optics_analysis_src_optics_analysis_request_ts --> n_external_src_optics_types_ts
   n_src_optics_analysis_src_optics_analysis_request_ts --> n_external_src_types
   n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> n_src_optics_analysis_src_optics_analysis_analysisJobs_ts
-  n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> n_src_optics_analysis_src_optics_analysis_analysisMovementSupport_ts
   n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisSampling_ts --> n_src_optics_analysis_src_optics_analysis_analysisQuality_ts
   n_src_optics_analysis_src_optics_analysis_request_ts --> n_src_optics_analysis_src_optics_analysis_analysisQuality_ts
   n_src_optics_analysis_src_optics_analysis_analysisJobs_ts --> n_src_optics_analysis_src_optics_analysis_bokeh
   n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> n_src_optics_analysis_src_optics_analysis_chromatic
   n_src_optics_analysis_src_optics_analysis_analysisJobs_ts --> n_src_optics_analysis_src_optics_analysis_distortion
-  n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisJobs_ts
   n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisJobs_ts --> n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisSampling_ts
   n_src_optics_analysis_src_optics_analysis_analysisJobs_ts --> n_src_optics_analysis_src_optics_analysis_pupils
-  n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> n_src_optics_analysis_src_optics_analysis_request_ts
   n_src_optics_analysis_src_optics_analysis_analysisJobs_ts --> n_src_optics_analysis_src_optics_analysis_request_ts
   n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisJobs_ts --> n_src_optics_analysis_src_optics_analysis_request_ts
   n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisSampling_ts --> n_src_optics_analysis_src_optics_analysis_request_ts
@@ -68,8 +68,8 @@ flowchart LR
 
 - Direct source files: 8
 - Direct subfolders: 9
-- Main outbound areas: same folder (23), src/optics/perspective (17), src/optics/chromatic (2), src/optics/optics.ts, src/optics/trace, src/optics/types.ts, src/types
-- External consumers: src/benchmarks, src/components/layout, src/optics/analysis, src/optics/analysis.ts, src/optics/compat.ts, src/optics/optics.ts, src/optics/perspective
+- Main outbound areas: same folder (26), src/optics/perspective (18), src/optics/chromatic (2), src/optics/field, src/optics/trace, src/optics/types.ts, src/types
+- External consumers: src/optics/analysis, src/optics/analysis.ts, src/optics/perspective
 
 ## Subfolders
 
@@ -89,11 +89,11 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `analysisContext.ts` | Analysis Context helper module | same folder (5) | src/optics/analysis.ts, src/optics/compat.ts | AnalysisComputationContextParams, AnalysisComputationContext, createAnalysisComputationContext |
-| `analysisJobs.ts` | Analysis Jobs helper module | same folder (12) | same folder, src/optics/compat.ts | analysisJobs2, analysisJobsForState2 |
-| `analysisMovementSupport.ts` | Analysis Movement Support helper module | src/optics/perspective | same folder, src/optics/compat.ts | AnalysisSectionId, AnalysisSectionMode, AnalysisSectionAvailability, AnalysisSectionUnavailableError, analysisSectionAvailability, assertAnalysisSectionAvailable, assertCenteredAnalysisSectionAvailable |
-| `analysisQuality.ts` | Analysis Quality helper module | none | same folder (5), src/benchmarks, src/components/layout | AnalysisQuality, AnalysisSamplingOptions, INTERACTIVE_ANALYSIS_SAMPLING, analysisSamplingForQuality |
+| `analysisContext.ts` | Analysis Context helper module | same folder (8) | src/optics/analysis.ts | AnalysisComputationContextParams, AnalysisComputationContext, createAnalysisComputationContext |
+| `analysisJobs.ts` | Analysis Jobs helper module | same folder (12) | same folder, src/optics/analysis.ts | analysisPreviewJobs, analysisJobs |
+| `analysisMovementSupport.ts` | Analysis Movement Support helper module | src/optics/perspective | same folder, src/optics/analysis.ts | AnalysisSectionId, AnalysisSectionMode, AnalysisSectionAvailability, AnalysisSectionUnavailableError, analysisSectionAvailability, assertAnalysisSectionAvailable, assertCenteredAnalysisSectionAvailable |
+| `analysisQuality.ts` | Analysis Quality helper module | none | same folder (5), src/optics/analysis.ts | AnalysisQuality, AnalysisSamplingOptions, INTERACTIVE_ANALYSIS_SAMPLING, analysisSamplingForQuality |
 | `perspectiveAnalysisJobs.ts` | Perspective Analysis Jobs helper module | src/optics/perspective (6), same folder (2) | same folder | PerspectiveAnalysisJobs, createPerspectiveAnalysisJobs |
-| `perspectiveAnalysisSampling.ts` | Perspective Analysis Sampling helper module | src/optics/perspective (8), same folder (3), src/optics/chromatic | src/optics/perspective (6), same folder | PerspectiveAnalysisSamplingPlan, perspectiveAnalysisSamplingPlan |
-| `request.ts` | Request helper module | src/optics/perspective (2), same folder, src/optics/chromatic, src/optics/optics.ts, src/optics/trace, +2 more | same folder (21), src/optics/perspective (7), src/optics/analysis.ts, src/optics/compat.ts | AnalysisRequestParams, AnalysisRequest, createAnalysisRequest |
-| `sampling.ts` | Sampling helper module | none | same folder (13), src/optics/perspective (6), src/optics/optics.ts | MARGINAL_PUPIL_FRACTIONS, PREVIEW_FIELD_FRACTIONS, FULL_FIELD_FRACTIONS, CHROMATIC_PUPIL_FRACTIONS, uniformFieldFraction, evenlySpacedSigned, signedVerticalSensorUvs, OrthogonalPupilSample, +6 more |
+| `perspectiveAnalysisSampling.ts` | Perspective Analysis Sampling helper module | src/optics/perspective (9), same folder (3), src/optics/chromatic | src/optics/perspective (6), same folder | PerspectiveAnalysisSamplingPlan, perspectiveAnalysisSamplingPlan |
+| `request.ts` | Request helper module | src/optics/perspective (2), same folder, src/optics/chromatic, src/optics/field, src/optics/trace, +2 more | same folder (21), src/optics/perspective (7), src/optics/analysis.ts | AnalysisRequestParams, AnalysisRequest, createAnalysisRequest |
+| `sampling.ts` | Sampling helper module | none | same folder (13), src/optics/perspective (6), src/optics/analysis.ts | MARGINAL_PUPIL_FRACTIONS, PREVIEW_FIELD_FRACTIONS, FULL_FIELD_FRACTIONS, CHROMATIC_PUPIL_FRACTIONS, uniformFieldFraction, evenlySpacedSigned, signedVerticalSensorUvs, OrthogonalPupilSample, +6 more |

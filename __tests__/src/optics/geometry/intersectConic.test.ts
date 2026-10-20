@@ -1,11 +1,11 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { INTERSECTION_MAX_ITERATIONS } from "../../../../src/optics/constants.js";
-import {
-  intersectSurfaceProfile,
-  type SurfaceIntersectionOptions,
-  type SurfaceIntersectionResult,
-} from "../../../../src/optics/geometry/intersect.js";
+import { INTERSECTION_MAX_ITERATIONS } from "../../../../src/optics/math/constants.js";
+import { intersectSurfaceProfile } from "../../../../src/optics/geometry/intersect.js";
+import type {
+  SurfaceIntersectionOptions,
+  SurfaceIntersectionResult,
+} from "../../../../src/optics/geometry/intersectTypes.js";
 import { baseConicRoot } from "../../../../src/optics/geometry/intersectConic.js";
 import { createSurfaceProfile, createTiltedPlaneProfile } from "../../../../src/optics/geometry/surfaceProfile.js";
 import { normalize } from "../../../../src/optics/math/vector.js";

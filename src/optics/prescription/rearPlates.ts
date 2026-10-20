@@ -1,13 +1,8 @@
 /** Canonical rear-plate expansion. Generated records are internal and never enter authored ingest. */
 import type { LensData, SurfaceData, RearPlateData } from "../../types/optics.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTaxonomy.js";
-import {
-  FLAT_RADIUS,
-  type CanonicalLens,
-  type CanonicalSurface,
-  type CanonicalElement,
-  type IngestedPrescription,
-} from "./canonical.js";
+import { FLAT_RADIUS } from "./canonical.js";
+import type { CanonicalLens, CanonicalSurface, CanonicalElement, IngestedPrescription } from "./canonical.js";
 import { canonicalConstructionData, toLensData } from "./toLensData.js";
 import { canonicalForView } from "./identity.js";
 import { ingestLens } from "./ingestV2.js";

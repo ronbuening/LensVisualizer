@@ -12,7 +12,8 @@ import type {
 } from "../../../types/mtf.js";
 import type { AnalysisRequest } from "../request.js";
 import type { PreparedGeometry } from "../../types.js";
-import { assessMtfSupport, resolveMtfOptions, MTF_FIELDS, MTF_FREQUENCIES } from "./mtfSupport.js";
+import { assessMtfSupport, resolveMtfOptions } from "./mtfSupport.js";
+import { MTF_FIELDS, MTF_FREQUENCIES } from "./mtfConstants.js";
 import {
   formatMtfTolerance,
   MTF_CONVERGENCE_BAND_LPMM,
@@ -26,15 +27,12 @@ import {
   MTF_MIN_RAYS,
   MTF_STRADDLING_NOTE_SHARE,
 } from "./mtfConstants.js";
-import { combineOtfs, geometricOtf, otfMagnitude, type ComplexOtf, type MtfSpot } from "./mtfMath.js";
-import {
-  findMtfFieldFootprint,
-  prepareMtfFieldLaunch,
-  traceMtfBundle,
-  type MtfFieldLaunch,
-  type MtfOpenBorders,
-} from "./mtfTracing.js";
-import { expandMtfFootprint, type MtfFootprint } from "./mtfFootprint.js";
+import { combineOtfs, geometricOtf, otfMagnitude } from "./mtfMath.js";
+import type { ComplexOtf, MtfSpot } from "./mtfMath.js";
+import { findMtfFieldFootprint, prepareMtfFieldLaunch, traceMtfBundle } from "./mtfTracing.js";
+import type { MtfFieldLaunch, MtfOpenBorders } from "./mtfTracing.js";
+import { expandMtfFootprint } from "./mtfFootprint.js";
+import type { MtfFootprint } from "./mtfFootprint.js";
 import { shearedOtf } from "./mtfShearedOtf.js";
 import { findAxialBestFocus, mtfImagePlaneOffset, mtfNearestImagePlaneZ } from "./mtfFocus.js";
 import { resolveMtfAperture } from "./mtfAperture.js";
@@ -45,8 +43,8 @@ import {
   mtfModeledHalfField,
   resolveMtfFieldGeometry,
   resolveMtfFieldTargets,
-  type MtfFieldTarget,
 } from "./mtfFields.js";
+import type { MtfFieldTarget } from "./mtfFields.js";
 
 /**
  * Results an identical earlier request may share: the field axis, the axial focus search, the

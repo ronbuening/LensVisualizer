@@ -5,8 +5,8 @@
  * samples for display and analysis workloads.
  */
 
-import type { RayDensity } from "../types/state.js";
-import type { RuntimeLens } from "../types/optics.js";
+import type { RayDensity } from "../../types/state.js";
+import type { RuntimeLens } from "../../types/optics.js";
 import { stopInnerBlockedSemiDiameter } from "./stopObstruction.js";
 
 /**

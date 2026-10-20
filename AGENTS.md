@@ -83,7 +83,7 @@ Read the smallest relevant doc before changing an area. `agent_docs/README.md` i
 - Keep optics helpers pure and pass the runtime lens object `L` explicitly; avoid module-level optical state.
 - Exact surface tracing is the only trace path. Do not add per-lens trace rollout state or thread `mode` / `traceMode`
   options through new helpers.
-- Fisheye and ultra-wide field launch go through `src/optics/projection.ts` and `solveChiefRay`; do not inline
+- Fisheye and ultra-wide field launch go through `src/optics/projection.ts` and `solveChiefRayForRuntimeLens`; do not inline
   `Math.tan(field)` or bypass the bounding-sphere vector path.
 - Mirror/folded systems opt into `LensDataV2Input.opticalPath` and per-surface `interaction` / `innerSd`. Keep ordinary
   sequential defaults for refractive lenses, use explicit `surfaceOrder` when hit order is known, and route folded
@@ -102,7 +102,7 @@ Read the smallest relevant doc before changing an area. `agent_docs/README.md` i
   with `src/components/markdown/ThemedMarkdown.tsx`.
 - Add analysis drawer tabs by following `agent_docs/adding_an_analysis_tab.md`; add shareable view state by following
   `agent_docs/adding_url_state.md`.
-- Keep perspective-control movement in `src/optics/lensMovement.ts` unless explicitly upgrading full moved-optics analysis.
+- Keep perspective-control movement in `src/optics/perspective.ts` (implemented in `perspective/lensMovement.ts`) unless explicitly upgrading full moved-optics analysis.
 - Update all four theme variants when changing theme color tokens (`agent_docs/theme_tokens.md`).
 - Lens data and content are auto-discovered; avoid manual catalog/route edits unless changing the pipeline itself.
 - Do not commit per-lens or per-batch test files; the corpus sweeps already validate every catalog lens. Only a shared

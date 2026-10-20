@@ -1,16 +1,16 @@
 import { describe, expect, it, vi } from "vitest";
-import {
-  AnalysisSectionUnavailableError,
-  analysisJobsForState2,
-  createAnalysisComputationContext,
-  prepareRuntimeState,
-} from "../../../src/optics/compat.js";
+import { AnalysisSectionUnavailableError } from "../../../src/optics/analysis/analysisMovementSupport.js";
+import { analysisJobs } from "../../../src/optics/analysis/analysisJobs.js";
+import { createAnalysisComputationContext } from "../../../src/optics/analysis/analysisContext.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { analysisSamplingForQuality } from "../../../src/optics/analysis/analysisQuality.js";
 import { runtimeView } from "../../../src/optics/prescription/runtimeView.js";
-import { createAnalysisRequest, type AnalysisRequestParams } from "../../../src/optics/analysis/request.js";
-import { createPerspectiveTraceContext } from "../../../src/optics/perspective/index.js";
+import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
+import type { AnalysisRequestParams } from "../../../src/optics/analysis/request.js";
+import { createPerspectiveTraceContext } from "../../../src/optics/perspective/trace.js";
 import type { TiltPivot } from "../../../src/types/optics.js";
-import { computeAnalysisFieldGeometryAtState, eflAtFocus } from "../../../src/optics/optics.js";
+import { computeAnalysisFieldGeometryAtState } from "../../../src/optics/state/fieldAdapters.js";
+import { eflAtFocus } from "../../../src/optics/first-order/focusBreathing.js";
 import { apertureAt, buildChromaticPositiveElementLens, sharedSonnar50f15 } from "./testLensFixtures.js";
 
 describe("analysis computation context", () => {
@@ -30,39 +30,30 @@ describe("analysis computation context", () => {
       fieldGeometry,
     });
 
-    expect(context.computeDistortionCurve()).toEqual(analysisJobsForState2.computeDistortionCurve(context.request));
+    expect(context.computeDistortionCurve()).toEqual(analysisJobs.computeDistortionCurve(context.request));
     expect(context.computeOpticalSummary()).toEqual(
-      analysisJobsForState2.computeOpticalSummary(
+      analysisJobs.computeOpticalSummary(
         createAnalysisRequest({ preparedState: state, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry }),
       ),
     );
-    expect(context.computeDistortionFieldGrid()).toEqual(
-      analysisJobsForState2.computeDistortionFieldGrid(context.request),
-    );
-    expect(context.computeVignettingCurve()).toEqual(analysisJobsForState2.computeVignettingCurve(context.request));
+    expect(context.computeDistortionFieldGrid()).toEqual(analysisJobs.computeDistortionFieldGrid(context.request));
+    expect(context.computeVignettingCurve()).toEqual(analysisJobs.computeVignettingCurve(context.request));
     expect(context.computeBothPupilAberrationProfiles()).toEqual(
-      analysisJobsForState2.computeBothPupilAberrationProfiles(context.request),
+      analysisJobs.computeBothPupilAberrationProfiles(context.request),
     );
-    expect(context.computeBokehPreviewPair()).toEqual(analysisJobsForState2.computeBokehPreviewPair(context.request));
-    expect(context.computeChromaticAnalysis()).toEqual(analysisJobsForState2.computeChromaticAnalysis(context.request));
+    expect(context.computeBokehPreviewPair()).toEqual(analysisJobs.computeBokehPreviewPair(context.request));
+    expect(context.computeChromaticAnalysis()).toEqual(analysisJobs.computeChromaticAnalysis(context.request));
     expect(context.computeChromaticRayFanAnalysis()).toEqual(
-      analysisJobsForState2.computeChromaticRayFanAnalysis(context.request),
+      analysisJobs.computeChromaticRayFanAnalysis(context.request),
     );
-    expect(context.computeBestFocusZ()).toEqual(analysisJobsForState2.computeBestFocusZ(context.request));
-    expect(context.computeSphericalAberration()).toEqual(
-      analysisJobsForState2.computeSphericalAberration(context.request),
-    );
-    expect(context.computeSAProfile()).toEqual(analysisJobsForState2.computeSAProfile(context.request));
+    expect(context.computeBestFocusZ()).toEqual(analysisJobs.computeBestFocusZ(context.request));
+    expect(context.computeSphericalAberration()).toEqual(analysisJobs.computeSphericalAberration(context.request));
+    expect(context.computeSAProfile()).toEqual(analysisJobs.computeSAProfile(context.request));
     expect(context.computeSphericalAberrationBlurCharacter()).toEqual(
-      analysisJobsForState2.computeSphericalAberrationBlurCharacter(
-        context.request,
-        context.computeSphericalAberration(),
-      ),
+      analysisJobs.computeSphericalAberrationBlurCharacter(context.request, context.computeSphericalAberration()),
     );
-    expect(context.computeComaAnalysis()).toEqual(analysisJobsForState2.computeComaAnalysis(context.request));
-    expect(context.computeFieldCurvatureBundle()).toEqual(
-      analysisJobsForState2.computeFieldCurvatureBundle(context.request),
-    );
+    expect(context.computeComaAnalysis()).toEqual(analysisJobs.computeComaAnalysis(context.request));
+    expect(context.computeFieldCurvatureBundle()).toEqual(analysisJobs.computeFieldCurvatureBundle(context.request));
 
     expect(context.computeDistortionCurve()).toBe(context.computeDistortionCurve());
     expect(context.computeOpticalSummary()).toBe(context.computeOpticalSummary());
@@ -92,12 +83,12 @@ describe("analysis computation context", () => {
     });
     const context = createAnalysisComputationContext(request);
     expect(context.computeDistortionCurve().samples).toHaveLength(5);
-    expect(context.computeDistortionCurve()).toEqual(analysisJobsForState2.computeDistortionCurve(request));
+    expect(context.computeDistortionCurve()).toEqual(analysisJobs.computeDistortionCurve(request));
     const grid = context.computeDistortionFieldGrid();
-    expect(grid).toEqual(analysisJobsForState2.computeDistortionFieldGrid({ ...request, sampling: {} }));
+    expect(grid).toEqual(analysisJobs.computeDistortionFieldGrid({ ...request, sampling: {} }));
     expect(grid.lines).toHaveLength(10);
     expect(grid.lines.every((line) => line.points.length === 17)).toBe(true);
-    const directGrid = analysisJobsForState2.computeDistortionFieldGrid(request);
+    const directGrid = analysisJobs.computeDistortionFieldGrid(request);
     expect(directGrid.lines).toHaveLength(6);
     expect(directGrid.lines.every((line) => line.points.length === 3)).toBe(true);
     expect(context.computeDistortionFieldGrid()).toBe(grid);
@@ -117,7 +108,7 @@ describe("analysis computation context", () => {
     const context = createAnalysisComputationContext(request);
     const samples = context.computeVignettingCurve();
     expect(samples).toHaveLength(5);
-    expect(samples).toEqual(analysisJobsForState2.computeVignettingCurve(request));
+    expect(samples).toEqual(analysisJobs.computeVignettingCurve(request));
     expect(context.computeVignettingCurve()).toBe(samples);
   });
 
@@ -141,7 +132,7 @@ describe("analysis computation context", () => {
       expect(profiles.ep.samples).toHaveLength(sampling.pupilAberrationSampleCount!);
       expect(profiles.xp.samples).toHaveLength(sampling.pupilAberrationSampleCount!);
       expect(profiles.halfFieldDeg).toBe(params.fieldGeometry.halfFieldDeg);
-      expect(profiles).toEqual(analysisJobsForState2.computeBothPupilAberrationProfiles(request));
+      expect(profiles).toEqual(analysisJobs.computeBothPupilAberrationProfiles(request));
       expect(context.computeBothPupilAberrationProfiles()).toBe(profiles);
     }
   });
@@ -188,7 +179,7 @@ describe("analysis computation context", () => {
     });
 
     expect(context.fieldGeometry).toBeNull();
-    expect(context.computeDistortionCurve()).toEqual(analysisJobsForState2.computeDistortionCurve(context.request));
+    expect(context.computeDistortionCurve()).toEqual(analysisJobs.computeDistortionCurve(context.request));
   });
 
   it("keys shift/tilt-only changes and blocks legacy centered jobs for migrated sections", () => {

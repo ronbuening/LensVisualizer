@@ -5,13 +5,10 @@
  * diagram rendering and analysis panels.
  */
 
-import type { RuntimeLens } from "../types/optics.js";
-import { conicPolySag, sag, sagSlopeRaw } from "./geometry/surfaceProfile.js";
+import type { RuntimeLens } from "../../types/optics.js";
+import { conicPolySag, sag, sagSlopeRaw } from "../geometry/surfaceProfile.js";
 
-/** Number of straight SVG segments used when rendering one surface profile. */
-export const SVG_PATH_SUBDIVISIONS: number = 96;
 const BISECT_ITERATIONS: number = 30;
-export { FOCUS_INFINITY_CUTOFF } from "./focusDistance.js";
 
 /**
  * Compute rendered sag for a RuntimeLens surface.
@@ -85,20 +82,3 @@ export function slopeTrimHeight(surfIdx: number, sd: number, maxSlopeTan: number
   }
   return (lo + hi) / 2;
 }
-
-export { thick, doLayout, stateSurfaces } from "./state/layout.js";
-export {
-  eflAtZoom,
-  epAtZoom,
-  fopenAtZoom,
-  halfFieldAtZoom,
-  tracingHalfFieldAtZoom,
-  yRatioAtZoom,
-  bAtZoom,
-  xpAtZoom,
-  epZRelStopAtZoom,
-  xpZRelLastSurfAtZoom,
-} from "./state/stationTables.js";
-
-export { eflAtFocus2 as eflAtFocus } from "./first-order/focusBreathing.js";
-export { effectiveFNumber2 as effectiveFNumber } from "./first-order/fNumber.js";

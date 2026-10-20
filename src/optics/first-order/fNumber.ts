@@ -4,11 +4,11 @@
  * Keeps f-number reporting consistent with focus breathing and zoom interpolation.
  */
 
-import { closeFocusAtZoom } from "../focusDistance.js";
+import { closeFocusAtZoom } from "../state/stationTables.js";
 import { interpolateStationTable, clampStationControl } from "../state/stationTables.js";
 import type { RuntimeLens } from "../../types/optics.js";
-import { FOCUS_INFINITY_CUTOFF } from "../focusDistance.js";
-import { eflAtFocus2 } from "./focusBreathing.js";
+import { FOCUS_INFINITY_CUTOFF } from "../state/focusDistance.js";
+import { eflAtFocus } from "./focusBreathing.js";
 
 /**
  * Estimate effective f-number at the current focus and zoom state.
@@ -24,7 +24,7 @@ import { eflAtFocus2 } from "./focusBreathing.js";
  * @param aberrationT - normalized aberration spacing slider
  * @returns effective f-number for exposure/blur summaries
  */
-export function effectiveFNumber2(
+export function effectiveFNumber(
   nominalFNumber: number,
   focusT: number,
   zoomT: number,
@@ -32,7 +32,7 @@ export function effectiveFNumber2(
   aberrationT = 0,
 ): number {
   if (focusT < FOCUS_INFINITY_CUTOFF) return nominalFNumber;
-  const efl = eflAtFocus2(focusT, zoomT, L, aberrationT);
+  const efl = eflAtFocus(focusT, zoomT, L, aberrationT);
   const focusDistMm = (closeFocusAtZoom(zoomT, L) / focusT) * 1000;
   const m = focusMagnification(efl, focusDistMm);
   if (m === null) return nominalFNumber;

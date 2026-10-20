@@ -3,8 +3,8 @@ import {
   isHeavyLensForRayWork,
   rayFractionsForDensity,
   raySampleCountForDensity,
-} from "../../../src/optics/raySampling.js";
-import buildLens from "../../../src/optics/buildLens.js";
+} from "../../../src/optics/trace/raySampling.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 function expectSymmetric(fractions: number[]) {

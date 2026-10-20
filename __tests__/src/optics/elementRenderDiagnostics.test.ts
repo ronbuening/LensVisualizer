@@ -1,8 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { computeElementRenderDiagnostics } from "../../../src/optics/diagramGeometry.js";
-import buildLens from "../../../src/optics/buildLens.js";
+import { computeElementRenderDiagnostics } from "../../../src/optics/diagram/runtimeDiagramAdapter.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
 import { sharedMaterialBand } from "../../../src/optics/geometry/apertureBands.js";
-import { doLayout, renderSag } from "../../../src/optics/optics.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { renderSag } from "../../../src/optics/diagram/runtimeSurface.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 

@@ -2,20 +2,16 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import type { AsphericCoefficients } from "../../../../src/types/optics.js";
 import type { Ray3, SagSlope, SurfaceProfile, Vec3 } from "../../../../src/optics/types.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
-import { INTERSECTION_MAX_ITERATIONS } from "../../../../src/optics/constants.js";
-import {
-  intersectSurfaceProfile,
-  seedAsphereSolve,
-  type SeedRefusal,
-  type SurfaceIntersectionOptions,
-} from "../../../../src/optics/geometry/intersect.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
+import { INTERSECTION_MAX_ITERATIONS } from "../../../../src/optics/math/constants.js";
+import { intersectSurfaceProfile, seedAsphereSolve } from "../../../../src/optics/geometry/intersect.js";
+import type { SeedRefusal, SurfaceIntersectionOptions } from "../../../../src/optics/geometry/intersectTypes.js";
 import { capCoordinateTolerance } from "../../../../src/optics/geometry/intersectTolerance.js";
 import { createSurfaceProfile, createTiltedPlaneProfile, sag } from "../../../../src/optics/geometry/surfaceProfile.js";
 import { ulpOf } from "../../../../src/optics/math/numerics.js";
 import { dot, normalize } from "../../../../src/optics/math/vector.js";
 import { evaluateAperture } from "../../../../src/optics/trace/aperture.js";
-import { traceEngineRay2 } from "../../../../src/optics/trace/rayAdapters.js";
+import { traceEngineRay } from "../../../../src/optics/trace/rayAdapters.js";
 import { INTERSECTION_FIXTURE_PATH, type IntersectionFixtureFile } from "../fixtures/generateIntersectionFixtures.js";
 import { build, buildFoldedTirLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 
@@ -1452,7 +1448,7 @@ describe("a plane at zero gap behind a curved surface", () => {
       z,
       profile,
       ray: { origin, direction: oblique },
-      trace: traceEngineRay2(state, { origin, direction: oblique }, { checkSemiDiameter: true }),
+      trace: traceEngineRay(state, { origin, direction: oblique }, { checkSemiDiameter: true }),
     };
   };
 
@@ -1518,7 +1514,7 @@ describe("the closed-form diagnostic stays on the kernel's result", () => {
   });
 
   it("is in no record of a sequential trace", () => {
-    const trace = traceEngineRay2(prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0), mirrorRay, {
+    const trace = traceEngineRay(prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0), mirrorRay, {
       checkSemiDiameter: true,
     });
     expect(trace.hits.length).toBeGreaterThan(1);
@@ -1527,7 +1523,7 @@ describe("the closed-form diagnostic stays on the kernel's result", () => {
 
   it("is in no record of a folded trace, on a listed path or a searched one", () => {
     // The listed path meets the spherical mirror MG2 through the generalized tracer.
-    const listed = traceEngineRay2(prepareRuntimeState(buildFoldedTirLens(), 0, 0), mirrorRay, {
+    const listed = traceEngineRay(prepareRuntimeState(buildFoldedTirLens(), 0, 0), mirrorRay, {
       checkSemiDiameter: true,
     });
     expect(listed.hits.map((hit) => hit.surfaceLabel)).toEqual(["STO", "MG1", "MG2", "MG1"]);
@@ -1574,7 +1570,7 @@ describe("the closed-form diagnostic stays on the kernel's result", () => {
       ],
       opticalPath: { mode: "auto", imagePlane: { z: 50, label: "IMG" }, maxInteractions: 8 },
     });
-    const searched = traceEngineRay2(
+    const searched = traceEngineRay(
       prepareRuntimeState(cavity, 0, 0),
       { origin: [0, 3, 10], direction: [0, 0, 1] },
       { checkSemiDiameter: true, launchBoundT: 25 },

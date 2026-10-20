@@ -2,18 +2,16 @@
 
 import type { AnalysisRequest } from "../../analysis/request.js";
 import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
-import { COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES, type ComaTailDirection } from "../../analysis/aberration/types.js";
+import { COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES } from "../../analysis/aberration/types.js";
+import type { ComaTailDirection } from "../../analysis/aberration/types.js";
 import { circularPupilPoints, sampleOrthogonalPupilFan, signedVerticalSensorUvs } from "../../analysis/sampling.js";
 import type { Vec3 } from "../../types.js";
-import {
-  sampleCircularPupilBundle,
-  sampleSensorLockedFields,
-  type FieldSample,
-  type PerspectiveFieldSamplingOptions,
-  type PerspectiveFieldStatus,
-  type PerspectivePupilPoint,
-  type SensorUv,
-} from "../fieldSampling.js";
+import { sampleCircularPupilBundle } from "../pupilBundle.js";
+import { sampleSensorLockedFields } from "../fieldSampling.js";
+import type { FieldSample, PerspectiveFieldSamplingOptions } from "../fieldTypes.js";
+import type { PerspectiveFieldStatus } from "../chiefRay.js";
+import type { PerspectivePupilPoint } from "../pupilBundle.js";
+import type { SensorUv } from "../fieldGeometry.js";
 import type { PerspectiveTraceContext } from "../trace.js";
 import {
   affineSensorRaysFromField,
@@ -21,9 +19,8 @@ import {
   fieldSensorAxes,
   resolvePerspectivePupilSemiDiameter,
   solvePerspectiveSensorBestFocus,
-  type PerspectiveAffineSensorRay,
-  type PerspectiveSensorBestFocus,
 } from "./imageSpace.js";
+import type { PerspectiveAffineSensorRay, PerspectiveSensorBestFocus } from "./imageSpace.js";
 
 const DEFAULT_FIELD_SENSOR_UVS: readonly SensorUv[] = signedVerticalSensorUvs(5);
 const DEFAULT_FOCUS_FAN_SAMPLE_COUNT = 17;

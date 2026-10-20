@@ -28,25 +28,21 @@ import type {
   SurfaceData,
 } from "../../types/optics.js";
 import type { TeleconverterData } from "../../types/teleconverter.js";
-import {
-  FLAT_RADIUS,
-  type CanonicalElement,
-  type CanonicalLens,
-  type CanonicalMedium,
-  type CanonicalProvenance,
-  type CanonicalRearPlate,
-  type CanonicalSurface,
-  type CanonicalTeleconverter,
-  type IngestedPrescription,
-  type V1PublishedStationsSpelling,
-  type V1Spelling,
+import { FLAT_RADIUS } from "./canonical.js";
+import type {
+  CanonicalElement,
+  CanonicalLens,
+  CanonicalMedium,
+  CanonicalProvenance,
+  CanonicalRearPlate,
+  CanonicalSurface,
+  CanonicalTeleconverter,
+  IngestedPrescription,
+  V1PublishedStationsSpelling,
+  V1Spelling,
 } from "./canonical.js";
-import {
-  ELEMENT_SCHEMA_DEFAULTS,
-  LENS_SCHEMA_DEFAULTS,
-  REAR_PLATE_SCHEMA_DEFAULTS,
-  type SchemaDefault,
-} from "./defaults.js";
+import { ELEMENT_SCHEMA_DEFAULTS, LENS_SCHEMA_DEFAULTS, REAR_PLATE_SCHEMA_DEFAULTS } from "./defaults.js";
+import type { SchemaDefault } from "./defaults.js";
 import { V1_FLAT_RADIUS } from "./ingestV1.js";
 
 import { associateCanonical } from "./identity.js";

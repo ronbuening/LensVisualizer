@@ -4,8 +4,8 @@
  * Samples pupil zones against the current image plane to describe longitudinal error, RMS blur, and edge/center bias.
  */
 
-import { computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.js";
-import { thick } from "../../layout.js";
+import { computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.js";
+import { thick } from "../../state/layout.js";
 import { sampleCircularPupil } from "../sampling.js";
 import { prepareRayTrace, skewImagePlaneIntercept } from "../../trace/rayAdapters.js";
 import { runtimeView } from "../../prescription/runtimeView.js";
@@ -19,7 +19,8 @@ import type {
 } from "./types.js";
 import { BOKEH_CIRCULAR_PUPIL_RING_SAMPLES } from "./types.js";
 import { buildBokehRadialProfile, classifyBokehBrightnessCharacter } from "./radialProfile.js";
-import { computeStateAwareOffAxisFieldGeometry, traceOffAxisBundleFromSamples, type OffAxisBundle } from "./offAxis.js";
+import { computeStateAwareOffAxisFieldGeometry, traceOffAxisBundleFromSamples } from "./offAxis.js";
+import type { OffAxisBundle } from "./offAxis.js";
 import { NEAR_AXIS_REAL_FRAC } from "./types.js";
 import {
   MARGINAL_FRACS,

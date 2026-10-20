@@ -1,11 +1,14 @@
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../src/optics/buildLens.js";
-import { solveChiefRay, solveChiefRayBoundingSphere } from "../../../src/optics/fieldGeometry.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import {
+  solveChiefRayForRuntimeLens as solveChiefRay,
+  solveChiefRayBoundingSphereForRuntimeLens as solveChiefRayBoundingSphere,
+} from "../../../src/optics/state/fieldAdapters.js";
 import {
   boundingSphereLaunchVector,
   launchSurfaceForFieldDeg,
   MAX_FIELD_LAUNCH_DEG,
-} from "../../../src/optics/projection.js";
+} from "../../../src/optics/field/projection.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 const RECTILINEAR_FIXTURE = "nokton-50f1";

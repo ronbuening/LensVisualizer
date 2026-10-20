@@ -4,31 +4,31 @@
  * Consumes prepared geometry and shares exact stop tracing with the chief solver.
  */
 
-import { wideOpenStopAtZoom } from "../apertureStop.js";
-import { FOCUS_INFINITY_CUTOFF } from "../focusDistance.js";
+import { wideOpenStopAtZoom } from "../state/stationTables.js";
+import { FOCUS_INFINITY_CUTOFF } from "../state/focusDistance.js";
 import type { ParaxialTraceResult } from "../../types/optics.js";
-import { traceParaxialSurfaces2 } from "../math/paraxial.js";
-import { obstructionAwareRayFractionsForDensity } from "../raySampling.js";
+import { traceParaxialSurfaces } from "../math/paraxial.js";
+import { obstructionAwareRayFractionsForDensity } from "../trace/raySampling.js";
 import { prepareState } from "../state/preparedGeometry.js";
 import type { Plane3, PreparedGeometry, Ray3, Vec3 } from "../types.js";
-import type { FieldGeometryState2 } from "./launch.js";
+import type { FieldGeometryState } from "./launch.js";
 import {
   ABSOLUTE_HALF_FIELD_CEILING,
-  fisheyeProjectionMaxTraceFieldAtZoom2,
-  isFisheyeProjection2,
+  fisheyeProjectionMaxTraceFieldAtZoom,
+  isFisheyeProjection,
   MAX_FIELD_LAUNCH_DEG,
-  projectionLaunchSlopeForField2,
-  rectilinearProjectionMaxTraceField2,
+  projectionLaunchSlopeForField,
+  rectilinearProjectionMaxTraceField,
 } from "./projection.js";
 
 import { prepareEngineTrace } from "../trace/rayAdapters.js";
-import { traceToStopViaGeneralized2 } from "../trace/stopTrace.js";
+import { traceToStopViaGeneralized } from "../trace/stopTrace.js";
 import type { TraceOptions } from "../trace/types.js";
 
 const CONJUGATE_REFERENCE_PUPIL_FRACTION = 0.1;
 
 /** Entrance-pupil geometry for current focus/zoom state. */
-export interface EntrancePupilState2 {
+export interface EntrancePupilState {
   epSD: number;
   yRatio: number;
   b: number;
@@ -44,21 +44,21 @@ export interface EntrancePupilState2 {
  * @param state - prepared geometry for the current controls
  * @returns field half-angle and entrance-pupil ratios for this state
  */
-export function computeFieldGeometry(state: PreparedGeometry): FieldGeometryState2 {
+export function computeFieldGeometry(state: PreparedGeometry): FieldGeometryState {
   const stopIndex = state.lens.stop.surfaceIndex;
   const delta = 1e-4;
 
-  const paraxMarg = traceParaxialSurfaces2(state.surfaces, 1, 0, { stopAt: stopIndex });
-  const paraxChief = traceParaxialSurfaces2(state.surfaces, 0, 1, { stopAt: stopIndex });
-  const realMarg = traceStateSurfacesReal2(state, delta, 0, { stopAt: stopIndex });
-  const realChief = traceStateSurfacesReal2(state, 0, delta, { stopAt: stopIndex });
+  const paraxMarg = traceParaxialSurfaces(state.surfaces, 1, 0, { stopAt: stopIndex });
+  const paraxChief = traceParaxialSurfaces(state.surfaces, 0, 1, { stopAt: stopIndex });
+  const realMarg = traceStateSurfacesReal(state, delta, 0, { stopAt: stopIndex });
+  const realChief = traceStateSurfacesReal(state, 0, delta, { stopAt: stopIndex });
 
   const yRatio = Number.isFinite(realMarg.y) ? realMarg.y / delta : paraxMarg.y;
   const b = Number.isFinite(realChief.y) ? realChief.y / delta : paraxChief.y;
   const epRatio = Math.abs(yRatio) > 1e-9 ? b / yRatio : 0;
 
-  const hA = traceParaxialSurfaces2(state.surfaces, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights!;
-  const hB = traceParaxialSurfaces2(state.surfaces, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights!;
+  const hA = traceParaxialSurfaces(state.surfaces, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights!;
+  const hB = traceParaxialSurfaces(state.surfaces, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights!;
   const r = Math.abs(hA[stopIndex]) > 1e-15 ? hB[stopIndex] / hA[stopIndex] : 0;
   let minU = Infinity;
   for (let i = 0; i < state.surfaces.length; i++) {
@@ -71,9 +71,9 @@ export function computeFieldGeometry(state: PreparedGeometry): FieldGeometryStat
   }
   let halfFieldDeg = (Math.atan(minU) * 180) / Math.PI;
 
-  if (isFisheyeProjection2(state.lens.projection.config)) {
+  if (isFisheyeProjection(state.lens.projection.config)) {
     halfFieldDeg = Math.min(
-      fisheyeProjectionMaxTraceFieldAtZoom2(state.lens.projection.config, state.zoomT) ?? halfFieldDeg,
+      fisheyeProjectionMaxTraceFieldAtZoom(state.lens.projection.config, state.zoomT) ?? halfFieldDeg,
       ABSOLUTE_HALF_FIELD_CEILING,
     );
     return { halfFieldDeg, yRatio, b, epRatio };
@@ -83,7 +83,7 @@ export function computeFieldGeometry(state: PreparedGeometry): FieldGeometryStat
    * until an exact chief ray reaches the image side without clipping. */
   const traceChief = prepareStateSurfacesReal(state, { checkSemiDiameter: true });
   const testChief = (deg: number): boolean => {
-    const launch = projectionLaunchSlopeForField2({ projection: state.lens.projection.config }, deg);
+    const launch = projectionLaunchSlopeForField({ projection: state.lens.projection.config }, deg);
     if (launch.status === "out-of-domain") return false;
     const yChiefIn = -epRatio * launch.uField;
     const trace = traceChief(yChiefIn, launch.uField);
@@ -101,7 +101,7 @@ export function computeFieldGeometry(state: PreparedGeometry): FieldGeometryStat
     halfFieldDeg = lo;
   }
 
-  halfFieldDeg = rectilinearProjectionMaxTraceField2(state.lens.projection.config) ?? halfFieldDeg;
+  halfFieldDeg = rectilinearProjectionMaxTraceField(state.lens.projection.config) ?? halfFieldDeg;
   halfFieldDeg = Math.min(halfFieldDeg, MAX_FIELD_LAUNCH_DEG - 1e-3);
   return { halfFieldDeg, yRatio, b, epRatio };
 }
@@ -118,7 +118,7 @@ export function traceParaxialRay(
   state: PreparedGeometry,
   { y0, u0 }: { y0: number; u0: number },
 ): Pick<ParaxialTraceResult, "y" | "u"> {
-  const result = traceParaxialSurfaces2(state.surfaces, y0, u0, { skipLastTransfer: true });
+  const result = traceParaxialSurfaces(state.surfaces, y0, u0, { skipLastTransfer: true });
   return { y: result.y, u: result.u };
 }
 
@@ -132,8 +132,8 @@ export function traceParaxialRay(
  */
 export function entrancePupil(
   state: PreparedGeometry,
-  { stopSD, geometry }: { stopSD: number; geometry?: FieldGeometryState2 },
-): EntrancePupilState2 {
+  { stopSD, geometry }: { stopSD: number; geometry?: FieldGeometryState },
+): EntrancePupilState {
   const geom = geometry ?? computeFieldGeometry(state);
   const epSD = Math.abs(geom.yRatio) > 1e-9 ? Math.abs(stopSD / geom.yRatio) : 0;
   return { epSD, yRatio: geom.yRatio, b: geom.b, epRatio: geom.epRatio };
@@ -177,8 +177,8 @@ export function conjugateK(state: PreparedGeometry): number {
 export function paraxialObjectVergence(state: PreparedGeometry): number {
   if (state.focusT < FOCUS_INFINITY_CUTOFF || state.lens.flags.isFoldedOptics) return 0;
   const imagePlaneTransfer = state.surfaces[state.surfaces.length - 1]?.d ?? 0;
-  const parallel = traceParaxialSurfaces2(state.surfaces, 1, 0);
-  const axial = traceParaxialSurfaces2(state.surfaces, 0, 1);
+  const parallel = traceParaxialSurfaces(state.surfaces, 1, 0);
+  const axial = traceParaxialSurfaces(state.surfaces, 0, 1);
   const vergence = -(parallel.y + imagePlaneTransfer * parallel.u) / (axial.y + imagePlaneTransfer * axial.u);
   return Number.isFinite(vergence) ? vergence : 0;
 }
@@ -227,15 +227,15 @@ function foldedCentralObstructionFraction(
 }
 
 function traceToImageReal(state: PreparedGeometry, { y0, u0 }: { y0: number; u0: number }): number {
-  const trace = traceStateSurfacesReal2(state, y0, u0, {});
+  const trace = traceStateSurfacesReal(state, y0, u0, {});
   if (!Number.isFinite(trace.y) || trace.clipped) return NaN;
   if (state.lens.flags.isFoldedOptics && trace.reachedImagePlane) {
-    return imagePlaneCoordinate2(trace.terminalPoint, state.imagePlane);
+    return imagePlaneCoordinate(trace.terminalPoint, state.imagePlane);
   }
   return trace.y + (state.surfaces[state.surfaces.length - 1]?.d ?? 0) * trace.u;
 }
 
-function imagePlaneCoordinate2(point: Vec3, imagePlane: Plane3): number {
+function imagePlaneCoordinate(point: Vec3, imagePlane: Plane3): number {
   const tangentX: Vec3 = [1, 0, 0];
   const tangentY: Vec3 = [
     imagePlane.normal[1] * tangentX[2] - imagePlane.normal[2] * tangentX[1],
@@ -261,7 +261,7 @@ function realK(state: PreparedGeometry, { yRef, du }: { yRef: number; du: number
   return -y0 / dydu / yRef;
 }
 
-interface RealSurfaceTraceResult2 {
+interface RealSurfaceTraceResult {
   y: number;
   u: number;
   n: number;
@@ -279,12 +279,12 @@ interface RealSurfaceTraceResult2 {
  * @param traceOptions - stop, aperture and spectral controls
  * @returns image-side or stop coordinates, including failure and clipping
  */
-function traceStateSurfacesReal2(
+function traceStateSurfacesReal(
   state: PreparedGeometry,
   y0: number,
   u0: number,
   traceOptions: TraceOptions = {},
-): RealSurfaceTraceResult2 {
+): RealSurfaceTraceResult {
   return prepareStateSurfacesReal(state, traceOptions)(y0, u0);
 }
 
@@ -297,8 +297,8 @@ function traceStateSurfacesReal2(
 export function prepareStateSurfacesReal(
   state: PreparedGeometry,
   traceOptions: TraceOptions,
-): (y0: number, u0: number) => RealSurfaceTraceResult2 {
-  const lead = inferLeadDistance2(state);
+): (y0: number, u0: number) => RealSurfaceTraceResult {
+  const lead = inferLeadDistance(state);
   if (state.lens.flags.isFoldedOptics && traceOptions.stopAt !== undefined) {
     const stopIndex = traceOptions.stopAt;
     const stopOptions = {
@@ -308,7 +308,7 @@ export function prepareStateSurfacesReal(
     };
     return (y0, u0) => {
       const ray = slopeRayForState(state, y0, u0, lead);
-      const stop = traceToStopViaGeneralized2(state, ray, stopIndex, stopOptions);
+      const stop = traceToStopViaGeneralized(state, ray, stopIndex, stopOptions);
       return {
         y: stop.found ? stop.y : NaN,
         u: stop.found ? stop.uy : NaN,
@@ -337,7 +337,7 @@ export function prepareStateSurfacesReal(
   };
 }
 
-function slopeRayForState(state: PreparedGeometry, y0: number, u0: number, lead = inferLeadDistance2(state)): Ray3 {
+function slopeRayForState(state: PreparedGeometry, y0: number, u0: number, lead = inferLeadDistance(state)): Ray3 {
   const invMag = 1 / Math.hypot(0, u0, 1);
   return {
     origin: [0, y0 - u0 * lead, (state.z[0] ?? 0) - lead],
@@ -345,7 +345,7 @@ function slopeRayForState(state: PreparedGeometry, y0: number, u0: number, lead 
   };
 }
 
-function inferLeadDistance2(state: PreparedGeometry): number {
+function inferLeadDistance(state: PreparedGeometry): number {
   const first = state.surfaces[0];
   if (!first) return 0;
   const normal = first.interaction.normal;

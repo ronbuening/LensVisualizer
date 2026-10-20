@@ -3,17 +3,15 @@
  */
 
 import { runtimeView } from "../../prescription/runtimeView.js";
-import { computeChromaticRayFanSpread2 } from "../../chromatic/chromaticTrace.js";
+import { computeChromaticRayFanSpread } from "../../chromatic/chromaticTrace.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
-import {
-  computeProjectionAwareOffAxisFieldGeometry,
-  isOffAxisVectorFieldGeometry,
-  type ProjectionAwareOffAxisFieldGeometry,
-} from "../aberration/offAxis.js";
-import { offsetVectorFieldRay2 as offsetVectorFieldRay } from "../../state/fieldAdapters.js";
-import { prepareRayTrace, type PreparedRayTrace } from "../../trace/rayAdapters.js";
-import { thick } from "../../layout.js";
-import { compiledLensFromRuntime } from "../../prescription/compile.js";
+import { computeProjectionAwareOffAxisFieldGeometry, isOffAxisVectorFieldGeometry } from "../aberration/offAxis.js";
+import type { ProjectionAwareOffAxisFieldGeometry } from "../aberration/offAxis.js";
+import { offsetVectorFieldRay } from "../../field/launch.js";
+import { prepareRayTrace } from "../../trace/rayAdapters.js";
+import type { PreparedRayTrace } from "../../trace/rayAdapters.js";
+import { thick } from "../../state/layout.js";
+import { compiledLensFromRuntime } from "../../prescription/identity.js";
 import { prepareState } from "../../state/preparedGeometry.js";
 import type {
   ChromaticChannel,
@@ -28,14 +26,14 @@ const DEFAULT_ON_AXIS_FRACTIONS = MARGINAL_PUPIL_FRACTIONS;
 // Unlike the endpoint-inclusive orthogonal fan, this sparse fan omits the chief and pupil rims.
 const DEFAULT_OFF_AXIS_FRACTIONS = [0.75, 0.5, 0.25, -0.75, -0.5, -0.25] as const;
 
-export interface ChromaticRayFanAnalysisOptions2 {
+export interface ChromaticRayFanAnalysisOptions {
   channels?: readonly ChromaticChannel[];
   onAxisFractions?: readonly number[];
   offAxisFractions?: readonly number[];
   offAxisFieldFraction?: number;
 }
 
-export interface ChromaticRayFanAnalysis2 {
+export interface ChromaticRayFanAnalysis {
   channels: readonly ChromaticChannel[];
   spreads: ChromaticRayFanSpreadByAxis;
   offAxisFieldAngleDeg: number;
@@ -115,7 +113,7 @@ function computeSpreadFromFractions(
     if (validChannels.length >= 2) {
       return {
         spread: {
-          ...computeChromaticRayFanSpread2(marginalRays, imagePlaneZ, lastSurfaceZ),
+          ...computeChromaticRayFanSpread(marginalRays, imagePlaneZ, lastSurfaceZ),
           axis,
           fraction,
           channels: validChannels,
@@ -137,12 +135,12 @@ function computeSpreadFromFractions(
  */
 export function computeChromaticRayFanAnalysis(
   request: AnalysisRequest,
-  options: ChromaticRayFanAnalysisOptions2 = {
+  options: ChromaticRayFanAnalysisOptions = {
     channels: request.channels,
     onAxisFractions: request.sampling.chromaticRayTraceOnAxisFractions,
     offAxisFractions: request.sampling.chromaticRayTraceOffAxisFractions,
   },
-): ChromaticRayFanAnalysis2 {
+): ChromaticRayFanAnalysis {
   const { preparedGeometry: state } = request;
   const { focusT, zoomT, aberrationT } = state;
   const L = runtimeView(state.lens);

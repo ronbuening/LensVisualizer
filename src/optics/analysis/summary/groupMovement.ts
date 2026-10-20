@@ -8,7 +8,7 @@
 import { interpolateStationTable, zoomIndexToT } from "../../state/stationTables.js";
 import { GROUP_MOVEMENT_MODES, type GroupMovementMode } from "../../../types/groupMovement.js";
 import type { RuntimeLens, ResolvedAnnotation, VarRange, ZoomVarRange } from "../../../types/optics.js";
-import { anchorLayoutToCamera } from "../../cameraLayout.js";
+import { anchorLayoutToCamera } from "../../state/cameraLayout.js";
 import { layoutFromPrepared } from "../../state/layout.js";
 import { prepareState } from "../../state/preparedGeometry.js";
 import { compiledLensFromRuntime } from "../../prescription/identity.js";

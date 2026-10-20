@@ -5,7 +5,7 @@
  */
 
 import type { ElementData, RuntimeLens, SurfaceData, SurfaceSpectral } from "../../types/optics.js";
-import { makeSurfaceDispersion } from "../dispersion.js";
+import { makeSurfaceDispersion } from "./materialResolver.js";
 import type { CompiledSurfaceDispersion } from "../types.js";
 import { compiledLensFromRuntime } from "../prescription/identity.js";
 import { compileSurfaceDispersions } from "./dispersionTable.js";
@@ -20,7 +20,7 @@ export { compileSurfaceDispersions };
  * @param spectral - optional patent line-index data for this surface
  * @returns channel-index resolver and quality marker for the surface
  */
-export function makeSurfaceDispersion2(
+export function makeSurfaceDispersionForRuntimeSurface(
   surface: SurfaceData,
   element: ElementData | undefined,
   spectral: SurfaceSpectral | undefined,
@@ -34,6 +34,6 @@ export function makeSurfaceDispersion2(
  * @param L - runtime lens with physical surfaces, elements, and spectral metadata
  * @returns one dispersion descriptor per physical surface
  */
-export function dispersionTableFromRuntime2(L: RuntimeLens): readonly CompiledSurfaceDispersion[] {
+export function dispersionTableFromRuntime(L: RuntimeLens): readonly CompiledSurfaceDispersion[] {
   return compiledLensFromRuntime(L).dispersion;
 }

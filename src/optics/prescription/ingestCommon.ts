@@ -11,18 +11,19 @@
 
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../types/asphericSchema.js";
 import type { RearPlateData } from "../../types/optics.js";
-import {
-  PrescriptionIngestError,
-  type CanonicalAsphere,
-  type CanonicalLens,
-  type CanonicalProvenance,
-  type CanonicalRearPlate,
-  type CanonicalTeleconverter,
-  type IngestedPrescription,
-  type IngestRequest,
-  type SourcePaths,
+import { PrescriptionIngestError } from "./canonical.js";
+import type {
+  CanonicalAsphere,
+  CanonicalLens,
+  CanonicalProvenance,
+  CanonicalRearPlate,
+  CanonicalTeleconverter,
+  IngestedPrescription,
+  IngestRequest,
+  SourcePaths,
 } from "./canonical.js";
-import { REAR_PLATE_SCHEMA_DEFAULTS, defaultValue, takesDefault, type SchemaDefault } from "./defaults.js";
+import { REAR_PLATE_SCHEMA_DEFAULTS, defaultValue, takesDefault } from "./defaults.js";
+import type { SchemaDefault } from "./defaults.js";
 import { memberPath } from "./sourcePaths.js";
 
 /** An authored record, read field by field. */

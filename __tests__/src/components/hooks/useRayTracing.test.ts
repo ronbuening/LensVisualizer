@@ -3,10 +3,14 @@
 import { describe, it, expect } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useRayTracing from "../../../../src/components/hooks/useRayTracing.js";
-import buildLens from "../../../../src/optics/buildLens.js";
-import { doLayout, entrancePupilAtState, fopenAtZoom } from "../../../../src/optics/optics.js";
-import { createCoordinateTransforms } from "../../../../src/optics/diagramGeometry.js";
-import { raySampleCountForDensity } from "../../../../src/optics/raySampling.js";
+import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
+import {
+  doLayoutForRuntimeLens as doLayout,
+  fopenAtZoomClamped as fopenAtZoom,
+} from "../../../../src/optics/state/runtimeAdapters.js";
+import { entrancePupilAtState } from "../../../../src/optics/state/fieldAdapters.js";
+import { createCoordinateTransforms } from "../../../../src/optics/diagram/coordinateTransforms.js";
+import { raySampleCountForDensity } from "../../../../src/optics/trace/raySampling.js";
 import { catalogLensData } from "../../optics/testLensFixtures.js";
 import SonnarRaw from "../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 

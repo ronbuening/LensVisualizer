@@ -17,7 +17,7 @@
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import type { DispersionQuality } from "../src/optics/dispersion.js";
+import type { DispersionQuality } from "../src/optics/chromatic.js";
 import { allEntries, resolveCompatibleGlass, resolveGlass, decodeCode6 } from "../src/optics/glassCatalog.js";
 import {
   extractPatentNumber,

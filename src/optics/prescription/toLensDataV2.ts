@@ -18,18 +18,18 @@
 
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../types/asphericSchema.js";
 import type { LensDataV2Input, TeleconverterDataV2Input } from "../../types/lensDataV2.js";
-import {
-  FLAT_RADIUS,
-  type CanonicalElement,
-  type CanonicalLens,
-  type CanonicalMedium,
-  type CanonicalPrescription,
-  type CanonicalRearPlate,
-  type CanonicalSurface,
-  type CanonicalTeleconverter,
-  type IgnoredKind,
-  type IngestedPrescription,
-  type SourcePaths,
+import { FLAT_RADIUS } from "./canonical.js";
+import type {
+  CanonicalElement,
+  CanonicalLens,
+  CanonicalMedium,
+  CanonicalPrescription,
+  CanonicalRearPlate,
+  CanonicalSurface,
+  CanonicalTeleconverter,
+  IgnoredKind,
+  IngestedPrescription,
+  SourcePaths,
 } from "./canonical.js";
 import { V1_FLAT_RADIUS } from "./ingestV1.js";
 import { childPath, follow, inverse, itemPath, labelPath, memberPath, parentPath } from "./sourcePaths.js";

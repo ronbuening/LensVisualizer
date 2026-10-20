@@ -1,17 +1,15 @@
 import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
+import { buildLens } from "../../../../../src/optics/prescription/buildRuntimeLens.js";
+import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
 import {
   computeIntrinsicPerspectivePupils,
   computePerspectivePupilAnalysis,
   estimateApparentPupilFromLines,
-  type WeightedPupilRayLine,
 } from "../../../../../src/optics/perspective/analysis/pupil.js";
-import {
-  createPerspectiveTraceContext,
-  type PerspectiveTraceContext,
-} from "../../../../../src/optics/perspective/trace.js";
+import type { WeightedPupilRayLine } from "../../../../../src/optics/perspective/analysis/pupil.js";
+import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
+import type { PerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
 import type { Ray3, Vec3 } from "../../../../../src/optics/types.js";
 import { LENS_CATALOG } from "../../../../../src/utils/catalog/lensCatalog.js";
 

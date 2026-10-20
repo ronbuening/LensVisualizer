@@ -81,21 +81,19 @@ import {
 import * as seamAdapter from "../../../src/benchmarks/engineDiff/seamAdapter.js";
 import { MTF_BENCHMARK_CASES, MTF_FINITE_BENCHMARK_CASE } from "../../../src/benchmarks/mtfCases.js";
 import { BENCHMARK_SCENARIOS, DEFAULT_BENCHMARK_LENS_KEYS } from "../../../src/benchmarks/opticsRenderingBenchmark.js";
-import buildLens, {
-  ingestLens,
-  ingestLensV1,
-  ingestTeleconverter,
-  toLensData,
-  toTeleconverterData,
-} from "../../../src/optics/buildLens.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { ingestLens, ingestTeleconverter } from "../../../src/optics/prescription/ingestV2.js";
+import { ingestLensV1 } from "../../../src/optics/prescription/ingestV1.js";
+import { toLensData, toTeleconverterData } from "../../../src/optics/prescription/toLensData.js";
 import {
   ELEMENT_SCHEMA_DEFAULTS,
   LENS_SCHEMA_DEFAULTS,
   REAR_PLATE_SCHEMA_DEFAULTS,
-  type SchemaDefault,
 } from "../../../src/optics/prescription/defaults.js";
+import type { SchemaDefault } from "../../../src/optics/prescription/defaults.js";
 import { toLensDataInput } from "../../../src/optics/prescription/toLensData.js";
-import { doLayout, traceRay } from "../../../src/optics/optics.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { traceRay } from "../../../src/optics/trace/rayAdapters.js";
 import type { MtfMethod, MtfSpectrum } from "../../../src/types/mtf.js";
 import type { LensData, LensDataInput } from "../../../src/types/optics.js";
 import type { TeleconverterData } from "../../../src/types/teleconverter.js";
@@ -670,21 +668,21 @@ describe("engineDiff seam adapter", () => {
       (capability) => sources[capability as keyof typeof sources] === "absent",
     );
     expect(Object.keys(sources).sort()).toEqual([...Object.keys(seam), ...Object.keys(optional), ...absent].sort());
-    expect(sources.traceRay).toBe("compat.traceEngineRay2");
-    expect(sources.computeBokehPreviewPair).toBe("bokehAnalysis.computeBokehPreviewPair");
-    expect(sources.computeBokehPreview).toBe("bokehAnalysis.computeBokehPreview");
-    expect(sources.computeBokehFieldFootprint).toBe("bokehAnalysis.computeBokehFieldFootprint");
-    expect(sources.buildBokehDensityGrid).toBe("bokehAnalysis.buildBokehDensityGrid");
-    expect(sources.describeBokehDefocusSide).toBe("bokehAnalysis.describeBokehDefocusSide");
-    expect(sources.computeBothPupilAberrationProfiles).toBe("pupilAnalysis.computeBothPupilAberrationProfiles");
-    expect(sources.computePupilAberrationProfile).toBe("pupilAnalysis.computePupilAberrationProfile");
-    expect(sources.computeExitPupilAberrationProfile).toBe("pupilAnalysis.computeExitPupilAberrationProfile");
-    expect(sources.computeDistortionCurve).toBe("distortionAnalysis.computeDistortionCurve");
-    expect(sources.computeDistortionFieldGrid).toBe("distortionAnalysis.computeDistortionFieldGrid");
-    expect(sources.computeComaAnalysis).toBe("comaAnalysis.computeComaAnalysis");
-    expect(sources.computeFieldCurvature).toBe("fieldCurvatureAnalysis.computeFieldCurvature");
-    expect(sources.computeFieldCurvatureBundle).toBe("fieldCurvatureAnalysis.computeFieldCurvatureBundle");
-    expect(sources.summarizeChromaticFieldFocus).toBe("fieldCurvatureAnalysis.summarizeChromaticFieldFocus");
+    expect(sources.traceRay).toBe("optics.traceEngineRay");
+    expect(sources.computeBokehPreviewPair).toBe("analysisState.computeBokehPreviewPair");
+    expect(sources.computeBokehPreview).toBe("analysisState.computeBokehPreview");
+    expect(sources.computeBokehFieldFootprint).toBe("analysisState.computeBokehFieldFootprint");
+    expect(sources.buildBokehDensityGrid).toBe("analysisState.buildBokehDensityGrid");
+    expect(sources.describeBokehDefocusSide).toBe("analysisState.describeBokehDefocusSide");
+    expect(sources.computeBothPupilAberrationProfiles).toBe("analysisState.computeBothPupilAberrationProfiles");
+    expect(sources.computePupilAberrationProfile).toBe("analysisState.computePupilAberrationProfile");
+    expect(sources.computeExitPupilAberrationProfile).toBe("analysisState.computeExitPupilAberrationProfile");
+    expect(sources.computeDistortionCurve).toBe("analysisState.computeDistortionCurve");
+    expect(sources.computeDistortionFieldGrid).toBe("analysisState.computeDistortionFieldGrid");
+    expect(sources.computeComaAnalysis).toBe("analysisState.computeComaAnalysis");
+    expect(sources.computeFieldCurvature).toBe("analysisState.computeFieldCurvature");
+    expect(sources.computeFieldCurvatureBundle).toBe("analysisState.computeFieldCurvatureBundle");
+    expect(sources.summarizeChromaticFieldFocus).toBe("analysisState.summarizeChromaticFieldFocus");
     expect(seam.buildLens).toBe(buildLens);
     /* From S2.P2.T1 canonical ingest reads a file of either version by its schema. */
     expect(optional).toEqual({

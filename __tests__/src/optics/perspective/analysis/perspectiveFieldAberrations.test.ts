@@ -1,16 +1,14 @@
 /** Fixed-sensor request contract and ordered perspective diagnostics. */
 import { describe, expect, it } from "vitest";
 import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
-import buildLens from "../../../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
+import { buildLens } from "../../../../../src/optics/prescription/buildRuntimeLens.js";
+import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
 import {
   computePerspectiveFieldAberrations,
   describeComaTail,
 } from "../../../../../src/optics/perspective/analysis/fieldAberrations.js";
-import {
-  createPerspectiveTraceContext,
-  type PerspectiveTraceContext,
-} from "../../../../../src/optics/perspective/trace.js";
+import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
+import type { PerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
 import { LENS_CATALOG } from "../../../../../src/utils/catalog/lensCatalog.js";
 
 const L = buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]);

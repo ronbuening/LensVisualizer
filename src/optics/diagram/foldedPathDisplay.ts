@@ -4,9 +4,9 @@
  * Bridges generalized trace diagnostics to UI copy without changing the physical trace model.
  */
 
-import type { RuntimeLens } from "../types/optics.js";
-import { prepareRayTrace, type PreparedRayTrace } from "./trace/rayAdapters.js";
-import { obstructionAwareRayFractionsForDensity } from "./raySampling.js";
+import type { RuntimeLens } from "../../types/optics.js";
+import { prepareRayTrace, type PreparedRayTrace } from "../trace/rayAdapters.js";
+import { obstructionAwareRayFractionsForDensity } from "../trace/raySampling.js";
 
 interface FoldedHitOrderParams {
   L: RuntimeLens | undefined;

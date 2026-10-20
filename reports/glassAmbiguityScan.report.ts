@@ -19,9 +19,8 @@ import {
   GLASS_ND_TOLERANCE,
   GLASS_VD_TOLERANCE,
   resolveCompatibleGlass,
-  type CompatibleGlassCandidate,
-  type GlassResolutionCriterion,
 } from "../src/optics/glassCatalog.js";
+import type { CompatibleGlassCandidate, GlassResolutionCriterion } from "../src/optics/glassCatalog.js";
 import { walkLensSurfaces } from "./glassScanLib.js";
 import type { LensData, RefractiveIndexReferenceLine } from "../src/types/optics.js";
 

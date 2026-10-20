@@ -1,28 +1,29 @@
 import { registerRuntimeFixture } from "./testLensFixtures.js";
-import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { describe, expect, it } from "vitest";
+import { computeChromaticRayFanSpread } from "../../../src/optics/chromatic/chromaticTrace.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { sampleCircularPupil, sampleOrthogonalPupilFan } from "../../../src/optics/analysis/sampling.js";
 import {
-  computeChromaticRayFanSpread,
-  doLayout,
-  sampleCircularPupil,
-  sampleOrthogonalPupilFan,
   skewImagePlaneIntercept,
-  traceChiefRelativeSkewRay,
-  traceChiefRelativeSkewRayChromatic,
   traceRay,
   traceRayChromatic,
   traceSkewRay,
   traceSkewRayChromatic,
-} from "../../../src/optics/optics.js";
+} from "../../../src/optics/trace/rayAdapters.js";
 import {
-  traceEngineRay2,
-  traceRay2 as traceRayAdapter,
-  traceRayChromatic2 as traceRayChromaticAdapter,
-  traceRayVector2 as traceRayVectorAdapter,
-  traceRayVectorChromatic2 as traceRayVectorChromaticAdapter,
-  traceSkewRay2 as traceSkewRayAdapter,
-  traceSkewRayVector2 as traceSkewRayVectorAdapter,
-  traceSkewRayVectorChromatic2 as traceSkewRayVectorChromaticAdapter,
+  traceChiefRelativeSkewRay,
+  traceChiefRelativeSkewRayChromatic,
+} from "../../../src/optics/trace/chiefRelative.js";
+import {
+  traceEngineRay,
+  traceRay as traceRayAdapter,
+  traceRayChromatic as traceRayChromaticAdapter,
+  traceRayVector as traceRayVectorAdapter,
+  traceRayVectorChromatic as traceRayVectorChromaticAdapter,
+  traceSkewRay as traceSkewRayAdapter,
+  traceSkewRayVector as traceSkewRayVectorAdapter,
+  traceSkewRayVectorChromatic as traceSkewRayVectorChromaticAdapter,
 } from "../../../src/optics/trace/rayAdapters.js";
 import {
   computeOffAxisFieldGeometry,
@@ -230,7 +231,7 @@ describe("production ray adapters", () => {
     const viaAdapter = traceRayAdapter(2, -0.01, zPos, 0, 0, L.stopPhysSD, true, L);
     const lead = L.rayLead ?? 0;
     const norm = Math.hypot(-0.01, 1);
-    const engine = traceEngineRay2(
+    const engine = traceEngineRay(
       prepareRuntimeState(L, 0, 0),
       {
         origin: [0, 2 + 0.01 * lead, zPos[0] - lead],

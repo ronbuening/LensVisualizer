@@ -1,4 +1,4 @@
-import { createAnalysisRequest } from "../src/optics/analysis.ts";
+import { createAnalysisRequest } from "../src/optics/analysis.js";
 /**
  * Read-only audit of the nd/vd dispersion estimate behind spectral MTF. Run with the project's TS specifier hook:
  *
@@ -18,11 +18,11 @@ import { spawn } from "node:child_process";
 import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { wideOpenStopAtZoom } from "../src/optics/apertureStop.ts";
-import buildLens from "../src/optics/buildLens.ts";
-import { prepareRuntimeState } from "../src/optics/compat.ts";
-import { normalLinePdC, normalLinePgF } from "../src/optics/dispersion.ts";
-import { allEntries, evaluateSellmeier } from "../src/optics/glassCatalog.ts";
+import { wideOpenStopAtZoom } from "../src/optics/optics.js";
+import { buildLens } from "../src/optics/buildLens.js";
+import { prepareRuntimeState } from "../src/optics/optics.js";
+import { normalLinePdC, normalLinePgF } from "../src/optics/chromatic.js";
+import { allEntries, evaluateSellmeier } from "../src/optics/glassCatalog.js";
 import {
   assessMtfDataLimitations,
   assessMtfSupport,
@@ -30,10 +30,11 @@ import {
   computeMtf,
   computeMtfSteps,
   resolveMtfSpectrum,
-} from "../src/optics/mtf.ts";
-import { MTF_ESTIMATED_DISPERSION_MAX_VD } from "../src/optics/analysis/mtf/mtfConstants.ts";
-import { computeAnalysisFieldGeometryAtState, entrancePupilAtState, fopenAtZoom } from "../src/optics/optics.ts";
-import { LINE_NM } from "../src/optics/spectralLines.ts";
+} from "../src/optics/mtf.js";
+import { MTF_ESTIMATED_DISPERSION_MAX_VD } from "../src/optics/mtf.js";
+import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../src/optics/fieldGeometry.js";
+import { fopenAtZoomClamped as fopenAtZoom } from "../src/optics/optics.js";
+import { LINE_NM } from "../src/optics/chromatic.js";
 
 /** Changes in a charted MTF value treated as visible and as material, on the 0-1 scale. */
 const VISIBLE = 0.02;

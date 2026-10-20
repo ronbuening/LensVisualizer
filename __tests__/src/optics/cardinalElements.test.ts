@@ -1,10 +1,10 @@
 import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../src/optics/buildLens.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
 import { computeCardinalElements } from "../../../src/optics/analysis/summary/cardinals.js";
 import { analysisRequestForLens } from "./testLensFixtures.js";
 import { thickLensFocalLength } from "../../../src/optics/first-order/thickLens.js";
-import { doLayout } from "../../../src/optics/optics.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import type { RuntimeLens, SurfaceData } from "../../../src/types/optics.js";
 

@@ -12,7 +12,7 @@ import type { LensProjectionConfig, RuntimeLens } from "../../types/optics.js";
 export type ProjectionReferenceKind = "rectilinear" | "fisheye-equidistant" | "fisheye-equisolid";
 
 /** Projection reference used to compare traced image height against an ideal model. */
-export interface ProjectionReference2 {
+export interface ProjectionReference {
   kind: ProjectionReferenceKind;
   label: string;
   shortLabel: string;
@@ -20,20 +20,20 @@ export interface ProjectionReference2 {
 }
 
 /** Scalar skew slopes derived from an ideal image point. */
-export interface ProjectionFieldSlopes2 {
+export interface ProjectionFieldSlopes {
   fieldSlopeX: number;
   fieldSlopeY: number;
   equivalentAngleDeg: number;
 }
 
 /** Meridional scalar launch slope for one field angle. */
-export interface ProjectionLaunchSlope2 {
+export interface ProjectionLaunchSlope {
   uField: number;
   status: "ok" | "out-of-domain";
 }
 
 /** 2D angular field launch plus ideal projection coordinates. */
-export interface ProjectionAngularLaunch2 {
+export interface ProjectionAngularLaunch {
   fieldSlopeX: number;
   fieldSlopeY: number;
   totalFieldDeg: number;
@@ -43,7 +43,7 @@ export interface ProjectionAngularLaunch2 {
 }
 
 /** Vector launch ray starting on a bounding sphere around the entrance pupil. */
-export interface BoundingSphereLaunch2 {
+export interface BoundingSphereLaunch {
   origin: [number, number, number];
   direction: [number, number, number];
   launchRadiusMm: number;
@@ -58,7 +58,7 @@ export const ABSOLUTE_HALF_FIELD_CEILING = 175;
 export const TRACING_SAFETY_FACTOR = 0.9;
 
 /** Launch strategy discriminator for chief-ray and wide-field tracing. */
-export type LaunchSurface2 = "object-plane" | "bounding-sphere";
+export type LaunchSurface = "object-plane" | "bounding-sphere";
 
 type FisheyeProjectionConfig = Extract<LensProjectionConfig, { kind: `fisheye-${string}` }>;
 type ProjectionZoomValue = FisheyeProjectionConfig["focalLengthMm"];
@@ -69,7 +69,7 @@ type ProjectionZoomValue = FisheyeProjectionConfig["focalLengthMm"];
  * @param projection - optional lens-data projection block
  * @returns explicit projection config, defaulting to rectilinear
  */
-export function resolveProjection2(projection?: LensProjectionConfig): LensProjectionConfig {
+export function resolveProjection(projection?: LensProjectionConfig): LensProjectionConfig {
   return projection ?? { kind: "rectilinear" };
 }
 
@@ -79,7 +79,7 @@ export function resolveProjection2(projection?: LensProjectionConfig): LensProje
  * @param projection - optional lens projection config
  * @returns true when callers must avoid rectilinear-only Math.tan assumptions
  */
-export function isFisheyeProjection2(
+export function isFisheyeProjection(
   projection: LensProjectionConfig | undefined,
 ): projection is FisheyeProjectionConfig {
   return projection?.kind === "fisheye-equidistant" || projection?.kind === "fisheye-equisolid";
@@ -92,7 +92,7 @@ export function isFisheyeProjection2(
  * @param zoomT - normalized zoom position, where 0 is wide and 1 is tele
  * @returns interpolated value, or undefined when no finite value exists
  */
-export function projectionValueAtZoom2(value: ProjectionZoomValue | undefined, zoomT = 0): number | undefined {
+export function projectionValueAtZoom(value: ProjectionZoomValue | undefined, zoomT = 0): number | undefined {
   if (value === undefined) return undefined;
   if (typeof value === "number") return value;
   if (value.length === 0) return undefined;
@@ -109,12 +109,12 @@ export function projectionValueAtZoom2(value: ProjectionZoomValue | undefined, z
  * @param zoomT - normalized zoom position
  * @returns projection focal scale in mm, or null for non-fisheye/missing data
  */
-export function fisheyeProjectionFocalLengthAtZoom2(
+export function fisheyeProjectionFocalLengthAtZoom(
   projection: LensProjectionConfig | undefined,
   zoomT = 0,
 ): number | null {
-  if (!isFisheyeProjection2(projection)) return null;
-  const value = projectionValueAtZoom2(projection.focalLengthMm, zoomT);
+  if (!isFisheyeProjection(projection)) return null;
+  const value = projectionValueAtZoom(projection.focalLengthMm, zoomT);
   return typeof value === "number" && Number.isFinite(value) ? value : null;
 }
 
@@ -125,12 +125,12 @@ export function fisheyeProjectionFocalLengthAtZoom2(
  * @param zoomT - normalized zoom position
  * @returns half-field trace limit in degrees, or undefined for non-fisheye lenses
  */
-export function fisheyeProjectionMaxTraceFieldAtZoom2(
+export function fisheyeProjectionMaxTraceFieldAtZoom(
   projection: LensProjectionConfig | undefined,
   zoomT = 0,
 ): number | undefined {
-  if (!isFisheyeProjection2(projection)) return undefined;
-  return projectionValueAtZoom2(projection.maxTraceFieldDeg, zoomT);
+  if (!isFisheyeProjection(projection)) return undefined;
+  return projectionValueAtZoom(projection.maxTraceFieldDeg, zoomT);
 }
 
 /**
@@ -139,7 +139,7 @@ export function fisheyeProjectionMaxTraceFieldAtZoom2(
  * @param projection - optional lens projection config
  * @returns half-field trace limit in degrees when authored
  */
-export function rectilinearProjectionMaxTraceField2(projection: LensProjectionConfig | undefined): number | undefined {
+export function rectilinearProjectionMaxTraceField(projection: LensProjectionConfig | undefined): number | undefined {
   if (projection?.kind !== "rectilinear") return undefined;
   if (typeof projection.maxTraceFieldDeg === "number" && Number.isFinite(projection.maxTraceFieldDeg)) {
     return projection.maxTraceFieldDeg;
@@ -158,18 +158,18 @@ export function rectilinearProjectionMaxTraceField2(projection: LensProjectionCo
  * @param zoomT - normalized zoom position
  * @returns projection kind, labels, and image-height focal scale
  */
-export function distortionProjectionReferenceForLens2(
+export function distortionProjectionReferenceForLens(
   L: RuntimeLens,
   rectilinearScale: number,
   zoomT = 0,
-): ProjectionReference2 {
-  const projection = resolveProjection2(L.projection);
+): ProjectionReference {
+  const projection = resolveProjection(L.projection);
   if (projection.kind === "fisheye-equidistant") {
     return {
       kind: "fisheye-equidistant",
       label: "Equidistant projection residual",
       shortLabel: "equidistant",
-      focalScaleMm: projectionValueAtZoom2(projection.focalLengthMm, zoomT) ?? NaN,
+      focalScaleMm: projectionValueAtZoom(projection.focalLengthMm, zoomT) ?? NaN,
     };
   }
   if (projection.kind === "fisheye-equisolid") {
@@ -177,7 +177,7 @@ export function distortionProjectionReferenceForLens2(
       kind: "fisheye-equisolid",
       label: "Equisolid-angle projection residual",
       shortLabel: "equisolid",
-      focalScaleMm: projectionValueAtZoom2(projection.focalLengthMm, zoomT) ?? NaN,
+      focalScaleMm: projectionValueAtZoom(projection.focalLengthMm, zoomT) ?? NaN,
     };
   }
 
@@ -199,7 +199,7 @@ export function distortionProjectionReferenceForLens2(
  * @param fieldAngleRad - unsigned field angle in radians
  * @returns ideal image height in mm
  */
-export function projectionImageHeightForAngle2(reference: ProjectionReference2, fieldAngleRad: number): number {
+export function projectionImageHeightForAngle(reference: ProjectionReference, fieldAngleRad: number): number {
   switch (reference.kind) {
     case "fisheye-equidistant":
       return reference.focalScaleMm * fieldAngleRad;
@@ -220,18 +220,18 @@ export function projectionImageHeightForAngle2(reference: ProjectionReference2, 
  * @param zoomT - normalized zoom position
  * @returns ideal image height in mm
  */
-export function projectionImageHeightForLensAngle2(
+export function projectionImageHeightForLensAngle(
   L: RuntimeLens,
   rectilinearScaleMm: number,
   fieldAngleRad: number,
   zoomT = 0,
 ): number {
-  const projection = resolveProjection2(L.projection);
+  const projection = resolveProjection(L.projection);
   switch (projection.kind) {
     case "fisheye-equidistant":
-      return (projectionValueAtZoom2(projection.focalLengthMm, zoomT) ?? NaN) * fieldAngleRad;
+      return (projectionValueAtZoom(projection.focalLengthMm, zoomT) ?? NaN) * fieldAngleRad;
     case "fisheye-equisolid":
-      return 2 * (projectionValueAtZoom2(projection.focalLengthMm, zoomT) ?? NaN) * Math.sin(fieldAngleRad / 2);
+      return 2 * (projectionValueAtZoom(projection.focalLengthMm, zoomT) ?? NaN) * Math.sin(fieldAngleRad / 2);
     default:
       return rectilinearScaleMm * Math.tan(fieldAngleRad);
   }
@@ -244,7 +244,7 @@ export function projectionImageHeightForLensAngle2(
  * @param imageHeight - signed image height in mm
  * @returns unsigned field angle in radians, or NaN outside the projection domain
  */
-export function projectionFieldAngleForImageHeight2(reference: ProjectionReference2, imageHeight: number): number {
+export function projectionFieldAngleForImageHeight(reference: ProjectionReference, imageHeight: number): number {
   const radius = Math.abs(imageHeight);
   if (!Number.isFinite(radius) || reference.focalScaleMm <= 0) return NaN;
 
@@ -272,8 +272,8 @@ export function projectionFieldAngleForImageHeight2(reference: ProjectionReferen
  * @param projection - optional lens projection config
  * @returns launch-surface discriminator for chief-ray and analysis tracing
  */
-export function launchSurfaceForFieldDeg2(fieldAngleDeg: number, projection?: LensProjectionConfig): LaunchSurface2 {
-  if (isFisheyeProjection2(projection)) return "bounding-sphere";
+export function launchSurfaceForFieldDeg(fieldAngleDeg: number, projection?: LensProjectionConfig): LaunchSurface {
+  if (isFisheyeProjection(projection)) return "bounding-sphere";
   return Math.abs(fieldAngleDeg) >= MAX_FIELD_LAUNCH_DEG ? "bounding-sphere" : "object-plane";
 }
 
@@ -286,12 +286,12 @@ export function launchSurfaceForFieldDeg2(fieldAngleDeg: number, projection?: Le
  * @param launchRadiusMm - bounding sphere radius in mm
  * @returns launch origin/direction and status for vector tracing
  */
-export function boundingSphereLaunchVector2(
+export function boundingSphereLaunchVector(
   epZ: number,
   fieldAngleXDeg: number,
   fieldAngleYDeg: number,
   launchRadiusMm: number,
-): BoundingSphereLaunch2 {
+): BoundingSphereLaunch {
   if (
     !Number.isFinite(fieldAngleXDeg) ||
     !Number.isFinite(fieldAngleYDeg) ||
@@ -325,11 +325,11 @@ export function boundingSphereLaunchVector2(
  * @param fieldAngleDeg - signed field angle in degrees
  * @returns slope launch or out-of-domain status near the tan(theta) singularity
  */
-export function projectionLaunchSlopeForField2(
+export function projectionLaunchSlopeForField(
   L: Pick<RuntimeLens, "projection">,
   fieldAngleDeg: number,
-): ProjectionLaunchSlope2 {
-  void resolveProjection2(L.projection);
+): ProjectionLaunchSlope {
+  void resolveProjection(L.projection);
   if (!Number.isFinite(fieldAngleDeg) || Math.abs(fieldAngleDeg) >= MAX_FIELD_LAUNCH_DEG) {
     return { uField: NaN, status: "out-of-domain" };
   }
@@ -345,11 +345,11 @@ export function projectionLaunchSlopeForField2(
  * @param fieldAngleYDeg - meridional field angle in degrees
  * @returns slopes, ideal image point, total field, and domain status
  */
-export function projectionLaunchVectorForFieldAngles2(
-  reference: ProjectionReference2,
+export function projectionLaunchVectorForFieldAngles(
+  reference: ProjectionReference,
   fieldAngleXDeg: number,
   fieldAngleYDeg: number,
-): ProjectionAngularLaunch2 {
+): ProjectionAngularLaunch {
   if (!Number.isFinite(fieldAngleXDeg) || !Number.isFinite(fieldAngleYDeg)) {
     return {
       fieldSlopeX: NaN,
@@ -368,7 +368,7 @@ export function projectionLaunchVectorForFieldAngles2(
   const thetaTotalRad = (totalFieldDeg * Math.PI) / 180;
   const azimuthX = fieldAngleXDeg / totalFieldDeg;
   const azimuthY = fieldAngleYDeg / totalFieldDeg;
-  const imageRadius = projectionImageHeightForAngle2(reference, thetaTotalRad);
+  const imageRadius = projectionImageHeightForAngle(reference, thetaTotalRad);
   const idealImageX = azimuthX * imageRadius;
   const idealImageY = azimuthY * imageRadius;
 
@@ -397,18 +397,18 @@ export function projectionLaunchVectorForFieldAngles2(
  * @param imageY - meridional ideal image coordinate in mm
  * @returns field slopes and equivalent angle, or null outside the projection domain
  */
-export function projectionFieldSlopesForImagePoint2(
-  reference: ProjectionReference2,
+export function projectionFieldSlopesForImagePoint(
+  reference: ProjectionReference,
   imageX: number,
   imageY: number,
-): ProjectionFieldSlopes2 | null {
+): ProjectionFieldSlopes | null {
   const radius = Math.hypot(imageX, imageY);
   if (!Number.isFinite(radius)) return null;
   if (radius < 1e-12) {
     return { fieldSlopeX: 0, fieldSlopeY: 0, equivalentAngleDeg: 0 };
   }
 
-  const theta = projectionFieldAngleForImageHeight2(reference, radius);
+  const theta = projectionFieldAngleForImageHeight(reference, radius);
   if (!Number.isFinite(theta) || theta < 0 || theta >= Math.PI / 2) return null;
 
   const slopeMagnitude = Math.tan(theta);

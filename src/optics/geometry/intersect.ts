@@ -16,7 +16,7 @@ import {
   INTERSECTION_MAX_ITERATIONS,
   INTERSECTION_TOLERANCE,
   VECTOR_EPSILON,
-} from "../constants.js";
+} from "../math/constants.js";
 import type { Ray3, SagSlope, SurfaceProfile, Vec3 } from "../types.js";
 import { clamp, ulpOf } from "../math/numerics.js";
 import { dot, normalize, subtract } from "../math/vector.js";

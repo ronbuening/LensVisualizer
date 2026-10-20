@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { explainCompatibleGlassResolution, resolveCompatibleGlass } from "../../../src/optics/glassCatalog.js";
+import {
+  explainCompatibleGlassResolution,
+  resolveCompatibleGlass,
+} from "../../../src/optics/chromatic/glassCatalog.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import { TELECONVERTER_CATALOG } from "../../../src/utils/catalog/teleconverterCatalog.js";
 

@@ -7,23 +7,19 @@
 import type { RayTraceResult } from "../../types/optics.js";
 import { resolveImageFormatMetadata } from "../../utils/catalog/lensTaxonomy.js";
 import { stateWithZ } from "../state/preparedGeometry.js";
-import { prepareRayTraceForState, type PreparedRayTrace } from "../trace/rayAdapters.js";
+import { prepareRayTraceForState } from "../trace/rayAdapters.js";
+import type { PreparedRayTrace } from "../trace/rayAdapters.js";
 import type { PreparedGeometry } from "../types.js";
-import type { FieldGeometryState2 } from "./launch.js";
+import type { FieldGeometryState } from "./launch.js";
 import {
-  isFisheyeProjection2,
+  isFisheyeProjection,
   MAX_FIELD_LAUNCH_DEG,
-  projectionLaunchSlopeForField2,
-  rectilinearProjectionMaxTraceField2,
+  projectionLaunchSlopeForField,
+  rectilinearProjectionMaxTraceField,
 } from "./projection.js";
-import {
-  computeChiefRaySolve,
-  solveChiefRay,
-  solveChiefRayFromSeed,
-  solvesChiefRay,
-  type ChiefRaySolveResult2,
-} from "./chiefRaySolve.js";
-import { computeFieldGeometry, prepareStateSurfacesReal } from "./fieldGeometry.js";
+import { computeChiefRaySolve, solveChiefRay, solveChiefRayFromSeed, solvesChiefRay } from "./chiefRaySolve.js";
+import type { ChiefRaySolveResult } from "./chiefRaySolve.js";
+import { computeFieldGeometry, prepareStateSurfacesReal } from "./geometry.js";
 
 /** Step bounds, in degrees, for walking the real chief ray out toward the format corner. */
 const ANALYSIS_FIELD_MIN_STEP_DEG = 0.25;
@@ -45,7 +41,7 @@ const CORNER_BRACKET_STEP_DOWN = 0.98;
 /** Includes the legacy first midpoint; replay bisection for failures and discontinuities. */
 const IMAGE_HEIGHT_SECANT_ITERATIONS = 8;
 
-interface RealChiefRayProbe2 {
+interface RealChiefRayProbe {
   clears: boolean;
   height: number;
 }
@@ -55,7 +51,7 @@ export type ImageHeightInversionResult =
   | { status: "reached"; fieldAngleDeg: number }
   | { status: "unreachable"; reason: "trace-failure" | "height-miss" | "field-limit"; fieldAngleDeg?: number };
 
-interface AccurateFieldHeightLookup2 {
+interface AccurateFieldHeightLookup {
   segmentAngles: number[];
   segmentHeights: number[];
   imageHeightAt: (fieldAngleDeg: number) => number;
@@ -76,7 +72,7 @@ interface AccurateFieldHeightLookup2 {
  * @param state - prepared geometry for the current controls
  * @returns field geometry whose half-field ends at the format corner or at the real chief ray's clipping field
  */
-export function computeAnalysisFieldGeometry(state: PreparedGeometry): FieldGeometryState2 {
+export function computeAnalysisFieldGeometry(state: PreparedGeometry): FieldGeometryState {
   const geometry = computeFieldGeometry(state);
   if (!Number.isFinite(geometry.halfFieldDeg) || geometry.halfFieldDeg <= 0 || state.surfaces.length < 1)
     return geometry;
@@ -87,8 +83,8 @@ export function computeAnalysisFieldGeometry(state: PreparedGeometry): FieldGeom
 
   const followsRealChiefRay =
     !state.lens.flags.isFoldedOptics &&
-    !isFisheyeProjection2(state.lens.projection.config) &&
-    rectilinearProjectionMaxTraceField2(state.lens.projection.config) === undefined;
+    !isFisheyeProjection(state.lens.projection.config) &&
+    rectilinearProjectionMaxTraceField(state.lens.projection.config) === undefined;
   let limit = followsRealChiefRay
     ? realChiefRayFieldLimit(state, { geometry, cornerHeight: maxImageHeight, seeded: true })
     : null;
@@ -109,7 +105,7 @@ export function computeAnalysisFieldGeometry(state: PreparedGeometry): FieldGeom
 
   // Field geometry retains the lookup's exhausted-iteration fallback. Distortion
   // separately validates each target ray; the field limit itself is not a reached-height claim.
-  const formatHalfFieldDeg = solveFieldAngleForImageHeightLookup2(
+  const formatHalfFieldDeg = solveFieldAngleForImageHeightLookup(
     maxImageHeight,
     buildAccurateFieldHeightLookup(state, { zPos, geometry: bounded }),
   );
@@ -135,12 +131,12 @@ export function computeAnalysisFieldGeometry(state: PreparedGeometry): FieldGeom
  */
 function realChiefRayFieldLimit(
   state: PreparedGeometry,
-  { geometry, cornerHeight, seeded }: { geometry: FieldGeometryState2; cornerHeight: number; seeded: boolean },
+  { geometry, cornerHeight, seeded }: { geometry: FieldGeometryState; cornerHeight: number; seeded: boolean },
 ): { fieldDeg: number; settled: boolean } | null {
   const imageTransfer = state.surfaces[state.surfaces.length - 1]?.d ?? 0;
   const traceChief = prepareStateSurfacesReal(state, { checkSemiDiameter: true });
-  let seed: ChiefRaySolveResult2 | null = null;
-  const probe = (deg: number): RealChiefRayProbe2 | null => {
+  let seed: ChiefRaySolveResult | null = null;
+  const probe = (deg: number): RealChiefRayProbe | null => {
     const solve =
       (seeded && seed && solveChiefRayFromSeed(state, { fieldAngleDeg: deg, seed })) ||
       computeChiefRaySolve(state, { fieldAngleDeg: deg, geometry });
@@ -150,7 +146,7 @@ function realChiefRayFieldLimit(
     if (!Number.isFinite(trace.y) || !Number.isFinite(trace.u)) return null;
     return { clears: !trace.clipped, height: Math.abs(trace.y + trace.u * imageTransfer) };
   };
-  const clears = (sample: RealChiefRayProbe2 | null): sample is RealChiefRayProbe2 => sample?.clears === true;
+  const clears = (sample: RealChiefRayProbe | null): sample is RealChiefRayProbe => sample?.clears === true;
 
   /* Image height is short of the corner at lo and past it at hi, both clear: Illinois regula falsi. */
   const cornerField = (lo: number, loHeight: number, hi: number, hiHeight: number) => {
@@ -179,7 +175,7 @@ function realChiefRayFieldLimit(
   };
 
   /* Clear chief ray at lo, none at hi: settle where a clear aperture starts clipping it. */
-  const lastClear = (lo: number, loSample: RealChiefRayProbe2, hi: number) => {
+  const lastClear = (lo: number, loSample: RealChiefRayProbe, hi: number) => {
     let sample = loSample;
     for (let i = 0; i < ANALYSIS_FIELD_CLIP_BISECTIONS; i++) {
       const mid = (lo + hi) / 2;
@@ -196,7 +192,7 @@ function realChiefRayFieldLimit(
 
   /* Clear chief ray past the corner at hi: step down in proportion to image height until a clear field falls short of
    * the corner, then settle the corner between them. Unsettled when a step clips, which leaves the caller's cap. */
-  const cornerBelow = (hi: number, hiSample: RealChiefRayProbe2) => {
+  const cornerBelow = (hi: number, hiSample: RealChiefRayProbe) => {
     for (let i = 0; i < ANALYSIS_FIELD_CORNER_ITERATIONS && hi > 0; i++) {
       const lo = hi * (cornerHeight / hiSample.height) * CORNER_BRACKET_STEP_DOWN;
       const loSample = probe(lo);
@@ -270,10 +266,10 @@ export function traceChiefRayAtAngle(
     zPos,
     geometry,
     prepared,
-  }: { fieldAngleDeg: number; zPos: readonly number[]; geometry?: FieldGeometryState2; prepared?: PreparedRayTrace },
+  }: { fieldAngleDeg: number; zPos: readonly number[]; geometry?: FieldGeometryState; prepared?: PreparedRayTrace },
 ): RayTraceResult {
   const geom = geometry ?? computeFieldGeometry(state);
-  const launch = projectionLaunchSlopeForField2({ projection: state.lens.projection.config }, fieldAngleDeg);
+  const launch = projectionLaunchSlopeForField({ projection: state.lens.projection.config }, fieldAngleDeg);
   const uField = launch.uField;
   const yChief = -geom.epRatio * uField;
   return prepared
@@ -297,7 +293,7 @@ export function chiefRayImageHeight(
     zPos,
     geometry,
     prepared,
-  }: { fieldAngleDeg: number; zPos: readonly number[]; geometry?: FieldGeometryState2; prepared?: PreparedRayTrace },
+  }: { fieldAngleDeg: number; zPos: readonly number[]; geometry?: FieldGeometryState; prepared?: PreparedRayTrace },
 ): number {
   const trace = traceChiefRayAtAngle(state, { fieldAngleDeg, zPos, geometry, prepared });
   if (state.lens.flags.isFoldedOptics && trace.reachedImagePlane)
@@ -316,7 +312,7 @@ export function chiefRayImageHeight(
  */
 export function chiefRayImageHeightAccurate(
   state: PreparedGeometry,
-  { fieldAngleDeg, zPos, geometry }: { fieldAngleDeg: number; zPos: readonly number[]; geometry?: FieldGeometryState2 },
+  { fieldAngleDeg, zPos, geometry }: { fieldAngleDeg: number; zPos: readonly number[]; geometry?: FieldGeometryState },
 ): number {
   return chiefRayImageHeightAccurateWithTransfer(state, {
     fieldAngleDeg,
@@ -339,14 +335,14 @@ function chiefRayImageHeightAccurateWithTransfer(
   }: {
     fieldAngleDeg: number;
     zPos: readonly number[];
-    geometry: FieldGeometryState2 | undefined;
+    geometry: FieldGeometryState | undefined;
     imagePlaneTransfer: number;
     onFailure?: () => void;
     prepared?: PreparedRayTrace;
     vectorAdapter?: (bound: number) => PreparedRayTrace;
   },
 ): number {
-  const launch = projectionLaunchSlopeForField2({ projection: state.lens.projection.config }, fieldAngleDeg);
+  const launch = projectionLaunchSlopeForField({ projection: state.lens.projection.config }, fieldAngleDeg);
   const solve = solveChiefRay(state, { fieldAngleDeg, geometry });
   if (solve.vectorLaunch) {
     const trace = vectorAdapter
@@ -394,9 +390,9 @@ export function solveFieldAngleForImageHeightAccurate(
     targetImageHeight,
     zPos,
     geometry,
-  }: { targetImageHeight: number; zPos: readonly number[]; geometry?: FieldGeometryState2 },
+  }: { targetImageHeight: number; zPos: readonly number[]; geometry?: FieldGeometryState },
 ): number | null {
-  if (solveTrivialImageHeightTarget2(targetImageHeight) === 0) return 0;
+  if (solveTrivialImageHeightTarget(targetImageHeight) === 0) return 0;
   const [result] = invertChiefRayImageHeights(state, { targetImageHeights: [targetImageHeight], zPos, geometry });
   return result.status === "reached" ? result.fieldAngleDeg : null;
 }
@@ -417,7 +413,7 @@ export function solveFieldAnglesForImageHeightsAccurate(
     targetImageHeights,
     zPos,
     geometry,
-  }: { targetImageHeights: readonly number[]; zPos: readonly number[]; geometry?: FieldGeometryState2 },
+  }: { targetImageHeights: readonly number[]; zPos: readonly number[]; geometry?: FieldGeometryState },
 ): Array<number | null> {
   return invertChiefRayImageHeights(state, { targetImageHeights, zPos, geometry }).map((result) =>
     result.status === "reached" ? result.fieldAngleDeg : null,
@@ -436,20 +432,20 @@ export function invertChiefRayImageHeights(
     targetImageHeights,
     zPos,
     geometry,
-  }: { targetImageHeights: readonly number[]; zPos: readonly number[]; geometry?: FieldGeometryState2 },
+  }: { targetImageHeights: readonly number[]; zPos: readonly number[]; geometry?: FieldGeometryState },
 ): ImageHeightInversionResult[] {
   const geom = geometry ?? computeFieldGeometry(state);
   if (!Number.isFinite(geom.halfFieldDeg) || geom.halfFieldDeg <= 0) {
     return targetImageHeights.map((target) =>
-      solveTrivialImageHeightTarget2(target) === 0
+      solveTrivialImageHeightTarget(target) === 0
         ? { status: "reached", fieldAngleDeg: 0 }
         : { status: "unreachable", reason: "field-limit" },
     );
   }
   const lookup = buildAccurateFieldHeightLookup(state, { zPos, geometry: geom });
   return targetImageHeights.map((target) => {
-    if (solveTrivialImageHeightTarget2(target) === 0) return { status: "reached", fieldAngleDeg: 0 };
-    const angle = solveFieldAngleForImageHeightLookup2(target, lookup);
+    if (solveTrivialImageHeightTarget(target) === 0) return { status: "reached", fieldAngleDeg: 0 };
+    const angle = solveFieldAngleForImageHeightLookup(target, lookup);
     if (angle === null)
       return { status: "unreachable", reason: lookup.hasTraceFailure() ? "trace-failure" : "field-limit" };
     // Folded distortion stays guarded in the UI; retain its existing inversion fallback.
@@ -467,8 +463,8 @@ export function invertChiefRayImageHeights(
 
 function buildAccurateFieldHeightLookup(
   state: PreparedGeometry,
-  { zPos, geometry }: { zPos: readonly number[]; geometry: FieldGeometryState2 },
-): AccurateFieldHeightLookup2 {
+  { zPos, geometry }: { zPos: readonly number[]; geometry: FieldGeometryState },
+): AccurateFieldHeightLookup {
   const imagePlaneTransfer = lastThicknessAtState(state);
   const prepared = prepareRayTraceForState(stateWithZ(state, zPos), { ghost: true });
   let vectorTrace: PreparedRayTrace | undefined;
@@ -517,11 +513,11 @@ function buildAccurateFieldHeightLookup(
   };
 }
 
-function solveFieldAngleForImageHeightLookup2(
+function solveFieldAngleForImageHeightLookup(
   targetImageHeight: number,
-  lookup: AccurateFieldHeightLookup2,
+  lookup: AccurateFieldHeightLookup,
 ): number | null {
-  const trivial = solveTrivialImageHeightTarget2(targetImageHeight);
+  const trivial = solveTrivialImageHeightTarget(targetImageHeight);
   if (trivial !== null) return trivial;
 
   const target = -Math.abs(targetImageHeight);
@@ -613,7 +609,7 @@ function imageHeightSecant(lo: number, hi: number, fLo: number, fHi: number): nu
   return Number.isFinite(angle) && angle > lo && angle < hi ? angle : (lo + hi) / 2;
 }
 
-function solveTrivialImageHeightTarget2(targetImageHeight: number): number | null {
+function solveTrivialImageHeightTarget(targetImageHeight: number): number | null {
   return !Number.isFinite(targetImageHeight) || Math.abs(targetImageHeight) < 1e-12 ? 0 : null;
 }
 
@@ -632,7 +628,7 @@ export function solveFieldAngleForImageHeight(
     targetImageHeight,
     zPos,
     geometry,
-  }: { targetImageHeight: number; zPos: readonly number[]; geometry?: FieldGeometryState2 },
+  }: { targetImageHeight: number; zPos: readonly number[]; geometry?: FieldGeometryState },
 ): number | null {
   if (!Number.isFinite(targetImageHeight) || Math.abs(targetImageHeight) < 1e-12) return 0;
   const geom = geometry ?? computeFieldGeometry(state);

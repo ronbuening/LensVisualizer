@@ -13,8 +13,8 @@
  */
 import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
-import buildLens from "../src/optics/buildLens.js";
-import { computeElementFocalLength } from "../src/optics/first-order/thickLens.js";
+import { buildLens } from "../src/optics/buildLens.js";
+import { computeElementFocalLength } from "../src/optics/optics.js";
 import { FLAT_R_THRESHOLD } from "../src/optics/geometry.js";
 import { LENS_CATALOG } from "../src/utils/catalog/lensCatalog.js";
 import type { ElementData, RuntimeLens } from "../src/types/optics.js";

@@ -36,7 +36,7 @@
  * starts (`seedAsphereSolve` in `intersect.ts`), and that solve has an acceptance of its own.
  */
 
-import { INTERSECTION_BRACKET_SAMPLES, INTERSECTION_TOLERANCE, VECTOR_EPSILON } from "../constants.js";
+import { INTERSECTION_BRACKET_SAMPLES, INTERSECTION_TOLERANCE, VECTOR_EPSILON } from "../math/constants.js";
 import type { SurfaceProfile, Vec3 } from "../types.js";
 import type {
   ClosedFormFallbackReason,

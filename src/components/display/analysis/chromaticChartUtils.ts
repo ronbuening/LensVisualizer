@@ -1,4 +1,4 @@
-import { chromaticChannelIndexLabel } from "../../../optics/chromatic/channels.js";
+import { chromaticChannelIndexLabel } from "../../../optics/chromatic.js";
 import type { ChromaticChannel, RefractiveIndexReferenceLine } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 

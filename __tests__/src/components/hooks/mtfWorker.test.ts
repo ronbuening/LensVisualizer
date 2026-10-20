@@ -8,10 +8,10 @@ import {
   teleconverterHostData,
 } from "../../optics/testLensFixtures.js";
 import { attachTeleconverter } from "../../../../src/optics/prescription/teleconverter.js";
-import { computeMtf } from "../../../../src/optics/mtf.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
+import { computeMtf } from "../../../../src/optics/analysis/mtf/mtf.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import type { MtfOptions } from "../../../../src/types/mtf.js";
-import { canonicalLensFromRuntime, compiledLensFromRuntime } from "../../../../src/optics/buildLens.js";
+import { canonicalLensFromRuntime, compiledLensFromRuntime } from "../../../../src/optics/prescription/identity.js";
 import {
   MtfWorkerClient,
   type MtfWorkerPort,

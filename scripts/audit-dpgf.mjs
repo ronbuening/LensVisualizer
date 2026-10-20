@@ -2,7 +2,7 @@
  * Partial-dispersion census: `dPgF` values that fit a source's normal line instead of the engine's.
  *
  * `dPgF` is a glass's partial dispersion PgF minus the engine's normal line, 0.6438 − 0.001682·νd
- * (`normalLinePgF` in src/optics/dispersion.ts); the g-line index is rebuilt from it. Many patents define their
+ * (`normalLinePgF` in src/optics/chromatic.ts); the g-line index is rebuilt from it. Many patents define their
  * deviation against another line, most often 0.64833 − 0.0018·νd, and a value copied from such a table is wrong by
  * 0.00453 − 0.000118·νd. src/lens-data/LENS_DATA_SPEC.md requires recovering the source's PgF first.
  *
@@ -26,7 +26,7 @@ const LENS_DIR = join(ROOT, "src", "lens-data");
 const load = async (path) => import(pathToFileURL(join(ROOT, path)).href);
 
 const { resolveCompatibleGlass, evaluateSellmeier } = await load("src/optics/glassCatalog.ts");
-const { normalLinePgF } = await load("src/optics/dispersion.ts");
+const { normalLinePgF } = await load("src/optics/chromatic.ts");
 
 const args = process.argv.slice(2);
 const flag = (name) => args.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3);

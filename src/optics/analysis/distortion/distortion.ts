@@ -14,35 +14,35 @@
 
 import { evenlySpacedSigned, uniformFieldFraction } from "../sampling.js";
 
-import { prepareRayTrace, type PreparedRayTrace } from "../../trace/rayAdapters.js";
+import { prepareRayTrace } from "../../trace/rayAdapters.js";
+import type { PreparedRayTrace } from "../../trace/rayAdapters.js";
 import {
-  chiefRayImageHeight2 as chiefRayImageHeight,
-  chiefRayImageHeightAccurate2 as chiefRayImageHeightAccurate,
-  computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
-  computeBoundingSphereVectorFieldLaunch2 as computeBoundingSphereVectorFieldLaunch,
-  computeFieldGeometryAtState2 as computeFieldGeometryAtState,
-  paraxialObjectVergence2 as paraxialObjectVergence,
-  solveChiefRay2 as solveChiefRay,
+  chiefRayImageHeightForRuntimeLens as chiefRayImageHeight,
+  chiefRayImageHeightAccurateForRuntimeLens as chiefRayImageHeightAccurate,
+  computeAnalysisFieldGeometryAtState,
+  computeBoundingSphereVectorFieldLaunchForRuntimeLens as computeBoundingSphereVectorFieldLaunch,
+  computeFieldGeometryAtState,
+  paraxialObjectVergenceForRuntimeLens as paraxialObjectVergence,
+  solveChiefRayForRuntimeLens as solveChiefRay,
   invertChiefRayImageHeights,
-  type ImageHeightInversionResult,
 } from "../../state/fieldAdapters.js";
+import type { ImageHeightInversionResult } from "../../field/imageHeight.js";
 import {
-  distortionProjectionReferenceForLens2 as distortionProjectionReferenceForLens,
-  isFisheyeProjection2 as isFisheyeProjection,
-  projectionFieldAngleForImageHeight2 as projectionFieldAngleForImageHeight,
-  projectionFieldSlopesForImagePoint2 as projectionFieldSlopesForImagePoint,
-  projectionImageHeightForAngle2 as projectionImageHeightForAngle,
-  projectionLaunchSlopeForField2 as projectionLaunchSlopeForField,
-  projectionLaunchVectorForFieldAngles2 as projectionLaunchVectorForFieldAngles,
-  type ProjectionReference2 as ProjectionReference,
-  type ProjectionReferenceKind,
+  distortionProjectionReferenceForLens,
+  isFisheyeProjection,
+  projectionFieldAngleForImageHeight,
+  projectionFieldSlopesForImagePoint,
+  projectionImageHeightForAngle,
+  projectionLaunchSlopeForField,
+  projectionLaunchVectorForFieldAngles,
 } from "../../field/projection.js";
+import type { ProjectionReference, ProjectionReferenceKind } from "../../field/projection.js";
 import type { RuntimeSkewRayTraceResult as SkewRayTraceResult } from "../../trace/runtimeRayResult.js";
 import { skewImagePlaneIntercept } from "../../trace/rayAdapters.js";
 import { prepareState } from "../../state/preparedGeometry.js";
 import { runtimeView } from "../../prescription/runtimeView.js";
 import type { AnalysisRequest } from "../request.js";
-import { isHeavyLensForRayWork } from "../../raySampling.js";
+import { isHeavyLensForRayWork } from "../../trace/raySampling.js";
 import { resolveImageFormatMetadata } from "../../../utils/catalog/lensTaxonomy.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 

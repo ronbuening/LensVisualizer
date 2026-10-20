@@ -6,7 +6,7 @@
  * but uses sagittal (x-axis) data instead of tangential (y-axis).
  */
 
-import type { SagittalComaResult } from "../../../optics/aberrationAnalysis.js";
+import type { SagittalComaResult } from "../../../optics/analysis.js";
 import type { Theme } from "../../../types/theme.js";
 import { centeredMmScale, fieldFractionScale, symmetricMmTicks } from "./charts/chartMath.js";
 

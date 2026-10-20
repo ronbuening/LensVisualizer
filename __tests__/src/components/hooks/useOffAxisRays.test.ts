@@ -3,16 +3,15 @@
 import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useOffAxisRays from "../../../../src/components/hooks/useOffAxisRays.js";
-import buildLens from "../../../../src/optics/buildLens.js";
+import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
 import {
-  doLayout,
-  entrancePupilAtState,
-  fopenAtZoom,
-  halfFieldAtZoom,
-  tracingHalfFieldAtZoom,
-} from "../../../../src/optics/optics.js";
-import { createCoordinateTransforms } from "../../../../src/optics/diagramGeometry.js";
-import { raySampleCountForDensity } from "../../../../src/optics/raySampling.js";
+  doLayoutForRuntimeLens as doLayout,
+  fopenAtZoomClamped as fopenAtZoom,
+} from "../../../../src/optics/state/runtimeAdapters.js";
+import { entrancePupilAtState } from "../../../../src/optics/state/fieldAdapters.js";
+import { halfFieldAtZoom, tracingHalfFieldAtZoom } from "../../../../src/optics/state/stationTables.js";
+import { createCoordinateTransforms } from "../../../../src/optics/diagram/coordinateTransforms.js";
+import { raySampleCountForDensity } from "../../../../src/optics/trace/raySampling.js";
 import { catalogLensData } from "../../optics/testLensFixtures.js";
 import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
 import SonnarRaw from "../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";

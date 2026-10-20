@@ -7,7 +7,7 @@
 
 import type { ChromaticChannel } from "../../types/optics.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
-import type { FieldGeometryState } from "../optics.js";
+import type { FieldGeometryState } from "../field/launch.js";
 import type { PerspectivePose } from "../perspective/pose.js";
 import type { PerspectiveTraceContext } from "../perspective/trace.js";
 import type { TraceCapture } from "../trace/types.js";

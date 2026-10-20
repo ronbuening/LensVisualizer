@@ -1,12 +1,10 @@
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
-import { chiefRayImageHeightAccurate2 } from "../../../../src/optics/state/fieldAdapters.js";
+import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
+import { chiefRayImageHeightAccurateForRuntimeLens } from "../../../../src/optics/state/fieldAdapters.js";
 import { solvePerspectiveChiefRay } from "../../../../src/optics/perspective/chiefRay.js";
-import {
-  createPerspectiveTraceContext,
-  type PerspectiveTraceContext,
-} from "../../../../src/optics/perspective/trace.js";
+import { createPerspectiveTraceContext } from "../../../../src/optics/perspective/trace.js";
+import type { PerspectiveTraceContext } from "../../../../src/optics/perspective/trace.js";
 import type { Vec3 } from "../../../../src/optics/types.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
@@ -32,7 +30,7 @@ describe("perspective chief-ray solve", () => {
   it("preserves the zero-movement exact chief image height", () => {
     const fieldDeg = 5;
     const solved = solvePerspectiveChiefRay(context(), sceneDirection(0, fieldDeg));
-    const legacy = chiefRayImageHeightAccurate2(fieldDeg, [...STATE.z], 0, 0, L);
+    const legacy = chiefRayImageHeightAccurateForRuntimeLens(fieldDeg, [...STATE.z], 0, 0, L);
 
     expect(solved.status).toBe("usable");
     expect(solved.rootSolve?.status).toBe("converged");

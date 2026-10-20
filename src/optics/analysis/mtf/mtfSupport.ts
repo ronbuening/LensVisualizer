@@ -8,7 +8,7 @@ import type {
   MtfUnavailableReason,
 } from "../../../types/mtf.js";
 import type { AnalysisRequest } from "../request.js";
-import { LINE_NM } from "../../spectralLines.js";
+import { LINE_NM } from "../../chromatic/spectralLines.js";
 import type { PreparedGeometry } from "../../types.js";
 import { mtfFiniteConjugate, mtfFiniteObjectPoint } from "./mtfConjugates.js";
 import {

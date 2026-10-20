@@ -9,13 +9,13 @@
 import type { CSSProperties } from "react";
 import type { RuntimeLens, ElementData, ImagePlaneNormal, SurfaceData, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
-import type { DispersionQuality } from "../../optics/dispersion.js";
+import type { DispersionQuality } from "../../optics/chromatic.js";
 import {
   CHROMATIC_CHANNEL_METADATA,
   CHROMATIC_CHANNEL_ORDER,
   chromaticChannelIndexLabel,
   chromaticChannelWavelengthLabel,
-} from "../../optics/chromatic/channels.js";
+} from "../../optics/chromatic.js";
 import { getAsphericEntriesForElement } from "./asphericElementUtils.js";
 import { withAlpha } from "../../utils/style/styles.js";
 

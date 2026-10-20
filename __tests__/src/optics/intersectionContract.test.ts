@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { normalize as normalizeVector3 } from "../../../src/optics/math/vector.js";
 import type { Ray3 as SurfaceIntersectionRay } from "../../../src/optics/types.js";
 import { createSurfaceProfile, createTiltedPlaneProfile, sag } from "../../../src/optics/geometry/surfaceProfile.js";
 import { intersectSurfaceProfile } from "../../../src/optics/geometry/intersect.js";
 import { planeResidualRoundoff, sagResidualRoundoff } from "../../../src/optics/geometry/intersectTolerance.js";
-import { doLayout } from "../../../src/optics/optics.js";
-import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { traceEngineRay } from "../../../src/optics/trace/rayAdapters.js";
 import type { AsphericCoefficients } from "../../../src/types/optics.js";
 import { buildSimplePositiveElementLens } from "./testLensFixtures.js";
 
@@ -284,7 +284,7 @@ describe("trace hit records", () => {
     const L = buildSimplePositiveElementLens();
     const zPos = doLayout(0, 0, L).z;
     const ray: SurfaceIntersectionRay = { origin: [0, 1, zPos[0] - 5], direction: [0, 0, 1] };
-    const engine = traceEngineRay2(prepareRuntimeState(L, 0, 0), ray, { checkSemiDiameter: true });
+    const engine = traceEngineRay(prepareRuntimeState(L, 0, 0), ray, { checkSemiDiameter: true });
     expect(engine.hits.length).toBeGreaterThan(1);
     for (const hit of engine.hits) {
       expect(hit.effectiveTolerance).toBeGreaterThanOrEqual(1e-12);

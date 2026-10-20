@@ -5,17 +5,10 @@
  * preview footprints without UI dependencies.
  */
 
-import {
-  evenlySpacedSigned,
-  sampleCircularPupil,
-  sampleOrthogonalPupilFan,
-  type CircularPupilSample,
-  type OrthogonalPupilSample,
-} from "../sampling.js";
-import {
-  computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
-  type FieldGeometryState2 as FieldGeometryState,
-} from "../../state/fieldAdapters.js";
+import { evenlySpacedSigned, sampleCircularPupil, sampleOrthogonalPupilFan } from "../sampling.js";
+import type { CircularPupilSample, OrthogonalPupilSample } from "../sampling.js";
+import { computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.js";
+import type { FieldGeometryState } from "../../field/launch.js";
 import { runtimeView } from "../../prescription/runtimeView.js";
 import type { AnalysisRequest } from "../request.js";
 import type { RuntimeLens } from "../../../types/optics.js";
@@ -42,9 +35,8 @@ import {
   computeProjectionAwareOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
   traceOffAxisBundleFromSamples,
-  type OffAxisBundle,
-  type ProjectionAwareOffAxisFieldGeometry,
 } from "./offAxis.js";
+import type { OffAxisBundle, ProjectionAwareOffAxisFieldGeometry } from "./offAxis.js";
 import type { AnalysisSamplingOptions } from "../analysisQuality.js";
 
 const COMA_PREVIEW_MIN_SHARED_HALF_RANGE_MM = 0.01;

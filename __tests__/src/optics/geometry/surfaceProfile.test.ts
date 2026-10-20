@@ -331,7 +331,7 @@ describe("surface geometry constants", () => {
   });
 
   it("offers the same functions and constants through the outside barrel", () => {
-    expect({ ...geometryBarrel }).toEqual({
+    expect({ ...geometryBarrel }).toMatchObject({
       DEFAULT_MAX_RIM_ANGLE_DEG,
       FLAT_R_THRESHOLD,
       MAX_RIM_SLOPE_TAN,

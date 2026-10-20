@@ -9,7 +9,7 @@ import {
   sharedFNumber,
   snapToCommon,
 } from "../../../src/comparison/comparisonSliders.js";
-import { formatDist } from "../../../src/optics/optics.js";
+import { formatDist } from "../../../src/optics/first-order/format.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
 import { build, buildVariableStopGapLens, buildSimplePositiveElementLens } from "../optics/testLensFixtures.js";

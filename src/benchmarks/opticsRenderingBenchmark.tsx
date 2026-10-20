@@ -50,47 +50,42 @@ export {
   poolTimedRecords,
   serializeBenchmarkRecord,
 } from "./benchmarkReport.js";
-import { wideOpenStopAtZoom } from "../optics/apertureStop.js";
-import buildLens from "../optics/buildLens.js";
-import { createAnalysisComputationContext, prepareRuntimeState } from "../optics/compat.js";
+import { wideOpenStopAtZoom } from "./benchmarkSeam.js";
+import { buildLens } from "./benchmarkSeam.js";
+import { createAnalysisComputationContext } from "./benchmarkSeam.js";
+import { prepareRuntimeState } from "./benchmarkSeam.js";
 import {
   anchorLayoutToCamera,
-  computeAnalysisFieldGeometryAtState,
-  computeChromaticRayFanSpread,
-  conjugateK,
-  doLayout,
+  doLayoutForRuntimeLens as doLayout,
   effectiveFNumber,
   eflAtFocus,
-  entrancePupilAtState,
-  fopenAtZoom,
-  offsetVectorFieldRay,
+  fopenAtZoomClamped as fopenAtZoom,
   traceRay,
   traceRayChromatic,
   traceRayVector,
   traceRayVectorChromatic,
-} from "../optics/optics.js";
-import { analysisJobsForState2, computeCardinalElements, createFreshAnalysisContext } from "./benchmarkSeam.js";
-import { computeElementShapes, createCoordinateTransforms } from "../optics/diagramGeometry.js";
+} from "./benchmarkSeam.js";
 import {
-  clampLensMovement,
-  createLensMovementTransform,
-  type LensMovementTransform,
-  type ResolvedLensMovement,
-} from "../optics/lensMovement.js";
+  computeAnalysisFieldGeometryAtState,
+  conjugateKForRuntimeLens as conjugateK,
+  entrancePupilAtState,
+  offsetVectorFieldRay,
+} from "./benchmarkSeam.js";
+import { computeChromaticRayFanSpread } from "./benchmarkSeam.js";
+import { analysisJobs, computeCardinalElements, createFreshAnalysisContext } from "./benchmarkSeam.js";
+import { computeElementShapes, createCoordinateTransforms } from "./benchmarkSeam.js";
+import { clampLensMovement, createLensMovementTransform } from "./benchmarkSeam.js";
+import type { LensMovementTransform, ResolvedLensMovement } from "../optics/perspective.js";
 import {
   cameraDirectionForDiagramField,
   computePerspectiveMovementViewportExtent,
   createPerspectiveTraceContext,
   tracePerspectiveDiagramFan,
-  type PerspectiveDiagramFanSample,
-  type PerspectiveTraceContext,
-} from "../optics/perspective/index.js";
-import { obstructionAwareRayFractionsForDensity } from "../optics/raySampling.js";
-import {
-  analysisSamplingForQuality,
-  type AnalysisQuality,
-  type AnalysisSamplingOptions,
-} from "../optics/analysis/analysisQuality.js";
+} from "./benchmarkSeam.js";
+import type { PerspectiveDiagramFanSample, PerspectiveTraceContext } from "../optics/perspective.js";
+import { obstructionAwareRayFractionsForDensity } from "./benchmarkSeam.js";
+import { analysisSamplingForQuality } from "./benchmarkSeam.js";
+import type { AnalysisQuality, AnalysisSamplingOptions } from "../optics/analysis.js";
 import { resetPerfProbe } from "../utils/perfProbe.js";
 import { LENS_CATALOG } from "../utils/catalog/lensCatalog.js";
 import themes from "../utils/theme/themes.js";
@@ -107,9 +102,9 @@ import { computeOffAxisTraceGeometry } from "../components/hooks/offAxisRayUtils
 import { compileRaySegment, filterChannels } from "../components/hooks/raySegmentUtils.js";
 import type { ChromaticRaySegment } from "../components/hooks/useChromaticRays.js";
 import type { RaySegment } from "../components/hooks/useOnAxisRays.js";
-import type { FieldGeometryState } from "../optics/optics.js";
+import type { FieldGeometryState } from "../optics/fieldGeometry.js";
 import type { PreparedOpticalState } from "../optics/types.js";
-import type { AnalysisComputationContext } from "../optics/compat.js";
+import type { AnalysisComputationContext } from "../optics/analysis.js";
 import type {
   ChromaticChannel,
   ChromaticRayFanSpread,
@@ -406,7 +401,7 @@ interface AberrationDataValues {
   saBlurCharacter?: unknown;
   fieldCurvature?: unknown;
   chromaticFieldCurvature?: unknown;
-  coma?: ReturnType<typeof analysisJobsForState2.computeComaAnalysis>;
+  coma?: ReturnType<typeof analysisJobs.computeComaAnalysis>;
 }
 
 /** Analysis breakdown results keyed by category id. */
@@ -1471,7 +1466,7 @@ function computePerspectivePupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutp
 
 /** Measures the optical summary path through its request-facing analysis job. */
 function computeAnalysisSummaryWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const summary = analysisJobsForState2.computeOpticalSummary({
+  const summary = analysisJobs.computeOpticalSummary({
     preparedState: snapshot.preparedState,
     dynamicEFL: snapshot.dynamicEFL,
     currentEPSD: snapshot.currentEPSD,
@@ -1484,7 +1479,7 @@ function computeAnalysisSummaryWork(snapshot: ScenarioSnapshot): BenchmarkOutput
 
 /** Measures distortion-curve sampling for non-folded systems. */
 function computeAnalysisDistortionCurveWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const samples = analysisJobsForState2.computeDistortionCurve({
+  const samples = analysisJobs.computeDistortionCurve({
     preparedState: snapshot.preparedState,
     dynamicEFL: snapshot.dynamicEFL,
     currentEPSD: snapshot.currentEPSD,
@@ -1512,7 +1507,7 @@ function distortionSamplesOf<Sample>(
 
 /** Measures the distortion field-grid helper used by the analysis drawer. */
 function computeAnalysisDistortionGridWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const grid = analysisJobsForState2.computeDistortionFieldGrid({
+  const grid = analysisJobs.computeDistortionFieldGrid({
     preparedState: snapshot.preparedState,
     dynamicEFL: snapshot.dynamicEFL,
     currentEPSD: snapshot.currentEPSD,
@@ -1526,7 +1521,7 @@ function computeAnalysisDistortionGridWork(snapshot: ScenarioSnapshot): Benchmar
 
 /** Measures vignetting sampling for non-folded sequential systems. */
 function computeAnalysisVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const samples = analysisJobsForState2.computeVignettingCurve({
+  const samples = analysisJobs.computeVignettingCurve({
     preparedState: snapshot.preparedState,
     dynamicEFL: snapshot.dynamicEFL,
     currentEPSD: snapshot.currentEPSD,
@@ -1540,7 +1535,7 @@ function computeAnalysisVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOut
 
 /** Measures entrance/exit pupil aberration profile generation. */
 function computeAnalysisPupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const pupilProfiles = analysisJobsForState2.computeBothPupilAberrationProfiles({
+  const pupilProfiles = analysisJobs.computeBothPupilAberrationProfiles({
     preparedState: snapshot.preparedState,
     dynamicEFL: snapshot.dynamicEFL,
     currentEPSD: snapshot.currentEPSD,
@@ -1554,7 +1549,7 @@ function computeAnalysisPupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutput 
 
 /** Measures paired infinity/near-focus bokeh preview data generation. */
 function computeAnalysisBokehPairWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const bokehPair = analysisJobsForState2.computeBokehPreviewPair({
+  const bokehPair = analysisJobs.computeBokehPreviewPair({
     preparedState: snapshot.preparedState,
     dynamicEFL: snapshot.dynamicEFL,
     currentEPSD: snapshot.currentEPSD,
@@ -1571,7 +1566,7 @@ function computeAnalysisBokehPairWork(snapshot: ScenarioSnapshot): BenchmarkOutp
 /** Measures best-focus solve cost for the current stop and entrance-pupil scale. */
 function computeAnalysisBestFocusWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   return {
-    bestFocusZ: analysisJobsForState2.computeBestFocusZ(sphericalRequest(snapshot)),
+    bestFocusZ: analysisJobs.computeBestFocusZ(sphericalRequest(snapshot)),
   };
 }
 
@@ -1609,7 +1604,7 @@ function bestFocusInspection(snapshot: ScenarioSnapshot): (() => void) | undefin
         completed("bestFocusRay", ray);
       }
     }
-    const z = analysisJobsForState2.computeBestFocusZ(sphericalRequest(snapshot));
+    const z = analysisJobs.computeBestFocusZ(sphericalRequest(snapshot));
     completed("bestFocus", { z, isLayoutImagePlane: Object.is(z, layout.imgZ) });
   };
 }
@@ -1634,17 +1629,17 @@ function measureAberrationPanels(
     plan.measure(`${lensKey}:${scenario.id}:aberrationPanels:${group}.${category}`, fn);
 
   data.sphericalAberration = measure("data", "sphericalAberration", () => {
-    const result = analysisJobsForState2.computeSphericalAberration(sphericalRequest(snapshot));
+    const result = analysisJobs.computeSphericalAberration(sphericalRequest(snapshot));
     return describeComputationOutput(result);
   });
   data.saProfile = measure("data", "saProfile", () => {
-    const result = analysisJobsForState2.computeSAProfile(sphericalRequest(snapshot));
+    const result = analysisJobs.computeSAProfile(sphericalRequest(snapshot));
     completed("result", result);
     return { points: Array.isArray(result) ? result.length : 0 };
   });
   data.saBlurCharacter = measure("data", "saBlurCharacter", () => {
-    const base = analysisJobsForState2.computeSphericalAberration(sphericalRequest(snapshot));
-    const result = analysisJobsForState2.computeSphericalAberrationBlurCharacter(sphericalRequest(snapshot), base);
+    const base = analysisJobs.computeSphericalAberration(sphericalRequest(snapshot));
+    const result = analysisJobs.computeSphericalAberrationBlurCharacter(sphericalRequest(snapshot), base);
     return describeComputationOutput(result);
   });
 
@@ -1663,16 +1658,16 @@ function measureAberrationPanels(
     }
   } else {
     data.fieldCurvature = measure("data", "fieldCurvature", () =>
-      describeComputationOutput(analysisJobsForState2.computeFieldCurvature(fieldCurvatureRequest(snapshot), false)),
+      describeComputationOutput(analysisJobs.computeFieldCurvature(fieldCurvatureRequest(snapshot), false)),
     );
     data.chromaticFieldCurvature = measure("data", "chromaticFieldCurvature", () =>
-      describeComputationOutput(analysisJobsForState2.computeFieldCurvature(fieldCurvatureRequest(snapshot), true)),
+      describeComputationOutput(analysisJobs.computeFieldCurvature(fieldCurvatureRequest(snapshot), true)),
     );
     data.fieldCurvatureBundle = measure("data", "fieldCurvatureBundle", () =>
-      describeComputationOutput(analysisJobsForState2.computeFieldCurvatureBundle(fieldCurvatureRequest(snapshot))),
+      describeComputationOutput(analysisJobs.computeFieldCurvatureBundle(fieldCurvatureRequest(snapshot))),
     );
     data.coma = measure("data", "coma", () =>
-      describeComputationOutput(analysisJobsForState2.computeComaAnalysis(fieldCurvatureRequest(snapshot))),
+      describeComputationOutput(analysisJobs.computeComaAnalysis(fieldCurvatureRequest(snapshot))),
     );
   }
 
@@ -1730,19 +1725,19 @@ function measureAberrationPanels(
  * guarded until fixture-backed validation says they are mirror-safe.
  */
 function computeAberrationDataValues(snapshot: ScenarioSnapshot): AberrationDataValues {
-  const sphericalAberration = analysisJobsForState2.computeSphericalAberration(sphericalRequest(snapshot));
-  const saProfile = analysisJobsForState2.computeSAProfile(sphericalRequest(snapshot));
-  const saBlurCharacter = analysisJobsForState2.computeSphericalAberrationBlurCharacter(
+  const sphericalAberration = analysisJobs.computeSphericalAberration(sphericalRequest(snapshot));
+  const saProfile = analysisJobs.computeSAProfile(sphericalRequest(snapshot));
+  const saBlurCharacter = analysisJobs.computeSphericalAberrationBlurCharacter(
     sphericalRequest(snapshot),
     sphericalAberration,
   );
   if (snapshot.L.isFoldedOptics || snapshot.movement.active) {
     return { sphericalAberration, saProfile, saBlurCharacter };
   }
-  const fieldCurvatureBundle = analysisJobsForState2.computeFieldCurvatureBundle(fieldCurvatureRequest(snapshot));
+  const fieldCurvatureBundle = analysisJobs.computeFieldCurvatureBundle(fieldCurvatureRequest(snapshot));
   const fieldCurvature = fieldCurvatureBundle.fieldCurvature;
   const chromaticFieldCurvature = fieldCurvatureBundle.chromaticFieldCurvature;
-  const coma = analysisJobsForState2.computeComaAnalysis(fieldCurvatureRequest(snapshot));
+  const coma = analysisJobs.computeComaAnalysis(fieldCurvatureRequest(snapshot));
   return { sphericalAberration, saProfile, saBlurCharacter, fieldCurvature, chromaticFieldCurvature, coma };
 }
 

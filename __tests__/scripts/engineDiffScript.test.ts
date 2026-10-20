@@ -28,7 +28,8 @@ import { USAGE, parseArgs, renderTransitionsReport } from "../../scripts/engine-
 import { exportCatalog, requestCatalog } from "../../src/benchmarks/engineDiff/captureEntry.js";
 import { parseDeclaredExceptions, parseDeclaredTransitions } from "../../src/benchmarks/engineDiff/compare.js";
 import { lensId, shardRequests, tierRequests } from "../../src/benchmarks/engineDiff/requests.js";
-import { ingestTeleconverter, toTeleconverterData } from "../../src/optics/buildLens.js";
+import { ingestTeleconverter } from "../../src/optics/prescription/ingestV2.js";
+import { toTeleconverterData } from "../../src/optics/prescription/toLensData.js";
 import { FIXTURE_PAIRS } from "../src/optics/prescription/ingestV2Fixtures.js";
 
 describe("engine-diff command line", () => {
@@ -786,7 +787,7 @@ describe("C2 capture instrumentation", () => {
         entry,
         `
         import { buildSimplePositiveElementLens } from ${JSON.stringify(join(root, "__tests__/src/optics/testLensFixtures.ts"))};
-        import { prepareRuntimeState } from ${JSON.stringify(join(root, "src/optics/compat.ts"))};
+        import { prepareRuntimeState } from ${JSON.stringify(join(root, "src/optics/state/runtimeAdapters.ts"))};
         import { computeChiefRaySolve, solveChiefRayFromSeed, solveChiefRayBoundingSphere } from ${JSON.stringify(join(root, "src/optics/field/chiefRaySolve.ts"))};
         import { invertChiefRayImageHeights, solveFieldAngleForImageHeight, chiefRayImageHeight, chiefRayImageHeightAccurate } from ${JSON.stringify(join(root, "src/optics/field/imageHeight.ts"))};
         import { capturePropagation } from ${JSON.stringify(join(root, "src/benchmarks/engineDiff/propagation.ts"))};

@@ -3,7 +3,7 @@ import type {
   SAProfilePoint,
   SphericalAberrationBlurCharacterResult,
   SphericalAberrationResult,
-} from "../../../../optics/aberrationAnalysis.js";
+} from "../../../../optics/analysis.js";
 import type { Theme } from "../../../../types/theme.js";
 import { ENABLE_REAL_RAY_LSA_DIAGNOSTIC } from "../../../../utils/featureFlags.js";
 import SADiagram from "./SADiagram.js";

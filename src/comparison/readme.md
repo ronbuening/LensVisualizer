@@ -24,6 +24,7 @@ flowchart LR
     n_src_comparison_src_comparison_useComparisonOrchestration_ts["useComparisonOrchestration.ts"]
     n_src_comparison_src_comparison_useStickySliders_ts["useStickySliders.ts"]
   end
+  n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_types["src/types"]
   n_external_src_components_layout["src/components/layout"]
   n_external_src_utils_state["src/utils/state"]
@@ -33,15 +34,13 @@ flowchart LR
   n_external_src_components_errors["src/components/errors"]
   n_external_src_components_hooks["src/components/hooks"]
   n_external_src_optics_analysis_ts["src/optics/analysis.ts"]
-  n_external_src_optics_aperture_ts["src/optics/aperture.ts"]
   n_external_src_optics_buildLens_ts["src/optics/buildLens.ts"]
-  n_external_src_optics_compat_ts["src/optics/compat.ts"]
-  n_external_src_optics_focusDistance_ts["src/optics/focusDistance.ts"]
-  n_external_src_optics_lensMovement_ts["src/optics/lensMovement.ts"]
-  n_external_src_optics_optics_ts["src/optics/optics.ts"]
+  n_external_src_optics_perspective_ts["src/optics/perspective.ts"]
+  n_src_comparison_src_comparison_comparisonSliders_ts --> |3| n_external_src_optics_optics_ts
   n_src_comparison_src_comparison_SharedSlidersBar_tsx --> |3| n_external_src_types
   n_src_comparison_src_comparison_useComparisonOrchestration_ts --> |3| n_src_comparison_src_comparison_useComparisonMode_ts
   n_src_comparison_src_comparison_SharedAnalysisDock_tsx --> |2| n_external_src_components_layout
+  n_src_comparison_src_comparison_useComparisonDisplayValues_ts --> |2| n_external_src_optics_optics_ts
   n_src_comparison_src_comparison_ComparisonContent_tsx --> |2| n_external_src_types
   n_src_comparison_src_comparison_comparisonURLSync_ts --> |2| n_external_src_utils_state
   n_src_comparison_src_comparison_ComparisonContent_tsx --> |2| n_src_comparison_src_comparison_comparisonSliders_ts
@@ -65,16 +64,14 @@ flowchart LR
   n_src_comparison_src_comparison_comparisonSliders_ts --> n_external_src_optics_analysis_ts
   n_src_comparison_src_comparison_SharedSlidersBar_tsx --> n_external_src_optics_analysis_ts
   n_src_comparison_src_comparison_useComparisonDisplayValues_ts --> n_external_src_optics_analysis_ts
-  n_src_comparison_src_comparison_comparisonSliders_ts --> n_external_src_optics_aperture_ts
   n_src_comparison_src_comparison_useComparisonMode_ts --> n_external_src_optics_buildLens_ts
-  n_src_comparison_src_comparison_useComparisonDisplayValues_ts --> n_external_src_optics_compat_ts
-  n_src_comparison_src_comparison_comparisonSliders_ts --> n_external_src_optics_focusDistance_ts
-  n_src_comparison_src_comparison_comparisonSliders_ts --> n_external_src_optics_lensMovement_ts
-  n_src_comparison_src_comparison_SharedSlidersBar_tsx --> n_external_src_optics_lensMovement_ts
-  n_src_comparison_src_comparison_comparisonSliders_ts --> n_external_src_optics_optics_ts
   n_src_comparison_src_comparison_SharedSlidersBar_tsx --> n_external_src_optics_optics_ts
-  n_src_comparison_src_comparison_useComparisonDisplayValues_ts --> n_external_src_optics_optics_ts
+  n_src_comparison_src_comparison_comparisonSliders_ts --> n_external_src_optics_perspective_ts
+  n_src_comparison_src_comparison_SharedSlidersBar_tsx --> n_external_src_optics_perspective_ts
   n_src_comparison_src_comparison_ComparisonLayout_tsx --> n_external_src_types
+  n_src_comparison_src_comparison_comparisonReducer_ts --> n_external_src_types
+  n_src_comparison_src_comparison_comparisonSliders_ts --> n_external_src_types
+  n_src_comparison_src_comparison_comparisonURLSync_ts --> n_external_src_types
   n_src_comparison_truncated["additional relationships omitted"]
 ```
 
@@ -82,7 +79,7 @@ flowchart LR
 
 - Direct source files: 14
 - Direct subfolders: 0
-- Main outbound areas: same folder (28), src/types (14), package:react (8), src/utils/state (5), src/components/layout (3), src/optics/analysis.ts (3), src/optics/optics.ts (3), src/utils/style (3), +12 more
+- Main outbound areas: same folder (28), src/types (14), package:react (8), src/optics/optics.ts (6), src/utils/state (5), src/components/layout (3), src/optics/analysis.ts (3), src/utils/style (3), +9 more
 - External consumers: src/components/layout, src/pages/ComparePage.tsx, src/types, src/utils/catalog, src/utils/state
 
 ## Files
@@ -92,14 +89,14 @@ flowchart LR
 | `ComparisonContent.tsx` | React component module | same folder (8), src/types (2), package:react, src/components/errors, src/utils/state | src/components/layout | default, ComparisonContent |
 | `ComparisonLayout.tsx` | React component module | same folder (2), package:react, src/components/layout, src/types, src/utils/catalog, +1 more | same folder | default, ComparisonLayout |
 | `comparisonReducer.ts` | Comparison Reducer module with default export | src/types | same folder (3), src/utils/state | SET_SCALE_MODE, SET_SHARED_FOCUS_T, SET_SHARED_STOPDOWN_T, SET_SHARED_ZOOM_T, SET_SHARED_SHIFT_MM, SET_SHARED_TILT_DEG, ENTER_COMPARE, EXIT_COMPARE, +2 more |
-| `comparisonSliders.ts` | Comparison Sliders helper module | src/optics/analysis.ts, src/optics/aperture.ts, src/optics/focusDistance.ts, src/optics/lensMovement.ts, src/optics/optics.ts, +2 more | same folder (7), src/components/layout | FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult, computeFocusPair, computeAperturePair, formatSharedFocusDist, sharedFNumber, +4 more |
+| `comparisonSliders.ts` | Comparison Sliders helper module | src/optics/optics.ts (3), src/optics/analysis.ts, src/optics/perspective.ts, src/types, src/utils/style | same folder (7), src/components/layout | FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult, computeFocusPair, computeAperturePair, formatSharedFocusDist, sharedFNumber, +4 more |
 | `comparisonTypes.ts` | Comparison Types helper module | none | src/types | SharedSlidersSlice, ComparisonAction |
 | `comparisonURLSync.ts` | Comparison URLSync helper module | src/utils/state (2), src/types, src/utils/seo | src/pages/ComparePage.tsx, src/utils/catalog, src/utils/state | buildComparePath, comparePageTitle, comparePageDescription, compareCanonicalURL |
 | `SharedAnalysisDock.tsx` | React component module | src/components/layout (2), src/components/hooks, src/types, src/utils/state | same folder | default, SharedAnalysisDock |
 | `SharedFStopQuickSelect.tsx` | React component module | package:react | same folder | default, SharedFStopQuickSelect |
-| `SharedSlidersBar.tsx` | React component module | same folder (4), src/types (3), src/components/controls, src/optics/analysis.ts, src/optics/lensMovement.ts, +2 more | same folder | default, SharedSlidersBar |
+| `SharedSlidersBar.tsx` | React component module | same folder (4), src/types (3), src/components/controls, src/optics/analysis.ts, src/optics/optics.ts, +2 more | same folder | default, SharedSlidersBar |
 | `SharedSliderSection.tsx` | React component module | package:react, src/types, src/utils/style | same folder | default, SharedSliderSection |
-| `useComparisonDisplayValues.ts` | React hook module | same folder (3), package:react, src/optics/analysis.ts, src/optics/compat.ts, src/optics/optics.ts | same folder | default, useComparisonDisplayValues |
+| `useComparisonDisplayValues.ts` | React hook module | same folder (3), src/optics/optics.ts (2), package:react, src/optics/analysis.ts | same folder | default, useComparisonDisplayValues |
 | `useComparisonMode.ts` | React hook module | same folder (2), package:react, src/optics/buildLens.ts, src/types, src/utils/catalog | same folder (4), src/components/layout | ComparisonLensesOk, ComparisonLensesResult, isComparisonOk, default, useComparisonMode |
 | `useComparisonOrchestration.ts` | React hook module | same folder (6), package:react, package:react-router, src/types, src/utils/seo, +1 more | src/components/layout | isComparisonOk, ComparisonLensesResult, ComparisonOrchestration, default, useComparisonOrchestration |
 | `useStickySliders.ts` | React hook module | same folder (3), package:react, src/types | same folder | default, useStickySliders |

@@ -11,9 +11,9 @@ import {
   lensChromaticReference,
 } from "../../../../src/optics/chromatic/channels.js";
 
-import { CHROMATIC_CHANNEL_WAVELENGTH_NM as publicWavelengths } from "../../../../src/optics/constants.js";
-import { CHANNEL_WAVELENGTH_NM_2 as resolverWavelengths } from "../../../../src/optics/chromatic/indexResolver.js";
-import { LINE_NM } from "../../../../src/optics/spectralLines.js";
+import { CHROMATIC_CHANNEL_WAVELENGTH_NM as publicWavelengths } from "../../../../src/optics/chromatic/channels.js";
+import { CHROMATIC_CHANNEL_WAVELENGTH_NM as resolverWavelengths } from "../../../../src/optics/chromatic/channels.js";
+import { LINE_NM } from "../../../../src/optics/chromatic/spectralLines.js";
 
 describe("chromatic channel metadata", () => {
   it("keeps the public channel order and spectral-line labels stable", () => {

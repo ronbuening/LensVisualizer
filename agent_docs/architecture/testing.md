@@ -292,7 +292,7 @@ axis and a chief ray through the first vertex at a slope of 1e-4. A failed basis
 fallback pupil constant within rounding of the real one, so the probe records its status as well as its height.
 
 - The probes are the prepared tracer's own rays. The launch is copied from `computeFieldGeometry`
-  (`src/optics/field/fieldGeometry.ts`): the same origin, direction and `stopAt`. Each records its status, failure reason
+  (`src/optics/field/geometry.ts`): the same origin, direction and `stopAt`. Each records its status, failure reason
   and height at the stop as the engine reads it, which is not a number once the trace has failed. That height over
   1e-4 is the state geometry's `yRatio` or `b` bit for bit.
 - The two probes have their own outcome, `{ ok, value }` or `{ ok, error }`. Reading a changed prepared state may

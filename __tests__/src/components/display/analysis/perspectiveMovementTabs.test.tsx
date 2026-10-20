@@ -10,9 +10,10 @@ import DistortionTab from "../../../../../src/components/display/analysis/Distor
 import VignettingTab from "../../../../../src/components/display/analysis/VignettingTab.js";
 import PupilAberrationTab from "../../../../../src/components/display/analysis/PupilAberrationTab.js";
 import ComaTab from "../../../../../src/components/display/analysis/ComaTab.js";
-import buildLens from "../../../../../src/optics/buildLens.js";
-import { createAnalysisComputationContext, prepareRuntimeState } from "../../../../../src/optics/compat.js";
-import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/index.js";
+import { buildLens } from "../../../../../src/optics/prescription/buildRuntimeLens.js";
+import { createAnalysisComputationContext } from "../../../../../src/optics/analysis/analysisContext.js";
+import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
+import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
 import { LENS_CATALOG } from "../../../../../src/utils/catalog/lensCatalog.js";
 import themes from "../../../../../src/utils/theme/themes.js";
 import { apertureAt } from "../../../optics/testLensFixtures.js";

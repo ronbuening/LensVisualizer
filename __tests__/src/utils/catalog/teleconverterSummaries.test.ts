@@ -8,7 +8,7 @@
  */
 
 import { describe, expect, it } from "vitest";
-import { teleconverterCompatibility } from "../../../../src/optics/teleconverter.js";
+import { teleconverterCompatibility } from "../../../../src/optics/prescription/teleconverterCompatibility.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import {
   ALL_TELECONVERTER_KEYS,

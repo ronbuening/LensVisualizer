@@ -2,8 +2,9 @@
 /** Bokeh hook request identity follows prepared controls and both aperture radii. */
 import { renderHook } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import { createAnalysisComputationContext, createAnalysisRequest } from "../../../../../src/optics/analysis.js";
-import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
+import { createAnalysisComputationContext } from "../../../../../src/optics/analysis/analysisContext.js";
+import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
+import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
 import { buildSimplePositiveElementLens } from "../../../optics/testLensFixtures.js";
 import useBokehPreviewData from "../../../../../src/components/display/analysis/useBokehPreviewData.js";
 

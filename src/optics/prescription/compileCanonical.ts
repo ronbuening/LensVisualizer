@@ -14,7 +14,8 @@ import type {
 } from "../types.js";
 import { computeLensConstants } from "../first-order/lensConstants.js";
 import { expandedConstruction } from "./rearPlates.js";
-import { compileConstruction, type LensConstruction } from "./compileConstruction.js";
+import { compileConstruction } from "./compileConstruction.js";
+import type { LensConstruction } from "./compileConstruction.js";
 import { resolvedImagePlaneToPlane3 } from "./interactions.js";
 
 export function compileCanonicalUncached(

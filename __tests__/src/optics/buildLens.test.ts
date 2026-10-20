@@ -1,22 +1,21 @@
 import { describe, it, expect, vi } from "vitest";
-import buildLens, {
-  ingestLens,
-  ingestLensV1,
-  paraxialTrace,
-  realTraceToStop,
-  toLensData,
-} from "../../../src/optics/buildLens.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { ingestLens } from "../../../src/optics/prescription/ingestV2.js";
+import { ingestLensV1 } from "../../../src/optics/prescription/ingestV1.js";
+import { paraxialTrace, realTraceToStop } from "../../../src/optics/first-order/lensConstants.js";
+import { toLensData } from "../../../src/optics/prescription/toLensData.js";
 import { toLensDataInput } from "../../../src/optics/prescription/toLensData.js";
 import { PrescriptionIngestError } from "../../../src/optics/prescription/canonical.js";
 import { v1CatalogDefaults } from "../../../src/optics/prescription/defaults.js";
 import { withLensDefaults } from "../../../src/optics/prescription/compile.js";
-import { attachTeleconverter } from "../../../src/optics/teleconverter.js";
-import validateLensData from "../../../src/optics/validateLensData.js";
-import { wideOpenStopAtZoom } from "../../../src/optics/apertureStop.js";
-import { doLayout, traceRay } from "../../../src/optics/optics.js";
+import { attachTeleconverter } from "../../../src/optics/prescription/teleconverter.js";
+import validateLensData from "../../../src/optics/prescription/validate/index.js";
+import { wideOpenStopAtZoom } from "../../../src/optics/state/stationTables.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { traceRay } from "../../../src/optics/trace/rayAdapters.js";
 import { computeCardinalElements } from "../../../src/optics/analysis/summary/cardinals.js";
 import { analysisRequestForLens } from "./testLensFixtures.js";
-import { computeFieldGeometryAtState } from "../../../src/optics/fieldGeometry.js";
+import { computeFieldGeometryAtState } from "../../../src/optics/state/fieldAdapters.js";
 import {
   REAR_PLATE_FIXTURE,
   buildRearPlateAirEquivalentLens,

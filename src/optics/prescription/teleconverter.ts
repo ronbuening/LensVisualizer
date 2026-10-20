@@ -17,12 +17,12 @@ import type {
   TeleconverterIncompatibility,
 } from "../../types/teleconverter.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTaxonomy.js";
-import { projectionFieldAngleForImageHeight2, projectionImageHeightForAngle2 } from "../field/projection.js";
-import { buildLabelIndex } from "../prescription/compileLabels.js";
+import { projectionFieldAngleForImageHeight, projectionImageHeightForAngle } from "../field/projection.js";
+import { buildLabelIndex } from "./compileLabels.js";
 import { buildStateSurfaces } from "../state/layout.js";
-import { buildVarIndex } from "../prescription/compileControls.js";
+import { buildVarIndex } from "./compileControls.js";
 import { zoomIndexToT } from "../state/stationTables.js";
-import { traceParaxialSurfaces2 as traceSurfacesParaxial } from "../math/paraxial.js";
+import { traceParaxialSurfaces as traceSurfacesParaxial } from "../math/paraxial.js";
 import { expandRearPlates } from "./rearPlates.js";
 import { isV1File, ingestTeleconverter } from "./ingestV2.js";
 import { canonicalForView } from "./identity.js";
@@ -267,8 +267,8 @@ function infinityFocalLengths(authored: LensData): number[] {
  */
 function narrowRectilinearFieldDeg(fieldDeg: number, ratio: number): number {
   const unit = { kind: "rectilinear" as const, label: "", shortLabel: "", focalScaleMm: 1 };
-  const imageHeight = projectionImageHeightForAngle2(unit, (fieldDeg * Math.PI) / 180);
-  return (projectionFieldAngleForImageHeight2({ ...unit, focalScaleMm: ratio }, imageHeight) * 180) / Math.PI;
+  const imageHeight = projectionImageHeightForAngle(unit, (fieldDeg * Math.PI) / 180);
+  return (projectionFieldAngleForImageHeight({ ...unit, focalScaleMm: ratio }, imageHeight) * 180) / Math.PI;
 }
 
 function narrowProjection(

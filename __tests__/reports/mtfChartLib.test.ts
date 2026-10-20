@@ -4,7 +4,7 @@
  */
 import { describe, expect, it } from "vitest";
 import { correctedSinceAudit } from "../../reports/mtfChartLib.js";
-import buildLens from "../../src/optics/buildLens.js";
+import { buildLens } from "../../src/optics/prescription/buildRuntimeLens.js";
 import type { LensData, SourceErratum } from "../../src/types/optics.js";
 import { FIXTURE_PAIRS } from "../src/optics/prescription/ingestV2Fixtures.js";
 

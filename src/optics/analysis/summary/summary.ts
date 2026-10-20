@@ -3,7 +3,7 @@
  */
 
 import { runtimeView } from "../../prescription/runtimeView.js";
-import { focusDistanceAt } from "../../focusDistance.js";
+import { focusDistanceAt } from "../../state/focusDistance.js";
 
 import { eflAtZoom } from "../../state/stationTables.js";
 import { computeCardinalElements } from "./cardinals.js";
@@ -15,7 +15,7 @@ import type { AnalysisRequest } from "../request.js";
  * Distances are in millimeters unless the property name says meters. Nullable values
  * indicate unavailable or non-finite optics results rather than zero-valued measurements.
  */
-export interface OpticalSummaryMetrics2 {
+export interface OpticalSummaryMetrics {
   currentEFLMm: number | null;
   infinityEFLMm: number | null;
   breathingPercent: number | null;
@@ -52,7 +52,7 @@ export interface OpticalSummaryMetrics2 {
  * @param request - prepared geometry, current EFL, aperture and optional solved field
  * @returns finite/null summary metrics for the analysis drawer
  */
-export function computeOpticalSummary(request: AnalysisRequest): OpticalSummaryMetrics2 {
+export function computeOpticalSummary(request: AnalysisRequest): OpticalSummaryMetrics {
   const { preparedGeometry: state, dynamicEFL, fieldGeometry } = request;
   const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
   const L = runtimeView(state.lens);

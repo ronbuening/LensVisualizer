@@ -8,24 +8,18 @@
  * field geometry as the monochrome off-axis fan.
  */
 import { useMemo } from "react";
-import { createAnalysisRequest, computeLongitudinalChromaticFocus, stateWithZ } from "../../optics/analysis.js";
-import { prepareRuntimeState } from "../../optics/compat.js";
-import { summarizeDispersionQuality } from "../../optics/dispersion.js";
-import {
-  MARGINAL_PUPIL_FRACTIONS,
-  computeChromaticRayFanSpread,
-  offsetVectorFieldRay,
-  traceRayChromatic,
-  traceRayVectorChromatic,
-} from "../../optics/optics.js";
-import {
-  cameraDirectionForDiagramField,
-  tracePerspectiveDiagramFan,
-  type PerspectiveDiagramFan,
-  type PerspectiveDiagramFanSample,
-} from "../../optics/perspective/diagramFan.js";
-import type { PerspectiveTraceContext } from "../../optics/perspective/index.js";
-import { obstructionAwareRayFractionsForDensity } from "../../optics/raySampling.js";
+import { createAnalysisRequest, computeLongitudinalChromaticFocus } from "../../optics/analysis.js";
+import { stateWithZ } from "../../optics/optics.js";
+import { prepareRuntimeState } from "../../optics/optics.js";
+import { summarizeDispersionQuality } from "../../optics/chromatic.js";
+import { MARGINAL_PUPIL_FRACTIONS } from "../../optics/analysis.js";
+import { computeChromaticRayFanSpread } from "../../optics/chromatic.js";
+import { offsetVectorFieldRay } from "../../optics/fieldGeometry.js";
+import { traceRayChromatic, traceRayVectorChromatic } from "../../optics/optics.js";
+import { cameraDirectionForDiagramField, tracePerspectiveDiagramFan } from "../../optics/perspective.js";
+import type { PerspectiveDiagramFan, PerspectiveDiagramFanSample } from "../../optics/perspective.js";
+import type { PerspectiveTraceContext } from "../../optics/perspective.js";
+import { obstructionAwareRayFractionsForDensity } from "../../optics/optics.js";
 import type {
   RuntimeLens,
   ChromaticChannel,

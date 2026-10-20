@@ -6,7 +6,7 @@ import type { Dispatch, ReactNode } from "react";
 import LensDiagramPanel from "../../../../src/components/layout/LensDiagramPanel.js";
 import type { LensAction, LensState } from "../../../../src/types/state.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";
-import type { PerspectiveTraceContext } from "../../../../src/optics/perspective/index.js";
+import type { PerspectiveTraceContext } from "../../../../src/optics/perspective/trace.js";
 import { CATALOG_KEYS } from "../../../../src/utils/catalog/lensCatalog.js";
 import {
   LensDispatchContext,

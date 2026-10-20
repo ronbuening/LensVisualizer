@@ -1,5 +1,5 @@
 import { analysisRequestAt } from "../testLensFixtures.js";
-import { computeBestFocusZ, computeImagePlaneZAtFocus } from "../../../../src/optics/analysis.js";
+import { computeBestFocusZ, computeImagePlaneZAtFocus } from "../../../../src/optics/analysis/aberration/bestFocus.js";
 import { registerRuntimeFixture } from "../testLensFixtures.js";
 import { describe, it, expect } from "vitest";
 import {
@@ -7,24 +7,27 @@ import {
   BOKEH_POINT_COUNT,
   BOKEH_PREVIEW_FIELD_FRACTIONS,
   BOKEH_DENSITY_GRID_SIZE,
-  buildBokehDensityGrid,
+} from "../../../../src/optics/analysis/aberration/types.js";
+import { buildBokehDensityGrid, computeBokehPreviewPair } from "../../../../src/optics/analysis/bokeh/bokeh.js";
+import {
   buildBokehRadialProfile,
   classifyBokehBrightnessCharacter,
-  computeBokehPreviewPair,
+} from "../../../../src/optics/analysis/aberration/radialProfile.js";
+import {
   computeProjectionAwareOffAxisFieldGeometry,
   computeStateAwareOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
-} from "../../../../src/optics/aberrationAnalysis.js";
+} from "../../../../src/optics/analysis/aberration/offAxis.js";
 import { computeBokehPreview, computeBokehFieldFootprint } from "../../../../src/optics/analysis/bokeh/bokeh.js";
 import {
   computeAnalysisFieldGeometryAtState,
   computeFieldGeometryAtState,
-  doLayout,
-  solveChiefRay,
-  traceRay,
-} from "../../../../src/optics/optics.js";
+  solveChiefRayForRuntimeLens as solveChiefRay,
+} from "../../../../src/optics/state/fieldAdapters.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../../src/optics/state/runtimeAdapters.js";
+import { traceRay } from "../../../../src/optics/trace/rayAdapters.js";
 import { computeOffAxisFieldGeometry } from "../../../../src/optics/analysis/aberration/offAxis.js";
-import buildLens from "../../../../src/optics/buildLens.js";
+import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
 import NikonZ135Raw from "../../../../src/lens-data/nikon/NikonZ135f18.data.js";
 import NikonAF28f14DRaw from "../../../../src/lens-data/nikon/NikonAF28f14D.data.js";
 import MinoltaSTFRaw from "../../../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.js";

@@ -1,4 +1,4 @@
-import * as fieldGeometryModule from "../../../src/optics/field/fieldGeometry.js";
+import * as fieldGeometryModule from "../../../src/optics/field/geometry.js";
 import * as rayAdapters from "../../../src/optics/trace/rayAdapters.js";
 import { computeChiefRaySolve, solveChiefRayBoundingSphere } from "../../../src/optics/field/chiefRaySolve.js";
 import { computeBoundingSphereVectorFieldLaunch } from "../../../src/optics/field/launch.js";
@@ -12,20 +12,23 @@ import {
 } from "../../../src/optics/field/imageHeight.js";
 import { chiefRayCacheKey } from "../../../src/optics/field/chiefRayCache.js";
 import { solveChiefRay as solvePreparedChiefRay } from "../../../src/optics/field/chiefRaySolve.js";
-import { computeFieldGeometry as computePreparedFieldGeometry } from "../../../src/optics/field/fieldGeometry.js";
+import { computeFieldGeometry as computePreparedFieldGeometry } from "../../../src/optics/field/geometry.js";
 import { reportChiefRayFallback } from "../../../src/optics/diagnostics/chiefRay.js";
 import { prepareStateUncached } from "../../../src/optics/state/preparedGeometry.js";
 import { buildSimplePositiveElementLens } from "./testLensFixtures.js";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { compiledLensFromRuntime } from "../../../src/optics/prescription/compile.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import { computeFieldGeometryAtState, solveChiefRay } from "../../../src/optics/fieldGeometry.js";
+import { compiledLensFromRuntime } from "../../../src/optics/prescription/identity.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import {
+  computeFieldGeometryAtState,
+  solveChiefRayForRuntimeLens as solveChiefRay,
+} from "../../../src/optics/state/fieldAdapters.js";
 import {
   ABSOLUTE_HALF_FIELD_CEILING,
   MAX_FIELD_LAUNCH_DEG,
   projectionLaunchSlopeForField,
-} from "../../../src/optics/projection.js";
-import { getChiefRayDiagnostics, resetChiefRayDiagnostics } from "../../../src/optics/chiefRayDiagnostics.js";
+} from "../../../src/optics/field/projection.js";
+import { getChiefRayDiagnostics, resetChiefRayDiagnostics } from "../../../src/optics/diagnostics/chiefRay.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 const RECTILINEAR_FIXTURE = "nokton-50f1";

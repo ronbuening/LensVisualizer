@@ -1,5 +1,5 @@
 import { memo } from "react";
-import type { CardinalElements, CardinalDistance, CardinalPoint } from "../../optics/cardinalElements.js";
+import type { CardinalElements, CardinalDistance, CardinalPoint } from "../../optics/analysis.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 

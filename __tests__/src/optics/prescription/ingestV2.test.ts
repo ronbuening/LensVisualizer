@@ -23,7 +23,7 @@ import {
   sha256Hex,
 } from "../../../../src/benchmarks/engineDiff/payload.js";
 import { CHROMATIC_CHANNELS, tierRequests } from "../../../../src/benchmarks/engineDiff/requests.js";
-import buildLens from "../../../../src/optics/buildLens.js";
+import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
 import { FLAT_R_THRESHOLD } from "../../../../src/optics/geometry/surfaceProfile.js";
 import { PrescriptionIngestError, lensDataStopRadiusAuthority } from "../../../../src/optics/prescription/canonical.js";
 import { ELEMENT_SCHEMA_DEFAULTS, LENS_SCHEMA_DEFAULTS } from "../../../../src/optics/prescription/defaults.js";

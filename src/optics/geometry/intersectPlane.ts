@@ -2,7 +2,7 @@
  * Plane geometry helpers shared by exact tracing and perspective-control adapters.
  */
 
-import { INTERSECTION_TOLERANCE } from "../constants.js";
+import { INTERSECTION_TOLERANCE } from "../math/constants.js";
 import { dot, subtract } from "../math/vector.js";
 import type { Plane3, Ray3, Vec3 } from "../types.js";
 import { planeResidualRoundoff } from "./intersectTolerance.js";

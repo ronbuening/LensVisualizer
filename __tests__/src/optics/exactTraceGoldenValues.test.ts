@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../src/optics/buildLens.js";
-import { solveChiefRay } from "../../../src/optics/fieldGeometry.js";
-import { doLayout, traceRay, traceRayChromatic, traceRayVector, traceSkewRay } from "../../../src/optics/optics.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { solveChiefRayForRuntimeLens as solveChiefRay } from "../../../src/optics/state/fieldAdapters.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { traceRay, traceRayChromatic, traceRayVector, traceSkewRay } from "../../../src/optics/trace/rayAdapters.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 

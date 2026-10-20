@@ -28,7 +28,7 @@ interface CoordTransformParams {
  * @param params - viewport dimensions, optical scale, image-plane span, and optional z extent
  * @returns SVG transform callbacks plus effective scale and viewport anchors
  */
-export function createCoordinateTransforms2({
+export function createCoordinateTransforms({
   svgW,
   svgH,
   SC,

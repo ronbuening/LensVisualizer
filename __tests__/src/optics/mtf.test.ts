@@ -10,31 +10,28 @@ import {
   teleconverterFixture,
   teleconverterHostData,
 } from "./testLensFixtures.js";
-import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { assessMtfSupport } from "../../../src/optics/analysis/mtf/mtfSupport.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
 import type { FiniteConjugate } from "../../../src/types/optics.js";
-import { LINE_NM } from "../../../src/optics/spectralLines.js";
+import { LINE_NM } from "../../../src/optics/chromatic/spectralLines.js";
 import { geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtf/mtfMath.js";
-import { assessMtfDataLimitations, computeMtf } from "../../../src/optics/mtf.js";
+import { assessMtfDataLimitations } from "../../../src/optics/analysis/mtf/mtfDataLimitations.js";
+import { computeMtf } from "../../../src/optics/analysis/mtf/mtf.js";
 import { attachTeleconverter } from "../../../src/optics/prescription/teleconverter.js";
 import {
   findMtfFieldFootprint,
   mtfLaunchGrid,
   mtfLaunchRay,
-  mtfTraceClassification,
   mtfTraceOptions,
   prepareMtfFieldLaunch,
   traceMtfBundle,
   traceMtfFieldPupil,
-  type MtfBundle,
 } from "../../../src/optics/analysis/mtf/mtfTracing.js";
-import {
-  assessUnresolvedFlux,
-  emptyMtfField,
-  refineMtfField,
-  type MtfGridOutcome,
-} from "../../../src/optics/analysis/mtf/mtf.js";
+import { mtfTraceClassification } from "../../../src/optics/analysis/mtf/mtfRayClassification.js";
+import type { MtfBundle } from "../../../src/optics/analysis/mtf/mtfTracing.js";
+import { assessUnresolvedFlux, emptyMtfField, refineMtfField } from "../../../src/optics/analysis/mtf/mtf.js";
+import type { MtfGridOutcome } from "../../../src/optics/analysis/mtf/mtf.js";
 import {
   mtfBeamHeight,
   mtfChiefHeight,
@@ -51,7 +48,7 @@ import { findMtfFootprint } from "../../../src/optics/analysis/mtf/mtfFootprint.
 import type { MtfRayClass } from "../../../src/optics/analysis/mtf/mtfRayClassification.js";
 import { MTF_MAX_UNKNOWN_FLUX } from "../../../src/optics/analysis/mtf/mtfConstants.js";
 import type { EngineTraceResult } from "../../../src/optics/trace/types.js";
-import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
+import { traceEngineRay } from "../../../src/optics/trace/rayAdapters.js";
 
 const FINITE_CONJUGATE: FiniteConjugate = {
   focusT: 1,
@@ -157,7 +154,7 @@ describe("geometric MTF", () => {
       ],
     });
     const state = prepareRuntimeState(lens, 0, 0);
-    const miss = traceEngineRay2(
+    const miss = traceEngineRay(
       state,
       { origin: [8, 0, -10], direction: [0, 0, 1] },
       {
@@ -397,7 +394,7 @@ describe("MTF pupil footprint", () => {
     for (let row = -pad; row < grid.rows + pad; row++)
       for (let column = -pad; column < grid.columns + pad; column++) {
         const ray = mtfLaunchRay(launch, grid.x0 + (column + 0.5) * grid.step, grid.y0 + (row + 0.5) * grid.step);
-        const trace = traceEngineRay2(state, ray, traceOptions);
+        const trace = traceEngineRay(state, ray, traceOptions);
         if (mtfTraceClassification(trace, state, options.stopSemiDiameterMm) === "valid") reference++;
       }
     expect(reference * grid.step ** 2).toBeGreaterThan(1.1 * axial);

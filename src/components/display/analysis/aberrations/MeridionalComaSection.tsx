@@ -1,6 +1,6 @@
 import { AberrationValueDisplay } from "../analysisUi.js";
 import MeridionalComaPlot from "../MeridionalComaPlot.js";
-import type { MeridionalComaResult } from "../../../../optics/aberrationAnalysis.js";
+import type { MeridionalComaResult } from "../../../../optics/analysis.js";
 import type { Theme } from "../../../../types/theme.js";
 import { formatComaSpanUm } from "./format.js";
 import SectionHeader from "./SectionHeader.js";

@@ -5,20 +5,18 @@
  */
 
 import { prepareEngineTrace } from "../trace/rayAdapters.js";
-import { traceToStopViaGeneralized2 } from "../trace/stopTrace.js";
+import { traceToStopViaGeneralized } from "../trace/stopTrace.js";
 import type { PreparedGeometry, Ray3, Vec3 } from "../types.js";
 import { chiefRayCacheKey, getCachedChiefRaySolve, setCachedChiefRaySolve } from "./chiefRayCache.js";
-import {
-  computeBoundingSphereVectorFieldLaunch,
-  type FieldGeometryState2,
-  type VectorFieldRayLaunch2,
-} from "./launch.js";
-import { launchSurfaceForFieldDeg2, projectionLaunchSlopeForField2, type LaunchSurface2 } from "./projection.js";
+import { computeBoundingSphereVectorFieldLaunch } from "./launch.js";
+import type { FieldGeometryState, VectorFieldRayLaunch } from "./launch.js";
+import { launchSurfaceForFieldDeg, projectionLaunchSlopeForField } from "./projection.js";
+import type { LaunchSurface } from "./projection.js";
 import type { ChromaticChannel } from "../../types/optics.js";
-import { CHROMATIC_CHANNEL_WAVELENGTH_NM } from "../constants.js";
+import { CHROMATIC_CHANNEL_WAVELENGTH_NM } from "../chromatic/channels.js";
 import { reportChiefRayFallback } from "../diagnostics/chiefRay.js";
 import type { TraceOptions } from "../trace/types.js";
-import { computeFieldGeometry, prepareStateSurfacesReal } from "./fieldGeometry.js";
+import { computeFieldGeometry, prepareStateSurfacesReal } from "./geometry.js";
 
 const CHIEF_RAY_MAX_ITERATIONS = 30;
 const CHIEF_RAY_BRACKET_EPSILON = 1e-9;
@@ -35,13 +33,13 @@ const SEEDED_CHIEF_RAY_BRACKET_ATTEMPTS = 4;
  * `yLaunch` is kept for scalar compatibility at z=0. Vector-aware callers should
  * prefer `vectorLaunch` when present, especially for fisheye/bounding-sphere fields.
  */
-export interface ChiefRaySolveResult2 {
+export interface ChiefRaySolveResult {
   yLaunch: number;
   uField: number;
   status: "converged" | "paraxial-fallback" | "bracket-failed" | "out-of-domain";
   iterations: number;
-  launchSurface: LaunchSurface2;
-  vectorLaunch?: VectorFieldRayLaunch2;
+  launchSurface: LaunchSurface;
+  vectorLaunch?: VectorFieldRayLaunch;
 }
 
 interface ChiefRayBracket {
@@ -60,8 +58,8 @@ function refineChiefRayBracket(
   heightAtStop: (launch: number) => number | null,
   bracket: ChiefRayBracket,
   paraxialLaunch: number,
-): Pick<ChiefRaySolveResult2, "yLaunch" | "status" | "iterations"> {
-  const refine = (secant: boolean): Pick<ChiefRaySolveResult2, "yLaunch" | "status" | "iterations"> => {
+): Pick<ChiefRaySolveResult, "yLaunch" | "status" | "iterations"> {
+  const refine = (secant: boolean): Pick<ChiefRaySolveResult, "yLaunch" | "status" | "iterations"> => {
     let { lo, hi, yLo: fLo, yHi: fHi } = bracket;
     let side = 0;
     for (let i = 0; i < CHIEF_RAY_MAX_ITERATIONS; i++) {
@@ -109,10 +107,10 @@ function refineChiefRayBracket(
 export function solveChiefRay(
   state: PreparedGeometry,
   { fieldAngleDeg, geometry, channel }: ChiefRayRequest,
-): ChiefRaySolveResult2 {
+): ChiefRaySolveResult {
   const cacheKey = chiefRayCacheKey(
     fieldAngleDeg,
-    launchSurfaceForFieldDeg2(fieldAngleDeg, state.lens.projection.config),
+    launchSurfaceForFieldDeg(fieldAngleDeg, state.lens.projection.config),
     channel,
   );
   const cached = getCachedChiefRaySolve(state, cacheKey);
@@ -138,8 +136,8 @@ export function solveChiefRay(
 export function solveChiefRayBoundingSphere(
   state: PreparedGeometry,
   { fieldAngleDeg, geometry, channel }: ChiefRayRequest,
-): ChiefRaySolveResult2 {
-  const launchSurface: LaunchSurface2 = "bounding-sphere";
+): ChiefRaySolveResult {
+  const launchSurface: LaunchSurface = "bounding-sphere";
   const geom = geometry ?? computeFieldGeometry(state);
   const epZ = geom.epRatio;
   const baseLaunch = computeBoundingSphereVectorFieldLaunch(state, {
@@ -178,7 +176,7 @@ export function solveChiefRayBoundingSphere(
     const origin: Vec3 = [baseOrigin[0], baseOrigin[1] + yEP * perpY, baseOrigin[2] + yEP * perpZ];
     const ray: Ray3 = { origin, direction };
     if (state.lens.flags.isFoldedOptics) {
-      const result = traceToStopViaGeneralized2(state, ray, stopIndex, stopOptions);
+      const result = traceToStopViaGeneralized(state, ray, stopIndex, stopOptions);
       if (!result.found) return null;
       return result.y;
     }
@@ -187,7 +185,7 @@ export function solveChiefRayBoundingSphere(
     return result.y;
   };
 
-  const launchAtYEP = (yEP: number): VectorFieldRayLaunch2 => ({
+  const launchAtYEP = (yEP: number): VectorFieldRayLaunch => ({
     ...baseLaunch,
     origin: [baseOrigin[0], baseOrigin[1] + yEP * perpY, baseOrigin[2] + yEP * perpZ],
   });
@@ -278,12 +276,12 @@ export function solveChiefRayBoundingSphere(
 export function computeChiefRaySolve(
   state: PreparedGeometry,
   { fieldAngleDeg, geometry, channel }: ChiefRayRequest,
-): ChiefRaySolveResult2 {
-  const launchSurface = launchSurfaceForFieldDeg2(fieldAngleDeg, state.lens.projection.config);
+): ChiefRaySolveResult {
+  const launchSurface = launchSurfaceForFieldDeg(fieldAngleDeg, state.lens.projection.config);
   if (launchSurface === "bounding-sphere") {
     return solveChiefRayBoundingSphere(state, { fieldAngleDeg, geometry, channel });
   }
-  const launch = projectionLaunchSlopeForField2({ projection: state.lens.projection.config }, fieldAngleDeg);
+  const launch = projectionLaunchSlopeForField({ projection: state.lens.projection.config }, fieldAngleDeg);
   if (launch.status === "out-of-domain") {
     return { yLaunch: NaN, uField: NaN, status: "out-of-domain", iterations: 0, launchSurface };
   }
@@ -376,14 +374,14 @@ export function computeChiefRaySolve(
  */
 export function solveChiefRayFromSeed(
   state: PreparedGeometry,
-  { fieldAngleDeg, seed }: { fieldAngleDeg: number; seed: ChiefRaySolveResult2 },
-): ChiefRaySolveResult2 | null {
+  { fieldAngleDeg, seed }: { fieldAngleDeg: number; seed: ChiefRaySolveResult },
+): ChiefRaySolveResult | null {
   if (
     Math.abs(fieldAngleDeg) < 1 ||
-    launchSurfaceForFieldDeg2(fieldAngleDeg, state.lens.projection.config) !== "object-plane"
+    launchSurfaceForFieldDeg(fieldAngleDeg, state.lens.projection.config) !== "object-plane"
   )
     return null;
-  const launch = projectionLaunchSlopeForField2({ projection: state.lens.projection.config }, fieldAngleDeg);
+  const launch = projectionLaunchSlopeForField({ projection: state.lens.projection.config }, fieldAngleDeg);
   if (launch.status === "out-of-domain" || !(Math.abs(seed.uField) > 0)) return null;
   const uField = launch.uField;
   const stopIndex = state.lens.stop.surfaceIndex;
@@ -392,7 +390,7 @@ export function solveChiefRayFromSeed(
     const result = traceStop(yLaunch, uField);
     return Number.isFinite(result.y) ? result.y : null;
   };
-  const converged = (yLaunch: number, iterations: number): ChiefRaySolveResult2 => ({
+  const converged = (yLaunch: number, iterations: number): ChiefRaySolveResult => ({
     yLaunch,
     uField,
     status: "converged",
@@ -445,7 +443,7 @@ export function solveChiefRayFromSeed(
  */
 export function solvesChiefRay(
   state: PreparedGeometry,
-  { fieldAngleDeg, geometry }: { fieldAngleDeg: number; geometry: FieldGeometryState2 },
+  { fieldAngleDeg, geometry }: { fieldAngleDeg: number; geometry: FieldGeometryState },
 ): boolean {
   const solve = computeChiefRaySolve(state, { fieldAngleDeg, geometry });
   return solve.status === "converged" && !solve.vectorLaunch;
@@ -454,7 +452,7 @@ export function solvesChiefRay(
 /** Controls that vary between chief solves on one prepared geometry. */
 export interface ChiefRayRequest {
   fieldAngleDeg: number;
-  geometry?: FieldGeometryState2;
+  geometry?: FieldGeometryState;
   channel?: ChromaticChannel;
 }
 

@@ -6,8 +6,11 @@ const repoRoot = process.cwd();
 const srcRoot = path.join(repoRoot, "src");
 const generatedDocNames = new Set(["readme.md", "improvementsuggestions.md"]);
 const skippedDocSubtrees = new Set(["src/generated", "src/lens-data", "src/mounts"]);
-const largeFileWarningExcludedFiles = new Set(["src/optics/glassCatalogData.ts", "src/utils/content/changelogData.ts"]);
-const largeFileWarningExcludedSubtrees = new Set(["src/optics/glassCatalogEntries"]);
+const largeFileWarningExcludedFiles = new Set([
+  "src/optics/chromatic/glassCatalogData.ts",
+  "src/utils/content/changelogData.ts",
+]);
+const largeFileWarningExcludedSubtrees = new Set(["src/optics/chromatic/glassCatalogEntries"]);
 const sourceExtensions = new Set([".ts", ".tsx", ".json", ".md", ".template"]);
 const codeExtensions = new Set([".ts", ".tsx"]);
 const moduleExtensions = [".ts", ".tsx", ".d.ts", ".json", ".md"];

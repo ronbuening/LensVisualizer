@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { normalize as normalizeVector3 } from "../../../../src/optics/math/vector.js";
-import type { SurfaceIntersectionOptions } from "../../../../src/optics/geometry/intersect.js";
+import type { SurfaceIntersectionOptions } from "../../../../src/optics/geometry/intersectTypes.js";
 import type { Ray3 as SurfaceIntersectionRay } from "../../../../src/optics/types.js";
-import { INTERSECTION_MAX_ITERATIONS } from "../../../../src/optics/constants.js";
+import { INTERSECTION_MAX_ITERATIONS } from "../../../../src/optics/math/constants.js";
 import { conicPolySag, createSurfaceProfile, sag } from "../../../../src/optics/geometry/surfaceProfile.js";
 import { intersectSurfaceProfile, seedAsphereSolve } from "../../../../src/optics/geometry/intersect.js";
 import { traceFixtureVector } from "../traceGeometryFixtures.js";

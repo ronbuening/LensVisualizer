@@ -11,17 +11,14 @@ import { evenlySpacedSigned } from "../../analysis/sampling.js";
 import type { AnalysisRequest } from "../../analysis/request.js";
 import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
 import type { Vec3 } from "../../types.js";
-import {
-  sampleSceneLockedFields,
-  zeroPoseSceneDirectionForSensorUv,
-  type FieldSample,
-  type PerspectiveFieldSamplingOptions,
-  type PerspectiveFieldStatus,
-  type SensorUv,
-} from "../fieldSampling.js";
+import { sampleSceneLockedFields, zeroPoseSceneDirectionForSensorUv } from "../fieldSampling.js";
+import type { FieldSample, PerspectiveFieldSamplingOptions } from "../fieldTypes.js";
+import type { PerspectiveFieldStatus } from "../chiefRay.js";
+import type { SensorUv } from "../fieldGeometry.js";
 import type { PerspectiveTraceContext } from "../trace.js";
 import { sensorPointForUv } from "../fieldGeometry.js";
-import { sensorFrameDisplacement, type SensorFrameDisplacement } from "./shared.js";
+import { sensorFrameDisplacement } from "./shared.js";
+import type { SensorFrameDisplacement } from "./shared.js";
 
 const DEFAULT_VERTICAL_SAMPLE_COUNT = 17;
 const DEFAULT_GRID_COORDINATES = [-1, -0.5, 0, 0.5, 1] as const;

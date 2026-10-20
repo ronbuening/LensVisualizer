@@ -1,15 +1,11 @@
 import { describe, expect, it } from "vitest";
-import {
-  doLayout,
-  eflAtZoom,
-  renderSag,
-  sagSlope,
-  slopeTrimHeight,
-  xpAtZoom,
-  xpZRelLastSurfAtZoom,
-} from "../../../src/optics/layout.js";
+import { doLayout } from "../../../src/optics/state/layout.js";
+import { eflAtZoom, xpAtZoom, xpZRelLastSurfAtZoom } from "../../../src/optics/state/stationTables.js";
+import { renderSag, sagSlope, slopeTrimHeight } from "../../../src/optics/diagram/runtimeSurface.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
-import { effectiveFNumber, eflAtFocus, doLayout as preparedLayout } from "../../../src/optics/optics.js";
+import { effectiveFNumber } from "../../../src/optics/first-order/fNumber.js";
+import { eflAtFocus } from "../../../src/optics/first-order/focusBreathing.js";
+import { doLayoutForRuntimeLens as preparedLayout } from "../../../src/optics/state/runtimeAdapters.js";
 import { buildSimplePositiveElementLens, buildFoldedTirLens, registerRuntimeFixture } from "./testLensFixtures.js";
 
 describe("layout facade edge cases", () => {

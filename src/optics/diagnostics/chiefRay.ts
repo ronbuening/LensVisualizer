@@ -1,16 +1,16 @@
 /** Chief-ray diagnostics — bounded status snapshots keyed by compiled prescription identity. */
 
 import type { CompiledLens, PreparedGeometry } from "../types.js";
-import type { ChiefRaySolveResult2 } from "../field/chiefRaySolve.js";
+import type { ChiefRaySolveResult } from "../field/chiefRaySolve.js";
 
 /** Status categories emitted by chief-ray solving. */
-export type ChiefRayStatus2 = ChiefRaySolveResult2["status"];
+export type ChiefRayStatus = ChiefRaySolveResult["status"];
 /** Status counters for one compiled prescription. */
-export type ChiefRayDiagnostics2 = Record<ChiefRayStatus2, number>;
+export type ChiefRayDiagnostics = Record<ChiefRayStatus, number>;
 
 // Audits can enumerate a catalog-sized snapshot without retaining every compiled revision forever.
 const DIAGNOSTIC_LENS_LIMIT = 2048;
-const DIAGNOSTICS = new Map<CompiledLens, ChiefRayDiagnostics2>();
+const DIAGNOSTICS = new Map<CompiledLens, ChiefRayDiagnostics>();
 
 /**
  * Count an uncached solve and report unexpected failures in development.
@@ -18,7 +18,7 @@ const DIAGNOSTICS = new Map<CompiledLens, ChiefRayDiagnostics2>();
  * @param fieldAngleDeg - signed field angle in degrees
  * @param status - solver outcome
  */
-export function reportChiefRayFallback(state: PreparedGeometry, fieldAngleDeg: number, status: ChiefRayStatus2): void {
+export function reportChiefRayFallback(state: PreparedGeometry, fieldAngleDeg: number, status: ChiefRayStatus): void {
   const lens = state.lens;
   const counts = DIAGNOSTICS.get(lens) ?? {
     converged: 0,
@@ -43,11 +43,11 @@ export function reportChiefRayFallback(state: PreparedGeometry, fieldAngleDeg: n
  * Return defensive copies of the retained counters, without merging equal catalog keys.
  * @returns status counts keyed by compiled identity
  */
-export function getChiefRayDiagnostics2(): Map<CompiledLens, ChiefRayDiagnostics2> {
+export function getChiefRayDiagnostics(): Map<CompiledLens, ChiefRayDiagnostics> {
   return new Map(Array.from(DIAGNOSTICS, ([lens, counts]) => [lens, { ...counts }]));
 }
 
 /** Clear diagnostic counters; memoized solves remain available. */
-export function resetChiefRayDiagnostics2(): void {
+export function resetChiefRayDiagnostics(): void {
   DIAGNOSTICS.clear();
 }

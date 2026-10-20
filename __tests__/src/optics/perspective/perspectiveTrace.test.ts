@@ -1,12 +1,10 @@
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
-import {
-  createPerspectiveTraceContext,
-  type PerspectiveTraceContext,
-} from "../../../../src/optics/perspective/trace.js";
+import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
+import { createPerspectiveTraceContext } from "../../../../src/optics/perspective/trace.js";
+import type { PerspectiveTraceContext } from "../../../../src/optics/perspective/trace.js";
 import { createSensorBasis } from "../../../../src/optics/perspective/sensorBasis.js";
-import { traceEngineRay2 } from "../../../../src/optics/trace/rayAdapters.js";
+import { traceEngineRay } from "../../../../src/optics/trace/rayAdapters.js";
 import { stateWithZ } from "../../../../src/optics/state/preparedGeometry.js";
 import type { Plane3, Ray3, Vec3 } from "../../../../src/optics/types.js";
 import type { TiltPivot } from "../../../../src/types/optics.js";
@@ -38,7 +36,7 @@ describe("perspective trace foundation", () => {
     const context = createPerspectiveTraceContext({ preparedState: state, movement: ZERO_MOVEMENT });
     const input = axialInput(state.z[0]);
     const options = { checkSemiDiameter: true, stopSemiDiameter: L.stopPhysSD, stopOnClip: true } as const;
-    const direct = traceEngineRay2(state, input, options);
+    const direct = traceEngineRay(state, input, options);
     const result = context.traceRay(input, options);
 
     expect(result.localTrace.status).toBe("ok");
@@ -112,8 +110,8 @@ describe("perspective trace foundation", () => {
     const input = axialInput(state.z[0]);
     const options = { checkSemiDiameter: true, stopSemiDiameter: L.stopPhysSD } as const;
     const result = context.traceRay(input, options);
-    const directLocal = traceEngineRay2(state, context.pose.cameraToLensRay(input), options);
-    const centered = traceEngineRay2(state, input, options);
+    const directLocal = traceEngineRay(state, context.pose.cameraToLensRay(input), options);
+    const centered = traceEngineRay(state, input, options);
 
     expect(result.localTrace.hits).toEqual(directLocal.hits);
     expect(result.localTrace.hits[0].radius).not.toBeCloseTo(centered.hits[0].radius, 4);

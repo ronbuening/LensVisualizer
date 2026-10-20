@@ -1,15 +1,11 @@
 import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
-import {
-  doLayout,
-  skewImagePlaneIntercept,
-  traceChiefRelativeSkewRay,
-  traceRay,
-  traceSkewRay,
-} from "../../../src/optics/optics.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { skewImagePlaneIntercept, traceRay, traceSkewRay } from "../../../src/optics/trace/rayAdapters.js";
+import { traceChiefRelativeSkewRay } from "../../../src/optics/trace/chiefRelative.js";
 import { bulkTransmissionForTrace } from "../../../src/optics/trace/bulkAbsorption.js";
 import type { CompiledLens } from "../../../src/optics/types.js";
-import { compiledLensFromRuntime } from "../../../src/optics/prescription/compile.js";
+import { compiledLensFromRuntime } from "../../../src/optics/prescription/identity.js";
 import { transmissionTraceCapture } from "../../../src/optics/trace/bulkAbsorption.js";
 import { build, buildSimplePositiveElementLens } from "./testLensFixtures.js";
 

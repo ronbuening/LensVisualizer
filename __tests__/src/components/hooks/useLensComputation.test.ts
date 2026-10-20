@@ -3,10 +3,10 @@
 import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useLensComputation from "../../../../src/components/hooks/useLensComputation.js";
-import { wideOpenStopAtZoom } from "../../../../src/optics/apertureStop.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
-import { traceEngineRay2 } from "../../../../src/optics/trace/rayAdapters.js";
-import buildLens from "../../../../src/optics/buildLens.js";
+import { wideOpenStopAtZoom } from "../../../../src/optics/state/stationTables.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
+import { traceEngineRay } from "../../../../src/optics/trace/rayAdapters.js";
+import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import { buildVariableStopGapLens } from "../../optics/testLensFixtures.js";
 import { ALL_TELECONVERTER_KEYS, resolveTeleconverterKey } from "../../../../src/utils/catalog/teleconverterCatalog.js";
@@ -265,7 +265,7 @@ describe("useLensComputation", () => {
       radii.push(r.currentPhysStopSD);
       expect(r.fNumber).toBeCloseTo(2.92, 8);
       const state = prepareRuntimeState(r.L!, 0, zoomT);
-      const ray = traceEngineRay2(
+      const ray = traceEngineRay(
         state,
         { origin: [0, r.dynamicEFL / (2 * 2.92), -10], direction: [0, 0, 1] },
         { checkSemiDiameter: true },

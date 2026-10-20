@@ -118,7 +118,7 @@ Illinois refinement. S6.P2.T2 deliberately retained that bracket choice to prese
 - **Reference to mimic** — `refineChiefRayBracket` in `field/chiefRaySolve.ts`, which retains
   the legacy first midpoint and fallback replay; preserve the architecture's launch-path dispatch.
 - **Data-type contract** — `PreparedGeometry` (`src/optics/types.ts`) plus field/options →
-  `ChiefRaySolveResult2` (`field/chiefRaySolve.ts`): launch height, status, iterations, launch
+  `ChiefRaySolveResult` (`field/chiefRaySolve.ts`): launch height, status, iterations, launch
   surface and optional vector launch. Stop residual acceptance stays `< 1e-7 mm`.
 - **Steps** — (1) reproduce the fresh bracket failure and separate scan/refinement traces;
   (2) evaluate bracket-search alternatives against multi-root fixtures and the corpus;
@@ -146,10 +146,10 @@ S6.P2.T3 keeps that replay so their fallback results remain bit-identical.
 
 - **Files to touch** — **modified**: `src/optics/field/imageHeight.ts`,
   `__tests__/src/optics/chiefRaySolver.test.ts`.
-- **Reference to mimic** — `solveFieldAngleForImageHeightLookup2` and its legacy replay in
+- **Reference to mimic** — `solveFieldAngleForImageHeightLookup` and its legacy replay in
   `field/imageHeight.ts`; retain per-target validation in `invertChiefRayImageHeights`.
 - **Data-type contract** — the lookup solver takes a target height in mm and
-  `AccurateFieldHeightLookup2` (angles, heights and trace callbacks), returning degrees or `null`;
+  `AccurateFieldHeightLookup` (angles, heights and trace callbacks), returning degrees or `null`;
   `ImageHeightInversionResult` in the same file distinguishes reached/unreachable with a reason.
   Example target: `21.65` mm; success still requires image-height error `< 1e-4 mm`.
 - **Steps** — (1) reproduce the three 48-call cases and identify the unbracketable jump;

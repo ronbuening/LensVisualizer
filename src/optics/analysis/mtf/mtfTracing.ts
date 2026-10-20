@@ -4,14 +4,15 @@ import { runtimeView } from "../../prescription/runtimeView.js";
 import type { MtfOptions, MtfSpectralLine, MtfSupport } from "../../../types/mtf.js";
 import type { PreparedGeometry, Ray3, Vec3 } from "../../types.js";
 import type { EngineTraceResult, TraceOptions } from "../../trace/types.js";
-import { solveChiefRay2 } from "../../state/fieldAdapters.js";
+import { solveChiefRayForRuntimeLens } from "../../state/fieldAdapters.js";
 import { solveScalarRoot } from "../../math/rootSolve.js";
-import { prepareEngineTrace, traceEngineRay2 } from "../../trace/rayAdapters.js";
+import { prepareEngineTrace, traceEngineRay } from "../../trace/rayAdapters.js";
 import { bulkTransmissionForTrace } from "../../trace/bulkAbsorption.js";
 import { anchoredIndexTable } from "../../chromatic/indexResolver.js";
 import type { MtfSpot } from "./mtfMath.js";
 import { mtfFiniteObjectPoint } from "./mtfConjugates.js";
-import { findMtfFootprint, type MtfFootprint } from "./mtfFootprint.js";
+import { findMtfFootprint } from "./mtfFootprint.js";
+import type { MtfFootprint } from "./mtfFootprint.js";
 import { mtfTraceClassification } from "./mtfRayClassification.js";
 
 export { mtfTraceClassification } from "./mtfRayClassification.js";
@@ -193,7 +194,7 @@ export function prepareMtfFieldLaunch(
   fieldAngleDeg: number,
 ): MtfFieldLaunch | null {
   const constants = state.lens.constants;
-  const chief = solveChiefRay2(
+  const chief = solveChiefRayForRuntimeLens(
     fieldAngleDeg,
     state.focusT,
     state.zoomT,
@@ -344,7 +345,7 @@ export function traceMtfBundle(
   // The chief is a geometric reference, not a pupil sample: trace it through every surface even
   // when an aperture clips it, and record the clipping separately.
   const chiefRay = mtfLaunchRay(launch, 0, 0);
-  const chiefTrace = traceEngineRay2(state, chiefRay, { ...traceOptions, checkSemiDiameter: false, stopOnClip: false });
+  const chiefTrace = traceEngineRay(state, chiefRay, { ...traceOptions, checkSemiDiameter: false, stopOnClip: false });
   // A clipped chief runs over surface zones beyond their rims, where another wavelength can lose it.
   const chiefPoint = mtfImagePoint(state, chiefTrace, imagePlaneZ) ?? extras.reference;
   if (!chiefPoint) return null;

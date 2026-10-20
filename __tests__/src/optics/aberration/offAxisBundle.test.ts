@@ -9,8 +9,9 @@ import {
   traceOrthogonalOffAxisBundle,
   transverseFocusHitsForDirection,
 } from "../../../../src/optics/analysis/aberration/offAxis.js";
-import { DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES, doLayout } from "../../../../src/optics/optics.js";
-import buildLens from "../../../../src/optics/buildLens.js";
+import { DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES } from "../../../../src/optics/analysis/sampling.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../../src/optics/state/runtimeAdapters.js";
+import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import { apertureAt, sharedApoLanthar50f2 } from "../testLensFixtures.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";

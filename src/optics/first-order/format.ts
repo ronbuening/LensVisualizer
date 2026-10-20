@@ -4,9 +4,9 @@
  * Kept in the pure optics layer so analysis displays share unit conventions without importing React components.
  */
 
-import { focusDistanceAt } from "./focusDistance.js";
-import type { RuntimeLens } from "../types/optics.js";
-import { FOCUS_INFINITY_CUTOFF } from "./layout.js";
+import { focusDistanceAt } from "../state/focusDistance.js";
+import type { RuntimeLens } from "../../types/optics.js";
+import { FOCUS_INFINITY_CUTOFF } from "../state/focusDistance.js";
 
 /**
  * Format an f-number as the aperture control shows it: hundredth-stop patent apertures keep their

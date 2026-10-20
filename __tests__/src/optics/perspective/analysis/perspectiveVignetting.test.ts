@@ -1,21 +1,19 @@
 import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
+import { buildLens } from "../../../../../src/optics/prescription/buildRuntimeLens.js";
+import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
 import {
   computePerspectiveVignettingAnalysis,
-  createAreaWeightedCircularPupilPoints,
   integratePerspectiveVignettingRays,
   perspectiveExitPupilPlane,
   perspectiveRayGeometricFactor,
   perspectiveVignettingRayContribution,
-  type PerspectiveVignettingRayContribution,
 } from "../../../../../src/optics/perspective/analysis/vignetting.js";
+import { createAreaWeightedCircularPupilPoints } from "../../../../../src/optics/perspective/analysis/shared.js";
+import type { PerspectiveVignettingRayContribution } from "../../../../../src/optics/perspective/analysis/vignetting.js";
 import { dot, subtract } from "../../../../../src/optics/math/vector.js";
-import {
-  createPerspectiveTraceContext,
-  type PerspectiveTraceContext,
-} from "../../../../../src/optics/perspective/trace.js";
+import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
+import type { PerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
 import { LENS_CATALOG } from "../../../../../src/utils/catalog/lensCatalog.js";
 
 const L = buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]);

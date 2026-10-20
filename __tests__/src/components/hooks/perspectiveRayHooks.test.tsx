@@ -7,7 +7,7 @@ import useOffAxisRays from "../../../../src/components/hooks/useOffAxisRays.js";
 import useOnAxisRays from "../../../../src/components/hooks/useOnAxisRays.js";
 import useRayTracing from "../../../../src/components/hooks/useRayTracing.js";
 import type { PerspectiveDiagramFan } from "../../../../src/optics/perspective/diagramFan.js";
-import type { PerspectiveTraceContext } from "../../../../src/optics/perspective/index.js";
+import type { PerspectiveTraceContext } from "../../../../src/optics/perspective/trace.js";
 import type { ChromaticChannel, RuntimeLens } from "../../../../src/types/optics.js";
 
 const mocks = vi.hoisted(() => ({
@@ -15,7 +15,7 @@ const mocks = vi.hoisted(() => ({
   offAxisGeometry: vi.fn(),
 }));
 
-vi.mock("../../../../src/optics/perspective/diagramFan.js", async (importOriginal) => {
+vi.mock("../../../../src/optics/perspective.js", async (importOriginal) => {
   const actual = await importOriginal<typeof import("../../../../src/optics/perspective/diagramFan.js")>();
   return { ...actual, tracePerspectiveDiagramFan: mocks.traceFan };
 });
@@ -29,9 +29,9 @@ vi.mock("../../../../src/optics/analysis.js", async (importOriginal) => {
   return { ...actual, computeLongitudinalChromaticFocus: () => null, stateWithZ: (state: unknown) => state };
 });
 
-vi.mock("../../../../src/optics/compat.js", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("../../../../src/optics/compat.js")>();
-  return { ...actual, prepareRuntimeState: () => ({ z: [0], lens: {} }) };
+vi.mock("../../../../src/optics/optics.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../src/optics/optics.js")>();
+  return { ...actual, prepareRuntimeState: () => ({ z: [0], lens: {} }), stateWithZ: (state: unknown) => state };
 });
 
 const lens = {

@@ -40,7 +40,7 @@ export interface TraceToStopResult {
  * @param options - trace controls plus desired stop occurrence
  * @returns stop hit coordinates/slopes and the full trace diagnostics
  */
-export function traceToStopViaGeneralized2(
+export function traceToStopViaGeneralized(
   state: PreparedOpticalState,
   input: Ray3,
   stopIndex: number,

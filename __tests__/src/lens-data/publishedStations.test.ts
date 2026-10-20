@@ -1,12 +1,14 @@
 import { describe, expect, it } from "vitest";
-import buildLens, { ingestLens, isV1File, toLensData } from "../../../src/optics/buildLens.js";
-import { thick } from "../../../src/optics/layout.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { ingestLens, isV1File } from "../../../src/optics/prescription/ingestV2.js";
+import { toLensData } from "../../../src/optics/prescription/toLensData.js";
+import { thick } from "../../../src/optics/state/layout.js";
 import {
   isOnPublishedStation,
   nearestPublishedStation,
   publishedFocusStations,
   publishedZoomStations,
-} from "../../../src/optics/publishedStations.js";
+} from "../../../src/optics/state/publishedStations.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import type { LensDataInput } from "../../../src/types/optics.js";
 

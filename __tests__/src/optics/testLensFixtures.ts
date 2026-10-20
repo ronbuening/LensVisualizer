@@ -1,18 +1,24 @@
 import { stateWithZ } from "../../../src/optics/state/preparedGeometry.js";
 import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
-import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { associateRuntimeView } from "../../../src/optics/prescription/runtimeView.js";
 import { compilePrescription, completeCompilation } from "../../../src/optics/prescription/compileCanonical.js";
 import { compileConstruction } from "../../../src/optics/prescription/compileConstruction.js";
-import buildLens, { ingestLens, paraxialTrace, toLensData } from "../../../src/optics/buildLens.js";
-import { epAtZoom, fopenAtZoom } from "../../../src/optics/optics.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { ingestLens } from "../../../src/optics/prescription/ingestV2.js";
+import { paraxialTrace } from "../../../src/optics/first-order/lensConstants.js";
+import { toLensData } from "../../../src/optics/prescription/toLensData.js";
+import {
+  epAtZoomClamped as epAtZoom,
+  fopenAtZoomClamped as fopenAtZoom,
+} from "../../../src/optics/state/runtimeAdapters.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import Nikkor105Raw from "../../../src/lens-data/nikon/NikonNikkor105f14E.data.js";
 import NikkorRaw from "../../../src/lens-data/nikon/NikonNikkorZ50f18S.data.js";
 import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 import NoktonRaw from "../../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
-import { rearPlateAirEquivalentMm } from "../../../src/optics/prescription/rearPlates.js";
+import { rearPlateAirEquivalentMm } from "../../../src/optics/prescription/teleconverterCompatibility.js";
 import type {
   LensData,
   LensDataInput,
@@ -532,7 +538,7 @@ export function analysisRequestAt(
     aberrationT?: number;
     currentEPSD?: number;
     currentPhysStopSD?: number;
-    fieldGeometry?: import("../../../src/optics/optics.js").FieldGeometryState;
+    fieldGeometry?: import("../../../src/optics/fieldGeometry.js").FieldGeometryState;
     sampling?: import("../../../src/optics/analysis/analysisQuality.js").AnalysisSamplingOptions;
   },
 ) {

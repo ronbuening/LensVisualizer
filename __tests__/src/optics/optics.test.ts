@@ -1,25 +1,26 @@
-import { traceParaxialSurfaces2 } from "../../../src/optics/math/paraxial.js";
-import { stateSurfaces } from "../../../src/optics/layout.js";
+import { traceParaxialSurfaces } from "../../../src/optics/math/paraxial.js";
+import { stateSurfaces } from "../../../src/optics/state/layout.js";
 import { describe, it, expect } from "vitest";
+import { sagSlope } from "../../../src/optics/diagram/runtimeSurface.js";
 import {
-  sagSlope,
-  thick,
-  doLayout,
+  thickOrZero as thick,
+  doLayoutForRuntimeLens as doLayout,
+  eflAtZoomClamped as eflAtZoom,
+} from "../../../src/optics/state/runtimeAdapters.js";
+import {
   entrancePupilAtState,
-  formatDist,
-  traceRay,
-  traceRayChromatic,
-  computeChromaticRayFanSpread,
-  conjugateK,
-  FOCUS_INFINITY_CUTOFF,
-  eflAtZoom,
-  eflAtFocus,
-  effectiveFNumber,
-} from "../../../src/optics/optics.js";
+  conjugateKForRuntimeLens as conjugateK,
+} from "../../../src/optics/state/fieldAdapters.js";
+import { formatDist } from "../../../src/optics/first-order/format.js";
+import { traceRay, traceRayChromatic } from "../../../src/optics/trace/rayAdapters.js";
+import { computeChromaticRayFanSpread } from "../../../src/optics/chromatic/chromaticTrace.js";
+import { FOCUS_INFINITY_CUTOFF } from "../../../src/optics/state/focusDistance.js";
+import { eflAtFocus } from "../../../src/optics/first-order/focusBreathing.js";
+import { effectiveFNumber } from "../../../src/optics/first-order/fNumber.js";
 import { sag } from "../../../src/optics/geometry/surfaceProfile.js";
 import type { RuntimeLens, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
 import { resolveAberrationThickness, resolveVariableThickness } from "../../../src/optics/state/stationTables.js";
-import {} from "../../../src/optics/prescription/compileControls.js";
+
 import {
   buildChromaticPositiveElementLens,
   buildGhostClippingLens,
@@ -406,7 +407,7 @@ describe("computeChromaticRayFanSpread", () => {
 });
 
 /* ── Production lens ray tracing ── */
-import buildLens from "../../../src/optics/buildLens.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
 import { catalogLensData } from "./testLensFixtures.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import NoktonRaw from "../../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.js";
@@ -749,6 +750,6 @@ describe("effectiveFNumber", () => {
 
 function paraxialImageHeight(y0: number, u0: number, focusT: number, zoomT: number, L: RuntimeLens): number {
   const surfaces = stateSurfaces(focusT, zoomT, L);
-  const trace = traceParaxialSurfaces2(surfaces, y0, u0);
+  const trace = traceParaxialSurfaces(surfaces, y0, u0);
   return trace.y + surfaces[surfaces.length - 1].d * trace.u;
 }

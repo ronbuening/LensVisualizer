@@ -1,21 +1,23 @@
 import { mtfInputs } from "../optics/testLensFixtures.js";
 import { describe, expect, it } from "vitest";
-import { wideOpenStopAtZoom } from "../../../src/optics/apertureStop.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../src/optics/compat.js";
-import { computeElementRenderDiagnostics } from "../../../src/optics/diagramGeometry.js";
+import { wideOpenStopAtZoom } from "../../../src/optics/state/stationTables.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
+import { computeElementRenderDiagnostics } from "../../../src/optics/diagram/runtimeDiagramAdapter.js";
 import { mtfModeledHalfField, resolveMtfFieldGeometry } from "../../../src/optics/analysis/mtf/mtfFields.js";
 import { mtfImagePoint } from "../../../src/optics/analysis/mtf/mtfTracing.js";
-import { solveChiefRay } from "../../../src/optics/fieldGeometry.js";
-import { assessMtfSupport } from "../../../src/optics/mtf.js";
+import { solveChiefRayForRuntimeLens as solveChiefRay } from "../../../src/optics/state/fieldAdapters.js";
+import { assessMtfSupport } from "../../../src/optics/analysis/mtf/mtfSupport.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
-import { doLayout, epAtZoom, traceRay, traceSkewRay } from "../../../src/optics/optics.js";
-import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
 import {
-  attachTeleconverter,
-  teleconverterCompatibility,
-  validateTeleconverterData,
-} from "../../../src/optics/teleconverter.js";
+  doLayoutForRuntimeLens as doLayout,
+  epAtZoomClamped as epAtZoom,
+} from "../../../src/optics/state/runtimeAdapters.js";
+import { traceRay, traceSkewRay } from "../../../src/optics/trace/rayAdapters.js";
+import { traceEngineRay } from "../../../src/optics/trace/rayAdapters.js";
+import { attachTeleconverter } from "../../../src/optics/prescription/teleconverter.js";
+import { teleconverterCompatibility } from "../../../src/optics/prescription/teleconverterCompatibility.js";
+import validateTeleconverterData from "../../../src/optics/prescription/validate/teleconverter.js";
 import { ALL_CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import {
   ALL_TELECONVERTER_KEYS,
@@ -58,7 +60,7 @@ function cornerCoverage(L: RuntimeLens, zoomT: number): number {
       origin: [0, chief.yLaunch - chief.uField * lead, state.z[0] - lead] as [number, number, number],
       direction: [0, chief.uField, 1] as [number, number, number],
     };
-    const trace = traceEngineRay2(state, ray, {
+    const trace = traceEngineRay(state, ray, {
       checkSemiDiameter: true,
       stopSemiDiameter: wideOpenStopAtZoom(zoomT, L),
       stopOnClip: true,

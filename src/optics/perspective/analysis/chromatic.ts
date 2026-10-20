@@ -7,15 +7,11 @@ import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnaly
 import type { ChromaticChannel } from "../../../types/optics.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
 import type { Vec3 } from "../../types.js";
-import {
-  sampleMeridionalPupilBundle,
-  sampleSceneLockedFields,
-  sampleSensorLockedFields,
-  type FieldSample,
-  type PerspectiveFieldSamplingOptions,
-  type PerspectiveFieldStatus,
-  type SensorUv,
-} from "../fieldSampling.js";
+import { sampleMeridionalPupilBundle } from "../pupilBundle.js";
+import { sampleSceneLockedFields, sampleSensorLockedFields } from "../fieldSampling.js";
+import type { FieldSample, PerspectiveFieldSamplingOptions } from "../fieldTypes.js";
+import type { PerspectiveFieldStatus } from "../chiefRay.js";
+import type { SensorUv } from "../fieldGeometry.js";
 import { SENSOR_LOCK_FORMAT_TOLERANCE_MM } from "../sensorTarget.js";
 import { createFieldPlaneFrame, pointInsideSensor, requirePerspectiveImageFormatMetadata } from "../fieldGeometry.js";
 import type { PerspectiveTraceContext, PerspectiveTraceResult } from "../trace.js";
@@ -25,9 +21,10 @@ import {
   fieldSensorAxes,
   resolvePerspectivePupilSemiDiameter,
   solvePerspectiveSensorBestFocus,
-  type PerspectiveSensorBestFocus,
 } from "./imageSpace.js";
-import { sensorFrameDisplacement, type SensorFrameDisplacement } from "./shared.js";
+import type { PerspectiveSensorBestFocus } from "./imageSpace.js";
+import { sensorFrameDisplacement } from "./shared.js";
+import type { SensorFrameDisplacement } from "./shared.js";
 
 const DEFAULT_CHROMATIC_SENSOR_UVS: readonly SensorUv[] = signedVerticalSensorUvs(5);
 const DEFAULT_CHROMATIC_PUPIL_FRACTIONS = CHROMATIC_PUPIL_FRACTIONS;

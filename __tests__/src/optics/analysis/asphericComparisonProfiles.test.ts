@@ -4,16 +4,16 @@ import {
   computeBestFitSphereRFromProfiles,
   computeDepartureProfileFromProfiles,
 } from "../../../../src/optics/analysis/asphericComparison/comparison.js";
+import { computeAsphericElementComparison } from "../../../../src/optics/analysis/asphericComparison/element.js";
+import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
 import {
-  computeAsphericElementComparison,
-  createAnalysisRequest,
   computeAsphericDeparture,
   computeBestFitSphereR,
   computeDepartureProfile,
   nearestSurfaceForClick,
   peakAbsDeparture,
   rmsDeparture,
-} from "../../../../src/optics/analysis.js";
+} from "../../../../src/optics/analysis/asphericComparison/comparison.js";
 import { analysisRequestForLens, sharedNikkorZ50f18 } from "../testLensFixtures.js";
 import type { AsphericCoefficients } from "../../../../src/types/optics.js";
 

@@ -6,8 +6,8 @@
  * frame while lens-local points, directions, and annotations move together.
  */
 
-import type { PerspectiveControlConfig, RuntimeLens, TiltPivot } from "../types/optics.js";
-import { createPerspectivePose, type PerspectivePose } from "./perspective/pose.js";
+import type { PerspectiveControlConfig, RuntimeLens, TiltPivot } from "../../types/optics.js";
+import { createPerspectivePose, type PerspectivePose } from "./pose.js";
 
 /** User-facing movement controls in physical shift millimeters and tilt degrees. */
 export interface LensMovementState {

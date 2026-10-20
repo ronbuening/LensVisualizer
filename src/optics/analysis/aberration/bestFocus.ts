@@ -1,11 +1,12 @@
 /** Weighted axial best focus, preserving its own full layout coordinate system. */
 
 import type { LayoutResult } from "../../../types/optics.js";
-import { doLayout } from "../../layout.js";
+import { doLayout } from "../../state/layout.js";
 import { runtimeView } from "../../prescription/runtimeView.js";
 import { prepareRayTrace } from "../../trace/rayAdapters.js";
 import type { AnalysisRequest } from "../request.js";
-import { computeRealRayHit, PROFILE_FRACS, type RealRayHit } from "./shared.js";
+import { computeRealRayHit, PROFILE_FRACS } from "./shared.js";
+import type { RealRayHit } from "./shared.js";
 
 /** Least-squares focus, weighted by each ray's surviving optical intensity. */
 function photometricBestFocusPlane(hits: readonly RealRayHit[], lastSurfZ: number): number {

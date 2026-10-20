@@ -17,4 +17,4 @@ export const INTERSECTION_MAX_ITERATIONS = 72;
 /** Number of coarse samples used to bracket a surface intersection. */
 export const INTERSECTION_BRACKET_SAMPLES = 24;
 
-export { CHROMATIC_CHANNEL_WAVELENGTH_NM } from "./chromatic/channels.js";
+export { CHROMATIC_CHANNEL_WAVELENGTH_NM } from "../chromatic/channels.js";

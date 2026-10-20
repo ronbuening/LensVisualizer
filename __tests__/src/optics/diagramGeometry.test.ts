@@ -1,15 +1,16 @@
 import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, it, expect } from "vitest";
+import { createCoordinateTransforms } from "../../../src/optics/diagram/coordinateTransforms.js";
 import {
-  createCoordinateTransforms,
   computeElementRenderDiagnostics,
   computeElementShapes,
   computeStandaloneMirrorPaths,
-} from "../../../src/optics/diagramGeometry.js";
-import buildLens from "../../../src/optics/buildLens.js";
+} from "../../../src/optics/diagram/runtimeDiagramAdapter.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
 import nikonPf500Data from "../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
 import { catalogLensData } from "./testLensFixtures.js";
-import { doLayout, SVG_PATH_SUBDIVISIONS } from "../../../src/optics/optics.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { SVG_PATH_SUBDIVISIONS } from "../../../src/optics/diagram/surfaceOutline.js";
 import type { RuntimeLens, AsphericCoefficients, ElementSpan, SurfaceData } from "../../../src/types/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 

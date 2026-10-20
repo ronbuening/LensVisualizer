@@ -14,22 +14,24 @@
 import { describe, expect, it } from "vitest";
 import { catalogLensData } from "./testLensFixtures.js";
 import FoldedDiffractiveRaw from "../../../src/lens-data/reference/ReferenceFoldedDiffractivePlate.data.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import validateLensData from "../../../src/optics/validateLensData.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import validateLensData from "../../../src/optics/prescription/validate/index.js";
 import {
   DEFAULT_PHASE_WAVELENGTH_NM,
   diffractiveParaxialPower,
   radialPhaseKick,
 } from "../../../src/optics/math/diffractivePhase.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
 import {
-  doLayout,
   traceRay,
   traceRayVector,
   traceSkewRay,
   traceSkewRayChromatic,
+} from "../../../src/optics/trace/rayAdapters.js";
+import {
   traceChiefRelativeSkewRay,
   traceChiefRelativeSkewRayChromatic,
-} from "../../../src/optics/optics.js";
+} from "../../../src/optics/trace/chiefRelative.js";
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
 
 const LAUNCH_HEIGHTS = [8, 5, 2];

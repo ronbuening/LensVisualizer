@@ -7,11 +7,8 @@
 
 import { normalize } from "../math/vector.js";
 import type { Vec3 } from "../types.js";
-import {
-  solvePerspectiveChiefRay,
-  type PerspectiveChiefRayOptions,
-  type PerspectiveChiefRayResult,
-} from "./chiefRay.js";
+import { solvePerspectiveChiefRay } from "./chiefRay.js";
+import type { PerspectiveChiefRayOptions, PerspectiveChiefRayResult } from "./chiefRay.js";
 import {
   createFieldPlaneFrame,
   directionForIdealCoordinates,
@@ -26,10 +23,8 @@ import {
   resolvePerspectiveFocalLength,
   sensorUvForPoint,
   sensorUvInsideFormat,
-  type FieldPlaneFrame,
-  type PerspectiveProjectionReference,
-  type SensorUv,
 } from "./fieldGeometry.js";
+import type { FieldPlaneFrame, PerspectiveProjectionReference, SensorUv } from "./fieldGeometry.js";
 import { boundedFieldStatus, unavailableFieldSample } from "./fieldResults.js";
 import type {
   FieldSample,
@@ -37,8 +32,10 @@ import type {
   PerspectiveFieldRequest,
   PerspectiveFieldSamplingOptions,
 } from "./fieldTypes.js";
-import { pupilBundleForRequest, type PerspectivePupilBundleRequest } from "./pupilBundle.js";
-import { solveChiefToSensorPoint, type PerspectiveSensorLockSolveResult } from "./sensorTarget.js";
+import { pupilBundleForRequest } from "./pupilBundle.js";
+import type { PerspectivePupilBundleRequest } from "./pupilBundle.js";
+import { solveChiefToSensorPoint } from "./sensorTarget.js";
+import type { PerspectiveSensorLockSolveResult } from "./sensorTarget.js";
 import type { PerspectiveTraceContext } from "./trace.js";
 
 export { PerspectiveFieldSamplingError } from "./fieldGeometry.js";

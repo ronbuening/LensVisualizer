@@ -2,31 +2,31 @@ import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { createTraceGeometry } from "../../../src/optics/trace/geometry.js";
 import { describe, expect, it, vi } from "vitest";
 import { build, buildMissAfterFirstHitLens, buildSimplePositiveElementLens } from "./testLensFixtures.js";
-import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import {
   prepareEngineTrace,
   prepareRayTrace,
   prepareRayTraceForState,
-  traceEngineRay2,
-  traceSkewRayChromatic2,
-  traceSkewRayVectorChromatic2,
+  traceEngineRay,
+  traceSkewRayChromatic,
+  traceSkewRayVectorChromatic,
 } from "../../../src/optics/trace/rayAdapters.js";
-import * as normalization from "../../../src/optics/prescription/compile.js";
+import * as normalization from "../../../src/optics/prescription/identity.js";
 import { prepareState } from "../../../src/optics/state/preparedGeometry.js";
 import { createPerspectiveTraceContext } from "../../../src/optics/perspective/trace.js";
-import buildLens from "../../../src/optics/buildLens.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
 import { traceFixtureSlope, traceFixtureVector } from "./traceGeometryFixtures.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { solveChiefRayForRuntimeLens as solveChiefRay } from "../../../src/optics/state/fieldAdapters.js";
 import {
-  doLayout,
-  solveChiefRay,
   traceRay,
   traceRayChromatic,
   traceRayVector,
   traceRayVectorChromatic,
-  traceChiefRelativeSkewRay,
   traceSkewRay,
   traceSkewRayVector,
-} from "../../../src/optics/optics.js";
+} from "../../../src/optics/trace/rayAdapters.js";
+import { traceChiefRelativeSkewRay } from "../../../src/optics/trace/chiefRelative.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
@@ -236,7 +236,7 @@ describe("asphere cap tracing and clipping", () => {
       surfaces: capState.surfaces,
       isFoldedOptics: state.lens.flags.isFoldedOptics,
     });
-    const prepared = traceEngineRay2(capState, ray, {
+    const prepared = traceEngineRay(capState, ray, {
       launchBoundT: 4,
       checkSemiDiameter: true,
       stopSemiDiameter: innerSd ? 2.5 : 1.5,
@@ -261,11 +261,11 @@ describe("prepared traversal selection", () => {
     expect(geometry).toBeDefined();
     expect(geometry.traversal.kind).toBe(kind);
     const input = { origin: [0, 1, -5], direction: [0, 0, 1] } as const;
-    const full = traceEngineRay2(state, input, { recordHeights: true, recordOpticalPath: true });
+    const full = traceEngineRay(state, input, { recordHeights: true, recordOpticalPath: true });
     expect(full.diagnostics.terminationReason === "sequential-return").toBe(kind === "sequential");
     for (const stopAt of [0, 1, 1.5, NaN, Infinity, -Infinity]) {
       for (const skipLastTransfer of [false, true]) {
-        const result = traceEngineRay2(state, input, {
+        const result = traceEngineRay(state, input, {
           stopAt,
           skipLastTransfer,
           recordHeights: true,
@@ -305,7 +305,7 @@ describe("prepared traversal selection", () => {
       expect(before).toBeGreaterThan(0);
       for (const y of [0, 0.1, 0.2]) {
         const input = { origin: [0, y, -5], direction: [0, 0, 1] } as const;
-        traceEngineRay2(state, input);
+        traceEngineRay(state, input);
         if (base.lens.flags.isFoldedOptics) {
           expect(() => context.traceRay(input)).toThrow("sequential optical paths only");
         } else {
@@ -327,7 +327,7 @@ describe("prepared traversal selection", () => {
     const geometry = createTraceGeometry({ ...base.traceGeometry, surfaces, isFoldedOptics: false });
     expect(scans).toBe(1);
     const state = { ...base, surfaces, traceGeometry: geometry };
-    for (const y of [0, 0.1, 0.2]) traceEngineRay2(state, { origin: [0, y, -5], direction: [0, 0, 1] });
+    for (const y of [0, 0.1, 0.2]) traceEngineRay(state, { origin: [0, y, -5], direction: [0, 0, 1] });
     expect(scans).toBe(1);
     expect(state.traceGeometry).toBe(geometry);
 
@@ -357,7 +357,7 @@ describe("chief-relative physical traces", () => {
     };
     const lens = registerRuntimeFixture({ ...L, rayLead: 5 });
     const state = prepareRuntimeState(lens, 0, 0);
-    const trace = traceEngineRay2(
+    const trace = traceEngineRay(
       state,
       { origin: [0, 7.5, -5], direction: [0, -1, 1] },
       {
@@ -381,7 +381,7 @@ describe("chief-relative physical traces", () => {
   it.each([false, true])("terminates a subsequent miss without fabricated ghost hits (%s)", (ghost) => {
     const L = buildMissAfterFirstHitLens();
     const state = prepareRuntimeState(L, 0, 0);
-    const trace = traceEngineRay2(
+    const trace = traceEngineRay(
       state,
       { origin: [0, 30, 0], direction: [0, 0, 1] },
       {
@@ -451,13 +451,13 @@ describe("request-bound runtime ray adapters", () => {
                     ? traceRayChromatic(y, u, zPos, focusT, zoomT, stopSD, ghost, L, channel, aberrationT)
                     : traceRay(y, u, zPos, focusT, zoomT, stopSD, ghost, L, aberrationT);
                   const skew = channel
-                    ? traceSkewRayChromatic2(0.3, y, 0, u, focusT, zoomT, stopSD, ghost, L, channel, aberrationT)
+                    ? traceSkewRayChromatic(0.3, y, 0, u, focusT, zoomT, stopSD, ghost, L, channel, aberrationT)
                     : traceSkewRay(0.3, y, 0, u, focusT, zoomT, stopSD, ghost, L, aberrationT);
                   const vector = channel
                     ? traceRayVectorChromatic(input, zPos, stopSD, ghost, L, channel, focusT, zoomT, aberrationT)
                     : traceRayVector(input, zPos, stopSD, ghost, L, focusT, zoomT, aberrationT);
                   const skewVector = channel
-                    ? traceSkewRayVectorChromatic2(input, zPos, stopSD, ghost, L, channel, focusT, zoomT, aberrationT)
+                    ? traceSkewRayVectorChromatic(input, zPos, stopSD, ghost, L, channel, focusT, zoomT, aberrationT)
                     : traceSkewRayVector(input, zPos, stopSD, ghost, L, focusT, zoomT, aberrationT);
                   expectBitIdentical(bound.ray(y, u), ray);
                   expectBitIdentical(bound.skew(0.3, y, 0, u), skew);
@@ -479,7 +479,7 @@ describe("request-bound runtime ray adapters", () => {
         for (const capture of ["terminal", "hits", "diagnostics"] as const) {
           const options = { stopAt, capture, checkSemiDiameter: true };
           const input = { origin: [0, 1, -20] as const, direction: [0, 0, 1] as const };
-          const expected = traceEngineRay2(state, input, options);
+          const expected = traceEngineRay(state, input, options);
           let bound = false;
           const geometry = {
             ...state.traceGeometry,

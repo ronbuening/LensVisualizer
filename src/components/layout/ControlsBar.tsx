@@ -6,7 +6,7 @@
  * Props control presentation differences; logic is identical in both modes.
  */
 
-import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic/channels.js";
+import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic.js";
 import type { ChromaticChannel } from "../../types/optics.js";
 import CardinalControls from "../controls/CardinalControls.js";
 import { ENABLE_CARDINAL_ELEMENTS, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";

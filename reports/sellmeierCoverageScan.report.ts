@@ -19,7 +19,7 @@ import {
   resolveCompatibleGlass,
   resolveGlass,
 } from "../src/optics/glassCatalog.js";
-import type { DispersionQuality } from "../src/optics/dispersion.js";
+import type { DispersionQuality } from "../src/optics/chromatic.js";
 import { extractPatentNumber, isExplicitlyUnmatched, walkLensSurfaces } from "./glassScanLib.js";
 import type { ElementData, LensData } from "../src/types/optics.js";
 

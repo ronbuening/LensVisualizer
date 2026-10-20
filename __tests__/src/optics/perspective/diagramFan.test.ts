@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
+import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import {
   cameraDirectionForDiagramField,
   tracePerspectiveDiagramFan,

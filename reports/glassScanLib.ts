@@ -10,8 +10,8 @@
  * `UNRESOLVED_MARKER`, `glassTokens`, `normalLinePgF`) come from the engine.
  */
 import { existsSync, readdirSync, readFileSync } from "node:fs";
-import validateLensData from "../src/optics/validateLensData.js";
-import { buildSpectralIndex } from "../src/optics/buildLens.js";
+import { validateLensData } from "../src/optics/validation.js";
+import { buildSpectralIndex } from "../src/optics/chromatic.js";
 import { expandRearPlates } from "../src/optics/buildLens.js";
 import {
   assessCatalogGlassCompatibility,
@@ -19,9 +19,10 @@ import {
   GLASS_ND_TOLERANCE,
   GLASS_VD_TOLERANCE,
   UNRESOLVED_MARKER,
-  type GlassEntry,
 } from "../src/optics/glassCatalog.js";
-import { buildSurfaceDispersionIndex, normalLinePgF, type SurfaceDispersion } from "../src/optics/dispersion.js";
+import type { GlassEntry } from "../src/optics/glassCatalog.js";
+import { resolveMaterialTable as buildSurfaceDispersionIndex, normalLinePgF } from "../src/optics/chromatic.js";
+import type { SurfaceDispersion } from "../src/optics/chromatic.js";
 import { ingestLens, toLensData } from "../src/optics/buildLens.js";
 import type { ElementData, LensData, RefractiveIndexReferenceLine, SurfaceData } from "../src/types/optics.js";
 

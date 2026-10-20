@@ -7,7 +7,7 @@
  * diagnostic, not a full 2D spot diagram.
  */
 
-import type { MeridionalComaResult } from "../../../optics/aberrationAnalysis.js";
+import type { MeridionalComaResult } from "../../../optics/analysis.js";
 import type { Theme } from "../../../types/theme.js";
 import { centeredMmScale, fieldFractionScale, symmetricMmTicks } from "./charts/chartMath.js";
 

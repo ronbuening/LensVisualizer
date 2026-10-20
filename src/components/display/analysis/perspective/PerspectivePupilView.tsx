@@ -1,4 +1,4 @@
-import type { PerspectivePupilAnalysis } from "../../../../optics/perspective/index.js";
+import type { PerspectivePupilAnalysis } from "../../../../optics/perspective.js";
 import type { Theme } from "../../../../types/theme.js";
 import { AnalysisMetricRow } from "../analysisUi.js";
 import PerspectiveSignedChart from "./PerspectiveSignedChart.js";

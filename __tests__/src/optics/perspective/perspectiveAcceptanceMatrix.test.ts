@@ -1,24 +1,21 @@
 import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
 import { computeMovementPair } from "../../../../src/comparison/comparisonSliders.js";
-import buildLens from "../../../../src/optics/buildLens.js";
-import { anchorLayoutToCamera } from "../../../../src/optics/cameraLayout.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
-import { clampLensMovement, isMovementAxisEnabled } from "../../../../src/optics/lensMovement.js";
-import { doLayout, entrancePupilAtState } from "../../../../src/optics/optics.js";
+import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
+import { anchorLayoutToCamera } from "../../../../src/optics/state/cameraLayout.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
+import { clampLensMovement, isMovementAxisEnabled } from "../../../../src/optics/perspective/lensMovement.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../../src/optics/state/runtimeAdapters.js";
+import { entrancePupilAtState } from "../../../../src/optics/state/fieldAdapters.js";
 import { computePerspectiveFocusAnalysis } from "../../../../src/optics/perspective/analysis/focus.js";
-import {
-  computePerspectiveVignettingAnalysis,
-  createAreaWeightedCircularPupilPoints,
-} from "../../../../src/optics/perspective/analysis/vignetting.js";
+import { computePerspectiveVignettingAnalysis } from "../../../../src/optics/perspective/analysis/vignetting.js";
+import { createAreaWeightedCircularPupilPoints } from "../../../../src/optics/perspective/analysis/shared.js";
 import { sampleSensorLockedFields } from "../../../../src/optics/perspective/fieldSampling.js";
-import {
-  createPerspectiveTraceContext,
-  type PerspectiveTraceContext,
-} from "../../../../src/optics/perspective/trace.js";
-import { traceEngineRay2 } from "../../../../src/optics/trace/rayAdapters.js";
+import { createPerspectiveTraceContext } from "../../../../src/optics/perspective/trace.js";
+import type { PerspectiveTraceContext } from "../../../../src/optics/perspective/trace.js";
+import { traceEngineRay } from "../../../../src/optics/trace/rayAdapters.js";
 import type { Vec3 } from "../../../../src/optics/types.js";
-import type { LensMovementState } from "../../../../src/optics/lensMovement.js";
+import type { LensMovementState } from "../../../../src/optics/perspective/lensMovement.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
@@ -141,7 +138,7 @@ describe("perspective-control final acceptance matrix", () => {
       stopSemiDiameter: centered.currentStopSemiDiameterMm,
       stopOnClip: true,
     } as const;
-    const direct = traceEngineRay2(centered.context.state, input, traceOptions);
+    const direct = traceEngineRay(centered.context.state, input, traceOptions);
     const identity = centered.context.traceRay(input, traceOptions);
 
     expect(identity.cameraTrace).toBe(identity.localTrace);

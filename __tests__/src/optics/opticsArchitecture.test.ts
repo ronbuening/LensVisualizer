@@ -45,27 +45,26 @@ interface SeamRegistryEntry {
  * that the module still imports nothing at runtime.
  */
 const SEAM_REGISTRY: readonly SeamRegistryEntry[] = [
-  { module: "src/optics/aberrationAnalysis.ts" },
   { module: "src/optics/analysis.ts" },
-  { module: "src/optics/apertureStop.ts" },
   { module: "src/optics/buildLens.ts" },
-  { module: "src/optics/cardinalElements.ts" },
-  { module: "src/optics/chiefRayDiagnostics.ts" },
+  { module: "src/optics/chromatic.ts" },
   { module: "src/optics/diagramGeometry.ts" },
-  { module: "src/optics/dispersion.ts" },
   { module: "src/optics/fieldGeometry.ts" },
   { module: "src/optics/geometry.ts" },
+  { module: "src/optics/glassCatalog.ts" },
   { module: "src/optics/lensDataConversion.ts" },
   { module: "src/optics/mtf.ts" },
   { module: "src/optics/optics.ts" },
+  { module: "src/optics/perspective.ts" },
   {
     module: "src/optics/prescription/teleconverterCompatibility.ts",
     plainNodeLoader: "scripts/generate-build-metadata.mjs",
   },
   { module: "src/optics/projection.ts" },
+  { module: "src/optics/publishedStations.ts" },
   { module: "src/optics/teleconverter.ts" },
-  { module: "src/optics/validateLensData.ts" },
-  { module: "src/optics/validateTeleconverterData.ts" },
+  { module: "src/optics/types.ts" },
+  { module: "src/optics/validation.ts" },
 ];
 
 /**
@@ -78,39 +77,10 @@ const SEAM_REGISTRY: readonly SeamRegistryEntry[] = [
  * test. Targets under src/optics/mount/ are skipped: the mount diagram renderer shares the
  * folder but is not part of the optical engine, and mount specs import it directly.
  */
-const SEAM_LEGACY: readonly string[] = [
-  "src/optics/analysis/aberration/offAxis.ts",
-  "src/optics/analysis/analysisQuality.ts",
-  "src/optics/analysis/mtf/mtfConstants.ts",
-  "src/optics/analysis/mtf/mtfFocus.ts",
-  "src/optics/analysis/mtf/mtfMath.ts",
-  "src/optics/analysis/mtf/mtfShearedOtf.ts",
-  "src/optics/analysis/mtf/mtfTracing.ts",
-  "src/optics/analysis/mtf/mtfWavefront.ts",
-  "src/optics/aperture.ts",
-  "src/optics/chromatic/channels.ts",
-  "src/optics/compat.ts",
-  "src/optics/constants.ts",
-  "src/optics/field/projection.ts",
-  "src/optics/focusDistance.ts",
-  "src/optics/foldedPathDisplay.ts",
-  "src/optics/glassCatalog.ts",
-  "src/optics/layout.ts",
-  "src/optics/lensMovement.ts",
-  "src/optics/math/vector.ts",
-  "src/optics/perspective/diagramFan.ts",
-  "src/optics/perspective/index.ts",
-  "src/optics/publishedStations.ts",
-  "src/optics/raySampling.ts",
-  "src/optics/spectralLines.ts",
-  "src/optics/trace/rayAdapters.ts",
-  "src/optics/types.ts",
-];
+const SEAM_LEGACY: readonly string[] = [];
 
 /** Report-only formulas stay internal; permission is for this importer/target pair, not the app. */
-const REPORT_INTERNAL_IMPORTS = [
-  { importer: "reports/elementFocalLengths.report.ts", module: "src/optics/first-order/thickLens.ts" },
-] as const;
+const REPORT_INTERNAL_IMPORTS: readonly { importer: string; module: string }[] = [];
 
 /* ── Cache guard lists ── */
 
@@ -155,6 +125,13 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     capacity: 2,
     limit: "REQUEST_LENS_CACHE_LIMIT",
   },
+  "src/optics/chromatic/glassCatalog.ts#ALIAS_PATTERNS": { kind: "constant" },
+  "src/optics/chromatic/glassCatalog.ts#CATALOG": { kind: "constant" },
+  "src/optics/chromatic/glassCatalog.ts#CODE6_CANDIDATES": { kind: "constant" },
+  "src/optics/chromatic/glassCatalog.ts#CODE6_INDEX": { kind: "constant" },
+  "src/optics/chromatic/glassCatalogAliases.ts#ALIASES": { kind: "constant" },
+  "src/optics/chromatic/glassCatalogData.ts#DUPLICATE_CODE6_PRECEDENCE": { kind: "constant" },
+  "src/optics/chromatic/glassCatalogData.ts#GLASS_CATALOG_ENTRIES_BY_NAME": { kind: "constant" },
   "src/optics/chromatic/indexResolver.ts#cauchyCoefficientsByDispersion": {
     kind: "weak-owner",
     owner: "CompiledSurfaceDispersion",
@@ -194,13 +171,6 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     key: "owner identity",
     perOwner: "one profile, for the base radius it was last built with",
   },
-  "src/optics/glassCatalog.ts#ALIAS_PATTERNS": { kind: "constant" },
-  "src/optics/glassCatalog.ts#CATALOG": { kind: "constant" },
-  "src/optics/glassCatalog.ts#CODE6_CANDIDATES": { kind: "constant" },
-  "src/optics/glassCatalog.ts#CODE6_INDEX": { kind: "constant" },
-  "src/optics/glassCatalogAliases.ts#ALIASES": { kind: "constant" },
-  "src/optics/glassCatalogData.ts#DUPLICATE_CODE6_PRECEDENCE": { kind: "constant" },
-  "src/optics/glassCatalogData.ts#GLASS_CATALOG_ENTRIES_BY_NAME": { kind: "constant" },
   "src/optics/mount/layers.ts#CAMERA_CLEAR_TYPES": { kind: "constant" },
   "src/optics/mount/layers.ts#CAMERA_METAL_TYPES": { kind: "constant" },
   "src/optics/mount/layers.ts#LENS_METAL_TYPES": { kind: "constant" },

@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../src/optics/buildLens.js";
-import { anchorLayoutToCamera } from "../../../src/optics/cameraLayout.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { anchorLayoutToCamera } from "../../../src/optics/state/cameraLayout.js";
 import { computeCardinalElements } from "../../../src/optics/analysis/summary/cardinals.js";
 import { analysisRequestForLens } from "./testLensFixtures.js";
-import { doLayout } from "../../../src/optics/optics.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 const PC_LENSES = Object.values(LENS_CATALOG).filter((data) => data.perspectiveControl != null);

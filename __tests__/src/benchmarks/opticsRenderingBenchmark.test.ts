@@ -36,25 +36,37 @@ import { PROFILE_FRACS } from "../../../src/optics/analysis/aberration/shared.js
  * so the paired tests read these to tell what the head has done by the time the base is called. */
 const engineCalls = vi.hoisted(() => ({ lensBuilds: 0, preparedStates: 0, sphericalAberrationJobs: 0 }));
 
-vi.mock("../../../src/optics/compat.js", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("../../../src/optics/compat.js")>();
-  const buildLens2: typeof actual.buildLens2 = (...args) => {
-    engineCalls.lensBuilds++;
-    return actual.buildLens2(...args);
-  };
-  const prepareRuntimeState: typeof actual.prepareRuntimeState = (...args) => {
-    engineCalls.preparedStates++;
-    return actual.prepareRuntimeState(...args);
-  };
-  const computeSphericalAberration: typeof actual.analysisJobsForState2.computeSphericalAberration = (...args) => {
-    engineCalls.sphericalAberrationJobs++;
-    return actual.analysisJobsForState2.computeSphericalAberration(...args);
-  };
+vi.mock("../../../src/optics/prescription/buildRuntimeLens.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../src/optics/prescription/buildRuntimeLens.js")>();
   return {
     ...actual,
-    buildLens2,
-    prepareRuntimeState,
-    analysisJobsForState2: { ...actual.analysisJobsForState2, computeSphericalAberration },
+    buildLens: (...args: Parameters<typeof actual.buildLens>) => {
+      engineCalls.lensBuilds++;
+      return actual.buildLens(...args);
+    },
+  };
+});
+vi.mock("../../../src/optics/state/runtimeAdapters.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../src/optics/state/runtimeAdapters.js")>();
+  return {
+    ...actual,
+    prepareRuntimeState: (...args: Parameters<typeof actual.prepareRuntimeState>) => {
+      engineCalls.preparedStates++;
+      return actual.prepareRuntimeState(...args);
+    },
+  };
+});
+vi.mock("../../../src/optics/analysis/analysisJobs.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../src/optics/analysis/analysisJobs.js")>();
+  return {
+    ...actual,
+    analysisJobs: {
+      ...actual.analysisJobs,
+      computeSphericalAberration: (...args: Parameters<typeof actual.analysisJobs.computeSphericalAberration>) => {
+        engineCalls.sphericalAberrationJobs++;
+        return actual.analysisJobs.computeSphericalAberration(...args);
+      },
+    },
   };
 });
 

@@ -97,7 +97,7 @@ stop/image-plane ray intersections, has fixture-backed tests, and has clear UI c
 
 To add a tab, follow the five registration points in `agent_docs/adding_an_analysis_tab.md`. `AberrationsPanel` is a
 thin container over the section components and data hooks in `src/components/display/analysis/aberrations/`; the
-distortion and vignetting tabs consume deferred/frozen inputs through `analysisJobsForState2`.
+distortion and vignetting tabs consume deferred/frozen inputs through `analysisJobs`.
 
 `MtfTab` defaults to the diffraction-corrected method (`diffraction`), a photopic spectrum (with a note when glass dispersion is
 estimated from nd/νd, or the reference line and the reason when a glass blocks spectral sampling), best axial focus

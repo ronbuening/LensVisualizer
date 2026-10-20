@@ -6,28 +6,24 @@
  */
 
 import type { RuntimeSkewRayTraceResult as SkewRayTraceResult } from "../../trace/runtimeRayResult.js";
+import { sampleCircularPupil, sampleOrthogonalPupilFan } from "../sampling.js";
+import type { CircularPupilSample, OrthogonalPupilSample } from "../sampling.js";
+import { skewImagePlaneIntercept } from "../../trace/rayAdapters.js";
+import type { SkewImagePlaneIntercept } from "../../trace/rayAdapters.js";
+import { bAtZoom, halfFieldAtZoom, tracingHalfFieldAtZoom, yRatioAtZoom } from "../../state/stationTables.js";
+import { thick } from "../../state/layout.js";
 import {
-  sampleCircularPupil,
-  sampleOrthogonalPupilFan,
-  type CircularPupilSample,
-  type OrthogonalPupilSample,
-} from "../sampling.js";
-import { skewImagePlaneIntercept, type SkewImagePlaneIntercept } from "../../trace/rayAdapters.js";
-import { bAtZoom, halfFieldAtZoom, thick, tracingHalfFieldAtZoom, yRatioAtZoom } from "../../layout.js";
-import {
-  computeFieldGeometryAtState2 as computeFieldGeometryAtState,
-  offsetVectorFieldRay2 as offsetVectorFieldRay,
-  solveChiefRay2 as solveChiefRay,
-  type FieldGeometryState2 as FieldGeometryState,
-  type VectorFieldRayLaunch2 as VectorFieldRayLaunch,
+  computeFieldGeometryAtState,
+  solveChiefRayForRuntimeLens as solveChiefRay,
 } from "../../state/fieldAdapters.js";
-import { prepareRayTrace, type PreparedRayTrace } from "../../trace/rayAdapters.js";
-import {
-  isFisheyeProjection2 as isFisheyeProjection,
-  projectionLaunchSlopeForField2 as projectionLaunchSlopeForField,
-} from "../../field/projection.js";
+import { offsetVectorFieldRay } from "../../field/launch.js";
+import type { FieldGeometryState, VectorFieldRayLaunch } from "../../field/launch.js";
+import { prepareRayTrace } from "../../trace/rayAdapters.js";
+import type { PreparedRayTrace } from "../../trace/rayAdapters.js";
+import { isFisheyeProjection, projectionLaunchSlopeForField } from "../../field/projection.js";
 import type { ChromaticChannel, RuntimeLens } from "../../../types/optics.js";
-import { bestRelativeFocusPlane, type TransverseFocusHit } from "./shared.js";
+import { bestRelativeFocusPlane } from "./shared.js";
+import type { TransverseFocusHit } from "./shared.js";
 
 /** Orientation of an orthogonal off-axis pupil fan. */
 export type OffAxisFanOrientation = "tangential" | "sagittal";

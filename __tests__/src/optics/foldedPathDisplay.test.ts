@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../src/optics/buildLens.js";
-import { foldedHitOrderLabelsForDisplay } from "../../../src/optics/foldedPathDisplay.js";
-import { doLayout } from "../../../src/optics/optics.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { foldedHitOrderLabelsForDisplay } from "../../../src/optics/diagram/foldedPathDisplay.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import { sharedNokton50f1 } from "./testLensFixtures.js";

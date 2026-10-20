@@ -1,15 +1,12 @@
+import { computeProjectionAwareOffAxisFieldGeometry, isOffAxisVectorFieldGeometry } from "../../optics/analysis.js";
 import {
-  computeProjectionAwareOffAxisFieldGeometry,
-  isOffAxisVectorFieldGeometry,
-} from "../../optics/analysis/aberration/offAxis.js";
-import {
-  eflAtZoom,
+  eflAtZoomClamped as eflAtZoom,
   halfFieldAtZoom,
   traceRay,
   traceRayVector,
   tracingHalfFieldAtZoom,
-  type VectorFieldRayLaunch,
 } from "../../optics/optics.js";
+import type { VectorFieldRayLaunch } from "../../optics/fieldGeometry.js";
 import { isFisheyeProjection, projectionImageHeightForLensAngle } from "../../optics/projection.js";
 import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import type { RuntimeLens } from "../../types/optics.js";

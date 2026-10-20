@@ -1,18 +1,17 @@
 /** Request-based perspective distortion diagnostics and ordered field samples. */
 import { describe, expect, it } from "vitest";
 import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
-import buildLens from "../../../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
+import { buildLens } from "../../../../../src/optics/prescription/buildRuntimeLens.js";
+import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
 import {
   computePerspectiveDistortionAnalysis,
   perspectiveDistortionSampleFromField,
   summarizePerspectiveDistortionSamples,
 } from "../../../../../src/optics/perspective/analysis/distortion.js";
-import type { FieldSample, PerspectiveFieldStatus } from "../../../../../src/optics/perspective/fieldSampling.js";
-import {
-  createPerspectiveTraceContext,
-  type PerspectiveTraceContext,
-} from "../../../../../src/optics/perspective/trace.js";
+import type { FieldSample } from "../../../../../src/optics/perspective/fieldTypes.js";
+import type { PerspectiveFieldStatus } from "../../../../../src/optics/perspective/chiefRay.js";
+import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
+import type { PerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
 import type { Vec3 } from "../../../../../src/optics/types.js";
 import { LENS_CATALOG } from "../../../../../src/utils/catalog/lensCatalog.js";
 

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { mtfFiniteConjugate, mtfFiniteObjectPoint } from "../../../../src/optics/analysis/mtf/mtfConjugates.js";
-import { paraxialTrace } from "../../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
+import { paraxialTrace } from "../../../../src/optics/first-order/lensConstants.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import {
   attachTeleconverter,
   TeleconverterAttachError,
@@ -13,8 +13,8 @@ import {
   teleconverterCompatibility,
   teleconverterGeometry,
 } from "../../../../src/optics/prescription/teleconverterCompatibility.js";
-import validateLensData from "../../../../src/optics/validateLensData.js";
-import validateTeleconverterData from "../../../../src/optics/validateTeleconverterData.js";
+import validateLensData from "../../../../src/optics/prescription/validate/index.js";
+import validateTeleconverterData from "../../../../src/optics/prescription/validate/teleconverter.js";
 import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
 import type { TeleconverterIncompatibility } from "../../../../src/types/teleconverter.js";
 import {

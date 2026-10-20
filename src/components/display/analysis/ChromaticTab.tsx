@@ -10,7 +10,7 @@ import {
   chromaticChannelLineList,
   chromaticChannelWavelengthLabel,
   lensChromaticReference,
-} from "../../../optics/chromatic/channels.js";
+} from "../../../optics/chromatic.js";
 import { probe } from "../../../utils/perfProbe.js";
 import ChromaticFieldCurvaturePlot from "./ChromaticFieldCurvaturePlot.js";
 import LateralColorChart from "./LateralColorChart.js";
@@ -19,8 +19,8 @@ import { AnalysisEmptyState, AnalysisMetricRow } from "./analysisUi.js";
 import { formatUmMagnitude } from "./chromaticChartUtils.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import PerspectiveChromaticAnalysis from "./perspective/PerspectiveChromaticAnalysis.js";
-import type { AnalysisComputationContext } from "../../../optics/compat.js";
-import type { FieldGeometryState } from "../../../optics/optics.js";
+import type { AnalysisComputationContext } from "../../../optics/analysis.js";
+import type { FieldGeometryState } from "../../../optics/fieldGeometry.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";

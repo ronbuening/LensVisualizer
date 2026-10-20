@@ -19,22 +19,27 @@ flowchart LR
     n_src_optics_trace_src_optics_trace_interactions_ts["interactions.ts"]
     n_src_optics_trace_src_optics_trace_pathPlanner_ts["pathPlanner.ts"]
     n_src_optics_trace_src_optics_trace_rayAdapters_ts["rayAdapters.ts"]
+    n_src_optics_trace_src_optics_trace_raySampling_ts["raySampling.ts"]
     n_src_optics_trace_src_optics_trace_runtimeRayResult_ts["runtimeRayResult.ts"]
     n_src_optics_trace_src_optics_trace_sequentialTrace_ts["sequentialTrace.ts"]
+    n_src_optics_trace_src_optics_trace_stopObstruction_ts["stopObstruction.ts"]
     n_src_optics_trace_src_optics_trace_stopTrace_ts["stopTrace.ts"]
     n_src_optics_trace_src_optics_trace_types_ts["types.ts"]
     n_src_optics_trace_src_optics_trace_utils_ts["utils.ts"]
   end
   n_external_src_optics_geometry["src/optics/geometry"]
   n_external_src_optics_math["src/optics/math"]
-  n_external_src_optics_constants_ts["src/optics/constants.ts"]
+  n_external_src_types["src/types"]
+  n_external_src_optics_chromatic["src/optics/chromatic"]
   n_external_src_optics_prescription["src/optics/prescription"]
   n_external_src_optics_state["src/optics/state"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
-  n_external_src_types["src/types"]
-  n_src_optics_trace_src_optics_trace_pathPlanner_ts --> |2| n_external_src_optics_geometry
+  n_src_optics_trace_src_optics_trace_pathPlanner_ts --> |4| n_external_src_optics_geometry
   n_src_optics_trace_src_optics_trace_interactions_ts --> |2| n_external_src_optics_math
-  n_src_optics_trace_src_optics_trace_rayAdapters_ts --> n_external_src_optics_constants_ts
+  n_src_optics_trace_src_optics_trace_raySampling_ts --> |2| n_external_src_types
+  n_src_optics_trace_src_optics_trace_sequentialTrace_ts --> |2| n_src_optics_trace_src_optics_trace_capture_ts
+  n_src_optics_trace_src_optics_trace_rayAdapters_ts --> |2| n_src_optics_trace_src_optics_trace_runtimeRayResult_ts
+  n_src_optics_trace_src_optics_trace_rayAdapters_ts --> n_external_src_optics_chromatic
   n_src_optics_trace_src_optics_trace_capture_ts --> n_external_src_optics_geometry
   n_src_optics_trace_src_optics_trace_sequentialTrace_ts --> n_external_src_optics_geometry
   n_src_optics_trace_src_optics_trace_types_ts --> n_external_src_optics_geometry
@@ -64,19 +69,16 @@ flowchart LR
   n_src_optics_trace_src_optics_trace_pathPlanner_ts --> n_external_src_types
   n_src_optics_trace_src_optics_trace_rayAdapters_ts --> n_external_src_types
   n_src_optics_trace_src_optics_trace_runtimeRayResult_ts --> n_external_src_types
-  n_src_optics_trace_src_optics_trace_types_ts --> n_external_src_types
-  n_src_optics_trace_src_optics_trace_utils_ts --> n_external_src_types
-  n_src_optics_trace_src_optics_trace_generalizedTrace_ts --> n_src_optics_trace_src_optics_trace_aperture_ts
-  n_src_optics_trace_src_optics_trace_pathPlanner_ts --> n_src_optics_trace_src_optics_trace_aperture_ts
+  n_src_optics_trace_src_optics_trace_stopObstruction_ts --> n_external_src_types
   n_src_optics_trace_truncated["additional relationships omitted"]
 ```
 
 ## Directory Overview
 
-- Direct source files: 15
+- Direct source files: 17
 - Direct subfolders: 0
-- Main outbound areas: same folder (37), src/optics/types.ts (12), src/types (10), src/optics/math (6), src/optics/geometry (5), src/optics/constants.ts, src/optics/prescription, src/optics/state
-- External consumers: src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/field, src/optics/first-order, src/optics/foldedPathDisplay.ts, src/optics/optics.ts, src/optics/perspective, +3 more
+- Main outbound areas: same folder (40), src/types (13), src/optics/types.ts (12), src/optics/geometry (7), src/optics/math (6), src/optics/chromatic, src/optics/prescription, src/optics/state
+- External consumers: src/optics/analysis, src/optics/chromatic, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/optics.ts, src/optics/perspective, src/optics/prescription, +2 more
 
 ## Files
 
@@ -90,10 +92,12 @@ flowchart LR
 | `generalizedTrace.ts` | Generalized Trace helper module | same folder (6), src/optics/math, src/optics/types.ts, src/types | same folder (2) | traceGeneralized |
 | `geometry.ts` | Geometry helper module | same folder (3) | src/optics/first-order (2), src/optics/prescription, src/optics/state | createTraceGeometry |
 | `interactions.ts` | Interactions helper module | src/optics/math (2), src/optics/types.ts, src/types | same folder (3) | IncidentSide, incidentSideFor, isSurfaceSideActive, reflectedDirection, refractedDirection, phaseRefractedDirection, RefractiveInteractionFailure, RefractiveInteractionResult, +5 more |
-| `pathPlanner.ts` | Path Planner helper module | same folder (4), src/optics/geometry (2), src/optics/types.ts, src/types | same folder (2) | SurfaceHitCandidate, ImagePlaneIntersection, sequentialSurfaceMaxT, sequentialSurfaceMinT, targetedSurfaceMaxT, intersectStateSurface, intersectImagePlane, findNearestGeneralizedSurfaceHit, +2 more |
-| `rayAdapters.ts` | Ray Adapters helper module | same folder (3), src/optics/constants.ts, src/optics/math, src/optics/prescription, src/optics/state, +2 more | src/optics/analysis (13), src/optics/field (3), same folder, src/optics/chromatic, src/optics/compat.ts, +5 more | VectorRayTraceInput2, traceEngineRay2, prepareEngineTrace, traceRay2, traceRayChromatic2, traceSkewRay2, traceSkewRayChromatic2, traceRayVector2, +9 more |
+| `pathPlanner.ts` | Path Planner helper module | same folder (4), src/optics/geometry (4), src/optics/types.ts, src/types | same folder (2) | SurfaceHitCandidate, ImagePlaneIntersection, sequentialSurfaceMaxT, sequentialSurfaceMinT, targetedSurfaceMaxT, intersectStateSurface, intersectImagePlane, findNearestGeneralizedSurfaceHit, +2 more |
+| `rayAdapters.ts` | Ray Adapters helper module | same folder (4), src/optics/chromatic, src/optics/math, src/optics/prescription, src/optics/state, +2 more | src/optics/analysis (13), src/optics/field (3), same folder, src/optics/chromatic, src/optics/diagram, +4 more | VectorRayTraceInput, traceEngineRay, prepareEngineTrace, traceRay, traceRayChromatic, traceSkewRay, traceSkewRayChromatic, traceRayVector, +9 more |
+| `raySampling.ts` | Ray Sampling helper module | src/types (2), same folder | src/optics/analysis (2), src/optics/diagram, src/optics/field, src/optics/optics.ts | isHeavyLensForRayWork, rayFractionsForDensity, obstructionAwareRayFractionsForDensity, raySampleCountForDensity |
 | `runtimeRayResult.ts` | Runtime Ray Result helper module | same folder (2), src/optics/types.ts, src/types | same folder (2), src/optics/analysis (2), src/optics/optics.ts | RuntimeSkewRayTraceResult, engineTraceToRuntimeRayResult, engineTraceToRuntimeSkewResult, vectorLeadPoint |
-| `sequentialTrace.ts` | Sequential Trace helper module | same folder (6), src/optics/geometry, src/optics/math, src/optics/types.ts | same folder | traceSequential |
-| `stopTrace.ts` | Stop Trace helper module | same folder (4), src/optics/types.ts | src/optics/field (2), src/optics/analysis, src/optics/compat.ts, src/optics/first-order | StopTraceOptions, TraceToStopResult, traceToStopViaGeneralized2, traceGeometryToStop |
+| `sequentialTrace.ts` | Sequential Trace helper module | same folder (7), src/optics/geometry, src/optics/math, src/optics/types.ts | same folder | traceSequential |
+| `stopObstruction.ts` | Stop Obstruction helper module | src/types | same folder, src/optics/optics.ts | stopInnerBlockedSemiDiameter |
+| `stopTrace.ts` | Stop Trace helper module | same folder (4), src/optics/types.ts | src/optics/field (2), src/optics/analysis, src/optics/first-order, src/optics/optics.ts | StopTraceOptions, TraceToStopResult, traceToStopViaGeneralized, traceGeometryToStop |
 | `types.ts` | Shared TypeScript types | src/optics/geometry, src/optics/types.ts, src/types | same folder (12), src/optics/analysis (4), src/optics/field (2), src/optics/first-order, src/optics/perspective, +1 more | TraceFailureReason, TraceHit, TraceCapture, EngineTraceResult, TraceOptions, TraceDiagnosticsInput, TraceTraversal, TraceGeometry |
 | `utils.ts` | Utils helper module | same folder (2), src/optics/math, src/optics/types.ts, src/types | same folder (3), src/optics/perspective | directionSlopes, projectCoordinateToZ, normalizeTraceDirection, finalizeTraceResult, clampTraceCount, resolveReturnVertexIndex |

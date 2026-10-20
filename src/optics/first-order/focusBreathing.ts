@@ -6,12 +6,12 @@
 
 import { interpolateStationTable, clampStationControl } from "../state/stationTables.js";
 import type { RuntimeLens } from "../../types/optics.js";
-import { FOCUS_INFINITY_CUTOFF } from "../focusDistance.js";
-import { compiledLensFromRuntime } from "../prescription/compile.js";
+import { FOCUS_INFINITY_CUTOFF } from "../state/focusDistance.js";
+import { compiledLensFromRuntime } from "../prescription/identity.js";
 import { prepareState } from "../state/preparedGeometry.js";
 import type { PreparedGeometry } from "../types.js";
 import { runtimeView } from "../prescription/runtimeView.js";
-import { traceParaxialSurfaces2 } from "../math/paraxial.js";
+import { traceParaxialSurfaces } from "../math/paraxial.js";
 
 /**
  * Compute effective focal length for the current focus and zoom state.
@@ -26,7 +26,7 @@ import { traceParaxialSurfaces2 } from "../math/paraxial.js";
  * @param aberrationT - normalized aberration spacing slider
  * @returns current effective focal length in mm
  */
-export function eflAtFocus2(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
+export function eflAtFocus(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
   if (focusT < FOCUS_INFINITY_CUTOFF && aberrationT === 0) {
     return L.isZoom && L.zoomEFLs ? interpolateStationTable(clampStationControl(zoomT), L.zoomEFLs) : L.EFL;
   }
@@ -56,8 +56,8 @@ function eflFromPreparedSurfaces(state: PreparedGeometry, L: RuntimeLens): numbe
   return efl;
 }
 
-function eflFromSurfaces(surfaces: Parameters<typeof traceParaxialSurfaces2>[0]): number | null {
-  const trace = traceParaxialSurfaces2(surfaces, 1, 0, { skipLastTransfer: true });
+function eflFromSurfaces(surfaces: Parameters<typeof traceParaxialSurfaces>[0]): number | null {
+  const trace = traceParaxialSurfaces(surfaces, 1, 0, { skipLastTransfer: true });
   // Paraxial power: EFL = -1 / u' for a unit-height collimated basis ray.
   return Math.abs(trace.u) < 1e-15 ? null : -1 / trace.u;
 }

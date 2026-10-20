@@ -1,4 +1,4 @@
-import { type DistortionFieldGridResult, type DistortionGridLine } from "../../../optics/analysis.js";
+import type { DistortionFieldGridResult, DistortionGridLine } from "../../../optics/analysis.js";
 import type { Theme } from "../../../types/theme.js";
 
 interface DistortionFieldGridProps {

@@ -4,10 +4,8 @@ import type { CompiledPrescription, CompiledSurface, LensConstants, Ray3 } from 
 import { buildStateSurfaces, sumSurfaceThicknesses, buildZPositions } from "../state/layout.js";
 import { zoomIndexToT } from "../state/stationTables.js";
 import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
-import {
-  traceParaxialSurfaces2 as traceSurfacesParaxial,
-  type ParaxialTraceOptions as ParaxialSurfaceTraceOptions,
-} from "../math/paraxial.js";
+import { traceParaxialSurfaces as traceSurfacesParaxial } from "../math/paraxial.js";
+import type { ParaxialTraceOptions as ParaxialSurfaceTraceOptions } from "../math/paraxial.js";
 import { createTraceGeometry } from "../trace/geometry.js";
 import { traceGeometryToStop } from "../trace/stopTrace.js";
 import type { EngineTraceResult, TraceCapture, TraceGeometry, TraceOptions } from "../trace/types.js";
@@ -15,10 +13,10 @@ import { directionFromMeridionalSlope } from "../math/vector.js";
 import { compileSurfaces } from "../prescription/surfaces.js";
 import { resolvedImagePlaneToPlane3 } from "../prescription/interactions.js";
 import {
-  fisheyeProjectionFocalLengthAtZoom2 as fisheyeProjectionFocalLengthAtZoom,
-  fisheyeProjectionMaxTraceFieldAtZoom2 as fisheyeProjectionMaxTraceFieldAtZoom,
-  isFisheyeProjection2 as isFisheyeProjection,
-  rectilinearProjectionMaxTraceField2 as rectilinearProjectionMaxTraceField,
+  fisheyeProjectionFocalLengthAtZoom,
+  fisheyeProjectionMaxTraceFieldAtZoom,
+  isFisheyeProjection,
+  rectilinearProjectionMaxTraceField,
   TRACING_SAFETY_FACTOR,
 } from "../field/projection.js";
 import type {

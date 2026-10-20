@@ -258,7 +258,7 @@ describe("benchmark base compatibility", () => {
           "benchmarks/baseFixture.ts",
           `
         export * from "./opticsRenderingBenchmark.tsx";
-        export { analysisJobsForState2, computeCardinalElements, createFreshAnalysisContext } from "./benchmarkSeam.ts";
+        export { analysisJobs, computeCardinalElements, createFreshAnalysisContext } from "./benchmarkSeam.ts";
       `,
         );
         const outDir = join(root, "out");
@@ -285,8 +285,8 @@ describe("benchmark base compatibility", () => {
           currentEPSD: 10, currentPhysStopSD: 8, fieldGeometry: { halfFieldDeg: 12 },
           sampling: { pupilAberrationSampleCount: 7, sphericalBlurRingSamples: [1, 8] } };
         console.log(JSON.stringify({
-          jobs: Object.fromEntries(Object.keys(seam.analysisJobsForState2).map((name) =>
-            [name, seam.analysisJobsForState2[name](p, name === "computeFieldCurvature" ? true : "base-result")])),
+          jobs: Object.fromEntries(Object.keys(seam.analysisJobs).map((name) =>
+            [name, seam.analysisJobs[name](p, name === "computeFieldCurvature" ? true : "base-result")])),
           cardinals: seam.computeCardinalElements(p, { zPos: [0, 20], imagePlaneZ: 40 }, "lens"),
           fresh: seam.createFreshAnalysisContext(p),
         }));

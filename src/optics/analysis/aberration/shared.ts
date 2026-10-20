@@ -4,7 +4,8 @@
  * Centralizes the coordinate and best-focus conventions reused by spherical, coma, field-curvature, and bokeh modules.
  */
 
-import { prepareRayTrace, type PreparedRayTrace } from "../../trace/rayAdapters.js";
+import { prepareRayTrace } from "../../trace/rayAdapters.js";
+import type { PreparedRayTrace } from "../../trace/rayAdapters.js";
 import { MARGINAL_PUPIL_FRACTIONS } from "../sampling.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 

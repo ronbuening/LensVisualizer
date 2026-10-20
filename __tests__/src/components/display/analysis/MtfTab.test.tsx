@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { createAnalysisComputationContext } from "../../../../../src/optics/analysis.js";
+import { createAnalysisComputationContext } from "../../../../../src/optics/analysis/analysisContext.js";
 import { mtfInputs } from "../../../optics/testLensFixtures.js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
@@ -11,8 +11,9 @@ import {
   buildChromaticPositiveElementLens,
   buildSimplePositiveElementLens,
 } from "../../../optics/testLensFixtures.js";
-import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
-import { assessMtfSupport, computeMtf } from "../../../../../src/optics/mtf.js";
+import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
+import { assessMtfSupport } from "../../../../../src/optics/analysis/mtf/mtfSupport.js";
+import { computeMtf } from "../../../../../src/optics/analysis/mtf/mtf.js";
 import { mtfImagePlaneOffset } from "../../../../../src/optics/analysis/mtf/mtfFocus.js";
 import type { MtfResult } from "../../../../../src/types/mtf.js";
 import type { MtfJob, MtfWorkerReply, MtfWorkerRequest } from "../../../../../src/components/hooks/mtfWorkerClient.js";

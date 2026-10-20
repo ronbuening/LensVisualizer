@@ -14,32 +14,28 @@
 
 import { useMemo, useRef } from "react";
 import { resolveLensSystemData } from "../../utils/catalog/teleconverterCatalog.js";
-import { wideOpenStopAtZoom } from "../../optics/apertureStop.js";
-import { fNumberAtStopdown } from "../../optics/aperture.js";
-import buildLens from "../../optics/buildLens.js";
-import type { CardinalElements } from "../../optics/cardinalElements.js";
+import { wideOpenStopAtZoom } from "../../optics/optics.js";
+import { fNumberAtStopdown } from "../../optics/optics.js";
+import { buildLens } from "../../optics/buildLens.js";
+import type { CardinalElements } from "../../optics/analysis.js";
 import { computeCardinalElements, computeFocusEFL, createAnalysisRequest } from "../../optics/analysis.js";
 import { computeElementShapes, createCoordinateTransforms } from "../../optics/diagramGeometry.js";
-import { clampLensMovement, createLensMovementTransform } from "../../optics/lensMovement.js";
-import { prepareRuntimeState } from "../../optics/compat.js";
+import { clampLensMovement, createLensMovementTransform } from "../../optics/perspective.js";
+import { prepareRuntimeState } from "../../optics/optics.js";
 import { nearestPublishedStation } from "../../optics/publishedStations.js";
-import {
-  computePerspectiveMovementViewportExtent,
-  createPerspectiveTraceContext,
-  type PerspectiveTraceContext,
-} from "../../optics/perspective/index.js";
+import { computePerspectiveMovementViewportExtent, createPerspectiveTraceContext } from "../../optics/perspective.js";
+import type { PerspectiveTraceContext } from "../../optics/perspective.js";
 import {
   anchorLayoutToCamera,
-  computeAnalysisFieldGeometryAtState,
-  doLayout,
+  doLayoutForRuntimeLens as doLayout,
   effectiveFNumber,
-  entrancePupilAtState,
-  fopenAtZoom,
-  thick,
+  fopenAtZoomClamped as fopenAtZoom,
+  thickOrZero as thick,
 } from "../../optics/optics.js";
+import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../../optics/fieldGeometry.js";
 import type { RuntimeLens, ElementShape, CoordinateTransforms } from "../../types/optics.js";
-import type { LensMovementTransform, ResolvedLensMovement } from "../../optics/lensMovement.js";
-import type { FieldGeometryState } from "../../optics/optics.js";
+import type { LensMovementTransform, ResolvedLensMovement } from "../../optics/perspective.js";
+import type { FieldGeometryState } from "../../optics/fieldGeometry.js";
 
 interface UseLensComputationParams {
   lensKey: string;

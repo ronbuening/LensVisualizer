@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { normalLinePgF } from "../../../src/optics/dispersion.js";
-import { evaluateSellmeier, resolveCompatibleGlass } from "../../../src/optics/glassCatalog.js";
+import { normalLinePgF } from "../../../src/optics/chromatic/materialResolver.js";
+import { evaluateSellmeier, resolveCompatibleGlass } from "../../../src/optics/chromatic/glassCatalog.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import { TELECONVERTER_CATALOG } from "../../../src/utils/catalog/teleconverterCatalog.js";
 

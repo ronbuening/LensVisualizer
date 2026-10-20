@@ -10,22 +10,18 @@
 import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../../src/optics/buildLens.js";
+import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
 import { DEFAULT_MAX_RIM_ANGLE_DEG } from "../../../../src/optics/geometry/surfaceProfile.js";
-import {
-  FLAT_RADIUS,
-  PrescriptionIngestError,
-  type CanonicalLens,
-  type IngestedPrescription,
-} from "../../../../src/optics/prescription/canonical.js";
+import { FLAT_RADIUS, PrescriptionIngestError } from "../../../../src/optics/prescription/canonical.js";
+import type { CanonicalLens, IngestedPrescription } from "../../../../src/optics/prescription/canonical.js";
 import {
   ELEMENT_SCHEMA_DEFAULTS,
   LENS_SCHEMA_DEFAULTS,
   REAR_PLATE_SCHEMA_DEFAULTS,
   takesDefault,
   v1CatalogDefaults,
-  type SchemaDefault,
 } from "../../../../src/optics/prescription/defaults.js";
+import type { SchemaDefault } from "../../../../src/optics/prescription/defaults.js";
 import { ingestLensV1, ingestTeleconverterV1 } from "../../../../src/optics/prescription/ingestV1.js";
 import { ingestLens, ingestTeleconverter, isV1File } from "../../../../src/optics/prescription/ingestV2.js";
 import { toLensData, toLensDataInput, toTeleconverterData } from "../../../../src/optics/prescription/toLensData.js";

@@ -13,7 +13,7 @@ import type {
   ComaPointCloudPreviewResult,
   ComaPreviewFieldResult,
   ComaPreviewResult,
-} from "../../../optics/aberrationAnalysis.js";
+} from "../../../optics/analysis.js";
 import type { Theme } from "../../../types/theme.js";
 
 interface ComaPreviewGridProps {

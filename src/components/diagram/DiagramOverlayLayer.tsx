@@ -5,12 +5,12 @@
  * markers, badge overlays, and flash effect into one compositional layer.
  */
 
-import { wideOpenStopAtZoom } from "../../optics/apertureStop.js";
+import { wideOpenStopAtZoom } from "../../optics/optics.js";
 
 import { memo } from "react";
 import usePrefersReducedMotion from "../../utils/usePrefersReducedMotion.js";
 import {
-  epAtZoom,
+  epAtZoomClamped as epAtZoom,
   epZRelStopAtZoom,
   stopInnerBlockedSemiDiameter,
   xpAtZoom,
@@ -24,8 +24,8 @@ import LocaInsetWidget from "./LocaInsetWidget.js";
 import PetzvalSumBadge from "./PetzvalSumBadge.js";
 import type { RuntimeLens, ElementShape, ChromaticRayFanSpread } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
-import type { DispersionQuality } from "../../optics/dispersion.js";
-import type { CardinalElements } from "../../optics/cardinalElements.js";
+import type { DispersionQuality } from "../../optics/chromatic.js";
+import type { CardinalElements } from "../../optics/analysis.js";
 
 interface DiagramOverlayLayerProps {
   lens: RuntimeLens;

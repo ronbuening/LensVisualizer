@@ -45,8 +45,8 @@ const LENS_DIR = join(ROOT, "src", "lens-data");
 const load = async (path) => import(pathToFileURL(join(ROOT, path)).href);
 
 const { default: buildLens, ingestLens, toLensData } = await load("src/optics/buildLens.ts");
-const { prepareRuntimeState } = await load("src/optics/compat.ts");
-const { traceEngineRay2 } = await load("src/optics/trace/rayAdapters.ts");
+const { prepareRuntimeState } = await load("src/optics/optics.ts");
+const { traceEngineRay } = await load("src/optics/optics.ts");
 
 const args = process.argv.slice(2);
 const flag = (name) => args.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3);
@@ -72,7 +72,7 @@ function axialBeam(state, statedRadius) {
   const first = state.surfaces[0];
   const lead = Math.max(1, Math.abs(first.profile.sag(first.sd ?? 0)) + 1);
   const firstClip = (height) => {
-    const trace = traceEngineRay2(
+    const trace = traceEngineRay(
       state,
       { origin: [0, height, (state.z[0] ?? 0) - lead], direction: [0, 0, 1] },
       { ghost: true },
@@ -125,7 +125,7 @@ const files = requested.length
 function statedRayHeights(state, statedRadius) {
   const first = state.surfaces[0];
   const lead = Math.max(1, Math.abs(first.profile.sag(first.sd ?? 0)) + 1);
-  const trace = traceEngineRay2(
+  const trace = traceEngineRay(
     state,
     { origin: [0, statedRadius, (state.z[0] ?? 0) - lead], direction: [0, 0, 1] },
     { ghost: true },

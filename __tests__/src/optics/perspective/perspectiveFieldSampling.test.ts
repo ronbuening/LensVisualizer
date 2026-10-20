@@ -1,20 +1,18 @@
 import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import buildLens from "../../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
+import { buildLens } from "../../../../src/optics/prescription/buildRuntimeLens.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
+import { PerspectiveFieldSamplingError } from "../../../../src/optics/perspective/fieldGeometry.js";
 import {
-  PerspectiveFieldSamplingError,
   samplePerspectiveFields,
   sampleSceneLockedFields,
   sampleSensorLockedFields,
   zeroPoseSceneDirectionForSensorUv,
-  type PerspectiveFieldSamplingOptions,
-  type SensorUv,
 } from "../../../../src/optics/perspective/fieldSampling.js";
-import {
-  createPerspectiveTraceContext,
-  type PerspectiveTraceContext,
-} from "../../../../src/optics/perspective/trace.js";
+import type { PerspectiveFieldSamplingOptions } from "../../../../src/optics/perspective/fieldTypes.js";
+import type { SensorUv } from "../../../../src/optics/perspective/fieldGeometry.js";
+import { createPerspectiveTraceContext } from "../../../../src/optics/perspective/trace.js";
+import type { PerspectiveTraceContext } from "../../../../src/optics/perspective/trace.js";
 import {
   createFieldPlaneFrame,
   pointForSensorUv,

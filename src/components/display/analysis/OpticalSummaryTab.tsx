@@ -5,8 +5,8 @@ import { createAnalysisRequest, createAnalysisComputationContext } from "../../.
 import { AnalysisMetricRow } from "./analysisUi.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
-import type { AnalysisComputationContext } from "../../../optics/compat.js";
-import type { FieldGeometryState } from "../../../optics/optics.js";
+import type { AnalysisComputationContext } from "../../../optics/analysis.js";
+import type { FieldGeometryState } from "../../../optics/fieldGeometry.js";
 import type { RuntimeLens, TiltPivot } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 

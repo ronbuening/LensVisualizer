@@ -1,4 +1,4 @@
-import type { LateralColorCurveResult } from "../../../optics/compat.js";
+import type { LateralColorCurveResult } from "../../../optics/analysis.js";
 import type { ChromaticChannel, RefractiveIndexReferenceLine } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import { AnalysisEmptyState } from "./analysisUi.js";

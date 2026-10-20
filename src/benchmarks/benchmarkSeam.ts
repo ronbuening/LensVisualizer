@@ -4,12 +4,23 @@
  * when a bundle loads. Timed calls only forward the same inputs through one wrapper.
  * Inputs stay in the historical context vocabulary so old engines need no request shim.
  */
-import type { AnalysisComputationContext } from "../optics/compat.js";
+import type { AnalysisComputationContext } from "../optics/analysis.js";
 import type { AnalysisRequestParams } from "../optics/analysis.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 type Module = Readonly<Record<string, unknown>>;
 const modules = {
+  publicOptics: Object.values(import.meta.glob<Module>("../optics/optics.ts", { eager: true }))[0],
+  publicBuild: Object.values(import.meta.glob<Module>("../optics/buildLens.ts", { eager: true }))[0],
+  publicField: Object.values(import.meta.glob<Module>("../optics/fieldGeometry.ts", { eager: true }))[0],
+  publicChromatic: Object.values(import.meta.glob<Module>("../optics/chromatic.ts", { eager: true }))[0],
+  publicDiagram: Object.values(import.meta.glob<Module>("../optics/diagramGeometry.ts", { eager: true }))[0],
+  publicPerspective: Object.values(import.meta.glob<Module>("../optics/perspective.ts", { eager: true }))[0],
+  oldPerspective: Object.values(import.meta.glob<Module>("../optics/perspective/index.ts", { eager: true }))[0],
+  oldMovement: Object.values(import.meta.glob<Module>("../optics/lensMovement.ts", { eager: true }))[0],
+  oldSampling: Object.values(import.meta.glob<Module>("../optics/raySampling.ts", { eager: true }))[0],
+  oldAperture: Object.values(import.meta.glob<Module>("../optics/apertureStop.ts", { eager: true }))[0],
+  oldQuality: Object.values(import.meta.glob<Module>("../optics/analysis/analysisQuality.ts", { eager: true }))[0],
   analysis: Object.values(import.meta.glob<Module>("../optics/analysis.ts", { eager: true }))[0],
   jobs: Object.values(import.meta.glob<Module>("../optics/analysis/analysisJobs.ts", { eager: true }))[0],
   compat: Object.values(import.meta.glob<Module>("../optics/compat.ts", { eager: true }))[0],
@@ -28,7 +39,7 @@ function capability<T>(name: string, candidates: readonly Candidate[]): T {
 }
 
 type HeadJobs = Omit<
-  typeof import("../optics/compat.js").analysisJobsForState2,
+  typeof import("../optics/analysis.js").analysisJobs,
   "computeChromaticAnalysis" | "computeChromaticRayFanAnalysis"
 >;
 type Tail<T extends unknown[]> = T extends [unknown, ...infer Rest] ? Rest : never;
@@ -39,6 +50,7 @@ type Jobs = {
   ) => ReturnType<HeadJobs[K]>;
 };
 const rawJobs = capability<HeadJobs>("analysis jobs", [
+  ["analysis", "analysisJobs"],
   ["compat", "analysisJobsForState2"],
   ["jobs", "analysisJobsForState2"],
 ]);
@@ -51,7 +63,7 @@ const createRequest = modules.analysis?.createAnalysisRequest as
 type LegacyJobs = { [K in keyof HeadJobs]: (...args: unknown[]) => ReturnType<HeadJobs[K]> };
 const legacy = rawJobs as unknown as LegacyJobs;
 
-export const analysisJobsForState2: Jobs = createRequest
+export const analysisJobs: Jobs = createRequest
   ? {
       computeSphericalAberration: (p) => rawJobs.computeSphericalAberration(createRequest(p)),
       computeSAProfile: (p) => rawJobs.computeSAProfile(createRequest(p)),
@@ -175,7 +187,7 @@ export const computeCardinalElements: Cardinals = createRequest
         p.preparedState.aberrationT,
       );
 
-const createContext = capability<typeof import("../optics/compat.js").createAnalysisComputationContext>(
+const createContext = capability<typeof import("../optics/analysis.js").createAnalysisComputationContext>(
   "analysis context",
   [
     ["analysis", "createAnalysisComputationContext"],
@@ -198,3 +210,182 @@ export const createFreshAnalysisContext: (context: AnalysisComputationContext) =
           sampling: context.sampling,
           perspectiveTraceContext: context.perspectiveTraceContext,
         });
+
+export const wideOpenStopAtZoom = capability<typeof import("../optics/optics.js").wideOpenStopAtZoom>(
+  "wideOpenStopAtZoom",
+  [
+    ["publicOptics", "wideOpenStopAtZoom"],
+    ["oldAperture", "wideOpenStopAtZoom"],
+  ],
+);
+
+export const buildLens = capability<typeof import("../optics/buildLens.js").buildLens>("buildLens", [
+  ["publicBuild", "buildLens"],
+  ["publicBuild", "default"],
+]);
+
+export const createAnalysisComputationContext = capability<
+  typeof import("../optics/analysis.js").createAnalysisComputationContext
+>("createAnalysisComputationContext", [
+  ["analysis", "createAnalysisComputationContext"],
+  ["compat", "createAnalysisComputationContext"],
+]);
+
+export const prepareRuntimeState = capability<typeof import("../optics/optics.js").prepareRuntimeState>(
+  "prepareRuntimeState",
+  [
+    ["publicOptics", "prepareRuntimeState"],
+    ["compat", "prepareRuntimeState"],
+  ],
+);
+
+export const anchorLayoutToCamera = capability<typeof import("../optics/optics.js").anchorLayoutToCamera>(
+  "anchorLayoutToCamera",
+  [["publicOptics", "anchorLayoutToCamera"]],
+);
+
+export const doLayoutForRuntimeLens = capability<typeof import("../optics/optics.js").doLayoutForRuntimeLens>(
+  "doLayoutForRuntimeLens",
+  [
+    ["publicOptics", "doLayoutForRuntimeLens"],
+    ["publicOptics", "doLayout"],
+  ],
+);
+
+export const effectiveFNumber = capability<typeof import("../optics/optics.js").effectiveFNumber>("effectiveFNumber", [
+  ["publicOptics", "effectiveFNumber"],
+]);
+
+export const eflAtFocus = capability<typeof import("../optics/optics.js").eflAtFocus>("eflAtFocus", [
+  ["publicOptics", "eflAtFocus"],
+]);
+
+export const fopenAtZoomClamped = capability<typeof import("../optics/optics.js").fopenAtZoomClamped>(
+  "fopenAtZoomClamped",
+  [
+    ["publicOptics", "fopenAtZoomClamped"],
+    ["publicOptics", "fopenAtZoom"],
+  ],
+);
+
+export const traceRay = capability<typeof import("../optics/optics.js").traceRay>("traceRay", [
+  ["publicOptics", "traceRay"],
+]);
+
+export const traceRayChromatic = capability<typeof import("../optics/optics.js").traceRayChromatic>(
+  "traceRayChromatic",
+  [["publicOptics", "traceRayChromatic"]],
+);
+
+export const traceRayVector = capability<typeof import("../optics/optics.js").traceRayVector>("traceRayVector", [
+  ["publicOptics", "traceRayVector"],
+]);
+
+export const traceRayVectorChromatic = capability<typeof import("../optics/optics.js").traceRayVectorChromatic>(
+  "traceRayVectorChromatic",
+  [["publicOptics", "traceRayVectorChromatic"]],
+);
+
+export const computeAnalysisFieldGeometryAtState = capability<
+  typeof import("../optics/fieldGeometry.js").computeAnalysisFieldGeometryAtState
+>("computeAnalysisFieldGeometryAtState", [
+  ["publicField", "computeAnalysisFieldGeometryAtState"],
+  ["publicOptics", "computeAnalysisFieldGeometryAtState"],
+]);
+
+export const conjugateKForRuntimeLens = capability<
+  typeof import("../optics/fieldGeometry.js").conjugateKForRuntimeLens
+>("conjugateKForRuntimeLens", [
+  ["publicField", "conjugateKForRuntimeLens"],
+  ["publicOptics", "conjugateK"],
+]);
+
+export const entrancePupilAtState = capability<typeof import("../optics/fieldGeometry.js").entrancePupilAtState>(
+  "entrancePupilAtState",
+  [
+    ["publicField", "entrancePupilAtState"],
+    ["publicOptics", "entrancePupilAtState"],
+  ],
+);
+
+export const offsetVectorFieldRay = capability<typeof import("../optics/fieldGeometry.js").offsetVectorFieldRay>(
+  "offsetVectorFieldRay",
+  [
+    ["publicField", "offsetVectorFieldRay"],
+    ["publicOptics", "offsetVectorFieldRay"],
+  ],
+);
+
+export const computeChromaticRayFanSpread = capability<
+  typeof import("../optics/chromatic.js").computeChromaticRayFanSpread
+>("computeChromaticRayFanSpread", [
+  ["publicChromatic", "computeChromaticRayFanSpread"],
+  ["publicOptics", "computeChromaticRayFanSpread"],
+]);
+
+export const computeElementShapes = capability<typeof import("../optics/diagramGeometry.js").computeElementShapes>(
+  "computeElementShapes",
+  [["publicDiagram", "computeElementShapes"]],
+);
+
+export const createCoordinateTransforms = capability<
+  typeof import("../optics/diagramGeometry.js").createCoordinateTransforms
+>("createCoordinateTransforms", [["publicDiagram", "createCoordinateTransforms"]]);
+
+export const clampLensMovement = capability<typeof import("../optics/perspective.js").clampLensMovement>(
+  "clampLensMovement",
+  [
+    ["publicPerspective", "clampLensMovement"],
+    ["oldMovement", "clampLensMovement"],
+  ],
+);
+
+export const createLensMovementTransform = capability<
+  typeof import("../optics/perspective.js").createLensMovementTransform
+>("createLensMovementTransform", [
+  ["publicPerspective", "createLensMovementTransform"],
+  ["oldMovement", "createLensMovementTransform"],
+]);
+
+export const cameraDirectionForDiagramField = capability<
+  typeof import("../optics/perspective.js").cameraDirectionForDiagramField
+>("cameraDirectionForDiagramField", [
+  ["publicPerspective", "cameraDirectionForDiagramField"],
+  ["oldPerspective", "cameraDirectionForDiagramField"],
+]);
+
+export const computePerspectiveMovementViewportExtent = capability<
+  typeof import("../optics/perspective.js").computePerspectiveMovementViewportExtent
+>("computePerspectiveMovementViewportExtent", [
+  ["publicPerspective", "computePerspectiveMovementViewportExtent"],
+  ["oldPerspective", "computePerspectiveMovementViewportExtent"],
+]);
+
+export const createPerspectiveTraceContext = capability<
+  typeof import("../optics/perspective.js").createPerspectiveTraceContext
+>("createPerspectiveTraceContext", [
+  ["publicPerspective", "createPerspectiveTraceContext"],
+  ["oldPerspective", "createPerspectiveTraceContext"],
+]);
+
+export const tracePerspectiveDiagramFan = capability<
+  typeof import("../optics/perspective.js").tracePerspectiveDiagramFan
+>("tracePerspectiveDiagramFan", [
+  ["publicPerspective", "tracePerspectiveDiagramFan"],
+  ["oldPerspective", "tracePerspectiveDiagramFan"],
+]);
+
+export const obstructionAwareRayFractionsForDensity = capability<
+  typeof import("../optics/optics.js").obstructionAwareRayFractionsForDensity
+>("obstructionAwareRayFractionsForDensity", [
+  ["publicOptics", "obstructionAwareRayFractionsForDensity"],
+  ["oldSampling", "obstructionAwareRayFractionsForDensity"],
+]);
+
+export const analysisSamplingForQuality = capability<typeof import("../optics/analysis.js").analysisSamplingForQuality>(
+  "analysisSamplingForQuality",
+  [
+    ["analysis", "analysisSamplingForQuality"],
+    ["oldQuality", "analysisSamplingForQuality"],
+  ],
+);

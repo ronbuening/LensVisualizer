@@ -64,9 +64,10 @@ import {
   type CaptureRequest,
   type RequestFamily,
 } from "../../../src/benchmarks/engineDiff/requests.js";
-import { ingestLens, ingestTeleconverter, toTeleconverterData } from "../../../src/optics/buildLens.js";
+import { ingestLens, ingestTeleconverter } from "../../../src/optics/prescription/ingestV2.js";
+import { toTeleconverterData } from "../../../src/optics/prescription/toLensData.js";
 import { toLensDataInput } from "../../../src/optics/prescription/toLensData.js";
-import { INTERSECTION_TOLERANCE } from "../../../src/optics/constants.js";
+import { INTERSECTION_TOLERANCE } from "../../../src/optics/math/constants.js";
 import * as perspectiveChromatic from "../../../src/optics/perspective/analysis/chromatic.js";
 import type { LensDataInput } from "../../../src/types/optics.js";
 import plainTwin from "./engineDiffFixtures/fingerprintTwinPlain.js";

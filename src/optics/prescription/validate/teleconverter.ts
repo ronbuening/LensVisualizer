@@ -11,7 +11,7 @@
 
 import type { LensData } from "../../../types/optics.js";
 import type { TeleconverterData } from "../../../types/teleconverter.js";
-import { traceParaxialSurfaces2 as traceSurfacesParaxial } from "../../math/paraxial.js";
+import { traceParaxialSurfaces as traceSurfacesParaxial } from "../../math/paraxial.js";
 import { ingestLensV1 } from "../ingestV1.js";
 import { mergeTeleconverterPrescription } from "../teleconverter.js";
 import { rearPlateAirEquivalentMm, teleconverterGeometry } from "../teleconverterCompatibility.js";

@@ -11,17 +11,23 @@ import {
   FIELD_CURVATURE_FIELD_FRACTIONS,
   MERIDIONAL_COMA_SAMPLE_COUNT,
   NEAR_AXIS_REAL_FRAC,
+} from "../../../src/optics/analysis/aberration/types.js";
+import {
   computeComaPointCloudPreview,
   computeComaPreview,
   computeComaAnalysis,
-  computeFieldCurvature,
-  computeFieldCurvatureBundle,
   computeMeridionalComa,
   computeSagittalComa,
+} from "../../../src/optics/analysis/aberration/coma.js";
+import {
+  computeFieldCurvature,
+  computeFieldCurvatureBundle,
+} from "../../../src/optics/analysis/aberration/fieldCurvature.js";
+import {
   computeSphericalAberration,
   computeSphericalAberrationBlurCharacter,
   computeSAProfile,
-} from "../../../src/optics/aberrationAnalysis.js";
+} from "../../../src/optics/analysis/aberration/spherical.js";
 import {
   bestFocusPlaneForDirection,
   computeStateAwareOffAxisFieldGeometry,
@@ -29,14 +35,13 @@ import {
   traceCircularOffAxisBundle,
   traceOrthogonalOffAxisBundle,
 } from "../../../src/optics/analysis/aberration/offAxis.js";
+import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../../../src/optics/state/fieldAdapters.js";
 import {
-  computeAnalysisFieldGeometryAtState,
-  doLayout,
-  entrancePupilAtState,
-  epAtZoom,
-  traceChiefRelativeSkewRay,
-  traceRay,
-} from "../../../src/optics/optics.js";
+  doLayoutForRuntimeLens as doLayout,
+  epAtZoomClamped as epAtZoom,
+} from "../../../src/optics/state/runtimeAdapters.js";
+import { traceChiefRelativeSkewRay } from "../../../src/optics/trace/chiefRelative.js";
+import { traceRay } from "../../../src/optics/trace/rayAdapters.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import NikonAF28f14DRaw from "../../../src/lens-data/nikon/NikonAF28f14D.data.js";

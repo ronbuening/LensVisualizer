@@ -13,19 +13,21 @@
 import { describe, it, expect } from "vitest";
 import {
   bAtZoom,
-  eflAtZoom,
-  epAtZoom,
   epZRelStopAtZoom,
-  fopenAtZoom,
   halfFieldAtZoom,
   tracingHalfFieldAtZoom,
   xpAtZoom,
   xpZRelLastSurfAtZoom,
   yRatioAtZoom,
-} from "../../../src/optics/optics.js";
+} from "../../../src/optics/state/stationTables.js";
+import {
+  eflAtZoomClamped as eflAtZoom,
+  epAtZoomClamped as epAtZoom,
+  fopenAtZoomClamped as fopenAtZoom,
+} from "../../../src/optics/state/runtimeAdapters.js";
 import { sharedNikkorZ70200 } from "./testLensFixtures.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
-import { fNumberAtStopdown } from "../../../src/optics/aperture.js";
+import { fNumberAtStopdown } from "../../../src/optics/state/aperture.js";
 
 describe("aperture requests across zoom", () => {
   // Shared regression: controls must preserve the requested setting while enforcing zoom limits.

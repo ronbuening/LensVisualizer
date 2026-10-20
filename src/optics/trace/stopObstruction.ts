@@ -1,4 +1,4 @@
-import type { RuntimeLens, SurfaceData } from "../types/optics.js";
+import type { RuntimeLens, SurfaceData } from "../../types/optics.js";
 
 type StopObstructionLens = Pick<RuntimeLens, "isFoldedOptics" | "S" | "stopIdx">;
 

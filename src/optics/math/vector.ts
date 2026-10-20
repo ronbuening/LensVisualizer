@@ -5,7 +5,7 @@
  * RuntimeLens state so trace modules can share one coordinate convention.
  */
 
-import { VECTOR_EPSILON } from "../constants.js";
+import { VECTOR_EPSILON } from "./constants.js";
 import type { Vec3 } from "../types.js";
 
 /**

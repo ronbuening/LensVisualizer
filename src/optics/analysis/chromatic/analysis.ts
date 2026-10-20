@@ -9,12 +9,10 @@
 import { prepareRayTrace } from "../../trace/rayAdapters.js";
 import type { ChromaticChannel, ChromaticRayFanSpread, RuntimeLens } from "../../../types/optics.js";
 import { computeProjectionAwareOffAxisFieldGeometry, traceOffAxisChiefRay } from "../aberration/offAxis.js";
-import {
-  computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
-  type FieldGeometryState2 as FieldGeometryState,
-} from "../../state/fieldAdapters.js";
-import { thick } from "../../layout.js";
-import { computeChromaticRayFanSpread2 } from "../../chromatic/chromaticTrace.js";
+import { computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.js";
+import type { FieldGeometryState } from "../../field/launch.js";
+import { thick } from "../../state/layout.js";
+import { computeChromaticRayFanSpread } from "../../chromatic/chromaticTrace.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
 
 import { runtimeView } from "../../prescription/runtimeView.js";
@@ -207,7 +205,7 @@ export function computeLongitudinalChromaticFocus(
     const validChannels = Object.keys(marginalRays) as ChromaticChannel[];
     if (validChannels.length < 2) continue;
 
-    const spread = computeChromaticRayFanSpread2(marginalRays, imagePlaneZ, lastSurfaceZ);
+    const spread = computeChromaticRayFanSpread(marginalRays, imagePlaneZ, lastSurfaceZ);
     const referenceChannel = referenceChannelFor(channels);
     const referenceFocusZ = spread.axialIntercepts[referenceChannel] ?? null;
     const referenceImageHeight = spread.imagePlaneHeights[referenceChannel] ?? null;

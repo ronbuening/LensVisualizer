@@ -1,31 +1,27 @@
-/**
- * Field-geometry compatibility barrel — stable public exports for field/chief-ray helpers.
- *
- * Keeps legacy imports working while the implementation lives under optics/field.
- */
-
+/** Public fieldGeometry seam; implementations live in the focused engine subdirectories. */
+export { getChiefRayDiagnostics, resetChiefRayDiagnostics } from "./diagnostics/chiefRay.js";
+export type { ChiefRayDiagnostics, ChiefRayStatus } from "./diagnostics/chiefRay.js";
+export type { ChiefRaySolveResult } from "./field/chiefRaySolve.js";
+export type { EntrancePupilState } from "./field/geometry.js";
+export type { ImageHeightInversionResult } from "./field/imageHeight.js";
+export { offsetVectorFieldRay } from "./field/launch.js";
+export type { FieldGeometryState, OffsetVectorFieldRay, VectorFieldRayLaunch } from "./field/launch.js";
 export {
-  chiefRayImageHeight2 as chiefRayImageHeight,
-  chiefRayImageHeightAccurate2 as chiefRayImageHeightAccurate,
+  chiefRayImageHeightAccurateForRuntimeLens,
+  chiefRayImageHeightForRuntimeLens,
+  computeAnalysisFieldGeometryAtState,
+  computeBoundingSphereLaunchRadiusMmForRuntimeLens,
+  computeBoundingSphereVectorFieldLaunchForRuntimeLens,
+  computeFieldGeometryAtState,
+  conjugateKForRuntimeLens,
+  entrancePupilAtState,
   invertChiefRayImageHeights,
-  type ImageHeightInversionResult,
-  computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
-  computeBoundingSphereLaunchRadiusMm2 as computeBoundingSphereLaunchRadiusMm,
-  computeBoundingSphereVectorFieldLaunch2 as computeBoundingSphereVectorFieldLaunch,
-  computeFieldGeometryAtState2 as computeFieldGeometryAtState,
-  conjugateK2 as conjugateK,
-  entrancePupilAtState2 as entrancePupilAtState,
-  offsetVectorFieldRay2 as offsetVectorFieldRay,
-  solveChiefRay2 as solveChiefRay,
-  solveChiefRayBoundingSphere2 as solveChiefRayBoundingSphere,
-  solveFieldAngleForImageHeight2 as solveFieldAngleForImageHeight,
-  solveFieldAngleForImageHeightAccurate2 as solveFieldAngleForImageHeightAccurate,
-  solveFieldAnglesForImageHeightsAccurate2 as solveFieldAnglesForImageHeightsAccurate,
-  traceChiefRayAtAngle2 as traceChiefRayAtAngle,
-  traceParaxialRay2 as traceParaxialRay,
-  type ChiefRaySolveResult2 as ChiefRaySolveResult,
-  type EntrancePupilState2 as EntrancePupilState,
-  type FieldGeometryState2 as FieldGeometryState,
-  type OffsetVectorFieldRay2 as OffsetVectorFieldRay,
-  type VectorFieldRayLaunch2 as VectorFieldRayLaunch,
-} from "./compat.js";
+  paraxialObjectVergenceForRuntimeLens,
+  solveChiefRayBoundingSphereForRuntimeLens,
+  solveChiefRayForRuntimeLens,
+  solveFieldAngleForImageHeightAccurateForRuntimeLens,
+  solveFieldAngleForImageHeightForRuntimeLens,
+  solveFieldAnglesForImageHeightsAccurateForRuntimeLens,
+  traceChiefRayAtAngleForRuntimeLens,
+  traceParaxialRayForRuntimeLens,
+} from "./state/fieldAdapters.js";

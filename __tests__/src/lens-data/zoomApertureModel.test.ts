@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { catalogLensData } from "../optics/testLensFixtures.js";
-import buildLens from "../../../src/optics/buildLens.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
 import type { LensDataInput } from "../../../src/types/optics.js";
 
 const modules = import.meta.glob<{ default: LensDataInput }>("../../../src/lens-data/**/*.data.ts", { eager: true });

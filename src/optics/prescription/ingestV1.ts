@@ -35,29 +35,29 @@ import type {
 } from "../../types/optics.js";
 import type { TeleconverterData } from "../../types/teleconverter.js";
 import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
-import {
-  FLAT_RADIUS,
-  lensDataStopRadiusAuthority,
-  type CanonicalAberrationControl,
-  type CanonicalAberrationGap,
-  type CanonicalConjugate,
-  type CanonicalElement,
-  type CanonicalFocus,
-  type CanonicalGap,
-  type CanonicalLens,
-  type CanonicalMedium,
-  type CanonicalSurface,
-  type CanonicalTeleconverter,
-  type CanonicalZoom,
-  type CanonicalZoomStation,
-  type IngestedPrescription,
-  type IngestRequest,
-  type SourcePaths,
-  type StopRadiusAuthority,
-  type V1PublishedStationsSpelling,
-  type V1Spelling,
+import { FLAT_RADIUS, lensDataStopRadiusAuthority } from "./canonical.js";
+import type {
+  CanonicalAberrationControl,
+  CanonicalAberrationGap,
+  CanonicalConjugate,
+  CanonicalElement,
+  CanonicalFocus,
+  CanonicalGap,
+  CanonicalLens,
+  CanonicalMedium,
+  CanonicalSurface,
+  CanonicalTeleconverter,
+  CanonicalZoom,
+  CanonicalZoomStation,
+  IngestedPrescription,
+  IngestRequest,
+  SourcePaths,
+  StopRadiusAuthority,
+  V1PublishedStationsSpelling,
+  V1Spelling,
 } from "./canonical.js";
-import { ELEMENT_SCHEMA_DEFAULTS, LENS_SCHEMA_DEFAULTS, defaultValue, type SchemaDefault } from "./defaults.js";
+import { ELEMENT_SCHEMA_DEFAULTS, LENS_SCHEMA_DEFAULTS, defaultValue } from "./defaults.js";
+import type { SchemaDefault } from "./defaults.js";
 import {
   copy,
   finish,
@@ -73,9 +73,8 @@ import {
   requireRecords,
   sourcePathsFor,
   takeDefault,
-  type IngestContext as SharedIngestContext,
-  type Untyped,
 } from "./ingestCommon.js";
+import type { IngestContext as SharedIngestContext, Untyped } from "./ingestCommon.js";
 import { itemPath, labelPath } from "./sourcePaths.js";
 
 /** Radius the V1 format writes for a flat surface; any other flat radius is kept in provenance. */

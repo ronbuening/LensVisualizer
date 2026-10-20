@@ -2,7 +2,8 @@
 import { useMemo } from "react";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { MtfAperture, MtfMethod, MtfRequestOptions, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
-import { createAnalysisRequest, type AnalysisComputationContext } from "../../../optics/analysis.js";
+import { createAnalysisRequest } from "../../../optics/analysis.js";
+import type { AnalysisComputationContext } from "../../../optics/analysis.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { Theme } from "../../../types/theme.js";
 import { assessMtfDataLimitations, assessMtfSupport, resolveMtfSpectrum } from "../../../optics/mtf.js";

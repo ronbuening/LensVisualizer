@@ -14,8 +14,8 @@ import type {
   RefractiveIndexReferenceLine,
 } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
-import type { DispersionQuality } from "../../optics/dispersion.js";
-import { chromaticChannelDescription, chromaticChannelWavelengthLabel } from "../../optics/chromatic/channels.js";
+import type { DispersionQuality } from "../../optics/chromatic.js";
+import { chromaticChannelDescription, chromaticChannelWavelengthLabel } from "../../optics/chromatic.js";
 import { formatSpreadUmFromMm } from "../display/analysis/chromaticChartUtils.js";
 import LocaInsetWidget from "./LocaInsetWidget.js";
 import ChromaticFanSpreadWidget from "./ChromaticFanSpreadWidget.js";

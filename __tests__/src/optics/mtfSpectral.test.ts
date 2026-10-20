@@ -7,7 +7,7 @@ import {
   buildSimplePositiveElementLens,
   REAR_PLATE_FIXTURE,
 } from "./testLensFixtures.js";
-import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import {
   assessMtfSupport,
   MTF_CDF_LINES,
@@ -17,9 +17,13 @@ import {
 import { combineOtfs, geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtf/mtfMath.js";
 import { shearedOtf } from "../../../src/optics/analysis/mtf/mtfShearedOtf.js";
 import { traceMtfFieldPupil } from "../../../src/optics/analysis/mtf/mtfTracing.js";
-import { computeMtf } from "../../../src/optics/mtf.js";
-import { evaluateCatalogAbbeNumber, evaluateSellmeier, resolveGlass } from "../../../src/optics/glassCatalog.js";
-import { LINE_NM } from "../../../src/optics/spectralLines.js";
+import { computeMtf } from "../../../src/optics/analysis/mtf/mtf.js";
+import {
+  evaluateCatalogAbbeNumber,
+  evaluateSellmeier,
+  resolveGlass,
+} from "../../../src/optics/chromatic/glassCatalog.js";
+import { LINE_NM } from "../../../src/optics/chromatic/spectralLines.js";
 import { anchoredIndexAtWavelength } from "../../../src/optics/chromatic/indexResolver.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
 

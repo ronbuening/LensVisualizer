@@ -5,13 +5,13 @@
  * validating state-dependent thicknesses before tracing.
  */
 
-import { wideOpenStopAtZoom } from "../apertureStop.js";
+import { wideOpenStopAtZoom } from "./stationTables.js";
 import { createTraceGeometry } from "../trace/geometry.js";
 import type { AberrationVarRange, VarRange } from "../../types/optics.js";
 import { clamp, normalizeControlT } from "../math/numerics.js";
 import type { CompiledStateSurface, CompiledLens, Plane3, PreparedOpticalState } from "../types.js";
 import { Optics2PreparationError } from "../types.js";
-import { resolveControlledThickness, buildZPositions } from "../state/layout.js";
+import { resolveControlledThickness, buildZPositions } from "./layout.js";
 
 const PREPARED_STATE_CACHE_LIMIT = 96;
 // Canonical catalog identities outlive viewers. Bound retained geometry across lens switches too,

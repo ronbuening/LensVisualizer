@@ -1,9 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { catalogLensData } from "./testLensFixtures.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import { doLayout, epAtZoom, traceRay, traceSkewRay } from "../../../src/optics/optics.js";
-import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/raySampling.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import {
+  doLayoutForRuntimeLens as doLayout,
+  epAtZoomClamped as epAtZoom,
+} from "../../../src/optics/state/runtimeAdapters.js";
+import { traceRay, traceSkewRay } from "../../../src/optics/trace/rayAdapters.js";
+import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/trace/raySampling.js";
 
 /**
  * Historical exact-trace fixtures — the first three lenses validated when the

@@ -9,19 +9,19 @@
 
 import { describe, it, expect, vi } from "vitest";
 import {
-  traceParaxialRay,
+  traceParaxialRayForRuntimeLens as traceParaxialRay,
   computeFieldGeometryAtState,
   computeAnalysisFieldGeometryAtState,
   invertChiefRayImageHeights,
-  solveChiefRay,
-  solveFieldAngleForImageHeight,
-  solveFieldAngleForImageHeightAccurate,
-  solveFieldAnglesForImageHeightsAccurate,
-  chiefRayImageHeight,
-  chiefRayImageHeightAccurate,
-  doLayout,
-  traceRay,
-} from "../../../src/optics/optics.js";
+  solveChiefRayForRuntimeLens as solveChiefRay,
+  solveFieldAngleForImageHeightForRuntimeLens as solveFieldAngleForImageHeight,
+  solveFieldAngleForImageHeightAccurateForRuntimeLens as solveFieldAngleForImageHeightAccurate,
+  solveFieldAnglesForImageHeightsAccurateForRuntimeLens as solveFieldAnglesForImageHeightsAccurate,
+  chiefRayImageHeightForRuntimeLens as chiefRayImageHeight,
+  chiefRayImageHeightAccurateForRuntimeLens as chiefRayImageHeightAccurate,
+} from "../../../src/optics/state/fieldAdapters.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { traceRay } from "../../../src/optics/trace/rayAdapters.js";
 import * as rayAdapters from "../../../src/optics/trace/rayAdapters.js";
 import SonyRX100Raw from "../../../src/lens-data/sony/ZeissVarioSonnarT9072mmf2845SonyDSCRX100M67.data.js";
 import Olympus18Raw from "../../../src/lens-data/olympus/OlympusZuikoAutoW18mmf35.data.js";

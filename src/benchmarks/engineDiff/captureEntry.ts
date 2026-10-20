@@ -528,7 +528,7 @@ function imagePoint(seam: EngineSeam, prepared: PreparedState, trace: EngineTrac
  *
  * Each height at the stop divided by NEAR_AXIS_PROBE_DELTA is that geometry's yRatio or b, bit for bit. A failed
  * probe records its status instead of hiding the engine's fallback behind a nearly equal pupil constant. The launch
- * is copied from computeFieldGeometryAtState2's slopeRayForState and inferLeadDistance2. Keep it in step with them.
+ * is copied from computeFieldGeometryAtState's slopeRayForState and inferLeadDistance. Keep it in step with them.
  * The probes have their own outcome because reading a changed prepared state may throw without losing the fans.
  * Folded lenses have no probe: their generalized stop search is not exposed by the seam.
  *
@@ -542,7 +542,7 @@ function nearAxisProbes(seam: EngineSeam, lens: RuntimeLens, prepared: PreparedS
   const delta = NEAR_AXIS_PROBE_DELTA;
 
   const preparedProbes = () => {
-    /* `inferLeadDistance2`: clear of the rim of a tilted first plane, or of the first surface's sag at its rim, and
+    /* `inferLeadDistance`: clear of the rim of a tilted first plane, or of the first surface's sag at its rim, and
      * never less than 1 mm. */
     const first = prepared.surfaces[0];
     const tilt = first.interaction.normal;

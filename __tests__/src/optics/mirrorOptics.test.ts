@@ -1,16 +1,13 @@
 import { stateWithZ } from "../../../src/optics/state/preparedGeometry.js";
-import { createAnalysisRequest } from "../../../src/optics/analysis.js";
+import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
 import { analysisRequestAt } from "./testLensFixtures.js";
 import { analysisRequestForLens } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
-import {
-  computeBestFocusZ,
-  computeSAProfile,
-  computeSphericalAberration,
-} from "../../../src/optics/aberrationAnalysis.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import { computeElementShapes } from "../../../src/optics/diagramGeometry.js";
-import { foldedHitOrderLabelsForDisplay } from "../../../src/optics/foldedPathDisplay.js";
+import { computeBestFocusZ } from "../../../src/optics/analysis/aberration/bestFocus.js";
+import { computeSAProfile, computeSphericalAberration } from "../../../src/optics/analysis/aberration/spherical.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { computeElementShapes } from "../../../src/optics/diagram/runtimeDiagramAdapter.js";
+import { foldedHitOrderLabelsForDisplay } from "../../../src/optics/diagram/foldedPathDisplay.js";
 import {
   traceFixtureSlope,
   traceFixtureVector,
@@ -19,24 +16,22 @@ import {
 } from "./traceGeometryFixtures.js";
 import type { Ray3 as VectorRayInput } from "../../../src/optics/types.js";
 import { computeGroupMovementProfile } from "../../../src/optics/analysis/summary/groupMovement.js";
+import { computeLongitudinalChromaticFocus } from "../../../src/optics/analysis/chromatic/analysis.js";
 import {
-  computeLongitudinalChromaticFocus,
-  conjugateK,
-  doLayout,
+  conjugateKForRuntimeLens as conjugateK,
   entrancePupilAtState,
-  solveChiefRay,
-  stopInnerBlockedSemiDiameter,
-  SVG_PATH_SUBDIVISIONS,
-  traceChiefRelativeSkewRay,
-  traceSkewRay,
-  traceRay,
-  traceRayChromatic,
-} from "../../../src/optics/optics.js";
-import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/raySampling.js";
-import { prepareRuntimeState } from "../../../src/optics/compat.js";
-import { traceToStopViaGeneralized2 } from "../../../src/optics/trace/stopTrace.js";
-import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
-import validateLensData from "../../../src/optics/validateLensData.js";
+  solveChiefRayForRuntimeLens as solveChiefRay,
+} from "../../../src/optics/state/fieldAdapters.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { stopInnerBlockedSemiDiameter } from "../../../src/optics/trace/stopObstruction.js";
+import { SVG_PATH_SUBDIVISIONS } from "../../../src/optics/diagram/surfaceOutline.js";
+import { traceChiefRelativeSkewRay } from "../../../src/optics/trace/chiefRelative.js";
+import { traceSkewRay, traceRay, traceRayChromatic } from "../../../src/optics/trace/rayAdapters.js";
+import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/trace/raySampling.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
+import { traceToStopViaGeneralized } from "../../../src/optics/trace/stopTrace.js";
+import { traceEngineRay } from "../../../src/optics/trace/rayAdapters.js";
+import validateLensData from "../../../src/optics/prescription/validate/index.js";
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import { buildFacingFlatMirrorsLens, buildFoldedTirLens } from "./testLensFixtures.js";
@@ -107,7 +102,7 @@ function traceBackSideMirror(lens: GeometryFixture, y: number) {
 
 /** Trace a folded ray through the prepared production stack. */
 function traceFolded(L: RuntimeLens, ray: VectorRayInput, launchBoundT?: number) {
-  return traceEngineRay2(prepareRuntimeState(L, 0, 0), ray, {
+  return traceEngineRay(prepareRuntimeState(L, 0, 0), ray, {
     checkSemiDiameter: true,
     stopOnClip: true,
     launchBoundT,
@@ -867,8 +862,8 @@ describe("mirror optics support", () => {
 
     const state = prepareRuntimeState(L, 0, 0);
     const input = { origin: [0, 5, -1], direction: [0, 0, 1] } as const;
-    const preparedFirst = traceToStopViaGeneralized2(state, input, L.stopIdx);
-    const preparedSecond = traceToStopViaGeneralized2(state, input, L.stopIdx, { stopOccurrence: 1 });
+    const preparedFirst = traceToStopViaGeneralized(state, input, L.stopIdx);
+    const preparedSecond = traceToStopViaGeneralized(state, input, L.stopIdx, { stopOccurrence: 1 });
     expect(preparedFirst.found).toBe(true);
     expect(preparedSecond.found).toBe(true);
     expect(preparedFirst.hitIndex).toBe(0);
@@ -880,13 +875,13 @@ describe("mirror optics support", () => {
     const state = prepareRuntimeState(buildLens(planarData), 0, 0);
     const stopIndex = state.lens.stop.surfaceIndex;
     const input = { origin: [0, 0, state.z[stopIndex]], direction: [0, 0, -1] } as const;
-    const result = traceToStopViaGeneralized2(state, input, stopIndex, { checkSemiDiameter: true });
+    const result = traceToStopViaGeneralized(state, input, stopIndex, { checkSemiDiameter: true });
     expect(result.trace.hits).toHaveLength(0);
     expect(result.found).toBe(true);
     expect(result.hitIndex).toBe(-1);
     expect(result.point).toEqual(input.origin);
-    expect(traceToStopViaGeneralized2(state, input, stopIndex, { stopOccurrence: 1 }).found).toBe(false);
-    const blocked = traceToStopViaGeneralized2(state, { ...input, origin: [0, 1, input.origin[2]] }, stopIndex, {
+    expect(traceToStopViaGeneralized(state, input, stopIndex, { stopOccurrence: 1 }).found).toBe(false);
+    const blocked = traceToStopViaGeneralized(state, { ...input, origin: [0, 1, input.origin[2]] }, stopIndex, {
       checkSemiDiameter: true,
       stopSemiDiameter: 0.5,
     });

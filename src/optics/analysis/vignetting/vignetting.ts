@@ -26,12 +26,12 @@ import { evenlySpacedSigned, uniformFieldFraction } from "../sampling.js";
 
 import { prepareRayTrace } from "../../trace/rayAdapters.js";
 import {
-  computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
-  offsetVectorFieldRay2 as offsetVectorFieldRay,
-  solveChiefRay2 as solveChiefRay,
+  computeAnalysisFieldGeometryAtState,
+  solveChiefRayForRuntimeLens as solveChiefRay,
 } from "../../state/fieldAdapters.js";
-import { projectionLaunchSlopeForField2 as projectionLaunchSlopeForField } from "../../field/projection.js";
-import { isHeavyLensForRayWork } from "../../raySampling.js";
+import { offsetVectorFieldRay } from "../../field/launch.js";
+import { projectionLaunchSlopeForField } from "../../field/projection.js";
+import { isHeavyLensForRayWork } from "../../trace/raySampling.js";
 import { runtimeView } from "../../prescription/runtimeView.js";
 import type { AnalysisRequest } from "../request.js";
 

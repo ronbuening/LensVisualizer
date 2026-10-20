@@ -41,28 +41,27 @@ import type {
 import type { LensDataInput } from "../../types/optics.js";
 import type { TeleconverterData } from "../../types/teleconverter.js";
 import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
-import {
-  FLAT_RADIUS,
-  PrescriptionIngestError,
-  stopRadiusAuthority,
-  type CanonicalAberrationControl,
-  type CanonicalConjugate,
-  type CanonicalElement,
-  type CanonicalFocus,
-  type CanonicalGap,
-  type CanonicalLens,
-  type CanonicalMedium,
-  type CanonicalSurface,
-  type CanonicalTeleconverter,
-  type CanonicalZoom,
-  type CanonicalZoomStation,
-  type IngestedPrescription,
-  type IngestRequest,
-  type SourcePaths,
-  type StopRadiusAuthority,
-  type V2Spelling,
+import { FLAT_RADIUS, PrescriptionIngestError, stopRadiusAuthority } from "./canonical.js";
+import type {
+  CanonicalAberrationControl,
+  CanonicalConjugate,
+  CanonicalElement,
+  CanonicalFocus,
+  CanonicalGap,
+  CanonicalLens,
+  CanonicalMedium,
+  CanonicalSurface,
+  CanonicalTeleconverter,
+  CanonicalZoom,
+  CanonicalZoomStation,
+  IngestedPrescription,
+  IngestRequest,
+  SourcePaths,
+  StopRadiusAuthority,
+  V2Spelling,
 } from "./canonical.js";
-import { ELEMENT_SCHEMA_DEFAULTS, LENS_SCHEMA_DEFAULTS, type SchemaDefault } from "./defaults.js";
+import { ELEMENT_SCHEMA_DEFAULTS, LENS_SCHEMA_DEFAULTS } from "./defaults.js";
+import type { SchemaDefault } from "./defaults.js";
 import {
   copy,
   finish,
@@ -78,9 +77,8 @@ import {
   requireRecords,
   sourcePathsFor,
   takeDefault,
-  type IngestContext,
-  type Untyped,
 } from "./ingestCommon.js";
+import type { IngestContext, Untyped } from "./ingestCommon.js";
 import { ingestLensV1, ingestTeleconverterV1 } from "./ingestV1.js";
 import { labelPath } from "./sourcePaths.js";
 

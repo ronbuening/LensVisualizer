@@ -1,18 +1,17 @@
 import { mtfInputs } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import { shearedOtf } from "../../../src/optics/analysis/mtf/mtfShearedOtf.js";
-import { geometricOtf, otfMagnitude, type ComplexOtf } from "../../../src/optics/analysis/mtf/mtfMath.js";
-import {
-  mtfWaveLattice,
-  waveLatticeOtf,
-  waveLatticePhaseStep,
-  type MtfWaveLattice,
-} from "../../../src/optics/analysis/mtf/mtfWavefront.js";
-import { traceMtfFieldPupil, type MtfBundle } from "../../../src/optics/analysis/mtf/mtfTracing.js";
+import { geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtf/mtfMath.js";
+import type { ComplexOtf } from "../../../src/optics/analysis/mtf/mtfMath.js";
+import { mtfWaveLattice, waveLatticeOtf, waveLatticePhaseStep } from "../../../src/optics/analysis/mtf/mtfWavefront.js";
+import type { MtfWaveLattice } from "../../../src/optics/analysis/mtf/mtfWavefront.js";
+import { traceMtfFieldPupil } from "../../../src/optics/analysis/mtf/mtfTracing.js";
+import type { MtfBundle } from "../../../src/optics/analysis/mtf/mtfTracing.js";
 import { assessMtfSupport } from "../../../src/optics/analysis/mtf/mtfSupport.js";
-import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { build, buildSimplePositiveElementLens } from "./testLensFixtures.js";
-import { computeMtf, computeMtfSteps, type MtfJobCache } from "../../../src/optics/mtf.js";
+import { computeMtf, computeMtfSteps } from "../../../src/optics/analysis/mtf/mtf.js";
+import type { MtfJobCache } from "../../../src/optics/analysis/mtf/mtf.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
 
 const ORIGIN = { x: 0, y: 0, weight: 1 };

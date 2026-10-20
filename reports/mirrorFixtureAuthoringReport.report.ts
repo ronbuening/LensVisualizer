@@ -10,10 +10,10 @@
  */
 import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
-import buildLens from "../src/optics/buildLens.js";
-import { foldedHitOrderLabelsForDisplay } from "../src/optics/foldedPathDisplay.js";
-import { doLayout } from "../src/optics/optics.js";
-import validateLensData from "../src/optics/validateLensData.js";
+import { buildLens } from "../src/optics/buildLens.js";
+import { foldedHitOrderLabelsForDisplay } from "../src/optics/diagramGeometry.js";
+import { doLayoutForRuntimeLens as doLayout } from "../src/optics/optics.js";
+import { validateLensData } from "../src/optics/validation.js";
 import type { LensData, RuntimeLens, SurfaceData } from "../src/types/optics.js";
 import { LENS_CATALOG, isDebugLensKey } from "../src/utils/catalog/lensCatalog.js";
 

@@ -1,5 +1,8 @@
 import { describe, it, expect, vi } from "vitest";
-import validateLensData, { validateCanonicalLens, validateLensInput } from "../../../src/optics/validateLensData.js";
+import validateLensData, {
+  validateCanonicalLens,
+  validateLensInput,
+} from "../../../src/optics/prescription/validate/index.js";
 import { ingestLens } from "../../../src/optics/prescription/ingestV2.js";
 import { FIXTURE_PAIRS } from "./prescription/ingestV2Fixtures.js";
 import type { LensDataInput } from "../../../src/types/optics.js";

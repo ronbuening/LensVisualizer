@@ -1,12 +1,11 @@
 /** Request quality maps to the established signed perspective sampling plans. */
 import { describe, expect, it } from "vitest";
-import {
-  perspectiveAnalysisSamplingPlan,
-  type PerspectiveAnalysisSamplingPlan,
-} from "../../../src/optics/analysis/perspectiveAnalysisSampling.js";
-import { createAnalysisRequest, type AnalysisRequestParams } from "../../../src/optics/analysis/request.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { perspectiveAnalysisSamplingPlan } from "../../../src/optics/analysis/perspectiveAnalysisSampling.js";
+import type { PerspectiveAnalysisSamplingPlan } from "../../../src/optics/analysis/perspectiveAnalysisSampling.js";
+import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
+import type { AnalysisRequestParams } from "../../../src/optics/analysis/request.js";
+import { buildLens } from "../../../src/optics/prescription/buildRuntimeLens.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import { INTERACTIVE_ANALYSIS_SAMPLING } from "../../../src/optics/analysis/analysisQuality.js";
 

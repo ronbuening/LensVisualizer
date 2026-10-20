@@ -1,6 +1,6 @@
 /** Focus-distance endpoints follow the same normalized station coordinates as zoom gaps. */
-import type { RuntimeLens } from "../types/optics.js";
-import { closeFocusAtZoom } from "./state/stationTables.js";
+import type { RuntimeLens } from "../../types/optics.js";
+import { closeFocusAtZoom } from "./stationTables.js";
 
 /**
  * Treat focus below this control as infinity for distance labels and remapping, EFL
@@ -22,4 +22,4 @@ export function remapFocusDistance(focusT: number, previousCloseM: number, nextC
   return Math.min(1, (focusT * nextCloseM) / previousCloseM);
 }
 
-export { closeFocusAtZoom } from "./state/stationTables.js";
+export { closeFocusAtZoom } from "./stationTables.js";

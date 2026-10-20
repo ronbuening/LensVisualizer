@@ -13,19 +13,18 @@ import {
   MERIDIONAL_COMA_SAMPLE_COUNT,
 } from "./types.js";
 import { sampleOrthogonalPupilFan } from "../sampling.js";
-import {
-  computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
-  type FieldGeometryState2 as FieldGeometryState,
-} from "../../state/fieldAdapters.js";
-import { thick } from "../../layout.js";
+import { computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.js";
+import type { FieldGeometryState } from "../../field/launch.js";
+import { thick } from "../../state/layout.js";
 import {
   bestFocusPlaneForDirection,
   computeStateAwareOffAxisFieldGeometry,
   traceOffAxisChiefRay,
   traceOffAxisBundleFromSamples,
-  type OffAxisFieldGeometry,
 } from "./offAxis.js";
-import { bestRelativeFocusPlane, type TransverseFocusHit } from "./shared.js";
+import type { OffAxisFieldGeometry } from "./offAxis.js";
+import { bestRelativeFocusPlane } from "./shared.js";
+import type { TransverseFocusHit } from "./shared.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
 import { runtimeView } from "../../prescription/runtimeView.js";
 import type { AnalysisRequest } from "../request.js";

@@ -6,8 +6,9 @@
  */
 
 import { useMemo } from "react";
-import { eflAtZoom, formatDist } from "../../../optics/optics.js";
-import { computeFocusBreathingSeries, createAnalysisRequest, type BreathingSample } from "../../../optics/analysis.js";
+import { eflAtZoomClamped as eflAtZoom, formatDist } from "../../../optics/optics.js";
+import { computeFocusBreathingSeries, createAnalysisRequest } from "../../../optics/analysis.js";
+import type { BreathingSample } from "../../../optics/analysis.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";

@@ -3,7 +3,7 @@
  * Camera coordinates override the prepared layout only for diagram/readout callers.
  */
 
-import { computeCardinalElements2, computeCardinalElementsWithLayout } from "../../first-order/cardinals.js";
+import { computeCardinalElementsFromState, computeCardinalElementsWithLayout } from "../../first-order/cardinals.js";
 import type { AnalysisRequest } from "../request.js";
 
 /**
@@ -18,5 +18,5 @@ export function computeCardinalElements(
 ) {
   return layout
     ? computeCardinalElementsWithLayout(request.preparedGeometry, layout.zPos, layout.imagePlaneZ)
-    : computeCardinalElements2(request.preparedGeometry);
+    : computeCardinalElementsFromState(request.preparedGeometry);
 }

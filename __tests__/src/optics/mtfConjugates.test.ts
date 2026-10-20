@@ -2,11 +2,11 @@ import { mtfInputs } from "./testLensFixtures.js";
 import { createTraceGeometry } from "../../../src/optics/trace/geometry.js";
 import { describe, expect, it } from "vitest";
 import { build, buildSimplePositiveElementLens, buildVariableStopGapLens } from "./testLensFixtures.js";
-import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { assessMtfSupport } from "../../../src/optics/analysis/mtf/mtfSupport.js";
 import { mtfFiniteObjectPoint } from "../../../src/optics/analysis/mtf/mtfConjugates.js";
 import { traceMtfFieldPupil } from "../../../src/optics/analysis/mtf/mtfTracing.js";
-import { computeMtf } from "../../../src/optics/mtf.js";
+import { computeMtf } from "../../../src/optics/analysis/mtf/mtf.js";
 import { shearedOtf } from "../../../src/optics/analysis/mtf/mtfShearedOtf.js";
 import {
   mtfWaveLattice,

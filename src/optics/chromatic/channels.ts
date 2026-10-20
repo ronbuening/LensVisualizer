@@ -1,7 +1,7 @@
 /** Chromatic channel order, physical wavelengths and reference-aware display text. */
 
 import type { ChromaticChannel, RefractiveIndexReferenceLine } from "../../types/optics.js";
-import { LINE_NM } from "../spectralLines.js";
+import { LINE_NM } from "./spectralLines.js";
 
 export interface ChromaticChannelMetadata {
   id: ChromaticChannel;

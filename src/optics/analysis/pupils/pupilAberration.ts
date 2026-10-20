@@ -31,13 +31,13 @@ import { uniformFieldFraction } from "../sampling.js";
 
 import { prepareRayTrace } from "../../trace/rayAdapters.js";
 import {
-  computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
-  solveChiefRay2 as solveChiefRay,
+  computeAnalysisFieldGeometryAtState,
+  solveChiefRayForRuntimeLens as solveChiefRay,
 } from "../../state/fieldAdapters.js";
-import type { FieldGeometryState2 as FieldGeometryState } from "../../state/fieldAdapters.js";
-import { FOCUS_INFINITY_CUTOFF } from "../../focusDistance.js";
+import type { FieldGeometryState } from "../../field/launch.js";
+import { FOCUS_INFINITY_CUTOFF } from "../../state/focusDistance.js";
 import { epZRelStopAtZoom, xpZRelLastSurfAtZoom } from "../../state/stationTables.js";
-import { compiledLensFromRuntime } from "../../prescription/compile.js";
+import { compiledLensFromRuntime } from "../../prescription/identity.js";
 import { runtimeView } from "../../prescription/runtimeView.js";
 import { prepareState } from "../../state/preparedGeometry.js";
 import { layoutFromPrepared } from "../../state/layout.js";
@@ -45,7 +45,7 @@ import { directionFromMeridionalSlope } from "../../math/vector.js";
 import { traceGeometryToStop } from "../../trace/stopTrace.js";
 import type { TraceGeometry, TraceOptions } from "../../trace/types.js";
 import type { Ray3 } from "../../types.js";
-import { projectionLaunchSlopeForField2 as projectionLaunchSlopeForField } from "../../field/projection.js";
+import { projectionLaunchSlopeForField } from "../../field/projection.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { AnalysisRequest } from "../request.js";
 
@@ -146,9 +146,6 @@ export interface ExitPupilAberrationProfile {
 
 /** Default number of field samples (0° through halfField). */
 export const PUPIL_ABERRATION_SAMPLE_COUNT = 17;
-
-/** Historical default alias retained for compatibility consumers during the seam migration. */
-export const PUPIL_ABERRATION_SAMPLE_COUNT_2 = PUPIL_ABERRATION_SAMPLE_COUNT;
 
 function computeStatePupilBaselines(
   focusT: number,

@@ -1,10 +1,7 @@
 import { useId } from "react";
-import type {
-  PerspectiveDistortionAnalysis,
-  PerspectiveDistortionSample,
-} from "../../../../optics/perspective/index.js";
-import type { PerspectiveTraceContext } from "../../../../optics/perspective/index.js";
-import { dot, subtract } from "../../../../optics/math/vector.js";
+import type { PerspectiveDistortionAnalysis, PerspectiveDistortionSample } from "../../../../optics/perspective.js";
+import type { PerspectiveTraceContext } from "../../../../optics/perspective.js";
+import { dot, subtract } from "../../../../optics/geometry.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../../../utils/catalog/lensTaxonomy.js";
 import type { Theme } from "../../../../types/theme.js";
 import { AnalysisMetricRow } from "../analysisUi.js";

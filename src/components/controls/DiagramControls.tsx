@@ -8,11 +8,11 @@
  */
 
 import { useCallback, useEffect, useMemo } from "react";
-import { eflAtZoom, formatDist, formatFNumber, marketedApertureNote } from "../../optics/optics.js";
+import { eflAtZoomClamped as eflAtZoom, formatDist, formatFNumber, marketedApertureNote } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
-import { closeFocusAtZoom, remapFocusDistance } from "../../optics/focusDistance.js";
+import { closeFocusAtZoom, remapFocusDistance } from "../../optics/optics.js";
 import { getGroupMovementAvailability } from "../../optics/analysis.js";
-import { isMovementAxisEnabled, perspectiveControlSteps } from "../../optics/lensMovement.js";
+import { isMovementAxisEnabled, perspectiveControlSteps } from "../../optics/perspective.js";
 import {
   nearestPublishedStation,
   publishedFocusStations,

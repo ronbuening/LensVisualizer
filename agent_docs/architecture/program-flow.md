@@ -117,7 +117,7 @@ flowchart TD
   Folded --> Exact
   Intersections --> RayResults[Ray paths statuses pupils focal data]
 
-  Prepared --> AnalysisJobs[src/optics/compat.ts analysisJobsForState2]
+  Prepared --> AnalysisJobs[src/optics/compat.ts analysisJobs]
   Inputs --> AnalysisJobs
   Projection --> AnalysisJobs
   Field --> AnalysisJobs

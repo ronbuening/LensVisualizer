@@ -2,7 +2,7 @@
  * Field-coverage audit: does each lens's modeled analysis half-field reach its image-format corner?
  *
  * The analysis tabs (vignetting, pupils, coma, field curvature, distortion, MTF) and the Summary field of view sample
- * fields up to `computeAnalysisFieldGeometryAtState2().halfFieldDeg`. That half-field follows the real chief ray to
+ * fields up to `computeAnalysisFieldGeometryAtState().halfFieldDeg`. That half-field follows the real chief ray to
  * the format corner (imageCircleMm, or the imageFormat diagonal) unless a clear aperture clips the chief ray first.
  * For every visible lens and zoom station at infinity focus this script reports:
  *
@@ -47,13 +47,10 @@ const LENS_DIR = join(ROOT, "src", "lens-data");
 const load = async (path) => import(pathToFileURL(join(ROOT, path)).href);
 
 const { default: buildLens, ingestLens, toLensData, prepareRuntimeState } = await load("src/optics/buildLens.ts");
-const {
-  computeAnalysisFieldGeometryAtState: computeAnalysisFieldGeometryAtState2,
-  computeFieldGeometryAtState: computeFieldGeometryAtState2,
-  solveChiefRay: solveChiefRay2,
-} = await load("src/optics/fieldGeometry.ts");
-const { isFisheyeProjection2, rectilinearProjectionMaxTraceField2 } = await load("src/optics/field/projection.ts");
-const { traceEngineRay2 } = await load("src/optics/trace/rayAdapters.ts");
+const { computeAnalysisFieldGeometryAtState, computeFieldGeometryAtState, solveChiefRayForRuntimeLens } =
+  await load("src/optics/fieldGeometry.ts");
+const { isFisheyeProjection, rectilinearProjectionMaxTraceField } = await load("src/optics/projection.ts");
+const { traceEngineRay } = await load("src/optics/optics.ts");
 const { IMAGE_FORMAT_BY_ID } = await load("src/utils/catalog/lensTaxonomy.ts");
 
 const OK_COVERAGE = 0.99;
@@ -95,12 +92,12 @@ function chiefRayTracer(L, state, zoomT, geometry) {
   /* The analysis tabs trace whatever launch the solver returns, so the modeled edge accepts a fallback solve
    * (reported beside the coverage); every other probe needs a converged chief ray. */
   const chiefAt = (fieldDeg, checkApertures, acceptFallback = false) => {
-    const solve = solveChiefRay2(fieldDeg, 0, zoomT, L, geometry, 0);
+    const solve = solveChiefRayForRuntimeLens(fieldDeg, 0, zoomT, L, geometry, 0);
     const usable = solve.status === "converged" || (acceptFallback && Number.isFinite(solve.yLaunch));
     if (!usable || solve.vectorLaunch) {
       return { ok: false, solve, reason: `chief-ray solve ${solve.status}` };
     }
-    const trace = traceEngineRay2(state, rayFor(solve.yLaunch, solve.uField), { ghost: true });
+    const trace = traceEngineRay(state, rayFor(solve.yLaunch, solve.uField), { ghost: true });
     if (trace.failureReason !== null) {
       const at = state.surfaces[trace.terminalSurfaceIndex + 1]?.label ?? "?";
       return { ok: false, solve, reason: `${trace.failureReason} at ${at}` };
@@ -120,11 +117,11 @@ function chiefRayTracer(L, state, zoomT, geometry) {
    * are the ones that failed; the first clear aperture such a ray leaves is what blocks the chief ray.
    */
   const blockingRim = (fieldDeg) => {
-    const solve = solveChiefRay2(fieldDeg, 0, zoomT, L, geometry, 0);
+    const solve = solveChiefRayForRuntimeLens(fieldDeg, 0, zoomT, L, geometry, 0);
     if (!Number.isFinite(solve.yLaunch) || !Number.isFinite(solve.uField) || solve.vectorLaunch) return null;
     const stopIndex = state.lens.stop.surfaceIndex;
     const stopHeight = (yLaunch) => {
-      const trace = traceEngineRay2(state, rayFor(yLaunch, solve.uField), { stopAt: stopIndex });
+      const trace = traceEngineRay(state, rayFor(yLaunch, solve.uField), { stopAt: stopIndex });
       return trace.failureReason === null ? trace.y : null;
     };
     const nearest = stopHeight(solve.yLaunch);
@@ -133,7 +130,7 @@ function chiefRayTracer(L, state, zoomT, geometry) {
     const probe = stopHeight(solve.yLaunch + step);
     const direction = probe === null || Math.abs(probe) < Math.abs(nearest) ? 1 : -1;
     for (let k = 1; k <= 400; k++) {
-      const trace = traceEngineRay2(state, rayFor(solve.yLaunch + direction * k * step, solve.uField), {
+      const trace = traceEngineRay(state, rayFor(solve.yLaunch + direction * k * step, solve.uField), {
         ghost: true,
       });
       const [clip] = clipsOf(trace);
@@ -197,7 +194,7 @@ function cornerField(chiefAt, fromDeg, fromHeight, corner) {
 
 /** What ends the modeled field: the first limit met just past the edge. */
 function fieldStop(L, tracer, modeledDeg, edgeHeight) {
-  const declaredDeg = rectilinearProjectionMaxTraceField2(L.projection);
+  const declaredDeg = rectilinearProjectionMaxTraceField(L.projection);
   if (declaredDeg !== undefined && Math.abs(declaredDeg - modeledDeg) < 1e-6) {
     return { diagnosis: "declared", detail: `projection declares ${declaredDeg.toFixed(1)}°` };
   }
@@ -216,8 +213,8 @@ function fieldStop(L, tracer, modeledDeg, edgeHeight) {
 function auditStation(lens, L, zoomT, stationLabel) {
   const corner = (lens.imageCircleMm ?? IMAGE_FORMAT_BY_ID[lens.imageFormat].diagonalMm) / 2;
   const state = prepareRuntimeState(L, 0, zoomT);
-  const raw = computeFieldGeometryAtState2(0, zoomT, L, 0);
-  const modeledDeg = computeAnalysisFieldGeometryAtState2(0, zoomT, L, 0).halfFieldDeg;
+  const raw = computeFieldGeometryAtState(0, zoomT, L, 0);
+  const modeledDeg = computeAnalysisFieldGeometryAtState(0, zoomT, L, 0).halfFieldDeg;
   const tracer = chiefRayTracer(L, state, zoomT, raw);
 
   const edge = tracer.chiefAt(modeledDeg, false, true);
@@ -283,7 +280,7 @@ async function auditLens(file, includeHidden) {
   } catch (error) {
     return { ...base, skipped: `buildLens failed: ${error.message}` };
   }
-  if (isFisheyeProjection2(L.projection)) return { ...base, skipped: "fisheye projection" };
+  if (isFisheyeProjection(L.projection)) return { ...base, skipped: "fisheye projection" };
 
   const count = L.isZoom ? L.zoomPositions.length : 1;
   const stations = [];

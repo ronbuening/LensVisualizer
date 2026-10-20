@@ -7,9 +7,8 @@ import {
   computeGroupMovementProfile,
   firstAvailableGroupMovementMode,
   isGroupMovementModeAvailable,
-  type GroupMovementPoint,
-  type GroupMovementProfile,
 } from "../../../optics/analysis.js";
+import type { GroupMovementPoint, GroupMovementProfile } from "../../../optics/analysis.js";
 import { GROUP_MOVEMENT_MODES, type GroupMovementMode } from "../../../types/groupMovement.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";

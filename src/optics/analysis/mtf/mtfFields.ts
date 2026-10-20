@@ -13,11 +13,14 @@
 import { runtimeView } from "../../prescription/runtimeView.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../../utils/catalog/lensTaxonomy.js";
 import type { MtfFieldGeometry, MtfOptions, MtfSupport } from "../../../types/mtf.js";
-import { computeFieldGeometryAtState2, solveFieldAnglesForImageHeightsAccurate2 } from "../../state/fieldAdapters.js";
+import {
+  computeFieldGeometryAtState,
+  solveFieldAnglesForImageHeightsAccurateForRuntimeLens,
+} from "../../state/fieldAdapters.js";
 import { MAX_FIELD_LAUNCH_DEG } from "../../field/projection.js";
-import { halfFieldAtZoom } from "../../layout.js";
+import { halfFieldAtZoom } from "../../state/stationTables.js";
 import { solveScalarRoot } from "../../math/rootSolve.js";
-import { traceEngineRay2 } from "../../trace/rayAdapters.js";
+import { traceEngineRay } from "../../trace/rayAdapters.js";
 import type { PreparedGeometry } from "../../types.js";
 import {
   findMtfFieldFootprint,
@@ -74,7 +77,7 @@ const FINITE_TABLE_STEPS = 16;
  */
 export function mtfModeledHalfField(state: PreparedGeometry): number {
   return state.focusT === 0
-    ? computeFieldGeometryAtState2(0, state.zoomT, runtimeView(state.lens), state.aberrationT).halfFieldDeg
+    ? computeFieldGeometryAtState(0, state.zoomT, runtimeView(state.lens), state.aberrationT).halfFieldDeg
     : halfFieldAtZoom(state.zoomT, runtimeView(state.lens));
 }
 
@@ -329,8 +332,8 @@ export function resolveMtfFieldTargets(
   if (inside.length) {
     // The inversion scans its geometry's half field; widen it to the traced edge.
     const L = runtimeView(state.lens);
-    const shared = computeFieldGeometryAtState2(state.focusT, state.zoomT, L, state.aberrationT);
-    const angles = solveFieldAnglesForImageHeightsAccurate2(
+    const shared = computeFieldGeometryAtState(state.focusT, state.zoomT, L, state.aberrationT);
+    const angles = solveFieldAnglesForImageHeightsAccurateForRuntimeLens(
       inside.map((target) => target.targetImageHeightMm),
       [...state.z],
       state.focusT,
@@ -380,7 +383,7 @@ export function mtfChiefHeight(
   return (fieldAngleDeg) => {
     const launch = prepareMtfFieldLaunch(state, options, support, fieldAngleDeg);
     if (!launch) return NaN;
-    const point = mtfImagePoint(state, traceEngineRay2(state, mtfLaunchRay(launch, 0, 0), traceOptions));
+    const point = mtfImagePoint(state, traceEngineRay(state, mtfLaunchRay(launch, 0, 0), traceOptions));
     return point ? Math.hypot(point.x, point.y) : NaN;
   };
 }

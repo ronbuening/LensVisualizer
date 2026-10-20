@@ -2,13 +2,11 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
 import * as fieldSampling from "../../../../../src/optics/perspective/fieldSampling.js";
-import buildLens from "../../../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
+import { buildLens } from "../../../../../src/optics/prescription/buildRuntimeLens.js";
+import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
 import { computePerspectiveChromaticAnalysis } from "../../../../../src/optics/perspective/analysis/chromatic.js";
-import {
-  createPerspectiveTraceContext,
-  type PerspectiveTraceContext,
-} from "../../../../../src/optics/perspective/trace.js";
+import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
+import type { PerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
 import { LENS_CATALOG } from "../../../../../src/utils/catalog/lensCatalog.js";
 
 const L = buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]);

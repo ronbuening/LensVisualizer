@@ -6,10 +6,10 @@
  */
 
 import type { PreparedGeometry, Vec3 } from "../types.js";
-import { boundingSphereLaunchVector2 } from "./projection.js";
+import { boundingSphereLaunchVector } from "./projection.js";
 
 /** Current field-geometry ratios used to seed chief-ray and vector field launches. */
-export interface FieldGeometryState2 {
+export interface FieldGeometryState {
   halfFieldDeg: number;
   yRatio: number;
   b: number;
@@ -17,7 +17,7 @@ export interface FieldGeometryState2 {
 }
 
 /** Bounding-sphere vector launch plus pupil basis vectors for off-axis sampling. */
-export interface VectorFieldRayLaunch2 {
+export interface VectorFieldRayLaunch {
   origin: Vec3;
   direction: Vec3;
   launchBoundT: number;
@@ -31,7 +31,7 @@ export interface VectorFieldRayLaunch2 {
 }
 
 /** A pupil-offset vector ray derived from a field launch. */
-export interface OffsetVectorFieldRay2 {
+export interface OffsetVectorFieldRay {
   origin: Vec3;
   direction: Vec3;
   launchBoundT: number;
@@ -71,10 +71,10 @@ export function computeBoundingSphereVectorFieldLaunch(
     geometry,
     fieldAngleXDeg,
     fieldAngleYDeg,
-  }: { geometry: FieldGeometryState2; fieldAngleXDeg: number; fieldAngleYDeg: number },
-): VectorFieldRayLaunch2 | null {
+  }: { geometry: FieldGeometryState; fieldAngleXDeg: number; fieldAngleYDeg: number },
+): VectorFieldRayLaunch | null {
   const launchRadius = computeBoundingSphereLaunchRadiusMm(state, geometry.b);
-  const launch = boundingSphereLaunchVector2(geometry.epRatio, fieldAngleXDeg, fieldAngleYDeg, launchRadius);
+  const launch = boundingSphereLaunchVector(geometry.epRatio, fieldAngleXDeg, fieldAngleYDeg, launchRadius);
   if (launch.status !== "ok") return null;
 
   const axes = vectorFieldAxes(fieldAngleXDeg, fieldAngleYDeg);
@@ -101,12 +101,12 @@ export function computeBoundingSphereVectorFieldLaunch(
  * @param radialDirectionDelta - optional direction perturbation along the radial pupil axis
  * @returns origin/direction pair ready for exact vector tracing
  */
-export function offsetVectorFieldRay2(
-  launch: VectorFieldRayLaunch2,
+export function offsetVectorFieldRay(
+  launch: VectorFieldRayLaunch,
   sagittalOffsetMm: number,
   radialOffsetMm: number,
   radialDirectionDelta = 0,
-): OffsetVectorFieldRay2 {
+): OffsetVectorFieldRay {
   let origin = addScaledVector(launch.origin, launch.sagittalPupilAxis, sagittalOffsetMm);
   origin = addScaledVector(origin, launch.radialPupilAxis, radialOffsetMm);
   const direction =

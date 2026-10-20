@@ -1,100 +1,60 @@
-/**
- * Public optics barrel — stable pure-helper exports for rendering, tracing, fields, and analysis.
- *
- * App code imports this path by default while focused engine modules import deeper
- * implementation files only when needed.
- */
-
-export { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "./trace/chiefRelative.js";
-export { anchorLayoutToCamera, type CameraAnchoredLayout } from "./cameraLayout.js";
+/** Public optics seam; implementations live in the focused engine subdirectories. */
+export { effectiveFNumber } from "./first-order/fNumber.js";
+export { eflAtFocus } from "./first-order/focusBreathing.js";
+export { formatDist, formatFNumber, formatPetzvalRadius, marketedApertureNote } from "./first-order/format.js";
+export { paraxialTrace, realTraceToStop } from "./first-order/lensConstants.js";
+export { computeElementFocalLength } from "./first-order/thickLens.js";
+export type { ProjectionReferenceKind } from "./projection.js";
+export { fNumberAtStopdown } from "./state/aperture.js";
+export { anchorLayoutToCamera } from "./state/cameraLayout.js";
+export type { CameraAnchoredLayout } from "./state/cameraLayout.js";
+export { FOCUS_INFINITY_CUTOFF, focusDistanceAt, remapFocusDistance } from "./state/focusDistance.js";
+export { doLayout, stateSurfaces, thick } from "./state/layout.js";
+export { stateWithZ } from "./state/preparedGeometry.js";
 export {
-  FOCUS_INFINITY_CUTOFF,
-  SVG_PATH_SUBDIVISIONS,
+  doLayoutForRuntimeLens,
+  eflAtZoomClamped,
+  engineLensFromRuntime,
+  epAtZoomClamped,
+  fopenAtZoomClamped,
+  prepareRuntimeState,
+  thickOrZero,
+} from "./state/runtimeAdapters.js";
+export {
   bAtZoom,
+  closeFocusAtZoom,
+  eflAtZoom,
+  epAtZoom,
   epZRelStopAtZoom,
-  gapTrimHeight,
+  fopenAtZoom,
   halfFieldAtZoom,
-  renderSag,
-  sagSlope,
-  slopeTrimHeight,
+  interpolateStationTable,
   tracingHalfFieldAtZoom,
+  wideOpenStopAtZoom,
   xpAtZoom,
   xpZRelLastSurfAtZoom,
   yRatioAtZoom,
-} from "./layout.js";
-export { interpolateStationTable } from "./state/stationTables.js";
+} from "./state/stationTables.js";
+export { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "./trace/chiefRelative.js";
 export {
-  doLayout2 as doLayout,
-  effectiveFNumber2 as effectiveFNumber,
-  eflAtFocus2 as eflAtFocus,
-  eflAtZoom2 as eflAtZoom,
-  epAtZoom2 as epAtZoom,
-  fopenAtZoom2 as fopenAtZoom,
-  thick2 as thick,
-} from "./compat.js";
+  skewImagePlaneIntercept,
+  traceEngineRay,
+  traceRay,
+  traceRayChromatic,
+  traceRayVector,
+  traceRayVectorChromatic,
+  traceSkewRay,
+  traceSkewRayChromatic,
+  traceSkewRayVector,
+  traceSkewRayVectorChromatic,
+} from "./trace/rayAdapters.js";
+export type { SkewImagePlaneIntercept, VectorRayTraceInput } from "./trace/rayAdapters.js";
 export {
-  chiefRayImageHeight2 as chiefRayImageHeight,
-  chiefRayImageHeightAccurate2 as chiefRayImageHeightAccurate,
-  invertChiefRayImageHeights,
-  type ImageHeightInversionResult,
-  computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
-  computeBoundingSphereLaunchRadiusMm2 as computeBoundingSphereLaunchRadiusMm,
-  computeBoundingSphereVectorFieldLaunch2 as computeBoundingSphereVectorFieldLaunch,
-  computeFieldGeometryAtState2 as computeFieldGeometryAtState,
-  conjugateK2 as conjugateK,
-  entrancePupilAtState2 as entrancePupilAtState,
-  offsetVectorFieldRay2 as offsetVectorFieldRay,
-  paraxialObjectVergence2 as paraxialObjectVergence,
-  solveChiefRay2 as solveChiefRay,
-  solveFieldAngleForImageHeight2 as solveFieldAngleForImageHeight,
-  solveFieldAngleForImageHeightAccurate2 as solveFieldAngleForImageHeightAccurate,
-  solveFieldAnglesForImageHeightsAccurate2 as solveFieldAnglesForImageHeightsAccurate,
-  traceChiefRayAtAngle2 as traceChiefRayAtAngle,
-  traceParaxialRay2 as traceParaxialRay,
-  type ChiefRaySolveResult2 as ChiefRaySolveResult,
-  type EntrancePupilState2 as EntrancePupilState,
-  type FieldGeometryState2 as FieldGeometryState,
-  type OffsetVectorFieldRay2 as OffsetVectorFieldRay,
-  type VectorFieldRayLaunch2 as VectorFieldRayLaunch,
-} from "./compat.js";
-export {
-  traceRay2 as traceRay,
-  traceRayChromatic2 as traceRayChromatic,
-  traceRayVector2 as traceRayVector,
-  traceRayVectorChromatic2 as traceRayVectorChromatic,
-  traceSkewRay2 as traceSkewRay,
-  traceSkewRayChromatic2 as traceSkewRayChromatic,
-  traceSkewRayVector2 as traceSkewRayVector,
-  traceSkewRayVectorChromatic2 as traceSkewRayVectorChromatic,
-  type VectorRayTraceInput2 as VectorRayTraceInput,
-} from "./compat.js";
-export {
-  CHANNEL_WAVELENGTH_NM_2 as CHANNEL_WAVELENGTH_NM,
-  CHROMATIC_CHANNELS_2 as CHROMATIC_CHANNELS,
-  computeChromaticRayFanSpread2 as computeChromaticRayFanSpread,
-  wavelengthNd2 as wavelengthNd,
-  type SurfaceIndexResolver2 as SurfaceIndexResolver,
-} from "./compat.js";
-export {
-  DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES,
-  DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT,
-  MARGINAL_PUPIL_FRACTIONS,
-  sampleCircularPupil,
-  sampleOrthogonalPupilFan,
-  type CircularPupilSample,
-  type OrthogonalPupilSample,
-} from "./analysis/sampling.js";
-export { skewImagePlaneIntercept, type SkewImagePlaneIntercept } from "./trace/rayAdapters.js";
-export { stopInnerBlockedSemiDiameter } from "./stopObstruction.js";
-export { formatDist, formatFNumber, formatPetzvalRadius, marketedApertureNote } from "./opticsFormat.js";
-
-export type { RuntimeSkewRayTraceResult as SkewRayTraceResult } from "./trace/runtimeRayResult.js";
-
-export { summarizeChromaticFieldFocus } from "./analysis/aberration/fieldCurvature.js";
-
-export {
-  computeChromaticAnalysis,
-  computeLongitudinalChromaticFocus,
-  computeLateralColorCurve,
-} from "./analysis/chromatic/analysis.js";
-export { computeChromaticRayFanAnalysis } from "./analysis/chromatic/rayFan.js";
+  isHeavyLensForRayWork,
+  obstructionAwareRayFractionsForDensity,
+  rayFractionsForDensity,
+  raySampleCountForDensity,
+} from "./trace/raySampling.js";
+export type { RuntimeSkewRayTraceResult } from "./trace/runtimeRayResult.js";
+export { stopInnerBlockedSemiDiameter } from "./trace/stopObstruction.js";
+export { traceToStopViaGeneralized } from "./trace/stopTrace.js";
