@@ -16,9 +16,6 @@ const modules = {
   publicChromatic: Object.values(import.meta.glob<Module>("../optics/chromatic.ts", { eager: true }))[0],
   publicDiagram: Object.values(import.meta.glob<Module>("../optics/diagramGeometry.ts", { eager: true }))[0],
   publicPerspective: Object.values(import.meta.glob<Module>("../optics/perspective.ts", { eager: true }))[0],
-  oldPerspective: Object.values(
-    import.meta.glob<Module>(/* historical base */ "../optics/perspective/index.ts", { eager: true }),
-  )[0],
   oldMovement: Object.values(
     import.meta.glob<Module>(/* historical base */ "../optics/lensMovement.ts", { eager: true }),
   )[0],
@@ -28,13 +25,10 @@ const modules = {
   oldAperture: Object.values(
     import.meta.glob<Module>(/* historical base */ "../optics/apertureStop.ts", { eager: true }),
   )[0],
-  oldQuality: Object.values(
-    import.meta.glob<Module>(/* historical base */ "../optics/analysis/analysisQuality.ts", { eager: true }),
+  historical: Object.values(
+    import.meta.glob<Module>(/* historical base */ "./engineDiff/historicalSeam.ts", { eager: true }),
   )[0],
   analysis: Object.values(import.meta.glob<Module>("../optics/analysis.ts", { eager: true }))[0],
-  jobs: Object.values(
-    import.meta.glob<Module>(/* historical base */ "../optics/analysis/analysisJobs.ts", { eager: true }),
-  )[0],
   compat: Object.values(import.meta.glob<Module>(/* historical base */ "../optics/compat.ts", { eager: true }))[0],
   cardinals: Object.values(
     import.meta.glob<Module>(/* historical base */ "../optics/cardinalElements.ts", { eager: true }),
@@ -66,7 +60,7 @@ type Jobs = {
 const rawJobs = capability<HeadJobs>("analysis jobs", [
   ["analysis", "analysisJobs"],
   ["compat", "analysisJobsForState2"],
-  ["jobs", "analysisJobsForState2"],
+  ["historical", "analysisJobsForState2"],
 ]);
 const createRequest = modules.analysis?.createAnalysisRequest as
   | typeof import("../optics/analysis.js").createAnalysisRequest
@@ -365,28 +359,28 @@ export const cameraDirectionForDiagramField = capability<
   typeof import("../optics/perspective.js").cameraDirectionForDiagramField
 >("cameraDirectionForDiagramField", [
   ["publicPerspective", "cameraDirectionForDiagramField"],
-  ["oldPerspective", "cameraDirectionForDiagramField"],
+  ["historical", "cameraDirectionForDiagramField"],
 ]);
 
 export const computePerspectiveMovementViewportExtent = capability<
   typeof import("../optics/perspective.js").computePerspectiveMovementViewportExtent
 >("computePerspectiveMovementViewportExtent", [
   ["publicPerspective", "computePerspectiveMovementViewportExtent"],
-  ["oldPerspective", "computePerspectiveMovementViewportExtent"],
+  ["historical", "computePerspectiveMovementViewportExtent"],
 ]);
 
 export const createPerspectiveTraceContext = capability<
   typeof import("../optics/perspective.js").createPerspectiveTraceContext
 >("createPerspectiveTraceContext", [
   ["publicPerspective", "createPerspectiveTraceContext"],
-  ["oldPerspective", "createPerspectiveTraceContext"],
+  ["historical", "createPerspectiveTraceContext"],
 ]);
 
 export const tracePerspectiveDiagramFan = capability<
   typeof import("../optics/perspective.js").tracePerspectiveDiagramFan
 >("tracePerspectiveDiagramFan", [
   ["publicPerspective", "tracePerspectiveDiagramFan"],
-  ["oldPerspective", "tracePerspectiveDiagramFan"],
+  ["historical", "tracePerspectiveDiagramFan"],
 ]);
 
 export const obstructionAwareRayFractionsForDensity = capability<
@@ -400,6 +394,6 @@ export const analysisSamplingForQuality = capability<typeof import("../optics/an
   "analysisSamplingForQuality",
   [
     ["analysis", "analysisSamplingForQuality"],
-    ["oldQuality", "analysisSamplingForQuality"],
+    ["historical", "analysisSamplingForQuality"],
   ],
 );

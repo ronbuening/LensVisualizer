@@ -6,11 +6,16 @@
  * git would add and remove a worktree.
  */
 
-import { existsSync, mkdirSync, mkdtempSync, realpathSync, rmSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { addBaseWorktree, provideBaseDependencies, type BaseWorktreeCommands } from "../../scripts/base-worktree.mjs";
+import {
+  addBaseWorktree,
+  prepareHistoricalSeam,
+  provideBaseDependencies,
+  type BaseWorktreeCommands,
+} from "../../scripts/base-worktree.mjs";
 
 const COMMIT = "b".repeat(40);
 const made: string[] = [];
@@ -49,6 +54,30 @@ function fixture({ lockfileDiffers, installFails = false }: { lockfileDiffers: b
 afterEach(() => {
   vi.restoreAllMocks();
   for (const dir of made.splice(0)) rmSync(dir, { recursive: true, force: true });
+});
+
+describe("historical seam preparation", () => {
+  it("re-exports only the historical sources present in the base tree", () => {
+    const root = tempDir("historical-seam");
+    mkdirSync(join(root, "src/optics/analysis"), { recursive: true });
+    writeFileSync(join(root, "src/optics/analysis/analysisQuality.ts"), "export const sampling = {};");
+
+    prepareHistoricalSeam(root);
+
+    expect(readFileSync(join(root, "src/benchmarks/engineDiff/historicalSeam.ts"), "utf8")).toBe(
+      'export * from "../../optics/analysis/analysisQuality.ts";\n',
+    );
+  });
+
+  it("leaves a tree with the public perspective barrel alone", () => {
+    const root = tempDir("public-seam");
+    mkdirSync(join(root, "src/optics"), { recursive: true });
+    writeFileSync(join(root, "src/optics/perspective.ts"), "export {};");
+
+    prepareHistoricalSeam(root);
+
+    expect(existsSync(join(root, "src/benchmarks"))).toBe(false);
+  });
 });
 
 describe("the dependencies of a base worktree", () => {

@@ -116,9 +116,8 @@ function resolveModule(path: string): string | undefined {
 }
 
 function problemsFor(ref: Reference): string[] {
-  if (ref.historical) return [];
   const found = resolveModule(ref.path);
-  if (!found) return [`${ref.file}: ${ref.expression} -> missing module ${ref.path}`];
+  if (!found) return ref.historical ? [] : [`${ref.file}: ${ref.expression} -> missing module ${ref.path}`];
   const target = relative(ROOT, found);
   if (target.startsWith("src/optics/") && !target.startsWith("src/optics/mount/") && !registered.has(target)) {
     return [`${ref.file}: ${ref.expression} -> non-barrel optics module ${target}`];
@@ -350,6 +349,21 @@ describe("script module paths through the optics seam", () => {
       'import.meta.glob("../src/optics/deleted.ts", { eager: true })',
     ])
       expect(scan("scripts/self-test.mjs", text).problems.length).toBeGreaterThan(0);
+  });
+
+  it("allows historical markers to excuse only missing files", () => {
+    expect(
+      scan(
+        "src/benchmarks/benchmarkSeam.ts",
+        'import.meta.glob(/* historical base */ "../optics/analysis/analysisQuality.ts", { eager: true })',
+      ).problems.join("\n"),
+    ).toContain("non-barrel optics module src/optics/analysis/analysisQuality.ts");
+    expect(
+      scan(
+        "src/benchmarks/benchmarkSeam.ts",
+        'import.meta.glob(/* historical base */ "../optics/compat.ts", { eager: true })',
+      ).problems,
+    ).toEqual([]);
   });
 
   it("resolves .js source specifiers, extensionless TS and actual .mjs modules", () => {

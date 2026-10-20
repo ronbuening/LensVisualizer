@@ -71,6 +71,7 @@ import {
   git as gitIn,
   lockfileUnchangedSince,
   otherBaseWorktrees,
+  prepareHistoricalSeam,
   resolveBaseCommit,
 } from "./base-worktree.mjs";
 
@@ -160,6 +161,7 @@ function prepareBaseWorktree(commit) {
     /* The base may predate the harness or hold an older one; both engines run the working tree's. */
     rmSync(join(worktree, HARNESS_DIR), { recursive: true, force: true });
     cpSync(join(ROOT, HARNESS_DIR), join(worktree, HARNESS_DIR), { recursive: true });
+    prepareHistoricalSeam(worktree);
   };
 }
 

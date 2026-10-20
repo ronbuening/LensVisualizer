@@ -4,6 +4,8 @@ export interface BaseWorktreeCommands {
   npmCi(tree: string): void;
 }
 
+export function prepareHistoricalSeam(worktree: string): void;
+
 export function provideBaseDependencies(options: {
   root: string;
   worktree: string;

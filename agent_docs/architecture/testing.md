@@ -217,8 +217,9 @@ not see, such as an `import.meta.glob` pattern for the seam or a container neste
 paths on disk, including loader helper call sites, computed URL constants, bundle entries and eager globs. It reads
 the seam registry above and rejects missing paths, internal optics targets and unknown computed inputs. Catalog
 walks expand to current files; generated bundles are checked at their source entries. Historical candidates marked
-`/* historical base */` are allowed only in the two cross-revision adapters and the MTF benchmark's `compat.ts`
-fallback. Broken-path and internal-import self-tests hold the scanner's failure behavior.
+`/* historical base */` excuse only missing files, in the two cross-revision adapters and the MTF benchmark's
+`compat.ts` fallback. Existing targets must still be registered barrels. Broken-path and internal-import self-tests
+hold the scanner's failure behavior.
 
 ## Reports and Tooling Tests
 
@@ -252,7 +253,10 @@ and bundled there.
   re-exports the comparison, which the driver calls from the built bundle.
 - `seamAdapter.ts` is the only file that names engine modules. It reaches each through an eager `import.meta.glob`,
   which yields nothing for a file a revision lacks, and resolves every capability from an ordered list of candidate
-  exports. A change that renames or moves a seam export adds the new name to that list in the same change. A few
+  exports. Both drivers prepare `engineDiff/historicalSeam.ts` only in temporary bases preceding the public
+  perspective barrel: it re-exports that base's perspective, sampling-quality and analysis-job bindings that its
+  public barrels did not expose. The head's adapters load those bindings through the registered barrels.
+  A change that renames or moves a seam export adds the new name to that list in the same change. A few
   capabilities are optional, so a revision that lacks one still resolves its seam and reports the capability as
   `absent`. Canonical ingest, which the fingerprint needs, is one of them and is asked of the head's bundle alone. The
   catalog merge is another: each bundle merges a host as its own catalog does, by spreading its V1 defaults object at

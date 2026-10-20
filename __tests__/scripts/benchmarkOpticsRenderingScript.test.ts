@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import { basename, join, resolve } from "node:path";
 import { build } from "vite";
 import { describe, expect, it } from "vitest";
+import { prepareHistoricalSeam } from "../../scripts/base-worktree.mjs";
 import {
   BENCHMARK_RUN_RETENTION_TRIGGER,
   parseArgs,
@@ -261,6 +262,7 @@ describe("benchmark base compatibility", () => {
         export { analysisJobs, computeCardinalElements, createFreshAnalysisContext } from "./benchmarkSeam.ts";
       `,
         );
+        prepareHistoricalSeam(root);
         const outDir = join(root, "out");
         await build({
           configFile: false,
