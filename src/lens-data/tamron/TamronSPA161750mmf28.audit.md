@@ -175,3 +175,38 @@ Maker comparison: Tamron's A16 page lists 16 elements / 13 groups, one LD elemen
 Fields changed: `name` (corpus Tamron style with [IF] and (A16)), `subtitle`, `specs`, the header comment and focus description (process wording removed), element `label` values (physical numbering Element 1–16, with resin layer and glass body for 4 and 12), `role` text (specific roles in place of boilerplate), resin-layer `type` set to "Hybrid Resin Layer (1× Asph)", `diagramLabel` added (1–16, 4r, 12r), and `apd: "inferred"` with an `apdNote` on L2423 (1.49700/81.61, the only element that fits Tamron's single LD element). The analysis gained the Example 1 note and the LD attribution, and its "Model Apertures and Verification Scope" section became "Model Scope and Limitations" without process content. Optics unchanged: engine and paraxial outputs are identical before and after.
 
 Open: Example 1 vs Example 2 attribution, pending a Tamron construction diagram.
+
+## 2026-10-20 — Second review: diagram, labels and movement
+
+Compared the local page (wide, middle and tele, focus slider at both ends, both movement overlays, inspectors of Elements 4r, 4, 12r and 15) with Figure 5 of JP 2007-133138 A (p22, wide panel; native 200 dpi scan) and the Example 2 text and tables (¶0074–¶0083, pp17–20). No Tamron construction diagram was viewed; the record above notes that none was found, and Tamron's published counts (16 elements / 13 groups, one LD, two hybrid aspherical elements) match the model.
+
+Scale: the wide panel's vertex crossings from r1 to r32 give 3.785 px/mm at 200 dpi (0.264 mm/px), consistent within 3–5 px across G1, G3 and G4; G2 is drawn about 1 mm image-ward of its prescription position and the image plane is drawn short, both ordinary drafting liberties. Sag checks on r4 (heights 18.5 and 22.2 mm) confirm the same scale vertically. Rim heights are the mean of the clean lower side and the upper side where no leader line crosses; the tele panel gives the same G4 heights.
+
+| Surfaces (element) | Before | After | Figure | Reason |
+|---|---|---|---|---|
+| 5 (L213 rear) | 21.8 | 23.0 | 24.0 square-cut | drawn as a square block; now square at the front-face height 23.0 |
+| 9, 10 (L222) | 8.2 / 8.4 | 9.1 / 9.1 | 9.6 | 13–15 % under the drawing; 9.1 is the largest value the r8→r9 gap rule admits |
+| 24, 25 (L2411 body) | 12.1 / 12.4 | 11.8 / 11.8 | 11.45 | squared with 23A; keeps G41 shorter than L2421, as drawn |
+| 26, 27 (L2421) | 13.2 / 13.4 | 12.2 / 12.2 | 12.0 | 10–12 % over the drawing |
+| 28, 29, 30 (L2422/L2423) | 13.2 / 14.2 / 13.9 | 12.2 / 12.2 / 12.2 | 12.0 | 9–17 % over; removes the 0.083 mm knife edge on L2423 (now 1.39 mm, as drawn) |
+| 31, 32 (L2424) | 14.3 / 14.5 | 13.2 / 13.2 | 13.1 | 10–11 % over; still the tallest G4 element, as drawn |
+
+Retained: G1 front pair (28.2 / 27.0 / 26.1 against drawn 28.8 for L211 and 27.1 for L212), r4 23.0 (drawn 24.0), H1 (12.8 / 12.2 / 9.4 against 12.95 and a concave face ending at 9.5), L223 (8.7 / 8.05 against about 8.6–9.0), D2 (8.05 / 9.6 / 9.9 against 9.7), all of G3 (231 at 11.1 / 11.4 against 11.4; 232/233 at 11.5 / 10.3 / 10.3 / 11.4 against a flat 11.3), and 23A at 11.8. L224's front face would need 9.6 to square D2 as drawn, but at that height r13 sits 0.8 mm ahead of L223's rear rim and wraps it; r20/r21 cannot reach the drawn 11.3 because the two faces cross above about 10.9 mm. The renderer cannot draw L221's flat rear land, so H1 shows a slanted edge from 12.2 to 9.4.
+
+Clearance after the change: the surface audit reports no errors; the clear-aperture trace at 14.5 mm image height (ω 40.57° / 25.31° / 16.31°, matching the patent's 2ω 81.1° / 50.6° / 32.6°) shows no axial clipping or chief-ray blocking; the tightest axial margin is r30, 12.2 against an axial marginal height of 11.33 mm at tele. Image circle and field coverage still reach 14.17 of 14.18 mm at every station. Engine half-field 37.15° (limited by r8, unchanged), f/2.88 at every station, stop radii 7.248 / 8.182 / 9.290 mm unchanged. Engine meridional geometric transmission at the corner field, before → after: wide 40.0° 79.8 → 94.7 % (L222 no longer clips), middle 24.8° 80.4 → 70.7 %, tele 16.0° 58.7 → 53.3 %. These are meridional values only. Thinnest edge is now the L221r layer at 0.74 mm; thinnest glass edge 1.23 mm (L2421); steepest rim angle 50.0° at r8, unchanged. The 23A departure at 11.8 mm (−0.748 mm) is unchanged.
+
+Checked and found correct: group brackets G1 r1–r5, G2 r6A–r15, G3 r17–r22, G4 r23A–r32 match ¶0074–¶0075 (groups 210–240, G4 = units 241 + 242); cemented brackets D1, H1, D2, H2 and D3 cover exactly the five bonded or cemented components, and none equals a gap label (D5, D15, D22, BF). Element `name` values carry the patent's reference signs (L211…L2424) while `label` and `diagramLabel` number the physical elements 1–16 with 4r and 12r on the bonded layers, so the inspector heading ("Element 4 resin layer", L221r) and the diagram number agree. Every element `type` matches the signs of R and ¶0075's 凸/凹 designations. Only r6 and r23 are marked 非球面 in the tables and only 6A and 23A carry the A suffix. The stop sits at r16, 1.0 mm ahead of r17. The resin-layer inspectors read "DOUBLET H1/H2", not a triplet; L2411r shows f = +694484 mm, which is the true isolated value of an equal-radius 0.2 mm shell. The `apd: "inferred"` tag on L2423 rests on Tamron's single LD element; the patent text names no special glass.
+
+Movement: zoom stations ascend 17.4 / 30 / 48.5 mm, and every gap row is in that order. Relative to the fixed image, G1 moves 27.7 mm objectward, G3 17.1 mm and G4 22.1 mm objectward, monotonically; G2 moves 0.24 mm imageward and then 4.38 mm objectward, as the printed d5/d15 imply. d5 widens and d15/d22 narrow wide to tele, as ¶0077 states. ¶0077 lists only G2–G4 as the zoom groups, yet the printed gaps need G1 to move with a fixed image; the model follows the tables. Focus: ¶0077 focuses by moving G2 objectward but prints no finite-distance spacings; both focus keyframes repeat the infinity gaps, the slider's far end reads "Not modeled", and the movement overlay offers no focus trace.
+
+Aberrations against Figures 6–8: distortion at the patent's image heights is −2.7 % (wide), +2.2 % (middle) and +2.2 % (tele) at 14.5 mm, with the wide curve's −3.6 % trough near 12 mm, matching the plotted d curves; on-axis spherical aberration at full aperture is −0.10 / −0.07 / −0.03 mm, small and under-corrected as plotted. Astigmatism was not traced.
+
+Glass: every printed nd/νd pair except 1.72000/50.25 and 1.71736/29.51 recurs in Example 1 (pp15–17), and those two are exact catalog points (LAC10 class, SF1). The bonded-layer material 1.51460/49.96 recurs in both examples (r6 and r23 here, r6 and r24–r25 in Example 1) but the patent gives no name, no other line index and no partial dispersion, so both layers stay Unmatched. All other labels resolve with Δνd ≤ 0.09.
+
+Open: L224 front face and L232/L233 facing faces sit below the drawn height for the reasons above; H1's flat land is a renderer limitation.
+
+Coordinator follow-up, same day: L222 (s9/s10) 9.1 → 9.4 mm, the height Fig. 5 draws for the block, with
+`checks.gapSagFrac` 0.96 (the smallest two-decimal value that admits it: at 0.95 the r8→r9 rims at 9.4 mm sag 5.43 mm
+into a 5.720 mm gap against a 5.434 mm allowance at 30 and 48.5 mm; the faces do not cross). audit:surface OK; EFL,
+f/2.88 per station and the 37.15° half-field unchanged; clearap shows no axial clip or blocked chief ray. Dropped the
+L2411r resin layer's `focalLengthMm` (694484 mm, an equal-radius shell), which the inspector printed literally.

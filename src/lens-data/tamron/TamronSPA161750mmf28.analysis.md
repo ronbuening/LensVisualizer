@@ -464,17 +464,25 @@ published zoom station. The resulting inferred stop semi-diameters are 7.2480154
 8.182159932 and 9.289930370 mm. Agreement with f/2.88 is a calibration result. It is not an
 independent measurement of an unpublished mechanical diaphragm.
 
-Surface semi-diameters were inferred from exact ray envelopes and assessed against Figure 5.
-Most begin with approximately ten percent clearance, with tighter apertures where required
-by the actual shared-gap geometry. Cemented junction apertures preserve internal containment.
-These values are model dimensions and should not be used as manufacturing measurements.
+Surface semi-diameters start from exact ray envelopes. Where the wide-angle panel of Figure 5
+draws a rim clearly higher or lower, the model follows the drawing: L213 is square-cut at
+23.0 mm, L222 stands at 9.4 mm (the drawn block, admitted by a 0.96 gap-sag allowance), the G41 hybrid at 11.8 mm, L2421 and the
+L2422/L2423 pair at 12.2 mm, and L2424 at 13.2 mm. Every rim clears the axial marginal ray at
+f/2.88 and the chief ray to the 14.5 mm image height at all three zoom stations. Where the
+figure draws neighbours overlapping (L223 with L224, L232 with L233), the model keeps the
+largest rims that do not cross, so the front face of L224 and the facing surfaces of
+L232/L233 sit below the drawn height. The figure's flat rear land on L221 cannot be drawn by
+the renderer, which joins the two rims of an element with a straight edge. Cemented junction
+apertures preserve internal containment. These values are model dimensions and should not be
+used as manufacturing measurements.
 
-At the modeled apertures, the thinnest material edge is 0.083 mm (the rim of L2423) and the
-steepest rim angle is 50.0°. The model covers an APS-C image circle of 14.2 mm radius at all
-three zoom stations. At the wide end, the front group cuts much of the off-axis bundle near
-the patent's 14.5 mm image height, so corner illumination falls off substantially; this
-vignetting follows from the inferred front-group apertures and is not a measured property of
-the production lens. Full-field transmission and production MTF are not established.
+At the modeled apertures, the thinnest material edge is 0.74 mm (the L221r bonded layer at its
+rim; the thinnest glass edge is 1.23 mm, L2421) and the steepest rim angle is 50.0° (surface 8).
+The model covers an APS-C image circle of 14.2 mm radius at all three zoom stations. Toward the
+corners the drawn rims cut part of the off-axis bundle, most at the telephoto end, where the
+rear group passes about half of the meridional bundle at the 16° corner field; this vignetting
+follows from the modeled apertures and is not a measured property of the production lens.
+Full-field transmission and production MTF are not established.
 
 The unchanged source spacings describe infinity-focus designs. No finite-focus optical
 performance, stabilization system or apochromatic performance is inferred.

@@ -9,7 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * focus columns repeat the infinity gaps and no focus motion is reconstructed.
  * Three published zoom stations preserve G2 fixed-image-frame reversal.
  * Stop is source surface 16; stop diameter solved from the patent's F/2.88.
- * SDs are modeled from exact ray envelopes and Fig. 5, not patent dimensions.
+ * SDs start from exact ray envelopes; L213 rear, L222, G41 and G42 follow the
+ * rim heights drawn in Fig. 5 (wide panel), floor-checked by real-ray trace.
+ * None are patent dimensions.
  * Catalog labels are coordinate-compatible classes, not supplier identities.
  * Last image gap stays as published; no best-focus correction applied.
  */
@@ -215,7 +217,6 @@ const LENS_DATA = {
       nd: 1.5146,
       vd: 49.96,
       indexReference: "d",
-      focalLengthMm: 694484.097137,
       glass: "Unmatched (bonded asphere layer; no verified catalog identity)",
       role: "Published 0.2 mm aspherical resin layer bonded to the front of Element 12 (hybrid asphere)",
       diagramLabel: "12r",
@@ -299,7 +300,7 @@ const LENS_DATA = {
     { label: "2", R: 75.5087, d: 6.7, sd: 27, medium: 2 },
     { label: "3", R: -1190.5533, d: 0.2, sd: 26.1 },
     { label: "4", R: 48.6842, d: 5.2, sd: 23, medium: 3 },
-    { label: "5", R: 124.0755, sd: 21.8 },
+    { label: "5", R: 124.0755, sd: 23 },
     {
       label: "6A",
       R: 127.2051,
@@ -310,8 +311,8 @@ const LENS_DATA = {
     },
     { label: "7", R: 45.6892, d: 1.2, sd: 12.2, medium: 5 },
     { label: "8", R: 12.2621, d: 5.72, sd: 9.4 },
-    { label: "9", R: -42.743, d: 1, sd: 8.2, medium: 6 },
-    { label: "10", R: 36.1713, d: 0.5, sd: 8.4 },
+    { label: "9", R: -42.743, d: 1, sd: 9.4, medium: 6 },
+    { label: "10", R: 36.1713, d: 0.5, sd: 9.4 },
     { label: "11", R: 26.9035, d: 4.1, sd: 8.7, medium: 7 },
     { label: "12", R: -37.7064, d: 1.3, sd: 8.05 },
     { label: "13", R: -17.1517, d: 1, sd: 8.05, medium: 8 },
@@ -332,15 +333,15 @@ const LENS_DATA = {
       medium: 13,
       asphere: { A4: -3.95596e-5, A6: 2.05532e-8, A8: -1.48358e-10, A10: 3.67409e-13 },
     },
-    { label: "24", R: -155.8357, d: 3, sd: 12.1, medium: 14 },
-    { label: "25", R: -41.8055, d: 2.6, sd: 12.4 },
-    { label: "26", R: -88.3422, d: 3.3, sd: 13.2, medium: 15 },
-    { label: "27", R: -26.9845, d: 0.2, sd: 13.4 },
-    { label: "28", R: -80.6962, d: 1.2, sd: 13.2, medium: 16 },
-    { label: "29", R: 37.5662, d: 5.6, sd: 14.2, medium: 17 },
-    { label: "30", R: -35.3157, d: 0.2, sd: 13.9 },
-    { label: "31", R: -85.6592, d: 3.6, sd: 14.3, medium: 18 },
-    { label: "32", R: -27.4281, sd: 14.5 },
+    { label: "24", R: -155.8357, d: 3, sd: 11.8, medium: 14 },
+    { label: "25", R: -41.8055, d: 2.6, sd: 11.8 },
+    { label: "26", R: -88.3422, d: 3.3, sd: 12.2, medium: 15 },
+    { label: "27", R: -26.9845, d: 0.2, sd: 12.2 },
+    { label: "28", R: -80.6962, d: 1.2, sd: 12.2, medium: 16 },
+    { label: "29", R: 37.5662, d: 5.6, sd: 12.2, medium: 17 },
+    { label: "30", R: -35.3157, d: 0.2, sd: 12.2 },
+    { label: "31", R: -85.6592, d: 3.6, sd: 13.2, medium: 18 },
+    { label: "32", R: -27.4281, sd: 13.2 },
   ],
 
   zoom: {
@@ -406,6 +407,7 @@ const LENS_DATA = {
   ],
 
   layout: { yScFill: 0.3 },
+  checks: { gapSagFrac: 0.96 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;
