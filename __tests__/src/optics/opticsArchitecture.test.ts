@@ -1,7 +1,8 @@
 /**
- * Optics architecture guards — import cycles, the outside-import seam, and module-level caches.
+ * Optics architecture guards — import cycles, the outside-import seam, caches, and analysis requests.
  *
- * Each guard scans source text and compares what it finds with the lists below. The lists
+ * The structural guards scan source text; the analysis request guard walks the TypeScript AST.
+ * Registry guards compare what they find with the lists below. The lists
  * come in two kinds:
  *
  * - The LEGACY lists are empty and must stay empty. Every violation fails the guard;
@@ -16,6 +17,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
+import ts from "typescript";
 
 /* ── Cycle guard lists ── */
 
@@ -735,6 +737,65 @@ function summarize(files: readonly string[]): string {
   return files.length <= 3 ? files.join(", ") : `${files.slice(0, 3).join(", ")} and ${files.length - 3} more`;
 }
 
+/**
+ * M6: analysis kernels carry the request/prepared object through their call chains.
+ * Scan declarations (including arrows, methods and overloads), not text in comments/strings.
+ * RuntimeLens import aliases and local type aliases retain the same restriction.
+ * Pure numeric/table leaves and explicit request-based control sweeps are allowed.
+ */
+function positionalAnalysisStateDeclarations(source: string): string[] {
+  const file = ts.createSourceFile("analysis.ts", source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  const runtimeTypes = new Set(["RuntimeLens"]);
+  for (const statement of file.statements) {
+    if (ts.isImportDeclaration(statement)) {
+      const bindings = statement.importClause?.namedBindings;
+      if (bindings && ts.isNamedImports(bindings)) {
+        for (const binding of bindings.elements) {
+          if ((binding.propertyName ?? binding.name).text === "RuntimeLens") runtimeTypes.add(binding.name.text);
+        }
+      }
+    }
+  }
+  const hasRuntimeType = (node: ts.Node): boolean => {
+    if (ts.isIdentifier(node) && runtimeTypes.has(node.text)) return true;
+    return ts.forEachChild(node, hasRuntimeType) ?? false;
+  };
+  // Resolve alias chains regardless of declaration order without constructing a whole TS program.
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const statement of file.statements) {
+      if (
+        ts.isTypeAliasDeclaration(statement) &&
+        !runtimeTypes.has(statement.name.text) &&
+        hasRuntimeType(statement.type)
+      ) {
+        runtimeTypes.add(statement.name.text);
+        changed = true;
+      }
+    }
+  }
+  const violations: string[] = [];
+  const visit = (node: ts.Node): void => {
+    if (ts.isFunctionLike(node)) {
+      const runtime = node.parameters.some((parameter) => parameter.type && hasRuntimeType(parameter.type));
+      const state = node.parameters.some(
+        (parameter) =>
+          ts.isIdentifier(parameter.name) && ["zPos", "focusT", "zoomT", "aberrationT"].includes(parameter.name.text),
+      );
+      if (runtime && state) {
+        const name =
+          node.name?.getText(file) ??
+          (ts.isVariableDeclaration(node.parent) ? node.parent.name.getText(file) : "<anonymous>");
+        violations.push(`${name}:${file.getLineAndCharacterOfPosition(node.getStart(file)).line + 1}`);
+      }
+    }
+    ts.forEachChild(node, visit);
+  };
+  visit(file);
+  return violations;
+}
+
 /* ── Guards ── */
 
 describe("optics architecture guards", () => {
@@ -757,6 +818,39 @@ describe("optics architecture guards", () => {
       .filter(([, entries]) => entries.join("\n") !== [...new Set(entries)].sort().join("\n"))
       .map(([name]) => name);
     expect(unsorted, "sort these lists by entry and drop duplicates").toEqual([]);
+  });
+
+  describe("analysis requests", () => {
+    it("rejects positional runtime/state declarations throughout analysis implementations", () => {
+      const problems = [...opticsModules()]
+        .sort()
+        .flatMap((module) =>
+          /^src\/optics\/(?:analysis|perspective\/analysis)\//.test(module)
+            ? positionalAnalysisStateDeclarations(readSource(module)).map(
+                (declaration) =>
+                  `${module}#${declaration}: pass AnalysisRequest or PreparedGeometry instead of RuntimeLens and state scalars.`,
+              )
+            : [],
+        );
+      expect(problems, "M6 request contract").toEqual([]);
+    });
+
+    it("detects function, arrow, method and aliased signatures while allowing numeric leaves and request sweeps", () => {
+      const source = [
+        'import type { RuntimeLens as Lens } from "./types.js";',
+        "type Alias = Lens;",
+        "function base(L: RuntimeLens, zPos: number[], focusT: number, zoomT: number, aberrationT = 0) {}",
+        "const arrow = (L: Lens, focusT: number) => 0;",
+        "const object = { method(L: Alias, zoomT: number) {} };",
+        "function overload(L: Lens, aberrationT: number): number;",
+        "function pure(zoomPositions: readonly number[], zoomT: number) {}",
+        "function sweep(request: AnalysisRequest, focusT: number) {}",
+        "function prepared(state: PreparedGeometry, fieldAngle: number) {}",
+        "// function comment(L: RuntimeLens, zoomT: number) {}",
+        'const text = "function string(L: RuntimeLens, focusT: number) {}";',
+      ].join("\n");
+      expect(positionalAnalysisStateDeclarations(source)).toEqual(["base:3", "arrow:4", "method:5", "overload:6"]);
+    });
   });
 
   describe("import cycles", () => {

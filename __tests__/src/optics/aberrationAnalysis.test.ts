@@ -31,7 +31,7 @@ import {
 } from "../../../src/optics/analysis/aberration/spherical.js";
 import {
   bestFocusPlaneForDirection,
-  computeStateAwareOffAxisFieldGeometry,
+  computeOffAxisFieldGeometryScalar,
   traceOffAxisChiefRay,
   traceCircularOffAxisBundle,
   traceOrthogonalOffAxisBundle,
@@ -86,7 +86,16 @@ function standardizedFieldFocusAt(
   currentEPSD: number,
   currentPhysStopSD: number,
 ) {
-  const chiefRay = traceOffAxisChiefRay(geometry, L, focusT, zoomT, currentEPSD, currentPhysStopSD);
+  const chiefRay = traceOffAxisChiefRay(
+    analysisRequestAt(L, {
+      focusT: focusT,
+      zoomT: zoomT,
+      currentEPSD: currentEPSD,
+      currentPhysStopSD: currentPhysStopSD,
+      aberrationT: undefined,
+    }),
+    geometry,
+  );
   expect(chiefRay).not.toBeNull();
 
   const parabasalFraction = standardizedParabasalFraction(currentEPSD);
@@ -980,7 +989,11 @@ describe("computeMeridionalComa", () => {
     );
     expect(result).not.toBeNull();
     const fieldGeometry = computeAnalysisFieldGeometryAtState(0, 0, L);
-    const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, L.offAxisFieldFrac, fieldGeometry);
+    const geometry = computeOffAxisFieldGeometryScalar(
+      analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, aberrationT: undefined }).preparedGeometry,
+      L.offAxisFieldFrac,
+      fieldGeometry,
+    );
     expect(geometry).not.toBeNull();
     expect(result!.fieldAngleDeg).toBeCloseTo(geometry!.fieldAngleDeg, 8);
     expect(result!.fieldFraction).toBeCloseTo(L.offAxisFieldFrac, 8);
@@ -1031,18 +1044,24 @@ describe("computeMeridionalComa", () => {
     expect(result).not.toBeNull();
 
     const fieldGeometry = computeAnalysisFieldGeometryAtState(0, 0, L);
-    const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, L.offAxisFieldFrac, fieldGeometry);
+    const geometry = computeOffAxisFieldGeometryScalar(
+      analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, aberrationT: undefined }).preparedGeometry,
+      L.offAxisFieldFrac,
+      fieldGeometry,
+    );
     expect(geometry).not.toBeNull();
 
     const bundle = traceOrthogonalOffAxisBundle(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+        aberrationT: undefined,
+      }),
       "tangential",
       MERIDIONAL_COMA_SAMPLE_COUNT,
       geometry!,
-      L,
-      0,
-      0,
-      currentEPSD,
-      currentPhysStopSD,
     );
     expect(bundle).not.toBeNull();
     expect(result!.centerIntercept).toBeCloseTo(bundle!.chiefRay.imagePoint.y, 8);
@@ -1233,17 +1252,23 @@ describe("computeComaPointCloudPreview", () => {
     expect(field!.usable).toBe(true);
 
     const fieldGeometry = computeAnalysisFieldGeometryAtState(0, 0, L);
-    const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, field!.fieldFraction, fieldGeometry);
+    const geometry = computeOffAxisFieldGeometryScalar(
+      analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, aberrationT: undefined }).preparedGeometry,
+      field!.fieldFraction,
+      fieldGeometry,
+    );
     expect(geometry).not.toBeNull();
 
     const bundle = traceCircularOffAxisBundle(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+        aberrationT: undefined,
+      }),
       COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES,
       geometry!,
-      L,
-      0,
-      0,
-      currentEPSD,
-      currentPhysStopSD,
     );
     expect(bundle).not.toBeNull();
     expect(field!.validSampleCount).toBe(bundle!.validSampleCount);
@@ -1952,29 +1977,37 @@ describe("computeFieldCurvature", () => {
     expect(field!.usable).toBe(true);
 
     const stateGeometry = computeAnalysisFieldGeometryAtState(0, 0, L);
-    const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, field!.fieldFraction, stateGeometry);
+    const geometry = computeOffAxisFieldGeometryScalar(
+      analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, aberrationT: undefined }).preparedGeometry,
+      field!.fieldFraction,
+      stateGeometry,
+    );
     expect(geometry).not.toBeNull();
     const standardizedField = standardizedFieldFocusAt(L, geometry!, 0, 0, currentEPSD, currentPhysStopSD);
 
     const tangentialBundle = traceOrthogonalOffAxisBundle(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+        aberrationT: undefined,
+      }),
       "tangential",
       MERIDIONAL_COMA_SAMPLE_COUNT,
       geometry!,
-      L,
-      0,
-      0,
-      currentEPSD,
-      currentPhysStopSD,
     );
     const sagittalBundle = traceOrthogonalOffAxisBundle(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+        aberrationT: undefined,
+      }),
       "sagittal",
       MERIDIONAL_COMA_SAMPLE_COUNT,
       geometry!,
-      L,
-      0,
-      0,
-      currentEPSD,
-      currentPhysStopSD,
     );
 
     expect(tangentialBundle).not.toBeNull();

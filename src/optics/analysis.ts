@@ -19,8 +19,8 @@ export type {
   FieldCurvatureBundleResult,
 } from "./analysis/aberration/fieldCurvature.js";
 export {
-  computeProjectionAwareOffAxisFieldGeometry,
-  computeStateAwareOffAxisFieldGeometry,
+  computeOffAxisFieldGeometry,
+  computeOffAxisFieldGeometryScalar,
   isOffAxisVectorFieldGeometry,
 } from "./analysis/aberration/offAxis.js";
 export { buildBokehRadialProfile, classifyBokehBrightnessCharacter } from "./analysis/aberration/radialProfile.js";

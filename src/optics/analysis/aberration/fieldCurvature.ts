@@ -5,7 +5,7 @@
  */
 
 import { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "../../trace/chiefRelative.js";
-import type { ChromaticChannel, RuntimeLens } from "../../../types/optics.js";
+import type { ChromaticChannel } from "../../../types/optics.js";
 import type { ChromaticFieldShift, FieldCurvatureFieldResult, FieldCurvatureResult } from "./types.js";
 import {
   FIELD_CURVATURE_CURVE_FIELD_FRACTIONS,
@@ -18,7 +18,7 @@ import type { FieldGeometryState } from "../../field/launch.js";
 import { thick } from "../../state/layout.js";
 import {
   bestFocusPlaneForDirection,
-  computeStateAwareOffAxisFieldGeometry,
+  computeOffAxisFieldGeometryScalar,
   traceOffAxisChiefRay,
   traceOffAxisBundleFromSamples,
 } from "./offAxis.js";
@@ -28,7 +28,6 @@ import type { TransverseFocusHit } from "./shared.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
 import { runtimeView } from "../../prescription/runtimeView.js";
 import type { AnalysisRequest } from "../request.js";
-import type { AnalysisSamplingOptions } from "../analysisQuality.js";
 
 const FIELD_CURVATURE_MIN_SHARED_HALF_RANGE_MM = 0.1;
 const FIELD_CURVATURE_PARABASAL_RAY_HEIGHT_MM = 0.01;
@@ -167,25 +166,18 @@ function focusPlaneFromRelativeHits(
 }
 
 function computeStandardizedFieldFocus(
-  L: RuntimeLens,
+  request: AnalysisRequest,
   geometry: OffAxisFieldGeometry,
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
   channel?: ChromaticChannel,
-  aberrationT = 0,
 ): StandardizedFieldFocus | null {
-  const chiefRay = traceOffAxisChiefRay(
-    geometry,
-    L,
-    focusT,
-    zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-    channel,
-    aberrationT,
-  );
+  const L = runtimeView(request.preparedGeometry.lens);
+  const focusT = request.preparedGeometry.focusT;
+  const zoomT = request.preparedGeometry.zoomT;
+  const currentEPSD = request.aperture.entrancePupilSemiDiameterMm;
+  const currentPhysStopSD = request.aperture.stopSemiDiameterMm;
+  const aberrationT = request.preparedGeometry.aberrationT;
+
+  const chiefRay = traceOffAxisChiefRay(request, geometry, channel);
   if (chiefRay === null) return null;
 
   const parabasalFraction = parabasalPupilFraction(currentEPSD);
@@ -260,36 +252,21 @@ function computeStandardizedFieldFocus(
 }
 
 function computeDiagnosticFieldFocus(
-  L: RuntimeLens,
+  request: AnalysisRequest,
   geometry: OffAxisFieldGeometry,
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
   sampleCount = MERIDIONAL_COMA_SAMPLE_COUNT,
 ): DiagnosticFieldFocus | null {
   const tangentialBundle = traceOffAxisBundleFromSamples(
+    request,
     sampleOrthogonalPupilFan(sampleCount, "tangential"),
     geometry,
-    L,
-    focusT,
-    zoomT,
-    currentEPSD,
-    currentPhysStopSD,
     undefined,
-    aberrationT,
   );
   const sagittalBundle = traceOffAxisBundleFromSamples(
+    request,
     sampleOrthogonalPupilFan(sampleCount, "sagittal"),
     geometry,
-    L,
-    focusT,
-    zoomT,
-    currentEPSD,
-    currentPhysStopSD,
     undefined,
-    aberrationT,
   );
   if (tangentialBundle === null || sagittalBundle === null) return null;
   if (tangentialBundle.validSampleCount < 3 || sagittalBundle.validSampleCount < 3) return null;
@@ -315,27 +292,13 @@ function computeDiagnosticFieldFocus(
 }
 
 function computeChromaticFieldShifts(
-  L: RuntimeLens,
+  request: AnalysisRequest,
   geometry: OffAxisFieldGeometry,
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
 ): ChromaticFieldShift[] | null {
   const shifts: ChromaticFieldShift[] = [];
 
   for (const channel of CHROMATIC_FIELD_CHANNELS) {
-    const fieldFocus = computeStandardizedFieldFocus(
-      L,
-      geometry,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      channel,
-      aberrationT,
-    );
+    const fieldFocus = computeStandardizedFieldFocus(request, geometry, channel);
     if (fieldFocus === null) return null;
 
     shifts.push({
@@ -349,51 +312,26 @@ function computeChromaticFieldShifts(
 }
 
 function computeFieldCurvatureField(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
+  request: AnalysisRequest,
   meta: FieldCurvatureFieldMeta,
   chromatic: boolean,
   stateGeometry: FieldGeometryState,
-  aberrationT = 0,
-  sampling: AnalysisSamplingOptions = {},
 ): FieldCurvatureFieldResult {
+  const sampling = request.sampling;
+  const L = runtimeView(request.preparedGeometry.lens);
+  const currentEPSD = request.aperture.entrancePupilSemiDiameterMm;
+
   if (currentEPSD <= 0 || L.N < 1) return emptyFieldCurvatureFieldResult(meta);
 
-  const geometry = computeStateAwareOffAxisFieldGeometry(
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    meta.fieldFraction,
-    stateGeometry,
-    aberrationT,
-  );
+  const geometry = computeOffAxisFieldGeometryScalar(request.preparedGeometry, meta.fieldFraction, stateGeometry);
   if (geometry === null) return emptyFieldCurvatureFieldResult(meta);
 
-  const standardizedFieldFocus = computeStandardizedFieldFocus(
-    L,
-    geometry,
-    focusT,
-    zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-    undefined,
-    aberrationT,
-  );
+  const standardizedFieldFocus = computeStandardizedFieldFocus(request, geometry, undefined);
   if (standardizedFieldFocus === null) return emptyFieldCurvatureFieldResult(meta);
 
   const diagnosticFieldFocus = computeDiagnosticFieldFocus(
-    L,
+    request,
     geometry,
-    focusT,
-    zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-    aberrationT,
     sampling.fieldCurvatureDiagnosticSampleCount,
   );
   const chiefImageHeight = standardizedFieldFocus.chiefImageHeight;
@@ -422,9 +360,7 @@ function computeFieldCurvatureField(
     diagnosticSagittalShiftMm: diagnosticFieldFocus?.sagittalShiftMm,
     diagnosticAstigmaticDifferenceMm: diagnosticFieldFocus?.astigmaticDifferenceMm,
     diagnosticAstigmaticDifferenceUm: diagnosticFieldFocus?.astigmaticDifferenceUm,
-    chromaticFieldShifts: chromatic
-      ? computeChromaticFieldShifts(L, geometry, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT)
-      : null,
+    chromaticFieldShifts: chromatic ? computeChromaticFieldShifts(request, geometry) : null,
     usable: true,
   };
 }
@@ -491,17 +427,20 @@ function buildFieldCurvatureResult(
   };
 }
 
-function computeFieldCurvatureBase(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  aberrationT = 0,
-  fieldGeometry?: FieldGeometryState,
-  sampling: AnalysisSamplingOptions = {},
-): { result: FieldCurvatureResult | null; stateGeometry: FieldGeometryState; imagePlaneZ: number } {
+function computeFieldCurvatureBase(request: AnalysisRequest): {
+  result: FieldCurvatureResult | null;
+  stateGeometry: FieldGeometryState;
+  imagePlaneZ: number;
+} {
+  const fieldGeometry = request.fieldGeometry ?? undefined;
+  const sampling = request.sampling;
+  const L = runtimeView(request.preparedGeometry.lens);
+  const zPos = request.preparedGeometry.z as number[];
+  const focusT = request.preparedGeometry.focusT;
+  const zoomT = request.preparedGeometry.zoomT;
+  const currentEPSD = request.aperture.entrancePupilSemiDiameterMm;
+  const aberrationT = request.preparedGeometry.aberrationT;
+
   if (currentEPSD <= 0 || L.N < 1) {
     return {
       result: null,
@@ -518,34 +457,10 @@ function computeFieldCurvatureBase(
   const fieldFractions = sampling.fieldCurvatureFieldFractions ?? FIELD_CURVATURE_FIELD_FRACTIONS;
   const curveFieldFractions = sampling.fieldCurvatureCurveFieldFractions ?? FIELD_CURVATURE_CURVE_FIELD_FRACTIONS;
   const fields = fieldCurvatureFieldMeta(fieldFractions).map((meta) =>
-    computeFieldCurvatureField(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      meta,
-      false,
-      stateGeometry,
-      aberrationT,
-      sampling,
-    ),
+    computeFieldCurvatureField(request, meta, false, stateGeometry),
   );
   const curveFields = fieldCurvatureFieldMeta(curveFieldFractions).map((meta) =>
-    computeFieldCurvatureField(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      meta,
-      false,
-      stateGeometry,
-      aberrationT,
-      sampling,
-    ),
+    computeFieldCurvatureField(request, meta, false, stateGeometry),
   );
 
   return {
@@ -556,74 +471,27 @@ function computeFieldCurvatureBase(
 }
 
 function addChromaticShiftsToField(
+  request: AnalysisRequest,
   field: FieldCurvatureFieldResult,
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
   stateGeometry: FieldGeometryState,
-  aberrationT = 0,
 ): FieldCurvatureFieldResult {
   if (!field.usable) return { ...field, chromaticFieldShifts: null };
-  const geometry = computeStateAwareOffAxisFieldGeometry(
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    field.fieldFraction,
-    stateGeometry,
-    aberrationT,
-  );
+  const geometry = computeOffAxisFieldGeometryScalar(request.preparedGeometry, field.fieldFraction, stateGeometry);
   return {
     ...field,
-    chromaticFieldShifts:
-      geometry === null
-        ? null
-        : computeChromaticFieldShifts(L, geometry, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT),
+    chromaticFieldShifts: geometry === null ? null : computeChromaticFieldShifts(request, geometry),
   };
 }
 
 function buildChromaticFieldCurvatureFromBase(
+  request: AnalysisRequest,
   base: FieldCurvatureResult | null,
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
   stateGeometry: FieldGeometryState,
-  aberrationT = 0,
 ): FieldCurvatureResult | null {
   if (base === null) return null;
 
-  const fields = base.fields.map((field) =>
-    addChromaticShiftsToField(
-      field,
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      stateGeometry,
-      aberrationT,
-    ),
-  );
-  const curveFields = base.curveFields.map((field) =>
-    addChromaticShiftsToField(
-      field,
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      stateGeometry,
-      aberrationT,
-    ),
-  );
+  const fields = base.fields.map((field) => addChromaticShiftsToField(request, field, stateGeometry));
+  const curveFields = base.curveFields.map((field) => addChromaticShiftsToField(request, field, stateGeometry));
 
   return buildFieldCurvatureResult(fields, curveFields, base.imagePlaneZ, true);
 }
@@ -638,38 +506,10 @@ function buildChromaticFieldCurvatureFromBase(
  * @returns paired field-curvature results, each nullable when tracing is unusable
  */
 export function computeFieldCurvatureBundle(request: AnalysisRequest): FieldCurvatureBundleResult {
-  const state = request.preparedGeometry;
-  const L = runtimeView(state.lens);
-  const zPos = state.z as number[];
-  const { focusT, zoomT, aberrationT } = state;
-  const currentEPSD = request.aperture.entrancePupilSemiDiameterMm;
-  const currentPhysStopSD = request.aperture.stopSemiDiameterMm;
-  const fieldGeometry = request.fieldGeometry ?? undefined;
-  const sampling = request.sampling;
-  const base = computeFieldCurvatureBase(
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-    aberrationT,
-    fieldGeometry,
-    sampling,
-  );
+  const base = computeFieldCurvatureBase(request);
   return {
     fieldCurvature: base.result,
-    chromaticFieldCurvature: buildChromaticFieldCurvatureFromBase(
-      base.result,
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      base.stateGeometry,
-      aberrationT,
-    ),
+    chromaticFieldCurvature: buildChromaticFieldCurvatureFromBase(request, base.result, base.stateGeometry),
   };
 }
 
@@ -684,37 +524,9 @@ export function computeFieldCurvatureBundle(request: AnalysisRequest): FieldCurv
  * @returns field-curvature result, or null when off-axis tracing is unusable
  */
 export function computeFieldCurvature(request: AnalysisRequest, chromatic = false): FieldCurvatureResult | null {
-  const state = request.preparedGeometry;
-  const L = runtimeView(state.lens);
-  const zPos = state.z as number[];
-  const { focusT, zoomT, aberrationT } = state;
-  const currentEPSD = request.aperture.entrancePupilSemiDiameterMm;
-  const currentPhysStopSD = request.aperture.stopSemiDiameterMm;
-  const fieldGeometry = request.fieldGeometry ?? undefined;
-  const sampling = request.sampling;
-  const base = computeFieldCurvatureBase(
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-    aberrationT,
-    fieldGeometry,
-    sampling,
-  );
+  const base = computeFieldCurvatureBase(request);
   if (!chromatic) return base.result;
-  return buildChromaticFieldCurvatureFromBase(
-    base.result,
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-    base.stateGeometry,
-    aberrationT,
-  );
+  return buildChromaticFieldCurvatureFromBase(request, base.result, base.stateGeometry);
 }
 
 export interface ChromaticChannelSpan {

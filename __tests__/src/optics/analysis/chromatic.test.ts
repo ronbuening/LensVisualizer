@@ -1,3 +1,4 @@
+import { analysisRequestAt } from "../testLensFixtures.js";
 import { stateWithZ } from "../../../../src/optics/state/preparedGeometry.js";
 import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
@@ -16,7 +17,7 @@ import {
 import { doLayoutForRuntimeLens as doLayout } from "../../../../src/optics/state/runtimeAdapters.js";
 import { traceChiefRelativeSkewRayChromatic } from "../../../../src/optics/trace/chiefRelative.js";
 import {
-  computeProjectionAwareOffAxisFieldGeometry,
+  computeOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
 } from "../../../../src/optics/analysis/aberration/offAxis.js";
 
@@ -52,7 +53,10 @@ describe("chromatic analysis helpers", () => {
     const onAxis = result.spreads.onAxis!;
     expect(offAxis).not.toBeNull();
     expect(onAxis).not.toBeNull();
-    const geometry = computeProjectionAwareOffAxisFieldGeometry(L, z, 1, 0, L.offAxisFieldFrac ?? 0.7)!;
+    const geometry = computeOffAxisFieldGeometry(
+      analysisRequestAt(L, { zPos: z, focusT: 1, zoomT: 0, aberrationT: undefined }).preparedGeometry,
+      L.offAxisFieldFrac ?? 0.7,
+    )!;
     expect(isOffAxisVectorFieldGeometry(geometry)).toBe(false);
     if (isOffAxisVectorFieldGeometry(geometry)) return;
     for (const channel of result.channels) {
@@ -121,7 +125,10 @@ describe("chromatic analysis helpers", () => {
     expect(result.offAxisAttemptedRayCount).toBe(8);
     expect(result.spreads.offAxis?.fraction).toBe(0.1);
     expect(result.spreads.offAxis?.channels).toEqual(["R", "G", "B", "V"]);
-    const geometry = computeProjectionAwareOffAxisFieldGeometry(L, z, 0, 0, 0.01)!;
+    const geometry = computeOffAxisFieldGeometry(
+      analysisRequestAt(L, { zPos: z, focusT: 0, zoomT: 0, aberrationT: undefined }).preparedGeometry,
+      0.01,
+    )!;
     expect(isOffAxisVectorFieldGeometry(geometry)).toBe(false);
     if (isOffAxisVectorFieldGeometry(geometry)) return;
     for (const channel of ["R", "G", "B", "V"] as const) {

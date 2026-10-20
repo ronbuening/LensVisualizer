@@ -27,6 +27,8 @@
  *   Δz_XP(θ) = xpZ_real(θ) − xpZRelLastSurf_paraxial
  */
 
+import type { PreparedGeometry } from "../../types.js";
+
 import { uniformFieldFraction } from "../sampling.js";
 
 import { prepareRayTrace } from "../../trace/rayAdapters.js";
@@ -46,7 +48,7 @@ import { traceGeometryToStop } from "../../trace/stopTrace.js";
 import type { TraceGeometry, TraceOptions } from "../../trace/types.js";
 import type { Ray3 } from "../../types.js";
 import { projectionLaunchSlopeForField } from "../../field/projection.js";
-import type { RuntimeLens } from "../../../types/optics.js";
+
 import type { AnalysisRequest } from "../request.js";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -148,12 +150,14 @@ export interface ExitPupilAberrationProfile {
 export const PUPIL_ABERRATION_SAMPLE_COUNT = 17;
 
 function computeStatePupilBaselines(
-  focusT: number,
-  zoomT: number,
-  L: RuntimeLens,
+  state: PreparedGeometry,
   geometry: FieldGeometryState,
-  aberrationT = 0,
 ): { paraxialEpZRelStop: number; paraxialXpZRelLastSurf: number } {
+  const L = runtimeView(state.lens);
+  const focusT = state.focusT;
+  const zoomT = state.zoomT;
+  const aberrationT = state.aberrationT;
+
   if (focusT < FOCUS_INFINITY_CUTOFF && aberrationT === 0) {
     return {
       paraxialEpZRelStop: epZRelStopAtZoom(zoomT, L),
@@ -209,7 +213,7 @@ export function computePupilAberrationProfile(request: AnalysisRequest): PupilAb
   const geometry = request.fieldGeometry ?? undefined;
   const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const { halfFieldDeg, epRatio } = geom;
-  const { paraxialEpZRelStop } = computeStatePupilBaselines(focusT, zoomT, L, geom, aberrationT);
+  const { paraxialEpZRelStop } = computeStatePupilBaselines(request.preparedGeometry, geom);
 
   const n = Math.max(sampleCount, 2);
   const samples: PupilAberrationSample[] = [];
@@ -268,7 +272,7 @@ export function computeExitPupilAberrationProfile(request: AnalysisRequest): Exi
   const geometry = request.fieldGeometry ?? undefined;
   const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const { halfFieldDeg } = geom;
-  const { paraxialXpZRelLastSurf } = computeStatePupilBaselines(focusT, zoomT, L, geom, aberrationT);
+  const { paraxialXpZRelLastSurf } = computeStatePupilBaselines(request.preparedGeometry, geom);
 
   const n = Math.max(sampleCount, 2);
 
@@ -365,13 +369,7 @@ export function computeBothPupilAberrationProfiles(request: AnalysisRequest): Bo
   const geometry = request.fieldGeometry ?? undefined;
   const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const { halfFieldDeg, epRatio } = geom;
-  const { paraxialEpZRelStop, paraxialXpZRelLastSurf } = computeStatePupilBaselines(
-    focusT,
-    zoomT,
-    L,
-    geom,
-    aberrationT,
-  );
+  const { paraxialEpZRelStop, paraxialXpZRelLastSurf } = computeStatePupilBaselines(request.preparedGeometry, geom);
 
   const n = Math.max(sampleCount, 2);
 

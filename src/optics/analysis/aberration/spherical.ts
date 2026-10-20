@@ -19,7 +19,7 @@ import type {
 } from "./types.js";
 import { BOKEH_CIRCULAR_PUPIL_RING_SAMPLES } from "./types.js";
 import { buildBokehRadialProfile, classifyBokehBrightnessCharacter } from "./radialProfile.js";
-import { computeStateAwareOffAxisFieldGeometry, traceOffAxisBundleFromSamples } from "./offAxis.js";
+import { computeOffAxisFieldGeometryScalar, traceOffAxisBundleFromSamples } from "./offAxis.js";
 import type { OffAxisBundle } from "./offAxis.js";
 import { NEAR_AXIS_REAL_FRAC } from "./types.js";
 import {
@@ -60,67 +60,19 @@ export function computeSphericalAberration(request: AnalysisRequest): SphericalA
   if (!isFinite(imagePlaneZ)) return null;
 
   const prepared = prepareRayTrace(L, { zPos, focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT });
-  const nearAxisSample = computeSymmetricRealSample(
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-    lastSurfZ,
-    imagePlaneZ,
-    NEAR_AXIS_REAL_FRAC,
-    aberrationT,
-    prepared,
-  );
+  const nearAxisSample = computeSymmetricRealSample(request, lastSurfZ, imagePlaneZ, NEAR_AXIS_REAL_FRAC, prepared);
   if (nearAxisSample === null) return null;
 
   let marginalSample = null;
   for (const fraction of MARGINAL_FRACS) {
-    marginalSample = computeSymmetricRealSample(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      lastSurfZ,
-      imagePlaneZ,
-      fraction,
-      aberrationT,
-      prepared,
-    );
+    marginalSample = computeSymmetricRealSample(request, lastSurfZ, imagePlaneZ, fraction, prepared);
     if (marginalSample !== null) break;
   }
   if (marginalSample === null) return null;
 
   const hits = PROFILE_FRACS.flatMap((fraction) => {
-    const plusHit = computeRealRayHit(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      lastSurfZ,
-      imagePlaneZ,
-      fraction,
-      aberrationT,
-      prepared,
-    );
-    const minusHit = computeRealRayHit(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      lastSurfZ,
-      imagePlaneZ,
-      -fraction,
-      aberrationT,
-      prepared,
-    );
+    const plusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, fraction, prepared);
+    const minusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, -fraction, prepared);
     if (plusHit === null || minusHit === null) return [];
     return [plusHit, minusHit];
   });
@@ -180,32 +132,8 @@ export function computeSAProfile(request: AnalysisRequest): SAProfilePoint[] {
 
   const prepared = prepareRayTrace(L, { zPos, focusT, zoomT, stopSD: currentPhysStopSD, ghost: true, aberrationT });
   const hits = PROFILE_FRACS.flatMap((fraction) => {
-    const plusHit = computeRealRayHit(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      lastSurfZ,
-      imagePlaneZ,
-      fraction,
-      aberrationT,
-      prepared,
-    );
-    const minusHit = computeRealRayHit(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      lastSurfZ,
-      imagePlaneZ,
-      -fraction,
-      aberrationT,
-      prepared,
-    );
+    const plusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, fraction, prepared);
+    const minusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, -fraction, prepared);
     if (plusHit === null || minusHit === null) return [];
     return [plusHit, minusHit];
   });
@@ -306,8 +234,8 @@ export function computeSphericalAberrationBlurCharacter(
   const { preparedGeometry: state } = request;
   const { focusT, zoomT, aberrationT } = state;
   const L = runtimeView(state.lens);
-  const zPos = state.z as number[];
-  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
+
+  const { entrancePupilSemiDiameterMm: currentEPSD } = request.aperture;
   const sampling = request.sampling;
   if (currentEPSD <= 0 || L.N < 1) return null;
 
@@ -318,19 +246,14 @@ export function computeSphericalAberrationBlurCharacter(
   if (!isFinite(defocusOffsetMm) || defocusOffsetMm < SA_BLUR_CHARACTER_MIN_LONGITUDINAL_MM) return null;
 
   const geometryState = computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
-  const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, focusT, zoomT, 0, geometryState, aberrationT);
+  const geometry = computeOffAxisFieldGeometryScalar(request.preparedGeometry, 0, geometryState);
   if (geometry === null) return null;
 
   const bundle = traceOffAxisBundleFromSamples(
+    request,
     sampleCircularPupil(sampling.sphericalBlurRingSamples ?? BOKEH_CIRCULAR_PUPIL_RING_SAMPLES),
     geometry,
-    L,
-    focusT,
-    zoomT,
-    currentEPSD,
-    currentPhysStopSD,
     undefined,
-    aberrationT,
   );
   if (bundle === null || bundle.validSampleCount < SA_BLUR_CHARACTER_MIN_VALID_SAMPLES) return null;
 

@@ -5,6 +5,11 @@
  * field-curvature, distortion, and vignetting analysis.
  */
 
+import type { PreparedGeometry } from "../../types.js";
+
+import { runtimeView } from "../../prescription/runtimeView.js";
+import type { AnalysisRequest } from "../request.js";
+
 import type { RuntimeSkewRayTraceResult as SkewRayTraceResult } from "../../trace/runtimeRayResult.js";
 import { sampleCircularPupil, sampleOrthogonalPupilFan } from "../sampling.js";
 import type { CircularPupilSample, OrthogonalPupilSample } from "../sampling.js";
@@ -21,7 +26,7 @@ import type { FieldGeometryState, VectorFieldRayLaunch } from "../../field/launc
 import { prepareRayTrace } from "../../trace/rayAdapters.js";
 import type { PreparedRayTrace } from "../../trace/rayAdapters.js";
 import { isFisheyeProjection, projectionLaunchSlopeForField } from "../../field/projection.js";
-import type { ChromaticChannel, RuntimeLens } from "../../../types/optics.js";
+import type { ChromaticChannel } from "../../../types/optics.js";
 import { bestRelativeFocusPlane } from "./shared.js";
 import type { TransverseFocusHit } from "./shared.js";
 
@@ -131,18 +136,18 @@ export function isOffAxisVectorFieldGeometry(
  * This compatibility helper ignores focus-dependent pupil aberration. New analysis
  * paths should prefer the state-aware/projection-aware helpers below.
  *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param zoomT - normalized zoom slider
+ * @param state - prepared geometry
  * @param fieldFraction - fraction of half field in `[0, 1]`
  * @returns scalar off-axis launch geometry, or null outside the numeric domain
  */
-export function computeParaxialOffAxisFieldGeometry(
-  L: RuntimeLens,
-  zPos: number[],
-  zoomT: number,
+export function computeOffAxisFieldGeometryParaxial(
+  state: PreparedGeometry,
   fieldFraction: number,
 ): OffAxisFieldGeometry | null {
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const zoomT = state.zoomT;
+
   if (L.N < 1) return null;
   if (!isFinite(fieldFraction) || fieldFraction < 0 || fieldFraction > 1) return null;
 
@@ -179,24 +184,22 @@ export function computeParaxialOffAxisFieldGeometry(
  * Uses solved chief-ray launch height so pupil aberration, focus, zoom, and
  * aberration-control spacing match the visible off-axis ray convention.
  *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
+ * @param state - prepared geometry
  * @param fieldFraction - fraction of half field in `[0, 1]`
  * @param stateGeometry - optional precomputed field-geometry state
- * @param aberrationT - normalized aberration spacing slider
  * @returns scalar off-axis launch geometry, or null outside the numeric domain
  */
-export function computeStateAwareOffAxisFieldGeometry(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
+export function computeOffAxisFieldGeometryScalar(
+  state: PreparedGeometry,
   fieldFraction: number,
   stateGeometry?: FieldGeometryState,
-  aberrationT = 0,
 ): OffAxisFieldGeometry | null {
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const focusT = state.focusT;
+  const zoomT = state.zoomT;
+  const aberrationT = state.aberrationT;
+
   if (L.N < 1) return null;
   if (!isFinite(fieldFraction) || fieldFraction < 0 || fieldFraction > 1) return null;
 
@@ -224,7 +227,10 @@ export function computeStateAwareOffAxisFieldGeometry(
   };
 }
 
-function shouldUseVectorOffAxisGeometry(L: RuntimeLens, zoomT: number, fieldAngleDeg: number): boolean {
+function shouldUseVectorOffAxisGeometry(state: PreparedGeometry, fieldAngleDeg: number): boolean {
+  const L = runtimeView(state.lens);
+  const zoomT = state.zoomT;
+
   if (fieldAngleDeg <= 0) return false;
   if (isFisheyeProjection(L.projection)) {
     const tracingHalfFieldDeg = tracingHalfFieldAtZoom(zoomT, L);
@@ -239,24 +245,22 @@ function shouldUseVectorOffAxisGeometry(L: RuntimeLens, zoomT: number, fieldAngl
  * Fisheye fields beyond the trace-safe scalar half field promote to vector
  * bounding-sphere launch using the chief-ray solver's vector result.
  *
- * @param L - runtime lens object
- * @param zPos - current surface vertex positions in mm
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
+ * @param state - prepared geometry
  * @param fieldFraction - fraction of half field in `[0, 1]`
  * @param stateGeometry - optional precomputed field-geometry state
- * @param aberrationT - normalized aberration spacing slider
  * @returns projection-aware off-axis launch geometry, or null when unsupported
  */
-export function computeProjectionAwareOffAxisFieldGeometry(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
+export function computeOffAxisFieldGeometry(
+  state: PreparedGeometry,
   fieldFraction: number,
   stateGeometry?: FieldGeometryState,
-  aberrationT = 0,
 ): ProjectionAwareOffAxisFieldGeometry | null {
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const focusT = state.focusT;
+  const zoomT = state.zoomT;
+  const aberrationT = state.aberrationT;
+
   if (L.N < 1) return null;
   if (!isFinite(fieldFraction) || fieldFraction < 0 || fieldFraction > 1) return null;
 
@@ -274,7 +278,7 @@ export function computeProjectionAwareOffAxisFieldGeometry(
   const solve = solveChiefRay(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT);
   if (
     solve.vectorLaunch &&
-    (launch.status === "out-of-domain" || shouldUseVectorOffAxisGeometry(L, zoomT, fieldAngleDeg))
+    (launch.status === "out-of-domain" || shouldUseVectorOffAxisGeometry(state, fieldAngleDeg))
   ) {
     return {
       kind: "vector",
@@ -303,14 +307,16 @@ export function computeProjectionAwareOffAxisFieldGeometry(
 }
 
 function prepareOffAxisTrace(
+  request: AnalysisRequest,
   geometry: ProjectionAwareOffAxisFieldGeometry,
-  L: RuntimeLens,
-  focusT: number,
-  zoomT: number,
-  stopSD: number,
   channel: ChromaticChannel | undefined,
-  aberrationT: number,
 ): PreparedRayTrace {
+  const L = runtimeView(request.preparedGeometry.lens);
+  const focusT = request.preparedGeometry.focusT;
+  const zoomT = request.preparedGeometry.zoomT;
+  const stopSD = request.aperture.stopSemiDiameterMm;
+  const aberrationT = request.preparedGeometry.aberrationT;
+
   const vector = isOffAxisVectorFieldGeometry(geometry) ? geometry : undefined;
   return prepareRayTrace(L, {
     focusT,
@@ -328,27 +334,19 @@ function prepareOffAxisTrace(
  * Trace the chief ray for a scalar or vector off-axis geometry.
  *
  * @param geometry - off-axis field geometry
- * @param L - runtime lens object
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param entrancePupilSemiDiameter - entrance-pupil semi-diameter in mm
- * @param stopSemiDiameter - physical stop semi-diameter in mm
+ * @param state - prepared geometry
  * @param channel - optional chromatic channel
- * @param aberrationT - normalized aberration spacing slider
  * @returns traced chief ray and image point, or null when clipped
  */
 export function traceOffAxisChiefRay(
+  request: AnalysisRequest,
   geometry: ProjectionAwareOffAxisFieldGeometry,
-  L: RuntimeLens,
-  focusT: number,
-  zoomT: number,
-  entrancePupilSemiDiameter: number,
-  stopSemiDiameter: number,
   channel?: ChromaticChannel,
-  aberrationT = 0,
   prepared?: PreparedRayTrace,
 ): OffAxisChiefRaySample | null {
-  const adapter = prepared ?? prepareOffAxisTrace(geometry, L, focusT, zoomT, stopSemiDiameter, channel, aberrationT);
+  const entrancePupilSemiDiameter = request.aperture.entrancePupilSemiDiameterMm;
+
+  const adapter = prepared ?? prepareOffAxisTrace(request, geometry, channel);
   if (isOffAxisVectorFieldGeometry(geometry)) {
     const trace = adapter.skewVector(geometry.vectorLaunch);
     if (trace.clipped) return null;
@@ -402,40 +400,23 @@ export function traceOffAxisChiefRay(
  *
  * @param samples - orthogonal or circular pupil samples
  * @param geometry - scalar or vector off-axis field geometry
- * @param L - runtime lens object
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param entrancePupilSemiDiameter - entrance-pupil semi-diameter in mm
- * @param stopSemiDiameter - physical stop semi-diameter in mm
+ * @param state - prepared geometry
  * @param channel - optional chromatic channel
- * @param aberrationT - normalized aberration spacing slider
  * @returns chief ray plus surviving traced samples, or null when chief ray fails
  */
 export function traceOffAxisBundleFromSamples(
+  request: AnalysisRequest,
   samples: readonly SkewBundleSourceSample[],
   geometry: ProjectionAwareOffAxisFieldGeometry,
-  L: RuntimeLens,
-  focusT: number,
-  zoomT: number,
-  entrancePupilSemiDiameter: number,
-  stopSemiDiameter: number,
   channel?: ChromaticChannel,
-  aberrationT = 0,
 ): OffAxisBundle | null {
+  const L = runtimeView(request.preparedGeometry.lens);
+  const entrancePupilSemiDiameter = request.aperture.entrancePupilSemiDiameterMm;
+
   if (entrancePupilSemiDiameter <= 0 || L.N < 1) return null;
 
-  const adapter = prepareOffAxisTrace(geometry, L, focusT, zoomT, stopSemiDiameter, channel, aberrationT);
-  const chiefRay = traceOffAxisChiefRay(
-    geometry,
-    L,
-    focusT,
-    zoomT,
-    entrancePupilSemiDiameter,
-    stopSemiDiameter,
-    channel,
-    aberrationT,
-    adapter,
-  );
+  const adapter = prepareOffAxisTrace(request, geometry, channel);
+  const chiefRay = traceOffAxisChiefRay(request, geometry, channel, adapter);
   if (chiefRay === null) return null;
 
   const tracedSamples = samples.flatMap((sample) => {
@@ -508,38 +489,18 @@ export function traceOffAxisBundleFromSamples(
  * @param orientation - tangential or sagittal fan direction
  * @param sampleCount - requested fan sample count
  * @param geometry - scalar or vector off-axis field geometry
- * @param L - runtime lens object
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param entrancePupilSemiDiameter - entrance-pupil semi-diameter in mm
- * @param stopSemiDiameter - physical stop semi-diameter in mm
+ * @param state - prepared geometry
  * @param channel - optional chromatic channel
- * @param aberrationT - normalized aberration spacing slider
  * @returns traced off-axis bundle, or null when chief ray fails
  */
 export function traceOrthogonalOffAxisBundle(
+  request: AnalysisRequest,
   orientation: OffAxisFanOrientation,
   sampleCount: number,
   geometry: ProjectionAwareOffAxisFieldGeometry,
-  L: RuntimeLens,
-  focusT: number,
-  zoomT: number,
-  entrancePupilSemiDiameter: number,
-  stopSemiDiameter: number,
   channel?: ChromaticChannel,
-  aberrationT = 0,
 ): OffAxisBundle | null {
-  return traceOffAxisBundleFromSamples(
-    sampleOrthogonalPupilFan(sampleCount, orientation),
-    geometry,
-    L,
-    focusT,
-    zoomT,
-    entrancePupilSemiDiameter,
-    stopSemiDiameter,
-    channel,
-    aberrationT,
-  );
+  return traceOffAxisBundleFromSamples(request, sampleOrthogonalPupilFan(sampleCount, orientation), geometry, channel);
 }
 
 /**
@@ -547,37 +508,17 @@ export function traceOrthogonalOffAxisBundle(
  *
  * @param ringSamples - number of samples per circular-pupil ring
  * @param geometry - scalar or vector off-axis field geometry
- * @param L - runtime lens object
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param entrancePupilSemiDiameter - entrance-pupil semi-diameter in mm
- * @param stopSemiDiameter - physical stop semi-diameter in mm
+ * @param state - prepared geometry
  * @param channel - optional chromatic channel
- * @param aberrationT - normalized aberration spacing slider
  * @returns traced off-axis bundle, or null when chief ray fails
  */
 export function traceCircularOffAxisBundle(
+  request: AnalysisRequest,
   ringSamples: readonly number[],
   geometry: ProjectionAwareOffAxisFieldGeometry,
-  L: RuntimeLens,
-  focusT: number,
-  zoomT: number,
-  entrancePupilSemiDiameter: number,
-  stopSemiDiameter: number,
   channel?: ChromaticChannel,
-  aberrationT = 0,
 ): OffAxisBundle | null {
-  return traceOffAxisBundleFromSamples(
-    sampleCircularPupil(ringSamples),
-    geometry,
-    L,
-    focusT,
-    zoomT,
-    entrancePupilSemiDiameter,
-    stopSemiDiameter,
-    channel,
-    aberrationT,
-  );
+  return traceOffAxisBundleFromSamples(request, sampleCircularPupil(ringSamples), geometry, channel);
 }
 
 /**

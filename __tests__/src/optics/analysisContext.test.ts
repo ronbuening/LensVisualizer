@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { AnalysisSectionUnavailableError } from "../../../src/optics/analysis/analysisMovementSupport.js";
+import * as chiefRayCache from "../../../src/optics/field/chiefRayCache.js";
 import { analysisJobs } from "../../../src/optics/analysis/analysisJobs.js";
 import { createAnalysisComputationContext } from "../../../src/optics/analysis/analysisContext.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
@@ -63,6 +64,45 @@ describe("analysis computation context", () => {
     expect(context.computeChromaticAnalysis()).toBe(context.computeChromaticAnalysis());
     expect(context.computeChromaticRayFanAnalysis()).toBe(context.computeChromaticRayFanAnalysis());
     expect(context.computeFieldCurvatureBundle()).toBe(context.computeFieldCurvatureBundle());
+  });
+
+  it("keeps internal request helpers on the same prepared chief-cache owner and exact keys", () => {
+    const L = buildChromaticPositiveElementLens("request-helper-cache");
+    const request = createAnalysisRequest({
+      preparedState: prepareRuntimeState(L, 0.25, 0),
+      dynamicEFL: L.EFL,
+      ...apertureAt(L, 0),
+    });
+    const get = vi.spyOn(chiefRayCache, "getCachedChiefRaySolve");
+    const set = vi.spyOn(chiefRayCache, "setCachedChiefRaySolve");
+    try {
+      for (const compute of [
+        analysisJobs.computeComaAnalysis,
+        analysisJobs.computeFieldCurvatureBundle,
+        analysisJobs.computeChromaticAnalysis,
+      ]) {
+        get.mockClear();
+        const first = compute(request);
+        const keys = get.mock.calls.map(([owner, key]) => {
+          expect(owner).toBe(request.preparedGeometry);
+          return key;
+        });
+        get.mockClear();
+        set.mockClear();
+        expect(compute(request)).toEqual(first);
+        expect(get.mock.calls.map(([, key]) => key)).toEqual(keys);
+        expect(get.mock.results.length).toBeGreaterThan(0);
+        expect(get.mock.results.every((result) => result.type === "return" && result.value !== undefined)).toBe(true);
+        expect(set).not.toHaveBeenCalled();
+      }
+      const context = createAnalysisComputationContext(request);
+      const result = context.computeComaAnalysis();
+      expect(createAnalysisComputationContext(request)).toBe(context);
+      expect(context.computeComaAnalysis()).toBe(result);
+    } finally {
+      get.mockRestore();
+      set.mockRestore();
+    }
   });
 
   it("forwards curve sampling while keeping independent grid defaults", () => {
