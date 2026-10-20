@@ -1,24 +1,28 @@
-// Root-level draft import. generate:metadata rewrites this when it organizes the file into a maker folder.
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║       LENS DATA — CARL ZEISS SONNAR 40mm f/2.8 (Rollei 35 S)     ║
+ * ║       LENS DATA — CARL ZEISS SONNAR 40mm f/2.8 (Rollei 35 S)         ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 3,994,576, Example 1 (Glatzel / Zajadatz).         ║
- * ║  Five-element / four-component expanded-Tessar-type patent design. ║
- * ║  Production correlation to the Rollei 35 S Sonnar is inferential.  ║
- * ║  Patent prescription: f/2.9, 50° total field, all spherical.        ║
+ * ║  Data source: US 3,994,576, Example 7 (Glatzel / Zajadatz).          ║
+ * ║  Five elements in four components; the patent calls the type an      ║
+ * ║  "expanded Tessar". Example 7 is the finished, glass-specified form  ║
+ * ║  of the Example 1 preform (Examples 1–4 print nd only).              ║
+ * ║  Correlation to the Rollei 35 S Sonnar is inferred, not confirmed    ║
+ * ║  by Zeiss or Rollei. Patent: f/2.9, 2ω = 53.8°, all spherical.       ║
+ * ║  The claim 8 copy of the same table prints 2ω = 53.5°.               ║
  * ║                                                                      ║
- * ║  SCALE: all patent lengths (F = 1.00000) are multiplied by 40.0.   ║
- * ║  STOP: the patent only locates the diaphragm within s34. The model ║
- * ║    uses the midpoint of that schematic stop gap: 0.050815 F on     ║
- * ║    each side. Its radius is calibrated to the published f/2.9.     ║
- * ║  SEMI-DIAMETERS: modeled from exact spherical ray envelopes through ║
- * ║    the patent 25° half-field and checked against current geometry   ║
- * ║    rules. The rear positive element is edge-thickness-limited.      ║
- * ║  FOCUS: NO_INTERNAL_RECONSTRUCTION. The 0.9 m production MFD is    ║
- * ║    metadata only; Example 1 supplies no finite-focus spacing state. ║
+ * ║  SCALE: all patent lengths (F = 1.00000) are multiplied by 40.0.     ║
+ * ║    The last gap is the printed back focus s'∞ = 0.6341 F.            ║
+ * ║  STOP: the patent places the diaphragm in the central space s34      ║
+ * ║    without an axial split; the model puts it at the midpoint         ║
+ * ║    (0.0502925 F on each side). Its radius follows f/2.9.             ║
+ * ║  SEMI-DIAMETERS: not printed. Set from real-ray envelopes over the   ║
+ * ║    patent field. The rear positive element is limited by its edge    ║
+ * ║    thickness, which leaves slight vignetting at the field corner.    ║
+ * ║  GLASSES: catalog equivalents matching the printed nd/νd.            ║
+ * ║  FOCUS: the patent gives no close-focus spacing; the 0.9 m minimum   ║
+ * ║    focus distance is the camera's published value only.              ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -27,15 +31,15 @@ const LENS_DATA = {
   key: "zeiss-sonnar-40f28-rollei",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS SONNAR 40mm f/2.8 (Rollei 35 S)",
-  subtitle: "US 3,994,576 Example 1 — 40× scale; Rollei 35 S correlation is inferential",
+  subtitle: "US 3,994,576, Example 7 — inferred production correlation",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],
     imageFormat: "135-full-frame",
-    specs: ["5 ELEMENTS / 4 GROUPS", "40mm f/2.8 MARKETED", "DESIGN f/2.9", "50° PATENT FIELD", "ALL-SPHERICAL"],
+    specs: ["5 ELEMENTS / 4 GROUPS", "DESIGN f = 40.00 mm", "DESIGN F/2.90", "ALL SPHERICAL"],
     elementCount: 5,
     groupCount: 4,
-    focalLengthMm: { marketing: 40, design: 40.0000127093 },
+    focalLengthMm: { marketing: 40, design: 40.0005196645 },
     fNumber: { marketing: 2.8, design: 2.9 },
   },
 
@@ -52,11 +56,12 @@ const LENS_DATA = {
       name: "L1",
       label: "Element 1",
       type: "Positive Meniscus",
-      nd: 1.681,
+      nd: 1.717,
+      vd: 47.99,
       indexReference: "d",
-      focalLengthMm: 37.3439267434,
-      glass: "Unmatched (Example 1 index-only preform; νd not published)",
-      role: "Front collecting element A",
+      focalLengthMm: 38.4100452701,
+      glass: "LAF3 (HOYA; Schott LaF3 equivalent)",
+      role: "Positive front collector (component A) of the front member",
       diagramLabel: "L1",
     },
     {
@@ -64,11 +69,12 @@ const LENS_DATA = {
       name: "L2",
       label: "Element 2",
       type: "Positive Meniscus",
-      nd: 1.72,
+      nd: 1.717,
+      vd: 47.99,
       indexReference: "d",
-      focalLengthMm: 36.0333686943,
-      glass: "Unmatched (Example 1 index-only preform; multiple exact-nd catalog coordinates)",
-      role: "Second collecting element B",
+      focalLengthMm: 33.4451819428,
+      glass: "LAF3 (HOYA; Schott LaF3 equivalent)",
+      role: "Second positive collector (component B); its rear surface bounds the dispersing air lens",
       diagramLabel: "L2",
     },
     {
@@ -76,11 +82,12 @@ const LENS_DATA = {
       name: "L3",
       label: "Element 3",
       type: "Negative Meniscus",
-      nd: 1.785,
+      nd: 1.78472,
+      vd: 25.76,
       indexReference: "d",
-      focalLengthMm: -14.4533075297,
-      glass: "Unmatched (Example 1 index-only preform; νd not published)",
-      role: "Negative third element C in the front member",
+      focalLengthMm: -14.238144865,
+      glass: "SF11 (Schott)",
+      role: "Dense-flint negative element (component C) ahead of the stop",
       diagramLabel: "L3",
     },
     {
@@ -88,11 +95,12 @@ const LENS_DATA = {
       name: "L4",
       label: "Element 4",
       type: "Negative Meniscus",
-      nd: 1.638,
+      nd: 1.63854,
+      vd: 55.38,
       indexReference: "d",
-      focalLengthMm: -23.1272676463,
-      glass: "Unmatched (Example 1 index-only preform; νd not published)",
-      role: "Negative element of the cemented rear component D",
+      focalLengthMm: -22.6909844768,
+      glass: "S-BSM18 (OHARA; Schott SK18 coordinate equivalent)",
+      role: "Negative crown element of the cemented rear doublet (component D)",
       diagramLabel: "L4",
       cemented: "D",
     },
@@ -102,34 +110,35 @@ const LENS_DATA = {
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.744,
+      vd: 44.77,
       indexReference: "d",
-      focalLengthMm: 13.8929086417,
-      glass: "Unmatched (Example 1 index-only preform; multiple vendor candidates)",
-      role: "Positive element of the cemented rear component D",
+      focalLengthMm: 13.8677329525,
+      glass: "S-LAM2 (OHARA; Schott LaF2 coordinate equivalent)",
+      role: "Positive lanthanum-flint element of the cemented rear doublet (component D)",
       diagramLabel: "L5",
       cemented: "D",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 15.6, d: 3.6, sd: 11.0, medium: 1 },
-    { label: "2", R: 36.5812, d: 0.056, sd: 10.3 },
-    { label: "3", R: 14.06, d: 2.8, sd: 8.85, medium: 2 },
-    { label: "4", R: 28.1356, d: 1.1376, sd: 7.82 },
-    { label: "5", R: 94.1544, d: 0.822, sd: 6.98, medium: 3 },
-    { label: "6", R: 10.0868, d: 2.0326, sd: 5.6 },
-    // STO position inferred from the patent's schematic figure; the drawing is expressly not to scale.
-    { label: "STO", R: "flat", d: 2.0326 },
-    { label: "7", R: 100.0068, d: 1.15996, sd: 7.42, medium: 4 },
+    { label: "1", R: 15.6252, d: 3.4486, sd: 11.0, medium: 1 },
+    { label: "2", R: 32.7876, d: 0.0958, sd: 10.3 },
+    { label: "3", R: 13.8252, d: 2.82596, sd: 8.85, medium: 2 },
+    { label: "4", R: 29.8604, d: 1.10164, sd: 7.82 },
+    { label: "5", R: 92.4124, d: 0.81424, sd: 6.98, medium: 3 },
+    { label: "6", R: 9.9292, d: 2.0117, sd: 5.6 },
+    // Stop at the midpoint of the central space s34; the patent gives no axial split and its figure is not to scale.
+    { label: "STO", R: "flat", d: 2.0117 },
+    { label: "7", R: 110.624, d: 0.81424, sd: 7.42, medium: 4 },
     // Cemented L4→L5 junction: medium and elemId belong to the downstream element L5.
-    { label: "8", R: 12.8, d: 4.6386, sd: 8.9, medium: 5 },
-    { label: "9", R: -45.4, d: 25.364, sd: 8.9 },
+    { label: "8", R: 12.7744, d: 4.64604, sd: 8.9, medium: 5 },
+    { label: "9", R: -45.3236, d: 25.364, sd: 8.9 },
   ],
 
   focus: {
     closeFocusM: 0.9,
     description:
-      "Manual focus to 0.9 m is production metadata; no finite-focus internal spacings are reconstructed from Example 1.",
+      "Manual focus to 0.9 m on the camera. The patent prints the infinity state only, so no close-focus spacing is modeled.",
   },
 
   aperture: { nominalFNumber: 2.9, fStops: [2.9, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },

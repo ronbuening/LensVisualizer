@@ -169,7 +169,7 @@ Stage 2 does not add dispersion data. Example 1 remains an index-only d-line pre
 | C-07 | Example 1 has d-line indices only. | All elements remain Unmatched with no invented dispersion fields. | Chromatic/Sellmeier claims remain unavailable. |
 | C-08 | Exact stop split is unpublished. | Midpoint split inferred from the schematic and disclosed. | Stop position is modeling data, not source data. |
 | C-09 | Physical diaphragm diameter is unpublished. | Stop radius calibrated to f/2.9. | f/2.9 match is a calibration, not independent evidence. |
-| C-10 | Surface semi-diameters are unpublished. | Modeled from exact ray envelopes and geometry constraints. | Production render diagnostics still pending. |
+| C-10 | Surface semi-diameters are unpublished. | Modeled from exact ray envelopes and geometry constraints. | Production render diagnostics: closed — repository validators pass (see the 2026-10-20 section). |
 
 ## Stage 2 quantitative-claim map for analysis authoring
 
@@ -243,6 +243,8 @@ All mandatory Stage 1/2 CHAT_PREFLIGHT construction, optical, pupil, condition, 
 
 ## Pending integration
 
+Closed: all items below were completed at repository integration (see the deployment validation section at the end).
+
 - Run the actual LensVisualizer `buildLens()` / `validateLensData()` against the final data file.
 - Run real `LensDataInput` type checking and project Prettier/format checks.
 - Recheck `fixed-lens-camera` and `135-full-frame` against the mounted `src/utils/catalog/lensTaxonomy.ts`.
@@ -253,8 +255,6 @@ All mandatory Stage 1/2 CHAT_PREFLIGHT construction, optical, pupil, condition, 
 ## Gate disposition
 
 The final `.data.ts` is bound to the updated evidence/verifier/results revision. The implemented prescription is reloaded from the actual final TypeScript file; its scaled source mapping, EFL/BFD, pupil calibration, powers, Petzval, patent conditions, and geometry all pass the Stage 2 chat gate. The remaining `NOT_RUN` items are repository/integration checks and do not mask a known Stage 2 construction failure.
-
-**READY_FOR_ANALYSIS**
 
 ## Stage 3 analysis authoring
 
@@ -322,8 +322,6 @@ Repository-scope checks remain unchanged and are not promoted to chat successes:
 
 The analysis is bound to the unchanged verified Stage 2 data revision and to the current verifier/results revision. All mandatory Stage 3 CHAT_PREFLIGHT analysis, cross-file, numerical-rounding, disclosure, and citation checks pass. No upstream correction was required.
 
-**READY_FOR_AUDIT**
-
 ## Stage 4 source-first independent audit
 
 ### Independence scope and frozen baseline
@@ -368,6 +366,15 @@ The consolidated verifier reports all mandatory Stage 4 `CHAT_PREFLIGHT` checks 
 
 The source-first independent audit found no blocker within the patent-supported model domain. The candidate pair remains unchanged, the Stage 4 independent baseline is frozen and replayable, and the consolidated dossier records the remaining format-domain and integration limitations without promoting them to false passes.
 
-**READY_FOR_BATCH**
-`integrationStatus: INTEGRATION_PENDING`
+## 2026-10-20 — Deployment validation and wording pass
+
+Source re-read. Example 1 (PDF p. 6) was re-read from a 300 dpi render of the printed table: all 9 radii, 5 thicknesses, 4 air spaces including CS, the back focus and 5 indices matched the earlier file with no mismatches. The same render showed that Example 1 is one of the four third-order monochromatic preforms (nd only), while Example 7 (PDF p. 8) is the finished member of the same family with a full `nd/νd` pair per element, f/2.9, `2ω₀′ = 53.8°` and `s′∞ = 0.6341 F`. At the owner's direction the model was switched to Example 7. All 9 radii, 5 thicknesses, 3 air spaces, CS, s′∞ and 5 `nd/νd` pairs were read from a 300 dpi render and checked against the claim 8 copy (PDF p. 14); the only difference is the field, printed as 53.5° in claim 8 against 53.8° in the example table.
+
+Changes. R, d, nd and νd now follow Example 7 at 40× scale; the stop stays at the midpoint of CS (2.0117 mm each side); the last gap is the printed s′∞ (25.364 mm). The semi-diameters were re-checked with real-ray envelopes at the 26.9° patent half-field and at the 21.63 mm 135-format corner and kept unchanged: every front surface still contains its bundle, and L5 stays edge-limited at 8.9 mm (edge about 0.15 mm), clipping about 4% of the full-aperture bundle at 26.9° and 18% at the format corner. Glass labels changed from `Unmatched (…)` to LAF3 (HOYA) for L1/L2, SF11 (Schott) for L3, S-BSM18 (OHARA) for L4 and S-LAM2 (OHARA) for L5; each resolves in the glass catalog at the printed coordinates. Element focal lengths and the design focal length were recomputed. The wording pass rewrote the header, subtitle, specs, focus description and element roles in the data file, and rewrote the analysis for Example 7, removing the unverified 51° marketed-angle claim, the TL/EFL "telephoto-form" remark and process vocabulary. Maker, name and assignee (Carl Zeiss Oberkochen; CARL ZEISS SONNAR 40mm f/2.8 (Rollei 35 S); Carl-Zeiss-Stiftung) were set before this pass and are unchanged.
+
+First order, patent against model. Example 1 before the switch: EFL 1.00000 F (40.000 mm) against 40.0000 mm, BF 0.6341 F (25.364 mm) against 25.3643 mm, f/2.9 against f/2.900, Gardner index −0.0519 against −0.0519. Example 7 after the switch: EFL 1.00000 F (40.000 mm) against 40.0005 mm, BF 0.6341 F against 25.3639 mm, f/2.9 against f/2.900 (entrance-pupil semi-diameter 6.897 mm, stop semi-diameter 4.801 mm), Table II values reproduced (Gardner −0.0611, `B − A` +0.08924 Φ, quotient +0.07385). The surface, image-circle and field-coverage validators pass (coverage 100% to the 28.1° format corner).
+
+Maker diagram. No Zeiss or Rollei cross-section of the production 40 mm f/2.8 was found, so the profile could not be compared. Retail and reference sources agree on 5 elements in 4 groups, made by Rollei under Zeiss licence, f/2.8 to f/22, 0.9 m minimum focus.
+
+Open: the patent-to-product correlation remains inferred; no source names US 3,994,576 or an example for the Rollei 35 S Sonnar.
 
