@@ -36,7 +36,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  NOTE ON SCALING: none (patent scale).                               ║
  * ║  NOTE ON SEMI-DIAMETERS: not tabulated. Element radii are scaled     ║
  * ║    from the to-scale Fig. 13 section (13.13 px/mm fit, ±0.15 mm)     ║
- * ║    and checked against real f/2.88 axial and field rays.             ║
+ * ║    and checked against real f/2.88 axial and field rays. L3 (18.0)   ║
+ * ║    sits under the drawn 18.4 mm for the s5A→s6 gap-sag limit.        ║
+ * ║    L15's rear face s29 stops at 12.2 mm because it would cross       ║
+ * ║    L16's front face near 12.6 mm; L16 is square at 13.0 mm, level    ║
+ * ║    with L14/L15 as Fig. 13 draws it.                                 ║
  * ║  NOTE ON STOP: s16 (IRIS) position is published; its diameter is     ║
  * ║    not. The iris is sized for f/2.88 at each zoom station            ║
  * ║    (semi-diameter 9.165 / 11.410 / 14.965 mm, wide to tele).         ║
@@ -205,7 +209,7 @@ const LENS_DATA = {
       apd: false,
       role: "Negative meniscus front component of the G4 cemented doublet.",
       diagramLabel: "L8",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 10,
@@ -219,7 +223,7 @@ const LENS_DATA = {
       apd: false,
       role: "Low-dispersion positive rear component of the G4 doublet.",
       diagramLabel: "L9",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 11,
@@ -247,7 +251,7 @@ const LENS_DATA = {
       apdNote: "FCD705-class fluorophosphate coordinate at one of the two rear-group ED positions in Sony's diagram; the patent gives nd/νd only.",
       role: "ED positive front component of the first G5 doublet; lateral-color correction.",
       diagramLabel: "L11",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 13,
@@ -261,7 +265,7 @@ const LENS_DATA = {
       apd: false,
       role: "Strong biconcave negative rear component of the first G5 doublet.",
       diagramLabel: "L12",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 14,
@@ -290,7 +294,7 @@ const LENS_DATA = {
       apd: false,
       role: "Very high-index, high-dispersion positive front component of the second G5 doublet.",
       diagramLabel: "L14",
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 16,
@@ -304,7 +308,7 @@ const LENS_DATA = {
       apd: false,
       role: "Biconcave negative rear component of the second G5 doublet.",
       diagramLabel: "L15",
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 17,
@@ -369,16 +373,16 @@ const LENS_DATA = {
     { label: "26", R: -36.964, d: 0.4, sd: 13.5 },
     { label: "27", R: 156.819, d: 4.72, sd: 13.0, medium: 15 },
     { label: "28", R: -26.738, d: 1.0, sd: 13.0, medium: 16 }, // L14 / L15 junction
-    { label: "29", R: 47.217, d: 2.811, sd: 13.0 },
+    { label: "29", R: 47.217, d: 2.811, sd: 12.2 },
     {
       label: "30A",
       R: -1106.462,
       d: 1.5,
-      sd: 12.0,
+      sd: 13.0,
       medium: 17,
       asphere: { A4: -2.77e-5, A6: -3.94e-8, A8: -2.35e-10 },
     },
-    { label: "31", R: 75.0, sd: 12.0 }, // D(5): physical gap to cover glass
+    { label: "31", R: 75.0, sd: 13.0 }, // D(5): physical gap to cover glass
   ],
 
   zoom: {
@@ -464,9 +468,9 @@ const LENS_DATA = {
   ],
   doublets: [
     { text: "H1", fromSurface: "3", toSurface: "5A" },
-    { text: "D1", fromSurface: "17", toSurface: "19" },
-    { text: "D2", fromSurface: "22", toSurface: "24" },
-    { text: "D3", fromSurface: "27", toSurface: "29" },
+    { text: "C1", fromSurface: "17", toSurface: "19" },
+    { text: "C2", fromSurface: "22", toSurface: "24" },
+    { text: "C3", fromSurface: "27", toSurface: "29" },
   ],
 
   layout: { scFill: 0.62, yScFill: 0.6 },

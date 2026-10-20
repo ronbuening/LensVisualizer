@@ -210,9 +210,9 @@ negative power with a net Petzval contribution of −6.8 × 10⁻³ mm⁻¹.
 nd = 1.882023, νd = 37.2. Glass: M-TAFD307 (HOYA) class. f = −79.6 mm.
 
 L16 is the last element. Its Petzval contribution (−6.7 × 10⁻³ mm⁻¹) flattens the field, and its front aspherical
-surface 30A (−0.793 mm departure at the modeled rim) has the largest off-axis leverage of any surface in the rear
-group. Replacing 30A by its vertex sphere moves the wide 49.56° distortion from −5.05 % to −18.1 % and the tangential
-focus there by −9.30 mm; at tele 31.71° the tangential focus moves by −18.10 mm. Both the L1 aspheres and 30A act
+surface 30A (−1.173 mm departure at the 13.0 mm modeled rim) has the largest off-axis leverage of any surface in
+the rear group. Replacing 30A by its vertex sphere moves the wide 49.56° distortion from −5.05 % to −18.1 % and the
+tangential focus there by −9.30 mm; at tele 31.71° the tangential focus moves by −18.10 mm. Both the L1 aspheres and 30A act
 against barrel distortion, but their effects on the tangential field are of opposite sign, so the front and rear
 aspheres work as a balanced pair rather than as independent correctors.
 
@@ -301,7 +301,7 @@ as printed in Table 15:
 
 The patent does not tabulate clear apertures. Departures from the vertex sphere at the modeled semi-diameters (scaled
 from Fig. 13) are +3.863 mm (1A at 29.2 mm), +1.467 mm (2A), +1.226 mm (5A), −0.425 mm (14A), −0.222 mm (15A),
-+0.148 mm (21A) and −0.793 mm (30A). Surface 2A has a positive conic, so its conic domain limit is |R|/√(1+K) = 24.70 mm;
++0.148 mm (21A) and −1.173 mm (30A at 13.0 mm). Surface 2A has a positive conic, so its conic domain limit is |R|/√(1+K) = 24.70 mm;
 the modeled semi-diameter stays below it.
 
 The table below measures each aspheric contribution by a counterfactual: the listed surfaces are replaced by their
@@ -416,10 +416,11 @@ balances G4 against G5; too strong a G5 makes coma correction difficult ([0036])
 - **Distortion.** Real-ray distortion is −5.05 % at wide (49.56°), +0.73 % at intermediate (43.14°) and +3.03 % at tele
   (31.71°), relative to the computed focal length. This matches the barrel-to-pincushion progression of Figs. 14–16.
 - **Modeled quantities.** The patent publishes neither semi-diameters nor a stop diameter. Semi-diameters are scaled
-  from the to-scale Fig. 13 section (13.13 px/mm, about ±0.15 mm reading uncertainty); L3 and L16 are reduced slightly
-  for clearance. The stop semi-diameter is calibrated to f/2.88 at each station by real-ray trace (9.165 / 11.410 /
-  14.965 mm), so the iris must open by a factor of 1.63 from wide to tele to hold a constant f-number. This calibration
-  is not evidence of the physical iris diameter.
+  from the to-scale Fig. 13 section (13.13 px/mm, about ±0.15 mm reading uncertainty); L3 stays 0.4 mm under
+  the drawn rim for the gap-sag limit, and L15's rear face stops at 12.2 mm because it would meet L16's front face
+  near 12.6 mm; L16 keeps the drawn 13.0 mm. The stop semi-diameter is calibrated to f/2.88 at each station by
+  real-ray trace (9.165 / 11.410 / 14.965 mm), so the iris must open by a factor of 1.63 from wide to tele to hold a
+  constant f-number. This calibration is not evidence of the physical iris diameter.
 - **Modeling conventions.** The cover glass (2.5 mm, nd 1.516798) is carried as a rear plate with the 1.00 mm BF behind
   it. The design is used at patent scale; no scaling was applied.
 

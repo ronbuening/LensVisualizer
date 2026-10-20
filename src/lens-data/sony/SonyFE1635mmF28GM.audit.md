@@ -912,3 +912,80 @@ reworded. In the analysis, the second XA element is assigned to L7 from Sony's d
 heading became "Model Scope and Limitations" without its method paragraph, and catalog-search wording was simplified.
 
 Open: none.
+
+## 2026-10-20 — Second review: diagram, labels and movement
+
+Compared the local page at 16.5, 22.91 and 33.95 mm with Fig. 13 of WO 2018/139160 A1 (pdf p58, wide end, 300 dpi
+native scan). The figure has its axis vertical at x = 1190 px. The scale is 13.14 px/mm from s1 to s31 (133.604 mm over
+1755.5 px) and 13.11 px/mm from s1 to s17, which confirms the package's 13.126 px/mm fit. Rims were profiled on the
+bracket side inside the group brackets. The L1 and L2 back-face annuli were read from horizontal ink runs.
+
+| Element | Stored sd (mm) | Fig. 13 (mm) | Note |
+|---|---|---|---|
+| L1 front / rear | 29.2 / 19.8 | 29.2 / 20.3 (back face from 20.3 to the 29.2 flange) | within reading noise; kept |
+| L2 + resin | 21.1 | 21.2 front rim; rear curve ends at 19.1, then a flat step | square block kept |
+| L3 | 18.0 | 18.4 | 18.28 is the s5A→s6 gap-sag ceiling; kept |
+| L4 | 17.6 | 17.7 | kept |
+| L5 / L6 / L7 | 14.5 / 14.9 / 15.6 | 14.6 / 15.0 / 15.7 | kept |
+| L8–L9 / L10 | 16.3 / 15.5 | 16.4 / 15.6 | kept |
+| L11–L12 / L13 | 13.0 / 13.5 | 13.0 / 13.6 | kept |
+| L14–L15 | 13.0 | 13.1 | kept, except s29 below |
+| L16 | 12.0 | 13.1, square, level with L14/L15 | changed |
+
+Changes:
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| s29 sd (L15 rear) | 13.0 | 12.2 | s29 (R +47.2) and s30A (R −1106, A4 −2.77E−5) bow toward each other. Their combined sag passes the 2.811 mm gap at about 12.6 mm, so both faces cannot reach the drawn 13.1 mm at any `gapSagFrac`. 12.2 is the largest value that passes the 0.9 rule (12.3 gives 2.59 mm against 2.530 mm). |
+| s30A / s31 sd (L16) | 12.0 / 12.0 | 13.0 / 13.0 | Fig. 13 draws L16 as a square block level with L14/L15 (172 px, 13.1 mm). The site drew it 1 mm short. The 30A scan shows no turnover to 13.2 mm (slope −24.7° at 13.0). |
+| `doublets` text, `cemented` ids | D1 / D2 / D3 | C1 / C2 / C3 | The patent writes its variable gaps as D(1)–D(5), and those labels sit beside the gap sliders. The patent does not name its cemented components. H1 (the L2 hybrid) is kept. |
+
+The cost of the change is a 0.8 mm drop along L15's top edge between the cemented interface and its rear face. In
+exchange L16 matches the drawn height. L16's front rim and L15's rear corner stay apart in the render, and the
+validator reports no errors.
+
+Clearance after the edit, by meridional real-ray trace at Y = 21.65 mm and f/2.88 over the three stations. Rays at
+s29: axial marginal 7.65 mm, chief 8.06 mm, full bundle 12.31 mm, so 3 % of one bundle side is newly vignetted. Rays
+at s30A: 7.00, 8.51 and 12.25 mm. Rays at s31: 6.74, 8.88 and 12.51 mm. The 7 % and 14 % side vignetting at L16 is
+gone. There are no axial clips or blocked chief rays. The `vig.mjs` meridional curves are identical before and after at
+all three stations: wide reads 100 % to 51.2° and 64.6 % at 54.0°. Engine values before and after: EFL 16.519 mm,
+f/2.88, wide half-field 43.43°, stop 9.165 mm. The runtime's tele half-field estimate rises from 42.63° to 44.92° because
+L16 no longer limits it; it already exceeded the patent's 31.71° (OI-09). The surface audit reports no errors. The
+image-circle audit finds 0 undersized stations, and field coverage is at least 99 % at all three stations.
+
+Labels and tags were checked against Table 13 (p30), Table 15 (p31) and Fig. 13:
+
+- L1–L16 match the figure's own designations. L2r is the unlabelled 0.150 mm resin layer.
+- Every `type` agrees with the signs of R.
+- Aspheric markers sit on 1, 2, 5, 14, 15, 21 and 30 only, as Table 15 marks them.
+- The stop is drawn between L7 and L8 at s16 (IRIS).
+- Group brackets G1 (s1–9), G2 (10–11), G3 (12–15), G4 (17–21) and G5 (22–31) match the figure's brackets.
+- The inspector shows L2r as "DOUBLET H1" with f = +2723 mm. That is the layer's own thin power, as in the corpus's
+  Nikon resin layers.
+- The patent text and Tables 21–22 contain no glass or dispersion condition. The two `inferred` ED tags (L11, L13) rest
+  on Sony's construction diagram only. The 2026-10-20 deployment record says that diagram shows two ED elements in
+  the rear group, XA at L1 and L7, and aspherical elements at L2, L10 and L16.
+
+Movement was checked against Table 14 (p31) and the Fig. 13 arrows. Stations run wide → tele (16.5 / 22.91 / 33.95
+mm), and D(1)–D(5) match the table at every station. The figure's arrow for G1 points image-ward; the arrows for
+G2–G5 point object-ward. The model moves G1 14.44 mm image-ward. G2 moves 3.12 mm object-ward to the intermediate
+station and 0.20 mm back (net 2.92 mm object-ward). G3 moves 14.86 mm, G4 23.27 mm and G5 18.41 mm object-ward, all
+monotonic. The `mv=zoom` overlay shows the same directions with 23.27 mm maximum travel. Fig. 13's focus arrows point
+image-ward at G2 and G4, which agrees with [0021] and `focus.description`. No close-focus spacings are published, so
+the keyframes repeat infinity, the focus overlay is disabled and the slider reads "Not modeled".
+
+Model aberrations were compared with Figs. 14–16 (pp59–61). Distortion is −4.8 % at 0.9 field and −4.6 % at full field
+at wide, an S-curve from −0.83 % to +0.88 % at intermediate, and +3.04 % at tele. These match the plotted curves. The
+wide astigmatism stays within ±0.05 mm to 75 % field, as plotted; the full-field tangential value of the vignetted 54°
+bundle is not comparable. Longitudinal spherical aberration is −0.03 mm at wide and intermediate, within the plots'
+small residuals.
+
+Glass: the Nd/νd pairs of L4 (1.912366/21.9), L6 (1.834287/39.1) and L12 (1.901747/34.6) appear in no other example
+(Tables 1, 5, 9 and 17; pp18, 22, 26, 34). The nearest entries in other examples are 1.921189/24.0, 1.834000/37.3 and
+1.902011/34.1. The patent prints only d-line Nd/νd ([0055]) and no glass names, extra line indices or partial
+dispersions. No vendor row in the HOYA, OHARA or Sumita AGF files or in the runtime catalog matches these pairs at the d
+line or the e line within 0.003 in index, so e-line printing is ruled out. The resin layer 1.534200/41.7 recurs in
+Example 5 (Table 17 s4, p34), the same hybrid construction, and is not named. Every labelled glass resolves within
+Δνd 0.05; L11 resolves to FCD705 at Δnd 2.4E−4, the only row near that coordinate.
+
+Open: none.
