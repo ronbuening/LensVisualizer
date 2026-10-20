@@ -53,7 +53,11 @@ under `runs/`, and the trend report rebuilt. Its timed pass runs in a child proc
      `base.ownDependencies: true`, and the summary with a "Dependencies" line under the machine. npm's output goes to
      stderr. If the install fails, the run stops with a message and the worktree is removed.
 3. It builds one bundle per side with this checkout's Vite and config, whichever packages the base has. Every pass of
-   the run loads those two bundles.
+   the run loads those two bundles. Engine code, components and catalog data come from each side's tree; only
+   `src/benchmarks/` comes from the head. `benchmarkSeam.ts` resolves export candidates and request/positional call
+   adapters once when each bundle loads, preserving each case's aperture, field, sampling and layout inputs. Keep
+   head-only runtime imports behind that seam so the entry still bundles against `optics-rewrite/s2` (the timing
+   base) and `optics-rewrite/a7`. The tooling suite bundles the entry against a fixed pre-request module fixture.
 4. The timed pass runs in two child processes, one after the other. Each loads both bundles and samples every
    case as pairs, one call per side. Each case's first pair starts with the process's `firstSide`, and the order swaps
    with every pair: base>head, head>base, … in the base-first process, and head>base, base>head, … in the head-first
@@ -142,7 +146,9 @@ Three kinds of case return too little for the tallies above, and get facts of th
   is what the solve returns when too few rays survive. The ray set is a copy of the engine's list, and a test holds the
   two equal.
 - **`render.aberrationsTab` and `render.comaTab`** compute their data inside the render. The untimed pass hands the tab
-  a wrapped analysis context and tallies each data section the tab computes through it, as it tallies any other result.
+  an analysis context whose methods are temporarily wrapped and tallies each data section the tab computes through
+  it, as it tallies any other result. Wrapping the cached context also observes panels that retrieve it through an
+  analysis request. Each untimed case restores the original methods; timed passes use them unchanged.
 - **Every render case** tallies the number of elements in its markup, which the printed coordinates do not move.
 
 What the comparison does not check:

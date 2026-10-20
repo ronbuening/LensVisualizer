@@ -587,6 +587,23 @@ describe("optics rendering benchmark records", () => {
     expect(summary).toContain("- Unequal work, left out of the regression verdict: 0");
   });
 
+  it("observes request-era panel jobs once per untimed case", async () => {
+    const pass = await runUntimedBenchmarkPass({ cells: [{ lensKey: NIKON_PC_19, scenarioId: "interactive-drag" }] });
+    for (const panel of ["aberrationsTab", "comaTab"]) {
+      const entry = pass.cases[`${NIKON_PC_19}:interactive-drag:aberrationPanels:render.${panel}`];
+      expect(entry.message).toBeUndefined();
+      expect(
+        entry.work?.some((tally) =>
+          Object.keys(tally).some((key) => key.startsWith("computePerspectiveFieldAberrations.")),
+        ),
+      ).toBe(true);
+    }
+    // A later pass must count exactly once again, rather than stacking wrappers.
+    expect(
+      await runUntimedBenchmarkPass({ cells: [{ lensKey: NIKON_PC_19, scenarioId: "interactive-drag" }] }),
+    ).toEqual(pass);
+  });
+
   it("says in the record when the base was bundled with dependencies of its own", async () => {
     const record = await runOpticsRenderingBenchmark({
       ...METADATA,

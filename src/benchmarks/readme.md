@@ -11,6 +11,7 @@ flowchart LR
   subgraph n_src_benchmarks["src/benchmarks"]
     n_src_benchmarks_src_benchmarks_engineDiff["engineDiff/"]
     n_src_benchmarks_src_benchmarks_benchmarkReport_ts["benchmarkReport.ts"]
+    n_src_benchmarks_src_benchmarks_benchmarkSeam_ts["benchmarkSeam.ts"]
     n_src_benchmarks_src_benchmarks_mtfCases_ts["mtfCases.ts"]
     n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx["opticsRenderingBenchmark.tsx"]
   end
@@ -19,6 +20,10 @@ flowchart LR
   n_external_src_optics_compat_ts["src/optics/compat.ts"]
   n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_types["src/types"]
+  n_external_glob____optics_analysis_ts["glob:../optics/analysis.ts"]
+  n_external_glob____optics_analysis_analysisJobs_ts["glob:../optics/analysis/analysisJobs.ts"]
+  n_external_glob____optics_cardinalElements_ts["glob:../optics/cardinalElements.ts"]
+  n_external_glob____optics_compat_ts["glob:../optics/compat.ts"]
   n_external_pkg_react["pkg:react"]
   n_external_pkg_react_dom["pkg:react-dom"]
   n_external_src_components_diagram["src/components/diagram"]
@@ -40,28 +45,35 @@ flowchart LR
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> |2| n_external_src_optics_optics_ts
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> |2| n_external_src_types
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> |2| n_src_benchmarks_src_benchmarks_benchmarkReport_ts
+  n_src_benchmarks_src_benchmarks_benchmarkSeam_ts --> n_external_glob____optics_analysis_ts
+  n_src_benchmarks_src_benchmarks_benchmarkSeam_ts --> n_external_glob____optics_analysis_analysisJobs_ts
+  n_src_benchmarks_src_benchmarks_benchmarkSeam_ts --> n_external_glob____optics_cardinalElements_ts
+  n_src_benchmarks_src_benchmarks_benchmarkSeam_ts --> n_external_glob____optics_compat_ts
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_pkg_react
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_pkg_react_dom
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_components_diagram
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_analysis
-  n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_analysis_ts
+  n_src_benchmarks_src_benchmarks_benchmarkSeam_ts --> n_external_src_optics_analysis_ts
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_apertureStop_ts
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_buildLens_ts
+  n_src_benchmarks_src_benchmarks_benchmarkSeam_ts --> n_external_src_optics_compat_ts
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_diagramGeometry_ts
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_lensMovement_ts
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_perspective
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_raySampling_ts
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_optics_types_ts
+  n_src_benchmarks_src_benchmarks_benchmarkSeam_ts --> n_external_src_types
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_utils_catalog
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_utils_perfProbe_ts
   n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_external_src_utils_theme
+  n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx --> n_src_benchmarks_src_benchmarks_benchmarkSeam_ts
 ```
 
 ## Directory Overview
 
-- Direct source files: 3
+- Direct source files: 4
 - Direct subfolders: 1
-- Main outbound areas: src/components/display (8), src/components/hooks (4), same folder (2), src/optics/compat.ts (2), src/optics/optics.ts (2), src/types (2), package:react, package:react-dom, +13 more
+- Main outbound areas: src/components/display (8), src/components/hooks (4), same folder (3), src/optics/compat.ts (3), src/types (3), src/optics/optics.ts (2), glob:../optics/analysis.ts, glob:../optics/analysis/analysisJobs.ts, +17 more
 - External consumers: none
 
 ## Subfolders
@@ -75,5 +87,6 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `benchmarkReport.ts` | Benchmark Report helper module | none | same folder | BENCHMARK_SCHEMA_VERSION, BOOTSTRAP_RESAMPLES, BOOTSTRAP_SEED, REGRESSION_RATIO_LOWER_BOUND, REGRESSION_MEDIAN_GROWTH_MS, VERDICT_MINIMUM_SAMPLES, RETAINED_HEAP_RATIO_LIMIT, DEFAULT_BENCHMARK_ITERATIONS, +61 more |
+| `benchmarkSeam.ts` | Benchmark Seam helper module | glob:../optics/analysis.ts, glob:../optics/analysis/analysisJobs.ts, glob:../optics/cardinalElements.ts, glob:../optics/compat.ts, src/optics/analysis.ts, +2 more | same folder | analysisJobsForState2, computeCardinalElements, createFreshAnalysisContext |
 | `mtfCases.ts` | Mtf Cases helper module | none | none | MTF_BENCHMARK_CASES, MTF_BENCHMARK_GRIDS, MTF_FINITE_BENCHMARK_CASE |
-| `opticsRenderingBenchmark.tsx` | React component module | src/components/display (8), src/components/hooks (4), same folder (2), src/optics/compat.ts (2), src/optics/optics.ts (2), +16 more | none | buildBenchmarkReport, buildPairedSummary, finishBenchmarkRecord, formatPairedRunFileName, formatRunFileName, planTimedProcesses, poolTimedRecords, serializeBenchmarkRecord, +23 more |
+| `opticsRenderingBenchmark.tsx` | React component module | src/components/display (8), src/components/hooks (4), same folder (3), src/optics/compat.ts (2), src/optics/optics.ts (2), +15 more | none | buildBenchmarkReport, buildPairedSummary, finishBenchmarkRecord, formatPairedRunFileName, formatRunFileName, planTimedProcesses, poolTimedRecords, serializeBenchmarkRecord, +23 more |
