@@ -280,6 +280,50 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
 /** All module-level containers are registered; no unbounded-cache exceptions remain. */
 const CACHE_LEGACY: Readonly<Record<string, CacheLegacyRecord>> = {};
 
+/* ── Analysis request guard list ── */
+
+interface AnalysisNumericLeaf {
+  parameters: string;
+  reason: string;
+}
+
+/**
+ * M6 numeric leaves retained by the request-helper audit. These accept independent ray,
+ * aperture, field or sensor coordinates; prepared owners already carry the tracing state.
+ * Admission requires the exact module, function and parameter contract below, and the
+ * declaration must still match the broad lens-plus-numbers rule. Removal, migration or
+ * signature changes make an entry stale; never allowlist a new positional state adapter.
+ */
+const ANALYSIS_NUMERIC_LEAVES: Readonly<Record<string, AnalysisNumericLeaf>> = {
+  "src/optics/analysis/aberration/shared.ts#generalizedImagePlaneIntercept": {
+    parameters: "y: number, u: number, referenceZ: number, L: RuntimeLens",
+    reason: "Pure ray/plane intersection; lens supplies only generalized image-plane metadata.",
+  },
+  "src/optics/analysis/aberration/shared.ts#imagePlaneCoordinate": {
+    parameters: "y: number, u: number, referenceZ: number, L: RuntimeLens, planeZ = L.imagePlane?.z ?? referenceZ",
+    reason: "Pure ray/plane intersection at an independent plane coordinate.",
+  },
+  "src/optics/analysis/aberration/shared.ts#meridionalImagePlaneCoordinate": {
+    parameters: "z: number, y: number, L: RuntimeLens, planeZ = L.imagePlane?.z ?? z",
+    reason: "Pure point-to-plane coordinate conversion using the lens plane normal.",
+  },
+  "src/optics/analysis/bokeh/bokeh.ts#computeBokehFieldFootprintFromContext": {
+    parameters:
+      "L: RuntimeLens, context: BokehTraceContext, currentEPSD: number, currentPhysStopSD: number, fieldFraction: number, sensorZ: number",
+    reason: "Prepared bokeh context owns tracing state; aperture, field and defocused sensor plane vary independently.",
+  },
+  "src/optics/analysis/bokeh/bokeh.ts#computeBokehPreviewFromContext": {
+    parameters:
+      "L: RuntimeLens, context: BokehTraceContext, sensorZ: number, currentEPSD: number, currentPhysStopSD: number, label: string, sampling: AnalysisSamplingOptions = {}",
+    reason: "Reduces footprints from the existing prepared context at an independent sensor plane and aperture.",
+  },
+  "src/optics/analysis/chromatic/rayFan.ts#traceOffAxisChromaticMarginal": {
+    parameters:
+      "geometry: ProjectionAwareOffAxisFieldGeometry, fraction: number, adapter: PreparedRayTrace, L: RuntimeLens, currentEPSD: number, imagePlaneZ: number",
+    reason: "Prepared adapter owns tracing state; pupil fraction, aperture and intercept plane are independent inputs.",
+  },
+};
+
 /* ── Source scanning ── */
 
 const repoRoot = fileURLToPath(new URL("../../..", import.meta.url));
@@ -737,63 +781,142 @@ function summarize(files: readonly string[]): string {
   return files.length <= 3 ? files.join(", ") : `${files.slice(0, 3).join(", ")} and ${files.length - 3} more`;
 }
 
+interface PositionalAnalysisStateDeclaration {
+  name: string;
+  line: number;
+  parameters: string;
+}
+
 /**
- * M6: analysis kernels carry the request/prepared object through their call chains.
- * Scan declarations (including arrows, methods and overloads), not text in comments/strings.
- * RuntimeLens import aliases and local type aliases retain the same restriction.
- * Pure numeric/table leaves and explicit request-based control sweeps are allowed.
+ * M6: a bare lens plus two numeric parameters is a possible unwrapped state bundle,
+ * regardless of their names/order or intervening/optional geometry. Known control names
+ * (including destructured source properties and aliases) also retain the single-control
+ * restriction. Request/prepared-only sweeps and lens-free numeric leaves do not match.
+ * Scan the AST, including arrows, methods and overloads, rather than comments/strings.
  */
-function positionalAnalysisStateDeclarations(source: string): string[] {
+function positionalAnalysisStateDeclarations(source: string): PositionalAnalysisStateDeclaration[] {
   const file = ts.createSourceFile("analysis.ts", source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
-  const runtimeTypes = new Set(["RuntimeLens"]);
+  const lensTypes = new Set(["RuntimeLens", "CompiledLens", "CanonicalLens", "LensData", "LensConstructionData"]);
+  const numericTypes = new Set<string>();
+  const isLensName = (name: string): boolean => lensTypes.has(name) || /(?:Lens|LensLike)$/.test(name);
   for (const statement of file.statements) {
     if (ts.isImportDeclaration(statement)) {
       const bindings = statement.importClause?.namedBindings;
       if (bindings && ts.isNamedImports(bindings)) {
         for (const binding of bindings.elements) {
-          if ((binding.propertyName ?? binding.name).text === "RuntimeLens") runtimeTypes.add(binding.name.text);
+          if (isLensName((binding.propertyName ?? binding.name).text)) lensTypes.add(binding.name.text);
         }
       }
     }
   }
-  const hasRuntimeType = (node: ts.Node): boolean => {
-    if (ts.isIdentifier(node) && runtimeTypes.has(node.text)) return true;
-    return ts.forEachChild(node, hasRuntimeType) ?? false;
+  const hasLensType = (node: ts.Node): boolean => {
+    if (ts.isIdentifier(node) && isLensName(node.text)) return true;
+    // A callback, array or property containing a lens is not itself a lens parameter.
+    if (ts.isFunctionTypeNode(node) || ts.isArrayTypeNode(node) || ts.isTypeLiteralNode(node)) return false;
+    return ts.forEachChild(node, hasLensType) ?? false;
   };
-  // Resolve alias chains regardless of declaration order without constructing a whole TS program.
+  const isNumericType = (node: ts.TypeNode): boolean => {
+    if (node.kind === ts.SyntaxKind.NumberKeyword) return true;
+    if (ts.isTypeReferenceNode(node)) return numericTypes.has(node.typeName.getText(file));
+    if (ts.isParenthesizedTypeNode(node)) return isNumericType(node.type);
+    if (ts.isLiteralTypeNode(node)) return ts.isNumericLiteral(node.literal);
+    if (ts.isUnionTypeNode(node) || ts.isIntersectionTypeNode(node)) return node.types.some(isNumericType);
+    return false;
+  };
+  // Resolve imported renames and local alias/extends chains, in either declaration order.
   let changed = true;
   while (changed) {
     changed = false;
     for (const statement of file.statements) {
-      if (
-        ts.isTypeAliasDeclaration(statement) &&
-        !runtimeTypes.has(statement.name.text) &&
-        hasRuntimeType(statement.type)
-      ) {
-        runtimeTypes.add(statement.name.text);
-        changed = true;
+      if (ts.isTypeAliasDeclaration(statement) || ts.isInterfaceDeclaration(statement)) {
+        const lens = ts.isTypeAliasDeclaration(statement)
+          ? hasLensType(statement.type)
+          : (statement.heritageClauses?.some((clause) => clause.types.some(hasLensType)) ?? false);
+        if (lens && !lensTypes.has(statement.name.text)) {
+          lensTypes.add(statement.name.text);
+          changed = true;
+        }
+        if (
+          ts.isTypeAliasDeclaration(statement) &&
+          isNumericType(statement.type) &&
+          !numericTypes.has(statement.name.text)
+        ) {
+          numericTypes.add(statement.name.text);
+          changed = true;
+        }
       }
     }
   }
-  const violations: string[] = [];
+  const isControlName = (name: string): boolean =>
+    /^(?:(?:current|trace|target|requested|effective|lens|optical|state|new|old))?(?:(?:focus|zoom|aberration)(?:t|control|setting|position|fraction|value)?|zpos|zpositions|surfacepositions)$/i.test(
+      name.replaceAll("_", ""),
+    );
+  const hasControlBinding = (name: ts.BindingName): boolean => {
+    if (ts.isIdentifier(name)) return isControlName(name.text);
+    return name.elements.some(
+      (element) =>
+        ts.isBindingElement(element) &&
+        ((element.propertyName !== undefined && isControlName(element.propertyName.getText(file))) ||
+          hasControlBinding(element.name)),
+    );
+  };
+  const isNumericDefault = (node: ts.Expression): boolean =>
+    ts.isNumericLiteral(node) ||
+    (ts.isPrefixUnaryExpression(node) &&
+      [ts.SyntaxKind.PlusToken, ts.SyntaxKind.MinusToken].includes(node.operator) &&
+      ts.isNumericLiteral(node.operand));
+  const violations: PositionalAnalysisStateDeclaration[] = [];
   const visit = (node: ts.Node): void => {
     if (ts.isFunctionLike(node)) {
-      const runtime = node.parameters.some((parameter) => parameter.type && hasRuntimeType(parameter.type));
-      const state = node.parameters.some(
+      const lens = node.parameters.some((parameter) => parameter.type && hasLensType(parameter.type));
+      const numbers = node.parameters.filter(
         (parameter) =>
-          ts.isIdentifier(parameter.name) && ["zPos", "focusT", "zoomT", "aberrationT"].includes(parameter.name.text),
-      );
-      if (runtime && state) {
+          (parameter.type && isNumericType(parameter.type)) ||
+          (!parameter.type && parameter.initializer && isNumericDefault(parameter.initializer)),
+      ).length;
+      if (lens && (numbers >= 2 || node.parameters.some((parameter) => hasControlBinding(parameter.name)))) {
         const name =
           node.name?.getText(file) ??
           (ts.isVariableDeclaration(node.parent) ? node.parent.name.getText(file) : "<anonymous>");
-        violations.push(`${name}:${file.getLineAndCharacterOfPosition(node.getStart(file)).line + 1}`);
+        violations.push({
+          name,
+          line: file.getLineAndCharacterOfPosition(node.getStart(file)).line + 1,
+          parameters: node.parameters.map((parameter) => parameter.getText(file)).join(", "),
+        });
       }
     }
     ts.forEachChild(node, visit);
   };
   visit(file);
   return violations;
+}
+
+/** Apply the same allowlist and staleness checks to the corpus and synthetic self-tests. */
+function analysisRequestProblems(
+  modules: ReadonlyMap<string, string>,
+  leaves: Readonly<Record<string, AnalysisNumericLeaf>> = ANALYSIS_NUMERIC_LEAVES,
+): string[] {
+  const problems: string[] = [];
+  const admitted = new Set<string>();
+  const normalize = (parameters: string): string => parameters.replace(/\s+/g, "");
+  for (const [module, source] of modules) {
+    if (!/^src\/optics\/(?:analysis|perspective\/analysis)\//.test(module)) continue;
+    for (const declaration of positionalAnalysisStateDeclarations(source)) {
+      const id = `${module}#${declaration.name}`;
+      const leaf = leaves[id];
+      if (leaf && leaf.reason.trim() !== "" && normalize(leaf.parameters) === normalize(declaration.parameters)) {
+        admitted.add(id);
+      } else {
+        problems.push(
+          `${id}:${declaration.line}: pass AnalysisRequest or PreparedGeometry instead of a lens and state scalars.`,
+        );
+      }
+    }
+  }
+  for (const id of Object.keys(leaves)) {
+    if (!admitted.has(id)) problems.push(`${id}: stale numeric leaf entry; remove or re-audit its parameter contract.`);
+  }
+  return problems;
 }
 
 /* ── Guards ── */
@@ -813,6 +936,7 @@ describe("optics architecture guards", () => {
       SEAM_LEGACY,
       CACHE_REGISTRY: Object.keys(CACHE_REGISTRY),
       CACHE_LEGACY: Object.keys(CACHE_LEGACY),
+      ANALYSIS_NUMERIC_LEAVES: Object.keys(ANALYSIS_NUMERIC_LEAVES),
     };
     const unsorted = Object.entries(lists)
       .filter(([, entries]) => entries.join("\n") !== [...new Set(entries)].sort().join("\n"))
@@ -822,16 +946,8 @@ describe("optics architecture guards", () => {
 
   describe("analysis requests", () => {
     it("rejects positional runtime/state declarations throughout analysis implementations", () => {
-      const problems = [...opticsModules()]
-        .sort()
-        .flatMap((module) =>
-          /^src\/optics\/(?:analysis|perspective\/analysis)\//.test(module)
-            ? positionalAnalysisStateDeclarations(readSource(module)).map(
-                (declaration) =>
-                  `${module}#${declaration}: pass AnalysisRequest or PreparedGeometry instead of RuntimeLens and state scalars.`,
-              )
-            : [],
-        );
+      const modules = new Map([...opticsModules()].sort().map((module) => [module, readSource(module)]));
+      const problems = analysisRequestProblems(modules);
       expect(problems, "M6 request contract").toEqual([]);
     });
 
@@ -849,7 +965,104 @@ describe("optics architecture guards", () => {
         "// function comment(L: RuntimeLens, zoomT: number) {}",
         'const text = "function string(L: RuntimeLens, focusT: number) {}";',
       ].join("\n");
-      expect(positionalAnalysisStateDeclarations(source)).toEqual(["base:3", "arrow:4", "method:5", "overload:6"]);
+      expect(positionalAnalysisStateDeclarations(source).map(({ name, line }) => `${name}:${line}`)).toEqual([
+        "base:3",
+        "arrow:4",
+        "method:5",
+        "overload:6",
+      ]);
+    });
+
+    it.each([
+      ["renamed controls", "function bad(lens: RuntimeLens, focus: number, zoom: number) {}"],
+      ["arbitrary scalar names", "function bad(lens: RuntimeLens, a: number, b: number) {}"],
+      [
+        "optional geometry",
+        "function bad(lens: RuntimeLens, focus: number, zoom: number, geometry?: FieldGeometryState) {}",
+      ],
+      [
+        "reordered lens and intervening geometry",
+        "function bad(a: number, geometry: FieldGeometryState, lens: RuntimeLens, b: number) {}",
+      ],
+      ["inferred numeric defaults", "function bad(lens: RuntimeLens, a = 0, b = -1) {}"],
+      ["optional scalars", "function bad(lens: RuntimeLens, a?: number, b?: number) {}"],
+      [
+        "destructured controls",
+        "function bad(L: RuntimeLens, { focusT, zoomT }: { focusT: number; zoomT: number }) {}",
+      ],
+      [
+        "renamed destructured bindings",
+        "function bad(L: RuntimeLens, { focusT: a, zoomT: b }: Controls, geometry?: FieldGeometryState) {}",
+      ],
+      [
+        "nested destructuring with defaults",
+        "function bad(L: RuntimeLens, { controls: { focusT: a = 0, zoomT: b = 0 } } = defaults) {}",
+      ],
+      ["destructured layout", "function bad(L: RuntimeLens, { zPos: positions }: Layout) {}"],
+      [
+        "compiled lens import and reverse alias chain",
+        'import type { CompiledLens as Model } from "./types.js"; type Alias = Later; type Later = Model; function bad(L: Alias, a: number, b: number) {}',
+      ],
+      [
+        "lens-like interface and scalar aliases",
+        "interface Model extends LensLike {} type Scalar = Later; type Later = number; function bad(L: Model, a: Scalar, b: Scalar) {}",
+      ],
+      ["qualified lens type", "function bad(L: Optics.CompiledLens, a: number, b: number) {}"],
+      ["wrapped lens type", 'function bad(L: Readonly<Pick<RuntimeLens, "N">>, a: number, b: number) {}'],
+      [
+        "common control variants",
+        "function bad(L: RuntimeLens, currentFocus: Scalar, zoom_setting: Scalar, traceAberrationT = 0) {}",
+      ],
+    ])("rejects %s in both analysis trees", (_label, source) => {
+      for (const module of ["src/optics/analysis/probe.ts", "src/optics/perspective/analysis/probe.ts"]) {
+        expect(analysisRequestProblems(new Map([[module, source]]), {})).toEqual([
+          expect.stringContaining(`${module}#bad:`),
+        ]);
+      }
+    });
+
+    it("allows request sweeps, prepared geometry and numeric leaves without a bare lens", () => {
+      const source = [
+        "function pure(a: number, b: number) {}",
+        "function sweep(request: AnalysisRequest, focusT: number, zoomT: number) {}",
+        "function prepared(state: PreparedGeometry, a: number, b: number) {}",
+        "function metadata(lens: RuntimeLens, sampling: AnalysisSamplingOptions) {}",
+        "function callback(read: () => RuntimeLens, a: number, b: number) {}",
+        "function collection(lenses: RuntimeLens[], a: number, b: number) {}",
+        "// function comment(lens: RuntimeLens, a: number, b: number) {}",
+        'const text = "function string(lens: RuntimeLens, a: number, b: number) {}";',
+      ].join("\n");
+      expect(positionalAnalysisStateDeclarations(source)).toEqual([]);
+      expect(analysisRequestProblems(new Map([["src/optics/state/runtimeAdapters.ts", source]]), {})).toEqual([]);
+    });
+
+    it("admits an explicitly audited numeric leaf only in its registered module", () => {
+      const module = "src/optics/analysis/aberration/shared.ts";
+      const id = `${module}#generalizedImagePlaneIntercept`;
+      const source =
+        "function generalizedImagePlaneIntercept(y: number, u: number, referenceZ: number, L: RuntimeLens) {}";
+      const leaves = { [id]: ANALYSIS_NUMERIC_LEAVES[id] };
+      expect(positionalAnalysisStateDeclarations(source)).toHaveLength(1);
+      expect(analysisRequestProblems(new Map([[module, source]]), leaves)).toEqual([]);
+      expect(analysisRequestProblems(new Map([["src/optics/analysis/copy.ts", source]]), leaves)).toEqual([
+        expect.stringContaining("src/optics/analysis/copy.ts#generalizedImagePlaneIntercept:"),
+        expect.stringContaining(`${id}: stale numeric leaf entry`),
+      ]);
+    });
+
+    it.each([
+      ["deleted declaration", ""],
+      ["migrated to a request", "function generalizedImagePlaneIntercept(request: AnalysisRequest) {}"],
+      [
+        "changed parameter contract",
+        "function generalizedImagePlaneIntercept(y: number, u: number, referenceZ: number, L: RuntimeLens, extra?: number) {}",
+      ],
+    ])("rejects a stale numeric leaf entry after %s", (_label, source) => {
+      const module = "src/optics/analysis/aberration/shared.ts";
+      const id = `${module}#generalizedImagePlaneIntercept`;
+      const problems = analysisRequestProblems(new Map([[module, source]]), { [id]: ANALYSIS_NUMERIC_LEAVES[id] });
+      expect(problems).toContain(`${id}: stale numeric leaf entry; remove or re-audit its parameter contract.`);
+      if (source.includes("extra?")) expect(problems).toContainEqual(expect.stringContaining(`${id}:1:`));
     });
   });
 
