@@ -10,7 +10,7 @@
  */
 
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdtempSync, realpathSync, rmSync, symlinkSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, realpathSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import { join } from "node:path";
 
@@ -39,6 +39,26 @@ export function npmCi(tree) {
 
 /* The git and npm calls of this module. A test passes stand-ins in their place. */
 const COMMANDS = { git, npmCi };
+
+/**
+ * Publish the few historical exports that A8/S2 never exposed through their public barrels.
+ * Only temporary bases preceding the public perspective barrel need this module. Re-exporting their own bindings
+ * preserves function identity without keeping eager internal-module globs in the head's adapters.
+ *
+ * @param {string} worktree - the base tree after copying the working tree's harness
+ */
+export function prepareHistoricalSeam(worktree) {
+  if (existsSync(join(worktree, "src/optics/perspective.ts"))) return;
+  const sources = ["perspective/index.ts", "analysis/analysisQuality.ts", "analysis/analysisJobs.ts"].filter((file) =>
+    existsSync(join(worktree, "src/optics", file)),
+  );
+  const directory = join(worktree, "src/benchmarks/engineDiff");
+  mkdirSync(directory, { recursive: true });
+  writeFileSync(
+    join(directory, "historicalSeam.ts"),
+    sources.map((file) => `export * from "../../optics/${file}";\n`).join(""),
+  );
+}
 
 /**
  * Resolve the base to a commit: the ref as given, then the same name on origin (a CI checkout has no local main).

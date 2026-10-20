@@ -35,7 +35,7 @@ declare module "node:fs" {
   export function realpathSync(path: string): string;
   export function renameSync(oldPath: string, newPath: string): void;
   export function rmSync(path: string, options?: { recursive?: boolean; force?: boolean }): void;
-  export function statSync(path: string): { isDirectory(): boolean; mode: number };
+  export function statSync(path: string): { isFile(): boolean; isDirectory(): boolean; mode: number };
   export function symlinkSync(target: string, path: string): void;
   export function unlinkSync(path: string): void;
   export function writeFileSync(
@@ -53,6 +53,8 @@ declare module "node:os" {
 declare module "node:path" {
   export function basename(path: string): string;
   export function dirname(path: string): string;
+  export function extname(path: string): string;
+  export function isAbsolute(path: string): boolean;
   export function join(...paths: string[]): string;
   export function relative(from: string, to: string): string;
   export function resolve(...paths: string[]): string;

@@ -85,7 +85,9 @@ async function loadEngine(root) {
   const load = (path) => import(pathToFileURL(join(root, path)).href);
   const [{ default: buildLens }, { prepareRuntimeState }, { computeMtf }] = await Promise.all([
     load("src/optics/buildLens.ts"),
-    load("src/optics/optics.ts").then((module) => (module.prepareRuntimeState ? module : load("src/optics/compat.ts"))),
+    load("src/optics/optics.ts").then((module) =>
+      module.prepareRuntimeState ? module : load(/* historical base */ "src/optics/compat.ts"),
+    ),
     load("src/optics/mtf.ts"),
   ]);
   if (!existsSync(join(root, "src/optics/analysis/mtf"))) return { buildLens, prepareRuntimeState, computeMtf };

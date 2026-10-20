@@ -17,45 +17,33 @@ const ENGINE_MODULES = {
   fieldPublic: import.meta.glob<EngineModule>("../../optics/fieldGeometry.ts", { eager: true }),
   chromaticPublic: import.meta.glob<EngineModule>("../../optics/chromatic.ts", { eager: true }),
   perspectivePublic: import.meta.glob<EngineModule>("../../optics/perspective.ts", { eager: true }),
-  chromaticAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/chromatic/analysis.ts", { eager: true }),
-  chromaticScaling: import.meta.glob<EngineModule>("../../optics/analysis/chromatic/rayFanScaling.ts", { eager: true }),
   analysisState: import.meta.glob<EngineModule>("../../optics/analysis.ts", { eager: true }),
-  bokehAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/bokeh/bokeh.ts", { eager: true }),
-  legacyBokeh: import.meta.glob<EngineModule>("../../optics/aberration/bokeh.ts", { eager: true }),
-  pupilAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/pupils/pupilAberration.ts", { eager: true }),
-  vignettingAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/vignetting/vignetting.ts", { eager: true }),
-  distortionAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/distortion/distortion.ts", { eager: true }),
-  comaAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/coma.ts", { eager: true }),
-  fieldCurvatureAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/fieldCurvature.ts", {
+  legacyBokeh: import.meta.glob<EngineModule>(/* historical base */ "../../optics/aberration/bokeh.ts", {
     eager: true,
   }),
-  sphericalAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/spherical.ts", { eager: true }),
-  bestFocusAnalysis: import.meta.glob<EngineModule>("../../optics/analysis/aberration/bestFocus.ts", { eager: true }),
-  summaryGroupMovement: import.meta.glob<EngineModule>("../../optics/analysis/summary/groupMovement.ts", {
+  aperture: import.meta.glob<EngineModule>(/* historical base */ "../../optics/aperture.ts", { eager: true }),
+  apertureStop: import.meta.glob<EngineModule>(/* historical base */ "../../optics/apertureStop.ts", { eager: true }),
+  asphericComparison: import.meta.glob<EngineModule>(/* historical base */ "../../optics/asphericComparison.ts", {
     eager: true,
   }),
-  summaryCardinals: import.meta.glob<EngineModule>("../../optics/analysis/summary/cardinals.ts", { eager: true }),
-  analysisRequest: import.meta.glob<EngineModule>("../../optics/analysis/request.ts", { eager: true }),
-  aperture: import.meta.glob<EngineModule>("../../optics/aperture.ts", { eager: true }),
-  apertureStop: import.meta.glob<EngineModule>("../../optics/apertureStop.ts", { eager: true }),
-  asphericFamily: import.meta.glob<EngineModule>("../../optics/analysis/asphericComparison/comparison.ts", {
-    eager: true,
-  }),
-  asphericComparison: import.meta.glob<EngineModule>("../../optics/asphericComparison.ts", { eager: true }),
   buildLens: import.meta.glob<EngineModule>("../../optics/buildLens.ts", { eager: true }),
-  cardinalElements: import.meta.glob<EngineModule>("../../optics/cardinalElements.ts", { eager: true }),
-  chromaticRayFanScaling: import.meta.glob<EngineModule>("../../optics/chromaticRayFanScaling.ts", { eager: true }),
-  compat: import.meta.glob<EngineModule>("../../optics/compat.ts", { eager: true }),
-  constants: import.meta.glob<EngineModule>("../../optics/constants.ts", { eager: true }),
+  cardinalElements: import.meta.glob<EngineModule>(/* historical base */ "../../optics/cardinalElements.ts", {
+    eager: true,
+  }),
+  chromaticRayFanScaling: import.meta.glob<EngineModule>(
+    /* historical base */ "../../optics/chromaticRayFanScaling.ts",
+    { eager: true },
+  ),
+  compat: import.meta.glob<EngineModule>(/* historical base */ "../../optics/compat.ts", { eager: true }),
+  constants: import.meta.glob<EngineModule>(/* historical base */ "../../optics/constants.ts", { eager: true }),
   geometry: import.meta.glob<EngineModule>("../../optics/geometry.ts", { eager: true }),
-  layout: import.meta.glob<EngineModule>("../../optics/layout.ts", { eager: true }),
-  lensDefaults: import.meta.glob<EngineModule>("../../lens-data/defaults.ts", { eager: true }),
-  lensMovement: import.meta.glob<EngineModule>("../../optics/lensMovement.ts", { eager: true }),
-  mtfFamily: import.meta.glob<EngineModule>("../../optics/analysis/mtf/mtf.ts", { eager: true }),
+  layout: import.meta.glob<EngineModule>(/* historical base */ "../../optics/layout.ts", { eager: true }),
+  lensDefaults: import.meta.glob<EngineModule>(/* historical base */ "../../lens-data/defaults.ts", { eager: true }),
+  lensMovement: import.meta.glob<EngineModule>(/* historical base */ "../../optics/lensMovement.ts", { eager: true }),
   mtf: import.meta.glob<EngineModule>("../../optics/mtf.ts", { eager: true }),
   optics: import.meta.glob<EngineModule>("../../optics/optics.ts", { eager: true }),
-  perspective: import.meta.glob<EngineModule>("../../optics/perspective/index.ts", { eager: true }),
-  raySampling: import.meta.glob<EngineModule>("../../optics/raySampling.ts", { eager: true }),
+  raySampling: import.meta.glob<EngineModule>(/* historical base */ "../../optics/raySampling.ts", { eager: true }),
+  historical: import.meta.glob<EngineModule>(/* historical base */ "./historicalSeam.ts", { eager: true }),
   teleconverter: import.meta.glob<EngineModule>("../../optics/teleconverter.ts", { eager: true }),
 };
 
@@ -65,24 +53,10 @@ interface EngineModuleTypes {
   fieldPublic: typeof import("../../optics/fieldGeometry.js");
   chromaticPublic: typeof import("../../optics/chromatic.js");
   perspectivePublic: typeof import("../../optics/perspective.js");
-  chromaticAnalysis: typeof import("../../optics/analysis.js");
-  chromaticScaling: typeof import("../../optics/analysis.js");
   analysisState: typeof import("../../optics/analysis.js");
-  bokehAnalysis: typeof import("../../optics/analysis.js");
   legacyBokeh: typeof import("../../optics/analysis.js");
-  pupilAnalysis: typeof import("../../optics/analysis.js");
-  vignettingAnalysis: typeof import("../../optics/analysis.js");
-  distortionAnalysis: typeof import("../../optics/analysis.js");
-  comaAnalysis: typeof import("../../optics/analysis.js");
-  fieldCurvatureAnalysis: typeof import("../../optics/analysis.js");
-  sphericalAnalysis: typeof import("../../optics/analysis.js");
-  bestFocusAnalysis: typeof import("../../optics/analysis.js");
-  summaryGroupMovement: typeof import("../../optics/analysis.js");
-  summaryCardinals: typeof import("../../optics/analysis.js");
-  analysisRequest: typeof import("../../optics/analysis.js");
   aperture: typeof import("../../optics/optics.js");
   apertureStop: typeof import("../../optics/optics.js");
-  asphericFamily: typeof import("../../optics/analysis.js");
   asphericComparison: typeof import("../../optics/analysis.js");
   buildLens: typeof import("../../optics/buildLens.js");
   cardinalElements: typeof import("../../optics/analysis.js");
@@ -94,11 +68,10 @@ interface EngineModuleTypes {
   /* Deleted in S2.P1.T2, so it has no type to query at the head; older refs still export the V1 defaults object. */
   lensDefaults: { readonly default: Readonly<Record<string, unknown>> };
   lensMovement: typeof import("../../optics/perspective.js");
-  mtfFamily: typeof import("../../optics/mtf.js");
   mtf: typeof import("../../optics/mtf.js");
   optics: typeof import("../../optics/optics.js");
-  perspective: typeof import("../../optics/perspective.js");
   raySampling: typeof import("../../optics/optics.js");
+  historical: typeof import("../../optics/perspective.js");
   teleconverter: typeof import("../../optics/teleconverter.js");
 }
 
@@ -117,96 +90,78 @@ type SeamCandidate = readonly [module: EngineModuleId, exportName: string];
 const SEAM_CANDIDATES = {
   computeBokehPreviewPair: [
     ["analysisState", "computeBokehPreviewPair"],
-    ["bokehAnalysis", "computeBokehPreviewPair"],
     ["compat", "computeBokehPreviewPairForState2"],
     ["compat", "computeBokehPreviewPair2"],
   ],
   computeBokehPreview: [
     ["analysisState", "computeBokehPreview"],
-    ["bokehAnalysis", "computeBokehPreview"],
     ["compat", "computeBokehPreview2"],
   ],
   computeBokehFieldFootprint: [
     ["analysisState", "computeBokehFieldFootprint"],
-    ["bokehAnalysis", "computeBokehFieldFootprint"],
     ["legacyBokeh", "computeBokehFieldFootprint"],
   ],
   buildBokehDensityGrid: [
     ["analysisState", "buildBokehDensityGrid"],
-    ["bokehAnalysis", "buildBokehDensityGrid"],
     ["compat", "buildBokehDensityGrid2"],
   ],
   describeBokehDefocusSide: [
     ["analysisState", "describeBokehDefocusSide"],
-    ["bokehAnalysis", "describeBokehDefocusSide"],
     ["compat", "describeBokehDefocusSide2"],
   ],
   // Captures dispatch these through the context at both refs; retain the old prepared exports.
   computeBothPupilAberrationProfiles: [
     ["analysisState", "computeBothPupilAberrationProfiles"],
-    ["pupilAnalysis", "computeBothPupilAberrationProfiles"],
     ["compat", "computeBothPupilAberrationProfilesForState2"],
     ["compat", "computeBothPupilAberrationProfiles2"],
   ],
   computePupilAberrationProfile: [
     ["analysisState", "computePupilAberrationProfile"],
-    ["pupilAnalysis", "computePupilAberrationProfile"],
     ["compat", "computePupilAberrationProfile2"],
   ],
   computeExitPupilAberrationProfile: [
     ["analysisState", "computeExitPupilAberrationProfile"],
-    ["pupilAnalysis", "computeExitPupilAberrationProfile"],
     ["compat", "computeExitPupilAberrationProfile2"],
   ],
   computeVignettingCurve: [
     ["analysisState", "computeVignettingCurve"],
-    ["vignettingAnalysis", "computeVignettingCurve"],
     ["compat", "computeVignettingCurveForState2"],
     ["compat", "computeVignettingCurve2"],
   ],
   computeDistortionCurve: [
     ["analysisState", "computeDistortionCurve"],
-    ["distortionAnalysis", "computeDistortionCurve"],
     ["compat", "computeDistortionCurveForState2"],
   ],
   computeDistortionFieldGrid: [
     ["analysisState", "computeDistortionFieldGrid"],
-    ["distortionAnalysis", "computeDistortionFieldGrid"],
     ["compat", "computeDistortionFieldGridForState2"],
   ],
   computeComaAnalysis: [
     ["analysisState", "computeComaAnalysis"],
-    ["comaAnalysis", "computeComaAnalysis"],
     ["compat", "computeComaAnalysisForState2"],
   ],
   computeFieldCurvature: [
     ["analysisState", "computeFieldCurvature"],
-    ["fieldCurvatureAnalysis", "computeFieldCurvature"],
     ["compat", "computeFieldCurvatureForState2"],
   ],
   computeFieldCurvatureBundle: [
     ["analysisState", "computeFieldCurvatureBundle"],
-    ["fieldCurvatureAnalysis", "computeFieldCurvatureBundle"],
     ["compat", "computeFieldCurvatureBundleForState2"],
   ],
   computeSphericalAberration: [
     ["analysisState", "computeSphericalAberration"],
-    ["sphericalAnalysis", "computeSphericalAberration"],
     ["compat", "computeSphericalAberrationForState2"],
   ],
   computeSAProfile: [
     ["analysisState", "computeSAProfile"],
-    ["sphericalAnalysis", "computeSAProfile"],
     ["compat", "computeSAProfileForState2"],
   ],
   computeSphericalAberrationBlurCharacter: [
     ["analysisState", "computeSphericalAberrationBlurCharacter"],
-    ["sphericalAnalysis", "computeSphericalAberrationBlurCharacter"],
     ["compat", "computeSphericalAberrationBlurCharacterForState2"],
   ],
   computeBestFocusZ: [
     ["analysisState", "computeBestFocusZ"],
-    ["bestFocusAnalysis", "computeBestFocusZ"],
     ["compat", "computeBestFocusZForState2"],
   ],
   flatRadiusThreshold: [
@@ -221,14 +176,8 @@ const SEAM_CANDIDATES = {
     ["buildLens", "buildLens"],
     ["buildLens", "default"],
   ],
-  attachTeleconverter: [
-    ["teleconverter", "attachTeleconverter"],
-    ["teleconverter", "attachTeleconverter"],
-  ],
-  teleconverterCompatibility: [
-    ["teleconverter", "teleconverterCompatibility"],
-    ["teleconverter", "teleconverterCompatibility"],
-  ],
+  attachTeleconverter: [["teleconverter", "attachTeleconverter"]],
+  teleconverterCompatibility: [["teleconverter", "teleconverterCompatibility"]],
   prepareState: [
     ["optics", "prepareRuntimeState"],
     ["compat", "prepareRuntimeState"],
@@ -243,10 +192,7 @@ const SEAM_CANDIDATES = {
     ["compat", "channelIndexResolverForState"],
     ["compat", "channelIndexResolverForState2"],
   ],
-  skewImagePlaneIntercept: [
-    ["optics", "skewImagePlaneIntercept"],
-    ["optics", "skewImagePlaneIntercept"],
-  ],
+  skewImagePlaneIntercept: [["optics", "skewImagePlaneIntercept"]],
   doLayout: [
     ["optics", "doLayoutForRuntimeLens"],
     ["optics", "doLayout"],
@@ -255,14 +201,8 @@ const SEAM_CANDIDATES = {
     ["optics", "doLayout"],
     ["layout", "doLayout"],
   ],
-  anchorLayoutToCamera: [
-    ["optics", "anchorLayoutToCamera"],
-    ["optics", "anchorLayoutToCamera"],
-  ],
-  eflAtFocus: [
-    ["optics", "eflAtFocus"],
-    ["optics", "eflAtFocus"],
-  ],
+  anchorLayoutToCamera: [["optics", "anchorLayoutToCamera"]],
+  eflAtFocus: [["optics", "eflAtFocus"]],
   fopenAtZoom: [
     ["optics", "fopenAtZoomClamped"],
     ["optics", "fopenAtZoom"],
@@ -301,7 +241,7 @@ const SEAM_CANDIDATES = {
   ],
   createPerspectiveTraceContext: [
     ["perspectivePublic", "createPerspectiveTraceContext"],
-    ["perspective", "createPerspectiveTraceContext"],
+    ["historical", "createPerspectiveTraceContext"],
   ],
   createAnalysisContext: [
     ["analysisState", "createAnalysisComputationContext"],
@@ -314,48 +254,37 @@ const SEAM_CANDIDATES = {
   ],
   computeGroupMovementProfileForState: [
     ["analysisState", "computeGroupMovementProfile"],
-    ["summaryGroupMovement", "computeGroupMovementProfile"],
     ["compat", "computeGroupMovementProfileForState2"],
   ],
   computeCardinalElementsAtState: [
     ["analysisState", "computeCardinalElements"],
-    ["summaryCardinals", "computeCardinalElements"],
     ["cardinalElements", "computeCardinalElementsAtState"],
   ],
   computeBestFitSphereR: [
     ["analysisState", "computeBestFitSphereRFromProfiles"],
-    ["asphericFamily", "computeBestFitSphereRFromProfiles"],
     ["compat", "computeBestFitSphereR2"],
   ],
   computeDepartureProfile: [
     ["analysisState", "computeDepartureProfileFromProfiles"],
-    ["asphericFamily", "computeDepartureProfileFromProfiles"],
     ["compat", "computeDepartureProfile2"],
   ],
   legacyComputeBestFitSphereR: [
     ["analysisState", "computeBestFitSphereR"],
-    ["asphericFamily", "computeBestFitSphereR"],
     ["asphericComparison", "computeBestFitSphereR"],
   ],
   legacyComputeDepartureProfile: [
     ["analysisState", "computeDepartureProfile"],
-    ["asphericFamily", "computeDepartureProfile"],
     ["asphericComparison", "computeDepartureProfile"],
   ],
   /* Readouts the viewer computes beside the analysis context: the working f-number, the chromatic tab's field-focus
    * summary, the diagram's LoCA readout with its inset bars, and the aspheric overlay's departure at a click. */
-  effectiveFNumber: [
-    ["optics", "effectiveFNumber"],
-    ["optics", "effectiveFNumber"],
-  ],
+  effectiveFNumber: [["optics", "effectiveFNumber"]],
   summarizeChromaticFieldFocus: [
     ["analysisState", "summarizeChromaticFieldFocus"],
-    ["fieldCurvatureAnalysis", "summarizeChromaticFieldFocus"],
     ["compat", "summarizeChromaticFieldFocus2"],
   ],
   computeLongitudinalChromaticFocus: [
     ["analysisState", "computeLongitudinalChromaticFocus"],
-    ["chromaticAnalysis", "computeLongitudinalChromaticFocus"],
     ["optics", "computeLongitudinalChromaticFocus"],
   ],
   obstructionAwareRayFractionsForDensity: [
@@ -364,29 +293,21 @@ const SEAM_CANDIDATES = {
   ],
   computeLocaBarOffsets: [
     ["analysisState", "computeLocaBarOffsets"],
-    ["chromaticScaling", "computeLocaBarOffsets"],
     ["compat", "computeLocaBarOffsets2"],
   ],
   legacyComputeLocaBarOffsets: [
     ["analysisState", "computeLocaBarOffsets"],
-    ["chromaticScaling", "computeLocaBarOffsets"],
     ["chromaticRayFanScaling", "computeLocaBarOffsets"],
   ],
   computeAsphericDeparture: [
     ["analysisState", "computeAsphericDepartureFromProfiles"],
-    ["asphericFamily", "computeAsphericDepartureFromProfiles"],
     ["compat", "computeAsphericDeparture2"],
   ],
   legacyComputeAsphericDeparture: [
     ["analysisState", "computeAsphericDeparture"],
-    ["asphericFamily", "computeAsphericDeparture"],
     ["asphericComparison", "computeAsphericDeparture"],
   ],
-  computeMtf: [
-    ["mtf", "computeMtf"],
-    ["mtfFamily", "computeMtf"],
-    ["mtf", "computeMtf"],
-  ],
+  computeMtf: [["mtf", "computeMtf"]],
 } as const satisfies Readonly<Record<string, readonly SeamCandidate[]>>;
 
 type ExportOf<Candidate> = Candidate extends readonly [infer Module extends keyof EngineModuleTypes, infer Name]
@@ -433,9 +354,9 @@ export type EngineSeam = Omit<
     currentEPSD: number,
     currentPhysStopSD: number,
     fieldGeometry?: NonNullable<
-      Parameters<EngineModuleTypes["analysisRequest"]["createAnalysisRequest"]>[0]["fieldGeometry"]
+      Parameters<EngineModuleTypes["analysisState"]["createAnalysisRequest"]>[0]["fieldGeometry"]
     >,
-    sampling?: Parameters<EngineModuleTypes["analysisRequest"]["createAnalysisRequest"]>[0]["sampling"],
+    sampling?: Parameters<EngineModuleTypes["analysisState"]["createAnalysisRequest"]>[0]["sampling"],
   ) => ReturnType<ResolvedEngineSeam["computeComaAnalysis"]>;
   computeFieldCurvature: (
     state: ReturnType<ResolvedEngineSeam["prepareState"]>,
@@ -443,7 +364,7 @@ export type EngineSeam = Omit<
     currentPhysStopSD: number,
     chromatic?: boolean,
     fieldGeometry?: NonNullable<
-      Parameters<EngineModuleTypes["analysisRequest"]["createAnalysisRequest"]>[0]["fieldGeometry"]
+      Parameters<EngineModuleTypes["analysisState"]["createAnalysisRequest"]>[0]["fieldGeometry"]
     >,
   ) => ReturnType<ResolvedEngineSeam["computeFieldCurvature"]>;
   computeFieldCurvatureBundle: (
@@ -451,7 +372,7 @@ export type EngineSeam = Omit<
     currentEPSD: number,
     currentPhysStopSD: number,
     fieldGeometry?: NonNullable<
-      Parameters<EngineModuleTypes["analysisRequest"]["createAnalysisRequest"]>[0]["fieldGeometry"]
+      Parameters<EngineModuleTypes["analysisState"]["createAnalysisRequest"]>[0]["fieldGeometry"]
     >,
   ) => ReturnType<ResolvedEngineSeam["computeFieldCurvatureBundle"]>;
   computeGroupMovementProfileForState: (
@@ -533,8 +454,8 @@ function resolveOnce(): { seam: EngineSeam; sources: Record<keyof EngineSeam, st
     // Only the harness bridges old signatures: payload jobs and their order stay unchanged.
     const makeRequest = (state: PreparedState) => {
       const lens = state.lens.constants;
-      const createRequest = modules.analysisRequest!
-        .createAnalysisRequest as EngineModuleTypes["analysisRequest"]["createAnalysisRequest"];
+      const createRequest = modules.analysisState!
+        .createAnalysisRequest as EngineModuleTypes["analysisState"]["createAnalysisRequest"];
       return createRequest({
         preparedState: state,
         dynamicEFL: lens.EFL,
@@ -548,8 +469,8 @@ function resolveOnce(): { seam: EngineSeam; sources: Record<keyof EngineSeam, st
       currentPhysStopSD: number,
       fieldGeometry: Parameters<EngineSeam["computeFieldCurvature"]>[4],
     ) => {
-      const createRequest = modules.analysisRequest!
-        .createAnalysisRequest as EngineModuleTypes["analysisRequest"]["createAnalysisRequest"];
+      const createRequest = modules.analysisState!
+        .createAnalysisRequest as EngineModuleTypes["analysisState"]["createAnalysisRequest"];
       return createRequest({
         preparedState: state,
         dynamicEFL: state.lens.constants.EFL,
@@ -558,10 +479,9 @@ function resolveOnce(): { seam: EngineSeam; sources: Record<keyof EngineSeam, st
         fieldGeometry,
       });
     };
-    if (
-      sources.computeMtf.startsWith("mtfFamily.") ||
-      (sources.computeMtf === "mtf.computeMtf" && modules.mtfFamily?.computeMtf !== undefined)
-    ) {
+    // computeMtf takes a request from the commit that published assessMtfSpectralData beside it (A8 and later);
+    // S2 and earlier Stage 7 bases export createAnalysisRequest while computeMtf still takes prepared state.
+    if (modules.mtf?.assessMtfSpectralData !== undefined) {
       const compute = exports.computeMtf as ResolvedEngineSeam["computeMtf"];
       exports.computeMtf = ((state, options) =>
         compute(
@@ -569,16 +489,13 @@ function resolveOnce(): { seam: EngineSeam; sources: Record<keyof EngineSeam, st
           options,
         )) satisfies EngineSeam["computeMtf"];
     }
-    if (
-      sources.computeLongitudinalChromaticFocus.startsWith("chromaticAnalysis.") ||
-      sources.computeLongitudinalChromaticFocus.startsWith("analysisState.")
-    ) {
+    if (sources.computeLongitudinalChromaticFocus.startsWith("analysisState.")) {
       const compute =
         exports.computeLongitudinalChromaticFocus as ResolvedEngineSeam["computeLongitudinalChromaticFocus"];
       const prepare = exports.prepareState as EngineSeam["prepareState"];
       const stateWithZ = modules.analysisState!.stateWithZ as EngineModuleTypes["analysisState"]["stateWithZ"];
-      const createRequest = modules.analysisRequest!
-        .createAnalysisRequest as EngineModuleTypes["analysisRequest"]["createAnalysisRequest"];
+      const createRequest = modules.analysisState!
+        .createAnalysisRequest as EngineModuleTypes["analysisState"]["createAnalysisRequest"];
       exports.computeLongitudinalChromaticFocus = ((
         lens,
         zPos,
@@ -599,14 +516,11 @@ function resolveOnce(): { seam: EngineSeam; sources: Record<keyof EngineSeam, st
           options,
         )) satisfies EngineSeam["computeLongitudinalChromaticFocus"];
     }
-    if (
-      sources.computeComaAnalysis.startsWith("comaAnalysis.") ||
-      sources.computeComaAnalysis.startsWith("analysisState.")
-    ) {
+    if (sources.computeComaAnalysis.startsWith("analysisState.")) {
       const compute = exports.computeComaAnalysis as ResolvedEngineSeam["computeComaAnalysis"];
       exports.computeComaAnalysis = ((state, currentEPSD, currentPhysStopSD, fieldGeometry, sampling) => {
-        const createRequest = modules.analysisRequest!
-          .createAnalysisRequest as EngineModuleTypes["analysisRequest"]["createAnalysisRequest"];
+        const createRequest = modules.analysisState!
+          .createAnalysisRequest as EngineModuleTypes["analysisState"]["createAnalysisRequest"];
         return compute(
           createRequest({
             preparedState: state,
@@ -619,10 +533,7 @@ function resolveOnce(): { seam: EngineSeam; sources: Record<keyof EngineSeam, st
         );
       }) satisfies EngineSeam["computeComaAnalysis"];
     }
-    if (
-      sources.computeFieldCurvature.startsWith("fieldCurvatureAnalysis.") ||
-      sources.computeFieldCurvature.startsWith("analysisState.")
-    ) {
+    if (sources.computeFieldCurvature.startsWith("analysisState.")) {
       const compute = exports.computeFieldCurvature as ResolvedEngineSeam["computeFieldCurvature"];
       exports.computeFieldCurvature = ((state, currentEPSD, currentPhysStopSD, chromatic = false, fieldGeometry) =>
         compute(
@@ -630,29 +541,20 @@ function resolveOnce(): { seam: EngineSeam; sources: Record<keyof EngineSeam, st
           chromatic,
         )) satisfies EngineSeam["computeFieldCurvature"];
     }
-    if (
-      sources.computeFieldCurvatureBundle.startsWith("fieldCurvatureAnalysis.") ||
-      sources.computeFieldCurvatureBundle.startsWith("analysisState.")
-    ) {
+    if (sources.computeFieldCurvatureBundle.startsWith("analysisState.")) {
       const compute = exports.computeFieldCurvatureBundle as ResolvedEngineSeam["computeFieldCurvatureBundle"];
       exports.computeFieldCurvatureBundle = ((state, currentEPSD, currentPhysStopSD, fieldGeometry) =>
         compute(
           fieldRequest(state, currentEPSD, currentPhysStopSD, fieldGeometry),
         )) satisfies EngineSeam["computeFieldCurvatureBundle"];
     }
-    if (
-      sources.computeGroupMovementProfileForState.startsWith("summaryGroupMovement.") ||
-      sources.computeGroupMovementProfileForState.startsWith("analysisState.")
-    ) {
+    if (sources.computeGroupMovementProfileForState.startsWith("analysisState.")) {
       const compute =
         exports.computeGroupMovementProfileForState as ResolvedEngineSeam["computeGroupMovementProfileForState"];
       exports.computeGroupMovementProfileForState = ((state, mode) =>
         compute(makeRequest(state), mode)) satisfies EngineSeam["computeGroupMovementProfileForState"];
     }
-    if (
-      sources.computeCardinalElementsAtState.startsWith("summaryCardinals.") ||
-      sources.computeCardinalElementsAtState.startsWith("analysisState.")
-    ) {
+    if (sources.computeCardinalElementsAtState.startsWith("analysisState.")) {
       const compute = exports.computeCardinalElementsAtState as ResolvedEngineSeam["computeCardinalElementsAtState"];
       const prepare = exports.prepareState as EngineSeam["prepareState"];
       exports.computeCardinalElementsAtState = ((lens, focusT, zoomT, zPos, imagePlaneZ, aberrationT = 0) =>

@@ -42,6 +42,7 @@ import {
   addBaseWorktree,
   cleanUpOnSignal,
   otherBaseWorktrees,
+  prepareHistoricalSeam,
   provideBaseDependencies,
   resolveBaseCommit,
 } from "./base-worktree.mjs";
@@ -265,6 +266,7 @@ function prepareBaseWorktree(worktree, commit) {
   /* Both engines run the working tree's entry: the base's own may be older, and would measure something else. */
   rmSync(join(worktree, HARNESS_DIR), { recursive: true, force: true });
   cpSync(join(ROOT, HARNESS_DIR), join(worktree, HARNESS_DIR), { recursive: true });
+  prepareHistoricalSeam(worktree);
   return dependencies;
 }
 
