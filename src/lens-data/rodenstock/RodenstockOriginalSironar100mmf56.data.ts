@@ -210,14 +210,14 @@ const LENS_DATA = {
       sd: 10.6,
     },
   ],
-  // Infinity BF is the printed s' = 83.5; the 1.0 m value adds the paraxial unit-focus extension (+12.690 mm).
-  gaps: {
-    "10": { label: "BF", values: [[83.5, 96.189792]] },
-  },
   focus: {
     closeFocusM: 1.0,
     description:
       "Unit focus by view-camera bellows: the whole lens moves away from the film and only the back focus changes. The patent prints only the infinity state; the 12.69 mm extension for a 1.0 m object-to-image distance is derived paraxially and is not a manufacturer specification.",
+  },
+
+  gaps: {
+    "10": { label: "BF", values: [[83.5, 96.189792]] },
   },
   aperture: {
     nominalFNumber: 5.6,
