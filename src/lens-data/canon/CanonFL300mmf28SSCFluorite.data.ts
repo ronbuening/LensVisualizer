@@ -3,7 +3,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent example has five elements in four groups. Canon lists six elements in five groups; the mandatory 34 mm
  * rear drop-in filter is the likely sixth, but no thickness or position is published, so no plate is added.
  * The stop sits in D6 at 75 % of the gap from r6 (92.551275 / 30.850425 mm), read from FIG. 1; the patent prints no
- * stop coordinate. All sd values are estimates; the rear doublet's 14.5 mm is read from FIG. 1.
+ * stop coordinate. The sd values follow FIG. 1 (L1 tallest at 55 mm, L2 and L3 at 50 mm, the rear doublet square-cut
+ * at 14.5 mm) and clear the f/2.8 axial marginal ray in a real-ray trace.
+ * Diagram labels I–V and the FRONT / REAR brackets are the patent's component and lens-group notation; D1 is IV + V.
  * L1 is fluorspar per claim 1 and resolves to the catalog CaF2 dispersion curve. L2–L5 resolve to coordinate-equal
  * catalog equivalents (S-LAH51, S-FSL5, K-BK7, S-TIH18) for dispersion; the 1970s production melts are unidentified.
  * Infinity focus only: the patent prints no close-focus state. Image gap = printed back focus 23.73 × 3 = 71.19 mm.
@@ -57,6 +59,7 @@ const LENS_DATA = {
       id: 1,
       name: "L1",
       label: "Element 1",
+      diagramLabel: "I",
       type: "Biconvex Positive (Fluorspar)",
       nd: 1.43387,
       vd: 95.1,
@@ -72,6 +75,7 @@ const LENS_DATA = {
       id: 2,
       name: "L2",
       label: "Element 2",
+      diagramLabel: "II",
       type: "Biconcave Negative",
       nd: 1.7859,
       vd: 44.2,
@@ -84,6 +88,7 @@ const LENS_DATA = {
       id: 3,
       name: "L3",
       label: "Element 3",
+      diagramLabel: "III",
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.1,
@@ -96,6 +101,7 @@ const LENS_DATA = {
       id: 4,
       name: "L4",
       label: "Element 4",
+      diagramLabel: "IV",
       type: "Negative Meniscus",
       nd: 1.51633,
       vd: 64.1,
@@ -109,6 +115,7 @@ const LENS_DATA = {
       id: 5,
       name: "L5",
       label: "Element 5",
+      diagramLabel: "V",
       type: "Positive Meniscus",
       nd: 1.72151,
       vd: 29.2,
@@ -197,5 +204,10 @@ const LENS_DATA = {
     description:
       "Patent infinity state only; the production lens focuses to 3.5 m. The patent prints no close-focus spacing.",
   },
+  groups: [
+    { text: "FRONT I–III (+)", fromSurface: "1", toSurface: "6" },
+    { text: "REAR IV–V (−)", fromSurface: "7", toSurface: "9" },
+  ],
+  doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
 } satisfies LensDataV2Input;
 export default LENS_DATA;

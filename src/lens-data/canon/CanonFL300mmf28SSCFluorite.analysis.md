@@ -23,39 +23,39 @@ Description and claim 3 agree in every R, D, N and V value. The aberration-coeff
 
 ## Optical Architecture
 
-The design is a telephoto: a positive front group of three separated singlets (positive–negative–positive) and a negative rear cemented doublet. The long airspace after L3 supplies the telephoto separation and holds the iris. The element focal lengths below are for each element alone in air; the rear doublet's combined focal length is −212.73 mm at the ×3 scale.
+The design is a telephoto: a positive front group of three separated singlets (positive–negative–positive) and a negative rear cemented doublet. The patent calls the elements components I to V: I, II and III form the front lens group, and IV and V, cemented together in Example 1, form the rear lens group. The diagram labels the elements I–V and brackets the two groups as FRONT and REAR; L1–L5 below are the same elements in order. The long airspace after L3 supplies the telephoto separation and holds the iris. The element focal lengths below are for each element alone in air; the rear doublet's combined focal length is −212.73 mm at the ×3 scale.
 
 The scaled prescription gives EFL 299.964 mm and a paraxial back focal distance of 71.196 mm. The model's image plane sits at the printed back focus, 23.73 × 3 = 71.19 mm; the 0.006 mm difference is within the patent's printed precision. The total track from the first vertex to the image is 270.592 mm against the printed L = 90.20 × 3 = 270.60 mm, a telephoto ratio of 0.90.
 
-All nine refracting surfaces are spherical, and R8 is the single cemented interface. The clear semi-diameters are estimates, not patent data: 55 mm on L1, 50 mm on L2 and L3, and 14.5 mm on the rear doublet, the last read from FIG. 1. The patent prints no stop coordinate; FIG. 1 draws the diaphragm about three quarters of the way along D6, and the model places it at 75 % (92.551 mm after r6, 30.850 mm before r7).
+All nine refracting surfaces are spherical, and R8 is the single cemented interface. The patent prints no clear semi-diameters. The model's 55 mm on L1, 50 mm on L2 and L3, and 14.5 mm on the rear doublet follow FIG. 1, which draws L1 tallest, L2 and L3 at about the same height and the rear doublet square-cut on one height. The patent prints no stop coordinate; FIG. 1 draws the diaphragm about three quarters of the way along D6, and the model places it at 75 % (92.551 mm after r6, 30.850 mm before r7).
 
 ## Element-by-Element Analysis
 
-### L1 — Biconvex Positive Fluorspar Singlet
+### L1 (component I) — Biconvex Positive Fluorspar Singlet
 
 nd = 1.43387, νd = 95.1. Glass: fluorspar (CaF2), named in claim 1. f = +175.81 mm.
 
 The low-index, very-low-dispersion front singlet is the stronger of the two positive elements. The description names fluorite among the positive-element materials that reduce the front group's secondary spectrum, and claim 1 specifies fluorspar for this element. The patent prints only nd and νd; the model's dispersion curve is the catalog CaF2 fit.
 
-### L2 — Biconcave Negative Singlet
+### L2 (component II) — Biconcave Negative Singlet
 
 nd = 1.78590, νd = 44.2. Glass: S-LAH51 (OHARA) catalog equivalent; the production melt is unidentified. f = −155.70 mm.
 
 This high-index negative element follows the fluorite collector and balances the front group's primary color against L1 and L3, as the patent's condition (2) on the Abbe-number difference requires. Its first surface, R3, is the surface the patent identifies as strongly affecting spherical aberration and astigmatism.
 
-### L3 — Biconvex Positive Singlet
+### L3 (component III) — Biconvex Positive Singlet
 
 nd = 1.48749, νd = 70.1. Glass: S-FSL5 (OHARA) catalog equivalent; the production melt is unidentified. f = +194.17 mm.
 
 The second positive element completes the front group. With L1 it gives the patent's positive-element mean νd of 82.6, against 44.2 for L2. Condition (4) limits the ratio of its two radii to weaken the rear surface's contribution to spherical aberration.
 
-### L4 — Negative Meniscus, Rear Cemented Component
+### L4 (component IV) — Negative Meniscus, Rear Cemented Component
 
 nd = 1.51633, νd = 64.1. Glass: K-BK7 (SUMITA) catalog equivalent; the production melt is unidentified. f = −124.66 mm.
 
 This thin negative meniscus, concave toward the object, begins the rear group and is cemented to L5. Condition (5) holds its front radius between 0.14f and 0.17f (here 0.160f) so that the rear group corrects the spherical aberration left under-corrected by the front group without over-correcting coma.
 
-### L5 — Positive Meniscus, Rear Cemented Component
+### L5 (component V) — Positive Meniscus, Rear Cemented Component
 
 nd = 1.72151, νd = 29.2. Glass: S-TIH18 (OHARA) catalog equivalent; the production melt is unidentified. f = +317.11 mm.
 

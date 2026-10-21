@@ -697,6 +697,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "BASF3",
   "K-LaK10",
   "E-FD80",
+  "SBF1",
   "K-CSK120",
   "K-LaSFn16",
   "PBM22",

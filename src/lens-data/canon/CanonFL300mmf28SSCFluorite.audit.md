@@ -78,3 +78,28 @@ The analysis now adds that Examples 2 and 3 are each six elements in five groups
 Found correct: name (matches the brochure's "FL 300mm f/2.8 S.S.C. FLUORITE"); `key`; subtitle; `canon-fl` only, because the FD version is a separately marketed successor whose manual describes new glass, and FL lenses fitting FD bodies is body compatibility, not a production variant; `135-full-frame`; focal length 300 / 300; f/2.8; `closeFocusM` 3.5; f/32 minimum aperture; 12 blades; `patentNumber` "US 3,868,174 A" (a corpus form); `patentYear` 1975 (granted 25 February 1975); author "Hideo Yokota" (kept at the owner's request); the analysis header dates (priority 3 August 1972, JP 47-77308; filed 24 July 1973; Appl. No. 382,284). Engine values are unchanged: EFL 299.964 mm, f/2.8, paraxial BFD 71.196 mm, stop radius 21.29 mm, and wide-open transmission 58.3 % at 4.1° (vig.mjs). audit:surface reports no errors, the image-circle check is clear at 4.1°, and the page renders with the new labels in the inspector.
 
 Open: the drop-in filter's thickness and position; whether the FD optics differ from the FL; the brochure says a special Extender 2× attaches to this lens, but there is no FL-mount converter in the corpus, so `acceptsTeleconverters` stays unset; the engine's built half-field reads 8.53°, against the patent's 4.12°.
+
+## 2026-10-21 — Second review: diagram, labels and movement
+
+Independent look at the live page (`/lens/canon-fl-300mm-f28-ssc-fluorite`) beside FIG. 1 of US 3,868,174 on sheet 1 (PDF page 2, 300 dpi), with the component notation taken from the summary (PDF page 5) and claim 1 (page 8). No maker construction diagram exists for this lens (the earlier record notes that the Canon Camera Museum GIFs return 404), so the patent figure governs.
+
+Silhouette. Re-measured on the sheet-1 figure rather than the cover: the vertex crossings give 0.2267 mm/px at ×3 (s1→s9 879.5 px for 199.40 mm; s1→s6 310 px for 70.18 mm gives 0.2264). Averaging the top and bottom rims (the drawn axis sits about 3 px off centre) gives L1 246 px = 55.8 mm, L2 228.5 px = 51.8 mm on its flat land, L3 about 225 px = 51.0 mm (a leader line touches its top tip) and the rear doublet 65 px = 14.7 mm, against the stored 55 / 50 / 50 / 14.5 mm. Every difference is under 4 %, inside measurement noise, so no rim changed. The live page matches the figure in every visible respect: L1 is the tallest element with a near-knife edge (1.3 mm at 55 mm); L2 is a squared biconcave block with both faces at one height; L3 is the strongly front-convex positive with a thin edge (2.8 mm); and the rear doublet is square-cut on a single height. The drawn stop opening is 109 px = 24.7 mm against the engine's 21.29 mm f/2.8 iris, which is not an editable field. clearap2 at the patent's 4.12° (chief ray reaching 21.786 mm) flags nothing; the rear doublet vignettes the corner bundle by 35–41 % on one side, which is real and stays. clearap without root selection locks onto a spurious chief ray (image height 65 mm) and prints false BLOCKS-CHIEF flags, as the batch note predicts for this long telephoto.
+
+Labels and brackets. The patent designates the elements as components I, II and III of the positive front lens group and IV and V of the negative rear lens group; in Example 1, IV and V are cemented. Before this pass the file had no `groups` or `doublets`, so the diagram drew no brackets and labelled the elements 1–5.
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| Element `diagramLabel` (1–5) | none (diagram showed 1–5) | I, II, III, IV, V | FIG. 1 labels and the summary's "components I … V" |
+| `groups` | none | FRONT I–III (+) on surfaces 1–6; REAR IV–V (−) on 7–9 | Summary and claim 1: front group of positive power, three components; rear group of negative power |
+| `doublets` | none | D1 on surfaces 7–9 | R8 is the only cemented interface; matches the elements' `cemented: "D1"` |
+| Header comment | sd "estimates" | sd follow FIG. 1; label notation explained | This pass |
+
+`name` stays L1–L5 and the analysis headings now name the component of each (for example "L1 (component I)"), so the inspector's L-numbers and the diagram's numerals can be matched.
+
+Found correct: every element `type` agrees with the radii (L1 and L3 biconvex, L2 biconcave, L4 and L5 menisci concave to the object, negative and positive by their focal lengths); all nine surfaces are spherical and none carries an `A` label; the stop is drawn in D6 between III and IV; each `role` is true, including "negative flint" for L2, since the patent assigns flint or heavy lanthanum flint glass to the negative elements. L1's `apd: "patent"` stands on claim 1 ("said biconvex single lens being a fluorspar"); no other element is tagged and the patent designates no other special glass. The inspector for elements 1, 4 and 5 shows the expected type, glass, focal length, the APD (PATENT) badge on L1 and DOUBLET D1 on L4 and L5.
+
+Movement. The model is infinity-only (keyframes [0, 1] with no variable gaps), and the patent prints no close-focus spacing. With focus at the far end, the slider still reads ∞ with the end label "Not modeled", and the group-movement overlay reports two groups and no modeled focus or zoom movement. Nothing moves, as intended.
+
+Engine values are unchanged: half-field 8.53°, f/2.8, entrance-pupil radius 53.565 mm, stop radius 21.29 mm, and wide-open transmission 58.3 % at 4.1° (vig.mjs). audit:surface reports no errors, the image-circle check is clear and field coverage is 100 %.
+
+Open: the engine half-field of 8.53° is about twice the patent's 4.12°; the drop-in filter is still unmodeled.

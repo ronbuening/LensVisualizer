@@ -138,3 +138,56 @@ Open: the Leica wiki page returned HTTP 403 to a direct fetch, so the f/16 minim
 on its search-indexed text; the blade count and filter size were not settled and are not stored. Wikipedia's
 production count (about 1,757) conflicts with the wiki serial table (about 2,450) and an auction house (about 2,500);
 the file stores no production count.
+
+## 2026-10-21 — Second review: diagram, labels and movement
+
+The local page (`/lens/leica-noctilux-50mm-f12`, infinity, `focus=1`, `mv=focus`, inspectors for L1 and L6) was
+compared with the unnumbered drawing on PDF p. 1 and the text on pp. 2–3. The drawing was re-measured at 300 and 600
+dpi with the axis on row 1732 (300 dpi). Vertex crossings sit at x = 797 (S1) and 1449 (S10), so 52.104 mm over 652 px
+gives 0.0799 mm/px. S3 to S4 gives 0.081 and S6 to S10 gives 0.079, so the scale holds to about ±1.5 %.
+
+Rims re-measured (bottom / top silhouette, mm): L1 26.8 / 26.7 against 26.5; L2 23.6 / 23.4 against 23.5; L3 outer
+land 25.6 / 25.5 against the S4 junction 23.5; S5 curve end 14.2 / 14.4 against 14.0; drawn iris edge 12.4 / 13.0
+against the engine stop 12.69; S6 curve end 13.7 / 13.9 against 12.5; L4 top 20.4 / 20.3 against S7 20.4; L5 18.8 /
+18.8 against S8 18.8; L6 16.6 / 16.0 against 16.5. On both sides the S6 corner, where the concave curve meets the
+chamfer, lies on the R = −23.4 mm circle at 13.9 mm: its sag there, 4.69 mm, puts it 117 px (600 dpi) ahead of the S6
+vertex, as drawn. S6 was the only rim more than 8 % from the drawing, so it was the only one changed.
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| S6 `sd` | 12.5 | 13.9 | Drawn curve end 13.7 / 13.9 mm on both sides; the rendered L4 front now reaches the drawn corner before the bevel to the S7 rim |
+| S1 `label` | 1 | 1A | Patent p. 2: "surfaces No. 1 and No. 10 are aspheric"; corpus `A` suffix rule (template) |
+| S10 `label` | 10 | 10A | Same |
+| L1 `type` | Positive Meniscus | Positive Meniscus (1× Asph) | One aspheric face (S1) |
+| L6 `type` | Biconvex Positive | Biconvex Positive (1× Asph) | One aspheric face (S10) |
+| `doublets` | none | D1 = S3–S5, D2 = S6–S8 | Patent p. 2 lists "cemented negative meniscus, stop, cemented negative meniscus"; names match the elements' `cemented` values |
+
+The S6 change was validated before editing: audit:surface with S6 = 13.9 reported no errors (14.2 also passes), and
+clearap at Y = 21.63 mm (ω 23.15°) shows the axial marginal ray at 12.22 mm and the full-field bundle at 13.68 mm on
+S6. The old 12.5 mm rim cut 14 % of one side of that bundle; the new rim no longer does. No CLIPS-AXIAL or BLOCKS-CHIEF
+before or after. The S6 rim sits 1.30 mm ahead of the iris plane; the drawn corner is about 0.9 mm from the bar centre.
+vig.mjs reads 100 / 99.0 / 98.4 / 97.9 / 91.7 / 81.8 / 69.8 / 55.7 / 38.0 % at 0–23.2° both before and after, because
+the L6 rims set the wide-open corner fall-off (74–78 % one-sided at S9/S10). Engine EFL 52.022 mm, FOPEN 1.2, stop
+radius 12.687 mm and half-field 24.53° are unchanged; audit:surface is OK, image-circle 0 undersized, field coverage
+≥ 99 % at the one station. S1 and S10 were not touched, so the asphere conversion range stays inside the stored rims.
+
+Retained, with reasons. L3 is drawn about 2 mm taller than L2, on a flat rear land, and L4 about 1.5 mm taller than L5.
+The renderer joins an element's two rim points with one straight edge, and a cemented junction has one `sd`, so
+neither step can be drawn. Raising S4 would slope L2's top, and S5 cannot rise much past 14 mm because its rim would
+reach the iris (sag 6.6 mm of the 8.24 mm gap at 14 mm). L1 and L6 keep equal front and rear rims, square-cut as drawn.
+
+Found correct. The stop: the drawn iris bar centre lies 100 px (8.0 mm) after S5 and 73 px (5.8 mm) before S6, which
+matches the entrance-pupil derivation (8.239 + 5.801 mm). Surface labels follow the patent's r1–r10 numbering, with the
+stop unnumbered. The patent names no elements or groups (only r/d symbols in the drawing and V/H surface classes in
+the text), so L1–L6 and no `groups` brackets were kept; the D1/D2 doublet brackets cover the two compound components.
+Element types agree with the radius signs. Roles agree with p. 2: both aspheres contribute negative third-order
+spherical aberration, one as far forward and one as far back as possible. No `apd` tag, correctly; the patent names
+no special dispersion. Movement: the patent gives only the infinity state and the file has no variable gaps, so
+nothing moves at `focus=1` or in the `mv=focus` overlay. The slider reads ∞ at one end and "Not modeled" at the
+other, with the description "Patent infinity state only; the production lens focuses to 1.0 m".
+
+Open: none.
+
+## 2026-10-21 — Glass backfill: L1 on TAF5
+
+L1 (ne 1.821 / νe 45.2) now names Hoya TAF5 as a catalog proxy: at C′/e/F′ it is 0.0008 lower in ne and 1.1 higher in νe, inside the resolver tolerance, and the element stays anchored at the patent index (EFL 52.0217 mm, f/1.2, stop 12.687 mm unchanged). TAF5, J-LASF09A and S-LAH59 tie on index; TAF5 was chosen as the established Hoya row. L2/L5 (ne 1.900 / νe 40.5) and L4 (ne 1.844 / νe 30.0) have no catalog row within tolerance in the repo catalog or the local HOYA, OHARA, SUMITA and Hikari files (nearest S-LAH92 and NBFD26 miss νe by more than 3), so they stay `Unmatched`. Three of six elements now trace on catalog dispersion curves.

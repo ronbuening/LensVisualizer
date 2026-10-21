@@ -1996,4 +1996,15 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "HOYA Zemax catalog 2026-07-07 including obsolete glasses (HOYA20260707_include_obsolete.agf); vendor formula-1 polynomial for E-FD80.",
   },
+  /* October 2026 patent-batch coverage addition (DE 1 258 134 B original Sironar L2/L5). */
+  {
+    name: "SBF1",
+    vendor: "Hoya",
+    polynomial: [2.361583, -0.008786192, 0.01629969, -0.0001317, 0.0000653375, -0.00000253517],
+    nd: 1.551151,
+    vd: 49.517289,
+    code6: "551495",
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses (HOYA20260707_include_obsolete.agf); vendor formula-1 polynomial for the obsolete SBF1 short flint.",
+  },
 ];

@@ -17,8 +17,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Indices and Abbe numbers are the patent's e-line values. L3 and L6 carry coordinate-equal
  * e-line catalog equivalents (SF56A, S-LAL9); L1, L2, L4 and L5 match no catalog row.
  * The stop is not printed: it is placed where the paraxial entrance pupil falls 0.722
- * (37.544 mm) behind surface 1, splitting the 0.270 gap 8.239 + 5.801 mm. Semi-diameters
- * are not printed and follow the patent drawing's proportions.
+ * (37.544 mm) behind surface 1, splitting the 0.270 gap 8.239 + 5.801 mm; the drawn iris
+ * sits at the same split. Semi-diameters are not printed and follow the patent drawing's
+ * proportions; S5 and S6 end where the drawn concave curves meet their chamfers. The
+ * patent's "cemented negative meniscus" components are bracketed D1 and D2.
  * Back focus is the derived paraxial value. The patent gives the infinity state only.
  */
 const LENS_DATA = {
@@ -59,12 +61,12 @@ const LENS_DATA = {
       id: 1,
       name: "L1",
       label: "Element 1",
-      type: "Positive Meniscus",
+      type: "Positive Meniscus (1× Asph)",
       nd: 1.821,
       vd: 45.2,
       indexReference: "e",
       focalLengthMm: 95.77,
-      glass: "Unmatched (ne 1.821 / νe 45.2; no catalog row within the printed precision)",
+      glass: "TAF5 (HOYA catalog proxy; ne 1.821 / νe 45.2; production supplier unspecified)",
       role: "Front positive meniscus with an aspheric front surface that contributes negative third-order spherical aberration.",
     },
     {
@@ -123,7 +125,7 @@ const LENS_DATA = {
       id: 6,
       name: "L6",
       label: "Element 6",
-      type: "Biconvex Positive",
+      type: "Biconvex Positive (1× Asph)",
       nd: 1.694,
       vd: 54.6,
       indexReference: "e",
@@ -134,7 +136,7 @@ const LENS_DATA = {
   ],
   surfaces: [
     {
-      label: "1",
+      label: "1A",
       R: 59.838895281933254,
       d: 6.76,
       sd: 26.5,
@@ -187,7 +189,7 @@ const LENS_DATA = {
       label: "6",
       R: -23.400000000000002,
       d: 1.612,
-      sd: 12.5,
+      sd: 13.9,
       medium: 4,
     },
     {
@@ -211,7 +213,7 @@ const LENS_DATA = {
       medium: 6,
     },
     {
-      label: "10",
+      label: "10A",
       R: -55.79399141630901,
       d: 27.66826579668996,
       sd: 16.5,
@@ -238,6 +240,10 @@ const LENS_DATA = {
     fStops: [1.2, 2, 2.8, 4, 5.6, 8, 11, 16],
     maxFNumber: 16,
   },
+  doublets: [
+    { text: "D1", fromSurface: "3", toSurface: "5" },
+    { text: "D2", fromSurface: "6", toSurface: "8" },
+  ],
   layout: {
     yScFill: 0.72,
   },

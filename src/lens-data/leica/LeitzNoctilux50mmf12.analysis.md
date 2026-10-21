@@ -26,7 +26,7 @@ The patent text describes a **52 mm** focal length for a **24×36 mm** image. Th
 
 ## Optical Architecture and Source Conventions
 
-The four groups are L1 | L2+L3 | L4+L5 | L6: a positive front singlet, a weakly negative cemented front doublet, the stop, a weakly negative cemented rear doublet and a positive rear singlet. This is a modified double-Gauss layout with six elements, eight glass-air surfaces and two cemented interfaces (S4 and S7).
+The four groups are L1 | L2+L3 | L4+L5 | L6: a positive front singlet, a weakly negative cemented front doublet (D1 on the diagram), the stop, a weakly negative cemented rear doublet (D2) and a positive rear singlet; the patent calls the two cemented components negative menisci. This is a modified double-Gauss layout with six elements, eight glass-air surfaces and two cemented interfaces (S4 and S7).
 
 In the patent table, d is the distance **to the preceding surface**. The first entry, d = −0.722, gives the position of surface 1 relative to the entrance pupil, not a thickness. The nine physical intervals are 0.130, 0.004, 0.226, 0.042, 0.270, 0.031, 0.181, 0.001 and 0.117. Their sum, 1.002, becomes a 52.104 mm vertex-to-vertex length at the 52 mm scale.
 
@@ -46,7 +46,7 @@ The data format has no implicit surface type. Each surface is therefore stored a
 
 ### L1: positive front aspherical meniscus
 
-ne = 1.821, νe = 45.2. Glass: unidentified high-index glass; TAFD10 and TAF5 are only loose analogues. Standalone focal length about +95.8 mm.
+ne = 1.821, νe = 45.2. Glass: unidentified high-index lanthanum glass, traced on Hoya TAF5 as a catalog proxy (about 0.0008 lower in ne, 1.1 higher in νe). Standalone focal length about +95.8 mm.
 
 An aspheric front surface (S1) and a spherical rear surface (R2 = 4.571 normalized) make it a positive meniscus 6.76 mm thick. The patent puts one asphere as far forward as possible, where its contribution to the third-order spherical-aberration coefficient is negative. The 26.5 mm semi-diameter follows the proportions of the patent drawing. Leica's 2016 account says one of the two aspherical elements was made from a high-index special glass; L1 is the higher-index of the two.
 
@@ -82,17 +82,17 @@ A spherical front surface (R = 1.180 normalized) and the aspheric rear surface S
 
 ## Glass Map
 
-The patent gives e-line indices and Abbe numbers (ne, νe). The data file keeps them in e-line form (`indexReference: "e"`) without converting them to d-line. Two positions have catalog rows that reproduce the printed pair at C′/e/F′ within its precision: L3 (SF56A) and L6 (S-LAL9). They are labelled as catalog equivalents, not as the glasses Leitz used, and the chromatic trace uses their dispersion curves. L1, L2, L4 and L5 match no catalog row; the nearest for L1 (TAF5, TAFD10) is about 0.001 off in ne and 1 off in νe. They stay `Unmatched` and are traced from ne and νe. Every element is traced at C′/e/F′ whichever tier it uses, so the mix does not combine reference lines. The two very-high-index positions, L2 and L5 at ne = 1.900, have no close modern catalog equivalent. No partial-dispersion data are printed, so the model makes no claim about secondary spectrum.
+The patent gives e-line indices and Abbe numbers (ne, νe). The data file keeps them in e-line form (`indexReference: "e"`) without converting them to d-line. Two positions have catalog rows that reproduce the printed pair at C′/e/F′ within its precision: L3 (SF56A) and L6 (S-LAL9). They are labelled as catalog equivalents, not as the glasses Leitz used, and the chromatic trace uses their dispersion curves. L1 has no exact match; it is traced on Hoya TAF5 as a catalog proxy, about 0.0008 lower in ne and 1.1 higher in νe, with the element held at the patent's ne. L2, L4 and L5 match no catalog row within the resolver's tolerance; they stay `Unmatched` and are traced from ne and νe. Every element is traced at C′/e/F′ whichever tier it uses, so the mix does not combine reference lines. The two very-high-index positions, L2 and L5 at ne = 1.900, have no close modern catalog equivalent. No partial-dispersion data are printed, so the model makes no claim about secondary spectrum.
 
 ## Focus Mechanism and Stop Position
 
 The patent gives the infinity state only and no focus travel. The production lens focuses to 1.0 m. That distance is product metadata; the close-focus state is not modeled. The floating rear group described in Leica's 2016 release belongs to the 2008 f/0.95 lens, not this one.
 
-The stop position is not printed. The patent's first d = −0.722 places the entrance pupil 0.722 (37.544 mm) behind surface 1. Imaging that point back through S1–S5 puts the stop 8.239 mm after S5 and 5.801 mm before S6, splitting the 14.04 mm central gap. The stop radius of 12.687 mm gives f/1.2 for real marginal rays; the paraxial f-number is about 1.19. The exit pupil lies 29.06 mm in front of the last vertex.
+The stop position is not printed. The patent's first d = −0.722 places the entrance pupil 0.722 (37.544 mm) behind surface 1. Imaging that point back through S1–S5 puts the stop 8.239 mm after S5 and 5.801 mm before S6, splitting the 14.04 mm central gap. The iris in the patent drawing sits at the same split, about 8.0 mm after S5 and 5.8 mm before S6 at the drawing's scale. The stop radius of 12.687 mm gives f/1.2 for real marginal rays; the paraxial f-number is about 1.19. The exit pupil lies 29.06 mm in front of the last vertex.
 
 ## Model Scope and Limitations
 
-No clear diameters are printed. The semi-diameters (S1–S10: 26.5, 26.5, 23.5, 23.5, 14.0, 12.5, 20.4, 18.8, 16.5, 16.5 mm) follow the proportions of the patent drawing and are not factory measurements. The full f/1.2 axial bundle passes every surface without clipping.
+No clear diameters are printed. The semi-diameters (S1–S10: 26.5, 26.5, 23.5, 23.5, 14.0, 13.9, 20.4, 18.8, 16.5, 16.5 mm) follow the proportions of the patent drawing and are not factory measurements. The concave faces either side of the stop, S5 and S6, end where the drawing's curves meet their bevelled rims. The drawing also shows L3 standing about 2 mm above L2 and L4 about 1.5 mm above L5 on flat lands; the cross-section joins each element's rim points with one straight edge and cannot show those steps. The full f/1.2 axial bundle passes every surface without clipping.
 
 The patent's 22.5° half-field reaches an image height of 21.02 mm. The 24×36 mm corner (21.63 mm) needs about 23.2°. At full aperture the rims of the rear singlet cut the oblique bundle heavily toward the corner. Strong wide-open corner vignetting is expected in a 1960s f/1.2 lens of this size.
 

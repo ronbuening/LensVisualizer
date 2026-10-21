@@ -151,3 +151,63 @@ publishes no image-circle figure, and the corpus uses the ideal value for patent
 as the Canon EF 15 mm; the traced circle is 12.39 mm.
 
 Open: none.
+
+## 2026-10-21 — Second review: diagram, labels and movement
+
+The local page was shot at 2× and set beside Figure 7 (PDF page 15, the native 200 dpi raster) and Sigma's section
+drawing from the package. Figure 7 was profiled again on the lower side, which has no leader lines. Vertex crossings
+put surface 1 at 398 px and surface 23 at 999 px, 7.42 px/mm for 81.00 mm; surfaces 1 to 11 give 7.40 px/mm. Every
+other vertex falls within 1 px of its prescription position.
+
+### Silhouette
+
+| Element (surfaces) | Stored | Figure 7 | Site before this pass |
+|---|---:|---:|---|
+| L1 (1 / 2) | 21.5 / 12.5 | 21.8 front; rear flat land from 12.3–12.5 up to the rim | pointed crescent |
+| L2 (3 / 4) | 12.3 / 12.3 | 12.1–12.4 front; rear curve ends at 10.2–10.5 below a flat land | rear rim over L3's front rim |
+| L3 (5–6) | 10.2 | 10.4 | matches |
+| L4–L5 (7–9) | 7.6 | 7.4; L5's rear curve ends at 5.4 below a land | flat top 1.2 mm longer |
+| L6–L7 (10–12) | 6.9 | 6.5 | matches |
+| L8–L9 (13–15) | 5.0 | 4.7 | matches |
+| L10 (17–18) | 8.1 | 7.7 | matches |
+| L11–L12 (19–21) | 8.1 | 7.95 | matches |
+| L13 (22–23) | 8.5 | 8.5 | matches |
+
+One value changed. Surface 4 went from 12.3 to 10.4 mm, where Figure 7 ends L2's rear curve. On the lower side the land
+runs from 76 to 89 px (10.2–12.0 mm) and on the upper side from 78 to 92 px (10.5–12.4 mm), at the column where R 20.8
+reaches 10.4 mm. Sigma's drawing shows the same land, with the curve ending near 9.7 mm. At 12.3 mm the rear rim sat
+1.0 mm behind L3's front rim and overlapped it on the page. Figure 7 leaves a gap there. At 10.4 mm the rim ends 0.2 mm
+ahead of L3. The site now draws L2's step as a short bevel from 12.3 to 10.4 mm. The surviving meridional rays reach
+10.00 mm on surface 4 at 90°, so the rim does not clip. The engine transmission curve is the same before and after:
+100, 87.5, 77.1, 68.8, 56.3, 54.2 and 46.9% at 0°, 45°, 60°, 69°, 81°, 84° and 90°. The surviving ray count is also
+identical at every degree from 0° to 90°. The surface validator reports no error.
+
+Two other places differ from the figure but were left unchanged:
+
+- L1's stepped flange cannot be drawn. The renderer joins the 21.5 mm front rim to the 12.5 mm rear rim with a straight
+  edge, so L1 shows as a crescent. Surface 2 (R 13.3 mm) cannot reach the flange height.
+- L5's rear land was not adopted. Figure 7 ends L5's rear curve at 5.4 mm, but rays reach 6.07 mm there at 88°. Any
+  value below 7.6 mm would also turn L5's flat top into a 7 mm bevel. The flat top at 7.6 mm is the closer picture.
+
+The drawn height order holds on the page: L1 > L2 > L3 > L4–L5 > L6–L7 > L8–L9, and L13 is the tallest element in G2.
+
+### Labels, tags and movement
+
+The `G1 negative` bracket covers surfaces 1–15 and `G2 positive` covers 17–23. That matches the Figure 7 brackets and
+the patent's front group G1 (negative) and rear group G2 (positive). D1–D4 cover surfaces 7–9, 10–12, 13–15 and 19–21,
+the four cemented interfaces of the table. Figure 7 and Sigma's drawing carry no pair labels, so D1–D4 are the file's
+own consistent labels. The patent names only Lm (claim 1, the front meniscus) and LP (claim 2), so L1–L13 stay
+sequential. The roles of L1 and L12 cite Lm and LP, and the patent uses "L" for nothing else. All 13 `type` strings
+agree with the signs of R. There are no aspheres and no `A` labels. The stop sits between L9 and L10, where Figure 7
+draws S. L12's `apd: "patent"` was re-checked: claim 2 sets conditions (3) νd > 62.5 and (4) PgF > −0.002νd + 0.6675;
+¶0023 calls LP's glass low-dispersion with a high partial dispersion ratio; and Figure 7's LP leader ends on that
+element. Sigma's drawing marks the same element in blue. The inspectors for elements 2 and 12 show the expected
+type, glass, focal length and role.
+
+Nothing moves. The focus slider runs from ∞ to "Not modeled", and the group-movement overlay reports no focus or zoom
+movement. Engine values are unchanged: paraxial EFL 4.4458 mm, f-number 2.864 at the 4.75 mm stop radius, nominal
+f/2.9, half-field 90°. The bounding-sphere chief-ray solve converges from 0° to 90°, and the 90° chief ray lands at
+6.197 mm. `audit:image-circle` passes; `audit:field-coverage` skips fisheye projections by design.
+`checks.maxRimAngleDeg` 71 is still needed for surface 2 and was not changed.
+
+Open: none.

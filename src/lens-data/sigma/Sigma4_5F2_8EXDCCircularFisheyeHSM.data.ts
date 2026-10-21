@@ -8,7 +8,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Semi-diameters are not printed: they are read from Fig. 7 and Sigma's section drawing; the
  * cemented pair before the stop (surfaces 13-15) is square-cut at 5.0 mm as Fig. 7 draws it.
  * The rear of L1 (surface 2, R 13.3 mm) runs to 12.5 mm as both drawings show, a 70.0° rim
- * slope, so checks.maxRimAngleDeg is 71; the default 90% gap-sag limit is kept.
+ * slope, so checks.maxRimAngleDeg is 71; the default 90% gap-sag limit is kept. The rear of L2
+ * (surface 4) ends at 10.4 mm, where both drawings end its curve below a flat land, so L2 stays
+ * clear of L3's front rim.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -232,7 +234,7 @@ const LENS_DATA = {
     {
       "label": "4",
       "R": 20.8029,
-      "sd": 12.3,
+      "sd": 10.4,
       "d": 3.5279
     },
     {

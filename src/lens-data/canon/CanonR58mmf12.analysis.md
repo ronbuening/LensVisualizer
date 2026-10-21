@@ -21,7 +21,7 @@ Both printed copies of the prescription give R10 = −1.528, and the patent's pe
 
 ## Optical Architecture
 
-The patent describes a large-aperture modified Gaussian lens. Seven elements form five air-separated groups, ordered 1+2+2+1+1. The patent itself speaks of four groups ("7枚4群"), counting the two rear singlets as one functional group; physically they are separated by a 0.116 mm air gap.
+The patent describes a large-aperture modified Gaussian lens. Seven elements form five air-separated groups, ordered 1+2+2+1+1. The patent itself speaks of four groups ("7枚4群"), counting the two rear singlets as one functional group; physically they are separated by a 0.116 mm air gap. The diagram brackets the patent's four groups as G1–G4 and its two cemented pairs as D1 and D2. The patent describes G2 and G3 as positive menisci by shape, but as units G2 is weakly negative (f ≈ −90 mm) and G3 nearly afocal (f ≈ −3.3 m); G1 (+80 mm) and G4 (+51 mm) carry the positive power.
 
 The front meniscus supplies positive power ahead of a cemented positive/negative doublet. A reversed negative/positive doublet follows the central air space, and two positive rear singlets complete the system. All surfaces are spherical; R9 is flat. The patent lists no filter or cover plate.
 
@@ -95,7 +95,7 @@ The patent gives only the infinity prescription. All spacings stay fixed at infi
 
 ## Iris, Apertures and Coverage
 
-The patent does not give the iris position or any clear apertures. The iris is placed at the midpoint of the central 14.674 mm air space, where Figure 1 and Canon's section show it. Its 14.397 mm radius is derived from f/1.2 by a real marginal ray; the paraxial f-number at that radius is f/1.223. The other semi-diameters follow the height ratios of Figure 1, which Canon's section repeats, scaled so that the front element passes the f/1.2 axial beam; the figure is drawn about 10 % short vertically against its own axial spacings. The two faces next to the iris stay at 14.65 mm, where their sags already fill 90 % of the central air space; Figure 1 draws them about 7 % higher.
+The patent does not give the iris position or any clear apertures. The iris is placed at the midpoint of the central 14.674 mm air space, where Figure 1 and Canon's section show it. Its 14.397 mm radius is derived from f/1.2 by a real marginal ray; the paraxial f-number at that radius is f/1.223. The other semi-diameters follow the height ratios of Figure 1, which Canon's section repeats, scaled so that the front element passes the f/1.2 axial beam. Figure 1 draws its curves to the same scale as its axial spacings, but its rims fall inside the f/1.2 beam: the front element is drawn about 22.5 mm high against a 24.1 mm marginal-ray height. The two faces next to the iris stay at 14.65 mm, just outside the f/1.2 axial ray (14.47 mm), where their sags already fill 90 % of the central air space. Figure 1 ends those concave faces lower and climbs to the flat tops of the doublets by a chamfer and a small step, which the diagram draws as one straight bevel, as Canon's section also does.
 
 The full f/1.2 axial beam passes every surface. Off-axis beams are vignetted at the rims of the front element and the two rear singlets (39.6 % geometric transmission at 20.8° wide open); the model does not reconstruct the real barrel, so the vignetting at the corners is indicative only. The patent's 23° half-field corresponds to a 24.6 mm image height, beyond the 21.6 mm half-diagonal of the 135 format.
 

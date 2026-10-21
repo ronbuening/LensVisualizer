@@ -77,7 +77,7 @@ const LENS_DATA = {
       vd: 49.3,
       indexReference: "e",
       focalLengthMm: -25.93,
-      glass: "Unmatched (short flint of anomalous dispersion per the patent, ne 1.5543 / νe 49.3; no coordinate-equal catalog row)",
+      glass: "SBF1 (HOYA catalog proxy; short flint of anomalous dispersion per the patent, ne 1.5543 / νe 49.3; production supplier unspecified)",
       role: "Negative inner element of the front cemented doublet; anomalous-dispersion flint per the patent.",
       cemented: "D1",
       apd: "patent",
@@ -117,7 +117,7 @@ const LENS_DATA = {
       vd: 49.3,
       indexReference: "e",
       focalLengthMm: -24.29,
-      glass: "Unmatched (short flint of anomalous dispersion per the patent, ne 1.5543 / νe 49.3; no coordinate-equal catalog row)",
+      glass: "SBF1 (HOYA catalog proxy; short flint of anomalous dispersion per the patent, ne 1.5543 / νe 49.3; production supplier unspecified)",
       role: "Negative inner element of the rear cemented doublet; anomalous-dispersion flint per the patent.",
       cemented: "D2",
       apd: "patent",
@@ -224,6 +224,14 @@ const LENS_DATA = {
     fStops: [5.6, 8, 11, 16, 22, 32, 45],
     maxFNumber: 45,
   },
+  groups: [
+    { text: "FRONT CELL", fromSurface: "1", toSurface: "5" },
+    { text: "REAR CELL", fromSurface: "6", toSurface: "10" },
+  ],
+  doublets: [
+    { text: "D1", fromSurface: "1", toSurface: "3" },
+    { text: "D2", fromSurface: "8", toSurface: "10" },
+  ],
   layout: {
     yScFill: 0.7,
   },

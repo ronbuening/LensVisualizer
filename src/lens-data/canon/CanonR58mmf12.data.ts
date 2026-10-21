@@ -9,9 +9,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * catalog glasses, so they are stored as nd / νd.
  * The patent prints no stop, clear apertures or back focus: STO is placed at the midpoint of the central air gap
  * (Fig. 1), its radius is derived from f/1.2, and the last gap is the computed paraxial back focus. Semi-diameters
- * follow Figure 1's height ratios (Canon's published section agrees), set against the f/1.2 axial ray: Fig. 1 is
- * drawn about 10 % short vertically, so its rims are scaled from the front element. The front doublet is square-cut
- * at 22 mm as drawn; the stop-side faces stay at 14.65 mm, where their sags fill 90 % of the central gap.
+ * follow Figure 1's height ratios (Canon's published section agrees), set against the f/1.2 axial ray: Fig. 1's
+ * curves are drawn to its axial scale, but its rims sit inside the f/1.2 beam (front element 22.5 mm against a
+ * 24.1 mm marginal height), so its rim heights are used as ratios scaled from the front element. The front
+ * doublet is square-cut at 22 mm as drawn; the stop-side faces stay at 14.65 mm, just above the f/1.2 axial ray
+ * (14.47 mm), where their sags fill 90 % of the central gap; Fig. 1 ends those concave faces lower (0.61 of the
+ * front doublet), with a chamfer and step up to the flat tops.
+ * Group brackets G1–G4 are the patent's four groups (第1群–第4群; G4 holds the two air-separated rear singlets, so
+ * there are five physical groups); D1/D2 are its two cemented pairs. The patent designates elements only by the
+ * subscripts of d1–d7 and N1–N7, so they are L1–L7 here and the diagram shows 1–7.
  * Infinity prescription only; no focus travel is modeled.
  */
 const LENS_DATA = {
@@ -221,6 +227,16 @@ const LENS_DATA = {
     fStops: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
     blades: 8,
   },
+  groups: [
+    { text: "G1", fromSurface: "1", toSurface: "2" },
+    { text: "G2", fromSurface: "3", toSurface: "5" },
+    { text: "G3", fromSurface: "6", toSurface: "8" },
+    { text: "G4", fromSurface: "9", toSurface: "12" },
+  ],
+  doublets: [
+    { text: "D1", fromSurface: "3", toSurface: "5" },
+    { text: "D2", fromSurface: "6", toSurface: "8" },
+  ],
   layout: {
     yScFill: 0.7,
   },

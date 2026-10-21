@@ -175,6 +175,13 @@ const LENS_DATA = {
     fStops: [8, 11, 16, 22, 32],
     maxFNumber: 32,
   },
+  groups: [
+    { text: "G1", fromSurface: "1", toSurface: "2" },
+    { text: "G2", fromSurface: "3", toSurface: "4" },
+    { text: "G3", fromSurface: "5", toSurface: "6" },
+    { text: "G4", fromSurface: "7", toSurface: "8" },
+  ],
+  doublets: [],
   layout: {
     yScFill: 0.7,
   },

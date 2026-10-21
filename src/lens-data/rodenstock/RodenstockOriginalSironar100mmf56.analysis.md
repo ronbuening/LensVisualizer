@@ -23,7 +23,7 @@ No factory radii, clear apertures, glass melts or measured performance have been
 
 ## Optical Architecture
 
-The six-element, four-component layout consists of a front cemented doublet, two separated positive menisci surrounding the stop, and a rear cemented doublet. All ten refracting interfaces are spherical. The long cement-interface radii −774 mm and +142.7 mm are finite curvatures, although the patent drawing shows them as nearly straight lines.
+The six-element, four-component layout consists of a front cemented doublet, two separated positive menisci surrounding the stop, and a rear cemented doublet. The diagram labels the two cemented doublets D1 (L1–L2) and D2 (L5–L6), and brackets the front cell (L1–L3) and rear cell (L4–L6) on either side of the stop; the patent itself numbers only surfaces, thicknesses and airspaces. All ten refracting interfaces are spherical. The long cement-interface radii −774 mm and +142.7 mm are finite curvatures, although the patent drawing shows them as nearly straight lines.
 
 At the patent's e-line indices the isolated air-separated components have focal lengths of −218.618, +100.149, +123.803 and +499.991 mm. Example I therefore has a negative front doublet but a weakly positive rear doublet. The patent's introduction calls both outer cemented components divergent; that general wording does not match the rear doublet of the numerical example, and the prescription is kept as printed. These isolated powers do not add up to the assembled lens's power.
 
@@ -55,7 +55,7 @@ The patent names no glass types and the historical melts are unidentified. Four 
 
 Both are evaluated at C′/e/F′, the reference lines the patent uses. The period Schott SK14 and PK2 sit at the same coordinates; a 1960s Rodenstock lens more likely used those, but the supplier is not documented, and the labels name catalog equivalents only.
 
-The 1.5543/49.3 short flint of L2 and L5 has no catalog row within the printed precision. The nearest, Hoya's obsolete SBF1, is 0.0005 lower in n_e. These two elements therefore use the Abbe-number dispersion estimate, with a normal partial dispersion. The anomalous partial dispersion that the patent credits for the apochromatic correction is not printed and is not modeled, so the model's secondary spectrum does not show that correction.
+The 1.5543/49.3 short flint of L2 and L5 is traced on Hoya's obsolete SBF1 short flint as a catalog proxy: it matches ν_e within 0.04 and lies 0.0005 below the printed n_e, and the e-line elements stay anchored at the patent's index. SBF1's own partial dispersion sits slightly below the normal line (ΔP_g,F ≈ −0.0025), in the direction the patent describes, but the patent prints no partial-dispersion values, so the size of the anomaly in the production glass, and the full apochromatic correction it credits, are not established.
 
 ## Focus Mechanism
 

@@ -94,3 +94,37 @@ Metadata changes:
 Found correct: maker, name (RODENSTOCK prefix; the booklet spells GERONAR-WA), key, subtitle, specs and 4 / 4 counts (patent and both maker sources); `large-format-lens-board` and `4x5` (Copal 1 shutter lens for 4×5 in the booklet); `fNumber` 8 / 8; `fStops` 8–32 and `maxFNumber` 32 (sheet "f8–32", booklet smallest aperture 32); `patentNumber` "DE 3026282 C2", `patentYear` 1982 (C2 published 30.9.82), `authors` Josef Weiß and `assignees` Optische Werke G. Rodenstock (C2 front page; same spellings as the Geronar 210 and Grandagon-N files); filing and publication dates in the analysis header. The focus block has the same layout as RodenstockGeronar210mmf68: `closeFocusM` plus one BF gap on the last surface, paraxial and unit focus. `blades` stays unset because no source gives the Copal 1 iris blade count. After the edits, infinity EFL 89.960 mm, BFD 72.731 mm, f/8.015 paraxial, halfField 41.05° and the stop radius are unchanged, the surface validator reports no errors, and the page renders with the new labels.
 
 Open: whether Rodenstock's production melts were the Schott SSK8 / SF56 / SSK2 types is not documented, so the labels stay catalog equivalents. The aperture blade count is unknown.
+
+## 2026-10-21 — Second review: diagram, labels and movement
+
+Independent look at the lens as the local site draws it, against the DE 3026282 C2 drawing (p2, native 300 dpi; the A1 drawing on p6 is the same figure), the C2 claim table and description (p3) and the Rodenstock booklet construction section (PRC00817 p15, in the package's manufacturer extract).
+
+Silhouette. Scale 0.0442 mm/px from the r1→r8 vertex span (≈818 px for 36.18 mm); dash-dot axis at page row 1954.5. Rims re-measured on 3× crops of both sides, excluding leader lines:
+
+| Surface | Stored sd | Drawn, top / bottom (mm) | Reading |
+| --- | --- | --- | --- |
+| r1 (L1 outer cylinder) | 17.5 | 17.3 / 16.9 | +2 %, kept |
+| r2 | 17.5 | arc ends 15.4 / 14.0, flat rear annulus to the 17.3 / 16.9 cylinder | squared block drawn; full-height r2 reproduces it, kept |
+| r3 (L2 outer) | 12.5 | 12.7 / 12.1 | kept |
+| r4 | 8.5 | arc ends 8.07 / 8.11, then a two-step rear shoulder (9.4–9.9, then 12.1–12.7) | +5 %, inside measurement noise, kept |
+| r5 | 9.6 | arc ends 9.6–9.8 / 9.70, then a two-step shoulder | kept |
+| r6 (L3 outer) | 13.0 | 13.3 / 13.0 | kept |
+| r7 | 16.0 | arc ends at the step, 15.99 / 15.27 | kept |
+| r8 (L4 outer) | 18.0 | 18.1 / 17.7 | kept |
+
+Drawn height order is preserved on the site (L4 17.9 above L1 17.1; L3 13.1 above L2 12.4). The stepped shoulders on L2, L3 and the L4 front face cannot be drawn by the renderer; the straight joins between unequal face heights remove roughly the same glass as the drawn notches. At the 42.5° patent half-field the chief ray reaches 16.51 / 12.80 / 10.59 / 7.49 / 8.47 / 10.72 / 13.97 / 17.15 mm on r1–r8, below every rim, and the f/8 axial marginal ray peaks at 5.62 mm. No `sd` changed.
+
+Labels and brackets. The patent designates only radii r, thicknesses d and air spaces l (lower-case), no element or group names, so the sequential L1–L4 names stay. The file had no `groups` or `doublets`, so the diagram showed no group brackets. Added, following the Rodenstock Geronar 210 convention for air-spaced singlets:
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| `groups` | absent | G1 r1–r2, G2 r3–r4, G3 r5–r6, G4 r7–r8 | four air-separated singlets in the C2 drawing and claim ("Vierlinsiges"); maker 4 elements / 4 groups |
+| `doublets` | absent | empty list | no cemented interface in the patent or the maker section |
+
+Element types and roles agree with the radius signs (L1 R +26.63 / +68.61 and L4 R −86.06 / −25.51 positive menisci; L2 R +27.41 / +17.87 and L3 R −17.36 / −24.79 negative menisci concave to the iris), the thickness claim for L3 (2.331 against 3.600 mm) and the focal lengths (L4 +54.79 mm is the strongest positive). No surface is aspheric and none is marked. The stop is drawn between L2 and L3, nearer r4, as in both drawings. No `apd` tag: the patent names no special glass and the maker section marks none. The element inspector shows ne / νe, focal length, glass and role for all four elements as stored.
+
+Maker section. The booklet's construction drawing shows four separate menisci, the two outer ones larger and of similar height, around the Copal 1 shutter, consistent with the 4 / 4 count and with the outer-to-inner height ratio of the patent drawing.
+
+Movement. Focus is bellows unit focus: index 0 is infinity (BF 72.731 mm) and index 1 the close state (BF 82.698 mm). The probe gives a 1000.00 mm object-to-image distance and −0.111× at the close state; the back-focus gap grows toward close focus and nothing else moves. The movement overlay shows all four groups translating together by 9.97 mm toward the object, and the slider reads ∞ to 1.00 m. EFL 89.960 mm, f/8 (paraxial 8.015), halfField 41.05° and the 4.264 mm stop radius are unchanged; the wide-open transmission curve is unchanged (97.9 % at 34.7°, 72.9 % at 40.4°, 13.5 % at 43.3°). The surface validator, image-circle (85.00 mm of 85.00 mm) and field-coverage audits pass.
+
+Open: the patent's stepped rims remain approximated by straight joins.
