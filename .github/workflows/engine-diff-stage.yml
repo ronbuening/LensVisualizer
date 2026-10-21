@@ -28,6 +28,10 @@ on:
         description: "Number of shards, 1 to 64. Empty: 8 for tier s, 32 for tier f"
         required: false
         type: string
+      lens:
+        description: "Verification only: run one lens id"
+        required: false
+        type: string
       exceptions:
         description: "Lens ids the base engine cannot build, separated by spaces. A pair is host+converter"
         required: false
@@ -90,7 +94,7 @@ jobs:
   shard:
     needs: plan
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 360
     strategy:
       fail-fast: false
       matrix:
@@ -109,6 +113,7 @@ jobs:
       # written as they were typed. Globbing is off, so an id is only ever a word of the input.
       - env:
           SHARD: ${{ matrix.shard }}/${{ needs.plan.outputs.count }}
+          LENS: ${{ inputs.lens }}
         run: |
           set -f
           {
@@ -118,7 +123,7 @@ jobs:
             echo "## Engine-diff transitions"
             printf '%s\n' "$TRANSITIONS"
           } > "$RUNNER_TEMP/engine-diff-exceptions.md"
-          node scripts/engine-diff.mjs --base "$BASE" --tier "$TIER" --class "$CHANGE_CLASS" --shard "$SHARD" \
+          node scripts/engine-diff.mjs --base "$BASE" --tier "$TIER" --class "$CHANGE_CLASS" --shard "$SHARD" ${LENS:+--lens "$LENS"} \
             --exceptions "$RUNNER_TEMP/engine-diff-exceptions.md" --out "$RUNNER_TEMP/engine-diff"
       # Only the reports: the payloads beside them are gigabytes across a tier.
       - if: always()
