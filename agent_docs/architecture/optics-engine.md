@@ -1682,8 +1682,9 @@ Production tests treat excessive hidden render trim as a data-quality failure.
 
 ## Cache Ownership And Architecture Guards
 
-The source-scanning guard in `__tests__/src/optics/opticsArchitecture.test.ts` owns the approved registry. It rejects
-runtime import cycles, outside imports through unregistered optics modules, and unlisted module-level containers.
+The guards in `__tests__/src/optics/opticsArchitecture.test.ts` own the approved registries. They reject runtime import
+cycles, outside imports through unregistered optics modules, unlisted module-level containers, and analysis signatures
+that pair a lens with separate state scalars.
 Admission rules, exclusions and scanner limits live in [Testing Architecture](testing.md#architecture-guards).
 
 | Cache owner | Key and retained bound |

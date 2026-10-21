@@ -165,13 +165,13 @@ Existing tests cover:
   (`__tests__/reports/mtfChartLib.test.ts`) and the glass-resolution parity sweep
   (`__tests__/src/lens-data/glassResolutionParity.test.ts`); the reports themselves are generated outside the suite (see
   "Reports and Tooling Tests").
-- The structure of `src/optics/` itself: import cycles, the outside-import seam, and module-level caches (see
+- The structure of `src/optics/` itself: import cycles, the outside-import seam, module-level caches, and analysis request signatures (see
   "Architecture Guards").
 
 ## Architecture Guards
 
 `__tests__/src/optics/opticsArchitecture.test.ts` scans source text, as `__tests__/docDrift.test.ts` does, and holds
-three guards over `src/optics/`:
+four guards over `src/optics/`:
 
 - **Import cycles.** The runtime import graph has no strongly connected component larger than one module and no
   self-import. An edge is a static import, a re-export or an `import()` that carries at least one value; type-only
@@ -187,6 +187,14 @@ three guards over `src/optics/`:
   Synthetic self-tests require a forbidden importer, stale entry and direct `/v1/` import to fail.
 - **Caches.** Every module-level `Map`, `WeakMap`, `Set` or `WeakSet` is registered as a constant lookup table, a
   bounded cache, or a `WeakMap` keyed by its owner whose per-owner value cannot grow without bound.
+- **Analysis requests (M6).** In `src/optics/analysis/` and `src/optics/perspective/analysis/`, analysis functions take
+  `AnalysisRequest` or `PreparedGeometry` instead of a lens plus separate state scalars. The TypeScript AST scan
+  rejects a lens parameter paired with two or more numeric parameters regardless of their names or order, or with
+  even one recognized state-control binding (including destructured properties and aliases). It covers functions,
+  arrows, methods and overloads, and resolves imported lens renames and local lens/numeric type aliases.
+  Request/prepared-only sweeps and lens-free numeric helpers do not match. `ANALYSIS_NUMERIC_LEAVES` at the top of
+  `__tests__/src/optics/opticsArchitecture.test.ts` admits six geometric helpers whose independent ray, aperture,
+  field or sensor coordinates meet the broad lens-plus-numbers rule.
 
 All legacy lists and the report-import exception list are empty and locked empty by a guard.
 Each guard's lists are data at the top of the test, and come in two kinds:
@@ -201,13 +209,19 @@ Each guard's lists are data at the top of the test, and come in two kinds:
   - Caches: a constant is never written by its module; a bounded cache records its owner, key and capacity, and
     names the module constant that holds the capacity; an owner-keyed `WeakMap` records its owner, its key and what
     one owner holds.
+  - Analysis requests: `ANALYSIS_NUMERIC_LEAVES` keys are sorted `module#function` ids; each entry records the exact
+    parameter declaration (ignoring whitespace) and a nonempty reason for its independent geometric inputs.
+    Removal, migration, signature changes or no longer matching the broad rule make an entry stale. Remove stale
+    entries or re-audit their parameter contract when changing a geometric helper; never admit a new positional
+    state adapter. Fix that signature to take `AnalysisRequest` or `PreparedGeometry`.
 
 The cache scan reads declarations. A per-owner `Map` or `Set` needs a registry capacity and limit constant; the
 recorded capacity is checked against the code. Stores behind type aliases and eviction logic itself need review.
 Each failure message names the entry and the rule it violates.
 
-The guards read source text, not a syntax tree. The comment on each scan function in the test lists the forms it does
-not see, such as an `import.meta.glob` pattern for the seam or a container nested in another value for caches.
+The import-cycle, seam and cache guards scan source text; the analysis request guard walks the TypeScript AST.
+The comment on each scan function in the test lists its scope and limitations, such as an `import.meta.glob`
+pattern for the seam or a container nested in another value for caches.
 
 `__tests__/scripts/scriptImports.test.ts` additionally parses scripts, reports and benchmarks to resolve module
 paths on disk, including loader helper call sites, computed URL constants, bundle entries and eager globs. It reads
