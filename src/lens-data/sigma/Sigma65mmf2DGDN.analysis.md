@@ -348,6 +348,6 @@ No production-camera performance, complete chromatic correction, or recovered fa
    HIKARI, [Optical Glass Catalog, 2025-06-01](https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_Catalog.pdf).
    These are limited cross-vendor comparisons, not exhaustive catalog elimination.
 8. LensVisualizer, pinned main revision 53470da5a5cbda1807d1e523fbc71963e5a1adc7:
-   [partial-dispersion normal line](https://github.com/ronbuening/LensVisualizer/blob/53470da5a5cbda1807d1e523fbc71963e5a1adc7/src/optics/chromatic/materialResolver.ts) and
+   [partial-dispersion normal line](https://github.com/ronbuening/LensVisualizer/blob/53470da5a5cbda1807d1e523fbc71963e5a1adc7/src/optics/dispersion.ts) and
    [runtime aperture convention](https://github.com/ronbuening/LensVisualizer/blob/53470da5a5cbda1807d1e523fbc71963e5a1adc7/src/optics/runtimeLens.ts).
    These code references define model conventions; they are not evidence that the repository runtime was executed.
