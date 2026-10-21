@@ -47,7 +47,7 @@ Rims: FIG. 1 shows L1–L3 at about 54, 50 and 49 mm at ×3, consistent with 55/
 
 Maker comparison: the Canon Camera Museum (fl116) lists February 1974, 6 elements / 5 groups, 12 blades, f/32, 3.5 m and 0.103×; the FD version (fd175) is October 1975, 6/5, 9 blades and f/22. No museum construction diagram exists for either (the lens-construction GIF URLs return 404). The FD manual gives one fluorite element, an 8°15' diagonal field (the patent's 2ω is 8.24°) and a mandatory 34 mm rear drop-in filter, but no filter thickness or position. The 6/5 against 5/4 count difference is attributed, as the most likely explanation, to that filter; no plate is modeled.
 
-Inventor name: no other corpus file uses either Yokota or Yakota, so the printed US cover spelling "Hideo Yakota" is kept. The EPO family records (DE 2339461, JP S49-36329) spell it Yokota.
+Inventor name: no other corpus file uses either Yokota or Yakota. The EPO family records (DE 2339461, JP S49-36329) spell it Yokota, and Yakota is not a usual romanization, so `authors` uses "Hideo Yokota" and treats the US cover's "Yakota" as a misprint (changed 2026-10-21 at the owner's request).
 
 Fields changed in this pass: header comment, subtitle, visible (false → true), specs, L1 glass string (CaF2 now leads; resolution unchanged, CaF2 Special 1.43385/95.10), L1 apdNote, all five roles, rear-doublet sd (18 → 14.5) and the focus description. In the analysis: the title; the package-correction section was removed; the identification list was rewritten with the element-count explanation and the FD comparison; the process and replay prose was replaced by a short "Model Scope and Limitations" section; and the sources were tidied. Engine EFL, f-number, back focus and stop radius are unchanged.
 

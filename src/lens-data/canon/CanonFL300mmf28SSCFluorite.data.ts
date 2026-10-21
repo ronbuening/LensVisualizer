@@ -42,7 +42,7 @@ const LENS_DATA = {
   source: {
     patentNumber: "US 3,868,174 A",
     patentYear: 1975,
-    authors: ["Hideo Yakota"],
+    authors: ["Hideo Yokota"], // US cover prints "Yakota"; EPO family records (DE 2339461, JP S49-36329) give Yokota
     assignees: ["Canon Kobushiki Kaisha"],
     errata: [
       {

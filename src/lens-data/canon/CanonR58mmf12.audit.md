@@ -55,7 +55,7 @@ Native scalar diffraction MTF converges at 0, 0.5 and 1 of the full-format 21.65
 - One initial photopic MTF invocation omitted explicit aperture options and was invalid. Corrected explicit-input invocation converges; invalid invocation is not interpreted as unavailable source physics.
 
 ## Gate disposition
-Mandatory author-side construction checks pass. READY_FOR_ANALYSIS applies only to the exact Stage2 manifest/data hashes and stated limited model. Independent source-first Stage4 review is pending; no blind independence, batch integration, factory certification or publication is claimed.
+Mandatory author-side construction checks pass. READY_FOR_ANALYSIS applies only to the exact Stage2 manifest/data hashes and stated limited model. Independent source-first Stage4 review is pending (closed: the review passed, see "Final Stage4 disposition" below, and the 2026-10-21 deployment validation re-read the source independently); no blind independence, batch integration, factory certification or publication is claimed.
 
 ## Pending integration
 Closed: integrated 2026-10-21 (see the final section). No metadata generation, corpus sweep, full build/prerender, repository write or publication was performed. Later integration must run the project-wide gates and review the modeled-aperture limitation.
@@ -79,7 +79,7 @@ An earlier numerical experiment solved rigid-unit extension to 0.6 m. Although i
 
 # Canon R 58mm f/1.2: independent source-first Stage 4 review
 
-Status: **QUALIFIED OPTICAL AUDIT PASS; FINAL PACKAGE PENDING**. Corrected data hash dbffaaf8eff8a64a65926795177f5bb2aa42b6ec9f0960df4886b00bd7824bea passes the independent checks below. The owner corrected both shape labels and removed unsupported finite-focus reconstruction. No source radius, index, thickness or air interval was changed. Final consolidation/archive verification is pending (closed: final Stage4 disposition below).
+Status: **QUALIFIED OPTICAL AUDIT PASS; FINAL PACKAGE PENDING** (closed: final package delivered and integrated 2026-10-21). Corrected data hash dbffaaf8eff8a64a65926795177f5bb2aa42b6ec9f0960df4886b00bd7824bea passes the independent checks below. The owner corrected both shape labels and removed unsupported finite-focus reconstruction. No source radius, index, thickness or air interval was changed. Final consolidation/archive verification is pending (closed: final Stage4 disposition below).
 
 ## Scope and independence
 

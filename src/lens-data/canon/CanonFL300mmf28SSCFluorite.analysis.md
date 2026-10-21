@@ -7,7 +7,7 @@
 **Priority:** 3 August 1972, Japan 47-77308  
 **Filed:** 24 July 1973  
 **Granted:** 25 February 1975  
-**Inventor:** Hideo Yakota (US cover spelling; Yokota in the EPO family records)  
+**Inventor:** Hideo Yokota (printed "Yakota" on the US cover)  
 **Assignee:** Canon Kobushiki Kaisha (US cover spelling)  
 **Title:** Telephoto Type Objective of Large Relative Aperture Ratio  
 **Embodiment analyzed:** Example 1 (description and claim 3), f = 100 scaled uniformly ×3 to 300 mm.
