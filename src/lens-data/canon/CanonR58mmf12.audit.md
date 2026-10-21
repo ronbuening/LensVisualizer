@@ -2,7 +2,7 @@
 
 This successor incorporates the current viewer-coverage and, where applicable, glass-description corrections. The complete historical audit below is retained for its original pair and launch domain, not as an override of the corrected analysis or actual-viewer results. No optical or control values are changed. Every current full-pupil clipping observation remains FAIL; ordinary modeled vignetting is separately distinguished from unresolved transport defects.
 
-Current disposition: QUALIFIED_READY_FOR_BATCH. Exact successor data, analysis, verifier, correction artifacts and contract are independently approved. Final archive and private readback are bound by the external receipt. Integration remains pending.
+Current disposition: QUALIFIED_READY_FOR_BATCH. Exact successor data, analysis, verifier, correction artifacts and contract are independently approved. Final archive and private readback are bound by the external receipt. Integration remains pending (closed: integrated 2026-10-21, see the final section).
 
 The current .analysis.md and .results.json govern corrected claims. The individualPackageRevision evidence record restores every prior changed file byte-for-byte and retains exact optional full material/MTF replay. The current verifier freshly executes the unchanged original source verifier and the actual current helper/axial checks. It never substitutes historical nominal-pupil results for current viewer coverage.
 
@@ -58,7 +58,7 @@ Native scalar diffraction MTF converges at 0, 0.5 and 1 of the full-format 21.65
 Mandatory author-side construction checks pass. READY_FOR_ANALYSIS applies only to the exact Stage2 manifest/data hashes and stated limited model. Independent source-first Stage4 review is pending; no blind independence, batch integration, factory certification or publication is claimed.
 
 ## Pending integration
-No metadata generation, corpus sweep, full build/prerender, repository write or publication was performed. Later integration must run the project-wide gates and review the modeled-aperture limitation.
+Closed: integrated 2026-10-21 (see the final section). No metadata generation, corpus sweep, full build/prerender, repository write or publication was performed. Later integration must run the project-wide gates and review the modeled-aperture limitation.
 
 ## Source-first reviewer corrections, revision 2
 The independent reviewer, after freezing its own source baseline, identified the two negative elements L3 and L4 as biconcave, not meniscus. The descriptive `type` strings and prose are corrected accordingly; no numerical surface/medium values changed. The evidence also restores exact printed strings ν1=38.0, N6=1.7200 and ν7=44.90. Their numeric values are unchanged, but the N6 precision provenance affects the source-rounding interval. The portable calculations and interval checks were rerun on the corrected revision. Stage2 v001 remains preserved, superseded by the corrected checkpoint.
@@ -79,7 +79,7 @@ An earlier numerical experiment solved rigid-unit extension to 0.6 m. Although i
 
 # Canon R 58mm f/1.2: independent source-first Stage 4 review
 
-Status: **QUALIFIED OPTICAL AUDIT PASS; FINAL PACKAGE PENDING**. Corrected data hash dbffaaf8eff8a64a65926795177f5bb2aa42b6ec9f0960df4886b00bd7824bea passes the independent checks below. The owner corrected both shape labels and removed unsupported finite-focus reconstruction. No source radius, index, thickness or air interval was changed. Final consolidation/archive verification is pending.
+Status: **QUALIFIED OPTICAL AUDIT PASS; FINAL PACKAGE PENDING**. Corrected data hash dbffaaf8eff8a64a65926795177f5bb2aa42b6ec9f0960df4886b00bd7824bea passes the independent checks below. The owner corrected both shape labels and removed unsupported finite-focus reconstruction. No source radius, index, thickness or air interval was changed. Final consolidation/archive verification is pending (closed: final Stage4 disposition below).
 
 ## Scope and independence
 
@@ -133,4 +133,28 @@ The fresh baseline, exact source-input bytes, separate executable calculation, c
 
 ## Final Stage4 disposition
 
-Independent source-first review and fresh extraction of the consolidated 13-file Stage3 v002 package passed. The unchanged data and clean analysis are approved for the explicitly infinity-only research model. The Stage4 approval binds the prior payload and is embedded under evidence.independentPass.finalPayloadApproval. Only audit/evidence/manifest consolidation and replay receipts follow it. READY_FOR_BATCH applies to the final manifest hashes, with INTEGRATION_PENDING. This is not factory prescription, complete-field containment, finite-focus, spectral-glass or manufacturing certification.
+Independent source-first review and fresh extraction of the consolidated 13-file Stage3 v002 package passed. The unchanged data and clean analysis are approved for the explicitly infinity-only research model. The Stage4 approval binds the prior payload and is embedded under evidence.independentPass.finalPayloadApproval. Only audit/evidence/manifest consolidation and replay receipts follow it. READY_FOR_BATCH applies to the final manifest hashes, with INTEGRATION_PENDING (closed: integrated 2026-10-21). This is not factory prescription, complete-field containment, finite-focus, spectral-glass or manufacturing certification.
+
+## 2026-10-21 — Deployment validation and wording pass
+
+Source re-read. The three-page JP S40-24553 B scan was rendered at 200–400 dpi and read from the images. All 12 radii, 11 thicknesses/air spaces and 7 N/ν pairs agree with the data file after ×58 scaling, as do the cemented interfaces (L2/L3, L4/L5). There are no aspheres and no variable gaps, and no mismatches were found. R10 = −1.528 is printed in both copies of the table (page 1 and page 2). The Seidel P column confirms the sign: surface 10 has P = +0.2740, which requires R10 ≈ −1.528. The computed Petzval sum is 0.2324 against the printed 0.2294, within the printed rounding.
+
+First-order values. The patent states f = 1, F/1.2 and a 46° full field (half-field 23°). The model gives EFL 57.919 mm, which is −0.14 % of 58 (paraxial f = 0.99860 at unit scale), and f/1.2 from the derived stop (14.397 mm); the paraxial f-number is 1.223. The computed back focus is 34.940 mm and the length 89.576 mm; the patent prints neither. The engine-derived half-field is 23.45°. The 41° Canon lists is the 135 diagonal at 58 mm (40.9°), so it does not conflict with the patent's design field.
+
+Validator and clearance results. audit:surface reports OK, the image-circle audit 0 undersized, and field coverage 100 % (21.65 mm at 20.8°). The real-ray clearance check at Y = 21.63 and 24.62 mm finds no axial clipping and no blocked chief ray. The tightest axial margin is surface 5, at 14.47 of 14.65 mm.
+
+Maker diagram. Canon's R58mm F1.2 museum section (r76-lens-construction.gif) shows the same 1+2+2+1+1 sequence and shapes as Figure 1. The front positive meniscus has a nearly flat rear face, followed by the thick positive/negative doublet, the reversed negative/positive doublet and two thin rear positive singlets. The museum page also gives 7/5, February 1962, 0.6 m, f/16 and 8 blades. The FL58mm f/1.2 (I) (March 1964, 7/5, 0.6 m) has no published section, so the R 58mm remains the better-supported attribution.
+
+Glass. The patent's N/ν carry no line subscript. Fig. 2 plots d and g lines, and all seven pairs match d-line catalog glasses: BAFD8, J-BASF6, S-TIH4, FF5, S-LAL8, K-LaK10 and LAF2. Six agree within 2×10⁻⁵ in nd; J-BASF6 (1.66755) sits at the rounding boundary of the printed 1.6676. The resolver accepts all seven within catalog tolerance, with |Δνd| ≤ 0.05.
+
+Fields changed in this pass:
+- patentNumber changed from "JP S40-24553 B1" to "JP S40-24553 B", the corpus form for pre-1971 examined publications.
+- visible set to true.
+- Header comment, subtitle and specs rewritten in plain language.
+- Focus description, element roles and aperture.blades = 8 (from the museum page) updated.
+- The seven glass strings changed from Unmatched to catalog equivalents, and the seven indexReferenceNote entries were removed.
+- The analysis file had its package-correction section, the Drive links and process vocabulary removed, and a glass table added.
+
+R, d, nd, νd, sd, the stop and closeFocusM are unchanged. EFL, FOPEN, half-field, stop radius and BFD are identical before and after this pass.
+
+Open: no stable public URL for the JP S40-24553 B publication was verified, so the analysis cites it without a link.

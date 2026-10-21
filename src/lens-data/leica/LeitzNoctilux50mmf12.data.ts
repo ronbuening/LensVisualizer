@@ -1,37 +1,42 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * US3459468A sole table and drawing; strong qualified original 1966 association.
- * Source narrative 52 mm scale is retained separately from marketing 50 mm.
- * d is the preceding interval; first d=-0.722 is entrance-pupil data, not thickness.
- * Source implicit aspheres: c=P((y²+c²)/2), not conventional radial coefficients.
- * Adopt literal c1 vertex curvature for native R; printed rounded R remains a
- * separately computed source branch, not silently overwritten or fitted.
- * K=-1 and A4..A20 are an explicit bounded representation, not printed terms.
- * Source e-line n/v pairs retained; no historical melt or full spectrum claimed.
- * Iris position is derived from the paraxial entrance-pupil datum; its opening
- * and figure-informed clear apertures are hypotheses requiring full validation.
- * NO_INTERNAL_RECONSTRUCTION; closeFocusM=10 is a nonphysical hidden UI placeholder.
+ * US 3,459,468 (Leitz; Marx and Sindel), sole numerical table and drawing; associated
+ * with the original 1966 Leitz Noctilux 50 mm f/1.2.
+ * The table is normalized to f = 1; all lengths are scaled by 52, the focal length the
+ * patent text states, not by the marketed 50 mm.
+ * The patent's d is the distance to the preceding surface; the first d = -0.722 locates
+ * surface 1 relative to the entrance pupil and is not a thickness.
+ * Surfaces 1 and 10 are aspheric by the patent's chord-form law c = Σ c(i)·b^i with
+ * b = (y² + c²)/2. The repo has no such surface form, so each is stored as K = -1 plus
+ * A4–A20 terms converted (least-squares) from that law over the stored clear radius;
+ * the stored sag matches the patent equation to better than 1e-5 µm within sd. The
+ * A-terms are derived, not printed.
+ * Vertex radii use the printed c(1) coefficients (R1 = 52/0.869, R10 = -52/0.932); the
+ * printed rounded radii 1.151 and -1.073 differ slightly (EFL 52.024 vs 52.022 mm).
+ * Indices and Abbe numbers are the patent's e-line values; glasses are unidentified.
+ * The stop is not printed: it is placed where the paraxial entrance pupil falls 0.722
+ * (37.544 mm) behind surface 1, splitting the 0.270 gap 8.239 + 5.801 mm. Semi-diameters
+ * are not printed and follow the patent drawing's proportions.
+ * Back focus is the derived paraxial value. The patent gives the infinity state only.
  */
 const LENS_DATA = {
   schema: 2,
   key: "leica-noctilux-50mm-f12",
   maker: "Leica",
-  name: "LEITZ NOCTILUX 50mm f/1.2 (1966 patent-derived)",
-  subtitle: "US3459468A sole example; explicit source 52 mm scale and converted implicit aspheres",
-  visible: false,
+  name: "LEITZ NOCTILUX 50mm f/1.2",
+  subtitle: "US 3,459,468, sole example — qualified production correlation",
+  visible: true,
   catalog: {
     lensMounts: ["leica-m"],
     imageFormat: "135-full-frame",
     elementCount: 6,
     groupCount: 4,
     specs: [
-      "Strong qualified original 1966 association; not an authenticated factory prescription or later recreation",
-      "Marketing 50 mm is distinct from the explicit 52 mm patent narrative; no forced focal-length renormalization",
-      "Six glasses/four groups, two cemented boundaries and two outside implicit aspheres",
-      "52 mm scaling; source e-line indices and Abbe numbers retained without catalog substitution",
-      "Stop derived from source signed entrance-pupil datum; clear apertures remain figure-based hypotheses",
-      "No original finite-focus law or primary minimum-focus value established in the retained sources",
+      "6 ELEMENTS / 4 GROUPS",
+      "DESIGN f = 52 mm",
+      "DESIGN F/1.2",
+      "2 ASPHERICAL SURFACES / 2 ELEMENTS",
     ],
     focalLengthMm: {
       marketing: 50,
@@ -52,72 +57,72 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "Glass element 1",
+      label: "Element1",
       type: "Positive Meniscus",
       nd: 1.821,
       vd: 45.2,
       indexReference: "e",
       glass: "Unidentified historical melt; catalog equivalents not adopted",
-      role: "Front positive meniscus, source first surface implicit asphere represented by a bounded native polynomial.",
+      role: "Front positive meniscus with an aspheric front surface that contributes negative third-order spherical aberration.",
     },
     {
       id: 2,
       name: "L2",
-      label: "Glass element 2",
+      label: "Element2",
       type: "Positive Meniscus",
       nd: 1.9,
       vd: 40.5,
       indexReference: "e",
       glass: "Unidentified historical melt; catalog equivalents not adopted",
-      role: "Positive front glass of the front cemented pair.",
+      role: "Positive front member of the front cemented doublet.",
       cemented: "D1",
     },
     {
       id: 3,
       name: "L3",
-      label: "Glass element 3",
+      label: "Element3",
       type: "Negative Meniscus",
       nd: 1.792,
       vd: 25.9,
       indexReference: "e",
       glass: "Unidentified historical melt; catalog equivalents not adopted",
-      role: "Negative rear member of the front cemented pair; shared surface4.",
+      role: "Negative flint rear member of the front cemented doublet; its strong rear surface faces the stop.",
       cemented: "D1",
     },
     {
       id: 4,
       name: "L4",
-      label: "Glass element 4",
+      label: "Element4",
       type: "Biconcave Negative",
       nd: 1.844,
       vd: 30.0,
       indexReference: "e",
       glass: "Unidentified historical melt; catalog equivalents not adopted",
-      role: "Negative front member of the rear cemented pair.",
+      role: "Biconcave flint front member of the rear cemented doublet, facing the stop.",
       cemented: "D2",
     },
     {
       id: 5,
       name: "L5",
-      label: "Glass element 5",
+      label: "Element5",
       type: "Biconvex Positive",
       nd: 1.9,
       vd: 40.5,
       indexReference: "e",
       glass: "Unidentified historical melt; catalog equivalents not adopted",
-      role: "Positive rear member of the rear cemented pair; shared surface7.",
+      role: "Positive high-index rear member of the rear cemented doublet.",
       cemented: "D2",
     },
     {
       id: 6,
       name: "L6",
-      label: "Glass element 6",
+      label: "Element6",
       type: "Biconvex Positive",
       nd: 1.694,
       vd: 54.6,
       indexReference: "e",
       glass: "Unidentified historical melt; catalog equivalents not adopted",
-      role: "Positive rear singlet, source last surface implicit asphere represented by a bounded native polynomial.",
+      role: "Positive rear singlet with an aspheric rear surface, placed as far as possible from the front asphere.",
     },
   ],
   surfaces: [
@@ -218,9 +223,8 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 10,
-    description:
-      "NO_INTERNAL_RECONSTRUCTION. The required closeFocusM=10 value is a nonphysical UI compatibility placeholder, not a manufacturer MFD or validated finite conjugate. No finite motion or published finite state is authored; this hidden model represents infinity only.",
+    closeFocusM: 1,
+    description: "Patent infinity state only; the production lens focuses to 1.0 m.",
   },
   aperture: {
     nominalFNumber: 1.2,

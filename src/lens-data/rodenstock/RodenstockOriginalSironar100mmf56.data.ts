@@ -1,32 +1,39 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * DE1258134B Example I / claim 2, original convertible Sironar 100mm f/5.6.
- * Qualified patent correlation only; not the later non-convertible Sironar-N.
- * Source ne/Ve and every finite radius/thickness are literal. Uniform scale1.
- * Printed image interval83.5 is retained, despite computed Gaussian BFD83.699268.
- * Source stop station splits10.1 into5.3+4.8; physical iris radius is calibrated.
- * Clear apertures are inferred from Figure1 and axial/geometry checks, not factory.
- * NO_INTERNAL_RECONSTRUCTION: no finite focus law or published finite state.
- * closeFocusM10 is only a required UI placeholder, NOT a source/product MFD.
- * No full dispersion curve, APO certification, integration or publication claim.
+ * RODENSTOCK SIRONAR 100mm f/5.6, original convertible version (pre-Sironar-N).
+ * Source: DE 1 258 134 B, Example I (claim 2, Figure 1), normalized f' = 100, 1:5.6.
+ * Product correlation is qualified: no factory prescription has been published.
+ * The patent's n_e / nu_e values and every radius and thickness are used as
+ * printed, at scale 1.
+ * Back focus: the printed s' = 83.5 mm is kept as the infinity image distance;
+ * the paraxial BFD of the printed prescription is 83.699 mm (EFL 100.081 mm).
+ * Stop: the patent splits the central airspace l2 = 10.1 into 5.3 + 4.8; the iris
+ * radius is set from the f/5.6 axial marginal ray.
+ * Semi-diameters are estimated from Figure 1 and ray checks, not factory values.
+ * Focus: the patent gives only the infinity state. Unit focus by bellows
+ * extension is derived paraxially for a 1.0 m object-to-image distance.
+ * Dispersion: only n_e / nu_e are printed; no partial-dispersion data is given.
  */
 const LENS_DATA = {
   schema: 2,
   key: "rodenstock-sironar-100mm-f56-convertible",
   maker: "Rodenstock",
-  name: "RODENSTOCK SIRONAR 100mm f/5.6 (Original convertible)",
-  subtitle: "DE1258134B Example I / claim 2; original convertible version, not Sironar-N",
-  visible: false,
+  name: "RODENSTOCK SIRONAR 100mm f/5.6 (original convertible)",
+  subtitle: "DE 1 258 134 B, Example I — qualified production correlation",
+  visible: true,
   catalog: {
     lensMounts: ["large-format-lens-board"],
+    imageFormat: "6x9",
     imageCircleMm: 127,
     elementCount: 6,
     groupCount: 4,
     specs: [
-      "Original convertible version, qualified patent correlation",
-      "Source n_e and nu_e; no confirmed factory melts",
-      "127mm circle: one maker wide-open specification, not patent-certified",
+      "6 ELEMENTS / 4 GROUPS",
+      "DESIGN f = 100 mm",
+      "DESIGN F/5.6",
+      "ALL SPHERICAL",
+      "CONVERTIBLE: FRONT CELL ≈ 276 mm",
     ],
     focalLengthMm: {
       marketing: 100,
@@ -38,7 +45,7 @@ const LENS_DATA = {
     },
   },
   source: {
-    patentNumber: "DE 1258134 B",
+    patentNumber: "DE 1 258 134 B",
     patentYear: 1968,
     authors: ["Franz Schlegel"],
     assignees: ["Optische Werke G. Rodenstock"],
@@ -52,8 +59,8 @@ const LENS_DATA = {
       nd: 1.6055,
       vd: 60.5,
       indexReference: "e",
-      glass: "Unidentified historical melt (source ne=1.6055, Ve=60.5; catalog equivalents not adopted)",
-      role: "Outer front crown component of cemented doublet.",
+      glass: "Unmatched (unidentified historical melt, source ne 1.6055 / νe 60.5; catalog equivalents not adopted)",
+      role: "Positive front crown of the front cemented doublet.",
       cemented: "D1",
     },
     {
@@ -64,12 +71,12 @@ const LENS_DATA = {
       nd: 1.5543,
       vd: 49.3,
       indexReference: "e",
-      glass: "Unmatched (ne=1.5543, Ve=49.3)",
-      role: "Inner divergent front doublet member; patent anomalous-dispersion claim, no validated full spectrum.",
+      glass: "Unmatched (unidentified historical melt, source ne 1.5543 / νe 49.3; catalog equivalents not adopted)",
+      role: "Negative inner element of the front cemented doublet; anomalous-dispersion flint per the patent.",
       cemented: "D1",
       apd: "patent",
       apdNote:
-        "Patent specifies anomalous partial dispersion for divergent doublet members, preferably short flint. No actual melt or partial-dispersion curve identified; the claim is not a validated APO result.",
+        "The patent specifies a glass of anomalous dispersion, preferably a short flint, for the negative element of each cemented doublet. It prints only n_e and nu_e, so the partial dispersion itself is not modeled.",
     },
     {
       id: 3,
@@ -79,8 +86,8 @@ const LENS_DATA = {
       nd: 1.5201,
       vd: 65,
       indexReference: "e",
-      glass: "Unidentified historical melt (source ne=1.5201, Ve=65.0; catalog equivalents not adopted)",
-      role: "Front positive meniscus adjacent to stop.",
+      glass: "Unmatched (unidentified historical melt, source ne 1.5201 / νe 65.0; catalog equivalents not adopted)",
+      role: "Positive meniscus in front of the stop, convex to the object.",
     },
     {
       id: 4,
@@ -90,8 +97,8 @@ const LENS_DATA = {
       nd: 1.5201,
       vd: 65,
       indexReference: "e",
-      glass: "Unidentified historical melt (source ne=1.5201, Ve=65.0; catalog equivalents not adopted)",
-      role: "Rear positive meniscus adjacent to stop.",
+      glass: "Unmatched (unidentified historical melt, source ne 1.5201 / νe 65.0; catalog equivalents not adopted)",
+      role: "Positive meniscus behind the stop, convex to the image.",
     },
     {
       id: 5,
@@ -101,12 +108,12 @@ const LENS_DATA = {
       nd: 1.5543,
       vd: 49.3,
       indexReference: "e",
-      glass: "Unmatched (ne=1.5543, Ve=49.3)",
-      role: "Inner divergent rear doublet member; patent anomalous-dispersion claim, no validated full spectrum.",
+      glass: "Unmatched (unidentified historical melt, source ne 1.5543 / νe 49.3; catalog equivalents not adopted)",
+      role: "Negative inner element of the rear cemented doublet; anomalous-dispersion flint per the patent.",
       cemented: "D2",
       apd: "patent",
       apdNote:
-        "Patent specifies anomalous partial dispersion for divergent doublet members, preferably short flint. No actual melt or partial-dispersion curve identified; the claim is not a validated APO result.",
+        "The patent specifies a glass of anomalous dispersion, preferably a short flint, for the negative element of each cemented doublet. It prints only n_e and nu_e, so the partial dispersion itself is not modeled.",
     },
     {
       id: 6,
@@ -116,8 +123,8 @@ const LENS_DATA = {
       nd: 1.6055,
       vd: 60.5,
       indexReference: "e",
-      glass: "Unidentified historical melt (source ne=1.6055, Ve=60.5; catalog equivalents not adopted)",
-      role: "Outer rear crown component of cemented doublet.",
+      glass: "Unmatched (unidentified historical melt, source ne 1.6055 / νe 60.5; catalog equivalents not adopted)",
+      role: "Positive rear crown of the rear cemented doublet.",
       cemented: "D2",
     },
   ],
@@ -140,20 +147,20 @@ const LENS_DATA = {
       label: "3",
       R: 14.66,
       d: 1.2,
-      sd: 9.3,
+      sd: 7.6,
     },
     {
       label: "4",
       R: 20.2,
       d: 1.89,
-      sd: 9.3,
+      sd: 7.6,
       medium: 3,
     },
     {
       label: "5",
       R: 31.94,
       d: 5.3,
-      sd: 9.3,
+      sd: 7.6,
     },
     {
       label: "STO",
@@ -164,20 +171,20 @@ const LENS_DATA = {
       label: "6",
       R: -42.35,
       d: 1.37,
-      sd: 8.5,
+      sd: 7.2,
       medium: 4,
     },
     {
       label: "7",
       R: -25.83,
       d: 1.63,
-      sd: 8.5,
+      sd: 7.2,
     },
     {
       label: "8",
       R: -14.93,
       d: 1.66,
-      sd: 8.5,
+      sd: 7.2,
       medium: 5,
     },
     {
@@ -190,15 +197,17 @@ const LENS_DATA = {
     {
       label: "10",
       R: -17.95,
-      d: 83.5,
       sd: 10.6,
     },
   ],
+  // Infinity BF is the printed s' = 83.5; the 1.0 m value adds the paraxial unit-focus extension (+12.690 mm).
+  gaps: {
+    "10": { label: "BF", values: [[83.5, 96.189792]] },
+  },
   focus: {
-    // Required UI placeholder only: not a source or manufacturer MFD.
-    closeFocusM: 10,
+    closeFocusM: 1.0,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: only the fixed infinity prescription is modeled. The required closeFocusM=10 is a nonphysical UI placeholder, not a source or product MFD, and no finite state or movement law is claimed.",
+      "Unit focus by view-camera bellows: the whole lens moves away from the film and only the back focus changes. The patent prints only the infinity state; the 12.69 mm extension for a 1.0 m object-to-image distance is derived paraxially and is not a manufacturer specification.",
   },
   aperture: {
     nominalFNumber: 5.6,

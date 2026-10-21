@@ -1,34 +1,40 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * DE3026282A1/C2, sole example. All literal radii, e-line glass coordinates,
- * thicknesses and gaps retained at conditional nominal 90/100 scale 0.9.
- * Probable 1982 Geronar-WA correlation, not an unchanged factory prescription.
- * Both tables repeat d3 for the fourth thickness; both drawings identify d4.
- * Source central 6.11+7.29 split is assigned front-to-back using both diagrams.
- * Numerical iris opening and clear apertures are inferred, not factory dimensions.
- * Source at least 85-degree field is explicitly tested; manufacturer 80/85-degree
- * and 155/170-mm circle specifications belong to f/11 and f/22 respectively.
- * NO_INTERNAL_RECONSTRUCTION. The required closeFocusM=10 UI placeholder is
- * nonphysical, NOT a sourced MFD; no finite focus states or motion are claimed.
+ * DE 3026282 C2 (identical table in DE 3026282 A1), sole example, printed for
+ * f' = 100, f/8, 2ω ≥ 85°. Radii, thicknesses and air gaps are scaled ×0.9 to
+ * the 90 mm production focal length; the e-line glass values (ne / νe) are kept
+ * unchanged with indexReference "e". Computed EFL 89.960 mm (−0.044 %).
+ * Probable production match for the 1982 Geronar-WA 90 mm f/8, not a confirmed
+ * factory prescription.
+ * Both tables repeat the label d3 for the fourth thickness (10.21); both drawings
+ * label it d4. The printed central gap 6.11 + 7.29 is split r4→stop 6.11,
+ * stop→r5 7.29, as both drawings place the iris nearer r4.
+ * The patent prints no back focus; the infinity BF is the paraxial value.
+ * Stop diameter is set by the f/8 marginal ray; clear apertures are read from
+ * the patent drawings (r7 at the drawn step on the L4 front face).
+ * Maker coverage: 80° / 155 mm circle at f/11, 85° / 170 mm at f/22.
+ * Focus: unit focus by view-camera bellows. Only the back-focus gap varies; the
+ * 1.0 m (object to image) close state is computed paraxially for the slider and
+ * is neither printed in the patent nor a maker minimum focus distance.
  */
 const LENS_DATA = {
   schema: 2,
   key: "rodenstock-geronar-wa-90mm-f8",
   maker: "Rodenstock",
   name: "RODENSTOCK GERONAR-WA 90mm f/8",
-  subtitle: "DE3026282A1/C2 sole example; qualified probable 1982 production correlation",
-  visible: false,
+  subtitle: "DE 3026282 C2, sole example — probable production correlation",
+  visible: true,
   catalog: {
     lensMounts: ["large-format-lens-board"],
     imageFormat: "4x5",
     elementCount: 4,
     groupCount: 4,
     specs: [
-      "Qualified probable 1982 Geronar-WA correlation; not an authenticated factory prescription",
-      "Four air-spaced menisci, positive-negative-negative-positive",
-      "Maker 80° / 155 mm circle at f/11; 85° / 170 mm at f/22, not wide-open illumination claims",
-      "Infinity-only; no recovered focus law or product MFD",
+      "4 ELEMENTS / 4 GROUPS",
+      "DESIGN f = 100 (SCALED ×0.9)",
+      "DESIGN F/8",
+      "ALL SPHERICAL",
     ],
     focalLengthMm: {
       marketing: 90,
@@ -54,8 +60,8 @@ const LENS_DATA = {
       nd: 1.6207,
       vd: 49.47,
       indexReference: "e",
-      glass: "Unidentified historical melt; catalog equivalents not adopted",
-      role: "Positive front meniscus, convex toward the object; outer lower-dispersion collector.",
+      glass: "Unmatched (unidentified historical melt, source ne 1.6207 / νe 49.47; catalog equivalents not adopted)",
+      role: "Outer front positive meniscus, convex to the object; lower-dispersion collecting element.",
     },
     {
       id: 2,
@@ -65,8 +71,8 @@ const LENS_DATA = {
       nd: 1.7918,
       vd: 25.87,
       indexReference: "e",
-      glass: "Unidentified historical melt; catalog equivalents not adopted",
-      role: "Negative front inner meniscus, concave toward the central iris; high-index high-dispersion material.",
+      glass: "Unmatched (unidentified historical melt, source ne 1.7918 / νe 25.87; catalog equivalents not adopted)",
+      role: "Inner front negative meniscus, concave to the iris; high-index, high-dispersion flint.",
     },
     {
       id: 3,
@@ -76,8 +82,8 @@ const LENS_DATA = {
       nd: 1.7918,
       vd: 25.87,
       indexReference: "e",
-      glass: "Unidentified historical melt; catalog equivalents not adopted",
-      role: "Negative rear inner meniscus, concave toward the central iris; the same printed glass coordinates as L2.",
+      glass: "Unmatched (unidentified historical melt, source ne 1.7918 / νe 25.87, same as L2; catalog equivalents not adopted)",
+      role: "Inner rear negative meniscus, concave to the iris; same glass as L2 but thinner and differently curved.",
     },
     {
       id: 4,
@@ -87,8 +93,8 @@ const LENS_DATA = {
       nd: 1.6251,
       vd: 52.86,
       indexReference: "e",
-      glass: "Unidentified historical melt; catalog equivalents not adopted",
-      role: "Positive rear meniscus, convex toward the image; fourth thickness is printed with repeated d3 label, physically d4 in both drawings.",
+      glass: "Unmatched (unidentified historical melt, source ne 1.6251 / νe 52.86; catalog equivalents not adopted)",
+      role: "Outer rear positive meniscus, convex to the image; the strongest positive element.",
     },
   ],
   surfaces: [
@@ -140,22 +146,23 @@ const LENS_DATA = {
       label: "7",
       R: -86.058,
       d: 9.189000000000002,
-      sd: 18,
+      sd: 16,
       medium: 4,
     },
     {
       label: "8",
       R: -25.506,
-      d: 72.73122109844566,
       sd: 18,
     },
   ],
   focus: {
-    // Required UI compatibility placeholder only; not a physical MFD.
-    closeFocusM: 10,
+    closeFocusM: 1.0,
     description:
-      "NO_INTERNAL_RECONSTRUCTION. closeFocusM=10 m is a nonphysical required UI placeholder, NOT a sourced MFD or certified focus distance. No finite optical state or movement law is authored; keep hidden until integration can avoid presenting this placeholder as a product specification.",
+      "Unit focus by view-camera bellows; no internal focus groups. The slider varies only the back-focus gap, from 72.73 mm at infinity to 82.70 mm at a 1.0 m object-to-image distance. The close state is computed paraxially for illustration; neither the patent nor Rodenstock gives a minimum focus distance.",
   },
+
+  gaps: { "8": { label: "BF", values: [[72.73122109844566, 82.69825064453137]] } },
+
   aperture: {
     nominalFNumber: 8,
     fStops: [8, 11, 16, 22, 32],

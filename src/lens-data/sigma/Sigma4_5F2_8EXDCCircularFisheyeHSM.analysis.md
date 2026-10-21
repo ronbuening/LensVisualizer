@@ -6,17 +6,17 @@
 **Assignee:** Sigma Corporation  
 **Filed:** 31 August 2007  
 **Published:** 19 March 2009  
-**Embodiment:** Example 3, printed page 8 / complete-PDF page 9; Figure 7.
+**Embodiment:** Example 3, printed page 8; Figure 7.
 
-The probable production pairing is the Sigma 4.5 mm F2.8 EX DC CIRCULAR FISHEYE HSM. Sigma's product page confirms 13 elements in nine groups, a 180-degree circular field on APS-C, six diaphragm blades and 13.5 cm minimum focus. Example 3's 13/9 arrangement and source 4.4463 mm focal length support this pairing. The factory prescription is not independently certified.
+The probable production lens is the Sigma 4.5 mm F2.8 EX DC CIRCULAR FISHEYE HSM. Sigma's product page gives 13 elements in nine groups, a 180-degree circular field on APS-C, six diaphragm blades and 13.5 cm minimum focus. Of the patent's four examples, Example 3 is the only one with 13 elements in nine groups (Examples 1, 2 and 4 have 10/7, 12/9 and 12/9), and its 4.4463 mm focal length is the closest to 4.5 mm. Sigma has not published the production prescription.
 
 ## Optical Construction and Projection
 
-The source contains 23 rows, including stop 16, with 13 spherical elements in nine components. The front unit is negative and the rear unit positive. Four cemented pairs are retained. All literal radii, thicknesses and nd/νd values remain unchanged.
+The prescription has 23 surfaces, with the aperture stop at surface 16, and 13 spherical elements in nine groups. The front group G1 is negative and the rear group G2 positive. There are four cemented pairs. Radii, thicknesses and nd/νd values are the printed ones.
 
-Paragraph 0028 explicitly defines equisolid projection, y = 2f sin(ω/2). The source full field is 180 degrees; the corresponding ideal equisolid image-circle diameter is approximately 12.576 mm. This is a projection convention, not an assertion that every exact traced image coordinate equals the ideal law.
+Paragraph 0028 states that the examples use equisolid projection, y = 2f sin(ω/2). The full field is 180 degrees, for which the ideal equisolid image circle is 12.576 mm in diameter. In the traced model the 90° chief ray lands 6.197 mm from the axis, 1.5% inside the ideal 6.288 mm, so the traced circle is about 12.39 mm.
 
-The native back focus is 40.8599 mm. A Gaussian replay gives 40.862767626 mm, an explicit +0.002867626 mm image-plane adjustment; source optical length 121.8599 mm remains preserved in evidence. The independent paraxial focal length is 4.445768583 mm. No curvature or glass optimization was used.
+The image distance is the printed back focus, 40.8599 mm, giving the printed total length of 121.8599 mm. The paraxial back focus of the printed prescription is 40.8628 mm and its paraxial focal length 4.4458 mm, against the printed 4.4463 mm; the 0.003 mm difference is left as printed. No radius or glass was altered.
 
 ## Element and Glass Analysis
 
@@ -36,13 +36,11 @@ The native back focus is 40.8599 mm. A Gaussian replay gives 40.862767626 mm, an
 | L12 | Biconvex Positive | 1.497 | 81.61 | FCD1 (Hoya equivalent) |
 | L13 | Biconvex Positive | 1.4875 | 70.44 | H-QK3L (CDGM equivalent) |
 
-Native nd/νd values control. Catalog names are equivalent-material assumptions, not recovered supplier or melt identities. The highlighted SLD member in Sigma's drawing is consistent with the source rear positive low-dispersion glass; no unmeasured partial dispersion is asserted.
+The printed nd/νd values govern the model. Catalog names are equivalent glasses, not identified supplier types. Sigma's section drawing marks one SLD element, the positive member of the rear cemented pair. That is L12, element LP of claim 2: conditions (3) and (4) require νd > 62.5 and θgF above 0.6675 − 0.002νd, and Table 1 gives θgF = 0.5387 for Example 3. Its nd/νd match HOYA FCD1.
 
 ## Focus Scope
 
-This deliverable is infinity-only. The model's 1e15 m focus value is an infinity sentinel, not a physical minimum focusing distance. Sigma specifies 0.135 m minimum focus, but the patent provides only an infinity prescription and does not establish the production focusing motion.
-
-A derived unit-focus trial was evaluated and rejected for release: it produced substantial pupil clipping/TIR at finite focus despite Gaussian focus convergence. Its source, matrices and exact-ray diagnostics are retained. It has not been promoted to a validated factory or reconstructed close-focus model. The source infinity model is unchanged by that investigation.
+The model shows the infinity state only. Sigma specifies 0.135 m minimum focus, but the patent gives only the infinity prescription and does not describe the focusing movement, so no element moves in the model.
 
 ## Aspherical Surfaces
 
@@ -50,17 +48,15 @@ No asphere is present in Example 3 and none is introduced.
 
 ## Clear Apertures and Geometry
 
-Clear apertures are inferred from the patent and manufacturer sections, with edge-geometry checks. The large front surface uses a 21.5 mm semi-diameter; its steep rear surface uses 12.5 mm. Other inferred values are present explicitly in the data file.
+The patent prints no clear apertures; the semi-diameters are read from Figure 7 and Sigma's section drawing. The large front surface uses 21.5 mm and its steep rear surface (R 13.3 mm) 12.5 mm, where both drawings end the rear bowl. The first two cemented pairs, L4–L5 and L6–L7, use 7.6 mm and 6.9 mm, their drawn heights, well clear of the f/2.9 axial marginal ray (2.2–3.9 mm on those surfaces).
 
-The ordinary 64.2-degree rim-angle guard forced the front rear surface to an undersized cap and prevented the last field chiefs from converging. A lens-level 71-degree rim allowance, motivated by surface 2 (actual rim angle 70.0263 degrees), retains the source-consistent 12.5 mm cap. This is a disclosed rim-slope allowance, not a gap-sag increase: the ordinary 90% gap-sag limit remains. No negative edge thickness, surface crossing or hidden geometry trim remains in the canonical model. The earlier rejected geometry and field trials are preserved.
+At 12.5 mm, surface 2 has a 70.0° rim slope, beyond the default limit of about 64.2°, which would cap it near 12.0 mm and stop chief rays from about 85° outward from reaching the image. The data file therefore raises the lens's rim-slope limit to 71°; the default 90% gap-sag limit is kept. No element has a negative edge thickness.
 
-## Validation and Limits
+## Model Scope and Limitations
 
-At infinity, all 37 sampled chief rays from 0 to 90 degrees in 2.5-degree steps converge and trace. Of 333 field-fan rays across three pupil ratios, 291 complete and 42 have recorded modeled-aperture clipping: 27 at the stop and 15 at authored surface rims. Replaying the same infinity geometry at five slider positions gives the same 185 chief outcomes and 1,665-ray totals; these are repeated interface checks, not five validated object distances.
-
-All 1,353 default axial/off-axis rays across 41 infinity-sentinel slider positions complete, with zero hidden trim. This validates the source-infinity runtime scope, not full-pupil illumination or finite-focus behavior. Targeted type/lint, source comparisons, corpus and metadata outcomes are retained separately. Full repository CI/browser integration and manufacturer MTF reproduction are not certified.
+At infinity, chief rays from 0° to 90° all reach the image. The meridional geometric transmission, normalised to the axis, falls to 0.87 at 45°, 0.78 at 60°, 0.59 at 81° and 0.50 at 90°, set by the stop and the inferred clear apertures. Finite focus is not modelled, and Sigma's MTF data have not been reproduced.
 
 ## Sources
 
-- [JP2009058817A](https://patents.google.com/patent/JP2009058817A/en), complete original plus PAJ cover preserved; Example 3 and Figure 7.
-- [Sigma product specifications](https://www.sigma-global.com/en/lenses/45_28/), complete HTML and linked manufacturer optical section preserved.
+- [JP2009058817A](https://patents.google.com/patent/JP2009058817A/en), Japanese publication and PAJ abstract; Example 3 and Figure 7.
+- [Sigma product specifications](https://www.sigma-global.com/en/lenses/45_28/), specifications and [lens construction diagram](https://www.sigma-global.com/lenses/45_28_specification_01.jpg).

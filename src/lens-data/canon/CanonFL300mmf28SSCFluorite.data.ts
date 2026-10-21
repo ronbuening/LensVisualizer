@@ -1,18 +1,20 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Literal Example1 ×3 geometric engineering scale, not fitted factory prescription.
- * All five powered elements/four groups retained; no guessed window or rear filter.
- * Stop in D6 at inferred 75% split, drawn toward rear but not numerically specified.
- * Native d-line coordinates remain literal; CaF2 spectral proxy explicitly disclosed.
- * Body/claim coefficient discrepancies do not change R/D/N/V.
- * NO_INTERNAL_RECONSTRUCTION: infinity-only; source printed BF×3 retained.
+/** US 3,868,174 A, Example 1 (f = 100, F/2.8, 2ω = 8.24°), every R and D scaled uniformly ×3; nd/νd as printed.
+ * The patent example has five elements in four groups. Canon lists six elements in five groups; the mandatory 34 mm
+ * rear drop-in filter is the likely sixth, but no thickness or position is published, so no plate is added.
+ * The stop sits in D6 at 75 % of the gap from r6 (92.551275 / 30.850425 mm), read from FIG. 1; the patent prints no
+ * stop coordinate. All sd values are estimates; the rear doublet's 14.5 mm is read from FIG. 1.
+ * L1 is fluorspar per claim 1 and resolves to the catalog CaF2 dispersion curve; L2–L5 use Abbe-number estimates.
+ * Infinity focus only: the patent prints no close-focus state. Image gap = printed back focus 23.73 × 3 = 71.19 mm.
+ * The claim-3 aberration-coefficient table differs from the body table in two cells; R/D/N/V agree.
  */
 const LENS_DATA = {
   schema: 2,
   key: "canon-fl-300mm-f28-ssc-fluorite",
   maker: "Canon",
   name: "CANON FL 300mm f/2.8 S.S.C. FLUORITE",
-  subtitle: "US3868174A Example 1, conditional ×3 powered baseline; omitted unspecified filter and window",
-  visible: false,
+  subtitle: "US 3,868,174 A, Example 1 — probable production correlation, drop-in filter omitted",
+  visible: true,
   layout: {
     yScFill: 0.85,
   },
@@ -30,10 +32,11 @@ const LENS_DATA = {
       design: 2.8,
     },
     specs: [
-      "PATENT-ONLY 5 ELEMENTS / 4 GROUPS",
-      "EXPLICIT FLUORSPAR FRONT SINGLET",
-      "CONDITIONAL ×3 SCALE",
-      "UNSPECIFIED FACTORY FILTER OMITTED",
+      "5 ELEMENTS / 4 GROUPS",
+      "DESIGN f = 100 (SCALED ×3)",
+      "DESIGN F/2.8",
+      "ALL SPHERICAL",
+      "FLUORITE FRONT ELEMENT",
     ],
   },
   source: {
@@ -44,7 +47,7 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: "Claim3 coefficient row2/P .4078 differs from body .4708, and claim total/II +.1038 differs from body −.1038. R/D/N/V prescriptions agree; coefficient conflicts do not alter source optical cells.",
+        note: "In claim 3, the second-row P coefficient reads .4078 against .4708 in the description, and the total II reads +.1038 against −.1038. The R, D, N and V values agree in both places; the differences are confined to the aberration-coefficient table and do not affect the prescription.",
       },
     ],
   },
@@ -57,11 +60,11 @@ const LENS_DATA = {
       nd: 1.43387,
       vd: 95.1,
       indexReference: "d",
-      glass: "Fluorspar (explicit source material); CaF2 catalog dispersion proxy, native nd and νd retained",
-      role: "Front biconvex fluorspar singlet, source claim1; threefold geometric engineering scale only.",
+      glass: "CaF2 (fluorspar, named in claim 1; catalog dispersion curve, patent nd and νd kept)",
+      role: "Front positive collector of the three-element front group.",
       apd: "patent",
       apdNote:
-        "Patent explicitly specifies fluorspar and reduced secondary color; full source dispersion is not tabulated. The compatible CaF2 room-temperature catalog model is an explicit spectral surrogate, not measured factory material.",
+        "The patent names fluorspar for this element to reduce secondary color; the dispersion curve is the catalog CaF2 room-temperature fit, not measured production material.",
     },
     {
       id: 2,
@@ -72,7 +75,7 @@ const LENS_DATA = {
       vd: 44.2,
       indexReference: "d",
       glass: "Unidentified historical melt (source nd 1.7859, νd 44.2; catalog substitutes not adopted)",
-      role: "Literal source coordinate; no factory melt or complete dispersion identity recovered.",
+      role: "Negative flint of the front group; balances primary color against the fluorite and crown positives.",
     },
     {
       id: 3,
@@ -83,7 +86,7 @@ const LENS_DATA = {
       vd: 70.1,
       indexReference: "d",
       glass: "Unidentified historical melt (source nd 1.48749, νd 70.1; catalog substitutes not adopted)",
-      role: "Literal source coordinate; no factory melt or complete dispersion identity recovered.",
+      role: "Positive rear element of the front group, strongly convex toward the object.",
     },
     {
       id: 4,
@@ -94,7 +97,7 @@ const LENS_DATA = {
       vd: 64.1,
       indexReference: "d",
       glass: "Unidentified historical melt (source nd 1.51633, νd 64.1; catalog substitutes not adopted)",
-      role: "Literal source coordinate; no factory melt or complete dispersion identity recovered.",
+      role: "Negative front element of the rear cemented doublet; concave toward the object.",
       cemented: "D1",
     },
     {
@@ -106,7 +109,7 @@ const LENS_DATA = {
       vd: 29.2,
       indexReference: "d",
       glass: "Unidentified historical melt (source nd 1.72151, νd 29.2; catalog substitutes not adopted)",
-      role: "Literal source coordinate; no factory melt or complete dispersion identity recovered.",
+      role: "Positive flint rear element of the cemented doublet; the pair forms the negative telephoto rear group.",
       cemented: "D1",
     },
   ],
@@ -159,21 +162,21 @@ const LENS_DATA = {
       label: "7",
       R: -47.8584,
       d: 2.0808,
-      sd: 18,
+      sd: 14.5,
       medium: 4,
     },
     {
       label: "8",
       R: -189.3528,
       d: 3.7451999999999996,
-      sd: 18,
+      sd: 14.5,
       medium: 5,
     },
     {
       label: "9",
       R: -104.46629999999999,
       d: 71.19,
-      sd: 18,
+      sd: 14.5,
     },
   ],
   aperture: {
@@ -186,7 +189,7 @@ const LENS_DATA = {
     closeFocusM: 3.5,
     keyframes: [0, 1],
     description:
-      "NO_INTERNAL_RECONSTRUCTION: primary infinity-only. Manufacturer 3.5 m MFD is metadata, not a patent movement law. No gaps or finite conjugates authored.",
+      "Patent infinity state only; the production lens focuses to 3.5 m. The patent prints no close-focus spacing.",
   },
 } satisfies LensDataV2Input;
 export default LENS_DATA;

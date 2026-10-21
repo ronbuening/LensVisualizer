@@ -1,18 +1,8 @@
-# Rodenstock Original Sironar 100mm f/5.6
-
-## Current individual-package correction and governing validation scope
-
-This version incorporates the previously verified per-lens viewer-coverage correction into the individual package. It supersedes any older blanket actual-viewer full-pupil claim based on a nominal EFL/(2 f-number) or epAtZoom launch. The optical prescription, geometry, iris and focus controls, and all original source/production qualifications are unchanged. Historical numerical results below remain evidence only for their recorded inputs.
-
-Using the pinned viewer helper launch, actual aperture control mapping and physical iris convention, 7 sampled aperture/zoom settings pass and 0 retain full-pupil FAIL from ordinary clipping. Clipped marginal rays have not been relabeled as passed, and qualified construction does not assert a fully transmitted pupil. Actual viewer helper pupil and iris; actual quick-stop logarithmic slider mapping;33 nonnegative axial radial samples including the full current viewer launch radius. Infinity only, rotationally symmetric unchanged model. Ordinary clips remain FAIL; no toleranced conversion of clip to pass.
-
-The correction evidence includes exact public-helper versus physical-ray parity, the per-lens material scope and native raw failure classifications, and reference/photopic MTF availability or nonconvergence. It does not turn a ghost/display path into physical transmission, extend a finite-focus or source-field claim, or assert universal ray coverage. The machine-readable individualPackageRevision record contains the exact corrected per-lens counts, retained failures, source hashes, executable replay and final audit binding.
-
-4 element glass descriptions are corrected to distinguish an unidentified historical melt from an absence of reasonable catalog-coordinate matches. No glass coordinate, index reference, dispersion model, resolver result or optical quantity is changed; the verified per-element terminology and runtime-equality proof are included.
+# Rodenstock Sironar 100mm f/5.6 (original convertible)
 
 ## Patent Reference and Design Identification
 
-**Patent:** DE 1258134 B  
+**Patent:** DE 1 258 134 B  
 **Application Number:** O 11178 IX a/42 h  
 **Filed:** 14 October 1965  
 **Published:** Auslegeschrift 4 January 1968; Patentschrift issued 1 August 1968  
@@ -27,87 +17,84 @@ The pairing rests on convergent primary evidence:
 
 1. Rodenstock/Berkey's catalog, revised August 1967, lists the 100mm f/5.6–45 Sironar, catalog 160-111, in an O-M-X-V shutter.
 2. The original maker section shows six elements in four air-separated components, 2+1+1+2, with the larger/thicker front assembly matching the asymmetric Example I rather than symmetric Example II.
-3. The original maker describes front-cell conversion at approximately three times the assembled focal length. The literal Example I front half has an isolated paraxial EFL of 275.671mm versus the complete 100.081mm, compatible with an approximate statement. This is not a converted-cell image-quality or mechanical-use certification.
+3. The original maker describes front-cell conversion at approximately three times the assembled focal length. The Example I front half (L1–L3) has a paraxial EFL of 275.67 mm against 100.08 mm for the complete lens, consistent with that approximate statement. The rear half (L4–L6) alone has 111.48 mm, too close to the assembled focal length to serve as a converted lens. The converted cell's image quality is not modeled.
 
-No factory radii, clear apertures, glass melts or measured performance have been identified. Conditional scale1 maps the source normalization to nominal 100mm; it is not adjusted to make the replay exactly 100mm. The catalog's 51mm front diameter is mechanical, not an optical clear-aperture measurement.
+No factory radii, clear apertures, glass melts or measured performance have been identified. The patent's f′ = 100 normalization is used at scale 1 for the nominal 100 mm lens, without adjustment to an exact 100 mm. The catalog's 51 mm front diameter is a mechanical dimension, not an optical clear aperture.
 
 ## Optical Architecture
 
-The six-element, four-component layout consists of a front cemented doublet, two separated positive menisci surrounding the stop, and a rear cemented doublet. All ten refracting interfaces are spherical. The long cement-interface radii −774mm and +142.7mm are finite; the drawing's nearly straight interfaces must not be converted to planes.
+The six-element, four-component layout consists of a front cemented doublet, two separated positive menisci surrounding the stop, and a rear cemented doublet. All ten refracting interfaces are spherical. The long cement-interface radii −774 mm and +142.7 mm are finite curvatures, although the patent drawing shows them as nearly straight lines.
 
-At the source e-line coordinates the isolated air-separated component focal lengths are −218.618, +100.149, +123.803 and +499.991mm. Thus the numerical Example I has a negative front doublet but a weakly positive rear doublet. The source introduction calls the outer cemented assembly divergent; that wording conflicts with the isolated rear-component calculation and remains documented without a sign repair or a conclusive generic-language explanation. These isolated powers are not an additive decomposition of the assembled lens's power.
+At the patent's e-line indices the isolated air-separated components have focal lengths of −218.618, +100.149, +123.803 and +499.991 mm. Example I therefore has a negative front doublet but a weakly positive rear doublet. The patent's introduction calls both outer cemented components divergent; that general wording does not match the rear doublet of the numerical example, and the prescription is kept as printed. These isolated powers do not add up to the assembled lens's power.
 
-The source places the stop inside the 10.1mm central airspace, 5.3mm after R5 and 4.8mm before R6. This is source-defined axial location, unlike the physical iris diameter, which is unprinted and calibrated computationally. The 33.1mm optical vertex span is compact relative to the focal length, but the back focal distance is less than EFL; no retrofocus claim is made.
+The patent places the stop inside the 10.1 mm central airspace, 5.3 mm after R5 and 4.8 mm before R6. The iris diameter is not printed and is set from the f/5.6 axial ray. The 33.1 mm vertex span is compact relative to the focal length, and the back focal distance is shorter than the EFL.
 
 ## Element-by-Element Analysis
 
 | Element | Source surfaces | Shape and role | n_e / ν_e | Isolated thick-element EFL |
 |---|---|---|---|---:|
-| L1 | R1 +22.79, R2 −774 | Biconvex positive outer member of front doublet | 1.6055 / 60.5 | +36.702mm |
-| L2 | R2 −774, R3 +14.66 | Biconcave negative inner member, cemented to L1 | 1.5543 / 49.3 | −25.928mm |
-| L3 | R4 +20.20, R5 +31.94 | Positive meniscus before the stop | 1.5201 / 65.0 | +100.149mm |
-| L4 | R6 −42.35, R7 −25.83 | Positive meniscus after the stop | 1.5201 / 65.0 | +123.803mm |
-| L5 | R8 −14.93, R9 +142.7 | Biconcave negative inner member of rear doublet | 1.5543 / 49.3 | −24.292mm |
-| L6 | R9 +142.7, R10 −17.95 | Biconvex positive outer member, cemented to L5 | 1.6055 / 60.5 | +26.631mm |
+| L1 | R1 +22.79, R2 −774 | Biconvex positive outer member of front doublet | 1.6055 / 60.5 | +36.702 mm |
+| L2 | R2 −774, R3 +14.66 | Biconcave negative inner member, cemented to L1 | 1.5543 / 49.3 | −25.928 mm |
+| L3 | R4 +20.20, R5 +31.94 | Positive meniscus before the stop | 1.5201 / 65.0 | +100.149 mm |
+| L4 | R6 −42.35, R7 −25.83 | Positive meniscus after the stop | 1.5201 / 65.0 | +123.803 mm |
+| L5 | R8 −14.93, R9 +142.7 | Biconcave negative inner member of rear doublet | 1.5543 / 49.3 | −24.292 mm |
+| L6 | R9 +142.7, R10 −17.95 | Biconvex positive outer member, cemented to L5 | 1.6055 / 60.5 | +26.631 mm |
 
-The patent associates anomalous partial dispersion, preferably short flint, with the divergent inner doublet members. That material-property statement is recorded for L2/L5; it does not establish an available spectral curve or an apochromatic performance result.
+The patent specifies a glass of anomalous dispersion, preferably a short flint, for the negative inner element of each doublet (L2 and L5), and credits it with an at least partially apochromatic correction. The patent prints no partial-dispersion values, so that property is recorded but not modeled.
 
 ## Glass Identification
 
-The source explicitly labels n_e and ν_e. The V2 fields named nd/vd retain those literal values under indexReference: "e"; they are not silently relabeled d-line coordinates.
+The patent lists n_e and ν_e (e-line, 546.07 nm), and the data file keeps those values with an e-line index reference rather than relabeling them as d-line values.
 
-The historical melts are unidentified. L1, L3, L4 and L6 have public coordinate-compatible catalog equivalents that are not adopted; L2 and L5 remain Unmatched under the retained bounded query. A bounded query of the retained native catalog evaluates candidate indices and Abbe numbers in the same e-line convention. For example, modern Hikari J-SK14 has n_e ≈1.6054802 and ν_e ≈60.4420 near the outer crown coordinate; Hoya PC2 gives n_e ≈1.5201080 and ν_e ≈64.9581 near the inner positive menisci. These coordinate comparisons do not identify the historical supplier or melt. The 1.5543/49.3 negative-element coordinate has no acceptable close candidate in the queried selection, and matching normal-line numbers alone could not prove the claimed anomalous partial dispersion.
+The historical melts are unidentified. L1, L3, L4 and L6 have modern catalog glasses with matching e-line coordinates, which are not adopted: Hikari J-SK14 (n_e ≈ 1.60548, ν_e ≈ 60.44) is close to the outer crowns, and Hoya PC2 (n_e ≈ 1.52011, ν_e ≈ 64.96) to the two menisci. Such matches do not identify the historical supplier or melt. The 1.5543/49.3 glass of L2 and L5 has no close modern equivalent, and matching index and Abbe number alone could not show the anomalous partial dispersion the patent claims.
 
-No candidate Sellmeier curve, nC/nF/ng, or partial-dispersion number is adopted. Reference-wavelength MTF is available at 546.074nm. Photopic MTF correctly reports spectral-data-unavailable, rather than assigning a normal-dispersion surrogate and presenting it as source physics. No APO claim is validated.
+No Sellmeier curve, nC/nF/ng or partial-dispersion value is assigned. Monochromatic results at the e-line are therefore the model's reference; polychromatic behavior, including any apochromatic correction, cannot be evaluated from the published data.
 
 ## Focus Mechanism
 
-NO_INTERNAL_RECONSTRUCTION applies. The source supplies one infinity prescription, no finite states or focus-motion law. All internal gaps and the printed terminal image interval remain fixed; no published finite conjugate or reconstructed bellows law is claimed.
+As a view-camera lens, the Sironar focuses by bellows extension: the whole lens moves away from the film and all internal spacings stay fixed (unit focus). The patent prints only the infinity state.
 
-The current V2 schema requires a numerical closeFocusM. Its 10m value is an explicitly nonphysical UI compatibility placeholder, not a manufacturer MFD or an optical validation point. The model remains hidden. Integration must avoid displaying that placeholder as a product specification. Testing 101 slider coordinates establishes unchanged geometry only, not 101 validated finite-focus states.
+The model's close state is derived, not published. For a 1.0 m object-to-image distance, the paraxial extension is 12.69 mm: the back focus grows from the printed 83.5 mm to 96.19 mm, with the object 870.7 mm in front of R1 and a magnification of about −0.127. The 1.0 m end of the focus slider is a modeling choice; a view camera has no fixed minimum focus distance, so it is not a manufacturer specification.
 
 ## Iris, Clear Apertures and Field Coverage
 
-The source stop position is retained. A real axial marginal ray for the literal EFL and f/5.6 gives a modeled stop semi-diameter of 7.032999576mm. Native aperture audit gives f/5.599999994 and identifies the iris, not an element rim, as the axial limiter. The independently calculated paraxial pupil f-number is5.6247464; this distinction from finite-marginal calibration is retained, not treated as a source error. Stopped-down validation at f/11 and f/16 recalibrates the exact axial beam for each aperture rather than assuming linear iris scaling.
+The patent's stop position is kept. The real axial marginal ray at f/5.6 gives an iris semi-diameter of 7.033 mm, and the iris, not an element rim, limits the axial beam. The paraxial working f-number for that iris is 5.625; the small difference comes from setting the iris with a real ray rather than a paraxial one.
 
-The modeled clear semi-diameters are 14,14,9.3,9.3,9.3,8.5,8.5,8.5,10.6,10.6mm. They follow Figure 1's asymmetric proportions and retain an unclipped chief at the tested 35° half-field. They are not source numerical apertures or a complete mechanical bevel/sidewall reconstruction. The native section has zero hidden trim. Minimum shared-band material thickness is 0.793148mm and maximum gap-sag fraction 0.882761, below the unmodified 0.90 limit.
+The patent prints no clear apertures. The modeled semi-diameters are 14 mm for the front doublet (R1–R2), 7.6 mm for R3–R5, 7.2 mm for R6–R8 and 10.6 mm for the rear doublet (R9–R10), measured from the proportions of Figure 1. The two menisci and the inner faces of the doublets are drawn barely wider than the f/5.6 axial beam (7.25–7.28 mm before the stop, 6.88–6.96 mm after it), and the model keeps that. These are estimates, not factory clear apertures or a full mechanical model.
 
-Maker field statements remain separate:
+The maker's field statements differ:
 
 - The August 1967 catalog says 60° at full aperture and slightly over 70° stopped down.
-- The other original maker sheet gives 65°,67°,70° at full aperture,f/11,f/16 and corresponding image-circle diameters 127,137,147mm.
+- Another original maker sheet gives 65°, 67° and 70° at full aperture, f/11 and f/16, with image-circle diameters of 127, 137 and 147 mm.
 
-The model uses 127mm only as the latter sheet's wide-open reference circle, not as a patent-guaranteed production field. Its native derived half-field is 34.516350°, while the native numerical chief solver gives approximately32.331625° for the63.5mm image-height reference. These distinct runtime quantities are not substituted for the source angles.
-
-All 317 axial launch-grid rays pass at f/5.6,f/11,f/16. At source half-fields30°,32.5°,35°, the f/5.6 survival counts are respectively148,102,52 out of317. At35°,157/317 survive atf/11 and236/317 atf/16. The explicit runtime34.516350° boundary is also tested. All8559 launch-grid rays are crosschecked against the native tracer. Eighteen native failed:noBracket cases occur before any surface hit; independent full-sphere intersections lie outside the14mm front aperture. They are separately retained as rejected entrance-cap launches, not admitted internal failures. Other rejections are explicit modeled aperture clips. None is erased or counted as valid. Nonempty coverage and chief clearance do not mean no vignetting, measured relative illumination, or source-certified image quality across the entire stated circle.
+The model uses the 127 mm wide-open circle; its chief ray reaches the 63.5 mm image height at about 32.3° and clears every rim. At full aperture, the rims of the menisci and inner doublet faces cut off a large part of the oblique bundles at the edge of the circle. This mechanical vignetting falls sharply on stopping down, consistent with the maker's larger stopped-down circles. The 6×9 cm format's corner (50.5 mm image height) lies well inside the 127 mm circle.
 
 ## First-Order Results and Image Plane
 
-At the literal e-line prescription:
+At the printed e-line prescription:
 
-- EFL:100.081427427mm, a +0.081427% difference from nominal100.
-- Gaussian BFD from R10:83.699268076mm.
-- Printed and authored BFD:83.5mm, retaining a +0.199268076mm calculated-minus-printed discrepancy.
-- Vertex span:33.1mm; first vertex to the authored image plane:116.6mm.
-- Principal planes:H1=18.690098mm fromR1;H2=−16.382159mm fromR10.
+- EFL: 100.081 mm, +0.08 % from the nominal 100 mm.
+- Paraxial back focal distance from R10: 83.699 mm.
+- Printed back focus s′: 83.5 mm, used as the infinity image distance; the paraxial value is 0.199 mm longer.
+- Vertex span: 33.1 mm; R1 to the infinity image plane: 116.6 mm.
+- Principal planes: H 18.690 mm behind R1; H′ 16.382 mm in front of R10.
 
-The BFD point discrepancy exceeds the isolated one-decimal output rounding interval and remains a failed point comparison. A separate diagnostic finds a jointly feasible set inside the actual half-last-place intervals of the printed input cells that reproduces83.5mm. This establishes print-precision compatibility only, not recovered unprinted values or proof that rounding caused the difference. Those diagnostic values are not adopted, the printed plane is not moved, and the much wider legal claim tolerances are not used as fitting permission.
+The 0.199 mm difference is larger than the rounding of the printed s′ alone. Values within the rounding of the printed radii and thicknesses can reproduce 83.5 mm, so print precision may explain it, but the cause is not established. The model keeps the printed 83.5 mm and does not move the image plane to the paraxial focus.
 
-## MTF and Limits
+## Model Scope and Limitations
 
-The native scalar-diffraction calculation converges for all18 reference-wavelength field results: f/5.6,f/11,f/16; image-height fractions0,0.5,1 of63.5mm; both authored and separately requested best-axial planes. Every tested field has zero failed rays, with blocked rays retained. Atf/5.6 the best-axial diagnostic shift is+0.156464mm from the printed plane; the main data stays at83.5mm. Neither this diagnostic nor Gaussian focus is silently substituted into the source model.
+At f/5.6 the best axial focus lies about 0.16 mm behind the printed image plane, between the printed s′ and the paraxial focus. The model keeps the printed plane.
 
-These are simulated monochromatic results for inferred apertures, not manufacturer measurements. Unknown anomalous dispersion, melts, coatings, tolerances, complete mechanical sidewalls and finite-focus behavior limit interpretation. Separate source-circle diagnostics at137mm/f11 and147mm/f16 also converge at all three field fractions with zero failed rays and explicit blocked rays. The native numerical solver gives approximate edge-chief angles34.324541° and36.234063° respectively, not the catalog’s nominal33.5°/35° figures; these alternative field descriptions remain distinct. The same fixed physical model and printed plane are used. Numerical convergence does not certify a manufacturer image-quality criterion.
+Results from the model are monochromatic at the e-line and use estimated clear apertures; they are not manufacturer measurements. The anomalous dispersion of L2/L5, the actual melts, coatings, tolerances, the mechanical mount and close-focus image quality are not represented.
 
-## Family Variants and Sources
+## Family Variants
 
-The complete DE1258134A/B, GB1130456A and FR1495079A originals are retained. Fourteen independently transcribed table occurrences contain two distinct examples with matching numerical cells across these publications. German/French Figure1 is the asymmetric ExampleI; the British figure labels are reversed, with asymmetric optics in Figure2. ExampleII is not used as a substitute. The German/French claim tolerance qualifiers differ from the British abridgment and are preserved in the evidence, never used to tune the nominal source.
+DE 1 258 134 A (Auslegeschrift), DE 1 258 134 B, GB 1 130 456 and FR 1 495 079 print the same two examples with identical numbers. Figure 1 of the German and French documents shows the asymmetric Example I; the British specification reverses the figure numbers, so its Figure 2 shows Example I. Example II (f/6.8, symmetric) is not used. The German/French claims and the British specification word the permitted tolerances differently; the nominal prescription is the same in all of them.
 
 ## Sources
 
-- DE1258134B, complete original, pages1–2 numerical tables/claim2 and page3 Figure1. [Private original](https://drive.google.com/file/d/1M-t7iAqONgI4I7rtHgv0j84MvoTFdY8P/view).
-- DE1258134A, GB1130456A and FR1495079A, complete originals and literal table variants included in this dossier.
-- Rodenstock/Berkey PRC02640, page3, revised August1967: original100mm listing and60°/stopped-down field statement.
-- Rodenstock PRC00863, page2: original optical section, conversion statement and focal-length-specific fields/circles.
-- Rodenstock PRC01474, page4: original convertible versus later non-convertible Sironar-N distinction.
-- [Original intake and evidence pointers](https://drive.google.com/file/d/1EV9kF5wA1de4-hF0Yw8lQTQrAEq0yOTc/view). Primary production PDFs remain in the independently preserved focused source archive linked there; they are not replaced by unsourced retail descriptions.
+- DE 1 258 134 B, pages 1–2 (numerical tables and claim 2) and page 3 (Figure 1).
+- DE 1 258 134 A, GB 1 130 456 A and FR 1 495 079 A, family publications with the same numerical tables.
+- Rodenstock/Berkey dealer sheet PRC02640, page 3, revised August 1967: original 100mm listing and 60°/stopped-down field statement.
+- Rodenstock brochure PRC00863, page 2: original optical section, conversion statement and focal-length-specific fields and image circles.
+- Rodenstock brochure PRC01474, page 4: original convertible Sironar versus the later non-convertible Sironar-N.

@@ -1,118 +1,111 @@
 ## Patent Reference and Design Identification
 
-## Current individual-package correction and governing validation scope
-
-This version incorporates the previously verified per-lens viewer-coverage correction into the individual package. It supersedes any older blanket actual-viewer full-pupil claim based on a nominal EFL/(2 f-number) or epAtZoom launch. The optical prescription, geometry, iris and focus controls, and all original source/production qualifications are unchanged. Historical numerical results below remain evidence only for their recorded inputs.
-
-Using the pinned viewer helper launch, actual aperture control mapping and physical iris convention, 9 sampled aperture/zoom settings pass and 0 retain full-pupil FAIL from ordinary clipping. Clipped marginal rays have not been relabeled as passed, and qualified construction does not assert a fully transmitted pupil. Actual viewer helper pupil and iris; actual quick-stop logarithmic slider mapping;33 nonnegative axial radial samples including the full current viewer launch radius. Infinity only, rotationally symmetric unchanged model. Ordinary clips remain FAIL; no toleranced conversion of clip to pass.
-
-The correction evidence includes exact public-helper versus physical-ray parity, the per-lens material scope and native raw failure classifications, and reference/photopic MTF availability or nonconvergence. It does not turn a ghost/display path into physical transmission, extend a finite-focus or source-field claim, or assert universal ray coverage. The machine-readable individualPackageRevision record contains the exact corrected per-lens counts, retained failures, source hashes, executable replay and final audit binding.
-
-**Patent:** JP S40-24553 B1 (JPS4024553B1)  
-**Filed:** 1 December 1958, original application; the cover identifies divisional application 昭38-9621  
+**Patent:** JP S40-24553 B (特許出願公告 昭40-24553)  
+**Application Number:** 特願昭38-9621, a divisional of 特願昭33-34383  
+**Filed:** 1 December 1958 (original application)  
 **Published:** 27 October 1965  
 **Inventor:** Jiro Mukai (向井二郎)  
-**Applicant:** Canon Camera Co., Inc. (normalized corpus name for キヤノンカメラ株式会社)  
+**Applicant:** Canon Camera Co., Inc. (キヤノンカメラ株式会社)  
 **Title:** Large-aperture Gaussian-type photographic lens  
-**Embodiment analyzed:** Sole numerical embodiment, repeated tables on PDF pages 1–2 and Figure 1
+**Embodiment analyzed:** Sole numerical example, Figure 1 (prescription printed on pages 1 and 2)
 
-This is a qualified probable association with the original Canon R 58mm f/1.2, not a manufacturer-certified numerical prescription. Three independent features support the association:
+The example is a probable match for the original Canon R 58mm f/1.2 rather than a manufacturer-published prescription. Three features support the association:
 
-1. Canon's museum page supplies a seven-element/five-group section with the same distinctive sequence: a positive front meniscus, two cemented doublets around the central airspace, and two separated positive rear singlets.
-2. The distribution of glass thickness, two cement seams, nearly flat rear face of the front meniscus and plano-convex penultimate element agree beyond a generic seven-element count.
+1. Canon's museum page gives seven elements in five groups and a section with the same distinctive sequence: a positive front meniscus, two cemented doublets around the central air space, and two separated positive rear singlets.
+2. The distribution of glass thickness, the two cemented interfaces, the nearly flat rear face of the front meniscus and the plano-convex penultimate element agree beyond a generic seven-element count.
 3. The original 1958 application precedes the February 1962 product.
 
-The source's 46° full field is materially larger than the period product's 41°. Possible reuse in, or ancestry of, the later FL 58mm f/1.2 remains open. Uniform multiplication by 58 is an explicitly conditional production scale, not an assertion of identical factory radii or a fitted correction. The literal computed focal length is 57.918999 mm, rather than precisely 58 mm.
+The patent's 46° full field is its design field; the 41° Canon lists for the R 58mm is the 135-format diagonal at 58 mm (2·atan(21.63/58) = 40.9°), so the difference does not weaken the match. The later FL 58mm f/1.2 (March 1964), also seven elements in five groups with the same 0.6 m close focus, may use the same or a derived design; Canon publishes no section for it. The patent is normalized to f = 1 and every dimension is scaled by 58 here; the computed focal length is 57.919 mm rather than exactly 58 mm.
 
-The original tables both print R10 = −1.528. An earlier positive transcription is not a competing source branch. No patent cell is changed to improve the construction or its calculated image quality.
+Both printed copies of the prescription give R10 = −1.528, and the patent's per-surface Petzval coefficient for surface 10 (P = +0.2740) requires the negative sign.
 
 ## Optical Architecture
 
-The source describes a large-aperture modified Gaussian system. Seven glass elements form five air-separated groups, ordered 1+2+2+1+1. The source's four functional components should not be confused with these five physical groups: the two rear singlets are discussed together functionally.
+The patent describes a large-aperture modified Gaussian lens. Seven elements form five air-separated groups, ordered 1+2+2+1+1. The patent itself speaks of four groups ("7枚4群"), counting the two rear singlets as one functional group; physically they are separated by a 0.116 mm air gap.
 
-The front meniscus supplies positive power ahead of a cemented positive/negative pair. A reversed negative/positive pair follows the central space; two positive rear singlets complete the system. All powered surfaces are spherical. R9 is planar. The source contains no filter, cover plate or aspheric surface to add or remove.
+The front meniscus supplies positive power ahead of a cemented positive/negative doublet. A reversed negative/positive doublet follows the central air space, and two positive rear singlets complete the system. All surfaces are spherical; R9 is flat. The patent lists no filter or cover plate.
 
-The modeled vertex span is 54.636 mm. A computed Gaussian back focal distance of 34.940156 mm completes the 89.576156 mm first-vertex-to-image track. The source does not print this terminal distance. These values describe the literal scaled model at infinity, not measured barrel or flange dimensions.
+The vertex length is 54.636 mm. The computed paraxial back focus of 34.940 mm gives an 89.576 mm first-vertex-to-image length. The patent does not print the back focus. These values describe the scaled prescription at infinity, not the barrel or flange dimensions.
 
 ## Element-by-Element Analysis
 
-The powers below are isolated thick-element powers in air, calculated from each element's two radii, thickness and printed index. They are not the elements' in-situ contributions inside the assembled lens. The source calls its coordinates N and ν without a spectral subscript; the file's default d-line tracing convention is approximate.
+The focal lengths below are those of each element alone in air, from its two radii, thickness and index; they are not the element's contribution inside the assembled lens. The patent prints N and ν without a line subscript; they are read as nd and νd (see Glass Identification).
 
 ### L1: Positive Front Meniscus
 
-n (source) = 1.72340, ν (source) = 38.0. Glass: Unmatched; source reference unspecified. Isolated f = +80.119 mm.
+nd = 1.72340, νd = 38.0. Glass: HOYA BAFD8 catalog equivalent; production supplier unspecified. f = +80.119 mm.
 
-The markedly curved front and much weaker rear face make this a positive meniscus. The distinctive nearly flat-looking rear face is part of the qualitative product-section bridge. No factory clear diameter or melt identity is established.
+The strongly curved front and much weaker rear face make this a positive meniscus. The nearly flat rear face also appears in Canon's published section.
 
 ### L2: Positive Member of the Front Cemented Pair
 
-n (source) = 1.66760, ν (source) = 41.9. Glass: Unmatched; source reference unspecified. Isolated f = +39.296 mm.
+nd = 1.66760, νd = 41.9. Glass: HIKARI J-BASF6 catalog equivalent; production supplier unspecified. f = +39.296 mm.
 
-This thick biconvex positive member forms the forward part of the first cemented pair. Its common rear interface opens into L3, with no invented air layer or cement index.
+This thick biconvex positive member forms the front of the first cemented doublet; its rear surface is the cemented interface with L3.
 
 ### L3: Negative Member of the Front Cemented Pair
 
-n (source) = 1.75520, ν (source) = 27.5. Glass: Unmatched; source reference unspecified. Isolated f = −22.200 mm.
+nd = 1.75520, νd = 27.5. Glass: OHARA S-TIH4 catalog equivalent (SF4 type); production supplier unspecified. f = −22.200 mm.
 
-This is a biconcave negative element. Its strongly curved rear face is concave toward the central space. Its higher index and lower Abbe number differ substantially from its positive cemented partner. This is evidence of a power/dispersion pairing, not proof of a specific glass trade name or measured chromatic correction.
+This is a biconcave negative element. Its strongly curved rear face is concave toward the central space. Its much lower Abbe number against the positive partner makes the doublet an achromatizing pair.
 
 ### L4: Negative Member of the Rear Cemented Pair
 
-n (source) = 1.59270, ν (source) = 35.4. Glass: Unmatched; source reference unspecified. Isolated f = −25.570 mm.
+nd = 1.59270, νd = 35.4. Glass: HOYA FF5 catalog equivalent; production supplier unspecified. f = −25.570 mm.
 
 This biconcave negative element presents its forward concavity toward the central space, reversing the front pair's ordering. Its rear surface is the common interface with L5.
 
 ### L5: Positive Member of the Rear Cemented Pair
 
-n (source) = 1.71300, ν (source) = 53.89. Glass: Unmatched; source reference unspecified. Isolated f = +31.252 mm.
+nd = 1.71300, νd = 53.89. Glass: OHARA S-LAL8 catalog equivalent (LaK8 type); production supplier unspecified. f = +31.252 mm.
 
-The positive biconvex member is substantially thicker on axis than its preceding negative partner. Together they form the second cemented group. The clear-aperture model is conservative and retains off-axis losses rather than artificially increasing this group's rim to pass every ray.
+The positive biconvex member is much thicker on axis than its negative partner. Together they form the second cemented group. Its modeled clear aperture is conservative, so part of the off-axis beam is vignetted at this doublet.
 
 ### L6: Rear Plano-Convex Singlet
 
-n (source) = 1.72000, ν (source) = 50.31. Glass: Unmatched; source reference unspecified. Isolated f = +123.089 mm.
+nd = 1.72000, νd = 50.31. Glass: SUMITA K-LaK10 catalog equivalent; production supplier unspecified. f = +123.089 mm.
 
-The object-facing surface R9 is flat and R10 is negative, producing a positive plano-convex element. The negative sign of R10 is independently visible in both repeated source tables and is essential to the prescription's power.
+The object-facing surface R9 is flat and R10 is negative, producing a positive plano-convex element. The negative R10 is printed in both copies of the prescription; with a positive R10 the lens would not reach its stated focal length.
 
 ### L7: Final Biconvex Singlet
 
-n (source) = 1.74400, ν (source) = 44.90. Glass: Unmatched; source reference unspecified. Isolated f = +86.812 mm.
+nd = 1.74400, νd = 44.90. Glass: HOYA LAF2 catalog equivalent; production supplier unspecified. f = +86.812 mm.
 
-The final positive singlet is separated from L6 by a literal 0.116 mm axial airspace at the adopted scale. Its modeled clear radius retains positive edge thickness and is not an asserted factory diameter.
+The final positive singlet is separated from L6 by a 0.116 mm air gap. Its modeled clear radius keeps a positive edge thickness and is not a factory diameter.
 
-## Glass Identification and Spectral Limits
+## Glass Identification
 
-All seven native index/Abbe pairs are preserved. Nearest-coordinate comparisons against the engine's 679 retained vendor-published catalog entries are recorded in the dossier, including vendor names, residuals and source citations. No nearest candidate establishes the actual historical supplier or melt, particularly while the source's spectral reference is unspecified. The final data therefore keeps explicit Unmatched labels rather than acquiring catalog dispersion merely through a plausible name.
+The patent prints N and ν without a line subscript, but its spherical-aberration plot (Fig. 2) is drawn for the d and g lines, and every pair matches a d-line catalog glass to the printed precision. The values are therefore stored as nd / νd and each element is tied to a catalog equivalent so the chromatic trace uses its dispersion curve. The vendor names are modern equivalents; the 1958 supplier and melts are not documented.
 
-No source-supported C/F/g line indices or anomalous partial-dispersion values are available. The optional photopic calculation uses a normal-line Abbe approximation. It is a simulation sensitivity result, not independently validated secondary-color performance.
+| Element | nd | νd | Catalog equivalent | Type |
+|---|---|---|---|---|
+| L1 | 1.7234 | 38.0 | HOYA BAFD8 | barium dense flint (BaSF8 type) |
+| L2 | 1.6676 | 41.9 | HIKARI J-BASF6 | barium dense flint (BaSF6 type) |
+| L3 | 1.7552 | 27.5 | OHARA S-TIH4 | dense flint (SF4 type) |
+| L4 | 1.5927 | 35.4 | HOYA FF5 | flint |
+| L5 | 1.7130 | 53.89 | OHARA S-LAL8 | lanthanum crown (LaK8 type) |
+| L6 | 1.7200 | 50.31 | SUMITA K-LaK10 | lanthanum crown (LaK10 type) |
+| L7 | 1.7440 | 44.90 | HOYA LAF2 | lanthanum flint (LaF2 type) |
+
+L2's catalog index 1.66755 lies at the rounding boundary of the printed 1.6676; the other six agree within 2×10⁻⁵. The palette is all high-index: three lanthanum glasses carry the positive rear power, and the two doublets pair a higher-dispersion negative with a lower-dispersion positive member. No anomalous partial dispersion is claimed.
 
 ## Focus Mechanism
 
-The patent supplies a single infinity prescription, not finite-conjugate spacing rows or an independently evidenced factory focusing mechanism. The adopted model therefore uses NO_INTERNAL_RECONSTRUCTION: all optical spacings remain fixed at infinity. Canon's 0.6 m minimum object distance is retained in the required schema metadata field, but it does not certify a finite optical state. The focus slider is not a validated factory focusing model for this research file.
+The patent gives only the infinity prescription. All spacings stay fixed at infinity in this model. The production lens focuses to 0.6 m, presumably by moving the whole optical unit, but no close-focus state is modeled.
 
 ## Iris, Apertures and Coverage
 
-The source does not dimension the iris or clear apertures. The modeled flat iris is placed at the midpoint of the central 14.674 mm space. Its radius is derived from the exact marginal ray for the source's f/1.2 target; the resulting 14.396868 mm radius is therefore calibration, not independent iris-size evidence.
+The patent does not give the iris position or any clear apertures. The iris is placed at the midpoint of the central 14.674 mm air space, where Figure 1 and Canon's section show it. Its 14.397 mm radius is derived from f/1.2 by a real marginal ray; the paraxial f-number at that radius is f/1.223. The other semi-diameters are inferred from the patent figure.
 
-Stopped-down labels f/2.8 and f/5.6 use linear scaling of the calibrated wide-open iris, not separately exact-calibrated entrance beams. The paraxial pupil calculation at the wide-open physical iris corresponds to f/1.222735; its distinction from the finite-marginal f/1.2 calibration is retained.
+The full f/1.2 axial beam passes every surface. Off-axis beams are vignetted, partly at the rim of the rear cemented doublet; the model does not reconstruct the real barrel, so the vignetting at the corners is indicative only. The patent's 23° half-field corresponds to a 24.6 mm image height, beyond the 21.6 mm half-diagonal of the 135 format.
 
-The modeled radii follow the published topology while maintaining positive material edges, the default 90% shared-gap allowance and zero native hidden rendering trim. The final minimum radial edge thickness is 0.228183 mm, maximum rim angle 50.573046°, and largest gap-sag fraction 89.565471%. No allowance override is used.
+## Model Scope and Limitations
 
-All 317 sampled infinity axial f/1.2 rays pass, and the native aperture audit reports f/1.200000, limited by the iris. Off-axis illumination is substantially lower. At infinity and f/1.2, 98 of 317 sampled launch-plane rays reach the image at the product's 20.5° half-field, and 53 at the patent's 23°. These counts are not photometric relative illumination. Surviving rays remain available at every tested infinity field/aperture combination, including the runtime-derived 23.447166° boundary in addition to the 20.5° product and 23° patent fields. Failures and clips are retained explicitly; the numerical boundary is not an additional source coverage claim.
-
-Some rejected off-axis rays encounter the modeled rim at the rear cemented interface. The model does not reconstruct a real bevel, sidewall or mount. This is a documented conservative aperture-boundary limitation, not a claim that every ray propagates cleanly through a complete factory mechanical assembly.
-
-## Verification and MTF Scope
-
-Reduced-angle matrices and an independently implemented scalar paraxial recurrence agree. Independent 3D sphere/vector-Snell tracing agrees with the native engine on all 195 crosschecked rays, including valid/invalid classification. Native geometry diagnostics report zero hidden trim at 101 slider samples of the unchanged infinity geometry; this is not a finite-focus validation. A rendered section using the engine's actual element-shape paths was visually compared with the original and Canon sections; the distinctive topology is retained without layout distortion.
-
-The source's per-surface Petzval column is retained. Literal point calculations differ by more than a four-decimal display tolerance at several surfaces, but each discrepancy falls within a rigorously computed interval from the printed radius/index precision. The original values are not silently changed. The other printed Seidel columns are not advertised as fully reproduced without their source reference-ray and normalization conventions.
-
-Native scalar diffraction MTF is calculated at f/1.2, f/2.8 and f/5.6, at image heights 0, 10.825 and 21.65 mm, using both the authored Gaussian plane and a separately requested axial best-focus plane. These analyses converge, but neither convergence nor the optional best-focus adjustment proves manufacturer performance. The authored prescription's image plane remains unchanged. Approximate photopic results, exact options, sampling counts and limitations are included in the dossier.
+The patent prints a Seidel coefficient table; the computed per-surface Petzval terms agree with its P column within the rounding of the printed radii and indices (computed sum 0.2324 against the printed 0.2294). The model reproduces the patent's f = 1 to −0.14 %. It is an infinity-only reconstruction of a patent example, and its computed performance is not a measurement of the production lens.
 
 ## Sources
 
-- [Complete JPS4024553B1 original](https://drive.google.com/file/d/1X7bkQPMVgZ1zzxcDhfmw787Vx7EN3Kqp/view), prescription repeated on PDF pages 1–2; Seidel table on page 1 only; Figure 1 and aberration plots on page 3.
-- [Canon R58mm F1.2 museum page](https://global.canon/ja/c-museum/product/r76.html) and [maker optical section](https://global.canon/ja/c-museum/wp-content/uploads/2015/05/r76-lens-construction.gif).
-- [Period Canon catalog](https://www.pacificrimcamera.com/rl/02312/02312.pdf), PDF page 25, retained product field specification.
-- [Qualification/source archive](https://drive.google.com/file/d/1Kkg3Wk6ZvfED9W3moHxluxhBblMRY2Su/view), original source custody and probable-production assessment.
+- JP S40-24553 B (特許出願公告 昭40-24553), Japan Patent Office, published 27 October 1965: prescription on pages 1–2, Seidel table on page 1, Figure 1 and aberration plots on page 3.
+- [Canon R58mm F1.2 museum page](https://global.canon/ja/c-museum/product/r76.html) and [Canon optical section](https://global.canon/ja/c-museum/wp-content/uploads/2015/05/r76-lens-construction.gif).
+- [Canon FL58mm f/1.2 (I) museum page](https://global.canon/en/c-museum/product/fl106.html).
+- [Period Canon catalog](https://www.pacificrimcamera.com/rl/02312/02312.pdf), PDF page 25, field angle of the R 58mm.

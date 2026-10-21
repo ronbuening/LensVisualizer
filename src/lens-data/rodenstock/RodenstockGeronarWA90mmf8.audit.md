@@ -2,7 +2,7 @@
 
 This successor incorporates the current viewer-coverage and, where applicable, glass-description corrections. The complete historical audit below is retained for its original pair and launch domain, not as an override of the corrected analysis or actual-viewer results. No optical or control values are changed. Every current full-pupil clipping observation remains FAIL; ordinary modeled vignetting is separately distinguished from unresolved transport defects.
 
-Current disposition: QUALIFIED_READY_FOR_BATCH. Exact successor data, analysis, verifier, correction artifacts and contract are independently approved. Final archive and private readback are bound by the external receipt. Integration remains pending.
+Current disposition: QUALIFIED_READY_FOR_BATCH. Exact successor data, analysis, verifier, correction artifacts and contract are independently approved. Final archive and private readback are bound by the external receipt. Integration remains pending. (Closed 2026-10-21: integrated; see the dated section at the end.)
 
 The current .analysis.md and .results.json govern corrected claims. The individualPackageRevision evidence record restores every prior changed file byte-for-byte and retains exact optional full material/MTF replay. The current verifier freshly executes the unchanged original source verifier and the actual current helper/axial checks. It never substitutes historical nominal-pupil results for current viewer coverage.
 
@@ -21,7 +21,7 @@ Optional full replay adds --full-independent-replay to that command. It restores
 
 ## Disposition
 
-Qualified independent Stage 4 PASS; READY_FOR_BATCH and INTEGRATION_PENDING. No self-awarded approval, corpus integration, metadata generation, publication or deployment. Source cells remain literal under the explicitly conditional ×0.9 scale. Production correlation remains probable rather than a factory prescription certification.
+Qualified independent Stage 4 PASS; READY_FOR_BATCH and INTEGRATION_PENDING. No self-awarded approval, corpus integration, metadata generation, publication or deployment. Source cells remain literal under the explicitly conditional ×0.9 scale. Production correlation remains probable rather than a factory prescription certification. (Closed 2026-10-21: integrated and made visible.)
 
 ## Source custody and scope
 
@@ -45,7 +45,7 @@ All 41 final reference-MTF fields converge with no failed rays. The final 170 mm
 
 ## Focus, aperture and field limits
 
-No focus law is established. The required 10 m closeFocusM field is an explicitly nonphysical compatibility placeholder, repeated adjacent to the field, in the header, focus description and analysis. The candidate is hidden. The 101 invariant state checks certify that the runtime does not invent motion; they do not certify finite focus. Integration must prevent presentation of that placeholder as manufacturer MFD.
+No focus law is established. The required 10 m closeFocusM field is an explicitly nonphysical compatibility placeholder, repeated adjacent to the field, in the header, focus description and analysis. The candidate is hidden. The 101 invariant state checks certify that the runtime does not invent motion; they do not certify finite focus. Integration must prevent presentation of that placeholder as manufacturer MFD. (Superseded 2026-10-21: the placeholder is replaced by bellows unit focus to a computed 1.0 m state.)
 
 Every authored aperture is independently exact-marginal calibrated. Source 42.5° half-field, the runtime heuristic, 4×5 reference corner, maker 155 mm/f11 and 170 mm/f22 circles are distinguished. The fixed ray grid retains approximate native edge angles from the initial diagnostic; final native inversion values are separately reported, not falsely labeled exact analytical boundaries. Sample fractions are not photometric throughput.
 
@@ -54,3 +54,15 @@ Every authored aperture is independently exact-marginal calibrated. Source 42.5�
 The delivered verifier strictly parses the actual TypeScript and compares literal source cells, dual first-order paths, geometry, chief roots, continuation and all field/aperture launch decisions. The native replay imports the real recorded engine read-only, checks render diagnostics, raw-input and slider purity, source-line-aware glass candidates, same-launch ray outcomes, surviving-solid containment and MTF. Real targeted TypeScript and Prettier checks avoid lifecycle hooks. Named-file aperture/image-circle/field audits are bounded to this candidate.
 
 Independent source-first inputs, frozen calculation code and the exact independently authored rational verifier are embedded unchanged and executed separately. The source-first comparison supplement and its raw code/results remain identifiable and hash-bound. An actual native focusT=1 MTF guard returns finite-conjugate-unavailable; this is a support refusal on the fixed infinity geometry, not a finite-focus performance result. The independent reviewer clean-extracted the sealed Stage 3 v002 archive and verified all payload/dependency hashes, stable portable and full native replay, and exact manufacturer-page extraction. Its unchanged approval and receipt are embedded. This final readiness-only revision changes no data, analysis or verifier semantics. Final private remote verification is recorded separately after full readback. Batch-wide metadata generation and integration are intentionally not performed in this protocol.
+
+## 2026-10-21 — Deployment validation and wording pass
+
+Source re-read: both DE 3026282 A1 (p2) and C2 (p3) tables were read from page images (no text layer). All 23 numeric fields (8 radii, 4 thicknesses, 3 air gaps including the 6.11 + 7.29 split, 4 nₑ and 4 νₑ) agree between the prints and equal the data file at ×0.9; no mismatches. No aspheres or variable gaps are printed. The repeated d3 label for the 10.21 thickness is in both prints. At 300 dpi the C2 figure gives r4→stop ≈ 6.25 and stop→r5 ≈ 7.03 (f = 100 units), supporting the 6.11-in-front split.
+
+First order: the patent states f' = 100, f/8 and 2ω ≥ 85° and prints no back focus. An independent paraxial trace gives EFL 99.956 at f = 100 (−0.044 %), so 89.960 mm and BFD 72.731 mm at ×0.9; the engine reproduces both (f/8 marginal-set iris, paraxial f/8.015).
+
+Maker comparison: the 1982 BMC sheet (PRC04128 p11) and Rodenstock booklet (PRC00817 pp15, 22) give 4 elements / 4 groups, f/8–32, 4×5, 80° / 155 mm at f/11 and 85° / 170 mm at f/22, and draw four separated menisci around a central stop. The booklet's 87.1 mm flange focal distance less 14.0 mm shutter seating to lens rear leaves ≈ 73.1 mm, against the model's 72.73 mm BFD.
+
+Fields changed: header comment, `subtitle`, `specs`, element `role` and `glass` strings (`Unmatched (...)` form, same facts), `visible` false → true, r7 `sd` 18 → 16 (the step drawn on the L4 front face in both prints; the full f/22, 85 mm bundle reaches 14.78 mm there), and focus: `closeFocusM` 10 → 1.0 with a BF gap on surface 8 (72.731221 → 82.698251 mm, paraxial for 1.0 m object to image), matching the Geronar 210 / Grandagon-N bellows convention. Infinity EFL, BFD, f-number, stop and half-field are unchanged. Analysis: package-process sections and wording removed; the verification section is now "Model Scope and Limitations"; the focus section describes unit focus.
+
+Open: r2 may end at ≈ 14.6–15.4 mm before a flat annulus in the drawings (file 17.5); the reading is ambiguous and the value is left. `focalLengthMm.design` is 90 although the model gives 89.960 mm.

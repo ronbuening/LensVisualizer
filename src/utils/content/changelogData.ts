@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-22",
+    type: "lens",
+    summary:
+      "Added Canon R 58mm f/1.2 and FL 300mm f/2.8 Fluorite, the original Leitz Noctilux 50mm f/1.2, Rodenstock Geronar-WA 90mm and original Sironar 100mm, and the Sigma 4.5mm circular fisheye",
+  },
+  {
     date: "2026-10-21",
     type: "lens",
     summary:
