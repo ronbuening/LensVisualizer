@@ -1,5 +1,6 @@
 import { useMemo } from "react";
-import { createAnalysisRequest, createAnalysisComputationContext, stateWithZ } from "../../../../optics/analysis.js";
+import { createAnalysisRequest, createAnalysisComputationContext } from "../../../../optics/analysis.js";
+import { stateWithZ } from "../../../../optics/optics.js";
 import usePreparedAnalysisState from "../usePreparedAnalysisState.js";
 import { probe } from "../../../../utils/perfProbe.js";
 import type { PreparedOpticalState } from "../../../../optics/types.js";

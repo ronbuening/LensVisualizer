@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { PerspectiveFieldStatus, SensorUv } from "../../../../optics/perspective/index.js";
+import type { PerspectiveFieldStatus, SensorUv } from "../../../../optics/perspective.js";
 import type { Theme } from "../../../../types/theme.js";
 
 interface PerspectiveSectionProps {

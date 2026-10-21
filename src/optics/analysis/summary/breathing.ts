@@ -6,7 +6,7 @@ import { eflAtPreparedState } from "../../first-order/focusBreathing.js";
 import { prepareState } from "../../state/preparedGeometry.js";
 import { runtimeView } from "../../prescription/runtimeView.js";
 import { eflAtZoom } from "../../state/stationTables.js";
-import { formatDist } from "../../opticsFormat.js";
+import { formatDist } from "../../first-order/format.js";
 import type { AnalysisRequest } from "../request.js";
 
 /**

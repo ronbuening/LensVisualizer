@@ -5,7 +5,7 @@
  * `glass` string resolves to a known catalog entry but its published (nd, νd)
  * or (ne, νe)
  * coordinates disagree with the authored prescription beyond the safety-net
- * tolerances used in src/optics/dispersion.ts. These mismatches
+ * tolerances used in src/optics/chromatic/materialResolver.ts. These mismatches
  * indicate either:
  *
  *   (a) a speculative glass identification in the lens data that turned out to
@@ -23,6 +23,7 @@
  *
  * Runs only via `npm run generate:reports`, never in `npm test`; its job is to surface the data.
  */
+import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { describe, it, expect } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
 import {
@@ -34,7 +35,6 @@ import {
   resolveGlass,
 } from "../src/optics/glassCatalog.js";
 import { extractPatentNumber, walkLensSurfaces } from "./glassScanLib.js";
-import type { LensData } from "../src/types/optics.js";
 
 const REPORT_DIR = "agent_docs/generated";
 
@@ -56,7 +56,7 @@ interface Mismatch {
   vdDiff: number | null;
 }
 
-const modules = import.meta.glob<{ default: LensData }>("../src/lens-data/**/*.data.ts", { eager: true });
+const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 
 describe("catalog-mismatch scan", () => {
   it("emits a report of catalog mismatches across the entire lens library", () => {
@@ -71,7 +71,7 @@ describe("catalog-mismatch scan", () => {
     totalLenses = walkLensSurfaces(
       modules,
       ({ filePath, data, L }) => {
-        const patentNumber = extractPatentNumber(data.patentNumber, data.subtitle);
+        const patentNumber = extractPatentNumber(data.source.patentNumber, data.subtitle);
         const elementById = new Map(L.elements.map((e) => [e.id, e]));
 
         for (let i = 0; i < L.S.length; i++) {
@@ -147,7 +147,7 @@ describe("catalog-mismatch scan", () => {
     lines.push("D-line rows compare C/d/F coordinates; native e-line rows compare C′/e/F′ coordinates.");
     lines.push("");
     lines.push(
-      "These are rejected by the safety net in [src/optics/dispersion.ts](../../src/optics/dispersion.ts) — the",
+      "These are rejected by the safety net in [src/optics/chromatic/materialResolver.ts](../../src/optics/chromatic/materialResolver.ts) — the",
     );
     lines.push("dispersion cascade falls through to Abbe rather than trust a misidentified glass label. This");
     lines.push("report exists so the team can decide per-case whether to relabel the glass, update the stored `nd`,");

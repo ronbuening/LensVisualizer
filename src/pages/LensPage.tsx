@@ -117,10 +117,10 @@ export default function LensPage() {
               </p>
             )}
 
-            {lens.specs && lens.specs.length > 0 && (
+            {lens.catalog.specs && lens.catalog.specs.length > 0 && (
               <table style={SPEC_TABLE_STYLE}>
                 <tbody>
-                  {lens.specs.map((spec, i) => (
+                  {lens.catalog.specs.map((spec, i) => (
                     <tr key={i}>
                       <td style={TD_STYLE}>{spec}</td>
                     </tr>
@@ -129,18 +129,18 @@ export default function LensPage() {
               </table>
             )}
 
-            {lens.focusDescription && (
+            {lens.focus.description && (
               <section style={{ marginBottom: "1rem" }}>
                 <h2 style={{ fontSize: "0.95rem", fontWeight: 600, marginBottom: "0.25rem" }}>Focus Mechanism</h2>
-                <p style={{ fontSize: "0.8rem", color: "#ccc", lineHeight: 1.5 }}>{lens.focusDescription}</p>
+                <p style={{ fontSize: "0.8rem", color: "#ccc", lineHeight: 1.5 }}>{lens.focus.description}</p>
               </section>
             )}
 
             {lens.elements && lens.elements.length > 0 && (
               <section style={{ marginBottom: "1rem" }}>
                 <h2 style={{ fontSize: "0.95rem", fontWeight: 600, marginBottom: "0.5rem" }}>
-                  Optical Elements ({lens.elementCount ?? lens.elements.length} physical
-                  {lens.elementCount !== undefined && lens.elementCount !== lens.elements.length
+                  Optical Elements ({lens.catalog.elementCount ?? lens.elements.length} physical
+                  {lens.catalog.elementCount !== undefined && lens.catalog.elementCount !== lens.elements.length
                     ? `; ${lens.elements.length} modeled media`
                     : ""}
                   )

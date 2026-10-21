@@ -1,16 +1,16 @@
 /**
- * V2 ingest — maps an authored `schema: 2` lens or teleconverter file onto the canonical prescription, and sends a
- * file of either version to its own ingest (`ingestLens`, `ingestTeleconverter`).
+ * V2 ingest — maps an authored `schema: 2` lens or teleconverter file onto the canonical prescription, and
+ * refuses retired V1 files at the app boundary (`ingestLens`, `ingestTeleconverter`).
  *
- * V2 is the canonical prescription as an author writes it (OPTICS_ENGINE_REWRITE_SPEC.md, Lens data V2), so most of
+ * V2 is the canonical prescription as an author writes it (see agent_docs/architecture/optics-engine.md), so most of
  * the mapping is a copy. Ingest applies the schema defaults to the fields a file leaves out, gives undrawn media the
- * ids V1 ingest gives them (`m1`, `m2`, … by first use, so a medium's own id and name stay out of the semantic
- * fingerprint), takes a variable gap's first thickness as its surface's `d`, and decides the stop's radius authority.
+ * ids V1 ingest gives them (`m1`, `m2`, … by first use, so a medium's own id and name stay out of canonical
+ * semantics), takes a variable gap's first thickness as its surface's `d`, and decides the stop's radius authority.
  *
- * Like V1 ingest it does not validate the prescription, which `validateLensData` still does on the V1 view. A V2 file
+ * Like V1 ingest it does not validate the prescription, which canonical validation does on diagnostic columns. A V2 file
  * has no validator-first pass, though, so V2 ingest refuses every shape it cannot read itself, along with what the
- * canonical form or the V1 view cannot hold and the rules V2 adds, each at its authored path. The one list of them is
- * the S2.P2.T1 As built of OPTICS_ENGINE_REWRITE_SPEC.md. Every reason found is reported at once, in a
+ * canonical form cannot hold and the rules V2 adds, each at its authored path. The one list of them is
+ * `src/lens-data/LENS_DATA_SPEC.md`, Validation Rules. Every reason found is reported at once, in a
  * `PrescriptionIngestError`, but for `elements` or `surfaces` that is not a list of objects, which stops ingest at
  * once. The input is never modified, and the result shares no object with it. Asked for source paths, ingest records
  * where it read each value (`SourcePaths`); in V2 a value sits at its canonical path, except a medium's, which ingest
@@ -38,31 +38,29 @@ import type {
   ZoomStationV2Input,
   ZoomV2Input,
 } from "../../types/lensDataV2.js";
-import type { LensDataInput } from "../../types/optics.js";
-import type { TeleconverterData } from "../../types/teleconverter.js";
+import { associateCanonical } from "./identity.js";
 import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
-import {
-  FLAT_RADIUS,
-  PrescriptionIngestError,
-  stopRadiusAuthority,
-  type CanonicalAberrationControl,
-  type CanonicalConjugate,
-  type CanonicalElement,
-  type CanonicalFocus,
-  type CanonicalGap,
-  type CanonicalLens,
-  type CanonicalMedium,
-  type CanonicalSurface,
-  type CanonicalTeleconverter,
-  type CanonicalZoom,
-  type CanonicalZoomStation,
-  type IngestedPrescription,
-  type IngestRequest,
-  type SourcePaths,
-  type StopRadiusAuthority,
-  type V2Spelling,
+import { FLAT_RADIUS, PrescriptionIngestError, stopRadiusAuthority } from "./canonical.js";
+import type {
+  CanonicalAberrationControl,
+  CanonicalConjugate,
+  CanonicalElement,
+  CanonicalFocus,
+  CanonicalGap,
+  CanonicalLens,
+  CanonicalMedium,
+  CanonicalSurface,
+  CanonicalTeleconverter,
+  CanonicalZoom,
+  CanonicalZoomStation,
+  IngestedPrescription,
+  IngestRequest,
+  SourcePaths,
+  StopRadiusAuthority,
+  V2Spelling,
 } from "./canonical.js";
-import { ELEMENT_SCHEMA_DEFAULTS, LENS_SCHEMA_DEFAULTS, type SchemaDefault } from "./defaults.js";
+import { ELEMENT_SCHEMA_DEFAULTS, LENS_SCHEMA_DEFAULTS } from "./defaults.js";
+import type { SchemaDefault } from "./defaults.js";
 import {
   copy,
   finish,
@@ -78,10 +76,8 @@ import {
   requireRecords,
   sourcePathsFor,
   takeDefault,
-  type IngestContext,
-  type Untyped,
 } from "./ingestCommon.js";
-import { ingestLensV1, ingestTeleconverterV1 } from "./ingestV1.js";
+import type { IngestContext, Untyped } from "./ingestCommon.js";
 import { labelPath } from "./sourcePaths.js";
 
 /** The `schema` value of a V2 file. */
@@ -305,7 +301,7 @@ function recordInPlace(sources: SourcePaths, at: string, record: Untyped, fields
 }
 
 function keyOf(data: Untyped): string {
-  return typeof data.key === "string" ? data.key : "?";
+  return typeof data?.key === "string" ? data.key : "?";
 }
 
 /**
@@ -1120,6 +1116,7 @@ export function ingestTeleconverterV2(
 
   const catalogRecord = nested(data, "catalog", "", TELECONVERTER_CATALOG_FIELDS, context) ?? {};
   requireFields(catalogRecord, ["lensMounts"], "catalog", context);
+  if (!Array.isArray(catalogRecord.lensMounts)) context.issues.push("catalog.lensMounts must be an array");
   const catalog: Untyped = { lensMounts: copy(catalogRecord.lensMounts) };
   for (const field of ["specs", "elementCount", "groupCount"]) put(catalog, field, catalogRecord[field]);
   if (context.sources) recordReads(context.sources, "catalog", "catalog", catalog, Object.keys(catalog));
@@ -1152,15 +1149,15 @@ export function ingestTeleconverterV2(
   return finish(key, converter as unknown as CanonicalTeleconverter, context, { format: 2, v2: spelling });
 }
 
-/* ── Dispatch on schema ── */
+/* ── Version detection and V2-only app ingest ── */
 
 function schemaOf(input: object): unknown {
-  return (input as { schema?: unknown }).schema;
+  return (input as { schema?: unknown } | null | undefined)?.schema;
 }
 
 /**
- * Whether a lens or teleconverter file is V1: one that leaves `schema` out. The dispatchers below and every reader
- * that treats the two versions apart ask this one rule.
+ * Whether a lens or teleconverter file is V1: one that leaves `schema` out. The permanent converter dispatcher
+ * and version detection share this rule; the app barrel exposes only `lensDataVersion`.
  *
  * @param input - a file's default export, as authored
  * @returns true for a V1 file; a file with any `schema` is not one
@@ -1171,8 +1168,8 @@ export function isV1File<File extends object>(input: File): input is Exclude<Fil
 
 /**
  * The lens-data version of a file, by the same rule: 1 for a file that leaves `schema` out, 2 for `schema: 2`, and
- * none for any other `schema`, which the dispatchers below refuse. The converter asks it to leave a file already at
- * the version it converts to as it is, and to refuse a file of no version.
+ * none for any other `schema`, which app ingest and the converter refuse. The converter leaves a file already at
+ * the requested version as it is, and refuses a file of no version.
  *
  * @param input - a file's default export, as authored
  * @returns the file's version, or `undefined` when its `schema` names none
@@ -1182,42 +1179,37 @@ export function lensDataVersion(input: object): 1 | 2 | undefined {
   return schemaOf(input) === LENS_DATA_V2_SCHEMA ? 2 : undefined;
 }
 
-function refuseSchema(input: object, schema: unknown): never {
+/** Refuse retired or unknown file formats before any authored data is mapped. */
+function requireV2(input: unknown, kind: "lens" | "teleconverter", request?: IngestRequest): void {
+  if (input === null || typeof input !== "object" || Array.isArray(input)) {
+    throw new PrescriptionIngestError("?", ["input is not lens data: expected a lens-data object"]);
+  }
+  if (lensDataVersion(input) === 2) return;
+  const path = request?.path;
+  const key = keyOf(input as Untyped);
+  const schema = schemaOf(input);
   throw new PrescriptionIngestError(keyOf(input as Untyped), [
-    `schema ${JSON.stringify(schema)} is no lens-data version: write ${LENS_DATA_V2_SCHEMA}, or leave it out in a V1 file`,
+    schema === undefined
+      ? path
+        ? `V1 file ${JSON.stringify(path)} is no longer accepted by the app; run npm run convert:lens-data -- --input ${JSON.stringify(path)} --write`
+        : `V1 ${kind} data (key ${JSON.stringify(key)}) is no longer accepted by the app; run the converter on its .${kind === "lens" ? "data" : "teleconverter"}.ts file with npm run convert:lens-data`
+      : `schema ${JSON.stringify(schema)} is no lens-data version: write ${LENS_DATA_V2_SCHEMA}`,
   ]);
 }
 
-/**
- * Ingest a lens file of either version: `schema: 2` is V2, and a file without `schema` is V1.
- *
- * @param input - the file's default export, as authored
- * @param request - what to record beyond the prescription: source paths, for the converter
- * @returns the canonical prescription and its provenance
- * @throws PrescriptionIngestError naming every reason the canonical form cannot hold the file
- */
-export function ingestLens(
-  input: LensDataInput | LensDataV2Input,
-  request?: IngestRequest,
-): IngestedPrescription<CanonicalLens> {
-  if (isV1File(input)) return ingestLensV1(input, request);
-  if (lensDataVersion(input) === 2) return ingestLensV2(input, request);
-  return refuseSchema(input, schemaOf(input));
+/** Ingest an authored V2 lens; archived V1 files belong to the permanent converter. */
+export function ingestLens(input: LensDataV2Input, request?: IngestRequest): IngestedPrescription<CanonicalLens> {
+  requireV2(input, "lens", request);
+  const ingested = ingestLensV2(input, request);
+  associateCanonical(ingested.prescription, ingested);
+  return ingested;
 }
 
-/**
- * Ingest a teleconverter file of either version: `schema: 2` is V2, and a file without `schema` is V1.
- *
- * @param input - the file's default export, as authored
- * @param request - what to record beyond the prescription: source paths, for the converter
- * @returns the canonical prescription and its provenance
- * @throws PrescriptionIngestError naming every reason the canonical form cannot hold the file
- */
+/** Ingest an authored V2 teleconverter. */
 export function ingestTeleconverter(
-  input: TeleconverterData | TeleconverterDataV2Input,
+  input: TeleconverterDataV2Input,
   request?: IngestRequest,
 ): IngestedPrescription<CanonicalTeleconverter> {
-  if (isV1File(input)) return ingestTeleconverterV1(input, request);
-  if (lensDataVersion(input) === 2) return ingestTeleconverterV2(input, request);
-  return refuseSchema(input, schemaOf(input));
+  requireV2(input, "teleconverter", request);
+  return ingestTeleconverterV2(input, request);
 }

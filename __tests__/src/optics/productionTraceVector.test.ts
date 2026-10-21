@@ -1,33 +1,34 @@
+import { constructionFixtureData, runtimeFixtureView } from "./constructionFixtures.js";
+import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { createTraceGeometry } from "../../../src/optics/trace/geometry.js";
 import { describe, expect, it, vi } from "vitest";
 import { build, buildMissAfterFirstHitLens, buildSimplePositiveElementLens } from "./testLensFixtures.js";
-import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import {
   prepareEngineTrace,
   prepareRayTrace,
   prepareRayTraceForState,
-  traceEngineRay2,
-  traceSkewRayChromatic2,
-  traceSkewRayVectorChromatic2,
+  traceEngineRay,
+  traceSkewRayChromatic,
+  traceSkewRayVectorChromatic,
 } from "../../../src/optics/trace/rayAdapters.js";
-import * as normalization from "../../../src/optics/prescription/compile.js";
+import * as normalization from "../../../src/optics/prescription/identity.js";
 import { prepareState } from "../../../src/optics/state/preparedGeometry.js";
 import { createPerspectiveTraceContext } from "../../../src/optics/perspective/trace.js";
-import buildLens from "../../../src/optics/buildLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import { traceFixtureSlope, traceFixtureVector } from "./traceGeometryFixtures.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { solveChiefRayForRuntimeLens as solveChiefRay } from "../../../src/optics/state/fieldAdapters.js";
 import {
-  doLayout,
-  solveChiefRay,
   traceRay,
   traceRayChromatic,
   traceRayVector,
   traceRayVectorChromatic,
-  traceChiefRelativeSkewRay,
   traceSkewRay,
   traceSkewRayVector,
-} from "../../../src/optics/optics.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+} from "../../../src/optics/trace/rayAdapters.js";
+import { traceChiefRelativeSkewRay } from "../../../src/optics/trace/chiefRelative.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
 const LENS_KEYS = ["apo-lanthar-50f2", "nokton-50f1", "sonnar-50f15"] as const;
@@ -35,7 +36,7 @@ const FIELD_DEGS = [5, 30, 60] as const;
 const Y0_OFFSETS = [0, 1.5, -2.5] as const;
 
 function lensFor(key: string): RuntimeLens {
-  return buildLens(LENS_CATALOG[key]);
+  return buildLens(CATALOG_CONSTRUCTION_FIXTURES[key]);
 }
 
 describe("production vector traversal", () => {
@@ -236,7 +237,7 @@ describe("asphere cap tracing and clipping", () => {
       surfaces: capState.surfaces,
       isFoldedOptics: state.lens.flags.isFoldedOptics,
     });
-    const prepared = traceEngineRay2(capState, ray, {
+    const prepared = traceEngineRay(capState, ray, {
       launchBoundT: 4,
       checkSemiDiameter: true,
       stopSemiDiameter: innerSd ? 2.5 : 1.5,
@@ -261,11 +262,11 @@ describe("prepared traversal selection", () => {
     expect(geometry).toBeDefined();
     expect(geometry.traversal.kind).toBe(kind);
     const input = { origin: [0, 1, -5], direction: [0, 0, 1] } as const;
-    const full = traceEngineRay2(state, input, { recordHeights: true, recordOpticalPath: true });
+    const full = traceEngineRay(state, input, { recordHeights: true, recordOpticalPath: true });
     expect(full.diagnostics.terminationReason === "sequential-return").toBe(kind === "sequential");
     for (const stopAt of [0, 1, 1.5, NaN, Infinity, -Infinity]) {
       for (const skipLastTransfer of [false, true]) {
-        const result = traceEngineRay2(state, input, {
+        const result = traceEngineRay(state, input, {
           stopAt,
           skipLastTransfer,
           recordHeights: true,
@@ -305,7 +306,7 @@ describe("prepared traversal selection", () => {
       expect(before).toBeGreaterThan(0);
       for (const y of [0, 0.1, 0.2]) {
         const input = { origin: [0, y, -5], direction: [0, 0, 1] } as const;
-        traceEngineRay2(state, input);
+        traceEngineRay(state, input);
         if (base.lens.flags.isFoldedOptics) {
           expect(() => context.traceRay(input)).toThrow("sequential optical paths only");
         } else {
@@ -327,7 +328,7 @@ describe("prepared traversal selection", () => {
     const geometry = createTraceGeometry({ ...base.traceGeometry, surfaces, isFoldedOptics: false });
     expect(scans).toBe(1);
     const state = { ...base, surfaces, traceGeometry: geometry };
-    for (const y of [0, 0.1, 0.2]) traceEngineRay2(state, { origin: [0, y, -5], direction: [0, 0, 1] });
+    for (const y of [0, 0.1, 0.2]) traceEngineRay(state, { origin: [0, y, -5], direction: [0, 0, 1] });
     expect(scans).toBe(1);
     expect(state.traceGeometry).toBe(geometry);
 
@@ -353,11 +354,15 @@ describe("chief-relative physical traces", () => {
       S: surfaces,
       stopIdx: 1,
       labelIdx: { CAP: 0, STO: 1, MISS: 2 },
-      data: { ...base.data, surfaces, asph: { CAP: { K: 0, A4: 0.04, A6: -0.004, A8: 0, A10: 0, A12: 0, A14: 0 } } },
+      ...runtimeFixtureView({
+        ...constructionFixtureData(base),
+        surfaces,
+        asph: { CAP: { K: 0, A4: 0.04, A6: -0.004, A8: 0, A10: 0, A12: 0, A14: 0 } },
+      }),
     };
     const lens = registerRuntimeFixture({ ...L, rayLead: 5 });
     const state = prepareRuntimeState(lens, 0, 0);
-    const trace = traceEngineRay2(
+    const trace = traceEngineRay(
       state,
       { origin: [0, 7.5, -5], direction: [0, -1, 1] },
       {
@@ -381,7 +386,7 @@ describe("chief-relative physical traces", () => {
   it.each([false, true])("terminates a subsequent miss without fabricated ghost hits (%s)", (ghost) => {
     const L = buildMissAfterFirstHitLens();
     const state = prepareRuntimeState(L, 0, 0);
-    const trace = traceEngineRay2(
+    const trace = traceEngineRay(
       state,
       { origin: [0, 30, 0], direction: [0, 0, 1] },
       {
@@ -413,11 +418,33 @@ function expectBitIdentical(actual: unknown, expected: unknown): void {
 }
 
 describe("request-bound runtime ray adapters", () => {
+  it("preserves a live fan and recomputes identical rays after evicting its aperture options", () => {
+    const state = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
+    const request = { stopSD: 0.5, ghost: true, channel: "B" } as const;
+    const retained = prepareRayTraceForState(state, request);
+    const input = { origin: [0.1, 0.2, -10], direction: [0, -0.01, 1] } as const;
+    const trace = (fan: typeof retained) => [
+      fan.ray(0.2, -0.01),
+      fan.skew(0.1, 0.2, 0, -0.01),
+      fan.vector(input),
+      fan.skewVector(input),
+    ];
+    const expected = trace(retained);
+    for (let step = 1; step <= 100; step++) {
+      prepareRayTraceForState(state, { ...request, stopSD: 0.5 + step / 100 });
+    }
+    expect(trace(prepareRayTraceForState(state, request))).toStrictEqual(expected);
+    expect(trace(retained)).toStrictEqual(expected);
+  });
+
   it("matches all per-call forms bit for bit for ordinary, folded, chromatic and absorbing fans", () => {
     const base = buildSimplePositiveElementLens();
     const absorbing = build({
-      ...base.data,
-      elements: base.data.elements.map((element) => ({ ...element, absorptionCoefficientPerMm: 0.2 })),
+      ...constructionFixtureData(base),
+      elements: constructionFixtureData(base).elements.map((element) => ({
+        ...element,
+        absorptionCoefficientPerMm: 0.2,
+      })),
     });
     const lenses = [lensFor("apo-lanthar-50f2"), lensFor("reference-newtonian-side-focus"), absorbing];
     for (const L of lenses) {
@@ -451,13 +478,13 @@ describe("request-bound runtime ray adapters", () => {
                     ? traceRayChromatic(y, u, zPos, focusT, zoomT, stopSD, ghost, L, channel, aberrationT)
                     : traceRay(y, u, zPos, focusT, zoomT, stopSD, ghost, L, aberrationT);
                   const skew = channel
-                    ? traceSkewRayChromatic2(0.3, y, 0, u, focusT, zoomT, stopSD, ghost, L, channel, aberrationT)
+                    ? traceSkewRayChromatic(0.3, y, 0, u, focusT, zoomT, stopSD, ghost, L, channel, aberrationT)
                     : traceSkewRay(0.3, y, 0, u, focusT, zoomT, stopSD, ghost, L, aberrationT);
                   const vector = channel
                     ? traceRayVectorChromatic(input, zPos, stopSD, ghost, L, channel, focusT, zoomT, aberrationT)
                     : traceRayVector(input, zPos, stopSD, ghost, L, focusT, zoomT, aberrationT);
                   const skewVector = channel
-                    ? traceSkewRayVectorChromatic2(input, zPos, stopSD, ghost, L, channel, focusT, zoomT, aberrationT)
+                    ? traceSkewRayVectorChromatic(input, zPos, stopSD, ghost, L, channel, focusT, zoomT, aberrationT)
                     : traceSkewRayVector(input, zPos, stopSD, ghost, L, focusT, zoomT, aberrationT);
                   expectBitIdentical(bound.ray(y, u), ray);
                   expectBitIdentical(bound.skew(0.3, y, 0, u), skew);
@@ -479,7 +506,7 @@ describe("request-bound runtime ray adapters", () => {
         for (const capture of ["terminal", "hits", "diagnostics"] as const) {
           const options = { stopAt, capture, checkSemiDiameter: true };
           const input = { origin: [0, 1, -20] as const, direction: [0, 0, 1] as const };
-          const expected = traceEngineRay2(state, input, options);
+          const expected = traceEngineRay(state, input, options);
           let bound = false;
           const geometry = {
             ...state.traceGeometry,

@@ -8,12 +8,8 @@
  */
 
 import type { ReactNode } from "react";
-import { describeBokehDefocusSide } from "../../../optics/aberrationAnalysis.js";
-import type {
-  BokehBrightnessCharacter,
-  BokehFieldResult,
-  BokehPreviewResult,
-} from "../../../optics/aberrationAnalysis.js";
+import { describeBokehDefocusSide } from "../../../optics/analysis.js";
+import type { BokehBrightnessCharacter, BokehFieldResult, BokehPreviewResult } from "../../../optics/analysis.js";
 import type { Theme } from "../../../types/theme.js";
 
 interface BokehPreviewGridProps {

@@ -9,30 +9,30 @@ import {
   explainCompatibleGlassResolution,
   GLASS_ND_TOLERANCE,
   GLASS_VD_TOLERANCE,
-  LINE_NM,
   resolveCompatibleGlass,
   resolveGlass,
   decodeCode6,
   resolveGlassCandidates,
-} from "../../../src/optics/glassCatalog.js";
-import { ALIAS_RECORDS } from "../../../src/optics/glassCatalogAliases.js";
-import { DUPLICATE_CODE6_PRECEDENCE } from "../../../src/optics/glassCatalogData.js";
-import { CDGM_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/cdgm.js";
-import { HIKARI_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/hikari.js";
-import { HOYA_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/hoya.js";
-import { NHG_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/nhg.js";
-import { OHARA_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/ohara.js";
-import { SCHOTT_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/schott.js";
-import { SPECIAL_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/special.js";
-import { SUMITA_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/sumita.js";
+} from "../../../src/optics/chromatic/glassCatalog.js";
+import { LINE_NM } from "../../../src/optics/chromatic/spectralLines.js";
+import { ALIAS_RECORDS } from "../../../src/optics/chromatic/glassCatalogAliases.js";
+import { DUPLICATE_CODE6_PRECEDENCE } from "../../../src/optics/chromatic/glassCatalogData.js";
+import { CDGM_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/cdgm.js";
+import { HIKARI_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/hikari.js";
+import { HOYA_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/hoya.js";
+import { NHG_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/nhg.js";
+import { OHARA_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/ohara.js";
+import { SCHOTT_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/schott.js";
+import { SPECIAL_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/special.js";
+import { SUMITA_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/sumita.js";
 import {
   makeSurfaceDispersion,
   normalLinePdC,
   normalLinePeC,
   normalLinePgFPrime,
-  summarizeDispersionQuality,
-} from "../../../src/optics/dispersion.js";
-import { traceParaxialSurfaces2 } from "../../../src/optics/math/paraxial.js";
+} from "../../../src/optics/chromatic/materialResolver.js";
+import { summarizeDispersionQuality } from "../../../src/optics/chromatic/dispersionQuality.js";
+import { traceParaxialSurfaces } from "../../../src/optics/math/paraxial.js";
 import type { ChromaticChannel, ElementData, SurfaceData } from "../../../src/types/optics.js";
 import {
   buildChromaticPositiveElementLens,
@@ -817,7 +817,7 @@ describe("makeSurfaceDispersion preference cascade", () => {
 
     const backFocus = (indexAt: (surfaceIndex: number) => number) => {
       const traced = surfaces.map((surface, index) => ({ ...surface, nd: indexAt(index) }));
-      const { y, u } = traceParaxialSurfaces2(traced, 1, 0, { skipLastTransfer: true });
+      const { y, u } = traceParaxialSurfaces(traced, 1, 0, { skipLastTransfer: true });
       return -y / u;
     };
     const channelFocus = (channel: ChromaticChannel) => backFocus((index) => dispersion[index].fn(channel));

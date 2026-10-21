@@ -1,11 +1,12 @@
 /** Weighted axial best focus, preserving its own full layout coordinate system. */
 
 import type { LayoutResult } from "../../../types/optics.js";
-import { doLayout } from "../../layout.js";
+import { doLayout } from "../../state/layout.js";
 import { runtimeView } from "../../prescription/runtimeView.js";
 import { prepareRayTrace } from "../../trace/rayAdapters.js";
 import type { AnalysisRequest } from "../request.js";
-import { computeRealRayHit, PROFILE_FRACS, type RealRayHit } from "./shared.js";
+import { computeRealRayHit, PROFILE_FRACS } from "./shared.js";
+import type { RealRayHit } from "./shared.js";
 
 /** Least-squares focus, weighted by each ray's surviving optical intensity. */
 function photometricBestFocusPlane(hits: readonly RealRayHit[], lastSurfZ: number): number {
@@ -33,7 +34,7 @@ export function computeImagePlaneZAtFocus(request: AnalysisRequest): number {
 export function computeBestFocusZFromLayout(request: AnalysisRequest, layout: LayoutResult): number {
   const { focusT, zoomT, aberrationT } = request.preparedGeometry;
   const L = runtimeView(request.preparedGeometry.lens);
-  const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
+  const { stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
   const lastSurfZ = layout.z[L.N - 1];
   const imagePlaneZ = layout.imgZ;
 
@@ -46,32 +47,8 @@ export function computeBestFocusZFromLayout(request: AnalysisRequest, layout: La
     aberrationT,
   });
   const hits = PROFILE_FRACS.flatMap((fraction) => {
-    const plusHit = computeRealRayHit(
-      L,
-      layout.z,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      lastSurfZ,
-      imagePlaneZ,
-      fraction,
-      aberrationT,
-      prepared,
-    );
-    const minusHit = computeRealRayHit(
-      L,
-      layout.z,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      lastSurfZ,
-      imagePlaneZ,
-      -fraction,
-      aberrationT,
-      prepared,
-    );
+    const plusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, fraction, prepared);
+    const minusHit = computeRealRayHit(request, lastSurfZ, imagePlaneZ, -fraction, prepared);
     return [plusHit, minusHit].filter((h): h is NonNullable<typeof h> => h !== null);
   });
 

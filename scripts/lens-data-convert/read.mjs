@@ -1,6 +1,6 @@
 /**
  * Converter reader — the value a lens-data file exports, the syntax behind each node of it, and the file's comments,
- * each attached to the node it annotates (OPTICS_ENGINE_REWRITE_SPEC.md, Ingest, conversion and comments).
+ * each attached to the node it annotates (see agent_docs/architecture/optics-engine.md).
  *
  * It builds on `scripts/lens-data-ast.mjs`, which evaluates the file without running it, and spells each node's path
  * through the engine's `childPath`, so a path read here names the node ingest and the V2 view name.

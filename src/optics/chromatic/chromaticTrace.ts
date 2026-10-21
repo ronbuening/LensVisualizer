@@ -7,12 +7,12 @@
 import { CHROMATIC_CHANNEL_ORDER } from "./channels.js";
 import type { ChromaticChannel, ChromaticRayFanSpread, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import {
-  traceRayChromatic2,
-  traceRayVectorChromatic2,
-  traceSkewRayChromatic2,
-  traceSkewRayVectorChromatic2,
+  traceRayChromatic,
+  traceRayVectorChromatic,
+  traceSkewRayChromatic,
+  traceSkewRayVectorChromatic,
 } from "../trace/rayAdapters.js";
-import type { VectorRayTraceInput2 } from "../trace/rayAdapters.js";
+import type { VectorRayTraceInput } from "../trace/rayAdapters.js";
 
 interface MarginalRayData {
   y: number;
@@ -38,7 +38,7 @@ function spanOf(values: number[]): number {
  * @param lastSurfZ - final surface vertex z coordinate in mm
  * @returns ray-fan spans plus per-channel axial intercepts and image heights in mm
  */
-export function computeChromaticRayFanSpread2(
+export function computeChromaticRayFanSpread(
   marginalRays: Partial<Record<ChromaticChannel, MarginalRayData>>,
   imgZ: number,
   lastSurfZ: number,
@@ -62,11 +62,11 @@ export function computeChromaticRayFanSpread2(
 }
 
 export {
-  traceRayChromatic2,
-  traceRayVectorChromatic2,
-  traceSkewRayChromatic2,
-  traceSkewRayVectorChromatic2,
-  type VectorRayTraceInput2,
+  traceRayChromatic,
+  traceRayVectorChromatic,
+  traceSkewRayChromatic,
+  traceSkewRayVectorChromatic,
+  type VectorRayTraceInput,
 };
 
 export type { ChromaticChannel, ChromaticRayFanSpread, RayTraceResult, RuntimeLens };

@@ -3,7 +3,9 @@
 import { dot, subtract } from "../../math/vector.js";
 import type { AnalysisRequest } from "../../analysis/request.js";
 import type { Vec3 } from "../../types.js";
-import type { PerspectiveFieldStatus, PerspectivePupilRaySample, SensorUv } from "../fieldSampling.js";
+import type { PerspectiveFieldStatus } from "../chiefRay.js";
+import type { PerspectivePupilRaySample } from "../pupilBundle.js";
+import type { SensorUv } from "../fieldGeometry.js";
 import type { PerspectiveTraceContext, PerspectiveTraceResult } from "../trace.js";
 import { sensorPointForUv } from "../fieldGeometry.js";
 

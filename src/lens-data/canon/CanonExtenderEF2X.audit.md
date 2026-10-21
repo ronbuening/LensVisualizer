@@ -161,7 +161,7 @@ The master diagnostic per-surface SDs are [54,54,50,50,46,46,32,32,27,27,27,24,2
 
 Fresh spherical geometry checks evaluate domains, exact sag, actual rim slope, positive glass thickness, equal-rim ratios and every full shared-band air gap, including the physical R14-to-TC1 gap across the intervening stop. For two spherical sags the radial derivative comparison establishes that the relevant clearance extremum is at the axis or shared rim; the checker does not rely only on a sparse point grid. All pass the current default 90% gap-sag and 64.158-degree rim limits; no override is used.
 
-Actual production `computeElementShapesForState2`/contour functions retain all declared rims. All fifteen master-plus-converter elements have zero hidden trim; the seven converter contours were exported by the real project path generator, rasterized and visually compared with original Figure 3. Original and generated graphics are preserved externally with hashes. No hand-drawn diagram substitutes for the actual-render check.
+Actual production element-shape and contour functions used in that historical audit retain all declared rims. All fifteen master-plus-converter elements have zero hidden trim; the seven converter contours were exported by the real project path generator, rasterized and visually compared with original Figure 3. Original and generated graphics are preserved externally with hashes. No hand-drawn diagram substitutes for the actual-render check.
 
 ## Corrected finite-ray and aiming audit
 

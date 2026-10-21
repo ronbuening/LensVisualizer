@@ -8,10 +8,10 @@
 import type { SurfaceData } from "../../types/optics.js";
 
 /** Error thrown when lens normalization cannot resolve authored prescription references. */
-export class Optics2LensNormalizationError extends Error {
+export class LensNormalizationError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = "Optics2LensNormalizationError";
+    this.name = "LensNormalizationError";
   }
 }
 
@@ -20,7 +20,7 @@ export class Optics2LensNormalizationError extends Error {
  *
  * @param surfaces - authored surfaces with label fields
  * @returns frozen label-to-index map
- * @throws Optics2LensNormalizationError when labels are duplicated
+ * @throws LensNormalizationError when labels are duplicated
  */
 export function buildSurfaceLabelMap(
   surfaces: readonly Pick<SurfaceData, "label">[],
@@ -30,7 +30,7 @@ export function buildSurfaceLabelMap(
   for (let i = 0; i < surfaces.length; i++) {
     const label = surfaces[i].label;
     if (seen.has(label)) {
-      throw new Optics2LensNormalizationError(`Duplicate surface label: "${label}"`);
+      throw new LensNormalizationError(`Duplicate surface label: "${label}"`);
     }
     seen.add(label);
   }
@@ -44,7 +44,7 @@ export function buildSurfaceLabelMap(
  * @param labelToSurfaceIndex - normalized label lookup
  * @param context - field name included in errors
  * @returns zero-based physical surface index
- * @throws Optics2LensNormalizationError when the label is unknown
+ * @throws LensNormalizationError when the label is unknown
  */
 export function resolveLabel(
   label: string,
@@ -53,7 +53,7 @@ export function resolveLabel(
 ): number {
   const index = labelToSurfaceIndex[label];
   if (index === undefined) {
-    throw new Optics2LensNormalizationError(`${context}: surface label "${label}" was not found`);
+    throw new LensNormalizationError(`${context}: surface label "${label}" was not found`);
   }
   return index;
 }

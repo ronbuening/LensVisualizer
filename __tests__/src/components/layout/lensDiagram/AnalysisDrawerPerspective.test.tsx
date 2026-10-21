@@ -5,15 +5,13 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import AnalysisDrawerContent from "../../../../../src/components/layout/lensDiagram/AnalysisDrawerContent.js";
 import { ANALYSIS_TABS } from "../../../../../src/components/layout/lensDiagram/analysisTabs.js";
-import buildLens from "../../../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
-import {
-  anchorLayoutToCamera,
-  computeAnalysisFieldGeometryAtState,
-  doLayout,
-  eflAtFocus,
-} from "../../../../../src/optics/optics.js";
-import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/index.js";
+import { buildFixtureLens as buildLens } from "../../../optics/constructionFixtures.js";
+import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
+import { anchorLayoutToCamera } from "../../../../../src/optics/state/cameraLayout.js";
+import { computeAnalysisFieldGeometryAtState } from "../../../../../src/optics/state/fieldAdapters.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../../../src/optics/state/runtimeAdapters.js";
+import { eflAtFocus } from "../../../../../src/optics/first-order/focusBreathing.js";
+import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
 import type { AnalysisTabId } from "../../../../../src/types/state.js";
 import { LENS_CATALOG } from "../../../../../src/utils/catalog/lensCatalog.js";
 import themes from "../../../../../src/utils/theme/themes.js";

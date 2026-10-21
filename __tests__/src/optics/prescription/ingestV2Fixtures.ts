@@ -1,10 +1,10 @@
 /**
  * V1/V2 fixture pairs — one small prescription per feature family, written once in each version.
  *
- * Each pair says the same thing, so the two ingest to one canonical prescription and share a semantic fingerprint. The
+ * Each pair says the same thing, so the two ingest to one canonical prescription and compare equal canonically. The
  * V2 side omits what V2 drops: a derived or scheduled stop's `sd`, a variable gap's `d`, zero aspheric terms, and the
- * `elemId` + `nd` spelling of a surface's medium. The pairs stay as the converter's regression suite once V1 ingest
- * leaves the app (OPTICS_ENGINE_REWRITE_SPEC.md, S8.P2.T2).
+ * `elemId` + `nd` spelling of a surface's medium. The permanent converter keeps these pairs
+ * as its regression suite, independent of app ingest.
  */
 
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../../src/types/asphericSchema.js";

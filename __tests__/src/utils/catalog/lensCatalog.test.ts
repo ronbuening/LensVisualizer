@@ -9,14 +9,9 @@ import {
   loadMdForKey,
   resolveOpticalConfigurationKey,
 } from "../../../../src/utils/catalog/lensCatalog.js";
-import buildLens, {
-  ingestLens,
-  ingestLensV1,
-  ingestTeleconverter,
-  toLensData,
-  toTeleconverterData,
-} from "../../../../src/optics/buildLens.js";
-import { attachTeleconverter } from "../../../../src/optics/teleconverter.js";
+import { buildFixtureLens as buildLens } from "../../optics/constructionFixtures.js";
+import { ingestLens, ingestTeleconverter } from "../../../../src/optics/buildLens.js";
+import { attachFixtureTeleconverter as attachTeleconverter } from "../../optics/constructionFixtures.js";
 import { catalogCollator } from "../../../../src/utils/catalog/collation.js";
 import {
   ALL_TELECONVERTER_KEYS,
@@ -24,8 +19,10 @@ import {
   resolveLensSystemData,
   resolveTeleconverterKey,
 } from "../../../../src/utils/catalog/teleconverterCatalog.js";
-import type { LensDataInput } from "../../../../src/types/optics.js";
-import type { TeleconverterData } from "../../../../src/types/teleconverter.js";
+import type { LensDataV2Input, TeleconverterDataV2Input } from "../../../../src/types/lensDataV2.js";
+import { fileURLToPath } from "node:url";
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
 
 /* Ingest, watched: it still runs, and a test can count the lenses it reads. */
 vi.mock("../../../../src/optics/buildLens.js", async (importOriginal) => {
@@ -36,18 +33,48 @@ vi.mock("../../../../src/optics/buildLens.js", async (importOriginal) => {
 /* Every file as authored, by key: what the catalogs read through canonical ingest. */
 const AUTHORED_LENSES = new Map(
   Object.values(
-    import.meta.glob<{ default: LensDataInput }>("../../../../src/lens-data/**/*.data.ts", { eager: true }),
+    import.meta.glob<{ default: LensDataV2Input }>("../../../../src/lens-data/**/*.data.ts", { eager: true }),
   ).map(({ default: data }) => [data.key, data] as const),
 );
 const AUTHORED_CONVERTERS = new Map(
   Object.values(
-    import.meta.glob<{ default: TeleconverterData }>("../../../../src/lens-data/**/*.teleconverter.ts", {
+    import.meta.glob<{ default: TeleconverterDataV2Input }>("../../../../src/lens-data/**/*.teleconverter.ts", {
       eager: true,
     }),
   ).map(({ default: data }) => [data.key, data] as const),
 );
 
+const INITIAL_INGEST_COUNT = vi.mocked(ingestLens).mock.calls.length;
+
 describe("lensCatalog", () => {
+  it("gives runnable repo-root paths when either catalog refuses a V1 arrival", () => {
+    const before = vi.mocked(ingestLens).mock.calls.length;
+    for (const [authored, catalog] of [
+      [AUTHORED_LENSES, LENS_CATALOG],
+      [AUTHORED_CONVERTERS, TELECONVERTER_CATALOG],
+    ] as const) {
+      const file = [...authored.values()][0];
+      Reflect.deleteProperty(file, "schema");
+      try {
+        let refusal = "";
+        try {
+          void catalog[file.key];
+        } catch (error) {
+          refusal = String(error);
+        }
+        const match = /--input "([^"]+)" --write/.exec(refusal);
+        expect(match, refusal).not.toBeNull();
+        const path = match![1];
+        expect(path).toMatch(/^src\/lens-data\//);
+        expect(existsSync(resolve(fileURLToPath(new URL("../../../../", import.meta.url)), path)), path).toBe(true);
+      } finally {
+        Reflect.set(file, "schema", 2);
+      }
+    }
+    // Only this test's deliberately refused read is removed from the lazy-ingest count.
+    vi.mocked(ingestLens).mock.calls.splice(before);
+  });
+
   it("keeps nested maker-folder lenses discoverable with matching analysis markdown", async () => {
     const key = "zeiss-hologon-15f8";
     expect(LENS_CATALOG[key]).toBeDefined();
@@ -57,6 +84,7 @@ describe("lensCatalog", () => {
   });
 
   it("names every listed lens from its file as authored, ingesting none", () => {
+    expect(INITIAL_INGEST_COUNT).toBe(0);
     /* The viewer builds its name map for every listed key on first render; an entry ingests only when it is read. */
     const ingested = vi.mocked(ingestLens).mock.calls.length;
     const names = Object.fromEntries(ALL_CATALOG_KEYS.map((key) => [key, lensNameForKey(key)]));
@@ -76,9 +104,9 @@ describe("lensCatalog", () => {
       expect(entry.name).toBeTruthy();
       expect(entry.surfaces).toBeDefined();
       expect(entry.elements).toBeDefined();
-      expect(Array.isArray(entry.rayFractions)).toBe(true);
-      expect(entry.svgW).toBeGreaterThan(0);
-      expect(entry.svgH).toBeGreaterThan(0);
+      expect(Array.isArray(entry.rays.rayFractions)).toBe(true);
+      expect(entry.layout.svgW).toBeGreaterThan(0);
+      expect(entry.layout.svgH).toBeGreaterThan(0);
       expect(entry.visible, `${key}: hidden lenses must be excluded from CATALOG_KEYS`).not.toBe(false);
     }
   });
@@ -155,20 +183,21 @@ describe("lensCatalog and teleconverterCatalog — canonical ingest", () => {
     expect(ALL_TELECONVERTER_KEYS.length).toBe(AUTHORED_CONVERTERS.size);
   });
 
-  it("returns the same object on every read of a key: the V1 view of the file, not the file", () => {
+  it("returns the same object on every read of a key: the canonical prescription of the file", () => {
     for (const key of ALL_CATALOG_KEYS) {
       const entry = LENS_CATALOG[key];
       expect(LENS_CATALOG[key], key).toBe(entry);
       expect(entry, key).not.toBe(AUTHORED_LENSES.get(key));
-      expect(entry, key).toEqual(toLensData(ingestLens(AUTHORED_LENSES.get(key)!)));
-      /* The entry is what buildLens ingests again: its own view gives it back. */
-      expect(toLensData(ingestLensV1(entry)), key).toEqual(entry);
+      expect(entry, key).toEqual(ingestLens(AUTHORED_LENSES.get(key)!).prescription);
+      /* Building retains the canonical identity without another file projection. */
+      expect(buildLens(entry).source, key).toBe(entry);
+      expect(buildLens(entry)).not.toHaveProperty("data");
     }
     for (const key of ALL_TELECONVERTER_KEYS) {
       const entry = TELECONVERTER_CATALOG[key];
       expect(TELECONVERTER_CATALOG[key], key).toBe(entry);
       expect(entry, key).not.toBe(AUTHORED_CONVERTERS.get(key));
-      expect(entry, key).toEqual(toTeleconverterData(ingestTeleconverter(AUTHORED_CONVERTERS.get(key)!)));
+      expect(entry, key).toEqual(ingestTeleconverter(AUTHORED_CONVERTERS.get(key)!).prescription);
     }
   });
 

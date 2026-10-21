@@ -2,18 +2,18 @@
  * Chromatic ray fans — request-facing first-usable-fraction ray-trace summaries.
  */
 
+import type { PreparedGeometry } from "../../types.js";
+
 import { runtimeView } from "../../prescription/runtimeView.js";
-import { computeChromaticRayFanSpread2 } from "../../chromatic/chromaticTrace.js";
+import { computeChromaticRayFanSpread } from "../../chromatic/chromaticTrace.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
-import {
-  computeProjectionAwareOffAxisFieldGeometry,
-  isOffAxisVectorFieldGeometry,
-  type ProjectionAwareOffAxisFieldGeometry,
-} from "../aberration/offAxis.js";
-import { offsetVectorFieldRay2 as offsetVectorFieldRay } from "../../state/fieldAdapters.js";
-import { prepareRayTrace, type PreparedRayTrace } from "../../trace/rayAdapters.js";
-import { thick } from "../../layout.js";
-import { compiledLensFromRuntime } from "../../prescription/compile.js";
+import { computeOffAxisFieldGeometry, isOffAxisVectorFieldGeometry } from "../aberration/offAxis.js";
+import type { ProjectionAwareOffAxisFieldGeometry } from "../aberration/offAxis.js";
+import { offsetVectorFieldRay } from "../../field/launch.js";
+import { prepareRayTrace } from "../../trace/rayAdapters.js";
+import type { PreparedRayTrace } from "../../trace/rayAdapters.js";
+import { thick } from "../../state/layout.js";
+import { compiledLensFromRuntime } from "../../prescription/identity.js";
 import { prepareState } from "../../state/preparedGeometry.js";
 import type {
   ChromaticChannel,
@@ -28,14 +28,14 @@ const DEFAULT_ON_AXIS_FRACTIONS = MARGINAL_PUPIL_FRACTIONS;
 // Unlike the endpoint-inclusive orthogonal fan, this sparse fan omits the chief and pupil rims.
 const DEFAULT_OFF_AXIS_FRACTIONS = [0.75, 0.5, 0.25, -0.75, -0.5, -0.25] as const;
 
-export interface ChromaticRayFanAnalysisOptions2 {
+export interface ChromaticRayFanAnalysisOptions {
   channels?: readonly ChromaticChannel[];
   onAxisFractions?: readonly number[];
   offAxisFractions?: readonly number[];
   offAxisFieldFraction?: number;
 }
 
-export interface ChromaticRayFanAnalysis2 {
+export interface ChromaticRayFanAnalysis {
   channels: readonly ChromaticChannel[];
   spreads: ChromaticRayFanSpreadByAxis;
   offAxisFieldAngleDeg: number;
@@ -59,13 +59,13 @@ function normalizeSignedFractions(fractions: readonly number[] | undefined, fall
   });
 }
 
-function currentImagePlaneZ(
-  L: RuntimeLens,
-  zPos: readonly number[],
-  focusT: number,
-  zoomT: number,
-  aberrationT: number,
-): number | null {
+function currentImagePlaneZ(state: PreparedGeometry): number | null {
+  const L = runtimeView(state.lens);
+  const zPos = state.z as number[];
+  const focusT = state.focusT;
+  const zoomT = state.zoomT;
+  const aberrationT = state.aberrationT;
+
   if (L.N < 1) return null;
   if (L.isFoldedOptics) {
     // Match the trace's plane: an inferred folded image plane follows the current focus spacing.
@@ -115,7 +115,7 @@ function computeSpreadFromFractions(
     if (validChannels.length >= 2) {
       return {
         spread: {
-          ...computeChromaticRayFanSpread2(marginalRays, imagePlaneZ, lastSurfaceZ),
+          ...computeChromaticRayFanSpread(marginalRays, imagePlaneZ, lastSurfaceZ),
           axis,
           fraction,
           channels: validChannels,
@@ -137,12 +137,12 @@ function computeSpreadFromFractions(
  */
 export function computeChromaticRayFanAnalysis(
   request: AnalysisRequest,
-  options: ChromaticRayFanAnalysisOptions2 = {
+  options: ChromaticRayFanAnalysisOptions = {
     channels: request.channels,
     onAxisFractions: request.sampling.chromaticRayTraceOnAxisFractions,
     offAxisFractions: request.sampling.chromaticRayTraceOffAxisFractions,
   },
-): ChromaticRayFanAnalysis2 {
+): ChromaticRayFanAnalysis {
   const { preparedGeometry: state } = request;
   const { focusT, zoomT, aberrationT } = state;
   const L = runtimeView(state.lens);
@@ -158,7 +158,7 @@ export function computeChromaticRayFanAnalysis(
   };
   if (channels.length < 2 || currentEPSD <= 0 || L.N < 1) return empty;
 
-  const imagePlaneZ = currentImagePlaneZ(L, zPos, focusT, zoomT, aberrationT);
+  const imagePlaneZ = currentImagePlaneZ(request.preparedGeometry);
   if (imagePlaneZ === null) return empty;
   const lastSurfaceZ = zPos[L.N - 1];
   const adapters = new Map(
@@ -188,15 +188,7 @@ export function computeChromaticRayFanAnalysis(
   );
 
   const offAxisFieldFraction = Math.max(0, Math.min(1, options.offAxisFieldFraction ?? L.offAxisFieldFrac));
-  const geometry = computeProjectionAwareOffAxisFieldGeometry(
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    offAxisFieldFraction,
-    undefined,
-    aberrationT,
-  );
+  const geometry = computeOffAxisFieldGeometry(request.preparedGeometry, offAxisFieldFraction, undefined);
   const vectorGeometry = geometry && isOffAxisVectorFieldGeometry(geometry) ? geometry : undefined;
   const offAxisAdapters =
     geometry === null

@@ -14,7 +14,8 @@ import type {
 } from "../types.js";
 import { computeLensConstants } from "../first-order/lensConstants.js";
 import { expandedConstruction } from "./rearPlates.js";
-import { compileConstruction, type LensConstruction } from "./compileConstruction.js";
+import { compileConstruction } from "./compileConstruction.js";
+import type { LensConstruction } from "./compileConstruction.js";
 import { resolvedImagePlaneToPlane3 } from "./interactions.js";
 
 export function compileCanonicalUncached(
@@ -24,13 +25,17 @@ export function compileCanonicalUncached(
 ): CompiledLens {
   const { data, source } = expandedConstruction({ prescription, provenance }, descriptor);
   const input = compileConstruction(data, source);
-  const prescriptionCore = compilePrescription(input);
+  const prescriptionCore = compilePrescription(input, prescription, descriptor);
   return completeCompilation(prescriptionCore, computeLensConstants(prescriptionCore));
 }
 
 /** Index and resolve the prescription before any constants or RuntimeLens exists. */
-export function compilePrescription(input: LensConstruction): CompiledPrescription {
-  const { data, source } = input;
+export function compilePrescription(
+  input: LensConstruction,
+  source: CanonicalLens,
+  attachedTeleconverter?: LensData["attachedTeleconverter"],
+): CompiledPrescription {
+  const { data } = input;
   const surfaces = input.surfaces;
   const variables = Object.freeze({
     isZoom: input.isZoom,
@@ -57,6 +62,7 @@ export function compilePrescription(input: LensConstruction): CompiledPrescripti
   const compiled = Object.freeze({
     key: data.key,
     source,
+    attachedTeleconverter,
     data,
     indices: Object.freeze({
       asphByIdx: input.asphByIdx,

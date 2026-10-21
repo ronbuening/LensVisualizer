@@ -8,7 +8,7 @@
 import { useMemo } from "react";
 import { createAnalysisRequest, createAnalysisComputationContext } from "../../../optics/analysis.js";
 import { probe } from "../../../utils/perfProbe.js";
-import { eflAtZoom } from "../../../optics/optics.js";
+import { eflAtZoomClamped as eflAtZoom } from "../../../optics/optics.js";
 import DistortionChart from "./DistortionChart.js";
 import DistortionFieldGrid from "./DistortionFieldGrid.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
@@ -17,7 +17,7 @@ import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { AnalysisComputationContext, AnalysisRequest } from "../../../optics/analysis.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
-import type { FieldGeometryState } from "../../../optics/optics.js";
+import type { FieldGeometryState } from "../../../optics/fieldGeometry.js";
 import PerspectiveDistortionView from "./perspective/PerspectiveDistortionView.js";
 
 interface DistortionTabProps {

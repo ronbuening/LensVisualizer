@@ -4,7 +4,7 @@ import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import BokehPreviewContent from "../../../../../src/components/display/analysis/BokehPreviewContent.js";
 import themes from "../../../../../src/utils/theme/themes.js";
-import type { BokehPreviewPair, BokehPreviewResult } from "../../../../../src/optics/aberrationAnalysis.js";
+import type { BokehPreviewPair, BokehPreviewResult } from "../../../../../src/optics/analysis/aberration/types.js";
 
 vi.mock("../../../../../src/components/display/analysis/BokehPreviewGrid.js", () => ({
   default: ({ result }: { result: BokehPreviewResult }) => <div data-testid="bokeh-grid">{result.defocusDeltaMm}</div>,

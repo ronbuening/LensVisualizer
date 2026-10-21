@@ -1,15 +1,16 @@
 /**
  * Teleconverter composition — builds the host + converter prescription that `buildLens()` consumes.
  *
- * `attachTeleconverter()` returns an ordinary `LensData`: host surfaces, the junction gap, then the converter's
+ * `attachTeleconverter()` returns a canonical lens: host surfaces, the junction gap, then the converter's
  * surfaces. Nothing downstream is converter-aware; the exact tracer, prepared states and every analysis see one
  * sequential lens whose stop is the host's. The composed data carries an `attachedTeleconverter` descriptor so the
- * UI can label the converter. Ingest precedes composition; the returned view retains canonical identity.
+ * UI can label the converter. Authored V2 inputs are ingested before composition.
  *
  * Fit rules and spacing live in `teleconverterCompatibility.ts`; this module does the merge and the first-order
  * rescale of the host metadata that `buildLens()` trusts (`nominalFno`, design focal length, f-stop series).
  */
 
+import type { LensDataV2Input, TeleconverterDataV2Input } from "../../types/lensDataV2.js";
 import type { AnnotationData, ElementData, LensData, LensProjectionConfig, SurfaceData } from "../../types/optics.js";
 import type {
   TeleconverterData,
@@ -17,19 +18,33 @@ import type {
   TeleconverterIncompatibility,
 } from "../../types/teleconverter.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTaxonomy.js";
-import { projectionFieldAngleForImageHeight2, projectionImageHeightForAngle2 } from "../field/projection.js";
-import { buildLabelIndex } from "../prescription/compileLabels.js";
+import { projectionFieldAngleForImageHeight, projectionImageHeightForAngle } from "../field/projection.js";
+import { buildLabelIndex } from "./compileLabels.js";
 import { buildStateSurfaces } from "../state/layout.js";
-import { buildVarIndex } from "../prescription/compileControls.js";
+import { buildVarIndex } from "./compileControls.js";
 import { zoomIndexToT } from "../state/stationTables.js";
-import { traceParaxialSurfaces2 as traceSurfacesParaxial } from "../math/paraxial.js";
-import { expandRearPlates } from "./rearPlates.js";
-import { isV1File, ingestTeleconverter } from "./ingestV2.js";
+import { traceParaxialSurfaces as traceSurfacesParaxial } from "../math/paraxial.js";
+import { ingestTeleconverter } from "./ingestV2.js";
 import { canonicalForView } from "./identity.js";
 import { canonicalInput } from "./canonicalInput.js";
-import { toLensData, toTeleconverterData } from "./toLensData.js";
+import type { CanonicalLens, CanonicalTeleconverter, IngestedPrescription } from "./canonical.js";
+import { canonicalConstructionData } from "./constructionData.js";
+import { expandCanonicalRearPlates } from "./rearPlates.js";
+import { associateCanonical } from "./identity.js";
 import { composeTeleconverter } from "./composeTeleconverter.js";
-import { TELECONVERTER_LABEL_PREFIX, teleconverterCompatibility } from "./teleconverterCompatibility.js";
+import {
+  TELECONVERTER_LABEL_PREFIX,
+  teleconverterCompatibility as fitTeleconverter,
+} from "./teleconverterCompatibility.js";
+
+/** Composition descriptors live beside canonical prescriptions, outside their semantic content. */
+export function teleconverterCompatibility(
+  host: Parameters<typeof fitTeleconverter>[0],
+  tc: Parameters<typeof fitTeleconverter>[1],
+) {
+  if (canonicalForView(host)?.attachedTeleconverter) return { ok: false as const, reason: "stacked" as const };
+  return fitTeleconverter(host, tc);
+}
 
 /** Readout label for the host's last gap once it ends at the converter instead of the image plane. */
 const JUNCTION_GAP_LABEL = "D(TC)";
@@ -88,7 +103,7 @@ function round(value: number, decimals: number): number {
  *   the junction becomes that plate's trailing gap instead.
  * - Converter labels get the reserved prefix and element ids continue after the host's, so every label- and
  *   id-keyed map (`asph`, `var`, annotations, element selection) stays unambiguous.
- * - Host `rearPlates` are kept: `expandRearPlates()` emits the `platesAhead` leading ones in front of the
+ * - Host `rearPlates` are kept: `expandCanonicalRearPlates()` emits the `platesAhead` leading ones in front of the
  *   converter and the rest behind its last surface.
  *
  * @param host - host lens data
@@ -235,8 +250,8 @@ export function mergeTeleconverterPrescription(
  * `buildLens()` sizes the physical stop from. Validation lets an authored `d` differ from its `var` infinity value
  * by up to 1e-6 mm, and resolving the table here would move the stop by that much.
  */
-function infinityFocalLengths(authored: LensData): number[] {
-  const data = expandRearPlates(authored);
+function infinityFocalLengths(input: IngestedPrescription<CanonicalLens>): number[] {
+  const data = canonicalConstructionData(expandCanonicalRearPlates(input.prescription, input.attachedTeleconverter));
   const isZoom = Array.isArray(data.zoomPositions) && data.zoomPositions.length >= 2;
   const stationCount = isZoom ? data.zoomPositions!.length : 1;
   const varByIdx = buildVarIndex(data.var, buildLabelIndex(data.surfaces));
@@ -267,8 +282,8 @@ function infinityFocalLengths(authored: LensData): number[] {
  */
 function narrowRectilinearFieldDeg(fieldDeg: number, ratio: number): number {
   const unit = { kind: "rectilinear" as const, label: "", shortLabel: "", focalScaleMm: 1 };
-  const imageHeight = projectionImageHeightForAngle2(unit, (fieldDeg * Math.PI) / 180);
-  return (projectionFieldAngleForImageHeight2({ ...unit, focalScaleMm: ratio }, imageHeight) * 180) / Math.PI;
+  const imageHeight = projectionImageHeightForAngle(unit, (fieldDeg * Math.PI) / 180);
+  return (projectionFieldAngleForImageHeight({ ...unit, focalScaleMm: ratio }, imageHeight) * 180) / Math.PI;
 }
 
 function narrowProjection(
@@ -289,10 +304,17 @@ function narrowProjection(
 }
 
 /** Numeric header lines for the composed system; host `specs` are free text and describe the bare lens. */
-function composedSpecs(host: LensData, tc: TeleconverterData, focalLengths: number[], fNumbers: number[]): string[] {
+function composedSpecs(
+  host: CanonicalLens,
+  tc: CanonicalTeleconverter,
+  focalLengths: number[],
+  fNumbers: number[],
+): string[] {
   const specs: string[] = [];
-  if (host.elementCount !== undefined && tc.elementCount !== undefined) {
-    specs.push(`${host.elementCount} + ${tc.elementCount} elements (lens + ${tc.magnification}× converter)`);
+  if (host.catalog.elementCount !== undefined && tc.catalog.elementCount !== undefined) {
+    specs.push(
+      `${host.catalog.elementCount} + ${tc.catalog.elementCount} elements (lens + ${tc.magnification}× converter)`,
+    );
   } else {
     specs.push(`${tc.magnification}× converter attached`);
   }
@@ -315,26 +337,27 @@ function composedSpecs(host: LensData, tc: TeleconverterData, focalLengths: numb
  * the exact paraxial ratio r = EFL(composed) / EFL(host): the entrance pupil EFL / (2·Fno) is then unchanged, and the
  * real trace to the stop — which only touches surfaces ahead of it — lands on the same radius.
  *
- * @param host - host lens data, with or without catalog defaults
- * @param tc - teleconverter data
- * @returns composed lens data ready for `buildLens()`
+ * @param host - authored V2 host or canonical lens
+ * @param tc - authored V2 converter or canonical converter
+ * @returns canonical lens ready for `buildLens()`
  * @throws TeleconverterAttachError when the pair fails a fit rule or has no finite focal ratio
  */
-export function attachTeleconverter(host: LensData, tc: TeleconverterData): LensData {
-  const fit = teleconverterCompatibility(host, tc);
+export function attachTeleconverter(
+  host: LensDataV2Input | CanonicalLens,
+  tc: TeleconverterDataV2Input | CanonicalTeleconverter,
+): CanonicalLens {
+  const hostInput = canonicalForView(host) ?? canonicalInput(host);
+  const converterInput =
+    "kind" in tc
+      ? { prescription: tc, provenance: { format: 2 as const, defaulted: [], ignored: {} } }
+      : ingestTeleconverter(tc);
+  const hostLens = hostInput.prescription;
+  const converter = converterInput.prescription;
+  const fit = teleconverterCompatibility(hostLens, converter);
   if (!fit.ok) throw new TeleconverterAttachError(host.key, tc.key, fit.reason);
-
-  /* Composition replaces host focal labels, including unused labels on a prime. */
-  const hostFile = { ...host };
-  if (isV1File(host)) delete hostFile.zoomLabels;
-  const hostInput = canonicalForView(host) ?? canonicalInput(hostFile);
-  const converterInput = ingestTeleconverter(tc);
-  host = toLensData(hostInput);
-  tc = toTeleconverterData(converterInput);
   const pair = composeTeleconverter(hostInput, converterInput, fit.geometry);
-  const merged = toLensData(pair);
-  const hostFocalLengths = infinityFocalLengths(host);
-  const focalLengths = infinityFocalLengths(merged);
+  const hostFocalLengths = infinityFocalLengths(hostInput);
+  const focalLengths = infinityFocalLengths(pair);
   const ratios = focalLengths.map((focalLength, station) => focalLength / hostFocalLengths[station]);
   if (ratios.some((ratio) => !Number.isFinite(ratio) || ratio <= 0)) {
     throw new TeleconverterAttachError(host.key, tc.key, "first-order");
@@ -342,8 +365,8 @@ export function attachTeleconverter(host: LensData, tc: TeleconverterData): Lens
 
   const firstRatio = ratios[0];
   const lastRatio = ratios[ratios.length - 1];
-  const magnification = tc.magnification;
-  const hostFno = host.nominalFno;
+  const magnification = converter.magnification;
+  const hostFno = hostLens.aperture.nominalFNumber ?? hostLens.zoom?.stations.map((station) => station.nominalFNumber!);
   const fNumbers =
     hostFno === undefined
       ? []
@@ -363,14 +386,14 @@ export function attachTeleconverter(host: LensData, tc: TeleconverterData): Lens
   /* The converter moves the image plane back, so image-referenced object distances grow by the same amount. */
   const extensionMm = fit.geometry.extensionMm;
   const extensionM = extensionMm / 1000;
-  const formatDiagonal = isImageFormatId(host.imageFormat)
-    ? IMAGE_FORMAT_BY_ID[host.imageFormat].diagonalMm
+  const formatDiagonal = isImageFormatId(hostLens.catalog.imageFormat)
+    ? IMAGE_FORMAT_BY_ID[hostLens.catalog.imageFormat].diagonalMm
     : undefined;
 
   const lens = pair.prescription;
-  lens.key = `${host.key}-x-${tc.key}`;
-  lens.name = `${host.name} + ${tc.name}`;
-  lens.catalog.specs = composedSpecs(host, tc, focalLengths, fNumbers);
+  lens.key = `${hostLens.key}-x-${converter.key}`;
+  lens.name = `${hostLens.name} + ${converter.name}`;
+  lens.catalog.specs = composedSpecs(hostLens, converter, focalLengths, fNumbers);
   if (fNumbers.length > 0) {
     if (lens.zoom) {
       delete lens.aperture.nominalFNumber;
@@ -379,34 +402,41 @@ export function attachTeleconverter(host: LensData, tc: TeleconverterData): Lens
       });
     } else lens.aperture.nominalFNumber = fNumbers[0];
   }
-  if (host.focalLengthDesign !== undefined)
-    lens.catalog.focalLengthMm!.design = scaleFocal(host.focalLengthDesign, firstRatio, lastRatio);
-  if (host.focalLengthMarketing !== undefined)
-    lens.catalog.focalLengthMm!.marketing = scaleFocal(host.focalLengthMarketing, magnification, magnification, 1);
+  if (hostLens.catalog.focalLengthMm?.design !== undefined)
+    lens.catalog.focalLengthMm!.design = scaleFocal(hostLens.catalog.focalLengthMm?.design, firstRatio, lastRatio);
+  if (hostLens.catalog.focalLengthMm?.marketing !== undefined)
+    lens.catalog.focalLengthMm!.marketing = scaleFocal(
+      hostLens.catalog.focalLengthMm?.marketing,
+      magnification,
+      magnification,
+      1,
+    );
   lens.zoom?.stations.forEach((station, index) => {
-    station.focalLengthMm = round(host.zoomPositions![index] * ratios[index], 2);
+    station.focalLengthMm = round(hostLens.zoom!.stations[index].focalLengthMm * ratios[index], 2);
     if (station.closeFocusM !== undefined) station.closeFocusM += extensionM;
     delete station.label;
   });
-  if (host.apertureMarketing !== undefined)
-    lens.catalog.fNumber!.marketing = round(host.apertureMarketing * magnification, 1);
-  if (host.apertureDesign !== undefined) lens.catalog.fNumber!.design = host.apertureDesign * firstRatio;
-  /* Keep the quick-stop filter's rounding and ceiling exactly as on the bare host. */
-  lens.aperture.fStops = host.fstopSeries.map((fStop) => round(fStop * firstRatio, 3));
-  lens.aperture.maxFNumber = Math.ceil(host.maxFstop * firstRatio * 10 - 1e-9) / 10;
-  lens.focus.closeFocusM = host.closeFocusM + extensionM;
+  if (hostLens.catalog.fNumber?.marketing !== undefined)
+    lens.catalog.fNumber!.marketing = round(hostLens.catalog.fNumber?.marketing * magnification, 1);
+  if (hostLens.catalog.fNumber?.design !== undefined)
+    lens.catalog.fNumber!.design = hostLens.catalog.fNumber?.design * firstRatio;
+  /* Keep the quick-stop filter's rounding and ceiling exactly as on the bare hostLens. */
+  lens.aperture.fStops = hostLens.aperture.fStops.map((fStop) => round(fStop * firstRatio, 3));
+  lens.aperture.maxFNumber = Math.ceil(hostLens.aperture.maxFNumber * firstRatio * 10 - 1e-9) / 10;
+  lens.focus.closeFocusM = hostLens.focus.closeFocusM + extensionM;
   for (const conjugate of lens.focus.conjugates ?? []) {
     if (conjugate.distanceReference === "image-plane") conjugate.objectDistanceMm += extensionMm;
   }
-  if (host.imageCircleMm !== undefined && formatDiagonal !== undefined)
+  if (hostLens.catalog.imageCircleMm !== undefined && formatDiagonal !== undefined)
     lens.catalog.imageCircleMm = Math.max(
-      host.imageCircleMm,
-      Math.min(host.imageCircleMm * magnification, formatDiagonal),
+      hostLens.catalog.imageCircleMm,
+      Math.min(hostLens.catalog.imageCircleMm * magnification, formatDiagonal),
     );
-  if (host.projection) lens.projection = narrowProjection(host.projection, firstRatio);
-  if (host.elementCount !== undefined && tc.elementCount !== undefined)
-    lens.catalog.elementCount = host.elementCount + tc.elementCount;
-  if (host.groupCount !== undefined && tc.groupCount !== undefined)
-    lens.catalog.groupCount = host.groupCount + tc.groupCount;
-  return toLensData(pair);
+  if (hostLens.projection) lens.projection = narrowProjection(hostLens.projection, firstRatio);
+  if (hostLens.catalog.elementCount !== undefined && converter.catalog.elementCount !== undefined)
+    lens.catalog.elementCount = hostLens.catalog.elementCount + converter.catalog.elementCount;
+  if (hostLens.catalog.groupCount !== undefined && converter.catalog.groupCount !== undefined)
+    lens.catalog.groupCount = hostLens.catalog.groupCount + converter.catalog.groupCount;
+  associateCanonical(lens, pair);
+  return lens;
 }

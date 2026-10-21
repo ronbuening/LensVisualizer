@@ -1,3 +1,4 @@
+import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { createAnalysisRequest } from "../src/optics/analysis.js";
 /**
  * Manufacturer-chart regression report.
@@ -17,22 +18,22 @@ import { createAnalysisRequest } from "../src/optics/analysis.js";
 import { describe, expect, it } from "vitest";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { env } from "node:process";
-import { combineOtfs, otfMagnitude, type ComplexOtf, type MtfSpot } from "../src/optics/analysis/mtf/mtfMath.js";
-import { shearedOtf } from "../src/optics/analysis/mtf/mtfShearedOtf.js";
-import { findMtfFieldFootprint, prepareMtfFieldLaunch, traceMtfBundle } from "../src/optics/analysis/mtf/mtfTracing.js";
-import { mtfWaveLattice, waveLatticeOtf, waveLatticePhaseStep } from "../src/optics/analysis/mtf/mtfWavefront.js";
-import { wideOpenStopAtZoom } from "../src/optics/apertureStop.js";
-import buildLens from "../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../src/optics/compat.js";
+import { combineOtfs, otfMagnitude } from "../src/optics/mtf.js";
+import type { ComplexOtf, MtfSpot } from "../src/optics/mtf.js";
+import { shearedOtf } from "../src/optics/mtf.js";
+import { findMtfFieldFootprint, prepareMtfFieldLaunch, traceMtfBundle } from "../src/optics/mtf.js";
+import { mtfWaveLattice, waveLatticeOtf, waveLatticePhaseStep } from "../src/optics/mtf.js";
+import { wideOpenStopAtZoom } from "../src/optics/optics.js";
+import { buildLens } from "../src/optics/buildLens.js";
+import { prepareRuntimeState } from "../src/optics/optics.js";
 import { assessMtfSupport, computeMtf } from "../src/optics/mtf.js";
-import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../src/optics/optics.js";
+import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../src/optics/fieldGeometry.js";
 import type { PreparedOpticalState } from "../src/optics/types.js";
 import type { MtfMethod, MtfOptions, MtfResult } from "../src/types/mtf.js";
-import type { LensData } from "../src/types/optics.js";
 import { mtfChartConvention, type MtfChartConvention, type MtfChartMethod } from "./data/mtfChartConventions.js";
 import { correctedSinceAudit } from "./mtfChartLib.js";
 
-const modules = import.meta.glob<{ default: LensData }>("../src/lens-data/**/*.data.ts", { eager: true });
+const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 const ANCHORS_PATH = "reports/data/mtfChartAnchors.csv";
 const REPORT_DIR = "agent_docs/generated";
 const REPORT_PATH = `${REPORT_DIR}/mtf-chart-regression.generated.md`;
@@ -288,7 +289,7 @@ interface Weighted {
 }
 
 /** Trace one chart's configuration with diffraction and, when it differs, under the maker's convention. */
-function runConfiguration(lens: LensData, zoomT: number, anchors: Anchor[]): Configuration {
+function runConfiguration(lens: LensDataV2Input, zoomT: number, anchors: Anchor[]): Configuration {
   const L = buildLens(lens);
   const state = prepareRuntimeState(L, 0, zoomT);
   // Sized as the audit sized it: the wide-open iris of this zoom position and the entrance pupil it projects.

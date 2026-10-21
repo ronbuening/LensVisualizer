@@ -1,26 +1,31 @@
+import { analysisRequestAt, registerRuntimeFixture, buildSimplePositiveElementLens } from "../testLensFixtures.js";
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import {
   bestFocusPlaneForDirection,
+  computeOffAxisFieldGeometryParaxial,
   computeOffAxisFieldGeometry,
-  computeProjectionAwareOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
   traceCircularOffAxisBundle,
   traceOffAxisBundleFromSamples,
   traceOrthogonalOffAxisBundle,
   transverseFocusHitsForDirection,
 } from "../../../../src/optics/analysis/aberration/offAxis.js";
-import { DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES, doLayout } from "../../../../src/optics/optics.js";
-import buildLens from "../../../../src/optics/buildLens.js";
-import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
+import { DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES } from "../../../../src/optics/analysis/sampling.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../../src/optics/state/runtimeAdapters.js";
+import { buildFixtureLens as buildLens } from "../constructionFixtures.js";
+import {} from "../../../../src/utils/catalog/lensCatalog.js";
 import { apertureAt, sharedApoLanthar50f2 } from "../testLensFixtures.js";
-import type { RuntimeLens } from "../../../../src/types/optics.js";
 
 describe("off-axis aberration helpers", () => {
   it("computes finite center-field geometry", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
 
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0);
+    const geometry = computeOffAxisFieldGeometryParaxial(
+      analysisRequestAt(L, { zPos: zPos, zoomT: 0 }).preparedGeometry,
+      0,
+    );
     expect(geometry).not.toBeNull();
     expect(geometry!.fieldFraction).toBe(0);
     expect(geometry!.fieldAngleDeg).toBe(0);
@@ -33,17 +38,22 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeOffAxisFieldGeometryParaxial(
+      analysisRequestAt(L, { zPos: zPos, zoomT: 0 }).preparedGeometry,
+      0.5,
+    );
 
     const bundle = traceOrthogonalOffAxisBundle(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD * 0.6,
+        currentPhysStopSD: currentPhysStopSD * 0.6,
+        aberrationT: undefined,
+      }),
       "tangential",
       6,
       geometry!,
-      L,
-      0,
-      0,
-      currentEPSD * 0.6,
-      currentPhysStopSD * 0.6,
     );
 
     expect(bundle).not.toBeNull();
@@ -58,16 +68,21 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0);
+    const geometry = computeOffAxisFieldGeometryParaxial(
+      analysisRequestAt(L, { zPos: zPos, zoomT: 0 }).preparedGeometry,
+      0,
+    );
 
     const bundle = traceCircularOffAxisBundle(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD * 0.6,
+        currentPhysStopSD: currentPhysStopSD * 0.6,
+        aberrationT: undefined,
+      }),
       DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES,
       geometry!,
-      L,
-      0,
-      0,
-      currentEPSD * 0.6,
-      currentPhysStopSD * 0.6,
     );
 
     expect(bundle).not.toBeNull();
@@ -90,16 +105,21 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0);
+    const geometry = computeOffAxisFieldGeometryParaxial(
+      analysisRequestAt(L, { zPos: zPos, zoomT: 0 }).preparedGeometry,
+      0,
+    );
 
     const bundle = traceCircularOffAxisBundle(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD * 0.6,
+        currentPhysStopSD: currentPhysStopSD * 0.6,
+        aberrationT: undefined,
+      }),
       DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES,
       geometry!,
-      L,
-      0,
-      0,
-      currentEPSD * 0.6,
-      currentPhysStopSD * 0.6,
     );
 
     expect(bundle).not.toBeNull();
@@ -113,7 +133,10 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
 
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeOffAxisFieldGeometryParaxial(
+      analysisRequestAt(L, { zPos: zPos, zoomT: 0 }).preparedGeometry,
+      0.5,
+    );
     expect(geometry).not.toBeNull();
     expect(geometry!.fieldFraction).toBe(0.5);
     expect(geometry!.fieldAngleDeg).toBeGreaterThan(0);
@@ -126,23 +149,39 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
 
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 1.0);
+    const geometry = computeOffAxisFieldGeometryParaxial(
+      analysisRequestAt(L, { zPos: zPos, zoomT: 0 }).preparedGeometry,
+      1.0,
+    );
     expect(geometry).not.toBeNull();
     expect(geometry!.fieldFraction).toBe(1.0);
     expect(geometry!.fieldAngleDeg).toBeGreaterThan(0);
   });
 
   it("promotes representative fisheye fields beyond the slope-safe cone to vector geometry", () => {
-    const L = buildLens(LENS_CATALOG["nikon-fisheye-nikkor-6mm-f28"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-fisheye-nikkor-6mm-f28"]);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeProjectionAwareOffAxisFieldGeometry(L, zPos, 0, 0, 0.4);
+    const geometry = computeOffAxisFieldGeometry(
+      analysisRequestAt(L, { zPos: zPos, focusT: 0, zoomT: 0, aberrationT: undefined }).preparedGeometry,
+      0.4,
+    );
 
     expect(geometry).not.toBeNull();
     expect(isOffAxisVectorFieldGeometry(geometry!)).toBe(true);
     expect(geometry!.fieldAngleDeg).toBeCloseTo(44, 8);
 
-    const bundle = traceCircularOffAxisBundle([1, 6, 12], geometry!, L, 0, 0, currentEPSD * 0.05, currentPhysStopSD);
+    const bundle = traceCircularOffAxisBundle(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD * 0.05,
+        currentPhysStopSD: currentPhysStopSD,
+        aberrationT: undefined,
+      }),
+      [1, 6, 12],
+      geometry!,
+    );
 
     expect(bundle).not.toBeNull();
     expect(bundle!.sampleCount).toBe(19);
@@ -154,26 +193,37 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
 
-    expect(computeOffAxisFieldGeometry(L, zPos, 0, -0.1)).toBeNull();
-    expect(computeOffAxisFieldGeometry(L, zPos, 0, 1.5)).toBeNull();
-    expect(computeOffAxisFieldGeometry(L, zPos, 0, NaN)).toBeNull();
+    expect(
+      computeOffAxisFieldGeometryParaxial(analysisRequestAt(L, { zPos: zPos, zoomT: 0 }).preparedGeometry, -0.1),
+    ).toBeNull();
+    expect(
+      computeOffAxisFieldGeometryParaxial(analysisRequestAt(L, { zPos: zPos, zoomT: 0 }).preparedGeometry, 1.5),
+    ).toBeNull();
+    expect(
+      computeOffAxisFieldGeometryParaxial(analysisRequestAt(L, { zPos: zPos, zoomT: 0 }).preparedGeometry, NaN),
+    ).toBeNull();
   });
 
   it("extracts tangential y/uy from transverseFocusHitsForDirection", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeOffAxisFieldGeometryParaxial(
+      analysisRequestAt(L, { zPos: zPos, zoomT: 0 }).preparedGeometry,
+      0.5,
+    );
 
     const bundle = traceOrthogonalOffAxisBundle(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD * 0.6,
+        currentPhysStopSD: currentPhysStopSD * 0.6,
+        aberrationT: undefined,
+      }),
       "tangential",
       6,
       geometry!,
-      L,
-      0,
-      0,
-      currentEPSD * 0.6,
-      currentPhysStopSD * 0.6,
     );
     expect(bundle).not.toBeNull();
 
@@ -190,17 +240,22 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeOffAxisFieldGeometryParaxial(
+      analysisRequestAt(L, { zPos: zPos, zoomT: 0 }).preparedGeometry,
+      0.5,
+    );
 
     const bundle = traceOrthogonalOffAxisBundle(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD * 0.6,
+        currentPhysStopSD: currentPhysStopSD * 0.6,
+        aberrationT: undefined,
+      }),
       "sagittal",
       6,
       geometry!,
-      L,
-      0,
-      0,
-      currentEPSD * 0.6,
-      currentPhysStopSD * 0.6,
     );
     expect(bundle).not.toBeNull();
 
@@ -215,17 +270,22 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeOffAxisFieldGeometryParaxial(
+      analysisRequestAt(L, { zPos: zPos, zoomT: 0 }).preparedGeometry,
+      0.5,
+    );
 
     const bundle = traceOrthogonalOffAxisBundle(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD * 0.6,
+        currentPhysStopSD: currentPhysStopSD * 0.6,
+        aberrationT: undefined,
+      }),
       "sagittal",
       6,
       geometry!,
-      L,
-      0,
-      0,
-      currentEPSD * 0.6,
-      currentPhysStopSD * 0.6,
     );
 
     expect(bundle).not.toBeNull();
@@ -239,16 +299,15 @@ describe("off-axis aberration helpers", () => {
   it("returns null from traceOffAxisBundleFromSamples for zero EPSD", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeOffAxisFieldGeometryParaxial(
+      analysisRequestAt(L, { zPos: zPos, zoomT: 0 }).preparedGeometry,
+      0.5,
+    );
 
     const result = traceOffAxisBundleFromSamples(
+      analysisRequestAt(L, { focusT: 0, zoomT: 0, currentEPSD: 0, currentPhysStopSD: 0, aberrationT: undefined }),
       [{ index: 0, pupilFraction: 0, xFraction: 0, yFraction: 0 }],
       geometry!,
-      L,
-      0,
-      0,
-      0,
-      0,
     );
     expect(result).toBeNull();
   });
@@ -257,28 +316,35 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeOffAxisFieldGeometryParaxial(
+      analysisRequestAt(L, { zPos: zPos, zoomT: 0 }).preparedGeometry,
+      0.5,
+    );
 
     const redBundle = traceOrthogonalOffAxisBundle(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD * 0.6,
+        currentPhysStopSD: currentPhysStopSD * 0.6,
+        aberrationT: undefined,
+      }),
       "tangential",
       6,
       geometry!,
-      L,
-      0,
-      0,
-      currentEPSD * 0.6,
-      currentPhysStopSD * 0.6,
       "R",
     );
     const blueBundle = traceOrthogonalOffAxisBundle(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD * 0.6,
+        currentPhysStopSD: currentPhysStopSD * 0.6,
+        aberrationT: undefined,
+      }),
       "tangential",
       6,
       geometry!,
-      L,
-      0,
-      0,
-      currentEPSD * 0.6,
-      currentPhysStopSD * 0.6,
       "B",
     );
 
@@ -297,26 +363,33 @@ describe("off-axis aberration helpers", () => {
     const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeOffAxisFieldGeometryParaxial(
+      analysisRequestAt(L, { zPos: zPos, zoomT: 0 }).preparedGeometry,
+      0.5,
+    );
 
     const redBundle = traceCircularOffAxisBundle(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD * 0.6,
+        currentPhysStopSD: currentPhysStopSD * 0.6,
+        aberrationT: undefined,
+      }),
       [1, 6],
       geometry!,
-      L,
-      0,
-      0,
-      currentEPSD * 0.6,
-      currentPhysStopSD * 0.6,
       "R",
     );
     const blueBundle = traceCircularOffAxisBundle(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD * 0.6,
+        currentPhysStopSD: currentPhysStopSD * 0.6,
+        aberrationT: undefined,
+      }),
       [1, 6],
       geometry!,
-      L,
-      0,
-      0,
-      currentEPSD * 0.6,
-      currentPhysStopSD * 0.6,
       "B",
     );
 
@@ -329,7 +402,8 @@ describe("off-axis aberration helpers", () => {
   });
 
   it("returns null from traceOffAxisBundleFromSamples for empty lens", () => {
-    const emptyLens = { N: 0, S: [] } as unknown as RuntimeLens;
+    // Keep valid prepared geometry behind this deliberately empty runtime-view guard probe.
+    const emptyLens = registerRuntimeFixture({ ...buildSimplePositiveElementLens(), N: 0 });
     const geometry = {
       fieldFraction: 0.5,
       fieldAngleDeg: 10,
@@ -340,13 +414,15 @@ describe("off-axis aberration helpers", () => {
     };
 
     const result = traceOffAxisBundleFromSamples(
+      analysisRequestAt(emptyLens, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: 10,
+        currentPhysStopSD: 5,
+        aberrationT: undefined,
+      }),
       [{ index: 0, pupilFraction: 0, xFraction: 0, yFraction: 0 }],
       geometry,
-      emptyLens,
-      0,
-      0,
-      10,
-      5,
     );
     expect(result).toBeNull();
   });

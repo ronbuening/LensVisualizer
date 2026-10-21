@@ -1,20 +1,23 @@
+import { analysisRequestAt } from "../testLensFixtures.js";
 import { stateWithZ } from "../../../../src/optics/state/preparedGeometry.js";
-import { createAnalysisRequest } from "../../../../src/optics/analysis.js";
+import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
-import { ingestLens } from "../../../../src/optics/buildLens.js";
-import { toLensDataInput } from "../../../../src/optics/prescription/toLensData.js";
+import { ingestLens } from "../../../../src/optics/lensDataConversion.js";
+import { toLensDataInput } from "../../../../src/optics/prescription/v1/toLensData.js";
 import { build, buildChromaticPositiveElementLens } from "../testLensFixtures.js";
 import foldedFixture from "../../../../src/lens-data/reference/ReferenceCassegrainBackFocus.data.js";
-import { prepareRuntimeState, traceRayChromatic2 } from "../../../../src/optics/compat.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
+import { traceRayChromatic } from "../../../../src/optics/trace/rayAdapters.js";
+import { computeChromaticRayFanAnalysis } from "../../../../src/optics/analysis/chromatic/rayFan.js";
 import {
-  computeChromaticRayFanAnalysis,
   computeChromaticAnalysis,
   computeLateralColorCurve,
   computeLongitudinalChromaticFocus,
-} from "../../../../src/optics/analysis.js";
-import { doLayout, traceChiefRelativeSkewRayChromatic } from "../../../../src/optics/optics.js";
+} from "../../../../src/optics/analysis/chromatic/analysis.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../../src/optics/state/runtimeAdapters.js";
+import { traceChiefRelativeSkewRayChromatic } from "../../../../src/optics/trace/chiefRelative.js";
 import {
-  computeProjectionAwareOffAxisFieldGeometry,
+  computeOffAxisFieldGeometry,
   isOffAxisVectorFieldGeometry,
 } from "../../../../src/optics/analysis/aberration/offAxis.js";
 
@@ -50,7 +53,10 @@ describe("chromatic analysis helpers", () => {
     const onAxis = result.spreads.onAxis!;
     expect(offAxis).not.toBeNull();
     expect(onAxis).not.toBeNull();
-    const geometry = computeProjectionAwareOffAxisFieldGeometry(L, z, 1, 0, L.offAxisFieldFrac ?? 0.7)!;
+    const geometry = computeOffAxisFieldGeometry(
+      analysisRequestAt(L, { zPos: z, focusT: 1, zoomT: 0, aberrationT: undefined }).preparedGeometry,
+      L.offAxisFieldFrac ?? 0.7,
+    )!;
     expect(isOffAxisVectorFieldGeometry(geometry)).toBe(false);
     if (isOffAxisVectorFieldGeometry(geometry)) return;
     for (const channel of result.channels) {
@@ -70,7 +76,7 @@ describe("chromatic analysis helpers", () => {
       expect(ray.clipped).toBe(false);
       expect(offAxis.imagePlaneHeights[channel]).toBeCloseTo(ray.y, 12);
       expect(offAxis.axialIntercepts[channel]).toBeCloseTo(state.imgZ - ray.y / ray.uy, 12);
-      const axialRay = traceRayChromatic2(onAxis.fraction! * L.EP.epSD, 0, z, 1, 0, L.stopPhysSD, true, L, channel);
+      const axialRay = traceRayChromatic(onAxis.fraction! * L.EP.epSD, 0, z, 1, 0, L.stopPhysSD, true, L, channel);
       expect(axialRay.reachedImagePlane).toBe(true);
       expect(axialRay.pts.at(-1)![0]).toBeCloseTo(state.imgZ, 12);
       expect(onAxis.imagePlaneHeights[channel]).toBeCloseTo(axialRay.y, 12);
@@ -119,7 +125,10 @@ describe("chromatic analysis helpers", () => {
     expect(result.offAxisAttemptedRayCount).toBe(8);
     expect(result.spreads.offAxis?.fraction).toBe(0.1);
     expect(result.spreads.offAxis?.channels).toEqual(["R", "G", "B", "V"]);
-    const geometry = computeProjectionAwareOffAxisFieldGeometry(L, z, 0, 0, 0.01)!;
+    const geometry = computeOffAxisFieldGeometry(
+      analysisRequestAt(L, { zPos: z, focusT: 0, zoomT: 0, aberrationT: undefined }).preparedGeometry,
+      0.01,
+    )!;
     expect(isOffAxisVectorFieldGeometry(geometry)).toBe(false);
     if (isOffAxisVectorFieldGeometry(geometry)) return;
     for (const channel of ["R", "G", "B", "V"] as const) {

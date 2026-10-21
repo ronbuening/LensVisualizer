@@ -6,16 +6,16 @@
 
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 import type { CompiledSurfaceDispersion, CompiledLens, PreparedOpticalState } from "../types.js";
-import { compiledLensFromRuntime } from "../prescription/compile.js";
-import { abbeLineIndices } from "../dispersion.js";
-import { evaluateSellmeier } from "../glassCatalog.js";
-import { LINE_NM } from "../spectralLines.js";
+import { compiledLensFromRuntime } from "../prescription/identity.js";
+import { abbeLineIndices } from "./materialResolver.js";
+import { evaluateSellmeier } from "./glassCatalog.js";
+import { LINE_NM } from "./spectralLines.js";
 import { CHROMATIC_CHANNEL_WAVELENGTH_NM, CHROMATIC_CHANNEL_ORDER } from "./channels.js";
 
 /** Chromatic channels traced by the engine: C, d, F, and g spectral lines. */
-export const CHROMATIC_CHANNELS_2 = CHROMATIC_CHANNEL_ORDER;
+export const CHROMATIC_CHANNELS = CHROMATIC_CHANNEL_ORDER;
 
-export { CHROMATIC_CHANNEL_WAVELENGTH_NM as CHANNEL_WAVELENGTH_NM_2 } from "./channels.js";
+export { CHROMATIC_CHANNEL_WAVELENGTH_NM as CHANNEL_WAVELENGTH_NM } from "./channels.js";
 
 /**
  * Surface-index callback used by exact tracers when a channel changes refraction.
@@ -24,7 +24,7 @@ export { CHROMATIC_CHANNEL_WAVELENGTH_NM as CHANNEL_WAVELENGTH_NM_2 } from "./ch
  * @param dLineIndex - default d-line refractive index for the current surface
  * @returns refractive index to use for this trace step
  */
-export type SurfaceIndexResolver2 = (surfaceIndex: number, dLineIndex: number) => number;
+export type SurfaceIndexResolver = (surfaceIndex: number, dLineIndex: number) => number;
 
 /**
  * Approximate channel refractive index from d-line index and Abbe number.
@@ -38,7 +38,7 @@ export type SurfaceIndexResolver2 = (surfaceIndex: number, dLineIndex: number) =
  * @param channel - requested chromatic channel
  * @returns estimated refractive index for the channel
  */
-export function wavelengthNd2(nd: number, vd: number | undefined, channel: ChromaticChannel): number {
+export function wavelengthNd(nd: number, vd: number | undefined, channel: ChromaticChannel): number {
   if (nd === 1.0) return 1.0;
   if (!vd || channel === "G") return nd;
   const { nC, nF, ng } = abbeLineIndices(nd, vd);
@@ -53,7 +53,7 @@ export function wavelengthNd2(nd: number, vd: number | undefined, channel: Chrom
  * @param channel - requested channel, or undefined for d-line tracing
  * @returns refractive index for the surface/channel, defaulting to air for invalid indices
  */
-export function indexAtPreparedSurface2(
+export function indexAtPreparedSurface(
   state: PreparedOpticalState,
   surfaceIndex: number,
   channel: ChromaticChannel | undefined,
@@ -75,7 +75,7 @@ export function indexAtPreparedSurface2(
  * @param channel - requested channel, or undefined for d-line tracing
  * @returns refractive index for the surface/channel, defaulting to air for invalid indices
  */
-export function indexAtRuntimeSurface2(
+export function indexAtRuntimeSurface(
   L: RuntimeLens,
   surfaceIndex: number,
   channel: ChromaticChannel | undefined,
@@ -85,7 +85,7 @@ export function indexAtRuntimeSurface2(
   if (!channel) return surface.nd === 1 ? 1 : surface.nd;
   const engineLens = compiledLensFromRuntime(L);
   return (
-    engineLens.dispersion[surfaceIndex]?.indexAt(channel) ?? wavelengthNd2(surface.nd, L.vdByIdx[surfaceIndex], channel)
+    engineLens.dispersion[surfaceIndex]?.indexAt(channel) ?? wavelengthNd(surface.nd, L.vdByIdx[surfaceIndex], channel)
   );
 }
 
@@ -96,10 +96,10 @@ export function indexAtRuntimeSurface2(
  * @param channel - requested channel, or undefined for d-line tracing
  * @returns index resolver for exact tracing, or undefined for unchanged d-line indices
  */
-export function channelIndexResolverForState2(
+export function channelIndexResolverForState(
   state: PreparedOpticalState,
   channel: ChromaticChannel | undefined,
-): SurfaceIndexResolver2 | undefined {
+): SurfaceIndexResolver | undefined {
   if (!channel) return undefined;
   return (surfaceIndex, dLineIndex) => state.lens.dispersion[surfaceIndex]?.indexAt(channel) ?? dLineIndex;
 }

@@ -238,7 +238,7 @@ describe("static page renders", () => {
   });
 
   it("renders structured patent attribution in the lens-page fallback", () => {
-    const lensKey = CATALOG_KEYS.find((key) => LENS_CATALOG[key].patentNumber);
+    const lensKey = CATALOG_KEYS.find((key) => LENS_CATALOG[key].source.patentNumber);
     expect(lensKey).toBeTruthy();
     if (!lensKey) return;
 
@@ -254,11 +254,11 @@ describe("static page renders", () => {
     );
 
     const patentLink = screen.getByRole("link", {
-      name: `${lens.patentNumber} in Espacenet (opens in a new tab)`,
+      name: `${lens.source.patentNumber} in Espacenet (opens in a new tab)`,
     });
-    expect(patentLink.getAttribute("href")).toBe(espacenetPatentUrl(lens.patentNumber ?? ""));
-    expect(patentLink.closest("p")?.textContent).toContain(lens.patentNumber);
-    for (const author of lens.patentAuthors ?? []) expect(patentLink.closest("p")?.textContent).toContain(author);
+    expect(patentLink.getAttribute("href")).toBe(espacenetPatentUrl(lens.source.patentNumber ?? ""));
+    expect(patentLink.closest("p")?.textContent).toContain(lens.source.patentNumber);
+    for (const author of lens.source.authors ?? []) expect(patentLink.closest("p")?.textContent).toContain(author);
     if (lens.subtitle && lens.subtitle !== displaySubtitle) expect(screen.queryByText(lens.subtitle)).toBeNull();
   });
 

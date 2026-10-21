@@ -29,11 +29,11 @@ flowchart LR
 - Direct source files: 2
 - Direct subfolders: 0
 - Main outbound areas: src/optics/analysis (2), src/types (2), src/optics/geometry, src/optics/prescription
-- External consumers: src/optics/analysis.ts, src/optics/compat.ts
+- External consumers: src/optics/analysis.ts
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `comparison.ts` | Comparison helper module | src/optics/geometry, src/types | src/optics/analysis, src/optics/analysis.ts, src/optics/compat.ts | DepartureSample, computeAsphericDepartureFromProfiles, computeAsphericDeparture, computeDepartureProfile, computeBestFitSphereR, computeDepartureProfileFromProfiles, computeBestFitSphereRFromProfiles, peakAbsDeparture, +2 more |
+| `comparison.ts` | Comparison helper module | src/optics/geometry, src/types | src/optics/analysis, src/optics/analysis.ts | DepartureSample, computeAsphericDepartureFromProfiles, computeAsphericDeparture, computeDepartureProfile, computeBestFitSphereR, computeDepartureProfileFromProfiles, computeBestFitSphereRFromProfiles, peakAbsDeparture, +2 more |
 | `element.ts` | Element helper module | src/optics/analysis (2), src/optics/prescription, src/types | src/optics/analysis.ts | SurfaceComparison, computeAsphericElementComparison |

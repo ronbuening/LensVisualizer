@@ -9,7 +9,9 @@ import type { MtfAperture, MtfOptions, MtfSupport } from "../../../types/mtf.js"
 import type { PreparedGeometry } from "../../types.js";
 import { prepareEngineTrace } from "../../trace/rayAdapters.js";
 import type { MtfFootprint } from "./mtfFootprint.js";
-import { mtfLaunchRay, mtfTraceClassification, mtfTraceOptions, type MtfFieldLaunch } from "./mtfTracing.js";
+import { mtfLaunchRay, mtfTraceOptions } from "./mtfTracing.js";
+import { mtfTraceClassification } from "./mtfRayClassification.js";
+import type { MtfFieldLaunch } from "./mtfTracing.js";
 
 /** Doublings of the starting bracket before giving up on finding a blocked ray. */
 const RIM_EXPANSIONS = 6;

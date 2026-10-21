@@ -1,7 +1,8 @@
 /** Signed fixed-sensor sampling policy shared by perspective requests and lazy jobs. */
 
 import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
-import type { PerspectiveFieldSamplingOptions, SensorUv } from "../perspective/fieldSampling.js";
+import type { PerspectiveFieldSamplingOptions } from "../perspective/fieldTypes.js";
+import type { SensorUv } from "../perspective/fieldGeometry.js";
 import type { PerspectiveChromaticOptions } from "../perspective/analysis/chromatic.js";
 import type { PerspectiveDistortionOptions } from "../perspective/analysis/distortion.js";
 import type { PerspectiveFieldAberrationOptions } from "../perspective/analysis/fieldAberrations.js";

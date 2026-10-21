@@ -2,19 +2,19 @@
  * Analysis requests snapshot current controls outside lens construction.
  *
  * Prepared geometry supplies identity; a bounded control history keeps requests stable
- * across drawer renders so analysis families can adopt this contract independently.
+ * across drawer renders and share analysis results.
  */
 
 import type { ChromaticChannel } from "../../types/optics.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
-import type { FieldGeometryState } from "../optics.js";
+import type { FieldGeometryState } from "../field/launch.js";
 import type { PerspectivePose } from "../perspective/pose.js";
 import type { PerspectiveTraceContext } from "../perspective/trace.js";
 import type { TraceCapture } from "../trace/types.js";
 import type { CompiledLens, PreparedGeometry } from "../types.js";
 import type { AnalysisQuality, AnalysisSamplingOptions } from "./analysisQuality.js";
 
-/** Compatibility inputs from current drawer and prepared-state adapters, in mm. */
+/** Inputs from the drawer and prepared geometry, in mm. */
 export interface AnalysisRequestParams {
   preparedState: PreparedGeometry;
   dynamicEFL: number;
@@ -26,7 +26,7 @@ export interface AnalysisRequestParams {
   perspectiveTraceContext?: PerspectiveTraceContext | null;
 }
 
-/** Immutable inputs shared by the lazy context and, incrementally, analysis families. */
+/** Immutable inputs shared by the lazy context and analysis families. */
 export interface AnalysisRequest {
   readonly preparedGeometry: PreparedGeometry;
   readonly dynamicEFL: number;
@@ -40,7 +40,7 @@ export interface AnalysisRequest {
   readonly perspectiveTraceContext: PerspectiveTraceContext | null;
   readonly analysisQuality: AnalysisQuality;
   readonly sampling: Readonly<AnalysisSamplingOptions>;
-  /** Existing adapters retain their capture behavior until their family migrates. */
+  /** Trace capture policy for the analysis request. */
   readonly capture: TraceCapture;
 }
 

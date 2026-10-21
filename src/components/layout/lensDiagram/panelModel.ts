@@ -1,6 +1,6 @@
 import type { PointerEvent, ReactNode, RefObject, TouchEvent, WheelEvent } from "react";
-import type { CardinalElements } from "../../../optics/cardinalElements.js";
-import type { LensMovementTransform } from "../../../optics/lensMovement.js";
+import type { CardinalElements } from "../../../optics/analysis.js";
+import type { LensMovementTransform } from "../../../optics/perspective.js";
 import type { GroupMovementMode } from "../../../types/groupMovement.js";
 import type {
   ChromaticRayFanSpread,

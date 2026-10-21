@@ -20,9 +20,11 @@ list and git log first).
   - New page/route → `agent_docs/adding_a_route.md`
   - New slider/toggle → `agent_docs/adding_ui_controls.md`
   - Tests → `agent_docs/testing_recipes.md` · New colors → `agent_docs/theme_tokens.md`
-- All optics computation goes in pure helpers under `src/optics/` taking the runtime lens `L` or a
-  `PreparedOpticalState` explicitly (CLAUDE.md Core Working Rules). UI components only format and
-  render. Slider-dependent values come from prepared state, never from `buildLens()`.
+- All optics computation goes in pure helpers under `src/optics/`: analyses take an
+  `AnalysisRequest`, field/trace helpers take prepared geometry, and UI adapters take `RuntimeLens`.
+  UI components only format and render; import through the public barrels listed in
+  `agent_docs/architecture/public-functions.md`. Slider-dependent values come from the current
+  request, never from `buildLens()`.
 - Folded/mirror lenses: any new analysis must be guarded the way existing tabs guard folded
   systems until fixture-backed validation exists. Copy the guard pattern from an existing gated
   tab; render an explanatory placeholder, never wrong numbers.
@@ -67,7 +69,7 @@ Verified in code on 2026-07-06 (pins re-checked 2026-09-09):
 
 - **Shareable analysis drawer state in URLs** — `ad`/`tab` params in
   `src/utils/state/lensViewUrlState.ts`. (Was AO#4.)
-- **Analysis summary tab** — `src/optics/analysis/summary.ts` +
+- **Analysis summary tab** — `src/optics/analysis/summary/summary.ts` +
   `src/components/display/analysis/OpticalSummaryTab.tsx`. (AO#1.)
 - **Simulated MTF** — `src/optics/mtf.ts` + `src/components/display/analysis/MtfTab.tsx`; diffraction-corrected
   photopic default with a geometric alternative, image-height fields to the format corner in 1–10 % steps,
@@ -80,14 +82,14 @@ Verified in code on 2026-07-06 (pins re-checked 2026-09-09):
   ~79–80) feeding `sampling.comaDetailFieldFraction` through
   `src/components/display/analysis/aberrations/useComaData.ts`. (Was AO#10 and this plan's former
   F8.)
-- **Bokeh preview as a drawer tab** — `computeBokehPreviewPairForState2`
-  (`src/optics/analysis/bokeh.ts`) + `src/components/display/analysis/BokehTab.tsx`. (AO#18 core;
+- **Bokeh preview as a drawer tab** — `computeBokehPreviewPair(request: AnalysisRequest)`
+  (`src/optics/analysis/bokeh/bokeh.ts`) + `src/components/display/analysis/BokehTab.tsx`. (AO#18 core;
   its follow-up controls are F24 below.)
 - **Cardinal/principal-point overlays** — `src/components/diagram/CardinalElementsOverlay.tsx` +
-  `computeCardinalElements2` (`src/optics/first-order/cardinals.ts`: principal planes, focal
-  points, nodal points). (Was AO#6.)
-- **Group movement / mechanics overlay** — `computeGroupMovementProfileForState2`
-  (`src/optics/analysis/groupMovement.ts`) + the `mv` URL param. (Covers much of AO#7; remaining
+  `computeCardinalElements(request: AnalysisRequest, layout?)`
+  (`src/optics/analysis/summary/cardinals.ts`: principal planes, focal points, nodal points). (Was AO#6.)
+- **Group movement / mechanics overlay** — `computeGroupMovementProfile(request: AnalysisRequest, mode)`
+  (`src/optics/analysis/summary/groupMovement.ts`) + the `mv` URL param. (Covers much of AO#7; remaining
   mechanics ideas folded into F3.)
 - **Folded trace diagnostics readout** — public `RayTraceResult.diagnostics`
   (`FoldedPathTraceDiagnostics`, `src/types/optics.ts`) plus a compact development readout (ML
@@ -135,8 +137,9 @@ Files to touch:
 Reference to mimic: `useComparisonDisplayValues` (default export,
 `src/comparison/useComparisonDisplayValues.ts`) already derives per-side display values from the
 comparison build result — copy its guard-then-`useMemo`-per-side structure.
-`computeOpticalSummaryForState2` (`src/optics/analysis/summary.ts`) provides the cheap metrics per
-prepared state.
+`computeOpticalSummary(request: AnalysisRequest)` (`src/optics/analysis/summary/summary.ts`)
+provides the cheap metrics for each side; UI imports it and `createAnalysisRequest` from
+`src/optics/analysis.ts`.
 
 Data-type contract: per-side inputs flow through `useComparisonOrchestration`
 (`src/comparison/useComparisonOrchestration.ts`) — the single wiring hook `LensViewer` already
@@ -147,8 +150,12 @@ and maps the shared sliders to per-side slider values (`focusPair.focusA/.focusB
 `SharedSlidersSlice` (`state.sharedSliders`: `sharedFocusT`, `sharedStopdownT`, `sharedZoomT`,
 `sharedShiftMm`, `sharedTiltDeg` — declared in `src/comparison/comparisonTypes.ts`); there is no
 per-side slider state, so the scorecard recomputes exactly when the shared slice or a lens key
-changes. Per-side prepared states are built from `(LA, focusA, zoomA)` / `(LB, focusB, zoomB)` the
-same way `useComparisonDisplayValues` derives its per-side EFL/f-number values. One filled example
+changes. Build per-side geometry with `prepareRuntimeState(LA, focusA, zoomA)` /
+`prepareRuntimeState(LB, focusB, zoomB)` from `src/optics/optics.ts`, then snapshot it with
+`createAnalysisRequest({ preparedState, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry })`.
+Use each side's current EFL and zoom/aperture-dependent pupil and stop radii, following
+`src/components/hooks/useLensComputation.ts`; the comparison hook's wide-open request is only
+a reference for computing focus EFL. The result is one `AnalysisRequest` per side. One filled example
 row of the hook's return shape:
 
 ```ts
@@ -159,10 +166,10 @@ row of the hook's return shape:
 
 Steps:
 
-1. New hook `useComparisonScorecard.ts`: takes both sides' prepared states + pupil inputs (mirror
-   how `useComparisonDisplayValues` gets them), returns `Array<{ id, label, a, b, delta, format }>`.
+1. New hook `useComparisonScorecard.ts`: takes both sides' `AnalysisRequest` snapshots, returns
+   `Array<{ id, label, a, b, delta, format }>`.
    All optics math stays in `src/optics/analysis/` helpers; the hook orchestrates and memoizes per
-   prepared-state pair.
+   request pair.
 2. New `ComparisonMetricsTable.tsx`: theme-token table; delta column signed, muted color when
    |delta| is below a per-metric significance threshold (define thresholds as named constants in
    the hook, e.g. 0.1 mm for lengths, 0.01 for f-number).
@@ -205,15 +212,19 @@ Files to touch:
 - **New:** `prescriptionLedger.ts` in `src/optics/analysis/`, the tab component
   `PrescriptionLedgerTab.tsx` beside the other tabs in `src/components/display/analysis/`, helper
   unit test + tab smoke test under `__tests__/`.
-- **Modified:** the four analysis-tab registration points listed in
-  `agent_docs/adding_an_analysis_tab.md`.
+- **Modified:** `src/optics/analysis.ts` (export the helper) and the analysis-tab registration
+  points listed in `agent_docs/adding_an_analysis_tab.md`.
 
-Reference to mimic: any `*ForState2` analysis adapter (e.g. `computeOpticalSummaryForState2` in
-`src/optics/analysis/summary.ts`) for the helper shape;
+Reference to mimic: `computeOpticalSummary(request: AnalysisRequest)` in
+`src/optics/analysis/summary/summary.ts` for the pure request-based helper shape;
 `src/components/display/analysis/OpticalSummaryTab.tsx` for a row-oriented tab component.
 
-Data-type contract: the helper takes a `PreparedOpticalState` (type declared in
-`src/optics/types.ts`, built by `prepareState` in `src/optics/state/preparedGeometry.ts`).
+Data-type contract: the helper takes `AnalysisRequest` from `src/optics/analysis/request.ts`
+(publicly exported by `src/optics/analysis.ts`). Read `state = request.preparedGeometry`, whose
+`PreparedGeometry` type is declared in `src/optics/types.ts`. UI callers use
+`prepareRuntimeState(L, focusT, zoomT, aberrationT)` from `src/optics/optics.ts`, then
+`createAnalysisRequest({ preparedState, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry })`,
+or reuse the drawer's existing `analysisContext.request` as `OpticalSummaryTab.tsx` does.
 `state.surfaces` is `readonly CompiledStateSurface[]` (`CompiledStateSurface extends
 Omit<CompiledSurface, "d">`); each surface carries `physicalIndex`, `label`, `R` (mm, signed), `d`
 (gap to the next surface, already resolved for the current focus/zoom/aberration state), `z`
@@ -228,7 +239,7 @@ stop surface index is `state.lens.stop.surfaceIndex` (`StopSpec`). Element rows 
 Steps:
 
 1. New pure helper `prescriptionLedger.ts`:
-   `computePrescriptionLedgerForState2(state): PrescriptionLedgerResult` with
+   `computePrescriptionLedger(request: AnalysisRequest): PrescriptionLedgerResult` with
    `surfaces: Array<{ index, label, radiusMm, n1, n2, vd, powerDiopters, petzvalContribution, isAspheric, isStop }>`
    and `elements: Array<{ id, name, focalLengthMm, glass, apd, groupLabel }>`.
    - Surface power: `(n2 − n1) / R` with R in meters for diopters, or keep mm⁻¹ and label it —
@@ -252,11 +263,12 @@ Steps:
    (mirror surfaces: decide and document — simplest is to show the table with mirror rows marked,
    since per-surface power is still meaningful; if that's contentious, gate folded and note it).
 
-Gotchas: `agent_docs/gotchas.md:11-13` — "Runtime trace adapters cache prepared state by
-`RuntimeLens` + `focusT` + `zoomT` + `aberrationT`"; the ledger must read everything from the
-passed `state`, never rebuild its own. The folded-guard rule in CLAUDE.md Core Working Rules —
-whatever mirror-row decision step 5 takes, an `L.isFoldedOptics` lens must not silently show
-refractive math for mirror surfaces.
+Gotchas: `agent_docs/gotchas.md:9-11` — "Rebuilding the same canonical identity reuses its
+compiled/runtime owners"; the ledger must read geometry from `request.preparedGeometry`, never
+rebuild its own. Lines 15–17: "A prepared geometry does not include stop-down" — reuse the
+current drawer request and replace it when aperture or sampling changes. The folded-guard rule
+in CLAUDE.md Core Working Rules also applies: whatever mirror-row decision step 5 takes, an
+`L.isFoldedOptics` lens must not silently show refractive math for mirror surfaces.
 
 Verification: gate (`npm run typecheck && npm run format:check && npm run lint && npm run test`);
 the two hand-computed surface powers in the helper test match the helper output to within 0.1%;
@@ -278,13 +290,15 @@ survives to the image — small footprint tiles revealing cat's-eye clipping —
 percentage under each tile. The existing 1D curve stays the headline.
 
 Verified foundation: the current vignetting analysis
-(`computeVignettingCurveForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry?, sampling?)`
-in `src/optics/analysis/vignetting.ts` → `VignettingSample { fieldAngleDeg, geometricTransmission,
-relativeIllumination }` in `src/optics/vignetteAnalysis.ts`) sweeps ONLY meridional pupil rays.
-The bokeh module (`src/optics/aberration/bokeh.ts`) already traces full 2D pupil bundles via
-`sampleCircularPupil()` (defined in `src/optics/rayTrace.ts`, re-exported from
-`src/optics/optics.ts`) and `traceOffAxisBundleFromSamples()` (defined in
-`src/optics/aberration/offAxis.ts`) — 337 samples in concentric rings
+(`computeVignettingCurve(request: AnalysisRequest): VignettingSample[]` in
+`src/optics/analysis/vignetting/vignetting.ts`, which also defines
+`VignettingSample { fieldAngleDeg, geometricTransmission, relativeIllumination }`) sweeps ONLY
+meridional pupil rays. The request supplies prepared geometry, aperture, field and sampling;
+UI imports the helper and request factory from `src/optics/analysis.ts`.
+The bokeh module (`src/optics/analysis/bokeh/bokeh.ts`) already traces full 2D pupil bundles via
+`sampleCircularPupil()` (defined in `src/optics/analysis/sampling.ts`, re-exported from
+`src/optics/analysis.ts`) and `traceOffAxisBundleFromSamples()` (defined in
+`src/optics/analysis/aberration/offAxis.ts`) — 337 samples in concentric rings
 (`BOKEH_CIRCULAR_PUPIL_RING_SAMPLES`, overridable via `sampling.bokehRingSamples`), each sample
 retaining pupil radius/azimuth.
 
@@ -298,14 +312,16 @@ clipped); survivors keep their `radiusFraction` / `azimuthRad` for plotting.
 
 Steps:
 
-1. Read `src/optics/aberration/bokeh.ts` around its use of those two helpers first — the footprint
+1. Read `src/optics/analysis/bokeh/bokeh.ts` around its use of those two helpers first — the footprint
    helper is essentially "bokeh bundle trace, but record survival instead of image-plane
    position".
 2. New pure helper `pupilFootprints.ts` in `src/optics/analysis/`:
-   `computePupilFootprintsForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry?, sampling?)`
+   `computePupilFootprints(request: AnalysisRequest)`
    → `{ fields: Array<{ fieldFraction, fieldAngleDeg, samples: Array<{ px, py, survived }>, transmission }> }`
    where `px, py` are normalized pupil coordinates in [-1, 1] and `transmission` =
-   survived/total.
+   survived/total. Read geometry and controls from `request.preparedGeometry`, radii from
+   `request.aperture`, and field/sampling from `request.fieldGeometry` / `request.sampling`.
+   Export the new helper through `src/optics/analysis.ts` for the UI.
    - Per field fraction: solve the chief ray (skip the field with `valid: false` if the solve
      fails), build the circular pupil sample set, trace each sample, record clipped vs survived.
    - Reuse the exact sampling infrastructure from the bokeh module — do NOT write a new pupil
@@ -320,7 +336,7 @@ Steps:
    same physics). Codify as a unit test comparing both helpers on the same lens/state.
 5. Folded/annular systems: gate the section exactly like the vignetting tab's existing folded
    guard; annular pupils (mirror lenses) are excluded until M1 lands — check `L.isFoldedOptics`
-   plus `stopInnerBlockedSemiDiameter()` (`src/optics/stopObstruction.ts`).
+   plus `stopInnerBlockedSemiDiameter()` (`src/optics/trace/stopObstruction.ts`).
 6. Performance: 5 fields × 337 samples ≈ 1,700 traces per recompute — comparable to what the bokeh
    tab already does. If drag stutters with the tab open, pass a lighter ring count through
    `sampling.bokehRingSamples` and note the chosen number here.
@@ -344,26 +360,26 @@ and M2.
 | --- | -------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | F1  | T1 · S         | plan                | Decade chips (1930s … 2020s) that set `patentYearMin`/`patentYearMax` on the existing lens-index year filter, decade list derived from the panel's `bounds`, chip active when the range equals its decade; no new URL state.                                                                                                                | `src/pages/lensIndex/LensIndexFilterPanel.tsx`, `src/pages/lensIndex/useLensIndexFilters.ts`                   |
 | F2  | T1 · S         | plan                | Mount/format badges in comparison panel headers linking to `/mounts/:mountId` and `/formats/:formatId`, labels resolved only through the taxonomy ids, rendering nothing when metadata is absent.                                                                                                                                          | `src/comparison/ComparisonContent.tsx`, `src/utils/catalog/lensTaxonomy.ts`                                    |
-| F3  | T1 · S         | AO#5, AO#7 rest     | "GEOMETRY" group in the Summary tab: add `telephotoRatio` (EFL ÷ total track, `null` when track is missing) to `computeOpticalSummaryForState2` and group it with the existing BFD/track rows.                                                                                                                                              | `src/optics/analysis/summary.ts`, `src/components/display/analysis/OpticalSummaryTab.tsx`                      |
-| F6  | T2 · M         | AO#16               | Sensor tab (`"sensor"`): chief-ray incidence angle vs field from `solveChiefRay` (skip `bracket-failed`, mark `paraxial-fallback`), exit-pupil distance, and a near-telecentric (< 5°) / moderate (< 15°) / oblique verdict; gate folded systems like the pupils tab.                                                                       | `src/optics/field/chiefRay.ts`, `src/components/display/analysis/PupilAberrationTab.tsx`                       |
+| F3  | T1 · S         | AO#5, AO#7 rest     | "GEOMETRY" group in the Summary tab: add `telephotoRatio` (EFL ÷ total track, `null` when track is missing) to `computeOpticalSummary(request: AnalysisRequest)` and group it with the existing BFD/track rows.                                                                                                                                              | `src/optics/analysis/summary/summary.ts`, `src/components/display/analysis/OpticalSummaryTab.tsx`                      |
+| F6  | T2 · M         | AO#16               | Sensor tab (`"sensor"`): chief-ray incidence angle vs field from `solveChiefRayForRuntimeLens` (public `src/optics/fieldGeometry.ts` adapter; skip `bracket-failed`, mark `paraxial-fallback`), exit-pupil distance, and a near-telecentric (< 5°) / moderate (< 15°) / oblique verdict; gate folded systems like the pupils tab.                                                                       | `src/optics/field/chiefRaySolve.ts`, `src/components/display/analysis/PupilAberrationTab.tsx`                       |
 | F7  | T2 · S-M       | AO#23 + AO#22 part  | Per-element role table (glass, nd, vd, APD, asphere, annotated role) plus counts (aspheric, nd > 1.78, vd ≥ 70, APD) as a collapsed Summary-tab section; row click dispatches the existing element-select action.                                                                                                                          | `src/optics/glassCatalog.ts`, `src/components/display/analysis/OpticalSummaryTab.tsx`                          |
-| F9  | T3 · S-M       | AO#21               | Asphere utilization: per aspheric surface `{ surfIdx, elementId, peakDepartureUm, rimDepartureUm, sign }` ranked by peak departure from `computeAsphericDeparture2`, shown as ranked bars with the existing departure-profile overlay.                                                                                                      | `src/optics/analysis/asphericComparison.ts`, `src/components/display/overlays/`                                |
+| F9  | T3 · S-M       | AO#21               | Asphere utilization: per aspheric surface `{ surfIdx, elementId, peakDepartureUm, rimDepartureUm, sign }` ranked by peak departure from `computeAsphericDepartureFromProfiles`, shown as ranked bars with the existing departure-profile overlay.                                                                                                      | `src/optics/analysis/asphericComparison/comparison.ts`, `src/components/display/overlays/`                                |
 | F10 | T3 · M-L       | AO#3                | Build-time lens-card badges ("Telephoto" ratio < 1, "Retrofocus" BFD > EFL, "Short BFD", "Aspheric") at infinity / wide open / wide end; the `audit:*` scripts already load TS lens modules from Node via `scripts/ts-js-specifier-hook-register.mjs`, so reuse that loader in the metadata pipeline.                                       | `scripts/generate-build-metadata.mjs`, `scripts/audit-image-circle.mjs`                                        |
 | F11 | T3 · M         | AO#25               | `npm run audit:lens -- <lens-key>` authoring checklist (validation warnings; missing `lensMounts` / `imageFormat` / `patentYear` / analysis file / `apertureBlades` / group annotations; render-trim diagnostics at focusT = 0, zoomT = 0), exit code 0 always; model it on the existing `audit:*` scripts.                                 | `scripts/audit-image-circle.mjs`, `src/optics/diagram/renderDiagnostics.ts`                                    |
-| F12 | T4 · M         | AO#11               | Coma field sweep: loop `comaDetailFieldFraction` over [0, .25, .5, .75, 1] through `computeMeridionalComa` / `computeSagittalComa` (both return `spanUm`, `validSampleCount`), emit tangential/sagittal span + ratio per field, chart at the bottom of the Coma tab; on-axis span < 1 µm and edge > mid.                                    | `src/optics/aberration/coma.ts`, `src/components/display/analysis/ComaTab.tsx`                                 |
-| F14 | T4 · M         | AO#12 (bounded)     | Pure `computeSpotMetrics(points)` → centroid, RMS radius, EE50/EE80 (sorted-distance index `ceil(f · n) − 1`, `null` for n < 10), µm output, shown under the coma point-cloud preview labeled "geometric, not diffraction"; no new heatmap subsystem.                                                                                      | `src/optics/aberration/coma.ts`, `src/components/display/analysis/aberrations/ComaPreviewSection.tsx`          |
-| F15 | T4 · M-L       | AO#19               | Blade-shaped bokeh: mask pupil samples by `limit = cos(π/N) / cos(((θ − φ) mod 2π/N) − π/N)` blended toward 1 by `apertureBladeRoundedness` (`src/types/optics.ts:365-367`; set in 336 / 55 lens files), applied only when `stopdownT > 0`, wide-open output byte-identical; update `LENS_DATA_SPEC.md:145-146` ("reserved for future"). | `src/types/optics.ts`, `src/optics/aberration/bokeh.ts`                                                        |
+| F12 | T4 · M         | AO#11               | Coma field sweep: create requests with `sampling.comaDetailFieldFraction` in [0, .25, .5, .75, 1] and call `computeMeridionalComa(request)` / `computeSagittalComa(request)` (both return `spanUm`, `validSampleCount`), emit tangential/sagittal span + ratio per field, chart at the bottom of the Coma tab; on-axis span < 1 µm and edge > mid.                                    | `src/optics/analysis/aberration/coma.ts`, `src/components/display/analysis/ComaTab.tsx`                                 |
+| F14 | T4 · M         | AO#12 (bounded)     | Pure `computeSpotMetrics(points)` → centroid, RMS radius, EE50/EE80 (sorted-distance index `ceil(f · n) − 1`, `null` for n < 10), µm output, shown under the coma point-cloud preview labeled "geometric, not diffraction"; no new heatmap subsystem.                                                                                      | `src/optics/analysis/aberration/coma.ts`, `src/components/display/analysis/aberrations/ComaPreviewSection.tsx`          |
+| F15 | T4 · M-L       | AO#19               | Blade-shaped bokeh: mask pupil samples by `limit = cos(π/N) / cos(((θ − φ) mod 2π/N) − π/N)` blended toward 1 by `apertureBladeRoundedness` (`src/types/optics.ts:365-367`; set in 336 / 55 lens files), applied only when `stopdownT > 0`, wide-open output byte-identical; update `LENS_DATA_SPEC.md:145-146` ("reserved for future"). | `src/types/optics.ts`, `src/optics/analysis/bokeh/bokeh.ts`                                                        |
 | F16 | T4 · M         | plan                | `/glass` page: catalog-wide nd-vs-vd scatter from a `computeGlassUsage()` aggregate over `LENS_CATALOG` via `resolveGlass`, dot radius `2 + sqrt(lensCount)` capped at 8, reusing the per-lens Abbe diagram's reversed-vd axis mapping; new route per `agent_docs/adding_a_route.md`.                                                      | `src/optics/glassCatalog.ts`, `src/components/display/AbbeDiagram.tsx`                                         |
-| F17 | T4 · S         | plan                | Dev-only chief-ray solver health readout behind a new `ENABLE_CHIEF_RAY_DIAGNOSTICS` flag: converged / paraxial-fallback / bracket-failed / out-of-domain counts from `getChiefRayDiagnostics()`, warning when non-converged > 5%, reset button; no changelog entry.                                                                        | `src/optics/field/chiefRayCache.ts`, `src/utils/featureFlags.ts`                                               |
-| F18 | T5 · M-L       | AO#13               | LoCA-vs-focusT curve (~9 steps) built by re-running the longitudinal chromatic helper on states from `prepareState`, which caches them in the prepared-geometry owner; collapsed Chromatic-tab section; centered sequential lenses only.                                                                                                                     | `src/optics/analysis/chromatic.ts`, `src/optics/state/preparedGeometry.ts`                                         |
-| F19 | T5 · S-M       | AO#16b              | Subtle 50% / 100%-field EP/XP tick marks on the pupil overlay from `computeBothPupilAberrationProfilesForState2`, following the existing pupil-marker and off-screen-indicator code.                                                                                                                                                       | `src/components/diagram/DiagramOverlayLayer.tsx`, `src/optics/analysis/pupilAberration.ts`                     |
+| F17 | T4 · S         | plan                | Dev-only chief-ray solver health readout behind a new `ENABLE_CHIEF_RAY_DIAGNOSTICS` flag: converged / paraxial-fallback / bracket-failed / out-of-domain counts from `getChiefRayDiagnostics()`, warning when non-converged > 5%, reset button; no changelog entry.                                                                        | `src/optics/diagnostics/chiefRay.ts` (public `src/optics/fieldGeometry.ts`), `src/utils/featureFlags.ts`                                               |
+| F18 | T5 · M-L       | AO#13               | LoCA-vs-focusT curve (~9 steps): build geometry with `prepareRuntimeState` (`src/optics/optics.ts`), create an `AnalysisRequest` per focus step, and call `computeLongitudinalChromaticFocus(request)`; collapsed Chromatic-tab section; centered sequential lenses only.                                                                                                                     | `src/optics/analysis/chromatic/analysis.ts`, `src/optics/state/preparedGeometry.ts`                                         |
+| F19 | T5 · S-M       | AO#16b              | Subtle 50% / 100%-field EP/XP tick marks on the pupil overlay from `computeBothPupilAberrationProfiles(request: AnalysisRequest)`, following the existing pupil-marker and off-screen-indicator code.                                                                                                                                                       | `src/components/diagram/DiagramOverlayLayer.tsx`, `src/optics/analysis/pupils/pupilAberration.ts`                     |
 | F20 | T5 · M         | AO#20               | Sensor-format framing overlay (FF / APS-C / MFT / 1-inch / custom; half-diagonals 21.63 / 14.16 / 10.82 / 7.87 mm unless the taxonomy carries dimensions) on the distortion grid and image plane, defaulting from `imageFormat`, with a corner-coverage verdict; UI state, no URL param.                                                    | `src/components/display/analysis/DistortionTab.tsx`, `src/utils/catalog/lensTaxonomy.ts`                       |
-| F21 | T5 · M         | AO#15               | Lateral-color field-point markers in the SVG driven by `computeLateralColorCurve()` only (never marginal ray-fan endpoint spread), leaving the LoCA inset LoCA-only; design sketch in the PR before code.                                                                                                                                   | `src/optics/analysis/chromatic.ts`, `src/components/display/analysis/LateralColorChart.tsx`                    |
-| F22 | T5 · M         | AO#22 rest          | PgF-based anomalous-dispersion score inside F7's section, scoring only elements whose resolved `GlassEntry.PgF` exists and reporting coverage (n scored / n elements), labeled heuristic.                                                                                                                                                   | `src/optics/glassCatalogTypes.ts`, `src/optics/glassCatalog.ts`                                                |
+| F21 | T5 · M         | AO#15               | Lateral-color field-point markers in the SVG driven by `computeLateralColorCurve(request: AnalysisRequest)` only (never marginal ray-fan endpoint spread), leaving the LoCA inset LoCA-only; design sketch in the PR before code.                                                                                                                                   | `src/optics/analysis/chromatic/analysis.ts`, `src/components/display/analysis/LateralColorChart.tsx`                    |
+| F22 | T5 · M         | AO#22 rest          | PgF-based anomalous-dispersion score inside F7's section, scoring only elements whose resolved `GlassEntry.PgF` exists and reporting coverage (n scored / n elements), labeled heuristic.                                                                                                                                                   | `src/optics/chromatic/glassCatalogTypes.ts`, `src/optics/glassCatalog.ts`                                                |
 | F23 | T5 · S-M       | AO#24               | Article deep links to lens pages with `?ad=1&tab=<id>&v=1` as plain markdown links (no React-in-markdown), pilot on 2–3 articles, optional metadata-driven "Related diagnostics" block; document the pattern in the article recipe.                                                                                                        | `agent_docs/adding_an_article.md`, `src/utils/state/lensViewUrlState.ts`                                       |
-| F24 | T5 · M         | AO#18 follow-ups    | Bokeh preview controls (source-plane toggle, field position, scale lock) as local component state via the shared-controls recipe, using knobs `computeBokehPreviewPairForState2` already accepts.                                                                                                                                          | `src/components/display/analysis/useBokehPreviewData.ts`, `src/optics/analysis/bokeh.ts`                       |
-| M1  | Mirror · L     | ML (highest value)  | Annular-aware chief-ray solve: on centrally obstructed stops (e.g. Reflex-Nikkor 1000mm f/11) solve a displaced-pupil (annulus-centroid) reference ray via `stopInnerBlockedSemiDiameter()` through the generalized tracer, with assertions on the hidden reflex fixtures and `npm run generate:mirror-reports` regenerated.               | `src/optics/stopObstruction.ts`, `src/optics/field/chiefRay.ts`                                                |
-| M2  | Mirror · M-L   | AO#14 + ML          | Folded/annular chromatic fixtures with known image-plane behavior, then lift the chromatic drawer guards one analysis at a time, each behind its own fixture-backed test; never lift a guard without a fixture asserting the physical result.                                                                                             | `src/optics/analysis/chromatic.ts`, `src/lens-data/reference/`                                                 |
+| F24 | T5 · M         | AO#18 follow-ups    | Bokeh preview controls (source-plane toggle, field position, scale lock) as local component state via the shared-controls recipe, using `computeBokehPreviewPair(request: AnalysisRequest)` and `request.sampling.bokehFieldFractions` for field selection; source selection and scale lock stay in the UI.                                                                                                                                          | `src/components/display/analysis/useBokehPreviewData.ts`, `src/optics/analysis/bokeh/bokeh.ts`                       |
+| M1  | Mirror · L     | ML (highest value)  | Annular-aware chief-ray solve: on centrally obstructed stops (e.g. Reflex-Nikkor 1000mm f/11) solve a displaced-pupil (annulus-centroid) reference ray via `stopInnerBlockedSemiDiameter()` through the generalized tracer, with assertions on the hidden reflex fixtures and `npm run generate:mirror-reports` regenerated.               | `src/optics/trace/stopObstruction.ts`, `src/optics/field/chiefRaySolve.ts`                                                |
+| M2  | Mirror · M-L   | AO#14 + ML          | Folded/annular chromatic fixtures with known image-plane behavior, then lift the chromatic drawer guards one analysis at a time, each behind its own fixture-backed test; never lift a guard without a fixture asserting the physical result.                                                                                             | `src/optics/analysis/chromatic/analysis.ts`, `src/lens-data/reference/`                                                 |
 | M3  | Mirror · M     | ML                  | Optional per-surface mirror-coating / second-surface loss factor consumed by vignetting and bokeh intensity accumulation; `SurfaceData` schema + spec + validation change, default lossless; only when illumination or bokeh brightness needs it.                                                                                          | `src/lens-data/LENS_DATA_SPEC.md`, `src/types/optics.ts`                                                       |
 | M4  | Mirror · S-M   | ML                  | Display-only spider-vane metadata (count / angle) drawn on the annular stop display; schema addition and overlay change, explicitly no tracing change.                                                                                                                                                                                     | `src/components/diagram/DiagramOverlayLayer.tsx`, `src/lens-data/LENS_DATA_SPEC.md`                            |
 | M5  | Mirror · M     | ML                  | Author one hidden folded zoom/focus fixture with a variable gap, then extend the `mode: "auto"` path-stability tests to sweep focusT/zoomT (only ray-height/aperture perturbations are covered today).                                                                                                                                     | `__tests__/src/optics/mirrorOptics.test.ts`, `src/lens-data/reference/`                                        |
@@ -373,9 +389,46 @@ model is intentionally the scope until exhausted.
 
 ---
 
-## Blocked On New Data — Do Not Attempt Without Schema/Data Work
+## Open Source And Validation Work
 
-### Other data and validation boundaries
+### Promote source-consistency validators after exceptions are resolved
+
+- [ ] Move the nominal f-number and fixed-iris rules only after their exception lists are empty.
+- **Files to touch** — **modified**: `__tests__/src/lens-data/patentMetadata.test.ts`,
+  `__tests__/src/lens-data/zoomApertureModel.test.ts`, `src/optics/prescription/validate/`,
+  `src/optics/first-order/lensConstants.ts`, `agent_docs/sd-audit-queue.md`.
+- **Reference to mimic** — the nominal-versus-design check in `patentMetadata.test.ts` and
+  `FIXED_IRIS_OFF_STATED` in `zoomApertureModel.test.ts`.
+- **Data-type contract** — canonical validation reads `CanonicalLens`; traced station constants are built in
+  `first-order/lensConstants.ts`. Preserve the existing rules' numeric thresholds and diagnostic meaning.
+- **Steps** — (1) Resolve the exception queues in `sd-audit-queue.md` Sections H/I from source evidence;
+  (2) move the nominal rule into canonical validation and the fixed-iris rule into station construction;
+  (3) replace corpus rule copies with focused synthetic regressions.
+- **Gotchas** — `agent_docs/gotchas.md`, "Station nominalFNumber": scalar and station authority must stay distinct.
+- **Verification** — exception lists are empty, existing catalog verdicts do not change, and the standard
+  typecheck/format/lint/test gate plus `npm run build` passes.
+- **Out of scope** — moving cross-file spelling, source-path or configuration-parity rules out of corpus tests.
+- **Rollback** — revert the rule move; retain independently reviewed source corrections.
+
+### Audit authored element focal lengths
+
+- [ ] Review the authored values before deciding whether the inspector should derive in-air thick-lens values.
+- **Files to touch** — **modified**, only after review: `src/lens-data/**/*.data.ts`,
+  `src/components/display/ElementInspector.tsx`, `reports/elementFocalLengths.report.ts`.
+- **Reference to mimic** — `agent_docs/generated/element-focal-lengths.generated.md` is the source-review work list;
+  `reports/elementFocalLengths.report.ts` computes the comparison values.
+- **Data-type contract** — authored `elements[].focalLengthMm` in `LensDataV2Input` is source metadata;
+  an in-air thick-lens value is a derived estimate, not a production measurement.
+- **Steps** — (1) Audit the report against sources; (2) decide display authority and whether a later bulk edit
+  changes page modified dates; (3) implement only the approved display/data change.
+- **Gotchas** — `agent_docs/gotchas.md`, "report generators": regenerate the report instead of hand-editing it.
+- **Verification** — `npm run generate:reports -- elementFocalLengths`, reviewed source evidence per changed value,
+  standard typecheck/format/lint/test gate and `npm run build`; visible changes include a changelog entry.
+- **Out of scope** — changing curated `specs`, element `type`, cemented tags or `subtitle`. The report does not
+  authorize display or source-data changes.
+- **Rollback** — revert the approved implementation; retain source audit evidence in existing lens sidecars.
+
+## Blocked On New Data — Do Not Attempt Without Schema/Data Work
 
 Carried from the analysis roadmap so nobody re-proposes them as "quick":
 

@@ -1,4 +1,5 @@
 // @vitest-environment jsdom
+import { runtimeFixtureView } from "../../optics/constructionFixtures.js";
 
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
@@ -31,7 +32,7 @@ const mockShapes: ElementShape[] = [
 ];
 
 const mockLens = {
-  data: {},
+  ...runtimeFixtureView({}),
   elements: mockElements,
   lyElemNum: -15,
   lyVdBadge: -20,
@@ -67,7 +68,20 @@ describe("ElementAnnotations", () => {
 
   it("labels an attached teleconverter from its descriptor, without duplicating an authored group", () => {
     const attachedTeleconverter = { magnification: 1.4, firstSurfaceLabel: "TC1", lastSurfaceLabel: "TC2" };
-    const converted = { ...mockLens, data: { attachedTeleconverter }, labelIdx: { TC1: 4, TC2: 5 } };
+    const converted = {
+      ...mockLens,
+      ...runtimeFixtureView({
+        attachedTeleconverter: {
+          key: "test-tc",
+          name: "Test converter",
+          hostKey: "test-host",
+          hostName: "Test host",
+          firstElementId: 2,
+          ...attachedTeleconverter,
+        },
+      }),
+      labelIdx: { TC1: 4, TC2: 5 },
+    };
     const groupTexts = (L: unknown) =>
       [
         ...render(

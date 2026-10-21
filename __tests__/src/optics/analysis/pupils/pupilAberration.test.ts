@@ -17,7 +17,7 @@ import {
   computeBothPupilAberrationProfiles,
   PUPIL_ABERRATION_SAMPLE_COUNT,
 } from "../../../../../src/optics/analysis/pupils/pupilAberration.js";
-import { computeAnalysisFieldGeometryAtState } from "../../../../../src/optics/optics.js";
+import { computeAnalysisFieldGeometryAtState } from "../../../../../src/optics/state/fieldAdapters.js";
 import MinoltaAF100MacroRaw from "../../../../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.js";
 import ReferenceAnnularObscuredMirrorRaw from "../../../../../src/lens-data/reference/ReferenceAnnularObscuredMirror.data.js";
 import ReferenceCassegrainBackFocusRaw from "../../../../../src/lens-data/reference/ReferenceCassegrainBackFocus.data.js";

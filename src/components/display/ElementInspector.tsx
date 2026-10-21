@@ -9,13 +9,13 @@
 import type { CSSProperties } from "react";
 import type { RuntimeLens, ElementData, ImagePlaneNormal, SurfaceData, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
-import type { DispersionQuality } from "../../optics/dispersion.js";
+import type { DispersionQuality } from "../../optics/chromatic.js";
 import {
   CHROMATIC_CHANNEL_METADATA,
   CHROMATIC_CHANNEL_ORDER,
   chromaticChannelIndexLabel,
   chromaticChannelWavelengthLabel,
-} from "../../optics/chromatic/channels.js";
+} from "../../optics/chromatic.js";
 import { getAsphericEntriesForElement } from "./asphericElementUtils.js";
 import { withAlpha } from "../../utils/style/styles.js";
 
@@ -132,11 +132,9 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
   const foldedSurfaceRows = surfaceIndexesForElement(info, L)
     .map((idx) => ({ surface: L.S[idx], summary: surfaceSummary(L.S[idx]) }))
     .filter((row): row is { surface: SurfaceData; summary: string } => Boolean(row.summary));
-  const imagePlane = L.isFoldedOptics && L.data.opticalPath?.imagePlane ? L.imagePlane : null;
+  const imagePlane = L.isFoldedOptics && L.source.opticalPath?.imagePlane ? L.imagePlane : null;
   const dispersionRows = showChromatic ? elementDispersionRows(info, L) : [];
-  const cementedCount = info.cemented
-    ? (L.data?.elements ?? []).filter((element) => element.cemented === info.cemented).length
-    : 0;
+  const cementedCount = info.cemented ? L.elements.filter((element) => element.cemented === info.cemented).length : 0;
   const cementedLabel = cementedCount === 2 ? "DOUBLET" : cementedCount === 3 ? "TRIPLET" : "CEMENTED";
 
   return (

@@ -1,4 +1,5 @@
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
+import { constructionFixtureData } from "../constructionFixtures.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import { build, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 import { mtfTraceClassification } from "../../../../src/optics/analysis/mtf/mtfRayClassification.js";
 import * as pathPlanner from "../../../../src/optics/trace/pathPlanner.js";
@@ -215,7 +216,7 @@ describe("trace capture policies", () => {
   it("keeps physical miss and numerical failure status/reason/classification without diagnostics", () => {
     const state = prepareRuntimeState(
       build({
-        ...buildSimplePositiveElementLens().data,
+        ...constructionFixtureData(buildSimplePositiveElementLens()),
         surfaces: [...singlet.S, { label: "STO", R: 1e15, nd: 1, d: 10, sd: 3, elemId: 0 }],
       }),
       0,

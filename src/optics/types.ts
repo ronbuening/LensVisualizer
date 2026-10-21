@@ -7,7 +7,7 @@
 
 import type { TraceGeometry } from "./trace/types.js";
 import type { DispersionQuality } from "../types/dispersion.js";
-import type { GlassEntry } from "./glassCatalog.js";
+import type { GlassEntry } from "./chromatic/glassCatalogTypes.js";
 import type {
   AberrationControlConfig,
   AberrationVarRange,
@@ -232,7 +232,8 @@ export interface CompiledLensFlags {
 /** Constants own derived numbers and station tables, never the RuntimeLens read model. */
 export type LensConstants = Omit<
   RuntimeLens,
-  | "data"
+  | "source"
+  | "attachedTeleconverter"
   | "S"
   | "N"
   | "ES"
@@ -263,8 +264,9 @@ export type LensConstructionData = LensData & { lensShiftFrac: number };
 /** Immutable prescription primitives available before constants are calculated. */
 export interface CompiledPrescription {
   key: string;
-  source: LensData;
-  /** Canonical optical projection, separate from the provenance-preserving source echo. */
+  source: import("./prescription/canonical.js").CanonicalLens;
+  attachedTeleconverter?: LensData["attachedTeleconverter"];
+  /** Numeric construction columns, discarded once constants are complete. */
   data: LensConstructionData;
   indices: CompiledIndices;
   lastLensSurfaceIndex: number;
@@ -322,19 +324,12 @@ export interface PreparedGeometry {
   cacheKey: string;
 }
 
-/** Compatibility name for analyses awaiting their prepared-geometry request migration. */
+/** Optical state is the immutable prepared geometry for one control tuple. */
 export type PreparedOpticalState = PreparedGeometry;
 
 /** Reason a prepared state could not be constructed. */
 export type PreparationFailureReason = "invalid-control" | "invalid-thickness";
 
-/** Error raised when normalized lens data cannot produce a valid prepared state. */
-export class Optics2PreparationError extends Error {
-  readonly reason: PreparationFailureReason;
+export { OpticsPreparationError } from "./state/preparationError.js";
 
-  constructor(reason: PreparationFailureReason, message: string) {
-    super(message);
-    this.name = "Optics2PreparationError";
-    this.reason = reason;
-  }
-}
+export type { CanonicalLens, CanonicalTeleconverter, IngestedPrescription } from "./prescription/canonical.js";

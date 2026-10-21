@@ -238,6 +238,6 @@ Source: JP 2000-19398 A, Example 1, Table 1, PDF pp. 6–7. Applied the approved
 
 Retained all station labels, marketing values, prescription geometry and image distances. The former design values were rounded or full-precision computed EFLs; the catalog field now records the source-stated endpoints.
 
-The approved proposal independently reproduced infinity EFLs of 81.549920824 / 134.999788354 / 195.999955682 mm; those traced results remain documented separately. Both S2.P6.T3 endpoint comparisons now have zero difference. This is a metadata correction, not a source-prescription correction.
+The approved proposal independently reproduced infinity EFLs of 81.549920824 / 134.999788354 / 195.999955682 mm; those traced results remain documented separately. Both endpoint comparisons in the historical zoom-metadata check now have zero difference. This is a metadata correction, not a source-prescription correction.
 
 Added an `unresolved` `source.errata` entry, a header disclosure, and a Section G queue row. JP 2000-19398 A Example 1, Table 1 (PDF pp. 6–7), states F = 81.55–194.00 mm and labels the tele infinity column 194.0000 mm. Its published prescription calculates to 195.999955682 mm at that column. The printed range and station labels are retained; no erroneous prescription cell or corrected source focal length has been isolated.

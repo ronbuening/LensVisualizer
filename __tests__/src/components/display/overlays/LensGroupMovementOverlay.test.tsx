@@ -2,7 +2,7 @@
 
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import buildLens from "../../../../../src/optics/buildLens.js";
+import { buildFixtureLens as buildLens } from "../../../optics/constructionFixtures.js";
 import { catalogLensData } from "../../../optics/testLensFixtures.js";
 import LensGroupMovementOverlay from "../../../../../src/components/display/overlays/LensGroupMovementOverlay.js";
 import NikonAfpDx70300Raw from "../../../../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.js";

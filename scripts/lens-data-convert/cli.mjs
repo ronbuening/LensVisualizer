@@ -1,6 +1,6 @@
 /**
  * Lens-data converter command line — converts lens and teleconverter files between versions, checking every output
- * before it writes any (OPTICS_ENGINE_REWRITE_SPEC.md, S2.P3.T2). `scripts/convert-lens-data.mjs` runs it.
+ * before it writes any (src/lens-data/LENS_DATA_SPEC.md, Quick Start). `scripts/convert-lens-data.mjs` runs it.
  *
  * A run:
  * 1. collects the inputs (a file, or every `*.data.ts` and `*.teleconverter.ts` under a directory, in path order) and
@@ -28,7 +28,7 @@ import * as nodeFs from "node:fs";
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { evaluateLensDataSource } from "../lens-data-ast.mjs";
-import { loadLensDataConversion } from "../lens-summaries.mjs";
+import { loadLensDataConversion } from "./load.mjs";
 import { convertLensDataSource } from "./convert.mjs";
 import { formatConversionReport } from "./report.mjs";
 import { typeCheckConvertedFiles } from "./typecheck.mjs";

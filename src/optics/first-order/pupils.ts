@@ -5,7 +5,7 @@
  */
 
 import type { PreparedOpticalState } from "../types.js";
-import { traceParaxialSurfaces2 } from "../math/paraxial.js";
+import { traceParaxialSurfaces } from "../math/paraxial.js";
 
 /**
  * First-order entrance-pupil geometry relative to the stop.
@@ -27,7 +27,7 @@ export interface FirstOrderPupilState {
  * @param geometry - paraxial transfer coefficients excluding the derived EP size
  * @returns entrance-pupil semi-diameter and transfer ratios
  */
-export function entrancePupilFromStop2(
+export function entrancePupilFromStop(
   stopSemiDiameter: number,
   geometry: Omit<FirstOrderPupilState, "epSD">,
 ): FirstOrderPupilState {
@@ -45,13 +45,13 @@ export function entrancePupilFromStop2(
  * @param state - prepared optical state with stop surface index
  * @returns paraxial stop-transfer ratios used for entrance-pupil estimates
  */
-export function paraxialPupilGeometry2(state: PreparedOpticalState): Omit<FirstOrderPupilState, "epSD"> {
+export function paraxialPupilGeometry(state: PreparedOpticalState): Omit<FirstOrderPupilState, "epSD"> {
   const stopIndex = state.lens.stop.surfaceIndex;
   const delta = 1e-4;
-  const marginal = traceParaxialSurfaces2(state.surfaces, 1, 0, { stopAt: stopIndex });
-  const chief = traceParaxialSurfaces2(state.surfaces, 0, 1, { stopAt: stopIndex });
-  const realMarginal = traceParaxialSurfaces2(state.surfaces, delta, 0, { stopAt: stopIndex });
-  const realChief = traceParaxialSurfaces2(state.surfaces, 0, delta, { stopAt: stopIndex });
+  const marginal = traceParaxialSurfaces(state.surfaces, 1, 0, { stopAt: stopIndex });
+  const chief = traceParaxialSurfaces(state.surfaces, 0, 1, { stopAt: stopIndex });
+  const realMarginal = traceParaxialSurfaces(state.surfaces, delta, 0, { stopAt: stopIndex });
+  const realChief = traceParaxialSurfaces(state.surfaces, 0, delta, { stopAt: stopIndex });
   const yRatio = Number.isFinite(realMarginal.y) ? realMarginal.y / delta : marginal.y;
   const b = Number.isFinite(realChief.y) ? realChief.y / delta : chief.y;
   const epRatio = Math.abs(yRatio) > 1e-9 ? b / yRatio : 0;

@@ -7,14 +7,9 @@
 
 import type { AsphPathData, ElementShape, ElementSpan, SurfaceAccentPathData } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
-import {
-  renderedSurfaceZ2,
-  surfacePathD2,
-  surfaceMaterialPathD2,
-  SVG_PATH_SUBDIVISIONS_2,
-  type DiagramPointTransform2,
-} from "./surfaceOutline.js";
-import { computeElementRenderDiagnosticsForState2 } from "./renderDiagnostics.js";
+import { renderedSurfaceZ, surfacePathD, surfaceMaterialPathD, SVG_PATH_SUBDIVISIONS } from "./surfaceOutline.js";
+import type { DiagramPointTransform } from "./surfaceOutline.js";
+import { computeElementRenderDiagnosticsForState } from "./renderDiagnostics.js";
 
 /**
  * Build SVG-ready element outlines from current prepared surface positions.
@@ -29,13 +24,13 @@ import { computeElementRenderDiagnosticsForState2 } from "./renderDiagnostics.js
  * @param pointTransform - optional display transform for perspective-control movement
  * @returns element shapes with glass paths, asphere highlights, and coating accents
  */
-export function computeElementShapesForState2(
+export function computeElementShapesForState(
   state: PreparedOpticalState,
   sx: (z: number) => number,
   sy: (y: number) => number,
-  pointTransform?: DiagramPointTransform2,
+  pointTransform?: DiagramPointTransform,
 ): ElementShape[] {
-  const diagnostics = computeElementRenderDiagnosticsForState2(state);
+  const diagnostics = computeElementRenderDiagnosticsForState(state);
   const spans = state.lens.displayElementSpans;
   const screenPoint = (z: number, y: number): [number, number] => {
     const [zz, yy] = pointTransform ? pointTransform(z, y) : [z, y];
@@ -53,19 +48,19 @@ export function computeElementShapesForState2(
     const rear = state.surfaces[s2];
     const z1 = front.z;
     const z2 = rear.z;
-    const NN = SVG_PATH_SUBDIVISIONS_2;
+    const NN = SVG_PATH_SUBDIVISIONS;
 
     const surfacePath = (surfaceIndex: number, trim: number): string =>
-      surfacePathD2(state, surfaceIndex, trim, sx, sy, pointTransform);
+      surfacePathD(state, surfaceIndex, trim, sx, sy, pointTransform);
 
     let d = "";
     for (let i = 0; i <= NN; i++) {
       const y = -trim1 + (2 * trim1 * i) / NN;
-      d += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ2(front, y), y)} `;
+      d += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ(front, y), y)} `;
     }
     for (let i = NN; i >= 0; i--) {
       const y = -trim2 + (2 * trim2 * i) / NN;
-      d += `L${pathPoint(renderedSurfaceZ2(rear, y), y)} `;
+      d += `L${pathPoint(renderedSurfaceZ(rear, y), y)} `;
     }
 
     const inner = Math.min(Math.min(trim1, trim2), Math.max(front.innerSd ?? 0, rear.innerSd ?? 0));
@@ -75,11 +70,11 @@ export function computeElementShapesForState2(
       d += "Z ";
       for (let i = 0; i <= NN; i++) {
         const y = -inner + (2 * inner * i) / NN;
-        d += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ2(front, y), y)} `;
+        d += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ(front, y), y)} `;
       }
       for (let i = NN; i >= 0; i--) {
         const y = -inner + (2 * inner * i) / NN;
-        d += `L${pathPoint(renderedSurfaceZ2(rear, y), y)} `;
+        d += `L${pathPoint(renderedSurfaceZ(rear, y), y)} `;
       }
     }
 
@@ -89,7 +84,7 @@ export function computeElementShapesForState2(
     if (front.asphere) {
       const p = surfacePath(s1, trim1);
       const hp = p + `L${pathPoint(midZ, trim1)} L${pathPoint(midZ, -trim1)} Z`;
-      const [labelX, labelY] = screenPoint(renderedSurfaceZ2(front, -trim1), -trim1);
+      const [labelX, labelY] = screenPoint(renderedSurfaceZ(front, -trim1), -trim1);
       asphPaths.push({
         surfIdx: s1,
         pathD: p,
@@ -103,10 +98,10 @@ export function computeElementShapesForState2(
       let hp = `M${pathPoint(midZ, -trim2)} L${pathPoint(midZ, trim2)} `;
       for (let i = NN; i >= 0; i--) {
         const y = -trim2 + (2 * trim2 * i) / NN;
-        hp += `L${pathPoint(renderedSurfaceZ2(rear, y), y)} `;
+        hp += `L${pathPoint(renderedSurfaceZ(rear, y), y)} `;
       }
       hp += "Z";
-      const [labelX, labelY] = screenPoint(renderedSurfaceZ2(rear, -trim2), -trim2);
+      const [labelX, labelY] = screenPoint(renderedSurfaceZ(rear, -trim2), -trim2);
       asphPaths.push({
         surfIdx: s2,
         pathD: p,
@@ -119,13 +114,13 @@ export function computeElementShapesForState2(
     for (const surfaceIndex of [s1, s2]) {
       const surface = state.surfaces[surfaceIndex];
       const trim = surfaceIndex === s1 ? trim1 : trim2;
-      const [labelX, labelY] = screenPoint(renderedSurfaceZ2(surface, trim), trim);
+      const [labelX, labelY] = screenPoint(renderedSurfaceZ(surface, trim), trim);
       if (surface.interaction.type === "reflect" && surface.interaction.mirrorKind === "second-surface") {
         /* The coating accent is visual only; reflection/refraction behavior stays in interaction data. */
         const innerTrim = Math.min(trim, Math.max(0, surface.innerSd ?? 0));
         surfaceAccentPaths.push({
           surfIdx: surfaceIndex,
-          pathD: surfaceMaterialPathD2(state, surfaceIndex, trim, innerTrim, sx, sy, pointTransform),
+          pathD: surfaceMaterialPathD(state, surfaceIndex, trim, innerTrim, sx, sy, pointTransform),
           labelX,
           labelY: labelY + 10,
           kind: "second-surface-coating",

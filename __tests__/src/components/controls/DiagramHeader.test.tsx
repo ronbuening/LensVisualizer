@@ -1,4 +1,6 @@
 // @vitest-environment jsdom
+import { runtimeFixtureView } from "../../optics/constructionFixtures.js";
+import { constructionFixtureData } from "../../optics/constructionFixtures.js";
 
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import type { ComponentProps } from "react";
@@ -22,12 +24,12 @@ function lens(overrides: Partial<RuntimeLens> = {}): RuntimeLens {
   const base = buildSimplePositiveElementLens("test-diagram-header");
   return {
     ...base,
-    data: {
-      ...base.data,
+    ...runtimeFixtureView({
+      ...constructionFixtureData(base),
       name: "Header Test Lens",
       subtitle: "50mm f/2 fixture",
       specs: ["50 mm", "f/2", "6 elements"],
-    },
+    }),
     ...overrides,
   } as RuntimeLens;
 }
@@ -74,7 +76,9 @@ function renderHeader(overrides: Partial<ComponentProps<typeof DiagramHeader>> =
 describe("DiagramHeader", () => {
   it("renders a compact patent identifier as a link rather than plain text", () => {
     const L = lens();
-    renderHeader({ L: { ...L, data: { ...L.data, patentNumber: "CN123456789B", patentAuthors: [] } } });
+    renderHeader({
+      L: { ...L, source: { ...L.source, source: { ...L.source.source, patentNumber: "CN123456789B", authors: [] } } },
+    });
     const link = screen.getByRole("link", { name: "CN123456789B in Espacenet (opens in a new tab)" });
     expect(link.getAttribute("href")).toBe("https://worldwide.espacenet.com/patent/search?q=pn%3DCN123456789B");
     expect(link.getAttribute("target")).toBe("_blank");
@@ -99,12 +103,12 @@ describe("DiagramHeader", () => {
     const baseLens = lens();
     const structuredLens = {
       ...baseLens,
-      data: {
-        ...baseLens.data,
+      ...runtimeFixtureView({
+        ...constructionFixtureData(baseLens),
         subtitle: "legacy subtitle",
         patentNumber: "US 10,571,651 B2",
         patentAuthors: ["Hideki Sakai", "Aiko Example"],
-      },
+      }),
     } as RuntimeLens;
 
     renderHeader({ L: structuredLens });
@@ -126,8 +130,8 @@ describe("DiagramHeader", () => {
     const converted = (teleconverterPatent: string) =>
       ({
         ...baseLens,
-        data: {
-          ...baseLens.data,
+        ...runtimeFixtureView({
+          ...constructionFixtureData(baseLens),
           name: "Header Test Lens + Test Converter",
           patentNumber: "US 10,571,651 B2",
           patentAuthors: ["Hideki Sakai"],
@@ -143,7 +147,7 @@ describe("DiagramHeader", () => {
             patentNumber: teleconverterPatent,
             patentAuthors: ["Aiko Example"],
           },
-        },
+        }),
       }) as RuntimeLens;
 
     const { unmount } = renderHeader({ L: converted("US 9,000,000 B2") });

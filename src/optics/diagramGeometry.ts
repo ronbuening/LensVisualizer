@@ -1,13 +1,14 @@
-/**
- * Diagram-geometry compatibility barrel — stable exports for SVG shape and coordinate helpers.
- *
- * Keeps UI code decoupled from the engine's diagram submodule layout.
- */
-
+/** Public diagramGeometry seam; implementations live in the focused engine subdirectories. */
+export { createCoordinateTransforms } from "./diagram/coordinateTransforms.js";
+export { computeElementShapesForState } from "./diagram/elementShapes.js";
+export { foldedHitOrderLabelsForDisplay } from "./diagram/foldedPathDisplay.js";
+export { computeElementRenderDiagnosticsForState } from "./diagram/renderDiagnostics.js";
 export {
-  computeElementRenderDiagnostics2 as computeElementRenderDiagnostics,
-  computeElementShapes2 as computeElementShapes,
-  computeStandaloneMirrorPaths2 as computeStandaloneMirrorPaths,
-  createCoordinateTransforms2 as createCoordinateTransforms,
-  type DiagramPointTransform2 as DiagramPointTransform,
-} from "./compat.js";
+  computeElementRenderDiagnostics,
+  computeElementShapes,
+  computeStandaloneMirrorPaths,
+  stateForRuntimeDiagram,
+} from "./diagram/runtimeDiagramAdapter.js";
+export { gapTrimHeight, renderSag, sagSlope, slopeTrimHeight } from "./diagram/runtimeSurface.js";
+export { SVG_PATH_SUBDIVISIONS, surfacePathD } from "./diagram/surfaceOutline.js";
+export type { DiagramPointTransform } from "./diagram/surfaceOutline.js";

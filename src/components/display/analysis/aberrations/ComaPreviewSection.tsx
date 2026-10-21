@@ -1,6 +1,6 @@
 import { AberrationValueDisplay } from "../analysisUi.js";
 import ComaPreviewGrid from "../ComaPreviewGrid.js";
-import type { ComaPointCloudPreviewResult } from "../../../../optics/aberrationAnalysis.js";
+import type { ComaPointCloudPreviewResult } from "../../../../optics/analysis.js";
 import type { Theme } from "../../../../types/theme.js";
 import { formatComaSpanUm } from "./format.js";
 import SectionHeader from "./SectionHeader.js";

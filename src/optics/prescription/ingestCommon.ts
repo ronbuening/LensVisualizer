@@ -11,18 +11,19 @@
 
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../types/asphericSchema.js";
 import type { RearPlateData } from "../../types/optics.js";
-import {
-  PrescriptionIngestError,
-  type CanonicalAsphere,
-  type CanonicalLens,
-  type CanonicalProvenance,
-  type CanonicalRearPlate,
-  type CanonicalTeleconverter,
-  type IngestedPrescription,
-  type IngestRequest,
-  type SourcePaths,
+import { PrescriptionIngestError } from "./canonical.js";
+import type {
+  CanonicalAsphere,
+  CanonicalLens,
+  CanonicalProvenance,
+  CanonicalRearPlate,
+  CanonicalTeleconverter,
+  IngestedPrescription,
+  IngestRequest,
+  SourcePaths,
 } from "./canonical.js";
-import { REAR_PLATE_SCHEMA_DEFAULTS, defaultValue, takesDefault, type SchemaDefault } from "./defaults.js";
+import { REAR_PLATE_SCHEMA_DEFAULTS, defaultValue, takesDefault } from "./defaults.js";
+import type { SchemaDefault } from "./defaults.js";
 import { memberPath } from "./sourcePaths.js";
 
 /** An authored record, read field by field. */
@@ -73,8 +74,8 @@ export function recordReads(
 /** Fields only the engine writes, with why a file may not carry them. */
 const ENGINE_WRITTEN: Readonly<Record<string, string>> = {
   attachedTeleconverter: "is written only by attachTeleconverter(), never authored",
-  synthetic: "is set only by expandRearPlates(), never authored",
-  clips: "is set only by expandRearPlates(), never authored",
+  synthetic: "is set only by expandCanonicalRearPlates(), never authored",
+  clips: "is set only by expandCanonicalRearPlates(), never authored",
 };
 
 const ASPHERIC_KEYS: readonly string[] = ASPHERIC_COEFFICIENT_SCHEMA.map((descriptor) => descriptor.key);

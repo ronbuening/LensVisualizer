@@ -8,7 +8,8 @@
 import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
 import type { Ray3, Vec3 } from "../types.js";
 import { evaluateAperture } from "./aperture.js";
-import { createTraceRecorder, type TraceRecorder } from "./capture.js";
+import { createTraceRecorder } from "./capture.js";
+import type { TraceRecorder } from "./capture.js";
 import { interactRefractiveSurface } from "./interactions.js";
 import { DEFAULT_PHASE_WAVELENGTH_NM } from "../math/diffractivePhase.js";
 import { intersectStateSurface, sequentialSurfaceMaxT, sequentialSurfaceMinT } from "./pathPlanner.js";

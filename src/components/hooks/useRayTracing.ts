@@ -7,7 +7,7 @@
  */
 
 import { useMemo } from "react";
-import { conjugateK } from "../../optics/optics.js";
+import { conjugateKForRuntimeLens as conjugateK } from "../../optics/fieldGeometry.js";
 import useOnAxisRays from "./useOnAxisRays.js";
 import useOffAxisRays from "./useOffAxisRays.js";
 import useChromaticRays from "./useChromaticRays.js";
@@ -15,7 +15,7 @@ import type { RaySegment } from "./useOnAxisRays.js";
 import type { ChromaticRaySegment } from "./useChromaticRays.js";
 import type { RuntimeLens, ChromaticRayFanSpread, ChromaticRayFanSpreadByAxis } from "../../types/optics.js";
 import type { OffAxisMode, RayDensity } from "../../types/state.js";
-import type { PerspectiveTraceContext } from "../../optics/perspective/index.js";
+import type { PerspectiveTraceContext } from "../../optics/perspective.js";
 
 interface UseRayTracingParams {
   L: RuntimeLens | undefined;

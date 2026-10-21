@@ -6,8 +6,11 @@ const repoRoot = process.cwd();
 const srcRoot = path.join(repoRoot, "src");
 const generatedDocNames = new Set(["readme.md", "improvementsuggestions.md"]);
 const skippedDocSubtrees = new Set(["src/generated", "src/lens-data", "src/mounts"]);
-const largeFileWarningExcludedFiles = new Set(["src/optics/glassCatalogData.ts", "src/utils/content/changelogData.ts"]);
-const largeFileWarningExcludedSubtrees = new Set(["src/optics/glassCatalogEntries"]);
+const largeFileWarningExcludedFiles = new Set([
+  "src/optics/chromatic/glassCatalogData.ts",
+  "src/utils/content/changelogData.ts",
+]);
+const largeFileWarningExcludedSubtrees = new Set(["src/optics/chromatic/glassCatalogEntries"]);
 const sourceExtensions = new Set([".ts", ".tsx", ".json", ".md", ".template"]);
 const codeExtensions = new Set([".ts", ".tsx"]);
 const moduleExtensions = [".ts", ".tsx", ".d.ts", ".json", ".md"];
@@ -29,10 +32,6 @@ const folderRoleOverrides = new Map([
   [
     "src/benchmarks",
     "optics/rendering benchmark helpers that exercise runtime viewer paths outside normal app rendering",
-  ],
-  [
-    "src/benchmarks/engineDiff",
-    "engine differential harness: the capture entry, seam adapter, request tiers, payload normalization, quantity budgets, and comparison of two engine revisions",
   ],
   ["src/comparison", "comparison-mode state, shared sliders, URL metadata, and two-lens layout composition"],
   [
@@ -104,6 +103,7 @@ const folderRoleOverrides = new Map([
     "src/optics/prescription",
     "canonical prescription ingest, compilation, composition, identity ownership, and control helpers",
   ],
+  ["src/optics/prescription/v1", "converter-only V1 ingest, printers, and source-path mapping"],
   [
     "src/optics/prescription/validate",
     "authored shape, canonical facts, diagnostic paths, and compiled geometry validation",

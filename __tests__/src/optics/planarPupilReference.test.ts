@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import PlanarRaw from "../../../src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.data.js";
 import { traceFixtureSlope } from "./traceGeometryFixtures.js";
 
-import { traceParaxialSurfaces2 as traceSurfacesParaxial } from "../../../src/optics/math/paraxial.js";
+import { traceParaxialSurfaces as traceSurfacesParaxial } from "../../../src/optics/math/paraxial.js";
 import {
   PLANAR_REFERENCE_PATH,
   decideChiefRay,

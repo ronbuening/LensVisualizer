@@ -10,6 +10,7 @@
  *
  * Regenerate: `npm run generate:reports -- glassRelabelByLensScan`
  */
+import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
 import {
@@ -26,7 +27,7 @@ import {
   type EmbeddedCode,
   type GlassScanCandidate,
 } from "./glassScanLib.js";
-import type { LensData, RefractiveIndexReferenceLine } from "../src/types/optics.js";
+import type { RefractiveIndexReferenceLine } from "../src/types/optics.js";
 
 const REPORT_DIR = "agent_docs/generated";
 
@@ -50,7 +51,7 @@ interface RelabelRow {
   candidates: Candidate[];
 }
 
-const modules = import.meta.glob<{ default: LensData }>("../src/lens-data/**/*.data.ts", { eager: true });
+const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 
 function extractGlassCode(annotation: string): EmbeddedCode | null {
   const match = annotation.match(/\b(\d{3})[/\-\s](\d{3})\b/) ?? annotation.match(/\b(\d{3})(\d{3})\b/);
@@ -120,7 +121,7 @@ describe("glass relabel by lens scan", () => {
     const rows: RelabelRow[] = [];
 
     walkLensSurfaces(modules, ({ filePath, data, L }) => {
-      const patentNumber = extractPatentNumber(data.patentNumber, data.subtitle);
+      const patentNumber = extractPatentNumber(data.source.patentNumber, data.subtitle);
       const elementById = new Map(L.elements.map((element) => [element.id, element]));
 
       for (let i = 0; i < L.S.length; i++) {

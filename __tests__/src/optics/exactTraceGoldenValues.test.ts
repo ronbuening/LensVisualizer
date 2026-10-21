@@ -1,9 +1,10 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../src/optics/buildLens.js";
-import { solveChiefRay } from "../../../src/optics/fieldGeometry.js";
-import { doLayout, traceRay, traceRayChromatic, traceRayVector, traceSkewRay } from "../../../src/optics/optics.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
+import { solveChiefRayForRuntimeLens as solveChiefRay } from "../../../src/optics/state/fieldAdapters.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { traceRay, traceRayChromatic, traceRayVector, traceSkewRay } from "../../../src/optics/trace/rayAdapters.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 /**
  * Golden-value trace regression suite.
@@ -146,7 +147,7 @@ const REFOCUS_BOUND_MM: Record<string, number> = {
 };
 
 function buildCatalogLens(key: string): RuntimeLens {
-  return buildLens(LENS_CATALOG[key]);
+  return buildLens(CATALOG_CONSTRUCTION_FIXTURES[key]);
 }
 
 describe("exact trace golden values — refractive designs", () => {

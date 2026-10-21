@@ -18,7 +18,10 @@ Create or relocate an `.audit.md` log separately in the final maker folder. If a
 For an archived V1 lens or teleconverter, drop the file into `src/lens-data/`, run
 `npm run organize:lens-data`, review the conversion report, and commit the resulting V2 file. The organizer also
 converts V1 files already inside maker folders in place. A conversion refusal stops organization and leaves the
-source unchanged. Metadata generation refuses V1 files and names the organizer command; it never converts them.
+source unchanged. The app accepts only `schema: 2`; catalog loaders pass repo-root-relative file paths.
+A V1 ingest error prints `npm run convert:lens-data -- --input <file> --write` only when a path is known;
+otherwise it names the key and asks for conversion of its `.data.ts` or `.teleconverter.ts` file. Metadata generation
+refuses V1 files and names the organizer command; it never converts them. The permanent converter also supports `--to-version 1` for archived workflows.
 For old audit field names, see [Reading V1 Audits](../src/lens-data/LENS_DATA_SPEC.md#reading-v1-audits).
 
 On `npm run build`, every visible lens is also eligible for `/feeds/lenses.xml` (the 50 newest by publication date, normally derived from Git; `visible: false` fixtures are excluded). See `agent_docs/architecture/routing-and-content.md`.
@@ -73,7 +76,7 @@ most often while authoring:
   `focus.keyframes`, `gaps` and station `nominalFNumber` values. Start from the V2
   [Examples](../src/lens-data/LENS_DATA_SPEC.md#examples). Catalog examples include
   `src/lens-data/nikon/NikonNikkorZ70200f28.data.ts` (constant aperture) and
-  `src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts` (variable aperture); read any V1 file through the field map above.
+  `src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts` (variable aperture).
   When a patent omits close-focus rows, follow the inference rule in `agent_docs/gotchas.md`.
 - **Source-tabulated stations** — [Published Stations](../src/lens-data/LENS_DATA_SPEC.md#published-stations):
   `zoom.stations[].published` / `.publishedFocus` and `focus.published` drive patent-positions mode.

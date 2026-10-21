@@ -6,9 +6,9 @@
  * Extracted from LensDiagramPanel for separation of concerns.
  */
 
-import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic/channels.js";
+import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic.js";
 import { halfFieldAtZoom } from "../../optics/optics.js";
-import { summarizeDispersionQuality } from "../../optics/dispersion.js";
+import { summarizeDispersionQuality } from "../../optics/chromatic.js";
 import { ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { collapseBtn } from "../../utils/style/styles.js";
 import CollapseButton from "../controls/CollapseButton.js";

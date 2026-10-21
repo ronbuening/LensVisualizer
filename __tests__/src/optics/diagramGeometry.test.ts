@@ -1,17 +1,19 @@
+import { runtimeFixtureView } from "./constructionFixtures.js";
+import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, it, expect } from "vitest";
+import { createCoordinateTransforms } from "../../../src/optics/diagram/coordinateTransforms.js";
 import {
-  createCoordinateTransforms,
   computeElementRenderDiagnostics,
   computeElementShapes,
   computeStandaloneMirrorPaths,
-} from "../../../src/optics/diagramGeometry.js";
-import buildLens from "../../../src/optics/buildLens.js";
+} from "../../../src/optics/diagram/runtimeDiagramAdapter.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import nikonPf500Data from "../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
 import { catalogLensData } from "./testLensFixtures.js";
-import { doLayout, SVG_PATH_SUBDIVISIONS } from "../../../src/optics/optics.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { SVG_PATH_SUBDIVISIONS } from "../../../src/optics/diagram/surfaceOutline.js";
 import type { RuntimeLens, AsphericCoefficients, ElementSpan, SurfaceData } from "../../../src/types/optics.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 /* ═══════════════════════════════════════════════════════════════════
  * §1  createCoordinateTransforms
@@ -196,7 +198,7 @@ describe("computeElementShapes", () => {
     const imageZ = surfaces.reduce((sum, surface) => sum + surface.d, 0);
     return registerRuntimeFixture({
       ...partial,
-      data: {
+      ...runtimeFixtureView({
         key: "diagram-geometry-fixture",
         name: "Diagram geometry fixture",
         closeFocusM: 0.5,
@@ -219,7 +221,7 @@ describe("computeElementShapes", () => {
         offAxisFieldFrac: 0.6,
         offAxisFractions: [-0.5, 0, 0.5],
         nominalFno: 2,
-      },
+      }),
       S: surfaces,
       N: partial.N ?? surfaces.length,
       ES: partial.ES,
@@ -787,7 +789,7 @@ describe("computeElementShapes", () => {
   });
 
   it("renders a tilted fold mirror and its passive backing plane with matching meridional normals", () => {
-    const L = buildLens(LENS_CATALOG["reference-newtonian-side-focus"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["reference-newtonian-side-focus"]);
     const layout = doLayout(0, 0, L);
     const shapes = computeElementShapes(L, layout.z, sx, sy);
     const secondaryShape = shapes.find((shape) => shape.eid === 2);
@@ -809,7 +811,7 @@ describe("computeElementShapes", () => {
   });
 
   it("emits a coating accent path for second-surface mirror fixtures", () => {
-    const L = buildLens(LENS_CATALOG["reference-mangin-second-surface-mirror"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["reference-mangin-second-surface-mirror"]);
     const layout = doLayout(0, 0, L);
     const shapes = computeElementShapes(L, layout.z, sx, sy);
     const manginShape = shapes.find((shape) => shape.eid === 1);
@@ -874,7 +876,7 @@ describe("computeElementShapes", () => {
 
 describe("standalone reflecting surfaces", () => {
   it("renders annular and tilted mirrors without inventing glass bodies", () => {
-    const base = buildLens(LENS_CATALOG["reference-newtonian-side-focus"]);
+    const base = buildLens(CATALOG_CONSTRUCTION_FIXTURES["reference-newtonian-side-focus"]);
     const L = { ...base, ES: [], S: base.S.map((surface) => ({ ...surface })) };
     const primary = L.S.findIndex((surface) => surface.label === "M1");
     L.S[primary].innerSd = 5;
@@ -907,7 +909,7 @@ describe("standalone reflecting surfaces", () => {
   });
 
   it("leaves glass-bound mirror coatings to the element renderer", () => {
-    const L = buildLens(LENS_CATALOG["reference-mangin-second-surface-mirror"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["reference-mangin-second-surface-mirror"]);
     const layout = doLayout(0, 0, L);
     const standalone = computeStandaloneMirrorPaths(
       L,

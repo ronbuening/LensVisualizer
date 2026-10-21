@@ -1,10 +1,4 @@
-/**
- * Geometry barrel — surface sag, slope, and flat-radius constants for code outside the engine.
- *
- * Components, scripts, and benchmarks import surface geometry from here. Engine modules import
- * `geometry/surfaceProfile.ts` directly.
- */
-
+/** Public geometry seam; implementations live in the focused engine subdirectories. */
 export {
   DEFAULT_MAX_RIM_ANGLE_DEG,
   FLAT_R_THRESHOLD,
@@ -13,3 +7,10 @@ export {
   sag,
   sagSlopeRaw,
 } from "./geometry/surfaceProfile.js";
+export {
+  INTERSECTION_BRACKET_SAMPLES,
+  INTERSECTION_MAX_ITERATIONS,
+  INTERSECTION_TOLERANCE,
+  VECTOR_EPSILON,
+} from "./math/constants.js";
+export { dot, subtract } from "./math/vector.js";

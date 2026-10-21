@@ -1,5 +1,5 @@
 /**
- * The corpus conversion sweep (OPTICS_ENGINE_REWRITE_SPEC.md, S2.P3.T3), in the tooling suite. Every catalog file
+ * The corpus conversion sweep (see agent_docs/architecture/testing.md), in the tooling suite. Every catalog file
  * goes through the command line, into a temp directory, to the other lens-data version and back to its own, and a
  * second round trip follows from the first one's output:
  * - each leg's output ingests to the source's canonical prescription;
@@ -203,7 +203,7 @@ function put(path: string, text: string) {
   writeFileSync(path, text.replace(/from "(\.\.\/)+types\//, `from "${types}/`));
 }
 
-describe("the corpus conversion sweep (S2.P3.T3)", () => {
+describe("the corpus conversion sweep", () => {
   it(
     "brings every catalog file back to its own prescription, and a second round trip writes the same bytes",
     async () => {

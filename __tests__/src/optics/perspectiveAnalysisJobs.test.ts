@@ -1,17 +1,16 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 /** Request quality maps to the established signed perspective sampling plans. */
 import { describe, expect, it } from "vitest";
-import {
-  perspectiveAnalysisSamplingPlan,
-  type PerspectiveAnalysisSamplingPlan,
-} from "../../../src/optics/analysis/perspectiveAnalysisSampling.js";
-import { createAnalysisRequest, type AnalysisRequestParams } from "../../../src/optics/analysis/request.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../src/optics/compat.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import { perspectiveAnalysisSamplingPlan } from "../../../src/optics/analysis/perspectiveAnalysisSampling.js";
+import type { PerspectiveAnalysisSamplingPlan } from "../../../src/optics/analysis/perspectiveAnalysisSampling.js";
+import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
+import type { AnalysisRequestParams } from "../../../src/optics/analysis/request.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { INTERACTIVE_ANALYSIS_SAMPLING } from "../../../src/optics/analysis/analysisQuality.js";
 
 const COMMON = {
-  preparedState: prepareRuntimeState(buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]), 0, 0),
+  preparedState: prepareRuntimeState(buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-pc-nikkor-19mm-f4e-ed"]), 0, 0),
   dynamicEFL: 50,
   currentEPSD: 12.5,
   currentPhysStopSD: 5,

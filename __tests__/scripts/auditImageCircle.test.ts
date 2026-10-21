@@ -6,14 +6,12 @@
  * npm entry against one known lens so a hook or specifier regression fails
  * here with the actual command line, not deep inside a manual audit session.
  *
- * The audits that read a lens file read a V2 file as its V1 twin (S2.P2.T2):
- * each runs through its npm entry on a committed fixture pair written out as
- * lens files.
+ * Each audit reads V2 and refuses its archived V1 twin with the conversion command.
  */
 import { execFileSync } from "node:child_process";
-import { chmodSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { dirname, join } from "node:path";
+import { dirname, join, relative, resolve } from "node:path";
 import { env } from "node:process";
 import { afterAll, describe, expect, it } from "vitest";
 import { FIXTURE_PAIRS } from "../src/optics/prescription/ingestV2Fixtures.js";
@@ -59,7 +57,7 @@ describe("audit script npm contracts", () => {
   });
 });
 
-describe("audits read a V2 file as its V1 twin", () => {
+describe("audits read only V2 files", () => {
   const root = mkdtempSync(join(tmpdir(), "audit-v2-twins-"));
   afterAll(() => rmSync(root, { recursive: true, force: true }));
 
@@ -80,6 +78,7 @@ describe("audits read a V2 file as its V1 twin", () => {
   function audit(script: string, file: string, args: string[] = [], extraEnv: Record<string, string> = {}) {
     let status = 0;
     let stdout: string;
+    let stderr = "";
     try {
       stdout = execFileSync("npm", ["run", "--silent", script, "--", file, ...args], {
         encoding: "utf8",
@@ -89,22 +88,37 @@ describe("audits read a V2 file as its V1 twin", () => {
     } catch (error) {
       status = (error as { status?: number }).status ?? -1;
       stdout = String((error as { stdout?: string }).stdout);
+      stderr = String((error as { stderr?: string }).stderr);
     }
-    return { status, stdout: stdout.replaceAll(dirname(file), "<dir>") };
+    return {
+      status,
+      conversionInput: /--input "([^"]+)" --write/.exec(stdout + stderr)?.[1],
+      stdout: stdout.replaceAll(relative(".", dirname(file)), "<dir>").replaceAll(dirname(file), "<dir>"),
+      stderr: stderr.replaceAll(relative(".", dirname(file)), "<dir>").replaceAll(dirname(file), "<dir>"),
+    };
   }
 
-  it("audit:surface scans a V2 asphere as its V1 twin, and derives the radius of a flat stop", () => {
+  function rejectsV1(result: ReturnType<typeof audit>) {
+    expect(result.status).toBe(1);
+    expect(result.conversionInput).toBeDefined();
+    expect(existsSync(resolve(result.conversionInput!))).toBe(true);
+    expect(result.stdout + result.stderr).toContain(
+      'npm run convert:lens-data -- --input "<dir>/Fixture.data.ts" --write',
+    );
+  }
+
+  it("audit:surface scans a V2 asphere and refuses V1, and derives the radius of a flat stop", () => {
     const prime = twinFiles("prime");
     const [v1, v2] = [
       audit("audit:surface", prime.v1, ["--scan", "1"]),
       audit("audit:surface", prime.v2, ["--scan", "1"]),
     ];
-    expect(v2).toEqual(v1);
-    expect(v1.status).toBe(0);
+    rejectsV1(v1);
+    expect(v2.status).toBe(0);
     /* Surface "1" (K -0.5, A4 1.2e-6, A8 -3e-11) at h = 15 mm: 2.2598 mm with its asphere, 2.3030 mm as a sphere. */
-    expect(v1.stdout).toContain("aspheric");
-    expect(v1.stdout).toMatch(/^ 15\.00 {7}2\.2598 /m);
-    expect(v1.stdout).toContain("OK — no validation errors");
+    expect(v2.stdout).toContain("aspheric");
+    expect(v2.stdout).toMatch(/^ 15\.00 {7}2\.2598 /m);
+    expect(v2.stdout).toContain("OK — no validation errors");
 
     /* The V2 stop is flat and stores no radius: R reads as V1's 1e15, and the scan runs to twice the derived radius. */
     const stop = audit("audit:surface", prime.v2, ["--scan", "STO"]);
@@ -125,26 +139,24 @@ describe("audits read a V2 file as its V1 twin", () => {
     expect(refused.stdout).toContain("ERR surfaces must be a list of objects");
   });
 
-  it("audit:aperture audits every station of a V2 zoom as its V1 twin", () => {
+  it("audit:aperture audits every V2 zoom station and refuses V1", () => {
     const zoom = twinFiles("zoom");
     const rows = (file: string) => {
       const json = join(dirname(file), "rows.json");
       expect(audit("audit:aperture", file, [`--json=${json}`]).status).toBe(0);
       return (JSON.parse(readFileSync(json, "utf8")) as { file: string }[]).map(({ file: _file, ...row }) => row);
     };
-    const v1 = rows(zoom.v1);
-    expect(v1.map((row) => (row as { station: string }).station)).toEqual(["24 mm", "50 mm", "100 mm"]);
-    expect(rows(zoom.v2)).toEqual(v1);
+    rejectsV1(audit("audit:aperture", zoom.v1));
+    expect(rows(zoom.v2).map((row) => (row as { station: string }).station)).toEqual(["24 mm", "50 mm", "100 mm"]);
   });
 
-  it("audit:image-circle reads a V2 file's image format as its V1 twin's", () => {
+  it("audit:image-circle reads V2 image format and refuses V1", () => {
     const prime = twinFiles("prime");
-    const v1 = audit("audit:image-circle", prime.v1);
-    expect(v1.stdout).toContain("1 lens checked · 0 undersized · 0 skipped");
-    expect(audit("audit:image-circle", prime.v2)).toEqual(v1);
+    rejectsV1(audit("audit:image-circle", prime.v1));
+    expect(audit("audit:image-circle", prime.v2).stdout).toContain("1 lens checked · 0 undersized · 0 skipped");
   });
 
-  it("audit:patent-figure draws a V2 file's silhouette as its V1 twin's", () => {
+  it("audit:patent-figure draws V2 silhouette and refuses V1", () => {
     const prime = twinFiles("prime");
     /* A synthetic figure page: an axis line and one element drawn symmetric about it, served by a stand-in pdftoppm
      * on PATH, so the case needs no poppler. */
@@ -163,10 +175,10 @@ describe("audits read a V2 file as its V1 twin", () => {
     const path = { PATH: `${bin}:${env.PATH ?? ""}` };
     const args = [join(root, "figure", "patent.pdf"), "1", "0.1,0.05,0.9,0.95"];
 
-    const v1 = audit("audit:patent-figure", prime.v1, args, path);
-    expect(v1.status).toBe(0);
-    expect(v1.stdout).toMatch(/^L1 +1\/2 /m);
-    expect(v1.stdout).not.toContain("NaN");
-    expect(audit("audit:patent-figure", prime.v2, args, path)).toEqual(v1);
+    rejectsV1(audit("audit:patent-figure", prime.v1, args, path));
+    const v2 = audit("audit:patent-figure", prime.v2, args, path);
+    expect(v2.status).toBe(0);
+    expect(v2.stdout).toMatch(/^L1 +1\/2 /m);
+    expect(v2.stdout).not.toContain("NaN");
   });
 });

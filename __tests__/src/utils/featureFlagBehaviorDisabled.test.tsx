@@ -9,8 +9,8 @@ import DiagramElementLayer from "../../../src/components/diagram/DiagramElementL
 import SphericalAberrationSection from "../../../src/components/display/analysis/aberrations/SphericalAberrationSection.js";
 import { catalogLensData } from "../optics/testLensFixtures.js";
 import SonnarRaw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import type { SphericalAberrationResult } from "../../../src/optics/aberrationAnalysis.js";
+import { buildFixtureLens as buildLens } from "../optics/constructionFixtures.js";
+import type { SphericalAberrationResult } from "../../../src/optics/analysis/aberration/types.js";
 import type { ElementShape, LensData } from "../../../src/types/optics.js";
 import type { LensAction } from "../../../src/types/state.js";
 import { SET_RAY_TOGGLE, createInitialState } from "../../../src/utils/state/lensReducer.js";

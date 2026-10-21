@@ -15,7 +15,7 @@ import { lastLensSurfaceIndex } from "./rearPlates.js";
 import { compileSurfaces } from "./surfaces.js";
 import type { LensProjectionConfig, ResolvedOpticalPath } from "../../types/optics.js";
 
-export function compileConstruction(data: LensConstructionData, source: LensData) {
+export function compileConstruction(data: LensConstructionData, source: Pick<LensData, "surfaces" | "elements">) {
   const S: SurfaceData[] = data.surfaces.map((s) => ({ ...s }));
   const N = S.length;
   const projection = resolveProjection(data);

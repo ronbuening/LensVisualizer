@@ -8,11 +8,11 @@
  */
 
 import { useCallback, useEffect, useMemo } from "react";
-import { eflAtZoom, formatDist, formatFNumber, marketedApertureNote } from "../../optics/optics.js";
+import { eflAtZoomClamped as eflAtZoom, formatDist, formatFNumber, marketedApertureNote } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
-import { closeFocusAtZoom, remapFocusDistance } from "../../optics/focusDistance.js";
+import { closeFocusAtZoom, remapFocusDistance } from "../../optics/optics.js";
 import { getGroupMovementAvailability } from "../../optics/analysis.js";
-import { isMovementAxisEnabled, perspectiveControlSteps } from "../../optics/lensMovement.js";
+import { isMovementAxisEnabled, perspectiveControlSteps } from "../../optics/perspective.js";
 import {
   nearestPublishedStation,
   publishedFocusStations,
@@ -533,7 +533,7 @@ export default function DiagramControls({
           label="APERTURE"
           labelMinWidth={85}
           displayValue={`f/${formatFNumber(fNumber)}${showEffectiveAperture && effApertureDiffers ? ` (eff. f/${formatFNumber(effectiveFNum)})` : ""}`}
-          displayNote={marketedApertureNote(L.data, fNumber, currentFOPEN)}
+          displayNote={marketedApertureNote(L.source, fNumber, currentFOPEN)}
           displayValueStyle={{ minWidth: "3.5em" }}
           value={patentPositions ? 0 : stopdownT}
           step={L.apertureStep}

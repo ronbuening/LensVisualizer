@@ -219,7 +219,7 @@ describe("solveScalarRoot", () => {
 
   it("uses at most twelve evaluations for smooth residuals near the seed", () => {
     // A slightly nonlinear, near-seed residual models a well-seeded ray aim.
-    // This fixture checks plausibility; the Stage 6 profile measures the median.
+    // This fixture checks plausibility; the PC-Nikkor profile (EFFICIENCY_IMPROVEMENT_PLAN.md, P8) measures the median.
     for (const root of [0.001, 0.007, 0.013, 0.019, 0.025]) {
       let evaluations = 0;
       const result = solveScalarRoot(

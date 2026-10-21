@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "../constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import {
   computeGroupMovementProfile,
@@ -13,7 +14,7 @@ describe("group movement request analysis", () => {
   it("marks the exact request control point without dropping aberration controls", () => {
     const base = buildSimplePositiveElementLens("test-group-movement-request");
     const lens = build({
-      ...base.data,
+      ...constructionFixtureData(base),
       aberrationControl: {
         label: "Soft focus",
         minLabel: "Sharp",

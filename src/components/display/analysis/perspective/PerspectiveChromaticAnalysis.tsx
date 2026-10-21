@@ -1,4 +1,4 @@
-import type { PerspectiveChromaticAnalysis as PerspectiveChromaticResult } from "../../../../optics/perspective/index.js";
+import type { PerspectiveChromaticAnalysis as PerspectiveChromaticResult } from "../../../../optics/perspective.js";
 import type { Theme } from "../../../../types/theme.js";
 import { AnalysisMetricRow } from "../analysisUi.js";
 import PerspectiveChromaticCurves from "./PerspectiveChromaticCurves.js";

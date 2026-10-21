@@ -1,13 +1,13 @@
 /**
  * The V2 view and source paths: where ingest records it read each value when asked, how the V2 view writes a
  * canonical prescription and records what it wrote, how the two compose into the relations the converter carries
- * comments and literal text by, and how two prescriptions compare under the semantic fingerprint's rules.
+ * comments and literal text by, and how two prescriptions compare under canonical semantic equality.
  */
 
 import { describe, expect, it } from "vitest";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../../src/types/asphericSchema.js";
 import { prescriptionDifference } from "../../../../src/optics/prescription/canonical.js";
-import { ingestLens, ingestTeleconverter } from "../../../../src/optics/prescription/ingestV2.js";
+import { ingestLens, ingestTeleconverter } from "../../../../src/optics/lensDataConversion.js";
 import { childPath, extendPath, parentPath, pathBelow } from "../../../../src/optics/prescription/sourcePaths.js";
 import {
   toLensDataV2Input,

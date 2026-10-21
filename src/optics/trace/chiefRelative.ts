@@ -7,7 +7,7 @@
 
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 import type { RuntimeSkewRayTraceResult } from "./runtimeRayResult.js";
-import { traceSkewRay2, traceSkewRayChromatic2 } from "./rayAdapters.js";
+import { traceSkewRay, traceSkewRayChromatic } from "./rayAdapters.js";
 
 /**
  * Trace a skew ray launched relative to the solved chief ray.
@@ -38,7 +38,7 @@ export function traceChiefRelativeSkewRay(
   L: RuntimeLens,
   aberrationT = 0,
 ): RuntimeSkewRayTraceResult {
-  return traceSkewRay2(
+  return traceSkewRay(
     xFraction * entrancePupilSemiDiameter,
     chiefLaunchHeight + yFraction * entrancePupilSemiDiameter,
     0,
@@ -83,7 +83,7 @@ export function traceChiefRelativeSkewRayChromatic(
   channel: ChromaticChannel,
   aberrationT = 0,
 ): RuntimeSkewRayTraceResult {
-  return traceSkewRayChromatic2(
+  return traceSkewRayChromatic(
     xFraction * entrancePupilSemiDiameter,
     chiefLaunchHeight + yFraction * entrancePupilSemiDiameter,
     0,

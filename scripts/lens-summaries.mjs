@@ -1,32 +1,21 @@
 /**
  * Lens and teleconverter summaries — the lightweight fields index-style pages read instead of full prescriptions.
  *
- * Summaries are written in V1 field names. A V1 file is read as it is. A V2 file (`schema: 2`) is read through the
- * engine's canonical ingest and its V1 view, so a V2 file and its V1 twin give the same summary, and the converter
- * fit predicate sees the same host and converter. Those engine functions come from the lens-data conversion seam,
- * `src/optics/lensDataConversion.ts`, loaded for every metadata run.
+ * Display DTOs keep their established flat field names. Metadata reads files through the public canonical ingest
+ * seam, then selects only summary fields. Metadata does not load a V1 printer.
  */
 
 import { register } from "node:module";
 
-/* Named whole, so the seam guard sees which optics module this script loads. */
-const LENS_DATA_CONVERSION_URL = new URL("../src/optics/lensDataConversion.ts", import.meta.url);
+let prescriptionIngest;
 
-let lensDataConversion;
-
-/**
- * Load the engine's lens-data conversion seam under plain Node. Its modules import one another by their `.js`
- * specifiers, so the specifier hook is registered first.
- *
- * @returns {Promise<import("./lens-summaries.d.mts").LensDataConversion>} canonical ingest, the V1 and V2 views,
- *   the V2 source map, the prescription comparison and the path spelling: every export of the seam
- */
-export async function loadLensDataConversion() {
-  if (!lensDataConversion) {
+/** Metadata and audits load ingest without importing either conversion printer. */
+export async function loadPrescriptionIngest() {
+  if (!prescriptionIngest) {
     register("./ts-js-specifier-hook.mjs", import.meta.url);
-    lensDataConversion = await import(LENS_DATA_CONVERSION_URL.href);
+    prescriptionIngest = await import(new URL("../src/optics/buildLens.ts", import.meta.url).href);
   }
-  return lensDataConversion;
+  return prescriptionIngest;
 }
 
 /* Fields consumed by non-viewer pages (lens index, maker/mount/format pages,
@@ -70,23 +59,11 @@ export const TELECONVERTER_SUMMARY_FIELDS = [
   "groupCount",
 ];
 
-/**
- * A lens or teleconverter file in V1 field names: a V1 file as it is, a V2 file as its V1 view.
- *
- * @param {Record<string, unknown>} file - a file's evaluated default export
- * @param {"lens" | "teleconverter"} kind - which kind of file it is
- * @param {() => Promise<{ ingestLens: Function, ingestTeleconverter: Function, toLensDataInput: Function,
- *   toTeleconverterData: Function }>} [loadViews] - loads the engine's ingest and V1 views;
- *   the conversion seam by default
- * @returns {Promise<Record<string, unknown>>} the file in V1 field names
- */
-export async function v1Prescription(file, kind, loadViews = loadLensDataConversion) {
-  const { lensDataVersion } = await loadLensDataConversion();
-  if (lensDataVersion(file) === 1) return file;
-  const views = await loadViews();
-  return kind === "lens"
-    ? views.toLensDataInput(views.ingestLens(file))
-    : views.toTeleconverterData(views.ingestTeleconverter(file));
+/** Read a file into its canonical prescription; conversion views are reserved for the converter. */
+export async function canonicalPrescription(file, kind, path, loadIngest = loadPrescriptionIngest) {
+  const ingest = await loadIngest();
+  return (kind === "lens" ? ingest.ingestLens(file, { path }) : ingest.ingestTeleconverter(file, { path }))
+    .prescription;
 }
 
 /** Copy the listed fields a record defines. */
@@ -101,11 +78,27 @@ function pick(data, fields) {
 /**
  * The summary of one lens.
  *
- * @param {Record<string, unknown>} data - the lens in V1 field names
+ * @param {Record<string, unknown>} data - the canonical lens
  * @returns {Record<string, unknown>} its summary fields
  */
 export function lensSummary(data) {
-  const summary = pick(data, SUMMARY_FIELDS);
+  const summary = pick(
+    {
+      key: data.key,
+      name: data.name,
+      maker: data.maker,
+      ...data.catalog,
+      focalLengthMarketing: data.catalog.focalLengthMm?.marketing,
+      apertureMarketing: data.catalog.fNumber?.marketing,
+      apertureDesign: data.catalog.fNumber?.design,
+      nominalFno: data.aperture.nominalFNumber ?? data.zoom?.stations.map((station) => station.nominalFNumber),
+      patentNumber: data.source.patentNumber,
+      patentAuthors: data.source.authors,
+      patentAssignees: data.source.assignees,
+      patentYear: data.source.patentYear,
+    },
+    SUMMARY_FIELDS,
+  );
   /* Mirror the runtime defaults merge for the one summary-relevant default */
   summary.visible = data.visible !== false;
   return summary;
@@ -114,13 +107,29 @@ export function lensSummary(data) {
 /**
  * The summary of one teleconverter, with the visible lenses it fits.
  *
- * @param {Record<string, unknown>} data - the converter in V1 field names
- * @param {readonly Record<string, unknown>[]} visibleLenses - every visible lens in V1 field names
+ * @param {Record<string, unknown>} data - the canonical converter
+ * @param {readonly Record<string, unknown>[]} visibleLenses - every visible canonical lens
  * @param {(host: unknown, converter: unknown) => { ok: boolean }} teleconverterCompatibility - the fit predicate
  * @returns {Record<string, unknown>} its summary fields and `compatibleLensKeys`
  */
 export function teleconverterSummary(data, visibleLenses, teleconverterCompatibility) {
-  const summary = pick(data, TELECONVERTER_SUMMARY_FIELDS);
+  const summary = pick(
+    {
+      key: data.key,
+      name: data.name,
+      maker: data.maker,
+      subtitle: data.subtitle,
+      ...data.catalog,
+      magnification: data.magnification,
+      universal: data.universal,
+      minHostFno: data.minHostFNumber,
+      patentNumber: data.source.patentNumber,
+      patentAuthors: data.source.authors,
+      patentAssignees: data.source.assignees,
+      patentYear: data.source.patentYear,
+    },
+    TELECONVERTER_SUMMARY_FIELDS,
+  );
   summary.visible = data.visible !== false;
   summary.compatibleLensKeys = visibleLenses
     .filter((lens) => teleconverterCompatibility(lens, data).ok)

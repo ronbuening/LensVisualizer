@@ -1,17 +1,17 @@
 import { createTraceGeometry } from "../../../src/optics/trace/geometry.js";
 import { describe, expect, it } from "vitest";
-import { ingestLens } from "../../../src/optics/buildLens.js";
-import { toLensDataInput } from "../../../src/optics/prescription/toLensData.js";
+import { ingestLens } from "../../../src/optics/lensDataConversion.js";
+import { toLensDataInput } from "../../../src/optics/prescription/v1/toLensData.js";
 import PfRaw from "../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
-import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { compileDiffractivePhase } from "../../../src/optics/math/diffractivePhase.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
 import {
-  doLayout,
   traceRay as tracePreparedRay,
   traceRayChromatic as tracePreparedRayChromatic,
   traceSkewRay as tracePreparedSkewRay,
   traceSkewRayChromatic as tracePreparedSkewRayChromatic,
-} from "../../../src/optics/optics.js";
+} from "../../../src/optics/trace/rayAdapters.js";
 import { findNearestGeneralizedSurfaceHit } from "../../../src/optics/trace/pathPlanner.js";
 import { traceSequential } from "../../../src/optics/trace/sequentialTrace.js";
 import { build } from "./testLensFixtures.js";

@@ -43,7 +43,7 @@ also set `indexReference: "e"`. Omit the field for d-line values and for prescri
 to d-line. This metadata selects C′/e/F′ compatibility, prevents d-line code substitution, and preserves the source
 prescription unchanged.
 
-The cascade in [src/optics/dispersion.ts](../src/optics/dispersion.ts) honors these immediately: with `nC`/`nF`
+The cascade in [src/optics/chromatic/materialResolver.ts](../src/optics/chromatic/materialResolver.ts) honors these immediately: with `nC`/`nF`
 populated the surface upgrades from `abbe` to `lineIndices` quality, and the LCA inset's quality badge reflects it. If
 the patent lists only `nd`/`vd` and `dPgF` (or `θgF`) without explicit `ng`, populate `dPgF` alone — the V-channel
 cascade uses the Schott normal-line approximation plus `dPgF` to estimate `ng`, including when a compatible catalog

@@ -327,7 +327,7 @@ The final TS payload is parsed into the implemented physical model. Both endpoin
 
 Geometry is checked at all 11 states with analytic spherical sag/domain, actual profile rim slope, own-rim edge thickness, and 1,001 radial samples for shared-band gaps. Maximum actual rim slope is 57.43288504379005°, below the pinned default actual-slope limit about 64.1581°. Maximum gap-intrusion fraction is 0.34814571521570925, below default 0.90. All element edge thicknesses are positive. There is no gap-sag override, radius alteration or hidden aperture reduction. This is an actual-slope policy, not revival of a universal sd/|R| rule.
 
-Production `computeElementRenderDiagnosticsForState2` reports zero trim at every sampled state. Actual `computeElementShapesForState2` paths were rasterized with PyMuPDF and visually compared to original Fig. 4A, PDF 8 / sheet 7. Five menisci, orientations and order agree. Source mechanical outline margins need not equal radial ray envelopes. The figures are executions of pure production path functions, not browser screenshots; full UI validation remains NOT_RUN.
+The production element-render diagnostic helper used in that historical audit reports zero trim at every sampled state. Actual element-shape paths generated during that historical audit were rasterized with PyMuPDF and visually compared to original Fig. 4A, PDF 8 / sheet 7. Five menisci, orientations and order agree. Source mechanical outline margins need not equal radial ray envelopes. The figures are executions of pure production path functions, not browser screenshots; full UI validation remains NOT_RUN.
 
 ##### Exact field containment
 

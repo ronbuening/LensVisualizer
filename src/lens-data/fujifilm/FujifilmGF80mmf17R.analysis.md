@@ -282,4 +282,4 @@ Group focal lengths: $f_{G1}$ ≈ 814 mm (weak positive), $f_{G2}$ ≈ 88 mm (st
 
 1. US 2021/0294073 A1, "Imaging Lens and Imaging Apparatus," Masato Kondo (Fujifilm), published September 23, 2021. Example 1 (Tables 1–4, FIG. 2–3).
 2. FUJIFILM Corporation, "GF80mmF1.7 R WR — Specifications," https://www.fujifilm-x.com/en-us/products/lenses/gf80mmf17-r-wr/specifications/. Accessed May 2026.
-3. Project glass catalog sources for glass identifications: OHARA, Hikari, HOYA, Sumita, Schott, and NHG catalog data as recorded in `src/optics/glassCatalogData.ts`.
+3. Project glass catalog sources for glass identifications: OHARA, Hikari, HOYA, Sumita, Schott, and NHG catalog data as recorded in `src/optics/chromatic/glassCatalogData.ts`.

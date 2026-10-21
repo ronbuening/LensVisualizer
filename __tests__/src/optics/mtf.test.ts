@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "./constructionFixtures.js";
 import { mtfInputs } from "./testLensFixtures.js";
 import { createTraceGeometry } from "../../../src/optics/trace/geometry.js";
 import { describe, expect, it } from "vitest";
@@ -10,31 +11,28 @@ import {
   teleconverterFixture,
   teleconverterHostData,
 } from "./testLensFixtures.js";
-import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { assessMtfSupport } from "../../../src/optics/analysis/mtf/mtfSupport.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
 import type { FiniteConjugate } from "../../../src/types/optics.js";
-import { LINE_NM } from "../../../src/optics/spectralLines.js";
+import { LINE_NM } from "../../../src/optics/chromatic/spectralLines.js";
 import { geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtf/mtfMath.js";
-import { assessMtfDataLimitations, computeMtf } from "../../../src/optics/mtf.js";
-import { attachTeleconverter } from "../../../src/optics/prescription/teleconverter.js";
+import { assessMtfDataLimitations } from "../../../src/optics/analysis/mtf/mtfDataLimitations.js";
+import { computeMtf } from "../../../src/optics/analysis/mtf/mtf.js";
+import { attachFixtureTeleconverter as attachTeleconverter } from "./constructionFixtures.js";
 import {
   findMtfFieldFootprint,
   mtfLaunchGrid,
   mtfLaunchRay,
-  mtfTraceClassification,
   mtfTraceOptions,
   prepareMtfFieldLaunch,
   traceMtfBundle,
   traceMtfFieldPupil,
-  type MtfBundle,
 } from "../../../src/optics/analysis/mtf/mtfTracing.js";
-import {
-  assessUnresolvedFlux,
-  emptyMtfField,
-  refineMtfField,
-  type MtfGridOutcome,
-} from "../../../src/optics/analysis/mtf/mtf.js";
+import { mtfTraceClassification } from "../../../src/optics/analysis/mtf/mtfRayClassification.js";
+import type { MtfBundle } from "../../../src/optics/analysis/mtf/mtfTracing.js";
+import { assessUnresolvedFlux, emptyMtfField, refineMtfField } from "../../../src/optics/analysis/mtf/mtf.js";
+import type { MtfGridOutcome } from "../../../src/optics/analysis/mtf/mtf.js";
 import {
   mtfBeamHeight,
   mtfChiefHeight,
@@ -51,7 +49,7 @@ import { findMtfFootprint } from "../../../src/optics/analysis/mtf/mtfFootprint.
 import type { MtfRayClass } from "../../../src/optics/analysis/mtf/mtfRayClassification.js";
 import { MTF_MAX_UNKNOWN_FLUX } from "../../../src/optics/analysis/mtf/mtfConstants.js";
 import type { EngineTraceResult } from "../../../src/optics/trace/types.js";
-import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
+import { traceEngineRay } from "../../../src/optics/trace/rayAdapters.js";
 
 const FINITE_CONJUGATE: FiniteConjugate = {
   focusT: 1,
@@ -80,7 +78,10 @@ describe("MTF support", () => {
       available: true,
       referenceWavelengthNm: LINE_NM.d,
     });
-    const e = build({ ...L.data, elements: L.elements.map((element) => ({ ...element, indexReference: "e" })) });
+    const e = build({
+      ...constructionFixtureData(L),
+      elements: L.elements.map((element) => ({ ...element, indexReference: "e" })),
+    });
     expect(assessMtfSupport(...mtfInputs(prepareRuntimeState(e, 0, 0), mtfTestOptions)).referenceWavelengthNm).toBe(
       LINE_NM.e,
     );
@@ -102,10 +103,10 @@ describe("MTF support", () => {
   });
   it("rejects unverified normalized prescription scale", () => {
     const normalized = build({
-      ...L.data,
+      ...constructionFixtureData(L),
       focalLengthDesign: 1,
       focalLengthMarketing: 50,
-      surfaces: L.data.surfaces.map((s) => ({ ...s, R: s.R / 50, d: s.d / 50, sd: s.sd / 50 })),
+      surfaces: constructionFixtureData(L).surfaces.map((s) => ({ ...s, R: s.R / 50, d: s.d / 50, sd: s.sd / 50 })),
     });
     expect(assessMtfSupport(...mtfInputs(prepareRuntimeState(normalized, 0, 0), mtfTestOptions)).reason).toBe(
       "unverified-scale",
@@ -113,9 +114,9 @@ describe("MTF support", () => {
   });
   it("rejects mixed reference glasses without physical wavelength conversion", () => {
     const mixed = build({
-      ...L.data,
+      ...constructionFixtureData(L),
       elements: [...L.elements, { ...L.elements[0], id: 2, nd: 1.6, indexReference: "e" }],
-      surfaces: L.data.surfaces.map((s, i) => (i === 2 ? { ...s, nd: 1.6, elemId: 2 } : s)),
+      surfaces: constructionFixtureData(L).surfaces.map((s, i) => (i === 2 ? { ...s, nd: 1.6, elemId: 2 } : s)),
     });
     expect(assessMtfSupport(...mtfInputs(prepareRuntimeState(mixed, 0, 0), mtfTestOptions)).reason).toBe(
       "mixed-reference",
@@ -149,7 +150,7 @@ describe("geometric MTF", () => {
   it("proves spherical, flat and aspheric cap misses without hiding in-aperture failures", () => {
     const base = buildSimplePositiveElementLens();
     const lens = build({
-      ...base.data,
+      ...constructionFixtureData(base),
       surfaces: [
         { label: "1", R: 10, d: 1, nd: 1.5168, elemId: 1, sd: 3 },
         { label: "2", R: -10, d: 1, nd: 1, elemId: 0, sd: 3 },
@@ -157,7 +158,7 @@ describe("geometric MTF", () => {
       ],
     });
     const state = prepareRuntimeState(lens, 0, 0);
-    const miss = traceEngineRay2(
+    const miss = traceEngineRay(
       state,
       { origin: [8, 0, -10], direction: [0, 0, 1] },
       {
@@ -189,6 +190,16 @@ describe("geometric MTF", () => {
     // Aspheric caps use the Lipschitz interval proof: outside the aperture cylinder is a miss, a real rim hit is not.
     expect(mtfTraceClassification(miss, aspheric)).toBe("blocked");
     expect(mtfTraceClassification({ ...miss, terminalPoint: [2.5, 0, -10] }, aspheric)).toBe("failed");
+    const apertureState = {
+      ...aspheric,
+      traceGeometry: { ...aspheric.traceGeometry, stopSurfaceIndex: 0 },
+    };
+    // Revisit the same surface after replacing its one bounds record with smaller caps.
+    for (const aperture of [3, 1, 2, 3]) {
+      expect(mtfTraceClassification({ ...miss, terminalPoint: [2.5, 0, -10] }, apertureState, aperture)).toBe(
+        aperture < 2.5 ? "blocked" : "failed",
+      );
+    }
     const result = computeMtf(
       ...mtfInputs(state, { ...mtfTestOptions, pupilSemiDiameterMm: 8, stopSemiDiameterMm: 3 }),
     );
@@ -214,7 +225,7 @@ describe("geometric MTF", () => {
     const unformatted = computeMtf(...mtfInputs(prepareRuntimeState(base, 0, 0), options));
     expect(unformatted.geometry).toMatchObject({ basis: "modeled-edge" });
     expect(unformatted.geometry!.referenceHeightMm).toBe(unformatted.geometry!.modeledEdgeHeightMm);
-    const lens = build({ ...base.data, imageCircleMm: 4 });
+    const lens = build({ ...constructionFixtureData(base), imageCircleMm: 4 });
     const state = prepareRuntimeState(lens, 0, 0);
     const result = computeMtf(...mtfInputs(state, options));
     expect(result.geometry).toMatchObject({ basis: "format-corner", referenceHeightMm: 2, modeledEdgeHeightMm: 2 });
@@ -231,7 +242,7 @@ describe("geometric MTF", () => {
     const base = buildSimplePositiveElementLens();
     const options = { ...mtfTestOptions, fieldFractions: [0.5, 1], pupilSemiDiameterMm: 0.1 };
     const edge = computeMtf(...mtfInputs(prepareRuntimeState(base, 0, 0), options)).geometry!.modeledEdgeHeightMm;
-    const lens = build({ ...base.data, imageCircleMm: 3 * edge });
+    const lens = build({ ...constructionFixtureData(base), imageCircleMm: 3 * edge });
     const result = computeMtf(...mtfInputs(prepareRuntimeState(lens, 0, 0), options));
     expect(result.geometry!.modeledEdgeHeightMm).toBeCloseTo(edge, 9);
     expect(result.fields[0].reason).toBeNull();
@@ -243,9 +254,13 @@ describe("geometric MTF", () => {
   ])("charts a declared format corner whose chief ray is clipped while part of the beam passes, %s", (_, conjugate) => {
     const base = buildSimplePositiveElementLens();
     // One millimetre behind the stop, a 0.3 mm air baffle clips every chief beyond about 16.7°.
-    const [stop, ...lens] = base.data.surfaces;
+    const [stop, ...lens] = constructionFixtureData(base).surfaces;
     const surfaces = [{ ...stop, d: 1 }, { label: "B", R: 1e15, nd: 1, sd: 0.3, d: 0.5, elemId: 0 }, ...lens];
-    const data = { ...base.data, surfaces, ...(conjugate ? { finiteConjugates: [conjugate] } : {}) };
+    const data = {
+      ...constructionFixtureData(base),
+      surfaces,
+      ...(conjugate ? { finiteConjugates: [conjugate] } : {}),
+    };
     const prepare = (imageCircleMm?: number) =>
       prepareRuntimeState(build(imageCircleMm ? { ...data, imageCircleMm } : data), conjugate ? 1 : 0, 0);
     const options = { ...mtfTestOptions, fieldFractions: [0.5, 0.9, 1] };
@@ -284,7 +299,7 @@ describe("geometric MTF", () => {
     expect(dark.fields[2]).toMatchObject({ status: "unavailable", reason: "outside-modeled-field" });
   });
   it("keeps an edge extension only while the unchecked chief's height keeps rising", () => {
-    const state = { lens: { source: { imageCircleMm: 60 } } } as unknown as Parameters<
+    const state = { lens: { source: { catalog: { imageCircleMm: 60 } } } } as unknown as Parameters<
       typeof resolveMtfFieldGeometry
     >[0];
     // Heights in mm equal the field angle in degrees: the chief clips at 10°, the beam goes dark at 20°.
@@ -301,7 +316,7 @@ describe("geometric MTF", () => {
     expect(resolveMtfFieldGeometry(state, 8, chief)!.modeledEdgeHeightMm).toBeCloseTo(10, 6);
     // The extension stops at the format corner like the chief's own edge does.
     const corner = resolveMtfFieldGeometry(
-      { lens: { source: { imageCircleMm: 30 } } } as unknown as typeof state,
+      { lens: { source: { catalog: { imageCircleMm: 30 } } } } as unknown as typeof state,
       8,
       chief,
       { reference: rising, beam: lit(rising) },
@@ -323,9 +338,9 @@ describe("MTF at awkward geometry", () => {
   it("keeps a clipped chief ray as the geometric reference while pupil rays transmit", () => {
     const base = buildSimplePositiveElementLens();
     // One millimetre behind the stop, a 0.3 mm air baffle clips the 20° chief but passes part of the beam.
-    const [stop, ...lens] = base.data.surfaces;
+    const [stop, ...lens] = constructionFixtureData(base).surfaces;
     const L = build({
-      ...base.data,
+      ...constructionFixtureData(base),
       surfaces: [{ ...stop, d: 1 }, { label: "B", R: 1e15, nd: 1, sd: 0.3, d: 0.5, elemId: 0 }, ...lens],
     });
     const state = prepareRuntimeState(L, 0, 0);
@@ -351,7 +366,7 @@ function buildRetrofocusLens() {
   const base = buildSimplePositiveElementLens();
   const element = base.elements[0];
   return build({
-    ...base.data,
+    ...constructionFixtureData(base),
     elements: [
       { ...element, id: 1, name: "Front", label: "L1", type: "negative", nd: 1.6, vd: 50 },
       { ...element, id: 2, name: "Rear", label: "L2", type: "positive", nd: 1.6, vd: 50 },
@@ -397,7 +412,7 @@ describe("MTF pupil footprint", () => {
     for (let row = -pad; row < grid.rows + pad; row++)
       for (let column = -pad; column < grid.columns + pad; column++) {
         const ray = mtfLaunchRay(launch, grid.x0 + (column + 0.5) * grid.step, grid.y0 + (row + 0.5) * grid.step);
-        const trace = traceEngineRay2(state, ray, traceOptions);
+        const trace = traceEngineRay(state, ray, traceOptions);
         if (mtfTraceClassification(trace, state, options.stopSemiDiameterMm) === "valid") reference++;
       }
     expect(reference * grid.step ** 2).toBeGreaterThan(1.1 * axial);
@@ -575,11 +590,11 @@ describe("MTF refinement and focus", () => {
       appliedShiftMm: 0,
       imagePlaneInconsistent: true,
     });
-    const surfaces = base.data.surfaces.map((s, i, all) =>
+    const surfaces = constructionFixtureData(base).surfaces.map((s, i, all) =>
       i === all.length - 1 ? { ...s, d: s.d + offset.offsetMm } : s,
     );
     const focused = computeMtf(
-      ...mtfInputs(prepareRuntimeState(build({ ...base.data, surfaces }), 0, 0), {
+      ...mtfInputs(prepareRuntimeState(build({ ...constructionFixtureData(base), surfaces }), 0, 0), {
         ...options,
         focus: "auto",
       }),
@@ -608,8 +623,10 @@ describe("MTF traced aperture", () => {
   it("names the clear aperture that stops the axial beam before the iris does", () => {
     // The element rims (6 mm) are smaller than the iris (8 mm), so the first rim sets the beam, not the label.
     const rimmed = build({
-      ...base.data,
-      surfaces: base.data.surfaces.map((surface) => (surface.label === "STO" ? surface : { ...surface, sd: 6 })),
+      ...constructionFixtureData(base),
+      surfaces: constructionFixtureData(base).surfaces.map((surface) =>
+        surface.label === "STO" ? surface : { ...surface, sd: 6 },
+      ),
     });
     const aperture = tracedAperture(rimmed, 8)!;
     expect(aperture.limitingSurfaceLabel).toBe("1");
@@ -647,7 +664,10 @@ describe("MTF data limitations", () => {
     expect(estimated.text).toContain("Every glass is known only by nd and νd");
     expect(assessMtfDataLimitations(state, { ...reference, result: null })).toEqual([]);
     // A glass that blocks spectral sampling leaves the reference line alone on the chart.
-    const noAbbe = build({ ...base.data, elements: base.elements.map((e) => ({ ...e, vd: undefined })) });
+    const noAbbe = build({
+      ...constructionFixtureData(base),
+      elements: base.elements.map((e) => ({ ...e, vd: undefined })),
+    });
     const [fallback] = assessMtfDataLimitations(prepareRuntimeState(noAbbe, 0, 0), {
       ...reference,
       preferredSpectrum: "photopic",
@@ -657,7 +677,10 @@ describe("MTF data limitations", () => {
     expect(fallback.text).toContain("a glass has no Abbe number. The chart shows the 587.6 nm reference wavelength");
     // An estimated rear plate is not a gap; an estimated converter glass is named as the converter's.
     const resolved = buildChromaticPositiveElementLens();
-    const plated = build({ ...resolved.data, rearPlates: [{ ...REAR_PLATE_FIXTURE, glass: undefined }] });
+    const plated = build({
+      ...constructionFixtureData(resolved),
+      rearPlates: [{ ...REAR_PLATE_FIXTURE, glass: undefined }],
+    });
     const platedState = prepareRuntimeState(plated, 0, 0);
     expect(platedState.lens.dispersion.map((d) => d.quality)).toContain("abbe");
     expect(assessMtfDataLimitations(platedState, photopic)).toEqual([]);
@@ -681,7 +704,12 @@ describe("MTF data limitations", () => {
     expect(gaps(state, "design")[0].text).toContain("out of focus");
     // Format heights beyond the modeled edge are counted, and a rescaled prescription is flagged.
     const edge = computeMtf(...mtfInputs(state, options)).geometry!.modeledEdgeHeightMm;
-    const wide = build({ ...base.data, imageCircleMm: 3 * edge, focalLengthDesign: 50, focalLengthMarketing: 58 });
+    const wide = build({
+      ...constructionFixtureData(base),
+      imageCircleMm: 3 * edge,
+      focalLengthDesign: 50,
+      focalLengthMarketing: 58,
+    });
     const [field, scale] = gaps(prepareRuntimeState(wide, 0, 0), "best-axial");
     expect(field.kind).toBe("short-field");
     expect(field.text).toContain("1 of 2 field positions lies beyond it and is not charted");
@@ -690,9 +718,9 @@ describe("MTF data limitations", () => {
   });
   it("discloses authored source errata as notes that never block the chart", () => {
     // A corrected printed value and an unresolved contradiction each give one note; gaps stay blocking.
-    const front = base.data.surfaces.find((surface) => surface.label === "1")!;
+    const front = constructionFixtureData(base).surfaces.find((surface) => surface.label === "1")!;
     const noted = build({
-      ...base.data,
+      ...constructionFixtureData(base),
       sourceErrata: [
         {
           status: "corrected",

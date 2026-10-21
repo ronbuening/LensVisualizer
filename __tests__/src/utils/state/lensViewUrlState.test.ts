@@ -5,7 +5,10 @@ import {
   parseLensViewQuery,
   type LensViewQueryState,
 } from "../../../../src/utils/state/lensViewUrlState.js";
-import { MOVEMENT_SHIFT_ENVELOPE_MM, MOVEMENT_TILT_ENVELOPE_DEG } from "../../../../src/optics/lensMovement.js";
+import {
+  MOVEMENT_SHIFT_ENVELOPE_MM,
+  MOVEMENT_TILT_ENVELOPE_DEG,
+} from "../../../../src/optics/perspective/lensMovement.js";
 
 describe("lensViewUrlState", () => {
   it.each([false, true])("restores precise slider selections without quantization (comparing: %s)", (comparing) => {

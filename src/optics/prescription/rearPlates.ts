@@ -1,16 +1,9 @@
 /** Canonical rear-plate expansion. Generated records are internal and never enter authored ingest. */
 import type { LensData, SurfaceData, RearPlateData } from "../../types/optics.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTaxonomy.js";
-import {
-  FLAT_RADIUS,
-  type CanonicalLens,
-  type CanonicalSurface,
-  type CanonicalElement,
-  type IngestedPrescription,
-} from "./canonical.js";
-import { canonicalConstructionData, toLensData } from "./toLensData.js";
-import { canonicalForView } from "./identity.js";
-import { ingestLens } from "./ingestV2.js";
+import { FLAT_RADIUS } from "./canonical.js";
+import type { CanonicalLens, CanonicalSurface, CanonicalElement, IngestedPrescription } from "./canonical.js";
+import { canonicalConstructionData, elementDisplayData } from "./constructionData.js";
 
 export const REAR_PLATE_LABEL_PATTERN = /^RP\d+[ab]$/;
 export function rearPlateSurfaceLabels(index: number): [string, string] {
@@ -99,20 +92,19 @@ export function expandedConstruction(
   data.elements.forEach((element, i) => {
     if (expanded.elements[i].synthetic) element.synthetic = expanded.elements[i].synthetic;
   });
-  const authored = sourceOverride ?? toLensData(ingested);
-  const byLabel = new Map(authored.surfaces.map((s) => [s.label, s]));
-  const byId = new Map(authored.elements.map((e) => [e.id, e]));
-  const source = {
-    ...authored,
-    ...(descriptor ? { attachedTeleconverter: descriptor } : {}),
-    surfaces: data.surfaces.map((s) => byLabel.get(s.label) ?? s),
-    elements: data.elements.map(
-      (e) =>
-        byId.get(e.id) ??
-        generatedElementEcho(
-          e,
-          authored.rearPlates?.[e.id - Math.max(0, ...ingested.prescription.elements.map((element) => element.id)) - 1],
-        ),
+  const source = sourceOverride ?? {
+    surfaces: data.surfaces.map((surface, i) => ({
+      ...surface,
+      R: (ingested.provenance.ignored[`surfaces[${i}].R`] as number) ?? surface.R,
+      sd: (ingested.provenance.ignored[`surfaces[${i}].sd`] as number) ?? surface.sd,
+    })),
+    elements: expanded.elements.map((element, i) =>
+      element.synthetic
+        ? generatedElementEcho(
+            data.elements[i],
+            ingested.prescription.rearPlates?.[i - ingested.prescription.elements.length],
+          )
+        : elementDisplayData(element, i, ingested.provenance),
     ),
   };
   return { expanded, data, source };
@@ -123,13 +115,6 @@ function generatedElementEcho(element: LensData["elements"][number], plate?: Rea
   const { apd: _apd, ...echo } = element;
   if (plate?.indexReference === undefined) delete echo.indexReference;
   return echo;
-}
-
-/** Compatibility projection for composition's paraxial pass and report scans. No second plate algorithm. */
-export function expandRearPlates(data: LensData): LensData {
-  if (!data.rearPlates?.length) return data;
-  const ingested = canonicalForView(data) ?? ingestLens(data);
-  return expandedConstruction(ingested, data.attachedTeleconverter, data).source;
 }
 
 /**

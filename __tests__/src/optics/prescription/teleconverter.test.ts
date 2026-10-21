@@ -1,20 +1,21 @@
+import { constructionFixtureData } from "../constructionFixtures.js";
+import { teleconverterCompatibility } from "../../../../src/optics/teleconverter.js";
 import { describe, expect, it } from "vitest";
 import { mtfFiniteConjugate, mtfFiniteObjectPoint } from "../../../../src/optics/analysis/mtf/mtfConjugates.js";
-import { paraxialTrace } from "../../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
+import { paraxialTrace } from "../../../../src/optics/first-order/lensConstants.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import {
-  attachTeleconverter,
   TeleconverterAttachError,
   teleconverterGroupLabel,
 } from "../../../../src/optics/prescription/teleconverter.js";
+import { attachFixtureTeleconverter as attachTeleconverter } from "../constructionFixtures.js";
 import {
   MIN_TELECONVERTER_GAP_MM,
   rearPlateAirEquivalentMm,
-  teleconverterCompatibility,
   teleconverterGeometry,
 } from "../../../../src/optics/prescription/teleconverterCompatibility.js";
-import validateLensData from "../../../../src/optics/validateLensData.js";
-import validateTeleconverterData from "../../../../src/optics/validateTeleconverterData.js";
+import validateLensData from "../../../../src/optics/prescription/validate/index.js";
+import validateTeleconverterData from "../../../../src/optics/prescription/validate/teleconverter.js";
 import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
 import type { TeleconverterIncompatibility } from "../../../../src/types/teleconverter.js";
 import {
@@ -115,7 +116,7 @@ describe("host rear plates around a teleconverter", () => {
   it("keeps a lens-side plate ahead of the converter and leaves the host's last gap alone", () => {
     const hostData = teleconverterHostData({ plates: [dropIn], lastGapFocusOffsets: [0, 3] });
     const geometry = teleconverterGeometry(hostData, tc);
-    const composedData = attachTeleconverter(hostData, tc);
+    const composedData = constructionFixtureData(attachTeleconverter(hostData, tc));
     const composed = build(composedData);
 
     expect(geometry).toMatchObject({ platesAhead: 1, lastGapShiftMm: 0 });
@@ -164,7 +165,7 @@ describe("host rear plates around a teleconverter", () => {
   });
 
   it("rejects a descriptor whose plates-ahead count does not match the plate list", () => {
-    const composedData = attachTeleconverter(teleconverterHostData({ plates: [dropIn] }), tc);
+    const composedData = constructionFixtureData(attachTeleconverter(teleconverterHostData({ plates: [dropIn] }), tc));
     const errors = validateLensData({
       ...composedData,
       attachedTeleconverter: { ...composedData.attachedTeleconverter!, platesAhead: 2 },
@@ -193,7 +194,7 @@ describe("attachTeleconverter", () => {
 
   it("turns a scalar zoom f-number into per-station values that preserve every station's pupil", () => {
     const hostData = teleconverterZoomHostData();
-    const composedData = attachTeleconverter(hostData, tc);
+    const composedData = constructionFixtureData(attachTeleconverter(hostData, tc));
     const host = build(hostData);
     const composed = build(composedData);
 
@@ -225,7 +226,7 @@ describe("attachTeleconverter", () => {
     expect(plated.EFL).toBeCloseTo(bare.EFL, 9);
     /* The plate stays behind the converter: its air-equivalent length comes out of the converter's back focus. */
     expect(plated.S[plated.lastLensSurfaceIdx].d).toBeCloseTo(
-      lastGapOf(bare.data) - rearPlateAirEquivalentMm(plates),
+      lastGapOf(constructionFixtureData(bare)) - rearPlateAirEquivalentMm(plates),
       9,
     );
     expect(plated.S[plated.N - 1].synthetic).toBe("rearPlate");
@@ -233,7 +234,7 @@ describe("attachTeleconverter", () => {
 
   it("moves the host's focus variation onto the junction gap", () => {
     const hostData = teleconverterHostData({ lastGapFocusOffsets: [0, 5] });
-    const composed = attachTeleconverter(hostData, tc);
+    const composed = constructionFixtureData(attachTeleconverter(hostData, tc));
     const junction = lastGapOf(hostData) - TELECONVERTER_FIXTURE_OBJECT_DISTANCE_MM;
 
     expect(composed.surfaces[2].d).toBeCloseTo(junction, 9);
@@ -250,9 +251,8 @@ describe("attachTeleconverter", () => {
       elements: [{ ...tc.elements[0], cemented: "D1" }],
       doublets: [{ text: "D1", fromSurface: "1", toSurface: "2" }],
     });
-    const composed = attachTeleconverter(
-      { ...hostData, doublets: [{ text: "D1", fromSurface: "1", toSurface: "2" }] },
-      cemented,
+    const composed = constructionFixtureData(
+      attachTeleconverter({ ...hostData, doublets: [{ text: "D1", fromSurface: "1", toSurface: "2" }] }, cemented),
     );
 
     expect(composed.surfaces.map((surface) => surface.label)).toEqual(["STO", "1", "2", "TC1", "TC2"]);
@@ -294,7 +294,7 @@ describe("attachTeleconverter", () => {
     const hostData = teleconverterHostData({
       overrides: { focalLengthDesign: 49, focalLengthMarketing: 50, apertureMarketing: 2 },
     });
-    const composedData = attachTeleconverter(hostData, tc);
+    const composedData = constructionFixtureData(attachTeleconverter(hostData, tc));
     const composed = build(composedData);
     const ratio = composed.EFL / build(hostData).EFL;
     const extensionM = teleconverterGeometry(hostData, tc).extensionMm / 1000;
@@ -307,7 +307,9 @@ describe("attachTeleconverter", () => {
     expect(composedData.closeFocusM).toBeCloseTo(0.5 + extensionM, 12);
     expect(composedData.elementCount).toBe(2);
     expect(composedData.acceptsTeleconverters).toBeUndefined();
-    expect(attachTeleconverter({ ...hostData, zoomLabels: ["x"] }, tc).zoomLabels).toBeUndefined();
+    expect(
+      constructionFixtureData(attachTeleconverter({ ...hostData, zoomLabels: ["x"] }, tc)).zoomLabels,
+    ).toBeUndefined();
     /* The first quick-stop must coincide with wide-open, and the last must survive the `<= maxFstop` filter. */
     expect(Math.abs(composedData.fstopSeries[0] - composed.FOPEN)).toBeLessThanOrEqual(0.001);
     expect(composedData.maxFstop).toBeGreaterThanOrEqual(composedData.fstopSeries[composedData.fstopSeries.length - 1]);
@@ -328,7 +330,7 @@ describe("attachTeleconverter", () => {
           plates,
           overrides: { finiteConjugates: [conjugate] },
         });
-        const composedData = attachTeleconverter(hostData, tc);
+        const composedData = constructionFixtureData(attachTeleconverter(hostData, tc));
 
         expect(validateLensData(composedData)).toEqual([]);
         expect(objectZ(composedData)).toBeCloseTo(objectZ(hostData), 9);
@@ -340,7 +342,7 @@ describe("attachTeleconverter", () => {
     const hostData = teleconverterHostData({
       overrides: { projection: { kind: "rectilinear", fullFieldDeg: 40, maxTraceFieldDeg: 18 } },
     });
-    const composedData = attachTeleconverter(hostData, tc);
+    const composedData = constructionFixtureData(attachTeleconverter(hostData, tc));
     const ratio = build(composedData).EFL / build(hostData).EFL;
     const projection = composedData.projection as { fullFieldDeg: number; maxTraceFieldDeg: number };
     const narrowed = (deg: number) => (Math.atan(Math.tan((deg * Math.PI) / 180) / ratio) * 180) / Math.PI;

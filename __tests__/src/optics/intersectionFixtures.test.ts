@@ -1,7 +1,8 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { FLAT_R_THRESHOLD, createSurfaceProfile } from "../../../src/optics/geometry/surfaceProfile.js";
-import { intersectSurfaceProfile, type SurfaceIntersectionSuccess } from "../../../src/optics/geometry/intersect.js";
+import { intersectSurfaceProfile } from "../../../src/optics/geometry/intersect.js";
+import type { SurfaceIntersectionSuccess } from "../../../src/optics/geometry/intersectTypes.js";
 import { sagResidualRoundoff } from "../../../src/optics/geometry/intersectTolerance.js";
 import type { SurfaceProfile } from "../../../src/optics/types.js";
 import {

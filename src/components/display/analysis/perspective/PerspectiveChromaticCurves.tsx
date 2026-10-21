@@ -2,7 +2,7 @@ import type {
   PerspectiveChromaticAnalysis,
   PerspectiveChromaticChannelSample,
   PerspectiveChromaticFieldSample,
-} from "../../../../optics/perspective/index.js";
+} from "../../../../optics/perspective.js";
 import type { ChromaticChannel } from "../../../../types/optics.js";
 import type { Theme } from "../../../../types/theme.js";
 import { formatSignedUm } from "./perspectiveAnalysisUi.js";

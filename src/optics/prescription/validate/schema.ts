@@ -3,7 +3,6 @@ import type { UntrustedLensData } from "./context.js";
 import type { SurfaceData } from "../../../types/optics.js";
 import { isImageFormatId, isLensMountId } from "../../../utils/catalog/lensTaxonomy.js";
 import { lensDataStopRadiusAuthority } from "../canonical.js";
-import { LENS_SCHEMA_DEFAULTS } from "../defaults.js";
 import { REAR_PLATE_LABEL_PATTERN } from "../rearPlates.js";
 import { TELECONVERTER_LABEL_PREFIX } from "../teleconverterCompatibility.js";
 import { validateDiffractivePhase } from "./diffractive.js";
@@ -308,15 +307,7 @@ export function validateImageFormat(value: unknown, errors: string[]): void {
 
 export const LENS_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
-/** Read only the requested catalog default; an explicit undefined is still an authored invalid value. */
-export function catalogField(data: UntrustedLensData, field: string, catalogDefaults: boolean): any {
-  if (catalogDefaults && !Object.hasOwn(data, field)) {
-    const row = LENS_SCHEMA_DEFAULTS.find((row) => row.v1Applied === "catalog" && row.v1Field === field);
-    if (row) return row.value;
-  }
-  return data[field];
-}
-export function validateTopLevel(data: UntrustedLensData, errors: string[], catalogDefaults: boolean): void {
+export function validateTopLevel(data: UntrustedLensData, errors: string[]): void {
   /* ── Required top-level scalars ── */
   const requiredStrings = ["key", "name"];
   const requiredNumbers = [
@@ -346,23 +337,16 @@ export function validateTopLevel(data: UntrustedLensData, errors: string[], cata
     );
   }
   for (const f of requiredNumbers) {
-    if (typeof catalogField(data, f, catalogDefaults) !== "number" || !isFinite(catalogField(data, f, catalogDefaults)))
+    if (typeof data[f] !== "number" || !isFinite(data[f]))
       errors.push(`Missing or non-finite required number field: "${f}"`);
   }
-  if (
-    typeof catalogField(data, "gapSagFrac", catalogDefaults) === "number" &&
-    isFinite(catalogField(data, "gapSagFrac", catalogDefaults))
-  ) {
-    if (
-      catalogField(data, "gapSagFrac", catalogDefaults) <= 0 ||
-      catalogField(data, "gapSagFrac", catalogDefaults) > 1
-    ) {
+  if (typeof data.gapSagFrac === "number" && isFinite(data.gapSagFrac)) {
+    if (data.gapSagFrac <= 0 || data.gapSagFrac > 1) {
       errors.push(`"gapSagFrac" must be > 0 and <= 1 so validation and rendering cannot allow overlap`);
     }
   }
   for (const f of requiredArrays) {
-    if (!Array.isArray(catalogField(data, f, catalogDefaults)) || catalogField(data, f, catalogDefaults).length === 0)
-      errors.push(`Missing or empty required array field: "${f}"`);
+    if (!Array.isArray(data[f]) || data[f].length === 0) errors.push(`Missing or empty required array field: "${f}"`);
   }
 
   if (

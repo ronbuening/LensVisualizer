@@ -13,14 +13,14 @@
 import { forwardRef, memo } from "react";
 import InventorLinks from "../content/InventorLinks.js";
 import PatentNumberLink from "../content/PatentNumberLink.js";
-import { eflAtZoom, formatDist, formatFNumber } from "../../optics/optics.js";
+import { eflAtZoomClamped as eflAtZoom, formatDist, formatFNumber } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
 import { toggleGroup, toggleBtn, headerStrip } from "../../utils/style/styles.js";
 import CollapseButton from "./CollapseButton.js";
 import CardinalControls from "./CardinalControls.js";
 import RayToggles from "./RayToggles.js";
 import ChromaticControls from "./ChromaticControls.js";
-import { lensChromaticReference } from "../../optics/chromatic/channels.js";
+import { lensChromaticReference } from "../../optics/chromatic.js";
 import { ENABLE_CARDINAL_ELEMENTS } from "../../utils/featureFlags.js";
 import { lensDisplaySubtitle, lensPatentAttribution } from "../../utils/catalog/lensPatentMetadata.js";
 import type { RuntimeLens } from "../../types/optics.js";
@@ -140,17 +140,16 @@ const DiagramHeader = memo(
     ref,
   ) {
     const projection = L.projection ?? { kind: "rectilinear" };
-    const displaySubtitle = lensDisplaySubtitle(L.data);
-    const patentAttribution = lensPatentAttribution(L.data);
+    const displaySubtitle = lensDisplaySubtitle(L.source);
+    const patentAttribution = lensPatentAttribution(L.source);
     /* With a converter attached the title names the whole system; photo searches and the second patent line
        still need the two parts separately. A converter covered by the lens's own patent is not repeated. */
-    const teleconverter = L.data.attachedTeleconverter;
-    const photoSearchName = teleconverter?.hostName ?? L.data.name;
+    const teleconverter = L.attachedTeleconverter;
+    const photoSearchName = teleconverter?.hostName ?? L.source.name;
     const teleconverterPatent =
-      teleconverter?.patentNumber && teleconverter.patentNumber !== L.data.patentNumber
+      teleconverter?.patentNumber && teleconverter.patentNumber !== L.source.source.patentNumber
         ? lensPatentAttribution({
-            patentNumber: teleconverter.patentNumber,
-            patentAuthors: teleconverter.patentAuthors ?? [],
+            source: { patentNumber: teleconverter.patentNumber, authors: teleconverter.patentAuthors ?? [] },
           })
         : null;
     const compactFocalReadout = isFisheyeProjection(projection)
@@ -183,7 +182,7 @@ const DiagramHeader = memo(
                   transition: "color 0.3s",
                 }}
               >
-                {L.data.name}
+                {L.source.name}
               </h1>
               {!compact && (
                 <a
@@ -284,7 +283,7 @@ const DiagramHeader = memo(
                   flexWrap: "wrap",
                 }}
               >
-                {L.data.specs?.map((s, i) => (
+                {L.source.catalog.specs?.map((s, i) => (
                   <span key={i}>{s}</span>
                 ))}
               </div>

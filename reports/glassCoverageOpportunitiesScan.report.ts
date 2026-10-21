@@ -15,9 +15,10 @@
  * inventory is empty (fresh worktrees, CI); the checked-in report stays
  * authoritative there.
  */
+import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import type { DispersionQuality } from "../src/optics/dispersion.js";
+import type { DispersionQuality } from "../src/optics/chromatic.js";
 import { allEntries, resolveCompatibleGlass, resolveGlass, decodeCode6 } from "../src/optics/glassCatalog.js";
 import {
   extractPatentNumber,
@@ -38,9 +39,9 @@ import {
   reviewedSidecarStatus,
   type MissingMaterialKind,
 } from "./glassScanLib.js";
-import type { LensData, RefractiveIndexReferenceLine } from "../src/types/optics.js";
+import type { RefractiveIndexReferenceLine } from "../src/types/optics.js";
 
-const modules = import.meta.glob<{ default: LensData }>("../src/lens-data/**/*.data.ts", { eager: true });
+const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 
 const REPORT_DIR = "agent_docs/generated";
 const REVIEWED_SIDECAR = "agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md";
@@ -252,7 +253,7 @@ describe("glass coverage opportunities scan", () => {
 
     totalLenses = walkLensSurfaces(modules, ({ filePath, data, L }) => {
       const visible = data.visible !== false;
-      const patentNumber = extractPatentNumber(data.patentNumber, data.subtitle);
+      const patentNumber = extractPatentNumber(data.source.patentNumber, data.subtitle);
       const localPatent = findLocalPatent(patentNumber, patentFiles);
       if (visible) visibleLenses++;
 

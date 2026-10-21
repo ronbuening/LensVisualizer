@@ -16,13 +16,13 @@
   `ChiefRaySolveResult` and dispatches on `launchSurfaceForFieldDeg(fieldDeg, projection)`: fisheye projections
   always take the bounding-sphere vector arm; rectilinear projections take the slope arm below 89° and the
   bounding-sphere arm at or above it.
-- The exact tracer (`src/optics/internal/exactSurfaceTrace.ts`, `src/optics/internal/surfaceIntersection.ts`) is
+- The exact tracer (`src/optics/trace/sequentialTrace.ts`, `src/optics/geometry/intersect.ts`) is
   vector-native and accepts grazing and backward rays when the caller passes a finite `launchBoundT`.
 - Fisheyes report the declared `projection.maxTraceFieldDeg` as `halfField` (capped by
   `ABSOLUTE_HALF_FIELD_CEILING`); `RuntimeLens.tracingHalfField` is the separate slope-safe field for diagram
   bundles, and diagram off-axis / chromatic rays promote to vector launch when the declared field exceeds it.
 - Supported projection kinds: `rectilinear`, `fisheye-equidistant`, `fisheye-equisolid`.
-- Heavy lenses (`isHeavyLensForRayWork` in `src/optics/raySampling.ts`) run at half analysis density, and analysis
+- Heavy lenses (`isHeavyLensForRayWork` in `src/optics/trace/raySampling.ts`) run at half analysis density, and analysis
   tabs hold last-settled values during slider drag (`src/components/layout/lensDiagram/AnalysisDrawerContent.tsx`).
 
 ## Why the model is projection-aware
@@ -82,6 +82,14 @@ The enforced rules are listed in `agent_docs/gotchas.md`; this section records t
 
 ## Deferred
 
+- **Short chords on polynomial aspheres.** The certified conic-seeded route deliberately returns only roots the
+  ordered scan also resolves; a chord shorter than a scan step can still be missed. Sphere and polynomial-free conic
+  near tangencies have an analytic turning-point bracket split. Extend polynomial root isolation only with independent
+  high-precision fixtures and explicit cap/root-order evidence (`geometry/intersect.ts`; issue #779).
+- **Folded distortion height curves.** Keep the UI guard until clipped-chief tracing and discontinuous image-height
+  curves have a validated interpretation; a fast or converged inversion alone does not make the resulting percentage
+  meaningful (`architecture/optics-engine.md`, Mirror And Folded Optical Paths).
+
 - **Stereographic, orthographic, polynomial projections.** Add when a real catalog lens demands them.
 - **`buildRayBundleForField()` shared bundle builder.** Vector-launch policy is still module-specific (bokeh,
   vignetting, pupil aberration, distortion grid, image height, visible and chromatic off-axis). Pupil-sampling
@@ -113,7 +121,7 @@ surface without manual browser triage.
 - **Reference to mimic.** `scripts/benchmark-optics-rendering.mjs` is the required template: build the TS entry via
   Vite SSR into a temp dir, then dynamic-import the emitted JS. A plain `.mjs` import of the TypeScript engine fails
   because the catalog uses Vite glob imports.
-- **Data-type contract.** `src/optics/chiefRayDiagnostics.ts` exports `getChiefRayDiagnostics()` (per-lens
+- **Data-type contract.** `src/optics/diagnostics/chiefRay.ts` exports `getChiefRayDiagnostics()` (per-lens
   `Record<ChiefRayStatus, number>`) and `resetChiefRayDiagnostics()`; counters populate as a side effect of
   `solveChiefRay`. Sweep: reset; for each visible lens call `buildLens()` once, take
   `computeFieldGeometryAtState().halfFieldDeg` at `focusT = zoomT = aberrationT = 0`, and solve at field fractions

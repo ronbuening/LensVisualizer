@@ -3,19 +3,24 @@
  */
 
 import type { ChromaticChannel, TiltPivot } from "../../types/optics.js";
-import { CHANNEL_WAVELENGTH_NM_2, channelIndexResolverForState2 } from "../chromatic/indexResolver.js";
-import { ZERO_LENS_MOVEMENT, type LensMovementState } from "../lensMovement.js";
+import { CHROMATIC_CHANNEL_WAVELENGTH_NM as CHANNEL_WAVELENGTH_NM } from "../chromatic/channels.js";
+import { channelIndexResolverForState } from "../chromatic/indexResolver.js";
+import { ZERO_LENS_MOVEMENT } from "./lensMovement.js";
+import type { LensMovementState } from "./lensMovement.js";
 import { formatCacheNumber } from "../math/numerics.js";
-import { intersectRayPlane, type RayPlaneIntersection } from "../geometry/intersectPlane.js";
+import { intersectRayPlane } from "../geometry/intersectPlane.js";
+import type { RayPlaneIntersection } from "../geometry/intersectPlane.js";
 import { directionFromMeridionalSlope, directionFromSkewSlope, dot, subtract } from "../math/vector.js";
 import type { Plane3, PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { bulkTransmissionForTrace } from "../trace/bulkAbsorption.js";
-import { traceEngineRay2 } from "../trace/rayAdapters.js";
+import { traceEngineRay } from "../trace/rayAdapters.js";
 import { stateWithZ } from "../state/preparedGeometry.js";
 import type { EngineTraceResult, TraceHit, TraceOptions } from "../trace/types.js";
 import { directionSlopes } from "../trace/utils.js";
-import { createPerspectivePose, type PerspectivePose } from "./pose.js";
-import { createSensorBasis, type SensorBasis } from "./sensorBasis.js";
+import { createPerspectivePose } from "./pose.js";
+import type { PerspectivePose } from "./pose.js";
+import { createSensorBasis } from "./sensorBasis.js";
+import type { SensorBasis } from "./sensorBasis.js";
 import type { SensorChiefSolve } from "./sensorTarget.js";
 
 /** Inputs required to bind tracing to one camera/lens movement state. */
@@ -150,7 +155,7 @@ export function tracePerspectiveRay(
   }
 
   const localInput = context.pose.cameraToLensRay(input);
-  const localTrace = traceEngineRay2(context.state, localInput, engineTraceOptions(context.state, options));
+  const localTrace = traceEngineRay(context.state, localInput, engineTraceOptions(context.state, options));
   const localReturnPoint = traceReturnPoint(localTrace, context.state);
   const cameraReturnPoint = context.pose.lensToCameraPoint(localReturnPoint);
   const cameraTrace = cameraTraceResult(localTrace, context.state, context.pose, cameraReturnPoint);
@@ -217,8 +222,8 @@ function engineTraceOptions(state: PreparedOpticalState, options: PerspectiveTra
   if (!channel) return engineOptions;
   return {
     ...engineOptions,
-    indexAtSurface: engineOptions.indexAtSurface ?? channelIndexResolverForState2(state, channel),
-    wavelengthNm: engineOptions.wavelengthNm ?? CHANNEL_WAVELENGTH_NM_2[channel],
+    indexAtSurface: engineOptions.indexAtSurface ?? channelIndexResolverForState(state, channel),
+    wavelengthNm: engineOptions.wavelengthNm ?? CHANNEL_WAVELENGTH_NM[channel],
   };
 }
 

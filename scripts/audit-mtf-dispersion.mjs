@@ -1,4 +1,4 @@
-import { createAnalysisRequest } from "../src/optics/analysis.ts";
+import { createAnalysisRequest } from "../src/optics/analysis.js";
 /**
  * Read-only audit of the nd/vd dispersion estimate behind spectral MTF. Run with the project's TS specifier hook:
  *
@@ -18,11 +18,11 @@ import { spawn } from "node:child_process";
 import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { wideOpenStopAtZoom } from "../src/optics/apertureStop.ts";
-import buildLens from "../src/optics/buildLens.ts";
-import { prepareRuntimeState } from "../src/optics/compat.ts";
-import { normalLinePdC, normalLinePgF } from "../src/optics/dispersion.ts";
-import { allEntries, evaluateSellmeier } from "../src/optics/glassCatalog.ts";
+import { wideOpenStopAtZoom } from "../src/optics/optics.js";
+import { buildLens } from "../src/optics/buildLens.js";
+import { prepareRuntimeState } from "../src/optics/optics.js";
+import { normalLinePdC, normalLinePgF } from "../src/optics/chromatic.js";
+import { allEntries, evaluateSellmeier } from "../src/optics/glassCatalog.js";
 import {
   assessMtfDataLimitations,
   assessMtfSupport,
@@ -30,10 +30,11 @@ import {
   computeMtf,
   computeMtfSteps,
   resolveMtfSpectrum,
-} from "../src/optics/mtf.ts";
-import { MTF_ESTIMATED_DISPERSION_MAX_VD } from "../src/optics/analysis/mtf/mtfConstants.ts";
-import { computeAnalysisFieldGeometryAtState, entrancePupilAtState, fopenAtZoom } from "../src/optics/optics.ts";
-import { LINE_NM } from "../src/optics/spectralLines.ts";
+} from "../src/optics/mtf.js";
+import { MTF_ESTIMATED_DISPERSION_MAX_VD } from "../src/optics/mtf.js";
+import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../src/optics/fieldGeometry.js";
+import { fopenAtZoomClamped as fopenAtZoom } from "../src/optics/optics.js";
+import { LINE_NM } from "../src/optics/chromatic.js";
 
 /** Changes in a charted MTF value treated as visible and as material, on the 0-1 scale. */
 const VISIBLE = 0.02;
@@ -174,9 +175,9 @@ function partialDispersionSensitivity(state, vdOf) {
 
 /** Elements with a refracting medium that are drawn (rear plates are left out, as the data warning does). */
 const drawnGlasses = (L, state) =>
-  L.data.elements.filter(
-    (element) => !element.synthetic && state.surfaces.some((s) => s.nd !== 1 && s.elemId === element.id),
-  );
+  state.lens.elements
+    .map((element) => element.source)
+    .filter((element) => !element.synthetic && state.surfaces.some((s) => s.nd !== 1 && s.elemId === element.id));
 
 /* ── census ── */
 
@@ -191,7 +192,7 @@ async function census() {
     let L;
     let state;
     try {
-      L = buildLens(data);
+      L = buildLens(data, { path: `src/lens-data/${file}` });
       state = prepareRuntimeState(L, 0, 0);
     } catch {
       continue;
@@ -201,7 +202,9 @@ async function census() {
     const onEstimate = new Set(
       state.lens.dispersion.flatMap((d, i) => (d.quality === "abbe" ? [state.surfaces[i].elemId] : [])),
     );
-    const estimatedAnywhere = L.data.elements.filter((element) => onEstimate.has(element.id));
+    const estimatedAnywhere = state.lens.elements
+      .map((element) => element.source)
+      .filter((element) => onEstimate.has(element.id));
     if (estimatedAnywhere.length) reach.lenses++;
     if (estimatedAnywhere.some((element) => element.dPgF === undefined)) reach.lensesWithoutDPgF++;
     reach.glasses += estimatedAnywhere.length;
@@ -249,7 +252,9 @@ async function census() {
     const estimated = glasses.filter((element) => estimatedIds.has(element.id));
     let longestFocalMm = 0;
     let sensitivity = 0;
-    const authoredVd = new Map(L.data.elements.map((element) => [element.id, element.vd]));
+    const authoredVd = new Map(
+      state.lens.elements.map((element) => element.source).map((element) => [element.id, element.vd]),
+    );
     for (const zoomT of L.isZoom ? [0, 1] : [0]) {
       const zoomState = zoomT === 0 ? state : prepareRuntimeState(L, 0, zoomT);
       const { focalLengthMm, perGlass } = partialDispersionSensitivity(zoomState, (id) => authoredVd.get(id));
@@ -438,7 +443,7 @@ async function degradeShard(shard, shards, outDir, limit) {
     lenses++;
     let L;
     try {
-      L = buildLens(data);
+      L = buildLens(data, { path: `src/lens-data/${file}` });
     } catch {
       continue;
     }
@@ -500,7 +505,11 @@ async function degradeShard(shard, shards, outDir, limit) {
           const elements = data.elements.map((element) =>
             ids.has(element.id) ? estimatedElement(element, vds.get(element.id), estimator, fit) : element,
           );
-          const degraded = prepareRuntimeState(buildLens({ ...data, elements }), 0, zoomT);
+          const degraded = prepareRuntimeState(
+            buildLens({ ...data, elements }, { path: `src/lens-data/${file}` }),
+            0,
+            zoomT,
+          );
           if (assessMtfSpectralData(degraded).blocker) return null;
           return chartChange(
             base,

@@ -1,20 +1,20 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../src/optics/buildLens.js";
-import { anchorLayoutToCamera } from "../../../src/optics/cameraLayout.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
+import { anchorLayoutToCamera } from "../../../src/optics/state/cameraLayout.js";
 import { computeCardinalElements } from "../../../src/optics/analysis/summary/cardinals.js";
 import { analysisRequestForLens } from "./testLensFixtures.js";
-import { doLayout } from "../../../src/optics/optics.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
 
-const PC_LENSES = Object.values(LENS_CATALOG).filter((data) => data.perspectiveControl != null);
+const PC_LENSES = Object.values(CATALOG_CONSTRUCTION_FIXTURES).filter((data) => data.perspectiveControl != null);
 
 describe("perspectiveControl lens data", () => {
   it("carries perspective-control config onto the built runtime lens", () => {
-    const L = buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]);
-    const ordinary = buildLens(LENS_CATALOG["nikkor-z-50f18s"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-pc-nikkor-19mm-f4e-ed"]);
+    const ordinary = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikkor-z-50f18s"]);
 
     expect(L.perspectiveControl?.shiftRangeMm).toEqual(
-      LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"].perspectiveControl?.shiftRangeMm,
+      CATALOG_CONSTRUCTION_FIXTURES["nikon-pc-nikkor-19mm-f4e-ed"].perspectiveControl?.shiftRangeMm,
     );
     expect(ordinary.perspectiveControl).toBeNull();
   });
@@ -33,11 +33,11 @@ describe("perspectiveControl lens data", () => {
     }
 
     // Shift-only designs omit the pivot rather than inventing one.
-    expect(LENS_CATALOG["nikon-pc-nikkor-35mm-f28"].perspectiveControl?.tiltPivot).toBeUndefined();
+    expect(CATALOG_CONSTRUCTION_FIXTURES["nikon-pc-nikkor-35mm-f28"].perspectiveControl?.tiltPivot).toBeUndefined();
   });
 
   it("places the Fujifilm patent-guided tilt center at the reference image-side principal point", () => {
-    const L = buildLens(LENS_CATALOG["fujifilm-gf-30mm-f56-ts"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["fujifilm-gf-30mm-f56-ts"]);
     const reference = doLayout(0, 0, L);
     const cardinals = computeCardinalElements(analysisRequestForLens(L, 0, 0, 0), {
       zPos: reference.z,
@@ -46,7 +46,9 @@ describe("perspectiveControl lens data", () => {
     const pivot = L.perspectiveControl!.tiltPivot!;
 
     expect(pivot.basis).toBe("patent-principal-point-guidance");
-    expect(pivot.zOffsetFromImagePlaneMm).toBe(-LENS_CATALOG["fujifilm-gf-30mm-f56-ts"].focalLengthDesign!);
+    expect(pivot.zOffsetFromImagePlaneMm).toBe(
+      -CATALOG_CONSTRUCTION_FIXTURES["fujifilm-gf-30mm-f56-ts"].focalLengthDesign!,
+    );
     expect(pivot.zOffsetFromImagePlaneMm).toBeCloseTo(cardinals!.points.rearPrincipal.z - reference.imgZ, 3);
     expect(pivot.zOffsetFromImagePlaneMm).not.toBeCloseTo(reference.z.at(-1)! - reference.imgZ, 3);
   });

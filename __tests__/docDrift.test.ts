@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { evaluateLensDataSource } from "../scripts/lens-data-ast.mjs";
-import buildLens from "../src/optics/buildLens.js";
+import { buildFixtureLens as buildLens } from "./src/optics/constructionFixtures.js";
 import type { LensData } from "../src/types/optics.js";
 
 const repoRoot = fileURLToPath(new URL("..", import.meta.url));
@@ -155,7 +155,9 @@ describe("doc drift guards", () => {
     const excludedBasenames = [
       "changelogData.ts",
       "glassCatalogData.ts",
-      ...readdirSync(join(repoRoot, "src", "optics", "glassCatalogEntries")).filter((name) => name.endsWith(".ts")),
+      ...readdirSync(join(repoRoot, "src", "optics", "chromatic", "glassCatalogEntries")).filter((name) =>
+        name.endsWith(".ts"),
+      ),
     ];
 
     for (const basename of excludedBasenames) {

@@ -1,7 +1,6 @@
 /**
  * Lens-data converter library — converts the text of a lens or teleconverter file to V2 text, or to V1 text, with a
- * report of what moved or dropped, or refuses it with the reason (OPTICS_ENGINE_REWRITE_SPEC.md, Ingest, conversion
- * and comments; S2.P3.T2 for the V1 direction).
+ * report of what moved or dropped, or refuses it with the reason (see agent_docs/architecture/optics-engine.md).
  *
  * One conversion:
  * 1. reads the file without running it (`read.mjs`) and ingests its value with source paths, through the engine's
@@ -15,7 +14,7 @@
  * 5. checks the bytes it would write: every number token where the printer put it; every comment of the source once,
  *    header included, as written or with its moved-from note; every comment on the node and in the placement the
  *    placer gave it, as the printed text reads and as formatting leaves it, so a second conversion carries it nowhere
- *    else; and an ingest of the result equal to the source's prescription under the fingerprint's rules.
+ *    else; and an ingest of the result equal to the source's prescription under canonical semantic equality.
  *
  * The file around the object keeps its shape: everything before the statement that declares the exported const is
  * kept byte for byte, except the type import, which names the target version's type (`types/lensDataV2.js`; going
@@ -45,7 +44,7 @@ import { fileURLToPath } from "node:url";
 import * as prettier from "prettier";
 import ts from "typescript";
 import { parseLensDataSource } from "../lens-data-ast.mjs";
-import { loadLensDataConversion } from "../lens-summaries.mjs";
+import { loadLensDataConversion } from "./load.mjs";
 import { commentMisplaced, commentNotCarried, commentReplaced, movedNote, placeComments } from "./comments.mjs";
 import { printLensDataObject } from "./print.mjs";
 import { readLensDataFile } from "./read.mjs";

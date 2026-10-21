@@ -2,7 +2,8 @@
 import { useMemo } from "react";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { MtfAperture, MtfMethod, MtfRequestOptions, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
-import { createAnalysisRequest, type AnalysisComputationContext } from "../../../optics/analysis.js";
+import { createAnalysisRequest } from "../../../optics/analysis.js";
+import type { AnalysisComputationContext } from "../../../optics/analysis.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { Theme } from "../../../types/theme.js";
 import { assessMtfDataLimitations, assessMtfSupport, resolveMtfSpectrum } from "../../../optics/mtf.js";
@@ -107,7 +108,7 @@ export default function MtfTab({
       }),
     [preparedState, preferences.spectrum, spectrum.spectrum, support.referenceWavelengthNm, shown],
   );
-  const [warningAcknowledged, acknowledgeWarning] = useMtfDataWarning(L.data.key, dataLimitations);
+  const [warningAcknowledged, acknowledgeWarning] = useMtfDataWarning(L.source.key, dataLimitations);
   // Stop-down scales the pupil and stop radii by N/8, as the aperture control does.
   const compareF8Available = !!fNumber && fNumber < COMPARISON_F_NUMBER - 0.05 && L.maxFstop >= COMPARISON_F_NUMBER;
   const comparisonJob = useMemo(() => {

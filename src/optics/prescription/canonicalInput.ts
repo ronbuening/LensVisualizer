@@ -1,10 +1,9 @@
-/** Shared input boundary for compilation and composition; preserves authored V1 refusals before ingest. */
-import type { LensData, LensDataInput } from "../../types/optics.js";
+/** Shared input boundary for compilation and composition; accepts authored V2 files and canonical prescriptions. */
+import type { LensData } from "../../types/optics.js";
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-import type { CanonicalLens, IngestedPrescription } from "./canonical.js";
-import { ingestLens, isV1File } from "./ingestV2.js";
+import type { CanonicalLens, IngestedPrescription, IngestRequest } from "./canonical.js";
+import { ingestLens } from "./ingestV2.js";
 import { associateCanonical, canonicalForView } from "./identity.js";
-import { validateLensInput } from "./validate/index.js";
 
 /**
  * Refuse validation errors before ingest or compiled publication.
@@ -20,16 +19,22 @@ export function assertValidLensData(data: Pick<LensData, "key">, validationError
     );
 }
 /**
- * Resolve a canonical association or read an authored file with V1 validation first.
+ * Resolve a canonical association or read an authored V2 file.
  *
- * @param data - authored lens file or associated compatibility view
+ * @param data - authored lens file or associated canonical prescription
  * @returns unexpanded canonical prescription and provenance
  */
-export function canonicalInput(data: LensData | LensDataV2Input): IngestedPrescription<CanonicalLens> {
-  if (data === null || typeof data !== "object" || isV1File(data)) assertValidLensData(data, validateLensInput(data));
-  const cached = canonicalForView(data);
+export function canonicalInput(
+  data: LensDataV2Input | CanonicalLens,
+  request?: IngestRequest,
+): IngestedPrescription<CanonicalLens> {
+  if (data && typeof data === "object" && "kind" in data && data.kind === "lens") {
+    return canonicalForView(data) ?? { prescription: data, provenance: { format: 2, defaulted: [], ignored: {} } };
+  }
+  const cached = data && typeof data === "object" ? canonicalForView(data) : undefined;
   if (cached) return cached;
-  const ingested = ingestLens(data as LensDataInput | LensDataV2Input);
+  const ingested = ingestLens(data as LensDataV2Input, request);
   associateCanonical(data, ingested);
+  associateCanonical(ingested.prescription, ingested);
   return ingested;
 }

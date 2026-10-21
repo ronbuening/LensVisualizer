@@ -1,8 +1,8 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../optics/constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../src/optics/buildLens.js";
+import { buildFixtureLens as buildLens } from "../optics/constructionFixtures.js";
 import { zoomIndexToT } from "../../../src/optics/state/stationTables.js";
-import { thick } from "../../../src/optics/layout.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import { thick } from "../../../src/optics/state/layout.js";
 
 /**
  * Data contract for explicit focus keyframes.
@@ -16,7 +16,7 @@ import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 describe("focus keyframes", () => {
   it("reproduces every authored keyframe exactly through the runtime interpolation path", () => {
-    const keyframed = Object.values(LENS_CATALOG).filter((data) => data.focusPositions !== undefined);
+    const keyframed = Object.values(CATALOG_CONSTRUCTION_FIXTURES).filter((data) => data.focusPositions !== undefined);
     expect(keyframed.length).toBeGreaterThan(0);
 
     const mismatches: string[] = [];

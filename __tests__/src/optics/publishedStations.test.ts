@@ -1,6 +1,7 @@
+import { constructionFixtureData } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import { thick } from "../../../src/optics/optics.js";
-import { attachTeleconverter } from "../../../src/optics/prescription/teleconverter.js";
+import { thickOrZero as thick } from "../../../src/optics/state/runtimeAdapters.js";
+import { attachFixtureTeleconverter as attachTeleconverter } from "./constructionFixtures.js";
 import {
   isOnPublishedStation,
   nearestPublishedStation,
@@ -8,8 +9,8 @@ import {
   publishedStationAvailability,
   publishedStationGrid,
   publishedZoomStations,
-} from "../../../src/optics/publishedStations.js";
-import validateLensData from "../../../src/optics/validateLensData.js";
+} from "../../../src/optics/state/publishedStations.js";
+import validateLensData from "../../../src/optics/prescription/validate/index.js";
 import { focalLengthToZoomT, zoomTToFocalLength } from "../../../src/utils/state/zoomConversion.js";
 import type { ZoomVarRange } from "../../../src/types/optics.js";
 import {
@@ -187,7 +188,7 @@ describe("published stations from lens data alone", () => {
 describe("published stations of a converter-mounted system", () => {
   it("keeps the host's stations and reports the pairing", () => {
     const hostData = teleconverterZoomHostData({ publishedStations: { zoom: [0, 2] } });
-    const composedData = attachTeleconverter(hostData, teleconverterFixture());
+    const composedData = constructionFixtureData(attachTeleconverter(hostData, teleconverterFixture()));
     const host = build(hostData);
     const composed = build(composedData);
 

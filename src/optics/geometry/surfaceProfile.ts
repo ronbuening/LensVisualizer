@@ -42,7 +42,7 @@
 import type { AsphericCoefficients, SurfaceData } from "../../types/optics.js";
 import { ASPHERIC_POLYNOMIAL_TERMS } from "../../types/asphericSchema.js";
 import type { AsphericPolynomialDescriptor } from "../../types/asphericSchema.js";
-import { VECTOR_EPSILON } from "../constants.js";
+import { VECTOR_EPSILON } from "../math/constants.js";
 import { normalize } from "../math/vector.js";
 import type { SagSlope, SurfaceProfile, Vec3 } from "../types.js";
 

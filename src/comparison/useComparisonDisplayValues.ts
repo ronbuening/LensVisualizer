@@ -9,7 +9,7 @@
 import { useMemo } from "react";
 import { effectiveFNumber } from "../optics/optics.js";
 import { createAnalysisRequest, computeFocusEFL } from "../optics/analysis.js";
-import { prepareRuntimeState } from "../optics/compat.js";
+import { prepareRuntimeState } from "../optics/optics.js";
 import { sharedFNumber } from "./comparisonSliders.js";
 import { isComparisonOk, type ComparisonLensesResult } from "./useComparisonMode.js";
 import type { AperturePairResult, FocusPairResult, ZoomPairResult } from "./comparisonSliders.js";

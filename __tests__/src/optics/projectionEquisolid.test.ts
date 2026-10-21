@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 import {
   projectionFieldAngleForImageHeight,
   projectionImageHeightForAngle,
-  type ProjectionReference,
-} from "../../../src/optics/projection.js";
+} from "../../../src/optics/field/projection.js";
+import type { ProjectionReference } from "../../../src/optics/field/projection.js";
 
 const EQUISOLID: ProjectionReference = {
   kind: "fisheye-equisolid",

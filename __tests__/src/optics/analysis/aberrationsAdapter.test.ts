@@ -1,23 +1,29 @@
+import { createAnalysisComputationContext } from "../../../../src/optics/analysis/analysisContext.js";
 import {
-  createAnalysisComputationContext,
   summarizeChromaticFieldFocus,
-  type FieldCurvatureFieldResult,
-  type FieldCurvatureResult,
   computeFieldCurvature,
   computeFieldCurvatureBundle,
-  createAnalysisRequest,
+} from "../../../../src/optics/analysis/aberration/fieldCurvature.js";
+import type {
+  FieldCurvatureFieldResult,
+  FieldCurvatureResult,
+} from "../../../../src/optics/analysis/aberration/types.js";
+import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
+import {
   computeComaAnalysis,
   computeMeridionalComa,
   computeSagittalComa,
   computeComaPointCloudPreview,
+} from "../../../../src/optics/analysis/aberration/coma.js";
+import {
   computeSAProfile,
   computeSphericalAberration,
   computeSphericalAberrationBlurCharacter,
-} from "../../../../src/optics/analysis.js";
+} from "../../../../src/optics/analysis/aberration/spherical.js";
 import { analysisRequestForLens } from "../testLensFixtures.js";
 import { describe, expect, it } from "vitest";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
-import { computeAnalysisFieldGeometryAtState } from "../../../../src/optics/optics.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
+import { computeAnalysisFieldGeometryAtState } from "../../../../src/optics/state/fieldAdapters.js";
 import { apertureAt, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 
 describe("aberration request contracts", () => {

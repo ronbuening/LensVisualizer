@@ -29,7 +29,7 @@ import { computeVignettingCurve } from "./vignetting/vignetting.js";
  *
  * @returns grouped synchronous functions for request-facing analysis work
  */
-export const analysisJobs2 = {
+export const analysisPreviewJobs = {
   computeDistortionCurve(request: AnalysisRequest) {
     return computeDistortionCurve(request);
   },
@@ -74,7 +74,7 @@ export const analysisJobs2 = {
  *
  * @returns grouped synchronous functions bound by explicit request inputs
  */
-export const analysisJobsForState2 = {
+export const analysisJobs = {
   computeSphericalAberration(request: AnalysisRequest) {
     return computeSphericalAberration(request);
   },

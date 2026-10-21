@@ -1,25 +1,18 @@
 import { analysisRequestAt } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import { computeBokehPreviewPair } from "../../../src/optics/analysis/bokeh/bokeh.js";
-import {
-  computeComaAnalysis,
-  computeFieldCurvature,
-  computeSAProfile,
-  computeSphericalAberration,
-} from "../../../src/optics/aberrationAnalysis.js";
-import {
-  computeAnalysisFieldGeometryAtState,
-  computeChromaticRayFanSpread,
-  doLayout,
-  entrancePupilAtState,
-  thick,
-  traceRayChromatic,
-} from "../../../src/optics/optics.js";
-import { computeBothPupilAberrationProfiles } from "../../../src/optics/analysis.js";
+import { computeComaAnalysis } from "../../../src/optics/analysis/aberration/coma.js";
+import { computeFieldCurvature } from "../../../src/optics/analysis/aberration/fieldCurvature.js";
+import { computeSAProfile, computeSphericalAberration } from "../../../src/optics/analysis/aberration/spherical.js";
+import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../../../src/optics/state/fieldAdapters.js";
+import { computeChromaticRayFanSpread } from "../../../src/optics/chromatic/chromaticTrace.js";
+import { doLayoutForRuntimeLens as doLayout, thickOrZero as thick } from "../../../src/optics/state/runtimeAdapters.js";
+import { traceRayChromatic } from "../../../src/optics/trace/rayAdapters.js";
+import { computeBothPupilAberrationProfiles } from "../../../src/optics/analysis/pupils/pupilAberration.js";
 import MinoltaVarisoftRaw from "../../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.js";
 import type { ChromaticChannel, RuntimeLens } from "../../../src/types/optics.js";
-import { ingestLens } from "../../../src/optics/buildLens.js";
-import { toLensDataInput } from "../../../src/optics/prescription/toLensData.js";
+import { ingestLens } from "../../../src/optics/lensDataConversion.js";
+import { toLensDataInput } from "../../../src/optics/prescription/v1/toLensData.js";
 import { build } from "./testLensFixtures.js";
 
 /**

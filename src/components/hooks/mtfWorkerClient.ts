@@ -2,7 +2,8 @@
  * Worker boundary for MTF. Superseded requests are cancelled cooperatively, so the worker keeps
  * its built lens; only completed result curves are retained, under a 64 MiB budget.
  */
-import { canonicalLensFromRuntime, type CanonicalLens, type IngestedPrescription } from "../../optics/buildLens.js";
+import { canonicalLensFromRuntime } from "../../optics/buildLens.js";
+import type { CanonicalLens, IngestedPrescription } from "../../optics/buildLens.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { MtfOptions, MtfResult } from "../../types/mtf.js";
 

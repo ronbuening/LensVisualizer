@@ -1,8 +1,8 @@
 /**
- * The lens-data converter's command line (`scripts/lens-data-convert/cli.mjs`, S2.P3.T2), run on synthetic files in
+ * The lens-data converter's command line (`scripts/lens-data-convert/cli.mjs`), run on synthetic files in
  * a temp directory: its arguments and exit codes, the three modes, inputs left as they are, each kind of refusal with
  * the other inputs still reported, collisions, `--output`, interrupted writes and signals, line endings, the
- * type-check where a file will be written, and V2 → V1 → V2 through the S2.P2.T1 fixture pairs.
+ * type-check where a file will be written, and V2 → V1 → V2 through the V1/V2 feature fixture pairs.
  */
 
 import * as nodeFs from "node:fs";
@@ -14,7 +14,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import { USAGE, runConversion, type ConversionRun } from "../../scripts/lens-data-convert/cli.mjs";
 import { convertLensDataSource, type ConversionOptions } from "../../scripts/lens-data-convert/convert.mjs";
 import { evaluateLensDataSource } from "../../scripts/lens-data-ast.mjs";
-import { ingestLens, ingestTeleconverter } from "../../src/optics/prescription/ingestV2.js";
+import { ingestLens, ingestTeleconverter } from "../../src/optics/lensDataConversion.js";
 import { FIXTURE_PAIRS } from "../src/optics/prescription/ingestV2Fixtures.js";
 import { PRIME_MEMBERS, V2_SOURCE_FILE, v1LensFile } from "./convertLensDataFixtures.js";
 
@@ -618,7 +618,7 @@ describe("line endings", () => {
 });
 
 describe("V2 → V1 → V2", () => {
-  it("gives every S2.P2.T1 pair's prescription back through V1 text that type-checks, and back through V2", async () => {
+  it("gives every V1/V2 feature pair's prescription back through V1 text that type-checks, and back through V2", async () => {
     const base = temp();
     const v2 = join(base, "v2");
     for (const pair of FIXTURE_PAIRS) {

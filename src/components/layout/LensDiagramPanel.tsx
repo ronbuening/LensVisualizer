@@ -39,8 +39,8 @@ import LensGroupMovementOverlay from "../display/overlays/LensGroupMovementOverl
 import LensDiagramErrorState from "./lensDiagram/LensDiagramErrorState.js";
 import LensDiagramLoadedState from "./lensDiagram/LensDiagramLoadedState.js";
 import type { RuntimeLens } from "../../types/optics.js";
-import { foldedHitOrderLabelsForDisplay } from "../../optics/foldedPathDisplay.js";
-import { isHeavyLensForRayWork } from "../../optics/raySampling.js";
+import { foldedHitOrderLabelsForDisplay } from "../../optics/diagramGeometry.js";
+import { isHeavyLensForRayWork } from "../../optics/optics.js";
 import { normalizePanelId, selectedElementKeyForPanel } from "../../types/state.js";
 import { lensSystemKey } from "../../utils/catalog/teleconverterCatalog.js";
 

@@ -1,4 +1,4 @@
-import type { BokehPreviewPair } from "../../../optics/aberrationAnalysis.js";
+import type { BokehPreviewPair } from "../../../optics/analysis.js";
 import type { Theme } from "../../../types/theme.js";
 import BokehPreviewGrid from "./BokehPreviewGrid.js";
 

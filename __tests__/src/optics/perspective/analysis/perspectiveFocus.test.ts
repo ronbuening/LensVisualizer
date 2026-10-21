@@ -1,19 +1,16 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../../constructionFixtures.js";
 /** Fixed-sensor request contract and ordered perspective diagnostics. */
 import { describe, expect, it } from "vitest";
 import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
-import buildLens from "../../../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
-import {
-  computePerspectiveFocusAnalysis,
-  type PerspectiveFocusOptions,
-} from "../../../../../src/optics/perspective/analysis/focus.js";
-import {
-  createPerspectiveTraceContext,
-  type PerspectiveTraceContext,
-} from "../../../../../src/optics/perspective/trace.js";
-import { LENS_CATALOG } from "../../../../../src/utils/catalog/lensCatalog.js";
+import { buildFixtureLens as buildLens } from "../../constructionFixtures.js";
+import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
+import { computePerspectiveFocusAnalysis } from "../../../../../src/optics/perspective/analysis/focus.js";
+import type { PerspectiveFocusOptions } from "../../../../../src/optics/perspective/analysis/focus.js";
+import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
+import type { PerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
+import {} from "../../../../../src/utils/catalog/lensCatalog.js";
 
-const L = buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]);
+const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-pc-nikkor-19mm-f4e-ed"]);
 const STATE = prepareRuntimeState(L, 0, 0);
 const PUPIL_POINTS = [
   { u: 0, v: 0, weight: 1 },

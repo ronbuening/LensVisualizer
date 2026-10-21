@@ -22,10 +22,10 @@ flowchart LR
 - Direct source files: 1
 - Direct subfolders: 0
 - Main outbound areas: src/optics/field, src/optics/types.ts
-- External consumers: src/optics/compat.ts, src/optics/field
+- External consumers: src/optics/field, src/optics/fieldGeometry.ts
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `chiefRay.ts` | Chief Ray helper module | src/optics/field, src/optics/types.ts | src/optics/compat.ts, src/optics/field | ChiefRayStatus2, ChiefRayDiagnostics2, reportChiefRayFallback, getChiefRayDiagnostics2, resetChiefRayDiagnostics2 |
+| `chiefRay.ts` | Chief Ray helper module | src/optics/field, src/optics/types.ts | src/optics/field, src/optics/fieldGeometry.ts | ChiefRayStatus, ChiefRayDiagnostics, reportChiefRayFallback, getChiefRayDiagnostics, resetChiefRayDiagnostics |

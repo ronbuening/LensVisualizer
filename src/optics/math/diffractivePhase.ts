@@ -5,7 +5,7 @@
  * paraxial construction and exact generalized-Snell tracing share one coefficient convention.
  */
 
-import { LINE_NM } from "../spectralLines.js";
+import { LINE_NM } from "../chromatic/spectralLines.js";
 import type { DiffractivePhaseSurface } from "../../types/optics.js";
 import type { CompiledDiffractivePhase, Vec3 } from "../types.js";
 import { add, dot, normalize, scale, subtract } from "./vector.js";

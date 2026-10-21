@@ -1,4 +1,4 @@
-import type { DispersionQuality } from "../../optics/dispersion.js";
+import type { DispersionQuality } from "../../optics/chromatic.js";
 import type { Theme } from "../../types/theme.js";
 
 export const CHROMATIC_QUALITY_BADGE_LABEL: Record<DispersionQuality, string> = {

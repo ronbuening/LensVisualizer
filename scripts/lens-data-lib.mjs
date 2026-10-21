@@ -9,7 +9,7 @@ import {
 } from "./build-metadata-lib.mjs";
 import { evaluateLensDataSource, readLensIdentity } from "./lens-data-ast.mjs";
 import { runConversion } from "./lens-data-convert/cli.mjs";
-import { loadLensDataConversion } from "./lens-summaries.mjs";
+import { loadPrescriptionIngest } from "./lens-summaries.mjs";
 import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
 
 /** Derive a URL-safe maker slug from a maker field or lens display name. */
@@ -24,7 +24,7 @@ function deriveMakerSlug(nameOrMaker, makerField) {
 }
 
 /**
- * Read the identity fields of a lens data file of either version from its source, without running it.
+ * Read the identity fields of a V2 lens data file from its source, without running it.
  *
  * @param {string} content - the file's text
  * @param {string} [fileName] - its path, for messages
@@ -68,8 +68,7 @@ function analysisRelativePathForDataPath(relativeDataPath) {
 }
 
 /**
- * Rewrite a lens file's type imports to match its location under src/lens-data: `types/optics.js` for a V1 file,
- * `types/lensDataV2.js` for a V2 one.
+ * Normalize type imports for organizer arrivals, including archived V1 files before conversion.
  */
 function normalizeLensDataTypesImport(content, filePath) {
   const relativeDepth = filePath.split("/src/lens-data/")[1]?.split("/").length ?? 1;
@@ -245,7 +244,7 @@ async function collectLensDataAsync({
 
 /** Reject an unconverted catalog before metadata creates or writes any output. */
 async function assertV2Catalog(lensDataDir) {
-  const { lensDataVersion } = await loadLensDataConversion();
+  const { lensDataVersion } = await loadPrescriptionIngest();
   const files = readdirSync(lensDataDir, { recursive: true })
     .filter((file) => typeof file === "string" && /\.(data|teleconverter)\.ts$/.test(file))
     .sort();

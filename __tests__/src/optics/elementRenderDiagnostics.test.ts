@@ -1,9 +1,10 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import { computeElementRenderDiagnostics } from "../../../src/optics/diagramGeometry.js";
-import buildLens from "../../../src/optics/buildLens.js";
+import { computeElementRenderDiagnostics } from "../../../src/optics/diagram/runtimeDiagramAdapter.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import { sharedMaterialBand } from "../../../src/optics/geometry/apertureBands.js";
-import { doLayout, renderSag } from "../../../src/optics/optics.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { renderSag } from "../../../src/optics/diagram/runtimeSurface.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
 const MATERIAL_TRIM_TOLERANCE_MM = 0.25;
@@ -21,7 +22,7 @@ const catalogDiagnosticsByKey = new Map<string, CatalogDiagnostics>();
 function catalogDiagnostics(key: string): CatalogDiagnostics {
   let entry = catalogDiagnosticsByKey.get(key);
   if (!entry) {
-    const L = buildLens(LENS_CATALOG[key]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[key]);
     const layout = doLayout(0, 0, L);
     entry = { L, diagnostics: computeElementRenderDiagnostics(L, layout.z) };
     catalogDiagnosticsByKey.set(key, entry);
@@ -67,7 +68,7 @@ describe("element render diagnostics", () => {
   it("does not hide material production-lens semi-diameter trims", () => {
     const offenders: string[] = [];
 
-    for (const key of Object.keys(LENS_CATALOG)) {
+    for (const key of Object.keys(CATALOG_CONSTRUCTION_FIXTURES)) {
       const { diagnostics } = catalogDiagnostics(key);
       for (const diagnostic of diagnostics) {
         for (const surface of [diagnostic.front, diagnostic.rear]) {
@@ -87,7 +88,7 @@ describe("element render diagnostics", () => {
   it("does not leave rendered cross-gap collisions in production lenses", () => {
     const offenders: string[] = [];
 
-    for (const key of Object.keys(LENS_CATALOG)) {
+    for (const key of Object.keys(CATALOG_CONSTRUCTION_FIXTURES)) {
       const overlap = maxRenderedGapOverlapMm(key);
       if (overlap > 1e-6) offenders.push(`${key}: ${overlap.toFixed(6)} mm`);
     }

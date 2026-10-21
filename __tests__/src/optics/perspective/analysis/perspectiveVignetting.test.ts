@@ -1,24 +1,23 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../../constructionFixtures.js";
 import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
+import { buildFixtureLens as buildLens } from "../../constructionFixtures.js";
+import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
 import {
   computePerspectiveVignettingAnalysis,
-  createAreaWeightedCircularPupilPoints,
   integratePerspectiveVignettingRays,
   perspectiveExitPupilPlane,
   perspectiveRayGeometricFactor,
   perspectiveVignettingRayContribution,
-  type PerspectiveVignettingRayContribution,
 } from "../../../../../src/optics/perspective/analysis/vignetting.js";
+import { createAreaWeightedCircularPupilPoints } from "../../../../../src/optics/perspective/analysis/shared.js";
+import type { PerspectiveVignettingRayContribution } from "../../../../../src/optics/perspective/analysis/vignetting.js";
 import { dot, subtract } from "../../../../../src/optics/math/vector.js";
-import {
-  createPerspectiveTraceContext,
-  type PerspectiveTraceContext,
-} from "../../../../../src/optics/perspective/trace.js";
-import { LENS_CATALOG } from "../../../../../src/utils/catalog/lensCatalog.js";
+import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
+import type { PerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
+import {} from "../../../../../src/utils/catalog/lensCatalog.js";
 
-const L = buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]);
+const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-pc-nikkor-19mm-f4e-ed"]);
 const STATE = prepareRuntimeState(L, 0, 0);
 
 function context(shiftMm = 0, tiltDeg = 0): PerspectiveTraceContext {
@@ -198,6 +197,20 @@ describe("perspective vignetting analysis", () => {
     expect(shifted.zeroMovementCenterReference.cacheKey).not.toContain("active=");
     expect(changedAperture.zeroMovementCenterReference).not.toBe(shifted.zeroMovementCenterReference);
     expect(changedQuadrature.zeroMovementCenterReference).not.toBe(shifted.zeroMovementCenterReference);
+  });
+
+  it("recomputes an identical center reference after aperture-history eviction", () => {
+    const camera = context();
+    const options = { sensorUvs: [], pupilPoints: createAreaWeightedCircularPupilPoints(1, 4) } as const;
+    const first = computePerspectiveVignettingAnalysis(request(camera), options).zeroMovementCenterReference;
+    const snapshot = structuredClone(first);
+    for (let step = 1; step <= 80; step++) {
+      computePerspectiveVignettingAnalysis(request(camera, L.stopPhysSD * (1 - step / 100)), options);
+    }
+    const recomputed = computePerspectiveVignettingAnalysis(request(camera), options).zeroMovementCenterReference;
+    expect(recomputed).not.toBe(first);
+    expect(recomputed).toStrictEqual(snapshot);
+    expect(first).toStrictEqual(snapshot);
   });
 
   it("retains out-of-format signed requests instead of filtering them", () => {

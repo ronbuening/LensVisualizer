@@ -7,8 +7,9 @@
  * stop center.
  */
 
-import { projectionValueAtZoom2 } from "../field/projection.js";
-import { solveScalarRoot, type ScalarRootSolveResult } from "../math/rootSolve.js";
+import { projectionValueAtZoom } from "../field/projection.js";
+import { solveScalarRoot } from "../math/rootSolve.js";
+import type { ScalarRootSolveResult } from "../math/rootSolve.js";
 import { add, cross, dot, length, normalize, scale, subtract } from "../math/vector.js";
 import type { Ray3, Vec3 } from "../types.js";
 import type { PerspectiveTraceContext, PerspectiveTraceResult } from "./trace.js";
@@ -250,8 +251,8 @@ export function isPerspectiveDirectionInsideProjectionDomain(
     return fieldAngleDeg < Math.min(89, authoredLimit + 1e-9);
   }
 
-  const fullField = projectionValueAtZoom2(projection.fullFieldDeg, zoomT);
-  const maxTraceField = projectionValueAtZoom2(projection.maxTraceFieldDeg, zoomT);
+  const fullField = projectionValueAtZoom(projection.fullFieldDeg, zoomT);
+  const maxTraceField = projectionValueAtZoom(projection.maxTraceFieldDeg, zoomT);
   const limit = Math.min(fullField !== undefined ? fullField / 2 : 175, maxTraceField ?? 175, 175);
   return Number.isFinite(fieldAngleDeg) && fieldAngleDeg <= limit + 1e-9;
 }

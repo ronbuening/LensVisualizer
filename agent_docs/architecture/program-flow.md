@@ -63,8 +63,8 @@ flowchart TD
   Panel --> PanelOverlays[src/components/hooks/useOverlayState.ts]
 
   Compute --> BuildLens[src/optics/buildLens.ts]
-  BuildLens --> Validate[src/optics/validateLensData.ts]
-  BuildLens --> Glass[src/optics/glassCatalog.ts and dispersion.ts]
+  BuildLens --> Validate[src/optics/prescription/validate/]
+  BuildLens --> Glass[src/optics/chromatic/]
   BuildLens --> Runtime[RuntimeLens]
   Runtime --> Path[opticalPath imagePlane folded metadata]
   Runtime --> Layout[src/optics/optics.ts doLayout]
@@ -96,41 +96,30 @@ flowchart TD
 
 ## Optics And Analysis Engine
 
-Most optical code is pure and receives the runtime lens object plus current viewer state. Analysis tabs compute from
-slider state at render time instead of caching slider-dependent results in `buildLens()`.
+Analysis families take an `AnalysisRequest`; field and trace helpers take prepared geometry, and UI adapters take
+`RuntimeLens`. See `optics-engine.md` for ownership, physical conventions and analysis availability.
 
 ```mermaid
 flowchart TD
-  Runtime[RuntimeLens] --> Inputs[Viewer state: focus zoom aperture field wavelength movement]
-  Inputs --> Projection[src/optics/projection.ts]
-  Inputs --> Field[src/optics/fieldGeometry.ts]
-  Inputs --> Movement[src/optics/lensMovement.ts]
-  Inputs --> Prepared[src/optics/compat.ts prepareRuntimeState]
-  Runtime --> Prepared
-
-  Projection --> TraceCore[src/optics/rayTrace.ts]
-  Field --> TraceCore
-  Runtime --> TraceCore
-  TraceCore --> Exact[src/optics/internal exact surface tracing]
-  Exact --> Intersections[src/optics/internal surface intersection]
-  Runtime --> Folded[folded optical path image plane annular masks]
-  Folded --> Exact
-  Intersections --> RayResults[Ray paths statuses pupils focal data]
-
-  Prepared --> AnalysisJobs[src/optics/compat.ts analysisJobsForState2]
-  Inputs --> AnalysisJobs
-  Projection --> AnalysisJobs
-  Field --> AnalysisJobs
-  AnalysisJobs --> Aberrations[src/optics/aberration and aberrationAnalysis.ts]
-  AnalysisJobs --> Distortion[src/optics/analysis/distortion/distortion.ts]
-  AnalysisJobs --> Vignetting[src/optics/vignetteAnalysis.ts]
-  AnalysisJobs --> Pupils[src/optics/pupilAberration.ts]
-  AnalysisJobs --> Bokeh[src/optics/aberration/bokeh.ts]
-  AnalysisJobs --> Cardinal[src/optics/cardinalElements.ts]
-  AnalysisJobs --> Groups[src/optics/groupMovement.ts]
-
-  Aberrations & Distortion & Vignetting & Pupils & Bokeh & Cardinal & Groups --> DrawerTabs[src/components/display analysis tabs]
-  RayResults --> DiagramLayers[Diagram ray layers and overlays]
-  Movement --> DiagramLayers
-  DrawerTabs --> Renderers[src/components/layout/lensDiagram/analysisTabRenderers.tsx]
+  V2[Authored V2 file] --> Ingest[src/optics/prescription/ingestV2.ts]
+  Ingest --> Canonical[Canonical prescription and provenance]
+  Canonical --> Compile[src/optics/prescription/compile.ts]
+  Compile --> Validate[src/optics/prescription/validate/]
+  Compile --> Glass[src/optics/chromatic/]
+  Compile --> Compiled[CompiledLens]
+  Compiled --> Runtime[RuntimeLens read model]
+  Compiled --> Prepared[src/optics/state/preparedGeometry.ts]
+  Runtime --> Adapter[src/optics/buildLens.ts prepareRuntimeState]
+  Controls[Focus zoom aberration controls] --> Adapter
+  Adapter --> Prepared
+  Prepared --> TraceGeometry[TraceGeometry]
+  TraceGeometry --> Trace[src/optics/trace/]
+  Trace --> Intersect[src/optics/geometry/intersect.ts]
+  Intersect --> Rays[Ray paths and statuses]
+  Prepared --> Request[src/optics/analysis/request.ts]
+  Aperture[Aperture field sampling and optional pose] --> Request
+  Request --> Jobs[src/optics/analysis/analysisJobs.ts]
+  Jobs --> Families[src/optics/analysis/ and perspective/analysis/]
+  Families --> Drawer[Analysis drawer tabs]
+  Rays --> Diagram[SVG ray layers]
 ```

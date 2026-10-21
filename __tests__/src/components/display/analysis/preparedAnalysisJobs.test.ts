@@ -6,7 +6,7 @@ import DistortionTab from "../../../../../src/components/display/analysis/Distor
 import OpticalSummaryTab from "../../../../../src/components/display/analysis/OpticalSummaryTab.js";
 import PupilAberrationTab from "../../../../../src/components/display/analysis/PupilAberrationTab.js";
 import VignettingTab from "../../../../../src/components/display/analysis/VignettingTab.js";
-import { createAnalysisComputationContext } from "../../../../../src/optics/analysis.js";
+import { createAnalysisComputationContext } from "../../../../../src/optics/analysis/analysisContext.js";
 import themes from "../../../../../src/utils/theme/themes.js";
 import type { PreparedOpticalState } from "../../../../../src/optics/types.js";
 import type { RuntimeLens } from "../../../../../src/types/optics.js";

@@ -1,6 +1,6 @@
 /**
  * The lens-data converter library (`scripts/lens-data-convert/`): V1 text to V2 text, and V2 text to V1, with its
- * report, on synthetic fixtures only. The S2.P2.T1 fixture pairs check the converted prescription in each direction;
+ * report, on synthetic fixtures only. The feature fixture pairs check the converted prescription in each direction;
  * the source-text fixtures check the printed file: literal forms, number tokens, comments and their moves, blank
  * lines, the file's frame, a V2 source, the stop-radius report, the V1 print order and the stop radius V1's type
  * requires, and one refusal of each kind. One test runs the library under plain Node, as the organizer will.
@@ -19,8 +19,8 @@ import {
 import { commentMisplaced, movedCommentText, movedNote } from "../../scripts/lens-data-convert/comments.mjs";
 import { formatConversionReport } from "../../scripts/lens-data-convert/report.mjs";
 import { evaluateLensDataSource } from "../../scripts/lens-data-ast.mjs";
-import { ingestLens, ingestTeleconverter } from "../../src/optics/prescription/ingestV2.js";
-import { V1_GROUP_STARTS, V1_PRINT_ORDER } from "../../src/optics/prescription/toLensData.js";
+import { ingestLens, ingestTeleconverter } from "../../src/optics/lensDataConversion.js";
+import { V1_GROUP_STARTS, V1_PRINT_ORDER } from "../../src/optics/prescription/v1/toLensData.js";
 import type { LensDataInput } from "../../src/types/optics.js";
 import { FIXTURE_PAIRS, MAXIMAL_ZOOM, type FixturePair } from "../src/optics/prescription/ingestV2Fixtures.js";
 import {
@@ -112,7 +112,7 @@ function v1Text(pair: FixturePair): string {
   ].join("\n");
 }
 
-describe("the S2.P2.T1 fixture pairs", () => {
+describe("the V1/V2 feature fixture pairs", () => {
   it.each(FIXTURE_PAIRS.map((pair) => [pair.family, pair] as const))(
     "%s: the V1 side converts to V2 text that ingests to the pair's prescription",
     async (_family, pair) => {
@@ -532,7 +532,7 @@ describe("under plain Node", () => {
   });
 });
 
-describe("the V1 direction (S2.P3.T2)", () => {
+describe("the V1 conversion direction", () => {
   /** The hand-written V2 prime without its published keyframe, which has no focus travel to build. */
   it.each(FIXTURE_PAIRS.map((pair) => [pair.family, pair] as const))(
     "%s: the V2 side converts to V1 text that ingests to the pair's prescription, and back to V2",

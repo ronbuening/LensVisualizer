@@ -3,7 +3,7 @@
 import { describe, it, expect, afterEach, vi } from "vitest";
 import { render, screen, cleanup } from "@testing-library/react";
 import ElementInspector from "../../../../src/components/display/ElementInspector.js";
-import buildLens from "../../../../src/optics/buildLens.js";
+import { buildFixtureLens as buildLens } from "../../optics/constructionFixtures.js";
 import nikonPf500Data from "../../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
 import { catalogLensData } from "../../optics/testLensFixtures.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
@@ -148,7 +148,7 @@ describe("ElementInspector", () => {
     [4, "CEMENTED"],
   ])("labels a %i-element cemented component as %s", (count, label) => {
     const elements = Array.from({ length: count }, (_, id) => ({ ...basicElement, id: id + 1, cemented: "C1" }));
-    const L = { ...mockLens, data: { elements } } as unknown as RuntimeLens;
+    const L = { ...mockLens, elements } as unknown as RuntimeLens;
     render(<ElementInspector info={elements[0]} L={L} t={mockTheme} showChromatic={false} />);
     expect(screen.getByText(`${label} C1`)).toBeTruthy();
   });

@@ -58,14 +58,13 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
       });
     } else if (input.spectrum !== "reference") {
       // Rear plates are left out: a flat plate only shifts focus with color, and the estimate keeps its F−C span exact.
-      const glasses = source.elements.filter(
-        (element) =>
-          !element.synthetic && state.surfaces.some((surface) => surface.nd !== 1 && surface.elemId === element.id),
+      const glasses = source.elements.filter((element) =>
+        state.surfaces.some((surface) => surface.nd !== 1 && surface.elemId === element.id),
       );
       const estimatedIds = new Set(spectral.estimatedElementIds);
       const estimated = glasses.filter((element) => estimatedIds.has(element.id));
       // A mounted converter's elements follow the lens's; name the two parts separately.
-      const converterFrom = source.attachedTeleconverter?.firstElementId ?? Infinity;
+      const converterFrom = state.lens.attachedTeleconverter?.firstElementId ?? Infinity;
       const named = (converter: boolean) =>
         estimated.filter((element) => element.id >= converterFrom === converter).map((element) => element.name);
       const [inLens, inConverter] = [named(false), named(true)];
@@ -119,7 +118,10 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
     });
   }
 
-  const scale = mtfPrescriptionScale(source);
+  const scale = mtfPrescriptionScale({
+    focalLengthDesign: source.catalog.focalLengthMm?.design,
+    focalLengthMarketing: source.catalog.focalLengthMm?.marketing,
+  });
   if (mtfScaleNeedsNote(scale)) {
     limitations.push({
       kind: "scale",
@@ -131,7 +133,7 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
   }
 
   // Authored errata describe the prescription itself, so they qualify every chart of the lens without hiding it.
-  const errata = source.sourceErrata ?? [];
+  const errata = source.source.errata ?? [];
   const corrected = errata.filter((erratum) => erratum.status === "corrected");
   if (corrected.length > 0) {
     const values = corrected.map((erratum) => `surface ${erratum.surface}, ${erratum.field}`).join("; ");

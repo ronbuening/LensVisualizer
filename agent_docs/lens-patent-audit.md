@@ -21,10 +21,10 @@ Skip it for:
 
 ## Pre-flight: gather sources
 
-Read existing V1 files and historical logs through the spec's
-[Reading V1 Audits](../src/lens-data/LENS_DATA_SPEC.md#reading-v1-audits) field map. `npm run convert:lens-data`
-is the conversion command in [Quick Start](../src/lens-data/LENS_DATA_SPEC.md#quick-start); an audit leaves existing
-catalog files in V1 until S2.P5 converts their batches. The field names below are V2.
+Every catalog file uses V2; apply audit edits in V2. Use the spec's
+[Reading V1 Audits](../src/lens-data/LENS_DATA_SPEC.md#reading-v1-audits) field map for historical logs.
+Convert archived V1 arrivals with `npm run organize:lens-data` or
+`npm run convert:lens-data -- --input <file> --write` before auditing.
 
 Before opening either lens file, collect:
 
@@ -168,7 +168,7 @@ rules and the LCA quality-badge upgrade path.
 | `maker` | Always, if missing. Maker pages depend on it. |
 
 The validator enforces each lens's patent metadata completeness and name rules in
-[`LENS_DATA_SPEC.md`](../src/lens-data/LENS_DATA_SPEC.md#validation-rules), for both V1 and V2 files. Cross-lens
+[`LENS_DATA_SPEC.md`](../src/lens-data/LENS_DATA_SPEC.md#validation-rules), for V2 catalog files. Cross-lens
 spelling/name order and reference-folder exclusions remain corpus checks. Empty party arrays retain the source
 meaning above.
 

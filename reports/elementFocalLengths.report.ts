@@ -5,7 +5,7 @@
  * the thick-lens formula in air. Mirrors, flat plates, and elements without
  * authored values are listed separately.
  *
- * S2.P6.T4 / C0 gate: report only.
+ * Report only: authored values are retained until source review decides their display authority.
  *
  * Runs only via `npm run generate:reports`, never in `npm test`.
  *
@@ -13,8 +13,8 @@
  */
 import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
-import buildLens from "../src/optics/buildLens.js";
-import { computeElementFocalLength } from "../src/optics/first-order/thickLens.js";
+import { buildLens } from "../src/optics/buildLens.js";
+import { computeElementFocalLength } from "../src/optics/optics.js";
 import { FLAT_R_THRESHOLD } from "../src/optics/geometry.js";
 import { LENS_CATALOG } from "../src/utils/catalog/lensCatalog.js";
 import type { ElementData, RuntimeLens } from "../src/types/optics.js";

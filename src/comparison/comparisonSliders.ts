@@ -6,12 +6,12 @@
  * different maximum apertures) with clamping past common points.
  */
 
-import { closeFocusAtZoom, remapFocusDistance } from "../optics/focusDistance.js";
+import { closeFocusAtZoom, remapFocusDistance } from "../optics/optics.js";
 import { getGroupMovementAvailability } from "../optics/analysis.js";
 import type { RuntimeLens } from "../types/optics.js";
-import { FOCUS_INFINITY_CUTOFF, fopenAtZoom } from "../optics/optics.js";
-import { fNumberAtStopdown } from "../optics/aperture.js";
-import { clampLensMovement, perspectiveControlSteps } from "../optics/lensMovement.js";
+import { FOCUS_INFINITY_CUTOFF, fopenAtZoomClamped as fopenAtZoom } from "../optics/optics.js";
+import { fNumberAtStopdown } from "../optics/optics.js";
+import { clampLensMovement, perspectiveControlSteps } from "../optics/perspective.js";
 import { snapToStop } from "../utils/style/sliderStops.js";
 
 export interface FocusPairResult {

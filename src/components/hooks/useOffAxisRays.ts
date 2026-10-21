@@ -7,10 +7,11 @@
  *   "edge"      — project to the paraxial image height on the image plane
  */
 import { useMemo } from "react";
-import { offsetVectorFieldRay, traceRay, traceRayVector } from "../../optics/optics.js";
-import { cameraDirectionForDiagramField, tracePerspectiveDiagramFan } from "../../optics/perspective/diagramFan.js";
-import type { PerspectiveTraceContext } from "../../optics/perspective/index.js";
-import { obstructionAwareRayFractionsForDensity } from "../../optics/raySampling.js";
+import { offsetVectorFieldRay } from "../../optics/fieldGeometry.js";
+import { traceRay, traceRayVector } from "../../optics/optics.js";
+import { cameraDirectionForDiagramField, tracePerspectiveDiagramFan } from "../../optics/perspective.js";
+import type { PerspectiveTraceContext } from "../../optics/perspective.js";
+import { obstructionAwareRayFractionsForDensity } from "../../optics/optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { RaySegment } from "./useOnAxisRays.js";
 import type { OffAxisMode, RayDensity } from "../../types/state.js";

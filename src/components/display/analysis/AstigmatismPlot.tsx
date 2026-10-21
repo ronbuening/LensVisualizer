@@ -1,4 +1,4 @@
-import type { FieldCurvatureFieldResult, FieldCurvatureResult } from "../../../optics/aberrationAnalysis.js";
+import type { FieldCurvatureFieldResult, FieldCurvatureResult } from "../../../optics/analysis.js";
 import type { Theme } from "../../../types/theme.js";
 import {
   fieldFractionScale,

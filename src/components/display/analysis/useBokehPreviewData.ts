@@ -1,11 +1,8 @@
 /** Bokeh preview hook shares request identity across deferred controls and aperture changes. */
 
 import { useMemo } from "react";
-import {
-  createAnalysisRequest,
-  createAnalysisComputationContext,
-  type AnalysisComputationContext,
-} from "../../../optics/analysis.js";
+import { createAnalysisRequest, createAnalysisComputationContext } from "../../../optics/analysis.js";
+import type { AnalysisComputationContext } from "../../../optics/analysis.js";
 import { probe } from "../../../utils/perfProbe.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 

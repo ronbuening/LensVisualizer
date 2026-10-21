@@ -41,7 +41,7 @@ function LensSummary({ lensKey }: { lensKey: string }) {
       )}
       <p style={{ fontSize: "0.8rem", color: "#ccc" }}>
         {maker.display}
-        {lens.specs && lens.specs.length > 0 ? ` — ${lens.specs.slice(0, 3).join(", ")}` : ""}
+        {lens.catalog.specs && lens.catalog.specs.length > 0 ? ` — ${lens.catalog.specs.slice(0, 3).join(", ")}` : ""}
       </p>
     </section>
   );

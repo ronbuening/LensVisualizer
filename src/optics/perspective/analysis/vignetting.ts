@@ -15,15 +15,11 @@ import { formatCacheNumber } from "../../math/numerics.js";
 import { intersectRayPlane } from "../../geometry/intersectPlane.js";
 import { dot, normalize, scale, subtract } from "../../math/vector.js";
 import type { Plane3, PreparedOpticalState, Vec3 } from "../../types.js";
-import {
-  sampleSensorLockedFields,
-  type FieldSample,
-  type PerspectiveFieldSamplingOptions,
-  type PerspectiveFieldStatus,
-  type PerspectivePupilPoint,
-  type PerspectivePupilRaySample,
-  type SensorUv,
-} from "../fieldSampling.js";
+import { sampleSensorLockedFields } from "../fieldSampling.js";
+import type { FieldSample, PerspectiveFieldSamplingOptions } from "../fieldTypes.js";
+import type { PerspectiveFieldStatus } from "../chiefRay.js";
+import type { PerspectivePupilPoint, PerspectivePupilRaySample } from "../pupilBundle.js";
+import type { SensorUv } from "../fieldGeometry.js";
 import { paraxialExitPupilCenterLens } from "../fieldGeometry.js";
 import type { PerspectiveTraceContext } from "../trace.js";
 import { createAreaWeightedCircularPupilPoints, createZeroMovementPerspectiveContext, finiteRatio } from "./shared.js";

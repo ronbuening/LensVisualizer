@@ -2,20 +2,16 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import type { AsphericCoefficients } from "../../../../src/types/optics.js";
 import type { Ray3, SagSlope, SurfaceProfile, Vec3 } from "../../../../src/optics/types.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
-import { INTERSECTION_MAX_ITERATIONS } from "../../../../src/optics/constants.js";
-import {
-  intersectSurfaceProfile,
-  seedAsphereSolve,
-  type SeedRefusal,
-  type SurfaceIntersectionOptions,
-} from "../../../../src/optics/geometry/intersect.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
+import { INTERSECTION_MAX_ITERATIONS } from "../../../../src/optics/math/constants.js";
+import { intersectSurfaceProfile, seedAsphereSolve } from "../../../../src/optics/geometry/intersect.js";
+import type { SeedRefusal, SurfaceIntersectionOptions } from "../../../../src/optics/geometry/intersectTypes.js";
 import { capCoordinateTolerance } from "../../../../src/optics/geometry/intersectTolerance.js";
 import { createSurfaceProfile, createTiltedPlaneProfile, sag } from "../../../../src/optics/geometry/surfaceProfile.js";
 import { ulpOf } from "../../../../src/optics/math/numerics.js";
 import { dot, normalize } from "../../../../src/optics/math/vector.js";
 import { evaluateAperture } from "../../../../src/optics/trace/aperture.js";
-import { traceEngineRay2 } from "../../../../src/optics/trace/rayAdapters.js";
+import { traceEngineRay } from "../../../../src/optics/trace/rayAdapters.js";
 import { INTERSECTION_FIXTURE_PATH, type IntersectionFixtureFile } from "../fixtures/generateIntersectionFixtures.js";
 import { build, buildFoldedTirLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 
@@ -496,8 +492,8 @@ describe("conic-seeded asphere solve", () => {
   };
 
   /**
-   * A seeded hit: the route's own point, at the raw target, within half a hit's budget and half a direction
-   * cosine's of the iterative path's point, for the evaluations given.
+   * A seeded hit: the route's own point, at the raw target, within half the hit and unit-normal reference
+   * tolerances of the iterative path's point (optics-engine.md, Exact Surface Trace), for the evaluations given.
    */
   const expectSeeded = (input: Solve, cost: { seeded: number; iterative: number }) => {
     const { route, result, evaluations, iterative, iterativeEvaluations } = solveBothWays(input);
@@ -957,7 +953,7 @@ describe("conic-seeded asphere solve", () => {
        * iterative path's 4e-16 mm outside, where the normal of a 1 µm sphere leans by 1e-9. */
       const result = expectIterative(onAxisStep(0.001), "axisNormal", { iterative: 2, spent: 1 });
       expect(result.ok && result.normal[0]).toBeCloseTo(-1.0004e-9, 13);
-      // On a base radius of 5 µm the step is 2e-10, still over half a direction cosine's budget.
+      // On a base radius of 5 µm the step is 2e-10, still over half the unit-normal reference tolerance.
       expectIterative(onAxisStep(0.005), "axisNormal", { spent: 1 });
     });
 
@@ -1147,7 +1143,7 @@ describe("conic-seeded asphere solve", () => {
       // A sphere of R = 2.5 with a small quartic term: the normal turns by up to 0.4 per mm at the vertex.
       const strong = asphereOn(2.5, { A4: 1e-3 });
 
-      it("is held to half a direction cosine's budget through the turn of the normal", () => {
+      it("is held to half the unit-normal reference tolerance through the turn of the normal", () => {
         const options = { maxT: 2, clearRadius: 1.4 };
         /* 56 degrees off the axis the slope bound leaves |f'| no less than 0.17: the two points lie within
          * 1.2e-11 mm, a fortieth of what a hit may move, over which the normal can turn by 9e-11. That is known
@@ -1452,7 +1448,7 @@ describe("a plane at zero gap behind a curved surface", () => {
       z,
       profile,
       ray: { origin, direction: oblique },
-      trace: traceEngineRay2(state, { origin, direction: oblique }, { checkSemiDiameter: true }),
+      trace: traceEngineRay(state, { origin, direction: oblique }, { checkSemiDiameter: true }),
     };
   };
 
@@ -1477,10 +1473,9 @@ describe("a plane at zero gap behind a curved surface", () => {
     expect(plane.effectiveTolerance).toBe(1e-12);
   });
 
-  /* A boundary transition from the iterative path, declared in the step's pull request. It is held here so that a
-   * change to it is seen, not as a rule to keep. It needs a plane at zero gap behind a surface that is convex
+  /* A boundary transition from the iterative path, held so changes are noticed. It needs a plane at zero gap behind a surface that is convex
    * toward the ray, which overlaps it everywhere off the axis, and an oblique ray that meets them within 1e-4 mm
-   * of the axis; the differential tiers show no lens with it. */
+   * of the axis; no catalog lens has this geometry. */
   it("boundary transition: loses the plane where the iterative path had stopped on the vertex plane", () => {
     /* At this height the sag is 8.1e-13 mm, within the residual target but 1.01e-12 mm back along the ray. The
      * closed-form hit is on the surface, so the plane is behind it by more than its parametric slack and the
@@ -1518,7 +1513,7 @@ describe("the closed-form diagnostic stays on the kernel's result", () => {
   });
 
   it("is in no record of a sequential trace", () => {
-    const trace = traceEngineRay2(prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0), mirrorRay, {
+    const trace = traceEngineRay(prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0), mirrorRay, {
       checkSemiDiameter: true,
     });
     expect(trace.hits.length).toBeGreaterThan(1);
@@ -1527,7 +1522,7 @@ describe("the closed-form diagnostic stays on the kernel's result", () => {
 
   it("is in no record of a folded trace, on a listed path or a searched one", () => {
     // The listed path meets the spherical mirror MG2 through the generalized tracer.
-    const listed = traceEngineRay2(prepareRuntimeState(buildFoldedTirLens(), 0, 0), mirrorRay, {
+    const listed = traceEngineRay(prepareRuntimeState(buildFoldedTirLens(), 0, 0), mirrorRay, {
       checkSemiDiameter: true,
     });
     expect(listed.hits.map((hit) => hit.surfaceLabel)).toEqual(["STO", "MG1", "MG2", "MG1"]);
@@ -1574,7 +1569,7 @@ describe("the closed-form diagnostic stays on the kernel's result", () => {
       ],
       opticalPath: { mode: "auto", imagePlane: { z: 50, label: "IMG" }, maxInteractions: 8 },
     });
-    const searched = traceEngineRay2(
+    const searched = traceEngineRay(
       prepareRuntimeState(cavity, 0, 0),
       { origin: [0, 3, 10], direction: [0, 0, 1] },
       { checkSemiDiameter: true, launchBoundT: 25 },

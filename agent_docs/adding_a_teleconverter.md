@@ -34,10 +34,10 @@ publish it or reuse its key — a production converter gets its own file
 5. Size the semi-diameters for the fastest intended host and set `minHostFNumber` if faster hosts would be clipped.
 6. Run the gate below. Fix what the sweeps report before reaching for `incompatibleLensKeys`.
 
-When editing an existing V1 converter or host, use the spec's
-[Reading V1 Audits](../src/lens-data/LENS_DATA_SPEC.md#reading-v1-audits) field map. `npm run convert:lens-data`
-is the conversion command in [Quick Start](../src/lens-data/LENS_DATA_SPEC.md#quick-start) for new V1 drafts;
-existing catalog files remain V1 until S2.P5 converts their batches.
+Every catalog converter and host uses V2. For an archived V1 arrival, run
+`npm run organize:lens-data` or `npm run convert:lens-data -- --input <file> --write` before editing;
+see [Adding Archived V1 Files](workflow.md#adding-archived-v1-files).
+Use [Reading V1 Audits](../src/lens-data/LENS_DATA_SPEC.md#reading-v1-audits) only for historical audit field names.
 
 ## Adapting a Master-Plus-Converter Package
 

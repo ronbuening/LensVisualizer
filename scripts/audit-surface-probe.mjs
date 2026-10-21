@@ -15,10 +15,8 @@
  *                     thickness, SD ratio, rim slope, conic height, cross-gap
  *                     sag intrusion) without touching the file.
  *
- * With no flags it validates the file as stored. A file of either version is read
- * through canonical ingest's V1 view, so --scan reads a V2 file's aspheres and
- * restored flat radii as it reads a V1 file's; a file ingest refuses prints the
- * refusal's issues as ERR lines and exits 1.
+ * With no flags it validates the V2 file as stored through canonical ingest.
+ * A file ingest refuses prints the refusal's issues as ERR lines and exits 1.
  *
  * Usage:
  *   node --import ./scripts/ts-js-specifier-hook-register.mjs \
@@ -28,20 +26,13 @@
  * with a ".js" specifier, which plain Node cannot resolve to the ".ts" source.
  */
 
-import { join, resolve } from "node:path";
+import { join, relative, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const ROOT = join(import.meta.dirname, "..");
 const { conicPolySag, sag, sagSlopeRaw } = await import(pathToFileURL(join(ROOT, "src/optics/geometry.ts")).href);
-const { default: validateLensData, validateLensInput } = await import(
-  pathToFileURL(join(ROOT, "src/optics/validateLensData.ts")).href
-);
-const {
-  default: buildLens,
-  ingestLens,
-  isV1File,
-  toLensData,
-} = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
+const { validateCanonicalLens } = await import(pathToFileURL(join(ROOT, "src/optics/validation.ts")).href);
+const { default: buildLens, ingestLens } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
 
 const argv = process.argv.slice(2);
 const dataFile = argv[0];
@@ -61,12 +52,16 @@ function report(errors) {
 }
 
 /**
- * Canonical ingest's V1 view of a file of either version; an authored V1 file reads as written, with the schema
- * defaults. A refusal is returned as its issues.
+ * Canonical prescription of a V2 file, with schema defaults. A refusal is returned as its issues.
  */
 function ingestView(file) {
   try {
-    return { view: toLensData(ingestLens(file)), errors: [] };
+    return {
+      view: ingestLens(file, {
+        path: relative(join(import.meta.dirname, ".."), resolve(dataFile)).replaceAll("\\", "/"),
+      }).prescription,
+      errors: [],
+    };
   } catch (error) {
     if (!Array.isArray(error?.issues)) throw error;
     return { view: null, errors: error.issues };
@@ -87,7 +82,8 @@ if (scanIndex >= 0) {
   const view = stored.view;
   const surface = view.surfaces.find((candidate) => candidate.label === label);
   if (!surface) throw new Error(`no surface labelled "${label}"`);
-  const asphere = view.asph?.[label];
+  const asphere = surface.asphere;
+  const radius = surface.R === "flat" ? 1e15 : surface.R;
   const given = argv[scanIndex + 2];
   /* A derived stop stores no radius: unless a height is given, its scan runs to twice the radius the engine derives. */
   const derived =
@@ -98,15 +94,15 @@ if (scanIndex >= 0) {
   const storedSd = surface.sd ?? (derived === undefined ? "none" : `none, derived ${derived.toFixed(3)}`);
 
   console.log(
-    `${view.name}  surface ${label}  R=${surface.R}  sd(stored)=${storedSd}  ${asphere ? "aspheric" : "spherical"}`,
+    `${view.name}  surface ${label}  R=${radius}  sd(stored)=${storedSd}  ${asphere ? "aspheric" : "spherical"}`,
   );
   console.log("     h      sag(mm)   departure(µm)     slope   angle°");
   let previousSlope = null;
   for (let step = 1; step <= 20; step++) {
     const height = (maxHeight * step) / 20;
-    const surfaceSag = conicPolySag(height, surface.R, asphere);
-    const departure = (surfaceSag - sag(height, surface.R)) * 1000;
-    const slope = sagSlopeRaw(height, surface.R, asphere);
+    const surfaceSag = conicPolySag(height, radius, asphere);
+    const departure = (surfaceSag - sag(height, radius)) * 1000;
+    const slope = sagSlopeRaw(height, radius, asphere);
     const turnedOver = previousSlope !== null && Math.sign(slope) !== Math.sign(previousSlope);
     previousSlope = slope;
     console.log(
@@ -135,18 +131,20 @@ for (let index = 0; index < argv.length; index++) {
   }
 }
 
-/* The file as authored, with the substituted semi-diameters, checked in the order buildLens checks it: the validator
- * first on a V1 file, then canonical ingest, whose refusals are errors too, then the validator on a V2 file's view. */
+/* Check the substituted semi-diameters through V2 ingest and canonical validation, as buildLens does. */
 const candidate = structuredClone(lens);
 for (const surface of candidate.surfaces) if (overrides.has(surface.label)) surface.sd = overrides.get(surface.label);
 for (const label of overrides.keys()) {
   if (!candidate.surfaces.some((surface) => surface.label === label)) console.log(`!! no surface labelled "${label}"`);
 }
 
-let errors = isV1File(candidate) ? validateLensInput(candidate) : [];
-if (errors.length === 0) {
-  const { view, errors: refused } = ingestView(candidate);
-  errors = view && !isV1File(candidate) ? validateLensData(view) : refused;
-}
+const { view, errors: refused } = ingestView(candidate);
+const errors = view
+  ? validateCanonicalLens(
+      ingestLens(candidate, {
+        path: relative(join(import.meta.dirname, ".."), resolve(dataFile)).replaceAll("\\", "/"),
+      }),
+    )
+  : refused;
 if (overrides.size) console.log(`validating with ${[...overrides].map(([l, v]) => `${l}=${v}`).join(" ")}`);
 report(errors);

@@ -8,19 +8,16 @@
  */
 
 import { useMemo } from "react";
-import {
-  createAnalysisRequest,
-  createAnalysisComputationContext,
-  type AnalysisRequest,
-} from "../../../optics/analysis.js";
+import { createAnalysisRequest, createAnalysisComputationContext } from "../../../optics/analysis.js";
+import type { AnalysisRequest } from "../../../optics/analysis.js";
 import PupilAberrationChart from "./PupilAberrationChart.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
-import type { AnalysisComputationContext } from "../../../optics/compat.js";
+import type { AnalysisComputationContext } from "../../../optics/analysis.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
-import type { FieldGeometryState } from "../../../optics/optics.js";
+import type { FieldGeometryState } from "../../../optics/fieldGeometry.js";
 import PerspectivePupilView from "./perspective/PerspectivePupilView.js";
 
 interface PupilAberrationTabProps {

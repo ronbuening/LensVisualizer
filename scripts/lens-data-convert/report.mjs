@@ -1,6 +1,7 @@
 /**
- * Converter report — what converting a file moved or dropped, for review (OPTICS_ENGINE_REWRITE_SPEC.md, Ingest,
- * conversion and comments). The report is a value; whoever runs the converter prints it, alone on stdout.
+ * Converter report — what converting a file moved or dropped, for review.
+ * See agent_docs/architecture/optics-engine.md (Canonical Prescription).
+ * The report is a value; whoever runs the converter prints it, alone on stdout.
  *
  * For each file it lists:
  * - each comment that moved, with the source path it left and the node it now leads;

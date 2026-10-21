@@ -8,7 +8,7 @@
 
 import { dot, length, subtract } from "../../math/vector.js";
 import type { Vec3 } from "../../types.js";
-import type { PerspectivePupilPoint } from "../fieldSampling.js";
+import type { PerspectivePupilPoint } from "../pupilBundle.js";
 import type { PerspectiveTraceContext } from "../trace.js";
 
 /** Displacement resolved in the fixed sensor's right/down/normal basis. */

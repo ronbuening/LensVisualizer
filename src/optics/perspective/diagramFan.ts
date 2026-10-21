@@ -2,8 +2,11 @@
 
 import type { ChromaticChannel } from "../../types/optics.js";
 import type { Vec3 } from "../types.js";
-import { sampleSceneLockedFields, type FieldSample, type PerspectiveFieldStatus } from "./fieldSampling.js";
-import { perspectiveTraceToDiagram, perspectiveVectorLeadPoint, type PerspectiveDiagramTrace } from "./diagramTrace.js";
+import { sampleSceneLockedFields } from "./fieldSampling.js";
+import type { FieldSample } from "./fieldTypes.js";
+import type { PerspectiveFieldStatus } from "./chiefRay.js";
+import { perspectiveTraceToDiagram, perspectiveVectorLeadPoint } from "./diagramTrace.js";
+import type { PerspectiveDiagramTrace } from "./diagramTrace.js";
 import type { PerspectiveTraceContext } from "./trace.js";
 
 export interface PerspectiveDiagramFanSample {

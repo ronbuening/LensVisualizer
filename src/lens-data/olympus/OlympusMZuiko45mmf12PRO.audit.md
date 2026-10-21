@@ -10,7 +10,7 @@ Fixed job: JP2019023693A, Numerical Example1; output stem `OlympusMZuiko45mmf12P
 - Final analysis SHA256: `61a86203ebf0fffc0db3d8c3942b293a2fa5fcb12938898dfffa393579044c86`.
 - Original candidate: Stage3,13members,651967bytes, archive SHA256 `109984c677723af3b96b0f4323b0f848f48e0a86e52fbb3a85f09a794657523f`.
 
-Full LensPatentChatProtocol, DossierContract CHAT-1.0 and Stage4 instructions were read. Current main was refreshed read-only at the final gate: `e1bd097c2d95de9468a184d061d7a0b433656653`; comparison with the authenticated optical/runtime anchor `97a9d2245f0b721412043808608206d8f5f993b6` changes only `.github/workflows/engine-diff-stage.yml`. Runtime181file SHA256/Git-blob checks and current generic control receipts are explicit replay dependencies. Historical manifests remain historical; no silent runtime refresh occurred.
+Full LensPatentChatProtocol, DossierContract CHAT-1.0 and Stage4 instructions were read. Current main was refreshed read-only at the final gate: `e1bd097c2d95de9468a184d061d7a0b433656653`; comparison with the authenticated optical/runtime anchor `97a9d2245f0b721412043808608206d8f5f993b6` changes only the historical engine-differential CI workflow. Runtime181file SHA256/Git-blob checks and current generic control receipts are explicit replay dependencies. Historical manifests remain historical; no silent runtime refresh occurred.
 
 ## Independent review and exposure
 

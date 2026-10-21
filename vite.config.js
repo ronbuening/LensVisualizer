@@ -1,16 +1,14 @@
 import react from "@vitejs/plugin-react";
 import { configDefaults, defineConfig } from "vitest/config";
 
-/* Tests of manual-only dev tooling (the benchmark and engine differential harnesses, their drivers, and the
+/* Tests of manual-only dev tooling (the benchmark harness and its drivers, and the
  * audit-script npm entries). `npm test` skips them; `npm run test:tooling` (vitest.tooling.config.js) runs them. */
 export const TOOLING_TESTS = [
   "__tests__/src/benchmarks/**/*.test.ts",
   "__tests__/scripts/auditImageCircle.test.ts",
-  "__tests__/scripts/baseWorktree.test.ts",
   "__tests__/scripts/benchmarkMtfScript.test.ts",
   "__tests__/scripts/benchmarkOpticsRenderingScript.test.ts",
   "__tests__/scripts/convertLensDataCorpus.test.ts",
-  "__tests__/scripts/engineDiffScript.test.ts",
 ];
 
 export default defineConfig(({ isSsrBuild }) => ({
@@ -82,7 +80,6 @@ export default defineConfig(({ isSsrBuild }) => ({
         "src/**/styles.ts",
         "src/components/layout/lensDiagram/panelModel.ts",
         "src/optics/buildLens.ts",
-        "src/optics/cardinalElements.ts",
         "src/optics/diagramGeometry.ts",
         "src/optics/optics.ts",
         "src/optics/projection.ts",

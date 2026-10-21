@@ -1,5 +1,8 @@
+import { runtimeFixtureView } from "../constructionFixtures.js";
+import { constructionFixtureData } from "../constructionFixtures.js";
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../constructionFixtures.js";
 import { analysisRequestAt } from "../testLensFixtures.js";
-import { computeBestFocusZ, computeImagePlaneZAtFocus } from "../../../../src/optics/analysis.js";
+import { computeBestFocusZ, computeImagePlaneZAtFocus } from "../../../../src/optics/analysis/aberration/bestFocus.js";
 import { registerRuntimeFixture } from "../testLensFixtures.js";
 import { describe, it, expect } from "vitest";
 import {
@@ -7,28 +10,31 @@ import {
   BOKEH_POINT_COUNT,
   BOKEH_PREVIEW_FIELD_FRACTIONS,
   BOKEH_DENSITY_GRID_SIZE,
-  buildBokehDensityGrid,
+} from "../../../../src/optics/analysis/aberration/types.js";
+import { buildBokehDensityGrid, computeBokehPreviewPair } from "../../../../src/optics/analysis/bokeh/bokeh.js";
+import {
   buildBokehRadialProfile,
   classifyBokehBrightnessCharacter,
-  computeBokehPreviewPair,
-  computeProjectionAwareOffAxisFieldGeometry,
-  computeStateAwareOffAxisFieldGeometry,
+} from "../../../../src/optics/analysis/aberration/radialProfile.js";
+import {
+  computeOffAxisFieldGeometry,
+  computeOffAxisFieldGeometryScalar,
   isOffAxisVectorFieldGeometry,
-} from "../../../../src/optics/aberrationAnalysis.js";
+} from "../../../../src/optics/analysis/aberration/offAxis.js";
 import { computeBokehPreview, computeBokehFieldFootprint } from "../../../../src/optics/analysis/bokeh/bokeh.js";
 import {
   computeAnalysisFieldGeometryAtState,
   computeFieldGeometryAtState,
-  doLayout,
-  solveChiefRay,
-  traceRay,
-} from "../../../../src/optics/optics.js";
-import { computeOffAxisFieldGeometry } from "../../../../src/optics/analysis/aberration/offAxis.js";
-import buildLens from "../../../../src/optics/buildLens.js";
+  solveChiefRayForRuntimeLens as solveChiefRay,
+} from "../../../../src/optics/state/fieldAdapters.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../../src/optics/state/runtimeAdapters.js";
+import { traceRay } from "../../../../src/optics/trace/rayAdapters.js";
+import { computeOffAxisFieldGeometryParaxial } from "../../../../src/optics/analysis/aberration/offAxis.js";
+import { buildFixtureLens as buildLens } from "../constructionFixtures.js";
 import NikonZ135Raw from "../../../../src/lens-data/nikon/NikonZ135f18.data.js";
 import NikonAF28f14DRaw from "../../../../src/lens-data/nikon/NikonAF28f14D.data.js";
 import MinoltaSTFRaw from "../../../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.js";
-import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
+import {} from "../../../../src/utils/catalog/lensCatalog.js";
 import {
   apertureAt,
   build,
@@ -44,10 +50,10 @@ import type { BokehPoint } from "../../../../src/optics/analysis/aberration/type
 function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): RuntimeLens {
   return registerRuntimeFixture({
     ...L,
-    data: {
-      ...L.data,
+    ...runtimeFixtureView({
+      ...constructionFixtureData(L),
       imageFormat,
-    },
+    }),
   } as RuntimeLens);
 }
 
@@ -147,15 +153,24 @@ describe("state-aware off-axis geometry", () => {
 
   it("matches the solved chief-ray launch used by vignetting analysis", () => {
     const stateGeometry = computeFieldGeometryAtState(focusT, 0, L);
-    const result = computeStateAwareOffAxisFieldGeometry(L, layout.z, focusT, 0, 0.75);
+    const result = computeOffAxisFieldGeometryScalar(
+      analysisRequestAt(L, { zPos: layout.z, focusT: focusT, zoomT: 0, aberrationT: undefined }).preparedGeometry,
+      0.75,
+    );
 
     expect(result).not.toBeNull();
     expect(result!.yChief).toBeCloseTo(solveChiefRay(result!.fieldAngleDeg, focusT, 0, L, stateGeometry).yLaunch, 6);
   });
 
   it("differs from the paraxial chief-ray launch on a vignetted wide-angle field", () => {
-    const paraxial = computeOffAxisFieldGeometry(L, layout.z, 0, 0.75);
-    const solved = computeStateAwareOffAxisFieldGeometry(L, layout.z, focusT, 0, 0.75);
+    const paraxial = computeOffAxisFieldGeometryParaxial(
+      analysisRequestAt(L, { zPos: layout.z, zoomT: 0 }).preparedGeometry,
+      0.75,
+    );
+    const solved = computeOffAxisFieldGeometryScalar(
+      analysisRequestAt(L, { zPos: layout.z, focusT: focusT, zoomT: 0, aberrationT: undefined }).preparedGeometry,
+      0.75,
+    );
 
     expect(paraxial).not.toBeNull();
     expect(solved).not.toBeNull();
@@ -163,9 +178,13 @@ describe("state-aware off-axis geometry", () => {
   });
 
   it("promotes a Nikon 6mm fisheye off-axis field to vector bokeh geometry", () => {
-    const fisheye = buildLens(LENS_CATALOG["nikon-fisheye-nikkor-6mm-f28"]);
+    const fisheye = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-fisheye-nikkor-6mm-f28"]);
     const fisheyeLayout = doLayout(0, 0, fisheye);
-    const geometry = computeProjectionAwareOffAxisFieldGeometry(fisheye, fisheyeLayout.z, 0, 0, 0.4);
+    const geometry = computeOffAxisFieldGeometry(
+      analysisRequestAt(fisheye, { zPos: fisheyeLayout.z, focusT: 0, zoomT: 0, aberrationT: undefined })
+        .preparedGeometry,
+      0.4,
+    );
 
     expect(geometry).not.toBeNull();
     expect(isOffAxisVectorFieldGeometry(geometry!)).toBe(true);
@@ -187,12 +206,18 @@ describe("analysis field geometry", () => {
   });
 
   it("caps the analysis field to an explicit circular image without requiring a projection law", () => {
-    const circle = registerRuntimeFixture({ ...L, data: { ...L.data, imageFormat: undefined, imageCircleMm: 8.7 } });
+    const circle = registerRuntimeFixture({
+      ...L,
+      source: { ...L.source, catalog: { ...L.source.catalog, imageFormat: undefined, imageCircleMm: 8.7 } },
+    });
     const geometry = computeAnalysisFieldGeometryAtState(0, 0, circle);
     const fullFrame = computeAnalysisFieldGeometryAtState(0, 0, L);
     expect(geometry.halfFieldDeg).toBeGreaterThan(0);
     expect(geometry.halfFieldDeg).toBeLessThan(fullFrame.halfFieldDeg);
-    const sameDiameter = registerRuntimeFixture({ ...circle, data: { ...circle.data, imageCircleMm: 43.3 } });
+    const sameDiameter = registerRuntimeFixture({
+      ...circle,
+      source: { ...circle.source, catalog: { ...circle.source.catalog, imageCircleMm: 43.3 } },
+    });
     expect(computeAnalysisFieldGeometryAtState(0, 0, sameDiameter).halfFieldDeg).toBeCloseTo(fullFrame.halfFieldDeg, 8);
   });
 
@@ -250,7 +275,7 @@ describe("computeBokehFieldFootprint", () => {
   });
 
   it("traces fisheye bokeh footprints through vector off-axis launch", () => {
-    const fisheye = buildLens(LENS_CATALOG["nikon-fisheye-nikkor-6mm-f28"]);
+    const fisheye = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-fisheye-nikkor-6mm-f28"]);
     const fisheyeLayout = doLayout(0, 0, fisheye);
     const fisheyeAperture = apertureAt(fisheye, 0, 0);
     const result = computeBokehFieldFootprint(
@@ -791,7 +816,7 @@ describe("focus tracking for internal-focus lens (Nikon Z 135)", () => {
 
 it("keeps mechanical pupil weights separate from chief-relative bulk transmission", () => {
   const base = buildSimplePositiveElementLens();
-  const plateData = base.data;
+  const plateData = constructionFixtureData(base);
   const transparent = build(plateData);
   const alpha = 0.2;
   const absorbing = build({

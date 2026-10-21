@@ -3,24 +3,21 @@
 import type { AnalysisRequest } from "../../analysis/request.js";
 import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
 import { buildBokehRadialProfile, classifyBokehBrightnessCharacter } from "../../analysis/aberration/radialProfile.js";
-import {
-  BOKEH_CIRCULAR_PUPIL_RING_SAMPLES,
-  type BokehBrightnessCharacter,
-  type BokehPoint,
-  type BokehPupilFootprint,
-  type BokehPupilSample,
-  type BokehRadialProfile,
+import { BOKEH_CIRCULAR_PUPIL_RING_SAMPLES } from "../../analysis/aberration/types.js";
+import type {
+  BokehBrightnessCharacter,
+  BokehPoint,
+  BokehPupilFootprint,
+  BokehPupilSample,
+  BokehRadialProfile,
 } from "../../analysis/aberration/types.js";
 import { circularPupilPoints, signedVerticalSensorUvs } from "../../analysis/sampling.js";
 import type { Vec3 } from "../../types.js";
-import {
-  sampleSensorLockedFields,
-  type FieldSample,
-  type PerspectiveFieldSamplingOptions,
-  type PerspectiveFieldStatus,
-  type PerspectivePupilPoint,
-  type SensorUv,
-} from "../fieldSampling.js";
+import { sampleSensorLockedFields } from "../fieldSampling.js";
+import type { FieldSample, PerspectiveFieldSamplingOptions } from "../fieldTypes.js";
+import type { PerspectiveFieldStatus } from "../chiefRay.js";
+import type { PerspectivePupilPoint } from "../pupilBundle.js";
+import type { SensorUv } from "../fieldGeometry.js";
 import type { PerspectiveTraceContext } from "../trace.js";
 import {
   affineSensorRaysFromField,
@@ -29,9 +26,11 @@ import {
   resolvePerspectivePupilSemiDiameter,
   solvePerspectiveSensorBestFocus,
   summarizePerspectiveSensorSpot,
-  type PerspectiveAffineSensorRay,
-  type PerspectiveSensorBestFocus,
-  type PerspectiveSensorSpotSummary,
+} from "./imageSpace.js";
+import type {
+  PerspectiveAffineSensorRay,
+  PerspectiveSensorBestFocus,
+  PerspectiveSensorSpotSummary,
 } from "./imageSpace.js";
 
 const DEFAULT_BOKEH_SENSOR_UVS: readonly SensorUv[] = signedVerticalSensorUvs(5);

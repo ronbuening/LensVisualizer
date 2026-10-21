@@ -3,13 +3,10 @@
 import type { ChromaticChannel } from "../../types/optics.js";
 import { add, scale } from "../math/vector.js";
 import type { Ray3, Vec3 } from "../types.js";
-import { perspectiveTraceStatus, type PerspectiveChiefRayResult, type PerspectiveFieldStatus } from "./chiefRay.js";
-import {
-  createFieldPlaneFrame,
-  pointInsideSensor,
-  requirePerspectiveImageFormatMetadata,
-  type SensorUv,
-} from "./fieldGeometry.js";
+import { perspectiveTraceStatus } from "./chiefRay.js";
+import type { PerspectiveChiefRayResult, PerspectiveFieldStatus } from "./chiefRay.js";
+import { createFieldPlaneFrame, pointInsideSensor, requirePerspectiveImageFormatMetadata } from "./fieldGeometry.js";
+import type { SensorUv } from "./fieldGeometry.js";
 import type { FieldSampleDomain } from "./fieldTypes.js";
 import { SENSOR_LOCK_FORMAT_TOLERANCE_MM } from "./sensorTarget.js";
 import type { PerspectiveTraceContext, PerspectiveTraceResult } from "./trace.js";

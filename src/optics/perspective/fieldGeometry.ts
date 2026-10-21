@@ -3,18 +3,16 @@
 import { interpolateStationTable } from "../state/stationTables.js";
 import { runtimeView } from "../prescription/runtimeView.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId, type ImageFormatMetadata } from "../../utils/catalog/lensTaxonomy.js";
-import {
-  projectionFieldAngleForImageHeight2,
-  projectionImageHeightForAngle2,
-  type ProjectionReference2,
-} from "../field/projection.js";
-import { eflAtFocus2 } from "../first-order/focusBreathing.js";
-import { xpZRelLastSurfAtZoom } from "../layout.js";
+import { projectionFieldAngleForImageHeight, projectionImageHeightForAngle } from "../field/projection.js";
+import type { ProjectionReference } from "../field/projection.js";
+import { eflAtFocus } from "../first-order/focusBreathing.js";
+import { xpZRelLastSurfAtZoom } from "../state/stationTables.js";
 import { intersectRayPlane } from "../geometry/intersectPlane.js";
 import { add, dot, normalize, scale, subtract } from "../math/vector.js";
 import type { Plane3, Vec3 } from "../types.js";
 import { isPerspectiveDirectionInsideProjectionDomain } from "./chiefRay.js";
-import { createSensorBasis, type SensorBasis } from "./sensorBasis.js";
+import { createSensorBasis } from "./sensorBasis.js";
+import type { SensorBasis } from "./sensorBasis.js";
 import type { PerspectiveTraceContext } from "./trace.js";
 
 /** Normalized coordinates on the fixed image format: +/-1 reaches each edge. */
@@ -31,7 +29,7 @@ export interface FieldPlaneFrame {
   halfHeightMm: number;
 }
 
-export type PerspectiveProjectionReference = ProjectionReference2;
+export type PerspectiveProjectionReference = ProjectionReference;
 
 /** Error raised when field sampling preconditions are not represented in lens data. */
 export class PerspectiveFieldSamplingError extends Error {
@@ -42,7 +40,7 @@ export class PerspectiveFieldSamplingError extends Error {
 }
 
 export function requirePerspectiveImageFormatMetadata(context: PerspectiveTraceContext): ImageFormatMetadata {
-  const imageFormat = context.state.lens.source.imageFormat;
+  const imageFormat = context.state.lens.source.catalog.imageFormat;
   if (!isImageFormatId(imageFormat)) {
     throw new PerspectiveFieldSamplingError(
       `Lens "${context.state.lens.key}" requires validated imageFormat metadata for perspective field sampling`,
@@ -54,7 +52,7 @@ export function requirePerspectiveImageFormatMetadata(context: PerspectiveTraceC
 export function resolvePerspectiveFocalLength(context: PerspectiveTraceContext, override: number | undefined): number {
   const focalLengthMm =
     override ??
-    eflAtFocus2(context.state.focusT, context.state.zoomT, runtimeView(context.state.lens), context.state.aberrationT);
+    eflAtFocus(context.state.focusT, context.state.zoomT, runtimeView(context.state.lens), context.state.aberrationT);
   if (!Number.isFinite(focalLengthMm) || Math.abs(focalLengthMm) <= 1e-9) {
     throw new PerspectiveFieldSamplingError("Perspective field sampling requires a finite non-zero focal length");
   }
@@ -116,7 +114,7 @@ export function pointForSensorUv(frame: FieldPlaneFrame, uv: SensorUv): Vec3 {
  * unchecked pointForSensorUv path to retain coordinates on unavailable samples.
  */
 export function sensorPointForUv(context: PerspectiveTraceContext, sensorUv: SensorUv): Vec3 | null {
-  const imageFormat = context.state.lens.source.imageFormat;
+  const imageFormat = context.state.lens.source.catalog.imageFormat;
   if (!isImageFormatId(imageFormat) || !sensorUvInsideFormat(sensorUv)) return null;
   const frame = createFieldPlaneFrame(context.sensorPlane, IMAGE_FORMAT_BY_ID[imageFormat], context.sensorBasis);
   return pointForSensorUv(frame, sensorUv);
@@ -213,7 +211,7 @@ export function directionForIdealCoordinates(
   const radius = Math.hypot(imageU, imageV);
   if (!Number.isFinite(radius)) return null;
   if (radius <= 1e-12) return [0, 0, 1];
-  const theta = projectionFieldAngleForImageHeight2(projection, radius);
+  const theta = projectionFieldAngleForImageHeight(projection, radius);
   if (!Number.isFinite(theta)) return null;
   const sinTheta = Math.sin(theta);
   return normalize([-(imageU / radius) * sinTheta, -(imageV / radius) * sinTheta, Math.cos(theta)]);
@@ -226,7 +224,7 @@ export function idealCoordinatesForDirection(
   const transverse = Math.hypot(direction[0], direction[1]);
   if (transverse <= 1e-12) return { u: 0, v: 0 };
   const theta = Math.atan2(transverse, direction[2]);
-  const radius = projectionImageHeightForAngle2(projection, theta);
+  const radius = projectionImageHeightForAngle(projection, theta);
   if (!Number.isFinite(radius)) return null;
   return { u: (-direction[0] / transverse) * radius, v: (-direction[1] / transverse) * radius };
 }

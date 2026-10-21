@@ -8,7 +8,7 @@
 import { interpolateStationTable, zoomIndexToT } from "../../state/stationTables.js";
 import { GROUP_MOVEMENT_MODES, type GroupMovementMode } from "../../../types/groupMovement.js";
 import type { RuntimeLens, ResolvedAnnotation, VarRange, ZoomVarRange } from "../../../types/optics.js";
-import { anchorLayoutToCamera } from "../../cameraLayout.js";
+import { anchorLayoutToCamera } from "../../state/cameraLayout.js";
 import { layoutFromPrepared } from "../../state/layout.js";
 import { prepareState } from "../../state/preparedGeometry.js";
 import { compiledLensFromRuntime } from "../../prescription/identity.js";
@@ -206,12 +206,11 @@ interface AnchoredSurfacePositions {
   imagePlaneZ: number;
 }
 
-function anchoredSurfacePositions(
-  L: RuntimeLens,
-  focusT: number,
-  zoomT: number,
-  aberrationT: number,
-): AnchoredSurfacePositions {
+/** Focus/zoom sweep coordinates are independent of the request; reuse the prepared-state LRU. */
+function anchoredSurfacePositions(request: AnalysisRequest, focusT: number, zoomT: number): AnchoredSurfacePositions {
+  const L = runtimeView(request.preparedGeometry.lens);
+  const aberrationT = request.preparedGeometry.aberrationT;
+
   const lens = compiledLensFromRuntime(L);
   const ref = layoutFromPrepared(prepareState(lens, 0, 0));
   const cur = layoutFromPrepared(prepareState(lens, focusT, zoomT, aberrationT));
@@ -226,10 +225,10 @@ function groupMidpoint(group: LensMovementGroup, zPos: readonly number[]): numbe
   return (zPos[group.fromSurface] + zPos[group.toSurface]) / 2;
 }
 
-function focalLengthAtZoomT(L: RuntimeLens, zoomT: number): number | null {
-  if (!L.zoomPositions || L.zoomPositions.length === 0) return null;
-  if (L.zoomPositions.length === 1) return L.zoomPositions[0];
-  return interpolateStationTable(Math.max(0, Math.min(1, zoomT)), L.zoomPositions);
+function focalLengthAtZoomT(zoomPositions: readonly number[] | null, zoomT: number): number | null {
+  if (!zoomPositions || zoomPositions.length === 0) return null;
+  if (zoomPositions.length === 1) return zoomPositions[0];
+  return interpolateStationTable(Math.max(0, Math.min(1, zoomT)), zoomPositions);
 }
 
 function uniqueSorted(values: number[]): number[] {
@@ -241,21 +240,23 @@ function normalizedSamples(count: number, extra: number[]): number[] {
   return uniqueSorted([...base, ...extra.map((value) => Math.max(0, Math.min(1, value)))]);
 }
 
-function zoomSamples(L: RuntimeLens, currentZoomT: number): number[] {
-  const stops = L.zoomPositions ? L.zoomPositions.map((_, index) => zoomIndexToT(index, L.zoomPositions!.length)) : [];
+function zoomSamples(zoomPositions: readonly number[] | null, currentZoomT: number): number[] {
+  const stops = zoomPositions ? zoomPositions.map((_, index) => zoomIndexToT(index, zoomPositions.length)) : [];
   return normalizedSamples(ZOOM_SAMPLE_COUNT, [...stops, currentZoomT]);
 }
 
+/** Build one varied-focus/zoom sample without allocating another analysis request. */
 function buildPoint(
-  L: RuntimeLens,
+  request: AnalysisRequest,
   group: LensMovementGroup,
   baselineCenter: number,
   focusT: number,
   zoomT: number,
-  aberrationT: number,
   x: number,
 ): GroupMovementPoint {
-  const { z: zPos, imagePlaneZ } = anchoredSurfacePositions(L, focusT, zoomT, aberrationT);
+  const L = runtimeView(request.preparedGeometry.lens);
+
+  const { z: zPos, imagePlaneZ } = anchoredSurfacePositions(request, focusT, zoomT);
   const groupCenter = groupMidpoint(group, zPos);
   return {
     x,
@@ -263,7 +264,7 @@ function buildPoint(
     positionMm: groupCenter - imagePlaneZ,
     focusT,
     zoomT,
-    focalLengthMm: focalLengthAtZoomT(L, zoomT),
+    focalLengthMm: focalLengthAtZoomT(L.zoomPositions, zoomT),
   };
 }
 
@@ -313,38 +314,36 @@ function profilePositionDomain(series: readonly GroupMovementSeries[]): [number,
 export function computeGroupMovementProfile(request: AnalysisRequest, mode: GroupMovementMode): GroupMovementProfile {
   const state = request.preparedGeometry;
   const L = runtimeView(state.lens);
-  const { focusT, zoomT, aberrationT } = state;
+  const { focusT, zoomT } = state;
   const availability = getGroupMovementAvailability(L);
   const groups = inferLensMovementGroups(L);
   const safeFocusT = Math.max(0, Math.min(1, focusT));
   const safeZoomT = Math.max(0, Math.min(1, zoomT));
 
   if (mode === "zoom") {
-    const baselineZ = anchoredSurfacePositions(L, safeFocusT, 0, aberrationT).z;
-    const samples = zoomSamples(L, safeZoomT);
+    const baselineZ = anchoredSurfacePositions(request, safeFocusT, 0).z;
+    const samples = zoomSamples(L.zoomPositions, safeZoomT);
     const series = groups.map((group) => {
       const baselineCenter = groupMidpoint(group, baselineZ);
       return {
         group,
         samples: samples.map((sampleZoomT) =>
           buildPoint(
-            L,
+            request,
             group,
             baselineCenter,
             safeFocusT,
             sampleZoomT,
-            aberrationT,
-            focalLengthAtZoomT(L, sampleZoomT) ?? sampleZoomT,
+            focalLengthAtZoomT(L.zoomPositions, sampleZoomT) ?? sampleZoomT,
           ),
         ),
         currentPoint: buildPoint(
-          L,
+          request,
           group,
           baselineCenter,
           safeFocusT,
           safeZoomT,
-          aberrationT,
-          focalLengthAtZoomT(L, safeZoomT) ?? safeZoomT,
+          focalLengthAtZoomT(L.zoomPositions, safeZoomT) ?? safeZoomT,
         ),
       };
     });
@@ -360,42 +359,39 @@ export function computeGroupMovementProfile(request: AnalysisRequest, mode: Grou
   }
 
   if (mode === "combined") {
-    const baselineZ = anchoredSurfacePositions(L, 0, 0, aberrationT).z;
-    const samples = zoomSamples(L, safeZoomT);
+    const baselineZ = anchoredSurfacePositions(request, 0, 0).z;
+    const samples = zoomSamples(L.zoomPositions, safeZoomT);
     const series = groups.map((group) => {
       const baselineCenter = groupMidpoint(group, baselineZ);
       return {
         group,
         samples: samples.map((sampleZoomT) =>
           buildPoint(
-            L,
+            request,
             group,
             baselineCenter,
             0,
             sampleZoomT,
-            aberrationT,
-            focalLengthAtZoomT(L, sampleZoomT) ?? sampleZoomT,
+            focalLengthAtZoomT(L.zoomPositions, sampleZoomT) ?? sampleZoomT,
           ),
         ),
         secondarySamples: samples.map((sampleZoomT) =>
           buildPoint(
-            L,
+            request,
             group,
             baselineCenter,
             1,
             sampleZoomT,
-            aberrationT,
-            focalLengthAtZoomT(L, sampleZoomT) ?? sampleZoomT,
+            focalLengthAtZoomT(L.zoomPositions, sampleZoomT) ?? sampleZoomT,
           ),
         ),
         currentPoint: buildPoint(
-          L,
+          request,
           group,
           baselineCenter,
           safeFocusT,
           safeZoomT,
-          aberrationT,
-          focalLengthAtZoomT(L, safeZoomT) ?? safeZoomT,
+          focalLengthAtZoomT(L.zoomPositions, safeZoomT) ?? safeZoomT,
         ),
       };
     });
@@ -410,16 +406,16 @@ export function computeGroupMovementProfile(request: AnalysisRequest, mode: Grou
     };
   }
 
-  const baselineZ = anchoredSurfacePositions(L, 0, safeZoomT, aberrationT).z;
+  const baselineZ = anchoredSurfacePositions(request, 0, safeZoomT).z;
   const samples = normalizedSamples(FOCUS_SAMPLE_COUNT, [safeFocusT]);
   const series = groups.map((group) => {
     const baselineCenter = groupMidpoint(group, baselineZ);
     return {
       group,
       samples: samples.map((sampleFocusT) =>
-        buildPoint(L, group, baselineCenter, sampleFocusT, safeZoomT, aberrationT, sampleFocusT),
+        buildPoint(request, group, baselineCenter, sampleFocusT, safeZoomT, sampleFocusT),
       ),
-      currentPoint: buildPoint(L, group, baselineCenter, safeFocusT, safeZoomT, aberrationT, safeFocusT),
+      currentPoint: buildPoint(request, group, baselineCenter, safeFocusT, safeZoomT, safeFocusT),
     };
   });
   return {

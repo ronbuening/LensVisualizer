@@ -1,13 +1,13 @@
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import { stateWithZ } from "../../../../src/optics/state/preparedGeometry.js";
-import { createAnalysisRequest } from "../../../../src/optics/analysis.js";
+import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
 import {
   computeChromaticAnalysis,
   computeLateralColorCurve,
   computeLongitudinalChromaticFocus,
 } from "../../../../src/optics/analysis/chromatic/analysis.js";
-import { doLayout } from "../../../../src/optics/optics.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../../src/optics/state/runtimeAdapters.js";
 import {
   apertureAt,
   buildRearPlateAirEquivalentLens,

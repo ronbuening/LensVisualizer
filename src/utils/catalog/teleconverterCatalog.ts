@@ -10,11 +10,10 @@
  * resolves, so a hand-typed URL mounts it.
  */
 
-import { ingestTeleconverter, toTeleconverterData } from "../../optics/buildLens.js";
+import { ingestTeleconverter } from "../../optics/buildLens.js";
 import { attachTeleconverter, teleconverterCompatibility } from "../../optics/teleconverter.js";
 import type { TeleconverterDataV2Input } from "../../types/lensDataV2.js";
-import type { LensData } from "../../types/optics.js";
-import type { TeleconverterData } from "../../types/teleconverter.js";
+import type { CanonicalLens, CanonicalTeleconverter } from "../../optics/buildLens.js";
 import { catalogCollator } from "./collation.js";
 import { LENS_CATALOG } from "./lensCatalog.js";
 
@@ -28,14 +27,13 @@ export interface TeleconverterOption {
 
 /* Eagerly import every teleconverter file — the glob pattern is relative to this file, like lensCatalog.ts. An entry
  * is its file read through canonical ingest, on first read and kept, as a lens catalog entry is; the key lists read
- * the files as authored, in either version, which keep the fields they read in the same place. A converter pair is
+ * the files as authored, in V2, which keep the fields they read in the same place. A converter pair is
  * composed from a host and a converter that each came through ingest here and in the lens catalog. */
-const _modules = import.meta.glob<{ default: TeleconverterData | TeleconverterDataV2Input }>(
-  "../../lens-data/**/*.teleconverter.ts",
-  { eager: true },
-);
-const AUTHORED: Record<string, TeleconverterData | TeleconverterDataV2Input> = {};
-const TELECONVERTER_CATALOG: Record<string, TeleconverterData> = {};
+const _modules = import.meta.glob<{ default: TeleconverterDataV2Input }>("../../lens-data/**/*.teleconverter.ts", {
+  eager: true,
+});
+const AUTHORED: Record<string, TeleconverterDataV2Input> = {};
+const TELECONVERTER_CATALOG: Record<string, CanonicalTeleconverter> = {};
 const PATH_BY_KEY: Record<string, string> = {};
 for (const [path, mod] of Object.entries(_modules)) {
   const data = mod.default;
@@ -45,10 +43,13 @@ for (const [path, mod] of Object.entries(_modules)) {
     }
     PATH_BY_KEY[data.key] = path;
     AUTHORED[data.key] = data;
-    let entry: TeleconverterData | undefined;
+    let entry: CanonicalTeleconverter | undefined;
     Object.defineProperty(TELECONVERTER_CATALOG, data.key, {
       enumerable: true,
-      get: () => (entry ??= toTeleconverterData(ingestTeleconverter(data))),
+      get: () =>
+        (entry ??= ingestTeleconverter(data, {
+          path: path.replace("../../lens-data/", "src/lens-data/"),
+        }).prescription),
     });
   } else {
     console.warn(`[LensVisualizer] Skipped ${path}: no "key" field in default export`);
@@ -146,7 +147,7 @@ function resolveTeleconverterKey(lensKey: string, requestedKey: string | null | 
  * @param teleconverterKey - converter key, or null/undefined for the bare lens
  * @returns catalog lens data, or the composed host + converter data
  */
-function resolveLensSystemData(lensKey: string, teleconverterKey: string | null | undefined): LensData {
+function resolveLensSystemData(lensKey: string, teleconverterKey: string | null | undefined): CanonicalLens {
   const host = LENS_CATALOG[lensKey];
   const resolvedKey = resolveTeleconverterKey(lensKey, teleconverterKey);
   return resolvedKey ? attachTeleconverter(host, TELECONVERTER_CATALOG[resolvedKey]) : host;

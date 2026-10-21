@@ -1,6 +1,6 @@
 /**
  * Converter printer — writes a lens-data object as TypeScript source in the converter's own spelling, for Prettier to
- * format (OPTICS_ENGINE_REWRITE_SPEC.md, Ingest, conversion and comments).
+ * format.
  *
  * The printer writes every record and list in Prettier's one-line form, `{ id: 1, name: "L11" }` and `[1, 2]`: bare
  * keys, one space after each colon and comma, no trailing comma. Prettier then breaks what does not fit, and leaves a

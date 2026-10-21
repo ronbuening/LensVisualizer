@@ -27,17 +27,19 @@
  *   Δz_XP(θ) = xpZ_real(θ) − xpZRelLastSurf_paraxial
  */
 
+import type { PreparedGeometry } from "../../types.js";
+
 import { uniformFieldFraction } from "../sampling.js";
 
 import { prepareRayTrace } from "../../trace/rayAdapters.js";
 import {
-  computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
-  solveChiefRay2 as solveChiefRay,
+  computeAnalysisFieldGeometryAtState,
+  solveChiefRayForRuntimeLens as solveChiefRay,
 } from "../../state/fieldAdapters.js";
-import type { FieldGeometryState2 as FieldGeometryState } from "../../state/fieldAdapters.js";
-import { FOCUS_INFINITY_CUTOFF } from "../../focusDistance.js";
+import type { FieldGeometryState } from "../../field/launch.js";
+import { FOCUS_INFINITY_CUTOFF } from "../../state/focusDistance.js";
 import { epZRelStopAtZoom, xpZRelLastSurfAtZoom } from "../../state/stationTables.js";
-import { compiledLensFromRuntime } from "../../prescription/compile.js";
+import { compiledLensFromRuntime } from "../../prescription/identity.js";
 import { runtimeView } from "../../prescription/runtimeView.js";
 import { prepareState } from "../../state/preparedGeometry.js";
 import { layoutFromPrepared } from "../../state/layout.js";
@@ -45,8 +47,8 @@ import { directionFromMeridionalSlope } from "../../math/vector.js";
 import { traceGeometryToStop } from "../../trace/stopTrace.js";
 import type { TraceGeometry, TraceOptions } from "../../trace/types.js";
 import type { Ray3 } from "../../types.js";
-import { projectionLaunchSlopeForField2 as projectionLaunchSlopeForField } from "../../field/projection.js";
-import type { RuntimeLens } from "../../../types/optics.js";
+import { projectionLaunchSlopeForField } from "../../field/projection.js";
+
 import type { AnalysisRequest } from "../request.js";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -147,16 +149,15 @@ export interface ExitPupilAberrationProfile {
 /** Default number of field samples (0° through halfField). */
 export const PUPIL_ABERRATION_SAMPLE_COUNT = 17;
 
-/** Historical default alias retained for compatibility consumers during the seam migration. */
-export const PUPIL_ABERRATION_SAMPLE_COUNT_2 = PUPIL_ABERRATION_SAMPLE_COUNT;
-
 function computeStatePupilBaselines(
-  focusT: number,
-  zoomT: number,
-  L: RuntimeLens,
+  state: PreparedGeometry,
   geometry: FieldGeometryState,
-  aberrationT = 0,
 ): { paraxialEpZRelStop: number; paraxialXpZRelLastSurf: number } {
+  const L = runtimeView(state.lens);
+  const focusT = state.focusT;
+  const zoomT = state.zoomT;
+  const aberrationT = state.aberrationT;
+
   if (focusT < FOCUS_INFINITY_CUTOFF && aberrationT === 0) {
     return {
       paraxialEpZRelStop: epZRelStopAtZoom(zoomT, L),
@@ -212,7 +213,7 @@ export function computePupilAberrationProfile(request: AnalysisRequest): PupilAb
   const geometry = request.fieldGeometry ?? undefined;
   const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const { halfFieldDeg, epRatio } = geom;
-  const { paraxialEpZRelStop } = computeStatePupilBaselines(focusT, zoomT, L, geom, aberrationT);
+  const { paraxialEpZRelStop } = computeStatePupilBaselines(request.preparedGeometry, geom);
 
   const n = Math.max(sampleCount, 2);
   const samples: PupilAberrationSample[] = [];
@@ -271,7 +272,7 @@ export function computeExitPupilAberrationProfile(request: AnalysisRequest): Exi
   const geometry = request.fieldGeometry ?? undefined;
   const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const { halfFieldDeg } = geom;
-  const { paraxialXpZRelLastSurf } = computeStatePupilBaselines(focusT, zoomT, L, geom, aberrationT);
+  const { paraxialXpZRelLastSurf } = computeStatePupilBaselines(request.preparedGeometry, geom);
 
   const n = Math.max(sampleCount, 2);
 
@@ -368,13 +369,7 @@ export function computeBothPupilAberrationProfiles(request: AnalysisRequest): Bo
   const geometry = request.fieldGeometry ?? undefined;
   const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const { halfFieldDeg, epRatio } = geom;
-  const { paraxialEpZRelStop, paraxialXpZRelLastSurf } = computeStatePupilBaselines(
-    focusT,
-    zoomT,
-    L,
-    geom,
-    aberrationT,
-  );
+  const { paraxialEpZRelStop, paraxialXpZRelLastSurf } = computeStatePupilBaselines(request.preparedGeometry, geom);
 
   const n = Math.max(sampleCount, 2);
 

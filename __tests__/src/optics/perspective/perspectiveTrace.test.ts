@@ -1,16 +1,15 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
-import {
-  createPerspectiveTraceContext,
-  type PerspectiveTraceContext,
-} from "../../../../src/optics/perspective/trace.js";
+import { buildFixtureLens as buildLens } from "../constructionFixtures.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
+import { createPerspectiveTraceContext } from "../../../../src/optics/perspective/trace.js";
+import type { PerspectiveTraceContext } from "../../../../src/optics/perspective/trace.js";
 import { createSensorBasis } from "../../../../src/optics/perspective/sensorBasis.js";
-import { traceEngineRay2 } from "../../../../src/optics/trace/rayAdapters.js";
+import { traceEngineRay } from "../../../../src/optics/trace/rayAdapters.js";
 import { stateWithZ } from "../../../../src/optics/state/preparedGeometry.js";
 import type { Plane3, Ray3, Vec3 } from "../../../../src/optics/types.js";
 import type { TiltPivot } from "../../../../src/types/optics.js";
-import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
+import {} from "../../../../src/utils/catalog/lensCatalog.js";
 import { buildChromaticPositiveElementLens, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 
 const ZERO_MOVEMENT = { shiftMm: 0, tiltDeg: 0 } as const;
@@ -38,7 +37,7 @@ describe("perspective trace foundation", () => {
     const context = createPerspectiveTraceContext({ preparedState: state, movement: ZERO_MOVEMENT });
     const input = axialInput(state.z[0]);
     const options = { checkSemiDiameter: true, stopSemiDiameter: L.stopPhysSD, stopOnClip: true } as const;
-    const direct = traceEngineRay2(state, input, options);
+    const direct = traceEngineRay(state, input, options);
     const result = context.traceRay(input, options);
 
     expect(result.localTrace.status).toBe("ok");
@@ -77,7 +76,10 @@ describe("perspective trace foundation", () => {
   });
 
   it("refreshes trace geometry for translated, nonuniform and partial camera vertices", () => {
-    for (const L of [buildSimplePositiveElementLens(), buildLens(LENS_CATALOG["reference-newtonian-side-focus"])]) {
+    for (const L of [
+      buildSimplePositiveElementLens(),
+      buildLens(CATALOG_CONSTRUCTION_FIXTURES["reference-newtonian-side-focus"]),
+    ]) {
       const base = prepareRuntimeState(L, 0, 0);
       const original = base.traceGeometry;
       expect(original).toBeDefined();
@@ -112,8 +114,8 @@ describe("perspective trace foundation", () => {
     const input = axialInput(state.z[0]);
     const options = { checkSemiDiameter: true, stopSemiDiameter: L.stopPhysSD } as const;
     const result = context.traceRay(input, options);
-    const directLocal = traceEngineRay2(state, context.pose.cameraToLensRay(input), options);
-    const centered = traceEngineRay2(state, input, options);
+    const directLocal = traceEngineRay(state, context.pose.cameraToLensRay(input), options);
+    const centered = traceEngineRay(state, input, options);
 
     expect(result.localTrace.hits).toEqual(directLocal.hits);
     expect(result.localTrace.hits[0].radius).not.toBeCloseTo(centered.hits[0].radius, 4);
@@ -218,8 +220,8 @@ describe("perspective trace foundation", () => {
   });
 
   it("handles real Nikon dual-axis combined extrema and shift-only movement", () => {
-    const dualAxis = buildLens(LENS_CATALOG["nikon-pc-e-nikkor-24-f35d-ed"]);
-    const shiftOnly = buildLens(LENS_CATALOG["nikon-pc-nikkor-35mm-f28"]);
+    const dualAxis = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-pc-e-nikkor-24-f35d-ed"]);
+    const shiftOnly = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-pc-nikkor-35mm-f28"]);
 
     for (const L of [dualAxis, shiftOnly]) {
       const state = prepareRuntimeState(L, 0, 0);

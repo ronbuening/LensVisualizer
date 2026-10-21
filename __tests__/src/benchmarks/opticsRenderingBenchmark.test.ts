@@ -1,62 +1,68 @@
 import { describe, expect, it, vi } from "vitest";
 import {
   BENCHMARK_SCHEMA_VERSION,
-  HEADLINE_CASE_IDS,
-  completedWorkOf,
   listBenchmarkCases,
-  type BenchmarkEntry,
+  finishBenchmarkRecord,
+  serializeBenchmarkRecord,
+  formatSessionRunFileName,
+  buildSessionSummary,
 } from "../../../src/benchmarks/benchmarkReport.js";
 import {
   BENCHMARK_SCENARIOS,
   BEST_FOCUS_PROFILE_FRACTIONS,
   DEFAULT_BENCHMARK_LENS_KEYS,
   HEAVY_BENCHMARK_CELLS,
-  buildPairedSummary,
   computeBenchmarkScenarioAnalysisWork,
   computeBenchmarkScenarioRayWork,
   createBenchmarkScenarioSnapshot,
   createMemoryBenchmarkRecord,
-  finishBenchmarkRecord,
-  planTimedProcesses,
-  poolTimedRecords,
   prepareBenchmarkLens,
   runMemorySession,
+  sampleCell,
   runOpticsRenderingBenchmark,
   runUntimedBenchmarkPass,
-  sampleCell,
   validateBenchmarkCells,
   type OpticsRenderingBenchmarkOptions,
-  type PairedBenchmarkBase,
-  type PreparedBenchmarkCell,
 } from "../../../src/benchmarks/opticsRenderingBenchmark.js";
-import { PROFILE_FRACS } from "../../../src/optics/analysis/aberration/shared.js";
 
-/* Tallies of three engine calls the benchmark makes itself, each passed through unchanged: a lens build, a prepared
- * state and a spherical-aberration job. The head side of a paired run is the benchmark's own and takes no stand-in,
- * so the paired tests read these to tell what the head has done by the time the base is called. */
+/* Count actual panel work during the untimed pass so cached answers cannot masquerade as execution. */
 const engineCalls = vi.hoisted(() => ({ lensBuilds: 0, preparedStates: 0, sphericalAberrationJobs: 0 }));
 
-vi.mock("../../../src/optics/compat.js", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("../../../src/optics/compat.js")>();
-  const buildLens2: typeof actual.buildLens2 = (...args) => {
-    engineCalls.lensBuilds++;
-    return actual.buildLens2(...args);
-  };
-  const prepareRuntimeState: typeof actual.prepareRuntimeState = (...args) => {
-    engineCalls.preparedStates++;
-    return actual.prepareRuntimeState(...args);
-  };
-  const computeSphericalAberration: typeof actual.analysisJobsForState2.computeSphericalAberration = (...args) => {
-    engineCalls.sphericalAberrationJobs++;
-    return actual.analysisJobsForState2.computeSphericalAberration(...args);
-  };
+vi.mock("../../../src/optics/prescription/buildRuntimeLens.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../src/optics/prescription/buildRuntimeLens.js")>();
   return {
     ...actual,
-    buildLens2,
-    prepareRuntimeState,
-    analysisJobsForState2: { ...actual.analysisJobsForState2, computeSphericalAberration },
+    buildLens: (...args: Parameters<typeof actual.buildLens>) => {
+      engineCalls.lensBuilds++;
+      return actual.buildLens(...args);
+    },
   };
 });
+vi.mock("../../../src/optics/state/runtimeAdapters.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../src/optics/state/runtimeAdapters.js")>();
+  return {
+    ...actual,
+    prepareRuntimeState: (...args: Parameters<typeof actual.prepareRuntimeState>) => {
+      engineCalls.preparedStates++;
+      return actual.prepareRuntimeState(...args);
+    },
+  };
+});
+vi.mock("../../../src/optics/analysis/analysisJobs.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../src/optics/analysis/analysisJobs.js")>();
+  return {
+    ...actual,
+    analysisJobs: {
+      ...actual.analysisJobs,
+      computeSphericalAberration: (...args: Parameters<typeof actual.analysisJobs.computeSphericalAberration>) => {
+        engineCalls.sphericalAberrationJobs++;
+        return actual.analysisJobs.computeSphericalAberration(...args);
+      },
+    },
+  };
+});
+
+import { PROFILE_FRACS } from "../../../src/optics/analysis/aberration/shared.js";
 
 const NIKON_PC_19 = "nikon-pc-nikkor-19mm-f4e-ed";
 const CANON_TSE_50 = "canon-tse-50f28l-macro";
@@ -75,14 +81,6 @@ const METADATA = {
     heapMode: "raw",
   },
 } satisfies Pick<OpticsRenderingBenchmarkOptions, "createdAt" | "git" | "environment">;
-
-/** This module as the base of a paired run: the same engine on both sides. */
-const SELF_BASE: PairedBenchmarkBase = {
-  ref: "self",
-  commit: "b".repeat(40),
-  shortCommit: "bbbbbbbb",
-  prepareBenchmarkLens,
-};
 
 describe("optics rendering benchmark movement scenarios", () => {
   it("persists explicit movement and includes moved wide and close-focus tilt-shift coverage", async () => {
@@ -201,7 +199,7 @@ describe("optics rendering benchmark heavy set", () => {
       expect(scenarioIds).toContain(scenarioId);
     }
     expect(() => validateBenchmarkCells(HEAVY_BENCHMARK_CELLS)).not.toThrow();
-    for (const id of HEADLINE_CASE_IDS) {
+    for (const id of [`${NIKON_PC_19}:default:analysis`, `${NIKON_PC_19}:stopped-close:analysis`]) {
       const [lensKey, scenarioId] = id.split(":");
       expect(HEAVY_BENCHMARK_CELLS).toContainEqual({ lensKey, scenarioId });
     }
@@ -232,62 +230,57 @@ describe("optics rendering benchmark heavy set", () => {
   });
 });
 
-describe("optics rendering benchmark sampling", () => {
-  it.each([
-    ["base", ["base>head", "head>base", "base>head"]],
-    ["head", ["head>base", "base>head", "head>base"]],
-  ] as const)("starts every case's warmup and measured pairs with %s", (firstSide, warmupOrder) => {
-    /* Fake cells exercise the setup-to-sampling handoff without timing engine work. */
-    const calls: string[] = [];
-    const setups: string[] = [];
-    const cell = (side: "base" | "head") =>
-      ({
-        cases: ["first", "second"].map((id) => ({
-          id,
-          setup: () => setups.push(`${id}:${side}`),
-          run: () => {
-            calls.push(side);
-            return { side };
-          },
-          entry: { status: "error", message: "The case was not sampled." },
-        })),
-      }) as unknown as PreparedBenchmarkCell;
-    const base = cell("base");
-    const head = cell("head");
-
-    sampleCell(head, base, { warmups: 3, iterations: 4, keepSamples: true }, firstSide);
-
-    const pairs = Array.from({ length: calls.length / 2 }, (_, pair) => calls.slice(pair * 2, pair * 2 + 2).join(">"));
-    const measuredOrder = [...warmupOrder, warmupOrder[1]];
-    expect(pairs).toEqual([...warmupOrder, ...measuredOrder, ...warmupOrder, ...measuredOrder]);
-    const setupOrder = firstSide === "base" ? ["base", "head"] : ["head", "base"];
-    expect(setups).toEqual(["first", "second"].flatMap((id) => setupOrder.map((side) => `${id}:${side}`)));
-    for (const [side, prepared] of [
-      ["base", base],
-      ["head", head],
-    ] as const) {
-      for (const { entry } of prepared.cases) {
-        expect(entry).toMatchObject({ status: "ok", stats: { warmups: 3, iterations: 4 }, output: { side } });
-        expect(entry.stats?.samplesMs).toHaveLength(4);
-        expect(entry).not.toHaveProperty("message");
-      }
-    }
-  });
-
-  it.each(["base", "head"] as const)("calls the one unpaired case with firstSide %s", (firstSide) => {
-    const run = vi.fn(() => ({}));
-    const head = {
-      cases: [{ id: "only", run, entry: { status: "error", message: "The case was not sampled." } }],
-    } as unknown as PreparedBenchmarkCell;
-
-    sampleCell(head, undefined, { warmups: 3, iterations: 4, keepSamples: true }, firstSide);
-
-    expect(run).toHaveBeenCalledTimes(7);
-    expect(head.cases[0].entry.stats?.samplesMs).toHaveLength(4);
-  });
-});
-
 describe("optics rendering benchmark records", () => {
+  it("continues sampling after a case throws", () => {
+    const cell = prepareBenchmarkLens(SERENAR).prepareCell("default");
+    const later = vi.fn(() => ({ fixtureCount: 1 }));
+    cell.cases = cell.cases.slice(0, 2);
+    cell.cases[0].run = () => {
+      throw new Error("fixture failure");
+    };
+    cell.cases[1].run = later;
+    sampleCell(cell, { warmups: 0, iterations: 2, keepSamples: true });
+    expect(cell.cases[0].entry).toEqual({ status: "error", message: "fixture failure" });
+    expect(later).toHaveBeenCalledTimes(2);
+    expect(cell.cases[1].entry.stats?.samplesMs).toHaveLength(2);
+  });
+  it("retains single-commit session samples, deduplicated work and serialization", async () => {
+    const cells = [{ lensKey: SERENAR, scenarioId: "default" }];
+    const record = await runOpticsRenderingBenchmark({
+      ...METADATA,
+      cells,
+      iterations: 2,
+      warmups: 0,
+      keepSamples: true,
+    });
+    const pass = await runUntimedBenchmarkPass({ cells });
+    finishBenchmarkRecord(record, pass);
+    expect(BEST_FOCUS_PROFILE_FRACTIONS).toEqual(PROFILE_FRACS);
+    const entries = listBenchmarkCases(record).filter(({ entry }) => entry.status === "ok");
+    expect(entries.length).toBeGreaterThan(0);
+    for (const { entry } of entries) {
+      expect(entry.stats?.samplesMs).toHaveLength(2);
+      expect(entry.stats).not.toHaveProperty("heapDeltaSamplesBytes");
+      if (entry.work) for (const ref of entry.work) expect(record.workTallies?.[ref]).toBeDefined();
+    }
+    const focus = record.results[SERENAR].default.analysisBreakdown!.bestFocus!;
+    expect(focus.work?.length).toBeGreaterThan(0);
+    const tallies = Object.assign({}, ...focus.work!.map((ref) => record.workTallies![ref]));
+    expect((tallies["bestFocusRay.clipped=true"] ?? 0) + (tallies["bestFocusRay.clipped=false"] ?? 0)).toBe(
+      2 * BEST_FOCUS_PROFILE_FRACTIONS.length,
+    );
+    const encoded = record.workTallies!.map((tally) => JSON.stringify(tally));
+    expect(new Set(encoded).size).toBe(encoded.length);
+    expect(JSON.parse(serializeBenchmarkRecord(record))).toEqual(record);
+    expect(formatSessionRunFileName(record)).toBe("2026-10-12T08-00-00Z-ffffffff-custom.json");
+    expect(buildSessionSummary(record)).toContain("2 measured after 0 warmups");
+    expect(buildSessionSummary(record)).toContain(`${SERENAR}:default:analysis`);
+
+    const failedId = entries[0].id;
+    finishBenchmarkRecord(record, { cases: { ...pass.cases, [failedId]: { message: "fixture failure" } } });
+    expect(record.warnings).toContain(`Untimed pass threw: ${failedId}: fixture failure`);
+    expect(record.results[SERENAR].default.analysisBreakdown!.bestFocus!.work?.length).toBeGreaterThan(0);
+  });
   it("keeps a plain run's record in its shape, apart from the schema version", { timeout: 120_000 }, async () => {
     const record = await runOpticsRenderingBenchmark({ ...METADATA, lensKeys: [SERENAR], iterations: 1, warmups: 0 });
 
@@ -330,7 +323,7 @@ describe("optics rendering benchmark records", () => {
       }
       expect(entry.status, `${id}: ${entry.message}`).toBe("ok");
       expect(Object.keys(entry), id).toEqual(["status", "stats", "output"]);
-      /* No raw samples or completed-work tallies: those belong to records under paired/. */
+      /* No raw samples or completed-work tallies: those belong to records under sessions/. */
       expect(Object.keys(entry.stats ?? {}), id).toEqual([
         "min",
         "median",
@@ -364,227 +357,8 @@ describe("optics rendering benchmark records", () => {
     expect(listed.filter(({ entry }) => entry.status !== "skipped").map(({ id }) => id)).toEqual(
       cell.cases.map(({ id }) => id),
     );
-    expect(cell.cases.map(({ id }) => id)).toContain(HEADLINE_CASE_IDS[1]);
+    expect(cell.cases.map(({ id }) => id)).toContain(`${NIKON_PC_19}:stopped-close:analysis`);
     expect(cell.cases.every(({ entry }) => entry.status === "error")).toBe(true);
-  });
-
-  it("samples a paired case on both sides, alternating which goes first", async () => {
-    /* The stand-in base builds no lens when it is sampled, so the lens builds between two of its calls are the
-     * head's calls of the `build` case in between. */
-    const buildsAtBaseCall: number[] = [];
-    const base: PairedBenchmarkBase = {
-      ...SELF_BASE,
-      prepareBenchmarkLens: (lensKey) => {
-        const lens = prepareBenchmarkLens(lensKey);
-        return {
-          dataFingerprint: lens.dataFingerprint,
-          prepareCell: (scenarioId) => {
-            const cell = lens.prepareCell(scenarioId);
-            for (const benchmarkCase of cell.cases) {
-              const isBuild = benchmarkCase.id.endsWith(":build");
-              delete benchmarkCase.setup;
-              benchmarkCase.run = () => {
-                if (isBuild) buildsAtBaseCall.push(engineCalls.lensBuilds);
-                return {};
-              };
-            }
-            return cell;
-          },
-        };
-      },
-    };
-    const record = await runOpticsRenderingBenchmark({
-      ...METADATA,
-      cells: [{ lensKey: SERENAR, scenarioId: "default" }],
-      warmups: 2,
-      iterations: 3,
-      keepSamples: true,
-      base,
-    });
-
-    /* Warmups: base>head, head>base. Measured: base>head, head>base, base>head. */
-    const headCallsBefore = buildsAtBaseCall.map((builds, call) => builds - (buildsAtBaseCall[call - 1] ?? builds));
-    expect(headCallsBefore).toEqual([0, 2, 0, 2, 0]);
-    expect(record.results[SERENAR].default.build.stats?.samplesMs).toHaveLength(3);
-    expect(record.base?.results[SERENAR].default.build.stats?.samplesMs).toHaveLength(3);
-  });
-
-  it("prepares the side a process puts first before the other: its lens, its cells and its setups", async () => {
-    /* What the head has done by the time the base is asked for something. The stand-in base reads a tally before
-     * it does any work of its own. */
-    const countedAtBase = async (firstSide: "base" | "head") => {
-      const counted = { lens: -1, cell: -1, setup: -1 };
-      const base: PairedBenchmarkBase = {
-        ...SELF_BASE,
-        firstSide,
-        prepareBenchmarkLens: (lensKey) => {
-          counted.lens = engineCalls.lensBuilds;
-          const lens = prepareBenchmarkLens(lensKey);
-          return {
-            dataFingerprint: lens.dataFingerprint,
-            prepareCell: (scenarioId) => {
-              counted.cell = engineCalls.preparedStates;
-              const cell = lens.prepareCell(scenarioId);
-              for (const benchmarkCase of cell.cases) {
-                if (benchmarkCase.setup) {
-                  benchmarkCase.setup = () => {
-                    counted.setup = engineCalls.sphericalAberrationJobs;
-                  };
-                }
-                benchmarkCase.run = () => ({});
-              }
-              return cell;
-            },
-          };
-        },
-      };
-      Object.assign(engineCalls, { lensBuilds: 0, preparedStates: 0, sphericalAberrationJobs: 0 });
-      const record = await runOpticsRenderingBenchmark({
-        ...METADATA,
-        cells: [{ lensKey: SERENAR, scenarioId: "default" }],
-        warmups: 0,
-        iterations: 1,
-        keepSamples: true,
-        base,
-      });
-      expect(record.config.timedProcesses).toEqual([{ firstSide, pairs: 1 }]);
-      return counted;
-    };
-    const baseFirst = await countedAtBase("base");
-    const headFirst = await countedAtBase("head");
-
-    /* Base first: the base's lens is asked for before the head has built one. Head first: after. */
-    expect(baseFirst.lens).toBe(0);
-    expect(headFirst.lens).toBe(1);
-    /* The head's cell prepares a state and its setup computes spherical aberration, each before the base's when the
-     * head goes first. A case sampled before the setup computes it too, so the tally is past zero either way. */
-    expect(headFirst.cell).toBeGreaterThan(baseFirst.cell);
-    expect(baseFirst.setup).toBeGreaterThan(0);
-    expect(headFirst.setup).toBeGreaterThan(baseFirst.setup);
-  });
-
-  it("builds a paired record with both sides, raw samples and completed work", { timeout: 120_000 }, async () => {
-    const cells = [{ lensKey: SERENAR, scenarioId: "default" }];
-    const progress: string[] = [];
-    /* The timed pass as the runner makes it: one process's share with each side first, pooled. */
-    const processes = planTimedProcesses(2);
-    const shares = [];
-    for (const { firstSide, pairs } of processes) {
-      shares.push(
-        await runOpticsRenderingBenchmark({
-          ...METADATA,
-          cells,
-          warmups: 1,
-          iterations: pairs,
-          keepSamples: true,
-          base: { ...SELF_BASE, firstSide },
-          onCell: ({ lensKey, scenarioId, index, count }) => {
-            progress.push(`${firstSide} first ${index + 1}/${count} ${lensKey} ${scenarioId}`);
-          },
-        }),
-      );
-    }
-    const record = poolTimedRecords(shares);
-    finishBenchmarkRecord(record, {
-      head: await runUntimedBenchmarkPass({ cells }),
-      base: await runUntimedBenchmarkPass({ cells }),
-    });
-
-    expect(progress).toEqual([`base first 1/1 ${SERENAR} default`, `head first 1/1 ${SERENAR} default`]);
-    expect(record.schemaVersion).toBe(3);
-    expect(record.config).toMatchObject({ warmups: 1, iterations: 2, lensKeys: [SERENAR], scenarios: ["default"] });
-    expect(record.config.timedProcesses).toEqual(processes);
-    expect(record.config.cells).toEqual(cells);
-    expect(record.config.caseSet).toBe("custom");
-    expect(record.base).toMatchObject({ ref: "self", commit: "b".repeat(40), shortCommit: "bbbbbbbb" });
-    /* Both sides were bundled with one set of packages, and the record then says nothing of them. */
-    expect(record.base).not.toHaveProperty("ownDependencies");
-    expect(record.warnings).toEqual([]);
-
-    const headCases = listBenchmarkCases(record);
-    const baseCases = listBenchmarkCases(record.base!);
-    expect(baseCases.map(({ id }) => id)).toEqual(headCases.map(({ id }) => id));
-    const measured = (entry: BenchmarkEntry) => entry.status !== "skipped";
-    for (const { id, entry } of [...headCases, ...baseCases].filter(({ entry }) => measured(entry))) {
-      expect(entry.status, `${id}: ${entry.message}`).toBe("ok");
-      expect(Object.keys(entry), id).toEqual(["status", "stats", "output", "work"]);
-      /* One pair from each process, and no raw heap delta left behind by the pooling. */
-      expect(entry.stats?.iterations, id).toBe(2);
-      expect(entry.stats?.samplesMs, id).toHaveLength(2);
-      expect(entry.stats?.heapDeltaSamplesBytes, id).toBeUndefined();
-      expect(
-        entry.stats?.samplesMs?.every((sample) => Number.isFinite(sample) && sample >= 0),
-        id,
-      ).toBe(true);
-    }
-    /* An entry points at the tallies of each result it marked; the record keeps equal tallies once. */
-    const workOf = (entry: BenchmarkEntry | undefined) => (entry ? completedWorkOf(record, entry) : undefined);
-    for (const tallies of record.workTallies ?? []) {
-      for (const [fact, tally] of Object.entries(tallies)) expect(Number.isInteger(tally), fact).toBe(true);
-    }
-    const places = [...headCases, ...baseCases].flatMap(({ entry }) => entry.work ?? []);
-    expect(new Set(places).size).toBe(record.workTallies?.length);
-    expect(new Set(places).size).toBeLessThan(places.length / 2);
-
-    const rays = record.results[SERENAR].default.rays;
-    /* Every one of the eleven diagram rays is tallied once, clipped or not. */
-    expect((workOf(rays)?.["ray.clipped=false"] ?? 0) + (workOf(rays)?.["ray.clipped=true"] ?? 0)).toBe(11);
-    expect(workOf(record.results[SERENAR].default.analysis)).toMatchObject({
-      "summary.surfaceCount": 11,
-      "distortionCurve.length": 21,
-      "bokehPair.infinity.usableFieldCount": 4,
-    });
-
-    const comparison = record.comparison!;
-    const measuredIds = headCases.filter(({ entry }) => measured(entry)).map(({ id }) => id);
-    expect(Object.keys(comparison.cases)).toEqual(measuredIds);
-    for (const id of measuredIds) {
-      const timing = comparison.cases[id];
-      expect(timing.pairs, id).toBe(2);
-      expect(timing.unequalWork, id).toBe(false);
-      expect(timing.ci95?.[0], id).toBeLessThanOrEqual(timing.ci95?.[1] ?? Number.NaN);
-    }
-    /* One engine on both sides completes the same work. */
-    expect(comparison.unequalWork).toEqual([]);
-    expect(comparison.headOnlyMembers).toEqual([]);
-    /* Every case of the matrix reports some fact of its work, so none is taken on trust. */
-    expect(comparison.workNotVerified).toEqual([]);
-    expect(comparison.thrown).toEqual([]);
-
-    /* Best focus returns one position: its case tallies the profile rays it is fitted to and whether it fell back. */
-    const bestFocus = record.results[SERENAR].default.analysisBreakdown?.bestFocus;
-    expect(workOf(bestFocus)).toMatchObject({ "bestFocus.z=number": 1, "bestFocus.isLayoutImagePlane=false": 1 });
-    const focusRays = (flag: string) => workOf(bestFocus)?.[`bestFocusRay.clipped=${flag}`] ?? 0;
-    expect(focusRays("false") + focusRays("true")).toBe(2 * BEST_FOCUS_PROFILE_FRACTIONS.length);
-    /* The benchmark's copy of the ray set is the engine's. */
-    expect(BEST_FOCUS_PROFILE_FRACTIONS).toEqual(PROFILE_FRACS);
-    /* A tab computes its own data, and tallies each section it asked for and the elements it drew. */
-    const { render } = record.aberrationPanels[SERENAR].default;
-    const sections = (work: Record<string, number> | undefined) => [
-      ...new Set(
-        Object.keys(work ?? {})
-          .filter((fact) => fact.startsWith("compute"))
-          .map((fact) => fact.split(/[.=]/)[0]),
-      ),
-    ];
-    expect(sections(workOf(render.aberrationsTab))).toEqual([
-      "computeSphericalAberration",
-      "computeSAProfile",
-      "computeSphericalAberrationBlurCharacter",
-      "computeFieldCurvatureBundle",
-    ]);
-    expect(sections(workOf(render.comaTab))).toEqual(["computeComaAnalysis"]);
-    for (const [name, entry] of Object.entries(render)) {
-      expect(workOf(entry)?.["markup.elements"], name).toBeGreaterThan(0);
-    }
-    expect(workOf(record.results[SERENAR].default.svgRender)?.["markup.elements"]).toBeGreaterThan(0);
-    expect(Object.keys(comparison.categories)).toContain("analysis.bokehPair");
-
-    const summary = buildPairedSummary(record);
-    expect(summary).toContain("## Benchmark: base bbbbbbbb (self) against head ffffffff");
-    expect(summary).toContain("- Cases: custom set, 1 lens/scenario cells");
-    expect(summary).toContain(`| ${SERENAR} default analysis |`);
-    expect(summary).toContain("- Unequal work, left out of the regression verdict: 0");
   });
 
   it("observes request-era panel jobs once per untimed case", async () => {
@@ -602,77 +376,6 @@ describe("optics rendering benchmark records", () => {
     expect(
       await runUntimedBenchmarkPass({ cells: [{ lensKey: NIKON_PC_19, scenarioId: "interactive-drag" }] }),
     ).toEqual(pass);
-  });
-
-  it("says in the record when the base was bundled with dependencies of its own", async () => {
-    const record = await runOpticsRenderingBenchmark({
-      ...METADATA,
-      cells: [{ lensKey: SERENAR, scenarioId: "default" }],
-      warmups: 0,
-      iterations: 1,
-      keepSamples: true,
-      base: { ...SELF_BASE, ownDependencies: true },
-    });
-
-    expect(Object.keys(record.base ?? {})).toEqual([
-      "ref",
-      "commit",
-      "shortCommit",
-      "ownDependencies",
-      "results",
-      "aberrationPanels",
-      "summary",
-    ]);
-    expect(record.base?.ownDependencies).toBe(true);
-  });
-
-  it("reports a case that throws on one side and goes on sampling the other", async () => {
-    const base: PairedBenchmarkBase = {
-      ...SELF_BASE,
-      prepareBenchmarkLens: (lensKey) => {
-        const lens = prepareBenchmarkLens(lensKey);
-        return {
-          dataFingerprint: () => 0,
-          prepareCell: (scenarioId) => {
-            const cell = lens.prepareCell(scenarioId);
-            for (const benchmarkCase of cell.cases) {
-              const real = benchmarkCase.run;
-              benchmarkCase.run = benchmarkCase.id.endsWith(":svgRender")
-                ? () => {
-                    throw new Error("base cannot render");
-                  }
-                : real;
-            }
-            return cell;
-          },
-        };
-      },
-    };
-    const cells = [{ lensKey: SERENAR, scenarioId: "default" }];
-    const record = await runOpticsRenderingBenchmark({
-      ...METADATA,
-      cells,
-      warmups: 0,
-      iterations: 2,
-      keepSamples: true,
-      base,
-    });
-    finishBenchmarkRecord(record, { head: { cases: {} }, base: { cases: {} } });
-
-    expect(record.base?.results[SERENAR].default.svgRender).toEqual({ status: "error", message: "base cannot render" });
-    expect(record.results[SERENAR].default.svgRender.stats?.samplesMs).toHaveLength(2);
-    expect(record.comparison?.thrown).toEqual([
-      { id: `${SERENAR}:default:svgRender`, base: "base cannot render", head: null },
-    ]);
-    expect(record.comparison?.unequalWork).toContainEqual({
-      id: `${SERENAR}:default:svgRender`,
-      differences: [{ fact: "status", base: "error", head: "ok" }],
-    });
-    expect(record.comparison?.cases[`${SERENAR}:default:svgRender`]).toBeUndefined();
-    expect(record.warnings).toEqual([
-      `The prescription of ${SERENAR} differs between the base and the head, so its cases compare two lenses as well ` +
-        `as two engines.`,
-    ]);
   });
 
   it("needs a forced collection for the memory session, and records what the sessions report", async () => {
@@ -698,9 +401,8 @@ describe("optics rendering benchmark records", () => {
       {
         ...METADATA,
         cells: HEAVY_BENCHMARK_CELLS,
-        base: { ref: "self", commit: "b".repeat(40), shortCommit: "bbbbbbbb", ownDependencies: true },
       },
-      { head: session(101 * megabyte), base: session(100 * megabyte) },
+      session(101 * megabyte),
     );
 
     expect(record.results).toEqual({});
@@ -730,8 +432,11 @@ describe("optics rendering benchmark records", () => {
         sweeps: { focusT: [0.5, 1], zoomT: [0.5, 1], stopdownT: [0.5, 1], shiftMm: [6, -6], tiltDeg: [4, -4] },
       },
     });
-    expect(record.base).toMatchObject({ ref: "self", ownDependencies: true, results: {} });
-    expect(record.memory).toMatchObject({ retainedHeapRatio: 1.01, withinLimit: true });
+    expect(record.memory).not.toHaveProperty("base");
     expect(record.memory?.head.retainedGrowthBytes).toBe(21 * megabyte);
+    expect(JSON.parse(serializeBenchmarkRecord(record))).toEqual(record);
+    expect(formatSessionRunFileName(record)).toBe("2026-10-12T08-00-00Z-ffffffff-heavy-memory.json");
+    expect(buildSessionSummary(record)).toContain("1 lenses, 3 cycles of 9 lens states");
+    expect(buildSessionSummary(record)).toContain("Growth: 21.00 MB");
   });
 });

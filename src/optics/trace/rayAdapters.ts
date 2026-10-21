@@ -6,21 +6,17 @@
 
 import type { ChromaticChannel, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import { directionFromMeridionalSlope, directionFromSkewSlope } from "../math/vector.js";
-import { compiledLensFromRuntime } from "../prescription/compile.js";
+import { compiledLensFromRuntime } from "../prescription/identity.js";
 import { prepareState, stateWithZ } from "../state/preparedGeometry.js";
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { transmissionTraceCapture } from "./bulkAbsorption.js";
-import {
-  engineTraceToRuntimeRayResult,
-  engineTraceToRuntimeSkewResult,
-  vectorLeadPoint,
-  type RuntimeSkewRayTraceResult,
-} from "./runtimeRayResult.js";
+import { engineTraceToRuntimeRayResult, engineTraceToRuntimeSkewResult, vectorLeadPoint } from "./runtimeRayResult.js";
+import type { RuntimeSkewRayTraceResult } from "./runtimeRayResult.js";
 import type { EngineTraceResult, TraceCapture, TraceOptions } from "./types.js";
-import { CHROMATIC_CHANNEL_WAVELENGTH_NM } from "../constants.js";
+import { CHROMATIC_CHANNEL_WAVELENGTH_NM } from "../chromatic/channels.js";
 
 /** Vector ray input for RuntimeLens adapters, with optional finite launch search bound. */
-export interface VectorRayTraceInput2 {
+export interface VectorRayTraceInput {
   origin: Vec3;
   direction: Vec3;
   launchBoundT?: number;
@@ -37,6 +33,8 @@ interface TraceOptionsCache {
 }
 
 const DIRECTION_CACHE_LIMIT = 4096;
+// Bound aperture history while retaining the shared options used by per-call adapters and bound fans.
+const TRACE_OPTIONS_CACHE_LIMIT = 256;
 const TRACE_OPTIONS_BY_STATE = new WeakMap<PreparedOpticalState, TraceOptionsCache>();
 const MERIDIONAL_DIRECTION_BY_SLOPE = new Map<number, Vec3>([[0, [0, 0, 1]]]);
 const SKEW_DIRECTION_BY_UX = new Map<number, Map<number, Vec3>>();
@@ -50,7 +48,7 @@ let skewDirectionCacheSize = 0;
  * @param options - trace termination, aperture, and chromatic controls
  * @returns engine trace result with hits and diagnostics
  */
-export function traceEngineRay2<C extends TraceCapture = "diagnostics">(
+export function traceEngineRay<C extends TraceCapture = "diagnostics">(
   state: PreparedOpticalState,
   input: Ray3,
   options: TraceOptions<C> = {},
@@ -84,7 +82,7 @@ export function prepareEngineTrace<C extends TraceCapture = "diagnostics">(
  * @param aberrationT - normalized aberration spacing slider
  * @returns public meridional ray trace result
  */
-export function traceRay2(
+export function traceRay(
   y0: number,
   u0: number,
   zPos: number[],
@@ -95,7 +93,7 @@ export function traceRay2(
   L: RuntimeLens,
   aberrationT = 0,
 ): RayTraceResult {
-  return traceRayExactCore2(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT);
+  return traceRayExactCore(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT);
 }
 
 /**
@@ -113,7 +111,7 @@ export function traceRay2(
  * @param aberrationT - normalized aberration spacing slider
  * @returns public meridional ray trace result for the selected wavelength
  */
-export function traceRayChromatic2(
+export function traceRayChromatic(
   y0: number,
   u0: number,
   zPos: number[],
@@ -125,7 +123,7 @@ export function traceRayChromatic2(
   channel: ChromaticChannel,
   aberrationT = 0,
 ): RayTraceResult {
-  return traceRayExactCore2(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, channel, aberrationT);
+  return traceRayExactCore(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, channel, aberrationT);
 }
 
 /**
@@ -143,7 +141,7 @@ export function traceRayChromatic2(
  * @param aberrationT - normalized aberration spacing slider
  * @returns public skew ray trace result
  */
-export function traceSkewRay2(
+export function traceSkewRay(
   x0: number,
   y0: number,
   ux0: number,
@@ -155,7 +153,7 @@ export function traceSkewRay2(
   L: RuntimeLens,
   aberrationT = 0,
 ): RuntimeSkewRayTraceResult {
-  return traceSkewRayExactCore2(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT);
+  return traceSkewRayExactCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT);
 }
 
 /**
@@ -174,7 +172,7 @@ export function traceSkewRay2(
  * @param aberrationT - normalized aberration spacing slider
  * @returns public skew ray trace result for the selected wavelength
  */
-export function traceSkewRayChromatic2(
+export function traceSkewRayChromatic(
   x0: number,
   y0: number,
   ux0: number,
@@ -187,7 +185,7 @@ export function traceSkewRayChromatic2(
   channel: ChromaticChannel,
   aberrationT = 0,
 ): RuntimeSkewRayTraceResult {
-  return traceSkewRayExactCore2(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, channel, aberrationT);
+  return traceSkewRayExactCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, channel, aberrationT);
 }
 
 /**
@@ -206,8 +204,8 @@ export function traceSkewRayChromatic2(
  * @param aberrationT - normalized aberration spacing slider
  * @returns public meridional ray trace result
  */
-export function traceRayVector2(
-  input: VectorRayTraceInput2,
+export function traceRayVector(
+  input: VectorRayTraceInput,
   zPos: number[],
   stopSD: number | undefined,
   ghost: boolean,
@@ -216,7 +214,7 @@ export function traceRayVector2(
   zoomT = 0,
   aberrationT = 0,
 ): RayTraceResult {
-  return traceRayVectorExactCore2(input, zPos, stopSD, ghost, L, undefined, focusT, zoomT, aberrationT);
+  return traceRayVectorExactCore(input, zPos, stopSD, ghost, L, undefined, focusT, zoomT, aberrationT);
 }
 
 /**
@@ -233,8 +231,8 @@ export function traceRayVector2(
  * @param aberrationT - normalized aberration spacing slider
  * @returns public meridional ray trace result for the selected wavelength
  */
-export function traceRayVectorChromatic2(
-  input: VectorRayTraceInput2,
+export function traceRayVectorChromatic(
+  input: VectorRayTraceInput,
   zPos: number[],
   stopSD: number | undefined,
   ghost: boolean,
@@ -244,7 +242,7 @@ export function traceRayVectorChromatic2(
   zoomT = 0,
   aberrationT = 0,
 ): RayTraceResult {
-  return traceRayVectorExactCore2(input, zPos, stopSD, ghost, L, channel, focusT, zoomT, aberrationT);
+  return traceRayVectorExactCore(input, zPos, stopSD, ghost, L, channel, focusT, zoomT, aberrationT);
 }
 
 /**
@@ -260,8 +258,8 @@ export function traceRayVectorChromatic2(
  * @param aberrationT - normalized aberration spacing slider
  * @returns public skew ray trace result
  */
-export function traceSkewRayVector2(
-  input: VectorRayTraceInput2,
+export function traceSkewRayVector(
+  input: VectorRayTraceInput,
   zPos: number[],
   stopSD: number | undefined,
   ghost: boolean,
@@ -270,7 +268,7 @@ export function traceSkewRayVector2(
   zoomT = 0,
   aberrationT = 0,
 ): RuntimeSkewRayTraceResult {
-  return traceSkewRayVectorExactCore2(input, zPos, stopSD, ghost, L, undefined, focusT, zoomT, aberrationT);
+  return traceSkewRayVectorExactCore(input, zPos, stopSD, ghost, L, undefined, focusT, zoomT, aberrationT);
 }
 
 /**
@@ -287,8 +285,8 @@ export function traceSkewRayVector2(
  * @param aberrationT - normalized aberration spacing slider
  * @returns public skew ray trace result for the selected wavelength
  */
-export function traceSkewRayVectorChromatic2(
-  input: VectorRayTraceInput2,
+export function traceSkewRayVectorChromatic(
+  input: VectorRayTraceInput,
   zPos: number[],
   stopSD: number | undefined,
   ghost: boolean,
@@ -298,7 +296,7 @@ export function traceSkewRayVectorChromatic2(
   zoomT = 0,
   aberrationT = 0,
 ): RuntimeSkewRayTraceResult {
-  return traceSkewRayVectorExactCore2(input, zPos, stopSD, ghost, L, channel, focusT, zoomT, aberrationT);
+  return traceSkewRayVectorExactCore(input, zPos, stopSD, ghost, L, channel, focusT, zoomT, aberrationT);
 }
 
 /** Controls shared by a ray fan. Vector launch bounds belong to the request, not individual rays. */
@@ -395,7 +393,7 @@ function boundedVectorOptions<C extends TraceCapture>(
   return launchBoundT === undefined ? options : { ...options, launchBoundT };
 }
 
-function traceRayExactCore2(
+function traceRayExactCore(
   y0: number,
   u0: number,
   zPos: number[],
@@ -411,11 +409,11 @@ function traceRayExactCore2(
   const direction = meridionalDirectionForSlope(u0);
   const rayLead = L.rayLead ?? 0;
   const origin: Vec3 = [0, y0 - u0 * rayLead, (zPos[0] ?? state.z[0] ?? 0) - rayLead];
-  const result = traceEngineRay2(state, { origin, direction }, traceOptions(stopSD, ghost, channel, state, true));
+  const result = traceEngineRay(state, { origin, direction }, traceOptions(stopSD, ghost, channel, state, true));
   return engineTraceToRuntimeRayResult(result, [origin[2], origin[1]], ghost, state.lens);
 }
 
-function traceSkewRayExactCore2(
+function traceSkewRayExactCore(
   x0: number,
   y0: number,
   ux0: number,
@@ -432,7 +430,7 @@ function traceSkewRayExactCore2(
   const direction = skewDirectionForSlopes(ux0, uy0);
   const lead = L.rayLead ?? 0;
   const origin: Vec3 = [x0 - ux0 * lead, y0 - uy0 * lead, (state.z[0] ?? 0) - lead];
-  const result = traceEngineRay2(
+  const result = traceEngineRay(
     state,
     { origin, direction },
     traceOptions(stopSD, ghost, channel, state, true, transmissionTraceCapture(state.lens)),
@@ -440,8 +438,8 @@ function traceSkewRayExactCore2(
   return engineTraceToRuntimeSkewResult(result, state.lens);
 }
 
-function traceRayVectorExactCore2(
-  input: VectorRayTraceInput2,
+function traceRayVectorExactCore(
+  input: VectorRayTraceInput,
   _zPos: number[],
   stopSD: number | undefined,
   ghost: boolean,
@@ -453,7 +451,7 @@ function traceRayVectorExactCore2(
 ): RayTraceResult {
   const state = stateWithZ(stateForRuntimeLens(L, focusT, zoomT, aberrationT), _zPos);
   const options = traceOptions(stopSD, ghost, channel, state, false);
-  const result = traceEngineRay2(
+  const result = traceEngineRay(
     state,
     { origin: input.origin, direction: input.direction },
     boundedVectorOptions(options, input.launchBoundT),
@@ -461,8 +459,8 @@ function traceRayVectorExactCore2(
   return engineTraceToRuntimeRayResult(result, vectorLeadPoint(input, result, L.rayLead ?? 0), ghost, state.lens);
 }
 
-function traceSkewRayVectorExactCore2(
-  input: VectorRayTraceInput2,
+function traceSkewRayVectorExactCore(
+  input: VectorRayTraceInput,
   _zPos: number[],
   stopSD: number | undefined,
   ghost: boolean,
@@ -474,7 +472,7 @@ function traceSkewRayVectorExactCore2(
 ): RuntimeSkewRayTraceResult {
   const state = stateWithZ(stateForRuntimeLens(L, focusT, zoomT, aberrationT), _zPos);
   const options = traceOptions(stopSD, ghost, channel, state, false, transmissionTraceCapture(state.lens));
-  const result = traceEngineRay2(
+  const result = traceEngineRay(
     state,
     { origin: input.origin, direction: input.direction },
     boundedVectorOptions(options, input.launchBoundT),
@@ -528,6 +526,10 @@ function traceOptions<C extends TraceCapture = "diagnostics">(
     indexAtSurface: channel ? (i, nd) => state.lens.dispersion[i]?.indexAt(channel) ?? nd : undefined,
     wavelengthNm: channel ? CHROMATIC_CHANNEL_WAVELENGTH_NM[channel] : undefined,
   };
+  if (optionsCache.byKey.size >= TRACE_OPTIONS_CACHE_LIMIT) {
+    const oldest = optionsCache.byKey.keys().next().value;
+    if (oldest !== undefined) optionsCache.byKey.delete(oldest);
+  }
   optionsCache.byKey.set(key, options);
   optionsCache.lastStopSD = stopSD;
   optionsCache.lastGhost = ghost;

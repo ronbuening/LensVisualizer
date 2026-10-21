@@ -11,11 +11,11 @@
 
 import type { LensData } from "../../../types/optics.js";
 import type { TeleconverterData } from "../../../types/teleconverter.js";
-import { traceParaxialSurfaces2 as traceSurfacesParaxial } from "../../math/paraxial.js";
-import { ingestLensV1 } from "../ingestV1.js";
+import { traceParaxialSurfaces as traceSurfacesParaxial } from "../../math/paraxial.js";
+import { ingestLens } from "../ingestV2.js";
 import { mergeTeleconverterPrescription } from "../teleconverter.js";
 import { rearPlateAirEquivalentMm, teleconverterGeometry } from "../teleconverterCompatibility.js";
-import { toLensData } from "../toLensData.js";
+import { canonicalConstructionData } from "../constructionData.js";
 import validateLensData from "./index.js";
 import { LENS_KEY_PATTERN, validateLensMounts, validateRearPlates } from "./schema.js";
 
@@ -61,27 +61,24 @@ const LENS_ONLY_FIELDS = [
  * @returns host lens data suitable only for structural validation of the merged prescription
  */
 function referenceHost(tc: TeleconverterData): LensData {
-  return toLensData(
-    ingestLensV1({
+  return canonicalConstructionData(
+    ingestLens({
+      schema: 2,
       key: "teleconverter-reference-host",
       name: "Teleconverter reference host",
-      lensMounts: tc.lensMounts,
-      closeFocusM: 1,
-      yScFill: 0.5,
-      nominalFno: 8,
-      fstopSeries: [8],
+      catalog: { lensMounts: tc.lensMounts },
+      focus: { closeFocusM: 1 },
+      layout: { yScFill: 0.5 },
+      aperture: { nominalFNumber: 8, fStops: [8] },
       elements: [],
       surfaces: [
         {
           label: "STO",
-          R: 1e15,
+          R: "flat",
           d: tc.masterImageDistanceMm + REFERENCE_JUNCTION_GAP_MM,
-          nd: 1,
-          elemId: 0,
-          sd: Math.max(...tc.surfaces.map((surface) => surface.sd)),
         },
       ],
-    }),
+    }).prescription,
   );
 }
 

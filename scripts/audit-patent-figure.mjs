@@ -34,7 +34,7 @@
  *     scripts/audit-patent-figure.mjs <data.ts> <patent.pdf> <page> <x0,y0,x1,y1> [flags]
  *
  * The `--import` hook is required: canonical ingest, which reads the data file of
- * either version, reaches value imports written with a ".js" specifier.
+ * V2, reaches value imports written with a ".js" specifier.
  *
  * The crop is given as fractions of the page (after rotation), and must bracket
  * the glass and nothing else — no image plane, no cover-glass plate, no
@@ -50,12 +50,12 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync, readdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { basename, dirname, join, resolve } from "node:path";
+import { basename, dirname, join, relative, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const ROOT = join(import.meta.dirname, "..");
 const { conicPolySag } = await import(pathToFileURL(join(ROOT, "src/optics/geometry.ts")).href);
-const { ingestLens, toLensData } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
+const { ingestLens } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
 
 const [dataFile, pdf, pageArg, cropArg, ...flags] = process.argv.slice(2);
 if (!dataFile || !pdf || !pageArg || !cropArg) {
@@ -219,13 +219,21 @@ const rightX = inked[inked.length - 1].x;
 const truncated = leftX <= cropX0 + 1 || rightX >= cropX1 - 2;
 
 /* ── the data file's own silhouette ── */
-/* Canonical ingest's V1 view reads a file of either version in V1 field names; an authored V1 file reads as written,
- * with the schema defaults. */
-const lens = toLensData(ingestLens((await import(pathToFileURL(resolve(dataFile)).href)).default));
-const aspheres = lens.asph ?? {};
+/* Read canonical facts, with schema defaults already applied. */
+const lens = ingestLens((await import(pathToFileURL(resolve(dataFile)).href)).default, {
+  path: relative(ROOT, resolve(dataFile)).replaceAll("\\", "/"),
+}).prescription;
+const aspheres = Object.fromEntries(
+  lens.surfaces.filter((surface) => surface.asphere).map((surface) => [surface.label, surface.asphere]),
+);
 let vertexZ = 0;
 const surfaces = lens.surfaces.map((surface) => {
-  const row = { ...surface, z: vertexZ };
+  const row = {
+    ...surface,
+    R: surface.R === "flat" ? 1e15 : surface.R,
+    elemId: typeof surface.medium === "number" ? surface.medium : 0,
+    z: vertexZ,
+  };
   vertexZ += surface.d;
   return row;
 });

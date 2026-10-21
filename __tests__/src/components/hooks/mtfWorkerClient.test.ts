@@ -8,8 +8,8 @@ import {
   type MtfWorkerRequest,
 } from "../../../../src/components/hooks/mtfWorkerClient.js";
 import { buildSimplePositiveElementLens } from "../../optics/testLensFixtures.js";
-import { computeMtf } from "../../../../src/optics/mtf.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
+import { computeMtf } from "../../../../src/optics/analysis/mtf/mtf.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 
 class Port implements MtfWorkerPort {
   onmessage: MtfWorkerPort["onmessage"] = null;

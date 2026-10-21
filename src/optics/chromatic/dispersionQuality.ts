@@ -20,7 +20,7 @@ const QUALITY_ORDER: DispersionQuality[] = ["sellmeier", "lineIndices", "abbe", 
  * @param lens - compiled lens with compiled surface dispersions
  * @returns worst non-air dispersion quality in the lens
  */
-export function summarizeDispersionQualityForLens2(lens: CompiledLens): DispersionQuality {
+export function summarizeDispersionQualityForLens(lens: CompiledLens): DispersionQuality {
   return summarizeTableQuality(lens.dispersion, lens.dispersion.length);
 }
 
@@ -43,8 +43,8 @@ function summarizeTableQuality(
  * @param state - prepared optical state whose lens contains compiled dispersion data
  * @returns worst non-air dispersion quality in the lens
  */
-export function summarizeDispersionQualityForState2(state: PreparedOpticalState): DispersionQuality {
-  return summarizeDispersionQualityForLens2(state.lens);
+export function summarizeDispersionQualityForState(state: PreparedOpticalState): DispersionQuality {
+  return summarizeDispersionQualityForLens(state.lens);
 }
 
 /**
@@ -53,6 +53,6 @@ export function summarizeDispersionQualityForState2(state: PreparedOpticalState)
  * @param L - runtime lens object
  * @returns worst non-air dispersion quality in the lens
  */
-export function summarizeDispersionQuality2(L: RuntimeLens): DispersionQuality {
+export function summarizeDispersionQuality(L: RuntimeLens): DispersionQuality {
   return summarizeTableQuality(L.indexByIdx, L.N);
 }

@@ -1,11 +1,10 @@
+import { constructionFixtureData } from "../../constructionFixtures.js";
 import { registerRuntimeFixture } from "../../testLensFixtures.js";
 import { describe, it, expect } from "vitest";
 import { computeVignettingCurve as computeVignettingCurveBase } from "../../../../../src/optics/analysis/vignetting/vignetting.js";
-import {
-  computeAnalysisFieldGeometryAtState,
-  doLayout,
-  type FieldGeometryState,
-} from "../../../../../src/optics/optics.js";
+import { computeAnalysisFieldGeometryAtState } from "../../../../../src/optics/state/fieldAdapters.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../../../src/optics/state/runtimeAdapters.js";
+import type { FieldGeometryState } from "../../../../../src/optics/field/launch.js";
 import MinoltaSTFRaw from "../../../../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.js";
 import { analysisRequestAt, apertureAt, build, sharedNikkorZ70200, sharedSonnar50f15 } from "../../testLensFixtures.js";
 import type { RuntimeLens, LensData } from "../../../../../src/types/optics.js";
@@ -16,7 +15,7 @@ function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): 
   return registerRuntimeFixture({
     ...L,
     data: {
-      ...L.data,
+      ...constructionFixtureData(L),
       imageFormat,
     },
   } as RuntimeLens);

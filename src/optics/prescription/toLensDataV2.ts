@@ -18,20 +18,20 @@
 
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../types/asphericSchema.js";
 import type { LensDataV2Input, TeleconverterDataV2Input } from "../../types/lensDataV2.js";
-import {
-  FLAT_RADIUS,
-  type CanonicalElement,
-  type CanonicalLens,
-  type CanonicalMedium,
-  type CanonicalPrescription,
-  type CanonicalRearPlate,
-  type CanonicalSurface,
-  type CanonicalTeleconverter,
-  type IgnoredKind,
-  type IngestedPrescription,
-  type SourcePaths,
+import { FLAT_RADIUS } from "./canonical.js";
+import type {
+  CanonicalElement,
+  CanonicalLens,
+  CanonicalMedium,
+  CanonicalPrescription,
+  CanonicalRearPlate,
+  CanonicalSurface,
+  CanonicalTeleconverter,
+  IgnoredKind,
+  IngestedPrescription,
+  SourcePaths,
 } from "./canonical.js";
-import { V1_FLAT_RADIUS } from "./ingestV1.js";
+
 import { childPath, follow, inverse, itemPath, labelPath, memberPath, parentPath } from "./sourcePaths.js";
 
 type Untyped = Record<string, unknown>;
@@ -216,7 +216,7 @@ function writeSurfaces(
     write.put(record, at, "label", surface.label, `${at}.label`);
     /* A flat radius the source wrote as a number other than V1's 1e15 stays that number; V2 ingest reads it as flat. */
     const written = ignored[`${at}.R`];
-    const keepNumber = surface.R === FLAT_RADIUS && typeof written === "number" && !Object.is(written, V1_FLAT_RADIUS);
+    const keepNumber = surface.R === FLAT_RADIUS && typeof written === "number" && !Object.is(written, 1e15);
     if (keepNumber) write.restore(record, at, "R", `${at}.R`);
     else write.put(record, at, "R", surface.R, `${at}.R`);
     if (!gapSurfaces.has(surface.label)) write.put(record, at, "d", surface.d, `${at}.d`);

@@ -314,8 +314,8 @@ describe("lens-data scripts", () => {
     writeFileSync(
       dataPath,
       `const LENS_DATA = {
-      "key": "quoted-lens", "name": "CANON QUOTED", "maker": "Canon",
-      "lensMounts": ["canon-ef"], "imageFormat": "135-full-frame",
+      "schema": 2, "key": "quoted-lens", "name": "CANON QUOTED", "maker": "Canon",
+      "catalog": { "lensMounts": ["canon-ef"], "imageFormat": "135-full-frame" },
       "publishedAt": "2026-10-03T01:00:00Z", "visible": false
     };
     export default LENS_DATA;`,

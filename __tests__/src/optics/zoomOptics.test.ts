@@ -13,19 +13,21 @@
 import { describe, it, expect } from "vitest";
 import {
   bAtZoom,
-  eflAtZoom,
-  epAtZoom,
   epZRelStopAtZoom,
-  fopenAtZoom,
   halfFieldAtZoom,
   tracingHalfFieldAtZoom,
   xpAtZoom,
   xpZRelLastSurfAtZoom,
   yRatioAtZoom,
-} from "../../../src/optics/optics.js";
+} from "../../../src/optics/state/stationTables.js";
+import {
+  eflAtZoomClamped as eflAtZoom,
+  epAtZoomClamped as epAtZoom,
+  fopenAtZoomClamped as fopenAtZoom,
+} from "../../../src/optics/state/runtimeAdapters.js";
 import { sharedNikkorZ70200 } from "./testLensFixtures.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
-import { fNumberAtStopdown } from "../../../src/optics/aperture.js";
+import { fNumberAtStopdown } from "../../../src/optics/state/aperture.js";
 
 describe("aperture requests across zoom", () => {
   // Shared regression: controls must preserve the requested setting while enforcing zoom limits.
@@ -171,8 +173,7 @@ describe("accessor guards", () => {
   });
 
   it("fopenAtZoom handles single-entry zoom arrays and non-finite zoomT defensively", () => {
-    // fopenAtZoom routes through the prepared-state interpolator in compat.ts
-    // (interpolateZoomArray2), so its defensive branches are pinned here.
+    // Pin station interpolation for single-entry tables and non-finite controls.
     const single = makeZoomLens({ zoomFOPENs: [4] });
     expect(fopenAtZoom(0, single)).toBe(4);
     expect(fopenAtZoom(0.7, single)).toBe(4);

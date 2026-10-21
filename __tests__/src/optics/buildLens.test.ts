@@ -1,22 +1,22 @@
+import { constructionFixtureData } from "./constructionFixtures.js";
 import { describe, it, expect, vi } from "vitest";
-import buildLens, {
-  ingestLens,
-  ingestLensV1,
-  paraxialTrace,
-  realTraceToStop,
-  toLensData,
-} from "../../../src/optics/buildLens.js";
-import { toLensDataInput } from "../../../src/optics/prescription/toLensData.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
+import { ingestLens } from "../../../src/optics/lensDataConversion.js";
+import { ingestLensV1 } from "../../../src/optics/prescription/v1/ingestV1.js";
+import { paraxialTrace, realTraceToStop } from "../../../src/optics/first-order/lensConstants.js";
+import { toLensData } from "../../../src/optics/prescription/v1/toLensData.js";
+import { toLensDataInput } from "../../../src/optics/prescription/v1/toLensData.js";
 import { PrescriptionIngestError } from "../../../src/optics/prescription/canonical.js";
 import { v1CatalogDefaults } from "../../../src/optics/prescription/defaults.js";
-import { withLensDefaults } from "../../../src/optics/prescription/compile.js";
-import { attachTeleconverter } from "../../../src/optics/teleconverter.js";
-import validateLensData from "../../../src/optics/validateLensData.js";
-import { wideOpenStopAtZoom } from "../../../src/optics/apertureStop.js";
-import { doLayout, traceRay } from "../../../src/optics/optics.js";
+import { canonicalInput } from "../../../src/optics/prescription/canonicalInput.js";
+import { attachFixtureTeleconverter as attachTeleconverter } from "./constructionFixtures.js";
+import validateLensData from "../../../src/optics/prescription/validate/index.js";
+import { wideOpenStopAtZoom } from "../../../src/optics/state/stationTables.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { traceRay } from "../../../src/optics/trace/rayAdapters.js";
 import { computeCardinalElements } from "../../../src/optics/analysis/summary/cardinals.js";
 import { analysisRequestForLens } from "./testLensFixtures.js";
-import { computeFieldGeometryAtState } from "../../../src/optics/fieldGeometry.js";
+import { computeFieldGeometryAtState } from "../../../src/optics/state/fieldAdapters.js";
 import {
   REAR_PLATE_FIXTURE,
   buildRearPlateAirEquivalentLens,
@@ -298,20 +298,19 @@ describe("buildLens — RuntimeLens property shape", () => {
 });
 
 describe("buildLens — canonical ingest", () => {
-  it("reads an authored file through ingest and its V1 view", () => {
-    expect(withLensDefaults(ApoLantharRaw as unknown as LensData)).toEqual(toLensData(ingestLens(ApoLantharRaw)));
+  it("reads an authored file through canonical ingest", () => {
+    const runtime = buildLens(ApoLantharRaw);
+    expect(runtime.source).toEqual(ingestLens(ApoLantharRaw).prescription);
+    expect(runtime).not.toHaveProperty("data");
   });
 
   it("builds a composed pair through its canonical association", () => {
     const composed = attachTeleconverter(teleconverterHostData(), teleconverterFixture());
-    expect(composed.attachedTeleconverter).toBeDefined();
-    /* A copy loses the canonical association and cannot author the composer-only marker. */
-    expect(() => ingestLensV1(composed as unknown as LensDataInput)).toThrow(/attachedTeleconverter is written only/);
-    expect(() => buildLens({ ...composed })).toThrow(/attachedTeleconverter is written only/);
-    const forBuild = withLensDefaults(composed);
-    expect(forBuild).toEqual(composed);
-    expect(forBuild).not.toBe(composed);
-    expect(buildLens(composed).EFL).toBeGreaterThan(buildLens(teleconverterHostData()).EFL);
+    const runtime = buildLens(composed);
+    expect(runtime.source).toBe(composed);
+    expect(runtime.attachedTeleconverter).toBeDefined();
+    expect(canonicalInput(composed).attachedTeleconverter).toEqual(runtime.attachedTeleconverter);
+    expect(runtime.EFL).toBeGreaterThan(buildLens(teleconverterHostData()).EFL);
   });
 
   it("composes and builds a raw host that omits catalog defaults", () => {
@@ -853,7 +852,7 @@ describe("buildLens — rear plates", () => {
     expect(plated.ES).toEqual(folded.ES);
     expect(plated.elements).toEqual(folded.elements);
     expect(plated.maxSD).toBe(folded.maxSD);
-    expect(plated.data.elements.some((element) => element.synthetic === "rearPlate")).toBe(true);
+    expect(constructionFixtureData(plated).elements.some((element) => element.synthetic === "rearPlate")).toBe(true);
   });
 
   it("resolves plate dispersion through its catalog glass", () => {

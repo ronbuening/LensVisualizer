@@ -1,14 +1,15 @@
+import { constructionFixtureData } from "../constructionFixtures.js";
 import { describe, expect, it } from "vitest";
+import { compileSurfaceDispersions } from "../../../../src/optics/chromatic/dispersionTable.js";
 import {
-  compileSurfaceDispersions,
-  dispersionTableFromRuntime2,
-  makeSurfaceDispersion2,
+  dispersionTableFromRuntime,
+  makeSurfaceDispersionForRuntimeSurface,
 } from "../../../../src/optics/chromatic/dispersionAdapter.js";
 import { buildChromaticPositiveElementLens } from "../testLensFixtures.js";
 
 describe("chromatic dispersion adapter", () => {
   it("creates per-surface dispersion descriptors through the v2 wrapper", () => {
-    const descriptor = makeSurfaceDispersion2(
+    const descriptor = makeSurfaceDispersionForRuntimeSurface(
       { R: 0, d: 0, sd: 0, label: "1", nd: 1.5168, elemId: 1 },
       { id: 1, name: "L1", label: "L1", type: "positive", nd: 1.5168, vd: 64.17, glass: "N-BK7" },
       undefined,
@@ -20,10 +21,12 @@ describe("chromatic dispersion adapter", () => {
 
   it("compiles a runtime lens dispersion table with one descriptor per surface", () => {
     const lens = buildChromaticPositiveElementLens("test-dispersion-adapter");
-    const fromRuntime = dispersionTableFromRuntime2(lens);
+    const fromRuntime = dispersionTableFromRuntime(lens);
 
     expect(fromRuntime.map((entry) => entry.quality)).toEqual(
-      compileSurfaceDispersions(lens.S, lens.data.elements, lens.spectralByIdx).map((entry) => entry.quality),
+      compileSurfaceDispersions(lens.S, constructionFixtureData(lens).elements, lens.spectralByIdx).map(
+        (entry) => entry.quality,
+      ),
     );
     expect(fromRuntime).toHaveLength(lens.S.length);
     expect(fromRuntime.some((entry) => entry.quality === "sellmeier")).toBe(true);

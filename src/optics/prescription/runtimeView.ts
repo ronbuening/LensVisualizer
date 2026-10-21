@@ -1,4 +1,4 @@
-/** Frozen compatibility read model for UI and legacy analyses awaiting the Stage 7 request migration. */
+/** Frozen UI read model assembled from compiled records and the canonical source. */
 import type { RuntimeLens } from "../../types/optics.js";
 import type { CompiledLens } from "../types.js";
 import { associateRuntime } from "./identity.js";
@@ -19,11 +19,12 @@ export function runtimeView(lens: CompiledLens): RuntimeLens {
   if (cached) return cached;
   const control = lens.aberrationControl;
   const runtime = Object.freeze({
-    data: lens.source,
+    source: lens.source,
+    ...(lens.attachedTeleconverter ? { attachedTeleconverter: lens.attachedTeleconverter } : {}),
     S: lens.constructionSurfaces.map((surface, i) => ({ ...surface, sd: lens.surfaces[i].sd })),
     N: lens.surfaces.length,
     ES: lens.displayElementSpans,
-    elements: lens.source.elements.filter((element) => !element.synthetic),
+    elements: lens.elements.map((element) => element.source).filter((element) => !element.synthetic),
     lastLensSurfaceIdx: lens.lastLensSurfaceIndex,
     ...lens.indices,
     varByIdx: lens.variables.bySurfaceIndex,

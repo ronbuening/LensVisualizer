@@ -1,5 +1,5 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../optics/constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import { TELECONVERTER_CATALOG } from "../../../src/utils/catalog/teleconverterCatalog.js";
 
 /**
@@ -13,7 +13,17 @@ import { TELECONVERTER_CATALOG } from "../../../src/utils/catalog/teleconverterC
 
 describe("values a prescription holds twice", () => {
   it("gives every surface the exact index of the element it opens", () => {
-    const prescriptions = [...Object.values(LENS_CATALOG), ...Object.values(TELECONVERTER_CATALOG)];
+    const prescriptions = [
+      ...Object.values(CATALOG_CONSTRUCTION_FIXTURES),
+      ...Object.values(TELECONVERTER_CATALOG).map((tc) => ({
+        ...tc,
+        surfaces: tc.surfaces.map((surface) => ({
+          ...surface,
+          nd: typeof surface.medium === "number" ? tc.elements.find((e) => e.id === surface.medium)!.nd : 1,
+          elemId: typeof surface.medium === "number" ? surface.medium : 0,
+        })),
+      })),
+    ];
     expect(prescriptions.length).toBeGreaterThan(0);
 
     const mismatches: string[] = [];
@@ -37,7 +47,9 @@ describe("values a prescription holds twice", () => {
   });
 
   it("gives every variable gap's surface the exact infinity thickness of the first zoom position", () => {
-    const withGaps = Object.values(LENS_CATALOG).filter((data) => Object.keys(data.var ?? {}).length > 0);
+    const withGaps = Object.values(CATALOG_CONSTRUCTION_FIXTURES).filter(
+      (data) => Object.keys(data.var ?? {}).length > 0,
+    );
     expect(withGaps.length).toBeGreaterThan(0);
 
     const mismatches: string[] = [];

@@ -3,7 +3,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import DiagramViewport from "../../../../../src/components/layout/lensDiagram/DiagramViewport.js";
-import type { CardinalElements } from "../../../../../src/optics/cardinalElements.js";
+import type { CardinalElements } from "../../../../../src/optics/first-order/cardinals.js";
 import type { RuntimeLens } from "../../../../../src/types/optics.js";
 import type { Theme } from "../../../../../src/types/theme.js";
 

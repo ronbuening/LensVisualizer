@@ -4,7 +4,7 @@ Surfaces where the element's `glass` string resolves to a vendor catalog entry
 but its published coordinates disagree with the stored prescription beyond Δn ±0.003 or Δν ±2.
 D-line rows compare C/d/F coordinates; native e-line rows compare C′/e/F′ coordinates.
 
-These are rejected by the safety net in [src/optics/dispersion.ts](../../src/optics/dispersion.ts) — the
+These are rejected by the safety net in [src/optics/chromatic/materialResolver.ts](../../src/optics/chromatic/materialResolver.ts) — the
 dispersion cascade falls through to Abbe rather than trust a misidentified glass label. This
 report exists so the team can decide per-case whether to relabel the glass, update the stored `nd`,
 or accept the mismatch (some glass annotations in lens-data files are explicitly marked as guesses

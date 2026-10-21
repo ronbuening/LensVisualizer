@@ -1,12 +1,7 @@
 /** Shared pure radial-density reductions for spherical, bokeh and perspective analysis. */
 
-import {
-  BOKEH_RADIAL_PROFILE_BIN_COUNT,
-  type BokehPoint,
-  type BokehRadialProfile,
-  type BokehRadialProfileBin,
-  type BokehBrightnessCharacter,
-} from "./types.js";
+import { BOKEH_RADIAL_PROFILE_BIN_COUNT } from "./types.js";
+import type { BokehPoint, BokehRadialProfile, BokehRadialProfileBin, BokehBrightnessCharacter } from "./types.js";
 
 const BOKEH_BRIGHTNESS_RATIO_THRESHOLD = 1.15;
 

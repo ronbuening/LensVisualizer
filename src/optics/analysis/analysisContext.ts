@@ -6,17 +6,18 @@
  * memoizes each analysis result on first read so sibling panels do not repeat ray sweeps.
  */
 
-import { analysisJobsForState2 } from "./analysisJobs.js";
+import { analysisJobs } from "./analysisJobs.js";
 import { computeLongitudinalChromaticFocus } from "./chromatic/analysis.js";
-import { createAnalysisRequest, type AnalysisRequest, type AnalysisRequestParams } from "./request.js";
+import { createAnalysisRequest } from "./request.js";
+import type { AnalysisRequest, AnalysisRequestParams } from "./request.js";
 import {
   analysisSectionAvailability,
   assertAnalysisSectionAvailable,
   assertCenteredAnalysisSectionAvailable,
-  type AnalysisSectionAvailability,
-  type AnalysisSectionId,
 } from "./analysisMovementSupport.js";
-import { createPerspectiveAnalysisJobs, type PerspectiveAnalysisJobs } from "./perspectiveAnalysisJobs.js";
+import type { AnalysisSectionAvailability, AnalysisSectionId } from "./analysisMovementSupport.js";
+import { createPerspectiveAnalysisJobs } from "./perspectiveAnalysisJobs.js";
+import type { PerspectiveAnalysisJobs } from "./perspectiveAnalysisJobs.js";
 
 export type AnalysisComputationContextParams = AnalysisRequestParams;
 
@@ -36,24 +37,24 @@ export interface AnalysisComputationContext extends AnalysisComputationContextPa
   perspectiveCacheKey: string;
   movementActive: boolean;
   sectionAvailability: (section: AnalysisSectionId) => AnalysisSectionAvailability;
-  computeOpticalSummary: () => ReturnType<typeof analysisJobsForState2.computeOpticalSummary>;
-  computeDistortionCurve: () => ReturnType<typeof analysisJobsForState2.computeDistortionCurve>;
-  computeDistortionFieldGrid: () => ReturnType<typeof analysisJobsForState2.computeDistortionFieldGrid>;
-  computeVignettingCurve: () => ReturnType<typeof analysisJobsForState2.computeVignettingCurve>;
-  computeBothPupilAberrationProfiles: () => ReturnType<typeof analysisJobsForState2.computeBothPupilAberrationProfiles>;
-  computeBokehPreviewPair: () => ReturnType<typeof analysisJobsForState2.computeBokehPreviewPair>;
-  computeBestFocusZ: () => ReturnType<typeof analysisJobsForState2.computeBestFocusZ>;
-  computeSphericalAberration: () => ReturnType<typeof analysisJobsForState2.computeSphericalAberration>;
-  computeSAProfile: () => ReturnType<typeof analysisJobsForState2.computeSAProfile>;
+  computeOpticalSummary: () => ReturnType<typeof analysisJobs.computeOpticalSummary>;
+  computeDistortionCurve: () => ReturnType<typeof analysisJobs.computeDistortionCurve>;
+  computeDistortionFieldGrid: () => ReturnType<typeof analysisJobs.computeDistortionFieldGrid>;
+  computeVignettingCurve: () => ReturnType<typeof analysisJobs.computeVignettingCurve>;
+  computeBothPupilAberrationProfiles: () => ReturnType<typeof analysisJobs.computeBothPupilAberrationProfiles>;
+  computeBokehPreviewPair: () => ReturnType<typeof analysisJobs.computeBokehPreviewPair>;
+  computeBestFocusZ: () => ReturnType<typeof analysisJobs.computeBestFocusZ>;
+  computeSphericalAberration: () => ReturnType<typeof analysisJobs.computeSphericalAberration>;
+  computeSAProfile: () => ReturnType<typeof analysisJobs.computeSAProfile>;
   computeSphericalAberrationBlurCharacter: () => ReturnType<
-    typeof analysisJobsForState2.computeSphericalAberrationBlurCharacter
+    typeof analysisJobs.computeSphericalAberrationBlurCharacter
   >;
-  computeFieldCurvatureBundle: () => ReturnType<typeof analysisJobsForState2.computeFieldCurvatureBundle>;
-  computeChromaticAnalysis: () => ReturnType<typeof analysisJobsForState2.computeChromaticAnalysis>;
-  computeChromaticRayFanAnalysis: () => ReturnType<typeof analysisJobsForState2.computeChromaticRayFanAnalysis>;
+  computeFieldCurvatureBundle: () => ReturnType<typeof analysisJobs.computeFieldCurvatureBundle>;
+  computeChromaticAnalysis: () => ReturnType<typeof analysisJobs.computeChromaticAnalysis>;
+  computeChromaticRayFanAnalysis: () => ReturnType<typeof analysisJobs.computeChromaticRayFanAnalysis>;
   /** Classical on-axis LoCA in the intrinsic lens frame, independent of rigid camera pose. */
   computeIntrinsicLongitudinalChromaticFocus: () => ReturnType<typeof computeLongitudinalChromaticFocus>;
-  computeComaAnalysis: () => ReturnType<typeof analysisJobsForState2.computeComaAnalysis>;
+  computeComaAnalysis: () => ReturnType<typeof analysisJobs.computeComaAnalysis>;
 }
 
 /**
@@ -92,23 +93,23 @@ export function createAnalysisComputationContext(
     return compute();
   };
   const perspectiveJobs = createPerspectiveAnalysisJobs(request);
-  let opticalSummary: ReturnType<typeof analysisJobsForState2.computeOpticalSummary> | undefined;
-  let distortionCurve: ReturnType<typeof analysisJobsForState2.computeDistortionCurve> | undefined;
-  let distortionFieldGrid: ReturnType<typeof analysisJobsForState2.computeDistortionFieldGrid> | undefined;
-  let vignettingCurve: ReturnType<typeof analysisJobsForState2.computeVignettingCurve> | undefined;
-  let pupilProfiles: ReturnType<typeof analysisJobsForState2.computeBothPupilAberrationProfiles> | undefined;
-  let bokehPreviewPair: ReturnType<typeof analysisJobsForState2.computeBokehPreviewPair> | undefined;
-  let bestFocusZ: ReturnType<typeof analysisJobsForState2.computeBestFocusZ> | undefined;
-  let sphericalAberration: ReturnType<typeof analysisJobsForState2.computeSphericalAberration> | undefined;
-  let saProfile: ReturnType<typeof analysisJobsForState2.computeSAProfile> | undefined;
+  let opticalSummary: ReturnType<typeof analysisJobs.computeOpticalSummary> | undefined;
+  let distortionCurve: ReturnType<typeof analysisJobs.computeDistortionCurve> | undefined;
+  let distortionFieldGrid: ReturnType<typeof analysisJobs.computeDistortionFieldGrid> | undefined;
+  let vignettingCurve: ReturnType<typeof analysisJobs.computeVignettingCurve> | undefined;
+  let pupilProfiles: ReturnType<typeof analysisJobs.computeBothPupilAberrationProfiles> | undefined;
+  let bokehPreviewPair: ReturnType<typeof analysisJobs.computeBokehPreviewPair> | undefined;
+  let bestFocusZ: ReturnType<typeof analysisJobs.computeBestFocusZ> | undefined;
+  let sphericalAberration: ReturnType<typeof analysisJobs.computeSphericalAberration> | undefined;
+  let saProfile: ReturnType<typeof analysisJobs.computeSAProfile> | undefined;
   let sphericalAberrationBlurCharacter:
-    | ReturnType<typeof analysisJobsForState2.computeSphericalAberrationBlurCharacter>
+    | ReturnType<typeof analysisJobs.computeSphericalAberrationBlurCharacter>
     | undefined;
-  let fieldCurvatureBundle: ReturnType<typeof analysisJobsForState2.computeFieldCurvatureBundle> | undefined;
-  let chromaticAnalysis: ReturnType<typeof analysisJobsForState2.computeChromaticAnalysis> | undefined;
-  let chromaticRayFanAnalysis: ReturnType<typeof analysisJobsForState2.computeChromaticRayFanAnalysis> | undefined;
+  let fieldCurvatureBundle: ReturnType<typeof analysisJobs.computeFieldCurvatureBundle> | undefined;
+  let chromaticAnalysis: ReturnType<typeof analysisJobs.computeChromaticAnalysis> | undefined;
+  let chromaticRayFanAnalysis: ReturnType<typeof analysisJobs.computeChromaticRayFanAnalysis> | undefined;
   let intrinsicLongitudinalChromaticFocus: { value: ReturnType<typeof computeLongitudinalChromaticFocus> } | undefined;
-  let comaAnalysis: ReturnType<typeof analysisJobsForState2.computeComaAnalysis> | undefined;
+  let comaAnalysis: ReturnType<typeof analysisJobs.computeComaAnalysis> | undefined;
 
   const context: AnalysisComputationContext = {
     request,
@@ -129,41 +130,35 @@ export function createAnalysisComputationContext(
     sectionAvailability: (section) => analysisSectionAvailability(section, perspectiveTraceContext),
     ...perspectiveJobs,
     computeOpticalSummary: () =>
-      (opticalSummary ??= computeSection("summary", () => analysisJobsForState2.computeOpticalSummary(request))),
+      (opticalSummary ??= computeSection("summary", () => analysisJobs.computeOpticalSummary(request))),
     computeDistortionCurve: () =>
-      (distortionCurve ??= computeCenteredSection("distortion", () =>
-        analysisJobsForState2.computeDistortionCurve(request),
-      )),
+      (distortionCurve ??= computeCenteredSection("distortion", () => analysisJobs.computeDistortionCurve(request))),
     computeDistortionFieldGrid: () =>
       (distortionFieldGrid ??= computeCenteredSection("distortion", () =>
         // The context has always kept grid defaults independent of curve/quality sampling.
-        analysisJobsForState2.computeDistortionFieldGrid({ ...request, sampling: {} }),
+        analysisJobs.computeDistortionFieldGrid({ ...request, sampling: {} }),
       )),
     computeVignettingCurve: () =>
-      (vignettingCurve ??= computeCenteredSection("vignetting", () =>
-        analysisJobsForState2.computeVignettingCurve(request),
-      )),
+      (vignettingCurve ??= computeCenteredSection("vignetting", () => analysisJobs.computeVignettingCurve(request))),
     computeBothPupilAberrationProfiles: () =>
       (pupilProfiles ??= computeCenteredSection("pupils", () =>
-        analysisJobsForState2.computeBothPupilAberrationProfiles(request),
+        analysisJobs.computeBothPupilAberrationProfiles(request),
       )),
     computeBokehPreviewPair: () =>
-      (bokehPreviewPair ??= computeCenteredSection("bokeh", () =>
-        analysisJobsForState2.computeBokehPreviewPair(request),
-      )),
+      (bokehPreviewPair ??= computeCenteredSection("bokeh", () => analysisJobs.computeBokehPreviewPair(request))),
     computeBestFocusZ: () =>
-      (bestFocusZ ??= computeSection("spherical-aberration", () => analysisJobsForState2.computeBestFocusZ(request))),
+      (bestFocusZ ??= computeSection("spherical-aberration", () => analysisJobs.computeBestFocusZ(request))),
     computeSphericalAberration: () =>
       (sphericalAberration ??= computeSection("spherical-aberration", () =>
-        analysisJobsForState2.computeSphericalAberration(request),
+        analysisJobs.computeSphericalAberration(request),
       )),
     computeSAProfile: () =>
-      (saProfile ??= computeSection("spherical-aberration", () => analysisJobsForState2.computeSAProfile(request))),
+      (saProfile ??= computeSection("spherical-aberration", () => analysisJobs.computeSAProfile(request))),
     computeSphericalAberrationBlurCharacter: () => {
       assertAnalysisSectionAvailable("spherical-aberration", perspectiveTraceContext);
       if (sphericalAberrationBlurCharacter === undefined) {
-        sphericalAberration ??= analysisJobsForState2.computeSphericalAberration(request);
-        sphericalAberrationBlurCharacter = analysisJobsForState2.computeSphericalAberrationBlurCharacter(
+        sphericalAberration ??= analysisJobs.computeSphericalAberration(request);
+        sphericalAberrationBlurCharacter = analysisJobs.computeSphericalAberrationBlurCharacter(
           request,
           sphericalAberration,
         );
@@ -172,15 +167,13 @@ export function createAnalysisComputationContext(
     },
     computeFieldCurvatureBundle: () =>
       (fieldCurvatureBundle ??= computeCenteredSection("field-curvature", () =>
-        analysisJobsForState2.computeFieldCurvatureBundle(request),
+        analysisJobs.computeFieldCurvatureBundle(request),
       )),
     computeChromaticAnalysis: () =>
-      (chromaticAnalysis ??= computeCenteredSection("chromatic", () =>
-        analysisJobsForState2.computeChromaticAnalysis(request),
-      )),
+      (chromaticAnalysis ??= computeCenteredSection("chromatic", () => analysisJobs.computeChromaticAnalysis(request))),
     computeChromaticRayFanAnalysis: () =>
       (chromaticRayFanAnalysis ??= computeCenteredSection("chromatic", () =>
-        analysisJobsForState2.computeChromaticRayFanAnalysis(request),
+        analysisJobs.computeChromaticRayFanAnalysis(request),
       )),
     computeIntrinsicLongitudinalChromaticFocus: () => {
       intrinsicLongitudinalChromaticFocus ??= {
@@ -189,7 +182,7 @@ export function createAnalysisComputationContext(
       return intrinsicLongitudinalChromaticFocus.value;
     },
     computeComaAnalysis: () =>
-      (comaAnalysis ??= computeCenteredSection("coma", () => analysisJobsForState2.computeComaAnalysis(request))),
+      (comaAnalysis ??= computeCenteredSection("coma", () => analysisJobs.computeComaAnalysis(request))),
   };
   CONTEXT_BY_REQUEST.set(request, context);
   return context;

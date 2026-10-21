@@ -9,7 +9,7 @@ import type {
   FoldedPathTraceDiagnostics,
   FoldedPathTraceTermination,
 } from "../../types/optics.js";
-import type { SurfaceIntersectionFailureReason } from "../geometry/intersect.js";
+import type { SurfaceIntersectionFailureReason } from "../geometry/intersectTypes.js";
 import type { CompiledStateSurface, PathSpec, Plane3, Ray3, Vec3 } from "../types.js";
 
 /** Failure reason emitted by exact tracing after intersection and interaction steps. */

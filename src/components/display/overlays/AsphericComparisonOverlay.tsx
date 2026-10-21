@@ -18,7 +18,7 @@ import {
   peakAbsDeparture,
   rmsDeparture,
 } from "../../../optics/analysis.js";
-import { prepareRuntimeState } from "../../../optics/buildLens.js";
+import { prepareRuntimeState } from "../../../optics/optics.js";
 import { sag, conicPolySag } from "../../../optics/geometry.js";
 import type { AsphericCoefficients, ElementData, RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";

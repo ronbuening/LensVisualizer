@@ -34,20 +34,21 @@ flowchart LR
     n_src_utils_catalog_src_utils_catalog_universalRelationshipGraph_ts["universalRelationshipGraph.ts"]
     n_src_utils_catalog_src_utils_catalog_universalRelationshipSearch_ts["universalRelationshipSearch.ts"]
   end
-  n_external_src_types["src/types"]
   n_external_src_generated["src/generated"]
+  n_external_src_optics_buildLens_ts["src/optics/buildLens.ts"]
+  n_external_src_types["src/types"]
   n_external_glob_______lens_data______analysis_md["glob:../../lens-data/**/*.analysis.md"]
   n_external_glob_______lens_data______data_ts["glob:../../lens-data/**/*.data.ts"]
   n_external_glob_______lens_data______teleconverter_ts["glob:../../lens-data/**/*.teleconverter.ts"]
   n_external_src_comparison["src/comparison"]
-  n_external_src_optics_buildLens_ts["src/optics/buildLens.ts"]
   n_external_src_optics_teleconverter_ts["src/optics/teleconverter.ts"]
   n_external_src_utils_chunkLoadRetry_ts["src/utils/chunkLoadRetry.ts"]
   n_external_src_utils_seo["src/utils/seo"]
   n_src_utils_catalog_src_utils_catalog_patentCatalog_ts --> |4| n_src_utils_catalog_src_utils_catalog_patentRecords_ts
-  n_src_utils_catalog_src_utils_catalog_teleconverterCatalog_ts --> |3| n_external_src_types
   n_src_utils_catalog_src_utils_catalog_lensMetadata_ts --> |2| n_external_src_generated
   n_src_utils_catalog_src_utils_catalog_lensSummaries_ts --> |2| n_external_src_generated
+  n_src_utils_catalog_src_utils_catalog_lensCatalog_ts --> |2| n_external_src_optics_buildLens_ts
+  n_src_utils_catalog_src_utils_catalog_teleconverterCatalog_ts --> |2| n_external_src_optics_buildLens_ts
   n_src_utils_catalog_src_utils_catalog_assigneeCatalog_ts --> |2| n_external_src_types
   n_src_utils_catalog_src_utils_catalog_lensCatalog_ts --> |2| n_external_src_types
   n_src_utils_catalog_src_utils_catalog_searchCatalog_ts --> |2| n_src_utils_catalog_src_utils_catalog_authorCatalog_ts
@@ -63,17 +64,16 @@ flowchart LR
   n_src_utils_catalog_src_utils_catalog_assigneeCatalog_ts --> n_external_src_generated
   n_src_utils_catalog_src_utils_catalog_authorCatalog_ts --> n_external_src_generated
   n_src_utils_catalog_src_utils_catalog_teleconverterSummaries_ts --> n_external_src_generated
-  n_src_utils_catalog_src_utils_catalog_lensCatalog_ts --> n_external_src_optics_buildLens_ts
-  n_src_utils_catalog_src_utils_catalog_teleconverterCatalog_ts --> n_external_src_optics_buildLens_ts
+  n_src_utils_catalog_src_utils_catalog_lensMetadata_ts --> n_external_src_optics_buildLens_ts
+  n_src_utils_catalog_src_utils_catalog_lensPatentMetadata_ts --> n_external_src_optics_buildLens_ts
   n_src_utils_catalog_src_utils_catalog_teleconverterCatalog_ts --> n_external_src_optics_teleconverter_ts
   n_src_utils_catalog_src_utils_catalog_assigneeCorporateHistory_ts --> n_external_src_types
   n_src_utils_catalog_src_utils_catalog_authorCatalog_ts --> n_external_src_types
-  n_src_utils_catalog_src_utils_catalog_lensMetadata_ts --> n_external_src_types
-  n_src_utils_catalog_src_utils_catalog_lensPatentMetadata_ts --> n_external_src_types
   n_src_utils_catalog_src_utils_catalog_lensSummaries_ts --> n_external_src_types
   n_src_utils_catalog_src_utils_catalog_patentCatalog_ts --> n_external_src_types
   n_src_utils_catalog_src_utils_catalog_patentRecords_ts --> n_external_src_types
   n_src_utils_catalog_src_utils_catalog_relationshipGraph_ts --> n_external_src_types
+  n_src_utils_catalog_src_utils_catalog_teleconverterCatalog_ts --> n_external_src_types
   n_src_utils_catalog_src_utils_catalog_universalRelationshipGraph_ts --> n_external_src_types
   n_src_utils_catalog_src_utils_catalog_lensCatalog_ts --> n_external_src_utils_chunkLoadRetry_ts
   n_src_utils_catalog_src_utils_catalog_authorCatalog_ts --> n_external_src_utils_seo
@@ -87,7 +87,7 @@ flowchart LR
 
 - Direct source files: 24
 - Direct subfolders: 0
-- Main outbound areas: same folder (49), src/types (16), src/generated (7), src/utils/seo (4), src/optics/buildLens.ts (2), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, +3 more
+- Main outbound areas: same folder (49), src/types (12), src/generated (7), src/optics/buildLens.ts (6), src/utils/seo (4), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, +3 more
 - External consumers: src/benchmarks, src/comparison, src/components/content, src/components/controls, src/components/display, src/components/homepage, src/components/hooks, src/components/layout, +34 more
 
 ## Files
@@ -102,9 +102,9 @@ flowchart LR
 | `collation.ts` | Collation helper module | none | same folder (11), src/components/relationshipMap (3), src/pages/lensIndex (3), src/pages/AuthorsIndexPage.tsx, src/pages/MakersIndexPage.tsx, +2 more | catalogCollator |
 | `groupByNamedParty.ts` | Group By Named Party helper module | same folder | same folder (2), src/pages/lensIndex | NamedPartyGroup, groupByNamedParty |
 | `imageFormatDetails.ts` | Image Format Details helper module | same folder | src/pages/FormatPage.tsx, src/pages/FormatsIndexPage.tsx | ImageFormatDetails, IMAGE_FORMAT_DETAILS, getImageFormatDetails |
-| `lensCatalog.ts` | Lens Catalog helper module | src/types (2), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, same folder, src/optics/buildLens.ts, +1 more | src/components/layout (4), src/utils/state (3), same folder, src/benchmarks, src/components/hooks, +2 more | OpticalConfigurationOption, LENS_CATALOG, lensNameForKey, ALL_CATALOG_KEYS, CATALOG_KEYS, COMPARISON_CATALOG_KEYS, DEBUG_CATALOG_KEYS, isDebugLensKey, +6 more |
-| `lensMetadata.ts` | Lens Metadata helper module | same folder (2), src/generated (2), src/comparison, src/types, src/utils/seo | same folder, src/components/homepage, src/components/layout, src/components/SEOHead.tsx, src/pages/ArticlePage.tsx, +23 more | MakerInfo, deriveMaker, allMakerSlugs, makerDisplayName, lensPageTitle, lensPageDescription, lensCanonicalURL, makerCanonicalURL, +17 more |
-| `lensPatentMetadata.ts` | Lens Patent Metadata helper module | src/types | same folder, src/components/controls | LensPatentAttribution, lensPatentAttribution, lensDisplaySubtitle, lensPatentReference |
+| `lensCatalog.ts` | Lens Catalog helper module | src/optics/buildLens.ts (2), src/types (2), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, same folder, +1 more | src/components/layout (4), src/utils/state (3), same folder, src/benchmarks, src/components/hooks, +2 more | OpticalConfigurationOption, LENS_CATALOG, lensNameForKey, ALL_CATALOG_KEYS, CATALOG_KEYS, COMPARISON_CATALOG_KEYS, DEBUG_CATALOG_KEYS, isDebugLensKey, +6 more |
+| `lensMetadata.ts` | Lens Metadata helper module | same folder (2), src/generated (2), src/comparison, src/optics/buildLens.ts, src/utils/seo | same folder, src/components/homepage, src/components/layout, src/components/SEOHead.tsx, src/pages/ArticlePage.tsx, +23 more | MakerInfo, deriveMaker, allMakerSlugs, makerDisplayName, lensPageTitle, lensPageDescription, lensCanonicalURL, makerCanonicalURL, +17 more |
+| `lensPatentMetadata.ts` | Lens Patent Metadata helper module | src/optics/buildLens.ts | same folder, src/components/controls | LensPatentAttribution, lensPatentAttribution, lensDisplaySubtitle, lensPatentReference |
 | `lensSummaries.ts` | Lens Summaries helper module | src/generated (2), same folder, src/types | same folder (5), src/components/homepage (2), src/pages/lensIndex (2), src/pages/HomePage.tsx, src/pages/LensIndexPage.tsx, +5 more | LensSummary, LENS_SUMMARIES, ALL_SUMMARY_KEYS, SUMMARY_KEYS, DEBUG_SUMMARY_KEYS, isDebugSummaryKey, ALL_LENSES_BY_DATE, RECENT_LENS_KEYS, +1 more |
 | `lensTaxonomy.ts` | Lens Taxonomy helper module | none | src/pages/lensIndex (7), src/types (5), same folder (4), src/optics/prescription (4), src/optics/analysis (2), +10 more | LENS_MOUNTS, LensMountId, LensMountMetadata, LENS_MOUNT_BY_ID, isLensMountId, IMAGE_FORMATS, ImageFormatId, ImageFormatMetadata, +4 more |
 | `makerDetails.ts` | Maker Details helper module | none | src/pages/lensIndex, src/pages/MakerPage.tsx, src/pages/MakersIndexPage.tsx | MakerDetails, MAKER_DETAILS, getMakerDetails |
@@ -114,7 +114,7 @@ flowchart LR
 | `relationshipGraph.ts` | Relationship Graph helper module | same folder (3), src/types | src/components/relationshipMap (4), same folder, src/pages/RelationshipMapPage.tsx | PartyRef, GraphPatentNode, GraphPartyNode, RelationshipGraph, resolveFocusParam, buildRelationshipGraph |
 | `searchCatalog.ts` | Search Catalog helper module | same folder (8), src/utils/seo | src/components/search (2), same folder, src/components/relationshipMap | LensNameSearchMatch, TeleconverterSearchMatch, PatentSearchMatch, AuthorSearchMatch, CatalogSearchResults, CatalogSearchMatch, normalizeSearchText, normalizeLensSearchText, +3 more |
 | `slugText.ts` | Slug Text helper module | none | same folder, src/pages/lensIndex | transliterateCatalogText, stableHash |
-| `teleconverterCatalog.ts` | Teleconverter Catalog helper module | src/types (3), same folder (2), glob:../../lens-data/**/*.teleconverter.ts, src/optics/buildLens.ts, src/optics/teleconverter.ts | src/components/layout (5), src/comparison (2), src/utils/state (2), src/components/controls, src/components/hooks | TeleconverterOption, TELECONVERTER_CATALOG, ALL_TELECONVERTER_KEYS, TELECONVERTER_KEYS, teleconverterOptionsForLens, resolveTeleconverterKey, resolveLensSystemData, lensSystemKey |
+| `teleconverterCatalog.ts` | Teleconverter Catalog helper module | same folder (2), src/optics/buildLens.ts (2), glob:../../lens-data/**/*.teleconverter.ts, src/optics/teleconverter.ts, src/types | src/components/layout (5), src/comparison (2), src/utils/state (2), src/components/controls, src/components/hooks | TeleconverterOption, TELECONVERTER_CATALOG, ALL_TELECONVERTER_KEYS, TELECONVERTER_KEYS, teleconverterOptionsForLens, resolveTeleconverterKey, resolveLensSystemData, lensSystemKey |
 | `teleconverterSummaries.ts` | Teleconverter Summaries helper module | same folder, src/generated, src/utils/seo | same folder, src/components/homepage, src/pages/lensIndex, src/pages/LensPage.tsx, src/pages/TeleconverterPage.tsx, +1 more | TeleconverterSummary, ALL_TELECONVERTER_SUMMARY_LIST, TELECONVERTER_SUMMARIES, TELECONVERTER_SUMMARY_KEYS, TELECONVERTER_SUMMARY_LIST, teleconverterSummariesForLens, teleconverterLensPath |
 | `universalRelationshipGraph.ts` | Universal Relationship Graph helper module | same folder (7), src/types | src/components/relationshipMap (5), same folder, src/pages/UniversalRelationshipMapPage.tsx | UniversalNodeKind, UniversalPartyNode, UniversalPatentNode, UniversalCorporateNode, UniversalMakerNode, UniversalLensNode, UniversalRelationshipNode, UniversalEdgeKind, +7 more |
 | `universalRelationshipSearch.ts` | Universal Relationship Search helper module | same folder (3) | src/components/relationshipMap | buildUniversalSearchIndex, searchUniversalNodes |

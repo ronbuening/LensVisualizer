@@ -1,18 +1,25 @@
+import { buildFixtureLens, constructionFixtureData } from "./constructionFixtures.js";
 import { stateWithZ } from "../../../src/optics/state/preparedGeometry.js";
 import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
-import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { associateRuntimeView } from "../../../src/optics/prescription/runtimeView.js";
 import { compilePrescription, completeCompilation } from "../../../src/optics/prescription/compileCanonical.js";
 import { compileConstruction } from "../../../src/optics/prescription/compileConstruction.js";
-import buildLens, { ingestLens, paraxialTrace, toLensData } from "../../../src/optics/buildLens.js";
-import { epAtZoom, fopenAtZoom } from "../../../src/optics/optics.js";
+
+import { ingestLens } from "../../../src/optics/lensDataConversion.js";
+import { paraxialTrace } from "../../../src/optics/first-order/lensConstants.js";
+import { canonicalConstructionData } from "../../../src/optics/prescription/constructionData.js";
+import {
+  epAtZoomClamped as epAtZoom,
+  fopenAtZoomClamped as fopenAtZoom,
+} from "../../../src/optics/state/runtimeAdapters.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import Nikkor105Raw from "../../../src/lens-data/nikon/NikonNikkor105f14E.data.js";
 import NikkorRaw from "../../../src/lens-data/nikon/NikonNikkorZ50f18S.data.js";
 import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 import NoktonRaw from "../../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
-import { rearPlateAirEquivalentMm } from "../../../src/optics/prescription/rearPlates.js";
+import { rearPlateAirEquivalentMm } from "../../../src/optics/prescription/teleconverterCompatibility.js";
 import type {
   LensData,
   LensDataInput,
@@ -28,7 +35,9 @@ import type { TeleconverterData } from "../../../src/types/teleconverter.js";
  * schema defaults. Test helpers take merged lens data from here, never by spreading a defaults table.
  */
 export function catalogLensData(raw: object): LensData {
-  return toLensData(ingestLens(raw as LensDataInput));
+  const data = canonicalConstructionData(ingestLens(raw as LensDataInput).prescription);
+  for (const surface of data.surfaces) if (surface.label === "STO" && surface.sd === undefined) surface.sd = 1;
+  return data;
 }
 
 /**
@@ -36,7 +45,7 @@ export function catalogLensData(raw: object): LensData {
  * defaults through canonical ingest, and builds a composed pair through its canonical association.
  */
 export function build(raw: object): RuntimeLens {
-  return buildLens(raw as LensData);
+  return buildFixtureLens(raw);
 }
 
 /**
@@ -100,7 +109,7 @@ function buildFixture(overrides: Partial<LensData>): RuntimeLens {
     surfaces: simplePositiveSurfaces(),
     ...overrides,
   });
-  return buildLens(data);
+  return buildFixtureLens(data);
 }
 
 function simplePositiveSurfaces(stopGap = 1, frontGap = 5, imageGap = 80): SurfaceData[] {
@@ -462,15 +471,16 @@ export function teleconverterZoomHostData(overrides: Partial<LensData> = {}): Le
 /** Explicit compiler records for synthetic probes that intentionally bypass full-lens validation/constants. */
 export function registerRuntimeFixture(runtime: RuntimeLens): RuntimeLens {
   const input = compileConstruction(
-    { ...runtime.data, lensShiftFrac: runtime.lensShiftFrac, surfaces: runtime.S },
-    runtime.data,
+    { ...constructionFixtureData(runtime), lensShiftFrac: runtime.lensShiftFrac, surfaces: runtime.S },
+    constructionFixtureData(runtime),
   );
   input.stopIdx = runtime.stopIdx;
   input.projection = runtime.projection;
   input.opticalPath = runtime.opticalPath;
   input.isFoldedOptics = runtime.isFoldedOptics;
   const {
-    data: _data,
+    source: _source,
+    attachedTeleconverter: _attachedTeleconverter,
     S: _S,
     N: _N,
     ES: _ES,
@@ -492,7 +502,7 @@ export function registerRuntimeFixture(runtime: RuntimeLens): RuntimeLens {
     labelIdx: _labelIdx,
     ...constants
   } = runtime;
-  const prescription = compilePrescription(input);
+  const prescription = compilePrescription(input, runtime.source, runtime.attachedTeleconverter);
   const compiled = completeCompilation(
     {
       ...prescription,
@@ -532,7 +542,7 @@ export function analysisRequestAt(
     aberrationT?: number;
     currentEPSD?: number;
     currentPhysStopSD?: number;
-    fieldGeometry?: import("../../../src/optics/optics.js").FieldGeometryState;
+    fieldGeometry?: import("../../../src/optics/fieldGeometry.js").FieldGeometryState;
     sampling?: import("../../../src/optics/analysis/analysisQuality.js").AnalysisSamplingOptions;
   },
 ) {

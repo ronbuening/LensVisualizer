@@ -13,15 +13,15 @@ flowchart LR
   end
   n_external_src_optics_analysis["src/optics/analysis"]
   n_external_src_optics_state["src/optics/state"]
-  n_external_src_optics_layout_ts["src/optics/layout.ts"]
-  n_external_src_optics_prescription["src/optics/prescription"]
   n_external_src_optics_trace["src/optics/trace"]
+  n_external_src_optics_field["src/optics/field"]
+  n_external_src_optics_prescription["src/optics/prescription"]
   n_external_src_types["src/types"]
-  n_src_optics_analysis_bokeh_src_optics_analysis_bokeh_bokeh_ts --> |7| n_external_src_optics_analysis
-  n_src_optics_analysis_bokeh_src_optics_analysis_bokeh_bokeh_ts --> |2| n_external_src_optics_state
-  n_src_optics_analysis_bokeh_src_optics_analysis_bokeh_bokeh_ts --> n_external_src_optics_layout_ts
+  n_src_optics_analysis_bokeh_src_optics_analysis_bokeh_bokeh_ts --> |10| n_external_src_optics_analysis
+  n_src_optics_analysis_bokeh_src_optics_analysis_bokeh_bokeh_ts --> |3| n_external_src_optics_state
+  n_src_optics_analysis_bokeh_src_optics_analysis_bokeh_bokeh_ts --> |2| n_external_src_optics_trace
+  n_src_optics_analysis_bokeh_src_optics_analysis_bokeh_bokeh_ts --> n_external_src_optics_field
   n_src_optics_analysis_bokeh_src_optics_analysis_bokeh_bokeh_ts --> n_external_src_optics_prescription
-  n_src_optics_analysis_bokeh_src_optics_analysis_bokeh_bokeh_ts --> n_external_src_optics_trace
   n_src_optics_analysis_bokeh_src_optics_analysis_bokeh_bokeh_ts --> n_external_src_types
 ```
 
@@ -29,11 +29,11 @@ flowchart LR
 
 - Direct source files: 1
 - Direct subfolders: 0
-- Main outbound areas: src/optics/analysis (7), src/optics/state (2), src/optics/layout.ts, src/optics/prescription, src/optics/trace, src/types
-- External consumers: src/optics/aberrationAnalysis.ts, src/optics/analysis, src/optics/analysis.ts, src/optics/compat.ts
+- Main outbound areas: src/optics/analysis (10), src/optics/state (3), src/optics/trace (2), src/optics/field, src/optics/prescription, src/types
+- External consumers: src/optics/analysis, src/optics/analysis.ts
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `bokeh.ts` | Bokeh helper module | src/optics/analysis (7), src/optics/state (2), src/optics/layout.ts, src/optics/prescription, src/optics/trace, +1 more | src/optics/aberrationAnalysis.ts, src/optics/analysis, src/optics/analysis.ts, src/optics/compat.ts | computeBokehFieldFootprint, buildBokehDensityGrid, describeBokehDefocusSide, computeBokehPreview, computeBokehPreviewPair |
+| `bokeh.ts` | Bokeh helper module | src/optics/analysis (10), src/optics/state (3), src/optics/trace (2), src/optics/field, src/optics/prescription, +1 more | src/optics/analysis, src/optics/analysis.ts | computeBokehFieldFootprint, buildBokehDensityGrid, describeBokehDefocusSide, computeBokehPreview, computeBokehPreviewPair |

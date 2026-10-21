@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "./constructionFixtures.js";
 import { computeFocusEFL, computeFocusBreathingSeries } from "../../../src/optics/analysis/summary/breathing.js";
 import {
   analysisRequestForLens,
@@ -8,8 +9,10 @@ import {
 import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
 import ReferenceNewtonianSideFocusRaw from "../../../src/lens-data/reference/ReferenceNewtonianSideFocus.data.js";
-import { computeOpticalSummary, prepareRuntimeState } from "../../../src/optics/compat.js";
-import { computeAnalysisFieldGeometryAtState, eflAtFocus } from "../../../src/optics/optics.js";
+import { computeOpticalSummary } from "../../../src/optics/analysis/summary/summary.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
+import { computeAnalysisFieldGeometryAtState } from "../../../src/optics/state/fieldAdapters.js";
+import { eflAtFocus } from "../../../src/optics/first-order/focusBreathing.js";
 import { apertureAt, build, buildRearPlateLens, REAR_PLATE_FIXTURE, sharedSonnar50f15 } from "./testLensFixtures.js";
 
 describe("computeOpticalSummary", () => {
@@ -82,7 +85,7 @@ describe("request breathing", () => {
   it("keeps the chart series independent of aberration while current EFL follows it", () => {
     const base = buildSimplePositiveElementLens();
     const L = build({
-      ...base.data,
+      ...constructionFixtureData(base),
       var: { "1": [5, 8] },
       aberrationControl: {
         label: "Soft focus",

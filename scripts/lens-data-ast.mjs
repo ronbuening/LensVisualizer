@@ -2,7 +2,7 @@
  * Lens-data AST reader — evaluates a lens or teleconverter file's default export from its source, never running it.
  *
  * The source is read with the TypeScript compiler API, and the literal forms the catalog uses are evaluated
- * (OPTICS_ENGINE_REWRITE_SPEC.md, Ingest, conversion and comments):
+ * (see agent_docs/architecture/routing-and-content.md):
  * - object and array literals, and spreads of them, which no catalog file has but a hand-written one may;
  * - numbers, with a leading sign, and `+ - * /` between numbers, which the catalog uses for a few derived values;
  * - strings and templates without substitutions, and `+` between strings, which long notes use;
@@ -11,14 +11,11 @@
  * - identifiers bound by a top-level `const` in the same file.
  *
  * Any other form is an error naming the file, line and form, so a file outside the subset is reported rather than
- * misread. The metadata scripts read identity fields through `readLensIdentity`, from a file of either version, and
+ * misread. The metadata scripts read identity fields through `readLensIdentity`, from a V2 file, and
  * the converter reads the syntax behind each value through `walkLensDataSource`.
  */
 
 import ts from "typescript";
-import { loadLensDataConversion } from "./lens-summaries.mjs";
-
-const { lensDataVersion } = await loadLensDataConversion();
 
 /**
  * Parse a lens-data source file.
@@ -254,8 +251,7 @@ export function walkLensDataSource(content, fileName, visit) {
 }
 
 /**
- * The identity fields of a lens or teleconverter file of either version. A V2 file keeps its mounts and format in
- * `catalog`; the other fields sit where V1 has them.
+ * The identity fields of a V2 lens or teleconverter file. Mounts and format live in `catalog`.
  *
  * @param {unknown} data - an evaluated default export
  * @returns {{ key: string | null, publishedAt: string | null, name: string | null, maker: string | null | undefined,
@@ -264,7 +260,7 @@ export function walkLensDataSource(content, fileName, visit) {
  */
 export function readLensIdentity(data) {
   const file = data !== null && typeof data === "object" ? data : {};
-  const catalog = lensDataVersion(file) === 1 ? file : (file.catalog ?? {});
+  const catalog = file.catalog ?? {};
   const text = (value) => (typeof value === "string" ? value : null);
   return {
     key: text(file.key),

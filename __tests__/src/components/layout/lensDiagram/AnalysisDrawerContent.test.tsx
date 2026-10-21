@@ -8,8 +8,8 @@ import { ANALYSIS_TABS } from "../../../../../src/components/layout/lensDiagram/
 import type { RuntimeLens } from "../../../../../src/types/optics.js";
 import type { AnalysisTabId } from "../../../../../src/types/state.js";
 import type { Theme } from "../../../../../src/types/theme.js";
-import type { PerspectiveTraceContext } from "../../../../../src/optics/perspective/index.js";
-import type { AnalysisComputationContext } from "../../../../../src/optics/compat.js";
+import type { PerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
+import type { AnalysisComputationContext } from "../../../../../src/optics/analysis/analysisContext.js";
 
 const {
   mockAberrationsPanel,
@@ -45,8 +45,8 @@ const {
   mockVignettingTab: vi.fn(),
 }));
 
-vi.mock("../../../../../src/optics/compat.js", async () => {
-  const actual = await vi.importActual("../../../../../src/optics/compat.js");
+vi.mock("../../../../../src/optics/optics.js", async () => {
+  const actual = await vi.importActual("../../../../../src/optics/optics.js");
   return {
     ...actual,
     prepareRuntimeState: mockPrepareRuntimeState,

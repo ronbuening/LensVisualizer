@@ -112,7 +112,7 @@ host's stop, so a clipped beam would otherwise report an f-number the system can
 
 ## Validation
 
-`validateTeleconverterData()` in `src/optics/validateTeleconverterData.ts` checks:
+`validateTeleconverterData()` in `src/optics/prescription/validate/teleconverter.ts` checks:
 
 1. Identity and fit fields: `key` pattern, `magnification` > 1, known unique `catalog.lensMounts`, the optional fit
    fields, and a positive `masterImageDistanceMm`.
@@ -146,8 +146,9 @@ meant for publication gets its own file, key and name; it never reuses a test mo
 
 ## Composed System
 
-`attachTeleconverter(host, converter)` ingests both inputs and composes their canonical prescriptions before
-compilation. It returns a `LensData` view associated with that canonical pair for the existing `buildLens()` call.
+`attachTeleconverter(host, converter)` accepts authored V2 or canonical inputs, ingests authored inputs and composes
+their canonical prescriptions before compilation. It returns a `CanonicalLens` associated with the pair's provenance
+and composition descriptor for `buildLens()`.
 The compiler and analyses consume one lens; the descriptor supplies labels and plate placement. Worker initialization
 transports the unexpanded canonical pair, provenance and descriptor and compiles it directly.
 

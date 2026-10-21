@@ -1,20 +1,20 @@
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import { stateWithZ } from "../../../../src/optics/state/preparedGeometry.js";
-import { createAnalysisRequest } from "../../../../src/optics/analysis.js";
+import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
 // @vitest-environment jsdom
 
 import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useChromaticRays from "../../../../src/components/hooks/useChromaticRays.js";
-import buildLens from "../../../../src/optics/buildLens.js";
+import { buildFixtureLens as buildLens } from "../../optics/constructionFixtures.js";
+import { computeLongitudinalChromaticFocus } from "../../../../src/optics/analysis/chromatic/analysis.js";
 import {
-  computeLongitudinalChromaticFocus,
-  doLayout,
-  entrancePupilAtState,
-  fopenAtZoom,
-} from "../../../../src/optics/optics.js";
-import { createCoordinateTransforms } from "../../../../src/optics/diagramGeometry.js";
-import { raySampleCountForDensity } from "../../../../src/optics/raySampling.js";
+  doLayoutForRuntimeLens as doLayout,
+  fopenAtZoomClamped as fopenAtZoom,
+} from "../../../../src/optics/state/runtimeAdapters.js";
+import { entrancePupilAtState } from "../../../../src/optics/state/fieldAdapters.js";
+import { createCoordinateTransforms } from "../../../../src/optics/diagram/coordinateTransforms.js";
+import { raySampleCountForDensity } from "../../../../src/optics/trace/raySampling.js";
 import { catalogLensData } from "../../optics/testLensFixtures.js";
 import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
 import SonnarRaw from "../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";

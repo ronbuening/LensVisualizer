@@ -1,15 +1,14 @@
+import { computeOffAxisFieldGeometry, isOffAxisVectorFieldGeometry } from "../../optics/analysis.js";
 import {
-  computeProjectionAwareOffAxisFieldGeometry,
-  isOffAxisVectorFieldGeometry,
-} from "../../optics/analysis/aberration/offAxis.js";
-import {
-  eflAtZoom,
+  eflAtZoomClamped as eflAtZoom,
   halfFieldAtZoom,
+  prepareRuntimeState,
+  stateWithZ,
   traceRay,
   traceRayVector,
   tracingHalfFieldAtZoom,
-  type VectorFieldRayLaunch,
 } from "../../optics/optics.js";
+import type { VectorFieldRayLaunch } from "../../optics/fieldGeometry.js";
 import { isFisheyeProjection, projectionImageHeightForLensAngle } from "../../optics/projection.js";
 import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import type { RuntimeLens } from "../../types/optics.js";
@@ -68,15 +67,8 @@ export function computeOffAxisTraceGeometry({
   // Rectilinear lenses keep the pre-existing safe-zone clamp.
   const rectilinearTraceScale = halfDeg > 0 && Number.isFinite(tracingDeg) ? Math.min(1, tracingDeg / halfDeg) : 1;
   const fieldFrac = isFisheye ? L.offAxisFieldFrac : L.offAxisFieldFrac * rectilinearTraceScale;
-  const geometry = computeProjectionAwareOffAxisFieldGeometry(
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    fieldFrac,
-    undefined,
-    aberrationT,
-  );
+  const state = stateWithZ(prepareRuntimeState(L, focusT, zoomT, aberrationT), zPos);
+  const geometry = computeOffAxisFieldGeometry(state, fieldFrac);
   if (geometry === null) return null;
 
   if (isOffAxisVectorFieldGeometry(geometry)) {

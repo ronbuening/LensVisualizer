@@ -6,7 +6,8 @@ import { associateRuntimeView, runtimeView } from "../../../../../src/optics/pre
 
 import { afterEach, describe, it, expect, beforeEach, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { createAnalysisRequest, createAnalysisComputationContext } from "../../../../../src/optics/analysis.js";
+import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
+import { createAnalysisComputationContext } from "../../../../../src/optics/analysis/analysisContext.js";
 import AberrationsPanel from "../../../../../src/components/display/analysis/AberrationsPanel.js";
 import ComaTab from "../../../../../src/components/display/analysis/ComaTab.js";
 import type { CompiledLens, PreparedOpticalState } from "../../../../../src/optics/types.js";

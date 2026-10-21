@@ -6,11 +6,11 @@
  * lenses with worse CA show wider bars and well-corrected lenses show narrower
  * bars.  Accepts optional width/height for reuse in a future larger overlay.
  */
-import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic/channels.js";
+import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic.js";
 import { memo } from "react";
 import type { ChromaticRayFanSpread, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
-import type { DispersionQuality } from "../../optics/dispersion.js";
+import type { DispersionQuality } from "../../optics/chromatic.js";
 import { computeLocaBarOffsets } from "../../optics/analysis.js";
 import { ChromaticQualityBadge } from "./ChromaticQualityBadge.js";
 

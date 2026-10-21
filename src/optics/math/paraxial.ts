@@ -59,7 +59,7 @@ export interface ParaxialTraceResult extends ParaxialState {
  * @param distance - axial spacing to the next surface in mm
  * @returns updated paraxial state at the next vertex plane
  */
-export function transferParaxialRay2({ y, u, n }: ParaxialState, distance: number): ParaxialState {
+export function transferParaxialRay({ y, u, n }: ParaxialState, distance: number): ParaxialState {
   return { y: y + distance * u, u, n };
 }
 
@@ -75,7 +75,7 @@ export function transferParaxialRay2({ y, u, n }: ParaxialState, distance: numbe
  * @param options - mirror and same-index guards for specialized first-order paths
  * @returns outgoing paraxial state, or null when the surface blocks this path
  */
-export function interactParaxialSurface2(
+export function interactParaxialSurface(
   { y, u, n }: ParaxialState,
   surface: ParaxialSurface,
   {
@@ -114,7 +114,7 @@ export function interactParaxialSurface2(
  * @param options - stop, transfer, height-recording, and mirror handling controls
  * @returns final paraxial state and optional per-surface height samples
  */
-export function traceParaxialSurfaces2(
+export function traceParaxialSurfaces(
   surfaces: readonly (ParaxialSurface & { d: number })[],
   y0: number,
   u0: number,
@@ -133,12 +133,12 @@ export function traceParaxialSurfaces2(
   for (let i = 0; i < tracedCount; i++) {
     if (recordHeights) heights!.push(state.y);
     const surface = surfaces[i];
-    const nextState = interactParaxialSurface2(state, surface, { allowReflect, requireSameIndexRefraction });
+    const nextState = interactParaxialSurface(state, surface, { allowReflect, requireSameIndexRefraction });
     if (nextState === null) return { ...state, heights };
     state = nextState;
     const isLast = i === tracedCount - 1;
     if (isLast && skipLastTransfer) continue;
-    if (i < surfaces.length - 1) state = transferParaxialRay2(state, surface.d);
+    if (i < surfaces.length - 1) state = transferParaxialRay(state, surface.d);
   }
 
   return { ...state, heights };

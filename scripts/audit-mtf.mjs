@@ -1,4 +1,4 @@
-import { createAnalysisRequest } from "../src/optics/analysis.ts";
+import { createAnalysisRequest } from "../src/optics/analysis.js";
 /**
  * Read-only MTF census. Run with the project's TS specifier hook.
  *
@@ -11,10 +11,10 @@ import { createAnalysisRequest } from "../src/optics/analysis.ts";
 import { readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
-import buildLens from "../src/optics/buildLens.ts";
-import { prepareRuntimeState } from "../src/optics/compat.ts";
-import { assessMtfSupport, computeMtf, resolveMtfGeometry } from "../src/optics/mtf.ts";
-import { mtfImagePlaneOffset } from "../src/optics/analysis/mtf/mtfFocus.ts";
+import { buildLens } from "../src/optics/buildLens.js";
+import { prepareRuntimeState } from "../src/optics/optics.js";
+import { assessMtfSupport, computeMtf, resolveMtfGeometry } from "../src/optics/mtf.js";
+import { mtfImagePlaneOffset } from "../src/optics/mtf.js";
 
 const spectrum = process.argv.includes("--cdf")
   ? "cdf"
@@ -41,7 +41,7 @@ for (const file of files) {
   const data = (await import(pathToFileURL(resolve("src/lens-data", file)))).default;
   if (data.visible === false) continue;
   audited++;
-  const L = buildLens(data);
+  const L = buildLens(data, { path: `src/lens-data/${file}` });
   const state = prepareRuntimeState(L, 0, 0);
   const options = {
     method: "geometric",

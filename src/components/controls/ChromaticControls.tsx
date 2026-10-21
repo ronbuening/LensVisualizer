@@ -5,7 +5,7 @@
  * individual R/G/B channel buttons for selective wavelength display.
  */
 import { toggleGroup, toggleBtn, chromChannelBtn } from "../../utils/style/styles.js";
-import { CHROMATIC_CHANNEL_ORDER, chromaticChannelWavelengthLabel } from "../../optics/chromatic/channels.js";
+import { CHROMATIC_CHANNEL_ORDER, chromaticChannelWavelengthLabel } from "../../optics/chromatic.js";
 import type { ChromaticChannel, RefractiveIndexReferenceLine } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 

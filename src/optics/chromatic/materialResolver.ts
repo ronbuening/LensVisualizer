@@ -29,7 +29,7 @@
  */
 
 import type { ElementData, RefractiveIndexReferenceLine, SurfaceData, SurfaceSpectral } from "../../types/optics.js";
-import { evaluateSellmeier, resolveCompatibleGlass } from "../glassCatalog.js";
+import { evaluateSellmeier, resolveCompatibleGlass } from "./glassCatalog.js";
 import type { SurfaceDispersion, SurfaceIndexFn } from "../../types/dispersion.js";
 import {
   CHROMATIC_CHANNEL_WAVELENGTH_NM as CHANNEL_NM,
@@ -47,7 +47,7 @@ import {
  *
  * Single source of the formula. The dPgF asymmetry is intentional: only this
  * module's dispersion cascade has per-element ΔP_g,F available, so it passes
- * dPgF explicitly; the runtime fallbacks (`wavelengthNd2`, PV diagram) fire
+ * dPgF explicitly; the runtime fallbacks (`wavelengthNd`, PV diagram) fire
  * only for out-of-range probes with no element context and use the normal
  * line alone via the default.
  */

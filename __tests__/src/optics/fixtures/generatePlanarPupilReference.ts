@@ -35,8 +35,8 @@ import { realpathSync, writeFileSync } from "node:fs";
 import { argv } from "node:process";
 import { fileURLToPath } from "node:url";
 import PlanarRaw from "../../../../src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.data.js";
-import { ingestLens } from "../../../../src/optics/prescription/ingestV2.js";
-import { toLensDataInput } from "../../../../src/optics/prescription/toLensData.js";
+import { ingestLens } from "../../../../src/optics/lensDataConversion.js";
+import { toLensDataInput } from "../../../../src/optics/prescription/v1/toLensData.js";
 import { createFixedPoint, type FixedPoint } from "./fixedPoint.js";
 
 // Only the file syntax is normalized; the reference arithmetic below remains independent of the engine.

@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "../../optics/constructionFixtures.js";
 import { mtfInputs } from "../../optics/testLensFixtures.js";
 import { afterEach, expect, it, vi } from "vitest";
 import {
@@ -7,11 +8,11 @@ import {
   teleconverterFixture,
   teleconverterHostData,
 } from "../../optics/testLensFixtures.js";
-import { attachTeleconverter } from "../../../../src/optics/prescription/teleconverter.js";
-import { computeMtf } from "../../../../src/optics/mtf.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
+import { attachFixtureTeleconverter as attachTeleconverter } from "../../optics/constructionFixtures.js";
+import { computeMtf } from "../../../../src/optics/analysis/mtf/mtf.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import type { MtfOptions } from "../../../../src/types/mtf.js";
-import { canonicalLensFromRuntime, compiledLensFromRuntime } from "../../../../src/optics/buildLens.js";
+import { canonicalLensFromRuntime, compiledLensFromRuntime } from "../../../../src/optics/prescription/identity.js";
 import {
   MtfWorkerClient,
   type MtfWorkerPort,
@@ -51,7 +52,7 @@ it("compiles canonical prescriptions in the worker and matches the pure engine f
   const L = buildChromaticPositiveElementLens();
   // Transport the unexpanded prescription even when the runtime already contains hidden plates.
   const plated = build({
-    ...L.data,
+    ...constructionFixtureData(L),
     rearPlates: [REAR_PLATE_FIXTURE, { ...REAR_PLATE_FIXTURE, gapAfterMm: 20 }],
   });
   // A composed pair retains its descriptor so plates expand on the correct side of the converter.

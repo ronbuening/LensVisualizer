@@ -1,6 +1,7 @@
 /** Camera-frame viewport envelopes for the active perspective-control pose. */
 
-import { isIdentityLensMovement, type LensMovementState } from "../lensMovement.js";
+import { isIdentityLensMovement } from "./lensMovement.js";
+import type { LensMovementState } from "./lensMovement.js";
 import type { PerspectiveControlConfig } from "../../types/optics.js";
 import { createPerspectivePose } from "./pose.js";
 

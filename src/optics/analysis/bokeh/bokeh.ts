@@ -12,34 +12,34 @@
  * future aperture-blade-shape masking (polygonal bokeh).
  */
 
-import { sampleCircularPupil, type CircularPupilSample } from "../sampling.js";
-import { skewImagePlaneIntercept, type SkewImagePlaneIntercept } from "../../trace/rayAdapters.js";
-import {
-  computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
-  type FieldGeometryState2 as FieldGeometryState,
-} from "../../state/fieldAdapters.js";
-import { doLayout } from "../../layout.js";
+import { sampleCircularPupil } from "../sampling.js";
+import type { CircularPupilSample } from "../sampling.js";
+import { skewImagePlaneIntercept } from "../../trace/rayAdapters.js";
+import type { SkewImagePlaneIntercept } from "../../trace/rayAdapters.js";
+import { computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.js";
+import type { FieldGeometryState } from "../../field/launch.js";
+import { doLayout } from "../../state/layout.js";
 import type { LayoutResult, RuntimeLens } from "../../../types/optics.js";
-import { computeProjectionAwareOffAxisFieldGeometry, traceOffAxisBundleFromSamples } from "../aberration/offAxis.js";
+import { computeOffAxisFieldGeometry, traceOffAxisBundleFromSamples } from "../aberration/offAxis.js";
 import { computeBestFocusZFromLayout } from "../aberration/bestFocus.js";
 import {
   buildBokehRadialProfile,
   classifyBokehBrightnessCharacter,
   emptyRadialProfile,
 } from "../aberration/radialProfile.js";
-import { createAnalysisRequest, type AnalysisRequest } from "../request.js";
+import { createAnalysisRequest } from "../request.js";
+import type { AnalysisRequest } from "../request.js";
 import { prepareState } from "../../state/preparedGeometry.js";
 import { runtimeView } from "../../prescription/runtimeView.js";
-import {
-  BOKEH_CIRCULAR_PUPIL_RING_SAMPLES,
-  BOKEH_PREVIEW_FIELD_FRACTIONS,
-  type BokehDensityCell,
-  type BokehFieldResult,
-  type BokehPoint,
-  type BokehPreviewPair,
-  type BokehPreviewResult,
-  type BokehPupilFootprint,
-  type BokehPupilSample,
+import { BOKEH_CIRCULAR_PUPIL_RING_SAMPLES, BOKEH_PREVIEW_FIELD_FRACTIONS } from "../aberration/types.js";
+import type {
+  BokehDensityCell,
+  BokehFieldResult,
+  BokehPoint,
+  BokehPreviewPair,
+  BokehPreviewResult,
+  BokehPupilFootprint,
+  BokehPupilSample,
 } from "../aberration/types.js";
 import type { AnalysisSamplingOptions } from "../analysisQuality.js";
 
@@ -59,9 +59,7 @@ const BOKEH_MIN_VALID_SAMPLES = 5;
 const BOKEH_MIN_SHARED_HALF_RANGE_MM = 0.001;
 
 interface BokehTraceContext {
-  focusT: number;
-  zoomT: number;
-  aberrationT: number;
+  request: AnalysisRequest;
   layout: LayoutResult;
   bestFocusZ: number;
   fieldGeometryState: FieldGeometryState;
@@ -79,20 +77,16 @@ function buildBokehTraceContext(
   const L = runtimeView(request.preparedGeometry.lens);
   const { entrancePupilSemiDiameterMm: currentEPSD, stopSemiDiameterMm: currentPhysStopSD } = request.aperture;
   const layout = doLayout(focusT, zoomT, L, aberrationT);
+  const traceRequest = createAnalysisRequest({
+    preparedState: prepareState(request.preparedGeometry.lens, focusT, zoomT, aberrationT),
+    dynamicEFL: L.EFL,
+    currentEPSD,
+    currentPhysStopSD,
+  });
   return {
-    focusT,
-    zoomT,
-    aberrationT,
+    request: traceRequest,
     layout,
-    bestFocusZ: computeBestFocusZFromLayout(
-      createAnalysisRequest({
-        preparedState: prepareState(request.preparedGeometry.lens, focusT, zoomT, aberrationT),
-        dynamicEFL: L.EFL,
-        currentEPSD,
-        currentPhysStopSD,
-      }),
-      layout,
-    ),
+    bestFocusZ: computeBestFocusZFromLayout(traceRequest, layout),
     fieldGeometryState: computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT),
     circularPupilSamples: sampleCircularPupil(sampling.bokehRingSamples ?? BOKEH_CIRCULAR_PUPIL_RING_SAMPLES),
   };
@@ -185,28 +179,14 @@ function computeBokehFieldFootprintFromContext(
 ): BokehFieldResult | null {
   if (currentEPSD <= 0 || L.N < 1) return null;
 
-  const geometry = computeProjectionAwareOffAxisFieldGeometry(
-    L,
-    context.layout.z,
-    context.focusT,
-    context.zoomT,
+  const geometry = computeOffAxisFieldGeometry(
+    context.request.preparedGeometry,
     fieldFraction,
     context.fieldGeometryState,
-    context.aberrationT,
   );
   if (geometry === null) return null;
 
-  const bundle = traceOffAxisBundleFromSamples(
-    context.circularPupilSamples,
-    geometry,
-    L,
-    context.focusT,
-    context.zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-    undefined,
-    context.aberrationT,
-  );
+  const bundle = traceOffAxisBundleFromSamples(context.request, context.circularPupilSamples, geometry, undefined);
   if (bundle === null) return null;
 
   const chiefDefocused: SkewImagePlaneIntercept | null = skewImagePlaneIntercept(

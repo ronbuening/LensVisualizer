@@ -1,11 +1,11 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { INTERSECTION_MAX_ITERATIONS } from "../../../../src/optics/constants.js";
-import {
-  intersectSurfaceProfile,
-  type SurfaceIntersectionOptions,
-  type SurfaceIntersectionResult,
-} from "../../../../src/optics/geometry/intersect.js";
+import { INTERSECTION_MAX_ITERATIONS } from "../../../../src/optics/math/constants.js";
+import { intersectSurfaceProfile } from "../../../../src/optics/geometry/intersect.js";
+import type {
+  SurfaceIntersectionOptions,
+  SurfaceIntersectionResult,
+} from "../../../../src/optics/geometry/intersectTypes.js";
 import { baseConicRoot } from "../../../../src/optics/geometry/intersectConic.js";
 import { createSurfaceProfile, createTiltedPlaneProfile } from "../../../../src/optics/geometry/surfaceProfile.js";
 import { normalize } from "../../../../src/optics/math/vector.js";
@@ -277,7 +277,7 @@ describe("closed-form acceptance", () => {
     /* A rim hit at coordinates of a few hundred mm, where the rounding of the residual is close to the target.
      * The iterative path stops on a float that evaluates to 1.9e-12 mm and reports the envelope it stalled at.
      * The closed-form root evaluates within the target, so it is accepted at the target, as the contract's
-     * raw-target-first rule has it. The differential harness reads the two tolerances as a discrete transition. */
+     * raw-target-first rule has it. The raw target and stall envelope have distinct acceptance rules. */
     const rim = sphere(
       350.07755067764026,
       {

@@ -8,7 +8,7 @@
  */
 
 import { describe, expect, it } from "vitest";
-import { teleconverterCompatibility } from "../../../../src/optics/teleconverter.js";
+import { teleconverterCompatibility } from "../../../../src/optics/prescription/teleconverterCompatibility.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import {
   ALL_TELECONVERTER_KEYS,
@@ -38,17 +38,17 @@ describe("teleconverterSummaries parity with teleconverterCatalog", () => {
       expect(summary.name).toBe(data.name);
       expect(summary.maker).toBe(data.maker);
       expect(summary.subtitle).toBe(data.subtitle);
-      expect(summary.specs).toEqual(data.specs);
+      expect(summary.specs).toEqual(data.catalog.specs);
       expect(summary.magnification).toBe(data.magnification);
-      expect(summary.lensMounts).toEqual(data.lensMounts);
+      expect(summary.lensMounts).toEqual(data.catalog.lensMounts);
       expect(summary.universal).toBe(data.universal);
-      expect(summary.minHostFno).toBe(data.minHostFno);
-      expect(summary.patentNumber).toBe(data.patentNumber);
-      expect(summary.patentAuthors).toEqual(data.patentAuthors);
-      expect(summary.patentAssignees).toEqual(data.patentAssignees);
-      expect(summary.patentYear).toBe(data.patentYear);
-      expect(summary.elementCount).toBe(data.elementCount);
-      expect(summary.groupCount).toBe(data.groupCount);
+      expect(summary.minHostFno).toBe(data.minHostFNumber);
+      expect(summary.patentNumber).toBe(data.source.patentNumber);
+      expect(summary.patentAuthors).toEqual(data.source.authors);
+      expect(summary.patentAssignees).toEqual(data.source.assignees);
+      expect(summary.patentYear).toBe(data.source.patentYear);
+      expect(summary.elementCount).toBe(data.catalog.elementCount);
+      expect(summary.groupCount).toBe(data.catalog.groupCount);
     }
   });
 

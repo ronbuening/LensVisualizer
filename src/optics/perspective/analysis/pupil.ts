@@ -11,20 +11,18 @@ import { evenlySpacedSigned, signedVerticalSensorUvs } from "../../analysis/samp
 import type { AnalysisRequest } from "../../analysis/request.js";
 import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
 import type { ChromaticChannel } from "../../../types/optics.js";
-import { entrancePupilFromStop2, paraxialPupilGeometry2 } from "../../first-order/pupils.js";
-import { traceParaxialSurfaces2 } from "../../math/paraxial.js";
+import { entrancePupilFromStop, paraxialPupilGeometry } from "../../first-order/pupils.js";
+import { traceParaxialSurfaces } from "../../math/paraxial.js";
 import { add, dot, scale } from "../../math/vector.js";
 import type { Ray3, Vec3 } from "../../types.js";
-import {
-  sampleSensorLockedFields,
-  type FieldSample,
-  type PerspectiveFieldSamplingOptions,
-  type PerspectiveFieldStatus,
-  type PerspectivePupilRaySample,
-  type SensorUv,
-} from "../fieldSampling.js";
+import { sampleSensorLockedFields } from "../fieldSampling.js";
+import type { FieldSample, PerspectiveFieldSamplingOptions } from "../fieldTypes.js";
+import type { PerspectiveFieldStatus } from "../chiefRay.js";
+import type { PerspectivePupilRaySample } from "../pupilBundle.js";
+import type { SensorUv } from "../fieldGeometry.js";
 import type { PerspectiveTraceContext } from "../trace.js";
-import { sensorFrameDisplacement, type SensorFrameDisplacement } from "./shared.js";
+import { sensorFrameDisplacement } from "./shared.js";
+import type { SensorFrameDisplacement } from "./shared.js";
 
 const DEFAULT_SENSOR_SAMPLE_COUNT = 9;
 const DEFAULT_PUPIL_SAMPLE_COUNT = 17;
@@ -117,14 +115,14 @@ export function computeIntrinsicPerspectivePupils(request: AnalysisRequest): Int
   if (!context) throw new Error("Movement-aware analysis requires a PerspectiveTraceContext");
   const { stopSemiDiameterMm } = request.aperture;
   assertPositiveFinite(stopSemiDiameterMm, "stopSemiDiameterMm");
-  const geometry = paraxialPupilGeometry2(context.state);
-  const entrance = entrancePupilFromStop2(stopSemiDiameterMm, geometry);
+  const geometry = paraxialPupilGeometry(context.state);
+  const entrance = entrancePupilFromStop(stopSemiDiameterMm, geometry);
   const firstSurfaceZ = context.state.z[0] ?? 0;
   const stopZ = context.state.z[context.state.lens.stop.surfaceIndex] ?? firstSurfaceZ;
   const entranceCenterLens: Vec3 = [0, 0, firstSurfaceZ + entrance.epRatio];
 
-  const marginal = traceParaxialSurfaces2(context.state.surfaces, 1, 0, { skipLastTransfer: true });
-  const chief = traceParaxialSurfaces2(context.state.surfaces, 0, 1, { skipLastTransfer: true });
+  const marginal = traceParaxialSurfaces(context.state.surfaces, 1, 0, { skipLastTransfer: true });
+  const chief = traceParaxialSurfaces(context.state.surfaces, 0, 1, { skipLastTransfer: true });
   const xpY = geometry.yRatio * chief.y - geometry.b * marginal.y;
   const xpU = geometry.yRatio * chief.u - geometry.b * marginal.u;
   const zRelativeToLastSurfaceMm = Math.abs(xpU) > 1e-9 ? -xpY / xpU : Infinity;

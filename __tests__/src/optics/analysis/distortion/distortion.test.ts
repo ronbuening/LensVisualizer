@@ -1,5 +1,5 @@
 import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
-import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
+import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
 import { stateWithZ } from "../../../../../src/optics/state/preparedGeometry.js";
 import { describe, it, expect, vi } from "vitest";
 import * as rayAdapters from "../../../../../src/optics/trace/rayAdapters.js";
@@ -11,16 +11,17 @@ import {
 } from "../../../../../src/optics/analysis/distortion/distortion.js";
 import {
   computeAnalysisFieldGeometryAtState,
-  chiefRayImageHeightAccurate,
-  doLayout,
-  eflAtFocus,
-  paraxialObjectVergence,
-  skewImagePlaneIntercept,
-  solveChiefRay,
-  thick,
-  traceParaxialRay,
-  traceSkewRay,
-} from "../../../../../src/optics/optics.js";
+  chiefRayImageHeightAccurateForRuntimeLens as chiefRayImageHeightAccurate,
+  paraxialObjectVergenceForRuntimeLens as paraxialObjectVergence,
+  solveChiefRayForRuntimeLens as solveChiefRay,
+  traceParaxialRayForRuntimeLens as traceParaxialRay,
+} from "../../../../../src/optics/state/fieldAdapters.js";
+import {
+  doLayoutForRuntimeLens as doLayout,
+  thickOrZero as thick,
+} from "../../../../../src/optics/state/runtimeAdapters.js";
+import { eflAtFocus } from "../../../../../src/optics/first-order/focusBreathing.js";
+import { skewImagePlaneIntercept, traceSkewRay } from "../../../../../src/optics/trace/rayAdapters.js";
 import SigmaMacro180Raw from "../../../../../src/lens-data/sigma/SigmaAPOMacro180mmf28.data.js";
 import Olympus18Raw from "../../../../../src/lens-data/olympus/OlympusZuikoAutoW18mmf35.data.js";
 import NikonZ135Raw from "../../../../../src/lens-data/nikon/NikonZ135f18.data.js";
@@ -107,7 +108,7 @@ describe("computeDistortionCurve", () => {
     expect(result.samples.map((sample) => sample.normalizedImageHeight)).toEqual([0, 1 / 3, 1]);
   });
 
-  // C2 changes solved angles and work, so hold forward residuals instead of the former C0 digest.
+  // Hold forward residuals so solver changes are checked against physical target accuracy.
   // The baseline counts include table construction and final distortion-reference rays.
   it.each([
     { data: ApoLantharRaw, baselineCount: 242 },
@@ -132,8 +133,8 @@ describe("computeDistortionCurve", () => {
         },
       };
     });
-    const scalar = vi.spyOn(rayAdapters, "traceRay2");
-    const vector = vi.spyOn(rayAdapters, "traceRayVector2");
+    const scalar = vi.spyOn(rayAdapters, "traceRay");
+    const vector = vi.spyOn(rayAdapters, "traceRayVector");
     try {
       const result = computeDistortionCurve(
         createAnalysisRequest({

@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 import {
   solvePerspectiveSensorBestFocus,
   summarizePerspectiveSensorSpot,
-  type PerspectiveAffineSensorRay,
 } from "../../../../../src/optics/perspective/analysis/imageSpace.js";
+import type { PerspectiveAffineSensorRay } from "../../../../../src/optics/perspective/analysis/imageSpace.js";
 import type { PerspectiveTraceResult } from "../../../../../src/optics/perspective/trace.js";
 
 function affineRay(

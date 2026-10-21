@@ -1,9 +1,10 @@
 // @vitest-environment jsdom
+import { constructionFixtureData } from "../optics/constructionFixtures.js";
 
 import { describe, it, expect } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useComparisonDisplayValues from "../../../src/comparison/useComparisonDisplayValues.js";
-import buildLens from "../../../src/optics/buildLens.js";
+import { buildFixtureLens as buildLens } from "../optics/constructionFixtures.js";
 import { catalogLensData } from "../optics/testLensFixtures.js";
 import type { ComparisonLensesResult } from "../../../src/comparison/useComparisonMode.js";
 import { computeFocusPair, computeAperturePair, computeZoomPair } from "../../../src/comparison/comparisonSliders.js";
@@ -32,8 +33,8 @@ describe("useComparisonDisplayValues", () => {
       [1.2, 1.3],
       [1.4, 1.5],
     ]);
-    const LA = build({ ...base.data, nominalFno: [2, 4, 8], maxFstop: 16 });
-    const LB = build({ ...base.data, nominalFno: [4, 7, 10], maxFstop: 16 });
+    const LA = build({ ...constructionFixtureData(base), nominalFno: [2, 4, 8], maxFstop: 16 });
+    const LB = build({ ...constructionFixtureData(base), nominalFno: [4, 7, 10], maxFstop: 16 });
     const { result, rerender } = renderHook(
       ({ zoom, request, focus }) => {
         const sharedStopdownT = Math.log(request / 2) / Math.log(16 / 2);

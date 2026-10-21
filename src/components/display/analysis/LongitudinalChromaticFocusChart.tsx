@@ -1,4 +1,4 @@
-import type { LongitudinalChromaticFocusResult } from "../../../optics/compat.js";
+import type { LongitudinalChromaticFocusResult } from "../../../optics/analysis.js";
 import type { RefractiveIndexReferenceLine } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import { AnalysisEmptyState } from "./analysisUi.js";

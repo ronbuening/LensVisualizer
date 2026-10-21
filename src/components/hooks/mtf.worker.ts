@@ -4,8 +4,9 @@
  */
 import { buildCanonicalLens } from "../../optics/buildLens.js";
 import { createAnalysisRequest } from "../../optics/analysis.js";
-import { prepareRuntimeState } from "../../optics/compat.js";
-import { computeMtfSteps, type MtfJobCache } from "../../optics/mtf.js";
+import { prepareRuntimeState } from "../../optics/optics.js";
+import { computeMtfSteps } from "../../optics/mtf.js";
+import type { MtfJobCache } from "../../optics/mtf.js";
 import type { MtfResult } from "../../types/mtf.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { MtfJob, MtfWorkerReply, MtfWorkerRequest } from "./mtfWorkerClient.js";

@@ -90,7 +90,7 @@ const ElementAnnotations = memo(function ElementAnnotations({
   /* An attached converter is always labelled. The composer adds its group annotation only when the host authors
    * groups (authored groups replace the group-movement overlay's fallback), so otherwise it comes from the
    * descriptor here. */
-  const teleconverter = L.data.attachedTeleconverter;
+  const teleconverter = L.attachedTeleconverter;
   const teleconverterLabel = teleconverter ? teleconverterGroupLabel(teleconverter.magnification) : null;
   const groups =
     teleconverter && teleconverterLabel && !L.groups.some((group) => group.text === teleconverterLabel)

@@ -1,22 +1,13 @@
 /** Actual traced-chief inversion for fixed-sensor perspective field targets. */
 
-import { solveScalarRoot, type ScalarRootSolveResult, type ScalarRootSolveStatus } from "../math/rootSolve.js";
+import { solveScalarRoot } from "../math/rootSolve.js";
+import type { ScalarRootSolveResult, ScalarRootSolveStatus } from "../math/rootSolve.js";
 import { dot, normalize, subtract } from "../math/vector.js";
 import type { Vec3 } from "../types.js";
-import {
-  isPerspectiveDirectionInsideProjectionDomain,
-  solvePerspectiveChiefRay,
-  type PerspectiveChiefRayOptions,
-  type PerspectiveChiefRayResult,
-} from "./chiefRay.js";
-import {
-  directionForIdealCoordinates,
-  idealCoordinatesForDirection,
-  sensorUvForPoint,
-  type FieldPlaneFrame,
-  type PerspectiveProjectionReference,
-  type SensorUv,
-} from "./fieldGeometry.js";
+import { isPerspectiveDirectionInsideProjectionDomain, solvePerspectiveChiefRay } from "./chiefRay.js";
+import type { PerspectiveChiefRayOptions, PerspectiveChiefRayResult } from "./chiefRay.js";
+import { directionForIdealCoordinates, idealCoordinatesForDirection, sensorUvForPoint } from "./fieldGeometry.js";
+import type { FieldPlaneFrame, PerspectiveProjectionReference, SensorUv } from "./fieldGeometry.js";
 import type { PerspectiveTraceContext } from "./trace.js";
 
 /** Diagnostics for the outer solve that targets a finite fixed-sensor point. */

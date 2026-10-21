@@ -1,16 +1,15 @@
+import { constructionFixtureData } from "./constructionFixtures.js";
+import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { stateWithZ } from "../../../src/optics/state/preparedGeometry.js";
-import { createAnalysisRequest } from "../../../src/optics/analysis.js";
+import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
 import { analysisRequestAt } from "./testLensFixtures.js";
 import { analysisRequestForLens } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
-import {
-  computeBestFocusZ,
-  computeSAProfile,
-  computeSphericalAberration,
-} from "../../../src/optics/aberrationAnalysis.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import { computeElementShapes } from "../../../src/optics/diagramGeometry.js";
-import { foldedHitOrderLabelsForDisplay } from "../../../src/optics/foldedPathDisplay.js";
+import { computeBestFocusZ } from "../../../src/optics/analysis/aberration/bestFocus.js";
+import { computeSAProfile, computeSphericalAberration } from "../../../src/optics/analysis/aberration/spherical.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
+import { computeElementShapes } from "../../../src/optics/diagram/runtimeDiagramAdapter.js";
+import { foldedHitOrderLabelsForDisplay } from "../../../src/optics/diagram/foldedPathDisplay.js";
 import {
   traceFixtureSlope,
   traceFixtureVector,
@@ -19,40 +18,37 @@ import {
 } from "./traceGeometryFixtures.js";
 import type { Ray3 as VectorRayInput } from "../../../src/optics/types.js";
 import { computeGroupMovementProfile } from "../../../src/optics/analysis/summary/groupMovement.js";
+import { computeLongitudinalChromaticFocus } from "../../../src/optics/analysis/chromatic/analysis.js";
 import {
-  computeLongitudinalChromaticFocus,
-  conjugateK,
-  doLayout,
+  conjugateKForRuntimeLens as conjugateK,
   entrancePupilAtState,
-  solveChiefRay,
-  stopInnerBlockedSemiDiameter,
-  SVG_PATH_SUBDIVISIONS,
-  traceChiefRelativeSkewRay,
-  traceSkewRay,
-  traceRay,
-  traceRayChromatic,
-} from "../../../src/optics/optics.js";
-import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/raySampling.js";
-import { prepareRuntimeState } from "../../../src/optics/compat.js";
-import { traceToStopViaGeneralized2 } from "../../../src/optics/trace/stopTrace.js";
-import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
-import validateLensData from "../../../src/optics/validateLensData.js";
+  solveChiefRayForRuntimeLens as solveChiefRay,
+} from "../../../src/optics/state/fieldAdapters.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { stopInnerBlockedSemiDiameter } from "../../../src/optics/trace/stopObstruction.js";
+import { SVG_PATH_SUBDIVISIONS } from "../../../src/optics/diagram/surfaceOutline.js";
+import { traceChiefRelativeSkewRay } from "../../../src/optics/trace/chiefRelative.js";
+import { traceSkewRay, traceRay, traceRayChromatic } from "../../../src/optics/trace/rayAdapters.js";
+import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/trace/raySampling.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
+import { traceToStopViaGeneralized } from "../../../src/optics/trace/stopTrace.js";
+import { traceEngineRay } from "../../../src/optics/trace/rayAdapters.js";
+import validateLensData from "../../../src/optics/prescription/validate/index.js";
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import { buildFacingFlatMirrorsLens, buildFoldedTirLens } from "./testLensFixtures.js";
 
-const mirrorData = LENS_CATALOG["reference-spherical-primary-mirror"] as LensData;
-const annularData = LENS_CATALOG["reference-annular-obscured-mirror"] as LensData;
-const manginData = LENS_CATALOG["reference-mangin-second-surface-mirror"] as LensData;
-const newtonianData = LENS_CATALOG["reference-newtonian-side-focus"] as LensData;
-const cassegrainData = LENS_CATALOG["reference-cassegrain-back-focus"] as LensData;
-const maksutovData = LENS_CATALOG["reference-maksutov-cassegrain-meniscus"] as LensData;
-const gregorianData = LENS_CATALOG["reference-gregorian-secondary"] as LensData;
-const ringBlockerData = LENS_CATALOG["reference-annular-ring-blocker"] as LensData;
-const nikonReflex500NewData = LENS_CATALOG["nikon-reflex-nikkor-500mm-f8-new"] as LensData;
-const nikonReflex1000Data = LENS_CATALOG["nikon-reflex-nikkor-1000mm-f11"] as LensData;
-const nikonReflexC500Data = LENS_CATALOG["nikon-reflex-nikkor-c-500mm-f8"] as LensData;
-const planarData = LENS_CATALOG["zeiss-planar-t-50f14"] as LensData;
+const mirrorData = CATALOG_CONSTRUCTION_FIXTURES["reference-spherical-primary-mirror"] as LensData;
+const annularData = CATALOG_CONSTRUCTION_FIXTURES["reference-annular-obscured-mirror"] as LensData;
+const manginData = CATALOG_CONSTRUCTION_FIXTURES["reference-mangin-second-surface-mirror"] as LensData;
+const newtonianData = CATALOG_CONSTRUCTION_FIXTURES["reference-newtonian-side-focus"] as LensData;
+const cassegrainData = CATALOG_CONSTRUCTION_FIXTURES["reference-cassegrain-back-focus"] as LensData;
+const maksutovData = CATALOG_CONSTRUCTION_FIXTURES["reference-maksutov-cassegrain-meniscus"] as LensData;
+const gregorianData = CATALOG_CONSTRUCTION_FIXTURES["reference-gregorian-secondary"] as LensData;
+const ringBlockerData = CATALOG_CONSTRUCTION_FIXTURES["reference-annular-ring-blocker"] as LensData;
+const nikonReflex500NewData = CATALOG_CONSTRUCTION_FIXTURES["nikon-reflex-nikkor-500mm-f8-new"] as LensData;
+const nikonReflex1000Data = CATALOG_CONSTRUCTION_FIXTURES["nikon-reflex-nikkor-1000mm-f11"] as LensData;
+const nikonReflexC500Data = CATALOG_CONSTRUCTION_FIXTURES["nikon-reflex-nikkor-c-500mm-f8"] as LensData;
+const planarData = CATALOG_CONSTRUCTION_FIXTURES["zeiss-planar-t-50f14"] as LensData;
 
 function reflectYz(incidentY: number, incidentZ: number, normalY: number, normalZ: number): [number, number] {
   const dot = incidentY * normalY + incidentZ * normalZ;
@@ -107,7 +103,7 @@ function traceBackSideMirror(lens: GeometryFixture, y: number) {
 
 /** Trace a folded ray through the prepared production stack. */
 function traceFolded(L: RuntimeLens, ray: VectorRayInput, launchBoundT?: number) {
-  return traceEngineRay2(prepareRuntimeState(L, 0, 0), ray, {
+  return traceEngineRay(prepareRuntimeState(L, 0, 0), ray, {
     checkSemiDiameter: true,
     stopOnClip: true,
     launchBoundT,
@@ -493,7 +489,7 @@ describe("mirror optics support", () => {
     const zonedTraces = traceFolded(zoned, ray);
     const plainTraces = traceFolded(plain, ray);
 
-    expect(validateLensData(zoned.data)).toEqual([]);
+    expect(validateLensData(constructionFixtureData(zoned))).toEqual([]);
     {
       const actual = zonedTraces;
       const expected = plainTraces;
@@ -700,7 +696,7 @@ describe("mirror optics support", () => {
     const L = buildFacingFlatMirrorsLens();
     const engine = traceFolded(L, { origin: [0, 0, 10], direction: [0, 0, 1] }, 50);
 
-    expect(validateLensData(L.data)).toEqual([]);
+    expect(validateLensData(constructionFixtureData(L))).toEqual([]);
     expect(engine.status).toBe("failed");
     expect(engine.failureReason).toBe("loopDetected");
     expect(engine.diagnostics.terminationReason).toBe("loop-detected");
@@ -735,7 +731,7 @@ describe("mirror optics support", () => {
     const below = traceFolded(L, launch(0.97 * criticalHeight));
     const above = traceFolded(L, launch(1.03 * criticalHeight));
 
-    expect(validateLensData(L.data)).toEqual([]);
+    expect(validateLensData(constructionFixtureData(L))).toEqual([]);
     expect(below.reachedImagePlane).toBe(true);
     expect(below.failureReason).toBeNull();
     expect(above.status).toBe("failed");
@@ -867,8 +863,8 @@ describe("mirror optics support", () => {
 
     const state = prepareRuntimeState(L, 0, 0);
     const input = { origin: [0, 5, -1], direction: [0, 0, 1] } as const;
-    const preparedFirst = traceToStopViaGeneralized2(state, input, L.stopIdx);
-    const preparedSecond = traceToStopViaGeneralized2(state, input, L.stopIdx, { stopOccurrence: 1 });
+    const preparedFirst = traceToStopViaGeneralized(state, input, L.stopIdx);
+    const preparedSecond = traceToStopViaGeneralized(state, input, L.stopIdx, { stopOccurrence: 1 });
     expect(preparedFirst.found).toBe(true);
     expect(preparedSecond.found).toBe(true);
     expect(preparedFirst.hitIndex).toBe(0);
@@ -880,13 +876,13 @@ describe("mirror optics support", () => {
     const state = prepareRuntimeState(buildLens(planarData), 0, 0);
     const stopIndex = state.lens.stop.surfaceIndex;
     const input = { origin: [0, 0, state.z[stopIndex]], direction: [0, 0, -1] } as const;
-    const result = traceToStopViaGeneralized2(state, input, stopIndex, { checkSemiDiameter: true });
+    const result = traceToStopViaGeneralized(state, input, stopIndex, { checkSemiDiameter: true });
     expect(result.trace.hits).toHaveLength(0);
     expect(result.found).toBe(true);
     expect(result.hitIndex).toBe(-1);
     expect(result.point).toEqual(input.origin);
-    expect(traceToStopViaGeneralized2(state, input, stopIndex, { stopOccurrence: 1 }).found).toBe(false);
-    const blocked = traceToStopViaGeneralized2(state, { ...input, origin: [0, 1, input.origin[2]] }, stopIndex, {
+    expect(traceToStopViaGeneralized(state, input, stopIndex, { stopOccurrence: 1 }).found).toBe(false);
+    const blocked = traceToStopViaGeneralized(state, { ...input, origin: [0, 1, input.origin[2]] }, stopIndex, {
       checkSemiDiameter: true,
       stopSemiDiameter: 0.5,
     });
@@ -972,7 +968,7 @@ describe("mirror optics support", () => {
 it.each(["reference-newtonian-side-focus", "reference-mangin-second-surface-mirror"])(
   "keeps chief-relative rays on the generalized path for %s",
   (key) => {
-    const L = buildLens(LENS_CATALOG[key]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[key]);
     const ray = traceChiefRelativeSkewRay(0, 0.5, 8, 0, 8, 0, 0, L.stopPhysSD, true, L);
     expect(ray).toEqual(traceSkewRay(0, 12, 0, 0, 0, 0, L.stopPhysSD, true, L));
     expect(ray.clipped).toBe(false);

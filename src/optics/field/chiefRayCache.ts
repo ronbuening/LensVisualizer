@@ -2,11 +2,11 @@
 
 import type { ChromaticChannel } from "../../types/optics.js";
 import type { PreparedGeometry } from "../types.js";
-import type { ChiefRaySolveResult2 } from "./chiefRaySolve.js";
-import type { LaunchSurface2 } from "./projection.js";
+import type { ChiefRaySolveResult } from "./chiefRaySolve.js";
+import type { LaunchSurface } from "./projection.js";
 
 const CHIEF_RAY_CACHE_LIMIT = 512;
-const CACHE = new WeakMap<PreparedGeometry, Map<string, ChiefRaySolveResult2>>();
+const CACHE = new WeakMap<PreparedGeometry, Map<string, ChiefRaySolveResult>>();
 
 /**
  * Distinguish signed fields, launch domains and spectral requests within one geometry.
@@ -17,7 +17,7 @@ const CACHE = new WeakMap<PreparedGeometry, Map<string, ChiefRaySolveResult2>>()
  */
 export function chiefRayCacheKey(
   fieldAngleDeg: number,
-  launchSurface: LaunchSurface2,
+  launchSurface: LaunchSurface,
   channel?: ChromaticChannel,
 ): string {
   return `${fieldAngleDeg}|${launchSurface}|${channel ?? "reference"}`;
@@ -29,7 +29,7 @@ export function chiefRayCacheKey(
  * @param key - exact field, launch surface and channel key
  * @returns cached solve, if retained
  */
-export function getCachedChiefRaySolve(state: PreparedGeometry, key: string): ChiefRaySolveResult2 | undefined {
+export function getCachedChiefRaySolve(state: PreparedGeometry, key: string): ChiefRaySolveResult | undefined {
   const cache = CACHE.get(state);
   const result = cache?.get(key);
   if (result) {
@@ -45,7 +45,7 @@ export function getCachedChiefRaySolve(state: PreparedGeometry, key: string): Ch
  * @param key - exact request key
  * @param value - solved chief-ray result
  */
-export function setCachedChiefRaySolve(state: PreparedGeometry, key: string, value: ChiefRaySolveResult2): void {
+export function setCachedChiefRaySolve(state: PreparedGeometry, key: string, value: ChiefRaySolveResult): void {
   let cache = CACHE.get(state);
   if (!cache) {
     cache = new Map();

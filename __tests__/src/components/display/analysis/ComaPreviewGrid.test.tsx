@@ -3,7 +3,10 @@
 import { describe, it, expect, afterEach } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
 import ComaPreviewGrid from "../../../../../src/components/display/analysis/ComaPreviewGrid.js";
-import type { ComaPointCloudPreviewResult, ComaPreviewResult } from "../../../../../src/optics/aberrationAnalysis.js";
+import type {
+  ComaPointCloudPreviewResult,
+  ComaPreviewResult,
+} from "../../../../../src/optics/analysis/aberration/types.js";
 import type { Theme } from "../../../../../src/types/theme.js";
 
 const theme = {

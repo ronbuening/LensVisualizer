@@ -1,11 +1,12 @@
+import { runtimeFixtureView } from "./constructionFixtures.js";
+import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../src/optics/buildLens.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import { computeCardinalElements } from "../../../src/optics/analysis/summary/cardinals.js";
 import { analysisRequestForLens } from "./testLensFixtures.js";
 import { thickLensFocalLength } from "../../../src/optics/first-order/thickLens.js";
-import { doLayout } from "../../../src/optics/optics.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
 import type { RuntimeLens, SurfaceData } from "../../../src/types/optics.js";
 
 function cardinalsFor(L: RuntimeLens, focusT = 0, zoomT = 0) {
@@ -19,7 +20,7 @@ function cardinalsFor(L: RuntimeLens, focusT = 0, zoomT = 0) {
 function minimalCardinalLens(surfaces: SurfaceData[]): RuntimeLens {
   const imageZ = surfaces.reduce((sum, surface) => sum + surface.d, 0);
   return registerRuntimeFixture({
-    data: {
+    ...runtimeFixtureView({
       key: "cardinal-fixture",
       name: "Cardinal fixture",
       closeFocusM: 0.5,
@@ -41,7 +42,7 @@ function minimalCardinalLens(surfaces: SurfaceData[]): RuntimeLens {
       offAxisFieldFrac: 0.6,
       offAxisFractions: [-0.5, 0, 0.5],
       nominalFno: 2,
-    },
+    }),
     S: surfaces,
     N: surfaces.length,
     ES: [],
@@ -74,7 +75,7 @@ function minimalCardinalLens(surfaces: SurfaceData[]): RuntimeLens {
 
 describe("request cardinals", () => {
   it("computes the full same-index cardinal set and marks H/N coincidence", () => {
-    const L = buildLens(LENS_CATALOG["nokton-50f1"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nokton-50f1"]);
     const result = cardinalsFor(L);
 
     expect(result).not.toBeNull();
@@ -121,7 +122,7 @@ describe("request cardinals", () => {
   });
 
   it("reports signed axial distances with explicit endpoints", () => {
-    const L = buildLens(LENS_CATALOG["nokton-50f1"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nokton-50f1"]);
     const result = cardinalsFor(L)!;
 
     expect(result.distances.bfd.valueMm).toBeCloseTo(result.points.rearFocal.z - result.rearVertexZ, 10);
@@ -134,7 +135,7 @@ describe("request cardinals", () => {
   });
 
   it("updates with current focus state for variable-gap lenses", () => {
-    const L = buildLens(LENS_CATALOG["sony-fe-90mm-f2p8-macro"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["sony-fe-90mm-f2p8-macro"]);
     const infinity = cardinalsFor(L, 0, 0)!;
     const close = cardinalsFor(L, 1, 0)!;
 
@@ -143,7 +144,7 @@ describe("request cardinals", () => {
   });
 
   it("computes reflective cardinal elements for an axial folded primary mirror", () => {
-    const L = buildLens(LENS_CATALOG["reference-spherical-primary-mirror"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["reference-spherical-primary-mirror"]);
     const result = cardinalsFor(L);
 
     expect(result).not.toBeNull();
@@ -157,7 +158,7 @@ describe("request cardinals", () => {
      * are blocked by the secondary, so the search has to walk out to the annular pupil. A flat secondary leaves the
      * primary's f = |R|/2 (the authored L.EFL) unchanged, the second reflection restores a positive EFL, and F' folds
      * to 2·z_SEC − z_F1. Flat + spherical paraxial power is exact, so only float rounding is tolerated. */
-    const L = buildLens(LENS_CATALOG["reference-cassegrain-back-focus"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["reference-cassegrain-back-focus"]);
     const layout = doLayout(0, 0, L);
     const primaryFocusZ = layout.z[L.labelIdx.M1] + L.S[L.labelIdx.M1].R / 2;
     const result = cardinalsFor(L);
@@ -172,7 +173,7 @@ describe("request cardinals", () => {
   it("reports the closed-form Gregorian first order through an explicit folded surface order", () => {
     /* The concave secondary sits s beyond the primary focus and relays it to s' = 1 / (1/f2 - 1/s); the intermediate
      * real image makes the system EFL -f1·s'/s (an erect final image). Paraxial power is exact for spherical mirrors. */
-    const L = buildLens(LENS_CATALOG["reference-gregorian-secondary"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["reference-gregorian-secondary"]);
     const layout = doLayout(0, 0, L);
     const f1 = Math.abs(L.S[L.labelIdx.M1].R) / 2;
     const f2 = Math.abs(L.S[L.labelIdx.SEC].R) / 2;
@@ -198,7 +199,7 @@ describe("request cardinals", () => {
     const swept: string[] = [];
     const offenders: string[] = [];
     let compared = 0;
-    for (const [key, data] of Object.entries(LENS_CATALOG)) {
+    for (const [key, data] of Object.entries(CATALOG_CONSTRUCTION_FIXTURES)) {
       if (data.opticalPath?.mode !== "auto" || data.opticalPath.surfaceOrder?.length) continue;
       swept.push(key);
       try {
@@ -220,7 +221,7 @@ describe("request cardinals", () => {
   });
 
   it("keeps tilted image-plane folded systems out of first-order cardinal reporting", () => {
-    const L = buildLens(LENS_CATALOG["reference-newtonian-side-focus"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["reference-newtonian-side-focus"]);
 
     expect(cardinalsFor(L)).toBeNull();
   });

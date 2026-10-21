@@ -1,9 +1,10 @@
 import { useMemo } from "react";
-import { createAnalysisRequest, createAnalysisComputationContext, stateWithZ } from "../../../../optics/analysis.js";
+import { createAnalysisRequest, createAnalysisComputationContext } from "../../../../optics/analysis.js";
+import { stateWithZ } from "../../../../optics/optics.js";
 import usePreparedAnalysisState from "../usePreparedAnalysisState.js";
 import type { PreparedOpticalState } from "../../../../optics/types.js";
 import type { AnalysisComputationContext } from "../../../../optics/analysis.js";
-import type { FieldGeometryState } from "../../../../optics/optics.js";
+import type { FieldGeometryState } from "../../../../optics/fieldGeometry.js";
 import type { RuntimeLens } from "../../../../types/optics.js";
 
 interface Params {

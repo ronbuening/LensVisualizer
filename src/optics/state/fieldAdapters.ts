@@ -1,21 +1,21 @@
 /** Runtime field adapters — resolve controls once before entering prepared-geometry field modules. */
 
 import type { ParaxialTraceResult, RayTraceResult, RuntimeLens } from "../../types/optics.js";
-import { type FieldGeometryState2, type VectorFieldRayLaunch2 } from "../field/launch.js";
-import { FOCUS_INFINITY_CUTOFF } from "../focusDistance.js";
-import { compiledLensFromRuntime } from "../prescription/compile.js";
-import { prepareState } from "../state/preparedGeometry.js";
+import type { FieldGeometryState, VectorFieldRayLaunch } from "../field/launch.js";
+import { FOCUS_INFINITY_CUTOFF } from "./focusDistance.js";
+import { compiledLensFromRuntime } from "../prescription/identity.js";
+import { prepareState } from "./preparedGeometry.js";
 import type { PreparedRayTrace } from "../trace/rayAdapters.js";
-import type { ChiefRaySolveResult2 } from "../field/chiefRaySolve.js";
+import type { ChiefRaySolveResult } from "../field/chiefRaySolve.js";
 import { solveChiefRay, solveChiefRayBoundingSphere } from "../field/chiefRaySolve.js";
-import type { EntrancePupilState2 } from "../field/fieldGeometry.js";
+import type { EntrancePupilState } from "../field/geometry.js";
 import {
   computeFieldGeometry,
   conjugateK,
   entrancePupil,
   paraxialObjectVergence,
   traceParaxialRay,
-} from "../field/fieldGeometry.js";
+} from "../field/geometry.js";
 import type { ImageHeightInversionResult } from "../field/imageHeight.js";
 import {
   chiefRayImageHeight,
@@ -41,12 +41,12 @@ import { computeBoundingSphereLaunchRadiusMm, computeBoundingSphereVectorFieldLa
  * @param aberrationT - normalized aberration control position
  * @returns field half-angle and entrance-pupil ratios for this state
  */
-export function computeFieldGeometryAtState2(
+export function computeFieldGeometryAtState(
   focusT: number,
   zoomT: number,
   L: RuntimeLens,
   aberrationT = 0,
-): FieldGeometryState2 {
+): FieldGeometryState {
   return computeFieldGeometry(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT));
 }
 
@@ -65,12 +65,12 @@ export function computeFieldGeometryAtState2(
  * @param aberrationT - normalized aberration control position
  * @returns field geometry whose half-field ends at the format corner or at the real chief ray's clipping field
  */
-export function computeAnalysisFieldGeometryAtState2(
+export function computeAnalysisFieldGeometryAtState(
   focusT: number,
   zoomT: number,
   L: RuntimeLens,
   aberrationT = 0,
-): FieldGeometryState2 {
+): FieldGeometryState {
   return computeAnalysisFieldGeometry(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT));
 }
 
@@ -86,13 +86,13 @@ export function computeAnalysisFieldGeometryAtState2(
  * @param aberrationT - normalized aberration control position
  * @returns runtime ray trace result for the chief ray
  */
-export function traceChiefRayAtAngle2(
+export function traceChiefRayAtAngleForRuntimeLens(
   fieldAngleDeg: number,
   zPos: number[],
   focusT: number,
   zoomT: number,
   L: RuntimeLens,
-  geometry?: FieldGeometryState2,
+  geometry?: FieldGeometryState,
   aberrationT = 0,
   prepared?: PreparedRayTrace,
 ): RayTraceResult {
@@ -114,7 +114,7 @@ export function traceChiefRayAtAngle2(
  * @param L - runtime lens prescription
  * @returns paraxial image-side height and slope before final transfer
  */
-export function traceParaxialRay2(
+export function traceParaxialRayForRuntimeLens(
   y0: number,
   u0: number,
   focusT: number,
@@ -136,13 +136,13 @@ export function traceParaxialRay2(
  * @param aberrationT - normalized aberration control position
  * @returns signed image height in mm, or NaN when tracing fails
  */
-export function chiefRayImageHeight2(
+export function chiefRayImageHeightForRuntimeLens(
   fieldAngleDeg: number,
   zPos: number[],
   focusT: number,
   zoomT: number,
   L: RuntimeLens,
-  geometry?: FieldGeometryState2,
+  geometry?: FieldGeometryState,
   aberrationT = 0,
   prepared?: PreparedRayTrace,
 ): number {
@@ -168,14 +168,14 @@ export function chiefRayImageHeight2(
  * @param aberrationT - normalized aberration control position
  * @returns chief-ray solve result including fallback status and launch surface
  */
-export function solveChiefRay2(
+export function solveChiefRayForRuntimeLens(
   fieldAngleDeg: number,
   focusT: number,
   zoomT: number,
   L: RuntimeLens,
-  geometry?: FieldGeometryState2,
+  geometry?: FieldGeometryState,
   aberrationT = 0,
-): ChiefRaySolveResult2 {
+): ChiefRaySolveResult {
   return solveChiefRay(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT), {
     fieldAngleDeg,
     geometry,
@@ -196,14 +196,14 @@ export function solveChiefRay2(
  * @param aberrationT - normalized aberration control position
  * @returns vector chief-ray solve result with projected yLaunch for legacy callers
  */
-export function solveChiefRayBoundingSphere2(
+export function solveChiefRayBoundingSphereForRuntimeLens(
   fieldAngleDeg: number,
   focusT: number,
   zoomT: number,
   L: RuntimeLens,
-  geometry: FieldGeometryState2 | undefined,
+  geometry: FieldGeometryState | undefined,
   aberrationT: number,
-): ChiefRaySolveResult2 {
+): ChiefRaySolveResult {
   return solveChiefRayBoundingSphere(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT), {
     fieldAngleDeg,
     geometry,
@@ -222,13 +222,13 @@ export function solveChiefRayBoundingSphere2(
  * @param aberrationT - normalized aberration control position
  * @returns signed image height in mm, or NaN when the trace clips
  */
-export function chiefRayImageHeightAccurate2(
+export function chiefRayImageHeightAccurateForRuntimeLens(
   fieldAngleDeg: number,
   zPos: number[],
   focusT: number,
   zoomT: number,
   L: RuntimeLens,
-  geometry?: FieldGeometryState2,
+  geometry?: FieldGeometryState,
   aberrationT = 0,
 ): number {
   return chiefRayImageHeightAccurate(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT), {
@@ -250,13 +250,13 @@ export function chiefRayImageHeightAccurate2(
  * @param aberrationT - normalized aberration control position
  * @returns field angle in degrees, or null when no monotonic bracket is found
  */
-export function solveFieldAngleForImageHeightAccurate2(
+export function solveFieldAngleForImageHeightAccurateForRuntimeLens(
   targetImageHeight: number,
   zPos: number[],
   focusT: number,
   zoomT: number,
   L: RuntimeLens,
-  geometry?: FieldGeometryState2,
+  geometry?: FieldGeometryState,
   aberrationT = 0,
 ): number | null {
   if (!Number.isFinite(targetImageHeight) || Math.abs(targetImageHeight) < 1e-12) return 0;
@@ -273,13 +273,13 @@ export function solveFieldAngleForImageHeightAccurate2(
  * This preserves the `solveFieldAngleForImageHeightAccurate` bisection path
  * but avoids rebuilding the same bracket scan for every target height.
  */
-export function solveFieldAnglesForImageHeightsAccurate2(
+export function solveFieldAnglesForImageHeightsAccurateForRuntimeLens(
   targetImageHeights: readonly number[],
   zPos: number[],
   focusT: number,
   zoomT: number,
   L: RuntimeLens,
-  geometry?: FieldGeometryState2,
+  geometry?: FieldGeometryState,
   aberrationT = 0,
 ): Array<number | null> {
   return solveFieldAnglesForImageHeightsAccurate(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT), {
@@ -296,7 +296,7 @@ export function invertChiefRayImageHeights(
   focusT: number,
   zoomT: number,
   L: RuntimeLens,
-  geometry?: FieldGeometryState2,
+  geometry?: FieldGeometryState,
   aberrationT = 0,
 ): ImageHeightInversionResult[] {
   return preparedInvertChiefRayImageHeights(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT), {
@@ -317,13 +317,13 @@ export function invertChiefRayImageHeights(
  * @param geometry - optional precomputed field geometry
  * @returns field angle in degrees, or null when the target is outside the field
  */
-export function solveFieldAngleForImageHeight2(
+export function solveFieldAngleForImageHeightForRuntimeLens(
   targetImageHeight: number,
   zPos: number[],
   focusT: number,
   zoomT: number,
   L: RuntimeLens,
-  geometry?: FieldGeometryState2,
+  geometry?: FieldGeometryState,
 ): number | null {
   if (!Number.isFinite(targetImageHeight) || Math.abs(targetImageHeight) < 1e-12) return 0;
   return solveFieldAngleForImageHeight(prepareState(compiledLensFromRuntime(L), focusT, zoomT, 0), {
@@ -344,14 +344,14 @@ export function solveFieldAngleForImageHeight2(
  * @param aberrationT - normalized aberration control position
  * @returns entrance-pupil state used by UI readouts and analysis
  */
-export function entrancePupilAtState2(
+export function entrancePupilAtState(
   stopSD: number,
   focusT: number,
   zoomT: number,
   L: RuntimeLens,
-  geometry?: FieldGeometryState2,
+  geometry?: FieldGeometryState,
   aberrationT = 0,
-): EntrancePupilState2 {
+): EntrancePupilState {
   return entrancePupil(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT), { stopSD, geometry });
 }
 
@@ -364,7 +364,7 @@ export function entrancePupilAtState2(
  * @param aberrationT - normalized aberration control position
  * @returns relative conjugate correction, zero at infinity focus
  */
-export function conjugateK2(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
+export function conjugateKForRuntimeLens(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
   // Infinity never inspected the runtime lens; keep that short circuit before preparation.
   if (focusT < FOCUS_INFINITY_CUTOFF) return 0;
   return conjugateK(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT));
@@ -379,33 +379,38 @@ export function conjugateK2(focusT: number, zoomT: number, L: RuntimeLens, aberr
  * @param aberrationT - normalized aberration control position
  * @returns 1/s in 1/mm, positive for a real object; 0 at infinity focus and for folded paths
  */
-export function paraxialObjectVergence2(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
+export function paraxialObjectVergenceForRuntimeLens(
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  aberrationT = 0,
+): number {
   if (focusT < FOCUS_INFINITY_CUTOFF) return 0;
   return paraxialObjectVergence(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT));
 }
 
-export { type ChiefRaySolveResult2 } from "../field/chiefRaySolve.js";
-export { type EntrancePupilState2 } from "../field/fieldGeometry.js";
+export { type ChiefRaySolveResult } from "../field/chiefRaySolve.js";
+export { type EntrancePupilState } from "../field/geometry.js";
 export { type ImageHeightInversionResult } from "../field/imageHeight.js";
 export {
-  offsetVectorFieldRay2,
-  type FieldGeometryState2,
-  type OffsetVectorFieldRay2,
-  type VectorFieldRayLaunch2,
+  offsetVectorFieldRay,
+  type FieldGeometryState,
+  type OffsetVectorFieldRay,
+  type VectorFieldRayLaunch,
 } from "../field/launch.js";
 
 /** Preserve the baseline prescription envelope for legacy launch callers. */
-export function computeBoundingSphereLaunchRadiusMm2(L: RuntimeLens, chiefB: number): number {
+export function computeBoundingSphereLaunchRadiusMmForRuntimeLens(L: RuntimeLens, chiefB: number): number {
   return computeBoundingSphereLaunchRadiusMm(prepareState(compiledLensFromRuntime(L), 0, 0), chiefB);
 }
 /** Resolve the prepared owner for legacy vector field launches. */
-export function computeBoundingSphereVectorFieldLaunch2(
+export function computeBoundingSphereVectorFieldLaunchForRuntimeLens(
   L: RuntimeLens,
-  geometry: FieldGeometryState2,
+  geometry: FieldGeometryState,
   fieldAngleXDeg: number,
   fieldAngleYDeg: number,
   aberrationT = 0,
-): VectorFieldRayLaunch2 | null {
+): VectorFieldRayLaunch | null {
   void aberrationT;
   return computeBoundingSphereVectorFieldLaunch(prepareState(compiledLensFromRuntime(L), 0, 0), {
     geometry,
