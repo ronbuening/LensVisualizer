@@ -58,7 +58,7 @@ Radii 0.575 and 2.434 (normalized) form a positive meniscus 11.752 mm thick, the
 
 ### L3: negative rear member of the front cemented doublet
 
-ne = 1.792, νe = 25.9. Glass: unidentified dense flint; SF56A and PBH23 are close e-line analogues, not confirmed identities. Standalone focal length about −27.0 mm.
+ne = 1.792, νe = 25.9. Glass: dense flint, labelled with Schott SF56A as a catalog equivalent (ne 1.7918, νe 25.87 at C′/e/F′); Ohara PBH23 matches equally well. Neither is a confirmed production melt. Standalone focal length about −27.0 mm.
 
 Radii 2.434 and 0.349 form a negative meniscus whose strongly curved rear surface faces the stop. It outweighs L2's power, so the cemented doublet is weakly negative (−220.0 mm).
 
@@ -76,13 +76,13 @@ Radii +1.385 and −0.665 form a biconvex element 9.412 mm thick. The L4+L5 doub
 
 ### L6: positive rear singlet with an aspheric rear surface
 
-ne = 1.694, νe = 54.6. Glass: unidentified lanthanum-crown-region glass; S-LAL9 and K-LaK9 are close e-line analogues. Standalone focal length about +43.0 mm.
+ne = 1.694, νe = 54.6. Glass: lanthanum crown, labelled with Ohara S-LAL9 as a catalog equivalent (ne 1.6940, νe 54.59 at C′/e/F′); Schott N-LAK9, Sumita K-LaK9 and Hikari J-LAK9 also match. The production melt is not known. Standalone focal length about +43.0 mm.
 
 A spherical front surface (R = 1.180 normalized) and the aspheric rear surface S10 form a biconvex singlet 6.084 mm thick. This is the patent's rear asphere, placed as far back as possible so that the two aspheres act as independently as possible.
 
 ## Glass Map
 
-The patent gives e-line indices and Abbe numbers (ne, νe). The data file keeps them in e-line form (`indexReference: "e"`) without converting them to d-line. None of the six glasses is identified with a catalog type. The two very-high-index positions, L2 and L5 at ne = 1.900, have no close modern catalog equivalent. No partial-dispersion data are available, so the model makes no claim about secondary spectrum.
+The patent gives e-line indices and Abbe numbers (ne, νe). The data file keeps them in e-line form (`indexReference: "e"`) without converting them to d-line. Two positions have catalog rows that reproduce the printed pair at C′/e/F′ within its precision: L3 (SF56A) and L6 (S-LAL9). They are labelled as catalog equivalents, not as the glasses Leitz used, and the chromatic trace uses their dispersion curves. L1, L2, L4 and L5 match no catalog row; the nearest for L1 (TAF5, TAFD10) is about 0.001 off in ne and 1 off in νe. They stay `Unmatched` and are traced from ne and νe. Every element is traced at C′/e/F′ whichever tier it uses, so the mix does not combine reference lines. The two very-high-index positions, L2 and L5 at ne = 1.900, have no close modern catalog equivalent. No partial-dispersion data are printed, so the model makes no claim about secondary spectrum.
 
 ## Focus Mechanism and Stop Position
 

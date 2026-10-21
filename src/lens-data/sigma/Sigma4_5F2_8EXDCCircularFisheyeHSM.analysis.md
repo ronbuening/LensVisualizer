@@ -48,13 +48,13 @@ No asphere is present in Example 3 and none is introduced.
 
 ## Clear Apertures and Geometry
 
-The patent prints no clear apertures; the semi-diameters are read from Figure 7 and Sigma's section drawing. The large front surface uses 21.5 mm and its steep rear surface (R 13.3 mm) 12.5 mm, where both drawings end the rear bowl. The first two cemented pairs, L4–L5 and L6–L7, use 7.6 mm and 6.9 mm, their drawn heights, well clear of the f/2.9 axial marginal ray (2.2–3.9 mm on those surfaces).
+The patent prints no clear apertures; the semi-diameters are read from Figure 7 and Sigma's section drawing. The large front surface uses 21.5 mm and its steep rear surface (R 13.3 mm) 12.5 mm, where both drawings end the rear bowl. The first two cemented pairs, L4–L5 and L6–L7, use 7.6 mm and 6.9 mm, their drawn heights, well clear of the f/2.9 axial marginal ray (2.2–3.9 mm on those surfaces). The small pair L8–L9 ahead of the stop is drawn in Figure 7 as a square-cut block about 4.9 mm high, and Sigma's drawing puts L8's rim at about 5.0 mm; it uses 5.0 mm on all three surfaces, above the axial marginal ray (4.2 mm at its front surface).
 
 At 12.5 mm, surface 2 has a 70.0° rim slope, beyond the default limit of about 64.2°, which would cap it near 12.0 mm and stop chief rays from about 85° outward from reaching the image. The data file therefore raises the lens's rim-slope limit to 71°; the default 90% gap-sag limit is kept. No element has a negative edge thickness.
 
 ## Model Scope and Limitations
 
-At infinity, chief rays from 0° to 90° all reach the image. The meridional geometric transmission, normalised to the axis, falls to 0.87 at 45°, 0.78 at 60°, 0.59 at 81° and 0.50 at 90°, set by the stop and the inferred clear apertures. Finite focus is not modelled, and Sigma's MTF data have not been reproduced.
+At infinity, chief rays from 0° to 90° all reach the image. The meridional geometric transmission, normalised to the axis, falls to 0.87 at 45°, 0.77 at 60°, 0.56 at 81° and 0.47 at 90°, set by the stop and the inferred clear apertures. Finite focus is not modelled, and Sigma's MTF data have not been reproduced.
 
 ## Sources
 

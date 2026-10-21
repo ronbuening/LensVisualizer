@@ -66,3 +66,31 @@ Maker comparison: the 1982 BMC sheet (PRC04128 p11) and Rodenstock booklet (PRC0
 Fields changed: header comment, `subtitle`, `specs`, element `role` and `glass` strings (`Unmatched (...)` form, same facts), `visible` false → true, r7 `sd` 18 → 16 (the step drawn on the L4 front face in both prints; the full f/22, 85 mm bundle reaches 14.78 mm there), and focus: `closeFocusM` 10 → 1.0 with a BF gap on surface 8 (72.731221 → 82.698251 mm, paraxial for 1.0 m object to image), matching the Geronar 210 / Grandagon-N bellows convention. Infinity EFL, BFD, f-number, stop and half-field are unchanged. Analysis: package-process sections and wording removed; the verification section is now "Model Scope and Limitations"; the focus section describes unit focus.
 
 Open: r2 may end at ≈ 14.6–15.4 mm before a flat annulus in the drawings (file 17.5); the reading is ambiguous and the value is left. `focalLengthMm.design` is 90 although the model gives 89.960 mm.
+
+## 2026-10-21 — Final review: metadata, glass and semi-diameters
+
+Independent re-check of the rims, glass labels and catalog metadata against DE 3026282 C2 (front page p1, drawing p2, claim table p3), the A1 table and the Rodenstock 1982 sheet and booklet extracts.
+
+Semi-diameters. The C2 drawing was measured at its native 300 dpi. The r1→r8 vertex span is 821 px for 36.18 mm (0.04407 mm/px); r1→r4 checks at 12.47 mm against 12.50 and r5→r8 at 11.68 mm against 11.62. Drawn heights, top and bottom sides averaged: L1 outer cylinder 17.0 mm (file r1 17.5), with the r2 arc ending at 14.4–14.9 mm against a flat rear annulus out to 17.0; L2 outer 12.4 mm (r3 12.5), r4 arc ending 7.8–8.2 mm at the drawn step (8.5, where the arc lands on the drawn step face); L3 r5 arc ending 9.3–9.7 mm (9.6), outer 13.1 mm (r6 13.0); L4 r7 arc ending at the 15.3–15.7 mm recess (16.0), outer 17.85 mm (r8 18.0). Every rim is within 6 % of the drawing. r2 stays at 17.5: the drawing shows a squared block with a rear annulus, and a full-height r2 reproduces it better than a 14.9 mm rim, whose straight join to r1 would cut away the drawn rear corner. Real-ray trace at the 42.0° corner (Y 81.3 mm) shows no axial clip or chief-ray block at infinity or at 1.0 m. Wide-open transmission is unchanged at 97.9 % at 33.6°, 83.3 % at 39.2° and 42.7 % at 42.0°. No `sd` was changed.
+
+Glass. The claim table heads its columns nₑ and νₑ (p3, "Brechzahlen … mit nₑ"). A C′/e/F′ scan of the site catalog finds a coordinate-equal row for every element, so all four are named and no element mixes reference lines:
+
+| Element | Printed nₑ / νₑ | Before | After | Catalog nₑ / νₑ (Δν) |
+| --- | --- | --- | --- | --- |
+| L1 | 1.6207 / 49.47 | Unmatched (historical melt) | N-SSK8 (SCHOTT catalog equivalent; production supplier unspecified) | 1.62068 / 49.54 (+0.07) |
+| L2, L3 | 1.7918 / 25.87 | Unmatched (historical melt) | SF56A (SCHOTT catalog equivalent; production supplier unspecified) | 1.79180 / 25.87 (0.00) |
+| L4 | 1.6251 / 52.86 | Unmatched (historical melt) | SSK2 (SUMITA catalog equivalent; production supplier unspecified) | 1.62509 / 52.85 (−0.01) |
+
+Alternatives within the rule are OHARA S-BSM28 for L1 (Δν +0.05), OHARA PBH23 for L2/L3 (+0.14), and OHARA S-BSM22 (+0.02) or SCHOTT N-SSK2 (+0.13) for L4. SSK2 was taken for its smallest residual. The resolver confirms each label at the e line, and the dispersion tiers move from 4 Abbe to 4 Sellmeier. Paraxial channel focus against green moves from R +139 / B −55 / V −21 µm to R +150 / B −42 / V +28 µm, and the reference trace is unchanged. No `apd` tag applies: the patent names no special glass.
+
+Metadata changes:
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| `catalog.focalLengthMm.design` | 90 | 89.96 | Computed EFL 89.960 mm at ×0.9; scaled Rodenstock files (Grandagon-N 65 / 75, Geronar 210) store the computed value |
+| `catalog.imageCircleMm` | absent | 170 | Rodenstock sheet and booklet: 170 mm at f/22 (85°), 155 mm at f/11 (80°); the f/22 value follows the corpus large-format convention. The image-circle audit passes. |
+| element `focalLengthMm` | absent (inspector showed "FL = –") | +64.91, −77.72, −84.98, +54.79 | Thick-lens values at nₑ, matching the analysis |
+
+Found correct: maker, name (RODENSTOCK prefix; the booklet spells GERONAR-WA), key, subtitle, specs and 4 / 4 counts (patent and both maker sources); `large-format-lens-board` and `4x5` (Copal 1 shutter lens for 4×5 in the booklet); `fNumber` 8 / 8; `fStops` 8–32 and `maxFNumber` 32 (sheet "f8–32", booklet smallest aperture 32); `patentNumber` "DE 3026282 C2", `patentYear` 1982 (C2 published 30.9.82), `authors` Josef Weiß and `assignees` Optische Werke G. Rodenstock (C2 front page; same spellings as the Geronar 210 and Grandagon-N files); filing and publication dates in the analysis header. The focus block has the same layout as RodenstockGeronar210mmf68: `closeFocusM` plus one BF gap on the last surface, paraxial and unit focus. `blades` stays unset because no source gives the Copal 1 iris blade count. After the edits, infinity EFL 89.960 mm, BFD 72.731 mm, f/8.015 paraxial, halfField 41.05° and the stop radius are unchanged, the surface validator reports no errors, and the page renders with the new labels.
+
+Open: whether Rodenstock's production melts were the Schott SSK8 / SF56 / SSK2 types is not documented, so the labels stay catalog equivalents. The aperture blade count is unknown.

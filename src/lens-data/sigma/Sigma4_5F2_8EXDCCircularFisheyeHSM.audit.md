@@ -83,3 +83,71 @@ The surface-2 rim (12.5 mm, 70.0° rim slope, `maxRimAngleDeg: 71`) is backed by
 (surface 2 capped at 11.95 mm) chief rays from about 85° outward fail to reach the image.
 
 Open: none.
+
+## 2026-10-21 — Final review: metadata, glass and semi-diameters
+
+An independent re-check of the whole file against the patent PDF, Sigma's product page (re-read today) and Sigma's
+section drawing.
+
+### Semi-diameters
+
+Figure 7 (PDF page 15) was profiled at 200 dpi on both sides of the axis. Vertex crossings give 7.42 px/mm from
+surface 1 to surface 23 (601 px for 81.00 mm) and the same scale from surface 1 to the image (904 px for 121.86 mm);
+surface 7 falls within 1 px of its prescription position. Sigma's drawing was scaled from surface 1 to surface 23
+(about 11.9 px/mm, which also puts L1's rim at 21.5 mm). Top and bottom sides of Figure 7 agree to 1 px.
+
+| Element (surfaces) | Stored | Figure 7 | Sigma drawing | Result |
+|---|---:|---:|---:|---|
+| L1 front (1) | 21.5 | 22.0 | 21.5 (scale reference) | kept |
+| L1 rear bowl (2) | 12.5 | 12.4 (end of the flat at 92 px) | 12.6 | kept |
+| L2 (3–4) | 12.3 | 12.3 | 12.2 | kept |
+| L3 (5–6) | 10.2 | 10.5 | 10.3 | kept |
+| L4–L5 (7–9) | 7.6 | 7.55 | L4 7.6, L5 flange 8.25 | kept |
+| L6–L7 (10–12) | 6.9 | 6.5–6.6 | L6 6.6, L7 7.1 | kept |
+| L8–L9 (13–15) | 5.5 | 4.85, one square-cut block | L8 5.05, L9 5.6 | changed to 5.0 |
+| L10 (17–18) | 8.1 | 7.8 | 8.0 | kept |
+| L11–L12 (19–21) | 8.1 | 8.1 | 8.25 / 7.6 | kept |
+| L13 (22–23) | 8.5 | 8.6 | 8.5 | kept |
+
+The two pairs narrowed earlier today are confirmed: 7.6 and 6.9 mm are within 1% and 5% of Figure 7, and widening
+them back to 8.2 / 8.0 mm leaves the engine vignetting curve identical, while a 6.5 / 6.0 mm trial cuts 90° from 50.0%
+to 36.5%, so the curve is sensitive to those rims. The third pair was 13% taller than Figure 7 and 9% taller than
+L8 in Sigma's drawing, the only place where the two drawings agree that the stored value is too large. All three
+surfaces are now 5.0 mm, the least reduction that matches L8 in both drawings and keeps the square-cut block Figure 7
+draws. The f/2.9 axial marginal ray is 4.18 mm on surface 13 and 4.07 mm on 14–15; at 45° the full unvignetted
+bundle reaches 4.90 mm on surface 13, so nothing clips there. The surface validator reports no error before or after.
+
+The engine vignetting analysis is projection-aware and evaluates the full 0–90° range. Wide-open transmission before
+→ after: 0° 100 → 100, 45° 87.5 → 87.5, 60° 78.1 → 77.1, 69° 70.8 → 68.8, 81° 59.4 → 56.3, 84° 57.3 → 54.2,
+90° 50.0 → 46.9%; only surface 13 contributes. The bounding-sphere chief-ray solve converges at every angle from 0° to
+90°, and the 90° chief ray lands at 6.197 mm in both versions (traced circle 12.39 mm). `audit:image-circle` passes;
+`audit:field-coverage` skips fisheye projections by design. Paraxial EFL 4.4458 mm, BFD 40.8628 mm, engine f-number
+2.864 at the 4.75 mm stop radius and half-field 90° are unchanged. The surface-2 rim (12.5 mm) still needs the
+lens's 71° rim-slope limit; that policy value was not changed.
+
+### Glass
+
+All 13 labels resolve to rows equal to the printed nd/νd at the printed precision (4 decimals in nd, 2 in νd; the
+largest residuals are 0.00004 in nd for E-FEL1 and E-F2 and 0.01 in νd for NBFD10). No element is `Unmatched`.
+Coordinate-equal Hoya rows exist for the Schott and CDGM labels (TAF3 for 1.8042/46.50, TAF1 for 1.7725/49.62 at
+νd +0.01, FC5 for 1.4875/70.44 at +0.01); the resolver's exact matches were left as they are. L12's `apd: "patent"`
+stands: claim 2 and conditions (3)–(4) define element LP, ¶0023 calls its glass low-dispersion with a high partial
+dispersion ratio, Figure 7 leads LP to the positive member of the rear cemented pair, and Table 1 gives Vdp 81.61 and
+PgFp 0.5387 for Example 3. L10 and L13 (νd 70.44) are not tagged: the patent names only LP, and Sigma marks one SLD
+element.
+
+### Metadata
+
+Front page (PAJ and JP page 1): publication 2009-58817 A of 19 March 2009, application 2007-226758 filed 31 August
+2007, applicant Sigma Corp, inventor Hoshina Ai; `patentNumber`, `patentYear` 2009, `authors` "Ai Hoshina" (one
+spelling in the corpus) and `assignees` "Sigma Corporation" (the form all Sigma files use) agree, as do the analysis
+header dates. The Example 3 table (printed page 8) matches all 23 rows of the file, f 4.4463, FN 2.90, 2ω 180°, BF
+40.8599, LT 121.8599. Sigma's page: 13 elements in 9 groups, SLD glass, 180°, 6 blades, F22, 13.5 cm, 1:6, mounts
+SIGMA SA, Canon EF, Nikon F, Pentax and Sony A, APS-C [DC]; these match `elementCount`/`groupCount`, `aperture.blades`
+6, `maxFNumber` 22, `closeFocusM` 0.135, `lensMounts` (all canonical ids) and `imageFormat` `aps-c`. `name` follows the
+SIGMA prefix form of the other Sigma files, and `subtitle`, `specs`, marketing 4.5 mm / f/2.8 and design 4.4463 /
+2.9 are consistent. `projection.imageCircleMm` is the ideal equisolid value 12.576 mm (displayed as 12.6 mm); Sigma
+publishes no image-circle figure, and the corpus uses the ideal value for patent-derived 180° equisolid lenses such
+as the Canon EF 15 mm; the traced circle is 12.39 mm.
+
+Open: none.

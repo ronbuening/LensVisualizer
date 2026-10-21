@@ -52,3 +52,29 @@ Inventor name: no other corpus file uses either Yokota or Yakota. The EPO family
 Fields changed in this pass: header comment, subtitle, visible (false → true), specs, L1 glass string (CaF2 now leads; resolution unchanged, CaF2 Special 1.43385/95.10), L1 apdNote, all five roles, rear-doublet sd (18 → 14.5) and the focus description. In the analysis: the title; the package-correction section was removed; the identification list was rewritten with the element-count explanation and the FD comparison; the process and replay prose was replaced by a short "Model Scope and Limitations" section; and the sources were tidied. Engine EFL, f-number, back focus and stop radius are unchanged.
 
 Open: the drop-in filter's thickness and axial position (no Canon source found); whether the FD version's optics differ from the FL (its manual cites new glass).
+
+## 2026-10-21 — Final review: metadata, glass and semi-diameters
+
+Independent re-check of rims, catalog and source metadata, and glass resolution against US 3,868,174 (cover FIG. 1 at 300 dpi, Example 1 on PDF page 6, claim 3 on page 8), the Canon Camera Museum pages fl116 and fd175, the Canon system brochure 00253 page 37 and the FD manual.
+
+Semi-diameters were found correct and left unchanged. On the cover FIG. 1 the vertex crossings give 0.170 mm/px at ×3 (s1→s6 413 px for 70.18 mm; s1→s9 1167 px for 199.40 mm). Measuring each element top to bottom, to cancel the drawn axis line sitting about 9 px off centre, gives L1 56.0, L2 51.3, L3 50.5 and the rear doublet 14.7 mm, against the stored 55 / 50 / 50 / 14.5 mm. All are within 3 %, which is measurement noise. The drawn order (L1 tallest, L2 and L3 equal, the rear doublet square-cut on one height) matches the live page. The f/2.8 axial marginal ray (53.57 mm at r1, 13.48 mm at r7) clears every rim; clearap2 at 4.09° shows no clipping, and the rear doublet vignettes the corner bundle by 34–40 % on one side. The diaphragm bars sit at 75.8 % of D6, which supports the 75 % stop placement.
+
+Changes:
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| `source.assignees` | Canon Kobushiki Kaisha | Canon Inc. | The US cover misprints Kabushiki as "Kobushiki". The corpus form for this company is "Canon Inc." (91 files, including the 1973 US 3,748,022). The misprint escaped the one-spelling check because the normalizer does not strip "kobushiki". |
+| L2 `glass` | Unidentified historical melt (Abbe fallback) | S-LAH51 (OHARA catalog equivalent; production supplier unspecified) | Catalog 1.785896 / 44.20 against printed 1.7859 / 44.2 |
+| L3 `glass` | Unidentified historical melt (Abbe fallback) | S-FSL5 (OHARA catalog equivalent; production supplier unspecified) | Catalog 1.48749 / 70.24 against printed 1.48749 / 70.1 (Δνd 0.14; J-FK5 at 70.31 is farther) |
+| L4 `glass` | Unidentified historical melt (Abbe fallback) | K-BK7 (SUMITA catalog equivalent; production supplier unspecified) | Catalog 1.51633 / 64.10, exact |
+| L5 `glass` | Unidentified historical melt (Abbe fallback) | S-TIH18 (OHARA catalog equivalent; production supplier unspecified) | Catalog 1.721507 / 29.23 against printed 1.72151 / 29.2 |
+| `specs[0]` | 5 ELEMENTS / 4 GROUPS | 5 ELEMENTS / 4 GROUPS (PATENT; CANON LISTS 6/5) | Museum fl116 and the FD manual give 6 / 5 |
+| Header comment, analysis | "Abbe-number estimates" for L2–L5; assignee as printed | catalog equivalents named; assignee "Canon Inc." with the cover spelling noted | Consistency with the changes above |
+
+Glass: the earlier label "Unidentified historical melt" matched the resolver's unresolved marker, so L2–L5 fell back to a plain Abbe-number dispersion. The patent states that N is the d-line index (page 6), so d-line catalog rows apply. The four relabels resolve in `resid.mjs` with Δnd ≤ 4e-6 and Δνd ≤ 0.14. L1 still resolves to CaF2 (1.43385 / 95.10). Its `apd: "patent"` tag stands: claim 1 names fluorspar, and the description names fluorite as a positive-element material for reducing secondary spectrum. No other element is designated anomalous.
+
+The analysis now adds that Examples 2 and 3 are each six elements in five groups without fluorite. It also notes that Canon's published counts for later super-telephotos include the drop-in filter (EF 200 mm f/2L IS: 17 / 12 including filter F), which supports the filter as the sixth element.
+
+Found correct: name (matches the brochure's "FL 300mm f/2.8 S.S.C. FLUORITE"); `key`; subtitle; `canon-fl` only, because the FD version is a separately marketed successor whose manual describes new glass, and FL lenses fitting FD bodies is body compatibility, not a production variant; `135-full-frame`; focal length 300 / 300; f/2.8; `closeFocusM` 3.5; f/32 minimum aperture; 12 blades; `patentNumber` "US 3,868,174 A" (a corpus form); `patentYear` 1975 (granted 25 February 1975); author "Hideo Yokota" (kept at the owner's request); the analysis header dates (priority 3 August 1972, JP 47-77308; filed 24 July 1973; Appl. No. 382,284). Engine values are unchanged: EFL 299.964 mm, f/2.8, paraxial BFD 71.196 mm, stop radius 21.29 mm, and wide-open transmission 58.3 % at 4.1° (vig.mjs). audit:surface reports no errors, the image-circle check is clear at 4.1°, and the page renders with the new labels in the inspector.
+
+Open: the drop-in filter's thickness and position; whether the FD optics differ from the FL; the brochure says a special Extender 2× attaches to this lens, but there is no FL-mount converter in the corpus, so `acceptsTeleconverters` stays unset; the engine's built half-field reads 8.53°, against the patent's 4.12°.

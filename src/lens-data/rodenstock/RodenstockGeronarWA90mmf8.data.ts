@@ -4,7 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * DE 3026282 C2 (identical table in DE 3026282 A1), sole example, printed for
  * f' = 100, f/8, 2ω ≥ 85°. Radii, thicknesses and air gaps are scaled ×0.9 to
  * the 90 mm production focal length; the e-line glass values (ne / νe) are kept
- * unchanged with indexReference "e". Computed EFL 89.960 mm (−0.044 %).
+ * unchanged with indexReference "e". All four pairs equal catalog rows at the
+ * e line (SCHOTT N-SSK8, SF56A ×2; SUMITA SSK2), named as catalog
+ * equivalents. Computed EFL 89.960 mm (−0.044 %).
  * Probable production match for the 1982 Geronar-WA 90 mm f/8, not a confirmed
  * factory prescription.
  * Both tables repeat the label d3 for the fourth thickness (10.21); both drawings
@@ -28,6 +30,7 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["large-format-lens-board"],
     imageFormat: "4x5",
+    imageCircleMm: 170, // Rodenstock 1982 sheet and booklet: 170 mm at f/22 (85°), 155 mm at f/11 (80°)
     elementCount: 4,
     groupCount: 4,
     specs: [
@@ -38,7 +41,7 @@ const LENS_DATA = {
     ],
     focalLengthMm: {
       marketing: 90,
-      design: 90,
+      design: 89.96,
     },
     fNumber: {
       marketing: 8,
@@ -60,7 +63,8 @@ const LENS_DATA = {
       nd: 1.6207,
       vd: 49.47,
       indexReference: "e",
-      glass: "Unmatched (unidentified historical melt, source ne 1.6207 / νe 49.47; catalog equivalents not adopted)",
+      focalLengthMm: 64.91,
+      glass: "N-SSK8 (SCHOTT catalog equivalent; production supplier unspecified)",
       role: "Outer front positive meniscus, convex to the object; lower-dispersion collecting element.",
     },
     {
@@ -71,7 +75,8 @@ const LENS_DATA = {
       nd: 1.7918,
       vd: 25.87,
       indexReference: "e",
-      glass: "Unmatched (unidentified historical melt, source ne 1.7918 / νe 25.87; catalog equivalents not adopted)",
+      focalLengthMm: -77.72,
+      glass: "SF56A (SCHOTT catalog equivalent; production supplier unspecified)",
       role: "Inner front negative meniscus, concave to the iris; high-index, high-dispersion flint.",
     },
     {
@@ -82,7 +87,8 @@ const LENS_DATA = {
       nd: 1.7918,
       vd: 25.87,
       indexReference: "e",
-      glass: "Unmatched (unidentified historical melt, source ne 1.7918 / νe 25.87, same as L2; catalog equivalents not adopted)",
+      focalLengthMm: -84.98,
+      glass: "SF56A (SCHOTT catalog equivalent; production supplier unspecified)",
       role: "Inner rear negative meniscus, concave to the iris; same glass as L2 but thinner and differently curved.",
     },
     {
@@ -93,7 +99,8 @@ const LENS_DATA = {
       nd: 1.6251,
       vd: 52.86,
       indexReference: "e",
-      glass: "Unmatched (unidentified historical melt, source ne 1.6251 / νe 52.86; catalog equivalents not adopted)",
+      focalLengthMm: 54.79,
+      glass: "SSK2 (SUMITA catalog equivalent; production supplier unspecified)",
       role: "Outer rear positive meniscus, convex to the image; the strongest positive element.",
     },
   ],

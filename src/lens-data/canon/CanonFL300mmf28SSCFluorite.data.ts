@@ -4,7 +4,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * rear drop-in filter is the likely sixth, but no thickness or position is published, so no plate is added.
  * The stop sits in D6 at 75 % of the gap from r6 (92.551275 / 30.850425 mm), read from FIG. 1; the patent prints no
  * stop coordinate. All sd values are estimates; the rear doublet's 14.5 mm is read from FIG. 1.
- * L1 is fluorspar per claim 1 and resolves to the catalog CaF2 dispersion curve; L2–L5 use Abbe-number estimates.
+ * L1 is fluorspar per claim 1 and resolves to the catalog CaF2 dispersion curve. L2–L5 resolve to coordinate-equal
+ * catalog equivalents (S-LAH51, S-FSL5, K-BK7, S-TIH18) for dispersion; the 1970s production melts are unidentified.
  * Infinity focus only: the patent prints no close-focus state. Image gap = printed back focus 23.73 × 3 = 71.19 mm.
  * The claim-3 aberration-coefficient table differs from the body table in two cells; R/D/N/V agree.
  */
@@ -32,7 +33,7 @@ const LENS_DATA = {
       design: 2.8,
     },
     specs: [
-      "5 ELEMENTS / 4 GROUPS",
+      "5 ELEMENTS / 4 GROUPS (PATENT; CANON LISTS 6/5)",
       "DESIGN f = 100 (SCALED ×3)",
       "DESIGN F/2.8",
       "ALL SPHERICAL",
@@ -43,7 +44,7 @@ const LENS_DATA = {
     patentNumber: "US 3,868,174 A",
     patentYear: 1975,
     authors: ["Hideo Yokota"], // US cover prints "Yakota"; EPO family records (DE 2339461, JP S49-36329) give Yokota
-    assignees: ["Canon Kobushiki Kaisha"],
+    assignees: ["Canon Inc."], // US cover prints "Canon Kobushiki Kaisha"
     errata: [
       {
         status: "unresolved",
@@ -60,6 +61,7 @@ const LENS_DATA = {
       nd: 1.43387,
       vd: 95.1,
       indexReference: "d",
+      focalLengthMm: 175.81,
       glass: "CaF2 (fluorspar, named in claim 1; catalog dispersion curve, patent nd and νd kept)",
       role: "Front positive collector of the three-element front group.",
       apd: "patent",
@@ -74,7 +76,8 @@ const LENS_DATA = {
       nd: 1.7859,
       vd: 44.2,
       indexReference: "d",
-      glass: "Unidentified historical melt (source nd 1.7859, νd 44.2; catalog substitutes not adopted)",
+      focalLengthMm: -155.70,
+      glass: "S-LAH51 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Negative flint of the front group; balances primary color against the fluorite and crown positives.",
     },
     {
@@ -85,7 +88,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.1,
       indexReference: "d",
-      glass: "Unidentified historical melt (source nd 1.48749, νd 70.1; catalog substitutes not adopted)",
+      focalLengthMm: 194.17,
+      glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Positive rear element of the front group, strongly convex toward the object.",
     },
     {
@@ -96,7 +100,8 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.1,
       indexReference: "d",
-      glass: "Unidentified historical melt (source nd 1.51633, νd 64.1; catalog substitutes not adopted)",
+      focalLengthMm: -124.66,
+      glass: "K-BK7 (SUMITA catalog equivalent; production supplier unspecified)",
       role: "Negative front element of the rear cemented doublet; concave toward the object.",
       cemented: "D1",
     },
@@ -108,7 +113,8 @@ const LENS_DATA = {
       nd: 1.72151,
       vd: 29.2,
       indexReference: "d",
-      glass: "Unidentified historical melt (source nd 1.72151, νd 29.2; catalog substitutes not adopted)",
+      focalLengthMm: 317.11,
+      glass: "S-TIH18 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Positive flint rear element of the cemented doublet; the pair forms the negative telephoto rear group.",
       cemented: "D1",
     },

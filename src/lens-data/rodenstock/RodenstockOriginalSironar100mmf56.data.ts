@@ -14,6 +14,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Focus: the patent gives only the infinity state. Unit focus by bellows
  * extension is derived paraxially for a 1.0 m object-to-image distance.
  * Dispersion: only n_e / nu_e are printed; no partial-dispersion data is given.
+ * Glass: L1/L6 and L3/L4 carry Hoya catalog equivalents (BACD14, PC2) whose
+ * e-line coordinates equal the printed pairs at C'/e/F' (the period Schott SK14
+ * and PK2 types share these coordinates; the actual supplier is not documented).
+ * The short flint of L2/L5 has no coordinate-equal catalog row and stays unmatched.
  */
 const LENS_DATA = {
   schema: 2,
@@ -25,7 +29,7 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["large-format-lens-board"],
     imageFormat: "6x9",
-    imageCircleMm: 127,
+    imageCircleMm: 127, // Rodenstock brochure PRC00863: 127 mm at f/5.6 (137 mm at f/11, 147 mm at f/16)
     elementCount: 6,
     groupCount: 4,
     specs: [
@@ -59,7 +63,8 @@ const LENS_DATA = {
       nd: 1.6055,
       vd: 60.5,
       indexReference: "e",
-      glass: "Unmatched (unidentified historical melt, source ne 1.6055 / νe 60.5; catalog equivalents not adopted)",
+      focalLengthMm: 36.70,
+      glass: "BACD14 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive front crown of the front cemented doublet.",
       cemented: "D1",
     },
@@ -71,7 +76,8 @@ const LENS_DATA = {
       nd: 1.5543,
       vd: 49.3,
       indexReference: "e",
-      glass: "Unmatched (unidentified historical melt, source ne 1.5543 / νe 49.3; catalog equivalents not adopted)",
+      focalLengthMm: -25.93,
+      glass: "Unmatched (short flint of anomalous dispersion per the patent, ne 1.5543 / νe 49.3; no coordinate-equal catalog row)",
       role: "Negative inner element of the front cemented doublet; anomalous-dispersion flint per the patent.",
       cemented: "D1",
       apd: "patent",
@@ -86,7 +92,8 @@ const LENS_DATA = {
       nd: 1.5201,
       vd: 65,
       indexReference: "e",
-      glass: "Unmatched (unidentified historical melt, source ne 1.5201 / νe 65.0; catalog equivalents not adopted)",
+      focalLengthMm: 100.15,
+      glass: "PC2 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive meniscus in front of the stop, convex to the object.",
     },
     {
@@ -97,7 +104,8 @@ const LENS_DATA = {
       nd: 1.5201,
       vd: 65,
       indexReference: "e",
-      glass: "Unmatched (unidentified historical melt, source ne 1.5201 / νe 65.0; catalog equivalents not adopted)",
+      focalLengthMm: 123.80,
+      glass: "PC2 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive meniscus behind the stop, convex to the image.",
     },
     {
@@ -108,7 +116,8 @@ const LENS_DATA = {
       nd: 1.5543,
       vd: 49.3,
       indexReference: "e",
-      glass: "Unmatched (unidentified historical melt, source ne 1.5543 / νe 49.3; catalog equivalents not adopted)",
+      focalLengthMm: -24.29,
+      glass: "Unmatched (short flint of anomalous dispersion per the patent, ne 1.5543 / νe 49.3; no coordinate-equal catalog row)",
       role: "Negative inner element of the rear cemented doublet; anomalous-dispersion flint per the patent.",
       cemented: "D2",
       apd: "patent",
@@ -123,7 +132,8 @@ const LENS_DATA = {
       nd: 1.6055,
       vd: 60.5,
       indexReference: "e",
-      glass: "Unmatched (unidentified historical melt, source ne 1.6055 / νe 60.5; catalog equivalents not adopted)",
+      focalLengthMm: 26.63,
+      glass: "BACD14 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive rear crown of the rear cemented doublet.",
       cemented: "D2",
     },

@@ -59,7 +59,7 @@ This biconcave negative element presents its forward concavity toward the centra
 
 nd = 1.71300, νd = 53.89. Glass: OHARA S-LAL8 catalog equivalent (LaK8 type); production supplier unspecified. f = +31.252 mm.
 
-The positive biconvex member is much thicker on axis than its negative partner. Together they form the second cemented group. Its modeled clear aperture is conservative, so part of the off-axis beam is vignetted at this doublet.
+The positive biconvex member is much thicker on axis than its negative partner. Together they form the second cemented group. Its 19 mm modeled rim follows the height drawn in Figure 1 and clears both the axial and the off-axis beams.
 
 ### L6: Rear Plano-Convex Singlet
 
@@ -95,9 +95,9 @@ The patent gives only the infinity prescription. All spacings stay fixed at infi
 
 ## Iris, Apertures and Coverage
 
-The patent does not give the iris position or any clear apertures. The iris is placed at the midpoint of the central 14.674 mm air space, where Figure 1 and Canon's section show it. Its 14.397 mm radius is derived from f/1.2 by a real marginal ray; the paraxial f-number at that radius is f/1.223. The other semi-diameters are inferred from the patent figure.
+The patent does not give the iris position or any clear apertures. The iris is placed at the midpoint of the central 14.674 mm air space, where Figure 1 and Canon's section show it. Its 14.397 mm radius is derived from f/1.2 by a real marginal ray; the paraxial f-number at that radius is f/1.223. The other semi-diameters follow the height ratios of Figure 1, which Canon's section repeats, scaled so that the front element passes the f/1.2 axial beam; the figure is drawn about 10 % short vertically against its own axial spacings. The two faces next to the iris stay at 14.65 mm, where their sags already fill 90 % of the central air space; Figure 1 draws them about 7 % higher.
 
-The full f/1.2 axial beam passes every surface. Off-axis beams are vignetted, partly at the rim of the rear cemented doublet; the model does not reconstruct the real barrel, so the vignetting at the corners is indicative only. The patent's 23° half-field corresponds to a 24.6 mm image height, beyond the 21.6 mm half-diagonal of the 135 format.
+The full f/1.2 axial beam passes every surface. Off-axis beams are vignetted at the rims of the front element and the two rear singlets (39.6 % geometric transmission at 20.8° wide open); the model does not reconstruct the real barrel, so the vignetting at the corners is indicative only. The patent's 23° half-field corresponds to a 24.6 mm image height, beyond the 21.6 mm half-diagonal of the 135 format.
 
 ## Model Scope and Limitations
 

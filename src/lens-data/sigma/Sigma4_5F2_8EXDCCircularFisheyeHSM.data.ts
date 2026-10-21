@@ -5,7 +5,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * nd and νd are the printed values, and the back focus is the printed BF = 40.8599 mm
  * (paraxial BFD 40.8628 mm; the 0.003 mm difference is left as printed).
  * The patent tabulates the infinity state only; no focus movement is modelled.
- * Semi-diameters are not printed: they are read from Fig. 7 and Sigma's section drawing.
+ * Semi-diameters are not printed: they are read from Fig. 7 and Sigma's section drawing; the
+ * cemented pair before the stop (surfaces 13-15) is square-cut at 5.0 mm as Fig. 7 draws it.
  * The rear of L1 (surface 2, R 13.3 mm) runs to 12.5 mm as both drawings show, a 70.0° rim
  * slope, so checks.maxRimAngleDeg is 71; the default 90% gap-sag limit is kept.
  */
@@ -290,21 +291,21 @@ const LENS_DATA = {
     {
       "label": "13",
       "R": 17.0624,
-      "sd": 5.5,
+      "sd": 5,
       "d": 3.5421,
       "medium": 8
     },
     {
       "label": "14",
       "R": -8.5,
-      "sd": 5.5,
+      "sd": 5,
       "d": 1,
       "medium": 9
     },
     {
       "label": "15",
       "R": 14.5182,
-      "sd": 5.5,
+      "sd": 5,
       "d": 3.4778
     },
     {

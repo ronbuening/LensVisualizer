@@ -82,3 +82,59 @@ Maker evidence: Leica's 4 October 2016 press release gives Marx, photokina 1966,
 Fields changed: file moved to `leica/` and renamed. maker Leica; key `leica-noctilux-50mm-f12`; name `LEITZ NOCTILUX 50mm f/1.2`; visible true. Subtitle, specs, header comment, element labels and roles reworded. closeFocusM 10 → 1, with the focus description rewritten. The analysis lost its package-correction section and its process and hash text. It gained the patent metadata block and plain descriptions of the asphere conversion, the stop position and the model's limits.
 
 Open: none.
+
+## 2026-10-21 — Final review: metadata, glass and semi-diameters
+
+Independent re-check of the rims, the catalog/source metadata and every glass label against US 3,459,468 (PDF p. 1
+drawing, p. 2 front matter, p. 3 table) and Leica's 2016 press release.
+
+Semi-diameters. The drawing was profiled at 300 and 600 dpi (axis at row 1732 of the 300 dpi page). Scale: first to
+last vertex, 52.104 mm over 653 px, gives 0.080 mm/px; L1's 6.76 mm thickness gives 0.081, so the drawing is close to
+axial scale. Measured rims against the stored values: L1 26.6–26.8 (S1/S2 26.5), L2 23.4–23.7 (S3 23.5), S5 curve end
+14.2–14.4 (14.0), drawn iris edge 12.4–13.0 (engine stop 12.69), S6 optical curve end 12.2–13.6 before the drawn
+chamfer (12.5), L4 outer rim and the S7 junction 20.3–20.5 (20.4), L5 18.8 (S8 18.8), L6 16.0–16.2 (S9/S10 16.5).
+Every stored rim is within the 5–8 % measurement noise, so none was changed. Two drawn features cannot be shown by
+the renderer and were left alone: L3 is drawn about 2 mm taller than L2 (25.6 mm) with a flat rear land, and L4 has
+a flat-topped flange above L5. Raising S4 would draw L2 wider at its rear, and S5 cannot reach 23.5 mm on an 18.15 mm
+radius. Clearance at Y = 21.63 mm: axial marginal 21.68 at S1 (stored 26.5) and 12.22 at S6 (12.5); no CLIPS-AXIAL or
+BLOCKS-CHIEF. The S1/S10 rims were not enlarged, so the asphere conversion range is unchanged. vig.mjs before and after
+reads 100 / 99.0 / 98.4 / 97.9 / 91.7 / 81.8 / 69.8 / 55.7 / 38.0 % at 0–23.2°.
+
+Glass. The six printed ne/νe pairs were compared with every resolver row at C′/e/F′, not with d-line catalog values.
+
+| Element | Printed ne / νe | Before | After | Catalog at e (Δne, Δνe) |
+| --- | --- | --- | --- | --- |
+| L1 | 1.821 / 45.2 | Unidentified historical melt; catalog equivalents not adopted | Unmatched (ne 1.821 / νe 45.2; no catalog row within the printed precision) | nearest TAF5 1.82017/46.32 (−0.0008, +1.12), TAFD10 (−0.0011, −0.91) |
+| L2 | 1.900 / 40.5 | same | Unmatched (ne 1.900 / νe 40.5; …) | nearest S-LAH92 (−0.0024, −3.6) |
+| L3 | 1.792 / 25.9 | same | SF56A (SCHOTT catalog equivalent; production supplier unspecified) | SF56A 1.79180/25.87 (−0.0002, −0.03); PBH23 (−0.0002, +0.11) |
+| L4 | 1.844 / 30.0 | same | Unmatched (ne 1.844 / νe 30.0; …) | nearest NBFD26 (−0.0024, −4.2) |
+| L5 | 1.900 / 40.5 | same | Unmatched (ne 1.900 / νe 40.5; …) | as L2 |
+| L6 | 1.694 / 54.6 | same | S-LAL9 (OHARA catalog equivalent; production supplier unspecified) | S-LAL9 1.69401/54.59 (0.0000, −0.01); N-LAK9, K-LaK9, J-LAK9 within 0.12 |
+
+L3 and L6 have catalog rows equal to the printed pair within its precision, so they now resolve and the chromatic
+trace uses those dispersion curves. The other four stay unresolved in the corpus `Unmatched (…)` form. This partial
+resolution does not mix reference lines: the spec traces e-line elements at C′/e/F′/g on every dispersion tier, and
+the resolver accepted both names only at C′/e/F′. No `apd` tag applies; the patent names no special dispersion, and
+Leica's "special glass with a high refractive index" for one asphere is an index statement. No catalog rows or aliases
+are needed.
+
+Metadata. Changed one field:
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| `subtitle` | US 3,459,468, sole example — qualified production correlation | US 3,459,468, sole example — convergent production correlation; not manufacturer-confirmed | Leica's 2016 release names Marx, 1966, 6/4 and aspheric first/last elements but not the patent; wording matches the analysis and the corpus |
+
+Found correct: maker Leica with the corpus Leitz-era name form (LEITZ TELYT, LEITZ COLORPLAN); 6 elements / 4 groups
+(patent drawing and Leica 2016); `leica-m` and `135-full-frame` (every Noctilux was M-mount; the patent's 24×36 mm
+image); marketing 50 / design 52 mm and f/1.2 (patent p. 2 narrative); `closeFocusM` 1 and f/1.2–16 (Leica wiki
+specification as indexed by search); `US 3,459,468` without kind code, as for other pre-2001 US grants; `patentYear`
+1969 (patented 5 August 1969); authors Helmut Marx and Paul Sindel in front-page order, no other spellings in the
+corpus; assignee Ernst Leitz GmbH (front page "Ernst Leitz, G.m.b.H., Wetzlar"; 17 other files use this form);
+analysis header dates, Ser. No. 449,192 and priority Germany L 47,701 of 25 April 1964 (PDF p. 2). Engine numbers
+after the edits are unchanged: EFL 52.022 mm, BFD 27.668 mm, FOPEN 1.2, stop radius 12.687 mm, half-field 24.53°;
+audit:surface OK.
+
+Open: the Leica wiki page returned HTTP 403 to a direct fetch, so the f/16 minimum aperture and 1 m close focus rest
+on its search-indexed text; the blade count and filter size were not settled and are not stored. Wikipedia's
+production count (about 1,757) conflicts with the wiki serial table (about 2,450) and an auction house (about 2,500);
+the file stores no production count.

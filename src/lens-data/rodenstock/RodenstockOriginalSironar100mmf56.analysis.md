@@ -46,9 +46,16 @@ The patent specifies a glass of anomalous dispersion, preferably a short flint, 
 
 The patent lists n_e and ν_e (e-line, 546.07 nm), and the data file keeps those values with an e-line index reference rather than relabeling them as d-line values.
 
-The historical melts are unidentified. L1, L3, L4 and L6 have modern catalog glasses with matching e-line coordinates, which are not adopted: Hikari J-SK14 (n_e ≈ 1.60548, ν_e ≈ 60.44) is close to the outer crowns, and Hoya PC2 (n_e ≈ 1.52011, ν_e ≈ 64.96) to the two menisci. Such matches do not identify the historical supplier or melt. The 1.5543/49.3 glass of L2 and L5 has no close modern equivalent, and matching index and Abbe number alone could not show the anomalous partial dispersion the patent claims.
+The patent names no glass types and the historical melts are unidentified. Four of the six elements have catalog glasses whose e-line coordinates equal the printed pairs, and the model uses them as dispersion curves:
 
-No Sellmeier curve, nC/nF/ng or partial-dispersion value is assigned. Monochromatic results at the e-line are therefore the model's reference; polychromatic behavior, including any apochromatic correction, cannot be evaluated from the published data.
+| Element | Printed n_e / ν_e | Catalog equivalent | Catalog n_e / ν_e |
+|---|---|---|---|
+| L1, L6 | 1.6055 / 60.5 | Hoya BACD14 (SK14 type) | 1.60548 / 60.43 |
+| L3, L4 | 1.5201 / 65.0 | Hoya PC2 (PK2 phosphate-crown type) | 1.52011 / 64.96 |
+
+Both are evaluated at C′/e/F′, the reference lines the patent uses. The period Schott SK14 and PK2 sit at the same coordinates; a 1960s Rodenstock lens more likely used those, but the supplier is not documented, and the labels name catalog equivalents only.
+
+The 1.5543/49.3 short flint of L2 and L5 has no catalog row within the printed precision. The nearest, Hoya's obsolete SBF1, is 0.0005 lower in n_e. These two elements therefore use the Abbe-number dispersion estimate, with a normal partial dispersion. The anomalous partial dispersion that the patent credits for the apochromatic correction is not printed and is not modeled, so the model's secondary spectrum does not show that correction.
 
 ## Focus Mechanism
 
@@ -85,7 +92,7 @@ The 0.199 mm difference is larger than the rounding of the printed s′ alone. V
 
 At f/5.6 the best axial focus lies about 0.16 mm behind the printed image plane, between the printed s′ and the paraxial focus. The model keeps the printed plane.
 
-Results from the model are monochromatic at the e-line and use estimated clear apertures; they are not manufacturer measurements. The anomalous dispersion of L2/L5, the actual melts, coatings, tolerances, the mechanical mount and close-focus image quality are not represented.
+The model's reference wavelength is the e-line. Its color results rest on catalog-equivalent curves for four elements and an Abbe-number estimate for L2/L5, and it uses estimated clear apertures; none of this is a manufacturer measurement. The anomalous dispersion of L2/L5, the actual melts, coatings, tolerances, the mechanical mount and close-focus image quality are not represented.
 
 ## Family Variants
 

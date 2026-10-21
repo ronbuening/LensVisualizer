@@ -8,8 +8,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * N and ν are printed without a line subscript; Fig. 2 plots d and g lines and all seven pairs match d-line
  * catalog glasses, so they are stored as nd / νd.
  * The patent prints no stop, clear apertures or back focus: STO is placed at the midpoint of the central air gap
- * (Fig. 1), its radius is derived from f/1.2, semi-diameters are inferred from the figure, and the last gap is the
- * computed paraxial back focus. Infinity prescription only; no focus travel is modeled.
+ * (Fig. 1), its radius is derived from f/1.2, and the last gap is the computed paraxial back focus. Semi-diameters
+ * follow Figure 1's height ratios (Canon's published section agrees), set against the f/1.2 axial ray: Fig. 1 is
+ * drawn about 10 % short vertically, so its rims are scaled from the front element. The front doublet is square-cut
+ * at 22 mm as drawn; the stop-side faces stay at 14.65 mm, where their sags fill 90 % of the central gap.
+ * Infinity prescription only; no focus travel is modeled.
  */
 const LENS_DATA = {
   schema: 2,
@@ -47,6 +50,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7234,
       vd: 38,
+      focalLengthMm: 80.12,
       glass: "BAFD8 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Front positive meniscus with a nearly flat rear face; collects the f/1.2 beam.",
     },
@@ -57,6 +61,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6676,
       vd: 41.9,
+      focalLengthMm: 39.30,
       glass: "J-BASF6 (HIKARI catalog equivalent; production supplier unspecified)",
       role: "Thick positive front member of the front cemented doublet.",
       cemented: "D1",
@@ -68,6 +73,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7552,
       vd: 27.5,
+      focalLengthMm: -22.20,
       glass: "S-TIH4 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Dense-flint negative rear member of the front doublet; its strong rear face borders the stop space.",
       cemented: "D1",
@@ -79,6 +85,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.5927,
       vd: 35.4,
+      focalLengthMm: -25.57,
       glass: "FF5 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative front member of the rear cemented doublet; its concave front faces the stop.",
       cemented: "D2",
@@ -90,6 +97,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.713,
       vd: 53.89,
+      focalLengthMm: 31.25,
       glass: "S-LAL8 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Thick lanthanum-crown positive rear member of the rear doublet.",
       cemented: "D2",
@@ -101,6 +109,7 @@ const LENS_DATA = {
       type: "Plano-Convex",
       nd: 1.72,
       vd: 50.31,
+      focalLengthMm: 123.09,
       glass: "K-LaK10 (SUMITA catalog equivalent; production supplier unspecified)",
       role: "First of the two rear positive singlets; flat front face.",
     },
@@ -111,6 +120,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.744,
       vd: 44.9,
+      focalLengthMm: 86.81,
       glass: "LAF2 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Final positive singlet; shares the rear group's convergence with L6.",
     },
@@ -133,7 +143,7 @@ const LENS_DATA = {
       label: "3",
       R: 30.682000000000002,
       d: 11.889999999999999,
-      sd: 23,
+      sd: 22,
       medium: 2,
     },
     {
@@ -165,14 +175,14 @@ const LENS_DATA = {
       label: "7",
       R: 61.19,
       d: 11.484,
-      sd: 20.5,
+      sd: 19,
       medium: 5,
     },
     {
       label: "8",
       R: -32.306000000000004,
       d: 0.116,
-      sd: 20.5,
+      sd: 19,
     },
     {
       label: "9",

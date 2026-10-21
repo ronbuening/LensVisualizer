@@ -35,25 +35,25 @@ The optical vertex span is 36.180 mm. The patent prints no back focus; the parax
 
 ### L1 — Positive Meniscus, Convex to Object
 
-nₑ = 1.6207, νₑ = 49.47. Glass: unidentified historical melt; higher-index crown-class coordinate. Isolated f ≈ +64.9121 mm.
+nₑ = 1.6207, νₑ = 49.47. Glass: SCHOTT N-SSK8 catalog equivalent (dense special crown); production supplier unspecified. Isolated f ≈ +64.9121 mm.
 
 The positive outer front meniscus begins the collecting action. Its weaker rear surface and substantial central thickness differ from those of the rear positive element. Its lower dispersion relative to the inner flints contributes to the refractive power/dispersion balance. Specific aberration cancellation by this element alone is an interpretation, not a separately published Seidel result.
 
 ### L2 — Negative Meniscus, Concave Toward the Iris
 
-nₑ = 1.7918, νₑ = 25.87. Glass: unidentified historical dense-flint-class coordinate. Isolated f ≈ −77.7227 mm.
+nₑ = 1.7918, νₑ = 25.87. Glass: SCHOTT SF56A catalog equivalent (dense flint); production supplier unspecified. Isolated f ≈ −77.7227 mm.
 
 The stronger positive curvature on its rear face makes this meniscus divergent. Its high index permits substantial negative power with the source's thin central section. The section drawing shows a smaller clear arc on the iris-facing surface and a stepped edge. The model uses distinct front and rear clear radii joined by a straight rim, without inventing mechanical bevel dimensions.
 
 ### L3 — Negative Meniscus, Concave Toward the Iris
 
-nₑ = 1.7918, νₑ = 25.87. Glass: the same printed coordinate as L2; exact melt identity unknown. Isolated f ≈ −84.9826 mm.
+nₑ = 1.7918, νₑ = 25.87. Glass: the same printed coordinate as L2, SCHOTT SF56A catalog equivalent; production supplier unspecified. Isolated f ≈ −84.9826 mm.
 
 This rear inner negative meniscus is not a mirror copy of L2. Its radii and central thickness differ, and the source section shows a larger iris-facing clear arc than the corresponding face of L2. The inferred clear apertures keep this asymmetry. Its negative power complements the stronger rear positive member.
 
 ### L4 — Positive Meniscus, Convex to Image
 
-nₑ = 1.6251, νₑ = 52.86. Glass: unidentified historical crown-class coordinate. Isolated f ≈ +54.7920 mm.
+nₑ = 1.6251, νₑ = 52.86. Glass: SUMITA SSK2 catalog equivalent (dense special crown); production supplier unspecified. Isolated f ≈ +54.7920 mm.
 
 The final meniscus supplies the strongest isolated positive power. Its rear surface is more strongly curved than its front. The fourth physical thickness is 9.189 mm after uniform scaling; the duplicated source subscript does not alter its position or value. Both drawings show a step on the front face, so its clear arc (16 mm radius) is smaller than the 18 mm rear face. The calculated rear principal plane lies 17.229141 mm in front of its rear vertex.
 
@@ -61,9 +61,9 @@ The final meniscus supplies the strongest isolated positive power. Its rear surf
 
 The patent explicitly uses nₑ and νₑ. These are stored as e-line values (546.07 nm reference), not relabeled as d-line coordinates.
 
-Modern catalog glasses with nearby coordinates include OHARA S-BSM28 and SCHOTT N-SSK8 for L1, SCHOTT SF56A for L2/L3, and SUMITA SSK2 or OHARA S-BSM22 for L4. These are analogs, not identified melts, and the printed nₑ/νₑ values are kept unchanged.
+Every printed pair equals a catalog row at the e line to the patent's four-decimal index and within 0.07 in νₑ: SCHOTT N-SSK8 for L1 (nₑ 1.62068, νₑ 49.54), SCHOTT SF56A for L2 and L3 (1.79180, 25.87) and SUMITA SSK2 for L4 (1.62509, 52.85). OHARA S-BSM28, S-BSM22 and PBH23 are equivalent rows within 0.15 in νₑ. The elements are named as catalog equivalents, so the chromatic trace uses those catalog dispersion curves anchored to the printed e-line indices; the actual melts and supplier are not documented, and the printed nₑ/νₑ values are kept unchanged.
 
-The inner pair's greater dispersion and negative power oppose the outer positives' lower dispersion and positive power. That supports a qualitative achromatizing interpretation, not a numerical apochromatic claim. Exact historical melts, partial dispersion and wavelength-resolved source indices are absent, so the polychromatic MTF is not available for this e-line model.
+The inner pair's greater dispersion and negative power oppose the outer positives' lower dispersion and positive power. That supports a qualitative achromatizing interpretation, not a numerical apochromatic claim. The patent prints no partial dispersions or other line indices, so secondary-spectrum behaviour follows the catalog-equivalent curves rather than source data.
 
 ## Focus Mechanism
 
@@ -79,7 +79,7 @@ The entrance pupil is approximately 18.421357 mm behind r1; the exit pupil is 19
 
 Clear apertures are read from the patent section and checked against the spherical geometry; the filter thread and barrel dimensions are not optical clear apertures. The stepped rims of the drawing are simplified to straight joins between faces of different clear radius.
 
-A 170 mm image-circle diameter (85 mm radius) corresponds to about 43.3° half-field in this model, slightly more than half the advertised 85°; the prescription is not altered to make the two product descriptors agree.
+A 170 mm image-circle diameter (85 mm radius) corresponds to about 43.3° half-field in this model, slightly more than half the advertised 85°; the prescription is not altered to make the two product descriptors agree. The viewer's image circle is set to that published 170 mm f/22 value, which bounds the analysis field; it does not certify wide-open illumination there.
 
 ## Model Scope and Limitations
 
