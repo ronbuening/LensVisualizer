@@ -187,7 +187,7 @@ four guards over `src/optics/`:
   Synthetic self-tests require a forbidden importer, stale entry and direct `/v1/` import to fail.
 - **Caches.** Every module-level `Map`, `WeakMap`, `Set` or `WeakSet` is registered as a constant lookup table, a
   bounded cache, or a `WeakMap` keyed by its owner whose per-owner value cannot grow without bound.
-- **Analysis requests (M6).** In `src/optics/analysis/` and `src/optics/perspective/analysis/`, analysis functions take
+- **Analysis requests.** In `src/optics/analysis/` and `src/optics/perspective/analysis/`, analysis functions take
   `AnalysisRequest` or `PreparedGeometry` instead of a lens plus separate state scalars. The TypeScript AST scan
   rejects a lens parameter paired with two or more numeric parameters regardless of their names or order, or with
   even one recognized state-control binding (including destructured properties and aliases). It covers functions,
