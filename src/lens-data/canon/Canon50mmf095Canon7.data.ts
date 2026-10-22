@@ -3,6 +3,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * All printed radii and internal distances are scaled x50 from f = 1; d-line glass
  * coordinates are unchanged. The resulting EFL is 50.037203396 mm.
  * Clear semi-diameters and iris position are inferred, not measured factory dimensions.
+ * Checked against Figure 1 (2026-10-22): element-height proportions agree within ~6 %,
+ * L2/L3 sit just above their f/0.95 marginal-ray floors, and L1 cannot fall below the
+ * 28.2 mm height of the Y = 21.63 mm chief ray, so no rim was changed.
  * Group outside diameters bound the modeled caps; r7 and r8 are limited to the exact
  * f/0.95 axial marginal heights, 12.844194828245 and 12.793310563366 mm. Their tapered
  * edges follow Figure 1; the square-cut r9/r10 pair remains at 14 mm and clips r10's
@@ -28,9 +31,12 @@ const LENS_DATA = {
   "subtitle": "JP S39-10178 B, Sole Example — probable Canon 7 production correlation",
   "visible": true,
   "catalog": {
+    "lensMounts": [
+      "canon-7-bayonet"
+    ],
     "specs": [
       "7 ELEMENTS / 5 GROUPS",
-      "DESIGN f = 50.04 mm",
+      "DESIGN f = 50.00 mm",
       "DESIGN F/0.95",
       "ALL SPHERICAL"
     ],
@@ -74,8 +80,9 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.79952,
       "vd": 42.3,
+      "focalLengthMm": 120.5730,
       "indexReference": "d",
-      "glass": "Unidentified historical glass",
+      "glass": "S-LAH52 (OHARA coordinate equivalent; supplier unconfirmed)",
       "role": "Positive front meniscus"
     },
     {
@@ -85,8 +92,9 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.67003,
       "vd": 47.2,
+      "focalLengthMm": 148.9588,
       "indexReference": "d",
-      "glass": "Unidentified historical glass",
+      "glass": "BAF10 (HOYA coordinate equivalent; supplier unconfirmed)",
       "role": "Second positive meniscus"
     },
     {
@@ -96,8 +104,9 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.6935,
       "vd": 53.4,
+      "focalLengthMm": 34.1734,
       "indexReference": "d",
-      "glass": "Unidentified historical glass",
+      "glass": "LAC13 (HOYA coordinate equivalent; supplier unconfirmed)",
       "role": "Positive front component of the first cemented pair"
     },
     {
@@ -107,8 +116,9 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.7552,
       "vd": 27.5,
+      "focalLengthMm": -18.0433,
       "indexReference": "d",
-      "glass": "Unidentified historical glass",
+      "glass": "E-FD4 (HOYA coordinate equivalent; supplier unconfirmed)",
       "role": "Negative rear component of the first cemented pair"
     },
     {
@@ -118,8 +128,9 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.5927,
       "vd": 35.4,
+      "focalLengthMm": -28.2051,
       "indexReference": "d",
-      "glass": "Unidentified historical glass",
+      "glass": "FF5 (HOYA coordinate equivalent; supplier unconfirmed)",
       "role": "Negative front component of the rear cemented pair"
     },
     {
@@ -129,8 +140,9 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.7859,
       "vd": 44.3,
+      "focalLengthMm": 30.2370,
       "indexReference": "d",
-      "glass": "Unidentified historical glass",
+      "glass": "S-LAH51 (OHARA coordinate equivalent; supplier unconfirmed)",
       "role": "Positive rear component of the rear cemented pair"
     },
     {
@@ -140,8 +152,9 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.7859,
       "vd": 44.3,
+      "focalLengthMm": 40.7943,
       "indexReference": "d",
-      "glass": "Unidentified historical glass",
+      "glass": "S-LAH51 (OHARA coordinate equivalent; supplier unconfirmed)",
       "role": "Positive rear singlet"
     }
   ],

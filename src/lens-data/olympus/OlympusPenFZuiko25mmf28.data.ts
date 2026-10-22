@@ -8,7 +8,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Uniform x25 nominal scale, not an exact EFL renormalization.
  * Probable association with the May 1968 Pen F G.Zuiko Auto-W 25/2.8.
  * Source N/V spectral anchor unknown; nominal d convention is qualified.
- * Clear apertures are inferred from source proportions and geometry, not factory dimensions.
+ * Clear apertures are estimated from patent Figure 1 (scale from R1-R12 vertices)
+ * and floor-checked by real-ray trace, not factory dimensions. R4-R7 sit at the
+ * f/2.8 axial ray, above the drawn rims; R1/R2 clear the 15 mm corner chief ray.
  * S8-S9 source airspace is retained; midpoint iris location is an explicit hypothesis.
  * Unprinted infinity BFD=-A/C=25.84042892228762 mm; EFL=-1/C=24.999684 mm.
  * Unit focus changes only BF. For the air-to-air paraxial matrix [A B; C D],
@@ -60,7 +62,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7015,
       vd: 41.1,
-      glass: "Unidentified glass",
+      focalLengthMm: 83.3712,
+      glass: "BASF7 (SUMITA coordinate equivalent; supplier unconfirmed)",
       role: "Positive front doublet member",
       cemented: "D1",
     },
@@ -71,7 +74,8 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.5163,
       vd: 64,
-      glass: "Unidentified glass",
+      focalLengthMm: -34.4313,
+      glass: "K-BK7 (SUMITA coordinate equivalent; supplier unconfirmed)",
       role: "Negative front doublet member",
       cemented: "D1",
     },
@@ -82,7 +86,8 @@ const LENS_DATA = {
       type: "Plano-Convex",
       nd: 1.717,
       vd: 47.9,
-      glass: "Unidentified glass",
+      focalLengthMm: 31.5307,
+      glass: "LAF3 (HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Positive plano-convex singlet",
     },
     {
@@ -92,7 +97,8 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6385,
       vd: 55.5,
-      glass: "Unidentified glass",
+      focalLengthMm: 19.7561,
+      glass: "K-SK18 (SUMITA coordinate equivalent; supplier unconfirmed)",
       role: "Positive rear doublet member",
       cemented: "D2",
     },
@@ -103,7 +109,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6889,
       vd: 31.1,
-      glass: "Unidentified glass",
+      focalLengthMm: -13.2351,
+      glass: "E-FD8 (HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Negative rear doublet member",
       cemented: "D2",
     },
@@ -114,7 +121,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7283,
       vd: 28.3,
-      glass: "Unidentified glass",
+      focalLengthMm: -58.1554,
+      glass: "E-FD10 (HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Negative meniscus after the iris",
     },
     {
@@ -124,7 +132,8 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6228,
       vd: 56.9,
-      glass: "Unidentified glass",
+      focalLengthMm: 27.4557,
+      glass: "N-SK10 (SCHOTT coordinate equivalent; supplier unconfirmed)",
       role: "Positive rear meniscus",
     },
   ],
@@ -133,14 +142,14 @@ const LENS_DATA = {
       label: "1",
       R: 78.675,
       d: 3.7249999999999996,
-      sd: 18,
+      sd: 18.1,
       medium: 1,
     },
     {
       label: "2",
       R: -223.45000000000002,
       d: 1.5,
-      sd: 18,
+      sd: 18.1,
       medium: 2,
     },
     {
@@ -180,7 +189,7 @@ const LENS_DATA = {
       label: "8",
       R: 7.925,
       d: 2.975,
-      sd: 6,
+      sd: 5.1,
     },
     {
       label: "STO",

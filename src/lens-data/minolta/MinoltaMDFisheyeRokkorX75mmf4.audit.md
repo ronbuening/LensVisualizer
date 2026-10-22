@@ -1,4 +1,4 @@
-# Audit Log - MINOLTA MD Fisheye Rokkor-X 7.5mm f/4
+# Audit Log - MINOLTA MD FISHEYE ROKKOR-X 7.5mm f/4
 
 Patent: US 4,009,943, Example 2 / Table 2 / Figure 3
 
@@ -46,7 +46,7 @@ explained in prose, without a simulated focus range or a source-published finite
 
 ### Fields changed
 
-- `name`: `MINOLTA MD Fisheye Rokkor-X 7.5mm f/4` → unchanged; `visible`: absent → absent (defaults to true).
+- `name`: unchanged in this deployment pass (capitalization update recorded below); `visible`: absent → absent (defaults to true).
 - `subtitle`: `US 4,009,943 A — Example 2; March1981 pictured-version correlation` →
   `US 4,009,943, Example 2 — probable March 1981 production correlation`.
 - `catalog.specs`: `11 POWERED ELEMENTS + FILTER`; `EQUI DISTANT CIRCULAR FISHEYE`; `EXAMPLE 2` →
@@ -78,3 +78,83 @@ is the required close-focus placeholder (1.2192 → 1000000 m). The former finit
 Open: actual production glass melts, exact iris position, measured clear rims, factory prescription identity,
 color-filter response and measured MTF remain unresolved. The fixed 4-foot production conjugate is intentionally
 not modeled. The full test suite, typecheck, lint, build, generators and browser review were excluded by this brief.
+
+## 2026-10-22 — Semi-diameter pass against the patent figure
+
+Source: the local US 4,009,943 image facsimile, Figure 3 (Example 2) on PDF page 3, measured at its native 300 dpi.
+The scan is rotated about 1° (the axis drops 26 px across the sheet), so each rim was read as half the top-to-bottom
+extent at that column rather than from the axis. Scale: the first-to-last vertex span (73.959 mm at ×7.5) is 1374.5 px,
+18.585 px/mm; every predicted vertex column from r2 to r19 falls within 5 px of the drawn axis crossing.
+
+Rays: clearap cannot launch past about 50°, so the floor came from a scratch meridional real-ray trace of the scaled
+prescription with no rim clipping, the chief ray solved through the stop centre and the rim rays through the f/4 stop
+edge at 0–90°. Its chief-ray image heights match the engine's bounding-sphere solve (11.336 mm at 90°).
+
+| Surface | Before | Figure 3 | After | Evidence and decision |
+|---|---:|---:|---:|---|
+| 1 | 28 | 27.8 | 28 | Within 1%; retained. 90° chief 26.06, bundle 27.59 mm. |
+| 2 | 13.55 | 13.7 | 13.55 | Hemispherical bowl; retained at the 83° allowance. |
+| 3 | 12 | 11.6 | 12 | Within 4%; retained. |
+| 4 | 10 | 8.3 (8.5 top, 8.1 bottom) | 8.3 | The r4 bowl ends at a drawn bevel; at 10 mm its sag would put the rim 2.3 mm behind the drawn element. 90° chief 7.49 mm, bundle 8.51 mm. |
+| 5 | 8 | 7.5 | 8 | 6%, within noise; retained. |
+| 6 | 8 | 7.5 | 8 | Cemented junction reaches the doublet's flat rim; retained with r5. |
+| 7 | 8 | 5.0 (5.05 top, 4.9 bottom) | 5 | The concave r7 ends at a chevron bevel level with the next singlet's rim. Axial 2.79 mm, 90° chief 2.81 mm. |
+| 8–9 | 5.5 | 5.1 | 5.5 | 7%, within noise; retained. |
+| 10–11 | 4 | 3.9 | 4 | Retained; axial marginal 3.60/3.65 mm. |
+| STO | 3.736 | (iris bars 4.1) | unchanged | Derived from f/4; not touched. |
+| 12 | 6.5 | 5.5 (5.8 top, 5.1 bottom) | 5.5 | The front concave ends at a drawn bevel inside the 6.8 mm flat rim. Axial 3.82 mm, 90° bundle 4.53 mm. |
+| 13–14 | 6.5 | 6.8 | 6.5 | 5%; retained. |
+| 15–17 | 7.5 | 7.6 | 7.5 | Retained. |
+| 18–20 | 10 | 10.5 | 10 | 5%; retained (not widened for wide-field rays). |
+
+Clearance: no surface clips the axial f/4 beam or the chief ray at any field to 90°. The engine still reports a 90°
+half-field, f/4.000, EFL 7.500016 mm and 3.736 mm stop radius. The vignetting curve is identical before and after
+(51.0% at 90°, 76.0% at 75°), because the smaller r4, r7 and r12 rims fall inside rays already cut by the filter, the
+rear singlet and the rear doublet. The chief-ray image heights are unchanged. The surface validator and image-circle
+check pass; field coverage skips this fisheye by design.
+
+The Minolta March 1981 brochure section (C4 detail) was viewed as a secondary check. It agrees on 12 elements in
+8 groups and on the cementing order, and it also draws bevels on the front corners of the first doublet behind the
+stop. It draws the rear concave of the front doublet reaching closer to its flat rim (about 85–90% of it) than the
+patent does. The patent figure governs. The brochure marks no special-dispersion or aspheric elements.
+
+Open: the renderer joins rims with straight edges, so the patent's flat-rim-then-bevel outlines on L1's rear annulus,
+L2 and the front doublet appear as single slopes. Actual production clear apertures remain unmeasured.
+
+## 2026-10-22 — Glass classification and metadata pass
+
+US 4,009,943, Example 2 / Table 2 supplies the printed nd/νd pairs. Residuals below are signed catalog minus
+printed values. Catalog equivalents supply dispersion curves; the printed nd/νd remain in the prescription,
+and production suppliers and melts remain unconfirmed. Only L9's glass label changed in this pass.
+
+| Element | Glass label before → after | Catalog row nd/νd | Δnd / Δνd |
+|---|---|---|---|
+| L1 | `BACD16 (Hoya equivalent)` → unchanged | Hoya BACD16, 1.62041/60.35 | +0.000010 / +0.050000 |
+| L2 | `LAC8 (Hoya equivalent)` → unchanged | Hoya LAC8, 1.713/53.94 | 0 / +0.040000 |
+| L3, L5 | `Unmatched (source nd=1.5934, vd=34.8)` → unchanged | None | — |
+| L4 | `LAC8 (Hoya equivalent)` → unchanged | Hoya LAC8, 1.713/53.94 | 0 / −0.060000 |
+| FILTER (element 6) | `Unmatched (source nd=1.5186, vd=60.1)` → unchanged | None | — |
+| L7 | `Unmatched (source nd=1.805, vd=41.0)` → unchanged | None | — |
+| L8 | `PBL6Y (Ohara equivalent)` → unchanged | Ohara PBL6Y, 1.531717/48.95 | +0.000017 / +0.050000 |
+| L9 | `Unmatched (source nd=1.4645, vd=65.9)` → `FSL3 (Ohara equivalent)` | Ohara FSL3, 1.464499/65.938855 | −0.000001 / +0.038855 |
+| L10 | `FD110 (Hoya equivalent)` → unchanged | Hoya FD110, 1.78472/25.72 | +0.000020 / +0.020000 |
+| L11 | `LAF3 (Hoya equivalent)` → unchanged | Hoya LAF3, 1.717/47.98 | 0 / +0.080000 |
+| L12 | `Unmatched (source nd=1.4707, vd=67.4)` → unchanged | None | — |
+
+FSL3 is the discontinued OHARA_260701.AGF row, matching L9 at the printed precision with |Δνd| ≤ 0.1.
+The nearest rows returned by the catalog coordinate search for the remaining unmatched pairs were rejected:
+
+| Element | Nearest rejected row nd/νd | Δnd / Δνd | Reason |
+|---|---|---|---|
+| L3, L5 | Ohara S-FTM16, 1.592701/35.310075 | −0.000699 / +0.510075 | Neither coordinate matches the printed precision; Abbe residual exceeds 0.1. |
+| FILTER | Sumita BALK3, 1.51835/60.3 | −0.000250 / +0.200000 | Neither coordinate matches the printed precision; Abbe residual exceeds 0.1. |
+| L7 | CDGM H-ZLaF52A, 1.8061/41.016887 | +0.001100 / +0.016887 | nd does not match the printed precision despite the close νd. |
+| L12 | CDGM H-QK1, 1.47047/66.88 | −0.000230 / −0.520000 | Neither coordinate matches the printed precision; absolute Abbe residual exceeds 0.1. |
+
+- Display `name`: `MINOLTA MD Fisheye Rokkor-X 7.5mm f/4` → `MINOLTA MD FISHEYE ROKKOR-X 7.5mm f/4`,
+  following the repository's Minolta capitalization convention.
+- The patent front page names the assignee `Minolta Camera Kabushiki Kaisha`; `source.assignees` retains
+  `Minolta Camera Co., Ltd.`, the English form used by the other Minolta files.
+
+The earlier open production-melt, iris, clear-rim, factory-prescription, filter-response and MTF questions remain
+unresolved; adopting a coordinate-equivalent dispersion curve does not establish historical glass identity.

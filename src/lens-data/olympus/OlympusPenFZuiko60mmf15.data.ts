@@ -10,7 +10,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Central d7 midpoint iris is a declared reconstruction; no source stop is marked.
  * Clear apertures are source-figure hypotheses with disclosed minimal axial design-beam
  * floors, not printed dimensions or filters. The reduced S7 clear arc remains distinct
- * from the wider outer/plane cemented rim.
+ * from the wider outer/plane cemented rim. A 2026-10-22 check against the patent's
+ * Figure 1 section (0.058 mm/px) found L1, L2, L5 and the rear doublet within 5%
+ * of the drawing; the S5/S6 and S7 rims stay on the f/1.5 axial floor, about 8%
+ * above the drawn 16.5 / 10.2 mm.
  * A 1958 bilingual Olympus-affiliated primary paper identifies Yoshisada Hayamizu;
  * the Japanese patent prints 早水良定.
  * The unprinted infinity image interval is the Gaussian BFD, 30.088696438703977 mm.
@@ -63,8 +66,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6385,
       vd: 55.5,
+      focalLengthMm: 163.0267,
       indexReference: "d",
-      glass: "Unmatched (historical glass)",
+      glass: "K-SK18 (SUMITA coordinate equivalent; supplier unconfirmed)",
       role: "Front positive meniscus.",
     },
     {
@@ -74,8 +78,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6584,
       vd: 50.8,
+      focalLengthMm: 174.1633,
       indexReference: "d",
-      glass: "Unmatched (historical glass)",
+      glass: "BACED5 (HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Second positive meniscus.",
     },
     {
@@ -85,8 +90,9 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.67,
       vd: 47.2,
+      focalLengthMm: 39.8507,
       indexReference: "d",
-      glass: "Unmatched (historical glass)",
+      glass: "BAF10 (HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Positive front member of central cemented group.",
       cemented: "D1",
     },
@@ -97,8 +103,9 @@ const LENS_DATA = {
       type: "Plano-Concave Negative",
       nd: 1.7552,
       vd: 27.5,
+      focalLengthMm: -20.6568,
       indexReference: "d",
-      glass: "Unmatched (historical glass)",
+      glass: "E-FD4 (HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Negative rear member with a reduced clear arc.",
       cemented: "D1",
     },
@@ -109,8 +116,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6889,
       vd: 31.1,
+      focalLengthMm: -184.1560,
       indexReference: "d",
-      glass: "Unmatched (historical glass)",
+      glass: "E-FD8 (HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Single negative meniscus.",
     },
     {
@@ -120,8 +128,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.5407,
       vd: 47.2,
+      focalLengthMm: -79.4963,
       indexReference: "d",
-      glass: "Unmatched (historical glass)",
+      glass: "S-TIL2 (OHARA coordinate equivalent; supplier unconfirmed)",
       role: "Negative front member of rear doublet.",
       cemented: "D2",
     },
@@ -132,8 +141,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6935,
       vd: 53.4,
+      focalLengthMm: 27.7171,
       indexReference: "d",
-      glass: "Unmatched (historical glass)",
+      glass: "LAC13 (HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Positive rear member of rear doublet.",
       cemented: "D2",
     },

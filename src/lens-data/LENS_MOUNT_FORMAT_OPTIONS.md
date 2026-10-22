@@ -40,6 +40,7 @@ while the catalog is being backfilled, but when present it must be a non-empty a
 | `canon-fl` | Canon FL | Canon FL manual-focus SLR mount; usually pairs with `135-full-frame`. |
 | `canon-r` | Canon R | Canon R manual-focus SLR mount; usually pairs with `135-full-frame`. |
 | `canon-rf` | Canon RF | Canon RF mirrorless mount. |
+| `canon-7-bayonet` | Canon 7 bayonet | Clip-on three-lug bayonet around the screw mount of the Canon 7 / 7s / 7sZ rangefinders (50mm f/0.95); pairs with `135-full-frame`. |
 | `contax-645` | Contax 645 | Contax 645 autofocus medium-format mount; usually pairs with `645`. |
 | `contax-g` | Contax G | Contax G autofocus rangefinder-style mount; usually pairs with `135-full-frame`. |
 | `contax-n` | Contax N | Contax N autofocus SLR mount; usually pairs with `135-full-frame`. |

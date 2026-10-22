@@ -46,3 +46,49 @@ Unit focus is inferred from the maker's straight-helicoid specification. For the
 The analysis title and patent metadata now match the data. Its focus section changes from infinity-only to the qualified unit-focus calculation. The former first-order checks heading now describes optical properties. Public source citations, optical values, spectral limitations, iris/pupil distinctions and MTF values are retained; process terminology, hidden-status text, helper identifiers, ray/segment tallies and file-production narrative are removed. The earlier audit is condensed to source findings, rejected geometry and substantive calculation decisions.
 
 Open: production-to-patent identity remains probable; the 7/6 text and MC illustration conflict remain unresolved. The scale, stop and clear apertures remain inferred, and historical melt spectra remain unidentified. Larger viewer-pupil axial transmission is incomplete. Close travel is a paraxial unit-focus calculation, not maker-published spacing or certified finite-distance MTF; interpolation does not reproduce a measured helicoid law.
+
+## 2026-10-22 — Semi-diameter pass against the patent figure
+
+Source: the local `US4352544A.pdf`, Fig. 1, measured on the front-page copy (PDF page 1). The formal sheet copy (PDF page 2) was used as a cross-check. Both are 1-bit scans at 72 ppi with page coordinates 2320 × 3408 px, and the front-page copy was profiled at 288 dpi. The dash-dot axis is at page y ≈ 2122.5 px (72 dpi scale). Heights are line centres averaged above and below the axis, because the drawn axis sits about 4 px off the element centres.
+
+Scale: the r1 to r12 vertex crossings span 884 px for the 37.828 mm first-to-last-vertex distance, giving 23.37 px/mm. The four elements already judged to match the figure give 23.3 to 23.6 px/mm: L1 393 px for 16.7 mm, L2 front 341 px for 14.5 mm, L3 233 px for 10 mm and L6 224 px for 9.5 mm. The heights below use 23.45 px/mm. The interior axial spacings are drawn only approximately; L3 is drawn about 15% thinner than 8.4 mm. The radial scale was therefore taken from the four matching rims.
+
+| Surface | Before (mm) | Figure (mm) | After (mm) | Evidence |
+|---|---|---|---|---|
+| 1, 2 (L1) | 16.7 | 16.8 | 16.7 | within noise |
+| 3 (L2 front) | 14.5 | 14.5 | 14.5 | agrees |
+| 4 (L2 rear arc) | 9.7 | ≈9.7 at the step | 9.7 | agrees; outer shoulder is mechanical |
+| 5, 6 (L3) | 10 | 9.9 | 10 | agrees |
+| 7 (L4 front) | 6.68 | 6.5 where the curve meets the chamfer | 6.68 | axial-beam floor 6.68 governs |
+| 8 (L4 rear) | 6.64 | 6.6 where the curve meets the chamfer | 6.64 | agrees |
+| 9, 10 (L5) | 6.85 | 7.5, square-cut | 7.5 | figure; raised 9.5% |
+| 11, 12 (L6) | 9.5 | 9.6 | 9.5 | agrees |
+
+L4 is drawn on a 7.5 mm blank with chamfers on both corners. Its two curved faces end where the chamfers begin, at about 6.5 mm (r7) and 6.6 mm (r8). The blank above that is mechanical, so the stored axial-beam floors already follow the optical extent. The catalog's "beveled lens edges" remark is consistent with this. L5 is drawn as a square-cut element at the same 7.5 mm height as the L4 blank, in both copies of Fig. 1. The L5/L3 height ratio is 0.755 on page 1 and 0.751 on page 2.
+
+At the prescription's curvatures the r8 and r9 faces meet at h ≈ 6.995 mm, where their combined sags equal the 1.456 mm gap. L4 therefore cannot reach the drawn 7.5 mm blank as an optical surface, and the figure draws r9 flatter than R = −43.624 mm implies. With L4 retained, the shared r8/r9 band stays at 6.64 mm. The gap-sag fraction therefore stays 0.8999 under the 0.9 default, and no override is needed. L5's front corner at 7.5 mm lies 0.86 mm outside L4's rim and 0.004 mm behind L4's rear corner, so the outlines do not overlap. At 7.5 mm the L5 edge thickness is 0.91 mm, and the r10/r11 gap opens outward.
+
+Clearance results: the surface validator reports no errors with the new values. The image-circle floor reports nothing undersized. Traced corner coverage is 100% (38.2°, 21.65 mm of 21.65 mm, unclipped). The real-ray trace at Y = 21.63 mm shows no axial or chief-ray clipping at infinity or at 0.3 m, and axial marginal heights are 6.66 mm at r9 and 6.85 mm at r10. Engine half-field is unchanged at 35.46°, the f-number at f/2.8 and the stop radius at 6.763 mm. Geometric transmission rises slightly at small fields (98.4% to 99.5% at 5.9° to 14.7°). It is unchanged at 35.3° (95.3%) and 38.2° (85.4%), because L4 remains the limiting middle rim. The live render at infinity and at 0.3 m shows L5's corner standing just behind and outside L4's rear rim, as Fig. 1 draws it.
+
+Maker diagrams: the 1985 catalog pages carry no section drawing. The undated AUTO-W leaflet's section is retrofocus, with a stepped-shoulder L2 like Fig. 1 and rear elements drawn roughly as wide as L3. It is a 72 ppi raster and is too coarse to count the rear elements or to measure them. The MC leaflet's section remains Gauss-like. Neither marks special glass or aspheres. The patent figure governs.
+
+Open: the L4 chamfered blank is not drawn by the renderer, so L4 appears smaller than L5. That is the optical extent, not a defect.
+
+## 2026-10-22 — Glass classification and metadata pass
+
+Source: US 4,352,544, sole numerical embodiment / claim 1. All six printed nd/νd pairs are retained. Catalog-minus-patent residuals below use the catalog row values; the adopted labels select dispersion curves without identifying production suppliers or melts.
+
+| Element | Glass label old → new | Vendor catalog nd / νd | Δnd / Δνd |
+|---|---|---|---|
+| L1 | Unidentified historical melt → S-LAM52 (OHARA coordinate equivalent; supplier unconfirmed) | OHARA S-LAM52: 1.720000 / 43.689812 | 0 / −0.010188 |
+| L2 | Unidentified historical melt → S-BSM16 (OHARA coordinate equivalent; supplier unconfirmed) | OHARA S-BSM16: 1.620411 / 60.289582 | +0.000001 / +0.019582 |
+| L3 | Unidentified historical melt → S-LAH63 (OHARA coordinate equivalent; supplier unconfirmed) | OHARA S-LAH63: 1.804398 / 39.586200 | −0.000002 / −0.033800 |
+| L4 | Unidentified historical melt → FD110 (HOYA coordinate equivalent; supplier unconfirmed) | HOYA FD110: 1.784720 / 25.720000 | 0 / +0.010000 |
+| L5 | Unidentified historical melt → S-BSM16 (OHARA coordinate equivalent; supplier unconfirmed) | OHARA S-BSM16: 1.620411 / 60.289582 | +0.000001 / +0.019582 |
+| L6 | Unidentified historical melt → BSM4 (OHARA coordinate equivalent; supplier unconfirmed) | OHARA BSM4: 1.612716 / 58.749129 | −0.000004 / −0.000871 |
+
+L6 uses the newly added discontinued OHARA BSM4 formula-1 row from `OHARA_260701.AGF`, which rounds to the printed 1.61272 / 58.75 pair. The former BACD4 comparison, 1.61272 / 58.58, has residuals 0 / −0.17 and is rejected by the Δνd ≤ 0.1 criterion. No elements remain unmatched. Catalog dispersion coverage is resolved for L1–L6; the earlier production-identity and historical-melt uncertainties remain open. The earlier no-substitution table row records the prior state and is superseded by these labels.
+
+The specification line changes from `DESIGN f = 27.97 mm` to `DESIGN f = 28.00 mm`: DESIGN f states the patent's nominal f = 1 scaled ×28, consistent with the existing `catalog.focalLengthMm.design = 28`. The traced EFL remains 27.973859264 mm (27.974 mm rounded). The prescription is not renormalized; source radii, thicknesses and printed nd/νd are unchanged. The analysis retains that distinction and now identifies each adopted catalog equivalent while leaving production melts unconfirmed.
+
+Element `focalLengthMm` values were added in this pass: thick-lens focal lengths in air computed from each element's printed radii, thickness and nd (the same standalone values the analysis quotes), so the element inspector shows them.

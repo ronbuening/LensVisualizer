@@ -127,5 +127,108 @@ identified exact full-pupil marginal iris clipping. No broader test suite, gener
 
 Open: inferred cam, rims and iris are not factory dimensions; 0.044280028 mm is a sampled interpolation bound, not
 a proof over every zoom or a repeated off-axis/MTF study. Finite focus travel and complete historical spectral data
-remain unavailable. Figure 4 F/6.39 versus wide F/4.15, Lt/Lw 1.2610 versus 1.260803632, and pupil-based marginal iris
-clipping remain explicit limitations. No additional optical changes were made.
+remain unavailable; catalog dispersion is now supplied for 14 elements by the glass classification pass below.
+Figure 4 F/6.39 versus wide F/4.15, Lt/Lw 1.2610 versus 1.260803632, and pupil-based marginal iris clipping remain
+explicit limitations. No additional optical changes were made.
+
+## 2026-10-22 — Semi-diameter pass against the patent figure
+
+Source: local JP 2001-108902 A, PDF page 9, Figure 1 (Example 1 at the wide end, infinity), a 200 dpi bilevel raster
+measured at 400–800 dpi renders. The optical axis is horizontal with the object on the left. Vertex crossings beside
+the axis match the wide prescription: r1 to r37 spans 1007 px at 200 dpi for 217.77 mm (0.2163 mm/px). The r15
+(122.99 mm), stop (157.20 mm) and r31 (205.12 mm) crossings fall within 1 px of prediction. Heights were read as
+half the top-to-bottom span of each element, so the slight axis tilt cancels.
+
+Figure 1 is drafted approximately. Its strongly curved faces are drawn flatter than their radii; for example, the
+r8 sag reads about 7% short at the drawn heights. Two short air gaps are drawn closing at the rim at higher than the
+literal geometry allows. The drawing puts r8/r9 at about 23 mm, against a touching height near 20.6 mm, and r33/r34
+at about 13 mm, against 11.35 mm. The figure was therefore used for proportions, and capped faces stay at their
+gap limits.
+
+| Surface | Before | Figure | After | Evidence |
+|---|---|---|---|---|
+| 1–6 (L1–L3) | 43 | 45.2 / 44.6 / 43.7 | 43 | Within 5%; the 86 mm filter is an outer bound; retained |
+| 7 (L4 front) | 22 | 26.7 | 25.5 | Figure 1.21×; L4 is the tallest G2 element in both the patent and the maker diagram |
+| 8 (L4 rear) | 19.5 | ~23 (meets r9) | 19.5 | Capped: r8/r9 touch near 20.6 mm and the 0.9 gap-sag allowance binds at about 19.6 mm |
+| 9 (L5 front) | 19.5 | ~23 (meets r8) | 19.5 | Same cap |
+| 10 (L5 rear) | 19.5 | 23.5 | 22 | Figure 1.20×; drawn level with L6 (22) |
+| 11–14 (L6, L7) | 22 / 21 | 23.4 / 22.0 | retained | Within 6% |
+| 15–19 (L8–L10) | 18 | 19.1 | retained | Within 6% |
+| 21–23 (L11/L12) | 12 | 13.1 | retained | 9%; at the noise limit |
+| 24–25 (L13) | 12 | 13.6 | 13 | Figure 1.13×; drawn level with L14 (13) |
+| 26–30 (L14–L16) | 13 | 13.6 / 13.1 | retained | Within 5% |
+| 31–32 (L17/L18 front, junction) | 10.7 | 13.1 | 12.5 | Figure 1.23×; drawn level with L15/L16 |
+| 33 (L18 rear) | 10.7 | ~13 (meets r34) | 10.7 | Capped: the 3.38 mm gap to r34 closes near 11.35 mm |
+| 34–35 (L19) | 13 | 15.3 (shared top with L20) | 14 | Figure 1.18×; drawn level with L20 (14) |
+| 36–37 (L20) | 14 | 15.3 | retained | 9%; at the noise limit |
+
+The stop is unchanged at the engine radius of 10.497 mm. Figure 1 draws the iris mark at about 11.7 mm, but no stop
+radius is published.
+
+The median figure/data ratio is about 1.06. The changed elements were raised toward the drawn proportions, not
+past the raw drawing, and no face is lowered. The surface validator reports no errors with the default 0.9
+gap-sag allowance. Image-circle coverage is unchanged with no undersized surface. Traced field coverage reaches the
+21.65 mm corner at all 65 stations. The real-ray clearance trace at Y = 21.63 mm shows no axial clip or chief-ray
+block at any station. Axial floors at the raised faces are 14.97 (r7), 14.84 (r10), 10.85/10.99 (r24/r25), 7.21/6.88
+(r31/r32) and 6.44/6.44 mm (r34/r35). Engine EFL 50.162 mm, f/4.15, stop radius 10.497 mm and half-field 21.38° are
+unchanged.
+
+Engine vignetting at full aperture was compared before and after. At wide, 11.7° rises from 94.8 to 99.0%, 20.5°
+from 68.8 to 72.9% and 23.5° from 35.4 to 40.6%. At mid-zoom, 6.6° rises from 71.9 to 76.0%. At tele, 2.5° rises
+from 56.4 to 58.5%. Heavy off-axis vignetting from the 43 mm G1 rims remains.
+
+The renders at 50, 200 and 480 mm and at focus = 1 show no overlaps. L4 now renders as the tallest G2 element, with
+a straight rim join of about 52.5° from 25.5 mm to 19.5 mm. L5 widens rearward to meet L6's height, and the G6/G7
+heights follow Figure 1's equalities. The Sigma 2004.9 catalog diagram on PDF page 7 agrees on 20/16 and on the blue
+SLD positions L2, L3, L8 and L9. Its relative heights support taller L4, L5, L13 and L17/L18 rims. Its stop mark and
+overall scale are not dimensional.
+
+Open: Figure 1 rims are proportions from an approximate drawing, not factory clear apertures. L11/L12 and L20 sit at
+the noise limit and were retained. The three gap-capped faces cannot follow the drawing without a tighter gap-sag
+allowance, which would buy less than 1 mm and was not requested.
+
+## 2026-10-22 — Glass classification and metadata pass
+
+Fourteen elements now use catalog coordinate equivalents for dispersion, with |Δνd| ≤ 0.1 and nd agreement at
+the patent's printed precision. The catalog values below were read with `hasglass.mjs`; signed residuals are
+catalog minus patent. Printed nd/νd remain authoritative at d. Catalog curves supply secondary-spectrum and
+chromatic calculations, without identifying historical production suppliers or melts.
+
+| Element | Glass label before → after | Catalog nd / νd | Δnd / Δνd | Added isolated f (mm) |
+|---|---|---|---|---|
+| L1 | Unmatched (nd 1.834, vd 37.3; historical identity unresolved) → NBFD10 (HOYA coordinate equivalent; supplier unconfirmed) | 1.834 / 37.34 | +0.000000 / +0.040000 | -280.5977 |
+| L2 | Unmatched (nd 1.497, vd 79.3; historical identity unresolved) → Unmatched (nd 1.497, vd 79.3; historical identity unresolved) | No equivalent adopted | — | +188.5355 |
+| L3 | Unmatched (nd 1.497, vd 79.3; historical identity unresolved) → Unmatched (nd 1.497, vd 79.3; historical identity unresolved) | No equivalent adopted | — | +324.5057 |
+| L4 | Unmatched (nd 1.713, vd 54.1; historical identity unresolved) → Unmatched (nd 1.713, vd 54.1; historical identity unresolved) | No equivalent adopted | — | -74.6707 |
+| L5 | Unmatched (nd 1.6968, vd 55.6; historical identity unresolved) → S-LAL14 (OHARA coordinate equivalent; supplier unconfirmed) | 1.696797 / 55.5322 | -0.000003 / -0.067800 | -74.6533 |
+| L6 | Unmatched (nd 1.71736, vd 29.5; historical identity unresolved) → S-TIH1 (OHARA coordinate equivalent; supplier unconfirmed) | 1.717362 / 29.518091 | +0.000002 / +0.018091 | +44.7594 |
+| L7 | Unmatched (nd 1.7725, vd 49.7; historical identity unresolved) → TAF1 (HOYA coordinate equivalent; supplier unconfirmed) | 1.7725 / 49.63 | +0.000000 / -0.070000 | -51.4515 |
+| L8 | Unmatched (nd 1.497, vd 79.3; historical identity unresolved) → Unmatched (nd 1.497, vd 79.3; historical identity unresolved) | No equivalent adopted | — | +83.4504 |
+| L9 | Unmatched (nd 1.497, vd 79.3; historical identity unresolved) → Unmatched (nd 1.497, vd 79.3; historical identity unresolved) | No equivalent adopted | — | +72.5760 |
+| L10 | Unmatched (nd 1.80518, vd 25.4; historical identity unresolved) → S-TIH6 (OHARA coordinate equivalent; supplier unconfirmed) | 1.805181 / 25.4254 | +0.000001 / +0.025400 | -122.5535 |
+| L11 | Unmatched (nd 1.713, vd 54.1; historical identity unresolved) → Unmatched (nd 1.713, vd 54.1; historical identity unresolved) | No equivalent adopted | — | -22.2040 |
+| L12 | Unmatched (nd 1.8061, vd 33.3; historical identity unresolved) → NBFD15 (HOYA coordinate equivalent; supplier unconfirmed) | 1.8061 / 33.27 | +0.000000 / -0.030000 | +36.3123 |
+| L13 | Unmatched (nd 1.48749, vd 70.2; historical identity unresolved) → S-FSL5 (OHARA coordinate equivalent; supplier unconfirmed) | 1.48749 / 70.2363 | +0.000000 / +0.036300 | +115.7254 |
+| L14 | Unmatched (nd 1.58144, vd 40.8; historical identity unresolved) → S-TIL25 (OHARA coordinate equivalent; supplier unconfirmed) | 1.581439 / 40.747566 | -0.000001 / -0.052434 | +90.0276 |
+| L15 | Unmatched (nd 1.48749, vd 70.2; historical identity unresolved) → S-FSL5 (OHARA coordinate equivalent; supplier unconfirmed) | 1.48749 / 70.2363 | +0.000000 / +0.036300 | +41.9600 |
+| L16 | Unmatched (nd 1.80518, vd 25.4; historical identity unresolved) → S-TIH6 (OHARA coordinate equivalent; supplier unconfirmed) | 1.805181 / 25.4254 | +0.000001 / +0.025400 | -52.3662 |
+| L17 | Unmatched (nd 1.7552, vd 27.5; historical identity unresolved) → S-TIH4 (OHARA coordinate equivalent; supplier unconfirmed) | 1.755199 / 27.51 | -0.000001 / +0.010000 | +61.4226 |
+| L18 | Unmatched (nd 1.8061, vd 40.8; historical identity unresolved) → NBFD13 (HOYA coordinate equivalent; supplier unconfirmed) | 1.8061 / 40.73 | +0.000000 / -0.070000 | -23.4679 |
+| L19 | Unmatched (nd 1.7433, vd 49.5; historical identity unresolved) → N-LAF35 (SCHOTT coordinate equivalent; supplier unconfirmed) | 1.7433 / 49.4 | +0.000000 / -0.100000 | -58.1956 |
+| L20 | Unmatched (nd 1.64769, vd 33.8; historical identity unresolved) → S-TIM22 (OHARA coordinate equivalent; supplier unconfirmed) | 1.647689 / 33.792803 | -0.000001 / -0.007197 | +46.1049 |
+
+Unmatched elements and rejected nearest rows from `hasglass.mjs nd:vd`:
+
+- L2, L3, L8 and L9 (1.497/79.3): K-PFK80 (SUMITA), 1.497/81.3504, Δnd = 0, Δνd = +2.0504; S-FPL51 (OHARA),
+  1.496999/81.5459, −0.000001/+2.2459; FCD1 (HOYA), 1.497/81.61, 0/+2.31; H-FK61 (CDGM), 1.497/81.612838,
+  0/+2.312838; J-FK01A (HIKARI), 1.497/81.65, 0/+2.35; MC-FCD1-M20 (HOYA), 1.4969/81.51, −0.0001/+2.21. Every
+  Abbe residual exceeds 0.1; these SLD positions retain unmatched labels.
+- L4 and L11 (1.713/54.1): J-LAK8 (HIKARI), 1.713/53.96, Δnd = 0, Δνd = −0.14; LAC8 (HOYA), 1.713/53.94,
+  0/−0.16; S-LAL8 (OHARA), 1.712995/53.87, −0.000005/−0.23; LAL8 (OHARA), 1.712995/53.845848,
+  −0.000005/−0.254152; N-LAK8 (SCHOTT), 1.713/53.83, 0/−0.27; MP-LAC8-30 (HOYA), 1.7133/53.95, +0.0003/−0.15.
+  Every Abbe residual exceeds 0.1, so none is adopted.
+
+All 20 elements gained `focalLengthMm` metadata, listed above: thick-lens focal lengths in air, including air
+boundaries for isolated cemented members. The existing six-decimal analysis values agree with the added four-
+decimal values to rounding; actual cemented tracing retains adjacent glass indices. The analysis now names the
+adopted equivalents and preserves the six unresolved elements and the production-melt uncertainty.

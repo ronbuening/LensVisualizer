@@ -583,6 +583,8 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "L-LAH84",
   "PBH25",
   "PBH23",
+  "BSM4",
+  "FSL3",
   "YGH52",
   "BAM25",
   "BACD6",

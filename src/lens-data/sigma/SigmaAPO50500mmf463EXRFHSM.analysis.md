@@ -31,127 +31,129 @@ The source explicitly defines d-line index and Abbe number in paragraph 0015. Ev
 
 ### L1 — Negative Meniscus
 
-nd = 1.83400, νd = 37.3. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = -280.597713 mm. Closest coordinate candidate: NBFD10 (Hoya), not adopted.
+nd = 1.83400, νd = 37.3. Glass: NBFD10 (HOYA coordinate equivalent used for dispersion; production melt unconfirmed). Isolated f = -280.597713 mm.
 
 The high-index negative front meniscus precedes two lower-dispersion positive elements. It moderates the positive first-group power and contributes a contrasting dispersion term; the complete group remains positive.
 
 ### L2 — Biconvex Positive
 
-nd = 1.49700, νd = 79.3. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = +188.535472 mm. Maker-marked SLD position; closest coordinate candidate K-PFK80 has a νd residual of +2.0504, outside the standard ±2 joint compatibility window. No named melt is assigned.
+nd = 1.49700, νd = 79.3. Glass: unmatched; historical melt unconfirmed. Isolated f = +188.535472 mm. Maker-marked SLD position; nearest catalog row K-PFK80 (SUMITA) has Δνd = +2.0504, exceeding the 0.1 coordinate-equivalence tolerance.
 
 This large positive front-group element is one of the maker-marked SLD positions. Its literal νd 79.3 must not be harmonized to a modern ED catalog value merely because nd is close.
 
 ### L3 — Positive Meniscus
 
-nd = 1.49700, νd = 79.3. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = +324.505748 mm. Maker-marked SLD position; closest coordinate candidate K-PFK80 has a νd residual of +2.0504, outside the standard ±2 joint compatibility window. No named melt is assigned.
+nd = 1.49700, νd = 79.3. Glass: unmatched; historical melt unconfirmed. Isolated f = +324.505748 mm. Maker-marked SLD position; nearest catalog row K-PFK80 (SUMITA) has Δνd = +2.0504, exceeding the 0.1 coordinate-equivalence tolerance.
 
 The positive meniscus completes G1 and is the second maker-marked SLD position. Its separated geometry and positive power differ from L2 even though the source repeats the same optical coordinates.
 
 ### L4 — Negative Meniscus
 
-nd = 1.71300, νd = 54.1. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = -74.670675 mm. Closest coordinate candidate: J-LAK8 (Hikari), not adopted.
+nd = 1.71300, νd = 54.1. Glass: unmatched; historical melt unconfirmed. Isolated f = -74.670675 mm. Nearest rows J-LAK8 (HIKARI) and LAC8 (HOYA) have Δνd = −0.14 and −0.16, outside the 0.1 coordinate-equivalence tolerance.
 
-The negative meniscus begins G2. Its front/rear inferred clear radii are 22/19.5 mm: a bounded tapered-solid reconstruction, not a source dimension. The rear rim is constrained by the following short-gap sag geometry.
+The negative meniscus begins G2. Its front/rear inferred clear radii are 25.5/19.5 mm: a tapered-solid reconstruction scaled from Figure 1, not a source dimension. The rear rim is constrained by the following short-gap sag geometry; Figure 1 draws r8 and L5's front face meeting at the rim, and the literal prescription makes them touch near 20.6 mm.
 
 ### L5 — Biconcave Negative
 
-nd = 1.69680, νd = 55.6. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = -74.653253 mm. Closest coordinate candidate: K-LaK14 (Sumita), not adopted.
+nd = 1.69680, νd = 55.6. Glass: S-LAL14 (OHARA coordinate equivalent used for dispersion; production melt unconfirmed). Isolated f = -74.653253 mm.
 
 This biconcave member reinforces the negative variator group. Its moderate dispersion and negative power are balanced by the following positive element rather than being interpreted as an isolated aberration correction.
 
 ### L6 — Biconvex Positive
 
-nd = 1.71736, νd = 29.5. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = +44.759398 mm. Closest coordinate candidate: E-FD1L (Hoya), not adopted.
+nd = 1.71736, νd = 29.5. Glass: S-TIH1 (OHARA coordinate equivalent used for dispersion; production melt unconfirmed). Isolated f = +44.759398 mm.
 
 The strong positive member interrupts the negative sequence in G2. Its relatively high dispersion permits a chromatic-balancing interpretation with the negative neighbors, without demonstrating exact cancellation of a Seidel or chromatic coefficient.
 
 ### L7 — Biconcave Negative
 
-nd = 1.77250, νd = 49.7. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = -51.451513 mm. Closest coordinate candidate: TAF1 (Hoya), not adopted.
+nd = 1.77250, νd = 49.7. Glass: TAF1 (HOYA coordinate equivalent used for dispersion; production melt unconfirmed). Isolated f = -51.451513 mm.
 
 The final biconcave singlet restores net-negative G2 power. The large changing D14 separation follows this group and is part of the connected zoom geometry.
 
 ### L8 — Biconvex Positive
 
-nd = 1.49700, νd = 79.3. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = +83.450391 mm. Maker-marked SLD position; closest coordinate candidate K-PFK80 has a νd residual of +2.0504, outside the standard ±2 joint compatibility window. No named melt is assigned.
+nd = 1.49700, νd = 79.3. Glass: unmatched; historical melt unconfirmed. Isolated f = +83.450391 mm. Maker-marked SLD position; nearest catalog row K-PFK80 (SUMITA) has Δνd = +2.0504, exceeding the 0.1 coordinate-equivalence tolerance.
 
 The single positive element constitutes G3 and is the third maker-marked SLD position. Its isolated power is also the functional-group power; the following D16 gap changes with zoom.
 
 ### L9 — Biconvex Positive
 
-nd = 1.49700, νd = 79.3. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = +72.575969 mm. Maker-marked SLD position; closest coordinate candidate K-PFK80 has a νd residual of +2.0504, outside the standard ±2 joint compatibility window. No named melt is assigned.
+nd = 1.49700, νd = 79.3. Glass: unmatched; historical melt unconfirmed. Isolated f = +72.575969 mm. Maker-marked SLD position; nearest catalog row K-PFK80 (SUMITA) has Δνd = +2.0504, exceeding the 0.1 coordinate-equivalence tolerance.
 
 This SLD-marked positive member is cemented to L10. It has appreciable positive isolated power, but the real interface r18 uses the index difference to the high-dispersion negative member.
 
 ### L10 — Negative Meniscus
 
-nd = 1.80518, νd = 25.4. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = -122.553482 mm. Closest coordinate candidate: S-TIH6 (Ohara), not adopted.
+nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA coordinate equivalent used for dispersion; production melt unconfirmed). Isolated f = -122.553482 mm.
 
 The negative meniscus completes G4. The combination has only modest net positive power; the source links G4 magnification and the G4/G5 power ratio to controlling the iris diameter.
 
 ### L11 — Biconcave Negative
 
-nd = 1.71300, νd = 54.1. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = -22.203956 mm. Closest coordinate candidate: J-LAK8 (Hikari), not adopted.
+nd = 1.71300, νd = 54.1. Glass: unmatched; historical melt unconfirmed. Isolated f = -22.203956 mm. Nearest rows J-LAK8 (HIKARI) and LAC8 (HOYA) have Δνd = −0.14 and −0.16, outside the 0.1 coordinate-equivalence tolerance.
 
 The strong biconcave member starts negative G5, immediately after the source stop-to-r21 interval. It is cemented to a positive partner at r22.
 
 ### L12 — Positive Meniscus
 
-nd = 1.80610, νd = 33.3. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = +36.312340 mm. Closest coordinate candidate: NBFD15 (Hoya), not adopted.
+nd = 1.80610, νd = 33.3. Glass: NBFD15 (HOYA coordinate equivalent used for dispersion; production melt unconfirmed). Isolated f = +36.312340 mm.
 
 The positive meniscus partly offsets L11, while the complete fifth group remains negative. Its high index and source dispersion are retained independently of any modern glass substitute.
 
 ### L13 — Positive Meniscus
 
-nd = 1.48749, νd = 70.2. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = +115.725354 mm. Closest coordinate candidate: S-FSL5 (Ohara), not adopted.
+nd = 1.48749, νd = 70.2. Glass: S-FSL5 (OHARA coordinate equivalent used for dispersion; production melt unconfirmed). Isolated f = +115.725354 mm.
 
 Despite both radii being negative, the rear curvature is stronger and this isolated meniscus is positive. It starts G6 and is not mislabeled negative from its front-face sign alone.
 
 ### L14 — Biconvex Positive
 
-nd = 1.58144, νd = 40.8. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = +90.027604 mm. Closest coordinate candidate: PBL25 (Ohara), not adopted.
+nd = 1.58144, νd = 40.8. Glass: S-TIL25 (OHARA coordinate equivalent used for dispersion; production melt unconfirmed). Isolated f = +90.027604 mm.
 
 This biconvex singlet adds positive power inside G6. Its dispersion is markedly different from the preceding low-dispersion element; the small intervening air gaps are not replaced by invented cemented interfaces.
 
 ### L15 — Biconvex Positive
 
-nd = 1.48749, νd = 70.2. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = +41.959956 mm. Closest coordinate candidate: S-FSL5 (Ohara), not adopted.
+nd = 1.48749, νd = 70.2. Glass: S-FSL5 (OHARA coordinate equivalent used for dispersion; production melt unconfirmed). Isolated f = +41.959956 mm.
 
 The stronger positive member begins the rear G6 doublet. Its low-dispersion coordinates repeat L13, but equal coordinates do not prove one historical melt or production batch.
 
 ### L16 — Negative Meniscus
 
-nd = 1.80518, νd = 25.4. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = -52.366158 mm. Closest coordinate candidate: S-TIH6 (Ohara), not adopted.
+nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA coordinate equivalent used for dispersion; production melt unconfirmed). Isolated f = -52.366158 mm.
 
 The negative meniscus completes that doublet at r29 and moderates G6 power. The nearly flat rear face leads into reconstructed D30, the compensating separation in the adopted continuous model.
 
 ### L17 — Biconvex Positive
 
-nd = 1.75520, νd = 27.5. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = +61.422641 mm. Closest coordinate candidate: S-TIH4 (Ohara), not adopted.
+nd = 1.75520, νd = 27.5. Glass: S-TIH4 (OHARA coordinate equivalent used for dispersion; production melt unconfirmed). Isolated f = +61.422641 mm.
 
-This positive member starts the negative rear focusing group and is cemented to L18. Its narrow inferred rim is limited by the next short airspace, not enlarged simply to clear the nominal beam.
+This positive member starts the negative rear focusing group and is cemented to L18. The doublet's front and cemented faces are inferred at 12.5 mm from Figure 1; L18's rear face stays at 10.7 mm because the following 3.38 mm airspace closes near 11.35 mm.
 
 ### L18 — Biconcave Negative
 
-nd = 1.80610, νd = 40.8. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = -23.467857 mm. Closest coordinate candidate: M-NBFD130 (Hoya), not adopted.
+nd = 1.80610, νd = 40.8. Glass: NBFD13 (HOYA coordinate equivalent used for dispersion; production melt unconfirmed). Isolated f = -23.467857 mm.
 
 The strong biconcave member gives the front G7 doublet net negative action. Its steep rear face makes the following gap and solid boundary particularly important for off-axis containment.
 
 ### L19 — Biconcave Negative
 
-nd = 1.74330, νd = 49.5. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = -58.195597 mm. Closest coordinate candidate: N-LAF35 (Schott), not adopted.
+nd = 1.74330, νd = 49.5. Glass: N-LAF35 (SCHOTT coordinate equivalent used for dispersion; production melt unconfirmed). Isolated f = -58.195597 mm.
 
 This biconcave singlet supplies a further negative contribution in G7. The clear radius is independently inferred and the small following air gap remains literal.
 
 ### L20 — Biconvex Positive
 
-nd = 1.64769, νd = 33.8. Glass: unidentified historical melt; catalog substitutes not adopted. Isolated f = +46.104872 mm. Closest coordinate candidate: PBM22 (Ohara), not adopted.
+nd = 1.64769, νd = 33.8. Glass: S-TIM22 (OHARA coordinate equivalent used for dispersion; production melt unconfirmed). Isolated f = +46.104872 mm.
 
 The final biconvex singlet offsets part of the rear negative power. G7 remains negative overall and moves imageward for close focusing in the source drawing; no exact finite displacement is published.
 
 ## Glass Identification
 
-All 20 elements retain the patent's d-line index and Abbe number; their historical glass identities and full spectral dispersion remain unknown. The listed catalog candidates are coordinate comparisons, not adopted substitutions or identified production suppliers. The four maker-marked SLD positions do not establish complete apochromatic performance from index and Abbe number alone.
+All 20 elements retain the patent's printed d-line index and Abbe number. Catalog coordinate equivalents provide dispersion for 14 elements: HOYA NBFD10 (L1), TAF1 (L7), NBFD15 (L12) and NBFD13 (L18); OHARA S-LAL14 (L5), S-TIH1 (L6), S-TIH6 (L10/L16), S-FSL5 (L13/L15), S-TIL25 (L14), S-TIH4 (L17) and S-TIM22 (L20); and SCHOTT N-LAF35 (L19). These curves support secondary-spectrum and chromatic calculations while tracing retains the printed nd/νd at d; production suppliers and melts remain unconfirmed.
+
+L2/L3/L8/L9 (1.49700/79.3) and L4/L11 (1.71300/54.1) remain unmatched: the nearest catalog rows exceed the 0.1 Abbe-number tolerance. Their dispersion remains an Abbe-based approximation. The four maker-marked SLD positions do not establish complete apochromatic performance from index and Abbe number alone.
 
 ## Zoom, Stop and Focus Reconstruction
 
@@ -161,7 +163,7 @@ For comparison, the original reconstruction's 32, 64, 128, 256 and 512 intervals
 
 The stop's source row and following 4.4600 mm interval are literal, but its diameter is not published. Exact source-anchor iris radii derived from marginal tracing are 10.496817030, 10.511540739 and 10.498609038 mm. Their similarity does not establish a constant factory iris. The model derives the iris schedule from design f-numbers. Retained station f-numbers are unchanged and strictly increase through f/4.15, f/6.09 and f/6.39; they follow the original piecewise interpolation coordinate rather than a newly fitted focal-length law. The pupil-based marginal launch can exceed the physical stop, so its full beam may clip even when an exactly calibrated nominal beam passes.
 
-All clear rims are inferred. L4 has a 22/19.5 mm front/rear taper, bounded by the literal short-gap geometry. Increasing its front radius to 24 mm gave little further transmission improvement, so the smaller taper was retained. Complete spherical caps and straight rim joins remain part of the physical model. The gap-sag allowance remains 0.9.
+All clear rims are inferred. Their proportions follow Figure 1 where the literal geometry allows: L4 has a 25.5/19.5 mm front/rear taper, L5 a 19.5/22 mm taper, and L17/L18 a 12.5/12.5/10.7 mm profile. The three capped faces sit at the short air gaps that Figure 1 draws closing at the rim. Complete spherical caps and straight rim joins remain part of the physical model. The gap-sag allowance remains 0.9.
 
 The patent prints only the infinity state, so the model is shown at infinity only. Figure 1 shows G7 moving imageward to focus, and the maker gives an unpaired 1–3 m minimum-distance range measured from the film surface. Neither supplies numerical focus travel. The 3 m value is product metadata, not a modeled finite conjugate or a factory limit at every zoom. The format requires two focus columns; both retain identical infinity geometry. Finite-distance MTF is unavailable.
 
@@ -171,7 +173,7 @@ None. All 36 selected refracting surfaces are spherical. No unprescribed filter,
 
 ## Model Scope and Limitations
 
-The original dense cam's geometric study found minimum positive common-rim edge thickness 0.341993257 mm, maximum gap-sag fraction 0.891654460 within the unchanged 0.9 allowance, maximum spherical edge slope 37.042670928° and no hidden outline trimming. The adopted L4 straight rim join is 23.96001566° to the optical axis; this is distinct from the spherical edge slope. Its front/rear radii are 22/19.5 mm. All retained nodes have the same geometry; the current interpolation's paraxial defocus bound is given above.
+The original dense cam's geometric study, with the earlier rims, found minimum positive common-rim edge thickness 0.341993257 mm, maximum gap-sag fraction 0.891654460 within the unchanged 0.9 allowance, maximum spherical edge slope 37.042670928° and no hidden outline trimming. The later Figure 1 rims leave the capped r8, r9 and r33 faces and the 37.04° maximum edge slope unchanged, and pass the surface validator without a gap-sag override. L4's straight rim join between its 25.5/19.5 mm faces is about 52.5° to the optical axis (23.96° with the earlier 22 mm front); this is distinct from the spherical edge slope. All retained nodes have the same geometry; the current interpolation's paraxial defocus bound is given above.
 
 At wide/middle/tele, pupil-based marginal launch radii are 6.066725108, 16.538690790 and 38.039228195 mm, versus exact nominal radii 6.043610313, 16.448341396 and 37.853996597 mm. Corresponding paraxial pupil f-numbers are 4.134188108, 6.056730873 and 6.358883966; these estimates do not replace the physically admitted source-calibrated f/4.15, f/6.09 and f/6.39 boundaries. Full pupil-based axial beams clip at the iris, while separately calibrated nominal beams pass. Enlarging physical rims would not resolve this distinction.
 

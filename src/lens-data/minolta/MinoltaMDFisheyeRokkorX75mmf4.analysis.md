@@ -21,79 +21,79 @@ The neutral plane-parallel filter remains a drawn element with native index 1.51
 
 ### L1 — Negative Meniscus
 
-Source index = 1.62040, Abbe number = 60.3. Glass: BACD16 (Hoya equivalent). Isolated-in-air focal length ≈ -29.749 mm.
+Source index = 1.62040, Abbe number = 60.3. Glass: BACD16 (Hoya equivalent); production melt unconfirmed. Isolated-in-air focal length ≈ -29.749 mm.
 
 The source coordinates are preserved. Named catalog equivalents are dispersion approximations, not established factory melts; isolated element powers do not replace in-situ cemented-interface powers.
 
 ### L2 — Negative Meniscus
 
-Source index = 1.71300, Abbe number = 53.9. Glass: LAC8 (Hoya equivalent). Isolated-in-air focal length ≈ -20.943 mm.
+Source index = 1.71300, Abbe number = 53.9. Glass: LAC8 (Hoya equivalent); production melt unconfirmed. Isolated-in-air focal length ≈ -20.943 mm.
 
 The source coordinates are preserved. Named catalog equivalents are dispersion approximations, not established factory melts; isolated element powers do not replace in-situ cemented-interface powers.
 
 ### L3 — Positive Meniscus
 
-Source index = 1.59340, Abbe number = 34.8. Glass: Unmatched (source nd=1.5934, vd=34.8). Isolated-in-air focal length ≈ 17.672 mm.
+Source index = 1.59340, Abbe number = 34.8. Glass: Unmatched (source nd=1.5934, vd=34.8); production melt unconfirmed. Isolated-in-air focal length ≈ 17.672 mm.
 
 The source coordinates are preserved. Named catalog equivalents are dispersion approximations, not established factory melts; isolated element powers do not replace in-situ cemented-interface powers.
 
 ### L4 — Biconcave Negative
 
-Source index = 1.71300, Abbe number = 54.0. Glass: LAC8 (Hoya equivalent). Isolated-in-air focal length ≈ -8.031 mm.
+Source index = 1.71300, Abbe number = 54.0. Glass: LAC8 (Hoya equivalent); production melt unconfirmed. Isolated-in-air focal length ≈ -8.031 mm.
 
 The source coordinates are preserved. Named catalog equivalents are dispersion approximations, not established factory melts; isolated element powers do not replace in-situ cemented-interface powers.
 
 ### L5 — Biconvex Positive
 
-Source index = 1.59340, Abbe number = 34.8. Glass: Unmatched (source nd=1.5934, vd=34.8). Isolated-in-air focal length ≈ 15.084 mm.
+Source index = 1.59340, Abbe number = 34.8. Glass: Unmatched (source nd=1.5934, vd=34.8); production melt unconfirmed. Isolated-in-air focal length ≈ 15.084 mm.
 
 The source coordinates are preserved. Named catalog equivalents are dispersion approximations, not established factory melts; isolated element powers do not replace in-situ cemented-interface powers.
 
 ### FILTER — Plane-Parallel Plate (Patent L5, Element 6)
 
-Source index = 1.51860, Abbe number = 60.1. Glass: Unmatched (source nd=1.5186, vd=60.1). No powered surfaces.
+Source index = 1.51860, Abbe number = 60.1. Glass: Unmatched (source nd=1.5186, vd=60.1); production melt unconfirmed. No powered surfaces.
 
 The source coordinates are preserved. Named catalog equivalents are dispersion approximations, not established factory melts; isolated element powers do not replace in-situ cemented-interface powers.
 
 ### L7 — Biconcave Negative
 
-Source index = 1.80500, Abbe number = 41.0. Glass: Unmatched (source nd=1.805, vd=41.0). Isolated-in-air focal length ≈ -15.602 mm.
+Source index = 1.80500, Abbe number = 41.0. Glass: Unmatched (source nd=1.805, vd=41.0); production melt unconfirmed. Isolated-in-air focal length ≈ -15.602 mm.
 
 The source coordinates are preserved. Named catalog equivalents are dispersion approximations, not established factory melts; isolated element powers do not replace in-situ cemented-interface powers.
 
 ### L8 — Biconvex Positive
 
-Source index = 1.53170, Abbe number = 48.9. Glass: PBL6Y (Ohara equivalent). Isolated-in-air focal length ≈ 15.957 mm.
+Source index = 1.53170, Abbe number = 48.9. Glass: PBL6Y (Ohara equivalent); production melt unconfirmed. Isolated-in-air focal length ≈ 15.957 mm.
 
 The source coordinates are preserved. Named catalog equivalents are dispersion approximations, not established factory melts; isolated element powers do not replace in-situ cemented-interface powers.
 
 ### L9 — Positive Meniscus
 
-Source index = 1.46450, Abbe number = 65.9. Glass: Unmatched (source nd=1.4645, vd=65.9). Isolated-in-air focal length ≈ 23.063 mm.
+Source index = 1.46450, Abbe number = 65.9. Glass: FSL3 (Ohara equivalent); production melt unconfirmed. Isolated-in-air focal length ≈ 23.063 mm.
 
 The source coordinates are preserved. Named catalog equivalents are dispersion approximations, not established factory melts; isolated element powers do not replace in-situ cemented-interface powers.
 
 ### L10 — Negative Meniscus
 
-Source index = 1.78470, Abbe number = 25.7. Glass: FD110 (Hoya equivalent). Isolated-in-air focal length ≈ -28.490 mm.
+Source index = 1.78470, Abbe number = 25.7. Glass: FD110 (Hoya equivalent); production melt unconfirmed. Isolated-in-air focal length ≈ -28.490 mm.
 
 The source coordinates are preserved. Named catalog equivalents are dispersion approximations, not established factory melts; isolated element powers do not replace in-situ cemented-interface powers.
 
 ### L11 — Negative Meniscus
 
-Source index = 1.71700, Abbe number = 47.9. Glass: LAF3 (Hoya equivalent). Isolated-in-air focal length ≈ -34.291 mm.
+Source index = 1.71700, Abbe number = 47.9. Glass: LAF3 (Hoya equivalent); production melt unconfirmed. Isolated-in-air focal length ≈ -34.291 mm.
 
 The source coordinates are preserved. Named catalog equivalents are dispersion approximations, not established factory melts; isolated element powers do not replace in-situ cemented-interface powers.
 
 ### L12 — Biconvex Positive
 
-Source index = 1.47070, Abbe number = 67.4. Glass: Unmatched (source nd=1.4707, vd=67.4). Isolated-in-air focal length ≈ 21.279 mm.
+Source index = 1.47070, Abbe number = 67.4. Glass: Unmatched (source nd=1.4707, vd=67.4); production melt unconfirmed. Isolated-in-air focal length ≈ 21.279 mm.
 
 The source coordinates are preserved. Named catalog equivalents are dispersion approximations, not established factory melts; isolated element powers do not replace in-situ cemented-interface powers.
 
 ## Glass Identification and Selection
 
-The source supplies N/V pairs without named suppliers or full dispersion. Coordinate-compatible public glasses provide modeled chromatic behavior where resolved. Production melt identities and anomalous partial dispersion are not recovered. The selected prescription is spherical/planar; no aspheric coefficients are invented.
+The source supplies N/V pairs without named suppliers or full dispersion. The adopted dispersion equivalents are Hoya BACD16 (L1), LAC8 (L2/L4), FD110 (L10) and LAF3 (L11), and Ohara PBL6Y (L8) and FSL3 (L9). The discontinued FSL3 row matches at the patent's printed precision. L3, L5, FILTER, L7 and L12 remain unmatched. The model retains the patent's printed nd/νd, including its d-line index. Production melt identities and anomalous partial dispersion are not recovered. The selected prescription is spherical/planar; no aspheric coefficients are invented.
 
 ## Projection and Focus
 
@@ -105,7 +105,7 @@ The production lens has no focusing ring and is fixed near 4 ft (1.2192 m). The 
 
 ## Aperture and Geometry
 
-The f/4 iris radius is calculated from the projection focal scale. Clear radii are inferred from Figure 3. The rear face of the front meniscus is nearly hemispherical: radius 13.67325 mm, inferred clear radius 13.55 mm. Representing that geometry requires an explicit 83° rim-slope allowance; the standard 64.2° default truncates the illustrated rear bowl and prevents the widest chief rays. This is an inferred physical-edge choice, not a printed aperture dimension. The default 0.90 gap-sag limit remains unchanged, with positive edge thickness and no hidden trim.
+The f/4 iris radius is calculated from the projection focal scale. Clear radii are inferred from Figure 3 and checked against a real-ray trace to the 90° field; where the figure bevels a rim (the rear concave of L2, the rear concave of the front cemented doublet and the front of the first doublet behind the stop), the clear radius ends at the bevel. The rear face of the front meniscus is nearly hemispherical: radius 13.67325 mm, inferred clear radius 13.55 mm. Representing that geometry requires an explicit 83° rim-slope allowance; the standard 64.2° default truncates the illustrated rear bowl and prevents the widest chief rays. This is an inferred physical-edge choice, not a printed aperture dimension. The default 0.90 gap-sag limit remains unchanged, with positive edge thickness and no hidden trim.
 
 Vector field launching from a bounding sphere supports the extreme field without a tangent approximation at 90°. Outer pupil rays can clip; complete chief coverage does not mean uniform full-pupil illumination.
 

@@ -7,7 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * for infinity (0.014501 mm difference within printed rounding).
  * Stop midpoint of source d11 inferred from Figure 3, not an exact tabulated coordinate;
  * stop radius derived from the design f/4 aperture at the 7.5 mm projection focal scale.
- * Clear rims inferred from Figure 3. Nearly hemispherical R2 rear rim 13.55 mm requires
+ * Clear rims estimated from Figure 3 (18.6 px/mm on the 300 dpi sheet), floor-checked by
+ * real-ray trace to the 90-degree field; r4, r7 and r12 end where Figure 3 draws rim bevels.
+ * Nearly hemispherical R2 rear rim 13.55 mm requires
  * an 83-degree rim-slope allowance; other geometry and the default 0.90 gap-sag limit
  * are unchanged, with no hidden trim.
  * Fixed focus: the production lens has no focusing ring and is set near 4 ft (1.2192 m).
@@ -20,7 +22,7 @@ const LENS_DATA = {
   "schema": 2,
   "key": "minolta-md-fisheye-rokkor-x-75mm-f4",
   "maker": "Minolta",
-  "name": "MINOLTA MD Fisheye Rokkor-X 7.5mm f/4",
+  "name": "MINOLTA MD FISHEYE ROKKOR-X 7.5mm f/4",
   "subtitle": "US 4,009,943, Example 2 — probable March 1981 production correlation",
   "catalog": {
     "lensMounts": [
@@ -146,7 +148,7 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.4645,
       "vd": 65.9,
-      "glass": "Unmatched (source nd=1.4645, vd=65.9)",
+      "glass": "FSL3 (Ohara equivalent)",
       "focalLengthMm": 23.06267,
       "cemented": "D3"
     },
@@ -208,7 +210,7 @@ const LENS_DATA = {
     {
       "label": "4",
       "R": 11.39025,
-      "sd": 10,
+      "sd": 8.3,
       "d": 7.5
     },
     {
@@ -228,7 +230,7 @@ const LENS_DATA = {
     {
       "label": "7",
       "R": 13.9875,
-      "sd": 8,
+      "sd": 5,
       "d": 1.41375
     },
     {
@@ -265,7 +267,7 @@ const LENS_DATA = {
     {
       "label": "12",
       "R": -49.248749999999994,
-      "sd": 6.5,
+      "sd": 5.5,
       "d": 1.2,
       "medium": 7
     },

@@ -104,6 +104,51 @@ The former four specs were “May 1968 Ponder & Best B-6: stock 18-9121; 62° fi
 
 ### Remaining scope
 
-The image-circle audit reports one lens checked, zero undersized and zero skipped. Field coverage reaches about 14.95 mm of the modeled 15 mm corner; the exact corner center ray clips at surface 1 (about 18.05 mm against an 18 mm rim). No rim was widened for off-axis coverage.
+Superseded by the 2026-10-22 semi-diameter section below: the earlier image-circle audit reported one lens checked, zero undersized and zero skipped, with coverage reaching about 14.95 mm and the exact corner center ray clipped at surface 1 (about 18.05 mm against an 18 mm rim). R1/R2 are now 18.1 mm and coverage reaches 15.00 mm.
 
-Open: iris station and clear apertures are inferred; historical melts and the source N/V spectral reference are unresolved. The small printed-A residuals and the other Seidel columns/d–g plots remain unverified beyond the stated calculation. Current full-field pupil transmission, corrected-prescription MTF and finite-focus aberration performance were not recalculated. The former MTF convergence and approximately −0.101146 mm best-axial offset belong to the preceding transcription. No factory-performance claim follows from them. Broad repository tests, formatting tools, build and metadata generation were deliberately excluded by the assignment; changes remain uncommitted.
+Open: iris station and clear apertures are inferred; historical melts and the source N/V spectral reference remain unresolved despite the catalog dispersion equivalents assigned below. The small printed-A residuals and the other Seidel columns/d–g plots remain unverified beyond the stated calculation. Current full-field pupil transmission, corrected-prescription MTF and finite-focus aberration performance were not recalculated. The former MTF convergence and approximately −0.101146 mm best-axial offset belong to the preceding transcription. No factory-performance claim follows from them. Broad repository tests, formatting tools, build and metadata generation were deliberately excluded by the assignment; changes remain uncommitted.
+
+## 2026-10-22 — Semi-diameter pass against the patent figure
+
+Source: `patents/JPS3918282Y1.pdf`, page 3, Figure 1 (the sole embodiment the file models; native 300 dpi CCITT scan, measured at 300 dpi). The optical axis runs horizontally with a slight tilt (about 0.8°), so every height was read as half the full top-to-bottom extent of each element rather than from the axis line.
+
+Scale: R1 vertex at x = 839 px and R12 vertex at x = 1587 px span 748 px for the 54.675 mm first-to-last vertex length, giving 0.0731 mm/px. Check span: the R4 vertex predicted at 839 + 37.300/0.0731 = 1349 px is drawn at 1350 px, and the R4–R12 span (17.375 mm) predicts 238 px against 237 px drawn.
+
+| Surface | Before | Figure | After | Evidence |
+| --- | --- | --- | --- | --- |
+| 1 | 18 | 17.8 | 18.1 | Figure agrees within 1%; raised 0.1 mm because the 15 mm half-frame corner chief ray (ω 31.37°) reaches 18.05 mm here |
+| 2 | 18 | 17.8 | 18.1 | Cemented partner of R1; the figure draws L1 and L2 with one flat rim height |
+| 3 | 14 | 13.9 | 14 | Optical end of the concave face at the inner corner of the drawn chamfer; retained |
+| 4, 5 | 6.79 | 6.4 | 6.79 | The f/2.8 axial ray needs 6.787 mm at R4; floor beats figure; retained |
+| 6, 7 | 6.32 | 5.8 | 6.32 | The f/2.8 axial ray needs 6.313 mm at R6; floor beats figure; retained square-cut |
+| 8 | 6 | 5.05 | 5.1 | Figure draws L5's rear corner chamfered, with R8 ending at about 5.05 mm (ratio 0.84); axial ray 4.83 mm, full field bundle 3.54 mm |
+| 9, 10 | 6 | 5.8 | 6 | Within measurement noise (3%); retained |
+| 11, 12 | 6 | 5.8 | 6 | Within measurement noise (4%); ordinary side vignetting of 21% and 35% of the bundle stays |
+
+Clearance after the edit: the repo validator reports no errors. The exact meridional trace shows no axial clip and no blocked chief ray at infinity or at the 0.25 m close focus. The corner chief ray now passes R1 at 18.05 mm against an 18.1 mm rim (16.37 mm at close focus). Field coverage reaches 15.00 of 15.00 mm at 31.4°, where the earlier pass reached 14.95 mm with the corner ray clipped at R1. The image-circle check finds nothing undersized. The engine's f/2.8 stop radius (4.701 mm), EFL (24.9997 mm) and paraxial half-field (27.85°, limited by R3, which matches the figure) are unchanged. Wide-open geometric transmission is unchanged through 28° and rises slightly at the corner (41.7% at 31.4°, against 41.1% at 31.3° before).
+
+Geometry after the edit: minimum shared-band edge thickness 0.880 mm (L1, from 0.912 mm), maximum spherical rim angle 46.32° (R3, from 49.21° at R8) and maximum air-gap sag intrusion 59.8% (R8–R9 across the iris, from 87.8%). The analysis prose was updated to match.
+
+Maker diagram: the Ponder & Best May 1968 page B-6 schematic (25mm f/2.8 G Zuiko Auto-W) shows the same seven elements in five groups: a large cemented front doublet with a chamfered rear rim, a plano-convex singlet, a cemented doublet, then two singlets. It marks no special glass or aspherical surface. It draws the front doublet somewhat larger relative to the overall length than Figure 1, and the rear elements at about 0.31–0.42 of the front width (model 0.33–0.38); being a schematic, it was used only as a proportion check.
+
+Open: L3 and the R6/R7 junction are drawn about 6–9% smaller than the f/2.8 axial ray allows, so the rear group stays slightly larger than Figure 1 at those rims. The renderer draws L5's chamfer as a straight taper across the element rather than a flat top with a short bevel.
+
+## 2026-10-22 — Glass classification and metadata pass
+
+All seven elements now name catalog coordinate equivalents for dispersion; the patent's printed N/V anchors remain unchanged under the qualified nominal d-line convention. Catalog values below are from `hasglass.mjs`; residuals are catalog minus printed value. Neither the labels nor the catalog curves establish historical production melts or suppliers.
+
+| Element | Label old → new | Catalog nd / νd | Δnd | Δνd |
+|---|---|---|---:|---:|
+| L1 | Unidentified glass → BASF7 (SUMITA coordinate equivalent; supplier unconfirmed) | 1.70154 / 41.10 | +0.00004 | 0.00 |
+| L2 | Unidentified glass → K-BK7 (SUMITA coordinate equivalent; supplier unconfirmed) | 1.51633 / 64.10 | +0.00003 | +0.10 |
+| L3 | Unidentified glass → LAF3 (HOYA coordinate equivalent; supplier unconfirmed) | 1.71700 / 47.98 | 0.00000 | +0.08 |
+| L4 | Unidentified glass → K-SK18 (SUMITA coordinate equivalent; supplier unconfirmed) | 1.63854 / 55.50 | +0.00004 | 0.00 |
+| L5 | Unidentified glass → E-FD8 (HOYA coordinate equivalent; supplier unconfirmed) | 1.68893 / 31.16 | +0.00003 | +0.06 |
+| L6 | Unidentified glass → E-FD10 (HOYA coordinate equivalent; supplier unconfirmed) | 1.72825 / 28.32 | −0.00005 | +0.02 |
+| L7 | Unidentified glass → N-SK10 (SCHOTT coordinate equivalent; supplier unconfirmed) | 1.62278 / 56.98 | −0.00002 | +0.08 |
+
+L2 first took OHARA S-BSL7 (Δνd +0.14, outside the Δνd ≤ 0.1 selection tolerance); it was switched to SUMITA K-BK7 (same nd, Δνd +0.10), which is within tolerance. All other adopted rows have |Δνd| ≤ 0.1. No elements retain an unmatched label, so there are no unmatched-element rejected rows to list.
+
+No additional metadata changes were assigned. The analysis now names each adopted equivalent, retains the unconfirmed production-melt and spectral-reference qualifications, and replaces its stale 14.95 mm corner-clipping statement with the 15.00 mm coverage documented in the semi-diameter section. The earlier audit coverage statement is marked superseded in place.
+
+Element `focalLengthMm` values were added in this pass: thick-lens focal lengths in air computed from each element's printed radii, thickness and nd (the same standalone values the analysis quotes), so the element inspector shows them.

@@ -16,6 +16,13 @@ export interface MountDetails {
 }
 
 export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
+  "canon-7-bayonet": {
+    era: "Canon 7-series 35 mm rangefinders, introduced in 1961",
+    formatNotes: "35 mm film rangefinder",
+    summary: "The clip-on three-lug bayonet around the screw mount of the Canon 7, 7s and 7sZ rangefinders.",
+    description:
+      "Canon's 7-series rangefinders kept the Leica-thread (S) screw mount but surrounded it with an external three-lug bayonet. The bayonet carried lenses too large or heavy for the thread, most famously the 50mm f/0.95, and accessories such as Canon's Mirror Box reflex housing.\n\nLenses made for the bayonet do not fit screw-mount-only bodies, which is why the f/0.95 is tied to the 7 series rather than to Canon's wider LTM line. In this catalog the bayonet is kept separate from Leica thread mount so that screw-mount Serenar and Canon lenses are not mixed with the bayonet-only designs.",
+  },
   "agfa-ambi-silette": {
     era: "Agfa Ambi Silette 35 mm rangefinder system, introduced in 1957",
     formatNotes: "35 mm film rangefinder",

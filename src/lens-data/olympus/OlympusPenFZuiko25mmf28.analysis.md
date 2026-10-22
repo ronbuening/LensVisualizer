@@ -28,15 +28,17 @@ Component powers are −0.016165, +0.031715, −0.012414, −0.017195 and +0.036
 
 The standalone focal lengths below describe each element in air rather than the assembled cemented components.
 
-| Element | Faces / center thickness | Source N / V | Shape and role | Standalone EFL |
-|---|---|---|---|---:|
-| L1 | R1–R2 / 3.725 mm | 1.7015 / 41.1 | Biconvex positive front member of D1 | +83.3712 mm |
-| L2 | R2–R3 / 1.500 mm | 1.5163 / 64.0 | Biconcave negative rear member of D1; dominates front-component divergence | −34.4313 mm |
-| L3 | R4–R5 / 2.500 mm | 1.7170 / 47.9 | Positive plano-convex singlet with plane rear face | +31.5307 mm |
-| L4 | R6–R7 / 3.650 mm | 1.6385 / 55.5 | Positive meniscus, front member of D2 | +19.7561 mm |
-| L5 | R7–R8 / 0.975 mm | 1.6889 / 31.1 | Negative meniscus, rear member of D2 | −13.2351 mm |
-| L6 | R9–R10 / 0.975 mm | 1.7283 / 28.3 | Negative meniscus after the iris | −58.1554 mm |
-| L7 | R11–R12 / 2.975 mm | 1.6228 / 56.9 | Positive rear meniscus with two negative radii | +27.4557 mm |
+| Element | Faces / center thickness | Source N / V | Glass: catalog coordinate equivalent | Shape and role | Standalone EFL |
+|---|---|---|---|---|---:|
+| L1 | R1–R2 / 3.725 mm | 1.7015 / 41.1 | BASF7 (SUMITA) | Biconvex positive front member of D1 | +83.3712 mm |
+| L2 | R2–R3 / 1.500 mm | 1.5163 / 64.0 | K-BK7 (SUMITA) | Biconcave negative rear member of D1; dominates front-component divergence | −34.4313 mm |
+| L3 | R4–R5 / 2.500 mm | 1.7170 / 47.9 | LAF3 (HOYA) | Positive plano-convex singlet with plane rear face | +31.5307 mm |
+| L4 | R6–R7 / 3.650 mm | 1.6385 / 55.5 | K-SK18 (SUMITA) | Positive meniscus, front member of D2 | +19.7561 mm |
+| L5 | R7–R8 / 0.975 mm | 1.6889 / 31.1 | E-FD8 (HOYA) | Negative meniscus, rear member of D2 | −13.2351 mm |
+| L6 | R9–R10 / 0.975 mm | 1.7283 / 28.3 | E-FD10 (HOYA) | Negative meniscus after the iris | −58.1554 mm |
+| L7 | R11–R12 / 2.975 mm | 1.6228 / 56.9 | N-SK10 (SCHOTT) | Positive rear meniscus with two negative radii | +27.4557 mm |
+
+The named glasses supply catalog dispersion equivalents; the production melt and supplier of every element remain unconfirmed.
 
 ## Source Readings and Numerical Consistency
 
@@ -48,7 +50,7 @@ The normalized spherical Seidel coefficients A3–A6 are −1.360885, 4.183134, 
 
 The source table gives N and V without an explicit spectral reference. Figure 2 labels d/g curves, but that alone does not establish the table's reference line. The model uses a nominal d-line convention; the listed values are not authenticated d-line measurements.
 
-All seven glasses remain unidentified. Comparisons with nearby index/Abbe coordinates, including a six-vendor comparison, do not establish historical melts, suppliers or complete dispersion. No named catalog equivalent or full catalog curve is substituted. Reference-wavelength calculations at 587.5618 nm depend on the nominal d convention. Photopic calculations use approximate Abbe-based dispersion and cannot establish production chromatic performance.
+The catalog coordinate equivalents listed above supply dispersion curves for all seven elements, including secondary-spectrum and chromatic calculations. The model retains the patent's printed N/V anchors under the nominal d convention rather than replacing them with catalog coordinates. OHARA S-BSL7 has catalog νd = 64.14 against L2's printed 64.0, a +0.14 residual; it is a nearby dispersion proxy rather than a match within 0.1. None of the equivalents establishes a historical melt or production supplier. Reference-wavelength calculations at 587.5618 nm retain the spectral-reference uncertainty, and photopic calculations remain qualified by the catalog proxies rather than establishing production chromatic performance.
 
 ## Stop, Clear Apertures and Geometry
 
@@ -56,9 +58,9 @@ Figure 1 places the iris in the R8–R9 airspace without a numerical split or op
 
 The paraxial entrance pupil is +30.569851 mm from R1. The exit pupil is −7.199477 mm from R12; its radius referred to the nominal entrance beam is 5.899983 mm. These quantities depend on the inferred iris position.
 
-Surface semi-diameters, excluding the iris, are 18, 18, 14, 6.79, 6.79, 6.32, 6.32, 6, 6, 6, 6 and 6 mm. They are inferred apertures rather than factory dimensions. The front component's reduced rear rim is represented by a straight rim join; the small paired rims retain the square-cut outlines of Figure 1. The corrected f/2.8 axial marginal ray reaches 6.786984 mm at R4 and 6.313401 mm at R6, clearing the existing rims by 0.003016 and 0.006599 mm. The brochure's 43 mm accessory thread is a mechanical dimension.
+Surface semi-diameters, excluding the iris, are 18.1, 18.1, 14, 6.79, 6.79, 6.32, 6.32, 5.1, 6, 6, 6 and 6 mm. They are estimated from Figure 1 and floor-checked by real-ray trace, not factory dimensions. The front component's reduced rear rim, like the chamfer Figure 1 draws on its concave face, is represented by a straight rim join; R1/R2 sit 0.05 mm above the 15 mm half-frame corner chief ray. The second cemented component steps down to a 5.1 mm R8 rim, following the chamfered rear corner in the figure. L3 and the R6/R7 junction stay above the drawn heights because the f/2.8 axial ray needs them; the last two singlets keep square-cut rims. The corrected f/2.8 axial marginal ray reaches 6.786984 mm at R4 and 6.313401 mm at R6, clearing the existing rims by 0.003016 and 0.006599 mm. The brochure's 43 mm accessory thread is a mechanical dimension.
 
-Minimum shared-band edge thickness is 0.912047 mm, maximum spherical rim angle is 49.2090°, and maximum shared-air-gap sag intrusion is 87.7933%. The default geometry allowance remains 90%. Ordinary peripheral vignetting remains part of the model.
+Minimum shared-band edge thickness is 0.880371 mm (L1), maximum spherical rim angle is 46.3221° (R3), and maximum shared-air-gap sag intrusion is 59.7847% (R8–R9 across the iris). The default geometry allowance remains 90%. Ordinary peripheral vignetting remains part of the model.
 
 ## Focus Mechanism
 
@@ -68,7 +70,7 @@ For the air-to-air system matrix [A B; C D], first-to-last-vertex length T = 54.
 
 ## Model Scope and Limitations
 
-The patent's 30° half-field and the product's 31° half-field are distinct. The modeled half-frame format uses a 30 mm diagonal as a computational reference. The corrected runtime analysis half-field is 27.845612°; a stop-centered ray reaches about 14.95 mm image height near 31.3°, while the 15 mm format-corner center ray clips at the front rim. Partial surrounding-bundle transmission can persist beyond a clipped center ray, so chief-ray admission alone does not describe photometric coverage.
+The patent's 30° half-field and the product's 31° half-field are distinct. The modeled half-frame format uses a 30 mm diagonal as a computational reference. The runtime analysis half-field is 27.845612°; with the 18.1 mm R1/R2 rims, the stop-centered ray reaches the 15.00 mm format corner near 31.4° without clipping. Chief-ray admission alone does not describe photometric coverage; wide-open geometric transmission at that corner is about 41.7%.
 
 The modeled aperture settings are f/2.8, 4, 5.6, 8, 11 and 16. The source explicitly gives f/2.8 and plots f/4; the higher values do not establish the factory aperture range. The current on-axis aperture assessment clears the stated f/2.8 beam. Off-axis clipping remains possible and does not imply malformed glass geometry.
 

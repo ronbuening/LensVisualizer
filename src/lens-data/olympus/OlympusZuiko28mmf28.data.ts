@@ -7,8 +7,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 0181 MC-sheet drawing remain unresolved production-source conflicts.
  * Contextual nominal d-line from Figure 2 d/F/g/C labels, not a table subscript.
  * Source Figure 1 clear-height hypotheses are not factory aperture dimensions.
- * Initial middle clear caps overlapped across d8; minimum outward 0.01 mm
- * axial-beam caps at R7/R8 and shared L5 rim avoid any gap-sag override.
+ * Semi-diameters estimated from Figure 1 (front page), floor-checked by real-ray trace.
+ * L4 R7/R8 are axial-beam floors matching where the drawn curves meet the chamfered
+ * blank (~6.5-6.6 mm); the 7.5 mm blank is mechanical. Square-cut L5 is drawn at
+ * 7.5 mm. R8 and R9 would meet near 7.0 mm, so only L5 rises; no gap-sag override.
  * This inferred rim revision changes no source radius, thickness, index or Abbe value.
  * R4 is the reduced spherical clear arc, not the outer stepped shoulder.
  * The d6 midpoint iris is inferred, not a printed stop location.
@@ -36,7 +38,7 @@ const LENS_DATA = {
     groupCount: 6,
     specs: [
       "6 ELEMENTS / 6 GROUPS",
-      "DESIGN f = 27.97 mm",
+      "DESIGN f = 28.00 mm",
       "DESIGN F/2.80",
       "ALL SPHERICAL",
     ],
@@ -63,8 +65,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.72,
       vd: 43.7,
+      focalLengthMm: 142.1920,
       indexReference: "d",
-      glass: "Unidentified historical melt",
+      glass: "S-LAM52 (OHARA coordinate equivalent; supplier unconfirmed)",
       role: "Positive front meniscus",
     },
     {
@@ -74,8 +77,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.62041,
       vd: 60.27,
+      focalLengthMm: -25.7206,
       indexReference: "d",
-      glass: "Unidentified historical melt",
+      glass: "S-BSM16 (OHARA coordinate equivalent; supplier unconfirmed)",
       role: "Negative front meniscus",
     },
     {
@@ -85,8 +89,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.8044,
       vd: 39.62,
+      focalLengthMm: 19.0795,
       indexReference: "d",
-      glass: "Unidentified historical melt",
+      glass: "S-LAH63 (OHARA coordinate equivalent; supplier unconfirmed)",
       role: "Positive rear-component singlet",
     },
     {
@@ -96,8 +101,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.78472,
       vd: 25.71,
+      focalLengthMm: -16.2330,
       indexReference: "d",
-      glass: "Unidentified historical melt",
+      glass: "FD110 (HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Negative singlet after the iris",
     },
     {
@@ -107,8 +113,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62041,
       vd: 60.27,
+      focalLengthMm: 41.4142,
       indexReference: "d",
-      glass: "Unidentified historical melt",
+      glass: "S-BSM16 (OHARA coordinate equivalent; supplier unconfirmed)",
       role: "Air-spaced positive meniscus",
     },
     {
@@ -118,8 +125,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.61272,
       vd: 58.75,
+      focalLengthMm: 41.6395,
       indexReference: "d",
-      glass: "Unidentified historical melt",
+      glass: "BSM4 (OHARA coordinate equivalent; supplier unconfirmed)",
       role: "Rear positive singlet",
     },
   ],
@@ -185,14 +193,14 @@ const LENS_DATA = {
       label: "9",
       R: -43.624,
       d: 2.072,
-      sd: 6.85,
+      sd: 7.5,
       medium: 5,
     },
     {
       label: "10",
       R: -16.464,
       d: 0.084,
-      sd: 6.85,
+      sd: 7.5,
     },
     {
       label: "11",
