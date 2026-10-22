@@ -3067,7 +3067,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 |---|---|---|---|---|
 | 5 | Element 3 | abbe | `Unmatched (source nd=1.5934, vd=34.8)` | Explicit unmatched/proprietary annotation |
 | 8 | Element 5 | abbe | `Unmatched (source nd=1.5934, vd=34.8)` | Explicit unmatched/proprietary annotation |
-| 10 | Built-in filter (patent L5; element 6) | abbe | `Unmatched (source nd=1.5186, vd=60.1)` | Explicit unmatched/proprietary annotation |
+| 10 | Element 6 (Built-in Filter) | abbe | `Unmatched (source nd=1.5186, vd=60.1)` | Explicit unmatched/proprietary annotation |
 | 12 | Element 7 | abbe | `Unmatched (source nd=1.805, vd=41.0)` | Explicit unmatched/proprietary annotation |
 | 19 | Element 12 | abbe | `Unmatched (source nd=1.4707, vd=67.4)` | Explicit unmatched/proprietary annotation |
 

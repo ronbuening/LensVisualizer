@@ -14,6 +14,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * L4 rear / L5 front (r8/r9) and L18 rear (r33) stay capped by their short air gaps, where Figure 1 draws the
  * facing surfaces meeting at the rim.
  * The source explicitly defines d-line indices; historical glass identity and full dispersion remain unknown.
+ * apd "inferred" on L2, L3, L8 and L9 follows the four SLD positions in Sigma's 2004.9 catalog diagram; the
+ * patent itself names no special glass. Group brackets G1–G7 and doublets D1–D4 follow Figure 1.
  * D6, D14, D16, D19, D23, D30 and BF vary with zoom only. Both required focus columns repeat infinity geometry.
  * The patent prints only infinity spacings; its qualitative rear-focus motion supplies no finite displacement.
  * Figure 4 prints F/6.39 at wide, conflicting with the Example 1 table's F/4.15; neither value is corrected.
@@ -84,6 +86,9 @@ const LENS_DATA = {
       focalLengthMm: 188.5355,
       indexReference: "d",
       glass: "Unmatched (nd 1.497, vd 79.3; historical identity unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Fluorophosphate-class low-dispersion coordinate (1.49700 / 79.3; nearest catalog rows such as K-PFK80, S-FPL51 and FCD1 sit at νd 81.4–81.6) at one of the four positions Sigma's 2004.9 catalog diagram marks as SLD glass; inferred, not a patent designation.",
       role: "Positive G1 singlet; maker-marked SLD position.",
     },
     {
@@ -96,6 +101,9 @@ const LENS_DATA = {
       focalLengthMm: 324.5057,
       indexReference: "d",
       glass: "Unmatched (nd 1.497, vd 79.3; historical identity unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Fluorophosphate-class low-dispersion coordinate (1.49700 / 79.3; nearest catalog rows such as K-PFK80, S-FPL51 and FCD1 sit at νd 81.4–81.6) at one of the four positions Sigma's 2004.9 catalog diagram marks as SLD glass; inferred, not a patent designation.",
       role: "Positive G1 meniscus; maker-marked SLD position.",
     },
     {
@@ -156,6 +164,9 @@ const LENS_DATA = {
       focalLengthMm: 83.4504,
       indexReference: "d",
       glass: "Unmatched (nd 1.497, vd 79.3; historical identity unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Fluorophosphate-class low-dispersion coordinate (1.49700 / 79.3; nearest catalog rows such as K-PFK80, S-FPL51 and FCD1 sit at νd 81.4–81.6) at one of the four positions Sigma's 2004.9 catalog diagram marks as SLD glass; inferred, not a patent designation.",
       role: "Positive singlet forming G3; maker-marked SLD position.",
     },
     {
@@ -168,6 +179,9 @@ const LENS_DATA = {
       focalLengthMm: 72.5760,
       indexReference: "d",
       glass: "Unmatched (nd 1.497, vd 79.3; historical identity unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Fluorophosphate-class low-dispersion coordinate (1.49700 / 79.3; nearest catalog rows such as K-PFK80, S-FPL51 and FCD1 sit at νd 81.4–81.6) at one of the four positions Sigma's 2004.9 catalog diagram marks as SLD glass; inferred, not a patent designation.",
       role: "Positive member of the G4 doublet; maker-marked SLD position.",
       cemented: "D1",
     },
@@ -1039,6 +1053,21 @@ const LENS_DATA = {
       ],
     },
   },
+  groups: [
+    { text: "G1 (+)", fromSurface: "1", toSurface: "6" },
+    { text: "G2 (−)", fromSurface: "7", toSurface: "14" },
+    { text: "G3 (+)", fromSurface: "15", toSurface: "16" },
+    { text: "G4 (+)", fromSurface: "17", toSurface: "19" },
+    { text: "G5 (−)", fromSurface: "STO", toSurface: "23" },
+    { text: "G6 (+)", fromSurface: "24", toSurface: "30" },
+    { text: "G7 (−)", fromSurface: "31", toSurface: "37" },
+  ],
+  doublets: [
+    { text: "D1", fromSurface: "17", toSurface: "19" },
+    { text: "D2", fromSurface: "21", toSurface: "23" },
+    { text: "D3", fromSurface: "28", toSurface: "30" },
+    { text: "D4", fromSurface: "31", toSurface: "33" },
+  ],
   zoom: {
     stations: [
       {
@@ -1380,7 +1409,7 @@ const LENS_DATA = {
     closeFocusM: 3,
     keyframes: [0, 1],
     description:
-      "The patent prints only the infinity state, so the model is shown at infinity only. Rear-group focus travel is not published. The maker lists a 1–3 m minimum-distance range; 3 m is product metadata and does not move the optics.",
+      "The patent prints only the infinity state, so the model is shown at infinity only. The patent focuses with the rear group G7, which Figure 1 shows moving toward the image, but its travel is not published. The maker lists a 1–3 m minimum-distance range; 3 m is product metadata and does not move the optics.",
   },
 } satisfies LensDataV2Input;
 export default LENS_DATA;

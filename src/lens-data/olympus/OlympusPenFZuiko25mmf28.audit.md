@@ -152,3 +152,41 @@ L2 first took OHARA S-BSL7 (Δνd +0.14, outside the Δνd ≤ 0.1 selection tol
 No additional metadata changes were assigned. The analysis now names each adopted equivalent, retains the unconfirmed production-melt and spectral-reference qualifications, and replaces its stale 14.95 mm corner-clipping statement with the 15.00 mm coverage documented in the semi-diameter section. The earlier audit coverage statement is marked superseded in place.
 
 Element `focalLengthMm` values were added in this pass: thick-lens focal lengths in air computed from each element's printed radii, thickness and nd (the same standalone values the analysis quotes), so the element inspector shows them.
+
+## 2026-10-22 — Second review: diagram, labels and movement
+
+Compared the local page (infinity, 0.25 m close focus and the focus-movement overlay, plus a 3× render of the front and rear groups) with Figure 1 on page 3 of `patents/JPS3918282Y1.pdf`, re-measured at 600 dpi (0.03655 mm/px from the earlier 0.0731 mm/px at 300 dpi), and with the patent text on page 1.
+
+### Silhouette
+
+Independent figure heights (outer ink, top and bottom averaged against the tilted axis): L3 6.4 mm; the L4/L5 flat top 5.8 mm; R8 rim at the inner end of the rear bevel 5.1 mm; L6 5.8 mm; L7 5.8 mm; L1/L2 outer land 17.8 mm; R3 at the inner end of the front chamfer 13.7–13.9 mm. These agree with the first pass. The drawn R8 sag (rim 50 px = 1.83 mm behind the drawn R8 vertex) matches the prescription sag at 5.1 mm (1.86 mm), so 5.1 mm is the optical end of R8 on two independent readings.
+
+Visible differences between the page and the figure, and why each stays:
+
+- L2 rear: the figure draws a flat outer land (about 3.6 mm long) and then a roughly 45° chamfer down to R3; the page draws one straight taper from the R2 rim (18.1 mm) to the R3 rim (14 mm). The renderer joins the two rims with a single straight edge. Squaring L2 would need R3 at 18.1 mm, where its sag is 12.5 mm and the bowl would reach 17.7 mm behind R1 against the drawn 11.0 mm, so no change.
+- L5 rear: the figure draws the D2 flat top continuing over L5 for about 1.9 mm and then a short 45° bevel (0.7 mm by 0.7 mm) to R8; the page draws a straight taper from the R7 rim (6.32 mm) to R8 (5.1 mm). The squared-block remedy does not apply. The figure draws a bevel, not a square-cut block. R8 at 6.32 mm would put its rim 47.82 mm behind R1, 0.17 mm past the iris plane at 47.65 mm. The validator accepts 6.32, 5.8 and 5.5 mm, but each departs from the measured R8 height. Kept at 5.1 mm.
+- D2, L6 and L7 are drawn at one height (5.8 mm); on the page D2 stands 0.32 mm above L6/L7 because the f/2.8 axial ray needs 6.313 mm at R6. This is a floor, and L6/L7 (6.0 mm, 3% above the figure) are not widened to match it. L3 stays the tallest rear element, as drawn.
+
+No `sd` changed. Engine half-field 27.846°, f/2.8 stop radius 4.701 mm and EFL 24.9997 mm are unchanged. Wide-open transmission is unchanged: 100% on axis, 83.3% at 20.0°, 68.2% at 28.5° and 41.7% at 31.4°. The exact trace at the 15 mm corner (ω 31.37° at infinity, 28.84° at 0.25 m) shows no axial clip and no blocked chief ray. Field coverage reaches 100% and the image-circle check finds nothing undersized.
+
+### Labels and brackets
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| `groups` | none | C1 (−) 1–3, C2 (+) 4–5, C3 (−) 6–8, C4 (−) 9–10, C5 (+) 11–12 | Page 1 describes five members (第1–第5部材): compound negative meniscus, positive lens, compound negative meniscus, negative meniscus, positive lens. "C" avoids a clash with the element names L1–L7. |
+| `doublets` | none | D1 1–3, D2 6–8 | The two cemented components; matches the elements' `cemented` D1/D2 |
+| analysis | stale OHARA S-BSL7 sentence for L2 | removed | L2 now carries SUMITA K-BK7 |
+
+Checked and found correct:
+
+- Element names L1–L7: the patent gives no element designations.
+- Type strings: L1 biconvex, L2 biconcave, L3 plano-convex, L4/L5 menisci convex to the object, L6/L7 menisci concave to the object. These match the signs of R. All seven elements are spherical, so there are no `A` markers.
+- Stop: drawn between L5 and L6, where the figure puts the iris. The figure places it 2.49 mm behind the R8 vertex and 2.74 mm ahead of R9, close to the modeled midpoint split of 2.975 + 2.975 mm.
+- No `apd` tags. The patent names no special glass, and the Ponder & Best schematic marks none.
+- Element inspector: every element shows its type, nd/νd, focal length and its coordinate-equivalent label. All seven labels resolve through the catalog (Δnd ≤ 5×10⁻⁵, Δνd ≤ 0.08), so none is unmatched.
+
+### Movement
+
+Unit focus is correct. The BF gap runs 25.840 mm at infinity (index 0) to 29.359 mm at the 0.25 m endpoint (index 1). The focus overlay shows all five groups moving 3.52 mm together toward the object. The slider's far end reads 25 cm, and the probe gives an object-to-image distance of 250.00 mm at magnification −0.1407. The lens has no zoom.
+
+Open: the L2 land-plus-chamfer and the L5 flat-plus-bevel cannot be drawn with a straight rim join; both render as single tapers.

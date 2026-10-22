@@ -9,6 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * stop radius derived from the design f/4 aperture at the 7.5 mm projection focal scale.
  * Clear rims estimated from Figure 3 (18.6 px/mm on the 300 dpi sheet), floor-checked by
  * real-ray trace to the 90-degree field; r4, r7 and r12 end where Figure 3 draws rim bevels.
+ * Designations follow the patent, whose symbol L names a component (single element or doublet):
+ * cemented L3, L6, L7, L8 split into a/b elements, L5 is the built-in filter, and the brackets show
+ * the first lens group (L1-L4) and second lens group (L6-L8) either side of the filter and stop.
  * Nearly hemispherical R2 rear rim 13.55 mm requires
  * an 83-degree rim-slope allowance; other geometry and the default 0.90 gap-sag limit
  * are unchanged, with no hidden trim.
@@ -80,29 +83,29 @@ const LENS_DATA = {
     },
     {
       "id": 3,
-      "name": "L3",
+      "name": "L3a",
       "label": "Element 3",
       "type": "Positive Meniscus",
       "nd": 1.5934,
       "vd": 34.8,
       "glass": "Unmatched (source nd=1.5934, vd=34.8)",
       "focalLengthMm": 17.672355,
-      "cemented": "D1"
+      "cemented": "L3"
     },
     {
       "id": 4,
-      "name": "L4",
+      "name": "L3b",
       "label": "Element 4",
       "type": "Biconcave Negative",
       "nd": 1.713,
       "vd": 54,
       "glass": "LAC8 (Hoya equivalent)",
       "focalLengthMm": -8.030969,
-      "cemented": "D1"
+      "cemented": "L3"
     },
     {
       "id": 5,
-      "name": "L5",
+      "name": "L4",
       "label": "Element 5",
       "type": "Biconvex Positive",
       "nd": 1.5934,
@@ -112,8 +115,8 @@ const LENS_DATA = {
     },
     {
       "id": 6,
-      "name": "FILTER",
-      "label": "Built-in filter (patent L5; element 6)",
+      "name": "L5",
+      "label": "Element 6 (Built-in Filter)",
       "type": "Plane-Parallel Plate",
       "nd": 1.5186,
       "vd": 60.1,
@@ -121,69 +124,69 @@ const LENS_DATA = {
     },
     {
       "id": 7,
-      "name": "L7",
+      "name": "L6a",
       "label": "Element 7",
       "type": "Biconcave Negative",
       "nd": 1.805,
       "vd": 41,
       "glass": "Unmatched (source nd=1.805, vd=41.0)",
       "focalLengthMm": -15.601977,
-      "cemented": "D2"
+      "cemented": "L6"
     },
     {
       "id": 8,
-      "name": "L8",
+      "name": "L6b",
       "label": "Element 8",
       "type": "Biconvex Positive",
       "nd": 1.5317,
       "vd": 48.9,
       "glass": "PBL6Y (Ohara equivalent)",
       "focalLengthMm": 15.957396,
-      "cemented": "D2"
+      "cemented": "L6"
     },
     {
       "id": 9,
-      "name": "L9",
+      "name": "L7a",
       "label": "Element 9",
       "type": "Positive Meniscus",
       "nd": 1.4645,
       "vd": 65.9,
       "glass": "FSL3 (Ohara equivalent)",
       "focalLengthMm": 23.06267,
-      "cemented": "D3"
+      "cemented": "L7"
     },
     {
       "id": 10,
-      "name": "L10",
+      "name": "L7b",
       "label": "Element 10",
       "type": "Negative Meniscus",
       "nd": 1.7847,
       "vd": 25.7,
       "glass": "FD110 (Hoya equivalent)",
       "focalLengthMm": -28.490274,
-      "cemented": "D3"
+      "cemented": "L7"
     },
     {
       "id": 11,
-      "name": "L11",
+      "name": "L8a",
       "label": "Element 11",
       "type": "Negative Meniscus",
       "nd": 1.717,
       "vd": 47.9,
       "glass": "LAF3 (Hoya equivalent)",
       "focalLengthMm": -34.290607,
-      "cemented": "D4"
+      "cemented": "L8"
     },
     {
       "id": 12,
-      "name": "L12",
+      "name": "L8b",
       "label": "Element 12",
       "type": "Biconvex Positive",
       "nd": 1.4707,
       "vd": 67.4,
       "glass": "Unmatched (source nd=1.4707, vd=67.4)",
       "focalLengthMm": 21.279025,
-      "cemented": "D4"
+      "cemented": "L8"
     }
   ],
   "surfaces": [
@@ -353,39 +356,39 @@ const LENS_DATA = {
   },
   "groups": [
     {
-      "text": "FRONT",
+      "text": "FIRST GROUP L1-L4",
       "fromSurface": "1",
       "toSurface": "9"
     },
     {
-      "text": "FILTER",
+      "text": "L5 FILTER",
       "fromSurface": "10",
       "toSurface": "11"
     },
     {
-      "text": "REAR",
+      "text": "SECOND GROUP L6-L8",
       "fromSurface": "12",
       "toSurface": "20"
     }
   ],
   "doublets": [
     {
-      "text": "D1",
+      "text": "L3",
       "fromSurface": "5",
       "toSurface": "7"
     },
     {
-      "text": "D2",
+      "text": "L6",
       "fromSurface": "12",
       "toSurface": "14"
     },
     {
-      "text": "D3",
+      "text": "L7",
       "fromSurface": "15",
       "toSurface": "17"
     },
     {
-      "text": "D4",
+      "text": "L8",
       "fromSurface": "18",
       "toSurface": "20"
     }

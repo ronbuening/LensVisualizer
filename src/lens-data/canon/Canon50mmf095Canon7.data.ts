@@ -266,6 +266,13 @@ const LENS_DATA = {
     "maxFNumber": 16,
     "blades": 10
   },
+  "groups": [
+    { "text": "G1", "fromSurface": "1", "toSurface": "2" },
+    { "text": "G2", "fromSurface": "3", "toSurface": "4" },
+    { "text": "G3", "fromSurface": "5", "toSurface": "7" },
+    { "text": "G4", "fromSurface": "8", "toSurface": "10" },
+    { "text": "G5", "fromSurface": "11", "toSurface": "12" }
+  ],
   "doublets": [
     {
       "text": "L3 + L4",

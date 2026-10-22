@@ -100,3 +100,25 @@ Mount metadata changes from absent to `catalog.lensMounts: ["canon-7-bayonet"]`,
 The spec changes from `DESIGN f = 50.04 mm` to `DESIGN f = 50.00 mm`, reflecting the patent’s nominal f = 1 × 50. The calculated EFL remains 50.037203396 mm. All seven per-element glass descriptions and the glass-reference section now state the adopted equivalents and unconfirmed production melts.
 
 Element `focalLengthMm` values were added in this pass: thick-lens focal lengths in air computed from each element's printed radii, thickness and nd (the same standalone values the analysis quotes), so the element inspector shows them.
+
+## 2026-10-22 — Second review: diagram, labels and movement
+
+Compared the local page at infinity and at the 1 m endpoint, the focus-movement overlay and all seven element inspectors with Figure 1 (patent page 3, native 300 dpi scan) and the patent text on pages 1–2. Canon's construction GIF was viewed as a secondary check.
+
+### Silhouette
+
+Independent figure profiles on both sides of the axis (axis at page row 1512–1513, about 10.0 px/mm from the 530 px r1→r12 span) give outer heights of 273 / 232 / 197.5 / 135.5 / 162 px for L1, L2, L3/L4, L5/L6 and L7. Relative to L1 that is 0.85 / 0.72 / 0.50 / 0.59, against 0.83 / 0.71 / 0.47 / 0.57 rendered; the drawn height order (L1 > L2 > L3/L4 > L7 > L5/L6) is preserved. Flat cylindrical edges in the figure measure about 1.0 mm on L1 and 1.8 mm on L2, against 0.95 and 1.69 mm modeled edge thickness. The r7 rim (end of the L4 chamfer) reads 116–124 px and the r8 rim 117–119 px, about 11.6–12.3 mm, below the f/0.95 marginal floors already used, so they cannot follow the figure down.
+
+Two visible differences are drawing-model limits, not rim errors. Figure 1 gives L4 a short cylindrical land at full height before its chamfer to r7, and draws L5/L6 as a flat-topped block whose L5 front edge rises in a short bevel from the r8 rim; the renderer joins r6→r7 and r8→r9 rim points with single straight edges. Squaring L5 would need r8 at 14 mm, where its 4.7 mm sag would run into the central cavity, and the figure itself ends the r8 curve lower. No semi-diameter was changed; engine half-field stays 22.56°, f/0.95 nominal, and the vignetting curve is unchanged (78.9 % at 11.8°, 40.0 % at 20.7°, 6.3 % at 23.7°). The exact trace still gives r10 14.065 mm at infinity and 14.393 mm at 1 m against the retained 14 mm printed group bound, as recorded above. Canon's GIF shows the same seven-element, five-group order, flat-topped L3/L4 and L5/L6 blocks, L5/L6 and L7 heights of roughly 0.5 and 0.6 of L1, and marks no special or aspherical glass.
+
+### Labels and brackets
+
+| Field | Before → after | Evidence |
+|---|---|---|
+| `groups` | absent → G1 r1–r2, G2 r3–r4, G3 r5–r7, G4 r8–r10, G5 r11–r12 | Page 1, right column, and claim on page 2 name 第1群–第5群: L1 and L2 single menisci, L3+L4 and L5+L6 cemented, L7 single; page 2 places groups 4 and 5 behind the stop |
+
+Found correct: element names L1–L7 are the patent's own designations; every element type agrees with the signs of its radii; the two cemented brackets cover r5–r7 and r8–r10; the stop sits in S3 between r7 and r8, matching the page 2 statement that groups 4 and 5 follow the stop. There are no aspheric surfaces and no `apd` tags; the patent text names no special glass. The inspectors show each element's type, nd/νd, focal length, role and its intended glass label, and the glass-label check resolves all seven labels to the intended OHARA/HOYA rows (largest |Δνd| 0.10, for S-LAH51).
+
+### Movement
+
+Unit focus: the back-focus gap grows from 19.743 mm at infinity to 22.479 mm at 1 m, so all five groups travel 2.74 mm toward the object together; the focus overlay shows the same equal travel and direction, index 0 is infinity, and the slider's far end reads 1.00 m with a computed 1000.00 mm object-to-film distance. The patent prints only the infinity state, so the endpoint remains a reconstruction.

@@ -11,6 +11,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Clear apertures are estimated from patent Figure 1 (scale from R1-R12 vertices)
  * and floor-checked by real-ray trace, not factory dimensions. R4-R7 sit at the
  * f/2.8 axial ray, above the drawn rims; R1/R2 clear the 15 mm corner chief ray.
+ * Group brackets C1-C5 follow the patent's first-fifth member numbering.
  * S8-S9 source airspace is retained; midpoint iris location is an explicit hypothesis.
  * Unprinted infinity BFD=-A/C=25.84042892228762 mm; EFL=-1/C=24.999684 mm.
  * Unit focus changes only BF. For the air-to-air paraxial matrix [A B; C D],
@@ -233,6 +234,17 @@ const LENS_DATA = {
     fStops: [2.8, 4, 5.6, 8, 11, 16],
     maxFNumber: 16,
   },
+  groups: [
+    { text: "C1 (−)", fromSurface: "1", toSurface: "3" },
+    { text: "C2 (+)", fromSurface: "4", toSurface: "5" },
+    { text: "C3 (−)", fromSurface: "6", toSurface: "8" },
+    { text: "C4 (−)", fromSurface: "9", toSurface: "10" },
+    { text: "C5 (+)", fromSurface: "11", toSurface: "12" },
+  ],
+  doublets: [
+    { text: "D1", fromSurface: "1", toSurface: "3" },
+    { text: "D2", fromSurface: "6", toSurface: "8" },
+  ],
   layout: {
     yScFill: 0.7,
   },

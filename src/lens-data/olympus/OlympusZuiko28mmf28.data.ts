@@ -226,6 +226,10 @@ const LENS_DATA = {
     fStops: [2.8, 4, 5.6, 8, 11, 16, 22],
     maxFNumber: 22,
   },
+  groups: [
+    { text: "FRONT GROUP (−)", fromSurface: "1", toSurface: "4" },
+    { text: "REAR GROUP (+)", fromSurface: "5", toSurface: "12" },
+  ],
   layout: {
     yScFill: 0.72,
   },

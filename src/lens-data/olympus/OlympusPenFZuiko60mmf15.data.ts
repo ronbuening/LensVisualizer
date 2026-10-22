@@ -11,9 +11,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Clear apertures are source-figure hypotheses with disclosed minimal axial design-beam
  * floors, not printed dimensions or filters. The reduced S7 clear arc remains distinct
  * from the wider outer/plane cemented rim. A 2026-10-22 check against the patent's
- * Figure 1 section (0.058 mm/px) found L1, L2, L5 and the rear doublet within 5%
+ * Figure 1 section (0.058 mm/px) found L1, L2, L4 and the rear unit L5 within 5%
  * of the drawing; the S5/S6 and S7 rims stay on the f/1.5 axial floor, about 8%
  * above the drawn 16.5 / 10.2 mm.
+ * Element names follow the patent's optical units L1–L5 (Figure 1 and page 1
+ * text); the cemented members of L3 and L5 are L3a/L3b and L5a/L5b.
  * A 1958 bilingual Olympus-affiliated primary paper identifies Yoshisada Hayamizu;
  * the Japanese patent prints 早水良定.
  * The unprinted infinity image interval is the Gaussian BFD, 30.088696438703977 mm.
@@ -70,6 +72,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "K-SK18 (SUMITA coordinate equivalent; supplier unconfirmed)",
       role: "Front positive meniscus.",
+      diagramLabel: "L1",
     },
     {
       id: 2,
@@ -82,10 +85,11 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "BACED5 (HOYA coordinate equivalent; supplier unconfirmed)",
       role: "Second positive meniscus.",
+      diagramLabel: "L2",
     },
     {
       id: 3,
-      name: "L3",
+      name: "L3a",
       label: "Element 3",
       type: "Plano-Convex Positive",
       nd: 1.67,
@@ -93,12 +97,13 @@ const LENS_DATA = {
       focalLengthMm: 39.8507,
       indexReference: "d",
       glass: "BAF10 (HOYA coordinate equivalent; supplier unconfirmed)",
-      role: "Positive front member of central cemented group.",
+      role: "Positive front member of the central cemented unit L3.",
+      diagramLabel: "L3a",
       cemented: "D1",
     },
     {
       id: 4,
-      name: "L4",
+      name: "L3b",
       label: "Element 4",
       type: "Plano-Concave Negative",
       nd: 1.7552,
@@ -106,12 +111,13 @@ const LENS_DATA = {
       focalLengthMm: -20.6568,
       indexReference: "d",
       glass: "E-FD4 (HOYA coordinate equivalent; supplier unconfirmed)",
-      role: "Negative rear member with a reduced clear arc.",
+      role: "Negative rear member of unit L3, with a reduced rear clear arc.",
+      diagramLabel: "L3b",
       cemented: "D1",
     },
     {
       id: 5,
-      name: "L5",
+      name: "L4",
       label: "Element 5",
       type: "Negative Meniscus",
       nd: 1.6889,
@@ -119,11 +125,12 @@ const LENS_DATA = {
       focalLengthMm: -184.1560,
       indexReference: "d",
       glass: "E-FD8 (HOYA coordinate equivalent; supplier unconfirmed)",
-      role: "Single negative meniscus.",
+      role: "Single negative meniscus, concave to the object.",
+      diagramLabel: "L4",
     },
     {
       id: 6,
-      name: "L6",
+      name: "L5a",
       label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.5407,
@@ -131,12 +138,13 @@ const LENS_DATA = {
       focalLengthMm: -79.4963,
       indexReference: "d",
       glass: "S-TIL2 (OHARA coordinate equivalent; supplier unconfirmed)",
-      role: "Negative front member of rear doublet.",
+      role: "Negative front member of the cemented rear unit L5.",
+      diagramLabel: "L5a",
       cemented: "D2",
     },
     {
       id: 7,
-      name: "L7",
+      name: "L5b",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.6935,
@@ -144,7 +152,8 @@ const LENS_DATA = {
       focalLengthMm: 27.7171,
       indexReference: "d",
       glass: "LAC13 (HOYA coordinate equivalent; supplier unconfirmed)",
-      role: "Positive rear member of rear doublet.",
+      role: "Positive rear member of the cemented rear unit L5.",
+      diagramLabel: "L5b",
       cemented: "D2",
     },
   ],
@@ -244,6 +253,17 @@ const LENS_DATA = {
     fStops: [1.5, 2, 2.8, 4, 5.6, 8, 11, 16],
     maxFNumber: 16,
   },
+  groups: [
+    { text: "L1", fromSurface: "1", toSurface: "2" },
+    { text: "L2", fromSurface: "3", toSurface: "4" },
+    { text: "L3", fromSurface: "5", toSurface: "7" },
+    { text: "L4", fromSurface: "8", toSurface: "9" },
+    { text: "L5", fromSurface: "10", toSurface: "12" },
+  ],
+  doublets: [
+    { text: "D1", fromSurface: "5", toSurface: "7" },
+    { text: "D2", fromSurface: "10", toSurface: "12" },
+  ],
   layout: {
     yScFill: 0.72,
   },

@@ -88,7 +88,7 @@ through 4.15 / 6.09 / 6.39, and need no replacement interpolation law.
 
 Fields changed:
 
-- `name`: "SIGMA APO 50-500mm f/4-6.3 EX RF HSM" → "Sigma APO 50-500mm f/4-6.3 EX RF HSM".
+- `name`: "SIGMA APO 50-500mm f/4-6.3 EX RF HSM" → "Sigma APO 50-500mm f/4-6.3 EX RF HSM" (reverted the same day to "SIGMA APO 50-500mm f/4-6.3 EX RF HSM", the all-caps form the other Sigma files use).
 - `subtitle`: "JP2001108902A Example1;20/16, seven groups, continuous reconstructed cam" →
   "JP 2001-108902 A, Example 1 — qualified production correlation".
 - `visible`: false → true.
@@ -232,3 +232,45 @@ All 20 elements gained `focalLengthMm` metadata, listed above: thick-lens focal 
 boundaries for isolated cemented members. The existing six-decimal analysis values agree with the added four-
 decimal values to rounding; actual cemented tracing retains adjacent glass indices. The analysis now names the
 adopted equivalents and preserves the six unresolved elements and the production-melt uncertainty.
+
+## 2026-10-22 — Second review: diagram, labels and movement
+
+Compared the local page at 50.16, 200.34 and 483.77 mm (also with the zoom movement overlay and the focus control)
+with JP 2001-108902 A, Figure 1 on PDF page 9, its movement arrows, the Example 1 variable-spacing table on PDF
+page 5 and the zoom/focus wording of the abstract and claim 1. Sigma's 2004.9 catalog construction diagram (PDF
+page 7) was a secondary check for the SLD positions.
+
+Silhouette: re-measured at 220 and 400 dpi against the wide-end figure (0.1966 and 0.1081 mm/px from the r1–r37
+span). L1/L2/L3 read 45.6/44.6/43.7 mm against 43, L4 front 26.5 against 25.5, L5 rear and L6 23.4 against 22,
+L7 21.6 against 21, L8–L10 18.7 against 18, L11/L12 12.8 against 12, L13/L14/L15–L16 13.2/13.8/13.0 against 13,
+L17/L18 13.1 against 12.5 and L19/L20 15.4 against 14. Every element is within about 10% and the drawn height
+ordering is kept, so no rim was changed. The L4 and L18 bevels on the site are the gap-capped r8/r9 and r33 faces
+the first pass recorded; Figure 1 draws both as square blocks, which the literal air gaps cannot reproduce.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `groups` | none (the movement overlay showed 16 air-spaced groups) | G1 (+) r1–r6, G2 (−) r7–r14, G3 (+) r15–r16, G4 (+) r17–r19, G5 (−) STO–r23, G6 (+) r24–r30, G7 (−) r31–r37 | Figure 1 brackets and the claim 1 group signs; the G5 bracket starts at the stop line, and d20 is fixed |
+| `doublets` | none | D1 r17–r19, D2 r21–r23, D3 r28–r30, D4 r31–r33 | The four cemented interfaces r18, r22, r29 and r32, matching the existing `cemented` keys |
+| L2, L3, L8, L9 `apd` / `apdNote` | absent | `inferred`, with a fluorophosphate-class note | Catalog diagram SLD positions; 1.49700/79.3 lies about 2 Abbe units below K-PFK80, S-FPL51 and FCD1 at equal nd; the patent text names no special glass |
+| `focus.description` | "Rear-group focus travel is not published" | names G7 and Figure 1's imageward focus arrow | Abstract and claim 1: G7 moves for focusing; Figure 1 arrow points toward the image |
+| Header comment | — | notes the inferred tags and the bracket source | — |
+
+Movement: the 65 zoom stations ascend from 50.162 to 483.7741 mm, and rows 0, 34 and 64 match the patent's
+D6/D14/D16/D19/D23/D30/Bf columns exactly. Measured from the image plane, G1 moves 88.08 mm toward the object, G2
+25.74 mm toward the image, G3 42.15, G4 42.14, G5 and the stop 26.54, G6 37.30 and G7 39.70 mm toward the object.
+Every group moves monotonically over all 64 intervals. This matches the abstract and claim 1, where G1 and G3–G7
+move objectward and G2 moves along the axis, and Figure 1's arrows, where G2's arrow points imageward. G4's curved
+arrow agrees with D16 rising from 0.80 to 1.5148 and falling to 0.8139 mm relative to G3. After the bracket change
+the movement overlay reports 7 groups, with the wide and tele markers on the correct sides. The focus slider reads
+"Not modeled" and the focus overlay option is disabled, since both focus columns are identical infinity geometry.
+
+Checked and correct: element types agree with every radius sign; there are no aspheres and no `A` labels; the stop
+sits between r19 and r21; the numeric diagram labels 1–20 correspond to L1–L20, and Figure 1 gives no element
+designations. The inspector shows the intended catalog rows for all 14 coordinate-equivalent labels, with Δνd no
+larger than 0.10 (N-LAF35 on L19 sits exactly at that bound). L2/L3/L8/L9 and L4/L11 remain Unmatched; the patent
+gives only nd and νd (paragraph 0015 and the Example 1 table, PDF pages 4–5) with no glass names, extra line indices
+or partial dispersions. Engine EFL 50.162 mm, f/4.15, stop radius 10.497 mm and half-field 21.38° are unchanged.
+The surface validator, image-circle and field-coverage checks pass at all 65 stations, and the clearance trace
+reaches ω = 23.47° at the wide end with no axial clip or chief-ray block.
+
+Open: rims remain proportions from an approximate drawing; the L4 and L18 bevels stay at their gap caps.

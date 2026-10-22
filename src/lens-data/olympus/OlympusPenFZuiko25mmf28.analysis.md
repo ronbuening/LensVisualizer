@@ -18,7 +18,7 @@ The probable production association is the Pen F/FT/FV G.Zuiko Auto-W 25mm f/2.8
 
 ## Optical Architecture
 
-The seven all-spherical elements form five air-separated components, 2+1+2+1+1. A strongly negative cemented front component precedes a 32.075 mm airspace. The rear section contains a positive plano-convex singlet, a cemented positive/negative pair, the iris cavity, a negative meniscus and a positive rear meniscus. Cemented interfaces R2 and R7 occur once in the prescription. R5 is a true plane. Both R11 and R12 are negative.
+The seven all-spherical elements form five air-separated components, 2+1+2+1+1. The patent numbers them first to fifth member (第1–第5部材); the diagram brackets them C1–C5 with their power signs, and marks the two cemented pairs D1 and D2. A strongly negative cemented front component precedes a 32.075 mm airspace. The rear section contains a positive plano-convex singlet, a cemented positive/negative pair, the iris cavity, a negative meniscus and a positive rear meniscus. Cemented interfaces R2 and R7 occur once in the prescription. R5 is a true plane. Both R11 and R12 are negative.
 
 Uniform multiplication of the source lengths by 25 gives EFL 24.999684 mm, infinity BFD 25.840429 mm and first-to-last-vertex length 54.675 mm. The image plane is 80.515429 mm from R1. The source does not print a terminal image distance; the modeled distance is the calculated Gaussian infinity plane. The nominal-EFL residual is −0.001264%; the overall scale is not adjusted to eliminate it.
 
@@ -50,7 +50,7 @@ The normalized spherical Seidel coefficients A3–A6 are −1.360885, 4.183134, 
 
 The source table gives N and V without an explicit spectral reference. Figure 2 labels d/g curves, but that alone does not establish the table's reference line. The model uses a nominal d-line convention; the listed values are not authenticated d-line measurements.
 
-The catalog coordinate equivalents listed above supply dispersion curves for all seven elements, including secondary-spectrum and chromatic calculations. The model retains the patent's printed N/V anchors under the nominal d convention rather than replacing them with catalog coordinates. OHARA S-BSL7 has catalog νd = 64.14 against L2's printed 64.0, a +0.14 residual; it is a nearby dispersion proxy rather than a match within 0.1. None of the equivalents establishes a historical melt or production supplier. Reference-wavelength calculations at 587.5618 nm retain the spectral-reference uncertainty, and photopic calculations remain qualified by the catalog proxies rather than establishing production chromatic performance.
+The catalog coordinate equivalents listed above supply dispersion curves for all seven elements, including secondary-spectrum and chromatic calculations. The model retains the patent's printed N/V anchors under the nominal d convention rather than replacing them with catalog coordinates. None of the equivalents establishes a historical melt or production supplier. Reference-wavelength calculations at 587.5618 nm retain the spectral-reference uncertainty, and photopic calculations remain qualified by the catalog proxies rather than establishing production chromatic performance.
 
 ## Stop, Clear Apertures and Geometry
 

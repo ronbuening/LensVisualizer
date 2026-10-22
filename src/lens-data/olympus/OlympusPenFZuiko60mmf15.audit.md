@@ -89,3 +89,28 @@ All seven rows agree with the printed index precision and have |Δν_d| ≤ 0.1.
 No additional metadata changes accompany this glass classification. The element descriptions and glass map now name the adopted equivalents and retain the production-material uncertainty. The earlier normal-line photopic calculations remain explicitly historical; they are not recalculated catalog-spectrum results.
 
 Element `focalLengthMm` values were added in this pass: thick-lens focal lengths in air computed from each element's printed radii, thickness and nd (the same standalone values the analysis quotes), so the element inspector shows them.
+
+## 2026-10-22 — Second review: diagram, labels and movement
+
+Compared: the local app page at infinity, at the 0.8 m keyframe and with the focus-movement overlay, against Figure 1 on page 3 of `patents/JPS389224B.pdf` (native 352 dpi raster, axis row 1125 px) and the page 1 description and table. The Ponder & Best May 1968 sheet B-6 (dealer PDF page 6, lower right) was viewed as a secondary check.
+
+Silhouette: re-measured independently on the upper side of Figure 1 at 0.0582 mm/px. Rim half-heights, averaging top and bottom where both are clean, were L1 341 px (19.8 mm; stored 20.01), L2 321 px (18.7; 19.43, on its f/1.5 floor), unit L3 outer rim 282 px (16.4; 17.90, floor 17.89), S7 arc corner 174 px (10.1; 10.93, floor 10.92), L4 204 px (11.9; 11.53) and unit L5 202 px (11.8; 11.50). These are the first pass's readings to within 2%. The two drawn rims under the f/1.5 axial floor stay on the floor, and the others are within 4%. The drawn ordering holds on the site: L1 is taller than L2, L2 is taller than unit L3, and L4 and L5 are equal and about 0.57 of L1. L4 and the rear unit are square-cut on both faces, as drawn, and the unit L3 shoulder from the plane rim to the S7 arc matches the figure's straight bevel. No semi-diameter was changed.
+
+The sheet B-6 section is a solid silhouette (7 elements / 5 groups, object at the top). It shows the same proportions as recorded in the semi-diameter pass, and has no special-glass or aspheric marking.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Element `name` / `diagramLabel` | L1 … L7 (diagram showed 1 … 7) | L1, L2, L3a, L3b, L4, L5a, L5b, with matching `diagramLabel` | Page 1 names the units 第1レンズL1 … 第5レンズL5, and Figure 1 labels them L1–L5 with brackets over the cemented L3 and L5. The old names clashed: element "L4" was the rear glass of patent unit L3, "L5" was patent unit L4, and "L6"/"L7" were patent unit L5. |
+| `groups` | none | L1 (S1–S2), L2 (S3–S4), L3 (S5–S7), L4 (S8–S9), L5 (S10–S12) | The patent's five optical units, which are the five air-separated groups in `groupCount`. |
+| `doublets` | none | D1 (S5–S7), D2 (S10–S12) | One bracket per cemented component, with the labels used by the elements' `cemented` ids. |
+| L3a, L3b, L4, L5a, L5b `role` | generic doublet wording | Each names its patent unit; L4 is "concave to the object" | R8 = −25.86 and R9 = −36.6 are both concave to the object. |
+
+The analysis now states the naming convention and uses the new names in its element headings and glass map, and the data header gained one line on it.
+
+Checked and found correct: element `type` strings agree with the radius signs (L1 and L2 are positive menisci convex to the object, L3a is plano-convex, L3b is plano-concave, L4 and L5a are negative menisci, L5b is biconvex). There are no aspheric surfaces and no `A` suffixes. The patent marks no stop. The reconstructed iris at the d7 midpoint is drawn between L3b and L4. No `apd` tag is set. The patent text names no special glass, and only states n4 > 1.65. The element inspector shows each element's name, type, focal length, cemented-group badge and its catalog-equivalent glass. All seven labels resolve through the catalog as compatible: |Δnd| ≤ 4.2e-5 and |Δvd| ≤ 0.06.
+
+Movement: unit focus. Gap index 0 is infinity, with BF 30.0887 mm, and the last entry is the 0.8 m state, with BF 35.3617 mm. All five groups move 5.27 mm toward the object together in the movement overlay, and the internal spacings are fixed. The focus slider's far end reads 80 cm. The direction agrees with whole-lens helicoid focusing; the patent itself prints only the infinity state.
+
+After the edits, the surface validator reports no errors and the image-circle check finds no undersized surface. Corner coverage is 100%, and the clearance trace shows no clipped axial or blocked chief ray (ω 14.20° at infinity, 12.89° at 0.8 m). The engine is unchanged: EFL 60.003 mm, FOPEN 1.500, stop radius 10.92 mm, half-field 21.31°. Wide-open infinity transmission is also unchanged, at 100 / 88.5 / 71.9 / 52.1% at 0 / 4.7 / 9.5 / 14.2°.
+
+Open: the patent prints no stop position, clear apertures or glass names, and the table gives only n and ν for each of the seven glasses on page 1, so the catalog equivalents stay unconfirmed.

@@ -23,6 +23,8 @@ The source prescription says f=100 without printing a physical length unit. This
 
 The model contains seven physical glasses in five air-separated groups, not five homogeneous elements. Its optical-unit sequence is positive, positive, negative cemented meniscus, negative singlet meniscus, and positive cemented rear group. The twelve physical refracting interfaces include one shared plane glass-to-glass boundary at S6 and one curved shared boundary at S11. Each is counted once. An inferred iris adds a thirteenth computational surface without adding glass or changing a source interval.
 
+The patent names the five optical units L1–L5, in Figure 1 and in the page 1 description. The diagram's group labels and the element names follow that notation. The cemented members of units L3 and L5 are written L3a/L3b and L5a/L5b, so the single meniscus keeps the patent's name L4.
+
 The first two groups are relatively weak positive menisci, with standalone group EFLs approximately +163.026716 and +174.163328 mm. The thick central cemented group has net EFL −92.142472 mm, despite its strongly positive front member. The rear-middle singlet is negative at −184.155960 mm. The final doublet is positive at +42.062833 mm. Thus shape labels and net group powers are kept separate; a positive front contour does not make the entire thick third group positive.
 
 The source first-to-last vertex span is 78.5 normalized units, becoming 47.100 mm at the declared scale. No d12 or last-vertex-to-image distance is printed. The infinity terminal interval is the independently calculated Gaussian infinity BFD, 30.088696439 mm, giving a first-vertex-to-image track of 77.188696439 mm. It is not a printed zero, a flange dimension or a fitted production register distance.
@@ -31,31 +33,31 @@ The patent's central d7=15.0 interval becomes 9.000 mm. The model places the iri
 
 ## Element-by-Element Analysis
 
-### L1, source unit L1: positive front meniscus
+### L1: positive front meniscus
 
 n_d = 1.6385, ν_d = 55.5. Glass: SUMITA K-SK18 coordinate equivalent used for dispersion; production melt and supplier unconfirmed. Standalone f = +163.026716 mm.
 
 The 107.0/273.3 source radii make a positive meniscus convex toward the object. Its 5.8-unit thickness becomes 3.480 mm. The first surface's stronger positive curvature supplies more positive power than the rear boundary removes. Its modeled 20.010 mm rims are a disclosed minimum nominal axial-beam floor, not half the 49 mm filter diameter.
 
-### L2, source unit L2: second positive meniscus
+### L2: second positive meniscus
 
 n_d = 1.6584, ν_d = 50.8. Glass: HOYA BACED5 coordinate equivalent used for dispersion; production melt and supplier unconfirmed. Standalone f = +174.163328 mm.
 
 The source radii 81.0/137.0 again give a positive object-facing meniscus. Its 3.120 mm scaled thickness follows a small 0.150 mm air gap. The inferred 19.430 mm equal rims preserve the nominal axial beam while retaining positive material thickness. They are not measured from a factory lens or optimized for off-axis MTF.
 
-### L3, front glass of source unit L3: plano-convex positive member
+### L3a, front glass of unit L3: plano-convex positive member
 
 n_d = 1.6700, ν_d = 47.2. Glass: HOYA BAF10 coordinate equivalent used for dispersion; production melt and supplier unconfirmed. Standalone f = +39.850746 mm.
 
 The source front radius is 44.5 and the rear is plane. This is the thickest individual glass, 14.280 mm at the declared scale. The plane S6 is not an absent surface: it changes the refractive index from 1.6700 to 1.7552, retains the correct ray-angle transformation and begins the following glass thickness. Its reduced-angle paraxial surface power and Petzval contribution are exactly zero, which does not erase its refractive or higher-order role.
 
-### L4, rear glass of source unit L3: plano-concave negative member
+### L3b, rear glass of unit L3: plano-concave negative member
 
 n_d = 1.7552, ν_d = 27.5. Glass: HOYA E-FD4 coordinate equivalent used for dispersion; production melt and supplier unconfirmed. Standalone f = −20.656780 mm.
 
-The plane entrance and strongly curved positive-radius rear form a negative plano-concave element, 3.000 mm thick on axis. Together with L3 it produces the negative central group. The source schematic shows a reduced spherical rear arc meeting a wider outer/plane rim through a shoulder. The model retains this distinction with S5/S6 semi-diameters 17.900 mm and S7 10.930 mm; the whole wider shoulder is not treated as a powered spherical cap.
+The plane entrance and strongly curved positive-radius rear form a negative plano-concave element, 3.000 mm thick on axis. Together with L3a it forms the negative central unit L3. The source schematic shows a reduced spherical rear arc meeting a wider outer/plane rim through a shoulder. The model retains this distinction with S5/S6 semi-diameters 17.900 mm and S7 10.930 mm; the whole wider shoulder is not treated as a powered spherical cap.
 
-### L5, source unit L4: negative meniscus
+### L4: negative meniscus
 
 n_d = 1.6889, ν_d = 31.1. Glass: HOYA E-FD8 coordinate equivalent used for dispersion; production melt and supplier unconfirmed. Standalone f = −184.155960 mm.
 
@@ -63,13 +65,13 @@ The literal radii are −43.1 and −61.0, not −48.1. At 0.6 scale the glass i
 
 The manufacturing discussion permits this optical unit to be made from two cemented pieces of the same optical material when useful for centering. That is not a second numerical example, a different-index eighth glass or an extra powered interface. The nominal seven-glass prescription is retained without adding that optional manufacturing partition.
 
-### L6, front glass of source unit L5: negative meniscus
+### L5a, front glass of unit L5: negative meniscus
 
 n_d = 1.5407, ν_d = 47.2. Glass: OHARA S-TIL2 coordinate equivalent used for dispersion; production melt and supplier unconfirmed. Standalone f = −79.496317 mm.
 
-The source 130.0/46.0 radii form a negative meniscus despite both signs being positive. Its 1.5-unit centre thickness becomes 0.900 mm. This thin member is cemented to L7 at S11; it is not an air-spaced singlet or an unmodeled coating layer. The source 1.5407 index is retained rather than replaced by a nearby catalog value.
+The source 130.0/46.0 radii form a negative meniscus despite both signs being positive. Its 1.5-unit centre thickness becomes 0.900 mm. This thin member is cemented to L5b at S11; it is not an air-spaced singlet or an unmodeled coating layer. The source 1.5407 index is retained rather than replaced by a nearby catalog value.
 
-### L7, rear glass of source unit L5: biconvex positive member
+### L5b, rear glass of unit L5: biconvex positive member
 
 n_d = 1.6935, ν_d = 53.4. Glass: HOYA LAC13 coordinate equivalent used for dispersion; production melt and supplier unconfirmed. Standalone f = +27.717088 mm.
 
@@ -79,7 +81,7 @@ The shared positive front radius 46.0 and negative rear radius −98.02 make the
 
 The source table labels n and v without spectral subscripts. Figure 2 explicitly distinguishes d and g curves. This supports the nominal d-line design convention used here, but it is not described as a printed n_d table heading. The model therefore uses d-line coordinates on contextual evidence, rather than a spectral subscript printed in the table.
 
-The seven printed pairs remain authoritative for d-line tracing. Catalog equivalents supply dispersion, including secondary spectrum: SUMITA K-SK18 (L1), HOYA BACED5 (L2), BAF10 (L3), E-FD4 (L4), E-FD8 (L5), OHARA S-TIL2 (L6) and HOYA LAC13 (L7). Their catalog-minus-printed (Δn_d, Δν_d) residuals are respectively (+0.00004, 0), (+0.00004, +0.06), (+0.00003, −0.01), (0, +0.03), (+0.00003, +0.06), (+0.00002, +0.027127) and (0, −0.06). These are coordinate equivalents for spectral modeling; the production melts and suppliers remain unconfirmed.
+The seven printed pairs remain authoritative for d-line tracing. Catalog equivalents supply dispersion, including secondary spectrum: SUMITA K-SK18 (L1), HOYA BACED5 (L2), BAF10 (L3a), E-FD4 (L3b), E-FD8 (L4), OHARA S-TIL2 (L5a) and HOYA LAC13 (L5b). Their catalog-minus-printed (Δn_d, Δν_d) residuals are respectively (+0.00004, 0), (+0.00004, +0.06), (+0.00003, −0.01), (0, +0.03), (+0.00003, +0.06), (+0.00002, +0.027127) and (0, −0.06). These are coordinate equivalents for spectral modeling; the production melts and suppliers remain unconfirmed.
 
 The positive crown-rich groups and stronger flint members provide a conventional chromatic power balance, without establishing modern apochromatism. Reference-line MTF can be calculated. The historical photopic diagnostic used a normal-line partial-dispersion estimate from n_d/ν_d across five wavelengths; current chromatic calculations use the catalog equivalents. Neither spectrum is a recovered factory spectrum. The historical converged curves remain model diagnostics, not measured production-lens results.
 

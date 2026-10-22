@@ -158,3 +158,77 @@ The nearest rows returned by the catalog coordinate search for the remaining unm
 
 The earlier open production-melt, iris, clear-rim, factory-prescription, filter-response and MTF questions remain
 unresolved; adopting a coordinate-equivalent dispersion curve does not establish historical glass identity.
+
+## 2026-10-22 — Second review: diagram, labels and movement
+
+Compared the local page at infinity with US 4,009,943 Figure 3 (PDF page 3, native 300 dpi, re-measured
+independently at 300 and 600 dpi), the patent text in columns 1–4 (PDF pages 5–6) and Table 2 (PDF page 8). The
+Minolta March 1981 brochure C4 section was viewed as a secondary check.
+
+### Silhouette
+
+Re-measured on Figure 3 at 18.565 px/mm (r1-to-r20 vertex span 1373 px for 73.959 mm; the vertex columns r2–r20
+fall within 5 px of prediction), reading each rim as the ink-line centre:
+
+| Component | Stored sd | Figure 3 | Ratio | Decision |
+|---|---:|---:|---:|---|
+| L3 outer rim (r5, r6) | 8 | 7.6 (7.6 top, 7.6 bottom) | 1.05 | Retained, within noise. |
+| L3 rear concave r7 | 5 | 4.9 (4.85 top, 4.98 bottom) | 1.02 | Retained. |
+| L4 (r8, r9) | 5.5 | 5.2 | 1.06 | Retained, within noise; square-cut on both. |
+| L5 filter (r10, r11) | 4 | 3.9 | 1.03 | Retained. |
+| L6 front concave r12 | 5.5 | 5.2 (both corners) | 1.06 | Retained; the bevel to the outer rim matches. |
+| L6 outer rim (r13, r14) | 6.5 | 6.84 (6.99 top, 6.69 bottom) | 0.95 | Retained. |
+| L7 (r15–r17) | 7.5 | 7.6 (7.70 top, 7.51 bottom) | 0.99 | Retained. |
+| L8 (r18–r20) | 10 | 10.46 (10.58 top, 10.34 bottom) | 0.96 | Retained. |
+
+The first pass's L1 and L2 readings (27.8/13.7 and 11.6/8.3–8.4) were confirmed. Every element agrees within
+about 6%, the drawn height order (L1 > L2 > L8 > L3 ≈ L7 > L6 > L4 > filter) is preserved, and nothing overlaps.
+No `sd` changed. The site still differs from the figure only where the renderer joins the two faces with a straight
+edge. L1 is drawn with a vertical rear annulus from the r2 bowl up to a bevelled outer rim, but the site shows one
+slope from r2 at 13.55 mm to r1 at 28 mm. L2 is drawn with a flat top before its bevel. Element 4 (L3b) is drawn
+with a flat 7.6 mm top over nearly its whole length and a short bevel down to r7, but the site draws a long wedge
+from the r6 rim to r7. Raising r7 toward the flat would cross L4's front rim (r7 at 8 mm sags to 12.27 mm behind r5
+against r8's rim at 12.02 mm), so the bevel-end value stays. The meridional trace (0–90°) shows no axial or chief
+clip. Engine half-field 90°, wide-open f/4.000, EFL 7.500016 mm and stop radius 3.736 mm are unchanged. Wide-open
+transmission is still 76.0% at 75° and 51.0% at 90°. The brochure draws the same 12/8 layout, a stop between the
+filter and the first rear doublet, and no special-glass or aspheric marks. Its r7 reaches higher on the doublet's flat
+rim than the patent's; the patent governs.
+
+### Designations, brackets and tags
+
+The patent states that its symbol L names a component, single element or doublet (column 3). Its first lens
+group ahead of the diaphragm is L1–L4, the filter is L5, and the second lens group behind it is L6–L8 (columns
+3–4). The previous sequential element names L3–L12 clashed with that notation: element L5 was the biconvex singlet,
+whereas patent L5 is the filter.
+
+| Field | Before | After |
+|---|---|---|
+| Element names 3–12 | L3, L4, L5, FILTER, L7, L8, L9, L10, L11, L12 | L3a, L3b, L4, L5, L6a, L6b, L7a, L7b, L8a, L8b |
+| Element 6 `label` | Built-in filter (patent L5; element 6) | Element 6 (Built-in Filter) |
+| `cemented` | D1, D2, D3, D4 | L3, L6, L7, L8 |
+| `groups` | FRONT 1–9, FILTER 10–11, REAR 12–20 | FIRST GROUP L1-L4 1–9, L5 FILTER 10–11, SECOND GROUP L6-L8 12–20 |
+| `doublets` | D1, D2, D3, D4 | L3, L6, L7, L8 (same surface ranges) |
+
+Elements 1, 2 and the `label` values "Element N" were already correct. The diagram's numbers 1–12 match the patent's
+N1–N12 index order, which counts the filter as 6. The header comment and the analysis headings, architecture,
+glass and rim paragraphs now use these names. Every element `type` agrees with its radius signs. No surface is
+aspheric and none is marked. The stop lies between r11 and r12, as Figure 3 and Table 2 place the diaphragm. No `apd`
+tag is set, and none is warranted: the patent text names no special glass, and the brochure marks none. No `role`
+text is authored.
+
+In the inspector with COLOR on, BACD16 (element 1), LAC8 (2, 4), PBL6Y (8), FSL3 (9), FD110 (10) and LAF3 (11)
+each show their catalog dispersion. For example, FSL3 gives nC 1.46233, nF 1.46937 and ng 1.47312. Elements 3, 5,
+6, 7 and 12 show "Abbe estimate". Table 2 gives only N/ν pairs for those; the patent gives no glass name, extra
+line index or partial dispersion anywhere.
+
+### Movement
+
+There are no `var`, zoom or focus keyframes. The movement overlay reports that the lens has no modeled focus or zoom
+group movement. The focus panel reads ∞ / "Not modeled" with the fixed-focus description. The diagram and image
+plane are identical at `focus=1`. Only the inert slider thumb moves to the right end.
+
+After the edits the surface validator reports no errors, and the image-circle check passes. Field coverage skips
+the lens as a fisheye. The builder summary is byte-identical to the summary taken before the edits.
+
+Open: the straight-edge rendering of L1's rear annulus, L2's flat top and L3b's flat-then-bevel rim remains a renderer
+limitation. Production clear apertures remain unmeasured.
