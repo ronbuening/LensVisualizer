@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from "react";
+import { memo, useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
 import type { RelationshipInsights } from "../../utils/catalog/relationshipInsights.js";
@@ -8,10 +8,21 @@ import { panelCard, toggleBtn } from "../../utils/style/styles.js";
 export interface RelationshipViewProps {
   insights: RelationshipInsights;
   theme: Theme;
-  params: URLSearchParams;
-  onParamsChange: (changes: Record<string, string | null>, replace?: boolean) => void;
   onSelectPatent: (id: string, keyboard?: boolean) => void;
 }
+
+/** Defer layout until first use, then retain the map's camera while another view is active. */
+export const RetainedMapView = memo(
+  function RetainedMapView({ active, children }: { active: boolean; children: ReactNode }) {
+    const [visited, setVisited] = useState(active);
+    useEffect(() => {
+      if (active) setVisited(true);
+    }, [active]);
+    return active || visited ? <div hidden={!active}>{children}</div> : null;
+  },
+  // Reopening supplies the latest selection and theme; hidden SVGs need no URL-driven rerenders.
+  (previous, next) => !previous.active && !next.active,
+);
 
 export const controlRow: CSSProperties = {
   display: "flex",
@@ -159,28 +170,34 @@ export function PatentEvidence({
   onSelectPatent,
   label = "Supporting patents",
 }: Pick<RelationshipViewProps, "insights" | "theme" | "onSelectPatent"> & { ids: readonly string[]; label?: string }) {
+  const [open, setOpen] = useState(false);
   return (
-    <details style={{ fontSize: "0.76rem", color: t.body, margin: "0.5rem 0" }}>
+    <details
+      onToggle={(event) => setOpen(event.currentTarget.open)}
+      style={{ fontSize: "0.76rem", color: t.body, margin: "0.5rem 0" }}
+    >
       <summary style={{ cursor: "pointer", padding: "8px 0" }}>
         {label} ({ids.length})
       </summary>
-      <ul style={{ paddingLeft: "1.2rem", margin: 0, maxHeight: "18rem", overflowY: "auto" }}>
-        {ids.map((id) => {
-          const patent = insights.patents.get(id);
-          return patent ? (
-            <li key={id}>
-              <button
-                type="button"
-                style={{ ...viewButton(t), border: 0, background: "none", color: t.descLinkColor, textAlign: "left" }}
-                onClick={(event) => onSelectPatent(id, event.detail === 0)}
-              >
-                {patent.patentNumber}
-                {patent.patentYear ? ` · ${patent.patentYear}` : " · Year unknown"}
-              </button>
-            </li>
-          ) : null;
-        })}
-      </ul>
+      {open && (
+        <ul style={{ paddingLeft: "1.2rem", margin: 0, maxHeight: "18rem", overflowY: "auto" }}>
+          {ids.map((id) => {
+            const patent = insights.patents.get(id);
+            return patent ? (
+              <li key={id}>
+                <button
+                  type="button"
+                  style={{ ...viewButton(t), border: 0, background: "none", color: t.descLinkColor, textAlign: "left" }}
+                  onClick={(event) => onSelectPatent(id, event.detail === 0)}
+                >
+                  {patent.patentNumber}
+                  {patent.patentYear ? ` · ${patent.patentYear}` : " · Year unknown"}
+                </button>
+              </li>
+            ) : null;
+          })}
+        </ul>
+      )}
     </details>
   );
 }
@@ -279,14 +296,4 @@ export const EVIDENCE_NOTE =
 
 export function EvidenceNote({ theme: t }: { theme: Theme }) {
   return <p style={{ color: t.muted, fontSize: "0.72rem", lineHeight: 1.6 }}>{EVIDENCE_NOTE}</p>;
-}
-
-export function defaultCompanyIds(insights: RelationshipInsights): string[] {
-  const counts = new Map<string, number>();
-  for (const record of insights.inventors)
-    for (const link of record.affiliations) counts.set(link.assigneeId, (counts.get(link.assigneeId) ?? 0) + 1);
-  return [...insights.assignees]
-    .sort((a, b) => (counts.get(b.id) ?? 0) - (counts.get(a.id) ?? 0) || a.name.localeCompare(b.name))
-    .slice(0, 6)
-    .map((company) => company.id);
 }

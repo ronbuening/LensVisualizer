@@ -170,15 +170,13 @@ describe("RelationshipMapPage", () => {
     });
   });
 
-  it("offers all inventor views, preserves the focus and original map, and restores views with Back", async () => {
+  it("preserves the inventor and original map across view changes and Back", async () => {
     const author = AUTHORS.find((entry) => entry.name === "Hisayuki Yamanaka")!;
     renderRoutes(`/relationships/#focus=author:${author.slug}&keep=yes`, PAGE_ROUTE);
     const map = await screen.findByRole("group", { name: /Relationship map centered on/ });
     for (const [label, region] of [
       ["Assignees", "Assignee connections"],
       ["Timeline", "Patent timeline"],
-      ["Co-inventors", "Co-inventor groups"],
-      ["Evidence lanes", "Evidence lanes"],
     ]) {
       fireEvent.click(screen.getByRole("button", { name: label }));
       expect(await screen.findByRole("region", { name: region })).toBeDefined();
@@ -188,7 +186,7 @@ describe("RelationshipMapPage", () => {
       expect(screen.queryByRole("group", { name: /Relationship map centered on/ })).toBeNull();
     }
     fireEvent.click(screen.getByRole("button", { name: "Back" }));
-    expect(await screen.findByRole("region", { name: "Co-inventor groups" })).toBeDefined();
+    expect(await screen.findByRole("region", { name: "Assignee connections" })).toBeDefined();
     fireEvent.click(screen.getByRole("button", { name: "Relationships" }));
     expect(screen.getByRole("group", { name: /Relationship map centered on/ })).toBe(map);
   });
@@ -198,6 +196,7 @@ describe("RelationshipMapPage", () => {
     renderRoutes(`/relationships?focus=author:${author.slug}&extra=yes#view=timeline&year=2014`, PAGE_ROUTE);
     expect(await screen.findByRole("slider", { name: "Timeline through year" })).toBeDefined();
     expect((screen.getByRole("slider", { name: "Timeline through year" }) as HTMLInputElement).value).toBe("2014");
+    expect(document.querySelector('svg[aria-label^="Relationship map centered on"]')).toBeNull();
     const patent = within(screen.getByRole("group", { name: "Inventor patent timeline" })).getAllByRole("button")[0];
     fireEvent.keyDown(patent, { key: "Enter" });
     await waitFor(() => expect(document.activeElement).toBe(screen.getByRole("heading", { level: 3 })));

@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useRelationshipViewParams } from "./useRelationshipViewParams.js";
 import { truncateLabel } from "./layout.js";
 import {
   ChartButton,
@@ -16,15 +17,14 @@ import {
 export default function RelationshipEvidenceLanes(
   props: RelationshipViewProps & { inventorId?: string; selectedInventorId?: string | null },
 ) {
-  const { insights, theme: t, params, onParamsChange, inventorId, selectedInventorId } = props;
+  const { insights, theme: t, inventorId, selectedInventorId } = props;
+  const { params, onParamsChange } = useRelationshipViewParams();
   const candidates = useMemo(
     () => [...insights.inventors].sort((a, b) => a.inventor.name.localeCompare(b.inventor.name)),
     [insights],
   );
   const record =
-    insights.inventors.find(
-      (entry) => entry.inventor.id === (inventorId ?? params.get("inventor") ?? selectedInventorId),
-    ) ??
+    insights.inventorById.get(inventorId ?? params.get("inventor") ?? selectedInventorId ?? "") ??
     insights.inventors.find((entry) => entry.affiliations.length > 1) ??
     insights.inventors[0];
   if (!record)
@@ -35,13 +35,11 @@ export default function RelationshipEvidenceLanes(
   const right =
     links.find((link) => link.assigneeId === params.get("right") && link.assigneeId !== left?.assigneeId) ??
     links.find((link) => link !== left);
-  const name = (id?: string) => insights.assignees.find((company) => company.id === id)?.name ?? "No named assignee";
+  const name = (id?: string) => insights.assigneeById.get(id ?? "")?.name ?? "No named assignee";
   const joint = left?.patentIds.filter((id) => right?.patentIds.includes(id)) ?? [];
   const leftOnly = left?.patentIds.filter((id) => !joint.includes(id)) ?? [];
   const rightOnly = right?.patentIds.filter((id) => !joint.includes(id)) ?? [];
-  const unassigned = (insights.inventorPatents.get(record.inventor.id) ?? []).filter(
-    (id) => !links.some((link) => link.patentIds.includes(id)),
-  );
+  const unassigned = insights.unassignedPatents.get(record.inventor.id) ?? [];
   const rows = Math.max(1, Math.min(6, Math.max(leftOnly.length, rightOnly.length)));
   const midY = 100 + ((rows - 1) * 66) / 2;
   const jointY = 100 + rows * 66;

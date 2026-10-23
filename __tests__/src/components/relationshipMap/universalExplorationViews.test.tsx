@@ -5,11 +5,12 @@ import { useState } from "react";
 import UniversalConnectionTrace from "../../../../src/components/relationshipMap/UniversalConnectionTrace.js";
 import InventorAffiliationMap from "../../../../src/components/relationshipMap/InventorAffiliationMap.js";
 import { buildUniversalRelationshipGraph } from "../../../../src/utils/catalog/universalRelationshipGraph.js";
-import { buildInventorAffiliations } from "../../../../src/utils/catalog/inventorAffiliations.js";
+import { buildRelationshipInsights } from "../../../../src/utils/catalog/relationshipInsights.js";
 import themes from "../../../../src/utils/theme/themes.js";
 
 afterEach(cleanup);
 const graph = buildUniversalRelationshipGraph();
+const network = buildRelationshipInsights(graph);
 
 describe("universal exploration views", () => {
   it("selects trace endpoints through keyboard search and opens the supporting patent", () => {
@@ -50,11 +51,18 @@ describe("universal exploration views", () => {
     expect(screen.queryByRole("group", { name: "Connection path" })).toBeNull();
   });
 
-  it("shows counts and patent evidence for an inventor and retains other ties when filtering by organization", () => {
-    const network = buildInventorAffiliations(graph);
+  it("shows counts and patent evidence for an inventor and retains other ties when filtering by organization", async () => {
     const inventor = network.inventors.find((record) => record.affiliations.length > 1)!;
     const select = vi.fn();
-    render(<InventorAffiliationMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={select} />);
+    render(
+      <InventorAffiliationMap
+        graph={graph}
+        network={network}
+        theme={themes.dark}
+        selectedNodeId={null}
+        onSelectNode={select}
+      />,
+    );
     const map = screen.getByRole("group", { name: "Inventor affiliation map" });
     const inventorNode = within(map).getByRole("button", { name: `${inventor.inventor.name}, inventor` });
     fireEvent.keyDown(inventorNode, { key: "Enter" });
@@ -80,16 +88,17 @@ describe("universal exploration views", () => {
       .getAllByText(/Supporting patents/)[0]
       .closest("details")!;
     fireEvent.click(details.querySelector("summary")!);
-    const supportingPatent = within(details).getAllByRole("button")[0];
+    const supportingPatent = (await within(details).findAllByRole("button"))[0];
     fireEvent.click(supportingPatent);
     expect(select).toHaveBeenLastCalledWith(inventor.affiliations[0].patentIds[0], true);
   });
 
   it("offers to reveal a selected single-assignee inventor and reports unassigned inventors", () => {
-    const inventor = buildInventorAffiliations(graph).inventors.find((record) => record.affiliations.length === 1)!;
+    const inventor = network.inventors.find((record) => record.affiliations.length === 1)!;
     render(
       <InventorAffiliationMap
         graph={graph}
+        network={network}
         theme={themes.light}
         selectedNodeId={inventor.inventor.id}
         onSelectNode={vi.fn()}

@@ -1,16 +1,18 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { Theme } from "../../types/theme.js";
 import type { UniversalRelationshipGraph } from "../../utils/catalog/universalRelationshipGraph.js";
-import { buildInventorAffiliations } from "../../utils/catalog/inventorAffiliations.js";
+import type { RelationshipInsights } from "../../utils/catalog/relationshipInsights.js";
 import { panelCard, searchInput, toggleBtn } from "../../utils/style/styles.js";
 import { pluralize } from "../../utils/text.js";
 import useViewBoxZoom from "../hooks/useViewBoxZoom.js";
 import useSvgViewport from "../hooks/useSvgViewport.js";
 import { layoutInventorAffiliations } from "./inventorAffiliationLayout.js";
 import { truncateLabel } from "./layout.js";
+import { PatentEvidence } from "./RelationshipViewShared.js";
 
 interface InventorAffiliationMapProps {
   graph: UniversalRelationshipGraph;
+  network: RelationshipInsights;
   theme: Theme;
   selectedNodeId: string | null;
   onSelectNode: (nodeId: string, keyboard?: boolean) => void;
@@ -19,12 +21,12 @@ interface InventorAffiliationMapProps {
 
 export default function InventorAffiliationMap({
   graph,
+  network,
   theme: t,
   selectedNodeId,
   onSelectNode,
   focusRequest,
 }: InventorAffiliationMapProps) {
-  const network = useMemo(() => buildInventorAffiliations(graph), [graph]);
   const nodes = useMemo(() => new Map(graph.nodes.map((node) => [node.id, node])), [graph.nodes]);
   const [includeSingle, setIncludeSingle] = useState(false);
   const [assigneeFilter, setAssigneeFilter] = useState("");
@@ -336,28 +338,7 @@ export default function InventorAffiliationMap({
                   style={{ width: `${link.share * 100}%`, height: "100%", borderRadius: 3, background: t.rayCool }}
                 />
               </div>
-              <details style={{ color: t.body }}>
-                <summary style={{ cursor: "pointer", padding: "5px 0" }}>
-                  Supporting patents ({link.patentIds.length})
-                </summary>
-                <ul style={{ margin: "0.25rem 0", paddingLeft: "1.25rem", maxHeight: "16rem", overflowY: "auto" }}>
-                  {link.patentIds.map((id) => {
-                    const patent = nodes.get(id)!;
-                    return (
-                      <li key={id}>
-                        <button
-                          type="button"
-                          onClick={(event) => onSelectNode(id, event.detail === 0)}
-                          style={nodeButtonStyle}
-                        >
-                          {patent.name}
-                          {patent.kind === "patent" && patent.patent.patentYear ? ` (${patent.patent.patentYear})` : ""}
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </details>
+              <PatentEvidence insights={network} theme={t} ids={link.patentIds} onSelectPatent={onSelectNode} />
             </div>
           ))}
         </section>

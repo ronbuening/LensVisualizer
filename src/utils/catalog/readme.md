@@ -9,7 +9,7 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 ```mermaid
 flowchart LR
   subgraph n_src_utils_catalog["src/utils/catalog"]
-    n_src_utils_catalog_TypeScript_modules["TypeScript modules (27)"]
+    n_src_utils_catalog_TypeScript_modules["TypeScript modules (28)"]
   end
   n_external_src_types["src/types"]
   n_external_src_generated["src/generated"]
@@ -35,9 +35,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 27
+- Direct source files: 28
 - Direct subfolders: 0
-- Main outbound areas: same folder (56), src/types (12), src/generated (7), src/optics/buildLens.ts (6), src/utils/seo (4), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, +3 more
+- Main outbound areas: same folder (58), src/types (12), src/generated (7), src/optics/buildLens.ts (6), src/utils/seo (4), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, +3 more
 - External consumers: src/benchmarks, src/comparison, src/components/content, src/components/controls, src/components/display, src/components/homepage, src/components/hooks, src/components/layout, +35 more
 
 ## Files
@@ -52,7 +52,7 @@ flowchart LR
 | `collation.ts` | Collation helper module | none | same folder (13), src/components/relationshipMap (4), src/pages/lensIndex (3), src/pages/AuthorsIndexPage.tsx, src/pages/MakersIndexPage.tsx, +3 more | catalogCollator |
 | `groupByNamedParty.ts` | Group By Named Party helper module | same folder | same folder (2), src/pages/lensIndex, src/pages/teleconverterIndex.ts | NamedPartyGroup, groupByNamedParty |
 | `imageFormatDetails.ts` | Image Format Details helper module | same folder | src/pages/FormatPage.tsx, src/pages/FormatsIndexPage.tsx | ImageFormatDetails, IMAGE_FORMAT_DETAILS, getImageFormatDetails |
-| `inventorAffiliations.ts` | Inventor Affiliations helper module | same folder (2) | src/components/relationshipMap (3), same folder | InventorAffiliation, InventorAffiliationRecord, InventorAffiliationNetwork, buildInventorAffiliations |
+| `inventorAffiliations.ts` | Inventor Affiliations helper module | same folder (2) | src/components/relationshipMap (2), same folder | InventorAffiliation, InventorAffiliationRecord, InventorAffiliationNetwork, buildInventorAffiliations |
 | `lensCatalog.ts` | Lens Catalog helper module | src/optics/buildLens.ts (2), src/types (2), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, same folder, +1 more | src/components/layout (4), src/utils/state (3), same folder, src/benchmarks, src/components/hooks, +2 more | OpticalConfigurationOption, LENS_CATALOG, lensNameForKey, ALL_CATALOG_KEYS, CATALOG_KEYS, COMPARISON_CATALOG_KEYS, DEBUG_CATALOG_KEYS, isDebugLensKey, +6 more |
 | `lensMetadata.ts` | Lens Metadata helper module | same folder (2), src/generated (2), src/comparison, src/optics/buildLens.ts, src/utils/seo | same folder, src/components/homepage, src/components/layout, src/components/SEOHead.tsx, src/pages/ArticlePage.tsx, +24 more | MakerInfo, deriveMaker, allMakerSlugs, makerDisplayName, lensPageTitle, lensPageDescription, lensCanonicalURL, makerCanonicalURL, +17 more |
 | `lensPatentMetadata.ts` | Lens Patent Metadata helper module | src/optics/buildLens.ts | same folder, src/components/controls | LensPatentAttribution, lensPatentAttribution, lensDisplaySubtitle, lensPatentReference |
@@ -62,12 +62,13 @@ flowchart LR
 | `mountDetails.ts` | Mount Details helper module | same folder | src/pages/MountPage.tsx, src/pages/MountsIndexPage.tsx | MountDetails, MOUNT_DETAILS, getMountDetails |
 | `patentCatalog.ts` | Patent Catalog helper module | same folder (8), src/types | src/pages/PatentsIndexPage.tsx | aggregatePatentRecords, espacenetPatentUrl, isPatentPublicationNumber, patentJurisdiction, PatentJurisdiction, PatentRecord, PatentLens, PatentAssigneeGroup, +6 more |
 | `patentRecords.ts` | Patent Records helper module | same folder (2), src/types | same folder (3), src/components/content, src/optics/prescription | PatentJurisdiction, PatentRecord, AggregatePatentOptions, isPatentPublicationNumber, docdbPublicationNumber, espacenetPatentUrl, patentJurisdiction, aggregatePatentRecords |
+| `relationshipCatalog.ts` | Relationship Catalog helper module | same folder (2) | src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | getRelationshipCatalog |
 | `relationshipGraph.ts` | Relationship Graph helper module | same folder (3), src/types | src/components/relationshipMap (4), same folder (2), src/pages/RelationshipMapPage.tsx | PartyRef, GraphPatentNode, GraphPartyNode, RelationshipGraph, resolveFocusParam, buildRelationshipGraph |
-| `relationshipInsights.ts` | Relationship Insights helper module | same folder (4) | src/components/relationshipMap (3), src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | RelationshipInsights, buildRelationshipInsights, companyBridge, companyConnections, inventorCollaborators |
+| `relationshipInsights.ts` | Relationship Insights helper module | same folder (4) | src/components/relationshipMap (4), same folder | RelationshipInsights, buildRelationshipInsights, companyBridge, companyConnections, inventorCollaborators |
 | `searchCatalog.ts` | Search Catalog helper module | same folder (8), src/utils/seo | src/components/search (2), same folder, src/components/relationshipMap | LensNameSearchMatch, TeleconverterSearchMatch, PatentSearchMatch, AuthorSearchMatch, CatalogSearchResults, CatalogSearchMatch, normalizeSearchText, normalizeLensSearchText, +3 more |
 | `slugText.ts` | Slug Text helper module | none | same folder, src/pages/lensIndex | transliterateCatalogText, stableHash |
 | `teleconverterCatalog.ts` | Teleconverter Catalog helper module | same folder (2), src/optics/buildLens.ts (2), glob:../../lens-data/**/*.teleconverter.ts, src/optics/teleconverter.ts, src/types | src/components/layout (5), src/comparison (2), src/utils/state (2), src/components/controls, src/components/hooks | TeleconverterOption, TELECONVERTER_CATALOG, ALL_TELECONVERTER_KEYS, TELECONVERTER_KEYS, teleconverterOptionsForLens, resolveTeleconverterKey, resolveLensSystemData, lensSystemKey |
 | `teleconverterSummaries.ts` | Teleconverter Summaries helper module | same folder, src/generated, src/utils/seo | same folder, src/components/homepage, src/pages/lensIndex, src/pages/LensPage.tsx, src/pages/teleconverterIndex.ts, +2 more | TeleconverterSummary, ALL_TELECONVERTER_SUMMARY_LIST, TELECONVERTER_SUMMARIES, TELECONVERTER_SUMMARY_KEYS, TELECONVERTER_SUMMARY_LIST, teleconverterSummariesForLens, teleconverterLensPath |
 | `universalConnectionPaths.ts` | Universal Connection Paths helper module | same folder | src/components/relationshipMap | UniversalConnectionPath, UniversalConnectionResult, findUniversalConnectionPaths, universalConnectionDescription |
-| `universalRelationshipGraph.ts` | Universal Relationship Graph helper module | same folder (7), src/types | src/components/relationshipMap (8), same folder (4), src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | UniversalNodeKind, UniversalPartyNode, UniversalPatentNode, UniversalCorporateNode, UniversalMakerNode, UniversalLensNode, UniversalRelationshipNode, UniversalEdgeKind, +7 more |
+| `universalRelationshipGraph.ts` | Universal Relationship Graph helper module | same folder (7), src/types | src/components/relationshipMap (8), same folder (5) | UniversalNodeKind, UniversalPartyNode, UniversalPatentNode, UniversalCorporateNode, UniversalMakerNode, UniversalLensNode, UniversalRelationshipNode, UniversalEdgeKind, +7 more |
 | `universalRelationshipSearch.ts` | Universal Relationship Search helper module | same folder (3) | src/components/relationshipMap | buildUniversalSearchIndex, searchUniversalNodes |

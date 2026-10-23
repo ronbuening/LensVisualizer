@@ -20,10 +20,10 @@ import PanelErrorBoundary from "../components/errors/PanelErrorBoundary.js";
 import RelationshipMap from "../components/relationshipMap/RelationshipMap.js";
 import RelationshipEntityPicker from "../components/relationshipMap/RelationshipEntityPicker.js";
 import InventorRelationshipViews from "../components/relationshipMap/InventorRelationshipViews.js";
-import { ViewChoices } from "../components/relationshipMap/RelationshipViewShared.js";
-import { buildRelationshipInsights } from "../utils/catalog/relationshipInsights.js";
-import { buildUniversalRelationshipGraph } from "../utils/catalog/universalRelationshipGraph.js";
-import { INVENTOR_VIEWS, inventorViewFromHash, relationshipViewHash } from "../utils/state/relationshipViewUrl.js";
+import { RetainedMapView, ViewChoices } from "../components/relationshipMap/RelationshipViewShared.js";
+import { getRelationshipCatalog } from "../utils/catalog/relationshipCatalog.js";
+import { useRelationshipViewParams } from "../components/relationshipMap/useRelationshipViewParams.js";
+import { INVENTOR_VIEWS, inventorViewFromHash } from "../utils/state/relationshipViewUrl.js";
 import PatentDetailCard from "../components/relationshipMap/PatentDetailCard.js";
 import { AUTHORS } from "../utils/catalog/authorCatalog.js";
 import { ASSIGNEES } from "../utils/catalog/assigneeCatalog.js";
@@ -39,9 +39,6 @@ import { panelCard } from "../utils/style/styles.js";
 import { universalMapHash } from "../utils/state/universalMapUrl.js";
 
 const TOP_COUNT = 12;
-const INVENTOR_INSIGHTS = buildRelationshipInsights(
-  buildUniversalRelationshipGraph({ includeCorporateRelationships: false }),
-);
 
 /** Top-N entities of an index by patent count, then name. */
 function topByPatents<T extends { name: string; slug: string; patentCount: number }>(index: T[]): T[] {
@@ -82,15 +79,7 @@ export default function RelationshipMapPage() {
     focusPatentDetails.current = false;
   }, [patentSelection]);
   const view = focus?.role === "author" ? inventorViewFromHash(location.hash) : "relationships";
-  const viewParams = new URLSearchParams(location.hash.replace(/^#/, ""));
-  const changeViewParams = (changes: Record<string, string | null>, replace = false) => {
-    const hash = relationshipViewHash(location.hash, changes);
-    if (hash !== location.hash)
-      void navigate(
-        { pathname: location.pathname, search: location.search, hash },
-        { preventScrollReset: true, replace },
-      );
-  };
+  const { onParamsChange } = useRelationshipViewParams();
 
   useEffect(() => {
     if (!mounted || hashFocus || !resolveFocusParam(legacyQueryFocus)) return;
@@ -125,7 +114,7 @@ export default function RelationshipMapPage() {
   const selectedPatent =
     graph && selectedPatentId
       ? (graph.patents.find((p) => p.id === selectedPatentId) ??
-        (focus?.role === "author" ? INVENTOR_INSIGHTS.patents.get(selectedPatentId) : undefined))
+        (focus?.role === "author" ? getRelationshipCatalog().insights.patents.get(selectedPatentId) : undefined))
       : undefined;
 
   return (
@@ -195,14 +184,13 @@ export default function RelationshipMapPage() {
                   <ViewChoices
                     views={INVENTOR_VIEWS}
                     value={view}
-                    onChange={(next) => changeViewParams({ view: next === "relationships" ? null : next })}
+                    onChange={(next) => onParamsChange({ view: next === "relationships" ? null : next })}
                     theme={t}
                     label="Inventor relationship map views"
                   />
                 )}
-                <div hidden={view !== "relationships"}>
+                <RetainedMapView key={graph.center.id} active={view === "relationships"}>
                   <RelationshipMap
-                    key={graph.center.id}
                     graph={graph}
                     theme={t}
                     selectedPatentId={selectedPatentId}
@@ -210,16 +198,14 @@ export default function RelationshipMapPage() {
                     onFocusParty={setFocusParty}
                     active={view === "relationships"}
                   />
-                </div>
+                </RetainedMapView>
                 {focus.role === "author" && view !== "relationships" && (
                   <InventorRelationshipViews
                     key={graph.center.id}
                     view={view}
                     inventorId={graph.center.id}
-                    insights={INVENTOR_INSIGHTS}
+                    insights={getRelationshipCatalog().insights}
                     theme={t}
-                    params={viewParams}
-                    onParamsChange={changeViewParams}
                     onSelectPatent={inspectPatent}
                   />
                 )}

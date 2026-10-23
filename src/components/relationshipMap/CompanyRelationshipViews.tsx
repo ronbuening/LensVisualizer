@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { companyBridge, companyConnections } from "../../utils/catalog/relationshipInsights.js";
+import { useRelationshipViewParams } from "./useRelationshipViewParams.js";
+import { companyBridge } from "../../utils/catalog/relationshipInsights.js";
 import { catalogCollator } from "../../utils/catalog/collation.js";
 import { truncateLabel } from "./layout.js";
 import { companyChordLayout } from "./companyChordLayout.js";
@@ -8,7 +9,6 @@ import {
   ChartFrame,
   CompanySelect,
   controlRow,
-  defaultCompanyIds,
   EvidenceNote,
   InventorLink,
   PatentEvidence,
@@ -21,7 +21,8 @@ import {
 export type CompanyRelationshipView = "bridge" | "matrix" | "chords";
 
 function CompanyFilter(props: RelationshipViewProps & { selected: string[] }) {
-  const { theme: t, insights, selected, onParamsChange } = props;
+  const { theme: t, insights, selected } = props;
+  const { onParamsChange } = useRelationshipViewParams();
   return (
     <details style={{ color: t.body, fontSize: "0.78rem", margin: "1rem 0" }}>
       <summary style={{ cursor: "pointer", padding: "8px 0" }}>Choose assignees ({selected.length}/8)</summary>
@@ -65,27 +66,24 @@ function CompanyFilter(props: RelationshipViewProps & { selected: string[] }) {
   );
 }
 
-function selectedCompanies(props: RelationshipViewProps) {
-  const { insights, params } = props;
-  const known = new Set(insights.assignees.map((company) => company.id));
-  return params.has("companies")
-    ? [...new Set(params.get("companies")!.split(","))].filter((id) => known.has(id)).slice(0, 8)
-    : defaultCompanyIds(insights);
+function useSelectedCompanies(insights: RelationshipViewProps["insights"], params: URLSearchParams) {
+  const selected = params.get("companies");
+  return useMemo(
+    () =>
+      selected === null
+        ? insights.assigneesByInventorCount.slice(0, 6)
+        : [...new Set(selected.split(","))].filter((id) => insights.assigneeById.has(id)).slice(0, 8),
+    [insights, selected],
+  );
 }
 
 function CompanyBridge(props: RelationshipViewProps) {
-  const { insights, theme: t, params, onParamsChange } = props;
-  const defaults = useMemo(
-    () =>
-      companyConnections(
-        insights,
-        insights.assignees.map((company) => company.id),
-      )[0],
-    [insights],
-  );
+  const { insights, theme: t } = props;
+  const { params, onParamsChange } = useRelationshipViewParams();
+  const defaults = insights.companyPairs[0];
   const left =
-    insights.assignees.find((company) => company.id === params.get("left")) ??
-    insights.assignees.find((company) => company.id === defaults?.left) ??
+    insights.assigneeById.get(params.get("left") ?? "") ??
+    insights.assigneeById.get(defaults?.left ?? "") ??
     insights.assignees[0];
   const right =
     insights.assignees.find((company) => company.id === params.get("right") && company.id !== left?.id) ??
@@ -246,8 +244,8 @@ function CompanyBridge(props: RelationshipViewProps) {
                 {record.record.affiliations.map((link) => (
                   <div key={link.assigneeId}>
                     <strong style={{ color: t.title, fontSize: "0.8rem" }}>
-                      {insights.assignees.find((company) => company.id === link.assigneeId)?.name} ·{" "}
-                      {link.patentIds.length} ({Math.round(link.share * 100)}%)
+                      {insights.assigneeById.get(link.assigneeId)?.name} · {link.patentIds.length} (
+                      {Math.round(link.share * 100)}%)
                     </strong>
                     <PatentEvidence {...props} ids={link.patentIds} />
                   </div>
@@ -271,43 +269,49 @@ function CompanyBridge(props: RelationshipViewProps) {
 }
 
 function AffiliationMatrix(props: RelationshipViewProps) {
-  const { insights, theme: t, params, onParamsChange } = props;
-  const ids = selectedCompanies(props);
-  const companies = ids.map((id) => insights.assignees.find((company) => company.id === id)!);
+  const { insights, theme: t } = props;
+  const { params, onParamsChange } = useRelationshipViewParams();
+  const ids = useSelectedCompanies(insights, params);
+  const companies = ids.map((id) => insights.assigneeById.get(id)!);
   const sort = ["connections", "name", "assignee"].includes(params.get("sort") ?? "")
     ? params.get("sort")!
     : "connections";
   const percent = params.get("measure") === "share";
   const query = (params.get("q") ?? "").toLocaleLowerCase().trim();
-  const records = insights.inventors
-    .filter(
-      (record) =>
-        (params.get("singles") === "1" || record.affiliations.length > 1) &&
-        record.inventor.name.toLocaleLowerCase().includes(query) &&
-        record.affiliations.some((link) => ids.includes(link.assigneeId)),
-    )
-    .sort((a, b) => {
-      const weight = (record: typeof a) =>
-        record.affiliations
-          .filter((link) => ids.includes(link.assigneeId))
-          .reduce((sum, link) => sum + link.patentIds.length, 0);
-      if (sort === "assignee")
-        return (
-          catalogCollator.compare(a.affiliations[0]?.assigneeId ?? "", b.affiliations[0]?.assigneeId ?? "") ||
-          weight(b) - weight(a) ||
-          catalogCollator.compare(a.inventor.name, b.inventor.name)
-        );
-      return (sort === "name" ? 0 : weight(b) - weight(a)) || catalogCollator.compare(a.inventor.name, b.inventor.name);
+  const includeSingle = params.get("singles") === "1";
+  const { records, max } = useMemo(() => {
+    let max = 1;
+    const records = insights.inventors.flatMap((record) => {
+      if (
+        (!includeSingle && record.affiliations.length < 2) ||
+        !record.inventor.name.toLocaleLowerCase().includes(query)
+      )
+        return [];
+      const cells = ids.map((id) => record.affiliations.find((link) => link.assigneeId === id));
+      let weight = 0;
+      for (const link of cells)
+        if (link) {
+          weight += link.patentIds.length;
+          max = Math.max(max, link.patentIds.length);
+        }
+      return weight ? [{ record, cells, weight }] : [];
     });
+    records.sort(
+      (a, b) =>
+        (sort === "assignee"
+          ? catalogCollator.compare(
+              a.record.affiliations[0]?.assigneeId ?? "",
+              b.record.affiliations[0]?.assigneeId ?? "",
+            )
+          : 0) ||
+        (sort === "name" ? 0 : b.weight - a.weight) ||
+        catalogCollator.compare(a.record.inventor.name, b.record.inventor.name),
+    );
+    return { records, max };
+  }, [insights, ids, includeSingle, query, sort]);
   const pages = Math.max(1, Math.ceil(records.length / 25));
   const page = Math.max(0, Math.min(pages - 1, Math.floor(Number(params.get("page")) || 0)));
-  const max = Math.max(
-    1,
-    ...records.flatMap((record) =>
-      record.affiliations.filter((link) => ids.includes(link.assigneeId)).map((link) => link.patentIds.length),
-    ),
-  );
-  const selected = records.find((record) => record.inventor.id === params.get("inventor"));
+  const selected = records.find(({ record }) => record.inventor.id === params.get("inventor"))?.record;
   const selectedLink = selected?.affiliations.find((link) => link.assigneeId === params.get("cell"));
   return (
     <ViewPanel
@@ -400,13 +404,13 @@ function AffiliationMatrix(props: RelationshipViewProps) {
               </tr>
             </thead>
             <tbody>
-              {records.slice(page * 25, page * 25 + 25).map((record) => (
+              {records.slice(page * 25, page * 25 + 25).map(({ record, cells }) => (
                 <tr key={record.inventor.id}>
                   <th scope="row" style={{ textAlign: "left", fontWeight: 400, padding: "8px 4px" }}>
                     <InventorLink inventor={record.inventor} theme={t} />
                   </th>
-                  {companies.map((company) => {
-                    const link = record.affiliations.find((entry) => entry.assigneeId === company.id);
+                  {companies.map((company, index) => {
+                    const link = cells[index];
                     const value = percent ? Math.round((link?.share ?? 0) * 100) : (link?.patentIds.length ?? 0);
                     return (
                       <td key={company.id} style={{ textAlign: "center", padding: 0, background: t.panelBg }}>
@@ -476,7 +480,7 @@ function AffiliationMatrix(props: RelationshipViewProps) {
         <section aria-label="Matrix cell evidence" style={{ marginTop: 16 }}>
           <h3 style={{ fontSize: "0.9rem", color: t.title }}>
             <InventorLink inventor={selected.inventor} theme={t} /> ·{" "}
-            {insights.assignees.find((company) => company.id === selectedLink.assigneeId)?.name}
+            {insights.assigneeById.get(selectedLink.assigneeId)?.name}
           </h3>
           <p style={{ color: t.body, fontSize: "0.78rem" }}>
             {selectedLink.patentIds.length} of {selected.assignedPatentCount} assigned patents (
@@ -491,15 +495,22 @@ function AffiliationMatrix(props: RelationshipViewProps) {
 }
 
 function CompanyChords(props: RelationshipViewProps) {
-  const { insights, theme: t, params, onParamsChange } = props;
-  const ids = selectedCompanies(props);
+  const { insights, theme: t } = props;
+  const { params, onParamsChange } = useRelationshipViewParams();
+  const ids = useSelectedCompanies(insights, params);
   const minimum = [1, 2, 3, 5, 10, 20, 50].includes(Number(params.get("minimum"))) ? Number(params.get("minimum")) : 1;
-  const pairs = companyConnections(insights, ids).filter((pair) => pair.inventorIds.length >= minimum);
-  const layout = companyChordLayout(ids, pairs);
+  const pairs = useMemo(
+    () =>
+      insights.companyPairs.filter(
+        (pair) => ids.includes(pair.left) && ids.includes(pair.right) && pair.inventorIds.length >= minimum,
+      ),
+    [insights, ids, minimum],
+  );
+  const layout = useMemo(() => companyChordLayout(ids, pairs), [ids, pairs]);
   const [hover, setHover] = useState<string | null>(null);
   const [isolated, setIsolated] = useState<string | null>(null);
   const emphasis = hover ?? (ids.includes(isolated ?? "") ? isolated : null);
-  const name = (id: string) => insights.assignees.find((company) => company.id === id)?.name ?? id;
+  const name = (id: string) => insights.assigneeById.get(id)?.name ?? id;
   const selected = pairs.find(
     (pair) =>
       (pair.left === params.get("left") && pair.right === params.get("right")) ||
@@ -644,7 +655,7 @@ function CompanyChords(props: RelationshipViewProps) {
             {selected.inventorIds.map((id) => (
               <li key={id}>
                 <InventorLink
-                  inventor={insights.inventors.find((record) => record.inventor.id === id)!.inventor}
+                  inventor={insights.inventorById.get(id)!.inventor}
                   theme={t}
                   view="evidence"
                   left={selected.left}

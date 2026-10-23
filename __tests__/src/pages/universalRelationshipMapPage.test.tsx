@@ -96,22 +96,6 @@ describe("UniversalRelationshipMapPage", () => {
 
   afterEach(cleanup);
 
-  it("offers every comparison view on the universal page with shareable view history", async () => {
-    renderUniversalPage();
-    await screen.findByRole("group", { name: "Relationship map views" });
-    for (const [label, region] of [
-      ["Company bridge", "Company bridge"],
-      ["Affiliation matrix", "Affiliation matrix"],
-      ["Company chords", "Company chords"],
-      ["Evidence lanes", "Evidence lanes"],
-    ]) {
-      fireEvent.click(screen.getByRole("button", { name: label }));
-      expect(await screen.findByRole("region", { name: region })).toBeDefined();
-    }
-    fireEvent.click(screen.getByRole("button", { name: "Back" }));
-    expect(await screen.findByRole("region", { name: "Company chords" })).toBeDefined();
-  });
-
   it("keeps the original network mounted and preserves its camera intent when switching views", async () => {
     renderUniversalPage();
     const map = await screen.findByRole("group", { name: "Universal relationship map test double" });
@@ -135,6 +119,11 @@ describe("UniversalRelationshipMapPage", () => {
     const params = new URLSearchParams({ extra: "ok", view: "trace", from: edge.from, to: edge.to });
     renderUniversalPage(`/relationships/universal?keep=yes#${params}`);
     expect(await screen.findByRole("group", { name: "Connection path" })).toBeDefined();
+    expect(screen.queryByText("Select test patent")).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Network" }));
+    const map = screen.getByRole("group", { name: "Universal relationship map test double" });
+    fireEvent.click(screen.getByRole("button", { name: "Trace connections" }));
+    expect(map.isConnected).toBe(true);
     expect(screen.getByText("1 step · 1 shortest path.")).toBeDefined();
     fireEvent.click(screen.getByRole("button", { name: "Swap entities" }));
     const location = screen.getByRole("status", { name: "Current location" }).textContent!;

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useRelationshipViewParams } from "./useRelationshipViewParams.js";
 import { pluralize } from "../../utils/text.js";
 import { inventorCollaborators } from "../../utils/catalog/relationshipInsights.js";
 import type { InventorRelationshipView } from "../../utils/state/relationshipViewUrl.js";
@@ -22,8 +23,9 @@ import {
 type InventorViewProps = RelationshipViewProps & { inventorId: string };
 
 function InventorAssignees(props: InventorViewProps) {
-  const { insights, inventorId, theme: t, onParamsChange } = props;
-  const record = insights.inventors.find((entry) => entry.inventor.id === inventorId);
+  const { insights, inventorId, theme: t } = props;
+  const { onParamsChange } = useRelationshipViewParams();
+  const record = insights.inventorById.get(inventorId);
   const [selected, setSelected] = useState<string | null>(null);
   const links = record?.affiliations ?? [];
   const max = Math.max(1, ...links.map((link) => link.patentIds.length));
@@ -43,7 +45,7 @@ function InventorAssignees(props: InventorViewProps) {
       {links.length > 0 ? (
         <ChartFrame label="Inventor assignee connections" height={60 + links.length * 65}>
           {links.map((link, i) => {
-            const name = insights.assignees.find((company) => company.id === link.assigneeId)!.name;
+            const name = insights.assigneeById.get(link.assigneeId)!.name;
             const y = 30 + i * 65;
             return (
               <ChartButton
@@ -78,12 +80,12 @@ function InventorAssignees(props: InventorViewProps) {
         {links.map((link) => (
           <section
             key={link.assigneeId}
-            aria-label={`${insights.assignees.find((company) => company.id === link.assigneeId)!.name} evidence`}
+            aria-label={`${insights.assigneeById.get(link.assigneeId)!.name} evidence`}
             style={{ padding: "0.75rem 0", borderTop: `1px solid ${t.panelDivider}` }}
           >
             <h3 style={{ color: t.title, fontSize: "0.9rem", margin: "0 0 0.4rem" }}>
-              {insights.assignees.find((company) => company.id === link.assigneeId)!.name} · {link.patentIds.length}{" "}
-              patents ({Math.round(link.share * 100)}%)
+              {insights.assigneeById.get(link.assigneeId)!.name} · {link.patentIds.length} patents (
+              {Math.round(link.share * 100)}%)
             </h3>
             <PatentEvidence {...props} ids={link.patentIds} />
             <button
@@ -99,9 +101,7 @@ function InventorAssignees(props: InventorViewProps) {
       {record && record.unassignedPatentCount > 0 && (
         <PatentEvidence
           {...props}
-          ids={(insights.inventorPatents.get(inventorId) ?? []).filter(
-            (id) => !links.some((link) => link.patentIds.includes(id)),
-          )}
+          ids={insights.unassignedPatents.get(inventorId) ?? []}
           label="Patents without named assignees"
         />
       )}
@@ -111,20 +111,59 @@ function InventorAssignees(props: InventorViewProps) {
 }
 
 function InventorTimeline(props: InventorViewProps) {
-  const { insights, inventorId, theme: t, params, onParamsChange } = props;
+  const { insights, inventorId, theme: t } = props;
+  const { params, onParamsChange } = useRelationshipViewParams();
   const [playing, setPlaying] = useState(false);
-  const record = insights.inventors.find((entry) => entry.inventor.id === inventorId);
-  const patents = (insights.inventorPatents.get(inventorId) ?? []).map((id) => insights.patents.get(id)!);
-  const years = patents.flatMap((patent) => (patent.patentYear === undefined ? [] : [patent.patentYear]));
-  const min = Math.min(...years);
-  const max = Math.max(...years);
+  const timeline = useMemo(() => {
+    const record = insights.inventorById.get(inventorId);
+    const patents = (insights.inventorPatents.get(inventorId) ?? []).map((id) => insights.patents.get(id)!);
+    const years = patents.flatMap((patent) => (patent.patentYear === undefined ? [] : [patent.patentYear]));
+    const lanes = (record?.affiliations ?? []).map((link) => ({
+      id: link.assigneeId,
+      name: insights.assigneeById.get(link.assigneeId)!.name,
+      patents: link.patentIds.map((id) => insights.patents.get(id)!),
+    }));
+    const unassigned = insights.unassignedPatents.get(inventorId) ?? [];
+    if (unassigned.length)
+      lanes.push({
+        id: "unassigned",
+        name: "No named assignee",
+        patents: unassigned.map((id) => insights.patents.get(id)!),
+      });
+    let laneCursor = 65;
+    const positions = lanes.map((lane) => {
+      const counts = new Map<number, number>();
+      const dots = lane.patents
+        .filter((patent) => patent.patentYear !== undefined)
+        .sort((a, b) => a.patentYear! - b.patentYear! || a.id.localeCompare(b.id))
+        .map((patent) => {
+          const stack = counts.get(patent.patentYear!) ?? 0;
+          counts.set(patent.patentYear!, stack + 1);
+          return { patent, stack };
+        });
+      const height = Math.max(65, 30 + Math.max(1, ...counts.values()) * 19);
+      const y = laneCursor;
+      laneCursor += height;
+      return { ...lane, dots, y, height };
+    });
+    return {
+      patents,
+      years,
+      min: years.length ? Math.min(...years) : 0,
+      max: years.length ? Math.max(...years) : 0,
+      unknown: patents.filter((patent) => patent.patentYear === undefined),
+      positions,
+      laneCursor,
+    };
+  }, [insights, inventorId]);
+  const { patents, years, min, max, unknown, laneCursor } = timeline;
   const requestedYear = Number(params.get("year"));
   const cutoff =
     params.has("year") && Number.isFinite(requestedYear)
       ? Math.max(min, Math.min(max, Math.round(requestedYear)))
       : max;
   useEffect(() => {
-    if (!playing || !Number.isFinite(min)) return;
+    if (!playing || !years.length) return;
     const timer = window.setInterval(() => {
       if (cutoff >= max) {
         setPlaying(false);
@@ -133,40 +172,20 @@ function InventorTimeline(props: InventorViewProps) {
       onParamsChange({ year: String(cutoff + 1) }, true);
     }, 900);
     return () => window.clearInterval(timer);
-  }, [playing, cutoff, max, min, onParamsChange]);
-  const lanes = (record?.affiliations ?? []).map((link) => ({
-    id: link.assigneeId,
-    name: insights.assignees.find((company) => company.id === link.assigneeId)!.name,
-    patents: link.patentIds.map((id) => insights.patents.get(id)!),
-  }));
-  const unassigned = patents.filter(
-    (patent) => !record?.affiliations.some((link) => link.patentIds.includes(patent.id)),
+  }, [playing, cutoff, max, years.length, onParamsChange]);
+  const positions = useMemo(
+    () =>
+      timeline.positions.map((lane) => ({
+        ...lane,
+        dots: lane.dots.filter(({ patent }) => patent.patentYear! <= cutoff),
+      })),
+    [timeline, cutoff],
   );
-  if (unassigned.length > 0) lanes.push({ id: "unassigned", name: "No named assignee", patents: unassigned });
-  let laneCursor = 65;
-  const positions = lanes.map((lane) => {
-    const counts = new Map<number, number>();
-    const dots = lane.patents
-      .filter((patent) => patent.patentYear !== undefined && patent.patentYear <= cutoff)
-      .sort((a, b) => a.patentYear! - b.patentYear! || a.id.localeCompare(b.id))
-      .map((patent) => {
-        const stack = counts.get(patent.patentYear!) ?? 0;
-        counts.set(patent.patentYear!, stack + 1);
-        return { patent, stack };
-      });
-    // Reserve the same lane height at every cutoff so playback never moves its neighbors.
-    const fullCounts = new Map<number, number>();
-    for (const patent of lane.patents)
-      if (patent.patentYear !== undefined)
-        fullCounts.set(patent.patentYear, (fullCounts.get(patent.patentYear) ?? 0) + 1);
-    const height = Math.max(65, 30 + Math.max(1, ...fullCounts.values()) * 19);
-    const y = laneCursor;
-    laneCursor += height;
-    return { ...lane, dots, y, height };
-  });
+  const visibleCount = patents.filter(
+    (patent) => patent.patentYear !== undefined && patent.patentYear <= cutoff,
+  ).length;
   const yearX = linearScale(min, max, 280, 940);
   const ticks = niceTicks(min, max, 6).filter(Number.isInteger);
-  const unknown = patents.filter((patent) => patent.patentYear === undefined);
   return (
     <ViewPanel
       title="Patent timeline"
@@ -217,13 +236,8 @@ function InventorTimeline(props: InventorViewProps) {
             </button>
           </div>
           <p role="status" style={{ color: t.body, fontSize: "0.78rem" }}>
-            {patents.filter((patent) => patent.patentYear !== undefined && patent.patentYear <= cutoff).length} distinct
-            dated{" "}
-            {pluralize(
-              patents.filter((patent) => patent.patentYear !== undefined && patent.patentYear <= cutoff).length,
-              "patent",
-            )}{" "}
-            through {cutoff} · {unknown.length} with no recorded year
+            {visibleCount} distinct dated {pluralize(visibleCount, "patent")} through {cutoff} · {unknown.length} with
+            no recorded year
           </p>
           <ChartFrame label="Inventor patent timeline" height={laneCursor + 45}>
             {ticks.map((year) => (
@@ -292,21 +306,22 @@ function InventorTimeline(props: InventorViewProps) {
 }
 
 function InventorCoauthors(props: InventorViewProps) {
-  const { insights, inventorId, theme: t, params, onParamsChange } = props;
+  const { insights, inventorId, theme: t } = props;
+  const { params, onParamsChange } = useRelationshipViewParams();
   const limit = [6, 12, 24].includes(Number(params.get("limit"))) ? Number(params.get("limit")) : 12;
   const network = useMemo(() => inventorCollaborators(insights, inventorId, limit), [insights, inventorId, limit]);
-  const all = useMemo(
-    () => inventorCollaborators(insights, inventorId, insights.inventors.length),
-    [insights, inventorId],
+  const center = insights.inventorById.get(inventorId);
+  const shown = network.collaborators.slice(0, limit);
+  const members = useMemo(
+    () =>
+      [center, ...network.collaborators.slice(0, limit).map((entry) => entry.record)].filter(
+        (record) => record !== undefined,
+      ),
+    [center, network, limit],
   );
-  const center = insights.inventors.find((record) => record.inventor.id === inventorId);
-  const members = [center, ...network.collaborators.map((entry) => entry.record)].filter(
-    (record) => record !== undefined,
-  );
-  const layout = coInventorLayout(members);
+  const layout = useMemo(() => coInventorLayout(members), [members]);
   const { groups, points } = layout;
-  const companyName = (id: string) =>
-    insights.assignees.find((company) => company.id === id)?.name ?? "No named assignee";
+  const companyName = (id: string) => insights.assigneeById.get(id)?.name ?? "No named assignee";
   const colorIds = [...new Set(members.flatMap((record) => record.affiliations.map((link) => link.assigneeId)))].sort();
   const color = (id: string) => t.chartSeries[colorIds.indexOf(id) % t.chartSeries.length];
   const crossOnly = params.get("cross") === "1";
@@ -351,10 +366,10 @@ function InventorCoauthors(props: InventorViewProps) {
         </label>
       </div>
       <p role="status" style={{ color: t.body, fontSize: "0.78rem" }}>
-        {network.total} direct collaborators · {network.collaborators.length} in the diagram · {edges.length}{" "}
+        {network.collaborators.length} direct collaborators · {shown.length} in the diagram · {edges.length}{" "}
         coauthorship links displayed
       </p>
-      {network.total > 0 ? (
+      {network.collaborators.length > 0 ? (
         <>
           <ChartFrame label="Co-inventor network" width={layout.width} height={layout.height}>
             {groups.map((group) => (
@@ -499,8 +514,10 @@ function InventorCoauthors(props: InventorViewProps) {
         <p style={{ color: t.body }}>No co-inventors are recorded on this inventor’s represented patents.</p>
       )}
       <details style={{ color: t.body, fontSize: "0.8rem", marginTop: 16 }}>
-        <summary style={{ padding: "8px 0", cursor: "pointer" }}>All direct collaborators ({all.total})</summary>
-        {all.collaborators.map(({ record, patentIds }) => (
+        <summary style={{ padding: "8px 0", cursor: "pointer" }}>
+          All direct collaborators ({network.collaborators.length})
+        </summary>
+        {network.collaborators.map(({ record, patentIds }) => (
           <div key={record.inventor.id} style={{ borderTop: `1px solid ${t.panelDivider}`, padding: "8px 0" }}>
             <InventorLink inventor={record.inventor} theme={t} view="co-inventors" /> · {patentIds.length} shared
             patents

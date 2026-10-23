@@ -19,12 +19,10 @@ import UniversalConnectionTrace from "../components/relationshipMap/UniversalCon
 import InventorAffiliationMap from "../components/relationshipMap/InventorAffiliationMap.js";
 import CompanyRelationshipViews from "../components/relationshipMap/CompanyRelationshipViews.js";
 import RelationshipEvidenceLanes from "../components/relationshipMap/RelationshipEvidenceLanes.js";
-import { ViewChoices } from "../components/relationshipMap/RelationshipViewShared.js";
-import { buildRelationshipInsights } from "../utils/catalog/relationshipInsights.js";
-import { relationshipViewHash } from "../utils/state/relationshipViewUrl.js";
+import { RetainedMapView, ViewChoices } from "../components/relationshipMap/RelationshipViewShared.js";
+import { getRelationshipCatalog } from "../utils/catalog/relationshipCatalog.js";
 import SEOHead from "../components/SEOHead.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
-import { buildUniversalRelationshipGraph } from "../utils/catalog/universalRelationshipGraph.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
 import { canonicalPageUrl } from "../utils/seo/siteUrls.js";
 import { H1_STYLE } from "../utils/style/pageStyles.js";
@@ -38,9 +36,8 @@ import {
   UNIVERSAL_VIEWS,
 } from "../utils/state/universalMapUrl.js";
 
-const UNIVERSAL_GRAPH = buildUniversalRelationshipGraph();
+const { graph: UNIVERSAL_GRAPH, insights: INSIGHTS } = getRelationshipCatalog();
 const UNIVERSAL_NODE_IDS = new Set(UNIVERSAL_GRAPH.nodes.map((node) => node.id));
-const INSIGHTS = buildRelationshipInsights(UNIVERSAL_GRAPH);
 
 export default function UniversalRelationshipMapPage() {
   const location = useLocation();
@@ -50,15 +47,6 @@ export default function UniversalRelationshipMapPage() {
   useEffect(() => setMounted(true), []);
   const selectedNodeId = mounted ? universalMapNodeFromHash(location.hash, UNIVERSAL_NODE_IDS) : null;
   const explore = universalMapExploreFromHash(mounted ? location.hash : "", UNIVERSAL_NODE_IDS);
-  const viewParams = new URLSearchParams((mounted ? location.hash : "").replace(/^#/, ""));
-  const changeViewParams = (changes: Record<string, string | null>, replace = false) => {
-    const hash = relationshipViewHash(location.hash, changes);
-    if (hash !== location.hash)
-      void navigate(
-        { pathname: location.pathname, search: location.search, hash },
-        { preventScrollReset: true, replace },
-      );
-  };
   const changeExplore = (state: UniversalMapExploreState) => {
     const hash = universalMapExploreHash(location.hash, state);
     if (hash !== location.hash)
@@ -212,7 +200,7 @@ export default function UniversalRelationshipMapPage() {
                 label="Relationship map views"
               />
               <UniversalMapSearch graph={UNIVERSAL_GRAPH} theme={t} onSelectNode={focusNode} />
-              <div hidden={explore.view !== "network"}>
+              <RetainedMapView active={explore.view === "network"}>
                 <UniversalRelationshipMap
                   graph={UNIVERSAL_GRAPH}
                   theme={t}
@@ -222,7 +210,7 @@ export default function UniversalRelationshipMapPage() {
                   viewResetRequest={viewResetRequest}
                   active={explore.view === "network"}
                 />
-              </div>
+              </RetainedMapView>
               {explore.view === "trace" && (
                 <UniversalConnectionTrace
                   graph={UNIVERSAL_GRAPH}
@@ -238,6 +226,7 @@ export default function UniversalRelationshipMapPage() {
               {explore.view === "affiliations" && (
                 <InventorAffiliationMap
                   graph={UNIVERSAL_GRAPH}
+                  network={INSIGHTS}
                   theme={t}
                   selectedNodeId={selectedNodeId}
                   onSelectNode={focusNode}
@@ -249,8 +238,6 @@ export default function UniversalRelationshipMapPage() {
                   view={explore.view}
                   insights={INSIGHTS}
                   theme={t}
-                  params={viewParams}
-                  onParamsChange={changeViewParams}
                   onSelectPatent={focusNode}
                 />
               )}
@@ -258,8 +245,6 @@ export default function UniversalRelationshipMapPage() {
                 <RelationshipEvidenceLanes
                   insights={INSIGHTS}
                   theme={t}
-                  params={viewParams}
-                  onParamsChange={changeViewParams}
                   onSelectPatent={focusNode}
                   selectedInventorId={selectedNode?.kind === "author" ? selectedNode.id : null}
                 />
