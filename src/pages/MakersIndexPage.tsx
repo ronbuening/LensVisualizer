@@ -7,11 +7,13 @@
 import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
+import LinkListSidebar from "../components/content/LinkListSidebar.js";
+import SidebarLayout from "../components/content/SidebarLayout.js";
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "../utils/catalog/lensSummaries.js";
 import { deriveMaker, SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { getMakerDetails } from "../utils/catalog/makerDetails.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
-import { H1_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js";
 import { catalogCollator } from "../utils/catalog/collation.js";
 import { pluralize } from "../utils/text.js";
 
@@ -71,37 +73,60 @@ export default function MakersIndexPage() {
         <>
           <h1 style={{ ...H1_STYLE, marginBottom: "1.5rem" }}>Lens Makers</h1>
 
-          {makers.map((maker) => {
-            const details = getMakerDetails(maker.slug);
-            return (
-              <div
-                key={maker.slug}
-                style={{ padding: "1rem 0.75rem", marginBottom: "0.75rem", borderBottom: `1px solid ${t.panelBorder}` }}
-              >
-                <Link
-                  to={`/makers/${maker.slug}/`}
-                  style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "1rem", fontWeight: 600 }}
+          <SidebarLayout
+            sidebar={
+              makers.length > 0 ? (
+                <LinkListSidebar
+                  title="Makers"
+                  ariaLabel="Jump to makers"
+                  items={makers.map((maker) => ({
+                    id: maker.slug,
+                    label: `${maker.display} (${maker.count})`,
+                    to: `#maker-${maker.slug}`,
+                  }))}
+                  theme={t}
+                />
+              ) : null
+            }
+          >
+            {makers.map((maker) => {
+              const details = getMakerDetails(maker.slug);
+              return (
+                <div
+                  key={maker.slug}
+                  id={`maker-${maker.slug}`}
+                  style={{
+                    padding: "1rem 0.75rem",
+                    marginBottom: "0.75rem",
+                    borderBottom: `1px solid ${t.panelBorder}`,
+                    scrollMarginTop: STICKY_NAV_SCROLL_MARGIN,
+                  }}
                 >
-                  {maker.display}
-                </Link>
-                {details ? (
-                  <>
-                    <div style={{ fontSize: "0.8rem", color: t.label, marginTop: "0.25rem" }}>
-                      {details.founded != null && <>Est. {details.founded} · </>}
-                      {details.headquarters} · {maker.count} {pluralize(maker.count, "lens")}
-                    </div>
-                    <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
-                      {details.summary}
-                    </p>
-                  </>
-                ) : (
-                  <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
-                    ({maker.count} {pluralize(maker.count, "lens")})
-                  </span>
-                )}
-              </div>
-            );
-          })}
+                  <Link
+                    to={`/makers/${maker.slug}/`}
+                    style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "1rem", fontWeight: 600 }}
+                  >
+                    {maker.display}
+                  </Link>
+                  {details ? (
+                    <>
+                      <div style={{ fontSize: "0.8rem", color: t.label, marginTop: "0.25rem" }}>
+                        {details.founded != null && <>Est. {details.founded} · </>}
+                        {details.headquarters} · {maker.count} {pluralize(maker.count, "lens")}
+                      </div>
+                      <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
+                        {details.summary}
+                      </p>
+                    </>
+                  ) : (
+                    <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
+                      ({maker.count} {pluralize(maker.count, "lens")})
+                    </span>
+                  )}
+                </div>
+              );
+            })}
+          </SidebarLayout>
         </>
       )}
     </StaticPageShell>

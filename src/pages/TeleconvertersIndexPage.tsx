@@ -145,7 +145,13 @@ export default function TeleconvertersIndexPage() {
                   return (
                     <div
                       key={teleconverter.key}
+                      id={
+                        groupMode === "maker"
+                          ? `teleconverter-${teleconverter.key}`
+                          : `${group.id}-${teleconverter.key}`
+                      }
                       style={{
+                        scrollMarginTop: STICKY_NAV_SCROLL_MARGIN,
                         padding: "1rem 0.75rem",
                         marginBottom: "0.75rem",
                         borderBottom: `1px solid ${t.panelBorder}`,

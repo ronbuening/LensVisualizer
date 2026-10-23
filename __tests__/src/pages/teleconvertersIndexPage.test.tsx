@@ -102,6 +102,8 @@ function assertSidebarTargets(label: string) {
     const target = document.getElementById(link.getAttribute("href")!.slice(1));
     expect(target?.tagName).toBe("SECTION");
   }
+  const ids = [...document.querySelectorAll("[id]")].map((element) => element.id);
+  expect(new Set(ids).size).toBe(ids.length);
 }
 
 describe("TeleconvertersIndexPage grouping", () => {
@@ -121,6 +123,7 @@ describe("TeleconvertersIndexPage grouping", () => {
         .map((link) => link.textContent),
     ).toEqual(["Alpha 1.4x", "Alpha 2x"]);
     expect(screen.getByRole("link", { name: "Alpha 2x" }).getAttribute("href")).toBe("/teleconverters/multi/");
+    expect(screen.getByRole("link", { name: "Alpha 2x" }).closest("div")?.id).toBe("teleconverter-multi");
     expect(screen.queryByRole("link", { name: "Hidden converter" })).toBeNull();
     assertSidebarTargets("makers");
   });

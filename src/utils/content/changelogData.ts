@@ -30,6 +30,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-10-23",
+    type: "improvement",
+    summary: "Added quick-link sidebars to maker, mount, format and teleconverter indexes",
+  },
+  {
+    date: "2026-10-23",
     type: "lens",
     summary:
       "Added Canon 50mm f/0.95, Olympus OM Zuiko 28mm f/2.8, Pen F G.Zuiko 25mm f/2.8 and 60mm f/1.5, the Minolta MD Fisheye Rokkor-X 7.5mm and the Sigma APO 50-500mm",
