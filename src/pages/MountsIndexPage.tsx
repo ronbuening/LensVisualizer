@@ -7,10 +7,12 @@
 import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
+import LinkListSidebar from "../components/content/LinkListSidebar.js";
+import SidebarLayout from "../components/content/SidebarLayout.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { getMountDetails } from "../utils/catalog/mountDetails.js";
-import { H1_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js";
 import { MOUNT_OPTIONS } from "./lensIndex/catalog.js";
 import { pluralize } from "../utils/text.js";
 
@@ -50,30 +52,53 @@ export default function MountsIndexPage() {
         <>
           <h1 style={{ ...H1_STYLE, marginBottom: "1.5rem" }}>Lens Mounts</h1>
 
-          {MOUNT_OPTIONS.map((mount) => {
-            const details = getMountDetails(mount.id);
-            return (
-              <div
-                key={mount.id}
-                style={{ padding: "1rem 0.75rem", marginBottom: "0.75rem", borderBottom: `1px solid ${t.panelBorder}` }}
-              >
-                <Link
-                  to={`/mounts/${mount.id}/`}
-                  style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "1rem", fontWeight: 600 }}
+          <SidebarLayout
+            sidebar={
+              MOUNT_OPTIONS.length > 0 ? (
+                <LinkListSidebar
+                  title="Mounts"
+                  ariaLabel="Jump to mounts"
+                  items={MOUNT_OPTIONS.map((mount) => ({
+                    id: mount.id,
+                    label: `${mount.label} (${mount.count})`,
+                    to: `#mount-${mount.id}`,
+                  }))}
+                  theme={t}
+                />
+              ) : null
+            }
+          >
+            {MOUNT_OPTIONS.map((mount) => {
+              const details = getMountDetails(mount.id);
+              return (
+                <div
+                  key={mount.id}
+                  id={`mount-${mount.id}`}
+                  style={{
+                    padding: "1rem 0.75rem",
+                    marginBottom: "0.75rem",
+                    borderBottom: `1px solid ${t.panelBorder}`,
+                    scrollMarginTop: STICKY_NAV_SCROLL_MARGIN,
+                  }}
                 >
-                  {mount.label}
-                </Link>
-                <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
-                  ({mount.count} {pluralize(mount.count, "lens")})
-                </span>
-                {details && (
-                  <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
-                    {details.summary}
-                  </p>
-                )}
-              </div>
-            );
-          })}
+                  <Link
+                    to={`/mounts/${mount.id}/`}
+                    style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "1rem", fontWeight: 600 }}
+                  >
+                    {mount.label}
+                  </Link>
+                  <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
+                    ({mount.count} {pluralize(mount.count, "lens")})
+                  </span>
+                  {details && (
+                    <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
+                      {details.summary}
+                    </p>
+                  )}
+                </div>
+              );
+            })}
+          </SidebarLayout>
         </>
       )}
     </StaticPageShell>

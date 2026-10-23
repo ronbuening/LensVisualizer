@@ -17,6 +17,7 @@ generated `src/components/**/readme.md` files; viewer orchestration and the SVG 
   `BreadcrumbBar` provide a persistent Search link on every other route.
 - `SidebarLayout` is a sticky column on wide viewports (>= 1200 px) and stacks above the content on narrow ones; the
   stacked layout is the SSR/first-render default so crawlers see the links.
+- Maker, mount, format, and teleconverter indexes use `LinkListSidebar` for in-page jumps to their displayed entries.
 - `DropdownPanel` (used by `LensSelector`) and `HelpTooltipButton` render through portals with viewport positioning and
   Escape handling; reuse them instead of adding inline dropdowns. `HelpTooltipButton` opens on mouse hover only (pointer
   events), so a tap's compatibility `mouseenter` cannot open it before the tap's click toggles it.
