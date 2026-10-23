@@ -218,3 +218,181 @@ Sigma's A017 specification was re-read: 19 elements / 14 groups, three SLD eleme
 Data changes are limited to the header comment, subtitle, DESIGN specification wording, element roles, inferred apd/apdNote on L12/L16/L17, and the focus description. The existing name, key and catalog-equivalent glass labels are retained. The analysis now uses the same name and plain technical wording for the glass proxies, infinity-only focus model, solved zoom path and source-rim clipping; approval history, runtime-test narration and package vocabulary were removed. Historical audit findings are retained; obsolete archive-binding paragraphs were removed and integration-pending labels closed in place. Before/after engine and focus-probe outputs were byte-identical across all 21 stations and both focus keyframes. The surface audit returned "OK — no validation errors" with the existing 0.92 gap allowance. Detailed dispersion, alternative cam-solve and ray-sampling figures are retained from the earlier audits rather than independently recalculated in this wording pass.
 
 Open: The factory cam, finite-distance focus travel, production prescription, melts and suppliers remain unidentified. The printed G4a rims still clip the −0.75 representative ray at S24: maximum sampled overshoot 0.349798 mm at f/2.93 over zoomT 0.7125–0.9375, and 0.168031 mm at f/3.0 over 0.855–1.0. At printed tele f/2.93 the same ray overruns S24 by 0.417 mm after first meeting 23A. These are model limitations, not established production-lens vignetting. Page review remains with the coordinator under the Codex-run instructions.
+
+## 2026-10-23 — Second review: diagram, labels and movement
+
+Independently compared the live localhost page with Numerical Example 1, Figure 1, PDF p30 of the local JP2017156719A.pdf. Read the rendered construction text on PDF pp10–11 (paragraphs 0057–0065) and the rendered numerical tables on PDF pp17–19. No manufacturer image was downloaded or viewed. Scratch evidence is in `scratchpad/r2/sigma/review/` and `scratchpad/r2/sigma/renderq/` under the assigned run directory; the accepted live captures are the `after-*` files. The three lens files alone were edited.
+
+**Independent silhouette measurements.** At 600 dpi, the dash-dot axis is y4080. Near-axis crossings locate S1 at x595.5, S34 at x1377.5 and the image at x1649.5. The retained wide prescription gives S1–S34 = 111.1727 mm and S1–image = 149.7327 mm: respectively 0.142165 and 0.142061 mm/px, agreeing within 0.08%. Used the former scale, without borrowing the first-pass scale or rim measurements. Clean runs were measured above G1, below G2 with the limit inside its focus bracket, and below G3–G5 with the limit inside the G4a stabilization bracket. Drawing measurements are approximate outer outlines, not replacements for the printed effective diameters.
+
+| Element | Stored face semi-diameters, mm, retained | Independently measured drawn outer radius, mm |
+|---|---:|---:|
+| L1 | 34.825 / 33.430 | 36.96 |
+| L2 | 33.430 / 32.935 | 36.96 |
+| L3 | 29.435 / 28.755 | 31.42 |
+| L4 | 16.415 / 12.180 | 17.77 |
+| L5 / LN | 11.910 / 11.655 | 13.08 |
+| L6 / LP1 | 11.655 / 11.535 | 13.08 |
+| L7 / LP2 | 11.445 / 11.515 | 13.08 |
+| L8 | 11.445 / 11.860 | 13.08 |
+| L9 | 14.280 / 14.305 | 15.64 |
+| L10 | 14.275 / 14.220 | 15.64 |
+| L11 | 13.875 / 13.350 | 15.21 |
+| L12 | 13.350 / 13.290 | 15.21 |
+| L13 | 12.365 / 12.395 | 13.51 |
+| L14 | 12.395 / 12.390 | 13.51 |
+| L15 | 12.760 / 12.730 | 13.93 |
+| L16 | 12.935 / 12.985 | 14.22 |
+| L17 | 12.915 / 12.865 | 14.22 |
+| L18 | 12.865 / 12.975 | 14.22 |
+| L19 | 13.220 / 13.505 | 14.79 |
+
+Visible differences are retained deliberately: every site outline is inside the drawing's outer outline; L1/L2 have a taper in place of the drawing's common flat outer land; L3 has a small unequal-face rim; L4 has the strongest slanted edge rather than the figure's flat land and cylindrical step; L5/L6 and L11/L12 taper instead of sharing a square outer block; the drawn L5–L8 equal-height outline becomes small height differences in the source-effective model; and L19 has a slight unequal-face bevel. The tiny unequal-face values on L7–L10 and L13–L18 likewise remain. L1/L2 remain taller than L3; L4 remains taller than L5–L8; L9/L10 remain taller than L11/L12; L15 remains taller than L13/L14; and L19 remains tallest in G5. No new bowl wrapping, intersecting outlines or reversed neighbour ordering was seen. These differences do not authorize changing any of the 33 published effective radii: every stored value was independently checked against the printed diameter divided by two on PDF pp17–18. The source-diameter exception in the assignment governs square-cut drawing extensions. No sd, innerSd or STO value changed, and no policy change is requested.
+
+**Changes and source evidence.**
+
+| Field / element | Before | After | Evidence |
+|---|---|---|---|
+| diagramLabel, L1–L4 | absent; drawn 1, 2, 3, 4 | L1, L2, L3, L4 respectively | ¶¶0059–0060, PDF p10 |
+| diagramLabel, L5 | absent; drawn 5 | LN | Fig. 1, PDF p30; ¶0061, PDF p11 |
+| diagramLabel, L6 | absent; drawn 6 | LP1 | Same |
+| diagramLabel, L7 | absent; drawn 7 | LP2 | Same |
+| diagramLabel, L8–L19 | absent; drawn 8–19 | L8–L19 respectively | ¶¶0060–0064, PDF pp10–11 |
+| L5 role | Negative member of G2 doublet | Same role, explicitly identified as patent LN (L5) | ¶0061 |
+| L6 role | Positive partner of G2 doublet | Same role, explicitly identified as patent LP1 (L6) | ¶0061 |
+| L7 role | Air-spaced positive in G2 | Same role, explicitly identified as patent LP2 (L7) | ¶0061 |
+| L4 type | Negative Meniscus | Double Aspherical Negative Meniscus (convex to object) | Positive R6/R7; both marked *, PDF pp17–18; ¶0060 |
+| L9 type | Biconvex Positive | Double Aspherical Biconvex Positive | R16 positive / R17 negative, both marked *, PDF pp17–18 |
+| L13 type | Biconcave Negative | Single Aspherical Biconcave Negative | R23 negative / R24 positive; only S23 marked *, PDF pp17–18 |
+| L19 type | Biconvex Positive | Double Aspherical Biconvex Positive | R33 positive / R34 negative, both marked *, PDF p18 |
+| groups, G4a | absent | 23A–25, text G4a | Fig. 1; ¶0063; group table PDF p19 |
+| groups, G4b | absent | 26–27, text G4b | Same |
+| Analysis prose | Generic headings; no drawn alias mapping; stale claim that M-NBFD130 resolves via NBFD13 alias; no quantified d22 dip | Matching headings / aliases / subgroup spans; compatible catalog-row wording; quantified solved-gap limitation | Data above, current compatible-glass resolver and station array |
+
+The original G1 1–5, G2 6A–14, G3 STO–22, G4 23A–27 and G5 28–34A ranges are correct. The five cemented components retain D1 1–3, D2 8–10, D3 20–22, D4 23A–25 and D5 30–32, with matching cemented IDs on both members. All nineteen element types agree with the curvature signs and isolated-power signs. The seven aspheric surface suffixes and coefficient entries are exactly 6A, 7A, 16A, 17A, 23A, 33A and 34A. The stop is source S15, between L8 and L9, and belongs to G3 as in the printed group table. No aspheric marker, coefficient, cemented ID or tag needed correction.
+
+**Maker-record and glass scope.** The earlier deployment record states: “19 elements / 14 groups, three SLD elements and four aspherical elements agree with the model” and identifies “SLD positions L12, L16 and L17 and aspherical positions L4, L9, L13 and L19.” This is a quotation of that recorded comparison, not a new maker-image inspection. Retained inferred tags at L12 (FCD1, nd 1.497 / vd 81.61) and L16/L17 (FCD505, 1.59282 / 68.62) agree with that record. There are no patent APD tags; the source does not explicitly designate those elements as anomalous dispersion. All nineteen `glass` strings currently resolve through `resolveCompatibleGlass` with the authored nd/vd: E-FDS1; TAC8 (L2/L5); TAF3; M-TAFD305; TAFD5G; FD225 (L7/L14); TAFD30; M-NBFD130 (L9/L19); PCD40; S-NBH56; FCD1; M-TAF105; E-CF6; FCD505 (L16/L17); TAFD45. None is Unmatched or unresolved, and no glass string or APD tag is identified here as incorrect. Numerical Example 1 supplies nd/vd, not a trade glass name, extra C/F/g indices or partial dispersion (PDF pp17–19). Paragraph 0060 calls L4 an aspherical glass element, without a supplier or trade glass identification. Production glass attribution remains unconfirmed.
+
+**Zoom and focus.** The 21 stations ascend 24.84 → 67.55 mm; published nodes are indices 0 / 10 / 20 at 24.84 / 45.01 / 67.55 mm. Every variable-gap row uses this same order. Independently summed image-fixed group-front coordinates, and checked all twenty successive displacements; negative displacement is objectward, matching the five objectward Figure 1 arrows.
+
+| Group | Wide → middle displacement, mm | Wide → tele displacement, mm | Smallest objectward station step, mm | Focus travel in model |
+|---|---:|---:|---:|---|
+| G1 | −13.9843 | −31.0001 | 0.6949 | 0 |
+| G2 | −1.4767 | −3.9003 | 0.0304 | 0; patent requires objectward motion, amount unpublished |
+| G3 including stop | −11.9342 | −17.8361 | 0.4765 | 0 |
+| G4 / G4a | −9.7716 | −14.3255 | 0.2720 | 0 |
+| G4b | −9.7716 | −14.3255 | 0.2720 | 0 |
+| G5 | −16.2538 | −22.1707 | 0.2872 | 0 |
+
+No absolute group reverses, including the solved G3 compensator. The three printed gap rows match PDF p18: d5 increases 3.4411 → 15.9487 → 30.5409; d14 decreases 15.9358 → 5.4783 → 2.0000; d22 increases 2.6285 → 4.7911 → 6.1391; d27 decreases 9.3452 → 2.8630 → 1.5000; BF increases 38.5600 → 54.8138 → 60.7307 mm. Open limitation: solved d22 falls 4.8106 → 4.7967 → 4.7819 → 4.7780 mm at 36.942 / 38.959 / 40.976 / 42.993 mm, then reaches printed 4.7911 mm at 45.01 mm. This local 0.0326 mm separation decrease departs from ¶0065's stated increasing G3–G4 gap (PDF p11), despite both groups moving objectward. It is not an array-order error; fixing it requires solving new numeric gaps, outside this review's edit list. No station or gap entries were reordered.
+
+Paragraph 0060 (PDF p10) and the focus arrow specify objectward G2 travel for near focus, with no finite-distance amount. Every focus pair is identical, so index 0 is infinity and index 1 is also the unmodeled placeholder, not a measured closest state; all other groups stay fixed. The page keeps the focus readout at infinity and the far endpoint at “Not modeled,” including `focus=1`. Its existing description correctly explains the unknown G2 travel and distinguishes marketed 0.37 m from modeled focus. Both requested `mv=focus` captures fall back to the zoom chart because focus motion is unavailable; focus is visibly disabled. The zoom overlay at both ends confirms 31.00 mm maximum travel and the objectward paths. Gap labels D5/D14/D22/D27/BF and Wide/Tele endpoint descriptions are readable and consistent with the printed table. No focusDescription or numeric focus data changed.
+
+**Numerical checks and unchanged field/aperture.** Surface validation before and after says “OK — no validation errors” with the existing gapSagFrac 0.92. The image-circle audit gives 0 undersized / 0 skipped; field coverage gives 100% at all 21 stations, 0 unsolved. `clearap` at Y=21.63 mm and f/2.93, at both focus indices, shows no CLIPS-AXIAL or BLOCKS-CHIEF. Its source-node half-fields are 41.88°, 25.33° and 17.29°, matching the patent's 83.76° / 50.65° / 34.58° full fields to rounding; the explicit `--omega` cross-check used 41.88 / 25.325 / 17.29 at those nodes and the Y-solved intermediate angles. Three earliest full-field lower-bundle aims return no-ray-found, so this is not full-pupil containment certification. The tight axial margins include S14 at approximately 11.85 against 11.86 mm and S23A at 12.35 against 12.365 mm. Known representative S24 clipping remains as documented above; no rim was widened to remove vignetting.
+
+The complete `built` outputs before and after are byte-identical and do not throw. Engine half-fields at wide / printed middle / tele are unchanged: 38.0839487° / 28.5762° / 18.7810°, and all 21 nominal FOPEN values remain 2.93. The engine field estimator differs from the source's half-fields; no field was reduced in this pass. The probe's complete before/after outputs are byte-identical. Its displayed “Fno(engine stop)” is not used as the aperture verdict: the scratch probe reuses wide engineStopSD when a V2 STO omits sd, rather than the station's physical iris. Runtime FOPEN and the source iris schedule are authoritative here.
+
+The vignetting tool was run on the old and new data, and the output pairs are byte-identical at zoomT 0 / 0.5 / 1. Angle° : engine geometric-transmission percent, before = after:
+
+| State | Before | After |
+|---|---|---|
+| Wide | 0.0:100.0, 3.0:99.0, 6.0:99.0, 9.0:100.0, 12.0:100.0, 15.0:100.0, 18.0:100.0, 21.0:100.0, 23.9:99.0, 26.9:95.8, 29.9:91.7, 32.9:88.5, 35.9:83.3, 38.9:77.1, 41.9:66.7 | Identical |
+| Middle | 0.0:100.0, 2.8:100.0, 5.6:101.3, 8.4:101.3, 11.3:102.6, 14.1:102.6, 16.9:100.0, 19.7:98.7, 22.5:96.2, 25.3:93.6 | Identical |
+| Tele | 0.0:100.0, 2.9:101.4, 5.8:100.0, 8.7:101.4, 11.5:97.2, 14.4:91.7, 17.3:56.9 | Identical |
+
+Values slightly above 100% are the scratch engine diagnostic's reported normalization/sampling output, not a claim of physical transmission above unity. Physical iris radii remain 9.655 / 11.935 / 12.995 mm. The 7A→8 physical clearance remains the documented +0.773193 mm; no new policy exception is needed.
+
+**Live-page outcome and remaining UI limits.** Captured and viewed infinity at all 21 stations, focus=1, zoom overlays at wide and tele, both requested focus-overlay states, and inspectors L4/L5/L9/L12/L13/L16/L17/L19. The figure's element order, stop position, relative group heights, seven pink A markers, three inferred purple elements and five doublet labels are present. Inspectors show L4 −22.26 mm / M-TAFD305 / ASPH ×2, L9 +36.94 / M-NBFD130 / ASPH ×2, L12 +39.6 / FCD1 / APD inferred, L13 −29.51 / M-TAF105 / one asphere, L16 +36.81 and L17 +71.81 / FCD505 / APD inferred, and L19 +80.98 / M-NBFD130 / ASPH ×2. Read the visible roles for L5 and the three tagged elements; asphere-coefficient blocks push some complete role paragraphs below the fixed 900 px capture, so those remaining roles were checked against the data and ¶¶0060–0064 rather than claimed as fully visible. Browser DOM access was unavailable in this environment; the coordinator screenshots supplied the live evidence.
+
+The generic renderer draws annotation text rather than the patent's bracket strokes, and its two group-label rows leave G4/G4a/G4b crowded at wide. The source ranges and bare patent notations are now present; changing generic annotation layout is outside these three files. The motion overlay lists seven annotations because it includes the two nested subgroups, not seven independent zoom groups. These rendering limits, the small solved d22 dip, the differing runtime field estimates, unmodeled close focus / stabilization and previously accepted S24 clipping remain explicitly open.
+
+
+## 2026-10-23 — Monotonic zoom-path regeneration
+
+Regenerated only the 18 unpublished rows; kept 21 stations in the existing wide-to-tele order.
+The focal-length labels retain nine evenly spaced interiors per printed segment: 2.017 mm steps
+from 24.84 to 45.01 mm, then 2.254 mm steps to 67.55 mm. Printed indices 0 / 10 / 20 are
+byte-identical: three complete station lines and all fifteen gap rows, including both identical
+focus endpoints. The twelve printed-node probe lines (three zoom nodes, two focus keys, before
+and after) compare with `diff -u` exit 0 and no output. This supersedes the reconstructed D22-dip
+limitation in the preceding review; it does not change any patent row.
+
+**Law and solve.** G1, G2 and G5 retain their image-fixed quadratics through the three printed
+positions, with parameter nodes u = ln(f/24.84)/ln(67.55/24.84) = 0 / 0.594184146662 / 1.
+D22 now follows a C1 monotone cubic Hermite interpolant through 2.6285 / 4.7911 / 6.1391 mm,
+with node derivatives 8 / 0.5 / 7.5 mm per unit u. These derivatives keep D22 increasing while
+allowing D27 to decrease throughout. Solve G3's image-fixed position (hence D14) and u together
+by two-variable Newton iteration for the focal-length target and paraxial infinity focus;
+G4 is derived from G3's fixed thickness plus D22. D27 then follows from G4 and G5; BF follows
+G5. To join the immutable printed rows smoothly, PCHIP-interpolate their small traced-EFL minus
+label residuals and last-gap minus BFD residuals in the log-label parameter, and include those
+residuals in the two solve targets. Thus the new path is C1 before station sampling, with no
+extra reversal or corner inserted to flatten the old dip. Values are stored to six decimals.
+This is a qualified reconstruction, not an identified factory cam.
+
+Iris radii retain the existing rule: engine f/2.93 axial-marginal radius multiplied by the
+printed-radius ratios 1.001106520009 / 1.001185734648 / 1.000891578066, interpolated
+quadratically in the solved u. Only unpublished iris radii were recomputed. The fixed surface
+thicknesses, group lengths, G4a/G4b coupling, repeated focus endpoints, nominal f/2.93, effective
+rims and `checks.gapSagFrac: 0.92` are unchanged. No comments were inserted in gaps or zoom.
+
+**Numerical proof, mm.** Maxima use unrounded double-precision paraxial traces of the stored rows,
+including every printed station and both identical focus keys.
+
+| Metric | Before | After |
+|---|---:|---:|
+| Maximum absolute last-gap minus BFD, all 21 stations | 0.000241304 | 0.000241304 |
+| Maximum absolute traced EFL minus label, all 21 stations | 0.003642410 | 0.003642410 |
+| Maximum absolute defocus, 18 reconstructed stations | 0.000149799 | 0.000225196 |
+| Maximum absolute EFL error, 18 reconstructed stations | 0.000117854 | 0.003062354 |
+| Minimum successive traced EFL increase | 2.015533802 | 2.017006678 |
+
+All defocus values are below 0.01 mm and all EFL errors below 0.05 mm. The all-station maxima
+remain at unchanged printed tele. The following direction patterns are compressed signs of
+successive stored differences, separately for wide-to-middle / middle-to-tele. Every printed
+pattern is the after pattern; all other gaps are fixed.
+
+| Gap | Before pattern | After pattern | Direction changes, before / after | Minimum after step magnitude, mm |
+|---|---|---|---:|---:|
+| D5 | + / + | + / + | 0 / 0 | 0.849845 |
+| D14 | − / − | − / − | 0 / 0 | 0.262064 |
+| D22 | +−+ / + | + / + | 2 / 0 | 0.034550 |
+| D27 | − / − | − / − | 0 / 0 | 0.018812 |
+| BF | + / + | + / + | 0 / 0 | 0.286070 |
+
+A 10,001-point check of the generating law also found zero gap-direction violations. Minimum
+signed increments on that grid were D5 +0.000965694, D14 −0.000770965, D22 +0.000055995,
+D27 −0.000036968 and BF +0.000798423 mm. In the stored path all five image-fixed group fronts
+still move objectward at every step: minimum objectward steps G1 0.891102, G2 0.041257,
+G3 0.475371, G4 0.267258 and G5 0.286070 mm. There are zero group reversals; the nested G4
+subgroups retain identical travel. Runtime interpolation is the existing piecewise-linear
+sampling of these stations, so it preserves their gap and group directions.
+
+**Engine checks on the actual edited file.** `audit:surface` returned `OK — no validation errors`.
+`audit:field-coverage --all --below=1.01` reported 21/21 stations at 100%, 0 unsolved and 0 skipped.
+`audit:image-circle` reported 1 lens checked, 0 undersized and 0 skipped. `built.mjs` completed
+without throwing; every nominal FOPEN remains 2.93. `clearap.mjs --Y 21.63 --fno 2.93`:
+CLIPS-AXIAL before [] (0), after [] (0); BLOCKS-CHIEF before [] (0), after [] (0). Three earliest
+lower full-field bundle aims remain `no-ray-found` before and after; this is not a full-pupil
+containment claim.
+
+**Known S24 source-rim property.** Repeated the actual representative off-axis −0.75-pupil-ray
+launch using the engine field geometry, entrance pupil and exact trace at 801 zoomT samples
+(0:0.00125:1), infinity focus, f/2.93 and f/3.0. Both sweeps had zero failed traces. At f/2.93,
+maximum S24 overshoot when it is the first clipped surface changes from 0.349798401 to
+0.348725267 mm, both at zoomT 0.9375. Its sampled first-clip range changes from
+0.71125–0.9375 (182 samples) to 0.7125–0.9375 (181). Including ghost continuation after an
+earlier clip, maximum S24 overshoot is unchanged at 0.417362923 mm at tele, where S23A clips
+first. At f/3.0, maximum first-clip S24 overshoot remains 0.168031143 mm at tele; sampled
+range changes from 0.85375–1 (118 samples) to 0.855–1 (117). These finite-grid results retain
+the documented source-rim limitation and do not establish production-lens vignetting.
+
+Reproduction evidence is in the assigned `scratchpad/r2/camsigma/` directory: `regenerate.mjs`,
+`proof.mjs`, `sweep.mjs`, baseline copies, `before.*` / `after.*` command logs,
+`printed.probe.diff` (empty), `proof.json` and `sweep.json`. Node tools were run from the repo
+root with `--import ./scripts/ts-js-specifier-hook-register.mjs`. Only this lens's data file and
+this appended audit section were edited for this task.
+
+## 2026-10-23 — Coordinator follow-up to the second review
+
+Cemented-component brackets renamed D1-D5 → C1-C5 (with matching `cemented` keys and the analysis pair table) because the patent gap label D5 is shown beside the zoom slider. The parent G4 bracket was removed: G4a and G4b, the patent's own subgroup notation, remain, and they move together, so the movement panel no longer lists G4 three times.

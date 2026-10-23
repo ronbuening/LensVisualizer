@@ -45,6 +45,8 @@ The exact production prescription remains unconfirmed.
 The optical train is a five-group positive-negative-positive-negative-positive zoom.
 The five functional groups differ from the fourteen air-separated optical groups.
 Five cemented doublets account for the difference between nineteen elements and fourteen air-separated groups.
+The diagram follows the patent's L1-L19 element names, using its Figure 1 aliases LN, LP1 and LP2 for L5, L6 and L7.
+Within G4, the annotations identify G4a, surfaces 23A-25, and G4b, surfaces 26-27. [1, ¶¶0061, 0063]
 The aperture stop is source surface 15, immediately before the first element in G3.
 No sensor cover plate, rear filter plate or resin hybrid layer is specified in this example. [1, ¶¶0058-0064, 0131]
 
@@ -110,7 +112,7 @@ L3 is a positive meniscus with its convex face toward the object.
 It is air-spaced from the first doublet and completes G1.
 The first variable zoom spacing follows its rear surface 5. [1, ¶¶0059, 0065]
 
-### L4 — Negative Meniscus
+### L4 — Double Aspherical Negative Meniscus (convex to object)
 
 nd = 1.85135, νd = 40.10. Glass: M-TAFD305 (HOYA catalog equivalent; production supplier unspecified). f = -22.264007 mm.
 
@@ -119,7 +121,7 @@ Its strongly curved rear face and the following air space precede the L5-L6 ceme
 The source specifies an aspherical glass element; no separate resin film is tabulated. [1, ¶0060]
 The M-TAFD305 label is a coordinate-compatible catalog proxy, not proof of molding or supplier identity.
 
-### L5 — Biconcave Negative
+### L5 (LN) — Biconcave Negative
 
 nd = 1.72916, νd = 54.67. Glass: TAC8 (HOYA catalog equivalent; production supplier unspecified). f = -18.293771 mm.
 
@@ -128,7 +130,7 @@ It is the patent's LN reference element, whose Abbe number enters condition (5).
 Its Abbe number is greater than L6's in this design; conventional assumptions about a negative low-Abbe
 achromat partner must not replace the actual table. [1, ¶¶0060-0061]
 
-### L6 — Positive Meniscus
+### L6 (LP1) — Positive Meniscus
 
 nd = 1.83481, νd = 42.72. Glass: TAFD5G (HOYA catalog equivalent; production supplier unspecified). f = +33.759998 mm.
 
@@ -136,7 +138,7 @@ L6 is a positive meniscus, convex toward the object, cemented to L5.
 It is the patent's LP1 reference element, appearing in conditions (5) and (6).
 The L5-L6 pair remains net negative, consistent with its placement within negative G2. [1, ¶0061]
 
-### L7 — Biconvex Positive
+### L7 (LP2) — Biconvex Positive
 
 nd = 1.80809, νd = 22.76. Glass: FD225 (HOYA catalog equivalent; production supplier unspecified). f = +33.581866 mm.
 
@@ -152,7 +154,7 @@ L8 is a negative meniscus with its convex side toward the image.
 It closes G2; variable spacing d14 follows it and leads to the diaphragm.
 The stated closer-focus movement translates the complete G2, not only this element. [1, ¶0060]
 
-### L9 — Biconvex Positive
+### L9 — Double Aspherical Biconvex Positive
 
 nd = 1.80610, νd = 40.73. Glass: M-NBFD130 (HOYA catalog equivalent; production supplier unspecified). f = +36.939017 mm.
 
@@ -185,7 +187,7 @@ L12 is the biconvex positive partner of L11 and the lowest-index, highest-Abbe e
 Its FCD1-equivalent coordinate is consistent with Sigma's low-dispersion designation at this position. [2]
 The doublet's net power is weakly negative despite L12's positive isolated power. [1, ¶0062]
 
-### L13 — Biconcave Negative
+### L13 — Single Aspherical Biconcave Negative
 
 nd = 1.77250, νd = 49.50. Glass: M-TAF105 (HOYA catalog equivalent; production supplier unspecified). f = -29.513771 mm.
 
@@ -237,7 +239,7 @@ TAFD45 is a coordinate-compatible catalog equivalent; the source does not name i
 Its power sign and dispersion contrast support a balancing role within G5, but do not independently
 establish a particular aberration correction. [1, ¶0064]
 
-### L19 — Biconvex Positive
+### L19 — Double Aspherical Biconvex Positive
 
 nd = 1.80610, νd = 40.73. Glass: M-NBFD130 (HOYA catalog equivalent; production supplier unspecified). f = +80.982543 mm.
 
@@ -249,11 +251,11 @@ No extra sensor optics or mechanical filter is added to that gap. [1, ¶0064, Ex
 
 | Pair | Elements | Calculated net focal length, mm |
 |---|---|---:|
-| D1 | L1 + L2 | +1202.262726 |
-| D2 | L5 + L6 | -40.274668 |
-| D3 | L11 + L12 | -464.153481 |
-| D4 | L13 + L14 | -47.565173 |
-| D5 | L17 + L18 | -47.860393 |
+| C1 | L1 + L2 | +1202.262726 |
+| C2 | L5 + L6 | -40.274668 |
+| C3 | L11 + L12 | -464.153481 |
+| C4 | L13 + L14 | -47.565173 |
+| C5 | L17 + L18 | -47.860393 |
 
 The shared cemented boundary refracts from the first glass directly into the second.
 It is not represented as two independent glass-air faces or a synthetic cement layer.
@@ -289,7 +291,7 @@ alternative matching HOYA rows remain possible at several coordinates.
 The source provides no measured nC, nF, ng, PgF or ΔPgF table for this example.
 The model therefore does not import catalog line indices as if they were patent measurements.
 All nineteen glass entries have compatible catalog dispersion curves.
-For L9 and L19, the M-NBFD130 annotation resolves through a catalog alias to NBFD13; this is not evidence that the two manufacturing families are identical.
+For L9 and L19, M-NBFD130 resolves to a compatible catalog row; this does not establish the production manufacturing family.
 The ordinary monochromatic prescription uses the stored source nd values. Chromatic G-channel evaluation uses the catalog curve,
 whose d-line index differs from stored nd by up to 0.000006792 in this set. These small differences are not silently substituted into the patent table.
 The low-dispersion designations for L12, L16 and L17 are inferred from Sigma's diagram and the printed nd/νd.
@@ -356,6 +358,11 @@ defocus. G3 departs from its quadratic by at most 1.30 mm. Holding focus by movi
 focus alone), or by G2 or G5, made at least one group reverse inside a published interval; G4 avoided reversal
 but departed 1.96 mm from its quadratic. With G3 every group moves objectward at each of the 20 steps, and G3 also
 stays reversal-free with evenly spaced nodes.
+
+The solved d22 gap has a small local decrease from 4.8106 mm at 36.942 mm to 4.7780 mm at 42.993 mm,
+then reaches the printed 4.7911 mm at 45.01 mm. Paragraph 0065 describes an increasing G3-G4 separation;
+this 0.0326 mm dip is a limitation of the unpublished visualization path. Neither group reverses its absolute
+objectward travel, and the published gap values remain unchanged. [1, PDF p11]
 
 Paraxial defocus is below 0.0003 mm at all 21 stations and at most 0.047 mm at sampled positions between them,
 against 1.81 mm before. The focal-length readout, interpolated between station EFLs, now stays within 0.035 mm of the

@@ -96,3 +96,92 @@ The maker sheet Cat. No. 10 47 28 shows the corresponding 15-element, 12-group a
 Changes in this pass are confined to the header, subtitle, four concise specs, all element labels and roles, and the focus description in the data file; the coordinator's name, key, visibility and catalog-equivalent glass labels are retained. The analysis now names those equivalents, leaves production melts unidentified, and removes package-process language, obsolete hidden status, test counts and the superseded claim that catalog glasses were not adopted. The historical assertion that L11 necessarily prevents multicolor calculation no longer describes the catalog-labeled model; catalog dispersion remains a qualified estimate. The audit closes the historical integration-pending status and removes replay/archive instructions for files outside this repository, preserving optical findings.
 
 Open: production melts and suppliers, exact factory free diameters and iris, the factory zoom cam, front-focus assembly identity and travel, and the separate macro movement law remain unidentified. Source image-plane residuals, the d14 prose/figure conflict, the 227.87 versus 227.806 mm total, and the maker's tele principal-plane reference conflict remain documented. Historical interpolation extrema, diagnostic field limits and MTF convergence statements are retained as qualified model results and were not recomputed in this wording-only pass. Page viewing is reserved for the coordinator under the sandbox-specific instructions.
+
+## 2026-10-23 — Second review: diagram, labels and movement
+
+Independent comparison: newly rendered local page at 130.17 mm/infinity against a fresh 300 dpi rendering of US4303312A PDF page 2, Fig. 1, rotated object-left. The same numerical construction is drawn at the middle zoom position. PDF pages 4–6 were viewed for the prescription, paired zoom rows, group assignments and claims; page 3 supplies Fig. 2. The first-pass measurements and overlays were not used as measurement inputs. Scratch evidence is outside the repository in `scratchpad/r2/zeiss/review` and `scratchpad/r2/zeiss/renderq` under the assigned task directory.
+
+Independent scale and silhouette readings: the first/last vertex crossings are approximately y = 2845/1157 px in the unrotated 300 dpi image, giving 178.626 / 1688 = 0.10582 mm/px. The rear-cell span is approximately 792 px for 83.9 mm, giving 0.10593 mm/px; the front-cell span is approximately 177 px for 18.7 mm, giving 0.10565 mm/px. The axis is near x = 1174–1176 px. Rim-line runs were located afresh on both sides, excluding leaders and brackets by eye. The table gives approximate ink-centerline readings rather than factory free diameters; drafting, line thickness and bevel endpoints contribute about 0.3–0.5 mm uncertainty.
+
+| Element(s) | Stored sd, unchanged (mm) | Independent Fig. 1 rim estimate (mm) | Live comparison and decision |
+|---|---|---|---|
+| I / II | 28 throughout | 27.9, approximately 28.2 at outer ink edges | Tallest front square block; correct ordering above III |
+| III | 26.8 / 26.8 | 26.3–26.7 | Square rim retained, slightly below I/II |
+| IV | 16 / 15.4 | Outer rim about 16.3–16.7 | Rear face has a drawn bevel; unequal optical caps retained |
+| V | 15.4 / 16 | Outer rim about 15.7–16.2 | Front face has a drawn bevel; unequal optical caps retained |
+| VI | 16.8 / 16.8 | About 16.7–17.2 near the thin edge | Slightly taller than IV/V; no material silhouette defect |
+| VII / VIII | 18 throughout | About 18.0–18.4 | Square cemented block retained; the drawing's R12 bowl is shallower than the numerical prescription |
+| IX | 19.3 / 19.3 | About 19.3–19.7 | Tall front of D, near knife edge, retained |
+| X | 19.3 / 19.3 | About 19.0–19.4 | Near IX height, retained |
+| XI / XII | 18.3 throughout | About 18.4–18.8 | Square cemented block below IX/X, retained |
+| XIII | 13 / 13 | About 12.8–13.2 | Small meniscus behind iris, retained |
+| XIV | 14.5 / 14.5 | About 14.8–15.3 | Slightly shorter on site, within drawing uncertainty; no clip justifies widening |
+| XV | 14.5 / 14.5 | About 15.1–15.4 | Slightly shorter on site, about 4–6%; retained without churn |
+
+Visible differences are confined to the small rear-pair height difference, the curved-versus-bevel treatment of the facing IV/V edges, the drawn shallower R12 bowl, and Fig. 1's schematic variable-gap widths. No unintended neighbour wrapping or element overlap was visible. Equal-height square blocks already have equal face caps. In particular, IV/V are not squared by enlarging R7/R8: the figure actually draws bevels there. No semi-diameter, stop, engine field or policy field was changed. The current surface validator accepts the existing geometry without a policy override; no new `gapSagFrac` or rim-angle override is requested.
+
+Changes are limited to source identifiers and missing annotations:
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Element 1 label / diagramLabel | Element 1 / absent | Lens I / I | Fig. 1 and PDF p. 5: elements numbered I–XV |
+| Element 2 label / diagramLabel | Element 2 / absent | Lens II / II | Same |
+| Element 3 label / diagramLabel | Element 3 / absent | Lens III / III | Same |
+| Element 4 label / diagramLabel | Element 4 / absent | Lens IV / IV | Same |
+| Element 5 label / diagramLabel | Element 5 / absent | Lens V / V | Same |
+| Element 6 label / diagramLabel | Element 6 / absent | Lens VI / VI | Same |
+| Element 7 label / diagramLabel | Element 7 / absent | Lens VII / VII | Same |
+| Element 8 label / diagramLabel | Element 8 / absent | Lens VIII / VIII | Same |
+| Element 9 label / diagramLabel | Element 9 / absent | Lens IX / IX | Same |
+| Element 10 label / diagramLabel | Element 10 / absent | Lens X / X | Same |
+| Element 11 label / diagramLabel | Element 11 / absent | Lens XI / XI | Same |
+| Element 12 label / diagramLabel | Element 12 / absent | Lens XII / XII | Same |
+| Element 13 label / diagramLabel | Element 13 / absent | Lens XIII / XIII | Same |
+| Element 14 label / diagramLabel | Element 14 / absent | Lens XIV / XIV | Same |
+| Element 15 label / diagramLabel | Element 15 / absent | Lens XV / XV | Same |
+| groups A | Absent | R1–R5 | Fig. 1, group table on p. 5 and claim table pp. 5–6 |
+| groups B | Absent | R6–R11 | Same |
+| groups C | Absent | R12–R14 | Same |
+| groups D | Absent | R15–R27, including STO | Same |
+| doublets D1 | Absent | R1–R3 | Shared R2, I/II; existing cemented D1 retained |
+| doublets D2 | Absent | R12–R14 | Shared R13, VII/VIII; existing cemented D2 retained |
+| doublets D3 | Absent | R19–R21 | Shared R20, XI/XII; existing cemented D3 retained |
+| Analysis notation paragraph | Absent | Roman/Arabic correspondence and all annotation spans | Keeps prose consistent with the displayed labels |
+
+Element names L1–L15 are retained because the patent's group table on PDF p. 5 also uses L1–L15. Roman diagram/inspector labels match Fig. 1. D1–D3 are consistent model identifiers for cemented components, not patent functional-group names. All fifteen type strings agree with the radius signs: I/II/VIII/XIII/XV are menisci; III/VI/IX/X/XI/XIV are biconvex; IV/V/VII/XII are biconcave. All surfaces are spherical, with no aspheric coefficients or A suffixes. Roles agree with fixed A/D, moving B/C and the patent's weak divergent XIII after the iris. No APD tag is authored or warranted by the patent. The source's high Abbe value for XI alone does not establish anomalous partial dispersion. The stop is correctly between XII and XIII, inside the printed 28 mm d21 interval; its numerical split remains a maker-pupil inference, not a printed patent stop coordinate. Gap labels d5/d11/d14 and Wide/Tele zoom labels are readable and correspond to the source.
+
+Movement was checked against the paired table on PDF p. 5 with the table in view. The published rows are exactly:
+
+| f label (mm) | d5 (mm) | d11 (mm) | d14 (mm) | B displacement from wide (mm, imageward positive) | C displacement from wide (mm, imageward positive) |
+|---|---|---|---|---|---|
+| 72.15 | 1.200 | 35.672 | 17.054 | 0 | 0 |
+| 130.17 | 31.370 | 9.145 | 13.411 | +30.170 | +3.643 |
+| 203.20 | 48.326 | 2.400 | 3.200 | +47.126 | +13.854 |
+
+All 257 focal stations ascend wide to tele; gap rows follow the same order. A and D stay fixed: the three gaps sum to 53.926 mm at every node, with maximum floating-point deviation 7.11e-15 mm. B is strictly imageward. C moves objectward by 0.006002894 mm at first, reaching the sampled d14 maximum 17.060002894 mm at f = 73.963125 mm, then moves strictly imageward. This is qualitatively consistent with Fig. 2 on PDF p. 3 and preserves the already disclosed conflict with the strict largest-at-wide language on p. 4 and claim 1 on p. 5. The reversal between published stations is reconstructed, not a separately tabulated factory cam. No ordering or direction edit was justified.
+
+Every focus pair is identical at indices 0 and 1: no optical group moves in focus. The source does not publish a finite-focus travel table. The existing description correctly qualifies maker front-element focusing to 1.8 m and the separate macro mode as unmodeled. The live near-end label says `Not modeled`, while the distance remains infinity even with `focus=1`; it does not claim a modeled 1.8 m conjugate. Both `mv=focus` requests, at focus 0 and 1, open the movement drawer in Zoom mode with Focus disabled. This UI fallback is outside these three files' authorized fields. Zoom overlays at wide and tele show four named groups and a maximum travel of 47.13 mm, with A/D stationary and B/C ending imageward. The probe's focus-1 best-image-plane adjustment is an infinity best-focus helper, not physical group travel or a finite conjugate.
+
+Maker-diagram comparison is inherited explicitly, not a new image viewing: the preceding first pass records, “The diagram shows 15 elements in 12 groups in the same arrangement” and “No special glass or aspherical surface is marked, and the prescription is all-spherical.” Its recorded L4 proportion difference is retained. No maker image was downloaded, rendered or viewed in this second review.
+
+Numerical checks before/after: the surface audit reports `OK — no validation errors`; the image-circle audit reports 1 lens, 0 undersized and 0 skipped; traced field coverage reports all 257 stations clear at the format corner. Built summaries before and after are identical, with no exception. At the three published nodes, engine half-fields are unchanged at 19.204106° / 11.494895° / 7.617122°, nominal FOPEN is unchanged at 3.5 throughout, and fixed stop radius is unchanged at 17.416188032 mm. The numerical optical-input hash remains `7fbc181802956091564287686afd2f6ad8349757359e3559a4f43254906659f6` across this pass.
+
+The corner clearance probe at Y = 21.65 mm yields half-angles 16.86° / 9.23° / 5.89° at the published nodes, rather than applying the wide angle at tele. No `BLOCKS-CHIEF` remains at these traced corner angles across all 257 nodes, at either focus index. An explicit-omega cross-check of the three published nodes uses 16.5° / 9.23° / 6.0°: only the endpoints are maker field references, and 9.23° is a corner diagnostic, not a patent field claim. Nominal f/3.5 still produces `CLIPS-AXIAL` at R1, R4, R5, R9, R10, R11, R13, R14, R15, R16, R17, R18, R19 and R20. Required nominal maxima remain 29.03, 27.77, 27.52, 16.01, 17.27, 17.34, 18.40, 18.56, 19.72, 19.83, 19.81, 19.65, 18.91 and 18.53 mm respectively. This is the pre-existing aperture limitation, not a fully passing nominal-beam audit. In particular, enlarging the front rim to 29.03 mm would conflict with the patent's stated 56 mm front diameter on PDF p. 4. No rim was enlarged to improve aperture or off-axis transmission.
+
+Wide-open engine vignetting curves, before → after, are identical; each list is field angle in degrees followed by geometric transmission percent, normalized by the on-axis reference:
+
+- Wide: 0.0:100.0, 2.8:98.9, 5.6:95.2, 8.4:91.4, 11.2:78.5, 14.0:62.9, 16.9:41.9 → identical.
+- Middle: 0.0:100.0, 1.5:99.5, 3.1:95.2, 4.6:91.4, 6.2:78.0, 7.7:64.0, 9.2:45.7 → identical.
+- Tele: 0.0:100.0, 1.0:94.6, 2.0:84.8, 2.9:75.5, 3.9:65.8, 4.9:56.5, 5.9:41.8 → identical.
+
+Live after-edit review covered wide/middle/tele infinity, middle focus 1, wide/tele zoom overlays, both focus-overlay URLs and inspectors I, IV, XI and XIII. Roman labels pack into staggered rows without overlap at those stations; A–D and D1–D3 are visible and attached to the correct components. Inspectors show the expected type, coordinates, catalog-equivalent glass and role. Every inspected focal-length line shows `FL = —`, because all fifteen elements lack the optional `focalLengthMm` field. The numerical isolated powers are available in the analysis and probe, but that field is outside this review's edit list. This is missing inspector information, not evidence that any radius or group power is wrong.
+
+Glass review: every element resolves through the current coordinate-compatible catalog resolver; there are no `Unmatched` or unresolved elements. Resolutions are I/XII → SF6, II → N-BK7, III → N-KF9, IV/V/VII → N-LAK9, VI → SF5, VIII → E-FD8, IX → BACD4, X → N-PSK3, XI → N-FK5, XIII/XIV → LLF1 and XV → K-SSK4. These are qualified coordinate equivalents, not demonstrated production glasses. PDF pp. 4–6 publish only d-line nd/νd pairs: no named glass, extra spectral-line index or partial-dispersion coordinate for any element. In particular, KF9, SF8, SK4 and SSK4 are not printed names in those tables; the four glass strings and corresponding analysis phrases saying “printed ... coordinate” must not be read as a patent-named-glass identification. No glass string was edited. No wrong APD assignment or incompatible resolver result was found.
+
+Open limitations retained: figure-derived free rims; 14 nominal axial clips; inferred iris location; static finite focus; reconstructed interstation cam and its disclosed d14 prose conflict; schematic R12 curvature versus the numerical table; and prior source-plane/total-length/cardinal-reference residuals. The glass wording ambiguity, missing inspector focal lengths and focus-overlay fallback are reported for coordination. Only the three assigned lens files were edited; no forbidden tests, generators, build or server operation was run.
+
+## 2026-10-23 — Coordinator follow-up to the second review
+
+Added element `focalLengthMm` values (in-air thick-lens focal length from each element's own faces) so the element inspector shows them; optics unchanged.
+
+The Zeiss glass labels for elements 3, 8, 9 and 15 now say the printed nd/νd equal legacy Schott KF9 / SF8 / SK4 / SSK4 (the patent prints coordinates only, no glass names); resolution unchanged.

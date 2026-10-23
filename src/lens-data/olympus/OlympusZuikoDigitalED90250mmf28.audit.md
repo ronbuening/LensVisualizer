@@ -106,3 +106,129 @@ Sigma's design/manufacturing role and production glass melts remain unconfirmed.
 equivalent. Catalog dispersion curves are proxies, not historical melt identifications. Intermediate finite MTF and
 complete photopic performance remain unsupported. The earlier rim and reference-MTF surveys are retained findings,
 not rerun here; the coordinator handles the final page view.
+
+## 2026-10-23 — Second review: diagram, labels and movement
+
+Independently compared fresh localhost renders with Example 1, Figure 1 of the local
+`patents/JP2006201524A.pdf` (PDF page 9/printed page 8), its second scan on PDF page 2, and the prescription and
+variable-spacing tables on PDF pages 6–7/printed pages 5–6. The governing section is wide/infinity. No maker image
+was viewed or downloaded in this review. The earlier deployment record states that the maker diagram
+“supports the 17-element/12-group layout and three separate front singlets”; the earlier rim record says
+“The maker diagram draws L7 at 19.5 mm, slightly smaller than L8. The patent figure of the modeled example governs.”
+The analysis records three maker ED elements, assigned inferentially to L2/L3/L12. The patent model is entirely
+spherical; no maker aspheric marking was established by those records.
+
+Before changes, G1 had three equally tall elements, losing the drawn step down to L3; L16 had a slanted rear rim
+where the outer outline reaches the cemented face's height. All four patent group brackets and all five
+cemented-component brackets were missing. The movement overlay consequently called the 12 air-separated components
+G1–G12. Diagram numbers also differed from the L1–L17 names in the inspector and analysis. Retained differences
+are slightly oversized G1 and shortened S10: the latter cannot reach the drawn outer land without crossing L5.
+L6 retains unequal face heights; L7 stays square and taller than L8 as drawn. The close L5/L6 and L7/L8 bowls
+approach their neighbours without crossing. Other heights, rear-group ordering and rim thicknesses show no clear
+mismatch beyond the faint scan's uncertainty. L14 remains the smallest G4 element; L17 is taller than L15/L16.
+
+Measurements used the native 839×520 pixel Figure 1 raster, independently of the first-pass overlays. The axis is
+near y=237 (238 at the rear). S1/S29 vertices at x≈41/786 span 255.5312 mm, giving 0.342995 mm/pixel.
+S1→S7 and S1→S18 checks give 47.6442/139=0.342764 and 174.8113/509.5=0.343104 mm/pixel. Adopted scale:
+0.343 mm/pixel, approximately one-pixel endpoint uncertainty. L1/L2 rim strokes near y=101/371 imply 46.3 mm;
+L3 near y=107/366 implies 44.4 mm. The approximately 1.9 mm relative step is clearer than the absolute discrepancy.
+Retaining L1/L2=49 and lowering only L3 to 47 restores that step with the fewest rim changes; all three remain
+about 5–6% above those readings. Across L15/L16, cemented-face endpoints near (709,199)/(709,276) and rear-outline
+endpoints near (733,199)/(733,276) put the outer rims at the same approximately 13.2 mm height. The faint curve/land
+strokes do not justify preserving the previous artificial 1.4 mm bevel. Giving S28 the existing 13.8 mm cemented
+height squares the block and changes no sampled transmission.
+
+Other independent rim estimates, mm: L4/L5≈24.4; L6 front≈23.5–23.7; L7≈20.8–21; L8≈19.7; L9/L10≈22.3;
+L11≈22.6; L12/L13≈20.8; L14≈14.1; L17≈15.6. These support retaining the other first-pass rims within scan
+uncertainty and the known S10 clearance limit.
+
+| Field / surface | Before | After | Evidence |
+|---|---|---|---|
+| S5, L3 front | 49 mm | 47 mm | Restore the measured approximately 2 mm step below L1/L2; axial floor 42.07 mm |
+| S6, L3 rear | 49 mm | 47 mm | Same element and height ordering; retain square rim; axial floor 41.27 mm |
+| S28, L16 rear | 12.4 mm | 13.8 mm | Same outer height as cemented S27; square block; no transmission change |
+| Diagram labels, IDs 1–17 | Implicit 1–17 | Explicit L1–L17 | Patent names groups G1–G4, not individual elements; editorial sequence matches analysis |
+| G1 bracket | Missing | G1, S1–S6 | Figure 1: three front singlets |
+| G2 bracket | Missing | G2, S7–S14 | Figure 1 and D6/D14 boundaries |
+| G3 bracket | Missing | G3, S15–S17 | Figure 1 and D14/D17 boundaries; complete focusing doublet |
+| G4 bracket | Missing | G4, S18–S30 | Figure 1: complete rear group, including stop |
+| D1 bracket | Missing | D1, S7–S9 | L4/L5 cemented at S8 |
+| D2 bracket | Missing | D2, S10–S12 | L6/L7 cemented at S11 |
+| D3 bracket | Missing | D3, S15–S17 | L9/L10 cemented at S16 |
+| D4 bracket | Missing | D4, S20–S22 | L12/L13 cemented at S21 |
+| D5 bracket | Missing | D5, S26–S28 | L15/L16 cemented at S27 |
+| Header and analysis prose | Earlier bevel/equal-G1 wording; no explicit zoom reversal | Current rims, labels and reversing G3 path | Consistency with diagram and source table |
+
+Types and roles agree with all signed radii and group spans. L1/L3/L7 are menisci convex to the object; L10 is
+concave to the object. Biconvex/biconcave descriptions and power roles agree. All 29 refracting interfaces are
+spherical: no asphere coefficients or A suffixes are required. Stop row 23 lies after L13 and before L14, with
+the printed 7.2/10.9938 mm adjacent intervals. Existing cemented IDs agree with the five brackets. D6, D14, D17
+and BF labels are correct/readable; the slider displays station focal lengths directly. The focus description
+correctly distinguishes published endpoints from reconstruction. Types, roles, tags and movement arrays were retained.
+
+The 65 station focal lengths strictly ascend 90.95→150.52→248.91 mm at indices 0/32/64. All four gap arrays
+have 65 rows of 17 focus values: index 0 infinity, index 16 nearest. Printed infinity D6/D14/D17 rows are
+19.6268/45.2255/43.8896, 53.7367/31.2025/23.8027, and 75.4497/6.3585/26.9324 mm. Near rows are
+19.6268/49.0058/40.1093, 53.7367/40.2551/14.7501, and 75.4497/27.9014/5.3895 mm (PDF page 7).
+Directions below are relative to S1, imageward positive; no ordering correction was needed.
+
+| Group | Wide / middle / tele front vertex, mm | Zoom verdict | Infinity→near focus verdict |
+|---|---|---|---|
+| G1 | 0 / 0 / 0 | Fixed, agrees with patent | Fixed at every station |
+| G2 | 47.6442 / 81.7541 / 103.4671 | Monotonic imageward +55.8229 mm, agrees with prose and Figure 1 arrow | Fixed at every station |
+| G3 | 120.2775 / 140.3644 / 137.2334 | Reverses: +20.0869 then −3.1310 mm at printed stations, agrees with curved arrow/table | Imageward +3.7803 / +9.0526 / +21.5429 mm; equal/opposite D14/D17 changes |
+| G4 | 174.8113 / 174.8113 / 174.8100 | Nominally fixed; printed 0.0013 mm tele discrepancy retained | Fixed to tabular rounding |
+
+The reconstructed infinity G3 path peaks at 141.976365 mm at station 46, f=182.4584 mm, then returns objectward;
+this intermediate extremum is not a published cam station. BF=42.72/42.66/42.68 mm adds small common offsets in
+the viewer's fixed-image-plane reference. Printed near first-vertex distances 2196.0763/2196.1327/2196.1142 mm
+correspond to about 2.5 m from the image plane: the live ∞/2.50 m focus endpoints are sensible.
+
+Before editing, S5=47, S6=47, S28=13.8 printed “OK — no validation errors”; the full trial ray sweep found no
+CLIPS-AXIAL or BLOCKS-CHIEF across 65×17 states. The field-angle vector retains the patent's 7°/4.1°/2.5° at
+printed nodes; intermediate angles interpolate image height and are not source data. An independent Y=10.82 mm
+solve gives 6.78°/4.09°/2.47°, close to the rounded patent angles. clearap uses infinity-conjugate launches even
+with finite-focus gaps; this does not certify finite-object bundle admission.
+
+After editing, surface validation again prints “OK — no validation errors”; image-circle reports 0 undersized,
+0 skipped; field-coverage finds all 65 corners clear, 0 unsolved. A fresh 65×17 ray sweep again has zero axial clips
+and zero blocked chief rays. built.mjs does not throw. Its numeric output and the full 1,105-state probe output are
+byte-identical before/after. Wide/middle/tele engine half-fields remain 11.538214/6.929955/4.221253°; FOPEN stays
+2.86 at every station; stop radii remain 16.139924/16.139797/16.135750 mm. Stop and policy fields were untouched.
+
+Engine wide-open infinity vignetting, before → after (field degrees: transmission percent):
+
+| Zoom | Before | After |
+|---|---|---|
+| Wide | 0:100, 1.1:99.5, 2.3:99.0, 3.4:96.4, 4.5:94.3, 5.6:92.2, 6.8:89.6 | Identical: 100 / 99.5 / 99.0 / 96.4 / 94.3 / 92.2 / 89.6 |
+| Middle | 0:100, 0.7:99.5, 1.4:99.5, 2.0:97.4, 2.7:95.8, 3.4:93.8, 4.1:88.5 | Identical: 100 / 99.5 / 99.5 / 97.4 / 95.8 / 93.8 / 88.5 |
+| Tele | 0:100, 0.4:96.4, 0.8:93.8, 1.2:90.6, 1.6:88.0, 2.1:83.9, 2.5:79.2 | Identical: 100 / 96.4 / 93.8 / 90.6 / 88.0 / 83.9 / 79.2 |
+
+Inferred APD tags remain only on L2/L3/L12. Patent Abbe requirements (PDF pages 3–5) and 79.3/79.3/81.6
+coordinates support low dispersion, not anomalous partial dispersion, named ED glass or production identity.
+No patent APD tag is warranted. All 15 named catalog equivalents resolve compatibly. L2 and L3 remain Unmatched:
+PDF page 6 gives each only nd=1.49700 and νd=79.3; no glass name, extra spectral-line indices or partial-dispersion
+value further identifies either. No new evidence requires a glass/tag edit.
+
+Live inspectors were read for L2/L3/L7/L12/L16: types, coordinates, inferred tags and cemented labels agree with
+the data. L2/L3 show Unmatched, L7/L16 FD60 and L12 FCD1. All five show FL=— because optional `focalLengthMm`
+fields are absent; the independent isolated-element probe gives +226.30/+293.75/+101.22/+74.27/−16.78 mm.
+Adding these fields is outside the edit list. The fixed 1400×900 capture cuts off lower inspector role text;
+roles were checked in data/analysis, not certified as fully visible on the page.
+
+Fresh renders cover infinity at all 65 zoom nodes, the three printed near states, and both movement overlays
+at wide and tele. The diagram now shows L1–L17, G1–G4 and D1–D5; L3 is lower than L1/L2 and L16 is square.
+The movement overlay now has four source groups, shows the G3 zoom reversal and sole G3 focusing motion;
+wide/tele focus overlays show 3.78/21.54 mm. Scratch evidence is in the assigned `r2/oly90250/review` and `renderq`
+folders; no renders or PDFs were added to the repo.
+
+Remaining limits: G1 stays approximately 5–6% above the faint figure readings. S10 stays 21.6 mm; a 23.5 mm trial
+returns `ERR Air gap "9"→"10": combined surface sag (3.02 mm) exceeds allowed gap intrusion (2.670 mm of 2.725 mm) at sd=23.0 — elements will overlap in rendering`.
+Sag exceeds the full physical gap, so a policy relaxation cannot fix that crossing. `gapSagFrac=0.98` is unchanged;
+no increase is requested. PDF page 7's ν4=79.3 summary still differs from PDF page 6 row 20's νd=81.6; fixed-group
+prose still differs from the literal 0.0013 mm tele span/0.06 mm BF range. Production glass/cam remain unconfirmed.
+Only this lens's three files were edited; no generation, global tests, build or server changes were run.
+
+## 2026-10-23 — Coordinator follow-up to the second review
+
+Added element `focalLengthMm` values (in-air thick-lens focal length from each element's own faces) so the element inspector shows them; optics unchanged.

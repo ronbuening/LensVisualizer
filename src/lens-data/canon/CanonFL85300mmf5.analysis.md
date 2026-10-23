@@ -27,6 +27,8 @@ This is a mechanically compensated five-component zoom with positive–negative�
 
 The source fixes front component I and the two rear positive components IV/V. Negative variator II moves in one direction while negative compensator III reverses once. The reconstructed cam preserves that topology. With printed millimetres unchanged, independently computed component focal lengths are I +249.3703, II −85.0000, III −389.9992, IV +140.8341 and V +154.1415 mm. The rear of IV includes a weak negative meniscus, so positive component power must not be assigned to every constituent.
 
+The diagram brackets use the patent's component notation I–V: r1–r5, r6–r10, r11–r13, r14–r18 and r19–r24. D1–D6 identify the six cemented pairs at r1–r3, r8–r10, r11–r13, r14–r16, r19–r21 and r22–r24. L1–L15 are sequential element identifiers used by the model; the patent instead numbers the refractive-index entries N1–N15 and refracting surfaces r1–r24.
+
 At the wide/middle/long anchors the complete paraxial EFL is 87.735584 / 175.010135 / 292.452654 mm, and BFL is 108.871201 / 108.871706 / 108.871930 mm. The fixed terminal image gap remains the printed 108.87 mm rather than a refitted Gaussian plane. Front-to-last-vertex track is 188.656 / 188.655 / 188.655 mm. The 0.001 mm variation reflects source rounding rather than deliberate rear-group motion. At wide the back focus exceeds focal length; at long the overall track/focal ratio is about 1.017, so the printed rounded telephoto ratio 1.0 is not an exact strict inequality.
 
 The invariant Petzval sum is −0.000169979470506 mm⁻¹ under the explicitly stated sequential surface convention. This small scalar sum is not proof of a flat high-quality image over the published field: finite rays, astigmatism, clipping and MTF require their separate checks.
@@ -156,6 +158,8 @@ The model describes infinity focus only. Canon publishes a 4 m minimum focus dis
 ## Reconstructed Continuous Zoom and Stop
 
 The three source gap triples (d5, d10, d13), in mm, are (1.984, 113.586, 2.736), (72.172, 21.262, 24.871) and (110.615, 4.954, 2.736). Only those three stations are published. Between them, the variator gap and sum of the three gaps are linearly interpolated; compensator d13 is solved to preserve the linearly interpolated source-derived BFL, with d10 determined by the sum. The compensator equation has one solution with positive gaps at each modelled position; this does not imply a unique chief-ray path.
+
+From wide to tele, component II moves monotonically toward the image by 108.631 mm (70.188 mm to the middle station, then 38.443 mm). Component III moves toward the object by 22.136 mm and then back toward the image by 22.135 mm. I remains fixed; IV/V share only the 0.001 mm source-rounding drift. The variable gap shown as `d13−1` is the spacing from r13 to the inferred stop; adding the fixed 1 mm stop-to-IV space recovers the patent's full d13.
 
 The 257-node path has a sampled maximum target-BFL interpolation error of 0.000459147 mm. The sampled maximum departure from the printed 108.87 mm image gap is 0.002387846 mm, inside the source’s 0.01 mm reporting interval. EFL and variator travel are monotonic; compensator travel reverses once. Positions are continuous, but piecewise-linear velocities need not be smooth. The movement between published stations is reconstructed rather than a factory cam.
 

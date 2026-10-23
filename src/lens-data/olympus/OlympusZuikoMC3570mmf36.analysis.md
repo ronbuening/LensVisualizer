@@ -25,6 +25,8 @@ The original description prints final r17 = −0.8274, while claim 4 repeats +0.
 
 The all-spherical system has two mechanically compensated zoom cells: negative front power followed by positive rear power. The first cell contains two negative components followed by a positive singlet. The rear cell contains three positive components, a negative singlet and a final positive singlet. Cemented interfaces are physical shared surfaces r3′ and r12, not artificial air gaps. The original primed label is preserved: final r17 is physical interface 18.
 
+The diagram brackets use the patent's descriptive names, “Front negative” (r1–r6) and “Rear positive” (r7–r17); the patent does not give G-number designations. L1–L10 are sequential physical-element identifiers used here, distinct from the patent's eight numbered components and primed glass indices. D1 brackets L2–L3 (r3–r4), and D2 brackets L7–L8 (r11–r13). These cemented-pair labels are editorial. The variable gap is displayed as “ℓ (intercell)”.
+
 At the conditional uniform ×35 scale, the front cell has EFL −71.08637 mm and back focal distance −95.55127 mm. The rear cell has EFL +44.65567 mm and front focal distance −48.04040 mm from its first vertex. The source's corresponding normalized values are approximately −2.031, −2.730, +1.276 and −1.373.
 
 Uniform scaling anchors the source's nominal wide setting at 35 mm. Its 1:1.889 ratio gives a nominal 35–66.115 mm range. All four patent examples span approximately 1:1.89–1.93 rather than the marketed 1:2 range. The calculated EFLs are 35.003530, 48.110148 and 66.125582 mm. No positive uniform scale matches both marketed endpoints.
@@ -117,7 +119,7 @@ The viewer launches its ray fan at the paraxial entrance pupil. At telephoto thi
 
 The paraxial entrance-pupil positions from r1 are +32.80719, +25.58381 and +18.12261 mm. The exit pupil stays −17.36729 mm from r17 because its rear optical assembly is rigid; its radius changes with the iris.
 
-The optical clear radii are inferred from the schematic section and required design beam, rather than production dimensions. Two rear radii include small margins above the axial-beam limits; the rear face of the front meniscus is distinguished from its larger surrounding shoulder; the cemented L3 rim follows the step Figure 3 draws below the L2 blank. Straight rim joins approximate the stepped shoulder and bevels. Figure 3 also draws L1 thicker and the r4–r5 gap wider than the numerical prescription. No hidden trimming is used. The minimum sampled/analytic shared edge thickness is 0.352568 mm, maximum rim angle 48.00259°, and maximum gap-sag fraction 0.8860385 under the 0.9 limit.
+The optical clear radii are inferred from the schematic section and required design beam, rather than production dimensions. Two rear radii include small margins above the axial-beam limits; the rear face of the front meniscus is distinguished from its larger surrounding shoulder; the cemented L3 rim follows the step Figure 3 draws below the L2 blank. L6 has equal 12.85 mm face radii, and the rear cemented pair has a common 11.65 mm rim on r11–r13, preserving the drawing's square-cut edges. Straight rim joins still approximate L1's stepped shoulder and L2's bevels. Figure 3 also draws L1 thicker and the r4–r5 gap wider than the numerical prescription. No hidden trimming is used. The minimum sampled/analytic shared edge thickness is 0.352568 mm, maximum rim angle 48.00259°, and maximum gap-sag fraction 0.8860385 under the 0.9 limit.
 
 ## Conditional Expressions
 

@@ -19,7 +19,7 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
-    date: "2026-10-23",
+    date: "2026-10-24",
     type: "lens",
     summary:
       "Added the Canon FL 85-300mm f/5, Olympus Zuiko Digital ED 90-250mm f/2.8 and OM Zuiko 35-70mm f/3.6, Pentax FA 28-105mm Power Zoom, Sigma 24-70mm f/2.8 DG OS HSM Art and Zeiss Vario-Sonnar 70-210mm f/3.5",

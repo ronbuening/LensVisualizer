@@ -27,6 +27,8 @@ The sheet's normal focus specification, separate macro procedure, barrel length,
 
 There are fifteen spherical glass elements, twelve air groups, twenty-seven refracting faces and one separately modeled zero-power iris. Cemented interfaces join L1/L2, L7/L8 and L11/L12. There are no aspheres, added cover plates or synthetic glass splits.
 
+The diagram and inspector use the patent figure's Roman element identifiers I–XV; these correspond in order to L1–L15 in the patent's group table and the discussion below. Functional annotations A–D span R1–R5, R6–R11, R12–R14 and R15–R27 respectively. Cemented-component annotations D1, D2 and D3 span R1–R3, R12–R14 and R19–R21; these D-number labels are model annotations, distinct from functional group D.
+
 The four source functional cells are:
 
 | Cell | Elements | Computed focal length | Infinity-zoom role |
@@ -60,7 +62,7 @@ The positive partner provides convergence within the front compound member. Its 
 
 ### L3: biconvex positive
 
-nd = 1.52341, νd = 51.49. Glass: N-KF9 (SCHOTT catalog equivalent of the printed KF9 coordinate; production melt unidentified). f = +143.272 mm.
+nd = 1.52341, νd = 51.49. Glass: N-KF9 (SCHOTT catalog equivalent; the printed nd/νd equal legacy Schott KF9; production melt unidentified). f = +143.272 mm.
 
 The weakly biconvex positive singlet is separated from the front doublet by the literal 0.1 mm air interval. Its rear face has a much weaker curvature than its front face. It completes the fixed A cell rather than constituting a separately assumed focus group.
 
@@ -90,13 +92,13 @@ L7 is the negative half of the moving cemented C component. Its rear face is the
 
 ### L8: positive meniscus
 
-nd = 1.68893, νd = 31.18. Glass: E-FD8 (HOYA catalog equivalent of the printed SF8 coordinate; production melt unidentified). f = +76.669 mm.
+nd = 1.68893, νd = 31.18. Glass: E-FD8 (HOYA catalog equivalent; the printed nd/νd equal legacy Schott SF8; production melt unidentified). f = +76.669 mm.
 
 The positive meniscus has a very weakly curved rear face, R14 = +3073.000 mm. It is not replaced by a plane. Its glass coordinate differs only slightly in index from L7 but substantially in Abbe number, giving a dispersive contrast across the cemented interface.
 
 ### L9: biconvex positive
 
-nd = 1.61272, νd = 58.63. Glass: BACD4 (HOYA catalog equivalent of the printed SK4 coordinate; production melt unidentified). f = +85.980 mm.
+nd = 1.61272, νd = 58.63. Glass: BACD4 (HOYA catalog equivalent; the printed nd/νd equal legacy Schott SK4; production melt unidentified). f = +85.980 mm.
 
 The first rear-cell positive singlet begins the fixed D assembly. Its rear air interval is only 0.1 mm. The source drawing gives an approximate clear-height constraint, not a factory aperture certificate, so the model’s clear rims remain explicitly inferred.
 
@@ -132,7 +134,7 @@ The rear positive singlet uses the same printed glass coordinates as L13 but has
 
 ### L15: negative meniscus
 
-nd = 1.61765, νd = 55.14. Glass: K-SSK4 (SUMITA catalog equivalent of the printed SSK4 coordinate; production melt unidentified). f = -80.838 mm.
+nd = 1.61765, νd = 55.14. Glass: K-SSK4 (SUMITA catalog equivalent; the printed nd/νd equal legacy Schott SSK4; production melt unidentified). f = -80.838 mm.
 
 The final negative meniscus completes the fixed rear cell. Both radii are negative, with the stronger front curvature producing net negative isolated power. Its exit-to-image interval is the source’s fixed 49.18 mm at every zoom, not a best-focus result silently substituted by the analysis.
 

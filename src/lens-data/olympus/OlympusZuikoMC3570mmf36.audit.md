@@ -153,3 +153,99 @@ Data changes are confined to the header comment, subtitle, four catalog specific
 The before/after built summaries and all 258 probe lines (129 zoom positions × two focus keyframes) are identical. The wide EFL remains 35.00352989839196 mm, FOPEN 3.5999999999999996, half-field 28.85146003506882° and stop radius 9.050998711228582 mm. Gaussian BFD remains 41.748227 / 49.981660 / 61.298758 mm at the three printed stations. An object comparison confirms that only the permitted text fields changed; all protected optical and metadata fields are identical. The surface audit reports “OK — no validation errors”. No full test, typecheck, lint, build, generation or server lifecycle command was run.
 
 Open: the viewer launches at the paraxial pupil rather than the smaller real F3.6 marginal-ray radius. At tele these are 9.651 versus 9.184 mm; its outermost drawn ray clips at r9, while the real F3.6 beam reaches 12.80 mm and clears the 12.85 mm rim. This is a viewer launch-convention issue, not a rim or iris error, and no optical change is made. Exact production correlation, the factory zoom cam, finite-focus movements, production melts/suppliers and the cause of the printed BFD residuals remain unknown. The schematic figure's shoulder/bevel and axial-thickness limitations remain. Historical interpolation-error bounds, component powers, catalog residuals and MTF diagnostics are retained from the prior analysis; their full derivations and MTF runs were not repeated during this wording pass. The coordinator handles the rendered-page review under the screenshot override.
+
+## 2026-10-23 — Second review: diagram, labels and movement
+
+An independent live-page comparison used the local `US4153338A.pdf`, Fig. 3 on PDF p. 3, the Example 3 table in description column 6 on PDF p. 10, the architecture text on PDF pp. 8–9 and the component definitions on PDF p. 11. Fig. 7A–C on PDF p. 6 prints F3.6 and half-fields 31° / 23° / 18°. The patent cover confirms Toru Fujii, Olympus Optical Co., Ltd., US 4,153,338, published 8 May 1979. No maker image was downloaded or viewed during this review.
+
+The earlier deployment record says: “The manufacturer manual's section agrees with the probable ten-element/eight-group association and the two cemented pairs.” It also records 0.8 m minimum focus and states: “No APD tags are added because the maker publishes no special-dispersion positions.” The manual comparison and assignment describe a large front cell and a rear cell about half its diameter. These are prior records, not a new maker-image inspection. The patent example is all spherical; neither its numerical table nor the cited maker record establishes a special-glass or aspheric marking.
+
+### Independent silhouette readings and visible differences
+
+The initial live shot was at 48.104 mm and infinity, matching Fig. 3's **middle** zoom state. Fresh native-resolution crops, rather than the first-pass measurements, were used. In the 72 dpi page coordinates, the glass extends approximately x = 770–1436. The 70.97825 mm middle-state r1–r17 vertex span gives 0.10657 mm/px. Independent checks are 24.073 mm / 226 px = 0.10652 mm/px for r1–r6 and 28.434 mm / 268 px = 0.10610 mm/px for r7–r17. Differences reflect stroke placement and schematic axial thicknesses. Top/bottom stroke-centre separations cancel the slightly sloping optical axis. The approximate rim readings below have about 0.2–0.3 mm uncertainty; leader strokes were excluded by inspecting both sides.
+
+| Element | Fresh top-to-bottom reading | Approximate figure semi-diameter | Stored before → after (mm) | Decision |
+| --- | --- | --- | --- | --- |
+| L1 | 436 px at the outer shoulder | 23.2 mm outer rim; rear optical arc about 17.3 mm | r1 23.2 → 23.2; r2 17.3 → 17.3 | Largest front element, as drawn; preserve optical-arc endpoint |
+| L2 | 379 px at the blank | 20.2 mm | r3 20.1 → 20.1 | Larger than L3, as drawn; preserve the stepped cemented component |
+| L3 | 354 px | 18.9 mm | r3′/r4 18.9 → 18.9 | Independently confirms the first pass's smaller square-cut L3 |
+| L4 | 349 px | 18.6 mm | r5/r6 18.6 → 18.6 | Square-cut; height order agrees |
+| L5 | 259 px | 13.8 mm | r7/r8 14.0 → 14.0 | Within scan uncertainty; no enlargement |
+| L6 | 238 px | 12.7 mm | r9 12.85 → 12.85; r10 12.7 → 12.85 | Equal face rims remove the shallow bevel; retain the required front-face axial floor |
+| L7–L8 | 210 px at the flat common rim | 11.2 mm | r11 11.65 → 11.65; r12/r13 11.5 → 11.65 | Common square-cut rim; r11 needs at least 11.61 mm for F3.6 |
+| L9 | 191 px | 10.2 mm | r14/r15 10.2 → 10.2 | Agrees |
+| L10 | 179 px | 9.5 mm | r16/r17 9.2 → 9.2 | Within measurement uncertainty; retain real off-axis vignetting |
+
+Every visible mismatch identified in the middle-state comparison was considered. L1 is a slanted straight join on the site where the drawing has a shoulder, flat land and cylindrical outer edge; the patent also draws it axially thicker. L2's straight join cannot reproduce its front/rear bevels and the short land before L3. The r4–r5 air interval looks wider in the schematic than the literal table interval. L6 and L7–L8 had slight bevels from unequal face radii, corrected below. The small L5 and L10 size differences are measurement noise; L7–L8 remain slightly taller than the schematic because of the real F3.6 axial floor. The drawn height ordering is preserved: L1 > L2 > L3 > L4 > L5 > L6 > L7–L8 > L9 > L10. No element bowls wrap or cross their neighbours after the accepted changes.
+
+Squaring L1 by extending r2 to 23.2 mm is not physically acceptable. A substituted trial reported `ERR Surface "2": rim slope 12.15 (85.3°) at sd=23.2 exceeds threshold 2.06 (64.2°)` and `ERR Air gap "2"→"3": combined surface sag (13.90 mm) exceeds allowed gap intrusion (9.598 mm of 10.665 mm) at sd=20.1`, repeated over the zoom. The full-height sphere would intrude beyond the actual air interval. This is not a request to relax a policy: the rear optical arc stays at 17.3 mm, and the mechanical shoulder remains a renderer limitation. No `checks` or other policy field changed.
+
+### Changes and annotation evidence
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| r10 `sd` | 12.7 mm | 12.85 mm | Fig. 3 L6 flat rim; match r9, whose axial floor is 12.80 mm |
+| r12 `sd` | 11.5 mm | 11.65 mm | Fig. 3 common flat L7–L8 rim; match r11's 11.65 mm ray-floor margin |
+| r13 `sd` | 11.5 mm | 11.65 mm | Same square-cut cemented component; keep both members coherent |
+| Front cell bracket | absent | `Front negative`, r1–r6 | Patent description, PDF p. 8, first three components |
+| Rear cell bracket | absent | `Rear positive`, r7–r17 | Same description, components four through eight; includes the stop |
+| Cemented brackets | absent | `D1`, r3–r4; `D2`, r11–r13 | Fig. 3 and Example 3's shared r3′/r12 interfaces |
+| L2/L3 `cemented` | absent | `D1` on both | Front cemented component |
+| L7/L8 `cemented` | absent | `D2` on both | Rear cemented component |
+| L1–L10 `diagramLabel` | absent; rendered 1–10 | Explicit L1–L10 | Sequential physical elements; patent numbers eight components rather than ten physical elements |
+| Gap r6 label | `l` | `ℓ (intercell)` | Fig. 3's ℓ dimension arrow and Example 3's variable d6 |
+| Header / analysis | did not describe square rear rims or diagram bracket labels | Describes the three rim edits, sequential L labels, editorial D labels and descriptive cell names | Keeps the notes consistent with the actual diagram |
+
+The patent calls the two groups front negative and rear positive; it supplies no G-number labels. Using those descriptive names avoids inventing source notation. L1–L10 and D1/D2 are explicitly editorial identifiers, not the patent's component or glass-index numbering. The 18 physical interfaces retain all original surface labels, including r3′. Element shape strings and role texts were checked against the signs of R: L1 negative meniscus, L2/L8/L9 biconcave, L3/L6 positive menisci, and L4/L5/L7/L10 biconvex. No type or role correction was needed. There are no asphere coefficients or A-marked surfaces, agreeing with the example. The iris stays between L6 and L7, splitting d10; its midpoint is inferred, not a printed stop coordinate. No APD tags are present, and none are warranted by the patent or cited maker record. Existing Wide/Tele endpoint labels and the infinity-only focus description remain appropriate. No gap values, station ordering, focus ordering or protected optical/metadata fields changed.
+
+### Zoom and focus direction
+
+The printed wide/middle/tele rows on PDF p. 10 ascend f = 1 / 1.3744 / 1.889, giving 35 / 48.104 / 66.115 mm at ×35. Their intercell ℓ values become 43.17740 / 18.47125 / 0.49490 mm, and BFD becomes 41.74100 / 49.97125 / 61.28290 mm. These rows are in the correct order in both variable-gap arrays. All 129 zoom focal lengths ascend, the intercell gap decreases, and the BFD increases monotonically. Fig. 3's ℓ arrow is a spacing dimension, not a separate finite-focus travel arrow.
+
+| Cell / reference point | Wide z (mm) | Middle z (mm) | Tele z (mm) | Wide → tele verdict |
+| --- | --- | --- | --- | --- |
+| Front negative, r1, relative to fixed image plane | −137.42540 | −120.94950 | −114.28480 | +23.14060 mm, monotonically toward image |
+| Rear positive, r7, relative to fixed image plane | −70.17500 | −78.40525 | −89.71690 | −19.54190 mm, monotonically toward object |
+
+Both cells are rigid internally; their opposing travel follows the published ℓ/BFD schedule with no reversal at any of the 129 nodes. The zoom overlay now tracks exactly these two cells rather than inferred individual construction components. Focus index 0 is the infinity end; index 1 has identical geometry in both variable arrays at every zoom node. Thus each cell has zero modeled focus travel. The patent gives no finite-focus spacing or displacement to match, and the manual's 0.8 m product specification does not establish one. The live far end reads ∞ and the other end says `Not modeled`, rather than falsely labelling the unchanged geometry 0.8 m. A `mv=focus` URL opens the movement dialog but falls back to the available Zoom mode; Focus and Combined options are disabled. Both requested focus URLs and focus=1 states were inspected; this is an honest unsupported-focus UI state.
+
+### Numerical checks, transmission and live results
+
+Before applying the three-rim trial, the surface substitution printed `OK — no validation errors`; real-ray substitution traced every zoom node without `CLIPS-AXIAL` or `BLOCKS-CHIEF`. Both a full-frame corner run at Y = 21.65 mm and a separately supplied 129-angle sequence interpolating the source's 31° / 23° / 18° half-fields were checked. The corner run corresponds to about 32.6° / 24.0° / 17.8° at the published stations, so it is not silently equated with the patent field. `--focus 1` also clears every node; that option retains infinity-conjugate rays, consistent with the static-focus prescription.
+
+At modified r10/r12/r13, maximum axial heights are 12.65 / 10.50 / 9.33 mm and maximum corner-chief heights are 0.47 / 1.82 / 2.10 mm. The r9 and r11 axial floors remain 12.80 and 11.61 mm. No rim was enlarged to recover an over-wide viewer launch or improve throughput. Ordinary full-bundle clipping remains, including about 47% side loss at r2 and 41% at r17 in the corner diagnostic; those are not axial or chief-ray blocks.
+
+After editing, the surface check again printed `OK — no validation errors`; image-circle results were one lens, zero undersized, zero skipped. Field coverage reached 21.65 mm at all 129 nodes, with no unsolved states. The built tool completed without throwing. Its full numerical output and all 258 probe state lines plus element/component-power lines are byte-identical before/after. The probe's per-zoom f-number column uses the loader's wide engine stop radius, so its middle/tele numbers are not the station-calibrated real F3.6 iris and were not used to change aperture.
+
+| Engine quantity | Before wide / middle / tele | After wide / middle / tele |
+| --- | --- | --- |
+| Half-field estimate (degrees) | 28.851460 / 35.494774 / 32.218843 | 28.851460 / 35.494774 / 32.218843 |
+| FOPEN | 3.6 / 3.6 / 3.6 | 3.6 / 3.6 / 3.6 |
+| Real-ray stop radius (mm) | 9.050999 / 10.413294 / 12.422753 | 9.050999 / 10.413294 / 12.422753 |
+
+The wide engine field estimate remains smaller than the patent's 31° reference; the middle and tele heuristic fields differ from the source as well. No field is reduced in this review; the traced corner remains clear. Before and after engine vignetting output is identical at every printed sample. The actual wide-open tool outputs, written as `field angle: geometric transmission %`, are:
+
+```text
+Wide BEFORE = AFTER, halfField 28.85°, FOPEN 3.600:
+0.0:100.0  3.0:99.5  5.9:100.0  8.9:100.0  11.8:100.0  14.8:100.0  17.8:100.0  20.7:100.0  23.7:100.0  26.6:96.9  29.6:83.3  32.6:62.0
+Middle BEFORE = AFTER, halfField 35.49°, FOPEN 3.600:
+0.0:100.0  2.7:99.4  5.3:99.4  8.0:100.0  10.7:101.2  13.3:101.8  16.0:103.0  18.7:101.8  21.3:98.8  24.0:95.2
+Tele BEFORE = AFTER, halfField 32.22°, FOPEN 3.600:
+0.0:100.0  3.0:100.7  5.9:100.7  8.9:100.7  11.9:101.4  14.8:100.7  17.8:96.5
+```
+
+Values above 100% are retained as the engine's geometric normalization output, not claimed as physical energy transmission. They are a tool/model limitation outside this lens's edit scope.
+
+All 129 authored zoom nodes were re-shot at focus=0; every capture completed at 1400×900, with no dark page-error screen detected. Visual spot checks covered nodes 0, 16, 32, 48, 64, 80, 96, 112 and 128. The three published zoom states were also re-shot and viewed at focus=1, along with wide/tele zoom overlays and both requested focus-overlay URLs. After correction, the live middle diagram shows square L6 and L7–L8 rims, the retained L2/L3 step, correctly placed stop, readable L labels, both cell labels, D1/D2 and the legible `ℓ (intercell)` value. Tele still shows the known outer fan clipping at r9: the paraxial-pupil launch is wider than the real F3.6 beam. It was not hidden by enlarging glass. Inspectors for L1, L3, L6, L7 and L10 showed the expected types, nd/νd, catalog-equivalent glass names and true roles. Their FL field is `—`, because authored `focalLengthMm` is absent. Adding those numeric fields is outside this review's allowed edits; the existing probe gives their single-element air focal lengths −60.01 / +122.96 / +75.45 / +30.44 / +34.99 mm respectively. The cemented component powers are distinct from those single-element values.
+
+Scratch evidence is in the assigned `scratchpad/r2/oly3570`: `review/comparison.html` puts the fresh patent crop beside the final live middle diagram at approximately matched glass-span scale; `renderq/station-0.png` through `station-128.png` contain the complete zoom sweep. The `review` folder retains the baseline, trial/final validator outputs, both vignetting outputs, protected-field comparison, figure measurements and capture receipt. Earlier failed optional-middle-label trial screenshots are superseded by the final captures; the final data retains the original endpoint-only zoom-label scheme, which ingests correctly. These scratch files are not copied into the repository.
+
+### Glass and remaining limits
+
+All ten glass strings resolve through `resolveCompatibleGlass` at the authored nd/νd: L1 S-BSM36, L2 S-LAL8, L3 S-BSM16, L4 S-TIL25, L5/L6/L7 S-PHM52, L8 PBM22, L9 S-LAM7 and L10 F4. No element remains `Unmatched` or unresolved, and no incorrect glass label or APD tag was established. The Example 3 table on PDF p. 10 supplies only n and ν for each glass; PDF p. 11 defines them as refractive index and Abbe number. It does not provide a glass trade name, extra line indices or partial dispersion. Fig. 7's d/g aberration labels are not per-glass line-index measurements. Catalog equivalents remain spectral proxies; no production supplier/melt identity is established or edited.
+
+Open limitations are the straight-edge renderer's L1 shoulder and L2 bevels, schematic axial-thickness/gap differences, inferred stop coordinate, unmodeled finite focus, blank numeric FL inspector fields, heuristic engine fields, geometric transmission normalization above 100%, and the paraxial-pupil tele fan clip. The printed Gaussian BFD residuals and the description/claim r17 sign conflict remain documented source/model limitations (description PDF p. 10, claim repeat PDF p. 12), not new prescriptions to repair here. No forbidden optical, glass, policy or metadata field was changed. Only this lens's three files were edited; no generation, full test, typecheck, lint, build, server lifecycle or Git mutation was run.
+
+## 2026-10-23 — Coordinator follow-up to the second review
+
+Added element `focalLengthMm` values (in-air thick-lens focal length from each element's own faces) so the element inspector shows them; optics unchanged.
