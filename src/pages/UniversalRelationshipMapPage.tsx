@@ -17,23 +17,30 @@ import UniversalRelationshipMap from "../components/relationshipMap/UniversalRel
 import UniversalMapSearch from "../components/relationshipMap/UniversalMapSearch.js";
 import UniversalConnectionTrace from "../components/relationshipMap/UniversalConnectionTrace.js";
 import InventorAffiliationMap from "../components/relationshipMap/InventorAffiliationMap.js";
+import CompanyRelationshipViews from "../components/relationshipMap/CompanyRelationshipViews.js";
+import RelationshipEvidenceLanes from "../components/relationshipMap/RelationshipEvidenceLanes.js";
+import { ViewChoices } from "../components/relationshipMap/RelationshipViewShared.js";
+import { buildRelationshipInsights } from "../utils/catalog/relationshipInsights.js";
+import { relationshipViewHash } from "../utils/state/relationshipViewUrl.js";
 import SEOHead from "../components/SEOHead.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { buildUniversalRelationshipGraph } from "../utils/catalog/universalRelationshipGraph.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
 import { canonicalPageUrl } from "../utils/seo/siteUrls.js";
 import { H1_STYLE } from "../utils/style/pageStyles.js";
-import { panelCard, toggleBtn } from "../utils/style/styles.js";
+import { panelCard } from "../utils/style/styles.js";
 import {
   universalMapHash,
   universalMapNodeFromHash,
   universalMapExploreFromHash,
   universalMapExploreHash,
   type UniversalMapExploreState,
+  UNIVERSAL_VIEWS,
 } from "../utils/state/universalMapUrl.js";
 
 const UNIVERSAL_GRAPH = buildUniversalRelationshipGraph();
 const UNIVERSAL_NODE_IDS = new Set(UNIVERSAL_GRAPH.nodes.map((node) => node.id));
+const INSIGHTS = buildRelationshipInsights(UNIVERSAL_GRAPH);
 
 export default function UniversalRelationshipMapPage() {
   const location = useLocation();
@@ -43,6 +50,15 @@ export default function UniversalRelationshipMapPage() {
   useEffect(() => setMounted(true), []);
   const selectedNodeId = mounted ? universalMapNodeFromHash(location.hash, UNIVERSAL_NODE_IDS) : null;
   const explore = universalMapExploreFromHash(mounted ? location.hash : "", UNIVERSAL_NODE_IDS);
+  const viewParams = new URLSearchParams((mounted ? location.hash : "").replace(/^#/, ""));
+  const changeViewParams = (changes: Record<string, string | null>, replace = false) => {
+    const hash = relationshipViewHash(location.hash, changes);
+    if (hash !== location.hash)
+      void navigate(
+        { pathname: location.pathname, search: location.search, hash },
+        { preventScrollReset: true, replace },
+      );
+  };
   const changeExplore = (state: UniversalMapExploreState) => {
     const hash = universalMapExploreHash(location.hash, state);
     if (hash !== location.hash)
@@ -143,10 +159,10 @@ export default function UniversalRelationshipMapPage() {
         <>
           <h1 style={H1_STYLE}>Universal Relationship Map</h1>
           <p style={{ color: t.muted, fontSize: "0.85rem", lineHeight: 1.6, margin: "0 0 1rem", maxWidth: "52rem" }}>
-            Explore the entire catalog through three views: the original corporate-family and assignee neighborhoods, a
-            trace between two entities, and inventor affiliations weighted by shared patents. Patents connect their
-            inventors and assignees; dated corporate records reconnect historical company names. Non-patent models
-            connect to their explicit catalog maker grouping. A neighborhood halo does not imply corporate ownership.
+            Explore the entire catalog through the original network, connection tracing, inventor affiliations, company
+            bridges, a comparison matrix, company chords, and patent evidence lanes. Patents connect their inventors and
+            assignees; dated corporate records reconnect historical company names. Non-patent models connect to their
+            explicit catalog maker grouping. A neighborhood halo does not imply corporate ownership.
           </p>
 
           <div
@@ -188,36 +204,13 @@ export default function UniversalRelationshipMapPage() {
             }
           >
             <PanelErrorBoundary lensKey="universal-relationship-map">
-              <div
-                role="group"
-                aria-label="Relationship map views"
-                style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: "1rem" }}
-              >
-                {(
-                  [
-                    ["network", "Network"],
-                    ["trace", "Trace connections"],
-                    ["affiliations", "Inventor affiliations"],
-                  ] as const
-                ).map(([view, label]) => (
-                  <button
-                    key={view}
-                    type="button"
-                    aria-pressed={explore.view === view}
-                    onClick={() => changeExplore({ ...explore, view })}
-                    style={{
-                      ...toggleBtn(t, explore.view === view, { flex: 0, hasRightBorder: false }),
-                      border: `1px solid ${t.toggleBorder}`,
-                      borderRadius: 4,
-                      padding: "8px 12px",
-                      minHeight: 44,
-                      fontSize: "0.75rem",
-                    }}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
+              <ViewChoices
+                views={UNIVERSAL_VIEWS}
+                value={explore.view}
+                onChange={(view) => changeExplore({ ...explore, view })}
+                theme={t}
+                label="Relationship map views"
+              />
               <UniversalMapSearch graph={UNIVERSAL_GRAPH} theme={t} onSelectNode={focusNode} />
               <div hidden={explore.view !== "network"}>
                 <UniversalRelationshipMap
@@ -249,6 +242,26 @@ export default function UniversalRelationshipMapPage() {
                   selectedNodeId={selectedNodeId}
                   onSelectNode={focusNode}
                   focusRequest={focusRequest}
+                />
+              )}
+              {(explore.view === "bridge" || explore.view === "matrix" || explore.view === "chords") && (
+                <CompanyRelationshipViews
+                  view={explore.view}
+                  insights={INSIGHTS}
+                  theme={t}
+                  params={viewParams}
+                  onParamsChange={changeViewParams}
+                  onSelectPatent={focusNode}
+                />
+              )}
+              {explore.view === "evidence" && (
+                <RelationshipEvidenceLanes
+                  insights={INSIGHTS}
+                  theme={t}
+                  params={viewParams}
+                  onParamsChange={changeViewParams}
+                  onSelectPatent={focusNode}
+                  selectedInventorId={selectedNode?.kind === "author" ? selectedNode.id : null}
                 />
               )}
 

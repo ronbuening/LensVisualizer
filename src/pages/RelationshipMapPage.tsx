@@ -8,17 +8,22 @@
  * flag so the server render (no fragment) and the first client render agree, then
  * the real focus appears one paint after hydration (same idea as ClientOnly).
  * Legacy `?focus=` links remain readable and are replaced with the fragment
- * form after hydration. Only `focus` is URL state; the selected patent is
- * component state.
+ * form after hydration. Focus, view, and exploration filters are fragment state;
+ * the selected patent is component state.
  */
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
 import PanelErrorBoundary from "../components/errors/PanelErrorBoundary.js";
 import RelationshipMap from "../components/relationshipMap/RelationshipMap.js";
 import RelationshipEntityPicker from "../components/relationshipMap/RelationshipEntityPicker.js";
+import InventorRelationshipViews from "../components/relationshipMap/InventorRelationshipViews.js";
+import { ViewChoices } from "../components/relationshipMap/RelationshipViewShared.js";
+import { buildRelationshipInsights } from "../utils/catalog/relationshipInsights.js";
+import { buildUniversalRelationshipGraph } from "../utils/catalog/universalRelationshipGraph.js";
+import { INVENTOR_VIEWS, inventorViewFromHash, relationshipViewHash } from "../utils/state/relationshipViewUrl.js";
 import PatentDetailCard from "../components/relationshipMap/PatentDetailCard.js";
 import { AUTHORS } from "../utils/catalog/authorCatalog.js";
 import { ASSIGNEES } from "../utils/catalog/assigneeCatalog.js";
@@ -34,6 +39,9 @@ import { panelCard } from "../utils/style/styles.js";
 import { universalMapHash } from "../utils/state/universalMapUrl.js";
 
 const TOP_COUNT = 12;
+const INVENTOR_INSIGHTS = buildRelationshipInsights(
+  buildUniversalRelationshipGraph({ includeCorporateRelationships: false }),
+);
 
 /** Top-N entities of an index by patent count, then name. */
 function topByPatents<T extends { name: string; slug: string; patentCount: number }>(index: T[]): T[] {
@@ -49,23 +57,63 @@ export default function RelationshipMapPage() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  const [selectedPatentId, setSelectedPatentId] = useState<string | null>(null);
+  const [patentSelection, setPatentSelection] = useState<{ focusId: string; patentId: string } | null>(null);
+  const detailsHeadingRef = useRef<HTMLHeadingElement>(null);
+  const focusPatentDetails = useRef(false);
 
   /* Server render and first client render agree (no focus); the real focus
    * appears one paint after hydration. Same mechanism as ClientOnly.tsx. */
   const hashFocus = new URLSearchParams(location.hash.replace(/^#/, "")).get("focus");
   const legacyQueryFocus = new URLSearchParams(location.search).get("focus");
-  const focus = mounted ? resolveFocusParam(hashFocus ?? legacyQueryFocus) : undefined;
+  const focus = useMemo(
+    () => (mounted ? resolveFocusParam(hashFocus ?? legacyQueryFocus) : undefined),
+    [mounted, hashFocus, legacyQueryFocus],
+  );
   const graph = useMemo(() => (focus ? buildRelationshipGraph(focus) : undefined), [focus]);
+  const selectedPatentId = patentSelection?.focusId === graph?.center.id ? (patentSelection?.patentId ?? null) : null;
+  const setSelectedPatentId = (patentId: string | null) =>
+    setPatentSelection(patentId && graph ? { focusId: graph.center.id, patentId } : null);
+  const inspectPatent = (patentId: string, keyboard = false) => {
+    focusPatentDetails.current = keyboard;
+    setSelectedPatentId(patentId);
+  };
+  useEffect(() => {
+    if (focusPatentDetails.current) detailsHeadingRef.current?.focus({ preventScroll: true });
+    focusPatentDetails.current = false;
+  }, [patentSelection]);
+  const view = focus?.role === "author" ? inventorViewFromHash(location.hash) : "relationships";
+  const viewParams = new URLSearchParams(location.hash.replace(/^#/, ""));
+  const changeViewParams = (changes: Record<string, string | null>, replace = false) => {
+    const hash = relationshipViewHash(location.hash, changes);
+    if (hash !== location.hash)
+      void navigate(
+        { pathname: location.pathname, search: location.search, hash },
+        { preventScrollReset: true, replace },
+      );
+  };
 
   useEffect(() => {
     if (!mounted || hashFocus || !resolveFocusParam(legacyQueryFocus)) return;
-    void navigate(`${canonicalPagePath("/relationships")}#focus=${legacyQueryFocus}`, { replace: true });
-  }, [hashFocus, legacyQueryFocus, mounted, navigate]);
+    const params = new URLSearchParams(location.hash.replace(/^#/, ""));
+    params.delete("focus");
+    const query = new URLSearchParams(location.search);
+    query.delete("focus");
+    void navigate(
+      {
+        pathname: canonicalPagePath("/relationships"),
+        search: query.toString() ? `?${query}` : "",
+        hash: `#focus=${legacyQueryFocus}${params.size ? `&${params}` : ""}`,
+      },
+      { replace: true },
+    );
+  }, [hashFocus, legacyQueryFocus, mounted, navigate, location.hash, location.search]);
 
   const setFocusParty = (ref: PartyRef) => {
     setSelectedPatentId(null);
-    void navigate(`${canonicalPagePath("/relationships")}#focus=${ref.role}:${ref.slug}`);
+    const nextView = ref.role === "author" ? view : "relationships";
+    void navigate(
+      `${canonicalPagePath("/relationships")}#focus=${ref.role}:${ref.slug}${nextView === "relationships" ? "" : `&view=${nextView}`}`,
+    );
   };
 
   const topAuthors = useMemo(() => topByPatents(AUTHORS), []);
@@ -74,7 +122,11 @@ export default function RelationshipMapPage() {
   const canonicalURL = canonicalPageUrl("/relationships");
   const seoDescription = `Explore how ${AUTHORS.length} optical inventors and ${ASSIGNEES.length} assignees connect through shared lens patents in an interactive relationship map.`;
 
-  const selectedPatent = graph && selectedPatentId ? graph.patents.find((p) => p.id === selectedPatentId) : undefined;
+  const selectedPatent =
+    graph && selectedPatentId
+      ? (graph.patents.find((p) => p.id === selectedPatentId) ??
+        (focus?.role === "author" ? INVENTOR_INSIGHTS.patents.get(selectedPatentId) : undefined))
+      : undefined;
 
   return (
     <StaticPageShell
@@ -139,14 +191,38 @@ export default function RelationshipMapPage() {
                * boundary keeps the picker above usable, and its center-id key
                * resets the error state when the user refocuses. */}
               <PanelErrorBoundary lensKey={graph.center.id}>
-                <RelationshipMap
-                  key={graph.center.id}
-                  graph={graph}
-                  theme={t}
-                  selectedPatentId={selectedPatentId}
-                  onSelectPatent={setSelectedPatentId}
-                  onFocusParty={setFocusParty}
-                />
+                {focus.role === "author" && (
+                  <ViewChoices
+                    views={INVENTOR_VIEWS}
+                    value={view}
+                    onChange={(next) => changeViewParams({ view: next === "relationships" ? null : next })}
+                    theme={t}
+                    label="Inventor relationship map views"
+                  />
+                )}
+                <div hidden={view !== "relationships"}>
+                  <RelationshipMap
+                    key={graph.center.id}
+                    graph={graph}
+                    theme={t}
+                    selectedPatentId={selectedPatentId}
+                    onSelectPatent={setSelectedPatentId}
+                    onFocusParty={setFocusParty}
+                    active={view === "relationships"}
+                  />
+                </div>
+                {focus.role === "author" && view !== "relationships" && (
+                  <InventorRelationshipViews
+                    key={graph.center.id}
+                    view={view}
+                    inventorId={graph.center.id}
+                    insights={INVENTOR_INSIGHTS}
+                    theme={t}
+                    params={viewParams}
+                    onParamsChange={changeViewParams}
+                    onSelectPatent={inspectPatent}
+                  />
+                )}
 
                 {selectedPatent && (
                   <PatentDetailCard
@@ -155,6 +231,7 @@ export default function RelationshipMapPage() {
                     theme={t}
                     onFocusParty={setFocusParty}
                     onClose={() => setSelectedPatentId(null)}
+                    headingRef={detailsHeadingRef}
                   />
                 )}
               </PanelErrorBoundary>

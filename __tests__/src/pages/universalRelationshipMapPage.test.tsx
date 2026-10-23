@@ -96,6 +96,22 @@ describe("UniversalRelationshipMapPage", () => {
 
   afterEach(cleanup);
 
+  it("offers every comparison view on the universal page with shareable view history", async () => {
+    renderUniversalPage();
+    await screen.findByRole("group", { name: "Relationship map views" });
+    for (const [label, region] of [
+      ["Company bridge", "Company bridge"],
+      ["Affiliation matrix", "Affiliation matrix"],
+      ["Company chords", "Company chords"],
+      ["Evidence lanes", "Evidence lanes"],
+    ]) {
+      fireEvent.click(screen.getByRole("button", { name: label }));
+      expect(await screen.findByRole("region", { name: region })).toBeDefined();
+    }
+    fireEvent.click(screen.getByRole("button", { name: "Back" }));
+    expect(await screen.findByRole("region", { name: "Company chords" })).toBeDefined();
+  });
+
   it("keeps the original network mounted and preserves its camera intent when switching views", async () => {
     renderUniversalPage();
     const map = await screen.findByRole("group", { name: "Universal relationship map test double" });

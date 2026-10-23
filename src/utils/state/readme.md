@@ -18,6 +18,7 @@ flowchart LR
     n_src_utils_state_src_utils_state_mtfPreferences_ts["mtfPreferences.ts"]
     n_src_utils_state_src_utils_state_parseComparisonParams_ts["parseComparisonParams.ts"]
     n_src_utils_state_src_utils_state_preferences_ts["preferences.ts"]
+    n_src_utils_state_src_utils_state_relationshipViewUrl_ts["relationshipViewUrl.ts"]
     n_src_utils_state_src_utils_state_universalMapUrl_ts["universalMapUrl.ts"]
     n_src_utils_state_src_utils_state_useLensState_ts["useLensState.ts"]
     n_src_utils_state_src_utils_state_usePreferences_ts["usePreferences.ts"]
@@ -77,10 +78,10 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 14
+- Direct source files: 15
 - Direct subfolders: 0
 - Main outbound areas: same folder (15), src/types (14), src/utils/catalog (5), package:react (4), src/comparison (3), src/optics/optics.ts, src/optics/perspective.ts, src/optics/validation.ts, +5 more
-- External consumers: src/comparison, src/components/display, src/components/HolidayFavicon.tsx, src/components/hooks, src/components/layout, src/pages/AuthorsIndexPage.tsx, src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx, +1 more
+- External consumers: src/comparison, src/components/display, src/components/HolidayFavicon.tsx, src/components/hooks, src/components/layout, src/components/relationshipMap, src/pages/AuthorsIndexPage.tsx, src/pages/RelationshipMapPage.tsx, +2 more
 
 ## Files
 
@@ -95,7 +96,8 @@ flowchart LR
 | `mtfPreferences.ts` | Mtf Preferences helper module | src/types | src/components/display (4), src/components/hooks | MtfChartView, MTF_FIELD_STEPS, MtfFieldStepPercent, MTF_CHART_FREQUENCIES, MtfChartFrequency, MtfPreferences, MTF_PREFERENCES_KEY, DEFAULT_MTF_PREFERENCES, +7 more |
 | `parseComparisonParams.ts` | Parse Comparison Params helper module | same folder (2), src/comparison | same folder (2), src/comparison | focalLengthToZoomT, zoomTToFocalLength, buildComparePath, BuildURLSliders, parseLensKeysFromSearch, parseComparisonParams, encodeSliderParams, buildComparisonURL |
 | `preferences.ts` | Preferences helper module | src/types | same folder (2), src/utils/theme (2), src/components/HolidayFavicon.tsx | PREFS_KEY, PREFS_VERSION, loadPrefs |
-| `universalMapUrl.ts` | Universal Map Url helper module | none | src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | universalMapNodeFromHash, universalMapHash, UniversalMapView, UniversalMapExploreState, universalMapExploreFromHash, universalMapExploreHash |
+| `relationshipViewUrl.ts` | Relationship View Url helper module | none | src/components/relationshipMap, src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | INVENTOR_VIEWS, InventorRelationshipView, inventorViewFromHash, relationshipViewHash |
+| `universalMapUrl.ts` | Universal Map Url helper module | none | src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | universalMapNodeFromHash, universalMapHash, UNIVERSAL_VIEWS, UniversalMapView, UniversalMapExploreState, universalMapExploreFromHash, universalMapExploreHash |
 | `useLensState.ts` | React hook module | same folder (4), src/utils/catalog (2), package:react, src/types, src/utils/useMediaQuery.ts | src/components/layout | default, useLensState |
 | `usePreferences.ts` | React hook module | package:react, same folder, src/types | src/components/layout | default, usePreferences |
 | `useURLSync.ts` | React hook module | same folder (3), src/utils/catalog (2), package:react, src/types | src/components/layout | default, useURLSync |

@@ -6,6 +6,15 @@ import {
 import { buildInventorAffiliations } from "../../../../src/utils/catalog/inventorAffiliations.js";
 import { layoutInventorAffiliations } from "../../../../src/components/relationshipMap/inventorAffiliationLayout.js";
 import {
+  buildRelationshipInsights,
+  companyBridge,
+  companyConnections,
+  inventorCollaborators,
+} from "../../../../src/utils/catalog/relationshipInsights.js";
+import { relationshipInsightFixture } from "../../../fixtures/relationshipInsights.js";
+import { companyChordLayout } from "../../../../src/components/relationshipMap/companyChordLayout.js";
+import { coInventorLayout } from "../../../../src/components/relationshipMap/coInventorLayout.js";
+import {
   buildUniversalRelationshipGraph,
   type UniversalPartyNode,
   type UniversalRelationshipEdge,
@@ -28,6 +37,89 @@ function edge(
 ): UniversalRelationshipEdge {
   return { id, from, to, kind };
 }
+
+describe("relationship comparison evidence", () => {
+  const graph = relationshipInsightFixture();
+  const insights = buildRelationshipInsights(graph);
+
+  it("weights bridges by distinct patents and retains joint assignments without inferring corporate work", () => {
+    const rows = companyBridge(insights, "assignee:alpha", "assignee:beta");
+    expect(rows.map((row) => row.record.inventor.name)).toEqual(["Ada", "Bea"]);
+    expect(rows[0].left.patentIds).toEqual(["patent:P1", "patent:P3"]);
+    expect(rows[0].right.patentIds).toEqual(["patent:P2", "patent:P3"]);
+    expect(rows[0].jointPatentIds).toEqual(["patent:P3"]);
+    expect(rows[0].rightShare).toBe(0.5);
+    expect(rows[1].rightShare).toBeCloseTo(1 / 3);
+    expect(companyBridge(insights, "assignee:alpha", "assignee:alpha")).toEqual([]);
+    expect(companyBridge(insights, "assignee:alpha", "assignee:gamma").map((row) => row.record.inventor.name)).toEqual([
+      "Bea",
+    ]);
+    expect(companyBridge(insights, "unknown", "assignee:alpha")).toEqual([]);
+    expect(insights.inventors.find((record) => record.inventor.name === "Ada")!.assignedPatentCount).toBe(3);
+    expect(insights.inventors.find((record) => record.inventor.name === "Ada")!.unassignedPatentCount).toBe(1);
+  });
+
+  it("counts a multi-company inventor once in each undirected company pair", () => {
+    const pairs = companyConnections(insights, ["assignee:alpha", "assignee:beta", "assignee:gamma"]);
+    expect(pairs.map((pair) => [pair.left, pair.right, pair.inventorIds])).toEqual([
+      ["assignee:alpha", "assignee:beta", ["author:bea", "author:ada"]],
+      ["assignee:beta", "assignee:gamma", ["author:bea", "author:cy"]],
+      ["assignee:alpha", "assignee:gamma", ["author:bea"]],
+    ]);
+    expect(companyConnections(insights, ["assignee:alpha"])).toEqual([]);
+  });
+
+  it("ranks direct collaborators by shared patents and includes their other coauthorship evidence", () => {
+    const network = inventorCollaborators(insights, "author:ada", 2);
+    expect(network.collaborators.map((entry) => [entry.record.inventor.name, entry.patentIds])).toEqual([
+      ["Bea", ["patent:P1", "patent:P3"]],
+      ["Cy", ["patent:P2"]],
+    ]);
+    expect(network.edges.find((entry) => entry.from === "author:bea" && entry.to === "author:cy")!.patentIds).toEqual([
+      "patent:P4",
+    ]);
+    expect(inventorCollaborators(insights, "author:ada", 1).edges).toHaveLength(1);
+    expect(inventorCollaborators(insights, "author:dora", 12)).toEqual({ total: 0, collaborators: [], edges: [] });
+    expect(insights.inventorPatents.get("author:dora")).toEqual(["patent:P5"]);
+    const reversed = buildRelationshipInsights({
+      ...graph,
+      nodes: [...graph.nodes].reverse(),
+      edges: [...graph.edges].reverse(),
+      patents: [...graph.patents].reverse(),
+    });
+    expect(inventorCollaborators(reversed, "author:ada", 2)).toEqual(network);
+  });
+
+  it("allocates proportional chord widths and finite geometry, including empty input", () => {
+    const pairs = companyConnections(insights, ["assignee:alpha", "assignee:beta", "assignee:gamma"]);
+    const layout = companyChordLayout(["assignee:alpha", "assignee:beta", "assignee:gamma"], pairs);
+    expect(layout.sectors.map((sector) => sector.count)).toEqual([3, 4, 3]);
+    expect(
+      (layout.sectors[1].end - layout.sectors[1].start) / (layout.sectors[0].end - layout.sectors[0].start),
+    ).toBeCloseTo(4 / 3);
+    expect(JSON.stringify(layout)).not.toMatch(/NaN|Infinity|undefined/);
+    expect(companyChordLayout([], []).ribbons).toEqual([]);
+  });
+
+  it("keeps grouped inventor nodes and labels spaced even when many share one assignee", () => {
+    const seed = insights.inventors[0];
+    const members = Array.from({ length: 25 }, (_, i) => ({
+      ...seed,
+      inventor: { ...seed.inventor, id: `author:${i}` },
+    }));
+    const layout = coInventorLayout(members);
+    const points = [...layout.points.values()];
+    expect(points).toHaveLength(25);
+    for (const point of points) {
+      expect(point.x).toBeGreaterThan(30);
+      expect(point.x).toBeLessThan(layout.width - 30);
+      expect(point.y).toBeGreaterThan(30);
+      expect(point.y).toBeLessThan(layout.height - 45);
+      for (const other of points)
+        if (point !== other) expect(Math.hypot(point.x - other.x, point.y - other.y)).toBeGreaterThanOrEqual(115);
+    }
+  });
+});
 
 describe("universal connection tracing", () => {
   const graph = {

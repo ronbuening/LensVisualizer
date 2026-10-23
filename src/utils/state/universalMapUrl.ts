@@ -13,7 +13,16 @@ export function universalMapHash(hash: string, nodeId: string | null): string {
   return value ? `#${value}` : "";
 }
 
-export type UniversalMapView = "network" | "trace" | "affiliations";
+export const UNIVERSAL_VIEWS = [
+  ["network", "Network"],
+  ["trace", "Trace connections"],
+  ["affiliations", "Inventor affiliations"],
+  ["bridge", "Company bridge"],
+  ["matrix", "Affiliation matrix"],
+  ["chords", "Company chords"],
+  ["evidence", "Evidence lanes"],
+] as const;
+export type UniversalMapView = (typeof UNIVERSAL_VIEWS)[number][0];
 
 export interface UniversalMapExploreState {
   view: UniversalMapView;
@@ -28,7 +37,7 @@ export function universalMapExploreFromHash(hash: string, nodeIds: ReadonlySet<s
   const from = params.get("from");
   const to = params.get("to");
   return {
-    view: view === "trace" || view === "affiliations" ? view : "network",
+    view: UNIVERSAL_VIEWS.find(([id]) => id === view)?.[0] ?? "network",
     from: from && nodeIds.has(from) ? from : null,
     to: to && nodeIds.has(to) ? to : null,
     includeCorporate: params.get("corporate") !== "0",
