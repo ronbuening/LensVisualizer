@@ -65,7 +65,10 @@ can become stale when Back interrupts a concurrent navigation. Changed selection
 reselecting the same node can recenter without another history entry. Search and detail navigation carry pending camera
 intent, consumed only when the corresponding URL commits. Direct SVG selection and closing details preserve the camera.
 Reload and Back/Forward restore selection, details, and readable framing; absent, malformed, or unknown targets restore
-the overview. Query text, pan/zoom, emphasis, and overview visibility remain local. Unrelated URL parameters are preserved,
+the overview. The same fragment also stores `view=trace|affiliations` (absent means Network), validated `from` and `to`
+trace endpoints, and `corporate=0` when corporate history is excluded. View and endpoint changes push history without
+changing the original network camera; the Network renderer remains mounted and suspends gestures and focus handling
+while hidden. Query text, pan/zoom, emphasis, overview visibility, and affiliation filters remain local. Unrelated URL parameters are preserved,
 and the canonical URL remains `/relationships/universal/`. Component interactions are documented in
 [UI components](ui-components.md#relationship-map-components).
 

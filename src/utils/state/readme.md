@@ -95,7 +95,7 @@ flowchart LR
 | `mtfPreferences.ts` | Mtf Preferences helper module | src/types | src/components/display (4), src/components/hooks | MtfChartView, MTF_FIELD_STEPS, MtfFieldStepPercent, MTF_CHART_FREQUENCIES, MtfChartFrequency, MtfPreferences, MTF_PREFERENCES_KEY, DEFAULT_MTF_PREFERENCES, +7 more |
 | `parseComparisonParams.ts` | Parse Comparison Params helper module | same folder (2), src/comparison | same folder (2), src/comparison | focalLengthToZoomT, zoomTToFocalLength, buildComparePath, BuildURLSliders, parseLensKeysFromSearch, parseComparisonParams, encodeSliderParams, buildComparisonURL |
 | `preferences.ts` | Preferences helper module | src/types | same folder (2), src/utils/theme (2), src/components/HolidayFavicon.tsx | PREFS_KEY, PREFS_VERSION, loadPrefs |
-| `universalMapUrl.ts` | Universal Map Url helper module | none | src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | universalMapNodeFromHash, universalMapHash |
+| `universalMapUrl.ts` | Universal Map Url helper module | none | src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | universalMapNodeFromHash, universalMapHash, UniversalMapView, UniversalMapExploreState, universalMapExploreFromHash, universalMapExploreHash |
 | `useLensState.ts` | React hook module | same folder (4), src/utils/catalog (2), package:react, src/types, src/utils/useMediaQuery.ts | src/components/layout | default, useLensState |
 | `usePreferences.ts` | React hook module | package:react, same folder, src/types | src/components/layout | default, usePreferences |
 | `useURLSync.ts` | React hook module | same folder (3), src/utils/catalog (2), package:react, src/types | src/components/layout | default, useURLSync |

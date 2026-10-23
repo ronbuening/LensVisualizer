@@ -96,6 +96,43 @@ describe("UniversalRelationshipMapPage", () => {
 
   afterEach(cleanup);
 
+  it("keeps the original network mounted and preserves its camera intent when switching views", async () => {
+    renderUniversalPage();
+    const map = await screen.findByRole("group", { name: "Universal relationship map test double" });
+    fireEvent.click(screen.getByRole("button", { name: "Select test assignee" }));
+    const selected = map.getAttribute("data-selected");
+    const focus = map.getAttribute("data-request");
+    const reset = map.getAttribute("data-reset");
+    fireEvent.click(screen.getByRole("button", { name: "Trace connections" }));
+    expect(screen.queryByRole("group", { name: "Universal relationship map test double" })).toBeNull();
+    expect(screen.getByRole("combobox", { name: "Start entity" })).toBeDefined();
+    fireEvent.click(screen.getByRole("button", { name: "Network" }));
+    expect(screen.getByRole("group", { name: "Universal relationship map test double" })).toBe(map);
+    expect(map.getAttribute("data-selected")).toBe(selected);
+    expect(map.getAttribute("data-request")).toBe(focus);
+    expect(map.getAttribute("data-reset")).toBe(reset);
+  });
+
+  it("restores a shared trace, preserves unrelated URL state, and navigates views with Back", async () => {
+    const graph = buildUniversalRelationshipGraph();
+    const edge = graph.edges.find((entry) => entry.kind === "authorship")!;
+    const params = new URLSearchParams({ extra: "ok", view: "trace", from: edge.from, to: edge.to });
+    renderUniversalPage(`/relationships/universal?keep=yes#${params}`);
+    expect(await screen.findByRole("group", { name: "Connection path" })).toBeDefined();
+    expect(screen.getByText("1 step · 1 shortest path.")).toBeDefined();
+    fireEvent.click(screen.getByRole("button", { name: "Swap entities" }));
+    const location = screen.getByRole("status", { name: "Current location" }).textContent!;
+    expect(location).toContain("?keep=yes#extra=ok");
+    expect(new URLSearchParams(location.split("#")[1]).get("from")).toBe(edge.to);
+    fireEvent.click(screen.getByRole("button", { name: "Inventor affiliations" }));
+    expect(await screen.findByRole("group", { name: "Inventor affiliation map" })).toBeDefined();
+    fireEvent.click(screen.getByRole("button", { name: "Back" }));
+    expect(await screen.findByRole("group", { name: "Connection path" })).toBeDefined();
+    fireEvent.click(screen.getByRole("button", { name: "Clear trace" }));
+    expect(screen.queryByRole("group", { name: "Connection path" })).toBeNull();
+    expect(screen.getByText("Select a start and end entity to find a connection.")).toBeDefined();
+  });
+
   it("keeps selection consistent when Back interrupts a pending data-router navigation", async () => {
     const router = createMemoryRouter([{ path: "/relationships/universal", Component: UniversalRelationshipMapPage }], {
       initialEntries: ["/relationships/universal"],

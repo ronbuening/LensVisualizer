@@ -187,6 +187,19 @@ changing selection or zoom; double-click centers and doubles the zoom; arrow key
 overview sits inside wide viewports and below viewports narrower than 600 CSS pixels, with a local visibility
 toggle. It does not run another layout or filter the graph.
 
+The universal page keeps that original Network view mounted while offering Trace connections and Inventor affiliations.
+`UniversalConnectionTrace` uses `universalConnectionPaths.ts` to find shortest paths over undirected traversal of the
+original edges, with an option to exclude corporate records. A BFS predecessor graph retains alternate shortest routes;
+bounded enumeration returns at most five plus a truncation indicator. The path diagram opens the same detail cards,
+and the evidence list describes each edge in its recorded direction with dates and sources.
+`inventorAffiliations.ts` projects authorship and assignment through each distinct patent into inventor–assignee links;
+corporate relationships and catalog makers never imply work attribution. Joint assignments count once for each assignee,
+while percentages use the union of an inventor's assigned patents. Unassigned patents remain separately counted.
+`inventorAffiliationLayout.ts` places company anchors around a circle and inventors at patent-count-weighted centers,
+with deterministic collision offsets and a spatial grid. `InventorAffiliationMap` starts with multi-assignee inventors,
+offers organization and single-assignee filters, retains all ties of matching inventors, and shows exact counts and
+supporting patents. Its zoom/pan uses `useViewBoxZoom`; the comparison table provides a text route to every shown inventor.
+
 ## Markdown Renderer
 
 `ThemedMarkdown` has an `article` variant (heading IDs, React Router internal links, special image renderers, GFM,
