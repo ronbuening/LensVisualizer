@@ -1,5 +1,4 @@
 import { constructionFixtureData } from "./constructionFixtures.js";
-import { associateRuntimeView } from "../../../src/optics/prescription/runtimeView.js";
 import { analysisRequestForLens } from "./testLensFixtures.js";
 import { analysisRequestAt } from "./testLensFixtures.js";
 import { registerRuntimeFixture } from "./testLensFixtures.js";
@@ -48,6 +47,7 @@ import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50
 import NikonAF28f14DRaw from "../../../src/lens-data/nikon/NikonAF28f14D.data.js";
 import type { RuntimeLens, LensData } from "../../../src/types/optics.js";
 import type { OffAxisFieldGeometry } from "../../../src/optics/analysis/aberration/offAxis.js";
+import type { AnalysisRequest } from "../../../src/optics/analysis/request.js";
 import { bestRelativeFocusPlane } from "../../../src/optics/analysis/aberration/shared.js";
 import {
   apertureAt,
@@ -59,6 +59,12 @@ import {
 } from "./testLensFixtures.js";
 
 /* ── Helpers ── */
+
+function withoutSurfaces(request: AnalysisRequest): AnalysisRequest {
+  // A runtime view may be reclaimed and rebuilt, so the compiled fixture must also have no surfaces.
+  const lens = { ...request.preparedGeometry.lens, surfaces: [], constructionSurfaces: [] };
+  return { ...request, preparedGeometry: { ...request.preparedGeometry, lens } };
+}
 
 function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): RuntimeLens {
   return registerRuntimeFixture({
@@ -756,11 +762,7 @@ describe("computeSphericalAberrationBlurCharacter", () => {
 describe("aperture-closed and degenerate-lens guards", () => {
   const L = sharedSonnar50f15();
   const { z: zPos } = doLayout(0, 0, L);
-  const degenerate = { N: 0, S: [] } as unknown as RuntimeLens;
-  const baseRequest = analysisRequestForLens(L);
-  const emptyLens = { ...baseRequest.preparedGeometry.lens };
-  associateRuntimeView(emptyLens, degenerate);
-  const emptyRequest = { ...baseRequest, preparedGeometry: { ...baseRequest.preparedGeometry, lens: emptyLens } };
+  const emptyRequest = withoutSurfaces(analysisRequestForLens(L));
 
   it.each([
     [
@@ -2203,12 +2205,7 @@ describe("computeFieldCurvature", () => {
     expect(
       computeFieldCurvature(analysisRequestAt(L, { zPos, focusT: 0, zoomT: 0, currentEPSD: 0, currentPhysStopSD: 0 })),
     ).toBeNull();
-    const request = analysisRequestForLens(L);
-    const emptyLens = { ...request.preparedGeometry.lens };
-    associateRuntimeView(emptyLens, { N: 0, S: [] } as unknown as RuntimeLens);
-    expect(
-      computeFieldCurvature({ ...request, preparedGeometry: { ...request.preparedGeometry, lens: emptyLens } }),
-    ).toBeNull();
+    expect(computeFieldCurvature(withoutSurfaces(analysisRequestForLens(L)))).toBeNull();
   });
 
   it("returns zero astigmatism at center for a second lens (Sonnar 50/1.5)", () => {
