@@ -49,6 +49,7 @@ const TELECONVERTER_DATA = {
 
   catalog: {
     lensMounts: ["sony-fe"],
+    imageFormat: "135-full-frame",
     specs: ["8 ELEMENTS / 5 GROUPS", "2× REAR CONVERTER", "1 ASPHERICAL SURFACE / 1 ELEMENT"],
     elementCount: 8,
     groupCount: 5,

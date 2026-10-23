@@ -12,6 +12,7 @@ build metadata.
 | --- | --- | --- |
 | `router.tsx` | `src/` | Browser router created from `routeManifest.tsx`. |
 | `routeManifest.tsx` | `src/routes/` | Shared React route patterns used by the client router and SSR entry. |
+| `RouteLayout.tsx` | `src/routes/` | Shared route layout: scrolls new pages to the top and honors fragment targets after commit. |
 | `entry-server.tsx` | `src/` | SSR render function and manifest path export for static prerendering. |
 | `HomePage.tsx` | `src/pages/` | Homepage shell with hero, navigation cards, articles, recent lenses, and legacy redirect handling. |
 | `SearchPage.tsx` | `src/pages/` | Lightweight catalog search at `/search` for lens names, patent numbers, and authors. |
@@ -75,12 +76,17 @@ and the canonical URL remains `/relationships/universal/`. Component interaction
 - `StaticPageShell.tsx` wraps static pages that need shared breadcrumbs, page theme state, and `PAGE_BASE_STYLE`.
 - `src/utils/style/pageStyles.ts` exports shared static page base styles and fallback link styles.
 - Lens index-specific filter/results styles live under `src/pages/lensIndex/`, but reuse shared base styles where possible.
+- `TeleconvertersIndexPage.tsx` uses `teleconverterIndex.ts` for maker, inventor, assignee, mount, format, and patent-decade
+  grouping. The `group` query selects the view; named-party grouping, catalog collation, anchors, and sidebar UI are shared
+  with the lens library. Format grouping reads each converter's declared `catalog.imageFormat`.
 
 ## SSR And Prerender Flow
 
 The app uses React Router 8 with client-side routing plus static prerendering for SEO:
 
 - `main.tsx` mounts `RouterProvider` with the browser router.
+- `RouteLayout.tsx` wraps the routes in both browser and SSR trees. Its client effect scrolls pathname changes to the top,
+  or scrolls to a decoded fragment after the destination commits. Query-only state changes keep their scroll position.
 - `router.tsx` assigns `RouteErrorBoundary` to every browser route so render, effect, and lazy-chunk failures use the
   shared stack-aware error display and prefilled GitHub issue flow instead of React Router's generic fallback.
 - `entry-server.tsx` exports `render(url): { html, helmet }` using `StaticRouter`. With React 19,

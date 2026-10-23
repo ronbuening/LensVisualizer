@@ -155,6 +155,7 @@ const LENS_CATALOG_FIELDS: Fields<LensCatalogV2Input> = {
 
 const TELECONVERTER_CATALOG_FIELDS: Fields<TeleconverterDataV2Input["catalog"]> = {
   lensMounts: true,
+  imageFormat: true,
   specs: true,
   elementCount: true,
   groupCount: true,
@@ -1118,7 +1119,7 @@ export function ingestTeleconverterV2(
   requireFields(catalogRecord, ["lensMounts"], "catalog", context);
   if (!Array.isArray(catalogRecord.lensMounts)) context.issues.push("catalog.lensMounts must be an array");
   const catalog: Untyped = { lensMounts: copy(catalogRecord.lensMounts) };
-  for (const field of ["specs", "elementCount", "groupCount"]) put(catalog, field, catalogRecord[field]);
+  for (const field of ["imageFormat", "specs", "elementCount", "groupCount"]) put(catalog, field, catalogRecord[field]);
   if (context.sources) recordReads(context.sources, "catalog", "catalog", catalog, Object.keys(catalog));
 
   const converter: Untyped = { kind: "teleconverter" };

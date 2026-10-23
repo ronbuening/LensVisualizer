@@ -62,6 +62,7 @@ const TELECONVERTER_DATA = {
 
   catalog: {
     lensMounts: ["canon-ef"],
+    imageFormat: "135-full-frame",
     specs: ["7 ELEMENTS / 5 GROUPS", "2× REAR CONVERTER", "ALL SPHERICAL"],
     elementCount: 7,
     groupCount: 5,

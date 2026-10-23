@@ -21,6 +21,16 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-23",
     type: "improvement",
+    summary: "Added teleconverter grouping by maker, inventor, assignee, mount, format and patent year",
+  },
+  {
+    date: "2026-10-23",
+    type: "fix",
+    summary: "Fixed page navigation to scroll to the top while preserving anchor destinations",
+  },
+  {
+    date: "2026-10-23",
+    type: "improvement",
     summary: "Added quick-link sidebars to maker, mount, format and teleconverter indexes",
   },
   {

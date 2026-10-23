@@ -87,6 +87,7 @@ const TELECONVERTER_DATA = {
 
   catalog: {
     lensMounts: ["fujifilm-x"],
+    imageFormat: "aps-c",
     specs: ["7 ELEMENTS / 4 GROUPS", "1.4× REAR CONVERTER", "2 ASPHERICAL SURFACES"],
     elementCount: 7,
     groupCount: 4,
