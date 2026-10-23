@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **989** lenses scanned (**975** visible)
-- **10392 / 11237** non-air surfaces use strict catalog Sellmeier data (92.5%)
-- **10405 / 11237** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.6%)
+- **995** lenses scanned (**981** visible)
+- **10479 / 11326** non-air surfaces use strict catalog Sellmeier data (92.5%)
+- **10492 / 11326** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.6%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **297** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **164** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -88,6 +88,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [SCHNEIDER-KREUZNACH CINEGON 10mm f/1.8](../../src/lens-data/schneider-kreuznach/SchneiderCinegon1810.data.ts) | US 3,038,379 | [PDF](../../patents/US3038379.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 5 [glass] (Element 4: `Unmatched (nd=1.5128, vd=57.2; public catalog identity unresolved)`) | abbe: 1 |
 | [NIKON AF-S NIKKOR 24-85mm f/3.5-4.5 G ED VR](../../src/lens-data/nikon/NikonAFSNikkor2485mmf3545GEDVR.data.ts) | JP 2011-221421 A | [PDF](../../patents/JP2011221421A.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 6A [glass] (L21 thin material region: `Unmatched (nd=1.53610, νd=41.42; thin aspheric-layer material)`)<br>25A [glass] (L51 thin material region: `Unmatched (nd=1.53610, νd=41.42; thin aspheric-layer material)`) | abbe: 2 |
 | [SONY DT 16-50mm f/2.8 SSM](../../src/lens-data/sony/SonyDT1650mmf28SSM.data.ts) | US 2012/0307129 A1 | [PDF](../../patents/US20120307129A1.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 6A [glass] (G4 compound layer: `Unmatched (compound-asphere layer; material unspecified by patent)`)<br>26 [glass] (G13 compound layer: `Unmatched (compound-asphere layer; material unspecified by patent)`) | abbe: 2 |
+| [OLYMPUS ZUIKO DIGITAL ED 90-250mm f/2.8](../../src/lens-data/olympus/OlympusZuikoDigitalED90250mmf28.data.ts) | JP 2006-201524 A | [PDF](../../patents/JP2006201524A.pdf) | 88.2% (15/17) | 88.2% (15/17) | 2 | 3 [glass] (Element 2: `Unmatched (fluor-crown ED glass; printed nd 1.49700, νd 79.3 matches no catalog row)`)<br>5 [glass] (Element 3: `Unmatched (fluor-crown ED glass; printed nd 1.49700, νd 79.3 matches no catalog row)`) | abbe: 2 |
 | [CANON 10.2-30.6mm f/2-4.9 (Canon PowerShot G9 X)](../../src/lens-data/canon/CanonPowerShotG9X.data.ts) | JP 2016-161889 A | [PDF](../../patents/JP2016161889A.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 [glass] (L23 (G2n): `Unmatched (special high-dispersion glass; patent points to an SnO-rich JP2012-193065 class)`) | abbe: 1 |
 | [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100)](../../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) | US 2012/0069456 A1 | [PDF](../../patents/US20120069456A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 10A [glass] (Element 6: `Unmatched (569586 patent molded crown; no exact public catalog identity)`) | abbe: 1 |
 | [MAMIYA SEKOR AF 150mm f/2.8 IF D](../../src/lens-data/mamiya/MamiyaSekorDAF150mmf28IF.data.ts) | JP 2001-183581 A | [PDF](../../patents/JP_2001183581_A.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `Unmatched (nd=1.806098, νd=40.34; no exact current catalog identity)`) | abbe: 1 |
