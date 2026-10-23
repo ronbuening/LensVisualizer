@@ -127,6 +127,31 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "OHARA_260701.AGF, discontinued PBH23 row, formula 1 polynomial; official OHARA all-products catalog https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-09-05).",
   },
+  /* Exact patent coordinates for the Olympus OM Zuiko 28mm f/2.8 (BSM4) and the Minolta MD Fisheye
+   * Rokkor-X 7.5mm (FSL3).
+   */
+  {
+    name: "BSM4",
+    vendor: "Ohara",
+    polynomial: [2.559693, -0.01014464, 0.01426178, 0.0004753199, -0.00003128766, 0.000001735988],
+    nd: 1.612716,
+    vd: 58.749129,
+    PgF: 0.545,
+    code6: "613588",
+    source:
+      "OHARA_260701.AGF, discontinued BSM4 row, formula 1 polynomial (PgF computed from it at g/F/C); official OHARA all-products catalog https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-10-22).",
+  },
+  {
+    name: "FSL3",
+    vendor: "Ohara",
+    polynomial: [2.1205655, -0.0089437249, 0.0090242393, 0.00013786285, -8.2750398e-7, 2.6740448e-8],
+    nd: 1.464499,
+    vd: 65.938855,
+    PgF: 0.5328,
+    code6: "465659",
+    source:
+      "OHARA_260701.AGF, discontinued FSL3 row, formula 1 polynomial (PgF computed from it at g/F/C); official OHARA all-products catalog https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-10-22).",
+  },
   /* Phase 46: exact Konica patent-coordinate coverage from OHARA's current
    * first-party BAL15Y datasheet.
    */

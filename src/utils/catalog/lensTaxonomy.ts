@@ -25,6 +25,7 @@ export const LENS_MOUNTS = [
   { id: "canon-fl", label: "Canon FL", sortOrder: 115 },
   { id: "canon-r", label: "Canon R", sortOrder: 120 },
   { id: "canon-rf", label: "Canon RF", sortOrder: 125 },
+  { id: "canon-7-bayonet", label: "Canon 7 bayonet", sortOrder: 127 },
   { id: "contax-645", label: "Contax 645", sortOrder: 150 },
   { id: "contax-g", label: "Contax G", sortOrder: 160 },
   { id: "contax-n", label: "Contax N", sortOrder: 170 },
