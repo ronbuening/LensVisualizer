@@ -12,6 +12,7 @@ interface UniversalMapSearchProps {
   graph: UniversalRelationshipGraph;
   theme: Theme;
   onSelectNode: (nodeId: string) => void;
+  label?: string;
 }
 
 function resultDescription(node: UniversalRelationshipNode): string {
@@ -25,7 +26,12 @@ function resultDescription(node: UniversalRelationshipNode): string {
   return node.kind === "family" ? "Corporate family" : "Organization";
 }
 
-export default function UniversalMapSearch({ graph, theme: t, onSelectNode }: UniversalMapSearchProps) {
+export default function UniversalMapSearch({
+  graph,
+  theme: t,
+  onSelectNode,
+  label = "Search the map",
+}: UniversalMapSearchProps) {
   const id = useId();
   const inputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -82,9 +88,9 @@ export default function UniversalMapSearch({ graph, theme: t, onSelectNode }: Un
   };
 
   return (
-    <div role="search" aria-label="Universal map search" style={{ marginBottom: "0.8rem" }}>
+    <div role="search" aria-label={label} style={{ marginBottom: "0.8rem" }}>
       <label htmlFor={id} style={{ display: "block", color: t.label, fontSize: "0.75rem", marginBottom: 6 }}>
-        Search the map
+        {label}
       </label>
       <input
         ref={inputRef}

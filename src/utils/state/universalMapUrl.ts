@@ -12,3 +12,49 @@ export function universalMapHash(hash: string, nodeId: string | null): string {
   const value = params.toString();
   return value ? `#${value}` : "";
 }
+
+export const UNIVERSAL_VIEWS = [
+  ["network", "Network"],
+  ["trace", "Trace connections"],
+  ["affiliations", "Inventor affiliations"],
+  ["bridge", "Company bridge"],
+  ["matrix", "Affiliation matrix"],
+  ["chords", "Company chords"],
+  ["evidence", "Evidence lanes"],
+] as const;
+export type UniversalMapView = (typeof UNIVERSAL_VIEWS)[number][0];
+
+export interface UniversalMapExploreState {
+  view: UniversalMapView;
+  from: string | null;
+  to: string | null;
+  includeCorporate: boolean;
+}
+
+export function universalMapExploreFromHash(hash: string, nodeIds: ReadonlySet<string>): UniversalMapExploreState {
+  const params = new URLSearchParams(hash.replace(/^#/, ""));
+  const view = params.get("view");
+  const from = params.get("from");
+  const to = params.get("to");
+  return {
+    view: UNIVERSAL_VIEWS.find(([id]) => id === view)?.[0] ?? "network",
+    from: from && nodeIds.has(from) ? from : null,
+    to: to && nodeIds.has(to) ? to : null,
+    includeCorporate: params.get("corporate") !== "0",
+  };
+}
+
+/** Keep selection and unrelated fragments while sharing the chosen view and trace. */
+export function universalMapExploreHash(hash: string, state: UniversalMapExploreState): string {
+  const params = new URLSearchParams(hash.replace(/^#/, ""));
+  if (state.view === "network") params.delete("view");
+  else params.set("view", state.view);
+  for (const key of ["from", "to"] as const) {
+    if (state[key]) params.set(key, state[key]);
+    else params.delete(key);
+  }
+  if (state.includeCorporate) params.delete("corporate");
+  else params.set("corporate", "0");
+  const value = params.toString();
+  return value ? `#${value}` : "";
+}

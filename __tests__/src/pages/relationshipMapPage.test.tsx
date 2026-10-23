@@ -6,9 +6,9 @@
  */
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, screen, waitFor } from "@testing-library/react";
+import { cleanup, fireEvent, screen, waitFor, within } from "@testing-library/react";
 import type { ReactElement } from "react";
-import { Route, Routes, useLocation } from "react-router";
+import { Route, Routes, useLocation, useNavigate } from "react-router";
 import RelationshipMapPage from "../../../src/pages/RelationshipMapPage.js";
 import { AUTHORS } from "../../../src/utils/catalog/authorCatalog.js";
 import { buildRelationshipGraph } from "../../../src/utils/catalog/relationshipGraph.js";
@@ -22,7 +22,14 @@ vi.mock("../../../src/components/SEOHead.js", () => ({
 
 function LocationEcho() {
   const location = useLocation();
-  return <div data-testid="location-echo">{`${location.pathname}${location.search}${location.hash}`}</div>;
+  const navigate = useNavigate();
+  return (
+    <>
+      <div data-testid="location-echo">{`${location.pathname}${location.search}${location.hash}`}</div>
+      <button onClick={() => void navigate(-1)}>Back</button>
+      <button onClick={() => void navigate(1)}>Forward</button>
+    </>
+  );
 }
 
 function renderRoutes(initialEntry: string, routes: ReactElement) {
@@ -161,5 +168,39 @@ describe("RelationshipMapPage", () => {
     await waitFor(() => {
       expect(screen.getByTestId("location-echo").textContent).toBe(`/relationships/#focus=author:${slug}`);
     });
+  });
+
+  it("preserves the inventor and original map across view changes and Back", async () => {
+    const author = AUTHORS.find((entry) => entry.name === "Hisayuki Yamanaka")!;
+    renderRoutes(`/relationships/#focus=author:${author.slug}&keep=yes`, PAGE_ROUTE);
+    const map = await screen.findByRole("group", { name: /Relationship map centered on/ });
+    for (const [label, region] of [
+      ["Assignees", "Assignee connections"],
+      ["Timeline", "Patent timeline"],
+    ]) {
+      fireEvent.click(screen.getByRole("button", { name: label }));
+      expect(await screen.findByRole("region", { name: region })).toBeDefined();
+      const hash = screen.getByTestId("location-echo").textContent!.split("#")[1];
+      expect(new URLSearchParams(hash).get("focus")).toBe(`author:${author.slug}`);
+      expect(new URLSearchParams(hash).get("keep")).toBe("yes");
+      expect(screen.queryByRole("group", { name: /Relationship map centered on/ })).toBeNull();
+    }
+    fireEvent.click(screen.getByRole("button", { name: "Back" }));
+    expect(await screen.findByRole("region", { name: "Assignee connections" })).toBeDefined();
+    fireEvent.click(screen.getByRole("button", { name: "Relationships" }));
+    expect(screen.getByRole("group", { name: /Relationship map centered on/ })).toBe(map);
+  });
+
+  it("restores an inventor timeline directly and retains legacy URL filters", async () => {
+    const author = AUTHORS.find((entry) => entry.name === "Hisayuki Yamanaka")!;
+    renderRoutes(`/relationships?focus=author:${author.slug}&extra=yes#view=timeline&year=2014`, PAGE_ROUTE);
+    expect(await screen.findByRole("slider", { name: "Timeline through year" })).toBeDefined();
+    expect((screen.getByRole("slider", { name: "Timeline through year" }) as HTMLInputElement).value).toBe("2014");
+    expect(document.querySelector('svg[aria-label^="Relationship map centered on"]')).toBeNull();
+    const patent = within(screen.getByRole("group", { name: "Inventor patent timeline" })).getAllByRole("button")[0];
+    fireEvent.keyDown(patent, { key: "Enter" });
+    await waitFor(() => expect(document.activeElement).toBe(screen.getByRole("heading", { level: 3 })));
+    await waitFor(() => expect(screen.getByTestId("location-echo").textContent).toContain("?extra=yes#focus="));
+    expect(screen.getByTestId("location-echo").textContent).toContain("view=timeline&year=2014");
   });
 });

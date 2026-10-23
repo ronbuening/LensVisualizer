@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-23",
+    type: "feature",
+    summary: "Added connection tracing, company comparisons, and inventor relationship views",
+  },
+  {
+    date: "2026-10-23",
     type: "improvement",
     summary: "Added teleconverter grouping by maker, inventor, assignee, mount, format and patent year",
   },

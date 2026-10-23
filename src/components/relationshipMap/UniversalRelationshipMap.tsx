@@ -40,6 +40,7 @@ interface UniversalRelationshipMapProps {
   onSelectNode: (nodeId: string | null) => void;
   focusRequest?: { nodeId: string; requestId: number };
   viewResetRequest?: number;
+  active?: boolean;
 }
 
 function isActivateKey(event: KeyboardEvent): boolean {
@@ -106,10 +107,11 @@ export default function UniversalRelationshipMap({
   onSelectNode,
   focusRequest,
   viewResetRequest,
+  active = true,
 }: UniversalRelationshipMapProps) {
   const layout = useMemo(() => layoutUniversalRelationshipGraph(graph), [graph]);
   const svgRef = useRef<SVGSVGElement>(null);
-  const zoom = useViewBoxZoom(layout.width, layout.height, true, svgRef);
+  const zoom = useViewBoxZoom(layout.width, layout.height, active, svgRef);
   const viewport = useSvgViewport(svgRef, zoom.viewBox);
   const overviewId = useId();
   const [showOverview, setShowOverview] = useState(true);
@@ -136,10 +138,10 @@ export default function UniversalRelationshipMap({
   const handledReset = useRef(0);
   const { reset } = zoom;
   useEffect(() => {
-    if (viewResetRequest === undefined || viewResetRequest === handledReset.current) return;
+    if (!active || viewResetRequest === undefined || viewResetRequest === handledReset.current) return;
     handledReset.current = viewResetRequest;
     reset();
-  }, [viewResetRequest, reset]);
+  }, [active, viewResetRequest, reset]);
   const focusNode = useCallback(
     (nodeId: string) => {
       const node = layout.nodeById[nodeId];
@@ -155,7 +157,7 @@ export default function UniversalRelationshipMap({
   );
 
   useEffect(() => {
-    if (!focusRequest || handledFocus.current === focusRequest) return;
+    if (!active || !focusRequest || handledFocus.current === focusRequest) return;
     const applyFocus = () => {
       if (handledFocus.current === focusRequest) return;
       if (focusNode(focusRequest.nodeId)) handledFocus.current = focusRequest;
@@ -165,7 +167,7 @@ export default function UniversalRelationshipMap({
     const observer = new ResizeObserver(applyFocus);
     observer.observe(svgRef.current);
     return () => observer.disconnect();
-  }, [focusRequest, focusNode]);
+  }, [active, focusRequest, focusNode]);
 
   const graphNodeById = useMemo(() => new Map(graph.nodes.map((node) => [node.id, node])), [graph.nodes]);
   const graphEdgeById = useMemo(() => new Map(graph.edges.map((edge) => [edge.id, edge])), [graph.edges]);

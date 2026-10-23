@@ -65,8 +65,20 @@ can become stale when Back interrupts a concurrent navigation. Changed selection
 reselecting the same node can recenter without another history entry. Search and detail navigation carry pending camera
 intent, consumed only when the corresponding URL commits. Direct SVG selection and closing details preserve the camera.
 Reload and Back/Forward restore selection, details, and readable framing; absent, malformed, or unknown targets restore
-the overview. Query text, pan/zoom, emphasis, and overview visibility remain local. Unrelated URL parameters are preserved,
-and the canonical URL remains `/relationships/universal/`. Component interactions are documented in
+the overview. The same fragment also stores `view=trace|affiliations` (absent means Network), validated `from` and `to`
+trace endpoints, and `corporate=0` when corporate history is excluded. Additional universal view ids are `bridge`,
+`matrix`, `chords`, and `evidence`. View and endpoint changes push history without
+changing the original network camera; the Network renderer mounts on first use, then stays mounted with gestures and
+focus handling suspended while hidden. Query text, pan/zoom, emphasis, overview visibility, and affiliation filters remain local. Unrelated URL parameters are preserved,
+and the canonical URL remains `/relationships/universal/`.
+`relationshipViewUrl.ts` patches only the supplied fragment fields and validates inventor view ids (`assignees`,
+`timeline`, `co-inventors`, `evidence`; absent or unknown means Relationships). The same focus remains selected across
+these options. New comparison controls share `left`/`right` assignee ids, `inventor`, selected `companies`, matrix
+`measure`/`sort`/`q`/`singles`/`cell`/`page`, chord `minimum`, timeline `year`, and collaborator `limit`/`cross` through
+the fragment through `useRelationshipViewParams`; each view validates ids and bounds against its data. Slider, playback, and typing updates replace history,
+while discrete choices push history. Legacy focus-query normalization retains filters and unrelated query parameters.
+Selected patent state on the focused page belongs to its focus id, so Back to another person cannot show stale details.
+Component interactions are documented in
 [UI components](ui-components.md#relationship-map-components).
 
 ## Static Page Shells
