@@ -149,7 +149,10 @@ collision-free two-ring radial layout; `RelationshipMap.tsx` renders it as inlin
 with `useViewBoxZoom` pan/zoom, hover edge highlighting, and colorblind-safe role shapes (circle inventor / square
 assignee), turning node clicks into recenter/select callbacks rather than navigating from inside the `<svg>`.
 `PatentDetailCard.tsx` is a deliberate copy of `AuthorPage`'s local `PatentCard` whose party names recenter the map
-instead of linking out. The page owns URL `focus` state.
+instead of linking out. The page owns URL `focus`, inventor view, and exploration filter state. Inventor maps offer
+Relationships, Assignees, Timeline, Co-inventors, and Evidence lanes; assignee maps keep the original ego graph.
+The original renderer mounts when first selected, then stays mounted with gestures suspended in other views to preserve
+its camera. Opening another view directly avoids computing a hidden map layout.
 
 The catalog-wide `/relationships/universal` route uses `src/utils/catalog/universalRelationshipGraph.ts` and the pure
 `universalLayout.ts` engine. Connected components are partitioned into corporate-family hubs and standalone assignees
@@ -186,6 +189,42 @@ through the main SVG's inverse screen transform (`useSvgViewport` / `svgCoordina
 changing selection or zoom; double-click centers and doubles the zoom; arrow keys pan and Home fits the map. The
 overview sits inside wide viewports and below viewports narrower than 600 CSS pixels, with a local visibility
 toggle. It does not run another layout or filter the graph.
+
+The universal page likewise retains the original Network view after its first use while offering Trace connections, Inventor affiliations,
+Company bridge, Affiliation matrix, Company chords, and Evidence lanes.
+`UniversalConnectionTrace` uses `universalConnectionPaths.ts` to find shortest paths over undirected traversal of the
+original edges, with an option to exclude corporate records. A BFS predecessor graph retains alternate shortest routes;
+bounded enumeration returns at most five plus a truncation indicator. The path diagram opens the same detail cards,
+and the evidence list describes each edge in its recorded direction with dates and sources.
+`inventorAffiliations.ts` projects authorship and assignment through each distinct patent into inventor–assignee links;
+corporate relationships and catalog makers never imply work attribution. Joint assignments count once for each assignee,
+while percentages use the union of an inventor's assigned patents. Unassigned patents remain separately counted.
+`inventorAffiliationLayout.ts` places company anchors around a circle and inventors at patent-count-weighted centers,
+with deterministic collision offsets and a spatial grid. `InventorAffiliationMap` starts with multi-assignee inventors,
+offers organization and single-assignee filters, retains all ties of matching inventors, and shows exact counts and
+supporting patents. Its zoom/pan uses `useViewBoxZoom`; the comparison table provides a text route to every shown inventor.
+
+`relationshipCatalog.ts` lazily shares one graph and analysis across routes; the ordinary focused map does not request it.
+`relationshipInsights.ts` indexes unique authorship evidence, inventors, assignees, unassigned patents, and company pairs,
+reusing the same affiliation projection in every view. Matrix rows cache cell counts and sort weights; chord geometry
+does not rerun on hover. `useRelationshipViewParams` reads and patches the router fragment for each view's controls.
+`CompanyRelationshipViews` offers a two-company bridge (inventor position and line thickness weighted by patent counts),
+a paginated inventor-by-assignee matrix (counts or shares), and undirected company chords (distinct shared inventor
+records per pair). Matrix and chord views allow up to eight selected assignees. Chord arc sizes count pair incidences,
+not unique people; the pure `companyChordLayout.ts` allocates equal-width ribbon endpoints and separates labels.
+`InventorRelationshipViews` compares the selected inventor's assignees, plots patents by recorded year and company,
+and groups direct collaborators by their most frequent recorded assignee. Timeline playback advances the cutoff only
+after an explicit Play action, filters a cached lane layout, and cleans up its timer. Undated patents stay in a separate list.
+The co-inventor graph includes all coauthorship among the displayed collaborators; a complete direct-collaborator list
+remains available beyond its 6/12/24-person diagram limit without building a second graph for that list. Edge assembly
+visits the displayed inventors' patents only. The pure `coInventorLayout.ts` reserves space for each name;
+node rings divide patent–assignee incidences while evidence lists retain exact patent counts and shares.
+`RelationshipEvidenceLanes` is shared by both scopes: inventor maps fix the person, while the universal view provides an
+inventor selector. Joint assignments occupy one patent node with connections to both assignees; bounded diagram lanes
+are accompanied by complete supporting-patent lists. All views, including the affiliation map, reuse `PatentEvidence`,
+which mounts patent buttons when its disclosure opens. They share the patent inspector and existing theme tokens.
+Company views link to the focused inventor with the chosen company pair retained. These projections describe catalog
+patent attribution, never employment, formal teams, contracts, or inferred technology transfer.
 
 ## Markdown Renderer
 

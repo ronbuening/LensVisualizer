@@ -116,5 +116,5 @@ flowchart LR
 | `useOverlayState.ts` | React hook module | package:react | src/components/layout | OverlayState, default, useOverlayState |
 | `useRayTracing.ts` | React hook module | same folder (5), src/types (2), package:react, src/optics/fieldGeometry.ts, src/optics/perspective.ts | src/components/layout | default, useRayTracing |
 | `useSideLayoutDetection.ts` | React hook module | package:react (2) | src/components/layout | default, useSideLayoutDetection |
-| `useSvgViewport.ts` | React hook module | package:react, src/utils/svgCoordinates.ts | src/components/relationshipMap | default, useSvgViewport |
-| `useViewBoxZoom.ts` | React hook module | package:react | src/components/relationshipMap (3), src/components/display, src/components/layout | ViewBoxState, ViewBoxZoomResult, default, useViewBoxZoom |
+| `useSvgViewport.ts` | React hook module | package:react, src/utils/svgCoordinates.ts | src/components/relationshipMap (2) | default, useSvgViewport |
+| `useViewBoxZoom.ts` | React hook module | package:react | src/components/relationshipMap (4), src/components/display, src/components/layout | ViewBoxState, ViewBoxZoomResult, default, useViewBoxZoom |
