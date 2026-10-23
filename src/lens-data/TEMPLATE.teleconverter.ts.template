@@ -35,6 +35,7 @@ const TELECONVERTER_DATA = {
   /* ── Catalog ── */
   catalog: {
     lensMounts: ["nikon-z"], // REQUIRED: canonical ids from src/utils/catalog/lensTaxonomy.ts
+    imageFormat: "135-full-frame", // optional: confirmed intended format; omit when unconfirmed
     specs: ["N ELEMENTS / N GROUPS", "1.4×"],
     elementCount: 0, // the converter's own element count
     groupCount: 0, // the converter's own air-separated group count

@@ -17,7 +17,7 @@ import { mergeTeleconverterPrescription } from "../teleconverter.js";
 import { rearPlateAirEquivalentMm, teleconverterGeometry } from "../teleconverterCompatibility.js";
 import { canonicalConstructionData } from "../constructionData.js";
 import validateLensData from "./index.js";
-import { LENS_KEY_PATTERN, validateLensMounts, validateRearPlates } from "./schema.js";
+import { LENS_KEY_PATTERN, validateImageFormat, validateLensMounts, validateRearPlates } from "./schema.js";
 
 /* Validation operates on untrusted data — a permissive record keeps dynamic-key checks free of casts. */
 type UntrustedTeleconverterData = Record<string, any>;
@@ -106,6 +106,7 @@ export default function validateTeleconverterData(data: UntrustedTeleconverterDa
     errors.push(`"magnification" must be a finite number > 1`);
   }
   validateLensMounts(data.lensMounts, errors);
+  if (data.imageFormat !== undefined) validateImageFormat(data.imageFormat, errors);
   if (data.visible !== undefined && typeof data.visible !== "boolean") {
     errors.push(`"visible" must be a boolean (got ${typeof data.visible})`);
   }

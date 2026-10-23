@@ -49,6 +49,7 @@ export const TELECONVERTER_SUMMARY_FIELDS = [
   "specs",
   "magnification",
   "lensMounts",
+  "imageFormat",
   "universal",
   "minHostFno",
   "patentNumber",

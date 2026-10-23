@@ -44,6 +44,7 @@ converter file is converted like a lens file: `npm run convert:lens-data -- --in
 |-------|------|-------------|
 | `maker`, `subtitle`, `publishedAt` | | Same meaning as on a lens. |
 | `visible` | `boolean` | `false` marks a hidden test model. See Test Models below. |
+| `catalog.imageFormat` | `ImageFormatId` | Intended image format, using a canonical id from `lensTaxonomy.ts`. Used for index grouping; omit when unconfirmed. |
 | `catalog.specs` | `string[]` | Spec strings, as on a lens. |
 | `catalog.elementCount`, `catalog.groupCount` | `number` | The converter's own counts. The composed header shows host + converter. |
 | `source.patentNumber`, `source.patentYear`, `source.authors`, `source.assignees` | | Same rules as [LENS_DATA_SPEC.md](LENS_DATA_SPEC.md) § Source and Errata. A converter has no `source.errata`. |
@@ -56,7 +57,7 @@ converter file is converted like a lens file: `npm run convert:lens-data -- --in
 | `groups`, `doublets` | | By the converter's own surface labels. Composition keeps the converter's doublets; it ignores its groups, and adds one group for the whole converter when the host authors groups. |
 
 Lens-only fields (`zoom`, `focus`, `gaps`, `aperture`, `aberrationControl`, `projection`, `opticalPath`,
-`perspectiveControl`, `layout`, `rays`, `checks`, and in `catalog` everything but `lensMounts`, `specs`,
+`perspectiveControl`, `layout`, `rays`, `checks`, and in `catalog` everything but `lensMounts`, `imageFormat`, `specs`,
 `elementCount` and `groupCount`) are refused: a converter has no moving groups, no stop and no drawing of its own.
 
 ## Geometry

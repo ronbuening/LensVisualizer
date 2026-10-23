@@ -373,6 +373,13 @@ describe("validateTeleconverterData", () => {
     expect(errorsFor({})).toEqual([]);
   });
 
+  it("accepts canonical image formats and rejects an unknown format", () => {
+    expect(errorsFor({ imageFormat: "aps-c" })).toEqual([]);
+    expect(validateTeleconverterData({ ...teleconverterFixture(), imageFormat: "unknown-format" })).toContain(
+      '"imageFormat" must be a known canonical format id when provided',
+    );
+  });
+
   it("rejects identity and fit fields that are missing or malformed", () => {
     const errors = validateTeleconverterData({
       ...teleconverterFixture(),

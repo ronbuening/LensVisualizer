@@ -28,6 +28,8 @@ flowchart LR
   n_external_pkg_react_helmet_async["pkg:react-helmet-async"]
   n_src_src_main_tsx --> |3| n_src_src_components
   n_src_src_entry_server_tsx --> |2| n_external_pkg_react_router
+  n_src_src_entry_server_tsx --> |2| n_src_src_routes
+  n_src_src_router_tsx --> |2| n_src_src_routes
   n_src_src_entry_server_tsx --> n_external_pkg_react_dom
   n_src_src_main_tsx --> n_external_pkg_react_dom
   n_src_src_entry_server_tsx --> n_external_pkg_react_helmet_async
@@ -37,8 +39,6 @@ flowchart LR
   n_src_src_entry_server_tsx --> n_src_src_components
   n_src_src_router_tsx --> n_src_src_components
   n_src_src_main_tsx --> n_src_src_router_tsx
-  n_src_src_entry_server_tsx --> n_src_src_routes
-  n_src_src_router_tsx --> n_src_src_routes
   n_src_src_entry_server_tsx --> n_src_src_utils
   n_src_src_main_tsx --> n_src_src_utils
   n_src_src_router_tsx --> n_src_src_utils
@@ -48,7 +48,7 @@ flowchart LR
 
 - Direct source files: 4
 - Direct subfolders: 9
-- Main outbound areas: package:react-router (4), src/components/errors (3), package:react-dom (2), package:react-helmet-async (2), src/routes (2), src/components/HolidayFavicon.tsx, src/components/PrerenderedHeadCleanup.tsx, src/router.tsx, +3 more
+- Main outbound areas: package:react-router (4), src/routes (4), src/components/errors (3), package:react-dom (2), package:react-helmet-async (2), src/components/HolidayFavicon.tsx, src/components/PrerenderedHeadCleanup.tsx, src/router.tsx, +3 more
 - External consumers: none
 - Skipped documentation subtrees: `src/generated/` (build output), `src/lens-data/`, `src/mounts/`
 
@@ -70,7 +70,7 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `entry-server.tsx` | React component module | package:react-router (2), package:react-dom, package:react-helmet-async, src/components/errors, src/routes, +1 more | none | manifestPaths, RenderResult, render |
+| `entry-server.tsx` | React component module | package:react-router (2), src/routes (2), package:react-dom, package:react-helmet-async, src/components/errors, +1 more | none | manifestPaths, RenderResult, render |
 | `main.tsx` | React component module | package:react-dom, package:react-helmet-async, package:react-router, src/components/errors, src/components/HolidayFavicon.tsx, +3 more | none | none |
-| `router.tsx` | React component module | package:react-router, src/components/errors, src/routes, src/utils/chunkLoadRetry.ts | src/main.tsx | default |
+| `router.tsx` | React component module | src/routes (2), package:react-router, src/components/errors, src/utils/chunkLoadRetry.ts | src/main.tsx | default |
 | `vite-env.d.ts` | Ambient/type declaration surface | none | none | none |

@@ -356,7 +356,13 @@ export interface CanonicalTeleconverter {
   subtitle?: string;
   visible?: boolean;
   publishedAt?: string;
-  catalog: { lensMounts: LensMountId[]; specs?: string[]; elementCount?: number; groupCount?: number };
+  catalog: {
+    lensMounts: LensMountId[];
+    imageFormat?: ImageFormatId;
+    specs?: string[];
+    elementCount?: number;
+    groupCount?: number;
+  };
   source: CanonicalSource;
   magnification: number;
   /** Air-equivalent distance in mm from the converter's first vertex to the host's native image plane. */

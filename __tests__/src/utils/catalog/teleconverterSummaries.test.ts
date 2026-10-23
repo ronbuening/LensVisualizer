@@ -41,6 +41,7 @@ describe("teleconverterSummaries parity with teleconverterCatalog", () => {
       expect(summary.specs).toEqual(data.catalog.specs);
       expect(summary.magnification).toBe(data.magnification);
       expect(summary.lensMounts).toEqual(data.catalog.lensMounts);
+      expect(summary.imageFormat).toBe(data.catalog.imageFormat);
       expect(summary.universal).toBe(data.universal);
       expect(summary.minHostFno).toBe(data.minHostFNumber);
       expect(summary.patentNumber).toBe(data.source.patentNumber);

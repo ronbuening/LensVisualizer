@@ -135,6 +135,7 @@ export const V1_PRINT_ORDER = {
     "specs",
     "magnification",
     "lensMounts",
+    "imageFormat",
     "universal",
     "minHostFno",
     "incompatibleLensKeys",
@@ -608,6 +609,7 @@ export function toTeleconverterData(
   put(out, "specs", converter.catalog.specs);
   out.magnification = converter.magnification;
   out.lensMounts = [...converter.catalog.lensMounts];
+  put(out, "imageFormat", converter.catalog.imageFormat);
   put(out, "universal", converter.universal);
   put(out, "minHostFno", converter.minHostFNumber);
   put(out, "incompatibleLensKeys", converter.incompatibleLensKeys);

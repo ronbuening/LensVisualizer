@@ -429,7 +429,13 @@ function writeTeleconverter(write: Writer, converter: CanonicalTeleconverter): U
   if (write.writes) write.writes.from[""] = "";
   writeIdentity(write, out, converter);
   const catalog = write.record(out, "", "catalog", "catalog");
-  write.copy(catalog, "catalog", converter.catalog, "catalog", ["lensMounts", "specs", "elementCount", "groupCount"]);
+  write.copy(catalog, "catalog", converter.catalog, "catalog", [
+    "lensMounts",
+    "imageFormat",
+    "specs",
+    "elementCount",
+    "groupCount",
+  ]);
   writeSource(write, out, converter);
   write.copy(out, "", converter, "", ["magnification", "masterImageDistanceMm", "universal", "minHostFNumber"]);
   write.copy(out, "", converter, "", ["incompatibleLensKeys"]);

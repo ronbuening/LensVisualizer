@@ -274,7 +274,13 @@ export interface TeleconverterDataV2Input {
   subtitle?: string;
   visible?: boolean;
   publishedAt?: string;
-  catalog: { lensMounts: LensMountId[]; specs?: string[]; elementCount?: number; groupCount?: number };
+  catalog: {
+    lensMounts: LensMountId[];
+    imageFormat?: ImageFormatId;
+    specs?: string[];
+    elementCount?: number;
+    groupCount?: number;
+  };
   source?: TeleconverterSourceV2Input;
   /** Nominal focal-length multiplier, e.g. 1.4 or 2. */
   magnification: number;

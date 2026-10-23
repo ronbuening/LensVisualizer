@@ -16,6 +16,7 @@ import { StaticRouter } from "react-router";
 import { HelmetProvider } from "react-helmet-async";
 import ErrorBoundary from "./components/errors/ErrorBoundary.js";
 import routeManifest from "./routes/routeManifest.js";
+import RouteLayout from "./routes/RouteLayout.js";
 import { markPrerenderedHeadTags } from "./utils/seo/prerenderedHead.js";
 import { Routes, Route } from "react-router";
 
@@ -82,9 +83,11 @@ export function render(url: string): RenderResult {
         <StaticRouter location={url}>
           <template data-prerender-body="" />
           <Routes>
-            {routes.map(({ path, element }) => (
-              <Route key={path} path={path} element={element} />
-            ))}
+            <Route element={<RouteLayout />}>
+              {routes.map(({ path, element }) => (
+                <Route key={path} path={path} element={element} />
+              ))}
+            </Route>
           </Routes>
         </StaticRouter>
       </HelmetProvider>

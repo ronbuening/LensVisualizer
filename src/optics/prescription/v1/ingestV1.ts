@@ -166,6 +166,7 @@ const TELECONVERTER_FIELDS: Readonly<Record<keyof TeleconverterData, true>> = {
   specs: true,
   magnification: true,
   lensMounts: true,
+  imageFormat: true,
   universal: true,
   minHostFno: true,
   incompatibleLensKeys: true,
@@ -1073,7 +1074,7 @@ export function ingestTeleconverterV1(
   const { surfaces, media } = ingestSurfaces(data, authoredElements, "authored", context);
 
   const catalog: Untyped = { lensMounts: copy(data.lensMounts) };
-  for (const field of ["specs", "elementCount", "groupCount"]) put(catalog, field, data[field]);
+  for (const field of ["imageFormat", "specs", "elementCount", "groupCount"]) put(catalog, field, data[field]);
 
   const converter: Untyped = { kind: "teleconverter", key: data.key };
   if (has(data, "maker")) converter.maker = data.maker;
@@ -1104,7 +1105,7 @@ export function ingestTeleconverterV1(
     recordReads(sources, "", "", converter, ["minHostFNumber", "incompatibleLensKeys", "groups", "doublets"], {
       minHostFNumber: "minHostFno",
     });
-    recordReads(sources, "catalog", "", catalog, ["lensMounts", "specs", "elementCount", "groupCount"]);
+    recordReads(sources, "catalog", "", catalog, ["lensMounts", "imageFormat", "specs", "elementCount", "groupCount"]);
     recordSourceReads(sources, converter.source as Untyped);
   }
   return finish(key, converter as unknown as CanonicalTeleconverter, context, { format: 1, v1: context.v1 });

@@ -41,6 +41,7 @@ const TELECONVERTER_DATA = {
 
   catalog: {
     lensMounts: ["nikon-z"],
+    imageFormat: "135-full-frame",
     specs: ["6 ELEMENTS / 4 GROUPS", "1.4\u00d7 REAR CONVERTER", "1 ASPHERICAL SURFACE / 1 ELEMENT"],
     elementCount: 6,
     groupCount: 4,

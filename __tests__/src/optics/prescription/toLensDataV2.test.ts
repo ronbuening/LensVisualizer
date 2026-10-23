@@ -7,7 +7,7 @@
 import { describe, expect, it } from "vitest";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../../src/types/asphericSchema.js";
 import { prescriptionDifference } from "../../../../src/optics/prescription/canonical.js";
-import { ingestLens, ingestTeleconverter } from "../../../../src/optics/lensDataConversion.js";
+import { ingestLens, ingestTeleconverter, toTeleconverterData } from "../../../../src/optics/lensDataConversion.js";
 import { childPath, extendPath, parentPath, pathBelow } from "../../../../src/optics/prescription/sourcePaths.js";
 import {
   toLensDataV2Input,
@@ -79,6 +79,24 @@ describe("source path spelling", () => {
 });
 
 describe("source paths on request", () => {
+  it("preserves a teleconverter's image format through both file views and source paths", () => {
+    const pair = FIXTURE_PAIRS.find((candidate) => candidate.kind === "teleconverter")!;
+    const file = structuredClone(pair.v2) as TeleconverterDataV2Input;
+    file.catalog.imageFormat = "aps-c";
+    const ingested = ingestTeleconverter(file, { sources: true });
+    const writes = v2Writes();
+    const output = toTeleconverterDataV2Input(ingested, writes);
+    expect(output.catalog.imageFormat).toBe("aps-c");
+    expect(ingested.provenance.sources?.read["catalog.imageFormat"]).toBe("catalog.imageFormat");
+    expect(v2SourceMap(ingested, writes).textSource("catalog.imageFormat")).toBe("catalog.imageFormat");
+    expect(prescriptionDifference(ingested.prescription, ingestTeleconverter(output).prescription)).toBeUndefined();
+    const legacyOutput = toTeleconverterData(ingested);
+    expect(legacyOutput.imageFormat).toBe("aps-c");
+    expect(
+      prescriptionDifference(ingested.prescription, ingestTeleconverter(legacyOutput).prescription),
+    ).toBeUndefined();
+  });
+
   it.each(FIXTURE_PAIRS.map((pair) => [pair.family, pair] as const))(
     "leave %s's prescription and provenance as they are, adding only the paths",
     (_family, pair) => {

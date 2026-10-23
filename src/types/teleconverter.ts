@@ -6,7 +6,7 @@
  * prescription. Built-in converters that ship inside one lens stay on `OpticalConfigurationData`.
  */
 
-import type { LensMountId } from "../utils/catalog/lensTaxonomy.js";
+import type { ImageFormatId, LensMountId } from "../utils/catalog/lensTaxonomy.js";
 import type { AsphericCoefficients } from "./asphericSchema.js";
 import type { AnnotationData, ElementData, RearPlateData, SurfaceData } from "./optics.js";
 
@@ -30,6 +30,7 @@ export interface TeleconverterData {
   magnification: number;
   /** Mounts the converter is made in; a host must share at least one. */
   lensMounts: LensMountId[];
+  imageFormat?: ImageFormatId;
   /** true: fits any host sharing a mount. Otherwise the host must declare `acceptsTeleconverters`. */
   universal?: boolean;
   /** Fastest host f-number whose axial beam the converter's clear apertures pass; faster hosts are rejected. */
