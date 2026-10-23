@@ -9,11 +9,13 @@
 import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
+import LinkListSidebar from "../components/content/LinkListSidebar.js";
+import SidebarLayout from "../components/content/SidebarLayout.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { LENS_MOUNT_BY_ID } from "../utils/catalog/lensTaxonomy.js";
 import { TELECONVERTER_SUMMARY_LIST } from "../utils/catalog/teleconverterSummaries.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
-import { H1_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js";
 import { pluralize } from "../utils/text.js";
 
 const SEO_DESCRIPTION =
@@ -60,30 +62,53 @@ export default function TeleconvertersIndexPage() {
             <p style={{ fontSize: "0.85rem", color: t.muted }}>No teleconverter has been published yet.</p>
           )}
 
-          {TELECONVERTER_SUMMARY_LIST.map((teleconverter) => {
-            const hostCount = teleconverter.compatibleLensKeys.length;
-            return (
-              <div
-                key={teleconverter.key}
-                style={{ padding: "1rem 0.75rem", marginBottom: "0.75rem", borderBottom: `1px solid ${t.panelBorder}` }}
-              >
-                <Link
-                  to={`/teleconverters/${teleconverter.key}/`}
-                  style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "1rem", fontWeight: 600 }}
+          <SidebarLayout
+            sidebar={
+              TELECONVERTER_SUMMARY_LIST.length > 0 ? (
+                <LinkListSidebar
+                  title="Teleconverters"
+                  ariaLabel="Jump to teleconverters"
+                  items={TELECONVERTER_SUMMARY_LIST.map((teleconverter) => ({
+                    id: teleconverter.key,
+                    label: `${teleconverter.name} (${teleconverter.magnification}×)`,
+                    to: `#teleconverter-${teleconverter.key}`,
+                  }))}
+                  theme={t}
+                />
+              ) : null
+            }
+          >
+            {TELECONVERTER_SUMMARY_LIST.map((teleconverter) => {
+              const hostCount = teleconverter.compatibleLensKeys.length;
+              return (
+                <div
+                  key={teleconverter.key}
+                  id={`teleconverter-${teleconverter.key}`}
+                  style={{
+                    padding: "1rem 0.75rem",
+                    marginBottom: "0.75rem",
+                    borderBottom: `1px solid ${t.panelBorder}`,
+                    scrollMarginTop: STICKY_NAV_SCROLL_MARGIN,
+                  }}
                 >
-                  {teleconverter.name}
-                </Link>
-                <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
-                  ({hostCount} compatible {pluralize(hostCount, "lens")})
-                </span>
-                <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
-                  {teleconverter.magnification}× ·{" "}
-                  {teleconverter.lensMounts.map((mountId) => LENS_MOUNT_BY_ID[mountId].label).join(", ")}
-                  {teleconverter.universal ? " · universal" : ""}
-                </p>
-              </div>
-            );
-          })}
+                  <Link
+                    to={`/teleconverters/${teleconverter.key}/`}
+                    style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "1rem", fontWeight: 600 }}
+                  >
+                    {teleconverter.name}
+                  </Link>
+                  <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
+                    ({hostCount} compatible {pluralize(hostCount, "lens")})
+                  </span>
+                  <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
+                    {teleconverter.magnification}× ·{" "}
+                    {teleconverter.lensMounts.map((mountId) => LENS_MOUNT_BY_ID[mountId].label).join(", ")}
+                    {teleconverter.universal ? " · universal" : ""}
+                  </p>
+                </div>
+              );
+            })}
+          </SidebarLayout>
         </>
       )}
     </StaticPageShell>
