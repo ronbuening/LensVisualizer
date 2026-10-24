@@ -16,7 +16,6 @@
 
 **Title:** High-Magnification Wide-Angle Zoom Lens
 
-**Embodiment analyzed:** Working Example 1
 
 The prescription is correlated with the production **NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF**. The patent does not identify that commercial lens by name, so the match is a production-correlation inference rather than an explicit manufacturer confirmation. Several independent criteria converge:
 

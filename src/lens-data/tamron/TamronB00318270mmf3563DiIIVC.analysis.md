@@ -7,7 +7,7 @@
 **Inventors:** Akio Arakawa; Yuichi Muramatsu  
 **Applicant:** Tamron Co., Ltd.  
 **Title:** High Variable Power Zoom Lens  
-**Embodiment analyzed:** Sole numerical embodiment (¶0018–0024), Figure 1
+**Example details:** ¶0018–0024, Figure 1
 
 The modeled lens is the TAMRON AF 18-270mm f/3.5-6.3 Di II VC LD Aspherical [IF] MACRO, Model B003. The association with this patent rests on construction and special-element positions; Tamron does not cite the patent, and production units need not use the exact tabulated radii or materials.
 

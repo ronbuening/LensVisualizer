@@ -7,7 +7,6 @@
 **Inventor:** Yoshinobu Kudo<br>
 **Applicant:** Minolta Co., Ltd.<br>
 **Title:** 撮影レンズ系 (Photographic lens system)<br>
-**Embodiment analyzed:** Example 1<br>
 **Production lens:** MINOLTA AF 135mm f/2.8 [T4.5] STF
 
 The prescription is Example 1 of JP H11-231209 A. The selected production correlation is the MINOLTA AF 135mm

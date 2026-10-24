@@ -9,7 +9,6 @@
 **Inventor:** Sei Matsui  
 **Assignee:** Nippon Kogaku K.K.  
 **Title:** Wide Angle Photographic Lens  
-**Embodiment analyzed:** Example 5
 
 US 4,099,850 discloses a six-component, six-group retrofocus wide-angle photographic lens with an aperture ratio of 1:3.5 and a nominal angle of view of 74.2°. The numerical examples are normalized to a total focal length of $f = 100.0$. Example 5 is the embodiment transcribed for the accompanying data file.
 

@@ -10,7 +10,7 @@
 **Inventor:** Ryosuke Nagami (永見 亮介)\
 **Applicant:** Fujifilm Corporation\
 **Title:** ズームレンズおよび撮像装置 (“Zoom lens and imaging apparatus”)\
-**Embodiment analyzed:** Example 3 (実施例3)
+**Example details:** 実施例3
 
 The prescription represented here is Example 3 of JP 2021-15312 A, using the lens data in Table 9, system data in Table 10, variable spacings in Table 11, and aspherical coefficients in Table 12. The patent identifies the design as a four-functional-group zoom with negative, positive, negative, and positive group powers; G3 is the sole focusing group and G4 is fixed during zoom for Example 3 by reference to the Example 1 group-motion scheme. The rendered section in Figure 3 shows the same G1–G4 labels, the stop in G2, the single-lens OIS member, the single-lens focus group, and the optional rear plane-parallel member PP. (JP 2021-15312 A, ¶0028–¶0030, ¶0055, ¶0072–¶0077; Fig. 3; Tables 9–12.)
 

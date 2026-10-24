@@ -8,7 +8,7 @@
 **Priority:** JP 2024-100711, filed June 21, 2024.
 **Filed:** April 30, 2025 (PCT/JP2025/016405).
 **Published:** December 26, 2025.
-**Embodiment analyzed:** Example 1 (実施例 1), corresponding to Figure 1.
+**Example details:** 実施例 1, corresponding to Figure 1.
 
 The identification of Example 1 as the production SEL2870GM design rests on the following convergent evidence:
 

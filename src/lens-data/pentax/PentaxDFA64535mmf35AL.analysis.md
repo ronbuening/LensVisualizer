@@ -7,7 +7,7 @@
 **Inventor:** Takayuki Sensui
 **Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha
 **Title:** *Wide-Angle Lens System*
-**Embodiment analyzed:** Embodiment 4, Figure 13 and Tables 4–5
+**Example details:** Figure 13 and Tables 4–5
 
 The prescription transcribes Embodiment 4 at its original scale and associates it with the PENTAX HD D FA645
 35mm f/3.5 AL [IF] selected in the job card. The association is a fixed project correlation, not a statement that Ricoh

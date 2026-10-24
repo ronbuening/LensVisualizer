@@ -9,7 +9,6 @@
 **Inventor:** Naoko Fukuda (福田直子)
 **Applicant:** Nikon Corporation (株式会社ニコン)
 **Title:** Zoom lens (ズームレンズ)
-**Embodiment analyzed:** Example 1
 
 The prescription is taken from Example 1 of JP 2001-083421 A. The source is an 11-page JPO scan; the numerical prescription,
 variable-spacing table, asphere coefficients, and optical layout are on patent pages 4–7, with the Example 1 aberration plots

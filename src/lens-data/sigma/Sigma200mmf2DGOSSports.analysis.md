@@ -7,7 +7,6 @@
 **Inventor:** Daichi Tanoue  
 **Applicant:** Sigma Corporation  
 **Title:** Imaging Optical System  
-**Embodiment analyzed:** Numerical Example 1
 
 The data file transcribes Numerical Example 1 of JP 2025-162727 A in its native millimetre scale. The numerical tables occur on PDF pages 13–14, corresponding to printed pages 12–13; the additional first PDF page is the Patent Abstracts of Japan cover. Figure 1 is on PDF page 22. No other example or family publication supplies numerical values.
 

@@ -10,7 +10,7 @@
 **Applicant:** Canon Inc. (キヤノン株式会社)
 **Title:** ズームレンズおよび撮像装置 (Zoom Lens and Image Pickup Apparatus)
 **Claims / worked examples:** 12 claims; four numerical examples
-**Embodiment analyzed:** Numerical Example 1 (数値例1; Embodiment 1, Figs. 1–2)
+**Example details:** 数値例1; Embodiment 1, Figs. 1–2
 
 JP 2024-101615 A describes a family of negative-lead ultra-wide zoom lenses in which a negative first group and a positive second group precede the aperture stop, and in which the first group contains at least four lens elements (claim 1). Two claim-level inequalities define the invention: the ratio of the telephoto-end distance from the first surface to the stop to the telephoto-end lens length, $0.05 \le St/TDt \le 0.45$, and the ratio of the front negative lens's focal length to the first group's, $0.30 \le fG1/f1 \le 0.98$ (claim 1, ¶0035–¶0036). The stated aim is a small lens with a wide-end full angle beyond 90° and good performance over the whole zoom range (¶0007, ¶0044).
 

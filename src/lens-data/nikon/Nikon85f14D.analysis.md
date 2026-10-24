@@ -14,7 +14,7 @@
 
 **Granted:** June 17, 1997
 
-**Embodiment analyzed:** Example 2, Figure 4, numerical prescription in column14 (PDFp.34).
+**Example details:** Figure 4, numerical prescription in column14 (PDFp.34).
 
 The viewer reproduces Example2 as a candidate associated with the catalog's85mm f/1.4D name. This example has **ten elements in nine air-separated components**, not the nine/eight count formerly displayed. Its split front component contains two separate positive singlets; the rear cemented L6 component also contains two elements. Patent labelsL1–L8 therefore do not directly count physical elements.
 

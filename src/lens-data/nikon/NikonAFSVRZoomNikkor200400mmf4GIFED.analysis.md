@@ -10,7 +10,6 @@
 **Inventor:** Susumu Sato
 **Assignee:** Nikon Corporation
 **Title:** Zoom Lens System
-**Embodiment analyzed:** Example 1
 
 The modeled prescription is Example 1 of US 2005/0157403 A1. The patent describes a four-group afocal zoom in which G2 and G3 move for zooming, the internal G1m subgroup moves for focusing, and the negative G4m subgroup shifts transversely for vibration reduction (¶¶0070–0074). The data file preserves the patent design at its published scale: the three modeled zoom states are 204, 300, and 392 mm at FNO 4.08, with no uniform scaling.
 

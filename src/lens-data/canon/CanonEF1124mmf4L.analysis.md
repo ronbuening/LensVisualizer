@@ -8,7 +8,7 @@
 **Inventor:** Takahiro Hatada  
 **Applicant:** Canon Kabushiki Kaisha  
 **Title:** _Optical System and Image Pickup Apparatus Including the Same_  
-**Embodiment analyzed:** Numerical Example 1 / Example 1 (FIGS. 1, 2A, and 2B; ¶¶0023, 0027–0028, 0062)
+**Example details:** Example 1 (FIGS. 1, 2A, and 2B; ¶¶0023, 0027–0028, 0062)
 
 Numerical Example 1 is the patent embodiment corresponding to the production Canon EF 11-24mm f/4L USM. The identification is supported by several independent correspondences:
 

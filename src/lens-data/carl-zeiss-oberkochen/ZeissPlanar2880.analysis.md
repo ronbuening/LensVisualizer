@@ -7,7 +7,7 @@
 **Inventor:** Günther Lange  
 **Assignee:** Carl-Zeiss-Stiftung  
 **Title:** *Photographic Objective Comprising Four Meniscus Shaped Air Spaced Components*  
-**Embodiment analyzed:** Example II (Fig. 2)
+**Example details:** Fig. 2
 
 The prescription represented as **CARL ZEISS PLANAR 80mm f/2.8** is taken from Example II of US 2,724,994. The patent gives five glass elements in four air-spaced components, a relative aperture of 1:2.8, and a numerical normalization of $f=100$ units. Example II is the Fig. 2 construction, with elements I and II cemented, element III immediately before the diaphragm, element IV immediately behind it, and element V as the rear positive component. The final LensVisualizer model uniformly scales every patent length by 0.8, producing a computed effective focal length of 80.000111 mm while leaving the refractive indices and Abbe numbers unchanged.[1]
 

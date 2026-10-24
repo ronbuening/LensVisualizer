@@ -12,7 +12,7 @@
 **Classification:** G02B 15/167; G02B 13/18
 **Claims:** 16
 **Worked examples:** 5
-**Embodiment analyzed:** Numerical Example 5 (数値例５), Figs. 9 and 10
+**Example details:** 数値例５, Figs. 9 and 10
 
 The publication discloses a family of compact, wide-angle, negative-lead zoom lenses composed of exactly four lens groups
 with a negative–positive–negative–positive power sequence. The first and fourth groups are fixed during zooming, and the

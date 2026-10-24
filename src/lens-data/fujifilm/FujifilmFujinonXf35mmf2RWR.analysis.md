@@ -9,8 +9,7 @@
 **Published:** 2017-01-12\
 **Inventors:** Masato Kondo; Takashi Suzuki\
 **Applicant / Assignee:** FUJIFILM Corporation\
-**Title:** *Imaging Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Example 1
+**Title:** *Imaging Lens and Imaging Apparatus*
 
 The implemented prescription is Example 1 of US 2017/0010441 A1. The patent publishes the infinity-focus prescription in Table 1 and the corresponding aspherical coefficients in Table 2; FIG. 2 shows the same nine-element configuration. The patent states that Example 1 comprises a positive first group G1, a negative second group G2, the aperture stop, and a positive third group G3, with G2 serving as the inner-focus group (¶0087–¶0090; PDF p. 22–23, printed pp. 6–7).
 

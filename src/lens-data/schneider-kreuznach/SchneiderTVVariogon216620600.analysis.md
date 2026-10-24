@@ -10,7 +10,7 @@
 **Inventor:** Karl Macher<br>
 **Assignee:** Jos. Schneider & Co., Optische Werke<br>
 **Title:** *High-Speed Varifocal Objective with Large Focal Range*<br>
-**Embodiment analyzed:** Example 1, FIG. 1, TABLE I, TABLE IA, TABLE IB
+**Example details:** FIG. 1, TABLE IA, TABLE IB
 
 The prescription is the first numerical embodiment of Macher's seven-component 30× varifocal objective. The patent describes a substantially fixed positive first component, movable negative second and third components, a fixed positive fourth component containing the diaphragm, movable negative fifth and sixth components, and a fixed positive seventh component, followed by a plane-parallel prism P. Example 1 contains 31 lenses L1-L31. Its cementing topology yields 22 air-separated lens members/groups, while the prism is a separate optical block and is not counted among the 31 lenses. [US 3,912,373, PDF pp. 8-10 (printed cols. 1-6), FIG. 1 and TABLE I.]
 

@@ -7,7 +7,6 @@
 **Inventor:** Naoyuki Sato
 **Applicant:** Tamron Co., Ltd.
 **Title:** Inner-focus image capturing lens and image capturing device
-**Embodiment analyzed:** Example 1
 
 The prescription is the numerical Example 1 in paragraphs 0048–0050, interpreted with the sign, wavelength and asphere conventions in paragraphs 0043–0045. Its relationship to the ZEISS Batis 2/40 CF is a research correlation. The manufacturer does not identify this patent as the production design. The patent applicant and the marketed lens brand are therefore retained as different attributes.
 

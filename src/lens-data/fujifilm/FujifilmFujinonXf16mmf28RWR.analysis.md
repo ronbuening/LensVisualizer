@@ -8,8 +8,7 @@
 **Published:** March 5, 2020\
 **Inventor:** Ryosuke Nagami\
 **Applicant / Assignee:** FUJIFILM Corporation\
-**Title:** *Imaging Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Example 3
+**Title:** *Imaging Lens and Imaging Apparatus*
 
 The prescription modeled here is Example 3 of US 2020/0073096 A1. The patent does not name the production XF16mmF2.8 R WR, so the product association is an author inference rather than a manufacturer-confirmed identification. The correlation is nevertheless specific: Example 3 has ten elements in eight air-separated physical groups, two physical aspherical elements, a single internal positive focusing element, a design focal length of 16.48 mm, and a design F-number of 2.88. FUJIFILM specifies the production XF16mmF2.8 R WR as a 16 mm f/2.8 X-mount lens with ten elements in eight groups, including two aspherical elements, and an inner-focusing system driven by a stepping motor.
 

@@ -10,7 +10,7 @@
 **Inventor:** Ryoko Tomioka  
 **Applicant / Assignee:** FUJIFILM Corporation  
 **Title:** Zoom Lens and Imaging Apparatus  
-**Embodiment analyzed:** Example 1 (Table 1 prescription; Table 2 specifications and variable separations; Table 3 aspheric coefficients; Figs. 1-3, 12, 21-22)
+**Example details:** Table 1 prescription; Table 2 specifications and variable separations; Table 3 aspheric coefficients; Figs. 1-3, 12, 21-22
 
 This analysis transcribes and interprets Example 1 of US 2020/0379223 A1. The patent is not a teardown of the shipping FUJINON GF45-100mmF4 R LM OIS WR; it is a close patent-family embodiment. The identification rests on several convergent points.
 

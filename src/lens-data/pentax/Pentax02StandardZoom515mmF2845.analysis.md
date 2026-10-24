@@ -10,7 +10,7 @@
 **Inventors:** Koji Kato; Masakazu Saori
 **Assignee:** Pentax Ricoh Imaging Company, Ltd.
 **Title:** *Zoom Lens System and Optical Instrument Using the Same*
-**Embodiment analyzed:** Example 1 / Numerical Embodiment 1, Tables 1–4 and Figs. 1–6D
+**Example details:** Numerical Embodiment 1, Tables 1–4 and Figs. 1–6D
 
 The prescription is the first numerical embodiment of US 8,824,059 B2. The production correlation used by the model is the PENTAX-02 STANDARD ZOOM 5–15 mm f/2.8–4.5. This correlation is an analytical attribution based on convergent optical and historical evidence; neither the patent nor the manufacturer explicitly identifies Example 1 as the production prescription.
 

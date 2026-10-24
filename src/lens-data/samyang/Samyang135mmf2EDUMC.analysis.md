@@ -8,7 +8,7 @@
 **Inventors:** Jong Young Park (박종영); Hyun Sik Yoon (윤현식)  
 **Applicant:** Samyang Optics Co., Ltd. (주식회사 삼양옵틱스)  
 **Title:** 렌즈계 및 이를 포함하는 광학 기기  
-**Embodiment analyzed:** Sole Example 1, Table 1 and Figure 1
+**Example details:** sole example; Table 1 and Figure 1
 
 The candidate represents the manual-focus Samyang 135mm F2.0 ED UMC by an inferred patent-to-product association. It is an infinity model of the native table. It is not a claim that the commercial lens has the model's exact radii, clear apertures, glass melts or measured performance.
 

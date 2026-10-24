@@ -9,7 +9,7 @@
 **Inventors:** Tomioka Sadako (富岡 禎子), Saitō Hiroki (斉藤 広樹), Aurélien Dodoc, Michael Polman, Jürgen Klein
 **Applicants:** Fujifilm Corporation; Carl Zeiss AG
 **Title:** マクロレンズおよび撮像装置 (Macro Lens and Imaging Apparatus)
-**Embodiment analyzed:** Example 1 (実施例1)
+**Example details:** 実施例1
 
 JP 2015-161792 A describes a compact macro lens for electronic cameras whose chromatic aberration remains well corrected at near-unity magnification. Example 1 is the embodiment used here. The patent gives three focus states, β = 0, β = −0.5, and β = −0.98, and tabulates the full prescription, variable group spacings, aspherical coefficients, and conditional-expression values.
 

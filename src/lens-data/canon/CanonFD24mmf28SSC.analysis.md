@@ -10,7 +10,7 @@
 **Granted:** July 24, 1973
 **Inventors:** Akira Tajima; Kikuo Momiyama
 **Assignee:** Canon Kabushiki Kaisha
-**Embodiment analyzed:** Embodiment 2 / Fig. 11 / numerical Example 2, normalized `f = 1`, F/2.8, `2ω = 84°`, back-focus ratio 1.4916
+**Example details:** Fig. 11 / numerical Example 2, normalized `f = 1`, F/2.8, `2ω = 84°`, back-focus ratio 1.4916
 
 US 3,748,021 describes a reverse-telephoto wide-angle lens whose close-range correction is obtained by reducing a front-group air space as the whole lens is advanced for focusing. The patent is the primary prescription source; the relevant optical layout is Fig. 11 and the relevant numerical table is Embodiment 2.
 

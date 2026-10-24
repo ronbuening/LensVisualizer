@@ -7,7 +7,6 @@
 **Inventors:** Shizuka Takemoto; Norikazu Yokoi  
 **Applicant:** Sigma Corporation  
 **Title:** Retrofocus Type Wide-Angle Lens  
-**Embodiment analyzed:** Numerical Example 2
 
 This prescription is correlated, on construction, with the original SIGMA 24mm f/1.8 EX DG ASPHERICAL MACRO for
 35 mm SLR cameras, not the later DG DN or Art lenses. The manufacturer has not confirmed an unchanged numerical

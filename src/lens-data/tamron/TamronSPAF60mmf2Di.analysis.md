@@ -9,7 +9,7 @@
 **Applicant / Assignee:** Tamron Co., Ltd.  
 **Title:** Macro Lens  
 **Classification:** G02B 9/34  
-**Embodiment analyzed:** Embodiment 1 (¶0046)  
+**Example details:** ¶0046  
 **Worked examples:** Three
 
 Embodiment 1 is a strong design-family match for the Tamron SP AF 60mm F/2 Di II LD [IF] MACRO 1:1, Model G005, but it should not be represented as a proven factory production prescription.

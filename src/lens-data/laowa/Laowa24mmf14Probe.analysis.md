@@ -13,7 +13,7 @@
 **Published:** May 19, 2020
 **Granted:** May 19, 2020
 **Title:** 一种细长微距镜头 / A Slender Macro Lens
-**Embodiment analyzed:** Example 1 (实施例1)
+**Example details:** 实施例1
 
 Chinese Utility Model patent CN 210573001 U, titled "一种细长微距镜头" ("A Slender Macro Lens"), was filed on 2019-08-29 by 安徽长庚光学科技有限公司 (Anhui Changgeng Optics Technology Co., Ltd. — the corporate entity behind the Laowa brand). The named inventor is 李大勇 (Li Dayong). The patent was granted and published on 2020-05-19. A companion invention patent application was filed on the same date.
 

@@ -7,7 +7,6 @@
 **Inventors:** Yutaka Kamimura; Ai Hoshina  
 **Applicant:** Sigma Corporation  
 **Title:** Macro Lens  
-**Embodiment analyzed:** Numerical Example 1
 
 The prescription represents the selected design correlation with the SIGMA MACRO 70mm f/2.8 EX DG.
 This is the earlier DSLR lens, not the later 70mm Art design. The correlation is strong but

@@ -5,7 +5,6 @@
 **Assignee:** Nikon Corporation
 **Filed:** June 2, 2020
 **Published:** December 13, 2021
-**Embodiment analyzed:** Example 4
 **Production lens:** NIKKOR Z 40mm f/2 (released September 2021); also sold as the NIKKOR Z 40mm f/2 (SE)
 
 ---

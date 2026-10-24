@@ -9,7 +9,7 @@
 **Inventor:** 蓬田 祥寿 (romanization uncertain; possibly Yomogida Yoshitoshi or similar)
 **Applicant:** Cosina Co., Ltd. (株式会社コシナ), Nakano, Nagano, Japan
 **Title:** Telephoto Lens (望遠レンズ)
-**Embodiment analyzed:** Example 1 (第1実施例), Table 1 (表1)
+**Example details:** 第1実施例, Table 1 (表1)
 
 The prescription transcribes **Example 1** (第1実施例, Table 1 / 表1), the primary embodiment in the patent filed for the Cosina Voigtländer APO-Lanthar 180mm f/4 SL Close Focus. The following evidence links the patent to the production lens, though questions remain about which of the two examples was manufactured:
 

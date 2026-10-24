@@ -26,7 +26,7 @@ Five of five element records have compatible catalog spectral proxies. The paten
 **Assignee:** Ernst Leitz GmbH (printed: Ernst Leitz G.m.b.H., Optische Werke, Wetzlar, Germany)
 **Title:** High Aperture Objective for Photography and Projection
 **Classification:** U.S. Cl. 88-57; 2 claims; 2 worked examples
-**Embodiment analyzed:** Example 1 (Table 1 / FIG. 1; the same data are repeated in Claim 1)
+**Example details:** Table 1 / FIG. 1; the same data are repeated in Claim 1
 
 US 3,076,383 describes a Gauss-type objective in which a first positive lens and a cemented meniscus component concave to the diaphragm precede the stop, and a single meniscus concave to the diaphragm and a second positive lens follow it (col. 1, ll. 10–20). The patent identifies two shortcomings of the known construction: a maximum relative aperture of about 1:2.8, and, in the one known variant usable at 1:2, a large zonal aberration together with a last-lens-to-image distance so short that the type had been limited to long focal lengths (col. 1, ll. 21–31). Its stated object is to reduce that zonal aberration while increasing the distance from the last lens to the image plane (col. 1, ll. 32–35). Example 1 is normalised to f = 1.00 with a 27° image angle and relative aperture 1:2.5; Example 2 (Table 2 / FIG. 2) is a separate 1:2.0, 45° design and is not modelled here.
 

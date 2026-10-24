@@ -7,7 +7,7 @@
 **Inventor:** Iain A. Neil (printed as Ian A. Neil on the patent)  
 **Assignee:** Ernst Leitz Wetzlar GmbH  
 **Title:** Objective lens system  
-**Embodiment analyzed:** First embodiment, Table 1 / Figure 7
+**Example details:** Table 1 / Figure 7
 
 This prescription is the patent's first embodiment, a wide-angle cine prime of about 18 mm, and is a research
 correlation to the Leica / Leitz Summilux-C 18mm T1.4; the production prescription is unconfirmed. The proprietor above

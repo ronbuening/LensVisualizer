@@ -5,7 +5,7 @@
 **Published:** 15 December 2022
 **Inventors:** Takuro Ono, Kosuke Machida, Ayumu Makida, Keisuke Tsubonoya
 **Assignee:** Nikon Corporation
-**Design Example:** Example 5 (Table 5, Figures 9–10)
+**Example details:** Table 5, Figures 9–10
 
 ---
 

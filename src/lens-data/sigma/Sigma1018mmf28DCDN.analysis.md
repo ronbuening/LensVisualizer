@@ -11,7 +11,7 @@
 **Title:** Wide-angle lens system (広角レンズ系)
 **Classification:** G02B 15/20, G02B 13/18
 **Worked examples in patent:** 7
-**Embodiment analyzed:** Numerical Example 2 (第2実施例, Figure 8)
+**Example details:** 第2実施例, Figure 8
 
 This file transcribes and interprets Numerical Example 2 of JP 2024-104911 A. The embodiment is an APS-C constant-aperture ultra-wide zoom with 13 glass elements in 10 air-separated groups, seven aspherical surfaces, a 10.30-17.50 mm computed focal-length range, Fno 2.92, and an image height of 14.20 mm. Those values match the production identity of the Sigma 10-18 mm F2.8 DC DN | Contemporary after normal marketing rounding.
 

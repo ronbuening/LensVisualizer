@@ -10,7 +10,7 @@
 **Published:** 1 December 1981  
 **Inventor:** Heinrich Basista  
 **Assignee:** Carl-Zeiss-Stiftung  
-**Embodiment analyzed:** Sole numerical construction, three paired zoom rows, and repeated claim 3 table.
+**Example details:** three paired zoom rows, and repeated claim 3 table.
 
 This prescription is strongly associated with the Contax/Yashica Vario-Sonnar T* 3.5/70–210 described in Zeiss sheet Cat. 104728. The association is not a claim that the retained patent is a complete manufacturing prescription for every production sample. The numerical model retains physical millimetres and the source's three focal labels 72.15, 130.17 and 203.20 mm. It is not rescaled to the marketing endpoints 70 and 210 mm.
 

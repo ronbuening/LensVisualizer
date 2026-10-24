@@ -6,8 +6,7 @@
 **Published:** 1989-02-09<br>
 **Inventors:** Hisashi Tokumaru; Masakuni Tai<br>
 **Applicant:** Minolta Camera Co., Ltd.<br>
-**Title:** 大口径比望遠ズームレンズ (large-aperture-ratio telephoto zoom lens)<br>
-**Embodiment analyzed:** Example 1
+**Title:** 大口径比望遠ズームレンズ (large-aperture-ratio telephoto zoom lens)
 
 The prescription is Example 1 of JP1989-039542. The patent gives a four-group zoom with 16 elements in 13 air-separated groups and a numerical range of 82.00-140.00-195.00 mm at FNO 2.88. The LensVisualizer record keeps those exact design values separate from the production identity, which is marketed as the MINOLTA AF 80-200mm f/2.8 APO.
 

@@ -9,7 +9,7 @@
 **Inventor:** Franz Schlegel  
 **Assignee:** Optische Werke G. Rodenstock  
 **Title:** Viergliedriges, sechslinsiges Objektiv  
-**Embodiment analyzed:** Example I / claim 2 / Figure 1, normalized f′ = 100, f/5.6
+**Example details:** claim 2 / Figure 1, normalized f′ = 100, f/5.6
 
 This is a qualified patent-derived model of the original convertible Sironar 100mm f/5.6, not a recovered production prescription. The later non-convertible Sironar-N and later Apo-Sironar designs are separate and are not substituted.
 

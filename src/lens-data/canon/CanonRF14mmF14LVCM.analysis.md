@@ -7,8 +7,7 @@
 **Published:** December 25, 2025\
 **Inventor:** Takahiro Saito\
 **Applicant:** Canon Kabushiki Kaisha\
-**Title:** *Optical System and Imaging Apparatus Including Same*\
-**Embodiment analyzed:** Numerical Example 1
+**Title:** *Optical System and Imaging Apparatus Including Same*
 
 The LensVisualizer prescription uses Numerical Example 1 of US 2025/0389929 A1 as the fixed correlation for the Canon RF 14mm f/1.4 L VCM. The patent itself does not identify a commercial product. The correspondence is therefore an architectural and numerical correlation rather than a manufacturer statement that the production lens uses this exact prescription.
 

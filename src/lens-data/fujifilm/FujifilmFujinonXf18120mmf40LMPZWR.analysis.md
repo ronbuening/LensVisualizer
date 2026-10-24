@@ -9,8 +9,7 @@
 **Published:** 2023-03-09\
 **Inventors:** Masaru Yonezawa; Shinkichi Ikeda; Takashi Kunugise; Masanao Kawana\
 **Applicant:** FUJIFILM Corporation\
-**Title:** Zoom Lens and Imaging Apparatus (ズームレンズおよび撮像装置)\
-**Embodiment analyzed:** Example 1
+**Title:** Zoom Lens and Imaging Apparatus (ズームレンズおよび撮像装置)
 
 This prescription is the project-selected production correlation for the **FUJIFILM FUJINON XF 18-120mm f/4 LM PZ WR**. The patent itself does not identify a commercial product by name, so the correlation is an authoring inference rather than a statement of manufacturer confirmation. The numerical prescription is Example 1, retained at native patent scale without uniform scaling.
 

@@ -10,7 +10,7 @@
 **Inventors:** Sadatoshi Takahashi; Koutaro Yano; Hiroshi Endo
 **Assignee:** Canon Kabushiki Kaisha
 **Title:** Wide-Angle Type Zoom Lens Having Inner-Focus Lens
-**Embodiment analyzed:** Numerical Example 1 (Fig. 1)
+**Example details:** Fig. 1
 
 The prescription represented here is Numerical Example 1 of US 5,000,550. The patent describes a wide-angle zoom lens for 35 mm single-lens-reflex cameras, with a negative first group split into a stationary object-side sub-group and a movable image-side focus sub-group. Example 1 is the lead four-group super-wide-angle embodiment and is the closest patent match for the Canon EF 20-35 mm f/2.8L.
 

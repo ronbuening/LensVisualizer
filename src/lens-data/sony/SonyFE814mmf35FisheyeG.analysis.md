@@ -7,7 +7,7 @@
 **Inventors:** 宮川 直己; 細野 誉士雄  
 **Applicant:** Sony Group Corporation  
 **Title:** ズームレンズおよび撮像装置 (Zoom lens and imaging apparatus)  
-**Embodiment analyzed:** Example 1 / 実施例1
+**Example details:** 実施例1
 
 The prescription represented here is Example 1 of JP 2022-155067 A. The patent describes a fisheye zoom for a
 36.0 × 24.0 mm full-frame image sensor, with an equisolid-angle circular-fisheye state at the short end and an

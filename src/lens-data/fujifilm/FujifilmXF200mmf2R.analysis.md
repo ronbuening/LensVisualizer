@@ -5,7 +5,6 @@
 **Applicant:** FUJIFILM Corporation
 **Priority:** JP 2018-035614, February 28, 2018
 **Published:** August 29, 2019
-**Embodiment analyzed:** Example 1
 
 **Production lens:** Fujinon XF 200 mm F2 R LM OIS WR · Fujifilm X‑mount · Announced September 2018; shipping since November 2018
 

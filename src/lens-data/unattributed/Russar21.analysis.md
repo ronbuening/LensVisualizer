@@ -5,8 +5,7 @@
 **Granted:** July 25, 1950\
 **Inventor:** Michael Michaelovitch Roossinov\
 **Assignee:** No organizational assignee is named on the supplied U.S. grant\
-**Title:** *Wide Angle Orthoscopic Anastigmatic Photographic Objective*\
-**Embodiment analyzed:** Example I
+**Title:** *Wide Angle Orthoscopic Anastigmatic Photographic Objective*
 
 The implemented prescription transcribes Example I of US 2,516,724 A. The patent presents a six-element objective made
 from two nearly symmetrical halves and gives Example I as a 59.4 mm, f/18 design with a 133° total field. The same patent

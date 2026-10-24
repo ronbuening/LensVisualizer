@@ -8,7 +8,6 @@
 **Inventor:** Ludwig Bertele  
 **Assignee:** Zeiss Ikon Aktiengesellschaft, Dresden, Germany  
 **Title:** Photographic Lens System  
-**Embodiment analyzed:** Single numerical example
 
 US 2,084,309 gives one worked optical prescription for Ludwig Bertele's four-unit wide-angle photographic lens system. The patent drawing and claims describe the same four-unit arrangement transcribed here: a front positive unit, a cemented concavo-convex triplet, a cemented third unit with a convex-to-object cementing surface, and a rear concavo-convex meniscus separated from the third unit by the critical curved air space.
 

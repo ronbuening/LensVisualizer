@@ -10,7 +10,7 @@
 **Inventor:** Takashi Shirasuna  
 **Assignee:** Canon Inc. (assigned to Canon Kabushiki Kaisha on the filing date)\
 **Title:** _Zoom Lens System_  
-**Embodiment analyzed:** Numerical Example 4 / Embodiment 4 (Figure 10; ¶0085)  
+**Example details:** Embodiment 4 (Figure 10; ¶0085)  
 **Production correlation:** Canon EF 28–105mm f/4–5.6 and EF 28–105mm f/4–5.6 USM; their official block diagrams match Example 4 at published resolution, but literal production-prescription identity is not proved
 
 Numerical Example 4 is the strongest documented production correlate for the Canon EF 28–105mm f/4–5.6 family. The evidence is convergent, but the document does not claim that every published radius, spacing, or glass is the factory prescription:

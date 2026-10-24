@@ -12,7 +12,7 @@
 
 **Application Number:** 実願昭38-64986. The cover gives 21 September 1959 with a prior-patent-application-date-adopted notation; the complete parent-application history is unresolved.
 
-**Embodiment analyzed:** Sole numerical example, Figure 1, uniformly scaled ×25 from f = 1.
+**Example details:** Figure 1, uniformly scaled ×25 from f = 1.
 
 The probable production association is the Pen F/FT/FV G.Zuiko Auto-W 25mm f/2.8 shown in Ponder & Best's May 1968 literature, page B-6. The seven-element/five-group count, f/2.8 aperture, unusual component sequence and long front-to-rear separation support that association. The patent describes about 60° full field; the product sheet states 62°. The same sheet distinguishes the 25mm f/4 as five elements/five groups and the 20mm f/3.5 as seven/six. Its schematic section supports the architecture but supplies no exact radii or clear apertures. The identification remains probable and does not establish every production version or measured factory performance.
 

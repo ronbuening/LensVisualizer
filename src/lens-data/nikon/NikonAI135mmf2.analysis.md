@@ -5,7 +5,7 @@
 **Assignee:** Nippon Kogaku K.K.  
 **Filed:** March 11, 1976  
 **Granted:** December 13, 1977  
-**Embodiment analyzed:** Example V (conventionally identified as the production design; see §11)  
+**Example details:** conventionally identified as the production design; see §11  
 **Production lens:** NEW Nikkor 135mm f/2 (1976–1977) → Ai Nikkor 135mm f/2 (1977–1981) → Ai-S Nikkor 135mm f/2 (1981–2005)
 
 ---

@@ -9,7 +9,7 @@
 **Inventor:** Walter Wöltche  
 **Assignee:** Jos. Schneider & Co., Optische Werke  
 **Title:** *Wide-Angle Objective of Large Back-Focal Length*  
-**Embodiment analyzed:** Example 3 / Fig. 3 / Table 3 / Claim 3
+**Example details:** Fig. 3 / Table 3 / Claim 3
 
 The implemented prescription is the third numerical example of US 3,512,874, uniformly scaled from the patent's normalized focal length of 100 to the patent's stated 21 mm implementation for a 24 × 36 mm frame. The patent gives this example a relative aperture of 1:4, a 90° full field, and a normalized back focal length of 173.92. [1, pp. 4–7; Fig. 3; Table 3; Claim 3]
 

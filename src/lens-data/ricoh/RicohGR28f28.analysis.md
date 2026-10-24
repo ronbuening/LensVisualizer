@@ -14,7 +14,7 @@
 
 **Granted:** 1998-06-02
 
-**Embodiment analyzed:** Example 1; Figure 1 shared with Examples 2–3
+**Example details:** Figure 1 shared with Examples 2–3
 
 The diagram follows **Example 1 of US 5,760,973**, *Compact Wide-Angle
 Lens System*, by Atsushi Kawamura, assigned to Ricoh Company, Ltd.

@@ -9,7 +9,7 @@
 **Inventors:** Tsuyoshi Wakazono; Tomoyuki Nakamura; Kazuya Shimomura; Yu Inomoto\
 **Applicant:** Canon Inc.\
 **Title:** Zoom lens and image pickup apparatus\
-**Embodiment analyzed:** Numerical Example 1 / Embodiment 1
+**Example details:** Embodiment 1
 
 The LensVisualizer prescription transcribes Numerical Example 1 of JP 2015-94867 A without dimensional scaling. The patent describes a large-imager professional zoom formed, from object to image, by a fixed positive first unit U1, moving negative units U2 and U3, an aperture stop, and a fixed positive relay/imaging unit Ur. U1 is itself divided into negative U11, positive internal-focus U12, and positive U13. The numerical example contains 27 physical glass elements in 22 air-separated glass groups, with aspherical surfaces on the first and fourth physical elements. The implemented design EFL is 17.020590 mm, 51.027433 mm, and 118.942934 mm at the three published infinity-focus stations; these are computed from the final model, not substituted marketing focal lengths. The corresponding computed BFD from the surface-50 vertex is 46.004764 mm, 45.993897 mm, and 46.011032 mm.
 

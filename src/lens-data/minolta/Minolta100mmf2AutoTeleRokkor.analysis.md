@@ -6,8 +6,7 @@
 **Published:** 1963-07-08\
 **Inventor:** Tadayoshi Nito (仁藤 忠芳)\
 **Applicant:** Minolta Camera Co., Ltd. (ミノルタカメラ株式会社)\
-**Title:** 大口径比望遠写真対物 — *Large-aperture-ratio telephoto photographic objective* (working translation)\
-**Embodiment analyzed:** Example 2
+**Title:** 大口径比望遠写真対物 — *Large-aperture-ratio telephoto photographic objective* (working translation)
 
 The implemented prescription is Example 2 of JP 1963-011590 B. The patent prints a focal length of 100 mm, an aperture ratio
 of 1:2, and a 24° included field angle, and it gives a six-element prescription arranged in five air-separated groups.

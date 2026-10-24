@@ -18,7 +18,6 @@
 
 **Title:** *Zoom Lens System*
 
-**Embodiment analyzed:** Example 1
 
 The prescription is Example 1 of US 6,621,643 B2. The patent identifies a four-group positive–negative–positive–positive zoom in which all four groups move during zooming and the second group moves toward the object for closer focus. Example 1 supplies the complete d-line prescription, four aspherical surfaces, three infinity zoom stations, two additional finite-conjugate rows at each station, and seven numerical design conditions [1, cols. 9–12; Table 1].
 

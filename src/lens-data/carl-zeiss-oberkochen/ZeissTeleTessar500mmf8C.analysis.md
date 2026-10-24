@@ -6,7 +6,7 @@
 **Granted:** 26 May 1964  
 **Inventor:** Helmut Knutti  
 **Assignee:** Carl-Zeiss-Stiftung (printed as Carl Zeiss, Heidenheim (Brenz))  
-**Embodiment analyzed:** Sole numerical table, description column 2; normalized to f = 1 and scaled ×500 to the stated 500 mm focal length.
+**Example details:** description column 2; normalized to f = 1 and scaled ×500 to the stated 500 mm focal length.
 
 The probable production lens is the historical Hasselblad C Tele-Tessar f/8 500 mm, Cat. No. 10 46 03, shown on the Zeiss technical data sheet. The identification does not extend to the later Tele-Apotessar lenses or to every barrel and coating revision. The sheet and the scaled prescription agree as follows:
 

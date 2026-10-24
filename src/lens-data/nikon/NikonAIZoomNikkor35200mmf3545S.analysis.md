@@ -7,7 +7,7 @@
 **Inventors:** Yasuo Yonezawa, Yasuhiro Aono, Tomowaki Takahashi
 **Assignee:** Nippon Kogaku K.K. / Nikon Corporation
 **Title:** Zoom Lens Capable of Accomplishing Macro-Photography
-**Embodiment analyzed:** Example 2, Table 2 and FIG. 3; aberration diagrams FIGS. 6A-6E
+**Example details:** Table 2 and FIG. 3; aberration diagrams FIGS. 6A-6E
 
 This prescription is identified with the NIKON AI ZOOM-NIKKOR 35-200mm f/3.5-4.5 S. The patent's second embodiment is a 35-200 mm-class, F/3.5-4.5, four-group positive-negative-positive-positive zoom. Its Table 2 prescription has 17 glass elements in 13 air-separated groups, uses no aspherical surfaces, and publishes the same 35-200 mm nominal range as the production lens. Nikon's own retrospective describes the AI Zoom-Nikkor 35-200mm f/3.5-4.5S as a positive-lead four-group zoom with a front focusing group, a concave second group, a convex aperture-bearing third group, and a convex master fourth group. The same article identifies Tomowaki Takahashi as the principal designer, gives the 1982-1984 development chronology, and states that the lens was released in December 1985.
 

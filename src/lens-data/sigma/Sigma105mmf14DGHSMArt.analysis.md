@@ -9,7 +9,7 @@
 **Inventor:** 若月 剛泰
 **Applicant:** 株式会社シグマ (Sigma Corporation)
 **Title:** 大口径レンズ (Large-aperture lens)
-**Embodiment analyzed:** Numerical Example 1 (第1実施例)
+**Example details:** 第1実施例
 
 Numerical Example 1 of JP 2019-144477 A transcribes the production optical formula of the **Sigma 105mm F1.4 DG HSM | Art** (announced 2018). The identification rests on the convergence of several independent criteria:
 

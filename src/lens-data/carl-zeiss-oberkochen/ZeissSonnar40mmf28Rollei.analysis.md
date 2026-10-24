@@ -9,7 +9,6 @@
 **Inventors:** Erhard Glatzel; Heinz Zajadatz  
 **Assignee:** Carl-Zeiss-Stiftung  
 **Title:** *Objective Lens System with Five Elements*  
-**Embodiment analyzed:** Example 7
 
 The prescription modeled here is Example 7 of US 3,994,576. The patent describes the design as a five-element, four-component objective of the “expanded Tessar type”: three individually air-spaced elements form the front member, followed by a cemented two-element rear component. Example 7 is normalized to an equivalent focal length of `F = 1.00000`, with a published relative aperture of f/2.9, a total field `2ω₀′ = 53.8°`, and an infinity back focus of `0.6341 F`. The copy of the same table in claim 8 prints the field as 53.5°; all other values agree. [US 3,994,576, PDF p. 8, Example 7; PDF p. 14, claim 8.]
 

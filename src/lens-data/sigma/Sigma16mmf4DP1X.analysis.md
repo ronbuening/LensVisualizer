@@ -9,7 +9,7 @@
 **Inventor:** Yoshino Shizuka (吉野 静香)
 **Applicant:** Sigma Corporation (株式会社シグマ)
 **Title:** Wide-Angle Lens (広角レンズ)
-**Embodiment analyzed:** Example 1 (実施例1)
+**Example details:** 実施例1
 
 This prescription transcribes Example 1 of JP 2008-040033 A, a compact wide-angle lens for a large digital image sensor. The patent presents two numerical examples. Example 1 is the one that matches the Sigma DP1-series fixed-lens camera specification, including the DP1x.
 

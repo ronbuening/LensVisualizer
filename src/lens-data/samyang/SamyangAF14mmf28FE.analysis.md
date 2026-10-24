@@ -7,8 +7,7 @@
 **Published:** 2018-12-27\
 **Inventors:** Jae Myung Yu; Hae Jin Lee; Jung Du Lee\
 **Assignee:** Samyang Optics Co., Ltd.\
-**Title:** Lens optical system and photographing apparatus having the same\
-**Embodiment analyzed:** Numerical Example 1
+**Title:** Lens optical system and photographing apparatus having the same
 
 The prescription represented here is the project-selected correlation for the **SAMYANG AF 14mm f/2.8 FE**. The patent itself does not identify a retail model by that exact product name, so the correlation is not presented as a manufacturer-confirmed patent mapping. It is supported by several convergent facts. Numerical Example 1 is a 14-element ultra-wide-angle autofocus design with a published focal length of 14.537406 mm, F-number 2.867, 57.031° half-field, six aspherical surfaces on three elements, and an inner-focusing positive group. The official Samyang product specification for the AF 14mm F2.8 FE gives 14 elements in 10 groups, 3 ASP elements, 2 ED elements, Sony E mount, 35 mm full-frame coverage, 0.20 m minimum focusing distance, and 113.9° marketed angle of view. Samyang's official optical-construction diagram also places the three ASP elements and two ED elements at the same element positions represented here: ASP at L31, L71, and L121, and ED at L41 and L141. Samyang's corporate history places the mirrorless AF 14mm F2.8 FE in 2016, before the patent filing in 2017. Taken together, the counts, special-element positions, optical architecture, product specifications, and timing establish the fixed correlation used for this pair without requiring dimensional scaling.
 

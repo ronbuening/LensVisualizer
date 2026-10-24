@@ -8,7 +8,7 @@
 **Inventors:** Yonghua Chen; Naoki Miyagawa  
 **Applicant:** Sony Corporation  
 **Title:** Teleconverter lens and optical apparatus  
-**Embodiment analyzed:** Example 3, Tables 7–8 and Figure 4  
+**Example details:** Tables 7–8 and Figure 4  
 **Associated model:** SONY 2x TELECONVERTER SEL20TC
 
 The prescription is a rear-mounted teleconverter, used with a taking lens rather than as an independent camera lens. The selected production correlation is Sony's SEL20TC. It is supported by the following convergent evidence, but is not manufacturer confirmation that the published prescription is the manufactured optical design.

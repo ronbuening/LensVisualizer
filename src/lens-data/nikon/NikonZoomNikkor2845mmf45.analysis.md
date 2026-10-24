@@ -9,7 +9,7 @@
 **Inventor:** Soichi Nakamura\
 **Assignee:** Nippon Kogaku K.K.\
 **Title:** *Four Component Zoom Lens*\
-**Embodiment analyzed:** Embodiment III (job-card Example 3)
+**Example details:** job-card Example 3
 
 The prescription is the third worked embodiment of Nakamura's four-component wide-angle zoom patent. The patent describes
 an all-moving negative-positive-negative-positive system for a 35 mm still camera and gives Embodiment III as an f/4.5,

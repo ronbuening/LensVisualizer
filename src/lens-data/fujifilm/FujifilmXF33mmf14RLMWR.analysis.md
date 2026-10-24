@@ -10,7 +10,7 @@
 **Inventors:** Taiga Noda; Ryoko Tomioka  
 **Applicant:** FUJIFILM Corporation  
 **Title:** Imaging Lens and Imaging Apparatus  
-**Embodiment analyzed:** Example 3 (Tables 9-12; FIG. 6; aberrations FIG. 7)
+**Example details:** Tables 9-12; FIG. 6; aberrations FIG. 7
 
 US 2022/0276464 A1 discloses a family of fast normal lenses built from a positive first group, an aperture stop, a positive second group, and a third group. In the preferred inner-focus form, the complete second group translates as the focus group while the first group, stop, and third group remain fixed relative to the image plane (¶¶0006, 0065-0066). Example 3 is the embodiment used here.
 

@@ -7,8 +7,7 @@
 **Granted:** August 19, 2014<br>
 **Inventor:** Dayong Li<br>
 **Assignee:** Tamron Co., Ltd.<br>
-**Title:** Large-Aperture Zoom Lens<br>
-**Embodiment analyzed:** Example 4
+**Title:** Large-Aperture Zoom Lens
 
 The modeled prescription is Example 4 of US 8,810,918 B2, corresponding to Figs. 22–28 and the numerical tables on the patent's printed pp. 11–13. The LensVisualizer entry identifies this embodiment with the **TAMRON SP 24-70mm f/2.8 Di VC USD** (Model A007). That production correlation is a modeling inference; the patent itself does not name Model A007.
 

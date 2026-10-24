@@ -8,7 +8,7 @@
 **Inventor:** Takahiro Saito (Tochigi, JP)
 **Applicant:** Canon Kabushiki Kaisha (Tokyo, JP)
 **Title:** Optical System and Imaging Apparatus Including Same
-**Embodiment analyzed:** Numerical Example 2 (FIG. 3; aberration diagrams FIGS. 4A/4B)
+**Example details:** FIG. 3; aberration diagrams FIGS. 4A/4B
 
 The patent discloses seven numerical examples spanning roughly 14–24 mm wide-angle mirrorless-camera objectives. All share a three-group (L1–L2–L3) architecture with inner focus via L2; L1 and L2 are positive in every example, while L3 is negative in six of seven examples (Example 6 alone has a weakly positive L3). Example 2 is identified as the Canon RF 20mm F1.4 L VCM on the following convergent evidence:
 

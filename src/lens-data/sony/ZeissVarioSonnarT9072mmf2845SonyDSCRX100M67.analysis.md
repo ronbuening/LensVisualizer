@@ -10,7 +10,7 @@
 **Inventors:** Koji Toyoda, Maya Kiyotoshi, Keita Kaifu, Kentaro Tawada
 **Applicant:** Sony Corporation (ソニー株式会社)
 **Title:** ズームレンズおよび撮像装置 (Zoom Lens and Imaging Device)
-**Embodiment analyzed:** Numerical Example 3 (数値実施例3; Tables 7–9, Figs. 5–6)
+**Example details:** 数値実施例3; Tables 7–9, Figs. 5–6
 
 The patent discloses a positive-lead six-group zoom for compact still cameras whose stated objectives are small size, a high zoom ratio and a large aperture that is maintained toward the telephoto end (¶0005, ¶0013). The data file SONY ZEISS VARIO-SONNAR T* 9-72mm f/2.8-4.5 (Sony Cyber-shot RX100 VI / RX100 VII) transcribes Numerical Example 3. The inventors' names are given in the source script, which is how this publication prints them. The romanization shown for 海部 敬太 is the form under which he is named on US 9,423,598 B2, assigned to Sony Corporation; no primary-source romanization was located for the other three inventors.
 

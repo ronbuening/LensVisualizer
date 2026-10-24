@@ -8,8 +8,7 @@
 **Granted:** May 16, 2017\
 **Inventors:** Tetsuya Ori; Michio Cho\
 **Assignee:** FUJIFILM Corporation\
-**Title:** Zoom Lens and Imaging Apparatus\
-**Embodiment analyzed:** Example 1
+**Title:** Zoom Lens and Imaging Apparatus
 
 The prescription represented here is Example 1 of US 9,651,761 B2, correlated to the FUJIFILM FUJINON XF 18-135mm f/3.5-5.6 R LM OIS WR. The patent and embodiment are the fixed optical source for the model. The production
 correlation is not presented as a manufacturer statement that Example 1 is the shipping prescription; it rests on

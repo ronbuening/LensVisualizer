@@ -9,7 +9,6 @@
 **Inventor:** Ryo Shioda
 **Applicant:** Sigma Corporation
 **Title:** Optical System
-**Embodiment analyzed:** Numerical Example 1
 
 The numerical authority is the Japanese application publication, including its original PAJ wrapper.
 The PAJ front page supplies the Latin-script inventor form SHIODA RYO; the normalized display form is Ryo Shioda.

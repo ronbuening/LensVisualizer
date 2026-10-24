@@ -8,7 +8,7 @@
 **Filed:** April 19, 1974
 **Granted:** August 17, 1976 (Certificate of Correction January 25, 1977)
 **Title:** Zoom Lens
-**Embodiment analyzed:** Table I (the single tabulated prescription), with Fig. 1 for the iris position and element proportions
+**Example details:** Table I (the single tabulated prescription), with Fig. 1 for the iris position and element proportions
 
 US Patent 3,975,089, filed April 1974 and granted August 1976, describes Ellis I. Betensky's zoom lens design for Vivitar's Series 1 line. Table I gives 12 spherical elements in four functional groups (nine air-spaced groups) with a three-moving-group architecture. Claims 7, 8 and 17 repeat the table; claim 8 prints the last radius as −35.95 mm where the other three printings give −35.59 mm, and the Certificate of Correction changes a "5.93" in claim 17 to the 5.98 mm of Table I (its other two items correct a formula and a claim dependency).
 

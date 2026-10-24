@@ -8,7 +8,7 @@
 **Inventor:** Akira Mizuma\
 **Applicant:** Canon Inc.\
 **Title:** *Optical System and Imaging Apparatus Including the Same*\
-**Embodiment analyzed:** Example 1 / First Numerical Embodiment
+**Example details:** First Numerical Embodiment
 
 The prescription modeled here is the first numerical embodiment of US 2015/0205081 A1. The patent gives a 34.49 mm, F2.05 retrofocus wide-angle design with a 32.10° half field, 21.64 mm image height, 38.30 mm back focus, ten elements in eight air-separated groups, one image-stabilizing singlet immediately behind the aperture diaphragm, and one aspherical surface on the final positive lens (¶¶0030–0034, 0055, 0058–0060; Fig. 1).
 

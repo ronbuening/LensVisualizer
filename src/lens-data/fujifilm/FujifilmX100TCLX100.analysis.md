@@ -7,8 +7,7 @@
 **Published:** August 13, 2015\
 **Inventor:** Takashi Suzuki\
 **Applicant:** FUJIFILM Corporation\
-**Title:** *Teleconverter Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Example 1
+**Title:** *Teleconverter Lens and Imaging Apparatus*
 
 The data file models Example 1 as a TCL-X100 front converter mounted on the published X100 master lens. The patent does
 not identify the commercial accessory by name, so the production correlation remains an inference fixed by the job card

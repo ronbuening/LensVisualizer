@@ -9,8 +9,7 @@
 **Published:** June 2, 2022\
 **Inventor:** Takahiro Hatada\
 **Applicant:** Canon Kabushiki Kaisha\
-**Title:** *Zoom Lens and Imaging Apparatus Including the Same*\
-**Embodiment analyzed:** Numerical Example 3
+**Title:** *Zoom Lens and Imaging Apparatus Including the Same*
 
 The prescription modeled here is Numerical Example 3 of US 2022/0171174 A1. The patent describes Example 3 as a
 six-group negative-lead zoom in which the first group is negative, the second and third groups are positive, the fourth

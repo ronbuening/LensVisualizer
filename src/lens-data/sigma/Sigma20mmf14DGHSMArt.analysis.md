@@ -11,7 +11,7 @@ Analysis of the optical design transcribed from JP 2019-117419 A, Numerical Exam
 **Inventor:** Kenta Fujita  
 **Applicant:** Sigma Corporation  
 **Title:** Large-aperture wide-angle lens (大口径広角レンズ)  
-**Embodiment analyzed:** Numerical Example 1 (数値実施例1), infinity focus
+**Example details:** 数値実施例1, infinity focus
 
 The patent describes a large-aperture wide-angle lens whose design target is a field angle of at least 90° with an F-number around 1.4 (¶0001). It gives five numerical examples. Examples 1-4 are full-frame-class 20.7 mm variants; Example 5 is a smaller-image-height 14.01 mm variant. Numerical Example 1 is the embodiment modeled here.
 

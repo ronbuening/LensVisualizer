@@ -8,7 +8,7 @@
 **Inventor:** Stefan Roth  
 **Applicant:** Leica Camera AG  
 **Title:** Wide-angle photographic objective  
-**Embodiment analyzed:** Second embodiment example, Figure 2; printed prescription page 4  
+**Example details:** Figure 2; printed prescription page 4  
 **Status:** Literal transcription of the rounded patent table, scaled 35×; production correlation, not a factory prescription
 
 The association with the Leica Noctilux-M 35 f/1.2 ASPH. is strong but remains a

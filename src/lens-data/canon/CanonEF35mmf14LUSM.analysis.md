@@ -7,7 +7,7 @@
 **Inventors:** Yasunori Murata; Makoto Misaka  
 **Applicant:** Canon Inc. (キヤノン株式会社)  
 **Title:** レトロフォーカス型レンズ (Retrofocus-type lens)  
-**Embodiment analyzed:** Numerical Example 1 (数値実施例1)
+**Example details:** 数値実施例1
 
 The data file represents Numerical Example 1 of JP H11-211978 A as the optical prescription correlated with the production CANON EF 35mm f/1.4 L USM. The patent itself does not name that commercial lens, so the product correlation is an author/modeling inference rather than a manufacturer-confirmed patent identification. The correlation is supported by several independent points of agreement.
 

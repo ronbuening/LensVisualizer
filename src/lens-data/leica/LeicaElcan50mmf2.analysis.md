@@ -6,7 +6,7 @@
 **Granted:** March 14, 1972
 **Inventors:** Garry Edwards, Walter Mandler, Erich Wagner (all of Midland, Ontario, Canada)
 **Assignee:** Ernst Leitz GmbH, Wetzlar, Germany
-**Embodiment analyzed:** Example 3 (also claim 3) — relative aperture f:2, field angle 45°
+**Example details:** also claim 3 — relative aperture f:2, field angle 45°
 **Reference line:** e-line (546.1 nm) — the patent tabulates n_e and ν_e
 
 ## 1. Context and Production History

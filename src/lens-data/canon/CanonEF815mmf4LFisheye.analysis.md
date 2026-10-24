@@ -10,7 +10,7 @@
 **Inventor:** Tetsuichirou Okumura  
 **Assignee:** Canon Kabushiki Kaisha  
 **Title:** Optical System Having Fisheye Zoom Lens and Optical Apparatus Having the Optical System  
-**Embodiment analyzed:** First Embodiment / Numerical Example 1, Table 1, FIGS. 1 and 2A-2C  
+**Example details:** Numerical Example 1, Table 1, FIGS. 1 and 2A-2C  
 **Worked examples in patent:** 3
 
 Numerical Example 1 is the prescription transcribed for the Canon EF 8-15mm f/4L Fisheye USM. The identification is strong, but it should be stated as a production match rather than as a manufacturer-named prescription, because the patent does not identify the commercial lens by model name.

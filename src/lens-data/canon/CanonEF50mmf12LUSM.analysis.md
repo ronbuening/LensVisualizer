@@ -7,7 +7,7 @@
 **Inventor:** Makoto Mitsusaka\
 **Applicant:** Canon Inc.\
 **Title:** Optical System and Optical Apparatus Having the Same\
-**Embodiment analyzed:** Example 1 / Numerical Example 1
+**Example details:** Numerical Example 1
 
 The companion data file treats JP2007333790A Example 1 as the fixed production correlation for the **CANON EF 50mm f/1.2 L USM**. The patent itself does not identify a commercial lens by model name, so the correlation is an authoring inference rather than a manufacturer-confirmed attribution.
 

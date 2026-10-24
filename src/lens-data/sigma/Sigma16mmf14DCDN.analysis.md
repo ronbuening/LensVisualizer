@@ -11,7 +11,7 @@
 **Title:** 大口径広角レンズ ("Large-aperture wide-angle lens")
 **Classification:** IPC G02B 13/04, G02B 13/18
 **Worked examples:** 6 (実施例1–6)
-**Embodiment analyzed:** Numerical Example 1 (数値実施例1)
+**Example details:** 数値実施例1
 
 JP 2018-205527 A discloses a fast wide-angle mirrorless lens whose stated purpose is to keep the optical system compact, cover a comparatively large imaging sensor, and make the focus group light enough for smooth contrast autofocus (¶0003–0012). Numerical Example 1 is the closest match to the production Sigma 16mm F1.4 DC DN | Contemporary.
 

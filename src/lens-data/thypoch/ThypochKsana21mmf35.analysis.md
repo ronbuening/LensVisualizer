@@ -9,7 +9,7 @@
 **Inventors:** Kuang Jian (邝健); Ouyang Xia (欧阳霞); Ye Bo (叶波); Li Zenghui (李增辉); Liu Xiaojuan (刘晓娟)  
 **Applicant:** Shenzhen Dongzheng Optical Technology Co., Ltd. (深圳市东正光学技术股份有限公司)  
 **Title:** 一种光学镜头及摄像头模组 (An optical lens and camera module)  
-**Embodiment analyzed:** Example 1, Tables 1a–1g, Figures 1–7
+**Example details:** Tables 1a–1g, Figures 1–7
 
 The model transcribes the complete A-publication's Example 1 at unit scale.
 The association with the Thypoch Ksana is construction-based. Neither the patent

@@ -18,7 +18,6 @@
 
 **Title:** ZOOM LENS SYSTEM
 
-**Embodiment analyzed:** Example 1
 
 The prescription is transcribed from Example 1 of US 2003/0072085 A1. The patent describes a compact three-power-group zoom for a solid-state image-gathering system, with negative G1, positive G2, and positive G3 arranged in that order. Example 1 contains seven glass elements, with L22 and L23 cemented, giving six air-separated physical groups. The aperture stop lies between G1 and G2. The patent states that G1 and G2 move during zooming while G3 remains fixed. [US 2003/0072085 A1, ¶¶0040–0043; Fig. 1; Table 1.]
 

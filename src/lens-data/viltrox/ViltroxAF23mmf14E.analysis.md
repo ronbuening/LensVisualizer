@@ -7,7 +7,7 @@
 **Inventors:** Liu Ruijun; Chen Baofeng  
 **Assignee:** Shenzhen Leiying Photoelectric Technology Co., Ltd.  
 **Title:** 内合焦式成像镜头 (Internal-focusing imaging lens)  
-**Embodiment analyzed:** Example 1, Tables 1–2, Figure 1
+**Example details:** Tables 1–2, Figure 1
 
 The patent's assignee is the former registered name of Shenzhen Viltrox Technology. Example 1 is correlated with
 the Viltrox AF 23mm F1.4, an APS-C lens sold in Sony E, Fujifilm X, Canon EF-M and Nikon Z mounts with one optical

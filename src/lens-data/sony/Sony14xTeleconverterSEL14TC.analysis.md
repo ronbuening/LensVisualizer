@@ -10,7 +10,6 @@
 **Inventors:** Yonghua Chen; Naoki Miyagawa
 **Applicant:** Sony Corporation
 **Title:** Teleconverter lens and optical apparatus
-**Embodiment analyzed:** Example 6
 **Model:** SONY 1.4x TELECONVERTER SEL14TC
 
 The prescription represents the detachable rear converter in Example 6, rather than a self-contained taking

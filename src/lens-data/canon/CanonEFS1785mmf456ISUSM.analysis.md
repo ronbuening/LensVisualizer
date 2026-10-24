@@ -8,7 +8,7 @@
 **Inventor:** Makoto Fujimoto  
 **Assignee:** Canon Kabushiki Kaisha  
 **Title:** Zoom Lens System and Image Pickup Apparatus Using the Same  
-**Embodiment analyzed:** Numerical Embodiment 1 / Exemplary Embodiment 1
+**Example details:** Exemplary Embodiment 1
 
 The prescription represented here is the selected correlation for the CANON EF-S 17-85mm f/4-5.6 IS USM. The patent does not identify that commercial product by name, so the correlation is not presented as manufacturer confirmation. It rests instead on several convergent source facts.
 

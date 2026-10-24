@@ -12,7 +12,7 @@
 
 **Published:** 2020-07-02
 
-**Embodiment analyzed:** Example 1, Table 1 and Figure 4
+**Example details:** Table 1 and Figure 4
 
 The product association follows the 17-element, 15-component architecture and four aspherical surfaces. It does not establish identical production geometry, glass suppliers or manufacturing processes. The diagram follows the numerical patent example; the 24–70mm f/2.8 product designation remains separate from its 24.8–67.9mm f/2.92 prescription.
 

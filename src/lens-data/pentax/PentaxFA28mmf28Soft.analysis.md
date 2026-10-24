@@ -10,7 +10,7 @@
 **Inventor:** Jun Hirakawa  
 **Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha (Pentax) — corrected by the Certificate of Correction; the printed cover sheet gives the shorter “Asahi Kogaku Kabushiki Kaisha” form.  
 **Title:** Soft Focus Lens  
-**Embodiment analyzed:** First Embodiment — TABLE 1, FIG. 1
+**Example details:** TABLE 1, FIG. 1
 
 The patent describes four numerical embodiments of a wide-angle soft-focus lens built on a retrofocus chassis. The First Embodiment is transcribed here. The prescription is normalized to a whole-system focal length of $f = 100.00$; the production 28 mm representation uses a uniform scale factor of $0.28$ for radii, axial spacings, and inferred semi-diameters.
 

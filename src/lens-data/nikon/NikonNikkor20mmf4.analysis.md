@@ -9,7 +9,7 @@
 **Inventor:** Ikuo Mori  
 **Assignee:** Nippon Kogaku K.K.  
 **Title:** Extremely wide-angle object lens  
-**Embodiment analyzed:** Example 2 (Embodiment II)
+**Example details:** Embodiment II
 
 The modeled prescription is the complete Embodiment II table on PDF page 7, printed column 4,
 corroborated by claim 2 on PDF page 9. The source is normalized to a focal length of 100.

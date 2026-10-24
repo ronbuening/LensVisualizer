@@ -8,7 +8,7 @@
 **Inventor:** Masaaki Yanagisawa
 **Assignee:** Nikon Corporation
 **Title:** *Optical System Having a Variable Out-of-Focus State*
-**Embodiment analyzed:** Example 2 / Second Embodiment
+**Example details:** Second Embodiment
 
 The prescription transcribes Example 2 of US 4,908,639 A without dimensional scaling. The patent identifies the example
 as a 135 mm, f/2 system with an 18° full field, seven elements in six groups, a positive forward assembly, a stop, and a

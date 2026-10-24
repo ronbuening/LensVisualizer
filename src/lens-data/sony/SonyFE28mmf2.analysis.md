@@ -8,7 +8,7 @@
 **Inventors:** Kouji Katou, Kota Omiya, Hiroshi Koizumi, Naoki Miyagawa  
 **Assignee:** Sony Corporation, Tokyo  
 **Title:** Wide-Angle Lens and Imaging Unit  
-**Embodiment analyzed:** Numerical Example 10, FIG. 10, Tables 28-32  
+**Example details:** FIG. 10, Tables 28-32  
 **Worked examples in patent:** 10
 
 Numerical Example 10 is the embodiment corresponding most closely to the production Sony FE 28mm F2 (SEL28F20). The identification rests on convergent prescription and manufacturer data rather than on a model name in the patent.

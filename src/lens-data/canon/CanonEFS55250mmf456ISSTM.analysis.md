@@ -10,7 +10,6 @@
 **Inventor:** Tetsuichirou Okumura  
 **Applicant:** Canon Kabushiki Kaisha  
 **Title:** Zoom Lens and Image Pickup Apparatus Including the Same  
-**Embodiment analyzed:** Numerical Embodiment 3
 
 Numerical Embodiment 3 is the best match in US 2014/0211029 A1 for the Canon EF-S 55-250mm f/4-5.6 IS STM.
 

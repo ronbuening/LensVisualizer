@@ -7,8 +7,7 @@
 **Priority:** January 14, 2003, JP2003-005380\
 **Inventor:** Takashi Suzuki\
 **Assignee attribution:** Fuji Photo Optical Co., Ltd., from a secondary same-application assignment index; original instrument not retrieved\
-**Title:** Retrofocus, wide-angle lens\
-**Embodiment analyzed:** Example 1
+**Title:** Retrofocus, wide-angle lens
 
 **Restricted literal model:** The retained prescription has source nominal f/3.6, with Fig. 4 labeled f/3.59, but the current modeled clear apertures transmit only approximately f/3.8266 entrance-equivalent, or f/3.823 by the image-space sine definition. Exact source-target iris calibration fails and the runtime uses a paraxial fallback. Full-pupil transmission across the field remains unverified. A source-ray-supported refinement of one inferred aperture restores the source-field chief and 645-format corner, as quantified below. The source target fields are not a claim of verified physical f/3.6 transmission. These limitations concern the reconstruction of rounded source data and inferred apertures; they do not establish that the production Hasselblad lens is defective.
 

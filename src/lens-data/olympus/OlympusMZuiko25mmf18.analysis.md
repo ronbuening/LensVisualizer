@@ -7,7 +7,6 @@
 **Inventor:** Yukihiro Yamamoto  
 **Applicant:** Sigma Corporation  
 **Title:** Imaging Optical System  
-**Embodiment analyzed:** Numerical Example 1
 
 This prescription is the selected patent correlation for the OLYMPUS M.ZUIKO DIGITAL 25mm f/1.8. The patent is a Sigma filing; neither the patent nor the Olympus product announcement confirms that this exact prescription was manufactured for Olympus. The correlation rests on convergent structural and specification evidence rather than an established commercial relationship:
 

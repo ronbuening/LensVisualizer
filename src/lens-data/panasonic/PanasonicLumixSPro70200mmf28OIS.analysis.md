@@ -8,7 +8,7 @@
 **Inventors:** Takehiro Nishioka; Hisayuki Ii
 **Applicant:** Panasonic Intellectual Property Management Co., Ltd.
 **Title:** *Zoom Lens System, and Lens Barrel, Image Capture Device, and Camera System Including the Zoom Lens System*
-**Embodiment analyzed:** Third embodiment / Third Example of Numerical Values, Tables 7, 8, and 9A–9D
+**Example details:** Third Example of Numerical Values, Tables 7, 8, and 9A–9D
 
 The prescription is correlated with the PANASONIC LUMIX S PRO 70-200mm f/2.8 O.I.S. (S-E70200). The patent does not
 name the commercial lens, so the identification is a production correlation rather than a manufacturer confirmation.

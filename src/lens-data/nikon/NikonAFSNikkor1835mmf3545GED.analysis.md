@@ -8,7 +8,7 @@
 **Inventors:** Kana Inoue; Mamoru Terada; Haruo Sato  
 **Assignees:** Konica Minolta, Inc.; Nikon Corporation  
 **Title:** Zoom Lens System, Imaging Optical Device, and Digital Appliance  
-**Embodiment analyzed:** Example 1 (EX1)
+**Example details:** EX1
 
 Example 1 is the strongest candidate for the optical prescription behind the Nikon AF-S Nikkor 18-35mm f/3.5-4.5G ED. The identification rests on convergent optical and mechanical evidence rather than on assignee identity alone.
 

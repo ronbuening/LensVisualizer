@@ -4,7 +4,7 @@
 **Applicants:** Konica Minolta, Inc. / Nikon Corporation
 **Inventors:** Takakazu Hirose, Keiko Yamada, Yasushi Yamamoto, Hiroshi Yamamoto
 **Published:** December 13, 2021
-**Embodiment analyzed:** Example No. 1 (corresponding to the First Embodiment, Figure 1)
+**Example details:** corresponding to the First Embodiment, Figure 1
 
 ---
 

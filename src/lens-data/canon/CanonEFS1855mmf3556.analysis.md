@@ -7,7 +7,7 @@
 **Inventor:** Takeshi Nishimura\
 **Applicant:** Canon Inc.\
 **Title:** Zoom lens system and image pickup device having zoom lens system\
-**Embodiment analyzed:** Numerical Example 5 (数値実施例5)
+**Example details:** 数値実施例5
 
 The prescription represented here is the project-selected correlation between Numerical Example 5 of JP2005092056A and the CANON EF-S 18-55mm f/3.5-5.6. The patent itself does not name the commercial lens, so this identification is a production-correlation inference rather than a manufacturer-confirmed patent attribution. Several independent facts converge on the selection:
 

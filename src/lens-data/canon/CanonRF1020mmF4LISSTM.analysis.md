@@ -10,7 +10,7 @@
 **Inventor:** Makoto Nakahara
 **Applicant:** Canon Inc. (Canon Kabushiki Kaisha, Tokyo)
 **Title:** Zoom Lens and Image Pickup Apparatus Having the Same
-**Embodiment analyzed:** Numerical Example 1 (FIG. 1; aberration diagrams FIGS. 2A–2C)
+**Example details:** FIG. 1; aberration diagrams FIGS. 2A–2C
 
 US 2024/0045184 A1 discloses six numerical examples of a negative-lead ultra-wide zoom in which a single positive lens
 immediately behind the aperture stop performs focusing (¶0029–¶0030, ¶0044). Numerical Example 1 is a four-unit design

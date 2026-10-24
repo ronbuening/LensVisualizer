@@ -10,7 +10,6 @@
 **Inventor:** Masayuki Aoki
 **Assignee:** Nikon Corporation
 **Title:** *Antivibration Zoom Lens*
-**Embodiment analyzed:** Working Example 4
 
 The prescription is the fixed Working Example 4 of US 6,141,156 A. The patent does not identify a commercial lens by
 product name, so the production relationship is a correlation rather than a patent-stated identity. The correlation is

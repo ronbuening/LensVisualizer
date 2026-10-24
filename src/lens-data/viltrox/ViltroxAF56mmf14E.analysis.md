@@ -6,8 +6,7 @@
 **Granted:** 2020-11-17\
 **Inventors:** 刘瑞军; 陈宝锋\
 **Applicant:** 深圳市雷影光电科技有限公司\
-**Title:** 内合焦式成像镜头 (internal-focusing imaging lens)\
-**Embodiment analyzed:** Example 1
+**Title:** 内合焦式成像镜头 (internal-focusing imaging lens)
 
 This analysis treats CN 211955965 U, Example 1, as the fixed production correlation for the VILTROX AF 56mm f/1.4 E. The patent itself does not name the Viltrox product, and the cited Viltrox material does not identify this patent; the production relationship is therefore a project correlation rather than a manufacturer-confirmed attribution.
 

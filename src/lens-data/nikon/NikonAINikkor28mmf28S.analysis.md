@@ -8,7 +8,7 @@
 **Inventor:** Kenzaburo Suzuki
 **Assignee:** Nikon Corporation, Tokyo, Japan
 **Title:** Wide-Angle Lens with an Image Stabilizing Function
-**Embodiment analyzed:** Example 2 (Table 2, Fig. 3)
+**Example details:** Table 2, Fig. 3
 
 The patent describes retrofocus wide-angle lenses made from a front negative group GF and a rear positive group GL. A positive partial group GLP within GL is rotated about a point on the optical axis for vibration reduction. Three worked examples are disclosed: two approximately 28.6 mm examples and one approximately 20.4 mm example. The present transcription uses Example 2.
 

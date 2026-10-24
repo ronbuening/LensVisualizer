@@ -8,7 +8,6 @@
 **Inventors:** Norio Mizutani; Yoshinari Hamanishi
 **Assignee:** Nippon Kogaku K.K.
 **Title:** *Telephoto Zoom Lens*
-**Embodiment analyzed:** Embodiment 1
 
 The prescription is the fixed project correlation for the **NIKON AI ZOOM-NIKKOR 80-200mm f/4.5**. Embodiment 1 is explicitly described as an 80-200 mm, f/4.5 telephoto zoom for a 35 mm still camera. Its numerical example contains 12 glass elements in 9 air-separated components, organized into five functional groups, and uses front-group focusing. Those characteristics agree with the correlated AI-era 12-element/9-group formula recorded in the final data file. The correlation is therefore treated as fixed by the job card and prescription match; it is not presented as a separate manufacturer confirmation. [1][2]
 

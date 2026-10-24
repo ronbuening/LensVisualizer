@@ -7,7 +7,7 @@
 **Inventor:** Josef Weiß  
 **Applicant:** Optische Werke G. Rodenstock  
 **Title:** Vierlinsiges, nicht symmetrisches Weitwinkelaufnahmeobjektiv  
-**Embodiment analyzed:** Sole numerical example, reference focal length 100, scaled by 0.9 to the 90 mm production focal length.
+**Example details:** reference focal length 100, scaled by 0.9 to the 90 mm production focal length.
 
 The association with the 1982 Geronar-WA 90 mm f/8 is **probable, not a confirmed factory prescription**. The principal manufacturer source is the dated 1982 Berkey Marketing Companies / Rodenstock Division sheet, PRC04128, PDF page 11, catalog number 160-202. The following evidence converges:
 

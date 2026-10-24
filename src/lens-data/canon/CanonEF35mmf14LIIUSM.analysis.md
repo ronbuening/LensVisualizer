@@ -10,7 +10,7 @@
 **Inventor:** Takashi Shirasuna\
 **Applicant:** Canon Kabushiki Kaisha\
 **Title:** *Optical System and Image Pickup Apparatus Including the Same*\
-**Embodiment analyzed:** Example 2 / Numerical Example 2
+**Example details:** Numerical Example 2
 
 The prescription is Numerical Example 2 of US 2015/0098138 A1. The patent defines a fixed-focal-length optical system
 with a positive first unit L1 and a positive second unit L2; L2 contains a front sub-unit L2a, the aperture stop, and a

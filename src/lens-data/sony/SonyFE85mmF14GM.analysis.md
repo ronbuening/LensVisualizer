@@ -11,7 +11,7 @@
 **Applicant:** Sony Corporation
 **Title:** Image Pickup Lens and Image Pickup Device (撮像レンズおよび撮像装置)
 **Classification:** G02B 13/00, G02B 13/18
-**Embodiment analyzed:** Example 2 (数値実施例2; Tables 4–6, Fig. 3)
+**Example details:** 数値実施例2; Tables 4–6, Fig. 3
 
 The international application describes a large-aperture prime for interchangeable-lens digital still and mirrorless cameras (¶0001). It discloses nine numerical examples of a three-group lens in which a positive first group G1 and a third group G3 stay fixed relative to the image plane while a positive second group G2 moves toward the object for close focus (¶0007, ¶0015–¶0016). Example 2 is published in Table 4 (lens data, PDF p. 23, printed p. 21), Table 5 (asphere, same page), and Table 6 (system values and focus spacings, PDF p. 24, printed p. 22), with its section drawing in Fig. 3 and aberration curves in Fig. 4 (drawing sheet 2/10, PDF p. 58).
 

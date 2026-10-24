@@ -5,7 +5,7 @@
 **Patent:** WO2021039813A1; US20220269056A1
 **Applicant:** Nikon Corporation
 **Published:** March 4, 2021 (WO); August 25, 2022 (US)
-**Embodiment analyzed:** Example 2 / LS(2), Table 2
+**Example details:** LS(2), Table 2
 
 The prescription transcribed here is **Example 2** of Nikon's WO2021039813A1 family, with the same numerical data available in the English Google Patents text of **US20220269056A1**. The applicant is Nikon Corporation. The relevant embodiment is the zoom optical system **LS(2)**, and its numerical prescription is **Table 2**. The WO pamphlet is an image-only scan with no text layer; Table 2 begins on pamphlet p. 29 (PDF p. 31), and its surface rows, aspherical coefficients, and variable spacings agree with the data file to the printed digit.
 

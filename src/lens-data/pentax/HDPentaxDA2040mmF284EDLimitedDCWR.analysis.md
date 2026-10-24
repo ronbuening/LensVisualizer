@@ -6,8 +6,7 @@
 **Published:** 2015-01-19\
 **Inventor:** Takahiko Ohishi (大石 崇彦)\
 **Applicant:** Ricoh Imaging Company, Ltd.\
-**Title:** ズームレンズ系 ("Zoom lens system")\
-**Embodiment analyzed:** Numerical Example 1
+**Title:** ズームレンズ系 ("Zoom lens system")
 
 The data file identifies the modeled production lens as **HD PENTAX-DA 20–40mm f/2.8–4 ED Limited DC WR** and transcribes Numerical Example 1 of JP 2015-11156 A. The patent itself does not name that production lens. The production correlation is therefore an author/modeling inference fixed for this dataset rather than a manufacturer-confirmed patent identification.
 

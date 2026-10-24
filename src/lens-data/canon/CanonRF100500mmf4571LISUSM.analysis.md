@@ -10,7 +10,7 @@
 **Inventors:** Masato Katayose; Junya Ichimura\
 **Applicant:** Canon Inc.\
 **Title:** *Zoom Lens and Image Pickup Apparatus Having the Same*\
-**Embodiment analyzed:** Example 2 / Numerical Example 2
+**Example details:** Numerical Example 2
 
 The prescription is the fixed Numerical Example 2 selected for correlation with the production Canon RF100-500mm
 F4.5-7.1 L IS USM. The patent itself does not state that this numerical example became that commercial lens; the

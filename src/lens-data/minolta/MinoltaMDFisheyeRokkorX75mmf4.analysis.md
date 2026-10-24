@@ -5,7 +5,7 @@
 **Granted:** 1 March 1977  
 **Inventor:** Mitsuaki Horimoto  
 **Assignee:** Minolta Camera Co., Ltd.  
-**Embodiment analyzed:** Example 2, Table 2, Figure 3, claim 17.
+**Example details:** Table 2, Figure 3, claim 17.
 
 This is a probable reconstruction of the MD Fisheye Rokkor-X 7.5mm f/4 pictured on Minolta brochure C4, March 1981. Its ordered section selects Example 2: two front singlets, a cemented doublet, positive singlet, plane filter and three rear doublets. The competing examples have different cementing. Exact factory numbers, MC-to-MD continuity and later plain-MD identity remain unproved.
 

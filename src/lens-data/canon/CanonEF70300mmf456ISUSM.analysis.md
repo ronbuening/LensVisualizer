@@ -6,8 +6,7 @@
 **Published:** 2007-01-11\
 **Inventor:** Takashi Shirasuna\
 **Applicant:** Canon Inc.\
-**Title:** *Zoom lens and imaging apparatus having the same* (ズームレンズ及びそれを有する撮像装置)\
-**Embodiment analyzed:** Numerical Example 1
+**Title:** *Zoom lens and imaging apparatus having the same* (ズームレンズ及びそれを有する撮像装置)
 
 The prescription is Numerical Example 1 of JP 2007-003600 A. The production correlation used for this record is the
 Canon EF 70-300mm f/4-5.6 IS USM. Canon does not identify the patent on its product page, so the connection is a

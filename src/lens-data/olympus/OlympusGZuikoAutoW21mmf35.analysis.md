@@ -9,7 +9,7 @@
 **Inventor:** Jihei Nakagawa  
 **Assignee:** Olympus Optical Co., Ltd., Tokyo, Japan  
 **Title:** Retrofocus Wide-Angle Lens System  
-**Embodiment analyzed:** Embodiment 3 / Claim 4
+**Example details:** Claim 4
 
 US 3,884,556 discloses a compact retrofocus wide-angle family for single-lens-reflex cameras. The patent states the design goal as an f/3.5 to f/2.8 lens with an 84° to 92° field angle, fewer lenses than then-conventional retrofocus designs, reduced overall length, and smaller front-lens diameter. Embodiment 3 is the relevant seven-element f/3.5 prescription.
 

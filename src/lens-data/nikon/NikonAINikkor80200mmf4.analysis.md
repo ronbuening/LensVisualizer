@@ -8,7 +8,7 @@
 **Inventor:** Yoshinari Hamanishi
 **Assignee:** Nippon Kogaku K.K.
 **Title:** Zoom Lens Capable of Close Range Photography and Method of Focusing the Same to a Short Distance
-**Embodiment analyzed:** First embodiment, Fig. 3 and Tables 1–2
+**Example details:** Fig. 3 and Tables 1–2
 
 The modeled lens is the first embodiment of US 4,452,513, correlated here with the NIKON AI ZOOM-NIKKOR
 80-200mm f/4. The selected correlation rests on several convergent facts:

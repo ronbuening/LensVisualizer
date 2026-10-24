@@ -9,7 +9,7 @@
 **Inventor:** Masakazu Saori
 **Assignee:** Hoya Corporation
 **Title:** “Zoom Lens System”
-**Embodiment analyzed:** Embodiment 4, Table 4
+**Example details:** Table 4
 
 The prescription is correlated with the **PENTAX SMC DA 17-70mm f/4 AL [IF] SDM**. The patent does not name a
 commercial lens, so the identification is a production correlation rather than a manufacturer-confirmed attribution.

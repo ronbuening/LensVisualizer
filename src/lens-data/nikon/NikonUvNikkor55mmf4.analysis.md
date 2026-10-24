@@ -7,7 +7,6 @@
 **Inventor:** Wakimoto Zenji (脇本善司)
 **Applicant:** Nippon Kogaku K.K. (日本光学工業株式会社; source romanization: Nippon Kogaku Kogyo K.K.)
 **Title:** Lens for Ultraviolet Photography (紫外線撮影用レンズ)
-**Embodiment analyzed:** Sole numerical example
 
 The patent contains one worked prescription. It is normalized to $f = 100$, uses 365 nm as the reference wavelength, and gives $F = 4$ with full field angle $2\alpha = 43°$. The same numerical prescription is repeated in the claim on page 3. No alternate examples are supplied.
 

@@ -8,7 +8,7 @@
 **Inventor:** Romeo I. Mercado
 **Applicant:** Apple Inc.
 **Title:** CAMERA LENS SYSTEM
-**Embodiment analyzed:** Example 11 (Example-H), Tables 11A–11B; aberration plots in Figures 25–26
+**Example details:** Example-H, Tables 11A–11B; aberration plots in Figures 25–26
 
 The implemented prescription is the unscaled Example 11 design from US 2016/0341934 A1. Table 11A publishes a nominal
 focal length of 4.10 mm, f/1.80, a 37.0° half field, and a 5.40 mm total track length. The final parsed model gives a

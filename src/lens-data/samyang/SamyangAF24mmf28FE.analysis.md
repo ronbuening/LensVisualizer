@@ -7,7 +7,7 @@
 **Inventor:** Moon-Kyung Kim\
 **Applicant:** Samyang Optics Co., Ltd.\
 **Title:** *Internal Focus Wide-Angle Lens System and Electronic Apparatus Including the Same*\
-**Embodiment analyzed:** Example 1 / First Embodiment
+**Example details:** First Embodiment
 
 The prescription is the first embodiment of WO 2020/230915 A1, retained at its native patent scale. The production correlation is the user-selected Samyang AF 24mm f/2.8 FE; it is treated as the fixed correlation for this record, not as a manufacturer-confirmed patent attribution. The public product specification and the patent example converge in several ways:
 

@@ -10,7 +10,7 @@
 **Inventors:** Hiroki Ebe; Shunji Iwamoto\
 **Applicant:** Canon Kabushiki Kaisha\
 **Title:** *ZOOM LENS OF THE RETROFOCUS TYPE*\
-**Embodiment analyzed:** Second Numerical Embodiment (Example 2)
+**Example details:** Example 2
 
 This analysis uses the Second Numerical Embodiment of EP 4 174 551 A1 as the fixed production correlation for the
 **CANON RF 15-30mm f/4.5-6.3 IS STM**. The prescription itself is taken from the patent's surface, asphere, zoom-unit,

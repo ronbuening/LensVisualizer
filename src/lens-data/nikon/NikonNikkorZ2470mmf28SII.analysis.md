@@ -8,7 +8,7 @@
 **Inventor:** Fumiaki Ohtake  
 **Applicant:** Nikon Corporation  
 **Title:** Variable magnification optical system, optical device, and method for manufacturing variable magnification optical system  
-**Embodiment analyzed:** Example 2, Table 2, Figure 3
+**Example details:** Table 2, Figure 3
 
 This model transcribes the native numerical example in the original Japanese international publication.
 It is associated with the NIKKOR Z 24-70mm f/2.8 S II by convergent construction evidence.

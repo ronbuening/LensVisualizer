@@ -10,7 +10,7 @@
 **Inventors:** Daisuke Tanahashi; Yoshihito Souma\
 **Applicant:** Konica Minolta, Inc.\
 **Title:** *Imaging Lens System, Imaging Optical Device, and Digital Appliance*\
-**Embodiment analyzed:** Example 1, corresponding to the first embodiment and Fig. 1
+**Example details:** corresponding to the first embodiment and Fig. 1
 
 The prescription is transcribed from Example 1 of EP 3 136 147 A1. The patent describes a three-group, positive–positive–positive imaging lens in which the second group alone moves toward the object for close focusing while the first and third groups remain fixed relative to the image surface. Example 1 is the numerical prescription associated with the first embodiment shown in Fig. 1 (patent ¶¶0044–0048, 0052–0057; PDF pp. 8–11 and 18).
 

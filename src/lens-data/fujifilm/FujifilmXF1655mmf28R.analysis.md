@@ -13,7 +13,6 @@ The lens under analysis is the **Fujinon XF 16-55mm F2.8 R LM WR**, Fujifilm's w
 **Applicant:** FUJIFILM Corporation
 **Priority:** JP 2014-243845, December 2, 2014
 **Published:** June 2, 2016
-**Embodiment analyzed:** Example 1
 
 The patent discloses three closely related numerical examples of a five-group standard zoom; all three meet the stated design targets (small F-number across the full zoom range, aberration-corrected at high pixel counts). Example 1 is the first embodiment and the one stored here: EFL 16.49–53.44 mm, F/2.88–2.74–2.89, 17 elements in 12 groups with three double-aspheric elements and three ED elements, which matches the production XF 16-55mm's published construction. Examples 2 and 3 share the same wide and tele focal lengths (Example 3: 16.492 / 26.825 / 53.436 mm, F/2.88–2.89) and differ in their prescriptions and Conditional Formula values; the patent does not say which example, if any, was built exactly. The analysis below is confined to Example 1.
 

@@ -5,7 +5,7 @@
 **Published:** 30 July 2009  
 **Inventors:** Hisayuki Yamanaka; Dayong Li  
 **Applicant:** Tamron Co., Ltd.  
-**Embodiment analyzed:** Third embodiment, Tables 3 and 3-1, Figure 3.
+**Example details:** Tables 3 and 3-1, Figure 3.
 
 This example is probably the design of the original Sony SAL70300G; Sony has not confirmed the prescription. Its 16 elements in 11 groups, the order of its cemented pairs and triplet, the single ED element in the front group and the rear-group focusing agree with Sony's construction diagram. The later SAL70300G2 and E-mount SEL70300G are not identified by this model. Patent applicant identity does not prove a supply relationship.
 

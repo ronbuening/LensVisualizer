@@ -10,7 +10,6 @@
 **Inventor:** Keiji Ikemori
 **Assignee:** Canon Kabushiki Kaisha
 **Title:** Photographic System Having Soft Focus Function
-**Embodiment analyzed:** Numerical Example 4
 
 The prescription is the fixed Numerical Example 4 of US 4,826,301. The data model identifies it with the production CANON EF 135mm f/2.8 Soft Focus. The patent itself does not state that Example 4 became that commercial lens, so the correlation rests on convergent structural and functional evidence rather than an explicit manufacturer patent-to-product statement.
 

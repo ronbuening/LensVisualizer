@@ -9,7 +9,7 @@
 **Inventor:** Tadashi Endo (遠藤 忠志)  
 **Applicant:** Canon Inc.  
 **Title:** Rear-focus retrofocus photographic lens (リヤーフォーカス式の逆望遠型撮影レンズ)  
-**Embodiment analyzed:** Numerical Example 2 (数値実施例2)
+**Example details:** 数値実施例2
 
 Numerical Example 2 is a close patent match to the Canon EF 20mm f/2.8 USM, but it is not presented as a proven factory prescription. Canon has not published the production radii and spacings, and the patent application was filed more than two years after the lens's June 1992 market introduction. The correspondence is therefore convergent rather than documentary.
 

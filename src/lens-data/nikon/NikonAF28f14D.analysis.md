@@ -14,7 +14,7 @@
 
 **Granted:** May 24, 1994
 
-**Embodiment analyzed:** Embodiment 1, Table 1 and Figure 1
+**Example details:** Table 1 and Figure 1
 
 The source example has eleven elements in eight air-separated components, focal length 28.6208mm, f/1.41 and full field 75.37°. The catalog associates it with the AF28mm f/1.4D; this is a patent example rather than a measured production prescription. The source near station is beta−0.1, not the marketed minimum-focus endpoint. Numerical controls use the example's values.
 

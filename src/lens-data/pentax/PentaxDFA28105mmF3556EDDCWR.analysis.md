@@ -9,7 +9,7 @@
 **Inventor:** Tatsuyuki Onozaki  
 **Applicant/Assignee:** Ricoh Imaging Company, Ltd.  
 **Title:** *Zoom Lens System*  
-**Embodiment analyzed:** Numerical Embodiment 2, Tables 5–8 and Figs. 7–12D  
+**Example details:** Tables 5–8 and Figs. 7–12D  
 **Correlation target:** HD PENTAX-D FA 28-105mm F3.5-5.6ED DC WR
 
 The data file treats Numerical Embodiment 2 as the fixed production correlation specified by the job card. Neither the

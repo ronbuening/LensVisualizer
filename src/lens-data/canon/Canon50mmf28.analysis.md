@@ -10,7 +10,7 @@
 **Inventor:** Jiro Mukai  
 **Assignee:** Canon Camera Co., Inc.  
 **Title:** *Four Lens Photographic Objective*  
-**Embodiment analyzed:** Sole numerical example, $f=1$, $2\omega=46^\circ$, $F:2.8$.[^patent]
+**Example details:** $f=1$, $2\omega=46^\circ$, $F:2.8$.[^patent]
 
 US 2,838,978 contains one numerical prescription. The worked-example table on printed page 2 and the table incorporated into the sole claim on printed page 3 agree in every radius, thickness, refractive index, and Abbe number. The example is therefore unambiguous within the patent.
 

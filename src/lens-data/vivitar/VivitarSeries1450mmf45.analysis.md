@@ -7,7 +7,7 @@
 **Inventor:** Melvyn H. Kreitzer  
 **Assignee:** Vivitar Corporation, Santa Monica, California  
 **Title:** Catadioptric Lens  
-**Embodiment analyzed:** Figure 4 / Table IV / claim 9
+**Example details:** Figure 4 / claim 9
 
 The selected prescription is the fourth worked embodiment in Kreitzer's patent. It is a Cassegrain catadioptric system with fixed primary and secondary mirrors, a stationary positive rear corrector group G1, and a strong negative group G2 that moves axially for focusing. The association with the Vivitar Series 1 450mm f/4.5 VMC Aspherical Mirror is strong, although the patent does not name the commercial product explicitly:
 

@@ -7,8 +7,7 @@
 **Published:** 2025-01-30\
 **Inventors:** Kenji Shinohara; Yuki Matsuba\
 **Applicant:** Canon Inc.\
-**Title:** 光学系及びそれを有する撮像装置\
-**Embodiment analyzed:** Numerical Example 3
+**Title:** 光学系及びそれを有する撮像装置
 
 This LensVisualizer record uses Numerical Example 3 as the fixed production correlation for the CANON RF 24mm f/1.4 L
 VCM. The patent itself does not name the commercial RF24mm F1.4 L VCM, so the correlation is not presented as a Canon

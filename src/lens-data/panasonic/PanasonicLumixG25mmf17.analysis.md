@@ -9,7 +9,7 @@
 **Inventor:** Shunichiro Yoshinaga  
 **Applicant:** Panasonic Intellectual Property Management Co., Ltd., Osaka, Japan  
 **Title:** Single Focal Length Lens System, Interchangeable Lens Apparatus, and Camera System  
-**Embodiment analyzed:** Numerical Example 4, corresponding to the fourth exemplary embodiment and FIG. 7
+**Example details:** corresponding to the fourth exemplary embodiment and FIG. 7
 
 Numerical Example 4 is the closest patent embodiment for the Panasonic LUMIX G 25mm f/1.7 ASPH. (H-H025). The production specification gives a 25 mm Micro Four Thirds lens with 7 groups and 8 elements, two aspherical lenses, one UHR element, f/1.7 aperture, 0.25 m minimum focus, 0.14× maximum magnification, 46 mm filter thread, 47° angle of view, and a stepping-motor inner-focus system. The patent example gives 8 glass elements, 7 air-spaced groups, four aspherical surfaces on L6 and L7, a highest-index front element at nd = 2.00069, f = 25.8784 mm, F/1.7601, image height 10.815 mm, close-object state d0 = 175.0 mm, and a single moving negative G2 focus element. These are mutually consistent and are more specific than the nominal 25 mm product name.
 

@@ -10,7 +10,7 @@
 **Inventor:** Makoto Nakahara\
 **Applicant:** Canon Kabushiki Kaisha\
 **Title:** *Zoom Lens and Optical Apparatus*\
-**Embodiment analyzed:** Numerical Example 1 / Example 1
+**Example details:** Example 1
 
 The prescription transcribed in the data file is Numerical Example 1 of US 2021/0033835 A1. The project correlation is fixed to the CANON RF 70-200mm f/4 L IS USM. Canon does not identify this patent as the production prescription in its public product literature, so the match is a production-correlation inference rather than a manufacturer confirmation.
 

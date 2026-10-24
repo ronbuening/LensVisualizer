@@ -8,7 +8,7 @@
 **Inventors:** Walter Mandler; Erich Wagner  
 **Applicant:** Ernst Leitz Canada Limited  
 **Title:** *Objectif photographique à forte luminosité*  
-**Embodiment analyzed:** Example 1, Tableau 1 / Fig. 1
+**Example details:** Tableau 1 / Fig. 1
 
 FR 1.233.449 describes a high-speed photographic objective of the Gauss type. Example 1 is a normalized prescription with
 $f = 1.0$, an opening ratio of 1:1.4, and a full field angle of 64°. Its numerical table gives twelve refracting surfaces,

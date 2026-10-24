@@ -9,7 +9,6 @@
 **Inventor:** 刘瑞军\
 **Applicant:** 深圳市雷影光电科技有限公司\
 **Title:** 一种大光圈长焦镜头 (large-aperture long-focus lens)\
-**Embodiment analyzed:** Example 1
 **Focus model:** `CONSTRAINED_RECONSTRUCTION`
 
 **Source limitation:** this reconstruction does not reproduce the complete patent silhouette. Table 1 and Figure 1 disagree on several rear elements, most visibly L16. The later grant, CN 114755806 B, repeats the same Table 1 values (PDF p. 7). The diagram retains those numerical surfaces; the inferred apertures have been revised to remove unsupported rim extensions. This is not a verified production prescription.

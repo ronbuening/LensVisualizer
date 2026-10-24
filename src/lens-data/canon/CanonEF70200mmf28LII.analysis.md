@@ -10,7 +10,7 @@
 **Inventor:** Takashi Shirasuna  
 **Assignee:** Canon Kabushiki Kaisha  
 **Title:** Zoom Lens and Image Pickup Apparatus Including the Same  
-**Embodiment analyzed:** Numerical Embodiment 2 (¶0114)  
+**Example details:** ¶0114  
 **Worked examples in patent:** 4
 
 US 2009/0296231 A1 describes a zoom lens having, in order from the object side, a positive first lens unit, a negative second lens unit, and subsequent positive lens units. The first unit is subdivided into a fixed front subunit L1F and a rear subunit L1R that moves during focusing; in Embodiments 1 and 2, L1R also moves during zooming. The tabulated Numerical Embodiment 2 gives a 23-element, 19-group, all-spherical prescription covering $f = 72.14, 135.00, 193.97$ mm at FNO = 2.9, field angle $2\omega = 33.4^\circ, 18.2^\circ, 12.7^\circ$, and image height 21.6 mm.

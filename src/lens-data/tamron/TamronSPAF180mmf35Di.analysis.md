@@ -7,7 +7,7 @@
 **Inventor:** Yuichi Muramatsu (村松 雄一)  
 **Applicant:** Tamron Co., Ltd. (株式会社タムロン)  
 **Title:** 望遠マクロレンズ光学系 (Telephoto Macro Lens Optical System)  
-**Embodiment analyzed:** Example 2 (第2実施形態; optical system 200)
+**Example details:** 第2実施形態; optical system 200
 
 Example 2 is identified with high confidence as the prescription underlying the Tamron SP AF 180mm F/3.5 Di LD [IF] Macro 1:1, model B01. The patent does not name the commercial model, so the identification rests on convergent evidence rather than an explicit statement:
 

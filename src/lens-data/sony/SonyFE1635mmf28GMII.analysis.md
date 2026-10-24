@@ -10,7 +10,7 @@
 **Inventors:** Kikuchi Shohei, Uemura Kohei, Nishi Yurina  
 **Applicant:** Sony Group Corporation  
 **Title:** Zoom Lens and Imaging Device  
-**Embodiment analyzed:** Example 1, Figure 1, Tables 1-5 and Table 32
+**Example details:** Figure 1, Tables 1-5 and Table 32
 
 Example 1 is the closest patent prescription for the production Sony FE 16-35mm f/2.8 GM II (SEL1635GM2). The match is based on convergent structural and numerical evidence rather than on a single isolated specification.
 

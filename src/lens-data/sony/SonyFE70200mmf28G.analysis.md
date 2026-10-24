@@ -11,7 +11,7 @@
 **Inventors:** Naoki Miyagawa; Yonghua Chen  
 **Applicant:** Sony Corporation  
 **Title:** Zoom Lens and Optical Instrument  
-**Embodiment analyzed:** Numerical Example 1, zoom lens 1, FIG. 1
+**Example details:** zoom lens 1, FIG. 1
 
 Numerical Example 1 is a strong production match for the first-generation Sony FE 70-200mm F2.8 GM OSS, model SEL70200GM. The evidence is convergent rather than merely nominal.
 

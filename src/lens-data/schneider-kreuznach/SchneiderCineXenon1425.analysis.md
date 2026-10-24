@@ -7,7 +7,7 @@
 **Inventor:** Günter Klemt
 **Assignee:** Jos. Schneider & Co., Optische Werke
 **Title:** *High-Speed Gaussian Dual Objective*
-**Embodiment analyzed:** Table A, the first numerical example (job designation: Example 1)
+**Example details:** the first numerical example (job designation: Example 1)
 
 US 3,005,379 describes a high-speed Gaussian dual objective with four air-spaced lens members. The selected Table A prescription is the first numerical example and is repeated in claim 1. The patent normalizes the overall focal length to 100, gives a back focal length of 57.99 and total lens thickness of 89.07, and states an aperture ratio of 1:1.4. These source values are read from PDF page 2, Table A and the accompanying prose; Figure 1 on PDF page 1 supplies the qualitative optical layout and diaphragm location.
 

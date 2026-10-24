@@ -10,7 +10,7 @@
 **Inventor:** Kouichi Ohshita (rendered as Koichi Oshita in the US patent)
 **Assignee:** Nikon Corporation, Tokyo, Japan
 **Title:** Lens System with Switchable Soft Focus
-**Embodiment analyzed:** Example Embodiment 2, second soft-focus configuration (Table 2, Figs. 7-12)
+**Example details:** second soft-focus configuration (Table 2, Figs. 7-12)
 
 The Nikon Fuwatto Soft 90mm f/4.8 is the soft-focus state of the convertible Gugutto Macro / Fuwatto Soft unit from Nikon's 1995 Amusing Lenses / Fun Fun Lens Set. The production lens uses the same optical assembly as the Gugutto Macro 120mm f/4.5, but in a different configuration: the rear negative meniscus group is removed, and the cemented doublet is reversed so that the aperture stop is objectwise of the glass. The resulting optical prescription is a one-group, two-element, all-spherical cemented doublet.
 

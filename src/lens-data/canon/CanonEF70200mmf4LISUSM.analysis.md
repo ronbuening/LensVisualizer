@@ -7,7 +7,7 @@
 **Inventor:** Yoshiyuki Taki (source front page: 滝 慶行)\
 **Applicant:** Canon Inc.\
 **Title:** Zoom Lens\
-**Embodiment analyzed:** Example 1 / Numerical Example 1
+**Example details:** Numerical Example 1
 
 The modeled prescription is the unscaled Example 1 of JP2008070450A. The patent describes a four-group zoom in which the fourth group is a fixed relay divided into positive Gf, negative Gm, and positive Gr subgroups; Gm is displaced transversely for image stabilization. The numerical example publishes a d-line design of approximately 72.11–194.29 mm at Fno. 4.1, while its variable-spacing table labels the tele control point 194.28 mm. The data file preserves that discrepancy rather than silently reconciling it and uses the spacing-table control points 72.11, 134.92, and 194.28 mm. [JP2008070450A, ¶¶0015–0020, ¶0030; Numerical Example 1](https://patents.google.com/patent/JP2008070450A/en)
 

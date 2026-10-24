@@ -7,7 +7,7 @@
 **Filed:** March 4, 2021
 **Published:** September 23, 2021
 **Title:** Imaging Lens and Imaging Apparatus
-**Embodiment analyzed:** Example 1 (Tables 1-4, FIG. 2, FIG. 3)
+**Example details:** Tables 1-4, FIG. 2, FIG. 3
 
 The prescription transcribed here is **Example 1** (Tables 1–4, FIG. 2, FIG. 3). Convergent evidence linking this embodiment to the production FUJINON GF80mmF1.7 R WR:
 

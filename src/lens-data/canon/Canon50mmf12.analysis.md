@@ -10,7 +10,7 @@
 **Inventor:** Hiroshi Ito  
 **Assignee:** Canon Camera Co., Inc.  
 **Title:** *High Aperture Photographic Lens*  
-**Embodiment analyzed:** Example 2 (Fig. 2), $f=100$, $F:1.2$, $2\omega=40^\circ$
+**Example details:** Fig. 2, $f=100$, $F:1.2$, $2\omega=40^\circ$
 
 The patent does not print a commercial lens name beside either numerical example. Example 2 is nevertheless the only embodiment compatible with the original CANON 50mm f/1.2, on the following convergent evidence:
 

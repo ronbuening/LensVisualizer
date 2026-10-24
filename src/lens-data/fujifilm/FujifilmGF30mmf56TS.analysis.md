@@ -10,7 +10,7 @@
 **Inventors:** Komatsu Daiki, Tanaka Takuya, Saito Hiroki  
 **Applicant:** Fujifilm Corporation  
 **Title:** Optical System and Optical Device  
-**Embodiment analyzed:** Example 4, Tables 10–12, Figures 11–12
+**Example details:** Tables 10–12, Figures 11–12
 
 Example 4 is the most probable prescription basis for the Fujinon GF30mmF5.6 T/S. The correspondence is not based on one isolated number; it depends on a convergent match among the published production specification, the patent prescription, and the patent's tilt-shift conditional structure.
 

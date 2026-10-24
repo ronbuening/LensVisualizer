@@ -4,7 +4,7 @@
 **Applicants:** Konica Minolta, Inc. & Nikon Corporation
 **Inventors:** Ryosuke Imashima, Taisei Fukuda (Konica Minolta); Toshinori Take, Takayuki Sensui (Nikon)
 **Published:** September 14, 2017
-**Embodiment analyzed:** Example 1 (EX1)
+**Example details:** EX1
 **Lens type:** Retrofocus ultra-wide-angle perspective control (tilt-shift) prime
 
 ---

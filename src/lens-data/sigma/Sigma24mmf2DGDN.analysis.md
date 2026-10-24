@@ -6,7 +6,6 @@
 **Inventor:** Takeshi Asakura
 **Applicant:** Sigma Corporation
 **Title:** Imaging optical system
-**Embodiment analyzed:** Numerical Example 1
 
 The prescription represents a construction correlation with the SIGMA 24mm f/2
 DG DN Contemporary, rather than a manufacturer-confirmed factory prescription.

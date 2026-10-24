@@ -11,7 +11,7 @@
 **Assignee:** Nikon Corporation, Tokyo, Japan
 **Title:** Underwater Wide Angle Lens
 **Classification:** G02B 15/14; 359/682, 359/762
-**Embodiment analyzed:** Example 1 (Table 1, FIG. 1)
+**Example details:** Table 1, FIG. 1
 
 US 5,579,169 describes an underwater wide-angle lens whose object-side medium is water rather than air. The first element is in direct contact with water, so the water itself is part of the optical prescription. Example 1 is identified as the closest patent embodiment for the production Nikon R-UW AF Fisheye-Nikkor 13mm f/2.8 for the Nikonos RS system.
 

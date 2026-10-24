@@ -6,7 +6,7 @@
 **Published:** 24 May 1927<br>
 **Patent effective from:** 18 February 1925<br>
 **Title:** Photographisches Fernobjektiv<br>
-**Embodiment analyzed:** Example 2 (Beispiel 2), Figure 2 (Abb. 2)
+**Example details:** Beispiel 2, Figure 2 (Abb. 2)
 
 The model transcribes Example 2 of the supplied German patent at its original scale.
 The selected name, **VOIGTLÄNDER CINE-TELE-ANASTIGMAT 100mm f/4.5**, is a research correlation.

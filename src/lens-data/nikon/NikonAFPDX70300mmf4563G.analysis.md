@@ -7,7 +7,7 @@
 **Filed:** December 15, 2017 (PCT/JP2017/045187)
 **Published:** January 28, 2021
 **Title:** Optical System, Optical Apparatus, and Method of Manufacturing Optical System
-**Embodiment analyzed:** Example 4, Table 4 / FIG. 7
+**Example details:** Table 4 / FIG. 7
 
 The relevant patent filing is **US 2021/0026133 A1, “Optical System, Optical Apparatus, and Method of Manufacturing Optical System,”** assigned to Nikon Corporation and published on 2021-01-28 from PCT/JP2017/045187, filed 2017-12-15. The numerical embodiment transcribed here is **Example 4**, corresponding to Table 4 and the sectional diagram of FIG. 7.
 

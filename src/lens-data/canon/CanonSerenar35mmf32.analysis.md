@@ -6,7 +6,7 @@
 **Filed:** June 29, 1951 (priority: Japan, July 14, 1950)
 **Granted:** July 21, 1953
 **Marketed:** June 1951
-**Embodiment analyzed:** Sole illustrative embodiment (single figure; table in col. 3, repeated in claim 5)
+**Example details:** single figure; table in col. 3, repeated in claim 5
 **Design type:** Modified double-Gauss (four-component, six-element)
 
 ---

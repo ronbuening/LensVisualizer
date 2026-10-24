@@ -8,7 +8,6 @@
 **Inventor:** Michael Michaelovitch Roossinov
 **Assignee:** None named in the patent
 **Title:** *Wide Angle Orthoscopic Anastigmatic Photographic Objective*
-**Embodiment analyzed:** Example II
 
 The modeled prescription is Example II of US 2,516,724 A. The patent presents the design as a wide-angle orthoscopic
 anastigmatic objective for aerial photography, built from two nearly symmetrical halves around a central diaphragm region.

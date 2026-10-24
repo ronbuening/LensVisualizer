@@ -8,7 +8,7 @@
 **Inventors:** Yoshiharu Shiokama, Naoto Ohta, Hiroshi Okano, Kiyotaka Inadome
 **Assignee:** Nikon Corporation, Tokyo, Japan
 **Title:** Zoom Lens Capable of Macro Photography
-**Embodiment analyzed:** Tables 1 and 2; lens construction shown in Fig. 15
+**Example details:** Tables 1 and 2; lens construction shown in Fig. 15
 
 US 4,806,000 discloses a zoom lens with separate normal-focus and macro-focus mechanisms. The numerical prescription in Tables 1 and 2 is a four-group negative-positive-negative-positive zoom with a 28.8-83.3 mm patent focal-length range, f/3.5-4.0 patent f-number range, and a tabulated macro state at β = -0.25 from the wide-angle end.
 

@@ -6,7 +6,7 @@
 **Granted:** June 5, 1962\
 **Inventor:** Edgard Hugues\
 **Assignee:** Les Appareils de Precision Kinoptik\
-**Embodiment analyzed:** Example 3 / Figure 3 / Table 3
+**Example details:** Figure 3 / Table 3
 
 The prescription is the seven-element Example 3 of US 3,037,426. Figure 3 shows a very large negative front system, an isolated positive middle element, and a compact positive rear system, with the diaphragm immediately ahead of the rear system. Table 3 supplies the radii, center thicknesses, air gaps, d-line refractive indices, and dispersion coefficients for L16 through L22. The patent gives the complete objective as 1.98 mm, f/1.9, with a 197° full object field and a 9.28 mm distance from the last optical surface to the image plane. [1]
 

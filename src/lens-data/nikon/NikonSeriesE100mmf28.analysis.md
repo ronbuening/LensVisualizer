@@ -9,7 +9,7 @@
 **Inventor:** Sei Matsui
 **Assignee:** Nippon Kogaku K.K.
 **Title:** Compact Telephoto Lens
-**Embodiment analyzed:** Embodiment 1 / Claim 2
+**Example details:** Claim 2
 
 US 4,303,314 describes a compact four-component telephoto lens with an aperture ratio of 1:2.8, an angle of view of 18° to 24°, and a telephoto ratio of 0.92 to 0.94. The patent layout is, from object side to image side, a positive first lens, a positive second meniscus, a negative third lens, a stop, and a positive fourth lens. The patent emphasizes that the design avoids the cemented surface previously used in comparable compact telephoto lenses to control short-wavelength spherical aberration.
 

@@ -8,7 +8,7 @@
 **Priority:** JP 2013-012752 through JP 2013-012758, January 28, 2013
 **Filed:** January 27, 2014 (PCT/JP2014/000396)
 **Published:** February 13, 2020
-**Embodiment analyzed:** Example 1 (ZL1)
+**Example details:** ZL1
 
 ---
 

@@ -9,7 +9,7 @@
 **Inventor:** Walter Watz
 **Assignee:** Leica Camera GmbH
 **Title:** *Camera Lens*
-**Embodiment analyzed:** FIG. 1 preferred embodiment, corresponding to job-card Example 1
+**Example details:** FIG. 1 preferred embodiment, corresponding to job-card Example 1
 
 The prescription is the single fully tabulated FIG. 1 preferred embodiment in US 5,161,060. The patent specifies a
 35 mm lens with relative aperture 1:1.4, five components, nine glass elements, a diaphragm between the second and third

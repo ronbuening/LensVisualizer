@@ -7,7 +7,6 @@
 **Inventor:** Yukihiro Yamamoto
 **Applicant:** Sigma Corporation
 **Title:** Fish-eye Lens
-**Embodiment analyzed:** Numerical Example 7
 
 This model transcribes Numerical Example 7 as a construction correlation to the OLYMPUS M.ZUIKO DIGITAL ED 8mm f/1.8 Fisheye PRO. The correlation is supported by several convergent features, rather than by a manufacturer-confirmed prescription:
 

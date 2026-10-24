@@ -8,7 +8,7 @@
 **Published:** December 7, 1966
 **Applicant:** Nippon Kogaku K.K.
 **Title:** An Improved Photographic Objective Lens System
-**Embodiment analyzed:** Example 1, β = −0.04, f = 100
+**Example details:** β = −0.04, f = 100
 
 GB 1,050,055 describes a high-aperture photographic objective for precision copying at a reduction ratio near 1/25×. Example 1 is the embodiment transcribed here. The patent normalizes the prescription to f = 100 and gives all radii, thicknesses, air spaces, refractive indices, and Abbe numbers in that normalized scale.
 

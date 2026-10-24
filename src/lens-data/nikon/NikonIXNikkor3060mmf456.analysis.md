@@ -6,7 +6,7 @@
 **Inventor:** Haruo Sato  
 **Patentee:** Nikon Corporation  
 **Title:** Ultra-compact zoom lens  
-**Embodiment analyzed:** Example 5, Table 5 and Figure 17, with E4/E5 center thicknesses taken from Nikon's Tale 83 drawing
+**Example details:** Table 5 and Figure 17, with E4/E5 center thicknesses taken from Nikon's Tale 83 drawing
 
 The patent's numerical Example 5 is associated with the Nikon IX-Nikkor 30–60mm f/4–5.6, the pancake zoom for the APS-format Pronea S (1998). The factory prescription is unpublished.
 

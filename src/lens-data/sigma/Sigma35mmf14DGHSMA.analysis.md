@@ -11,7 +11,7 @@
 **Title:** Optical System (光学系)  
 **Classification:** IPC G02B 13/04; G02B 13/18  
 **Worked examples:** 9 numerical examples; 4 claims  
-**Embodiment analyzed:** Numerical Example 4 (data ¶0091; construction ¶0054–0057; Fig. 16)
+**Example details:** data ¶0091; construction ¶0054–0057; Fig. 16
 
 JP 2014-048488 A describes large-aperture retrofocus optical systems for still and video cameras, with emphasis on correcting distortion and the usual wide-angle aberrations over the full focusing range by using an inner-focus mechanism. Among the patent's nine worked examples, **Numerical Example 4** is the closest match to the production Sigma 35 mm F1.4 DG HSM | Art (A012, 2012) and is the embodiment transcribed in the paired data file.
 

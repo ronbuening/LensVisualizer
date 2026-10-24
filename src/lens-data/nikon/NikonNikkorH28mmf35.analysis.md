@@ -9,7 +9,6 @@
 **Inventor:** Wakimoto Zenji (脇本善司)  
 **Applicant:** Nippon Kogaku K.K. (日本光学工業株式会社; source romanization: Nippon Kogaku Kogyo K.K.)\
 **Title:** 広角写真レンズ (Wide-Angle Photographic Lens)  
-**Embodiment analyzed:** Sole worked example
 
 The patent describes a retrofocus wide-angle photographic lens for still-camera and cine-camera use. The sole numerical example is normalized to $f = 100$, F/3.5, a 75° full field angle, and a back focal distance of 132.5. The data file scales this prescription by 0.28, giving a production-scale computed effective focal length of 28.001 mm and a computed back focal distance of 37.10 mm.
 

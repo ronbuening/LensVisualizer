@@ -10,7 +10,6 @@
 **Inventors:** Atsujiro Ishii; Yoshiaki Shimizu  
 **Assignee:** Olympus Imaging Corporation, Tokyo  
 **Worked examples:** 3  
-**Embodiment analyzed:** Example 3
 
 The transcribed embodiment is Example 3 of US 8,081,392 B2. The production lens is the Four Thirds **Olympus Zuiko Digital ED 14–35mm f/2.0 SWD**, not a Micro Four Thirds M.Zuiko lens. The requested file stem is preserved, but the optical and catalog description are kept to the product actually identified by the patent and by the manufacturer literature.
 

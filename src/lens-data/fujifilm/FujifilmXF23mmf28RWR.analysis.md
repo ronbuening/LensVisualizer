@@ -8,7 +8,6 @@
 **Inventor:** Taiga NODA
 **Assignee:** FUJIFILM Corporation
 **Title:** Imaging Lens and Imaging Apparatus
-**Embodiment analyzed:** Example 4
 
 The prescription transcribed here is Example 4 of US 2026/0118637 A1. The patent describes a compact fixed-focal-point imaging lens consisting, from the object side, of a first lens group G1, an aperture stop, and a second lens group G2. Example 4 is an eight-element design: two elements in G1, the stop, then six elements in G2. During focusing, the entire optical system moves integrally toward the object side.
 

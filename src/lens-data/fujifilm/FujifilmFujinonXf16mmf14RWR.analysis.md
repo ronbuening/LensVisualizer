@@ -8,8 +8,7 @@
 **Published:** September 29, 2016\
 **Inventors:** Hiroki Saito; Takashi Suzuki\
 **Applicant / Assignee:** FUJIFILM Corporation\
-**Title:** *Imaging Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Example 1
+**Title:** *Imaging Lens and Imaging Apparatus*
 
 This analysis treats Example 1 of US 2016/0282590 A1 as the fixed production correlation for the FUJIFILM FUJINON XF 16mm f/1.4 R WR. The patent does not name that production lens, so the identification is a correlation rather than an express manufacturer statement. The optical prescription itself is retained at native scale; the modeled infinity effective focal length is 16.475660 mm, while the production lens is marketed as 16 mm. No dimensional scaling is applied.
 

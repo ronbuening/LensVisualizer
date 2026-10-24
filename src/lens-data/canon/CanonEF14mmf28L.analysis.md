@@ -9,7 +9,7 @@
 **Inventor:** Hideki Ogawa (小川 秀樹)  
 **Applicant:** Canon Inc. (キヤノン株式会社)  
 **Title:** コンパクトなリアフォーカス方式の超広角レンズ (*Compact Rear-Focus Ultra-Wide-Angle Lens*)  
-**Embodiment analyzed:** Numerical Example 2 (数値実施例2)  
+**Example details:** 数値実施例2  
 **Production-lens correspondence:** Original Canon EF 14mm f/2.8L USM; strong design-family match, but the public record does not prove that Example 2 rather than Example 1 was the exact production prescription
 
 Numerical Example 2 is printed on patent page 6 and is transcribed into the paired data file without any focal-length

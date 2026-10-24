@@ -23,7 +23,7 @@ All six rendered element records have qualified spectral proxies (five physical 
 **Inventor:** Shuji Ogino
 **Assignee:** Minolta Camera Kabushiki Kaisha
 **Title:** Catadioptric lens system
-**Embodiment analyzed:** Example 2, Table 2 and Figures 3–4
+**Example details:** Table 2 and Figures 3–4
 
 The model uses an explicit source-error hypothesis: Table 2 and its claim-12 repetition literally print N5 = 11.7400. Retaining that literal value gives normalized EFL 25.808518 and rear-component EFL +7.345410, incompatible with the published 100.0 and −27.15. Interpreting N5 as 1.7400 gives 99.979487 and −27.148791. The implemented value is therefore a supported modeling correction, while the literal printing remains preserved in the evidence.
 

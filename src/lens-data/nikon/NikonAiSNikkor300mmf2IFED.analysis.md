@@ -10,7 +10,7 @@
 **Inventor:** Kiyoshi Hayashi\
 **Assignee:** Nippon Kogaku Kogyo K.K.\
 **Title:** *Fast Telephoto Lens*\
-**Embodiment analyzed:** Example 4 / fourth embodiment
+**Example details:** fourth embodiment
 
 The LensVisualizer prescription represents the job-card correlation between the production **NIKON AI NIKKOR 300mm f/2 S IF-ED** and the fourth embodiment of US 4,732,459 A. The patent is a Nippon Kogaku design source and Example 4 is a native-scale 300 mm, f/2 design using a single translating internal-focus group. The production correlation is treated as the selected analytical premise; the patent itself does not name the commercial lens.
 

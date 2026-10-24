@@ -8,7 +8,7 @@
 **Inventor:** Masakazu Saori
 **Assignee:** Pentax Corporation
 **Title:** *Wide-Angle Zoom Lens System*
-**Embodiment analyzed:** Embodiment 8, Table 8, Figs. 29 and 31
+**Example details:** Table 8, Figs. 29 and 31
 
 The modeled lens is **PENTAX SMC DA 16-45mm f/4 ED AL**. The selected production correlation is Embodiment 8 of
 US 7,106,520 B2. That correlation is fixed by the project job card; it is not presented as a manufacturer-confirmed

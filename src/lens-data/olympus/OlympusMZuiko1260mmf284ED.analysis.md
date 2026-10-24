@@ -10,7 +10,7 @@
 **Inventor:** Atsujiro Ishii  
 **Assignee:** Olympus Imaging Corp., Tokyo  
 **Title:** Zoom Lens  
-**Embodiment analyzed:** Example 4 (FIG. 4, FIG. 11, FIG. 12)
+**Example details:** FIG. 4, FIG. 11, FIG. 12
 
 The patent discloses a four-group zoom of positive–negative–positive–positive power distribution for a digital single-lens reflex camera format smaller than 35 mm film. Example 4 is the embodiment corresponding to the production Olympus **Zuiko Digital ED 12–60 mm F2.8–4.0 SWD**. The requested file stem uses `MZuiko`, but the product represented by this patent is the Four Thirds DSLR **Zuiko Digital** lens, not a Micro Four Thirds M.Zuiko lens.
 

@@ -8,7 +8,7 @@
 **Filed:** March 25, 2025 (PCT/JP2025/011665)
 **Priority:** May 17, 2024 (JP 2024-081162)
 **Published:** November 20, 2025
-**Embodiment analyzed:** Example 2 (第2の構成例, Numerical Example 2)
+**Example details:** 第2の構成例, Numerical Example 2
 
 Example 2 is identified as the production design of the Sony FE 85mm F1.4 GM II (SEL85F14GM2) by the following convergent criteria:
 

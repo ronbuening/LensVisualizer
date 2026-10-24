@@ -7,7 +7,6 @@
 **Granted:** November 27, 1973
 **Inventor:** Yoshiyuki Shimizu
 **Assignee:** Nippon Kogaku K.K.
-**Embodiment analyzed:** Example III (Example 3)
 
 The prescription is Example III of US 3,774,991, reproduced in claim 4. The patent gives a focal length of 800.0 mm, a relative aperture of F/8, and a 6° full field. Its numerical table contains five glass elements in four air-separated groups: three separate forward elements and a cemented two-element rear group. The certificate of correction dated July 30, 1974 does not change the Example III prescription. The rendered patent pages also resolve two OCR-prone values: the long separation after the third element is 435.0 mm, and the first glass has νd = 81.5. (US 3,774,991, PDF pp. 11–13; printed pp. 5, 7; Fig. 3A on PDF p. 4.)
 

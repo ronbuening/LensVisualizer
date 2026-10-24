@@ -7,8 +7,7 @@
 **Granted:** 2000-09-05\
 **Inventors:** Akihiro Nishio; Hideki Ogawa; Makoto Misaka\
 **Assignee:** Canon Inc. (the patent prints Canon Kabushiki Kaisha)\
-**Title:** *Optical System and Optical Apparatus Having the Same*\
-**Embodiment analyzed:** Numerical Example 22
+**Title:** *Optical System and Optical Apparatus Having the Same*
 
 The prescription is the third-embodiment Numerical Example 22 of US 6,115,188 A. The patent gives the example as
 $f=585.20$ mm, Fno = 4.12, and a full field of $2\omega=4.2^\circ$, and Figure 85 shows the corresponding lens block

@@ -8,7 +8,7 @@
 **Inventor:** Takahiro Kitada  
 **Applicant:** Panasonic Intellectual Property Management Co., Ltd.  
 **Title:** Zoom Lens System, and Image Capture Device and Interchangeable Lens Unit Including the Zoom Lens System  
-**Embodiment analyzed:** Example 1, Figure 1 and Tables 1–3, at infinity focus.
+**Example details:** Figure 1 and Tables 1–3, at infinity focus.
 
 The prescription is correlated with the PANASONIC LUMIX S 14-28mm f/4-5.6 MACRO, model S-R1428. The patent does not name that lens, and Panasonic's product documents do not identify Example 1 as its production prescription. The attribution rests on matching construction and timing, not on a manufacturer-confirmed prescription.
 

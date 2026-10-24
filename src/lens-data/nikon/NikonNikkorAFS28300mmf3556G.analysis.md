@@ -10,7 +10,7 @@
 **Inventors:** Hiroshi Yamamoto, Satoshi Miwa, Takeshi Suzuki, Haruo Sato  
 **Assignee:** Nikon Corporation  
 **Title:** Zoom Lens, Optical Apparatus Equipped Therewith and Method for Manufacturing the Zoom Lens  
-**Embodiment analyzed:** Example 2, Table 2, FIG. 4
+**Example details:** Table 2, FIG. 4
 
 Example 2 is the numerical embodiment that most closely corresponds to the production AF-S NIKKOR 28-300mm f/3.5-5.6G ED VR. The patent table gives $f = 28.79$, $100.00$, and $292.00$ mm, with $FNO = 3.57$, $5.34$, and $5.96$, and image height $IH = 21.6$ mm. That image height corresponds to a 43.2 mm image diagonal, i.e. the 135 full-frame / FX format. The official Nikon announcement gives the production lens as a 28-300 mm FX-compatible 10.7× zoom with f/3.5-5.6 maximum aperture, 19 elements in 14 groups, two ED elements, three aspherical lens elements, internal focusing, SWM, VR II, 0.5 m minimum focus distance, 0.32× maximum reproduction ratio, 77 mm filters, and a 9-blade rounded diaphragm.
 

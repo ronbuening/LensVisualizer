@@ -9,7 +9,7 @@
 **Assignee:** FUJIFILM Corporation, Tokyo  
 **Title:** Zoom Lens and Imaging Apparatus  
 **Classification:** G02B 15/14, G02B 15/177, G02B 13/18  
-**Embodiment analyzed:** Example 1, Tables 1–3; conditional-expression values from Table 31
+**Example details:** Tables 1–3; conditional-expression values from Table 31
 
 ## Patent Reference and Design Identification
 

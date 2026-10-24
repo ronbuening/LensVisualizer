@@ -9,7 +9,7 @@
 **Inventor:** Masakazu Saori
 **Assignee:** Pentax Ricoh Imaging Company, Ltd.
 **Title:** *Retrofocus Wide-Angle Lens System and Optical Instrument Provided with the Same*
-**Embodiment analyzed:** Numerical Embodiment 1 / Example 1
+**Example details:** Example 1
 
 The prescription represents Numerical Embodiment 1 of US 8,422,143 B2. The production correlation is treated as the fixed identification for this model, but it is a correlation rather than a manufacturer statement that Example 1 is the commercial lens.
 

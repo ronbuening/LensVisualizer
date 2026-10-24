@@ -8,7 +8,7 @@
 **Inventor:** Nobuyuki Adachi  
 **Assignee:** Tamron Co., Ltd.  
 **Title:** Imaging Lens  
-**Embodiment analyzed:** Embodiment 7 under the second invention; its numerical prescription is identical to Embodiment 1 under the first invention
+**Example details:** under the second invention; its numerical prescription is identical to Embodiment 1 under the first invention
 
 Embodiment 7 is identified with high confidence as the optical formula associated with the Tamron SP 90mm F/2.8 Di MACRO 1:1 VC USD, Model F004. The identification rests on convergent evidence rather than on an explicit product name in the patent:
 

@@ -7,7 +7,6 @@
 **Inventor:** Yuki Shibata  
 **Applicant:** Cosina Co., Ltd.  
 **Title:** Imaging Lens  
-**Embodiment analyzed:** Example 1
 
 The prescription is a direct, unscaled transcription of Example 1. The production correlation is fixed to the
 VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical SL IIs; it is a technical correlation, not a statement that Cosina has

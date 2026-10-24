@@ -7,7 +7,7 @@
 **Inventor:** Yasuharu Yamada  
 **Assignee:** Tamron Co., Ltd.  
 **Title:** Large Aperture Zoom Lens  
-**Embodiment analyzed:** Exemplary large aperture zoom lens (job-card Example 1)
+**Example details:** Exemplary large aperture zoom lens (job-card Example 1)
 
 The prescription represented here is the exemplary numerical design in US 7,075,731 B1. The patent gives three zoom stations at 28.87, 49.98, and 72.65 mm, each at F/2.91, and describes a four-group positive-negative-positive-positive zoom with focusing performed by the second group [1]. The LensVisualizer entry treats this prescription as the fixed production correlation for the TAMRON SP AF 28-75mm f/2.8 XR Di LD Aspherical [IF] MACRO, Model A09.
 

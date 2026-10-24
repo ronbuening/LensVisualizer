@@ -8,7 +8,6 @@
 **Inventors:** Masaru Morooka, Kenichi Nagasawa
 **Assignee:** Olympus Corporation
 **Title:** Single focal length lens and optical apparatus using the same
-**Embodiment analyzed:** Example 4
 
 The selected embodiment is correlated with the Olympus M.Zuiko Digital ED 17mm F1.2 PRO. The prescription remains an
 inferred production correlation; neither the patent nor the manufacturer references confirm that the retail lens uses

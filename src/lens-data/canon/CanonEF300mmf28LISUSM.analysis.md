@@ -10,7 +10,7 @@
 **Inventors:** Akihiro Nishio; Hideki Ogawa; Makoto Misaka  
 **Assignee:** Canon Kabushiki Kaisha  
 **Title:** *Optical System and Optical Apparatus Having the Same*  
-**Embodiment analyzed:** Numerical Example 1 / Example 1
+**Example details:** Example 1
 
 The prescription analyzed here is the selected production correlation for the **CANON EF 300mm f/2.8 L IS USM**. The patent does not name that commercial lens, and Canon's product documentation does not identify a patent number, so the connection is a convergent optical and chronological correlation rather than a manufacturer-confirmed patent attribution.
 

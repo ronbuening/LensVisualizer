@@ -8,8 +8,7 @@
 **Granted:** March 14, 1989\
 **Inventor:** Shigetada Sato\
 **Assignee:** Asahi Kogaku Kogyo Co., Ltd.\
-**Title:** *Zoom Lens*\
-**Embodiment analyzed:** Example 3
+**Title:** *Zoom Lens*
 
 The selected correlation is the production **PENTAX SMC A ZOOM 35-70mm f/4** with Example 3 of US 4,812,022. The patent does not identify the commercial lens by product name, so the correlation is not presented as manufacturer confirmation. It rests on the convergence of the following source facts:
 

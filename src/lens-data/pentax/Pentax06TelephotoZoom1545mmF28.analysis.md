@@ -9,7 +9,7 @@
 **Inventors:** Masakazu Saori; Yoshimitsu Ohara
 **Assignee:** Ricoh Imaging Company, Ltd.
 **Title:** *Zoom Lens System and Electronic Imaging Apparatus Using the Same*
-**Embodiment analyzed:** Example 1 / Numerical Embodiment 1 (Figures 1–6; Tables 1–3)
+**Example details:** Numerical Embodiment 1 (Figures 1–6; Tables 1–3)
 
 The modeled prescription is the first numerical embodiment of US 9,784,950 B2 and is correlated with the production PENTAX-06 TELEPHOTO ZOOM 15–45mm f/2.8. The patent does not identify a commercial model by name, so the production relationship is a fixed modeling correlation rather than a manufacturer-confirmed statement.
 

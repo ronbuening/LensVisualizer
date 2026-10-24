@@ -9,7 +9,7 @@
 **Inventor:** Yoshiyuki Shimizu\
 **Assignee:** Nippon Kogaku K.K.\
 **Title:** *Achromatic Telephoto Objective Lens*\
-**Embodiment analyzed:** Example II / Claim 3
+**Example details:** Claim 3
 
 The prescription is taken from Example II of US 3,774,991, with Claim 3 providing a duplicate numerical table. The patent gives a focal length of 600.0 mm, relative aperture f/5.6, and an 8° full design field. Example II appears on PDF page 11; Claim 3 appears on PDF page 12. The Patent Office Certificate of Correction on PDF page 13 changes the Example-II body-table value of `r5 = +244.820 mm` to `r5 = +224.820 mm`. Claim 3 already prints the corrected +224.820 mm value. The implemented prescription therefore preserves the raw +244.820 mm reading as a source discrepancy while using the official +224.820 mm correction. [1]
 

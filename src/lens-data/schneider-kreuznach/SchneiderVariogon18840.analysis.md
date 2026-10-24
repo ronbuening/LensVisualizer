@@ -8,7 +8,7 @@
 **Assignee:** Jos. Schneider & Co., Optische Werke<br>
 **Title:** Varifocal cinematographic objective for large-frame sizes and including a four-component forward lens group
 and a four-lens rear group<br>
-**Embodiment analyzed:** Example 1 / Fig. 1 / Table I
+**Example details:** Fig. 1 / Table I
 
 The implemented prescription is the first numerical embodiment of US 3,442,573. The patent describes a varifocal
 cinematographic objective for the enlarged 8-mm/Super-8 frame of 4.22 × 5.69 mm and gives Example 1 a nominal focal-length

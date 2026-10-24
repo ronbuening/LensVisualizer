@@ -10,7 +10,6 @@
 **Inventors:** Emiri Suzuki, Naoto Nishimura  
 **Applicant:** Panasonic Intellectual Property Management Co., Ltd.  
 **Title:** Imaging optical system, and image capture device and camera system including the same  
-**Embodiment analyzed:** Example 1
 
 The prescription is Example 1 of US 2026/0036794 A1, read from Tables 1A–1F and Figure 1A. It is a research
 correlation to the Hasselblad XCD 2,8–4/35–100E, not manufacturer confirmation of the production formula. The

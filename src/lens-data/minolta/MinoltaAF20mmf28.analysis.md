@@ -6,7 +6,6 @@
 **Inventor:** Tetsuya Arimoto
 **Applicant:** Minolta Camera Co., Ltd.
 **Title:** 逆望遠型広角レンズ (inverse-telephoto wide-angle lens)
-**Embodiment analyzed:** Example 4
 
 The selected correlation is JP 1987-249119 A Example 4 to the MINOLTA AF 20mm f/2.8. This is the fixed project correlation; it should not be read as a claim that Minolta or Sony publicly identified this patent as the production prescription. The evidence is convergent rather than documentary. Example 4 is a 10-element, 9-group, all-spherical f/2.8 design with a 94° full field and a rear group that translates toward the object for close focusing. Its tabulated focal length is 100.0 patent units. Uniform scaling by 0.2 produces a 20 mm model without changing refractive indices, Abbe numbers, or power ratios.
 

@@ -9,7 +9,7 @@
 **Inventor:** Yoshiyuki Shimizu  
 **Assignee:** Nippon Kogaku K.K., Tokyo  
 **Title:** Telescope Lens of Reflecting-Refractive Type  
-**Embodiment analyzed:** Embodiment 1 / Claim 1, f = 1000.0
+**Example details:** Claim 1, f = 1000.0
 
 US 3,507,556 discloses a compact reflecting-refractive telescope lens using a positive front lens, a rear-surface concave primary mirror, a rear-surface convex secondary mirror, and a rear diverging lens group. Embodiment 1 is the prescription used here because it is the patent's f = 1000.0 example and is reproduced again as Claim 1. The rendered patent table and Claim 1 table were checked directly; where OCR is ambiguous, the image tables are treated as controlling.
 

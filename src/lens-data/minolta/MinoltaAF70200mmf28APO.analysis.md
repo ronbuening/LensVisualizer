@@ -8,7 +8,7 @@
 **Filed:** September 19, 2002
 **Published:** April 8, 2004
 **Title:** Zoom Lens System (ズームレンズ系)
-**Embodiment analyzed:** Example 1 (実施例1), Fig. 1
+**Example details:** 実施例1, Fig. 1
 
 JP 2004-109559 A, *Zoom Lens System* (`ズームレンズ系`), was filed by Minolta Co., Ltd. on 2002-09-19 and published on 2004-04-08. The publication front page names Hiroyuki Matsumoto (`松本博之`) and Mamoru Terada (`寺田守`) as inventors. The reviewed prescription is Example 1 (`実施例1`), corresponding to Fig. 1.
 

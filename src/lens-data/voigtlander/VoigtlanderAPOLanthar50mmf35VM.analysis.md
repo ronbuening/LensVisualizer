@@ -9,7 +9,7 @@
 **Inventors:** Yoshihisa Yomogida; Yuki Shibata
 **Applicant:** Cosina Co., Ltd.
 **Title:** 光学レンズ系 (Optical lens system)
-**Embodiment analyzed:** Example 1 / 第1実施形態
+**Example details:** 第1実施形態
 
 The data file transcribes Example 1 at the patent's native scale. The example is an eight-element, six-group, all-spherical design with a computed effective focal length of 49.101 mm and a published f-number of 3.56. These exact design values are kept separate from the production designation of 50mm f/3.5.
 

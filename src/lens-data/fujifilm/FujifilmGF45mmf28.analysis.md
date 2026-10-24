@@ -10,7 +10,7 @@
 **Inventor:** Taiga Noda  
 **Applicant:** FUJIFILM Corporation, Tokyo, Japan  
 **Title:** Imaging Lens and Imaging Apparatus  
-**Embodiment analyzed:** Example 1, Tables 1–3 and Fig. 1
+**Example details:** Tables 1–3 and Fig. 1
 
 Example 1 of US 2020/0174231 A1 is the closest patent embodiment for the production FUJINON GF45mmF2.8 R WR. The identification rests on several convergent points rather than on a single number.
 

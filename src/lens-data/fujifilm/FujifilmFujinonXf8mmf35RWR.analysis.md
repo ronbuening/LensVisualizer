@@ -9,8 +9,7 @@
 **Published:** 2023-01-06\
 **Inventors:** Ryosuke Nagami; Hiroki Saito\
 **Applicant:** FUJIFILM Corporation\
-**Title:** 撮像レンズ及び撮像装置 (Imaging Lens and Imaging Apparatus)\
-**Embodiment analyzed:** Example 7
+**Title:** 撮像レンズ及び撮像装置 (Imaging Lens and Imaging Apparatus)
 
 The prescription is transcribed from Example 7 of JP 2023-001878 A. The example is defined by ¶0100–¶0106, Tables 19–22, and Figure 20. It contains 12 glass elements in 9 air-separated groups, with seven elements before the aperture stop and five behind it. Six surfaces on three elements are aspherical. The infinity design values published in Table 20 are `f = 8.211 mm`, `FNo. = 3.60`, `Bf = 11.604 mm`, and full field `2ωm = 124.4°`.
 

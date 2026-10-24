@@ -7,7 +7,7 @@
 **Inventor:** Kouichi Ohshita (大下 孝一)
 **Applicant:** Nikon Corporation (株式会社ニコン)
 **Title:** 望遠レンズ (Telephoto Lens)
-**Embodiment analyzed:** Example 1 (第1実施例; Table 1)
+**Example details:** 第1実施例; Table 1
 
 JP H9-105860 A describes a compact two-group telephoto lens with a positive front group and a negative rear group. Both groups are cemented doublets, so the optical prescription contains four elements in two air-separated groups, with the aperture stop in the inter-group air space. Example 1 is the selected embodiment. The patent table gives f = 390.004 mm, Bf = 174.594 mm, FNO = 8.13, 2A = 10.1°, and TL = 0.762.
 

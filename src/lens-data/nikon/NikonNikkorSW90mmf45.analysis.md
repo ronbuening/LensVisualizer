@@ -10,7 +10,7 @@
 **Inventor:** Ikuo Mori
 **Assignee:** Nippon Kogaku K.K.
 **Title:** Wide Angle Lens
-**Embodiment analyzed:** Example 1 (also reprinted as the numerical data of claim 4)
+**Example details:** also reprinted as the numerical data of claim 4
 
 US 4,176,915 describes a four-component wide-angle lens "suitable as the picture-taking lens in a large camera, for example, of 4″×5″ size" (col. 1, ll. 5–8). It publishes three worked examples normalized to f = 100: Examples 1 and 2 at an aperture ratio of 1:4.5 and Example 3 at 1:4.0 (col. 4). The prescription data file transcribes Example 1, scaled to Nikon's published 90.4 mm focal length; the lens is marketed under the nominal designation 90 mm.
 

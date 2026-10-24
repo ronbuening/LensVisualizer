@@ -9,7 +9,6 @@
 **Filed:** March 1, 1977
 **Granted:** July 11, 1978
 **Title:** Compact Large-Aperture Photographic Lens System with Long Back Focal Length
-**Embodiment analyzed:** Embodiment 6
 
 ---
 

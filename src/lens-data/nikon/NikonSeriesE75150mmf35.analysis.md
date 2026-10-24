@@ -7,7 +7,7 @@
 **Priority:** 26 February 1980, Japan
 **Filed:** 17 February 1981
 **Granted:** 16 August 1983
-**Embodiment analyzed:** Unnumbered embodiment, prescription on printed page 5
+**Example details:** Unnumbered embodiment, prescription on printed page 5
 
 This is a patent-derived model provisionally associated with the Nikon Series E 75–150mm f/3.5. The association is inferred, not a manufacturer confirmation of an unchanged factory prescription. The original source contains one unnumbered embodiment; it is not “Example 1.”
 

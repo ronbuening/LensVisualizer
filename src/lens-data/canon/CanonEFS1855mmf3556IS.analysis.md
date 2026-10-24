@@ -10,7 +10,7 @@
 **Inventor:** Takeshi Nishimura  
 **Assignee:** Canon Kabushiki Kaisha  
 **Title:** Zoom Lens and Image-Pickup Apparatus Having the Same  
-**Embodiment analyzed:** Numerical Example 2, corresponding to Exemplary Embodiment 2 and FIG. 4
+**Example details:** corresponding to Exemplary Embodiment 2 and FIG. 4
 
 This prescription is transcribed from Numerical Example 2 of Canon's image-stabilized negative-lead zoom patent. The production identification is the Canon EF-S 18–55 mm f/3.5–5.6 IS rather than the later IS II or STM variants. The match rests on convergent evidence: the patent example has 11 elements in 9 groups; a design focal-length range of 18.69–53.27 mm; a patent maximum-aperture range of Fno 3.63–5.86; one aspherical surface; a single positive IS lens in the second group; and APS-C image height Y = 13.6 mm in the aberration plots. Canon's published product page for the EF-S18-55mm f/3.5-5.6 IS gives the same 9-group/11-element construction, six-blade diaphragm, 0.25 m closest focusing distance, 0.34× maximum magnification, and 58 mm filter diameter, with marketing beginning in September 2007.
 

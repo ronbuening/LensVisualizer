@@ -10,7 +10,7 @@
 **Inventor:** Sei Matsui  
 **Assignee:** Nippon Kogaku K.K.  
 **Title:** Telephoto Lens System  
-**Embodiment analyzed:** Embodiment 2 / Claim 4 numerical example
+**Example details:** Claim 4 numerical example
 
 US 4,338,001 describes a five-element, five-group telephoto lens with a convergent forward group, a divergent rearward group, an aperture ratio of 1:2.8, and a claimed telephoto ratio range of 0.90-0.96. The numerical examples are normalized to a focal length of $f = 100$. The prescription transcribed in the accompanying data file is Embodiment 2, scaled by $1.8\times$ to the production 180 mm class.
 

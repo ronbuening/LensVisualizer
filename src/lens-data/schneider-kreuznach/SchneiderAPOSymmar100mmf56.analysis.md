@@ -9,7 +9,6 @@
 **Filed:** December 7, 1998
 **Granted:** February 22, 2000
 **Title:** High Resolution Objective for Large-Format Photography
-**Embodiment analyzed:** Second numerical embodiment
 
 US 6,028,720, "High Resolution Objective for Large-Format Photography." Applicant: Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG, Bad Kreuznach, Germany. Inventors: Rolf Wartmann and Udo Schauss. Filed December 7, 1998 (US); priority date December 10, 1997 (DE 197 54 758). Granted February 22, 2000.
 

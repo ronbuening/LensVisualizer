@@ -5,7 +5,6 @@
 **Assignee:** Canon Kabushiki Kaisha
 **JP Priority:** 2022-192641 (Dec. 1, 2022)
 **Published:** June 13, 2024
-**Embodiment analyzed:** Numerical Example 4
 **Production lens:** Canon RF24-105mm F2.8 L IS USM Z (announced Nov. 3, 2023)
 
 ---

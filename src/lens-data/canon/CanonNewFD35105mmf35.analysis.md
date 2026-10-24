@@ -5,7 +5,7 @@
 **Granted:** 21 February 1984  
 **Inventor:** Keiji Ikemori  
 **Assignee:** Canon Inc.  
-**Embodiment analyzed:** Numerical Example 2, Figure 5.
+**Example details:** Figure 5.
 
 This example probably corresponds to the Canon New FD 35–105mm f/3.5. Its group sequence of 4/3 + 4/4 + 1/1 + 6/5 gives 15 elements in 13 groups, the count the Canon Camera Museum lists for the lens, which was released in April 1981. Canon publishes no construction diagram for it. Example 1 has a different 16-element construction. The production radii are not published.
 

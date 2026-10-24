@@ -6,7 +6,6 @@
 **Inventor:** Yoshiyuki Shimizu  
 **Assignee:** Nippon Kogaku K.K.  
 **Title:** Retrofocus Type Wide-Angle Photographic Lens  
-**Embodiment analyzed:** Example I (Example 1)
 
 The NIKON NEW NIKKOR 35mm f/2.8 model transcribes Example I, associated provisionally with the lens Nikon's own history designates the "NEW Nikkor 35mm f/2.8", introduced in 1975 for the Nikon F mount and the 135 format.
 The patent's priority date is June 7, 1972.

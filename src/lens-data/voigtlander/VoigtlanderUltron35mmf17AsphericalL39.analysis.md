@@ -7,7 +7,6 @@
 **Inventor:** Koji Shiokawa
 **Applicant:** Cosina Co., Ltd.
 **Title:** Photographic lens
-**Embodiment analyzed:** Example 1
 
 The modeled prescription is the eight-element, six-group Example 1 of JP2000321490A.
 Its association with the VOIGTLÄNDER ULTRON 35mm f/1.7 Aspherical L39 is a supported production correlation,

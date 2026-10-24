@@ -17,7 +17,6 @@
 **Applicant:** Nikon Corporation
 
 **Title:** Optical System, Optical Device, and Method for Manufacturing Optical System
-**Embodiment analyzed:** Example 1
 
 The prescription is Example 1 of WO 2021/117429 A1, transcribed at its native scale. The patent gives a five-functional-group optical system, the stop position, three focus states, five aspherical surfaces, and the complete refractive-index/Abbe-number prescription in Table 1 (¶¶0072–0081; Fig. 1). The data file adopts this embodiment as the production correlation for the NIKON NIKKOR Z 20mm f/1.8 S. This is an engineering correlation rather than a manufacturer statement that the commercial lens is Example 1.
 

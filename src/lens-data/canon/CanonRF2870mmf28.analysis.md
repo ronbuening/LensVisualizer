@@ -5,7 +5,7 @@
 **Assignee:** Canon Inc. (Canon Kabushiki Kaisha)
 **Priority:** JP 2023-051695 (Mar 28, 2023)
 **Published:** October 3, 2024
-**Embodiment analyzed:** First Numerical Example (¶0083)
+**Example details:** ¶0083
 
 ---
 

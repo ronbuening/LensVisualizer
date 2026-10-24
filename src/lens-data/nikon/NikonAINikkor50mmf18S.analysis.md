@@ -9,8 +9,7 @@
 **Granted:** 1980-11-18<br>
 **Inventor:** Soichi Nakamura<br>
 **Assignee:** Nippon Kogaku K.K.<br>
-**Title:** *Gauss Type Photographic Lens*<br>
-**Embodiment analyzed:** Example 3
+**Title:** *Gauss Type Photographic Lens*
 
 The modeled prescription is the user-selected correlation between US 4,234,242 A, Example 3, and the NIKON AI NIKKOR
 50mm f/1.8 S. The patent itself does not identify a commercial model. The correlation instead rests on convergent evidence:

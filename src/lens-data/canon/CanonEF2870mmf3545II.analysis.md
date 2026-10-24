@@ -7,7 +7,6 @@
 **Inventor:** Sadatoshi Takahashi  
 **Applicant:** Canon Inc.  
 **Title:** Zoom Lens (ズームレンズ)  
-**Embodiment analyzed:** Numerical Example 1  
 **Data subtitle:** JP H01-189622 A — Numerical Example 1 (correlated and repaired patent prescription)  
 **Production correlation:** CANON EF 28-70mm f/3.5-4.5 II; selected, author-established correlation
 

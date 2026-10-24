@@ -10,7 +10,7 @@
 **Priority:** September 30, 1970, Japan 45/85420  
 **Inventor:** Yoshiyuki Shimizu  
 **Assignee:** Nippon Kogaku K.K.  
-**Embodiment analyzed:** Example I, corresponding to Claim 1
+**Example details:** corresponding to Claim 1
 
 Example I is the patent embodiment corresponding to the production Fisheye-Nikkor 6mm f/2.8. The identification is based on the convergence of the patent's 12-element optical construction, the 220° stated angle of field, the f/2.8 aperture, the special retrofocus layout that clears the SLR mirror, and the production lens specification of a 6mm f/2.8 circular fisheye with 12 elements in 9 groups.
 

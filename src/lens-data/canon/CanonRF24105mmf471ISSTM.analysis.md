@@ -10,7 +10,7 @@
 **Inventor:** Yasuaki Hagiwara\
 **Applicant:** Canon Kabushiki Kaisha\
 **Title:** Zoom Lens and Image Pickup Apparatus\
-**Embodiment analyzed:** Example 1 / Numerical Example 1
+**Example details:** Numerical Example 1
 
 The prescription is the user-selected production correlation for the **CANON RF 24-105mm f/4-7.1 IS STM**. The patent itself does not name that commercial product, so the identification is a correlation based on convergent optical and chronological evidence rather than a manufacturer statement linking the product to this patent.
 

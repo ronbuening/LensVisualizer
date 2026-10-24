@@ -9,7 +9,7 @@
 **Priority:** September 1, 1931, Germany
 **Granted:** April 23, 1935
 **Title:** Photographic Objective
-**Embodiment analyzed:** Example I, Fig. 1, scaled by 0.5
+**Example details:** Fig. 1, scaled by 0.5
 
 Example I specifies f = 100 mm and f/2 with six elements in three groups. The
 viewer halves the published radii and axial dimensions to represent the 50 mm

@@ -8,7 +8,7 @@
 **Inventors:** Takahiro Kitada (北田 高博), Shunichiro Yoshinaga (吉永 俊一郎), Takakazu Bito (美藤 恭一)  
 **Assignee:** Panasonic Intellectual Property Management Co., Ltd.  
 **Title:** Zoom lens system, interchangeable lens device and camera system with zoom lens system, imaging device with zoom lens system  
-**Embodiment analyzed:** Numerical Example 2, optical system 202B  
+**Example details:** optical system 202B  
 **Production correlation:** PANASONIC LUMIX G VARIO 12-60mm f/3.5-5.6 ASPH. POWER O.I.S. (H-FS12060), a qualified correlation, not confirmed by Panasonic
 
 The numerical prescription is taken from the selected Japanese grant, not from a substituted family publication. The

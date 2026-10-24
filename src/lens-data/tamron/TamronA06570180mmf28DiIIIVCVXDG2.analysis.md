@@ -9,7 +9,6 @@
 **Inventor:** Hisayuki Yamanaka  
 **Applicant:** Tamron Co., Ltd.  
 **Title:** Zoom Lens and Image Capturing Device  
-**Embodiment:** Numerical Example 1  
 **Lens:** TAMRON 70-180mm f/2.8 Di III VC VXD G2
 
 The prescription is a research correlation with the Tamron A065, marketed as the

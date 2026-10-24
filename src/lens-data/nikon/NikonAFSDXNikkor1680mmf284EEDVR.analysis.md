@@ -7,7 +7,7 @@
 **Inventor:** Satoshi Yamaguchi\
 **Applicant:** Nikon Corporation\
 **Title:** Zoom Optical System, Optical Device and Method for Manufacturing the Zoom Optical System\
-**Embodiment analyzed:** Example 1 (ZL1)
+**Example details:** ZL1
 
 This prescription is a transcription and model of Example 1, not a manufacturer-confirmed production prescription. The
 identification with the Nikon AF-S DX NIKKOR 16-80mm f/2.8-4E ED VR is supported by several independent points of

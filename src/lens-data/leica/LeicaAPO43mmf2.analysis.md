@@ -5,7 +5,7 @@
 **Inventors:** Takehiro Nishioka, Yoshiaki Kurioka
 **Priority:** JP 2022-142614 (Sep. 8, 2022)
 **Published:** Jul. 18, 2024
-**Embodiment analyzed:** Example 1 (First Embodiment)
+**Example details:** First Embodiment
 **Production lens:** Leica APO-Summicron 43mm f/2 ASPH. (fixed to the Leica Q3 43)
 
 ---

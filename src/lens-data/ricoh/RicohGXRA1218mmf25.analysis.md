@@ -9,7 +9,7 @@
 **Inventor:** Takashi Kubota (窪田 高士)
 **Applicant:** Ricoh Co., Ltd.
 **Title:** 結像レンズおよびカメラ装置および携帯情報端末装置 (Imaging lens, camera device and portable information terminal device)
-**Embodiment analyzed:** Example 1 (実施例1): Table 1, aspherical data ¶0094–0095, focus gaps Table 2, Fig. 1, aberrations Fig. 2
+**Example details:** 実施例1: Table 1, aspherical data ¶0094–0095, focus gaps Table 2, Fig. 1, aberrations Fig. 2
 **Production lens:** Ricoh GR LENS A12 28mm F2.5 camera unit for the GXR system
 
 The GR LENS A12 28mm F2.5 is a sealed lens-and-sensor unit for Ricoh's GXR interchangeable-unit camera. It pairs an

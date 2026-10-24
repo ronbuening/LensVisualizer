@@ -7,7 +7,6 @@
 **Inventor:** Hideki Ogawa (小川 秀樹)  
 **Applicant:** Canon Inc. (キヤノン株式会社)  
 **Title:** リアーコンバーターレンズ (_Rear converter lens_)  
-**Embodiment analyzed:** Example 2
 
 The prescription represents the detachable rear converter in Example 2, separated from the patent's reference taking lens. The production identification is the original **CANON EXTENDER EF2X**, introduced in October 1987, rather than a later EF2X version or a taking lens with an integral converter. The original Japanese publication supplies the numerical design; Canon's Camera Museum supplies the product identity and construction drawing.[1, 2]
 
