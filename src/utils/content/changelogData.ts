@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-25",
+    type: "lens",
+    summary:
+      "Added the Olympus Zuiko Auto-T 600mm f/6.5, Panasonic Lumix G Vario 100-300mm f/4-5.6 Mega O.I.S., Pentax FA* 300mm f/4.5 ED [IF], Sigma APO 50-500mm f/4.5-6.3 DG OS HSM, Sigma 60-600mm f/4.5-6.3 DG DN OS Sports and Voigtländer Super-Dynarex 200mm f/4",
+  },
+  {
     date: "2026-10-24",
     type: "lens",
     summary:

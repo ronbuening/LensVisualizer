@@ -1,0 +1,151 @@
+# Panasonic LUMIX G VARIO 100-300mm f/4.0-5.6 MEGA O.I.S. — Audit
+
+## Package audit (condensed from the original package, 2026-10-13)
+
+The original package (`original-v1`) transcribed US 8,451,542 B2, Numerical Example 1 (Tables 2–6, Fig. 1), for the
+original H-FS100300. It held only the three printed infinity stations. What follows keeps the findings that still apply.
+The package's process records (stage gates, hashes, verifier counts, archive manifests) are not repeated here.
+
+- **Extraction and conventions.** Native d-line nd/νd, millimetres, spherical and plane surfaces only. Surfaces 2 and 8
+  are real plane glass exits; 14 is the only stop. BF is the air distance from surface 30 to the image; there is no
+  cover plate. There is no rescaling, no added asphere or plate, and no invented close-focus state. Table 3's middle
+  station is kept although the description of Fig. 1 defines the middle position as the geometric mean of the end
+  focal lengths.
+- **Focus direction.** An early intake note had the focus direction wrong. The patent text and the Fig. 1 arrow both
+  move G2 toward the object for close focus, and the patent supplies no displacement.
+- **Rims.** A first 7.0 mm G4 rim made the S21 and S22 sags overlap (intrusion fraction 1.209) and was rejected. 6.05 mm
+  passes the default 0.90 guard at 0.887. The minimum glass thickness is 0.80 mm and the largest rim slope 35.5°.
+- **Glass.** Labels were chosen from six vendor catalogs by nd/νd. J-SF8 and J-SF03 are named explicitly so that the
+  ambiguous "SF8" / "SF03" aliases do not resolve to other vendors' glasses. TAFD35 sits at the Abbe-rounding boundary
+  of the printed 35.2. The labels are spectral equivalents, not supplier identifications.
+- **Aperture control.** The control ceiling was corrected from the inherited f/16 to F22, the manual's minimum
+  aperture.
+- **Source comparisons.** Computed EFL 102.716989 / 174.182509 / 290.286073 mm. The paraxial focus lies −0.001864 /
+  −0.003159 / −0.006038 mm from the printed image plane, consistent with source rounding. Table 6's middle G4
+  magnification reads 49.44138 (an earlier misreading of 49.41138 was corrected) and computes as 49.372484. Printed
+  values are kept.
+- **Interpolation.** Straight interpolation of the printed spacings left up to 3.19 mm of paraxial focus drift at
+  zoomT 0.80. At that point the package stored only the three printed stations.
+- **Rays.** Exact skew-ray samples at the three printed stations passed every axial ray and every field chief ray.
+  Edge-of-field off-axis bundles are partly vignetted.
+
+## 2026-10-23 — Connected-zoom conversion (package v2)
+
+The v2 package added 98 derived zoom stations between the printed rows (101 in all; printed rows at stations 0, 50 and
+100). D19, D24 and BF interpolate linearly in the zoom coordinate between printed rows. An equal-and-opposite
+correction to D5 and D8 moves G2 alone; it is solved by bisection on the paraxial rear-focus position so that the
+focus error follows the linearly interpolated printed residuals. The maximum G2 shift is 0.6045 mm toward the object at
+zoomT 0.78 (EFL 230.56 mm). Interior station focal lengths are the computed EFLs, and interior f-numbers interpolate
+the printed values. No surface, glass or printed spacing changed. The focus keyframes stay identical, so no focus
+travel is modelled.
+
+## 2026-10-24 — Deployment validation
+
+Source re-read from `patents/US8451542B2.pdf` (24 pp.; Example 1 on p. 20, cols. 11–12, from a 200 dpi render).
+
+- **Front page.** US 8,451,542 B2, granted 28 May 2013. Application 13/183,445, filed 15 July 2011. Priority JP
+  2010-160378 (15 July 2010) and JP 2011-124618 (2 June 2011). Inventors Tsuneo Uchida and Koji Hoshi; assignee
+  Panasonic Corporation, Kadoma-shi.
+- **Prescription.** All 30 surface rows (R, d, nd, νd) and the 15 printed variable spacings (D5, D8, D19, D24, BF at
+  wide, middle and tele) match the data file with no differences. There are no aspheres. Element focal lengths agree
+  with Table 4 to 0.01 mm, and unit focal lengths with Table 5 to 0.001 mm.
+- **First order.** Computed EFL 102.7170 / 174.1825 / 290.2861 mm against the printed 102.7209 / 174.1910 / 290.3070.
+  The longitudinal spherical-aberration misprint screen is small at every station (under 0.05 mm), so there is no
+  sign of a misprint. The derived stations keep the paraxial focus within 0.0016–0.0061 mm of the printed image plane
+  (after the 2026-10-24 rounding below).
+- **Derived cam check.** Only D5 and D8 differ from linear interpolation, and always by an equal and opposite amount
+  (maximum 0.6045 mm). D19, D24 and BF are exactly linear between printed rows. The published flags mark stations
+  0, 50 and 100 only. This is the same kind of solved intermediate cam as other accepted zooms (Olympus M.Zuiko
+  75-300, Olympus ZD 90-250, Nikon 50-300). No printed value is fitted, so the file is not a fitted prescription.
+- **Example choice.** Example 1 is the only one of the four examples that matches Panasonic's "17 elements in 12 groups
+  (1 ED lens)". It has five cemented pairs and one nd 1.49700 / νd 81.6 element (L3). Examples 2 and 3 carry three such
+  elements and Example 4 carries four. The camera embodiment (Embodiment 5, col. 9) names Embodiment 1.
+
+Production evidence:
+
+- **Manual.** Panasonic VQT2Z58 operating instructions, read 2026-10-24 from
+  https://help.na.panasonic.com/wp-content/uploads/2023/02/HFS100300_VQT2Z58_ENG_ESP.pdf. Page 11 gives f = 100–300 mm,
+  F4.0–5.6, F22, seven circular blades, 17 elements in 12 groups (1 ED lens), 1.5 m minimum focus, 0.21×, a 67 mm
+  filter, 73.6 mm diameter, 126 mm length and 520 g. The page stamps carry 17 August 2010.
+- **Support page.** Panasonic's H-FS100300 support page gives the same figures.
+- **Announcement.** DXOMARK records the announcement as September 2010, after the July 2010 priority date.
+- **Construction diagram.** No manufacturer construction drawing was located in this pass. The package cites a
+  Panasonic catalog mirrored on lens-club.ru, which was not opened. The match rests on counts, glass type and
+  mechanism: inner-focus G2 and decentring G4 for MEGA O.I.S.
+- **Later model.** The H-FSA100300 (2016) also lists 17 elements in 12 groups with one ED lens. It is not identified
+  with this example.
+
+## 2026-10-24 — Rim check against Fig. 1
+
+Measured on Fig. 1(a) (wide, infinity) from the 300 dpi CCITT raster on PDF page 2 with `figprofile.mjs`. The axis is
+at y = 1208.5 px. Readings are taken on the lower side, ignoring the d5/d8/d19/d24 leader lines. Scale: S1 vertex at
+x ≈ 1040 px and the image plane at 1957 px span 142.4843 mm, giving 0.1554 mm/px. Check: S6 is predicted at 1337.6 px and
+measured at 1338 px.
+
+| Surfaces | Element(s) | sd (file) | Figure (mm)            | Decision        |
+| -------- | ---------- | --------: | ---------------------- | --------------- |
+| 1–2      | L1         |      26.3 | 26.1 (168 px)          | kept            |
+| 3–5      | L2+L3      |      25.9 | 24.9–25.5 (160–164 px) | kept            |
+| 6–8      | L4+L5      |      11.3 | 10.7–11.3 (69–73 px)   | kept            |
+| 9–13     | L6–L8      |       8.2 | 7.8 (50 px)            | kept            |
+| 15–19    | L9–L11     |       8.7 | 8.1–8.7 (52–56 px)     | kept            |
+| 20–24    | L12–L14    |      6.05 | 6.4–6.5 (41–42 px)     | kept; see below |
+| 25–26    | L15        |       8.7 | 8.4 (54 px)            | kept            |
+| 27–30    | L16, L17   |       8.7 | 8.9 (57 px)            | kept            |
+
+Every rim is within about 6 % of the drawing, inside the noise band of the SD procedure, so no rim was changed. G4 is
+drawn about 6 % larger than modelled. `npm run -s audit:surface` with G4 at 6.4 mm fails the S21→S22 gap: the
+combined sag is 2.08 mm, the whole 2.0804 mm air space, so the faces would touch. At 6.2 mm it still
+fails. 6.05 mm is kept.
+
+Clearance with the file's rims: no surface clips the axial beam at the printed f-numbers or blocks the chief ray to
+10.815 mm (`clearap.mjs`, all 101 stations). The engine's geometric transmission at the printed half-field is about
+61 / 60 / 52 % at wide / middle / tele. It is limited by S30, S24 and S23 at wide and by S1–S4 at tele. The surface
+validator passes.
+
+## 2026-10-24 — Pre-deploy fixes
+
+No R, d, nd, νd or printed spacing changed. No rim changed.
+
+- **Header comment.** New block covering the source and correlation, the derived-cam construction, focus, stop, rim
+  basis and glass labels.
+- **Strings.**
+  - `subtitle`: "US 8,451,542 B2, Numerical Example 1 — qualified production correlation".
+  - `specs`: element/group count, design focal length and F-number, design 2ω, all spherical, and one ED element per
+    the maker. The process wording is removed.
+  - `focus.description` now describes G2 inner focus, the infinity-only data and the derived cam in reader language.
+  - Element `label` is "Element N", and each element has a `role`.
+  - Cemented-pair names use the "L2+L3" form.
+- **Glass labels.** Labels now read "NAME (vendor catalog equivalent; production supplier unspecified)" in place of
+  "class (coordinate-compatible spectral proxy; supplier unproven)". The same catalog entries are used: FK5 (Sumita),
+  J-SF8 and J-SF03 (Hikari), FCD1, E-F2, FDS18, TAFD25, BSC7 and TAFD35 (HOYA), S-LAH66 (OHARA), N-SK5 (Schott). All 17
+  resolve OK-compatible in `glasscheck.mjs`. L3 is marked `apd: "inferred"` (the one ED element; the FCD1 catalog
+  dPgF is +0.032). The rest are `apd: false`.
+- **Aperture.** `fStops` is now [4.11397, 5.6, 8, 11, 16, 22]; the two printed f-numbers above wide open are removed
+  from the stop list. `blades: 7` comes from the manual.
+- **Stations.** The first and last stations are labelled "Wide" and "Tele".
+- **Source errata.** One unresolved erratum records the geometric-mean middle position (172.686 mm) against Table 3's
+  174.1910 mm.
+- **Rounding.** Derived interior zoom values are rounded: focal lengths and gaps to 0.0001 mm, f-numbers to 0.00001.
+  The paraxial focus error across all 101 stations moved from 0.0019–0.0060 to 0.0016–0.0061 mm.
+- **Formatting.** JSON-style quoted keys were converted to TypeScript and the file run through Prettier. Size went
+  from 60.6 KB to 41.5 KB.
+- **Analysis.** The analysis was rewritten to LENS_ANALYSIS_SPEC.
+  - The empty Aspherical Surfaces section is removed, since the lens is all-spherical.
+  - Process language (verification counts, MTF convergence logs, package status words) is removed.
+  - The production evidence now cites the manual, the support page and the announcement date, plus the
+    example-uniqueness argument.
+  - Element roles, glass and condition tables are added, along with an honest description of the derived cam.
+
+After the edit all 30 surfaces and the printed spacings still match the patent exactly, printed-station EFL and back
+focus are unchanged, and the axial bundle and chief ray clear every rim.
+
+## Open issues
+
+- **Factory cam.** The intermediate zoom path is derived. Panasonic's cam is unknown, and the path changes slope at
+  the middle station.
+- **Focus.** Close focus is not modelled because the patent prints infinity states only. 1.5 m is the production
+  value.
+- **O.I.S.** The decentred G4 state (0.454 mm at tele for 0.3°, Table 1) is not modelled.
+- **Construction diagram.** No manufacturer construction drawing was compared in this pass.
+- **Glass.** The glass names are catalog equivalents. The production supplier is not established.

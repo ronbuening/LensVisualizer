@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **995** lenses scanned
-- **1941** total code-only elements found
-- **1941** elements in this report
-- **313** distinct lens files affected
+- **1001** lenses scanned
+- **1942** total code-only elements found
+- **1942** elements in this report
+- **314** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -392,6 +392,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 755524 | 1 | 1 | patents/US3584935.pdf | No review-record hit |
 | 756288 | 1 | 1 | patents/US7307794.pdf | No review-record hit |
 | 757297 | 1 | 1 | patents/US_4147410_A.pdf | All rows explicitly disposed |
+| 758316 | 1 | 1 | patents/US3388956A.pdf | All rows explicitly disposed |
 | 760492 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
 | 762266 | 1 | 1 | patents/US20070229969A1.pdf | No review-record hit |
 | 762271 | 1 | 1 | patents/JPA 1979055423-000000.pdf | No review-record hit |
@@ -3905,6 +3906,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `501565 — K10-class crown (vendor not established by patent)` | 1.50137 / 56.50 | K10 (trusted Sellmeier) | sellmeier | patents/US2927506.pdf | No review-record hit |
+
+### [VOIGTLÄNDER SUPER-DYNAREX 200mm f/4 (Bessamatic)](../../src/lens-data/voigtlander/VoigtlanderSuperDynarex200mmf4.data.ts) - US 3,388,956 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L4 (Element 4) | 6 | `Unmatched (758/316 dense flint; no catalog glass within 0.0001 in nd)` | 1.75787 / 31.56 | No catalog entry | abbe | patents/US3388956A.pdf | Explicit disposition in data |
 
 ### [VOIGTLÄNDER ULTRA WIDE-HELIAR 12mm f/5.6 Aspherical L39](../../src/lens-data/voigtlander/VoigtlanderUltraWideHeliar12mmf56AsphericalL39.data.ts) - JP 2001-124985 A
 
