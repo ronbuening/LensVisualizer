@@ -164,7 +164,6 @@ const LENS_DATA = {
       "Rack-and-pinion unit focus; the whole optical assembly extends 39.26 mm from infinity to 11 m (paraxial solution).",
   },
 
-  /* ── Unit-focus back focus (computed; the patent prints no BFD) ── */
   gaps: {
     "10": {
       label: "BF",
