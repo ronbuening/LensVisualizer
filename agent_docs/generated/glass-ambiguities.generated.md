@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **989** lenses scanned
-- **11232** glass elements examined
-- **3263** elements have multiple coordinate-compatible candidates
-- **586** lens files are affected
+- **995** lenses scanned
+- **11321** glass elements examined
+- **3264** elements have multiple coordinate-compatible candidates
+- **587** lens files are affected
 - **317** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **210** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 1901 |
-| Evidence-source priority | 1013 |
+| Evidence-source priority | 1014 |
 | Vendor context | 335 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
@@ -497,6 +497,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `M-LAF81 / MP-LAF81 class (HOYA, 731/405)` | 1.73077 / 40.50 (d) | M-LAF81 — direct name evidence outranks six-digit code evidence. | L-LAM69 (Ohara, code, vendor ✗, alternate code row) | 1 | [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) L21 |
 | `BSC7 (HOYA) / N-BK7 class (517/642)` | 1.51680 / 64.20 (d) | BSC7 — Annotation vendor context matches Hoya. | N-BK7 (Schott, name, vendor ✗)<br>H-K9L (CDGM, code, vendor ✗, alternate code row)<br>H-K9LGT (CDGM, code, vendor ✗, alternate code row) | 1 | [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) L22 |
 | `E-FDS1 / MP-FDS1 class (HOYA, 923/209)` | 1.92286 / 20.88 (d) | E-FDS1 — direct name evidence outranks six-digit code evidence. | N-SF66 (Schott, code, vendor ✗, preferred code row)<br>PBH21 (Ohara, code, vendor ✗, alternate code row) | 1 | [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) L31 |
+| `E-FD8 (HOYA catalog equivalent; printed nd/νd equal legacy Schott SF8; production supplier unspecified)` | 1.68893 / 31.18 (d) | E-FD8 — direct name evidence outranks alias evidence. | N-SF8 (Schott, alias, vendor ✓) | 1 | [CARL ZEISS VARIO-SONNAR T* 70-210mm f/3.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissCY70210mmf35.data.ts) L8 |
 | `F7-class flint (legacy Schott 625/356; CDGM H-F6 equivalent)` | 1.62536 / 35.60 (d) | H-F6 — Annotation vendor context matches CDGM. | F7 (Hoya, name, vendor ✗) | 1 | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) L3 |
 | `S-BSM10 equivalent (OHARA; legacy SK10-class, patent nd/vd)` | 1.62280 / 56.90 (d) | S-BSM10 — direct name evidence outranks alias evidence. | N-SK10 (Schott, alias, vendor ✗) | 1 | [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) L1 |
 | `F7 (HOYA catalog equivalent; production supplier unspecified; patent 625356)` | 1.62536 / 35.60 (d) | F7 — direct name evidence outranks six-digit code evidence. | H-F6 (CDGM, code, vendor ✗, preferred code row) | 2 | [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) L2 |
