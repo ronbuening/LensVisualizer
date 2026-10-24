@@ -8,7 +8,7 @@
 **Inventor:** Yoshitsugi Ikeda  
 **Assignee:** Olympus Optical Company Limited, Tokyo  
 **Title:** *Super Telephoto Lens System Having a Small Telephoto Ratio*  
-**Embodiment analyzed:** The single numerical Example (Fig. 1), repeated in claim 2
+**Example details:** Fig. 1, repeated in claim 2
 
 The patent describes a super-telephoto with a telephoto ratio below 0.75, a relative aperture of 1:6 and a picture angle of about 4°. Its one Example is normalized to $f=100$ and states F 1:6 and a telephoto ratio of 0.70. The patent does not name a product. Several points tie it to the Olympus ZUIKO 600mm f/6.5 shown in the Olympus *Manual for Zuiko Interchangeable Lenses Group* (code IEMZLG-0173):
 

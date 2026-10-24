@@ -8,7 +8,7 @@
 **Inventors:** Tsuneo Uchida, Koji Hoshi  
 **Assignee:** Panasonic Corporation  
 **Title:** Zoom lens system, interchangeable lens apparatus and camera system  
-**Embodiment analyzed:** Numerical Example 1 (Embodiment 1; Fig. 1, Tables 2–6)  
+**Example details:** Embodiment 1; Fig. 1, Tables 2–6  
 **Production correlation:** PANASONIC LUMIX G VARIO 100-300mm f/4.0-5.6 MEGA O.I.S. (H-FS100300), a qualified
 correlation, not confirmed by Panasonic
 

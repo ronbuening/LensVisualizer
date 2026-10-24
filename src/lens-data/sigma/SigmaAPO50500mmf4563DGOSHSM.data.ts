@@ -58,6 +58,7 @@ const LENS_DATA = {
   },
   source: {
     patentNumber: "JP 2011-039260 A",
+    example: { label: "Numerical Example 2", id: "2" },
     patentYear: 2011,
     authors: ["Tomoki Kono"],
     assignees: ["Sigma Corporation"],

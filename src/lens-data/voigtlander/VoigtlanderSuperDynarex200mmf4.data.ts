@@ -50,6 +50,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,388,956 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1968,
     authors: ["Joachim Eggert", "Ernst Tronnier", "Fritz Ueberhagen"],
     assignees: ["Voigtländer AG"],

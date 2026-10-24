@@ -9,7 +9,6 @@
 **Inventor:** Ryosuke Sato
 **Applicant:** Sigma Corporation
 **Title:** Variable Magnification Image Formation Optical System
-**Embodiment analyzed:** Numerical Example 5
 
 The prescription is correlated with the Sigma 60–600mm F4.5–6.3 DG DN OS | Sports.
 It describes three published zoom stations at infinity, with all source lengths retained at native scale.

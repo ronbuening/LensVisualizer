@@ -75,6 +75,7 @@ const LENS_DATA = {
   },
   source: {
     patentNumber: "US 8,451,542 B2",
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2013,
     authors: ["Tsuneo Uchida", "Koji Hoshi"],
     assignees: ["Panasonic Corporation"],

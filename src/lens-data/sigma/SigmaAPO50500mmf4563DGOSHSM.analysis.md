@@ -10,7 +10,7 @@
 **Inventor:** Tomoki Kono  
 **Assignee:** Sigma Corporation  
 **Title:** 防振機能を有する高変倍比ズームレンズ (High variable power ratio zoom lens having a vibration-proof function)  
-**Embodiment analyzed:** Numerical Example 2 (¶0034), lens section Figure 8
+**Example details:** ¶0034, lens section Figure 8
 
 The patent sets out to build a roughly 10× zoom whose telephoto field is 6.5° or less, and which is both stabilized and compact (¶0013). It discloses three numerical examples. Example 2 is the one that matches the production **APO 50-500mm F4.5-6.3 DG OS HSM** (2010):
 

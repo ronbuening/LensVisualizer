@@ -10,7 +10,7 @@
 **Inventor:** Mitsunori Iima  
 **Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha (Asahi Kogaku Kogyo Co., Ltd.)  
 **Title:** Telephoto Lens System  
-**Embodiment analyzed:** Example 2 (FIG. 5; aberrations FIGS. 6–8), numerical table in col. 4–5, repeated in claim 6.
+**Example details:** FIG. 5; aberrations FIGS. 6–8, numerical table in col. 4–5, repeated in claim 6.
 
 The patent sets out to make an inner-focusing telephoto that is "very compact (telephoto ratio ≤ 0.7)" at about f/4.5, light enough in its focusing group for an AF drive (col. 1). Both numerical examples are normalized to f = 100 mm, F 1:4.5, half-field ω = 4.1°. The model scales Example 2 uniformly by 3. Every radius and axial length is multiplied by 3; there are no aspheric coefficients to transform. The scaled system has a calculated EFL of 300.064 mm. Its first-vertex-to-image length of 203.94 mm gives a telephoto ratio of 0.68.
 

@@ -9,7 +9,7 @@
 **Inventors:** Joachim Eggert, Ernst Tronnier, Fritz Ueberhagen\
 **Assignee:** Voigtländer A.G., Braunschweig\
 **Title:** *Photographic Telephoto Lenses of High Telephoto Power*\
-**Embodiment analyzed:** Example 1 / Figure 2
+**Example details:** Figure 2
 
 The prescription is Example 1 of US 3,388,956. The patent table is normalized to `f = 1.00` at a relative aperture of
 1:4. The data file scales it uniformly by 200. The patent gives five worked examples, all f/4 telephotos with a
