@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — VOIGTLÄNDER NOKTON 50mm f/1.5                         ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Optical source: US 2,646,721, Example 1 / Figure 2.               ║
+ * ║  Optical source: US 2,646,721, sole Numerical Example / Figure 2.  ║
  * ║  Production correlation: Voigtländer NOKTON 50mm f/1.5 for the     ║
  * ║  Prominent 24 × 36 mm system.                                      ║
  * ║  Architecture: 7 elements / 5 air-spaced groups / 2 cemented       ║

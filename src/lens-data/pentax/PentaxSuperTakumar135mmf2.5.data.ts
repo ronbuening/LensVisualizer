@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — PENTAX SUPER-TAKUMAR 135mm f/2.5                            ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║ Data source: US 3,459,469, Example 1 (Yasuo Takahashi / Asahi Kogaku).  ║
+ * ║ Source: US 3,459,469, sole example (Yasuo Takahashi / Asahi Kogaku).    ║
  * ║ Five elements in four groups; all surfaces are spherical or plane.       ║
  * ║                                                                            ║
  * ║ Scaling: the patent worked example is stated at F = 1000 mm. Patent      ║

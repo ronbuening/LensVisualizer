@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — MEYER OPTIK GÖRLITZ LYDITH 30mm f/3.5                       ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Source: DE 1 794 971, Zahlenbeispiel / Example 1.                        ║
+ * ║  Source: DE 1 794 971, sole Zahlenbeispiel.                               ║
  * ║  Historical Lydith correlation: strong inference, not manufacturer-       ║
  * ║  confirmed. Five air-spaced singlets; all surfaces are spherical.         ║
  * ║                                                                            ║

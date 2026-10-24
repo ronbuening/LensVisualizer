@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — MIRANDA AUTO EC 135mm f/2.8                                 ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: JP1976-074627, Example 1 (Miranda Camera Co., Ltd.).             ║
+ * ║ Source: JP1976-074627, sole example (Miranda Camera Co., Ltd.).          ║
  * ║ Five elements / four groups; all nine refracting surfaces are spherical. ║
  * ║                                                                            ║
  * ║ SCALE: the patent example is normalized to f = 100.0. All prescription   ║
@@ -169,7 +169,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.5,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: patent Example 1 supplies only infinity focus; 1.5 m is manufacturer marketed MFD metadata.",
+      "NO_INTERNAL_RECONSTRUCTION: the patent's sole example supplies only infinity focus; 1.5 m is manufacturer marketed MFD metadata.",
   },
 
   aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },

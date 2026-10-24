@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — MEYER OPTIK GÖRLITZ ORESTOR 135mm f/2.8              ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Source: DE 1 282 311, Example 1, Hubert Ulbrich.                  ║
+ * ║  Source: DE 1 282 311, sole example, Hubert Ulbrich.               ║
  * ║  Production correlation: Orestor 2.8/135; strong but inferred.     ║
  * ║  Five elements / four groups; all spherical.                       ║
  * ║                                                                    ║

@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — VOIGTLÄNDER TELOMAR 180mm f/5.5                           ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║  Source: FR 1,045,076, Example 1 / "EXEMPLE CHIFFRÉ".                 ║
+ * ║  Source: FR 1,045,076, sole "EXEMPLE CHIFFRÉ".                        ║
  * ║  The patent example is normalized to f = 1 and is all spherical.        ║
  * ║  Five glass elements form four air-separated groups; L4 + L5 are        ║
  * ║  cemented at surface 8.                                                  ║

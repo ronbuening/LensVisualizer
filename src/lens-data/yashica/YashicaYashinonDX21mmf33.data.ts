@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔════════════════════════════════════════════════════════════════════════════╗
  * ║       LENS DATA — YASHICA YASHINON-DX 21mm f/3.3                       ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP 1969-024068 Example 1 (Yashica Co., Ltd.; Iwatatsu      ║
+ * ║  Data source: JP 1969-024068 sole example (Yashica Co., Ltd.; Iwatatsu   ║
  * ║  Fujioka). The patent prescription is normalized to f = 100.0 and is    ║
  * ║  uniformly scaled by s = 0.21 to the marketed 21mm focal length.        ║
  * ║  Source R, d, and stop location are scaled; semi-diameters are inferred ║
@@ -17,7 +17,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  radius is derived from the design f-number, the published f/3.3, using ║
  * ║  the modeled entrance pupil.                                            ║
  * ║                                                                          ║
- * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. Example 1 publishes one fixed║
+ * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. The patent gives one fixed   ║
  * ║  prescription and no finite-object motion table. The marketed 0.8m MFD ║
  * ║  is metadata only; no internal or unit-focus motion is invented.        ║
  * ║                                                                          ║
@@ -192,7 +192,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.8,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — JP 1969-024068 Example 1 publishes one fixed prescription and no finite-focus movement table; the 0.8m marketed MFD is metadata only and no focus movement is modeled.",
+      "NO_INTERNAL_RECONSTRUCTION — JP 1969-024068's sole example publishes one fixed prescription and no finite-focus movement table; the 0.8m marketed MFD is metadata only and no focus movement is modeled.",
   },
 
   /* ── Aperture configuration ── */

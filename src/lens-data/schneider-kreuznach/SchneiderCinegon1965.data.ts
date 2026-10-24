@@ -1,7 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * Schneider-Kreuznach Cinegon 6.5 mm f/1.9 — DE 927 540, Example 1.
+ * Schneider-Kreuznach Cinegon 6.5 mm f/1.9 — DE 927 540, sole example.
  *
  * Source prescription: f = 1 normalized patent example, uniformly scaled by 6.5 mm.
  * The rounded table computes EFL = 6.497604437 mm; the source image plane remains

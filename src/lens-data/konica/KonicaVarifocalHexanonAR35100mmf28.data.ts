@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  *   LENS DATA — KONICA VARIFOCAL HEXANON AR 35-100mm f/2.8
  *
- *   Data source: US 3,584,935, Example 1 (Tadashi Kojima /
+ *   Data source: US 3,584,935, sole example (Tadashi Kojima /
  *   Konishiroku Photo Industry Co., Ltd.).
  *   15 elements / 10 air-separated groups, all spherical.
  *   Four components: C1 positive, C2 negative, C3 positive, C4 relay.

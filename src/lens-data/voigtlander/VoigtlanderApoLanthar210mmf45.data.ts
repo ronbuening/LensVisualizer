@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — VOIGTLÄNDER APO-LANTHAR 210mm f/4.5                         ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2,645,154, Example 1 (Albrecht Wilhelm Tronnier).         ║
+ * ║  Data source: US 2,645,154, sole example (Albrecht Wilhelm Tronnier).      ║
  * ║  Five-lens Heliar-type objective: cemented front doublet, isolated         ║
  * ║  biconcave negative, cemented rear doublet.                                ║
  * ║  5 elements / 3 groups, all spherical.                                     ║
@@ -12,7 +12,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  The patent publishes only the infinity prescription; no internal focus    ║
  * ║  motion is invented. View-camera bellows/standard motion is external.      ║
  * ║                                                                              ║
- * ║  SCALING: the normalized Example 1 prescription has F = 1.0000. Source    ║
+ * ║  SCALING: the normalized sole prescription has F = 1.0000. Source         ║
  * ║  radii, lens thicknesses, air gaps, and the diaphragm-space split are      ║
  * ║  scaled uniformly by s = 210 mm/F for the fixed 210mm correlation. The    ║
  * ║  patent also mentions an assumed 200mm drawing scale; it is not a second   ║

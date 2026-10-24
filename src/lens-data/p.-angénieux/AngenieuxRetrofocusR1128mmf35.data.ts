@@ -3,7 +3,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * LENS DATA — P. ANGÉNIEUX RETROFOCUS TYPE R11 28mm f/3.5
  *
- * Source: GB 720,808, sole numerical example (Example 1), Pierre Angénieux.
+ * Source: GB 720,808, sole numerical example, Pierre Angénieux.
  * Six spherical elements in six air-spaced groups.
  *
  * Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes only the

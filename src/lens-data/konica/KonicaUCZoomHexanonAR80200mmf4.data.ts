@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — KONICA UC ZOOM HEXANON AR 80-200mm f/4                       ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: JP S51-37247 A (JP1976-037247), Example 1, Hideo Shizume /          ║
+ * ║ Source: JP S51-37247 A (JP1976-037247), sole example, Hideo Shizume /       ║
  * ║ Konishiroku Photo Industry Co., Ltd.                                      ║
  * ║ 14 elements / 10 groups, all spherical. No scale factor is applied.       ║
  * ║                                                                            ║

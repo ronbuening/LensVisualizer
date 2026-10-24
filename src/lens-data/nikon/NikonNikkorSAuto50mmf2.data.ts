@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — NIKON NIKKOR-S AUTO 5cm f/2                                ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║ Data source: JP 1964-025754, Embodiment 1 (Saburo Murakami /            ║
+ * ║ Data source: JP 1964-025754, sole example (Saburo Murakami /            ║
  * ║ Nippon Kogaku K.K.).                                                     ║
  * ║ Five groups / seven elements, all spherical.                            ║
  * ║ Focus status: INFERRED UNIT FOCUS. The patent publishes infinity only;  ║

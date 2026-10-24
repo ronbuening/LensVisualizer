@@ -10,3 +10,4 @@ commit.
 
 | File | Patent | Evidence |
 |------|--------|----------|
+| `nikon/NikonNikkor15mmf56` | JP S48-71634 A | The file transcribes the second prescription, headed 球面光学系（参考資料） ("spherical optical system, reference material"), printed after the invention's single unnumbered 実施例 for comparison. It has no number, and it is not the sole example, so neither a numbered label nor `"Sole example"` fits. Resolving it needs a schema decision, such as a `"Reference"` label form. |

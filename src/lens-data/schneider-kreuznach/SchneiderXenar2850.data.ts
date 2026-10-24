@@ -1,7 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * SCHNEIDER-KREUZNACH XENAR 50mm f/2.8 - DE 753329 Example 1.
+ * SCHNEIDER-KREUZNACH XENAR 50mm f/2.8 - DE 753329, sole example.
  *
  * Source prescription: Reichspatentamt DE 753329, Zahlentafel 1.
  * The patent publishes relative lengths, relative opening 1:2.9, and five

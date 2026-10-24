@@ -1,7 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * Schneider Cinegon 1.8 / 10 — US 3,038,379, Example 1.
+ * Schneider Cinegon 1.8 / 10 — US 3,038,379, sole example.
  *
  * Source/model separation:
  * - The patent prescription is normalized to overall focal length 1. All radii and axial prescription spacings are
@@ -24,7 +24,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * - The patent prose/claim calls the L1+L2 doublet positive, while its printed numerical table robustly computes a weak
  *   negative isolated power. No source number is changed; the discrepancy remains an audit disclosure.
  * - Period literature strongly correlates this formula with the Schneider Cinegon 1.8/10, but no primary Schneider
- *   statement tying US 3,038,379 Example 1 to the production formula was found. imageFormat is 16mm-cinema: the 1961
+ *   statement tying US 3,038,379's example to the production formula was found. imageFormat is 16mm-cinema: the 1961
  *   Burleigh Brooks listing's 64° field fits the 12.7 mm 16 mm-frame diagonal. lensMounts stays unset because the
  *   taxonomy has no C-mount id.
  * - Focus status: NO_INTERNAL_RECONSTRUCTION. The patent has one fixed optical state. The 1961 period listing's 8 in

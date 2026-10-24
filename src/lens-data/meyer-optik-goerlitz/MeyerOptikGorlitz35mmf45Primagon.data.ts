@@ -148,7 +148,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.4,
     description:
-      "Focus travel is not modeled. Patent Example 1 supplies one fixed prescription only. Period Meyer literature gives 0.4 m minimum focus, but no production unit-focus travel or internal spacing law is encoded.",
+      "Focus travel is not modeled. The patent's sole example supplies one fixed prescription only. Period Meyer literature gives 0.4 m minimum focus, but no production unit-focus travel or internal spacing law is encoded.",
   },
 
   /* ── Aperture ── */

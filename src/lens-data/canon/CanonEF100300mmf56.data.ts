@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — CANON EF 100-300mm f/5.6                                      ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: JP S61-77818 A, Numerical Example 1 (Canon).                         ║
+ * ║ Source: JP S61-77818 A, sole Numerical Example (Canon).                      ║
  * ║ 15 elements / 9 air-separated physical groups / 4 functional zoom groups. ║
  * ║ All refracting surfaces are spherical; one explicit aperture stop lies    ║
  * ║ between functional Groups III and IV.                                      ║

@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — VOIGTLÄNDER COLOR-SKOPAR 105mm f/3.5                       ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2,573,511 A, Example 1 (Albrecht Wilhelm Tronnier).     ║
+ * ║  Data source: US 2,573,511 A, sole example (Albrecht Wilhelm Tronnier).  ║
  * ║  Production correlation: Voigtländer Color-Skopar 105mm f/3.5 for       ║
  * ║  fixed-lens 6×9 cameras. The patent prescription is normalized to       ║
  * ║  100mm EFL; every dimensional value is uniformly scaled ×1.05.          ║

@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — Olympus OM Zuiko Auto-W 21mm f/2                     ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 4,210,388 Example 1 (Olympus / Yoshitsugi Ikeda) ║
+ * ║  Source: US 4,210,388 sole example (Olympus / Yoshitsugi Ikeda)   ║
  * ║  Retrofocus wide-angle with patented flare stop.                   ║
  * ║  11 elements / 9 groups (L4 split into L4a + L4b),               ║
  * ║  0 aspherical surfaces.                                           ║

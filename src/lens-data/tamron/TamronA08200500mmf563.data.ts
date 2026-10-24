@@ -2,7 +2,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * TAMRON SP AF 200-500mm f/5-6.3 Di LD [IF] (A08)
- * JP 2003-344768 A, Example 1.
+ * JP 2003-344768 A, sole example (表1).
  *
  * Source prescription: 13 elements / 10 air-separated groups, all spherical.
  * Patent zoom stations: 200.00 / 300.32 / 490.00 mm.

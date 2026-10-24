@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — VOIGTLÄNDER COLOR-HELIAR 105mm f/3.5                         ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2,645,156 A, Example 1 (Albrecht Wilhelm Tronnier).       ║
+ * ║  Data source: US 2,645,156 A, sole example (Albrecht Wilhelm Tronnier).    ║
  * ║  Five all-spherical elements in three air-separated Heliar-type members.   ║
  * ║                                                                            ║
  * ║  SCALE: The patent table is normalized to F = 1 and illustrates f =        ║

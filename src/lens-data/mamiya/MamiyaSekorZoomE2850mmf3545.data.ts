@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — MAMIYA-SEKOR ZOOM E 28-50mm f/3.5-4.5                         ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Data source: JP 1981-119109 A, Example 1, Yusuke Nanjo / Mamiya Koki.       ║
+ * ║ Data source: JP 1981-119109 A, sole example, Yusuke Nanjo / Mamiya Koki.    ║
  * ║ Production correlation: 9 elements / 8 groups and f/3.5-4.5 source states. ║
  * ║ Focus status: NO_INTERNAL_RECONSTRUCTION.                                  ║
  * ║                                                                              ║

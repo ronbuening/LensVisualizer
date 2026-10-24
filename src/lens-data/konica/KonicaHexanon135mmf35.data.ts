@@ -3,7 +3,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * LENS DATA — KONICA HEXANON 135mm f/3.5
  *
- * Source: JP 1955-009472, Example 1, Tomokazu Kazamaki / Fumio Kondo.
+ * Source: JP 1955-009472, sole example, Tomokazu Kazamaki / Fumio Kondo.
  * The patent publishes an all-spherical 4-element / 4-group telephoto objective at F = 100 mm.
  * This production-correlated model is uniformly scaled ×1.35, giving EFL = 134.994957 mm.
  * All radii, thicknesses, inferred semi-diameters, stop coordinates, and rear image spacing are scaled;
@@ -123,7 +123,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.8288,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — Konica F/FS literature gives 6 ft (1.8288 m) closest focus, but JP 1955-009472 Example 1 publishes no focus-spacing state; the modeled prescription remains at infinity.",
+      "NO_INTERNAL_RECONSTRUCTION — Konica F/FS literature gives 6 ft (1.8288 m) closest focus, but JP 1955-009472's sole example publishes no focus-spacing state; the modeled prescription remains at infinity.",
   },
 
   aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16] },
