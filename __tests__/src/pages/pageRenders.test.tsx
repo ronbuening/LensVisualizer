@@ -3,6 +3,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, screen, waitFor, within } from "@testing-library/react";
 import type { ReactElement, ReactNode } from "react";
+import type { PatentExample } from "../../../src/types/optics.js";
 import { Route, Routes, useLocation } from "react-router";
 import HomePage from "../../../src/pages/HomePage.js";
 import ArticlesPage from "../../../src/pages/ArticlesPage.js";
@@ -237,8 +238,14 @@ describe("static page renders", () => {
     await waitFor(() => expect(screen.getByText("lens archive")).toBeTruthy());
   });
 
-  it("renders structured patent attribution in the lens-page fallback", () => {
-    const lensKey = CATALOG_KEYS.find((key) => LENS_CATALOG[key].source.patentNumber);
+  it.each([
+    ["a numbered example", (example?: PatentExample) => example?.id != null],
+    ["a sole example", (example?: PatentExample) => example?.id === null],
+    ["no recorded example", (example?: PatentExample) => example === undefined],
+  ] as const)("renders structured patent attribution, with %s, in the lens-page fallback", (_kind, hasExample) => {
+    const lensKey = CATALOG_KEYS.find(
+      (key) => LENS_CATALOG[key].source.patentNumber && hasExample(LENS_CATALOG[key].source.example),
+    );
     expect(lensKey).toBeTruthy();
     if (!lensKey) return;
 
@@ -257,8 +264,10 @@ describe("static page renders", () => {
       name: `${lens.source.patentNumber} in Espacenet (opens in a new tab)`,
     });
     expect(patentLink.getAttribute("href")).toBe(espacenetPatentUrl(lens.source.patentNumber ?? ""));
-    expect(patentLink.closest("p")?.textContent).toContain(lens.source.patentNumber);
+    expect(patentLink.closest("p")?.textContent?.replace("↗", "")).toBe(displaySubtitle);
     for (const author of lens.source.authors ?? []) expect(patentLink.closest("p")?.textContent).toContain(author);
+    const example = lens.source.example;
+    if (example) expect(displaySubtitle).toContain(example.id === null ? ", sole example" : `, ${example.label}`);
     if (lens.subtitle && lens.subtitle !== displaySubtitle) expect(screen.queryByText(lens.subtitle)).toBeNull();
   });
 
@@ -323,6 +332,25 @@ describe("static page renders", () => {
     /* The page has no diagram: a converter is only ever drawn mounted on a lens. */
     expect(document.querySelector("svg")).toBeNull();
     expect(screen.queryByText(/Hidden test model/)).toBeNull();
+    cleanup();
+
+    /* The patent line names the converter's transcribed example after the number. */
+    const withExample = ALL_TELECONVERTER_SUMMARY_LIST.find(
+      (summary) => summary.patentNumber && summary.patentExample,
+    )!;
+    const { patentNumber, patentExample } = withExample;
+    renderRoutes(
+      `/teleconverters/${withExample.key}/`,
+      <Routes>
+        <Route path="/teleconverters/:teleconverterKey" element={<TeleconverterPage />} />
+      </Routes>,
+    );
+    const patentLine = screen
+      .getByRole("link", { name: `${patentNumber} in Espacenet (opens in a new tab)` })
+      .closest("p");
+    expect(patentLine?.textContent).toContain(
+      `${patentNumber}↗, ${patentExample?.id === null ? "sole example" : patentExample?.label}`,
+    );
     cleanup();
 
     /* A hidden test model has no listing, but its page still resolves from a hand-typed URL and says what it is. */

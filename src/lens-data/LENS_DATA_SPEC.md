@@ -163,7 +163,7 @@ export default LENS_DATA;
 | `key` | `string` | required | Unique identifier and catalog key, e.g. `"nokton-50f1"`. Lowercase `a-z`/`0-9` words separated by single hyphens, with no periods or other punctuation: the key becomes the `/lens/` URL and the `cfg` query value, so write f-numbers like `f14` or `f35-56`. |
 | `maker` | `string \| null` | inferred | Canonical maker-page name (`"Nikon"`, `"Voigtländer"`), used for maker pages and SEO. Left out, it is inferred from `name` by prefix matching. `null` records an unconfirmed maker: the lens goes to the Unattributed category and the SEO manufacturer claim is omitted. |
 | `name` | `string` | required | Display name, following the convention below. |
-| `subtitle` | `string` | | Compact patent / example / design-correlation context. The UI header uses it when structured patent metadata is unavailable, and several corpus reports read it for source matching. |
+| `subtitle` | `string` | | Compact patent / design-correlation context. The UI header uses it when structured patent metadata is unavailable, and several corpus reports read it for source matching. The transcribed example's home is `source.example`; a subtitle that names an example must name the same one, and a sole example's subtitle may cite its table but not number the example (corpus sweep). |
 | `visible` | `boolean` | `true` | `false` hides the lens from the catalog without removing its file. |
 | `publishedAt` | `string` | Git-derived | Explicit UTC ISO timestamp (`YYYY-MM-DDTHH:mm:ssZ`) for a newly published replacement model. It overrides inherited file publication history in recent lenses, feeds and SEO; last-modified stays Git-derived but cannot precede publication. Omit for ordinary additions and routine corrections. |
 
@@ -259,6 +259,7 @@ catalog: {
 | Field | Type | Description |
 | --- | --- | --- |
 | `patentNumber` | `string` | The publication or grant transcribed, with jurisdiction and kind code when the source prints them, e.g. `"US 10,571,651 B2"`. No example, embodiment, table or figure label. |
+| `example` | `{ label: string; id: string \| null }` | The numerical example of `patentNumber` the file transcribes, e.g. `{ label: "Example 6", id: "6" }`. See [The transcribed example](#the-transcribed-example-sourceexample). Absent means not recorded, never "sole". |
 | `patentYear` | `number` | Year the publication or grant named by `patentNumber` was published or granted. |
 | `authors` | `string[]` | Inventors named by the source, in source order, one complete personal name per entry. `[]` means the source names no individual inventor. |
 | `assignees` | `string[]` | Organizational assignees, or organizational applicants where the jurisdiction publishes applicants. One canonical display name per historical legal entity. `[]` means no organizational attribution is supported. |
@@ -266,12 +267,14 @@ catalog: {
 
 Patent-backed lens files declare `patentNumber`, `authors` and `assignees` together. Synthetic, reference or
 independently measured prescriptions with no patent source leave all three out. These structured fields supplement
-`subtitle`: keep worked-example and design-correlation prose in `subtitle`, not in `patentNumber`. The UI displays
-`patentNumber` followed by the names in `authors`; it uses `subtitle` only when the structured fields are unavailable.
+`subtitle`: keep design-correlation prose in `subtitle`, and the example in `source.example`, not in `patentNumber`.
+The UI displays `patentNumber`, then the example, then the names in `authors` (`US 10,095,009 B2, Example 6 — Hideki
+Sakai`); it uses `subtitle` only when the structured fields are unavailable.
 
 ```ts
 source: {
   patentNumber: "US 10,571,651 B2",
+  example: { label: "Numerical Data 1", id: "1" },
   patentYear: 2020,
   authors: ["Hideki Sakai"],
   assignees: ["Canon Inc."],
@@ -313,6 +316,34 @@ source: {
 - Build metadata generation checks curated historical assignee aliases and legal-form start years derived from the
   corporate-history registry's successor dates, plus a short list of curated overrides. These checks flag impossible
   or non-canonical values for source review; they never infer or rewrite an assignee.
+
+### The transcribed example (`source.example`)
+
+`example` names which numerical example (embodiment, table) of the cited publication the file transcribes, so the
+catalog can be matched against other prescription archives at the level of publication plus example. The lens header
+shows it after the patent number. Teleconverter sources carry the same field.
+
+- `label` is the source's own designation in Title Case with normalized spacing: `"Example 6"`, `"Numerical Example
+  2"`, `"Embodiment 1"`, `"Table I"`, `"Example III"`, `"Example A"`. Keep the source's term (a table stays `"Table
+  I"`, not `"Example 1"`) and its printed numerals (roman stays roman). Write spelled-out ordinals as the term and a
+  number (`"Third Embodiment"` → `"Embodiment 3"`). Use English terms: a native term such as `数値実施例１`,
+  `Zahlenbeispiel` or `Tableau` is translated here and stays verbatim in the analysis's `**Example details:**`.
+- When the source numbers its examples or embodiments and also numbers their tables, the label is the example or
+  embodiment (`"Embodiment 7"` for a Seventh Embodiment printed in TABLE 8). A `"Table N"` label is for a source whose
+  tables are its own designation for several examples.
+- `id` is the comparable token the label gives: Arabic digits, with roman numerals converted (`"Table IV"` → `"4"`),
+  and letters and suffixes uppercase (`"A"`, `"2-1"`, `"1A"`).
+- `{ label: "Sole example", id: null }` means the publication contains exactly one numerical example and gives it no
+  identifier of its own, including when that example's prescription sits in a numbered table (`TABLE 1` beside a
+  table of aberration coefficients). Establish it from the publication itself. A sole example the source does number
+  (`"Example 1"`, `실시예 1`) keeps that number.
+- Record what the publication prints. A project or job-card name ("Example 1" for an unnumbered example) is not the
+  source's designation.
+- `example` requires `patentNumber`. Each `catalog.opticalConfiguration` member and each teleconverter records its
+  own; members of one family may cite different examples.
+- Where one designation cannot name the transcribed data (examples identified only by figure or by claim number, an
+  example of one embodiment whose number another embodiment reuses, or data combined from several examples), leave
+  `example` out and queue the file in `agent_docs/patent-example-queue.md`.
 
 ### Source errata (`source.errata`)
 
@@ -1416,8 +1447,8 @@ Code: `src/optics/prescription/ingestV2.ts` unless noted. Each refusal has a syn
 | The design f-number is on `aperture` or on the stations, not both and not neither | `ingestLensV2` |
 | The stop carries `sd` exactly when its radius is authored | `ingestSurfaces`, with the authority from `stopRadiusAuthority` (`canonical.ts`) |
 
-Ingest copies some records whole and refuses no member inside them: `catalog.opticalConfiguration`, the `source.errata`
-entries, a surface's `diffractive` (and its `terms`) and `interaction` (and its `normal`), `projection`,
+Ingest copies some records whole and refuses no member inside them: `catalog.opticalConfiguration`, `source.example`,
+the `source.errata` entries, a surface's `diffractive` (and its `terms`) and `interaction` (and its `normal`), `projection`,
 `perspectiveControl` (and its `tiltPivot`), `opticalPath` (and its `imagePlane` and `imagePlane.normal`), and the `groups`
 and `doublets` entries. An unknown member in one of them is refused by the file's `satisfies LensDataV2Input` when it is
 type-checked, not by ingest.
@@ -1437,7 +1468,7 @@ Code: `src/optics/prescription/validate/`.
 | Labels unique and not reserved; `R`, `d`, `sd` present; `sd` positive; `innerSd` non-negative and below `sd`; `interaction` enums and normals; `diffractive` only on refracting surfaces; `stopPlacement` only on `STO`; exactly one `STO` | `validateSurfaces` (`schema.ts`) |
 | Element ids unique; `maxSdRatio` ≥ 1; `indexReference`, `apd` and `absorptionCoefficientPerMm` valid; no absorption on folded paths | `validateElements` (`schema.ts`) |
 | Every surface medium names an element, and every element is some surface's medium; asphere terms finite and known | `validateReferences` (`references.ts`) |
-| Patent metadata completeness, publication-number formatting, party-name rules and no inventor repeated as an assignee | `validatePatentMetadata` (`patent.ts`) |
+| Patent metadata completeness, publication-number formatting, party-name rules and no inventor repeated as an assignee; `source.example` is `{ label, id }` with trimmed strings, `id` is what the label gives and `null` exactly for `"Sole example"`, it needs a patent number and does not repeat it | `validatePatentMetadata`, `validatePatentExample` (`patent.ts`) |
 | `source.errata` entries | `validateSourceErrata` (`references.ts`) |
 | Element spans: both ends, in order; internal surfaces only an embedded stop or the folded exceptions | `validateSpans` (`references.ts`) |
 | `groups` and `doublets` name existing surfaces | `validateAnnotations` (`references.ts`) |
@@ -1464,6 +1495,9 @@ Separate from validation, these run over every catalog file in `npm run test`:
 - cross-lens author spelling/name order and assignee spelling, reference fixtures without patent metadata, converter
   publication-number formatting, and the design f-number against `catalog.fNumber.design`
   (`__tests__/src/lens-data/patentMetadata.test.ts`);
+- `source.example` on every patent-backed lens and converter outside the queued list, converter examples through the
+  validator's rule, a subtitle that names an example agreeing with it, and no `**Embodiment analyzed:**`-style row in
+  the analysis of a lens that has one (`patentMetadata.test.ts`);
 - the fixed-iris rule (`__tests__/src/lens-data/zoomApertureModel.test.ts`) and published stations
   (`__tests__/src/lens-data/publishedStations.test.ts`);
 - catalog integrity, the analysis-file structural floor, and production element-render diagnostics: a production lens
