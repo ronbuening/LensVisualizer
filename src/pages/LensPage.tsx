@@ -21,6 +21,7 @@ import {
   deriveMaker,
   lensDisplaySubtitle,
   lensPatentAttribution,
+  patentExampleSuffix,
   SITE_URL,
 } from "../utils/catalog/lensMetadata.js";
 import { breadcrumbJsonLd } from "../utils/seo/structuredData.js";
@@ -109,6 +110,7 @@ export default function LensPage() {
                 {patentAttribution ? (
                   <>
                     <PatentNumberLink patentNumber={patentAttribution.patentNumber} color="#7ec8e3" />
+                    {patentExampleSuffix(patentAttribution.example)}
                     {patentAttribution.authors.length > 0 && ` — ${patentAttribution.authors.join(", ")}`}
                   </>
                 ) : (

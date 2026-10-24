@@ -153,7 +153,12 @@ export function lensJsonLd(lens: CanonicalLens, lensKey: string): Record<string,
 
 /* Re-export comparison metadata (moved to comparison module) for backward compatibility */
 export { comparePageTitle, comparePageDescription, compareCanonicalURL } from "../../comparison/comparisonURLSync.js";
-export { lensDisplaySubtitle, lensPatentAttribution, lensPatentReference } from "./lensPatentMetadata.js";
+export {
+  lensDisplaySubtitle,
+  lensPatentAttribution,
+  lensPatentReference,
+  patentExampleSuffix,
+} from "./lensPatentMetadata.js";
 
 export {
   SITE_NAME,
