@@ -34,11 +34,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * SEMI-DIAMETERS: not printed. Estimated from Fig. 1(a) (wide, infinity) on the 300 dpi sheet raster at 0.1554 mm/px
  * (S1 vertex to image plane, 917 px for 142.484 mm; the S1→S6 span checks within 1 px). Readings against the file:
  * G1 26.1 (26.3), L3 rear 24.9–25.5 (25.9), L4/L5 10.7–11.3 (11.3), L6–L8 7.8 (8.2), L9–L11 8.1–8.7 (8.7),
- * G4 6.4–6.5 (6.05), L15 8.4 and L16/L17 8.9 (8.7). Every rim is within about 6 % of the drawing and was left as is.
- * G4 cannot follow the drawing: at 6.4 mm the L12 rear and L13 front faces meet across their 2.08 mm air gap, and
- * 6.05 mm uses 0.89 of it. Axial bundles at the printed F-numbers and chief rays to 10.815 mm clear every rim at
+ * G4 6.6 (6.3), L15 8.4 and L16/L17 8.9 (8.7). Every other rim is within about 6 % of the drawing and was left as is.
+ * G4 is drawn square-cut at about 6.6 mm, but the L12 rear and L13 front faces meet across their 2.08 mm air gap at
+ * 6.41 mm; it is set to 6.3 mm, which uses 0.966 of the gap (checks.gapSagFrac 0.97). Axial bundles at the printed F-numbers and chief rays to 10.815 mm clear every rim at
  * every station. The drawn rims vignette the corner: at the printed half-field the app's geometric transmission is
- * about 61 / 60 / 52 % at wide / middle / tele, limited by the G4 and G5 rear rims at wide and by G1 at tele.
+ * about 65 / 63 / 55 % at wide / middle / tele, limited by the G4 and G5 rear rims at wide and by G1 at tele.
  *
  * Glass names are nd/νd catalog equivalents that select a dispersion curve; supplier and melt are not established.
  */
@@ -48,7 +48,7 @@ const LENS_DATA = {
   key: "panasonic-lumix-g-vario-100-300mm-f4-56-mega-ois",
   maker: "Panasonic",
   name: "PANASONIC LUMIX G VARIO 100-300mm f/4.0-5.6 MEGA O.I.S.",
-  subtitle: "US 8,451,542 B2, Numerical Example 1 — production correlation",
+  subtitle: "US 8,451,542 B2, Numerical Example 1 — probable production correlation",
   catalog: {
     lensMounts: ["micro-four-thirds"],
     imageFormat: "four-thirds",
@@ -67,9 +67,8 @@ const LENS_DATA = {
       "17 ELEMENTS / 12 GROUPS",
       "DESIGN f = 102.72–290.31 mm",
       "DESIGN F/4.11–5.77",
-      "DESIGN 2ω = 11.9°–4.3°",
       "ALL SPHERICAL",
-      "1 ED ELEMENT (MAKER)",
+      "1 ED ELEMENT",
     ],
   },
   source: {
@@ -462,33 +461,33 @@ const LENS_DATA = {
       label: "20",
       R: 23.2317,
       d: 0.8004,
-      sd: 6.05,
+      sd: 6.3,
       medium: 12,
     },
     {
       label: "21",
       R: 13.1034,
       d: 2.0804,
-      sd: 6.05,
+      sd: 6.3,
     },
     {
       label: "22",
       R: -50.373,
       d: 2.051,
-      sd: 6.05,
+      sd: 6.3,
       medium: 13,
     },
     {
       label: "23",
       R: -17.7424,
       d: 0.8004,
-      sd: 6.05,
+      sd: 6.3,
       medium: 14,
     },
     {
       label: "24",
       R: 32.7327,
-      sd: 6.05,
+      sd: 6.3,
     },
     {
       label: "25",
@@ -1637,6 +1636,7 @@ const LENS_DATA = {
   layout: {
     yScFill: 0.28,
   },
+  checks: { gapSagFrac: 0.97 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

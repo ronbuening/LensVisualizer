@@ -24,8 +24,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * SEMI-DIAMETERS: estimated from Figure 41 (PDF page 61, wide end) and exact real-ray checks; the patent
  * prints no effective diameters. G1 carries 48 mm (figure about 46-47 mm; 96 mm against Sigma's 105 mm
- * filter). G3b tapers to 14.17 / 14.3 mm at surfaces 17 / 18, where the two concave faces would meet at
- * the drawn 16 mm. Cemented surface 44 is 15.4 mm to pass the full-field bundle. G6 follows the smaller
+ * filter). L6 is 23.8 mm, the step Figure 41 draws below the 27 mm L4/L5 doublet (surface 8 already
+ * limits that bundle, so vignetting is unchanged). G3b tapers to 14.17 / 14.3 mm at surfaces 17 / 18,
+ * where the two concave faces would meet at the drawn 16 mm. Cemented surface 44 is 15.4 mm to pass the full-field bundle. G6 follows the smaller
  * step that Figure 41 and Sigma's diagram both draw below G5 and G7: L21 12.2 mm, L22 11.8 mm (figure
  * readings), against axial-beam needs of 9.08 / 8.58 mm. The on-axis beam and the full-field chief ray
  * pass at every station; off-axis vignetting at the front group and at G6 is real and stays visible.
@@ -42,7 +43,7 @@ const LENS_DATA = {
   key: "sigma-60-600mm-f45-63-dg-dn-os-sports",
   maker: "Sigma",
   name: "SIGMA 60-600mm f/4.5-6.3 DG DN OS | Sports",
-  subtitle: "JP 2023-180574 A, Numerical Example 5; construction correlation",
+  subtitle: "JP 2023-180574 A, Numerical Example 5 — probable production correlation",
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],
     imageFormat: "135-full-frame",
@@ -51,7 +52,7 @@ const LENS_DATA = {
       "DESIGN f = 62.00–580.00 mm",
       "DESIGN F/4.64–6.50",
       "ALL SPHERICAL",
-      "2 FLD + 3 SLD (INFERRED)",
+      "2 FLD + 3 SLD ELEMENTS",
     ],
     elementCount: 27,
     groupCount: 19,
@@ -459,8 +460,8 @@ const LENS_DATA = {
     { label: "6", R: 129.3746, d: 4.8627, sd: 27, medium: 4 },
     { label: "7", R: -407.0541, d: 1.5, sd: 27, medium: 5 },
     { label: "8", R: 58.6936, d: 5.1655, sd: 22 },
-    { label: "9", R: -770.1059, d: 1.5, sd: 26, medium: 6 },
-    { label: "10", R: 174.0071, sd: 26 },
+    { label: "9", R: -770.1059, d: 1.5, sd: 23.8, medium: 6 },
+    { label: "10", R: 174.0071, sd: 23.8 },
     { label: "11", R: 499.2646, d: 6.578, sd: 17.6, medium: 7 },
     { label: "12", R: -34.1285, d: 1.05, sd: 17.6, medium: 8 },
     { label: "13", R: -51.7326, d: 0.6, sd: 17.6 },

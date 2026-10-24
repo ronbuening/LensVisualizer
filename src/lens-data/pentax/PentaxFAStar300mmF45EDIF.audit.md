@@ -99,3 +99,42 @@ Open:
 - The intermediate focus law, and the choice of the pair-only branch over the whole-group branch, are inferences
   (the retail [IF] name fits either).
 - Visibility and screenshot review are left to the coordinator.
+
+## 2026-10-24 — Semi-diameter pass against the patent figure
+
+This was an independent re-measurement of FIG. 5 (`patents/US4812026.pdf`, PDF p. 4, sheet 3). The figure is the native
+300 ppi CCITT raster (2320 × 3408 px). Rim heights came from the horizontal flat rim lines found by a row-run scan;
+each height is half the distance between the centres of the top and bottom flats, so the 2–4 px axis drift cancels.
+
+Scale: vertex crossings were read 17 px above the axis at r1 x = 675.5 and r16 x = 1709. That is 1033.5 px over
+142.92 mm, or 7.231 px/mm. The r1–r12 span gives 638.5 px / 88.56 mm = 7.21 px/mm, and r9–r16 gives
+529 px / 72.84 mm = 7.26 px/mm. A value of 7.23 px/mm (0.1383 mm/px) was used, the same as the earlier pass to
+within 0.1 %. Only r4 and r5 depart (7.03 and 7.10 px/mm at their crossings); this is drawing tolerance on two
+weak faces.
+
+| Surfaces | Element | Stored (mm) | FIG. 5 (mm) | Stored / figure | Decision |
+| --- | --- | --- | --- | --- | --- |
+| r1, r2 | L1 | 33.5 | 36.75 (flats y 707 / 1238.5) | 0.91 | kept; Ø67 filter-thread cap (hard limit) |
+| r3, r4 | L2 | 30.5 | 33.45 (731.5 / 1215.5) | 0.91 | kept; L2/L1 = 0.91 as drawn and as in the Ricoh section (0.90) |
+| r5 | L3 front flat | 26.75 | 26.76 (780.5 / 1167.5) | 1.00 | kept |
+| r6 | L3 chamfer end | 24.6 | 24.4 (chamfer ends at y 797.5) | 1.01 | kept (noise) |
+| r7, r8 | L4 | 24.6 | 24.9 (794 / 1154.5) | 0.99 | kept; the earlier 0.8 mm edge reason still holds |
+| r9, r10 | L5 / L6 | 18.5 | 19.0 (838.5 / 1113.5) | 0.97 | kept (noise, edge limit) |
+| r11 | L6 chamfer end | 17.29 | 16.6 (chamfer ends at y 856) | 1.04 | kept (noise) |
+| r12–r14 | L7 / L8 | 14.2 | 14.24 (875.5 / 1081.5) | 1.00 | kept |
+| r15, r16 | L9 | 20.25 | 20.26 (831.5 / 1124.5) | 1.00 | kept |
+
+No surface departs from the figure by more than 4 % apart from the deliberately capped front pair, so no value
+changed. L3–L9 keep the absolute FIG. 5 heights, because the figure's scale comes from its axial vertex spacing and
+the f/4.5 stop radius (12.374 mm) is fixed by the prescription. Shrinking them by L1's 0.91 cap factor would
+misstate the rear groups. L2 sits 8.8 % under its drawn height. That is the one figure departure kept on purpose: it
+holds the L1 > L2 ordering and ratio that both FIG. 5 and the maker section show.
+
+Clearance, unchanged from the previous section: `clearap.mjs` with Y = 21.6 mm at keyframes 0, 5 and 10 shows no
+axial clip and no blocked chief ray. The smallest axial margins are r1 0.16 mm, r3 0.80 mm and r12 2.51 mm. The
+4.1° corner bundle is cut 26–55 % on one side by L1–L5, the real mechanical vignetting. The engine reports half-field
+4.1°, tracing half-field 6.73°, FOPEN 4.5, stop radius 12.374 mm and corner transmission 80.2 % at 4.1°.
+`audit:surface` printed no validation errors, `audit:image-circle` found 0 undersized surfaces, and
+`audit:field-coverage` gives 21.59 of 21.65 mm at 4.1° with a clear corner. Screenshots of the local page at infinity
+and at 2.06 m match FIG. 5's silhouette: L3 and the L5/L6 doublet keep their chamfered rear rims, L7/L8 is square, and
+L9 is a square-cut meniscus. Only the deliberately smaller front pair differs.

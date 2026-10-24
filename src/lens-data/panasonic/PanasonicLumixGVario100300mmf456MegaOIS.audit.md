@@ -149,3 +149,94 @@ focus are unchanged, and the axial bundle and chief ray clear every rim.
 - **O.I.S.** The decentred G4 state (0.454 mm at tele for 0.3°, Table 1) is not modelled.
 - **Construction diagram.** No manufacturer construction drawing was compared in this pass.
 - **Glass.** The glass names are catalog equivalents. The production supplier is not established.
+
+## 2026-10-24 — Semi-diameter pass against the patent figure
+
+An independent re-measurement of Fig. 1 on PDF page 2 (sheet 1 of 13) of `patents/US8451542B2.pdf`. The sheet is a
+2560 × 3300 px, 300 dpi CCITT raster. Readings were taken with `figprofile.mjs` at native resolution, and the G4 rim
+was checked by eye on 1200 and 2400 dpi renders. Panel (a) (wide, infinity) governs. Panel (c) (tele) was used as a
+cross-check.
+
+**Scale.** The panel (a) axis is the 1205–1209 px ink band, centred near y = 1207. Vertex crossings within 12 px of
+the axis put S1 at x = 1040, S6 at 1338, S13 at 1452, S20 at 1725, S30 at 1858 and the image plane at 1958. These
+match the wide prescription to 1 px at 0.1554 mm/px (S1 to image, 142.484 mm over 917 px). The S1 → S30 span
+(127.064 mm over 818 px) gives 0.1553 mm/px. Panel (c) is drawn at the same scale: S1 at 662 and the image at 1958 px
+span the 200.835 mm tele track, which gives 0.1550 mm/px.
+
+**Rims.** Readings are outer-ink heights on the lower side of (a), with the upper side and panel (c) used where the
+d5/d8/d19/d24 leaders interfere. The figure column subtracts about 1 px of line half-width.
+
+| Surfaces | Element(s) | sd (file) | Figure (a) px → mm         | Panel (c) mm | Ratio file/figure | Decision |
+| -------- | ---------- | --------: | -------------------------- | ------------ | ----------------- | -------- |
+| 1–2      | L1         |      26.3 | 169–170 → 26.2             | 25.8         | 1.00              | kept     |
+| 3–4      | L2         |      25.9 | 165 → 25.5                 | 25.4         | 1.02              | kept     |
+| 5        | L3 rear    |      25.9 | 161 → 24.9                 | 24.8         | 1.04              | kept     |
+| 6–7      | L4         |      11.3 | 74 → 11.3                  | 11.2         | 1.00              | kept     |
+| 8        | L5 rear    |      11.3 | 70–71 → 10.8               | 10.8         | 1.05              | kept     |
+| 9–13     | L6–L8      |       8.2 | 50–52 → 7.9                | 7.8          | 1.04              | kept     |
+| 15–16    | L9         |       8.7 | 56–57 → 8.7                | 8.8          | 1.00              | kept     |
+| 17–19    | L10+L11    |       8.7 | 53–55 → 8.3                | 8.4          | 1.05              | kept     |
+| 20–24    | L12–L14    |      6.05 | 42.6 / 42.9 line centre → 6.64 | 6.6      | 0.91              | kept; see below |
+| 25–26    | L15        |       8.7 | 53–55 → 8.2                | 8.3          | 1.06              | kept     |
+| 27–28    | L16        |       8.7 | 55 → 8.4                   | 8.7          | 1.03              | kept     |
+| 29–30    | L17        |       8.7 | 58 → 8.9                   | 9.1          | 0.98              | kept     |
+
+Every rim except G4 is within 6 % of the drawing, so no value changed. The earlier same-day rim check reached the
+same conclusion for these elements.
+
+**G4.** The drawing gives G4 one square-cut rim height for all three elements. A continuous bottom edge runs from the
+L12 rim to the L14 rim, with a short bridge where the L12 rear face and the L13 front face meet. Measured to the line
+centres of the top and bottom rim lines, G4 is 6.64 mm in panel (a) and about 6.6 mm in panel (c). The file's
+6.05 mm is 9 % below the drawing. The earlier check had read 6.4–6.5 mm from the outer ink on one side only.
+
+The physical ceiling is lower than the drawing. The S21 (R 13.1034) and S22 (R −50.373) sags add up to the full
+2.0804 mm air space at 6.41 mm. The combined sag is 1.943 mm at 6.2 mm (0.934 of the gap), 2.009 mm at 6.3 mm
+(0.966) and 2.0775 mm at 6.4 mm (0.9986). At the default `gapSagFrac` of 0.90, the validator refuses every value from
+6.2 mm up. It does so only on this pair, and only at the tele-end stations it lists. No other gap or edge check binds:
+the D24 gap narrows to 1.07 mm at tele but opens outward.
+
+The rays support a higher rim. With the rims stored now, G4 is the corner-vignetting limit at wide. The unvignetted
+full-field bundle reaches 7.8–8.4 mm on S20–S24, and the axial marginal ray reaches 5.27 mm at S20. Engine
+transmission at the edge of the field rises with G4:
+
+| G4 rim  | Wide, 6.0° | Middle, 3.5° | Tele, 2.1° |
+| ------- | ---------: | -----------: | ---------: |
+| 6.05 mm |     60.4 % |       59.9 % |     52.6 % |
+| 6.3 mm  |     64.6 % |       63.0 % |     55.2 % |
+| 6.4 mm  |     66.1 % |       64.6 % |     56.3 % |
+
+Two settings were tried on scratch copies that set `checks.gapSagFrac`. G4 at 6.3 mm with 0.97 gives
+"OK — no validation errors" in the surface validator. G4 at 6.4 mm with 1.00 also passes, but leaves only 3 µm at the
+rim. Neither setting makes any surface clip the axial beam or block the chief ray.
+
+This pass may change only `sd` values, so it left the 6.05 mm rim in place. The coordinator can choose between two
+options, both applied to S20–S24:
+
+- **6.3 mm with `gapSagFrac` 0.97.** This is the smallest raise that brings G4 within 5 % of the drawing, and 0.97 is
+  the smallest two-decimal value that admits it.
+- **6.4 mm with `gapSagFrac` 1.00.** This is the literal drawn contact.
+
+**Clearance with the stored rims.** Over all 101 stations, `clearap.mjs` finds no clipped axial beam at the printed
+f-numbers and no chief ray blocked to 10.815 mm. `built.mjs` reports a wide-end EFL of 102.717 mm, FOPEN 4.11397, a
+stop radius of 6.80 mm and a 6.51° engine half-field. The image-circle check finds nothing undersized, traced field
+coverage is 100 % at every station, and the surface validator passes.
+
+**Live check.** The local app was viewed at 102.7, 174.2 and 290.3 mm. Focus is infinity-only, so the closest-focus
+view is the same as infinity. At all three focal lengths the rendered silhouette matches Fig. 1 in proportion. G4
+renders a little shorter than the drawing, consistent with the 9 % noted above.
+
+**Maker diagram.** No manufacturer construction drawing has been compared, as the earlier deployment section records.
+The count agrees with Panasonic's 17 elements in 12 groups with one ED element, which is L3, element 3 front to rear.
+There are no aspheres.
+
+**Open limitations.** The G4 rim stays 9 % under the drawing until the coordinator makes a `gapSagFrac` decision.
+The figure cannot settle G4's rim more finely than about 0.15 mm (1 px).
+
+## 2026-10-24 — G4 rim applied with a gap-sag allowance
+
+The semi-diameter pass above recommended its option 1, which is now applied: surfaces 20–24 go from 6.05 to 6.3 mm
+(Fig. 1 draws G4 square-cut at about 6.6 mm). The L12 rear and L13 front faces meet across their 2.08 mm air gap at
+6.41 mm, and at 6.3 mm their combined sag uses 0.966 of the gap, so `checks.gapSagFrac` is set to 0.97, the smallest
+two-decimal value that admits the rim. The surface validator passes, no axial bundle or chief ray clips at any station,
+and edge transmission at the printed half-field rises from about 60 / 60 / 53 % to 65 / 63 / 55 % at wide / middle /
+tele.

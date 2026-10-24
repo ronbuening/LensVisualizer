@@ -262,7 +262,7 @@ None. All 38 refracting surfaces of Example 2 are spherical.
 ## Model Scope and Limitations
 
 - The prescription, published spacings and design f-numbers are literal. The intermediate zoom and focus positions, the iris radius and all clear radii are derived.
-- **Clear radii.** They are inferred from the Figure 8 proportions and Sigma's diagram. The front element is set at 47 mm. Positive elements keep edges of at least about 0.5 mm, with real off-axis vignetting retained.
+- **Clear radii.** They are measured from Figure 8, which is drawn to scale: the vertex spacings, the drawn stop and the rim sags all agree with the prescription. The front element is 43.5 mm. Where the figure draws a flat mounting flange outside a concave face, the radius stops where the curve ends. Two of those faces (S22 behind the stop and S27 in G6) sit right at the on-axis beam of the design f-number. The off-axis vignetting this produces is kept as drawn.
 - **Mislabelled spacing rows.** The source's d28/d35 labels are read as d24/d33. Nothing else in Example 2 supports another reading.
 
 ## Sources

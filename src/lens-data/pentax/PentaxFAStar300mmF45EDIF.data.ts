@@ -27,7 +27,7 @@ const LENS_DATA = {
   key: "pentax-fa-star-300mm-f45-ed-if",
   maker: "Pentax",
   name: "PENTAX SMC FA* 300mm f/4.5 ED [IF]",
-  subtitle: "US 4,812,026 Example 2 — Asahi Kogaku / Mitsunori Iima",
+  subtitle: "US 4,812,026 A, Example 2 — probable production correlation",
   catalog: {
     lensMounts: ["pentax-k"],
     imageFormat: "135-full-frame",
@@ -43,12 +43,11 @@ const LENS_DATA = {
     },
     specs: [
       "9 ELEMENTS / 7 GROUPS",
-      "f = 300.06 mm (patent ×3)",
-      "F/4.5",
-      "2ω = 8.2°",
+      "DESIGN f = 300.06 mm",
+      "DESIGN F/4.5",
+      "ALL SPHERICAL",
       "3 ED ELEMENTS",
-      "ALL-SPHERICAL",
-      "INNER FOCUS (CEMENTED L7/L8)",
+      "INNER FOCUS",
     ],
   },
   source: {
@@ -67,7 +66,8 @@ const LENS_DATA = {
       vd: 81.6,
       glass: "FCD1 (HOYA) / S-FPL51 class ED",
       apd: "inferred",
-      apdNote: "ED fluorophosphate class; the patent lists nd/νd only, so partial dispersion comes from the catalog glass.",
+      apdNote:
+        "ED fluorophosphate class; the patent lists nd/νd only, so partial dispersion comes from the catalog glass.",
       focalLengthMm: 114.81,
       role: "Front ED collector with a near-flat rear face; with L2 it carries the first group's convergence (f1,2/f = 0.280).",
     },
@@ -80,7 +80,8 @@ const LENS_DATA = {
       vd: 81.6,
       glass: "FCD1 (HOYA) / S-FPL51 class ED",
       apd: "inferred",
-      apdNote: "ED fluorophosphate class; the patent lists nd/νd only, so partial dispersion comes from the catalog glass.",
+      apdNote:
+        "ED fluorophosphate class; the patent lists nd/νd only, so partial dispersion comes from the catalog glass.",
       focalLengthMm: 282.73,
       role: "Second ED meniscus, convex to the object; splits the front power with L1 to hold spherical aberration at f/4.5.",
     },
@@ -104,7 +105,8 @@ const LENS_DATA = {
       vd: 81.6,
       glass: "FCD1 (HOYA) / S-FPL51 class ED",
       apd: "inferred",
-      apdNote: "ED fluorophosphate class; the patent lists nd/νd only, so partial dispersion comes from the catalog glass.",
+      apdNote:
+        "ED fluorophosphate class; the patent lists nd/νd only, so partial dispersion comes from the catalog glass.",
       focalLengthMm: 68.76,
       role: "Third ED positive, nested 0.66 mm behind L3; closes the first group (f1–4/f = 0.502) with a near-flat rear face.",
     },
@@ -218,10 +220,6 @@ const LENS_DATA = {
     nominalFNumber: 4.5,
     fStops: [4.5, 5.6, 8, 11, 16, 22, 32],
     maxFNumber: 32,
-  },
-  projection: {
-    kind: "rectilinear",
-    fullFieldDeg: 8.2,
   },
   layout: {
     scFill: 0.65,

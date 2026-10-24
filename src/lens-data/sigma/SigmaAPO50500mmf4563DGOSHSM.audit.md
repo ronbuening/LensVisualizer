@@ -116,3 +116,78 @@ and G5 (13.16 mm). The silhouette was also checked against Sigma's construction 
 - The decentred-OIS state of G3b is not modelled.
 - The production minimum focus (0.5–1.8 m) is closer than the patent's tabulated near states (2.24–19.0 m). No source
   gives the extra G7 travel, so focus stops at the patent's near state.
+
+## 2026-10-24 — Semi-diameter pass against the patent figure
+
+### Source and scale
+
+- Figure 8 (PDF page 13, printed page 12) is Example 2 at the wide end. Its companion Figure 9 prints F = 4.57 and
+  2ω = 46.37°, Example 2's wide-end values (¶0034). The figure draws 22 elements in 16 groups, matching the file.
+- The figure was measured at its native 300 dpi. The optical axis runs vertically at page x = 717.5 px; the drawing
+  has no dash-dot axis, so the centre was taken from element symmetry. Vertex crossings along the axis put S1 at
+  y = 399 and S39 at y = 1378: 979 px for the 206.359 mm wide-end track, giving 0.2108 mm/px. All 39 predicted
+  vertex rows fall within 1 px of the drawn crossings.
+- The radial scale was checked two ways. The drawn stop ticks end at 10.4 mm, against the engine's 10.49 mm stop
+  radius. Every rim also lands on the row its sag predicts at the measured height. For example, L2's S3 should meet
+  its edge 38 px below the vertex at 42.6 mm and is drawn at 38–39 px. A 10 % radial error would move that by
+  about 7 px.
+- Figure 8 is a CAD-style section. Concave faces end inside a square mounting flange (L1 rear, L3 rear, L4, L6, L12
+  front, L14 front, L15 front, L20 rear, L21 front). Those faces were measured where the curve meets the flange.
+
+### Before and after
+
+| Surfaces | Element | Before | After | Figure (mm) | Evidence |
+| --- | --- | ---: | ---: | ---: | --- |
+| S1 / S2 | L1 | 47 / 47 | 43.5 / 40.6 | 43.5 / 40.6 (flange 43.5) | Figure; stored was 8 % / 16 % over |
+| S3 / S4 | L2 | 46.5 | 42.7 | 42.7 | Figure; edge 2.7 mm |
+| S5 / S6 | L3 | 45 / 45 | 41.2 / 36.8 | 41.2 / 36.8 (flange 41.2) | Figure; S6 axial floor 36.09 |
+| S7 / S8 | L4 | 28.752 | 26.2 / 22.2 | 26.2 (box) / 22.2 (curve end) | Figure; S8 chief at the corner 20.63 |
+| S9 / S10 | L5 | 20 | 17.2 | 17.2 | Figure; edge 1.5 mm, as drawn |
+| S11 / S12 | L6 | 17.878 | 13.2 / 12.1 | 13.2 / 12.1 (box 14.3) | Figure; S12 axial floor 11.74 |
+| S13–S15 | L7/L8 | 15.3 | 13.3 | 13.3 | Figure; square-cut doublet |
+| S16 / S17 | L9 | 15.915 | 13.8 | 13.8 | Figure; edge 1.9 mm, as drawn |
+| S18–S20 | L10/L11 | 14.8 | 13.3 | 13.3 | Figure |
+| S22 | L12 | 13.159 | 10.4 | 10.3 (box 12.0) | Floor: axial 10.32 at the design f-number |
+| S23 / S24 | L12/L13 | 13.159 | 12.0 | 12.0 | Figure |
+| S25 / S26 | L14 | 15.5 | 11.9 / 13.2 | 11.85 / 13.2 (box 13.2) | Figure; S25 axial floor 11.77 |
+| S27 / S28 | L15 | 15.5 | 12.2 / 13.3 | 12.1 / 13.3 (box 13.3) | S27 axial floor 12.18 sets the value |
+| S29 / S30 | L16 | 15.4 | 13.4 | 13.4 | Figure; edge 1.3 mm, as drawn |
+| S31–S33 | L17/L18 | 14.2 | 13.0 | 13.0 | Figure; square-cut doublet |
+| S34 / S35 | L19/L20 | 11.7841 | 11.7841 | 11.8 | Kept; matches the figure |
+| S36 | L20 | 11.7841 | 9.6 | 9.6 (box 11.8) | Figure; axial 7.51, corner chief 7.34 |
+| S37 | L21 | 15 | 11.0 | 11.0 (box 13.0) | Figure; corner chief 7.79 |
+| S38 / S39 | L21/L22 | 15 | 13.0 | 13.0 | Figure |
+
+- Measurement repeatability is about 1 px: 0.5 % on G1 and 1.6 % on the 13 mm rear rims. The same-day pass read
+  G2 at 28.75 mm and G5 at 13.16 mm. This pass reads 26.2 mm and 12.0 mm. Every stored rim except L19/L20 sat
+  8–16 % above the drawing, so the whole set was moved to keep the proportions consistent.
+- The stop is unchanged and still derived from the f-numbers.
+- Sigma's construction diagram agrees with these proportions, taking its axial scale for both directions. L4/L1 is
+  0.61 there and 0.60 here, L5/L1 is 0.39 and 0.40, L9/L1 is 0.33 and 0.32, and the last doublet over L1 is 0.30 in
+  both. The diagram also draws L4's concave rear stepping in before the rim. The earlier comparison found the same
+  group sequence and the four SLD positions L2, L3, L9 and L14.
+
+### Clearance and engine results
+
+- The surface validator reports no errors with the new values, and the image-circle check finds no undersized rim.
+- An exact real-ray trace at Y = 21.63 mm and the design F/4.57–6.47 covers all 65 stations at all five focus
+  keyframes. It shows no axial clip and no blocked corner chief ray. The tightest margins are S27 (12.2 against
+  12.18), S22 (10.4 against 10.32) and S25 (11.9 against 11.77).
+- Field coverage reaches the 21.63 mm corner at all 65 stations, as before. The design f-numbers and the
+  10.49 mm stop are unchanged.
+- The engine half-field at the wide end falls from 28.33° to 23.20°. The patent's 23.185° half-field
+  (2ω = 46.37°) still fits. S8 now sets the limit; at 22.6 mm it would give 23.57°. S8 was left at the drawn
+  22.2 mm because the trace shows no clip.
+- Off-axis vignetting increases, and this is what the figure's rims produce. Geometric transmission at the wide
+  corner (23.2°) drops from 82 % to 38 %. At 485 mm, transmission at 2.5° drops from 62 % to 41 %.
+
+### Live check
+
+- The local page was viewed at 51.5 mm (infinity and closest focus), 159.6 mm and 485 mm. G1 now reads about 1.65 times
+  G2's height and about 3.3 times the rear groups, as in Figure 8. The flanged faces show as tapered rims, because the
+  renderer does not draw the flat flange.
+
+### Limitations
+
+- S22, S25 and S27 sit within 1 % of the on-axis beam at the station where the iris is largest (10.63 mm). Any
+  future change to the stop schedule or the design f-numbers has to re-check these three faces.

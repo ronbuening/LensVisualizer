@@ -29,10 +29,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    inverse object distance.                                        ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    The patent lists none. Rims follow the scaled section in the    ║
- * ║    Olympus Zuiko lens manual (110 mm barrel, 103.6 mm front bore,  ║
- * ║    100 mm filter), held at or above the f/6.5 axial beam. Corner   ║
- * ║    vignetting is drawn and kept.                                   ║
+ * ║    The patent lists none. Front-group rims follow the scaled       ║
+ * ║    section in the Olympus Zuiko lens manual (110 mm barrel,        ║
+ * ║    103.6 mm front bore, 100 mm filter), held at or above the f/6.5 ║
+ * ║    axial beam. Fig. 1 draws the F6 design about 13 % larger (L1    ║
+ * ║    ≈ 53 mm, past the front bore) in the same front-group           ║
+ * ║    proportions. The rear doublet follows Fig. 1's proportion to L1 ║
+ * ║    (0.44, about 20.8 mm); the manual draws it smaller (≈ 17 mm).   ║
+ * ║    Floor-checked by real-ray trace; corner vignetting is kept.     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -41,12 +45,12 @@ const LENS_DATA = {
   key: "olympus-zuiko-600mm-f65",
   maker: "Olympus",
   name: "OLYMPUS ZUIKO AUTO-T 600mm f/6.5",
-  subtitle: "US 3,827,781 Example — Olympus / Yoshitsugi Ikeda",
+  subtitle: "US 3,827,781 A, sole example — probable production correlation",
 
   catalog: {
     lensMounts: ["olympus-om"],
     imageFormat: "135-full-frame",
-    specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 600.0 mm", "F/6.5 (PATENT F/6)", "2ω = 4°", "ALL-SPHERICAL"],
+    specs: ["6 ELEMENTS / 4 GROUPS", "DESIGN f = 600.0 mm", "DESIGN F/6 (SOLD AS F/6.5)", "ALL SPHERICAL"],
     elementCount: 6,
     groupCount: 4,
     focalLengthMm: { marketing: 600, design: 600 },
@@ -148,9 +152,9 @@ const LENS_DATA = {
     { label: "6", R: -325.746, d: 5.01, sd: 42.0, medium: 4 },
     { label: "7", R: 369.402, d: 100.929, sd: 42.0 },
     { label: "STO", R: "flat", d: 100.929 }, // inferred: midpoint of patent d7 (33.643 × 6)
-    { label: "8", R: -73.644, d: 3.504, sd: 17.0, medium: 5 },
-    { label: "9", R: 257.472, d: 6.012, sd: 17.0, medium: 6 },
-    { label: "10", R: -144.228, sd: 17.0 },
+    { label: "8", R: -73.644, d: 3.504, sd: 20.8, medium: 5 },
+    { label: "9", R: 257.472, d: 6.012, sd: 20.8, medium: 6 },
+    { label: "10", R: -144.228, sd: 20.8 },
   ],
 
   focus: {
@@ -173,8 +177,6 @@ const LENS_DATA = {
     fStops: [6.5, 8, 11, 16, 22, 32],
     maxFNumber: 32,
   },
-
-  projection: { kind: "rectilinear", fullFieldDeg: 4 },
 
   layout: { scFill: 0.65, yScFill: 0.3 },
 

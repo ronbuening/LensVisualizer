@@ -80,7 +80,7 @@ const LENS_DATA = {
       vd: 28.66,
       indexReference: "d",
       focalLengthMm: -254.8516,
-      glass: "Unmatched (728/287 SF10-class dense flint; nearest catalog SF10 differs by 0.25 in νd)",
+      glass: "FDS2 (Hoya; coordinate-equivalent dense flint, 1964 melt vendor not stated)",
       apd: false,
       cemented: "D1",
       role: "First diverging lens; dense-flint partner that achromatizes L1 in the cemented front doublet.",

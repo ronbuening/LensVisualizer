@@ -93,5 +93,64 @@ The three new labels resolve to the named catalog rows. None of them asserts the
 
 ### Follow-ups
 
-- L2 and L4 have no catalog glass and stay on the Abbe-number fallback.
+- L4 has no catalog glass and stays on the Abbe-number fallback. L2 was closed by the glass pass below (FDS2).
 - The 8.5 m close focus comes from collector sources only. Replace it if a Voigtländer specification sheet turns up.
+
+## 2026-10-24 — Semi-diameter pass against the patent figure
+
+An independent re-measurement of the intake-audit rims against Figure 2 (Example 1) on sheet 2 (PDF page 2) of
+`patents/US3388956A.pdf`. The figure is a native 300 dpi CCITT raster, with the optical axis vertical and the object at
+the bottom. It was profiled at native resolution on both sides of the dash-dot axis (page column 718).
+
+### Scale
+
+The vertex crossings beside the axis put the L1 front vertex at page row 2501 and the L5 rear vertex at row 1310.
+That span is 1191 px for 141.142 mm, or 0.1185 mm/px. The doublet's axial thickness gives a second span: 145 px for
+17.242 mm, or 0.1189 mm/px. The stop bar (rows 1613–1633) sits 680 px behind L3, as a3V = 80.58 mm predicts. The rear
+elements and their gaps are drawn thicker than true scale, but their positions follow the same scale.
+
+### Measurements
+
+| Surfaces | Stored sd | Right side | Left side | Figure sd | Figure/stored |
+|---|---:|---:|---:|---:|---:|
+| 1–3 (D1) | 35.0 | 295 px | 283 px | 34.2 (mean 289 px) | 0.98 |
+| 4–5 (L3) | 32.1 | 271 px | 270 px | 32.1 | 1.00 |
+| 6–7 (L4) | 11.5 | 97 px | 94 px | 11.3 | 0.98 |
+| 8–9 (L5) | 10.5 | 88.5 px | 87 px | 10.4 | 0.99 |
+
+- The cemented doublet is drawn about 6 px off-centre: its right rim is 295 px from the axis and its left rim 283 px.
+  On each side the flat rim run ends where L1's front curve begins (row 2437 on the right, row 2442 on the left), so
+  each reading is self-consistent, and the mean is used. L3, which is symmetric (270/271 px), confirms the axis column.
+- Every element is drawn square-cut, with its front and rear faces at one height, as the file stores them.
+
+### Result
+
+No change. Every element agrees with the figure within 2%, well inside measurement noise, so the intake values
+(35.0 / 32.1 / 11.5 / 10.5 mm) are retained.
+
+Clearance with the retained rims, from an exact meridional trace to Y = 21.63 mm (ω = 6.08°):
+
+- The f/4 axial marginal ray reaches 24.98 mm at S1 and 7.28 mm at S6, and the full-field chief ray 8.15 mm at S9.
+  Neither is clipped or blocked at any surface.
+- Engine half-field is 7.84° and the f-number is 4.00, with a stop radius of 10.86 mm.
+- Geometric transmission is 100 / 98.4 / 85.9 / 64.6 / 43.8% at 0 / 2 / 4.1 / 5.1 / 6.1°.
+- Field coverage reaches 100% of the 21.65 mm corner.
+- The image-circle floor and surface validation both pass.
+
+The live render at infinity matches Figure 2: a wide front doublet, a slightly smaller L3, and a small rear group in
+which L4 is a little larger than L5. There is no focus travel, so the close-focus view is identical.
+
+### Open limitations
+
+- Figure 2's diaphragm bar has an inner edge about 105 px (≈12.4 mm) from the axis. The engine derives 10.86 mm from
+  f/4. The stop was not changed in this pass.
+- No maker section drawing is available (see the intake audit's correlation notes).
+
+## 2026-10-24 — Glass coverage pass
+
+- L2 (1.72830 / 28.66) matches the discontinued HOYA FDS2 (1.72830 / 28.674, Δνd 0.014) in HOYA's 2026-07-07 AGF
+  including obsolete glasses. FDS2 was added to the glass catalog from that vendor formula-1 row (code 728287, no
+  duplicate code), and L2 is relabelled `FDS2 (Hoya; coordinate-equivalent dense flint, 1964 melt vendor not
+  stated)`. A corpus resolution dump before and after the catalog addition changes only this element.
+- L4 (1.75787 / 31.56) still has no vendor row within 10⁻⁴ in nd in the local HOYA, OHARA and Sumita catalogs; the
+  nearest are LAFN12 / NBFD9 at 1.75690. It keeps its `Unmatched (…)` label.

@@ -69,7 +69,7 @@ puts the front converging lens at 1.5–3 times the system power.
 
 ### L2 — Negative Meniscus (rear component of D1)
 
-nd = 1.72830, νd = 28.66, SF10-class dense flint, f = −254.9 mm in air.
+nd = 1.72830, νd = 28.66, FDS2 (Hoya) coordinate-equivalent dense flint, f = −254.9 mm in air.
 
 L2 is diverging lens II, cemented to L1 at R1′ = R2 = −0.88214 f. Its rear face is nearly flat (R2′ = −18.00073 f).
 The high-index, low-νd flint against L1's crown makes the doublet an achromat. The cemented interface also corrects
@@ -116,14 +116,16 @@ The patent gives `nd` (helium d line) and Abbe numbers only, with no glass names
 | Element | nd | νd | Data-file annotation |
 |---|---:|---:|---|
 | L1 | 1.64250 | 58.09 | LAK6 (Sumita), coordinate-equivalent |
-| L2 | 1.72830 | 28.66 | Unmatched — 728/287 SF10-class dense flint |
+| L2 | 1.72830 | 28.66 | FDS2 (Hoya), coordinate-equivalent |
 | L3 | 1.65446 | 33.79 | SF9 (Hikari), coordinate-equivalent |
 | L4 | 1.75787 | 31.56 | Unmatched — 758/316 dense flint |
 | L5 | 1.65016 | 39.31 | BAFD10 (Hoya), coordinate-equivalent |
 
-L1, L3 and L5 fall within catalog-equivalence tolerance of present catalog glasses (Δnd ≤ 4·10⁻⁶, Δνd ≤ 0.07). L2 has the index of SF10 but an Abbe number 0.25 higher. No
-catalog glass lies within 10⁻⁴ of L4's index. These two keep explicit unmatched annotations, and the engine models
-their dispersion from `nd`/`νd`. None of the labels claims the 1963 melt supplier.
+L1, L2, L3 and L5 fall within catalog-equivalence tolerance of catalog glasses (Δnd ≤ 4·10⁻⁶, Δνd ≤ 0.07). L2 has
+the index of SF10 but an Abbe number 0.25 higher; the discontinued HOYA FDS2 (1.72830 / 28.67) matches it, so the
+engine traces L2 on FDS2's vendor dispersion formula. No catalog glass lies within 10⁻⁴ of L4's index, so L4 keeps an
+explicit unmatched annotation and the engine models its dispersion from `nd`/`νd`. None of the labels claims the 1963
+melt supplier.
 
 The chromatic layout is an achromat in each group. In group A, the crown L1 (νd 58.1) is balanced by the two
 negative flints. In group B, the positive element L4 uses the lower-νd flint (31.6) and the negative L5 the

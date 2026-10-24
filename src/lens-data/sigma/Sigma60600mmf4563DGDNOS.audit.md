@@ -155,3 +155,54 @@ after tables.
 - The zoom path between printed rows is a solved visualization path, not Sigma's cam; intermediate states have no
   published aberration data.
 - Glass names are catalog-coordinate equivalents; Sigma's suppliers and melts are unknown.
+
+## 2026-10-24 — Semi-diameter pass against the patent figure
+
+Independent re-measurement of Figure 41 (PDF page 61, `patents/JP2023180574A.pdf`), the only cross-section the patent
+gives for Example 5. It is a single wide-end panel (movement arrows below; no tele panel is drawn). The page carries a
+299 ppi CCITT raster, so the silhouette was profiled at 300 dpi on the side without brackets for each group (bottom
+for G1–G2 and the rear groups, both sides for G3–G8), with element tops checked on 600 dpi zooms.
+
+Scale: the dash-dot axis is at row 2144.5. The near-axis profile places surface 1 at column 412.5 and surface 47 at
+1687.5 against a 259.687 mm wide-end vertex span, giving 0.2037 mm/px. Two further spans check it: surface 11
+(predicted 813.0, measured 812.5) and surface 39 (predicted 1608.2, measured 1606.5); the FL plate and image plane
+fall at 1848.5 / 1858.5 / 1863.5 against predicted 1848.1 / 1858.4 / 1863.3.
+
+| Element | Surfaces | Stored sd, mm | Figure, mm (top / bottom ink) | Ratio | Decision |
+|---|---|---|---|---|---|
+| L1, L2 | 1–3 | 48 | 46.6 (bottom) | 0.97 | Keep; noise |
+| L3 | 4–5 | 48 | 45.6 (bottom) | 0.95 | Keep; noise |
+| L4/L5 | 6–8 | 27 / 27 / 22 | 26.9 / 27.3 block; surface 8 curve ends at 23.3 | 1.00; 1.06 at 8 | Keep |
+| L6 | 9–10 | 26 | 23.6 / 24.0 | 0.91 | Narrowed to 23.8 |
+| L7/L8 | 11–13 | 17.6 | 17.1 / 17.5 | 0.98 | Keep |
+| L9 | 14–15 | 17.6 | 16.5 / 16.7 | 0.94 | Keep; noise |
+| L10–L12 | 16–20 | 15.7 / 14.17 / 14.3 / 16.3 | 15.7–16.5 | 0.87–1.01 | Keep; surfaces 17/18 cannot rise (faces cross near 16 mm) |
+| L13 | 21–22 | 17.4 | 17.3 / 17.5 | 1.00 | Keep |
+| L14/L15 | 23–25 | 17.4 | 17.1 / 17.3 | 0.99 | Keep |
+| L16 | 27–28 | 17 | 16.3 / 16.5 | 0.96 | Keep |
+| L17–L19 | 29–32 | 15.8 | 15.7 / 15.9 | 1.00 | Keep |
+| L20 | 33–34 | 14.5 | 13.9 / 14.3 | 0.97 | Keep |
+| L21 | 35–36 | 12.2 | 12.0 / 12.2 | 0.99 | Keep (earlier pass confirmed) |
+| L22 | 37–38 | 11.8 | 11.6 / 11.8 | 0.99 | Keep (earlier pass confirmed) |
+| L23 | 39–40 | 14.8 | 13.9 / 14.1 | 0.95 | Keep; noise |
+| L24 | 41–42 | 14.8 | 14.5 / 14.9 | 0.99 | Keep |
+| L25/L26 | 43–45 | 15.2 / 15.4 / 15.2 | 15.5 / 15.9 | 1.03 | Keep |
+| L27 | 46–47 | 15.2 | 15.5 / 15.9 | 1.03 | Keep |
+
+The earlier rim table gave 27.3 mm for all of L4–L6; at 600 dpi the drawing separates them clearly. The L4/L5 doublet
+is a square block at about 27 mm whose concave rear face (surface 8) ends at about 23 mm, and L6 behind it is drawn
+as a separate square-rimmed element about 23.8 mm high, a step the stored 26 mm did not show. L6 (surfaces 9 and 10)
+was narrowed from 26 to 23.8 mm, both faces together.
+
+Clearance after the change: the axial marginal ray needs 15.70 / 15.66 mm at surfaces 9 / 10 and the full-field
+chief ray 20.58 / 20.16 mm (maxima over 201 stations), so both pass with more than 3 mm to spare. The real-ray
+clearance trace (both root strategies) reports no axial clipping or chief-ray blocking; one-side clipping of the
+widest bundle at L6 rises from 13% to 48%, but surface 8 at 22 mm already clips that bundle 80% of one side, so the
+engine's vignetting curve is identical before and after at the wide, 0.3 and tele zoom positions (wide end 46.9%
+transmission at 19.0°). Engine half-field 19.04°, f-number 4.64, stop radius 15.238 mm and EFL 61.9975 mm are
+unchanged. The image-circle floor reports nothing undersized, the traced chief ray reaches the 21.65 mm corner at all
+201 stations, and the surface validator is clean.
+
+Rendered sections at 62, 190.2 and 580 mm (infinity and the duplicated focus=1 keyframe) show the G2 step and the
+smaller G6 that Figure 41 draws. Open limitation: the patent draws only the wide end, so rim heights at the other
+stations are not independently checked against a drawing.
