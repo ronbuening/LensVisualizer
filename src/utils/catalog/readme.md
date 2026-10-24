@@ -21,7 +21,7 @@ flowchart LR
   n_external_src_comparison["src/comparison"]
   n_external_src_optics_teleconverter_ts["src/optics/teleconverter.ts"]
   n_external_src_utils_chunkLoadRetry_ts["src/utils/chunkLoadRetry.ts"]
-  n_src_utils_catalog_TypeScript_modules --> |12| n_external_src_types
+  n_src_utils_catalog_TypeScript_modules --> |13| n_external_src_types
   n_src_utils_catalog_TypeScript_modules --> |7| n_external_src_generated
   n_src_utils_catalog_TypeScript_modules --> |6| n_external_src_optics_buildLens_ts
   n_src_utils_catalog_TypeScript_modules --> |4| n_external_src_utils_seo
@@ -37,7 +37,7 @@ flowchart LR
 
 - Direct source files: 28
 - Direct subfolders: 0
-- Main outbound areas: same folder (58), src/types (12), src/generated (7), src/optics/buildLens.ts (6), src/utils/seo (4), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, +3 more
+- Main outbound areas: same folder (58), src/types (13), src/generated (7), src/optics/buildLens.ts (6), src/utils/seo (4), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, glob:../../lens-data/**/*.teleconverter.ts, +3 more
 - External consumers: src/benchmarks, src/comparison, src/components/content, src/components/controls, src/components/display, src/components/homepage, src/components/hooks, src/components/layout, +35 more
 
 ## Files
@@ -68,7 +68,7 @@ flowchart LR
 | `searchCatalog.ts` | Search Catalog helper module | same folder (8), src/utils/seo | src/components/search (2), same folder, src/components/relationshipMap | LensNameSearchMatch, TeleconverterSearchMatch, PatentSearchMatch, AuthorSearchMatch, CatalogSearchResults, CatalogSearchMatch, normalizeSearchText, normalizeLensSearchText, +3 more |
 | `slugText.ts` | Slug Text helper module | none | same folder, src/pages/lensIndex | transliterateCatalogText, stableHash |
 | `teleconverterCatalog.ts` | Teleconverter Catalog helper module | same folder (2), src/optics/buildLens.ts (2), glob:../../lens-data/**/*.teleconverter.ts, src/optics/teleconverter.ts, src/types | src/components/layout (5), src/comparison (2), src/utils/state (2), src/components/controls, src/components/hooks | TeleconverterOption, TELECONVERTER_CATALOG, ALL_TELECONVERTER_KEYS, TELECONVERTER_KEYS, teleconverterOptionsForLens, resolveTeleconverterKey, resolveLensSystemData, lensSystemKey |
-| `teleconverterSummaries.ts` | Teleconverter Summaries helper module | same folder, src/generated, src/utils/seo | same folder, src/components/homepage, src/pages/lensIndex, src/pages/LensPage.tsx, src/pages/teleconverterIndex.ts, +2 more | TeleconverterSummary, ALL_TELECONVERTER_SUMMARY_LIST, TELECONVERTER_SUMMARIES, TELECONVERTER_SUMMARY_KEYS, TELECONVERTER_SUMMARY_LIST, teleconverterSummariesForLens, teleconverterLensPath |
+| `teleconverterSummaries.ts` | Teleconverter Summaries helper module | same folder, src/generated, src/types, src/utils/seo | same folder, src/components/homepage, src/pages/lensIndex, src/pages/LensPage.tsx, src/pages/teleconverterIndex.ts, +2 more | TeleconverterSummary, ALL_TELECONVERTER_SUMMARY_LIST, TELECONVERTER_SUMMARIES, TELECONVERTER_SUMMARY_KEYS, TELECONVERTER_SUMMARY_LIST, teleconverterSummariesForLens, teleconverterLensPath |
 | `universalConnectionPaths.ts` | Universal Connection Paths helper module | same folder | src/components/relationshipMap | UniversalConnectionPath, UniversalConnectionResult, findUniversalConnectionPaths, universalConnectionDescription |
 | `universalRelationshipGraph.ts` | Universal Relationship Graph helper module | same folder (7), src/types | src/components/relationshipMap (8), same folder (5) | UniversalNodeKind, UniversalPartyNode, UniversalPatentNode, UniversalCorporateNode, UniversalMakerNode, UniversalLensNode, UniversalRelationshipNode, UniversalEdgeKind, +7 more |
 | `universalRelationshipSearch.ts` | Universal Relationship Search helper module | same folder (3) | src/components/relationshipMap | buildUniversalSearchIndex, searchUniversalNodes |

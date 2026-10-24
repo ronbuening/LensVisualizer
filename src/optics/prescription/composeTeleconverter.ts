@@ -99,6 +99,7 @@ export function composeTeleconverter(
     firstElementId: idOffset + Math.min(...tc.elements.map((element) => element.id)),
     ...(geometry.platesAhead > 0 ? { platesAhead: geometry.platesAhead } : {}),
     ...(tc.source.patentNumber !== undefined ? { patentNumber: tc.source.patentNumber } : {}),
+    ...(tc.source.example !== undefined ? { patentExample: tc.source.example } : {}),
     ...(tc.source.authors !== undefined ? { patentAuthors: tc.source.authors } : {}),
   };
   const remapPath = (path: string) =>

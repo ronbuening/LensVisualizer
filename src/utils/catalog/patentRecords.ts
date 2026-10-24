@@ -166,7 +166,12 @@ export function aggregatePatentRecords(
     record.patentYear ??= lens.patentYear;
     for (const author of lens.patentAuthors ?? []) record.authors.add(author);
     for (const assignee of lens.patentAssignees ?? []) record.assignees.add(assignee);
-    record.lenses.set(lens.key, { key: lens.key, name: lens.name, specs: lens.specs });
+    record.lenses.set(lens.key, {
+      key: lens.key,
+      name: lens.name,
+      specs: lens.specs,
+      ...(lens.patentExample ? { example: lens.patentExample } : {}),
+    });
     records.set(patentIdentity, record);
   }
 

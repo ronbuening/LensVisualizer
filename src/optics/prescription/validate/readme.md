@@ -86,7 +86,7 @@ flowchart LR
 | `folded.ts` | Folded helper module | src/optics/prescription (4), src/optics/geometry, src/optics/state, src/optics/trace, src/types | src/optics/prescription (2) | validateImagePlane, validateOpticalPath, validateYzNormal, normalizedNormal, samePlaneNormal, validateTiltedMirrorBackingNormals, validateFoldedImagePlaneReachability |
 | `geometry.ts` | Geometry helper module | src/optics/geometry (2), src/optics/prescription (2), src/types | src/optics/prescription | validateGeometry |
 | `index.ts` | Barrel/registry module | src/optics/prescription (12), src/types | src/optics/prescription (2), src/optics/validation.ts | default, validateLensData, validateCanonicalLens |
-| `patent.ts` | Patent helper module | src/optics/prescription, src/utils/catalog | src/optics/prescription | validatePatentMetadata |
+| `patent.ts` | Patent helper module | src/optics/prescription, src/utils/catalog | src/optics/prescription | patentExampleId, validatePatentExample, validatePatentMetadata |
 | `paths.ts` | Paths helper module | src/optics/prescription (2) | src/optics/prescription | authoredMessages |
 | `references.ts` | References helper module | src/optics/prescription (3), src/types (2), src/optics/geometry | src/optics/prescription (2) | validateSourceErrata, validateAttachedTeleconverter, validateReferences, validateSpans, validateAnnotations |
 | `schema.ts` | Schema helper module | src/optics/prescription (7), src/types, src/utils/catalog | src/optics/prescription (2), src/optics/validation.ts | validateNumberRange, isEnabledMovementRange, validatePerspectiveControlTiltPivot, validatePerspectiveControl, validateOpticalConfiguration, validateProjection, validateRearPlates, validateLensMounts, +5 more |

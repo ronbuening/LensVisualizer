@@ -145,6 +145,54 @@ describe("validateLensData", () => {
         overrides: { patentAssignees: ["ada-lovelace"] },
         error: '"patentAssignees" must contain organizations, not inventor-applicants',
       },
+      ...["Example 6", ["Example 6"]].map((patentExample) => ({
+        name: `example that is not a record: ${JSON.stringify(patentExample)}`,
+        overrides: { patentExample },
+        error: '"patentExample" must be an object with "label" and "id"',
+      })),
+      {
+        name: "example with a member beside label and id",
+        overrides: { patentExample: { label: "Table IV", id: "4", figure: "FIG. 5" } },
+        error: '"patentExample" holds only "label" and "id", not "figure"',
+      },
+      ...["", " Example 6", "Example  6"].map((label) => ({
+        name: `example label not trimmed and single-spaced: ${JSON.stringify(label)}`,
+        overrides: { patentExample: { label, id: "6" } },
+        error: '"patentExample" label must be a non-empty, trimmed, single-spaced string',
+      })),
+      ...[6, "", " 6"].map((id) => ({
+        name: `example id not a trimmed string: ${JSON.stringify(id)}`,
+        overrides: { patentExample: { label: "Example 6", id } },
+        error: '"patentExample" id must be a non-empty, trimmed string or null',
+      })),
+      ...[
+        { label: "Sole example", id: "1" },
+        { label: "Example 1", id: null },
+      ].map((patentExample) => ({
+        name: `null id other than a sole example: ${JSON.stringify(patentExample)}`,
+        overrides: { patentExample },
+        error: '"patentExample" id is null exactly when the label is "Sole example"',
+      })),
+      {
+        name: "example label repeating the publication number",
+        overrides: { patentExample: { label: "Example 2000000001", id: "2000000001" } },
+        error: '"patentExample" label must not repeat the publication number',
+      },
+      ...["EXAMPLE 6", "Third Embodiment", "Example IIII", "Example 6 (FIG. 5)"].map((label) => ({
+        name: `example label outside the term-and-numeral form: ${label}`,
+        overrides: { patentExample: { label, id: "6" } },
+        error: `"patentExample" label "${label}" must be a Title Case term and a numeral, or "Sole example"`,
+      })),
+      ...[
+        { label: "Example 6", id: "5", derived: "6" },
+        { label: "Table IV", id: "IV", derived: "4" },
+        { label: "Numerical Example 2-1", id: "2", derived: "2-1" },
+        { label: "Example 1a", id: "1a", derived: "1A" },
+      ].map(({ label, id, derived }) => ({
+        name: `example id that the label does not give: ${label} / ${id}`,
+        overrides: { patentExample: { label, id } },
+        error: `"patentExample" id "${id}" must be "${derived}", as label "${label}" gives`,
+      })),
     ];
 
     it.each(cases)("rejects $name through raw and canonical V1/V2 validation", ({ overrides, error }) => {
@@ -158,11 +206,13 @@ describe("validateLensData", () => {
         ...pair.v2,
         source: {
           patentNumber: data.patentNumber,
+          example: data.patentExample,
           authors: data.patentAuthors,
           assignees: data.patentAssignees,
         },
       } as LensDataV2Input;
       const v2Error = error
+        .replace("patentExample", "source.example")
         .replace("patentNumber", "source.patentNumber")
         .replace("patentAuthors", "source.authors")
         .replace("patentAssignees", "source.assignees");
@@ -183,6 +233,26 @@ describe("validateLensData", () => {
         expect(validateCanonicalLens(ingestLens(data as LensDataInput))).toEqual([]);
         expect(data).toEqual(before);
       }
+    });
+
+    it("accepts an example whose id its label gives, and refuses one without a patent number", () => {
+      for (const [label, id] of [
+        ["Example 6", "6"],
+        ["Numerical Example 2-1", "2-1"],
+        ["Example 1a", "1A"],
+        ["Table IV", "4"],
+        ["Example III", "3"],
+        ["Example A", "A"],
+        ["Numerical Value Embodiment 12", "12"],
+        ["Sole example", null],
+      ] as const) {
+        const data = makeValid({ ...metadata, patentExample: { label, id } });
+        expect(validateLensData(data), label).toEqual([]);
+        expect(validateCanonicalLens(ingestLens(data as LensDataInput)), label).toEqual([]);
+      }
+      expect(validateLensData(makeValid({ patentExample: { label: "Example 1", id: "1" } }))).toEqual([
+        '"patentExample" requires a patent number',
+      ]);
     });
 
     it("accepts romanized diacritics, initials and mixed-case corporate names", () => {

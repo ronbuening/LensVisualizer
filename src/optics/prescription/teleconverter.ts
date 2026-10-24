@@ -204,6 +204,7 @@ export function mergeTeleconverterPrescription(
       firstElementId: idOffset + Math.min(...tc.elements.map((element) => element.id)),
       ...(platesAhead > 0 ? { platesAhead } : {}),
       ...(tc.patentNumber !== undefined ? { patentNumber: tc.patentNumber } : {}),
+      ...(tc.patentExample !== undefined ? { patentExample: tc.patentExample } : {}),
       ...(tc.patentAuthors !== undefined ? { patentAuthors: tc.patentAuthors } : {}),
     },
     ...(host.asph || tc.asph ? { asph: { ...host.asph, ...tcAsph } } : {}),

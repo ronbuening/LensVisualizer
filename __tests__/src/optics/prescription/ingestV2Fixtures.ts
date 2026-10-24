@@ -202,6 +202,7 @@ export const FIXTURE_PAIRS: readonly FixturePair[] = [
       lensMounts: ["nikon-z"],
       imageFormat: "135-full-frame",
       patentNumber: "JP 2000-000001 A",
+      patentExample: { label: "Example 1", id: "1" },
       patentYear: 2000,
       patentAuthors: ["Ada Lovelace"],
       patentAssignees: ["Fixture Optical Co., Ltd."],
@@ -230,6 +231,7 @@ export const FIXTURE_PAIRS: readonly FixturePair[] = [
       },
       source: {
         patentNumber: "JP 2000-000001 A",
+        example: { label: "Example 1", id: "1" },
         patentYear: 2000,
         authors: ["Ada Lovelace"],
         assignees: ["Fixture Optical Co., Ltd."],
@@ -703,6 +705,7 @@ export const MAXIMAL_ZOOM: LensDataV2Input = {
   },
   source: {
     patentNumber: "JP 2000-000001 A",
+    example: { label: "Sole example", id: null },
     patentYear: 2000,
     authors: ["Ada Lovelace"],
     assignees: ["Fixture Optical Co., Ltd."],

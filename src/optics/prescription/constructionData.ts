@@ -63,6 +63,7 @@ export function canonicalConstructionData(lens: CanonicalLens): LensConstruction
     apertureMarketing: catalog.fNumber?.marketing,
     apertureDesign: catalog.fNumber?.design,
     patentNumber: source.patentNumber,
+    patentExample: source.example,
     patentYear: source.patentYear,
     patentAuthors: source.authors,
     patentAssignees: source.assignees,

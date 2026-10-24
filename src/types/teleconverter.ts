@@ -8,7 +8,7 @@
 
 import type { ImageFormatId, LensMountId } from "../utils/catalog/lensTaxonomy.js";
 import type { AsphericCoefficients } from "./asphericSchema.js";
-import type { AnnotationData, ElementData, RearPlateData, SurfaceData } from "./optics.js";
+import type { AnnotationData, ElementData, PatentExample, RearPlateData, SurfaceData } from "./optics.js";
 
 /** Numeric teleconverter data for internal checks and archived V1 conversion; author TeleconverterDataV2Input. */
 export interface TeleconverterData {
@@ -38,6 +38,7 @@ export interface TeleconverterData {
   /** Host lens keys excluded for reasons vertex geometry cannot express (rim contact, mechanical interference). */
   incompatibleLensKeys?: string[];
   patentNumber?: string;
+  patentExample?: PatentExample;
   patentAuthors?: string[];
   patentAssignees?: string[];
   patentYear?: number;
@@ -79,6 +80,7 @@ export interface AttachedTeleconverterInfo {
    */
   platesAhead?: number;
   patentNumber?: string;
+  patentExample?: PatentExample;
   patentAuthors?: string[];
 }
 
