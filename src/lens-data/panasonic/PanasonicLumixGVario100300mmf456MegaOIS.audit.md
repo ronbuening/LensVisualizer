@@ -240,3 +240,64 @@ The semi-diameter pass above recommended its option 1, which is now applied: sur
 two-decimal value that admits the rim. The surface validator passes, no axial bundle or chief ray clips at any station,
 and edge transmission at the printed half-field rises from about 60 / 60 / 53 % to 65 / 63 / 55 % at wide / middle /
 tele.
+
+## 2026-10-24 — Second review: diagram, labels and movement
+
+An independent look at the lens as the local site renders it, compared with Fig. 1 (sheet 1 of 13, PDF page 2) and the
+Embodiment 1 text of `patents/US8451542B2.pdf`. The site was shot at 102.7 and 290.3 mm, with both movement overlays
+and with the inspector open on L3, L13 and L16.
+
+**Silhouette.** Both sides of Fig. 1(a) were profiled at 300 dpi (axis y = 1207 px, 0.1554 mm/px). The upper side
+reads 2–5 px lower than the lower side, so half-heights below are the mean of the two sides where both are clean.
+
+| Element(s) | sd (file) | Figure (a) | Ratio | Visible difference on the site |
+| ---------- | --------: | ---------- | ----: | ------------------------------ |
+| L1         |      26.3 | 26.2       |  1.00 | none                           |
+| L2         |      25.9 | 25.4       |  1.02 | none                           |
+| L3 rear    |      25.9 | 24.8       |  1.04 | drawn with a slight step below L2; site squared |
+| L4         |      11.3 | 11.3       |  1.00 | none                           |
+| L5 rear    |      11.3 | 10.6–10.8  |  1.05 | drawn with a slight step below L4; site squared |
+| L6–L8      |       8.2 | 7.8        |  1.05 | none                           |
+| L9         |       8.7 | 8.7        |  1.00 | none                           |
+| L10+L11    |       8.7 | 8.3        |  1.05 | L9 drawn a hair taller; site equal |
+| L12–L14    |       6.3 | 6.6 (line centre) | 0.95 | square-cut in both; site slightly shorter |
+| L15        |       8.7 | 8.4        |  1.04 | none                           |
+| L16        |       8.7 | 8.5        |  1.02 | L17 drawn a hair taller; site equal |
+| L17        |       8.7 | 8.9–9.0    |  0.97 | as L16                         |
+
+Every element on the site is squared, as Fig. 1 draws them, and the drawn height order holds: L1 above L2+L3, and every
+unit behind G1 well below it. The steps at the L3 and L5 rear faces and the L9 / L16 differences are all 3–5 %, inside
+the noise band, and reproducing them would turn squared doublets into bevels. No `sd` changed. G4 stays at 6.3 mm with
+`checks.gapSagFrac` 0.97: the L12 rear and L13 front sags fill the 2.0804 mm gap at 6.41 mm, so the drawn 6.6 mm is not
+reachable, and 6.3 mm is the closest admissible value.
+
+**Labels and markers, all found correct.** The groups G1 (S1–5), G2 (S6–8), G3 (S9–19, including the stop), G4
+(S20–24) and G5 (S25–30) match the brackets G1(+) … G5(+) in Fig. 1. The five cemented brackets L2+L3, L4+L5, L7+L8,
+L10+L11 and L13+L14 match the text's cemented pairs, giving 17 elements in 12 groups. Element names L1–L17 are the
+patent's own. Every element `type` agrees with the radius signs and with the Embodiment 1 wording (plano-convex L1 and
+L5; negative meniscus L2, L4, L10, L12; positive meniscus L3, L13; biconcave L6, L8, L14; biconvex L7, L9, L11, L15,
+L17; negative meniscus L16 convex to the image). The sub-unit names G31 / G32 used in the roles come from the patent's
+condition (3). The stop is drawn between L8 and L9, where Fig. 1 places the diaphragm A. There are no aspheres and no
+`A` suffixes. L3 is the only `apd` tag (`"inferred"`): the patent text names no ED or anomalous-dispersion glass, and
+L3 (νd 81.6) is the only low-dispersion element for Panasonic's "1 ED lens". The inspector shows L3 as a positive
+meniscus, FCD1 equivalent, f +131.68 mm, inferred APD; L13 as a positive meniscus, f +31.44 mm; L16 as a negative
+meniscus, f −21.26 mm.
+
+**Zoom movement.** The 101 stations ascend from 102.72 to 290.31 mm and every gap array follows that order. Group front
+vertices measured from the image move toward the object, monotonically, at every station: G1 by 58.35 mm, G2 by 8.32,
+G3 by 13.42, G4 by 24.86 and G5 by 26.66 mm. This matches the patent's statement that every unit moves to the object
+side with D5 growing and D8, D19 and D24 shrinking, and it matches the Fig. 1 arrows, which all point left. The zoom
+overlay at wide and at tele shows the same direction.
+
+**Focus.** The patent's arrow and text move G2 toward the object for close focus but print no close-focus spacing. The
+two focus keyframes are identical, the focus slider is disabled ("Not modelled"), and the focus overlay shows no focus
+travel. This is correct for infinity-only data.
+
+**Text updated.** The analysis still described the old 6.05 mm G4 rim and the old 61 / 60 / 52 % edge transmission. It
+now gives 6.3 mm and 65 / 63 / 55 % (engine values at the printed half-field: 64.6 % at 6.0°, 63.0 % at 3.5°, 55.2 % at
+2.1°). The data file's header comment was reflowed to the 120-column width and notes this re-measurement. Engine
+half-field (6.51°), FOPEN 4.11397 and the vignetting curve are unchanged, and the surface validator passes.
+
+**Open points outside this review's edit list.** The `subtitle` reads "probable production correlation" while the
+pre-deploy section above records "qualified production correlation". Gap labels read "D5" etc.; the patent prints d5,
+d8, d19, d24 and BF.

@@ -138,3 +138,54 @@ axial clip and no blocked chief ray. The smallest axial margins are r1 0.16 mm, 
 `audit:field-coverage` gives 21.59 of 21.65 mm at 4.1° with a clear corner. Screenshots of the local page at infinity
 and at 2.06 m match FIG. 5's silhouette: L3 and the L5/L6 doublet keep their chamfered rear rims, L7/L8 is square, and
 L9 is a square-cut meniscus. Only the deliberately smaller front pair differs.
+
+## 2026-10-24 — Second review: diagram, labels and movement
+
+The local page (infinity, 2.06 m, focus-movement overlay, inspectors for L1 and L7) was compared with FIG. 5
+(`patents/US4812026.pdf`, PDF p. 4) and with the Example 2 text (col. 4–5, PDF pp. 7–8).
+
+Silhouette. The flat rim lines of FIG. 5 were re-found with a fresh row-run scan of the native 300 ppi raster, using
+the 7.23 px/mm scale. The results were L1 36.76, L2 33.47, L3 26.73 (front flat), L4 24.93, L5/L6 19.02, L7/L8 14.25
+and L9 20.26 mm, within 0.1 mm of the earlier pass. The L3 chamfer ends at y ≈ 797 (24.4 mm), right at L4's front
+corner. The drawn height order L1 > L2 > L3 > L4 > L9 > L5/L6 > L7/L8 is preserved on the page (33.5 > 30.5 > 26.75 >
+24.6 > 20.25 > 18.5 > 14.2). L7/L8 and L9 are square-cut, as drawn. Two differences remain, and both are renderer
+artefacts:
+
+- L3's top runs as one slope from 26.75 mm at r5 to 24.6 mm at r6. FIG. 5 draws a flat land over about 10.8 mm with a
+  2.9 mm chamfer. Squaring r6 at 26.75 passes `audit:surface`, but it would carry L3's rear face above L4's front
+  corner with 0.23 mm of axial clearance (wrapping the neighbour), so the drawn chamfer end is kept.
+- L6's rear rim (17.29 mm, FIG. 5 chamfer end ≈ 16.5 mm) slopes gently from the 18.5 mm cemented face. Squaring it at
+  18.5 also validates, but it would remove the drawn chamfer, so it is kept.
+
+No `sd` changed. The front pair stays capped to the Ø67 filter thread, as recorded above.
+
+| Item | Before | After | Evidence |
+| --- | --- | --- | --- |
+| `groups` | none | G1 (+) r1–r8, G2 (+) r9–r11, G3 (−) r12–r16 | Patent col. 1–2 and claim 1: first positive group L1–L4, second positive group of cemented L5/L6, third negative group of cemented L7/L8 plus meniscus L9. The patent uses words, not symbols; G1–G3 follow the site convention. |
+| Analysis architecture list | Group 1/2/3 | adds G1/G2/G3 and the D1/D2 brackets | consistency with the new brackets |
+
+These were checked and found correct:
+
+- The doublet brackets D1 (r9–r11) and D2 (r12–r14) each bracket one cemented component.
+- Element names L1–L9 are sequential; the patent numbers its elements "first" to "ninth" with no symbols.
+- Types agree with the signs of R. L7 (r12 −17677.6, r13 −37.8) is labelled plano-convex; it is strictly a meniscus,
+  but its front face is effectively flat.
+- There are no aspheres, as printed.
+- The stop is drawn between r11 and r12, in the d11 space where the maker drawing places the iris.
+- The `apd: "inferred"` tags on L1, L2 and L4 match Ricoh's three ED elements at positions 1, 2 and 4, recorded under
+  Deployment validation. The patent gives nd/νd only and names no glass, so `"patent"` would be wrong.
+
+Focus movement matches the patent. Example 2's inner-focus row at β = −1/6 prints d11 = 5.59, d14 = 10.54 and
+fB = 20.34 (native), against infinity values of 1.76, 14.37 and 20.34. The cemented L7/L8 pair therefore moves
+3.83 × 3 = 11.49 mm toward the image. In the data, keyframe 0 is infinity: iris–L7 2.64 and d14 43.11 mm. The last
+keyframe is the printed state: 14.13 (16.77 − 2.64) and 31.62 mm. The sum stays 45.75 mm, so L9 and the image distance
+(61.02 mm) are fixed. The movement overlay shows only the L7/L8 group moving, by 11.49 mm to the right. `probe.mjs`
+gives a magnification of −0.1670 at the last keyframe, and the slider's far end reads 2.06 m (rated 2.0 m, 0.17×).
+
+Clearance after the edit is unchanged. The engine reports half-field 6.73°, FOPEN 4.5, stop radius 12.374 mm and EFL
+300.064 mm. The wide-open corner transmission is 80.2 % at 4.1° (96.9 % at 0.7°). `clearap.mjs` at ω = 4.1° shows no
+axial clip and no blocked chief ray at keyframes 0 and 10. `audit:surface` reports no validation errors,
+`audit:image-circle` finds 0 undersized surfaces, and `audit:field-coverage` gives a chief-ray height of 21.593 mm at
+4.1°.
+
+Open: the iris position and the intermediate focus law remain modelling choices, as recorded above.

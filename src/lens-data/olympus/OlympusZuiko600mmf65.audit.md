@@ -136,3 +136,63 @@ of L1, the stored value was 0.36, and the earlier manual reading was 15.8–17.8
 - The manual and the patent disagree on the rear doublet (≈ 17 vs ≈ 20.8 mm at production scale). The patent figure
   governs here. The manual scan's ±1 mm reading uncertainty does not cover the gap.
 - Fig. 1 draws the iris D at about 54 % of d7. The STO stays at the inferred midpoint.
+
+## 2026-10-24 — Second review: diagram, labels and movement
+
+### What was compared
+
+- The live local page at infinity, at 11 m and with the focus-movement overlay, against Fig. 1 on the front page of
+  US 3,827,781 (PDF p.1, 300 dpi CCITT scan), re-measured independently with column profiles above and below the axis
+  (axis at row 2509).
+- Element designations, group brackets, element types and roles against the description on PDF pp.3–4, which reads
+  "I and II designate front and rear lens components".
+
+### Figure re-measurement
+
+Outer ink edges, mean of the two sides, at 300 dpi:
+
+| Element | Above axis | Below axis | Mean | Ratio to L1 | At L1 = 47.0 mm | Stored |
+|---|---|---|---|---|---|---|
+| L1 | 222–224 px | 219 px | 221.5 px | 1.00 | 47.0 | 47.0 |
+| L2 | 210 px | 207–208 px | 208.5 px | 0.94 | 44.2 | 42.0 |
+| L3/L4 | 199 px | 191–192 px | 195.5 px | 0.88 | 41.5 | 42.0 |
+| L5/L6 | 99–100 px | 100–101 px | 100 px | 0.45 | 21.2 | 20.8 |
+
+Fig. 1 draws a three-step front group: L1 tallest, L2 a visible step lower, and the cemented L3/L4 a further step
+lower. L2 and L3/L4 are both square-cut. The live page drew L2 and L3/L4 flush at 42.0 mm, which lost the middle step.
+The L3/L4 and rear-doublet readings agree with the stored values to within 2 %.
+
+### Changes
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| sd 3, 4 (L2) | 42.0 | 44.2 | Fig. 1 proportion 0.94 × L1 (47.0). Both faces stay at one height, as the figure draws L2 square-cut. The f/6.5 axial floor is 39.76 / 39.30 mm. The surface validator passes, and the L3 front rim (6.4 mm sag at 42 mm) stays clear of the L2 rear face. |
+| `groups` | none | "I (+)" over surfaces 1–7, "II (−)" over 8–10 | The patent's own component notation, with the brackets drawn in Fig. 1. Signs follow the component focal lengths (+358.1 / −216.1 mm). |
+
+L1 and L3/L4 keep their manual-based sizes. The engine is unchanged by the L2 edit: EFL 600.003 mm, FOPEN 6.5, stop
+radius 23.79 mm, engine half-field 5.38°. The geometric transmission curve is identical before and after (100 % on
+axis, 94.3 % at 1.0°, 88.0 % at 2.1°), because L2 does not limit any traced bundle. The image-circle check finds
+nothing undersized. Field coverage traces 21.65 of 21.65 mm with the corner clear. The real-ray trace at 21.6 mm
+(ω 2.06°) shows no axial clip and no blocked chief ray at infinity or at 11 m.
+
+### Checked and found correct
+
+- Element names L1–L6 are the patent's own designations. The doublet brackets D1 (surfaces 5–7, L3/L4) and D2 (8–10,
+  L5/L6) cover the two cemented components.
+- Element types agree with the radius signs: L1, L3 and L6 biconvex; L2, L4 and L5 biconcave. No surface is aspheric,
+  and none carries an A suffix. No element has an APD tag. The patent names no special glass, and the analysis records
+  no maker ED position.
+- The roles match the patent text: condition 2 for the L1–L2 space, condition 3 on r3, condition 4 for L3/L4 (coma,
+  Petzval sum and colour), and condition 5 for L5/L6 (Petzval sum, with r9 for colour of magnification).
+- The stop sits in the d7 air space between L4 and L5, where Fig. 1 draws the diaphragm D.
+- Focus: index 0 of the back-focus row is infinity (134.22 mm) and the last is 11 m (173.48 mm). The movement overlay
+  shows components I and II moving together 39.26 mm toward the object, as unit focusing requires. The focus slider
+  ends at 11.0 m. The inspector shows L2 as Biconcave Negative, NBFD3 (HOYA), −407.02 mm, and L6 as Biconvex
+  Positive, S-TIM35 (OHARA).
+
+### Open limitations
+
+- The front group's absolute size is still bounded by the production barrel, not by Fig. 1. L2's height now follows
+  the figure's proportion rather than the manual reading of about 41–42 mm. If the manual's flush L2 and L3/L4 are
+  preferred, the earlier 42.0 mm value passes every check equally.
+- Fig. 1 draws D at about 54 % of d7; the STO stays at the inferred midpoint, a gap split outside this review.

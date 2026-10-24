@@ -2428,7 +2428,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 6 | Element 4 | abbe | `Unmatched (758/316 dense flint; no catalog glass within 0.0001 in nd)` | Explicit unmatched/proprietary annotation |
+| 6 | Element IV | abbe | `Unmatched (758/316 dense flint; no catalog glass within 0.0001 in nd)` | Explicit unmatched/proprietary annotation |
 
 ### [CANON EF-M 15-45mm f/3.5-6.3 IS STM](../../src/lens-data/canon/CanonEFM1545mmf3563ISSTM.data.ts) - 80.0% trusted (8/10); 80.0% Sellmeier (8/10) - JP 2016-118658 A
 

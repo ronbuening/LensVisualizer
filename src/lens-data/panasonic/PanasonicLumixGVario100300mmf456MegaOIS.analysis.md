@@ -323,11 +323,11 @@ three stations, so the iris need not change diameter as the lens zooms; this is 
 diameter. The patent prints no clear apertures. The semi-diameters were measured from Fig. 1 at the wide position and
 agree with the drawing within about 6 % for every unit.
 
-G4 is drawn slightly larger (about 6.4 mm) than modelled (6.05 mm). At 6.4 mm the facing L12 and L13 surfaces would
-meet across their 2.08 mm air gap, so the smaller value is kept. With these rims the axial beam at the printed
-f-numbers and the chief ray to the full image height pass at every station. The rims vignette the corners: the viewer's
-geometric transmission at the printed half-field is about 61 % at wide, 60 % at middle and 52 % at tele. It is
-limited by the rear rims at wide and by G1 at tele.
+G4 is drawn square-cut at about 6.6 mm, a little larger than modelled (6.3 mm). At 6.41 mm the facing L12 and L13
+surfaces would meet across their 2.08 mm air gap; at 6.3 mm their sags use 97 % of it, which is as close as the model
+goes. With these rims the axial beam at the printed f-numbers and the chief ray to the full image height pass at every
+station. The rims vignette the corners: the viewer's geometric transmission at the printed half-field is about 65 % at
+wide, 63 % at middle and 55 % at tele. It is limited by the G4 and G5 rear rims at wide and by G1 at tele.
 
 ### What is not modelled
 

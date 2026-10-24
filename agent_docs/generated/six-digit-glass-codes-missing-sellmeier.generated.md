@@ -1207,5 +1207,5 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 6 | `Unmatched (758/316 dense flint; no catalog glass within 0.0001 in nd)` | 1.75787 / 31.56 | No catalog entry | abbe | patents/US3388956A.pdf | Explicit disposition in data |
+| L4 (Element IV) | 6 | `Unmatched (758/316 dense flint; no catalog glass within 0.0001 in nd)` | 1.75787 / 31.56 | No catalog entry | abbe | patents/US3388956A.pdf | Explicit disposition in data |
 

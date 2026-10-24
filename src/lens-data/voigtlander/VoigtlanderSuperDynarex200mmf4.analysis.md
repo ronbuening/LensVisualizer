@@ -40,7 +40,8 @@ treated as the same optical design.
 ## Optical Architecture
 
 The design is a classic two-group telephoto with a long air space between the groups. The patent calls the front
-group the tele-positive (A) and the rear group the tele-negative (B):
+group the tele-positive (A) and the rear group the tele-negative (B). The diagram labels the elements with the patent's
+Roman numerals I–V and brackets groups A and B; this text calls the same elements L1–L5 in the same order:
 
 - **Group A (L1–L3):** a cemented doublet of converging lens I (L1) and diverging lens II (L2), followed by a thin
   diverging air lens a2 and the second diverging meniscus III (L3). Computed focal length +174.1 mm.

@@ -225,6 +225,11 @@ const LENS_DATA = {
     scFill: 0.65,
     yScFill: 0.3,
   },
+  groups: [
+    { text: "G1 (+)", fromSurface: "1", toSurface: "8" },
+    { text: "G2 (+)", fromSurface: "9", toSurface: "11" },
+    { text: "G3 (−)", fromSurface: "12", toSurface: "16" },
+  ],
   doublets: [
     { text: "D1", fromSurface: "9", toSurface: "11" },
     { text: "D2", fromSurface: "12", toSurface: "14" },

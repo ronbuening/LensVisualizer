@@ -36,9 +36,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * G1 26.1 (26.3), L3 rear 24.9–25.5 (25.9), L4/L5 10.7–11.3 (11.3), L6–L8 7.8 (8.2), L9–L11 8.1–8.7 (8.7),
  * G4 6.6 (6.3), L15 8.4 and L16/L17 8.9 (8.7). Every other rim is within about 6 % of the drawing and was left as is.
  * G4 is drawn square-cut at about 6.6 mm, but the L12 rear and L13 front faces meet across their 2.08 mm air gap at
- * 6.41 mm; it is set to 6.3 mm, which uses 0.966 of the gap (checks.gapSagFrac 0.97). Axial bundles at the printed F-numbers and chief rays to 10.815 mm clear every rim at
- * every station. The drawn rims vignette the corner: at the printed half-field the app's geometric transmission is
- * about 65 / 63 / 55 % at wide / middle / tele, limited by the G4 and G5 rear rims at wide and by G1 at tele.
+ * 6.41 mm; it is set to 6.3 mm, which uses 0.966 of the gap (checks.gapSagFrac 0.97). A second review re-measured
+ * both sides of Fig. 1(a) and found no other rim outside the noise band. Axial bundles at the printed F-numbers and
+ * chief rays to 10.815 mm clear every rim at every station. The drawn rims vignette the corner: at the printed
+ * half-field the app's geometric transmission is about 65 / 63 / 55 % at wide / middle / tele, limited by the G4 and
+ * G5 rear rims at wide and by G1 at tele.
  *
  * Glass names are nd/νd catalog equivalents that select a dispersion curve; supplier and melt are not established.
  */
@@ -1044,7 +1046,7 @@ const LENS_DATA = {
   },
   gaps: {
     "5": {
-      label: "D5",
+      label: "d5",
       values: [
         [33.6396, 33.6396],
         [34.0914, 34.0914],
@@ -1150,7 +1152,7 @@ const LENS_DATA = {
       ],
     },
     "8": {
-      label: "D8",
+      label: "d8",
       values: [
         [7.4452, 7.4452],
         [7.473, 7.473],
@@ -1256,7 +1258,7 @@ const LENS_DATA = {
       ],
     },
     "19": {
-      label: "D19",
+      label: "d19",
       values: [
         [12.4788, 12.4788],
         [12.3523, 12.3523],
@@ -1362,7 +1364,7 @@ const LENS_DATA = {
       ],
     },
     "24": {
-      label: "D24",
+      label: "d24",
       values: [
         [2.8724, 2.8724],
         [2.8529, 2.8529],

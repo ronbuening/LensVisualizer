@@ -206,3 +206,66 @@ unchanged. The image-circle floor reports nothing undersized, the traced chief r
 Rendered sections at 62, 190.2 and 580 mm (infinity and the duplicated focus=1 keyframe) show the G2 step and the
 smaller G6 that Figure 41 draws. Open limitation: the patent draws only the wide end, so rim heights at the other
 stations are not independently checked against a drawing.
+
+## 2026-10-24 — Second review: diagram, labels and movement
+
+The local page (wide, middle and tele zoom, infinity and the duplicated focus=1 keyframe, and the zoom-movement
+overlay at both ends) was compared with Figure 41 (PDF page 61), re-rendered at 300 and 600 dpi, and with the
+Example 5 text ¶0132–0143 and its group table (PDF pp.27–29).
+
+### Silhouette
+
+Differences seen on the page before this pass: G1 drew L3 as tall as the L1/L2 doublet with knife-edge rims (glass
+edges 0.49 mm at L3 and 0.55 mm at L2), whereas Figure 41 draws L3 about 1 mm shorter than the doublet and both with
+a visible edge land; the L4/L5 doublet shows a slanted top where the figure draws a square block; G3b shows bevels
+at L10's rear and L11's front where the figure draws one square block about 16 mm high.
+
+Re-measurement on both sides of the axis at 300 dpi (0.2037 mm/px, the first pass's scale) gives the L1/L2 doublet
+228.5 / 229.5 px (46.5 / 46.7 mm) and L3 223.5 / 224.5 px (45.5 / 45.7 mm). At 600 dpi the drawn edge lands are
+about 1.2 mm on L3 and 1–2 mm on L2, matching the model's 1.39 mm and 1.06 mm at the new heights.
+
+| Surface | Before | After | Evidence |
+|---|---|---|---|
+| 1, 2, 3 (L1/L2 doublet) | 48 | 46.7 | Figure 41, both sides; tele axial need 44.60 / 43.98 / 43.92 mm |
+| 4, 5 (L3) | 48 | 45.6 | Figure 41, both sides; drawn shorter than the doublet; tele axial need 43.60 / 43.31 mm |
+
+Retained: the L4/L5 slant stays because surface 8 at the drawn 27 mm block height would cross L6's front face
+(surface 8 sag 5.04 mm against L6's front at 4.80 mm already at 23.8 mm); the figure itself ends that curve near
+23 mm. The G3b bevels stay because surfaces 17 and 18 meet at about 14.9 mm (sags 2.58 + 3.09 mm exceed the
+5.61 mm gap at 15 mm) and the validator's cross-gap limit admits 14.17 / 14.3 mm. L23 (figure 13.9–14.1 mm against
+14.8) and the remaining rims are within measurement noise, as the first pass found; L6 and G6 are confirmed.
+
+Clearance with the new G1: the surface validator is clean, both real-ray clearance tracers report no axial clipping
+or chief-ray blocking at any of the 201 stations, the image-circle floor reports nothing undersized and the traced
+chief ray reaches the corner at all 201 stations. Engine half-field 19.04°, f-number 4.64, stop radius 15.238 mm and
+EFL 61.9975 mm are unchanged. The engine vignetting curve is identical at the wide end (46.9% at 19.0°); at mid zoom
+transmission at 5.3° / 6.3° goes from 88.3 / 62.8% to 84.0 / 58.5%, and at the tele end from 98.9 / 54.3% to
+97.9 / 53.2% at 0.3° / 2.1°. That is the drawn front-group geometry and is kept. One-side clipping of the widest
+bundle at surface 1 rises from 77% to 80%.
+
+### Labels and brackets
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| `groups` | `G3` over surfaces 11–20 | `G3a` 11–15 and `G3b / OS` 16–20 | Figure 41 brackets G3a and G3b; group table starts G3a at 11 and G3b at 16; ¶0137 names G3b the stabilizing group |
+
+Both subgroups stay fixed during zoom, so the movement overlay now lists nine groups with G3a and G3b stationary.
+The figure's GR bracket (G5–G8) is not drawn because groups are the mechanical moving groups and cannot nest.
+Checked and correct: element names L1–L27 follow ¶0135–0142; every `type` agrees with the signs of R; there are no
+aspheric surfaces and no `A` markers; the stop is drawn between L15 and L16 as ¶0138 states; the seven cemented
+brackets D1–D6 and T1 cover the right surfaces (27 elements less eight cemented joints gives 19 groups). Inspector
+reads for L3 (APD patent, positive meniscus, +306.15 mm, FCD100 class) and L23 (APD inferred, negative meniscus,
+−89.03 mm) match the data. `apd: "patent"` on L3 rests on condition 13, which the patent applies to G1's highest-Abbe
+positive lens (0.5336 − 0.6483 + 0.0018 × 95.10 = 0.056); the patent text designates no other element, so L2, L14,
+L23 and L25 remain inferred from Sigma's diagram as recorded above. Only the end stations are labelled, which the
+schema requires (a "Middle" label on the printed 190.2 mm row is refused unless every station is labelled).
+
+### Movement
+
+Group vertex positions from the image plane, wide → middle → tele (mm): G1 −295.55 → −349.01 → −394.25 (98.70
+objectward); G2 −268.77 → −238.13 → −233.13 (35.64 imageward); G3 −213.97 fixed; G4 −139.71 → −159.21 → −184.75; G5
+−78.27 → −100.19 → −108.92; G6 −71.80 → −90.49 → −102.45; G7 −52.00 → −70.79 → −76.55 (all objectward); G8 −44.89
+fixed. Every moving group is monotonic over the 201 stations, matching ¶0134 and the arrows under Figure 41; zoom
+stations ascend 62 → 580 mm and every gap array follows that order. Focus: ¶0134 names G5 as the focusing group,
+moving objectward for near focus, which the description states; both focus keyframes repeat the infinity gaps, the
+slider's far end reads "Not modeled", and the movement drawer offers zoom only, which suits infinity-only data.

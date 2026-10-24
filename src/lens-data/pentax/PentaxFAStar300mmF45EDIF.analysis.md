@@ -22,9 +22,9 @@ The scaled module's 158.5 mm from front vertex to the K-mount flange (45.46 mm b
 
 The lens is a positive–positive–negative telephoto (col. 1–2):
 
-- **Group 1** (L1–L4): positive ED meniscus, positive ED meniscus, high-index negative, positive ED biconvex. Composite focal length f1–4 = 150.6 mm (f1,2,3,4/f = 0.502).
-- **Group 2** (L5/L6): a cemented doublet that is only weakly positive (calculated f = +1219 mm). The patent defines it as a positive group whose cemented interface controls spherical aberration.
-- **Group 3** (L7/L8 + L9): a cemented negative doublet (f7,8 = −60.6 mm) followed, after a long air space, by a weak positive meniscus (f = +225 mm) convex to the object.
+- **Group 1** (G1 on the diagram; L1–L4): positive ED meniscus, positive ED meniscus, high-index negative, positive ED biconvex. Composite focal length f1–4 = 150.6 mm (f1,2,3,4/f = 0.502).
+- **Group 2** (G2; L5/L6, bracket D1): a cemented doublet that is only weakly positive (calculated f = +1219 mm). The patent defines it as a positive group whose cemented interface controls spherical aberration.
+- **Group 3** (G3; L7/L8, bracket D2, + L9): a cemented negative doublet (f7,8 = −60.6 mm) followed, after a long air space, by a weak positive meniscus (f = +225 mm) convex to the object.
 
 The iris sits between group 2 and the focusing doublet. All 16 refracting surfaces are spherical. The front group does almost all of the converging, and the negative rear group stretches the focal length. That telephoto split is what lets a 300 mm lens fit within 0.68 of its focal length.
 

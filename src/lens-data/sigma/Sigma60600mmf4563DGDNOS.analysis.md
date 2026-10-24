@@ -520,8 +520,9 @@ BF is the final plate-to-image air gap, not the back focal distance of the last 
 The plate is modeled physically rather than folded into an air-equivalent gap.
 
 No clear apertures are published. The semi-diameters are estimated from Figure 41 and checked
-by exact real-ray tracing. The front group carries 48 mm, slightly above the figure's roughly
-46–47 mm. L6 is 23.8 mm, the step the figure draws below the 27 mm L4/L5 doublet. G3b tapers to 14.17 mm and 14.3 mm at surfaces 17 and 18, where the two facing
+by exact real-ray tracing. The front group follows the figure: the L1/L2 doublet is 46.7 mm and
+L3 45.6 mm, drawn about a millimetre shorter with a visible edge land, against the 44.6 mm and
+43.6 mm the tele-end axial beam needs there. L6 is 23.8 mm, the step the figure draws below the 27 mm L4/L5 doublet. G3b tapers to 14.17 mm and 14.3 mm at surfaces 17 and 18, where the two facing
 concave surfaces would meet at the 16 mm the figure draws. The cemented surface 44 is 15.4 mm,
 slightly larger than its 15.2 mm neighbours, to pass the full-field bundle. G6 follows the
 smaller step that both Figure 41 and Sigma's diagram draw below G5 and G7: L21 is 12.2 mm and

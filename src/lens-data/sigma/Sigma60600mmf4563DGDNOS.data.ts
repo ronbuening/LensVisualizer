@@ -23,8 +23,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * no near state is modeled.
  *
  * SEMI-DIAMETERS: estimated from Figure 41 (PDF page 61, wide end) and exact real-ray checks; the patent
- * prints no effective diameters. G1 carries 48 mm (figure about 46-47 mm; 96 mm against Sigma's 105 mm
- * filter). L6 is 23.8 mm, the step Figure 41 draws below the 27 mm L4/L5 doublet (surface 8 already
+ * prints no effective diameters. G1 follows Figure 41: the L1/L2 doublet 46.7 mm and L3 45.6 mm, drawn
+ * about 1 mm shorter with a visible edge land (axial need at the tele end 44.6 / 43.6 mm). L6 is 23.8 mm, the step Figure 41 draws below the 27 mm L4/L5 doublet (surface 8 already
  * limits that bundle, so vignetting is unchanged). G3b tapers to 14.17 / 14.3 mm at surfaces 17 / 18,
  * where the two concave faces would meet at the drawn 16 mm. Cemented surface 44 is 15.4 mm to pass the full-field bundle. G6 follows the smaller
  * step that Figure 41 and Sigma's diagram both draw below G5 and G7: L21 12.2 mm, L22 11.8 mm (figure
@@ -36,6 +36,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * dPgF is the patent's θgF converted as θgF − (0.6438 − 0.001682 νd). apd "patent" on L3 follows
  * ¶0062-0068 and condition 13; apd "inferred" on L2, L14, L23 and L25 follows Sigma's diagram.
  * Gap labels use the patent's lower-case d; D1-D6 and T1 above the section mark the cemented components.
+ * Group brackets follow Figure 41, with G3 split into its G3a and G3b (OS) subgroups (¶0137).
  */
 
 const LENS_DATA = {
@@ -452,11 +453,11 @@ const LENS_DATA = {
     },
   ],
   surfaces: [
-    { label: "1", R: 215.1296, d: 3, sd: 48, medium: 1 },
-    { label: "2", R: 124.879, d: 9.8003, sd: 48, medium: 2 },
-    { label: "3", R: 3400, d: 0.8633, sd: 48 },
-    { label: "4", R: 127.1376, d: 9.4372, sd: 48, medium: 3 },
-    { label: "5", R: 2500, sd: 48 },
+    { label: "1", R: 215.1296, d: 3, sd: 46.7, medium: 1 },
+    { label: "2", R: 124.879, d: 9.8003, sd: 46.7, medium: 2 },
+    { label: "3", R: 3400, d: 0.8633, sd: 46.7 },
+    { label: "4", R: 127.1376, d: 9.4372, sd: 45.6, medium: 3 },
+    { label: "5", R: 2500, sd: 45.6 },
     { label: "6", R: 129.3746, d: 4.8627, sd: 27, medium: 4 },
     { label: "7", R: -407.0541, d: 1.5, sd: 27, medium: 5 },
     { label: "8", R: 58.6936, d: 5.1655, sd: 22 },
@@ -2178,7 +2179,8 @@ const LENS_DATA = {
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "5" },
     { text: "G2", fromSurface: "6", toSurface: "10" },
-    { text: "G3", fromSurface: "11", toSurface: "20" },
+    { text: "G3a", fromSurface: "11", toSurface: "15" },
+    { text: "G3b / OS", fromSurface: "16", toSurface: "20" },
     { text: "G4", fromSurface: "21", toSurface: "32" },
     { text: "G5", fromSurface: "33", toSurface: "34" },
     { text: "G6", fromSurface: "35", toSurface: "38" },

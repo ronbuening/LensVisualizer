@@ -154,3 +154,45 @@ which L4 is a little larger than L5. There is no focus travel, so the close-focu
   stated)`. A corpus resolution dump before and after the catalog addition changes only this element.
 - L4 (1.75787 / 31.56) still has no vendor row within 10⁻⁴ in nd in the local HOYA, OHARA and Sumita catalogs; the
   nearest are LAFN12 / NBFD9 at 1.75690. It keeps its `Unmatched (…)` label.
+
+## 2026-10-24 — Second review: diagram, labels and movement
+
+An independent look at the live page (`/lens/voigtlander-super-dynarex-200mm-f4`) beside Figure 2 (Example 1, sheet 2,
+native 300 dpi) and the col. 3 text of `patents/US3388956A.pdf`.
+
+### Changes
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Element labels (diagram) | element ids 1–5 | `diagramLabel` I, II, III, IV, V | Figure 2 marks the elements I–V; col. 3 says "I through V the elements of the lenses" |
+| Element `label` | Element 1 … Element 5 | Element I … Element V | Same; the inspector now reads "Element IV  L4" |
+
+`name` stays L1–L5. The analysis now says that the diagram uses I–V and the prose L1–L5 in the same order.
+
+### Checked and found correct
+
+- Silhouette: the rendered doublet I+II, the slightly smaller III and the small rear pair with IV taller than V
+  match Figure 2, and every element is square-cut on both faces as drawn. A fresh read of L1's front-face sag at the
+  rim (64 px right, 59 px left of the 1191 px = 141.142 mm vertex span) gives sd 35.0 and 33.6 mm, mean 34.3 mm,
+  within 2% of the stored 35.0. The figure's L1 edge land (about 25–33 px) is a little thicker than the model's
+  2.2 mm, which is within drawing noise for this schematic. No rim was changed.
+- Groups: col. 3 defines A as the tele-positive and B as the tele-negative, and the claims put I–III in A and IV in B.
+  The brackets A (surfaces 1–5) and B (6–9) match. The one cemented component, I+II, carries the D1 bracket (1–3).
+- Stop: drawn 80.58 mm behind III and 23.83 mm ahead of IV, at the printed a3V/a3H split. Figure 2's diaphragm,
+  marked B in the drawing, sits in the same place.
+- Types agree with the radius signs: I biconvex (+84.3/−176.4), II and III negative menisci with both radii negative,
+  IV positive meniscus (+68.4/+235.0), V biconcave (−62.1/+139.6). All surfaces are spherical, and no `A` suffix or
+  `asph` entry exists. Roles match the patent's power table.
+- Tags: the patent names no glass and no anomalous-dispersion material, and every element is `apd: false`.
+- Movement: none. The patent prints only the infinity table, there are no `var` gaps, the movement overlay reports
+  no modeled group movement, and the focus slider's far end reads "Not modeled". The focus description says the
+  same.
+- Engine numbers are unchanged by the label edit: half-field 7.84°, f/4.00, stop radius 10.86 mm, and transmission
+  100 / 98.4 / 85.9 / 64.6 / 43.8% at 0 / 2 / 4.1 / 5.1 / 6.1°. The ω = 6.08° chief ray reaches 21.64 mm with no
+  clipped or blocked surface. Surface validation, the image-circle floor and field coverage (100%) pass.
+
+### Open limitations
+
+- Figure 2 draws the diaphragm opening wider than IV: its inner edge is 105 px from the axis against IV's 97 px. The
+  site draws the engine's f/4 stop radius of 10.86 mm, inside IV's 11.5 mm rim. The stop `sd` is outside this review's
+  edit list and was left alone.

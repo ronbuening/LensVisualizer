@@ -3911,7 +3911,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 6 | `Unmatched (758/316 dense flint; no catalog glass within 0.0001 in nd)` | 1.75787 / 31.56 | No catalog entry | abbe | patents/US3388956A.pdf | Explicit disposition in data |
+| L4 (Element IV) | 6 | `Unmatched (758/316 dense flint; no catalog glass within 0.0001 in nd)` | 1.75787 / 31.56 | No catalog entry | abbe | patents/US3388956A.pdf | Explicit disposition in data |
 
 ### [VOIGTLÄNDER ULTRA WIDE-HELIAR 12mm f/5.6 Aspherical L39](../../src/lens-data/voigtlander/VoigtlanderUltraWideHeliar12mmf56AsphericalL39.data.ts) - JP 2001-124985 A
 

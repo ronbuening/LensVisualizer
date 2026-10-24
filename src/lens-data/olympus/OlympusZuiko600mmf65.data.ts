@@ -29,13 +29,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    inverse object distance.                                        ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    The patent lists none. Front-group rims follow the scaled       ║
- * ║    section in the Olympus Zuiko lens manual (110 mm barrel,        ║
- * ║    103.6 mm front bore, 100 mm filter), held at or above the f/6.5 ║
- * ║    axial beam. Fig. 1 draws the F6 design about 13 % larger (L1    ║
- * ║    ≈ 53 mm, past the front bore) in the same front-group           ║
- * ║    proportions. The rear doublet follows Fig. 1's proportion to L1 ║
- * ║    (0.44, about 20.8 mm); the manual draws it smaller (≈ 17 mm).   ║
+ * ║    The patent lists none. L1 and L3/L4 follow the scaled section   ║
+ * ║    in the Olympus Zuiko lens manual (110 mm barrel, 103.6 mm front ║
+ * ║    bore, 100 mm filter), held at or above the f/6.5 axial beam.    ║
+ * ║    Fig. 1 draws the F6 design about 13 % larger (L1 ≈ 53 mm, past  ║
+ * ║    the front bore). L2 (0.94) and the rear doublet (0.44) follow   ║
+ * ║    Fig. 1's proportion to L1, so L2 stands above L3/L4 as drawn.   ║
  * ║    Floor-checked by real-ray trace; corner vignetting is kept.     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
@@ -146,8 +145,8 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 184.104, d: 15.024, sd: 47.0, medium: 1 },
     { label: "2", R: -516.732, d: 33.522, sd: 47.0 },
-    { label: "3", R: -460.836, d: 6.012, sd: 42.0, medium: 2 },
-    { label: "4", R: 1137.99, d: 1.2, sd: 42.0 },
+    { label: "3", R: -460.836, d: 6.012, sd: 44.2, medium: 2 },
+    { label: "4", R: 1137.99, d: 1.2, sd: 44.2 },
     { label: "5", R: 140.172, d: 14.022, sd: 42.0, medium: 3 },
     { label: "6", R: -325.746, d: 5.01, sd: 42.0, medium: 4 },
     { label: "7", R: 369.402, d: 100.929, sd: 42.0 },
@@ -178,6 +177,11 @@ const LENS_DATA = {
   },
 
   layout: { scFill: 0.65, yScFill: 0.3 },
+
+  groups: [
+    { text: "I (+)", fromSurface: "1", toSurface: "7" },
+    { text: "II (−)", fromSurface: "8", toSurface: "10" },
+  ],
 
   doublets: [
     { text: "D1", fromSurface: "5", toSurface: "7" },

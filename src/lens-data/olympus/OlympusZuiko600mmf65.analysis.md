@@ -106,10 +106,11 @@ The calculated $f_{2,3,4}$ differs from the printed value only in the last place
 
 The aperture runs from f/6.5 to f/32, as in the Olympus specification. The patent's design value of F6 is kept in the catalog metadata. Opening the model to F6 would need a front clear diameter of at least 100 mm, which the production barrel does not provide.
 
-The patent lists no clear apertures. The front-group semi-diameters follow the Olympus manual's section, scaled from its 110 mm barrel dimension. The patent's Fig. 1 is drawn to scale for the F6 design. It shows the front group in the same proportions but about 13 % larger, with L1 near 53 mm in radius, which is wider than the production front bore. The rear doublet follows Fig. 1's proportion to L1:
+The patent lists no clear apertures. The size of the front group follows the Olympus manual's section, scaled from its 110 mm barrel dimension. The patent's Fig. 1 is drawn to scale for the F6 design. It shows the front group about 13 % larger, with L1 near 53 mm in radius, which is wider than the production front bore. L2 and the rear doublet follow Fig. 1's proportions to L1:
 
 - L1 is about 47 mm in radius, just above the 46.15 mm f/6.5 axial beam.
-- L2 and the L3/L4 doublet are about 42 mm.
+- L2 is about 44 mm, 0.94 of L1. Fig. 1 draws it a step taller than the L3/L4 doublet behind it.
+- The L3/L4 doublet is about 42 mm.
 - The rear doublet is about 20.8 mm, 0.44 of L1 as in Fig. 1. The manual section draws it nearer 17 mm.
 
 All rims pass the f/6.5 axial beam and the full-field chief ray. The off-axis bundles are vignetted toward the corner, as the compact barrel implies. That vignetting is drawn and retained.

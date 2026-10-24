@@ -3,25 +3,27 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * JP 2011-039260 A (Sigma; inventor Tomoki Kono), Numerical Example 2 / Figure 8, at physical scale (1:1).
  * The granted JP 5417083 B2 prints the identical Example 2 tables. All R, d, nd and νd values are literal.
  * All 38 refracting surfaces are spherical; the stop is source row 21 with its literal 4.7312 mm following gap.
+ * Group names follow Figure 8 (L1–L7, with sub-groups L3a = E5 and L3b = E6–E8); elements are E1–E22 so they do
+ * not clash with the patent's group labels.
  *
  * Zoom: the patent prints infinity and finite spacings at f = 51.50, 159.61 and 485.00 mm. These are stations 0, 20
- * and 64 (published). The other 62 stations are solved cam points: positions of G1–G6 relative to the image are
- * interpolated between the source columns and G7 is solved as the focus compensator, keeping each sampled station
+ * and 64 (published). The other 62 stations are solved cam points: positions of L1–L6 relative to the image are
+ * interpolated between the source columns and L7 is solved as the focus compensator, keeping each sampled station
  * in focus at infinity (residual ≤ 0.02 mm, the same order as the printed back-focus rounding; linear
  * interpolation between stations adds at most 0.016 mm). Stations are denser toward tele. They are not the factory
- * cam. G3 stays fixed relative to the image, as claim 3 states.
+ * cam. L3 stays fixed relative to the image, as claim 3 states.
  * Example 2's variable-gap table labels its fifth and sixth rows "d28" and "d35", carried over from Example 1's
  * 41-surface table; Example 2's surfaces 28 and 35 have fixed spacings (0.15 and 0.80 mm), so those rows are
  * applied to d24 and d33, the only variable gaps they can be. All printed values are unchanged.
- * D6, D8, D15, D20 and D24 vary with zoom only; D33 and BF vary with zoom and focus (G7 focusing, claim 2).
+ * D6, D8, D15, D20 and D24 vary with zoom only; D33 and BF vary with zoom and focus (L7 focusing, claim 2).
  * Focus: keyframe 4 is the patent's finite-distance column at each published station (constant magnification about
- * −0.025); keyframes 1–3 are interpolated G7 positions.
+ * −0.025); keyframes 1–3 are interpolated L7 positions.
  * Iris size is derived from the printed design f-numbers (F/4.57, 5.73, 6.47); no stop diameter is published.
  * All clear radii are inferred: measured on Figure 8 (Example 2, wide end) at 0.2108 mm/px, the scale set by the
  * 39 vertex crossings and confirmed by the drawn stop and by the rim sags. Where the figure draws a flange outside
  * a concave face (S2, S6, S8, S11/S12, S22, S25, S27, S36, S37), sd is where the curve ends, not the flange. S22
  * and S27 sit on the real-ray axial floor at the design f-numbers; S34/S35 keep their earlier value.
- * apd "inferred" on L2, L3, L9 and L14 follows the four SLD positions Sigma's diagram marks; the patent names no
+ * apd "inferred" on E2, E3, E9 and E14 follows the four SLD positions Sigma's diagram marks; the patent names no
  * special glass. Glass names are coordinate equivalents; production suppliers are unconfirmed.
  */
 const LENS_DATA = {
@@ -63,7 +65,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "E1",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.834,
@@ -71,11 +73,11 @@ const LENS_DATA = {
       focalLengthMm: -271.65,
       indexReference: "d",
       glass: "NBFD10 (HOYA coordinate equivalent; supplier unconfirmed)",
-      role: "High-index negative front meniscus of G1; offsets the two SLD positives behind it.",
+      role: "High-index negative front meniscus of L1; offsets the two SLD positives behind it.",
     },
     {
       id: 2,
-      name: "L2",
+      name: "E2",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -86,11 +88,11 @@ const LENS_DATA = {
       apd: "inferred",
       apdNote:
         "Fluorophosphate low-dispersion coordinate (1.49700 / 81.6, equal to HOYA FCD1) at one of the four positions Sigma's construction diagram marks as SLD glass; the patent itself names no special glass.",
-      role: "First SLD positive of G1, carrying most of the front-group power at low dispersion.",
+      role: "First SLD positive of L1, carrying most of the front-group power at low dispersion.",
     },
     {
       id: 3,
-      name: "L3",
+      name: "E3",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.497,
@@ -101,11 +103,11 @@ const LENS_DATA = {
       apd: "inferred",
       apdNote:
         "Fluorophosphate low-dispersion coordinate (1.49700 / 81.6, equal to HOYA FCD1) at one of the four positions Sigma's construction diagram marks as SLD glass; the patent itself names no special glass.",
-      role: "Second SLD positive, a meniscus that completes the positive front group G1.",
+      role: "Second SLD positive, a meniscus that completes the positive front group L1.",
     },
     {
       id: 4,
-      name: "L4",
+      name: "E4",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.7725,
@@ -113,11 +115,11 @@ const LENS_DATA = {
       focalLengthMm: -63.7067,
       indexReference: "d",
       glass: "N-LAF34 (SCHOTT coordinate equivalent; supplier unconfirmed)",
-      role: "Single negative element forming the variator G2; nearly flat front face. Moves toward the image when zooming to tele.",
+      role: "Single negative element forming the variator L2; nearly flat front face. Moves toward the image when zooming to tele.",
     },
     {
       id: 5,
-      name: "L5",
+      name: "E5",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.8061,
@@ -125,11 +127,11 @@ const LENS_DATA = {
       focalLengthMm: 69.5032,
       indexReference: "d",
       glass: "NBFD15 (HOYA coordinate equivalent; supplier unconfirmed)",
-      role: "Positive singlet forming sub-group G3a of the fixed group G3; converges the beam onto the stabilizing sub-group.",
+      role: "Positive singlet forming sub-group L3a of the fixed group L3; converges the beam onto the stabilizing sub-group.",
     },
     {
       id: 6,
-      name: "L6",
+      name: "E6",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.713,
@@ -137,11 +139,11 @@ const LENS_DATA = {
       focalLengthMm: -76.2727,
       indexReference: "d",
       glass: "LAC8 (HOYA coordinate equivalent; supplier unconfirmed)",
-      role: "Front negative element of sub-group G3b, which shifts across the axis for image stabilization.",
+      role: "Front negative element of sub-group L3b, which shifts across the axis for image stabilization.",
     },
     {
       id: 7,
-      name: "L7",
+      name: "E7",
       label: "Element 7",
       type: "Positive Meniscus",
       nd: 1.84666,
@@ -149,11 +151,11 @@ const LENS_DATA = {
       focalLengthMm: 56.4939,
       indexReference: "d",
       glass: "FDS90 (HOYA coordinate equivalent; supplier unconfirmed)",
-      role: "High-dispersion positive meniscus of the G3b cemented doublet; achromatizes the stabilizing sub-group.",
+      role: "High-dispersion positive meniscus of the L3b cemented doublet; achromatizes the stabilizing sub-group.",
     },
     {
       id: 8,
-      name: "L8",
+      name: "E8",
       label: "Element 8",
       type: "Biconcave Negative",
       nd: 1.7725,
@@ -161,11 +163,11 @@ const LENS_DATA = {
       focalLengthMm: -35.041,
       indexReference: "d",
       glass: "N-LAF34 (SCHOTT coordinate equivalent; supplier unconfirmed)",
-      role: "Negative member of the G3b cemented doublet; gives the stabilizing sub-group most of its negative power.",
+      role: "Negative member of the L3b cemented doublet; gives the stabilizing sub-group most of its negative power.",
     },
     {
       id: 9,
-      name: "L9",
+      name: "E9",
       label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -176,11 +178,11 @@ const LENS_DATA = {
       apd: "inferred",
       apdNote:
         "Fluorophosphate low-dispersion coordinate (1.49700 / 81.6, equal to HOYA FCD1) at one of the four positions Sigma's construction diagram marks as SLD glass; the patent itself names no special glass.",
-      role: "SLD biconvex positive at the front of G4, ahead of the stop.",
+      role: "SLD biconvex positive at the front of L4, ahead of the stop.",
     },
     {
       id: 10,
-      name: "L10",
+      name: "E10",
       label: "Element 10",
       type: "Biconvex Positive",
       nd: 1.48749,
@@ -188,11 +190,11 @@ const LENS_DATA = {
       focalLengthMm: 57.6747,
       indexReference: "d",
       glass: "H-QK3L (CDGM coordinate equivalent; supplier unconfirmed)",
-      role: "Equiconvex crown of the G4 cemented doublet.",
+      role: "Equiconvex crown of the L4 cemented doublet.",
     },
     {
       id: 11,
-      name: "L11",
+      name: "E11",
       label: "Element 11",
       type: "Biconcave Negative",
       nd: 1.84666,
@@ -200,11 +202,11 @@ const LENS_DATA = {
       focalLengthMm: -51.5377,
       indexReference: "d",
       glass: "FDS90 (HOYA coordinate equivalent; supplier unconfirmed)",
-      role: "Dense-flint negative of the G4 cemented doublet; axial-color correction for G4.",
+      role: "Dense-flint negative of the L4 cemented doublet; axial-color correction for L4.",
     },
     {
       id: 12,
-      name: "L12",
+      name: "E12",
       label: "Element 12",
       type: "Biconcave Negative",
       nd: 1.72916,
@@ -212,11 +214,11 @@ const LENS_DATA = {
       focalLengthMm: -23.2722,
       indexReference: "d",
       glass: "TAC8 (HOYA coordinate equivalent; supplier unconfirmed)",
-      role: "Strong biconcave negative opening G5 directly behind the stop.",
+      role: "Strong biconcave negative opening L5 directly behind the stop.",
     },
     {
       id: 13,
-      name: "L13",
+      name: "E13",
       label: "Element 13",
       type: "Positive Meniscus",
       nd: 1.80518,
@@ -224,11 +226,11 @@ const LENS_DATA = {
       focalLengthMm: 44.258,
       indexReference: "d",
       glass: "FD60 (HOYA coordinate equivalent; supplier unconfirmed)",
-      role: "High-dispersion positive meniscus cemented to L12; G5 stays negative overall.",
+      role: "High-dispersion positive meniscus cemented to E12; L5 stays negative overall.",
     },
     {
       id: 14,
-      name: "L14",
+      name: "E14",
       label: "Element 14",
       type: "Positive Meniscus",
       nd: 1.497,
@@ -239,11 +241,11 @@ const LENS_DATA = {
       apd: "inferred",
       apdNote:
         "Fluorophosphate low-dispersion coordinate (1.49700 / 81.6, equal to HOYA FCD1) at one of the four positions Sigma's construction diagram marks as SLD glass; the patent itself names no special glass.",
-      role: "SLD positive meniscus opening the positive relay group G6.",
+      role: "SLD positive meniscus opening the positive relay group L6.",
     },
     {
       id: 15,
-      name: "L15",
+      name: "E15",
       label: "Element 15",
       type: "Positive Meniscus",
       nd: 1.5168,
@@ -251,11 +253,11 @@ const LENS_DATA = {
       focalLengthMm: 152.7199,
       indexReference: "d",
       glass: "H-K9L (CDGM coordinate equivalent; supplier unconfirmed)",
-      role: "Crown positive meniscus in G6.",
+      role: "Crown positive meniscus in L6.",
     },
     {
       id: 16,
-      name: "L16",
+      name: "E16",
       label: "Element 16",
       type: "Biconvex Positive",
       nd: 1.48749,
@@ -263,11 +265,11 @@ const LENS_DATA = {
       focalLengthMm: 82.5,
       indexReference: "d",
       glass: "H-QK3L (CDGM coordinate equivalent; supplier unconfirmed)",
-      role: "Biconvex crown positive in G6.",
+      role: "Biconvex crown positive in L6.",
     },
     {
       id: 17,
-      name: "L17",
+      name: "E17",
       label: "Element 17",
       type: "Biconvex Positive",
       nd: 1.48749,
@@ -275,11 +277,11 @@ const LENS_DATA = {
       focalLengthMm: 47.6509,
       indexReference: "d",
       glass: "H-QK3L (CDGM coordinate equivalent; supplier unconfirmed)",
-      role: "Biconvex crown of the rear G6 cemented doublet.",
+      role: "Biconvex crown of the rear L6 cemented doublet.",
     },
     {
       id: 18,
-      name: "L18",
+      name: "E18",
       label: "Element 18",
       type: "Negative Meniscus",
       nd: 1.84666,
@@ -287,11 +289,11 @@ const LENS_DATA = {
       focalLengthMm: -67.0189,
       indexReference: "d",
       glass: "FDS90 (HOYA coordinate equivalent; supplier unconfirmed)",
-      role: "Dense-flint negative meniscus of the rear G6 doublet; color correction for G6.",
+      role: "Dense-flint negative meniscus of the rear L6 doublet; color correction for L6.",
     },
     {
       id: 19,
-      name: "L19",
+      name: "E19",
       label: "Element 19",
       type: "Biconvex Positive",
       nd: 1.80518,
@@ -299,11 +301,11 @@ const LENS_DATA = {
       focalLengthMm: 44.5378,
       indexReference: "d",
       glass: "FD60 (HOYA coordinate equivalent; supplier unconfirmed)",
-      role: "High-dispersion biconvex positive of the front doublet in the focusing group G7.",
+      role: "High-dispersion biconvex positive of the front doublet in the focusing group L7.",
     },
     {
       id: 20,
-      name: "L20",
+      name: "E20",
       label: "Element 20",
       type: "Biconcave Negative",
       nd: 1.713,
@@ -311,11 +313,11 @@ const LENS_DATA = {
       focalLengthMm: -25.6452,
       indexReference: "d",
       glass: "LAC8 (HOYA coordinate equivalent; supplier unconfirmed)",
-      role: "Biconcave negative of the front G7 doublet; main negative power of the focusing group.",
+      role: "Biconcave negative of the front L7 doublet; main negative power of the focusing group.",
     },
     {
       id: 21,
-      name: "L21",
+      name: "E21",
       label: "Element 21",
       type: "Biconcave Negative",
       nd: 1.834,
@@ -323,11 +325,11 @@ const LENS_DATA = {
       focalLengthMm: -28.1062,
       indexReference: "d",
       glass: "NBFD10 (HOYA coordinate equivalent; supplier unconfirmed)",
-      role: "Biconcave negative of the rear G7 cemented doublet.",
+      role: "Biconcave negative of the rear L7 cemented doublet.",
     },
     {
       id: 22,
-      name: "L22",
+      name: "E22",
       label: "Element 22",
       type: "Biconvex Positive",
       nd: 1.56732,
@@ -335,7 +337,7 @@ const LENS_DATA = {
       focalLengthMm: 39.7634,
       indexReference: "d",
       glass: "E-FL6 (HOYA coordinate equivalent; supplier unconfirmed)",
-      role: "Biconvex rear element, cemented to L21; last element of the lens.",
+      role: "Biconvex rear element, cemented to E21; last element of the lens.",
     },
   ],
   surfaces: [
@@ -1081,13 +1083,13 @@ const LENS_DATA = {
     },
   },
   groups: [
-    { text: "G1 (+)", fromSurface: "1", toSurface: "6" },
-    { text: "G2 (−)", fromSurface: "7", toSurface: "8" },
-    { text: "G3 (−)", fromSurface: "9", toSurface: "15" },
-    { text: "G4 (+)", fromSurface: "16", toSurface: "20" },
-    { text: "G5 (−)", fromSurface: "STO", toSurface: "24" },
-    { text: "G6 (+)", fromSurface: "25", toSurface: "33" },
-    { text: "G7 (−)", fromSurface: "34", toSurface: "39" },
+    { text: "L1 (+)", fromSurface: "1", toSurface: "6" },
+    { text: "L2 (−)", fromSurface: "7", toSurface: "8" },
+    { text: "L3 (− / L3b OS)", fromSurface: "9", toSurface: "15" },
+    { text: "L4 (+)", fromSurface: "16", toSurface: "20" },
+    { text: "L5 (−)", fromSurface: "STO", toSurface: "24" },
+    { text: "L6 (+)", fromSurface: "25", toSurface: "33" },
+    { text: "L7 (− / FOCUS)", fromSurface: "34", toSurface: "39" },
   ],
   doublets: [
     { text: "D1", fromSurface: "13", toSurface: "15" },
@@ -1505,7 +1507,7 @@ const LENS_DATA = {
     closeFocusM: 2.24,
     keyframes: [0, 0.25, 0.5, 0.75, 1],
     description:
-      "PUBLISHED near state at each of the patent's three zoom columns: the rear negative group G7 moves toward the image to focus, by 0.24 mm at 51.5 mm, 0.52 mm at 159.6 mm and 1.14 mm at 485 mm. The patent's near states hold magnification at about −0.025 (object to image 2.24 m, 6.43 m and 19.0 m); they are test distances, not the maker's 0.5–1.8 m minimum focus. Intermediate focus and zoom positions are interpolated.",
+      "Rear focus, with a published near state at each of the patent's three zoom columns: the negative group L7 moves toward the image to focus, by 0.24 mm at 51.5 mm, 0.52 mm at 159.6 mm and 1.14 mm at 485 mm. The patent's near states hold magnification at about −0.025 (object to image 2.24 m, 6.43 m and 19.0 m); they are test distances, not the maker's 0.5–1.8 m minimum focus. Intermediate focus and zoom positions are interpolated.",
     conjugates: [
       {
         zoomStation: 0,

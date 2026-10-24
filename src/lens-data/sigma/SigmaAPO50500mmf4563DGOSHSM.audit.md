@@ -191,3 +191,85 @@ and G5 (13.16 mm). The silhouette was also checked against Sigma's construction 
 
 - S22, S25 and S27 sit within 1 % of the on-axis beam at the station where the iris is largest (10.63 mm). Any
   future change to the stop schedule or the design f-numbers has to re-check these three faces.
+
+## 2026-10-24 — Second review: diagram, labels and movement
+
+### What was compared
+
+- The local page was shot at 51.5 mm (infinity and closest focus), 159.61 mm, and 485 mm at closest focus, plus both
+  movement overlays and the inspector for E2 and E13. The cross-section was also shot at 3× device scale. These were
+  set beside Figure 8 (PDF page 13), rendered at 600 dpi and rotated so the object is on the left.
+- Sigma's construction diagram (local copy) was viewed. It shows 22 elements in 16 groups, the same sequence, SLD
+  colouring on elements 2, 3, 9 and 14, and no aspherical marking. Its height ratios agree with the model: L2 (E4)
+  over E1 is 0.61 there and 0.60 here, E3/E1 0.95 and 0.95, E5/E1 0.39 and 0.40, and the rear doublet 0.29 and 0.30.
+
+### Silhouette
+
+- Every rim was re-read on the 600 dpi render (0.1054 mm/px). E1 front 43.5, E1 rear curve end 40.3, E2 42.4–42.7,
+  E3 41.1, E5 17.3, E6 box 14.3, E9 13.8, E10/E11 13.3, E12/E13 box 12.1, E14 13.15, E15 13.25, E16 13.4,
+  E17/E18 13.0, E19/E20 box 11.8 and E21/E22 13.0 mm. All of these are within 1–2 px of the stored values, so no
+  `sd` changed.
+- The visible difference is on the flanged elements (E1, E3, E4, E6, E12, E14, E15, E20, E21). The figure draws a
+  flat land outside the concave face and a square outer edge. The site joins the two face rims with a slanted line.
+  These were left at the curve end, for three reasons:
+  - The drawn edge thickness fits a flat land, not a curve running to the rim. E3's foot is drawn 2.64 mm thick.
+    With S6 ending at 36.8 mm and flat beyond, the edge is 2.68 mm; carried to 41.2 mm, it would be 3.08 mm. E4's box
+    is drawn 7.4 mm deep, and its edge thickness with S8 ending at 22.2 mm is 7.28 mm.
+  - The procedure takes `sd` from the optical extent, not the mounting blank.
+  - Squaring changes the optics. A trial with S6 at 41.2 and S8 at 26.2 passes the validator, but it raises the engine
+    half-field from 23.20° to 25.74° and the wide-corner transmission from 37.5 % to 39.6 %.
+- The engine's wide half-field is 23.195°, against the patent's 23.185° (2ω = 46.37°). It is limited by S8 at the
+  drawn curve end, and the exact trace reaches the 21.63 mm corner at ω = 23.17° with no clip. That margin is enough
+  and was kept.
+
+### Labels
+
+| Item | Before | After | Evidence |
+| --- | --- | --- | --- |
+| `groups` text | G1 (+) … G7 (−) | L1 (+), L2 (−), L3 (− / L3b OS), L4 (+), L5 (−), L6 (+), L7 (− / FOCUS) | Figure 8 labels the groups L1–L7, with sub-groups L3a and L3b. The text calls them the first to seventh lens groups. Surface ranges were already correct. |
+| Element `name` | L1 … L22 | E1 … E22 | The patent does not number elements, and L1–L7 are its group labels. E-numbering avoids the clash, as in the repo's other files that use patent L-group notation. |
+| Element `role` group references | G1, G3a, G3b … G7; "cemented to L12/L21" | L1, L3a, L3b … L7; "cemented to E12/E21" | Follows the rename |
+| `focus.description` | Opened with "PUBLISHED near state …" | Opens "Rear focus, with a published near state …"; group named L7 | Readability |
+| Header comment, analysis | G- and L-notation | L-groups and E-elements, with a naming note | Follows the rename |
+
+- Checked and correct: the six doublet brackets (S13–15, 18–20, 22–24, 31–33, 34–36, 37–39), one per cemented
+  pair. The stop sits between S20 and S22 at source row 21. It is inside the L5 bracket, because the fixed 4.7312 mm
+  gap carries it with L5. Figure 8 draws SP between the L4 and L5 brackets.
+- Every element `type` agrees with the signs of its radii. All surfaces are spherical, with no `asph` entries or `A`
+  labels. Roles were checked against the element focal lengths. E2 has the largest positive power in L1, and E20 is
+  the strongest negative in L7.
+- The `apd: "inferred"` tags on E2, E3, E9 and E14 match the four SLD positions in Sigma's diagram, and the patent
+  names no special glass. The inspector shows "APD (INFERRED)" on E2.
+
+### Movement
+
+Group vertex positions measured from the image plane over all 65 stations (positive means toward the object):
+
+| Group | 51.5 mm | 159.61 mm | 485 mm | Wide → tele | Patent (Figure 8 arrows, claims) |
+| --- | ---: | ---: | ---: | --- | --- |
+| L1 | 261.34 | 309.04 | 348.07 | +86.74, monotonic | toward object |
+| L2 | 230.32 | 211.39 | 201.78 | −28.55, monotonic | toward image (claim 1) |
+| L3 | 190.99 | 190.99 | 190.99 | 0 | fixed (claim 3) |
+| L4 | 138.88 | 157.68 | 167.55 | +28.67, monotonic | toward object |
+| L5 + stop | 119.35 | 134.39 | 141.08 | +21.73, monotonic | toward object |
+| L6 | 98.75 | 117.75 | 128.72 | +29.98, monotonic | toward object |
+| L7 | 70.24 | 87.68 | 107.46 | +37.23, monotonic | toward object |
+
+- `zoom.stations` ascend from 51.5 to 485 mm, and every gap array follows that order.
+- Focus keyframe 0 is infinity and keyframe 4 is the printed finite column. L7 moves toward the image by 0.236,
+  0.518 and 1.144 mm at the three published stations, monotonically through keyframes 1–3. L6 moves less than
+  0.001 mm, which is rounding. The far-end focus labels read 2.24 m at 51.5 mm and 19.0 m at 485 mm, the patent's
+  object-to-image distances.
+- Both movement overlays show these directions. No ordering or direction change was needed.
+
+### Results
+
+- Nothing that affects the trace changed. The surface validator reports no errors, and the image-circle check finds
+  no undersized rim. Field coverage reaches the 21.63 mm corner at all 65 stations.
+- An exact trace at Y = 21.63 mm, F/4.57–6.47 and all 65 stations shows no axial clip or blocked chief ray. Engine
+  half-field stays 23.20°, F/4.57 and the 10.49 mm stop are unchanged, and the vignetting curve is identical.
+- The group brackets read L1–L7 on the page at both zoom ends. At 485 mm they pack into two rows, crowded but legible.
+
+### Limitations
+
+- The renderer cannot draw the flat flanges of Figure 8, so the nine flanged elements show tapered rims.
