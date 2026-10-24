@@ -9,7 +9,7 @@
 **Inventor:** Marco Pretorius, Oberkochen (DE)  
 **Applicant:** Carl Zeiss AG, Oberkochen (DE)  
 **Title:** Compact Camera Lens of Highest Imaging Quality for a Camera with Full-Framed Sensor  
-**Embodiment analyzed:** First embodiment, Tables 1-6 and Figs. 1-6
+**Example details:** Tables 1-6 and Figs. 1-6
 
 The first embodiment of US 2018/0180842 A1 is the appropriate patent prescription to associate with the ZEISS ZX1 fixed 35 mm lens. The match rests on several mutually reinforcing facts: the embodiment is an 8-element 35 mm f/2 design for a 43.2 mm full-frame image circle; it has two bi-aspheric elements, four aspherical surfaces, a 57 mm structural length, a fixed front compound lens, a fixed rear bi-aspheric lens element, and two movable focus subgroups behind a fixed stop. The patent's near setting limit is 30 cm measured from object to sensor, matching the published close-focus specification for the ZX1. The German priority date of December 2016 also precedes the ZX1 announcement by a plausible product-development interval.
 

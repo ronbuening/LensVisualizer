@@ -61,7 +61,13 @@ const LENS_DATA = {
     fNumber: { marketing: 6, design: 6.059522085587566 },
   },
 
-  source: { patentNumber: "US 765,006 A", patentYear: 1904, authors: ["Carl August Hans Harting"], assignees: [] },
+  source: {
+    patentNumber: "US 765,006 A",
+    example: { label: "Sole example", id: null },
+    patentYear: 1904,
+    authors: ["Carl August Hans Harting"],
+    assignees: [],
+  },
 
   /* ── Elements ── */
   elements: [

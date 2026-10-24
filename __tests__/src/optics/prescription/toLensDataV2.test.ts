@@ -258,7 +258,7 @@ describe("V2 view", () => {
     ]);
     expect(keys(zoom.catalog!.focalLengthMm)).toEqual(["marketing", "design"]);
     expect(keys(zoom.catalog!.fNumber)).toEqual(["marketing", "design"]);
-    expect(keys(zoom.source)).toEqual(["patentNumber", "patentYear", "authors", "assignees", "errata"]);
+    expect(keys(zoom.source)).toEqual(["patentNumber", "example", "patentYear", "authors", "assignees", "errata"]);
     expect(keys(zoom.elements[0])).toEqual([
       "id",
       "name",

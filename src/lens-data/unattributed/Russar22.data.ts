@@ -50,6 +50,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2,516,724 A",
+    example: { label: "Example II", id: "2" },
     patentYear: 1950,
     authors: ["Michael Michaelovitch Roossinov"],
     assignees: [],

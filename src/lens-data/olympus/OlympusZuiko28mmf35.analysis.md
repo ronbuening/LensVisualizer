@@ -7,7 +7,7 @@
 **Inventor:** Nobuo Yamashita\
 **Applicant:** Olympus Optical Co., Ltd.\
 **Title:** _Linsensystem für eine Weitwinkelkamera mit Retrofokus-Objektiv_\
-**Embodiment analyzed:** Ausführungsform 3 (Example 3, Table V)
+**Example details:** Ausführungsform 3 (Table V)
 
 Example 3 is the strongest known patent match for the Olympus OM-System G.Zuiko Auto-W 28mm f/3.5, but the identification remains an attribution rather than an explicit statement in the patent. The match rests on convergent evidence:
 

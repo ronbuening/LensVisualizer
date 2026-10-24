@@ -57,6 +57,7 @@ const TELECONVERTER_DATA = {
 
   source: {
     patentNumber: "WO 2017/134928 A1",
+    example: { label: "Example 3", id: "3" },
     patentYear: 2017,
     authors: ["Yonghua Chen", "Naoki Miyagawa"],
     assignees: ["Sony Corporation"],

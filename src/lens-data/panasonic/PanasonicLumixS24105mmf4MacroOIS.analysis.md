@@ -16,7 +16,7 @@
 
 **Title:** Zoom lens system, imaging apparatus, and camera system
 
-**Embodiment analyzed:** Embodiment 1 / Numerical Example 1
+**Example details:** Numerical Example 1
 
 The prescription models the patent's first numerical example as the optical design associated with the PANASONIC LUMIX S 24-105mm f/4 MACRO O.I.S. (S-R24105). The correlation is strong but inferential: neither the patent nor Panasonic's product literature states that Numerical Example 1 is the production prescription.
 

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { ingestLens, ingestTeleconverter } from "../../../src/optics/lensDataConversion.js";
 import { toLensData, toTeleconverterData } from "../../../src/optics/prescription/v1/toLensData.js";
+import { validatePatentExample } from "../../../src/optics/prescription/validate/patent.js";
 import type { LensDataInput } from "../../../src/types/optics.js";
 import {
   docdbPublicationNumber,
@@ -86,6 +87,161 @@ const NOMINAL_FASTER_THAN_DESIGN: readonly string[] = [
   "tamron-sp-90mm-f2-8-di-macro-vc-usd-f004",
 ];
 
+/**
+ * Patent-backed lenses that do not yet record `source.example`, each queued in agent_docs/patent-example-queue.md. The
+ * sweep below compares for equality, so a lens that gains its example must leave this list and no lens may join it.
+ */
+const MISSING_PATENT_EXAMPLE: readonly string[] = [
+  "agfa-color-telinear-90mm-f4",
+  "angenieux-retrofocus-r11-28mm-f35",
+  "canon-ef-100-300mm-f5-6",
+  "canon-fl-85-300mm-f5",
+  "carl-zeiss-biogon-35f28-contax",
+  "carl-zeiss-mirotar-500f45",
+  "fujifilm-fujinar-210mm-f45",
+  "kodak-aero-ektar-6in-f35",
+  "kodak-ektar-50f35",
+  "konica-hexanon-135mm-f35",
+  "konica-uc-zoom-hexanon-ar-80-200-f4",
+  "konica-varifocal-hexanon-ar-35-100-f28",
+  "leica-apo-summicron-m-35f2",
+  "leica-macro-elmar-m-90mm-f4",
+  "leica-summilux-m-50mm-f14-i",
+  "mamiya-sekor-c-55mm-f2-8-n",
+  "mamiya-sekor-cs-35mm-f2-8",
+  "mamiya-sekor-macro-c-80f4",
+  "mamiya-sekor-sfc-150f4-soft-focus",
+  "mamiya-sekor-zoom-e-28-50mm-f3-5-4-5",
+  "meyer-optik-gorlitz-lydith-30f35",
+  "meyer-optik-gorlitz-orestegor-500mm-f56",
+  "meyer-optik-gorlitz-orestor-135f28",
+  "meyer-optik-gorlitz-primagon-35f45",
+  "miranda-auto-ec-135mm-f28",
+  "miranda-auto-ec-200mm-f35",
+  "nikon-1-nikkor-10-100-f4-56-vr",
+  "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr",
+  "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr-tc-in",
+  "nikon-af-zoom-micro-70-180mm-f45-56d",
+  "nikon-fisheye-nikkor-6mm-f56",
+  "nikon-nikkor-15mm-f56",
+  "nikon-nikkor-s-auto-50f2",
+  "nikon-nikkor-s-auto-58mm-f1-4",
+  "olympus-e-zuiko-auto-t-1000mm-f11",
+  "olympus-mzuiko-14-42-3556-ii",
+  "olympus-zuiko-auto-t-200mm-f5",
+  "olympus-zuiko-auto-w-18f35",
+  "olympus-zuiko-auto-w-21mm-f2",
+  "pentax-645-a-45mm-f28",
+  "pentax-super-takumar-135mm-f2-5",
+  "rodenstock-grandagon-n-65mm-f45",
+  "rodenstock-grandagon-n-75mm-f45",
+  "rodenstock-grandagon-n-75mm-f68",
+  "rodenstock-grandagon-n-90mm-f45",
+  "samyang-af-35-150mm-f2-28",
+  "schacht-s-travenar-135f28",
+  "schacht-travenar-90f28",
+  "schneider-cinegon-10f18",
+  "schneider-cinegon-65f19",
+  "schneider-kreuznach-xenar-50f28",
+  "schneider-retina-curtagon-28f4",
+  "schneider-variogon-10-40-f28",
+  "schneider-xenon-50f19",
+  "tamron-a08-200500mm-f563",
+  "voigtlander-apo-lanthar-210mm-f45",
+  "voigtlander-color-heliar-105mm-f35",
+  "voigtlander-color-skopar-105mm-f35",
+  "voigtlander-telomar-180mm-f55",
+  "yashica-yashinon-dx-21mm-f3-3",
+  "zeiss-jena-sonnar-50f15-us2186621",
+];
+
+const ORDINALS = [
+  "first",
+  "second",
+  "third",
+  "fourth",
+  "fifth",
+  "sixth",
+  "seventh",
+  "eighth",
+  "ninth",
+  "tenth",
+  "eleventh",
+  "twelfth",
+  "thirteenth",
+  "fourteenth",
+  "fifteenth",
+  "sixteenth",
+  "seventeenth",
+  "eighteenth",
+  "nineteenth",
+  "twentieth",
+];
+const TERM_MODIFIER = "(?:numerical(?: value)?|working|exemplary|illustrative|preferred|design)\\s+";
+const DESIGNATION = new RegExp(
+  `(?<![\\p{L}])(?:${TERM_MODIFIER})?(example|embodiment|table|numerical data|zahlenbeispiel|beispiel|ausführungsbeispiel|exemple|tableau|tabelle|ex\\.?)(s?)\\s*(\\d+(?:-\\d+)*[A-Za-z]?|[IVX]+|[A-H])(?![\\p{L}\\d])`,
+  "giu",
+);
+const ORDINAL_DESIGNATION = new RegExp(
+  `(?<![\\p{L}])(${ORDINALS.join("|")})\\s+(?:${TERM_MODIFIER})?(?:example|embodiment)`,
+  "giu",
+);
+const JAPANESE_DESIGNATION = /(?:数値)?実施例\s*(\d+)|第\s*(\d+)\s*実施例/gu;
+const ROMAN_DIGITS: Readonly<Record<string, number>> = { I: 1, V: 5, X: 10 };
+
+function romanValue(numeral: string): number {
+  let value = 0;
+  for (let i = 0; i < numeral.length; i++) {
+    const digit = ROMAN_DIGITS[numeral[i]];
+    value += digit < (ROMAN_DIGITS[numeral[i + 1]] ?? 0) ? -digit : digit;
+  }
+  return value;
+}
+
+/**
+ * The example id a subtitle names: the first example or embodiment designation, else the first table (which a sole
+ * example's subtitle may cite without numbering the example), `null` for "sole … example", or `undefined` for none.
+ * Designations a "job card" is credited with are the project's, not the source's.
+ */
+function subtitleExampleId(subtitle: string, sole: boolean): string | null | undefined {
+  const text = subtitle.replace(/[０-９]/g, (digit) => String.fromCharCode(digit.charCodeAt(0) - 0xfee0));
+  const jobCard = (index: number) =>
+    /job[- ]?(?:card|designation)\b[^—;]{0,12}$/i.test(text.slice(Math.max(0, index - 30), index));
+  const found: { index: number; id: string; table: boolean }[] = [];
+  for (const match of text.matchAll(DESIGNATION)) {
+    const [, term, plural, numeral] = match;
+    if (jobCard(match.index) || /^[a-hivx]+$/.test(numeral)) continue;
+    const first = plural ? numeral.replace(/-.*$/, "") : numeral;
+    const id = /^[IVX]+$/.test(first)
+      ? String(romanValue(first))
+      : /^[A-H]$/.test(first)
+        ? first
+        : first.replace(/^(\d+)/, (digits) => String(Number(digits))).toUpperCase();
+    found.push({ index: match.index, id, table: /^(?:table|tableau|tabelle)$/i.test(term) });
+  }
+  for (const match of text.matchAll(ORDINAL_DESIGNATION)) {
+    if (!jobCard(match.index)) {
+      found.push({ index: match.index, id: String(ORDINALS.indexOf(match[1].toLowerCase()) + 1), table: false });
+    }
+  }
+  for (const match of text.matchAll(JAPANESE_DESIGNATION)) {
+    found.push({ index: match.index, id: String(Number(match[1] ?? match[2])), table: false });
+  }
+  found.sort((a, b) => a.index - b.index);
+  const primary = found.find((designation) => !designation.table) ?? (sole ? undefined : found[0]);
+  if (primary) return primary.id;
+  return /\bsole\b[^—]{0,30}\bexample\b/i.test(text) ? null : undefined;
+}
+
+/* The analysis metadata rows that named the example before `source.example` held it. */
+const EXAMPLE_ROW =
+  /^\*\*(?:Embodiment analy[sz]ed|Embodiment|Example|Example analy[sz]ed|Numerical example analyzed|Example Used|Design Example|Production example|Production embodiment):\*\*/m;
+const analyses = import.meta.glob<string>("../../../src/lens-data/**/*.analysis.md", {
+  query: "?raw",
+  import: "default",
+  eager: true,
+});
+
 describe("lens patent metadata", () => {
   it("links every authored converter patent with consistent country and kind-code spacing", () => {
     const offenders = Object.entries(patentModules).flatMap(([path, { default: data }]) => {
@@ -112,6 +268,45 @@ describe("lens patent metadata", () => {
       return wideOpen / data.apertureDesign < 1 - APERTURE_ROUNDING ? [data.key] : [];
     });
     expect(offenders.sort()).toEqual([...NOMINAL_FASTER_THAN_DESIGN].sort());
+  });
+
+  it("records the transcribed example for every patent-backed lens and converter, except the queued ones", () => {
+    const missing = [...Object.values(modules), ...Object.values(patentModules)].flatMap(({ default: data }) =>
+      data.patentNumber && !data.patentExample ? [data.key] : [],
+    );
+    expect(missing.sort()).toEqual([...MISSING_PATENT_EXAMPLE].sort());
+  });
+
+  it("checks converter examples as the validator checks a lens's", () => {
+    const errors = Object.entries(patentModules).flatMap(([path, { default: data }]) => {
+      const found: string[] = [];
+      validatePatentExample(data.patentExample, data.patentNumber, found);
+      return found.map((error) => `${path}: ${error}`);
+    });
+    expect(errors).toEqual([]);
+  });
+
+  it("keeps a subtitle that names an example consistent with source.example", () => {
+    const offenders = [...Object.values(modules), ...Object.values(patentModules)].flatMap(({ default: data }) => {
+      if (!data.patentExample || !data.subtitle) return [];
+      const named = subtitleExampleId(data.subtitle, data.patentExample.id === null);
+      return named === undefined || named === data.patentExample.id
+        ? []
+        : [`${data.key}: subtitle names ${named ?? "a sole example"}, source.example is ${data.patentExample.label}`];
+    });
+    expect(offenders).toEqual([]);
+  });
+
+  it("leaves the example to source.example rather than an analysis metadata row", () => {
+    const offenders = Object.entries(modules).flatMap(([path, { default: data }]) => {
+      const analysis = analyses[path.replace(/\.data\.ts$/, ".analysis.md")];
+      return data.patentExample && analysis && EXAMPLE_ROW.test(analysis) ? [data.key] : [];
+    });
+    const converterOffenders = Object.entries(patentModules).flatMap(([path, { default: data }]) => {
+      const analysis = analyses[path.replace(/\.teleconverter\.ts$/, ".analysis.md")];
+      return data.patentExample && analysis && EXAMPLE_ROW.test(analysis) ? [data.key] : [];
+    });
+    expect([...offenders, ...converterOffenders]).toEqual([]);
   });
 
   it("uses consistent author spelling, name order and assignee spelling across lenses", () => {

@@ -53,6 +53,7 @@ const LENS_DATA = {
   },
   source: {
     patentNumber: "US 4,352,544",
+    example: { label: "Sole example", id: null },
     patentYear: 1982,
     authors: ["Toshihiro Imai"],
     assignees: ["Olympus Optical Co., Ltd."],

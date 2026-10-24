@@ -68,7 +68,13 @@ const TELECONVERTER_DATA = {
     groupCount: 5,
   },
 
-  source: { patentNumber: "JP S63-106715 A", patentYear: 1988, authors: ["Hideki Ogawa"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "JP S63-106715 A",
+    example: { label: "Example 2", id: "2" },
+    patentYear: 1988,
+    authors: ["Hideki Ogawa"],
+    assignees: ["Canon Inc."],
+  },
 
   magnification: 2,
   masterImageDistanceMm: 49.1289656413155,

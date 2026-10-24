@@ -10,7 +10,7 @@
 **Priority:** JP 2021-008222; JP 2021-182842; JP 2021-200320  
 **Inventor:** Ryosuke Nagami  
 **Applicant / Assignee:** FUJIFILM Corporation  
-**Embodiment analyzed:** Example 10, Tables 28-30 and Fig. 25-26
+**Example details:** Tables 28-30 and Fig. 25-26
 
 Example 10 is the closest patent embodiment to the production FUJINON GF20-35mmF4 R WR. The identification is strong rather than merely circumstantial:
 

@@ -8,7 +8,6 @@
 **Assignee:** Olympus Optical Co., Ltd.
 **Title:** Zoom Lens, and Image Pickup Device Using the Same
 **Priority:** JP 11-061897 (March 9, 1999); JP 2000-017311 (January 26, 2000)
-**Embodiment analyzed:** Example 1
 
 The prescription is Example 1 of the patent's ten numerical examples. It is a four-group positive-negative-positive-positive zoom lens for a fixed-lens digital camera requiring a large rear space for an optical path splitter and sensor-side flat glass. The patent states that the first group and stop remain fixed during zooming; G2 moves toward the image side, while G3 and G4 move toward the object side. The fourth group is also the focusing group.
 

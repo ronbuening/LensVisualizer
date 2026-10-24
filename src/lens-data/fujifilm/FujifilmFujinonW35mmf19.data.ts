@@ -43,6 +43,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,018,512",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1977,
     authors: ["Yutaka Sakai"],
     assignees: ["Fuji Photo Optical Co., Ltd."],

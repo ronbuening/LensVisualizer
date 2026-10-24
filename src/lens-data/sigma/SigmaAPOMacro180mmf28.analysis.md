@@ -10,7 +10,7 @@
 **Applicant:** Sigma Corporation (株式会社シグマ)  
 **Title:** Inner-focus large-aperture telephoto macro lens with image-stabilization function (防振機能を有するインナーフォーカス式大口径望遠マクロレンズ)  
 **Classification:** G02B 13/02, G03B 5/00  
-**Embodiment analyzed:** Numerical Example 2 (数値実施例2)
+**Example details:** 数値実施例2
 
 JP 2013-104994 A discloses five numerical examples of the same basic inner-focus telephoto macro architecture. Numerical Example 2 is the best match for the production **Sigma APO Macro 180 mm f/2.8 EX DG OS HSM**. The identification rests on convergent evidence rather than on one isolated number.
 

@@ -8,7 +8,6 @@
 **Inventor:** Yukihiro Yamamoto
 **Assignee:** Sigma Corporation
 **Title:** Imaging optical system
-**Embodiment analyzed:** Numerical Example 1
 
 The companion prescription models the selected correlation with the Sigma 135mm F1.4 DG | Art, edition A025. The patent does not name that marketed lens, and the manufacturer does not explicitly assign this numerical example to it. The identification rests on convergent construction and mechanism evidence, rather than a manufacturer-confirmed patent attribution. [1, 3]
 

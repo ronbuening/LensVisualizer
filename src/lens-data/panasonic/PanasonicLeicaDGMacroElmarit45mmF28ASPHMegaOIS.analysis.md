@@ -7,7 +7,7 @@
 **Inventors:** Koji Hoshi; Kyoichi Miyazaki; Noriyuki Adachi  
 **Applicant:** Panasonic Corporation  
 **Title:** Optical system enabling short-distance photography and optical device using the same  
-**Embodiment analyzed:** Numerical Example 3; Figure 7 and the numerical tables on PDF pages 11–12.
+**Example details:** Figure 7 and the numerical tables on PDF pages 11–12.
 
 The file transcribes the selected patent example as a model of the Panasonic LEICA DG MACRO-ELMARIT 45mm f/2.8 ASPH. MEGA O.I.S. (H-ES045). The match is a convergent design attribution, not a Panasonic statement that the patent is the exact manufactured prescription.
 

@@ -21,7 +21,7 @@ Three of four records now use qualified spectral proxies: K-LaK11 for L1/L2 and 
 **Inventor:** Tamikazu Yamaguchi (山口民和)
 **Applicant:** Minolta Camera Kabushiki Kaisha
 **Title:** Telephoto lens of four groups and four elements (4群4枚構成の望遠レンズ)
-**Embodiment analyzed:** Example 1, PDF page 3, printed page 249
+**Example details:** PDF page 3, printed page 249
 
 This model follows the selected Example 1 of [JP S51-62037 A](https://patents.google.com/patent/JPS5162037A/ja).
 The original publication supplies a normalized focal length of 100, relative aperture 1:2.8, and full field 18.2°.

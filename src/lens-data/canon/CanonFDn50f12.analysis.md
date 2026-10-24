@@ -6,7 +6,7 @@
 **Japanese priority:** JP 54-67047, May 30, 1979
 **Filed:** May 28, 1980
 **Granted:** December 21, 1982
-**Embodiment analyzed:** Embodiment 3 (FIG. 3, claim 4; 7 elements in 6 groups, all spherical)
+**Example details:** FIG. 3, claim 4; 7 elements in 6 groups, all spherical
 
 ---
 

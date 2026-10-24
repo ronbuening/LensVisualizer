@@ -7,7 +7,7 @@
 **Inventor:** Pierre Angénieux
 **Applicant:** Pierre Angénieux (inventor-applicant; no organization named, so `patentAssignees` is empty)
 **Title:** *Improvements in Wide-Angle Objectives*
-**Embodiment analyzed:** Example I, Table I, Fig. 1
+**Example details:** Table I, Fig. 1
 
 The modeled prescription is the first numerical embodiment of GB 673,358 A. The patent gives this example a relative
 aperture of 1:2.5, a full field of 65°, and a nominal normalization of $F=100$. Its section and table describe six glass

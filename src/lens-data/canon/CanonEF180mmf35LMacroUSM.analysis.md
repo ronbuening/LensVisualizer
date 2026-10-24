@@ -10,7 +10,6 @@
 **Applicant:** Canon Inc.
 **Title:** *Macro Lens* (マクロレンズ)
 
-**Embodiment analyzed:** Numerical Example 1
 
 The prescription is Numerical Example 1 of JP 1997-211319 A. The job card fixes that example as the production correlation for the CANON EF 180mm f/3.5 L Macro USM; the patent itself does not identify the commercial lens by model name. The correlation rests on several convergent features rather than on a manufacturer statement that Example 1 became the production prescription.
 

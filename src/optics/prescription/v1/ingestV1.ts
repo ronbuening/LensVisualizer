@@ -103,6 +103,7 @@ const LENS_FIELDS: Readonly<Record<keyof LensDataInput, true>> = {
   imageFormat: true,
   imageCircleMm: true,
   patentNumber: true,
+  patentExample: true,
   patentAuthors: true,
   patentAssignees: true,
   patentYear: true,
@@ -171,6 +172,7 @@ const TELECONVERTER_FIELDS: Readonly<Record<keyof TeleconverterData, true>> = {
   minHostFno: true,
   incompatibleLensKeys: true,
   patentNumber: true,
+  patentExample: true,
   patentAuthors: true,
   patentAssignees: true,
   patentYear: true,
@@ -992,7 +994,7 @@ export function ingestLensV1(input: LensDataInput, request?: IngestRequest): Ing
 const V1_NAMES = {
   focalLengthMm: { marketing: "focalLengthMarketing", design: "focalLengthDesign" },
   fNumber: { marketing: "apertureMarketing", design: "apertureDesign" },
-  source: { authors: "patentAuthors", assignees: "patentAssignees", errata: "sourceErrata" },
+  source: { example: "patentExample", authors: "patentAuthors", assignees: "patentAssignees", errata: "sourceErrata" },
   focus: { closeFocusM: "closeFocusM", description: "focusDescription" },
   aperture: {
     nominalFNumber: "nominalFno",
@@ -1035,13 +1037,14 @@ function recordLensReads(sources: SourcePaths, lens: Untyped): void {
 
 /** Record the members a V1 file keeps at its top level, where the prescription's `source` holds them. */
 function recordSourceReads(sources: SourcePaths, source: Untyped): void {
-  const fields = ["patentNumber", "patentYear", "authors", "assignees", "errata"];
+  const fields = ["patentNumber", "example", "patentYear", "authors", "assignees", "errata"];
   recordReads(sources, "source", "", source, fields, V1_NAMES.source);
 }
 
 function ingestSource(data: Untyped): Untyped {
   const source: Untyped = {};
   put(source, "patentNumber", data.patentNumber);
+  put(source, "example", data.patentExample);
   put(source, "patentYear", data.patentYear);
   put(source, "authors", data.patentAuthors);
   put(source, "assignees", data.patentAssignees);

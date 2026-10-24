@@ -49,7 +49,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.8 },
   },
 
-  source: { patentNumber: "FR 1.066.698", patentYear: 1952, authors: [], assignees: ["VEB Carl Zeiss Jena"] },
+  source: {
+    patentNumber: "FR 1.066.698",
+    example: { label: "Example 1", id: "1" },
+    patentYear: 1952,
+    authors: [],
+    assignees: ["VEB Carl Zeiss Jena"],
+  },
 
   /* ── Elements ── */
   elements: [

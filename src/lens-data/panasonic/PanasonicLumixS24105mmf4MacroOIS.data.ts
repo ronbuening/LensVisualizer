@@ -69,6 +69,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2020-118738 A",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 2020,
     authors: ["Hiroaki Suzuki", "Yuka Kudo", "Yoshiaki Kurioka"],
     assignees: ["Panasonic Intellectual Property Management Co., Ltd."],

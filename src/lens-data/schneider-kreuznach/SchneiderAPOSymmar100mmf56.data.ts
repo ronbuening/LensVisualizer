@@ -60,6 +60,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 6,028,720",
+    example: { label: "Numerical Embodiment 2", id: "2" },
     patentYear: 2000,
     authors: ["Rolf Wartmann", "Udo Schauss"],
     assignees: ["Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG"],

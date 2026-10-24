@@ -44,6 +44,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2014-089352 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2014,
     authors: ["Takahiko Sakai"],
     assignees: ["Tamron Co., Ltd."],

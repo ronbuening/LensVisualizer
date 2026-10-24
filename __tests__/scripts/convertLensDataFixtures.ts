@@ -210,6 +210,7 @@ export const BANNERED_V1_PRIME = v1LensFile(`  /* ── Identity ── */
   lensMounts: ["nikon-z"],
   imageFormat: "135-full-frame",
   patentNumber: "US 1,234,567 B2",
+  patentExample: { label: "Example 1", id: "1" },
   patentYear: 2019,
   patentAuthors: ["Ada Lovelace"],
   patentAssignees: ["Fixture Optical Co., Ltd."],

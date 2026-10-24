@@ -69,6 +69,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2023-23323 A",
+    example: { label: "Example 6", id: "6" },
     patentYear: 2023,
     authors: ["Masaki Ito", "Satoshi Miwa", "Fumiaki Ohtake"],
     assignees: ["Nikon Corporation"],

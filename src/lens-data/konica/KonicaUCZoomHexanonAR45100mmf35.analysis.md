@@ -6,8 +6,7 @@
 **Published:** 1976-03-24\
 **Inventor:** Tadashi Kojima\
 **Applicant:** Konishiroku Photo Industry Co., Ltd.\
-**Title:** 準広角ズームレンズ (approximately “quasi-wide-angle zoom lens”)\
-**Embodiment analyzed:** Example 1
+**Title:** 準広角ズームレンズ (approximately “quasi-wide-angle zoom lens”)
 
 The LensVisualizer prescription corresponds to Example 1 of JP S51-34741 A and is presented as the selected production
 correlation for the **KONICA UC ZOOM HEXANON AR 45-100mm f/3.5**. The primary Japanese publication scan controls the

@@ -18,7 +18,6 @@
 
 **Title:** *Zoom Lens System*
 
-**Embodiment analyzed:** Example 5
 
 The prescription is the Example 5 four-group zoom disclosed in US 2005/0013015 A1. The patent gives three infinity
 zoom states at 17.55, 31.43, and 52.70 mm, a nominal FNO of 2.89 in Table 5, three aspherical surfaces, and a

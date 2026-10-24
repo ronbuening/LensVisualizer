@@ -9,7 +9,7 @@
 **Inventor:** Murakami Kyōsuke (村上 恭介)  
 **Applicant:** Sigma Corporation (株式会社シグマ)  
 **Title:** Large-Aperture-Ratio Optical System (大口径比光学系)  
-**Embodiment analyzed:** Numerical Example 1 (実施例1)
+**Example details:** 実施例1
 
 JP 2024-035865 A discloses four fast APS-C-format inner-focus optical systems. Numerical Example 1 is the best match to the production **SIGMA 23 mm F1.4 DC DN | Contemporary**.
 

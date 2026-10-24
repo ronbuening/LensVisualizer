@@ -26,7 +26,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.8, design: 2.8 },
   },
 
-  source: { patentNumber: "US 3,622,227", patentYear: 1971, authors: ["Yoshiyuki Shimizu"], assignees: [] },
+  source: {
+    patentNumber: "US 3,622,227",
+    example: { label: "Example I", id: "1" },
+    patentYear: 1971,
+    authors: ["Yoshiyuki Shimizu"],
+    assignees: [],
+  },
 
   /* ── Elements ──
    *  9 elements, front to rear. Five glass types.

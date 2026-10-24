@@ -75,6 +75,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2025/0334777 A1",
+    example: { label: "Numerical Example 4", id: "4" },
     patentYear: 2025,
     authors: ["Yoshiaki Kurioka", "Kunio Dohno"],
     assignees: ["Panasonic Intellectual Property Management Co., Ltd."],

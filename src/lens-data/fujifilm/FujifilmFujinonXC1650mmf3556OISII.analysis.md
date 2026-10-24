@@ -9,7 +9,6 @@
 **Inventor:** Daiki Kawamura
 **Applicant:** Fujifilm Corporation
 **Title:** *Zoom Lens and Imaging Apparatus*
-**Embodiment analyzed:** Example 1
 
 The prescription analyzed here is Example 1 of US 2014/0368925 A1. The patent identifies Example 1 with Figure 1 and Tables 1–3, and describes it as a five-powered-group zoom with group powers positive–negative–positive–positive–positive. The numerical tables are d-line data, and the three published zoom states are all focused at infinity (US 2014/0368925 A1, ¶0121, ¶0169–¶0178; Fig. 1; Tables 1–3).
 

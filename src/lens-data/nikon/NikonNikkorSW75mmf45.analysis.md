@@ -8,8 +8,7 @@
 **Published:** 1978-05-24\
 **Inventor:** Ikuo Mori (森征雄)\
 **Applicant:** Nippon Kogaku K.K. (日本光学工業株式会社)\
-**Title:** 広角レンズ (Wide angle lens)\
-**Embodiment analyzed:** Example 1
+**Title:** 広角レンズ (Wide angle lens)
 
 Example 1 is the numerical prescription transcribed here. The Japanese publication is the prescription authority; its Example 1 table gives a normalized focal length of 100 mm, aperture ratio 1:4.5, seven glass elements in four air-spaced components, and the complete spherical radius/thickness/index set. The final LensVisualizer model applies a uniform scale of 0.75 to correlate that normalized design with a 75 mm production lens while retaining the patent's refractive indices and Abbe numbers unchanged. [JPS5357028A, PDF p. 3 / printed p. 173, Example 1.]
 

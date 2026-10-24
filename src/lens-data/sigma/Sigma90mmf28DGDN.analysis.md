@@ -7,7 +7,6 @@
 **Inventor:** Hitoshi Murakami  
 **Applicant:** Sigma Corporation  
 **Title:** Imaging Optical System (結像光学系)  
-**Embodiment analyzed:** Numerical Example 2
 
 The prescription is transcribed from the original Japanese application, Numerical
 Example 2, printed pages 13–14 (PDF pages 14–15). Figure 6 on printed page 22

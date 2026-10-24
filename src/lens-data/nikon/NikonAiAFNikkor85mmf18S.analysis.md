@@ -7,8 +7,7 @@
 **Granted:** March 14, 1989<br>
 **Inventor:** Masaaki Yanagisawa<br>
 **Assignee:** Nikon Corporation<br>
-**Title:** *Gauss Type Near Focus Lens*<br>
-**Embodiment analyzed:** Example 1
+**Title:** *Gauss Type Near Focus Lens*
 
 The prescription represented here is Example 1 of US 4,812,027 A, used as the fixed production correlation for the **NIKON AI AF NIKKOR 85mm f/1.8 S**. The patent gives an 85 mm, f/1.8, 28° full-field design with six elements in six air-spaced groups and rear focusing by translation of the rear three-element group.[1]
 

@@ -7,8 +7,7 @@
 **Published:** March 28, 2019\
 **Inventors:** Shunsuke Miyagishima; Tetsuya Ori\
 **Applicant / Assignee:** FUJIFILM Corporation\
-**Title:** *Imaging Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Example 1
+**Title:** *Imaging Lens and Imaging Apparatus*
 
 Example 1 is treated as the patent correlation for the FUJIFILM FUJINON GF 250mm f/4 R LM OIS WR. This is a production correlation rather than a claim that Fujifilm publicly identified the commercial lens with this patent. Several independent characteristics converge:
 

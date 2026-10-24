@@ -38,7 +38,13 @@ const LENS_DATA = {
     fNumber: { marketing: 3.5, design: 3.6 },
   },
 
-  source: { patentNumber: "US 6,061,180", patentYear: 2000, authors: ["Shingo Hayakawa"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "US 6,061,180",
+    example: { label: "Numerical Example 1", id: "1" },
+    patentYear: 2000,
+    authors: ["Shingo Hayakawa"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

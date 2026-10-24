@@ -66,6 +66,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 5,579,171 A",
+    example: { label: "Example 3", id: "3" },
     patentYear: 1996,
     authors: ["Kenzaburo Suzuki", "Masahiro Nakatsuji", "Keiji Moriyama"],
     assignees: ["Nikon Corporation"],

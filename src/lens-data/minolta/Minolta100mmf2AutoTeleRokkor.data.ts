@@ -50,6 +50,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 1963-011590 B",
+    example: { label: "Example 2", id: "2" },
     patentYear: 1963,
     authors: ["Tadayoshi Nito"],
     assignees: ["Minolta Camera Co., Ltd."],

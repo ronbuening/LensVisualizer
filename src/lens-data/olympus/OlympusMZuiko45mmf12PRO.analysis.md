@@ -7,7 +7,6 @@
 **Inventor:** Masakazu Hibino  
 **Applicant:** Sigma Corporation  
 **Title:** Large Aperture Ratio Lens (大口径比レンズ)  
-**Embodiment analyzed:** Numerical Example 1
 
 The prescription describes a large-aperture, internally focused portrait lens; the patent states its aim as F1.2 with the field of a 90 mm lens in 35 mm terms. The patent applicant is Sigma Corporation, and the lens is sold by Olympus. Neither company has published a statement linking the two, so the identification below is an inference from construction, not a manufacturer-confirmed production prescription. [P1, ¶0001, ¶0068–0074]
 

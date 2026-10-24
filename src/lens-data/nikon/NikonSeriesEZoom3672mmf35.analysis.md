@@ -9,7 +9,7 @@
 **Inventor:** Satoshi Mogami
 **Applicant:** Nippon Kogaku K.K.
 **Title:** Two-group zoom lens (`2群構成ズームレンズ`; translated)
-**Embodiment analyzed:** Example 1 (`第1実施例`)
+**Example details:** `第1実施例`
 
 The modeled prescription is Example 1 of JP S55-163511 A. The patent describes a two-group zoom formed, in object-to-image
 order, by a diverging front group and a converging rear group. Example 1 is an eight-element, all-spherical system with eight air-spaced lens groups, organized into two moving zoom groups: three elements in the front group and five in the rear group. Its numerical table publishes `F/No = 3.5`,

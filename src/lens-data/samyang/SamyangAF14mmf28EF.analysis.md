@@ -10,7 +10,7 @@
 **Inventors:** Jae Myung Yu (유재명), Hae Jin Lee (이해진), Jung Du Lee (이정두)  
 **Applicant:** Samyang Optics Co., Ltd.  
 **Title:** Lens optical system and photographing apparatus having the same  
-**Embodiment analyzed:** Numerical Example 3, Tables 7–9, Figure 7, system 100-3
+**Example details:** Tables 7–9, Figure 7, system 100-3
 
 This model transcribes Numerical Example 3 without scaling. Its link to the Canon EF version of the Samyang AF 14mm F2.8 rests on the optical construction; Samyang has not confirmed that the example is the production prescription.
 

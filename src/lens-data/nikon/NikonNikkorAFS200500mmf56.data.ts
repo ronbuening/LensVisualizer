@@ -67,6 +67,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2014-209144 A",
+    example: { label: "Example 2", id: "2" },
     patentYear: 2014,
     authors: ["Taku Matsuo", "Takeshi Suzuki", "Haruo Sato", "Hisayuki Yamanaka"],
     assignees: ["Nikon Corporation", "Tamron Co., Ltd."],

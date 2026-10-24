@@ -8,7 +8,7 @@
 **Inventor:** Shigenobu Sugita\
 **Assignee:** Canon Inc.\
 **Title:** *Optical System and Optical Apparatus Having the Same*\
-**Embodiment analyzed:** Second Numerical Embodiment / Example 2 / Fig. 3
+**Example details:** Example 2 / Fig. 3
 
 The prescription is the patent's Second Numerical Embodiment, treated as the selected production correlation for the
 CANON EF 400mm f/2.8 L IS II USM. The patent does not identify a commercial lens by product name, so the correlation is

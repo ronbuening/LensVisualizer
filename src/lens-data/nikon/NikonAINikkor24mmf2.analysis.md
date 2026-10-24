@@ -8,7 +8,7 @@
 **Inventor:** Teruyoshi Tsunashima
 **Assignee:** Nippon Kogaku K.K., Tokyo, Japan
 **Title:** Wide-Angle Photographic Objective
-**Embodiment analyzed:** Embodiment III / Claim 4
+**Example details:** Claim 4
 
 US 4,163,603 discloses a large-aperture inverted-telephoto wide-angle objective with ten optical components, eleven glass elements, an 84° angle of view, and a relative aperture of 1:2.0. The numerical examples are normalized to $f = 100$ mm. For the production 24 mm lens rendering, the prescription is scaled by $0.24$, giving a computed design focal length of 24.0305 mm.
 

@@ -14,7 +14,7 @@
 
 **Published:** 2019-05-23
 
-**Embodiment analyzed:** Example 5, Figures 5 and 23
+**Example details:** Figures 5 and 23
 
 **Title:** Imaging Lens, Camera, and Portable Information Terminal Device
 

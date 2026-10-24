@@ -6,7 +6,7 @@
 **Assignee:** Sigma Corporation  
 **Filed:** 31 August 2007  
 **Published:** 19 March 2009  
-**Embodiment:** Example 3, printed page 8; Figure 7.
+**Example details:** printed page 8; Figure 7.
 
 The probable production lens is the Sigma 4.5 mm F2.8 EX DC CIRCULAR FISHEYE HSM. Sigma's product page gives 13 elements in nine groups, a 180-degree circular field on APS-C, six diaphragm blades and 13.5 cm minimum focus. Of the patent's four examples, Example 3 is the only one with 13 elements in nine groups (Examples 1, 2 and 4 have 10/7, 12/9 and 12/9), and its 4.4463 mm focal length is the closest to 4.5 mm. Sigma has not published the production prescription.
 

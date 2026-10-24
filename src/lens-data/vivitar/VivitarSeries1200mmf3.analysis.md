@@ -7,7 +7,7 @@
 **Assignee:** Ponder & Best, Inc.
 **Granted:** March 9, 1976
 **Title:** Telephoto Lens
-**Embodiment analyzed:** Table IV (FIG. 5; repeated in claims 6 and 13) — the fourth of five tabulated embodiments; the patent does not number its examples
+**Example details:** FIG. 5; repeated in claims 6 and 13 — the fourth of five tabulated embodiments; the patent does not number its examples
 
 US Patent 3,942,876, "Telephoto Lens," was granted on March 9, 1976, to Ellis I. Betensky and assigned to Ponder & Best, Inc. (the corporate parent of the Vivitar brand) of Santa Monica, California. The patent discloses five numerical embodiments of a telephoto lens family characterized by a movable front objective group and a stationary rear "correcting" or "compensating" element fixed relative to the film plane. The fourth embodiment (Table IV, illustrated in FIG. 5, "200mm EFL, as scaled for a 24 × 36mm image frame, and having a relative aperture of f/3.0") corresponds to the production Vivitar Series 1 200mm f/3.0 VMC Auto Telephoto, a six-element, six-group prime lens manufactured by Komine Co., Ltd. of Japan. The lens was part of the original Series 1 launch lineup and was widely available by 1974.
 

@@ -8,7 +8,6 @@
 **Inventors:** Makoto Sakano; Norikazu Arai; Shozo Ishiyama; Tadashi Kojima; Hiroshi Miyamae
 **Applicant:** Konishiroku Photo Industry Co., Ltd.
 **Title:** *Inner focusing system of zoom lens* (ズームレンズのインナーフォーカシング方式)
-**Embodiment analyzed:** Example 1
 
 The prescription represented here is Example 1 of JPS58137812A. The production correlation is the fixed identification for this model; it is not presented as a manufacturer-confirmed patent match. Several independent characteristics converge on the Konica Zoom-Hexanon AR 70–150mm f/4:
 

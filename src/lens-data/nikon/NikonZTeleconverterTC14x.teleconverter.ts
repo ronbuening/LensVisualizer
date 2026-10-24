@@ -49,6 +49,7 @@ const TELECONVERTER_DATA = {
 
   source: {
     patentNumber: "JP 2021-189311 A",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 2021,
     authors: ["Katsuhiro Takamoto", "Yasushi Yamamoto", "Hiroshi Yabumoto"],
     assignees: ["Konica Minolta, Inc.", "Nikon Corporation"],

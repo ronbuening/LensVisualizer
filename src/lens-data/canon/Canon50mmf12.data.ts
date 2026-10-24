@@ -63,6 +63,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2,836,102",
+    example: { label: "Example 2", id: "2" },
     patentYear: 1958,
     authors: ["Hiroshi Ito"],
     assignees: ["Canon Camera Co., Inc."],

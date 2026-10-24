@@ -25,6 +25,7 @@ import type {
   LensData,
   OpticalConfigurationData,
   OpticalPathData,
+  PatentExample,
   PerspectiveControlConfig,
   RefractiveIndexReferenceLine,
   SourceErratum,
@@ -288,6 +289,7 @@ export interface CanonicalLensCatalog {
 
 export interface CanonicalSource {
   patentNumber?: string;
+  example?: PatentExample;
   patentYear?: number;
   authors?: string[];
   assignees?: string[];

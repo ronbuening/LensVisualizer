@@ -9,7 +9,6 @@
 **Inventors:** Akihiro Nishio; Hideki Ogawa; Makoto Misaka  
 **Assignee:** Canon Kabushiki Kaisha  
 **Title:** *Optical System and Optical Apparatus Having the Same*  
-**Embodiment analyzed:** Numerical Example 25  
 **Production correlation:** CANON EF 400mm f/2.8 L IS USM
 
 Numerical Example 25 is the fixed prescription used for this model. The patent gives the example as

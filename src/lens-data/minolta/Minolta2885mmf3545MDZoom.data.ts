@@ -82,6 +82,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP H01-193709 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1989,
     authors: ["Hisashi Tokumaru", "Shuji Ogino"], // Latin forms from family front page US 4,591,235 A
     assignees: ["Minolta Camera Co., Ltd."],

@@ -8,7 +8,7 @@
 **Inventors:** Yong-jae Lee; Young-woo Park\
 **Assignee:** Samsung Electronics Co., Ltd.\
 **Title:** *Wide Angle Lens System and Photographing Apparatus*\
-**Embodiment analyzed:** First Embodiment, Example 1, FIG. 1 and Tables 1–3
+**Example details:** Example 1, FIG. 1 and Tables 1–3
 
 Example 1 is the fixed patent correlation for the SAMSUNG 20mm f/2.8. The evidence is strongly convergent, although
 neither the patent nor Samsung's product specification identifies the worked example as the production prescription.

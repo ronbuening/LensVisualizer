@@ -10,7 +10,7 @@
 **Inventor:** Kenzaburo Suzuki
 **Assignee:** Nikon Corporation, Tokyo
 **Title:** Zoom Lens with Vibration Reduction Function
-**Embodiment analyzed:** Third Embodiment / Example 3 (Table 3, FIG. 7)
+**Example details:** Example 3 (Table 3, FIG. 7)
 
 US 6,320,698 B1 describes a four-group zoom lens with a negative first group, positive second group, negative third group, and positive fourth group. The patent's vibration-reduction mechanism laterally displaces the third group, or a partial group within it, substantially perpendicular to the optical axis. Example 3 is the worked example used here. It is tabulated at f = 36.0-68.5 mm, FNO = 2.85-2.86, and 2ω = 63.5°-34.2°.
 

@@ -10,7 +10,7 @@
 **Inventor:** Emiri Suzuki  
 **Applicant:** Panasonic Intellectual Property Management Co., Ltd.  
 **Title:** Imaging optical system, image capture device, and camera system  
-**Embodiment analyzed:** Example 2, Fig. 2A, Tables 2A–2D
+**Example details:** Fig. 2A, Tables 2A–2D
 
 The prescription is Example 2 of the cited patent, correlated with the Hasselblad XCD 2,5/25V.
 The correlation is an optical identification hypothesis, not manufacturer confirmation of a factory prescription or optical supplier. [P]

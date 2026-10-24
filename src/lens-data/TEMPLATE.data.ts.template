@@ -60,6 +60,7 @@ const LENS_DATA = {
    *    assignees together; synthetic or measured prescriptions leave source out. */
   source: {
     patentNumber: "US 10,571,651 B2", // jurisdiction + number + kind code; no example/table label
+    example: { label: "Numerical Data 1", id: "1" }, // as printed; "Sole example" with id null for one unnumbered example
     patentYear: 2019, // year of the publication/grant named by patentNumber
     authors: ["Hideki Sakai"], // inventors in source order, Given Middle Family; [] only when the source names none
     assignees: ["Canon Inc."], // canonical legal-entity names, no locations; [] only when the source names none

@@ -10,7 +10,7 @@
 **Inventor:** Masato Kondo
 **Applicant:** FUJIFILM Corporation, Tokyo, Japan
 **Title:** Imaging Lens and Imaging Apparatus
-**Embodiment analyzed:** Example 1 (Figs. 1–2, Tables 1–3)
+**Example details:** Figs. 1–2, Tables 1–3
 
 Example 1 of US 2020/0333569 A1 is identified as the optical design implemented in the revised Fujinon 23mm f/2 lens introduced with the Fujifilm X100V (February 2020) and carried forward unchanged in the X100VI (February 2024). The convergent evidence is as follows:
 

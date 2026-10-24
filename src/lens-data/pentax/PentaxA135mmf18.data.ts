@@ -49,6 +49,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,447,137",
+    example: { label: "Example 2", id: "2" },
     patentYear: 1984,
     authors: ["Yasunori Arai"],
     assignees: ["Asahi Kogaku Kogyo Co., Ltd."],

@@ -7,7 +7,6 @@
 **Inventor:** Yoshihisa Yomogida
 **Applicant:** Cosina Co., Ltd.
 **Title:** Wide-angle lens
-**Embodiment analyzed:** Example 1
 
 This is the ten-element Example 1 of JP2001124985A, uniformly scaled by 12 from its normalized source prescription.
 The association with the VOIGTLÄNDER ULTRA WIDE-HELIAR 12mm f/5.6 Aspherical L39 is a supported correlation,

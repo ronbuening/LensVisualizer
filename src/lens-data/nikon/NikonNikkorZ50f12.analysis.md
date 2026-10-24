@@ -14,7 +14,7 @@
 
 **Published:** 2021-12-02
 
-**Embodiment analyzed:** Example 1, Table 1 and Figure 1
+**Example details:** Table 1 and Figure 1
 
 This diagram follows **Example 1, Table 1** of WO 2021/241230 A1,
 *Optical System, Optical Device, and Method for Manufacturing Optical System*.

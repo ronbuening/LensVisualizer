@@ -7,7 +7,6 @@
 **Inventor:** Yoshisato Fujioka
 **Applicant:** Yashica Co., Ltd.
 **Title:** Retrofocus-type super-wide-angle objective lens (`レトロフォーカス型超広角対物レンズ`)
-**Embodiment analyzed:** Example 1
 
 The data file transcribes Example 1 of JP 1975-110330 A and applies a uniform linear scale of 0.24 to correlate the patent's normalized `f = 100` prescription with the Yashica ML 24mm f/2.8. The patent itself does not name the production lens, so the production correlation is a modeling identification rather than a manufacturer statement.
 

@@ -6,8 +6,7 @@
 **Granted:** June 29, 1971<br>
 **Inventor:** Toshinobu Ogura<br>
 **Assignee:** Minolta Camera Co., Ltd.<br>
-**Title:** *Wide-Angle Lens System with Corrected Lateral Aberration*<br>
-**Embodiment analyzed:** Example / Embodiment II
+**Title:** *Wide-Angle Lens System with Corrected Lateral Aberration*
 
 US 3,589,798 describes an extreme wide-angle lens for a 35 mm single-lens-reflex camera, with an f/2.8 relative aperture, a back focal distance greater than twice the focal length, and nominal 180° diagonal coverage. The project assignment fixes Embodiment II as the prescription for the MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8. That correlation is an authorial identification rather than a documented statement by Minolta that the production lens is Example II.
 

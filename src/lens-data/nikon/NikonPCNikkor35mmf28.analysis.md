@@ -7,7 +7,7 @@
 **Inventor:** Ikuo Mori
 **Applicant:** Nippon Kogaku K.K.
 **Title:** *Retrofokus-Weitwinkelobjektiv*
-**Embodiment analyzed:** Example III (Beispiel III)
+**Example details:** Beispiel III
 
 This analysis treats DE 1 497 540 A1, Example III, as the fixed production correlation for the **NIKON PC-NIKKOR 35mm f/2.8**. The prescription is printed on PDF pages 15–16 of the source publication (internal pages 14–15); the corresponding axial section is Figure 3 and the corresponding aberration plots are Figure 4 on PDF page 22. The data file follows the selected example rather than combining values from the patent's other numerical embodiments.
 

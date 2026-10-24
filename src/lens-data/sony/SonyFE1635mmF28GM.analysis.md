@@ -11,7 +11,7 @@
 **Applicant:** Sony Corporation  
 **Title:** Zoom Lens and Imaging Device (ズームレンズおよび撮像装置)  
 **Classification:** G02B 15/20, G02B 13/18  
-**Embodiment analyzed:** Numerical Example 4 (数値実施例4), Fig. 13, Tables 13–16; conditions in Tables 21–22
+**Example details:** 数値実施例4, Fig. 13, Tables 13–16; conditions in Tables 21–22
 
 The publication is a Japanese-language PCT application with five numerical examples of a five-group negative-lead
 wide-angle zoom whose second and fourth groups both move for focusing. Example 4 is the prescription that corresponds

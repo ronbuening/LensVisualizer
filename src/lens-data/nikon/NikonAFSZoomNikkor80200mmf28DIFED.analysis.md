@@ -9,7 +9,7 @@
 **Inventor:** Susumu Sato
 **Applicant:** Nikon Corporation
 **Title:** 大口径比内焦式望遠ズームレンズ (“Large-aperture-ratio internal-focusing telephoto zoom lens”)
-**Embodiment analyzed:** Example 1 / 第1実施例
+**Example details:** 第1実施例
 
 The selected prescription is Example 1 of JP 2000-19398 A. The project treats this embodiment as the fixed production correlation for the NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8 D IF-ED. The patent itself does not identify a commercial product, so the correlation is not presented as manufacturer confirmation.
 

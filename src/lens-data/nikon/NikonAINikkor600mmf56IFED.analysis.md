@@ -7,8 +7,7 @@
 **Published:** 1981-04-07\
 **Inventors:** Soichi Nakamura; Kazuo Arashida\
 **Applicant:** Nippon Kogaku K.K.\
-**Title:** 望遠レンズ (Telephoto Lens)\
-**Embodiment analyzed:** Example 1
+**Title:** 望遠レンズ (Telephoto Lens)
 
 The modeled prescription is Example 1 of JP 1981-035116 A. The patent gives a normalized focal length of 100, an f-number of F/5.6, seven elements in six air-separated groups, and three functional groups with stated focal lengths of +37.5, −15.0, and +40.0. The LensVisualizer model applies a uniform scale factor of 6, producing the production-scale 600 mm design while leaving refractive indices and Abbe numbers unchanged. The prescription is entirely spherical, so no aspherical coefficient transformation is required.
 

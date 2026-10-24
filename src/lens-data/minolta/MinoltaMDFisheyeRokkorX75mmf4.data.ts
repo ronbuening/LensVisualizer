@@ -52,6 +52,7 @@ const LENS_DATA = {
   },
   "source": {
     "patentNumber": "US 4,009,943",
+    "example": { "label": "Example 2", "id": "2" },
     "patentYear": 1977,
     "authors": [
       "Mitsuaki Horimoto"

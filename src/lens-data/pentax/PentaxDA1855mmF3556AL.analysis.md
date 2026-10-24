@@ -11,7 +11,7 @@
 **Inventor:** Masakazu Saori
 **Assignee:** Pentax Corporation
 **Title:** *Zoom Lens System*
-**Embodiment analyzed:** Example 1 / Embodiment 1, Table 1
+**Example details:** Embodiment 1, Table 1
 
 The prescription is the first numerical embodiment of US 7,307,794 B2. The patent does not name a retail product, so the connection to the original smc PENTAX-DA 18-55mmF3.5-5.6AL is a production-correlation inference rather than a manufacturer statement. The correlation is nevertheless unusually specific.
 

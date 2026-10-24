@@ -9,7 +9,7 @@
 **Assignee:** Canon Inc. (Canon Kabushiki Kaisha)
 **Title:** Optical System and Image Pickup Apparatus Including the Same
 
-**Embodiment analyzed:** Numerical Embodiment 3 / Example 3
+**Example details:** Example 3
 
 The prescription represented here is Numerical Embodiment 3 of US 7,158,320 B2. The patent describes this embodiment as
 one of its five-unit telephoto zoom examples and defines the units, from object to image, as L1 positive, L2 negative,

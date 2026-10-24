@@ -11,7 +11,7 @@
 **Assignee:** Carl-Zeiss-Stiftung, Oberkochen, Germany (printed "Carl Zeiss-Stiftung")
 **Title:** Unsymmetrical Wide Angle Lens
 **Claims / examples:** 18 claims; 14 numerical examples
-**Embodiment analyzed:** Example 11 (FIG. 2; the same table is reproduced as claim 15)
+**Example details:** FIG. 2; the same table is reproduced as claim 15
 
 US 3,997,247 presents itself as an improvement on the same inventors' earlier US 3,833,290 (col. 1, ll. 4–10). It keeps the parent's five-component layout — two front menisci A and B, two condensing components C and D separated by a central vertex space CS that may hold a diaphragm, and a rear negative component E convex to the image (col. 1, l. 28 – col. 2, l. 30). The new teaching is a power distribution rule for the front pair and for the two air lenses that follow it (col. 2, l. 53 – col. 3, l. 13). Example 11 is a moderate-aperture member of the family: f/5.6, 2ω₀ = 63°, s′∞ = 0.35027 F (col. 11, ll. 1–25).
 

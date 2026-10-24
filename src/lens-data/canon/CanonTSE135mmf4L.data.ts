@@ -54,7 +54,13 @@ const LENS_DATA = {
     fNumber: { marketing: 4, design: 4.05 },
   },
 
-  source: { patentNumber: "JP 2018-132674 A", patentYear: 2018, authors: ["Akira Mizuma"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "JP 2018-132674 A",
+    example: { label: "Example 1", id: "1" },
+    patentYear: 2018,
+    authors: ["Akira Mizuma"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

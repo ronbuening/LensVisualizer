@@ -62,6 +62,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "WO 2021/246545 A1",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 2021,
     authors: ["Jung Du Lee"],
     assignees: ["Samyang Optics Co., Ltd."],

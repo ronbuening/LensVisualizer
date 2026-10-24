@@ -165,6 +165,7 @@ const MARKETING_DESIGN_FIELDS: Fields<{ marketing: unknown; design: unknown }> =
 
 const SOURCE_FIELDS: Fields<SourceV2Input> = {
   patentNumber: true,
+  example: true,
   patentYear: true,
   authors: true,
   assignees: true,
@@ -174,6 +175,7 @@ const SOURCE_FIELDS: Fields<SourceV2Input> = {
 /** A converter's source: V1 holds no errata for one. */
 const TELECONVERTER_SOURCE_FIELDS: Fields<TeleconverterSourceV2Input> = {
   patentNumber: true,
+  example: true,
   patentYear: true,
   authors: true,
   assignees: true,

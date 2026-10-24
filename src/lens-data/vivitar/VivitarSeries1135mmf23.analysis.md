@@ -8,7 +8,7 @@
 **Inventor:** Ellis I. Betensky  
 **Applicant:** Ponder & Best, Inc.  
 **Title:** Improvements in or Relating to Photographic Lenses  
-**Embodiment analyzed:** Table II / Figure 3
+**Example details:** Figure 3
 
 Table II is a 135 mm f/2.3 lens for a 24 × 36 mm image frame. It contains six air-spaced elements. The patent describes L6 as a negative meniscus compensator fixed relative to the film plane while the five-element front objective moves for focusing. The embodiment is identified with the production Vivitar Series 1 135mm f/2.3 Auto Telephoto from the following convergent evidence:
 

@@ -9,7 +9,7 @@
 **Inventors:** Liu Ruijun; Chen Baofeng  
 **Applicant:** Shenzhen Viltrox Technology Co., Ltd. (深圳市唯卓仕科技有限公司)  
 **Title:** Large-aperture internal-focusing telephoto photographic lens and photographic device  
-**Embodiment analyzed:** Example 1 (Tables 1–4), infinity focus, with fitted aspheric coefficients
+**Example details:** Tables 1–4, infinity focus, with fitted aspheric coefficients
 
 The 28-page publication is available through the [DPMA document viewer](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=CN120686438A). The original filing description (CN 202410294011.9) prints the same Example 1 tables, including the anomalous aspheric coefficients and the rear-plate row discussed below.
 

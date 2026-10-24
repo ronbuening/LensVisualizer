@@ -10,7 +10,7 @@
 **Applicant:** Optische Werke G. Rodenstock, München
 **Title:** Sechslinsiges fotografisches Objektiv
 **Classification:** G 02 B 9/58
-**Embodiment analyzed:** Sole numerical example, embedded in Claim 1
+**Example details:** embedded in Claim 1
 
 DE 27 29 831 B1 discloses a six-lens photographic objective for medium- and large-format use. The patent contains one numerical prescription, normalized to $f' = 100$ with an aperture ratio of $1:5.8$. The patent itself does not print a commercial lens name; this file treats the prescription as the Rodenstock Sironar-N 100mm f/5.6 because the formula, aperture, coverage, element count, design type, and production period all converge on that family.
 

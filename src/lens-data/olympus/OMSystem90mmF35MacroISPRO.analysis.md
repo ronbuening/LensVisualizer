@@ -7,7 +7,7 @@
 **Inventor:** Yasuharu Yamada (山田 康晴)
 **Applicant:** OM Digital Solutions Corporation
 **Title:** 望遠光学系、および望遠光学系を備える撮像装置 (Telephoto optical system and imaging apparatus equipped with the telephoto optical system)
-**Embodiment analyzed:** Example 1, numerical prescription in ¶0133; Figures 2–4
+**Example details:** numerical prescription in ¶0133; Figures 2–4
 
 This analysis describes the patent-derived model paired with the OM SYSTEM
 M.ZUIKO DIGITAL ED 90mm f/3.5 MACRO IS PRO data file. The commercial identification

@@ -5,8 +5,7 @@
 **Published:** 19 June 1974\
 **Inventor:** Masamichi Kitagawa\
 **Applicant:** Konishiroku Photo Industry Co., Ltd.\
-**Title:** *Compact High-Performance Telephoto Lens* (小型高性能望遠レンズ)\
-**Embodiment analyzed:** Example 1
+**Title:** *Compact High-Performance Telephoto Lens* (小型高性能望遠レンズ)
 
 The model transcribes Example 1 of JP 1974-023892 B1. The patent normalizes the numerical prescription to `f = 1.0` and gives `F 1:6.3`, `fB = 0.1736`, `T = 0.586`, and `f1,2 = f/3.86`; the prescription itself is printed on patent page 3. The LensVisualizer data applies a literal scale factor of `s = 300.000` to the patent radii and axial spacings, without renormalizing the rounded source values to force an exact 300 mm effective focal length.
 

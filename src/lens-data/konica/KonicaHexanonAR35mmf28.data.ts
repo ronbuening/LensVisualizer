@@ -40,6 +40,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,170,403",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1979,
     authors: ["Toshiko Shimokura"],
     assignees: ["Konishiroku Photo Industry Co., Ltd."],

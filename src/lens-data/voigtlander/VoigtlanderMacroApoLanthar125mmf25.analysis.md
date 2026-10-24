@@ -8,7 +8,7 @@
 **Inventor:** Aida Yoshihisa (逢田 祥寿)
 **Applicant:** Cosina Co., Ltd. (株式会社コシナ), Nakano-shi, Nagano Prefecture
 **Title:** Medium Telephoto Macro Lens (中望遠マクロレンズ)
-**Embodiment analyzed:** Example 2 (第2実施形態), Table 2 (表2), ¶0018–0022
+**Example details:** 第2実施形態, Table 2 (表2), ¶0018–0022
 
 This analysis transcribes Example 2 as requested. The following evidence supports and complicates the identification of this embodiment as the production design:
 

@@ -6,7 +6,6 @@
 **Inventor:** Yoshiyuki Shimizu
 **Assignee:** Nippon Kogaku K.K. (Nikon)
 **Japanese Priority:** JP 45/85417, September 30, 1970
-**Embodiment analyzed:** Single worked numerical example
 **Production lens:** Nikkor-N Auto 28mm f/2 (1970–1977), AI Nikkor 28mm f/2 (1977–1981), AI-S Nikkor 28mm f/2S (1981–2005)
 
 ---

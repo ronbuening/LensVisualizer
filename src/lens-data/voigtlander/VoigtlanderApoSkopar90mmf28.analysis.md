@@ -9,7 +9,6 @@
 **Inventor:** Yuki Shibata  
 **Applicant:** Cosina Co., Ltd.  
 **Title:** 撮像レンズ (Imaging Lens)  
-**Embodiment analyzed:** Example 1
 
 The prescription is the first numerical example of JP 2023-049919 A. It is associated here with the VOIGTLÄNDER APO-SKOPAR 90mm f/2.8 production design in its VM and SL IIs forms. This is a production correlation based on convergent technical evidence; the cited manufacturer material does not identify the patent or state that Example 1 is the production prescription.
 

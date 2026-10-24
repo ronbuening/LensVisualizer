@@ -7,7 +7,7 @@
 **Inventor:** Yukihiro Yamamoto (山本 幸広)
 **Filed:** June 17, 2022
 **Published:** December 28, 2023
-**Embodiment analyzed:** Numerical Example 1 (数値実施例 1), described in ¶0062–0068 and ¶0136
+**Example details:** 数値実施例 1, described in ¶0062–0068 and ¶0136
 
 The prescription in Numerical Example 1 is identified as the design basis of the production Sigma 50mm F1.4 DG DN | Art (Edition A023, released February 2023) on the basis of the following convergent evidence:
 

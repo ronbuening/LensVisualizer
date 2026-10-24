@@ -51,7 +51,13 @@ const LENS_DATA = {
     focalLengthMm: { marketing: [15, 45], design: [15.45, 43.7] },
   },
 
-  source: { patentNumber: "JP 2018-106021 A", patentYear: 2018, authors: ["Daisuke Ito"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "JP 2018-106021 A",
+    example: { label: "Numerical Example 1", id: "1" },
+    patentYear: 2018,
+    authors: ["Daisuke Ito"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

@@ -8,7 +8,7 @@
 **Inventor:** Hosoi Masaharu (細井 正晴).
 **Filed:** 15 December 2016 (international); priority 12 February 2016 (JP 2016-024597).
 **Published:** 17 August 2017 (international); 13 December 2018 (JP republication).
-**Embodiment analyzed:** Numerical Example 2 (数値実施例2), Tables 6–10 (¶0079–0091).
+**Example details:** 数値実施例2, Tables 6–10 (¶0079–0091).
 
 Convergent evidence linking Example 2 to the production Sony Planar T\* FE 50mm F1.4 ZA (SEL50F14Z):
 

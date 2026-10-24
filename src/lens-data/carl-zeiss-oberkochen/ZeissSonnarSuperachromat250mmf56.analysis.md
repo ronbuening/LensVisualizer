@@ -11,7 +11,7 @@
 **Assignee:** Carl-Zeiss-Stiftung, Oberkochen (printed "Carl Zeiss-Stiftung")
 **Title:** Telephoto Lens Objective
 **Classification:** U.S. Cl. 350/214; Int. Cl. G02b 9/00
-**Embodiment analyzed:** Example II (Fig. 2; repeated as the table of claim 7)
+**Example details:** Fig. 2; repeated as the table of claim 7
 
 The patent discloses five numerical examples of a four-part telephoto objective whose glasses are chosen by their relative partial dispersions in the near ultraviolet and near infrared. Two of them, Examples II and IV, have six elements and a relative aperture of 1:5.6. Example II is the one transcribed here. All values are published normalized to a focal length of 1.0.
 

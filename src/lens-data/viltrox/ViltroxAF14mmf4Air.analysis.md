@@ -9,8 +9,7 @@
 **Inventors:** Liu Ruijun; Chen Baofeng\
 **Applicant:** Shenzhen Viltrox Technology Co., Ltd.\
 **Title:** 一种紧凑型内合焦式超广角摄影镜头及摄影装置\
-**Classification:** G02B 15/14 (2006.01)\
-**Embodiment analyzed:** Example 1
+**Classification:** G02B 15/14 (2006.01)
 
 CN 121091494 A describes a compact internally focusing ultra-wide photographic lens in three functional groups, with the middle group translating for focus while the groups ahead of and behind it remain fixed relative to the image plane (¶0062, ¶0068, ¶0123). Example 1 is the prescription represented by this LensVisualizer record.
 

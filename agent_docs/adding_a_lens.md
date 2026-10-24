@@ -62,6 +62,9 @@ most often while authoring:
 - **`maker`** — [Identity](../src/lens-data/LENS_DATA_SPEC.md#identity): explicit, inferred and unconfirmed makers.
 - **`name`** — [Display Name Convention](../src/lens-data/LENS_DATA_SPEC.md#display-name-convention): normalized
   manufacturer, line and camera-body naming.
+- **`source.example`** — [The transcribed example](../src/lens-data/LENS_DATA_SPEC.md#the-transcribed-example-sourceexample):
+  every patent-backed file records the numerical example it transcribes, as the publication prints it; the page header
+  shows it, so the analysis carries only `**Example details:**`.
 - **`perspectiveControl`** — [Perspective Control](../src/lens-data/LENS_DATA_SPEC.md#perspective-control): real
   tilt/shift mechanisms and their required catalog metadata.
 - **Mirror, telescope, and folded lenses** — [Folded Paths](../src/lens-data/LENS_DATA_SPEC.md#folded-paths) and

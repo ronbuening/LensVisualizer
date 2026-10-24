@@ -60,6 +60,7 @@ const LENS_DATA = {
   // an exact engine chief ray at the published 50° half-field clears them (17.5 mm vs sd 19.75 at surface 10).
   source: {
     patentNumber: "JP S42-023896 B",
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 1967,
     authors: ["Günter Klemt"],
     assignees: ["Jos. Schneider & Co., Optische Werke"],

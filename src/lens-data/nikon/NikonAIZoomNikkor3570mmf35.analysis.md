@@ -8,7 +8,7 @@
 **Inventor:** Kiyoshi Hayashi  
 **Assignee:** Nippon Kogaku K.K. (Tokyo, Japan)  
 **Title:** Wide Angle Zoom Lens System Having Shortened Closeup Focal Length  
-**Embodiment analyzed:** Second Embodiment / Claim 8
+**Example details:** Claim 8
 
 US 4,266,860 discloses a negative-positive two-group wide-angle zoom in which the first, divergent group is also the focusing group. The invention is not merely a two-group zoom; its distinguishing feature is the subdivision of the first group into a divergent forward portion L11 and a convergent rearward portion L12, with the air space between them increased during close focusing to improve spherical-aberration correction.
 

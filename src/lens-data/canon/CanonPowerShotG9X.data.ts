@@ -70,7 +70,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.0, design: 2.06 },
   },
 
-  source: { patentNumber: "JP 2016-161889 A", patentYear: 2016, authors: ["Akihiko Yuki"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "JP 2016-161889 A",
+    example: { label: "Example 1", id: "1" },
+    patentYear: 2016,
+    authors: ["Akihiko Yuki"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

@@ -102,6 +102,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 8,228,605 B2",
+    example: { label: "Example 2", id: "2" },
     patentYear: 2012,
     authors: ["Akio Arakawa", "Lai Wei"],
     assignees: ["Tamron Co., Ltd."],

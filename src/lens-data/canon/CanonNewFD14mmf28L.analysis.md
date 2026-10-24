@@ -8,7 +8,6 @@
 **Applicant:** Canon Inc. (キヤノン株式会社)  
 **Title:** レトロフォーカス型超広角レンズ / Retrofocus-type ultra-wide-angle lens  
 **Classification:** G02B 13/04  
-**Embodiment analyzed:** Sole numerical example
 
 The patent contains one worked prescription. The numerical table is normalized to approximately $f = 1$ and the patent states a full field angle of $2ω = 114°$ and an aperture of F/2.8. The production match to the Canon New FD 14mm f/2.8L rests on convergent evidence: the prescription has 14 elements in 10 groups, one aspherical surface on the front surface of the second element, a 114° diagonal field, and an F/2.8 aperture. Canon's product page for the New FD14mm f/2.8L gives the same 10-group / 14-element construction, 0.25 m close-focus distance, July 1982 marketing date, and a ground-and-polished aspherical surface on the front side of the second element.
 

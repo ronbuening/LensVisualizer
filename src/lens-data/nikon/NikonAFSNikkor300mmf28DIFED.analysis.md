@@ -8,7 +8,7 @@
 **Inventor:** Susumu Sato\
 **Assignee:** Nikon Corporation\
 **Title:** *Internal Focusing Telephoto Lens*\
-**Embodiment analyzed:** Example 1 (Fig. 1 and Table 1)
+**Example details:** Fig. 1 and Table 1
 
 This prescription is the project-selected correlation for the **NIKON AI AF-S NIKKOR 300mm f/2.8 D IF-ED**. The patent
 itself does not identify a commercial product by model name, and the cited Nikon product material does not explicitly

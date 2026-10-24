@@ -8,8 +8,7 @@
 **Priority:** Japan 1963-08-27, application 45,077\
 **Inventor:** Takashi Higuchi\
 **Assignee:** Nippon Kogaku K.K.\
-**Title:** *Four Component Zoom Lens*\
-**Embodiment analyzed:** Example 3
+**Title:** *Four Component Zoom Lens*
 
 The prescription transcribed here is Example 3 of US 3,481,666. The patent gives a four-component zoom lens with a stated focal-length range of 51.6–300.1 mm, an aperture ratio of f/4.5, and a nominal zoom ratio of 6. Example 3 supplies 33 refracting surfaces, 32 source spacings, 20 d-line refractive-index/Abbe pairs, and three zoom-spacing states labeled W, M, and T. [1, PDF p. 8]
 

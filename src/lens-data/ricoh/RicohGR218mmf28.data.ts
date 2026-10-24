@@ -59,6 +59,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2013/0321936 A1",
+    example: { label: "Example 3", id: "3" },
     patentYear: 2013,
     authors: ["Kazuyasu Ohashi"],
     // A1 front page omits an organization; same-application assignment recorded 2013-05-31.

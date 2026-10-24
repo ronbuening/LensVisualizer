@@ -7,7 +7,7 @@
 **Inventor:** Yoshisato Fujioka  
 **Assignee:** Kabushiki Kaisha Yashica (Yashica Co., Ltd.)  
 **Title:** Extrawide-angle retrofocus type of objective  
-**Embodiment analyzed:** Example 1, Fig. 1 and Table I  
+**Example details:** Fig. 1 and Table I  
 **Priority:** Japan, May 9, 1972, application 47-45044
 
 The prescription is the first numerical embodiment of Fujioka's patent, rather than a measured production lens.

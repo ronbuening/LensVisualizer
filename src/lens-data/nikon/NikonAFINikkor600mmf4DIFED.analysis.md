@@ -7,7 +7,7 @@
 **Inventor:** Susumu Sato (佐藤 進)\
 **Applicant:** Nikon Corporation\
 **Title:** オートフォーカスカメラ用内焦望遠レンズ — *Inner-focus telephoto lens for an autofocus camera*\
-**Embodiment analyzed:** Example 5 (実施例5)
+**Example details:** 実施例5
 
 The data file transcribes Example 5 of JP H04-238311 A and treats it, as specified by the job card, as the optical-design correlation for the NIKON AF-I NIKKOR 600mm f/4 D IF-ED. The patent itself does not name the retail lens. It describes a positive–negative–positive three-group telephoto in which the negative second group performs focusing, with the first and second groups arranged so that the beam presented to the fixed positive rear group remains approximately afocal during focus [JP H04-238311 A, ¶0005]. Example 5 is identified as a design with a cemented rear subgroup in G1, a single-element G3, focusing by G2, and fixed filters at the front and rear [JP H04-238311 A, ¶0020].
 

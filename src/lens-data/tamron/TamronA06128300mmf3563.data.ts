@@ -65,6 +65,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2003/0156333 A1",
+    example: { label: "Sole example", id: null },
     patentYear: 2003,
     authors: ["Yasuharu Yamada"],
     // A1 front page omits an organization; same-application assignment recorded 2002-07-01.

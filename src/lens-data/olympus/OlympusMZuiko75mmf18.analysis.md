@@ -9,7 +9,7 @@
 **Inventor:** Yukihiro Yamamoto  
 **Applicant:** Sigma Corporation  
 **Title:** Inner focus type telephoto lens  
-**Embodiment analyzed:** Numerical Example 1, paragraph 0093 and Figure 1
+**Example details:** paragraph 0093 and Figure 1
 
 The model transcribes Example 1 at native millimetre scale. Its correlation with the Olympus production lens is a research interpretation, not a manufacturer-confirmed prescription. Several features converge:
 

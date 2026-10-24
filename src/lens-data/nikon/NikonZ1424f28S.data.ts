@@ -80,6 +80,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "WO 2021/117563 A1",
+    example: { label: "Example 4", id: "4" },
     patentYear: 2021,
     authors: ["Fumiaki Ohtake", "Azuna Nonaka", "Yoshiharu Yuasa", "Takeshi Umeda"],
     assignees: ["Nikon Corporation"],

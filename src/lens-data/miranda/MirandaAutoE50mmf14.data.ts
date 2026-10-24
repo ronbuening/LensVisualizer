@@ -30,6 +30,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,634,001 A",
+    example: { label: "Example I", id: "1" },
     patentYear: 1972,
     authors: ["Kunio Shimada"],
     assignees: ["Miranda Camera Co., Ltd."],

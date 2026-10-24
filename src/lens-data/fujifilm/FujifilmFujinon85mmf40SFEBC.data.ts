@@ -67,6 +67,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP S55-560 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1980,
     // 高橋宗甫 is provisionally romanized as Soho Takahashi; see the analysis source note.
     authors: ["Ryoichi Doi", "Soho Takahashi"],

@@ -7,7 +7,7 @@
 **Inventor:** Shingo Hayakawa (早川 慎吾)
 **Applicant:** Canon Inc.
 **Title:** Variable-magnification optical system with an anti-vibration function
-**Embodiment analyzed:** Numerical Example 2, Figures 3–4 and Table 3
+**Example details:** Figures 3–4 and Table 3
 
 The selected correlation is the original Canon EF 75–300mm f/4–5.6 IS USM, introduced in September 1995. It is an inferred product-to-patent association, not a manufacturer-confirmed transcription of the production optics. The selected Japanese publication remains the prescription authority; a later US family publication is used only as a reading aid and for the romanized inventor name.
 

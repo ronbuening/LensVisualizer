@@ -59,6 +59,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,123,144",
+    example: { label: "Example 9", id: "9" },
     patentYear: 1978,
     authors: ["Walter Mandler", "Garry Edwards", "Erich Wagner"],
     assignees: ["Ernst Leitz GmbH"],

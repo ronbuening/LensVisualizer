@@ -7,7 +7,7 @@
 **Inventors:** Akio Arakawa; Yuichi Muramatsu
 **Applicant:** Tamron Co., Ltd.
 **Title:** Zoom lens (ズームレンズ)
-**Embodiment analyzed:** Example 2, ¶0074–¶0083 and Figure 5
+**Example details:** ¶0074–¶0083 and Figure 5
 
 The prescription is Example 2 of the published Japanese application. The production
 correlation is the TAMRON SP AF 17-50mm f/2.8 XR Di II LD Aspherical [IF] (A16). The patent

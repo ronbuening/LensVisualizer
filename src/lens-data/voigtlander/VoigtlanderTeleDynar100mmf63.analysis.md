@@ -5,8 +5,7 @@
 **Published:** 24 May 1927<br>
 **Inventor:** Hans Deser<br>
 **Applicant:** Voigtländer & Sohn Aktiengesellschaft<br>
-**Title:** Photographisches Fernobjektiv<br>
-**Embodiment analyzed:** Example 1
+**Title:** Photographisches Fernobjektiv
 
 The selected prescription is the five-element example printed in the left column of
 PDF page 2, with its corresponding Abb. 1. The patent identifies the applicant and

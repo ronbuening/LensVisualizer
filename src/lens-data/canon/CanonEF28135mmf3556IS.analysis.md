@@ -10,7 +10,7 @@
 **Inventor:** Shingo Hayakawa  
 **Assignee:** Canon Kabushiki Kaisha  
 **Title:** Zoom Lens  
-**Embodiment analyzed:** Numerical Example 1; Figs. 1–3
+**Example details:** Figs. 1–3
 
 Numerical Example 1 is the strongest patent-internal identification for the Canon EF 28-135mm f/3.5-5.6 IS USM. Canon does not publish a statement naming the implemented numerical example, so this remains a convergent identification rather than a documentary one.
 

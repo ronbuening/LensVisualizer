@@ -5,7 +5,7 @@
 **Assignee:** Nikon Corporation
 **Filed:** June 21, 2017
 **Published:** January 17, 2019
-**Embodiment analyzed:** Example 1 (第1実施例), Table 1
+**Example details:** 第1実施例, Table 1
 **Production Lens:** NIKKOR Z 14-30mm f/4 S (announced January 8, 2019)
 
 ---

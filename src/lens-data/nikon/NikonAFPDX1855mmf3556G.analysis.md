@@ -10,7 +10,7 @@
 **Inventors:** Kosuke Machida, Takeshi Suzuki, Takeru Uehara  
 **Assignee:** Nikon Corporation  
 **Title:** Variable Magnification Optical System, Optical Device, and Production Method for Variable Magnification Optical System  
-**Embodiment analyzed:** First Example, FIG. 1 and Table 1
+**Example details:** FIG. 1 and Table 1
 
 The First Example is the closest prescription match for the Nikon AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR. The patent example is a six-group negative-positive-negative-positive-negative-positive zoom covering f = 18.50, 35.00, and 53.40 mm at the wide, middle, and telephoto positions. Its stated F-numbers are 3.64, 4.62, and 5.88, with maximum image height Y = 14.25 mm. That gives a 28.50 mm image circle, matching Nikon DX format rather than a full-frame design.
 

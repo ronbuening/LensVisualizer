@@ -8,7 +8,7 @@
 **Inventor:** Susumu Sato\
 **Assignee:** Nikon Corporation\
 **Title:** *Internal Focusing Telephoto Lens Having High Speed Aperture Ratio*\
-**Embodiment analyzed:** Example 4 / Embodiment 4 (Fig. 10, Table 4)
+**Example details:** Embodiment 4 (Fig. 10, Table 4)
 
 The modeled prescription is Example 4 of US 6,239,919 B1, retained at its native patent scale. The patent gives a focal length of 392.0 mm and F-number 2.88 for this embodiment. Independent paraxial tracing of the final authored prescription gives an effective focal length of 391.998755 mm, so no dimensional scaling has been applied. The production name, marketing focal length, and marketing aperture remain separate in the data file as 400 mm and f/2.8.
 

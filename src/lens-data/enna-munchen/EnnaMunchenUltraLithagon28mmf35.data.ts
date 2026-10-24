@@ -43,6 +43,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2,959,100",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1960,
     authors: ["Hans Lautenbacher"],
     assignees: ["Enna-Werk Optische Anstalt Dr. Appelt K.G."],

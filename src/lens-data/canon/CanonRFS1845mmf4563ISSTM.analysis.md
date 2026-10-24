@@ -7,7 +7,7 @@
 **Inventor:** Yuichi Gyoda\
 **Applicant:** Canon Inc.\
 **Title:** Zoom lens and image capturing device having the same\
-**Embodiment analyzed:** Numerical Example 2 (Example 2)
+**Example details:** Example 2
 
 The prescription represented here is the unscaled Numerical Example 2 of JP 2021-86024 A. The patent describes a negative-lead zoom in which the first, second, third, and fourth functional lens groups have negative, positive, negative, and positive refractive power respectively; its Example 2 kinematics are specified in ¶0058–0060, and the numerical prescription is given in ¶0086. The production correlation to the **CANON RF-S 18-45mm f/4.5-6.3 IS STM** is treated as fixed for this dataset, but remains an author inference rather than a manufacturer statement that this patent is the production prescription.
 

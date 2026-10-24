@@ -9,7 +9,7 @@
 **Inventors:** Tomowaki Takahashi; Yasuhiro Aono
 **Assignee:** Nippon Kogaku K.K.
 **Title:** Zoom Lens Including a Wide Angle of View
-**Embodiment analyzed:** Seventh Embodiment, Table 7
+**Example details:** Table 7
 
 US 4,699,475 describes a compact normal zoom for the 35mm still-camera format. Its basic form is a positive first group, negative second group, and positive third group. In the fourth through seventh embodiments, the rear positive group is divided into independently moving G31 and G32 units, so the practical construction is a four-moving-unit positive-negative-positive-positive zoom.
 

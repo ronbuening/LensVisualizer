@@ -8,7 +8,7 @@
 **Inventors:** Yoshiaki Kurioka; Kunio Dohno  
 **Applicant:** Panasonic Intellectual Property Management Co., Ltd.  
 **Title:** Imaging Optical System, Image Capture Device, and Camera System  
-**Embodiment analyzed:** Example 4 / fourth embodiment, Tables 4A–4D and Fig. 4A.
+**Example details:** fourth embodiment, Tables 4A–4D and Fig. 4A.
 
 The prescription is examined as a candidate design correlation for the Panasonic LUMIX S 26mm F8, S-R26. It is not a manufacturer-confirmed production prescription. Example 4 has a focal length of 24.72 mm and a near limit of 0.20 m from object to image, against the marketed 26 mm and 0.25 m minimum focus distance. The patent's front page, fourth-embodiment description and numerical example are the optical source; Panasonic's product specifications and manual describe the marketed lens. [1–4]
 

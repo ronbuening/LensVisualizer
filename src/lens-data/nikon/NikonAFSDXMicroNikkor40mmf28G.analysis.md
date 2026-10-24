@@ -9,8 +9,7 @@
 **Published:** July 14, 2011\
 **Inventors:** Mami Muratani; Issei Tanaka\
 **Assignee:** Nikon Corporation\
-**Title:** *Imaging Lens, Optical Apparatus Including Imaging Lens and Method for Manufacturing Imaging Lens*\
-**Embodiment analyzed:** Example 1
+**Title:** *Imaging Lens, Optical Apparatus Including Imaging Lens and Method for Manufacturing Imaging Lens*
 
 The prescription transcribed here is the job-card-selected Example 1 of US 2011/0170195 A1. The patent describes a 40.00 mm macro lens with a design f-number of 2.68, a full field of 39.0°, and published infinity, −0.5×, and −1.0× focus states (Table 1; ¶¶0096–0108). The LensVisualizer model retains those exact design quantities where the source publishes them and keeps them separate from the production lens's marketed 40 mm f/2.8 specification.
 

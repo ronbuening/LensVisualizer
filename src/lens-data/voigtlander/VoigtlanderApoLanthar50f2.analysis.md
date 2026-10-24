@@ -16,7 +16,7 @@
 
 **Title:** Imaging Optical System (撮像光学系)
 
-**Embodiment analyzed:** Example 5, Table 5, Figure 10; focus scheme F36
+**Example details:** Table 5, Figure 10; focus scheme F36
 
 The viewer represents the patent example associated with the APO-LANTHAR 50mm f/2, rather than a verified manufacturing prescription. Example 5 has ten elements in eight air-spaced groups, a 49.28 mm focal length, f/1.93 design aperture, and a 23.7° half-field (§0096). Four aspheric surfaces lie on elements 2 and 10. These features support the association with the marketed lens, but do not establish identical prescriptions across Sony E, Nikon Z, or Leica M versions.
 

@@ -46,6 +46,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "WO 2017/138250 A1",
+    example: { label: "Numerical Example 2", id: "2" },
     patentYear: 2017,
     authors: ["Masaharu Hosoi"],
     assignees: ["Sony Corporation"],

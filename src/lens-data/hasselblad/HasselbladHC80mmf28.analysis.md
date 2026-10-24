@@ -7,7 +7,7 @@
 **Filed:** March 8, 2001 (US). **Priority:** March 28, 2000 (JP 2000-089202).
 **Published:** December 13, 2001.
 **Assignee:** Fuji Photo Optical Co., Ltd. (assignment recorded on the filing date).
-**Embodiment analyzed:** Embodiment 3 (Table 3, Figs. 4A–4C).
+**Example details:** Table 3, Figs. 4A–4C.
 
 The USPTO assignment record documents transfer from Kazunori Ohno to Fuji Photo Optical Co., Ltd. on the filing date, with an effective date one day earlier. Fuji Photo Optical later became Fujinon Corporation and then part of Fujifilm. The Hasselblad H-system lenses are manufactured by Fujifilm under the SUPER-EBC Fujinon designation.
 

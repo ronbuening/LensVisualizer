@@ -53,6 +53,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2,927,506",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1960,
     authors: ["Fritz Determann"],
     assignees: ["Voigtländer AG"],

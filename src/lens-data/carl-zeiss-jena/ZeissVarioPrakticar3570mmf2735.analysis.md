@@ -11,7 +11,7 @@
 **Applicant:** Jenoptik Jena GmbH, Jena, DDR
 **Title:** Fotografisches Objektiv mit variabler Brennweite
 **Classification:** IPC G02B 15/14 // G02B 15/22
-**Embodiment analyzed:** Example 1 — the document's single *Tabelle*, printed page -2-
+**Example details:** the document's single *Tabelle*, printed page -2-
 
 The document publishes exactly one worked example. There is no second embodiment to confuse it
 with, and no numbered variant scheme: the *Tabelle* on printed page -2- carries all seventeen

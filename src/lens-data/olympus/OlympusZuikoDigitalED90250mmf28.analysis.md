@@ -9,7 +9,7 @@
 **Inventor:** Tomoki Kono (the original PAJ cover prints KONO TOMOKI)  
 **Assignee:** Sigma Corporation  
 **Title:** 大口径望遠ズームレンズ / Large-diameter Telephoto Zoom Lens  
-**Embodiment analyzed:** Example 1, Figure 1, paragraphs 0021–0024, three infinity and three finite object-distance states.
+**Example details:** Figure 1, paragraphs 0021–0024, three infinity and three finite object-distance states.
 
 Example 1 has a probable production correlation with the original Four Thirds DSLR **Zuiko Digital ED 90–250mm F2.8**. Sigma Corporation is the patent assignee; no public source confirms Sigma's design or manufacturing role for the Olympus-branded lens. The prescription is not authenticated as the factory design. The Olympus manual and September 27, 2005 announcement support the correlation through several converging facts:
 

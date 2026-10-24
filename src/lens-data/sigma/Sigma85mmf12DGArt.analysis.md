@@ -9,7 +9,6 @@
 **Inventor:** Yuki Ueda  
 **Applicant:** Sigma Corporation  
 **Title:** Optical System  
-**Embodiment analyzed:** Numerical Example 2
 
 The prescription follows Numerical Example 2 and Figure 6, using the complete original publication.
 The numerical tables occupy PDF pp. 17–18, corresponding to printed pp. 16–17; Figure 6 is PDF p. 28.

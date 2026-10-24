@@ -7,7 +7,6 @@
 **Inventor:** Yutaka Iizuka
 **Assignee:** Nippon Kogaku K.K.
 **Title:** *Zoom Lens System*
-**Embodiment analyzed:** Example 3
 
 The prescription is Example 3 of U.S. Patent 4,189,213 A. The data file retains the patent's 15 physical elements, five
 patent groups, three published zoom positions, spherical surfaces, and f/4.5 aperture without uniform scaling. The marketed

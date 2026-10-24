@@ -5,8 +5,7 @@
 **Granted:** January 17, 1961\
 **Inventor:** Harry Zöllner\
 **Assignee:** VEB Carl Zeiss Jena\
-**Title:** *Photographic Five-Element Lenses of the Modified Gauss Type*\
-**Embodiment analyzed:** Example I
+**Title:** *Photographic Five-Element Lenses of the Modified Gauss Type*
 
 US 2,968,221 describes a five-element photographic lens of modified-Gauss form. Example I is normalized to
 `f = 100`, has a stated aperture ratio of `1:2.8`, and covers a full image angle of `55°` (patent p. 2, Example I).

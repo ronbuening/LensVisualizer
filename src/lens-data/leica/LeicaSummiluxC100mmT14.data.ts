@@ -78,6 +78,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 8,508,864 B2",
+    example: { label: "Embodiment 3", id: "3" },
     patentYear: 2013,
     authors: ["Iain A. Neil"],
     assignees: ["ACM Projektentwicklung GmbH"],

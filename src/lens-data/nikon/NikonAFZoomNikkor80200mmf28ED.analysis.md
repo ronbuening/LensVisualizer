@@ -7,7 +7,7 @@
 **Inventor:** Yoshinari Hamanishi
 **Applicant:** Nippon Kogaku K.K.
 **Title:** Large-Aperture-Ratio Telephoto Zoom Lens (大口径比望遠ズームレンズ)
-**Embodiment analyzed:** Example 3 / Table 3 / Figure 1 optical section / Figures 4A–4D aberration plots
+**Example details:** Table 3 / Figure 1 optical section / Figures 4A–4D aberration plots
 
 The prescription is the user-selected correlation for the **NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 ED**. The patent itself does not identify a commercial lens model, so the production association is a correlation rather than a manufacturer statement that this patent is the product design.
 

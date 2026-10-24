@@ -9,7 +9,7 @@
 **Inventor:** Yoshinari Hamanishi
 **Assignee:** Nippon Kogaku K.K. (Nikon)
 **Title:** Photographic Lens of a Great Aperture Ratio
-**Embodiment analyzed:** Third Embodiment / Table 3 / Claim 6, f = 51.6 mm, F-number 1.2, 2ω = 46.4°
+**Example details:** Table 3 / Claim 6, f = 51.6 mm, F-number 1.2, 2ω = 46.4°
 
 US 4,621,909 discloses three numerical embodiments of a fast standard lens built from three positive units around a modified Gauss base. The first two examples are F 1.4 designs; the third example is the F 1.2 design. The analysis and data file transcribe the third embodiment because it is the only F 1.2 example and because its 51.6 mm design focal length, 46.4° field, all-spherical seven-element layout, and six air-spaced groups coincide with the production Nikon 50 mm f/1.2 specification.
 

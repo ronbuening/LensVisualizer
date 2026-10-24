@@ -9,8 +9,7 @@
 **Granted:** July 24, 2012<br>
 **Inventors:** Akio Arakawa; Lai Wei<br>
 **Assignee:** Tamron Co., Ltd.<br>
-**Title:** Anti-Vibration Zoom Lens Optics<br>
-**Embodiment analyzed:** Example 2
+**Title:** Anti-Vibration Zoom Lens Optics
 
 The prescription is the second embodiment of US 8,228,605 B2, identified in the patent by the Figure 12–22 drawing and aberration set.[1] The production correlation is fixed to the Tamron SP 70-300mm f/4-5.6 Di VC USD, Model A005. Tamron lists the A005 as a 17-element, 12-group full-frame-compatible Di zoom offered in Canon EF, Nikon F, and Sony A variants.[2]
 

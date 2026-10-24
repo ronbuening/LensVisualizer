@@ -62,6 +62,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2023-44106 A",
+    example: { label: "Example 5", id: "5" },
     patentYear: 2023,
     authors: ["Kohei Uemura", "Tetsuichiro Okumura", "Naoki Miyagawa"],
     assignees: ["Sony Group Corporation"],

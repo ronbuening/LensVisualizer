@@ -47,6 +47,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 1,089,991",
+    example: { label: "Sole example", id: null },
     patentYear: 1960,
     authors: ["Karlheinz Pennig"],
     assignees: ["Optische Werke G. Rodenstock"],

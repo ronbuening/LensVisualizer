@@ -7,8 +7,7 @@
 **Published:** June 18, 2015\
 **Inventors:** Takashi Suzuki; Kenichi Sato; Taiga Noda\
 **Applicant:** FUJIFILM Corporation\
-**Title:** *Wide Angle Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Example 1
+**Title:** *Wide Angle Lens and Imaging Apparatus*
 
 The modeled prescription is the project-selected correlation between Example 1 of US 2015/0168694 A1 and the
 production FUJIFILM FUJINON XF 14mm f/2.8 R. The patent does not identify Example 1 as that commercial lens, and

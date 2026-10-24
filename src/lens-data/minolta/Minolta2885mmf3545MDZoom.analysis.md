@@ -11,7 +11,7 @@
 **Title:** 広角域を含む高変倍率ズームレンズ系 (High-zoom-ratio zoom lens system including the wide-angle range)
 **Classification:** G02B 15/20
 **Worked examples:** 6
-**Embodiment analyzed:** Example 1 (実施例1)
+**Example details:** 実施例1
 
 JP H01-193709 A is a divisional publication of the Japanese application filed on 30 November 1981. The same priority
 application supports US 4,591,235 A ("Zoom lens system", Minolta Camera Kabushiki Kaisha, granted 27 May 1986), whose

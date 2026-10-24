@@ -6,8 +6,7 @@
 **Published:** 2000-10-13\
 **Inventor:** Akihiro Nishio\
 **Applicant:** Canon Inc.\
-**Title:** Zoom lens (ズームレンズ)\
-**Embodiment analyzed:** Numerical Example 1
+**Title:** Zoom lens (ズームレンズ)
 
 The Japanese publication names the inventor as `西尾 彰宏`; the normalized Latin-script form used here is Akihiro Nishio, consistent with a U.S. Canon zoom-lens patent by the same inventor and its assignment record.
 

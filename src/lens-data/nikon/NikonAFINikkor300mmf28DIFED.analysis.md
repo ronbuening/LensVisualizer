@@ -7,7 +7,7 @@
 **Inventor:** Susumu Sato (佐藤 進)\
 **Applicant:** Nikon Corporation (株式会社ニコン)\
 **Title:** Internal-Focusing Telephoto Lens (内焦望遠レンズ)\
-**Embodiment analyzed:** Example 1 (実施例1)
+**Example details:** 実施例1
 
 This analysis treats JP H04-294310 A Example 1 as the fixed production correlation for the **NIKON AF-I NIKKOR 300mm f/2.8 D IF-ED**. The patent itself does not name the commercial lens, so the correlation should not be read as manufacturer confirmation. It is instead supported by convergent timing and optical characteristics.
 

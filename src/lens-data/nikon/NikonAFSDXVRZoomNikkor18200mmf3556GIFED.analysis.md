@@ -8,8 +8,7 @@
 **Priority:** October 1, 2004; March 31, 2005\
 **Inventors:** Atsushi Shibayama; Takeshi Suzuki; Tomoki Ito\
 **Assignee:** Nikon Corporation\
-**Title:** *Zoom Lens System with Vibration Reduction*\
-**Embodiment analyzed:** Example 2
+**Title:** *Zoom Lens System with Vibration Reduction*
 
 The prescription modeled here is Example 2 of US 2006/0072213 A1. The patent describes a four-group zoom with the power sequence positive-negative-positive-positive, an aperture stop between the second and third groups, a negative rear subgroup within the third group that shifts laterally for vibration reduction, and second-group focusing toward the object. Example 2 is given in Table 2 and is illustrated by Fig. 5; its infinity aberration plots are Figs. 6A, 7, and 8A (¶0157-¶0173).
 

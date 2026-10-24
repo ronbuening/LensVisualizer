@@ -7,8 +7,7 @@
 **Granted:** February 21, 1989\
 **Inventors:** Hiromu Mukai; Hisashi Tokumaru\
 **Assignee:** Minolta Camera Kabushiki Kaisha\
-**Title:** *Inverted-Telephototype Wide Angle Lens System*\
-**Embodiment analyzed:** Example 2
+**Title:** *Inverted-Telephototype Wide Angle Lens System*
 
 The LensVisualizer prescription identifies Example 2 of US 4,806,003 with the original **MINOLTA AF 35mm f/1.4**. This is a production correlation adopted for the model, not a statement that Minolta explicitly identified the production lens by patent number. Several independent features converge on the same identification:
 

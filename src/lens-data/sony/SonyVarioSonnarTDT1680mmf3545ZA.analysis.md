@@ -7,8 +7,7 @@
 **Published:** 2007-10-04\
 **Inventor:** Hiroyuki Matsumoto\
 **Assignee:** Sony Corporation\
-**Title:** Variable-Magnification Optical System\
-**Embodiment analyzed:** Example 1
+**Title:** Variable-Magnification Optical System
 
 The prescription modeled here is **SONY VARIO-SONNAR T* DT 16-80mm f/3.5-4.5 ZA**, using Example 1 of US 2007/0229969 A1 as the fixed production correlation. The patent does not identify SAL1680Z by product name, so the patent-to-product assignment is a corpus/modeling correlation rather than a manufacturer-confirmed mapping. The correlation is nevertheless supported by several independent points of agreement.
 

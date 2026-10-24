@@ -48,6 +48,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2025/0334778 A1",
+    example: { label: "Numerical Example 2", id: "2" },
     patentYear: 2025,
     authors: ["Ryosuke Sato"],
     assignees: ["Sigma Corporation"],

@@ -173,6 +173,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 3602859 A1",
+    example: { label: "Sole example", id: null },
     patentYear: 1986,
     authors: ["Utz Schneider", "Volker Tautz", "Karin Holota"],
     assignees: ["Jenoptik Jena GmbH"],

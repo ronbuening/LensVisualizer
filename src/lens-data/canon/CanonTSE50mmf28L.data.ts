@@ -54,7 +54,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.8, design: 2.88 },
   },
 
-  source: { patentNumber: "US 10,571,651 B2", patentYear: 2020, authors: ["Hideki Sakai"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "US 10,571,651 B2",
+    example: { label: "Numerical Data 1", id: "1" },
+    patentYear: 2020,
+    authors: ["Hideki Sakai"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

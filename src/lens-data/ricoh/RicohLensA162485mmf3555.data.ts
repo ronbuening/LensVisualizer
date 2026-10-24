@@ -71,6 +71,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2012/0307375 A1",
+    example: { label: "Embodiment 3", id: "3" },
     patentYear: 2012,
     authors: ["Yohei Takano", "Hiromichi Atsuumi"],
     // A1 front page omits the organization; same-application assignment predates publication.

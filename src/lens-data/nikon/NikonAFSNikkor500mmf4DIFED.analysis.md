@@ -10,7 +10,7 @@
 **Inventor:** Susumu Sato\
 **Assignee:** Nikon Corporation\
 **Title:** *Internal Focusing Telephoto Lens*\
-**Embodiment analyzed:** Example 2 / second embodiment, Fig. 4 and Table 2
+**Example details:** second embodiment, Fig. 4 and Table 2
 
 The prescription is the second embodiment of US 5,745,306 A. The patent publishes a 490.0 mm, f/4.08 internal-focusing telephoto system in which a positive first group G1, negative focusing group G2, and positive rear group G3 form the principal power sequence. Table 2 is a d-line prescription: its refractive indices and Abbe numbers refer to 587.6 nm. The companion data file retains that native patent scale; no uniform rescaling is applied.
 

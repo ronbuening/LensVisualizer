@@ -56,6 +56,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2021/0286156 A1",
+    example: { label: "Example 6", id: "6" },
     patentYear: 2021,
     authors: ["Taiga Noda", "Ryosuke Nagami"],
     assignees: ["Fujifilm Corporation"],

@@ -7,7 +7,7 @@
 **Granted:** January 16, 1996  
 **Inventor:** Haruo Sato  
 **Assignee:** Nikon Corporation, Tokyo, Japan  
-**Embodiment analyzed:** Fourth Embodiment, Table 4
+**Example details:** Table 4
 
 US 5,485,314 discloses a compact negative-positive two-group standard zoom for 35 mm SLR cameras. Its stated target is a variable power ratio on the order of 2.7 with a wide-angle field angle of about 74°. Table 4, the fourth embodiment, is the prescription used here.
 

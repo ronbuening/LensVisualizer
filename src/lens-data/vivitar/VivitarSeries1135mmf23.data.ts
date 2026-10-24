@@ -54,6 +54,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "GB 1,408,910",
+    example: { label: "Table II", id: "2" },
     patentYear: 1975,
     authors: ["Ellis I. Betensky"],
     assignees: ["Ponder & Best, Inc."],

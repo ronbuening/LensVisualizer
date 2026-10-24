@@ -5,7 +5,7 @@
 **Applicant:** Nikon Corporation  
 **Filed:** April 16, 2019  
 **Published:** October 29, 2020  
-**Embodiment analyzed:** Example 1 (Table 1)  
+**Example details:** Table 1  
 **Production lens:** AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR (released January 2020)
 
 ---

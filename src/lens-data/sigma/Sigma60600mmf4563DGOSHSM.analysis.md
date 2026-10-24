@@ -9,7 +9,6 @@
 **Inventor:** Noriyuki Ogasawara  
 **Applicant:** Sigma Corporation  
 **Title:** Zoom imaging optical system  
-**Embodiment analyzed:** Numerical Example 1
 
 The prescription is an architectural correlation with the DSLR Sports lens,
 not a manufacturer-confirmed copy of its factory optical prescription.

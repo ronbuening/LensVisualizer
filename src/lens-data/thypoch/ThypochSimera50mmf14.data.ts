@@ -32,6 +32,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "CN 118244463 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2024,
     authors: ["Kuang Jian", "Ouyang Xia", "Ye Bo", "Li Zenghui", "Liu Xiaojuan"],
     assignees: ["Shenzhen Dongzheng Optical Technology Co., Ltd."],

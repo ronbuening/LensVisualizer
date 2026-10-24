@@ -7,7 +7,7 @@
 **Inventor:** Yoshiyuki Shimizu  
 **Assignee:** Nippon Kogaku K.K.  
 **Title:** Wide Angle Photographic Objective of Large Aperture Ratio  
-**Embodiment analyzed:** Embodiment 1 (FIG. 1, Claim 2)
+**Example details:** FIG. 1, Claim 2
 
 US 3,576,360 publishes Embodiment 1 at normalized focal length $f = 100.00$, aperture ratio $F/1.4$, full field $2\omega = 62^\circ$, and back focus $S' = 106.44$. The data file scales all radii and axial thicknesses by $0.35$ to create a 35 mm catalog entry. No aspherical surfaces are present.
 

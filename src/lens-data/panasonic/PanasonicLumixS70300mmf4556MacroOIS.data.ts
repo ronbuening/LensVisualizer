@@ -68,6 +68,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2022-125453 A",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 2022,
     authors: ["Takahiro Kitada", "Takehiro Nishioka", "Yoshio Matsumura", "Takakazu Bito"],
     assignees: ["Panasonic Intellectual Property Management Co., Ltd."],

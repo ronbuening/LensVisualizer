@@ -70,6 +70,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "WO 2020/012638 A1",
+    example: { label: "Numerical Example 8", id: "8" },
     patentYear: 2020,
     authors: ["Yoko Komatsubara", "Takeshi Umeda"],
     assignees: ["Nikon Corporation"],

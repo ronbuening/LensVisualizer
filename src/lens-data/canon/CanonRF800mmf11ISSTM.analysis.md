@@ -9,7 +9,6 @@
 **Inventors:** Maki Yokoya (横谷 真樹); Tomohiro Ino (井野 友裕)
 **Applicant:** Canon Inc.
 **Title:** 結像光学系および撮像装置 (*Imaging optical system and imaging apparatus*)
-**Embodiment analyzed:** Numerical Example 2
 
 Numerical Example 2 from JP 2020-173349 A is treated here as the selected patent correlation for the **CANON RF 800mm f/11 IS STM**. Canon's product literature does not identify JP 2020-173349 A as the production prescription. The identification therefore rests on convergent design evidence rather than a manufacturer patent cross-reference.
 

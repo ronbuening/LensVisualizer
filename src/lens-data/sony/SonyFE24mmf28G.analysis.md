@@ -10,7 +10,7 @@
 **Classification:** G02B 13/00, G02B 13/18  
 **Claims:** 9  
 **Worked examples:** 4  
-**Embodiment analyzed:** Example 1 (実施例1)
+**Example details:** 実施例1
 
 Example 1 is identified as the closest patent embodiment for the Sony FE 24mm F2.8 G (SEL24F28G) by convergent prescription and product evidence.
 

@@ -7,7 +7,7 @@
 **Inventor:** Koji Shiokawa
 **Applicant:** Cosina Co., Ltd.
 **Title:** Large-aperture lens
-**Embodiment analyzed:** Example 2, Tables 3–4 and Figures 3–4
+**Example details:** Tables 3–4 and Figures 3–4
 
 The paired model is **VOIGTLÄNDER NOKTON 50mm f/1.5 Aspherical L39**, the original L39 product. The production association is a supported correlation, not a manufacturer-confirmed patent attribution. Cosina’s [discontinued-product record](https://www.cosina.co.jp/discontinued/nokton-50mm-f1-5-aspherical/) and [optical section](https://www.cosina.co.jp/wp/wp-content/uploads/2024/01/L-50_15-LD.svg) provide the following convergent evidence:
 

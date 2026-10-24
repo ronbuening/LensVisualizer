@@ -8,7 +8,6 @@
 **Inventor:** Yutaka Iizuka
 **Assignee:** Nippon Kogaku K.K.
 **Title:** *Lenses capable of close-up photography*
-**Embodiment analyzed:** Example 1
 
 The prescription is the unscaled Example 1 design from US 4,437,734 A. The data file retains the patent's 121.168 mm design focal length separately from the marketed 120 mm designation and uses the patent's stated f/4 design aperture. The production correlation is fixed to the Nikon Medical-Nikkor 120mm f/4 IF, but it should be understood as a source-supported correlation rather than a Nikon statement that “Example 1” is the production prescription. [1, Example 1; claim 7]
 

@@ -5,7 +5,7 @@
 **Published:** 26 February 2004  
 **Inventor:** Tomoki Kono  
 **Applicant:** Sigma Corporation  
-**Embodiment analyzed:** Numerical Example 1, Figure 1, paragraphs 0015–0020.
+**Example details:** Figure 1, paragraphs 0015–0020.
 
 Example 1 is probably the original non-DG SIGMA APO 80–400mm F4.5–5.6 EX OS announced at Photokina 2002, about two months after filing. Its 20 elements in 14 groups match the published construction of that lens; Examples 2 and 3 have 19 elements in 13 groups, and JP 2003-241098 A is a separate design. Identity with the later DG version is not asserted.
 

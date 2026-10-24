@@ -7,7 +7,7 @@
 **Inventor:** Yoshihisa Yomogida (蓬田 祥寿)<br>
 **Applicant:** Cosina Co., Ltd. (株式会社コシナ)<br>
 **Title:** 広角レンズ — Wide-angle lens<br>
-**Embodiment analyzed:** Example 3, Table 5 and Table 6; Fig. 5
+**Example details:** Table 5 and Table 6; Fig. 5
 
 The prescription is the patent's third numerical example, retained at its native millimetre scale.
 Its association with the Voigtländer Super Wide-Heliar 15mm f/4.5 Aspherical SL is a design correlation,

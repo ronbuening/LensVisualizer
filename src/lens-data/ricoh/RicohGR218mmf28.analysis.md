@@ -8,7 +8,6 @@
 **Filed:** May 31, 2013
 **Applicant on the A1 front page:** Kazuyasu Ohashi
 **Assignee (assignment record):** Ricoh Co., Ltd.
-**Embodiment analyzed:** Example 3
 **Production lens:** Ricoh GR (2013), Ricoh GR II (2015)
 
 The local A1 front page does not print an organizational assignee. The [same-application assignment history](https://patents.google.com/patent/US20130321936A1/en) for US 13/906,594 reports assignment to **Ricoh Co., Ltd. (recorded as RICOH COMPANY, LTD.)**, recorded **2013-05-31**, effective 2013-05-27, reel/frame **030523/0446**. This record predates the A1 publication and supports the structured `patentAssignees` attribution. The printed applicant/inventor remains distinct from this assignment evidence; the underlying assignment instrument has not been independently inspected. Patent attribution does not establish the exact production prescription or manufacturing identity.

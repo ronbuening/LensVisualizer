@@ -7,7 +7,7 @@
 **Inventors:** Tomoya Koga, Yuichiro Ebashi, Takashi Enomoto (古賀知也・江橋裕一郎・榎本隆)  
 **Applicant:** Ricoh Company, Ltd. (株式会社リコー)  
 **Title:** Single-focal-length lens, interchangeable lens, and imaging device (単焦点レンズ、交換レンズ及び撮像装置)  
-**Embodiment analyzed:** Numerical Example 1 (数値実施例１), infinity focus
+**Example details:** 数値実施例１, infinity focus
 
 ## Patent Reference and Design Identification
 

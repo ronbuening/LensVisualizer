@@ -9,7 +9,7 @@
 **Published:** 15 June 1963  
 **Inventor:** Yoshisada Hayamizu, printed 早水良定  
 **Applicant:** Olympus Optical Co., Ltd., printed オリンパス光学工業株式会社  
-**Embodiment analyzed:** The sole complete numerical example and Figure 1.
+**Example details:** Figure 1.
 
 The three-page national publication supplies the prescription. The date 15 June 1963 is its observed publication date, not an independently established final grant event. The Latin inventor name is supported by the bilingual bylines of the 1958 primary paper “Reflecting Microscope Objectives,” printed page 762, which pairs 早水良定 with Yoshisada HAYAMIZU and identifies the Olympus affiliation. It is not an unverified reading of the Japanese characters.
 

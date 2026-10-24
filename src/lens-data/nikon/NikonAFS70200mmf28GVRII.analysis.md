@@ -8,7 +8,7 @@
 **Granted:** April 9, 2013  
 **Inventor:** Tomoki Ito  
 **Assignee:** Nikon Corporation  
-**Embodiment analyzed:** Example 6, Table 6, Figures 26-30
+**Example details:** Table 6, Figures 26-30
 
 The transcribed prescription is Example 6 of US 8,416,506 B2. It is best identified with the AF-S NIKKOR 70-200mm f/2.8G ED VR II, Nikon model 2185, announced by Nikon on July 30, 2009. The patent does not name the commercial lens; the identification is an evidence-based correspondence between the worked example and Nikon's published product specification.
 

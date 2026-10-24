@@ -51,6 +51,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2017-090535 A",
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2017,
     authors: ["Tetsuya Yanai", "Toyonori Kon", "Daichi Murakami", "Yuki Kubota"],
     assignees: ["Olympus Corporation"],

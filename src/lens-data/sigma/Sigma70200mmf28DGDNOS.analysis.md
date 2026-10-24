@@ -7,7 +7,6 @@
 **Inventor:** Masakazu Hibino  
 **Applicant:** Sigma Corporation  
 **Title:** Large Aperture Ratio Telephoto Zoom Lens  
-**Embodiment analyzed:** Numerical Example 1
 
 The prescription follows the complete original Japanese application, not a grant or another family member.
 The numerical example occupies PDF pages 17–19 (printed pages 16–18).

@@ -7,7 +7,6 @@
 **Inventor:** Hideki Ogawa
 **Applicant:** Canon Inc.
 **Title:** Photographic lens (撮影レンズ)
-**Embodiment analyzed:** Numerical Example 1
 
 The prescription represented here is Numerical Example 1 of JP 1991-141313 A. The patent describes a macro-capable photographic lens derived from a Gauss-type system, with a positive first group, positive second group, and negative third group. During focusing from infinity toward close distances, the first group, diaphragm, and second group move together toward the object while the third group remains fixed. The patent sets an approximately 24° field and approximately f/2.8 speed as design targets and explicitly addresses aberration stability as magnification approaches unity (JP 1991-141313 A, PDF pp. 1–4 / patent pp. 73–76).
 

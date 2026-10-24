@@ -8,7 +8,7 @@
 **Inventors:** Shinichiro Saito; Makoto Nakahara
 **Applicant:** Canon Kabushiki Kaisha
 **Title:** *Optical System and Image Pickup Apparatus*
-**Embodiment analyzed:** Example 2 / Numerical Data 2
+**Example details:** Numerical Data 2
 
 This prescription is the selected production correlation for the **CANON EF 400mm f/2.8 L IS III USM**. The patent does
 not state that Example 2 became that production lens, so the identification remains a production-to-patent correlation

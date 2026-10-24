@@ -6,8 +6,7 @@
 **Filed:** 2017-06-20\
 **Published:** 2017-12-28\
 **Inventor:** Akira Sawamoto\
-**Applicant:** Nittoh Inc.\
-**Embodiment analyzed:** Example 1
+**Applicant:** Nittoh Inc.
 
 The modeled lens is **HASSELBLAD XCD 45mm f/3.5**, using Example 1 of WO 2017/221949 A1 as the fixed prescription source. The patent-to-production identification is a strong correlation rather than a documented Hasselblad attribution. Example 1 publishes a 45.027 mm focal length, f/3.5, a 56 mm image circle, nine elements in seven air-spaced groups, and rigid full-system focusing. Hasselblad publishes the XCD 3,5/45 as a 45.0 mm f/3.5 X-system lens with nine elements in seven groups and full focusing. The patent priority date also precedes Hasselblad's 28 February 2017 X/H-system lens brochure that lists the XCD 3,5/45.
 

@@ -9,7 +9,7 @@
 **Inventor:** Masakazu Hibino (日比野 正和)  
 **Applicant:** Sigma Corporation (株式会社シグマ)  
 **Title:** Inner-Focus Optical System (インナーフォーカス光学系)  
-**Embodiment analyzed:** Numerical Example 1 (数値実施例1)
+**Example details:** 数値実施例1
 
 The prescription transcribed here is Numerical Example 1 of JP 2017-167327 A. The patent is a Sigma filing, not a Panasonic filing: the applicant and inventor fields identify Sigma Corporation and Masakazu Hibino. The production lens is the Panasonic LUMIX G LEICA DG SUMMILUX 12 mm F1.4 ASPH. (H-X012). Panasonic does not publish a patent-to-product confirmation, so the identification remains an evidence-based match rather than a manufacturer-stated fact.
 

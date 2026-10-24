@@ -7,7 +7,7 @@
 **Inventor:** Toru Fujii  
 **Assignee:** Olympus Optical Co., Ltd., Tokyo, Japan  
 **Title:** Wide-angle zoom lens system  
-**Embodiment analyzed:** Description Embodiment 3, Figure 3, numerical table in column 6; three linked infinity zoom stations.
+**Example details:** Description, Figure 3, numerical table in column 6; three linked infinity zoom stations.
 
 The probable product association is the pictured OLYMPUS ZUIKO MC AUTO-ZOOM 35-70mm f/3.6 in the two-page manufacturer instructions. The imprint reads “0578. PRINTED IN JAPAN”; its date-code convention is not established. The manufacturer-authored scan comes from a third-party archive.
 

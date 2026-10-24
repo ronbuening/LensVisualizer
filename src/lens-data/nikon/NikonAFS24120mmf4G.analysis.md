@@ -7,7 +7,7 @@
 **Inventors:** Hiroshi Yamamoto, Satoshi Miwa, Takeshi Suzuki, Haruo Sato
 **Assignee:** Nikon Corporation
 **Title:** Zoom Lens, Optical Apparatus Equipped Therewith and Method for Manufacturing the Zoom Lens
-**Embodiment analyzed:** Example 1, Table 1 and Figs. 1–3
+**Example details:** Table 1 and Figs. 1–3
 
 ## Patent Reference and Design Identification
 

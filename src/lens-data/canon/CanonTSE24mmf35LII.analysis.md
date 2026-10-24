@@ -7,8 +7,7 @@
 **Published:** August 19, 2010\
 **Inventor:** Suguru Inoue\
 **Assignee:** Canon Kabushiki Kaisha\
-**Title:** Optical System and Image Pickup Apparatus Having the Same\
-**Embodiment analyzed:** Numerical Example 1
+**Title:** Optical System and Image Pickup Apparatus Having the Same
 
 The data model transcribes Numerical Example 1 without scale change. The patent gives a nominal focal length of
 24.26 mm and F-number 3.56; independent paraxial propagation through the rounded table gives an effective focal length

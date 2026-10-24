@@ -10,7 +10,7 @@
 **Inventor:** Hideki Sakai
 **Assignee:** Canon Kabushiki Kaisha
 **Title:** Image Pickup Optical System, Image Pickup Apparatus Having the Image Pickup Optical System, Lens Apparatus Having the Image Pickup Optical System, and Image Pickup System Having the Image Pickup Optical System
-**Embodiment analyzed:** Numerical Data 1 / first embodiment (Figs. 1, 2A, 2B)
+**Example details:** first embodiment (Figs. 1, 2A, 2B)
 
 Numerical Data 1 is the only embodiment in the patent that matches the production Canon TS-E 50mm f/2.8L Macro closely enough to be treated as the product-related prescription. The patent lists f = 51.40 mm, Fno = 2.88, half field 33.20°, image height 33.63 mm, 12 glass elements, and a close-focus state at β = -0.5. Canon's published product specifications give a 50 mm f/2.8 lens with 12 elements in 9 groups, manual focus, 0.5× maximum magnification, 0.273 m closest focusing distance, ±12 mm shift, and ±8.5° tilt.
 

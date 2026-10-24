@@ -8,7 +8,6 @@
 **Inventor:** Hiroshi Endo  
 **Applicant:** Canon Inc.  
 **Title:** Zoom Lens  
-**Embodiment analyzed:** Numerical Example 2
 
 The prescription analyzed here is Numerical Example 2 of JP 2000-47107 A. The patent defines a six-functional-group zoom lens with positive, negative, positive, negative, positive, and negative refractive-power groups from object to image side, respectively (¶0017). The Example 2 numerical table gives three zoom states at 102.68, 161.53, and 389.19 mm, with published f-numbers of 4.6, 5.1, and 5.8. The prescription is used at its published scale; it is not rescaled to the marketed 100-400 mm range.
 

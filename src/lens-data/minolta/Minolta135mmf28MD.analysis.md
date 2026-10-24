@@ -6,7 +6,7 @@
 **Granted:** July 29, 1980\
 **Inventor:** Tamikazu Yamaguchi\
 **Assignee:** Minolta Camera Co., Ltd.\
-**Embodiment analyzed:** Example 1 / Table 1 / FIG. 1
+**Example details:** Table 1 / FIG. 1
 
 The implemented prescription is based on Example 1 of US 4,214,816. The patent publishes a five-element,
 five-group, all-spherical modified Ernostar arrangement with a positive–positive–negative–negative–positive power

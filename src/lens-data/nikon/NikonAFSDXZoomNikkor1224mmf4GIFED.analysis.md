@@ -16,7 +16,6 @@
 
 **Title:** *Super Wide-Angle Zoom Lens System*
 
-**Embodiment analyzed:** Example 1
 
 The prescription is correlated with the **NIKON AF-S DX ZOOM-NIKKOR 12-24mm f/4 G IF-ED**. The patent/example selection is fixed for this analysis. The correlation is an author inference based on convergent optical and product evidence; Nikon does not state that the published Example 1 table is the final production prescription.
 

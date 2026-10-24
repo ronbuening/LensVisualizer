@@ -7,7 +7,7 @@
 **Published:** May 10, 2023
 **Inventor:** Kazuhiro Ogino
 **Applicant:** Cosina Co., Ltd.
-**Embodiment analyzed:** Example 1, Tables 1–2 and Figure 1
+**Example details:** Tables 1–2 and Figure 1
 
 The nine-element, seven-group arrangement, three aspherical surfaces, nominal 50 mm focal length and f/1 aperture support the association with the NOKTON 50mm f/1.0. The patent model does not establish an identical production prescription or focusing mechanism for every mount variant.
 

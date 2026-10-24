@@ -10,7 +10,7 @@
 **Inventors:** Tetsuya Ori; Michio Cho\
 **Applicant:** FUJIFILM Corporation\
 **Title:** “Zoom Lens and Imaging Apparatus”\
-**Embodiment analyzed:** Example 1 (Fig. 1; Tables 1–4 and 21)
+**Example details:** Fig. 1; Tables 1–4 and 21
 
 The implemented prescription is Example 1 of US 2015/0177500 A1. The production-lens attribution is a strong convergent research correlation, not a manufacturer-confirmed patent attribution. The final data file therefore keeps patent-design quantities separate from FUJIFILM marketing specifications and does not “correct” the patent toward the marketed lens.
 

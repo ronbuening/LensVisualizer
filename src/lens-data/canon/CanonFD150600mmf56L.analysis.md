@@ -10,7 +10,6 @@
 **Inventor:** Keiji Ikemori  
 **Assignee:** Canon Kabushiki Kaisha  
 **Title:** Telephoto Type Zoom Lens  
-**Embodiment analyzed:** Example 4
 
 The prescription used here is Example 4 of US 4,110,006. The embodiment is a 150-600 mm f/5.6 telephoto zoom with an internally moving positive focusing group inside the convergent front group. It is identified as the closest patent disclosure for the Canon New FD 150-600mm f/5.6L by the following convergent evidence.
 

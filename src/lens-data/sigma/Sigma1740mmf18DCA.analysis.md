@@ -10,7 +10,7 @@
 **Inventor:** Shioda Ryo (盐田了)  
 **Applicant:** Sigma Corporation (株式会社适马)  
 **Classification:** G02B 15/14, G02B 15/16, G02B 13/18  
-**Embodiment analyzed:** Numerical Example 1 (实施例1 / 数值实施例1; Figs. 1–7)
+**Example details:** 实施例1 / 数值实施例1; Figs. 1–7
 
 This prescription transcribes Numerical Example 1 of CN 121454749 A. The production identification is the Sigma 17-40mm F1.8 DC | Art. The match is not based on a single rounded focal length; it rests on the full pattern of the patent example and the manufacturer’s specification set.
 

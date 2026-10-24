@@ -10,7 +10,7 @@
 **Priority:** JP 2016-127178, filed June 28, 2016  
 **Inventor:** Hiroki Saito  
 **Assignee:** FUJIFILM Corporation  
-**Embodiment analyzed:** Example 1, Tables 1-3 and Figures 1, 6-9
+**Example details:** Tables 1-3 and Figures 1, 6-9
 
 Example 1 is the closest disclosed prescription for the production FUJINON GF32-64mmF4 R LM WR. The identification is supported by the shared 14-lens / 11-air-spaced-group construction, the five-group zoom architecture, the five aspherical surfaces on three elements, the ED + Super ED element count, the 32-64 mm class focal range, and the GFX-format image field. Fujifilm's published specification gives 14 elements in 11 groups, including three aspherical elements, one ED element, and one Super ED element; it also gives f = 32-64 mm, angle of view 81°-46.3°, maximum aperture F4, and focus range 0.50 m at the wide end and 0.60 m at the tele end.
 

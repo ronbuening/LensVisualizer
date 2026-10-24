@@ -50,6 +50,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "GB 850,117",
+    example: { label: "Sole example", id: null },
     patentYear: 1960,
     authors: ["Eduard Hubert", "Harry Zöllner"],
     assignees: ["VEB Carl Zeiss Jena"],

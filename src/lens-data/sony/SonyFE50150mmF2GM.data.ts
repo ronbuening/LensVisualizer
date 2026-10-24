@@ -74,6 +74,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "WO 2025/220324 A1",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2025,
     authors: ["Hiroo Juri", "Naoto Kikuchi", "Hiraku Iwaya"],
     assignees: ["Sony Group Corporation"],

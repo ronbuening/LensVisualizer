@@ -56,6 +56,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "GB 978,797",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1964,
     authors: ["Wolf Dannberg", "Eberhard Dietzsch"],
     assignees: ["VEB Carl Zeiss Jena"],

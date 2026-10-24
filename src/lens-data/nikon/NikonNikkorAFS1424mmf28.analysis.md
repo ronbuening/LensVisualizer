@@ -8,7 +8,6 @@
 **Priority:** JP 2005-285398 (September 29, 2005)
 **Inventors:** Yoko Kimura, Haruo Sato
 **Assignee:** Nikon Corporation
-**Embodiment analyzed:** Example 1
 **Production lens:** AF-S Nikkor 14-24mm f/2.8G ED (released August 2007)
 
 ---

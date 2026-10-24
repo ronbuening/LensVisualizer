@@ -9,7 +9,7 @@
 **Inventors:** Matsuo Taku (松尾 拓); Yamamoto Hiroshi (山本 浩史)  
 **Applicant:** Nikon Corporation (株式会社ニコン), Tokyo  
 **Title:** 変倍光学系、変倍光学系を備えた撮像装置、変倍光学系の製造方法 (Variable-power optical system, imaging apparatus equipped therewith, and manufacturing method)  
-**Embodiment analyzed:** Example 2 (第2実施例, Table 2)
+**Example details:** 第2実施例, Table 2
 
 The transcribed prescription is Example 2 of JPWO2015/141574A1. The patent presents a compact telephoto zoom for cameras using film or solid-state imaging sensors. The relevant embodiment is a three-group positive-negative-positive zoom in which the front positive group, the negative variator group, and the rear positive group all move during zooming. Example 2 is the closest disclosed prescription for the AF-S DX NIKKOR 55-200mm f/4-5.6G ED VR II.
 

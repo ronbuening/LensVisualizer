@@ -7,7 +7,7 @@
 **Inventors:** Toshihide Hayashi (林 俊秀); Naoki Miyagawa (宮川 直己)\
 **Applicants:** Sony Corporation; Tamron Co., Ltd.\
 **Title:** インナーフォーカス式レンズ (*Inner-focus lens*)\
-**Embodiment analyzed:** Example 2 / 実施例2
+**Example details:** 実施例2
 
 The prescription represents the job-card-selected correlation for the **SONY E 50mm f/1.8 OSS**. It transcribes Example 2 without dimensional scaling. The patent gives a design focal length of 51.30 mm, design f-number of 1.85, half field of 15.43°, and a nine-element optical train arranged as eight air-separated groups when the L215-L216 cemented pair is counted as one group (¶0057-¶0059). The data file keeps those design values separate from the marketed 50 mm and f/1.8 product specifications.
 

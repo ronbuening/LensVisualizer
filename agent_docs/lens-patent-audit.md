@@ -160,7 +160,8 @@ rules and the LCA quality-badge upgrade path.
 |---|---|
 | `source.patentNumber` | Exact publication or grant transcribed, including jurisdiction/kind code. Required for patent-backed production lenses. |
 | `source.authors` / `source.assignees` | Complete source-order inventor list and source assignee/applicant list. Required with `source.patentNumber`; empty arrays mean the source truly names none, not “unknown.” |
-| `subtitle` | Compact example and design-correlation context — e.g. `"WO 2019/220618 A1 — Example 9"`. Keep it because reports still use it for source/example matching. |
+| `source.example` | The numerical example transcribed, as the publication prints it (`{ label: "Example 9", id: "9" }`, or `{ label: "Sole example", id: null }`). An audit confirms it against the patent; a job-card number is not the source's designation. Rules in [`LENS_DATA_SPEC.md`](../src/lens-data/LENS_DATA_SPEC.md#the-transcribed-example-sourceexample). |
+| `subtitle` | Compact design-correlation context — e.g. `"WO 2019/220618 A1 — Example 9"`. Keep it because reports still use it for source matching; an example it names must be `source.example`'s. |
 | `source.patentYear` | Year published or granted. |
 | `catalog.focalLengthMm.design` / `catalog.fNumber.design` | When the patent's computed values differ from marketing. |
 | `catalog.elementCount` / `catalog.groupCount` | Always — easy to miss. |
@@ -184,7 +185,8 @@ Targeted edits to make in the analysis:
 - **Glass class statements** — phrases like "S-FPL53 / FCD100 class (super-ED…)" become "S-FPL51 / FCD1 class (ED, νd = 82.6)" when the audit downgrades the class.
 - **APO claims** — only retain "anomalous partial dispersion" or "APO" language when the data file's dPgF or line indices justify it. Bare Abbe-only data is not enough to claim APO behavior.
 - **Patent reference accuracy** — the bold metadata block must match `source.patentNumber`, `source.authors`,
-  `source.assignees`, and `source.patentYear`; its embodiment line must agree with `subtitle`.
+  `source.assignees`, and `source.patentYear`. The example is `source.example`'s, shown in the page header; the block
+  carries only an optional `**Example details:**` row ([LENS_ANALYSIS_SPEC.md](../src/lens-data/LENS_ANALYSIS_SPEC.md) § 1).
 - **Aspherical coefficient values** — analysis files sometimes quote coefficients inline; update them when Phase 2 corrected the data.
 
 If `*.analysis.md` does not exist, do not create one as part of an audit — analysis authoring is its own pass. The `*.audit.md` log captures the data-file-only outcome.

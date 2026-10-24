@@ -45,6 +45,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2022-117775 A",
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2022,
     authors: ["Tomoya Koga", "Yuichiro Ehashi", "Takashi Enomoto"],
     assignees: ["Ricoh Co., Ltd."],

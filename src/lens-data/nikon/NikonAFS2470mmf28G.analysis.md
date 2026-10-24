@@ -8,7 +8,7 @@
 **Inventor:** Hiroki Harada  
 **Assignee:** Nikon Corporation  
 **Title:** Zoom Lens System  
-**Embodiment analyzed:** Example 2, Table 2, FIG. 3
+**Example details:** Table 2, FIG. 3
 
 ## Patent Reference and Design Identification
 

@@ -9,8 +9,7 @@
 **Published:** September 12, 2024\
 **Inventors:** Takashi Ode, Takahiro Hatada\
 **Applicant:** Canon Kabushiki Kaisha\
-**Title:** *Optical System and Image Pickup Apparatus Having the Same*\
-**Embodiment analyzed:** Numerical Example 2
+**Title:** *Optical System and Image Pickup Apparatus Having the Same*
 
 The prescription analyzed here is Numerical Example 2 of US 2024/0302626 A1, shown in Fig. 4 and tabulated in Tables 3 and 4. The production correlation is the Canon RF35mm F1.4 L VCM specified for this project. It is a correlation, not a statement by Canon that the commercial lens uses this particular patent example.
 

@@ -47,7 +47,7 @@ converter file is converted like a lens file: `npm run convert:lens-data -- --in
 | `catalog.imageFormat` | `ImageFormatId` | Intended image format, using a canonical id from `lensTaxonomy.ts`. Used for index grouping; omit when unconfirmed. |
 | `catalog.specs` | `string[]` | Spec strings, as on a lens. |
 | `catalog.elementCount`, `catalog.groupCount` | `number` | The converter's own counts. The composed header shows host + converter. |
-| `source.patentNumber`, `source.patentYear`, `source.authors`, `source.assignees` | | Same rules as [LENS_DATA_SPEC.md](LENS_DATA_SPEC.md) § Source and Errata. A converter has no `source.errata`. |
+| `source.patentNumber`, `source.example`, `source.patentYear`, `source.authors`, `source.assignees` | | Same rules as [LENS_DATA_SPEC.md](LENS_DATA_SPEC.md) § Source and Errata. `source.example` is the converter's own example, which may differ from the host's even in one publication. A converter has no `source.errata`. |
 | `universal` | `boolean` | `true` when the converter fits any host sharing a mount. Otherwise the host must declare `catalog.acceptsTeleconverters`. |
 | `minHostFNumber` | `number` | Fastest host f-number whose axial beam the converter's clear apertures pass. Faster hosts are rejected. |
 | `incompatibleLensKeys` | `string[]` | Host lens keys excluded for reasons vertex geometry cannot express (rim contact, mechanical interference). |

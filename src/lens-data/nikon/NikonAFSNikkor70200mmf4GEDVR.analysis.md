@@ -10,7 +10,6 @@
 **Inventors:** Satoshi Yamaguchi; Issei Tanaka
 **Applicant:** Nikon Corporation
 **Title:** *Variable Magnification Optical System, Optical Device, and Production Method for Variable Magnification Optical System*
-**Embodiment analyzed:** First Example / Example 1
 
 This prescription is the First Example described in ¶0201–¶0237 and Table 1 of the patent. The patent itself does
 not name the production AF-S NIKKOR 70-200mm f/4G ED VR, so the product identification is a research correlation rather

@@ -48,6 +48,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2001/0050819 A1",
+    example: { label: "Embodiment 3", id: "3" },
     patentYear: 2001,
     authors: ["Kazunori Ohno"],
     assignees: ["Fuji Photo Optical Co., Ltd."],

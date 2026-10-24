@@ -8,7 +8,7 @@
 **Inventor:** Hiroshi Saruwatari
 **Assignee:** Canon Kabushiki Kaisha
 **Title:** Zoom Lens and Image Pickup Apparatus Equipped with Same
-**Embodiment analyzed:** Numerical Example 4, ¶0075, FIG. 7, FIGS. 8A/8B
+**Example details:** ¶0075, FIG. 7, FIGS. 8A/8B
 
 Numerical Example 4 is the closest patent match for the built-in lens of the Canon PowerShot G1 X. The production lens was marketed as a 15.1–60.4 mm f/2.8–5.8, 4× optical zoom for Canon's 1.5-inch, approximately 14.3 MP CMOS compact camera. The patent example gives f = 15.57 / 30.33 / 58.93 mm, Fno = 2.88 / 4.58 / 5.94, zoom ratio 3.79×, and image height 10.34 / 11.57 / 11.75 mm. The telephoto-end image height corresponds to a 23.5 mm diagonal, effectively the same class as the G1 X's 18.7 × 14.0 mm sensor diagonal.
 

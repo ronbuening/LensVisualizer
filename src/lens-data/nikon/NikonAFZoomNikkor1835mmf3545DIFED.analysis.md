@@ -9,7 +9,6 @@
 **Applicant/Assignee on the A1 front page:** Not stated
 **Assignee (assignment record):** Nikon Corporation
 **Title:** *ZOOM LENS SYSTEM*
-**Embodiment analyzed:** Example 2
 
 The local A1 front page does not print an organizational assignee. The [same-application assignment history](https://patents.google.com/patent/US6441967B2/en) for US 09/800,525 reports assignment to **Nikon Corporation**, recorded **2001-03-08**, effective 2001-03-01, reel/frame **011589/0217**. This record predates the A1 publication and supports the structured `patentAssignees` attribution. The printed applicant/inventor remains distinct from this assignment evidence; the underlying assignment instrument has not been independently inspected. Patent attribution does not establish the exact production prescription or manufacturing identity.
 

@@ -9,7 +9,7 @@
 **Filed:** September 5, 1978
 **Granted:** July 7, 1981
 **Title:** Modified Gauss Type Lens System
-**Embodiment analyzed:** Embodiment 7 (Table 7)
+**Example details:** Table 7
 
 The prescription used is **Embodiment 7** (Table 7), the final and most refined example in the patent. The identification with the production Minolta MD Rokkor 45mm f/2 rests on the following convergent evidence:
 

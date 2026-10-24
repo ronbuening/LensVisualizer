@@ -7,7 +7,7 @@
 **Granted:** October 22, 1963  
 **Inventor:** Eugen Hermanni, Katzenfurt, Dillkreis, Germany  
 **Assignee:** Ernst Leitz GmbH, Optische Werke, Wetzlar  
-**Embodiment analyzed:** Example 2 / Table II, repeated in claim 2  
+**Example details:** Table II, repeated in claim 2  
 **Reference line:** e-line, 546.07 nm; the patent tabulates $n_e$ and $\nu_e$, not d-line $n_d$ and $\nu_d$
 
 ## Patent Reference and Design Identification

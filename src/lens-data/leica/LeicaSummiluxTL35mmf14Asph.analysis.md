@@ -9,8 +9,7 @@
 **Published:** 8 June 2016\
 **Inventor:** Keiko Yamada\
 **Applicant:** Konica Minolta, Inc.\
-**Title:** *Imaging Optical System, Imaging Optical Device, and Digital Appliance*\
-**Embodiment analyzed:** Example 4
+**Title:** *Imaging Optical System, Imaging Optical Device, and Digital Appliance*
 
 The modeled prescription is Example 4 of EP 3 029 504 A1. The patent describes a large-aperture normal lens with three power groups in positive-negative-positive order, with the complete negative second group moving toward the image side for close focus (EP 3 029 504 A1, ¶0008, ¶0012-¶0019, ¶0035-¶0036). Figure 4 on patent page 22 identifies the Example 4 layout as Gr1(+), Gr2(-), and Gr3(+), with Gr1 divided around the aperture stop into Gr1a(-) and Gr1b(+).
 

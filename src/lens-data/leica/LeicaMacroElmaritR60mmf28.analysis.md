@@ -9,7 +9,7 @@
 **Inventor:** Heinz Marquardt
 **Assignee:** Ernst Leitz GmbH, Wetzlar, Germany
 **Title:** Photographic Gauss Type Objective
-**Embodiment analyzed:** Sole numerical prescription / claim table
+**Example details:** claim table
 
 US 3,552,833 describes a photographic Gauss-type objective with five meniscus lens members: one singlet positive meniscus and one cemented negative meniscus in front of the diaphragm, followed by one singlet negative meniscus and two singlet positive menisci behind it. The patent states a relative aperture of at least f/2.8, a field angle of approximately ±18°, and use over image scales from infinity to 1:1.
 

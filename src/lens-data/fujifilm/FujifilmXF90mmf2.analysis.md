@@ -5,7 +5,7 @@
 **Applicant / Assignee:** Fujifilm Corporation
 **Filed:** March 8, 2016 | **Priority:** JP 2015-052258, March 16, 2015
 **Published:** September 22, 2016
-**Embodiment analyzed:** Example 1 (Tables 1–2, FIG. 1)
+**Example details:** Tables 1–2, FIG. 1
 
 ---
 

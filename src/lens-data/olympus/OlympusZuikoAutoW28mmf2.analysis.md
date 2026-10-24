@@ -10,7 +10,7 @@
 **Inventor:** Toru Fujii\
 **Assignee:** Olympus Optical Co., Ltd.\
 **Title:** Large-Aperture Ratio Retrofocus Lens System\
-**Embodiment analyzed:** Embodiment 2, Table 2, FIG. 2; repeated in Claim 4
+**Example details:** Table 2, FIG. 2; repeated in Claim 4
 
 The patent describes an approximately 76°-field, f/2 retrofocus family for single-lens reflex cameras. Embodiment 2 is the strongest match to the production Olympus Zuiko Auto-W 28mm f/2, although the patent does not name a commercial lens. The identification rests on convergent evidence:
 

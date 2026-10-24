@@ -9,7 +9,7 @@
 **Inventor:** Karl Heinrich Macher<br>
 **Assignee:** Jos. Schneider & Co., Optische Werke<br>
 **Title:** *Varifocal Teleobjective with Movable Negative Components*<br>
-**Embodiment analyzed:** Job-card Example 2, corresponding to Figure 2 / Table B
+**Example details:** Job-card Example 2, corresponding to Figure 2
 
 The implemented prescription is based on the second representative embodiment in the patent, Figure 2 and Table B. The patent describes both representative embodiments as 80–240 mm varifocal objectives with a relative aperture of 1:4 and a 24 × 36 mm image size. Figure 2 changes the first moving negative component to a cemented doublet and the fourth front component to a single biconvex element. The numerical Table B prescription contains 14 glass elements in nine air-separated groups and is entirely spherical. ([US 3,336,094](US3336094A.pdf), PDF pp. 2–3, Figure 2 and Table B.)
 

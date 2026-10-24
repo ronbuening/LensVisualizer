@@ -10,7 +10,7 @@
 **Inventors:** Toshinobu Ogura; Akiyoshi Nakamura\
 **Assignee:** Minolta Camera Co., Ltd.\
 **Title:** *Retro-Focus Type Wide Angle Lens System*\
-**Embodiment analyzed:** Example 2 / Embodiment 2
+**Example details:** Embodiment 2
 
 US 3,973,832 describes a retrofocus wide-angle objective for a single-lens reflex camera. Its general construction divides the lens into three components: a negative front component A, a positive second component B, and a four-lens rear component C. Example 2 is the seven-element, seven-group embodiment with normalized focal length `f = 1`, relative aperture F/2.8, full field angle `2ω = 76°`, and published back focus `s′ = 1.31`. The numerical prescription is the source of the modeled radii, spacings, and refractive-index/Abbe coordinates; the model interprets those coordinates as d-line `nd/νd`. The architectural description and the four governing conditions appear on PDF pages 7–8 of the supplied patent; the Example 2 table is on PDF page 8, printed page 4 (Source 1).
 

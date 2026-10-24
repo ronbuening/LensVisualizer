@@ -8,7 +8,7 @@
 **Inventors:** Fukuda Taisei (福田 泰成), Inoue Kana (井上 佳奈), Furuta Akiko (古田 明子)  
 **Applicants:** Konica Minolta, Inc.; Nikon Corporation  
 **Title:** 広角レンズ，撮像光学装置及びデジタル機器 (Wide-angle Lens, Imaging Optical Device, and Digital Device)  
-**Embodiment analyzed:** Example 4 (実施例4, ¶0079-¶0082)
+**Example details:** 実施例4, ¶0079-¶0082
 
 The prescription transcribed here is Example 4 of JP 2017-3807 A. The patent describes a compact large-aperture wide-angle lens for an interchangeable-lens digital camera, with a field angle above 70°, F-number below 2, a first group arranged in negative-negative-positive-negative-positive sequence, and a positive second group that moves object-ward for close focusing.
 

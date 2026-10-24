@@ -10,7 +10,7 @@
 **Classification:** G02B 9/64; G02B 15/22  
 **Claims:** 9  
 **Worked examples:** 6  
-**Embodiment analyzed:** Embodiment 4, claim 7
+**Example details:** claim 7
 
 US 4,568,150 discloses a four-group zoom lens in which Groups I, II, and III form a varifocal subsystem and Group IV is a relay lens. The patent presents two structural variants. Embodiments 1 and 2 correspond to FIG. 1 and use 13 elements in 10 air-separated groups. Embodiments 3 through 6 correspond to FIG. 2 and use 14 elements in 11 air-separated groups. Embodiment 4 is the prescription reproduced here.
 

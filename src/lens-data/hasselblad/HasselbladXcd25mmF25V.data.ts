@@ -60,6 +60,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2024/0329362 A1",
+    example: { label: "Example 2", id: "2" },
     patentYear: 2024,
     authors: ["Emiri Suzuki"],
     assignees: ["Panasonic Intellectual Property Management Co., Ltd."],

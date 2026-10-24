@@ -7,7 +7,7 @@
 **Inventors:** Maki Yokoya (横谷 真樹); Tomohiro Ino (井野 友裕)
 **Applicant:** Canon Inc.
 **Title:** Imaging optical system and imaging apparatus (結像光学系および撮像装置)
-**Embodiment analyzed:** Numerical Example 1 / 実施例1
+**Example details:** 実施例1
 
 The prescription modeled here is Numerical Example 1 of JP 2020-173349 A. The patent describes a long-focus imaging
 system built from three lens units: positive L1, positive L2, and negative L3. L2 is a single-element focusing unit,

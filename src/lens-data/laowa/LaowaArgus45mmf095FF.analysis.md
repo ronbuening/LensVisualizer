@@ -8,7 +8,7 @@
 **Inventor:** Dayong Li (李大勇)  
 **Assignee:** Anhui Changgeng Optics Technology Co., Ltd. (安徽长庚光学科技有限公司)  
 **Title:** 一种超大光圈镜头及具有其的数码相机、摄像机 (An ultra-large-aperture lens and digital/still-video cameras incorporating it; translated title)  
-**Embodiment analyzed:** Example 2 (Figure 3); the printed infinity and 2500 mm gap states.
+**Example details:** Figure 3; the printed infinity and 2500 mm gap states.
 
 Example 2 is associated with the LAOWA ARGUS 45mm f/0.95 FF through the manufacturer's published optical section and the matching construction. This is a construction-based association, not manufacturer confirmation of an identical production prescription.
 

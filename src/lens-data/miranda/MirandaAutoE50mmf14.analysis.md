@@ -9,8 +9,7 @@
 **Priority:** 1969-06-07, Japan 44/44531\
 **Inventor:** Kunio Shimada\
 **Assignee:** Miranda Camera Co., Ltd. (printed “Miranda Camera Company Limited”)\
-**Title:** Modified Gauss-type lens system having a long back focal length\
-**Embodiment analyzed:** Example 1 (printed “EXAMPLE I”)
+**Title:** Modified Gauss-type lens system having a long back focal length
 
 The prescription is the first numerical example on PDF page 4, printed column 3.
 It describes a modified Gauss system with seven glass elements in five components.

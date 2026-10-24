@@ -8,7 +8,7 @@
 **Inventor:** Rudolf Rühl  
 **Assignee:** Ernst Leitz GmbH  
 **Title:** Wide-angle lens  
-**Embodiment analyzed:** Table III (claim 3)
+**Example details:** claim 3
 
 This prescription models the first optical generation of the LEICA ELMARIT-R 28mm f/2.8 (1970, product code 11204) from Table III of the patent. The patent numbers its embodiments as tables; it does not call this one “Example 3.” Which of the three tables was manufactured is not confirmed by the manufacturer.
 

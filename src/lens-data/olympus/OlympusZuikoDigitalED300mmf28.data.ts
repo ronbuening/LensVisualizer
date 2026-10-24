@@ -42,6 +42,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 6,927,926 B2",
+    example: { label: "Example 3", id: "3" },
     patentYear: 2005,
     authors: ["Takashi Kasahara", "Masahiro Imamura"],
     assignees: ["Olympus Corporation"],

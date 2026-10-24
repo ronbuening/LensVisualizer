@@ -9,7 +9,7 @@
 **Inventor:** Sugita Shigenobu (杉田 茂宣)
 **Applicant:** Canon Kabushiki Kaisha (キヤノン株式会社)
 **Title:** ズームレンズおよび光学機器 (Zoom Lens and Optical Apparatus)
-**Embodiment analyzed:** Numerical Example 1 (数値例1; Reference Example 1 / 参考例1)
+**Example details:** 数値例1; Reference Example 1 / 参考例1
 **Worked examples:** 5 numerical examples
 **Claims:** 7
 

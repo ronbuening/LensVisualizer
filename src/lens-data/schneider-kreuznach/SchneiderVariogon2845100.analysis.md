@@ -7,7 +7,7 @@
 **Inventor:** Werner Wagner\
 **Assignee:** Jos. Schneider & Co., Optische Werke\
 **Title:** Varifocal Optical Objective\
-**Embodiment analyzed:** Table I, the patent's sole worked numerical prescription; designated Example 1 by the project job card
+**Example details:** Table I, the patent's sole worked numerical prescription; designated Example 1 by the project job card
 
 The implemented prescription is the single numerical example in Table I of US 3,482,900. The patent describes a five-component varifocal objective for small still cameras, specifically including 24 × 36 mm film, with a nominal relative aperture of 1:2.8. Its worked zoom states are 48, 72, 85, and 96 mm. The patent also gives a common back focal length of 48.2 linear units and 14 physical glass elements arranged as ten air-spaced lens members. The data file preserves those design quantities without scaling. (US 3,482,900, pp. 3–5; Table I on p. 4.)
 

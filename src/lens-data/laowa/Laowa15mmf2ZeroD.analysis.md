@@ -9,7 +9,6 @@
 **Filed:** May 5, 2017
 **Published:** May 31, 2018
 **Title:** Mirrorless Large-Aperture Ultra Wide-Angle Lens
-**Embodiment analyzed:** Example 1
 
 The relevant patent is **US 2018/0149842 A1**, titled **"Mirrorless Large-Aperture Ultra Wide-Angle Lens"**, assigned to **Anhui Changgeng Optics Technology Co., Ltd.** with **Xiaohua Zhang** as inventor. The U.S. application was filed on 2017-05-05, published on 2018-05-31, and claims Chinese priority **CN 201611050404.7** from 2016-11-25.[^patent]
 

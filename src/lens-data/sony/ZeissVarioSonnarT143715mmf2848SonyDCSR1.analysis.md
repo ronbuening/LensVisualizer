@@ -8,7 +8,7 @@
 **Inventors:** Daisuke Kuroda; Masafumi Sueyoshi; Kazuya Watanabe  
 **Assignee on the supplied US publication:** none printed<br>
 **Assignees (assignment record):** Sony Corporation; Tamron Co., Ltd.<br>
-**Embodiment analyzed:** Example 1, Figures 1–4 and Tables 1–3  
+**Example details:** Figures 1–4 and Tables 1–3  
 **Production correlation:** Carl Zeiss Vario-Sonnar T* 14.3–71.5 mm f/2.8–4.8 in the Sony Cyber-shot DSC-R1; strong correlation, not manufacturer confirmation that Example 1 is the exact production prescription
 
 The local A1 front page does not print an organizational assignee. The [same-application assignment history](https://patents.google.com/patent/US20080218875A1/en) for US 11/885,365 reports assignment to **Sony Corporation and Tamron Co., Ltd. jointly**, recorded **2007-08-30**, signing dates 2007-07-11 through 2007-08-01, reel/frame **019796/0850**. This record predates the A1 publication and supports the structured `patentAssignees` attribution. The printed applicant/inventor remains distinct from this assignment evidence; the underlying assignment instrument has not been independently inspected. Patent attribution does not establish the exact production prescription or manufacturing identity.

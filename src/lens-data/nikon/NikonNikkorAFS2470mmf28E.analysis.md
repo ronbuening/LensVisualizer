@@ -8,7 +8,6 @@
 **Priority:** JP 2015-017916, January 30, 2015
 **Filed:** January 29, 2016 (PCT/JP2016/052683)
 **Published:** May 7, 2020
-**Embodiment analyzed:** Example 1
 
 ---
 

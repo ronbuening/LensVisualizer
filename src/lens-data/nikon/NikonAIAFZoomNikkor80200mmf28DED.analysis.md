@@ -15,7 +15,7 @@
 **Assignee:** Nikon Corporation
 
 **Title:** *Zoom Lens Equipped with the Image Stabilizing Function*
-**Embodiment analyzed:** Example 3 / third embodiment, Figure 5 and Table 4
+**Example details:** third embodiment, Figure 5 and Table 4
 
 The prescription is the third embodiment of US 5,579,171 A, selected for correlation with the
 NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 D ED. The patent describes this embodiment as a relatively

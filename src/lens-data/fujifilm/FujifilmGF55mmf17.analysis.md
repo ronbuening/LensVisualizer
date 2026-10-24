@@ -9,7 +9,7 @@
 **Priority:** JP 2022-072610, filed April 26, 2022  
 **Inventors:** Yasutaka Shimada; Shunsuke Miyagishima  
 **Applicant:** FUJIFILM Corporation, Tokyo, Japan  
-**Embodiment analyzed:** Example 1, Tables 1–3 and FIGS. 1–3
+**Example details:** Tables 1–3 and FIGS. 1–3
 
 Example 1 is the implemented prescription for the production FUJINON GF55mmF1.7 R WR. The match is not a single-specification coincidence; it is a convergence of the patent table, product specifications, and Fujifilm's launch description.
 

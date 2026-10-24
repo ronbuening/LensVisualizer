@@ -74,7 +74,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.8, design: 2.9 },
   },
 
-  source: { patentNumber: "JP H08-110467 A", patentYear: 1996, authors: ["Tadashi Endo"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "JP H08-110467 A",
+    example: { label: "Numerical Example 2", id: "2" },
+    patentYear: 1996,
+    authors: ["Tadashi Endo"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

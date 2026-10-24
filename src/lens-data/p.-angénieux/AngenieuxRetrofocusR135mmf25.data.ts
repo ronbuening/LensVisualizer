@@ -53,7 +53,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.5, design: 2.5 },
   },
 
-  source: { patentNumber: "GB 673,358 A", patentYear: 1952, authors: ["Pierre Angénieux"], assignees: [] },
+  source: {
+    patentNumber: "GB 673,358 A",
+    example: { label: "Example I", id: "1" },
+    patentYear: 1952,
+    authors: ["Pierre Angénieux"],
+    assignees: [],
+  },
 
   elements: [
     {

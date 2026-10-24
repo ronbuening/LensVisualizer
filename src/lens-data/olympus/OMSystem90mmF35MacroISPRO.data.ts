@@ -78,6 +78,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2024-066164 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2024,
     authors: ["Yasuharu Yamada"],
     assignees: ["OM Digital Solutions Corporation"],

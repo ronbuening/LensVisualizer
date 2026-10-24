@@ -9,7 +9,6 @@
 **Inventor:** Hiroshi Endo  
 **Applicant:** Canon Inc.  
 **Title:** インナーフォーカス式の望遠レンズ (*Inner focus telephoto lens*)  
-**Embodiment analyzed:** Numerical Example 1
 
 This analysis concerns the native infinity prescription in Example 1 and a separately derived near-focus extension. The patent table, rather than a secondary optical reconstruction, supplies the radii, element thicknesses, native air gaps and glass coordinates. [1, ¶0023–0024, printed pp. 3–4]
 

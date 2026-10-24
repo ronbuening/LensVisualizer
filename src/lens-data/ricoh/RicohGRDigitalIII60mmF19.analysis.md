@@ -15,7 +15,6 @@
 **Applicant:** Ricoh Co., Ltd.
 
 **Title:** Imaging optical system, camera apparatus, and portable information terminal apparatus
-**Embodiment analyzed:** Example 4
 
 The modeled lens is `RICOH GR LENS 6.0mm f/1.9 (Ricoh GR DIGITAL III)`, using Example 4 of JP 2010-72639 A as the fixed production correlation. The patent itself does not state that Example 4 is the shipped GR DIGITAL III prescription, so the identification is a production correlation rather than manufacturer confirmation of numerical identity.
 

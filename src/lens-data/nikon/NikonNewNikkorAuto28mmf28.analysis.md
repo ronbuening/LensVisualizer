@@ -8,7 +8,7 @@
 **Inventor:** Ikuo Mori\
 **Assignee:** Nippon Kogaku K.K.\
 **Title:** Retrofocus-Type Lens System\
-**Embodiment analyzed:** Example 2 (Fig. 3; prescription on PDF p. 6)
+**Example details:** Fig. 3; prescription on PDF p. 6
 
 The prescription modeled here is the second embodiment of US 3,635,546, an all-spherical seven-element retrofocus design published at nominal focal length $f=100$, f/2.8, and 76° full field. The model uses the body table on PDF page 6 rather than the conflicting repeated claim. The patent's correction certificate changes the final glass index and restores the `d7+8` notation in claim 2, but does not resolve the claim's remaining radius discrepancies; those claim values are therefore not blended into the selected body prescription. [P, PDF pp. 6–8]
 

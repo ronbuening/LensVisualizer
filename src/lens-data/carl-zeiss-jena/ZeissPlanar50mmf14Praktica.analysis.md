@@ -8,7 +8,7 @@
 **Inventors:** Eberhard Dietzsch; Heinz-Dietrich Siegert; Erich Greiner  
 **Applicant:** VEB Carl Zeiss Jena  
 **Title:** Double Gauss type photo objective lens system  
-**Embodiment analyzed:** Example 4 / Table 4 / Claim 5
+**Example details:** Table 4 / Claim 5
 
 This prescription is taken from Example 4 of GB 2 066 504 A. Table 4 gives a normalized focal length `f = 1`, relative aperture 1:1.4, image-side back-focal distance `s′ = 0.732`, and full field `2σ = 46°`; Claim 5 explicitly selects the Table 4 construction. The patent states that its refractive-index data are `ne` values at the green mercury e line, nominally 546 nm, with corresponding `νe` Abbe numbers. [GB 2 066 504 A, PDF pp. 4, 8–9; printed pp. 2, 6–7.]
 

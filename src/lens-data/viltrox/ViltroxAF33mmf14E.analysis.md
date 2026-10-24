@@ -7,7 +7,7 @@
 **Inventors:** 刘瑞军; 陈宝锋\
 **Applicant / Assignee:** 深圳市雷影光电科技有限公司\
 **Title:** 内合焦式成像镜头 (*Internal-Focusing Imaging Lens*)\
-**Embodiment analyzed:** Example 1 (实施例1)
+**Example details:** 实施例1
 
 The prescription is the fixed project correlation for the **VILTROX AF 33mm f/1.4 E**. The patent is the numerical
 source; the production identity and marketed specifications are taken separately from Viltrox's current Sony E product

@@ -10,7 +10,7 @@
 **Inventors:** Yuya Hirakawa; Taiga Noda  
 **Applicant:** FUJIFILM Corporation  
 **Title:** Zoom Lens and Imaging Apparatus  
-**Embodiment analyzed:** Example 1, FIG. 1, Tables 1–3, and Tables 31–32
+**Example details:** FIG. 1, Tables 1–3, and Tables 31–32
 
 Example 1 is a 16-element, five-kinematic-group standard zoom. Table 1 gives the full surface prescription, Table 2 gives the wide/middle/tele focal lengths, F-numbers, field angles, and four variable gaps, and Table 3 gives the aspherical coefficients for eight aspherical surfaces. Tables 31–32 give the conditional-expression values for the worked examples.
 

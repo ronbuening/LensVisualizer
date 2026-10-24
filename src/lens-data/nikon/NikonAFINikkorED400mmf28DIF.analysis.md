@@ -10,7 +10,7 @@
 **Inventor:** Masahiro Nakashima\
 **Assignee:** Nikon Corporation\
 **Title:** *Internal Focus Telephoto Lens for an Auto Focus Camera*\
-**Embodiment analyzed:** Example 1, Figure 1 / Table 1
+**Example details:** Figure 1 / Table 1
 
 The data file fixes Example 1 of US 5,438,455 A as the prescription correlated with the **NIKON AF-I NIKKOR 400mm f/2.8 D IF-ED**. The patent itself does not state that Example 1 became that production lens, so the correlation should not be read as manufacturer confirmation. It rests on convergent evidence: the patent gives a design focal length of 392.0066 mm and `FN = 2.88`; Figure 1 shows internal focusing by a negative middle unit; the prescription contains 10 elements in 7 air-separated groups; and three elements use the unusually high-Abbe coordinate `nd = 1.49782`, `νd = 82.6`. Nikon's own compatibility material separately lists the production AF-I Nikkor 400mm f/2.8D IF-ED designation, and Nikon's historical account places its 300 mm, 400 mm, and 500 mm AF-I lenses in the silver-halide era.
 

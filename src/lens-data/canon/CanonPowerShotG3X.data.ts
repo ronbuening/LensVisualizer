@@ -68,7 +68,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.8, design: 2.88 },
   },
 
-  source: { patentNumber: "JP 2016-148731 A", patentYear: 2016, authors: ["Takashi Okada"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "JP 2016-148731 A",
+    example: { label: "Numerical Example 6", id: "6" },
+    patentYear: 2016,
+    authors: ["Takashi Okada"],
+    assignees: ["Canon Inc."],
+  },
 
   /* ── Elements ── */
   // nC, nF, ng, and dPgF are intentionally omitted: Example 6 does not publish them,

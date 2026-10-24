@@ -10,7 +10,7 @@
 **Inventors:** Helmut Marx; Paul Sindel
 **Assignee:** Ernst Leitz GmbH
 **Title:** *Two-Aspherical-Surfaced, High Speed Photographic Objective Lens*
-**Embodiment analyzed:** The sole numerical table (repeated in claim 1) and the sole, unnumbered drawing.
+**Example details:** repeated in claim 1, and the sole, unnumbered drawing
 
 The patent contains one numerical prescription, printed in the description and repeated in claim 1. The drawing is not numbered and shows the same six-element, four-group layout. [US 3,459,468, PDF pp. 1–3.]
 

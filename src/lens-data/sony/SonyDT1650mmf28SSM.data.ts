@@ -84,6 +84,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2012/0307129 A1",
+    example: { label: "Numerical Value Embodiment 1", id: "1" },
     patentYear: 2012,
     authors: ["Hideki Kai", "Makoto Kanai"],
     assignees: ["Sony Corporation"],

@@ -28,7 +28,7 @@ Coefficient source: [HOYA official catalog including obsolete glasses, 2026-07-0
 **Inventor:** Shuji Ogino
 **Assignee:** Minolta Camera Kabushiki Kaisha
 **Title:** Telephoto lens system having an improved focusing capability
-**Embodiment analyzed:** Example 3, Table 5 and Fig. 7
+**Example details:** Table 5 and Fig. 7
 
 The analyzed prescription is the selected patent correlation for the MINOLTA MD 600mm f/6.3 APO TELE. The patent supplies eight powered elements, two published focus states and a split rear focusing arrangement. It does not identify a commercial lens by name. The production association is therefore a supported correlation rather than manufacturer confirmation that the marketed lens exactly implements Table 5.
 

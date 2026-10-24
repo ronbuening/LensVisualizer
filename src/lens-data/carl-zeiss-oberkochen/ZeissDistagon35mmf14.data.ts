@@ -60,6 +60,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,915,558",
+    example: { label: "Example 8", id: "8" },
     patentYear: 1975,
     authors: ["Erhard Glatzel"],
     assignees: ["Carl-Zeiss-Stiftung"],

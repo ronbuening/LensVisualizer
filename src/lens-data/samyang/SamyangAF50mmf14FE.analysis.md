@@ -7,7 +7,7 @@
 **Inventors:** Jae Myung Ryu; Hae Jin Lee; Jung Du Lee\
 **Assignee:** Samyang Optics Co., Ltd.\
 **Title:** 텔레포토 단초점 렌즈계 및 이를 포함한 촬영 장치\
-**Embodiment analyzed:** Numerical Example 1 / 제1 수치 실시예
+**Example details:** 제1 수치 실시예
 
 The modeled prescription is Numerical Example 1 of KR 10-1825708 B1, correlated to the first-generation SAMYANG AF 50mm f/1.4 FE. The production correlation is supported by convergent evidence: the patent example contains 9 elements in 8 air-separated groups, three aspherical elements, a 51.038 mm-class focal length, F/1.44, a 23.50° half field, and a published close-focus magnification of 0.15 in magnitude. Those values align with the manufacturer's marketed 50 mm f/1.4, 9-element/8-group, three-aspherical-element, 47.0° full-frame lens with 0.45 m minimum focus and 0.15× maximum magnification.
 

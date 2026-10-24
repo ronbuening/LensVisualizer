@@ -742,6 +742,20 @@ describe("V2 refusals name the authored path", () => {
     expect(refusalsOf({ ...file, source: { patentNumber: "JP 2000-000002 A" } }, ingestTeleconverterV2)).toEqual([]);
   });
 
+  it("takes source.example on a lens and a teleconverter, and refuses an example outside source", () => {
+    const example = { label: "Example 2", id: "2" };
+    const converter = FIXTURE_PAIRS.find(
+      (pair): pair is Extract<FixturePair, { kind: "teleconverter" }> => pair.kind === "teleconverter",
+    )!;
+    const lens = editedV2("prime", (file) => (file.source = { ...file.source, example }));
+    expect(refusalsOf(lens)).toEqual([]);
+    expect(ingestLensV2(lens as LensDataV2Input).prescription.source.example).toEqual(example);
+    const tc = { ...structuredClone(converter.v2), source: { patentNumber: "JP 2000-000002 A", example } };
+    expect(refusalsOf(tc, ingestTeleconverterV2)).toEqual([]);
+    expect(ingestTeleconverterV2(tc as TeleconverterDataV2Input).prescription.source.example).toEqual(example);
+    expect(refusalsOf(editedV2("prime", (file) => (file.example = example)))).toEqual(["example is not a V2 field"]);
+  });
+
   it("reports every reason at once", () => {
     const issues = refusalsOf(
       editedV2("prime", (file) => {

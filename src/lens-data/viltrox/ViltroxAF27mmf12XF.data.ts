@@ -72,6 +72,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "CN 115840281 A",
+    example: { label: "Example 4", id: "4" },
     patentYear: 2023,
     authors: ["Liu Chen"],
     assignees: ["Shenzhen Leiying Photoelectric Technology Co., Ltd."],

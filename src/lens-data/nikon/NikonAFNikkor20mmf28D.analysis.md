@@ -9,7 +9,7 @@
 **Inventor:** Daijiro Fujie  
 **Assignee:** Nippon Kogaku K. K.  
 **Title:** Retrofocus Type Wide Angle Lens  
-**Embodiment analyzed:** First Embodiment, Table 1  
+**Example details:** Table 1  
 **Total embodiments:** Six numerical embodiments, Tables 1–6  
 **Claims:** 13
 

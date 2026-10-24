@@ -9,7 +9,6 @@
 **Inventor:** Satoshi Hayakawa
 **Applicant:** Nikon Corporation
 **Title:** Zoom lens
-**Embodiment analyzed:** Example 2
 
 The prescription is taken from Example 2 of JP 2003-241093 A. The patent describes a five-group zoom with positive,
 negative, positive, negative, and positive group powers and gives Example 2 at 25.0, 50.0, and 82.5 mm infinity-focus

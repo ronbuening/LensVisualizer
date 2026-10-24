@@ -8,7 +8,7 @@
 **Inventor:** Shigenobu Sugita\
 **Assignee:** Canon Inc.\
 **Title:** *Zoom Lens and Image Pickup Apparatus Having the Same*\
-**Embodiment analyzed:** Fourth exemplary embodiment / Numerical Example 4 (Fig. 13; ¶¶0037, 0088–0090, 0099)
+**Example details:** Numerical Example 4 (Fig. 13; ¶¶0037, 0088–0090, 0099)
 
 The prescription represented here is the fixed project correlation for the **CANON EF-S 18–135mm f/3.5–5.6 IS STM**. The production identity and marketed specifications are kept distinct from the patent design quantities. Canon lists the production lens as an EF-S zoom marketed in June 2012, with 18–135 mm focal length, f/3.5–5.6 maximum aperture, 16 elements in 12 groups, seven diaphragm blades, 0.39 m closest focus, 0.28× maximum magnification, a six-group zoom, one UD element, one high-precision aspherical element, STM focusing, and image stabilization. The patent's Numerical Example 4 instead publishes 18.60, 50.99, and 130.48 mm zoom stations at f/3.59, f/4.88, and f/5.97, with 16 physical elements arranged as 11 air-separated construction groups and six moving optical units. These are not silently reconciled.
 

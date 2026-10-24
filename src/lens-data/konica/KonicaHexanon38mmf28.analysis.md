@@ -10,7 +10,7 @@
 **Classification:** Int. Cl. G02B 9/20; U.S. Cl. 350-227
 **Claims:** 4
 **Worked examples:** 3
-**Embodiment analyzed:** Embodiment I / Claim 2
+**Example details:** Claim 2
 
 US 3,615,126 describes a compact photographic objective with the aperture stop placed behind the final refractive surface. The lens is a rear-stop Tessar derivative: a positive meniscus first group, a biconcave second group, and a cemented rear doublet. The patent explicitly frames the design problem as a compact-camera requirement, where the shutter and diaphragm are easier to package behind the objective.
 

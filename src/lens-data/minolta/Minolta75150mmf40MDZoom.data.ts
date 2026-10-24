@@ -58,6 +58,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP S56-150717 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1981,
     authors: ["Hisashi Tokumaru", "Mitsuo Yasukuni"],
     assignees: ["Minolta Camera Co., Ltd."],

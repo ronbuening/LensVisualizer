@@ -10,7 +10,7 @@ import DiagramHeader from "../../../../src/components/controls/DiagramHeader.js"
 import { authorPathForName } from "../../../../src/utils/catalog/authorCatalog.js";
 import { espacenetPatentUrl } from "../../../../src/utils/catalog/patentCatalog.js";
 import themes from "../../../../src/utils/theme/themes.js";
-import type { RuntimeLens } from "../../../../src/types/optics.js";
+import type { PatentExample, RuntimeLens } from "../../../../src/types/optics.js";
 import { buildSimplePositiveElementLens } from "../../optics/testLensFixtures.js";
 
 vi.mock("../../../../src/utils/featureFlags.js", async (importOriginal) => {
@@ -125,15 +125,39 @@ describe("DiagramHeader", () => {
     expect(screen.queryByText("legacy subtitle")).toBeNull();
   });
 
+  it("follows the patent number with the transcribed example, or sole example when it is unnumbered", () => {
+    const baseLens = lens();
+    const cases: [PatentExample | undefined, string][] = [
+      [{ label: "Example 6", id: "6" }, "US 10,095,009 B2↗, Example 6 — Hideki Sakai"],
+      [{ label: "Sole example", id: null }, "US 10,095,009 B2↗, sole example — Hideki Sakai"],
+      [undefined, "US 10,095,009 B2↗ — Hideki Sakai"],
+    ];
+    for (const [patentExample, text] of cases) {
+      const L = {
+        ...baseLens,
+        ...runtimeFixtureView({
+          ...constructionFixtureData(baseLens),
+          patentNumber: "US 10,095,009 B2",
+          patentAuthors: ["Hideki Sakai"],
+          ...(patentExample ? { patentExample } : {}),
+        }),
+      } as RuntimeLens;
+      const { unmount } = renderHeader({ L });
+      expect(screen.getByRole("link", { name: "Hideki Sakai" }).parentElement?.parentElement?.textContent).toBe(text);
+      unmount();
+    }
+  });
+
   it("searches photos by the host lens and credits a converter's separate patent", () => {
     const baseLens = lens();
-    const converted = (teleconverterPatent: string) =>
+    const converted = (teleconverterPatent: string, teleconverterExample?: PatentExample) =>
       ({
         ...baseLens,
         ...runtimeFixtureView({
           ...constructionFixtureData(baseLens),
           name: "Header Test Lens + Test Converter",
           patentNumber: "US 10,571,651 B2",
+          patentExample: { label: "Table 1", id: "1" },
           patentAuthors: ["Hideki Sakai"],
           attachedTeleconverter: {
             key: "test-converter",
@@ -145,6 +169,7 @@ describe("DiagramHeader", () => {
             lastSurfaceLabel: "TC2",
             firstElementId: 2,
             patentNumber: teleconverterPatent,
+            ...(teleconverterExample ? { patentExample: teleconverterExample } : {}),
             patentAuthors: ["Aiko Example"],
           },
         }),
@@ -157,13 +182,24 @@ describe("DiagramHeader", () => {
     );
     expect(screen.getByRole("link", { name: "US 9,000,000 B2 in Espacenet (opens in a new tab)" })).toBeTruthy();
     /* Inventor names link only when the inventor is in the author catalog, so assert on the rendered line. */
-    expect(document.body.textContent).toContain(" · TC US 9,000,000 B2↗ — Aiko Example");
+    expect(document.body.textContent).toContain(
+      "US 10,571,651 B2↗, Table 1 — Hideki Sakai · TC US 9,000,000 B2↗ — Aiko",
+    );
     unmount();
 
-    /* A converter published in the lens's own patent is not credited twice. */
-    renderHeader({ L: converted("US 10,571,651 B2") });
-    expect(screen.getAllByRole("link", { name: "US 10,571,651 B2 in Espacenet (opens in a new tab)" })).toHaveLength(1);
-    expect(document.body.textContent).not.toContain("Aiko Example");
+    /* A converter published in the lens's own patent example is not credited twice. */
+    for (const example of [undefined, { label: "Table 1", id: "1" }]) {
+      const { unmount: close } = renderHeader({ L: converted("US 10,571,651 B2", example) });
+      expect(screen.getAllByRole("link", { name: "US 10,571,651 B2 in Espacenet (opens in a new tab)" })).toHaveLength(
+        1,
+      );
+      expect(document.body.textContent).not.toContain("Aiko Example");
+      close();
+    }
+
+    /* Another example of the same publication is credited on its own line, with its example. */
+    renderHeader({ L: converted("US 10,571,651 B2", { label: "Example 1", id: "1" }) });
+    expect(document.body.textContent).toContain(" · TC US 10,571,651 B2↗, Example 1 — Aiko Example");
   });
 
   it("routes desktop ray-mode and density controls to callbacks", () => {

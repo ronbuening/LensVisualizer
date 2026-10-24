@@ -7,7 +7,7 @@
 **Inventor:** Takumi Suzuki (鈴木 匠)  
 **Applicant:** Canon Inc. (キヤノン株式会社)  
 **Title:** 光学系及びそれを有する撮像装置 (Optical system and imaging apparatus having the same)  
-**Embodiment analyzed:** Numerical Example 3 (数値実施例3)
+**Example details:** 数値実施例3
 
 Numerical Example 3 is the strongest match to the Canon RF 16mm F2.8 STM among the five worked examples in JP 2022-085382 A. The patent example has a computed paraxial focal length of 16.486 mm and a stated focal length of 16.48 mm, while the production lens is marketed as a 16 mm RF-mount lens. The patent gives F/2.90; Canon markets the production lens as f/2.8.
 

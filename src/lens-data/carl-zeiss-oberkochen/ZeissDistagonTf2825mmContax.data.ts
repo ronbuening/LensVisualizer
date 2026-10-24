@@ -44,6 +44,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 1 250 153",
+    example: { label: "Example 2", id: "2" },
     patentYear: 1967,
     authors: ["Erhard Glatzel"],
     assignees: ["Carl-Zeiss-Stiftung"],

@@ -50,6 +50,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "CN 116520542 A",
+    example: { label: "Example 2", id: "2" },
     patentYear: 2023,
     authors: ["Dayong Li"],
     assignees: ["Anhui Changgeng Optics Technology Co., Ltd."],

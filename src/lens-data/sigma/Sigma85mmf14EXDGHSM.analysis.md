@@ -9,7 +9,7 @@
 **Inventor:** Yukihiro Yamamoto  
 **Applicant:** Sigma Corporation  
 **Title:** Large-aperture medium telephoto lens  
-**Embodiment analyzed:** Numerical Example 5, paragraph 0088, Figure 21; prescription on PDF pages 18–19 (printed pages 17–18).
+**Example details:** paragraph 0088, Figure 21; prescription on PDF pages 18–19 (printed pages 17–18).
 
 This is a patent-derived architectural model associated with the original Sigma 85mm F1.4 EX DG HSM. It does not assert a manufacturer-confirmed production prescription or glass supplier. The later Art and DG DN designs are separate products.
 

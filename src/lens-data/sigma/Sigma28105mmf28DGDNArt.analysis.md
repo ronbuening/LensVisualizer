@@ -7,7 +7,6 @@
 **Inventor:** Takeshi Umeda
 **Applicant:** Sigma Corporation
 **Title:** Variable magnification optical system and imaging apparatus
-**Embodiment analyzed:** Numerical Example 1
 
 This model is correlated with the Sigma 28–105mm F2.8 DG DN | Art. The patent's printed asphere equation (¶0067) omits the square root of the conic term; this is a typesetting error, and the model uses the standard square-root conic equation, which reproduces the patent's own aberration plots. Every published radius, axial spacing, refractive index and aspheric coefficient is unchanged.
 

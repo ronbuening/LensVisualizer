@@ -10,7 +10,6 @@
 **Inventors:** Akihiro Nishio; Hideki Ogawa; Makoto Misaka  
 **Assignee:** Canon Kabushiki Kaisha  
 **Title:** *Optical System and Optical Apparatus Having the Same*  
-**Embodiment analyzed:** Numerical Example 24
 
 Numerical Example 24 is the fixed prescription used for this model. The patent gives a design focal length of
 490.56 mm, an f-number of 4.1, and a full field angle of 5.0°. Figure 87 identifies the front protection plate HG,

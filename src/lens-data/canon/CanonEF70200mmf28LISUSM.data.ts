@@ -74,7 +74,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.8, design: 2.9 },
   },
 
-  source: { patentNumber: "JP 2002-162564 A", patentYear: 2002, authors: ["Akira Harada"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "JP 2002-162564 A",
+    example: { label: "Numerical Example 1", id: "1" },
+    patentYear: 2002,
+    authors: ["Akira Harada"],
+    assignees: ["Canon Inc."],
+  },
 
   /* ── Glass elements ── */
   elements: [

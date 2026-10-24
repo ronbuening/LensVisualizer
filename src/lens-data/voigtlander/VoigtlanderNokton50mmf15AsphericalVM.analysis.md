@@ -7,7 +7,6 @@
 **Inventor:** Yasuyuki Sugano
 **Applicant:** Cosina Co., Ltd.
 **Title:** Large-Aperture Imaging Lens (大口径撮像レンズ)
-**Embodiment analyzed:** Example 2
 
 The prescription is the fixed Example 2 correlation for the **VOIGTLÄNDER NOKTON Vintage Line 50mm f/1.5 Aspherical II VM**. The patent does not name the production lens, and Cosina does not publicly identify a patent example number for it. The association is therefore an author correlation based on convergent evidence rather than a manufacturer-confirmed statement.
 

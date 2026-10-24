@@ -50,6 +50,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2016/0341934 A1",
+    example: { label: "Example 11", id: "11" },
     patentYear: 2016,
     authors: ["Romeo I. Mercado"],
     assignees: ["Apple Inc."],

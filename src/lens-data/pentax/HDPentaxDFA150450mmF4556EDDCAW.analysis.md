@@ -8,7 +8,7 @@
 **Inventor:** Minoru Murayama\
 **Applicant / Assignee:** Ricoh Imaging Company, Ltd.\
 **Title:** Zoom Lens System\
-**Embodiment analyzed:** Numerical Embodiment 1 (Example 1; Figs. 1–6, Tables 1–3)
+**Example details:** Example 1; Figs. 1–6, Tables 1–3
 
 The prescription is the selected production correlation for the **HD PENTAX-D FA 150–450mm f/4.5–5.6 ED DC AW**. The patent itself does not identify a commercial product, and RICOH's product literature does not identify this patent. The correlation therefore remains an author/modeling inference fixed for this dataset rather than a manufacturer-confirmed attribution.
 

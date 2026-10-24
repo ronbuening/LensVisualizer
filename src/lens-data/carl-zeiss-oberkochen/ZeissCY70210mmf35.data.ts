@@ -53,6 +53,7 @@ const LENS_DATA = {
   },
   source: {
     patentNumber: "US 4,303,312 A",
+    example: { label: "Sole example", id: null },
     patentYear: 1981,
     authors: ["Heinrich Basista"],
     assignees: ["Carl-Zeiss-Stiftung"],

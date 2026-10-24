@@ -41,6 +41,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP H11-326756 A",
+    example: { label: "Example 3", id: "3" },
     patentYear: 1999,
     authors: ["Yoshihisa Yomogida"],
     assignees: ["Cosina Co., Ltd."],

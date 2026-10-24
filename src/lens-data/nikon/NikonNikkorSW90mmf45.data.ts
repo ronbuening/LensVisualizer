@@ -83,6 +83,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,176,915", // no kind code printed on the 1979 grant
+    example: { label: "Example 1", id: "1" },
     patentYear: 1979,
     authors: ["Ikuo Mori"],
     assignees: ["Nippon Kogaku K.K."],

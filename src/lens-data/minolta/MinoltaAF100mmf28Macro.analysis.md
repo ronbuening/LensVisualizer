@@ -9,7 +9,7 @@
 **Filed:** May 19, 1986
 **Granted:** August 16, 1988
 **Title:** Telephoto Lens System with Three Relatively Shiftable Lens Groups
-**Embodiment analyzed:** Embodiment 8 / Example 8
+**Example details:** Example 8
 
 United States Patent **US 4,764,000**, **“Telephoto Lens System with Three Relatively Shiftable Lens Groups,”** was filed by Hisashi Tokumaru for Minolta Camera Kabushiki Kaisha on 19 May 1986. It claims Japanese priorities of 20 May 1985 and 27 September 1985 and was granted on 16 August 1988.[^patent]
 

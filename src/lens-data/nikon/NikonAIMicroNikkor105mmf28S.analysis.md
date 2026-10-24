@@ -11,7 +11,7 @@
 **Classification:** G02B 9/64; G02B 15/14  
 **Claims:** 10  
 **Worked examples:** 6  
-**Embodiment analyzed:** Example 1 / claim 5
+**Example details:** claim 5
 
 The prescription transcribed here is Example 1 of US 4,392,724. It is identified as the design basis for the production NIKON AI MICRO-NIKKOR 105mm f/2.8 S, the manual-focus 105 mm macro lens released in 1984.
 

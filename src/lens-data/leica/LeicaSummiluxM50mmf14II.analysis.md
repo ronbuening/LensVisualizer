@@ -10,7 +10,7 @@
 **Inventor:** Walter Mandler\
 **Assignee:** Ernst Leitz GmbH\
 **Title:** *Photographic Objective Having Four Lens Members*\
-**Embodiment analyzed:** Job-card Example 1 — the patent's sole unnumbered numerical example
+**Example details:** Job-card Example 1 — the patent's sole unnumbered numerical example
 
 The prescription is taken from the numerical table on patent page 2. The patent normalizes focal length to 1.0, gives a relative aperture of 1:1.4, and supplies twelve reciprocal radii, eleven axial thicknesses or spacings, and native e-line refractive-index and Abbe coordinates at 546.07 nm. The figure and accompanying text identify the objective as a Gauss lens with four lens members. [US 3,291,553, p. 2, numerical table and descriptive text.](https://patents.google.com/patent/US3291553A/en)
 

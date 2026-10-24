@@ -9,7 +9,7 @@
 **Inventor:** Noriyuki Ogasawara (小笠原 典行)  
 **Applicant:** Sigma Corporation (株式会社シグマ)  
 **Title:** Macro Lens (マクロレンズ)  
-**Embodiment analyzed:** Example 4 (実施例４)
+**Example details:** 実施例４
 
 JP 2012-58682 A describes a floating inner-focus macro lens for 1:2 to 1:1 photography, with a lens-shift optical-stabilizer group and a diagonal field in the 20°–25° class. Six numerical examples are given. Example 4 is the prescription transcribed here and is the best match to the production Sigma MACRO 105mm F2.8 EX DG OS HSM. Sigma does not brand this lens APO; the name is reserved for its 150mm and 180mm macro siblings.
 

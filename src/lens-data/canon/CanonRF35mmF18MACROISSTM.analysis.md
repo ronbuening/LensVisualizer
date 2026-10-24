@@ -8,7 +8,7 @@
 **Inventor:** Shinya Okuoka\
 **Applicant:** Canon Kabushiki Kaisha\
 **Title:** *Optical System and Image Pickup Apparatus*\
-**Embodiment analyzed:** Example 1 / Numerical Data 1
+**Example details:** Numerical Data 1
 
 This prescription uses Example 1 as the fixed production correlation for the CANON RF 35mm f/1.8 MACRO IS STM. The
 patent itself does not name the production lens, and the cited Canon product materials do not identify this patent as the

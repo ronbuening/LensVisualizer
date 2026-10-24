@@ -9,8 +9,7 @@
 **Published:** February 1, 2018\
 **Inventors:** Satoshi Miwa; Masashi Yamashita\
 **Applicant:** Nikon Corporation\
-**Title:** *Optical System, Optical Device, and Method for Adjusting Optical System*\
-**Embodiment analyzed:** Fourth Example / Example 4
+**Title:** *Optical System, Optical Device, and Method for Adjusting Optical System*
 
 The data model transcribes the fourth numerical example of US 2018/0031811 A1. The patent describes a positive first group G1, a negative internal-focus group G2, an aperture stop, and a positive third group G3, with a transversely movable vibration-reduction subassembly and a rear adjustment subassembly intended to compensate manufacturing errors (¶0303–0312). Table 4 supplies the complete d-line prescription, two published focus states, group focal lengths, overall focal length, f-number, field, track length, back focus, and the values associated with eighteen conditional expressions (¶0313).
 

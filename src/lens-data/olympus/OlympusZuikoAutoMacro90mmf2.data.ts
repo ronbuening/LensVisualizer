@@ -49,6 +49,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,792,219",
+    example: { label: "Embodiment 3", id: "3" },
     patentYear: 1988,
     authors: ["Shin-ichi Mihara"],
     assignees: ["Olympus Optical Co., Ltd."],

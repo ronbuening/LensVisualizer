@@ -9,8 +9,7 @@
 **Published:** 2015-05-14\
 **Inventor:** Taiga Noda\
 **Applicant:** FUJIFILM Corporation\
-**Title:** *Zoom Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Example 1
+**Title:** *Zoom Lens and Imaging Apparatus*
 
 The prescription analyzed here is Example 1 of US 2015/0131163 A1. The patent identifies the object side at left and the image side at right, and Figure 1 shows a five-group zoom whose refractive-power sequence is negative / positive / negative / positive / positive. Figure 2 shows the axial and maximum-field ray bundles for the wide and telephoto states. The numerical prescription is given in Tables 1–4. [US 2015/0131163 A1, Fig. 1–2; ¶0053–0057; Tables 1–4, pp. 6–7.]
 

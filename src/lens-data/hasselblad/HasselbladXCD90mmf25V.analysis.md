@@ -9,7 +9,7 @@
 **Inventor:** Nishioka Takehiro (西岡 毅洋)
 **Filed:** 23 December 2020
 **Published:** 5 July 2022
-**Embodiment analyzed:** 数値実施例１ (Numerical Example 1), corresponding to 実施の形態１ (Embodiment 1)
+**Example details:** 数値実施例１, corresponding to 実施の形態１ (Embodiment 1)
 
 ### Patent-to-Production Matching
 

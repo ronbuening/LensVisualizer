@@ -10,7 +10,7 @@
 **Priority:** JP 2006-087295, March 28, 2006  
 **Inventor:** Masakazu Saori  
 **Assignee:** Hoya Corporation  
-**Embodiment analyzed:** Embodiment 1, Table 1 and Fig. 1  
+**Example details:** Table 1 and Fig. 1  
 **Worked examples:** Five
 
 The patent describes a compact modified-Gauss intermediate telephoto lens for a digital SLR. Its stated field is approximately 25°, corresponding to a little more than 100 mm on the 135 format, and the prescription is presented as a thin short-telephoto solution for a camera that retains a long SLR flange back while using a smaller digital sensor.

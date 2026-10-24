@@ -56,6 +56,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 1978-129629 A",
+    example: { label: "Example 2", id: "2" },
     patentYear: 1978,
     authors: ["Toshio Funejima", "Hamao Inagaki"],
     assignees: ["Tomioka Optical Co., Ltd.", "Tokina Optical Co., Ltd."],

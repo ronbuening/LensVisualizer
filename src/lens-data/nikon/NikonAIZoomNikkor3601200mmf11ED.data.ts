@@ -61,6 +61,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,743,384",
+    example: { label: "Example I", id: "1" },
     patentYear: 1973,
     authors: ["Soichi Nakamura"],
     assignees: ["Nippon Kogaku K.K."],

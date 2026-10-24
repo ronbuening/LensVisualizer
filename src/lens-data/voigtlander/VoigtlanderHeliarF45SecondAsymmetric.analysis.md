@@ -6,7 +6,7 @@
 **Inventor / catalog attribution:** Carl August Hans Harting<br>
 **Applicant / assignee:** Voigtländer & Sohn AG<br>
 **Title:** *Chromatisch, sphärisch und astigmatisch korrigiertes Objektiv*<br>
-**Embodiment analyzed:** The patent's single worked numerical example (job-card Example 1)
+**Example details:** job-card Example 1
 
 DE 143889 C is a supplement to German patent 124934 of 1 December 1900. The publication names Voigtländer & Sohn AG rather than printing an individual inventor, while the project catalog attributes the Heliar design lineage and this worked example to Carl August Hans Harting. The earlier design is described as symmetric in arrangement, dimensions, and the absolute and relative optical constants. The supplement retains symmetry in the broad arrangement and in the relative relationships of refractive power and dispersion, while allowing the dimensions and absolute optical constants of corresponding front and rear components to differ. The patent states that this additional freedom improves correction of astigmatism, image curvature, and off-axis spherical aberration or coma without surrendering the principal advantages of the earlier symmetric form [DE 143889 C, p. 1].
 

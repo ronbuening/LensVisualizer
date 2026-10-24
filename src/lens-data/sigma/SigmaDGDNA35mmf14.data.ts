@@ -93,6 +93,7 @@ const sigmaDgDnA35mmF14Data = {
 
   source: {
     patentNumber: "JP 2022-033487 A",
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2022,
     authors: ["Ryo Shioda"],
     assignees: ["Sigma Corporation"],

@@ -4,7 +4,7 @@
 **Inventor:** Sadatoshi Takahashi (Canon Kabushiki Kaisha)
 **Filed:** December 5, 1986 (US); priority December 12, 1985 (JP 60-280060)
 **Granted:** January 5, 1988
-**Numerical example analyzed:** Example 2 (11 elements / 9 groups)
+**Example details:** 11 elements / 9 groups
 **Production lens marketed:** September 1989 — discontinued 2000
 
 ---

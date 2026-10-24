@@ -8,7 +8,7 @@
 **Inventors:** Shinichiro Saito; Makoto Nakahara\
 **Applicant:** Canon Inc. (the patent prints Canon Kabushiki Kaisha)\
 **Title:** *Optical System and Image Pickup Apparatus*\
-**Embodiment analyzed:** Example 4 / Numerical Data 4
+**Example details:** Numerical Data 4
 
 The prescription is the user-selected Example 4 of US 2019/0041605 A1. The patent describes a telephoto imaging system with a positive first lens unit L1, a negative focusing unit L2, and a third lens unit L3 containing a transverse image-stabilization subunit. Example 4 is the F4.12, 2.11° half-field design shown in Figure 4A and tabulated as Numerical Data 4 on patent PDF page 14.
 

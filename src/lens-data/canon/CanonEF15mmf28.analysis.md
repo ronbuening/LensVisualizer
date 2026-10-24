@@ -10,7 +10,7 @@
 **Applicant:** Canon Inc. (キヤノン株式会社)  
 **Title:** *Fisheye Lens* (魚眼レンズ)  
 **Classification:** G02B 13/06  
-**Embodiment analyzed:** Numerical Example 3, shown in Fig. 2[^patent]
+**Example details:** shown in Fig. 2[^patent]
 
 Numerical Example 3 is the strongest match to the production Canon EF 15mm f/2.8 Fisheye. The identification rests on convergent evidence rather than focal length alone:
 

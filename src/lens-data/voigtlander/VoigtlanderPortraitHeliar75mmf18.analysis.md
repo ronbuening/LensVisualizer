@@ -7,7 +7,7 @@
 **Inventor:** Tatsuya Moriyama\
 **Applicant:** Cosina Co., Ltd.\
 **Title:** Optical Lens System\
-**Embodiment analyzed:** Example 2 / second embodiment
+**Example details:** second embodiment
 
 JP 2026-120386 A describes an interchangeable-camera optical system in which the spacing between a positive first lens
 group and a negative second lens group changes continuously to vary spherical aberration while the remainder of the

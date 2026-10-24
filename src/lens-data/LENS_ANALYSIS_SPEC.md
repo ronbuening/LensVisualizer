@@ -30,7 +30,8 @@ Opens the file. Contains:
 
 - Patent number (with publication country prefix), title when known, applicant or assignee, inventor(s).
 - Filing and publication or grant dates. Priority date when relevant.
-- The specific embodiment (`Example N`, `第N実施例`, `Numerical Example N`) used.
+- The specific embodiment (`Example N`, `第N実施例`, `Numerical Example N`) used, as the data file's `source.example`
+  records it. The page header shows that example; the analysis explains why it was chosen.
 - The convergent evidence linking the embodiment to the production lens. Use a numbered list when multiple criteria converge — element/group count, special-element count (ED, asph), focal length, aperture, image-circle diameter, focus mechanism, IS configuration, MFD, and patent timing.
 
 Begin this section with a robust bold-label metadata block before the identification prose. When backfilling an existing analysis, normalize older one-off tables, title-only summaries, or partial metadata lines into this block rather than duplicating the same facts in multiple formats.
@@ -43,16 +44,16 @@ Begin this section with a robust bold-label metadata block before the identifica
 **Inventor:** ...
 **Applicant:** ... <!-- or Assignee -->
 **Title:** ... <!-- optional but preferred -->
-**Embodiment analyzed:** ...
+**Example details:** ... <!-- optional: tables, figures, claims, paragraphs, native-script term, scaling -->
 ```
 
-Use the block adaptively. A robust block has, at minimum, `**Patent:**`, one ownership/authorship line (`**Inventor:**`, `**Inventors:**`, `**Applicant:**`, or `**Assignee:**`), one date line (`**Filed:**`, `**Published:**`, `**Granted:**`, or `**Registered:**`), and the selected embodiment when the source provides one. Include optional rows such as application number, priority date, title, classification, total claims, or worked-example count only when known or readily verified; omit optional unknowns rather than inventing values. For registered utility models, use `**Registered:**` when that is the event identified by the source. For older granted patents, `**Granted:**` can replace `**Published:**` when the grant is the meaningful public event. For multi-patent analyses, use the block for the primary transcribed patent and describe secondary or context patents in the prose unless multiple patents directly supply prescriptions; in that case, use one block per primary prescription source.
+Use the block adaptively. A robust block has, at minimum, `**Patent:**`, one ownership/authorship line (`**Inventor:**`, `**Inventors:**`, `**Applicant:**`, or `**Assignee:**`), one date line (`**Filed:**`, `**Published:**`, `**Granted:**`, or `**Registered:**`). The selected example is stated by the data file's `source.example` and shown in the page header, so the block does not repeat it; add `**Example details:**` only when there are table, figure, claim or paragraph details to give, or the source's native-script term or a scaling note (`**Example details:** 数値実施例2, Tables 4–6, Fig. 3`). Include optional rows such as application number, priority date, title, classification, total claims, or worked-example count only when known or readily verified; omit optional unknowns rather than inventing values. For registered utility models, use `**Registered:**` when that is the event identified by the source. For older granted patents, `**Granted:**` can replace `**Published:**` when the grant is the meaningful public event. For multi-patent analyses, use the block for the primary transcribed patent and describe secondary or context patents in the prose unless multiple patents directly supply prescriptions; in that case, use one block per primary prescription source.
 
 Keep this block synchronized with the data file's structured `source.patentNumber`, `source.authors`,
-`source.assignees`, and `source.patentYear`. `source.patentNumber` identifies the exact publication or grant used for
-the transcription; the embodiment belongs in `subtitle` and `**Embodiment analyzed:**`, not in that structured
-identifier. Preserve every inventor in source order and use the same normalized personal and legal-entity names used
-elsewhere in the corpus.
+`source.assignees`, `source.patentYear` and `source.example`. `source.patentNumber` identifies the exact publication or
+grant used for the transcription and `source.example` the numerical example within it; neither repeats the other, and
+the block carries no `**Embodiment analyzed:**` row for a lens that has `source.example` (corpus sweep). Preserve every
+inventor in source order and use the same normalized personal and legal-entity names used elsewhere in the corpus.
 
 For a non-patent prescription, use `**Source:**`, `**Manufacturer:**` (or a supported designer/author), and
 `**Source dated:**` instead of inventing patent parties or publication events. Identify any proposed patent

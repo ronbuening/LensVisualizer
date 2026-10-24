@@ -66,6 +66,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2022/0011542 A1",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2022,
     authors: ["Hiroki Saito"],
     assignees: ["Fujifilm Corporation"],

@@ -53,6 +53,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "EP 3 029 504 A1",
+    example: { label: "Example 4", id: "4" },
     patentYear: 2016,
     authors: ["Keiko Yamada"],
     assignees: ["Konica Minolta, Inc."],

@@ -7,7 +7,6 @@
 **Assignee:** Nippon Kogaku K.K.
 **Filed:** September 27, 1982
 **Granted:** July 3, 1984
-**Embodiment analyzed:** Embodiment 1
 
 ---
 

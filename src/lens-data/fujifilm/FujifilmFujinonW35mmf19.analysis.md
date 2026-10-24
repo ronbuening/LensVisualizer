@@ -8,7 +8,7 @@
 **Priority:** November 9, 1973 (Japan 48-126655)
 **Inventor:** Yutaka Sakai
 **Assignee:** Fuji Photo Optical Co., Ltd., Omiya, Japan
-**Embodiment analyzed:** Example 1, Table I, FIG. 1
+**Example details:** Table I, FIG. 1
 
 US 4,018,512 describes a compact large-aperture retrofocus wide-angle lens. The patent gives three numerical embodiments; this analysis and the paired data file transcribe Example 1, the FIG. 1 prescription listed in Table I.
 

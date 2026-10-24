@@ -51,6 +51,7 @@ const LENS_DATA = {
   },
   source: {
     patentNumber: "JP S39-18282 Y1",
+    example: { label: "Sole example", id: null },
     patentYear: 1964,
     authors: ["Saburo Yanagawa", "Jihei Nakagawa"],
     assignees: ["Olympus Optical Co., Ltd."],

@@ -30,6 +30,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2023/0213745 A1",
+    example: { label: "Example 4", id: "4" },
     patentYear: 2023,
     authors: ["Takeharu Nakada"],
     assignees: ["Canon Inc."],

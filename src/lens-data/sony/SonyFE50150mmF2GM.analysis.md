@@ -7,8 +7,7 @@
 **Published:** 23 October 2025\
 **Inventors:** Hiroo Juri; Naoto Kikuchi; Hiraku Iwaya\
 **Applicant:** Sony Group Corporation\
-**Title:** *Zoom Lens and Imaging Device*\
-**Embodiment analyzed:** Example 1
+**Title:** *Zoom Lens and Imaging Device*
 
 The prescription transcribed in the companion data file is Example 1 of WO 2025/220324 A1. The patent defines the surface-table notation and d-line refractive-index convention in ¶¶0065–0068, gives the Example 1 element and zoom-group structure in ¶¶0069–0078, and publishes the full numerical prescription in Tables 1–5. Figure 1 shows the same example at Wide, Mid, and Tele, including the seven motion groups G1–G7, the stop, and the two floating-focus groups. The patent is the authority for prescription values and mechanism statements in this analysis.
 

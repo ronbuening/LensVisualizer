@@ -9,8 +9,7 @@
 **Published:** March 13, 2014<br>
 **Inventors:** Fumikazu Kanetaka; Hisashi Uno<br>
 **Applicant / Assignee:** Sony Corporation<br>
-**Title:** *Imaging Lens and Image Pickup Apparatus*<br>
-**Embodiment analyzed:** Numerical Example 4
+**Title:** *Imaging Lens and Image Pickup Apparatus*
 
 The prescription is transcribed from Numerical Example 4 of US 2014/0071333 A1. The patent assigns that example to
 its fourth configuration, FIG. 13, and describes four functional lens groups with negative, positive, positive, and

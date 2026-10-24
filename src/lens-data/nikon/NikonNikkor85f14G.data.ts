@@ -29,6 +29,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 8,767,319 B2",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2014,
     authors: ["Yoshihito Souma", "Satoru Shibata"],
     assignees: ["Konica Minolta Advanced Layers, Inc.", "Nikon Corporation"],

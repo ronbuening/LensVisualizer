@@ -49,6 +49,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2025/0362482 A1",
+    example: { label: "Example 5", id: "5" },
     patentYear: 2025,
     authors: ["Daiki Komatsu"],
     assignees: ["Fujifilm Corporation"],

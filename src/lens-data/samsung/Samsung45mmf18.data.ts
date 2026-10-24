@@ -63,6 +63,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2013/0314588 A1",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 2013,
     authors: ["Yong-su Kim"],
     assignees: ["Samsung Electronics Co., Ltd."],

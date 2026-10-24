@@ -7,7 +7,7 @@
 **Inventor:** Dayong Li (李大勇)
 **Applicant:** Anhui Changgeng Optics Technology Co., Ltd. (安徽长庚光学科技有限公司)
 **Title:** 一种高倍率微距镜头 (A high-magnification macro lens)
-**Embodiment analyzed:** Example 1, paragraphs 0037–0050, prescription on PDF pages 5–6, Figure 1 on PDF page 10.
+**Example details:** paragraphs 0037–0050, prescription on PDF pages 5–6, Figure 1 on PDF page 10.
 
 The selected example is associated with the **LAOWA 90mm f/2.8 2× Ultra Macro APO** by convergent construction evidence, not by a manufacturer statement that the published prescription was manufactured unchanged:
 

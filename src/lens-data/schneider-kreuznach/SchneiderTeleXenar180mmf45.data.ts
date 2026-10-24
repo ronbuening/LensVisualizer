@@ -49,6 +49,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 471565 C",
+    example: { label: "Sole example", id: null },
     patentYear: 1929,
     authors: ["Albrecht Wilhelm Tronnier"],
     assignees: ["Jos. Schneider & Co., Optische Werke"],

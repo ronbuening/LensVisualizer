@@ -9,7 +9,7 @@
 **Inventor:** Günter Klemt\
 **Applicant:** Jos. Schneider & Co., Optische Werke\
 **Title:** *Optisches System mit Auswechselgliedern zur Änderung seines Abbildungsmaßstabes*\
-**Embodiment analyzed:** Zahlenbeispiel A (Example 1)
+**Example details:** Zahlenbeispiel A
 
 CH 352844 is a Swiss additional patent to CH 323375. Zahlenbeispiel A is the base objective used here. The patent gives
 relative aperture 1:2, `f′ = 100`, and `s′ = 72.4`, with six glass elements arranged as four air-separated groups. It

@@ -7,7 +7,7 @@
 **Inventor:** Yoshinari Hamanishi
 **Assignee:** Nippon Kogaku K.K.
 **Title:** *Zoom Lens Capable of Close Range Photography and Method of Focusing the Same to a Short Distance*
-**Embodiment analyzed:** Example 3 / Third Embodiment
+**Example details:** Third Embodiment
 
 The data model represents the project-selected correlation between the NIKON ZOOM-NIKKOR 200-400mm f/4 ED and
 Example 3 of US 4,452,513 A. The patent itself does not identify a production lens by trade name, and the consulted Nikon

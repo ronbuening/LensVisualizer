@@ -5,7 +5,6 @@
 **Applicant:** Nikon Corporation
 **Filed:** December 15, 2006
 **Published:** July 3, 2008
-**Embodiment analyzed:** Example 2
 **Production lens:** PC-E NIKKOR 24mm f/3.5D ED (Nikon product code 2168)
 
 ---

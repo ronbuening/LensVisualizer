@@ -67,6 +67,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 8,169,718 B2",
+    example: { label: "Embodiment 4", id: "4" },
     patentYear: 2012,
     authors: ["Dayong Li", "Hiroshi Yamamoto", "Hiroki Harada"],
     assignees: ["Tamron Co., Ltd.", "Nikon Corporation"],

@@ -10,7 +10,7 @@
 **Inventors:** Takumi Matsui; Keita Kaifu  
 **Applicant:** Sony Corporation  
 **Title:** Zoom Lens and Optical Apparatus  
-**Embodiment analyzed:** Numerical Example 1, Tables 1–3 and FIG. 1
+**Example details:** Tables 1–3 and FIG. 1
 
 Numerical Example 1 is the closest patent prescription for the Sony FE 70-200mm F4 G OSS (SEL70200G). The patent example is a 21-element, 15-group full-frame telephoto zoom whose computed focal-length range is 72.16–193.91 mm by independent paraxial trace, matching the patent-stated 72.0974–193.9726 mm range within 0.07 mm at all three zoom positions. Sony's production specification gives a 70–200 mm focal-length range, f/4 maximum aperture, 15 groups / 21 elements, Sony E mount, 35 mm full-frame coverage, Optical SteadyShot, a 72 mm filter thread, and a 1.0–1.5 m autofocus close-focus range.
 

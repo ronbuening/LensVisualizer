@@ -51,6 +51,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 1,170,157 B",
+    example: { label: "Sole example", id: null },
     patentYear: 1964,
     authors: ["Johannes Berger", "Günther Lange"],
     assignees: ["Carl-Zeiss-Stiftung"],

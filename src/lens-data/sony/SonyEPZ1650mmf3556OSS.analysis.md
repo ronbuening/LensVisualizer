@@ -8,7 +8,7 @@
 **Inventor:** Masaharu Hosoi
 **Assignee:** Sony Corporation
 **Title:** *Zoom Lens and Imaging Apparatus*
-**Embodiment analyzed:** Example 1 / Numerical Value Embodiment 1
+**Example details:** Numerical Value Embodiment 1
 
 The prescription is the project-selected correlation for the **SONY E PZ 16-50mm f/3.5-5.6 OSS**. The patent does not
 name SELP1650, so the production identification is an inference rather than a manufacturer-confirmed patent assignment.

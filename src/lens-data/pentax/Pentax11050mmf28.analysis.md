@@ -7,7 +7,7 @@
 **Inventor:** Masakazu Yamagata, Tsurugashima, Japan
 **Filed:** February 5, 1980 (US); priority February 20, 1979, JP 54-18915
 **Granted:** September 15, 1981
-**Embodiment:** Example 1 (FIG. 1, aberration curves FIG. 4)
+**Example details:** FIG. 1, aberration curves FIG. 4
 
 The patent discloses a five-element, five-group lens system with an aperture ratio of 1:2.8 and a total viewing angle of approximately 24°. A distinguishing feature is the placement of the stop diaphragm at the rear of the lens assembly, behind the fifth element — an unusual arrangement driven by the mechanical constraints of the Pentax Auto 110 camera body, whose twin-bladed shutter assembly doubles as the iris diaphragm.
 

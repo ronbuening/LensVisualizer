@@ -66,6 +66,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2010-044103 A",
+    example: { label: "Sole example", id: null },
     patentYear: 2010,
     authors: ["Akio Arakawa", "Yuichi Muramatsu"],
     assignees: ["Tamron Co., Ltd."],

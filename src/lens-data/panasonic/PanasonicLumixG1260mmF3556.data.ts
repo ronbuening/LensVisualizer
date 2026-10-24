@@ -74,6 +74,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 6814931 B2",
+    example: { label: "Numerical Example 2", id: "2" },
     patentYear: 2021,
     authors: ["Takahiro Kitada", "Shunichiro Yoshinaga", "Takakazu Bito"],
     assignees: ["Panasonic Intellectual Property Management Co., Ltd."],

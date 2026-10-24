@@ -65,6 +65,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 8,810,918 B2",
+    example: { label: "Example 4", id: "4" },
     patentYear: 2014,
     authors: ["Dayong Li"],
     assignees: ["Tamron Co., Ltd."],

@@ -6,7 +6,7 @@
 **Filed:** 28 March 1958
 **Published:** 28 September 1960
 **Design:** Gauss-type (double-Gauss), 6 elements in 4 groups
-**Embodiment analyzed:** Claim 2 — f = 100, relative aperture 1:2, S′ = 72.4
+**Example details:** Claim 2 — f = 100, relative aperture 1:2, S′ = 72.4
 
 ---
 

@@ -6,7 +6,7 @@
 **Published:** 22 September 2011  
 **Inventors:** Noriyuki Ogasawara; Takehisa Koyama  
 **Assignee:** Sigma Corporation  
-**Embodiment analyzed:** Example 2, numerical tables on PDF pages 11–12, Figure 8.
+**Example details:** numerical tables on PDF pages 11–12, Figure 8.
 
 Example 2 is probably the design of the original OLYMPUS M.ZUIKO DIGITAL ED 75-300mm f/4.8-6.7, released in 2010. The patent is Sigma's; no public source states that Sigma designed or made the lens, so the attribution is circumstantial, and the model does not relabel the assignee as Olympus. The construction drawing of the 2013 II version shows the same layout, which supports the architecture but does not prove identical factory numbers.
 

@@ -56,6 +56,7 @@ const LENS_DATA = {
   },
   source: {
     patentNumber: "JP S38-9224 B",
+    example: { label: "Sole example", id: null },
     patentYear: 1963,
     authors: ["Yoshisada Hayamizu"],
     assignees: ["Olympus Optical Co., Ltd."],

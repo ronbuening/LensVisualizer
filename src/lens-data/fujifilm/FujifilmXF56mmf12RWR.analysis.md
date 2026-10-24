@@ -7,7 +7,7 @@
 **Inventors:** Tanaka Takuya (田中 琢也); Shimada Yasutaka (島田 泰孝)  
 **Applicant:** FUJIFILM Corporation (富士フイルム株式会社)  
 **Title:** Imaging Lens and Imaging Apparatus (撮像レンズ及び撮像装置)  
-**Embodiment analyzed:** Example 2 (実施例2; Tables 4–6; Figure 4)
+**Example details:** 実施例2; Tables 4–6; Figure 4
 
 ## Patent Reference and Design Identification
 

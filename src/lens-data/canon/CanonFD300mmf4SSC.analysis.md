@@ -10,7 +10,7 @@
 **Granted:** February 17, 1981  
 **Inventor:** Sadahiko Tsuji  
 **Assignee:** Canon Kabushiki Kaisha  
-**Embodiment analyzed:** Numerical Example 3; FIG. 3; infinity aberrations FIGS. 9A–9C; close-distance aberrations FIGS. 10A–10C
+**Example details:** FIG. 3; infinity aberrations FIGS. 9A–9C; close-distance aberrations FIGS. 10A–10C
 
 The transcribed prescription is Numerical Example 3 of US 4,251,133. The example is normalized to $f = 1$ at F/4 and places the diaphragm 0.0532 normalized units behind $R_8$. For the production-scale data file, all patent radii and axial separations are multiplied by 300. The rounded patent table ray-traces to $f = 0.998429$, or 299.529 mm at that scale; the marketed focal length remains 300 mm.
 

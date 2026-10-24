@@ -7,7 +7,7 @@
 **Inventor:** Dayong Li (李大勇)  
 **Applicant:** Anhui Changgeng Optics Technology Co., Ltd. (安徽长庚光学科技有限公司)  
 **Title:** 一种双重对焦模式的微距镜头及摄像设备 (A macro lens with dual focusing modes and an imaging device)  
-**Embodiment analyzed:** Example 1, ¶0065–0073 and Figure 1.
+**Example details:** ¶0065–0073 and Figure 1.
 
 The prescription is associated with the LAOWA 180mm f/4.5 1.5× Ultra Macro APO (sold by Laowa as the FF 180mm F4.5 CA-Dreamer Macro 1.5X) by convergent construction evidence.
 The association is an optical interpretation, not manufacturer confirmation that the production lens reproduces every

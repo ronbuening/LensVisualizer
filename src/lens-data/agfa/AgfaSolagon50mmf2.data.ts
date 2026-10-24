@@ -47,6 +47,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2,745,315",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1956,
     authors: ["Theodor Brendel"],
     assignees: ["Agfa Camera-Werk AG"],

@@ -6,8 +6,7 @@
 **Granted:** January 1, 2019\
 **Inventors:** Ryosuke Nagami; Tetsuya Ori\
 **Assignee:** FUJIFILM Corporation\
-**Title:** *Imaging Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Example 4
+**Title:** *Imaging Lens and Imaging Apparatus*
 
 The prescription implemented here is Example 4 of US 10,168,507 B2. The patent does not name the commercial FUJINON
 XF50mmF2 R WR, so the product identification is an inference rather than a manufacturer-confirmed patent attribution.

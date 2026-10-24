@@ -50,6 +50,7 @@ const LENS_DATA = {
   },
   source: {
     patentNumber: "US 3,459,468",
+    example: { label: "Sole example", id: null },
     patentYear: 1969,
     authors: ["Helmut Marx", "Paul Sindel"],
     assignees: ["Ernst Leitz GmbH"],

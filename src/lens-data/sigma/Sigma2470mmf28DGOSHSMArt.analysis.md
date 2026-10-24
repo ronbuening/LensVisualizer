@@ -9,7 +9,6 @@
 **Inventor:** Ryo Shioda  
 **Applicant:** Sigma Corporation  
 **Title:** Variable Power Optical System  
-**Embodiment analyzed:** Numerical Example 1
 
 The source is the original Japanese A-publication, preserved with its PAJ front wrapper.
 Numerical Example 1 is in paragraph 0131, printed pages 16-18 (PDF pages 17-19).

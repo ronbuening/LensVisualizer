@@ -9,7 +9,6 @@
 **Inventor:** Tomohiro Kobayashi (小林 知広)
 **Applicant:** Tamron Co., Ltd.
 **Title:** Optical system and imaging apparatus (光学系及び撮像装置)
-**Embodiment analyzed:** Numerical Example 1
 
 The prescription transcribes Example 1, retaining its native dimensions and d-line glass coordinates. The numerical table in ¶0076, system and spacing tables in ¶0077–0079, and Figure 1 control the optical model. The selected production correlation is the Tamron Model F072, released for Sony E and Nikon Z full-frame cameras.
 

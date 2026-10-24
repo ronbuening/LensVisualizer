@@ -67,6 +67,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2016-6455 A",
+    example: { label: "Numerical Example 2", id: "2" },
     patentYear: 2016,
     authors: ["Tomoya Koga"],
     assignees: ["Ricoh Imaging Company, Ltd."],

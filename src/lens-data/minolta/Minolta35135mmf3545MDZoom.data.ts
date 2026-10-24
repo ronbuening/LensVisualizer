@@ -74,6 +74,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 5,249,079 A",
+    example: { label: "Sole example", id: null },
     patentYear: 1993,
     authors: ["Hiromu Umeda"],
     assignees: ["Minolta Camera Co., Ltd."],

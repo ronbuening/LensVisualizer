@@ -11,7 +11,7 @@
 **Inventor:** Jun Hirakawa  
 **Assignee:** Asahi Kogaku Kogyo Co., Ltd.  
 **Title:** Zoom Lens  
-**Embodiment analyzed:** Embodiment 4, Figure 14 and Tables 7–8, in millimetres without scaling. Figures 15–17 are the three corresponding aberration diagrams.
+**Example details:** Figure 14 and Tables 7–8, in millimetres without scaling. Figures 15–17 are the three corresponding aberration diagrams.
 
 The original **13-element/11-group Power Zoom** is a probable production correlation; its factory prescription is not confirmed. Ricoh's discontinued-lens entry and section image distinguish this version from the later 15-element/12-group [IF] design. The maker image agrees qualitatively with E4's four functional groups and two cemented doublets. The patent gives a 29.02–101.60 mm, f/4.1–5.8 design range; the retail lens is labeled 28–105 mm, f/4–5.6.
 

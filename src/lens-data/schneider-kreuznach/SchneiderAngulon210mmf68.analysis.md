@@ -7,7 +7,7 @@
 **Inventor:** Albrecht Wilhelm Tronnier
 **Assignee:** None named on the supplied US grant
 **Title:** *Spherically Chromatically and Astigmatically Corrected Wide-Angle Lens with High Aperture*
-**Embodiment analyzed:** Sole numerical construction in the patent; designated “Example 1” by the job card
+**Example details:** designated “Example 1” by the job card
 
 The patent describes a wide-angle photographic double objective formed from two cemented three-lens components around a central diaphragm. Its sole worked construction is normalized to a focal distance of unity and is explicitly stated to correspond to an equivalent focal length of 200 mm at a relative aperture of 1:6.8. The same passage gives an approximate usable outside-meniscus diameter equal to 20% of the focal distance and a total lens-cell length equal to 17.488% of the focal distance. The numerical radii and thicknesses appear on patent PDF page 2 / printed page 1; the glass-coordinate table appears on PDF page 3 / printed page 2. [1]
 

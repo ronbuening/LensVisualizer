@@ -68,6 +68,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 5,870,234",
+    example: { label: "Example 2", id: "2" },
     patentYear: 1999,
     authors: ["Hiltrud Ebbesmeier née Schitthof"],
     assignees: ["Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG"],

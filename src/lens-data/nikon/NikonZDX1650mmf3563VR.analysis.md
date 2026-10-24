@@ -8,7 +8,7 @@
 **Inventors:** Yoko Komatsubara (小松原陽子), Takeshi Umeda (梅田武).
 **Filed:** 13 July 2018 (priority, as PCT/JP2018/026486).
 **Published:** 16 January 2020 (international), 10 June 2021 (Japanese re-publication).
-**Embodiment analyzed:** Numerical Example 8 (第8実施例), Table 8 (¶0168).
+**Example details:** 第8実施例, Table 8 (¶0168).
 
 The identification of Example 8 as the production NIKKOR Z DX 16-50mm f/3.5-6.3 VR rests on the following convergent evidence:
 

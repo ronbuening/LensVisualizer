@@ -42,6 +42,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2006/0007561 A1",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 2006,
     authors: ["Takashi Suzuki"],
     assignees: ["Fujinon Corporation"],

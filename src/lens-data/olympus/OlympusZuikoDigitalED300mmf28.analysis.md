@@ -6,7 +6,7 @@
 **Inventors:** Takashi Kasahara; Masahiro Imamura  
 **Assignee:** Olympus Corporation  
 **Title:** Telephoto Lens and Telephoto Lens Apparatus Having the Same  
-**Embodiment analyzed:** Example 3, Numerical data 3, Figure 7
+**Example details:** Numerical data 3, Figure 7
 
 The prescription represents the native third patent embodiment correlated with the OLYMPUS ZUIKO DIGITAL ED 300mm f/2.8. The correlation is supported by several convergent features, but is not a manufacturer-confirmed attribution:
 

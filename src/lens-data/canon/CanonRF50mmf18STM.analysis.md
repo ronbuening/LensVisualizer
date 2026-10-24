@@ -8,7 +8,7 @@
 **Inventor:** Junya Ichimura\
 **Applicant:** Canon Kabushiki Kaisha\
 **Title:** *Optical system and image pickup apparatus having the same*\
-**Embodiment analyzed:** Example 1 / Numerical Example 1
+**Example details:** Numerical Example 1
 
 The prescription modeled here is the fixed Example 1 correlation for the CANON RF 50mm f/1.8 STM. The patent itself does not name that production lens, so the product identification is a modeling inference rather than a manufacturer-confirmed patent linkage. The correlation is nevertheless unusually tight across independent properties: the stored prescription computes to 49.5616 mm at f/1.8527, while Canon markets a 50 mm f/1.8 lens; both the patent example and production lens use six elements in five groups; the patent gives one physical resin element with two aspherical faces, while Canon specifies one PMo aspherical element; the patent image height is 21.64 mm, corresponding to a 43.28 mm image circle; and the patent's 2020 priority predates Canon's November 2020 announcement and December 2020 market introduction. Canon further specifies 0.30 m minimum focusing distance and 0.25× maximum magnification, and the constrained unit-focus reconstruction from this prescription independently gives 0.25005× at 0.30 m.
 

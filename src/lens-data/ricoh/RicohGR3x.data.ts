@@ -31,6 +31,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2022/0026670 A1",
+    example: { label: "Example 3", id: "3" },
     patentYear: 2022,
     authors: ["Kazuyasu Ohashi"],
     assignees: ["Ricoh Co., Ltd."],

@@ -18,7 +18,7 @@
 
 **Title:** Variable Magnification Optical System, Optical Device, and Method for Manufacturing Variable Magnification Optical System (変倍光学系、光学機器、および変倍光学系の製造方法)
 
-**Embodiment analyzed:** Example 1 (第1実施例), Fig. 1 and Table 1
+**Example details:** 第1実施例, Fig. 1 and Table 1
 
 The publication is a Japanese-language PCT application with eight numerical examples. Example 1 is described in ¶0140–0151; its Table 1 occupies PDF pp. 32–35 (printed pp. 30–33), and the conditional-expression values for all examples are tabulated on PDF pp. 68–70 (printed pp. 66–68). The PDF has no text layer, so every value in the data file was read from rasterized pages. The patent states no product name. The association with the NIKKOR Z 70–200 mm f/2.8 VR S II rests on the following convergent evidence:
 

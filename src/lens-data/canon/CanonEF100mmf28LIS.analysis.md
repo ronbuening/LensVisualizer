@@ -11,7 +11,6 @@
 **Assignee:** Canon Kabushiki Kaisha, Tokyo (JP)  
 **Title:** Imaging Lens and Image Pickup Apparatus Including the Same  
 **Worked examples:** 3  
-**Embodiment analyzed:** First Numerical Example / Numerical Example 1
 
 Numerical Example 1 is the closest published prescription for the Canon EF 100mm f/2.8L Macro IS USM. The correspondence is strong: the patent prescription is a 15-element, 12-group, 100 mm macro lens with an F-number of 2.92, a 21.64 mm image height, one very-low-dispersion positive element, floating inner focus to -1x magnification, and a decentered rear negative stabilizer subunit. Canon's production specification gives the same 15-element / 12-group construction, 100 mm f/2.8 marketing aperture, 0.30 m minimum focusing distance, 1.0x maximum magnification, 67 mm filter thread, 9-blade circular aperture, one UD element, and Hybrid IS.
 

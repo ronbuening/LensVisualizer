@@ -7,7 +7,7 @@
 **Inventor:** Hiroshi Endo\
 **Assignee:** Canon Inc.\
 **Title:** Zoom Lens\
-**Embodiment analyzed:** Numerical Example 1 (数値実施例1)
+**Example details:** 数値実施例1
 
 This file reconstructs Numerical Example 1 from the fixed local patent. The
 job card associates that example with the Canon EF 70-300mm f/4.5-5.6 DO IS

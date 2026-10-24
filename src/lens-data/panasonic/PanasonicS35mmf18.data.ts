@@ -65,6 +65,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "CN 216772097 U",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2022,
     authors: ["Yidan Zheng", "Hanzhao Chen", "Xiaoqing Zhan"],
     assignees: ["Panasonic AVC Networks Xiamen Co., Ltd."],

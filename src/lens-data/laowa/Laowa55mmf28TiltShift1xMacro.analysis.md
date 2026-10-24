@@ -7,7 +7,6 @@
 **Inventor:** Dayong Li (李大勇)
 **Applicant:** Anhui Changgeng Optics Technology Co., Ltd. (安徽长庚光学科技有限公司)
 **Title:** 移轴微距镜头 (Tilt-shift macro lens)
-**Embodiment analyzed:** Example 1
 
 The prescription transcribes the selected native example associated with the LAOWA 55mm f/2.8 Tilt-Shift 1× Macro. The association is construction-based; Laowa has not confirmed that these exact numerical surfaces are the manufactured prescription. The evidence converges as follows:
 

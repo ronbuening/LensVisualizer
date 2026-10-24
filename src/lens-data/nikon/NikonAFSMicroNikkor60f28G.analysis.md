@@ -14,7 +14,7 @@
 
 **Priority:** March 14, 2007 (JP 2007-065400); February 15, 2008 (JP 2008-034053)
 
-**Embodiment analyzed:** Example 2, Table 2 and Figure 3.
+**Example details:** Table 2 and Figure 3.
 
 The viewer reproduces the unscaled 58.0 mm, f/2.88 patent example. The catalog associates this 12-element, nine-component, internally focusing macro design with the 60 mm product. The patent alone does not establish production identity, a uniform rescaling, glass suppliers, coating locations or manufacturing processes. Marketing focal length and aperture remain separate from the numerical prescription.
 

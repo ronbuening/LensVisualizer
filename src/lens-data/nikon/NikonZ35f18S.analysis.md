@@ -4,7 +4,7 @@
 **Applicants:** Konica Minolta Inc. / Nikon Corporation  
 **Inventors:** Keiko Yamada, Ryosuke Imajima, Wataru Tatsuno, Haruo Sato  
 **Published:** June 13, 2019  
-**Embodiment analyzed:** Example 4 (EX4)  
+**Example details:** EX4  
 **Production match confidence:** High — convergent evidence across element count (11), group count (9), aspherical element count (3), ED element count (2), field angle (64.9° patent vs 63° Nikon spec), f-number (f/1.85 patent vs f/1.8 marketed), MFD (patent closest state 0.2495 m at the 21.6× image-height scale vs 0.25 m Nikon spec), and floating focus mechanism with three variable gaps. Note: EX1 shares the same EFL, f-number, and field angle as EX4, but has only 1 aspherical element (L23, 2 aspherical surfaces) versus EX4's 3 aspherical elements (L17, L23, L31, 6 aspherical surfaces). Nikon specifies 3 aspherical elements, uniquely matching EX4.
 
 ---

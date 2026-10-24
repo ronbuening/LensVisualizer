@@ -76,6 +76,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,037,426",
+    example: { label: "Example 3", id: "3" },
     patentYear: 1962,
     authors: ["Edgard Hugues"],
     assignees: ["Les Appareils de Precision Kinoptik"],

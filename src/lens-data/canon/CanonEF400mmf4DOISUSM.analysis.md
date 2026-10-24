@@ -8,7 +8,6 @@
 **Inventor:** Hideki Ogawa  
 **Assignee:** Not stated on the selected A1 publication  
 **Title:** *Optical System Having a Diffractive Optical Element, and Optical Apparatus*  
-**Embodiment analyzed:** Numerical Example 1
 
 This analysis describes the `CANON EF 400mm f/4 DO IS USM` prescription represented by the final data file. US 2002/0015231 A1, Numerical Example 1, is treated here as the fixed production correlation. Canon does not identify this patent or numerical example in the cited product material, so the correlation is not presented as manufacturer confirmation.
 

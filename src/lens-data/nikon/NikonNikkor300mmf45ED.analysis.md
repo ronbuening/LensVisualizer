@@ -7,8 +7,7 @@
 **Granted:** 27 November 1973\
 **Inventor:** Yoshiyuki Shimizu\
 **Assignee:** Nippon Kogaku K.K.\
-**Title:** *Achromatic Telephoto Objective Lens*\
-**Embodiment analyzed:** Example I
+**Title:** *Achromatic Telephoto Objective Lens*
 
 Example I is the 300.0 mm, F/4.5, 8.4° full-field embodiment of Shimizu's achromatic telephoto patent. The implemented prescription preserves the ten published spherical refracting surfaces at unit scale and adds only the model completions needed by LensVisualizer: a Gaussian image-plane spacing, one inferred aperture-stop plane and calibrated opening, and modeled clear apertures. [1, pp. 10–13]
 

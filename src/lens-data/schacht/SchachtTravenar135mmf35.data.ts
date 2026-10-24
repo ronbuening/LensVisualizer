@@ -43,7 +43,13 @@ const LENS_DATA = {
     fNumber: { marketing: 3.5, design: 3.5 },
   },
 
-  source: { patentNumber: "DE 843 305", patentYear: 1952, authors: ["Ludwig Bertele"], assignees: [] },
+  source: {
+    patentNumber: "DE 843 305",
+    example: { label: "Example 2", id: "2" },
+    patentYear: 1952,
+    authors: ["Ludwig Bertele"],
+    assignees: [],
+  },
 
   elements: [
     {

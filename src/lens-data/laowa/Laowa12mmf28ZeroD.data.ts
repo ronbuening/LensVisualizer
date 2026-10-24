@@ -61,6 +61,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "CN 205720849 U",
+    example: { label: "Example 2", id: "2" },
     patentYear: 2016,
     authors: ["Xiaohua Zhang"],
     assignees: ["Anhui Changgeng Optics Technology Co., Ltd."],

@@ -6,7 +6,7 @@
 **Inventor:** Zenji Wakimoto
 **Applicant:** Nippon Kogaku K.K.
 **Title:** *Super-wide-angle lens composed of four groups*
-**Embodiment analyzed:** Example 2, Figure 2
+**Example details:** Figure 2
 
 The data file treats Example 2 as the fixed production correlation for the **NIKON NIKKOR-O 2.1cm f/4**. The patent publication does not name the production lens, and Nikon's historical article does not cite this publication number; the identification therefore rests on convergent technical evidence rather than an explicit manufacturer cross-reference.
 

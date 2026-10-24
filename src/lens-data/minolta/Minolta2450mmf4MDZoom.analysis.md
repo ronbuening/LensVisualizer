@@ -12,7 +12,7 @@
 **Title:** Two Group Wide Angle Zoom Lens System
 **Classification:** Int. Cl.² G02B 15/16; U.S. Cl. 350/184
 **Total claims:** 8
-**Embodiment analyzed:** Embodiment 1 (Table 1, col. 6; reprinted verbatim as Claim 7, col. 8)
+**Example details:** Table 1, col. 6; reprinted verbatim as Claim 7, col. 8
 
 The patent discloses two numerical embodiments of a negative-positive two-group zoom intended for a 35 mm single-lens reflex camera, with a field angle "approaching 84 degrees" (col. 1, ll. 5–10). Embodiment 1 is transcribed here. Its Table 1 header gives f = 50 ~ 24, FNo. = 4 and 2ω = 47° ~ 84°; the variable air space d11 takes the values 1.66, 11.96 and 27.93 mm for the stations labelled f = 50, 35 and 24 (col. 6, ll. 10–17). The prescription contains 24 spherical surfaces and 13 elements; no aperture stop, back focus, semi-diameter, wavelength or focusing data are printed.
 

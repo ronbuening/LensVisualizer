@@ -34,6 +34,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 444150 C",
+    example: { label: "Example 2", id: "2" },
     patentYear: 1927,
     authors: ["Hans Deser"],
     assignees: ["Voigtländer & Sohn AG"],

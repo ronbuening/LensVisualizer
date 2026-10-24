@@ -8,7 +8,6 @@
 **Inventors:** Hisayuki Yamanaka; Atsushi Takahashi; Toshinori Take; Keigo Koida  
 **Applicants:** Tamron Co., Ltd.; Nikon Corporation  
 **Title:** Zoom Lens and Imaging Device  
-**Embodiment analyzed:** Example 2
 
 The prescription transcribes Example 2 of WO 2024/062958 A1 without scaling. The patent presents the embodiment in
 paragraphs ¶0154–¶0168: Table 5 gives the 44 active surfaces, Table 6 gives the wide, middle, and telephoto zoom and

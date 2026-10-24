@@ -9,7 +9,7 @@
 **Applicant:** Optische Werke G. Rodenstock, München, DE
 **Classification:** G02B 9/60
 **Title:** *Objektiv mit großem Bildwinkel*
-**Embodiment analyzed:** Table 5, with an EFL-reconciled reconstruction
+**Example details:** with an EFL-reconciled reconstruction
 **Total worked examples:** Five numerical tables
 
 DE 3,907,928 A1 describes a large-format wide-angle objective whose worked examples are stated to have an image angle of 80° and an aperture ratio of about f/5.6. The patent's general construction is a four-lens front group and a three-lens rear group separated by a diaphragm. Table 5 is the only example with a stated focal length near 150 mm: `f = 148.7` mm.
