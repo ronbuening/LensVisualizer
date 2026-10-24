@@ -28,6 +28,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 5,315,441 A",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 1994,
     authors: ["Kenji Hori", "Wataru Tatsuno"],
     assignees: ["Nikon Corporation"],

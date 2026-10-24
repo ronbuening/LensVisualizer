@@ -66,6 +66,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2,646,721 A",
+    example: { label: "Sole example", id: null },
     patentYear: 1953,
     authors: ["Albrecht Wilhelm Tronnier"],
     assignees: ["Voigtländer & Sohn AG"],

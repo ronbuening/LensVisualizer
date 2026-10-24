@@ -66,6 +66,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 5857306 B2",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2016,
     authors: ["Katsuya Hirano", "Eiichi Yasuda"],
     assignees: ["Kenko Tokina Co., Ltd."],

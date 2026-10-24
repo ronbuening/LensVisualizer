@@ -64,6 +64,7 @@ const LENS_DATA = {
   // reduction format have no canonical taxonomy id (LENS_MOUNT_FORMAT_OPTIONS.md, "leave uncertain metadata unset").
   source: {
     patentNumber: "US 3,997,247",
+    example: { label: "Example 11", id: "11" },
     patentYear: 1976,
     authors: ["Erhard Glatzel", "Heinz Zajadatz"],
     assignees: ["Carl-Zeiss-Stiftung"],

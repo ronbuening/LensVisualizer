@@ -52,6 +52,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,830,559",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1974,
     authors: ["Masaki Matsubara"],
     assignees: ["Olympus Optical Co., Ltd."],

@@ -45,7 +45,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.8, design: 2.8 },
   },
 
-  source: { patentNumber: "US 2,084,309", patentYear: 1937, authors: ["Ludwig Bertele"], assignees: ["Zeiss Ikon AG"] },
+  source: {
+    patentNumber: "US 2,084,309",
+    example: { label: "Sole example", id: null },
+    patentYear: 1937,
+    authors: ["Ludwig Bertele"],
+    assignees: ["Zeiss Ikon AG"],
+  },
 
   elements: [
     {

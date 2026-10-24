@@ -92,6 +92,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "WO 2017/130571 A1",
+    example: { label: "Example 2", id: "2" },
     patentYear: 2017,
     authors: ["Masaki Maruyama", "Hiroyuki Matsumoto"],
     assignees: ["Sony Corporation"],

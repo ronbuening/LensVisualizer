@@ -46,6 +46,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2018/0180842 A1",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 2018,
     authors: ["Marco Pretorius"],
     assignees: ["Carl Zeiss AG"],

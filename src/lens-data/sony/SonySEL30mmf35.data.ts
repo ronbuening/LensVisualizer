@@ -61,6 +61,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2012-159613 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2012,
     authors: ["Takahiko Sakai", "Masaharu Hosoi"],
     assignees: ["Sony Corporation", "Tamron Co., Ltd."],

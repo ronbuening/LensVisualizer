@@ -50,6 +50,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "WO 2019/187633 A1",
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2019,
     authors: ["Dai Matsuoka", "Naoki Miyagawa", "Hiroyuki Matsumoto"],
     assignees: ["Sony Corporation"],

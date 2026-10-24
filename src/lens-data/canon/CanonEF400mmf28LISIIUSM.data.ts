@@ -78,6 +78,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2011/0090576 A1",
+    example: { label: "Numerical Embodiment 2", id: "2" },
     patentYear: 2011,
     authors: ["Shigenobu Sugita"],
     assignees: ["Canon Inc."],

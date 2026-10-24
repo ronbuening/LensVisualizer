@@ -49,7 +49,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.8, design: 2.8 },
   },
 
-  source: { patentNumber: "US 3,635,546", patentYear: 1972, authors: ["Ikuo Mori"], assignees: ["Nippon Kogaku K.K."] },
+  source: {
+    patentNumber: "US 3,635,546",
+    example: { label: "Example 2", id: "2" },
+    patentYear: 1972,
+    authors: ["Ikuo Mori"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   elements: [
     {

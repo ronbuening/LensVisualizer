@@ -54,6 +54,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2012/0013996 A1",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 2012,
     authors: ["Tetsuichiro Okumura"],
     assignees: ["Canon Inc."],

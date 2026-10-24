@@ -50,6 +50,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 7,307,794 B2",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2007,
     authors: ["Masakazu Saori"],
     assignees: ["Pentax Corporation"],

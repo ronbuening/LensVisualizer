@@ -54,6 +54,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 1999-231209 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1999,
     authors: ["Yoshinobu Kudo"],
     assignees: ["Minolta Co., Ltd."],

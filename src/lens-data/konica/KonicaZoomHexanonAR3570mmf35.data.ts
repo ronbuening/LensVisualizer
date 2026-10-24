@@ -58,6 +58,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 1980-021005 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1980,
     authors: ["Tadashi Kojima", "Reiko Mao"],
     assignees: ["Konishiroku Photo Industry Co., Ltd."],

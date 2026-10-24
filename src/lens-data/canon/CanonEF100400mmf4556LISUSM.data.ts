@@ -84,7 +84,13 @@ const LENS_DATA = {
     },
   },
 
-  source: { patentNumber: "JP 2000-47107 A", patentYear: 2000, authors: ["Hiroshi Endo"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "JP 2000-47107 A",
+    example: { label: "Numerical Example 2", id: "2" },
+    patentYear: 2000,
+    authors: ["Hiroshi Endo"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

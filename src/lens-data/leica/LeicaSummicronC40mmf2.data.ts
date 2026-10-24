@@ -60,6 +60,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 2 222 892 A1",
+    example: { label: "Example 3", id: "3" },
     patentYear: 1973,
     authors: ["Georg Knetsch", "Hermann Desch", "Heinz Marquardt", "Walter Watz"],
     assignees: ["Ernst Leitz GmbH"],

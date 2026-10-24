@@ -56,7 +56,13 @@ const LENS_DATA = {
     fNumber: { marketing: 4, design: 4 },
   },
 
-  source: { patentNumber: "US 4,251,133", patentYear: 1981, authors: ["Sadahiko Tsuji"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "US 4,251,133",
+    example: { label: "Numerical Example 3", id: "3" },
+    patentYear: 1981,
+    authors: ["Sadahiko Tsuji"],
+    assignees: ["Canon Inc."],
+  },
 
   /* ── Elements ── */
   elements: [

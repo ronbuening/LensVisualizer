@@ -43,6 +43,7 @@ const LENS_DATA = {
   },
   source: {
     patentNumber: "US 2025/0271647 A1",
+    example: { label: "Embodiment 2", id: "2" },
     patentYear: 2025,
     authors: ["Stefan Roth"],
     assignees: ["Leica Camera AG"],

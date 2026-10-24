@@ -63,6 +63,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP S51-63635 A",
+    example: { label: "Sole example", id: null },
     patentYear: 1976,
     authors: ["Rinzo Watanabe", "Ellis I. Betensky"],
     assignees: ["Kino Seimitsu Kogyo K.K."],

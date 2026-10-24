@@ -58,6 +58,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2001/0007512 A1",
+    example: { label: "Embodiment 4", id: "4" },
     patentYear: 2001,
     authors: ["Takayuki Sensui"],
     assignees: ["Asahi Kogaku Kogyo Co., Ltd."],

@@ -52,6 +52,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2018/0364457 A1",
+    example: { label: "Example 7", id: "7" },
     patentYear: 2018,
     authors: ["Yuhong Yao", "Yoshikazu Shinohara", "Lin-Yao Liao"],
     assignees: ["Apple Inc."],

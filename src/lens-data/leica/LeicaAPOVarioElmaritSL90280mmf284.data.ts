@@ -63,6 +63,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2016-139125 A",
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2016,
     authors: ["Takuya Imaoka"],
     assignees: ["Panasonic Intellectual Property Management Co., Ltd."],

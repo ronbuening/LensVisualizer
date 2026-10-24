@@ -53,6 +53,7 @@ const LENS_DATA = {
   },
   "source": {
     "patentNumber": "JP 2004-061605 A",
+    "example": { "label": "Numerical Example 1", "id": "1" },
     "patentYear": 2004,
     "authors": [
       "Tomoki Kono"

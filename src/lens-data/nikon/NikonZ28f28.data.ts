@@ -28,6 +28,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "WO 2022/071249 A1",
+    example: { label: "Example 2", id: "2" },
     patentYear: 2022,
     authors: ["Toshiyuki Shimada"],
     assignees: ["Nikon Corporation"],

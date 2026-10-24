@@ -65,6 +65,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2010-164839 A",
+    example: { label: "Example 4", id: "4" },
     patentYear: 2010,
     authors: ["Yoshifumi Sudoh"],
     assignees: ["Ricoh Co., Ltd."],

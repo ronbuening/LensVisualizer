@@ -59,6 +59,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,740,120 A",
+    example: { label: "Table III", id: "3" },
     patentYear: 1973,
     authors: ["Rudolf Rühl"],
     assignees: ["Ernst Leitz GmbH"],

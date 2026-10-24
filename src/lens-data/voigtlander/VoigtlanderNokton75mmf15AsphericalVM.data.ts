@@ -58,6 +58,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2020-122918 A",
+    example: { label: "Example 3", id: "3" },
     patentYear: 2020,
     authors: ["Hirokazu Shimada", "Yasuyuki Sugano"],
     assignees: ["Cosina Co., Ltd."],

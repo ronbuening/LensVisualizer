@@ -47,6 +47,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,497,547",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 1985,
     authors: ["Kiyoshi Hayashi"],
     assignees: ["Nippon Kogaku K.K."],

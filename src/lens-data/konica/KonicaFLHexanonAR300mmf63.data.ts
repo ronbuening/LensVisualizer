@@ -59,6 +59,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 1974-023892 B1",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1974,
     authors: ["Masamichi Kitagawa"],
     assignees: ["Konishiroku Photo Industry Co., Ltd."],

@@ -60,6 +60,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2023-001878 A",
+    example: { label: "Example 7", id: "7" },
     patentYear: 2023,
     authors: ["Ryosuke Nagami", "Hiroki Saito"],
     assignees: ["Fujifilm Corporation"],

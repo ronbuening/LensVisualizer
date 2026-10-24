@@ -39,6 +39,7 @@ const LENS_DATA = {
   },
   "source": {
     "patentNumber": "US 3,134,841 A",
+    "example": { "label": "Sole example", "id": null },
     "patentYear": 1964,
     "authors": [
       "Helmut Knutti"

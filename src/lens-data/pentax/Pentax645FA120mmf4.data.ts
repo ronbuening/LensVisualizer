@@ -59,6 +59,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 6,154,324",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 2000,
     authors: ["Masayuki Murata", "Takayuki Ito"],
     assignees: ["Asahi Kogaku Kogyo Co., Ltd."],

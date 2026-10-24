@@ -74,6 +74,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 8,824,059 B2",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2014,
     authors: ["Koji Kato", "Masakazu Saori"],
     assignees: ["Pentax Ricoh Imaging Company, Ltd."],

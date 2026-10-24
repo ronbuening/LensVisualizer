@@ -41,7 +41,13 @@ const LENS_DATA = {
     fNumber: { marketing: 1.2, design: 1.2 },
   },
 
-  source: { patentNumber: "US 4,364,643", patentYear: 1982, authors: ["Kikuo Momiyama"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "US 4,364,643",
+    example: { label: "Embodiment 3", id: "3" },
+    patentYear: 1982,
+    authors: ["Kikuo Momiyama"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

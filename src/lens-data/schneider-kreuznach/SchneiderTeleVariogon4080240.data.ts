@@ -66,6 +66,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,336,094",
+    example: { label: "Table B", id: "B" },
     patentYear: 1967,
     authors: ["Karl Heinrich Macher"],
     assignees: ["Jos. Schneider & Co., Optische Werke"],

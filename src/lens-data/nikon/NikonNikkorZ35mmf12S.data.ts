@@ -57,6 +57,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2025-052870 A",
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2025,
     authors: ["Masaki Harada", "Toshiyuki Shimada"],
     assignees: ["Nikon Corporation"],

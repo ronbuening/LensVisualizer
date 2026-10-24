@@ -49,6 +49,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "WO 2021/085655 A1",
+    example: { label: "Example 3", id: "3" },
     patentYear: 2021,
     authors: ["Moon-Kyung Kim"],
     assignees: ["Samyang Optics Co., Ltd."],

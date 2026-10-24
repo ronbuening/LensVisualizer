@@ -73,6 +73,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2017/0068075 A1",
+    example: { label: "Numerical Embodiment 2", id: "2" },
     patentYear: 2017,
     authors: ["Tatsuyuki Onozaki"],
     assignees: ["Ricoh Imaging Company, Ltd."],

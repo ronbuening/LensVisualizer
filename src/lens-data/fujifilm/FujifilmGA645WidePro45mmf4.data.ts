@@ -53,6 +53,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 5,621,575",
+    example: { label: "Embodiment 6", id: "6" },
     patentYear: 1997,
     authors: ["Nobuaki Toyama"],
     assignees: ["Fuji Photo Optical Co., Ltd."],

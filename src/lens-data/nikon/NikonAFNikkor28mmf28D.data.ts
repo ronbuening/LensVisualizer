@@ -49,6 +49,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 5,557,473",
+    example: { label: "Embodiment 3", id: "3" },
     patentYear: 1996,
     authors: ["Yoshikazu Sugiyama", "Haruo Sato"],
     assignees: ["Nikon Corporation"],

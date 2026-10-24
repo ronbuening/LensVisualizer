@@ -62,6 +62,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2003/0072086 A1",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2003,
     authors: ["Tsutomu Uzawa", "Masahiro Suzuki"],
     assignees: ["Olympus Optical Co., Ltd."],

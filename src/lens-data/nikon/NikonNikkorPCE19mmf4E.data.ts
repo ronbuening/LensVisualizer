@@ -61,6 +61,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2017-161685 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2017,
     authors: ["Ryosuke Imajima", "Yasunari Fukuda", "Toshinori Take", "Takayuki Sensui"],
     assignees: ["Konica Minolta, Inc.", "Nikon Corporation"],

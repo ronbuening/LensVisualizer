@@ -53,6 +53,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP S58-54312 A",
+    example: { label: "Example 2", id: "2" },
     patentYear: 1983,
     authors: ["Yoshinari Hamanishi"],
     assignees: ["Nippon Kogaku K.K."],

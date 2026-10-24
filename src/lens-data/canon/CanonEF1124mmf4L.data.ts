@@ -54,6 +54,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2015/0146085 A1",
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2015,
     authors: ["Takahiro Hatada"],
     assignees: ["Canon Inc."],

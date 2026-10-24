@@ -46,6 +46,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 5,000,550",
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 1991,
     authors: ["Sadatoshi Takahashi", "Koutaro Yano", "Hiroshi Endo"],
     assignees: ["Canon Inc."],

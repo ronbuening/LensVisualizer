@@ -60,6 +60,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 7,715,118 B2",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2010,
     authors: ["Koji Kato"],
     assignees: ["Hoya Corporation"],

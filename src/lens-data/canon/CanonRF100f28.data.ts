@@ -28,6 +28,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2021-047297 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2021,
     authors: ["Keiko Taki", "Takeo Mori", "Makoto Nakahara"],
     assignees: ["Canon Inc."],

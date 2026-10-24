@@ -38,6 +38,7 @@ const LENS_DATA = {
   },
   source: {
     patentNumber: "JP S40-24553 B",
+    example: { label: "Sole example", id: null },
     patentYear: 1965,
     authors: ["Jiro Mukai"],
     assignees: ["Canon Camera Co., Inc."],

@@ -37,6 +37,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP S38-26133 B",
+    example: { label: "Sole example", id: null },
     patentYear: 1963,
     authors: ["Zenji Wakimoto"],
     assignees: ["Nippon Kogaku K.K."],

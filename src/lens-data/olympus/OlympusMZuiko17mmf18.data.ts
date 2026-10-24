@@ -39,6 +39,7 @@ const lensData = {
 
   source: {
     patentNumber: "JP 2013-186458 A",
+    example: { label: "Numerical Example 3", id: "3" },
     patentYear: 2013,
     authors: ["Yasuharu Yamada", "Daichi Murakami", "Yuki Kubota"],
     assignees: ["Olympus Imaging Corporation"],

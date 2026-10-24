@@ -39,6 +39,7 @@ const LENS_DATA = {
   },
   source: {
     patentNumber: "JP H05-042643 B2",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1993,
     authors: ["Masaki Imaizumi"],
     assignees: ["Olympus Optical Co., Ltd."],

@@ -70,6 +70,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,523,816",
+    example: { label: "Table IV", id: "4" },
     patentYear: 1985,
     authors: ["Melvyn H. Kreitzer"],
     assignees: ["Vivitar Corporation"],

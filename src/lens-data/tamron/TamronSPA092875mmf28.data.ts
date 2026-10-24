@@ -71,6 +71,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 7,075,731 B1",
+    example: { label: "Sole example", id: null },
     patentYear: 2006,
     authors: ["Yasuharu Yamada"],
     assignees: ["Tamron Co., Ltd."],

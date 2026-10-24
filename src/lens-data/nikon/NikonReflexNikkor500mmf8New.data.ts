@@ -57,6 +57,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,666,259 A",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 1987,
     authors: ["Yutaka Iizuka"],
     assignees: ["Nippon Kogaku K.K."],

@@ -57,6 +57,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2015-161792 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2015,
     authors: ["Ryoko Tomioka", "Hiroki Saito", "Aurélien Dodoc", "Michael Pollmann", "Jürgen Klein"],
     assignees: ["Fujifilm Corporation", "Carl Zeiss AG"],

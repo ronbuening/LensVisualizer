@@ -95,6 +95,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "KR 10-2017-0073883 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2017,
     authors: ["Jong Young Park", "Jung Du Lee"],
     assignees: ["Samyang Optics Co., Ltd."],

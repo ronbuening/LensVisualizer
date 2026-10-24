@@ -73,7 +73,13 @@ const LENS_DATA = {
     focalLengthMm: { marketing: [100, 300], design: [103.355236694, 291.836243234] },
   },
 
-  source: { patentNumber: "US 7,158,320 B2", patentYear: 2007, authors: ["Akihiro Nishio"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "US 7,158,320 B2",
+    example: { label: "Numerical Embodiment 3", id: "3" },
+    patentYear: 2007,
+    authors: ["Akihiro Nishio"],
+    assignees: ["Canon Inc."],
+  },
 
   /* ── Elements ──
    *  The ITO adhesive is an additional optically active modeled medium, not part of the 13-element production count.

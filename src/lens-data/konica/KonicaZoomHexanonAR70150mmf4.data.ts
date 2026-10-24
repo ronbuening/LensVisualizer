@@ -72,6 +72,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 1983-137812 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1983,
     authors: ["Makoto Sakano", "Norikazu Arai", "Shozo Ishiyama", "Tadashi Kojima", "Hiroshi Miyamae"],
     assignees: ["Konishiroku Photo Industry Co., Ltd."],

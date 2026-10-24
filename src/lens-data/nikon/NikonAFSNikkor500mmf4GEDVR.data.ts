@@ -64,6 +64,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2009/0190239 A1",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2009,
     authors: ["Takashi Suzuki"],
     // Application 12/354,321 assignment to Fujinon, reel/frame 022139/0546, recorded before publication.

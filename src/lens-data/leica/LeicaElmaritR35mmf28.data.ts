@@ -54,7 +54,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.8, design: 2.8 },
   },
 
-  source: { patentNumber: "FR 1,471,493", patentYear: 1967, authors: [], assignees: ["Ernst Leitz GmbH"] },
+  source: {
+    patentNumber: "FR 1,471,493",
+    example: { label: "Sole example", id: null },
+    patentYear: 1967,
+    authors: [],
+    assignees: ["Ernst Leitz GmbH"],
+  },
 
   /* ── Elements ── */
   elements: [

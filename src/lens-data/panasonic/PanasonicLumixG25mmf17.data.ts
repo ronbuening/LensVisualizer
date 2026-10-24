@@ -61,6 +61,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2017/0059832 A1",
+    example: { label: "Numerical Example 4", id: "4" },
     patentYear: 2017,
     authors: ["Shunichiro Yoshinaga"],
     assignees: ["Panasonic Intellectual Property Management Co., Ltd."],

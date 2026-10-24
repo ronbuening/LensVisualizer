@@ -73,6 +73,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 10,545,321 B2",
+    example: { label: "Example 4", id: "4" },
     patentYear: 2020,
     authors: ["Yoshito Iwasawa", "Jun Takahashi"],
     assignees: ["Tamron Co., Ltd."],

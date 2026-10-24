@@ -53,6 +53,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 2205380 A1",
+    example: { label: "Embodiment 3", id: "3" },
     patentYear: 1973,
     authors: ["Nobuo Yamashita"],
     assignees: ["Olympus Optical Co., Ltd."],

@@ -35,6 +35,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 721,240",
+    example: { label: "Sole example", id: null },
     patentYear: 1903,
     authors: ["Paul Rudolph"],
     assignees: ["Carl-Zeiss-Stiftung"], // Canonical entity; source wording: "the firm of Carl Zeiss".

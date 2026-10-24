@@ -52,6 +52,7 @@ const LENS_DATA = {
   // chief ray to the 99 mm corner (52.7°) clears 10 and 11, and surface 12 was raised to pass it (2026-09-24).
   source: {
     patentNumber: "US 3,376,091",
+    example: { label: "Table I", id: "1" },
     patentYear: 1968,
     authors: ["Werner Wagner", "Karl Heinrich Macher"],
     assignees: ["Jos. Schneider & Co., Optische Werke"],

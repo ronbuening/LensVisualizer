@@ -48,6 +48,7 @@ const LENS_DATA = {
   },
   source: {
     patentNumber: "US 5,264,965 A",
+    example: { label: "Embodiment 4", id: "4" },
     patentYear: 1993,
     authors: ["Jun Hirakawa"],
     assignees: ["Asahi Kogaku Kogyo Co., Ltd."],

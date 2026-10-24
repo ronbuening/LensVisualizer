@@ -58,6 +58,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2025-58577 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2025,
     authors: ["Yuki Shibata"],
     assignees: ["Cosina Co., Ltd."],

@@ -34,6 +34,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 7,218,457 B2",
+    example: { label: "Example 3", id: "3" },
     patentYear: 2007,
     authors: ["Takayuki Sensui"],
     assignees: ["Nikon Corporation"],

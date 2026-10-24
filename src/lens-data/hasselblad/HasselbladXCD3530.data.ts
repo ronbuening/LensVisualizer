@@ -63,6 +63,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "WO 2018/052113 A1",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2018,
     authors: ["Akira Sawamoto"],
     assignees: ["Nittoh Inc."],

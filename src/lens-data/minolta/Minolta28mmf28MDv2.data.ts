@@ -37,6 +37,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,493,536",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 1985,
     authors: ["Yoshinobu Kudo"],
     assignees: ["Minolta Camera Co., Ltd."],

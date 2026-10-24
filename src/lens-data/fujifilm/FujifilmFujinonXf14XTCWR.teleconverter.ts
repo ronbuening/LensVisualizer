@@ -77,6 +77,7 @@ const TELECONVERTER_DATA = {
   /* ── Patent metadata ── */
   source: {
     patentNumber: "US 2017/0090163 A1",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2017,
     authors: ["Tetsuya Ori"],
     assignees: ["Fujifilm Corporation"],

@@ -51,6 +51,7 @@ const TELECONVERTER_DATA = {
 
   source: {
     patentNumber: "JP 2013-250290 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2013,
     authors: ["Akiko Furuta"],
     assignees: ["Nikon Corporation"],

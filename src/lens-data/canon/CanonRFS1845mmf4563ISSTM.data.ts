@@ -57,7 +57,13 @@ const LENS_DATA = {
     fNumber: { marketing: 4.5, design: 4.56 },
   },
 
-  source: { patentNumber: "JP 2021-86024 A", patentYear: 2021, authors: ["Yuichi Gyoda"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "JP 2021-86024 A",
+    example: { label: "Numerical Example 2", id: "2" },
+    patentYear: 2021,
+    authors: ["Yuichi Gyoda"],
+    assignees: ["Canon Inc."],
+  },
 
   /* ── Elements ── */
   elements: [

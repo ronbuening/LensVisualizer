@@ -78,6 +78,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2026-98935 A",
+    example: { label: "Example 2", id: "2" },
     patentYear: 2026,
     authors: ["Nozomu Mishima"],
     assignees: ["Cosina Co., Ltd."],

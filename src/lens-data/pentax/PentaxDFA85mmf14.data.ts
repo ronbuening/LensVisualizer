@@ -53,6 +53,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2020/0301101 A1",
+    example: { label: "Numerical Example 3", id: "3" },
     patentYear: 2020,
     authors: ["Yoichi Nomura"],
     assignees: ["Ricoh Co., Ltd."],

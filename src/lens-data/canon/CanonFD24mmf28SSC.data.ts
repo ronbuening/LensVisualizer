@@ -58,6 +58,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,748,021",
+    example: { label: "Embodiment 2", id: "2" },
     patentYear: 1973,
     authors: ["Akira Tajima", "Kikuo Momiyama"],
     assignees: ["Canon Inc."],

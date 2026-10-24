@@ -58,6 +58,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2,397,565",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1946,
     authors: ["Willy Schade"],
     assignees: ["Eastman Kodak Company"],

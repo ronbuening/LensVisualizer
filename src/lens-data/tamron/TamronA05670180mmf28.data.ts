@@ -66,6 +66,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2021-43375 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2021,
     authors: ["Wataru Kusaka"],
     assignees: ["Tamron Co., Ltd."],

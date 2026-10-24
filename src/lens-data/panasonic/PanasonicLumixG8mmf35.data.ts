@@ -54,6 +54,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2012/0147254 A1",
+    example: { label: "Embodiment 4", id: "4" },
     patentYear: 2012,
     authors: ["Nobuyuki Adachi", "Takuya Imaoka"],
     assignees: ["Panasonic Corporation"],

@@ -62,6 +62,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2011/0286116 A1",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 2011,
     authors: ["Kaori Shimizu", "Hisayuki Yamanaka"],
     assignees: ["Tamron Co., Ltd."],

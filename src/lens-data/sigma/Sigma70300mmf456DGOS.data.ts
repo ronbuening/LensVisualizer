@@ -54,6 +54,7 @@ const LENS_DATA = {
   },
   "source": {
     "patentNumber": "JP 2010-217838 A",
+    "example": { "label": "Example 1", "id": "1" },
     "patentYear": 2010,
     "authors": [
       "Tomoki Kono"

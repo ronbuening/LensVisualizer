@@ -75,6 +75,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 9,784,950 B2",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2017,
     authors: ["Masakazu Saori", "Yoshimitsu Ohara"],
     assignees: ["Ricoh Imaging Company, Ltd."],

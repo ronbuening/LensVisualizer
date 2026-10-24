@@ -49,7 +49,13 @@ const LENS_DATA = {
     focalLengthMm: { marketing: [28, 80], design: [28.8, 77.6] },
   },
 
-  source: { patentNumber: "US 5,485,314", patentYear: 1996, authors: ["Haruo Sato"], assignees: ["Nikon Corporation"] },
+  source: {
+    patentNumber: "US 5,485,314",
+    example: { label: "Embodiment 4", id: "4" },
+    patentYear: 1996,
+    authors: ["Haruo Sato"],
+    assignees: ["Nikon Corporation"],
+  },
 
   elements: [
     {

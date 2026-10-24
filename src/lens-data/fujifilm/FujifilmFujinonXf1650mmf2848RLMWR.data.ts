@@ -41,6 +41,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "WO 2024/057734 A1",
+    example: { label: "Example 17", id: "17" },
     patentYear: 2024,
     authors: ["Masaru Amano", "Taiga Noda", "Yasutaka Shimada", "Yuya Hirakawa"],
     assignees: ["Fujifilm Corporation"],

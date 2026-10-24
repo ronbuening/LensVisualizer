@@ -56,7 +56,13 @@ const LENS_DATA = {
     fNumber: { marketing: 1.2, design: 1.2 },
   },
 
-  source: { patentNumber: "GB 1,050,055", patentYear: 1966, authors: [], assignees: ["Nippon Kogaku K.K."] },
+  source: {
+    patentNumber: "GB 1,050,055",
+    example: { label: "Example 1", id: "1" },
+    patentYear: 1966,
+    authors: [],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   elements: [
     {

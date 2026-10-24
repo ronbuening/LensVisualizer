@@ -85,6 +85,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2008/0218875 A1",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2008,
     authors: ["Daisuke Kuroda", "Masafumi Sueyoshi", "Kazuya Watanabe"],
     // A1 front page omits an organization; same-application assignment recorded 2007-08-30.

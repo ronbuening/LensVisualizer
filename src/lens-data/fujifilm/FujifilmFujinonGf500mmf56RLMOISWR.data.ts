@@ -57,6 +57,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "WO 2025/013477 A1",
+    example: { label: "Example 7", id: "7" },
     patentYear: 2025,
     authors: ["Takuya Tanaka", "Shunsuke Miyagishima"],
     assignees: ["Fujifilm Corporation"],
