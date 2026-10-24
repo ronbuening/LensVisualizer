@@ -80,7 +80,7 @@ const LENS_DATA = {
   key: "konica-uc-zoom-hexanon-ar-80-200-f4",
   maker: "Konica",
   name: "KONICA UC ZOOM HEXANON AR 80-200mm f/4",
-  subtitle: "JP S51-37247 A Example 1 — raw prescription with disclosed stop/focus reconstruction",
+  subtitle: "JP S51-37247 A sole example — raw prescription with disclosed stop/focus reconstruction",
 
   catalog: {
     lensMounts: ["konica-ar"],
@@ -94,6 +94,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP S51-37247 A",
+    example: { label: "Sole example", id: null },
     patentYear: 1976,
     authors: ["Hideo Shizume"],
     assignees: ["Konishiroku Photo Industry Co., Ltd."],

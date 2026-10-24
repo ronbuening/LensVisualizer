@@ -43,7 +43,7 @@ const LENS_DATA = {
   key: "olympus-zuiko-auto-w-21mm-f2",
   maker: "Olympus",
   name: "OLYMPUS ZUIKO AUTO-W 21mm f/2",
-  subtitle: "US 4,210,388 EXAMPLE 1 — OLYMPUS / Y. IKEDA",
+  subtitle: "US 4,210,388 SOLE EXAMPLE — OLYMPUS / Y. IKEDA",
 
   catalog: {
     lensMounts: ["olympus-om"],
@@ -64,6 +64,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,210,388",
+    example: { label: "Sole example", id: null },
     patentYear: 1980,
     authors: ["Yoshitsugi Ikeda"],
     assignees: ["Olympus Optical Co., Ltd."],

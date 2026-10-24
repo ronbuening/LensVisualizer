@@ -6,8 +6,7 @@
 **Published:** 29 March 1976\
 **Inventor:** Hideo Shizume\
 **Applicant:** Konishiroku Photo Industry Co., Ltd.\
-**Title:** *Compact Zoom Lens* (コンパクトズームレンズ)\
-**Embodiment analyzed:** Example 1
+**Title:** *Compact Zoom Lens* (コンパクトズームレンズ)
 
 The prescription is the single numerical example of JP S51-37247 A, which the patent leaves unnumbered and this note calls Example 1. The patent front page identifies Hideo Shizume as inventor and Konishiroku Photo Industry Co., Ltd. as applicant. Example 1 is tabulated on patent page 303 of the supplied publication scan, with its optical section and aberration plots beginning on page 304.
 

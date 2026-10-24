@@ -9,7 +9,6 @@
 **Inventor:** Saburo Murakami
 **Applicant:** Nippon Kogaku K.K. (source romanization: Nippon Kogaku Kogyo Kabushiki Kaisha)
 **Title:** Photographic lens (写真レンズ)
-**Embodiment analyzed:** Embodiment 1
 
 The data file transcribes the patent's sole worked prescription, which is normalized to $f=100$, $F/2$, and a full
 field of $46°$ (patent pp. 2–3). The prescription has seven elements in five air-separated groups, with cemented

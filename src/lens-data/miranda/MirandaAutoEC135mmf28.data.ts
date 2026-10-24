@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "miranda-auto-ec-135mm-f28",
   maker: "Miranda",
   name: "MIRANDA AUTO EC 135mm f/2.8",
-  subtitle: "JP1976-074627 Example 1 — ×1.35 scaled production correlation; attribution not manufacturer-confirmed",
+  subtitle: "JP1976-074627 sole example — ×1.35 scaled production correlation; attribution not manufacturer-confirmed",
 
   catalog: {
     lensMounts: ["miranda-bayonet"],
@@ -66,6 +66,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP S51-074627 A",
+    example: { label: "Sole example", id: null },
     patentYear: 1976,
     authors: ["Kunio Shimada"],
     assignees: ["Miranda Camera Co., Ltd."],

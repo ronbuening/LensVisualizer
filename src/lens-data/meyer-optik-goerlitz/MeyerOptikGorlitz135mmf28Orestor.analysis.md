@@ -7,7 +7,7 @@
 **Inventor:** Hubert Ulbrich
 **Applicant:** VEB Pentacon Dresden Kamera- und Kinowerke
 **Title:** *Fünflinsiges, viergliedriges Tele-Objektiv*
-**Embodiment analyzed:** Example 1, the worked numerical prescription on printed page 3
+**Example details:** the worked numerical prescription on printed page 3
 
 DE 1 282 311 describes a five-element, four-group photographic telephoto objective with an opening ratio of at least
 1:2.8. Example 1 is normalized to `f = 100` and gives the complete nine-surface spherical prescription, including the

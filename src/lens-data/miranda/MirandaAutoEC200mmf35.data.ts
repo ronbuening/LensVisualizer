@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "miranda-auto-ec-200mm-f35",
   maker: "Miranda",
   name: "MIRANDA AUTO EC 200mm f/3.5",
-  subtitle: "JP1976-114926 Example 1 — 2× production-correlated scale",
+  subtitle: "JP1976-114926 sole example — 2× production-correlated scale",
 
   catalog: {
     lensMounts: ["miranda-bayonet"],
@@ -59,6 +59,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP S51-114926 A",
+    example: { label: "Sole example", id: null },
     patentYear: 1976,
     authors: ["Kunio Shimada"],
     assignees: ["Miranda Camera Co., Ltd."],

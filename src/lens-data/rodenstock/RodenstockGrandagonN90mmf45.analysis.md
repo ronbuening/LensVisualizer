@@ -6,7 +6,7 @@
 **Inventors:** Franz Schlegel; Josef Weiß
 **Applicant:** Optische Werke G. Rodenstock, 8000 München
 **Title:** Achtlinsiges Weitwinkelobjektiv
-**Embodiment analyzed:** Patentanspruch 2 — f′ = 90 mm, 1:4.5
+**Example details:** Patentanspruch 2 — f′ = 90 mm, 1:4.5
 **Prescription basis:** Native patent data are tabulated at the e-line, with $n_e$ and $ν_e$ explicitly stated by the patent.
 
 Claim 2 is the appropriate prescription for the Rodenstock Grandagon-N 90mm f/4.5. The identification is based on the patent's f′ = 90 mm and 1:4.5 claim table, the eight-element/four-group construction, the two cemented triplets surrounding a central stop, and the Rodenstock/LINOS product documentation for the Grandagon-N f/4.5 family, which describes the 65–90 mm f/4.5 lenses as eight elements in four groups with a 105° field angle. The f/6.8 90 mm Grandagon-N belongs to the separate six-element version and is not this prescription.

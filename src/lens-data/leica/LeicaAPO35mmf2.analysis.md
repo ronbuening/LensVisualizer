@@ -6,7 +6,7 @@
 **Published:** March 3, 2022  
 **Inventors:** Stefan Roth, Kathrin Keller (Lahnau, Germany)  
 **Applicant:** Leica Camera AG, Wetzlar  
-**Embodiment analyzed:** Example 1 (the sole worked example; FIGS. 1–3)
+**Example details:** FIGS. 1–3
 
 ---
 

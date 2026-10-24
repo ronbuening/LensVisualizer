@@ -38,7 +38,7 @@ const LENS_DATA = {
   key: "nikon-nikkor-s-auto-58mm-f1-4",
   maker: "Nikon",
   name: "NIKON NIKKOR-S AUTO 5.8cm f/1.4",
-  subtitle: "JP 1966-017177 Embodiment 1 — production-correlated patent design",
+  subtitle: "JP 1966-017177 sole example — production-correlated patent design",
 
   catalog: {
     lensMounts: ["nikon-f"],
@@ -52,6 +52,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 1966-017177 B",
+    example: { label: "Sole example", id: null },
     patentYear: 1966,
     authors: ["Saburo Murakami"],
     assignees: ["Nippon Kogaku K.K."],

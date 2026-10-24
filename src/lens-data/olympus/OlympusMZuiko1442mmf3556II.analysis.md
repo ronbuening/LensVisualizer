@@ -10,7 +10,7 @@
 **Inventors:** Toshio Takahashi, Hiroshi Kodama, Kento Hara, Kazumi Ito  
 **Assignee:** Olympus Imaging Corp.  
 **Title:** Zoom Lens and Image Pickup Apparatus Equipped with Same  
-**Embodiment analyzed:** Common Example A optical prescription with Example 1 focusing kinematics
+**Example details:** Common Example A optical prescription with Example 1 focusing kinematics
 
 The transcribed design is the patent's **Common Example A**, used by Examples 1–3, with **Example 1** chosen for the focus mechanism. Common Example A is an eight-element, seven-group, four-unit zoom with a negative-positive-negative-positive power sequence. Examples 1–3 share the same glass and surface prescription and differ only in the second lens unit used during the still-image focus mode.
 

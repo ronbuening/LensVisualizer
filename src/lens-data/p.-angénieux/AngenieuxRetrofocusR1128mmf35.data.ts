@@ -43,7 +43,7 @@ const LENS_DATA = {
   key: "angenieux-retrofocus-r11-28mm-f35",
   maker: "P. Angénieux",
   name: "P. ANGÉNIEUX RETROFOCUS TYPE R11 28mm f/3.5",
-  subtitle: "GB 720,808 Example 1 — correlated to the 1953 production Type R11",
+  subtitle: "GB 720,808 sole example — correlated to the 1953 production Type R11",
 
   catalog: {
     imageFormat: "135-full-frame",
@@ -54,7 +54,13 @@ const LENS_DATA = {
     fNumber: { marketing: 3.5, design: 3.5 },
   },
 
-  source: { patentNumber: "GB 720,808", patentYear: 1954, authors: ["Pierre Angénieux"], assignees: [] },
+  source: {
+    patentNumber: "GB 720,808",
+    example: { label: "Sole example", id: null },
+    patentYear: 1954,
+    authors: ["Pierre Angénieux"],
+    assignees: [],
+  },
 
   elements: [
     {

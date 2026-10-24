@@ -10,7 +10,7 @@
 **Priority:** JP 7-350703, JP 8-175920, and JP 8-175923  
 **Inventor:** Atsushi Shibayama  
 **Assignee:** Nikon Corporation  
-**Embodiment analyzed:** Seventh embodiment, Table 8, Fig. 43
+**Example details:** Table 8, Fig. 43
 
 The prescription transcribed here is the seventh embodiment of US 5,717,527. It is the closest patent example to the Nikon AF Zoom-Micro Nikkor ED 70–180mm f/4.5–5.6D, but it should be treated as a patent prescription rather than a literal production bill of materials. The patent example gives $f = 82.40$–135.00–194.00 mm and $F = 4.14$–5.10–5.73, while the production lens is marketed as 70–180mm f/4.5–5.6.
 

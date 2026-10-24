@@ -8,7 +8,7 @@
 **Assignee:** Eastman Kodak Company, Rochester, New York
 **Title:** High Resolution Photographic Objectives
 **Claims:** 1
-**Embodiment analyzed:** Sole numerical example, Fig. 2, normalized at f = 100 mm and f/3.5
+**Example details:** Fig. 2, normalized at f = 100 mm and f/3.5
 
 US 2,983,193 discloses a six-element, four-component M-type photographic objective. The patent describes the M-type as an objective with two positive outer components and two meniscus-shaped inner negative components, with the concave faces of the inner negative components directed toward each other and with the diaphragm normally in the central space. The stated design target is use at about f/5 to f/3.5 over a field of about 15° from the axis.
 

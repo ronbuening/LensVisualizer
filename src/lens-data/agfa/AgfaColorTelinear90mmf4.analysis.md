@@ -8,7 +8,7 @@
 **Inventors:** Carl Baur and Christian Otzen
 **Assignee:** Firma Agfa Camera-Werk Aktiengesellschaft, Munich, Germany
 **Title:** Telephoto Objective
-**Embodiment analyzed:** Single worked numerical example, normalized to $F = 1.000$
+**Example details:** normalized to $F = 1.000$
 
 US 2,819,651 discloses a five-element telephoto objective with a positive cemented meniscus doublet in front, a positive meniscus singlet closely behind it, and a negative cemented meniscus doublet in the rear. The worked example is the only numerical embodiment in the patent and is the prescription analyzed here.
 

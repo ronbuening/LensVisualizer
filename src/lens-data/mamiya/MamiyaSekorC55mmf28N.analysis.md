@@ -8,7 +8,7 @@
 **Inventor:** Yusuke Arisaka<br>
 **Applicant:** Mamiya Koki Co., Ltd.<br>
 **Title:** Retrofocus-type wide-angle lens<br>
-**Embodiment analyzed:** Example 1
+**Example details:** 第1実施例, as printed in the laid-open JP S54-107336 of the same application
 
 The prescription is Example 1 of the Japanese publication supplied for transcription. The patent gives an all-spherical
 retrofocus lens normalized to $f=100$, with an aperture ratio of 1:2.8 and a full field of $66^\circ$. The data file

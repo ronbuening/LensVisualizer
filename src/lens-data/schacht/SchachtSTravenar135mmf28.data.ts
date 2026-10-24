@@ -35,7 +35,7 @@ const LENS_DATA = {
   key: "schacht-s-travenar-135f28",
   maker: "Schacht",
   name: "SCHACHT S-TRAVENAR 135mm f/2.8",
-  subtitle: "CH 479 879 Example 1 — 1.35× normalized research correlation",
+  subtitle: "CH 479 879 sole example — 1.35× normalized research correlation",
 
   catalog: {
     lensMounts: ["m42", "exakta"],
@@ -56,6 +56,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "CH 479 879",
+    example: { label: "Sole example", id: null },
     patentYear: 1969,
     authors: ["Ludwig Bertele", "Jürgen Bertele"],
     assignees: [],

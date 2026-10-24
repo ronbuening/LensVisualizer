@@ -48,6 +48,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 2206106 A1",
+    example: { label: "Sole example", id: null },
     patentYear: 1972,
     authors: ["Jihei Nakagawa"],
     assignees: ["Olympus Optical Co., Ltd."],

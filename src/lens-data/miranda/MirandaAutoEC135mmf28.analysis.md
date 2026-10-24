@@ -6,8 +6,7 @@
 **Published:** 1976-06-28\
 **Inventor:** Kunio Shimada (島田 邦夫)\
 **Applicant:** ミランダカメラ株式会社\
-**Title:** 小型軽量のエルノスター型望遠レンズ (*Compact and lightweight Ernostar-type telephoto lens*)\
-**Embodiment analyzed:** Example 1
+**Title:** 小型軽量のエルノスター型望遠レンズ (*Compact and lightweight Ernostar-type telephoto lens*)
 
 The data-file display identity is **MIRANDA AUTO EC 135mm f/2.8**. The prescription modeled here is Example 1 of JP1976-074627. The patent presents a five-element, four-group telephoto lens and gives one numerical prescription at infinity focus. The worked example is normalized to a published focal length of `f = 100.0`; the LensVisualizer model applies a uniform linear scale of 1.35 so that the prescription can be compared with the marketed 135 mm Miranda Auto EC lens. The scaling is a modeling transformation, not a claim that the patent itself publishes a 135 mm numerical table. The refractive indices and Abbe numbers remain unchanged under that scale. (JP1976-074627, printed pp. 157–160, especially the numerical example on p. 159 and Fig. 1 on p. 160.)
 

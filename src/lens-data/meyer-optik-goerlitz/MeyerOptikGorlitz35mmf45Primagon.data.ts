@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "meyer-optik-gorlitz-primagon-35f45",
   maker: "Meyer Optik Görlitz",
   name: "MEYER OPTIK GÖRLITZ PRIMAGON 35mm f/4.5",
-  subtitle: "DE 1 749 770 U — Example 1; 0.35× scaled patent prescription",
+  subtitle: "DE 1 749 770 U — sole example; 0.35× scaled patent prescription",
 
   // 1957 Meyer technical table lists Praktica/Contax D/E/Pentacon, Praktina,
   // EXAKTA Varex/Exa, and Altix V/N. The first three canonical families below
@@ -65,6 +65,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 1 749 770 U",
+    example: { label: "Sole example", id: null },
     patentYear: 1957,
     authors: [],
     assignees: ["VEB Feinoptisches Werk Görlitz"],

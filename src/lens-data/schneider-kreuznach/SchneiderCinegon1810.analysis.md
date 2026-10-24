@@ -9,7 +9,7 @@
 **Inventor:** Wolfram W. Albrecht  
 **Assignee:** Jos. Schneider & Co., Optische Werke  
 **Title:** *High-Speed Photographic or Cinematographic Objective with Wide Image Angle*  
-**Embodiment analyzed:** Example 1, the representative numerical prescription on patent page 2 and repeated in claim 2 on page 3
+**Example details:** the representative numerical prescription on patent page 2 and repeated in claim 2 on page 3
 
 The LensVisualizer model transcribes the numerical example in US 3,038,379 and scales every dimensional prescription value by exactly 10.0 mm per source focal-length unit. The patent normalizes the worked example to an overall focal length of 1, aperture ratio 1:1.8, full image angle 66°, back focal length 1.7, and total physical length 5.687 source units. The rounded table itself computes an effective focal length of 1.002054995 source units, so the uniformly scaled model computes 10.020549951 mm rather than being renormalized to exactly 10.000 mm. The patent prescription is therefore preserved rather than adjusted to force the marketed focal length.
 

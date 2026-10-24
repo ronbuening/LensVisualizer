@@ -57,7 +57,7 @@ const LENS_DATA = {
   key: "pentax-super-takumar-135mm-f2-5",
   maker: "Pentax",
   name: "PENTAX SUPER-TAKUMAR 135mm f/2.5",
-  subtitle: "US 3,459,469 Example 1 — scaled x0.135 production correlation",
+  subtitle: "US 3,459,469 sole example — scaled x0.135 production correlation",
 
   catalog: {
     lensMounts: ["m42"],
@@ -78,6 +78,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,459,469",
+    example: { label: "Sole example", id: null },
     patentYear: 1969,
     authors: ["Yasuo Takahashi"],
     assignees: ["Asahi Kogaku Kogyo Co., Ltd."],

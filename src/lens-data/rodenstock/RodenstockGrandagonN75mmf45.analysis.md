@@ -9,7 +9,7 @@
 **Applicant:** Optische Werke G. Rodenstock, München
 **Title:** Achtlinsiges Weitwinkelobjektiv
 **Classification:** G 02 B 13/06
-**Embodiment analyzed:** Claim 3 / Example 3, f′ = 75 mm, 1:4.5
+**Example details:** f′ = 75 mm, 1:4.5
 
 DE 2444954 A1 discloses an eight-element wide-angle objective for a field angle of at least 90° and an aperture ratio of at least 1:5. The stated design goal is a better-corrected f/4.5 wide-angle lens with compact optical assembly length and with all refractive indices below 1.7. The prescription tables use e-line refractive index and Abbe number (`n_e`, `ν_e`), which is also the convention stated explicitly in the patent text.
 

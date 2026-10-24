@@ -28,7 +28,7 @@ const LENS_DATA = {
   key: "schneider-cinegon-65f19",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH CINEGON 6.5mm f/1.9",
-  subtitle: "DE 927 540 Example 1 — strong research correlation; not manufacturer-confirmed",
+  subtitle: "DE 927 540 sole example — strong research correlation; not manufacturer-confirmed",
 
   catalog: {
     lensMounts: ["d-mount"],
@@ -42,6 +42,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 927 540",
+    example: { label: "Sole example", id: null },
     patentYear: 1955,
     authors: ["Wolfram W. Albrecht"],
     assignees: ["Jos. Schneider & Co., Optische Werke"],

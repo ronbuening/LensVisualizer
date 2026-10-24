@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "voigtlander-color-skopar-105mm-f35",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER COLOR-SKOPAR 105mm f/3.5 (Voigtländer Bessa II)",
-  subtitle: "US 2,573,511 A Example 1 — uniformly scaled ×1.05 production correlation",
+  subtitle: "US 2,573,511 A sole example — uniformly scaled ×1.05 production correlation",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],
@@ -55,6 +55,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2,573,511 A",
+    example: { label: "Sole example", id: null },
     patentYear: 1951,
     authors: ["Albrecht Wilhelm Tronnier"],
     assignees: ["Voigtländer & Sohn AG"],

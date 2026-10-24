@@ -25,7 +25,7 @@ const LENS_DATA = {
   key: "leica-summilux-m-50mm-f14-i",
   maker: "Leica",
   name: "LEICA SUMMILUX-M 50mm f/1.4 I",
-  subtitle: "DE 1 045 120 B — Example 1; first-version Summilux-M 50mm f/1.4 correlation",
+  subtitle: "DE 1 045 120 B — sole example; first-version Summilux-M 50mm f/1.4 correlation",
 
   catalog: {
     lensMounts: ["leica-m"],
@@ -39,6 +39,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 1 045 120 B",
+    example: { label: "Sole example", id: null },
     patentYear: 1958,
     authors: ["Otto Zimmermann", "Gustav Kleineberg", "Eugen Hermanni"],
     assignees: ["Ernst Leitz GmbH"],

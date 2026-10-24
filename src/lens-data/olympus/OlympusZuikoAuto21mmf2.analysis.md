@@ -9,7 +9,6 @@
 **Filed:** March 8, 1978
 **Granted:** July 1, 1980
 **Title:** Large-Aperture Wide-Angle Lens System for Photographic Cameras
-**Embodiment analyzed:** Single numerical example
 
 This analysis covers the single numerical example given in the patent, which describes the optical design underlying the production Olympus OM Zuiko Auto-W 21mm f/2 lens.
 

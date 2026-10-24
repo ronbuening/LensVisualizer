@@ -36,7 +36,7 @@ const LENS_DATA = {
   key: "schneider-cinegon-10f18",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH CINEGON 10mm f/1.8",
-  subtitle: "US 3,038,379 Example 1 — 10× scaled patent model; strong Cinegon 1.8/10 correlation",
+  subtitle: "US 3,038,379 sole example — 10× scaled patent model; strong Cinegon 1.8/10 correlation",
 
   catalog: {
     lensMounts: ["c-mount"],
@@ -57,6 +57,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,038,379",
+    example: { label: "Sole example", id: null },
     patentYear: 1962,
     authors: ["Wolfram W. Albrecht"],
     assignees: ["Jos. Schneider & Co., Optische Werke"],

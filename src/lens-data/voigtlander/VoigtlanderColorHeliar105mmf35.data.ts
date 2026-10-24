@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "voigtlander-color-heliar-105mm-f35",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER COLOR-HELIAR 105mm f/3.5 (Voigtländer Bessa II)",
-  subtitle: "US 2,645,156 A — Example 1; normalized prescription scaled to 105 mm",
+  subtitle: "US 2,645,156 A — sole example; normalized prescription scaled to 105 mm",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],
@@ -61,6 +61,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2,645,156 A",
+    example: { label: "Sole example", id: null },
     patentYear: 1953,
     authors: ["Albrecht Wilhelm Tronnier"],
     assignees: ["Voigtländer & Sohn AG"],

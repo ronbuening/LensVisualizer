@@ -29,7 +29,7 @@ const LENS_DATA = {
   key: "olympus-mzuiko-14-42-3556-ii",
   maker: "Olympus",
   name: "OLYMPUS M.ZUIKO DIGITAL 14-42mm f/3.5-5.6 II R",
-  subtitle: "US 8,994,842 B2 — Common Example A / Example 1",
+  subtitle: "US 8,994,842 B2 — Example 1 (Common Example A prescription)",
 
   catalog: {
     lensMounts: ["micro-four-thirds"],
@@ -48,6 +48,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 8,994,842 B2",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2015,
     authors: ["Toshio Takahashi", "Hiroshi Kodama", "Kento Hara", "Kazumi Ito"],
     assignees: ["Olympus Imaging Corporation"],

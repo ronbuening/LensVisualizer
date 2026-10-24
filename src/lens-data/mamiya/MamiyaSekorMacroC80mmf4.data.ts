@@ -39,7 +39,7 @@ const LENS_DATA = {
   key: "mamiya-sekor-macro-c-80f4",
   maker: "Mamiya",
   name: "MAMIYA-SEKOR MACRO C 80mm f/4",
-  subtitle: "JP S55-24081 B2, Example 1 — Mamiya M645 production correlation",
+  subtitle: "JP S55-24081 B2, sole example — Mamiya M645 production correlation",
 
   catalog: {
     lensMounts: ["mamiya-645"],
@@ -53,6 +53,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP S55-24081 B2",
+    example: { label: "Sole example", id: null },
     patentYear: 1980,
     authors: ["Masayoshi Okazaki"],
     assignees: ["Mamiya Koki Co., Ltd."],

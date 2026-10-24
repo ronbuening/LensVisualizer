@@ -8,7 +8,7 @@
 **Inventor:** No individual inventor is named in the patent  
 **Applicant:** Carl-Zeiss-Stiftung, trading as Carl Zeiss  
 **Title:** *Mirror Objective Particularly Suitable for Photographic Purposes*  
-**Embodiment analyzed:** Sole worked numerical design (job-card “Example 1”)
+**Example details:** job-card “Example 1”
 
 GB 975,446 describes a photographic Cassegrain mirror objective using spherical mirrors, with two spherical correcting
 lenses in front of the mirrors and two spherical correcting lenses behind them. The worked prescription is normalized to

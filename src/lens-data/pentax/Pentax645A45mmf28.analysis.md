@@ -10,7 +10,7 @@
 **Inventor:** Masaharu Hisada  
 **Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha  
 **Title:** Retrofocus Wide-Angle Photographic Lens System  
-**Embodiment analyzed:** Example 1 / Claim 2
+**Example details:** Claim 2
 
 US 4,487,485 describes a retrofocus wide-angle photographic lens with an aperture ratio of 1:2.8, a full view angle of about 76°, and a backfocus about 1.4 times the overall focal length. Example 1 is the prescription transcribed here. The example is normalized to $F = 100$, gives a half-angle $\omega = 37.9°$, and lists $B_f = 137.80$.
 

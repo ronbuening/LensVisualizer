@@ -6,8 +6,7 @@
 **Granted:** October 30, 1951<br>
 **Inventor:** Albrecht Wilhelm Tronnier<br>
 **Assignee:** Voigtländer & Sohn Aktiengesellschaft<br>
-**Title:** *Four-Lens Photographic Objective*<br>
-**Embodiment analyzed:** Example 1
+**Title:** *Four-Lens Photographic Objective*
 
 The data file transcribes Example 1 of US 2,573,511 A and correlates it with the Voigtländer Color-Skopar 105mm f/3.5 used on fixed-lens 6×9 cameras. This is the selected production correlation for the model, not a claim that Voigtländer published an explicit patent-to-product identification.
 

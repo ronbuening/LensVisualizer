@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "yashica-yashinon-dx-21mm-f3-3",
   maker: "Yashica",
   name: "YASHICA YASHINON-DX 21mm f/3.3",
-  subtitle: "JP 1969-024068 Example 1 — f=100 prescription scaled ×0.21",
+  subtitle: "JP 1969-024068 sole example — f=100 prescription scaled ×0.21",
 
   catalog: {
     lensMounts: ["m42"],
@@ -59,6 +59,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 1969-024068 B",
+    example: { label: "Sole example", id: null },
     patentYear: 1969,
     authors: ["Iwatatsu Fujioka"],
     assignees: ["Yashica Co., Ltd."],

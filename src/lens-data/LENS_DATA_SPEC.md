@@ -335,15 +335,22 @@ shows it after the patent number. Teleconverter sources carry the same field.
   and letters and suffixes uppercase (`"A"`, `"2-1"`, `"1A"`).
 - `{ label: "Sole example", id: null }` means the publication contains exactly one numerical example and gives it no
   identifier of its own, including when that example's prescription sits in a numbered table (`TABLE 1` beside a
-  table of aberration coefficients). Establish it from the publication itself. A sole example the source does number
-  (`"Example 1"`, `실시예 1`) keeps that number.
+  table of aberration coefficients), or when the claims restate it in rounded or general form. A component designed on
+  its own (one group of the lens) is not a second example. Establish it from the publication itself. A sole example
+  the source does number (`"Example 1"`, `실시예 1`) keeps that number.
 - Record what the publication prints. A project or job-card name ("Example 1" for an unnumbered example) is not the
   source's designation.
 - `example` requires `patentNumber`. Each `catalog.opticalConfiguration` member and each teleconverter records its
   own; members of one family may cite different examples.
-- Where one designation cannot name the transcribed data (examples identified only by figure or by claim number, an
-  example of one embodiment whose number another embodiment reuses, or data combined from several examples), leave
-  `example` out and queue the file in `agent_docs/patent-example-queue.md`.
+- A publication that identifies its examples only by figure or only by claim number gets that term: `"Figure 2"` for
+  two prescriptions headed Fig. 1 and Fig. 2, `"Claim 3"` where the description says the claims carry the worked
+  examples.
+- Where an example number repeats across embodiments (each embodiment has its own 第1実施例), the label is the printed
+  table that holds the transcribed data, numbered across the whole publication (`"Table 8"`).
+- Data taken from another example with the same prescription (close-focus spacings, say) leaves the label on the
+  example whose prescription the file transcribes; name the other in `**Example details:**`.
+- A design printed with no identifier beside the publication's other examples (a comparison or reference design)
+  has no label yet: leave `example` out and queue the file in `agent_docs/patent-example-queue.md`.
 
 ### Source errata (`source.errata`)
 

@@ -8,7 +8,7 @@
 **Inventor:** Nobuo Yamashita  
 **Assignee:** Olympus Optical Co., Ltd., Tokyo, Japan  
 **Title:** Retrofocus-Type Wide-Angle Photographic Lens System  
-**Embodiment analyzed:** Embodiment 1 (FIG. 2; aberration FIGS. 4A-6B; Claim 6)
+**Example details:** FIG. 2; aberration FIGS. 4A-6B; Claim 6
 
 The best-supported production match is **Embodiment 1**, not Embodiment 2. The patent does not name the commercial lens, so the identification rests on convergent evidence:
 

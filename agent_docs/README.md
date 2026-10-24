@@ -57,7 +57,7 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [queue] [`../MTF_ACCURACY_PLAN.md`](../MTF_ACCURACY_PLAN.md) — MTF audit findings, assumption review, and the open stages (prescription screen, uncertainty display, validation statement); optional optiland cross-check tool
 - [queue] [`sd-audit-queue.md`](sd-audit-queue.md) — semi-diameter floor failures, shape deviations, source blockers, MTF field and image-plane censuses, traced field-coverage shortfalls, prescription errors found in passing, stops still opened to the marketed f-number, stations whose stated axial beam does not pass, the in-progress diagram sweep
 - [queue] [`lens-mount-format-backfill.md`](lens-mount-format-backfill.md) — mount/format metadata coverage and review queue
-- [queue] [`patent-example-queue.md`](patent-example-queue.md) — patent-backed lenses without `source.example`: subtitle disagreements, examples one designation cannot name, unconfirmed labels
+- [queue] [`patent-example-queue.md`](patent-example-queue.md) — patent-backed lenses without `source.example`, and the schema decision each needs
 - [queue] [`glass-relabel-followup.md`](glass-relabel-followup.md) — catalog-mismatch relabel status and closed families
 - [queue] [`proprietary-glass-backfill.md`](proprietary-glass-backfill.md) — patent line-index backfill for proprietary glasses
 - [queue] [`dispersion-estimate-exploration.md`](dispersion-estimate-exploration.md) — paused proposal: narrow the MTF warning's estimated-dispersion blur and refit the nd/νd estimate; findings and the audit script

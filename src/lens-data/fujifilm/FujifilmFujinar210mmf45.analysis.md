@@ -7,7 +7,7 @@
 **Inventor:** Ryoichi Doi (土居 良一)\
 **Applicant:** Fuji Photo Film Co., Ltd. (富士写真フイルム株式会社)\
 **Title:** ボケの描写を考慮した非球面写真レンズ — “Aspherical photographic lens considering the rendering of out-of-focus blur”\
-**Embodiment analyzed:** Example 1 — project designation for the patent's sole numerical prescription
+**Example details:** Example 1 — project designation for the patent's sole numerical prescription
 
 The catalog correlation used here associates JP S29-2685 B with the **FUJIFILM FUJINAR 210mm f/4.5**. The patent itself does not print the Fujinar trade name, so this correlation is not presented as manufacturer confirmation. It is nevertheless consistent with the source prescription, which gives `f′ = 210` and `F:4.5`, and with the four-element, three-group Tessar-type section shown in Figure 7 on patent page 3.
 

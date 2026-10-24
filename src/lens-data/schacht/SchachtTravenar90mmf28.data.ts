@@ -56,7 +56,7 @@ const LENS_DATA = {
   key: "schacht-travenar-90f28",
   maker: "Schacht",
   name: "SCHACHT TRAVENAR 90mm f/2.8",
-  subtitle: "US 2,721,501 Example 1 — strong inferred production correlation",
+  subtitle: "US 2,721,501 sole example — strong inferred production correlation",
 
   catalog: {
     lensMounts: ["exakta"],
@@ -68,7 +68,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.8, design: 2.8 },
   },
 
-  source: { patentNumber: "US 2,721,501", patentYear: 1955, authors: ["Ludwig Bertele"], assignees: [] },
+  source: {
+    patentNumber: "US 2,721,501",
+    example: { label: "Sole example", id: null },
+    patentYear: 1955,
+    authors: ["Ludwig Bertele"],
+    assignees: [],
+  },
 
   elements: [
     {

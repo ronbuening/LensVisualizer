@@ -45,6 +45,7 @@ const LENS_DATA = {
   },
   source: {
     patentNumber: "US 3,377,119 A",
+    example: { label: "Sole example", id: null },
     patentYear: 1968,
     authors: ["Eiichi Takano"],
     assignees: ["Canon Camera Co., Inc."],

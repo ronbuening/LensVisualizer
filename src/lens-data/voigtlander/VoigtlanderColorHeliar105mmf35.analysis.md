@@ -7,8 +7,7 @@
 **Granted:** 14 July 1953<br>
 **Inventor:** Albrecht Wilhelm Tronnier<br>
 **Assignee:** Voigtländer & Sohn Aktiengesellschaft<br>
-**Title:** *Five-Lens Photographic Objective Comprising Three Members Separated by Air Spaces*<br>
-**Embodiment analyzed:** Example 1
+**Title:** *Five-Lens Photographic Objective Comprising Three Members Separated by Air Spaces*
 
 The prescription is the patent's sole worked numerical example, designated Example 1 in the project job card. The
 patent normalizes the equivalent focal length to $F=1.0000$ and states that a 200 mm focal length was assumed for its

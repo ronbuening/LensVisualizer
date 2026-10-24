@@ -10,7 +10,7 @@
 **Inventors:** Dayong Li; Hiroshi Yamamoto; Hiroki Harada\
 **Assignees:** Tamron Co., Ltd.; Nikon Corporation\
 **Title:** *Wide-Angle Zoom Lens*\
-**Example details:** Example 4, optical layout of FIG. 10\
+**Example details:** Example 4, optical layout of FIG. 10
 
 The implemented prescription transcribes Example 4 of US 8,169,718 B2 without a focal-length scale factor. The patent
 publishes three infinity-focus zoom states at 10.295, 15.598, and 23.393 mm, with design F-numbers 3.60, 4.15, and

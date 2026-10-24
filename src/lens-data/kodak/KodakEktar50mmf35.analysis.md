@@ -8,7 +8,6 @@
 **Granted:** July 11, 1939  
 **Inventors:** George H. Aklin; Fred E. Altman  
 **Assignee:** Eastman Kodak Company  
-**Embodiment analyzed:** Fig. 2 / Example 2  
 
 The implemented prescription is the second numerical example of US 2,165,328. The patent describes a photographic objective with a positive front component, a negative dispersive middle component, and a compound positive rear component. Example 2 is an all-spherical four-element, three-group design published at f/3.5 and nominal focal length `F = 100 mm` (US 2,165,328, Fig. 2, PDF p. 1; specification pp. 1–2).
 

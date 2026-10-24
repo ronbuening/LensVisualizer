@@ -37,7 +37,7 @@ const LENS_DATA = {
   key: "konica-hexanon-135mm-f35",
   maker: "Konica",
   name: "KONICA HEXANON 135mm f/3.5",
-  subtitle: "JP 1955-009472 Example 1 — 1.35× scaled correlation to early Konica F/FS lens",
+  subtitle: "JP 1955-009472 sole example — 1.35× scaled correlation to early Konica F/FS lens",
 
   catalog: {
     lensMounts: ["konica-f"],
@@ -51,6 +51,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 1955-009472 B",
+    example: { label: "Sole example", id: null },
     patentYear: 1955,
     authors: ["Tomokazu Kazamaki", "Fumio Kondo"],
     assignees: [],

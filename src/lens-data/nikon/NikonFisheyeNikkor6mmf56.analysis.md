@@ -10,7 +10,7 @@
 **Inventors:** Masaki Isshiki and Keiji Matsuki  
 **Assignee:** Nippon Kogaku K.K., Tokyo, Japan  
 **Title:** Achromatic Super Wide-Angle Lens  
-**Embodiment analyzed:** Example 1 / Claim 1 and Claim 2, stated at f = 10, F/5.6, 2ω = 220°
+**Example details:** Claim 1 and Claim 2, stated at f = 10, F/5.6, 2ω = 220°
 
 Example 1 of US 3,524,697 is the appropriate patent embodiment for the Nikon Fisheye-Nikkor 6mm f/5.6. The identification is based on a convergence of the patent prescription, the production specifications, and Nikon's own retrospective history of its fisheye program.
 

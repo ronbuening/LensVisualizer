@@ -59,6 +59,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP S55-45883 B2",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1980,
     authors: ["Yusuke Arisaka"],
     assignees: ["Mamiya Koki Co., Ltd."],

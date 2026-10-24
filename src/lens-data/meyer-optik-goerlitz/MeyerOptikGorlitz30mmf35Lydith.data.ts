@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "meyer-optik-gorlitz-lydith-30f35",
   maker: "Meyer Optik Görlitz",
   name: "MEYER OPTIK GÖRLITZ LYDITH 30mm f/3.5",
-  subtitle: "DE 1 794 971 — Example 1; historical Lydith correlation is strong inference, not manufacturer-confirmed",
+  subtitle: "DE 1 794 971 — sole example; historical Lydith correlation is strong inference, not manufacturer-confirmed",
 
   catalog: {
     lensMounts: ["exakta", "m42", "praktina"],
@@ -61,6 +61,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 1 794 971",
+    example: { label: "Sole example", id: null },
     patentYear: 1959,
     authors: [],
     assignees: ["VEB Feinoptisches Werk Görlitz"],

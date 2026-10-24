@@ -9,7 +9,7 @@
 **Applicant:** Optische Werke G. Rodenstock, Munich
 **Title:** Sechslinsiges Weitwinkelobjektiv
 **Classification:** G 02 B 13/06
-**Embodiment analyzed:** Example 1 / claim 1, normalized to $f' = 100$
+**Example details:** normalized to $f' = 100$
 
 DE 26 35 415 B1 discloses a six-element wide-angle objective with a field angle of at least 104° and an aperture ratio of at least 1:6.8. The numerical examples are normalized to $f' = 100$ and report refractive indices at the mercury e-line, $n_e$, with the corresponding $\nu_e$ dispersion convention. Example 1 is the prescription used here.
 

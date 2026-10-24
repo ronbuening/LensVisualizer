@@ -9,7 +9,7 @@
 **Inventor:** Günter Klemt\
 **Applicant:** Jos. Schneider & Co., Optische Werke\
 **Title:** *Optisches System mit Auswechselgliedern zur Änderung des Abbildungsmaßstabes*\
-**Embodiment analyzed:** Example 1 / Zahlentabelle A
+**Example details:** Zahlentabelle A
 
 The prescription is taken from Zahlentabelle A of CH 346706. The patent identifies it as a Gauß-Doppelobjektiv and gives an opening ratio of 1:2, focal length $f' = 100$, and image-side focal distance $s'_{10} = 72.4$. Figure 1 shows the same six-element arrangement divided into an exchangeable front subsystem I (L1–L3) and a fixed rear subsystem II (L4–L6). [CH 346706, p. 2, Zahlentabelle A; drawing sheet 1, Fig. 1 (PDF p. 5).]
 

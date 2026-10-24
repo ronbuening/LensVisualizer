@@ -21,7 +21,7 @@ const LENS_DATA = {
   key: "rodenstock-grandagon-n-75mm-f45",
   maker: "Rodenstock",
   name: "RODENSTOCK GRANDAGON-N 75mm f/4.5",
-  subtitle: "DE 2444954 A1 Example 3",
+  subtitle: "DE 2444954 A1 Claim 3",
 
   catalog: {
     lensMounts: ["large-format-lens-board"],
@@ -35,6 +35,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 2444954 A1",
+    example: { label: "Claim 3", id: "3" },
     patentYear: 1976,
     authors: ["Franz Schlegel", "Josef Weiß"],
     assignees: ["Optische Werke G. Rodenstock"],

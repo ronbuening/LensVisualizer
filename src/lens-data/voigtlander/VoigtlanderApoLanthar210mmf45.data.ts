@@ -52,7 +52,7 @@ const LENS_DATA = {
   key: "voigtlander-apo-lanthar-210mm-f45",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER APO-LANTHAR 210mm f/4.5",
-  subtitle: "US 2,645,154 Example 1 — production-correlated 210mm f/4.5 scale",
+  subtitle: "US 2,645,154 sole example — production-correlated 210mm f/4.5 scale",
 
   catalog: {
     lensMounts: ["large-format-lens-board"],
@@ -71,6 +71,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2,645,154",
+    example: { label: "Sole example", id: null },
     patentYear: 1953,
     authors: ["Albrecht Wilhelm Tronnier"],
     assignees: ["Voigtländer & Sohn AG"],

@@ -54,7 +54,7 @@ const LENS_DATA = {
   key: "carl-zeiss-mirotar-500f45",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS MIROTAR 500mm f/4.5",
-  subtitle: "GB 975,446 Example 1 — correlated to ZEISS Mirotar f/4.5 500 mm",
+  subtitle: "GB 975,446 sole example — correlated to ZEISS Mirotar f/4.5 500 mm",
 
   catalog: {
     imageFormat: "135-full-frame",
@@ -71,7 +71,13 @@ const LENS_DATA = {
     fNumber: { marketing: 4.5, design: 4.003594320334015 },
   },
 
-  source: { patentNumber: "GB 975,446", patentYear: 1964, authors: [], assignees: ["Carl-Zeiss-Stiftung"] },
+  source: {
+    patentNumber: "GB 975,446",
+    example: { label: "Sole example", id: null },
+    patentYear: 1964,
+    authors: [],
+    assignees: ["Carl-Zeiss-Stiftung"],
+  },
 
   elements: [
     {

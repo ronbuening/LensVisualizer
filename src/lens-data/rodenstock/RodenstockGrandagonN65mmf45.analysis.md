@@ -7,7 +7,7 @@
 **Inventors:** Franz Schlegel; Josef Weiß
 **Applicant:** Optische Werke G. Rodenstock, München
 **Title:** Achtlinsiges Weitwinkelobjektiv
-**Embodiment analyzed:** Claim 4 / worked data set 4, f′ = 65 mm, 1:4.5
+**Example details:** worked data set 4, f′ = 65 mm, 1:4.5
 **Worked data sets in patent:** f′ = 100, 90, 75, and 65 mm
 
 The prescription used here is the fourth worked data set in DE 2444954 A1. It is the only data set in the patent with f′ = 65 mm and an aperture ratio of 1:4.5. The production match to the Rodenstock Grandagon-N 65mm f/4.5 rests on convergent evidence:

@@ -32,7 +32,7 @@ const LENS_DATA = {
   key: "rodenstock-grandagon-n-75mm-f68",
   maker: "Rodenstock",
   name: "RODENSTOCK GRANDAGON-N 75mm f/6.8",
-  subtitle: "DE 26 35 415 B1 Example 1 — Optische Werke G. Rodenstock",
+  subtitle: "DE 26 35 415 B1 Claim 1 — Optische Werke G. Rodenstock",
 
   catalog: {
     lensMounts: ["large-format-lens-board"],
@@ -46,6 +46,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 26 35 415 B1",
+    example: { label: "Claim 1", id: "1" },
     patentYear: 1977,
     authors: ["Franz Schlegel", "Josef Weiß"],
     assignees: ["Optische Werke G. Rodenstock"],

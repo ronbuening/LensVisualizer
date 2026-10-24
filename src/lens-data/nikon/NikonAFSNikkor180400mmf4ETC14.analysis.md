@@ -8,7 +8,7 @@
 **Inventors:** Mitsuaki Wada; Masashi Yamashita  
 **Applicant:** Nikon Corporation  
 **Title:** Variable Power Optical System, Optical Equipment, and Method for Manufacturing Variable Power Optical System  
-**Embodiment analyzed:** Second embodiment, Example 1; Figures 7–9 and Tables 8–11  
+**Example details:** Second embodiment, Example 1; Figures 7–9 and Tables 8–11  
 **Lens:** NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR
 
 The primary data file transcribes the converter-out form of Example 1, while the supplemental optical-configuration file

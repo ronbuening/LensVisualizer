@@ -8,7 +8,6 @@
 **Inventors:** Ludwig Bertele; Jürgen Bertele  
 **Applicants / patent holders:** Ludwig Bertele; Jürgen Bertele (inventor-applicants; no organization named, so `patentAssignees` is empty)  
 **Title:** *Photographisches Objektiv*  
-**Embodiment analyzed:** Example 1
 
 Swiss Patent CH 479 879 describes a four-element photographic objective intended preferably for an opening ratio of
 1:2.8 and explicitly identifies a 13.5 cm form for the 24×36 mm format. The worked prescription is normalized to

@@ -7,7 +7,7 @@
 **Inventors:** Günter Klemt; Karl Heinrich Macher\
 **Assignee:** Jos. Schneider & Co., Optische Werke\
 **Title:** High-Speed Photographic or Cinematographic Varifocal Objective\
-**Embodiment analyzed:** Example 1 — the patent's sole worked numerical prescription, tabulated at the intermediate `f = 100` state
+**Example details:** tabulated at the intermediate `f = 100` state
 
 The selected prescription is a 13-element varifocal system built from a four-component front attachment and a fixed four-singlet basic objective. The patent identifies the zoom states as `f = 50`, `f = 100`, and `f = 200`, gives the full numerical prescription only for the `f = 100` state, and states an aperture ratio of 1:2.8 with a varifocal ratio of substantially 1:4. The job-card label “Example 1” is retained for project consistency; the patent itself does not print an “Example 1” heading. [US 3,057,257, PDF pp. 1–3; printed pp. 1–4.]
 

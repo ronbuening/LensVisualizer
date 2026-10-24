@@ -8,7 +8,7 @@
 **Inventor:** Ludwig Bertele  
 **Assignee:** None named on the US grant  
 **Title:** *Three-Component Objective*  
-**Embodiment analyzed:** Sole numerical table headed “Example” (job-card Example 1)
+**Example details:** headed “Example” (job-card Example 1)
 
 The implemented prescription is based on the sole worked numerical example in US 2,721,501. The patent describes a
 three-member photographic objective: a single positive front lens, a cemented two-lens middle member, and a single

@@ -53,7 +53,7 @@ const LENS_DATA = {
   key: "canon-ef-100-300mm-f5-6",
   maker: "Canon",
   name: "CANON EF 100-300mm f/5.6",
-  subtitle: "JP S61-77818 A Example 1 — strong inferred correlation to the Canon EF100-300mm f/5.6",
+  subtitle: "JP S61-77818 A sole example — strong inferred correlation to the Canon EF100-300mm f/5.6",
 
   catalog: {
     lensMounts: ["canon-ef"],
@@ -73,6 +73,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP S61-77818 A",
+    example: { label: "Sole example", id: null },
     patentYear: 1986,
     authors: ["Keiji Ikemori", "Sadatoshi Takahashi", "Takashi Matsushita", "Tsunefumi Tanaka", "Nozomi Kitagishi"],
     assignees: ["Canon Inc."],
