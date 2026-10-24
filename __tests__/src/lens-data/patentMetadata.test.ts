@@ -91,7 +91,7 @@ const NOMINAL_FASTER_THAN_DESIGN: readonly string[] = [
  * Patent-backed lenses that do not yet record `source.example`, each queued in agent_docs/patent-example-queue.md. The
  * sweep below compares for equality, so a lens that gains its example must leave this list and no lens may join it.
  */
-const MISSING_PATENT_EXAMPLE: readonly string[] = ["nikon-nikkor-15mm-f56"];
+const MISSING_PATENT_EXAMPLE: readonly string[] = [];
 
 const ORDINALS = [
   "first",

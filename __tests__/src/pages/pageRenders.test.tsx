@@ -241,7 +241,6 @@ describe("static page renders", () => {
   it.each([
     ["a numbered example", (example?: PatentExample) => example?.id != null],
     ["a sole example", (example?: PatentExample) => example?.id === null],
-    ["no recorded example", (example?: PatentExample) => example === undefined],
   ] as const)("renders structured patent attribution, with %s, in the lens-page fallback", (_kind, hasExample) => {
     const lensKey = CATALOG_KEYS.find(
       (key) => LENS_CATALOG[key].source.patentNumber && hasExample(LENS_CATALOG[key].source.example),

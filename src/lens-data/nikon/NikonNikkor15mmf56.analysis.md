@@ -6,7 +6,7 @@
 **Inventor:** Tomowaki Takahashi  
 **Applicant:** Nippon Kogaku K.K.  
 **Title:** Retrofocus-type super-wide-angle distortion-free photographic lens  
-**Embodiment analyzed:** The second numerical prescription, 球面光学系（参考資料）, “spherical optical system (reference material),” beginning on PDF page 3 (printed 165) and continuing on PDF page 4 (printed 166).
+**Example details:** The second numerical prescription, 球面光学系（参考資料）, “spherical optical system (reference material),” beginning on PDF page 3 (printed 165) and continuing on PDF page 4 (printed 166).
 
 The patent does not number this table as an example; it is the all-spherical comparison prescription printed after the patent's single aspheric embodiment. The aspheric embodiment, its coefficients, and its aberration curves are not the present optical model.
 
