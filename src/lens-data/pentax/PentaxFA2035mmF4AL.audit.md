@@ -140,3 +140,42 @@ The engine's paraxial half-field, which surface 2 limits at the wide end, falls 
 These were made in the same integration pass, outside the semi-diameter work. Glass labels are now catalog equivalents with the production supplier unspecified. They are OHARA S-LAH66 (L1), S-LAH65V (L2 and L5), S-TIH53 (L3 and L9), S-NSL36 (L4), S-BSM28 (L6), S-FSL5 (L7), S-LAH53 (L8) and HIKARI J-SK5 (L10). OHARA S-BAL35's νd of 61.14 does not round to the printed 61.2, which is why L10 takes the HIKARI glass. The resin layer L2R stays unmatched. Every label resolves at the patent coordinate.
 
 The display name is now "PENTAX SMC FA 20-35mm f/4 AL". The subtitle and spec lines were rewritten, and the catalog design f-number is 4. The close-focus distance now holds Ricoh's marketed 0.3 m instead of a 1e15 placeholder, and focus remains unmodeled. The focus description states the inferred zoom path: linear G2–stop and back-focus laws with the G1–G2 spacing solved for infinity focus. The analysis was revised to match these changes. It covers the glass table and element lines, the zoom-path and focus prose (the path now reproduces a G1 reversal near 31.1 mm), the colour-model statement and the new surface-2 half-field. Package-process status lines and evidence-file references were removed, and the source facts and numbers kept. The source-field survivor counts now quote this pass's replicate: chief aimed through the stop centre, default offsets, 5/5 and 3/5 at wide 60 % and 100 %, 4/5 and 4/5 at tele. The package's earlier 1/5 at wide 100 % came from a different pupil-aiming method that could not be reproduced here.
+
+## 2026-10-25 — Second review: diagram, labels and movement
+
+This review is independent of the semi-diameter pass above. It compared the local page with FIG. 17 (wide, PDF page 11) and FIG. 19 (tele, PDF page 12) of `patents/US6246529.pdf`. It also used the patent text on PDF pages 16–20 and the coordinator's capture of the Ricoh construction diagram. The page was checked at 20.6, 27 and 34.01 mm, at `focus=1`, in both zoom-motion overlays, and in the L2R and L10 inspectors.
+
+Re-measurement. The rims were read again from the native 2320 × 3408 raster. In FIG. 17 the vertex crossings run from x = 683 (surface 1) to x = 1579.5 (19A). That is 896.5 px for 79.016 mm, or 0.0881 mm/px; the sub-spans 1→8 and 8→19A give 0.0880 and 0.0882. In FIG. 19 the 58.28 mm tele span covers 663.5 px, or 0.0878 mm/px. Each rim is half the spacing between the drawn top and bottom edges. FIG. 17 gives L1 front 18.55 mm (FIG. 19: 18.73) and L1 rear-face end 14.2 (14.3). L2 and its resin layer read 14.1, L3 12.5, G2 8.8, L6 8.4, L7/L8 8.1 and L9 6.8 (FIG. 19: 7.0). L10 reads 7.7 (FIG. 19: 7.9) and is drawn square-cut. These agree with the first pass within 0.2 mm.
+
+Silhouette differences on the page before this review:
+
+- L10 rendered with a slanted bevel, front 7.5 mm and rear 7.9 mm, where both figures draw a square-cut block.
+- L1's front rim sits 0.95–1.1 mm (5–6 %) below the drawn rim. The drawn flange step shows as a straight slant from the 17.6 mm front rim to the 14.3 mm rear-face rim, because the renderer cannot draw a step.
+- L6, the L7/L8 pair and L9 render 4–8 % taller than drawn. The f/4 tele axial beam needs that height (9.0, 8.7 and 7.1 mm against beams of 8.96, 8.68 and 7.06 mm), so they stay.
+- Everything else overlays the figure within one or two pixels: the hybrid L2/L2R block, L3, the G2 pair, the stop position and every vertex spacing.
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| Surface 18 `sd` | 7.5 | 7.9 | L10 drawn square-cut at 7.7 / 7.9 mm in FIG. 17 / 19. Raising the front face to the stored 19A rim squares it without moving the asphere's rim. Floors at 18 are 6.74 mm axial and 6.52 mm chief. |
+| L2R `type` | Negative Meniscus | Negative Meniscus (1× Asph) | Carries 5A, marked 5* in Table 5 |
+| L10 `type` | Positive Meniscus | Positive Meniscus (1× Asph) | Carries 19A, marked 19* in Table 5 |
+| `role`, all 11 entries | Package text "Native material segment; standalone air focal length does not express its cemented or in-situ power." | One-line roles from the patent's element description (PDF page 18, column 6, Embodiment 3, which Embodiment 5 follows) | The old text was the same for every entry and described uncemented L1, L3, L6, L9 and L10 as cemented |
+| `diagramLabel` | Absent; the diagram drew ids 1–11, so L3 showed as 4 and L10 as 11 | L1–L10, plus L2R on the resin layer | The patent gives no element designations; sequential numbers now match the names and the ten-element count |
+| Group bracket text | G1 / G2 / G3 | G1 (−) / G2 (+) / G3 (+) | Column 3: negative first lens group 10, positive second 20, positive third 30 |
+
+The analysis now says L10 carries one 7.9 mm radius on both faces, and its L2R and L10 headings match the new type strings.
+
+Clearance after the edit. An exact meridional trace at Y = 21.65 mm over all 201 stations finds no axial clip and no chief block. The validator passes at the default 0.90 gap-sag fraction, the image-circle check reports nothing undersized, and traced corner coverage reaches 21.65 mm at all 201 stations. The engine values did not change: EFL 20.603 mm, f/4 at every station, half-field 40.322°, and every per-station half-field. Surface 18's own field limit rises from 45.8° to 47.3° at wide and from 38.2° to 39.6° at tele, still above 19A's 43.4° and 35.9°. The engine's wide-open geometric transmission at infinity is identical at wide, mid and tele, before and after. It is 55.2 % at the 47.8° wide corner, 81.0 % at 39.1° at mid zoom and 91.9 % at the 32.7° tele corner. The default-ray census is unchanged: 126 of 126 axial rays pass and 10 of 105 off-axis rays clip, each clipping first at surface 16.
+
+Checked and found correct:
+
+- Group brackets cover surfaces 1–7, 8–10 and 11–19A, as the Embodiment 3 text gives them (PDF page 18). The cemented brackets are HYBRID 3–5A, D1 8–10 and D2 13–15.
+- Only 5A and 19A are aspheric, matching 5* and 19* in Table 5 (PDF page 19), with the coefficients on PDF page 20.
+- The stop sits between surfaces 10 and 11, 1.700 mm ahead of 11, and moves with G3 at every station, as column 3 states.
+- There are no `apd` tags. The patent prints only nd and ν, and the maker diagram marks only the aspherical elements.
+- The 201 zoom stations ascend from 20.6 to 34.01 mm, and the two printed ends are labelled Wide and Tele. Gap 7 falls monotonically from 14.851 to 1.200 mm and gap 10 from 8.485 to 1.400 mm. The back focus rises monotonically from 36.90 to 53.15 mm.
+- Measured from the image plane, G1's front vertex goes from 115.916 to 111.231 mm at 31.15 mm, then back to 111.430 mm at tele. That is 4.685 mm toward the image and a 0.199 mm reversal toward the object. G2 goes from 78.505 to 87.670 mm, 9.165 mm toward the object, and G3 from 61.820 to 78.070 mm, 16.250 mm toward the object. Both move monotonically. This matches column 3 and FIG. 25 (PDF page 15), and the zoom-motion overlay shows the same directions at both ends.
+- Focus is not modelled. The slider reads "Not modeled", `focus=1` draws the infinity geometry, and the focus description and the gap labels G1–G2, G2–STO and BF are accurate.
+- The maker diagram, a low-resolution Ricoh image, shows 10 elements in 8 groups. It colours element 2 (the hybrid) and the last element as aspherical, which matches 5A on L2R and 19A on L10.
+
+Open item for the owner. Raising surface 1 to 18.6 mm, the mean of the two figure panels, would put L1's front rim on the drawing. That trial passes the validator, clips nothing and leaves the half-field unchanged. It changes one engine number: transmission at the 47.8° wide corner rises from 55.2 to 69.8 %, with every other sampled field identical. It was not applied, because the gap is about 5.5 % and the widening would improve a vignetting figure. The L1 flange step and the floor-limited heights of L6, L7/L8 and L9 remain as described above.

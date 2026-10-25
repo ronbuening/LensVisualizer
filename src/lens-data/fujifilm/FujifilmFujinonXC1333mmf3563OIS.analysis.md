@@ -298,6 +298,8 @@ The polynomial formula does not establish material at arbitrarily large radii. N
 
 The other five do not turn within 1.3 times their rims.
 
+The table uses the printed rims. The model draws the front faces of L25 and L31 out to their rear faces' rims, so 15A ends at 4.28 mm and 17A at 5.995 mm (see Aperture Model and Effective Diameters). At 4.28 mm the 15A departure is +0.0095 mm and its rim slope is 5.1°. At 5.995 mm the 17A departure is +0.265 mm and its slope is 16.7°. Neither profile turns within 1.3 times these drawn rims either.
+
 ## Conditional Expressions
 
 The table evaluates the patent's 24 broad strict inequalities from the transcribed prescription. The patent's definitions use the following quantities:
@@ -352,7 +354,7 @@ No numerical decenter amplitude, control law or stabilized image-quality state i
 
 Paragraph 0183 defines ED as twice the radius of the outermost transmitted ray at a surface. The same paragraph notes that this extremal ray can be off axis. Thus ED is an effective ray envelope; it does not by itself establish a housing diameter, a maximum iris radius across zoom or a mechanical diaphragm schedule. Paragraph 0094 also states that the drawn stop symbol specifies axial position, not size or shape.
 
-Every non-stop surface's semi-diameter in the data is its Table 1 effective diameter halved (ED/2). The rims are therefore source values, not estimates from the drawing. A check against FIG. 1 found them consistent with the drawn element heights. The drawing outlines L25 and L31 as square blanks at their rear faces' larger diameters, while the table gives smaller clear apertures for their front faces. Source STO has ED = 8.84 mm (radius 4.42 mm). The data file stores no stop radius, so the model derives the iris from the printed f-numbers f/3.60, f/4.70 and f/6.49. This is a calculated model, not a source-published mechanical law, and matching its calibration targets is not independent evidence of the diaphragm size.
+Seventeen of the twenty non-stop semi-diameters in the data are Table 1 effective diameters halved (ED/2). Those rims are source values, not estimates from the drawing, and FIG. 1's element heights agree with them. The drawing outlines L25, L31 and L41 as square blanks, each with both faces ending at one height close to its rear face's larger ED. The table gives smaller clear apertures for their front faces. The model therefore draws those three front faces at the rear partners' ED/2: 15A at 4.28 mm, 17A at 5.995 mm and 19 at 12.48 mm, instead of the printed 3.78, 5.52 and 12.045 mm. This changes the drawing, not the trace. The traced axial and full-field beams stay inside the printed front apertures, and the wide-open transmission at every field angle of the three printed stations is the same as with the printed values. Source STO has ED = 8.84 mm (radius 4.42 mm). The data file stores no stop radius, so the model derives the iris from the printed f-numbers f/3.60, f/4.70 and f/6.49. This is a calculated model, not a source-published mechanical law, and matching its calibration targets is not independent evidence of the diaphragm size.
 
 | State | Source FNo | Inferred iris radius (mm) | EFL/transmitted entrance diameter | Image-space sine f-number |
 |---|---:|---:|---:|---:|
@@ -362,7 +364,7 @@ Every non-stop surface's semi-diameter in the data is its Table 1 effective diam
 
 The Wide inferred iris exceeds the source stop radius by 0.012 mm. That is larger than the 0.0025 mm half-last-digit interval of the printed diameter, so rounding alone does not explain it. Because ED is a ray envelope, the difference is not proof of a larger mechanical stop either.
 
-At Wide, the nominal f/3.60 axial ray reaches about 0.015 mm beyond the published 8A effective radius, so the transmitted on-axis pupil is set at S8A. Its transmitted entrance-equivalent f-number is 3.610346467 and its image-space sine value is 3.605446402. With the Wide iris set to the source's 4.42 mm (about f/3.61), every published rim clears the axial beam, so the source's ED set agrees with its own stop. At Middle the nominal ray clips the exterior of S10 by a small amount, and both computed f-number conventions fall within the printed f/4.70 interval. At Tele the nominal f/6.49 ray passes and the stop limits the beam.
+At Wide, the nominal f/3.60 axial ray reaches about 0.015 mm beyond the published 8A effective radius, so the transmitted on-axis pupil is set at S8A. Its transmitted entrance-equivalent f-number is 3.610346467 and its image-space sine value is 3.605446402. These figures describe the printed effective diameters. The model draws L21 square-cut, as FIG. 1 does, with both faces at the front face's 4.645 mm, so the modelled Wide axial beam clears 8A and the stop sets the pupil. With the Wide iris set to the source's 4.42 mm (about f/3.61), every published rim clears the axial beam, so the source's ED set agrees with its own stop. At Middle the nominal ray clips the exterior of S10 by a small amount, and both computed f-number conventions fall within the printed f/4.70 interval. At Tele the nominal f/6.49 ray passes and the stop limits the beam.
 
 Treating 4.42 mm as a fixed iris at all zoom stations is kept as a sensitivity check. Its image-space sine values are 3.605446402, 4.703192568 and 6.074195366; the Tele result differs materially from source 6.49. Changing the f-number convention alone therefore does not justify a fixed-iris interpretation. Conversely, agreement under the inferred schedule does not establish the actual mechanical iris law. The small Wide difference is left as printed.
 
@@ -396,7 +398,7 @@ First-order calculations from the transcribed data use two methods, matrix propa
 
 The small EFL and image-plane residuals are consistent with the patent's printed precision. They do not establish manufacturing tolerances or an exact production prescription.
 
-The model keeps every source ED/2, all eight complete asphere coefficient sets, the source plate and all three zoom states. It has no finite-focus reconstruction and no OIS decenter model.
+The model keeps the source ED/2 on every rim except the three square-blank front faces described above, all eight complete asphere coefficient sets, the source plate and all three zoom states. It has no finite-focus reconstruction and no OIS decenter model.
 
 ## Sources and References
 

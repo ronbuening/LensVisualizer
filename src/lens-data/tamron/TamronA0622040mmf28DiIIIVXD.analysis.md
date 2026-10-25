@@ -128,8 +128,8 @@ nd = 1.85025, νd = 30.05. Glass: S-NBH57 (OHARA catalog equivalent). f = +66.02
 
 L4 is the positive member of the near-cancelling G2 pair. Its rear surface 8 faces the front of L5 across
 the source 2.300 mm air gap. This exterior interface is the aperture-clearance constraint discussed
-below; it is unrelated to the L7–L8 cemented junction. The 10.16 mm modeled rear semi-diameter is set by
-the tele f/2.91 axial ray, not a published clear aperture.
+below; it is unrelated to the L7–L8 cemented junction. Both faces are modeled at 11.3 mm, following the
+square-cut L4 that Figure 17 draws; this is not a published clear aperture.
 
 Source surfaces 7–8; ¶0122, ¶0128.
 
@@ -377,26 +377,29 @@ precise finite conjugacy or full-field performance.
 
 The patent does not publish numerical clear semi-diameters or physical iris radii. Apertures are inferred:
 the rims were compared with the wide-angle panel of Figure 17, the optical extent is used where curved
-faces end at drawn mounting flanges, and every rim is floor-checked by exact real-ray tracing. The source
+faces end at drawn mounting flanges, and every rim is floor-checked by exact real-ray tracing. L2's
+nearly flat front face is modeled to its drawn 17.4 mm outer edge; Figure 17 rests L1's rear flange
+against that face from about 15.9 mm outward, so L1's 15.8 mm rear face remains the limiting rim there. The source
 f/2.91 is used to infer the physical iris schedule through exact axial tracing, giving 7.949329, 9.348782
 and 11.019642 mm stop radii at the three source stations. Agreement with f/2.91 is a calibration result,
 not independent proof of unpublished diaphragm dimensions. Interpolated iris radii remain estimates.
 
-Surface 8 uses SD = 10.16 mm, the tele f/2.91 axial marginal height (10.156 mm) rounded up, while
-surface 9 remains at 10.20 mm. At the shared 10.16 mm height the two sags take 2.266 mm of the 2.300 mm
-vertex gap (98.5%), leaving 0.034 mm of air. The lens-global gapSagFrac is therefore 0.99, the smallest
-two-decimal allowance that admits the rim. An earlier version of this model reduced surface 8 to 10.085 mm
-to meet a 0.97 allowance, which clipped the tele axial beam by about 0.07 mm (rim-limited f/2.93); the
-10.16 mm rim and 0.99 allowance replace it. The source tele ray has about 0.005 mm radial headroom at
-surface 8 and 0.043 mm at surface 9. Figure 17 draws the same near contact: the flat front flange of L5
-meets the rear face of L4 at about 10 mm height. This exterior L4-to-L5 gap is the near-contact
-constraint, not a cemented interface.
+Surface 8 uses SD = 11.3 mm, so L4 is drawn square-cut at the height of its front face, as in Figure 17.
+Surface 9 uses SD = 10.18 mm. This rim is nearest the tele f/2.91 axial marginal ray, which reaches
+10.157 mm there, about 0.02 mm inside the rim. At the shared 10.18 mm height the two sags take 2.275 mm of
+the 2.300 mm vertex gap (98.9%), leaving 0.025 mm of air. The lens-global gapSagFrac is therefore 0.99.
+A surface-9 rim of 10.20 mm would need 1.00. An earlier version of this model reduced surface 8 to
+10.085 mm to meet a 0.97 allowance, which clipped the tele axial beam by about 0.07 mm (rim-limited
+f/2.93); the present rims and the 0.99 allowance replace it. Figure 17 draws the same near contact: L5's
+concave front face ends at about 10.1 mm, and its flat flange lies against L4's rear face out to the
+outer edge. This exterior L4-to-L5 gap is the near-contact constraint, not a cemented interface.
 
 The allowance acts on every air gap, although the other apertures remain unchanged and all other gaps
 already satisfy the default 0.90 criterion. Positive central-value geometry is not evidence of
 manufacturing safety. An adverse joint half-last-place R/d/nd rounding example raises the surface-8 ray
-height to 10.161807897 mm, beyond the declared aperture by 0.001807897 mm, while physical air remains
-positive. This is a local sensitivity example, not a rigorous uncertainty enclosure or a probability
+height to 10.161807897 mm, while physical air remains positive. That height would have exceeded the
+earlier 10.16 mm surface-8 rim by 0.001807897 mm. The rays at the present 11.3 mm surface-8 rim and
+10.18 mm surface-9 rim were not re-evaluated for this example. This is a local sensitivity example, not a rigorous uncertainty enclosure or a probability
 distribution; asphere-coefficient rounding was not varied. Rounding robustness and production tolerances
 are not demonstrated.
 
@@ -412,7 +415,11 @@ interior samples through ±0.83 stop radius at 60% image height passed. Corner b
 vignetted; an unresolved aim is untested, not transmitted. Among transmitted field samples, a minimum
 radial margin of approximately 0.000247265 mm at surface 17 shows how close some sampled rays lie to
 other apertures. None of these margins is a fabrication allowance. These off-axis counts were computed
-with an earlier 10.4 mm surface-18 rim and have not been recomputed. The current 9.0 mm rim follows the
+with an earlier 10.4 mm surface-18 rim and 15.44 mm surface-3 rim and have not been recomputed. Raising
+surface 3 to L2's drawn outer edge removes a clip that the earlier rim added beyond the engine half-field
+at the wide end: wide-open transmission at 44.8° and 47.8° rises from 78.1% and 39.1% to 82.8% and 43.8%,
+the same values any surface-3 rim from 15.8 mm upward gives, because L1's rear face then limits those rays
+as Figure 17 draws. The current 9.0 mm surface-18 rim follows the
 end of L9's concave rear face in Figure 17 and clips more of the upper off-axis bundle at middle and tele
 zoom: engine geometric transmission at the edge of the field falls by about 7–10%, and at the tele end
 the upper ray of the app's off-axis fan stops at surface 18. The on-axis counts above are unaffected,

@@ -247,3 +247,72 @@ The median figure/stored ratio is 0.965, and every rim not discussed below sits 
 - The focus and zoom-path prose was aligned with the new description.
 - Package-process wording was removed: proxy, runtime replay, evidence and hash references, the pinned-revision and review-status lines, and the dated revalidation addendum. That addendum's source facts (the 198 unpublished positions, the D6/D16 laws, the 0.0785 mm largest residual and the MTF scope) were folded into the limits section.
 - The US family publication was added as source 7.
+
+## 2026-10-25 — Second review: diagram, labels and movement
+
+**What was compared.** The local page at 14.29, 24.24 and 41.19 mm, at the far end of the focus slider, the element inspector for elements 1, 2, 5, 6 and 9, and both group-movement overlays (zoom, at wide and at tele; focus). These were set beside FIG. 1 of the modelled Numerical Example 1, measured afresh on the US family copy (US 2010/0202063 A1, sheet 1, PDF p. 2, native 300 dpi). It is the same drawing as JP 2010-186010 A p. 17, printed larger. Panel (b) has no leader lines and was measured top and bottom. Panels (a) and (c) were used as cross-checks. The coordinator's copy of the Olympus construction drawing was also viewed.
+
+**Scale and rims.** Vertex crossings in panel (b), the intermediate state, give 81.5 µm/px for surface 1 to 18A (908.7 px for 74.039 mm), 81.3 µm/px for surfaces 1–6 and 81.4 µm/px for surfaces 7–16. Panel (a) gives 81.5 µm/px for surface 1 to 18A (987.5 px for 80.466 mm). A scale of 81.4 µm/px was used. Each rim is half the distance between the centres of the top and bottom outline.
+
+| Element (surfaces) | Stored sd, mm | Figure, mm | Stored / figure |
+|---|---:|---:|---:|
+| L11 front (1), outer edge of the blank | 14.5 | 14.77 | 0.98 |
+| L11 rear (2), end of the concave curve at the flat shoulder | 12.6 | 11.5–11.9 | 1.06–1.10 |
+| L12 front (3A) and flat outer edge | 12.2 | 11.90 | 1.03 |
+| L12 rear (4A), end of the curve before the chamfer up to 11.90 | 11.5 | 10.75 | 1.07 |
+| L13 (5, 6) | 11.4 | 10.97 | 1.04 |
+| L21 (7, 8) | 6.7 | 6.48 | 1.03 |
+| L22 (10, 11) | 5.8 | 5.64 | 1.03 |
+| L23 (11, 12) | 5.8 | 5.41 | 1.07 |
+| L24 (13, 14) | 7.1 | 6.87 | 1.03 |
+| L25 (15, 16) | 8.1 | 7.79 | 1.04 |
+| L3 (17A, 18A) | 10.4 | 10.13 | 1.03 |
+
+Panel (c) reads about 1.3% larger on the same elements (L11 14.99 mm, L3 10.26 mm at 81.6 µm/px). These readings repeat the first pass within 0.2 mm.
+
+**Silhouette differences seen, and why no rim changed.**
+- L11: the figure draws a squared blank, with a flat top at full height and a flat rear shoulder down to where the concave face ends. The site joins the 14.5 mm front rim to the 12.6 mm rear rim with one slanted edge. Squaring it would need surface 2 at 14.5 mm, which wraps the concave face over L12's front corner; that is the state the first pass removed. The slant is a renderer limitation and stays.
+- L12: the figure has a flat outer edge at 11.9 mm with a small chamfer behind the aspheric rear face. The site's 12.2 → 11.5 mm slant stands in for that edge and chamfer closely enough.
+- Surfaces 2 and 4A sit 6–10% above the figure's curve ends. They are held at the smallest values that keep the engine's 40.28° wide-end half-field, which is already below the patent's 41.6°. They stay.
+- L23: the figure draws it about 0.2 mm lower than L22. Showing that would leave a slant on L23 from the shared 5.8 mm junction. The step is inside measurement noise and is not drawn.
+- L11 front: it reads about 5% low against the other rims' common 1.03–1.04 ratio. That is inside noise, so it stays.
+- Height order L11 > L12 > L13 > L3 > L25 > L24 > L21 > L22 ≥ L23 matches the figure. Every other element is square-cut on the site, as drawn.
+
+**Changes.**
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Element `label` (×9) | "Source L11" … "Source L3" | "Element 1" … "Element 9" | "Source" was package wording, shown as the bold inspector title. Corpus form is "Element n" beside the patent name. The number now matches the front-to-rear element numbers of the Olympus drawing (aspherical 2 and 9, ED 5, HR 6). |
+| L22 and L23 `cemented` | "G2 cemented pair" | "L22 + L23" | The inspector chip now matches the diagram's doublet bracket. |
+| `focus.description` | "…prints infinity spacings at wide, middle and tele; focusing is not modeled." | Adds that the patent focuses by moving G1 alone toward the object (claim 3) but prints no near-focus spacings | JP claim 3 and ¶¶0015–0016; US claim 3 and ¶0018. |
+
+No `sd`, gap, station or optical value changed.
+
+**Checked and found correct.**
+- Groups are G1 (surfaces 1–6), G2 (7–16, including the stop) and G3 (17A–18A), as bracketed in FIG. 1.
+- There is one doublet bracket, over 10–12, for the single cemented interface at surface 11.
+- Element names and diagram labels are the patent's L11–L13, L21–L25 and L3. Types agree with the signs of R and with the patent text (¶¶0072–0074): L24 is a positive meniscus convex to the image, and L3 is a positive meniscus convex to the image.
+- Aspheric markers are on 3A, 4A, 17A and 18A only, matching ¶0076 and the aspheric table.
+- The stop is drawn after L21 and before L22, at the patent's surface 9.
+- L22's `apd: "inferred"` is right. The patent text has no anomalous-dispersion wording, and the Olympus drawing colours element 5 as ED glass and element 6 as HR glass.
+- The gap labels D6 and D16 follow the patent's d6/d16. Station labels are "Wide" and "Tele" on the first and last of 201 stations, as the schema requires.
+
+**Movement.** The printed stations sit at indices 0, 100 and 200, ascending wide to tele.
+- D6 is 30.536, 12.468 and 1.810 mm, and D16 is 12.365, 24.006 and 43.987 mm. Both match the patent's zoom data.
+- Across the 201 stations D6 decreases strictly and D16 increases strictly.
+- G2's front vertex moves objectward without reversing, from −52.56 to −84.18 mm relative to the image.
+- G3 is fixed at −18.33 mm. This matches the vertical arrows in FIG. 1.
+- G1 reverses: front vertex at −96.59, then −90.17, then −99.49 mm. The modelled turning point is near 23.1 mm. FIG. 1 shows the same with its image-ward arrow from (a) to (b) and its object-ward arrow from (b) to (c).
+- The zoom overlay shows the same three tracks.
+- Focus is inert, as described. The far end of the focus slider reads "Not modeled", and the focus overlay has no focus track.
+
+**Results.**
+- Engine half-field stays 40.28°/29.14°/16.76° and the f-number stays 3.63/4.48/5.76 at the printed stations. The wide stop radius stays 4.922 mm.
+- The engine vignetting curve is unchanged: 87.5% at 41.6° wide, and 98.9–103.4% (sampling level) elsewhere.
+- The real-ray clearance output at 11.45 mm image height is identical to the baseline, with no clipped axial beam or blocked chief ray.
+- The validator reports no errors, no image-circle row is undersized, and traced corner coverage is 100% at all 201 stations.
+
+**Open limitations.**
+- The renderer cannot draw L11's flat rear shoulder or L12's chamfer.
+- The engine-field floor keeps surfaces 2 and 4A above the figure's curve ends.
+- All rims remain figure estimates.

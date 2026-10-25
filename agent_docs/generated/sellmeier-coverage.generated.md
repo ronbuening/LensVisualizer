@@ -1895,7 +1895,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 17A | Source L8 | abbe | `Unmatched (optical plastic per the patent; polymer unpublished)` | Explicit unmatched/proprietary annotation |
+| 17A | Element 9 | abbe | `Unmatched (optical plastic per the patent; polymer unpublished)` | Explicit unmatched/proprietary annotation |
 
 ### [OLYMPUS ZUIKO AUTO-T 180mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoT180mmf2.data.ts) - 90.0% trusted (9/10); 90.0% Sellmeier (9/10) - JP H05-042643 B2
 
@@ -2576,8 +2576,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 3A | Source L12 | abbe | `Unmatched (optical plastic, printed nd 1.52542 / νd 55.78; polymer unpublished)` | Explicit unmatched/proprietary annotation |
-| 17A | Source L3 | abbe | `Unmatched (optical plastic, printed nd 1.52542 / νd 55.78; polymer unpublished)` | Explicit unmatched/proprietary annotation |
+| 3A | Element 2 | abbe | `Unmatched (optical plastic, printed nd 1.52542 / νd 55.78; polymer unpublished)` | Explicit unmatched/proprietary annotation |
+| 17A | Element 9 | abbe | `Unmatched (optical plastic, printed nd 1.52542 / νd 55.78; polymer unpublished)` | Explicit unmatched/proprietary annotation |
 
 ### [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) - 77.8% trusted (7/9); 77.8% Sellmeier (7/9) - WO 2021/246545 A1
 

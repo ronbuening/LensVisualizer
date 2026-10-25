@@ -110,3 +110,44 @@ The coordinator made these changes to the data file in the same integration pass
 - Focus description: the model is infinity-only and follows an inferred path. The G1–stop and stop–G2 spacings follow linear laws, the stop moves with G3, and the back focus is solved. SP2 is not modeled, and the marketed minimum focusing distance is 0.4 m.
 
 The analysis file was brought into line with these changes. Its glass section now describes catalogue-curve dispersion, with catalogue θgF values, instead of stored line indices. The zoom-path and focus wording follows the new focus description. Package-process wording was removed, and every source fact, number and qualification was kept.
+
+## 2026-10-25 — Second review: diagram, labels and movement
+
+This review compared the local page at 25, 49.4 and 67.6 mm, with the zoom movement overlay, against JP 2002-236254 A. It used FIG. 5 (PDF p. 7), both the W panel and the movement curves, the Example 2 table (PDF p. 4, ¶¶0018–0022) and ¶¶0007–0010 (PDF p. 3). The figure was measured again at 400 dpi from its 200 dpi raster, independently of the first pass. The scale comes from the near-axis vertex crossings: s9–s18 spans 324 px for 28.20 mm and s1–s18 spans 1046 px for 91.04 mm, both 87.0 µm/px. The s1–STO, s12, s15 and SP2 crossings agree within 0.5%. Each height is half the distance between the centres of the top and bottom rim lines.
+
+FIG. 5 rim heights, in mm: L1 21.30; L2 16.8, square-cut across both faces; L3 16.8; SP1 7.88, against the engine's wide stop radius of 8.05; L4 11.50; the L5–L6 block 10.84, flat-topped, with a flat rear land on L6 down to about 8.3, where s13 ends at L7's front corner; L7 8.62, square-cut; the G3 doublet 10.28, a square block; SP2 about 14.2.
+
+Differences between the page and the figure before this review:
+
+- L2's front face was 14.5 mm and its rear face and the resin layer 15 mm, so the hybrid element's top edge rendered as a slant. FIG. 5 draws it square-cut.
+- L7's front face was 8.3 mm and its rear 8.6 mm; FIG. 5 draws L7 square-cut at 8.62 mm. The first pass kept s14 at 8.3 because it took the d13 band as the limit. The validator checks that band at the smaller of the two facing radii, s13's 8.3 mm, so 8.6 mm on s14 passes and the d13 intrusion stays at 87.2%.
+- L1 and L6 are drawn with a cylindrical outer edge and a flat rear land. The renderer joins their unequal face radii, 20/14.5 and 11/8.3 mm, with a straight bevel. Neither can be squared. s2 meets s3 at 15.19 mm and the default 0.90 gap rule stops it near 14.6 mm; s13 meets L7's front at 8.84 mm. This is a renderer limitation and is kept.
+- G1 renders shorter than drawn: L1 at 0.94 and L2–L3 at 0.89 of the figure. As the first pass found, the drawn G1 does not follow the prescription. The drawn L1 rear curve runs through L2's front-top corner, while the true surfaces meet at 15.19 mm and the resin thins to zero at 15.24 mm. The drawing's L1 : L2 ratio is 1.27 and the model's is 1.33, so raising L1 alone would move further from the drawing. Kept.
+- L4, the L5–L6 block, G3 and s15 agree with the figure within 0–3%.
+
+| Surface | Element | Before (mm) | FIG. 5 (mm) | After (mm) | Evidence |
+|---|---|---|---|---|---|
+| 3 | L2 front | 14.5 | 16.8 | 15 | Squares the hybrid element at the height of s4 and s5A, as FIG. 5 draws it. The d2 band is still checked at s2's 14.5 mm, so its intrusion stays 87.25%. The vignetting curves do not change at any zoom position. |
+| 14 | L7 front | 8.3 | 8.62 | 8.6 | Squares L7 at the height of s15, as drawn. The d13 intrusion is unchanged because it is checked at s13's 8.3 mm, and the clearance to s13 stays 0.23 mm. L7's front corner at 8.6 mm sits 1.4 mm clear of L6's rendered bevel. |
+
+Clearance and engine results: an exact real-ray trace at Y = 21.63 mm over all 201 zoom stations shows no axial clip and no chief-ray block, before or after, and the per-station lines are identical. At s14 the largest axial marginal height is 7.19 mm and the largest chief-ray height 6.36 mm. The engine's wide half-field (35.91°), FOPEN (3.62) and wide stop radius (8.047 mm) are unchanged. The surface validator passes with the default 0.90 gap rule, the image-circle check reports nothing undersized, and all 201 stations reach the full-frame corner clear. Wide-open geometric transmission at wide, before → after: 22.6° 97.9 → 98.4%, 28.2° 93.8 → 94.8%, 31.0° 91.7 → 92.7%, 36.7° 87.0 → 87.5%, 39.5° 83.3 → 83.9% and 42.3° 58.9 → 58.9%. At zoom fraction 0.5 the 17.8° value goes from 100.5 to 101.1%, and tele is unchanged. The whole shift comes from s14; the s3 change alone changes nothing. It is a by-product of matching the drawn L7, not the reason for the change.
+
+Labels and tags changed:
+
+- The hybrid bracket "Hybrid1" is now "H1". That matches the elements' cemented value and the corpus convention for hybrid brackets. D1 (s11–s13) and D2 (s16–s18) were already correct.
+- The element labels "Glass body 1–9" are now "Element 1–9", numbered as L1–L9, which is the inspector-heading convention. The resin layer keeps "Hybrid resin layer".
+- R1's type "Hybrid resin negative meniscus" is now "Neg. Meniscus Resin Layer (1× Asph)", so the type counts its aspherical surface. R = 36.08/29.16 mm and f = −294.7 mm make it a negative meniscus convex to the object. The analysis heading follows.
+- Every glass element had the same placeholder role, naming its group and adding a focal-length caveat. Each role now gives the element's position and job. L8 and L9 cite the patent's G3 roles: flare cutting (¶0007), and a cemented negative meniscus, concave to the object, that corrects lateral chromatic aberration (¶0009).
+- The zoom station labels "Wide native25.0mm" and "Tele native67.6mm" are now "Wide" and "Tele".
+- The focus description said the back focus is solved for infinity focus at each position. The printed stations instead keep their residuals of −0.027, −0.036 and +0.046 mm, so it now says the back focus follows paraxial infinity focus along the path and keeps those residuals of under 0.05 mm.
+
+Checked and found correct: the groups G1 (s1–s7), G2 (s9–s15) and G3 (s16–s18) use the patent's notation. The patent gives no element designations, so sequential L1–L9 stays, with R1 for the resin layer. Every element type agrees with its radius signs. The patent marks only surface 5 aspherical, and only 5A carries the A suffix and an asphere. The stop sits at the patent's SP1, between L3 and L4. The gap labels d7, d8, d15 and "d18 + derived image gap" read correctly; the last is 3.38 + 35.73 mm at wide. No apd tag is set and none is warranted. The patent text names no special glass, and the maker's 2004 catalogue drawing marks only element 2, as aspherical, in 9 elements and 7 groups.
+
+Movement, measured at each group's front vertex relative to the image, W / M / T in mm:
+
+- The zoom stations ascend from 25.0 to 67.6 mm and every gap row follows that order. The printed rows reproduce the patent table: d7 31.97/7.7865/2.9773, d8 10.60/4.5756/1.10, d15 0.80/6.8244/10.30, and d18 3.38/20.0259/33.4442 plus 35.73.
+- G1 is at −130.150 / −122.612 / −131.221. It moves 7.54 mm imageward and then 8.61 mm objectward, with one reversal, as FIG. 5's curve and ¶0007 (non-linear G1 motion) describe.
+- SP1 is at −77.910 / −94.556 / −107.974, G2 at −67.310 / −89.980 / −106.874 and G3 at −43.510 / −60.156 / −73.574. All three move objectward without reversing, and SP1–G3 stays at 34.40 mm, as ¶0007 requires (SP1 and G3 move as one). d7 falls and d15 rises, as claim 1 requires. SP2 is fixed in the figure and is not modelled.
+- Focus is infinity-only. The slider reads "Not modeled" and the focus overlay has no data, so there is no order to check.
+
+Open limitations: the inferred zoom path puts G1's imagemost point at 40.35 mm, 1.52 mm imageward of its 49.4 mm position. FIG. 5 draws the turning point of the G1 curve just past the N line, at about 55–60% of the W–T height. The patent prints only three stations, so this is reported and not changed. L1 and L6 still render with straight bevels where FIG. 5 draws flat lands. G1 stays shorter than drawn for the physical reasons above. The engine's half-field of 35.9°, limited by s2, stays below the patent's 40.85°; the traced corner check passes.

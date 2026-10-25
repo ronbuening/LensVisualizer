@@ -56,7 +56,7 @@ const DATA={
       "vd": 54.67,
       "focalLengthMm": -49.89929345288407,
       "glass": "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Source element L1; standalone power in air, not its in-situ contribution."
+      "role": "G1 front negative meniscus, concave to the image; opens the negative front group."
     },
     {
       "id": 2,
@@ -69,7 +69,7 @@ const DATA={
       "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
       "apd": "inferred",
       "apdNote": "HOYA FCD1 coordinate match (νd 81.61); Tamron's construction diagram shades this position as one of four LD elements.",
-      "role": "Source element L2; standalone power in air, not its in-situ contribution."
+      "role": "G1 second negative meniscus, concave to the image; one of the four positions Tamron's construction diagram marks LD."
     },
     {
       "id": 3,
@@ -80,7 +80,7 @@ const DATA={
       "vd": 40.75,
       "focalLengthMm": 126.48267384422047,
       "glass": "S-TIL25 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Source element L3; standalone power in air, not its in-situ contribution."
+      "role": "G1 positive meniscus carrying asphere 5A; Tamron marks this position as its hybrid aspherical element, which the patent tabulates as one medium."
     },
     {
       "id": 4,
@@ -91,7 +91,7 @@ const DATA={
       "vd": 30.05,
       "focalLengthMm": 66.02907421354634,
       "glass": "S-NBH57 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Source element L4; standalone power in air, not its in-situ contribution."
+      "role": "G2 positive meniscus, concave to the image; largely offset by L5, leaving G2 weakly positive."
     },
     {
       "id": 5,
@@ -102,7 +102,7 @@ const DATA={
       "vd": 58.55,
       "focalLengthMm": -76.96522678681352,
       "glass": "S-LAL7 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Source element L5; standalone power in air, not its in-situ contribution."
+      "role": "G2 negative meniscus, convex to the image; the last element ahead of the stop."
     },
     {
       "id": 6,
@@ -115,7 +115,7 @@ const DATA={
       "glass": "M-FCD1 (HOYA catalog equivalent; production supplier unspecified; molded aspherical element)",
       "apd": "inferred",
       "apdNote": "HOYA M-FCD1 coordinate match (νd 81.56); Tamron's construction diagram shades this position as one of four LD elements.",
-      "role": "Source element L6; standalone power in air, not its in-situ contribution."
+      "role": "First element after the stop: G3 biconvex positive with aspheres 12A and 13A."
     },
     {
       "id": 7,
@@ -126,7 +126,7 @@ const DATA={
       "vd": 30.05,
       "focalLengthMm": -45.66592211032496,
       "glass": "E-FD15 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Source element L7; standalone power in air, not its in-situ contribution.",
+      "role": "Front negative meniscus of the D1 cemented pair in G3, concave to the image.",
       "cemented": "D1"
     },
     {
@@ -140,7 +140,7 @@ const DATA={
       "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
       "apd": "inferred",
       "apdNote": "HOYA FCD1 coordinate match (νd 81.61); Tamron's construction diagram shades this position as one of four LD elements.",
-      "role": "Source element L8; standalone power in air, not its in-situ contribution.",
+      "role": "Rear biconvex positive of the D1 cemented pair; completes G3.",
       "cemented": "D1"
     },
     {
@@ -152,7 +152,7 @@ const DATA={
       "vd": 70.44,
       "focalLengthMm": -38.22117924030606,
       "glass": "FC5 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Source element L9; standalone power in air, not its in-situ contribution."
+      "role": "G4, the single-element negative focus group; moves toward the image for close focus."
     },
     {
       "id": 10,
@@ -165,7 +165,7 @@ const DATA={
       "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
       "apd": "inferred",
       "apdNote": "HOYA FCD1 coordinate match (νd 81.61); Tamron's construction diagram shades this position as one of four LD elements.",
-      "role": "Source element L10; standalone power in air, not its in-situ contribution."
+      "role": "G5 front biconvex positive."
     },
     {
       "id": 11,
@@ -176,7 +176,7 @@ const DATA={
       "vd": 70.44,
       "focalLengthMm": -63.054076627358306,
       "glass": "FC5 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Source element L11; standalone power in air, not its in-situ contribution."
+      "role": "G5 biconcave negative."
     },
     {
       "id": 12,
@@ -187,7 +187,7 @@ const DATA={
       "vd": 53.2,
       "focalLengthMm": -78.56422180333739,
       "glass": "M-LAC130 (HOYA catalog equivalent; production supplier unspecified; molded aspherical element)",
-      "role": "Source element L12; standalone power in air, not its in-situ contribution."
+      "role": "G5 rear negative meniscus, convex to the image, with aspheres 23A and 24A."
     }
   ],
   "surfaces": [
@@ -208,7 +208,7 @@ const DATA={
       "label": "3",
       "R": 206.724,
       "d": 1.2,
-      "sd": 15.44,
+      "sd": 17.4,
       "medium": 2
     },
     {
@@ -247,13 +247,13 @@ const DATA={
       "label": "8",
       "R": 205.807,
       "d": 2.3,
-      "sd": 10.16
+      "sd": 11.3
     },
     {
       "label": "9",
       "R": -26.627,
       "d": 1,
-      "sd": 10.2,
+      "sd": 10.18,
       "medium": 5
     },
     {

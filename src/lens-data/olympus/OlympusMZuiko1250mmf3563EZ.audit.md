@@ -296,3 +296,69 @@ wording was removed from the public prose: "native", "spectral proxy", runtime a
 file hashes. Source facts, numbers and qualifications are unchanged, and the Zoom Path section is untouched. The camera
 plate's `rearPlates` glass label still uses the older "class (coordinate-compatible spectral proxy; supplier
 unproven)" form. The analysis table lists it as S-BSL7 (OHARA).
+
+## 2026-10-25 — Second review: diagram, labels and movement
+
+Compared: the local site (`/lens/olympus-mzuiko-digital-ed-12-50mm-f35-63-ez`) at 12.243, 24.463 and 48.956 mm, at
+infinity and 0.35 m, the zoom and focus movement overlays, and the element inspector, against `patents/JP2012173420A.pdf`
+PDF p.31, 【図2】 panels (a)–(c), and the Example 2 text and tables (¶0090–0093, PDF p.15–16; Numerical Example 2,
+PDF p.20–22; claim 2, PDF p.2). The render was overlaid on FIG. 2(a) scaled to it (S1 vertex, axis and image plane
+aligned). OM Digital Solutions' construction diagram was used for element numbering and markings.
+
+Silhouette: re-measured independently at the native 300 dpi, with upper and lower outline centres about the
+dash-dot axis (page row 554.5) and 0.1298 mm/px. L1 measured 17.9 mm at its front rim, and its r2 curve ends at
+13.85 mm at the flat rear step. L2's front rim is 13.9 mm, and its r4 curve ends at 12.3 mm at its rear step. L3 is
+12.2 mm, L4 9.6, L5 7.37, L6a 6.62, L6b 6.33, L7 6.24, L8 7.07 and L9 11.3 mm (knife edge). Every stored rim is
+within 1–5 % of these except 3A (13.0 against 13.9). The first pass already has the rims right, and no `sd` changed.
+Neighbour height order is preserved: L1 > L2 > L3 > L4, L5 > L6a > L6b, and L7 < L8.
+
+Visible differences that remain, and why:
+
+- L1: the figure draws a square block. A flat top runs at 17.9 mm to a vertical rear step at about z = 9.9 mm, where
+  r2 begins at 13.85 mm. The renderer joins the front rim (18.0) to the rear rim (14.0) with one straight edge, so the
+  site shows a long slanted bevel. Squaring is impossible: r2's radius is 16.33 mm, and any r2 rim above about
+  14 mm moves its rim point behind L2's front corner and wraps L1 over L2. The flat land is mechanical and cannot be
+  drawn.
+- L2: drawn square at 13.0 mm, against the figure's 13.9 mm front and 12.3 mm rear curve end with a flat step. The
+  prescription surfaces 2 and 3A cross at h ≈ 13.45 mm. The validator refuses 3A = 13.1 mm: shared-band sag
+  4.71 mm against the allowed 4.608 of the 5.12 mm gap, which needs `gapSagFrac` 0.92. 13.2 mm needs 0.95. Neither
+  is proposed, because the gain is small and the faces would nearly touch.
+- L6a: a 0.2 mm slant from 6.6 mm at S12 to 6.4 mm at the cemented face, where the figure has a flat land and a
+  small step down to L6b. This is the closest the renderer can draw.
+
+Labels and tags checked against the patent: the groups G1 (1–6), G2 (7–8), G3 (9A–14), G4 (15–18A) and G5 (19–20)
+match ¶0091 and the figure brackets. The stop is drawn between L5 and the cemented pair (surface 11, 絞り). Element
+names L1–L9 follow ¶0091 and the FIG. 2(b) labels. The patent names the cemented block only "L6" (負レンズと正レンズの
+２枚接合Ｌ６), so L6a/L6b remain the model's split. All ten `type` strings agree with the signs of R. A markers sit on
+3A, 4A, 9A, 10A, 17A and 18A, the three double-aspheric elements of ¶0091, and nowhere else. The only `apd` tag is
+"inferred" on L6b. The patent text designates no anomalous-dispersion glass: condition (9) sets only νd 65–96, and
+¶0050 and ¶0061 mention anomalous dispersion only as something to limit. The maker diagram shades element 7 as ED.
+The inspector shows, for L2, L5, L6b and L8, the expected type, nd/νd, focal length (−38.69, +17.31, +14.73,
++192.15 mm), glass label and asphere coefficients. All glass labels resolve to their catalog rows except L8, which
+is unmatched by design. The patent gives L8 only as plastic (プラスチック, ¶0091), nd 1.53071 and νd 55.69, with no
+further identification.
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| element `label` (ids 1–10) | "Source L1" … "Source L9" | "Element 1" … "Element 10" | The inspector read "Source L6b L6b". Corpus form; the numbers match the maker's front-to-rear count (HR 6, ED 7, aspherical 5 and 9) |
+| `cemented` (L6a, L6b) | "G3 L6 cemented pair" | "L6" | Patent ¶0091 designates the block L6. The badge now reads "DOUBLET L6" |
+| `doublets[0].text` | "L6a + L6b" | "L6" | Same designation, consistent with `cemented` |
+
+Movement, from the patent table and figure arrows: `zoom.stations` ascend 12.243 → 48.956 mm, and every gap row
+follows that order. In the fixed-image frame, G1 holds −101.5009/−101.5007 mm (printed 0.0002 mm track rounding) and
+G5 holds −18.468 mm. G3 moves objectward monotonically by 29.24 mm, and G4 by 13.31 mm. G2 moves imageward by 2.83 mm
+to its peak at node 135 and then objectward, ending 0.73 mm objectward of wide: one reversal, as claim 2 and ¶0093
+require (D6 6.6446 → 9.3245 → 5.9114 mm). D8 narrows, and D14 and D18 widen. Focus index 0 is infinity and index 1 is
+0.35 m. Only G2 moves, objectward by 1.310, 1.231 and 1.333 mm at the printed stations (1.227–1.333 mm over all
+nodes). D6 + D8 is conserved, and D14 and D18 are unchanged. The overlays show the same directions. The focus slider's
+far end reads 35 cm. The gap labels D6/D8/D14/D18 match the patent's d6/d8/d14/d18.
+
+Results after the edits: the surface validator reports no errors, and the image-circle floor reports 0 undersized.
+Field coverage is at least 99 % at all 201 stations. The real-ray clearance table at Y = 10.815 mm is identical to
+the one before the edits, with no axial clip or blocked chief. Engine half-field stays 38.22°, f/3.64 and stop radius
+5.1756 mm. The vignetting curve is unchanged: 100 % to 41.9° and 68.8 % at 44.9°. The live page at all six printed
+states shows no overlaps, the "L6" bracket and the new inspector header.
+
+Open limitations: L1's and L2's flat mounting lands are not drawable, so L1 shows a bevel the figure does not have.
+The coordinator section above says the `rearPlates` glass label uses the older proxy wording. The file now reads
+"S-BSL7 (OHARA catalog equivalent; production supplier unspecified)", so that sentence is stale.

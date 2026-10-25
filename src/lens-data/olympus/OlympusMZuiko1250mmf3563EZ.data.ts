@@ -54,7 +54,7 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
-      "label": "Source L1",
+      "label": "Element 1",
       "type": "Negative Meniscus",
       "nd": 1.7725,
       "vd": 49.6,
@@ -65,7 +65,7 @@ const LENS_DATA = {
     {
       "id": 2,
       "name": "L2",
-      "label": "Source L2",
+      "label": "Element 2",
       "type": "Aspherical Negative Meniscus",
       "nd": 1.58313,
       "vd": 59.38,
@@ -76,7 +76,7 @@ const LENS_DATA = {
     {
       "id": 3,
       "name": "L3",
-      "label": "Source L3",
+      "label": "Element 3",
       "type": "Positive Meniscus",
       "nd": 1.8081,
       "vd": 22.76,
@@ -87,7 +87,7 @@ const LENS_DATA = {
     {
       "id": 4,
       "name": "L4",
-      "label": "Source L4",
+      "label": "Element 4",
       "type": "Negative Meniscus",
       "nd": 1.741,
       "vd": 52.64,
@@ -98,7 +98,7 @@ const LENS_DATA = {
     {
       "id": 5,
       "name": "L5",
-      "label": "Source L5",
+      "label": "Element 5",
       "type": "Aspherical Biconvex Positive",
       "nd": 1.58313,
       "vd": 59.38,
@@ -109,19 +109,19 @@ const LENS_DATA = {
     {
       "id": 6,
       "name": "L6a",
-      "label": "Source L6a",
+      "label": "Element 6",
       "type": "Negative Meniscus",
       "nd": 1.834,
       "vd": 37.16,
       "focalLengthMm": -13.930980901118598,
       "glass": "S-LAH60 (OHARA catalog equivalent; production supplier unspecified)",
       "diagramLabel": "L6a",
-      "cemented": "G3 L6 cemented pair"
+      "cemented": "L6"
     },
     {
       "id": 7,
       "name": "L6b",
-      "label": "Source L6b",
+      "label": "Element 7",
       "type": "Biconvex Positive",
       "nd": 1.497,
       "vd": 81.54,
@@ -130,12 +130,12 @@ const LENS_DATA = {
       "apd": "inferred",
       "apdNote": "OHARA S-FPL51 coordinate match (νd 81.54); OM Digital Solutions' construction diagram shades this position as the lens's one ED element, cemented to the HR element ahead of it.",
       "diagramLabel": "L6b",
-      "cemented": "G3 L6 cemented pair"
+      "cemented": "L6"
     },
     {
       "id": 8,
       "name": "L7",
-      "label": "Source L7",
+      "label": "Element 8",
       "type": "Negative Meniscus",
       "nd": 1.83481,
       "vd": 42.71,
@@ -146,7 +146,7 @@ const LENS_DATA = {
     {
       "id": 9,
       "name": "L8",
-      "label": "Source L8",
+      "label": "Element 9",
       "type": "Aspherical Positive Meniscus",
       "nd": 1.53071,
       "vd": 55.69,
@@ -157,7 +157,7 @@ const LENS_DATA = {
     {
       "id": 10,
       "name": "L9",
-      "label": "Source L9",
+      "label": "Element 10",
       "type": "Positive Meniscus",
       "nd": 1.75211,
       "vd": 25.05,
@@ -4610,7 +4610,8 @@ const LENS_DATA = {
       11,
       16,
       22
-    ]
+    ],
+    "maxFNumber": 22
   },
   "rearPlates": [
     {
@@ -4652,7 +4653,7 @@ const LENS_DATA = {
   ],
   "doublets": [
     {
-      "text": "L6a + L6b",
+      "text": "L6",
       "fromSurface": "12",
       "toSurface": "14"
     }

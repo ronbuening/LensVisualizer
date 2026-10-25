@@ -4,7 +4,7 @@
 
 **Patent:** US 6,246,529 B1  
 **Inventor:** Takayuki Sensui  
-**Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha  
+**Assignee:** Asahi Kogaku Kogyo Co., Ltd. (printed: Asahi Kogaku Kogyo Kabushiki Kaisha)  
 **Filed:** 1999-10-26  
 **Granted:** 2001-06-12  
 **Priority:** 1998-10-26  
@@ -42,7 +42,7 @@ nd = 1.80400, νd = 46.6. Glass: OHARA S-LAH65V catalog equivalent; production s
 
 This negative meniscus is the glass substrate of the hybrid element. It remains a separate material segment from L2R. The shared interface at surface 4 refracts from substrate into resin rather than into air, so its isolated air power is not the power of the bonded assembly.
 
-### L2R — Negative Meniscus
+### L2R — Negative Meniscus (1× Asph)
 
 nd = 1.53256, νd = 45.9. Glass: Unmatched (patent resin; supplier unconfirmed). f = -183.8 mm.
 
@@ -90,7 +90,7 @@ nd = 1.84666, νd = 23.8. Glass: OHARA S-TIH53 catalog equivalent; production su
 
 This negative meniscus is a separate air-spaced member within G3. It shares L3's patent coordinate and catalog equivalent, which does not establish a shared melt or supplier. It precedes the final aspheric element and contributes another negative-power degree of freedom within the net positive rear group.
 
-### L10 — Positive Meniscus
+### L10 — Positive Meniscus (1× Asph)
 
 nd = 1.58913, νd = 61.2. Glass: HIKARI J-SK5 catalog equivalent; production supplier unspecified. f = +44.0 mm.
 
@@ -141,7 +141,7 @@ The first printed summary is 0.529. The computed value differs from it by −0.0
 
 The computed paraxial EFLs at the two printed stations are 20.603 and 34.011 mm. The BFDs from surface 19A are 36.909 and 53.149 mm, against printed image gaps of 36.90 and 53.15 mm. Those small differences are within the printed precision, and the inferred path interpolates them between the stations.
 
-No surface semi-diameters or physical iris diameter are published. The clear radii are estimated from the rims drawn in Figures 17 and 19, floor-checked against the exact full f/4 axial beam and the source and format-corner chief rays at every zoom position. They stay within the valid spherical and aspheric domains and the default 0.90 gap-sag limit. The cemented G2 pair follows the drawing at a single 8.9 mm radius. L6 (9.0 mm), the L7/L8 pair (8.7 mm) and L9 (7.1 mm) are drawn slightly smaller than the f/4 telephoto axial beam, so their single radii sit on that beam. Front surface 1 has a 17.6 mm clear radius. Surface 2 has 14.3 mm, where the drawing ends L1's concave rear face at a flat flange step. L10 keeps separate front and rear radii of 7.5 and 7.9 mm. The app derives the iris from the design f/4: it traces the f/4 entrance-pupil radius at each station to the stop, giving inferred iris radii of 6.781 mm at wide and 8.753 mm at tele, interpolated between. This is an aperture model, not a recovered mechanical iris schedule.
+No surface semi-diameters or physical iris diameter are published. The clear radii are estimated from the rims drawn in Figures 17 and 19, floor-checked against the exact full f/4 axial beam and the source and format-corner chief rays at every zoom position. They stay within the valid spherical and aspheric domains and the default 0.90 gap-sag limit. The cemented G2 pair follows the drawing at a single 8.9 mm radius. L6 (9.0 mm), the L7/L8 pair (8.7 mm) and L9 (7.1 mm) are drawn slightly smaller than the f/4 telephoto axial beam, so their single radii sit on that beam. Front surface 1 has a 17.6 mm clear radius. Surface 2 has 14.3 mm, where the drawing ends L1's concave rear face at a flat flange step. L10 is drawn square-cut and carries one 7.9 mm radius on both faces. The app derives the iris from the design f/4: it traces the f/4 entrance-pupil radius at each station to the stop, giving inferred iris radii of 6.781 mm at wide and 8.753 mm at tele, interpolated between. This is an aperture model, not a recovered mechanical iris schedule.
 
 The app's default rays use six axial and five off-axis pupil fractions, with the off-axis fan at 0.6 of the half-field. Its half-field estimate at wide is 40.32°. That figure is a paraxial bound set by the surface-2 rim; the exact chief ray at the patent's 47.8° still clears that surface at 13.10 mm. Across 21 zoom positions every default axial ray transmits, and no default ray first clips at a cemented interface. From about 28 mm to tele, one off-axis default ray per position first clips at the exterior rim of surface 16.
 

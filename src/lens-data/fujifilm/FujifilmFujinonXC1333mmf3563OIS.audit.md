@@ -323,3 +323,73 @@ The analysis was revised to match:
 - **Coverage text:** the outdated statements that the application cannot reach the Wide corner were replaced by the current traced coverage and vignetting figures.
 - **Focus section:** now describes the 0.2 m value as the marketed specification.
 - **Process wording:** packaging and process wording was removed. Source facts, numbers and qualifications were kept.
+
+## 2026-10-25 — Second review: diagram, labels and movement
+
+**Outcome: three front-face rims squared to their drawn blanks, ten element roles rewritten. Labels, tags and zoom movement were found correct.**
+
+What was compared. I compared the local site render at 13.39, 22.59 and 32.14 mm (infinity, and focus=1, which is identical because focus is not modeled) with FIG. 1 of US 2026/0202648 A1, PDF page 2. That sheet is the same Example 1 drawing as CN 122410763 A PDF page 57, but it is a clean 1-bit 300 dpi raster. I took my own readings from 2× and 3× crops of the Wide panel. The optical axis is on native row 1223.75, and the scale is 18.11 px/mm (S1 at column 789.5 to the plate front at column 2018, 67.825 mm). Prescription, effective diameters, spacings and asphere coefficients were re-read from CN Table 1 (PDF page 20), Table 2 (page 21) and Table 3 (page 22). Table 3 prints A3 = 0 on every aspheric surface and KA = 1 except on S2 (KA = −1.2576327, stored as K = −2.2576327). The side-by-side and overlay image is kept outside the repository.
+
+Silhouette differences found on the live page, with my figure readings:
+
+- **L11.** FIG. 1 draws a nearly flat front face up to 12.5 mm and a square mechanical flange. The 2A curve ends at 9.32 mm, where a vertical flange face steps out. The render joins the 12.83 mm front rim straight to the 9.85 mm rear rim, so it shows a bevel instead of the flange. This cannot be drawn with rims alone. The rear face cannot be carried to 12.4 mm, so both values stay.
+- **L25.** FIG. 1 draws a square blank 4.16–4.21 mm tall, with the nearly flat 15A face running straight up to the flat top. The render showed 15A at 3.78 mm, below the drawn front face (ratio 0.90), rising on a slanted edge to 16A at 4.28 mm. That edge made L25's front barely taller than L24, whereas the figure draws it clearly taller.
+- **L31.** FIG. 1 draws a square blank 5.87–5.91 mm tall, with a flat top joining 17A and 18A. The render slanted from 17A at 5.52 mm (ratio 0.935) to 18A at 5.995 mm.
+- **L41.** FIG. 1 draws a square blank with both faces ending at 12.22 mm (upper and lower sides agree) and a flat land between them. The render's top rose 0.435 mm across the 1.9 mm edge, from 19 at 12.045 mm to 20 at 12.48 mm.
+- **Small steps.** These elements are also drawn square, but their front-to-rear steps are 0.23 mm or less, under 2 screen pixels, and they already read as square: L12 (9.765/9.555 against a drawn 9.37–9.40), L13 (9.565/9.335 against 9.18–9.24), L21 (4.645/4.535 against 4.49–4.55) and L24 (3.50/3.67 against 3.52–3.63). The L22/L23 doublet is drawn as one block about 3.9–4.0 mm tall. The data gives it a gentle 4.16 → 4.00 → 3.84 mm slope that is within ±4 % of the drawing on every face. Squaring it would mean lifting surface 12 by 0.32 mm past the drawn height, so it was left alone.
+
+Changes. Each changed rim takes its rear partner's printed ED/2, which sits 1.6–2.1 % above the drawn blank height:
+
+| Surface | Before (mm) | After (mm) | FIG. 1 blank (mm) | Evidence |
+|---|---:|---:|---:|---|
+| 15A | 3.78 (ED 7.56 / 2) | 4.28 | 4.16–4.21 | L25 drawn square; 16A ED/2 is 4.28 |
+| 17A | 5.52 (ED 11.04 / 2) | 5.995 | 5.87–5.91 | L31 drawn square; 18A ED/2 is 5.995 |
+| 19 | 12.045 (ED 24.09 / 2) | 12.48 | 12.22 | L41 drawn square; 20 ED/2 is 12.48 |
+
+Checks on the change:
+
+- **Clearance.** The traced beams stay inside the old printed apertures. On the exact meridional trace over all 201 stations, the maxima at 15A are 3.46 mm axial and 2.98 mm for the full-field bundle, at 17A 2.98 and 4.50 mm, and at 19 1.82 and 11.51 mm.
+- **Vignetting.** Wide-open geometric transmission is identical before and after at every sampled angle of the three printed stations: 51.1 % at 50.1° at Wide, 77.7 % at 32.1° at Middle and 81.3 % at 23.9° at Tele.
+- **Engine values.** They are unchanged: halfField 42.56° (limited by 2A), FOPEN 3.60, stop radius 4.432 mm, EFL 13.392 mm. Every other derived value the engine prints is also unchanged.
+- **Validators.** The surface validator reports no errors and the image-circle check reports nothing undersized. Field coverage reaches the 14.18 mm corner at all 201 stations.
+- **Clip flags.** The exact trace, with ω solved to 50.19°, 32.18° and 23.92° at Y = 14.2 mm (matching Table 2), flags only the pre-existing 8A axial clip described below.
+- **Aspheres.** Asphere profiles at the new rims are smooth. 15A at 4.28 mm has a departure of +9.5 µm and a 5.1° slope. 17A at 5.995 mm has a departure of +0.265 mm and a 16.7° slope. Neither changes slope sign within 1.3 times the new rim, which the repaired surface scan now evaluates with the engine's coefficients.
+- **Rendering.** The validator's gap-intrusion check passes, and the renders at the three printed stations show no overlap.
+
+Labels and tags, checked against the patent and found correct:
+
+- **Group brackets.** G1 (1A–6), G2 (7A–16A, including STO), G3 (17A–18A) and G4 (19–20) match ¶0094 and the FIG. 1 brackets.
+- **Doublet bracket.** One cemented component, surfaces 10–12, labelled "OIS". ¶0103 and ¶0198 name L22–L23, the single cemented lens next to the stop, as the anti-vibration group, so the label is accurate.
+- **Element designations.** L11–L13, L21–L25, L31 and L41 are the patent's own designations (¶0094).
+- **Element types.** Every type agrees with the R signs.
+- **Aspheric markers.** The `A` suffixes sit on exactly the eight surfaces Table 1 stars (1, 2, 7, 8, 15, 16, 17, 18).
+- **Stop.** STO is drawn between L21 and L22, as ¶0094 places St.
+- **ED tags.** `apd: "inferred"` on L12, L23 and L25 matches the maker's ED elements 2, 6 and 8. The patent never designates ED or anomalous-dispersion glass; conditions (11) and (15) only bound θgF + 0.0025νd. "Inferred" is therefore the right tag, and no `patent` tag is warranted.
+- **Maker diagram.** It shows 10 elements in 9 groups, with aspherical elements 1, 4, 8 and 9 (L11, L21, L25, L31), which agrees with the data.
+- **Glass labels.** All eleven glass labels resolve, and the material names match Table 1.
+- **Station labels.** Wide and Tele are labelled. A Middle label cannot be added alone, because the schema allows labels on every station or only on the first and last.
+- **Gap labels.** The three gaps read "G1–G2", "G2–G3" and "G3–G4".
+
+Role changes. The ten roles read "Source G1", "Source G2; OIS cemented doublet", "Source G3 focus" and similar. They now state each element's shape, group and function in plain words, drawn from ¶0094, ¶0097, ¶0103, ¶0106 and ¶0198. One example is L31: "Negative meniscus, concave to the object, that forms the third group G3: the focus group, which moves toward the image for closer subjects (focus travel is not modeled)."
+
+Movement, checked against Table 2 and the FIG. 1 arrows:
+
+- **Station order.** The stations ascend from 13.39 to 32.14 mm, and every gap row lists them in that order. The printed rows equal Table 2 exactly: DD6 19.541 / 5.995 / 0.748, DD16 2.103 / 2.652 / 2.125 and DD18 7.159 / 16.007 / 27.471.
+- **G1.** Its front vertex sits at −71.694, −67.545 and −73.235 mm from the image. It moves imageward and then reverses objectward, ending 1.54 mm ahead of Wide, which is the convex-to-image locus FIG. 1 draws.
+- **G2.** It moves objectward monotonically, from −40.437 to −60.771 mm (20.33 mm, the largest travel).
+- **G3.** It moves objectward monotonically, from −23.925 to −44.237 mm.
+- **G4.** It stays fixed at −15.766 mm (¶0095, ¶0198).
+- **Overlay.** The site's group-movement overlay shows the same directions.
+- **G2–G3 gap.** Between the printed stations this gap dips to 1.605 mm and rises again, a consequence of the G3 infinity solve. No group reverses in a way the patent contradicts.
+- **Focus.** It is not modeled; the slider shows "Not modeled" and the focus overlay falls back to the zoom view. ¶0198 and the right-pointing arrow under G3 in the Tele panel give the focus direction as G3 toward the image, which the L31 role now states. The downward arrow under L22–L23 is the OIS mark (¶0103).
+
+Open items for the owner:
+
+- **8A axial clip.** The trace shows 4.55 mm against the printed 4.535 mm at the Wide end; the first pass's aperture census found it on 7 stations. It arises because the from-nominal-fno iris is 4.432 mm against the source stop's 4.42 mm. Under table truth it is left as printed. Two alternatives remove the flag and both pass the validator: 8A = 4.55 mm with 7A = 4.65 mm, or squaring L21 at 4.645 mm on both faces (FIG. 1 draws L21 square at 4.49–4.55 mm).
+- **L11 flange.** It still renders as a bevel.
+- **Close-focus check.** No close-focus rim check was possible.
+
+Coordinator follow-up, same day: L21 is drawn square-cut in FIG. 1, so 8A was raised from 4.535 to 4.645 mm to match 7A
+(owner rule: a square-cut element keeps both faces at one height). This also removes the Wide 8A axial clip listed above:
+the validator passes and the real-ray clearance trace shows no axial clip or blocked chief ray at any station, at infinity
+or at the focus keyframe. The 8A polynomial at 4.645 mm stays physical (no turnover).

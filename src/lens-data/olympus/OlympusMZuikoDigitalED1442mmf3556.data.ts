@@ -51,7 +51,7 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L11",
-      "label": "Source L11",
+      "label": "Element 1",
       "type": "Negative Meniscus",
       "nd": 1.7725,
       "vd": 49.6,
@@ -62,7 +62,7 @@ const LENS_DATA = {
     {
       "id": 2,
       "name": "L12",
-      "label": "Source L12",
+      "label": "Element 2",
       "type": "Aspherical Negative Meniscus",
       "nd": 1.52542,
       "vd": 55.78,
@@ -73,7 +73,7 @@ const LENS_DATA = {
     {
       "id": 3,
       "name": "L13",
-      "label": "Source L13",
+      "label": "Element 3",
       "type": "Positive Meniscus",
       "nd": 1.84666,
       "vd": 23.78,
@@ -84,7 +84,7 @@ const LENS_DATA = {
     {
       "id": 4,
       "name": "L21",
-      "label": "Source L21",
+      "label": "Element 4",
       "type": "Plano-Convex Positive",
       "nd": 1.83481,
       "vd": 42.71,
@@ -95,7 +95,7 @@ const LENS_DATA = {
     {
       "id": 5,
       "name": "L22",
-      "label": "Source L22",
+      "label": "Element 5",
       "type": "Biconvex Positive",
       "nd": 1.497,
       "vd": 81.54,
@@ -104,24 +104,24 @@ const LENS_DATA = {
       "apd": "inferred",
       "apdNote": "OHARA S-FPL51 coordinate match (νd 81.54), a fluorophosphate ED glass; Olympus lists one ED element, cemented to the HR element that follows.",
       "diagramLabel": "L22",
-      "cemented": "G2 cemented pair"
+      "cemented": "L22 + L23"
     },
     {
       "id": 6,
       "name": "L23",
-      "label": "Source L23",
+      "label": "Element 6",
       "type": "Biconcave Negative",
       "nd": 1.90366,
       "vd": 31.32,
       "focalLengthMm": -10.450922563072584,
       "glass": "TAFD25 (HOYA catalog equivalent; production supplier unspecified)",
       "diagramLabel": "L23",
-      "cemented": "G2 cemented pair"
+      "cemented": "L22 + L23"
     },
     {
       "id": 7,
       "name": "L24",
-      "label": "Source L24",
+      "label": "Element 7",
       "type": "Positive Meniscus",
       "nd": 1.70154,
       "vd": 41.24,
@@ -132,7 +132,7 @@ const LENS_DATA = {
     {
       "id": 8,
       "name": "L25",
-      "label": "Source L25",
+      "label": "Element 8",
       "type": "Biconvex Positive",
       "nd": 1.51823,
       "vd": 58.9,
@@ -143,7 +143,7 @@ const LENS_DATA = {
     {
       "id": 9,
       "name": "L3",
-      "label": "Source L3",
+      "label": "Element 9",
       "type": "Aspherical Positive Meniscus",
       "nd": 1.52542,
       "vd": 55.78,
@@ -1305,7 +1305,7 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 0.25,
-    "description": "The patent prints infinity spacings at wide, middle and tele; focusing is not modeled. The intermediate zoom positions are an inferred reconstruction, not the factory cam: the G1–G2 spacing follows a piecewise-linear law between the printed stations and the G2–G3 spacing is solved for infinity focus at each position. The marketed minimum focus distance is 0.25 m."
+    "description": "The patent prints infinity spacings at wide, middle and tele only. It focuses by moving G1 alone toward the object (claim 3) but prints no near-focus spacings, so focusing is not modeled. The intermediate zoom positions are an inferred reconstruction, not the factory cam: the G1–G2 spacing follows a piecewise-linear law between the printed stations and the G2–G3 spacing is solved for infinity focus at each position. The marketed minimum focus distance is 0.25 m."
   },
   "gaps": {
     "6": {
@@ -2938,7 +2938,8 @@ const LENS_DATA = {
       11,
       16,
       22
-    ]
+    ],
+    "maxFNumber": 22
   },
   "rearPlates": [
     {

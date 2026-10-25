@@ -194,3 +194,69 @@ Open limitations: the pass makes no asphere change, so the departure table is un
 - The name is now "TAMRON 20-40mm f/2.8 Di III VXD (A062)" and the subtitle "JP 2022-131391 A — Numerical Example 5". The specs read 12 elements / 11 groups, design f = 20.60–38.80 mm, design F/2.91, 5 aspherical surfaces on 3 elements and 4 LD elements. Mounts are now Sony FE and Nikon Z; the Nikon Z version was released on 2026-10-22 with the same 12/11 construction.
 - The focus description was rewritten. The analysis's intermediate-zoom focus table was recomputed from the current gaps to match it. With G4 solved for infinity, the infinity Gaussian focus at zoom 0.25 and 0.75 is 0.070 and 0.028 mm beyond the plane; the superseded table had shown shifts of 0.48 and 0.72 mm. The old infinity-readout discrepancy of 0.94 mm is gone, because each of the 101 stations stores its own focal length.
 - Package-process wording was removed from the analysis: version-pinned code links, the DPMA PDF link, process status text, and "native" and "candidate" phrasing. The source facts, numbers and qualifications were kept.
+
+## 2026-10-25 — Second review: diagram, labels and movement
+
+This review compared the live page with JP 2022-131391 A, Figure 17 (PDF page 44) and ¶0120–0132 (PDF pp. 22–24). The page was checked at 20.603, 28.305 and 38.803 mm, each at infinity and at 300 mm, along with the zoom and focus movement overlays. The element inspectors for L2, L3, L9 and L12 were also checked. Tamron's construction diagram was used for proportions and special-element positions. The wide-angle infinity panel was re-measured independently at 318 and 636 dpi. The vertex crossings at x = 598 px (S1) and 1786 px (S24) give 93.475 mm over 1188 px, or 0.0787 mm/px. The S1–S2 (1.5 mm) and S2–S3 (8.3 mm) spans agree within 0.6%. An overlay of the render on the figure at this scale lines up every vertex.
+
+### Silhouette comparison
+
+- L1. The figure draws a flat 21.8 mm cylindrical edge, with a rear flange from 15.9 mm outward. The render shows a chamfer from 21.5 mm at the front to 15.8 mm at the rear. The concave rear face ends at 15.8–15.9 mm (R = 18.851 mm, with L2 just behind it), so the chamfer comes from the renderer's straight edge between unequal rims. No change.
+- L2. The figure draws the nearly flat front face out to a 17.4 mm outer edge. The 636 dpi reading is 17.35–17.4 mm, and L1's rear flange lies against this face from 15.9 mm outward. The figure then shows a cylindrical edge at 17.4 mm and a rear flange that steps down to 14.2 mm, where the concave rear face ends. The render's tallest point was 15.44 mm, so L2 stood only 3% above L3's 15.0 mm; the figure shows a 15% step. L2's height relative to L1 was 0.72 on the site, against 0.80 in the figure and 0.77 in Tamron's diagram. Surface 3 was raised to the drawn edge. Surface 4 keeps its 14.2 mm curve end, because a rear face carried to full height would cross L3.
+- G2. The figure draws L4 square-cut, with both faces reaching 11.25 mm. L5's front face ends at about 10.1 mm, and its flange lies against L4's rear face out to 11.5 mm. The render bevels L4 from 11.3 mm down to 10.16 mm, which leaves a V-notch at the L4–L5 junction. The batch keeps surface 8 at 10.16 mm, so this is left as an owner decision, described below.
+- L9. The figure draws a 10.4 mm front edge and a rear flange that steps down to about 8.9 mm. The model's 10.4 / 9.0 mm agrees.
+- L11. The figure reads 13.5–13.6 mm at the front, and the rear curve ends at 12.3 mm. The model has 13.0 / 13.0 mm. These differences are within 4–6%. Raising surface 21 would also remove the 13% one-side bundle clip there, so it was left unchanged.
+- L12. The front face ends at about 12.3 mm, and a flange carries the edge up to 14.6 mm. The model's 12.0 / 14.5 mm agrees. A 14.6 mm surface 23A would cross L11.
+- L3 (15.1 mm), L6 (12.75 mm), L7–L8 (12.6 mm, with a small step at the cemented junction), L10 (14.2 mm) and surface 10 (11.4 mm) each agree with the model within 0.2 mm.
+
+| Surface | Before (mm) | After (mm) | Evidence |
+|---|---:|---:|---|
+| 3 | 15.44 | 17.4 | Figure 17 outer edge of L2's front face (17.35–17.4 mm). It restores L2's drawn step above L3 and L1's flange contact. |
+
+With the change, the validator reports no errors, and the image-circle floor reports no undersized surface. Traced corner coverage is at least 99% at all 101 stations. The exact meridional trace shows no axial clip or blocked chief ray, at infinity or at 300 mm. The surface-3 ray maxima are unchanged: 7.62 mm axial and 13.95 mm for the full field bundle. The engine EFL (20.602 mm), f/2.91, half-field (37.31°, limited by surface 2) and stop radius (7.949 mm) are unchanged.
+
+At the wide end, wide-open transmission beyond the engine half-field rises from 78.1% to 82.8% at 44.8° and from 39.1% to 43.8% at 47.8°. The middle and tele curves are identical. Surface-3 trial values of 15.8, 15.95 and 16.2 mm give exactly the same numbers. The change therefore removes a clip that only the 15.44 mm rim imposed; L1's 15.8 mm rear face, which the figure draws as the edge in that zone, now limits.
+
+### Labels, tags and stop
+
+- Groups. G1 covers 1–6, G2 7–10, G3 STO–16, G4 17–18 and G5 19–24A. This matches the group table in ¶0132, where G3 is listed as 11–16 and 11 is the stop. Figure 17 labels only G1–G5, S, CG, IP and F.
+- Cemented pair. D1 spans 14–16, the only cemented component in ¶0123.
+- Element names. The patent gives no element designations, so L1–L12 are sequential and do not clash with its G notation. Every `type` agrees with the shapes in ¶0121–0125 and with the signs of R.
+- Roles. The twelve package placeholders ("Source element Ln; standalone power in air …") have been replaced with optical roles taken from ¶0121–0126 and the maker diagram. The patent does not name the elements L1–L12, so the old wording did not hold.
+- Aspheres. The A-suffixed surfaces 5A, 12A, 13A, 23A and 24A are the patent's asterisked 5, 12, 13, 23 and 24, and no other surface carries the suffix.
+- Stop. The stop sits between surfaces 10 and 12A, at the patent's surface 11S.
+- APD tags. L2, L6, L8 and L10 carry `"inferred"` tags, at Tamron's four LD positions (2, 6, 8 and 10). The patent text says nothing about anomalous dispersion; it mentions only composite aspheres in general terms. No `"patent"` tag is warranted.
+- Inspector and glass. The inspector shows the expected type, glass, focal length and APD or ASPH badges for L2, L3, L9 and L12. All twelve glass labels resolve.
+
+### Movement
+
+The 101 zoom stations ascend from 20.603 to 38.803 mm, and index 0 of every gap is the wide value. The table gives each group's front vertex position measured from the image plane, at infinity.
+
+| Group | Wide (mm) | Middle (mm) | Tele (mm) | Wide-to-tele motion |
+|---|---:|---:|---:|---|
+| G1 | 109.976 | 106.078 | 102.997 | 6.979 mm toward the image |
+| G2 | 78.273 | 80.597 | 82.534 | 4.261 mm toward the object |
+| G3 | 60.176 | 68.056 | 75.134 | 14.958 mm toward the object |
+| G4 | 41.217 | 49.861 | 55.696 | 14.479 mm toward the object |
+| G5 | 33.961 | 41.842 | 48.919 | 14.958 mm toward the object |
+
+No group reverses anywhere in the 101 stations, and G3 and G5 travel the same distance. This matches ¶0126.
+
+In each focus pair, index 0 is infinity and index 1 is 300 mm. Only D16 and D18 change. G4 moves toward the image by 1.091, 1.619 and 2.625 mm at wide, middle and tele, as ¶0126 states. The movement overlays show the same directions. The focus slider's far-end label reads 30 cm.
+
+### Owner decision: squaring L4
+
+To draw L4 square-cut as in Figure 17, surface 8 would go to 11.3 mm and surface 9 to 10.17 mm (10.18 mm also works). The existing 0.99 allowance admits this pair: the validator reports no errors and the trace shows no clip. Transmission is unchanged at zoom positions 0, 0.5 and 1. Surface 9 then becomes the tele axial limit, with 0.013 mm of headroom. Raising surface 8 to 11.3 mm while surface 9 stays at 10.2 mm fails at 0.99: the combined sag is 2.28 mm against 2.277 mm allowed, so that pair would need 1.00. The pair was not applied, because the batch keeps surface 8 at 10.16 mm.
+
+The coordinator then applied the pair. Surface 8 went from 10.16 to 11.3 mm and surface 9 from 10.20 to 10.18 mm, and `checks.gapSagFrac` stays at 0.99. At the shared 10.18 mm height the two sags take 2.275 mm of the 2.300 mm gap (98.9%), which leaves 0.025 mm of air. The tele f/2.91 axial ray reaches 10.157 mm at surface 9, so surface 9 is now the rim nearest that ray, with about 0.02 mm to spare. The other checks after the change:
+
+- The validator reports no errors, and the image-circle floor reports no undersized surface.
+- Traced corner coverage is at least 99% at all 101 stations.
+- The meridional trace shows no axial clip or blocked chief ray at infinity or at 300 mm. The one-side full-field clip moves from surface 8 (17%) to surface 9 (17% at infinity, 16% at 300 mm).
+- Wide-open transmission is unchanged at zoom positions 0, 0.5 and 1: 43.8% at 47.8° (wide), 102.4% at 37.8° (middle) and 97.2% at 28.6° (tele).
+- EFL (20.602 mm), f/2.91, half-field (37.31°) and stop radius (7.949 mm) are unchanged.
+- The re-shot wide and tele pages, including tele at 300 mm, show L4 square-cut with L5's bevel behind it. There are no overlaps.
+
+### Open limitations
+
+The off-axis transmission counts in the analysis predate the surface-3 and surface-18 rims and have not been recomputed. The renderer joins front and rear rims with a straight edge. As a result, the drawn flanges of L1, L2, L5, L9, L11 and L12 still appear as chamfers.

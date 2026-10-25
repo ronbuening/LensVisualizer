@@ -57,7 +57,7 @@ const LENS_DATA = {
       "focalLengthMm": -13.586003467974011,
       "glass": "D-ZLAF52LA (CDGM)",
       "apdNote": "Patent θgF 0.56996, stored as dPgF against the normal line.",
-      "role": "Source G1",
+      "role": "Front negative meniscus of the negative first group G1, convex to the object; both faces aspherical.",
       "diagramLabel": "L11",
       "dPgF": -0.0048948200000000774
     },
@@ -73,7 +73,7 @@ const LENS_DATA = {
       "glass": "H-FK90 (NHG)",
       "apd": "inferred",
       "apdNote": "Fujifilm's construction diagram marks this position as one of three ED elements. Patent θgF 0.53706, stored as dPgF against the normal line.",
-      "role": "Source G1",
+      "role": "Second negative meniscus of G1, convex to the object.",
       "diagramLabel": "L12",
       "dPgF": 0.04492593999999994
     },
@@ -88,7 +88,7 @@ const LENS_DATA = {
       "focalLengthMm": 30.495191107408086,
       "glass": "H-ZLAF82 (NHG)",
       "apdNote": "Patent θgF 0.59935, stored as dPgF against the normal line.",
-      "role": "Source G1",
+      "role": "Positive meniscus that closes G1, convex to the object.",
       "diagramLabel": "L13",
       "dPgF": 0.004546660000000036
     },
@@ -103,7 +103,7 @@ const LENS_DATA = {
       "focalLengthMm": 23.389993742608436,
       "glass": "M-BACD15 (HOYA)",
       "apdNote": "Patent θgF 0.53913, stored as dPgF against the normal line.",
-      "role": "Source G2",
+      "role": "Biconvex positive lens that opens the positive second group G2, just ahead of the aperture stop; both faces aspherical.",
       "diagramLabel": "L21",
       "dPgF": -0.006844880000000053
     },
@@ -118,7 +118,7 @@ const LENS_DATA = {
       "focalLengthMm": -17.65177085518821,
       "glass": "S-BAL3 (OHARA)",
       "apdNote": "Patent θgF 0.55544, stored as dPgF against the normal line.",
-      "role": "Source G2; OIS cemented doublet",
+      "role": "Negative meniscus at the front of the cemented pair just behind the stop; the L22–L23 pair is the OIS group, which shifts across the axis for image stabilization.",
       "diagramLabel": "L22",
       "cemented": "OIS",
       "dPgF": 0.000701900000000033
@@ -135,7 +135,7 @@ const LENS_DATA = {
       "glass": "S-FPM4 (OHARA)",
       "apd": "inferred",
       "apdNote": "Fujifilm's construction diagram marks this position as one of three ED elements. Patent θgF 0.53954, stored as dPgF against the normal line.",
-      "role": "Source G2; OIS cemented doublet",
+      "role": "Biconvex positive rear member of the cemented L22–L23 OIS pair.",
       "diagramLabel": "L23",
       "cemented": "OIS",
       "dPgF": 0.024328899999999987
@@ -151,7 +151,7 @@ const LENS_DATA = {
       "focalLengthMm": -17.836752602329938,
       "glass": "TAFD45L (HOYA)",
       "apdNote": "Patent θgF 0.58998, stored as dPgF against the normal line.",
-      "role": "Source G2",
+      "role": "Thin biconcave negative lens behind the OIS pair, inside G2.",
       "diagramLabel": "L24",
       "dPgF": 0.0005422399999999161
     },
@@ -167,7 +167,7 @@ const LENS_DATA = {
       "glass": "M-FCD1 (HOYA)",
       "apd": "inferred",
       "apdNote": "Fujifilm's construction diagram marks this position as one of three ED elements. Patent θgF 0.53848, stored as dPgF against the normal line.",
-      "role": "Source G2",
+      "role": "Biconvex positive lens that closes G2; both faces aspherical.",
       "diagramLabel": "L25",
       "dPgF": 0.031863919999999935
     },
@@ -182,7 +182,7 @@ const LENS_DATA = {
       "focalLengthMm": -42.17798614863736,
       "glass": "M-PCD55AR (HOYA)",
       "apdNote": "Patent θgF 0.5532, stored as dPgF against the normal line.",
-      "role": "Source G3 focus",
+      "role": "Negative meniscus, concave to the object, that forms the third group G3: the focus group, which moves toward the image for closer subjects (focus travel is not modeled).",
       "diagramLabel": "L31",
       "dPgF": 0.002212760000000036
     },
@@ -197,7 +197,7 @@ const LENS_DATA = {
       "focalLengthMm": 85.32756013290177,
       "glass": "H-LAF50B (CDGM)",
       "apdNote": "Patent θgF 0.55165, stored as dPgF against the normal line.",
-      "role": "Source G4 stationary rear",
+      "role": "Positive meniscus, convex to the image, that forms the fourth group G4; fixed relative to the image during zoom.",
       "diagramLabel": "L41",
       "dPgF": -0.00872280000000003
     }
@@ -310,7 +310,7 @@ const LENS_DATA = {
       "label": "8A",
       "R": -200.2902,
       "d": 0.973,
-      "sd": 4.535,
+      "sd": 4.645,
       "asphere": {
         "A4": 0.000052115154,
         "A6": 0.00026417734,
@@ -373,7 +373,7 @@ const LENS_DATA = {
       "label": "15A",
       "R": 176.4199,
       "d": 2.334,
-      "sd": 3.78,
+      "sd": 4.28,
       "medium": 8,
       "asphere": {
         "A4": -0.0001139855,
@@ -423,7 +423,7 @@ const LENS_DATA = {
       "label": "17A",
       "R": -17.8964,
       "d": 1,
-      "sd": 5.52,
+      "sd": 5.995,
       "medium": 9,
       "asphere": {
         "A4": 0.0005748671,
@@ -473,7 +473,7 @@ const LENS_DATA = {
       "label": "19",
       "R": -64.4358,
       "d": 3.118,
-      "sd": 12.045,
+      "sd": 12.48,
       "medium": 10
     },
     {

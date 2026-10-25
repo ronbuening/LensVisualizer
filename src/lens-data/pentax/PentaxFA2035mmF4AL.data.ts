@@ -55,7 +55,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -35.0846234981279,
       "glass": "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power."
+      "role": "Front negative meniscus of the negative first lens group (G1), convex to the object.",
+      "diagramLabel": "L1"
     },
     {
       "id": 2,
@@ -67,20 +68,22 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -47.24823990417244,
       "glass": "S-LAH65V (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power.",
+      "role": "Glass body of G1's hybrid lens element; its concave rear face carries the resin layer L2R.",
+      "diagramLabel": "L2",
       "cemented": "HYBRID"
     },
     {
       "id": 3,
       "name": "L2R",
       "label": "Hybrid resin layer",
-      "type": "Negative Meniscus",
+      "type": "Negative Meniscus (1× Asph)",
       "nd": 1.53256,
       "vd": 45.9,
       "indexReference": "d",
       "focalLengthMm": -183.77490988630186,
       "glass": "Unmatched (patent resin; supplier unconfirmed)",
-      "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power.",
+      "role": "Resin layer, 0.28 mm on axis, bonded to L2; its air-side surface 5A is the hybrid element's aspherical image-side surface.",
+      "diagramLabel": "L2R",
       "cemented": "HYBRID"
     },
     {
@@ -93,7 +96,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 76.9056719815398,
       "glass": "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power."
+      "role": "Positive meniscus that closes G1 and partly offsets the group's negative power.",
+      "diagramLabel": "L3"
     },
     {
       "id": 5,
@@ -105,7 +109,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 32.9606513464054,
       "glass": "S-NSL36 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power.",
+      "role": "Biconvex positive front member of the cemented second lens group (G2).",
+      "diagramLabel": "L4",
       "cemented": "D1"
     },
     {
@@ -118,7 +123,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -50.1520691279464,
       "glass": "S-LAH65V (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power.",
+      "role": "Negative meniscus cemented behind L4, completing the weakly positive G2.",
+      "diagramLabel": "L5",
       "cemented": "D1"
     },
     {
@@ -131,7 +137,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 53.76060350967903,
       "glass": "S-BSM28 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power."
+      "role": "Plano-convex positive element just behind the diaphragm; first element of the positive third lens group (G3), which moves with the stop.",
+      "diagramLabel": "L6"
     },
     {
       "id": 8,
@@ -143,7 +150,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 25.97402009804842,
       "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power.",
+      "role": "Biconvex positive crown (νd 70.2) of G3's cemented sub-group.",
+      "diagramLabel": "L7",
       "cemented": "D2"
     },
     {
@@ -156,7 +164,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -25.53386972420641,
       "glass": "S-LAH53 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power.",
+      "role": "Biconcave negative flint (νd 40.9) cemented behind L7.",
+      "diagramLabel": "L8",
       "cemented": "D2"
     },
     {
@@ -169,19 +178,21 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -49.3670331338058,
       "glass": "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power."
+      "role": "Air-spaced negative meniscus near the rear of G3, convex to the object.",
+      "diagramLabel": "L9"
     },
     {
       "id": 11,
       "name": "L10",
       "label": "Physical element 10",
-      "type": "Positive Meniscus",
+      "type": "Positive Meniscus (1× Asph)",
       "nd": 1.58913,
       "vd": 61.2,
       "indexReference": "d",
       "focalLengthMm": 43.954356462003815,
       "glass": "J-SK5 (HIKARI catalog equivalent; production supplier unspecified)",
-      "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power."
+      "role": "Final positive meniscus, convex to the image; its rear surface 19A is aspherical.",
+      "diagramLabel": "L10"
     }
   ],
   "surfaces": [
@@ -310,7 +321,7 @@ const LENS_DATA = {
       "label": "18",
       "R": -139,
       "d": 3,
-      "sd": 7.5,
+      "sd": 7.9,
       "medium": 11
     },
     {
@@ -3582,17 +3593,17 @@ const LENS_DATA = {
   },
   "groups": [
     {
-      "text": "G1",
+      "text": "G1 (−)",
       "fromSurface": "1",
       "toSurface": "7"
     },
     {
-      "text": "G2",
+      "text": "G2 (+)",
       "fromSurface": "8",
       "toSurface": "10"
     },
     {
-      "text": "G3",
+      "text": "G3 (+)",
       "fromSurface": "11",
       "toSurface": "19A"
     }
