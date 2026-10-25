@@ -226,4 +226,16 @@ describe("patent catalog", () => {
     });
     expect(records.find((record) => record.patentNumber === "Patent source for Fallback Lens")).toBeDefined();
   });
+
+  it("orders a patent's lenses by example number, then name, with unrecorded examples last", () => {
+    const [record] = aggregatePatentRecords([
+      summary({ key: "unrecorded", name: "A Unrecorded", patentNumber: "US 30" }),
+      summary({ key: "ex10", name: "B Lens", patentNumber: "US 30", patentExample: { label: "Example 10", id: "10" } }),
+      summary({ key: "ex2-z", name: "Z Lens", patentNumber: "US 30", patentExample: { label: "Example 2", id: "2" } }),
+      summary({ key: "ex2-c", name: "C Lens", patentNumber: "US 30", patentExample: { label: "Example 2", id: "2" } }),
+    ]);
+
+    expect(record.lenses.map((lens) => lens.key)).toEqual(["ex2-c", "ex2-z", "ex10", "unrecorded"]);
+    expect(record.lenses[0].example).toEqual({ label: "Example 2", id: "2" });
+  });
 });

@@ -27,6 +27,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-24",
     type: "improvement",
+    summary:
+      "The patents page now names the example each lens is taken from and lists a patent's lenses in example order",
+  },
+  {
+    date: "2026-10-24",
+    type: "improvement",
     summary: "Lens pages now name the patent example each prescription is taken from, after the patent number",
   },
   {

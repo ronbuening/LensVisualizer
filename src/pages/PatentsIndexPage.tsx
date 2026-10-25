@@ -73,6 +73,7 @@ function PatentCard({ patent, groupedAssignee, theme: t }: PatentCardProps) {
             key={lens.key}
             lensKey={lens.key}
             text={lens.name}
+            prefix={lens.example?.label}
             specs={lens.specs}
             theme={t}
             metaStyle={{ fontSize: "0.68rem" }}

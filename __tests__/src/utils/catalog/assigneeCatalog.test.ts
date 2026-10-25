@@ -120,10 +120,14 @@ describe("patentsForParty in assignee mode", () => {
     expect(patentsForParty(sample.name, "author")).toEqual([]);
   });
 
-  it("sorts the lenses inside each record by display name", () => {
+  it("sorts the lenses inside each record by example, then display name", () => {
+    const exampleOrder = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
     for (const patent of patentsForParty(sample.name, "assignee")) {
-      const names = patent.lenses.map((lens) => lens.name);
-      expect(names, patent.patentNumber).toEqual([...names].sort((a, b) => catalogCollator.compare(a, b)));
+      const keys = patent.lenses.map((lens) => [lens.example ? 0 : 1, lens.example?.id ?? "", lens.name] as const);
+      const resorted = [...keys].sort(
+        (a, b) => a[0] - b[0] || exampleOrder.compare(a[1], b[1]) || catalogCollator.compare(a[2], b[2]),
+      );
+      expect(keys, patent.patentNumber).toEqual(resorted);
     }
   });
 
