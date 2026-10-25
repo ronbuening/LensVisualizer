@@ -33,6 +33,21 @@ const ROOT = join(import.meta.dirname, "..");
 const { conicPolySag, sag, sagSlopeRaw } = await import(pathToFileURL(join(ROOT, "src/optics/geometry.ts")).href);
 const { validateCanonicalLens } = await import(pathToFileURL(join(ROOT, "src/optics/validation.ts")).href);
 const { default: buildLens, ingestLens } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
+const { ASPHERIC_COEFFICIENT_SCHEMA } = await import(pathToFileURL(join(ROOT, "src/types/asphericSchema.ts")).href);
+
+/**
+ * The coefficients the engine traces for a canonical asphere. The canonical form is sparse (a zero term, K
+ * included, is absent), so each required term it leaves out is 0, as the engine's construction data fills it.
+ */
+function denseAsphere(sparse) {
+  if (!sparse) return undefined;
+  return Object.fromEntries(
+    ASPHERIC_COEFFICIENT_SCHEMA.flatMap(({ key, required }) => {
+      const value = sparse[key] ?? (required ? 0 : undefined);
+      return value === undefined ? [] : [[key, value]];
+    }),
+  );
+}
 
 const argv = process.argv.slice(2);
 const dataFile = argv[0];
@@ -82,7 +97,7 @@ if (scanIndex >= 0) {
   const view = stored.view;
   const surface = view.surfaces.find((candidate) => candidate.label === label);
   if (!surface) throw new Error(`no surface labelled "${label}"`);
-  const asphere = surface.asphere;
+  const asphere = denseAsphere(surface.asphere);
   const radius = surface.R === "flat" ? 1e15 : surface.R;
   const given = argv[scanIndex + 2];
   /* A derived stop stores no radius: unless a height is given, its scan runs to twice the radius the engine derives. */

@@ -129,6 +129,21 @@ describe("audits read only V2 files", () => {
     expect(stop.stdout).not.toContain("NaN");
   });
 
+  it("audit:surface scans a V2 asphere that leaves K out as the engine traces it, with K = 0", () => {
+    const pair = FIXTURE_PAIRS.find((candidate) => candidate.family === "prime" && candidate.kind === "lens");
+    if (pair?.kind !== "lens") throw new Error('no lens fixture pair "prime"');
+    const surfaces = pair.v2.surfaces.map((surface) =>
+      surface.label === "1" ? { ...surface, asphere: { A4: 1.2e-6, A8: -3e-11 } } : surface,
+    );
+    const file = join(root, "sparse-conic", "Fixture.data.ts");
+    mkdirSync(dirname(file), { recursive: true });
+    writeFileSync(file, `export default ${JSON.stringify({ ...pair.v2, surfaces })};\n`);
+    const scan = audit("audit:surface", file, ["--scan", "1"]);
+    expect(scan.status).toBe(0);
+    /* At h = 15 mm the R = 50 sphere sags 2.3030 mm; A4 and A8 bring it to 2.2869 mm, 16.1 µm inside the sphere. */
+    expect(scan.stdout).toMatch(/^ 15\.00 {7}2\.2869 {11}-16\.1 /m);
+  });
+
   it("audit:surface prints ingest's refusal of a V2 file as ERR lines, exit 1", () => {
     const pair = FIXTURE_PAIRS.find((candidate) => candidate.family === "prime")!;
     const file = join(root, "refused", "Fixture.data.ts");
