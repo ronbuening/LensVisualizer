@@ -1,0 +1,141 @@
+# Independent audit: Tamron A062 20-40mm f/2.8
+
+## Current disposition
+
+Stage 4 source-first review and reconciliation have passed for the stated central-prescription, illustrative-control scope. READY_FOR_BATCH is pre-integration readiness only. INTEGRATION_PENDING remains in force. The narrow geometry, source focus discrepancies, intermediate readout error, stress-edge losses, partial corner transmission and rounding sensitivity remain limitations, not numerical passes obtained by approval.
+
+The lens name and ordinary patent subtitle are unchanged. The clean data file retains every patent radius, physical distance, refractive index and aspheric coefficient. No cam law, supplier identity, extra hybrid interface, source correction or production extrapolation is introduced.
+
+## Job and controlling references
+
+- Patent: JP2022131391A, Numerical Example 5; original supplied 52-page PDF including PAJ wrapper.
+- Lens: Tamron 20-40mm F/2.8 Di III VXD, Model A062.
+- Output stem: TamronA0622040mmf28DiIIIVXD.
+- Source PDF SHA-256: 9517a0c36868daa2652a2e388dc591040869cf1bdae583e201e8b25f026863c8.
+- Original job card SHA-256: 937a4f06e9777e681385797432d1563cc6ab827d63a37bd4ebf556f38ac87eea. Its historical pause is preserved as source history; subsequent scope resumed the work.
+- Workflow: LensPatentChatProtocol and LensPatentDossierContract, CHAT-1.0, 2026-09-11.
+- Current project source: LensVisualizer main 3f00f21094afdbee2e1b8551b96d2734b7f0d0f1.
+- Current 151-file reference manifest SHA-256: 248fb6bfb3fad7f19beaca5486513cafe7a718bd6c97f7c13219378fbf40b705.
+- Prior source-first 150-file reference manifest: b106e8a8f04a87513ba0f7632911e33fb9be0feab956dbad460a81ee7aa2b12a at 25bfb7566f748a75e59647d433da51bdd198a4ff.
+
+Every file in both scoped manifests was independently checked for size, SHA-256 and Git blob SHA1. The current update changes five imported runtime modules: surfaceIntersection, surfaceProfile, optics/types, pathPlanner and math/intersection. It adds physical aspheric-cap selection. The controlling data/analysis specifications, template, defaults and taxonomy are unchanged. Re-executing the unmodified lens against the new runtime produces exactly the same numerical values, statuses, sample counts, margins and shape paths; only imported-module identities differ. This impact check does not imply a full repository build.
+
+## Independent first pass and exposure
+
+Before the candidate was opened, the review brief and original selection card disclosed the construction correlation, narrow-margin trial and intended illustrative continuous controls. No author data, analysis, source arrays, calculations, audit conclusions or glass labels were read before the fresh baseline was frozen. The public specifications and public glass-reference files were available. Independence is fresh source extraction and calculation, not a claim of complete contextual blindness.
+
+The independently re-entered prescription came from rendered PDF pages 23-24, the asphere equation from page 15, definitions from pages 9-12 and conditions from pages 26-27. All 26 source surfaces, five A4-A12 sequences, three infinity and three near columns, group boundaries, spectral convention and physical cover plate were re-entered. A fresh scalar reduced-angle recurrence and separate nested-list ABCD code were executed.
+
+The baseline was frozen at 2026-10-05T15:51:10Z before candidate access. Fingerprint: c2e97def7c52d8ac5d1d04369638ee5fbeda04941c09c486319357a7e97f6bb4. The evidence retains its numerical inputs/results, conventions, catalog review and original file hashes. The fingerprint is a checkpoint record, not cryptographic proof of review independence. Only exposure wording was normalized for a standalone deliverable; numerical baseline values were not rewritten after comparison.
+
+After the freeze, the exact candidate was checked surface by surface. Fresh vector Snell refraction and independent radial-extrema checks were added after reconciliation; their later timing is explicit. The consolidated verifier retains both the author's portable branch and the separate independent source function. Replayed numerical results from the separate branch agree within 1e-10; vector intersection coordinates agree within 1e-8 mm, observed 1.42e-14 mm.
+
+## Extraction, conventions and transformations
+
+The axis is positive from object to image. A positive radius has its center imageward. Lengths are millimetres, indices and Abbe values are d-line (587.6 nm), and the source sag equation uses standard K=k. All five K values are zero; A4 through A12 are retained with original signs and exponents. A14=0 is schema padding. No uniform scaling is applied.
+
+The implementation renames source 11 to STO and appends A to asphere surface labels. There is exactly one stop. Surface 15 belongs to the downstream L8 medium at the sole L7-L8 cemented interface. Twelve drawn elements form eleven air-separated components and five functional moving groups.
+
+Source 25-26 becomes a physical camera-side rearPlates entry: 2.500 mm, nd=1.51680, vd=64.17, followed by 1.000 mm air. Surface 24 retains its physical gap. The optical plate is traced and not counted as a drawn lens element. The air-equivalent expression is used only in the patent BF condition, never substituted into the model's physical rear distance.
+
+L3 remains the one source medium. Tamron's launch announcement lists a hybrid aspherical element, but the patent contains no resin-layer thickness, second index or interface. None is invented. The source's published near spacing endpoints are retained; 300 mm remains a nominal reference-plane inference. No production 0.17/0.29 m extrapolation is made.
+
+## Source/model numerical checks
+
+Independent infinity EFLs are 20.601561735, 28.303643026 and 38.800686745 mm. First-vertex physical tracks are 109.976, 106.078 and 102.997 mm. The physical rear distances from surface 24 are 16.501, 24.382 and 31.459 mm. These differ from air-equivalent and Gaussian back focal distances; the verifier stores all reference planes separately.
+
+Group EFLs are -31.545870, +350.786679, +23.938659, -38.221179 and +84.517802 mm. Source rounding residuals remain explicit, including G2's -0.033321 mm residual to the printed +350.820 mm. Element powers are calculated with each element isolated in air. The actual cemented component has EFL +54.459063 mm, not the sum of its members' standalone EFLs. The surface Petzval sum is +0.002293829066 mm^-1.
+
+The seven source conditions compute to 0.834415, -0.985065, -2.758827, 70.44, -0.466573, 1.382370 and 0.676679. All match printed rounding and satisfy their stated bounds. G1 moves +6.979 mm relative to the image from wide to tele; G2 moves -4.261 mm, G3/G5 -14.958 mm and G4 -14.479 mm. G4's imageward focus increments are +1.091, +1.619 and +2.625 mm. The tele near-state gap-sum residual of -0.001 mm is retained.
+
+The Gaussian focus lies +0.090698, +0.048534 and +0.007336 mm beyond the physical source image plane. The original spacings are not refocused. Rendered d-line Figures 18-20 support the marginal-minus-paraxial longitudinal shifts of approximately -0.100041, -0.053370 and -0.055657 mm. The source physical plane need not equal Gaussian focus. Near-state paraxial object-to-image conjugates are 313.809555, 306.637905 and 306.045327 mm. No exact 300 mm finiteConjugates certificate is asserted.
+
+The track/EFL ratios exceed one and Gaussian back-focus/EFL ratios are below one at all source infinity stations. No verified telephoto or strict back-focus-ratio retrofocus classification is claimed merely from negative-leading architecture.
+
+## Aperture and geometry
+
+Clear apertures are inferred. The physical iris schedule is inferred by exact source f/2.91 tracing: 7.949329, 9.348782 and 11.019642 mm. This is calibration, not independent evidence of an unpublished diaphragm diameter; paraxial inferred pupil quantities are separately labeled.
+
+The retained trial has SD8=10.16 mm and lens-global gapSagFrac=0.986. The S8/S9 physical same-height rim air is 0.034490804 mm; reserve beyond that policy threshold is 0.002290804 mm. The exact source tele pupil ray has 0.004500968 mm radial clearance at S8 and 0.042690840 mm at S9. Other gaps already satisfy the default 0.90 rule.
+
+Independent radial derivative root bracketing and bisection confirm positive sampled element thickness, conic domain, actual rim-slope limits and all shared-band gap constraints. The S8/S9 maximum intrusion is 2.265509196 mm. The smallest modeled solid thickness is the on-axis 0.800 mm L9 thickness. Minimum gap widths over each bilinear zoom/focus interpolation cell occur at its corners, but finite derivative bracketing is not a formal proof of all possible roots. No manufacturing allowance is inferred from the tiny margins.
+
+The adverse joint half-last-place R/d/nd example raises the S8 ray height to 10.161807897 mm, clipping by 0.001807897 mm. This scientific failure remains recorded. Asphere-coefficient rounding was not varied. This is a sensitivity example, not a statistical or rigorous uncertainty enclosure.
+
+## Native checks and off-axis limits
+
+Node 24.19.0 loads actual pinned TypeScript using stripTypeScriptTypes. The real buildLens, validator, tracing, current-state UI helper, glass resolver and render diagnostic functions execute. The UI helper is byte-identical to its reference path. This is not a full TypeScript compilation or React/browser UI test.
+
+The 41x21 grid records 9,471/9,471 default UI rays and 6,027/6,027 aimed axial stop-target rays transmitting with no unresolved axial aims. Additional +/-1 UI stress-edge launches transmit in 850/3,444 attempts; 2,594 do not transmit. These launches are distinct from exact stop-target probes. Unit-stop target endpoints are inset by 1e-9 of iris radius for numerical aiming; un-inset source f-number probes remain separately recorded.
+
+Of 6,006 signed-stop off-axis attempts, 3,776 transmit, 1,341 physically clip and 889 remain unresolved aims. All 1,617 interior samples through +/-0.83 of the stop at 60% image height transmit. The smallest recorded clear field-ray radial margin is 0.000247265 mm at surface 17. Corner coverage is partial. Unresolved aims are not transmissions, and ghost/ignored-rim continuations are diagnostic only.
+
+Native render trim is zero across the grid. Actual native element paths are included in the SVG and visually inspected against Figure 17 at wide/tele and infinity/near endpoints. Continuous motion is illustrative. The infinity EFL helper's worst sampled difference from actual current-gap EFL is 0.943578481 mm; intermediate focus errors remain in the analysis and results. Neither this scope nor native ray success establishes full-field illumination, continuously accurate focus, MTF, chromatic performance, production identity or fabrication safety.
+
+## Glass review
+
+Primary HOYA 20260707 AGF bytes were independently downloaded before candidate comparison. OHARA type data and its S-TIL25 datasheet, SCHOTT 2025 data and CDGM H-ZLaF76 data were also independently checked. Shared project coordinate matching covered HOYA, OHARA, SCHOTT, HIKARI, CDGM, Sumita and NHG, without asserting that every catalog was independently downloaded. Supplier/melt identity remains undetermined.
+
+The source-first OHARA S-TIL25 match is exact at listed nd=1.58144 and vd=40.75. This fills an omission in the author's L3 comparison table. It does not establish hybrid composition, a resin identity or production supplier. Post-freeze primary inspection also confirms the author's exact S-NBH57 1.85025/30.05 pair. L- and S-prefix families remain distinct. All actual model glass annotations remain class-only and unresolved by the name resolver, hence Abbe-only. The known unfavorable MC-FAD61 screen remains a failed candidate comparison and is not adopted. No APO claim is earned.
+
+## Correction and discrepancy register
+
+| ID | Previous statement or state | Final treatment | Evidence and effect |
+|---|---|---|---|
+| S4-C1 | L3 glass table showed only near HOYA E-FL5/SCHOTT LF5 examples | Adds exact OHARA S-TIL25 coordinates | Primary OHARA 25-04; analysis/evidence only; no data or spectral change |
+| S4-C2 | Stress-edge total omitted from analysis | Reports 850 clear, 2,594 nontransmitting of 3,444 | Independently repeated real runtime; no false all-ray implication |
+| S4-C3 | Audit contained stacked historical current headings | One current audit with explicit historical disposition | Prevents old source pin/gates being mistaken for current findings |
+| S4-C4 | Author native record bound to 25bfb756 | Final native evidence binds to 3f00f210 | Five changed runtime modules; identical numerical/status results |
+| Historic default SD | SD8=9.7/default gap rule clipped nominal tele pupil | Retained approved SD8=10.16 and gapSagFrac=.986 | Original failed checks preserved in evidence/results; no patent change |
+| Gaussian plane assumption | Wide/middle fail zero Gaussian defocus assumption | Keep raw FAIL and source physical planes | Primary aberration plots support separate paraxial/reference treatment |
+| Continuous accuracy | Infinity readout and intermediate focus mismatch | Keep raw FAIL with explicit illustrative scope | No engine or cam-law repair; no claim that scope approval fixes optics |
+| Rounding robustness | Adverse joint perturbation clips S8 | Keep raw FAIL | No uncertainty or fabrication robustness claim |
+
+The only clean-pair edits in Stage 4 are explanatory analysis text. Data SHA-256 remains 244b098bf8f844ed1f1701e410c27f0de272ecfe61aab9aa80a83ca6a092610b. The unchanged original candidate hashes and final file identities are in the manifest. Correction validation is performed by this reviewer with independent source evidence and retained author/native paths; it is not a second independent reviewer of its own text edits.
+
+## Quantitative claim map and prose review
+
+| Analysis content | Executed support |
+|---|---|
+| Identity/counts/metadata | F1/F2; original front matter, source surfaces, Tamron primary specs/launch |
+| Element and cemented powers | F3/F5; independent baseline element powers; final-file matrices |
+| Functional group powers | F4; independent baseline group powers |
+| EFL, tracks, rear distances and Gaussian planes | F6; independent source states and full-plate matrices |
+| Zoom/focus movement and rounding | F7; independent image-referenced positions and gap sums |
+| All five coefficients, departures, rim slopes | F8; frozen asphere inputs and independent radial calculations |
+| Seven conditions | F9; separate source-only equations |
+| Iris and narrow clearances | F10; exact vector trace and independent radial extrema |
+| Intermediate readout/conjugates | F11; actual current-gap matrices and native helper |
+| Rounding adverse example | F12; executed perturbation with raw failure retained |
+| Ray counts, losses, unresolved targets and trim | F13; current native dense records; explicit stress-edge correction |
+| Glass and spectral limits | F14; independently rechecked primary catalog coordinates; native resolution |
+| Petzval | F15; every refracting surface phi/(n*nPrime) |
+
+Manual prose inspection confirms third-person technical writing, required section order, metadata agreement, cautious production correlation, standalone versus in-situ distinction, no unsupported aberration-budget assignment, no unsupported supplier/APO claim, and explicit physical/air-equivalent/Gaussian reference planes. The numerical spellings in the final analysis are checked against executed results. Source patent/card bytes remain unchanged.
+
+## Reproduction and final gate
+
+Portable command, from a clean extraction directory:
+
+    python TamronA0622040mmf28DiIIIVXD.verify.py --package-dir . --output ../portable-replayed.json
+
+Native command, with the externally supplied manifest-verified current source root:
+
+    node --disable-warning=ExperimentalWarning TamronA0622040mmf28DiIIIVXD.runtime.mjs SHARED_PINNED_SOURCE_ROOT TamronA0622040mmf28DiIIIVXD.data.ts ../native-replayed.json
+
+Python uses only the standard library. Native replay requires Node 24.19.0-compatible registerHooks/stripTypeScriptTypes and the identified source snapshot; those sources are shared dependencies, not silently bundled or network-fetched. Portable replay validates native artifact identity and recorded coverage without pretending to rerun a missing project runtime.
+
+The final manifest inventories thirteen root-level files and records exact hashes. ZIP clean extraction verifies membership, original bytes and every non-self manifest hash. Portable and native replays write outside the extracted package and compare stable results; files are not modified by replay.
+
+Full static TypeScript checking, project formatting/lint, full browser/React UI, corpus tests, metadata generation, full build and integration remain NOT_RUN at integration scope. READY_FOR_BATCH applies only to this final byte revision and its documented limitations. INTEGRATION_PENDING.
+
+
+## Current V2 reconstruction, 2026-10-23
+
+This revision preserves every source curvature, thickness, refractive index/Abbe value and all three native infinity AND near-focus gap states. It adds an explicitly inferred G4 continuous infinity-zoom compensation, not factory cam recovery. Gaps16/18 change by equal/opposite amounts, with maximum added G4 travel0.297239716mm; fixed neighboring groups/image plane remain unchanged. Compensation targets the interpolation of the original native rounding residuals, not a shifted image plane or optical surface optimization. Intermediate focus is illustrative and has no finite-conjugate MTF certification.
+
+The historical0.986 gap-sag allowance is not used for this candidate. The current allowance is0.97. Only the inferred S8 clear semi-diameter changes10.16→10.08499mm. S8 curvature radius remains+205.807mm; no curvature change is made. This is a conservative visualization rim, not a printed or production aperture. It deliberately forfeits part of the original near-edge pupil: at most1.1471 percentage points additional on-axis geometric pupil-area loss relative to the same inferred motion with the historical rim. Total on-axis pupil-area loss in this diagnostic reaches11.1662%, including existing stop/other aperture clipping. Resulting geometrical rim-limited f-number reaches2.92873. These are not transmission/T-stop or corner-illumination claims. The baseline diagnostic alone retains the historical0.986 allowance to isolate the incremental rim effect; it is not a release candidate. The former nominal tele pupil clearance and rounding-sensitivity claim must not be carried over as an unchanged aperture pass.
+
+5,005 geometry states pass without errors or render trimming; all1,001 infinity image-plane checks pass unchanged gates. All105 reference-MTF fields converge with per-field limits retained (minimum50lp/mm); photopic MTF remains unavailable because partial-dispersion evidence is absent, and finite-conjugate MTF is not certified. Original source association, glass-class ambiguity, rounding sensitivity, physical-plane residuals and incomplete production equivalence remain qualifications. No engine or validation weakening.
+
+Additional final independent review: pure-Python d-line paraxial replay includes the source rear cover plate and confirms1,001zoom maximum residual0.090697601mm, monotonic EFL20.601561735→38.800686745mm and source-directed G4 motion. All5,555 default UI rays across101zooms×5focus states are clear. Five off-node MTF samples add25 converged reference fields (minimum returned band50lp/mm); photopic and finite-conjugate unavailability remains explicit.
