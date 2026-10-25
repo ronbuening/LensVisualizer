@@ -25,13 +25,13 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Added the Olympus Zuiko Auto-T 600mm f/6.5, Panasonic Lumix G Vario 100-300mm f/4-5.6 Mega O.I.S., Pentax FA* 300mm f/4.5 ED [IF], Sigma APO 50-500mm f/4.5-6.3 DG OS HSM, Sigma 60-600mm f/4.5-6.3 DG DN OS Sports and Voigtländer Super-Dynarex 200mm f/4",
   },
   {
-    date: "2026-10-24",
+    date: "2026-10-25",
     type: "improvement",
     summary:
       "The patents, inventor and relationship map pages now name the example each lens is taken from and list a patent's lenses in example order",
   },
   {
-    date: "2026-10-24",
+    date: "2026-10-25",
     type: "improvement",
     summary: "Lens pages now name the patent example each prescription is taken from, after the patent number",
   },
