@@ -7,7 +7,7 @@
 **Inventors:** Katsuhiro Takamoto (高本 勝裕); Yasushi Yamamoto (山本 康); Hiroshi Yabumoto (籔本 洋)  
 **Applicants:** Konica Minolta, Inc.; Nikon Corporation  
 **Title:** Rear converter lens, imaging optical apparatus, and digital equipment (リアコンバーターレンズ、撮像光学装置およびデジタル機器)  
-**Embodiment analyzed:** Example 1 (第1の実施形態; EX1), Tables 3–5 and Figure 3
+**Example details:** 第1の実施形態; EX1, Tables 3–5 and Figure 3
 
 This model represents the Example 1 rear converter, correlated with the Nikon Z TELECONVERTER TC-1.4x. The converter prescription comes from the original publication, rather than from a commercial specification sheet, and is transcribed unchanged. The patent's reference master contains one index misprint, discussed below, which affects only the converter's placement distance. The model does not establish the production prescription. [1]
 

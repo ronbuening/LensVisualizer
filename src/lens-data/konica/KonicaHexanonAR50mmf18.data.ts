@@ -69,6 +69,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 1982-108817 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1982,
     authors: ["Ryoko Watabe", "Toshiko Shimokura"],
     assignees: ["Konishiroku Photo Industry Co., Ltd."],

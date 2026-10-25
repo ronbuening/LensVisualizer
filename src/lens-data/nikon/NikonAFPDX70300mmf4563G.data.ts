@@ -52,6 +52,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2021/0026133 A1",
+    example: { label: "Example 4", id: "4" },
     patentYear: 2021,
     authors: [
       "Masashi Yamashita",

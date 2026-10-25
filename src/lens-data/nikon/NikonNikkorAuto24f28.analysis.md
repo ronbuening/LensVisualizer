@@ -7,7 +7,7 @@
 **Filed:** December 24, 1969
 **Granted:** November 23, 1971
 **Title:** Retrofocus-Type Wide-Angle Camera Lens
-**Embodiment analyzed:** Example I, Fig. 1, normalized dimensions multiplied by 24
+**Example details:** Fig. 1, normalized dimensions multiplied by 24
 
 Example I supplies a nine-element, seven-group f/2.8 prescription with an 84°
 field and normalized back focus of 1.5597. The source title page names the

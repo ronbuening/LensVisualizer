@@ -57,6 +57,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,512,874",
+    example: { label: "Example 3", id: "3" },
     patentYear: 1970,
     authors: ["Walter Wöltche"],
     assignees: ["Jos. Schneider & Co., Optische Werke"],

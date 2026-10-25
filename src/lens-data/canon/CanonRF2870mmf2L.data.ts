@@ -75,7 +75,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.0, design: 2.06 },
   },
 
-  source: { patentNumber: "JP 2020-118807 A", patentYear: 2020, authors: ["Kohei Kimura"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "JP 2020-118807 A",
+    example: { label: "Example A", id: "A" },
+    patentYear: 2020,
+    authors: ["Kohei Kimura"],
+    assignees: ["Canon Inc."],
+  },
 
   /* ── Elements ── */
   elements: [

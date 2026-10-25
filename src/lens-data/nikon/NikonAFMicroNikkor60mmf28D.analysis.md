@@ -9,7 +9,7 @@
 **Inventor:** Kenzaburo Suzuki
 **Assignee:** Nikon Corporation
 **Title:** *Lens Capable of Short Distance Photographing with Vibration Reduction Function*
-**Embodiment analyzed:** First Embodiment / Table 1 (job-card designation: Example 1)
+**Example details:** Table 1 (job-card designation: Example 1)
 
 The selected prescription is the First Embodiment shown in Fig. 1 and tabulated in Table 1 of US 5,751,485. The patent gives an infinity focal length of 59.9998 mm, FNo = 2.82, a full field of 39.4°, three published focus states through 1:1, and an 8-element arrangement divided into three functional groups G1, G2, and G3. The first two groups move toward the object for close focus; G3 remains fixed axially. (US 5,751,485, PDF pp. 25–26, Fig. 1 and Table 1.)
 

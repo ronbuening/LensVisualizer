@@ -27,11 +27,25 @@ the header, `focus.description`, and analysis. Mark source rows using
 [scaling rules](../src/lens-data/LENS_DATA_SPEC.md#data-sourcing-checklist) to all lengths and surface coefficients.
 
 Add complete structured patent attribution (`source.patentNumber`, all `source.authors`, all `source.assignees`, and
-`source.patentYear`) and retain a concise `subtitle` for the embodiment/correlation. Use only canonical `catalog.lensMounts` and
+`source.patentYear`) and retain a concise `subtitle` for the correlation. Use only canonical `catalog.lensMounts` and
 `catalog.imageFormat` ids. Put `dPgF`, `nC`, `nF`, and `ng` directly on `ElementV2Input`; there is no authored `spectral` block.
 Resolve glass labels against the catalog and use `Unmatched (...)` when the stored `nd`/`νd` cannot defend a public
 identity. Treat product-to-patent matching, glass equivalence, stop position, semi-diameters, and corrected source typos
 as inferences unless the source explicitly establishes them.
+
+In `source`, right after `patentNumber`, add `example: { label, id }` naming the numerical example you transcribed,
+exactly as the publication prints it. `label` is the source's term and number in English Title Case ("Example 6",
+"Numerical Example 2", "Embodiment 3", "Table IV", "Example A"): keep its term and numerals, write "Third Embodiment"
+as "Embodiment 3", and translate 実施例 / 数値実施例 / 実施形態 / Beispiel / Zahlenbeispiel. `id` is the number in Arabic
+digits, with roman numerals converted and letters and suffixes uppercase. One unnumbered example, even inside
+"TABLE 1", is `{ label: "Sole example", id: null }`. Never invent a number. A source that identifies its examples only
+by figure or only by claim gets "Figure N" or "Claim N"; where each embodiment restarts its example numbers, use the
+table numbered across the whole publication ("Table 8"). If the file combines data from different examples (data
+borrowed from an example with the same prescription is fine; name it in the analysis), or transcribes an unnumbered
+design printed beside the source's examples, leave `example` out and say why. In the analysis, write no
+`**Embodiment analyzed:**`; add `**Example details:**` only for tables, figures, claims, paragraphs, the native term or
+scaling. Any example the subtitle names must match. Full rules:
+[The transcribed example](../src/lens-data/LENS_DATA_SPEC.md#the-transcribed-example-sourceexample).
 
 Write the analysis from the final data file. Begin with the required bold-label patent metadata block, identify the
 embodiment and correlation evidence, then cover architecture, elements, glass, focus, and aspheres when present. Exact

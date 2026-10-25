@@ -71,7 +71,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.8, design: 2.8 },
   },
 
-  source: { patentNumber: "US 4,203,653", patentYear: 1980, authors: ["Ikuo Mori"], assignees: ["Nippon Kogaku K.K."] },
+  source: {
+    patentNumber: "US 4,203,653",
+    example: { label: "Embodiment 1", id: "1" },
+    patentYear: 1980,
+    authors: ["Ikuo Mori"],
+    assignees: ["Nippon Kogaku K.K."],
+  },
 
   /* ── Elements ── fl = standalone thick-lens focal length in air (mm) */
   elements: [

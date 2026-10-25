@@ -9,7 +9,7 @@
 **Published:** November 23, 2016
 **Granted:** November 23, 2016
 **Title:** 一种大光圈广角微距镜头 / Large-aperture wide-angle macro lens
-**Embodiment analyzed:** Example 2 / 第二实施例
+**Example details:** 第二实施例
 
 The relevant filing is **CN205720849U**, *一种大光圈广角微距镜头* / “large-aperture wide-angle macro lens,” assigned to **Anhui Changgeng Optics Technology Co., Ltd.** and naming **Zhang Xiaohua** as inventor. The Chinese utility-model application was filed on 2016-04-12 and published/granted on 2016-11-23. The same optical disclosure is also present in **WO2017177665A1**, *一种超广角大光圈镜头*, which is text-searchable and was used as a cross-check against the image-only CN scan.
 

@@ -9,7 +9,7 @@
 **Inventors:** Liu Ruijun; Chen Baofeng\
 **Applicant:** Shenzhen Viltrox Technology Co., Ltd.\
 **Title:** 一种大光圈内合焦式标准摄影镜头及摄影装置\
-**Embodiment analyzed:** Example 1, as a fitted prescription
+**Example details:** as a fitted prescription
 
 This model is **not a literal transcription of the patent table, an established correction of it, or a factory prescription**. Example 1's printed numbers are internally inconsistent, so the radii, aspheric coefficients and several spacings were fitted to the patent's own stated focal lengths and aberration curves while its topology and glasses were kept. It covers infinity focus only.
 

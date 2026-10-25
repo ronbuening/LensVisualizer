@@ -8,8 +8,7 @@
 **Published:** 1983-03-31\
 **Inventor:** Yoshinari Hamanishi\
 **Applicant:** Nippon Kogaku Kogyo K.K.\
-**Title:** 4群構成大口径比ズームレンズ (*Four-group large-aperture-ratio zoom lens*)\
-**Embodiment analyzed:** Example 2
+**Title:** 4群構成大口径比ズームレンズ (*Four-group large-aperture-ratio zoom lens*)
 
 The prescription is the second numerical example of JP S58-54312 A. The patent publishes an 80–200 mm, f/2.8 four-group zoom with 15 glass elements in 11 air-separated components and assigns focusing to the first group [1, printed pp. 59–62]. The data file preserves that example without optical scaling.
 

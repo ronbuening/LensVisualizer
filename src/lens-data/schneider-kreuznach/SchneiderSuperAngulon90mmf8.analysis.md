@@ -7,8 +7,7 @@
 **Patent issued:** 15 March 1962\
 **Inventor:** Günter Klemt, Kreuznach\
 **Assignee:** Jos. Schneider & Co. Optische Werke, Kreuznach\
-**Title:** _Optisches System großer Bildwinkelleistung_\
-**Embodiment analyzed:** Sole numerical example
+**Title:** _Optisches System großer Bildwinkelleistung_
 
 The patent's numerical example is an all-spherical, six-element system in four air-spaced components. It is normalized to $f' = 100$ at an aperture ratio of $1:8$ and states a back focal distance of $s' = 73.4$, a vertex-to-vertex optical length of $\sum d = 80.48$, and an approximately $100°$ field. The prescription table appears on patent page 2, the claims on page 3, and the sectional drawing on page 4.
 

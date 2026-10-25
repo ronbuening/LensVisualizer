@@ -9,7 +9,7 @@
 **Inventor:** Fritz Determann\
 **Assignee:** Voigtländer A.G.\
 **Title:** *Photographic Objective*\
-**Embodiment analyzed:** Example 1 / Figure 2
+**Example details:** Figure 2
 
 The prescription is the Example 1 objective of US 2,927,506, uniformly scaled from the patent's normalized
 `f = 1.0000` table to a 35 mm nominal focal length. The patent gives Example 1 as 1:3.4 and describes the design as a

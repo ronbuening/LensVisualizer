@@ -7,7 +7,7 @@
 **Published:** 16 May 1968
 **Applicant:** Fa. Carl Zeiss, 7920 Heidenheim
 **Inventors:** Erwin Konschack; Dr. Günther Lange
-**Example analysed:** Example 2 (Tabelle II, Fig. 2)
+**Example details:** Tabelle II, Fig. 2
 
 The patent describes a four-element photographic objective of approximately 180 mm focal length and f/2.8 maximum aperture, intended for 24×36 mm format. It covers four numerical examples: Examples 1 and 2 are f/2.8 designs corrected for a ±7° field; Example 3 is an f/4 design with four elements corrected for ±5°; Example 4 is also f/4 and ±5° but uses five elements in five groups (adding a fifth element, L_V, after L_IV). Example 2 is believed to represent the design closest to the production Contarex Olympia-Sonnar 180 mm f/2.8, launched in 1966 — though the patent does not state which example was manufactured. Approximately 965 units were produced over a five-year run, making it one of the rarest lenses in the Contarex system.
 

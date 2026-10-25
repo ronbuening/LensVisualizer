@@ -6,7 +6,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║   LENS DATA — CARL ZEISS JENA VARIO-PRAKTICAR 35-70mm f/2.7-3.5 MC   ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: DE 3602859 A1, the single "Tabelle" (Example 1),       ║
+ * ║  Data source: DE 3602859 A1, the single, unnumbered "Tabelle",       ║
  * ║    applicant Jenoptik Jena GmbH; inventors Utz Schneider,            ║
  * ║    Volker Tautz, Karin Holota. Laid open 1986-09-18.                 ║
  * ║  Two-group zoom: a moving negative front group G_I (two negative     ║
@@ -173,6 +173,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 3602859 A1",
+    example: { label: "Sole example", id: null },
     patentYear: 1986,
     authors: ["Utz Schneider", "Volker Tautz", "Karin Holota"],
     assignees: ["Jenoptik Jena GmbH"],

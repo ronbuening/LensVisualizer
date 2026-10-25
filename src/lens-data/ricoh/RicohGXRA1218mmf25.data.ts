@@ -66,6 +66,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2012-003015 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2012,
     authors: ["Takashi Kubota"],
     assignees: ["Ricoh Co., Ltd."],

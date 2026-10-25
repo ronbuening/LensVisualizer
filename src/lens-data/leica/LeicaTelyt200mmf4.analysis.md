@@ -26,7 +26,7 @@ The follow-up native-e-line comparison selects HOYA PCD2 for L1: n_e ≈ 1.57088
 **Applicant:** Ernst Leitz GmbH
 **Title:** Fotografisches Objektiv (Zusatz zum Patent 1 018 236)
 **Classification:** Kl. 42h 4/20; Int. Kl. G 02 b
-**Embodiment analyzed:** Example 1 — the single numerical example (description table, p. 1 col. 2; repeated as claim 4, p. 2 col. 4)
+**Example details:** the single numerical example (description table, p. 1 col. 2; repeated as claim 4, p. 2 col. 4)
 
 The Auslegeschrift is an addition (_Zusatz_) to the earlier German patent 1 018 236. The printed inventors are Dipl.-Phys. Walter Mandler of Midland, Ontario, and Horst Schmidt of Nauborn near Wetzlar. The document contains one numerical example, normalized to a focal length f = 1,00 with an aperture ratio of 1:4,0 and a field angle (_Bildwinkel_) of 12°. Indices and Abbe numbers are given for the e-line (ne, νe), and the last spacing a8 is stated to be the back focal distance (_Schnittweite_). The prescription is printed twice, once in the description and once in claim 4; the two copies are identical.
 

@@ -12,7 +12,7 @@
 
 **Published:** 2013-09-19.
 
-**Embodiment analyzed:** Numerical Example 3 (数値実施例3, ¶0080).
+**Example details:** 数値実施例3, ¶0080.
 
 Example 3 is the best match to the production Olympus M.Zuiko Digital 17mm f/1.8. The identification is convergent rather than explicit: the patent does not name the retail product. The matching evidence is as follows.
 

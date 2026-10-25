@@ -7,7 +7,7 @@
 **Inventors:** Masaki Ito (伊藤 匡輝); Satoshi Miwa (三輪 哲史); Fumiaki Ohtake (大竹 史哲) <br>
 **Applicant:** Nikon Corporation (株式会社ニコン) <br>
 **Title:** 光学系及び光学機器 (*Optical system and optical apparatus*)
-**Embodiment analyzed:** Example 6 (第6実施例), optical system OL6
+**Example details:** 第6実施例, optical system OL6
 
 The implemented prescription is Example 6 of JP 2023-23323 A. The patent describes OL6 as a three-power-group optical system consisting, from object to image, of positive G1, negative focusing group G2, and negative rear group G3. G1 contains a bonded phase-Fresnel (PF) diffractive element, G2 is the single negative meniscus L21, and the aperture stop lies behind G2 and before G3. Example 6 itself is given in paragraphs ¶0158–¶0167, Tables 16–18 on patent PDF pages 29–31, and Figure 11 on page 40.
 

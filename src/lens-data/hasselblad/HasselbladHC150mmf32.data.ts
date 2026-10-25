@@ -51,6 +51,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2002/0075570 A1",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 2002,
     authors: ["Hiromitsu Yamakawa"],
     assignees: ["Fuji Photo Optical Co., Ltd."],

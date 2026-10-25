@@ -7,7 +7,6 @@
 **Inventors:** Hokuto Usami, Kenta Fujita
 **Applicant:** Sigma Corporation
 **Title:** Imaging Optical System
-**Embodiment analyzed:** Numerical Example 5
 
 The modeled design is Numerical Example 5 of the original Japanese publication,
 including its source-listed rear filter. The prescription and aspheric tables

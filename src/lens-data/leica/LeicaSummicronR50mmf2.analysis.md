@@ -9,7 +9,6 @@
 **Inventors:** Walter Mandler, Garry Edwards, Erich Wagner  
 **Assignee:** Ernst Leitz Wetzlar GmbH  
 **Title:** Four-Member Gauss Objective  
-**Embodiment analyzed:** Example 8
 
 US 4,123,144 discloses a four-component, six-element Gauss objective with planar cemented bond surfaces on each side of the stop, matched surface radii around the diaphragm, and an optional planar object-facing surface on the sixth element. Example 8 is the most appropriate patent embodiment for the Summicron-R 50mm f/2 optical cell because it combines the FIG. 2 last-element form, the longest back focal distance among the nine examples, and the same 6-element / 4-group production architecture published for the lens.
 

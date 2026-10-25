@@ -8,7 +8,6 @@
 **Inventor:** Yoshinari Hamanishi
 **Assignee:** Nippon Kogaku K.K.
 **Title:** *Four-Group Telephoto Zoom Lens*
-**Embodiment analyzed:** Example 2
 
 The prescription modeled here is the second numerical embodiment of US 4,641,928 A. The patent describes a four-group zoom in which a positive first group G1 provides focusing, a negative second group G2 acts as the variator, a positive third group G3 compensates image-plane displacement, and a positive fourth group G4 acts as the relay system. Example 2 is the f/5.6 embodiment shown in Fig. 2A and repeated numerically in Claim 12. [1, Abstract; cols. 1–6; Fig. 2A; Claim 12]
 

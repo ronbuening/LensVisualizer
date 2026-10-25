@@ -54,6 +54,7 @@ const LENS_DATA = {
   },
   "source": {
     "patentNumber": "JP S39-10178 B",
+    "example": { "label": "Sole example", "id": null },
     "patentYear": 1964,
     "authors": [
       "Jiro Mukai"

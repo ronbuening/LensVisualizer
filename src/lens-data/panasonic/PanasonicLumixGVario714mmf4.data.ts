@@ -46,6 +46,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2010/0194930 A1",
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2010,
     authors: ["Kyoichi Miyazaki", "Keiichi Zaitsu"],
     assignees: ["Panasonic Corporation"],

@@ -10,7 +10,7 @@
 **Inventors:** Yuhong Yao; Yoshikazu Shinohara; Lin-Yao Liao  
 **Assignee:** Apple Inc.  
 **Title:** Imaging Lens System  
-**Embodiment analyzed:** Example 7 / lens system 710
+**Example details:** lens system 710
 
 The prescription is transcribed from Example 7, not from a teardown or manufacturer service document. The patent identifies lens system 710 as a seven-element refractive imaging lens with an aperture stop between the first and second elements and gives a design focal length of 4.361 mm, f/1.65, and 80.3° full field of view. The final LensVisualizer model computes an effective focal length of 4.356606 mm from the transcribed refracting sequence; the -0.004394 mm difference from the three-decimal patent value is within the source-precision tolerance used by the verifier. The patent's Example 7 table/figure combination gives a 5.999 mm physical track to the sensor and a 3.75 mm full-field semi-image height, reproducing TTL/ImageH = 1.599733 against the published 1.600. These are infinity-state quantities. [US 2018/0364457 A1, Fig. 7A–7C, Tables 7A–7F, ¶¶0141–0152.]
 

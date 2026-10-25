@@ -66,7 +66,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.8, design: 2.9 },
   },
 
-  source: { patentNumber: "JP 2022-085382 A", patentYear: 2022, authors: ["Takumi Suzuki"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "JP 2022-085382 A",
+    example: { label: "Numerical Example 3", id: "3" },
+    patentYear: 2022,
+    authors: ["Takumi Suzuki"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

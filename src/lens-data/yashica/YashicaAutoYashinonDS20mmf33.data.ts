@@ -51,6 +51,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,856,386 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1974,
     authors: ["Yoshisato Fujioka"],
     assignees: ["Yashica Co., Ltd."],

@@ -7,7 +7,7 @@
 **Inventors:** 山下 豊史; 伊藤 智春; 栗林 知憲; 古井田 啓吾; 三輪 哲史; 小松原 陽子; 渡邊 勝也; 野中 杏菜; 槇田 歩
 **Applicant:** Nikon Corporation
 **Title:** 光学系、光学機器、および光学系の製造方法
-**Embodiment analyzed:** Example 1 / 第1実施例
+**Example details:** 第1実施例
 
 The implemented prescription is Example 1 of JP 2021-36283 A. The patent describes a six-element, five-group, all-spherical 36.000 mm f/2.006 system whose aperture stop lies between the cemented L2/L3 pair and L4. Example 1 uses whole-system unit focusing: the entire optical system moves toward the object as the rear image-space gap D12 increases. These source facts are given in ¶0058–0059 and Table 1; Fig. 1 shows the same order and focus direction.
 

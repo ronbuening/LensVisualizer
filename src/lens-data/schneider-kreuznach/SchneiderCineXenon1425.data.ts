@@ -55,6 +55,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,005,379",
+    example: { label: "Table A", id: "A" },
     patentYear: 1961,
     authors: ["Günter Klemt"],
     assignees: ["Jos. Schneider & Co., Optische Werke"],

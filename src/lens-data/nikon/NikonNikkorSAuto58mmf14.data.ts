@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — NIKON NIKKOR-S AUTO 5.8cm f/1.4                             ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Source: JP 1966-017177, Embodiment 1 (Saburo Murakami / Nippon Kogaku).   ║
+ * ║  Source: JP 1966-017177, sole example (Saburo Murakami / Nippon Kogaku).   ║
  * ║  Patent design strongly correlated with the production Nikkor-S Auto       ║
  * ║  5.8cm f/1.4; it is not represented as an unqualified factory prescription.║
  * ║  Seven elements / six physical air-spaced groups; all surfaces spherical.  ║
@@ -38,7 +38,7 @@ const LENS_DATA = {
   key: "nikon-nikkor-s-auto-58mm-f1-4",
   maker: "Nikon",
   name: "NIKON NIKKOR-S AUTO 5.8cm f/1.4",
-  subtitle: "JP 1966-017177 Embodiment 1 — production-correlated patent design",
+  subtitle: "JP 1966-017177 sole example — production-correlated patent design",
 
   catalog: {
     lensMounts: ["nikon-f"],
@@ -52,6 +52,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 1966-017177 B",
+    example: { label: "Sole example", id: null },
     patentYear: 1966,
     authors: ["Saburo Murakami"],
     assignees: ["Nippon Kogaku K.K."],

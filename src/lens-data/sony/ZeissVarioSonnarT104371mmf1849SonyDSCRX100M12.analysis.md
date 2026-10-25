@@ -8,7 +8,7 @@
 **Inventors:** Atsushi Oohata; Hiroki Hagiwara  
 **Applicant / Assignee:** Sony Corporation  
 **Title:** *Zoom Lens and Image Capturing Apparatus*  
-**Embodiment analyzed:** Example 3, Third Embodiment
+**Example details:** Third Embodiment
 
 The prescription modeled here is Example 3 of US 2013/0314585 A1. The patent describes a four-group zoom in the order negative-positive-positive-positive and gives the complete Example 3 numerical prescription in Tables 9–12, with the corresponding layout in Figure 9. The final data file retains that example at its published dimensional scale rather than forcing it to the marketed focal-length endpoints.
 

@@ -5,7 +5,7 @@
 **Assignee:** Canon Inc. (Canon Kabushiki Kaisha)
 **Priority:** JP 2018-207200, filed November 2, 2018
 **Published:** May 7, 2020
-**Embodiment analyzed:** Numerical Example 1 (of 5 examples in the patent; the only 24–240 mm class example)
+**Example details:** of 5 examples in the patent; the only 24–240 mm class example
 **Production Lens:** Canon RF24-240mm F4-6.3 IS USM (Canon RF mount, released 2019)
 
 ---

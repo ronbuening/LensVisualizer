@@ -9,7 +9,7 @@
 **Inventor:** Takahiro Hatada  
 **Assignee:** Canon Kabushiki Kaisha  
 **Title:** *Zoom Lens and Image Pickup Apparatus Having the Same*  
-**Embodiment analyzed:** Numerical Embodiment 2 / Example 2
+**Example details:** Example 2
 
 The prescription modeled here is Numerical Embodiment 2 of US 2008/0112063 A1. The patent defines a three-unit positive-negative-positive zoom architecture for Embodiment 2, with the first and third units moving toward the object during zooming and the second unit following a reversing axial locus while also serving as the transversely shifted image-stabilizing unit (¶¶0078–0079, 0083, 0089). The numerical table on printed patent page 5 supplies 23 numbered surfaces including the aperture stop, two published variable-gap rows across three infinity-focus zoom nodes, and d-line refractive indices and Abbe numbers (¶0114). No aspherical coefficients or clear-aperture table are published for this example.
 

@@ -6,7 +6,7 @@
 **Inventor:** Soichi Nakamura
 **Assignee:** Nippon Kogaku K.K.
 **Title:** Optical System for the Magnification Varying Portion of an Ultra-Telephoto Type Zoom Lens
-**Embodiment analyzed:** Example I / Claim 4
+**Example details:** Claim 4
 **Certificate of Correction:** March 5, 1974
 
 Example I of US 3,743,384 is the prescription transcribed here. The patent states a 35 mm still-camera zoom lens with $f = 360$-$1200$ mm, F/11 relative aperture, and telephoto ratio 0.61. The prescription contains 32 refracting surfaces defining 20 glass elements in 12 air-separated groups. Those values match the production NIKON AI ZOOM-NIKKOR 360-1200mm f/11 ED specification: 360-1200 mm, f/11, 20 elements in 12 groups, Nikon F mount, and 6 m minimum marked focusing distance.

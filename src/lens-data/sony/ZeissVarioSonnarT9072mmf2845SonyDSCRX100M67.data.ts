@@ -85,6 +85,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP WO2019/188070 A1",
+    example: { label: "Numerical Example 3", id: "3" },
     patentYear: 2019,
     authors: ["Koji Toyoda", "Maya Kiyotoshi", "Keita Kaifu", "Kentaro Tawada"],
     assignees: ["Sony Corporation"],

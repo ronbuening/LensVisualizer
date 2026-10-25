@@ -10,7 +10,7 @@
 **Granted:** June 17, 2014  
 **Inventors:** Yasuharu Yamada; Hirohiko Kimata  
 **Assignee:** Olympus Imaging Corp.  
-**Embodiment analyzed:** Example 1, f = 17.30 mm, Fno = 2.9, ω = 36.4°
+**Example details:** f = 17.30 mm, Fno = 2.9, ω = 36.4°
 
 The prescription transcribed here is Example 1 of US 8,755,132 B2. The patent gives four worked numerical examples: Example 1 at f = 17.30 mm, Example 2 at f = 20.38 mm, Example 3 at f = 14.28 mm, and Example 4 at f = 12.33 mm. Example 1 is the only worked example matching the Olympus M.Zuiko Digital 17mm f/2.8 pancake in focal length, nominal speed, physical scale, and Micro Four Thirds digital-imager requirements.
 

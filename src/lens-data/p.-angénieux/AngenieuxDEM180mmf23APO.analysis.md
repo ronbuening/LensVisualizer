@@ -7,7 +7,6 @@
 **Inventor:** Pierre Angénieux
 **Assignee:** None named in the US grant
 **Title:** *High Relative Aperture Objective Lens System with Compound Focusing*
-**Embodiment analyzed:** Example 1
 
 The prescription represents the P. Angénieux DEM 180mm f/2.3 APO assignment fixed by the job card. The patent does not name the commercial lens, so the production identification rests on convergent evidence rather than an explicit manufacturer patent attribution.
 

@@ -31,6 +31,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2025-069516 A",
+    example: { label: "Numerical Example 2", id: "2" },
     patentYear: 2025,
     authors: ["Takahiro Nakayama"],
     assignees: ["Ricoh Co., Ltd."],

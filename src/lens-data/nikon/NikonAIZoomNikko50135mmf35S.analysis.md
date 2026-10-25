@@ -10,7 +10,7 @@
 **Inventor:** Kiyoshi Hayashi
 **Assignee:** Nippon Kogaku K.K., Tokyo, Japan
 **Title:** Zoom Lens
-**Embodiment analyzed:** First Embodiment / Example 1, FIG. 1; aberration figures FIGS. 2A-2C
+**Example details:** Example 1, FIG. 1; aberration figures FIGS. 2A-2C
 
 US 4,497,547 discloses a compact zoom lens for 35 mm still cameras covering the standard-to-medium-telephoto range. Example 1 is the embodiment transcribed here. It uses the FIG. 1 construction, with a cemented compensator doublet in G3 and the published focal length range of 51.35-131.5 mm at f/3.5. Examples 2 and 3 use the FIG. 3 construction and replace the G3 cemented doublet with a single negative meniscus; those alternatives therefore do not match the 16-element / 13-group production lens.
 

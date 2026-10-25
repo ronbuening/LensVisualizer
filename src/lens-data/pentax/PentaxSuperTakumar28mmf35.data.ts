@@ -52,6 +52,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,506,339",
+    example: { label: "Sole example", id: null },
     patentYear: 1970,
     authors: ["Tomokazu Kazamaki"],
     assignees: ["Asahi Kogaku Kogyo Co., Ltd."],

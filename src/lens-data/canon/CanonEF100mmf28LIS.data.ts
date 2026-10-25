@@ -38,7 +38,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.8, design: 2.92 },
   },
 
-  source: { patentNumber: "US 7,864,451 B2", patentYear: 2011, authors: ["Yoshiyuki Taki"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "US 7,864,451 B2",
+    example: { label: "Numerical Example 1", id: "1" },
+    patentYear: 2011,
+    authors: ["Yoshiyuki Taki"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

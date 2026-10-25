@@ -5,7 +5,7 @@
 **Applicant:** Nikon Corporation
 **Filed:** January 31, 2019
 **Published:** August 6, 2020
-**Embodiment analyzed:** Example 1 (Table 1)
+**Example details:** Table 1
 
 ---
 

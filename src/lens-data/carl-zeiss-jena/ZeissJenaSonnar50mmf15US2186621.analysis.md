@@ -7,7 +7,7 @@
 **Inventor:** Ludwig Bertele  
 **Assignee:** Zeiss Ikon AG  
 **Title:** *Lens System*  
-**Embodiment analyzed:** Figure 1 numerical example (the patent's prior-art system; first table in publication order)
+**Example details:** the patent's prior-art system; first table in publication order
 
 US 2,186,621 prints two numerical examples without numbering them. The first belongs to Figure 1, the seven-element,
 three-group system that the drawing labels “Prior Art Lens System” and that the text attributes to US 1,975,678. The

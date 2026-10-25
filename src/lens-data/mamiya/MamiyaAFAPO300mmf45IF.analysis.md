@@ -7,7 +7,7 @@
 **Inventor:** Hideyuki Suga<br>
 **Applicant:** Mamiya-OP Co., Ltd.<br>
 **Title:** Telephoto Lens (望遠レンズ)
-**Embodiment analyzed:** Example 1 / Table 1
+**Example details:** Table 1
 
 The selected production correlation is the **MAMIYA AF APO 300mm f/4.5 IF** for the Mamiya 645 AF system. The patent does not state that Example 1 became this commercial lens, so the identification is a production correlation rather than a manufacturer-confirmed patent mapping. Several independent features converge on that correlation:
 

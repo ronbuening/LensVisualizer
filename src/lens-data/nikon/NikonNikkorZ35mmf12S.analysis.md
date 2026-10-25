@@ -5,7 +5,7 @@
 **Published:** April 7, 2025
 **Inventors:** Masaki Harada, Toshiyuki Shimada (Nikon Corporation)
 **Applicant:** Nikon Corporation
-**Embodiment analyzed:** Numerical Example 1 (Table 1)
+**Example details:** Table 1
 
 ---
 

@@ -9,7 +9,6 @@
 **Inventor:** Kyosuke Murakami  
 **Applicant:** Sigma Corporation  
 **Title:** Optical system (光学系)  
-**Embodiment analyzed:** Numerical Example 1
 
 The prescription reproduces the selected Japanese publication, particularly the
 surface and asphere tables on pages 12–13 and Figure 1 on page 20. The source

@@ -7,7 +7,6 @@
 **Inventor:** Fred E. Altman
 **Assignee:** Eastman Kodak Company, Rochester, N.Y.
 **Title:** Photographic Objective
-**Embodiment analyzed:** Example 6
 
 Example 6 is a five-element, three-group modified triplet objective. The patent gives the example as a 100 mm f/4.5 design with 26° covering power, where the patent defines covering power as the half angle of the covered field. The worked example is not named as a production Kodak Enlarging Ektar in the patent itself. The identification as the Kodak Enlarging Ektar 100mm f/4.5 is therefore a production cross-identification, not a literal patent label.
 

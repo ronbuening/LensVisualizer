@@ -45,6 +45,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 5,267,086",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1993,
     authors: ["Hiroyuki Hirano"],
     assignees: ["Asahi Kogaku Kogyo Co., Ltd."],

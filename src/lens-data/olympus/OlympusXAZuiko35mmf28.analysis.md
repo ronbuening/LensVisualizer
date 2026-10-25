@@ -9,7 +9,7 @@
 **Filed:** November 24, 1978
 **Granted:** November 25, 1980
 **Title:** Photographic Lens System
-**Embodiment analyzed:** Embodiment 1 (Fig. 2, Fig. 5)
+**Example details:** Fig. 2, Fig. 5
 
 US 4,235,521, **Photographic Lens System**, was filed by Olympus Optical Co., Ltd. with Toshihiro Imai as inventor. The U.S. filing date is November 24, 1978, the Japanese priority date is November 29, 1977 (JP 52-142167), and the U.S. grant date is November 25, 1980. The analysis and data file use **Embodiment 1**, shown schematically in Fig. 2 and paired with the aberration plots in Fig. 5.
 

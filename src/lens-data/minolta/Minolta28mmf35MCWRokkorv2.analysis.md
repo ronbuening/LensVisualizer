@@ -9,7 +9,7 @@
 **Inventor:** Toshinobu Ogura (小倉敏布)
 **Applicant:** Minolta Camera Co., Ltd. (ミノルタカメラ株式会社)
 **Title:** レトロフォーカス型写真用広角レンズ — Retrofocus-type photographic wide-angle lens
-**Embodiment analyzed:** Example 2 (実施例2)
+**Example details:** 実施例2
 
 The implemented prescription is based on Example 2 of the Japanese patent publication. The source example is normalized to
 `f = 1` and publishes a relative aperture of `1:3.5`, a full field of `2ω = 75°`, and a back focus of `1.32` focal-length

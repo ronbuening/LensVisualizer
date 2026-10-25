@@ -30,7 +30,7 @@ Coefficient source: [HOYA official catalog including obsolete glasses, 2026-07-0
 **Assignee:** Jos. Schneider & Co., Optische Werke, Kreuznach, Germany
 **Title:** Wide-Angle Objective with Negative Front Component and Multilens Positive Component
 **Classification:** U.S. Cl. 350-214; 3 claims
-**Embodiment analyzed:** FIG. 2 / FIG. 2a, TABLE II (col. 4) — the second of three disclosed systems; the same prescription is repeated in claim 2 (col. 7)
+**Example details:** FIG. 2 / FIG. 2a, col. 4 — the second of three disclosed systems; the same prescription is repeated in claim 2 (col. 7)
 
 US 3,410,632 discloses three wide-angle objectives built from a negative front component F and a positive rear component R of four air-spaced members. The patent does not number its examples; the system of FIG. 2 (TABLE II) is the second. It is specified in col. 4 as an objective of aperture ratio 1:4 and 75° field angle, normalized to an overall focal length f = 100. The data file transcribes this example. The patent describes it as a general objective "for photographic or cinematographic cameras" (col. 1) and does not mention perspective control.
 

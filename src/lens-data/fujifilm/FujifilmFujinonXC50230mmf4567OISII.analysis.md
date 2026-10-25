@@ -7,7 +7,7 @@
 **Inventors:** Tetsuya Ori; Michio Cho  
 **Assignee:** Fujifilm Corporation  
 **Title:** Zoom lens and imaging apparatus  
-**Embodiment analyzed:** Example 6, Tables 16–19 and Figure 6  
+**Example details:** Tables 16–19 and Figure 6  
 **Priority:** 2013-03-27 and 2013-09-24
 
 The companion prescription transcribes Example 6 without scaling its native dimensions.

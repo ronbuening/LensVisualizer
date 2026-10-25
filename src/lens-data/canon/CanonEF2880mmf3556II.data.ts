@@ -35,7 +35,13 @@ const LENS_DATA = {
     fNumber: { marketing: 3.5, design: 3.46 },
   },
 
-  source: { patentNumber: "US 5,899,585", patentYear: 1999, authors: ["Hideki Ogawa"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "US 5,899,585",
+    example: { label: "Numerical Example 1", id: "1" },
+    patentYear: 1999,
+    authors: ["Hideki Ogawa"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

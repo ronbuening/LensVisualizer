@@ -9,7 +9,7 @@
 **Inventor:** Eiichi Takano.  
 **Assignee:** Canon Camera Co., Inc.  
 **Title:** Mechanically Compensated Zoom Lens System.  
-**Embodiment analyzed:** Complete detailed-description prescription, PDF page 5 / printed column 6, Figure 3 architecture, at the three printed 87.74, 175.01 and 292.45 mm stations.  
+**Example details:** Complete detailed-description prescription, PDF page 5 / printed column 6, Figure 3 architecture, at the three printed 87.74, 175.01 and 292.45 mm stations.  
 **Priority:** Japan 21 January 1963, 38/1776; 25 January 1963, 38/2691.
 
 The production correlation is probable; the patent does not establish that its numerical prescription is identical to the manufactured lens.

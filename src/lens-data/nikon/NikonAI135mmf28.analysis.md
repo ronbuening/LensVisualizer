@@ -8,7 +8,6 @@
 **Filed:** October 3, 1974
 **Granted:** November 8, 1977
 **Title:** Lens System Having Large Relative Aperture and Long Focus
-**Embodiment analyzed:** Example 2
 
 US Patent 4,057,330, "Lens System Having Large Relative Aperture and Long Focus," was filed on October 3, 1974, by inventor Sei Matsui (the patent prints the Kunrei-style spelling "Sei Matui") and assigned to Nippon Kogaku K.K. (the corporate name Nikon used until 1988). The patent was granted November 8, 1977. It presents three numerical examples, all specified at a normalized composite focal length of f = 100 mm, a relative aperture of 1:2.8, and a half-angle of view of 9.05° (full angle 18.1°).
 

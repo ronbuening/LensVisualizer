@@ -8,7 +8,7 @@
 **Inventors:** Yasuto Suzuki; Yoshiaki Kurioka; Shunichiro Yoshinaga  
 **Applicant:** Panasonic Intellectual Property Management Co., Ltd.  
 **Title:** Image capturing optical system, image capturing device, and camera system  
-**Embodiment analyzed:** Numerical Example 1, Tables 1A–1G and Figure 1.
+**Example details:** Tables 1A–1G and Figure 1.
 
 The applicant is Panasonic Intellectual Property Management Co., Ltd., and no manufacturer statement links the patent to a product. Numerical Example 1 is a design of nine elements in eight groups with six aspherical surfaces on three elements (L6, L7 and L8), a design aperture of F/1.86 and a near state at about 0.45 m. The prescription is used at the patent’s own dimensions and d-line indices. Its attribution to the Leica Summicron-SL 50 f/2 ASPH. rests on matching construction:
 

@@ -8,8 +8,7 @@
 **Published:** 26 June 1980<br>
 **Inventor:** Masayoshi Okazaki<br>
 **Applicant:** Mamiya Koki Co., Ltd.<br>
-**Title:** *Modified Gauss-Type Lens* (変形ガウス型レンズ; literal technical translation)<br>
-**Embodiment analyzed:** Example 1
+**Title:** *Modified Gauss-Type Lens* (変形ガウス型レンズ; literal technical translation)
 
 The selected correlation is Example 1 of the supplied examined Japanese publication. The job card fixes that embodiment as the source for the Mamiya-Sekor Macro C 80mm f/4; it is not presented as a manufacturer-issued patent identification. Several independent characteristics nevertheless converge:
 

@@ -7,7 +7,7 @@
 **Inventor:** Kim, Moon-Kyung
 **Applicant:** Samyang Optics Co., Ltd.
 **Title:** Lens Optical System
-**Embodiment analyzed:** Example 3 / lens optical system 300, Table 5 and Table 6
+**Example details:** lens optical system 300, Table 5 and Table 6
 
 WO 2021/085655 A1 discloses three telephoto-type large-aperture embodiments. Example 3, the optical system numbered 300 in Figure 5 and tabulated in Tables 5-6, is the production-relevant prescription for the original Samyang AF 85mm F1.4 FE.
 

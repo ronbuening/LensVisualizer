@@ -17,6 +17,17 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
       "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, BAFD14 NM/CD row; vendor formula-1 polynomial. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf (accessed 2026-10-17).",
   },
   {
+    name: "FDS2",
+    vendor: "Hoya",
+    polynomial: [2.880398, -0.010913678, 0.032350025, 0.002257275, -0.00014065201, 0.000016519655],
+    nd: 1.7283,
+    vd: 28.674457,
+    PgF: 0.6015,
+    code6: "728287",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, FDS2 NM/CD row; vendor formula-1 polynomial. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf (accessed 2026-10-24).",
+  },
+  {
     name: "LAFL23",
     vendor: "Hoya",
     polynomial: [2.7923452, -0.0099241826, 0.020800864, 0.00041652353, -7.9239976e-7, 1.051168e-6],

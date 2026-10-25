@@ -8,7 +8,6 @@
 **Inventors:** Naoki Itoku; Takumu Yamada  
 **Applicant:** Sony Group Corporation  
 **Title:** Zoom Lens and Image Capture Device  
-**Embodiment analyzed:** Example 2
 
 The prescription implemented here is Example 2 of WO 2024/247472 A1, specifically the numerical data in Tables 6–10 and the optical layout in Fig. 14. The patent describes Example 2 as a seven-lens-group zoom system, G1 through G7, with the aperture stop associated with the central portion of the system and with G6 identified as the movable focus group in the selected numerical example (WO 2024/247472 A1, ¶¶0090–0100, Tables 6–10, Fig. 14).
 

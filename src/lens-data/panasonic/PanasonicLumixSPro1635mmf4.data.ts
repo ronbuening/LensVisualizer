@@ -62,6 +62,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2021-076829 A",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 2021,
     authors: ["Takahiro Kitaguchi"],
     assignees: ["Panasonic Intellectual Property Management Co., Ltd."],

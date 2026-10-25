@@ -47,6 +47,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,804,494",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1974,
     authors: ["Keiichi Ito"],
     assignees: ["Olympus Optical Co., Ltd."],

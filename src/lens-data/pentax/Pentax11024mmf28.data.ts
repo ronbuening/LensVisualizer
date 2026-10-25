@@ -59,6 +59,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,223,982",
+    example: { label: "Example 2", id: "2" },
     patentYear: 1980,
     authors: ["Takahiro Sugiyama"],
     assignees: ["Asahi Kogaku Kogyo Co., Ltd."],

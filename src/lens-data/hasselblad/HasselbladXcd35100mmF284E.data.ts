@@ -76,6 +76,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2026/0036794 A1",
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2026,
     authors: ["Emiri Suzuki", "Naoto Nishimura"],
     assignees: ["Panasonic Intellectual Property Management Co., Ltd."],

@@ -8,7 +8,7 @@
 **Inventors:** Soichi Nakamura; Kiyoshi Hayashi\
 **Assignee:** Nippon Kogaku K.K.\
 **Title:** *Telephoto Lens with Large Relative Aperture*\
-**Embodiment analyzed:** Example 2 / Second Embodiment (FIG. 2)
+**Example details:** Second Embodiment (FIG. 2)
 
 The prescription modeled here is the Second Embodiment of US 4,176,913 A. The patent publishes a 200.0 mm, f/2.0, positive–negative–positive internal-focus system for 35 mm still photography and gives the complete numerical prescription for FIG. 2. The production correlation is the user-selected Nikon Ai Nikkor 200mm f/2S IF-ED, which Nikon's history page titles Ai Nikkor ED 200mm F2S (IF); the prescription itself remains patent-derived rather than manufacturer-published.
 

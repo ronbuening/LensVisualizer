@@ -82,6 +82,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 8,508,864 B2",
+    example: { label: "Example 2", id: "2" },
     patentYear: 2013,
     authors: ["Iain A. Neil"],
     assignees: ["ACM Projektentwicklung GmbH"],

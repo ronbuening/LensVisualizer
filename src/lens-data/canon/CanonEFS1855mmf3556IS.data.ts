@@ -58,6 +58,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2007/0058265 A1",
+    example: { label: "Numerical Example 2", id: "2" },
     patentYear: 2007,
     authors: ["Takeshi Nishimura"],
     assignees: ["Canon Inc."],

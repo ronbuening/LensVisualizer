@@ -9,7 +9,7 @@
 **Priority:** JP 2009-207811, September 9, 2009  
 **Inventors:** Hiroki Harada; Yasushi Yamamoto  
 **Assignee:** Nikon Corporation  
-**Embodiment analyzed:** Example 3, corresponding to Figs. 3, 7, 11A–11C, and 19A–21I
+**Example details:** corresponding to Figs. 3, 7, 11A–11C, and 19A–21I
 
 US 8,416,512 B2 discloses a large-aperture wide-angle lens for SLR-class camera bodies. The system consists of a positive first lens group and a positive second lens group; focusing is carried out by moving the second group toward the object while keeping the first group fixed. Example 3 is the strongest public match to the production Nikon AF-S NIKKOR 24mm f/1.4G ED among the four numerical examples in the patent.
 

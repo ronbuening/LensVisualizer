@@ -12,18 +12,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **995** lenses scanned
-- **11321** glass elements examined
-- **3264** elements have multiple coordinate-compatible candidates
-- **587** lens files are affected
-- **317** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **1001** lenses scanned
+- **11407** glass elements examined
+- **3272** elements have multiple coordinate-compatible candidates
+- **589** lens files are affected
+- **318** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **210** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1901 |
+| Smallest reference-index residual | 1902 |
 | Evidence-source priority | 1014 |
-| Vendor context | 335 |
+| Vendor context | 342 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
 
@@ -1792,6 +1792,10 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `N-SK5 / BACD5 class` | 1.58913 / 61.20 (d) | N-SK5 — smallest d-line \|Δn\| (1.2e-7 vs 1.3e-6) | BACD5 (Hoya, name) | 1 | [PENTAX SMC FA 28mm f/2.8 Soft](../../src/lens-data/pentax/PentaxFA28mmf28Soft.data.ts) E1 |
 | `N-SK16 / S-BSM16 class` | 1.62041 / 60.30 (d) | N-SK16 — smallest d-line \|Δn\| (3.5e-8 vs 9.1e-7) | S-BSM16 (Ohara, name) | 1 | [PENTAX SMC FA 28mm f/2.8 Soft](../../src/lens-data/pentax/PentaxFA28mmf28Soft.data.ts) E2 |
 | `S-LAH66 / N-LAF34 / TAF1 class` | 1.77250 / 49.60 (d) | TAF1 — smallest d-line \|Δn\| (2.9e-8 vs 6.4e-8) | N-LAF34 (Schott, name)<br>S-LAH66 (Ohara, name) | 2 | [PENTAX SMC FA 28mm f/2.8 Soft](../../src/lens-data/pentax/PentaxFA28mmf28Soft.data.ts) E3 |
+| `FCD1 (HOYA) / S-FPL51 class ED` | 1.49700 / 81.60 (d) | FCD1 — Annotation vendor context matches Hoya. | S-FPL51 (Ohara, name, vendor ✗) | 3 | [PENTAX SMC FA* 300mm f/4.5 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF45EDIF.data.ts) L1 |
+| `S-TIL25 (OHARA) / E-FL5 class` | 1.58144 / 40.70 (d) | S-TIL25 — Annotation vendor context matches Ohara. | E-FL5 (Hoya, name, vendor ✗) | 1 | [PENTAX SMC FA* 300mm f/4.5 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF45EDIF.data.ts) L5 |
+| `TAF1 (HOYA) / S-LAH66 class` | 1.77250 / 49.60 (d) | TAF1 — Annotation vendor context matches Hoya. | S-LAH66 (Ohara, name, vendor ✗) | 2 | [PENTAX SMC FA* 300mm f/4.5 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF45EDIF.data.ts) L6 |
+| `S-LAH60 (OHARA) / NBFD10 class` | 1.83400 / 37.20 (d) | S-LAH60 — Annotation vendor context matches Ohara. | NBFD10 (Hoya, name, vendor ✗) | 1 | [PENTAX SMC FA* 300mm f/4.5 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF45EDIF.data.ts) L7 |
 | `741278 class (vendor unspecified)` | 1.74077 / 27.70 (d) | E-FD13 — smallest d-line \|Δn\| (2.3e-7 vs 1.2e-6) | S-TIH13 (Ohara, code, preferred code row) | 1 | [PENTAX SUPER-TAKUMAR 135mm f/2.5](../../src/lens-data/pentax/PentaxSuperTakumar135mmf2.5.data.ts) L1 |
 | `640602 class (vendor unspecified)` | 1.64000 / 60.20 (d) | J-LAK01 — smallest d-line \|Δn\| (1.3e-8 vs 2.0e-7) | LACL60 (Hoya, code, preferred code row) | 1 | [PENTAX SUPER-TAKUMAR 135mm f/2.5](../../src/lens-data/pentax/PentaxSuperTakumar135mmf2.5.data.ts) L2 |
 | `773496 class` | 1.77250 / 49.60 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 2.9e-8) | TAF1 (Hoya, code, alternate code row)<br>N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 2 | [PENTAX-02 STANDARD ZOOM 5-15mm f/2.8-4.5](../../src/lens-data/pentax/Pentax02StandardZoom515mmF2845.data.ts) L11G +1 files |
@@ -1986,6 +1990,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `FCD515 (HOYA) / FCD505 class` | 1.59282 / 68.63 (d) | FCD515 — smallest d-line \|Δn\| (4.3e-6 vs 6.8e-6) | FCD505 (Hoya, name, vendor ✓) | 2 | [SIGMA 40mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/SigmaArt40mmf14.data.ts) L10 |
 | `Aspherical mold glass (592/670, FCD505 class)` | 1.59201 / 67.02 (d) | FCD505 — direct name evidence outranks six-digit code evidence. | M-PCD51 (Hoya, code, preferred code row) | 1 | [SIGMA 50mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) L8 |
 | `J-LASKH2 (Hikari, 755523 lanthanum crown)` | 1.75500 / 52.32 (d) | J-LASKH2 — direct name evidence outranks six-digit code evidence. | N-LAK33B (Schott, code, vendor ✗, alternate code row)<br>TAC6L (Hoya, code, vendor ✗, alternate code row)<br>S-YGH51 (Ohara, code, vendor ✗, alternate code row) | 1 | [SIGMA 50mm f/1.4 DG DN \| Art](../../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) L9 |
+| `FCD515 / FCD505 class (HOYA coordinate equivalents)` | 1.59282 / 68.62 (d) | FCD515 — smallest d-line \|Δn\| (4.3e-6 vs 6.8e-6) | FCD505 (Hoya, name, vendor ✓) | 1 | [SIGMA 60-600mm f/4.5-6.3 DG DN OS \| Sports](../../src/lens-data/sigma/Sigma60600mmf4563DGDNOS.data.ts) L25 |
 | `TAF3 / N-LASF44 class (804/465 dense lanthanum flint)` | 1.80420 / 46.50 (d) | N-LASF44 — smallest d-line \|Δn\| (1.0e-7 vs 4.5e-7) | TAF3 (Hoya, name)<br>TAF3D (Hoya, code, alternate code row) | 1 | [SIGMA 60mm f/2.8 DN \| Art](../../src/lens-data/sigma/Sigma60mmf28DN.data.ts) L1a |
 | `E-F5 (HOYA) / S-TIM5 class` | 1.60342 / 38.01 (d) | E-F5 — Annotation vendor context matches Hoya. | S-TIM5 (Ohara, name, vendor ✗) | 1 | [SIGMA 60mm f/2.8 DN \| Art](../../src/lens-data/sigma/Sigma60mmf28DN.data.ts) L1c |
 | `E-FL5 (HOYA) / S-TIL25 class` | 1.58144 / 40.89 (d) | E-FL5 — Annotation vendor context matches Hoya. | S-TIL25 (Ohara, name, vendor ✗) | 1 | [SIGMA 60mm f/2.8 DN \| Art](../../src/lens-data/sigma/Sigma60mmf28DN.data.ts) L3a |

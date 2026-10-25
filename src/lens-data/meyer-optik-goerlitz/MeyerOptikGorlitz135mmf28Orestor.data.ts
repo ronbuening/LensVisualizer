@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — MEYER OPTIK GÖRLITZ ORESTOR 135mm f/2.8              ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Source: DE 1 282 311, Example 1, Hubert Ulbrich.                  ║
+ * ║  Source: DE 1 282 311, sole example, Hubert Ulbrich.               ║
  * ║  Production correlation: Orestor 2.8/135; strong but inferred.     ║
  * ║  Five elements / four groups; all spherical.                       ║
  * ║                                                                    ║
@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "meyer-optik-gorlitz-orestor-135f28",
   maker: "Meyer Optik Görlitz",
   name: "MEYER OPTIK GÖRLITZ ORESTOR 135mm f/2.8",
-  subtitle: "DE 1 282 311, Example 1 — uniformly scaled ×1.35; production correlation inferred",
+  subtitle: "DE 1 282 311, sole example — uniformly scaled ×1.35; production correlation inferred",
 
   catalog: {
     lensMounts: ["exakta", "m42", "praktina"],
@@ -58,6 +58,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 1 282 311",
+    example: { label: "Sole example", id: null },
     patentYear: 1968,
     authors: ["Hubert Ulbrich"],
     assignees: ["VEB Pentacon Dresden Kamera- und Kinowerke"],

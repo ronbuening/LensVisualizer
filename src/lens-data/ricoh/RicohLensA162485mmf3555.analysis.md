@@ -15,7 +15,7 @@
 **Assignee:** Ricoh Co., Ltd. (same-application assignment record; omitted from the A1 front page)
 
 **Title:** Zoom Lens, Imaging Device and Information Device
-**Embodiment analyzed:** Embodiment 3 / FIG. 9 / Table 3
+**Example details:** FIG. 9 / Table 3
 
 The prescription modeled here is Embodiment 3 of US 2012/0307375 A1. The patent identifies FIG. 9 as the optical layout for Embodiment 3, FIGS. 10–12 as its wide, intermediate, and telephoto aberration plots, and Table 3 as its variable-spacing table (¶¶0302–0346). The selected production correlation is the **RICOH LENS A16 24-85mm f/3.5-5.5 (Ricoh GXR A16)** GXR camera unit. This correlation is a source-based identification rather than a manufacturer statement that the patent example is the production prescription.
 

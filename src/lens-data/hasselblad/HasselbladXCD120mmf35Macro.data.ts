@@ -50,6 +50,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2020/0192060 A1",
+    example: { label: "Example 2", id: "2" },
     patentYear: 2020,
     authors: ["Akira Sawamoto"],
     assignees: ["Nittoh Inc."],

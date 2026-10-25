@@ -9,7 +9,7 @@
 **Inventor:** Kouichi Ohshita (大下 孝一)\
 **Applicant:** Nikon Corporation (株式会社ニコン)\
 **Title:** ビハインド絞りを有するトリプレットレンズ (Triplet lens with a behind-the-lens stop)\
-**Embodiment analyzed:** Example 2 / 第2実施例
+**Example details:** 第2実施例
 
 JP H06-235857 A describes a three-element triplet with the aperture stop behind the final lens. Example 2 publishes a
 normalized focal length of 100.0, back focus of 83.35, f-number of 3.54, and full angular field of 74.6°. Its lens sequence

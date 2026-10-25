@@ -32,7 +32,7 @@ const LENS_DATA = {
   key: "nikon-fisheye-nikkor-6mm-f56",
   maker: "Nikon",
   name: "NIKON FISHEYE-NIKKOR 6mm f/5.6",
-  subtitle: "US 3,524,697 Example 1 — Isshiki / Matsuki",
+  subtitle: "US 3,524,697 Fig. 1 — Isshiki / Matsuki",
 
   catalog: {
     lensMounts: ["nikon-f"],
@@ -46,6 +46,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,524,697",
+    example: { label: "Figure 1", id: "1" },
     patentYear: 1970,
     authors: ["Masaki Isshiki", "Keiji Matsuki"],
     assignees: ["Nippon Kogaku K.K."],

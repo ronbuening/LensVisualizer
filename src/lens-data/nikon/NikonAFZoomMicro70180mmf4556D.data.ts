@@ -36,7 +36,7 @@ const LENS_DATA = {
   key: "nikon-af-zoom-micro-70-180mm-f45-56d",
   maker: "Nikon",
   name: "NIKON AF ZOOM-MICRO NIKKOR 70-180mm f/4.5-5.6 D ED",
-  subtitle: "US 5,717,527 Table 8 — Nikon / Shibayama",
+  subtitle: "US 5,717,527 Embodiment 7 (Table 8) — Nikon / Shibayama",
 
   catalog: {
     lensMounts: ["nikon-f"],
@@ -56,6 +56,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 5,717,527",
+    example: { label: "Embodiment 7", id: "7" },
     patentYear: 1998,
     authors: ["Atsushi Shibayama"],
     assignees: ["Nikon Corporation"],

@@ -7,7 +7,7 @@
 **Inventor:** Ito Daisuke (伊藤 大介)
 **Applicant:** Canon Inc. (キヤノン株式会社)
 **Title:** ズームレンズ及びそれを有する撮像装置 (Zoom lens and image pickup apparatus having the same)
-**Embodiment analyzed:** Numerical Example 1 (数値データ1)
+**Example details:** 数値データ1
 
 JP 2018-106021 A describes compact zoom lenses for image-pickup devices with a rear positive resin meniscus element, GRP, in the most image-side positive group LRP. The claimed purpose is to keep the system compact while reducing weight near the image plane and suppressing sensor/filter reflection ghosts from the final lens surfaces (¶0003–¶0015, ¶0036–¶0038).
 

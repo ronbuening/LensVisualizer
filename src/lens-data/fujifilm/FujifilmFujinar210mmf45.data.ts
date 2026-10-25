@@ -59,7 +59,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinar-210mm-f45",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINAR 210mm f/4.5",
-  subtitle: "JP S29-2685 B, Example 1 — constrained A8 reconstruction from the published ~20-ring edge criterion",
+  subtitle: "JP S29-2685 B, sole example — constrained A8 reconstruction from the published ~20-ring edge criterion",
 
   catalog: {
     lensMounts: ["large-format-lens-board"],
@@ -72,6 +72,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP S29-2685 B",
+    example: { label: "Sole example", id: null },
     patentYear: 1954,
     authors: ["Ryoichi Doi"],
     assignees: ["Fuji Photo Film Co., Ltd."],

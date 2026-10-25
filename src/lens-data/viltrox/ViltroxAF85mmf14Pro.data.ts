@@ -80,6 +80,7 @@ const LENS_DATA = {
   },
   source: {
     patentNumber: "CN 120686438 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2025,
     authors: ["Liu Ruijun", "Chen Baofeng"],
     assignees: ["Shenzhen Viltrox Technology Co., Ltd."],

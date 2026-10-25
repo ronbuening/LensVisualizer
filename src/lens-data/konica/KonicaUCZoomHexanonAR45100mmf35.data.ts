@@ -56,6 +56,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP S51-34741 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1976,
     authors: ["Tadashi Kojima"],
     assignees: ["Konishiroku Photo Industry Co., Ltd."],

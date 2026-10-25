@@ -8,7 +8,6 @@
 **Inventor:** Hideki Ogawa  
 **Assignee:** Canon Inc. (source form: Canon Kabushiki Kaisha)  
 **Title:** *Compact Wide-Angle Zoom Lens*  
-**Embodiment analyzed:** Numerical Example 1
 
 The prescription is correlated with the **CANON EF 28-80mm f/3.5-5.6 II**. The patent does not name the retail lens, and Canon does not publish a patent-to-product cross-reference, so the identification remains an author-established production correlation rather than a manufacturer-confirmed factory prescription.
 

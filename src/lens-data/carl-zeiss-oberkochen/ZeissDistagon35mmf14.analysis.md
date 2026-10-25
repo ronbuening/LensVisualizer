@@ -7,7 +7,7 @@
 **Assignee:** Carl Zeiss Stiftung, Oberkochen, Germany
 **Filed:** February 1, 1974 | **Granted:** October 28, 1975
 **Priority:** DE 2306346, February 9, 1973
-**Embodiment:** Example 8 (f/1.4, F = 1.0000, s′ = 0.98567F), general configuration of FIGS. 4 and 4a
+**Example details:** f/1.4, F = 1.0000, s′ = 0.98567F, general configuration of FIGS. 4 and 4a
 **Production lens:** Carl Zeiss Distagon T\* 1.4/35 (Contax/Yashica mount)
 
 ---

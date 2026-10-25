@@ -54,6 +54,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "CN 211826700 U",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2020,
     authors: ["Liu Ruijun", "Chen Baofeng"],
     assignees: ["Shenzhen Leiying Photoelectric Technology Co., Ltd."],

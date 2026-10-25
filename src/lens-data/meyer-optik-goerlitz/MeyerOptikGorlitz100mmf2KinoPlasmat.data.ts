@@ -49,7 +49,13 @@ const LENS_DATA = {
     focalLengthMm: { design: 100.158021 },
   },
 
-  source: { patentNumber: "DE 401630", patentYear: 1924, authors: ["Paul Rudolph"], assignees: [] },
+  source: {
+    patentNumber: "DE 401630",
+    example: { label: "Example III", id: "3" },
+    patentYear: 1924,
+    authors: ["Paul Rudolph"],
+    assignees: [],
+  },
 
   /*
    * Exact production mount and image format remain unverified for the correlated

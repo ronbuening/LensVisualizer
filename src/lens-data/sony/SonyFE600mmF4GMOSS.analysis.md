@@ -10,7 +10,7 @@
 **Inventor:** Riki Maruyama (丸山 理樹)
 **Applicant:** Sony Group Corporation
 **Title:** 光学系および撮像装置 (Optical system and imaging apparatus)
-**Embodiment analyzed:** Example 4 (実施例4) — Tables 10–12, Fig. 13
+**Example details:** 実施例4 — Tables 10–12, Fig. 13
 
 JP 2025-063175 A gives eleven numerical examples (¶0015) of a telephoto built from three groups: a fixed positive front group GR1, an axially moving focus group GR2, and a fixed rear group GR3 that is split into GR3a, an image-stabilizing GR3b, and GR3c (¶0006, ¶0018–¶0021). The stated objective is a lens that is light, with its centre of gravity close to the camera, and whose chromatic aberration is controlled across the frame (¶0014, ¶0026). Example 4 prints a focal length of f = 581.97 mm, Fno = 4.12, half-field ω = 2.11°, image height Y = 21.633 mm, optical length L = 455.32 mm, and back focus BF = 39.18 mm (Table 11).
 

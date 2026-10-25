@@ -74,6 +74,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2006/0007559 A1",
+    example: { label: "Example 4", id: "4" },
     patentYear: 2006,
     authors: ["Haruo Sato"],
     assignees: ["Nikon Corporation"],

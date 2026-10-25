@@ -7,7 +7,7 @@
 **Inventor:** Keiko Mizuguchi
 **Assignee:** Nikon Corporation, Tokyo
 **Title:** Fisheye Lens
-**Embodiment analyzed:** Example 9, Table 9 and FIG. 17
+**Example details:** Table 9 and FIG. 17
 
 US 7,161,746 B2 discloses fisheye lenses for SLR digital cameras with an image size smaller than the 35 mm film frame. Example 9 is the embodiment corresponding most closely to the Nikon AF DX Fisheye-Nikkor 10.5mm f/2.8G ED.
 

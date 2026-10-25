@@ -9,7 +9,7 @@
 **Inventor:** Yukihiro Yamamoto (山本幸広)  
 **Applicant:** Sigma Corporation (株式会社シグマ)  
 **Title:** Inner-focus macro lens with image-stabilization function (防振機能を有するインナーフォーカス式マクロレンズ)  
-**Embodiment analyzed:** Numerical Example 2 (数値実施例2, ¶0085–¶0089)
+**Example details:** 数値実施例2, ¶0085–¶0089
 
 JP 2012-63403 A describes a life-size inner-focus macro lens with optical image stabilization. The claimed layout is, from object to image, six functional groups with powers **positive / negative / positive / negative / negative / positive**. During focusing from infinity to close range, L1 is fixed, L2 moves toward the image, L3 moves toward the object, and L5 moves laterally for image stabilization. The aperture stop, L4, L5, and L6 remain axially fixed.
 

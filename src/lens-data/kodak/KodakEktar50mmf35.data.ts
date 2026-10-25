@@ -34,7 +34,7 @@ const LENS_DATA = {
   key: "kodak-ektar-50f35",
   maker: "Kodak",
   name: "KODAK EKTAR 50mm f/3.5",
-  subtitle: "US 2,165,328 — Example 2; 0.5× normalized research correlation",
+  subtitle: "US 2,165,328 — Fig. 2; 0.5× normalized research correlation",
 
   catalog: {
     imageFormat: "135-full-frame",
@@ -52,6 +52,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2,165,328",
+    example: { label: "Figure 2", id: "2" },
     patentYear: 1939,
     authors: ["George H. Aklin", "Fred E. Altman"],
     assignees: ["Eastman Kodak Company"],

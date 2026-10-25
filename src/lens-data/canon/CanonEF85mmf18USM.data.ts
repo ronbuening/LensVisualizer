@@ -42,7 +42,13 @@ const LENS_DATA = {
     fNumber: { marketing: 1.8 },
   },
 
-  source: { patentNumber: "JP H05-157964 A", patentYear: 1993, authors: ["Hiroshi Endo"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "JP H05-157964 A",
+    example: { label: "Numerical Example 1", id: "1" },
+    patentYear: 1993,
+    authors: ["Hiroshi Endo"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

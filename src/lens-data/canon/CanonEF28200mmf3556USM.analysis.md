@@ -8,7 +8,6 @@
 **Inventor:** Makoto Mitsusaka  
 **Applicant:** Canon Inc.  
 **Title:** Zoom lens and optical device using the same  
-**Embodiment analyzed:** Numerical Example 1
 
 The prescription is Numerical Example 1 of JP 2001-350095 A (¶0054; PDF p. 6). The selected production correlation is the Canon EF
 28-200mm f/3.5-5.6 USM. This identification is fixed for the present analysis, but it is not represented as an explicit

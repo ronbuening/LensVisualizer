@@ -7,7 +7,6 @@
 **Inventor:** Saburo Murakami
 **Applicant:** Nippon Kogaku K.K.
 **Title:** 大口径比写真レンズ (*Large-aperture photographic lens*)
-**Embodiment analyzed:** Embodiment 1
 
 This prescription transcribes the selected embodiment of JP 1966-017177 B. The patent publishes a normalized focal length
 of $f=1$, an aperture ratio of 1:1.4, a full field of $41°$, seven elements, and five functional groups. The data model

@@ -67,7 +67,13 @@ const LENS_DATA = {
     fNumber: { marketing: 6.8, design: 6.8 },
   },
 
-  source: { patentNumber: "US 1,882,530 A", patentYear: 1932, authors: ["Albrecht Wilhelm Tronnier"], assignees: [] },
+  source: {
+    patentNumber: "US 1,882,530 A",
+    example: { label: "Sole example", id: null },
+    patentYear: 1932,
+    authors: ["Albrecht Wilhelm Tronnier"],
+    assignees: [],
+  },
 
   /* ── Elements ──
    * `fl` is the independently computed standalone-in-air paraxial focal length

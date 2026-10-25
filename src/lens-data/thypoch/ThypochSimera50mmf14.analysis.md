@@ -7,7 +7,7 @@
 **Inventors:** Kuang Jian (邝健), Ouyang Xia (欧阳霞), Ye Bo (叶波), Li Zenghui (李增辉), Liu Xiaojuan (刘晓娟)  
 **Applicant:** Shenzhen Dongzheng Optical Technology Co., Ltd. (深圳市东正光学技术股份有限公司)  
 **Title:** 一种光学镜头及摄像头模组 (An optical lens and camera module; translated title)  
-**Embodiment analyzed:** Example 1, Tables 1a–1g and Figures 1–8.
+**Example details:** Tables 1a–1g and Figures 1–8.
 
 The companion prescription transcribes the application publication, without optical scaling or source-value optimization. Its association with the THYPOCH SIMERA 50mm f/1.4 is supported by the manufacturer's optical section and focus arrangement; it is not confirmation that the production prescription is numerically identical.
 

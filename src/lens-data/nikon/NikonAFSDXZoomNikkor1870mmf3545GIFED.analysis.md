@@ -18,7 +18,7 @@
 
 **Title:** *Zoom Lens System*
 
-**Embodiment analyzed:** Example 1, Fig. 2 and Table 1
+**Example details:** Fig. 2 and Table 1
 
 The prescription represented here is the native-scale d-line prescription of Example 1 in US 2005/0068636 A1. The patent
 places Example 1 within a five-group positive/negative/positive/negative/positive zoom architecture and publishes three

@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║      LENS DATA — SCHNEIDER-KREUZNACH RETINA-CURTAGON 28mm f/4    ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2,824,495, Example 1 (Günter Klemt / Schneider). ║
+ * ║  Source: US 2,824,495, sole example (Günter Klemt / Schneider).   ║
  * ║  Seven elements in six air-separated groups; all surfaces sphere. ║
  * ║  Patent f=100 prescription uniformly scaled ×0.28 to the 28 mm    ║
  * ║  production correlation. All R, d, sd, and image-plane distances  ║
@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "schneider-retina-curtagon-28f4",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH RETINA-CURTAGON 28mm f/4",
-  subtitle: "US 2,824,495 — Example 1; scaled ×0.28; Retina/DKL production correlation (inferred)",
+  subtitle: "US 2,824,495 — sole example; scaled ×0.28; Retina/DKL production correlation (inferred)",
 
   catalog: {
     lensMounts: ["dkl"],
@@ -60,6 +60,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2,824,495",
+    example: { label: "Sole example", id: null },
     patentYear: 1958,
     authors: ["Günter Klemt"],
     assignees: ["Jos. Schneider & Co., Optische Werke"],

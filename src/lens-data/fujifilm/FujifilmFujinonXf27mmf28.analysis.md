@@ -9,8 +9,7 @@
 **Published:** 2016-01-14\
 **Inventor:** Takashi Suzuki\
 **Assignee:** FUJIFILM Corporation\
-**Title:** *Imaging Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Example 5
+**Title:** *Imaging Lens and Imaging Apparatus*
 
 The implemented prescription transcribes Example 5 of US 2016/0011404 A1. The patent publishes a seven-element lens arranged as a positive first group G1, aperture stop, negative second group G2, and positive third group G3; Example 5 is the prescription shown in Figure 5 and Tables 9–11. The data file preserves that embodiment at its published scale rather than renormalizing it to the marketed nominal focal length.
 

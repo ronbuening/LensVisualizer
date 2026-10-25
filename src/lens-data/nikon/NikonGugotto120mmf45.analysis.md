@@ -9,7 +9,7 @@
 **Inventor:** Kouichi Ohshita
 **Assignee:** Nikon Corporation, Tokyo, Japan
 **Title:** Telephoto Lens
-**Embodiment analyzed:** Fourth Embodiment / Example 4, Table 4 and FIG. 7
+**Example details:** Example 4, Table 4 and FIG. 7
 
 US 5,764,425 discloses a compact two-group, three-element telephoto lens. From the object side, the optical system consists of a positive cemented component L12 made from a biconvex L1 and biconcave L2, followed by a single negative meniscus component L3 with its convex side facing the image. The fourth embodiment is the best match to the production Nikon Gugutto Macro 120mm f/4.5.
 

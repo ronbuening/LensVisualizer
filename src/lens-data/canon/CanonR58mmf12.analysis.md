@@ -7,7 +7,7 @@
 **Inventor:** Jiro Mukai (向井二郎)  
 **Applicant:** Canon Camera Co., Inc. (キヤノンカメラ株式会社)  
 **Title:** Large-aperture Gaussian-type photographic lens  
-**Embodiment analyzed:** Sole numerical example, Figure 1 (prescription printed on pages 1 and 2)
+**Example details:** Figure 1 (prescription printed on pages 1 and 2)
 
 The example is a probable match for the original Canon R 58mm f/1.2 rather than a manufacturer-published prescription. Three features support the association:
 

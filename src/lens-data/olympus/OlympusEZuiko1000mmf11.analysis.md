@@ -8,7 +8,6 @@
 **Inventor:** Jihei Nakagawa  
 **Applicant:** Olympus Optical Co. Ltd., Tokyo  
 **Title:** *Linsensystem für Superteleskope*  
-**Embodiment analyzed:** The single worked example
 
 The worked example is the strongest available patent match to the Olympus E.Zuiko Auto-T 1000mm f/11. The identification rests on convergent evidence:
 

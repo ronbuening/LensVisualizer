@@ -47,6 +47,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,487,485",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1984,
     authors: ["Masaharu Hisada"],
     assignees: ["Asahi Kogaku Kogyo Co., Ltd."],

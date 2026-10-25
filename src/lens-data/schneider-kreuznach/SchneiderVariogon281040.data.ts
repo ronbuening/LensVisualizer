@@ -37,7 +37,7 @@ const LENS_DATA = {
   key: "schneider-variogon-10-40-f28",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH VARIOGON 10-40mm f/2.8",
-  subtitle: "US 3,057,257 — Example 1; production-normalized x0.2 correlation",
+  subtitle: "US 3,057,257 — sole example; production-normalized x0.2 correlation",
 
   catalog: {
     imageFormat: "normal-8",
@@ -50,6 +50,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,057,257",
+    example: { label: "Sole example", id: null },
     patentYear: 1962,
     authors: ["Günter Klemt", "Karl Heinrich Macher"],
     assignees: ["Jos. Schneider & Co., Optische Werke"],

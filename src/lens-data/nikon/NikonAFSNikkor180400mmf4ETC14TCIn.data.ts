@@ -54,7 +54,7 @@ const LENS_DATA = {
   key: "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr-tc-in",
   maker: "Nikon",
   name: "NIKON AF-S NIKKOR 180-400mm f/4 E TC1.4 FL ED VR — TC 1.4x Engaged",
-  subtitle: "WO 2019/131993 A1 second embodiment Example 1 — TC in; constrained 2.0 m focus reconstruction",
+  subtitle: "WO 2019/131993 A1 Table 10 — TC in; constrained 2.0 m focus reconstruction",
   visible: false,
 
   catalog: {
@@ -81,6 +81,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "WO 2019/131993 A1",
+    example: { label: "Table 10", id: "10" },
     patentYear: 2019,
     authors: ["Mitsuaki Wada", "Masashi Yamashita"],
     assignees: ["Nikon Corporation"],

@@ -51,6 +51,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP H05-164961 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1993,
     authors: ["Yoshio Shimazaki"],
     assignees: ["Konica Corporation"],

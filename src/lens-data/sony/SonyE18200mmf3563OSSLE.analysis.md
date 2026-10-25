@@ -8,7 +8,7 @@
 **Inventors:** Hisayuki Yamanaka; Makoto Kanai; Masafumi Sueyoshi; Masaharu Hosoi\
 **Assignees:** Tamron Co., Ltd.; Sony Corporation\
 **Title:** *Enhanced Variable Power Zoom Lens*\
-**Embodiment analyzed:** Embodiment 1 / Example 1
+**Example details:** Example 1
 
 The prescription modeled here is the selected production correlation for the **SONY E 18-200mm f/3.5-6.3 OSS LE (SEL18200LE)**. The patent itself does not identify SEL18200LE by product name, and Sony does not document this patent as the production prescription. The identification is therefore a correlation established from convergent optical, mechanical, corporate, and chronological evidence rather than manufacturer confirmation.[1–3]
 

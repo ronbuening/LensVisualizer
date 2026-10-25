@@ -9,7 +9,7 @@
 **Inventor:** Haruo Sato
 **Assignee:** Nikon Corporation
 **Title:** *Fisheye Lens Having a Short Distance Compensating Function*
-**Embodiment analyzed:** Example 1 / First Embodiment
+**Example details:** First Embodiment
 
 The Example 1 prescription is assigned to the Nikon AF Fisheye-Nikkor 16mm f/2.8D. Nikon's product literature identifies the production lens and its designer, but it does not explicitly cite US 5,434,713 A. The production correlation therefore rests on convergent design evidence rather than a manufacturer statement that names the patent. The modeled production form uses Nikon F mount and the 135 full-frame format.
 

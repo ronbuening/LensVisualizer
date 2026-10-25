@@ -53,6 +53,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2021/0149156 A1",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2021,
     authors: ["Jae Hyuk Huh", "Jae Hyun Baik", "Yong Joo Jo"],
     assignees: ["Samsung Electro-Mechanics Co., Ltd."],

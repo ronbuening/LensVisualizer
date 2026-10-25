@@ -32,7 +32,7 @@ function makeLens(overrides: Partial<LensData> = {}): import("../../../../src/op
   return {
     ...fields,
     catalog: { specs: fields.specs },
-    source: { patentNumber: fields.patentNumber, authors: fields.patentAuthors },
+    source: { patentNumber: fields.patentNumber, example: fields.patentExample, authors: fields.patentAuthors },
   } as unknown as import("../../../../src/optics/buildLens.js").CanonicalLens;
 }
 
@@ -277,6 +277,16 @@ describe("lensDisplaySubtitle", () => {
         }),
       ),
     ).toBe("US 10,571,651 B2 — Hideki Sakai, Aiko Example");
+  });
+
+  it("follows the patent number with the transcribed example", () => {
+    const lens = (patentExample: LensData["patentExample"]) =>
+      makeLens({ patentNumber: "US 4,303,312 A", patentExample, patentAuthors: ["Ada Lovelace"] });
+    expect(lensDisplaySubtitle(lens({ label: "Table IV", id: "4" }))).toBe("US 4,303,312 A, Table IV — Ada Lovelace");
+    expect(lensDisplaySubtitle(lens({ label: "Sole example", id: null }))).toBe(
+      "US 4,303,312 A, sole example — Ada Lovelace",
+    );
+    expect(lensDisplaySubtitle(lens(undefined))).toBe("US 4,303,312 A — Ada Lovelace");
   });
 
   it("shows only the patent number when the source names no individual inventor", () => {

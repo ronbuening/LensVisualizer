@@ -55,6 +55,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2015/0168697 A1",
+    example: { label: "Example 4", id: "4" },
     patentYear: 2015,
     authors: ["Yasuji Ogata"],
     assignees: ["Olympus Imaging Corporation"],

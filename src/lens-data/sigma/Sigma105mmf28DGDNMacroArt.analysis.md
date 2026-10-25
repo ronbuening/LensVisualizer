@@ -9,7 +9,6 @@
 **Inventor:** Yuki Ueda  
 **Applicant:** Sigma Corporation  
 **Title:** Inner focus lens  
-**Embodiment analyzed:** Numerical Example 1
 
 The prescription follows the original Japanese publication, including the three numerical focus states in PDF pp. 15–17. The inventor is printed as 植田 裕輝; Yuki Ueda is the public romanized form. All dimensions remain at native scale. The optical correlation with the commercial lens is supported by the following evidence, without manufacturer confirmation of the exact factory prescription.
 

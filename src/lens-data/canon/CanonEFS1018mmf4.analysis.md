@@ -7,7 +7,7 @@
 **Inventor:** Makoto Nakahara (中原 誠).
 **Filed:** 5 August 2013 (Priority: 特願2013-162437).
 **Published:** 16 February 2015.
-**Embodiment analyzed:** Numerical Example 1 (数値実施例１), corresponding to the lens cross-section in Figure 1.
+**Example details:** 数値実施例１, corresponding to the lens cross-section in Figure 1.
 
 ### Production Lens Identification
 

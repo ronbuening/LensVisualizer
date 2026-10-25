@@ -83,6 +83,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2019-090947 A",
+    example: { label: "Example 4", id: "4" },
     patentYear: 2019,
     authors: ["Keiko Yamada", "Ryosuke Imajima", "Wataru Tatsuno", "Haruo Sato"],
     assignees: ["Konica Minolta, Inc.", "Nikon Corporation"],

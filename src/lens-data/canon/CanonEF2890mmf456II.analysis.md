@@ -10,7 +10,6 @@
 **Inventor:** Makoto Misaka  
 **Applicant:** Canon Inc.  
 **Title:** Zoom Lens  
-**Embodiment analyzed:** Numerical Example 6  
 **Data-file subtitle:** JP 2009-282554 A — Numerical Example 6; production correlation inferred
 
 The prescription is Numerical Example 6 of JP 2009-282554 A. The data file retains the patent-scale radii, center thicknesses, refractive indices, Abbe numbers, zoom spacings, and aspheric coefficients. No uniform production scaling has been applied.

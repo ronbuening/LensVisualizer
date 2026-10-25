@@ -54,6 +54,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,615,126",
+    example: { label: "Embodiment I", id: "1" },
     patentYear: 1971,
     authors: ["Tadashi Kojima"],
     assignees: ["Konishiroku Photo Industry Co., Ltd."],

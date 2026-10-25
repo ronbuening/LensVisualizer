@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — MIRANDA AUTO EC 200mm f/3.5                                  ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP1976-114926, Example 1 (Miranda Camera Co., Ltd.).         ║
+ * ║  Data source: JP1976-114926, sole example (Miranda Camera Co., Ltd.).      ║
  * ║  Six elements in five groups; all surfaces are spherical.                 ║
  * ║  Focus: NO_INTERNAL_RECONSTRUCTION. The patent publishes one static state. ║
  * ║                                                                            ║
@@ -12,7 +12,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  spacings, semi-diameters, and the image-plane coordinate are scaled ×2.  ║
  * ║  There are no aspherical coefficients to transform.                       ║
  * ║                                                                            ║
- * ║  SOURCE CORRECTION: Example 1 prints N5 = 1.59680. The implemented model  ║
+ * ║  SOURCE CORRECTION: patent prints N5 = 1.59680. The implemented model     ║
  * ║  uses N5 = 1.69680 because the raw value contradicts the patent's EFL,    ║
  * ║  BFD, and Petzval result, while 1.69680 restores all three and matches a   ║
  * ║  known 697556 lanthanum-crown coordinate. The raw 1.59680 is preserved in ║
@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "miranda-auto-ec-200mm-f35",
   maker: "Miranda",
   name: "MIRANDA AUTO EC 200mm f/3.5",
-  subtitle: "JP1976-114926 Example 1 — 2× production-correlated scale",
+  subtitle: "JP1976-114926 sole example — 2× production-correlated scale",
 
   catalog: {
     lensMounts: ["miranda-bayonet"],
@@ -59,6 +59,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP S51-114926 A",
+    example: { label: "Sole example", id: null },
     patentYear: 1976,
     authors: ["Kunio Shimada"],
     assignees: ["Miranda Camera Co., Ltd."],
@@ -169,7 +170,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 2.5,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — manufacturer MFD is 2.5 m, but JP1976-114926 publishes only one static Example 1 prescription; no internal focus motion is modeled.",
+      "NO_INTERNAL_RECONSTRUCTION — manufacturer MFD is 2.5 m, but JP1976-114926 publishes only one static, unnumbered prescription; no internal focus motion is modeled.",
   },
 
   aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },

@@ -6,7 +6,7 @@
 **Applicant:** Sony Group Corporation (ソニーグループ株式会社).
 **Inventors:** Naoki Miyagawa (宮川 直己), Shūgo Takahashi (高橋 周吾).
 **Filed:** September 9, 2021. **Published:** March 22, 2023.
-**Embodiment analyzed:** Example 2 (実施例2, Numerical Example 2).
+**Example details:** 実施例2, Numerical Example 2.
 
 The identification of Example 2 as the production Sony FE 70-200mm F2.8 GM OSS II (SEL70200GM2) rests on the following convergent evidence:
 

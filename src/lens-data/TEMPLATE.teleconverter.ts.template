@@ -44,6 +44,7 @@ const TELECONVERTER_DATA = {
   /* ── Source ── same rules as LENS_DATA_SPEC.md § Source and Errata; a converter has no errata */
   source: {
     patentNumber: "US 0,000,000 B2",
+    example: { label: "Example 1", id: "1" }, // the converter's own example; see LENS_DATA_SPEC.md § The transcribed example
     patentYear: 2020,
     authors: ["Inventor Name"],
     assignees: ["Assignee Name"],

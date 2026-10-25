@@ -11,7 +11,7 @@
 **Title:** 撮像光学系及びそれを用いた撮像装置 (Imaging Optical System and Imaging Apparatus Using the Same)  
 **Classification:** G02B 13/00  
 **Worked examples:** 3  
-**Embodiment analyzed:** Example 1 (数値データ１)
+**Example details:** 数値データ１
 
 The patent discloses a macro imaging optical system made from a positive first group L1 and a negative second group L2. L1 contains the aperture stop and is divided into a negative L1a subgroup, a positive L1b subgroup, and a positive L1c subgroup. During focusing from infinity to close range, both L1 and L2 move toward the object while the L1-L2 interval expands. The close-distance prescription is specified at β = -0.5.
 

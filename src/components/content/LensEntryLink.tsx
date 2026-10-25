@@ -13,6 +13,8 @@ interface LensEntryLinkProps {
   lensKey: string;
   text: string;
   theme: Theme;
+  /** Muted lead-in shown before the name, e.g. the patent example a lens is taken from. */
+  prefix?: string;
   meta?: string | null;
   specs?: readonly string[];
   specsCount?: number;
@@ -25,6 +27,7 @@ export default function LensEntryLink({
   lensKey,
   text,
   theme,
+  prefix,
   meta,
   specs,
   specsCount = 2,
@@ -37,6 +40,7 @@ export default function LensEntryLink({
 
   return (
     <Link to={target.to} state={target.state} style={{ ...LENS_LINK_BASE_STYLE, color: theme.descLinkColor, ...style }}>
+      {prefix && <span style={{ color: theme.label, fontSize: "0.68rem", marginRight: "0.5rem" }}>{prefix}</span>}
       {text}
       {displayMeta && (
         <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", ...metaStyle }}>

@@ -6,7 +6,7 @@
 **Filed:** 2008-10-22 (Application 特願2008-271510)  
 **Applicant:** 株式会社シグマ (Sigma Corporation), Kawasaki, Japan  
 **Inventor:** Noriyuki Ogasahara (小笹原 典行)  
-**Example analysed:** Numerical Example 5 (数値実施例5)
+**Example details:** 数値実施例5
 
 ---
 

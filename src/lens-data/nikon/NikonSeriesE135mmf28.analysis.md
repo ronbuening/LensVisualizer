@@ -7,7 +7,7 @@
 **Inventor:** Sei Matsui
 **Assignee:** Nippon Kogaku K.K.
 **Title:** Compact Telephoto Lens
-**Embodiment analyzed:** Embodiment 3 / Claim 4
+**Example details:** Claim 4
 **Total claims:** 4
 **Worked examples:** 3
 

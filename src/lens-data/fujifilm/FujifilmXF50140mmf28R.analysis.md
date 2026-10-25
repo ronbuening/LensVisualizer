@@ -6,7 +6,7 @@
 **Priority:** JP 2015-186957, September 24, 2015
 **Filed:** August 26, 2016
 **Title:** Rear Convertor Lens and Imaging Apparatus
-**Embodiment analyzed:** Master lens ML (Tables 1–2; identical in Examples 1–4), with the Example 1 rear converter discussed in §10
+**Example details:** Master lens ML (Tables 1–2; identical in Examples 1–4), with the Example 1 rear converter discussed in §10
 
 **Primary source:** US 2017/0090163 A1 (Fujifilm Corporation, inventor Tetsuya Ori; filed 26 August 2016; priority JP 2015‑186957, 24 September 2015). The patent is titled *"Rear Convertor Lens and Imaging Apparatus"*; the XF 50‑140mm prescription appears as the **master lens** against which the claimed rear converter is demonstrated.
 

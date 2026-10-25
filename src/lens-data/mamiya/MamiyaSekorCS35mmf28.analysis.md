@@ -8,7 +8,6 @@
 **Inventor:** Katsunori Ebara
 **Applicant:** Mamiya Koki Co., Ltd.
 **Title:** Photographic Lens (写真レンズ)
-**Embodiment analyzed:** Example 1
 
 JP 1978-066222 A describes a compact retrofocus photographic objective composed of six air-spaced elements. Example 1 is used here as the fixed prescription correlated with the production Mamiya-Sekor CS 35mm f/2.8. The manufacturer source does not identify the patent, so the correlation rests on convergent design and product evidence rather than an explicit manufacturer statement:
 

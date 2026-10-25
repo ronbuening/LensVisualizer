@@ -44,6 +44,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2025-162727 A",
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2025,
     authors: ["Daichi Tanoue"],
     assignees: ["Sigma Corporation"],

@@ -4,8 +4,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — MAMIYA-SEKOR C 55mm f/2.8 N                                  ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Prescription source: JP S55-45883 B2, Example 1, the examined publication ║
- * ║  of the application laid open as JP S54-107336 / JP1979-107336.            ║
+ * ║  Prescription source: JP S54-107336 A, Example 1 (第1実施例), the laid-open ║
+ * ║  publication of the application later examined as JP S55-45883 B2.         ║
  * ║  Production correlation: Mamiya-Sekor C 55mm f/2.8 N, Mamiya 645 mount.   ║
  * ║  8 elements / 6 groups / 14 spherical refracting surfaces.                 ║
  * ║                                                                              ║
@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "mamiya-sekor-c-55mm-f2-8-n",
   maker: "Mamiya",
   name: "MAMIYA-SEKOR C 55mm f/2.8 N",
-  subtitle: "JP S55-45883 B2 Example 1 — uniformly scaled ×0.55; strong production correlation",
+  subtitle: "JP S54-107336 A Example 1 — uniformly scaled ×0.55; strong production correlation",
 
   catalog: {
     lensMounts: ["mamiya-645"],
@@ -58,9 +58,10 @@ const LENS_DATA = {
   },
 
   source: {
-    patentNumber: "JP S55-45883 B2",
-    patentYear: 1980,
-    authors: ["Yusuke Arisaka"],
+    patentNumber: "JP S54-107336 A",
+    example: { label: "Example 1", id: "1" },
+    patentYear: 1979,
+    authors: ["Yusuke Nanjo"],
     assignees: ["Mamiya Koki Co., Ltd."],
   },
 

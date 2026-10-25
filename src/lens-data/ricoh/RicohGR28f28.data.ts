@@ -27,6 +27,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 5,760,973",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1998,
     authors: ["Atsushi Kawamura"],
     assignees: ["Ricoh Co., Ltd."],

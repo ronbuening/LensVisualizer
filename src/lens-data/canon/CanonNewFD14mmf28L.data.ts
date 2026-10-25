@@ -61,7 +61,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.8, design: 2.8 },
   },
 
-  source: { patentNumber: "JP S57-64716 A", patentYear: 1982, authors: ["Keiji Ikemori"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "JP S57-64716 A",
+    example: { label: "Sole example", id: null },
+    patentYear: 1982,
+    authors: ["Keiji Ikemori"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — VOIGTLÄNDER COLOR-SKOPAR 105mm f/3.5                       ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2,573,511 A, Example 1 (Albrecht Wilhelm Tronnier).     ║
+ * ║  Data source: US 2,573,511 A, sole example (Albrecht Wilhelm Tronnier).  ║
  * ║  Production correlation: Voigtländer Color-Skopar 105mm f/3.5 for       ║
  * ║  fixed-lens 6×9 cameras. The patent prescription is normalized to       ║
  * ║  100mm EFL; every dimensional value is uniformly scaled ×1.05.          ║
@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "voigtlander-color-skopar-105mm-f35",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER COLOR-SKOPAR 105mm f/3.5 (Voigtländer Bessa II)",
-  subtitle: "US 2,573,511 A Example 1 — uniformly scaled ×1.05 production correlation",
+  subtitle: "US 2,573,511 A sole example — uniformly scaled ×1.05 production correlation",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],
@@ -55,6 +55,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2,573,511 A",
+    example: { label: "Sole example", id: null },
     patentYear: 1951,
     authors: ["Albrecht Wilhelm Tronnier"],
     assignees: ["Voigtländer & Sohn AG"],

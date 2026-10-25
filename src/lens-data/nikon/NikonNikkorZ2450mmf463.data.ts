@@ -81,6 +81,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2021-189377 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2021,
     authors: ["Takakazu Hirose", "Keiko Yamada", "Yasushi Yamamoto", "Hiroshi Yamamoto"],
     assignees: ["Konica Minolta, Inc.", "Nikon Corporation"],

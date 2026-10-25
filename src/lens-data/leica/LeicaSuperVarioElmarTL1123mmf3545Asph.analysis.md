@@ -7,7 +7,6 @@
 **Inventors:** Atsuo Masui; Yasunari Fukuda  
 **Applicant:** Konica Minolta, Inc.  
 **Title:** Zoom lens, image capturing optical device, and digital device  
-**Embodiment analyzed:** Example 6
 
 The prescription implemented here is Example 6 of JP 2016-133764 A. The patent describes an ultra-wide zoom family whose first group is negative, whose second group is positive and moves with the aperture stop, and whose rear groups provide additional zoom and correction degrees of freedom. Example 6 is the negative-positive-negative-negative member of that family. The numerical construction is printed on patent pages 23–24, the Example 6 zoom drawing is Figure 6 on page 30, and the patent-wide conditional-expression summary is Table 1 on page 28 (JP 2016-133764 A, ¶¶0068, 0076, 0110–0113; Fig. 6; Table 1).
 

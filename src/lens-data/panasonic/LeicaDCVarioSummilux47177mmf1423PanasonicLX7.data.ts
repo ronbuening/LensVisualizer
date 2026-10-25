@@ -65,6 +65,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2015/0124127 A1",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 2015,
     authors: ["Tsutomu Iwashita", "Yoshiaki Kurioka", "Takehiro Nishioka"],
     assignees: ["Panasonic Intellectual Property Management Co., Ltd."],

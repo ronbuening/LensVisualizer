@@ -7,7 +7,7 @@
 **Inventors:** Masashi Yamashita (山下 雅史); Mitsuaki Wada (和田 充晃)  
 **Applicant:** Nikon Corporation (株式会社ニコン on the Japanese front page)  
 **Title:** 撮影レンズ、光学機器、および撮影レンズの製造方法  
-**Embodiment analyzed:** Example 1 / 第1実施例
+**Example details:** 第1実施例
 
 The implemented prescription is a transcription of Example 1 in JP 2013-250293 A. The patent describes a long-focus photographic lens with positive first group G1, negative focusing group G2, and positive third group G3; G2 moves toward the image for closer focusing, while a subgroup of G3 shifts laterally for vibration reduction (¶0045–0050). Table 1 publishes the 38 source planes, the infinity system data, and three focus-spacing states.
 

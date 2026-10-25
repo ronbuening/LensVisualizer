@@ -55,6 +55,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2,645,973",
+    example: { label: "Illustrative Embodiment 1", id: "1" },
     patentYear: 1953,
     authors: ["Hiroshi Ito"],
     assignees: ["Canon Camera Co., Inc."],

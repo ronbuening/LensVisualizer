@@ -11,7 +11,7 @@
 **Inventor:** Takeru Uehara  
 **Applicant:** Nikon Corporation, Shinagawa-ku, Tokyo, Japan  
 **Title:** Zoom Optical System, Optical Device, and Method for Manufacturing Zoom Optical System  
-**Embodiment analyzed:** First Example, Table 1, Figures 1-3
+**Example details:** Table 1, Figures 1-3
 
 Example 1 is the closest published prescription for the production NIKKOR Z DX 12-28mm f/3.5-5.6 PZ VR. The patent design gives $f = 12.36$-$27.16$ mm, $FNO = 3.64$-$5.73$, image height $Y = 14.25$ mm, zoom ratio 2.197, and a constant total track of 77.25 mm in Table 1. Nikon's production specification gives a 12-28 mm focal-length range, f/3.5-5.6 maximum aperture, DX-format image coverage, 12 elements in 11 groups, one ED element, one aspherical element, minimum focus distance 0.19 m, maximum reproduction ratio 0.21x, 67 mm filter size, and about 205 g mass.
 

@@ -9,7 +9,7 @@
 **Inventors:** Fukuda Taisei (福田 泰成), Masui Atsuo (増井 淳雄), Machida Kosuke (町田 幸介)  
 **Applicants:** Konica Minolta, Inc.; Nikon Corporation  
 **Title:** 広角レンズ，撮像光学装置及びデジタル機器 (Wide-angle lens, imaging optical device, and digital equipment)  
-**Embodiment analyzed:** Example 4 (第4実施例, EX4)
+**Example details:** 第4実施例, EX4
 
 Example 4 is the best production match for the AF-S NIKKOR 20mm f/1.8G ED. The match is not based on a single numerical coincidence; it rests on the same 13-element / 11-group layout, a full-frame image height of 21.6 mm, a patent focal length of 20.6 mm, a design aperture of F/1.86, two ED-class lens elements, two aspherical lens elements, and a rear-focusing architecture in which the first group remains fixed while the second group moves toward the object for close focus. The patent describes the general invention as a negative first group and positive second group with rear-group focusing and conditions requiring Fno < 2.4 and full field angle greater than 80° (¶0006, ¶0021-¶0022). Nikon's production specification lists a 20 mm f/1.8 FX-format F-mount lens with 13 elements in 11 groups, two ED elements, two aspherical elements, rear focusing, and a 0.20 m minimum focus distance.
 

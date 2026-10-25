@@ -8,7 +8,7 @@
 **Filed:** November 21, 2016 (PCT filing)
 **Published:** November 21, 2019
 **Title:** Zoom optical system, optical apparatus, imaging apparatus and method for manufacturing the zoom optical system
-**Embodiment analyzed:** First Example / Example 1, Fig. 1 and Table 1
+**Example details:** Fig. 1 and Table 1
 
 The working patent is **US 2019/0353880 A1**, "Zoom optical system, optical apparatus, imaging apparatus and method for manufacturing the zoom optical system." The applicant is Nikon Corporation and the named inventor is Kosuke Machida. The PCT filing date is 21 November 2016, and the United States publication date is 21 November 2019. The numerical embodiment transcribed here is **First Example / Example 1**, shown in Fig. 1 and Table 1 of the patent.
 

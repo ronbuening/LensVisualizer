@@ -10,7 +10,7 @@
 **Inventor:** Hisayuki Yamanaka  
 **Assignee:** Tamron Co., Ltd.  
 **Title:** *Inner Focusing Telephotographing Zoom Lens*  
-**Embodiment analyzed:** Example 1 / Embodiment 1
+**Example details:** Embodiment 1
 
 The modeled prescription is the user-selected correlation between Example 1 of US 8,867,144 B2 and the
 production Tamron SP 70–200mm f/2.8 Di VC USD, Model A009. The patent is the numerical source for the optical

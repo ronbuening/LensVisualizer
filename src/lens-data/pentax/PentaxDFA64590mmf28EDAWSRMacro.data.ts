@@ -61,6 +61,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2013/0222925 A1",
+    example: { label: "Numerical Embodiment 4", id: "4" },
     patentYear: 2013,
     authors: ["Tatsuyuki Onozaki", "Masakazu Saori"],
     assignees: ["Pentax Ricoh Imaging Company, Ltd."],

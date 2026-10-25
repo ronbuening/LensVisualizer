@@ -14,7 +14,7 @@
 
 **Published:** 2022-05-12
 
-**Embodiment analyzed:** Example 1, Table 1 and Figure 1
+**Example details:** Table 1 and Figure 1
 
 The diagram uses the 16-element, 11-component macro example associated with the NIKKOR Z MC 105mm f/2.8 VR S. The correspondence is based on the optical architecture, focal length, single asphere and life-size focus state. It does not establish identical production prescriptions, suppliers, coatings or actuators. The 105mm f/2.8 product name remains separate from the source's 102.86mm f/2.89 infinity prescription.
 

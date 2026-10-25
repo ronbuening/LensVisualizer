@@ -10,7 +10,7 @@
 **Applicant:** Sigma Corporation (株式会社シグマ)  
 **Title:** Optical System (光学系)  
 **Classification:** G02B 13/00; G02B 13/18  
-**Embodiment analyzed:** Numerical Example 1 (実施例1, Fig. 1)
+**Example details:** 実施例1, Fig. 1
 
 JP 2015-114366 A discloses a large-aperture standard photographic lens. Numerical Example 1 is the prescription that most directly corresponds to the Sigma 50mm F1.4 DG HSM | Art, product code A014.
 

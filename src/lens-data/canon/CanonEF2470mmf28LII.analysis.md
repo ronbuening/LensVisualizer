@@ -9,7 +9,7 @@
 **Granted:** May 27, 2014  
 **Inventor:** Takahiro Hatada  
 **Assignee:** Canon Kabushiki Kaisha  
-**Embodiment analyzed:** Numerical Example 3, corresponding to FIG. 5
+**Example details:** corresponding to FIG. 5
 
 Numerical Example 3 is the strongest match in this patent for the Canon EF 24-70mm f/2.8L II USM. The patent example is not a production service prescription, but the correspondence is close enough that it is useful as a design-family decomposition.
 

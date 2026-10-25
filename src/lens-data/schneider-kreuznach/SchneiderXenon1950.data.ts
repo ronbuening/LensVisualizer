@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "schneider-xenon-50f19",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH XENON 50mm f/1.9",
-  subtitle: "CH 346706 — Example 1 / Table A; uniformly scaled ×0.5",
+  subtitle: "CH 346706 — Table A; uniformly scaled ×0.5",
 
   catalog: {
     lensMounts: ["exakta", "m42"],
@@ -54,6 +54,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "CH 346706",
+    example: { label: "Table A", id: "A" },
     patentYear: 1960,
     authors: ["Günter Klemt"],
     assignees: ["Jos. Schneider & Co., Optische Werke"],

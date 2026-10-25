@@ -10,7 +10,7 @@
 **Priority:** December 4, 1997 (JP 9-334419)  
 **Inventors:** Masayuki Murata; Takayuki Ito  
 **Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha, Tokyo, Japan  
-**Embodiment analyzed:** First embodiment, Example 1 / Table 1
+**Example details:** Example 1 / Table 1
 
 US 6,154,324 describes a medium-format autofocus macro lens in which a positive first lens group, a movable aperture stop, and a negative second lens group all move independently during focusing. The numerical prescription transcribed here is the patent's first embodiment, Table 1.
 

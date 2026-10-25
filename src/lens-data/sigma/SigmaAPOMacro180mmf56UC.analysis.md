@@ -8,7 +8,6 @@
 **Inventor:** Takehisa Koyama
 **Applicant:** Sigma Corporation
 **Title:** Inner-focus macro lens (translated)
-**Embodiment analyzed:** Example 3
 
 The prescription is Example 3 of JPH04110811A, transcribed from the original six-page Japanese publication.
 The numerical table and the two focus states are on PDF p4 (printed p88); Figure 5 is the corresponding section

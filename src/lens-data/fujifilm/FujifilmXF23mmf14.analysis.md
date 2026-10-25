@@ -8,7 +8,7 @@
 **Filed:** June 17, 2014 (priority: JP 2013-126420, June 17, 2013)
 **Published:** December 18, 2014
 
-**Example Used:** Example 4 (FIG. 4 / Table 7 / Table 8)
+**Example details:** FIG. 4 / Table 7 / Table 8
 
 ### Rationale for Selecting Example 4
 

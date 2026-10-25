@@ -65,7 +65,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2, design: 2.0 },
   },
 
-  source: { patentNumber: "US 3,748,022", patentYear: 1973, authors: ["Akira Tajima"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "US 3,748,022",
+    example: { label: "Sole example", id: null },
+    patentYear: 1973,
+    authors: ["Akira Tajima"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

@@ -22,7 +22,11 @@ import RayToggles from "./RayToggles.js";
 import ChromaticControls from "./ChromaticControls.js";
 import { lensChromaticReference } from "../../optics/chromatic.js";
 import { ENABLE_CARDINAL_ELEMENTS } from "../../utils/featureFlags.js";
-import { lensDisplaySubtitle, lensPatentAttribution } from "../../utils/catalog/lensPatentMetadata.js";
+import {
+  lensDisplaySubtitle,
+  lensPatentAttribution,
+  patentExampleSuffix,
+} from "../../utils/catalog/lensPatentMetadata.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { OffAxisMode, RayDensity } from "../../types/state.js";
@@ -143,13 +147,20 @@ const DiagramHeader = memo(
     const displaySubtitle = lensDisplaySubtitle(L.source);
     const patentAttribution = lensPatentAttribution(L.source);
     /* With a converter attached the title names the whole system; photo searches and the second patent line
-       still need the two parts separately. A converter covered by the lens's own patent is not repeated. */
+       still need the two parts separately. A converter covered by the lens's own patent example is not repeated. */
     const teleconverter = L.attachedTeleconverter;
     const photoSearchName = teleconverter?.hostName ?? L.source.name;
+    const hostExample = L.source.source.example;
     const teleconverterPatent =
-      teleconverter?.patentNumber && teleconverter.patentNumber !== L.source.source.patentNumber
+      teleconverter?.patentNumber &&
+      (teleconverter.patentNumber !== L.source.source.patentNumber ||
+        (teleconverter.patentExample && hostExample && teleconverter.patentExample.label !== hostExample.label))
         ? lensPatentAttribution({
-            source: { patentNumber: teleconverter.patentNumber, authors: teleconverter.patentAuthors ?? [] },
+            source: {
+              patentNumber: teleconverter.patentNumber,
+              example: teleconverter.patentExample,
+              authors: teleconverter.patentAuthors ?? [],
+            },
           })
         : null;
     const compactFocalReadout = isFisheyeProjection(projection)
@@ -217,6 +228,7 @@ const DiagramHeader = memo(
                   {patentAttribution ? (
                     <>
                       <PatentNumberLink patentNumber={patentAttribution.patentNumber} color={t.descLinkColor} />
+                      {patentExampleSuffix(patentAttribution.example)}
                       {patentAttribution.authors.length > 0 && (
                         <>
                           {" — "}
@@ -239,6 +251,7 @@ const DiagramHeader = memo(
                     <>
                       {" · TC "}
                       <PatentNumberLink patentNumber={teleconverterPatent.patentNumber} color={t.descLinkColor} />
+                      {patentExampleSuffix(teleconverterPatent.example)}
                       {teleconverterPatent.authors.length > 0 && (
                         <>
                           {" — "}

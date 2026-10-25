@@ -66,6 +66,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2013/0088622 A1",
+    example: { label: "Exemplary Embodiment 4", id: "4" },
     patentYear: 2013,
     authors: ["Shigenobu Sugita"],
     assignees: ["Canon Inc."],

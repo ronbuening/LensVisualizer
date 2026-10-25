@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — MAMIYA-SEKOR ZOOM E 28-50mm f/3.5-4.5                         ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Data source: JP 1981-119109 A, Example 1, Yusuke Nanjo / Mamiya Koki.       ║
+ * ║ Data source: JP 1981-119109 A, sole example, Yusuke Nanjo / Mamiya Koki.    ║
  * ║ Production correlation: 9 elements / 8 groups and f/3.5-4.5 source states. ║
  * ║ Focus status: NO_INTERNAL_RECONSTRUCTION.                                  ║
  * ║                                                                              ║
@@ -39,7 +39,7 @@ const LENS_DATA = {
   key: "mamiya-sekor-zoom-e-28-50mm-f3-5-4-5",
   maker: "Mamiya",
   name: "MAMIYA-SEKOR ZOOM E 28-50mm f/3.5-4.5",
-  subtitle: "JP 1981-119109 A Example 1 — normalized prescription scaled ×28",
+  subtitle: "JP 1981-119109 A sole example — normalized prescription scaled ×28",
 
   catalog: {
     lensMounts: ["mamiya-ze"],
@@ -58,6 +58,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 1981-119109 A",
+    example: { label: "Sole example", id: null },
     patentYear: 1981,
     authors: ["Yusuke Nanjo"],
     assignees: ["Mamiya Koki Co., Ltd."],

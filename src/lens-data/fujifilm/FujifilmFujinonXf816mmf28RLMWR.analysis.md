@@ -7,8 +7,7 @@
 **Published:** 3 October 2019\
 **Inventor:** Daiki Kawamura\
 **Applicant / Assignee:** Fujifilm Corporation\
-**Title:** *Zoom Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Example 1
+**Title:** *Zoom Lens and Imaging Apparatus*
 
 The prescription is a transcription and normalized LensVisualizer model of Example 1. The patent's numerical example is given in Tables 1–3, with the wide/tele and infinity/500 mm states in Table 2 and the associated aberration plots in Fig. 13. The final model retains the patent dimensional scale; no focal-length rescaling is applied. [US 2019/0302431 A1, ¶0092-0104; Tables 1-3; Fig. 13]
 

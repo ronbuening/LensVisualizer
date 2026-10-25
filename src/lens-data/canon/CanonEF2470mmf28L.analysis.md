@@ -12,7 +12,7 @@
 **Classification:** G02B 15/20; G02B 13/18  
 **Claims:** 5  
 **Worked examples:** 2  
-**Embodiment analyzed:** Numerical Example 1 (数値実施例1)
+**Example details:** 数値実施例1
 
 The prescription transcribed here is Numerical Example 1 of JP 2014-41222 A. It is paired in this catalog with the Canon EF 24–70mm f/2.8L USM, the first-generation large-aperture EF standard zoom marketed in 2002. This is a correspondence by optical architecture and specification class, not a claim that the 2012 patent filing is the original 2002 production design file.
 

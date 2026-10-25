@@ -6,7 +6,6 @@
 **Published:** May 29, 1957
 **Applicant:** Agfa Camera-Werk Aktiengesellschaft, Munich, Germany
 **Title:** Photographic Objective
-**Embodiment analyzed:** Sole numerical example
 
 GB 775,944 describes an enlarger objective of Heliar type: five glass elements in three air-separated groups, with cemented positive doublets on both sides of a biconcave negative singlet. The numerical example is normalized to $f = 1.00$ and has a relative aperture of 1:4.5. The patent text also states that the drawing is a diagrammatic section of an objective of focal length 200 mm; the tabulated prescription itself is dimensionless and scalable.
 

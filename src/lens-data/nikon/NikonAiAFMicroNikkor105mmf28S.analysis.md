@@ -8,8 +8,7 @@
 **Published:** 1990-01-23<br>
 **Inventor:** Keiji Moriyama<br>
 **Applicant:** Nikon Corporation<br>
-**Title:** Lens usable for short-distance photographing<br>
-**Embodiment analyzed:** Example 5
+**Title:** Lens usable for short-distance photographing
 
 The prescription is taken from Example 5 of JP H02-19814 A. The selected Japanese publication is the numerical authority: its Table 5 gives a 105.000 mm design at F/2.86, a full field of 23.2°, and three focus states from infinity through β = −0.5 to life size at β = −1.0. The publication also shows the corresponding three-group focusing architecture and the corrected conditional-expression table.[1]
 

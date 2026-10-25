@@ -4,7 +4,7 @@
 **Inventors:** Otto Zimmermann and Georg Knetsch (Ernst Leitz G.m.b.H., Wetzlar)
 **Filed:** December 11, 1957 · **Granted:** August 15, 1961
 **Priority:** Germany, December 21, 1956
-**Example analysed:** Sole numerical example (claim prescription)
+**Example details:** claim prescription
 
 ---
 

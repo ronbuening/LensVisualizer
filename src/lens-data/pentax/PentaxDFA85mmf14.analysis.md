@@ -11,7 +11,7 @@
 **Assignee:** Ricoh Co., Ltd. (assignment recorded on the filing date)\
 **Classification:** G02B 9/06; G02B 9/60; H04N 5/2254  
 **Worked examples:** 11 numerical examples  
-**Embodiment analyzed:** Numerical Example 3, FIG. 7 and Tables 7-9
+**Example details:** FIG. 7 and Tables 7-9
 
 The transcribed prescription is Numerical Example 3 of US 2020/0301101 A1. The patent describes a large-aperture medium-telephoto single-focus lens for a digital single-lens reflex camera, built from a positive first lens group and a positive second lens group (¶0002, ¶0045, ¶0082). Example 3 is the embodiment whose drawing and tables align most closely with the production **HD PENTAX-D FA★ 85 mm F1.4 ED SDM AW**.
 

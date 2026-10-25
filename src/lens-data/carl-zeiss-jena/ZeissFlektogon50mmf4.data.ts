@@ -56,6 +56,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 1 157 000",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 1963,
     authors: ["Wolf Dannberg", "Eberhard Dietzsch"],
     assignees: ["Jenoptik Jena GmbH"],

@@ -9,7 +9,7 @@
 **Filed:** September 9, 1987
 **Granted:** October 3, 1989
 **Title:** Zoom Lens System for Minimal Lens System Length and Minimal Aberrations
-**Embodiment analyzed:** Example 3 / Embodiment 3
+**Example details:** Embodiment 3
 
 The relevant first-party technical source is US Patent 4,871,239, **"Zoom Lens System for Minimal Lens System Length and Minimal Aberrations"**, assigned to Minolta Camera Kabushiki Kaisha. The named inventors are Hisayuki Masumoto and Akira Fukushima. The US application was filed on 9 September 1987, with Japanese priorities of 9 September 1986 and 29 October 1986, and the patent issued on 3 October 1989.
 

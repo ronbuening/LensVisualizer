@@ -78,6 +78,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2021/0003831 A1",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2021,
     authors: ["Yasuaki Hagiwara"],
     assignees: ["Canon Inc."],

@@ -10,7 +10,7 @@
 **Applicant:** Canon Inc.
 **Title:** 光学系およびそれを有する光学機器 (*Optical system and optical apparatus having the same*, descriptive translation)
 
-**Embodiment analyzed:** Example 1 / Numerical Example 1
+**Example details:** Numerical Example 1
 
 The prescription modeled here is Numerical Example 1 of JP 2018-049102 A. The patent describes a three-group positive–negative–positive photographic system in which the negative middle group moves imageward for focusing, while the first and third groups remain fixed (¶¶0089–0093). The numerical table gives a 133.50 mm focal length, F2.06, 21.64 mm image height, 0.900 m close-focus state, and −0.19 close-focus magnification (¶0108 and Table 1).
 

@@ -9,7 +9,7 @@
 **Inventors:** Hideki Ogawa (小川秀樹); Sadatoshi Takahashi (高橋貞利)
 **Applicant:** Canon Inc.
 **Title:** 大口径比望遠レンズ (*Large-Aperture-Ratio Telephoto Lens*)
-**Embodiment analyzed:** Numerical Example 1 (数値実施例1)
+**Example details:** 数値実施例1
 
 Numerical Example 1 is the strongest match to the powered optical core of the Canon EF 200mm f/1.8 L USM. The identification rests on several independent correspondences:
 

@@ -12,7 +12,7 @@
 
 **Published:** April 7, 2022
 
-**Embodiment analyzed:** Example2, Table2 and Figure3
+**Example details:** Table2 and Figure3
 
 The diagram represents the compact nine-element, eight-component patent design associated with the catalog's28mm f/2.8 lens. Its source values are28.824mm, f/2.909, half-field38.029° and image semi-height21.7mm. These replace rounded marketing values in numerical controls. The patent association does not establish a measured production prescription, suppliers or software-correction behavior.
 

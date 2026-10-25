@@ -51,6 +51,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 9,256,059 B2",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2016,
     authors: ["Kana Inoue", "Mamoru Terada", "Haruo Sato"],
     assignees: ["Konica Minolta, Inc.", "Nikon Corporation"],

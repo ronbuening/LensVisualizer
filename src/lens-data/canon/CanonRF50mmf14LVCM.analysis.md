@@ -8,7 +8,6 @@
 **Inventor:** Tomohiro Ino  
 **Applicant:** Canon Kabushiki Kaisha  
 **Title:** Optical System and Image Pickup Apparatus  
-**Embodiment analyzed:** Numerical Example 1
 
 Numerical Example 1 is a strong production candidate for the Canon RF 50mm f/1.4 L VCM. The identification is patent-derived rather than a manufacturer-published production prescription, but the convergence is unusually tight.
 

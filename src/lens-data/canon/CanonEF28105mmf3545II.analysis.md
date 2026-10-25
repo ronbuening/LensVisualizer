@@ -9,7 +9,7 @@
 **Inventor:** Makoto Mitsusaka (三坂 誠)  
 **Applicant:** Canon Inc.  
 **Title:** ズームレンズ及びそれを有する光学機器 (_Zoom Lens and Optical Apparatus Having the Same_)  
-**Embodiment analyzed:** Numerical Example 1, Figures 1-4, prescription on patent p. 8
+**Example details:** Figures 1-4, prescription on patent p. 8
 
 Numerical Example 1 is a strong optical correlate of the Canon EF 28-105mm f/3.5-4.5 II USM, but the patent does not identify a retail product and the correspondence cannot be treated as proof of the factory prescription. The association rests on convergent evidence:
 

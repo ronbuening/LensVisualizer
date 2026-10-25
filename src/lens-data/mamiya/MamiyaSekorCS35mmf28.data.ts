@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — MAMIYA-SEKOR CS 35mm f/2.8                                    ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Data source: JP 1978-066222, Example 1 (Mamiya Koki Co., Ltd.;              ║
+ * ║ Data source: JP 1978-066222, sole example (Mamiya Koki Co., Ltd.;           ║
  * ║ Katsunori Ebara). Six all-spherical, air-spaced elements in a retrofocus   ║
  * ║ photographic objective.                                                    ║
  * ║                                                                            ║
@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "mamiya-sekor-cs-35mm-f2-8",
   maker: "Mamiya",
   name: "MAMIYA-SEKOR CS 35mm f/2.8",
-  subtitle: "JP 1978-066222 Example 1 — scaled ×0.35; modeled r62 source correction",
+  subtitle: "JP 1978-066222 sole example — scaled ×0.35; modeled r62 source correction",
 
   catalog: {
     lensMounts: ["mamiya-nc"],
@@ -59,6 +59,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 1978-066222 A",
+    example: { label: "Sole example", id: null },
     patentYear: 1978,
     authors: ["Katsunori Ebara"],
     assignees: ["Mamiya Koki Co., Ltd."],

@@ -9,7 +9,6 @@
 **Inventors:** Yasuyuki Sugano; Hirokazu Shimada  
 **Applicant:** Cosina Co., Ltd.  
 **Title:** 大口径撮像光学系 (*Large-Aperture Imaging Optical System*)  
-**Embodiment analyzed:** Example 2
 
 The prescription transcribes Example 2 exactly at the patent's published scale. The production correlation is the
 Voigtländer NOKTON 60mm F0.95 for Micro Four Thirds. This identification is fixed for the present model; it is a

@@ -41,6 +41,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2011-48232 A",
+    example: { label: "Numerical Example 3", id: "3" },
     patentYear: 2011,
     authors: ["Koji Hoshi", "Kyoichi Miyazaki", "Noriyuki Adachi"],
     assignees: ["Panasonic Corporation"],

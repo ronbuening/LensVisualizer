@@ -43,7 +43,13 @@ const LENS_DATA = {
     fNumber: { marketing: 4.5, design: 4.5 },
   },
 
-  source: { patentNumber: "GB 775,944", patentYear: 1957, authors: [], assignees: ["Agfa Camera-Werk AG"] },
+  source: {
+    patentNumber: "GB 775,944",
+    example: { label: "Sole example", id: null },
+    patentYear: 1957,
+    authors: [],
+    assignees: ["Agfa Camera-Werk AG"],
+  },
 
   elements: [
     {

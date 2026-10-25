@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — NIKON NIKKOR-S AUTO 5cm f/2                                ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║ Data source: JP 1964-025754, Embodiment 1 (Saburo Murakami /            ║
+ * ║ Data source: JP 1964-025754, sole example (Saburo Murakami /            ║
  * ║ Nippon Kogaku K.K.).                                                     ║
  * ║ Five groups / seven elements, all spherical.                            ║
  * ║ Focus status: INFERRED UNIT FOCUS. The patent publishes infinity only;  ║
@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "nikon-nikkor-s-auto-50f2",
   maker: "Nikon",
   name: "NIKON NIKKOR-S AUTO 5cm f/2",
-  subtitle: "JP 1964-025754, Embodiment 1 — correlated to the June 1959 production lens",
+  subtitle: "JP 1964-025754, sole example — correlated to the June 1959 production lens",
 
   catalog: {
     lensMounts: ["nikon-f"],
@@ -54,6 +54,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 1964-025754 B",
+    example: { label: "Sole example", id: null },
     patentYear: 1964,
     authors: ["Saburo Murakami"],
     assignees: ["Nippon Kogaku K.K."],

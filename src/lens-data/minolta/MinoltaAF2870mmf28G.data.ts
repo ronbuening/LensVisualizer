@@ -62,6 +62,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 1994-082698 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1994,
     authors: ["Yoshinobu Asakura"],
     assignees: ["Minolta Co., Ltd."],

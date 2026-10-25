@@ -6,7 +6,7 @@
 **Inventors:** Norio Mizutani and Soichi Nakamura
 **Assignee:** Nippon Kogaku K.K.
 **Title:** Wide Angle Zoom Lens System
-**Embodiment analyzed:** Example 8, with the sign of r11 corrected from the claim text
+**Example details:** with the sign of r11 corrected from the claim text
 
 Example 8 is the prescription used here for the NIKON AI ZOOM-NIKKOR 25-50mm f/4. The patent example gives a focal-length range of 25.50-35.150-48.805 mm, an f/4 aperture, an 80.6° maximum field, and an 11-element arrangement in which a four-element diverging group is followed by a seven-element converging group. Nikon's own design history for the Ai Zoom Nikkor 25-50mm f/4 identifies the lens as a two-group design with four elements in the first group and seven elements in the second group, designed by Norio Mizutani, completed in February 1976, and released in 1979. That convergence is strong enough to treat Example 8 as the production-family prescription.
 

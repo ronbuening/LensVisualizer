@@ -7,7 +7,7 @@
 **Inventor:** Mami Muratani  
 **Applicant / Assignee:** Nikon Corporation  
 **Title:** Zoom Lens System, Optical Apparatus and Method for Manufacturing Zoom Lens System  
-**Embodiment analyzed:** Fourth Example, Table 4; FIGS. 7A-7C and 8A-8C
+**Example details:** Table 4; FIGS. 7A-7C and 8A-8C
 
 The prescription transcribed here is the fourth numerical example of US 2015/0153549 A1. It is identified as a patent-stage design for the Nikon 1 NIKKOR 11-27.5mm f/3.5-5.6 standard zoom for the Nikon 1 / CX system. The strongest identification point is the front parallel plane plate: Nikon's published construction lists the lens as eight optical elements in six groups, with one ED element, one aspherical element, and one protective glass element. Example 4 is the numerical example in this patent that adds a parallel plane protective plate P in front of the ordinary two-group optical core, while retaining the same 3+5 refractive layout behind it.
 

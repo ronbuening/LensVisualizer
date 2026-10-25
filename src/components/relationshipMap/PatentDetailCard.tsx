@@ -2,13 +2,14 @@
  * PatentDetailCard — detail panel shown below the map for a selected patent.
  *
  * Visually mirrors AuthorPage's local PatentCard (panel chrome, number/year
- * header, assignee + inventor lines, divider, lens links). The difference is
- * intent: names here recenter the relationship map instead of linking to author
- * pages, so this stays a separate component rather than a shared extraction.
+ * header, assignee + inventor lines, divider) and shares its PatentLensList.
+ * The difference is intent: names here recenter the relationship map instead of
+ * linking to author pages, so the card stays a separate component rather than a
+ * shared extraction.
  */
 
-import LensEntryLink from "../content/LensEntryLink.js";
 import type { RefObject } from "react";
+import PatentLensList from "../content/PatentLensList.js";
 import PatentNumberLink from "../content/PatentNumberLink.js";
 import PatentPartyList from "../content/PatentPartyList.js";
 import { getAuthorByName } from "../../utils/catalog/authorCatalog.js";
@@ -115,18 +116,11 @@ export default function PatentDetailCard({
         </p>
       )}
 
-      <div style={{ borderTop: `1px solid ${t.panelDivider}`, paddingTop: "0.35rem" }}>
-        {patent.lenses.map((lens) => (
-          <LensEntryLink
-            key={lens.key}
-            lensKey={lens.key}
-            text={lens.name}
-            specs={lens.specs}
-            theme={t}
-            metaStyle={{ fontSize: "0.68rem" }}
-          />
-        ))}
-      </div>
+      <PatentLensList
+        lenses={patent.lenses}
+        theme={t}
+        style={{ borderTop: `1px solid ${t.panelDivider}`, paddingTop: "0.35rem" }}
+      />
     </article>
   );
 }

@@ -7,7 +7,7 @@
 **Inventors:** Ernst Rothe; Josef Weiß  
 **Applicant:** Optische Werke G. Rodenstock  
 **Title:** Objektiv für Großformat-Kameras  
-**Embodiment analyzed:** Table 5, with one corrected refractive index (L3)
+**Example details:** with one corrected refractive index (L3)
 
 This prescription is a reconstruction of the patent example, not a verified production prescription. It replaces an
 earlier eight-element reconstruction of the A1 table, which had added an ultra-low-dispersion element and a flat rear

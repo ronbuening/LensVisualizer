@@ -9,7 +9,7 @@
 **Inventors:** Toshio Funejima (船島敏夫); Hamao Inagaki (稲垣浜夫)<br>
 **Applicants:** Tomioka Optical Co., Ltd. (富岡光学株式会社); Tokina Optical Co., Ltd. (トキナー光学株式会社)<br>
 **Title:** 全長の短い望遠レンズ (“telephoto lens with short overall length”)
-**Embodiment analyzed:** Example 2 (実施例2)
+**Example details:** 実施例2
 
 JP 1978-129629 A describes a compact six-element telephoto objective and supplies three numerical examples. The
 LensVisualizer entry fixes Example 2 as the prescription correlated with the production **YASHICA ML 300mm f/5.6**.

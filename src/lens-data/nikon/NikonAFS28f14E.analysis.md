@@ -12,7 +12,7 @@
 
 **Published:** December 28, 2017
 
-**Embodiment analyzed:** Example1 (EX1), Figure1, numerical data paragraphs66–71.
+**Example details:** EX1, Figure1, numerical data paragraphs66–71.
 
 The represented prescription is a28.41mm, f/1.45, full-field75.42° design with image semi-height21.6mm. Its fourteen patent elements and eleven air-separated components are associated with the catalog's28mm f/1.4E. This is the source example, without a claim that production glasses, actuators or every manufactured dimension are established by the patent.
 

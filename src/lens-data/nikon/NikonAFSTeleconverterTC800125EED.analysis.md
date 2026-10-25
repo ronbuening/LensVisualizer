@@ -8,7 +8,7 @@
 **Inventor:** Akiko Furuta (古田 明子)  
 **Applicant:** Nikon Corporation  
 **Title:** Rear converter lens, optical device, and method for manufacturing rear converter lens  
-**Embodiment analyzed:** Example 1, Table 1, Figure 1
+**Example details:** Table 1, Figure 1
 
 JP 2013-250290 A, “Rear converter lens, optical device, and method for manufacturing rear converter lens,” was filed on 30 May 2012 and published on 12 December 2013. Page 1 names Akiko Furuta (古田 明子) as inventor and Nikon Corporation (株式会社ニコン) as applicant. The model is Example 1, described in ¶0049–0057, Table 1 (pages 9–10) and Figure 1 (page 22).
 

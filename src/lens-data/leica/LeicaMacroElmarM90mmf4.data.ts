@@ -37,7 +37,7 @@ const LENS_DATA = {
   key: "leica-macro-elmar-m-90mm-f4",
   maker: "Leica",
   name: "LEICA MACRO-ELMAR-M 90mm f/4",
-  subtitle: "DE 2 246 966 A1 Example 1 — inferred production correlation",
+  subtitle: "DE 2 246 966 A1 Claim 3 — inferred production correlation",
 
   catalog: {
     lensMounts: ["leica-m"],
@@ -51,6 +51,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 2 246 966 A1",
+    example: { label: "Claim 3", id: "3" },
     patentYear: 1974,
     authors: ["Georg Knetsch", "Walter Watz"],
     assignees: ["Ernst Leitz GmbH"],

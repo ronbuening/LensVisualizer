@@ -48,6 +48,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2,819,651",
+    example: { label: "Sole example", id: null },
     patentYear: 1958,
     authors: ["Carl Baur", "Christian Otzen"],
     assignees: ["Agfa Camera-Werk AG"],

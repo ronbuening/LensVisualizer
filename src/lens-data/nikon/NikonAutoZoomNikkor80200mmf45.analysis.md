@@ -8,7 +8,6 @@
 **Granted:** October 26, 1971
 **Inventors:** Takashi Higuchi; Soichi Nakamura
 **Assignee:** Nippon Kogaku K.K.
-**Embodiment analyzed:** Example 1
 **Design correlation used:** NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5
 
 The prescription is the first numerical example of US 3,615,125. It specifies an 80.0-200.3 mm, f/4.5 zoom with a 195.31 mm total track, 15 elements, and the positive-negative-positive zooming section followed by a two-part relay shown in Figure 1.[1] The project treats this example as the fixed production correlation for the 1970 NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5.

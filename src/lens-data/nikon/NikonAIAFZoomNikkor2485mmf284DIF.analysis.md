@@ -12,7 +12,7 @@
 
 **Applicant:** Nikon Corporation
 
-**Embodiment analyzed:** Example 1, Table 1 (production correlation)
+**Example details:** Table 1 (production correlation)
 
 The original application gazette supplies the prescription. Its Table 1 occupies PDF pages 7–9. JP 4374652 B2 is the grant of the same application, published December 2, 2009. Its Tables 1–3 (PDF pages 11–19) print the same 84 surface rows, six asphere blocks and 33 infinity/finite/macro configurations as the application. The model retains the application dimensions at scale 1.0.
 

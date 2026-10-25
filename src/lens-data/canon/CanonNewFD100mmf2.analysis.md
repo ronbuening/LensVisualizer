@@ -8,7 +8,6 @@
 **Applicant:** Canon Inc. (キヤノン株式会社)  
 **Title:** 長焦点レンズ (Long Focal-Point Lens)  
 **Classification:** G02B 13/02, G02B 9/34  
-**Embodiment analyzed:** Sole worked numerical example
 
 JP S53-133028 A gives one numerical prescription for a 35 mm-format, large-aperture long-focus lens. The prescription is normalized to $f = 1$, with aperture ratio $1{:}2$, field angle $2\omega = 24°$, and back focus $0.4270f$. The patent text describes the design as a development of the tele-Sonnar type, intended to retain high contrast while reducing spherical aberration and field curvature.
 

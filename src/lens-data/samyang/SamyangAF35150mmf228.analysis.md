@@ -10,7 +10,7 @@
 **Inventor:** Ju Yeon Jo  
 **Assignee:** Samyang Optics Co., Ltd., Changwon-si, KR  
 **Title:** Lens Optical System with High Resolution  
-**Embodiment analyzed:** Third embodiment, optical system 100-3, Tables 7-9 and Figs. 9-12
+**Example details:** optical system 100-3, Tables 7-9 and Figs. 9-12
 
 The third embodiment is the strongest match for the production Samyang AF 35-150mm f/2-2.8 FE / L optical formula. The patent prescription in Table 7 has 21 physical lens elements in 18 air-separated groups when the hybrid resin layer is counted as part of its glass substrate lens and the sensor cover plate is not counted as a lens element. The production specifications list the same 21 elements in 18 groups, and the patent's special-surface pattern - one hybrid asphere at surface 6 and two dual-sided all-glass aspherical lenses at surfaces 30-31 and 40-41 - corresponds directly to the production statement of 2 ASP + 1 H-ASP. The patent prescription itself exposes five clear νd≈81.6 ED fluorophosphate elements; the sixth ED element in the production specification remains a manufacturer classification that cannot be uniquely assigned from the patent's nd/νd values alone.
 

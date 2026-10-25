@@ -53,6 +53,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 10,690,896 B2",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2020,
     authors: ["Kosuke Machida", "Takeshi Suzuki", "Takeru Uehara"],
     assignees: ["Nikon Corporation"],

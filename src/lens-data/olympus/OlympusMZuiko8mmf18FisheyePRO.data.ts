@@ -64,6 +64,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2016-184136 A",
+    example: { label: "Numerical Example 7", id: "7" },
     patentYear: 2016,
     authors: ["Yukihiro Yamamoto"],
     assignees: ["Sigma Corporation"],

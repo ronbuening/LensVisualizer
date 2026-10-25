@@ -10,7 +10,7 @@
 **Inventor:** Takahiro Hatada  
 **Assignee:** Canon Kabushiki Kaisha  
 **Title:** *Optical System and Image Pickup Apparatus Having the Same*  
-**Embodiment analyzed:** Third exemplary embodiment; Numerical Example 3; Figures 5–6; ¶¶0104–0106 and ¶0120
+**Example details:** Numerical Example 3; Figures 5–6; ¶¶0104–0106 and ¶0120
 
 The publication does not name a commercial lens. The identification of Numerical Example 3 with the Canon EF 24mm f/1.4 L II USM is therefore a convergent correlation rather than an explicit patent statement.
 

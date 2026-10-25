@@ -12,7 +12,7 @@
 
 **Published:** December 5, 2019
 
-**Embodiment analyzed:** Example 1, Table 1 and Figure 1
+**Example details:** Table 1 and Figure 1
 
 The catalog associates this seventeen-element, ten-component example with the Noct. The numerical design is 59.62mm, f/0.98, full field39.96° and image semi-height21.70mm. These source values are surfaced separately from the marketing58mm f/0.95 name. Matching architecture does not establish an exact measured production prescription or production materials. The original cover identifies Hiroki Harada; the former analysis's Sōki transliteration was incorrect.
 

@@ -11,7 +11,7 @@
 **Assignee:** Tamron Co., Ltd.  
 **Title:** *Zoom Lens*  
 **Worked examples:** Six  
-**Embodiment analyzed:** Embodiment 6, the second six-group example
+**Example details:** the second six-group example
 
 US 8,049,968 does not identify a commercial Sony lens. The production attribution is therefore an evidence-based match, not an explicit statement by either Tamron or Sony. Embodiment 6 is the strongest candidate for the Sony SAL70400G and SAL70400G2 for the following reasons:
 

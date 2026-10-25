@@ -7,8 +7,7 @@
 **Priority:** August 11, 2011\
 **Inventors:** Taiga Noda; Michio Cho\
 **Assignee:** Fujifilm Corporation\
-**Title:** *Zoom Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Example 1
+**Title:** *Zoom Lens and Imaging Apparatus*
 
 The prescription is Example 1 of US 2014/0133036 A1, modeled as the fixed production correlation selected for the Fujifilm X10’s SUPER EBC FUJINON 7.1–28.4 mm F2.0–2.8 zoom. The patent itself publishes design focal lengths of 7.34, 14.25, and 27.68 mm and f-numbers of 2.05, 2.36, and 2.89 at its three infinity-focus states. The marketed lens is separately identified as a 7.1–28.4 mm F2.0–2.8 four-times zoom. Marketing and design values are therefore retained as distinct quantities rather than reconciled by scaling.
 

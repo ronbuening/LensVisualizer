@@ -9,7 +9,6 @@
 **Inventor:** Wolfram W. Albrecht  
 **Applicant:** Jos. Schneider & Co., Optische Werke  
 **Title:** *Objektiv großer Lichtstärke aus mindestens fünf in Luft stehenden Gliedern*  
-**Embodiment analyzed:** Example 1, the single normalized numerical example
 
 DE 927 540 describes a high-speed objective of at least five air-separated members and gives one worked prescription
 normalized to `f = 1`, with an aperture ratio of 1:1.9 and a full image angle of 50°. The numerical table appears on

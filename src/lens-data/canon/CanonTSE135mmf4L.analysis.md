@@ -7,7 +7,7 @@
 **Inventor:** Mizuma Akira (水間 章)  
 **Applicant:** Canon Inc. (キヤノン株式会社)  
 **Title:** 撮像光学系及びそれを有する撮像装置 (Imaging optical system and imaging apparatus having the same)  
-**Embodiment analyzed:** Example 1 / Numerical Data 1 (数値データ1)
+**Example details:** Numerical Data 1 (数値データ1)
 
 JP 2018-132674 A discloses a macro-capable imaging system intended to reduce focus-induced aberration variation, especially chromatic variation, from infinity to close focus. The system keeps the positive first group L1 and the negative rear group RF/L4 fixed, while a negative group FN/L2 moves imageward and a positive group FP/L3 moves objectward during focusing. The patent identifies the negative lens FPn in the positive moving group as the principal glass-selection constraint and defines the partial-dispersion conditions around that element.
 

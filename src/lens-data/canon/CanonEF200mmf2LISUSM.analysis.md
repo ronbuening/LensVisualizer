@@ -10,7 +10,7 @@
 **Applicant:** Canon Inc. (キヤノン株式会社), Ōta-ku, Tokyo
 **Title:** 光学系及びそれを有する撮像装置 (Optical System and Image Pickup Apparatus Having the Same)
 **Classification:** G02B 13/00, G03B 5/00
-**Embodiment analyzed:** Numerical Example 1 (数値実施例 1)
+**Example details:** 数値実施例 1
 
 Numerical Example 1 is the closest patent match to the Canon EF 200mm f/2L IS USM. The match rests on convergent evidence rather than on a single specification. The patent example gives $f = 194.99$ mm and Fno = 2.05; the production lens is marketed as a 200 mm f/2 lens. The patent structure is a large-aperture positive-negative-positive long-focus design with inner focusing by the negative second group and image stabilization by a decentered negative component in the third group. Canon's published product specification gives 17 elements in 12 groups, one fluorite element, two UD elements, a 1.9 m closest focusing distance, 0.12× maximum magnification, a drop-in 52-series filter, and an April 2008 market date.
 

@@ -8,7 +8,7 @@
 **Inventor:** Carl August Hans Harting
 **Assignee:** Voigtländer & Sohn Aktien Gesellschaft
 **Title:** Lens
-**Embodiment analyzed:** Sole numerical example, symmetric five-element design
+**Example details:** symmetric five-element design
 
 The diagram represents the patent example, scaled so that its normalized focal
 length of 100 is interpreted as 100 mm. The patent also states an opening of 25

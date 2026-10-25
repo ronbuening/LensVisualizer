@@ -9,7 +9,7 @@
 **Granted:** December 24, 1985  
 **Inventor:** Shuji Ogino  
 **Assignee:** Minolta Camera Kabushiki Kaisha, Osaka, Japan  
-**Embodiment analyzed:** Embodiment 2, Table 2
+**Example details:** Table 2
 
 US 4,560,253 discloses a compact two-group inverted-telephoto zoom lens for 35 mm SLR use. The selected prescription is Embodiment 2, whose tabulated focal lengths are 68.2 mm, 50.0 mm, and 36.0 mm with design aperture $F_{NO}=4.1$. The embodiment uses six patent components in two moving groups: a negative two-component front group and a positive four-component rear group. The second front-group component is a composite element, consisting of a high-dispersion glass body with a thin lower-dispersion transparent layer on its rear surface. The air-facing surface of that thin layer is the sole aspherical surface.
 

@@ -10,7 +10,7 @@
 **Inventor:** Yoshiyuki Shimizu  
 **Assignee:** Nippon Kogaku K.K.  
 **Title:** Catadioptric Telephoto Objective Lens System  
-**Embodiment analyzed:** Example 1, claim 2
+**Example details:** claim 2
 
 US 3,632,190 discloses a compact reflecting-refracting telephoto objective of the Cassegrain class. The patent describes an F/7 system with a 5° field, a positive front meniscus, a concave main mirror with an unplated clear central zone, a convex secondary mirror near the front corrector, and a cemented rear corrector group passing through the center of the main mirror. Example 1 is normalized to f = 100 and is the prescription transcribed here.
 

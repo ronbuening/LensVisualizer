@@ -7,7 +7,6 @@
 **Inventor:** Yasumoto Oginome  
 **Applicant:** Sigma Corporation  
 **Title:** Large-aperture ultra wide-angle lens  
-**Embodiment analyzed:** Numerical Example 3
 
 The prescription is the unscaled Japanese Numerical Example 3, paragraph 0140, with the optical section in Fig. 11. The construction correlation with the SIGMA 15mm f/1.4 DG DN DIAGONAL FISHEYE | Art is strong, but an exact manufactured prescription is not confirmed. [1]
 

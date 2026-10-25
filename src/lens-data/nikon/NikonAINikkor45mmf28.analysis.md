@@ -9,7 +9,7 @@
 **Inventor:** Kōichi Ōshita (大下 孝一)  
 **Applicant:** Nikon Corporation (株式会社ニコン)  
 **Title:** Tessar-type Lens (テッサー型レンズ)  
-**Embodiment analyzed:** Example 6 (第6実施例, Table 6, ¶0023)
+**Example details:** 第6実施例, Table 6, ¶0023
 
 The transcribed prescription is Example 6 of JP 2003-005030 A. The production lens is the AI Nikkor 45mm f/2.8P, the compact Nikon F-mount pancake lens introduced with the FM3A in July 2001. The match is strong at the patent-family level and strongest within the negative-positive rear-doublet examples, but Nikon does not publish the exact numerical example used for production. The document therefore treats Example 6 as a patent embodiment corresponding to the production design family rather than as a manufacturer-certified production prescription.
 

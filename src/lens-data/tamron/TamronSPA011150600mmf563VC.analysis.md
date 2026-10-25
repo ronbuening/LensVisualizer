@@ -7,7 +7,6 @@
 **Inventors:** Yoshito Iwasawa; Jun Takahashi  
 **Assignee:** Tamron Co., Ltd.  
 **Title:** *Zoom Lens and Camera Device*  
-**Embodiment analyzed:** Example 4
 
 The prescription modeled here is Example 4 of US 10,545,321 B2, using the lens arrangement in Fig. 13 and the numerical data in Tables 10–12 and 16. The patent describes a five-group zoom with a positive first group, negative second group, positive third group, positive fourth group, and negative fifth group. The aperture stop is published between the third and fourth groups, and the fourth group is the focusing group. A cemented pair within the third group is identified as the transversely movable anti-vibration block.
 

@@ -9,7 +9,7 @@
 **Inventors:** Jong Young Park (박종영), Jung Du Lee (이정두)  
 **Applicant:** Samyang Optics Co., Ltd.  
 **Title:** 렌즈계 및 이를 포함하는 광학 기기 / Lens system and optical device comprising the same  
-**Embodiment analyzed:** Example 1, Table 1, Figure 1
+**Example details:** Table 1, Figure 1
 
 The patent's only numerical example is associated with the manual-focus Samyang 100mm F2.8 ED UMC Macro through its optical construction. Samyang has not confirmed that the example gives the production radii, dimensions, glasses or coatings.
 

@@ -8,7 +8,7 @@
 **Inventors:** Hirofumi Tabata; Yasuhiko Obikane (source: 太幡 浩文; 帯金 靖彦)\
 **Applicant:** Tamron Co., Ltd.\
 **Title:** インナーフォーカス式レンズ及び撮像装置\
-**Embodiment analyzed:** Example 2 / Numerical Example 2 (Figures 6–10; Tables 4–6 and 25)
+**Example details:** Numerical Example 2 (Figures 6–10; Tables 4–6 and 25)
 
 The prescription implemented here is Numerical Example 2 of JP 2015-96915 A. The patent describes an inner-focus
 lens with a positive first group G1, a negative single-element second group G2 that moves axially for focus, and a

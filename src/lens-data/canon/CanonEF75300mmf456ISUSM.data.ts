@@ -53,6 +53,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP H08-062541 A",
+    example: { label: "Numerical Example 2", id: "2" },
     patentYear: 1996,
     authors: ["Shingo Hayakawa"],
     assignees: ["Canon Inc."],

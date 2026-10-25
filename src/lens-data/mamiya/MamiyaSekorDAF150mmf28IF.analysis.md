@@ -5,8 +5,7 @@
 **Published:** 2001-07-06<br>
 **Inventor:** Hideyuki Suga<br>
 **Applicant:** Mamiya-OP Co., Ltd.<br>
-**Title:** 中望遠レンズ (*Medium Telephoto Lens*)<br>
-**Embodiment analyzed:** Example 1
+**Title:** 中望遠レンズ (*Medium Telephoto Lens*)
 
 This analysis describes the prescription stored as **MAMIYA SEKOR AF 150mm f/2.8 IF D**. The selected production
 correlation is JP 2001-183581 A, Example 1. Neither the patent nor the Mamiya product literature explicitly links the

@@ -7,7 +7,7 @@
 **Inventor:** Jihei Nakagawa  
 **Assignee:** Olympus Optical Co., Ltd.  
 **Title:** _Retrofocus Wide-Angle Lens System_  
-**Embodiment analyzed:** Embodiment 4, Fig. 3; aberration plots in Figs. 11A-11C; repeated as Claim 5
+**Example details:** Fig. 3; aberration plots in Figs. 11A-11C; repeated as Claim 5
 
 The patent does not identify a commercial lens by model name. Embodiment 4 is nevertheless the strongest available match to the Olympus OM-system H.Zuiko Auto-W 24mm f/2.8, and the identification rests on several convergent points rather than on any single dimension:
 

@@ -74,6 +74,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,758,073",
+    example: { label: "Example 4", id: "4" },
     patentYear: 1988,
     authors: ["Jacob Moskovich"],
     assignees: ["Vivitar Corporation"],

@@ -9,7 +9,6 @@
 **Inventor:** Masaki Imaizumi
 **Applicant:** Olympus Optical Co., Ltd.
 **Title:** 望遠レンズのフォーカシング方式 (focusing method for a telephoto lens system)
-**Embodiment analyzed:** Example 1
 
 The US family member is [US 4,558,928 A](https://patents.google.com/patent/US4558928A/en), published 17 December 1985, filed 5 December 1983, with the same Japanese priority. Its Embodiment 1 table prints the same prescription; it gives φa = −0.818 where the JP scan prints −0.828, and the model's IIa power matches the US value.
 

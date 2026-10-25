@@ -53,6 +53,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 143889 C",
+    example: { label: "Sole example", id: null },
     patentYear: 1903,
     authors: ["Carl August Hans Harting"],
     assignees: ["Voigtländer & Sohn AG"],

@@ -70,6 +70,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "EP 2 321 688 B1",
+    example: { label: "Embodiment 1", id: "1" },
     patentYear: 2020,
     authors: ["Iain A. Neil"], // printed "NEIL, Ian, A." on the B1 front page; catalog spelling
     assignees: ["Ernst Leitz Wetzlar GmbH"],

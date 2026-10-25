@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  *   LENS DATA — KONICA VARIFOCAL HEXANON AR 35-100mm f/2.8
  *
- *   Data source: US 3,584,935, Example 1 (Tadashi Kojima /
+ *   Data source: US 3,584,935, sole example (Tadashi Kojima /
  *   Konishiroku Photo Industry Co., Ltd.).
  *   15 elements / 10 air-separated groups, all spherical.
  *   Four components: C1 positive, C2 negative, C3 positive, C4 relay.
@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "konica-varifocal-hexanon-ar-35-100-f28",
   maker: "Konica",
   name: "KONICA VARIFOCAL HEXANON AR 35-100mm f/2.8",
-  subtitle: "US 3,584,935, Example 1 — strong production correlation; attribution not manufacturer-confirmed",
+  subtitle: "US 3,584,935, sole example — strong production correlation; attribution not manufacturer-confirmed",
 
   catalog: {
     lensMounts: ["konica-ar"],
@@ -58,6 +58,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,584,935",
+    example: { label: "Sole example", id: null },
     patentYear: 1971,
     authors: ["Tadashi Kojima"],
     assignees: ["Konishiroku Photo Industry Co., Ltd."],

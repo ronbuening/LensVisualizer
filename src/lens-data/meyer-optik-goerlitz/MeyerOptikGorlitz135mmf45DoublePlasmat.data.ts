@@ -71,7 +71,13 @@ const LENS_DATA = {
     fNumber: { design: 4.4653261630411505 },
   },
 
-  source: { patentNumber: "GB 135,853 A", patentYear: 1919, authors: ["Paul Rudolph"], assignees: [] },
+  source: {
+    patentNumber: "GB 135,853 A",
+    example: { label: "Example 2", id: "2" },
+    patentYear: 1919,
+    authors: ["Paul Rudolph"],
+    assignees: [],
+  },
 
   /* ── Glass elements: object side to image side ── */
   elements: [

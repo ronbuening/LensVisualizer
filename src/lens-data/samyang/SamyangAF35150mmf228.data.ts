@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "samyang-af-35-150mm-f2-28",
   maker: "Samyang",
   name: "SAMYANG AF 35-150mm f/2-2.8 FE / L",
-  subtitle: "US 2025/0231383 A1 — Embodiment 100-3",
+  subtitle: "US 2025/0231383 A1 — Embodiment 3 (optical system 100-3)",
 
   catalog: {
     lensMounts: ["sony-fe", "l-mount"],
@@ -61,6 +61,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2025/0231383 A1",
+    example: { label: "Embodiment 3", id: "3" },
     patentYear: 2025,
     authors: ["Ju Yeon Jo"],
     assignees: ["Samyang Optics Co., Ltd."],

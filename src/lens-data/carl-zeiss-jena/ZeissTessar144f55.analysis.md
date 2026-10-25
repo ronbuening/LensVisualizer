@@ -8,7 +8,7 @@
 **Filed:** July 15, 1902
 **Granted:** February 24, 1903
 **Title:** Photographic Objective
-**Embodiment analyzed:** Sole worked example, dimensions multiplied by 144 mm
+**Example details:** dimensions multiplied by 144 mm
 
 The patent specifies four elements, an aperture of f/5.5 and approximately 60°
 of anastigmatically flat field. It normalizes dimensions to the focal length.

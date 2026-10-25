@@ -55,6 +55,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP S52-141223 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1977,
     authors: ["Yusuke Nanjo"],
     assignees: ["Mamiya Koki Co., Ltd."],

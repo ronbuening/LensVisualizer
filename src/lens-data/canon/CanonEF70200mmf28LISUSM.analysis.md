@@ -7,7 +7,7 @@
 **Inventor:** Akira Harada\
 **Applicant:** Canon Inc.\
 **Title:** ズームレンズ及びそれを用いた光学機器 (Zoom lens and optical apparatus using the same)\
-**Embodiment analyzed:** Example 1 / Numerical Example 1
+**Example details:** Numerical Example 1
 
 The prescription modeled here is Numerical Example 1 of JP2002162564A. The data file preserves that embodiment rather than modifying it to force agreement with the production lens. The correlation to the CANON EF 70-200mm f/2.8 L IS USM rests on several convergent facts, but it is not manufacturer confirmation of the patent-to-product identity.
 

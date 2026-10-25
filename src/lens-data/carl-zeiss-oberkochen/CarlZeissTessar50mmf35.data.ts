@@ -58,6 +58,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "CH 314381",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1956,
     authors: ["Günther Lange", "Robert Richter"],
     assignees: ["Carl-Zeiss-Stiftung"],

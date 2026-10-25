@@ -47,6 +47,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2008-020656 A",
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2008,
     authors: ["Yutaka Kamimura", "Ai Hoshina"],
     assignees: ["Sigma Corporation"],

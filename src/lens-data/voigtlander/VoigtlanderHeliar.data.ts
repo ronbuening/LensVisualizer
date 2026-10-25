@@ -28,6 +28,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 716,035",
+    example: { label: "Sole example", id: null },
     patentYear: 1902,
     authors: ["Carl August Hans Harting"],
     assignees: ["Voigtländer & Sohn AG"],

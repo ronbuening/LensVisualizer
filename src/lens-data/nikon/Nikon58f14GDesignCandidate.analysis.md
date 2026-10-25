@@ -12,7 +12,7 @@
 
 **Published:** January 31, 2013
 
-**Embodiment analyzed:** Example 2 (OS2), Figure 3, Tables 4 and 5.
+**Example details:** OS2, Figure 3, Tables 4 and 5.
 
 This is a related patent design candidate associated with the AF-S NIKKOR 58mm f/1.4G, not an established production prescription. The display name uses the associated product's f/1.4 G designation and retains the patent design candidate qualifier. The subtitle and visible specifications distinguish that inferred association from the modeled f/1.45 patent prescription. The source has nine elements in five air-separated components and four optical groups. No production modification, such as splitting a cemented pair, is established by the patent.
 

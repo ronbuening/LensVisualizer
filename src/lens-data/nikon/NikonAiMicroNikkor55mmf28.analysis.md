@@ -8,7 +8,7 @@
 **Inventor:** Yoshinari Hamanishi<br>
 **Assignee:** Nippon Kogaku K.K.<br>
 **Title:** *Lens system for photographing objects from infinity to a very short distance*<br>
-**Embodiment analyzed:** Example 1 / first embodiment / Table 1 / Figs. 1A, 1B, 2A–2C
+**Example details:** first embodiment / Table 1 / Figs. 1A, 1B, 2A–2C
 
 The selected prescription is the first embodiment of US 4,260,223 A. The patent identifies it as a modified Gaussian short-distance photographic lens composed of a positive forward group G1 and a positive rearward group G2 with the diaphragm between them. During focusing from infinity toward a short-distance object, both functional groups move toward the object while their separation increases; the diaphragm moves with G2. The numerical prescription is given in Table 1 and the corresponding infinity and close-focus layouts appear in Figs. 1A and 1B.
 

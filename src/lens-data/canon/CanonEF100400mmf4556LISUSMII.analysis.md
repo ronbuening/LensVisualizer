@@ -11,7 +11,7 @@
 **Applicant:** Canon Inc. (Canon Kabushiki Kaisha)
 **Title:** *Zoom Lens and Image Pickup Apparatus Including the Same*
 
-**Embodiment analyzed:** Example 2 / Numerical Example 2
+**Example details:** Numerical Example 2
 
 The prescription is the unscaled Numerical Example 2 of US 2015/0146044 A1. The patent describes Example 2 as a
 six-unit zoom with a positive-negative-positive-negative-positive-negative power sequence, a zoom ratio of 3.78, and

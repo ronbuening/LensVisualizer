@@ -7,7 +7,7 @@
 **Inventor:** Keiji Moriyama (守山啓二)  
 **Applicant:** Nikon Corporation (株式会社ニコン)  
 **Title:** Standard Zoom Lens / 標準ズームレンズ  
-**Embodiment analyzed:** Example 1 (第1実施例), Table 1
+**Example details:** 第1実施例, Table 1
 
 The transcribed prescription is Example 1 of JP H11-030748 A. The patent describes a compact, low-cost standard zoom lens for SLR use, built from a negative first zoom group and a positive second zoom group. Zooming is performed by varying the separation between G1 and G2, and the most object-side lens of G1 is positive to correct wide-angle distortion (¶0007, ¶0010).
 

@@ -9,7 +9,7 @@
 **Inventor:** Makoto Misaka (三坂 誠)  
 **Applicant:** Canon Inc.  
 **Title:** レトロフォーカス型レンズ (_Retrofocus-Type Lens_)  
-**Embodiment analyzed:** Numerical Example 6, Table 6, Figure 7\
+**Example details:** Table 6, Figure 7\
 **Worked examples:** 7  
 **Claims:** 3
 

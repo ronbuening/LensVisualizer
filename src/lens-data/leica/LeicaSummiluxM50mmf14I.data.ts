@@ -1,7 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * LEICA SUMMILUX-M 50mm f/1.4 — DE 1 045 120 B, Example 1.
+ * LEICA SUMMILUX-M 50mm f/1.4 — DE 1 045 120 B, sole example.
  *
  * Source prescription: DE1045120, normalized at f = 100 and uniformly scaled ×0.5 for the 50 mm product model.
  * All radii, thicknesses, air gaps, and the computed image-plane spacing are scaled by ×0.5; indices and νe are
@@ -25,7 +25,7 @@ const LENS_DATA = {
   key: "leica-summilux-m-50mm-f14-i",
   maker: "Leica",
   name: "LEICA SUMMILUX-M 50mm f/1.4 I",
-  subtitle: "DE 1 045 120 B — Example 1; first-version Summilux-M 50mm f/1.4 correlation",
+  subtitle: "DE 1 045 120 B — sole example; first-version Summilux-M 50mm f/1.4 correlation",
 
   catalog: {
     lensMounts: ["leica-m"],
@@ -39,6 +39,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 1 045 120 B",
+    example: { label: "Sole example", id: null },
     patentYear: 1958,
     authors: ["Otto Zimmermann", "Gustav Kleineberg", "Eugen Hermanni"],
     assignees: ["Ernst Leitz GmbH"],

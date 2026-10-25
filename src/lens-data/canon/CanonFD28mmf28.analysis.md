@@ -11,7 +11,7 @@
 **Assignee:** Canon Kabushiki Kaisha, Tokyo, Japan
 **Title:** Retrofocus Wide Angle Objective Lens System
 **Worked examples:** 3 (Figs. 1, 5, and 9; claims 6, 7, and 8)
-**Embodiment analyzed:** Example 2 — Fig. 5 / Table 3 / claim 7
+**Example details:** Fig. 5 / Table 3 / claim 7
 
 US 4,046,459 describes a compact retrofocus wide-angle objective for single-lens-reflex cameras. Example 2 is normalized to a focal length of unity, relative aperture F/2.8, and half-field ω = 38°. The prescription has seven air-spaced singlet elements in seven groups: two front negative menisci, a positive third lens, a biconvex fourth lens, a biconcave fifth lens, and two rear positive lenses.
 

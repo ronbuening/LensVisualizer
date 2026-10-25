@@ -9,7 +9,7 @@
 **Granted:** September 7, 1999  
 **Inventors:** Kouichi Ohshita; Atsushi Shibayama  
 **Assignee:** Nikon Corporation  
-**Embodiment analyzed:** Eighth embodiment, Table 8  
+**Example details:** Table 8  
 **Worked examples in patent:** 11  
 
 The patent discloses a low-cost super-wide-angle / fisheye-type lens made from only three glass elements: a plano-concave first negative lens, a thick negative meniscus second lens, and a positive third lens. The second and third lenses are cemented in the disclosed examples. This is the same structural family described by Kouichi Ohshita in Nikon's _NIKKOR — The Thousand and One Nights_ account of the Gyogyotto 20: a strong plano-concave front element, an unusually thick meniscus corrector, and a final convex imaging element joined into a two-group three-element structure.

@@ -10,7 +10,7 @@
 **Inventors:** Tomowaki Takahashi; Kunio Konno; Toshihiro Sasaya<br>
 **Assignee:** Nippon Kogaku K.K.<br>
 **Title:** Zoom Lens<br>
-**Embodiment analyzed:** First Embodiment / Example 1, Fig. 1
+**Example details:** Example 1, Fig. 1
 
 The prescription modeled here is the First Embodiment of US 4,437,733. The patent identifies it as a 6× zoom with
 published focal-length endpoints of 11.5 and 69.0 mm, an f-number of 1.2, a 16.54 mm back focal length, a 53.5 mm

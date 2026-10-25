@@ -62,6 +62,7 @@ const LENS_DATA = {
   // lensMounts omitted: the Visoflex mount (M39 thread at 91.3 mm register) has no taxonomy id.
   source: {
     patentNumber: "DE 1 096 057 B",
+    example: { label: "Sole example", id: null },
     patentYear: 1960,
     authors: ["Walter Mandler", "Horst Schmidt"],
     assignees: ["Ernst Leitz GmbH"],

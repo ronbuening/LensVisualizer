@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **995** lenses scanned (**981** visible)
-- **10479 / 11326** non-air surfaces use strict catalog Sellmeier data (92.5%)
-- **10492 / 11326** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.6%)
+- **1001** lenses scanned (**987** visible)
+- **10564 / 11412** non-air surfaces use strict catalog Sellmeier data (92.6%)
+- **10577 / 11412** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.7%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **297** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **164** self-recording explicit dispositions, **0** dispositions missing any review record
+- **298** code-only missing-Sellmeier elements in Sweep 2: **23** active unreviewed, **165** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **21** Tier A proprietary backfill rows in Sweep 3
 
@@ -123,6 +123,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON NIKKOR 800mm f/8 ED](../../src/lens-data/nikon/NikonNikkor800mmf8ED.data.ts) | US 3,774,991 | [PDF](../../patents/US3774991.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 1 [glass] (Element 1: `Unmatched (486815 — fluophosphate crown / ED-class; vendor unresolved)`) | abbe: 1 |
 | [PANASONIC LUMIX S 26mm f/8](../../src/lens-data/panasonic/PanasonicLumixS26mmF8.data.ts) | US 2025/0334777 A1 | [PDF](../../patents/US20250334777A1.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 8 [glass] (Element 4: `Unmatched (patent nd=1.69513, vd=24.0; no match in six supplier catalogs)`) | abbe: 1 |
 | [SAMSUNG 30mm f/2](../../src/lens-data/samsung/Samsung30mmf2.data.ts) | US 2010/0149663 A1 | [PDF](../../patents/US20100149663A1.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 3 [glass] (Element 2: `Unmatched (684316 dense-flint class; vendor unresolved)`) | abbe: 1 |
+| [VOIGTLÄNDER SUPER-DYNAREX 200mm f/4 (Bessamatic)](../../src/lens-data/voigtlander/VoigtlanderSuperDynarex200mmf4.data.ts) | US 3,388,956 A | [PDF](../../patents/US3388956A.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 6 [glass] (Element IV: `Unmatched (758/316 dense flint; no catalog glass within 0.0001 in nd)`) | abbe: 1 |
 | [CANON EF-M 15-45mm f/3.5-6.3 IS STM](../../src/lens-data/canon/CanonEFM1545mmf3563ISSTM.data.ts) | JP 2016-118658 A | [PDF](../../patents/JP2016118658A.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 3A [glass] (Element 2: `Unmatched (nd=1.52996, nu_d=55.8; no exact defensible public-catalog identity found)`)<br>17A [glass] (Element 9: `Unmatched (nd=1.52996, nu_d=55.8; no exact defensible public-catalog identity found)`) | abbe: 2 |
 | [CARL ZEISS JENA FLEKTOGON 20mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon20mmf4.data.ts) | GB 978,797 | [PDF](../../patents/GB_978797_A.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 10 [glass] (Element 6: `Unmatched (728380; nearest current dense-barium-flint family outside Δn=0.003)`)<br>13 [glass] (Element 8: `Unmatched (678322; nearest SF5/ZF2 coordinate family outside Δn=0.003)`) | abbe: 2 |
 | [NIKON AI MICRO-NIKKOR 105mm f/2.8 S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) | US 4,392,724 | [PDF](../../patents/US4392724.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 12 [glass] (L31 G3 positive meniscus: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`)<br>16 [glass] (L33 G3 positive reconverger: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`) | abbe: 2 |

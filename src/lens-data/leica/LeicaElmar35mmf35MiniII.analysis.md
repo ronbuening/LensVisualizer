@@ -8,7 +8,7 @@
 **Inventors:** Lothar Koelsch; Klaus-Dieter Schaefer  
 **Assignee:** Leica Camera GmbH  
 **Title:** Compact photographic objective of the triplet type having improved chromatic and monochromatic characteristics  
-**Embodiment analyzed:** The sole unnumbered prescription, Figure 1 and claim 2; the patent does not label it “Example 1.”
+**Example details:** Figure 1 and claim 2; the patent does not label it “Example 1.”
 
 The model is a qualified correlation to the LEICA ELMAR 35mm f/3.5 in the Leica Mini II. The following evidence converges:
 

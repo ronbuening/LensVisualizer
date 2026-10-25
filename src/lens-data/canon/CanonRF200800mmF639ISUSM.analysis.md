@@ -10,7 +10,7 @@
 **Inventor:** Kohei Kimura  
 **Applicant:** Canon Kabushiki Kaisha  
 **Title:** Zoom Lens and Imaging Apparatus Including the Same  
-**Embodiment analyzed:** First Numerical Example / Example 1
+**Example details:** Example 1
 
 The prescription transcribed here is the first numerical example of US 2024/0134166 A1. The selected A1 front page
 contains one-day errors in both the filing and Japanese-priority dates: it prints October 18, 2023 and October 23, 2022.

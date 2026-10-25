@@ -13,6 +13,7 @@ import LensEntryLink from "../components/content/LensEntryLink.js";
 import PatentNumberLink from "../components/content/PatentNumberLink.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
+import { patentExampleSuffix } from "../utils/catalog/lensPatentMetadata.js";
 import { LENS_SUMMARIES } from "../utils/catalog/lensSummaries.js";
 import { LENS_MOUNT_BY_ID } from "../utils/catalog/lensTaxonomy.js";
 import { TELECONVERTER_SUMMARIES } from "../utils/catalog/teleconverterSummaries.js";
@@ -84,6 +85,7 @@ export default function TeleconverterPage() {
           {teleconverter.patentNumber && (
             <p style={{ fontSize: "0.8rem", color: t.subtitle, marginBottom: "0.75rem" }}>
               <PatentNumberLink patentNumber={teleconverter.patentNumber} color={t.descLinkColor} />
+              {patentExampleSuffix(teleconverter.patentExample)}
               {teleconverter.patentAuthors && teleconverter.patentAuthors.length > 0 && (
                 <>
                   {" — "}

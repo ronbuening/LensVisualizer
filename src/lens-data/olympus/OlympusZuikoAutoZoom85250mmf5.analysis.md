@@ -9,7 +9,7 @@
 **Inventor:** Yoshitsugi Ikeda  
 **Assignee:** Olympus Optical Co., Ltd., Tokyo, Japan  
 **Title:** Telephoto-Type Zoom Lens System  
-**Embodiment analyzed:** Embodiment 2 / Claim 3 numerical data
+**Example details:** Claim 3 numerical data
 
 The transcribed prescription is Embodiment 2 of US 4,025,167. The patent identifies the invention as a telephoto-type zoom lens system with a first focusing group, second variator group, third compensator group, and fourth relay group. The numerical Embodiment 2 table gives $f = 85.0$-$250.0$ mm, $F = 1:5$, overall length $l = 238.36$ mm, and telephoto ratio $p = 0.95$ at the 250 mm end.
 

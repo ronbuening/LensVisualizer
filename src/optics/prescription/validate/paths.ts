@@ -25,6 +25,7 @@ export function authoredMessages(
     opticalConfiguration: "catalog.opticalConfiguration",
     sourceErrata: "source.errata",
     patentNumber: "source.patentNumber",
+    patentExample: "source.example",
     patentAuthors: "source.authors",
     patentAssignees: "source.assignees",
   };

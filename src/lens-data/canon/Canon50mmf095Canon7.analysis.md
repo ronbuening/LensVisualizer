@@ -7,7 +7,7 @@
 **Inventor:** Jiro Mukai, romanization of the controlling printed 向井二郎.
 **Applicant:** Canon Camera Co., Inc. (キヤノンカメラ株式会社).
 **Title:** 高写力写真レンズ, high-aperture photographic lens.
-**Embodiment analyzed:** Sole complete numerical example, original PDF pages 1–2; Figure 1 on page 3.
+**Example details:** original PDF pages 1–2; Figure 1 on page 3.
 
 This is a qualified probable association with the Canon 50 mm f/0.95 for the Canon 7, marketed in August 1961, not a manufacturer-certified production prescription. Convergent evidence is:
 

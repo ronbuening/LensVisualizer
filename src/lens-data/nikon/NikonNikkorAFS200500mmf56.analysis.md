@@ -4,7 +4,7 @@
 **Applicants:** Nikon Corporation / Tamron Co., Ltd.  
 **Inventors:** Taku Matsuo, Takeshi Suzuki, Haruo Sato (Nikon); Hisayuki Yamanaka (Tamron)  
 **Published:** November 6, 2014  
-**Embodiment analyzed:** Example 2 (第2実施形態)  
+**Example details:** 第2実施形態  
 **Lens released:** August 2015
 
 ---

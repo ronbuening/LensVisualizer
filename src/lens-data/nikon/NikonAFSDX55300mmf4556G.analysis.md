@@ -10,7 +10,7 @@
 **Inventor:** Hiroki Harada  
 **Assignee:** Nikon Corporation  
 **Title:** Zoom Optical System, Optical Apparatus and Method for Manufacturing Zoom Optical System  
-**Embodiment analyzed:** Example 1, Table 1, FIGS. 1-4
+**Example details:** Table 1, FIGS. 1-4
 
 Example 1 is the best match to the production Nikon AF-S DX NIKKOR 55-300mm f/4.5-5.6G ED VR. The match is not based on a single number. It is a convergence of the prescription, architecture, special-glass count, and production timing:
 

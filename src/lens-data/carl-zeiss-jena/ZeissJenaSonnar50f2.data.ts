@@ -25,7 +25,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.0, design: 2.0 },
   },
 
-  source: { patentNumber: "US 1,998,704", patentYear: 1935, authors: ["Ludwig Bertele"], assignees: ["Zeiss Ikon AG"] },
+  source: {
+    patentNumber: "US 1,998,704",
+    example: { label: "Example I", id: "1" },
+    patentYear: 1935,
+    authors: ["Ludwig Bertele"],
+    assignees: ["Zeiss Ikon AG"],
+  },
 
   /* ── Elements ──
    *  Six elements in three groups: 1-3-2 (singlet, cemented triplet, cemented doublet).

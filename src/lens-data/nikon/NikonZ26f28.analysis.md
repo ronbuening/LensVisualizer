@@ -14,7 +14,7 @@
 
 **Published:** 2023-10-05
 
-**Embodiment analyzed:** Example 1, Table 1 and Figure 1
+**Example details:** Table 1 and Figure 1
 
 The diagram uses the compact wide-angle example associated with the NIKKOR Z26. Its source prescription is 26.78 mm f/2.90, distinct from the 26mm f/2.8 product name. The correspondence does not establish identical production prescriptions, material suppliers or manufacturing processes.
 

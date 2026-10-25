@@ -10,7 +10,7 @@
 **Inventor:** Kyoichi Miyazaki  
 **Applicant:** Panasonic Intellectual Property Management Co., Ltd. (Osaka, Japan)  
 **Title:** Single Focal Length Lens System, Interchangeable Lens Apparatus and Camera System  
-**Embodiment analyzed:** Numerical Example 5 / Embodiment 5 (FIG. 9)
+**Example details:** Embodiment 5 (FIG. 9)
 
 The patent discloses five numerical examples of a positive-negative-positive single-focal-length system. Numerical Example 5 is the prescription transcribed in the paired data file.
 

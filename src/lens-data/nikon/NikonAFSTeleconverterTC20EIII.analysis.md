@@ -9,7 +9,7 @@
 **Inventor:** Yoko Kimura (木村 陽子)  
 **Applicant:** Nikon Corporation  
 **Title:** Converter lens, optical device, method for extending focal length of master lens  
-**Embodiment analyzed:** Example 2, Table 2, Figures 3–4
+**Example details:** Table 2, Figures 3–4
 
 The prescription is the second published converter embodiment, comprising original surfaces 26–37. The model relabels these surfaces 1–12, with source surface 34 represented as 9A. The patent's master lens (f = 294.001 mm, F/2.89) is the design of the catalog's AF-S Nikkor 300mm f/2.8D IF-ED (modeled from US 5,745,306, with the same radii but a different rear filter position), one of the hosts the converter mounts on.
 

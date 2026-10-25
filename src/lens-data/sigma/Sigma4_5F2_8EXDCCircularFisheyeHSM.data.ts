@@ -45,6 +45,7 @@ const LENS_DATA = {
   },
   "source": {
     "patentNumber": "JP 2009-058817 A",
+    "example": { "label": "Example 3", "id": "3" },
     "patentYear": 2009,
     "authors": [
       "Ai Hoshina"

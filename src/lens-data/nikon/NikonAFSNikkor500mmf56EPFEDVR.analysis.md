@@ -9,7 +9,7 @@
 **Inventors:** Satoshi Miwa; Hiroshi Yabumoto\
 **Applicant:** Nikon Corporation\
 **Title:** Optical system, optical instrument, and method for manufacturing an optical system\
-**Embodiment analyzed:** Example 2 / OL2, Figures 3–4 and Tables 5–8
+**Example details:** OL2, Figures 3–4 and Tables 5–8
 
 Example 2 is treated as the fixed production correlation for the Nikon AF-S NIKKOR 500mm f/5.6E PF ED VR. The
 correlation is not manufacturer confirmation that the numerical example is the released factory prescription. It is

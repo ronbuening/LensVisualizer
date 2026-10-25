@@ -10,7 +10,7 @@
 **Published:** 5 October 1982  
 **Inventor:** Toshihiro Imai  
 **Assignee:** Olympus Optical Co., Ltd.  
-**Embodiment analyzed:** Sole numerical embodiment and repeated claim 1 table, six air-separated singlets.
+**Example details:** repeated claim 1 table, six air-separated singlets.
 
 The association with the **six-element/six-group 28 mm f/2.8 catalog lens** remains probable; exact factory coordinates and identity across every version are unconfirmed. The source gives normalized f = 1, f/2.8 and 37.5° half-field. Its twelve spherical surfaces, eleven vertex intervals and six glass pairs are transcribed unchanged and scaled uniformly by the conditional factor 28. The result is 27.973859264 mm, not a prescription adjusted to exactly 28 mm.
 

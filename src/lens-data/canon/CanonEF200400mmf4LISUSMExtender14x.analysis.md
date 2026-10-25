@@ -10,7 +10,7 @@
 **Inventor:** Takahiro Hatada  
 **Assignee:** Canon Inc.  
 **Title:** “Optical System and Image Pickup Apparatus Having the Same”  
-**Embodiment analyzed:** Numerical Example 1 / Embodiment 1
+**Example details:** Embodiment 1
 
 The prescription is Numerical Example 1 of US 2013/0308041 A1. The patent describes an infinity-focus zoom lens in which a negative-power magnification-conversion unit, EXT, can be inserted behind the aperture stop without changing total lens length. Embodiment 1 is explicitly a zoom lens, and the patent identifies L1 as the focusing unit, L2 as the negative variator, L3 as the positive compensator, L42 as the image-stabilizing subunit, and EXT as the built-in magnification-conversion unit (¶¶0031–0039, 0059–0063).
 

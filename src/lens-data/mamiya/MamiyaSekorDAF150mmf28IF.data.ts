@@ -68,6 +68,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2001-183581 A",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2001,
     authors: ["Hideyuki Suga"],
     assignees: ["Mamiya-OP Co., Ltd."],

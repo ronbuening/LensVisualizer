@@ -9,7 +9,7 @@
 **Inventor:** Wakamiya Koichi (若宮 孝一)
 **Applicant:** Nippon Kogaku K.K. (日本光学工業株式会社; source romanization: Nippon Kogaku Kogyo K.K.; now Nikon Corporation)
 **Title:** 結像用対物レンズ (Imaging Objective Lens)
-**Embodiment analyzed:** Example 4 (第4実施例, Table 4)
+**Example details:** 第4実施例, Table 4
 
 JP S61-090115 A discloses imaging objectives made only from calcium fluoride (CaF₂) and fused silica (SiO₂). The stated design purpose is good color correction from approximately 200 nm in the ultraviolet through the visible range and into the near infrared. The patent gives five worked examples using a four-component L₁-L₄ architecture.
 

@@ -9,7 +9,7 @@
 **Filed:** September 4, 1997
 **Granted:** February 9, 1999
 **Title:** Compact Wide-Angle Lens
-**Embodiment analyzed:** Example 2 (Claim 3)
+**Example details:** Claim 3
 
 **US 5,870,234**, "Compact Wide-Angle Lens," assigned to Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG (Bad Kreuznach, Germany). Inventor: Hiltrud Ebbesmeier née Schitthof. Filed September 4, 1997 (US); German priority DE 196 36 152.4, filed September 6, 1996. Granted February 9, 1999.
 

@@ -4,7 +4,6 @@
 **Inventors:** Daiki Kawamura, Michio Cho (Fujifilm Corporation)
 **Filed:** January 22, 2021 (priority: JP 2020-012799, January 29, 2020)
 **Published:** July 29, 2021
-**Embodiment analyzed:** Example 3
 
 ---
 

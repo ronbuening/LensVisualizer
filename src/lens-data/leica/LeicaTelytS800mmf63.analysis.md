@@ -7,7 +7,7 @@
 **Inventor:** Georg Knetsch<br>
 **Assignee:** Firma Ernst Leitz GmbH<br>
 **Title:** *Three Lens Objective with Good Correction of the Secondary Spectrum*<br>
-**Embodiment analyzed:** Sole preferred numerical embodiment, mapped from the job card as “Example 1”
+**Example details:** mapped from the job card as “Example 1”
 
 US 3,536,379 describes a three-element cemented objective in which a positive central element of anomalous partial-dispersion glass is enclosed by two negative menisci. The prescription used here is the patent's sole numerical example and claim prescription. The rendered table on patent PDF page 4 supplies the four radii, three center thicknesses, native Fraunhofer-e indices, e-line Abbe values, partial-dispersion coordinates, and individual lens powers; page 5 states the normalized focal length of 1.0, relative aperture f/5.9, and the practical 800 mm embodiment.
 

@@ -80,6 +80,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "KR 10-2077265 B1",
+    example: { label: "Example 3", id: "3" },
     patentYear: 2020,
     authors: ["Jae Myung Yu", "Hae Jin Lee", "Jung Du Lee", "Moon-Kyung Kim"],
     assignees: ["Samyang Optics Co., Ltd."],

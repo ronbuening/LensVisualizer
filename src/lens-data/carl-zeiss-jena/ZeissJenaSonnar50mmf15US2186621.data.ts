@@ -60,6 +60,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2,186,621",
+    example: { label: "Figure 1", id: "1" },
     patentYear: 1940,
     authors: ["Ludwig Bertele"],
     assignees: ["Zeiss Ikon AG"],

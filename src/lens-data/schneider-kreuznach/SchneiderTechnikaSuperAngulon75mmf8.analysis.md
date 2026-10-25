@@ -7,8 +7,7 @@
 **Inventor:** Günter Klemt\
 **Assignee:** Jos. Schneider & Co., Optische Werke, Kreuznach\
 **Title:** 大なる像角効率を有する光学系 (*Optical system with large effective image angle*)\
-**US counterpart:** US 2,781,695, granted February 19, 1957\
-**Embodiment analyzed:** Numerical Example 1
+**US counterpart:** US 2,781,695, granted February 19, 1957
 
 The patent gives two related six-element, four-group, f/8 prescriptions normalized to $f' = 100$. Numerical Example 1 is transcribed because its independently computed effective focal length and back focal distance, 100.0113 mm and 73.4023 mm, reproduce the printed values $f' = 100$ and $S = 73.4$ more closely than Numerical Example 2. Example 2 computes to 100.1488 mm and 73.5447 mm. Its tabulated spacings sum to 81.21, although the adjacent prose on patent page 2 prints 79.21; that prose value is an internal typographical error.[1]
 

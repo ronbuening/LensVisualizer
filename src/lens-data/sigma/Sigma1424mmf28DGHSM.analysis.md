@@ -10,7 +10,7 @@
 **Applicant:** Sigma Corporation (株式会社シグマ)
 **Title:** 広角レンズ系 (Wide-Angle Lens System)
 **Classification:** G02B 15/20, G02B 13/18
-**Embodiment analyzed:** Numerical Example 1 (数値実施例1)
+**Example details:** 数値実施例1
 
 Numerical Example 1 is a three-group full-frame ultra-wide zoom design covering 14.50-23.15 mm at F2.93 with a 21.63 mm image height. The prescription is the best match to the production **Sigma 14-24mm F2.8 DG HSM | Art** for DSLR mounts.
 

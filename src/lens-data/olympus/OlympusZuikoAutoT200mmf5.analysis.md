@@ -11,7 +11,7 @@
 **Title:** Telephoto Lens Systems Having Small Telephoto Ratio  
 **Claims:** 3  
 **Worked examples:** 2  
-**Embodiment analyzed:** Example 1 / Claim 2, corresponding to FIG. 1 and FIGS. 2A-2D
+**Example details:** Claim 2, corresponding to FIG. 1 and FIGS. 2A-2D
 
 The prescription transcribes Example 1 of US 3,804,494, scaled uniformly by 2x from the patent's normalized f = 100 mm prescription to the 200 mm production focal length. The patent identifies Example 1 as a six-lens telephoto system in which lenses 5 and 6 are slightly air-spaced; Claim 2 repeats the same f = 100 mm, 2ω = 12°10′, F/5, f123 = 69.75 mm, f4 = -80.48 mm, and back-focus 25.5 mm prescription.
 

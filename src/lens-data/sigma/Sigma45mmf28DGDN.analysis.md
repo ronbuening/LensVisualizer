@@ -11,7 +11,7 @@
 **Title:** 結像光学系 (Image-Forming Optical System)
 **Classification:** G02B 13/00; G02B 13/18
 **Claims / Worked examples:** 18 claims; 10 numerical examples
-**Embodiment analyzed:** Numerical Example 1 (数値実施例1)
+**Example details:** 数値実施例1
 
 The patent discloses compact, short-flange, standard-angle image-forming optical systems for large-format digital sensors. Its common layout is a positive first group G1, fixed aperture stop S, positive second group G2, and negative third group G3. In the main invention, focusing from infinity toward close distance narrows the G1-G2 spacing, widens the G2-G3 spacing, and moves G2 toward the object (¶0032, ¶0073-¶0079, ¶0105).
 

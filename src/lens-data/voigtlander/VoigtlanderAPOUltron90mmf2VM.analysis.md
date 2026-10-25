@@ -7,7 +7,6 @@
 **Inventor:** Yuki Shibata\
 **Applicant:** Cosina Co., Ltd.\
 **Title:** Imaging Lens
-**Embodiment analyzed:** Example 1
 
 The prescription is the unscaled Example 1 design from Table 1 of JP 2026-8235 A. This embodiment is the fixed production correlation for the **VOIGTLÄNDER APO-ULTRON 90mm f/2 VM**. Neither the patent nor Cosina's product page explicitly names the other, so the identification rests on convergent evidence rather than documented manufacturer confirmation.
 

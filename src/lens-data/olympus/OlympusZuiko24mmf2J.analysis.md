@@ -9,7 +9,7 @@
 **Filed:** March 14, 1973
 **Granted:** August 20, 1974
 **Title:** Super-wide-angle lens systems for photographic cameras
-**Embodiment analyzed:** Example 1, FIG. 1
+**Example details:** FIG. 1
 
 The relevant patent is **US 3,830,559, "Super-wide-angle lens systems for photographic cameras,"** filed by Masaki Matsubara for Olympus Optical Co., Ltd. The U.S. application was filed on 14 March 1973, claims Japanese priority of 29 March 1972 (No. 47-31302), and was granted on 20 August 1974. The patent describes a large-aperture retrofocus wide-angle lens for 35 mm single-lens reflex cameras with an aperture ratio on the order of **F/2.0**, a picture angle up to **84°**, and use of a conventional **55 mm** front filter.
 

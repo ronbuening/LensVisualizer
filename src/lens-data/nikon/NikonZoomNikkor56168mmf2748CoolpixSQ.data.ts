@@ -73,6 +73,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2003/0072085 A1",
+    example: { label: "Example 1", id: "1" },
     patentYear: 2003,
     authors: ["Keiko Mizuguchi", "Atsushi Shibayama"],
     assignees: ["Nikon Corporation"],

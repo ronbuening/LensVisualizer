@@ -23,6 +23,7 @@ import type {
   LensProjectionConfig,
   OpticalConfigurationData,
   OpticalPathData,
+  PatentExample,
   PerspectiveControlConfig,
   RearPlateData,
   RefractiveIndexReferenceLine,
@@ -197,6 +198,8 @@ export interface LensCatalogV2Input {
 
 export interface SourceV2Input {
   patentNumber?: string;
+  /** The numerical example of `patentNumber` the file transcribes; absent means not recorded. */
+  example?: PatentExample;
   patentYear?: number;
   authors?: string[];
   assignees?: string[];

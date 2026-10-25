@@ -9,7 +9,7 @@
 **Priority:** January 23, 1982 (Japan, 57-9214)  
 **Inventor:** Yasunori Arai  
 **Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha  
-**Embodiment analyzed:** Example 2 — f = 135 mm, FNO 1:1.8, 2ω = 18°
+**Example details:** f = 135 mm, FNO 1:1.8, 2ω = 18°
 
 The transcribed prescription is Example 2 of US 4,447,137. The patent describes a large-aperture Ernostar-type telephoto objective with seven elements in six components, a cemented second component, and a fixed sixth component during focusing. Example 2 is the f/1.8 version of the two disclosed examples; Example 1 is the same design family at f/2.0.
 

@@ -8,7 +8,6 @@
 **Inventor:** Susumu Sato
 **Assignee:** Nikon Corporation
 **Title:** Zoom Lens System
-**Embodiment analyzed:** Example 1
 
 The modeled prescription is Example 1 of the first embodiment in US 2003/0133200 A1. The patent describes a four-power-group large-aperture internal-focusing zoom with axial motion of G2 and G3, axial focusing by the rear portion of G1, and transverse vibration-reduction motion within G4 (¶¶0092–0108). Example 1 then specifies the 21-element prescription, its cemented relationships, the three zoom stations, the close-focus state, and the vibration-reduction offsets (¶¶0109–0114).
 

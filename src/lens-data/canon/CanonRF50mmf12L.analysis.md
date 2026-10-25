@@ -6,7 +6,7 @@
 **Inventor:** Masato Katayose (Canon Kabushiki Kaisha)
 **Published:** August 29, 2019
 **Priority:** JP 2018-032883, February 27, 2018
-**Production example:** Example 2 (Numerical Data 2)
+**Example details:** Numerical Data 2
 
 Example 2 was identified as the production design on the basis of three independent concordances with Canon's published specifications. The patent states a maximum magnification of −0.19 at closest focus, which matches Canon's specified 0.19× exactly; no other example in the patent achieves this value. The patent's 15-element / 9-group construction, 2ω = 45.90° field angle, and three aspherical surfaces likewise correspond to Canon's published data of 15 elements in 9 groups, 46° diagonal field of view, and three aspherical elements (two ground aspherics and one glass-molded aspherical). The patent focal length of 51.10 mm and f/1.25 aperture represent the unscaled design prescription — the production lens is marketed at 50 mm and f/1.2, consistent with the routine rounding conventions used in consumer lens specifications. (The f/1.25 to f/1.2 difference is less than 1/6 stop.)
 

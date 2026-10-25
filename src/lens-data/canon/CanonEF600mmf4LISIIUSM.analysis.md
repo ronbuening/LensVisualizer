@@ -7,7 +7,7 @@
 **Inventor:** Shigenobu Sugita\
 **Assignee:** Canon Inc. (the patent prints Canon Kabushiki Kaisha)\
 **Title:** *Optical System and Optical Apparatus Having the Same*\
-**Embodiment analyzed:** Third Numerical Embodiment / Example 3
+**Example details:** Example 3
 
 The prescription represented here is the third numerical embodiment of US 2011/0090576 A1. The project correlation is
 to the CANON EF 600mm f/4 L IS II USM. Canon does not identify this patent on its product pages; the correlation instead

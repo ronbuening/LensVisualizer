@@ -10,7 +10,7 @@
 **Inventors:** Katsuya Hirano (平野 勝也), Eiichi Yasuda (安田 詠一), in the source’s order  
 **Applicant:** Kenko Tokina Co., Ltd.  
 **Title:** ズームレンズ (Zoom lens)  
-**Embodiment analyzed:** Example 1, Figure 2; Table 1 on PDF/printed page 9 and Tables 2–3 on page 10.
+**Example details:** Figure 2; Table 1 on PDF/printed page 9 and Tables 2–3 on page 10.
 
 The match to the production lens is a strong construction-based correlation, not manufacturer confirmation of an identical factory prescription. It rests on:
 

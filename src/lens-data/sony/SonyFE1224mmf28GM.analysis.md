@@ -10,7 +10,7 @@
 **Inventor:** KATO, Takuya (加藤 卓也)  
 **Applicant:** Sony Group Corporation  
 **Title:** Zoom Lens and Imaging Device (ズームレンズおよび撮像装置)  
-**Embodiment analyzed:** Example 2 (実施例2), Figure 6 and Tables 6-10
+**Example details:** 実施例2, Figure 6 and Tables 6-10
 
 The prescription transcribed here is Example 2 of WO 2021/200206 A1. The patent describes a mirrorless-camera zoom lens having a negative first group, a positive second group, an intermediate group, and a negative final group, with Example 2 set out in Tables 6-10 and summarized by the correspondence data in Table 21. This review follows the numerical tables and Figure 6 where the prose and numerical prescription disagree, with one exception: the refractive indices are d-line values rather than the figures printed in Table 6, for the reasons given under Glass Identification and Selection.
 

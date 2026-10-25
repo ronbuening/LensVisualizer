@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — VOIGTLÄNDER TELOMAR 180mm f/5.5                           ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║  Source: FR 1,045,076, Example 1 / "EXEMPLE CHIFFRÉ".                 ║
+ * ║  Source: FR 1,045,076, sole "EXEMPLE CHIFFRÉ".                        ║
  * ║  The patent example is normalized to f = 1 and is all spherical.        ║
  * ║  Five glass elements form four air-separated groups; L4 + L5 are        ║
  * ║  cemented at surface 8.                                                  ║
@@ -56,7 +56,7 @@ const LENS_DATA = {
   key: "voigtlander-telomar-180mm-f55",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER TELOMAR 180mm f/5.5",
-  subtitle: "FR 1,045,076, Example 1 — normalized f=1 prescription scaled ×180",
+  subtitle: "FR 1,045,076, sole example — normalized f=1 prescription scaled ×180",
 
   catalog: {
     lensMounts: ["large-format-lens-board"],
@@ -74,7 +74,13 @@ const LENS_DATA = {
     fNumber: { marketing: 5.5, design: 5.473462636261754 },
   },
 
-  source: { patentNumber: "FR 1,045,076", patentYear: 1953, authors: [], assignees: ["Voigtländer AG"] },
+  source: {
+    patentNumber: "FR 1,045,076",
+    example: { label: "Sole example", id: null },
+    patentYear: 1953,
+    authors: [],
+    assignees: ["Voigtländer AG"],
+  },
 
   /* ── Glass elements ── */
   elements: [

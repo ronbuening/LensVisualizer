@@ -9,7 +9,7 @@
 **Filed:** May 20, 2016
 **Published:** September 15, 2016
 **Title:** Lens System and Imaging Device
-**Embodiment analyzed:** Example 1 (Numerical Example 1)
+**Example details:** Numerical Example 1
 
 **Production lens:** Leica Summilux 28 mm f/1.7 ASPH, the fixed lens of the Leica Q (Typ 116), Q2, and Q3 compact cameras. Designed by Peter Karbe (head of optics at Leica Camera AG), manufactured by Panasonic, which produces the Q-series hardware. This patent covers the optical prescription used in the production lens, with Example 1 (Numerical Example 1) being the implemented embodiment.
 

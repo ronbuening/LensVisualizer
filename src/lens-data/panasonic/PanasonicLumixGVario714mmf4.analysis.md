@@ -8,7 +8,7 @@
 **Inventors:** Kyoichi Miyazaki; Keiichi Zaitsu  
 **Assignee:** Panasonic Corporation  
 **Title:** Zoom Lens System, Interchangeable Lens Apparatus and Camera System  
-**Embodiment analyzed:** Numerical Example 1 (Embodiment 1, FIG. 1)
+**Example details:** Embodiment 1, FIG. 1
 
 The prescription used here is Numerical Example 1, not Numerical Example 2. The production Panasonic Lumix G Vario 7-14 mm f/4.0 ASPH. (H-F007014) is specified as a 16-element, 12-group Micro Four Thirds lens with two aspherical elements and four ED elements. Example 1 has the same 16-element count and gives 12 air-separated groups because L4 and L5 are separated by a 0.26000 mm air gap. Example 2 is optically very close but cements L4 and L5, reducing the patent example to 11 groups. That is a material mismatch against the production specification, so Example 1 is the better production correspondence.
 

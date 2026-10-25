@@ -54,6 +54,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2016-090725 A",
+    example: { label: "Example 9", id: "9" },
     patentYear: 2016,
     authors: ["Hiroaki Tanaka"],
     assignees: ["Konica Minolta, Inc."],

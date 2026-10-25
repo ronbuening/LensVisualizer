@@ -18,7 +18,7 @@
 
 **Title:** Imaging optical system, imaging apparatus, and camera system
 
-**Embodiment analyzed:** Embodiment 1 / Numerical Example 1
+**Example details:** Numerical Example 1
 
 The prescription represents Numerical Example 1 of JP 2021-076829 A. The publication does not name the commercial
 S-R1635 lens, so the association with the PANASONIC LUMIX S PRO 16-35mm f/4 is a production-correlation inference rather

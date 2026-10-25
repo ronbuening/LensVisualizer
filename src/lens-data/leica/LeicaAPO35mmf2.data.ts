@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — LEICA APO-SUMMICRON-M 35 f/2 ASPH.          ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2022/0066176 A1, Example 1 (Roth & Keller,       ║
+ * ║  Data source: US 2022/0066176 A1, sole example (Roth & Keller,    ║
  * ║    Leica Camera AG). Priority: DE 10 2018 132 472.3 (2018-12-17). ║
  * ║  Quasi-symmetrical wide-angle prime for Leica M mount.            ║
  * ║  10 elements / 5 groups, 4 aspherical surfaces (on 3 elements).   ║
@@ -59,7 +59,7 @@ const LENS_DATA = {
   key: "leica-apo-summicron-m-35f2",
   maker: "Leica",
   name: "LEICA APO-SUMMICRON-M 35mm f/2 ASPH.",
-  subtitle: "US 2022/0066176 A1 Ex. 1 — Leica Camera AG / Roth & Keller",
+  subtitle: "US 2022/0066176 A1 sole example — Leica Camera AG / Roth & Keller",
 
   catalog: {
     lensMounts: ["leica-m"],
@@ -80,6 +80,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2022/0066176 A1",
+    example: { label: "Sole example", id: null },
     patentYear: 2022,
     authors: ["Stefan Roth", "Kathrin Keller"],
     assignees: ["Leica Camera AG"],

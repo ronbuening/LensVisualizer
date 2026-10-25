@@ -9,7 +9,7 @@
 **Published:** 26 November 1919\
 **Inventor:** Paul Rudolph\
 **Title:** *Spherically and Chromatically Corrected Objective with Anastigmatic Planeing of the Image and of Great Intensity of Light*\
-**Embodiment analyzed:** Example 2 / Fig. 2
+**Example details:** Fig. 2
 
 The implemented prescription is the second numerical example in GB 135,853 A. The patent describes Fig. 2 as a symmetrical double objective made from two identical single objectives, with a median diaphragm, a represented focal distance of 135 mm, relative aperture 1/4.5, and a 30 mm “efficacious aperture.” The numerical table itself is normalized to a 100 mm double-objective focal distance, so the implemented model scales every patent length by 1.35.[^patent]
 

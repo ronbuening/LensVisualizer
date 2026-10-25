@@ -10,7 +10,6 @@
 **Inventors:** Takumu Yamada; Dai Matsuoka (松岡 大; the WO front page romanizes the given name "Ora")  
 **Applicant:** Sony Group Corporation  
 **Title:** Imaging Lens and Imaging Device  
-**Embodiment analyzed:** Numerical Example 1
 
 Numerical Example 1 is the prescription transcribed for the Sony FE 14mm f/1.8 GM. The identification rests on convergent patent and production data rather than on a single matching parameter. The patent prescription has 14 glass elements, two cemented doublets, a zero-spacing L3/L4 contact pair, and six aspherical surfaces on three elements. Sony's published production specification gives 14 elements in 11 groups, full-frame E-mount coverage, a 14 mm focal length, f/1.8 nominal aperture, 114° diagonal angle of view, 0.25 m minimum focus distance, and 460 g mass. Sony's product description also identifies two XA elements, one Super ED element, two ED elements, and XD Linear Motor focusing. These correspond directly to L1/L7 as the high-curvature aspherical elements, L8 as the νd = 95.1 Super-ED element, L3 and L9 as the ED elements, and L8-L13 as the patent's moving inner-focus subgroup.
 

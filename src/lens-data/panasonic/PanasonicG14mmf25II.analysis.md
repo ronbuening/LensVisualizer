@@ -10,7 +10,7 @@
 **Inventors:** Shunichiro Yoshinaga, Kyoichi Miyazaki, Takao Yamanaka, Keiichi Zaitsu  
 **Applicant / Assignee:** Panasonic Corporation, Osaka  
 **Title:** Single Focal Length Lens System, Interchangeable Lens Apparatus and Camera System  
-**Embodiment analyzed:** Embodiment 1 / Numerical Example 1, FIG. 1, Tables 1–3
+**Example details:** Numerical Example 1, FIG. 1, Tables 1–3
 
 The prescription transcribed here is Numerical Example 1 of US 2013/0148006 A1. The production target is the Panasonic LUMIX G 14mm f/2.5 II ASPH, H-H014A. Panasonic's published H-H014A specification gives a Micro Four Thirds 14 mm f/2.5 lens, 6 elements in 5 groups, 3 aspherical lenses, 75° diagonal angle of view, 0.18 m closest focusing distance, and approximately 0.10× maximum magnification. The patent example gives a 14.5457 mm design focal length, F 2.52134, image height H = 10.2 mm, half field 37.8597°, 6 optical glass elements in 5 air-spaced groups, and 5 aspherical surfaces carried by 3 lenses.
 

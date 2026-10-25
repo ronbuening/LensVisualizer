@@ -80,6 +80,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 3,994,574",
+    example: { label: "Embodiment 2", id: "2" },
     patentYear: 1976,
     authors: ["Jihei Nakagawa"],
     assignees: ["Olympus Optical Co., Ltd."],

@@ -9,7 +9,7 @@
 **Inventors:** Kazumasa Tanaka; Toshinori Take; Satoshi Miwa\
 **Applicant:** Nikon Corporation\
 **Title:** 光学系、光学装置、光学系の製造方法 (*Optical system, optical apparatus, and method of manufacturing an optical system*)\
-**Embodiment analyzed:** Example 1 / 第1実施例\
+**Example details:** 第1実施例
 
 The prescription is the first numerical embodiment in JP 2015-215559 A, described in ¶0122–0133 and tabulated in
 Table 1. The production correlation is to the **NIKON AF-S NIKKOR 400mm f/2.8 E FL ED VR**. This correlation is an

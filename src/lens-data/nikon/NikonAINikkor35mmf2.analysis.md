@@ -12,7 +12,7 @@
 **Title:** Camera Lens of a Large Aperture Ratio Having Long Back Focus  
 **Classification:** Int. Cl. G02B 9/08, 9/62, 11/32; U.S. Cl. 350-210  
 **Claims:** 2  
-**Embodiment analyzed:** the single worked numerical example, stated as $f = 1.0$, $2\omega = 62^\circ$, F:2, and $B.f = 1.1337f$.
+**Example details:** stated as $f = 1.0$, $2\omega = 62^\circ$, F:2, and $B.f = 1.1337f$.
 
 US 3,507,558 is the patent prescription that matches the manual-focus Nikon/Nikkor 35 mm f/2 retrofocus formula. The data file scales the patent's normalized $f = 1.0$ prescription uniformly to a 35 mm production focal length. The resulting computed effective focal length is 34.9994 mm; the small difference from exactly 35 mm is the normal consequence of the patent's rounded table values.
 

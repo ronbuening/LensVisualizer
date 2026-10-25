@@ -10,7 +10,7 @@
 **Assignee:** Hoya Corporation
 **Title:** Wide-Angle Lens System
 **Worked examples:** 10
-**Embodiment analyzed:** Embodiment 1, Table 1 and FIG. 1
+**Example details:** Table 1 and FIG. 1
 
 US 7,411,746 B2 describes a compact retrofocus wide-angle lens for a digital SLR: a negative front lens group, diaphragm, and positive rear lens group, arranged from object to image. Embodiment 1 is the prescription transcribed here. Its patent values are $f = 21.60$ mm, $F = 1:3.3$, $W = 35.0^\circ$, and $f_B = 36.70$ mm. The associated aberration diagrams are plotted at image height $y = 14.24$ mm, matching APS-C diagonal coverage.
 

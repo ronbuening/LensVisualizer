@@ -7,7 +7,7 @@
 **Inventor:** Hiroshi Yamamoto (山本 浩史)\
 **Applicant:** Nikon Corporation\
 **Title:** 変倍光学系、この変倍光学系を備える光学機器、及び、変倍光学系の製造方法\
-**Embodiment analyzed:** Example 4 / 第4実施例
+**Example details:** 第4実施例
 
 The prescription analyzed here is Example 4 of JP 2011-221421 A. The numerical data are in Table 13 on PDF pages 19–20,
 the aspherical coefficients are in Table 14 on page 20, the three infinity-focus zoom-spacing states are in Table 15 on

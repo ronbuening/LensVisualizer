@@ -7,7 +7,7 @@
 **Inventors:** Otto Zimmermann; Gustav Kleineberg; Eugen Hermanni
 **Applicant:** Ernst Leitz GmbH
 **Title:** *Fotografisches Objektiv*
-**Embodiment analyzed:** Example 1 — the DE publication calls the worked prescription an *Ausführungsbeispiel* without a visible numerical label; the corresponding US family publication identifies the first prescription as “Example 1.”
+**Example details:** the DE publication calls the worked prescription an *Ausführungsbeispiel* without a visible numerical label; the corresponding US family publication identifies the first prescription as “Example 1.”
 
 DE 1 045 120 B describes a Gauss-type photographic objective normalized to `f = 100`, with a 45° full image angle and a relative aperture of f/1.4. The prescription has seven glass elements in five air-separated members. The supplied drawing sheet shows the same topology as the numerical table: a positive front singlet, two cemented central members, and two positive rear singlets. [DE 1 045 120 B, PDF pp. 1–3; drawing sheet on PDF p. 3.]
 

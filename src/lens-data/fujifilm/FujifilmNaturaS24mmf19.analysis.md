@@ -8,7 +8,7 @@
 **Inventor:** Takashi Suzuki\
 **Assignee:** Fujinon Corporation\
 **Title:** Compact large aperture wide-angle lens and camera including compact large aperture wide-angle lens\
-**Embodiment analyzed:** Example 1, Tables 1–3 and Fig. 1
+**Example details:** Tables 1–3 and Fig. 1
 
 The model retains the published Example 1 prescription without rescaling. Its correlation with the fixed Super EBC Fujinon lens of the NATURA S rests on converging primary evidence:
 

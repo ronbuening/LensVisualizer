@@ -7,8 +7,7 @@
 **Published:** 2020-02-14\
 **Inventors:** Jae Myung Yu; Hae Jin Lee; Jung Du Lee; Moon-Kyung Kim\
 **Assignee:** Samyang Optics Co., Ltd.\
-**Title:** 렌즈 광학계 및 이를 포함한 촬영 장치 (*Lens optical system and photographing apparatus including the same*)\
-**Embodiment analyzed:** Example 3
+**Title:** 렌즈 광학계 및 이를 포함한 촬영 장치 (*Lens optical system and photographing apparatus including the same*)
 
 This prescription is the project-selected correlation for the **SAMYANG XP 35mm f/1.2**. KR 10-2077265 B1 Example 3 is used as the fixed numerical source; the correlation is not presented as an explicit Samyang statement that the production lens uses this exact patent example.
 

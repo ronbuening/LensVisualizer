@@ -7,7 +7,7 @@
 **Inventor:** Masaharu Hosoi (細井 正晴)\
 **Applicant:** Sony Corporation\
 **Title:** Zoom lens and imaging apparatus (ズームレンズおよび撮像装置)\
-**Embodiment analyzed:** Numerical Example 1 / 第1の実施の形態
+**Example details:** 第1の実施の形態
 
 The prescription is the first numerical example of Sony's four-group wide-angle zoom patent. The patent itself does not name a commercial lens. In this data pair, Example 1 is correlated to the **SONY VARIO-TESSAR T* FE 16-35mm f/4 ZA OSS** (SEL1635Z). That correlation is an author/modeling identification rather than a statement made by Sony in the patent.
 

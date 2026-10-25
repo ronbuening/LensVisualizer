@@ -7,8 +7,7 @@
 **Published:** January 5, 2017\
 **Inventor:** Suguru Inoue\
 **Applicant:** Canon Inc.\
-**Title:** *Zoom Lens and Image Pickup Apparatus Including the Same*\
-**Embodiment analyzed:** Example 5
+**Title:** *Zoom Lens and Image Pickup Apparatus Including the Same*
 
 The prescription represented here is Example 5 of US 2017/0003486 A1, correlated to the production **CANON EF 70-300mm f/4-5.6 IS II USM**. The patent does not name that commercial lens, so the identification is a correlation rather than a manufacturer statement. Several independent features converge on the same product:
 

@@ -52,6 +52,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,258,985",
+    example: { label: "Example 4", id: "4" },
     patentYear: 1981,
     authors: ["Akiyoshi Nakamura"],
     assignees: ["Minolta Camera Co., Ltd."],

@@ -7,8 +7,7 @@
 **Published:** 2024-08-15\
 **Inventor:** Masakazu Yamagishi\
 **Applicant:** Sony Group Corporation\
-**Title:** *Imaging Optical System and Imaging Device*\
-**Embodiment analyzed:** Example 1
+**Title:** *Imaging Optical System and Imaging Device*
 
 The prescription transcribed here is Example 1 of WO 2024/166548 A1. The patent publishes a 51.50 mm, f/1.46 imaging system with a 45.57° full field, 21.63 mm maximum image height, and 114.00 mm first-surface-to-image distance (Table 2, printed p. 22 / PDF p. 24). Figure 1 identifies three powered groups, G1–G3, places the stop inside G1, and shows G2 translating toward the image for close focus (Fig. 1, PDF p. 97; ¶0067–¶0068, printed p. 21 / PDF p. 23).
 

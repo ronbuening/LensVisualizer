@@ -9,7 +9,7 @@
 **Inventor:** Yamada Yasuharu (山田 康晴)
 **Applicant:** 株式会社タムロン (Tamron Co., Ltd.)
 **Title:** 大口径ズームレンズ — *Large-Aperture Zoom Lens*
-**Embodiment analyzed:** Sole numerical embodiment, surfaces 1–35, with three zoom positions.
+**Example details:** surfaces 1–35, with three zoom positions.
 
 JP 2004-101739 A discloses a compact large-aperture standard zoom for single-lens reflex cameras. The embodiment is a positive-lead four-group zoom whose design data are given at $f = 28.87$, $49.98$, and $72.65$ mm with a constant design F-number of 2.91 (§0026). The production lens identified here is the Minolta / Konica Minolta AF 28–75mm F2.8 (D), an A-mount version of Tamron model A09, the SP AF 28–75mm F/2.8 XR Di LD Aspherical (IF) Macro.
 

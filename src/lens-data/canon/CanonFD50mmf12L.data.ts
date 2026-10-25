@@ -72,7 +72,13 @@ const LENS_DATA = {
     fNumber: { marketing: 1.2 },
   },
 
-  source: { patentNumber: "US 4,364,644", patentYear: 1982, authors: ["Keiji Ikemori"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "US 4,364,644",
+    example: { label: "Example 1", id: "1" },
+    patentYear: 1982,
+    authors: ["Keiji Ikemori"],
+    assignees: ["Canon Inc."],
+  },
 
   /* ── Elements ── */
   elements: [

@@ -9,7 +9,7 @@
 **Inventor:** No individual inventor named in the supplied patent\
 **Applicant:** Jos. Schneider & Co., Optotechnische Gesellschaft in Berlin\
 **Title:** Photographisches Objektiv\
-**Embodiment analyzed:** Example 1 / Zahlentafel 1
+**Example details:** Zahlentafel
 
 The prescription is taken from Zahlentafel 1 of DE 753329. The patent describes a photographic objective of four air-separated members and Figure 2 labels five physical elements, L1 through L5, with refracting surfaces R1 through R9. The two front members are positive collecting members, the third member is a simple uncemented negative lens, and the image-side member is a cemented pair with a positive cemented interface at R8. [DE 753329, pp. 1–3, especially p. 3 Fig. 2.]
 

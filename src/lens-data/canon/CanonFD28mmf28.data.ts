@@ -53,7 +53,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.8 },
   },
 
-  source: { patentNumber: "US 4,046,459", patentYear: 1977, authors: ["Naoto Kawamura"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "US 4,046,459",
+    example: { label: "Example 2", id: "2" },
+    patentYear: 1977,
+    authors: ["Naoto Kawamura"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

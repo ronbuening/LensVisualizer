@@ -6,7 +6,7 @@
 **Inventor:** Kunio Shimada (島田 邦夫)
 **Applicant:** Miranda Camera Co., Ltd. (ミランダカメラ株式会社)
 **Title:** 小型軽量のレトロフォーカス型広角レンズ — “Compact lightweight retrofocus-type wide-angle lens” (working translation)
-**Embodiment analyzed:** Example 1 (第1実施例)
+**Example details:** 第1実施例
 
 The prescription is Example 1 of JP1976-053823, reproduced on patent PDF p. 3/4 (printed p. 149) and illustrated in Fig. 1 on PDF p. 4/4 (printed p. 150). It is a six-element, six-group, all-spherical wide-angle lens normalized by the patent to `f = 100`. The LensVisualizer model applies a uniform scale of 0.35 to all dimensional quantities, producing a computed effective focal length of 34.996112 mm while retaining the published refractive-index and Abbe-number coordinates unchanged.
 

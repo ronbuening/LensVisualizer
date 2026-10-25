@@ -67,6 +67,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 5,161,060 A",
+    example: { label: "Sole example", id: null },
     patentYear: 1992,
     authors: ["Walter Watz"],
     assignees: ["Leica Camera GmbH"],

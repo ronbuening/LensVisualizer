@@ -73,6 +73,7 @@ export const V1_PRINT_ORDER = {
     "imageFormat",
     "imageCircleMm",
     "patentNumber",
+    "patentExample",
     "patentAuthors",
     "patentAssignees",
     "patentYear",
@@ -140,6 +141,7 @@ export const V1_PRINT_ORDER = {
     "minHostFno",
     "incompatibleLensKeys",
     "patentNumber",
+    "patentExample",
     "patentAuthors",
     "patentAssignees",
     "patentYear",
@@ -491,6 +493,7 @@ function buildLensView(
   put(out, "imageFormat", catalog.imageFormat);
   put(out, "imageCircleMm", catalog.imageCircleMm);
   put(out, "patentNumber", source.patentNumber);
+  put(out, "patentExample", source.example);
   put(out, "patentAuthors", source.authors);
   put(out, "patentAssignees", source.assignees);
   put(out, "patentYear", source.patentYear);
@@ -614,6 +617,7 @@ export function toTeleconverterData(
   put(out, "minHostFno", converter.minHostFNumber);
   put(out, "incompatibleLensKeys", converter.incompatibleLensKeys);
   put(out, "patentNumber", converter.source.patentNumber);
+  put(out, "patentExample", converter.source.example);
   put(out, "patentAuthors", converter.source.authors);
   put(out, "patentAssignees", converter.source.assignees);
   put(out, "patentYear", converter.source.patentYear);

@@ -10,7 +10,7 @@
 **Inventor:** Masaaki Yanagisawa<br>
 **Assignee:** Nikon Corporation<br>
 **Title:** *Optical System Having a Variable Out-of-Focus State*<br>
-**Embodiment analyzed:** Example 1 / Table 1
+**Example details:** Table 1
 
 Example 1 is the fixed patent correlation for the NIKON AI AF DC-NIKKOR 105mm f/2 D represented here. The patent publishes a 105 mm, f/2, six-element/six-group design with a 23° full field, a rear-focus group, and an independent variable-spacing mechanism intended to alter the appearance of defocused foreground and background while retaining a sharp main subject. Its first embodiment is shown in Figure 3 and numerically specified in Table 1 and claim 4. The prescription is entirely spherical and is stated for the d line at 587.6 nm. (US 4,908,639, Fig. 3; Table 1; cols. 5–10.)
 

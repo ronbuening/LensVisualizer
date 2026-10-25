@@ -6,7 +6,6 @@
 **Published:** 23 December 1964  
 **Inventors:** Wolf Dannberg; Eberhard Dietzsch  
 **Applicant:** VEB Carl Zeiss Jena  
-**Embodiment analyzed:** Example 1
 
 GB 978,797 describes a six-component wide-angle objective whose angular field exceeds 90°. Example 1 is normalized to
 `f = 1.0`, specifies a relative aperture of 1:4, and gives an available image field of approximately 93° (GB 978,797,

@@ -9,7 +9,7 @@
 **Inventors:** Rinzō Watanabe (渡辺 林蔵); Ellis I. Betensky  
 **Applicant:** Kino Precision Industries Co., Ltd. (キノ精密工業株式会社)  
 **Title:** Zoom Lens (ズームレンズ)  
-**Embodiment analyzed:** Table 1, the sole numerical example  
+**Example details:** Table 1, the sole numerical example  
 **English counterpart:** US 3,817,600, *Zoom Lens Having Close-Up Focusing Mode of Operation*, granted 18 June 1974
 
 The Japanese publication and the US counterpart disagree slightly on the earliest application date. The Japanese cover page prints 18 June 1971, while the US cover claims Japanese foreign priority from 14 June 1971 under application 46-41643. The Japanese date is used for the metadata of JP S51-63635 A; the US date is retained only as patent-family information.

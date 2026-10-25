@@ -8,7 +8,7 @@
 **Applicant:** VEB Feinoptisches Werk Görlitz\
 **Inventor:** No individual inventor is identified on the supplied six-page patent source\
 **Title:** *Photographisches Weitwinkel-Objektiv*\
-**Embodiment analyzed:** `Zahlenbeispiel` / Example 1\
+**Example details:** `Zahlenbeispiel`
 
 The implemented prescription is the sole numerical example in DE 1 794 971. The patent describes a five-element wide-angle objective for 24 × 36 mm single-lens-reflex cameras, with an opening ratio of 1:3.5, a full image angle of about 70°, and a back focal distance at least 1.2 times the focal length. Its numerical table is normalized to $f' = 100$ and gives $s'_o = 122.5$ as the rear Schnittweite. The table appears on PDF page 4 and is repeated on PDF page 5; the optical section on PDF page 6 confirms five air-spaced singlets and places the aperture stop between the fourth and fifth elements. [1, PDF pp. 3–6]
 

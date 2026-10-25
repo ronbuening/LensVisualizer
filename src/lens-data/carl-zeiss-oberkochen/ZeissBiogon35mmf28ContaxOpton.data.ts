@@ -39,7 +39,7 @@ const LENS_DATA = {
   key: "carl-zeiss-biogon-35f28-contax",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS BIOGON 35mm f/2.8 (post-war Contax)",
-  subtitle: "JP S30-4837 B EXAMPLE 1 (r6 CORRECTED) — CARL ZEISS / BERTELE · POST-WAR CONTAX RF BIOGON (CORRELATION)",
+  subtitle: "JP S30-4837 B SOLE EXAMPLE (r6 CORRECTED) — CARL ZEISS / BERTELE · POST-WAR CONTAX RF BIOGON (CORRELATION)",
 
   catalog: {
     lensMounts: ["contax-rf"],
@@ -53,6 +53,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP S30-4837 B",
+    example: { label: "Sole example", id: null },
     patentYear: 1955,
     authors: ["Ludwig Bertele"],
     assignees: ["Carl-Zeiss-Stiftung"],

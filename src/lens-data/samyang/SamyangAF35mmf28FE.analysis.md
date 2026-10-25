@@ -7,8 +7,7 @@
 **Published:** 2020-06-26\
 **Inventor:** Moon-Kyung Kim\
 **Assignee:** Samyang Optics Co., Ltd.\
-**Title:** 내부 초점 방식 렌즈계 및 이를 포함한 촬영 장치 (translated: “Internal-focusing lens system and photographing apparatus including the same”)\
-**Embodiment analyzed:** Example 4
+**Title:** 내부 초점 방식 렌즈계 및 이를 포함한 촬영 장치 (translated: “Internal-focusing lens system and photographing apparatus including the same”)
 
 This prescription is the selected correlation for the **SAMYANG AF 35mm f/2.8 FE**. The Korean grant does not identify Example 4 by retail product name, so the production correlation is an author inference rather than a manufacturer or patent statement. The analysis nevertheless treats the user-selected patent and embodiment as fixed; no sibling example is substituted.
 

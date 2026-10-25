@@ -2,7 +2,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * TAMRON SP AF 200-500mm f/5-6.3 Di LD [IF] (A08)
- * JP 2003-344768 A, Example 1.
+ * JP 2003-344768 A, sole example (表1).
  *
  * Source prescription: 13 elements / 10 air-separated groups, all spherical.
  * Patent zoom stations: 200.00 / 300.32 / 490.00 mm.
@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "tamron-a08-200500mm-f563",
   maker: "Tamron",
   name: "TAMRON SP AF 200-500mm f/5-6.3 Di LD [IF]",
-  subtitle: "JP 2003-344768 A Example 1 — production correlation to Model A08",
+  subtitle: "JP 2003-344768 A sole example — production correlation to Model A08",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sony-a"],
@@ -55,6 +55,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2003-344768 A",
+    example: { label: "Sole example", id: null },
     patentYear: 2003,
     authors: ["Akio Arakawa"],
     assignees: ["Tamron Co., Ltd."],

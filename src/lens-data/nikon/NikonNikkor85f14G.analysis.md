@@ -14,7 +14,7 @@
 
 **Granted:** July 1, 2014
 
-**Embodiment analyzed:** Example 1, Figure 1, numerical data in columns 11–12 (PDF p.17).
+**Example details:** Figure 1, numerical data in columns 11–12 (PDF p.17).
 
 The 85.000 mm example has ten elements, nine air-separated components and an internal focusing group. These support the catalog association with the AF-S 85mm f/1.4G, but the patent does not establish an identical production prescription, supplier roster or coating placement. The source f/1.450 is used for numerical controls; f/1.4 remains the marketing designation. The published half-field is14.333° and image height21.630mm.
 

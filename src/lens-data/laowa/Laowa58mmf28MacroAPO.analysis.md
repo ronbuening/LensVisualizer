@@ -7,7 +7,7 @@
 **Inventor:** 李大勇 (Li Dayong)
 **Filed:** 2023-02-16
 **Published:** 2023-08-01
-**Embodiment analyzed:** Example 2 (实施例2, ¶0051–0064)
+**Example details:** 实施例2, ¶0051–0064
 
 The patent discloses two numerical examples. Example 1 is a longer-focal-length variant ($f = 87.1$ mm, 13 elements in 10 groups) that correlates with the Laowa 90 mm f/2.8 2× Ultra Macro APO and is modeled separately. Example 2 is identified as the production Laowa 58 mm f/2.8 2× Ultra-Macro APO by the following convergent evidence:
 

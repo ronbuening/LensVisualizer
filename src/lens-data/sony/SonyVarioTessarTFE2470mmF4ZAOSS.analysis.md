@@ -8,7 +8,7 @@
 **Inventors:** Masaki Maruyama; Masaharu Hosoi; Hiroshi Koizumi  
 **Applicant:** Sony Corporation  
 **Title:** Zoom lens and imaging apparatus  
-**Embodiment analyzed:** Example 3, Tables 7–10 and Fig. 13
+**Example details:** Tables 7–10 and Fig. 13
 
 The data file transcribes Example 3 without scaling. Its semi-diameters, iris
 schedule, close-focus state and glass spectra are modeled or inferred, not

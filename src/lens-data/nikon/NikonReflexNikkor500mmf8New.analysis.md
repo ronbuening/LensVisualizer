@@ -9,7 +9,7 @@
 **Granted:** 19 May 1987  
 **Inventor:** Yutaka Iizuka  
 **Assignee:** Nippon Kogaku K.K.  
-**Embodiment analyzed:** First embodiment, Figure 1 / Table 1 / claim 3; f = 499.482 mm, geometric F-number = 6.7, image angle 2ω = 5°
+**Example details:** Figure 1 / Table 1 / claim 3; f = 499.482 mm, geometric F-number = 6.7, image angle 2ω = 5°
 
 The prescription transcribed here is the first of the patent's two numerical embodiments. It is the better match to the production Reflex-Nikkor 500mm f/8 (New) for four convergent reasons.
 

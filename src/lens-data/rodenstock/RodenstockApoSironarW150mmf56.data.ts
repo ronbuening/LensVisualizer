@@ -58,6 +58,7 @@ const LENS_DATA = {
   },
   source: {
     patentNumber: "DE 3,907,928 C2",
+    example: { label: "Table 5", id: "5" },
     patentYear: 1997,
     authors: ["Ernst Rothe", "Josef Weiß"],
     assignees: ["Optische Werke G. Rodenstock"],

@@ -7,7 +7,6 @@
 **Inventor:** Li Dayong
 **Applicant:** Anhui Changgeng Optics Technology Co., Ltd.
 **Title:** 中长焦移轴微距镜头 (Medium-telephoto tilt-shift macro lens)
-**Embodiment analyzed:** Example 1
 
 The prescription transcribes the selected native example associated with the LAOWA 100mm f/2.8 Tilt-Shift 1X Macro. The association is construction-based; Laowa has not confirmed that these exact numerical surfaces are the manufactured prescription. The evidence converges as follows:
 

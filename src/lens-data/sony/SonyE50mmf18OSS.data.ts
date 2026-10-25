@@ -59,6 +59,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2012-242690 A",
+    example: { label: "Example 2", id: "2" },
     patentYear: 2012,
     authors: ["Toshihide Hayashi", "Naoki Miyagawa"],
     assignees: ["Sony Corporation", "Tamron Co., Ltd."],

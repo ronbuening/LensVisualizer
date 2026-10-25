@@ -9,7 +9,7 @@
 **Inventor:** Mitsuo Yasukuni  
 **Assignee:** Minolta Camera Kabushiki Kaisha, Osaka, Japan  
 **Title:** Telephoto Lens System  
-**Embodiment analyzed:** Example 8 (Table 8, FIG. 22)
+**Example details:** Table 8, FIG. 22
 
 US 4,518,229 discloses a telephoto lens system with a fixed positive front group and a negative rear group divided into three subunits: a fixed positive first subunit, a movable negative second subunit, and a fixed positive third subunit. The movable negative subunit shifts toward the image side for close focusing. Example 8 is the embodiment transcribed here.
 

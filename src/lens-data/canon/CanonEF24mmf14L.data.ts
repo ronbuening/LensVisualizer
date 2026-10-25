@@ -50,7 +50,13 @@ const LENS_DATA = {
     fNumber: { marketing: 1.4, design: 1.45 },
   },
 
-  source: { patentNumber: "JP 1999-030743 A", patentYear: 1999, authors: ["Makoto Misaka"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "JP 1999-030743 A",
+    example: { label: "Numerical Example 6", id: "6" },
+    patentYear: 1999,
+    authors: ["Makoto Misaka"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

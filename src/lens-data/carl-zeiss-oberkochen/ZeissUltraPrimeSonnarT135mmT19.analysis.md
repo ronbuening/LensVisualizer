@@ -8,7 +8,7 @@
 **Inventors:** Marco Pretorius; Vladan Blahnik
 **Applicant:** Carl Zeiss AG
 **Title:** Objective Lens for a Photography or Film Camera and Method for Selective Damping of Specific Spatial Frequency Ranges of the Modulation Transfer Function of Such an Objective Lens
-**Embodiment analyzed:** First specific embodiment (¶¶0076–0088, Figs. 6–8, construction table on p. 8), cataloged here as Example 1, with its removable wavefront-manipulator module omitted
+**Example details:** first specific embodiment (¶¶0076–0088, Figs. 6–8, construction table on p. 8), cataloged here as Example 1, with its removable wavefront-manipulator module omitted
 
 US 2017/0307860 A1 is not a lens-design patent in the usual sense. Its subject is a removable Alvarez-type wavefront manipulator: two plates carrying facing free-form surfaces that are displaced laterally in opposite directions to introduce an adjustable, sign-reversible spherical aberration for soft-focus effects, without the field-dependent coma and astigmatism that the patent attributes to prior-art variable-air-gap soft-focus lenses (¶¶0005, 0009–0010). To demonstrate the manipulator, the patent inserts it into two host objectives. The first specific embodiment is a cine lens with a stated focal length of 135 mm and a relative aperture of f/1.8, whose "main lens only includes spherical lenses" (¶0078). The construction table on p. 8 lists 20 surfaces: 16 belong to that main lens, and surfaces 8–11 are the two N-LASF44 manipulator plates.
 

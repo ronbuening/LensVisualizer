@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — ALBERT SCHACHT S-TRAVENAR 135mm f/2.8                                 ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: Swiss Patent CH 479 879, Example 1 (Ludwig Bertele; Jürgen Bertele).       ║
+ * ║ Source: Swiss Patent CH 479 879, sole example (Ludwig Bertele; Jürgen Bertele).    ║
  * ║ Patent example normalized at F = 100 mm; every dimensional prescription value      ║
  * ║ is uniformly scaled ×1.35 to the patent's stated 13.5 cm / 24×36 mm form.          ║
  * ║ Four elements / four air-spaced groups; all eight refracting surfaces are spherical.║
@@ -25,7 +25,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ closeFocusM is an infinity sentinel for this static model, not a product MFD.      ║
  * ║                                                                                      ║
  * ║ PRODUCT CORRELATION: Strong research attribution to the S-Travenar 2,8/135, but no ║
- * ║ manufacturer source located explicitly links CH 479 879 Example 1 to that product.  ║
+ * ║ manufacturer source located explicitly links CH 479 879's example to that product.  ║
  * ╚══════════════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -35,7 +35,7 @@ const LENS_DATA = {
   key: "schacht-s-travenar-135f28",
   maker: "Schacht",
   name: "SCHACHT S-TRAVENAR 135mm f/2.8",
-  subtitle: "CH 479 879 Example 1 — 1.35× normalized research correlation",
+  subtitle: "CH 479 879 sole example — 1.35× normalized research correlation",
 
   catalog: {
     lensMounts: ["m42", "exakta"],
@@ -56,6 +56,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "CH 479 879",
+    example: { label: "Sole example", id: null },
     patentYear: 1969,
     authors: ["Ludwig Bertele", "Jürgen Bertele"],
     assignees: [],

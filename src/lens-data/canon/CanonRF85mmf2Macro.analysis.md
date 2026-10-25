@@ -5,7 +5,6 @@
 **Assignee:** Canon Kabushiki Kaisha
 **Priority:** JP 2019-161981, September 5, 2019
 **Published:** March 11, 2021
-**Embodiment analyzed:** First Numerical Example
 
 ---
 

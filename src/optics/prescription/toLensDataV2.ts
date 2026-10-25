@@ -316,7 +316,8 @@ function writeIdentity(write: Writer, out: Untyped, prescription: CanonicalPresc
 
 function writeSource(write: Writer, out: Untyped, prescription: CanonicalPrescription): void {
   const source = write.record(out, "", "source", "source");
-  write.copy(source, "source", prescription.source, "source", ["patentNumber", "patentYear", "authors", "assignees"]);
+  const fields = ["patentNumber", "example", "patentYear", "authors", "assignees"];
+  write.copy(source, "source", prescription.source, "source", fields);
   write.copy(source, "source", prescription.source, "source", ["errata"]);
   dropIfEmpty(out, "", "source", write.writes);
 }

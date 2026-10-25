@@ -399,6 +399,14 @@ export interface UnresolvedSourceErratum {
 
 export type SourceErratum = CorrectedSourceErratum | UnresolvedSourceErratum;
 
+/** The numerical example of the cited publication a file transcribes; see LENS_DATA_SPEC.md § Patent metadata. */
+export interface PatentExample {
+  /** The source's designation in Title Case ("Example 6", "Table IV"), or "Sole example" for an unnumbered one. */
+  label: string;
+  /** The comparable token `label` gives ("6", "4", "2-1"); `null` only for "Sole example". */
+  id: string | null;
+}
+
 /** Complete lens data object (after defaults merging) */
 export interface LensData {
   /** Optional UTC publication timestamp for a replacement model; otherwise derived from Git history. */
@@ -419,6 +427,8 @@ export interface LensData {
   imageCircleMm?: number;
   /** Source patent publication or grant identifier, including jurisdiction and kind code when published. */
   patentNumber?: string;
+  /** The numerical example of `patentNumber` the file transcribes. */
+  patentExample?: PatentExample;
   /** Inventors named by the source patent, in source order; empty when the patent names none. */
   patentAuthors?: string[];
   /** Organizational assignees or applicants named by the source patent; empty when no organization is named. */

@@ -67,6 +67,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2001/0030812 A1",
+    example: { label: "Example 2", id: "2" },
     patentYear: 2001,
     authors: ["Akiko Furuta"],
     // A1 front page omits an organization; same-application assignment recorded 2001-03-08.

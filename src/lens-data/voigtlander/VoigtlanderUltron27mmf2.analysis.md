@@ -9,7 +9,6 @@
 **Inventor:** Tatsuya Moriyama  
 **Applicant:** Cosina Co., Ltd.  
 **Title:** Optical Lens System (光学レンズ系)  
-**Embodiment analyzed:** Example 1
 
 Example 1 is the fixed prescription correlated here with the production VOIGTLÄNDER ULTRON 27mm F2 X-mount. The patent does not expressly state that Example 1 is the production prescription, so the identification rests on convergent source evidence rather than a manufacturer confirmation:
 

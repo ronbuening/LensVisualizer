@@ -14,7 +14,7 @@
 
 **Granted:** August 2, 1983
 
-**Embodiment analyzed:** Embodiment 1, Figure 1, numerical tables in columns4–5.
+**Example details:** Figure 1, numerical tables in columns4–5.
 
 The source is normalized to f=1 and uniformly scaled85× for the catalog's85mm association. It has seven elements in five air-separated components, aperture1:1.4 and field28.5°. This identifies the reproduced patent design and scale, not a measured production prescription or supplier list.
 

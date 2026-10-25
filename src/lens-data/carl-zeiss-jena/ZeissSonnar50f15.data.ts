@@ -26,7 +26,13 @@ const LENS_DATA = {
     fNumber: { marketing: 1.5, design: 1.5 },
   },
 
-  source: { patentNumber: "US 1,975,678", patentYear: 1934, authors: ["Ludwig Bertele"], assignees: ["Zeiss Ikon AG"] },
+  source: {
+    patentNumber: "US 1,975,678",
+    example: { label: "Sole example", id: null },
+    patentYear: 1934,
+    authors: ["Ludwig Bertele"],
+    assignees: ["Zeiss Ikon AG"],
+  },
 
   /* ── Elements ──
    *  Prescription scaled from patent (f=100) to production (f≈50) by ×0.5.

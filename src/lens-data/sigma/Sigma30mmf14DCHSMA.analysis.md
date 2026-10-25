@@ -12,7 +12,7 @@
 **Classification:** IPC G02B 13/00, G02B 13/18
 **Claims:** 3
 **Worked examples:** 7 (Numerical Examples 1-7)
-**Embodiment analyzed:** Numerical Example 1 (数値実施例1)
+**Example details:** 数値実施例1
 
 The patent describes a family of large-aperture, wide-standard imaging lenses for APS-C single-lens-reflex cameras. Its stated aim is to preserve sufficient back focus for mirror clearance while maintaining a large aperture ratio, compact total length, and stable imaging performance through the focus range (Abstract; ¶0001-¶0010). Claim 1 defines a two-group construction: a positive first group **G1**, followed by a positive second group **G2** that contains the aperture stop; during focusing from infinity to near distance, G1 is fixed relative to the image plane and G2 advances toward the object (Claim 1; ¶0012, ¶0018).
 

@@ -7,7 +7,6 @@
 **Inventor:** Tomoki Kono  
 **Applicant:** Sigma Corporation  
 **Title:** Zoom lens with vibration-proof function  
-**Embodiment analyzed:** Numerical Example 2  
 
 This reconstruction concerns Numerical Example 2 of JP2015055858A. The selected construction is
 correlated with the SIGMA 24-105mm f/4 DG OS HSM Art; it is not a manufacturer-confirmed factory

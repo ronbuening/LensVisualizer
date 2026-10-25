@@ -16,7 +16,6 @@
 
 **Title:** Optical system and image pickup apparatus having the same (descriptive translation)
 
-**Embodiment analyzed:** Numerical Example 1
 
 Numerical Example 1 is treated as the fixed production correlation for the CANON EF 28mm f/2.8 IS USM. The patent
 does not name the commercial lens, and Canon does not publish a statement identifying the product with this

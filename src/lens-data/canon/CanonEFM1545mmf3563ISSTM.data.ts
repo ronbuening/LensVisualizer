@@ -68,7 +68,13 @@ const LENS_DATA = {
     fNumber: { marketing: 3.5, design: 3.58 },
   },
 
-  source: { patentNumber: "JP 2016-118658 A", patentYear: 2016, authors: ["Taku Inoue"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "JP 2016-118658 A",
+    example: { label: "Numerical Example 8", id: "8" },
+    patentYear: 2016,
+    authors: ["Taku Inoue"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

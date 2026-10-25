@@ -44,7 +44,13 @@ const LENS_DATA = {
     fNumber: { marketing: 4.5 },
   },
 
-  source: { patentNumber: "US 2,721,499", patentYear: 1955, authors: ["Ludwig Bertele"], assignees: [] },
+  source: {
+    patentNumber: "US 2,721,499",
+    example: { label: "Example 2", id: "2" },
+    patentYear: 1955,
+    authors: ["Ludwig Bertele"],
+    assignees: [],
+  },
 
   /* ── Elements ── */
   elements: [

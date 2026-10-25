@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — MEYER OPTIK GÖRLITZ ORESTEGOR 500mm f/5.6                  ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: DE 1 980 417, Example 1 / Zahlenbeispiel (VEB Feinoptisches      ║
+ * ║ Source: DE 1 980 417, sole Zahlenbeispiel (VEB Feinoptisches             ║
  * ║ Werk Görlitz). The patent works at f' = 100 mm; all prescription lengths  ║
  * ║ are uniformly scaled ×5 for the production-correlation model.             ║
  * ║ Computed design EFL is 497.7868 mm; 500 mm remains the marketed value.    ║
@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "meyer-optik-gorlitz-orestegor-500mm-f56",
   maker: "Meyer Optik Görlitz",
   name: "MEYER OPTIK GÖRLITZ ORESTEGOR 500mm f/5.6",
-  subtitle: "DE 1 980 417, Example 1 — 5× scaled production correlation; modeled stop and semi-diameters",
+  subtitle: "DE 1 980 417, sole example — 5× scaled production correlation; modeled stop and semi-diameters",
 
   catalog: {
     lensMounts: ["exakta", "m42", "praktina"],
@@ -62,6 +62,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 1 980 417",
+    example: { label: "Sole example", id: null },
     patentYear: 1968,
     authors: [],
     assignees: ["VEB Feinoptisches Werk Görlitz"],

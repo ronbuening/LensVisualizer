@@ -57,6 +57,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2023-004721 A",
+    example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2023,
     authors: ["Hisayuki Yamanaka"],
     assignees: ["Tamron Co., Ltd."],

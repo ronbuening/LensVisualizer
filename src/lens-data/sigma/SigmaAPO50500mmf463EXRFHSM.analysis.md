@@ -9,7 +9,7 @@
 **Inventor:** Tomoki Kono (幸野 朋来; the original English PAJ cover prints KONO TOMOKI)  
 **Assignee:** Sigma Corporation  
 **Title:** 高変倍ズームレンズ / High Variable Power Zoom Lens  
-**Embodiment analyzed:** Numerical Example 1, Figure 1, all three published infinity stations; 37 numbered rows including stop row 20.
+**Example details:** Figure 1, all three published infinity stations; 37 numbered rows including stop row 20.
 
 The fixed example has a strong architectural association with the original **APO 50-500mm F4-6.3 EX RF / EX RF HSM**, not a certified factory prescription. Sigma's dated 2004.9 catalog shows 20 elements in 16 air-separated groups and four SLD positions corresponding to L2, L3, L8 and L9. This selects Example 1 rather than Example 2 (20/15) or Example 3 (19/15). The 2004.9 date identifies this catalog edition, not the lens's introduction date.
 

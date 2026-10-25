@@ -25,7 +25,8 @@ publish it or reuse its key — a production converter gets its own file
 1. Copy `src/lens-data/TEMPLATE.teleconverter.ts.template` to `src/lens-data/<maker>/<Name>.teleconverter.ts`. Author
    it directly in the maker folder with `schema: 2` and `satisfies TeleconverterDataV2Input`, imported from
    `../../types/lensDataV2.js`; the lens organizer does not move teleconverter files.
-2. Transcribe surfaces and elements as for a lens. Leave out the stop: the host's stop is the system stop.
+2. Transcribe surfaces and elements as for a lens. Leave out the stop: the host's stop is the system stop. Record the
+   converter's own numerical example in `source.example`, as for a lens.
 3. Set the geometry from the source's combined master + converter table:
    - `masterImageDistanceMm` = master back focus in air − the master-to-converter gap.
    - Last surface `d` = back focus, or the gap to the first plate when the source lists plates in `rearPlates`.

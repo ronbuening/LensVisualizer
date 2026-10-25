@@ -43,6 +43,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 2444954 A1",
+    example: { label: "Claim 2", id: "2" },
     patentYear: 1976,
     authors: ["Franz Schlegel", "Josef Weiß"],
     assignees: ["Optische Werke G. Rodenstock"],

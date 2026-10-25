@@ -49,6 +49,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "JP 2004-302170 A",
+    example: { label: "Example 4", id: "4" },
     patentYear: 2004,
     authors: ["Kazunori Ohno"],
     assignees: ["Fuji Photo Optical Co., Ltd."],

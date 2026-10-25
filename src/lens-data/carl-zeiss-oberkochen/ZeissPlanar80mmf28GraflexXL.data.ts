@@ -54,6 +54,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 2,799,207",
+    example: { label: "Embodiment I", id: "1" },
     patentYear: 1957,
     authors: ["Günther Lange"],
     assignees: ["Carl-Zeiss-Stiftung"],

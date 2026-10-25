@@ -9,7 +9,7 @@
 **Inventor:** Xiaohua Zhang (张小华)  
 **Applicant:** Anhui Changgeng Optics Technology Co., Ltd. (安徽长庚光学科技有限公司)  
 **Title:** 一种新型摄影镜头 (A new photographic lens)  
-**Embodiment analyzed:** Example 1, ¶0033–0046, Figure 1
+**Example details:** ¶0033–0046, Figure 1
 
 The prescription is Example 1 of the granted B publication, correlated with the Laowa
 105 mm f/2 Smooth Trans Focus lens on construction. It is not a manufacturer-confirmed

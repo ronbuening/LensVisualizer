@@ -55,6 +55,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,444,473",
+    example: { label: "Example 5", id: "5" },
     patentYear: 1984,
     authors: ["Yoshinobu Kudo"],
     assignees: ["Minolta Camera Co., Ltd."],

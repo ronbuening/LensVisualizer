@@ -7,7 +7,6 @@
 **Inventor:** Takashi Matsushita
 **Applicant:** Canon Inc.
 **Title:** *Wide-angle lens having an aspherical surface* (`非球面を有した広角レンズ`)
-**Embodiment analyzed:** Numerical Example 1
 
 The prescription is correlated here with the **CANON EF 28mm f/2.8**. The patent does not name the commercial lens, so the identification rests on convergent evidence rather than an express manufacturer statement:
 

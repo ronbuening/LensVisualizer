@@ -48,7 +48,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.0, design: 2.05 },
   },
 
-  source: { patentNumber: "US 8,854,747 B2", patentYear: 2014, authors: ["Shunji Iwamoto"], assignees: ["Canon Inc."] },
+  source: {
+    patentNumber: "US 8,854,747 B2",
+    example: { label: "Example 1", id: "1" },
+    patentYear: 2014,
+    authors: ["Shunji Iwamoto"],
+    assignees: ["Canon Inc."],
+  },
 
   elements: [
     {

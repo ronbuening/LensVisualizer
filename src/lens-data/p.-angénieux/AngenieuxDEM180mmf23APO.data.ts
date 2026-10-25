@@ -76,7 +76,13 @@ const LENS_DATA = {
     fNumber: { marketing: 2.3, design: 2.3 },
   },
 
-  source: { patentNumber: "US 4,726,669", patentYear: 1988, authors: ["Pierre Angénieux"], assignees: [] },
+  source: {
+    patentNumber: "US 4,726,669",
+    example: { label: "Example 1", id: "1" },
+    patentYear: 1988,
+    authors: ["Pierre Angénieux"],
+    assignees: [],
+  },
 
   /* ── Elements ── */
   elements: [

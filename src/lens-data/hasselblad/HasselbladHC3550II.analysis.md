@@ -10,7 +10,6 @@
 **Inventor:** Takashi Suzuki\
 **Assignee:** Fujifilm Corporation\
 **Title:** *Retrofocus-Type Wide Angle Lens and Camera Including the Lens*\
-**Embodiment analyzed:** Example 1\
 **Production correlation:** Hasselblad HC 3,5/50-II
 
 Example 1 is the prescription used by the data file. The patent itself does not identify a Hasselblad product, and the

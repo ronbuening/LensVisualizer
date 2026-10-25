@@ -47,6 +47,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "US 4,214,816",
+    example: { label: "Example 1", id: "1" },
     patentYear: 1980,
     authors: ["Tamikazu Yamaguchi"],
     assignees: ["Minolta Camera Co., Ltd."],

@@ -10,7 +10,6 @@
 **Applicant:** Canon Inc.
 **Title:** Zoom Lens
 
-**Embodiment analyzed:** Numerical Example 1
 
 The selected correlation is the Canon EF 100-300mm f/5.6 and the sole numerical example in JP S61-77818 A. The patent itself does not name the production lens, so the relationship is not presented as manufacturer-confirmed. It is instead supported by convergent source evidence: the numerical example contains 15 elements in 9 air-separated physical groups, the principal zoom range is 100–290 mm at f/5.6, Canon is the applicant, and the publication precedes the 1987 introduction of the EF product. Canon's product record independently gives the non-L EF100-300mm f/5.6 as 15 elements in 9 groups with a marketed 100–300 mm range and constant f/5.6 maximum aperture. [1–4]
 

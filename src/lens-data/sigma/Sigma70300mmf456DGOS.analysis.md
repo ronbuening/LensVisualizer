@@ -6,7 +6,6 @@
 **Assignee:** Sigma Corporation  
 **Filed:** 19 March 2009  
 **Published:** 30 September 2010  
-**Example:** 1
 
 The probable production pairing is the Sigma 70-300mm f/4-5.6 DG OS introduced in 2009. The distributor's announcement gives 16 elements in 11 groups, 1.5 m minimum focus across the range, and optical stabilization. The prescription has the matching 16/11 construction and focal lengths of 70.33, 147.08 and 290.50 mm. The printed full fields (2ω) are 34.94°, 16.40° and 8.30°, respectively. Sigma's construction drawing shows the same element sequence, but the pairing remains a patent-to-production association, not a recovered factory prescription.
 

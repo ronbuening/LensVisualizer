@@ -6,8 +6,7 @@
 **Published:** 2023-03-24\
 **Inventor:** 刘谌\
 **Applicant:** 深圳市雷影光电科技有限公司\
-**Title:** 超广角大光圈微距自动对焦镜头\
-**Embodiment analyzed:** Example 4
+**Title:** 超广角大光圈微距自动对焦镜头
 
 The prescription is the Example 4 numerical embodiment of CN 115840281 A. The patent describes a five-functional-group, large-aperture autofocus lens in which a single negative group moves for focusing while the other functional groups remain fixed relative to the image plane (¶0014). The corpus identifies this embodiment with the **VILTROX AF 27mm f/1.2 PRO XF**. That correlation is fixed for this record, but neither the patent nor Viltrox explicitly states that “Example 4” is the production prescription.
 

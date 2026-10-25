@@ -8,7 +8,7 @@
 **Inventor:** Erhard Glatzel\
 **Applicant:** Fa. Carl Zeiss, Heidenheim (publication wording); Carl-Zeiss-Stiftung (canonical legal entity)\
 **Title:** *Photographisches Objektiv*\
-**Embodiment analyzed:** Example 2 — Table II / Figure 2
+**Example details:** Table II / Figure 2
 
 The prescription is taken from Example 2 of DE 1 250 153, specifically Table II and Figure 2. The patent normalizes the
 focal length to `f = 1.00`, publishes an opening ratio of `1:2.8`, a full field of `80°` (`±40°`), and a rear focal

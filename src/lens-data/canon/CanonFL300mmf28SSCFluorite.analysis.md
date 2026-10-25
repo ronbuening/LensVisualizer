@@ -10,7 +10,7 @@
 **Inventor:** Hideo Yokota (printed "Yakota" on the US cover)  
 **Assignee:** Canon Inc. (printed "Canon Kobushiki Kaisha" on the US cover)  
 **Title:** Telephoto Type Objective of Large Relative Aperture Ratio  
-**Embodiment analyzed:** Example 1 (description and claim 3), f = 100 scaled uniformly ×3 to 300 mm.
+**Example details:** description and claim 3, f = 100 scaled uniformly ×3 to 300 mm.
 
 The association with the FL 300 mm f/2.8 S.S.C. Fluorite of February 1974 is probable; the patent example is not an authenticated factory prescription.
 

@@ -1,7 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * SCHNEIDER-KREUZNACH XENAR 50mm f/2.8 - DE 753329 Example 1.
+ * SCHNEIDER-KREUZNACH XENAR 50mm f/2.8 - DE 753329, sole example.
  *
  * Source prescription: Reichspatentamt DE 753329, Zahlentafel 1.
  * The patent publishes relative lengths, relative opening 1:2.9, and five
@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "schneider-kreuznach-xenar-50f28",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH XENAR 50mm f/2.8",
-  subtitle: "DE 753329 Example 1 - 1935 five-element design; production correlation remains secondary",
+  subtitle: "DE 753329 sole example - 1935 five-element design; production correlation remains secondary",
 
   catalog: {
     specs: ["5 ELEMENTS / 4 GROUPS", "DESIGN f = 50.0 mm", "PATENT f/2.9 / MARKETED f/2.8"],
@@ -53,6 +53,7 @@ const LENS_DATA = {
 
   source: {
     patentNumber: "DE 753329",
+    example: { label: "Sole example", id: null },
     patentYear: 1944,
     authors: [],
     assignees: ["Jos. Schneider & Co., Optotechnische Gesellschaft"],

@@ -56,6 +56,7 @@ const LENS_DATA = {
   },
   "source": {
     "patentNumber": "JP 2009-168934 A",
+    "example": { "label": "Embodiment 3", "id": "3" },
     "patentYear": 2009,
     "authors": [
       "Hisayuki Yamanaka",
