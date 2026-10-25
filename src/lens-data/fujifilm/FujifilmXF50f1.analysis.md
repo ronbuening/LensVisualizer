@@ -190,7 +190,7 @@ At the data-file semi-diameters, the exact profiles depart from their spherical 
 
 ### 3.8 — Elements 9–10 (L2b + L2c): Cemented Doublet D2
 
-**L2b (biconvex positive):** R₁ = +49.661, R₂ = −32.522; nd/νd = 1.88300/39.22; thin-lens f = +22.3 mm
+**L2b (biconvex positive):** R₁ = +49.661, R₂ = −32.522; nd/νd = 1.88300/39.22, H-ZLaF68N (CDGM), whose curve gives θgF 0.5729 against the patent's 0.57295; thin-lens f = +22.3 mm
 
 **L2c (biconcave negative):** R₁ = −32.522 (junction), R₂ = +32.522; nd/νd = 1.69895/30.05; thin-lens f = −23.3 mm
 
@@ -198,7 +198,7 @@ At the data-file semi-diameters, the exact profiles depart from their spherical 
 
 ### 3.9 — Elements 11–12 (L2d + L2e): Cemented Doublet D3
 
-**L2d (biconvex positive):** R₁ = +42.224, R₂ = −28.754; nd/νd = 1.88300/39.22; thin-lens f = +19.4 mm
+**L2d (biconvex positive):** R₁ = +42.224, R₂ = −28.754; nd/νd = 1.88300/39.22, the same H-ZLaF68N (CDGM) glass as L2b; thin-lens f = +19.4 mm
 
 **L2e (negative meniscus, concave toward object):** R₁ = −28.754 (junction), R₂ = −178.143; nd/νd = 1.62005/36.35; thin-lens f = −55.3 mm
 
@@ -260,7 +260,7 @@ The XF 50mm f/1.0 R WR is a 12-element, 9-group inner-focus prime with an f/1.0 
 - A **single doubly-aspherical element** (L2a) immediately behind the stop, carrying 20th-order polynomial figuring for residual aberration correction.
 - A **lightweight 5-element focusing group** with two cemented doublets for chromatic stability across the focus range.
 
-The numerical example is refractive. L1a and L1d use S-TIL2 and S-NPH3 catalog-compatible models; the patent does not establish suppliers or manufacturing methods. L1b/L1c use J-PSKH1, L1f uses S-NPH4 and L1g uses S-NPH1 (1.80810 / 22.76, catalog θgF 0.6307 against the patent's 0.63073) only as coordinate-compatible spectral proxies; these improve chromatic tracing without asserting Fujifilm's production suppliers.
+The numerical example is refractive. L1a and L1d use S-TIL2 and S-NPH3 catalog-compatible models; the patent does not establish suppliers or manufacturing methods. L1b/L1c use J-PSKH1, L1f uses S-NPH4 L1g uses S-NPH1 (1.80810 / 22.76, catalog θgF 0.6307 against the patent's 0.63073), and L2b/L2d use CDGM H-ZLaF68N (θgF 0.5729 against 0.57295), only as coordinate-compatible spectral proxies; these improve chromatic tracing without asserting Fujifilm's production suppliers.
 
 ---
 

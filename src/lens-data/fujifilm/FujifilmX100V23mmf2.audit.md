@@ -76,3 +76,12 @@ The validator accepts the new values, the traced edge now reaches 14.17 mm at 30
 image-circle floor reports nothing undersized. The analysis now quotes the L23 departures at the new rims (7A +74.985 µm
 at 7.9 mm, 8A +307.126 µm at 8.5 mm), and its L31 paragraph no longer claims smaller departures than L23's, which was
 false at both the old and new rims.
+
+## 2026-10-25 — Glass coverage: nd 1.88300 / νd 39.22 resolved to CDGM H-ZLaF68N
+
+L12 and L33 (1.88300 / 39.22) were `Unmatched` against a "near S-LAH79" note. CDGM H-ZLaF68N, already in the
+catalog, matches both printed values exactly, and its curve (θgF 0.5729) reproduces the 0.57295 that Fujifilm's
+US 2021/0231927 A1 prints for the same coordinate in the XF 50mm f/1.0. Both elements are relabelled "H-ZLaF68N (CDGM
+coordinate equivalent; production supplier unspecified)" and now trace on that curve. A corpus resolution dump before
+and after changes only these elements and the two in the XF 50mm f/1.0. The analysis glass lines, table and the
+catalog-match paragraph are updated.
