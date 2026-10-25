@@ -151,6 +151,10 @@ describe("request cardinals", () => {
     expect(result!.points.rearFocal.z).toBeCloseTo(L.imagePlane.z, 8);
     expect(Math.abs(result!.distances.efl.valueMm)).toBeCloseTo(L.EFL, 8);
     expect(result!.distances.efl.valueMm).toBeLessThan(0);
+    /* One mirror's principal planes both sit at its vertex; the front plane needs the reflection's det = -1. */
+    const vertexZ = doLayout(0, 0, L).z[L.labelIdx.M1];
+    expect(result!.points.frontPrincipal.z).toBeCloseTo(vertexZ, 8);
+    expect(result!.points.rearPrincipal.z).toBeCloseTo(vertexZ, 8);
   });
 
   it("infers the auto folded Cassegrain order and matches its closed-form focal geometry", () => {

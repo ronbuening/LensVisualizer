@@ -10,6 +10,7 @@ import { createTraceGeometry } from "../trace/geometry.js";
 import type { PreparedOpticalState } from "../types.js";
 import { prepareEngineTrace } from "../trace/rayAdapters.js";
 import { computeSystemMatrix } from "./systemMatrix.js";
+import type { FirstOrderSystemMatrix } from "./systemMatrix.js";
 
 const CARDINAL_EPSILON = 1e-12;
 const FOLDED_PARAXIAL_SAMPLE_FRACTIONS = [0.04, 0.08, 0.16, 0.32, 0.5, 0.7, 0.9] as const;
@@ -123,7 +124,10 @@ export function buildCardinalElementsFromMatrix({
   if (!Number.isFinite(C) || Math.abs(C) < CARDINAL_EPSILON) return null;
   const frontFocalZ = frontVertexZ + (objectIndex * D) / C;
   const rearFocalZ = rearVertexZ - (imageIndex * A) / C;
-  const frontPrincipalZ = frontVertexZ + (objectIndex * (D - 1)) / C;
+  /* H uses n(D - det)/C. Each mirror flips the (y, n·u) determinant's sign, so det is exactly ±1; refractive and
+   * even-reflection systems keep the literal det = +1 and therefore today's arithmetic bit for bit. */
+  const det = reflectionDeterminant(A, B, C, D);
+  const frontPrincipalZ = frontVertexZ + (objectIndex * (D - det)) / C;
   const rearPrincipalZ = rearVertexZ + (imageIndex * (1 - A)) / C;
 
   const nodalDistanceToFrontVertex = (imageIndex - objectIndex * D) / C;
@@ -164,6 +168,22 @@ export function buildCardinalElementsFromMatrix({
 }
 
 /**
+ * Snap a first-order matrix determinant to its exact reflection parity.
+ *
+ * With `y` and reduced slope `n·u` on both sides, refraction preserves det = +1 and each reflection negates it, so
+ * the traced `AD - BC` differs from ±1 only by rounding. A non-finite determinant keeps the refractive +1.
+ *
+ * @param A - marginal-ray output height
+ * @param B - chief-ray output height
+ * @param C - marginal-ray output reduced slope
+ * @param D - chief-ray output reduced slope
+ * @returns -1 for an odd number of reflections, otherwise +1
+ */
+export function reflectionDeterminant(A: number, B: number, C: number, D: number): 1 | -1 {
+  return A * D - B * C < 0 ? -1 : 1;
+}
+
+/**
  * Compute cardinal elements with camera/display coordinate overrides.
  *
  * @param state - prepared optical state for current controls
@@ -198,6 +218,29 @@ export function computeCardinalElementsWithLayout(
 }
 
 function computeFoldedReflectiveCardinals(state: PreparedOpticalState): CardinalElements | null {
+  const matrix = computeFoldedSystemMatrix(state);
+  if (matrix === null) return null;
+  const { rearSurfaceIndex, ...coefficients } = matrix;
+  return buildCardinalElementsFromMatrix({
+    ...coefficients,
+    frontVertexZ: state.z[0],
+    rearVertexZ: state.z[rearSurfaceIndex],
+    imagePlaneZ: state.imgZ,
+  });
+}
+
+/**
+ * Compute the axial first-order matrix of a folded reflective system along its paraxial hit order.
+ *
+ * Slopes are physical dy/dz along the diagram axis with unsigned media indices, so each reflection negates the
+ * determinant (see `reflectionDeterminant`).
+ *
+ * @param state - prepared folded optical state
+ * @returns ABCD matrix, end media indices, and the last surface hit, or null when unsupported
+ */
+export function computeFoldedSystemMatrix(
+  state: PreparedOpticalState,
+): (FirstOrderSystemMatrix & { rearSurfaceIndex: number }) | null {
   if (state.z.length < state.surfaces.length) return null;
   if (Math.abs(state.imagePlane.normal[1]) > 1e-9) return null;
 
@@ -209,19 +252,16 @@ function computeFoldedReflectiveCardinals(state: PreparedOpticalState): Cardinal
   const chief = traceFoldedReflectiveParaxialPath(state, order, 0, 1);
   if (marginal === null || chief === null) return null;
 
-  const objectIndex = 1;
   const imageIndex = marginal.n;
-  return buildCardinalElementsFromMatrix({
+  return {
     A: marginal.y,
     B: chief.y,
     C: imageIndex * marginal.u,
     D: imageIndex * chief.u,
-    frontVertexZ: state.z[0],
-    rearVertexZ: state.z[order[order.length - 1]],
-    imagePlaneZ: state.imgZ,
-    objectIndex,
+    objectIndex: 1,
     imageIndex,
-  });
+    rearSurfaceIndex: order[order.length - 1],
+  };
 }
 
 function resolveFoldedParaxialSurfaceOrder(state: PreparedOpticalState): number[] {
