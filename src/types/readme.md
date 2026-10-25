@@ -64,7 +64,7 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `asphericSchema.ts` | Shared TypeScript types | none | src/optics/prescription (6), same folder (3), src/optics/geometry | AsphericCoefficientDescriptor, ASPHERIC_COEFFICIENT_SCHEMA, AsphericPolynomialDescriptor, ASPHERIC_POLYNOMIAL_TERMS, AsphericCoefficients |
-| `catalog.ts` | Shared TypeScript types | same folder | src/utils/catalog (7), src/pages/lensIndex (3), src/components/relationshipMap (2), same folder | PatentPartyMetadata, CorporateRelationshipEvent, CorporateRelationshipPeriod, CorporateFamilyPeriod, AssigneeCorporateRelationships, AssigneeMetadata, PatentLensRef, PatentPartyRole |
+| `catalog.ts` | Shared TypeScript types | same folder | src/utils/catalog (7), src/pages/lensIndex (3), src/components/relationshipMap (2), same folder, src/components/content | PatentPartyMetadata, CorporateRelationshipEvent, CorporateRelationshipPeriod, CorporateFamilyPeriod, AssigneeCorporateRelationships, AssigneeMetadata, PatentLensRef, PatentPartyRole |
 | `dispersion.ts` | Shared TypeScript types | same folder, src/optics/glassCatalog.ts | src/optics/chromatic (2), same folder, src/optics/chromatic.ts, src/optics/types.ts | DispersionQuality, SurfaceIndexFn, SurfaceDispersion |
 | `goatcounter.d.ts` | Ambient/type declaration surface | none | none | none |
 | `groupMovement.ts` | Shared TypeScript types | none | src/components/layout (2), src/utils/state (2), same folder, src/comparison, src/components/controls, +3 more | GROUP_MOVEMENT_MODES, GroupMovementMode, isGroupMovementMode |
