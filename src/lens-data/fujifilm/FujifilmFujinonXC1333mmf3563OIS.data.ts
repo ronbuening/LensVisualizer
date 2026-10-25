@@ -4,7 +4,7 @@ const LENS_DATA = {
   "key": "fujifilm-fujinon-xc-13-33mm-f35-63-ois",
   "maker": "Fujifilm",
   "name": "FUJIFILM FUJINON XC 13-33mm f/3.5-6.3 OIS",
-  "subtitle": "CN 122410763 A, Example 1; XC13–33 correlation, not manufacturer-confirmed prescription",
+  "subtitle": "CN 122410763 A — Example 1",
   "catalog": {
     "lensMounts": [
       "fujifilm-x"
@@ -12,9 +12,10 @@ const LENS_DATA = {
     "imageFormat": "aps-c",
     "specs": [
       "10 ELEMENTS / 9 GROUPS",
-      "8 ASPHERICAL SURFACES / 4 ASPHERICAL ELEMENTS",
-      "Native source f/3.60–6.49; marketed f/3.5–6.3",
-      "Three published infinity zoom states; finite focus not reconstructed"
+      "DESIGN f = 13.39-32.14 mm",
+      "DESIGN F/3.60-6.49",
+      "8 ASPHERICAL SURFACES / 4 ELEMENTS",
+      "3 ED ELEMENTS"
     ],
     "elementCount": 10,
     "groupCount": 9,
@@ -55,7 +56,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -13.586003467974011,
       "glass": "D-ZLAF52LA (CDGM)",
-      "apdNote": "Source θgF=0.56996; dPgF converted to project normal-line baseline. This is not an APO performance claim.",
+      "apdNote": "Patent θgF 0.56996, stored as dPgF against the normal line.",
       "role": "Source G1",
       "diagramLabel": "L11",
       "dPgF": -0.0048948200000000774
@@ -70,7 +71,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -72.03621586111832,
       "glass": "H-FK90 (NHG)",
-      "apdNote": "Source θgF=0.53706; dPgF converted to project normal-line baseline. This is not an APO performance claim.",
+      "apd": "inferred",
+      "apdNote": "Fujifilm's construction diagram marks this position as one of three ED elements. Patent θgF 0.53706, stored as dPgF against the normal line.",
       "role": "Source G1",
       "diagramLabel": "L12",
       "dPgF": 0.04492593999999994
@@ -85,7 +87,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 30.495191107408086,
       "glass": "H-ZLAF82 (NHG)",
-      "apdNote": "Source θgF=0.59935; dPgF converted to project normal-line baseline. This is not an APO performance claim.",
+      "apdNote": "Patent θgF 0.59935, stored as dPgF against the normal line.",
       "role": "Source G1",
       "diagramLabel": "L13",
       "dPgF": 0.004546660000000036
@@ -100,7 +102,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 23.389993742608436,
       "glass": "M-BACD15 (HOYA)",
-      "apdNote": "Source θgF=0.53913; dPgF converted to project normal-line baseline. This is not an APO performance claim.",
+      "apdNote": "Patent θgF 0.53913, stored as dPgF against the normal line.",
       "role": "Source G2",
       "diagramLabel": "L21",
       "dPgF": -0.006844880000000053
@@ -115,7 +117,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -17.65177085518821,
       "glass": "S-BAL3 (OHARA)",
-      "apdNote": "Source θgF=0.55544; dPgF converted to project normal-line baseline. This is not an APO performance claim.",
+      "apdNote": "Patent θgF 0.55544, stored as dPgF against the normal line.",
       "role": "Source G2; OIS cemented doublet",
       "diagramLabel": "L22",
       "cemented": "OIS",
@@ -131,7 +133,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 12.584120833504851,
       "glass": "S-FPM4 (OHARA)",
-      "apdNote": "Source θgF=0.53954; dPgF converted to project normal-line baseline. This is not an APO performance claim.",
+      "apd": "inferred",
+      "apdNote": "Fujifilm's construction diagram marks this position as one of three ED elements. Patent θgF 0.53954, stored as dPgF against the normal line.",
       "role": "Source G2; OIS cemented doublet",
       "diagramLabel": "L23",
       "cemented": "OIS",
@@ -147,7 +150,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -17.836752602329938,
       "glass": "TAFD45L (HOYA)",
-      "apdNote": "Source θgF=0.58998; dPgF converted to project normal-line baseline. This is not an APO performance claim.",
+      "apdNote": "Patent θgF 0.58998, stored as dPgF against the normal line.",
       "role": "Source G2",
       "diagramLabel": "L24",
       "dPgF": 0.0005422399999999161
@@ -162,7 +165,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 19.159363468251097,
       "glass": "M-FCD1 (HOYA)",
-      "apdNote": "Source θgF=0.53848; dPgF converted to project normal-line baseline. This is not an APO performance claim.",
+      "apd": "inferred",
+      "apdNote": "Fujifilm's construction diagram marks this position as one of three ED elements. Patent θgF 0.53848, stored as dPgF against the normal line.",
       "role": "Source G2",
       "diagramLabel": "L25",
       "dPgF": 0.031863919999999935
@@ -177,7 +181,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -42.17798614863736,
       "glass": "M-PCD55AR (HOYA)",
-      "apdNote": "Source θgF=0.5532; dPgF converted to project normal-line baseline. This is not an APO performance claim.",
+      "apdNote": "Patent θgF 0.5532, stored as dPgF against the normal line.",
       "role": "Source G3 focus",
       "diagramLabel": "L31",
       "dPgF": 0.002212760000000036
@@ -192,7 +196,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 85.32756013290177,
       "glass": "H-LAF50B (CDGM)",
-      "apdNote": "Source θgF=0.55165; dPgF converted to project normal-line baseline. This is not an APO performance claim.",
+      "apdNote": "Patent θgF 0.55165, stored as dPgF against the normal line.",
       "role": "Source G4 stationary rear",
       "diagramLabel": "L41",
       "dPgF": -0.00872280000000003
@@ -1490,8 +1494,8 @@ const LENS_DATA = {
     "step": 0.005
   },
   "focus": {
-    "closeFocusM": 1000000000000000,
-    "description": "INFERRED CONTINUOUS INFINITY CAM: three source knots exact. G1/G2 source-position interpolation drives the path; G3 displacement is solved paraxially for fixed G4/image plane with native residual retained. Intermediate nodes are unpublished and not factory cam measurements. No finite-focus reconstruction or source optics changes."
+    "closeFocusM": 0.2,
+    "description": "The patent prints infinity spacings at wide, middle and tele; focusing is not modeled. The intermediate zoom positions are an inferred reconstruction, not the factory cam: G1 and G2 follow interpolated laws between the printed stations and G3 is solved for infinity focus at each position. The marketed minimum focus distance is 0.2 m."
   },
   "gaps": {
     "6": {
@@ -3946,7 +3950,7 @@ const LENS_DATA = {
       "glass": "BSC7 (HOYA)",
       "dPgF": -0.0015156000000000613,
       "gapAfterMm": 1.019,
-      "source": "CN122410763A, Example1 Table1 source21–22, PDFp20"
+      "source": "CN 122410763 A Example 1, Table 1, surfaces 21–22: camera-side plate at its printed thickness and image gap"
     }
   ],
   "groups": [

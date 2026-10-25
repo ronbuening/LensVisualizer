@@ -199,3 +199,51 @@ This dated addendum supersedes earlier station-only zoom descriptions for this c
 On main f29b729277462ece3aa02491b8ef95cba83dab80,401 zoom positions times5 focus-slider samples produce2,005 clean geometry states, no material render trims and no nonfinite layouts. The focus slider still repeats infinity optics and is not a modeled near-focus mechanism. Every sampled infinity state passes the engine image-plane tolerance, with maximum residual0.0784873mm versus2.611251mm in the old linear-gap path. Full diffraction MTF at design plane, maximum grid256, was executed over21 zoom positions and5 between-node positions,5 field fractions,0–100lp/mm, both reference and five-line photopic spectra. All returned fields converge with zero failed rays; the engine's reported trustworthy frequency band varies and can be as low as50lp/mm. This is not a universal100lp/mm or measured-production performance claim. Finite-focus MTF remains unavailable without certified source conjugates.
 
 Independent integration review is pending. No new source exception, geometry threshold relaxation, deployment or manufacturer-confirmed numerical prescription is claimed. Detailed JSON, source-invariant assertions and rebuild script accompany this candidate.
+
+## 2026-10-25 — Semi-diameter pass against the patent figure
+
+**Source and figure.** Figure 1 of the modeled Numerical Example 1 (patent half-fields 41.6°/25.1°/14.9°, image height 11.45 mm at all three stations). The JP 2010-186010 A copy (p. 17) prints Figures 1 and 2 side by side at small size, so the rims were measured on the identical Figure 1 in the US family publication US 2010/0202063 A1 (sheet 1 of 10, PDF p. 2, native 300 dpi raster, about 2.4 times larger; same labels and the same three panels). Panel (a) is the wide state. Element outlines are identical in all three panels, so rims were read on panel (b), which has no leader lines, top and bottom, and cross-checked on panel (c) and on the clean side of panel (a); the three readings agree within 2 px (0.16 mm).
+
+**Scale.** Vertex crossings beside the axis in panel (a): surface 1 to 18A is 987.5 px for 80.466 mm (81.5 µm/px); surfaces 1 to 6 is 165.5 px for 13.495 mm (81.5 µm/px); surfaces 7 to 16 is 268.5 px for 21.870 mm (81.5 µm/px). Panel (b) gives 81.1 and 81.3 µm/px on the same two group spans. A scale of 81.3 µm/px was used. Each rim is half the distance between the top and bottom line centres, which removes the axis-position error (the scanned axis tilts by about 3 px across the panel).
+
+**Measurements and decisions.**
+
+| Surface | Stored sd, mm | Figure, mm | Figure/stored | New sd, mm | Evidence |
+|---|---:|---:|---:|---:|---|
+| 1 | 14.5 | 14.7 | 1.02 | 14.5 | Flat front face to the outside of the drawn blank; inside noise, kept |
+| 2 | 14.5 | 11.9 | 0.82 | 12.6 | The concave face ends at a flat rear shoulder, and the blank continues flat to 14.7 mm; raised to the engine-field floor |
+| 3A | 12.2 | 11.9 | 0.97 | 12.2 | L12 outside diameter; kept |
+| 4A | 12.2 | 10.9 | 0.89 | 11.5 | The curve ends at a small flat step up to the 11.9 mm outside diameter; raised to the engine-field floor |
+| 5 / 6 | 11.4 | 11.0 | 0.96 | 11.4 | Square rim; kept |
+| 7 / 8 | 6.7 | 6.5 | 0.96 | 6.7 | Square rim; kept |
+| 10 | 5.8 | 5.6 | 0.97 | 5.8 | Kept |
+| 11 | 5.8 | 5.6 / 5.4 | 0.97 / 0.93 | 5.8 | Cemented junction, with L22 drawn about 0.2 mm taller than L23; inside noise, kept |
+| 12 | 5.8 | 5.4 | 0.93 | 5.8 | Kept with its cemented partner |
+| 13 / 14 | 7.1 | 6.9 | 0.97 | 7.1 | Kept |
+| 15 / 16 | 8.1 | 7.8 | 0.96 | 8.1 | Kept |
+| 17A / 18A | 10.4 | 10.1 | 0.97 | 10.4 | Kept |
+
+The median figure/stored ratio is 0.965, and every rim not discussed below sits within 0.93–0.97 of it. That is consistent with a uniform outer-ink reading when the values were first set: the shape is right, and these rims stay as noise. The neighbour order L21 < L24 < L25 < L3 < L13 < L12 < L11 matches the figure. The two rear faces of the front group were the only clear shape departures.
+
+**Floors.** No stored rim clipped the axial f-number beam or the corner chief ray before the pass. For the figure's 11.9 mm, surface 2 would lower the engine's paraxial wide-end field estimate (halfField) from 40.28° to 38.87°. Trial values show 12.51 mm is the least value that keeps 40.28° (limited by 3A), so surface 2 takes 12.6 mm. Likewise 4A at 11.4 mm gives 40.04°, and at 11.5 mm it keeps 40.28°. Real-ray trace at the patent image height (ω 41.59°/25.14°/14.88° reaching 11.45 mm): at surface 2 the unvignetted full-field bundle reaches 12.27 mm, the chief ray 10.62 mm and the f/3.63 axial marginal ray 3.57 mm. At 4A the same three reach 11.41, 9.65 and 3.87 mm. The pupil-seeded root search gives bundle heights of 12.32 mm and 11.45 mm. Both new rims therefore add no vignetting.
+
+**Results after the edit.** The geometry validator reports no errors with default limits. No image-circle row is undersized. Traced corner coverage is 100% at all 201 zoom stations. The real-ray clearance trace shows no clipped axial beam or blocked chief ray at image heights 11.45 mm or 10.815 mm, and its per-surface ray heights are identical to the baseline. Engine halfField stays 40.28°/29.14°/16.76° and the f-number stays 3.63/4.48/5.76 at the three printed stations; the stop radius stays 4.922 mm at wide. The engine vignetting curves are unchanged at every sampled field: 87.5% at 41.6° wide, and 98.9–103.4% (sampling-level values) everywhere else. The maximum rim angle falls from 63.12° (surface 2 at 14.5 mm) to 50.81° (surface 2 at 12.6 mm). Minimum element thickness 1.3105 mm, maximum shared-gap fraction 0.8012 and the 0.2312 mm 2/3A clearance are unchanged, because the 2/3A shared band still ends at 3A's 12.2 mm. Render diagnostics: nine bodies and zero trims over 33 zoom positions. At the new 4A rim the aspheric departure from the same-radius sphere is −0.898474 mm and the rim slope is 48.241938°, with no slope reversal out to 12.2 mm; the analysis table now quotes these values.
+
+**Live render.** At 14.29, 24.24 and 41.19 mm, L11's rear rim now ends at L12's front corner, as in all three figure panels, instead of wrapping over L12. The renderer joins unequal rims with a straight line, so L11's rectangular blank appears as a bevel from 14.5 mm to 12.6 mm, and L12's rear step appears as a short bevel.
+
+**Manufacturer diagram.** The coordinator's copy of the Olympus construction drawing (a small third-party reproduction, unspecified zoom state) shows 9 elements in 8 groups. It marks aspherical elements 2 (L12) and 9 (L3), ED glass at element 5 (L22) and HR glass at element 6 (L23), cemented as one group. Count, grouping and special-element positions agree with the data. Its L11 also appears as a flat-fronted blank whose rear curve ends inside the outer rim. Its rough rim ratios (L3/L11 ≈ 0.68, L25/L11 ≈ 0.56, L21/L11 ≈ 0.46) agree with the model's 0.72/0.56/0.46 within the image's blur.
+
+**Open limitations.** The figure's 11.9 mm end of surface 2 and 10.9 mm end of 4A are not adopted; the engine-field floor keeps them about 6% higher. The renderer cannot draw L11's flat rear shoulder. All semi-diameters remain figure estimates, not published clear apertures.
+
+### Coordinator glass and metadata changes
+
+**Data file (coordinator).** The key, name, subtitle and specs moved to the corpus form: key `olympus-mzuiko-digital-ed-14-42mm-f35-56`, the hyphenated display name and the subtitle "JP 2010-186010 A — Numerical Example 1". Glass labels now read "<glass> (<VENDOR> catalog equivalent; production supplier unspecified)": OHARA S-LAH66, S-LAH55, S-FPL51, S-BAH27, S-NSL3 and the plate's S-BSL7, plus HOYA FDS90 and TAFD25. The resolved catalog rows are unchanged. L12 and L3 read "Unmatched (optical plastic, printed nd 1.52542 / νd 55.78; polymer unpublished)". L22 (element 5) carries an inferred APD flag, because Olympus lists one ED element cemented to the HR element that follows. The focus description now states infinity only, the piecewise-linear G1–G2 law with G2–G3 solved for infinity focus, and the marketed 0.25 m minimum focus distance. No optical value changed.
+
+**Analysis edits to match.**
+- The title and product name now use the corpus form. The metadata block has the formatted patent number and the romanized inventors from the data file, with the Japanese names in brackets, and it names the US family publication.
+- Every element glass line uses the new labels.
+- L22 and L23 are named as Olympus's ED and HR elements, and L22's anomalous dispersion is called inferred.
+- The glass table was rebuilt with a modeled-equivalent column, and the section gained an ED/HR pairing paragraph.
+- The focus and zoom-path prose was aligned with the new description.
+- Package-process wording was removed: proxy, runtime replay, evidence and hash references, the pinned-revision and review-status lines, and the dated revalidation addendum. That addendum's source facts (the 198 unpublished positions, the D6/D16 laws, the 0.0785 mm largest residual and the MTF scope) were folded into the limits section.
+- The US family publication was added as source 7.

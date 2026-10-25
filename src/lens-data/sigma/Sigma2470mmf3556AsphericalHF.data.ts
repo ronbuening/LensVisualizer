@@ -4,7 +4,7 @@ const LENS_DATA = {
   "key": "sigma-24-70mm-f35-56-aspherical-hf",
   "maker": "Sigma",
   "name": "SIGMA 24-70mm f/3.5-5.6 ASPHERICAL HF",
-  "subtitle": "JP2002236254A Example 2; architectural research correlation; derived image distance",
+  "subtitle": "JP 2002-236254 A — Numerical Example 2; derived back focus",
   "catalog": {
     "lensMounts": [
       "sigma-sa",
@@ -15,11 +15,10 @@ const LENS_DATA = {
     ],
     "imageFormat": "135-full-frame",
     "specs": [
-      "9 GLASS BODIES / 7 GROUPS",
-      "1 EXPLICIT HYBRID RESIN LAYER",
-      "NATIVE 25.0 / 49.4 / 67.6mm",
-      "NATIVE f/3.62 / 5.05 / 5.79",
-      "INFINITY STATIONS ONLY"
+      "9 ELEMENTS / 7 GROUPS",
+      "DESIGN f = 25.0-67.6 mm",
+      "DESIGN F/3.62-5.79",
+      "1 ASPHERICAL SURFACE (HYBRID RESIN LAYER)"
     ],
     "elementCount": 9,
     "groupCount": 7,
@@ -53,11 +52,11 @@ const LENS_DATA = {
     "errata": [
       {
         "status": "unresolved",
-        "note": "SP2-to-image distance absent; explicit approved DERIVED35.73mm constant adopted. Native Gaussian residuals retained."
+        "note": "The patent does not print the distance from the second flare stop SP2 to the image. The model uses 35.73 mm, derived from the printed prescription; paraxial focus at the three printed stations agrees within 0.05 mm."
       },
       {
         "status": "unresolved",
-        "note": "Native beta3T1.048550 differs from printed1.04; source prescription and actual inequality retained without repair."
+        "note": "The patent prints 1.04 for G3's tele-end lateral magnification; the printed prescription gives 1.0486. The prescription is kept as printed."
       }
     ]
   },
@@ -74,10 +73,6 @@ const LENS_DATA = {
       "glass": "TAF3 (HOYA coordinate-equivalent class; supplier unconfirmed)",
       "role": "Source material in G1. Standalone in-air focal length does not isolate individual aberration contribution.",
       "diagramLabel": "L1",
-      "dPgF": -0.007625246920347939,
-      "nC": 1.7990028134381746,
-      "nF": 1.8162964847398022,
-      "ng": 1.8259456918964416
     },
     {
       "id": 2,
@@ -92,10 +87,6 @@ const LENS_DATA = {
       "role": "Source material in G1. Standalone in-air focal length does not isolate individual aberration contribution.",
       "diagramLabel": "L2",
       "cemented": "H1",
-      "dPgF": -0.009846480909342592,
-      "nC": 1.7677965599868546,
-      "nF": 1.7833635358903,
-      "ng": 1.7919309474684497
     },
     {
       "id": 3,
@@ -123,10 +114,6 @@ const LENS_DATA = {
       "glass": "S-TIM25 (OHARA coordinate-equivalent class; supplier unconfirmed)",
       "role": "Source material in G1. Standalone in-air focal length does not isolate individual aberration contribution.",
       "diagramLabel": "L3",
-      "dPgF": 0.009074989489332275,
-      "nC": 1.6666069902634284,
-      "nF": 1.6875638891778393,
-      "ng": 1.7001146152587476
     },
     {
       "id": 5,
@@ -140,10 +127,6 @@ const LENS_DATA = {
       "glass": "K-LaK14 (SUMITA coordinate-equivalent class; supplier unconfirmed)",
       "role": "Source material in G2. Standalone in-air focal length does not isolate individual aberration contribution.",
       "diagramLabel": "L4",
-      "dPgF": -0.006463998537767468,
-      "nC": 1.6929936080006105,
-      "nF": 1.705513134157419,
-      "ng": 1.7123214628278374
     },
     {
       "id": 6,
@@ -158,10 +141,6 @@ const LENS_DATA = {
       "role": "Source material in G2. Standalone in-air focal length does not isolate individual aberration contribution.",
       "diagramLabel": "L5",
       "cemented": "D1",
-      "dPgF": 0.0043277423652714475,
-      "nC": 1.4853439973490137,
-      "nF": 1.4922847141496296,
-      "ng": 1.4959636504067733
     },
     {
       "id": 7,
@@ -176,10 +155,6 @@ const LENS_DATA = {
       "role": "Source material in G2. Standalone in-air focal length does not isolate individual aberration contribution.",
       "diagramLabel": "L6",
       "cemented": "D1",
-      "dPgF": -0.0020052379708221935,
-      "nC": 1.8274203039181818,
-      "nF": 1.8497525931192302,
-      "ng": 1.862684242793315
     },
     {
       "id": 8,
@@ -193,10 +168,6 @@ const LENS_DATA = {
       "glass": "BSC7 (HOYA coordinate-equivalent class; supplier unconfirmed)",
       "role": "Source material in G2. Standalone in-air focal length does not isolate individual aberration contribution.",
       "diagramLabel": "L7",
-      "dPgF": -0.0011984214163941465,
-      "nC": 1.5143187028334535,
-      "nF": 1.5223687377291046,
-      "ng": 1.5266697166407783
     },
     {
       "id": 9,
@@ -211,10 +182,6 @@ const LENS_DATA = {
       "role": "Source material in G3. Standalone in-air focal length does not isolate individual aberration contribution.",
       "diagramLabel": "L8",
       "cemented": "D2",
-      "dPgF": -0.0008243639960361371,
-      "nC": 1.6545440183736764,
-      "nF": 1.6674914363199054,
-      "ng": 1.6747100107136248
     },
     {
       "id": 10,
@@ -229,10 +196,6 @@ const LENS_DATA = {
       "role": "Source material in G3. Standalone in-air focal length does not isolate individual aberration contribution.",
       "diagramLabel": "L9",
       "cemented": "D2",
-      "dPgF": -0.009846480909342592,
-      "nC": 1.7677965599868546,
-      "nF": 1.7833635358903,
-      "ng": 1.7919309474684497
     }
   ],
   "surfaces": [
@@ -296,14 +259,14 @@ const LENS_DATA = {
       "label": "9",
       "R": 30.6,
       "d": 3.55,
-      "sd": 11,
+      "sd": 11.5,
       "medium": 5
     },
     {
       "label": "10",
       "R": -265.04,
       "d": 0.15,
-      "sd": 11
+      "sd": 11.5
     },
     {
       "label": "11",
@@ -335,7 +298,7 @@ const LENS_DATA = {
     {
       "label": "15",
       "R": -27.34,
-      "sd": 10
+      "sd": 8.6
     },
     {
       "label": "16",
@@ -1373,7 +1336,7 @@ const LENS_DATA = {
   "focus": {
     "closeFocusM": 0.4,
     "step": 1,
-    "description": "INFERRED CONTINUOUS INFINITY CAM: three source native knots exact. d7/d8 linear control drivers; d15 complementary to d8 preserves source iris–G3 coupling. Image gap solved paraxially with native residual retained. Intermediate nodes unpublished, not factory cam measurements. No finite focus reconstruction. Omitted source SP2 flare stop remains an explicit limitation; no optical source changes."
+    "description": "The patent prints infinity spacings at wide, middle and tele; focusing is not modeled. The intermediate zoom positions are an inferred reconstruction, not the factory cam: the G1–stop and stop–G2 spacings follow linear laws between the printed stations, the stop moves with G3 as the printed spacings require, and the back focus is solved for infinity focus at each position. The patent's second flare stop is not modeled. The marketed minimum focus distance is 0.4 m."
   },
   "gaps": {
     "7": {

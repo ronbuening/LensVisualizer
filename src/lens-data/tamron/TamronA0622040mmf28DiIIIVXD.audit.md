@@ -139,3 +139,58 @@ The historical0.986 gap-sag allowance is not used for this candidate. The curren
 5,005 geometry states pass without errors or render trimming; all1,001 infinity image-plane checks pass unchanged gates. All105 reference-MTF fields converge with per-field limits retained (minimum50lp/mm); photopic MTF remains unavailable because partial-dispersion evidence is absent, and finite-conjugate MTF is not certified. Original source association, glass-class ambiguity, rounding sensitivity, physical-plane residuals and incomplete production equivalence remain qualifications. No engine or validation weakening.
 
 Additional final independent review: pure-Python d-line paraxial replay includes the source rear cover plate and confirms1,001zoom maximum residual0.090697601mm, monotonic EFL20.601561735→38.800686745mm and source-directed G4 motion. All5,555 default UI rays across101zooms×5focus states are clear. Five off-node MTF samples add25 converged reference fields (minimum returned band50lp/mm); photopic and finite-conjugate unavailability remains explicit.
+
+## 2026-10-25 — Semi-diameter pass against the patent figure
+
+Source: `patents/JP2022131391A.pdf`, PDF page 44, Figure 17, wide-angle infinity panel (top row), the cross-section of Numerical Example 5. The sheet is a 318 ppi bilevel raster; it was measured at 318 dpi on the lower half, which carries no leader lines, and every rim was read on the upper half as well (the two sides agree within 2 px, 0.16 mm). Line centres were used throughout.
+
+Scale: the vertex crossings next to the axis sit at x = 598 px (S1), 1075 px (S10), 1243.5 px (S12) and 1786 px (S24). Against the wide-infinity prescription, S1 to S24 is 93.475 mm over 1188 px (0.07868 mm/px), S1 to S10 is 37.603 mm over 477 px (0.07883 mm/px) and S12 to S24 is 42.675 mm over 542.5 px (0.07866 mm/px). The pass uses 0.0787 mm/px. As a check on the vertical scale, L5's front flange sits where surface 9's prescribed sag reaches 10.0 mm, and that matches the drawn height. The drawn edge thicknesses of L3 (0.79 mm) and L10 (0.67 mm) are close to the prescription's 0.83 mm and 0.88 mm at the modeled rims.
+
+Several elements are drawn with flat mounting flanges: L1 rear, L2 rear, L5 front, L9 rear, L11 rear and L12 front. Where a curved face ends at a flange, the figure value below is the optical extent, not the outer rectangle. L2's front face meets L1's flange at 15.95 mm, and its outer 15.95–17.4 mm zone is the contact band. L4's rear face is drawn out to 11.25 mm, but L5's flange touches it from about 10.0 mm outward.
+
+| Surface | Before (mm) | Figure (mm) | After (mm) | Evidence and decision |
+|---|---:|---:|---:|---|
+| 1 | 21.5 | 21.8 | 21.5 | Within noise (1.4%) |
+| 2 | 15.8 | 16.0 (curve meets L1 flange) | 15.8 | Within noise; 15.86 mm is also the 0.97 limit against S3 |
+| 3 | 15.44 | 15.95 (contact boundary); outer edge 17.4 | 15.44 | Optical extent within noise (3%); outer band is L1-flange contact |
+| 4 | 14.2 | 14.05 (curve meets flange) | 14.2 | Within noise |
+| 5A / 6 | 15 / 15 | 15.2 / 15.2, square edge | 15 / 15 | Within noise |
+| 7 | 11.3 | 11.25 | 11.3 | Agrees |
+| 8 | 10.08499 | about 10.0 optical; face drawn to 11.25 | 10.16, applied together with checks.gapSagFrac 0.99 | Axial floor: the tele f/2.91 marginal ray reaches 10.156 mm, so 10.08499 clipped it by 0.07 mm |
+| 9 | 10.2 | 10.0 (curve meets L5 flange) | 10.2 | Floor 10.157 mm governs over the figure |
+| 10 | 11.5 | 11.5 | 11.5 | Agrees |
+| 12A / 13A | 12.7 / 12.7 | 12.75, square edge | 12.7 / 12.7 | Agrees |
+| 14 / 15 / 16 | 12.7 | 12.6 / 11.5–12.6 / 12.6 | 12.7 | Agrees; L7 steps in to about 11.5 mm on the cemented face |
+| 17 | 10.4 | 10.4 | 10.4 | Agrees |
+| 18 | 10.4 | 8.7–9.0 (curve meets flat flange) | 9.0 | Figure: 15% departure. The direct height reads 8.66 mm; the flange position with the prescribed sag gives 8.97 mm. Axial floor is 8.84 mm |
+| 19 / 20 | 14.2 / 14.2 | 14.2, short edge | 14.2 / 14.2 | Agrees |
+| 21 | 13 | 13.65 | 13 | Within noise (4.8%) |
+| 22 | 13 | 12.1–12.5 (curve meets flange) | 13 | Within noise (4–7%) |
+| 23A | 12 | 12.1–12.5 (meets S22 at the flange plane) | 12 | Within noise |
+| 24A | 14.5 | 14.7 | 14.5 | Within noise |
+
+The surface-8 rim cannot be fixed under the old 0.97 cross-gap allowance. Surfaces 8 and 9 both need at least 10.156 mm. At that shared height their sags already use 2.264 mm (98.4%) of the 2.300 mm vertex gap. At 10.16 mm they use 2.2655 mm (98.5%), which leaves 0.034 mm of air, and the faces do not cross. The smallest two-decimal allowance that admits the rim is 0.99, so the rim and the allowance change together. Under 0.99, surface 8 may go as high as 10.18 mm. The figure's square-cut L4 (S8 11.3 mm with S9 10.17 mm) would also pass at 0.99. It was not adopted, because the procedure raises only the clipping surface and only as far as the stated ray.
+
+With surface 8 at 10.16 mm and the 0.99 allowance, the validator reports no errors. The image-circle floor reports no undersized surface. Traced corner coverage is 100% at all 101 zoom stations. The aperture census shows all 101 stations within 3% of f/2.91 with no rim limit. The exact meridional trace shows no axial clip or blocked chief ray at infinity or at the 300 mm near state. The engine half-field (37.31° at wide, limited by surface 2), the f/2.91 stop radii (7.949, 9.349 and 11.020 mm) and the field coverage are unchanged by both edits.
+
+Surface 18 at 9.0 mm adds real off-axis vignetting at L9. The modeled one-side clip of the full-field bundle at surface 18 rises from 31% to 49%. Engine geometric transmission at the field edge falls from 110.4% to 102.4% at 37.8° in the middle of the zoom range. At the tele end it falls from 108.5% to 97.2% at 28.6° (values are relative to on-axis). The wide end is unchanged. The default on-axis rays are unaffected because the axial ray peaks at 8.84 mm there. At the tele end, at infinity and at 300 mm, the upper ray of the app's off-axis fan (20.1°) now stops at surface 18.
+
+The live render was checked at 20.603, 28.305 and 38.803 mm, each at infinity and at the near state. It shows no overlaps and no render trims. The renderer joins unequal front and rear rims with a straight edge, so the drawn flanges of L1, L2, L5, L9, L11 and L12 appear as chamfers. A render-versus-figure overlay of the wide panel was compared by eye. It agrees on every element height, apart from the flange outlines and L11's front rim, which is 0.65 mm low (inside the noise band).
+
+The manufacturer's construction diagram (tamron.com) shows 12 elements in 11 groups. It marks LD elements at positions 2, 6, 8 and 10, moulded-glass aspherical elements at 6 and 12, a hybrid aspherical element at 3, and elements 7 and 8 cemented. That matches the patent's 1.497 / 81.6 glasses on L2, L6, L8 and L10, its asphere positions and its single cemented pair. On that diagram, L9's concave rear face also ends at a stepped flange at about 0.87 of its outer rim. The patent gives 9.0 / 10.4. L2's outer edge is about 0.77 of L1's; the patent figure gives 0.80. The maker diagram was used only as a proportion check.
+
+Open limitations: the pass makes no asphere change, so the departure table is unchanged. The off-axis transmission counts in the analysis predate the surface-18 change and were not recomputed.
+
+### Coordinator glass and metadata changes
+
+- Surface 8 is now 10.16 mm and `checks.gapSagFrac` is 0.99, applied as one pair. With the pair, the validator reports no errors, traced corner coverage holds at 101 of 101 stations and no axial clip remains. This departs from the package's recorded qualification, which retained the S8 reduction to 10.08499 mm under the 0.97 allowance. That reduction clipped the tele f/2.91 axial beam, which the procedure treats as a defect. The analysis now gives 10.16 mm and 0.99 and describes the reduction as superseded.
+- Every element now carries an exact catalog-coordinate label of the form "glass (vendor catalog equivalent; production supplier unspecified)":
+  - HOYA: TAC8 (L1), FCD1 (L2, L8, L10), M-FCD1 (L6, molded aspherical), E-FD15 (L7), FC5 (L9, L11) and M-LAC130 (L12, molded aspherical).
+  - OHARA: S-TIL25 (L3), S-NBH57 (L4) and S-LAL7 (L5).
+  - The cover glass is labelled SCHOTT N-BK7.
+  - All 12 element labels now resolve; none did before, when the labels were class-only.
+  - L2, L6, L8 and L10 carry an inferred APD flag. They are the four elements Tamron's construction diagram shades as LD.
+  - The analysis glass table and the element headings follow these labels. The analysis also records that OHARA's 2026-07-01 catalog lists S-LAL7 as obsolete.
+- The name is now "TAMRON 20-40mm f/2.8 Di III VXD (A062)" and the subtitle "JP 2022-131391 A — Numerical Example 5". The specs read 12 elements / 11 groups, design f = 20.60–38.80 mm, design F/2.91, 5 aspherical surfaces on 3 elements and 4 LD elements. Mounts are now Sony FE and Nikon Z; the Nikon Z version was released on 2026-10-22 with the same 12/11 construction.
+- The focus description was rewritten. The analysis's intermediate-zoom focus table was recomputed from the current gaps to match it. With G4 solved for infinity, the infinity Gaussian focus at zoom 0.25 and 0.75 is 0.070 and 0.028 mm beyond the plane; the superseded table had shown shifts of 0.48 and 0.72 mm. The old infinity-readout discrepancy of 0.94 mm is gone, because each of the 101 stations stores its own focal length.
+- Package-process wording was removed from the analysis: version-pinned code links, the DPMA PDF link, process status text, and "native" and "candidate" phrasing. The source facts, numbers and qualifications were kept.

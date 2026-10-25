@@ -15,26 +15,33 @@ This prescription is a qualified design correlation to the Olympus
 M.ZUIKO DIGITAL ED 12–50mm F3.5–6.3 EZ, rather than a manufacturer-confirmed
 identification of its exact production prescription.
 The original patent's bibliographic header and continuation identify all four
-inventors; the numerical example is retained at its native scale.
-The supporting evidence converges as follows:
+inventors; the numerical example is used at its published scale, without
+rescaling. The supporting evidence converges as follows:
 
 1. The example contains ten powered lens elements in nine air-separated
    components, matching the manufacturer brochure's optical count.
-2. L2, L5 and L8 each have two aspheric faces. The brochure identifies two
-   aspherical elements and a DSA element. This supports the structural
-   correlation without independently identifying the patent's materials.
-3. The patent's short-to-long range is 12.243–48.956 mm, close to the marketed
+2. L2, L5 and L8 each have two aspheric faces, six aspherical surfaces on
+   three elements. The brochure identifies two aspherical elements and a DSA
+   element, and OM Digital Solutions' construction diagram shades element 2
+   (L2) as the DSA element and elements 5 and 9 (L5, L8) as aspherical. This
+   supports the structural correlation without identifying the materials.
+3. The same diagram shades element 6 (L6a) as the HR (high-refractive-index)
+   element and element 7 (L6b) as the one ED element, cemented together. The
+   patent's pair is a high-index negative lens (nd 1.834) cemented to a
+   high-Abbe positive lens (νd 81.54), so the positions agree.
+4. The patent's short-to-long range is 12.243–48.956 mm, close to the marketed
    12–50 mm. These are deliberately separate design and marketing quantities.
-4. The native nominal f-numbers are 3.64–6.48, compared with marketed
-   F3.5–6.3. The mismatch is not removed by changing the source iris target.
-5. Numerical Example 2 includes infinity and nominal 0.35 m focus at all
+5. The patent's nominal f-numbers are 3.64–6.48, compared with marketed
+   F3.5–6.3. The model keeps the patent's values rather than adjusting the
+   iris to the marketed numbers.
+6. Numerical Example 2 includes infinity and nominal 0.35 m focus at all
    three zoom stations. The manufacturer specifies 0.35 m normal focusing.
-6. A negative singleton G2 performs internal focus and wobbling in the
+7. A negative singleton G2 performs internal focus and wobbling in the
    patent. The manufacturer describes a linear MSC focus drive. The
    architecture is compatible, although the optical table does not specify
    the production actuator's dimensions or control law.
-7. The application predates the December 2011 launch announcement. The
-   preserved official launch capture records a January 2012 release plan.
+8. The application predates the December 2011 launch announcement, which
+   records a January 2012 release plan.
 
 The brochure identifies the Micro Four Thirds system. Its marketed field is
 84–24°, whereas the patent's full field is 89.71–24.46°.
@@ -45,8 +52,9 @@ number. The patent permits electronic wide-end barrel-distortion correction
 correction map.
 
 The product also offers a separate macro mode. The brochure's 0.20 m macro
-distance is excluded from this normal-focus transcription; the archived
-launch capture describes a fixed telephoto-region macro setting without
+distance is excluded from this normal-focus transcription, and the macro
+mode is not modeled; the launch announcement describes a fixed
+telephoto-region macro setting without
 giving its exact focal length.
 No macro spacing is inferred from the six supplied states, and no additional
 example or sibling patent supplies missing values.
@@ -118,15 +126,15 @@ patent classification.
 ## Element-by-Element Analysis
 
 The following focal lengths are standalone thick-element values in air,
-computed from the actual data-file radii, thicknesses and native d-line indices.
-For the cemented pair this means mathematically isolating each component;
-neither isolated value is the power of the shared interface in situ.
-Every named catalog glass below is a coordinate-compatible spectral proxy.
-A manufacturer or melt identity is not established by its label.
+computed from the prescription radii and thicknesses and the patent's d-line
+indices. For the cemented pair this means mathematically isolating each
+component; neither isolated value is the power of the shared interface in situ.
+Each named glass below is a catalog equivalent matched to the patent's nd/νd.
+The production supplier and melt are unspecified.
 
 ### L1 — Negative Meniscus, convex to object
 
-nd = 1.77250, νd = 49.60. Glass: S-LAH66 class (OHARA). f = -34.181234 mm.
+nd = 1.77250, νd = 49.60. Glass: S-LAH66 (OHARA catalog equivalent; production supplier unspecified). f = -34.181234 mm.
 
 L1 opens the fixed negative G1 with a stronger rear-surface curvature than
 front-surface curvature. Together with negative L2 and positive L3 it gives
@@ -138,20 +146,22 @@ mechanical outline is not modeled as extra refractive material.
 
 ### L2 — Aspherical Negative Meniscus, convex to object
 
-nd = 1.58313, νd = 59.38. Glass: S-BAL42 class (OHARA). f = -38.690727 mm.
+nd = 1.58313, νd = 59.38. Glass: S-BAL42 (OHARA catalog equivalent; production supplier unspecified). f = -38.690727 mm.
 
-Both faces, 3A and 4A, are aspheric. This negative element introduces
-non-spherical shape freedom within the front negative group before the
-moving focus singleton. The sign of its paraxial power remains negative;
+Both faces, 3A and 4A, are aspheric, and the manufacturer's construction
+diagram shades this position as the lens's DSA element. This negative
+element introduces non-spherical shape freedom within the front negative
+group before the moving focus singleton. The sign of its paraxial power remains negative;
 higher-order shape terms do not alter the vertex curvatures used to compute
 that power. The rear face has substantial departure at the inferred rim,
 so a spherical drawing surrogate would misrepresent both its outline and
-its clearance to the adjacent surface. The selected S-BAL42 proxy does not
-establish an S-grade rather than L-grade production molding glass.
+its clearance to the adjacent surface. The S-BAL42 catalog equivalent does
+not establish whether production used an S-grade or an L-grade (low-Tg
+molding) glass.
 
 ### L3 — Positive Meniscus, convex to object
 
-nd = 1.80810, νd = 22.76. Glass: S-NPH1 class (OHARA). f = +37.806978 mm.
+nd = 1.80810, νd = 22.76. Glass: S-NPH1 (OHARA catalog equivalent; production supplier unspecified). f = +37.806978 mm.
 
 L3 is the positive member of the otherwise negative front group. Its low
 Abbe number contrasts with the two preceding negative members and provides
@@ -162,7 +172,7 @@ G1 elements remain at fixed internal separations during the modeled motions
 
 ### L4 — Negative Meniscus, convex to image
 
-nd = 1.74100, νd = 52.64. Glass: S-LAL61 class (OHARA). f = -44.910700 mm.
+nd = 1.74100, νd = 52.64. Glass: S-LAL61 (OHARA catalog equivalent; production supplier unspecified). f = -44.910700 mm.
 
 L4 alone forms G2, so its isolated focal length also equals the complete
 focus-group focal length. Its negative meniscus bends with the convex face
@@ -173,9 +183,10 @@ actuator performance cannot be derived from an optical coordinate alone.
 
 ### L5 — Aspherical Biconvex Positive
 
-nd = 1.58313, νd = 59.38. Glass: S-BAL42 class (OHARA). f = +17.308549 mm.
+nd = 1.58313, νd = 59.38. Glass: S-BAL42 (OHARA catalog equivalent; production supplier unspecified). f = +17.308549 mm.
 
-L5 is the positive front subgroup of G3 and carries aspheres 9A and 10A.
+L5 is the positive front subgroup of G3 and carries aspheres 9A and 10A; the
+manufacturer's diagram shades it as an aspherical element.
 It precedes the aperture stop, while the cemented pair follows the stop.
 The ratio of its focal length to that of G3 is about 0.940743, satisfying
 condition (8). The positive front subgroup consequently accounts for most
@@ -185,9 +196,11 @@ aberration contribution has been isolated numerically.
 
 ### L6a — Negative Meniscus of the cemented L6 pair
 
-nd = 1.83400, νd = 37.16. Glass: S-LAH60 class (OHARA). f = -13.930981 mm.
+nd = 1.83400, νd = 37.16. Glass: S-LAH60 (OHARA catalog equivalent; production supplier unspecified) — HR element. f = -13.930981 mm.
 
-L6a is the high-index negative component of the cemented L6 pair. Its rear
+L6a is the high-index negative component of the cemented L6 pair, and the
+manufacturer's construction diagram shades it as the lens's one HR
+(high-refractive-index) element. Its rear
 face is the same physical interface as L6b's front face, source surface 13.
 There is no artificial air film or generic cement layer. The source's
 constraints on the rear G3 subgroup's negative material include its index
@@ -197,33 +210,37 @@ arguments, not measurements of this single component in isolation.
 
 ### L6b — Biconvex Positive of the cemented L6 pair
 
-nd = 1.49700, νd = 81.54. Glass: S-FPL51 class (OHARA). f = +14.725695 mm.
+nd = 1.49700, νd = 81.54. Glass: S-FPL51 (OHARA catalog equivalent; production supplier unspecified) — ED element. f = +14.725695 mm.
 
-The positive low-dispersion partner satisfies the high-Abbe condition (9).
-Its νd = 81.54 is compatible with an S-FPL51-class ED crown, although neither
-the numerical table nor coordinate matching proves that production used
-that named melt. L6a and L6b together are only weakly positive when isolated
-as a cemented block. Their opposing powers and contrasting dispersion offer
+The positive low-dispersion partner satisfies the high-Abbe condition (9),
+and the manufacturer's construction diagram shades it as the lens's one ED
+element, cemented to the HR element ahead of it. Its νd = 81.54 matches the
+S-FPL51 catalog coordinate, although neither the numerical table nor the
+coordinate match proves that production used that named glass. The model
+therefore marks its anomalous partial dispersion as inferred from the
+catalog equivalent rather than published. L6a and L6b together are only
+weakly positive when isolated as a cemented block. Their opposing powers and contrasting dispersion offer
 chromatic balancing freedom; that does not establish apochromatic performance
 or a measured secondary-spectrum cancellation.
 
 ### L7 — Negative Meniscus, concave to image
 
-nd = 1.83481, νd = 42.71. Glass: S-LAH55 class (OHARA). f = -20.848917 mm.
+nd = 1.83481, νd = 42.71. Glass: S-LAH55 (OHARA catalog equivalent; production supplier unspecified). f = -20.848917 mm.
 
 L7 provides the strong negative contribution in G4. The source's shape
 ratio condition (12), index condition (13), and Abbe condition (14) apply to
 this negative component. Paragraphs ¶0057–0059 connect the preferred ranges
 to wide-end distortion, field curvature, package size and glass cost.
-The qualified S-LAH55 proxy must not silently become S-LAH55V: a family-like
-name alone is insufficient to establish spectral equivalence.
+S-LAH55 is kept distinct from S-LAH55V; the similar name alone does not
+establish the same dispersion.
 
 ### L8 — Aspherical Positive Meniscus, explicitly plastic
 
-nd = 1.53071, νd = 55.69. Glass: Unmatched plastic (polymer and spectrum unknown). f = +192.151127 mm.
+nd = 1.53071, νd = 55.69. Glass: Unmatched (optical plastic per the patent; polymer unpublished). f = +192.151127 mm.
 
 The patent explicitly states that L8 is made of plastic (¶0091). Both
-faces, 17A and 18A, are aspheric, and the vertex-based standalone power is
+faces, 17A and 18A, are aspheric; the manufacturer's diagram shades this
+position as an aspherical element. The vertex-based standalone power is
 weakly positive. The highly negative conic constants and polynomial terms
 shape the peripheral surface while the vertex radii preserve that weak
 paraxial power. The polymer is unidentified. A catalog mineral-glass
@@ -233,56 +250,54 @@ Unmatched and uses only the declared nd/νd fallback.
 
 ### L9 — Positive Meniscus, convex to image
 
-nd = 1.75211, νd = 25.05. Glass: FF8 class (HOYA). f = +45.180474 mm.
+nd = 1.75211, νd = 25.05. Glass: FF8 (HOYA catalog equivalent; production supplier unspecified). f = +45.180474 mm.
 
 L9 is the positive rear singleton G5 and is nominally fixed relative to
 the image. The patent explicitly identifies the imageward-convex meniscus
 (¶0091). Condition (15) bounds its Abbe number; ¶0061 associates G5 with
-lateral-color correction particularly toward the telephoto end. The selected
-HOYA FF8 class is a coordinate-compatible proxy, not a manufacturer attribution.
+lateral-color correction particularly toward the telephoto end. FF8 is a
+HOYA catalog equivalent, not a supplier attribution.
 The following camera plate is not part of L9 or of the ten-element count.
 
 ## Glass Identification and Selection
 
-The native table gives d-line refractive index and Abbe number, not supplier
-names. A fresh coordinate search covered CDGM, HIKARI, HOYA, OHARA, SCHOTT and
-SUMITA originals: 3,179 overlapping rows from catalog and optical-design
-formats, rather than 3,179 unique material formulations.
-Strict source-rounding matches and the broader runtime-compatible window
-are recorded separately. A runtime match is not an exact-coordinate proof.
+The patent's table gives d-line refractive index and Abbe number, not glass
+or supplier names. The names below are catalog equivalents chosen by matching
+those coordinates against the CDGM, HIKARI, HOYA, OHARA, SCHOTT and SUMITA
+catalogs; they do not establish the production supplier or melt.
 
-| Element | Native nd | Native νd | Selected spectral class | Qualification |
+| Element | nd | νd | Catalog equivalent | Role and qualification |
 |---|---:|---:|---|---|
-| L1 | 1.77250 | 49.60 | S-LAH66 | Coordinate-compatible proxy, supplier unproven |
-| L2 | 1.58313 | 59.38 | S-BAL42 | Coordinate-compatible proxy, supplier unproven |
-| L3 | 1.80810 | 22.76 | S-NPH1 | Coordinate-compatible proxy, supplier unproven |
-| L4 | 1.74100 | 52.64 | S-LAL61 | Coordinate-compatible proxy, supplier unproven |
-| L5 | 1.58313 | 59.38 | S-BAL42 | Coordinate-compatible proxy, supplier unproven |
-| L6a | 1.83400 | 37.16 | S-LAH60 | Coordinate-compatible proxy, supplier unproven |
-| L6b | 1.49700 | 81.54 | S-FPL51 | Coordinate-compatible proxy, supplier unproven |
-| L7 | 1.83481 | 42.71 | S-LAH55 | Coordinate-compatible proxy, supplier unproven |
-| L8 | 1.53071 | 55.69 | Unmatched plastic | Explicit plastic; spectrum unknown |
-| L9 | 1.75211 | 25.05 | FF8 | Coordinate-compatible proxy, supplier unproven |
-| Camera plate C | 1.51633 | 64.14 | S-BSL7 | Camera-side glass proxy, not lens element |
+| L1 | 1.77250 | 49.60 | S-LAH66 (OHARA) | Front negative meniscus; production supplier unspecified |
+| L2 | 1.58313 | 59.38 | S-BAL42 (OHARA) | Maker's DSA element; molding grade unspecified |
+| L3 | 1.80810 | 22.76 | S-NPH1 (OHARA) | High-dispersion positive of G1; production supplier unspecified |
+| L4 | 1.74100 | 52.64 | S-LAL61 (OHARA) | Focusing singleton; production supplier unspecified |
+| L5 | 1.58313 | 59.38 | S-BAL42 (OHARA) | Aspherical; same coordinate as L2 |
+| L6a | 1.83400 | 37.16 | S-LAH60 (OHARA) | Maker's HR element; high-index negative of the cemented pair |
+| L6b | 1.49700 | 81.54 | S-FPL51 (OHARA) | Maker's ED element; anomalous partial dispersion inferred from the catalog equivalent |
+| L7 | 1.83481 | 42.71 | S-LAH55 (OHARA) | High-index negative of G4; production supplier unspecified |
+| L8 | 1.53071 | 55.69 | Unmatched | Optical plastic per the patent; polymer unpublished |
+| L9 | 1.75211 | 25.05 | FF8 (HOYA) | High-dispersion rear positive; production supplier unspecified |
+| Camera plate C | 1.51633 | 64.14 | S-BSL7 (OHARA) | Camera-side plate, not a lens element |
 
-Several manufacturers offer overlapping coordinate families. The source
-coordinates are retained even where a selected catalog curve's reference
-index or Abbe value differs at its last digits. S- and L-prefixed OHARA
-families are not interchangeable merely because their tabulated coordinates
-are similar; the model uses S-BAL42 as a spectral proxy without asserting a
-production molding grade. L8's plastic designation takes precedence over any
-nearby mineral-glass catalog candidate.
+The chromatic pairing that matters most is the cemented L6 pair in G3: the
+HR negative L6a (νd 37.16) against the ED positive L6b (νd 81.54), whose
+ranges the patent sets in conditions (9)–(11). The patent's coordinates are
+kept even where a catalog curve's reference index or Abbe value differs in its
+last digits. S- and L-prefixed OHARA families are not interchangeable merely
+because their tabulated coordinates are similar, so the S-BAL42 equivalent does
+not assert a production molding grade for L2 or L5. L8's plastic designation
+takes precedence over any nearby mineral-glass coordinate.
 
-The pinned runtime resolves ten of the eleven material entries, counting the
-camera plate, to catalog curves. L8 is the one Abbe-only fallback, so the
-aggregate model dispersion quality remains Abbe-limited. The native
-prescription uses 587.6 nm; catalog reference-index checks use 587.5618 nm.
-That small convention difference is disclosed rather than interpreted as a
-source correction.
+Ten of the eleven materials, counting the camera plate, resolve to catalog
+dispersion curves. L8 uses only its nd/νd, so the model's dispersion for that
+element is Abbe-limited. The patent uses 587.6 nm; catalog reference indices
+are given at 587.5618 nm, a small convention difference rather than a source
+correction.
 
-No direct nC/nF/ng or ΔPgF values are attributed to the actual production
-materials. Catalog-derived line values are replayable proxy evidence only.
-In particular, neither the ED partner nor the modeled colored rays justify
+No measured nC/nF/ng or ΔPgF values are attributed to the production
+materials; catalog-derived line values describe the catalog equivalents only.
+In particular, neither the ED element nor the modeled colored rays justify
 an APO designation for the whole lens.
 
 ## Focus Mechanism
@@ -293,7 +308,7 @@ station; D14 and D18 remain unchanged. G1, G3, G4 and G5 do not acquire a
 reconstructed focus motion. The source describes G2 wobbling as well as
 focusing, while the manufacturer documents the linear MSC drive.
 
-| Native station | D6 infinity → near (mm) | D8 infinity → near (mm) | G2 objectward travel (mm) |
+| Station | D6 infinity → near (mm) | D8 infinity → near (mm) | G2 objectward travel (mm) |
 |---|---:|---:|---:|
 | Wide | 6.6446 → 5.3346 | 30.0675 → 31.3775 | 1.3100 |
 | Mid | 9.3245 → 8.0933 | 12.3503 → 13.5815 | 1.2312 |
@@ -303,7 +318,7 @@ The source labels the near state 0.35 m without expressly locating the
 object-distance reference plane. Solving the paraxial conjugate at the
 unchanged source image plane gives:
 
-| Native near station | Object to first vertex (mm) | Object to physical image (mm) | Transverse magnification |
+| Near station | Object to first vertex (mm) | Object to physical image (mm) | Transverse magnification |
 |---|---:|---:|---:|
 | wide | 247.212941 | 348.713841 | -0.04572651 |
 | mid | 247.980549 | 349.481249 | -0.09087723 |
@@ -312,9 +327,9 @@ unchanged source image plane gives:
 The image-plane distances are compatible with the rounded 0.35 m label;
 350 mm from the first vertex is not. This supports an image-plane convention
 as an interpretation, but does not convert an unstated reference into a
-published fact. The model therefore preserves the near gap rows without a
-certified finiteConjugates entry. Exact finite-ray tests at 350 mm from the
-physical image are explicitly diagnostic hypotheses.
+published fact. The model therefore keeps the printed near gaps without
+asserting a certified object distance. Finite-ray checks that place the
+object 350 mm from the image plane rest on that assumption.
 
 Figure 9 labels FNO 3.598, 5.117 and 6.246 without expressly defining
 the near-state f-number convention.
@@ -328,7 +343,7 @@ are different quantities.
 At intermediate zoom positions the near state moves G2 objectward by the
 amount that refocuses the fixed image plane at an object-to-image distance
 interpolated between the three printed near states. Those intermediate near
-states are reconstructions, not certified conjugates. Linear interpolation
+states are reconstructions, not published conjugates. Linear interpolation
 between the infinity and near rows is a display convenience, not a calibrated
 motor-distance relation.
 
@@ -374,19 +389,21 @@ faces have opposite signed rim departures. L8's large negative conics and
 higher orders yield a negative front departure but a small positive rear
 departure at the selected rim. These are evaluated shape statements,
 not an assignment of isolated spherical-aberration or coma coefficients.
-All modeled conic domains and actual rim slopes are checked. No sampled
+The conic domains and rim slopes of all six surfaces were checked, and no
 slope turnover occurs within these radii.
 
 The source explicitly identifies L8 as plastic, but does not establish its
-polymer or fabrication process. The manufacturer's DSA terminology supports
-a double-sided-asphere structural correlation without proving which catalog
-material or molding treatment supplied each surface. No unsupported hybrid
-resin layer or extra refractive interface is inserted.
+polymer or fabrication process. The manufacturer's construction diagram
+labels L2, not L8, as the DSA element and shades L5 and L8 as aspherical
+elements. That agrees with the patent's three double-aspheric elements
+without showing which material or molding process produced each surface.
+No hybrid resin layer or extra refractive interface is inserted.
 
 ## Chromatic and Aberration Correction Strategy
 
 The power-opposed L6 pair combines a relatively high-index negative component
-with a high-Abbe positive component. The patent's conditions (9)–(11) state
+with a high-Abbe positive component: the manufacturer's HR element (L6a)
+cemented to its one ED element (L6b). The patent's conditions (9)–(11) state
 material ranges for this rear part of G3, and its text relates those ranges
 to chromatic correction and Petzval control. The negative front group and
 rear positive L9 provide further chromatic degrees of freedom.
@@ -410,9 +427,9 @@ those axes do not alone establish a maximum model error.
 
 The table below uses the printed wide focal length 12.243 mm in the
 normalizations and source first-vertex positions for movement. Δ denotes
-objectward displacement from wide to tele. These conventions reproduce the
-independent source calculation. A second result branch uses computed fw and
-a fixed-image frame; it changes only tiny normalized rounding terms.
+objectward displacement from wide to tele. A second convention, using the
+computed wide focal length and a fixed-image frame, changes only tiny
+normalized rounding terms.
 All inequalities are strict and all fifteen pass. Rounded patent-column
 values remain distinct from recomputation.
 
@@ -444,10 +461,10 @@ does not independently establish product attribution or production image quality
 
 ## Verification Summary and Implementation Limits
 
-The actual implemented source states retain the camera plate at physical
-thickness 4.080 mm, followed by the literal 0.745 mm image gap. The plate
-surfaces are non-clipping propagation surfaces and are excluded from the
-lens-element count. Their runtime display extent is not a source aperture.
+The model keeps the camera-side plate at its printed 4.080 mm thickness,
+followed by the printed 0.745 mm image gap. The plate is traced but not
+drawn, does not clip rays, and is not counted as a lens element; its traced
+aperture is not a source value.
 The physical last-powered-to-image distance is 15.988400 mm; replacing the
 plate thickness by thickness/index gives 14.599107 mm. Neither should be
 confused with the calculated Gaussian rear focal distance.
@@ -461,24 +478,26 @@ confused with the calculated Gaussian rear focal distance.
 The computed physical tracks are 101.500900, 101.500700 and 101.500700 mm;
 the corresponding air-equivalent tracks are 100.111607, 100.111407 and
 100.111407 mm. The patent prints 100.11 mm at each station.
-Strict system-value comparisons retain a tele EFL discrepancy of −0.001015 mm
-and mid/tele air-equivalent BF discrepancies of −0.005157/−0.011157 mm.
-These are not represented as exact matches. Independent input-rounding
-sensitivity and explicit rounding-box witnesses show possible printed-row
-sensitivity; they are not a recovery of the original unrounded prescription
-or rigorous global nonlinear uncertainty bounds. No optical source value is
-changed to fit the published summary.
+Against the printed summary values there remain a tele EFL difference of
+−0.001015 mm and mid/tele air-equivalent BF differences of −0.005157/−0.011157 mm.
+These are not represented as exact matches. They are consistent with the
+rounding of the printed rows, but that is not a recovery of the original
+unrounded prescription. No optical source value is changed to fit the
+published summary.
 
-Actual runtime stop semi-diameters are 5.175559, 5.380468 and 6.417866 mm.
-They are obtained by the project's exact-ray calibration to the native
-infinity f-number, and differ from paraxial inferred iris radii of 5.007827,
-5.175516 and 6.033889 mm. Neither set is a published physical diaphragm size.
-The calibration target's reproduction is not independent stop-size evidence.
+The model's stop semi-diameters are 5.175559, 5.380468 and 6.417866 mm at
+wide, middle and tele, set by real-ray calibration to the patent's infinity
+f-numbers; paraxial iris radii for the same f-numbers would be 5.007827,
+5.175516 and 6.033889 mm. Neither set is a published diaphragm size, and
+reproducing the f-number after calibration is not independent evidence of
+the stop size.
 
-All native infinity full-aperture axial samples and source-field chiefs pass
-the declared inferred rims. Five field fractions and 97 launch-pupil samples
-per field are recorded separately for the source angles and for image-height
-coverage. Transmitted counts in the source-angle set are:
+The patent does not publish semi-diameters. The model's rims are inferred
+from the wide-end cross-section in Figure 2(a) and checked by real-ray trace:
+at all three printed stations the full-aperture axial rays and the chief
+rays at the patent's field angles clear every rim. Sampling 97 rays across
+the pupil at each of five field fractions gives these transmitted counts at
+the patent's field angles:
 
 | Station | Axis | 0.3 field | 0.6 field | 0.8 field | Full field |
 |---|---:|---:|---:|---:|---:|
@@ -486,25 +505,24 @@ coverage. Transmitted counts in the source-angle set are:
 | Mid | 97 | 97 | 97 | 97 | 97 |
 | Tele | 97 | 86 | 88 | 97 | 97 |
 
-These are finite geometric launch-disk samples, not relative-illumination
-measurements. Off-axis losses are retained. At the source angles the absolute
+These are geometric ray counts, not relative-illumination measurements.
+Off-axis losses are retained. At the patent's field angles the absolute
 chief image heights are 10.815129, 10.816224 and 10.813822 mm; a separate
 coverage solve reaches the source's 10.815 mm height. Neither test licenses
 an unvignetted entire pupil over a continuous field.
 
-The near diagnostic separately traces 97 on-axis rays and five 97-ray field
-sets at each native near gap state, assuming the object is 350 mm from the
-physical image plane. All near diagnostic chiefs reach their chosen image
-heights without clipping. The five field transmission counts are
-97/97/97/97/85, 97/97/97/97/97 and 97/86/97/97/97.
-This is conditional ray evidence, not a new published near-field prescription
-or a certified object-distance reference.
+The same sampling at each printed near state, with the object assumed 350 mm
+from the image plane, finds every chief ray reaching its image height without
+clipping. The transmitted counts over the five field fractions are
+97/97/97/97/85, 97/97/97/97/97 and 97/86/97/97/97 at wide, middle and tele.
+These counts depend on that assumed object distance.
 
-The inferred geometry has minimum sampled material thickness 0.509991 mm,
-maximum shared-band gap intrusion fraction 0.897415, and maximum within-rim
-slope angle 59.034871°. The default 0.90 gap guard is retained.
-Actual rendering reports ten bodies and zero trim over 165 zoom/focus samples.
-Finite sampling does not prove the whole continuous control domain.
+At the inferred rims the thinnest element edge is 0.51 mm, at L9, which
+Figure 2 draws nearly knife-edged. The closest pair of facing surfaces, L1's
+rear and L2's front, use 0.897 of their axial air gap at the rim, inside the
+0.90 limit the model allows. The steepest rim slope is 59.0°, on L1's rear
+surface. The rendered section draws all ten elements without overlap at the
+six printed states.
 
 Every intermediate zoom position holds infinity focus within the printed
 stations' 0.003–0.010 mm residual band, but the path between printed stations
@@ -519,20 +537,18 @@ comparing the model with the patent.
    conic equation ¶0108, p.17; air-equivalent convention ¶0110, p.18;
    Numerical Example 2 pp.20–22; conditions ¶0120, p.28;
    camera plate ¶0121, pp.28–29; Figure 2 p.31;
-   Figures 8–9 pp.32–33. The unchanged original PDF is included.
+   Figures 8–9 pp.32–33.
 2. [Olympus, ZUIKO Digital Lens brochure, 2013](https://device.report/m/b97c485a5b9837a1387ea34c3c99c63c10877ef205f41e5fa3c441e221b6172f.pdf).
-   Manufacturer-origin brochure preserved from a mirror, PDF p.13
-   (printed pp.24–25), lens diagram and technical specifications.
-   The complete original file's SHA256 begins b97c485a5b98.
+   Manufacturer brochure (mirror copy), PDF p.13 (printed pp.24–25), lens
+   diagram and technical specifications.
 3. [Olympus, M.ZUIKO DIGITAL ED 12–50mm F3.5–6.3 EZ launch announcement](https://www.olympus.co.jp/jp/news/2011b/nr111216zuikoj.html),
-   16 December 2011, updated 18 January 2012. A previously archived rendered
-   text capture is preserved with provenance; it is not claimed to be
-   original HTML or a new download of the page.
-4. Manufacturer optical-glass catalogs: CDGM September 2026 optical/i-line
+   16 December 2011, updated 18 January 2012.
+4. OM Digital Solutions, construction diagram for the M.ZUIKO DIGITAL ED
+   12–50mm F3.5–6.3 EZ (manufacturer lens information), shading the DSA,
+   aspherical, ED and HR elements.
+5. Manufacturer optical-glass catalogs: CDGM September 2026 optical/i-line
    catalogs; HIKARI glass data; HOYA optical-glass data including obsolete
    grades; OHARA recommended S-series, low-Tg L-series and July 2026 optical
    design catalog; SCHOTT preferred/special optical glasses; SUMITA version
-   14.02. Exact URLs, versions, original byte hashes, relevant rows and
-   coefficient locations are retained in the accompanying evidence.
-   The current project's selected catalog curves are additional qualified
-   spectral proxies, distinct from confirmation of a production material.
+   14.02. The selected catalog equivalents do not confirm the production
+   materials.

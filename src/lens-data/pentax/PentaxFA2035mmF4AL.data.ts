@@ -3,19 +3,18 @@ const LENS_DATA = {
   "schema": 2,
   "key": "pentax-fa-20-35mm-f4-al",
   "maker": "Pentax",
-  "name": "smc PENTAX-FA 20–35mm F4 AL",
-  "subtitle": "US 6,246,529 B1; INFERRED continuous zoom path; native source knots preserved",
+  "name": "PENTAX SMC FA 20-35mm f/4 AL",
+  "subtitle": "US 6,246,529 B1 — Example 5; inferred continuous zoom path",
   "catalog": {
     "lensMounts": [
       "pentax-k"
     ],
     "imageFormat": "135-full-frame",
     "specs": [
-      "10 PHYSICAL ELEMENTS / 8 GROUPS; 11 MATERIAL ENTRIES",
-      "f = 20.60–34.01 mm SOURCE ENDPOINTS",
-      "F/4; TWO ASPHERES, INCLUDING HYBRID RESIN",
-      "LINEAR ZOOM APPROXIMATION; TRUE REVERSAL NOT MODELED",
-      "INFINITY ONLY; INFERRED APERTURES; ABBE-ONLY SPECTRA"
+      "10 ELEMENTS / 8 GROUPS",
+      "DESIGN f = 20.60-34.01 mm",
+      "DESIGN F/4",
+      "2 ASPHERICAL SURFACES / 2 ELEMENTS (1 HYBRID)"
     ],
     "elementCount": 10,
     "groupCount": 8,
@@ -30,7 +29,8 @@ const LENS_DATA = {
       ]
     },
     "fNumber": {
-      "marketing": 4
+      "marketing": 4,
+      "design": 4
     }
   },
   "source": {
@@ -54,7 +54,7 @@ const LENS_DATA = {
       "vd": 49.6,
       "indexReference": "d",
       "focalLengthMm": -35.0846234981279,
-      "glass": "Unmatched (patent coordinate; supplier unconfirmed)",
+      "glass": "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power."
     },
     {
@@ -66,7 +66,7 @@ const LENS_DATA = {
       "vd": 46.6,
       "indexReference": "d",
       "focalLengthMm": -47.24823990417244,
-      "glass": "Unmatched (patent coordinate; supplier unconfirmed)",
+      "glass": "S-LAH65V (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power.",
       "cemented": "HYBRID"
     },
@@ -92,7 +92,7 @@ const LENS_DATA = {
       "vd": 23.8,
       "indexReference": "d",
       "focalLengthMm": 76.9056719815398,
-      "glass": "Unmatched (patent coordinate; supplier unconfirmed)",
+      "glass": "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power."
     },
     {
@@ -104,7 +104,7 @@ const LENS_DATA = {
       "vd": 52.4,
       "indexReference": "d",
       "focalLengthMm": 32.9606513464054,
-      "glass": "Unmatched (patent coordinate; supplier unconfirmed)",
+      "glass": "S-NSL36 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power.",
       "cemented": "D1"
     },
@@ -117,7 +117,7 @@ const LENS_DATA = {
       "vd": 46.6,
       "indexReference": "d",
       "focalLengthMm": -50.1520691279464,
-      "glass": "Unmatched (patent coordinate; supplier unconfirmed)",
+      "glass": "S-LAH65V (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power.",
       "cemented": "D1"
     },
@@ -130,7 +130,7 @@ const LENS_DATA = {
       "vd": 49.8,
       "indexReference": "d",
       "focalLengthMm": 53.76060350967903,
-      "glass": "Unmatched (patent coordinate; supplier unconfirmed)",
+      "glass": "S-BSM28 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power."
     },
     {
@@ -142,7 +142,7 @@ const LENS_DATA = {
       "vd": 70.2,
       "indexReference": "d",
       "focalLengthMm": 25.97402009804842,
-      "glass": "Unmatched (patent coordinate; supplier unconfirmed)",
+      "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power.",
       "cemented": "D2"
     },
@@ -155,7 +155,7 @@ const LENS_DATA = {
       "vd": 40.9,
       "indexReference": "d",
       "focalLengthMm": -25.53386972420641,
-      "glass": "Unmatched (patent coordinate; supplier unconfirmed)",
+      "glass": "S-LAH53 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power.",
       "cemented": "D2"
     },
@@ -168,7 +168,7 @@ const LENS_DATA = {
       "vd": 23.8,
       "indexReference": "d",
       "focalLengthMm": -49.3670331338058,
-      "glass": "Unmatched (patent coordinate; supplier unconfirmed)",
+      "glass": "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power."
     },
     {
@@ -180,7 +180,7 @@ const LENS_DATA = {
       "vd": 61.2,
       "indexReference": "d",
       "focalLengthMm": 43.954356462003815,
-      "glass": "Unmatched (patent coordinate; supplier unconfirmed)",
+      "glass": "J-SK5 (HIKARI catalog equivalent; production supplier unspecified)",
       "role": "Native material segment; standalone air focal length does not express its cemented or in-situ power."
     }
   ],
@@ -196,7 +196,7 @@ const LENS_DATA = {
       "label": "2",
       "R": 17.929,
       "d": 7.3,
-      "sd": 15.5
+      "sd": 14.3
     },
     {
       "label": "3",
@@ -247,13 +247,13 @@ const LENS_DATA = {
       "label": "9",
       "R": -23.707,
       "d": 1.5,
-      "sd": 9.1,
+      "sd": 8.9,
       "medium": 6
     },
     {
       "label": "10",
       "R": -59.155,
-      "sd": 9.3
+      "sd": 8.9
     },
     {
       "label": "STO",
@@ -264,27 +264,27 @@ const LENS_DATA = {
       "label": "11",
       "R": "flat",
       "d": 2.73,
-      "sd": 9.6,
+      "sd": 9,
       "medium": 7
     },
     {
       "label": "12",
       "R": -33.209,
       "d": 0.1,
-      "sd": 9.7
+      "sd": 9
     },
     {
       "label": "13",
       "R": 24.406,
       "d": 5.4,
-      "sd": 9.4,
+      "sd": 8.7,
       "medium": 8
     },
     {
       "label": "14",
       "R": -24.406,
       "d": 1.5,
-      "sd": 8.9,
+      "sd": 8.7,
       "medium": 9
     },
     {
@@ -297,14 +297,14 @@ const LENS_DATA = {
       "label": "16",
       "R": 46.238,
       "d": 2.08,
-      "sd": 7.7,
+      "sd": 7.1,
       "medium": 10
     },
     {
       "label": "17",
       "R": 21.5,
       "d": 1.73,
-      "sd": 7.3
+      "sd": 7.1
     },
     {
       "label": "18",
@@ -1135,8 +1135,8 @@ const LENS_DATA = {
     "step": 0.005
   },
   "focus": {
-    "closeFocusM": 1000000000000000,
-    "description": "INFERRED CONTINUOUS ZOOM CANDIDATE, NOT FACTORY CAM. Source knots and fixed optics unchanged. Non-compensating gaps are piecewise-linear drivers; {\"7\":1} gives the source-group compensator gap signs, solved for the interpolated native image-plane residual. Near-focus deltas, when present, retained at native knots and interpolated; finite conjugates not newly certified. This candidate remains subject to full validation."
+    "closeFocusM": 0.3,
+    "description": "The patent prints infinity spacings at wide and tele only; focusing is not modeled. The intermediate zoom positions are an inferred reconstruction, not the factory cam: the G2–stop spacing and the back focus follow linear laws between the printed stations and the G1–G2 spacing is solved for infinity focus at each position. The marketed minimum focus distance is 0.3 m."
   },
   "gaps": {
     "7": {

@@ -1,7 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   "schema": 2,
-  "key": "olympus-m-zuiko-digital-ed-12-50mm-f35-63-ez",
+  "key": "olympus-mzuiko-digital-ed-12-50mm-f35-63-ez",
   "maker": "Olympus",
   "name": "OLYMPUS M.ZUIKO DIGITAL ED 12-50mm f/3.5-6.3 EZ",
   "subtitle": "JP 2012-173420 A — Numerical Example 2; inferred continuous zoom path",
@@ -13,8 +13,11 @@ const LENS_DATA = {
     "imageCircleMm": 21.63,
     "specs": [
       "10 ELEMENTS / 9 GROUPS",
-      "6 ASPHERICAL SURFACES",
-      "SIX PUBLISHED NORMAL-FOCUS STATES; MACRO MODE EXCLUDED"
+      "DESIGN f = 12.24-48.96 mm",
+      "DESIGN F/3.64-6.48",
+      "6 ASPHERICAL SURFACES / 3 ELEMENTS",
+      "1 ED / 1 HR ELEMENT",
+      "MACRO MODE NOT MODELED"
     ],
     "elementCount": 10,
     "groupCount": 9,
@@ -56,7 +59,7 @@ const LENS_DATA = {
       "nd": 1.7725,
       "vd": 49.6,
       "focalLengthMm": -34.18123423341846,
-      "glass": "S-LAH66 class (coordinate-compatible spectral proxy; supplier unproven)",
+      "glass": "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
       "diagramLabel": "L1"
     },
     {
@@ -67,7 +70,7 @@ const LENS_DATA = {
       "nd": 1.58313,
       "vd": 59.38,
       "focalLengthMm": -38.69072688087463,
-      "glass": "S-BAL42 class (coordinate-compatible spectral proxy; supplier unproven)",
+      "glass": "S-BAL42 (OHARA catalog equivalent; production supplier unspecified)",
       "diagramLabel": "L2"
     },
     {
@@ -78,7 +81,7 @@ const LENS_DATA = {
       "nd": 1.8081,
       "vd": 22.76,
       "focalLengthMm": 37.80697787335052,
-      "glass": "S-NPH1 class (coordinate-compatible spectral proxy; supplier unproven)",
+      "glass": "S-NPH1 (OHARA catalog equivalent; production supplier unspecified)",
       "diagramLabel": "L3"
     },
     {
@@ -89,7 +92,7 @@ const LENS_DATA = {
       "nd": 1.741,
       "vd": 52.64,
       "focalLengthMm": -44.91069995481106,
-      "glass": "S-LAL61 class (coordinate-compatible spectral proxy; supplier unproven)",
+      "glass": "S-LAL61 (OHARA catalog equivalent; production supplier unspecified)",
       "diagramLabel": "L4"
     },
     {
@@ -100,7 +103,7 @@ const LENS_DATA = {
       "nd": 1.58313,
       "vd": 59.38,
       "focalLengthMm": 17.308549105053068,
-      "glass": "S-BAL42 class (coordinate-compatible spectral proxy; supplier unproven)",
+      "glass": "S-BAL42 (OHARA catalog equivalent; production supplier unspecified)",
       "diagramLabel": "L5"
     },
     {
@@ -111,7 +114,7 @@ const LENS_DATA = {
       "nd": 1.834,
       "vd": 37.16,
       "focalLengthMm": -13.930980901118598,
-      "glass": "S-LAH60 class (coordinate-compatible spectral proxy; supplier unproven)",
+      "glass": "S-LAH60 (OHARA catalog equivalent; production supplier unspecified)",
       "diagramLabel": "L6a",
       "cemented": "G3 L6 cemented pair"
     },
@@ -123,7 +126,9 @@ const LENS_DATA = {
       "nd": 1.497,
       "vd": 81.54,
       "focalLengthMm": 14.725694632982725,
-      "glass": "S-FPL51 class (coordinate-compatible spectral proxy; supplier unproven)",
+      "glass": "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
+      "apd": "inferred",
+      "apdNote": "OHARA S-FPL51 coordinate match (νd 81.54); OM Digital Solutions' construction diagram shades this position as the lens's one ED element, cemented to the HR element ahead of it.",
       "diagramLabel": "L6b",
       "cemented": "G3 L6 cemented pair"
     },
@@ -135,7 +140,7 @@ const LENS_DATA = {
       "nd": 1.83481,
       "vd": 42.71,
       "focalLengthMm": -20.848917424112646,
-      "glass": "S-LAH55 class (coordinate-compatible spectral proxy; supplier unproven)",
+      "glass": "S-LAH55 (OHARA catalog equivalent; production supplier unspecified)",
       "diagramLabel": "L7"
     },
     {
@@ -146,7 +151,7 @@ const LENS_DATA = {
       "nd": 1.53071,
       "vd": 55.69,
       "focalLengthMm": 192.15112696695476,
-      "glass": "Unmatched (source explicitly identifies plastic; polymer and spectrum unknown)",
+      "glass": "Unmatched (optical plastic per the patent; polymer unpublished)",
       "diagramLabel": "L8"
     },
     {
@@ -157,7 +162,7 @@ const LENS_DATA = {
       "nd": 1.75211,
       "vd": 25.05,
       "focalLengthMm": 45.18047371631902,
-      "glass": "FF8 class (coordinate-compatible spectral proxy; supplier unproven)",
+      "glass": "FF8 (HOYA catalog equivalent; production supplier unspecified)",
       "diagramLabel": "L9"
     }
   ],
@@ -269,13 +274,13 @@ const LENS_DATA = {
       "label": "13",
       "R": 10.8826,
       "d": 5,
-      "sd": 6.6,
+      "sd": 6.4,
       "medium": 7
     },
     {
       "label": "14",
       "R": -18.939,
-      "sd": 6.6
+      "sd": 6.4
     },
     {
       "label": "15",
@@ -4613,9 +4618,9 @@ const LENS_DATA = {
       "thicknessMm": 4.08,
       "nd": 1.51633,
       "vd": 64.14,
-      "glass": "S-BSL7 class (coordinate-compatible spectral proxy; supplier unproven)",
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "gapAfterMm": 0.745,
-      "source": "JP2012173420A Example 2, source surfaces 21-22; paragraph 0121 assigns plate C to camera. Exact printed thickness and image gap retained; no published rim."
+      "source": "JP 2012-173420 A Numerical Example 2, surfaces 21–22: camera-side plate C (¶0121) at its printed thickness and image gap"
     }
   ],
   "groups": [

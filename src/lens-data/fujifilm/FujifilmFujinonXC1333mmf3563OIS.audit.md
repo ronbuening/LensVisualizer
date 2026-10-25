@@ -239,3 +239,87 @@ The earlier runtime-deferred wide-source-chief failure is historical, not reprod
 For continuous infinity zoom, G1/G2 positions are piecewise-linearly interpolated through the three native configurations. G3 is solved paraxially, keeping G4, rear plate and image plane fixed and preserving the interpolated native rounding residual rather than optimizing the native rows. All three source configurations remain exact;198 intermediate nodes are marked unpublished. G1 reverses as in the source, while G2 and G3 move objectward. This is a constrained inferred visualization trajectory, not recovered factory cam measurements or a unique reconstruction. No radius, glass, aperture, fixed thickness, source spectral anchor, or gap allowance is changed.
 
 Finite focus remains unmodeled. Ordinary exterior off-axis vignetting must not be confused with the former source-chief failure or cemented-interface containment. Source-to-production correlation and all source glass/aperture/condition qualifications remain as originally disclosed. Independent integration and final package qualification are pending. Per-field MTF converged bandwidths, not merely field status labels, govern numerical confidence.
+
+## 2026-10-25 — Semi-diameter pass against the patent figure
+
+**Outcome: no semi-diameter changed.** Every non-stop `sd` already equals half the effective diameter (ED) printed in CN 122410763 A Table 1 (PDF page 20). I re-read all 20 ED entries in this pass: 25.66, 19.70, 19.53, 19.11, 19.13, 18.67, 9.29, 9.07, 8.32, 8.00, 7.68, 7.00, 7.34, 7.56, 8.56, 11.04, 11.99, 24.09 and 24.96 mm, plus STO 8.84 mm. Paragraph 0183 defines ED by the outermost transmitted ray, so these are published optical clear apertures, not estimates. Under the procedure's table-truth rule they govern over the drawing. The figure was measured only as a consistency check.
+
+Figure and scale. I measured the Wide panel of FIG. 1 (Example 1, sheet 1) in the English family publication US 2026/0202648 A1, PDF page 2. Its native 1-bit raster (2560 × 3300 px, 300 dpi) is cleaner than the JPEG of the same drawing on CN PDF page 57. The optical axis is on row 1223.5. The S1 vertex is at column 789.5 and the rear-plate front face at column 2018 (z = 67.825 mm at Wide), which gives 18.11 px/mm (55.2 µm/px). Two other spans agree. S1 to S20 (column 1859.5, 59.046 mm) gives 18.12 px/mm, and S1 to the image plane (column 2087, 71.694 mm) gives 18.10 px/mm. The drawn 7A rim sits about 0.6 mm behind its vertex, which matches the runtime polynomial sag of 0.64 mm at 4.5 mm (KA = 1, so K = 0). G1 was read on the upper side inside the G1 bracket ticks. G2 and G3 were read on both sides, avoiding the St leader and the dashed group-motion lines. G4 was read on the lower side, away from the off-axis bundle.
+
+| Surface | sd = ED/2 (mm) | FIG. 1 rim (mm) | Figure ÷ sd | Note |
+|---|---:|---:|---:|---|
+| 1A | 12.83 | 12.42 | 0.97 | The front face runs up to the square flange top |
+| 2A | 9.85 | 9.33 | 0.95 | The curve ends at the vertical flange face; the flange continues to 12.42 |
+| 3 | 9.765 | 9.39 | 0.96 | Flat top shared with S4 |
+| 4 | 9.555 | 9.39 | 0.98 | |
+| 5 | 9.565 | 9.25 | 0.97 | Flat top shared with S6 |
+| 6 | 9.335 | 9.28 | 0.99 | |
+| 7A | 4.645 | 4.50 | 0.97 | |
+| 8A | 4.535 | 4.50 | 0.99 | |
+| STO | engine 4.432 at Wide (source 4.42) | drawn 4.25 | n/a | Not part of this pass |
+| 10 | 4.16 | 4.09 | 0.98 | |
+| 11 | 4.00 | 4.03 | 1.01 | Cemented junction |
+| 12 | 3.84 | 3.92 | 1.02 | |
+| 13 | 3.50 | 3.48 | 0.99 | |
+| 14 | 3.67 | 3.56 | 0.97 | |
+| 15A | 3.78 | 4.20 | 1.11 | Drawn square-cut at the 16A height |
+| 16A | 4.28 | 4.25 | 0.99 | |
+| 17A | 5.52 | 5.96 | 1.08 | Drawn square-cut at the 18A height |
+| 18A | 5.995 | 5.96 | 0.99 | |
+| 19 | 12.045 | 12.29 | 1.02 | Drawn square-cut |
+| 20 | 12.48 | 12.29 | 0.985 | |
+
+The median ratio is about 0.985, and 18 of 20 rows fall inside the 5–8 % noise band. The two outliers, 15A and 17A, come from a drawing convention: FIG. 1 outlines L25 and L31 as square blanks at the larger face's ED, while Table 1 prints a smaller clear aperture for the front face. The figure is not evidence that those front faces carry light out to the blank edge, so the published values stay. The step order between neighbouring rims matches the figure everywhere: L24 is below L25, which is below L31, and L13 is below the L11 flange. No in-band correction was needed.
+
+Ray clearance at the unchanged values. With Y = 14.2 mm, the exact meridional trace solves ω = 50.19°, 32.18° and 23.92° at the three printed stations, matching the source half-fields. Over all 201 stations, no surface blocks the full-field chief ray. One surface clips the axial beam: 8A reaches 4.55 mm against its 4.535 mm rim, only at the Wide end. The aperture census traces f/3.61 against the stated f/3.60 at 13.39 mm (+0.3 %). The excess fades to zero by 13.88 mm and touches 7 stations in total. The cause is the engine's from-nominal-fno iris, which is 4.432 mm at Wide against the source stop ED/2 of 4.42 mm. Re-traced at f/3.61 (iris 4.419 mm), the 8A axial height is 4.54 mm and every rim clears, so the source's ED set agrees with its own stop. I kept the printed value under table truth and the package's no-aperture-repair disposition. If a zero-flag model is preferred, 7A = 4.65 with 8A = 4.55 passes the repo validator and removes the trace flag; it is not applied.
+
+Coverage and engine state, unchanged because nothing was edited:
+
+- **Field coverage.** All 201 stations reach the 14.18 mm format corner: Wide at 50.1° and Tele at 23.9°, both clear.
+- **Image circle and validator.** The image-circle floor check reports no undersized surface, and the surface validator reports no errors.
+- **Engine values.** The engine reports halfField 42.56° (a paraxial estimate, limited by 2A), FOPEN 3.6 and stop radius 4.432 mm.
+- **Wide-open vignetting.** Transmission is 100 % on axis, 79.8 % at 44.2° and 51.1 % at 50.1° at Wide. It is 77.7 % at 32.1° at Middle and 81.3 % at 23.9° at Tele.
+
+Aspheres. Profiles evaluated through the built runtime (K defaults to 0) change slope sign nowhere inside a published rim. The first turnovers are 7A at 5.68 mm, 18A at 7.33 mm and 1A at 14.14 mm. The analysis's rim-departure table still applies because no rim moved. The surface-probe `--scan` listing misreports V2 aspheres that omit `K`: it gives a slope of about 3 × 10⁵ at 7A. For that reason the turnover was checked against the runtime-built profile instead.
+
+Rendered comparison. I checked headless renders at 13.39, 22.59 and 32.14 mm (infinity) and an overlay against FIG. 1 Wide at a common scale. Element positions and rim heights coincide. The remaining differences are drawing conventions:
+
+- **L11 flange.** The patent draws L11 with a square mechanical flange at 12.4 mm and the 2A curve ending at about 9.3 mm. The render joins the 12.83 mm front rim directly to the 9.85 mm rear rim.
+- **L25 and L31 blanks.** The patent draws these as square blanks, while the render keeps the smaller printed 15A and 17A apertures.
+
+No elements overlap at any printed station.
+
+Manufacturer construction diagram (Fujifilm product page image), used as a proportion check only:
+
+- **Count and grouping.** Both show 10 elements in 9 groups.
+- **Aspherical elements.** The maker marks elements 1, 4, 8 and 9, which are L11, L21, L25 and L31; all four are double-aspheric in the data.
+- **ED elements.** The maker marks elements 2, 6 and 8, which are L12 (H-FK90), L23 (S-FPM4) and L25 (M-FCD1).
+- **Proportions.** The schematic draws the G2 elements and L31 somewhat larger relative to L11. For example, L21 is about 0.46 of L11's height there, against 0.36 in the patent figure and the render. The patent figure governs.
+
+Limitations. The rims are the source's ray-defined clear apertures, not mechanical blank diameters, so the render cannot reproduce the patent's flanges and square blanks. Finite focus is still not modeled, so no close-focus rim check was possible.
+
+### Coordinator glass and metadata changes
+
+The coordinator added six catalog rows from the vendors' own data:
+
+- **CDGM:** D-ZLaF52LA and H-LaF50B, from the September 2026 Zemax catalog.
+- **NHG:** H-ZLaF82 and H-FK90, from the NHG data sheets (constants A0–A5).
+- **HOYA:** M-BACD15 and M-PCD55AR, from the 2026-07-07 Zemax catalog.
+
+All ten element labels now resolve by name, and the BSC7 plate already did. Each resolved curve reproduces the patent's printed θgF to within 0.00003 and νd to within 0.005. For the two NHG glasses, the curves give νd 90.17 and 29.13 where the web listings print 90.19 and 29.14. The stored dPgF values are unchanged. The coordinator reworded every element's apdNote and set `apd: "inferred"` on L12, L23 and L25. Fujifilm's construction diagram marks those positions as the three ED elements, and they carry the three largest ΔPgF. The patent does not use the term ED.
+
+Metadata changes:
+
+- **Subtitle:** now "CN 122410763 A — Example 1".
+- **Specs:** list the design focal range, f-numbers, asphere count and ED count.
+- **closeFocusM:** now 0.2, the marketed minimum focus distance (was a 1e15 placeholder).
+- **Focus description:** says infinity only, with the zoom path inferred between the printed stations.
+- **Plate source string:** cleaned.
+
+The analysis was revised to match:
+
+- **Glass section:** now states catalog-curve agreement for all ten glasses.
+- **ED identification:** the ED and aspherical identifications cite the maker diagram.
+- **Coverage text:** the outdated statements that the application cannot reach the Wide corner were replaced by the current traced coverage and vignetting figures.
+- **Focus section:** now describes the 0.2 m value as the marketed specification.
+- **Process wording:** packaging and process wording was removed. Source facts, numbers and qualifications were kept.

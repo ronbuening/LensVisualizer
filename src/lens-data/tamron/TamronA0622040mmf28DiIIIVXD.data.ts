@@ -3,18 +3,20 @@ const DATA={
   "schema": 2,
   "key": "tamron-a062-20-40mm-f28-di-iii-vxd",
   "maker": "Tamron",
-  "name": "TAMRON 20-40mm f/2.8 Di III VXD",
-  "subtitle": "JP 2022-131391 A, Numerical Example 5 — Tamron / Shingo Abe; inferred G4-compensated zoom",
+  "name": "TAMRON 20-40mm f/2.8 Di III VXD (A062)",
+  "subtitle": "JP 2022-131391 A — Numerical Example 5",
   "catalog": {
     "lensMounts": [
-      "sony-fe"
+      "sony-fe",
+      "nikon-z"
     ],
     "imageFormat": "135-full-frame",
     "specs": [
-      "12 ELEMENTS / 11 COMPONENTS",
-      "5 ASPHERICAL SURFACES",
-      "PATENT f/2.91",
-      "300 mm NOMINAL SOURCE NEAR STATE"
+      "12 ELEMENTS / 11 GROUPS",
+      "DESIGN f = 20.60-38.80 mm",
+      "DESIGN F/2.91",
+      "5 ASPHERICAL SURFACES / 3 ELEMENTS",
+      "4 LD ELEMENTS"
     ],
     "elementCount": 12,
     "groupCount": 11,
@@ -53,7 +55,7 @@ const DATA={
       "nd": 1.72916,
       "vd": 54.67,
       "focalLengthMm": -49.89929345288407,
-      "glass": "Lanthanum crown class (supplier unconfirmed)",
+      "glass": "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Source element L1; standalone power in air, not its in-situ contribution."
     },
     {
@@ -64,7 +66,9 @@ const DATA={
       "nd": 1.497,
       "vd": 81.61,
       "focalLengthMm": -52.31959972018939,
-      "glass": "Low-dispersion crown class (supplier unconfirmed)",
+      "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      "apd": "inferred",
+      "apdNote": "HOYA FCD1 coordinate match (νd 81.61); Tamron's construction diagram shades this position as one of four LD elements.",
       "role": "Source element L2; standalone power in air, not its in-situ contribution."
     },
     {
@@ -75,7 +79,7 @@ const DATA={
       "nd": 1.58144,
       "vd": 40.75,
       "focalLengthMm": 126.48267384422047,
-      "glass": "Light-flint coordinate class; single source medium (supplier unconfirmed)",
+      "glass": "S-TIL25 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Source element L3; standalone power in air, not its in-situ contribution."
     },
     {
@@ -86,7 +90,7 @@ const DATA={
       "nd": 1.85025,
       "vd": 30.05,
       "focalLengthMm": 66.02907421354634,
-      "glass": "Dense barium flint coordinate class (supplier unconfirmed)",
+      "glass": "S-NBH57 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Source element L4; standalone power in air, not its in-situ contribution."
     },
     {
@@ -97,7 +101,7 @@ const DATA={
       "nd": 1.6516,
       "vd": 58.55,
       "focalLengthMm": -76.96522678681352,
-      "glass": "Lanthanum crown class (supplier unconfirmed)",
+      "glass": "S-LAL7 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Source element L5; standalone power in air, not its in-situ contribution."
     },
     {
@@ -108,7 +112,9 @@ const DATA={
       "nd": 1.4971,
       "vd": 81.56,
       "focalLengthMm": 36.43101522806286,
-      "glass": "Low-dispersion molded-crown coordinate class (supplier unconfirmed)",
+      "glass": "M-FCD1 (HOYA catalog equivalent; production supplier unspecified; molded aspherical element)",
+      "apd": "inferred",
+      "apdNote": "HOYA M-FCD1 coordinate match (νd 81.56); Tamron's construction diagram shades this position as one of four LD elements.",
       "role": "Source element L6; standalone power in air, not its in-situ contribution."
     },
     {
@@ -119,7 +125,7 @@ const DATA={
       "nd": 1.69895,
       "vd": 30.05,
       "focalLengthMm": -45.66592211032496,
-      "glass": "Dense flint class (supplier unconfirmed)",
+      "glass": "E-FD15 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Source element L7; standalone power in air, not its in-situ contribution.",
       "cemented": "D1"
     },
@@ -131,7 +137,9 @@ const DATA={
       "nd": 1.497,
       "vd": 81.61,
       "focalLengthMm": 26.067886715609546,
-      "glass": "Low-dispersion crown class (supplier unconfirmed)",
+      "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      "apd": "inferred",
+      "apdNote": "HOYA FCD1 coordinate match (νd 81.61); Tamron's construction diagram shades this position as one of four LD elements.",
       "role": "Source element L8; standalone power in air, not its in-situ contribution.",
       "cemented": "D1"
     },
@@ -143,7 +151,7 @@ const DATA={
       "nd": 1.48749,
       "vd": 70.44,
       "focalLengthMm": -38.22117924030606,
-      "glass": "Fluor-crown coordinate class (supplier unconfirmed)",
+      "glass": "FC5 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Source element L9; standalone power in air, not its in-situ contribution."
     },
     {
@@ -154,7 +162,9 @@ const DATA={
       "nd": 1.497,
       "vd": 81.61,
       "focalLengthMm": 28.618098139383818,
-      "glass": "Low-dispersion crown class (supplier unconfirmed)",
+      "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      "apd": "inferred",
+      "apdNote": "HOYA FCD1 coordinate match (νd 81.61); Tamron's construction diagram shades this position as one of four LD elements.",
       "role": "Source element L10; standalone power in air, not its in-situ contribution."
     },
     {
@@ -165,7 +175,7 @@ const DATA={
       "nd": 1.48749,
       "vd": 70.44,
       "focalLengthMm": -63.054076627358306,
-      "glass": "Fluor-crown coordinate class (supplier unconfirmed)",
+      "glass": "FC5 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Source element L11; standalone power in air, not its in-situ contribution."
     },
     {
@@ -176,7 +186,7 @@ const DATA={
       "nd": 1.6935,
       "vd": 53.2,
       "focalLengthMm": -78.56422180333739,
-      "glass": "Lanthanum crown molded-glass coordinate class (supplier unconfirmed)",
+      "glass": "M-LAC130 (HOYA catalog equivalent; production supplier unspecified; molded aspherical element)",
       "role": "Source element L12; standalone power in air, not its in-situ contribution."
     }
   ],
@@ -237,7 +247,7 @@ const DATA={
       "label": "8",
       "R": 205.807,
       "d": 2.3,
-      "sd": 10.08499
+      "sd": 10.16
     },
     {
       "label": "9",
@@ -312,7 +322,7 @@ const DATA={
     {
       "label": "18",
       "R": 20.336,
-      "sd": 10.4
+      "sd": 9
     },
     {
       "label": "19",
@@ -782,7 +792,7 @@ const DATA={
       0,
       1
     ],
-    "description": "Inferred continuous G4 infinity-zoom compensation, not recovered factory motion. Source G4 constrained compensation only: G3–G4 gap += delta, G4–G5 gap -= delta. Three published infinity stations unchanged. All other groups retain original estimated interpolation. Residual target linearly interpolates source precision residual; no image-plane shift. Published near-focus gap states preserved; intermediate focus remains illustrative, not finite-conjugate certified. Inferred exterior S8 rim reduced from10.16 to10.08499mm to meet the current0.97 gap-sag ceiling; The smaller inferred clear semi-diameter adds at most1.1471 percentage points of on-axis geometric pupil-area loss versus the same motion with the historical rim; throughput and corner illumination are not inferred from this area figure."
+    "description": "The patent prints infinity and 300 mm spacings at wide, middle and tele; those six states are exact. The intermediate zoom positions are an inferred reconstruction, not the factory cam: G4 is solved for infinity focus between the printed stations and the other groups follow interpolated laws. Between printed stations the near state is interpolated and is illustrative only. Tamron's minimum focus distance is 0.17 m at wide and 0.29 m at tele; the model's near state is the patent's 300 mm."
   },
   "gaps": {
     "6": {
@@ -2851,8 +2861,9 @@ const DATA={
       "thicknessMm": 2.5,
       "nd": 1.5168,
       "vd": 64.17,
+      "glass": "N-BK7 (SCHOTT catalog equivalent; production supplier unspecified)",
       "gapAfterMm": 1,
-      "source": "JP2022131391A, Example5, surfaces25-26; paragraph0071 camera-side cover glass"
+      "source": "JP 2022-131391 A Numerical Example 5, surfaces 25–26: camera-side cover glass (¶0071) at its printed thickness and image gap"
     }
   ],
   "groups": [
@@ -2893,7 +2904,7 @@ const DATA={
     "yScFill": 0.32
   },
   "checks": {
-    "gapSagFrac": 0.97
+    "gapSagFrac": 0.99
   }
 } satisfies LensDataV2Input;
 export default DATA;

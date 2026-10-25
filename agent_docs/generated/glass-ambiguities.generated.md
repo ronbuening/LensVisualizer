@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1001** lenses scanned
-- **11407** glass elements examined
-- **3272** elements have multiple coordinate-compatible candidates
+- **1007** lenses scanned
+- **11469** glass elements examined
+- **3273** elements have multiple coordinate-compatible candidates
 - **589** lens files are affected
-- **318** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
-- **210** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
+- **319** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **211** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 1902 |
-| Evidence-source priority | 1014 |
+| Evidence-source priority | 1015 |
 | Vendor context | 342 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
@@ -2237,6 +2237,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `808228 coordinate class` | 1.80809 / 22.76 (d) | FD225 — smallest d-line \|Δn\| (1.4e-6 vs 4.7e-6) | S-NPH1 (Ohara, code, preferred code row) | 1 | [TAMRON 18-400mm f/3.5-6.3 Di II VC HLD](../../src/lens-data/tamron/TamronB02818400mmf3563.data.ts) L13 |
 | `603380 coordinate class` | 1.60342 / 38.01 (d) | J-F5 — smallest d-line \|Δn\| (1.6e-8 vs 1.3e-7) | E-F5 (Hoya, code, alternate code row)<br>F5 (Schott, code, preferred code row) | 1 | [TAMRON 18-400mm f/3.5-6.3 Di II VC HLD](../../src/lens-data/tamron/TamronB02818400mmf3563.data.ts) L16 |
 | `TAF1 (HOYA) — 773496 class proxy, Δνd=+0.03` | 1.77250 / 49.60 (d) | TAF1 — direct name evidence outranks six-digit code evidence. | J-LASF016 (Hikari, code, vendor ✗, alternate code row)<br>N-LAF34 (Schott, code, vendor ✗, alternate code row)<br>S-LAH66 (Ohara, code, vendor ✗, preferred code row)<br>S-LAH66N (Ohara, code, vendor ✗, alternate code row) | 2 | [TAMRON 28-300mm f/3.5-6.3 Di VC PZD](../../src/lens-data/tamron/TamronA01028300mmf3563.data.ts) L6 |
+| `M-BACD15 (HOYA) — 623582 class proxy, Δνd=+0.01` | 1.62263 / 58.16 (d) | M-BACD15 — direct name evidence outranks six-digit code evidence. | S-BSM15 (Ohara, code, vendor ✗, preferred code row) | 1 | [TAMRON 28-300mm f/3.5-6.3 Di VC PZD](../../src/lens-data/tamron/TamronA01028300mmf3563.data.ts) L11 |
 | `804465 class (vendor unresolved)` | 1.80420 / 46.50 (d) | TAF3D — smallest d-line \|Δn\| (2.8e-7 vs 1.6e-6) | TAF3 (Hoya, code, alternate code row)<br>N-LASF44 (Schott, code, preferred code row) | 1 | [TAMRON 50-300mm f/4.5-6.3 Di III VC VXD](../../src/lens-data/tamron/TamronA06950300mmf4563.data.ts) L1 |
 | `697555 class (vendor unresolved)` | 1.69680 / 55.46 (d) | LAC14 — smallest d-line \|Δn\| (3.4e-7 vs 2.0e-6) | J-LAK14 (Hikari, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 1 | [TAMRON 50-300mm f/4.5-6.3 Di III VC VXD](../../src/lens-data/tamron/TamronA06950300mmf4563.data.ts) L4 |
 | `497816 class (vendor unresolved)` | 1.49700 / 81.61 (d) | S-FPL51 — smallest d-line \|Δn\| (2.3e-6 vs 2.8e-6) | FCD1 (Hoya, code, alternate code row)<br>H-FK61 (CDGM, code, alternate code row)<br>M-FCD1 (Hoya, code, alternate code row) | 2 | [TAMRON 50-300mm f/4.5-6.3 Di III VC VXD](../../src/lens-data/tamron/TamronA06950300mmf4563.data.ts) L5 |

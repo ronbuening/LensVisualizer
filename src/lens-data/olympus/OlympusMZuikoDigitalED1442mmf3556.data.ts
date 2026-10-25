@@ -1,10 +1,10 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   "schema": 2,
-  "key": "olympus-m-zuiko-digital-ed-14-42mm-f35-56",
+  "key": "olympus-mzuiko-digital-ed-14-42mm-f35-56",
   "maker": "Olympus",
-  "name": "OLYMPUS M.ZUIKO DIGITAL ED 14–42mm f/3.5–5.6",
-  "subtitle": "JP2010186010A EXAMPLE 1 — ORIGINAL 2009 DESIGN CORRELATION",
+  "name": "OLYMPUS M.ZUIKO DIGITAL ED 14-42mm f/3.5-5.6",
+  "subtitle": "JP 2010-186010 A — Numerical Example 1",
   "catalog": {
     "lensMounts": [
       "micro-four-thirds"
@@ -13,8 +13,10 @@ const LENS_DATA = {
     "imageCircleMm": 22.9,
     "specs": [
       "9 ELEMENTS / 8 GROUPS",
-      "4 ASPHERICAL SURFACES",
-      "THREE PUBLISHED INFINITY ZOOM STATIONS; CAMERA-SIDE PLATE TRACED"
+      "DESIGN f = 14.29-41.19 mm",
+      "DESIGN F/3.63-5.76",
+      "4 ASPHERICAL SURFACES / 2 ELEMENTS",
+      "1 ED / 1 HR ELEMENT"
     ],
     "elementCount": 9,
     "groupCount": 8,
@@ -54,7 +56,7 @@ const LENS_DATA = {
       "nd": 1.7725,
       "vd": 49.6,
       "focalLengthMm": -21.639763838755105,
-      "glass": "S-LAH66 class (coordinate-compatible proxy; supplier unproven)",
+      "glass": "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
       "diagramLabel": "L11"
     },
     {
@@ -65,7 +67,7 @@ const LENS_DATA = {
       "nd": 1.52542,
       "vd": 55.78,
       "focalLengthMm": -58.67273621458309,
-      "glass": "Unmatched (published 1.52542/55.78 medium; polymer identity unproven)",
+      "glass": "Unmatched (optical plastic, printed nd 1.52542 / νd 55.78; polymer unpublished)",
       "diagramLabel": "L12"
     },
     {
@@ -76,7 +78,7 @@ const LENS_DATA = {
       "nd": 1.84666,
       "vd": 23.78,
       "focalLengthMm": 54.926922872691904,
-      "glass": "FDS90 class (coordinate-compatible proxy; supplier unproven)",
+      "glass": "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
       "diagramLabel": "L13"
     },
     {
@@ -87,7 +89,7 @@ const LENS_DATA = {
       "nd": 1.83481,
       "vd": 42.71,
       "focalLengthMm": 25.43213425809466,
-      "glass": "S-LAH55 class (coordinate-compatible proxy; supplier unproven)",
+      "glass": "S-LAH55 (OHARA catalog equivalent; production supplier unspecified)",
       "diagramLabel": "L21"
     },
     {
@@ -98,7 +100,9 @@ const LENS_DATA = {
       "nd": 1.497,
       "vd": 81.54,
       "focalLengthMm": 19.963449311075887,
-      "glass": "S-FPL51 class (coordinate-compatible proxy; supplier unproven)",
+      "glass": "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
+      "apd": "inferred",
+      "apdNote": "OHARA S-FPL51 coordinate match (νd 81.54), a fluorophosphate ED glass; Olympus lists one ED element, cemented to the HR element that follows.",
       "diagramLabel": "L22",
       "cemented": "G2 cemented pair"
     },
@@ -110,7 +114,7 @@ const LENS_DATA = {
       "nd": 1.90366,
       "vd": 31.32,
       "focalLengthMm": -10.450922563072584,
-      "glass": "TAFD25 class (coordinate-compatible proxy; supplier unproven)",
+      "glass": "TAFD25 (HOYA catalog equivalent; production supplier unspecified)",
       "diagramLabel": "L23",
       "cemented": "G2 cemented pair"
     },
@@ -122,7 +126,7 @@ const LENS_DATA = {
       "nd": 1.70154,
       "vd": 41.24,
       "focalLengthMm": 45.386577118549035,
-      "glass": "S-BAH27 class (coordinate-compatible proxy; supplier unproven)",
+      "glass": "S-BAH27 (OHARA catalog equivalent; production supplier unspecified)",
       "diagramLabel": "L24"
     },
     {
@@ -133,7 +137,7 @@ const LENS_DATA = {
       "nd": 1.51823,
       "vd": 58.9,
       "focalLengthMm": 55.19778960378632,
-      "glass": "S-NSL3 class (coordinate-compatible proxy; supplier unproven)",
+      "glass": "S-NSL3 (OHARA catalog equivalent; production supplier unspecified)",
       "diagramLabel": "L25"
     },
     {
@@ -144,7 +148,7 @@ const LENS_DATA = {
       "nd": 1.52542,
       "vd": 55.78,
       "focalLengthMm": 489.85113733436145,
-      "glass": "Unmatched (published 1.52542/55.78 medium; polymer identity unproven)",
+      "glass": "Unmatched (optical plastic, printed nd 1.52542 / νd 55.78; polymer unpublished)",
       "diagramLabel": "L3"
     }
   ],
@@ -160,7 +164,7 @@ const LENS_DATA = {
       "label": "2",
       "R": 16.257,
       "d": 1.163,
-      "sd": 14.5
+      "sd": 12.6
     },
     {
       "label": "3A",
@@ -180,7 +184,7 @@ const LENS_DATA = {
       "label": "4A",
       "R": 13.129,
       "d": 5.26,
-      "sd": 12.2,
+      "sd": 11.5,
       "asphere": {
         "A4": 0.000066885,
         "A6": -0.0000013641,
@@ -1301,7 +1305,7 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 0.25,
-    "description": "RECONSTRUCTED INFINITY ZOOM PATH: three source knots retained exactly. Source D6 is piecewise-linear driver; D16 is solved paraxially for fixed source image plane plus interpolated native rounding residual. This is a constrained visualization cam, not measured factory motion. Radii, glass, fixed thicknesses, rear plates and source knots unchanged. No finite focus reconstruction; repeated focus endpoints."
+    "description": "The patent prints infinity spacings at wide, middle and tele; focusing is not modeled. The intermediate zoom positions are an inferred reconstruction, not the factory cam: the G1–G2 spacing follows a piecewise-linear law between the printed stations and the G2–G3 spacing is solved for infinity focus at each position. The marketed minimum focus distance is 0.25 m."
   },
   "gaps": {
     "6": {
@@ -2942,9 +2946,9 @@ const LENS_DATA = {
       "thicknessMm": 4.082,
       "nd": 1.51633,
       "vd": 64.14,
-      "glass": "S-BSL7 class (coordinate-compatible proxy; supplier unproven)",
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "gapAfterMm": 0.745,
-      "source": "JP2010186010A Example 1, original PDF11, surfaces19–20; dimensions retained; plate rim not published."
+      "source": "JP 2010-186010 A Numerical Example 1, surfaces 19–20: camera-side plate at its printed thickness and image gap"
     }
   ],
   "groups": [

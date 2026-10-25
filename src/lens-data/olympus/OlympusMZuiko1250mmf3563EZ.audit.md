@@ -200,3 +200,99 @@ axial clip or blocked chief, though its chief and lower-rim searches do not conv
 (as on the 2026-10-23 path), where the field-coverage audit's converged chiefs stand in; maximum full-pupil longitudinal spherical aberration over all stations is 0.158 mm
 (0.125 mm on the 2026-10-23 path; the printed stations are unchanged). The UI-ray, MTF and dense-geometry counts quoted
 in the sections above were measured on the 2026-10-23 path and were not re-run.
+
+## 2026-10-25 — Semi-diameter pass against the patent figure
+
+Source: `patents/JP2012173420A.pdf`, PDF page 31, 【図2】 実施例2 panel (a) WE. This is the modelled Numerical
+Example 2 at the wide end, infinity focus. The sheet is a 300-ppi CCITT raster, measured at its native 300 dpi with the
+optical axis horizontal (dash-dot axis at page row 554.5). Semi-diameters remain inferred, not source-published; after
+this pass they rest on FIG. 2(a) and are floor-checked by real-ray trace at all 201 zoom stations, infinity and near.
+
+Scale: the vertex crossings beside the axis were S1 at page column 1391, S20 at 2049.5, the plate front at 2136 and the
+image plane at 2173. Against the wide-infinity prescription (S1 to S20 85.512 mm, S1 to plate 96.676 mm, S1 to image
+101.501 mm) they give 0.12986, 0.12977 and 0.12980 mm/px, so 0.1298 mm/px was used. S9A, S12, S14 and S19 fall within
+1.5 px of their predicted columns. The automatic figure screen independently derived 0.12996 mm/px. Its ENV/RIM
+rows are contaminated by the G2–G4 brackets and the r-label leaders, so they were not used.
+
+Method: each rim is half the distance between the upper and lower outline line centres in a pixel dump, so the
+axis row does not enter. One pixel is ±0.13 mm. The figure draws flat mounting steps on two faces. On L1's rear (r2)
+and L2's rear (r4) the optical extent is where the curve meets the step. Below that point the outline is mechanical.
+A sag check agrees. 4A's drawn rim lies 35.75 px (4.64 mm) behind its vertex, which the asphere reaches at h ≈ 12.3 mm.
+r1's rim lies 29 px (3.76 mm) behind S1, which R 45.22 reaches at h ≈ 17.9 mm.
+
+| Surface | Stored sd (mm) | FIG. 2(a) (mm) | Figure/stored | Decision |
+|---|---:|---:|---:|---|
+| 1 | 18.0 | 17.85 | 0.99 | kept |
+| 2 | 14.0 | 13.8 (curve end at L1's rear flange step) | 0.99 | kept |
+| 3A | 13.0 | 13.9 (meets r2 at the drawn rim corner) | 1.07 | kept; gap guard (below) |
+| 4A | 13.0 | 12.3 optical; flange drawn to 13.9 | 0.95 | kept; noise band, see below |
+| 5 / 6 | 12.3 | 12.15 | 0.99 | kept |
+| 7 / 8 | 9.6 | 9.57 | 1.00 | kept |
+| 9A / 10A | 7.3 | 7.37 | 1.01 | kept |
+| 12 | 6.6 | 6.62 | 1.00 | kept |
+| 13 | 6.6 → 6.4 | 6.33 (cemented curve ends at L6b's rim) | 0.96 | changed |
+| 14 | 6.6 → 6.4 | 6.33 | 0.96 | changed |
+| 15 / 16 | 6.3 | 6.26 | 0.99 | kept |
+| 17A / 18A | 7.0 | 7.07 | 1.01 | kept |
+| 19 / 20 | 11.2 | 11.3 (drawn knife-edge rim; modelled edge 0.51 mm) | 1.01 | kept |
+
+Every stored value was already within 7 % of the drawing. Surfaces 13 and 14 changed under the step-order rule even
+though they sit inside the noise band. On both sides the figure draws L6b's rim 2–2.5 px (about 0.3 mm) below L6a's,
+with the cemented curve r13 ending at L6b's rim. The manufacturer's construction diagram shows the same order, with the
+ED element visibly smaller than the HR element ahead of it. The stored values drew the pair flush. The new value is
+6.4 mm rather than the figure's 6.33 mm because the unvignetted full-field bundle at surface 14 reaches 6.34 mm (the
+maximum over all stations). 6.4 mm keeps that bundle unvignetted. With surface 12 at 6.6 mm and surfaces 13–14 at
+6.4 mm, L6a steps down at its cemented face as drawn.
+
+Values kept and why:
+
+- 3A: the prescription's surfaces 2 and 3A cross at h ≈ 13.45 mm (at 13.5 mm, z = 9.28 against 9.22 mm). The figure's
+  meeting point near 13.8 mm is therefore a drawing idealisation. At 13.0 mm the 2→3A shared-band intrusion is 0.897
+  under the default 0.90 guard. The rays do not need a larger rim (full bundle 12.49 mm) and the deviation is 7 %, so no
+  `gapSagFrac` change is proposed.
+- 4A: the drawn L2 outline is square-cut at 13.9 mm by its flange. The stored square 13.0 mm sits between the two
+  optical extents (front 13.9 mm, rear 12.3 mm), and neither deviation exceeds the noise band.
+- L1's rear (14.0 mm) and L2's front (13.0 mm) do not meet at one height as the figure draws them. This is the same
+  gap-guard limit.
+
+Clearance after the edit: the real-ray trace at Y = 10.815 mm flags no axial clip and no blocked chief at any of the
+201 stations, at infinity or at the near state. Surface 13 carries the axial marginal ray at 5.79 mm and the
+full-field bundle at 6.15 mm (6.12 mm near). Surface 14 carries them at 5.81 mm and 6.34 mm (6.30 mm near). The surface
+validator reports no errors and the image-circle floor reports 0 undersized. Field coverage is at least 99 % at all 201
+stations, with the wide corner at 44.9° against the patent's 2ω = 89.71°. Engine values are unchanged: half-field
+38.22° (its estimate is limited by surface 2; real-ray coverage reaches the corner), f/3.64 and stop radius 5.1756 mm.
+The engine vignetting curves at wide, middle and tele are identical before and after; at wide, transmission is 100 %
+to 41.9° and 68.8 % at 44.9°. No aspheric `sd` changed, so the analysis departure table stands.
+
+Manufacturer diagram (OM Digital Solutions lens advisor) as a proportion check: it shows 10 elements in 9 groups. The
+DSA element is element 2 (the model's double-aspheric L2), the aspherical elements are 5 (L5) and 9 (L8, plastic),
+and HR element 6 (L6a, nd 1.834) is cemented to ED element 7 (L6b, νd 81.54), all agreeing with the model. G1–G2
+proportions match the patent. The maker draws G3–G5 about 10–15 % larger relative to L1 (L5 ≈ 0.47 of L1 against 0.41
+in the patent and model), and the patent figure governs. The live render at 12.243, 24.463 and 48.956 mm, at infinity
+and at 0.35 m, matches the FIG. 2 silhouette with no overlaps, and the L6a/L6b step now shows.
+
+Open limitations: the drawing resolves ±0.13 mm. The figure's flanges on L1's rear and L2's rear are mechanical and
+not modelled. The engine half-field estimate stays below the patent field, as it did before this pass.
+
+### Coordinator glass and metadata changes
+
+The coordinator made these changes to the data file during the same integration pass. No radius, thickness, index,
+asphere, gap, zoom or focus value changed.
+
+- The key was renamed to the corpus form `olympus-mzuiko-digital-ed-12-50mm-f35-63-ez`, and metadata was regenerated.
+- Glass labels were reworded to the corpus form "<glass> (<VENDOR> catalog equivalent; production supplier
+  unspecified)". The same catalog rows resolve as before: OHARA S-LAH66, S-BAL42 (L2 and L5), S-NPH1, S-LAL61,
+  S-LAH60, S-FPL51 and S-LAH55, and HOYA FF8. Element 9 (L8) reads "Unmatched (optical plastic per the patent;
+  polymer unpublished)".
+- Element 7 (L6b, S-FPL51) now carries `apd: "inferred"`. Its note records that OM Digital Solutions' construction
+  diagram shades it as the lens's one ED element, cemented to the HR element ahead of it.
+- The specs now read "10 ELEMENTS / 9 GROUPS", "DESIGN f = 12.24-48.96 mm", "DESIGN F/3.64-6.48", "6 ASPHERICAL
+  SURFACES / 3 ELEMENTS", "1 ED / 1 HR ELEMENT" and "MACRO MODE NOT MODELED".
+
+The analysis now matches these labels. Its glass lines and glass table use the catalog-equivalent wording and vendor
+attributions, and they name L2 as the maker's DSA element, L5 and L8 as its aspherical elements, L6a as the HR element
+and L6b as the ED element. The ED element's anomalous partial dispersion is described as inferred. Package-process
+wording was removed from the public prose: "native", "spectral proxy", runtime and evidence-archive references, and
+file hashes. Source facts, numbers and qualifications are unchanged, and the Zoom Path section is untouched. The camera
+plate's `rearPlates` glass label still uses the older "class (coordinate-compatible spectral proxy; supplier
+unproven)" form. The analysis table lists it as S-BSL7 (OHARA).

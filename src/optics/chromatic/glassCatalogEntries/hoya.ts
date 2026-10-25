@@ -2007,4 +2007,24 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "HOYA Zemax catalog 2026-07-07 including obsolete glasses (HOYA20260707_include_obsolete.agf); vendor formula-1 polynomial for E-FD80.",
   },
+  /* Molding glasses named by Fujifilm CN 122410763 A (XC13-33mm). Codes are shared with conventional glasses, so
+   * they resolve by name only. */
+  {
+    name: "M-BACD15",
+    vendor: "Hoya",
+    polynomial: [2.590919, -0.01259476, 0.01520205, 0.000299998, -0.00001131547, 9.15464e-7],
+    nd: 1.62263,
+    vd: 58.17,
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses (HOYA20260707_include_obsolete.agf); vendor formula-1 polynomial for molding glass M-BACD15.",
+  },
+  {
+    name: "M-PCD55AR",
+    vendor: "Hoya",
+    polynomial: [2.6366261, -0.009264580200000001, 0.016956609, 0.00026444551, 0.0000061366528, 3.4208341e-7],
+    nd: 1.63858,
+    vd: 55.18,
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses (HOYA20260707_include_obsolete.agf); vendor formula-1 polynomial for molding glass M-PCD55AR.",
+  },
 ];
