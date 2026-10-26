@@ -20,9 +20,9 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-27",
-    type: "feature",
+    type: "improvement",
     summary:
-      "The universal relationship map now keeps its labels readable at every zoom, adds a Neighborhoods summary and finds patents by lens name",
+      "The universal relationship map now reads clearly at every zoom and works well on phones, with a Neighborhoods summary, lens-name search and better inventor grouping",
   },
   {
     date: "2026-10-27",
