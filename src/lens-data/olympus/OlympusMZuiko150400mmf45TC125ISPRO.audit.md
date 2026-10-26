@@ -131,3 +131,106 @@ Half-field alternative (applied by the coordinator; see the follow-up below). Th
 
 Coordinator follow-up, same day. Three changes were applied after this pass. First, the TC IN converter takes the half-field-preserving set above (36–38 at 8.6 mm, 39–42 at 8.8, 43 at 9.4, 44 at 9.8; 34–35 stay at 8.7; shared surfaces unchanged), because rim changes must not shrink the traced field and the maker drawing's converter proportions support it. Rechecked on the edited file, the engine half-field is 5.57° / 3.47° / 2.17° at 191.62 / 307.53 / 490.90 mm (5.64° / 3.51° / 2.19° before this pass, 4.45° / 2.77° / 1.73° with the Figure 6 set). f/5.75 holds at all 101 stations, and no rim clips the axial beam or blocks the chief ray at infinity or 1.3 m (the pupil-seeded trace agrees). The chief ray reaches 10.82 mm at every station, format-corner transmission equals the Figure 6 set (82.3 / 82.3 / 70.8 %), and the parity contract holds. Second, L17 (1.59282 / 68.63) in both files and L23 (1.55032 / 75.5) in TC IN carry inferred ED tags, the positions this pass found on the maker drawing. Third, the glass labels in both files now name OHARA or HOYA catalog equivalents, with the production supplier unspecified. All 28 resolve in the repo catalog within 6 × 10⁻⁶ in nd and 0.01 in νd of the printed pairs; before the relabel, L2, L3, L10, L11, L15 and the rear positive L20 (L27 with the converter in) did not resolve. The analysis prose, glass tables and TC IN data header now match.
 
+## 2026-10-26 — Second review: diagram, labels and movement
+
+This independent second review compares the local viewer with the original JP2021096331A.pdf, Numerical Examples 5/6, printed tables on PDF pp. 81–84, movement and construction text on pp. 67–69 (especially ¶0553–0568), and Figures 5/6 on p. 106. The supplied local OM System maker image, `scratchpad/sd/maker/olympus-150400.jpg`, was viewed directly. The coordinator's converter rims and inferred ED tags were retained.
+
+### Changes and source evidence
+
+| Field / elements | Before | After | Evidence |
+|---|---|---|---|
+| TC OUT diagramLabel, every L1–L21 | absent; viewer displayed 1–21 | explicitly L1–L21, respectively | Figure 5 labels the individual lenses L1–L21; name already held those identifiers but does not control the diagram text |
+| TC IN diagramLabel, every L1–L28 | absent; viewer displayed 1–28 | explicitly L1–L28, respectively | Figure 6 labels the inserted converter L20–L26 and retained rear pair L27/L28 |
+| G4 group text, both files | G4 (−) Focus | G4 (−) Zoom/Focus | ¶0561 gives reversing zoom travel; ¶0562 gives imageward near-focus travel |
+| L12 role, both files | Negative member of the G4 focus doublet | Negative member of the G4 zoom and focus doublet | Same source paragraphs; no power or physical grouping changed |
+| L13 role, both files | Positive member of the G4 focus doublet | Positive member of the G4 zoom and focus doublet | Same source paragraphs |
+| focus.description, both files | opened with the imageward near-focus statement | also states that G4 first moves imageward then objectward during zoom | ¶0561; the existing three published / 98 reconstructed stations, separate TC focus solves, invariant D19+D22, centred IS and finite-focus-MTF limitation are retained |
+| Analysis, both files | G4 architecture-table function mentioned focus only | names zoom compensation and focus; explains explicit L identifiers and Zoom/Focus label | Keeps public prose consistent with the diagram |
+| TC OUT analysis rim prose | described L14–L19 collectively as front G6 elements | distinguishes G5 L14 from front G6 L15–L19 | ¶0556–0557 and Figure 5 group brackets |
+
+No sd, stop radius, policy, glass, APD tag, numeric gap, focal anchor, focus endpoint, radius, index or asphere coefficient changed. No movement-array reordering was warranted.
+
+### Independent silhouette check
+
+The new 300 dpi page render is `review-p106-106.png`. Native middle-panel Figure 5 vertex crossings give S1 x≈428.5, S5 x≈518.5 and S34 x≈1018.5 px. The prescription spans 43.9577 and 287.2226 mm give 0.48842 and 0.48682 mm/px, agreeing within 0.33%. Air-gap axis samples locate the slightly tilted line at y≈1054–1057 px; a single constant y would bias small rims by up to about 1.5 mm. The upper clean side was profiled independently; the middle/tele panels and both rim sides were inspected to reject leaders, brackets and lands. The annotated wide panel is a qualitative check, not a trusted envelope measurement. Figure 6's shared front vertices supply the same scale. Thick ink, tilt and short converter edges leave about 0.5 mm uncertainty.
+
+All elements were inspected. The front singlet remains slightly taller than drawn; L2 is taller than the rear edge of L3, as drawn. G2's rear L6 face steps down toward L7; it is not a square component accidentally bevelled by one isolated rim. L8, the following G3 cluster and G4 are modestly taller than the figure, without a new clear >10% discrepancy. G5 and the front G6 cluster retain the drawn small-rim ordering. No new bowl wrapping, crossing or missed bracket was seen through zoom or near focus.
+
+| Optical component | Stored sd retained, mm | Independent figure reading, approximate mm | Decision |
+|---|---:|---:|---|
+| L1 | 44.5 / 44.5 | about 43 | retain within scan/measurement tolerance |
+| L2 and L3 | 38.8 / 38.8 / 37.2 | about 39, stepping to 37 | preserve the source-drawn stepped rear edge and axial floor |
+| L4/L5/L6 | 16.8 through S8; S9 15.6 | about 17, stepping to 16 | retain the drawn rear reduction |
+| L7 | 15.6 | about 16 | retain |
+| L8 | 18 | about 16.5–17 | below a clear 10% correction threshold; retain both aspheric rims |
+| L9/L10/L11 | 17.5 | about 16.5–17 | retain |
+| L12/L13 | 13.5 | about 13 | retain |
+| L14 | 8.9 | about 9 | retain |
+| L15 | 8.7 | about 9 | retain |
+| L16/L17 and L18 | 9.3 and 9.2 | about 9–9.5 | retain |
+| L19 | 9.8 | about 9.5–10 in Figure 5, smaller in Figure 6 | one shared physical rim; retain |
+| Rear pair L20/L21 OUT, L27/L28 IN | 11.9 | about 11.5 in Figure 5, about 8–8.5 in Figure 6 | preserve parity and the coordinator's shared-rim decision |
+| Converter L20 | 8.7 | about 8.5 | retain |
+| Converter L21/L22 | 8.6 | about 8–8.5 | retain |
+| Converter L23/L24/L25 | 8.8 | about 7.5–8 | coordinator field-preserving exception retained |
+| Converter L26 | S43 9.4, S44 9.8 | about 7–7.5 | coordinator field-preserving exception retained, including its slight bevel |
+
+Square-rim trial, report only: changing TC IN S43 from 9.4 to **9.8 mm**, leaving S44 at 9.8, squares L26 and prints **“OK — no validation errors”**. The substituted-rim clearap trace at all 101 stations has no CLIPS-AXIAL / BLOCKS-CHIEF. Engine half-fields and format-corner transmission remain 5.57 / 3.47 / 2.17° and 82.3 / 82.3 / 70.8%. This would move even farther above Figure 6's approximately 7.4 mm optical rim and changes the explicitly supplied 9.4/9.8 coordinator decision, so it was **not applied**. No gapSagFrac or other policy trial was needed. The current pair also passes the validator.
+
+### Labels, stop, aspheres and maker tags
+
+Group brackets are correct: G1 S1–5; G2 S6–11; G3 S13–19; G4 S20–22; G5 S23–24; G6 S25–36 OUT / S25–47 IN. STO is source surface 12, between L7 and L8, 1.8 mm before S13 and fixed with G3, as ¶0560–0561 require. The camera plate is traced separately and is not counted as a drawn lens.
+
+Every cemented component has one consistent C-prefixed bracket: S3–5, S6–9 (triplet), S15–17, S20–22, S27–29 and S34–36 OUT / S45–47 IN; TC IN additionally has S36–38 and S39–42 (triplet). Corresponding cemented IDs and surface ranges agree. All element shape strings agree with their surface-radius signs and net isolated powers. Meniscus labels are generic but true. Both aspheres are on L8, source surfaces 13/14; their V2 asphere objects generate the two visible A markers. No other element receives an aspheric marker.
+
+The supplied maker image shows 28 elements / 18 construction groups, including the seven converter elements in four groups, consistent with 21 / 14 OUT. Front-to-rear TC IN positions are EDA L8, Super ED L3/L10/L11/L15, ED L17/L23, HR L21/L25 and HD L28. All six OUT and seven IN inferred APD tags agree with those positions; HR/HD carry no APD tag. Neither the patent's nd/νd coordinates nor the maker's category colours establish a production melt or supplier. The maker draws a proportionally larger converter than Figure 6; it supports the retained compromise but is not a substitute optical-rim measurement.
+
+All 13 tagged-element inspector requests were rendered (including the dual-aspheric L8 in both configurations); `review-tagged-inspectors.png` records their actual type, index, Abbe, focal-length, catalog-equivalent glass and inferred badges. For example L8 is biconvex positive / ASPH ×2, FCD1, +72.25 mm; L17 is biconcave negative, FCD515, −39.75 mm; converter L23 is biconcave negative / triplet C39, FCD705, −23.03 mm. Their roles and APD notes were cross-checked against the data and source grouping. The fixed 900-pixel render viewport clips lower inspector prose, particularly L8's coefficient/role section; no claim is made to having scrolled those cards. No interactive browser surface was available to this sandbox.
+
+Both toggle labels are correct in the new screenshots: **TC OUT** and **TC 1.25× IN**. Published zoom labels match the three table anchors in each file, all 98 intervening station labels say inferred cam, and D5/D11/D19/D22/D24 correctly label their source gaps.
+
+### Zoom and focus direction
+
+Object-to-image z is positive. The following displacements relative to wide/infinity are identical in both configurations and match ¶0561 and the printed gaps on pp. 82–84. All 101 focal stations ascend, with exactly indices 0/50/100 marked published.
+
+| Group | Wide / middle / tele z displacement, mm | Zoom verdict | Near-focus verdict |
+|---|---|---|---|
+| G1 | 0 / 0 / 0 | fixed | fixed |
+| G2 | 0 / +28.4606 / +54.6149 | monotonic imageward | fixed at a given zoom |
+| G3 and stop | 0 / 0 / 0 | fixed | fixed |
+| G4 | 0 / +1.5867 / −2.2938 | imageward to station 50, then objectward; middle-to-tele −3.8805 | only focusing group; imageward |
+| G5 | 0 / −1.4280 / −0.3175 | objectward to station 50, then imageward by 1.1105 | fixed at a given zoom |
+| G6, including inserted TC | 0 / 0 / 0 | fixed | fixed |
+
+D5 = 56.5303 / 84.9909 / 111.1452 and D11 = 56.7653 / 28.3047 / 2.1504 mm confirm G2's direction and fixed G3. D19 = 5.2138 / 6.8005 / 2.9200; D22 = 23.3087 / 20.2940 / 25.2850; D24 = 2.3050 / 3.7330 / 2.6225 mm confirm both compensation reversals and fixed G6. No reversed station list or exchanged infinity/near index was found.
+
+Near-focus index 1 increases D19 and decreases D22 equally, moving only S20–22. Travel at the printed stations is +3.064651 / +7.992559 / +20.529278 mm OUT and +3.064546 / +7.992439 / +20.529136 mm IN. All 101 near endpoints have positive travel, every other group stays fixed, and D19+D22 is invariant. Probe retains the reconstructed approximately 1.3 m object-to-image distance; both live sliders read 1.30 m at the near endpoint. The source publishes direction but no finite-conjugate amount, so these travel numbers remain reconstructed rather than patent measurements.
+
+### Validation, transmission and rendered evidence
+
+Before and after, both surface validators print **OK — no validation errors** and image-circle checks report 0 undersized / 0 skipped. TC OUT field coverage reaches the 10.82 mm corner at all 101 stations, at least 99%, with no unsolved station. The field-coverage census skips hidden TC IN; its separate clearap trace covers all 101 stations and reaches Y=10.82 mm. Both configurations have zero CLIPS-AXIAL / BLOCKS-CHIEF at infinity and with focus-key 1 substituted. The latter tool still launches infinity-conjugate rays through the near geometry; it is not a fresh finite-object pupil certification. Printed angular half-fields are recovered (OUT 4.03 / 2.51 / 1.57°, IN approximately 3.175 / 1.98 / 1.24°), so --Y did not over-drive the intended source field.
+
+| Engine quantity at wide / middle / tele | Before | After |
+|---|---|---|
+| TC OUT half-field | 5.19 / 3.23 / 2.02° | identical |
+| TC IN half-field | 5.57 / 3.47 / 2.17° | identical |
+| TC OUT nominal f-number | 4.590 at all stations | identical |
+| TC IN nominal f-number | 5.750 at all stations | identical |
+| OUT corner geometric transmission | 79.2 / 79.2 / 64.6% | identical |
+| IN corner geometric transmission | 82.3 / 82.3 / 70.8% | identical |
+
+The full before/after vignetting outputs, including all sampled intermediate field angles, compare byte-for-byte equal. Both built calls succeed; every numeric runtime scalar is unchanged. A direct contract comparison confirms all first 33 shared surfaces and the three retained trailing surfaces, including sd, signs, aspheres and media coordinates, agree after normalization of labels/element numbering and the converter insertion gap. Shared infinity gaps remain equal at all 101 stations; the independently solved near endpoints remain distinct. No full test, typecheck, lint, build, metadata generation, server lifecycle or git-state command was run.
+
+The render queue completed **229 successful / 0 failed** new page requests: all 202 authored infinity zoom states, six printed-station near states, zoom/focus overlays at both ends in both configurations, and all 13 tagged-element inspectors. Every infinity station image was inspected in ordered contact sheets; the six source states and near/motion views were also compared directly. The new L identifiers remain readable with packed rows, the group labels identify the proper components, A/A and STO are correctly placed, and no new rim overlap appeared. The retained converter and TC IN rear-pair excess over Figure 6 remain visible and intentional. Views sample authored states rather than proving every continuous slider position.
+
+The saved side-by-side comparison is:
+`/private/tmp/claude-501/-Users-ronbuening-Programming-Code-LensVisualizer-LensVisualizer/1168ee07-3a95-429a-8228-c96717740b52/scratchpad/r2/oly150400/oly150400-second-review-comparison.png`.
+Supporting contact sheets, individual PNGs, native figure crops, profiles, pre/post numerical outputs, parity/glass checks and the unadopted S43 trial remain in the same scratch folder.
+
+### Glass and remaining source limitations
+
+Every one of the 21 OUT and 28 IN element glass labels, plus each physical camera plate, resolves both by name and by coordinate-compatible catalog lookup. There are **zero Unmatched / unresolved elements**. Current maximum differences from catalog rows are about 3×10⁻⁶ in nd and 0.0063 in νd. No glass string or APD tag was found wrong. The relevant tables on pp. 81–84 supply nd/νd and asphere coefficients, but no supplier glass names, extra spectral-line indices or partial-dispersion measurements; there is no additional unresolved identification to recover for an unmatched element.
+
+The known Example 5 d15 “variable” cell on p. 82, without a corresponding schedule, remains disclosed as the sibling-supported 1.5 mm reconstruction; no forbidden thickness correction was made. No new radius, spacing, index, marketing or bibliographic mismatch was found. The viewed title page gives JP 2021-96331 A, 2021-06-24, application 2019-226608 filed 2019-12-16, Olympus Corporation, and inventors Kubota / Yamada, consistent with the existing data's Yuki Kubota / Yasuharu Yamada. Production cam, production glass identity, exact physical rims and decentered IS remain unproven. The only rim refinement left for coordinator judgment is the explicitly unadopted S43 square-rim trial above.
+
+Coordinator follow-up (same day): the aspheric surfaces on L8 are now labelled 13A and 14A in both configuration files (corpus A-suffix convention; parity unchanged).

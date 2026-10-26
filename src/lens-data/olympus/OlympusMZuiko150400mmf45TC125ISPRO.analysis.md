@@ -28,7 +28,7 @@ The source describes six powered zoom groups with signs **positive–negative–
 | G1 | L1–L3 | +237.6594 | Fixed front positive collector |
 | G2 | L4–L7 | −56.7238 | Negative variator; cemented triplet plus singlet |
 | G3 | L8–L11 | +42.1631 | Fixed positive section immediately behind stop; dual-aspheric L8 |
-| G4 | L12–L13 | −65.5355 | Moving negative focus doublet |
+| G4 | L12–L13 | −65.5355 | Negative zoom compensator and focus doublet |
 | G5 | L14 | −84.0416 | Negative zoom compensator |
 | G6 | L15–L21 | +104.3063 | Fixed rear relay, centered IS and converter insertion space |
 
@@ -40,7 +40,7 @@ The camera-side parallel plate C is separate from the lens elements. Its physica
 
 The focal lengths below are **isolated thick-element paraxial calculations in air**, not claimed powers of elements while cemented into their actual neighboring media. Glass names are catalog equivalents of the printed nd/νd pairs; the patent names no supplier, so production melts remain unspecified. Roles below distinguish the source's grouping from optical interpretation; individual aberration budgets have not been recovered.
 
-This companion follows **Numerical Example 5**, with **21 active elements**. TC is out; the base numbering is retained.
+This companion follows **Numerical Example 5**, with **21 active elements**. TC is out; the base numbering is retained. The diagram explicitly uses the patent's L1–L21 designations. G4 is labelled “Zoom/Focus” because it reverses during wide-to-tele zoom and moves imageward for near focus (¶0561–0562).
 
 ### L1 — Plano-Convex Positive
 
@@ -220,7 +220,7 @@ The source names L16, L17 and L18 as the laterally moving stabilization assembly
 
 Paraxial calculations reproduce the patent focal lengths within approximately 0.009 mm at all six printed configuration/zoom states. The largest residual paraxial image-plane offset is about 0.00118 mm. The model retains the physical plate and stated image plane.
 
-Semi-diameters are inferred from Figures 5–6, the stated axial f-number and clearance to the full Four Thirds format corner. Rims are read from the clean sides of all three Figure 5 panels, with the leader-crossed wide panel as a check. The drawing makes the L2/L3 pair and the front G6 elements L14–L19 smaller than the first estimates; the drawn L2 rim sits at the axial beam of the long end, and the smaller G6 rims add some corner vignetting at full aperture. Figure-based estimates describe optical clear apertures, not measured mechanical lens radii.
+Semi-diameters are inferred from Figures 5–6, the stated axial f-number and clearance to the full Four Thirds format corner. Rims are read from the clean sides of all three Figure 5 panels, with the leader-crossed wide panel as a check. The drawing makes the L2/L3 pair and the G5 element L14 and front G6 elements L15–L19 smaller than the first estimates; the drawn L2 rim sits at the axial beam of the long end, and the smaller G6 rims add some corner vignetting at full aperture. Figure-based estimates describe optical clear apertures, not measured mechanical lens radii.
 
 Sampled geometry and ray results apply to the stated positions and rays; they do not establish clearance throughout every continuous zoom/focus position or the full pupil.
 

@@ -63,88 +63,104 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
+      "diagramLabel": "L1",
       "label": "Element 1",
       "type": "Negative Meniscus",
       "nd": 1.6398,
       "vd": 34.6,
       "indexReference": "d",
+      "focalLengthMm": -108.399192,
       "glass": "E-FD7 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Negative front member of the first cemented doublet; catalog-equivalent glass, production melt unidentified."
     },
     {
       "id": 2,
       "name": "L2",
+      "diagramLabel": "L2",
       "label": "Element 2",
       "type": "Positive Meniscus",
       "nd": 1.691,
       "vd": 54.8,
       "indexReference": "d",
+      "focalLengthMm": 32.562689,
       "glass": "K-LaK9 (SUMITA catalog equivalent; production supplier unspecified)",
       "role": "Positive rear member of the first cemented doublet; catalog-equivalent glass, production melt unidentified."
     },
     {
       "id": 3,
       "name": "L3",
+      "diagramLabel": "L3",
       "label": "Element 3",
       "type": "Positive Meniscus",
       "nd": 1.744,
       "vd": 44.9,
       "indexReference": "d",
+      "focalLengthMm": 49.483499,
       "glass": "LAF2 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Positive front member of the second cemented doublet; catalog-equivalent glass, production melt unidentified."
     },
     {
       "id": 4,
       "name": "L4",
+      "diagramLabel": "L4",
       "label": "Element 4",
       "type": "Negative Meniscus",
       "nd": 1.64769,
       "vd": 33.9,
       "indexReference": "d",
+      "focalLengthMm": -31.451035,
       "glass": "SF2 (Schott catalog equivalent; production supplier unspecified)",
       "role": "Negative rear member of the second cemented doublet, bordering the central diaphragm gap; catalog-equivalent glass, production melt unidentified."
     },
     {
       "id": 5,
       "name": "L5",
+      "diagramLabel": "L5",
       "label": "Element 5",
       "type": "Positive Meniscus",
       "nd": 1.6425,
       "vd": 58.09,
       "indexReference": "d",
+      "focalLengthMm": 37.400408,
       "glass": "LAK6 (SUMITA catalog equivalent; production supplier unspecified)",
       "role": "Positive front member of the rear cemented triplet; catalog-equivalent glass, production melt unidentified."
     },
     {
       "id": 6,
       "name": "L6",
+      "diagramLabel": "L6",
       "label": "Element 6",
       "type": "Negative Meniscus",
       "nd": 1.5927,
       "vd": 35.4,
       "indexReference": "d",
+      "focalLengthMm": -16.288861,
       "glass": "FF5 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Negative middle member of the rear cemented triplet; catalog-equivalent glass, production melt unidentified."
     },
     {
       "id": 7,
       "name": "L7",
+      "diagramLabel": "L7",
       "label": "Element 7",
       "type": "Positive Meniscus",
       "nd": 1.713,
       "vd": 53.89,
       "indexReference": "d",
+      "focalLengthMm": 31.476193,
       "glass": "S-LAL8 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Positive rear member of the rear cemented triplet; catalog-equivalent glass, production melt unidentified."
     },
     {
       "id": 8,
       "name": "L8",
+      "diagramLabel": "L8",
       "label": "Element 8",
       "type": "Biconvex Positive",
       "nd": 1.72,
       "vd": 50.31,
       "indexReference": "d",
+      "focalLengthMm": 41.086621,
       "glass": "K-LaK10 (SUMITA catalog equivalent; production supplier unspecified)",
       "role": "Positive biconvex rear singlet; catalog-equivalent glass, production melt unidentified."
     }
@@ -256,6 +272,28 @@ const LENS_DATA = {
     ],
     "maxFNumber": 22
   },
+  "groups": [
+    {
+      "text": "I",
+      "fromSurface": "1",
+      "toSurface": "3"
+    },
+    {
+      "text": "II",
+      "fromSurface": "4",
+      "toSurface": "6"
+    },
+    {
+      "text": "III",
+      "fromSurface": "7",
+      "toSurface": "10"
+    },
+    {
+      "text": "IV",
+      "fromSurface": "11",
+      "toSurface": "12"
+    }
+  ],
   "doublets": [
     {
       "text": "L1 + L2",

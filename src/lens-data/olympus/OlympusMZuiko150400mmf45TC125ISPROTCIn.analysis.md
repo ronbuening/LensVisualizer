@@ -28,7 +28,7 @@ The source describes six powered zoom groups with signs **positive–negative–
 | G1 | L1–L3 | +237.6594 | Fixed front positive collector |
 | G2 | L4–L7 | −56.7238 | Negative variator; cemented triplet plus singlet |
 | G3 | L8–L11 | +42.1631 | Fixed positive section immediately behind stop; dual-aspheric L8 |
-| G4 | L12–L13 | −65.5355 | Moving negative focus doublet |
+| G4 | L12–L13 | −65.5355 | Negative zoom compensator and focus doublet |
 | G5 | L14 | −84.0416 | Negative zoom compensator |
 | G6 | L15–L21 | +104.3063 | Fixed rear relay, centered IS and converter insertion space |
 
@@ -40,7 +40,7 @@ The camera-side parallel plate C is separate from the lens elements. Its physica
 
 The focal lengths below are **isolated thick-element paraxial calculations in air**, not claimed powers of elements while cemented into their actual neighboring media. Glass names are catalog equivalents of the printed nd/νd pairs; the patent names no supplier, so production melts remain unspecified. Roles below distinguish the source's grouping from optical interpretation; individual aberration budgets have not been recovered.
 
-This companion follows **Numerical Example 6**, with **28 active elements**. TC is in; L20–L26 are inserted and the base rear pair is L27–L28.
+This companion follows **Numerical Example 6**, with **28 active elements**. TC is in; L20–L26 are inserted and the base rear pair is L27–L28. The diagram explicitly uses the patent's L1–L28 designations. G4 is labelled “Zoom/Focus” because it reverses during wide-to-tele zoom and moves imageward for near focus (¶0561–0562).
 
 ### L1 — Plano-Convex Positive
 

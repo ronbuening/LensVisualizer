@@ -12,6 +12,8 @@ Tamron's 51A literature describes a 70–150 mm f/2.8 soft-focus lens with 14 el
 
 Fourteen elements in ten groups with four cemented interfaces at surfaces 2, 9, 12 and 17. The three variable zoom gaps follow surfaces 5, 13 and 15. The rear soft control moves G12/G13 forward 6.2 mm and G14 forward 9.22 mm; the compensating terminal space holds the sensor fixed while retaining the intentional soft aberration. The manufacturer's brochure drawing shows the same four doublets, stop position and three rear relay elements used for soft-focus control.
 
+The diagram retains the patent's Z1–Z9, M10/M11 and G12–G14 element designations. Its Z bracket spans surfaces 1–15 and its M bracket spans 16–25, as in Fig. 2. D1–D4 are editorial labels for the cemented pairs at surfaces 1–3, 8–10, 11–13 and 16–18. During wide-to-tele zoom, Z1–Z3 stay fixed, Z4–Z8 move imageward by 26.5661 mm, and Z9 moves imageward by 4.7322 mm to the middle station before returning to its wide-state position. M10/M11, the stop and G12–G14 stay fixed during zoom; the rear three elements move objectward only under soft control. Ordinary finite-distance focusing is not modeled.
+
 ## Element-by-Element Analysis
 
 ### Z1: Meniscus Negative
@@ -108,7 +110,7 @@ The patent provides nd and νd only; the glasses actually used in production rem
 - Z9 is OHARA S-LAL8.
 - G14 (1.77250/49.68) is HOYA TAF1.
 
-Catalog nd agrees with the printed values within 0.00001. Catalog νd agrees within 0.02, except TAF1, whose catalog νd is 49.62 against the printed 49.68. These are coordinate equivalents only. The production supplier is unspecified, and none of the glasses is an anomalous-partial-dispersion type. Chromatic calculations use these catalogs' dispersion data.
+Catalog nd agrees with the printed values within 0.00001. Catalog νd agrees within 0.02, except TAF1, whose catalog νd is 49.63 against the printed 49.68. These are coordinate equivalents only. The production supplier is unspecified, and none of the glasses is an anomalous-partial-dispersion type. Chromatic calculations use these catalogs' dispersion data.
 
 The printed Z9 index 6.71300 is read as 1.71300, corroborated by all 24 nonzero Petzval rows and the three focal lengths. This reading is an inference from the printed data. S-LAL8 is the catalog equivalent of the corrected coordinates and is not independent evidence for the reading. Element powers are calculated in isolation and do not uniquely establish aberration contributions within the assembled lens.
 

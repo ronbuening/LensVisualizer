@@ -4,8 +4,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * cross-section (Figure 1 of JP H02-39116 A, the same example as JP 2706781 B2) and floor-checked by real-ray trace
  * at every zoom position. S18 is 5.65 mm, the height of the F4/F5.6 axial marginal ray. L10's concave front face
  * there nearly touches L9's rear face, as the figure draws it. checks.gapSagFrac is therefore 0.98 for the whole lens
- * (0.97 refuses S18), and the S17-S18 gap is the only one that needs more than the default 0.90. S11 and S19 stay
- * within the default limit where they nearly meet S10 and S20. L12 is held at 7.1 mm, above the drawn 6.5 mm, so
+ * (0.97 refuses S18). S11 = 5.8 mm and S19 = 5.7 mm also use the raised allowance where they nearly meet S10
+ * and S20; the literal spherical faces remain separated. L12 is held at 7.1 mm, above the drawn 6.5 mm, so
  * the engine's traced field is not reduced at any zoom position.
  */
 const LENS_DATA = {
@@ -365,7 +365,7 @@ const LENS_DATA = {
       {
         "focalLengthMm": 25.78,
         "nominalFNumber": 4,
-        "label": "Wide25.78mm",
+        "label": "Wide 25.78 mm",
         "published": true
       },
       {
@@ -1366,7 +1366,7 @@ const LENS_DATA = {
       {
         "focalLengthMm": 73.05,
         "nominalFNumber": 5.6,
-        "label": "Tele73.05mm",
+        "label": "Tele 73.05 mm",
         "published": true
       }
     ],
@@ -1375,7 +1375,7 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 0.7,
-    "description": "Only infinity focus is modeled. The patent prints the wide and tele states. The interpolated intermediate zoom path keeps G1 and G3 coupled and D5+D12 constant, with D5 varying linearly. The rear image gap is calculated for a fixed image plane while preserving the interpolated endpoint defocus. Both printed endpoint prescriptions are unchanged; intermediate positions are not published lens positions or measured factory cam motion. Aperture variation is interpolated. No finite-focus positions are modeled."
+    "description": "Only infinity focus is modeled. The patent describes near focusing by moving G3 toward the image, but supplies no quantitative near-focus travel. The patent prints the wide and tele states. The interpolated intermediate zoom path keeps G1 and G3 coupled and D5+D12 constant, with D5 varying linearly. The rear image gap is calculated for a fixed image plane while preserving the interpolated endpoint defocus. Both printed endpoint prescriptions are unchanged; intermediate positions are not published lens positions or measured factory cam motion. Aperture variation is interpolated. No finite-focus positions are modeled."
   },
   "gaps": {
     "5": {
@@ -3818,17 +3818,17 @@ const LENS_DATA = {
   },
   "groups": [
     {
-      "text": "G1",
+      "text": "G1 (f1)",
       "fromSurface": "1",
       "toSurface": "5"
     },
     {
-      "text": "G2",
+      "text": "G2 (f2)",
       "fromSurface": "6",
       "toSurface": "12"
     },
     {
-      "text": "G3",
+      "text": "G3 (f3)",
       "fromSurface": "STO",
       "toSurface": "23"
     }

@@ -51,6 +51,8 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "Z1",
+      "diagramLabel": "Z1",
+      "cemented": "D1",
       "label": "Element 1",
       "type": "Meniscus Negative",
       "nd": 1.80518,
@@ -63,6 +65,8 @@ const LENS_DATA = {
     {
       "id": 2,
       "name": "Z2",
+      "diagramLabel": "Z2",
+      "cemented": "D1",
       "label": "Element 2",
       "type": "Biconvex Positive",
       "nd": 1.61272,
@@ -75,6 +79,7 @@ const LENS_DATA = {
     {
       "id": 3,
       "name": "Z3",
+      "diagramLabel": "Z3",
       "label": "Element 3",
       "type": "Meniscus Positive",
       "nd": 1.61272,
@@ -87,6 +92,7 @@ const LENS_DATA = {
     {
       "id": 4,
       "name": "Z4",
+      "diagramLabel": "Z4",
       "label": "Element 4",
       "type": "Plano-concave Negative",
       "nd": 1.6968,
@@ -99,6 +105,8 @@ const LENS_DATA = {
     {
       "id": 5,
       "name": "Z5",
+      "diagramLabel": "Z5",
+      "cemented": "D2",
       "label": "Element 5",
       "type": "Meniscus Positive",
       "nd": 1.80518,
@@ -111,6 +119,8 @@ const LENS_DATA = {
     {
       "id": 6,
       "name": "Z6",
+      "diagramLabel": "Z6",
+      "cemented": "D2",
       "label": "Element 6",
       "type": "Biconcave Negative",
       "nd": 1.6968,
@@ -123,6 +133,8 @@ const LENS_DATA = {
     {
       "id": 7,
       "name": "Z7",
+      "diagramLabel": "Z7",
+      "cemented": "D3",
       "label": "Element 7",
       "type": "Biconcave Negative",
       "nd": 1.6968,
@@ -135,6 +147,8 @@ const LENS_DATA = {
     {
       "id": 8,
       "name": "Z8",
+      "diagramLabel": "Z8",
+      "cemented": "D3",
       "label": "Element 8",
       "type": "Biconvex Positive",
       "nd": 1.80518,
@@ -147,6 +161,7 @@ const LENS_DATA = {
     {
       "id": 9,
       "name": "Z9",
+      "diagramLabel": "Z9",
       "label": "Element 9",
       "type": "Biconvex Positive",
       "nd": 1.713,
@@ -159,6 +174,8 @@ const LENS_DATA = {
     {
       "id": 10,
       "name": "M10",
+      "diagramLabel": "M10",
+      "cemented": "D4",
       "label": "Element 10",
       "type": "Biconvex Positive",
       "nd": 1.6968,
@@ -171,6 +188,8 @@ const LENS_DATA = {
     {
       "id": 11,
       "name": "M11",
+      "diagramLabel": "M11",
+      "cemented": "D4",
       "label": "Element 11",
       "type": "Biconcave Negative",
       "nd": 1.80518,
@@ -183,6 +202,7 @@ const LENS_DATA = {
     {
       "id": 12,
       "name": "G12",
+      "diagramLabel": "G12",
       "label": "Element 12",
       "type": "Meniscus Negative",
       "nd": 1.80518,
@@ -195,6 +215,7 @@ const LENS_DATA = {
     {
       "id": 13,
       "name": "G13",
+      "diagramLabel": "G13",
       "label": "Element 13",
       "type": "Meniscus Negative",
       "nd": 1.80518,
@@ -207,6 +228,7 @@ const LENS_DATA = {
     {
       "id": 14,
       "name": "G14",
+      "diagramLabel": "G14",
       "label": "Element 14",
       "type": "Biconvex Positive",
       "nd": 1.7725,
@@ -377,6 +399,16 @@ const LENS_DATA = {
       "R": -90.5,
       "sd": 14.9
     }
+  ],
+  "groups": [
+    { "text": "Z", "fromSurface": "1", "toSurface": "15" },
+    { "text": "M", "fromSurface": "16", "toSurface": "25" }
+  ],
+  "doublets": [
+    { "text": "D1", "fromSurface": "1", "toSurface": "3" },
+    { "text": "D2", "fromSurface": "8", "toSurface": "10" },
+    { "text": "D3", "fromSurface": "11", "toSurface": "13" },
+    { "text": "D4", "fromSurface": "16", "toSurface": "18" }
   ],
   "focus": {
     "closeFocusM": 0.98,

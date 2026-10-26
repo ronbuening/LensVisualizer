@@ -161,3 +161,74 @@ After the S18 edit, a tele render shows L10's front rim meeting L9's rear face, 
 Closed (coordinator, same day): S11 = 5.8 mm and S19 = 5.7 mm were applied under the lens-wide 0.98 allowance, bringing both within the noise band of the figure's touching 6.3 mm rims while staying below the 5.88 / 5.78 mm crossing heights; audit:surface reports no errors and clearap2 at Y = 14.7 mm shows no axial or chief-ray clip. L5 is relabelled F5 (Schott catalog equivalent) to match the row it resolves to.
 
 Glass follow-up, same day. SUMITA rows K-SFLD6, LLF6, LASFN14, SFLDN3 and K7 were added to the built-in catalog. The existing labels on L1, L2, L4, L6, L7, L10, L11 and L12 now resolve to them. L3, L8 and L9 were relabelled S-FSL5, S-FTM16 and S-BAL14 (OHARA catalog equivalents; production supplier unspecified). Their catalog nd is within 0.000002 of the printed values, and catalog νd is 70.24, 35.31 and 56.36 against the printed 70.1, 35.3 and 56.3. The stored nC/nF/ng values were removed from all twelve elements, and every element now resolves to Sellmeier-form catalog data. Against the earlier stored lines, the SUMITA rows agree within 5×10⁻¹². The OHARA curves for L3, L8 and L9 differ by at most 5.9×10⁻⁶, and their line-based νd moves by 0.026 or less. L5 keeps its "F5 (SUMITA …)" label, but the catalog has no SUMITA F5 row. It therefore resolves to SCHOTT F5 (nd 1.60342, νd 38.03), which lies within 6.2×10⁻⁶ of the earlier SUMITA-derived lines. The d-line prescription, EFL, BFD and every rim result above are unaffected. The analysis quotes no chromatic aberration figures, so none needed recomputing.
+
+## 2026-10-26 — Second review: diagram, labels and movement
+
+Independent comparison used the live local page, JP2706781B2 PDF pages 1–4 and the cleaner JPH0239116A PDF page 4, Figure 1. The numerical example is the sole example, at wide/infinity: D5 is short and D12 long. No maker image was supplied, viewed or downloaded. The retained deployment record states: “No independently accessible Z construction diagram was available for a new maker-diagram comparison”; it records the Z/Z-L manual's twelve elements in ten groups. That count agrees with the patent's twelve elements, ten air-separated components, and cemented L1/L2 and L5/L6. The record does not establish maker ED or aspherical positions. The patent supplies only spherical surfaces and no named special glass.
+
+Scratch evidence is under `/private/tmp/claude-501/-Users-ronbuening-Programming-Code-LensVisualizer-LensVisualizer/1168ee07-3a95-429a-8228-c96717740b52/scratchpad/r2/yashica/`. `live-vs-patent.png` places the final wide live diagram on the left and the A Figure 1 crop on the right. `renderq/station-000.png` through `station-200.png` cover every authored zoom position; `stations.tsv` maps filenames to focal lengths. Contact sheets are ordered left-to-right, then top-to-bottom. The wide/tele zoom overlays, forced focus overlays and element inspectors are retained in `renderq/`.
+
+### Independent figure measurements and retained rims
+
+The A PDF was rendered at its approximately native 347 ppi. The raster is 2868 × 4058 px; the optical axis is at y = 1193–1194. Near-axis crossings put S1 at x ≈ 319 and S23 at x ≈ 1298: 52.237 / 979 = 0.05336 mm/px. Independent checks give 22.17 / 414 = 0.05355 mm/px for S1–S12 and 16.30 / 303 = 0.05380 mm/px for S14–S23. The sub-1% differences are drawing/scan error. Upper-rim profiles excluded the f1/f2/f3 brackets, and curve endpoints were distinguished from flat lands using perpendicular ink runs; labels below the axis were not treated as rims.
+
+| Surfaces | Stored before = after, mm | Independent figure reading, mm | Decision |
+| --- | ---: | --- | --- |
+| S1 | 17.7 | 331–332 px, about 17.7 | Keep; front member remains tallest. |
+| S2, S3 | 16.1 | Step to about 301 px, 16.1 | Keep optical curve ends; do not extend the cemented pair through itself. |
+| S4, S5 | 12.5 | About 231 px, 12.3 | Within measurement noise; square rim retained. |
+| S6 | 9.2 | 173–174 px, about 9.3 | Keep the taller front G2 singlet. |
+| S7, S8 | 6.4 | Near-contact curve ends about 6.2–6.4; flat lands extend farther | Keep curve ends; the complete outer blocks cannot both be spherical extensions. |
+| S9, S10 | 6.4 | Curve/rim region about 6.6–6.7; some flat land reaches about 7.2 | Keep; optical endpoint differs from the outer land. |
+| S11, S12 | 5.8 | Outer envelope about 6.3, curved face ends below it | Keep coordinator value; S11 remains below the 5.88 mm crossing height. |
+| S14, S15 | 6.2 | About 124 px, 6.6 | Approximately 7% difference; no repaint. |
+| S16, S17 | 6.2 | 117–118 px, about 6.25 | Keep square L9 rim. |
+| S18, S19 | 5.65 / 5.7 | Flat L10 envelope about 6.25; concave curve ends meet neighbours below it | Keep coordinator values and touching-rim interpretation. |
+| S20, S21 | 6.2 | 116–118 px, about 6.2–6.3 | Keep square L11 rim. |
+| S22, S23 | 7.1 | About 121–122 px, 6.5 | Retain the previously established engine-field floor; still visibly taller than drawn. |
+
+Visible differences are L1's sloping join in place of the figure's flat land/step; L4's sloping join instead of its flat land/cylindrical edge; the simplified equal-height central doublet in place of small stepped lands; L7 and L10 below their drawn outer blocks; and L12 about 0.6 mm taller than drawn. L9/L11 share the drawn envelope, the front-to-rear height ordering is preserved, and no new overlap was visible. No semi-diameter, stop radius, gap, curvature or geometry-policy value was changed.
+
+Trial results explain why the visible land differences remain. `audit:surface --sd 2=17.7 3=17.7` reports `ERR Element 2 ("L2"): negative edge thickness (-0.371 mm) at sd=17.7`. The separate S7 = 9.2 and S8/S9/S10 = 7.2 trials each pass, but combining the figure's outer blocks (`7=9.2 8=7.2 9=7.2 10=7.2`) reports S7–S8 combined sag 3.80 mm against an allowed 3.234 mm of the 3.300 mm gap. These are flat-land representations, not authority to extend both spherical curves. Squaring L10 with `18=6.2 19=6.2` reports S17–S18 sag 0.59 mm against 0.490 mm allowed, and S19–S20 sag 1.03 mm against 0.882 mm allowed. Those sag sums exceed the physical gaps as well, so increasing a policy allowance would not resolve the crossing.
+
+The coordinator's 0.98 allowance is retained. A canonical-ingest trial at 0.90 rejects S10–S11 (0.70 mm sag versus 0.648 mm allowed), S17–S18 (0.49 versus 0.450 mm) and S19–S20 (0.86 versus 0.810 mm). At 0.97, S10–S11 and S17–S18 still fail; 0.98 returns no errors. The previous header/analysis claim that only S17–S18 needs more than 0.90 was stale after S11/S19 were raised and is corrected here. No new policy decision is requested.
+
+### Label and documentation changes
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| Group bracket text | G1 / G2 / G3 | G1 (f1) / G2 (f2) / G3 (f3) | Figure 1's f1/f2/f3 brackets identify the numbered groups named in B2 pages 1–2. Surface ranges remain S1–S5, S6–S12 and STO–S23. |
+| Published zoom labels | Wide25.78mm / Tele73.05mm | Wide 25.78 mm / Tele 73.05 mm | Spacing makes the unchanged printed endpoints readable. |
+| Focus description | Infinity-only limitation without the source's near-focus direction | Adds G3 imageward near focusing with no quantitative travel | B2 PDF page 1 claim and page 3 explanation; no finite-focus data added. |
+| Header and analysis gap note | Only S17–S18 needs the raised allowance | S10–S11 and S19–S20 also use it | Canonical validator trials above. |
+| Analysis diagram explanation | No f-symbol mapping or explicit land/curve distinction | Adds bracket mapping and retained stepped-rim limitations | Direct Figure 1 and live-page comparison. |
+
+L1–L12 are appropriate sequential names because the patent names the surfaces, not the individual elements. Element types match all radius signs: L1/L4 negative menisci convex to object; L3 positive meniscus convex to object; L7 negative meniscus convex to image; L11 positive meniscus convex to image; L2/L6/L8/L9/L12 biconvex; L5/L10 biconcave. The role descriptions agree with these shapes and B2 page 2's construction prose. D1 covers S1–S3 and D2 S8–S10, exactly the two cemented components. STO is source S13, between L7 and L8, and belongs to G3 with the printed 1 mm gap to S14. There are no aspheres, A suffixes, `asph` entries or APD tags to correct. No named/anomalous glass designation in the patent supports adding one.
+
+The live inspectors for L1, L5, L7 and L10 showed the expected meniscus/biconcave types, qualified glass labels, and focal lengths −66.46, −12.86, −29.6 and −14.11 mm. Inspector role text is below the 900 px screenshot edge; its stored text was checked directly against the patent. The updated group labels appear without collisions at wide and tele. Focus reads infinity and “Not modeled”; forcing `focus=1` leaves all lens gaps unchanged. The `mv=focus` request opens the movement window with the unavailable Focus option disabled and Zoom selected, so that window is not evidence of modeled focus travel.
+
+### Movement and ordering
+
+B2 PDF page 1 explicitly states that G1/G3 move together objectward and G2 moves objectward independently from short to long focal length; page 2 repeats this. Figure 1 contains the f-symbol brackets and a stop symbol but no movement arrows. Its short D5/long D12 confirms the drawn state, rather than establishing a separate travel direction.
+
+| Assembly | Wide front position from fixed image plane, mm | Tele position, mm | Wide-to-tele displacement | Focus verdict |
+| --- | ---: | ---: | --- | --- |
+| G1, S1 | −93.637 | −114.937 | −21.300 mm, objectward, monotonic | Fixed in the modeled infinity-only focus pair. |
+| G2, S6 | −81.487 | −91.008 | −9.521 mm, objectward, monotonic | Fixed in the modeled infinity-only focus pair. |
+| G3, STO | −58.700 | −80.000 | −21.300 mm, objectward, monotonic and coupled to G1 | Patent calls for imageward near focusing; no quantitative near state is supplied or modeled. |
+
+All 200 adjacent displacement steps are objectward: G1/G3 −0.144071 to −0.069192 mm; G2 −0.085176 to −0.010297 mm. All 201 focal positions ascend; there are two published endpoints and 199 interpolated positions, not 201 additional intermediate positions. D5 = 1.000→12.779 mm, D12 = 12.767→0.988 mm and D23 = 41.4→62.7 mm are in the correct wide-to-tele order. D5+D12 stays 13.767 mm to floating-point precision. Every gap's two focus entries is identical; no order reversal or numeric change was required. Probe output confirms the fixed 52.237 mm optical track and unchanged endpoint EFL/BFD.
+
+### Numerical checks and glass
+
+Before and after `audit:surface` reports “OK — no validation errors”; `audit:image-circle` reports one checked lens, zero undersized surfaces and zero skipped. `audit:field-coverage --below=1.01` reports 201/201 stations at 100% nominal-corner chief-ray coverage, zero unsolved. `clearap2 --Y 14.7` gives the source-frame chief angles 30.49° wide and 11.11° tele, agreeing with Figure 2's 30.5°/11.1°. Across every station its maxima include S1 chief height 14.47 mm versus sd 17.7; S18 axial marginal 5.64 versus 5.65; and S19 axial marginal 5.43 versus 5.7. No `CLIPS-AXIAL` or `BLOCKS-CHIEF` remains in this root-checked trace. The original `clearap --Y` picks spurious roots (for example, wide ω = 22.94° and yImg = 18.956 mm despite requested Y = 14.7), producing false chief warnings. Those were not used to enlarge rims; the root-checked result and native-engine corner audit agree.
+
+The built engine summary and all 402 probe rows are byte-identical before/after. Endpoint half-field remains 28.023079825° / 18.352898123°; FOPEN remains 4 / 5.6, EFL 25.820607793 / 73.063940605 mm and stop radius 5.5891 / 5.5090 mm. `built.mjs` does not throw. These engine half-fields are distinct from the source-frame chief-ray angles.
+
+Engine vignetting curves are byte-identical before/after at zoomT 0, 0.5 and 1. Selected values, before → after: wide 0° 100.0→100.0%, 22.5° 85.4→85.4%, 28.1° 67.7→67.7%, 31.0° 56.3→56.3%; middle 19.4° 91.1→91.1%; tele 11.3° 85.9→85.9%. These are current helper outputs and retain geometric off-axis loss; the final samples do not all coincide with the engine half-field.
+
+Every element resolves through `resolveCompatibleGlass`: L1/L10 K-SFLD6 (Sumita); L2 LLF6 (Sumita); L3 S-FSL5 (Ohara); L4/L7 LASFN14 (Sumita); L5 F5 (Schott); L6 SFLDN3 (Sumita); L8 S-FTM16 (Ohara); L9 S-BAL14 (Ohara); L11/L12 K7 (Sumita). None is `Unmatched` or unresolved. No glass label or APD tag is judged wrong. B2 PDF pages 2–3 and A page 3 provide nd/νd coordinates only: no commercial glass name, extra spectral-line indices or partial-dispersion value supplies additional production identification. The catalog curves remain supplier-unconfirmed modeling equivalents. The historical glass-follow-up paragraph above predates the final L5 label: the current data and live inspector correctly say Schott F5.
+
+The A front page was viewed: publication 特開平2-39116, 8 February 1990; application 昭63-190032, filed 29 July 1988; inventors 松尾 栄樹, 皆川 博幸, 小川 潤; applicant 京セラ株式会社 (Kyocera Corporation). No new bibliographic mismatch was found. The supplied B2 PDF starts with claims rather than a bibliographic cover, so the A page is the direct cover witness for those names and filing details.
+
+Retained limitations outside the permitted edits: the B2 pages 2–3 printed focal lengths differ from calculated EFL by +0.040608/+0.013941 mm and the retained image gaps leave −0.166465/−0.079464 mm paraxial defocus; the approximately 49 mm plot says F4.8 while the interpolated model gives about F5.043 there. The interpolated cam/iris schedule is unmeasured, finite-focus travel remains unknown, L12 exceeds the drawn rim for the already established field floor, and the production-patent association and manufacturing apertures remain unconfirmed. No forbidden integration commands, server operations, downloads or git mutations were performed.

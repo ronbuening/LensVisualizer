@@ -48,8 +48,9 @@ const LENS_DATA = {
   "elements": [
     {
       "id": 1,
-      "name": "L1",
-      "label": "Element 1",
+      "name": "20",
+      "label": "Element 20",
+      "diagramLabel": "20",
       "type": "Meniscus Negative",
       "nd": 1.5168,
       "vd": 64.14,
@@ -60,8 +61,9 @@ const LENS_DATA = {
     },
     {
       "id": 2,
-      "name": "L2",
-      "label": "Element 2",
+      "name": "22",
+      "label": "Element 22",
+      "diagramLabel": "22",
       "type": "Meniscus Positive (Aspheric)",
       "nd": 1.72916,
       "vd": 54.65,
@@ -72,8 +74,9 @@ const LENS_DATA = {
     },
     {
       "id": 3,
-      "name": "L3",
-      "label": "Element 3",
+      "name": "24",
+      "label": "Element 24",
+      "diagramLabel": "24",
       "type": "Biconvex Positive",
       "nd": 1.6405,
       "vd": 60.15,
@@ -84,8 +87,9 @@ const LENS_DATA = {
     },
     {
       "id": 4,
-      "name": "L4",
-      "label": "Element 4",
+      "name": "26",
+      "label": "Element 26",
+      "diagramLabel": "26",
       "type": "Biconcave Negative",
       "nd": 1.5927,
       "vd": 35.3,
@@ -96,8 +100,9 @@ const LENS_DATA = {
     },
     {
       "id": 5,
-      "name": "L5",
-      "label": "Element 5",
+      "name": "28",
+      "label": "Element 28",
+      "diagramLabel": "28",
       "type": "Biconcave Negative",
       "nd": 1.80809,
       "vd": 22.75,
@@ -108,8 +113,9 @@ const LENS_DATA = {
     },
     {
       "id": 6,
-      "name": "L6",
-      "label": "Element 6",
+      "name": "30",
+      "label": "Element 30",
+      "diagramLabel": "30",
       "type": "Biconvex Positive",
       "nd": 1.6405,
       "vd": 60.15,
@@ -120,8 +126,9 @@ const LENS_DATA = {
     },
     {
       "id": 7,
-      "name": "L7",
-      "label": "Element 7",
+      "name": "32",
+      "label": "Element 32",
+      "diagramLabel": "32",
       "type": "Biconvex Positive",
       "nd": 1.755,
       "vd": 52.3,
@@ -153,7 +160,7 @@ const LENS_DATA = {
       "medium": 2
     },
     {
-      "label": "42",
+      "label": "42A",
       "R": -52.802,
       "d": 5,
       "sd": 13.3,

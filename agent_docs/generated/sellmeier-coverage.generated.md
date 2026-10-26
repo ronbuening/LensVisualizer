@@ -19,8 +19,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **667** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **10724 / 11575** non-air surfaces use strict catalog Sellmeier data
-- **92.6%** strict Sellmeier surface coverage overall
+- **10725 / 11575** non-air surfaces use strict catalog Sellmeier data
+- **92.7%** strict Sellmeier surface coverage overall
 - **10739 / 11575** non-air surfaces use trusted chromatic data
 - **92.8%** trusted chromatic coverage overall
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
@@ -990,7 +990,7 @@ These lenses are complete for chromatic tracing but not strict catalog-Sellmeier
 | [CANON EF-S 55-250mm f/4-5.6 IS](../../src/lens-data/canon/CanonEFS55250mmf456IS.data.ts) | 12/12 | 11/12 | 12 | 11/12 | 1 | Line indices |
 | [PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) | 12/12 | 11/12 | 12 | 11/12 | 1 | Line indices |
 | [VOIGTLÄNDER APO-LANTHAR 28mm f/2 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar28mmf2Aspherical.data.ts) | 12/12 | 11/12 | 12 | 11/12 | 1 | Line indices |
-| [FUJIFILM FUJINON GF 110mm f/5.6 T/S Macro](../../src/lens-data/fujifilm/FujifilmGF110mmf56TSMacro.data.ts) | 11/11 | 9/11 | 11 | 9/11 | 2 | Line indices |
+| [FUJIFILM FUJINON GF 110mm f/5.6 T/S Macro](../../src/lens-data/fujifilm/FujifilmGF110mmf56TSMacro.data.ts) | 11/11 | 10/11 | 11 | 10/11 | 1 | Line indices |
 | [PANASONIC LUMIX G VARIO 12-60mm f/3.5-5.6 ASPH. POWER O.I.S.](../../src/lens-data/panasonic/PanasonicLumixG1260mmF3556.data.ts) | 11/11 | 9/11 | 11 | 9/11 | 2 | Line indices |
 | [PANASONIC LUMIX G 25mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLumixG25mmf17.data.ts) | 8/8 | 6/8 | 8 | 6/8 | 2 | Line indices |
 

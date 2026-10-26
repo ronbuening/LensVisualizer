@@ -12,45 +12,47 @@ Schneider's cinema-lens catalogue and Cinelux Première data sheet list article 
 
 Seven air-separated powered elements. This is a cinema projection prime in the source screen-to-film orientation, not a photographic 36×24 mm taking lens. No added cover/corrector plate and no reciprocal reversal.
 
+FIG. 2 and the first-embodiment text identify the elements as 20, 22, 24, 26, 28, 30 and 32, in screen-to-film order; these are the diagram and inspector designations. L1–L7 below denote their ordinal positions only. Table 1 misprints the fifth element (nd = 1.80809, surfaces 52–54) as 32; FIG. 2 and the text establish 28. Stop 64 lies between elements 22 and 24, 5.000 mm after surface 42 and 6.089 mm before surface 44. No cemented components or named multi-element groups are specified.
+
 ## Element-by-Element Analysis
 
-### L1: Meniscus Negative
+### Element 20 (L1): Meniscus Negative
 
 nd = 1.51680, νd = 64.14. Glass: N-BK7 (Schott catalog equivalent; production supplier unspecified). Isolated thick-lens f = -61.92351 mm.
 
 Negative screen-side meniscus bounded by surfaces 36 and 38.
 
-### L2: Meniscus Positive (Aspheric)
+### Element 22 (L2): Meniscus Positive (Aspheric)
 
 nd = 1.72916, νd = 54.65. Glass: S-LAL18 (OHARA catalog equivalent; production supplier unspecified). Calculated isolated thick-lens f = 115.35060 mm.
 
 Positive meniscus bounded by surfaces 40 and 42, with the rear asphere ahead of the aperture stop.
 
-### L3: Biconvex Positive
+### Element 24 (L3): Biconvex Positive
 
 nd = 1.64050, νd = 60.15. Glass: N-LAK21 (Schott catalog equivalent; production supplier unspecified). Isolated thick-lens f = 31.55492 mm.
 
 Positive biconvex element immediately after the stop, bounded by surfaces 44 and 46.
 
-### L4: Biconcave Negative
+### Element 26 (L4): Biconcave Negative
 
 nd = 1.59270, νd = 35.30. Glass: S-FTM16 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = -23.54531 mm.
 
 First central negative biconcave element, bounded by surfaces 48 and 50.
 
-### L5: Biconcave Negative
+### Element 28 (L5): Biconcave Negative
 
 nd = 1.80809, νd = 22.75. Glass: S-NPH1 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = -55.59240 mm.
 
 Second central negative biconcave element, bounded by surfaces 52 and 54, ahead of the final positive pair.
 
-### L6: Biconvex Positive
+### Element 30 (L6): Biconvex Positive
 
 nd = 1.64050, νd = 60.15. Glass: N-LAK21 (Schott catalog equivalent; production supplier unspecified). Isolated thick-lens f = 49.60766 mm.
 
 Positive biconvex element bounded by surfaces 56 and 58, preceding the final element.
 
-### L7: Biconvex Positive
+### Element 32 (L7): Biconvex Positive
 
 nd = 1.75500, νd = 52.30. Glass: S-LAH97 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = 40.57869 mm.
 

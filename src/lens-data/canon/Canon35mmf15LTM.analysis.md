@@ -16,7 +16,7 @@ The Japanese text specifies f/1.4 and approximately 63° full field. Its plots a
 
 Both Japanese tables and US Claim 2 print R11 = +2.149. The US description table instead prints −2.149. The positive value reproduces the nominal normalized f = 1, giving f ≈ 1.001349. The negative value gives f ≈ 1.669302, or approximately 58.4256 mm EFL at the same ×35 scale, rather than the model's 35.0472 mm. The model therefore follows the printed positive value; the US description-table sign remains a source discrepancy.
 
-Twelve spherical interfaces form eight elements in four groups. L1–L2 and L3–L4 are cemented doublets, L5–L7 a cemented triplet, and L8 a rear singlet. Surfaces r2, r5, r8 and r9 open directly into another glass. No artificial air film or cement thickness is introduced. No rear filter, camera plate, asphere or finite prescription is supplied. Printed positive-radius inequalities retain their signed-versus-magnitude ambiguity and do not override the signed table.
+Twelve spherical interfaces form eight elements in four groups. The diagram follows US FIG. 1's group designations I–IV and element designations L1–L8: I (r1–r3), II (r4–r6), III (r7–r10) and IV (r11–r12). L1–L2 and L3–L4 are cemented doublets, L5–L7 a cemented triplet, and L8 a rear singlet. Surfaces r2, r5, r8 and r9 open directly into another glass. No artificial air film or cement thickness is introduced. No rear filter, camera plate, asphere or finite prescription is supplied. Printed positive-radius inequalities retain their signed-versus-magnitude ambiguity and do not override the signed table.
 
 The rounded prescription yields EFL 35.047204245 mm (35.05 mm in the design summary), Gaussian BFL 20.143466183 mm from r12, and front-to-rear vertex span 30.030 mm. The +0.047204245 mm focal residual is retained. The source supplies no terminal image distance, so the infinity image plane is derived from the Gaussian matrix of the printed prescription. Reduced-angle and ordinary-angle matrix calculations agree to 1.67 × 10⁻¹⁶.
 
@@ -30,7 +30,7 @@ nd = 1.63980, νd = 34.6. Glass: HOYA E-FD7 catalog equivalent (catalog νd 34.5
 
 ### L2 — Positive Meniscus
 
-nd = 1.69100, νd = 54.8. Glass: Sumita K-LaK9 catalog equivalent (catalog νd 54.76); production melt unidentified. Isolated f ≈ +32.562689 mm. It completes the first doublet; the following 0.105 mm axial air gap is retained literally. Its dispersion contrast with L1 is established, but no detailed chromatic allocation is inferred solely from that contrast.
+nd = 1.69100, νd = 54.8. Glass: Sumita K-LaK9 catalog equivalent (catalog row νd 54.80; dispersion-curve νd ≈ 54.76); production melt unidentified. Isolated f ≈ +32.562689 mm. It completes the first doublet; the following 0.105 mm axial air gap is retained literally. Its dispersion contrast with L1 is established, but no detailed chromatic allocation is inferred solely from that contrast.
 
 ### L3 — Positive Meniscus
 
@@ -42,7 +42,7 @@ nd = 1.64769, νd = 33.9. Glass: SCHOTT SF2 catalog equivalent (catalog νd 33.8
 
 ### L5 — Positive Meniscus
 
-nd = 1.64250, νd = 58.09. Glass: Sumita LAK6 catalog equivalent (catalog νd 58.12); production melt unidentified. Isolated f ≈ +37.400408 mm. This begins the rear cemented triplet. The unchanged r7/r8 curvature and thickness permit only a very thin common edge at the reconstructed full-aperture axial envelope. A positive numerical edge is not evidence of manufacturing feasibility.
+nd = 1.64250, νd = 58.09. Glass: Sumita LAK6 catalog equivalent (catalog row νd 58.10; dispersion-curve νd ≈ 58.12); production melt unidentified. Isolated f ≈ +37.400408 mm. This begins the rear cemented triplet. The unchanged r7/r8 curvature and thickness permit only a very thin common edge at the reconstructed full-aperture axial envelope. A positive numerical edge is not evidence of manufacturing feasibility.
 
 ### L6 — Negative Meniscus
 

@@ -97,3 +97,78 @@ The render was checked at infinity and with the focus control at its far end; bo
 Open: r1 still reads about 5% small against both drawings' proportions. 14.6 mm passes the validator and raises transmission at 32.1° to 12.0%, but it was not applied because the difference is within noise. The 6% lateral-scale difference between the JP and US drawings is unresolved. The package's 3209-ray transmission counts and its MTF runs were not recomputed for the new rims; the counts were removed from the analysis and the MTF runs are described as package-stage results.
 
 The coordinator then relabelled the glasses to catalog coordinate equivalents. No optical numbers changed. The new labels are HOYA E-FD7 (L1), Sumita K-LaK9 (L2), HOYA LAF2 (L3), SCHOTT SF2 (L4), Sumita LAK6 (L5), HOYA FF5 (L6), OHARA S-LAL8 (L7) and Sumita K-LaK10 (L8). Against the source pairs the catalog νd residuals are −0.03, −0.04, 0.00, −0.05, +0.03, +0.05, −0.02 and −0.01. The largest nd residual is −5.1 × 10⁻⁶, at S-LAL8. All eight labels now resolve as compatible catalog rows. Before, the "unidentified historical melt" wording forced the Abbe fallback; dispersion now comes from the catalog Sellmeier curves, with C-, F- and g-line indices taken from those curves rather than from the normal line. The production melts remain unidentified. The element roles, the data-file header and the analysis glass sections were reworded to match. The traced d-line results are unchanged: EFL 35.0472 mm, f/1.4, half field 31.3469°, the same transmission curve, and no validator errors.
+
+## 2026-10-26 — Second review: diagram, labels and movement
+
+Compared fresh render-queue screenshots of the local page with independently cropped US2926564A.pdf page 1, FIG. 1, JPS398148Y1.pdf page 3, Figure 1, and the supplied Canon products-guide page-18 section image. Read both complete patents visually, including the US description on PDF page 2 and Claim 2 on page 3. The two patent drawings describe the same normalized f = 1 prescription, scaled ×35 here. The Canon image agrees on eight elements in four components, 2 + 2 + 3 + 1, with the diaphragm between the second doublet and the triplet. No aspheric or special-glass position is marked in that image. Its taller triplet and larger relative rear singlet remain product-drawing proportion differences, not authority to replace the modeled patent rims.
+
+### Changes and retained annotations
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| Group I | Missing | I, r1–r3 | US FIG. 1 bracket I spans L1/L2; PDF page 2 calls this the positive first component |
+| Group II | Missing | II, r4–r6 | FIG. 1 bracket II spans L3/L4; negative second component |
+| Group III | Missing | III, r7–r10 | FIG. 1 bracket III spans L5/L6/L7; negative third component |
+| Group IV | Missing | IV, r11–r12 | FIG. 1 bracket IV spans the biconvex L8 singlet |
+| Diagram labels L1, L2, L3, L4, L5, L6, L7, L8 | Numeric fallbacks 1, 2, 3, 4, 5, 6, 7, 8 | Explicit L1, L2, L3, L4, L5, L6, L7, L8 | US FIG. 1 and Claim 2 use L1–L8; the Japanese diagram uses N1–N8 for its glass-index references |
+| Analysis L2 glass parenthesis | “catalog νd 54.76” | Catalog row 54.80; curve-derived ≈54.76 | Current resolver returns K-LaK9 νd 54.8; evaluating its dispersion polynomial gives 54.760288 |
+| Analysis L5 glass parenthesis | “catalog νd 58.12” | Catalog row 58.10; curve-derived ≈58.12 | Current resolver returns LAK6 νd 58.1; evaluating its dispersion polynomial gives 58.116988 |
+
+The analysis now explains the I–IV surface ranges. No rim, prescription, glass label, APD tag, stop, policy value or movement value changed. The existing cemented brackets are correct and retained: “L1 + L2” r1–r3, “L3 + L4” r4–r6 and “L5 + L6 + L7” r7–r10. Their internal shared surfaces are r2, r5, r8 and r9. Element names, generic inspector labels and roles are correct. L1/L4 are negative and L2/L3 positive menisci with both radii positive; L5/L7 are positive and L6 negative menisci with both radii negative; L8 has positive/negative radii and is biconvex positive. These classifications also agree with the isolated powers reported by probe. There are no aspheric surfaces or A suffixes, and no APD tags. The patent's general high-index/low-dispersion language on US PDF pages 2–3 does not identify anomalous partial dispersion or a named ED material and does not warrant a tag.
+
+### Independent silhouette measurement and r1 decision
+
+Fresh 300 dpi crops, rather than the first-pass measurement table, were used for this second look. Near-axis vertex crossings give approximately x824–1292 on the US sheet for the 30.030 mm r1–r12 span: 15.58 px/mm. Checks r1–r3 (about 108 px for 7.000 mm) and r4–r10 (about 305 px for 19.390 mm) give 15.43 and 15.73 px/mm. The Japanese sheet gives approximately x850–1371 for the same full span, 17.35 px/mm; r1–r3 (about 122 px) and r6–r7 (about 153 px for 8.995 mm) give 17.43 and 17.01 px/mm. Coordinates are approximate because the scanned axis, hatch lines and vertex outlines have finite thickness. The profiles independently recover US outer runs 233 px at x905–917, 212 px at x945–950, 172 px at x1023–1033 and 159 px at x1115–1137; JP runs are 244, 221, 181 and 168 px in the corresponding components. Leaders and mechanical lands were excluded from optical endpoint readings.
+
+| Surfaces | Stored and retained sd (mm) | Fresh US / JP figure estimate (mm) | Figure/stored ratio, US / JP |
+| --- | --- | --- | --- |
+| r1 | 14 | 14.9 / 14.1 | 1.06 / 1.01 |
+| r2, r3 | 13.3 | 13.6 / 12.7 | 1.02 / 0.96 |
+| r4, r5 | 10.5 | 11.0 / 10.4 | 1.05 / 0.99 |
+| r6 | 8.2 | About 8.2 / 7.5 at the curved optical endpoint | 1.00 / 0.91 |
+| r7, r8 | 7.72, 7.74 | About 8.0 / 7.6 at the small curved lips | About 1.04 / 0.98 |
+| r9, r10 | 10.1 | 10.2 / 9.7 | 1.01 / 0.96 |
+| r11, r12 | 13.5 | About 13.4 / 12.7 | 0.99 / 0.94 |
+
+The live diagram preserves L1 above L2 and the triplet below the second doublet, as both patent figures do. L2, L3 and L7 have level rims. The remaining visible differences are L1's somewhat short overhang, the straight sloping L4 and L6 edges replacing the drawings' stepped lands/chamfers, the nearly knife-edged L5 and L8 appearing with small finite edges, and the slightly greater relative rear-singlet height. Neither adjacent bowl wraps through its neighbour. L4 cannot simply be squared to 10.5 mm because |R6| is only 9.31 mm; L6 cannot be squared to 10.1 mm because |R8| is only 8.89 mm. The drawn outer lands are not spherical optical surfaces. The small r7/r8 difference preserves the already very thin positive L5 edge; this pass does not enlarge it into the drawn flange.
+
+The discretionary r1 trial was exactly 14.6 mm with every other value retained. The surface audit printed “validating with 1=14.6” and “OK — no validation errors.” Its vignetting curve was 100.0, 99.0, 98.4, 96.4, 93.2, 88.5, 82.3, 75.0, 66.7, 55.2, 40.6 and 12.0% at the fields listed below; halfField stayed 31.35° and FOPEN 1.400. This is a permitted numerical trial, not evidence for a manufacturing aperture. Retained r1 = 14 mm: the two sheets disagree in lateral scale, its discrepancy remains inside roughly 5–8% measurement uncertainty, and the ray floor is already met. No policy override is needed or proposed.
+
+### Clearance, optical invariants and movement
+
+Before and after, the surface audit prints “OK — no validation errors”; image-circle audit reports one lens and zero undersized surfaces; field coverage reports 100%, 32.1° → 21.65 mm, corner clear. Built completes without throwing: EFL 35.0472042453 mm, nominal f/1.4, halfField 31.3468906946°, stop radius 7.8905608034 mm and total track 50.1734661825 mm. None changed. The static built half-field is slightly below the patent's 31.5°; the engine's separately traced analysis field reaches the format corner at about 32.1°. This pre-existing distinction was not altered or hidden.
+
+The required clearap helper at --Y 21.63 returns stopR=NaN and no chief ray; clearap2 at --omega 32.09 also fails to find the chief ray. At the source --omega 31.5, clearap finds Y = 21.160 mm and no BLOCKS-CHIEF, but its axial trace stops before r6 and its upper/lower bundles remain unsolved. Zero heights in those missing rows are not a clearance pass. The native aperture audit independently reports one station within 3% of the stated f-number, zero rim/trace/iris/failed diagnoses.
+
+A fresh direct trace through prepareRuntimeState and traceEngineRay resolves the helper limitation without changing data. At each focus endpoint, the nominal f/1.4 axial launch height is 12.51686 mm and failureReason is null. Its r1–r12 heights are 12.51686, 12.03556, 11.46352, 10.18277, 9.78705, 8.07667, 7.71162, 7.71333, 8.34188, 8.64168, 8.25704 and 7.93896 mm; at the iris it is 7.89056 mm. The native chief solver converges at 32.088343704° to Y = 21.63 mm with null trace failure. Absolute r1–r12 chief heights are 13.96271, 12.73827, 11.62870, 8.46692, 7.26229, 5.72761, 4.27313, 5.16116, 7.06859, 8.83747, 12.25620 and 12.54631 mm. Every surface clears both rays; r1's chief clearance is only about 0.0373 mm and L5's axial clearances about 0.0084/0.0267 mm, so shrinking these rims is unsupported.
+
+Actual before/after wide-open engine geometric transmission is identical:
+
+| Field (degrees) | Before (%) | After (%) |
+| --- | --- | --- |
+| 0.0 | 100.0 | 100.0 |
+| 2.9 | 99.0 | 99.0 |
+| 5.8 | 98.4 | 98.4 |
+| 8.8 | 95.8 | 95.8 |
+| 11.7 | 92.2 | 92.2 |
+| 14.6 | 87.5 | 87.5 |
+| 17.5 | 80.7 | 80.7 |
+| 20.4 | 72.9 | 72.9 |
+| 23.4 | 64.1 | 64.1 |
+| 26.3 | 52.6 | 52.6 |
+| 29.2 | 37.5 | 37.5 |
+| 32.1 | 8.3 | 8.3 |
+
+This is a prime with no authored zoom stations, variable gaps or finite focus prescription. Groups I, II, III and IV each have zero zoom displacement (not applicable) and zero modeled infinity-to-focus=1 displacement. Probe gives EFL 35.0472 mm, BFD 20.1435 mm, last gap 20.1435 mm and track 50.1735 mm at both endpoints; paraxial pupil f-number is 1.409, distinct from nominal f/1.4. No ordering or direction error exists. The patent gives only fixed intervals and no focus travel; no claim is made about physical production focusing. The diaphragm is in the correct r6–r7 central gap; its existing 62% split of 8.995 mm remains inferred, not a printed stop coordinate.
+
+### Live page, glass and remaining limitations
+
+Fresh after screenshots cover infinity, focus=1, mv=focus at focus=1 and mv=zoom. I–IV and L1–L8 are legible without annotation collisions, and the three cemented-component labels remain in place. Both movement dialogs explicitly say “This lens has no modeled focus or zoom group movement.” Both focus endpoints display ∞ and “Not modeled” with the existing sensible explanation distinguishing the maker's 1 m metadata. The numeric slider thumb can still move despite identical optics; fixing that UI behavior is outside these lens-file edits. Inspectors for L1, L6 and L8 show the correct types, glass labels and roles. They display FL = —, despite probe deriving isolated focal lengths −108.40, −16.29 and +41.09 mm; no element focal-length field was added outside the allowed edit list.
+
+All eight current glass labels resolve, with dispersion curves: E-FD7/HOYA, K-LaK9/SUMITA, LAF2/HOYA, SF2/Schott, LAK6/SUMITA, FF5/HOYA, S-LAL8/OHARA and K-LaK10/SUMITA. No Unmatched or unresolved element remains. Current catalog-row νd residuals are −0.03, 0.00, 0.00, −0.05, +0.01, +0.05, −0.02 and −0.01; the earlier audit's K-LaK9/LAK6 residuals describe curve-derived values rather than the current row metadata. No label is identified as wrong, and none is edited. Japanese PDF pages 1–2 and US PDF pages 2–3 give only d-line index/Abbe pairs, without a glass trade name, extra numerical line indices or numerical partial dispersion. The d/g plots and generic high-index/low-dispersion discussion do not identify historical melts. Existing catalog-equivalent qualifications are therefore necessary.
+
+The US description's negative R11 on PDF page 2 still conflicts with positive R11 in Claim 2 on page 3 and both Japanese tables on pages 1–2; retain the existing erratum and selected positive value. No new prescription or bibliographic discrepancy was found. Viewed US bibliographic data: Jiro Mukai, assignor to Canon Camera Company, Inc.; publication 2,926,564 dated March 1, 1960; filed July 31, 1957, priority October 5, 1956. Japanese cover: inventor 向井二郎, applicant キヤノンカメラ株式会社, publication 昭39-8148, April 2, 1964. Severe field vignetting, reconstructed iris, L5's extremely thin edge, unknown production melts and unconfirmed exact factory prescription remain limitations.
+
+Saved comparison (left: edited live diagram; middle: US figure; right: JP figure; axial scales matched independently, horizontal axis aligned): `/private/tmp/claude-501/-Users-ronbuening-Programming-Code-LensVisualizer-LensVisualizer/1168ee07-3a95-429a-8228-c96717740b52/scratchpad/r2/canon35/canon35-review2-comparison.png`. Render-queue screenshots are in the adjacent `renderq/` directory. No prohibited test/build/generation command, dev-server action or state-changing git command was run.
+
+Coordinator follow-up (same day): each element now carries its in-air thick-lens focal length (L1 −108.40, L2 +32.56, L3 +49.48, L4 −31.45, L5 +37.40, L6 −16.29, L7 +31.48, L8 +41.09 mm), so the inspector no longer shows "FL = —".

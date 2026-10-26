@@ -85,6 +85,7 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
+      "diagramLabel": "L1",
       "label": "Element 1",
       "type": "Plano-Convex Positive",
       "nd": 1.48749,
@@ -97,6 +98,7 @@ const LENS_DATA = {
     {
       "id": 2,
       "name": "L2",
+      "diagramLabel": "L2",
       "label": "Element 2",
       "type": "Negative Meniscus",
       "nd": 1.673,
@@ -110,6 +112,7 @@ const LENS_DATA = {
     {
       "id": 3,
       "name": "L3",
+      "diagramLabel": "L3",
       "label": "Element 3",
       "type": "Positive Meniscus",
       "nd": 1.43875,
@@ -124,6 +127,7 @@ const LENS_DATA = {
     {
       "id": 4,
       "name": "L4",
+      "diagramLabel": "L4",
       "label": "Element 4",
       "type": "Positive Meniscus",
       "nd": 1.85478,
@@ -137,6 +141,7 @@ const LENS_DATA = {
     {
       "id": 5,
       "name": "L5",
+      "diagramLabel": "L5",
       "label": "Element 5",
       "type": "Biconcave Negative",
       "nd": 1.48749,
@@ -150,6 +155,7 @@ const LENS_DATA = {
     {
       "id": 6,
       "name": "L6",
+      "diagramLabel": "L6",
       "label": "Element 6",
       "type": "Positive Meniscus",
       "nd": 1.78472,
@@ -163,6 +169,7 @@ const LENS_DATA = {
     {
       "id": 7,
       "name": "L7",
+      "diagramLabel": "L7",
       "label": "Element 7",
       "type": "Biconcave Negative",
       "nd": 1.788,
@@ -175,6 +182,7 @@ const LENS_DATA = {
     {
       "id": 8,
       "name": "L8",
+      "diagramLabel": "L8",
       "label": "Element 8",
       "type": "Biconvex Positive (2× Aspheric)",
       "nd": 1.497,
@@ -188,6 +196,7 @@ const LENS_DATA = {
     {
       "id": 9,
       "name": "L9",
+      "diagramLabel": "L9",
       "label": "Element 9",
       "type": "Plano-Concave Negative",
       "nd": 1.84666,
@@ -201,6 +210,7 @@ const LENS_DATA = {
     {
       "id": 10,
       "name": "L10",
+      "diagramLabel": "L10",
       "label": "Element 10",
       "type": "Biconvex Positive",
       "nd": 1.43875,
@@ -215,6 +225,7 @@ const LENS_DATA = {
     {
       "id": 11,
       "name": "L11",
+      "diagramLabel": "L11",
       "label": "Element 11",
       "type": "Biconvex Positive",
       "nd": 1.43875,
@@ -228,6 +239,7 @@ const LENS_DATA = {
     {
       "id": 12,
       "name": "L12",
+      "diagramLabel": "L12",
       "label": "Element 12",
       "type": "Negative Meniscus",
       "nd": 1.7725,
@@ -235,12 +247,13 @@ const LENS_DATA = {
       "focalLengthMm": -41.734662,
       "glass": "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
-      "role": "Negative member of the G4 focus doublet",
+      "role": "Negative member of the G4 zoom and focus doublet",
       "cemented": "C20"
     },
     {
       "id": 13,
       "name": "L13",
+      "diagramLabel": "L13",
       "label": "Element 13",
       "type": "Positive Meniscus",
       "nd": 1.85478,
@@ -248,12 +261,13 @@ const LENS_DATA = {
       "focalLengthMm": 106.301987,
       "glass": "S-NBH56 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
-      "role": "Positive member of the G4 focus doublet",
+      "role": "Positive member of the G4 zoom and focus doublet",
       "cemented": "C20"
     },
     {
       "id": 14,
       "name": "L14",
+      "diagramLabel": "L14",
       "label": "Element 14",
       "type": "Negative Meniscus",
       "nd": 1.5927,
@@ -266,6 +280,7 @@ const LENS_DATA = {
     {
       "id": 15,
       "name": "L15",
+      "diagramLabel": "L15",
       "label": "Element 15",
       "type": "Biconvex Positive",
       "nd": 1.43875,
@@ -279,6 +294,7 @@ const LENS_DATA = {
     {
       "id": 16,
       "name": "L16",
+      "diagramLabel": "L16",
       "label": "Element 16",
       "type": "Biconvex Positive",
       "nd": 1.85478,
@@ -292,6 +308,7 @@ const LENS_DATA = {
     {
       "id": 17,
       "name": "L17",
+      "diagramLabel": "L17",
       "label": "Element 17",
       "type": "Biconcave Negative",
       "nd": 1.59282,
@@ -306,6 +323,7 @@ const LENS_DATA = {
     {
       "id": 18,
       "name": "L18",
+      "diagramLabel": "L18",
       "label": "Element 18",
       "type": "Biconcave Negative",
       "nd": 1.7725,
@@ -318,6 +336,7 @@ const LENS_DATA = {
     {
       "id": 19,
       "name": "L19",
+      "diagramLabel": "L19",
       "label": "Element 19",
       "type": "Biconvex Positive",
       "nd": 1.762,
@@ -330,6 +349,7 @@ const LENS_DATA = {
     {
       "id": 20,
       "name": "L20",
+      "diagramLabel": "L20",
       "label": "Element 20",
       "type": "Positive Meniscus",
       "nd": 1.51742,
@@ -342,6 +362,7 @@ const LENS_DATA = {
     {
       "id": 21,
       "name": "L21",
+      "diagramLabel": "L21",
       "label": "Element 21",
       "type": "Negative Meniscus",
       "nd": 1.95375,
@@ -355,6 +376,7 @@ const LENS_DATA = {
     {
       "id": 22,
       "name": "L22",
+      "diagramLabel": "L22",
       "label": "Element 22",
       "type": "Biconvex Positive",
       "nd": 1.59551,
@@ -368,6 +390,7 @@ const LENS_DATA = {
     {
       "id": 23,
       "name": "L23",
+      "diagramLabel": "L23",
       "label": "Element 23",
       "type": "Biconcave Negative",
       "nd": 1.55032,
@@ -382,6 +405,7 @@ const LENS_DATA = {
     {
       "id": 24,
       "name": "L24",
+      "diagramLabel": "L24",
       "label": "Element 24",
       "type": "Biconvex Positive",
       "nd": 1.58144,
@@ -395,6 +419,7 @@ const LENS_DATA = {
     {
       "id": 25,
       "name": "L25",
+      "diagramLabel": "L25",
       "label": "Element 25",
       "type": "Biconcave Negative",
       "nd": 1.90043,
@@ -408,6 +433,7 @@ const LENS_DATA = {
     {
       "id": 26,
       "name": "L26",
+      "diagramLabel": "L26",
       "label": "Element 26",
       "type": "Positive Meniscus",
       "nd": 1.5927,
@@ -420,6 +446,7 @@ const LENS_DATA = {
     {
       "id": 27,
       "name": "L27",
+      "diagramLabel": "L27",
       "label": "Element 27",
       "type": "Biconvex Positive",
       "nd": 1.85025,
@@ -433,6 +460,7 @@ const LENS_DATA = {
     {
       "id": 28,
       "name": "L28",
+      "diagramLabel": "L28",
       "label": "Element 28",
       "type": "Plano-Concave Negative",
       "nd": 1.94595,
@@ -522,7 +550,7 @@ const LENS_DATA = {
       "d": 1.8
     },
     {
-      "label": "13",
+      "label": "13A",
       "R": 55.6031,
       "d": 7.2608,
       "sd": 18,
@@ -536,7 +564,7 @@ const LENS_DATA = {
       "medium": 8
     },
     {
-      "label": "14",
+      "label": "14A",
       "R": -96.9847,
       "d": 3.6608,
       "sd": 18,
@@ -734,7 +762,7 @@ const LENS_DATA = {
       "label": "43",
       "R": 40.0157,
       "d": 1.9804,
-      "sd": 9.4,
+      "sd": 9.8,
       "medium": 26
     },
     {
@@ -1275,7 +1303,7 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 1.3,
-    "description": "G4 (L12/L13) moves imageward for near focus. The patent prints three infinity zoom states; the 98 intermediate zoom positions and the 1.3 m close-focus state are reconstructed. Both converter configurations share the front geometry at infinity, with close-focus travel solved separately. D19+D22 remains constant. Image stabilization is modelled centred; finite-focus MTF is unavailable."
+    "description": "G4 (L12/L13) moves imageward for near focus; during zoom it first moves imageward then objectward. The patent prints three infinity zoom states; the 98 intermediate zoom positions and the 1.3 m close-focus state are reconstructed. Both converter configurations share the front geometry at infinity, with close-focus travel solved separately. D19+D22 remains constant. Image stabilization is modelled centred; finite-focus MTF is unavailable."
   },
   "gaps": {
     "5": {
@@ -3361,11 +3389,11 @@ const LENS_DATA = {
     },
     {
       "text": "G3 (+) Fixed",
-      "fromSurface": "13",
+      "fromSurface": "13A",
       "toSurface": "19"
     },
     {
-      "text": "G4 (−) Focus",
+      "text": "G4 (−) Zoom/Focus",
       "fromSurface": "20",
       "toSurface": "22"
     },

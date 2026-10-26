@@ -55,3 +55,107 @@ Live render: the infinity, near-focus, 15 mm shift and 10° tilt pages were rend
 Open: the stepped doublet rims are a source-versus-drawing difference that this pass records but does not resolve.
 
 Glass relabel (coordinator, same day): L1–L9 now carry catalog-equivalent labels. These are S-NBH5, S-TIM5 and S-LAH55V (OHARA) and LAC14, FCD1 and E-CF6 (HOYA), each with the production supplier unspecified. Their Cauchy nC/nF/ng fits were removed, so they trace on the catalog curves. Every label resolves as nd/νd-compatible. Computed from the catalog entries, the θgF differences from the printed values are: S-NBH5 0.57376 vs 0.57378, LAC14 0.54257 vs 0.54260, S-TIM5 0.58354 vs 0.58356, S-LAH55V 0.56484 vs 0.56477 (L6) and 0.56490 (L9), FCD1 0.53885 vs 0.53804, and E-CF6 0.55894 vs 0.55800. E-CF6's catalog νd is 52.15 against the printed 52.20. L10 and L11 stay unmatched on their Cauchy fits, and the L4/L8 ED tags are kept. The analysis prose and the data-file header were brought in line. No optical numbers or rims changed.
+
+## 2026-10-26 — Second review: diagram, labels and movement
+
+Compared the live local page at infinity and closest focus with the local US20260003158A1.pdf, Example 18, Figure 39 (PDF page 40), Tables 45–47 (page 75), and ¶0268–0269 (page 74). All page references below are physical PDF pages; printed text-page numbers are 43 lower. The scanned PDF has no usable text layer. The publication's searchable Google Patents text was used to search all examples for material recurrences and named glass, with the numerical matches below checked visually in the local PDF. No maker image was downloaded or viewed in this review.
+
+The earlier Deployment validation record says: “The maker drawing agrees with Figure 39's element shapes, cemented L4/L5 and L6/L7, ED positions L4/L8 and final aspherical L11.” Those earlier names were front-to-rear physical positions. The same record confirms 11 elements / 9 components, one aspherical element and two ED elements. The assignment's maker-description shorthand calling both last elements menisci differs from Table 45: physical element 10 has R18 = −48.5517 and R19 = +234.9367 mm, so it is biconcave. The existing biconcave type was correct and retained. Figure 39 governs the modeled silhouette.
+
+### Changes and retained data
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Physical elements 1–8, `name` and `diagramLabel` | Names L1–L8; no authored diagram labels | Names and diagram labels L11–L18 | Figure 39 and ¶0269, pages 40 and 74 |
+| Physical element 9, `name` and `diagramLabel` | L9; no diagram label | L21 for both | Same sources |
+| Physical element 10, `name` and `diagramLabel` | L10; no diagram label | L22 for both | Same sources |
+| Physical element 11, `name` and `diagramLabel` | L11; no diagram label | L23 for both | Same sources |
+| `groups` | Absent | G1: surfaces 1–15; G2: 16–21 | G1 includes first eight lenses and stop; G2 includes three rear lenses, ¶0268–0269 |
+| `doublets` | Absent | L14 + L15: surfaces 7–9; L16 + L17: 11–13 | Figure 39; uninterrupted medium transitions in Table 45 |
+| Physical element 9 `type` | Meniscus Positive | Meniscus Positive (Convex to Image) | Both radii negative; positive isolated power, Table 45 |
+| Physical element 11 `type` | Meniscus Negative (Aspheric) | Meniscus Negative (Two Aspheric Surfaces, Convex to Image) | Both radii negative; two starred faces and two coefficient columns, Tables 45 and 47 |
+| Physical elements 4 and 8 `apdNote` | ED positions called L4 and L8 | Explicit physical positions 4/8 and patent L14/L18 | Keeps the earlier maker evidence distinct from patent naming; inferred tags retained |
+| Header and analysis | Sequential element names; no recurrence result | Patent-name mapping, matching architecture/types and material evidence below | Same source pages; no optical values changed |
+
+Generic inspector labels “Element 1” through “Element 11” and numeric IDs remain the front-to-rear sequence. All 372 numeric JSON leaves, every complete surface record, all glass labels and line indices, APD tags, the focus description, 101 keyframes, and every DD15 value are unchanged. No ordering correction was needed. Header and analysis were kept consistent with the new names; historical sections above retain the names used at the time.
+
+### Independent silhouette measurement
+
+Remeasured Figure 39 at 300 dpi (2560 × 3300 pixels), without using the first-pass measurements as inputs. The axis finder locates x = 1377; the clean right-side profile stops at x = 1630, inside the G1 bracket. Vertex crossings are approximately y = 2786 (surface 1), 2424 (stop), and 1902 (surface 21), each within about 2 pixels. The full powered span is 884 pixels / 61.265 mm = 14.43 px/mm, or 0.0693 mm/px. The independent split spans are 362 pixels / 25.140 mm = 14.40 px/mm and 522 pixels / 36.125 mm = 14.45 px/mm. Rims below are approximate ink heights, with around 0.1–0.2 mm reading uncertainty.
+
+| Physical element / patent name | Stored sd, unchanged (mm) | Figure rim (mm) | Live comparison |
+|---|---|---|---|
+| 1 / L11 | 10.470 / 10.517 | 10.88 | Slight unequal-face bevel; almost square in print |
+| 2 / L12 | 10.9005 / 11.036 | 11.57 | Slight rim bevel; taller than element 1 |
+| 3 / L13 | 11.200 / 11.153 | 11.85 | Taller than element 2; order correct |
+| 4–5 / L14–L15 | 10.5595 / 10.140 / 9.295 | 11.16, square-cut | Site tapers toward stop; print has one height |
+| 6–7 / L16–L17 | 8.6625 / 9.584 / 10.400 | 11.09, square-cut | Site rises away from stop; print has one height |
+| 8 / L18 | 12.0255 / 12.5265 | 13.24 | Unequal-face bevel; taller than preceding doublet |
+| 9 / L21 | 14.765 / 14.900 | 15.45 | Height order and meniscus direction agree |
+| 10 / L22 | 14.8715 / 15.298 | 15.32 | More slanted rim; biconcave bowl reaches near final element |
+| 11 / L23 | 15.3635 / 16.3845 | 16.70 | Unequal-face rim; tallest element, both aspheres marked |
+
+The largest-rim figure/store ratios are approximately 1.00–1.07, consistent with modest drafting enlargement. The substantial local differences remain the two squared doublets versus stepped printed effective diameters; the rear L22/L23 near-contact and the rising rear heights agree. No new overlap or bowl wrapping through a neighbor was seen. All 20 printed non-stop ED/2 rims were retained, as required by the batch decision; no trial rim or policy-field change was proposed. STO was untouched. The existing `gapSagFrac` remains 0.911.
+
+The saved side-by-side, with object at left and approximately matched axial scale, is `/private/tmp/claude-501/-Users-ronbuening-Programming-Code-LensVisualizer-LensVisualizer/1168ee07-3a95-429a-8228-c96717740b52/scratchpad/r2/gf110/gf110-second-review-comparison.png`. Independent profile and vertex readings are in `profile-clean.txt` and `vertices-independent.txt` in the same scratch folder.
+
+### Focus, stop, tags and live page
+
+This is a prime; there are no zoom stations or zoom-order defects. Page 74 ¶0268 and Figure 39's arrow show G1 moving objectward and G2 stationary relative to the image plane. Table 46 on page 75 gives infinity DD15 = 2.9000 mm and nearest DD15 = 26.8818 mm at −0.5000×: G1, its first eight lenses and STO translate objectward by 23.9818 mm as one unit; G2 does not move. All 101 stored gaps increase strictly; keyframe 0 is infinity and keyframe 100 (`focus=1` on the page) is nearest. The probe shows infinity EFL 109.9668 mm and near EFL 88.8856 mm; near calculated magnification is −0.4999. All 101 before/after probe state summaries are identical. The live focus overlay now shows two named groups, G1 travel 23.98 mm and G2 zero travel, with the current point at the correct endpoint at both slider extremes. The far-end distance label is 43 cm, consistent with the retained calculated physical distance 0.42626 m. Intermediate motion remains calculated rather than a published cam.
+
+STO is between L15 and L16, as in Figure 39 and Table 45. Only surfaces 20 and 21 carry asphere entries; both have visible A markers, and the L23 inspector says ASPH ×2. L14 and L18 keep `apd: "inferred"`, matching physical elements 4 and 8 in the earlier maker comparison; no patent APD tag is asserted. The ED table column is effective diameter. All other tags remain false. The nine air-separated components and two cemented joins are correct.
+
+Render-queue checks after the edits covered infinity, closest focus, focus overlays at both endpoints, the requested zoom overlay (which correctly falls back to Focus with Zoom disabled for this prime), +15 mm shift and +10° tilt. Element labels are legible in two rows. The moved pages keep the sensor fixed, and the near page visibly increases the G1/G2 gap while leaving the rear three lenses fixed. Inspectors were opened for IDs 4, 8, 10 and 11: the two ED badges remain inferred; types and displayed FCD1/unmatched-source material descriptions agree with the data. Visible ED focal lengths are +33.41 and +52.38 mm; the probe confirms L22 −72.66 and L23 −155.47 mm. The fixed 1400 × 900 capture cuts off the lower long-form inspector content, including roles and the two aspheres' coefficient list; roles were checked in source against the architecture, not claimed as fully visually read. No interactive browser was available for scrolling. Roles correctly describe the two cemented members, moving L18, fixed rear meniscus, negative middle rear singlet and two-sided final asphere.
+
+### Clearance and before/after engine results
+
+The surface audit before and after reports “OK — no validation errors”; the image-circle floor reports 0 undersized surfaces. Traced centered corner coverage is 100% in both runs (the coverage tool reports 14.0° and 27.39 mm; the independently aimed Y = 27.5 mm trace uses 14.06°). `built.mjs` completes without throwing.
+
+| Metric | Before | After |
+|---|---|---|
+| EFL (mm) | 109.96676330540512 | 109.96676330540512 |
+| Engine half-field | 27.501538892316226° | 27.501538892316226° |
+| FOPEN | 5.76 | 5.76 |
+| Paraxial stop-based f-number, infinity | 5.738 | 5.738 |
+| Engine stop radius (mm) | 8.708569321163605 | 8.708569321163605 |
+| Geometric transmission at 0 / 2.3 / 4.7 / 7.0 / 9.3 / 11.7 / 14.0° | 100.0 / 97.4 / 94.3 / 90.6 / 84.4 / 77.6 / 70.8% | 100.0 / 97.4 / 94.3 / 90.6 / 84.4 / 77.6 / 70.8% |
+
+`clearap` finds no CLIPS-AXIAL or BLOCKS-CHIEF at the centered corner or at the patent half-field 21.7°. At 21.7° it reaches Y = 43.600 mm and reports 80% bundle-side vignetting at surface 1; this is not an 80% pupil-area loss. At the centered corner the corresponding side clipping is 43%. The `--focus` CLI argument is a keyframe index, unlike the normalized URL value: the nearest geometry was checked with `--focus 100`, not `--focus 1`. That trace has no axial/chief flags, but launches infinity-conjugate rays through the near geometry and is not a finite-conjugate 0.5× clearance certification. No finite-focus ray claim is inferred from it. The preserved source-based EDs were not enlarged to suppress ordinary vignetting. Engine half-field includes extreme perspective movements and remains larger than the patent's centered design field; it was not reduced.
+
+### Unmatched glasses and material evidence
+
+Current resolver results: S-NBH5 (L11), LAC14 (L12), S-TIM5 (L13), FCD1 (L14/L18), E-CF6 (L15/L17), and S-LAH55V (L16/L21) all resolve compatibly in the current catalog. Only physical elements 10 and 11 remain unmatched, now named L22 and L23. Their fitted partial dispersions reproduce the printed 0.54469 and 0.54116. Catalog comparisons were recomputed in `glass-check.txt`; no label or line index was changed.
+
+| Example / table / PDF page | Exact L22 triple 1.55298 / 55.07 / 0.54469 | Exact L23 triple 1.58480 / 58.71 / 0.54116 | Relevant material reading |
+|---|---|---|---|
+| 11 / 29 / 70–71 | Absent | Absent | Different 106.7003 mm macro prescription |
+| 12 / 31 / 71 | Absent | Absent | Different 113.3109 mm macro prescription |
+| 13 / 33 / 72 | Absent | Absent | Different 113.2913 mm macro prescription |
+| 14 / 35 / 72; focal data Table 36 page 73 | Absent | Absent | 113.2744 mm; final two materials 1.88326 / 39.67 / 0.57132 and 1.90000 / 26.08 / 0.61299 |
+| 15 / 37 / 73 | Absent | Absent | 109.6859 mm; rear two materials 1.83501 / 43.13 / 0.56293 and 1.84666 / 23.77 / 0.62370 |
+| 16 / 39 / 73; focal data Table 40 page 74 | Absent | Absent | 113.3012 mm; rear two materials 1.58449 / 41.25 / 0.57669 and asphere 1.58313 / 59.38 / 0.54237 |
+| 17 / 42 / 74 | Absent | Absent | 112.7894 mm; rear two materials 1.85150 / 40.76 / 0.56920 and asphere 1.58313 / 59.38 / 0.54237 |
+| 18 / 45 / 75 | Surface 18 | Surface 20 | Governing prescription |
+| 4 / 10 / 64 | Absent | Surfaces 1, 20, 24 | Exact L23 triple repeats three times |
+| 5 / 13 / 65 | Absent | Surfaces 1, 20, 24 | Exact L23 triple repeats three times |
+| 6 / 16 / 66 | Absent | Surface 1 | Exact L23 triple |
+| 7 / 19 / 67 | Absent | Surfaces 1, 20 | Exact L23 triple repeats twice |
+| 8 / 22 / 68 | Absent | Surface 1 | Exact L23 triple |
+
+The approximately 110 mm examples change material selections rather than repeating either Example 18 rear triple. The 1.58480 triple nevertheless recurs exactly across several approximately 31 mm examples and multiple elements, so it is a reused glass-like material specification, not evidence of a separately floated triple in every example. This does not establish a real commercial glass, vendor or melt. The 1.55298 triple is unique to Example 18 in the publication's searchable tables; that is compatible with optimiser-floating but does not distinguish a floated material from a unique real glass choice. No such optimisation history is stated. The requested binary real-glass/floated verdict cannot be proved for either from recurrence alone.
+
+The patent names no glass brand, catalog code or supplier. It supplies nd, νd and θgF, whose definitions appear in ¶0205–0207 on PDF page 60, and uses generic “cover glass” for the plate. Table 45 on page 75 gives the two full triples but no independently tabulated absolute nC/nF/ng, chemical composition or resin/glass identity. The three stored line indices per unmatched material are derived Cauchy fits, as their existing notes say; they are not extra patent identification.
+
+Retained spectral-proxy differences, not proven wrong supplier labels: FCD1 on physical elements 4 and 8 yields θgF = 0.53885 against source 0.53804; E-CF6 on 5 and 7 yields νd = 52.15 / θgF = 0.55894 against 52.20 / 0.55800. S-LAH55V on 6/9 gives νd 42.73 against 42.72/42.74 and θgF 0.56484 against 0.56477/0.56490. The other three catalog partial dispersions agree within 0.00003. The labels are qualified catalog equivalents with production supplier unspecified, and were not altered. No APD placement defect was found.
+
+### Remaining limits and report-only items
+
+The data's aspheric surface labels are still `20` and `21`, without the requested `A` suffix; Table 45 stars both and Table 47 supplies both aspheres (page 75). Their entries and visible A markers are correct. Renaming raw surface labels and dependent bracket references is outside this review's enumerated edit list, so the coordinator can change these to `20A` / `21A` if required. No other proven transcription or movement-order defect was found.
+
+The printed ED/drawing doublet difference remains intentionally unresolved. Surface 21's folded plate train, the retained 4.419 µm infinity residual, combined-movement vignetting and the unmeasured production hinge/cam remain the existing limitations. The plate fold preserves reference-wavelength paraxial focus but not physical plate spherochromatism or clipping. No new policy-field trial was needed. Only this lens's three files were edited; no broad tests, build, metadata generation, dev-server changes or state-changing git commands were run.
+
+Front page read directly: US 2026/0003158 A1, published January 1, 2026; applicant and assignee FUJIFILM Corporation; inventors Daiki Komatsu, Takuya Tanaka and Hiroki Saito. These agree with the retained source metadata.
+
+Glass backfill (coordinator, same day): L22 (physical element 10, 1.55298 / 55.07 / θgF 0.54469) is relabelled J-KZFH4 (HIKARI catalog equivalent; production supplier unspecified). The HIKARI 2025 catalog row prints nd 1.552981, νd 55.07 and g−F/F−C 0.5447, matching all three printed quantities, and the row is already in the repo catalog; the element's Cauchy line indices and note were removed so it traces on the catalog curve. L23 (1.58480 / 58.71 / 0.54116) still has no catalog row within tolerance (nearest SUMITA K-CSK120-M, 1.58444 / 59.12) and keeps its Cauchy curve; the triple recurs in Examples 4–8, which marks it as a real but unidentified material, probably a moulding glass.
+
+Coordinator follow-up (same day): the aspheric surface labels are now 20A and 21A (corpus A-suffix convention); the G2 bracket ends at 21A. No numeric value changed.

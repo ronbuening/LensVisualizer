@@ -26,7 +26,7 @@ const LENS_DATA = {
   key: "olympus-mzuiko-12mm-f2",
   maker: "Olympus",
   name: "OLYMPUS M.ZUIKO DIGITAL ED 12mm f/2.0",
-  subtitle: "US 8,248,716 B2 Example 1 — Olympus Imaging Corp.",
+  subtitle: "US 8,248,716 B2 Example 1 — Olympus Imaging Corporation",
 
   catalog: {
     lensMounts: ["micro-four-thirds"],
