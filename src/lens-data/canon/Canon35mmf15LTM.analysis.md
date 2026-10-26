@@ -66,7 +66,7 @@ The source-reference Petzval surface sum is +0.008294221 mm⁻¹. It is not the 
 
 ## Focus Mechanism and Conjugates
 
-The patent supplies only the infinity prescription. All optical separations remain fixed throughout the focus control; no focusing movement or finite-focus MTF is modeled. The manufacturer's 1 m minimum focus distance is catalog metadata. The noncollapsible, nonrevolving barrel descriptions and minimum distance do not establish which optical groups move or their travel.
+The patent supplies only the infinity prescription. Focus is modeled as unit focus, the arrangement used for Canon's other rangefinder lenses of the period: the whole optical unit moves forward on the helicoid and only the back focus changes. At Canon's 1 m minimum focus distance (object to film), a paraxial solve gives a back focus of 21.458 mm against 20.143 mm at infinity, a 1.315 mm extension, with the object 948.5 mm in front of the first vertex and a magnification of −0.0375. No recovered Canon document states the focusing mechanism outright; unit focus is inferred from the non-revolving helicoid head described in Canon's products guide and the rangefinder-coupled thread-mount construction, and the near state is a calculation rather than a patent-printed one.
 
 ## Aperture, Geometry and Field Coverage
 

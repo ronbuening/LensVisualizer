@@ -7,7 +7,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 2,926,564 (scaled from vertex spacings) and floor-checked by real-ray trace; they,
  * the iris calibration and the terminal conjugate distance are reconstructions,
  * not measured factory dimensions. See paired analysis and audit.
- * Only the patent's infinity prescription is modeled; no focusing movement is modeled.
+ * The patent prints only the infinity prescription; focus is modeled as unit focus (back focus 20.143 → 21.458 mm at
+ * Canon's 1 m minimum), as for Canon's other thread-mount rangefinder lenses.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -248,13 +249,23 @@ const LENS_DATA = {
     {
       "label": "12",
       "R": -47.81,
-      "sd": 13.5,
-      "d": 20.143466182545065
+      "sd": 13.5
     }
   ],
   "focus": {
     "closeFocusM": 1,
-    "description": "Only the patent's infinity prescription is modeled. All optical separations remain fixed; no focusing movement is modeled. The maker's 1 m minimum focus distance is catalog metadata, not a modeled finite-focus state."
+    "description": "Unit focus: the whole optical unit moves forward on the non-revolving helicoid, so only the back focus changes, from 20.143 mm at infinity to 21.458 mm at Canon's 1 m minimum (object to film), a 1.315 mm extension. The patent prints the infinity state only; the near state is a paraxial calculation."
+  },
+  "gaps": {
+    "12": {
+      "label": "BF",
+      "values": [
+        [
+          20.143466182545065,
+          21.458164
+        ]
+      ]
+    }
   },
   "aperture": {
     "nominalFNumber": 1.4,
