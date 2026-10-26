@@ -22,13 +22,13 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-10-27",
     type: "lens",
     summary:
-      "Added the Canon 35mm f/1.5, Yashica Samurai Z 25-75mm f/4-5.6, Schneider-Kreuznach Cinelux Première 35mm f/1.7 projection lens, Fujifilm Fujinon GF 110mm f/5.6 T/S Macro with tilt and shift, Olympus M.Zuiko Digital ED 150-400mm f/4.5 TC1.25× IS PRO with its built-in converter, and Tamron SP 70-150mm f/2.8 Soft (51A) with its soft-focus control",
+      "Added the Canon 35mm f/1.5, Yashica Samurai Z 25-75mm, Schneider Cinelux Première 35mm projection lens, Fujifilm GF 110mm T/S Macro with tilt and shift, Olympus 150-400mm TC1.25× with its built-in converter and Tamron SP 70-150mm Soft (51A)",
   },
   {
     date: "2026-10-26",
     type: "lens",
     summary:
-      "Added the Fujifilm Fujinon XC 13-33mm f/3.5-6.3 OIS, Olympus M.Zuiko Digital ED 12-50mm f/3.5-6.3 EZ and ED 14-42mm f/3.5-5.6 (2009), Pentax SMC FA 20-35mm f/4 AL, Sigma 24-70mm f/3.5-5.6 Aspherical HF and Tamron 20-40mm f/2.8 Di III VXD, plus the Nikon AF-I TC-20E, Nikon AF-S TC-17E II and Olympus M.Zuiko MC-14 teleconverters",
+      "Added the Fujifilm XC 13-33mm, Olympus M.Zuiko 12-50mm EZ and 14-42mm (2009), Pentax FA 20-35mm, Sigma 24-70mm HF and Tamron 20-40mm f/2.8, plus the Nikon TC-20E and TC-17E II and Olympus MC-14 teleconverters",
   },
   {
     date: "2026-10-25",
