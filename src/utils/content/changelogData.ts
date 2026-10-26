@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-10-27",
+    type: "lens",
+    summary:
+      "Added the Canon 35mm f/1.5, Yashica Samurai Z 25-75mm f/4-5.6, Schneider-Kreuznach Cinelux Première 35mm f/1.7 projection lens, Fujifilm Fujinon GF 110mm f/5.6 T/S Macro with tilt and shift, Olympus M.Zuiko Digital ED 150-400mm f/4.5 TC1.25× IS PRO with its built-in converter, and Tamron SP 70-150mm f/2.8 Soft (51A) with its soft-focus control",
+  },
+  {
     date: "2026-10-26",
     type: "lens",
     summary:

@@ -123,3 +123,41 @@ This wording pass changed only the subtitle, catalog specs, focus description an
 The before/after engine summaries and all 402 probe rows (201 zoom positions × two repeated focus keyframes, 0 and 1) are byte-identical. Wide/tele EFL stays 25.8206/73.0639 mm, FOPEN 4/5.6, engine halfField 28.0231°/18.3529°, stop radius 5.5891/5.5090 mm and BFD 41.5665/62.7795 mm. The engine halfField is a model field value, distinct from the source-frame chief-ray angles above. The surface audit reports “OK — no validation errors.” No optical numbers, bibliography fields or production metadata changed. Full tests, typecheck, lint, build, generation, browser screenshots, server changes, downloads and git mutations were not performed in this wording-only pass.
 
 Open: refine inferred cam and iris scheduling without changing printed endpoints; resolve retained defocus and rear-rim aperture loss; establish production prescription and manufacturing apertures from stronger maker evidence. Finite-focus travel and exact production glass remain unknown.
+
+## 2026-10-26 — Semi-diameter pass against the patent figure
+
+Source: JP H02-39116 A (the earlier publication of the same application, 63-190032), PDF page 4, Figure 1, native 347 ppi raster. It draws the same and only example as JP 2706781 B2 Figure 1 (B2 PDF page 4, 200 ppi), with identical outlines: the B2 L1 and L2 rims (246 and 224 px) are 0.742 and 0.743 of the A ones (331.5 and 301.5 px). The A raster was measured because it has about 35% more pixels per element. The figure draws one state with a short D5 and a long D12, i.e. the wide infinity state (D5 = 1.0 mm, D12 = 12.767 mm). The axis is horizontal, object left; the upper side (inside the f1/f2/f3 group brackets) was profiled and the lower side (label leaders) used as a cross-check.
+
+Scale: vertex crossings next to the axis matched all 22 prescription vertices and the stop within 5 px. First-to-last vertex 52.237 mm over 979.5 px gives 53.33 µm/px; the S1–S12 span gives 53.5 µm/px and the S14–S23 span 53.8 µm/px. The drawn stop tips sit 105 px from the axis, 5.60 mm, against the engine's 5.589 mm wide-open stop radius, which confirms the vertical scale independently.
+
+| Surface | Before | Figure (top / bottom) | After | Evidence |
+|---|---:|---|---:|---|
+| 1 | 14.5 | 17.7 / 17.8 mm | 17.7 | Front curve runs to L1's flat rim; ratio 1.22 |
+| 2, 3 | 14.5 | 16.1 / 16.4 mm | 16.1 | L1 steps down to L2's square rim; ratio 1.11 |
+| 4, 5 | 12.5 | 12.3 / 12.2 mm | 12.5 | Within noise; retained |
+| 6 | 7.5 | 9.2 / 9.2 mm | 9.2 | L4 front curve runs to its flat rim; ratio 1.23 |
+| 7, 8 | 6.4 | 6.4 mm | 6.4 | S7 and S8 meet at the rim in the figure; retained |
+| 9, 10 | 6.4 | 6.7 mm | 6.4 | Ratio 1.05; retained |
+| 11 | 5.5 | 6.3 mm | 5.5 | S11 would cross S10 at 5.88 mm; 90% gap allowance caps it near 5.59 mm |
+| 12 | 5.8 | 6.3 mm | 5.8 | Ratio 1.08; retained |
+| 14, 15 | 6.2 | 6.6 / 6.4 mm | 6.2 | Ratio 1.05; retained |
+| 16 | 6.2 | 6.25 mm | 6.2 | Agrees |
+| 17 | 5.43 | 6.25 mm (square L9 rim) | 6.2 | Figure, and the axial floor of 5.65 mm |
+| 18 | 5.43 | meets S17 at about 5.7 mm | 5.65 | Axial floor 5.64 mm; needs gapSagFrac 0.98 (default 0.90 caps it at 5.434 mm) |
+| 19 | 5.5 | drawn to the 6.25 mm envelope | 5.5 | S19 would cross S20 at 5.78 mm; allowance caps it near 5.52 mm |
+| 20, 21 | 6.8 | 6.25 mm | 6.2 | Ratio 0.92; L9–L11 share one envelope in the figure |
+| 22, 23 | 8.0 | 6.4 / 6.5 mm | 7.1 | Ratio 0.81; held at 7.1 mm by the engine field floor |
+
+The figure draws L9, L10 and L11 under one flat 6.25 mm envelope, L8 at about 6.5 mm and L12 at about 6.45 mm. L10's concave front meets L9's nearly flat rear face, and L10's rear meets L11's flat front, so S18 and S19 are bounded by where the faces cross, not by the drawn envelope. S22/S23 at the drawn 6.5 mm would reduce the engine's traced half-field by up to 0.47° at middle and tele zoom; 7.0 mm still reduces it by 0.013° at positions 109–114. At 7.1 mm no position loses field.
+
+Clearance after the change, exact meridional trace at the 17 × 24 mm image height Y = 14.7 mm: the chief ray solves to 30.49° wide and 11.11° tele, against the patent's 30.5° and 11.1°. The S1 chief ray is at 14.47 mm, with 3.2 mm margin instead of 0.03 mm. The figure rim removes the S17 clip, which left S18 as the only clip: it needed 5.64 mm and held 5.43 mm, the most the default 0.90 gap allowance admits. An independent exact marginal-ray bisection reproduces the earlier F4.082932144/F5.805239942. With S18 at 5.43 mm it gives F4.074288765 wide and F5.795194921 tele. The coordinator then set S18 to 5.65 mm with checks.gapSagFrac = 0.98, the smallest two-decimal value the validator admits; 0.97 refuses it, as tested on a scratch copy. The gap closes to 0.013 mm there (97.36% intrusion), as the figure draws the rims touching. Re-traced after that edit, no surface clips the F4/F5.6 axial beam at any of the 201 positions. The bisection's rim limit is F3.93 wide and F5.59 tele, faster than nominal, so no axial pupil area is lost. The traced corner chief ray now reaches the nominal 18 × 24 mm corner at all 201 zoom positions (before: 14 wide positions clipped at S1). The image-circle check reports no undersized surface and the surface validator reports no errors.
+
+Engine summary before and after: wide EFL 25.8206 mm, FOPEN 4/5.6, stop radius 5.5891/5.5090 mm and the zoom f-number, stop and entrance-pupil tables are unchanged. Engine halfField stays 28.0231° wide and 18.3529° tele; across the 201 positions it changes by 0.000° to +0.215°, never downward. With S18 still at 5.43 mm, the vignetting curve at the field edge rose from 42.6% to 54.8% wide, from 64.1% to 89.1% at mid zoom and from 83.2% to 88.0% tele. At wide, mid-field transmission dropped by about one point at most (74.5% at 25.0° before, 73.4% at 25.3° after) because the rear rims are smaller. With S18 at 5.65 mm the curve is normalised to the full on-axis pupil and reads 53.6%, 89.1% and 84.4% at the field edge. The half-field and f-number results above are unchanged by the S18 edit.
+
+The live wide and tele renders were compared with the figure. The front doublet, the taller L4 and the flush L9–L11 block now follow the drawing. L1 is drawn with a sloped rim between the 17.7 mm and 16.1 mm faces rather than the figure's flat rim and step. L10 renders slightly below its neighbours, and L12 about 0.6 mm taller than drawn, for the reasons above. No independent maker construction drawing was available; the Samurai Z/Z-L manual's 12 elements in 10 groups matches the figure (G1 2, G2 3 and G3 5 groups, cemented L1/L2 and L5/L6).
+
+After the S18 edit, a tele render shows L10's front rim meeting L9's rear face, as the figure draws it. No element is trimmed for display at 21 sampled zoom states.
+
+Closed (coordinator, same day): S11 = 5.8 mm and S19 = 5.7 mm were applied under the lens-wide 0.98 allowance, bringing both within the noise band of the figure's touching 6.3 mm rims while staying below the 5.88 / 5.78 mm crossing heights; audit:surface reports no errors and clearap2 at Y = 14.7 mm shows no axial or chief-ray clip. L5 is relabelled F5 (Schott catalog equivalent) to match the row it resolves to.
+
+Glass follow-up, same day. SUMITA rows K-SFLD6, LLF6, LASFN14, SFLDN3 and K7 were added to the built-in catalog. The existing labels on L1, L2, L4, L6, L7, L10, L11 and L12 now resolve to them. L3, L8 and L9 were relabelled S-FSL5, S-FTM16 and S-BAL14 (OHARA catalog equivalents; production supplier unspecified). Their catalog nd is within 0.000002 of the printed values, and catalog νd is 70.24, 35.31 and 56.36 against the printed 70.1, 35.3 and 56.3. The stored nC/nF/ng values were removed from all twelve elements, and every element now resolves to Sellmeier-form catalog data. Against the earlier stored lines, the SUMITA rows agree within 5×10⁻¹². The OHARA curves for L3, L8 and L9 differ by at most 5.9×10⁻⁶, and their line-based νd moves by 0.026 or less. L5 keeps its "F5 (SUMITA …)" label, but the catalog has no SUMITA F5 row. It therefore resolves to SCHOTT F5 (nd 1.60342, νd 38.03), which lies within 6.2×10⁻⁶ of the earlier SUMITA-derived lines. The d-line prescription, EFL, BFD and every rim result above are unaffected. The analysis quotes no chromatic aberration figures, so none needed recomputing.

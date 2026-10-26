@@ -16,49 +16,51 @@ Seven air-separated powered elements. This is a cinema projection prime in the s
 
 ### L1: Meniscus Negative
 
-nd = 1.51680, νd = 64.74399. Glass: Unmatched (source nd=1.5168, dispersion=64.14). Isolated thick-lens f = -61.92351 mm.
+nd = 1.51680, νd = 64.14. Glass: N-BK7 (Schott catalog equivalent; production supplier unspecified). Isolated thick-lens f = -61.92351 mm.
 
-Negative screen-side meniscus bounded by surfaces 36 and 38. Calculated spectral anchors: nC=1.5143973726, nF=1.5223795808, ng=1.5266976749.
+Negative screen-side meniscus bounded by surfaces 36 and 38.
 
 ### L2: Meniscus Positive (Aspheric)
 
-nd = 1.72916, νd = 55.16462. Glass: Unmatched (source nd=1.72916, dispersion=54.65). Calculated isolated thick-lens f = 115.35060 mm.
+nd = 1.72916, νd = 54.65. Glass: S-LAL18 (OHARA catalog equivalent; production supplier unspecified). Calculated isolated thick-lens f = 115.35060 mm.
 
-Positive meniscus bounded by surfaces 40 and 42, with the rear asphere ahead of the aperture stop. Calculated spectral anchors: nC=1.7251814433, nF=1.7383993345, ng=1.7455497491.
+Positive meniscus bounded by surfaces 40 and 42, with the rear asphere ahead of the aperture stop.
 
 ### L3: Biconvex Positive
 
-nd = 1.64050, νd = 60.71642. Glass: Unmatched (source nd=1.6405, dispersion=60.15). Isolated thick-lens f = 31.55492 mm.
+nd = 1.64050, νd = 60.15. Glass: N-LAK21 (Schott catalog equivalent; production supplier unspecified). Isolated thick-lens f = 31.55492 mm.
 
-Positive biconvex element immediately after the stop, bounded by surfaces 44 and 46. Calculated spectral anchors: nC=1.6373247613, nF=1.6478738028, ng=1.6535804637.
+Positive biconvex element immediately after the stop, bounded by surfaces 44 and 46.
 
 ### L4: Biconcave Negative
 
-nd = 1.59270, νd = 35.63241. Glass: Unmatched (source nd=1.5927, dispersion=35.3). Isolated thick-lens f = -23.54531 mm.
+nd = 1.59270, νd = 35.30. Glass: S-FTM16 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = -23.54531 mm.
 
-First central negative biconcave element, bounded by surfaces 48 and 50. Calculated spectral anchors: nC=1.5876932824, nF=1.6043270152, ng=1.6133252803.
+First central negative biconcave element, bounded by surfaces 48 and 50.
 
 ### L5: Biconcave Negative
 
-nd = 1.80809, νd = 22.96423. Glass: Unmatched (source nd=1.80809, dispersion=22.75). Isolated thick-lens f = -55.59240 mm.
+nd = 1.80809, νd = 22.75. Glass: S-NPH1 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = -55.59240 mm.
 
-Second central negative biconcave element, bounded by surfaces 52 and 54, ahead of the final positive pair. Calculated spectral anchors: nC=1.7974981649, nF=1.8326872384, ng=1.8517232908.
+Second central negative biconcave element, bounded by surfaces 52 and 54, ahead of the final positive pair.
 
 ### L6: Biconvex Positive
 
-nd = 1.64050, νd = 60.71642. Glass: Unmatched (source nd=1.6405, dispersion=60.15). Isolated thick-lens f = 49.60766 mm.
+nd = 1.64050, νd = 60.15. Glass: N-LAK21 (Schott catalog equivalent; production supplier unspecified). Isolated thick-lens f = 49.60766 mm.
 
-Positive biconvex element bounded by surfaces 56 and 58, preceding the final element. Calculated spectral anchors: nC=1.6373247613, nF=1.6478738028, ng=1.6535804637.
+Positive biconvex element bounded by surfaces 56 and 58, preceding the final element.
 
 ### L7: Biconvex Positive
 
-nd = 1.75500, νd = 52.79250. Glass: Unmatched (source nd=1.755, dispersion=52.3). Isolated thick-lens f = 40.57869 mm.
+nd = 1.75500, νd = 52.30. Glass: S-LAH97 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = 40.57869 mm.
 
-Final film-side positive biconvex element, bounded by surfaces 60 and 62. Calculated spectral anchors: nC=1.7506953471, nF=1.7649966223, ng=1.7727331096.
+Final film-side positive biconvex element, bounded by surfaces 60 and 62.
 
 ## Glass Identification and Selection
 
-Both grants label nd at rounded 588 nm, but define the printed dispersion as (nd−1)/(nF′480−nC′643.8). The model preserves nd at the physical d line 587.5618 nm, treating 588 as its rounded label. A two-term Cauchy curve fitted to that mixed denominator supplies conventional νd and C/F/g line indices; these are calculated rather than printed νd or ne/νe. Factory glass and melt identities are unknown. The prescription is unoptimized; individual power signs do not establish unique aberration contributions.
+Both grants label nd at a rounded 588 nm, and the patent text defines the printed dispersion column as (nd−1)/(nF′480−nC′643.8). The model keeps nd at the physical d line, 587.5618 nm, and treats 588 nm as a rounded label. The printed values nevertheless equal the catalog νd of the matching glasses within 0.01–0.05 for all seven elements. Evaluated with the stated 480 / 643.8 nm denominator, the same glasses would give values 0.42–0.50 lower. The column is therefore read as ordinary νd and used as such.
+
+Every printed nd/νd pair matches a catalog glass. L1 is N-BK7 (Schott), L2 S-LAL18 (OHARA), L3 and L6 N-LAK21 (Schott), L4 S-FTM16 (OHARA), L5 S-NPH1 (OHARA) and L7 S-LAH97 (OHARA). The trace uses these catalog dispersion curves. They are catalog equivalents only; the production supplier and melt data are unknown. The prescription is unoptimized; individual power signs do not establish unique aberration contributions.
 
 ## Focus Mechanism
 

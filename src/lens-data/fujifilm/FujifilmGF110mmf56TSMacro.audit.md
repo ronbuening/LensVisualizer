@@ -22,3 +22,36 @@ This pass replaced the process-based subtitle, added the five design-specificati
 Before/after engine summaries and all 101 focus-keyframe probe results are identical: EFL 109.96676330540512 mm, FOPEN 5.76, half-field 27.501538892316226°, stop radius 8.708569321163605 mm, infinity paraxial BFD 81.9881 mm and near BFD 37.5520 mm. All 399 numerical fields are unchanged. The surface audit returned “OK — no validation errors”.
 
 Open: production correspondence remains probable; production glass identities, the measured hinge position and the intermediate focusing cam remain unknown. Combined extreme movements do not provide full design-field coverage, and intermediate finite-focus MTF remains unavailable. Earlier MTF results with the explicit plate do not establish performance of the folded-plate movement model. Rendered-page review is assigned to the coordinator; no screenshots, broader test suite, build, metadata generation or git changes were performed in this pass.
+
+## 2026-10-26 — Semi-diameter pass against the patent figure
+
+Source: US 2026/0003158 A1 (local PDF), Table 45 on PDF page 75 and Figure 39 (Example 18) on PDF page 40, a 300 ppi CCITT raster drawn with the optical axis vertical and the object at the bottom. The right side of the figure carries only the G1 bracket, outside the glass, so rims were profiled there; the left side carries the leader lines.
+
+Table check: Table 45 prints an effective diameter for every surface. All 20 stored non-stop `sd` values equal the printed ED/2 exactly (surface 1 20.940 → 10.47 through surface 21 32.769 → 16.3845). The stop keeps its engine-derived radius 8.7086 mm against the printed 17.440 mm diameter (8.72 mm radius). The R, D, Nd, νd and A4–A20 rows read on the same page also match the file.
+
+Scale: the 21 vertex crossings beside the axis fall within ±2 px of the infinity-state prescription positions (DD15 = 2.9000 mm). First to last vertex is 884 px for 61.265 mm, 14.43 px/mm (69.3 µm/px); the spans surface 1 → stop (363 px / 25.140 mm = 14.44 px/mm) and stop → surface 21 (521 px / 36.125 mm = 14.42 px/mm) agree. The automatic figure screen independently gave 69.03 µm/px.
+
+| Element (surfaces) | Stored sd = ED/2 (mm) | Figure rim (mm) | Figure / printed |
+|---|---|---|---|
+| L1 (1, 2) | 10.470 / 10.517 | 10.88 | 1.04 / 1.03 |
+| L2 (3, 4) | 10.901 / 11.036 | 11.57 | 1.06 / 1.05 |
+| L3 (5, 6) | 11.200 / 11.153 | 11.85 | 1.06 / 1.06 |
+| L4 + L5 (7, 8, 9) | 10.560 / 10.140 / 9.295 | 11.16, square-cut | 1.06 / 1.10 / 1.20 |
+| Stop | 8.72 printed, 8.709 engine | 8.39 | 0.96 |
+| L6 + L7 (11, 12, 13) | 8.663 / 9.584 / 10.400 | 11.09, square-cut | 1.28 / 1.16 / 1.07 |
+| L8 (14, 15) | 12.026 / 12.527 | 13.24 | 1.10 / 1.06 |
+| L9 (16, 17) | 14.765 / 14.900 | 15.45 | 1.05 / 1.04 |
+| L10 (18, 19) | 14.872 / 15.298 | 15.32 | 1.03 / 1.00 |
+| L11 (20, 21) | 15.364 / 16.385 | 16.74 | 1.09 / 1.02 |
+
+Against each element's largest printed rim, the figure reads 1.00–1.07 (median about 1.05): a uniform drafting over-draw with the element-to-element order intact. The one systematic difference is that Figure 39 draws both cemented doublets with one square-cut rim at about the larger member's height, while Table 45 prints a stepped ED per surface (L4/L5 10.56 → 10.14 → 9.30 mm; L6/L7 8.66 → 9.58 → 10.40 mm). The rendered doublets therefore taper toward the stop where the drawing is square. The automatic screen's L10 reading (16.64 mm) is contaminated by the adjacent L11 rim; the hand reading is 15.32 mm.
+
+Values retained: all 20. The printed effective diameters are source data, and every figure departure is either within the drafting offset or the doublet square-cut convention, so no rim was widened or trimmed. `checks.gapSagFrac` 0.911 was not changed.
+
+Clearance at the 44 × 33 mm corner (Y = 27.5 mm, 14.06° centred): no axial clip and no blocked chief ray at infinity or at the printed −0.5× near state. The printed EDs sit on the f/5.76 axial marginal ray at surfaces 5–9 with 0.01–0.04 mm to spare (surface 5 11.16 / 11.20; surface 6 11.11 / 11.153; surface 7 10.55 / 10.5595; surface 8 10.13 / 10.14; surface 9 9.28 / 9.295 mm), consistent with Table 45's diameters having been set from the axial beam. Off-axis vignetting is a fact of the design: 43 % of the full-field bundle side is cut at surface 1 at the centred corner and 80 % at the patent's 21.7° half-field. The engine vignetting curve reads 100 % on axis, 90.6 % at 7.0° and 70.8 % at 14.0°. Engine values are unchanged by this pass: EFL 109.9668 mm, F/5.76, half-field 27.5015°, stop radius 8.7086 mm; the image-circle floor reports 0 undersized surfaces, traced corner coverage is 100 %, and the surface validator reports no errors.
+
+Live render: the infinity, near-focus, 15 mm shift and 10° tilt pages were rendered locally. The silhouette overlays Figure 39 at matched scale with vertices aligned; apart from the doublet taper above, element order, heights and the near-contact of L10 and L11 at the rim match the drawing. At 15 mm shift and at 10° tilt the sensor-centre bundle clears every element. The off-axis ray fan shown by the page (0.6 × 27.5° = 16.5°, about 32.5 mm image height) lands beyond the drawn sensor and is drawn entirely as ghost rays, with or without shift.
+
+Open: the stepped doublet rims are a source-versus-drawing difference that this pass records but does not resolve.
+
+Glass relabel (coordinator, same day): L1–L9 now carry catalog-equivalent labels. These are S-NBH5, S-TIM5 and S-LAH55V (OHARA) and LAC14, FCD1 and E-CF6 (HOYA), each with the production supplier unspecified. Their Cauchy nC/nF/ng fits were removed, so they trace on the catalog curves. Every label resolves as nd/νd-compatible. Computed from the catalog entries, the θgF differences from the printed values are: S-NBH5 0.57376 vs 0.57378, LAC14 0.54257 vs 0.54260, S-TIM5 0.58354 vs 0.58356, S-LAH55V 0.56484 vs 0.56477 (L6) and 0.56490 (L9), FCD1 0.53885 vs 0.53804, and E-CF6 0.55894 vs 0.55800. E-CF6's catalog νd is 52.15 against the printed 52.20. L10 and L11 stay unmatched on their Cauchy fits, and the L4/L8 ED tags are kept. The analysis prose and the data-file header were brought in line. No optical numbers or rims changed.

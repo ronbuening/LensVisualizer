@@ -1,7 +1,11 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** Patent-derived research model of the Canon 35mm f/1.5.
  * Source numerical cells are unchanged except the explicitly declared uniform scale.
- * Semi-diameters, iris calibration and terminal conjugate distances are reconstructed,
+ * Glass labels name catalog rows matching the source nd/vd pairs, used for dispersion;
+ * the 1950s production melts remain unidentified.
+ * Semi-diameters are estimated from the cross-section figures of JP S39-8148 Y1 and
+ * US 2,926,564 (scaled from vertex spacings) and floor-checked by real-ray trace; they,
+ * the iris calibration and the terminal conjugate distance are reconstructions,
  * not measured factory dimensions. See paired analysis and audit.
  * Only the patent's infinity prescription is modeled; no focusing movement is modeled.
  */
@@ -64,8 +68,8 @@ const LENS_DATA = {
       "nd": 1.6398,
       "vd": 34.6,
       "indexReference": "d",
-      "glass": "Unidentified historical melt (source nd 1.63980, vd 34.60; catalog equivalents not adopted)",
-      "role": "Negative front member of the first cemented doublet; historical glass supplier and melt unidentified."
+      "glass": "E-FD7 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Negative front member of the first cemented doublet; catalog-equivalent glass, production melt unidentified."
     },
     {
       "id": 2,
@@ -75,8 +79,8 @@ const LENS_DATA = {
       "nd": 1.691,
       "vd": 54.8,
       "indexReference": "d",
-      "glass": "Unidentified historical melt (source nd 1.69100, vd 54.80; catalog equivalents not adopted)",
-      "role": "Positive rear member of the first cemented doublet; historical glass supplier and melt unidentified."
+      "glass": "K-LaK9 (SUMITA catalog equivalent; production supplier unspecified)",
+      "role": "Positive rear member of the first cemented doublet; catalog-equivalent glass, production melt unidentified."
     },
     {
       "id": 3,
@@ -86,8 +90,8 @@ const LENS_DATA = {
       "nd": 1.744,
       "vd": 44.9,
       "indexReference": "d",
-      "glass": "Unidentified historical melt (source nd 1.74400, vd 44.90; catalog equivalents not adopted)",
-      "role": "Positive front member of the second cemented doublet; historical glass supplier and melt unidentified."
+      "glass": "LAF2 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Positive front member of the second cemented doublet; catalog-equivalent glass, production melt unidentified."
     },
     {
       "id": 4,
@@ -97,8 +101,8 @@ const LENS_DATA = {
       "nd": 1.64769,
       "vd": 33.9,
       "indexReference": "d",
-      "glass": "Unidentified historical melt (source nd 1.64769, vd 33.90; catalog equivalents not adopted)",
-      "role": "Negative rear member of the second cemented doublet, bordering the central diaphragm gap; historical glass supplier and melt unidentified."
+      "glass": "SF2 (Schott catalog equivalent; production supplier unspecified)",
+      "role": "Negative rear member of the second cemented doublet, bordering the central diaphragm gap; catalog-equivalent glass, production melt unidentified."
     },
     {
       "id": 5,
@@ -108,8 +112,8 @@ const LENS_DATA = {
       "nd": 1.6425,
       "vd": 58.09,
       "indexReference": "d",
-      "glass": "Unidentified historical melt (source nd 1.64250, vd 58.09; catalog equivalents not adopted)",
-      "role": "Positive front member of the rear cemented triplet; historical glass supplier and melt unidentified."
+      "glass": "LAK6 (SUMITA catalog equivalent; production supplier unspecified)",
+      "role": "Positive front member of the rear cemented triplet; catalog-equivalent glass, production melt unidentified."
     },
     {
       "id": 6,
@@ -119,8 +123,8 @@ const LENS_DATA = {
       "nd": 1.5927,
       "vd": 35.4,
       "indexReference": "d",
-      "glass": "Unidentified historical melt (source nd 1.59270, vd 35.40; catalog equivalents not adopted)",
-      "role": "Negative middle member of the rear cemented triplet; historical glass supplier and melt unidentified."
+      "glass": "FF5 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Negative middle member of the rear cemented triplet; catalog-equivalent glass, production melt unidentified."
     },
     {
       "id": 7,
@@ -130,8 +134,8 @@ const LENS_DATA = {
       "nd": 1.713,
       "vd": 53.89,
       "indexReference": "d",
-      "glass": "Unidentified historical melt (source nd 1.71300, vd 53.89; catalog equivalents not adopted)",
-      "role": "Positive rear member of the rear cemented triplet; historical glass supplier and melt unidentified."
+      "glass": "S-LAL8 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Positive rear member of the rear cemented triplet; catalog-equivalent glass, production melt unidentified."
     },
     {
       "id": 8,
@@ -141,8 +145,8 @@ const LENS_DATA = {
       "nd": 1.72,
       "vd": 50.31,
       "indexReference": "d",
-      "glass": "Unidentified historical melt (source nd 1.72000, vd 50.31; catalog equivalents not adopted)",
-      "role": "Positive biconvex rear singlet; historical glass supplier and melt unidentified."
+      "glass": "K-LaK10 (SUMITA catalog equivalent; production supplier unspecified)",
+      "role": "Positive biconvex rear singlet; catalog-equivalent glass, production melt unidentified."
     }
   ],
   "surfaces": [
@@ -157,14 +161,14 @@ const LENS_DATA = {
       "label": "2",
       "R": 17.64,
       "d": 6.125,
-      "sd": 14,
+      "sd": 13.3,
       "medium": 2
     },
     {
       "label": "3",
       "R": 70.07,
       "d": 0.105,
-      "sd": 14
+      "sd": 13.3
     },
     {
       "label": "4",
@@ -209,14 +213,14 @@ const LENS_DATA = {
       "label": "9",
       "R": -115.57000000000001,
       "d": 4.165,
-      "sd": 11,
+      "sd": 10.1,
       "medium": 7
     },
     {
       "label": "10",
       "R": -19.075000000000003,
       "d": 0.035,
-      "sd": 11
+      "sd": 10.1
     },
     {
       "label": "11",

@@ -16,91 +16,101 @@ Fourteen elements in ten groups with four cemented interfaces at surfaces 2, 9, 
 
 ### Z1: Meniscus Negative
 
-nd = 1.80518, νd = 25.43000. Glass: Unmatched (source nd=1.80518, dispersion=25.43). Isolated thick-lens f = -155.28228 mm.
+nd = 1.80518, νd = 25.43000. Glass: S-TIH6 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = -155.28228 mm.
 
 Bounded by surfaces 1 and 2; the negative front element of the first cemented doublet.
 
 ### Z2: Biconvex Positive
 
-nd = 1.61272, νd = 58.75000. Glass: Unmatched (source nd=1.61272, dispersion=58.75). Isolated thick-lens f = 93.47399 mm.
+nd = 1.61272, νd = 58.75000. Glass: BSM4 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = 93.47399 mm.
 
 Bounded by surfaces 2 and 3; the positive rear element of the first cemented doublet.
 
 ### Z3: Meniscus Positive
 
-nd = 1.61272, νd = 58.75000. Glass: Unmatched (source nd=1.61272, dispersion=58.75). Isolated thick-lens f = 171.08084 mm.
+nd = 1.61272, νd = 58.75000. Glass: BSM4 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = 171.08084 mm.
 
 Bounded by surfaces 4 and 5; a positive singlet ahead of the first variable zoom gap.
 
 ### Z4: Plano-concave Negative
 
-nd = 1.69680, νd = 55.52000. Glass: Unmatched (source nd=1.6968, dispersion=55.52). Isolated thick-lens f = -101.46383 mm.
+nd = 1.69680, νd = 55.52000. Glass: S-LAL14 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = -101.46383 mm.
 
 Bounded by surfaces 6 and 7; the negative singlet at the front of the central zoom section.
 
 ### Z5: Meniscus Positive
 
-nd = 1.80518, νd = 25.43000. Glass: Unmatched (source nd=1.80518, dispersion=25.43). Isolated thick-lens f = 99.73005 mm.
+nd = 1.80518, νd = 25.43000. Glass: S-TIH6 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = 99.73005 mm.
 
 Bounded by surfaces 8 and 9; the positive front element of the second cemented doublet.
 
 ### Z6: Biconcave Negative
 
-nd = 1.69680, νd = 55.52000. Glass: Unmatched (source nd=1.6968, dispersion=55.52). Isolated thick-lens f = -54.34482 mm.
+nd = 1.69680, νd = 55.52000. Glass: S-LAL14 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = -54.34482 mm.
 
 Bounded by surfaces 9 and 10; the negative rear element of the second cemented doublet.
 
 ### Z7: Biconcave Negative
 
-nd = 1.69680, νd = 55.52000. Glass: Unmatched (source nd=1.6968, dispersion=55.52). Isolated thick-lens f = -57.21649 mm.
+nd = 1.69680, νd = 55.52000. Glass: S-LAL14 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = -57.21649 mm.
 
 Bounded by surfaces 11 and 12; the negative front element of the third cemented doublet.
 
 ### Z8: Biconvex Positive
 
-nd = 1.80518, νd = 25.43000. Glass: Unmatched (source nd=1.80518, dispersion=25.43). Isolated thick-lens f = 108.64599 mm.
+nd = 1.80518, νd = 25.43000. Glass: S-TIH6 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = 108.64599 mm.
 
 Bounded by surfaces 12 and 13; the positive rear element of the third cemented doublet.
 
 ### Z9: Biconvex Positive
 
-nd = 1.71300, νd = 53.89000. Glass: Unmatched (source nd=1.713, dispersion=53.89). Isolated thick-lens f = 98.44468 mm.
+nd = 1.71300, νd = 53.89000. Glass: S-LAL8 (OHARA catalog equivalent of the corrected index; production supplier unspecified). Isolated thick-lens f = 98.44468 mm.
 
 Bounded by surfaces 14 and 15; a positive singlet between the second and third variable zoom gaps.
 
 ### M10: Biconvex Positive
 
-nd = 1.69680, νd = 55.52000. Glass: Unmatched (source nd=1.6968, dispersion=55.52). Isolated thick-lens f = 50.15235 mm.
+nd = 1.69680, νd = 55.52000. Glass: S-LAL14 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = 50.15235 mm.
 
 Bounded by surfaces 16 and 17; the positive front element of the fixed master doublet ahead of the stop.
 
 ### M11: Biconcave Negative
 
-nd = 1.80518, νd = 25.43000. Glass: Unmatched (source nd=1.80518, dispersion=25.43). Isolated thick-lens f = -108.87007 mm.
+nd = 1.80518, νd = 25.43000. Glass: S-TIH6 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = -108.87007 mm.
 
 Bounded by surfaces 17 and 18; the negative rear element of the fixed master doublet ahead of the stop.
 
 ### G12: Meniscus Negative
 
-nd = 1.80518, νd = 25.43000. Glass: Unmatched (source nd=1.80518, dispersion=25.43). Isolated thick-lens f = -149.24629 mm.
+nd = 1.80518, νd = 25.43000. Glass: S-TIH6 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = -149.24629 mm.
 
 Bounded by surfaces 20 and 21; the first negative relay singlet, moving forward with the soft-focus control.
 
 ### G13: Meniscus Negative
 
-nd = 1.80518, νd = 25.43000. Glass: Unmatched (source nd=1.80518, dispersion=25.43). Isolated thick-lens f = -228.07138 mm.
+nd = 1.80518, νd = 25.43000. Glass: S-TIH6 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = -228.07138 mm.
 
 Bounded by surfaces 22 and 23; the second negative relay singlet, moving forward with G12.
 
 ### G14: Biconvex Positive
 
-nd = 1.77250, νd = 49.68000. Glass: Unmatched (source nd=1.7725, dispersion=49.68). Isolated thick-lens f = 94.86411 mm.
+nd = 1.77250, νd = 49.68000. Glass: TAF1 (HOYA catalog equivalent; production supplier unspecified). Isolated thick-lens f = 94.86411 mm.
 
 Bounded by surfaces 24 and 25; the positive rear relay singlet, with additional forward soft-focus travel.
 
 ## Glass Identification and Selection
 
-The patent provides nd and νd only; historical glass identities remain unknown. The model retains those values without substituting catalog glass. Normal-line dispersion approximates secondary color and does not establish anomalous dispersion. The printed Z9 index 6.71300 is read as 1.71300, corroborated by all 24 nonzero Petzval rows and the three focal lengths. This reading is an inference from the printed data. Element powers are calculated in isolation and do not uniquely establish aberration contributions within the assembled lens.
+The patent provides nd and νd only; the glasses actually used in production remain unknown. The model keeps the printed values and labels each pair with a catalog equivalent:
+
+- The six 1.80518/25.43 elements (Z1, Z5, Z8, M11, G12, G13) are OHARA S-TIH6.
+- Z2 and Z3 (1.61272/58.75) are OHARA BSM4, from its legacy catalog row.
+- The four 1.69680/55.52 elements (Z4, Z6, Z7, M10) are OHARA S-LAL14.
+- Z9 is OHARA S-LAL8.
+- G14 (1.77250/49.68) is HOYA TAF1.
+
+Catalog nd agrees with the printed values within 0.00001. Catalog νd agrees within 0.02, except TAF1, whose catalog νd is 49.62 against the printed 49.68. These are coordinate equivalents only. The production supplier is unspecified, and none of the glasses is an anomalous-partial-dispersion type. Chromatic calculations use these catalogs' dispersion data.
+
+The printed Z9 index 6.71300 is read as 1.71300, corroborated by all 24 nonzero Petzval rows and the three focal lengths. This reading is an inference from the printed data. S-LAL8 is the catalog equivalent of the corrected coordinates and is not independent evidence for the reading. Element powers are calculated in isolation and do not uniquely establish aberration contributions within the assembled lens.
 
 ## Focus Mechanism
 
@@ -108,7 +118,7 @@ The model covers infinity zoom and soft-focus control only. Tamron's published 0
 
 ## Model Scope and Limitations
 
-Unprinted d24 = 2.8 mm is inferred from the rounded 42.8 mm stop-to-rear length minus 40.0 mm of listed intervals. Semi-diameters and the iris are estimates. Outer off-axis rays vignette at surface 6 and the front clear aperture; some axial marginal rays also clip within surfaces 6–18, so rim and iris estimates remain uncertain. Failed rays are excluded from transmission; chief rays and transmitted image-plane projections remain finite. Sampled geometry has no rendered trim. MTF calculations converge through at least 50 lp/mm across the sampled settings, but not uniformly 100 lp/mm. Maximum sampled focal-length and back-focus interpolation residuals are below 0.00077 mm; this does not establish behavior at every continuous setting.
+Unprinted d24 = 2.8 mm is inferred from the rounded 42.8 mm stop-to-rear length minus 40.0 mm of listed intervals. Semi-diameters are estimated from the patent's Fig. 1 and checked against real-ray clearance at every zoom and soft setting; the iris is derived. Outer off-axis rays vignette at the front group, the variator and the rear relay singlet. Above about 137 mm the facing variator surfaces 7|8 and 10|11 would cross below the f/2.8 marginal ray, so the axial beam is rim-limited to about f/2.9–3.0 at the long end. Failed rays are excluded from transmission; chief rays and transmitted image-plane projections remain finite. Sampled geometry has no rendered trim. MTF calculations converge through at least 50 lp/mm across the sampled settings, but not uniformly 100 lp/mm. Maximum sampled focal-length and back-focus interpolation residuals are below 0.00077 mm; this does not establish behavior at every continuous setting.
 
 Numerical convergence describes the model's sampling accuracy, not measured production performance.
 

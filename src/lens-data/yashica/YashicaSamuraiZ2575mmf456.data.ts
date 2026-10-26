@@ -1,4 +1,13 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+/**
+ * NOTE ON SEMI-DIAMETERS: the patent prints no clear apertures. The values are estimated from the wide-state
+ * cross-section (Figure 1 of JP H02-39116 A, the same example as JP 2706781 B2) and floor-checked by real-ray trace
+ * at every zoom position. S18 is 5.65 mm, the height of the F4/F5.6 axial marginal ray. L10's concave front face
+ * there nearly touches L9's rear face, as the figure draws it. checks.gapSagFrac is therefore 0.98 for the whole lens
+ * (0.97 refuses S18), and the S17-S18 gap is the only one that needs more than the default 0.90. S11 and S19 stay
+ * within the default limit where they nearly meet S10 and S20. L12 is held at 7.1 mm, above the drawn 6.5 mm, so
+ * the engine's traced field is not reduced at any zoom position.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "yashica-samurai-z-25-75mm-f4-56",
@@ -66,9 +75,6 @@ const LENS_DATA = {
       "glass": "K-SFLD6 (SUMITA catalog-equivalent class; supplier unconfirmed)",
       "role": "Negative flint front member of G1 cemented pair.",
       "cemented": "D1",
-      "nC": 1.79610255289,
-      "nF": 1.82779673282,
-      "ng": 1.84730936544
     },
     {
       "id": 2,
@@ -82,9 +88,6 @@ const LENS_DATA = {
       "glass": "LLF6 (SUMITA catalog-equivalent class; supplier unconfirmed)",
       "role": "Positive low-index partner of the G1 pair.",
       "cemented": "D1",
-      "nC": 1.52845717918,
-      "nF": 1.5393369739,
-      "ng": 1.54543474302
     },
     {
       "id": 3,
@@ -95,11 +98,8 @@ const LENS_DATA = {
       "vd": 70.1,
       "indexReference": "d",
       "focalLengthMm": 82.618336446,
-      "glass": "FSL5 (OHARA catalog-equivalent class; supplier unconfirmed)",
+      "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Air-separated positive G1 crown meniscus.",
-      "nC": 1.48534556579,
-      "nF": 1.49228884699,
-      "ng": 1.49596655459
     },
     {
       "id": 4,
@@ -112,9 +112,6 @@ const LENS_DATA = {
       "focalLengthMm": -17.165546628,
       "glass": "LASFN14 (SUMITA catalog-equivalent class; supplier unconfirmed)",
       "role": "Object-convex negative front singlet of G2.",
-      "nC": 1.82739334262,
-      "nF": 1.84981350881,
-      "ng": 1.86277011639
     },
     {
       "id": 5,
@@ -125,12 +122,9 @@ const LENS_DATA = {
       "vd": 38,
       "indexReference": "d",
       "focalLengthMm": -12.855977241,
-      "glass": "F5 (SUMITA catalog-equivalent class; supplier unconfirmed)",
+      "glass": "F5 (Schott catalog equivalent; production supplier unspecified)",
       "role": "Negative flint member of the central G2 cemented pair.",
       "cemented": "D2",
-      "nC": 1.59874156012,
-      "nF": 1.6146118859,
-      "ng": 1.62380085212
     },
     {
       "id": 6,
@@ -144,9 +138,6 @@ const LENS_DATA = {
       "glass": "SFLDN3 (SUMITA catalog-equivalent class; supplier unconfirmed)",
       "role": "Positive high-index flint partner of the G2 pair; pair net positive in air.",
       "cemented": "D2",
-      "nC": 1.83654083577,
-      "nF": 1.87198539009,
-      "ng": 1.89399989008
     },
     {
       "id": 7,
@@ -159,9 +150,6 @@ const LENS_DATA = {
       "focalLengthMm": -29.597890868,
       "glass": "LASFN14 (SUMITA catalog-equivalent class; supplier unconfirmed)",
       "role": "Image-convex negative rear singlet of G2.",
-      "nC": 1.82739334262,
-      "nF": 1.84981350881,
-      "ng": 1.86277011639
     },
     {
       "id": 8,
@@ -172,11 +160,8 @@ const LENS_DATA = {
       "vd": 35.3,
       "indexReference": "d",
       "focalLengthMm": 25.503236911,
-      "glass": "E-F16 (HIKARI catalog-equivalent class; supplier unconfirmed)",
+      "glass": "S-FTM16 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "First positive rear-group singlet, immediately after the source stop.",
-      "nC": 1.58779167412,
-      "nF": 1.60458256734,
-      "ng": 1.61453978601
     },
     {
       "id": 9,
@@ -187,11 +172,8 @@ const LENS_DATA = {
       "vd": 56.3,
       "indexReference": "d",
       "focalLengthMm": 39.93495158,
-      "glass": "E-BAK4 (HIKARI catalog-equivalent class; supplier unconfirmed)",
+      "glass": "S-BAL14 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Second positive rear-group singlet.",
-      "nC": 1.5657742327,
-      "nF": 1.57587095328,
-      "ng": 1.581412029
     },
     {
       "id": 10,
@@ -204,9 +186,6 @@ const LENS_DATA = {
       "focalLengthMm": -14.11000898,
       "glass": "K-SFLD6 (SUMITA catalog-equivalent class; supplier unconfirmed)",
       "role": "Thick biconcave flint required by patent d18/f3 condition.",
-      "nC": 1.79610255289,
-      "nF": 1.82779673282,
-      "ng": 1.84730936544
     },
     {
       "id": 11,
@@ -219,9 +198,6 @@ const LENS_DATA = {
       "focalLengthMm": 42.989721813,
       "glass": "K7 (SUMITA catalog-equivalent class; supplier unconfirmed)",
       "role": "Weak-front positive meniscus; curved rear faces image.",
-      "nC": 1.50854340915,
-      "nF": 1.5169997351,
-      "ng": 1.52160092533
     },
     {
       "id": 12,
@@ -234,9 +210,6 @@ const LENS_DATA = {
       "focalLengthMm": 41.010393587,
       "glass": "K7 (SUMITA catalog-equivalent class; supplier unconfirmed)",
       "role": "Biconvex final positive singlet.",
-      "nC": 1.50854340915,
-      "nF": 1.5169997351,
-      "ng": 1.52160092533
     }
   ],
   "surfaces": [
@@ -244,21 +217,21 @@ const LENS_DATA = {
       "label": "1",
       "R": 107.06,
       "d": 1.2,
-      "sd": 14.5,
+      "sd": 17.7,
       "medium": 1
     },
     {
       "label": "2",
       "R": 35.5,
       "d": 6.6,
-      "sd": 14.5,
+      "sd": 16.1,
       "medium": 2
     },
     {
       "label": "3",
       "R": -70.951,
       "d": 0.15,
-      "sd": 14.5
+      "sd": 16.1
     },
     {
       "label": "4",
@@ -276,7 +249,7 @@ const LENS_DATA = {
       "label": "6",
       "R": 40.883,
       "d": 0.9,
-      "sd": 7.5,
+      "sd": 9.2,
       "medium": 4
     },
     {
@@ -309,7 +282,7 @@ const LENS_DATA = {
       "label": "11",
       "R": -15.759,
       "d": 0.8,
-      "sd": 5.5,
+      "sd": 5.8,
       "medium": 7
     },
     {
@@ -346,45 +319,45 @@ const LENS_DATA = {
       "label": "17",
       "R": -435.979,
       "d": 0.5,
-      "sd": 5.43
+      "sd": 6.2
     },
     {
       "label": "18",
       "R": -30.758,
       "d": 6,
-      "sd": 5.43,
+      "sd": 5.65,
       "medium": 10
     },
     {
       "label": "19",
       "R": 19.583,
       "d": 0.9,
-      "sd": 5.5
+      "sd": 5.7
     },
     {
       "label": "20",
       "R": -1011.23,
       "d": 2,
-      "sd": 6.8,
+      "sd": 6.2,
       "medium": 11
     },
     {
       "label": "21",
       "R": -21.52,
       "d": 0.15,
-      "sd": 6.8
+      "sd": 6.2
     },
     {
       "label": "22",
       "R": 49.078,
       "d": 2.3,
-      "sd": 8,
+      "sd": 7.1,
       "medium": 12
     },
     {
       "label": "23",
       "R": -36.008,
-      "sd": 8
+      "sd": 7.1
     }
   ],
   "zoom": {
@@ -3875,6 +3848,9 @@ const LENS_DATA = {
   "layout": {
     "scFill": 0.65,
     "yScFill": 0.6
+  },
+  "checks": {
+    "gapSagFrac": 0.98
   }
 } satisfies LensDataV2Input;
 export default LENS_DATA;

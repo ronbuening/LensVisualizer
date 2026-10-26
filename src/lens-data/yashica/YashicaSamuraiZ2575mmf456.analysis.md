@@ -56,7 +56,7 @@ L2 is the positive biconvex partner at shared surface S2. The junction belongs t
 
 ### L3 — Positive Meniscus
 
-nd = 1.48749, νd = 70.1. Glass: FSL5 (OHARA catalog-equivalent class; supplier unconfirmed). f = +82.618 mm.
+nd = 1.48749, νd = 70.1. Glass: S-FSL5 (OHARA catalog equivalent; production supplier unspecified). f = +82.618 mm.
 
 The air-separated crown meniscus completes G1. Both radii are positive, with stronger curvature on the object-facing side. Its positive standalone power strengthens the front assembly beyond the relatively weak cemented pair. The high Abbe number makes it the least dispersive coordinate in this prescription, without establishing an APO or special-glass marketing claim.
 
@@ -68,7 +68,7 @@ The front G2 singlet is a negative meniscus with the stronger curvature facing t
 
 ### L5 — Biconcave Negative
 
-nd = 1.60342, νd = 38.0. Glass: F5 (SUMITA catalog-equivalent class; supplier unconfirmed). f = -12.856 mm.
+nd = 1.60342, νd = 38.0. Glass: F5 (Schott catalog equivalent; production supplier unspecified). f = -12.856 mm.
 
 The biconcave negative member starts the middle doublet at S8. Its nd=1.60342 is the n8 constrained below 1.75 by the patent. The text connects this condition to compensating aberration introduced by cementing the two middle lenses; the glass coordinate satisfies the condition directly.
 
@@ -86,13 +86,13 @@ The final G2 element is an image-convex negative meniscus, with the more strongl
 
 ### L8 — Biconvex Positive
 
-nd = 1.59270, νd = 35.3. Glass: E-F16 (HIKARI catalog-equivalent class; supplier unconfirmed). f = +25.503 mm.
+nd = 1.59270, νd = 35.3. Glass: S-FTM16 (OHARA catalog equivalent; production supplier unspecified). f = +25.503 mm.
 
 L8 is the first positive rear singlet, 1 mm behind the source stop. Its positive front curvature is substantially stronger than its negative rear curvature. The patent describes the first two rear positives as facing their stronger curvature toward the object; this row satisfies that description.
 
 ### L9 — Biconvex Positive
 
-nd = 1.56883, νd = 56.3. Glass: E-BAK4 (HIKARI catalog-equivalent class; supplier unconfirmed). f = +39.935 mm.
+nd = 1.56883, νd = 56.3. Glass: S-BAL14 (OHARA catalog equivalent; production supplier unspecified). f = +39.935 mm.
 
 The second positive rear singlet has a very weakly curved rear surface at R17=−435.979 mm. It is not a plane. The following 0.5 mm air space and L10's object-facing concavity impose the most important clear-radius constraint in the inferred geometry. The model retains both literal radii and that gap.
 
@@ -116,23 +116,23 @@ The final biconvex positive singlet shares L11's index/Abbe coordinate. S23 is t
 
 ## Glass Identification and Spectral Scope
 
-Nine distinct coordinates were compared against OHARA, HOYA, SCHOTT, HIKARI, SUMITA and CDGM catalogs. The choices below are coordinate-compatible classes, independent of the camera brand. Historical and modern OHARA prefixes remain distinct.
+Nine distinct coordinates were compared against OHARA, HOYA, SCHOTT, HIKARI, SUMITA and CDGM catalogs. The choices below are coordinate-compatible classes, independent of the camera brand. The three OHARA rows are current S-prefix glasses. Their catalog indices match the printed nd within 0.000002, and their catalog νd values are 70.24, 35.31 and 56.36 against the printed 70.1, 35.3 and 56.3.
 
-| Elements | Native nd / νd | Adopted equivalent class | Interpretation                                        |
-| -------- | -------------- | ------------------------ | ----------------------------------------------------- |
-| L1, L10  | 1.80518 /25.4  | SUMITA K-SFLD6           | Dense-flint class                                     |
-| L2       | 1.53172 /48.9  | SUMITA LLF6              | Low-index light-flint class                           |
-| L3       | 1.48749 /70.1  | OHARA legacy FSL5        | Low-dispersion crown class; not an S-prefix assertion |
-| L4, L7   | 1.83400 /37.2  | SUMITA LASFN14           | High-index lanthanum-flint class                      |
-| L5       | 1.60342 /38.0  | SUMITA F5                | Flint class                                           |
-| L6       | 1.84666 /23.9  | SUMITA SFLDN3            | High-index dense-flint class                          |
-| L8       | 1.59270 /35.3  | HIKARI E-F16             | Flint class                                           |
-| L9       | 1.56883 /56.3  | HIKARI E-BAK4            | Barium-crown class                                    |
-| L11, L12 | 1.51112 /60.5  | SUMITA K7                | Crown class                                           |
+| Elements | Native nd / νd | Adopted equivalent class | Interpretation                               |
+| -------- | -------------- | ------------------------ | -------------------------------------------- |
+| L1, L10  | 1.80518 /25.4  | SUMITA K-SFLD6           | Dense-flint class                            |
+| L2       | 1.53172 /48.9  | SUMITA LLF6              | Low-index light-flint class                  |
+| L3       | 1.48749 /70.1  | OHARA S-FSL5             | Low-dispersion crown class; catalog νd 70.24 |
+| L4, L7   | 1.83400 /37.2  | SUMITA LASFN14           | High-index lanthanum-flint class             |
+| L5       | 1.60342 /38.0  | SCHOTT F5                | Flint class; traced on the SCHOTT F5 curve   |
+| L6       | 1.84666 /23.9  | SUMITA SFLDN3            | High-index dense-flint class                 |
+| L8       | 1.59270 /35.3  | OHARA S-FTM16            | Flint class; catalog νd 35.31                |
+| L9       | 1.56883 /56.3  | OHARA S-BAL14            | Barium-crown class; catalog νd 56.36         |
+| L11, L12 | 1.51112 /60.5  | SUMITA K7                | Crown class                                  |
 
-The patent's d-line indices and Abbe numbers are unchanged. C-, F- and g-line indices are evaluated from the equivalent-catalog formulas at 656.2725, 486.1327 and 435.8343 nm. These are modeling proxies, not spectral values printed by the patent or measurements of the production melt.
+The patent's d-line indices and Abbe numbers are unchanged. C-, F- and g-line indices come from the equivalent-catalog dispersion formulas at 656.2725, 486.1327 and 435.8343 nm. These are modeling proxies, not spectral values printed by the patent or measurements of the production melt.
 
-The model uses direct line-index dispersion for every glass, including historical classes absent from the built-in catalog. F5 also matches a compatible Schott class, but the supplied SUMITA-derived line indices control its modeled dispersion.
+Every element resolves to a dispersion curve in the built-in glass catalog; no per-element line indices are stored. The five SUMITA classes reproduce the earlier stored C, F and g indices within 1×10⁻¹¹. L5 is labelled with the coordinate-identical SCHOTT F5 row, since the built-in catalog has no SUMITA F5 row. That curve lies within 6.2×10⁻⁶ of the earlier SUMITA-derived C/F/g values. The OHARA curves for L3, L8 and L9 differ from the earlier FSL5, E-F16 and E-BAK4 line values by at most 5.9×10⁻⁶; their line-based νd moves by 0.03 or less.
 
 The per-surface paraxial Petzval contributions sum to +0.003562464771 mm⁻¹ at the native d-line. This is a first-order surface-power sum, not measured sagittal/tangential field curvature or evidence of flat-field image quality. No apochromatic-performance or anomalous-dispersion claim is made.
 
@@ -167,18 +167,18 @@ The first controls the balance of front and variator power; the second constrain
 | Model image plane minus paraxial focus    | −0.166464945 mm | −0.079463952 mm |
 | Modeled first-surface-to-image track      |       93.637 mm |      114.937 mm |
 | Source native maximum f-number            |             4.0 |             5.6 |
-| Modeled effective axial f-number          |     4.082932144 |     5.805239942 |
-| Axial geometrical pupil-area loss         |      4.0211243% |      6.9458589% |
+| Modeled effective axial f-number          |             4.0 |             5.6 |
+| Axial geometrical pupil-area loss         |              0% |              0% |
 
 The focal residuals exceed half of the last printed focal digit and remain unresolved source discrepancies. The printed image gaps are retained without optimization or refocusing. Small residual defocus remains; the model's image plane differs from paraxial best focus.
 
-The source prints the stop position but no iris diameter or glass clear radii. Iris radii are inferred by exact-ray calibration to F4/F5.6; matching those labels is therefore a calibration, not independent evidence of physical diaphragm size. All glass clear radii are estimates guided by the patent section, previously cited manufacturer proportions and axial/field tracing. No independently accessible Z construction drawing confirms the manufacturing apertures.
+The source prints the stop position but no iris diameter or glass clear radii. Iris radii are inferred by exact-ray calibration to F4/F5.6; matching those labels is therefore a calibration, not independent evidence of physical diaphragm size. All glass clear radii are estimates measured from the wide-state Figure 1 of the earlier A publication, which draws the same example, and checked by axial and field tracing at every zoom position. No independently accessible Z construction drawing confirms the manufacturing apertures.
 
-The default 90% shared-band gap allowance is retained. At the S17–S18 air space, inferred 5.43 mm clear radii satisfy valid geometry but clip the nominal axial pupil edge. Passing the full native tele pupil would require 97.1479742% intrusion, beyond the 97% limit; that override is not used. The effective axial f-numbers and lost circular entrance-pupil area above quantify this explicit model limitation. They are not T-stop losses, coating losses, measured production transmission or a claim that the full published pupil is reproduced.
+At the S17–S18 air space, L9's rear face follows the figure's square 6.2 mm rim. L10's concave front face is set to 5.65 mm, the height the F4/F5.6 axial marginal ray reaches there. The 0.5 mm air gap closes to about 0.013 mm at that height (97.4% intrusion), matching the figure, which draws the two rims touching. The lens's cross-gap allowance is therefore 0.98 instead of the default 0.90; no other air gap needs more than 0.90. The full native pupil now passes every surface at both printed endpoints and at every interpolated position, so no axial pupil area is lost. This is a geometric rim result, not a T-stop, a coating loss or measured production transmission.
 
-The chosen radii transmit central axial rays with ordinary off-axis vignetting. The maker's 17 × 24 mm frame is covered by chief rays throughout the modeled zoom range; nominal 18 × 24 mm coverage reaches 98.1% at wide. Neither cemented interior interface clips the sampled rays. A tele ray can clip at S19. These inferred-rim results do not establish measured pupil transmission, vignetting or MTF.
+The chosen radii transmit central axial rays with ordinary off-axis vignetting. The maker's 17 × 24 mm frame is covered by chief rays throughout the modeled zoom range; nominal 18 × 24 mm corners are also reached at every zoom position. Neither cemented interior interface clips the sampled rays. A tele ray can clip at S19. These inferred-rim results do not establish measured pupil transmission, vignetting or MTF.
 
-The inferred surfaces require no rendering trim. Printed surface values, stop location, cemented-interface media and endpoint spacings are retained. Intermediate defocus reaches 0.16603 mm in magnitude; 152 of the 199 interpolated positions exceed 0.1 mm. No MTF optimization or extra geometry allowance is applied.
+The inferred surfaces require no rendering trim. Printed surface values, stop location, cemented-interface media and endpoint spacings are retained. Intermediate defocus reaches 0.16603 mm in magnitude; 152 of the 199 interpolated positions exceed 0.1 mm. No MTF optimization is applied. The raised cross-gap allowance above is the only departure from the default geometry checks.
 
 ## Sources
 

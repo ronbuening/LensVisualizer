@@ -7,9 +7,9 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files: **1007**
-- Files with both `lensMounts` and `imageFormat`: **965**
-- Files missing `lensMounts`: **33** (24 public lenses and 9 hidden reference fixtures)
+- Total lens data files: **1014**
+- Files with both `lensMounts` and `imageFormat`: **971**
+- Files missing `lensMounts`: **34** (25 public lenses and 9 hidden reference fixtures)
 - Files missing `imageFormat`: **32** (23 public lenses and 9 hidden reference fixtures)
 - Files missing both fields: **23**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
@@ -38,6 +38,7 @@ with remaining compatibility questions explained in the lens analysis.
 | Schneider TV-Variogon 20–600mm f/2.1 | The 1¼-inch tube application does not identify the lens-to-camera/prism mounting interface. Do not substitute a modern ⅔-inch B4 fitting. |
 | Schneider Xenar 50mm f/2.8 | The source set does not select one historical mechanical variant for the scaled patent example. |
 | Vivitar Series 1 70–210mm f/2.8–4 | The 1984 brochure supports the exact 14/10 production generation, but does not establish its complete mount list. The earlier f/3.5 service manual is not evidence for this version. |
+| Tamron SP 70-150mm f/2.8 Soft (51A) | Adaptall-2 lens: the optical unit takes Tamron's interchangeable camera-side adapters, and the reviewed 1980 sources (Tamron's 51A page, the brochure) do not list the adapters issued for this model. Tie a period Adaptall-2 mount list to the 51A before assigning ids. |
 | Vivitar Series 1 450mm f/4.5 | Secondary material describes T-mount, but the source set lacks a manufacturer mechanical specification for this rare production correlation. |
 | Nikon Ultra-Micro-Nikkor 29.5mm | Photolithography installation; its optical back focus and reduction ratio do not identify a consumer camera mount. |
 | Meyer Kino-Plasmat 100mm; Double-Plasmat 135mm | Historical barrel/specimen evidence and normalized patent scaling do not select a standard factory camera mount. |

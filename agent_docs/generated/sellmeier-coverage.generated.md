@@ -11,18 +11,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1007** lenses scanned
-- **993** visible lenses scanned
-- **671** lenses fully covered by trusted chromatic data
-- **669** visible lenses fully covered by trusted chromatic data
-- **664** lenses fully covered by strict Sellmeier data
-- **662** visible lenses fully covered by strict Sellmeier data
-- **7** lenses fully covered only after measured line-index data
-- **7** visible lenses fully covered only after measured line-index data
-- **10625 / 11474** non-air surfaces use strict catalog Sellmeier data
+- **1014** lenses scanned
+- **999** visible lenses scanned
+- **678** lenses fully covered by trusted chromatic data
+- **675** visible lenses fully covered by trusted chromatic data
+- **670** lenses fully covered by strict Sellmeier data
+- **667** visible lenses fully covered by strict Sellmeier data
+- **8** lenses fully covered only after measured line-index data
+- **8** visible lenses fully covered only after measured line-index data
+- **10724 / 11575** non-air surfaces use strict catalog Sellmeier data
 - **92.6%** strict Sellmeier surface coverage overall
-- **10638 / 11474** non-air surfaces use trusted chromatic data
-- **92.7%** trusted chromatic coverage overall
+- **10739 / 11575** non-air surfaces use trusted chromatic data
+- **92.8%** trusted chromatic coverage overall
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -310,6 +310,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 |---|---:|---:|---:|
 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4× — EXT IN](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14xExtenderIn.data.ts) *(hidden)* | 32/32 | 32 | 32/32 |
 | [SCHNEIDER-KREUZNACH TV-VARIOGON 20-600mm f/2.1-6.6](../../src/lens-data/schneider-kreuznach/SchneiderTVVariogon216620600.data.ts) | 31/31 | 31 | 31/31 |
+| [OLYMPUS M.ZUIKO DIGITAL ED 150-400mm f/4.5 TC1.25× IS PRO](../../src/lens-data/olympus/OlympusMZuiko150400mmf45TC125ISPROTCIn.data.ts) *(hidden)* | 28/28 | 28 | 28/28 |
 | [CANON CINE-SERVO 17-120mm T2.95-3.9 (CN7×17 KAS S/E1)](../../src/lens-data/canon/CanonCINESERVO17120mmT29539EF.data.ts) | 27/27 | 27 | 27/27 |
 | [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) | 27/27 | 27 | 27/27 |
 | [SIGMA 60-600mm f/4.5-6.3 DG DN OS | Sports](../../src/lens-data/sigma/Sigma60600mmf4563DGDNOS.data.ts) | 27/27 | 27 | 27/27 |
@@ -337,6 +338,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) | 21/21 | 21 | 21/21 |
 | [NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor70200mmf28GIFED.data.ts) | 21/21 | 21 | 21/21 |
 | [NIKON NIKKOR Z 70-200mm f/2.8 VR S](../../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) | 21/21 | 21 | 21/21 |
+| [OLYMPUS M.ZUIKO DIGITAL ED 150-400mm f/4.5 TC1.25× IS PRO](../../src/lens-data/olympus/OlympusMZuiko150400mmf45TC125ISPRO.data.ts) | 21/21 | 21 | 21/21 |
 | [SIGMA 15mm f/1.4 DG DN DIAGONAL FISHEYE | Art](../../src/lens-data/sigma/Sigma15mmf14DGDNDiagonalFisheyeArt.data.ts) | 21/21 | 21 | 21/21 |
 | [SONY FE 70-200mm f/4 G OSS](../../src/lens-data/sony/SonyFE70200mmf4G.data.ts) | 21/21 | 21 | 21/21 |
 | [TAMRON 35-150mm f/2-2.8 Di III VXD (A058)](../../src/lens-data/tamron/TamronA05835150mmf228.data.ts) | 21/21 | 21 | 21/21 |
@@ -546,6 +548,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [SONY FE 50mm f/1.4 GM](../../src/lens-data/sony/SonyFE50mmF14GM.data.ts) | 14/14 | 14 | 14/14 |
 | [SONY FE 85mm f/1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) | 14/14 | 14 | 14/14 |
 | [SONY VARIO-SONNAR T* DT 16-80mm f/3.5-4.5 ZA](../../src/lens-data/sony/SonyVarioSonnarTDT1680mmf3545ZA.data.ts) | 14/14 | 14 | 14/14 |
+| [TAMRON SP 70-150mm f/2.8 SOFT (51A)](../../src/lens-data/tamron/TamronSP70150mmf28Soft51A.data.ts) | 14/14 | 14 | 14/14 |
 | [TAMRON SP 90mm f/2.8 Di MACRO 1:1 VC USD (F004)](../../src/lens-data/tamron/TamronSP90mmf28Di.data.ts) | 14/14 | 14 | 14/14 |
 | [TAMRON SP AF 180mm f/3.5 Di LD [IF] MACRO 1:1 (B01)](../../src/lens-data/tamron/TamronSPAF180mmf35Di.data.ts) | 14/14 | 14 | 14/14 |
 | [TAMRON SP AF 60mm f/2 Di II LD [IF] MACRO 1:1 (G005)](../../src/lens-data/tamron/TamronSPAF60mmf2Di.data.ts) | 14/14 | 14 | 14/14 |
@@ -595,6 +598,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [SONY VARIO-TESSAR T* FE 24-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTFE2470mmF4ZAOSS.data.ts) | 12/12 | 12 | 12/12 |
 | [TAMRON 20-40mm f/2.8 Di III VXD (A062)](../../src/lens-data/tamron/TamronA0622040mmf28DiIIIVXD.data.ts) | 12/12 | 12 | 12/12 |
 | [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) | 12/12 | 12 | 12/12 |
+| [YASHICA ZOOM 25-75mm f/4-5.6 (Yashica Samurai Z)](../../src/lens-data/yashica/YashicaSamuraiZ2575mmf456.data.ts) | 12/12 | 12 | 12/12 |
 | [CANON 15.1-60.4mm f/2.8-5.8 (Canon PowerShot G1 X)](../../src/lens-data/canon/CanonPowerShotG1X1560mmf28.data.ts) | 11/11 | 11 | 11/11 |
 | [CANON 8.8-36.8mm f/1.8-2.8 (Canon PowerShot G7 X)](../../src/lens-data/canon/CanonPowerShotG7X88368mmf1828.data.ts) | 11/11 | 11 | 11/11 |
 | [CANON EF 20mm f/2.8 USM](../../src/lens-data/canon/CanonEF20mmf28.data.ts) | 11/11 | 11 | 11/11 |
@@ -738,6 +742,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [VOIGTLÄNDER NOKTON 50mm f/1 Aspherical](../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts) | 9/9 | 9 | 9/9 |
 | [VOIGTLÄNDER NOKTON 50mm f/1.2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderNoktonX50mmf12.data.ts) | 9/9 | 9 | 9/9 |
 | [YASHICA ML 24mm f/2.8](../../src/lens-data/yashica/YashicaML24mmf28.data.ts) | 9/9 | 9 | 9/9 |
+| [CANON 35mm f/1.5](../../src/lens-data/canon/Canon35mmf15LTM.data.ts) | 8/8 | 8 | 8/8 |
 | [CANON EF 15mm f/2.8 Fisheye](../../src/lens-data/canon/CanonEF15mmf28.data.ts) | 8/8 | 8 | 8/8 |
 | [CANON EF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonEF50mmf12LUSM.data.ts) | 8/8 | 8 | 8/8 |
 | [CANON FD 50mm f/1.2 L](../../src/lens-data/canon/CanonFD50mmf12L.data.ts) | 8/8 | 8 | 8/8 |
@@ -842,6 +847,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [RICOH GR LENS 28mm f/2.8 (Ricoh GR1)](../../src/lens-data/ricoh/RicohGR28f28.data.ts) | 7/7 | 7 | 7/7 |
 | [SAMYANG AF 24mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF24mmf28FE.data.ts) | 7/7 | 7 | 7/7 |
 | [SCHNEIDER-KREUZNACH CINE-XENON 25mm f/1.4](../../src/lens-data/schneider-kreuznach/SchneiderCineXenon1425.data.ts) | 7/7 | 7 | 7/7 |
+| [SCHNEIDER-KREUZNACH CINELUX PREMIÈRE 35mm f/1.7](../../src/lens-data/schneider-kreuznach/SchneiderCineluxPremiere35mmf17.data.ts) | 7/7 | 7 | 7/7 |
 | [SCHNEIDER-KREUZNACH RETINA-CURTAGON 28mm f/4](../../src/lens-data/schneider-kreuznach/SchneiderCurtagon428.data.ts) | 7/7 | 7 | 7/7 |
 | [SONY SONNAR T* FE 55mm f/1.8 ZA](../../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) | 7/7 | 7 | 7/7 |
 | [SONY ZEISS VARIO-SONNAR T* 10.4-37.1mm f/1.8-4.9 (Sony Cyber-shot DSC-RX100 / DSC-RX100 II)](../../src/lens-data/sony/ZeissVarioSonnarT104371mmf1849SonyDSCRX100M12.data.ts) | 7/7 | 7 | 7/7 |
@@ -984,6 +990,7 @@ These lenses are complete for chromatic tracing but not strict catalog-Sellmeier
 | [CANON EF-S 55-250mm f/4-5.6 IS](../../src/lens-data/canon/CanonEFS55250mmf456IS.data.ts) | 12/12 | 11/12 | 12 | 11/12 | 1 | Line indices |
 | [PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) | 12/12 | 11/12 | 12 | 11/12 | 1 | Line indices |
 | [VOIGTLÄNDER APO-LANTHAR 28mm f/2 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar28mmf2Aspherical.data.ts) | 12/12 | 11/12 | 12 | 11/12 | 1 | Line indices |
+| [FUJIFILM FUJINON GF 110mm f/5.6 T/S Macro](../../src/lens-data/fujifilm/FujifilmGF110mmf56TSMacro.data.ts) | 11/11 | 9/11 | 11 | 9/11 | 2 | Line indices |
 | [PANASONIC LUMIX G VARIO 12-60mm f/3.5-5.6 ASPH. POWER O.I.S.](../../src/lens-data/panasonic/PanasonicLumixG1260mmF3556.data.ts) | 11/11 | 9/11 | 11 | 9/11 | 2 | Line indices |
 | [PANASONIC LUMIX G 25mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLumixG25mmf17.data.ts) | 8/8 | 6/8 | 8 | 6/8 | 2 | Line indices |
 

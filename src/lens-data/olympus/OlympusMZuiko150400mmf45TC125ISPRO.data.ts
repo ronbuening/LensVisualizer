@@ -14,7 +14,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Both TC states share identical infinity front geometry; the production mechanical cam is unknown.
  * Focus: independently reconstruct G4 imageward travel to manufacturer 1.3 m object-to-image MFD;
  * D19+D22 remains constant. The patent supplies no finite-focus prescription.
- * Semi-diameters are inferred optical rims based on figures, aperture and full-field clearance.
+ * Semi-diameters are inferred optical rims estimated from FIG. 5 (read on the clean sides of all three
+ * panels; the leader-crossed wide panel is a check), floor-checked by real-ray trace at f/4.59 and the
+ * Four Thirds corner. Shared rims are identical in both converter configurations.
  * The default gap-sag allowance of 0.90 is retained.
  * Image stabilization is modelled centred at L16-L18. Surface 12 is the stop, labelled STO,
  * with a zoom-dependent radius derived from the stated f-number.
@@ -86,7 +88,7 @@ const LENS_DATA = {
       "nd": 1.48749,
       "vd": 70.23,
       "focalLengthMm": 310.050257,
-      "glass": "487702 coordinate class (catalog identity unverified)",
+      "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "role": "Positive front singlet of fixed G1"
     },
@@ -98,7 +100,7 @@ const LENS_DATA = {
       "nd": 1.673,
       "vd": 38.26,
       "focalLengthMm": -244.382179,
-      "glass": "673383 coordinate class (catalog identity unverified)",
+      "glass": "S-NBH52V (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "role": "Negative member of the fixed G1 achromatic doublet",
       "cemented": "C3"
@@ -111,7 +113,7 @@ const LENS_DATA = {
       "nd": 1.43875,
       "vd": 94.66,
       "focalLengthMm": 192.745423,
-      "glass": "439947 coordinate class (catalog identity unverified)",
+      "glass": "S-FPL55 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": "inferred",
       "apdNote": "The maker drawing places Super ED glass here, consistent with the patent index and Abbe number; anomalous partial dispersion and production glass identity remain unverified.",
       "role": "Very-low-dispersion positive member of the fixed G1 doublet",
@@ -125,7 +127,7 @@ const LENS_DATA = {
       "nd": 1.85478,
       "vd": 24.8,
       "focalLengthMm": 131.973669,
-      "glass": "855248 coordinate class (catalog identity unverified)",
+      "glass": "S-NBH56 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "role": "Positive member of the moving G2 variator triplet",
       "cemented": "C6"
@@ -138,7 +140,7 @@ const LENS_DATA = {
       "nd": 1.48749,
       "vd": 70.23,
       "focalLengthMm": -64.989848,
-      "glass": "487702 coordinate class (catalog identity unverified)",
+      "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "role": "Negative member of the moving G2 variator triplet",
       "cemented": "C6"
@@ -151,7 +153,7 @@ const LENS_DATA = {
       "nd": 1.78472,
       "vd": 25.68,
       "focalLengthMm": 373.500362,
-      "glass": "785257 coordinate class (catalog identity unverified)",
+      "glass": "S-TIH11 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "role": "Positive member of the moving G2 variator triplet",
       "cemented": "C6"
@@ -164,7 +166,7 @@ const LENS_DATA = {
       "nd": 1.788,
       "vd": 47.37,
       "focalLengthMm": -81.701422,
-      "glass": "788474 coordinate class (catalog identity unverified)",
+      "glass": "S-LAH64 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "role": "Negative singlet of the moving G2 variator"
     },
@@ -176,7 +178,7 @@ const LENS_DATA = {
       "nd": 1.497,
       "vd": 81.61,
       "focalLengthMm": 72.250647,
-      "glass": "497816 coordinate class (catalog identity unverified)",
+      "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
       "apd": "inferred",
       "apdNote": "The maker drawing places EDA glass here, consistent with the patent index and Abbe number; anomalous partial dispersion and production glass identity remain unverified.",
       "role": "Low-dispersion positive element with two aspheres in fixed G3"
@@ -189,7 +191,7 @@ const LENS_DATA = {
       "nd": 1.84666,
       "vd": 23.78,
       "focalLengthMm": -120.076772,
-      "glass": "847238 coordinate class (catalog identity unverified)",
+      "glass": "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "role": "Negative member of the fixed G3 doublet",
       "cemented": "C15"
@@ -202,7 +204,7 @@ const LENS_DATA = {
       "nd": 1.43875,
       "vd": 94.66,
       "focalLengthMm": 117.205631,
-      "glass": "439947 coordinate class (catalog identity unverified)",
+      "glass": "S-FPL55 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": "inferred",
       "apdNote": "The maker drawing places Super ED glass here, consistent with the patent index and Abbe number; anomalous partial dispersion and production glass identity remain unverified.",
       "role": "Very-low-dispersion positive member of the fixed G3 doublet",
@@ -216,7 +218,7 @@ const LENS_DATA = {
       "nd": 1.43875,
       "vd": 94.66,
       "focalLengthMm": 78.012436,
-      "glass": "439947 coordinate class (catalog identity unverified)",
+      "glass": "S-FPL55 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": "inferred",
       "apdNote": "The maker drawing places Super ED glass here, consistent with the patent index and Abbe number; anomalous partial dispersion and production glass identity remain unverified.",
       "role": "Very-low-dispersion positive singlet completing fixed G3"
@@ -229,7 +231,7 @@ const LENS_DATA = {
       "nd": 1.7725,
       "vd": 49.6,
       "focalLengthMm": -41.734662,
-      "glass": "772496 coordinate class (catalog identity unverified)",
+      "glass": "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "role": "Negative member of the G4 focus doublet",
       "cemented": "C20"
@@ -242,7 +244,7 @@ const LENS_DATA = {
       "nd": 1.85478,
       "vd": 24.8,
       "focalLengthMm": 106.301987,
-      "glass": "855248 coordinate class (catalog identity unverified)",
+      "glass": "S-NBH56 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "role": "Positive member of the G4 focus doublet",
       "cemented": "C20"
@@ -255,7 +257,7 @@ const LENS_DATA = {
       "nd": 1.5927,
       "vd": 35.31,
       "focalLengthMm": -84.041644,
-      "glass": "593353 coordinate class (catalog identity unverified)",
+      "glass": "S-FTM16 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "role": "Negative singlet of the G5 zoom compensator"
     },
@@ -267,7 +269,7 @@ const LENS_DATA = {
       "nd": 1.43875,
       "vd": 94.66,
       "focalLengthMm": 60.025423,
-      "glass": "439947 coordinate class (catalog identity unverified)",
+      "glass": "S-FPL55 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": "inferred",
       "apdNote": "The maker drawing places Super ED glass here, consistent with the patent index and Abbe number; anomalous partial dispersion and production glass identity remain unverified.",
       "role": "Very-low-dispersion positive singlet at the front of fixed G6"
@@ -280,7 +282,7 @@ const LENS_DATA = {
       "nd": 1.85478,
       "vd": 24.8,
       "focalLengthMm": 40.463165,
-      "glass": "855248 coordinate class (catalog identity unverified)",
+      "glass": "S-NBH56 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "role": "Positive member of the G6 stabilization doublet, modelled centred",
       "cemented": "C27"
@@ -293,8 +295,9 @@ const LENS_DATA = {
       "nd": 1.59282,
       "vd": 68.63,
       "focalLengthMm": -39.747275,
-      "glass": "593686 coordinate class (catalog identity unverified)",
-      "apd": false,
+      "glass": "FCD515 (HOYA catalog equivalent; production supplier unspecified)",
+      "apd": "inferred",
+      "apdNote": "The maker drawing places ED glass here, consistent with the patent index and Abbe number; anomalous partial dispersion and production glass identity remain unverified.",
       "role": "Negative member of the G6 stabilization doublet, modelled centred",
       "cemented": "C27"
     },
@@ -306,7 +309,7 @@ const LENS_DATA = {
       "nd": 1.7725,
       "vd": 49.6,
       "focalLengthMm": -31.695159,
-      "glass": "772496 coordinate class (catalog identity unverified)",
+      "glass": "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "role": "Negative singlet of the G6 stabilization assembly, modelled centred"
     },
@@ -318,7 +321,7 @@ const LENS_DATA = {
       "nd": 1.762,
       "vd": 40.1,
       "focalLengthMm": 55.204,
-      "glass": "762401 coordinate class (catalog identity unverified)",
+      "glass": "S-LAM55 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "role": "Positive G6 singlet before the converter insertion space"
     },
@@ -330,7 +333,7 @@ const LENS_DATA = {
       "nd": 1.85025,
       "vd": 30.05,
       "focalLengthMm": 36.118388,
-      "glass": "850300 coordinate class (catalog identity unverified)",
+      "glass": "S-NBH57 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "role": "Positive member of the fixed G6 rear doublet",
       "cemented": "C34"
@@ -343,7 +346,7 @@ const LENS_DATA = {
       "nd": 1.94595,
       "vd": 17.98,
       "focalLengthMm": -43.815635,
-      "glass": "946180 coordinate class (catalog identity unverified)",
+      "glass": "FDS18 (HOYA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "role": "Negative member of the fixed G6 rear doublet",
       "cemented": "C34"
@@ -367,20 +370,20 @@ const LENS_DATA = {
       "label": "3",
       "R": 132.8428,
       "d": 2.9,
-      "sd": 43,
+      "sd": 38.8,
       "medium": 2
     },
     {
       "label": "4",
       "R": 72.8416,
       "d": 12.5,
-      "sd": 43,
+      "sd": 38.8,
       "medium": 3
     },
     {
       "label": "5",
       "R": 497.8603,
-      "sd": 43
+      "sd": 37.2
     },
     {
       "label": "6",
@@ -508,72 +511,72 @@ const LENS_DATA = {
       "label": "23",
       "R": 77.5188,
       "d": 1.0,
-      "sd": 9.6,
+      "sd": 8.9,
       "medium": 14
     },
     {
       "label": "24",
       "R": 30.1797,
-      "sd": 9.6
+      "sd": 8.9
     },
     {
       "label": "25",
       "R": 37.8085,
       "d": 3.256,
-      "sd": 11,
+      "sd": 8.7,
       "medium": 15
     },
     {
       "label": "26",
       "R": -84.5146,
       "d": 1.6326,
-      "sd": 11
+      "sd": 8.7
     },
     {
       "label": "27",
       "R": 477.7324,
       "d": 2.7773,
-      "sd": 10.5,
+      "sd": 9.3,
       "medium": 16
     },
     {
       "label": "28",
       "R": -37.1867,
       "d": 0.9,
-      "sd": 10.5,
+      "sd": 9.3,
       "medium": 17
     },
     {
       "label": "29",
       "R": 64.8958,
       "d": 2.1108,
-      "sd": 10.5
+      "sd": 9.3
     },
     {
       "label": "30",
       "R": -60.4635,
       "d": 0.9,
-      "sd": 10.5,
+      "sd": 9.2,
       "medium": 18
     },
     {
       "label": "31",
       "R": 41.4137,
       "d": 3.5801,
-      "sd": 10.5
+      "sd": 9.2
     },
     {
       "label": "32",
       "R": 44.7727,
       "d": 3.4977,
-      "sd": 11,
+      "sd": 9.8,
       "medium": 19
     },
     {
       "label": "33",
       "R": -672.1776,
       "d": 30.4677,
-      "sd": 11
+      "sd": 9.8
     },
     {
       "label": "34",
@@ -3175,7 +3178,7 @@ const LENS_DATA = {
       "thicknessMm": 4.1082,
       "nd": 1.51633,
       "vd": 64.14,
-      "glass": "516641 coordinate class (catalog identity unverified)",
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "gapAfterMm": 2.045,
       "source": "JP2021096331A Numerical Example5, surfaces37-38; physical camera-side plate traced, not drawn."
     }

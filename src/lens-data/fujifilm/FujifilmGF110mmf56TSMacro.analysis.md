@@ -16,73 +16,73 @@ Eleven powered elements form nine air-separated components: three front singlets
 
 ### L1: Biconcave Negative
 
-nd = 1.65412, νd = 39.68000. Glass: Unmatched (source nd=1.65412, dispersion=39.68). Isolated thick-lens f = −35.06163 mm.
+nd = 1.65412, νd = 39.68000. Glass: S-NBH5 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = −35.06163 mm.
 
-Surfaces 1 and 2 form the negative front singlet of the moving group. Calculated spectral anchors: nC=1.6492946208, nF=1.6657794998, ng=1.6752381937.
+Surfaces 1 and 2 form the negative front singlet of the moving group. It traces on the catalog dispersion curve, whose θgF of 0.5738 matches the printed 0.57378.
 
 ### L2: Biconvex Positive
 
-nd = 1.69680, νd = 55.46000. Glass: Unmatched (source nd=1.6968, dispersion=55.46). Isolated thick-lens f = 88.39557 mm.
+nd = 1.69680, νd = 55.46000. Glass: LAC14 (HOYA catalog equivalent; production supplier unspecified). Isolated thick-lens f = 88.39557 mm.
 
-Surfaces 3 and 4 form the positive second singlet of the moving group. Calculated spectral anchors: nC=1.6930234453, nF=1.7055874554, ng=1.7124046873.
+Surfaces 3 and 4 form the positive second singlet of the moving group. It traces on the catalog dispersion curve, whose θgF of 0.5426 matches the printed 0.54260.
 
 ### L3: Biconvex Positive
 
-nd = 1.60342, νd = 38.03000. Glass: Unmatched (source nd=1.60342, dispersion=38.03). Isolated thick-lens f = 37.87440 mm.
+nd = 1.60342, νd = 38.03000. Glass: S-TIM5 (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = 37.87440 mm.
 
-Surfaces 5 and 6 form the positive third singlet, ahead of the first doublet. Calculated spectral anchors: nC=1.5988146653, nF=1.6146816125, ng=1.6239409281.
+Surfaces 5 and 6 form the positive third singlet, ahead of the first doublet. It traces on the catalog dispersion curve, whose θgF of 0.5835 matches the printed 0.58356.
 
 ### L4: Biconvex Positive
 
-nd = 1.49700, νd = 81.61000. Glass: Unmatched (source nd=1.497, dispersion=81.61), consistent with ED glass. Isolated thick-lens f = 33.41187 mm.
+nd = 1.49700, νd = 81.61000. Glass: FCD1 (HOYA catalog equivalent; production supplier unspecified), consistent with ED glass. Isolated thick-lens f = 33.41187 mm.
 
-Surfaces 7 and 8 form the positive low-dispersion member of the first doublet, ahead of the stop. Calculated spectral anchors: nC=1.4951624455, nF=1.5012523855, ng=1.5045290168.
+Surfaces 7 and 8 form the positive low-dispersion member of the first doublet, ahead of the stop. It traces on the catalog dispersion curve. That curve's θgF of 0.5389 is about 0.0008 above the printed 0.53804, while its νd equals the printed 81.61.
 
 ### L5: Biconcave Negative
 
-nd = 1.51742, νd = 52.20000. Glass: Unmatched (source nd=1.51742, dispersion=52.2). Isolated thick-lens f = −27.61492 mm.
+nd = 1.51742, νd = 52.20000. Glass: E-CF6 (HOYA catalog equivalent; production supplier unspecified). Isolated thick-lens f = −27.61492 mm.
 
-Surfaces 8 and 9 form the negative rear member of the first doublet. Calculated spectral anchors: nC=1.5144790495, nF=1.5243913101, ng=1.5299223514.
+Surfaces 8 and 9 form the negative rear member of the first doublet. It traces on the catalog dispersion curve. That curve gives νd 52.15 against the printed 52.20, and θgF 0.5589 against the printed 0.55800.
 
 ### L6: Biconcave Negative
 
-nd = 1.83481, νd = 42.72000. Glass: Unmatched (source nd=1.83481, dispersion=42.72). Isolated thick-lens f = −18.83450 mm.
+nd = 1.83481, νd = 42.72000. Glass: S-LAH55V (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = −18.83450 mm.
 
-Surfaces 11 and 12 form the negative front member of the second doublet, behind the stop. Calculated spectral anchors: nC=1.8290454816, nF=1.8485869142, ng=1.8596233291.
+Surfaces 11 and 12 form the negative front member of the second doublet, behind the stop. It traces on the catalog dispersion curve, whose νd of 42.73 and θgF of 0.5648 match the printed 42.72 and 0.56477.
 
 ### L7: Biconvex Positive
 
-nd = 1.51742, νd = 52.20000. Glass: Unmatched (source nd=1.51742, dispersion=52.2). Isolated thick-lens f = 34.08650 mm.
+nd = 1.51742, νd = 52.20000. Glass: E-CF6 (HOYA catalog equivalent; production supplier unspecified). Isolated thick-lens f = 34.08650 mm.
 
-Surfaces 12 and 13 form the positive rear member of the second doublet. Calculated spectral anchors: nC=1.5144790495, nF=1.5243913101, ng=1.5299223514.
+Surfaces 12 and 13 form the positive rear member of the second doublet. It traces on the same E-CF6 catalog curve as L5: νd 52.15 and θgF 0.5589, against the printed 52.20 and 0.55800.
 
 ### L8: Biconvex Positive
 
-nd = 1.49700, νd = 81.61000. Glass: Unmatched (source nd=1.497, dispersion=81.61), consistent with ED glass. Isolated thick-lens f = 52.37967 mm.
+nd = 1.49700, νd = 81.61000. Glass: FCD1 (HOYA catalog equivalent; production supplier unspecified), consistent with ED glass. Isolated thick-lens f = 52.37967 mm.
 
-Surfaces 14 and 15 form the positive low-dispersion singlet at the moving group's rear. Calculated spectral anchors: nC=1.4951624455, nF=1.5012523855, ng=1.5045290168.
+Surfaces 14 and 15 form the positive low-dispersion singlet at the moving group's rear. It traces on the same FCD1 catalog curve as L4: θgF 0.5389 against the printed 0.53804.
 
 ### L9: Meniscus Positive
 
-nd = 1.83481, νd = 42.74000. Glass: Unmatched (source nd=1.83481, dispersion=42.74). Isolated thick-lens f = 77.66912 mm.
+nd = 1.83481, νd = 42.74000. Glass: S-LAH55V (OHARA catalog equivalent; production supplier unspecified). Isolated thick-lens f = 77.66912 mm.
 
-Surfaces 16 and 17 form the positive meniscus at the fixed rear group's front. Calculated spectral anchors: nC=1.8290488199, nF=1.8485811082, ng=1.8596148978.
+Surfaces 16 and 17 form the positive meniscus at the fixed rear group's front. It traces on the same S-LAH55V catalog curve as L6. That curve's νd of 42.73 and θgF of 0.5648 match the printed 42.74 and 0.56490 for this element.
 
 ### L10: Biconcave Negative
 
 nd = 1.55298, νd = 55.07000. Glass: Unmatched (source nd=1.55298, dispersion=55.07). Isolated thick-lens f = −72.66260 mm.
 
-Surfaces 18 and 19 form the negative singlet between L9 and the final asphere. Calculated spectral anchors: nC=1.5499670007, nF=1.5600084026, ng=1.5654778537.
+Surfaces 18 and 19 form the negative singlet between L9 and the final asphere. No catalog glass matches it. A three-term Cauchy fit to the printed nd, νd and θgF gives nC=1.5499670007, nF=1.5600084026, ng=1.5654778537.
 
 ### L11: Meniscus Negative (Aspheric)
 
 nd = 1.58480, νd = 58.71000. Glass: Unmatched (source nd=1.5848, dispersion=58.71). Isolated thick-lens f = −155.46899 mm.
 
-Surfaces 20 and 21 form the negative rear meniscus, with both faces aspherical. Calculated spectral anchors: nC=1.5818023040, nF=1.5917631284, ng=1.5971535281.
+Surfaces 20 and 21 form the negative rear meniscus, with both faces aspherical. No catalog glass matches it. A three-term Cauchy fit to the printed nd, νd and θgF gives nC=1.5818023040, nF=1.5917631284, ng=1.5971535281.
 
 ## Glass Identification and Selection
 
-All powered-element nd, νd and θgF values are retained. θgF=(ng−nF)/(nF−nC) is a partial-dispersion ratio, distinct from anomalous ΔPgF. Three-term Cauchy curves reproduce nd, the F−C difference and the g−F ratio, yielding calculated nC/nF/ng values without identifying production glass or melts. L4 and L8 have inferred ED designations from Fujifilm's drawing and their compatible nd/νd values. The patent's ED column denotes effective diameter, not ED glass. Individual power signs do not uniquely establish aberration contributions.
+All powered-element nd and νd values are retained as printed. θgF=(ng−nF)/(nF−nC) is a partial-dispersion ratio, distinct from anomalous ΔPgF. L1–L9 carry catalog-equivalent labels whose nd/νd match the printed pairs: S-NBH5, S-TIM5 and S-LAH55V from OHARA, and LAC14, FCD1 and E-CF6 from HOYA. These elements trace on the catalog dispersion curves. Most catalog θgF values agree with the printed values within about 1e-4. The exceptions are FCD1 (0.5389 vs 0.53804) and E-CF6 (0.5589 vs 0.55800; catalog νd 52.15 vs printed 52.20). The labels name catalog equivalents only; the production supplier and melts are unspecified. L10 (1.55298/55.07) and L11 (1.58480/58.71) have no catalog match. They keep three-term Cauchy curves that reproduce nd, the F−C difference and the printed g−F ratio. L4 and L8 have inferred ED designations from Fujifilm's drawing and their compatible nd/νd values. The patent's ED column denotes effective diameter, not ED glass. Individual power signs do not uniquely establish aberration contributions.
 
 ## Focus Mechanism
 

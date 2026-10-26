@@ -1,8 +1,8 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * JP S55-124116 A, sole numerical example. The printed Z9 index n = 6.71300 is read as 1.71300, corroborated by all 24 nonzero Petzval rows and the three focal lengths. Unprinted d24 = 2.8 mm is inferred from the rounded 42.8 mm stop-to-rear length minus 40.0 mm of listed intervals. Both are model interpretations of the printed data. The three printed zoom states and normal/soft limits are retained. Between them, the 101-station zoom path satisfies focal-length and image-distance constraints at fixed total length; intermediate mechanical travel is not published. Soft motion shifts the rear element 9.22 mm forward; terminal-gap compensation holds the sensor fixed. The model covers infinity only. Semi-diameters are estimates; clearance was checked without changing thresholds. The optical construction supports association with the Tamron 51A, but does not establish an exact production prescription.
- * The original prescription identifies 14 elements, replacing an earlier triplet interpretation. Geometry sampled at 201 zoom × 21 soft settings has no rendered trim across 4,221 states. Outer off-axis rays vignette: 320 sampled rays clip at air-separated surface 6, and 100 have no accepted intersection at surface 1. Exact line/sphere intersections place those front-surface hits outside the clear aperture. Failed rays are not counted as transmitted; chief rays and transmitted image-plane projections remain finite. The field and displayed rays are retained. MTF calculations cover 375 field/spectrum combinations at printed, quartile and intermediate zoom settings, including five soft settings. Numerical convergence reaches at least 50 lp/mm throughout, but not uniformly 100 lp/mm. A 1,001-point paraxial calculation gives maximum EFL and BFL interpolation residuals below 0.00077 mm. These samples do not establish behavior at every continuous setting or measured production performance.
+ * JP S55-124116 A, sole numerical example. The printed Z9 index n = 6.71300 is read as 1.71300, corroborated by all 24 nonzero Petzval rows and the three focal lengths. Unprinted d24 = 2.8 mm is inferred from the rounded 42.8 mm stop-to-rear length minus 40.0 mm of listed intervals. Both are model interpretations of the printed data. The three printed zoom states and normal/soft limits are retained. Between them, the 101-station zoom path satisfies focal-length and image-distance constraints at fixed total length; intermediate mechanical travel is not published. Soft motion shifts the rear element 9.22 mm forward; terminal-gap compensation holds the sensor fixed. The model covers infinity only. Semi-diameters are estimated from the patent's Fig. 1 (wide state, about 0.136 mm/px) and floor-checked by exact real-ray trace at every zoom station, normal and soft, without changing thresholds. Surfaces 7|8 and 10|11 face each other across air gaps whose faces cross at about 16.6 and 16.5 mm, below the f/2.8 marginal ray at the long end, so S7 and S11 stay at the default cross-gap limit and the axial beam is rim-limited to about f/2.9–3.0 above 137 mm. The optical construction supports association with the Tamron 51A, but does not establish an exact production prescription.
+ * The original prescription identifies 14 elements, replacing an earlier triplet interpretation. Geometry sampled at 201 zoom × 21 soft settings has no rendered trim across 4,221 states. Outer off-axis rays vignette at the front clear aperture, the variator and G14; wide open, geometric transmission at the format corner is about 44–47 % at the three printed focal lengths. Where an outer ray finds no accepted intersection at surface 1, exact line/sphere intersection places the hit outside the front clear aperture. Failed rays are not counted as transmitted; chief rays and transmitted image-plane projections remain finite. The field and displayed rays are retained. MTF calculations cover 375 field/spectrum combinations at printed, quartile and intermediate zoom settings, including five soft settings. Numerical convergence reaches at least 50 lp/mm throughout, but not uniformly 100 lp/mm. A 1,001-point paraxial calculation gives maximum EFL and BFL interpolation residuals below 0.00077 mm. These samples do not establish behavior at every continuous setting or measured production performance.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -55,7 +55,7 @@ const LENS_DATA = {
       "type": "Meniscus Negative",
       "nd": 1.80518,
       "vd": 25.43,
-      "glass": "Unmatched (source nd=1.80518, dispersion=25.43)",
+      "glass": "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": -155.28227557589014,
       "role": "Negative front element of the first cemented doublet"
@@ -67,7 +67,7 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.61272,
       "vd": 58.75,
-      "glass": "Unmatched (source nd=1.61272, dispersion=58.75)",
+      "glass": "BSM4 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": 93.47398902709126,
       "role": "Positive rear element of the first cemented doublet"
@@ -79,7 +79,7 @@ const LENS_DATA = {
       "type": "Meniscus Positive",
       "nd": 1.61272,
       "vd": 58.75,
-      "glass": "Unmatched (source nd=1.61272, dispersion=58.75)",
+      "glass": "BSM4 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": 171.08083500785227,
       "role": "Positive front-section singlet ahead of the first variable zoom gap"
@@ -91,7 +91,7 @@ const LENS_DATA = {
       "type": "Plano-concave Negative",
       "nd": 1.6968,
       "vd": 55.52,
-      "glass": "Unmatched (source nd=1.6968, dispersion=55.52)",
+      "glass": "S-LAL14 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": -101.46383467278989,
       "role": "Negative singlet at the front of the central zoom section"
@@ -103,7 +103,7 @@ const LENS_DATA = {
       "type": "Meniscus Positive",
       "nd": 1.80518,
       "vd": 25.43,
-      "glass": "Unmatched (source nd=1.80518, dispersion=25.43)",
+      "glass": "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": 99.73004522444305,
       "role": "Positive front element of the second cemented doublet"
@@ -115,7 +115,7 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.6968,
       "vd": 55.52,
-      "glass": "Unmatched (source nd=1.6968, dispersion=55.52)",
+      "glass": "S-LAL14 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": -54.34481584697868,
       "role": "Negative rear element of the second cemented doublet"
@@ -127,7 +127,7 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.6968,
       "vd": 55.52,
-      "glass": "Unmatched (source nd=1.6968, dispersion=55.52)",
+      "glass": "S-LAL14 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": -57.21648808067711,
       "role": "Negative front element of the third cemented doublet"
@@ -139,7 +139,7 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.80518,
       "vd": 25.43,
-      "glass": "Unmatched (source nd=1.80518, dispersion=25.43)",
+      "glass": "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": 108.6459935155907,
       "role": "Positive rear element of the third cemented doublet"
@@ -151,7 +151,7 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.713,
       "vd": 53.89,
-      "glass": "Unmatched (source nd=1.713, dispersion=53.89)",
+      "glass": "S-LAL8 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": 98.44468368607889,
       "role": "Positive zoom singlet between the second and third variable gaps"
@@ -163,7 +163,7 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.6968,
       "vd": 55.52,
-      "glass": "Unmatched (source nd=1.6968, dispersion=55.52)",
+      "glass": "S-LAL14 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": 50.15235370823882,
       "role": "Positive front element of the fixed master doublet ahead of the stop"
@@ -175,7 +175,7 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.80518,
       "vd": 25.43,
-      "glass": "Unmatched (source nd=1.80518, dispersion=25.43)",
+      "glass": "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": -108.87006926210447,
       "role": "Negative rear element of the fixed master doublet ahead of the stop"
@@ -187,7 +187,7 @@ const LENS_DATA = {
       "type": "Meniscus Negative",
       "nd": 1.80518,
       "vd": 25.43,
-      "glass": "Unmatched (source nd=1.80518, dispersion=25.43)",
+      "glass": "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": -149.24629265176299,
       "role": "Negative relay singlet moving forward with the soft-focus control"
@@ -199,7 +199,7 @@ const LENS_DATA = {
       "type": "Meniscus Negative",
       "nd": 1.80518,
       "vd": 25.43,
-      "glass": "Unmatched (source nd=1.80518, dispersion=25.43)",
+      "glass": "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": -228.07138121486557,
       "role": "Second negative relay singlet moving forward with the soft-focus control"
@@ -211,7 +211,7 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.7725,
       "vd": 49.68,
-      "glass": "Unmatched (source nd=1.7725, dispersion=49.68)",
+      "glass": "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": 94.86410839737981,
       "role": "Positive rear relay singlet with additional forward soft-focus travel"
@@ -242,96 +242,96 @@ const LENS_DATA = {
       "label": "4",
       "R": 82.9,
       "medium": 3,
-      "sd": 28,
+      "sd": 26,
       "d": 4.6
     },
     {
       "label": "5",
       "R": 388,
-      "sd": 28
+      "sd": 26
     },
     {
       "label": "6",
       "R": "flat",
       "medium": 4,
-      "sd": 15.5,
+      "sd": 17.5,
       "d": 1.4
     },
     {
       "label": "7",
       "R": 70.7,
-      "sd": 15.5,
+      "sd": 15.8,
       "d": 2.75
     },
     {
       "label": "8",
       "R": -184,
       "medium": 5,
-      "sd": 15.5,
+      "sd": 17,
       "d": 3
     },
     {
       "label": "9",
       "R": -56.31,
       "medium": 6,
-      "sd": 15.5,
+      "sd": 17,
       "d": 1.4
     },
     {
       "label": "10",
       "R": 116.8,
-      "sd": 15.5,
+      "sd": 17,
       "d": 3.39
     },
     {
       "label": "11",
       "R": -62.45,
       "medium": 7,
-      "sd": 15.5,
+      "sd": 15.6,
       "d": 1.3
     },
     {
       "label": "12",
       "R": 111.2,
       "medium": 8,
-      "sd": 15.5,
+      "sd": 17.6,
       "d": 3.1
     },
     {
       "label": "13",
       "R": -405,
-      "sd": 15.5
+      "sd": 17.6
     },
     {
       "label": "14",
       "R": 186,
       "medium": 9,
-      "sd": 17,
+      "sd": 18.3,
       "d": 3.7
     },
     {
       "label": "15",
       "R": -111.8,
-      "sd": 17
+      "sd": 18.3
     },
     {
       "label": "16",
       "R": 50.5,
       "medium": 10,
-      "sd": 17,
+      "sd": 18.3,
       "d": 6.3
     },
     {
       "label": "17",
       "R": -107.65,
       "medium": 11,
-      "sd": 17,
+      "sd": 18.3,
       "d": 1.5
     },
     {
       "label": "18",
       "R": 475,
-      "sd": 17,
+      "sd": 18.3,
       "d": 2
     },
     {
@@ -343,13 +343,13 @@ const LENS_DATA = {
       "label": "20",
       "R": -89.61,
       "medium": 12,
-      "sd": 16,
+      "sd": 17.1,
       "d": 1.5
     },
     {
       "label": "21",
       "R": -355,
-      "sd": 16,
+      "sd": 17.1,
       "d": 11
     },
     {
@@ -369,13 +369,13 @@ const LENS_DATA = {
       "label": "24",
       "R": 380,
       "medium": 14,
-      "sd": 19.5,
+      "sd": 14.9,
       "d": 2.8
     },
     {
       "label": "25",
       "R": -90.5,
-      "sd": 19.5
+      "sd": 14.9
     }
   ],
   "focus": {

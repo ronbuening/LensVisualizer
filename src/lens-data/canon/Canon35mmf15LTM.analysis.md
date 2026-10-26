@@ -22,45 +22,45 @@ The rounded prescription yields EFL 35.047204245 mm (35.05 mm in the design summ
 
 ## Element-by-Element Analysis
 
-Each quoted focal length is a thick element isolated in air, not its additive power inside the cemented assembly. All historical glass melts remain unidentified; public coordinate-compatible catalog substitutes are not adopted, and source d-line coordinates remain literal.
+Each quoted focal length is a thick element isolated in air, not its additive power inside the cemented assembly. Source d-line coordinates remain literal. Each glass label names a catalog row that matches the source pair, used for dispersion; the 1950s production melts remain unidentified.
 
 ### L1 — Front Negative Meniscus
 
-nd = 1.63980, νd = 34.6. Glass: Unidentified historical melt; source d-line coordinates retained and catalog substitutes not adopted. Isolated f ≈ −108.399192 mm. This thin negative member precedes and is cemented to L2. The maker section independently supports the front negative/positive pairing; the exact semi-diameters remain inferred.
+nd = 1.63980, νd = 34.6. Glass: HOYA E-FD7 catalog equivalent (catalog νd 34.57); production melt unidentified. Isolated f ≈ −108.399192 mm. This thin negative member precedes and is cemented to L2. The maker section independently supports the front negative/positive pairing; the exact semi-diameters remain inferred.
 
 ### L2 — Positive Meniscus
 
-nd = 1.69100, νd = 54.8. Glass: Unidentified historical melt; source d-line coordinates retained and catalog substitutes not adopted. Isolated f ≈ +32.562689 mm. It completes the first doublet; the following 0.105 mm axial air gap is retained literally. Its dispersion contrast with L1 is established, but no detailed chromatic allocation is inferred solely from that contrast.
+nd = 1.69100, νd = 54.8. Glass: Sumita K-LaK9 catalog equivalent (catalog νd 54.76); production melt unidentified. Isolated f ≈ +32.562689 mm. It completes the first doublet; the following 0.105 mm axial air gap is retained literally. Its dispersion contrast with L1 is established, but no detailed chromatic allocation is inferred solely from that contrast.
 
 ### L3 — Positive Meniscus
 
-nd = 1.74400, νd = 44.9. Glass: Unidentified historical melt; source d-line coordinates retained and catalog substitutes not adopted. Isolated f ≈ +49.483499 mm. This is the positive member of the second cemented doublet, preceding its negative partner toward the central stop.
+nd = 1.74400, νd = 44.9. Glass: HOYA LAF2 catalog equivalent (catalog νd 44.90); production melt unidentified. Isolated f ≈ +49.483499 mm. This is the positive member of the second cemented doublet, preceding its negative partner toward the central stop.
 
 ### L4 — Negative Meniscus
 
-nd = 1.64769, νd = 33.9. Glass: Unidentified historical melt; source d-line coordinates retained and catalog substitutes not adopted. Isolated f ≈ −31.451035 mm. Its highly curved r6 bounds the central air space. At the inferred full axial pupil, the outer r6 lies behind the axial midpoint of that gap, which rules out a naively placed midpoint diaphragm.
+nd = 1.64769, νd = 33.9. Glass: SCHOTT SF2 catalog equivalent (catalog νd 33.85); production melt unidentified. Isolated f ≈ −31.451035 mm. Its highly curved r6 bounds the central air space. At the inferred full axial pupil, the outer r6 lies behind the axial midpoint of that gap, which rules out a naively placed midpoint diaphragm.
 
 ### L5 — Positive Meniscus
 
-nd = 1.64250, νd = 58.09. Glass: Unidentified historical melt; source d-line coordinates retained and catalog substitutes not adopted. Isolated f ≈ +37.400408 mm. This begins the rear cemented triplet. The unchanged r7/r8 curvature and thickness permit only a very thin common edge at the reconstructed full-aperture axial envelope. A positive numerical edge is not evidence of manufacturing feasibility.
+nd = 1.64250, νd = 58.09. Glass: Sumita LAK6 catalog equivalent (catalog νd 58.12); production melt unidentified. Isolated f ≈ +37.400408 mm. This begins the rear cemented triplet. The unchanged r7/r8 curvature and thickness permit only a very thin common edge at the reconstructed full-aperture axial envelope. A positive numerical edge is not evidence of manufacturing feasibility.
 
 ### L6 — Negative Meniscus
 
-nd = 1.59270, νd = 35.4. Glass: Unidentified historical melt; source d-line coordinates retained and catalog substitutes not adopted. Isolated f ≈ −16.288861 mm. It lies between two positive members, sharing r8 and r9 directly. Its flared reconstructed boundary is an aperture assumption, not a factory grinding or barrel model.
+nd = 1.59270, νd = 35.4. Glass: HOYA FF5 catalog equivalent (catalog νd 35.45); production melt unidentified. Isolated f ≈ −16.288861 mm. It lies between two positive members, sharing r8 and r9 directly. Its flared reconstructed boundary is an aperture assumption, not a factory grinding or barrel model.
 
 ### L7 — Positive Meniscus
 
-nd = 1.71300, νd = 53.89. Glass: Unidentified historical melt; source d-line coordinates retained and catalog substitutes not adopted. Isolated f ≈ +31.476193 mm. It completes the triplet, followed by the literal 0.035 mm on-axis air gap. Group power is not obtained by simply adding these isolated-element reciprocals.
+nd = 1.71300, νd = 53.89. Glass: OHARA S-LAL8 catalog equivalent (catalog nd 1.71299, νd 53.87); production melt unidentified. Isolated f ≈ +31.476193 mm. It completes the triplet, followed by the literal 0.035 mm on-axis air gap. Group power is not obtained by simply adding these isolated-element reciprocals.
 
 ### L8 — Rear Biconvex Positive Singlet
 
-nd = 1.72000, νd = 50.31. Glass: Unidentified historical melt; source d-line coordinates retained and catalog substitutes not adopted. Isolated f ≈ +41.086621 mm. Its front radius is the selected positive R11, not the contradictory US-body negative sign. The rear-element aperture and solid containment limit the present source-field construction.
+nd = 1.72000, νd = 50.31. Glass: Sumita K-LaK10 catalog equivalent (catalog νd 50.30); production melt unidentified. Isolated f ≈ +41.086621 mm. Its front radius is the selected positive R11, not the contradictory US-body negative sign. The rear-element aperture and solid containment limit the present source-field construction.
 
 ## Glass Coordinates and Dispersion
 
-The Japanese legend explicitly identifies d-line refractive index. All eight nd/νd pairs retain that reference. Comparisons with OHARA, HOYA, SCHOTT, HIKARI, CDGM and Sumita catalogs identify nearby modern glasses without establishing historical supplier or melt identity; OHARA S- and non-S entries remain distinct.
+The Japanese legend explicitly identifies d-line refractive index. All eight nd/νd pairs retain that reference. Comparisons with OHARA, HOYA, SCHOTT, HIKARI, CDGM and Sumita catalogs found a modern coordinate equivalent for every element. OHARA S- and non-S entries remain distinct. The equivalents do not establish the historical supplier or melt.
 
-Examples include HOYA E-FD7 near L1, Sumita K-LaK9 near L2, HOYA LAF2 near L3, SCHOTT SF2 near L4, Sumita LAK6 near L5, HOYA FF5 near L6, OHARA S-LAL8 near L7, and Sumita K-LaK10 near L8. None replaces a source pair. The model has no independently verified full spectral coordinates. Approximate photopic MTF therefore uses a normal-line dispersion approximation rather than measured historical color behavior. No APO or anomalous-dispersion performance is claimed.
+The glass labels are HOYA E-FD7 (L1), Sumita K-LaK9 (L2), HOYA LAF2 (L3), SCHOTT SF2 (L4), Sumita LAK6 (L5), HOYA FF5 (L6), OHARA S-LAL8 (L7) and Sumita K-LaK10 (L8). Each catalog row matches its source pair to within 1 × 10⁻⁵ in nd and 0.05 in νd. The d-line trace keeps the source indices. The viewer's chromatic trace takes its C-, d-, F- and g-line indices from these catalog dispersion curves instead of a normal-line Abbe approximation. Because these are modern equivalents rather than measured 1950s melts, secondary spectrum and other partial-dispersion results show catalog behavior, not verified historical color. No APO or anomalous-dispersion performance is claimed.
 
 The source-reference Petzval surface sum is +0.008294221 mm⁻¹. It is not the complete field-curvature or astigmatism of the assembled lens. The source's g/d-line and field plots are retained qualitatively, not treated as numerical MTF data or a fitting target.
 
@@ -72,17 +72,17 @@ The patent supplies only the infinity prescription. All optical separations rema
 
 The maker section supports a central diaphragm gap, but gives no numerical stop coordinate. At the gap midpoint, the outer r6 lies behind the diaphragm plane and obstructs axial marginal rays. The model's stop is inferred at 62% of the unchanged 8.995 mm central interval, splitting it into 5.5769 and 3.4181 mm. Calibration to the patent's nominal f/1.4 axial marginal ray gives a 7.890560803 mm iris radius. The resulting paraxial entrance-pupil f-number is approximately 1.40864931; nominal and paraxial pupil f-numbers are distinct. This geometry-constrained location is not a factory measurement or a fit to aberration performance.
 
-The inferred r1–r12 semi-diameters are 14, 14, 14, 10.5, 10.5, 8.2, 7.72, 7.74, 11, 11, 13.5 and 13.5 mm. A nominal entrance-pupil radius of EFL/(2 f-number) transmits the sampled axial pupil at f/1.4, 1.5, 2, 2.8, 4, 5.6, 8, 11, 16 and 22. With the viewer's actual launch radius and iris mapping, all 33 sampled axial radii transmit at f/1.4 and f/1.5, but the outer sample clips at the eight smaller aperture settings. The largest iris excess is 0.00564 mm. The model is rotationally symmetric and infinity-only. Its maximum rim angle is 61.735795°, maximum gap-sag fraction 0.783380 (below the 0.90 limit), and minimum shared-band edge only 0.004680503 mm at L5. That extremely thin inferred edge is not a manufacturing tolerance.
+The r1–r12 semi-diameters are 14, 13.3, 13.3, 10.5, 10.5, 8.2, 7.72, 7.74, 10.1, 10.1, 13.5 and 13.5 mm. They are estimated from the cross-section drawings of JP S39-8148 Y1 and US 2,926,564, scaled from the printed vertex spacings, and checked against the f/1.4 axial marginal ray and the corner chief ray. Following both drawings, r2/r3 were lowered from 14 mm so that L1 overhangs L2, and r9/r10 were lowered from 11 mm so that the rear triplet sits below the second doublet. A nominal entrance-pupil radius of EFL/(2 f-number) transmits the sampled axial pupil at f/1.4, 1.5, 2, 2.8, 4, 5.6, 8, 11, 16 and 22. With the viewer's actual launch radius and iris mapping, all 33 sampled axial radii transmit at f/1.4 and f/1.5, but the outer sample clips at the eight smaller aperture settings. The largest iris excess is 0.00564 mm. The model is rotationally symmetric and infinity-only. Its maximum rim angle is 61.735795°, maximum gap-sag fraction 0.783380 (below the 0.90 limit), and minimum shared-band edge only 0.004680503 mm at L5. That extremely thin inferred edge is not a manufacturing tolerance.
 
-At a field angle around 18.81°, 2579 of 3209 sampled rays transmit, with initial clipping at the entrance and no numerical failures among physically admitted rays. Another 325 launches miss the entrance before reaching any surface. At the patent's 31.5° half field, 304 of 3209 launches transmit, with extensive surface and rim losses. These results describe a strongly vignetted model, without establishing full-pupil transmission or factory illumination. If earlier losses are ignored, 1717 geometric continuations reach the iris within its radius and 944 subsequently find no surface intersection; such continuations are not necessarily physically admitted rays and do not count as transmitted light.
+The model is strongly vignetted off axis. With the current rims, the engine's wide-open geometric transmission is about 92.2% at 11.7°, 80.7% at 17.5°, 72.9% at 20.4°, 52.6% at 26.3°, 37.5% at 29.2° and 8.3% at 32.1°. The front-doublet rims clip one side of the oblique bundle, and the L5, rear-triplet and L8 rims clip the other. The corner chief ray still reaches the 21.63 mm format corner. These figures do not establish full-pupil transmission or factory illumination.
 
-L7 and L8 can lose rays through their sidewalls: one admitted r9-to-r10 ray crosses the 11 mm wall after 0.258116 mm, before its 1.091189 mm exit-surface intersection; an admitted r11-to-r12 ray crosses the 13.5 mm wall after 0.150556 mm, before its 0.344032 mm exit-surface intersection. A bounded scan over the entrance surface finds one physically admitted chief-ray solution, without proving uniqueness beyond that domain. The model terminates sidewall escapes as clipped rays. Surviving ray segments remain within the intended material regions across the sampled fields and aperture settings.
+L7 and L8 can lose rays through their sidewalls when a ray inside the glass reaches the cylindrical edge before the exit surface. The model terminates such escapes as clipped rays. A bounded scan over the entrance surface finds one physically admitted chief-ray solution, without proving uniqueness beyond that domain.
 
-A larger rear-rim alternative with the same prescription transmitted 464 of 3209 source-field launches but left 826 admitted rays without an r12 intersection. Larger rims alone therefore did not resolve rear-element containment. The model retains the smaller rims and their severe vignetting. This does not establish that every possible construction would fail, and the patent field is not replaced by a smaller field or product image circle.
+A trial with larger rear rims and the same prescription raised source-field transmission but left many admitted rays without an r12 intersection, so larger rims alone did not resolve rear-element containment. The model keeps the smaller rims, now set from the patent drawings, and their severe vignetting. This does not establish that every possible construction would fail, and the patent field is not replaced by a smaller field or product image circle.
 
 ## MTF Scope and Limitations
 
-Diffraction MTF is calculated at reference f/1.4 at the Gaussian and best-axial planes, the product's f/1.5 aperture, f/8, and approximate photopic f/1.4. Each calculation covers the center, half format height, the patent's 31.5° chief-ray image height and the 135-format corner. The sampled calculations converge with a grid size no larger than 256. They describe the transmitted, strongly vignetted pupil and do not establish unvignetted production performance.
+An earlier diffraction-MTF study, made before the current rims and glass labels, calculated MTF at the reference f/1.4 at the Gaussian and best-axial planes, at the product's f/1.5 aperture, at f/8, and as an approximate photopic f/1.4 using normal-line dispersion. Each calculation covered the center, half format height, the patent's 31.5° chief-ray image height and the 135-format corner. Each converged with a grid size no larger than 256. The viewer's MTF tab computes from the current rims and resolved glass data instead. Either way, the results describe the transmitted, strongly vignetted pupil and do not establish unvignetted production performance.
 
 ## Sources
 

@@ -1,7 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * US 2026/0003158 A1, Example 18, Figure 39, Tables 45–47. Eleven elements in nine groups; surfaces 20 and 21 on L11 are aspherical. Patent ED means full effective diameter; non-stop sd values are ED/2. The printed stop diameter is 17.440 mm; the model derives its radius from design f/5.76. K = KA - 1 = 0, with all A4–A20 terms retained. Three-term Cauchy dispersion curves reproduce the printed nd, νd and θgF without identifying production glass melts.
+ * US 2026/0003158 A1, Example 18, Figure 39, Tables 45–47. Eleven elements in nine groups; surfaces 20 and 21 on L11 are aspherical. Patent ED means full effective diameter; non-stop sd values are the printed ED/2, confirmed against Figure 39 (drawn about 5–7 % larger overall, with both cemented doublets square-cut). The printed stop diameter is 17.440 mm; the model derives its radius from design f/5.76. K = KA - 1 = 0, with all A4–A20 terms retained. L1–L9 carry OHARA/HOYA catalog-equivalent labels and trace on the catalog curves, with production supplier and melts unspecified; FCD1 and E-CF6 differ from the printed θgF by about 0.0009. L10 and L11 have no catalog match and keep three-term Cauchy curves that reproduce the printed nd, νd and θgF.
  * The first eight lenses and stop move 23.9818 mm objectward as DD15 increases from the printed infinity value 2.9000 mm to 26.8818 mm at −0.5000×. Intermediate spacings are calculated in inverse object-to-image distance, not a measured focusing cam. The printed near state implies 257.939149977679 mm from object to first vertex and 0.426259949977679 m from object to sensor with the physical plate train; Fujifilm specifies 0.43 m. The 4.419 micrometre infinity focus residual and calculated near magnification −0.499875264 are retained.
  * Fujifilm specifies ±15 mm shift and ±10° tilt. Movements use a fixed camera/sensor frame and 0.1 mm / 0.1° control steps. The tilt reference is 109.9746 mm objectward of the image plane, following the principal-point guidance in paragraph [0276], Figure 42 and Example 18's infinity EFL; it is not a measured production hinge position. The 44×33 mm corner reaches about 27.5° under combined extreme movements, beyond the patent's 21.7° half-field (43.4° full field), and vignettes. Shift alone reaches about 40.5 mm image height, within the roughly 43.8 mm patent design height.
  * The plane-parallel plate at surfaces 22–23 (3.2 mm, n = 1.51680) and terminal 0.9874 mm gap are represented in surface 21's air-equivalent spacing: 78.8866 + 3.2/1.51680 + 0.9874 = 81.9837 mm. This preserves reference-wavelength paraxial focus, EFL and focus travel but omits the plate's spherochromatism. The physical infinity vertex-to-image length is 144.339 mm; the air-equivalent model track is 143.249 mm.
@@ -57,12 +57,8 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.65412,
       "vd": 39.67999999999953,
-      "glass": "Unmatched (source nd=1.65412, dispersion=39.68)",
+      "glass": "S-NBH5 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
-      "nC": 1.6492946208047512,
-      "nF": 1.6657794998370095,
-      "ng": 1.6752381937281382,
-      "indexReferenceNote": "Three-term Cauchy fitted to source nd, Vd and theta_gF=(ng-nF)/(nF-nC); direct line indices calculated, not named glass identification.",
       "focalLengthMm": -35.06162522000231,
       "role": "Negative front singlet of the moving first group."
     },
@@ -73,12 +69,8 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.6968,
       "vd": 55.45999999999932,
-      "glass": "Unmatched (source nd=1.6968, dispersion=55.46)",
+      "glass": "LAC14 (HOYA catalog equivalent; production supplier unspecified)",
       "apd": false,
-      "nC": 1.6930234452741904,
-      "nF": 1.705587455371558,
-      "ng": 1.7124046872503895,
-      "indexReferenceNote": "Three-term Cauchy fitted to source nd, Vd and theta_gF=(ng-nF)/(nF-nC); direct line indices calculated, not named glass identification.",
       "focalLengthMm": 88.39556785445122,
       "role": "Positive second singlet of the moving first group."
     },
@@ -89,12 +81,8 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.60342,
       "vd": 38.03000000000001,
-      "glass": "Unmatched (source nd=1.60342, dispersion=38.03)",
+      "glass": "S-TIM5 (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
-      "nC": 1.598814665310674,
-      "nF": 1.6146816124576633,
-      "ng": 1.6239409281347603,
-      "indexReferenceNote": "Three-term Cauchy fitted to source nd, Vd and theta_gF=(ng-nF)/(nF-nC); direct line indices calculated, not named glass identification.",
       "focalLengthMm": 37.87440328249985,
       "role": "Positive third singlet ahead of the first cemented doublet."
     },
@@ -105,13 +93,9 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.497,
       "vd": 81.60999999999909,
-      "glass": "Unmatched (source nd=1.497, dispersion=81.61)",
+      "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
       "apd": "inferred",
-      "apdNote": "Fujifilm's construction drawing places ED glass at L4, consistent with the patent's nd = 1.49700 and νd = 81.61; the production glass identity is unknown.",
-      "nC": 1.4951624455184531,
-      "nF": 1.5012523854767916,
-      "ng": 1.5045290167719758,
-      "indexReferenceNote": "Three-term Cauchy fitted to source nd, Vd and theta_gF=(ng-nF)/(nF-nC); direct line indices calculated, not named glass identification.",
+      "apdNote": "Fujifilm's construction drawing places ED glass at L4, consistent with the patent's nd = 1.49700 and νd = 81.61; HOYA FCD1 is the coordinate equivalent, and the production melt is not published.",
       "focalLengthMm": 33.411874098271845,
       "role": "Positive low-dispersion member of the first cemented doublet, ahead of the stop."
     },
@@ -122,12 +106,8 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.51742,
       "vd": 52.20000000000048,
-      "glass": "Unmatched (source nd=1.51742, dispersion=52.2)",
+      "glass": "E-CF6 (HOYA catalog equivalent; production supplier unspecified)",
       "apd": false,
-      "nC": 1.5144790495251756,
-      "nF": 1.524391310061574,
-      "ng": 1.5299223514408842,
-      "indexReferenceNote": "Three-term Cauchy fitted to source nd, Vd and theta_gF=(ng-nF)/(nF-nC); direct line indices calculated, not named glass identification.",
       "focalLengthMm": -27.61492311351216,
       "role": "Negative rear member of the first cemented doublet, ahead of the stop."
     },
@@ -138,12 +118,8 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.83481,
       "vd": 42.720000000000255,
-      "glass": "Unmatched (source nd=1.83481, dispersion=42.72)",
+      "glass": "S-LAH55V (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
-      "nC": 1.829045481585658,
-      "nF": 1.8485869141699276,
-      "ng": 1.8596233290505457,
-      "indexReferenceNote": "Three-term Cauchy fitted to source nd, Vd and theta_gF=(ng-nF)/(nF-nC); direct line indices calculated, not named glass identification.",
       "focalLengthMm": -18.834495304764154,
       "role": "Negative front member of the second cemented doublet, behind the stop."
     },
@@ -154,12 +130,8 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.51742,
       "vd": 52.20000000000048,
-      "glass": "Unmatched (source nd=1.51742, dispersion=52.2)",
+      "glass": "E-CF6 (HOYA catalog equivalent; production supplier unspecified)",
       "apd": false,
-      "nC": 1.5144790495251756,
-      "nF": 1.524391310061574,
-      "ng": 1.5299223514408842,
-      "indexReferenceNote": "Three-term Cauchy fitted to source nd, Vd and theta_gF=(ng-nF)/(nF-nC); direct line indices calculated, not named glass identification.",
       "focalLengthMm": 34.086496804537006,
       "role": "Positive rear member of the second cemented doublet, behind the stop."
     },
@@ -170,13 +142,9 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.497,
       "vd": 81.60999999999909,
-      "glass": "Unmatched (source nd=1.497, dispersion=81.61)",
+      "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
       "apd": "inferred",
-      "apdNote": "Fujifilm's construction drawing places ED glass at L8, consistent with the patent's nd = 1.49700 and νd = 81.61; the production glass identity is unknown.",
-      "nC": 1.4951624455184531,
-      "nF": 1.5012523854767916,
-      "ng": 1.5045290167719758,
-      "indexReferenceNote": "Three-term Cauchy fitted to source nd, Vd and theta_gF=(ng-nF)/(nF-nC); direct line indices calculated, not named glass identification.",
+      "apdNote": "Fujifilm's construction drawing places ED glass at L8, consistent with the patent's nd = 1.49700 and νd = 81.61; HOYA FCD1 is the coordinate equivalent, and the production melt is not published.",
       "focalLengthMm": 52.37966664468047,
       "role": "Positive low-dispersion singlet at the rear of the moving first group."
     },
@@ -187,12 +155,8 @@ const LENS_DATA = {
       "type": "Meniscus Positive",
       "nd": 1.83481,
       "vd": 42.73999999999984,
-      "glass": "Unmatched (source nd=1.83481, dispersion=42.74)",
+      "glass": "S-LAH55V (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
-      "nC": 1.8290488199471617,
-      "nF": 1.8485811082017243,
-      "ng": 1.8596148978367264,
-      "indexReferenceNote": "Three-term Cauchy fitted to source nd, Vd and theta_gF=(ng-nF)/(nF-nC); direct line indices calculated, not named glass identification.",
       "focalLengthMm": 77.66911595716358,
       "role": "Positive meniscus at the front of the fixed rear group."
     },
