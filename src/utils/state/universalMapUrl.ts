@@ -15,6 +15,7 @@ export function universalMapHash(hash: string, nodeId: string | null): string {
 
 export const UNIVERSAL_VIEWS = [
   ["network", "Network"],
+  ["neighborhoods", "Neighborhoods"],
   ["trace", "Trace connections"],
   ["affiliations", "Inventor affiliations"],
   ["bridge", "Company bridge"],

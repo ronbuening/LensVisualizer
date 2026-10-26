@@ -19,13 +19,15 @@ import UniversalConnectionTrace from "../components/relationshipMap/UniversalCon
 import InventorAffiliationMap from "../components/relationshipMap/InventorAffiliationMap.js";
 import CompanyRelationshipViews from "../components/relationshipMap/CompanyRelationshipViews.js";
 import RelationshipEvidenceLanes from "../components/relationshipMap/RelationshipEvidenceLanes.js";
+import UniversalNeighborhoodSummary from "../components/relationshipMap/UniversalNeighborhoodSummary.js";
 import { RetainedMapView, ViewChoices } from "../components/relationshipMap/RelationshipViewShared.js";
+import { SUMMARY_KEYS } from "../utils/catalog/lensSummaries.js";
 import { getRelationshipCatalog } from "../utils/catalog/relationshipCatalog.js";
 import SEOHead from "../components/SEOHead.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
 import { canonicalPageUrl } from "../utils/seo/siteUrls.js";
-import { H1_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js";
 import { panelCard } from "../utils/style/styles.js";
 import {
   universalMapHash,
@@ -80,6 +82,21 @@ export default function UniversalRelationshipMapPage() {
     }
   };
   const focusNode = (nodeId: string, keyboard = false) => selectNode(nodeId, true, keyboard);
+  const viewChoicesRef = useRef<HTMLDivElement>(null);
+  // A neighborhood card hands its hub to the Network view in one history entry: switch, select, and frame it.
+  const showInNetwork = (nodeId: string, keyboard = false) => {
+    if (!UNIVERSAL_NODE_IDS.has(nodeId)) return;
+    const hash = universalMapExploreHash(universalMapHash(location.hash, nodeId), { ...explore, view: "network" });
+    if (hash === location.hash) {
+      focusNode(nodeId, keyboard);
+      return;
+    }
+    pendingSelection.current = { hash, center: true, keyboard };
+    void navigate({ pathname: location.pathname, search: location.search, hash }, { preventScrollReset: true });
+    // Cards far down the list would otherwise leave the map above the viewport.
+    const choices = viewChoicesRef.current;
+    if (choices && choices.getBoundingClientRect().top < 0) choices.scrollIntoView({ block: "start" });
+  };
 
   // Selection derives from the committed URL: Back can cancel a concurrent
   // navigation before it renders. Only consume its camera intent if it commits.
@@ -147,10 +164,11 @@ export default function UniversalRelationshipMapPage() {
         <>
           <h1 style={H1_STYLE}>Universal Relationship Map</h1>
           <p style={{ color: t.muted, fontSize: "0.85rem", lineHeight: 1.6, margin: "0 0 1rem", maxWidth: "52rem" }}>
-            Explore the entire catalog through the original network, connection tracing, inventor affiliations, company
-            bridges, a comparison matrix, company chords, and patent evidence lanes. Patents connect their inventors and
-            assignees; dated corporate records reconnect historical company names. Non-patent models connect to their
-            explicit catalog maker grouping. A neighborhood halo does not imply corporate ownership.
+            Explore the entire catalog through the original network, a summary of its hub neighborhoods, connection
+            tracing, inventor affiliations, company bridges, a comparison matrix, company chords, and patent evidence
+            lanes. Patents connect their inventors and assignees; dated corporate records reconnect historical company
+            names. Non-patent models connect to their explicit catalog maker grouping. A neighborhood halo does not
+            imply corporate ownership.
           </p>
 
           <div
@@ -162,6 +180,7 @@ export default function UniversalRelationshipMapPage() {
             }}
           >
             {[
+              [SUMMARY_KEYS.length, "catalog lenses"],
               [UNIVERSAL_GRAPH.stats.patents, "patents"],
               [UNIVERSAL_GRAPH.stats.lenses, "non-patent models"],
               [UNIVERSAL_GRAPH.stats.authors, "inventors"],
@@ -192,13 +211,15 @@ export default function UniversalRelationshipMapPage() {
             }
           >
             <PanelErrorBoundary lensKey="universal-relationship-map">
-              <ViewChoices
-                views={UNIVERSAL_VIEWS}
-                value={explore.view}
-                onChange={(view) => changeExplore({ ...explore, view })}
-                theme={t}
-                label="Relationship map views"
-              />
+              <div ref={viewChoicesRef} style={{ scrollMarginTop: STICKY_NAV_SCROLL_MARGIN }}>
+                <ViewChoices
+                  views={UNIVERSAL_VIEWS}
+                  value={explore.view}
+                  onChange={(view) => changeExplore({ ...explore, view })}
+                  theme={t}
+                  label="Relationship map views"
+                />
+              </div>
               <UniversalMapSearch graph={UNIVERSAL_GRAPH} theme={t} onSelectNode={focusNode} />
               <RetainedMapView active={explore.view === "network"}>
                 <UniversalRelationshipMap
@@ -211,6 +232,14 @@ export default function UniversalRelationshipMapPage() {
                   active={explore.view === "network"}
                 />
               </RetainedMapView>
+              {explore.view === "neighborhoods" && (
+                <UniversalNeighborhoodSummary
+                  graph={UNIVERSAL_GRAPH}
+                  theme={t}
+                  selectedNodeId={selectedNodeId}
+                  onShowInNetwork={showInNetwork}
+                />
+              )}
               {explore.view === "trace" && (
                 <UniversalConnectionTrace
                   graph={UNIVERSAL_GRAPH}

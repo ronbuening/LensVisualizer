@@ -9,6 +9,12 @@ import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testi
 import { Route, Routes, RouterProvider, createMemoryRouter, useLocation, useNavigate } from "react-router";
 import { buildUniversalRelationshipGraph } from "../../../src/utils/catalog/universalRelationshipGraph.js";
 import { universalMapHash } from "../../../src/utils/state/universalMapUrl.js";
+import { SUMMARY_KEYS } from "../../../src/utils/catalog/lensSummaries.js";
+import { layoutUniversalRelationshipGraph } from "../../../src/components/relationshipMap/universalLayout.js";
+import {
+  buildUniversalNeighborhoods,
+  filterUniversalNeighborhoods,
+} from "../../../src/components/relationshipMap/universalNeighborhoods.js";
 import type { UniversalRelationshipGraph } from "../../../src/utils/catalog/universalRelationshipGraph.js";
 import UniversalRelationshipMapPage from "../../../src/pages/UniversalRelationshipMapPage.js";
 import { clearBrowserState, installMatchMediaMock, renderPage } from "../../testUtils.js";
@@ -250,6 +256,37 @@ describe("UniversalRelationshipMapPage", () => {
     expect(screen.getByText("corporate links")).toBeDefined();
     expect(screen.getByText("connected networks")).toBeDefined();
     expect(await screen.findByRole("group", { name: "Universal relationship map test double" })).toBeDefined();
+  });
+
+  it("counts the visible catalog lenses beside the graph totals", () => {
+    renderUniversalPage();
+    const card = screen.getByText("catalog lenses").parentElement!;
+    expect(card.querySelector("strong")?.textContent).toBe(String(SUMMARY_KEYS.length));
+  });
+
+  it("hands a neighborhood card's hub to the network view, selected and framed", async () => {
+    const graph = buildUniversalRelationshipGraph();
+    const [largest] = filterUniversalNeighborhoods(
+      buildUniversalNeighborhoods(graph, layoutUniversalRelationshipGraph(graph)).neighborhoods,
+      "",
+    );
+    renderUniversalPage("/relationships/universal?keep=yes#extra=ok");
+    fireEvent.click(await screen.findByRole("button", { name: "Neighborhoods" }));
+    expect(screen.getByRole("status", { name: "Current location" }).textContent).toContain("view=neighborhoods");
+    const list = screen.getByRole("list", { name: "Hub neighborhoods" });
+    fireEvent.click(within(list).getByRole("button", { name: `Show ${largest.anchorLabel} in the network` }));
+    const map = await screen.findByRole("group", { name: "Universal relationship map test double" });
+    expect(map.getAttribute("data-selected")).toBe(largest.anchorId);
+    expect(map.getAttribute("data-focus")).toBe(largest.anchorId);
+    expect(screen.queryByRole("list", { name: "Hub neighborhoods" })).toBeNull();
+    const params = new URLSearchParams(
+      screen.getByRole("status", { name: "Current location" }).textContent!.split("#")[1],
+    );
+    expect(params.get("view")).toBeNull();
+    expect(params.get("node")).toBe(largest.anchorId);
+    expect(params.get("extra")).toBe("ok");
+    fireEvent.click(screen.getByRole("button", { name: "Back" }));
+    expect(await screen.findByRole("list", { name: "Hub neighborhoods" })).toBeDefined();
   });
 
   it("links its breadcrumb back to the ordinary relationship index", () => {

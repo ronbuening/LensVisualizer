@@ -160,15 +160,21 @@ regardless of patent count (families still require eight assignment edges; netwo
 the highest-degree node); shared inventors never absorb a small assignee into an unrelated hub. Each node joins its nearest
 deterministic hub in capacity-limited local rings, and the neighborhoods are contracted into a hierarchical-affinity hub
 graph. Center, orbit, and angular-neighbor selection use lexicographic priority: corporate-history edge count, then
-unique cross-neighborhood patent count, then neighborhood node count. `UniversalRelationshipMap.tsx` renders labeled
-halos inside each disconnected-network boundary, keeps every edge at its edge-kind brightness within and between
-neighborhoods, and draws nodes above both boundary layers. Non-patent catalog models use distinct `lens` and `maker`
-nodes with `catalog-maker` edges derived only from an explicit lens `maker` field; these edges do not count as patents,
+unique cross-neighborhood patent count, then neighborhood node count. `UniversalRelationshipMap.tsx` renders halos
+inside each disconnected-network boundary, keeps every edge at its edge-kind brightness within and between
+neighborhoods, curves cross-neighborhood edges, draws highlighted edges above the background, and draws nodes above
+both boundary layers. Labels are placed in screen space by `universalMapGeometry.ts` (`placeUniversalLabels`): a fixed
+on-screen size at every zoom, no overlaps (the overview panel and network captions count as obstacles), and priority
+for the selection, the hovered node, the selection's neighbors, then hubs, so hub names read at Fit all. Nodes, edges
+and labels outside the viewport are culled except the selection and its highlighted edges. Arrow keys move a roving
+tab stop to the nearest node in that direction; Enter or Space selects it. Non-patent catalog models use distinct
+`lens` and `maker` nodes with `catalog-maker` edges derived only from an explicit lens `maker` field; these edges do not count as patents,
 corporate history, or corporate affinity. Maker hubs center their models, and details link to the model and maker pages.
 
 `UniversalMapSearch` searches only graph nodes and uses the shared portal dropdown with combobox keyboard semantics.
 `src/utils/catalog/universalRelationshipSearch.ts` normalizes names and compact patent numbers, ranking exact matches,
-prefixes, then reordered word matches with deterministic catalog sorting. The dropdown shows at most eight results;
+prefixes, then reordered word matches with deterministic catalog sorting. A patent also matches the names of the
+catalog lenses taken from it. The dropdown shows at most eight results;
 Enter selects the highlighted or first result and never navigates to a search page; it is ignored during text composition.
 Escape, outside interaction, and Tab dismiss it; selection clears the query and retains input focus.
 Search selection opens the existing details and issues a numbered focus request; the renderer measures its SVG and
@@ -190,8 +196,12 @@ changing selection or zoom; double-click centers and doubles the zoom; arrow key
 overview sits inside wide viewports and below viewports narrower than 600 CSS pixels, with a local visibility
 toggle. It does not run another layout or filter the graph.
 
-The universal page likewise retains the original Network view after its first use while offering Trace connections, Inventor affiliations,
+The universal page likewise retains the original Network view after its first use while offering Neighborhoods, Trace connections, Inventor affiliations,
 Company bridge, Affiliation matrix, Company chords, and Evidence lanes.
+`UniversalNeighborhoodSummary` lists one card per layout hub cluster (`universalNeighborhoods.ts`), largest first by
+patent and model records, filterable by the anchor or a member company name. Cross-neighborhood edges become patent
+(weighted by distinct patents), corporate, or catalog bridges. A card hands its anchor to the Network view in one
+history entry (view, selection, and focus request together).
 `UniversalConnectionTrace` uses `universalConnectionPaths.ts` to find shortest paths over undirected traversal of the
 original edges, with an option to exclude corporate records. A BFS predecessor graph retains alternate shortest routes;
 bounded enumeration returns at most five plus a truncation indicator. The path diagram opens the same detail cards,

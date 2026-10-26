@@ -13,6 +13,10 @@ import type {
 } from "../../../../src/utils/catalog/universalRelationshipGraph.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import { installResizeObserverMock, renderWithRouter } from "../../../testUtils.js";
+import {
+  boundsIntersect,
+  directionalUniversalNode,
+} from "../../../../src/components/relationshipMap/universalMapGeometry.js";
 import { layoutUniversalRelationshipGraph } from "../../../../src/components/relationshipMap/universalLayout.js";
 
 afterEach(() => {
@@ -158,6 +162,195 @@ function makeMultiHubGraph(): UniversalRelationshipGraph {
 }
 
 describe("UniversalRelationshipMap", () => {
+  it("uses one haloed label layer with constant screen size across zoom and resize", () => {
+    const observer = installResizeObserverMock();
+    let width = 800;
+    vi.spyOn(SVGSVGElement.prototype, "getBoundingClientRect").mockImplementation(
+      () => ({ width, height: 600, left: 0, top: 0 }) as DOMRect,
+    );
+    const { container, getByRole } = renderWithRouter(
+      <UniversalRelationshipMap
+        graph={makeMultiHubGraph()}
+        theme={themes.dark}
+        selectedNodeId={null}
+        onSelectNode={vi.fn()}
+      />,
+    );
+    const main = container.querySelector("svg")!;
+    const verifyLabels = () => {
+      const [, , w, h] = main.getAttribute("viewBox")!.split(" ").map(Number);
+      const scale = Math.min(width / w, 600 / h);
+      const labels = [...main.querySelectorAll("[data-node-label]")];
+      expect(labels.length).toBeGreaterThan(0);
+      expect(main.querySelector("[data-label-layer]")?.getAttribute("aria-hidden")).toBe("true");
+      expect(main.querySelector('g[role="button"] text')).toBeNull();
+      for (const label of labels) {
+        expect(Number(label.getAttribute("font-size")) * scale).toBeCloseTo(13);
+        expect(label.getAttribute("paint-order")).toBe("stroke");
+        expect(label.getAttribute("stroke")).toBe(themes.dark.panelBg);
+        expect(Number(label.getAttribute("stroke-width")) * scale).toBeCloseTo(4);
+      }
+      for (const caption of main.querySelectorAll("[data-network-caption]")) {
+        expect(Number(caption.getAttribute("font-size")) * scale).toBeCloseTo(11);
+      }
+    };
+    expect(main.querySelector('[data-node-label="assignee:alpha"]')?.textContent).toBe("Alpha Optics");
+    expect(main.querySelector("[data-network-caption]")?.textContent).toBe("Network 1 · 19 nodes · 2 neighborhoods");
+    verifyLabels();
+    fireEvent.click(getByRole("button", { name: "Zoom in" }));
+    verifyLabels();
+    width = 390;
+    act(() => observer.trigger(main));
+    verifyLabels();
+    fireEvent.click(getByRole("button", { name: "Fit all" }));
+    verifyLabels();
+    for (const shape of main.querySelectorAll(
+      'g[role="button"] > circle, g[role="button"] > rect, g[role="button"] > polygon, path[data-edge-id]',
+    )) {
+      expect(shape.getAttribute("vector-effect")).toBe("non-scaling-stroke");
+    }
+  });
+
+  it("keeps one tab stop and moves focus directionally, with Enter and Space selecting the focused node", () => {
+    const select = vi.fn();
+    const layout = layoutUniversalRelationshipGraph(graph);
+    const { container, getByRole } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={select} />,
+    );
+    const tabStops = () => container.querySelectorAll('g[role="button"][tabindex="0"]');
+    expect(tabStops()).toHaveLength(1);
+    let current = layout.nodes.find((node) => node.fullLabel === tabStops()[0].querySelector("title")!.textContent)!;
+    act(() => (tabStops()[0] as SVGGElement).focus());
+    // Modified arrows stay with the browser (Alt+Left is history navigation).
+    fireEvent.keyDown(document.activeElement!, { key: "ArrowRight", altKey: true });
+    expect(document.activeElement!.querySelector("title")?.textContent).toBe(current.fullLabel);
+    for (const key of ["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"]) {
+      const target = directionalUniversalNode(layout.nodes, current, key);
+      fireEvent.keyDown(document.activeElement!, { key });
+      if (target) current = target;
+      expect(tabStops()).toHaveLength(1);
+      expect(document.activeElement).toBe(tabStops()[0]);
+      expect(document.activeElement!.querySelector("title")?.textContent).toBe(current.fullLabel);
+    }
+    expect(select).not.toHaveBeenCalled();
+    fireEvent.keyDown(document.activeElement!, { key: "Enter" });
+    fireEvent.keyDown(document.activeElement!, { key: " " });
+    expect(select.mock.calls).toEqual([[current.id], [current.id]]);
+    expect(
+      getByRole("button", {
+        name: `Select ${current.kind === "author" ? "inventor" : current.kind === "family" ? "corporate family" : current.kind} ${current.fullLabel}`,
+      }).getAttribute("tabindex"),
+    ).toBe("0");
+  });
+
+  it("culls offscreen geometry while retaining the selected node, neighbors, labels, and incident edge layer", () => {
+    vi.spyOn(SVGSVGElement.prototype, "getBoundingClientRect").mockReturnValue({
+      width: 800,
+      height: 600,
+      left: 0,
+      top: 0,
+    } as DOMRect);
+    const { container, getByRole } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={author.id} onSelectNode={vi.fn()} />,
+    );
+    const main = container.querySelector("svg")!;
+    const initialNodes = main.querySelectorAll('g[role="button"]').length;
+    for (let i = 0; i < 40; i++) fireEvent.click(getByRole("button", { name: "Zoom in" }));
+    const overview = getByRole("group", { name: "Map overview" });
+    Object.defineProperty(overview, "getScreenCTM", {
+      value: () => ({ inverse: () => ({ a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 }) }),
+    });
+    fireEvent.click(overview, { clientX: 0, clientY: 0 });
+    expect(main.querySelectorAll('g[role="button"]').length).toBeLessThan(initialNodes);
+    expect(getByRole("button", { name: "Select inventor Ada Inventor" })).toBeDefined();
+    expect(getByRole("button", { name: "Select patent US 1" })).toBeDefined();
+    // The selection stays mounted offscreen, but its label is not clamped beside some other node.
+    const [vbX, vbY, vbW, vbH] = main.getAttribute("viewBox")!.split(" ").map(Number);
+    const ada = layoutUniversalRelationshipGraph(graph).nodeById[author.id];
+    expect(
+      boundsIntersect(
+        { x: ada.x - ada.r, y: ada.y - ada.r, width: ada.r * 2, height: ada.r * 2 },
+        { x: vbX, y: vbY, width: vbW, height: vbH },
+      ),
+    ).toBe(false);
+    expect(main.querySelector('[data-node-label="author:ada"]')).toBeNull();
+    const layers = [...main.querySelectorAll("[data-edge-layer]")];
+    expect(layers.map((layer) => layer.getAttribute("data-edge-layer"))).toEqual(["background", "highlighted"]);
+    expect(layers[1].querySelectorAll("[data-edge-id]")).toHaveLength(1);
+    expect(layers[1].querySelector("[data-edge-id]")?.getAttribute("data-edge-id")).toBe("edge-0");
+    expect(main.querySelectorAll("[data-edge-id]").length).toBeLessThan(graph.edges.length);
+    const layout = layoutUniversalRelationshipGraph(graph);
+    const key = ["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"].find((key) =>
+      directionalUniversalNode(layout.nodes, layout.nodeById[author.id], key),
+    )!;
+    const target = directionalUniversalNode(layout.nodes, layout.nodeById[author.id], key)!;
+    const before = main.getAttribute("viewBox");
+    const selected = getByRole("button", { name: "Select inventor Ada Inventor" });
+    act(() => selected.focus());
+    fireEvent.keyDown(selected, { key });
+    expect(main.getAttribute("viewBox")).not.toBe(before);
+    expect(document.activeElement?.querySelector("title")?.textContent).toBe(target.fullLabel);
+    expect(main.querySelectorAll('g[role="button"][tabindex="0"]')).toHaveLength(1);
+  });
+
+  it("puts the tab stop on an onscreen node when the selection is offscreen", () => {
+    vi.spyOn(SVGSVGElement.prototype, "getBoundingClientRect").mockReturnValue({
+      width: 800,
+      height: 600,
+      left: 0,
+      top: 0,
+    } as DOMRect);
+    const layout = layoutUniversalRelationshipGraph(graph);
+    const patent = layout.nodeById["patent:US 1"];
+    const ada = layout.nodeById[author.id];
+    const { container, getByRole } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={author.id} onSelectNode={vi.fn()} />,
+    );
+    const main = container.querySelector("svg")!;
+    for (let i = 0; i < 40; i++) fireEvent.click(getByRole("button", { name: "Zoom in" }));
+    const overview = getByRole("group", { name: "Map overview" });
+    Object.defineProperty(overview, "getScreenCTM", {
+      value: () => ({ inverse: () => ({ a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 }) }),
+    });
+    fireEvent.click(overview, { clientX: patent.x, clientY: patent.y });
+    const [vbX, vbY, vbW, vbH] = main.getAttribute("viewBox")!.split(" ").map(Number);
+    expect(Math.abs(ada.x - patent.x) > vbW / 2 || Math.abs(ada.y - patent.y) > vbH / 2).toBe(true);
+    expect(
+      boundsIntersect({ x: patent.x, y: patent.y, width: 0, height: 0 }, { x: vbX, y: vbY, width: vbW, height: vbH }),
+    ).toBe(true);
+    expect(getByRole("button", { name: "Select inventor Ada Inventor" }).getAttribute("tabindex")).toBe("-1");
+    expect(getByRole("button", { name: "Select patent US 1" }).getAttribute("tabindex")).toBe("0");
+  });
+
+  it("labels only hubs before the viewport is measured, as in prerendered HTML", () => {
+    const multiHub = makeMultiHubGraph();
+    const hubIds = layoutUniversalRelationshipGraph(multiHub).clusters.map((cluster) => cluster.anchorId);
+    const { container } = renderWithRouter(
+      <UniversalRelationshipMap graph={multiHub} theme={themes.dark} selectedNodeId={null} onSelectNode={vi.fn()} />,
+    );
+    const labelIds = [...container.querySelectorAll("[data-node-label]")].map((label) =>
+      label.getAttribute("data-node-label"),
+    );
+    expect(labelIds.length).toBeGreaterThan(0);
+    expect(labelIds.every((id) => hubIds.includes(id!))).toBe(true);
+  });
+
+  it("hides network captions that cannot fit inside their boundary", () => {
+    const observer = installResizeObserverMock();
+    let width = 800;
+    vi.spyOn(SVGSVGElement.prototype, "getBoundingClientRect").mockImplementation(
+      () => ({ width, height: 600, left: 0, top: 0 }) as DOMRect,
+    );
+    const { container } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={vi.fn()} />,
+    );
+    const main = container.querySelector("svg")!;
+    expect(main.querySelector("[data-network-caption]")?.textContent).toBe("Network 1 · 4 nodes · 1 neighborhood");
+    width = 60;
+    act(() => observer.trigger(main));
+    expect(main.querySelector("[data-network-caption]")).toBeNull();
+  });
+
   it("renders catalog maker/model links and exposes model navigation without patent claims", () => {
     const maker = { id: "maker:book", kind: "maker", name: "Book Optics", slug: "book" } as const;
     const lens = {
@@ -203,7 +396,7 @@ describe("UniversalRelationshipMap", () => {
         />
       </>,
     );
-    expect(container.querySelector("line title")?.textContent).toBe(
+    expect(container.querySelector("path[data-edge-id] title")?.textContent).toBe(
       "Book Model grouped under catalog maker Book Optics",
     );
     expect(getByRole("link", { name: "Open maker page →" }).getAttribute("href")).toBe("/makers/book/");
@@ -297,19 +490,20 @@ describe("UniversalRelationshipMap", () => {
       node.getAttribute("cx"),
       node.getAttribute("cy"),
     ]);
-    const edgeCount = container.querySelectorAll("line").length;
+    const edgeCount = container.querySelectorAll("path[data-edge-id]").length;
     const toggle = getByRole("button", { name: "Emphasize connections" });
     expect(toggle.getAttribute("aria-pressed")).toBe("false");
     fireEvent.click(toggle);
     const assigneeButton = getByRole("button", { name: "Select assignee Example Optics" });
     expect(assigneeButton.getAttribute("opacity")).toBe("0.15");
+    expect(container.querySelector('[data-node-label="assignee:example"]')?.getAttribute("opacity")).toBe("0.15");
     expect(getByRole("button", { name: "Select inventor Ada Inventor" }).getAttribute("opacity")).toBe("1");
     expect(getByRole("button", { name: "Select patent US 1" }).getAttribute("opacity")).toBe("1");
     fireEvent.pointerEnter(assigneeButton);
     expect(assigneeButton.getAttribute("opacity")).toBe("0.15");
     fireEvent.click(assigneeButton);
     expect(props.onSelectNode).toHaveBeenCalledWith(assignee.id);
-    expect(container.querySelectorAll("line")).toHaveLength(edgeCount);
+    expect(container.querySelectorAll("path[data-edge-id]")).toHaveLength(edgeCount);
     expect(
       [...container.querySelectorAll("circle")].map((node) => [node.getAttribute("cx"), node.getAttribute("cy")]),
     ).toEqual(positions);
@@ -334,12 +528,16 @@ describe("UniversalRelationshipMap", () => {
           onSelectNode={vi.fn()}
         />,
       );
-      const lines = [...container.querySelectorAll("line")];
+      const lines = [...container.querySelectorAll("path[data-edge-id]")];
       const opacities = lines.map((line) => Number(line.getAttribute("opacity")));
       fireEvent.click(getByRole("button", { name: "Emphasize connections" }));
       lines.forEach((line, i) =>
         expect(Number(line.getAttribute("opacity"))).toBeCloseTo(
-          opacities[i] * (edges[i].from === author.id || edges[i].to === author.id ? 1 : 0.15),
+          opacities[i] *
+            (edges.find((edge) => edge.id === line.getAttribute("data-edge-id"))!.from === author.id ||
+            edges.find((edge) => edge.id === line.getAttribute("data-edge-id"))!.to === author.id
+              ? 1
+              : 0.15),
         ),
       );
     },
@@ -417,12 +615,12 @@ describe("UniversalRelationshipMap", () => {
   });
   it("renders every node as a keyboard-operable control", () => {
     const onSelectNode = vi.fn();
-    const { container, getAllByRole, getByRole, getByText } = renderWithRouter(
+    const { container, getAllByRole, getByRole } = renderWithRouter(
       <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={onSelectNode} />,
     );
     expect(getByRole("group", { name: /Universal relationship map/ })).toBeDefined();
     expect(getAllByRole("button", { name: /^Select / })).toHaveLength(graph.nodes.length);
-    expect(getByText("Example Optics · 4 nodes")).toBeDefined();
+    expect(container.querySelector('[data-node-label="assignee:example"]')?.textContent).toBe("Example Optics");
     expect(container.querySelector("svg")!.querySelectorAll("ellipse")).toHaveLength(1);
 
     const familyButton = getByRole("button", { name: "Select corporate family Example family" });
@@ -439,7 +637,9 @@ describe("UniversalRelationshipMap", () => {
     );
     const button = getByRole("button", { name: "Select assignee Example Optics" });
     fireEvent.focus(button);
-    const activeLines = [...container.querySelectorAll("line")].filter((line) => line.getAttribute("opacity") === "1");
+    const activeLines = [...container.querySelectorAll("path[data-edge-id]")].filter(
+      (line) => line.getAttribute("opacity") === "1",
+    );
     expect(activeLines).toHaveLength(2);
   });
 
@@ -454,17 +654,28 @@ describe("UniversalRelationshipMap", () => {
     );
     expect(container.querySelector("svg")!.querySelectorAll("ellipse")).toHaveLength(2);
 
-    const authorshipLines = [...container.querySelectorAll("line")].filter((line) =>
+    const authorshipLines = [...container.querySelectorAll("path[data-edge-id]")].filter((line) =>
       line.querySelector("title")?.textContent?.includes("Shared Inventor named on"),
     );
     expect(authorshipLines).toHaveLength(2);
     expect(new Set(authorshipLines.map((line) => line.getAttribute("opacity")))).toEqual(new Set(["0.3"]));
 
-    const acquisitionLine = [...container.querySelectorAll("line")].find(
+    const acquisitionLine = [...container.querySelectorAll("path[data-edge-id]")].find(
       (line) => line.querySelector("title")?.textContent === "Alpha Optics acquired by Beta Optics",
     );
     expect(acquisitionLine?.getAttribute("opacity")).toBe("0.62");
     expect(acquisitionLine?.getAttribute("stroke-width")).toBe("1.35");
+    const layout = layoutUniversalRelationshipGraph(makeMultiHubGraph());
+    for (const edge of layout.edges) {
+      const path = container.querySelector(`[data-edge-id="${edge.id}"]`)!;
+      const [, , , , cx, cy] = path.getAttribute("d")!.split(" ").map(Number);
+      const midpoint = [(edge.x1 + edge.x2) / 2, (edge.y1 + edge.y2) / 2];
+      if (layout.nodeById[edge.from].clusterId === layout.nodeById[edge.to].clusterId) {
+        expect([cx, cy]).toEqual(midpoint);
+      } else {
+        expect([cx, cy]).not.toEqual(midpoint);
+      }
+    }
   });
 });
 

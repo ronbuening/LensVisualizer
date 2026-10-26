@@ -20,6 +20,12 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-27",
+    type: "feature",
+    summary:
+      "The universal relationship map now keeps its labels readable at every zoom, adds a Neighborhoods summary and finds patents by lens name",
+  },
+  {
+    date: "2026-10-27",
     type: "lens",
     summary:
       "Added the Canon 35mm f/1.5, Yashica Samurai Z 25-75mm, Schneider Cinelux Première 35mm projection lens, Fujifilm GF 110mm T/S Macro with tilt and shift, Olympus 150-400mm TC1.25× with its built-in converter and Tamron SP 70-150mm Soft (51A)",
